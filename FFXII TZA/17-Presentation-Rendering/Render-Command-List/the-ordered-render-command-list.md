@@ -27,8 +27,8 @@ audit:
 # The ordered render command list — how a pass becomes a drawn layer
 
 > Each render pass in the frame is **an object appended to a list**, not a function that draws.
-> Every one carries a **draw-order number**, and that number — not the order the frame enqueued
-> them — decides what ends up in front of what.
+> Every one carries a ~~**draw-order number**, and that number — not the order the frame enqueued~~
+> ~~them — decides what ends up in front of what.~~ **class mask**, and the list runs in the order the frame enqueued *(corrected 2026-10-02, OPUS: the walk runs the list in stored order and only ANDs slot 2's value, `0018B100`+0x67 `test dword ptr [rsi + 0x20], eax`)*.
 
 ## 1. What the player sees
 
@@ -42,7 +42,7 @@ screen *after* the world is drawn but *before* the water goes down, and the vide
 or it would be blurred by the depth of field.
 
 The engine does not get that order by calling things in sequence. It builds **a list of jobs**,
-each stamped with a number saying how late it belongs, and runs the list in number order. That
+each stamped with ~~a number saying how late it belongs, and runs the list in number order~~ a class mask, and runs the list in the order the jobs were added *(corrected 2026-10-02, OPUS: `0018B100`+0x67 `test dword ptr [rsi + 0x20], eax`; nothing sorts)*. That
 is why turning one effect off never shifts the others out of position, and why the game can
 enqueue a pass from anywhere in the frame without worrying about when.
 
@@ -58,10 +58,10 @@ markers.
 
 The frame's render passes do not draw. Each is a thin wrapper — 30 to 70 bytes — that fetches a
 list singleton and calls **an enqueue function**, and every one of those enqueue functions is
-the same 140-to-150-byte template:
+the same ~~140-to-150-byte~~ template *(corrected 2026-10-02, OPUS: the 36 builders are 139-253 bytes, 29 of them 140-150 - the falsification pass's table; recount of the 36 callers of `0018AFF0` in the `0018xxxx` range)*:
 
 ```c
-// the shape of all 18 enqueue functions - 0018C610 shown, 148 B
+// the shape of all 18 enqueue functions - 0018C610 shown, 148 B   // <- corrected 2026-10-02, OPUS - 36 builders, not 18 (the 36 `0018xxxx` callers of 0018AFF0; 40 appenders in all)
 node = malloc(0x18 | 0x20 | 0x28);      // the command object
 node = CommandCtor(node, args);         // a constructor unique to this command class
 
@@ -78,7 +78,7 @@ FUN_0018AFF0(FUN_0018B4E0(), node);     // push_back onto a SECOND list at 01F7F
 
 Two things follow immediately. The wrapper does no drawing — it allocates and appends. And
 **every command object is appended to two lists**, the one the caller named and a second global
-one; `0018B4E0` returns `01F7F5E0` and asserts it is non-null before doing so.
+one; `0018B4E0` returns `01F7F5E0` ~~and asserts it is non-null before doing so~~ *(corrected 2026-10-02, OPUS: `CON-151`: `0018B4E0`+0x6..+0x10 hands the non-null test to the empty `0016D6A0`, a compiled-out assert)*.
 
 The list itself is an **EASTL vector**, and it says so:
 
@@ -110,13 +110,13 @@ compiler left the class name in the image rather than only in RTTI:
 // 00212CC0 - the base constructor, 26 B, called by 42 sites
 obj[1]          = 0;                     // +0x08  order value, zero by default
 obj[0]          = OrderedObject::vftable;// +0x00  vtable
-*(u8*)(obj + 2) = 1;                     // +0x10  enabled, on by default
+*(u8*)(obj + 2) = 1;                     // +0x10  enabled, on by default   // <- corrected 2026-10-02, OPUS - not an enable: the flush 0018C8F0 executes an entry only when this byte is 0 (0018C8F0+0x43), and neither walk reads it
 ```
 
 ```struct OrderedObject base=record size=0x18
 +0x00  u64  vftable    3 slots: destructor, execute, order key
 +0x08  u64  orderValue set to 0 by the base constructor
-+0x10  u8   enabled    set to 1 by the base constructor
++0x10  u8   enabled    set to 1 by the base constructor   <- corrected 2026-10-02, OPUS - flushSelector, not an enable: read only by the flush at 0018C8F0+0x43, which executes the entry when it is 0
 +0x11  u8[7] unread11  base constructor does not touch it; no reader found — a question, not padding (§7 item 7)
 ```
 
@@ -136,17 +136,17 @@ in every case its whole body is a single constant return:
 0053DD10:  return 1;       // 6 B
 ```
 
-That is the **draw-order key**. It is what makes the base class `OrderedObject` an ordered
-object, and it is why enqueue order does not determine draw order.
+That is the ~~**draw-order key**~~ **class mask** *(corrected 2026-10-02, OPUS: `0018B100`+0x67 `test dword ptr [rsi + 0x20], eax`, and `0018B1B0` ANDs it too; no comparator runs)*. It is what makes the base class `OrderedObject` an ordered
+object, ~~and it is why enqueue order does not determine draw order~~ and enqueue order is the draw order.
 
 | slot | contract | evidence |
 |---:|---|---|
 | 0 | destructor | unique per class in all 36 |
 | 1 | **execute(this, context)** | unique per class; bodies read in §2.4 |
-| 2 | **order key** | a constant return in all 36; three distinct values observed |
+| 2 | **order key** | a constant return in all 36; three distinct values observed *(answered: see §2.5 - nine implementations across the 42 concrete classes, seven constants and two data-driven keys; 2026-10-02, OPUS)* |
 
 Observed keys: `1` for `RazorMarkerPushObj` and `BegineSceneObj` — the jobs that must run
-first; `0x10` for the ordinary render passes; `0x80` for `VideoObj` — the job that must cover
+first; `0x10` for ~~the ordinary render passes~~ most ordinary render passes and `0x100` for `RenderOpaqueObj`, `RenderAfterWaterObj`, `RenderMapOpaqueObj` and `RenderMonsterGalleryChara` *(corrected 2026-10-02, OPUS: their shared slot 2 `001F2890` is `mov eax, 0x100`)*; `0x80` for `VideoObj` — the job that must cover
 everything.
 
 **`0053DD10` carries the ledger name `InputDevice_QueryAvailabilityState_Always1`.** It has
@@ -276,7 +276,7 @@ exist.
 ### 2.5 The complete `OrderedObject` slot matrix — all 43 RTTI classes
 
 The RTTI census (FABLE `pub140-scratch/tools/rtti_vtables.py`, regenerated this pass against
-`uncovered_frontier.txt`) resolves **43 concrete classes** deriving from `OrderedObject` —
+`uncovered_frontier.txt`) resolves **43 ~~concrete~~ classes** - 42 concrete and the abstract base *(corrected 2026-10-02, OPUS: `OrderedObject`'s slot 1 is the `_purecall` thunk `00861EC6`; recount of `members/ordered-object-vtable-slots.tsv`, 43 class names)* - deriving from `OrderedObject` —
 §2.2's "36" undercounts by the seven RTTI names the pass→class map does not reach
 (`ApplyJsonForCutSceneObj`, `MonsterGallerySoftParticleEnable`, `ReadPresetDofForCutSceneObj`,
 the `GiReset*Obj` pair, and the three-class `FontBorderOrderedObject` family). Every class's
@@ -319,10 +319,10 @@ freeing the child — the standard derived-dtor restore-then-teardown order.
 |---|---|---:|---|
 | `0018CA40` | render command list getter | 8 B | returns `01F7F5E8` |
 | `0018C9E0` | create the list on first use | 95 B | allocates 0x20, names the allocator `"EASTL vector"` |
-| `0018B4E0` | second command list getter | 33 B | returns `01F7F5E0`, asserts non-null |
+| `0018B4E0` | second command list getter | 33 B | returns `01F7F5E0`~~, asserts non-null~~ *(corrected 2026-10-02, OPUS: `CON-151`: the test goes to the empty `0016D6A0`)* |
 | `0018AFF0` | `push_back` onto the second list | 58 B | the shared tail of every enqueue |
 | `001AB570` | vector grow-and-insert | 318 B | the slow path when capacity runs out |
-| `00212CC0` | **`OrderedObject` base constructor** | 26 B | stores `OrderedObject::vftable`, order 0, enabled 1 |
+| `00212CC0` | **`OrderedObject` base constructor** | 26 B | stores `OrderedObject::vftable`, order 0, ~~enabled 1~~ flush selector 1 *(corrected 2026-10-02, OPUS: `0018C8F0`+0x43 is the byte's only reader and executes the entry when it is 0)* |
 | `0018B540` | enqueue `ApplyJsonForCutSceneObj` | 143 B | |
 | `0018B670` | enqueue `BegineSceneObj` | 148 B | |
 | `0018B970` | enqueue `CopyDepthBufferObj` | 176 B | |
@@ -383,10 +383,10 @@ freeing the child — the standard derived-dtor restore-then-teardown order.
 | `01F7F5E8` | the render command list | `.data` | `RenderCommandList`, created on first use |
 | `01F7F5E0` | the second command list | `.data` | every command is appended here too |
 | `01F7F598` | render-target manager | `.data` | returned by `00189120` |
-| `01DFE0C4` | **master render enable** | `.data` | a byte; every execute body checks it |
+| `01DFE0C4` | **master render enable** | `.data` | a byte; ~~every execute body checks it~~ most execute bodies check it; `BegineSceneObj`'s `001F29E0` and `ApplyJsonForCutSceneObj`'s `001F29C0` do not *(corrected 2026-10-02, OPUS: both bodies read whole, 50 and 8 bytes, no `01DFE0C4` reference)* |
 | `01F82EC0` | active screen index | `.data` | counted up by `PostProcessObj`'s constructor |
 | `00902F90`–`009033F0` | the command vtable block | `.rdata` | **36 vtables, stride `0x20`** — corrected 2026-09-11: the range previously read `00902FB0`, which holds only 34. `00902F90` has the same three-code-pointer shape and `00902F70` does not, so the start is bounded on both sides and the page's count of 36 was right all along. Each record is 3 code slots **plus a fourth qword**; for 35 of the 36 that qword points into a `0x80`-stride array (below) |
-| `01CEDAD8`–`01CEEBD8` | a per-command descriptor array | `.rdata` | **35 records of `0x80`**, one per vtable that carries a fourth-qword pointer — all 34 gaps are exactly 128 bytes. The 36th vtable's fourth qword is ASCII instead, which is what ends the array. Each record begins `01 00 00 00`, eight zero bytes, then three 32-bit addresses. **What they hold is not established** |
+| `01CEDAD8`–`01CEEBD8` | a per-command descriptor array | `.rdata` | **35 records of `0x80`**, one per vtable that carries a fourth-qword pointer — all 34 gaps are exactly 128 bytes. The 36th vtable's fourth qword is ASCII instead, which is what ends the array. Each record begins `01 00 00 00`, eight zero bytes, then three 32-bit addresses. ~~**What they hold is not established**~~ *(answered: see the falsification pass - each is a class's RTTI Complete Object Locator; checked 2026-10-02: `[00902FB0 - 8]` = `01CEDAD8`, signature 1 and a self RVA that is the record itself; 2026-10-02, OPUS)* |
 | `009030B0` | `ApplyJsonForCutSceneObj` vtable | `.rdata` | |
 | `00903050` | `CopyDepthBufferObj` vtable | `.rdata` | |
 | `00903070` | `Ps2DofObj` vtable | `.rdata` | |
@@ -485,11 +485,11 @@ orderKey(cmd) = cmd->vftable[2]()      // a constant per class
 | key | classes proven to carry it | consequence |
 |---:|---|---|
 | `1` | `RazorMarkerPushObj`, `BegineSceneObj` | runs before the render passes |
-| `0x10` | `PostProcessObj`, `Ps2DofObj`, `GaussianFilterObj`, `AmbientOcclusionObj`, `MaskBorderObj` and the other ordinary passes | the main body of the frame |
-| `0x80` | `VideoObj` | composited last, over everything |
+| `0x10` | `PostProcessObj`, `Ps2DofObj`, `GaussianFilterObj`, `AmbientOcclusionObj`, `MaskBorderObj` and ~~the other ordinary passes~~ most other ordinary passes; `RenderOpaqueObj`, `RenderAfterWaterObj`, `RenderMapOpaqueObj` and `RenderMonsterGalleryChara` carry `0x100` *(corrected 2026-10-02, OPUS: `001F2890`, their shared slot 2, is `mov eax, 0x100`)* | the main body of the frame |
+| `0x80` | `VideoObj` | ~~composited last, over everything~~ its mask value; where it draws follows its enqueue position *(corrected 2026-10-02, OPUS: `0018B100`+0x67 `test dword ptr [rsi + 0x20], eax`)* |
 
-Only the three values above were read. The remaining classes in §4.1 were not opened in this
-pass and their keys are unknown; see §7.
+Only the three values above were read. ~~The remaining classes in §4.1 were not opened in this~~
+~~pass and their keys are unknown; see §7.~~ *(answered: see §7, answered 2026-09-12 - all 36 read, and the §2.5 matrix; 2026-10-02, OPUS)*
 
 ### 4.4 The per-effect switches
 
@@ -516,7 +516,7 @@ the frame                                   see 22-Middleware-PhyreEngine/The-Fr
               -> push_back onto 01F7F5E8
               -> push_back onto 01F7F5E0   (via 0018B4E0 / 0018AFF0)
                  ~~~~~ the frame's involvement ends here ~~~~~
-                 later: the list is ordered by slot 2 and each slot 1 is executed
+                 later: the list is ordered by slot 2 and each slot 1 is executed   <- corrected 2026-10-02, OPUS - nothing orders it: the walk 0018B100 runs it in stored order and ANDs slot 2 with the list's mask (0018B100+0x67)
                     -> execute reads FUN_00193D50() switches and 01DFE0C4
                        -> the GS command stream  (see The-Frame doc §2.5)
 ```
@@ -566,11 +566,11 @@ enqueue time.
   gaussian filter. These are read fresh on every execute, so a write takes effect the same frame
   and nothing needs invalidating. It is a strictly better seam than the pass-enable bitmask in
   the frame, because it stops the *work* while leaving the command list structurally intact.
-- **Best intervention point for turning everything off at once:** `01DFE0C4`. Every execute body
-  read in this pass checks it.
-- **Best intervention point for changing layering:** slot 2 of a class's vtable. Returning a
-  larger constant moves that pass later. This is a 6-byte function per class and it is the only
-  thing that determines order — the enqueue sequence does not.
+- **Best intervention point for turning everything off at once:** `01DFE0C4`. ~~Every execute body~~
+  ~~read in this pass checks it.~~ Most execute bodies check it; `001F29E0` (`BegineSceneObj`) and `001F29C0` (`ApplyJsonForCutSceneObj`) do not *(corrected 2026-10-02, OPUS: both read whole)*.
+- **Best intervention point for changing layering:** ~~slot 2 of a class's vtable. Returning a~~ the enqueue order *(corrected 2026-10-02, OPUS: `0018B100`+0x67 `test dword ptr [rsi + 0x20], eax`; no comparator runs)*.
+  ~~larger constant moves that pass later. This is a 6-byte function per class and it is the only~~
+  ~~thing that determines order — the enqueue sequence does not.~~ Slot 2 is ANDed with each walk's mask, so changing it changes which walks run the pass, not its place.
 - **Regenerates itself — do not write directly:** the list pointers at `01F7F5E8` / `01F7F5E0`,
   and `01F82EC0`, which `PostProcessObj`'s constructor recomputes from scratch every time a
   post-process command is created.
@@ -608,7 +608,7 @@ enqueue time.
       - **`01F7F5E8` is an EASTL vector.** It is a `0x20`-byte object created lazily by `0018C9E0`, whose allocator name is the literal `"EASTL vector"` (`008C5F58`).
       - **A producer does both.** `0018B540`, for example, allocates the command, pushes it into the vector its caller passes (`0018B58C`–`0018B5B0`, growing through `001AB570`), then hands it to the manager (`0018B5B5`).
         *Corrected 2026-09-15 (FABLE): the command is not uniformly `0x20` bytes.* The size argument at each builder's
-        `0085E730` call is **`0x18` for eleven of the nineteen builders, `0x20` for seven and `0x28` for one**
+        `0085E730` call is **`0x18` for eleven of the nineteen builders, `0x20` for seven and `0x28` for one** *(scope named 2026-10-02, OPUS: the nineteen of §2.3; over all 36 builders the size is `0x18` x 15, `0x20` x 16, `0x28` x 3 and `0x30` x 2 (`0018B710`+0x37 and `0018B8B0`+0x2E `lea ecx, [rdx + 0x30]`), the last `ecx` write before each `call 0085E730`)*
         (`0018B970`). `0018B540`'s own is `0x20` (`lea ecx, [rdx + 0x20]` at `0018B55F`), which is why the single
         example read as the general case. See `UQ-234` in §7 for what the three sizes say about the layout.
       - ~~**Not established:** whether the caller's vector is always `01F7F5E8`, and why the engine keeps both.~~
@@ -664,7 +664,7 @@ enqueue time.
           appenders touches the vector — because the vector destroys what it holds, and these objects
           are embedded in, or owned by, something else. Appending them to the manager schedules them
           for the frame without handing them to a destructor.
-        - **Not established:** whether any path clears the manager without the vector also being
+        - ~~**Not established:** whether any path clears the manager without the vector also being~~ *(answered: see CONTRACT-render-command-list-and-graphics-handshake.md I-2 - all three clears are followed by a destroy or a flush, `0017CCD0`+0x83/+0x90, `00187950`+0x8B4/+0x8C1, `001E0590`+0x19/+0x26; 2026-10-02, OPUS)*
           destroyed in the same frame. *(The four registered objects' classes are no longer open — they
           are in `UQ-231` below.)*
 - [x] ~~The order keys of the 28 classes in §4.1 whose slot 2 was not opened.~~
@@ -791,11 +791,11 @@ enqueue time.
       `+0x110` the **enable byte** (`mov [rcx+0x110], dl`), `+0x114` the **focus distance**, `+0x118` the
       **aperture f-number**, `+0x11C` and `+0x120` the two floats its caller passes on the stack. Both of its
       callers read `+0x11C` back **before** the call and hand it straight in, so `+0x11C` is preserved and
-      `+0x120` receives the constant `35.0f` at `008F312C`. The two callers are `001C3D50`'s PresetDof arm
+      `+0x120` receives the constant `35.0f` at `008F312C`. The ~~two~~ callers are four functions, five sites *(corrected 2026-10-02, OPUS: `001C3D50`+0x499 and +0x551, `001C5750`+0x177, `001C7940`+0x24E, `001F38B0`+0x45)*: `001C3D50`'s PresetDof arm
       (§7, `UQ-232`) and `001C5750`, the `sum_` bank's sidecar reader (`UQ-247`).
       ***Field census done 2026-09-17 (SWE2-STRUCT).*** The block is declared in the type store as
       **`PostProcessParamContext`** (size `0x4A8`, `PTR 0x01F7F5F0`/`0x01F81300`, ctor `0018CD90`), and its
-      census is `postprocess-context-accesses.tsv` beside this page — 776 sites over 219 distinct offsets,
+      census is `postprocess-context-accesses.tsv` beside this page — ~~776~~ 777 sites *(corrected 2026-10-02, OPUS: the `+0xEE` section added the global-slot read; recount of the TSV, 777 rows)* over 219 distinct offsets,
       built by tracking the context pointer through argument registers and stack-argument slots into 95
       callee bodies plus the whole constructor chain (`Tools/work/SWE2-STRUCT/uq233_census.py`). The map:
       five intrusive list sentinels at `+0x00`/`+0x10`/`+0x28`/`+0x38`/`+0x88`; a `0067FFB0`-registered block
@@ -879,7 +879,7 @@ enqueue time.
 | Claim | Evidence | Tier |
 |---|---|---|
 | The list is an EASTL vector of 3 pointers plus an allocator | complete body of `0018C9E0`: allocates `0x20`, zeroes three quadwords, passes the literal string `"EASTL vector"` to the allocator initialiser | 1 + 2 |
-| Every enqueue function shares one push_back idiom | complete bodies of all 18 enqueue functions listed in §3, read individually | 1 |
+| Every enqueue function shares one push_back idiom | complete bodies of all 18 enqueue functions listed in §3 *(scope named 2026-10-02, OPUS: §3's 18; the builders number 36, the falsification pass's table)*, read individually | 1 |
 | Every command object is appended to two lists | the tail `FUN_0018AFF0(FUN_0018B4E0(), node)` present in all 18; `0018B4E0`'s complete body returns `01F7F5E0` | 1 |
 | `ApplyJsonForCutSceneObj` reads no file | complete bodies of `001F1770` (51 B), `001F29C0` (8 B) and `001F2880` (6 B): the constructor stores one `int` at `+0x18`, slot 1 tail-jumps to `001C3C30` with that field as its only argument, and no file-opening call appears in `001C3C30` or `001C3D50` | 1 |
 | The three `JsonData` files | the only rip-relative references to the literals `008F9E38`, `008F9E70` and `008F9E48` in `.text`, by full-image scan: `001C6E20` (`JsonData/0.json`), `001C5930` and `001C5750` and `001C6E20` (`JsonData/CutScenes/`), `001C3760` (`JsonData/init.json`) | 1 + 2 |
@@ -889,7 +889,7 @@ enqueue time.
 | `JsonData/0.json` ships as `{}` | the shipped file, two bytes, in the full-game extract | 9 |
 | The vector owns the commands and the manager does not | complete bodies of `0018B810` (159 B) and `0018B040` (36 B): the first calls vtable slot 0 with `edx = 1` per node then empties itself, the second resizes the entry array to zero and resets `+0x24` / `+0x2C` with no destructor call | 1 |
 | The caller's vector is always `01F7F5E8` | three instruments: the global has only 3 rip-relative accesses (creator `0018C9E0`, getter `0018CA40`); no 8- or 4-byte pointer to `0018CA40` exists image-wide; and at all 20 enqueue sites the last write to `rcx` is `mov rcx, rax` after `call 0018CA40`, tracked by decoding each body in order rather than by proximity | 1 + 8 |
-| Command objects ship in three sizes, not one | the last write to `ecx` before the `0085E730` call in all **19** enqueue builders: `0x18` × 11, `0x20` × 7, `0x28` × 1 | 1 |
+| Command objects ship in ~~three~~ four sizes, not one | the last write to `ecx` before the `0085E730` call in ~~all **19** enqueue builders: `0x18` × 11, `0x20` × 7, `0x28` × 1~~ all 36 builders *(corrected 2026-10-02, OPUS: over all 36 builders the size is `0x18` x 15, `0x20` x 16, `0x28` x 3 and `0x30` x 2 (`0018B710`+0x37 and `0018B8B0`+0x2E `lea ecx, [rdx + 0x30]`), the last `ecx` write before each `call 0085E730`)* | 1 |
 | `+0x11`–`+0x17` is the base's tail padding | `00212CC0` uses `0x11` bytes; eleven classes allocate `0x18`, so the gap is their last seven bytes; and over a 129-body superset (vtable materialisers, all three slots of 35 vtables, and the 19 builders) **no** memory operand through a non-stack base lands in `0x11`–`0x17` | 1 |
 | Only allocating producers push into the vector | `0018AFF0` is the sole append to the manager and is not address-taken, so its **40** caller bodies are the whole population; 36 call the allocator `0085E730` and carry the grow path `001AB570`, and the other 4 (`001E5270`, `001F89B0`, `001F48B0`, `001E8580`) allocate nothing and push into no vector | 1 + 8 |
 | The sixteen two-slot `Gi*` classes are not in this list | RTTI base-class census over the complete-object locators: 18 `Gi*` classes, 16 with base `GeometryInstance` and 2 slots, 2 with base `OrderedObject` and 3 slots (`009033D0`, `009033F0`); a `GeometryInstance` reaches the list only through the 3-slot adapter `GeometryInstanceOrderedObject` (`00903920`) | 4 |
@@ -914,7 +914,7 @@ enqueue time.
 - *"Slot 2 is a destructor variant or a type id, not an order key."* — Sought its values. Three
   distinct constants across 36 classes, with `BegineSceneObj` lowest and `VideoObj` highest —
   ordering that matches what the passes must physically do. A type id would be unique per class;
-  these are shared by many. **The claim survived**, though the sort site itself is still unfound
+  these are shared by many. **The claim survived**~~, though the sort site itself is still unfound~~ *(answered: see §7 - answered 2026-09-14: the list runs in stored order and is not sorted; 2026-10-02, OPUS)*
   and is recorded in §7 rather than assumed.
 - *"The `Gi*` classes are the same family, so this document should merge with theirs."* —
   Sought a distinguishing fact rather than an adjacency argument. The `Gi*` classes carry two
@@ -923,7 +923,7 @@ enqueue time.
   in §7 instead of being answered by proximity.
 - *"The order keys prove the list is sorted."* — **Not sought successfully, and therefore not
   claimed.** A constant-returning virtual is consistent with sorting but does not prove a sort
-  happens; no consumer was found. §2.2 states what the values are; the sorting is §7 item 1.
+  happens; ~~no consumer was found~~ *(answered: see §7 - the consumer executes the list in stored order, 2026-09-14; 2026-10-02, OPUS)*. §2.2 states what the values are; the sorting is §7 item 1.
 
 **Crossref audit disposition (2026-09-07, against a graph regenerated from this program state):**
 
@@ -992,7 +992,7 @@ a stray pointer.
 ### All 36 order keys — closing `PROPOSED-xiionline-13-9`
 
 §4.3 reads `vftable[2]` for eight classes and §7 records the other 28 as unknown. All 36 are opened
-here. **Slot 2 has only five distinct implementations across the 36 classes**, while slots 0 and 1
+here. **Slot 2 has only five distinct implementations across the 36 classes** *(scope named 2026-10-02, OPUS: across all 42 concrete classes it has nine, §2.5)*, while slots 0 and 1
 have 36 each — the first two are per-class, the third is a small pool of shared accessors.
 
 | key | impl | count | classes |
@@ -1013,7 +1013,7 @@ fixed layer they do not have.
 **"`VideoObj` … composited last, over everything" does not follow from the key.** Four classes carry
 `0x100`, which is **larger than VideoObj's `0x80`**. Whether that puts them in front of or behind the
 video depends on the comparator and the sort direction — and `PROPOSED-xiionline-13-7` records that
-**no consumer that walks either list has been located**, so nobody has read the comparator yet. The
+~~**no consumer that walks either list has been located**, so nobody has read the comparator yet.~~ *(answered: see §7 - the walk was found 2026-09-14 and compares nothing; 2026-10-02, OPUS)* The
 key values are now all known; the ordering they produce is not. Opened as
 `PROPOSED-xiionline-13-14`.
 
@@ -1044,7 +1044,7 @@ key values are now all known; the ordering they produce is not. Opened as
 > **Nothing above was executed or observed live**, and `-13-7` stays open until a body is read that
 > walks a list and compares two keys.
 
-**Not claimed:** nothing here was executed or observed live. The sort and execution site remain
+**Not claimed:** nothing here was executed or observed live. ~~The sort and execution site remain~~ *(answered: see §7, 2026-09-14 - executed in stored order, never sorted; 2026-10-02, OPUS)*
 unlocated (`-13-7`), so every statement above is about the keys the classes *carry*, not about the
 order the frame draws them in. The 36 enqueue functions were counted by signature and their
 constructors were not opened individually.
@@ -1911,7 +1911,7 @@ which the `0x20` object never does.
 element's slot 0 with `edx = 1` — the scalar-deleting form, so `free` runs (`0018B850`–`0018B860`).
 `0018B040`, the ordered list's clear, calls `0018B3F0(list, 0)`, whose shrink arm at
 `0018B43B`–`0018B46B` only moves `pEnd` back to `pBegin` and touches no object. **The teardown order
-follows and is identical at both sites**: clear the non-owner first, destroy second — `0017CD53`
+follows and is identical at ~~both~~ all three sites** *(corrected 2026-10-02, OPUS: the third is the scene teardown, `001E0590`+0x19 clear then +0x26 flush; CONTRACT-render-command-list-and-graphics-handshake.md I-2)*: clear the non-owner first, destroy second — `0017CD53`
 then `0017CD60` in the frame tick, `00188204` then `00188211` at the end of the render pass. Both
 are now declared in `_types` as `OrderedCommandList` (0x30) and `RenderCommandOwnerList` (0x20).
 
@@ -1964,3 +1964,21 @@ Interior anchor `001C2E2A` (function `001C2DB0`).
 `001C3600` (161 B) is the vector-clone `001C3760` runs: `([rdx+8] - [rdx]) >> 4` counts the source's `0x10` records, `001EDF00` initialises the destination and `[[rdi+0x18]]->+0x10` allocates `count*16` bytes, begin/end/capacity land at `[rdi]`/`+8`/`+0x10`, and `001C3590` copies the range with the caller's `+0x60` flag byte
 
 Interior anchor `001C3682` (function `001C3600`).
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-the-ordered-render-command-list-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `001C3590` | 108 B | stores `r9` at qword `[rcx]`; then, while the source pointer `rdx` differs from `r8`, calls `001FE6B0` with `rcx` = the current qword `[rcx]` and `rdx` = the current source when that qword is non-null, and advances both the source and qword `[rcx]` by `0x10`; returns `rcx` | `001C35AB`, `001C35AE`, `001C35D2`, `001C35EA`, `001C35F1` |
+| `001D85A0` | 21 B | stores the dword `0x40C00000` at `+0x8C` of `rcx` and the dword `0x437F0000` at `+0x88`, then returns | `001D85AA` |
+| `001E5270` | 31 B | calls `0018B4E0` with `rcx` unchanged and tail-jumps `0018AFF0` with its result as `rcx` and qword `+0x10` of the original `rcx` as `rdx` | `001E5279`, `001E527E`, `001E528A` |
+| `001F1B80` | 68 B | calls `00212CC0(rcx)`, stores `edx` at dword `+0x18` and the address `009031D0` at qword `+0x0` of `rcx`; then stores to dword `01F82EC0` its old value plus 1 when `edx` is non-zero, or 0 when `edx` is zero (`cmove`); returns `rcx` | `001F1B8F`, `001F1B9B`, `001F1B9E`, `001F1BB2`, `001F1BB5` |
+| `001F1C30` | 118 B | calls `00212CC0(rcx)`, stores the address `009032D0` at qword `+0x0` of `rcx` and zeroes qword `+0x18`; stores `00210EC0(0x200)` at `+0x18`, calls `00861EC0(that buffer, 0, 0x200)`, then calls through the import qword `008C2F70` with (qword `+0x18`, `rdx`, `0x1FF`); returns `rcx` | `001F1C4E`, `001F1C6B`, `001F1C70`, `001F1C7F`, `001F1C91` |
+| `001F2520` | 79 B | stores the address `009032D0` at qword `+0x0` of `rcx`, calls `00809950(qword +0x18, 1)` and then `00212CE0(rcx)`; when bit 0 of `edx` is set also calls `00809950(rcx, 0x20)`; returns `rcx` | `001F2533`, `001F2542`, `001F254A`, `001F254F`, `001F255C` |
+| `001F29E0` | 50 B | calls `00188AC0(00189120())`, then tail-jumps `005FEFD0` with `rcx` = the incoming `rdx` and `edx` = dword `+0x18` of the incoming `rcx` | `001F29F0`, `001F29F8`, `001F29FD`, `001F2A0D` |
+| `001F32B0` | 46 B | tail-jumps `00191130` with `rcx` = `00193D50()`, `rdx` unchanged and `r8d` = dword `+0x18` of the incoming `rcx` | `001F32C0`, `001F32C5`, `001F32D9` |
+| `001F39E0` | 30 B | calls `001B7F20` with `rcx` unchanged and tail-jumps `001B7D50` with its result as `rcx` and the incoming `rdx` | `001F39E9`, `001F39F1`, `001F39F9` |
+| `0022A550` | 44 B | returns 1 when byte `02064AD3` equals 2 and `00358330(1)` returns non-zero; otherwise returns 0 | `0022A554`, `0022A562`, `0022A56B`, `0022A575` |
+| `002640E0` | 30 B | returns float `+0xE0` of the qword `+0xB8` of `rcx` when byte `+3` of `rcx` AND `0xE0` equals `0x60`; otherwise returns 0.0 | `002640E6`, `002640EA`, `002640F5` |

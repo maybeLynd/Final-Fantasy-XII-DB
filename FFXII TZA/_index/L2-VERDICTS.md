@@ -360,9 +360,13 @@ and `cells`, a `uint16[576]` covering 99.3 % of the type. **The cells are decode
 each is a **node number**, `0xFFFF` for an empty square, addressed `cell[row * width + col]` - and
 the layout is measured across 120 board files from ten unrelated authors.
 
-**What has no type is the NODE TABLE the cells index.** `license-board-grid-format.md` establishes
-that `license_data.bin` holds **360 records, valid indices 0…359**, and `CONTRACT-license-check.md`
-that the owned-licence bitmask is **46 bytes, 368 bits, one per node**, at `statsRecord + 0x194`.
+**What has no type is the NODE TABLE the cells index.** `license-board-grid-format.md` describes
+`license_data.bin`'s **360 records, valid indices 0…359** — but the node table the game actually
+checks is **battle_pack.bin's 361-record section** (loaded at `02EBF038`); the standalone
+`license_data.bin` is never loaded (its path strings have no code references) and **node 360 is
+grantable** behind presence bit `0xC01F` *(qualified 2026-10-02, OPUS `5258d2c88`;
+`_index/candidates/opus-licence-buy-gil-cost-1002/`)*. `CONTRACT-license-check.md` gives the
+owned-licence bitmask as **46 bytes, 368 bits, one per node**, at `statsRecord + 0x194`.
 None of that is registered in `_types`: there is no row for a licence node record, so a
 reconstruction can read a board and cannot say what any square grants.
 

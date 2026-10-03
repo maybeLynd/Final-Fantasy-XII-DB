@@ -135,7 +135,7 @@ handler and state family. `+0x1061` is not the debug weather lock.
 
 - [x] ~~Exact conditions under which `00268320` arms the restore state (open question **F-3**).~~ **F-3 ANSWERED
       2026-09-13 (FABLE, from ASTRA's spawn page §16 and a writer census):** `00268320` sets `+0x1061 = 1` exactly when a fresh read of dword `0209AC10` is zero (`0026835E`–`0026836C`) and never clears it; it clears `scratch2` (`02099FF0`) only when `0209AC10 == 0` **and** `01E0C3EC != 0` (`00268324`–`00268345`) and `scratch1` (`02099DF0`) always. Every RIP writer of the two globals: `0209AC10` — `1` in `SaveLoad_ControllerLifecycleHandler` (`00582E98`, just before `WorldTransitionSnapshot_RestorePersistencePairForActiveSlot`), `0` from `WorldTransition_StageFieldTransition` when the staged request is field `0xC` (`00314752`–`00314754` via the setter `00287D00`), and `0` from script verb `0x05BF`, whose handler `00355E80` tail-calls the same setter with `ecx = 0`; its only other reader is the `0x05BE` getter (`00286000` ← `00355940`). `01E0C3EC` — `1` in the image, `1` on the same field-`0xC` branch (`00314759`), `0` in `SaveLoad_NormalizeLoadedRuntimeStateAndReseedRNG` (`00584386`, `esi` = 0), which the controller reaches at `00582EBA`. So after the controller's restore path the next `00268320` keeps `scratch2` and leaves `+0x1061` alone, and after staging field `0xC` it wipes `scratch2` and arms `+0x1061`. Residue: whether the controller path and the reset run in that order in a real load, and what `0x05BE`/`0x05BF` do in authored scripts (ASTRA-REQ-FABLE-RESTORE-REQUEST).
-- [x] ~~Whether a higher non-VM apply seam exists above `0026D910` (open question **D-3**).~~ **D-3 ANSWERED 2026-09-12 (FABLE): no runtime seam above it — only boot.** `WorldField_InitializeCurrentFieldRuntimeParameters` (`0026D910`) has exactly three call sites: the script verb **`setweatherslot`** (`0x021A`, thunk `003565C0`, [the verb table](../../01-Script-VM-Native-Bridge/Verb-Dispatch/scriptvm-verb-table.tsv)) and two back-to-back native calls with argument 1 at `00266E74` / `00266E7B` inside `00266D10`, a 1,185-byte subsystem initialiser that the boot function `0022A0B0` ([what the engine fixes at boot](../../00-Engine-Core-Runtime/what-the-engine-fixes-at-boot.md)) runs once at `0022A3F7`. So at runtime every weather apply comes through the VM verb; the only higher non-VM seam is the boot pass, which primes the seam twice and never returns to it.
+- [x] ~~Whether a higher non-VM apply seam exists above `0026D910` (open question **D-3**).~~ **D-3 ANSWERED 2026-09-12 (FABLE): no runtime seam above it — only boot.** `WorldField_InitializeCurrentFieldRuntimeParameters` (`0026D910`) has ~~exactly three call sites~~ four direct entries, the three named here and the field-entry roll's tail jump at `0025AD06` *(corrected 2026-10-02, OPUS: `retool.py callers 0026D910` — `0025ACA0`@`0025AD06` (`jmp`), `00266D10`@`00266E74` and @`00266E7B`, `003565C0`@`0035660E`)*: the script verb **`setweatherslot`** (`0x021A`, thunk `003565C0`, [the verb table](../../01-Script-VM-Native-Bridge/Verb-Dispatch/scriptvm-verb-table.tsv)) and two back-to-back native calls with argument 1 at `00266E74` / `00266E7B` inside `00266D10`, a 1,185-byte subsystem initialiser that the boot function `0022A0B0` ([what the engine fixes at boot](../../00-Engine-Core-Runtime/what-the-engine-fixes-at-boot.md)) runs once at `0022A3F7`. So at runtime ~~every weather apply comes through the VM verb~~ a weather apply comes through the VM verb or through the field-entry roll `0025ACA0` *(corrected 2026-10-02, OPUS: its tail jump at `0025AD06`)*; the only higher non-VM seam is the boot pass, which primes the seam twice and never returns to it.
 - [x] Thread/game-frame requirements for calling `0026D910` safely (open question **F-1**).
       *SUPERSEDED 2026-09-26 (FABLE, Claude Opus 5.5) under the runtime rule, because the static half is settled. Every in-image path to
       `0026D910` starts at one of three application entries on the main-loop thread: GameApplication's setup, its update
@@ -298,7 +298,7 @@ here. The two clusters are adjacent in the payload and independent in behaviour.
   re-reads the committed slot and hands off".
 - **The tail jump to `002E3D40` means this function has no return value of its own** — whatever the
   materialiser returns is what the caller sees. Nothing here establishes what that is.
-- `02099DBC` is cleared first and nothing here reads it back; what it means is not established.
+- `02099DBC` is cleared first and nothing here reads it back; ~~what it means is not established~~ *(answered: it is the `map_ref` `+0x18` boolean table's entry for the lane's environment index, read through the getter `00264D50`, with a second writer `0026AB40` — CONTRACT-weather.md §5; 2026-10-02, OPUS)*.
 - Static only. §"Re-verification 2026-09-02" covers the live side of the slot state, not this
   ordering.
 
@@ -340,7 +340,7 @@ Interior anchor `002FA269` (the second qword clear).
 `00237DF0` run alongside `002FA260`: five qwords plus a trailing
 dword at `02EC3EA0`..`02EC3EC8` are zeroed outright - the twin
 reset to `002FA260`'s `02BE3E60` block, same shape, different
-slot array.
+slot array *(answered: that array is the authored-trigger live-set ring, not weather state — the authored-trigger update passes `02EC3EA0` to `002FB3B0`; CONTRACT-authored-trigger-points.md TP-4; 2026-10-02, OPUS)*.
 Interior anchor `002FA239` (the second qword clear).
 
 ## §10's "the derive re-reads the payload" holds for three published values and not for the fourth (OPUS, 2026-09-21)
@@ -364,3 +364,12 @@ So on the restore path the function materialises the **kept** slot's environment
 **requested** slot's combat weather, in the same call. §10's warning stands for the derive half it
 was written about; the qualification is that the function itself already does the thing §10 warns
 against, in exactly one place.
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-weather-slot-state-model-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `002509A0` | 46 B | calls `0035C880(0xC, 1)` and then tail-jumps `0028E5F0(ecx, edx)` with the incoming `ecx` and `edx` | `002509AE`, `002509B3`, `002509B6`, `002509C9` |
+| `0050C990` | 54 B | takes the value v returned by `003BB420()`, calls `0017D280(00D228D0, v)` and tail-jumps `0026B4E0(rcx, v)` with the incoming `rcx` | `0050C99D`, `0050C9A4`, `0050C9AD`, `0050C9C1` |

@@ -116,7 +116,7 @@ So it is not a dead duplicate - but the designer's *reason* remains unproven.
 ```
 payload +0x1060  s8   committed Weather Slot (0..2)
 payload +0x1061  u8   bInitializationRestoreState
-02099DA8         u32  global environment class 0..3
+02099DA8         u32  global environment class 0..3   <- corrected 2026-10-02, OPUS: 0..4 as authored - 0026DA1E loads A[4 + 4*envIdx] from the map_ref +0x10 table {4,4,4,0,0,1,2,2,3,0,...}, and 4 is the value on 246 of the 279 shipped lanes (map_ref.bin read through vbf_read_entry; CON-146 below)
 02099DAC         u32  MWeather gameplay class 0..2
 02CB8420/24/28   f32  normalized environment direction vector — the
                      (x, y, -z) form; `001F08A0` materialises both
@@ -162,7 +162,7 @@ for the full fan-out.
       it, pass 2 commits slot 1; when none is armed, pass 1 already commits slot 1 and pass 2 repeats
       it, costing the 14 PRNG steps §2 measured. Whether the designers wrote two calls for that
       reason or by accident is not a fact the binary carries; the row is retired as an intent residue.
-- [x] ~~Whether a higher non-VM apply seam exists (open question **D-3**).~~ **D-3 ANSWERED 2026-09-12 (FABLE): no runtime seam above it — only boot.** `WorldField_InitializeCurrentFieldRuntimeParameters` (`0026D910`) has exactly three call sites: the script verb **`setweatherslot`** (`0x021A`, thunk `003565C0`, [the verb table](../../01-Script-VM-Native-Bridge/Verb-Dispatch/scriptvm-verb-table.tsv)) and two back-to-back native calls with argument 1 at `00266E74` / `00266E7B` inside `00266D10`, a 1,185-byte subsystem initialiser that the boot function `0022A0B0` ([what the engine fixes at boot](../../00-Engine-Core-Runtime/what-the-engine-fixes-at-boot.md)) runs once at `0022A3F7`. So at runtime every weather apply comes through the VM verb; the only higher non-VM seam is the boot pass, which primes the seam twice and never returns to it.
+- [x] ~~Whether a higher non-VM apply seam exists (open question **D-3**).~~ **D-3 ANSWERED 2026-09-12 (FABLE): no runtime seam above it — only boot.** `WorldField_InitializeCurrentFieldRuntimeParameters` (`0026D910`) has ~~exactly three call sites~~ four direct entries, the three named here and the field-entry roll's tail jump at `0025AD06` *(corrected 2026-10-02, OPUS: `retool.py callers 0026D910`, and this page's own entry census above)*: the script verb **`setweatherslot`** (`0x021A`, thunk `003565C0`, [the verb table](../../01-Script-VM-Native-Bridge/Verb-Dispatch/scriptvm-verb-table.tsv)) and two back-to-back native calls with argument 1 at `00266E74` / `00266E7B` inside `00266D10`, a 1,185-byte subsystem initialiser that the boot function `0022A0B0` ([what the engine fixes at boot](../../00-Engine-Core-Runtime/what-the-engine-fixes-at-boot.md)) runs once at `0022A3F7`. So at runtime ~~every weather apply comes through the VM verb~~ a weather apply comes through the VM verb or through the field-entry roll `0025ACA0` *(corrected 2026-10-02, OPUS: its tail jump at `0025AD06`)*; the only higher non-VM seam is the boot pass, which primes the seam twice and never returns to it.
 - [x] Physical rendering role of the published direction vector (open question **D-4**).
       **Narrowed 2026-09-17 (OPUS's finding, verified instruction-exact by SWE2-FRONTIER):**
       the sole writer `001F08A0` and sole reader `006084B0` are both fully read. The reader
@@ -430,11 +430,11 @@ NOT claimed: what `01F82E38`/`01DFE0C0` name semantically.
 ## Interior citation — frontier hub `00265920` (2026-09-18, SWE2-EC7)
 
 `00265920` — 41 B, 20 callers (5 A-measured); the state getter the weather materialisation
-polls. Interior verified: `0017D490()` answers the pending-state count
+polls. Interior verified: `0017D490()` ~~answers the pending-state count~~ returns the debug weather-slot override, `dword [001D50D0() + 0xAAC]` *(corrected 2026-10-02, OPUS: `0017D494 call 001D50D0` / `0017D499 mov eax, [rax + 0xaac]`; weather-slot-state-model.md §3)*
 ([`00265924`](../../_index/ADDRESS-INDEX.md)); a positive result re-enters it tail-first
 (`00265931`), while zero falls through to `002EF2B0()` and returns
 `sign-extended byte [rax+0x1060] + 1` ([`0026593B`](../../_index/ADDRESS-INDEX.md)) — the
-stored mode plus one, the "next state" convention this page's transition roll consumes.
+~~stored mode plus one, the "next state" convention this page's transition roll consumes.~~ committed zero-based slot plus one, the `1..3` slot *(corrected 2026-10-02, OPUS: `0026593B movsx` / `00265942 inc`)*.
 
 ## SWE2-EC7-34 update (2026-09-19) - `002DE800`
 
@@ -546,7 +546,7 @@ divergence is invisible in ordinary play and was not noticed.
 **Also carved out of this function's derive half**, and previously undocumented here: the four
 16-byte-block lanes are now declared types (`MapRefImageHeader`, `MapRefFieldRow`,
 `MapRefWeatherBlock`, `MapRefWeatherLane` in `_types`), `02099DB0` is written by this function and
-read by nothing — and is `0` in all 279 shipped lanes — and `02099DBC` has a second writer,
+~~read by nothing~~ has no reader found (GB-3) *(corrected 2026-10-02, OPUS: an absence claim bounded by CONTRACT-weather.md's GB-3 residual)* — and is `0` in all 279 shipped lanes — and `02099DBC` has a second writer,
 `0026AB40`, whose whole body is `[02099DBC] = (ecx != 0)`, corroborating the boolean domain the
 authored table at header `+0x18` supplies.
 

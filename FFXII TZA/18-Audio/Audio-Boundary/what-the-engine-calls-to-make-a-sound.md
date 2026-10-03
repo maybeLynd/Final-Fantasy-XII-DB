@@ -715,3 +715,11 @@ sound callers run: while `00379E60(ecx)` reports pending work it calls
 `0032E040` then `0035EA30(0)` and re-tests — a poll-until-empty, not a
 fixed-count loop.
 Interior anchor `00379E41` (the `0032E040` call).
+
+## Homed bodies: functions reached only indirectly whose callees this page cites (OPUS, 2026-10-02, F homing)
+
+*No page cited these functions and none of their callers is documented: they are reached by table or pointer dispatch or through undocumented callers. Each one calls something this page documents, which the sentence names. Each sentence states what the body does (access and representation, not purpose); the anchors are instructions inside it that do it. Drafted locally and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-what-the-engine-calls-to-make-a-sound-homing-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00347470` | 49 B | calls `002640C0` with the incoming registers and `00267E10(r9)`, then tail-jumps to `003DEC90` with dword `+0x28` of the first result as `ecx` and the second as `edx` | `0034747D`, `00347488`, `0034748D`, `0034749C` |

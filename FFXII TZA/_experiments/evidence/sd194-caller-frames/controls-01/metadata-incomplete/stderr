@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\sd194-caller-frames\prove.py", line 98, in <module>
+    args=parser.parse_args();main(args.output,args.source)
+                             ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\sd194-caller-frames\prove.py", line 37, in main
+    need(metadata.get('complete') is True and metadata.get('driver_sha256')==sha(source/'prepare.py')
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         and raw.get('wrapper_complete') is True and raw.get('invocation_driver_sha256')==sha(source/'capture.py'),'incomplete metadata/wrapper')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\sd194-caller-frames\prove.py", line 10, in need
+    if not ok:raise ValueError(text)
+              ^^^^^^^^^^^^^^^^^^^^^^
+ValueError: incomplete metadata/wrapper

@@ -1,9 +1,9 @@
-<!-- TEAM-CURRENT:begin agent=OPUS board_rev=48250 epoch=4 queue_sha=34c1ffa486eab3a8 -->
-> generated 2026-10-03T00:56:19+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=OPUS board_rev=49194 epoch=4 queue_sha=3e42351717e3874b -->
+> generated 2026-10-03T04:55:48+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: OPUS-DD-UNCLAIMED-15-99-0930, OPUS-PUB-RESUME-1003-0230
-> READY addressed to you: none
-> READY pool: 0 | BLOCKED: 5
+> ACTIVE: ASTRA-REQ-OPUS-OV42-AUTHORED-FLOW-CONSUME-1003, FABLE-REQ-OPUS-OV42-BATCH6-ROUTES-1002, OPUS-DD-UNCLAIMED-15-99-0930, OPUS-F-HOMING-CALLEE-HOST-1003, OPUS-PUB-CONSOLIDATED-1003E
+> READY addressed to you: P1 AUTO-UNBLOCK-ASTRA-REQ-OPUS-SD194-CALLER-FRAMES-1003, P3 FABLE-NOTICE-OPUS-BROKEN-LINKS-1003
+> READY pool: 0 | BLOCKED: 9
 <!-- TEAM-CURRENT:end -->
 
 > ## TEAM ROLLBACK RECOVERED (SWE2-FRONTIER, 2026-09-26 02:30Z)
@@ -16,6 +16,37 @@
 > `BoardIncident`; if you held a pre-recovery in-memory copy, re-read and re-apply.
 > Board-level `checkpoints` notes now go through `{"action": "note", "note": "..."}` —
 > never hand-edit `TEAM.json`. Full notice at the top of `TEAM.md`.
+
+## Resume state - 2026-10-03 03:40 UTC (OPUS, session e5e00d7b)
+
+- **Publishing:**
+  - OPUS-PUB-CONSOLIDATED-1003C is running hidden (`Tools/work/OPUS/run_batch_1003c.py`, output in
+    `run_batch_1003c.out`). It carries waves W42-W44 and homing H1-H4 plus the field-map suspicious-copy sites.
+  - Neighbours already passed: 186 -> 186 over 145 paths.
+  - 1003A failed because OPUS's own ACTIVE cloud tasks held the page keys. W42/W43/W44/H1 are now BLOCKED, which
+    releases the keys. 1003A is retired.
+- **Queued after 1003C** (`Tools/work/OPUS/queue/`):
+  - `0c_ov42batch6.json`: FABLE-REQ-OPUS-OV42-BATCH6-ROUTES-1002 (ACTIVE, OPUS).
+  - `0d_linkdepths.json`: nine candidate links (FABLE-NOTICE-OPUS-BROKEN-LINKS-1003).
+  - the H5 homing records.
+  - Publish them with `pub_consolidate.py` under a new task id, after a full check_publish_neighbours over all spec
+    paths. Pass the candidate files too, or links into them read as broken.
+- **After a commit:**
+  - finish FABLE-REQ-OPUS-OV42-BATCH6-ROUTES-1002 and the six ASTRA-REQ-OPUS-OV42-*-1002 tasks;
+  - finish SWE2STRUCT-REQ-OPUS-FIELDMAP-SUSPCOPY-SITES-1003;
+  - close OPUS-CLOUD-F-LOCAL-W42/W43/W44-1002 and OPUS-CLOUD-F-HOMING-H1-1002 (cloud_task.py close);
+  - re-sync GitHub.
+- **Homing (callee-host class):**
+  - 789 of 973 bodies are still open, and every host with two or more bodies is scope-guard BLOCKed (peers' readiness
+    hunks).
+  - Single-body packs skipped as weak hosts: the EBP section pages, the duplicated-names page, the work-division
+    sheet and the sound-list page's 966 B UI switch.
+  - 00352430 was dropped: it is a script-verb helper, and nb_page showed 9 cross-layer edges.
+  - homing_pack now prefers the owning class's page for RTTI methods (FABLE's hint).
+- **Routed:**
+  - OPUS-REQ-FABLE-AUTOSTATUS-3A1DB0-CALLERS-1002: a stale "16 callers" on FABLE's crossing line; the real count is 38.
+  - OPUS-REQ-DATA-AREA-NMB-LINK-DEPTH-1002.
+- **UC-1 rows:** still waiting on FRONTIER's gate change, because check_dispositions only knows the span-row form.
 
 ## Resume state - 2026-10-03 02:30 UTC (OPUS, session e5e00d7b)
 
@@ -70,7 +101,6 @@
 ## Resume state - 2026-10-02 18:00 UTC (OPUS)
 
 - **STANDING:**
-  - No cloud credit is left, so OPUS launches no cloud sessions. FABLE has its own.
   - FABLE is active: apply only OPUS-led / unprefixed pages and OPUS-written lines (git blame); route the rest with
     `apply_by_owner.py`.
   - Keep the GitHub repos synced.
@@ -1778,56 +1808,33 @@ S-36's 428 and S-45's 429.
 
 ---
 
-## Standing responsibility: the GitHub repos and the cloud program (OPUS, 2026-10-01)
+## Standing responsibility: the GitHub repos and the local drafting pipeline (OPUS, 2026-10-01; rewritten 2026-10-03)
 
-The user assigned OPUS two standing jobs on 2026-10-01:
-- **Keep the private GitHub repos current.** That is maybeLynd/Final-Fantasy-XII-DB (the database snapshot) and
-  maybeLynd/Final-Fantasy-XII-RE.
-- **Run the cloud-session program.** It spends the temporary $250 cloud credit (expires 2026-11-05) on database work
-  without duplicating anything OPUS, FABLE, ASTRA or the SWE2 (Devin) lanes do.
+**OPUS runs no cloud sessions.** All drafting is local: OPUS drafts rows itself or with a local subagent, and then
+re-reads every row at the bytes.
 
-**Where things are.**
-- **How to launch, and billing:** `C:/Users/Kristian/Desktop/CLOUD_SESSIONS_GUIDE.md`. Launches go through
-  `C:/Users/Kristian/Tools/cloud-launch/cloud_launch.py`; never through routines.
-- **The program:** in the DB repo checkout `C:/Users/Kristian/source/repos/Final-Fantasy-XII-DB`:
-  - `docs/CLOUD_PROGRAM.md`: the five streams F, D, A, C, R, the no-duplication protocol and the lifecycle;
-  - `docs/cloud-briefs/`: one brief per stream;
-  - `docs/CLOUD_AGENTS.md`: the task log;
-  - `docs/REPO_MANAGEMENT.md`: sync cadence and conventions.
-- **Tools:** `Tools/work/OPUS/cloud/`. These are mirrored to the DB repo's `tools/opus-cloud/` at each sync, because
-  Tools/work is not in git.
-  - `scope_guard.py`: BLOCK / WARN / CLEAR per page;
-  - `cloud_task.py open|close`: the board task `OPUS-CLOUD-*`, holding the pages;
-  - `f_pack.py`: F-interior input packs;
-  - `listing.py`;
-  - `interior_ingest.py check|apply`: refuses to apply until SWE2-AUDIT-SPEC accepts the interior method;
-  - `interior_applier.py`;
-  - `briefs/`: the launch messages.
+**The GitHub repos.** On 2026-10-01 the user made OPUS responsible for keeping maybeLynd/Final-Fantasy-XII-DB (the
+database snapshot) and maybeLynd/Final-Fantasy-XII-RE current.
+- **Sync** the snapshot from committed state with `tools/sync_from_xiionline.py --apply` in the DB repo checkout
+  `C:/Users/Kristian/source/repos/Final-Fantasy-XII-DB`, then commit as maybeLynd and push. The sync reads XIIOnline
+  HEAD blobs only, never the working tree. Do this at every checkpoint and after every publish batch.
+- **Conventions** are in that checkout's `docs/REPO_MANAGEMENT.md`.
 
-**At every resume, after the TEAM-CURRENT block:**
-1. **Follow cloud tasks.**
-   - List the open `OPUS-CLOUD-*` board tasks.
-   - `git -C C:/Users/Kristian/source/repos/Final-Fantasy-XII-DB fetch`, and look for finished `cloud/*` branches.
-   - Ingest each finished report:
-     - Stream F: `interior_ingest.py check`, then re-read every row against the review sheet in
-       `Tools/work/OPUS/cloud/review/`, then `apply` once the verdict allows.
-     - Streams A, C and D: verify each finding and route it to the page's owner as a notice. Do not fix other
-       identities' pages.
-     - Stream R: verify, then copy accepted maps to the RE repo's `docs/readiness/`.
-   - Then archive the report into `main`, delete the branch, `cloud_task.py close`, and update the log row.
-2. **Sync the snapshot from committed state, commit, push** (`tools/sync_from_xiionline.py --apply`). Do this at
-   every checkpoint and after every publish batch, so the repo always carries the latest committed work.
-3. **Plan the next wave.**
-   - Pace launches by OPUS's verification capacity and the credit balance. Ask the user for the Settings -> Usage bar
-     after each new wave size.
-   - Before each launch: `scope_guard.py`, then `cloud_task.py open`, then sync and push, then launch, then a log row.
-4. **Stop using cloud sessions** when the credit is spent or on 2026-11-05. Nothing may depend on them.
+**The local drafting pipeline.** It lives in `Tools/work/OPUS/cloud/`; the folder name is historical. These tools are
+mirrored to the DB repo's `tools/opus-cloud/` at each sync, because Tools/work is not in git.
+- `scope_guard.py`: BLOCK / WARN / CLEAR per page, run before drafting on or applying to a page.
+- `f_pack.py` and `homing_pack.py`: F-interior and homing input packs. `uc1_pack.py`: UC-1 bodies.
+- `listing.py`: the annotated disassembly the packs carry.
+- `interior_ingest.py check|apply`: modes interior, homing and uc1. Its gates are page-scoped.
+- `interior_applier.py`.
+- `cloud_task.py open|close`: the board task that holds a wave's pages. Block it before publishing, so the publish
+  can claim them.
+- `Tools/work/OPUS/family/fam_rows.py`: per-member family rows for engine_explained, under SWE2-AUDIT-SPEC's ruling
+  `202e59a0a`.
 
 **Rules.**
-- A cloud result is a pointer, never evidence, and never independent review.
-- Every cloud scope is guarded and claimed first.
-- Wave 1 (2026-10-01) is streams F, A and R. Streams D and C wait for scopes that are OPUS-owned or unowned and not in
-  another identity's flight.
+- A drafted row is a pointer, never evidence, until OPUS has re-read it.
+- Every scope is guarded with `scope_guard.py` and claimed on the board first.
 
 ## Register work for FRONTIER bundle A, and RM-1 part 1 (OPUS, 2026-09-27)
 

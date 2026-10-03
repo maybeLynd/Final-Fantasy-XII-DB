@@ -1,0 +1,150 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "additive-paths.json",
+      "bytes": 4613,
+      "sha256": "05fa30ce09fe51cc7f2b45b2b5a600aeac8fc10841f559ed5cd9a6e95ad02ac9"
+    },
+    {
+      "path": "control-publisher-path.py",
+      "bytes": 3753,
+      "sha256": "0c27f3c935d6baba55fe593694766b338ee58b87c16c71d1e767397c79e82fa6"
+    },
+    {
+      "path": "control.py",
+      "bytes": 2647,
+      "sha256": "3f73a924ad41c58d1641523da33a98ae4eb986bf0ce02b3ca93afea973893bae"
+    },
+    {
+      "path": "controls-result.json",
+      "bytes": 3313,
+      "sha256": "60eeed759e9ce7f91c5c69897d8b0ec1faa01c591a71ec6de1000f2ae719da18"
+    },
+    {
+      "path": "PLAN.md",
+      "bytes": 1515,
+      "sha256": "2640bd8dabc745257e4c0214874744a28e99a391998ac0bddfbfd7c863f5c725"
+    },
+    {
+      "path": "prepare.py",
+      "bytes": 6092,
+      "sha256": "a8f417d781a1577c1664d4b89fe883c07de8cacdff1a5aa8355ad5d197a66a1a"
+    },
+    {
+      "path": "publisher-path-control-01.json",
+      "bytes": 893,
+      "sha256": "84a851049f26d30c16cfde5ffdf29dafb019c2cf2940da3506ace500cc374ab0"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2416,
+      "sha256": "3da910e32f1eff3dd63c42a0ddd1f15fbc1aaa8e90a1b39480f625511ffa7d93"
+    },
+    {
+      "path": "referents/REVIEW.md",
+      "bytes": 238,
+      "sha256": "1820ef94651d68caf91d3cae107dc73acd12f88f7a68350f8809842661f53220"
+    },
+    {
+      "path": "referents/rv_clear.out",
+      "bytes": 6926,
+      "sha256": "9ee5e75a57c9a8d75333ea3fb4ba622d4079ebed5cfa1280b39fef0cf860e8ea"
+    },
+    {
+      "path": "referents/rv_clear.py",
+      "bytes": 21452,
+      "sha256": "dcc0e838fc00fbe54967106dba2fd874f14a343c79df55ffe6c0a46225b22e25"
+    },
+    {
+      "path": "referents/rv_removal.out",
+      "bytes": 6726,
+      "sha256": "2515c28e29acc78dd371b101728a2596dde590188b3f71482ff046a86e07d019"
+    },
+    {
+      "path": "referents/rv_removal.py",
+      "bytes": 15113,
+      "sha256": "3bcb9a6d4656e594e542b9aede2a9ffd9a4c680094718b2e3cfb0cb03a7fa36b"
+    },
+    {
+      "path": "referents/rv_slot.out",
+      "bytes": 8022,
+      "sha256": "a6e0c0fee49cd4ae1efb596b0aa3ec1b219424e9e365d056ed0ac682c06119f8"
+    },
+    {
+      "path": "referents/rv_slot.py",
+      "bytes": 16608,
+      "sha256": "96dfdfc5ae69256c385246afcbca426c1bd8081f30b299c0b9815b948fb9124b"
+    },
+    {
+      "path": "referents/rvlib.py",
+      "bytes": 13365,
+      "sha256": "69f9bc40be32abcc32b189539c35a6738d829306c19d61a0bccc41723c6e33ca"
+    },
+    {
+      "path": "result.json",
+      "bytes": 11083,
+      "sha256": "9e94127e8547a8079557203a0c10787b1375bfe4c5871d38ec7b6f9437f4380a"
+    },
+    {
+      "path": "retained/controls/changed-old-member/receipt.json",
+      "bytes": 1007,
+      "sha256": "534bb79c15b25a01c4a9e78028cb3e6dd6bde426ffecc2b3d6e6e16a267503d8"
+    },
+    {
+      "path": "retained/controls/changed-old-member/stderr.txt",
+      "bytes": 650,
+      "sha256": "58ba7c4771048bbb9d2c57d1513de1cc512e479a690e4136f3ed2fd1036bedc9"
+    },
+    {
+      "path": "retained/controls/changed-old-member/stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retained/controls/conflicting-library/receipt.json",
+      "bytes": 1019,
+      "sha256": "fa69d38e3b81261d7458484ba171ce3ce9afa40c3c4c217081ab5db16e02e2cb"
+    },
+    {
+      "path": "retained/controls/conflicting-library/stderr.txt",
+      "bytes": 625,
+      "sha256": "74d867ef205c06cb6d6eaf265765946d43b479e86d007c1a24dbebb3f83f6c1d"
+    },
+    {
+      "path": "retained/controls/conflicting-library/stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retained/controls/missing-referent/receipt.json",
+      "bytes": 1002,
+      "sha256": "9396d494c83efb6c01c5d71dc6daeac0e41588f0ef33b30f7f829bef98e88103"
+    },
+    {
+      "path": "retained/controls/missing-referent/stderr.txt",
+      "bytes": 612,
+      "sha256": "e5d248a1b065db9b4a445b39df80f65ba24be39bbdc6ec7198e43a81792569e3"
+    },
+    {
+      "path": "retained/controls/missing-referent/stdout.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retained/original-manifest.json",
+      "bytes": 14163,
+      "sha256": "5b647504198d614ff8f507eef6efbaf89875d9142853703f65854ec7980d8823"
+    },
+    {
+      "path": "retained/publisher-driver.py",
+      "bytes": 259043,
+      "sha256": "5c1b458faeafcc4b206d30ba1ce660ceebd0e8dc54834f974931445490a6eb18"
+    }
+  ],
+  "limits": "Additive publication/link controls only; no additional FF12/reviewer execution credit"
+}

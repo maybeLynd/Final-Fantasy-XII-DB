@@ -224,7 +224,7 @@ slot 4  0017CCD0
    |  if (this[0x113D] == 0) { call 0017D650; this[0x113D] = 1; } <- the run-once guard
    +-> 0017D6E0   (404 B, CoreRuntimeScheduling)   called on ALL THREE paths, with
        |                                            this[0x48] in xmm0 and a mode in edx
-       +-> 37 callees: 16 are 8-10 byte singleton getters, each followed by a
+       +-> 37 callees: 16 are 8-10 byte singleton getters, each followed by a   <- corrected 2026-10-02, OPUS - 13 are singleton getters (12 qword getters + the byte getter 001E05E0); 14 callees are 8-10 B, 001A1460 is a member read
            substantial update body. The one named pair proves the shape:
               001C18E0  SaveloadManager_GetSingleton          (8 B)
               001C1910  SaveloadManager_ProcessPendingCaptureCopy (43 B)
@@ -233,7 +233,7 @@ slot 4  0017CCD0
 
 **Slot 4 is the frame tick**, and `0x0017D6E0` is the per-frame pump: *for each subsystem, fetch its
 singleton and advance it.* The `SaveloadManager` pair is the only one whose functions carry recovered
-names, and it is enough to identify the pattern the other fifteen follow.
+names, and it is enough to identify the pattern the other ~~fifteen~~ twelve follow *(corrected 2026-10-02, OPUS: thirteen singleton getters — twelve 8-byte qword getters plus the byte getter `001E05E0` — BE-6)*.
 
 ## 6. Modding notes
 
@@ -248,8 +248,8 @@ names, and it is enough to identify the pattern the other fifteen follow.
 
 - [x] ~~**What slot 4 actually schedules.**~~ **BE-1 ANSWERED** — it gates on the latch, takes a
       double frame delta from `this + 0x48`, and calls `0x0017D6E0` (404 B, `CoreRuntimeScheduling`)
-      on all three of its paths. That function has **37 callees, 16 of them 8-10 byte singleton
-      getters** each paired with a substantial update body — a per-frame subsystem pump. The named
+      on all three of its paths. That function has **37 callees, ~~16 of them 8-10 byte singleton~~ 13 of them singleton
+      getters** *(corrected 2026-10-02, OPUS: thirteen singleton getters — twelve 8-byte qword getters plus the byte getter `001E05E0` — BE-6)* each paired with a substantial update body — a per-frame subsystem pump. The named
       pair `SaveloadManager_GetSingleton` / `SaveloadManager_ProcessPendingCaptureCopy` fixes the
       pattern. §5.
 - [x] Slots 21/22 and 23/24. Matched pairs — **"focus gained/lost" is a shape, not a finding**, and is
@@ -401,7 +401,7 @@ of alignment.
 **6. BE-1 answered.** Slot 4 gates on the latch, converts a double at `this + 0x48` to a float,
 publishes it, runs a one-shot initialiser behind `+0x113D`, and then calls `0x0017D6E0` on **all
 three** of its exit paths with that double in `xmm0` and a mode selector in `edx`. `0x0017D6E0` is
-404 bytes, tagged `CoreRuntimeScheduling`, and has **37 callees of which 16 are 8-10 byte accessors**,
+404 bytes, tagged `CoreRuntimeScheduling`, and has **37 callees of which ~~16 are 8-10 byte accessors~~ 13 are singleton getters** *(corrected 2026-10-02, OPUS: thirteen singleton getters — twelve 8-byte qword getters plus the byte getter `001E05E0` — BE-6)*,
 each paired with a substantial update body. `SaveloadManager_GetSingleton` /
 `SaveloadManager_ProcessPendingCaptureCopy` is the one pair whose names are recovered and it fixes the
 pattern for the rest. **Slot 4 is the frame tick and `0x0017D6E0` is the per-frame subsystem pump.**
@@ -626,7 +626,7 @@ application's boot-time manager-initialisation tree. Signature-swept 2026-09-15 
 store-target extract on every small body); roles below are instruction shapes and call/global
 targets, measured — the singleton names are *not* claimed beyond what the global and the ctor reach.
 
-`0017D000` itself allocates an `0x80` record into `[01F7E340]`, then calls three bodies before
+`0017D000` itself ~~allocates an `0x80` record into `[01F7E340]`, then calls three bodies before~~ calls `0017D4C0` first, then allocates an `0x80` record into `[01F7E340]` and constructs it with `0018A840`, then calls `00189000`, before *(corrected 2026-10-02, OPUS: `0017D000+0x1F` `call 0017D4C0`, `+0x29` `call 00210EC0` with `ecx = 0x80`, `+0x3B` `call 0018A840`, `+0x6F` `call 00189000`)*
 latching `+0x113C`: **`0017D4C0`** (387 B — the init burst proper: stores five globals
 `01F7F4C0`/`C8`/`D0`/`D8`/`E0`, allocates `0x10`, then ~35 init calls in sequence — every
 ensure-stub and constructor below), **`0018A840`** (412 B — `malloc` + the `001DE540` SIMD leaf +
@@ -637,7 +637,7 @@ ensure-stub and constructor below), **`0018A840`** (412 B — `malloc` + the `00
 |---|---|---|
 | render-subsystem branch | `00184F20` (335 B — `00184CE0` ×2 + `0062DD10` ×2 + `00186CD0`), `00184CE0` (377 B — SceneCamera-tagged), `00188640` (225 B — fixed-16B-vector reserve/relocate, two indirect calls) | the `00189000` object's setup — camera pair + the subsystem fill below |
 | subsystem fill | `00186CD0` (1,240 B — 56 calls: `001EE040` ×14, `00182E80` ×11, `00182EB0` ×11, `00796E20` ×4, plus `001F0810` lazy-allocator, `001C3760`, `00188640`, `005C5230`) | a repeated (helper-pair ×11 + getter ×14) register sequence — installs ~30 subsystem records under the `189000` object |
-| ensure-singleton stubs | `0018AD00` (`008C5F58` ref + `001EDF00`), `0018B480` →`[01F7F5E0]`, `0018C9E0` →`[01F7F5E8]` (alloc `0x20`), `00194AB0` →`[01F7FFD8]`, `00198750` →`[01F7FFE0]` (alloc `0x40`, ctor `00195060`), `00199790` →`[01F810F0]` (the BE-2 focus singleton's global), `001A11B0` →`[01F81160]` (alloc **`0x140228`** ≈ 1.31 MB — the largest single boot allocation), `001A98B0` →`[01F81170]`/`68` (alloc `0x520`, ctor `001A2130`), `001AD3E0` →`[01F811C8]` (alloc `0x258`, ctor `001AA9E0`), `001B1BA0` →`[01F811E8]` (alloc `0x4300`, ctor `001ADD30`), `001B5F10` →`[01F81200]`/`F8` (alloc `0x2380`, ctor `001B3940` + `001E71B0`), `001B6BC0` →`[01F81210]`, `001BDA50` →`[01F81248]` (alloc `0x108`, ctor `001BC9D0`), `001C0D40` →`[01F81258]` (alloc `0x1B8`, ctor `001BE730`), `001C18A0` →`[01F81260]` (alloc `0xA78`, ctor `001C0E20`), `001C1940` →`[01F81268]` (ctor `001D5090`), `001D62D0` →`[01F82C80]` (alloc **`0xF778`** ≈ 63 KB, float-preset fields `0.2`/`-0.8`/`0.04`/`0.8`/`0.7`), `001D6990` →`[01F82CB8]`, `001D8150` →`[01F82CD0]` (alloc `0x90`), `001D89D0` →`[01F82CD8]`, `001D8CD0` →`[01F82CE0]` (alloc `0x38`), `001DB1E0` (36 B, →`[01F82CF8]`), `001DB500` →`[01F82D00]` (alloc `0x20`, ctor `001A1420`) | the shared shape `cmp [G],0 → jne done → alloc → ctor → store [G]`: lazy-create for one global each — nearly all route the allocation through `00210EC0` (`jmp malloc`); `001A11B0` is the exception, calling `00584740` for its 1.31 MB record. The globals form a contiguous **manager-pointer block `01F7F4C0`–`01F82D00`**; each `0016D6A0` call is the folded-empty stub (a no-op site in the shipped image) |
+| ensure-singleton stubs | `0018AD00` (`008C5F58` ref + `001EDF00`), `0018B480` →`[01F7F5E0]`, `0018C9E0` →`[01F7F5E8]` (alloc `0x20`), `00194AB0` →`[01F7FFD8]`, `00198750` →`[01F7FFE0]` (alloc `0x40`, ctor `00195060`), `00199790` →`[01F810F0]` (the BE-2 focus singleton's global), `001A11B0` →`[01F81160]` (alloc **`0x140228`** ≈ 1.31 MB — the largest single boot allocation), `001A98B0` →`[01F81170]`/`68` (alloc `0x520`, ctor `001A2130`), `001AD3E0` →`[01F811C8]` (alloc `0x258`, ctor `001AA9E0`), `001B1BA0` →`[01F811E8]` (alloc `0x4300`, ctor `001ADD30`), `001B5F10` →`[01F81200]`/`F8` (alloc `0x2380`, ctor `001B3940` + `001E71B0`), `001B6BC0` →`[01F81210]`, `001BDA50` →`[01F81248]` (alloc `0x108`, ctor `001BC9D0`), `001C0D40` →`[01F81258]` (alloc `0x1B8`, ctor `001BE730`), `001C18A0` →`[01F81260]` (alloc `0xA78`, ctor `001C0E20`), `001C1940` →`[01F81268]` (ctor `001D5090`), `001D62D0` →`[01F82C80]` (alloc **`0xF778`** ≈ 63 KB, float-preset fields `0.2`/`-0.8`/`0.04`/`0.8`/`0.7`), `001D6990` →`[01F82CB8]`, `001D8150` →`[01F82CD0]` (alloc `0x90`), `001D89D0` →`[01F82CD8]`, `001D8CD0` →`[01F82CE0]` (alloc `0x38`), `001DB1E0` (36 B, →`[01F82CF8]`), `001DB500` →`[01F82D00]` (alloc `0x20`, ctor `001A1420`) | the shared shape `cmp [G],0 → jne done → alloc → ctor → store [G]`: lazy-create for one global ~~each~~ each but `001C0D40`, which branches on nothing: it passes `[01F81258] == 0` to the `0016D6A0` stub and then always allocates `0x1B8` and stores the result *(corrected 2026-10-02, OPUS: `001C0D40+0xF` `cmp`, `+0x16` `sete cl`, `+0x19` `call 0016D6A0`, `+0x23` `call 00210EC0`, `+0x3B` the store)* — nearly all route the allocation through `00210EC0` (`jmp malloc`); `001A11B0` is the exception, calling `00584740` for its 1.31 MB record. The globals form a contiguous **manager-pointer block `01F7F4C0`–`01F82D00`**; each `0016D6A0` call is the folded-empty stub (a no-op site in the shipped image) |
 | input cluster (`0019xxxx`) | `00195060` (153 B — drives `00197EE0`/`00198000`/`00196550` + three more), `00196550` (135 B leaf, `01DF13E0`/`01F80F90` refs), `00197EE0` (273 B — input-boundary helper `001F3EA0` ×4 + `00194EF0` ×4 + `001F3ED0` achievements), `00198000` (1,644 B — `memset` + **~30 vtable installs** `008C26xx` — the input manager's object ctor), `0019F060`/`0019F0D0`/`0019F190`/`0019F250`/`0019F300`/`0019F3E0` (111–222 B leaf helpers, `[r9+0x10]`/`[r9+0x18]` indirect calls), `0019FC30` (926 B — calls the six leaves ×8), `0019FFD0` (2,010 B — **interior read 2026-09-17:** NOT input — the **`effect_finish` path-table initializer**: `memset` ×2 then 125 `PS2Data\effect_finish\jp\chara\hNNNN.efx` path pointers written as a flat qword array `[rbx+0x115750]`–`[+0x11FB20]`; the strings sit at 0x30 pitch in `.rdata` from `008F4710`, first store's `lea` at [`001A0020`](../../_index/ADDRESS-INDEX.md)) | the input subsystem's construction — singleton `00198750`→`00195060` reaches all of it |
 | `001EDF00`-apply bodies | `0019F490`, `0019F620` (207 B — `005CC8A0` ×3 + `001EDF00` ×2), `001A1500` (467 B), `001AA9E0` (619 B — `001EDF00` ×5 + `0019C5D0` ×5), `001ADBA0`, `001ADD30` (728 B — `001EDF00` ×12), `001B33A0`, `001B3480`, `001B3540`/`001B36D0` (387 B twins), `001B3940` (424 B — `001EDF00` ×8 + the twins), `001B4140` (856 B — `001B33A0` ×4 + `001B3480` ×2), `001B9CF0` (137 B) | the sead container/string apply shape (`001EDF00` + `005CC8A0` + `005CD0A0` + `00199DB0`) — category/record registration; `001EDF00` carries the `V93_SaveLoadSettingsCategoryParse` tag |
 | manager/object constructors | `001A2130` (1,564 B — `001EDF00` ×17 + `001A94F0`/`001A95C0`/`001A9050`, vtables `008F6500`/`008F6600`), `001A3930`/`001A3A90`/`001A44F0` (342/330/155 B — `0016D840` red-black-insert users), `001A9050` (612 B — `001D6F20`/`1D6EE0`/`1D6FA0`/`1D6E80` field quad + `001A3A90`), `001A94F0`/`001A95C0` (198/234 B leaf pair), `001AF000` (678 B — `001ADAB0` ×4 + `0021A920` ×2 + `001AE4B0` ×2 + `001FB460` ×2), `001B0640` (129 B), `001B07A0` (627 B), `001B14E0` (159 B — same `1D6Exx` quad + `001B07A0`), `001B1580` (32 B → `001B1630` + `001AF470`), `001B1630` (281 B — ten-helper fan-out), `001B1750` (165 B → `001B14E0` + `001B1800`), `001B1800` (268 B), `001B1B10` (135 B), `001B3E80` (689 B leaf, IND pair), `001B4860` (196 B), `001B5D60` (114 B → `001B3E80`), `001B5DE0` (292 B), `001B6C50` (138 B — `001B7CE0` ×2), `001B72B0` (981 B — `00671B10` ×4 + `0017D260`/`00671690`/`00674230`/`0066F970`/`00671B30`/`00674610` ×2 each — the Phyre render-block-binding init), `001B7850` (1,166 B — **triad shape**: `0060DD70`/`00610990`/`00625F00`/`005CDAA0`/`00628100`/`0018D240`/`001B81B0` each ×3 — three sibling sub-objects; interior verified 2026-09-17, SWE2-FRONTIER — the siblings are the `YChannel`/`UChannel`/`VChannel` strings, `0061D9C0` first at [`001B78C9`](../../_index/ADDRESS-INDEX.md)), `001BA210` (404 B), `001BB920` (1,248 B — `001EDF00` ×6 + `0017D2E0` sprintf ×3 + `001BA210`/`001BA860` ×2; interior verified 2026-09-17, SWE2-FRONTIER — `chr/%s_%s.ah` + `chr_shadow` ArtData path strings, first call [`001BB96D`](../../_index/ADDRESS-INDEX.md)), `001BC9D0` (693 B — `0061D9C0` ×4 + `001EDF00` ×3), `001BE730` (403 B), `001C0E20` (130 B), `001C1810` (142 B), `001C3760` (1,220 B — `001FF740` ×14 + `00200BE0` ×11 + `00202880` ×8 — render-support fill), `001EEC80` (499 B — ten-helper fan-out + `008F6574`), `001F0570` (57 B — `001DE5A0` ×2 over `01F82D20`) | the substantial bodies the ensure-stubs and orchestrators call — each builds one manager/record |
@@ -769,7 +769,7 @@ shipping image; the notes say what the instruction does, not yet the body's full
 | `00187950` | `00187A7A` | `mov dword ptr [rip+…], …` — writes `01DF0900` inside the render pass list this page's §3 slot 8 names |
 | `001BC190` | `001BC536` | `movss xmm0, dword ptr [rip+…]` — loads the `01CEBBA8` float constant near the tail of this `0017D980`-calling body |
 | `0079C140` | `0079C276` | `mov dword ptr [rip+…], eax` — writes `02EAC980`, a two-field block (`+0` count, `+4` float) the body fills between `005CD4F0` and `0079EBA0` calls |
-| `00189CE0` | `00189D4C` | `call _Init_thread_header` — TLS-init bracket around a `0018A620` call run; also writes `02EAED3C` |
+| `00189CE0` | `00189D4C` | `call _Init_thread_header` — TLS-init bracket around a `0018A620` call run; ~~also writes `02EAED3C`~~ reads `02EAED3C`, the PE TLS `AddressOfIndex`, at `00189CE0+0x42` *(corrected 2026-10-02, OPUS: no instruction in the image stores to it; the loader writes it)* |
 | `001C2F50` | `001C30B2` | `mov dword ptr [rip+…], …` — writes `01F81278` after storing `r15` to `01DF6E38`; five distinct `001FExxx`/`00200xxx` callees |
 
 *(Pass 22 adjacency, 2026-09-14: the application root's init path crosses into the layers it
@@ -894,7 +894,7 @@ Interior verified: [`005CDAAB`](../../_index/ADDRESS-INDEX.md) sits in the entry
 a 0x4050-byte frame under `_chkstk` (`00808F10`) and installs the stack cookie — the entry of the
 **formatted log call** that
 [the formatted-log-call-and-its-level-gate page](../Diagnostics-Logging/the-formatted-log-call-and-its-level-gate.md)
-decoded end to end: `__stdio_common_vsprintf` into a `0x4000` stack buffer, then the
+decoded end to end: ~~`__stdio_common_vsprintf`~~ `__stdio_common_vsnprintf_s` *(corrected 2026-10-02, OPUS: IAT `008C2DE0`, called at `005CDAA0+0x68`)* into a `0x4000` stack buffer, then the
 `_Init_thread_epoch` check on the TLS slot at `gs:[0x58]`-indexed `[+4]` vs guard `02CB6158`,
 one-time sink init `005CDA30` under `_Init_thread_header`/`footer` (`008092FC`/`0080929C`), then
 emit through sink vtable slot 1 (`call [rax+8]`, channel in `edx`, buffer in `r8`). The epoch

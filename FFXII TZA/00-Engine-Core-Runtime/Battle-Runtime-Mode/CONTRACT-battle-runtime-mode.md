@@ -652,8 +652,8 @@ the field/runtime ladder's mode-1 test, one instruction of policy over the share
 `002E73C0` — 65 B, 6 callers. The context-to-render-record resolve idiom:
 `[rcx+0xC0]` null-gate, `dword[rax] < 0` and `word[rax] == -1` sentinel checks,
 `imul rcx, rax, 0x740` ([`002E73E3`](../../_index/ADDRESS-INDEX.md)) into the
-`0x740`-stride render-record array, and only when the record's `[+0x284]` word is
-zero does it tail `003E6AA0`. The consumer never sees a sentinel or an occupied
+`0x740`-stride render-record array, and only when the record's `[+0x284]` ~~word is~~ dword is
+~~zero~~ non-zero *(corrected 2026-10-02, OPUS: `002E73C0+0x33` `cmp dword [rcx+0x284], 0`, `+0x3A` `jne 003E6AA0`)* does it tail `003E6AA0`. The consumer never sees a sentinel or an occupied
 record.
 ## SWE2-EC7-45 update (2026-09-19) - `0030FD10`
 
@@ -671,3 +671,11 @@ Interior anchor `003BFE08` (the `003C0380` tail).
 `0031C2F0` (380 B) is the two-tier `cx`-keyed lookup: `cx == 0xFFFF` returns -1; high byte 0 gates on `00322C50(2, low)` then returns `dword[02EBF130-row + 0x70]`; high byte 1 bounds the low byte against `02EBF120`'s `+4` count, reads its `+8`-stride byte, bounds that against `02EBF150`'s count and returns the `+8`-stride dword - the runtime-mode id resolver the mode contract and ARD loader share.
 
 Interior anchor `0031C354` (function `0031C2F0`).
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-contract-battle-runtime-mode-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00361170` | 120 B | divides `edx` by the result of `00184950()` (signed `idiv`) and adds 1; when `ecx` is non-negative (signed) and `002F16B0()` returns a non-null record, stores dword 0 at `+0`, that quotient plus 1 at dword `+4`, the address `00361080` at qword `+8`, qword 0 at `+0x10`, dword `0x10001` at `+0x1C`, `ecx` at dword `+0x28` and `r8d` at dword `+0x30`, then calls `00361030` with `ecx` and ORs 2 into byte `+2` of its result when that is non-null; a negative `ecx` or a null record skips everything after the divide | `00361191`, `00361199`, `003611B5`, `003611CA`, `003611D4` |

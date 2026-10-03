@@ -495,3 +495,363 @@ harness. Nothing was executed or observed live.
 | function | size | what the body does | interior anchors |
 |---|---|---|---|
 | `001E0E00` | 37 B | calls the framework-singleton getter and returns `0079E6D0(qword +0xDF8 of that result, ecx + 1)`, zero-extending the returned byte `al` into `eax` | `001E0E08`, `001E0E0D`, `001E0E10`, `001E0E17`, `001E0E1C` |
+
+## Per-member rows: which node each of the semantic-name initialisers registers (OPUS, 2026-10-03)
+
+The family `PInputs semantic-name-registry initialisers` (frontmatter, 319 members) shares one 32-byte shape, stated here once and not repeated per row: `lea rcx, [node]` at + 0x4, a call to its registry's insert (section 2), `lea rcx, [teardown]`, and a tail jump to the CRT atexit registrar `00808B90`. What differs from member to member is the node that + 0x4 `lea` loads, and therefore the name the node carries at qword `+0x8`, the key the insert compares. Each row below anchors that `lea` (the member's distinguishing instruction) and states its node and the registered name. [`fam_rows.py`](../../_index/candidates/opus-ee-input-name-initialisers-1003/fam_rows.py) derives every row from the certified image and compares it with the committed [`rows.tsv`](../../_index/candidates/opus-ee-input-name-initialisers-1003/rows.tsv): a member whose body leaves the shape, a node that differs or a name that differs fails it (two controls, a swapped node and a moved anchor, are refused). These rows explain which name each initialiser registers. They follow SWE2-AUDIT-SPEC's ruling on per-member rows (`202e59a0a`): the shared shape earns nothing, and only the distinguishing anchor with its value counts.
+
+### Registered through `008760A0`, the type-semantic list (`PInputTypeSemantic`) (25 nodes, OPUS)
+
+| member | distinguishing instruction | node (the `lea` target) | name at the node's `+0x8` |
+|---|---|---|---|
+| 0016ABA0 | `0016ABA4` `lea` | `01F44DC0` | "JoypadAxis" |
+| 0016ABC0 | `0016ABC4` `lea` | `01F44DA8` | "JoypadButton" |
+| 0016ABE0 | `0016ABE4` `lea` | `01F44D90` | "Key" |
+| 0016AC00 | `0016AC04` `lea` | `01F44F10` | "MotionAngularVelocityX" |
+| 0016AC20 | `0016AC24` `lea` | `01F44F28` | "MotionAngularVelocityY" |
+| 0016AC40 | `0016AC44` `lea` | `01F44F40` | "MotionAngularVelocityZ" |
+| 0016AC60 | `0016AC64` `lea` | `01F44F58` | "MotionLinearAccelerationX" |
+| 0016AC80 | `0016AC84` `lea` | `01F44F70` | "MotionLinearAccelerationY" |
+| 0016ACA0 | `0016ACA4` `lea` | `01F44F88` | "MotionLinearAccelerationZ" |
+| 0016ACC0 | `0016ACC4` `lea` | `01F44EF8` | "MotionQuatW" |
+| 0016ACE0 | `0016ACE4` `lea` | `01F44EB0` | "MotionQuatX" |
+| 0016AD00 | `0016AD04` `lea` | `01F44EC8` | "MotionQuatY" |
+| 0016AD20 | `0016AD24` `lea` | `01F44EE0` | "MotionQuatZ" |
+| 0016AD40 | `0016AD44` `lea` | `01F44DD8` | "MouseButton" |
+| 0016AD60 | `0016AD64` `lea` | `01F44DF0` | "MouseDeltaX" |
+| 0016AD80 | `0016AD84` `lea` | `01F44E08` | "MouseDeltaY" |
+| 0016ADA0 | `0016ADA4` `lea` | `01F44E20` | "TouchDragX" |
+| 0016ADC0 | `0016ADC4` `lea` | `01F44E38` | "TouchDragY" |
+| 0016ADE0 | `0016ADE4` `lea` | `01F44E80` | "TouchPinch" |
+| 0016AE00 | `0016AE04` `lea` | `01F44E98` | "TouchRotate" |
+| 0016AE20 | `0016AE24` `lea` | `01F44E50` | "TouchTwoFingerDragX" |
+| 0016AE40 | `0016AE44` `lea` | `01F44E68` | "TouchTwoFingerDragY" |
+| 0016AE60 | `0016AE64` `lea` | `01F44FA0` | "VisionTrackerX" |
+| 0016AE80 | `0016AE84` `lea` | `01F44FB8` | "VisionTrackerY" |
+| 0016AEA0 | `0016AEA4` `lea` | `01F44FD0` | "VisionTrackerZ" |
+
+### Registered through `00876490`, the axis-semantic list (`PInputAxisSemantic`) (10 nodes, OPUS)
+
+| member | distinguishing instruction | node (the `lea` target) | name at the node's `+0x8` |
+|---|---|---|---|
+| 0016AF20 | `0016AF24` `lea` | `01F45008` | "Gyro" |
+| 0016AF40 | `0016AF44` `lea` | `01F45128` | "XAxis_0" |
+| 0016AF60 | `0016AF64` `lea` | `01F450C8` | "XAxis_1" |
+| 0016AF80 | `0016AF84` `lea` | `01F45068` | "XAxis_2" |
+| 0016AFA0 | `0016AFA4` `lea` | `01F45108` | "YAxis_0" |
+| 0016AFC0 | `0016AFC4` `lea` | `01F450A8` | "YAxis_1" |
+| 0016AFE0 | `0016AFE4` `lea` | `01F45048` | "YAxis_2" |
+| 0016B000 | `0016B004` `lea` | `01F450E8` | "ZAxis_0" |
+| 0016B020 | `0016B024` `lea` | `01F45088` | "ZAxis_1" |
+| 0016B040 | `0016B044` `lea` | `01F45028` | "ZAxis_2" |
+
+### Registered through `008768A0`, the joypad-button-semantic list (`PInputJoypadButtonSemantic`) (44 nodes, OPUS)
+
+| member | distinguishing instruction | node (the `lea` target) | name at the node's `+0x8` |
+|---|---|---|---|
+| 0016B060 | `0016B064` `lea` | `01F456A8` | "Button_0" |
+| 0016B080 | `0016B084` `lea` | `01F45308` | "Button_10" |
+| 0016B0A0 | `0016B0A4` `lea` | `01F452A8` | "Button_11" |
+| 0016B0C0 | `0016B0C4` `lea` | `01F45248` | "Button_12" |
+| 0016B0E0 | `0016B0E4` `lea` | `01F45208` | "Button_13" |
+| 0016B100 | `0016B104` `lea` | `01F451C8` | "Button_14" |
+| 0016B120 | `0016B124` `lea` | `01F45188` | "Button_15" |
+| 0016B140 | `0016B144` `lea` | `01F45648` | "Button_1" |
+| 0016B160 | `0016B164` `lea` | `01F455E8` | "Button_2" |
+| 0016B180 | `0016B184` `lea` | `01F45588` | "Button_3" |
+| 0016B1A0 | `0016B1A4` `lea` | `01F45528` | "Button_4" |
+| 0016B1C0 | `0016B1C4` `lea` | `01F454C8` | "Button_5" |
+| 0016B1E0 | `0016B1E4` `lea` | `01F45468` | "Button_6" |
+| 0016B200 | `0016B204` `lea` | `01F45408` | "Button_7" |
+| 0016B220 | `0016B224` `lea` | `01F453A8` | "Button_8" |
+| 0016B240 | `0016B244` `lea` | `01F45348` | "Button_9" |
+| 0016B260 | `0016B264` `lea` | `01F45608` | "Button_A" |
+| 0016B280 | `0016B284` `lea` | `01F455A8` | "Button_B" |
+| 0016B2A0 | `0016B2A4` `lea` | `01F45368` | "Button_Back" |
+| 0016B2C0 | `0016B2C4` `lea` | `01F455C8` | "Button_Circle" |
+| 0016B2E0 | `0016B2E4` `lea` | `01F45628` | "Button_Cross" |
+| 0016B300 | `0016B304` `lea` | `01F451A8` | "Button_Down" |
+| 0016B320 | `0016B324` `lea` | `01F45508` | "Button_L1" |
+| 0016B340 | `0016B344` `lea` | `01F45448` | "Button_L2" |
+| 0016B360 | `0016B364` `lea` | `01F452E8` | "Button_L3" |
+| 0016B380 | `0016B384` `lea` | `01F454E8` | "Button_LB" |
+| 0016B3A0 | `0016B3A4` `lea` | `01F452C8` | "Button_LS" |
+| 0016B3C0 | `0016B3C4` `lea` | `01F45428` | "Button_LT" |
+| 0016B3E0 | `0016B3E4` `lea` | `01F45168` | "Button_Left" |
+| 0016B400 | `0016B404` `lea` | `01F454A8` | "Button_R1" |
+| 0016B420 | `0016B424` `lea` | `01F453E8` | "Button_R2" |
+| 0016B440 | `0016B444` `lea` | `01F45288` | "Button_R3" |
+| 0016B460 | `0016B464` `lea` | `01F45488` | "Button_RB" |
+| 0016B480 | `0016B484` `lea` | `01F45268` | "Button_RS" |
+| 0016B4A0 | `0016B4A4` `lea` | `01F453C8` | "Button_RT" |
+| 0016B4C0 | `0016B4C4` `lea` | `01F451E8` | "Button_Right" |
+| 0016B4E0 | `0016B4E4` `lea` | `01F45388` | "Button_Select" |
+| 0016B500 | `0016B504` `lea` | `01F45688` | "Button_Square" |
+| 0016B520 | `0016B524` `lea` | `01F45328` | "Button_Start" |
+| 0016B540 | `0016B544` `lea` | `01F45568` | "Button_Triangle" |
+| 0016B560 | `0016B564` `lea` | `01F45228` | "Button_Up" |
+| 0016B580 | `0016B584` `lea` | `01F45668` | "Button_X" |
+| 0016B5A0 | `0016B5A4` `lea` | `01F45548` | "Button_Y" |
+| 0016B5C0 | `0016B5C4` `lea` | `01F45148` | "Empty" |
+
+### Registered through `00876C80`, the key-semantic list (`PInputKeySemantic`) (97 nodes, OPUS)
+
+| member | distinguishing instruction | node (the `lea` target) | name at the node's `+0x8` |
+|---|---|---|---|
+| 0016B5E0 | `0016B5E4` `lea` | `01F456C8` | "Empty" |
+| 0016B600 | `0016B604` `lea` | `01F45E68` | "Key_0" |
+| 0016B620 | `0016B624` `lea` | `01F45F88` | "Key_1" |
+| 0016B640 | `0016B644` `lea` | `01F45F68` | "Key_2" |
+| 0016B660 | `0016B664` `lea` | `01F45F48` | "Key_3" |
+| 0016B680 | `0016B684` `lea` | `01F45F28` | "Key_4" |
+| 0016B6A0 | `0016B6A4` `lea` | `01F45F08` | "Key_5" |
+| 0016B6C0 | `0016B6C4` `lea` | `01F45EE8` | "Key_6" |
+| 0016B6E0 | `0016B6E4` `lea` | `01F45EC8` | "Key_7" |
+| 0016B700 | `0016B704` `lea` | `01F45EA8` | "Key_8" |
+| 0016B720 | `0016B724` `lea` | `01F45E88` | "Key_9" |
+| 0016B740 | `0016B744` `lea` | `01F462C8` | "Key_A" |
+| 0016B760 | `0016B764` `lea` | `01F456E8` | "Key_AccentGrave" |
+| 0016B780 | `0016B784` `lea` | `01F45B68` | "Key_Apostrophe" |
+| 0016B7A0 | `0016B7A4` `lea` | `01F462A8` | "Key_B" |
+| 0016B7C0 | `0016B7C4` `lea` | `01F45BA8` | "Key_Backslash" |
+| 0016B7E0 | `0016B7E4` `lea` | `01F45C88` | "Key_Backspace" |
+| 0016B800 | `0016B804` `lea` | `01F46288` | "Key_C" |
+| 0016B820 | `0016B824` `lea` | `01F45B48` | "Key_Comma" |
+| 0016B840 | `0016B844` `lea` | `01F46268` | "Key_D" |
+| 0016B860 | `0016B864` `lea` | `01F459C8` | "Key_Delete" |
+| 0016B880 | `0016B884` `lea` | `01F45A88` | "Key_Down" |
+| 0016B8A0 | `0016B8A4` `lea` | `01F46248` | "Key_E" |
+| 0016B8C0 | `0016B8C4` `lea` | `01F45A48` | "Key_End" |
+| 0016B8E0 | `0016B8E4` `lea` | `01F45CA8` | "Key_Enter" |
+| 0016B900 | `0016B904` `lea` | `01F45C08` | "Key_Equals" |
+| 0016B920 | `0016B924` `lea` | `01F45E48` | "Key_Escape" |
+| 0016B940 | `0016B944` `lea` | `01F45D08` | "Key_F10" |
+| 0016B960 | `0016B964` `lea` | `01F45CE8` | "Key_F11" |
+| 0016B980 | `0016B984` `lea` | `01F45CC8` | "Key_F12" |
+| 0016B9A0 | `0016B9A4` `lea` | `01F45E28` | "Key_F1" |
+| 0016B9C0 | `0016B9C4` `lea` | `01F45E08` | "Key_F2" |
+| 0016B9E0 | `0016B9E4` `lea` | `01F45DE8` | "Key_F3" |
+| 0016BA00 | `0016BA04` `lea` | `01F45DC8` | "Key_F4" |
+| 0016BA20 | `0016BA24` `lea` | `01F45DA8` | "Key_F5" |
+| 0016BA40 | `0016BA44` `lea` | `01F45D88` | "Key_F6" |
+| 0016BA60 | `0016BA64` `lea` | `01F45D68` | "Key_F7" |
+| 0016BA80 | `0016BA84` `lea` | `01F45D48` | "Key_F8" |
+| 0016BAA0 | `0016BAA4` `lea` | `01F45D28` | "Key_F9" |
+| 0016BAC0 | `0016BAC4` `lea` | `01F46228` | "Key_F" |
+| 0016BAE0 | `0016BAE4` `lea` | `01F46208` | "Key_G" |
+| 0016BB00 | `0016BB04` `lea` | `01F461E8` | "Key_H" |
+| 0016BB20 | `0016BB24` `lea` | `01F45A68` | "Key_Home" |
+| 0016BB40 | `0016BB44` `lea` | `01F461C8` | "Key_I" |
+| 0016BB60 | `0016BB64` `lea` | `01F459E8` | "Key_Insert" |
+| 0016BB80 | `0016BB84` `lea` | `01F461A8` | "Key_J" |
+| 0016BBA0 | `0016BBA4` `lea` | `01F46188` | "Key_K" |
+| 0016BBC0 | `0016BBC4` `lea` | `01F46168` | "Key_L" |
+| 0016BBE0 | `0016BBE4` `lea` | `01F45BE8` | "Key_LeftBracket" |
+| 0016BC00 | `0016BC04` `lea` | `01F45768` | "Key_Left_Alt" |
+| 0016BC20 | `0016BC24` `lea` | `01F457A8` | "Key_Left_Control" |
+| 0016BC40 | `0016BC44` `lea` | `01F45788` | "Key_Left_Shift" |
+| 0016BC60 | `0016BC64` `lea` | `01F45AE8` | "Key_Left" |
+| 0016BC80 | `0016BC84` `lea` | `01F46148` | "Key_M" |
+| 0016BCA0 | `0016BCA4` `lea` | `01F45C28` | "Key_Minus" |
+| 0016BCC0 | `0016BCC4` `lea` | `01F46128` | "Key_N" |
+| 0016BCE0 | `0016BCE4` `lea` | `01F45888` | "Key_Numpad_0" |
+| 0016BD00 | `0016BD04` `lea` | `01F459A8` | "Key_Numpad_1" |
+| 0016BD20 | `0016BD24` `lea` | `01F45988` | "Key_Numpad_2" |
+| 0016BD40 | `0016BD44` `lea` | `01F45968` | "Key_Numpad_3" |
+| 0016BD60 | `0016BD64` `lea` | `01F45948` | "Key_Numpad_4" |
+| 0016BD80 | `0016BD84` `lea` | `01F45928` | "Key_Numpad_5" |
+| 0016BDA0 | `0016BDA4` `lea` | `01F45908` | "Key_Numpad_6" |
+| 0016BDC0 | `0016BDC4` `lea` | `01F458E8` | "Key_Numpad_7" |
+| 0016BDE0 | `0016BDE4` `lea` | `01F458C8` | "Key_Numpad_8" |
+| 0016BE00 | `0016BE04` `lea` | `01F458A8` | "Key_Numpad_9" |
+| 0016BE20 | `0016BE24` `lea` | `01F45848` | "Key_Numpad_Asterisk" |
+| 0016BE40 | `0016BE44` `lea` | `01F457E8` | "Key_Numpad_Enter" |
+| 0016BE60 | `0016BE64` `lea` | `01F45828` | "Key_Numpad_Minus" |
+| 0016BE80 | `0016BE84` `lea` | `01F457C8` | "Key_Numpad_Period" |
+| 0016BEA0 | `0016BEA4` `lea` | `01F45808` | "Key_Numpad_Plus" |
+| 0016BEC0 | `0016BEC4` `lea` | `01F45868` | "Key_Numpad_Slash" |
+| 0016BEE0 | `0016BEE4` `lea` | `01F46108` | "Key_O" |
+| 0016BF00 | `0016BF04` `lea` | `01F460E8` | "Key_P" |
+| 0016BF20 | `0016BF24` `lea` | `01F45A08` | "Key_PageDown" |
+| 0016BF40 | `0016BF44` `lea` | `01F45A28` | "Key_PageUp" |
+| 0016BF60 | `0016BF64` `lea` | `01F45B28` | "Key_Period" |
+| 0016BF80 | `0016BF84` `lea` | `01F460C8` | "Key_Q" |
+| 0016BFA0 | `0016BFA4` `lea` | `01F460A8` | "Key_R" |
+| 0016BFC0 | `0016BFC4` `lea` | `01F45BC8` | "Key_RightBracket" |
+| 0016BFE0 | `0016BFE4` `lea` | `01F45708` | "Key_Right_Alt" |
+| 0016C000 | `0016C004` `lea` | `01F45748` | "Key_Right_Control" |
+| 0016C020 | `0016C024` `lea` | `01F45728` | "Key_Right_Shift" |
+| 0016C040 | `0016C044` `lea` | `01F45AC8` | "Key_Right" |
+| 0016C060 | `0016C064` `lea` | `01F46088` | "Key_S" |
+| 0016C080 | `0016C084` `lea` | `01F45B88` | "Key_Semicolon" |
+| 0016C0A0 | `0016C0A4` `lea` | `01F45B08` | "Key_Slash" |
+| 0016C0C0 | `0016C0C4` `lea` | `01F45C48` | "Key_Space" |
+| 0016C0E0 | `0016C0E4` `lea` | `01F46068` | "Key_T" |
+| 0016C100 | `0016C104` `lea` | `01F45C68` | "Key_Tab" |
+| 0016C120 | `0016C124` `lea` | `01F46048` | "Key_U" |
+| 0016C140 | `0016C144` `lea` | `01F45AA8` | "Key_Up" |
+| 0016C160 | `0016C164` `lea` | `01F46028` | "Key_V" |
+| 0016C180 | `0016C184` `lea` | `01F46008` | "Key_W" |
+| 0016C1A0 | `0016C1A4` `lea` | `01F45FE8` | "Key_X" |
+| 0016C1C0 | `0016C1C4` `lea` | `01F45FC8` | "Key_Y" |
+| 0016C1E0 | `0016C1E4` `lea` | `01F45FA8` | "Key_Z" |
+
+### Registered through `00879570`, the channel-semantic list (`PInputChannelSemantic`) (143 nodes, OPUS)
+
+| member | distinguishing instruction | node (the `lea` target) | name at the node's `+0x8` |
+|---|---|---|---|
+| 0016C380 | `0016C384` `lea` | `01F47508` | "Button_0" |
+| 0016C3A0 | `0016C3A4` `lea` | `01F47108` | "Button_10" |
+| 0016C3C0 | `0016C3C4` `lea` | `01F470A8` | "Button_11" |
+| 0016C3E0 | `0016C3E4` `lea` | `01F47048` | "Button_12" |
+| 0016C400 | `0016C404` `lea` | `01F47008` | "Button_13" |
+| 0016C420 | `0016C424` `lea` | `01F46FC8` | "Button_14" |
+| 0016C440 | `0016C444` `lea` | `01F46F88` | "Button_15" |
+| 0016C460 | `0016C464` `lea` | `01F47488` | "Button_1" |
+| 0016C480 | `0016C484` `lea` | `01F47408` | "Button_2" |
+| 0016C4A0 | `0016C4A4` `lea` | `01F47388` | "Button_3" |
+| 0016C4C0 | `0016C4C4` `lea` | `01F47328` | "Button_4" |
+| 0016C4E0 | `0016C4E4` `lea` | `01F472C8` | "Button_5" |
+| 0016C500 | `0016C504` `lea` | `01F47268` | "Button_6" |
+| 0016C520 | `0016C524` `lea` | `01F47208` | "Button_7" |
+| 0016C540 | `0016C544` `lea` | `01F471A8` | "Button_8" |
+| 0016C560 | `0016C564` `lea` | `01F47148` | "Button_9" |
+| 0016C580 | `0016C584` `lea` | `01F47448` | "Button_A" |
+| 0016C5A0 | `0016C5A4` `lea` | `01F473C8` | "Button_B" |
+| 0016C5C0 | `0016C5C4` `lea` | `01F47168` | "Button_Back" |
+| 0016C5E0 | `0016C5E4` `lea` | `01F473E8` | "Button_Circle" |
+| 0016C600 | `0016C604` `lea` | `01F47468` | "Button_Cross" |
+| 0016C620 | `0016C624` `lea` | `01F46FA8` | "Button_Down" |
+| 0016C640 | `0016C644` `lea` | `01F47308` | "Button_L1" |
+| 0016C660 | `0016C664` `lea` | `01F47248` | "Button_L2" |
+| 0016C680 | `0016C684` `lea` | `01F470E8` | "Button_L3" |
+| 0016C6A0 | `0016C6A4` `lea` | `01F472E8` | "Button_LB" |
+| 0016C6C0 | `0016C6C4` `lea` | `01F470C8` | "Button_LS" |
+| 0016C6E0 | `0016C6E4` `lea` | `01F47228` | "Button_LT" |
+| 0016C700 | `0016C704` `lea` | `01F474A8` | "Button_LeftMB" |
+| 0016C720 | `0016C724` `lea` | `01F46F68` | "Button_Left" |
+| 0016C740 | `0016C744` `lea` | `01F47428` | "Button_MiddleMB" |
+| 0016C760 | `0016C764` `lea` | `01F472A8` | "Button_R1" |
+| 0016C780 | `0016C784` `lea` | `01F471E8` | "Button_R2" |
+| 0016C7A0 | `0016C7A4` `lea` | `01F47088` | "Button_R3" |
+| 0016C7C0 | `0016C7C4` `lea` | `01F47288` | "Button_RB" |
+| 0016C7E0 | `0016C7E4` `lea` | `01F47068` | "Button_RS" |
+| 0016C800 | `0016C804` `lea` | `01F471C8` | "Button_RT" |
+| 0016C820 | `0016C824` `lea` | `01F473A8` | "Button_RightMB" |
+| 0016C840 | `0016C844` `lea` | `01F46FE8` | "Button_Right" |
+| 0016C860 | `0016C864` `lea` | `01F47188` | "Button_Select" |
+| 0016C880 | `0016C884` `lea` | `01F474E8` | "Button_Square" |
+| 0016C8A0 | `0016C8A4` `lea` | `01F47128` | "Button_Start" |
+| 0016C8C0 | `0016C8C4` `lea` | `01F47368` | "Button_Triangle" |
+| 0016C8E0 | `0016C8E4` `lea` | `01F47028` | "Button_Up" |
+| 0016C900 | `0016C904` `lea` | `01F474C8` | "Button_X" |
+| 0016C920 | `0016C924` `lea` | `01F47348` | "Button_Y" |
+| 0016C940 | `0016C944` `lea` | `01F47528` | "Empty" |
+| 0016C960 | `0016C964` `lea` | `01F46AE8` | "Key_0" |
+| 0016C980 | `0016C984` `lea` | `01F46C08` | "Key_1" |
+| 0016C9A0 | `0016C9A4` `lea` | `01F46BE8` | "Key_2" |
+| 0016C9C0 | `0016C9C4` `lea` | `01F46BC8` | "Key_3" |
+| 0016C9E0 | `0016C9E4` `lea` | `01F46BA8` | "Key_4" |
+| 0016CA00 | `0016CA04` `lea` | `01F46B88` | "Key_5" |
+| 0016CA20 | `0016CA24` `lea` | `01F46B68` | "Key_6" |
+| 0016CA40 | `0016CA44` `lea` | `01F46B48` | "Key_7" |
+| 0016CA60 | `0016CA64` `lea` | `01F46B28` | "Key_8" |
+| 0016CA80 | `0016CA84` `lea` | `01F46B08` | "Key_9" |
+| 0016CAA0 | `0016CAA4` `lea` | `01F46F48` | "Key_A" |
+| 0016CAC0 | `0016CAC4` `lea` | `01F46368` | "Key_AccentGrave" |
+| 0016CAE0 | `0016CAE4` `lea` | `01F467E8` | "Key_Apostrophe" |
+| 0016CB00 | `0016CB04` `lea` | `01F46F28` | "Key_B" |
+| 0016CB20 | `0016CB24` `lea` | `01F46828` | "Key_Backslash" |
+| 0016CB40 | `0016CB44` `lea` | `01F46908` | "Key_Backspace" |
+| 0016CB60 | `0016CB64` `lea` | `01F46F08` | "Key_C" |
+| 0016CB80 | `0016CB84` `lea` | `01F467C8` | "Key_Comma" |
+| 0016CBA0 | `0016CBA4` `lea` | `01F46EE8` | "Key_D" |
+| 0016CBC0 | `0016CBC4` `lea` | `01F46648` | "Key_Delete" |
+| 0016CBE0 | `0016CBE4` `lea` | `01F46708` | "Key_Down" |
+| 0016CC00 | `0016CC04` `lea` | `01F46EC8` | "Key_E" |
+| 0016CC20 | `0016CC24` `lea` | `01F466C8` | "Key_End" |
+| 0016CC40 | `0016CC44` `lea` | `01F46928` | "Key_Enter" |
+| 0016CC60 | `0016CC64` `lea` | `01F46888` | "Key_Equals" |
+| 0016CC80 | `0016CC84` `lea` | `01F46AC8` | "Key_Escape" |
+| 0016CCA0 | `0016CCA4` `lea` | `01F46988` | "Key_F10" |
+| 0016CCC0 | `0016CCC4` `lea` | `01F46968` | "Key_F11" |
+| 0016CCE0 | `0016CCE4` `lea` | `01F46948` | "Key_F12" |
+| 0016CD00 | `0016CD04` `lea` | `01F46AA8` | "Key_F1" |
+| 0016CD20 | `0016CD24` `lea` | `01F46A88` | "Key_F2" |
+| 0016CD40 | `0016CD44` `lea` | `01F46A68` | "Key_F3" |
+| 0016CD60 | `0016CD64` `lea` | `01F46A48` | "Key_F4" |
+| 0016CD80 | `0016CD84` `lea` | `01F46A28` | "Key_F5" |
+| 0016CDA0 | `0016CDA4` `lea` | `01F46A08` | "Key_F6" |
+| 0016CDC0 | `0016CDC4` `lea` | `01F469E8` | "Key_F7" |
+| 0016CDE0 | `0016CDE4` `lea` | `01F469C8` | "Key_F8" |
+| 0016CE00 | `0016CE04` `lea` | `01F469A8` | "Key_F9" |
+| 0016CE20 | `0016CE24` `lea` | `01F46EA8` | "Key_F" |
+| 0016CE40 | `0016CE44` `lea` | `01F46E88` | "Key_G" |
+| 0016CE60 | `0016CE64` `lea` | `01F46E68` | "Key_H" |
+| 0016CE80 | `0016CE84` `lea` | `01F466E8` | "Key_Home" |
+| 0016CEA0 | `0016CEA4` `lea` | `01F46E48` | "Key_I" |
+| 0016CEC0 | `0016CEC4` `lea` | `01F46668` | "Key_Insert" |
+| 0016CEE0 | `0016CEE4` `lea` | `01F46E28` | "Key_J" |
+| 0016CF00 | `0016CF04` `lea` | `01F46E08` | "Key_K" |
+| 0016CF20 | `0016CF24` `lea` | `01F46DE8` | "Key_L" |
+| 0016CF40 | `0016CF44` `lea` | `01F46868` | "Key_LeftBracket" |
+| 0016CF60 | `0016CF64` `lea` | `01F463E8` | "Key_Left_Alt" |
+| 0016CF80 | `0016CF84` `lea` | `01F46428` | "Key_Left_Control" |
+| 0016CFA0 | `0016CFA4` `lea` | `01F46408` | "Key_Left_Shift" |
+| 0016CFC0 | `0016CFC4` `lea` | `01F46768` | "Key_Left" |
+| 0016CFE0 | `0016CFE4` `lea` | `01F46DC8` | "Key_M" |
+| 0016D000 | `0016D004` `lea` | `01F468A8` | "Key_Minus" |
+| 0016D020 | `0016D024` `lea` | `01F46DA8` | "Key_N" |
+| 0016D040 | `0016D044` `lea` | `01F46508` | "Key_Numpad_0" |
+| 0016D060 | `0016D064` `lea` | `01F46628` | "Key_Numpad_1" |
+| 0016D080 | `0016D084` `lea` | `01F46608` | "Key_Numpad_2" |
+| 0016D0A0 | `0016D0A4` `lea` | `01F465E8` | "Key_Numpad_3" |
+| 0016D0C0 | `0016D0C4` `lea` | `01F465C8` | "Key_Numpad_4" |
+| 0016D0E0 | `0016D0E4` `lea` | `01F465A8` | "Key_Numpad_5" |
+| 0016D100 | `0016D104` `lea` | `01F46588` | "Key_Numpad_6" |
+| 0016D120 | `0016D124` `lea` | `01F46568` | "Key_Numpad_7" |
+| 0016D140 | `0016D144` `lea` | `01F46548` | "Key_Numpad_8" |
+| 0016D160 | `0016D164` `lea` | `01F46528` | "Key_Numpad_9" |
+| 0016D180 | `0016D184` `lea` | `01F464C8` | "Key_Numpad_Asterisk" |
+| 0016D1A0 | `0016D1A4` `lea` | `01F46468` | "Key_Numpad_Enter" |
+| 0016D1C0 | `0016D1C4` `lea` | `01F464A8` | "Key_Numpad_Minus" |
+| 0016D1E0 | `0016D1E4` `lea` | `01F46448` | "Key_Numpad_Period" |
+| 0016D200 | `0016D204` `lea` | `01F46488` | "Key_Numpad_Plus" |
+| 0016D220 | `0016D224` `lea` | `01F464E8` | "Key_Numpad_Slash" |
+| 0016D240 | `0016D244` `lea` | `01F46D88` | "Key_O" |
+| 0016D260 | `0016D264` `lea` | `01F46D68` | "Key_P" |
+| 0016D280 | `0016D284` `lea` | `01F46688` | "Key_PageDown" |
+| 0016D2A0 | `0016D2A4` `lea` | `01F466A8` | "Key_PageUp" |
+| 0016D2C0 | `0016D2C4` `lea` | `01F467A8` | "Key_Period" |
+| 0016D2E0 | `0016D2E4` `lea` | `01F46D48` | "Key_Q" |
+| 0016D300 | `0016D304` `lea` | `01F46D28` | "Key_R" |
+| 0016D320 | `0016D324` `lea` | `01F46848` | "Key_RightBracket" |
+| 0016D340 | `0016D344` `lea` | `01F46388` | "Key_Right_Alt" |
+| 0016D360 | `0016D364` `lea` | `01F463C8` | "Key_Right_Control" |
+| 0016D380 | `0016D384` `lea` | `01F463A8` | "Key_Right_Shift" |
+| 0016D3A0 | `0016D3A4` `lea` | `01F46748` | "Key_Right" |
+| 0016D3C0 | `0016D3C4` `lea` | `01F46D08` | "Key_S" |
+| 0016D3E0 | `0016D3E4` `lea` | `01F46808` | "Key_Semicolon" |
+| 0016D400 | `0016D404` `lea` | `01F46788` | "Key_Slash" |
+| 0016D420 | `0016D424` `lea` | `01F468C8` | "Key_Space" |
+| 0016D440 | `0016D444` `lea` | `01F46CE8` | "Key_T" |
+| 0016D460 | `0016D464` `lea` | `01F468E8` | "Key_Tab" |
+| 0016D480 | `0016D484` `lea` | `01F46CC8` | "Key_U" |
+| 0016D4A0 | `0016D4A4` `lea` | `01F46728` | "Key_Up" |
+| 0016D4C0 | `0016D4C4` `lea` | `01F46CA8` | "Key_V" |
+| 0016D4E0 | `0016D4E4` `lea` | `01F46C88` | "Key_W" |
+| 0016D500 | `0016D504` `lea` | `01F46C68` | "Key_X" |
+| 0016D520 | `0016D524` `lea` | `01F46C48` | "Key_Y" |
+| 0016D540 | `0016D544` `lea` | `01F46C28` | "Key_Z" |
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-the-input-name-registry-and-channel-alia-ee-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `008760A0` | 132 B | reads the name pointer qword `[rcx+8]` and returns 0x11 when it is null; otherwise it walks the list whose head is qword `02EB8260`, following each node's qword `+0x10`, comparing the zero-terminated string at each node's qword `+8` byte by byte with the name, and returns 0x12 at the first equal string; when no node matches it stores the old head to qword `[rcx+0x10]`, stores `rcx` to `02EB8260` and returns 0 | `008760AE`, `008760E8`, `008760F5`, `00876100`, `0087610A` |
+| `00876490` | 132 B | reads the name pointer qword `[rcx+8]` and returns 0x11 when it is null; otherwise it walks the list whose head is qword `02EB82D8`, following each node's qword `+0x10`, comparing the zero-terminated string at each node's qword `+8` byte by byte with the name, and returns 0x12 at the first equal string; when no node matches it stores the old head to qword `[rcx+0x10]`, stores `rcx` to `02EB82D8` and returns 0 | `0087649E`, `008764D8`, `008764E5`, `008764F0`, `008764FA` |
+| `008768A0` | 132 B | reads the name pointer qword `[rcx+8]` and returns 0x11 when it is null; otherwise it walks the list whose head is qword `02EB8348`, following each node's qword `+0x10`, comparing the zero-terminated string at each node's qword `+8` byte by byte with the name, and returns 0x12 at the first equal string; when no node matches it stores the old head to qword `[rcx+0x10]`, stores `rcx` to `02EB8348` and returns 0 | `008768AE`, `008768E8`, `008768F5`, `00876900`, `0087690A` |
+| `00876D80` | 222 B | counts the nodes of the list whose head is qword `02EB83B8` (links at qword `+0x10`); when the count differs from dword `[rdx]` it allocates the array with `0017D260(count*8, 8)` and zeroes it (a zero count uses a null array, and a failed allocation returns 0xd), calls `00584730` on the old qword `[rdx+8]` when that differs from the new array, is non-null and dword `[rdx]` is not negative, and stores the new array and count to `[rdx+8]` and `[rdx]`; it then writes each node pointer in list order into the array at `[rdx+8]` and returns 0 | `00876DB5`, `00876DCC`, `00876DD7`, `00876E15`, `00876E30` |
+| `00879670` | 222 B | counts the nodes of the list whose head is qword `02EB9D80` (links at qword `+0x10`); when the count differs from dword `[rdx]` it allocates the array with `0017D260(count*8, 8)` and zeroes it (a zero count uses a null array, and a failed allocation returns 0xd), calls `00584730` on the old qword `[rdx+8]` when that differs from the new array, is non-null and dword `[rdx]` is not negative, and stores the new array and count to `[rdx+8]` and `[rdx]`; it then writes each node pointer in list order into the array at `[rdx+8]` and returns 0 | `008796A5`, `008796BC`, `008796C7`, `00879705`, `00879720` |

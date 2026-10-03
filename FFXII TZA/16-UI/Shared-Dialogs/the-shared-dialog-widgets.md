@@ -88,7 +88,7 @@ Display-only: answers ids 1, 2, 18 — construct, reconcile, destroy. No input a
 
 The sort strip inside the item screen (installed by `005665B0`). Dispatches ids 1, 2, 12, 15, 18:
 
-- **id 12** `00566794`: sub-commands `0x8102`–`0x8106` — the five sort modes; each walks the parent's `[+0xC0]+0x180`-indexed option table at `0x1E` stride 8 (`005666D4`–`005666F3`) via `00567690`
+- **id 12** `00566794`: sub-commands `0x8102`–`0x8106` — the five sort modes; ~~each walks the parent's `[+0xC0]+0x180`-indexed option table at `0x1E` stride 8 (`005666D4`–`005666F3`) via `00567690`~~ *(corrected 2026-10-02, OPUS: that walk opens the id-18 arm — the dispatch sends 18 to `00566680+0x54` — and the id-12 arm `00566680+0x114` never branches into `00566680+0x54`–`00566680+0x73`)*
 - **id 15** `00566771`: frees `+0xD8` via `0057C340`
 - **id 18** `005666D4`: clears the row highlights through `00291D70`/`00291D80`, sets the parent's `+0x180 |= 0x40000000` (sort-changed flag), clears `[global]+0x2F0`
 - **id 2** `0056688D` / **id 1** `005668BB`: reconcile / construct

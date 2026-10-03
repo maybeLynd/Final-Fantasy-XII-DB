@@ -451,8 +451,8 @@ by platform init, not owned by it.)*
 `005DC720` (362 B) is the
 ctor `00162410` hands the
 `02CB7FD0` tuning block to:
-`005DC580` + `005DC430`
-init the `+0xD0` member,
+~~`005DC580` + `005DC430`~~
+~~init the `+0xD0` member~~ `005DC580` inits the object from `+0` and `005DC430` the `+0xD0` member *(corrected 2026-10-02, OPUS: `005DC720+0x25` `call 005DC580` with `rcx = this`, `+0x2A` `lea rcx, [rdi+0xd0]`, `+0x31` `call 005DC430`)*,
 then the defaults land -
 `+0x448` = 1.0f, `+0x454` =
 -0.5f, `+0x458`/`+0x460` =

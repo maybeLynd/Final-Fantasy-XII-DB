@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-terminal-resource-helper\controls-01\false-extent-result\prove.py", line 59, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-terminal-resource-helper\controls-01\false-extent-result\prove.py", line 43, in main
+    C=module('capture_receipts','capture_prerequisites.py');qualified=C.check(P,'prepare-extents.py','capture.py','extents-01','capture-01','extents-01.json','source-01.json',['0x305640'])
+                                                                      ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-terminal-resource-helper\controls-01\false-extent-result\capture_prerequisites.py", line 16, in check
+    if e.get('complete') is not True or e.get('driver_sha256')!=sha(folder/prepare):raise ValueError('required complete current extent artifact')
+                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: required complete current extent artifact

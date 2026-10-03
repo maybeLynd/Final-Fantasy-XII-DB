@@ -72,7 +72,7 @@ The "force-fight reader" above is the **battle-menu widget's 53-id message proce
 (2849 B): `msg+0` id − 1 bounded `≤ 0x34` dispatches through a byte map (`00277880`) into RVA
 table `00277854`, site `00276D79`); ten ids carry real arms and the remaining 43 share
 the `00277828` default tail. The `+0x2FE0` read at `00276FC5` sits in the **id-2 arm**, which
-is the command-confirm path:
+is ~~the command-confirm path~~ the menu's per-frame message-2 arm (`00276D30+0x270`) *(corrected 2026-10-02, OPUS: message 2 is the generation reconcile, `00248030+0xBF`, which reaches every widget once `00250540+0x4D` has flipped the parity for the pass)*:
 
 ```
 00276FA0  001EDEC0([+0xB4]) gate → +0x2FF0 bit 8 early-out →
@@ -121,7 +121,7 @@ The exclusive-callee census assigns 39 frontier functions to
 | cluster | members | role |
 |---|---|---|
 | `0209BE80` singleton accessors | `0028EA20`, `0028EA90`, `0028FEA0` (`002BE020`), `00290470`, `00290520`, `00290590`, `002905B0`, `00290B70`, `00290C60`, `0028F9E0`, `002911D0` (324 B — also `002713B0`/`003F3580`/`00273A30`/`0024A5A0`/`003F3510`/`003F34D0`, plus `01E0C1E0`) | 17–38 B field getters/setters on the menu widget block at `0209BE80`; `002911D0` is the cluster's one real body |
-| menu-state pair | `00272250`, `002722A0` (`00183280`), `00273850` | `00272180` + the `01E0C1D8`/`01E0C1DC` state cells — menu-mode read/write |
+| menu-state pair | `00272250`, `002722A0` (`00183280`), `00273850` | `00272180` + ~~the `01E0C1D8`/`01E0C1DC` state cells — menu-mode read/write~~ the screen width and height `01E0C1D8`/`01E0C1DC` — a projection to screen coordinates *(corrected 2026-10-02, OPUS: `00272250+0xE`–`00272250+0x3B` compute `((v − 0x8000) >> 4)` plus half the width or height)* |
 | dispatch arms | `0027E050` (820 B — own jump table at `0027E384`; `0027E530` is a procedure it installs, see below), `0027B430` (`00275440` ×4 + `0027C730`/`0027D740`/`00244F00`/`00249C60`), `0027B880` (646 B — the heaviest arm: `0035D330`/`00290C60`/`00290C80`/`0028E840`/`003C93E0`/`0035C150` ×3–4 each), `0027C3D0` (717 B — `00311CD0` ×3 + `00241A50`/`00272EE0`/`00309B40`/`00311AF0`/`00273270`), `0027CD00` (`02AEDDB0` + `00273710`/`002713E0`/`002722A0`/`003678F0`/`00181630`/`002752E0`/`00368940`/`00368360`), `0027BED0` (`02AEDDB0` + `002E9D10` ×2 + `00203080`/`002703F0`/`00272250`/`00273850`), `0027C280`, `0027D330` (`002737B0`/`003588B0`/`00263C20`), `0027D480` (`0035D330`/`002B58B0`/`003EE8C0`, `01CEB638`), `0027DC10`, `0027DE30`, `0027BD80` | the per-command bodies behind the dispatcher's table — `02AEDDB0` (the camera/scene block) appears in two of them |
 | icon/entry helpers | `003F3510` (`00275550`/`00272F30`), `003F34D0`, `003F3580`, `003F3660` (`00271140`), `00321060` (`003588B0`/`00263E30`/`0031AA30`), `003EEA00` (`0029CD00`, `00D11108`) | entry/icon resolution the arms call |
 | leaves | `00273600`, `00274BA0`, `00274BD0` (`call rax` thunk), `002737B0` (`0035BB60` ×2/`0035BB00`), `00296570`, `00296ED0`, `002BE270` | small bodies, mostly single-purpose |

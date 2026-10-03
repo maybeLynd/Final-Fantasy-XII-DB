@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-gauge-callback-binding\controls-01\target-extent-incomplete\prove.py", line 82, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-gauge-callback-binding\controls-01\target-extent-incomplete\prove.py", line 61, in main
+    qualified=[C.check(P,'prepare-extents.py','capture.py','extents-01','capture-01','extents-01.json','source-01.json',['0x296360','0x297c10','0x3f89c0']),C.check(P,'prepare-target-extents.py','capture-target.py','target-extents-01','capture-target-01','target-extents-01.json','target-source-01.json',['0x2973e0'])]
+                                                                                                                                                            ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-gauge-callback-binding\controls-01\target-extent-incomplete\capture_prerequisites.py", line 16, in check
+    if e.get('complete') is not True or e.get('driver_sha256')!=sha(folder/prepare):raise ValueError('required complete current extent artifact')
+                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: required complete current extent artifact

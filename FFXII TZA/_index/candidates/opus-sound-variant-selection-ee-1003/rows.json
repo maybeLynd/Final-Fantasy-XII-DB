@@ -1,0 +1,198 @@
+{
+ "page": "18-Audio/Sound-Selection/sound-variant-selection.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "sound-variant-selection.json",
+ "rows": [
+  {
+   "fn": "007B0E90",
+   "text": "returns -1 when `rdx` is null or the signed dword count `02EAD3EC` is not positive; otherwise it scans the 0x40-byte entries starting at qword `02EAD3F8`, comparing the zero-terminated string at `q` + word `[q+2]` (with `q` = each entry's qword `+8`) byte by byte with `rdx`, and returns -1 when none matches; for the first match it stores to float `[rcx]` the entry's float `+0x1c` when its float `+0x24` equals 0.0, and otherwise `007A9E50(+0x20 / +0x24, edx = dword +0x2c)` times (`+0x1c` - `+0x18`) plus `+0x18`, and returns 0",
+   "anchors": [
+    [
+     "007B0EC5",
+     "jle"
+    ],
+    [
+     "007B0EEB",
+     "sub"
+    ],
+    [
+     "007B0F29",
+     "ucomiss"
+    ],
+    [
+     "007B0F58",
+     "call"
+    ],
+    [
+     "007B0F7F",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "007CA560",
+   "text": "computes a start value that is float `[rcx+0xc]` when the fifth (stack) argument byte is non-zero or float `[rcx+0x14]` equals 0.0, and otherwise `007A9E50([rcx+0x10] / [rcx+0x14], edx = dword [rcx+0x1c])` times (`[rcx+0xc]` - `[rcx+8]`) plus `[rcx+8]`; it stores that value to `[rcx+8]`, `xmm1` to `[rcx+0xc]`, `xmm2` to `[rcx+0x14]`, 0 to dword `[rcx+0x10]`, `r9d` to dword `[rcx+0x1c]` and 1 to byte `[rcx+0x20]`, and when dword `[rcx+0x24]` is 1 it divides the distance between `xmm1` and the start value by the absolute float `[rcx+0x28]` (when `xmm1` is above the start) or `[rcx+0x2c]` (otherwise) and stores that quotient to `[rcx+0x14]` when `xmm2` is not at least it; it returns 0",
+   "anchors": [
+    [
+     "007CA56A",
+     "cmp"
+    ],
+    [
+     "007CA5B0",
+     "call"
+    ],
+    [
+     "007CA5D2",
+     "cmp"
+    ],
+    [
+     "007CA606",
+     "divss"
+    ],
+    [
+     "007CA631",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "007CF780",
+   "text": "reads `h` = qword `[rcx+8]` and the sign-extended index `r8d`, and writes to the output pair at `rdx` the qword `01CB6E80` followed by `h` plus a dword offset: for byte `[h]` below 9 the offset is the dword at `h` + word `[h+2]` + index*4; for 9 or 10 it uses `pad` = (byte `[h+0x23]` + 0x10) masked with 0xf0 and the offset is `pad` plus the dword at `h` + word `[h+2]` + `pad` + index*4; for 11 or more the offset is the dword at `h` + word `[h+0x46]` + index*4; it returns `rdx`",
+   "anchors": [
+    [
+     "007CF78E",
+     "cmp"
+    ],
+    [
+     "007CF79A",
+     "mov"
+    ],
+    [
+     "007CF7C5",
+     "and"
+    ],
+    [
+     "007CF7D2",
+     "mov"
+    ],
+    [
+     "007CF7F6",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007CFE60",
+   "text": "reads `h` = qword `[rcx+8]` and writes the qword `01CB6E10` to `[rdx]` and a pointer to `[rdx+8]`: for byte `[h]` = 0 the pointer is 0; for 1 it is `h` + word `[h+0xa]` when `r8d` is zero (then setting byte `+6` of it to 1) and `h` + word `[h+0xc]` otherwise (setting byte `+6` to 2); for 2 the same with words `[h+0x12]` and `[h+0x14]`; for any other type the pointer is `h` plus the dword at `h` + word `[h+2]` + `r8d`*4 when `r8d` is not negative and below byte `[h+8]`, and 0 otherwise; it returns `rdx`",
+   "anchors": [
+    [
+     "007CFE6D",
+     "je"
+    ],
+    [
+     "007CFE92",
+     "mov"
+    ],
+    [
+     "007CFEA6",
+     "mov"
+    ],
+    [
+     "007CFEF6",
+     "jle"
+    ],
+    [
+     "007CFF22",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007D0710",
+   "text": "writes the qword `01CB6E10` to `[rdx]` and to `[rdx+8]` either 0, when `r8d` is negative or not below byte `[h+0x43]` of `h` = qword `[rcx+8]`, or `h` plus the dword at `h` + word `[h+2]` + (bytes `[h+4]` + `[h+5]` + `[h+0x41]` + `[h+0x42]` + `r8d`)*4 + `pad`, where `pad` is (byte `[h+0x48]` + 0x10) masked with 0xf0 when byte `[h]` is 9 or more and 0 otherwise; it returns `rdx`",
+   "anchors": [
+    [
+     "007D0719",
+     "js"
+    ],
+    [
+     "007D0727",
+     "jle"
+    ],
+    [
+     "007D0738",
+     "and"
+    ],
+    [
+     "007D0770",
+     "mov"
+    ],
+    [
+     "007D0799",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007E6620",
+   "text": "calls the vtable slot `+0xa8` of `rcx` and, when it returns 2, calls `007E5DA0(rcx, rsp+0x20)` and, when that is below byte `+0x18` of `t` = qword `[rcx+0x30]`, subtracts `xmm1` from float `[rcx+0x538]` and, when the result is not above 0.0, calls `007E5E80(rcx)` and stores (dword `[t+0x10]` + the signed remainder of the value returned by a call through the qword at `008C3098` by (dword `[t+0x14]` - `[t+0x10]` + 1)) times 0.001 to `[rcx+0x538]`; on every path it then returns `007BF0A0(rcx)` with the incoming `xmm1`; the stack cookie is checked through `00808C40`",
+   "anchors": [
+    [
+     "007E6643",
+     "call"
+    ],
+    [
+     "007E666F",
+     "cmp"
+    ],
+    [
+     "007E6685",
+     "movss"
+    ],
+    [
+     "007E66B0",
+     "idiv"
+    ],
+    [
+     "007E66E1",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007E6960",
+   "text": "stores `01CB8FA0` to qword `[rcx]` and `01CB4D58` to `[rcx+0x20]`, zeroes qwords `+0x8`, `+0x10`, `+0x18`, `+0x28`, `+0x30`, `+0x60`, `+0x90`, `+0x9c` and `+0xb0`, words `+0x98`, `+0xa4` and `+0xbc`, bytes `+0x5c` and `+0xa9` and dwords `+0xac`, `+0xb8` and `+0xc0`, stores the float 1.0 bit pattern to dwords `+0x38`, `+0x3c`, `+0x40`, `+0x54`, `+0x58` and `+0x68` and as a zero-extended qword to `+0x44` and `+0x4c`, then for four iterations stores byte 0xfe at `+0x6c` onward and the float 1.0 to dword pairs at `+0x70` onward (stride 8), and returns `rcx`",
+   "anchors": [
+    [
+     "007E6967",
+     "mov"
+    ],
+    [
+     "007E697F",
+     "mov"
+    ],
+    [
+     "007E69D1",
+     "mov"
+    ],
+    [
+     "007E6A20",
+     "mov"
+    ],
+    [
+     "007E6A3F",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [
+  "007BC8D0",
+  "007CFD00"
+ ],
+ "corrections": [],
+ "mode": "ee"
+}

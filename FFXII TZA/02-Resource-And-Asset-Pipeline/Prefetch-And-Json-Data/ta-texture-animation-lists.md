@@ -122,8 +122,8 @@ a `.ta` but absent from the map's `.ah` is stored as null.
 
 **`frs0109` ships exactly that case.** Its one list names `frs0100_kokage_mime` and six frames, and none
 of the seven paths is in the archive or in `phyremaps.txt` (the map has no `tex` entries at all), so
-all seven frames bind to null at run time unless the textures are loaded under those paths by some
-other route (`TA-2`).
+all seven frames bind to null at run time ~~unless the textures are loaded under those paths by some~~
+~~other route~~ (`TA-2`) *(answered: see UQ-71 - the frames stay null; 2026-10-02, OPUS)*.
 
 **The write path.** None; authored offline.
 
@@ -143,7 +143,7 @@ other route (`TA-2`).
 | `001A7460` | `FindFrameSet(context, texture)`: the set whose frame 0 is that texture, once `+0x140` is set | ✅ full body |
 | `001E62E0` | binds a render object's `TextureSampler` texture to its frame set (cached at `+0x210`) and selects a frame (`+0x204`, dirty flag `+0x208`) when `0 <= frame < count` | ✅ full body |
 | `001807F0` | the entry to `001E62E0`, gated on `+0x140` | ✅ full body |
-| `002F4520` | the rendering pass that supplies the frame number (call at `002F4A5D`) | ✗ `TA-1` |
+| `002F4520` | the rendering pass that supplies the frame number (call at `002F4A5D`) | ~~✗ `TA-1`~~ *(answered: `TA-1` answered 2026-09-25 below; 2026-10-02, OPUS)* |
 
 ### Data addresses
 
@@ -187,7 +187,7 @@ and `phyremaps.txt` sends them to one physical file).
 
 ## 6. Falsification pass
 
-Not yet run.
+~~Not yet run.~~ *(answered: see §9, Falsification pass 1 - 2026-09-13; 2026-10-02, OPUS)*
 
 ## 7. What this document does not claim
 
@@ -325,11 +325,11 @@ that supplies the frame number (§4, `TA-1`). All signature-swept 2026-09-15 (`b
 | cluster | members | role |
 |---|---|---|
 | resource-handle helpers | `00180650` (108 B — `001A9930` ×2 + `001A94C0`/`001E3E80`/`001E3FF0`/`001A4FE0`, `[rax+8]` virtual), `00180730` (`001A9930` + `001A9B70`), `001807F0` (`001A9930` + `001E62E0` — the entry `TA-1` names), `00180830`, `00180900` (`001AA240`), `001809A0` (`0018CA40` ×2), `001806C0` (`00189120`), `001803F0` (`001E4B00`), `001A4FE0` (`001AB570`), `001A94C0` (`001A2E50`), `001A9B70` (`001E5790`), `001AA240` (`001E69A0`) | the `001A9930` resolve + `001Exxxx` fetch chain the pass walks per `.ta` entry |
-| frame/source bodies | `001E5790` (530 B on `01CEBDA0` — the frame-clock read behind `001A9B70`), `001E62E0` (284 B — `0016D6A0` ×2 + `0018D240`/`001A9930`/`001A7460`, `008F66D8`), `001E69A0` (263 B), `001A7460` (the null-returning resolver of §6/§9) | `TA-1`'s actual machinery — the clock read and the resolver the open question covers |
+| frame/source bodies | `001E5790` (530 B on `01CEBDA0` — ~~the frame-clock read behind `001A9B70`~~ a call-free record writer that negates two floats with the `.rdata` sign mask *(corrected 2026-10-02, OPUS: `01CEBDA0` is four `0x80000000` and `001E5790+0xF7` `xorps`es with it)*), `001E62E0` (284 B — `0016D6A0` ×2 + `0018D240`/`001A9930`/`001A7460`, `008F66D8`), `001E69A0` (263 B), `001A7460` (the null-returning resolver of §6/§9) | `TA-1`'s actual machinery — the clock read and the resolver the open question covers |
 | emit/scratch | `0018C3C0` (144 B — `0085E730` + `001F1D30` + `001AB570` + `0018B4E0`, the same shape as the `0022B0B0` four-sibling pass arms), `003ABD20` (`02B3F508`), `00467A70`/`00467A90` (`02CA5FF4`/`F8`), `00467B60` (71 B — rip-indirect + `008C2BD8`/`00901988`/`00D12518`/`01CEBD80`/`02AED570`), `00468070` | the draw-side emit the pass feeds |
 | leaves | `00180870`, `001A9DD0`, `001E3E80`, `001E3FF0`, `001E4B00` | five 7–17 B thunks |
 
-`TA-1`'s answer lives here in embryo: `001E5790` is the clock source (`01CEBDA0` — the same
+`TA-1`'s answer lives here in embryo: ~~`001E5790` is the clock source (`01CEBDA0` — the same~~ *(corrected 2026-10-02, OPUS: `001E5790` makes no call and `01CEBDA0` is the float sign mask its `+0xF7` `xorps` uses; the clock is the animation slot's time, `TA-1` answered 2026-09-25 above)* (the same
 global the fps exceptions read) and `001E62E0` owns `001A7460`. What selects the *index* into
 that clock — the question's open half — sits in `002F4520` itself, not the subtree.
 
@@ -688,3 +688,27 @@ Interior anchor `0020D226` (function `0020D1E0`).
 `0020DC70` (442 B) is the MSVC `std::string` assign/insert primitive `0020D1E0`'s path joins call: both positions bounds-check against `+0x10` with `invalid string position` throws, the `~r8`/`rdi` overflow pair raises `string too long`, `00195670` grows the buffer when `+0x18` capacity (SSO threshold 0x10) cannot hold the result, and the source span copies in before the new length and terminator land - the STL string core the list-builder links against.
 
 Interior anchor `0020DCBB` (function `0020DC70`).
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-ta-texture-animation-lists-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00180830` | 60 B | keeps `rcx`, `edx` and `r8d`, calls `001A9930` with the incoming registers still in place, then tail-jumps to `001A9DD0(that result, rcx, edx, r8d)` | `00180847`, `0018084F`, `00180855`, `00180867` |
+| `00180900` | 115 B | calls `001A9930` with the incoming registers still in place, then calls `001AA240(that result, rcx, dl, r8b, r9d, the fifth (stack) argument as f32, the low bytes of the sixth and seventh (stack) arguments)` and returns its `rax` | `00180921`, `00180926`, `0018094B`, `00180955`, `00180959` |
+| `001809A0` | 52 B | when byte `01F7F50D` is 0 and `0018CA40()` returns non-null, stores 1 in byte `01F7F50D` and tail-jumps to `0018C3C0(0018CA40())`; otherwise returns without work | `001809A4`, `001809AD`, `001809B7`, `001809BE`, `001809CA` |
+| `001A1920` | 98 B | measures the zero-terminated string at `r8` (length 0 when its first byte is 0) and calls `001A5150(rdx, r8, length)` with `r9` also holding `rdx` and a zero fifth (stack) argument; then sets `rcx`'s qword `+0x18` to 0xF, qword `+0x10` to 0 and byte `+0` to 0, calls `001A4C90(rcx, that result)` and returns `rcx` | `001A1949`, `001A1956`, `001A195B`, `001A1974`, `001A1979` |
+| `001A4FE0` | 70 B | returns without work when `rdx` is null; otherwise, on the qword triple at `rcx+0x90`, when qword `+0x98` is below qword `+0xA0` (unsigned) advances `+0x98` by 8 and stores `rdx` at its old value (the store skipped when that old value is null), else calls `001AB570(rcx+0x90, qword +0x98, the address of the saved rdx)` | `001A4FEE`, `001A4FFC`, `001A5006`, `001A500F`, `001A501C` |
+| `001A7460` | 52 B | when byte `+0x140` of `rcx` is non-zero, walks 0x20-byte entries from qword `+0x120` up to qword `+0x128` and returns the address of the first entry whose first qword points at a qword equal to `rdx`; returns 0 when the byte is 0, the range is empty or no entry matches | `001A7467`, `001A7479`, `001A7483`, `001A7488`, `001A7491` |
+| `001A9DD0` | 64 B | stores a qword at `rdx+0xD0` chosen by `r9d`: 1 stores 3, 2 stores 2, 3 stores 1, any other value stores 0 | `001A9DD4`, `001A9DDA`, `001A9DE0`, `001A9DE4`, `001A9E04` |
+| `001AA240` | 120 B | maps the fifth (stack) argument 0 to 0, 2 to 2, 3 to 3 and any other value to 1, then calls `001E69A0(rdx, r8b, r9b, the mapped value, the sixth (stack) argument as f32, the low bytes of the seventh and eighth (stack) arguments)` and returns its `rax`; `rcx` is not used | `001AA255`, `001AA25C`, `001AA263`, `001AA28A`, `001AA2AD` |
+| `001AA4F0` | 125 B | copies 0x30-byte records backwards, from the range `rcx` to `rdx` into the range ending at `r8`: per record bytes `+0` to `+5` and `+0x28` are copied directly and `+8` through `0019DDD0(destination+8, source+8)`; returns the destination start (`r8` when `rdx` equals `rcx`) | `001AA508`, `001AA514`, `001AA520`, `001AA549`, `001AA552` |
+| `001AB350` | 115 B | when `rdx` is below `r8` (unsigned), visits each 0x30-byte record from `rdx` to `r8` (count (`r8`-`rdx`-1)/0x30+1); for each record whose qword `+8` is non-null calls slot `+0x18` of the vtable held in its qword `+0x20`, with `rcx` = the address `record+0x20` (not the qword there), `rdx` = qword `+8` and `r8` = (qword `+0x18` minus qword `+8`) AND ~7 | `001AB353`, `001AB37C`, `001AB393`, `001AB3A6`, `001AB3AA` |
+| `001ABC80` | 89 B | returns without work when `r8d` is negative (signed); otherwise calls `001AC810(rcx, r8d)`, then `001AD7B0(that result, rdx, r9d, the fifth (stack) argument)`, and stores byte 1 at offset `2*r9d - 2` (sign-extended) of the buffer the result's first qword points at | `001ABC83`, `001ABC9D`, `001ABCB3`, `001ABCBB`, `001ABCCF` |
+| `001ABCE0` | 89 B | returns without work when `r8d` is negative (signed); otherwise calls `001AC810(rcx, r8d)`, then `001AD6E0(that result, rdx, r9d, the fifth (stack) argument)`, and stores byte 1 at offset `2*r9d - 1` (sign-extended) of the buffer the result's first qword points at | `001ABCE3`, `001ABCFD`, `001ABD13`, `001ABD1B`, `001ABD2F` |
+| `001AC480` | 34 B | calls `001AD130(rcx, rcx+0x16C)`, then stores byte 1 at `rcx+0x250` | `001AC486`, `001AC490`, `001AC495` |
+| `003ABD20` | 39 B | walks the list headed by qword `02B3F508` through each node's qword `+0x10` and returns the address `+0x20` of the first node whose byte `+0x23` equals 5; returns 0 when the head is null or no node matches | `003ABD27`, `003ABD30`, `003ABD36`, `003ABD3F`, `003ABD42` |
+| `00467A70` | 27 B | copies dword `02CA5FF4` to dword `02CA5FF8`, stores 0 in dwords `02CA5FFC` and `02CA6000`, and returns 0 | `00467A76`, `00467A7C`, `00467A7E`, `00467A84` |
+| `00467B60` | 71 B | subtracts f32 `02AED570` from 20.0 (`00901988`), takes the absolute value in double precision (sign mask `01CEBD80`) and passes it as f32 to the function pointer at `008C2BD8`; multiplies the returned f32 by -16.0 (`00D12518`), truncates it to an int and stores that int, sign-extended and shifted left 32, in qword `02EBB6C8` | `00467B6C`, `00467B77`, `00467B82`, `00467B88`, `00467B9B` |
+| `00468070` | 84 B | takes the 0x30-byte record at qword `+8` of `rcx` and advances that qword by 0x30 (no bound check); writes qword `+0` = 0x10000002, qword `+8` = 0, dword `+0x10` = 0, dword `+0x14` = 0x10000000, dword `+0x18` = 0x1000404, dword `+0x1C` = `r8d` OR 0x6C010000, and copies the four dwords at `rdx` to `+0x20` through `+0x2C` | `00468074`, `0046807F`, `00468089`, `004680A4`, `004680BF` |

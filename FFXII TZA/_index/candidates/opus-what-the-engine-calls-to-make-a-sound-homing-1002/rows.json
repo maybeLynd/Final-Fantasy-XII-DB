@@ -1,0 +1,35 @@
+{
+ "page": "18-Audio/Audio-Boundary/what-the-engine-calls-to-make-a-sound.md",
+ "date": "2026-10-02",
+ "session": "local-h5-opus",
+ "report": "what-the-engine-calls-to-make-a-sound.json",
+ "rows": [
+  {
+   "fn": "00347470",
+   "text": "calls `002640C0` with the incoming registers and `00267E10(r9)`, then tail-jumps to `003DEC90` with dword `+0x28` of the first result as `ecx` and the second as `edx`",
+   "anchors": [
+    [
+     "0034747D",
+     "call"
+    ],
+    [
+     "00347488",
+     "call"
+    ],
+    [
+     "0034748D",
+     "mov"
+    ],
+    [
+     "0034749C",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing"
+}

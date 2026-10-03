@@ -1,0 +1,117 @@
+{
+ "page": "18-Audio/which-variation-of-a-sound-you-hear.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "which-variation-of-a-sound-you-hear.json",
+ "rows": [
+  {
+   "fn": "007BFBA0",
+   "text": "sets a flag to 1 when byte `[rcx+0x3f8]` is non-zero and to 0 otherwise, then for each of the signed dword `[rcx+0x4c]` qwords starting at `rcx+0x400` copies the qword to a stack slot, calls `007B5070` with the slot's address and, when that returns non-null, calls `007E73C0` with the returned pointer and the flag zero-extended in `edx`",
+   "anchors": [
+    [
+     "007BFBB6",
+     "cmp"
+    ],
+    [
+     "007BFBD0",
+     "cmp"
+    ],
+    [
+     "007BFBEE",
+     "call"
+    ],
+    [
+     "007BFBFF",
+     "call"
+    ],
+    [
+     "007BFC0A",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "007BFC30",
+   "text": "computes a value that is float `[rcx+0x2b4]` when float `[rcx+0x2bc]` equals 0.0 and otherwise `007A9E50([rcx+0x2b8] / [rcx+0x2bc], edx = dword [rcx+0x2c4])` times (`[rcx+0x2b4]` - `[rcx+0x2b0]`) plus `[rcx+0x2b0]`, then for each of the signed dword `[rcx+0x4c]` qwords starting at `rcx+0x400` copies the qword to a stack slot, calls `007B5070` with the slot's address and, when that returns non-null, calls `007E73D0` with the returned pointer and the value in `xmm1`",
+   "anchors": [
+    [
+     "007BFC45",
+     "ucomiss"
+    ],
+    [
+     "007BFC6E",
+     "call"
+    ],
+    [
+     "007BFC8A",
+     "addss"
+    ],
+    [
+     "007BFCBD",
+     "call"
+    ],
+    [
+     "007BFCCD",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007BFD00",
+   "text": "calls the vtable slot `+0xe0` of `rcx` with `rcx` and the three float out-slots `rsp+0x30`, `rsp+0x2c` and `rsp+0x28`, then for each of the signed dword `[rcx+0x4c]` qwords starting at `rcx+0x400` copies the qword to a stack slot, calls `007B5070` with the slot's address and, when that returns non-null, calls `007E73F0` with the returned pointer and the three floats in `xmm1`, `xmm2` and `xmm3` in that order; the stack cookie is checked through `00808C40`",
+   "anchors": [
+    [
+     "007BFD2E",
+     "call"
+    ],
+    [
+     "007BFD5D",
+     "call"
+    ],
+    [
+     "007BFD65",
+     "je"
+    ],
+    [
+     "007BFD7C",
+     "call"
+    ],
+    [
+     "007BFD87",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "007BFEB0",
+   "text": "for each of the signed dword `[rcx+0x4c]` qwords starting at `rcx+0x400` copies the qword to a stack slot and calls `007B5070` with the slot's address, and when that returns non-null computes, from the 0x30-byte record at `rcx` + `edx`*0x30 + 0x250, a value that is its float `+0x4` when its float `+0xc` equals 0.0 and otherwise `007A9E50(+0x8 / +0xc, edx = dword +0x14)` times (`+0x4` - `+0x0`) plus `+0x0`, and calls `007E7430` with the returned pointer, `edx` = the incoming index and the value in `xmm2`",
+   "anchors": [
+    [
+     "007BFEFD",
+     "call"
+    ],
+    [
+     "007BFF1A",
+     "ucomiss"
+    ],
+    [
+     "007BFF47",
+     "call"
+    ],
+    [
+     "007BFF60",
+     "addss"
+    ],
+    [
+     "007BFF6A",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "ee"
+}

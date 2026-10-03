@@ -1,0 +1,86 @@
+{
+ "page": "22-Middleware-PhyreEngine/Phyre-Asset-Container/the-cluster-header-and-what-the-loader-rejects.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01M9DqRDfozfMhVgDdX8oP4v",
+ "report": "the-cluster-header-and-what-the-loader-rejects.json",
+ "rows": [
+  {
+   "fn": "00597200",
+   "text": "stores `edx` to dword `+4` of `rcx`, then tail-jumps to `0059FFC0(rcx, r8, r9d)`",
+   "anchors": [
+    [
+     "00597203",
+     "mov"
+    ],
+    [
+     "00597206",
+     "mov"
+    ],
+    [
+     "00597209",
+     "mov"
+    ],
+    [
+     "0059720C",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00597F30",
+   "text": "calls `0067F6F0(rcx)`, then `00597F30 + 0x21` and `00597F30 + 0x2B` each with `rcx + 0x30`, then `00597F30 + 0x34` and `00597F30 + 0x3D` each with `rcx`, and returns",
+   "anchors": [
+    [
+     "00597F47",
+     "call"
+    ],
+    [
+     "00597F51",
+     "call"
+    ],
+    [
+     "00597F5B",
+     "call"
+    ],
+    [
+     "00597F64",
+     "call"
+    ],
+    [
+     "00597F6D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005AA080",
+   "text": "calls `0067F6F0(rcx + 0x10)`, then `005AA080 + 0x25` with qword `+8` of `rcx`, then `005AA080 + 0x2F` with `rcx + 0x10`, and returns",
+   "anchors": [
+    [
+     "005AA097",
+     "add"
+    ],
+    [
+     "005AA09B",
+     "call"
+    ],
+    [
+     "005AA0A1",
+     "mov"
+    ],
+    [
+     "005AA0A5",
+     "call"
+    ],
+    [
+     "005AA0AF",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

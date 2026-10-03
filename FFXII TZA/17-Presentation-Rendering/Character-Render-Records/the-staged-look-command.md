@@ -77,7 +77,7 @@ Read from the applier `003E37F0` (909 B) branch by branch, and matched to the bu
 | 18 | same | `003E3140` - the same as 16, with a minimum duration | `003E31C0` |
 | 19 | float `+4` | `CharacterRender_BeginRelationLookBlend(controller, frames)` | `003E33C0` |
 | 20 | float `+4` | `CharacterRender_BeginRelationLookBlendWithMinimumDuration` | `003E33A0` |
-| 27 | floats `+0x40`..`+0x48` | `003E2810` `(controller, x, y, z)` | `003E29D0` - verb **`eyemove_381`** |
+| 27 | floats `+0x40`..`+0x48` | `003E2810` ~~`(controller, x, y, z)`~~ `(controller, frames, x, y)` *(corrected 2026-10-02, OPUS: `003E2810`+0x19 keeps `xmm1` as the frame count, stored at `+0x2C` at `003E2810`+0x74; `xmm2`/`xmm3` are the targets; section 4a)* | `003E29D0` - verb **`eyemove_381`** |
 | 28 | same | `003E28F0` | `003E29B0` - verb **`eyemovediff_383`** |
 | 29 | - | zeroes `+0x2C`, `+0x14`, `+0x18` of the object at controller `+0x28` | `003E2800` - verb **`eyemovereset`** |
 | 30 | bit 31 | `003E3720` `(controller, value)`: bit 5 of controller `+0x1C` := value; if it is now up and bit 0 (look on) is down, `RelationLook_BeginNeutralReturn` | `003E37A0` |
@@ -151,7 +151,7 @@ because it resets every slot in turn:
 | `+0x3C`, `+0x40` | `00472820`, `0051B870` | - |
 
 *Named further 2026-09-19:* [the rig of seventeen controllers](the-rig-of-seventeen-controllers.md) follows who
-*enables* each slot and names five more - `+0x0C` the Confuse motion, `+0x18` the Float bob, `+0x1C` the Immobilize
+*enables* each slot and names ~~five~~ six more *(corrected 2026-10-02, OPUS: the list that follows has six)* - `+0x0C` the Confuse motion, `+0x18` the Float bob, `+0x1C` the Immobilize
 motion, `+0x24` the lip flap, `+0x34` the nod, `+0x3C` the head shake - and `+0x00` is the per-model sway.
 
 Before the resets it re-resolves the rig's two linked render records: the record indices at `+0x68` and `+0x6C` become
@@ -210,14 +210,14 @@ vectors accumulate, and what byte `+6` selects between, were not established.*
 ## 6. What is not known
 
 - What the look controller and the eye object do each frame with the state these setters leave.
-- What thirteen of the rig's sixteen slots are (section 4a names the look controller, the eye object and the two
+- ~~What thirteen of the rig's sixteen slots are~~ *(answered: see the-rig-of-seventeen-controllers.md section 2 - seventeen slots, sixteen populated, fifteen described; only slot 8 is unnamed and slot 4 is empty; 2026-10-02, OPUS)* (section 4a names the look controller, the eye object and the two
   bone-physics slots; the reset functions of the others were not read), what the rig's own fields `+0x58`..`+0x62`
   mean beyond the deny flag, and what the global `02B59D64` selects.
-- What the controller's `+0x18` (the minimum-duration floor) and the global scale `01DFE0B8` are.
+- ~~What the controller's `+0x18` (the minimum-duration floor) and the global scale `01DFE0B8` are.~~ *(answered: see the rig page section 3a (`+0x18` is the duration, zero meaning one step) and the dispatch page: `001EDDC0`, the frame-rate switch, stores 2.0 to `01DFE0B8` (+0x18), 0.5 to `01DFE0BC` (+0x20) and 1 to `01F82E38` (+0x28) on its non-zero arm; the image holds 1.0, 1.0 and 0; 2026-10-02, OPUS)*
 - What bits 2, 5, 6 and 30 mean in the game's vocabulary (bit 30's effect is read - a second way into the neutral
   return - its name is not); bits 5 and 6 have no stager among the eighteen builders.
 - Who reads staged bits 7 and 8.
-- What `00426220` tests, and what the global `01F82E38` is.
+- What `00426220` tests~~, and what the global `01F82E38` is~~. *(answered: see an-effect-element-frame-by-frame.md - `01F82E38` is the half-rate flag; `001EDDC0`, the frame-rate switch, stores 2.0 to `01DFE0B8` (+0x18), 0.5 to `01DFE0BC` (+0x20) and 1 to `01F82E38` (+0x28) on its non-zero arm; the image holds 1.0, 1.0 and 0; 2026-10-02, OPUS)*
 - Static evidence throughout.
 
 ## 7. Evidence
@@ -459,7 +459,7 @@ Interior anchor `0029FC8C` (the
 
 Interior anchor `002D943D` (function `002D9380`).
 
-`003E3340` (86 B) is the clamped-scale forwarder `003E29F0`/`003E37F0` call: `0020E600([rbx+8])` resolves twice, `1.0f * [rdi+0x18]` is `maxss`-floored at the caller's xmm argument, then `003E2F30` runs - the look command's scale-clamp shim.
+`003E3340` (86 B) is the clamped-scale forwarder `003E29F0`/`003E37F0` call: `0020E600([rbx+8])` resolves twice, ~~`1.0f * [rdi+0x18]`~~ `[01DFE0B8] * [rdi+0x18]` is `maxss`-floored at the caller's xmm argument *(corrected 2026-10-02, OPUS: `003E3340`+0x2D loads `[01DFE0B8]`, not a literal - 1.0 in the image, 2.0 once `001EDDC0` runs with a non-zero argument)*, then `003E2F30` runs - the look command's scale-clamp shim.
 
 Interior anchor `003E3381` (function `003E3340`).
 

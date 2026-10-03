@@ -1,0 +1,3 @@
+hold 1.0s: ok after 1.13s, target='new', leftover tmp=[]
+hold 5.0s: ok after 5.15s, target='new', leftover tmp=[]
+FAILS 0

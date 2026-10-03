@@ -65,22 +65,22 @@ in archive order:
 
 This is native-proven: `005773D2` stores `hctg.word[+0x14] + 2` into the request descriptor
 field `+0xCA` — the first `himg` delta. `hctg +0x14` therefore = **the family's `hdat` file
-count** (1 for story/world/person/tutorial, 2 for knowledge, 4 for monster — matching the
+count** (1 for story/world/person/tutorial, 2 for knowledge, ~~4 for monster~~ 4, 5 or 11 for monster by locale *(corrected 2026-10-02, OPUS: the shipped monster catalogs hold `+0x14` = 4 in `de`, `it`, `kr`, `us`, 5 in `ch`, `cn`, `es`, `fr` and 11 in `in`, and each equals that locale's leading `hdat` file count)* — matching the
 shipped file names exactly, corpus-verified). The sibling `menuhandbook.bin`/`order.bin` pair
-uses a different id space (kind-6 base `0x80`); the `menuquest.dat` bind uses `0x128` — the
+~~uses a different id space (kind-6 base `0x80`)~~ is requested as kind 7 ids `0xC8` / `0xC9` *(corrected 2026-10-02, OPUS: `003158B0+0x25` `mov edx, 7` and `003158B0+0x33` `mov r8d, 0xc8`, `00572D80+0x51` / `00572D80+0x5E` for `0xC9`; the kind-6 path array also lists the two paths, at `0xF2` / `0xF3`)*; the `menuquest.dat` bind uses `0x128` — the
 first entry of the `00D23740`-style base table's kind-0 slot.
 
 ## `hctg` — the family catalog (`menuhandbook_<fam>.bin`)
 
 ```
 +0x00  char[4]  magic      'hctg'
-+0x04  u32      familyTag  {6400, 6401, 3954, 6403, 6404, 3877} — per-family constant
++0x04  u32      familyTag  {6400, 6401, 3954, 6403, 6404, 3877} — per-family constant   <- corrected 2026-10-02, OPUS: the u32 at `+0x04` is 102 in every shipped `hctg`; the six per-family values are the whole u16 at `+0x08` (story `0x1900` = 6400 ... monster `0xF25` = 3877)
 +0x08  u16      packed     low nibble = family ordinal 0..5 (consumed by `00576CA0` and
                           the `005760A0` monster check); high 12 bits copied verbatim into
                           the family descriptor `out+0x04` (00576061: word>>4) — **dead on
                           the data path**: none of `00576030`'s three callers (`00570BF0`,
                           `00571F60`, `00574080`) ever reads `out+0x04`. Per-family values
-                          {story 0x1900, world 0x1901, person 0xF72, knowledge 0x1903,
+                          {story 0x1900, world 0x1901, person 0xF72, knowledge 0x1903,   <- corrected 2026-10-02, OPUS: these are the whole u16 at +0x08, not its high 12 bits
                           tutorial 0x1904, monster 0xF25} look textId-shaped but are unbound
 +0x0A  u16      recTableOff file offset of the 12-byte record table
                           (story 0xB0, monster 0x48C — verified against table bounds)
@@ -377,7 +377,7 @@ Root object at `02CA9738` (the handbook menu singleton):
 
 | offset | content |
 | --- | --- |
-| `+0xC8` … `+0xF0` | six family `hchk` buffers (48-byte stride, `{u16 count; rec[]}` at +8/+0x0C) |
+| `+0xC8` … `+0xF0` | six family `hchk` buffers (~~48-byte stride~~ 8-byte stride, 48 bytes in all *(corrected 2026-10-02, OPUS: `00576F50+0xA5` `lea r14, [rbx + 0xc8]` and `00576F50+0xE0` `lea r14, [r14 + 8]` per family)*, `{u16 count; rec[]}` at +8/+0x0C) |
 | `+0xF8` | `menuquest.dat` (qstd) resource handle — consumed by `00576CA0`'s family-6 path (`0037F060(handle, 1)`) |
 | `+0x100` | state bits — bit 0/1 set on load completion (`00576F50`), bit 3 armed by `00575F10` |
 | `+0x108`, `+0x110`, `+0x118` | bound resource objects — `+0x108` = `hctg` (`00576030`/`005760A0`/`00577970`), `+0x110` = `hdat` (`00577A40`: `+0xCE` = selected record's global ordinal, window-checked), `+0x118` = `himg` (`00575DD0` → `00575B80` page switcher) |
@@ -521,3 +521,14 @@ Interior anchor `00393554` (function `003934F0`).
 - **WorldAreaField — CLIENT and SERVICE (50 edges).** 44 inbound (WorldAreaField bodies `00576A50`, `WorldTransition_StageFieldTransition` (003145E0), `WorldPersistence_ResetBanksForFieldTransition` (0026DB30) call page-cited `SaveImage_GetPersistentPayloadBase` (002EF2B0), `WorldTransition_GetActiveOrPendingFieldId` (003148F0), `FieldData_GetVariable0` (00265270)); 6 outbound (page-cited `003154B0`, `PersistentFlag_QueryAuthoredThresholdSchedule` (00377970), `00575E80` call WorldAreaField bodies `FieldData_GetVariable0` (00265270), `00576A50`, `WorldTransition_GetActiveOrPendingFieldId` (003148F0)). Substantive edges include `00255060` is called by `00576A50`; `00255120` is called by `00576A50`; `FieldData_GetVariable0` (00265270) is called by `WorldTransition_StageFieldTransition` (003145E0); `FieldData_GetVariable0` (00265270) is called by `003EAA70`; the remaining edges run through shared helpers the page cites.
 - **PlatformOnlineAchievements — CLIENT and SERVICE (30 edges).** 24 inbound (PlatformOnlineAchievements bodies `003160C0`, `00315E90`, `003154B0` call page-cited `002536A0`, `00315420`, `FieldData_GetVariable0` (00265270)); 6 outbound (page-cited `003154B0`, `005760A0`, `00576920` call PlatformOnlineAchievements bodies `00315420`, `003154B0`, `00316930`). Substantive edges include `002536A0` is called by `00315420`; `002536A0` is called by `00315390`; `002536A0` is called by `00316930`; `002536A0` is called by `00315820`; the remaining edges run through shared helpers the page cites.
 - **Script_VM_Native_Bridge — CLIENT (3 edges).** 3 inbound (Script_VM_Native_Bridge bodies `00357450`, `0033F310`, `0034E0B0` call page-cited `WorldTransition_GetActiveOrPendingFieldId` (003148F0), `PersistentFlag_QueryPrimaryOrAuthoredThresholdGate` (0032A8A0)). Substantive edges include `PersistentFlag_QueryPrimaryOrAuthoredThresholdGate` (0032A8A0) is called by `0034E0B0`; the remaining edges run through shared helpers the page cites.
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-hchk-hctg-hdat-handbook-indexes-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `002C2280` | 100 B | returns without calling `00244F50` (only the stack-cookie check runs) when qword `+0x140` of the qword at `0209AC30` is non-zero; otherwise builds a stack record of dword 0 at `+0`, sign-extended `ecx` at qword `+8` and sign-extended `edx` at qword `+0x10` and calls `00244F50(0x170, a rip-relative pointer, that record)` | `002C229A`, `002C22A2`, `002C22AC`, `002C22C0`, `002C22CD` |
+| `00574080` | 213 B | calls `00576030` on a stack buffer; with P the qword three loads deep from `rcx+0x60` (qword `rcx+0x60`, then qword `+0` twice; a null `rcx` leaves the middle value 0, so the last load reads address 0) and B the qword at qword `+0x60` of qword `+0xC0` of qword `rcx+0xE0` (0 when either of the last two is null), it writes to `rdx`: word `+0` = word `P+4`, word `+2` = word `P+6`, word `+4` = word `B+0x10` (100 when B is 0), byte `+6` = word `P+0xA` divided (unsigned) by word `+0xA` of the 20-byte entry indexed by word `P+0xC` in `0020E600(dword +0x20 of qword rcx+0xE8)`, and byte `+7` = byte `P+8` minus the low byte of word `+4` | `005740A8`, `005740E4`, `005740FF`, `00574129`, `00574138` |
+| `005766E0` | 89 B | with G the qword at `02CA9738`, R its qword `+0x108` and D the qword `R+0xF0`, returns 0 unless G is non-null, byte `R+0xC9` is 1 (read before R is tested, so a null R faults rather than returning 0), R and D are non-null and `ecx` lies in 0 to word `D+0xE` minus 1 (signed); otherwise returns the word at `+4` of record `ecx` (12-byte stride) whose table starts at the 32-bit sum of word `D+0xA` and the low half of D, or 0 when that address is zero | `005766F6`, `00576719`, `00576726`, `00576728`, `00576731` |
+| `00576DA0` | 100 B | returns 0 when the qword at `02CA9738` is null; otherwise returns 1 as soon as one of its qwords `+0x108`, `+0x110`, `+0x118` (checked in that order) is non-null with byte `+0xC9` equal to 2 or 3, and 0 when none is | `00576DBF`, `00576DC5`, `00576DE6`, `00576DFF`, `00576DC7` |

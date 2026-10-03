@@ -1,0 +1,20 @@
+{
+  "method": "A bounded entry inspection, not qualified body/whole-function extent",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "address": "0x1d50d0",
+  "physical_bytes": "4883ec3848c7442420feffffff488b05",
+  "instructions": [
+    {
+      "pc": "0x1d50d0",
+      "bytes": "4883ec38",
+      "mnemonic": "sub",
+      "args": "rsp, 0x38"
+    },
+    {
+      "pc": "0x1d50d4",
+      "bytes": "48c7442420feffffff",
+      "mnemonic": "mov",
+      "args": "qword ptr [rsp + 0x20], 0xfffffffffffffffe"
+    }
+  ]
+}

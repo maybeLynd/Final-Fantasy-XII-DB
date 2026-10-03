@@ -116,7 +116,7 @@ if [ "${XII_PUBLISH_NO_BOARD_CHECK:-0}" != "1" ]; then
         holder="$(python - "$board" <<'PYEOF'
 import json, sys
 try:
-    b = json.load(open(sys.argv[1], encoding='utf-8'))
+    b = json.loads(open(sys.argv[1], 'rb').read().decode('utf-8'))  # handle closed before the parse
 except Exception:
     sys.exit(0)
 for t in b.get('tasks', []):
@@ -243,7 +243,7 @@ import json, sys
 board, me = sys.argv[1], sys.argv[2]
 paths = [p[2:] if p.startswith('./') else p for p in sys.argv[3:]]
 try:
-    b = json.load(open(board, encoding='utf-8'))
+    b = json.loads(open(board, 'rb').read().decode('utf-8'))  # handle closed before the parse
 except Exception:
     sys.exit(0)
 held = {}

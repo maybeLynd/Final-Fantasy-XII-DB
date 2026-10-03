@@ -910,13 +910,13 @@ Shared callees outside the census: none.
 
 ## SWE2-EC7-38 update (2026-09-19) - `0015BD30`
 
-`0015BD30` (484 B) is the prototype-copy initializer the page names - call-free `movaps` `.data`-to-`.data` (`01DF09E0` into `01F80140`+), then a `movups` 0x80-step bulk copy loop. Interior anchor `0015BD87` (inside the copy loop).
+`0015BD30` (484 B) is the prototype-copy initializer the page names - call-free `movaps` `.data`-to-`.data` (~~`01DF09E0` into `01F80140`+~~ `01DF09C0` into `01F80130`+ *(corrected 2026-10-02, OPUS: `0015BD30` itself reads `01DF09C0` and `0015BD30+0x1C` stores it at `01F80130`; `01DF09D0` goes to `01F80140` at `0015BD30+0x32`, and `01DF09E0`, read at `0015BD30+0x28`, to `01F80150` at `0015BD30+0x40`)*), then a `movups` 0x80-step bulk copy loop. Interior anchor `0015BD87` (inside the copy loop).
 
 ## SWE2-EC7-79 update (2026-09-20) - `005FD0E0` TLS-guarded lazy singleton measured
 
 `005FD0E0` (129 B) is the CRT-style lazy accessor: `gs:[0x58]` TLS
 slot `02EAED3C` supplies the pointer, `[+4]` is compared against
-`02CE70B0`; a higher value runs `008092FC` (the lock-init), and a
+`02CE70B0`; a higher value runs `008092FC` (~~the lock-init~~ `_Init_thread_header`, which claims the guard *(corrected 2026-10-02, OPUS: the lock `02EAED40` is created by the C initializer `00809124`: `00809124+0x12` loads it and `00809124+0x1E` calls the critical-section initialiser `00861EF0` with spin count `0xFA0`)*), and a
 `-1` mark then runs `005DC200(02CE4720)` (the ctor), registers
 `008ADDE0` through `00808B90` (atexit), and `0080929C` unlocks.
 Either way `02CE4720` is returned - the once-per-process singleton

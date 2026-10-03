@@ -1,0 +1,101 @@
+{
+ "page": "17-Presentation-Rendering/Post-Processing/CONTRACT-ppfx-effect-creation.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "contract-ppfx-effect-creation.json",
+ "rows": [
+  {
+   "fn": "00719380",
+   "text": "takes two records `rcx` and `r8` (dword at `+0`, qword at `+8`) and an output `rdx`: when dword `[rcx]` is zero it calls `00715A00(rdx, r8)`, when dword `[r8]` is zero it calls `00715A00(rdx, rcx)`, otherwise it calls `007158B0(rsp+0x30, [rcx+8], [rcx]+[r8], -1)`, calls `00861EBA` with destination the local pointer `[rsp+0x38]` plus the sign-extended `[rcx]`, source `[r8+8]` and count the sign-extended `[r8]`, calls `00715A00(rdx, rsp+0x30)`, and then, when `[rsp+0x38]` is neither `02EA1720` nor null, calls `006DA8A0([01F3BA68], [rsp+0x38]-8)`; every path returns `rdx`",
+   "anchors": [
+    [
+     "007193BA",
+     "call"
+    ],
+    [
+     "007193CF",
+     "call"
+    ],
+    [
+     "007193E8",
+     "call"
+    ],
+    [
+     "00719400",
+     "call"
+    ],
+    [
+     "00719436",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0071B3C0",
+   "text": "returns a pointer to a name string for the code in `ecx`: 0 gives 'S_OK', 1 'S_FALSE', `0x80004001` 'E_NOTIMPL', `0x80004004` 'E_ABORT', `0x80004005` 'E_FAIL', `0x8000ffff` 'E_UNEXPECTED', `0x8007000e` 'E_OUTOFMEMORY' and `0x80070057` 'E_INVALIDARG'; any other code calls `0071B1B0(ecx)` and returns its result when non-null, else calls `0071B1B0(-ecx)` and returns that result when non-null, else returns 'Unknown Error Code' at `00D9B100`",
+   "anchors": [
+    [
+     "0071B3C8",
+     "cmp"
+    ],
+    [
+     "0071B42C",
+     "cmp"
+    ],
+    [
+     "0071B451",
+     "call"
+    ],
+    [
+     "0071B45F",
+     "call"
+    ],
+    [
+     "0071B469",
+     "lea"
+    ]
+   ]
+  },
+  {
+   "fn": "0072EB20",
+   "text": "calls `007157A0(rsp+0x20, r8)` and `00715CC0(rsp+0x20, [rsp+0x20]-1)`, then for counter `i` = 1 to `r9d` (no iteration when `r9d` is not positive) calls `0017D2E0(rsp+0x40, '%s%d', [rsp+0x28], i)`, calls the vtable slot `+0x60` of the object qword `[rcx]` with that object and `rsp+0x40` and stores the dword result to the next dword of the `rdx` array, and when that result is non-zero calls the slot `+0xc8` with the object and the result and overwrites the stored dword with 0 when this second call returns negative; it then calls `00715C70(rsp+0x20)`, checks the stack cookie through `00808C40` and returns 0",
+   "anchors": [
+    [
+     "0072EB5A",
+     "call"
+    ],
+    [
+     "0072EB96",
+     "call"
+    ],
+    [
+     "0072EBA6",
+     "call"
+    ],
+    [
+     "0072EBB7",
+     "call"
+    ],
+    [
+     "0072EBC2",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [
+  "007157A0",
+  "0071A380",
+  "0072DAC0",
+  "0072DCF0",
+  "0072DFD0",
+  "0072E5B0",
+  "0072E940",
+  "0072EC00",
+  "0078A120"
+ ],
+ "corrections": [],
+ "mode": "ee"
+}

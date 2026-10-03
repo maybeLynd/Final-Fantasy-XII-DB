@@ -77,7 +77,7 @@ ten callers of the wrappers are UI, Input and Presentation code: `InputGameplay_
 | bit 7 | `00329694`–`003296A1` | `= stats +0x00 bit 2` |
 | **`full` only** | `003296A3`–`00329740` | `+0xBA = level (+0x1C2)`; `+0x90 = experience (+0x18C)`; `+0x94 = 002F8F20(level) − experience` — **the points to the next level**, from the curve ([the unit-definition page](../Unit-Definition/how-a-battle-unit-is-built-from-its-definition.md) §4); `+0xB0 = LP (+0x190)`; `+0xBB = BattleStats_CountLicenseBits00To17(stats)` (`00324020`); `+0x98`–`+0xAC` = **the five equipment words `+0x50`..`+0x58` and, at `+0xAC`, the stats record's `+0x5A`**, each `<< 16`. `+0x5A` is **not a sixth slot**: it is `saved[0]` of the five-word takeaway backup — see [the equipment-slots page](../../12-Items-Equipment-Shops-License/equipment-slots-and-the-single-stat-rebuild.md) §11 (corrected 2026-09-20) |
 | actor handle | `00329746`–`00329760` | `+0x04 = ActorHandle_EncodeRegistryEntry(PartyRoster_GetActorBySlot(memberSlot))` (`00263750`, `003589B0`), 0 if none |
-| **unit only** | `00329763`–`0032998A` | `r14 = unit +0x708` (action context), `bp = +0x714` (action id), `r15 = +0x710` (target focus); bit 0 = "no terminal status" (cleared when the words carry KO / Stone / Vanished and `00313F60` agrees); bit 6 = unit flag bit 1; bit 8 = unit flag bit 24, or the action id `> 0x21E`, or phase `+0x6B4 ≥ 9`; bit 9 = unit flag bit 23; bit 12 = id `≤ 0x21E` and phase `≥ 9`; bit 13 = id `≤ 0x21E` and phase `≥ 3`; bit 15 = **idle** (no context, id `0xFFFF`, or phase 0); bit 3 = the squared XZ distance to the focus unit (`Vector3_ComputeSquaredXZDistance` `003A1960` on the two `+0xE0` positions) is `≥ 400.0` (`00915A08`) — **"out of range"**; `+0x10 = the empty string at 01CEB638` (overwriting the party name when a unit owns the record); `+0x88 = spawn record +0x12` (the spawn counter); `+0x04 = unit +8` (actor handle); `+0x1C = unit +0x68`; `+0x18 = unit +0x64`; `+0x64 = page +0x52 of unit +0xE68` for a kind-1 unit whose actor class is not 3 (`ActorRuntime_GetClassNibble` `00263C20`), else `0xFFFF`; while an action is in progress: `+0x3C = unit +0x768`, `+0x40 = +0x76C`, `+0x5C = the action id` (or `BattleRuntime_GetEffectiveActionId(stats)` `00387090` when phase `≥ 9`), `+0x08 = the focus handle`; otherwise `+0x3C = 0`, `+0x5C = 0xFFFF`, `+0x08 = 0`; `+0x5E = unit +0xBA0` when unit flag bit 14 |
+| **unit only** | `00329763`–`0032998A` | `r14 = unit +0x708` (action context), `bp = +0x714` (action id), `r15 = +0x710` (target focus); bit 0 = "no terminal status" (cleared when the words carry KO / Stone / Vanished and `00313F60` agrees); bit 6 = unit flag bit 1; bit 8 = unit flag bit 24, or the action id `> 0x21E`, or phase `+0x6B4 ≥ 9`; bit 9 = unit flag bit 23; bit 12 = id `≤ 0x21E` and phase `≥ 9`; bit 13 = id `≤ 0x21E` and phase `≥ 3`; bit 15 = **idle** (no context, id `0xFFFF`, or phase 0); bit 3 = the squared XZ distance to the focus unit (`Vector3_ComputeSquaredXZDistance` `003A1960` on the two `+0xE0` positions) is `≥ 400.0` (`00915A08`) — **"out of range"**; `+0x10 = the empty string at 01CEB638` (overwriting the party name when a unit owns the record); `+0x88 = spawn record +0x12` (the spawn counter); `+0x04 = unit +8` (actor handle); `+0x1C = unit +0x68`; `+0x18 = unit +0x64`; ~~`+0x64 = page +0x52 of unit +0xE68`~~ `+0x64 = class row +0x52 of unit +0xE68` *(answered: `+0xE68` is the class row, corrected 2026-09-13 above; 2026-10-02, OPUS)* for a kind-1 unit whose actor class is not 3 (`ActorRuntime_GetClassNibble` `00263C20`), else `0xFFFF`; while an action is in progress: `+0x3C = unit +0x768`, `+0x40 = +0x76C`, `+0x5C = the action id` (or `BattleRuntime_GetEffectiveActionId(stats)` `00387090` when phase `≥ 9`), `+0x08 = the focus handle`; otherwise `+0x3C = 0`, `+0x5C = 0xFFFF`, `+0x08 = 0`; `+0x5E = unit +0xBA0` when unit flag bit 14 |
 
 ### 2.3 The record
 
@@ -91,7 +91,7 @@ StatusView (0xC0), built per call
   +0x18 u32  unit+0x64              +0x1C u32 unit+0x68                  +0x20 HP  +0x24 effective max  +0x28 cap
   +0x2C MP   +0x30 capacity  +0x34 capacity or 0  +0x38 secondary resource   +0x3C/+0x40 unit+0x768/+0x76C while acting
   +0x44 presence  +0x48 status word 2   +0x4C u8[16] merged layers   +0x5C u16 action id   +0x5E u16 unit+0xBA0
-  +0x60 u16 type  +0x62 u16 kind  +0x64 u16 page+0x52 (kind 1)   +0x66 u8[32] per-status countdown (0xFE = n/a)
+  +0x60 u16 type  +0x62 u16 kind  +0x64 u16 page+0x52 (kind 1)   +0x66 u8[32] per-status countdown (0xFE = n/a)   <- corrected 2026-10-02, OPUS - +0xE68 is the .ard class row, not a page (corrected 2026-09-13 above; 003298EA-0032990D)
   +0x86 charges  +0x87 bars  +0x88 spawn counter  +0x89 u8[5] affinity
   +0x90 experience  +0x94 to next level  +0x98..+0xA8 five equipment words << 16
   +0xAC stats +0x5A << 16 = saved[0] of the takeaway backup, NOT a sixth slot   +0xB0 LP
@@ -104,7 +104,7 @@ StatusView (0xC0), built per call
 |---|---:|---|
 | `00329220` | 1,933 B | the builder |
 | `0031FE70`, `00320040` | 79 / 82 B | the wrappers (`full` = 0 / 1) through `BattleSlotMap_ResolveMappedBattleSlot` (`0031B9F0`) |
-| `0031FEC0`, `0031FF70` | 167 / 199 B | two more callers, unread |
+| `0031FEC0`, `0031FF70` | 167 / 199 B | two more callers, ~~unread~~ actor-to-slot wrappers *(answered: see the 2026-09-12 half answer below; 2026-10-02, OPUS)* |
 | `002F8F20` | 122 B | the experience curve — `+0x94` is `curve(level) − experience` |
 | `003A1960` | 31 B | `Vector3_ComputeSquaredXZDistance`; threshold `400.0` at `00915A08` |
 | `00387090` | 149 B | `BattleRuntime_GetEffectiveActionId` — the displayed action id once phase `≥ 9` |
@@ -129,7 +129,7 @@ UI / Input / Presentation (00253C70, 00254560, 00272E10, 00272E70, 00273270, 002
        -> 00329220(stats, member, out, full)
             -> unit pool scan (+0x698 == stats) ; party focus (003590D0 -> 003588B0 -> 00263E30)
             -> stats fields ; party row name (02EBF130 +0x30 -> 02EBF170 -> 002B58B0) ; curve 002F8F20
-            -> unit +0x708/+0x710/+0x714/+0x6B4/+0x768/+0x76C/+0xBA0 ; spawn record +0x12 ; page +0x52
+            -> unit +0x708/+0x710/+0x714/+0x6B4/+0x768/+0x76C/+0xBA0 ; spawn record +0x12 ; page +0x52   <- corrected 2026-10-02, OPUS - class row +0x52 of [unit+0xE68], not a page
 ```
 
 ## 6. Modding notes
@@ -223,7 +223,7 @@ UI / Input / Presentation (00253C70, 00254560, 00272E10, 00272E70, 00273270, 002
 | The wrappers' member resolution | `0031FE7F`–`0031FEBA`, `0032004F`–`0032008D` | 1 | PROVEN |
 | The 400.0 threshold | `00915A08`, read from `.rdata` | 1 | PROVEN |
 | The callers are UI / Input / Presentation | the graph's edges and owners | 1 | PROVEN |
-| What the predicates and the three party-row words are | **not established** | — | UNKNOWN |
+| What the predicates and the three party-row words are | ~~**not established**~~ *(answered: FJ-1 and the 2026-09-26 answer above; 2026-10-02, OPUS)* | — | UNKNOWN |
 
 ## 9. Related
 

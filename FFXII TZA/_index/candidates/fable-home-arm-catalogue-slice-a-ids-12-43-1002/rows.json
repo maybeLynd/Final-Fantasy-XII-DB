@@ -1,0 +1,66 @@
+{
+ "page": "00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-A-ids-12-43.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_013d18gLR7WCyczJCeHPeArU",
+ "report": "home-arm-catalogue-slice-a-ids-12-43.json",
+ "rows": [
+  {
+   "fn": "001BBF40",
+   "entered_from": "`001BC190` + 0x148",
+   "text": "walks the `0x20` qwords starting at `rcx+0xA0` and issues the call at `001BBF40` + 0x2B on each non-null one, then issues the call at `001BBF40` + 0x49 with (`rcx+0xA0`, 0, `0x100`) and tail-jumps at `001BBF40` + 0x71 with (`rcx+0x1A0`, 0, `0x100`)",
+   "anchors": [
+    [
+     "001BBF63",
+     "mov"
+    ],
+    [
+     "001BBF6B",
+     "call"
+    ],
+    [
+     "001BBF74",
+     "sub"
+    ],
+    [
+     "001BBF89",
+     "call"
+    ],
+    [
+     "001BBFB1",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "001DE180",
+   "entered_from": "`001DE5D0` + 0x720",
+   "text": "takes the dword `+4` of the table at qword `rcx-0x90` as an offset `d` (read before each of the first two stores), stores the address `00901028` to the qword at `rcx - 0x90 + d` and `d - 0x90` to the dword at `rcx - 0x94 + d`, stores `00900F20` to qword `rcx-0x80`, issues the call at `001DE180` + 0x50 and then the indirect call at `001DE180` + 0x59, both with `rcx-0x80`, and tail-jumps through the indirect jump at `001DE180` + 0x6D with `rcx-0x78`",
+   "anchors": [
+    [
+     "001DE19F",
+     "mov"
+    ],
+    [
+     "001DE1C0",
+     "mov"
+    ],
+    [
+     "001DE1C8",
+     "mov"
+    ],
+    [
+     "001DE1D0",
+     "call"
+    ],
+    [
+     "001DE1ED",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

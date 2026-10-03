@@ -25,7 +25,7 @@ audit:
 
 # Contract — the authored-command ramp channels
 
-> **Two of the five setters are not in the function census**, and they are exactly the two reached by
+> **Two of the ~~five~~ four setters are not in the function census** *(corrected 2026-10-02, OPUS: §2's four - `004173D0`+0x57 and `00417460`+0x57 call `003B6A90` / `003B6A10`, `00417440`+0x17 and `004174D0`+0x17 tail-jump to `003B69B0` / `003B6950`; the fifth channel's writer `003B5D40` is a direct call at `0041D560`+0x87, not a setter of this kind)*, and they are exactly the two reached by
 > a tail `jmp` rather than a `call`. `003B69B0` and `003B6950` were found through
 > [the referenced-but-unlisted census](../99-Unresolved-Residual/Unlisted-Code/referenced-code-the-list-never-had.md);
 > their two siblings, `003B6A90` and `003B6A10`, were in the list all along.
@@ -133,13 +133,13 @@ safe while that stays true.
 ## 5. What is not established
 
 - [x] **UQ-191.** **What any channel controls on screen.** Two pairs and three singles, all floats, all
-      unnamed. **The record's other 0x60 bytes are unread.**
+      unnamed. ~~**The record's other 0x60 bytes are unread.**~~ *(answered: see §14 item 5, mostly mapped 2026-09-20; 2026-10-02, OPUS)*
       *Narrowed 2026-09-14 (FABLE, UG-1):* **the table is the character shadow-object pool.** It has the same pointer
       `02B40528`, 160 × `0xE0`, allocator `003B56D0` and free `003B6000` that
       [the character render record array](Character-Render-Records/the-character-render-record-array.md) §13 and
       [the render record pool lifecycle](CONTRACT-render-record-pool-lifecycle.md) step 7 identify as the object behind a render
       record's `+0x114` shadow handle. So every channel is a tween on one character's shadow. Which shadow property each
-      channel drives stays open, because the shadow draw that consumes the floats is unread on both pages.
+      channel drives ~~stays open, because the shadow draw that consumes the floats is unread on both pages~~ *(answered: see the consumer read just below and §14 item 1, resolved 2026-09-20; 2026-10-02, OPUS)*.
       *Consumer read 2026-09-20 (SWE2-CONTRACT):* the draw **is** read — `003B62D0` whole (EXP-108 executed
       it natively and measured the same arithmetic). What each channel feeds, structurally:
 
@@ -198,8 +198,8 @@ safe while that stays true.
       `+0xC0`–`+0xD4` into `+0x80`–`+0x94` (a snapshot), sets counter `+0x43 = n`, value `+0x98 = 0.0` and delta
       `+0x9C = 1.0 / n` (computed through the VU0 register cells `022D914C` / `022D9148`), and applies the first step at
       once (`003B5D5C`–`003B5E0B`). The weight therefore runs from 0 toward 1 across `n` steps away from the snapshot.
-      The reset `003B67F0` (one caller, `003723B0`) and the allocator `003B56D0` zero it. What consumes the weight is
-      unread, as UG-1 is.
+      The reset `003B67F0` (one caller, `003723B0`) and the allocator `003B56D0` zero it. ~~What consumes the weight is~~
+      ~~unread, as UG-1 is.~~ *(answered: see the `+0x43` / `+0x98` row of UQ-191's consumer table above - `003B62D0` eases it through LUT row 5 and blends toward the snapshot, consumer read 2026-09-20; 2026-10-02, OPUS)*
 - [x] **`rec[0x10]`** — compared against the command's id byte, so it is the slot's own id, but
       **what allocates a slot and assigns it is not read here.**
       *Answered on the page 2026-09-14 (FABLE), box left for the ledger mirror (UG-4):* `003B56D0(renderRecordIndex)`
@@ -235,7 +235,7 @@ safe while that stays true.
         (`0017D850` `xorps xmm7, xmm7`) and dispatches again (`0017D853`). The request is not re-raised on the second pass
         (`0017D731` `cmp ebx, 1`), so there are at most two passes. Because the ramp step ignores the delta, **a ramp
         advances on both.**
-      - **Not established:** what `00358290`, `00181DD0` and `002E05C0` test (they gate the call, not the step); what the
+      - **Not established:** ~~what `00358290`, `00181DD0` and `002E05C0` test (they gate the call, not the step);~~ *(answered: see §14 item 3, all three read 2026-09-20; 2026-10-02, OPUS)* what the
         accumulator comparison measures (a frame-time catch-up is the obvious reading and is not asserted); how often the
         repeat fires in play. The last is a live question.
 
@@ -295,7 +295,7 @@ A handle presented to a setter while its slot is free or re-occupied by a later 
 ## 8. Script · resource · event interactions
 
 The four setters are the write side of **authored presentation commands**: a script command of class
-`0x0D`–`0x10` carries `(slot id, steps, target)` — the two pair classes carry two targets — and
+`0x0D`–`0x10` carries ~~`(slot id, steps, target)`~~ `(steps, target)` and no slot id; the callback takes the slot handle from the presentation entry's `+0x35C` *(corrected 2026-10-02, OPUS: `004173D0`+0x13 `mov eax, dword ptr [r8 + 0x35c]`, `004173D0`+0x2E `movzx edx, byte ptr [rcx + 2]`; section 6)* — the two pair classes carry two targets — and
 lands through the `00417xxx` dispatch. The fifth channel is event-driven rather than
 command-driven: `PresentationEntry_RebuildAndFastForwardToTime` reaches it through `003B5D40` /
 `003B5C00`. The gate is driven by presentation events — area unload (`0024D9C0` via `002628B0`),
@@ -388,7 +388,7 @@ already-allocated call makes none.
 | the allocator clears the gate | a gate-clearing mutant fails the two post-ALLOC state hashes | 2026-09-13 | mutant killed |
 
 **Still not executed.** The consumers — `003B6020`'s bit-1 arm and the shadow draw that reads the
-floats — are not in this harness; `TIMING` in the parity sense (two advances per closing-menu
+floats — are not in this harness *(answered: see the `EXP-108` section below, which runs `003B6020` and `003B62D0` from shipped bytes; 2026-10-02, OPUS)*; `TIMING` in the parity sense (two advances per closing-menu
 frame) is read statically in §9, not measured.
 
 ## 14. Unresolved
@@ -406,7 +406,7 @@ frame) is read statically in §9, not measured.
    `serial<<8|slot` generation tickets at slot `+4` (the same scheme as this pool's `rec[0x10]`), and
    `+0x10` (`02B3F560`) is a 16-byte field `003AFD40` fills from a caller's `xmm`. Init `003AFCD0`
    (from `CharacterRenderSystem_Initialize`) sets the flag to 1; the setter's five call sites pass
-   **mode values** — 0 at three sites, 1 on `00520800`'s record-`+3`-nonzero path, and `r12d` at
+   **mode values** — 0 at ~~three~~ two sites (`003B8670`+0x10E4, `00520800`+0x36), 1 on `00520800`'s record-`+3`-nonzero path and at the presentation reset `0024D9C0`+0x65 *(corrected 2026-10-02, OPUS: `mov ecx, 1` precedes the call at `0024D9C0`+0x65, `xor ecx, ecx` the calls at `003B8670`+0x10E4 and `00520800`+0x36)*, and `r12d` at
    `003B9708` in `003B8670` — so "1/0" was a simplification. **The reader census is now total and
    negative**: no operand reference in any form (data_xref_scan over all bodies), no imm64
    materialization, no moffs absolute, no `.data`/`.rdata` qword pointer to the address or to either
@@ -464,14 +464,14 @@ frame) is read statically in §9, not measured.
    `+0x48`/`+0x4C` and the selector fields `+0x38`/`+0x3A`/`+0x3C`/`+0x3E` but never the
    saved snapshot; `003B5D40`, `003B5E20`, the six leaf setters, `003B6900`/`003B6930`,
    `003B56D0`, `003B6000`, `003B5890`, `003B6890`, `003B69B0`/`003B6950` and `003B8670`
-   touch no `+0x30`/`+0x34` either. One writer (`003B5CE0`), zero readers — a
+   touch no `+0x30`/`+0x34` either~~. One writer (`003B5CE0`)~~, except the allocator `003B56D0`, which zeroes the pair *(corrected 2026-10-02, OPUS: `003B56D0`+0x17C `mov qword ptr [rbx + 0x30], rsi`)*. One value writer (`003B5CE0`), zero readers — a
    published-but-unread snapshot, the same evidence class as the V2 mode dword
    `02B3F554` (item 2). **`+0x1C` and `+0xD8`–`+0xDF` closed the same day:** `+0x1C` is
    allocator-zeroed — `003B56D0`'s `mov qword [rbx+0x1c], rsi` is the compiler merging
    the `+0x20` vec3.x zero-init with an adjacent dead store — and no body reads it or
    writes it non-zero, so it is an unused dword between `+0x18` and the `+0x20` vec3.
    `+0xD8`–`+0xDF` is touched by *nothing*, not even the allocator (whose init sweep
-   ends at `+0x9C`; the highest written field anywhere is `003B62D0`'s `+0xD4` cache
+   ends at ~~`+0x9C`~~ `+0xD4`: it also writes `+0xBC`..`+0xD4` *(corrected 2026-10-02, OPUS: `003B56D0`+0x180 through `003B56D0`+0x1A7 `mov dword ptr [rbx + 0xd4], 0x3f800000`)*; the highest written field anywhere is `003B62D0`'s `+0xD4` cache
    float): 8 genuine tail bytes of the `0xE0` slot — source padding or a reserved tail
    member no code path explains.
 
@@ -857,7 +857,7 @@ each forwarded command. Interior anchor `002DF673` (the counter store).
 
 ## SWE2-EC7-47 update (2026-09-19) - `003B5C00`
 
-`003B5C00` (214 B) is a call-free `02B40528`+`0xE0`-stride record updater - `+0x10`==key check, `+0x40` bit-0 gate, decrements byte counters `+0..+3` and folds `+0x60`/`+0x64`/`+0x68`/`+0x6C`/`+0x70`/`+0x74`/`+0x78`/`+0x7C` deltas into the `+0x50`/`+0x54`/`+0x58`/`+0x5C`/`+0x70`/`+0x78` float pairs. Interior anchor `003B5C03` (the `imul` index).
+`003B5C00` (214 B) is a call-free `02B40528`+`0xE0`-stride record updater - `+0x10`==key check, `+0x40` bit-0 gate, decrements byte counters `+0..+3` ~~and folds `+0x60`/`+0x64`/`+0x68`/`+0x6C`/`+0x70`/`+0x74`/`+0x78`/`+0x7C` deltas into the `+0x50`/`+0x54`/`+0x58`/`+0x5C`/`+0x70`/`+0x78` float pairs.~~ and `+0x43`, five channels: counter `+0` folds `+0x60`/`+0x64` into `+0x50`/`+0x54`, `+2` folds `+0x68`/`+0x6C` into `+0x58`/`+0x5C`, `+1` folds `+0x74` into `+0x70`, `+3` folds `+0x7C` into `+0x78`, and `+0x43` folds `+0x9C` into `+0x98` *(corrected 2026-10-02, OPUS: the fifth channel is `003B5C00`+0xB0..+0xCD, `movzx ecx, byte ptr [rax + 0x43]` through `movss dword ptr [rax + 0x98], xmm0`; the five-channel step section 6 states)*. Interior anchor `003B5C03` (the `imul` index).
 
 ## SWE2-EC7-51 update (2026-09-19) - `00360B50`
 

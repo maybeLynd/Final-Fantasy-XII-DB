@@ -1,0 +1,805 @@
+# the PDataMemberMetadata static teardowns, one row per member - derived from the shipping image by fam_rows.py (kind metadata_teardown)
+entry	anchor	mnemonic	value	name	callee
+008AA000	008AA000	lea	02CB0A40	member "m_animationSet", offset 0x20 (constructor 00632960, called at 005AD994)	00632960
+008AA010	008AA010	lea	02CB2700	member "m_animationSet", offset 0x10 (constructor 00632960, called at 005B0E38)	00632960
+008AA020	008AA020	lea	02CB0B70	member "m_animationTargetBlenderController", offset 0x70 (constructor 00632960, called at 005ADB11)	00632960
+008AA030	008AA030	lea	02CB0B10	member "m_animationWeightedBlenderController", offset 0x38 (constructor 00632960, called at 005ADA9F)	00632960
+008AA040	008AA040	lea	02CB1A50	member "m_baseObject", offset 0x18 (constructor 00632960, called at 005AF8C7)	00632960
+008AA050	008AA050	lea	02CB19F0	member "m_baseObjectType", offset 0x10 (constructor 00632960, called at 005AF854)	00632960
+008AA060	008AA060	lea	02CB2210	member "m_binding", offset passed in a register (constructor 00632960, called at 005B064A)	00632960
+008AA070	008AA070	lea	02CB24B0	member "m_channelCount", offset 0x2 (constructor 00632960, called at 005B0808)	00632960
+008AA080	008AA080	lea	02CB2070	member "m_channels", offset 0x8 (constructor 00632A10, called at 005B0448)	00632A10
+008AA090	008AA090	lea	02CB2510	member "m_constantChannelCount", offset 0x4 (constructor 00632960, called at 005B087B)	00632960
+008AA0A0	008AA0A0	lea	02CB21B0	member "m_constantChannelEndTime", offset 0x2C (constructor 00632960, called at 005B05DC)	00632960
+008AA0B0	008AA0B0	lea	02CB2150	member "m_constantChannelStartTime", offset 0x28 (constructor 00632960, called at 005B0569)	00632960
+008AA0C0	008AA0C0	lea	02CB20E0	member "m_constantChannels", offset 0x18 (constructor 00632A10, called at 005B04E1)	00632A10
+008AA0D0	008AA0D0	lea	02CB3C60	member "m_count", offset passed in a register (constructor 00632960, called at 005B4F9A)	00632960
+008AA0E0	008AA0E0	lea	02CB3A30	member "m_count", offset passed in a register (constructor 00632960, called at 005B52CA)	00632960
+008AA0F0	008AA0F0	lea	02CB40C0	member "m_count", offset passed in a register (constructor 00632960, called at 005B55FA)	00632960
+008AA100	008AA100	lea	02CB5010	member "m_count", offset passed in a register (constructor 00632960, called at 005B593A)	00632960
+008AA110	008AA110	lea	02CB4750	member "m_count", offset passed in a register (constructor 00632960, called at 005B5C7A)	00632960
+008AA120	008AA120	lea	02CB42F0	member "m_count", offset passed in a register (constructor 00632960, called at 005B5FAA)	00632960
+008AA130	008AA130	lea	02CB5240	member "m_count", offset passed in a register (constructor 00632960, called at 005B62DA)	00632960
+008AA140	008AA140	lea	02CB4BB0	member "m_count", offset passed in a register (constructor 00632960, called at 005B660A)	00632960
+008AA150	008AA150	lea	02CB5470	member "m_count", offset passed in a register (constructor 00632960, called at 005B693A)	00632960
+008AA160	008AA160	lea	02CB56A0	member "m_count", offset passed in a register (constructor 00632960, called at 005B6C6A)	00632960
+008AA170	008AA170	lea	02CB4DE0	member "m_count", offset passed in a register (constructor 00632960, called at 005B6F9A)	00632960
+008AA180	008AA180	lea	02CB4980	member "m_count", offset passed in a register (constructor 00632960, called at 005B72CA)	00632960
+008AA190	008AA190	lea	02CB58D0	member "m_count", offset passed in a register (constructor 00632960, called at 005B75FA)	00632960
+008AA1A0	008AA1A0	lea	02CB3E90	member "m_count", offset passed in a register (constructor 00632960, called at 005B792A)	00632960
+008AA1B0	008AA1B0	lea	02CB45A0	member "m_count", offset passed in a register (constructor 00632960, called at 005B7D28)	00632960
+008AA1C0	008AA1C0	lea	02CB29C0	member "m_dataSource", offset passed in a register (constructor 00632960, called at 005B0EFD)	00632960
+008AA1D0	008AA1D0	lea	02CB3480	member "m_deferredLoad", offset 0x30 (constructor 00632A10, called at 005B1F43)	00632A10
+008AA1E0	008AA1E0	lea	02CB2AF0	member "m_destSlotArray", offset 0x8C (constructor 00632960, called at 005B1058)	00632960
+008AA1F0	008AA1F0	lea	02CB22D0	member "m_destSlotArrayIndex", offset passed in a register (constructor 00632960, called at 005B09C5)	00632960
+008AA200	008AA200	lea	02CB3D00	member "m_els", offset 0x8 (constructor 00632A10, called at 005B50A8)	00632A10
+008AA210	008AA210	lea	02CB3AD0	member "m_els", offset 0x8 (constructor 00632A10, called at 005B53D8)	00632A10
+008AA220	008AA220	lea	02CB4160	member "m_els", offset 0x8 (constructor 00632A10, called at 005B570A)	00632A10
+008AA230	008AA230	lea	02CB50B0	member "m_els", offset 0x8 (constructor 00632A10, called at 005B5A4A)	00632A10
+008AA240	008AA240	lea	02CB47F0	member "m_els", offset 0x8 (constructor 00632A10, called at 005B5D87)	00632A10
+008AA250	008AA250	lea	02CB4390	member "m_els", offset 0x8 (constructor 00632A10, called at 005B60B7)	00632A10
+008AA260	008AA260	lea	02CB52E0	member "m_els", offset 0x8 (constructor 00632A10, called at 005B63E7)	00632A10
+008AA270	008AA270	lea	02CB4C50	member "m_els", offset 0x8 (constructor 00632A10, called at 005B6717)	00632A10
+008AA280	008AA280	lea	02CB5510	member "m_els", offset 0x8 (constructor 00632A10, called at 005B6A47)	00632A10
+008AA290	008AA290	lea	02CB5740	member "m_els", offset 0x8 (constructor 00632A10, called at 005B6D77)	00632A10
+008AA2A0	008AA2A0	lea	02CB4E80	member "m_els", offset 0x8 (constructor 00632A10, called at 005B70A7)	00632A10
+008AA2B0	008AA2B0	lea	02CB4A20	member "m_els", offset 0x8 (constructor 00632A10, called at 005B73D7)	00632A10
+008AA2C0	008AA2C0	lea	02CB5970	member "m_els", offset 0x8 (constructor 00632A10, called at 005B7707)	00632A10
+008AA2D0	008AA2D0	lea	02CB3F30	member "m_els", offset 0x8 (constructor 00632A10, called at 005B7A38)	00632A10
+008AA2E0	008AA2E0	lea	02CB28E0	member "m_events", offset passed in a register (constructor 00632A10, called at 005B1496)	00632A10
+008AA2F0	008AA2F0	lea	02CB2880	member "m_id", offset 0x4 (constructor 00632960, called at 005B1281)	00632960
+008AA300	008AA300	lea	02CB1B80	member "m_index", offset 0x30 (constructor 00632960, called at 005AFA1E)	00632960
+008AA310	008AA310	lea	02CB2A20	member "m_inputCount", offset 0x8 (constructor 00632960, called at 005B0F70)	00632960
+008AA330	008AA330	lea	02CB1990	member "m_instanceObject", offset 0x8 (constructor 00632960, called at 005AF7E2)	00632960
+008AA340	008AA340	lea	02CB1930	member "m_instanceObjectType", offset passed in a register (constructor 00632960, called at 005AF76F)	00632960
+008AA350	008AA350	lea	02CB2C80	member "m_instanceTargetNodes", offset 0x18 (constructor 00632A10, called at 005B161C)	00632A10
+008AA370	008AA370	lea	02CB2330	member "m_interp", offset 0x2 (constructor 00632960, called at 005B0A38)	00632960
+008AA390	008AA390	lea	02CB2570	member "m_interpCountLength", offset 0x6 (constructor 00632960, called at 005B08EE)	00632960
+008AA3A0	008AA3A0	lea	02CB1680	member "m_keyCount", offset 0x60 (constructor 00632960, called at 005AF242)	00632960
+008AA3B0	008AA3B0	lea	02CB1C50	member "m_keyCount", offset passed in a register (constructor 00632960, called at 005AFB8C)	00632960
+008AA3C0	008AA3C0	lea	02CB16E0	member "m_keyType", offset 0x38 (constructor 00632960, called at 005AF30D)	00632960
+008AA3D0	008AA3D0	lea	02CB32F0	member "m_keyType", offset passed in a register (constructor 00632960, called at 005B201E)	00632960
+008AA3E0	008AA3E0	lea	02CB3740	member "m_localBase", offset 0x1C (constructor 00632960, called at 005B2B07)	00632960
+008AA3F0	008AA3F0	lea	02CB37A0	member "m_localRange", offset 0x20 (constructor 00632960, called at 005B2B7A)	00632960
+008AA400	008AA400	lea	02CB1B20	member "m_name", offset 0x28 (constructor 00632960, called at 005AF9AB)	00632960
+008AA410	008AA410	lea	02CB2270	member "m_name", offset 0x30 (constructor 00632960, called at 005B06BC)	00632960
+008AA420	008AA420	lea	02CB3290	member "m_nodeCentricReIndex", offset 0x10 (constructor 00632960, called at 005B22B6)	00632960
+008AA430	008AA430	lea	02CB3350	member "m_nodeName", offset 0x8 (constructor 00632960, called at 005B2090)	00632960
+008AA440	008AA440	lea	02CB38C0	member "m_offset", offset 0x1C (constructor 00632960, called at 005B2D27)	00632960
+008AA450	008AA450	lea	02CB3680	member "m_parent", offset 0x10 (constructor 00632960, called at 005B2A21)	00632960
+008AA460	008AA460	lea	02CB3800	member "m_parent", offset 0x10 (constructor 00632960, called at 005B2C41)	00632960
+008AA470	008AA470	lea	02CB36E0	member "m_parentBase", offset 0x18 (constructor 00632960, called at 005B2A94)	00632960
+008AA480	008AA480	lea	02CB2DB0	member "m_persistentBuffer", offset 0x40 (constructor 00632A10, called at 005B179F)	00632A10
+008AA490	008AA490	lea	02CB2B50	member "m_persistentBufferOffset", offset 0x90 (constructor 00632960, called at 005B10CB)	00632960
+008AA4A0	008AA4A0	lea	02CB2BB0	member "m_preprocessBufferOffset", offset 0x94 (constructor 00632960, called at 005B113E)	00632960
+008AA4B0	008AA4B0	lea	02CB2E20	member "m_preprocessBufferSize", offset 0x50 (constructor 00632960, called at 005B1827)	00632960
+008AA4C0	008AA4C0	lea	02CB3860	member "m_scale", offset 0x18 (constructor 00632960, called at 005B2CB4)	00632960
+008AA4D0	008AA4D0	lea	02CB2D50	member "m_slotArrayElementsRequired", offset 0x38 (constructor 00632960, called at 005B1716)	00632960
+008AA4E0	008AA4E0	lea	02CB2FD0	member "m_slotArrayIndices", offset 0x20 (constructor 00632A10, called at 005B1ADB)	00632A10
+008AA4F0	008AA4F0	lea	02CB2E80	member "m_slotArrays", offset 0x58 (constructor 00632A10, called at 005B18AB)	00632A10
+008AA500	008AA500	lea	02CB33B0	member "m_slotBlockList", offset 0x18 (constructor 00632A10, called at 005B1E38)	00632A10
+008AA510	008AA510	lea	02CB2390	member "m_sourceChannelIndex", offset 0x14 (constructor 00632960, called at 005B0B09)	00632960
+008AA520	008AA520	lea	02CB14D0	member "m_sourceWeights", offset 0x28 (constructor 00632A10, called at 005AEF65)	00632A10
+008AA530	008AA530	lea	02CB35B0	member "m_sourceWeights", offset 0x28 (constructor 00632A10, called at 005B2515)	00632A10
+008AA540	008AA540	lea	02CB1540	member "m_sources", offset 0x18 (constructor 00632A10, called at 005AF050)	00632A10
+008AA550	008AA550	lea	02CB0980	member "m_speed", offset 0xC (constructor 00632960, called at 005B27B6)	00632960
+008AA560	008AA560	lea	02CB2450	member "m_spuBindingSize", offset passed in a register (constructor 00632960, called at 005B0795)	00632960
+008AA570	008AA570	lea	02CB2CF0	member "m_targetBlender", offset 0x30 (constructor 00632960, called at 005B16A3)	00632960
+008AA580	008AA580	lea	02CB3230	member "m_targetIndex", offset 0xC (constructor 00632960, called at 005B2243)	00632960
+008AA590	008AA590	lea	02CB2F60	member "m_targets", offset 0x10 (constructor 00632A10, called at 005B1A42)	00632A10
+008AA5A0	008AA5A0	lea	02CB2820	member "m_time", offset passed in a register (constructor 00632960, called at 005B120E)	00632960
+008AA5B0	008AA5B0	lea	02CB26A0	member "m_timeController", offset 0x20 (constructor 00632960, called at 005B0D73)	00632960
+008AA5C0	008AA5C0	lea	02CB27C0	member "m_timeController", offset 0x20 (constructor 00632960, called at 005B13C3)	00632960
+008AA5D0	008AA5D0	lea	02CB0860	member "m_timeIntervalController", offset 0x10 (constructor 00632960, called at 005B265F)	00632960
+008AA5E0	008AA5E0	lea	02CB1BE0	member "m_timeKeys", offset 0x8 (constructor 00632A10, called at 005AFB08)	00632A10
+008AA5F0	008AA5F0	lea	02CB08C0	member "m_timeScaleOffsetController", offset 0x38 (constructor 00632960, called at 005B26D1)	00632960
+008AA600	008AA600	lea	02CB15B0	member "m_times", offset 0x48 (constructor 00632960, called at 005AF131)	00632960
+008AA620	008AA620	lea	02CB4520	member "m_u", offset 0x8 (constructor 00632A10, called at 005B7C6D)	00632A10
+008AA640	008AA640	lea	02CB1610	member "m_valueKeys", offset 0x50 (constructor 00632A10, called at 005AF1BA)	00632A10
+008AA650	008AA650	lea	02CB23F0	member "m_valueWidthAndKeyCount", offset 0x10 (constructor 00632960, called at 005B0B7C)	00632960
+008AA660	008AA660	lea	02CB09E0	member "m_weight", offset 0x8 (constructor 00632960, called at 005B2829)	00632960
+008AD010	008AD010	lea	02CE3D10	member "m_alphaThreshold", offset 0x74 (constructor 00632960, called at 005E5C12)	00632960
+008AD020	008AD020	lea	02CE8640	member "m_arrayElementCount", offset passed in a register (constructor 00632960, called at 005E9856)	00632960
+008AD030	008AD030	lea	02CE73C0	member "m_baseLevel", offset 0x14 (constructor 00632960, called at 005E74A5)	00632960
+008AD040	008AD040	lea	02CE7360	member "m_borderColor", offset 0x10 (constructor 00632960, called at 005E7432)	00632960
+008AD050	008AD050	lea	02CE3940	member "m_bounds", offset 0x38 (constructor 00632960, called at 005E576F)	00632960
+008AD060	008AD060	lea	02CE86A0	member "m_bufferLoc", offset 0x10 (constructor 00632960, called at 005E98C4)	00632960
+008AD070	008AD070	lea	02CE96E0	member "m_bufferLoc", offset 0x10 (constructor 00632960, called at 005EA985)	00632960
+008AD080	008AD080	lea	02CE9350	member "m_code", offset passed in a register (constructor 00632960, called at 005EA5ED)	00632960
+008AD090	008AD090	lea	02CE9410	member "m_compileOptions", offset 0x10 (constructor 00632A10, called at 005EA6E3)	00632A10
+008AD0A0	008AD0A0	lea	02CE7E30	member "m_computeEntryPoint", offset 0x18 (constructor 00632960, called at 005E9F40)	00632960
+008AD0B0	008AD0B0	lea	02CE7E90	member "m_computeProfile", offset 0x2C (constructor 00632960, called at 005E9FAF)	00632960
+008AD0C0	008AD0C0	lea	02CE8A40	member "m_computeProgram", offset 0x18 (constructor 00632960, called at 005E9B53)	00632960
+008AD0D0	008AD0D0	lea	02CE8C90	member "m_constantBuffer", offset 0x10 (constructor 00632960, called at 005E964F)	00632960
+008AD0E0	008AD0E0	lea	02CE8400	member "m_constantBufferLocation", offset 0x4 (constructor 00632960, called at 005E8A4E)	00632960
+008AD0F0	008AD0F0	lea	02CE8700	member "m_constantBufferLocation", offset 0x14 (constructor 00632960, called at 005E9933)	00632960
+008AD100	008AD100	lea	02CE2A10	member "m_contextSwitches", offset 0x48 (constructor 00632A10, called at 005E43FC)	00632A10
+008AD110	008AD110	lea	02CE8070	member "m_contextVariantCsIndex", offset 0x10 (constructor 00632960, called at 005E3E76)	00632960
+008AD120	008AD120	lea	02CE7FB0	member "m_contextVariantFpIndex", offset 0x8 (constructor 00632960, called at 005E3D98)	00632960
+008AD130	008AD130	lea	02CE8010	member "m_contextVariantGsIndex", offset 0xC (constructor 00632960, called at 005E3E07)	00632960
+008AD140	008AD140	lea	02CE7EF0	member "m_contextVariantIndex", offset passed in a register (constructor 00632960, called at 005E3CBA)	00632960
+008AD150	008AD150	lea	02CE2A80	member "m_contextVariantSwitches", offset 0x58 (constructor 00632A10, called at 005E448E)	00632A10
+008AD160	008AD160	lea	02CE7F50	member "m_contextVariantVpIndex", offset 0x4 (constructor 00632960, called at 005E3D29)	00632960
+008AD170	008AD170	lea	02CEBFB0	member "m_count", offset passed in a register (constructor 00632960, called at 005EB95A)	00632960
+008AD180	008AD180	lea	02CECF00	member "m_count", offset passed in a register (constructor 00632960, called at 005EBC9A)	00632960
+008AD190	008AD190	lea	02CEBD80	member "m_count", offset passed in a register (constructor 00632960, called at 005EBFDA)	00632960
+008AD1A0	008AD1A0	lea	02CEC640	member "m_count", offset passed in a register (constructor 00632960, called at 005EC31A)	00632960
+008AD1B0	008AD1B0	lea	02CEC1E0	member "m_count", offset passed in a register (constructor 00632960, called at 005EC65A)	00632960
+008AD1C0	008AD1C0	lea	02CEC410	member "m_count", offset passed in a register (constructor 00632960, called at 005EC99A)	00632960
+008AD1D0	008AD1D0	lea	02CEB6F0	member "m_count", offset passed in a register (constructor 00632960, called at 005ECCDA)	00632960
+008AD1E0	008AD1E0	lea	02CEB920	member "m_count", offset passed in a register (constructor 00632960, called at 005ED00A)	00632960
+008AD1F0	008AD1F0	lea	02CEA110	member "m_count", offset passed in a register (constructor 00632960, called at 005ED33A)	00632960
+008AD200	008AD200	lea	02CECCD0	member "m_count", offset passed in a register (constructor 00632960, called at 005ED66A)	00632960
+008AD210	008AD210	lea	02CEC870	member "m_count", offset passed in a register (constructor 00632960, called at 005ED99A)	00632960
+008AD220	008AD220	lea	02CEBB50	member "m_count", offset passed in a register (constructor 00632960, called at 005EDCCA)	00632960
+008AD230	008AD230	lea	02CEB290	member "m_count", offset passed in a register (constructor 00632960, called at 005EDFFA)	00632960
+008AD240	008AD240	lea	02CEAC00	member "m_count", offset passed in a register (constructor 00632960, called at 005EE32A)	00632960
+008AD250	008AD250	lea	02CEA7A0	member "m_count", offset passed in a register (constructor 00632960, called at 005EE65A)	00632960
+008AD260	008AD260	lea	02CEA9D0	member "m_count", offset passed in a register (constructor 00632960, called at 005EE98A)	00632960
+008AD270	008AD270	lea	02CEA570	member "m_count", offset passed in a register (constructor 00632960, called at 005EECBA)	00632960
+008AD280	008AD280	lea	02CEAE30	member "m_count", offset passed in a register (constructor 00632960, called at 005EEFEA)	00632960
+008AD290	008AD290	lea	02CEB4C0	member "m_count", offset passed in a register (constructor 00632960, called at 005EF31A)	00632960
+008AD2A0	008AD2A0	lea	02CEA340	member "m_count", offset passed in a register (constructor 00632960, called at 005EF64A)	00632960
+008AD2B0	008AD2B0	lea	02CE9EE0	member "m_count", offset passed in a register (constructor 00632960, called at 005EF97A)	00632960
+008AD2C0	008AD2C0	lea	02CEB0E0	member "m_count", offset passed in a register (constructor 00632960, called at 005EFD76)	00632960
+008AD2D0	008AD2D0	lea	02CECB20	member "m_count", offset passed in a register (constructor 00632960, called at 005F00C8)	00632960
+008AD2E0	008AD2E0	lea	02CE3CB0	member "m_cubeMapFactor", offset 0x70 (constructor 00632960, called at 005E5B9F)	00632960
+008AD2F0	008AD2F0	lea	02CE3C50	member "m_cubeMapIntensity", offset 0x6C (constructor 00632960, called at 005E5B2C)	00632960
+008AD300	008AD300	lea	02CE37B0	member "m_currentPose", offset 0x10 (constructor 00632A10, called at 005E5592)	00632A10
+008AD310	008AD310	lea	02CE9050	member "m_dataBlock", offset 0x18 (constructor 00632960, called at 005E85DA)	00632960
+008AD320	008AD320	lea	02CE91D0	member "m_dataBlock", offset 0x10 (constructor 00632960, called at 005E869F)	00632960
+008AD330	008AD330	lea	02CE8ED0	member "m_dataBlock", offset 0x18 (constructor 00632960, called at 005E919A)	00632960
+008AD340	008AD340	lea	02CE85E0	member "m_dataType", offset 0x3 (constructor 00632960, called at 005E97EB)	00632960
+008AD350	008AD350	lea	02CE9620	member "m_dataType", offset 0x16 (constructor 00632960, called at 005EA8A4)	00632960
+008AD360	008AD360	lea	02CE9CE0	member "m_depth", offset 0x30 (constructor 00632960, called at 005EAF08)	00632960
+008AD370	008AD370	lea	02CE4190	member "m_destination", offset passed in a register (constructor 00632960, called at 005E648D)	00632960
+008AD380	008AD380	lea	02CE2680	member "m_dynamicMesh", offset 0x8 (constructor 00632960, called at 005E3F38)	00632960
+008AD390	008AD390	lea	02CE38E0	member "m_dynamicMeshInstance", offset 0x30 (constructor 00632960, called at 005E56FD)	00632960
+008AD3A0	008AD3A0	lea	02CE2BB0	member "m_effect", offset passed in a register (constructor 00632960, called at 005E4642)	00632960
+008AD3B0	008AD3B0	lea	02CE27A0	member "m_effectFile", offset 0x8 (constructor 00632960, called at 005E40D7)	00632960
+008AD3C0	008AD3C0	lea	02CE2800	member "m_effectFileFromBasePath", offset 0x10 (constructor 00632960, called at 005E4145)	00632960
+008AD3D0	008AD3D0	lea	02CE2860	member "m_effectSource", offset 0x68 (constructor 00632960, called at 005E41B3)	00632960
+008AD3E0	008AD3E0	lea	02CE3020	member "m_effectVariant", offset passed in a register (constructor 00632960, called at 005E4B37)	00632960
+008AD3F0	008AD3F0	lea	02CE4590	member "m_effectVariant", offset 0x8 (constructor 00632960, called at 005E6DA2)	00632960
+008AD400	008AD400	lea	02CE28C0	member "m_effectVariants", offset 0x18 (constructor 00632A10, called at 005E4237)	00632A10
+008AD410	008AD410	lea	02CE9800	member "m_elementCount", offset passed in a register (constructor 00632960, called at 005EAB2E)	00632960
+008AD420	008AD420	lea	02CE9860	member "m_elementSize", offset 0x4 (constructor 00632960, called at 005EABA1)	00632960
+008AD430	008AD430	lea	02CEC050	member "m_els", offset 0x8 (constructor 00632A10, called at 005EBA6A)	00632A10
+008AD440	008AD440	lea	02CECFA0	member "m_els", offset 0x8 (constructor 00632A10, called at 005EBDAA)	00632A10
+008AD450	008AD450	lea	02CEBE20	member "m_els", offset 0x8 (constructor 00632A10, called at 005EC0EA)	00632A10
+008AD460	008AD460	lea	02CEC6E0	member "m_els", offset 0x8 (constructor 00632A10, called at 005EC42B)	00632A10
+008AD470	008AD470	lea	02CEC280	member "m_els", offset 0x8 (constructor 00632A10, called at 005EC76B)	00632A10
+008AD480	008AD480	lea	02CEC4B0	member "m_els", offset 0x8 (constructor 00632A10, called at 005ECAAB)	00632A10
+008AD490	008AD490	lea	02CEB790	member "m_els", offset 0x8 (constructor 00632A10, called at 005ECDE7)	00632A10
+008AD4A0	008AD4A0	lea	02CEB9C0	member "m_els", offset 0x8 (constructor 00632A10, called at 005ED117)	00632A10
+008AD4B0	008AD4B0	lea	02CEA1B0	member "m_els", offset 0x8 (constructor 00632A10, called at 005ED448)	00632A10
+008AD4C0	008AD4C0	lea	02CECD70	member "m_els", offset 0x8 (constructor 00632A10, called at 005ED777)	00632A10
+008AD4D0	008AD4D0	lea	02CEC910	member "m_els", offset 0x8 (constructor 00632A10, called at 005EDAA7)	00632A10
+008AD4E0	008AD4E0	lea	02CEBBF0	member "m_els", offset 0x8 (constructor 00632A10, called at 005EDDD7)	00632A10
+008AD4F0	008AD4F0	lea	02CEB330	member "m_els", offset 0x8 (constructor 00632A10, called at 005EE107)	00632A10
+008AD500	008AD500	lea	02CEACA0	member "m_els", offset 0x8 (constructor 00632A10, called at 005EE437)	00632A10
+008AD510	008AD510	lea	02CEA840	member "m_els", offset 0x8 (constructor 00632A10, called at 005EE767)	00632A10
+008AD520	008AD520	lea	02CEAA70	member "m_els", offset 0x8 (constructor 00632A10, called at 005EEA97)	00632A10
+008AD530	008AD530	lea	02CEA610	member "m_els", offset 0x8 (constructor 00632A10, called at 005EEDC7)	00632A10
+008AD540	008AD540	lea	02CEAED0	member "m_els", offset 0x8 (constructor 00632A10, called at 005EF0F7)	00632A10
+008AD550	008AD550	lea	02CEB560	member "m_els", offset 0x8 (constructor 00632A10, called at 005EF427)	00632A10
+008AD560	008AD560	lea	02CEA3E0	member "m_els", offset 0x8 (constructor 00632A10, called at 005EF757)	00632A10
+008AD570	008AD570	lea	02CE9F80	member "m_els", offset 0x8 (constructor 00632A10, called at 005EFA87)	00632A10
+008AD580	008AD580	lea	02CE93B0	member "m_entry", offset 0x8 (constructor 00632960, called at 005EA65F)	00632960
+008AD590	008AD590	lea	02CE7A40	member "m_entryPoints", offset 0x18 (constructor 00632A10, called at 005E8004)	00632A10
+008AD5A0	008AD5A0	lea	02CE3AD0	member "m_extraFlag", offset 0x5C (constructor 00632960, called at 005E5960)	00632960
+008AD5B0	008AD5B0	lea	02CE3B30	member "m_extraZBias", offset 0x60 (constructor 00632960, called at 005E59D3)	00632960
+008AD5C0	008AD5C0	lea	02CE3B90	member "m_farPlane", offset 0x64 (constructor 00632960, called at 005E5A46)	00632960
+008AD5D0	008AD5D0	lea	02CE30E0	member "m_flag", offset 0x10 (constructor 00632960, called at 005E4C18)	00632960
+008AD5E0	008AD5E0	lea	02CE3A70	member "m_flags", offset 0x58 (constructor 00632960, called at 005E58ED)	00632960
+008AD5F0	008AD5F0	lea	02CE7480	member "m_flags", offset 0x1C (constructor 00632960, called at 005E758B)	00632960
+008AD600	008AD600	lea	02CE98C0	member "m_flags", offset 0x8 (constructor 00632960, called at 005EAC14)	00632960
+008AD610	008AD610	lea	02CE9920	member "m_format", offset passed in a register (constructor 00632960, called at 005EAFD3)	00632960
+008AD620	008AD620	lea	02CE7CB0	member "m_fragmentEntryPoint", offset 0x8 (constructor 00632960, called at 005E9D86)	00632960
+008AD630	008AD630	lea	02CE7D10	member "m_fragmentProfile", offset 0x24 (constructor 00632960, called at 005E9DF5)	00632960
+008AD640	008AD640	lea	02CE8980	member "m_fragmentProgram", offset 0x8 (constructor 00632960, called at 005E9A6F)	00632960
+008AD650	008AD650	lea	02CE7D70	member "m_geometryEntryPoint", offset 0x10 (constructor 00632960, called at 005E9E63)	00632960
+008AD660	008AD660	lea	02CE7DD0	member "m_geometryProfile", offset 0x28 (constructor 00632960, called at 005E9ED2)	00632960
+008AD670	008AD670	lea	02CE89E0	member "m_geometryProgram", offset 0x10 (constructor 00632960, called at 005E9AE1)	00632960
+008AD680	008AD680	lea	02CE9BC0	member "m_height", offset 0x2C (constructor 00632960, called at 005EAD55)	00632960
+008AD690	008AD690	lea	02CE9C80	member "m_height", offset 0x2C (constructor 00632960, called at 005EAE95)	00632960
+008AD6A0	008AD6A0	lea	02CE8B10	member "m_importantState", offset passed in a register (constructor 00632960, called at 005EA395)	00632960
+008AD6B0	008AD6B0	lea	02CE35C0	member "m_index", offset 0x12 (constructor 00632960, called at 005E6A96)	00632960
+008AD6C0	008AD6C0	lea	02CE97A0	member "m_index", offset 0x17 (constructor 00632960, called at 005EAA6B)	00632960
+008AD6D0	008AD6D0	lea	02CE9230	member "m_indexDataBlock", offset 0x10 (constructor 00632960, called at 005E875F)	00632960
+008AD6E0	008AD6E0	lea	02CE3620	member "m_inputSet", offset 0x13 (constructor 00632960, called at 005E6B09)	00632960
+008AD6F0	008AD6F0	lea	02CE3880	member "m_instanceSegment", offset 0x28 (constructor 00632960, called at 005E568B)	00632960
+008AD700	008AD700	lea	02CE2D60	member "m_largestShaderPassCount", offset 0x38 (constructor 00632960, called at 005E4867)	00632960
+008AD710	008AD710	lea	02CE3750	member "m_localToWorldMatrix", offset 0x8 (constructor 00632960, called at 005E5509)	00632960
+008AD720	008AD720	lea	02CE72A0	member "m_lodBias", offset 0x8 (constructor 00632960, called at 005E734C)	00632960
+008AD730	008AD730	lea	02CE39A0	member "m_lodLevel", offset 0x40 (constructor 00632960, called at 005E57E1)	00632960
+008AD740	008AD740	lea	02CE7120	member "m_magFilter", offset 0x1 (constructor 00632960, called at 005E7180)	00632960
+008AD750	008AD750	lea	02CE3820	member "m_materialSet", offset 0x20 (constructor 00632960, called at 005E5619)	00632960
+008AD760	008AD760	lea	02CE7300	member "m_maxAnisotropy", offset 0xC (constructor 00632960, called at 005E73BF)	00632960
+008AD770	008AD770	lea	02CE7420	member "m_maxLevel", offset 0x18 (constructor 00632960, called at 005E7518)	00632960
+008AD780	008AD780	lea	02CE2AF0	member "m_maxLightCount", offset 0x70 (constructor 00632960, called at 005E450B)	00632960
+008AD790	008AD790	lea	02CE9A40	member "m_maxMipLevel", offset 0x14 (constructor 00632960, called at 005EB12C)	00632960
+008AD7A0	008AD7A0	lea	02CE9980	member "m_memoryType", offset 0x9 (constructor 00632960, called at 005EB046)	00632960
+008AD7B0	008AD7B0	lea	02CE36F0	member "m_mesh", offset passed in a register (constructor 00632960, called at 005E5497)	00632960
+008AD7C0	008AD7C0	lea	02CE42B0	member "m_meshInstance", offset 0x28 (constructor 00632960, called at 005E6641)	00632960
+008AD7E0	008AD7E0	lea	02CE70C0	member "m_minFilter", offset passed in a register (constructor 00632960, called at 005E710D)	00632960
+008AD7F0	008AD7F0	lea	02CE99E0	member "m_mipmapCount", offset 0x10 (constructor 00632960, called at 005EB0B9)	00632960
+008AD800	008AD800	lea	02CE4450	member "m_modifierNetworkInstances", offset 0x18 (constructor 00632A10, called at 005E6BE0)	00632A10
+008AD810	008AD810	lea	02CE4660	member "m_msaaType", offset 0x9 (constructor 00632960, called at 005E6FC2)	00632960
+008AD820	008AD820	lea	02CE2F60	member "m_name", offset passed in a register (constructor 00632960, called at 005E5359)	00632960
+008AD830	008AD830	lea	02CE3E30	member "m_name", offset 0x80 (constructor 00632960, called at 005E5D6A)	00632960
+008AD840	008AD840	lea	02CE3500	member "m_name", offset 0x8 (constructor 00632960, called at 005E69B0)	00632960
+008AD850	008AD850	lea	02CE8520	member "m_name", offset 0x8 (constructor 00632960, called at 005E970D)	00632960
+008AD860	008AD860	lea	02CE95C0	member "m_name", offset 0x8 (constructor 00632960, called at 005EA831)	00632960
+008AD870	008AD870	lea	02CE3560	member "m_nameHash", offset 0x10 (constructor 00632960, called at 005E6A23)	00632960
+008AD880	008AD880	lea	02CE9740	member "m_nameHash", offset 0x14 (constructor 00632960, called at 005EA9F8)	00632960
+008AD890	008AD890	lea	02CE2B50	member "m_numSupportedShaderLODLevels", offset 0x74 (constructor 00632960, called at 005E457A)	00632960
+008AD8A0	008AD8A0	lea	02CE82E0	member "m_offset", offset passed in a register (constructor 00632960, called at 005E8811)	00632960
+008AD8B0	008AD8B0	lea	02CE44C0	member "m_packedSwitches", offset passed in a register (constructor 00632A10, called at 005E6CCB)	00632A10
+008AD8C0	008AD8C0	lea	02CE3080	member "m_parameterBuffer", offset 0x8 (constructor 00632960, called at 005E4BA9)	00632960
+008AD8D0	008AD8D0	lea	02CE8280	member "m_parameterBufferFrequenciesRequired", offset passed in a register (constructor 00632960, called at 005E848F)	00632960
+008AD8E0	008AD8E0	lea	02CE4530	member "m_parameterBufferSize", offset passed in a register (constructor 00632960, called at 005E6EF8)	00632960
+008AD8F0	008AD8F0	lea	02CE8220	member "m_parameterBufferSize", offset 0x38 (constructor 00632960, called at 005E8424)	00632960
+008AD910	008AD910	lea	02CE9550	member "m_parameterDefinitions", offset 0x10 (constructor 00632A10, called at 005EA515)	00632A10
+008AD920	008AD920	lea	02CE8140	member "m_parameterDefinitionsForPasses", offset 0x18 (constructor 00632A10, called at 005E8315)	00632A10
+008AD930	008AD930	lea	02CE8840	member "m_parameterLocations", offset 0x10 (constructor 00632A10, called at 005EA090)	00632A10
+008AD940	008AD940	lea	02CE88B0	member "m_parameterLocations", offset 0x10 (constructor 00632A10, called at 005EA2C0)	00632A10
+008AD960	008AD960	lea	02CE8B70	member "m_parameterType", offset passed in a register (constructor 00632960, called at 005E93E5)	00632960
+008AD970	008AD970	lea	02CE8580	member "m_parameterType", offset 0x2 (constructor 00632960, called at 005E977C)	00632960
+008AD980	008AD980	lea	02CE7970	member "m_passType", offset passed in a register (constructor 00632960, called at 005E7EEE)	00632960
+008AD990	008AD990	lea	02CE80D0	member "m_passes", offset 0x8 (constructor 00632A10, called at 005E8283)	00632A10
+008AD9A0	008AD9A0	lea	02CE7B20	member "m_platforms", offset 0x38 (constructor 00632A10, called at 005E8128)	00632A10
+008AD9B0	008AD9B0	lea	02CE7B90	member "m_platformsAreInclude", offset 0x48 (constructor 00632960, called at 005E81A5)	00632960
+008AD9C0	008AD9C0	lea	02CE9480	member "m_profile", offset 0x20 (constructor 00632960, called at 005EA76B)	00632960
+008AD9D0	008AD9D0	lea	02CE3140	member "m_remapFrom", offset 0x18 (constructor 00632960, called at 005E4C8B)	00632960
+008AD9E0	008AD9E0	lea	02CE31A0	member "m_remapTo", offset 0x20 (constructor 00632960, called at 005E4CFE)	00632960
+008AD9F0	008AD9F0	lea	02CE34A0	member "m_renderDataType", offset passed in a register (constructor 00632960, called at 005E693E)	00632960
+008ADA00	008ADA00	lea	02CE46C0	member "m_renderTargetFlags", offset 0xC (constructor 00632960, called at 005E7035)	00632960
+008ADA10	008ADA10	lea	02CE9680	member "m_renderType", offset passed in a register (constructor 00632960, called at 005EA913)	00632960
+008ADA20	008ADA20	lea	02CE9110	member "m_rwDataBlock", offset 0x18 (constructor 00632960, called at 005E8C6A)	00632960
+008ADA30	008ADA30	lea	02CE8F90	member "m_rwDataBlock", offset 0x18 (constructor 00632960, called at 005E8E1A)	00632960
+008ADA40	008ADA40	lea	02CE9170	member "m_rwIndirectArgsBuffer", offset 0x20 (constructor 00632960, called at 005E8CDC)	00632960
+008ADA50	008ADA50	lea	02CE90B0	member "m_rwStructuredBuffer", offset 0x10 (constructor 00632960, called at 005E8BF8)	00632960
+008ADA60	008ADA60	lea	02CE8F30	member "m_rwStructuredBuffer", offset 0x10 (constructor 00632960, called at 005E8DA8)	00632960
+008ADA70	008ADA70	lea	02CE8BD0	member "m_samplerState", offset 0x8 (constructor 00632960, called at 005E9457)	00632960
+008ADA80	008ADA80	lea	02CE2CF0	member "m_sceneRenderPassLookup", offset 0x28 (constructor 00632A10, called at 005E47EA)	00632A10
+008ADA90	008ADA90	lea	02CE2C80	member "m_sceneRenderPasses", offset 0x18 (constructor 00632A10, called at 005E4758)	00632A10
+008ADAA0	008ADAA0	lea	02CE3A00	member "m_segmentContext", offset 0x48 (constructor 00632A10, called at 005E5865)	00632A10
+008ADAB0	008ADAB0	lea	02CE79D0	member "m_shaders", offset 0x8 (constructor 00632A10, called at 005E7F72)	00632A10
+008ADAC0	008ADAC0	lea	02CE2620	member "m_size", offset passed in a register (constructor 00632960, called at 005E3BF5)	00632960
+008ADAE0	008ADAE0	lea	02CE8340	member "m_size", offset 0x2 (constructor 00632960, called at 005E88C5)	00632960
+008ADAF0	008ADAF0	lea	02CE8460	member "m_size", offset 0x8 (constructor 00632960, called at 005E8ABD)	00632960
+008ADB00	008ADB00	lea	02CE9D40	member "m_size", offset 0x28 (constructor 00632960, called at 005EB339)	00632960
+008ADB10	008ADB10	lea	02CE41F0	member "m_source", offset 0x8 (constructor 00632960, called at 005E64FF)	00632960
+008ADB20	008ADB20	lea	02CE4250	member "m_sourceMatrixIndex", offset 0x10 (constructor 00632960, called at 005E656E)	00632960
+008ADB30	008ADB30	lea	02CE3D70	member "m_specialRenderOrder", offset 0x78 (constructor 00632960, called at 005E5C85)	00632960
+008ADB40	008ADB40	lea	02CE3DD0	member "m_specialTextureWrapType", offset 0x7C (constructor 00632960, called at 005E5CF8)	00632960
+008ADB50	008ADB50	lea	02CE3BF0	member "m_specularIntensity", offset 0x68 (constructor 00632960, called at 005E5AB9)	00632960
+008ADB60	008ADB60	lea	02CE3680	member "m_streamBindings", offset 0x38 (constructor 00632A10, called at 005E6860)	00632A10
+008ADB70	008ADB70	lea	02CE94E0	member "m_streamDefinitions", offset 0x0 (constructor 00632A10, called at 005EA474)	00632A10
+008ADB80	008ADB80	lea	02CE81B0	member "m_streamDefinitionsForPasses", offset 0x28 (constructor 00632A10, called at 005E83A7)	00632A10
+008ADB90	008ADB90	lea	02CE8AA0	member "m_streamLocations", offset 0x20 (constructor 00632A10, called at 005E9BD7)	00632A10
+008ADBA0	008ADBA0	lea	02CE8FF0	member "m_structuredBuffer", offset 0x10 (constructor 00632960, called at 005E8568)	00632960
+008ADBB0	008ADBB0	lea	02CE8E70	member "m_structuredBuffer", offset 0x10 (constructor 00632960, called at 005E9128)	00632960
+008ADBC0	008ADBC0	lea	02CE26E0	member "m_supportedLightMask", offset passed in a register (constructor 00632960, called at 005E3FFA)	00632960
+008ADBD0	008ADBD0	lea	02CE2930	member "m_supportedLightTypes", offset 0x28 (constructor 00632A10, called at 005E42CE)	00632A10
+008ADBE0	008ADBE0	lea	02CE2740	member "m_supportedShadowCasterMask", offset 0x4 (constructor 00632960, called at 005E4069)	00632960
+008ADBF0	008ADBF0	lea	02CE29A0	member "m_supportedShadowCasterTypes", offset 0x38 (constructor 00632A10, called at 005E4365)	00632A10
+008ADC00	008ADC00	lea	02CE2C10	member "m_switches", offset 0x8 (constructor 00632A10, called at 005E46C6)	00632A10
+008ADC10	008ADC10	lea	02CE9290	member "m_texture", offset 0x10 (constructor 00632960, called at 005E8EDF)	00632960
+008ADC20	008ADC20	lea	02CE92F0	member "m_texture", offset 0x10 (constructor 00632960, called at 005E8F9F)	00632960
+008ADC30	008ADC30	lea	02CE8CF0	member "m_texture", offset 0x10 (constructor 00632960, called at 005E925F)	00632960
+008ADC40	008ADC40	lea	02CE8D50	member "m_texture", offset 0x10 (constructor 00632960, called at 005E931F)	00632960
+008ADC50	008ADC50	lea	02CE8DB0	member "m_texture", offset 0x10 (constructor 00632960, called at 005E958F)	00632960
+008ADC60	008ADC60	lea	02CE8C30	member "m_textureBufferIndex", offset 0x4 (constructor 00632960, called at 005E94CA)	00632960
+008ADC70	008ADC70	lea	02CE9AA0	member "m_textureFlags", offset 0x18 (constructor 00632960, called at 005EB19F)	00632960
+008ADC80	008ADC80	lea	02CE2EA0	member "m_tweakableParameterBufferSize", offset 0x60 (constructor 00632960, called at 005E49F3)	00632960
+008ADC90	008ADC90	lea	02CE2DC0	member "m_tweakableShaderParameterDefinitions", offset 0x40 (constructor 00632A10, called at 005E48F2)	00632A10
+008ADCA0	008ADCA0	lea	02CE45F0	member "m_tweakableShaderParameterDefinitions", offset 0x10 (constructor 00632A10, called at 005E6E2E)	00632A10
+008ADCB0	008ADCB0	lea	02CE83A0	member "m_type", offset 0x2 (constructor 00632960, called at 005E8985)	00632960
+008ADCC0	008ADCC0	lea	02CE84C0	member "m_type", offset 0xC (constructor 00632960, called at 005E8B2C)	00632960
+008ADCD0	008ADCD0	lea	02CEB060	member "m_u", offset 0x8 (constructor 00632A10, called at 005EFCBB)	00632A10
+008ADCE0	008ADCE0	lea	02CECAA0	member "m_u", offset 0x8 (constructor 00632A10, called at 005F000D)	00632A10
+008ADCF0	008ADCF0	lea	02CE2F00	member "m_untweakableParameterBufferSize", offset 0x62 (constructor 00632960, called at 005E4A62)	00632960
+008ADD00	008ADD00	lea	02CE2E30	member "m_untweakableShaderParameterDefinitions", offset 0x50 (constructor 00632A10, called at 005E497D)	00632A10
+008ADD10	008ADD10	lea	02CE8E10	member "m_unusedPointer", offset 0x10 (constructor 00632960, called at 005E905F)	00632960
+008ADD20	008ADD20	lea	02CE2FC0	member "m_value", offset 0x8 (constructor 00632960, called at 005E53C7)	00632960
+008ADD30	008ADD30	lea	02CE7AB0	member "m_variantsFoldingTable", offset 0x28 (constructor 00632A10, called at 005E8096)	00632A10
+008ADD40	008ADD40	lea	02CE7BF0	member "m_vertexEntryPoint", offset passed in a register (constructor 00632960, called at 005E9CA9)	00632960
+008ADD50	008ADD50	lea	02CE7C50	member "m_vertexProfile", offset 0x20 (constructor 00632960, called at 005E9D18)	00632960
+008ADD60	008ADD60	lea	02CE8920	member "m_vertexProgram", offset passed in a register (constructor 00632960, called at 005E99FD)	00632960
+008ADD70	008ADD70	lea	02CE9B60	member "m_width", offset 0x28 (constructor 00632960, called at 005EACE2)	00632960
+008ADD80	008ADD80	lea	02CE9C20	member "m_width", offset 0x28 (constructor 00632960, called at 005EAE22)	00632960
+008ADD90	008ADD90	lea	02CE4310	member "m_worldMatrix", offset 0x10 (constructor 00632960, called at 005E66B3)	00632960
+008ADDA0	008ADDA0	lea	02CE7240	member "m_wrapR", offset 0x4 (constructor 00632960, called at 005E72D9)	00632960
+008ADDB0	008ADDB0	lea	02CE7180	member "m_wrapS", offset 0x2 (constructor 00632960, called at 005E71F3)	00632960
+008ADDC0	008ADDC0	lea	02CE71E0	member "m_wrapT", offset 0x3 (constructor 00632960, called at 005E7266)	00632960
+008AE950	008AE950	lea	02CF6430	member "AlphaToCoverageEnable", offset passed in a register (constructor 00632960, called at 00613902)	00632960
+008AE960	008AE960	lea	02CF5750	member "AntialiasedLineEnable", offset 0x24 (constructor 00632960, called at 00614367)	00632960
+008AE970	008AE970	lea	02CF5E50	member "BackFace", offset 0x24 (constructor 00632960, called at 00613E39)	00632960
+008AE980	008AE980	lea	02CF5FC0	member "BlendEnable", offset passed in a register (constructor 00632960, called at 00614742)	00632960
+008AE9C0	008AE9C0	lea	02CF5510	member "DepthBias", offset 0xC (constructor 00632960, called at 006140CD)	00632960
+008AE9D0	008AE9D0	lea	02CF5570	member "DepthBiasClamp", offset 0x10 (constructor 00632960, called at 0061413C)	00632960
+008AE9E0	008AE9E0	lea	02CF5630	member "DepthClipEnable", offset 0x18 (constructor 00632960, called at 0061421A)	00632960
+008AE9F0	008AE9F0	lea	02CF5B90	member "DepthEnable", offset passed in a register (constructor 00632960, called at 00613B32)	00632960
+008AEA50	008AEA50	lea	02CF54B0	member "FrontCounterClockwise", offset 0x8 (constructor 00632960, called at 0061405E)	00632960
+008AEA60	008AEA60	lea	02CF5DF0	member "FrontFace", offset 0x14 (constructor 00632960, called at 00613DCA)	00632960
+008AEA70	008AEA70	lea	02CF6490	member "IndependentBlendEnable", offset 0x4 (constructor 00632960, called at 00613971)	00632960
+008AEA80	008AEA80	lea	02CF56F0	member "MultisampleEnable", offset 0x20 (constructor 00632960, called at 006142F8)	00632960
+008AEAA0	008AEAA0	lea	02CF62C0	member "RenderTargetWriteMask", offset 0x1C (constructor 00632960, called at 00614A45)	00632960
+008AEAB0	008AEAB0	lea	02CF5690	member "ScissorEnable", offset 0x1C (constructor 00632960, called at 00614289)	00632960
+008AEAC0	008AEAC0	lea	02CF55D0	member "SlopeScaledDepthBias", offset 0x14 (constructor 00632960, called at 006141AB)	00632960
+008AEB00	008AEB00	lea	02CF5CD0	member "StencilEnable", offset 0xC (constructor 00632960, called at 00613C7D)	00632960
+008AEB40	008AEB40	lea	02CF5D30	member "StencilReadMask", offset 0x10 (constructor 00632960, called at 00613CEC)	00632960
+008AEB50	008AEB50	lea	02CF5D90	member "StencilWriteMask", offset 0x11 (constructor 00632960, called at 00613D5B)	00632960
+008AEC60	008AEC60	lea	02CF6620	member "m_blendDesc", offset 0x60 (constructor 00632960, called at 00617FD8)	00632960
+008AEC70	008AEC70	lea	02CF6930	member "m_compiledCode", offset 0x18 (constructor 00632A10, called at 00618128)	00632A10
+008AEC80	008AEC80	lea	02CF50E0	member "m_computeParameterLocation", offset 0x220 (constructor 00632960, called at 00617C59)	00632960
+008AEC90	008AEC90	lea	02CF5260	member "m_computeTexParameterLocation", offset 0x2A0 (constructor 00632960, called at 00617E21)	00632960
+008AECA0	008AECA0	lea	02CF69A0	member "m_constantBufferSize", offset 0x28 (constructor 00632960, called at 006181B0)	00632960
+008AECB0	008AECB0	lea	02CF6D50	member "m_count", offset passed in a register (constructor 00632960, called at 00618B0A)	00632960
+008AECC0	008AECC0	lea	02CF6F80	member "m_count", offset passed in a register (constructor 00632960, called at 00618E3A)	00632960
+008AECD0	008AECD0	lea	02CF6800	member "m_d3dFormat", offset 0x14 (constructor 00632960, called at 00618576)	00632960
+008AECE0	008AECE0	lea	02CF65C0	member "m_depthDesc", offset 0x2C (constructor 00632960, called at 00617F65)	00632960
+008AECF0	008AECF0	lea	02CF6B20	member "m_dimX", offset 0x80 (constructor 00632960, called at 006178A2)	00632960
+008AED00	008AED00	lea	02CF6B80	member "m_dimY", offset 0x84 (constructor 00632960, called at 00617915)	00632960
+008AED10	008AED10	lea	02CF6BE0	member "m_dimZ", offset 0x88 (constructor 00632960, called at 00617988)	00632960
+008AED20	008AED20	lea	02CF6DF0	member "m_els", offset 0x8 (constructor 00632A10, called at 00618C18)	00632A10
+008AED30	008AED30	lea	02CF7020	member "m_els", offset 0x8 (constructor 00632A10, called at 00618F47)	00632A10
+008AED40	008AED40	lea	02CF5020	member "m_fragmentParameterLocation", offset 0x1E0 (constructor 00632960, called at 00617B75)	00632960
+008AED50	008AED50	lea	02CF51A0	member "m_fragmentTexParameterLocation", offset 0x260 (constructor 00632960, called at 00617D3D)	00632960
+008AED60	008AED60	lea	02CF5080	member "m_geometryParameterLocation", offset 0x200 (constructor 00632960, called at 00617BE7)	00632960
+008AED70	008AED70	lea	02CF5200	member "m_geometryTexParameterLocation", offset 0x280 (constructor 00632960, called at 00617DAF)	00632960
+008AED80	008AED80	lea	02CF6A00	member "m_globalConstantBufferIndex", offset 0x2C (constructor 00632960, called at 00618223)	00632960
+008AED90	008AED90	lea	02CF6AC0	member "m_inputLayout", offset 0x78 (constructor 00632960, called at 00618358)	00632960
+008AEDA0	008AEDA0	lea	02CF6860	member "m_inputSlot", offset 0x18 (constructor 00632960, called at 006185E9)	00632960
+008AEDB0	008AEDB0	lea	02CF6560	member "m_rasterDesc", offset 0x4 (constructor 00632960, called at 00617EF2)	00632960
+008AEDC0	008AEDC0	lea	02CF6740	member "m_renderType", offset 0x8 (constructor 00632960, called at 00618490)	00632960
+008AEDD0	008AEDD0	lea	02CF66E0	member "m_semantic", offset passed in a register (constructor 00632960, called at 0061841D)	00632960
+008AEDE0	008AEDE0	lea	02CF67A0	member "m_semanticIndex", offset 0x10 (constructor 00632960, called at 00618503)	00632960
+008AEDF0	008AEDF0	lea	02CF6A60	member "m_shaderProfile", offset 0x70 (constructor 00632960, called at 00618296)	00632960
+008AEE00	008AEE00	lea	02CF4F60	member "m_state", offset 0x30 (constructor 00632960, called at 00617A91)	00632960
+008AEE10	008AEE10	lea	02CF6680	member "m_stencilRef", offset 0x188 (constructor 00632960, called at 0061804B)	00632960
+008AEE20	008AEE20	lea	02CF68C0	member "m_streams", offset passed in a register (constructor 00632A10, called at 006186B6)	00632A10
+008AEE30	008AEE30	lea	02CF4FC0	member "m_vertexParameterLocation", offset 0x1C0 (constructor 00632960, called at 00617B03)	00632960
+008AEE40	008AEE40	lea	02CF5140	member "m_vertexTexParameterLocation", offset 0x240 (constructor 00632960, called at 00617CCB)	00632960
+008B08D0	008B08D0	lea	02D370C0	member "m_ambientColor", offset 0x40D0 (constructor 00632960, called at 0064892E)	00632960
+008B08E0	008B08E0	lea	02D37C60	member "m_asymmetry", offset 0x8C (constructor 00632960, called at 0064826C)	00632960
+008B08F0	008B08F0	lea	02D37C00	member "m_atmosphereStart", offset 0x88 (constructor 00632960, called at 006481FD)	00632960
+008B0900	008B0900	lea	02D37D20	member "m_betaM", offset 0xA0 (constructor 00632960, called at 0064834A)	00632960
+008B0910	008B0910	lea	02D37CC0	member "m_betaR", offset 0x90 (constructor 00632960, called at 006482DB)	00632960
+008B0920	008B0920	lea	02D38380	member "m_count", offset passed in a register (constructor 00632960, called at 0064ABBA)	00632960
+008B0930	008B0930	lea	02D37A00	member "m_edgeColor", offset 0x74 (constructor 00632960, called at 0064886A)	00632960
+008B0940	008B0940	lea	02D37000	member "m_effectMaterial", offset 0x10 (constructor 00632960, called at 00649101)	00632960
+008B0950	008B0950	lea	02D38420	member "m_els", offset 0x8 (constructor 00632A10, called at 0064ACCA)	00632A10
+008B0960	008B0960	lea	02D37060	member "m_enabled", offset 0x41 (constructor 00632960, called at 00649170)	00632960
+008B0970	008B0970	lea	02D37560	member "m_focusBlurRange", offset 0x58 (constructor 00632960, called at 00648DDC)	00632960
+008B0980	008B0980	lea	02D374A0	member "m_focusPlaneDistance", offset 0x50 (constructor 00632960, called at 00648CFE)	00632960
+008B0990	008B0990	lea	02D37500	member "m_focusRange", offset 0x54 (constructor 00632960, called at 00648D6D)	00632960
+008B09A0	008B09A0	lea	02D37300	member "m_fogAmount", offset 0x40F8 (constructor 00632960, called at 00648BC8)	00632960
+008B09B0	008B09B0	lea	02D37360	member "m_fogColor", offset 0x40E0 (constructor 00632960, called at 00648C37)	00632960
+008B09C0	008B09C0	lea	02D37240	member "m_fogDistance", offset 0x40F0 (constructor 00632960, called at 00648AEA)	00632960
+008B09D0	008B09D0	lea	02D372A0	member "m_fogNearDistance", offset 0x40F4 (constructor 00632960, called at 00648B59)	00632960
+008B09E0	008B09E0	lea	02D37F00	member "m_fogParameters", offset 0xDC (constructor 00632960, called at 00648575)	00632960
+008B09F0	008B09F0	lea	02D37940	member "m_gamma", offset 0x60 (constructor 00632960, called at 0064878C)	00632960
+008B0A00	008B0A00	lea	02D376C0	member "m_glowAmountScale", offset 0x5C (constructor 00632960, called at 00648E9E)	00632960
+008B0A10	008B0A10	lea	02D37780	member "m_glowLuminanceScale", offset 0x64 (constructor 00632960, called at 00648F7C)	00632960
+008B0A20	008B0A20	lea	02D37720	member "m_glowLuminanceThreshold", offset 0x60 (constructor 00632960, called at 00648F0D)	00632960
+008B0A30	008B0A30	lea	02D37180	member "m_instantLightIntensity", offset 0x4108 (constructor 00632960, called at 00648A0C)	00632960
+008B0A40	008B0A40	lea	02D371E0	member "m_instantLightScatteringIntensity", offset 0x410C (constructor 00632960, called at 00648A7B)	00632960
+008B0A50	008B0A50	lea	02D37120	member "m_instantLightsEnabled", offset 0x41D0 (constructor 00632960, called at 0064899D)	00632960
+008B0A60	008B0A60	lea	02D37DE0	member "m_invHM", offset 0xC4 (constructor 00632960, called at 00648428)	00632960
+008B0A70	008B0A70	lea	02D37D80	member "m_invHR", offset 0xC0 (constructor 00632960, called at 006483B9)	00632960
+008B0A80	008B0A80	lea	02D379A0	member "m_lightColor", offset 0x64 (constructor 00632960, called at 006487FB)	00632960
+008B0A90	008B0A90	lea	02D37880	member "m_lineThickness", offset 0x58 (constructor 00632960, called at 006486AE)	00632960
+008B0AA0	008B0AA0	lea	02D37AE0	member "m_marchStepFactor", offset 0x54 (constructor 00632960, called at 0064979D)	00632960
+008B0AB0	008B0AB0	lea	02D37A80	member "m_minReflectionDirZ", offset 0x50 (constructor 00632960, called at 0064972E)	00632960
+008B0AC0	008B0AC0	lea	02D38020	member "m_postEffects", offset passed in a register (constructor 00632A10, called at 0064925B)	00632A10
+008B0AD0	008B0AD0	lea	02D37BA0	member "m_radius", offset 0x84 (constructor 00632960, called at 0064818E)	00632960
+008B0AE0	008B0AE0	lea	02D37F60	member "m_renderDebugTextures", offset 0x61 (constructor 00632960, called at 006485E4)	00632960
+008B0AF0	008B0AF0	lea	02D37EA0	member "m_sunDir", offset 0xCC (constructor 00632960, called at 00648506)	00632960
+008B0B00	008B0B00	lea	02D37E40	member "m_sunIntensity", offset 0xC8 (constructor 00632960, called at 00648497)	00632960
+008B0B10	008B0B10	lea	02D378E0	member "m_threshold", offset 0x5C (constructor 00632960, called at 0064871D)	00632960
+008B0B20	008B0B20	lea	02D37620	member "m_velocityScale", offset 0xD10 (constructor 00632960, called at 00649035)	00632960
+008B14E0	008B14E0	lea	02D3B0E0	member "m_buffers", offset 0x20 (constructor 00632A10, called at 00665913)	00632A10
+008B14F0	008B14F0	lea	02D3AFB0	member "m_buffers", offset 0x18 (constructor 00632A10, called at 00666423)	00632A10
+008B1500	008B1500	lea	02D3C9C0	member "m_count", offset passed in a register (constructor 00632960, called at 00668C7A)	00632960
+008B1510	008B1510	lea	02D3DD70	member "m_count", offset passed in a register (constructor 00632960, called at 00668FAA)	00632960
+008B1520	008B1520	lea	02D3D4B0	member "m_count", offset passed in a register (constructor 00632960, called at 006692DA)	00632960
+008B1530	008B1530	lea	02D3DFA0	member "m_count", offset passed in a register (constructor 00632960, called at 0066960A)	00632960
+008B1540	008B1540	lea	02D3D910	member "m_count", offset passed in a register (constructor 00632960, called at 0066993A)	00632960
+008B1550	008B1550	lea	02D3DB40	member "m_count", offset passed in a register (constructor 00632960, called at 00669C6A)	00632960
+008B1560	008B1560	lea	02D3D280	member "m_count", offset passed in a register (constructor 00632960, called at 00669F9A)	00632960
+008B1570	008B1570	lea	02D3CBF0	member "m_count", offset passed in a register (constructor 00632960, called at 0066A2CA)	00632960
+008B1580	008B1580	lea	02D3D760	member "m_count", offset passed in a register (constructor 00632960, called at 0066A6C8)	00632960
+008B1590	008B1590	lea	02D3CEA0	member "m_count", offset passed in a register (constructor 00632960, called at 0066AA15)	00632960
+008B15A0	008B15A0	lea	02D3D0D0	member "m_count", offset passed in a register (constructor 00632960, called at 0066AD65)	00632960
+008B15B0	008B15B0	lea	02D3B4D0	member "m_data", offset 0x18 (constructor 00632A10, called at 00665C63)	00632A10
+008B15C0	008B15C0	lea	02D3B150	member "m_dataSize", offset 0x78 (constructor 00632960, called at 00665990)	00632960
+008B15D0	008B15D0	lea	02D3B020	member "m_dataSize", offset 0x70 (constructor 00632960, called at 006664A0)	00632960
+008B15E0	008B15E0	lea	02D3BFB0	member "m_defaultMaterials", offset 0x60 (constructor 00632960, called at 00666CEA)	00632960
+008B15F0	008B15F0	lea	02D3BE60	member "m_defaultPose", offset 0x30 (constructor 00632A10, called at 00666B33)	00632A10
+008B1600	008B1600	lea	02D3B6C0	member "m_dynamicStreams", offset 0x10 (constructor 00632A10, called at 00665D53)	00632A10
+008B1610	008B1610	lea	02D3B2D0	member "m_elementCount", offset 0x4 (constructor 00632960, called at 00665794)	00632960
+008B1620	008B1620	lea	02D3B400	member "m_elementCount", offset 0x4 (constructor 00632960, called at 00665B41)	00632960
+008B1630	008B1630	lea	02D3B600	member "m_elementCount", offset 0x8 (constructor 00632960, called at 00666024)	00632960
+008B1640	008B1640	lea	02D3B860	member "m_elementCount", offset 0x8 (constructor 00632960, called at 006661D5)	00632960
+008B1650	008B1650	lea	02D3CA60	member "m_els", offset 0x8 (constructor 00632A10, called at 00668D88)	00632A10
+008B1660	008B1660	lea	02D3DE10	member "m_els", offset 0x8 (constructor 00632A10, called at 006690B8)	00632A10
+008B1670	008B1670	lea	02D3D550	member "m_els", offset 0x8 (constructor 00632A10, called at 006693E7)	00632A10
+008B1680	008B1680	lea	02D3E040	member "m_els", offset 0x8 (constructor 00632A10, called at 00669717)	00632A10
+008B1690	008B1690	lea	02D3D9B0	member "m_els", offset 0x8 (constructor 00632A10, called at 00669A47)	00632A10
+008B16A0	008B16A0	lea	02D3DBE0	member "m_els", offset 0x8 (constructor 00632A10, called at 00669D77)	00632A10
+008B16B0	008B16B0	lea	02D3D320	member "m_els", offset 0x8 (constructor 00632A10, called at 0066A0A7)	00632A10
+008B16C0	008B16C0	lea	02D3CC90	member "m_els", offset 0x8 (constructor 00632A10, called at 0066A3D7)	00632A10
+008B16D0	008B16D0	lea	02D3C400	member "m_gatherIndex", offset 0x24 (constructor 00632960, called at 006671F5)	00632960
+008B16E0	008B16E0	lea	02D3BC50	member "m_hierarchyMatrixIndex", offset 0xC (constructor 00632960, called at 00667878)	00632960
+008B16F0	008B16F0	lea	02D3C0E0	member "m_hierarchyMatrixIndex", offset passed in a register (constructor 00632960, called at 006679AE)	00632960
+008B1700	008B1700	lea	02D3B660	member "m_indexCount", offset 0xC (constructor 00632960, called at 00666097)	00632960
+008B1710	008B1710	lea	02D3C5A0	member "m_indexCount", offset passed in a register (constructor 00632960, called at 00667544)	00632960
+008B1720	008B1720	lea	02D3AF50	member "m_indexData", offset 0x40 (constructor 00632960, called at 00667363)	00632960
+008B1730	008B1730	lea	02D3C540	member "m_indexFormat", offset 0x31 (constructor 00632960, called at 006674D5)	00632960
+008B1740	008B1740	lea	02D3C4D0	member "m_indices", offset 0x8 (constructor 00632A10, called at 00667454)	00632A10
+008B1750	008B1750	lea	02D3C340	member "m_lodIndex", offset 0x1C (constructor 00632960, called at 0066710F)	00632960
+008B1760	008B1760	lea	02D3C1A0	member "m_materialIndex", offset passed in a register (constructor 00632960, called at 00666F1E)	00632960
+008B1770	008B1770	lea	02D3B9E0	member "m_materials", offset passed in a register (constructor 00632A10, called at 006665F9)	00632A10
+008B1780	008B1780	lea	02D3C200	member "m_matrixIndex", offset 0x4 (constructor 00632960, called at 00666F91)	00632960
+008B1790	008B1790	lea	02D3BED0	member "m_matrixNames", offset 0x40 (constructor 00632A10, called at 00666BC5)	00632A10
+008B17A0	008B17A0	lea	02D3BF40	member "m_matrixParents", offset 0x50 (constructor 00632A10, called at 00666C6A)	00632A10
+008B17B0	008B17B0	lea	02D3B980	member "m_maximumIndex", offset 0x4 (constructor 00632960, called at 0066632A)	00632960
+008B17C0	008B17C0	lea	02D3B210	member "m_memoryType", offset 0x1D (constructor 00632960, called at 006656B2)	00632960
+008B17D0	008B17D0	lea	02D3B800	member "m_memoryType", offset 0xD (constructor 00632960, called at 00666162)	00632960
+008B17E0	008B17E0	lea	02D3B7A0	member "m_mesh", offset 0x8 (constructor 00632960, called at 00665E73)	00632960
+008B17F0	008B17F0	lea	02D3BD10	member "m_meshSegments", offset passed in a register (constructor 00632A10, called at 0066695E)	00632A10
+008B1810	008B1810	lea	02D3B920	member "m_minimumIndex", offset passed in a register (constructor 00632960, called at 006662B7)	00632960
+008B1820	008B1820	lea	02D3C790	member "m_offset", offset passed in a register (constructor 00632960, called at 00667B61)	00632960
+008B1830	008B1830	lea	02D3B080	member "m_offsetInIndexBuffer", offset 0x68 (constructor 00632960, called at 00666513)	00632960
+008B1840	008B1840	lea	02D3B1B0	member "m_offsetInVertexBuffer", offset 0x70 (constructor 00632960, called at 00665A03)	00632960
+008B1850	008B1850	lea	02D3BCB0	member "m_pad", offset 0x1C (constructor 00632960, called at 006678EB)	00632960
+008B1870	008B1870	lea	02D3C070	member "m_ps2DLIndices", offset 0x70 (constructor 00632A10, called at 00666E3D)	00632A10
+008B1880	008B1880	lea	02D3C7F0	member "m_renderDataType", offset 0x8 (constructor 00632960, called at 00667BD4)	00632960
+008B1890	008B1890	lea	02D3B730	member "m_segments", offset 0x20 (constructor 00632A10, called at 00665DEC)	00632A10
+008B18A0	008B18A0	lea	02D3C3A0	member "m_shapeIndex", offset 0x20 (constructor 00632960, called at 00667182)	00632960
+008B18C0	008B18C0	lea	02D3BDF0	member "m_skeletonBounds", offset 0x20 (constructor 00632A10, called at 00666A95)	00632A10
+008B18D0	008B18D0	lea	02D3BD80	member "m_skeletonMatrices", offset 0x10 (constructor 00632A10, called at 00666A03)	00632A10
+008B18E0	008B18E0	lea	02D3C140	member "m_skeletonMatrixIndex", offset 0x2 (constructor 00632960, called at 00667A21)	00632960
+008B18F0	008B18F0	lea	02D3C260	member "m_skinBones", offset 0x8 (constructor 00632A10, called at 00667015)	00632A10
+008B1900	008B1900	lea	02D3B540	member "m_startStreamIndex", offset passed in a register (constructor 00632960, called at 00665F3E)	00632960
+008B1910	008B1910	lea	02D3B5A0	member "m_streamCount", offset 0x4 (constructor 00632960, called at 00665FB1)	00632960
+008B1920	008B1920	lea	02D3C850	member "m_streamSet", offset 0x11 (constructor 00632960, called at 00667C47)	00632960
+008B1930	008B1930	lea	02D3B330	member "m_streams", offset 0x8 (constructor 00632A10, called at 00665818)	00632A10
+008B1940	008B1940	lea	02D3B460	member "m_streams", offset 0x8 (constructor 00632A10, called at 00665BC5)	00632A10
+008B1950	008B1950	lea	02D3B270	member "m_stride", offset passed in a register (constructor 00632960, called at 00665721)	00632960
+008B1960	008B1960	lea	02D3B3A0	member "m_stride", offset passed in a register (constructor 00632960, called at 00665ACE)	00632960
+008B1970	008B1970	lea	02D3B8C0	member "m_type", offset 0xC (constructor 00632960, called at 00666248)	00632960
+008B1980	008B1980	lea	02D3C730	member "m_type", offset 0x10 (constructor 00632960, called at 00667AF2)	00632960
+008B1990	008B1990	lea	02D3D6E0	member "m_u", offset 0x8 (constructor 00632A10, called at 0066A60D)	00632A10
+008B19A0	008B19A0	lea	02D3CE20	member "m_u", offset 0x8 (constructor 00632A10, called at 0066A95A)	00632A10
+008B19B0	008B19B0	lea	02D3D050	member "m_u", offset 0x8 (constructor 00632A10, called at 0066ACAA)	00632A10
+008B19C0	008B19C0	lea	02D3C6D0	member "m_vertexCount", offset 0x18 (constructor 00632960, called at 006676C1)	00632960
+008B19D0	008B19D0	lea	02D3AEE0	member "m_vertexData", offset 0x30 (constructor 00632A10, called at 006672D4)	00632A10
+008B19E0	008B19E0	lea	02D3C600	member "m_vertexData", offset 0x20 (constructor 00632A10, called at 006675CD)	00632A10
+008B19F0	008B19F0	lea	02D3C670	member "m_vertexFormat", offset 0x30 (constructor 00632960, called at 0066764E)	00632960
+008B1D40	008B1D40	lea	02D3E910	member "m_asset", offset 0x38 (constructor 00632960, called at 0067584C)	00632960
+008B1D70	008B1D70	lea	02D3E970	member "m_assetType", offset 0x40 (constructor 00632960, called at 006758BE)	00632960
+008B1D80	008B1D80	lea	02D3E8B0	member "m_id", offset 0x30 (constructor 00632960, called at 006757D9)	00632960
+008B1D90	008B1D90	lea	02D3EBE0	member "m_id", offset 0x8 (constructor 00632960, called at 00675E4B)	00632960
+008B1DA0	008B1DA0	lea	02D3EC40	member "m_targetAssetType", offset passed in a register (constructor 00632960, called at 00675EB9)	00632960
+008B1E50	008B1E50	lea	02D3F6B0	member "m_aspect", offset 0xC8 (constructor 00632960, called at 0067895A)	00632960
+008B1E60	008B1E60	lea	02D3F5F0	member "m_farPlane", offset 0xBC (constructor 00632960, called at 006787B1)	00632960
+008B1E70	008B1E70	lea	02D3F530	member "m_localToWorldMatrix", offset 0xB0 (constructor 00632960, called at 006786CB)	00632960
+008B1E80	008B1E80	lea	02D3F590	member "m_nearPlane", offset 0xB8 (constructor 00632960, called at 0067873E)	00632960
+008B1E90	008B1E90	lea	02D3F470	member "m_projectionMatrix", offset 0x30 (constructor 00632960, called at 006785E6)	00632960
+008B1EA0	008B1EA0	lea	02D3F410	member "m_viewMatrix", offset passed in a register (constructor 00632960, called at 00678573)	00632960
+008B1EB0	008B1EB0	lea	02D3F4D0	member "m_viewProjectionMatrix", offset 0x70 (constructor 00632960, called at 00678659)	00632960
+008B2000	008B2000	lea	02E40010	member "m_baselineOffset", offset 0xC (constructor 00632960, called at 0067D1C7)	00632960
+008B2010	008B2010	lea	02E40150	member "m_bitmapFontTexture", offset 0x30 (constructor 00632960, called at 0067D370)	00632960
+008B2020	008B2020	lea	02E3FB60	member "m_characterCode", offset passed in a register (constructor 00632960, called at 0067D43E)	00632960
+008B2030	008B2030	lea	02E40070	member "m_characterInfo", offset 0x10 (constructor 00632A10, called at 0067D24B)	00632A10
+008B2040	008B2040	lea	02E402C0	member "m_count", offset passed in a register (constructor 00632960, called at 0067D9AA)	00632960
+008B2050	008B2050	lea	02E40360	member "m_els", offset 0x8 (constructor 00632A10, called at 0067DAB7)	00632A10
+008B2060	008B2060	lea	02E3FEF0	member "m_fontSize", offset 0x4 (constructor 00632960, called at 0067D072)	00632960
+008B2070	008B2070	lea	02E3FD50	member "m_height", offset 0x18 (constructor 00632960, called at 0067D67F)	00632960
+008B2080	008B2080	lea	02E3FF50	member "m_isSDF", offset passed in a register (constructor 00632960, called at 0067D0E1)	00632960
+008B2090	008B2090	lea	02E3FC20	member "m_kernOffset", offset 0x8 (constructor 00632960, called at 0067D524)	00632960
+008B20A0	008B20A0	lea	02E3FBC0	member "m_kernPairs", offset 0x4 (constructor 00632960, called at 0067D4B1)	00632960
+008B20B0	008B20B0	lea	02E400E0	member "m_kerningInfo", offset 0x20 (constructor 00632A10, called at 0067D2E9)	00632A10
+008B20C0	008B20C0	lea	02E3FFB0	member "m_lineSpacing", offset 0x8 (constructor 00632960, called at 0067D154)	00632960
+008B20E0	008B20E0	lea	02E3FE90	member "m_rotated", offset 0x2C (constructor 00632960, called at 0067D7DC)	00632960
+008B2100	008B2100	lea	02E3FCF0	member "m_width", offset 0x14 (constructor 00632960, called at 0067D60C)	00632960
+008B21F0	008B21F0	lea	02E406D0	member "m_matrix", offset passed in a register (constructor 00632960, called at 0067E9B6)	00632960
+008B24E0	008B24E0	lea	02E42830	member "m_defaultEntryPoint", offset 0x40 (constructor 00632960, called at 00682624)	00632960
+008B24F0	008B24F0	lea	02E42320	member "m_entryPoint", offset 0x60 (constructor 00632960, called at 00681EED)	00632960
+008B2500	008B2500	lea	02E42380	member "m_entryPoint", offset passed in a register (constructor 00632960, called at 00682849)	00632960
+008B2510	008B2510	lea	02E42950	member "m_executionInterval", offset 0x54 (constructor 00632960, called at 0068277C)	00632960
+008B2520	008B2520	lea	02E42700	member "m_functionNames", offset 0x20 (constructor 00632A10, called at 006824B9)	00632A10
+008B2530	008B2530	lea	02E423E0	member "m_handler", offset 0x8 (constructor 00632960, called at 006828B7)	00632960
+008B2540	008B2540	lea	02E428F0	member "m_isPersistent", offset 0x50 (constructor 00632960, called at 00682709)	00632960
+008B2550	008B2550	lea	02E422C0	member "m_nameAsString", offset 0x58 (constructor 00632960, called at 00681E7F)	00632960
+008B2560	008B2560	lea	02E42770	member "m_onLoadEntryPoint", offset 0x30 (constructor 00632960, called at 00682540)	00632960
+008B2570	008B2570	lea	02E427D0	member "m_onUnloadEntryPoint", offset 0x38 (constructor 00632960, called at 006825B2)	00632960
+008B2580	008B2580	lea	02E42260	member "m_script", offset 0x50 (constructor 00632960, called at 00681E11)	00632960
+008B2590	008B2590	lea	02E42620	member "m_scriptChunk32", offset passed in a register (constructor 00632A10, called at 00682390)	00632A10
+008B25A0	008B25A0	lea	02E42690	member "m_scriptChunk64", offset 0x10 (constructor 00632A10, called at 00682427)	00632A10
+008B25B0	008B25B0	lea	02E42890	member "m_sourceName", offset 0x48 (constructor 00632960, called at 00682696)	00632960
+008B3620	008B3620	lea	02E4BEE0	member "m_amount", offset 0x20 (constructor 00632960, called at 006940E6)	00632960
+008B3630	008B3630	lea	02E4B8F0	member "m_angularDamping", offset 0xC4 (constructor 00632960, called at 00696B79)	00632960
+008B3640	008B3640	lea	02E4CB30	member "m_characterControllers", offset 0x50 (constructor 00632960, called at 0069844B)	00632960
+008B3650	008B3650	lea	02E4BA70	member "m_collisionGroup", offset 0xE0 (constructor 00632960, called at 00696D3E)	00632960
+008B3660	008B3660	lea	02E4CCB0	member "m_collisionObject", offset 0x20 (constructor 00632960, called at 00698674)	00632960
+008B3670	008B3670	lea	02E4BE20	member "m_collisionObjectA", offset passed in a register (constructor 00632960, called at 00694009)	00632960
+008B3680	008B3680	lea	02E4BE80	member "m_collisionObjectB", offset 0x10 (constructor 00632960, called at 00694077)	00632960
+008B3690	008B3690	lea	02E4CD10	member "m_collisionObjectClassDescriptor", offset 0x28 (constructor 00632960, called at 006986E6)	00632960
+008B36A0	008B36A0	lea	02E4A260	member "m_collisionRadius", offset 0x10 (constructor 00632960, called at 006942FB)	00632960
+008B36B0	008B36B0	lea	02E4A380	member "m_contactEpsilon", offset 0x1C (constructor 00632960, called at 00694448)	00632960
+008B36C0	008B36C0	lea	02E4CC50	member "m_contactNormal", offset 0x10 (constructor 00632960, called at 00698601)	00632960
+008B36D0	008B36D0	lea	02E4CBF0	member "m_contactPoint", offset passed in a register (constructor 00632960, called at 0069858E)	00632960
+008B36E0	008B36E0	lea	02E4D200	member "m_count", offset passed in a register (constructor 00632960, called at 00698B98)	00632960
+008B36F0	008B36F0	lea	02E4C480	member "m_density", offset 0x10 (constructor 00632960, called at 00697498)	00632960
+008B3700	008B3700	lea	02E4B0A0	member "m_dynamicFriction", offset passed in a register (constructor 00632960, called at 0069565E)	00632960
+008B3710	008B3710	lea	02E4BAD0	member "m_enabled", offset 0xE9 (constructor 00632960, called at 00696DB1)	00632960
+008B3720	008B3720	lea	02E4B340	member "m_equationCoefficient", offset 0x70 (constructor 00632960, called at 00695A79)	00632960
+008B3730	008B3730	lea	02E4A8C0	member "m_forward", offset 0xE8 (constructor 00632960, called at 00694C79)	00632960
+008B3740	008B3740	lea	02E4AD40	member "m_graphicsOffset", offset 0x48 (constructor 00632960, called at 006951D7)	00632960
+008B3750	008B3750	lea	02E4A6E0	member "m_gravity", offset 0x28 (constructor 00632960, called at 00694A3C)	00632960
+008B3760	008B3760	lea	02E4C9B0	member "m_gravity", offset passed in a register (constructor 00632960, called at 00698280)	00632960
+008B3770	008B3770	lea	02E4A130	member "m_halfExtents", offset 0x70 (constructor 00632960, called at 00693F49)	00632960
+008B3780	008B3780	lea	02E4A200	member "m_height", offset 0x78 (constructor 00632960, called at 0069422C)	00632960
+008B3790	008B3790	lea	02E4AC20	member "m_height", offset 0xF8 (constructor 00632960, called at 0069507F)	00632960
+008B37A0	008B37A0	lea	02E4AF90	member "m_height", offset 0x78 (constructor 00632960, called at 0069559C)	00632960
+008B37B0	008B37B0	lea	02E4C7B0	member "m_height", offset 0x80 (constructor 00632960, called at 006978DC)	00632960
+008B37C0	008B37C0	lea	02E4C8F0	member "m_height", offset 0x80 (constructor 00632960, called at 00697A8C)	00632960
+008B37D0	008B37D0	lea	02E4C3C0	member "m_hollow", offset 0x8 (constructor 00632960, called at 006973B2)	00632960
+008B37E0	008B37E0	lea	02E4B580	member "m_inertiaTensor", offset 0x58 (constructor 00632960, called at 0069674B)	00632960
+008B37F0	008B37F0	lea	02E4B640	member "m_initialAngularVelocity", offset 0x78 (constructor 00632960, called at 00696831)	00632960
+008B3800	008B3800	lea	02E4B5E0	member "m_initialLinearVelocity", offset 0x68 (constructor 00632960, called at 006967BE)	00632960
+008B3810	008B3810	lea	02E4B520	member "m_initialOrientation", offset 0x48 (constructor 00632960, called at 006966D8)	00632960
+008B3820	008B3820	lea	02E4B4C0	member "m_initialPosition", offset 0x38 (constructor 00632960, called at 00696665)	00632960
+008B3830	008B3830	lea	02E4ADA0	member "m_invGraphicsOffset", offset 0x88 (constructor 00632960, called at 0069524A)	00632960
+008B3840	008B3840	lea	02E4A9E0	member "m_isOnGround", offset 0x105 (constructor 00632960, called at 00694DD2)	00632960
+008B3850	008B3850	lea	02E4A980	member "m_jump", offset 0x104 (constructor 00632960, called at 00694D5F)	00632960
+008B3860	008B3860	lea	02E4ABC0	member "m_jumpHeight", offset 0xF4 (constructor 00632960, called at 0069500C)	00632960
+008B3870	008B3870	lea	02E4CB90	member "m_kinematicRigidBodies", offset 0x58 (constructor 00632960, called at 006984BD)	00632960
+008B3880	008B3880	lea	02E4B890	member "m_linearDamping", offset 0xC0 (constructor 00632960, called at 00696B06)	00632960
+008B38B0	008B38B0	lea	02E4B3A0	member "m_mass", offset 0xE4 (constructor 00632960, called at 0069650C)	00632960
+008B38C0	008B38C0	lea	02E4C420	member "m_mass", offset 0xC (constructor 00632960, called at 00697425)	00632960
+008B38D0	008B38D0	lea	02E4B460	member "m_massFrameTransform", offset 0x8 (constructor 00632960, called at 006965F2)	00632960
+008B38E0	008B38E0	lea	02E4B760	member "m_material", offset 0x98 (constructor 00632960, called at 00696987)	00632960
+008B38F0	008B38F0	lea	02E4C4E0	member "m_material", offset 0x18 (constructor 00632960, called at 0069750A)	00632960
+008B3900	008B3900	lea	02E4AA40	member "m_maxSlopeAngle", offset 0xF0 (constructor 00632960, called at 00694E45)	00632960
+008B3910	008B3910	lea	02E4A3E0	member "m_minimumCameraDistance", offset 0x20 (constructor 00632960, called at 006944B7)	00632960
+008B3920	008B3920	lea	02E4B9B0	member "m_model", offset 0xC8 (constructor 00632960, called at 00696C59)	00632960
+008B3930	008B3930	lea	02E4C950	member "m_models", offset 0x48 (constructor 00632960, called at 00698211)	00632960
+008B3940	008B3940	lea	02E4A500	member "m_nearCameraYAdjust", offset 0x34 (constructor 00632960, called at 00694604)	00632960
+008B3950	008B3950	lea	02E4AAA0	member "m_next", offset passed in a register (constructor 00632960, called at 00694EB3)	00632960
+008B3960	008B3960	lea	02E4B280	member "m_next", offset passed in a register (constructor 00632960, called at 0069593F)	00632960
+008B3970	008B3970	lea	02E4B950	member "m_next", offset passed in a register (constructor 00632960, called at 00696BE7)	00632960
+008B3980	008B3980	lea	02E4BA10	member "m_nextKinematicRigidBody", offset 0xD8 (constructor 00632960, called at 00696CCB)	00632960
+008B3990	008B3990	lea	02E4AC80	member "m_radius", offset 0xFC (constructor 00632960, called at 006950F2)	00632960
+008B39A0	008B39A0	lea	02E4C670	member "m_radius", offset 0x70 (constructor 00632960, called at 00697729)	00632960
+008B39D0	008B39D0	lea	02E4B160	member "m_restitution", offset 0x8 (constructor 00632960, called at 00695744)	00632960
+008B39E0	008B39E0	lea	02E4A860	member "m_right", offset 0xE4 (constructor 00632960, called at 00694C06)	00632960
+008B39F0	008B39F0	lea	02E4B220	member "m_rigidBodies", offset 0x8 (constructor 00632960, called at 006958D1)	00632960
+008B3A00	008B3A00	lea	02E4B400	member "m_rigidBodyType", offset 0xE8 (constructor 00632960, called at 0069657F)	00632960
+008B3A10	008B3A10	lea	02E4A800	member "m_rotate", offset 0xE0 (constructor 00632960, called at 00694B93)	00632960
+008B3A20	008B3A20	lea	02E4AB60	member "m_scale", offset 0x18 (constructor 00632960, called at 00694F99)	00632960
+008B3A30	008B3A30	lea	02E4B830	member "m_scale", offset 0x88 (constructor 00632960, called at 00696A93)	00632960
+008B3A40	008B3A40	lea	02E4C5A0	member "m_scale", offset 0x50 (constructor 00632960, called at 006975F0)	00632960
+008B3A50	008B3A50	lea	02E4AE00	member "m_scriptHandler", offset 0x118 (constructor 00632960, called at 006952BC)	00632960
+008B3A60	008B3A60	lea	02E4BB30	member "m_scriptHandler", offset 0x100 (constructor 00632960, called at 00696E23)	00632960
+008B3A70	008B3A70	lea	02E4B1C0	member "m_shape", offset 0x70 (constructor 00632960, called at 00695808)	00632960
+008B3A80	008B3A80	lea	02E4B7C0	member "m_shapes", offset 0xB0 (constructor 00632A10, called at 00696A0B)	00632A10
+008B3A90	008B3A90	lea	02E4A440	member "m_smoothingRate", offset 0x24 (constructor 00632960, called at 00694526)	00632960
+008B3AA0	008B3AA0	lea	02E4A4A0	member "m_springTension", offset 0x30 (constructor 00632960, called at 00694595)	00632960
+008B3AB0	008B3AB0	lea	02E4AB00	member "m_startPosition", offset 0x8 (constructor 00632960, called at 00694F26)	00632960
+008B3AC0	008B3AC0	lea	02E4B100	member "m_staticFriction", offset 0x4 (constructor 00632960, called at 006956D1)	00632960
+008B3AD0	008B3AD0	lea	02E4A2C0	member "m_targetDistance", offset 0x14 (constructor 00632960, called at 0069436A)	00632960
+008B3AE0	008B3AE0	lea	02E4A320	member "m_targetHeight", offset 0x18 (constructor 00632960, called at 006943D9)	00632960
+008B3AF0	008B3AF0	lea	02E4A740	member "m_targetNode", offset 0xC8 (constructor 00632960, called at 00694AAE)	00632960
+008B3B00	008B3B00	lea	02E4B6A0	member "m_targetNode", offset 0xA0 (constructor 00632960, called at 006968A3)	00632960
+008B3B10	008B3B10	lea	02E4A7A0	member "m_targetWorldMatrix", offset 0xD0 (constructor 00632960, called at 00694B20)	00632960
+008B3B20	008B3B20	lea	02E4B700	member "m_targetWorldMatrix", offset 0xA8 (constructor 00632960, called at 00696915)	00632960
+008B3B30	008B3B30	lea	02E4CA10	member "m_timeStep", offset 0x10 (constructor 00632960, called at 006982F3)	00632960
+008B3B40	008B3B40	lea	02E4C540	member "m_transform", offset 0x20 (constructor 00632960, called at 0069757D)	00632960
+008B3B60	008B3B60	lea	02E4D180	member "m_u", offset 0x8 (constructor 00632A10, called at 00698ADD)	00632A10
+008B3B90	008B3B90	lea	02E4A920	member "m_velocity", offset 0xEC (constructor 00632960, called at 00694CEC)	00632960
+008B3BA0	008B3BA0	lea	02E4ACE0	member "m_world", offset 0xD8 (constructor 00632960, called at 00695164)	00632960
+008B3BB0	008B3BB0	lea	02E4B2E0	member "m_world", offset 0x10 (constructor 00632960, called at 006959B1)	00632960
+008B3BC0	008B3BC0	lea	02E4CAD0	member "m_worldMax", offset 0x24 (constructor 00632960, called at 006983D9)	00632960
+008B3BD0	008B3BD0	lea	02E4CA70	member "m_worldMin", offset 0x14 (constructor 00632960, called at 00698366)	00632960
+008B3F10	008B3F10	lea	02E4D730	member "m_buffer", offset passed in a register (constructor 00632A10, called at 006A734E)	00632A10
+008B4090	008B4090	lea	02E4DF40	member "m_count", offset passed in a register (constructor 00632960, called at 006A8728)	00632960
+008B40A0	008B40A0	lea	02E4DBD0	member "m_enabled", offset 0x50 (constructor 00632960, called at 006A8159)	00632960
+008B40B0	008B40B0	lea	02E4DAA0	member "m_localToWorldMatrix", offset 0x18 (constructor 00632960, called at 006A7FEA)	00632960
+008B40C0	008B40C0	lea	02E4DB00	member "m_previousLocalToWorldMatrix", offset 0x20 (constructor 00632960, called at 006A8058)	00632960
+008B40D0	008B40D0	lea	02E4DB60	member "m_triggerReceivers", offset 0x8 (constructor 00632A10, called at 006A80DC)	00632A10
+008B40E0	008B40E0	lea	02E4DA40	member "m_type", offset passed in a register (constructor 00632960, called at 006A7F78)	00632960
+008B40F0	008B40F0	lea	02E4DEC0	member "m_u", offset 0x8 (constructor 00632A10, called at 006A866D)	00632A10
+008B4180	008B4180	lea	02E4E340	member "m_min", offset 0x48 (constructor 00632960, called at 006A993C)	00632960
+008B4190	008B4190	lea	02E4E2E0	member "m_previousLocalToWorldMatrix", offset 0x18 (constructor 00632960, called at 006A98CD)	00632960
+008B41A0	008B41A0	lea	02E4E3A0	member "m_size", offset 0x58 (constructor 00632960, called at 006A99AB)	00632960
+008B41D0	008B41D0	lea	02E4E590	member "m_classDescriptor", offset 0x8 (constructor 00632960, called at 006AA010)	00632960
+008B41E0	008B41E0	lea	02E4E530	member "m_object", offset passed in a register (constructor 00632960, called at 006A9F9E)	00632960
+008B42E0	008B42E0	lea	02E4E9A0	member "m_componentType", offset 0x10 (constructor 00632960, called at 006AAD8F)	00632960
+008B42F0	008B42F0	lea	02E4E8E0	member "m_entity", offset 0x8 (constructor 00632960, called at 006AACAF)	00632960
+008B4300	008B4300	lea	02E4E940	member "m_next", offset passed in a register (constructor 00632960, called at 006AAD1D)	00632960
+008B4540	008B4540	lea	02E4EC50	member "m_firstComponent", offset passed in a register (constructor 00632960, called at 006AB946)	00632960
+008B4550	008B4550	lea	02E4ECB0	member "m_worldMatrix", offset 0x8 (constructor 00632960, called at 006AB9B8)	00632960
+008B4640	008B4640	lea	02E4F390	member "m_height", offset 0xD0 (constructor 00632960, called at 006AD137)	00632960
+008B46D0	008B46D0	lea	02E4F810	member "m_FOV", offset 0xD0 (constructor 00632960, called at 006AD999)	00632960
+008B48B0	008B48B0	lea	02E4FD00	member "m_count", offset passed in a register (constructor 00632960, called at 006AE91A)	00632960
+008B48C0	008B48C0	lea	02E4FDA0	member "m_els", offset 0x8 (constructor 00632A10, called at 006AEA27)	00632A10
+008B48D0	008B48D0	lea	02E4FB80	member "m_instances", offset 0x18 (constructor 00632A10, called at 006AE725)	00632A10
+008B4960	008B4960	lea	02E50060	member "m_name", offset 0x28 (constructor 00632960, called at 006AFCB2)	00632960
+008B5520	008B5520	lea	02E51F70	member "m_firstChild", offset 0x10 (constructor 00632960, called at 006B4E40)	00632960
+008B5530	008B5530	lea	02E52090	member "m_localMatrix", offset 0x20 (constructor 00632960, called at 006B4F93)	00632960
+008B5540	008B5540	lea	02E520F0	member "m_name", offset 0x60 (constructor 00632960, called at 006B5005)	00632960
+008B5550	008B5550	lea	02E51FD0	member "m_next", offset passed in a register (constructor 00632960, called at 006B4EAE)	00632960
+008B5560	008B5560	lea	02E51F10	member "m_parent", offset 0x8 (constructor 00632960, called at 006B4DCE)	00632960
+008B5570	008B5570	lea	02E52030	member "m_worldMatrix", offset 0x18 (constructor 00632960, called at 006B4F20)	00632960
+008B5DC0	008B5DC0	lea	02E585B0	member "m_count", offset passed in a register (constructor 00632960, called at 006BCDDA)	00632960
+008B5DD0	008B5DD0	lea	02E58A10	member "m_count", offset passed in a register (constructor 00632960, called at 006BD11A)	00632960
+008B5DE0	008B5DE0	lea	02E587E0	member "m_count", offset passed in a register (constructor 00632960, called at 006BD44A)	00632960
+008B5DF0	008B5DF0	lea	02E58650	member "m_els", offset 0x8 (constructor 00632A10, called at 006BCEEB)	00632A10
+008B5E00	008B5E00	lea	02E58AB0	member "m_els", offset 0x8 (constructor 00632A10, called at 006BD227)	00632A10
+008B5E10	008B5E10	lea	02E58880	member "m_els", offset 0x8 (constructor 00632A10, called at 006BD557)	00632A10
+008B5E20	008B5E20	lea	02E58160	member "m_modifierNetwork", offset passed in a register (constructor 00632960, called at 006BCAAD)	00632960
+008B5E30	008B5E30	lea	02E58350	member "m_modifierNetworkInputRenderStreams", offset 0x48 (constructor 00632A10, called at 006BC891)	00632A10
+008B5E40	008B5E40	lea	02E582E0	member "m_modifierNetworkInputs", offset 0x38 (constructor 00632A10, called at 006BC7F8)	00632A10
+008B5E50	008B5E50	lea	02E583C0	member "m_modifierNetworkOutputs", offset 0x58 (constructor 00632A10, called at 006BC92F)	00632A10
+008B5E60	008B5E60	lea	02E58280	member "m_modifierOutputsAreConsumed", offset 0x10 (constructor 00632960, called at 006BCC06)	00632960
+008B5E70	008B5E70	lea	02E581C0	member "m_segmentInputGroupStart", offset 0x8 (constructor 00632960, called at 006BCB20)	00632960
+008B5E80	008B5E80	lea	02E58430	member "m_segmentInputs", offset 0x68 (constructor 00632A10, called at 006BC9C8)	00632A10
+008B5E90	008B5E90	lea	02E58220	member "m_segmentOutputGroupStart", offset 0xC (constructor 00632960, called at 006BCB93)	00632960
+008B61B0	008B61B0	lea	02E58F20	member "m_color", offset passed in a register (constructor 00632960, called at 006BEDFA)	00632960
+008B61C0	008B61C0	lea	02E590A0	member "m_innerConeAngle", offset 0x28 (constructor 00632960, called at 006BEFC4)	00632960
+008B61D0	008B61D0	lea	02E591C0	member "m_innerRange", offset 0x34 (constructor 00632960, called at 006BF11D)	00632960
+008B61E0	008B61E0	lea	02E59160	member "m_intensity", offset 0x30 (constructor 00632960, called at 006BF0AA)	00632960
+008B61F0	008B61F0	lea	02E59040	member "m_lightType", offset 0x20 (constructor 00632960, called at 006BEF51)	00632960
+008B6200	008B6200	lea	02E58F80	member "m_localToWorldMatrix", offset 0x10 (constructor 00632960, called at 006BEE6C)	00632960
+008B6210	008B6210	lea	02E59100	member "m_outerConeAngle", offset 0x2C (constructor 00632960, called at 006BF037)	00632960
+008B6220	008B6220	lea	02E59220	member "m_outerRange", offset 0x38 (constructor 00632960, called at 006BF190)	00632960
+008B6230	008B6230	lea	02E59280	member "m_scatteringIntensity", offset 0x3C (constructor 00632960, called at 006BF203)	00632960
+008B6240	008B6240	lea	02E58FE0	member "m_shadowCaster", offset 0x18 (constructor 00632960, called at 006BEEDE)	00632960
+008B68B0	008B68B0	lea	02E5A230	member "m_count", offset passed in a register (constructor 00632960, called at 006C1ABA)	00632960
+008B68C0	008B68C0	lea	02E5A2D0	member "m_els", offset 0x8 (constructor 00632A10, called at 006C1BC7)	00632A10
+008B68D0	008B68D0	lea	02E59F30	member "m_farPlane", offset 0xC8 (constructor 00632960, called at 006C1899)	00632960
+008B68E0	008B68E0	lea	02E5A0C0	member "m_light", offset passed in a register (constructor 00632960, called at 006C17DC)	00632960
+008B68F0	008B68F0	lea	02E5A000	member "m_shadowCasterType", offset 0x8 (constructor 00632960, called at 006C16FB)	00632960
+008B6900	008B6900	lea	02E59F90	member "m_splits", offset 0x10 (constructor 00632A10, called at 006C1673)	00632A10
+008B6910	008B6910	lea	02E5A060	member "m_zbias", offset 0x50 (constructor 00632960, called at 006C176E)	00632960
+008B69B0	008B69B0	lea	02E5AB90	member "m_count", offset passed in a register (constructor 00632960, called at 006C399A)	00632960
+008B69C0	008B69C0	lea	02E5A7C0	member "m_elementSize", offset 0x8 (constructor 00632960, called at 006C3612)	00632960
+008B69D0	008B69D0	lea	02E5AC30	member "m_els", offset 0x8 (constructor 00632A10, called at 006C3AAB)	00632A10
+008B69E0	008B69E0	lea	02E5A8E0	member "m_list", offset 0x4 (constructor 00632960, called at 006C37C1)	00632960
+008B69F0	008B69F0	lea	02E5A940	member "m_modifierNetwork", offset passed in a register (constructor 00632960, called at 006C340D)	00632960
+008B6A00	008B6A00	lea	02E5A9A0	member "m_modifierUserData", offset 0x8 (constructor 00632A10, called at 006C3496)	00632A10
+008B6A10	008B6A10	lea	02E5AA10	member "m_persistentState", offset 0x18 (constructor 00632A10, called at 006C3534)	00632A10
+008B6A20	008B6A20	lea	02E5A820	member "m_renderStream", offset 0x10 (constructor 00632960, called at 006C3684)	00632960
+008B6A30	008B6A30	lea	02E5A880	member "m_source", offset passed in a register (constructor 00632960, called at 006C374E)	00632960
+008B6C00	008B6C00	lea	02E5B3D0	member "m_blendRange", offset 0x30 (constructor 00632960, called at 006C5C54)	00632960
+008B6C10	008B6C10	lea	02E5B9B0	member "m_count", offset passed in a register (constructor 00632960, called at 006C63CA)	00632960
+008B6C20	008B6C20	lea	02E5B800	member "m_count", offset passed in a register (constructor 00632960, called at 006C67C8)	00632960
+008B6C30	008B6C30	lea	02E5BA50	member "m_els", offset 0x8 (constructor 00632A10, called at 006C64D7)	00632A10
+008B6C40	008B6C40	lea	02E5B550	member "m_isEnabled", offset 0x60 (constructor 00632960, called at 006C5E18)	00632960
+008B6C50	008B6C50	lea	02E5B2A0	member "m_levels", offset 0x50 (constructor 00632A10, called at 006C5AFD)	00632A10
+008B6C60	008B6C60	lea	02E5B4F0	member "m_lodBlendType", offset 0x48 (constructor 00632960, called at 006C5DA9)	00632960
+008B6C70	008B6C70	lea	02E5B110	member "m_lodGroup", offset passed in a register (constructor 00632960, called at 006C607D)	00632960
+008B6C80	008B6C80	lea	02E5B490	member "m_lodMetricType", offset 0x40 (constructor 00632960, called at 006C5D36)	00632960
+008B6C90	008B6C90	lea	02E5B370	member "m_maxBounds", offset 0x10 (constructor 00632960, called at 006C5BE5)	00632960
+008B6CA0	008B6CA0	lea	02E5B240	member "m_maximumThreshold", offset 0x1C (constructor 00632960, called at 006C61ED)	00632960
+008B6CB0	008B6CB0	lea	02E5B170	member "m_meshInstances", offset 0x8 (constructor 00632A10, called at 006C6101)	00632A10
+008B6CC0	008B6CC0	lea	02E5B310	member "m_minBounds", offset passed in a register (constructor 00632960, called at 006C5B76)	00632960
+008B6CD0	008B6CD0	lea	02E5B1E0	member "m_minimumThreshold", offset 0x18 (constructor 00632960, called at 006C617E)	00632960
+008B6CE0	008B6CE0	lea	02E5B430	member "m_shaderLODLevelDistance", offset 0x34 (constructor 00632960, called at 006C5CC3)	00632960
+008B6CF0	008B6CF0	lea	02E5B780	member "m_u", offset 0x8 (constructor 00632A10, called at 006C670D)	00632A10
+008B6DE0	008B6DE0	lea	02E5BD10	member "m_localToWorldMatrix", offset 0x8 (constructor 00632960, called at 006C8414)	00632960
+008B6DF0	008B6DF0	lea	02E5BCB0	member "m_occluder", offset passed in a register (constructor 00632960, called at 006C83A2)	00632960
+008B6F80	008B6F80	lea	02E5C1B0	member "m_entryPoint", offset 0x20 (constructor 00632960, called at 006CD0FF)	00632960
+008B6F90	008B6F90	lea	02E5C150	member "m_script", offset 0x28 (constructor 00632960, called at 006CD091)	00632960
+008B7040	008B7040	lea	02E5C590	member "m_entryCount", offset 0x20 (constructor 00632960, called at 006CDB3C)	00632960
+008B7050	008B7050	lea	02E5C530	member "m_quarryComponent", offset 0x18 (constructor 00632960, called at 006CDACD)	00632960
+008B7060	008B7060	lea	02E5C4D0	member "m_trigger", offset 0x10 (constructor 00632960, called at 006CDA5B)	00632960
+008B7070	008B7070	lea	02E5C470	member "m_triggerReceiverComponent", offset passed in a register (constructor 00632960, called at 006CD9E9)	00632960
+008B70A0	008B70A0	lea	02E5C870	member "m_entryHandler", offset 0x28 (constructor 00632960, called at 006CE293)	00632960
+008B70B0	008B70B0	lea	02E5C8D0	member "m_exitHandler", offset 0x40 (constructor 00632960, called at 006CE305)	00632960
+008B70C0	008B70C0	lea	02E5C810	member "m_script", offset 0x18 (constructor 00632960, called at 006CE221)	00632960
+008B72A0	008B72A0	lea	02E5ED10	member "m_codeIndex", offset 0x8 (constructor 00632960, called at 006D205B)	00632960
+008B72B0	008B72B0	lea	02E9F960	member "m_count", offset passed in a register (constructor 00632960, called at 006D252A)	00632960
+008B72C0	008B72C0	lea	02E9FB90	member "m_count", offset passed in a register (constructor 00632960, called at 006D285A)	00632960
+008B72D0	008B72D0	lea	02E9F730	member "m_count", offset passed in a register (constructor 00632960, called at 006D2B8A)	00632960
+008B72E0	008B72E0	lea	02E5E700	member "m_dataBlock", offset passed in a register (constructor 00632960, called at 006D219D)	00632960
+008B72F0	008B72F0	lea	02E5E8E0	member "m_elementSize", offset 0x10 (constructor 00632960, called at 006D1767)	00632960
+008B7300	008B7300	lea	02E5EDE0	member "m_elementSize", offset passed in a register (constructor 00632960, called at 006D1CFC)	00632960
+008B7310	008B7310	lea	02E9FA00	member "m_els", offset 0x8 (constructor 00632A10, called at 006D2637)	00632A10
+008B7320	008B7320	lea	02E9FC30	member "m_els", offset 0x8 (constructor 00632A10, called at 006D2967)	00632A10
+008B7330	008B7330	lea	02E9F7D0	member "m_els", offset 0x8 (constructor 00632A10, called at 006D2C97)	00632A10
+008B7340	008B7340	lea	02E5E940	member "m_info", offset 0x14 (constructor 00632960, called at 006D17DA)	00632960
+008B7350	008B7350	lea	02E5F430	member "m_infoPacket", offset 0x48 (constructor 00632960, called at 006D134E)	00632960
+008B7360	008B7360	lea	02E5EF60	member "m_inputCount", offset 0xC (constructor 00632960, called at 006D19FE)	00632960
+008B7370	008B7370	lea	02E5EB90	member "m_inputCount", offset 0x8 (constructor 00632960, called at 006D1E38)	00632960
+008B7380	008B7380	lea	02E5F5B0	member "m_inputElementCountSources", offset 0x60 (constructor 00632A10, called at 006D1530)	00632A10
+008B73A0	008B73A0	lea	02E5EAC0	member "m_inputs", offset 0x10 (constructor 00632A10, called at 006D0F48)	00632A10
+008B73B0	008B73B0	lea	02E5F280	member "m_inputs", offset 0x20 (constructor 00632A10, called at 006D115B)	00632A10
+008B73C0	008B73C0	lea	02E5F550	member "m_isCompiled", offset 0x58 (constructor 00632960, called at 006D14A7)	00632960
+008B73D0	008B73D0	lea	02E5E9A0	member "m_modifier", offset passed in a register (constructor 00632960, called at 006D0DDE)	00632960
+008B73E0	008B73E0	lea	02E5E820	member "m_modifier", offset 0x8 (constructor 00632960, called at 006D1681)	00632960
+008B73F0	008B73F0	lea	02E5EB30	member "m_modifier", offset passed in a register (constructor 00632960, called at 006D1DC5)	00632960
+008B7400	008B7400	lea	02E5EEA0	member "m_modifierCodeCount", offset 0x4 (constructor 00632960, called at 006D1918)	00632960
+008B7410	008B7410	lea	02E5EF00	member "m_modifierInstanceCount", offset 0x8 (constructor 00632960, called at 006D198B)	00632960
+008B7420	008B7420	lea	02E5F1B0	member "m_modifiers", offset 0x8 (constructor 00632A10, called at 006D1048)	00632A10
+008B7430	008B7430	lea	02E5EFC0	member "m_outputCount", offset 0xE (constructor 00632960, called at 006D1A71)	00632960
+008B7440	008B7440	lea	02E5EBF0	member "m_outputCount", offset 0xC (constructor 00632960, called at 006D1EAB)	00632960
+008B7450	008B7450	lea	02E5F2F0	member "m_outputs", offset 0x30 (constructor 00632A10, called at 006D11ED)	00632A10
+008B7460	008B7460	lea	02E5EA00	member "m_persistentStateOffset", offset 0x8 (constructor 00632960, called at 006D0E51)	00632960
+008B7470	008B7470	lea	02E5EC50	member "m_persistentStateOffset", offset passed in a register (constructor 00632960, called at 006D1F75)	00632960
+008B7480	008B7480	lea	02E5EE40	member "m_size", offset passed in a register (constructor 00632960, called at 006D18A5)	00632960
+008B7490	008B7490	lea	02E5E640	member "m_source", offset passed in a register (constructor 00632960, called at 006D22DE)	00632960
+008B74A0	008B74A0	lea	02E5F150	member "m_spuModifierCodeSize", offset 0x1C (constructor 00632960, called at 006D1C3C)	00632960
+008B74B0	008B74B0	lea	02E5EA60	member "m_stateBlockOffset", offset 0xC (constructor 00632960, called at 006D0EC4)	00632960
+008B74C0	008B74C0	lea	02E5ECB0	member "m_stateBlockOffset", offset 0x4 (constructor 00632960, called at 006D1FE8)	00632960
+008B74D0	008B74D0	lea	02E5E880	member "m_stream", offset 0xC (constructor 00632960, called at 006D16F4)	00632960
+008B74E0	008B74E0	lea	02E5E6A0	member "m_stream", offset 0x4 (constructor 00632960, called at 006D2351)	00632960
+008B7510	008B7510	lea	02E5F220	member "m_totalInputCount", offset 0x18 (constructor 00632960, called at 006D10D0)	00632960
+008B7520	008B7520	lea	02E5F360	member "m_totalOutputElementSize", offset passed in a register (constructor 00632960, called at 006D126A)	00632960
+008B7530	008B7530	lea	02E5F490	member "m_totalPersistentStateSize", offset 0x50 (constructor 00632960, called at 006D13C1)	00632960
+008B7540	008B7540	lea	02E5F090	member "m_totalPersistentStateSize", offset 0x14 (constructor 00632960, called at 006D1B56)	00632960
+008B7550	008B7550	lea	02E5F4F0	member "m_totalStateBlockSize", offset 0x54 (constructor 00632960, called at 006D1434)	00632960
+008B7560	008B7560	lea	02E5F0F0	member "m_totalStateBlockSize", offset 0x18 (constructor 00632960, called at 006D1BC9)	00632960
+008B7570	008B7570	lea	02E5E7C0	member "m_type", offset passed in a register (constructor 00632960, called at 006D160E)	00632960
+008B7580	008B7580	lea	02E5E760	member "m_vertexStream", offset 0x8 (constructor 00632960, called at 006D220F)	00632960
+008B76A0	008B76A0	lea	02EA0670	member "m_weights", offset passed in a register (constructor 00632A10, called at 006D8F8B)	00632A10
+008B78D0	008B78D0	lea	02EA0A20	member "m_edgeCount", offset 0x8 (constructor 00632960, called at 006DA12F)	00632960
+008B78E0	008B78E0	lea	02EA0AE0	member "m_maxBounds", offset 0x20 (constructor 00632960, called at 006DA20D)	00632960
+008B78F0	008B78F0	lea	02EA0A80	member "m_minBounds", offset 0x10 (constructor 00632960, called at 006DA19E)	00632960
+008B7900	008B7900	lea	02EA0960	member "m_planeCount", offset passed in a register (constructor 00632960, called at 006DA051)	00632960
+008B7910	008B7910	lea	02EA09C0	member "m_vertexCount", offset 0x4 (constructor 00632960, called at 006DA0C0)	00632960
+008B85A0	008B85A0	lea	02EAC340	member "m_autoClear", offset 0x50 (constructor 00632960, called at 0079554C)	00632960
+008B85B0	008B85B0	lea	02EACB70	member "m_inputMap", offset passed in a register (constructor 00632960, called at 00795627)	00632960
+008B9680	008B9680	lea	02EB7970	member "m_count", offset passed in a register (constructor 00632960, called at 0086E60A)	00632960
+008B9690	008B9690	lea	02EB7740	member "m_count", offset passed in a register (constructor 00632960, called at 0086E94A)	00632960
+008B96A0	008B96A0	lea	02EB7A10	member "m_els", offset 0x8 (constructor 00632A10, called at 0086E71A)	00632A10
+008B96B0	008B96B0	lea	02EB77E0	member "m_els", offset 0x8 (constructor 00632A10, called at 0086EA5A)	00632A10
+008B96C0	008B96C0	lea	02EB6F50	member "m_id", offset 0x18 (constructor 00632960, called at 0086DB71)	00632960
+008B96D0	008B96D0	lea	02EB75C0	member "m_inputActions", offset passed in a register (constructor 00632A10, called at 0086DA26)	00632A10
+008B96E0	008B96E0	lea	02EB7490	member "m_inputSources", offset 0x10 (constructor 00632A10, called at 0086D789)	00632A10
+008B96F0	008B96F0	lea	02EB6FB0	member "m_invert", offset 0x1C (constructor 00632960, called at 0086DBE0)	00632960
+008B9700	008B9700	lea	02EB71F0	member "m_joypadAxisSemantic", offset 0x30 (constructor 00632960, called at 0086DD19)	00632960
+008B9710	008B9710	lea	02EB72B0	member "m_modifierButtonSemantic", offset 0x30 (constructor 00632960, called at 0086E1E2)	00632960
+008B9720	008B9720	lea	02EB7370	member "m_modifierButtonSemantic", offset 0x30 (constructor 00632960, called at 0086E322)	00632960
+008B9730	008B9730	lea	02EB7310	member "m_modifierKeySemantic", offset 0x38 (constructor 00632960, called at 0086E255)	00632960
+008B9740	008B9740	lea	02EB73D0	member "m_modifierKeySemantic", offset 0x38 (constructor 00632960, called at 0086E395)	00632960
+008B9750	008B9750	lea	02EB7250	member "m_mouseButtonSemantic", offset 0x30 (constructor 00632960, called at 0086E119)	00632960
+008B9760	008B9760	lea	02EB7430	member "m_name", offset 0x8 (constructor 00632960, called at 0086D705)	00632960
+008B9770	008B9770	lea	02EB7190	member "m_negativeButtonSemantic", offset 0x38 (constructor 00632960, called at 0086DE55)	00632960
+008B9780	008B9780	lea	02EB70D0	member "m_negativeKeySemantic", offset 0x38 (constructor 00632960, called at 0086DF95)	00632960
+008B9790	008B9790	lea	02EB7130	member "m_positiveButtonSemantic", offset 0x30 (constructor 00632960, called at 0086DDE2)	00632960
+008B97A0	008B97A0	lea	02EB7070	member "m_positiveKeySemantic", offset 0x30 (constructor 00632960, called at 0086DF22)	00632960
+008B97B0	008B97B0	lea	02EB7010	member "m_scale", offset 0x20 (constructor 00632960, called at 0086DC4F)	00632960
+008B97C0	008B97C0	lea	02EB6EF0	member "m_typeSemantic", offset 0x10 (constructor 00632960, called at 0086DB02)	00632960
+008BDDC0	008BDDC0	lea	02EB9950	member "m_bounds", offset 0x18 (constructor 00632960, called at 00878862)	00632960
+008BDDD0	008BDDD0	lea	02EB98F0	member "m_cachedPosition", offset 0x8 (constructor 00632960, called at 008787F0)	00632960
+008BDDE0	008BDDE0	lea	02EB9470	member "m_center", offset passed in a register (constructor 00632960, called at 0087817E)	00632960
+008BDDF0	008BDDF0	lea	02EB9A70	member "m_center", offset passed in a register (constructor 00632960, called at 00878A0A)	00632960
+008BDE10	008BDE10	lea	02EB96B0	member "m_currentObjectCount", offset 0x30 (constructor 00632960, called at 00878430)	00632960
+008BDE20	008BDE20	lea	02EB9C50	member "m_dynamicOctree", offset 0x78 (constructor 00632960, called at 00878C3B)	00632960
+008BDE30	008BDE30	lea	02EB94D0	member "m_halfSize", offset 0x10 (constructor 00632960, called at 008781F1)	00632960
+008BDE40	008BDE40	lea	02EB9AD0	member "m_halfSize", offset 0x10 (constructor 00632960, called at 00878A79)	00632960
+008BDE50	008BDE50	lea	02EB9590	member "m_level", offset 0x24 (constructor 00632960, called at 008782D7)	00632960
+008BDE60	008BDE60	lea	02EB95F0	member "m_maxLevel", offset 0x28 (constructor 00632960, called at 0087834A)	00632960
+008BDE70	008BDE70	lea	02EB9B90	member "m_maxLevel", offset 0x24 (constructor 00632960, called at 00878B57)	00632960
+008BDE80	008BDE80	lea	02EB9530	member "m_maxRadius", offset 0x20 (constructor 00632960, called at 00878264)	00632960
+008BDE90	008BDE90	lea	02EB9A10	member "m_next", offset 0x20 (constructor 00632960, called at 00878946)	00632960
+008BDEA0	008BDEA0	lea	02EB9650	member "m_objectsPerLevel", offset 0x2C (constructor 00632960, called at 008783BD)	00632960
+008BDEB0	008BDEB0	lea	02EB9B30	member "m_objectsPerLevel", offset 0x20 (constructor 00632960, called at 00878AE8)	00632960
+008BDEC0	008BDEC0	lea	02EB9890	member "m_octree", offset passed in a register (constructor 00632960, called at 0087877D)	00632960
+008BDED0	008BDED0	lea	02EB9BF0	member "m_octree", offset 0x28 (constructor 00632960, called at 00878BC9)	00632960
+008BDEE0	008BDEE0	lea	02EB9770	member "m_octreeChildren", offset 0x40 (constructor 00632960, called at 00878515)	00632960
+008BDEF0	008BDEF0	lea	02EB97D0	member "m_octreeData", offset 0x38 (constructor 00632960, called at 00878587)	00632960
+008BDF00	008BDF00	lea	02EB9830	member "m_parent", offset 0x48 (constructor 00632960, called at 008785F9)	00632960
+008BDF10	008BDF10	lea	02EB99B0	member "m_prev", offset 0x28 (constructor 00632960, called at 008788D4)	00632960
+008BDF20	008BDF20	lea	02EB9710	member "m_totalObjectCount", offset 0x34 (constructor 00632960, called at 008784A3)	00632960
+008C1530	008C1530	lea	02EBA140	member "m_count", offset passed in a register (constructor 00632960, called at 0087A05A)	00632960
+008C1540	008C1540	lea	02EBA1E0	member "m_els", offset 0x8 (constructor 00632A10, called at 0087A16A)	00632A10
+008C1550	008C1550	lea	02EB9F60	member "m_inputMap", offset 0x10 (constructor 00632960, called at 00879DF1)	00632960
+008C1560	008C1560	lea	02EB9FC0	member "m_inputMaps", offset passed in a register (constructor 00632A10, called at 00879E71)	00632A10

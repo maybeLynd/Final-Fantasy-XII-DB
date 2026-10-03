@@ -1,0 +1,110 @@
+{
+ "page": "13-Rewards-Progression-Economy/what-happens-when-a-character-levels-up.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01MKdp7GmH4C8tX8Fpk9tTzQ",
+ "report": "what-happens-when-a-character-levels-up.json",
+ "rows": [
+  {
+   "fn": "00290610",
+   "text": "loads the pointer held in qword `0209BE80` and clears bit 13 (`AND 0xFFFFDFFF`) of the dword at its `+0x10F68`, then returns",
+   "anchors": [
+    [
+     "00290617",
+     "and"
+    ]
+   ]
+  },
+  {
+   "fn": "003A72A0",
+   "text": "zeroes the first 0x80 bytes (16 qwords, `rep stosq` with `ecx` = 0x10) of the block pointed to by qword `02EBEFB0`, then stores 0 into the dwords at that block's `+0x80` and `+0x84`; `rdi` is saved and restored around the fill",
+   "anchors": [
+    [
+     "003A72B0",
+     "mov"
+    ],
+    [
+     "003A72B5",
+     "rep stosq"
+    ],
+    [
+     "003A72C4",
+     "mov"
+    ],
+    [
+     "003A72D1",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "003A8000",
+   "text": "stores 0 into the qwords at `+0x0` and `+0x8` of the block pointed to by qword `02EBEF98`",
+   "anchors": [
+    [
+     "003A8009",
+     "mov"
+    ],
+    [
+     "003A8013",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "003A8900",
+   "text": "through the pointer held in qword `02EBEF88` (reloaded before each store), stores 0 into the qwords at `+0x8` and `+0x10` and the dword at `+0x0`, then loops an offset from 0x18 by 8 while it is below 0x118, storing dword `0xFFFFFFFF` at each of the 32 offsets `+0x18` through `+0x110`",
+   "anchors": [
+    [
+     "003A8909",
+     "mov"
+    ],
+    [
+     "003A8914",
+     "mov"
+    ],
+    [
+     "003A891F",
+     "mov"
+    ],
+    [
+     "003A8937",
+     "mov"
+    ],
+    [
+     "003A8948",
+     "jl"
+    ]
+   ]
+  },
+  {
+   "fn": "0046F330",
+   "text": "stores dword `0xC0000000` at `rcx+0x0`, then 0xC0 (192) times calls `0020E620(0)` and stores each returned `eax` into consecutive dwords starting at `rcx+0x20` (stride 4, through `+0x31C`); `rbx` and `rdi` are saved and restored",
+   "anchors": [
+    [
+     "0046F33A",
+     "mov"
+    ],
+    [
+     "0046F344",
+     "mov"
+    ],
+    [
+     "0046F352",
+     "call"
+    ],
+    [
+     "0046F357",
+     "mov"
+    ],
+    [
+     "0046F361",
+     "jne"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

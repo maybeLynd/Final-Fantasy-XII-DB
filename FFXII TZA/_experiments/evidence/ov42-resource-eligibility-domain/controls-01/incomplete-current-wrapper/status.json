@@ -1,0 +1,14 @@
+{
+  "label": "incomplete-current-wrapper",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-resource-eligibility-domain\\controls-01\\incomplete-current-wrapper\\qualify-singleton.py",
+    "fresh-result.json"
+  ],
+  "exit": 1,
+  "expected_error": "required complete current capture wrapper",
+  "expected_error_seen": true,
+  "result_absent": true,
+  "driver_sha256": "0051dcc87091772d3888375c694b3d53dd05277fb9acad90732d977fb5fd6422"
+}

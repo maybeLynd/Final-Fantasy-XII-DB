@@ -1,0 +1,39 @@
+{
+ "page": "06-Movement-And-Navigation/the-unit-shape-distance-primitives.md",
+ "date": "2026-10-02",
+ "session": "local-h5-opus",
+ "report": "the-unit-shape-distance-primitives.json",
+ "rows": [
+  {
+   "fn": "0022CC50",
+   "text": "scans the word `+0x40` ids listed from word `+0x3E` in the index array at qword `+0x28` of `rcx`, skipping ids from 0x5000 up; an id from 0x4000 is a 0x90-byte record of qword `+0x18`, a lower id a 32-byte record of qword `+0x10`, and either record's flags dword (`+4` / `+0xC`) is overridden per group (bits 13-17 plus 0x20) by the mask / value pairs at `0209A2D0` + 0x110; type 1 is skipped when the top bit is set or bit `0x40000000` is set with word `+0x46` of `rdx` equal to 4, and a low record of type 4 is kept only when that word is 4 (for low records every other non-zero type is skipped); a distance from `00380FA0` (high ids) or `0022E6D0` (low ids, whose hit point at the query origin plus the direction times distance / float `+0x34` must also pass `0022CF50(rcx, id, &point)`) that is non-negative and below float `+0x30` of `rdx` is stored there with its 16-byte point at qword `+0x20` and the id at word `+0x42`; the scan stops at the first hit when dword `+0x38` is non-zero",
+   "anchors": [
+    [
+     "0022CCD1",
+     "cmp"
+    ],
+    [
+     "0022CCDA",
+     "cmp"
+    ],
+    [
+     "0022CD59",
+     "call"
+    ],
+    [
+     "0022CE60",
+     "call"
+    ],
+    [
+     "0022CECE",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing"
+}

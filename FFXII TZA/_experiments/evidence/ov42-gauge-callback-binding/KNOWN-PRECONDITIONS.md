@@ -1,0 +1,7 @@
+Consume existing callback ABI rather than rerunning it. 28F590 is an18B manager accessor, not the function pointer merely because a prose sentence pairs calls. A named call in the registration path is not automatically the installed callback. Read actual fifth-argument flow and eventual+38 store before naming a handler. No natural channel initialization inferred from BSS-zero fixture.
+
+Current capture schema is `ranges[].instructions[]` with `pc`, `args` and reviewed `memory` roles. Read it before querying; do not guess `functions`, `address`, `va` or `op_str`. Those guesses failed harmless read-only inspection and prove nothing about captured code.
+
+Canonical handler descriptions already identify29B7D0/29B810 calling2973E0. Prepared handler metadata/capture is not an executed experiment; do not run that capture merely to duplicate these known effects. The unresolved opposite-edge wording required the complete2973E0 body only. Its four direct calls and lack of an indirect call establish the local boundary, not transitive callback/global-write absence.
+
+Existing297C10 match skips both initializers and only updates contexts/id. A constructor's prescribed callback does not prove a reused record's current+38 value. Preserve ABI/private-stack/non-overlap premises and actual initialized-state/lifetime gaps. EXP243 zero3F8980 hits are not a positive control for the initialized callback leg.

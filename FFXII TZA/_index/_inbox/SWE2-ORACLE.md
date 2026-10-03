@@ -1,9 +1,9 @@
-<!-- TEAM-CURRENT:begin agent=SWE2-ORACLE board_rev=47203 epoch=3 queue_sha=315663dca6300875 -->
-> generated 2026-10-02T15:11:57+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=SWE2-ORACLE board_rev=49308 epoch=4 queue_sha=6b4294be54307473 -->
+> generated 2026-10-03T05:07:13+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: SWE2ORACLE-PUB-SD7-RESUME-1002
-> READY addressed to you: P2 OPUS-REQ-ORACLE-EXECUTION-COVERAGE-INSTRUMENT-0929-R, P2 SWE2AUDITSPEC-REQ-ORACLE-0930-WAVE-NARROWINGS, P2 SWE2AUDITSPEC-REQ-ORACLE-RC11-WINDOWS-0930
-> READY pool: 0 | BLOCKED: 0
+> ACTIVE: SWE2-ORACLE-PUB-RESUME-1003C
+> READY addressed to you: none
+> READY pool: 1 | BLOCKED: 0
 <!-- TEAM-CURRENT:end -->
 
 > ## TEAM ROLLBACK RECOVERED (SWE2-FRONTIER, 2026-09-26 02:30Z)
@@ -65,7 +65,59 @@ idle, and it is not a reason to start something that depends on its outcome.
 Updated at every checkpoint; a restarted session rebuilds from this block before touching the board.
 Required by the continuity rule in the root `CLAUDE.md` ("What a plain `Continue` means").
 
-### Latest: 2026-09-30, SD-107 / SD-7 / SD-62 (SWE2-ORACLE)
+### Latest: 04:33Z, Claude stand-in for Devin (SWE2-ORACLE)
+
+A Claude session (Opus) operated SWE2-ORACLE from 02:10Z to 04:33Z on 2026-10-03, while the Devin session
+`tulip-krypton` was rate-limited (breaker until about 07:39Z). **Devin: do not redo any of this. Rebuild from here.**
+
+- **Current package/claim:** none
+- **DONE (05:01Z): first-divergence design note** (user request relayed by FABLE; addendum
+  `Database/Tools/work/FABLE/FFXII_PROJECT_IMPROVEMENT_ADDENDUM_2026-10-03.md` section 5, P2), published
+  `67869ee22`: `_index/candidates/swe2oracle-design-first-divergence-1003/` (README, `first_divergence_probe.py`
+  `FAILS 0` on mt-twist-simd-exec, `first-divergence.tsv`). FABLE was sent the sha. Design only: implementing it (a
+  `FIRST-DIVERGENCE:` line per pilot plus a generated `_index/FIRST-DIVERGENCE.tsv` from `parity_status.py --run`)
+  is P2 and waits behind DB completion. Do not start it unprompted.
+- **DONE: `OPUS-REQ-ORACLE-EXECUTION-COVERAGE-INSTRUMENT-0929-R`** (finish rev
+  `49023`). Its review `ORACLE-REQ-AUDITSPEC-EXECCOV-REVIEW-1003` was filed to SWE2-AUDIT-SPEC (rev `49022`,
+  `reviews` field set, incorporation owner OPUS). Answer that review when it lands.
+- **Also DONE: `ASTRA-REQ-ORACLE-RENDER-LINK-ADDENDUM-1003`** (claimed rev `49024`, finish rev `49087`), with
+  the record published at `76bf92900`: `_index/candidates/oracle-render-link-addendum-receipts-1003/`. The existing
+  `seal.py` policy applies unchanged. ASTRA's prepared and control runs are not yet sealable for credit, and need
+  (1) the drivers `prepare.py` and `control.py` committed side by side at a tracked path (`Database/Tools/.gitignore`
+  ignores `work/`), (2) a `cases` list in the prepared result, and (3) `id` instead of `case` in the controls result.
+  A temp-store trial plus a fix simulation shows only the driver-commit refusals remain after (2) and (3). If ASTRA
+  files a follow-up naming its driver commit, seal both receipts into `_experiments/evidence/receipts/store/` with an
+  applier shaped like `exp201_receipts.py`.
+- **Published `b742fa6c989e7da7327145b4b81e8649d4b06870`:** the execution-coverage instrument and its record,
+  `_index/candidates/oracle-execution-coverage-1002/` (README, `runs/<suite>.json`+`.tsv` for all 124 sealed
+  Unicorn suites, aggregate `execution-coverage.tsv`, `SEAL.json`, `check_execution_coverage.py` C1-C6 `FAILS 0`),
+  plus `gfz-scripts/execution_coverage.py` and `gfz-scripts/execcov/` (sitecustomize meta-path finder and unicorn
+  shim). 124/124 receipts reproduced byte-identically. 1,709 entries touched, **1,307 executed**, 402 NOT executed.
+- **What the stand-in changed in your 10-02 work (it was uncommitted when you stopped):** the v1 shim had three
+  defects that would have published false executed claims. (1) No stub or redirect detection: entry-patched and
+  hook-scripted bodies were recorded `returned`, and each redirect left the shadow stack one frame deep. 99 v1
+  "executed" entries are NOT executed. (2) `_load_pe` read SizeOfOptionalHeader at `opt+0x14` (pe+0x2C), so the
+  "image" spanned 0x120000..0x18C21471B and `blocks_outside_image` was always 0. (3) `bnd ret` was not recognised
+  as a ret. v2 adds the `stubbed` / `scripted` (NOT executed) classes, `returned+faulted`, a `mutated` flag, the
+  seal, sibling-suite copies and FileExistsError cleanup in the sandbox, a repo-root retry on any failure, and an
+  absolute `--out`. Your v1 shim, driver and outputs are kept in
+  `Database/Tools/work/SWE2-ORACLE/standin/` (`shim_v1_init.py`, `driver_v1.py`, `cov_v1_out/`).
+- **Run it with system Python 3.14** (unicorn 2.1.4). The analysis venv's unicorn 2.1.0 rejects
+  mt-twist-simd-exec's SIMD instructions.
+- **Finding to act on (own record):** sound-request-fork-exec's check.py docstring lists `0016D6D0` / `0016DA60` /
+  `00199DB0` as "Real bodies", but its code QSTUBs them (`TD6D` / `TDA6` / `TM99` -> `_qstub`). Repair the docstring
+  wording. It is recorded in the coverage README.
+- **Leftovers:** `_experiments/_cov_runs/` is sandbox scratch, ignored by its own `.gitignore`. The `NUL` files in
+  `evidence/commit-callees-exec/`, `evidence/mt-twist-simd-exec/` and two other evidence dirs date from your 10-02
+  debugging (17:33 local). They are untracked and were left alone.
+- **Next action:** answer `ORACLE-REQ-AUDITSPEC-EXECCOV-REVIEW-1003` when it lands, and seal ASTRA's render link
+  addendum receipts if ASTRA asks after committing its drivers. Then the docstring repair above,
+  then the surrogate residue and SD-7 residue reads (`00210320`, the PPFX `+0x38` holders) if OPUS routes them back.
+  Then continue the queue in `team.py current` order (empty at 04:33Z).
+- **Latest coherent commit:** `67869ee22` (first-divergence design note), after `76bf92900` (render link addendum
+  record) and `b742fa6c9` (coverage record), followed by this inbox publish.
+
+### Earlier: 2026-09-30, SD-107 / SD-7 / SD-62 (SWE2-ORACLE)
 
 - **Package:** `SWE2-ORACLE-SD107-7-62-0930` (OPUS brief `Tools/work/OPUS/oracle_brief_sd107_7_62.md`). Three static records,
   each checker ends `FAILS 0`, published at `dedfaf0d7`:

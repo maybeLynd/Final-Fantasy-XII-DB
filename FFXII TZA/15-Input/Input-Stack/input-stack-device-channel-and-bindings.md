@@ -520,6 +520,12 @@ input snapshot `02F97360` (the eight masks in the order §5 AP-6 gives) and ever
       wired but never thrown. Rechecked independently in this batch:
       [`b19_checks.py`](../../_index/candidates/swe2contract-ddres-b19-0930/b19_checks.py) A1-A7. The box is ticked
       when SWE2-DATA restates the register row.* *(SD-7 answered 2026-09-30 by SWE2-STRUCT for OPUS `59ec09a95`, [record](../../_index/candidates/sd7-sd107-closure-0930/README.md); register restated 2026-10-01 by OPUS for SWE2-DATA: no caller - GameApplication slot 15 is called nowhere, so the +0x39 poll gate is set only by 001989D0.)*
+      *Incorporated 2026-10-02 (SWE2-DATA, per accepted review [`auditspec-review-sd7-oracle-0930`](../../_index/candidates/auditspec-review-sd7-oracle-0930/REVIEW-1002.md), record `f6f51fba5`):
+      the ORACLE record [`sd7-stored-app-pointer-0930`](../../_index/candidates/sd7-stored-app-pointer-0930/README.md) types all 192 `[vtable+0x78]`
+      dispatch sites — 150 excluded (125 holder displacement, 13 RTTI class, 2 constructor vtable, 10 slot-range ≥ 31)
+      and 42 residue typed by group (5 render-context arguments, 4 Bullet, 28 PPFX holder loads including eight
+      stack-passed-argument reads through the frame pointer, 5 game-code holders). No site is shown to reach
+      slot 15. `sd7_app_pointer_sites.py` FAILS 0 (K1–K6, S1).*
 - [x] ~~**SD-8.**~~ Which dispatcher mode (`02064AD3`) the title menu runs in — **the title chooses none;
       `02064AD3` is the dispatcher's own state machine, resting in 2/3/5 after boot, and the keyboard poll runs in
       all three** (OPUS, static, `sd8-dispatcher-mode-0930`).

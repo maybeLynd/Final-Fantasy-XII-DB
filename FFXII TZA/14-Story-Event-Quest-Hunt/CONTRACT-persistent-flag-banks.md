@@ -652,3 +652,11 @@ each value — **a symmetry, and its absence would have been the bug.**
 | `00377970` | `qword[02ADD0C8]` non-null walk (`00377976`/`00377982`) | [`00377976`](../_index/ADDRESS-INDEX.md) |
 
 Shared callees outside the census: none.
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../_index/candidates/fable-home-contract-persistent-flag-banks-1002/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `002A3210` | 51 B | `002E16B0` + 0x2D7 | replaces bit 18 of dword `rcx+0x180` with bit 0 of `r9d` and sets its bit 17 (`bts`), stores `dl` at byte `rcx+0x174` and `r8b` at byte `rcx+0x175`, and writes the dword back | Interior anchor `002A321B`; Interior anchor `002A3222`; Interior anchor `002A322F`; Interior anchor `002A3234`; Interior anchor `002A323B` |

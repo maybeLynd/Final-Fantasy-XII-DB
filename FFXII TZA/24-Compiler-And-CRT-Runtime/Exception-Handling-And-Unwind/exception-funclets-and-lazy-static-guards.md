@@ -1022,7 +1022,7 @@ The root's other callees — `007A3770` (the game `main` equivalent), the `00809
 
 ## SWE2-EC7-38 update (2026-09-19) - `00194CD0`
 
-`00194CD0` (455 B) is a call-free exception funclet - `word[rdx]` length walk (`inc r14` loop), `008C2688`/`008C2710`/`008C2690` rdata, SEH-style frame stores. Interior anchor `00194D10` (the `inc r14` step).
+`00194CD0` (455 B) is ~~a call-free exception funclet~~ the wide-stream inserter `operator<<(std::wostream &, const wchar_t *)`, an ordinary function with six direct calls from a single caller - `word[rdx]` length walk (`inc r14` loop), ~~`008C2688`/`008C2710`/`008C2690` rdata~~ calls through the `MSVCP140` import slots `008C2688` (`sputc`), `008C2690` (`sputn`) and `008C2710` (`flush`), ~~SEH-style frame stores~~ an ordinary EH frame *(corrected 2026-10-02, OPUS: nine `call` instructions in the body, `00194CD0+0x9D` the `flush` call; the BK-6 note's `ostream` inserter reading is the right one)*. Interior anchor `00194D10` (the `inc r14` step).
 
 ## SWE2-EC7-39 update (2026-09-19) - `00194B00`
 
@@ -1038,8 +1038,8 @@ The root's other callees — `007A3770` (the game `main` equivalent), the `00809
 
 ## SWE2-EC7-79 update (2026-09-20) - `0061ECF0` constant-one measured
 
-`0061ECF0` (3 B) is the `return 1` stub the lazy-guard callers use
-as their success sentinel - no body beyond `mov al, 1; ret`.
+`0061ECF0` (3 B) is the `return 1` stub ~~the lazy-guard callers use~~
+~~as their success sentinel~~ that `__scrt_initialize_crt`, `__scrt_uninitialize_crt`, `00808C90` and `00607410` call - no body beyond `mov al, 1; ret` *(corrected 2026-10-02, OPUS: its seven call sites are in `0080893C` (3), `00808B14` (2), `00808C90` and `00607410`; none is a lazy-guard holder, a caller of `008092FC`)*.
 Interior anchor `0061ECF2` (the `ret`).
 
 ## Cross-subsystem neighbours — FINAL-AUDIT pass 22 (OPUS, 2026-09-29)

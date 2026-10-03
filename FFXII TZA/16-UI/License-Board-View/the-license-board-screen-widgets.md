@@ -162,9 +162,9 @@ Grouped by what the bodies do — every entry read, citation is the first distin
 | `0055AB20`/`0055AE80` | draw-batch setup — `002D9380`/`002D9B00`/`002D9C40` |
 | `0055BAC0` | per-cell draw — `00282DF0`, `002D8910`, `002DB080`, `002DD7E0`, `002F9860`, `00365B30` |
 | `0055B6D0` | draw flush — `002D8C80` |
-| `0055B2B0`/`0055E090`/`0055E230`/`0055DEA0`/`0055E3F0` | leaf grid iterators — loop over `+0x55A` rows/`+0x554` cols, no calls |
+| `0055B2B0`/`0055E090`/`0055E230`/`0055DEA0`/`0055E3F0` | leaf grid iterators — loop over `+0x55A` rows/~~`+0x554`~~ `+0x559` cols *(corrected 2026-10-02, OPUS: `0055B2B0+0x1A` `movsx edx, byte ptr [rcx+0x559]`)*, no calls |
 | `0055B8C0`/`0055B960` | geometry — board-rect math against `+0x550`/`+0x554` |
-| `0055DD70` | sweep wrapper — tail `0055BFF0` |
+| `0055DD70` | sweep ~~wrapper~~ driver — ~~tail `0055BFF0`~~ sets `+0x570` bit 0, calls `0055BFF0` (`0055DD70+0x19`) and walks the result before its own `ret` (`0055DD70+0x12C`) *(corrected 2026-10-02, OPUS)* |
 | `0055EF10` | wrapper — `0055F010` |
 | `0055FFC0`/`005611A0` | job/board lookup — read a global table, `00282DF0` + `00323670` |
 | `00560F20`/`00560FA0` | twin 119-B table readers on the same global — `00560F20`/`00560FA0` heads |

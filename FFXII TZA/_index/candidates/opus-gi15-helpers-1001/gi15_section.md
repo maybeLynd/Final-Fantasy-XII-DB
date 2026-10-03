@@ -24,7 +24,7 @@ non-zero) or 1. `0x10` sets its high nibble to `0x20` or `0x10`. The `0x80` arm 
 - other values: nothing.
 
 The ramps are stepped by the tick `003AF460` / `003AFB30`
-([CONTRACT-authored-command-ramp-channels.md](../CONTRACT-authored-command-ramp-channels.md)). The allocator `003AF340`
+([CONTRACT-authored-command-ramp-channels.md](../../../17-Presentation-Rendering/CONTRACT-authored-command-ramp-channels.md)). The allocator `003AF340`
 sets `+0x1F = 0x11` and the three first values to 1.0. Across the pool `02B3F550`-`02B40370`, no function other than
 the tick and the two resets reads these fields. **In static code the pool is write-only**, as `02B3F554` already is,
 so what the values do on screen is not established here.
@@ -64,11 +64,11 @@ the shipped kind-2 `@FTR` data is not established.
 **`word[+0x2F2]`, `00373060` and `005048A0`.** `+0x2F2` is a 0/1 flag, set to 1 only by the no-key path of the two
 binders. That path is attach code `0x7FFF`, the whole-skeleton bind. The bind still runs then, with bone -1.
 `00373060` and `005048A0` are read whole on
-[ftr-node-table.md](../Model-And-Motion-Formats/ftr-node-table.md) and
-[fdm-and-for-entries.md](../Model-And-Motion-Formats/fdm-and-for-entries.md).
+[ftr-node-table.md](../../../17-Presentation-Rendering/Model-And-Motion-Formats/ftr-node-table.md) and
+[fdm-and-for-entries.md](../../../17-Presentation-Rendering/Model-And-Motion-Formats/fdm-and-for-entries.md).
 
 **`0x2A`, the pool, its gate and its table.** The pool is the camera-shake source pool of
-[the-element-types-40-42-a0-ab-d0-d1.md](../Effect-File-Formats/the-element-types-40-42-a0-ab-d0-d1.md) (`0x42`). So the
+[the-element-types-40-42-a0-ab-d0-d1.md](../../../17-Presentation-Rendering/Effect-File-Formats/the-element-types-40-42-a0-ab-d0-d1.md) (`0x42`). So the
 command's three floats are its intensity, time rate and radius scale.
 - `003D8300` checks the handle, decrements the live count `02B4D7A0`, clears `+4` and unlinks the slot.
 - The gate `02B4D7A2` refuses kind-2 requests in `003D7FF0`. It is set by `003D8D60` (thunk `002EA880`) from the
@@ -79,14 +79,14 @@ command's three floats are its intensity, time rate and radius scale.
   shake group.
 
 **`0x16`, the sub-resource variant.** The variant is an `@FCT` palette binding
-([fte-fct-texture-colour-tables.md](../Model-And-Motion-Formats/fte-fct-texture-colour-tables.md), `00504D30`).
+([fte-fct-texture-colour-tables.md](../../../17-Presentation-Rendering/Model-And-Motion-Formats/fte-fct-texture-colour-tables.md), `00504D30`).
 `003E7210`'s table is the FCP block's section 5 (the word at `[record + 0x400] + 0x0A`). Each listed record takes the
 palette resource id at its `+4`. The five authored indices are palette records of the 7 models whose FCP carries
 section 5. Which palette each one is, is content.
 
 **`0x09`, the tail.** `0041B650`, `00409190` and `003AB7F0` are read on
-[fef-and-motion-entries.md](../Model-And-Motion-Formats/fef-and-motion-entries.md) and
-[resource-section-addressing.md](../../02-Resource-And-Asset-Pipeline/resource-section-addressing.md). Past the loop,
+[fef-and-motion-entries.md](../../../17-Presentation-Rendering/Model-And-Motion-Formats/fef-and-motion-entries.md) and
+[resource-section-addressing.md](../../../02-Resource-And-Asset-Pipeline/resource-section-addressing.md). Past the loop,
 `0041BEE0` sets the binding record:
 - `+0x14 = 0`;
 - `+0x16` = the `@FMN` entry's duration `word[+0x50]`;

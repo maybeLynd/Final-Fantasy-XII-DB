@@ -1,0 +1,108 @@
+{
+ "page": "19-Save-Load-Settings/how-a-manual-save-is-committed.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01RYbqU7tsSU3HnpGNjV9Ghv",
+ "report": "home-how-a-manual-save-is-committed.json",
+ "rows": [
+  {
+   "fn": "003BB6A0",
+   "entered_from": "`00582040` + 0xFF",
+   "text": "returns 0 when `ecx` is above `0xC7` (unsigned); otherwise stores qword `[rdx]` in the qword table `02B407C0` at index `ecx`, copies the zero-terminated string at `r8` (terminator included) to `02B40E28`, stores `ecx` in dword `02B40558`, 0 in dwords `02B40EC0`, `02B40E18` and `02B40FE4`, 8 in dword `02B40E1C` and the qword 1 at `02B40E10`, makes the call at `003BB6A0` + 0x6F and returns 1",
+   "anchors": [
+    [
+     "003BB6A4",
+     "cmp"
+    ],
+    [
+     "003BB6C3",
+     "mov"
+    ],
+    [
+     "003BB6D4",
+     "mov"
+    ],
+    [
+     "003BB6FA",
+     "mov"
+    ],
+    [
+     "003BB70F",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "003BB2F0",
+   "why": [
+    "already cited by 19-Save-Load-Settings\\how-a-manual-save-is-committed.md"
+   ]
+  },
+  {
+   "fn": "003BB380",
+   "reason": "the body's own callers outside this page's subsystems are not mentioned on the host page (neighbour gate, H1A second pre-check 2026-10-03). Re-home later.",
+   "row": {
+    "fn": "003BB380",
+    "entered_from": "`00582040` + 0x1C2",
+    "text": "stores 3 in dword `02B40E1C`, 0 in dwords `02B40EC0` and `02B40FE4`, the qword 0 at `02B40E14` and 0 in dword `02B40E10`, and returns 0",
+    "anchors": [
+     [
+      "003BB382",
+      "mov"
+     ],
+     [
+      "003BB38C",
+      "mov"
+     ],
+     [
+      "003BB392",
+      "mov"
+     ],
+     [
+      "003BB398",
+      "mov"
+     ],
+     [
+      "003BB39F",
+      "mov"
+     ]
+    ]
+   }
+  },
+  {
+   "fn": "003BB3B0",
+   "reason": "the body's own callers outside this page's subsystems are not mentioned on the host page (neighbour gate, H1A second pre-check 2026-10-03). Re-home later.",
+   "row": {
+    "fn": "003BB3B0",
+    "entered_from": "`00582040` + 0xC9",
+    "text": "stores 4 in dword `02B40E1C`, 0 in dwords `02B40EC0` and `02B40FE4`, the qword 0 at `02B40E14` and 0 in dword `02B40E10`, and returns 0",
+    "anchors": [
+     [
+      "003BB3B2",
+      "mov"
+     ],
+     [
+      "003BB3BC",
+      "mov"
+     ],
+     [
+      "003BB3C2",
+      "mov"
+     ],
+     [
+      "003BB3C8",
+      "mov"
+     ],
+     [
+      "003BB3CF",
+      "mov"
+     ]
+    ]
+   }
+  }
+ ],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

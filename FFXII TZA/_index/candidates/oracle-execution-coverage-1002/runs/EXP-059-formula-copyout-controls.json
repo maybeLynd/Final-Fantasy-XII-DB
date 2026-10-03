@@ -1,0 +1,19 @@
+{
+ "blocks_in_image": 52,
+ "blocks_outside_image": 0,
+ "catalogue": "e2a67b07700c2ec3fbfae3213965de35",
+ "classes": {
+  "body_only": 1
+ },
+ "elapsed_s": 0.4,
+ "emu_starts": 14,
+ "entries_executed": 0,
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "instrument": "execcov-shim v2",
+ "patched_blocks": 1,
+ "rc": 0,
+ "receipt_md5": "94eb556148dfc0f8d34ff55fa26c5b02",
+ "run": "EXP-059-formula-copyout-controls",
+ "status": "ok",
+ "unique_blocks": 52
+}

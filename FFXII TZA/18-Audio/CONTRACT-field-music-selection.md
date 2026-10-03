@@ -530,3 +530,11 @@ These are the lookups' other clients.
 - **Status_Periodic_Terminal - CLIENT (5 edges).** `0031B860` is also called by bodies filed to status/periodic terminal: `002F9400`, `0030E360`, `0030F690` (+2 more) - shared machinery across the layer boundary, no shared ownership.
 - **StoryEvent - CLIENT (1 edge).** `00265270` is also called by bodies filed to story event: `001ED240` - shared machinery across the layer boundary, no shared ownership.
 - **Story_Event_Quest_Hunt - CLIENT (1 edge).** `00265270` is also called by bodies filed to story/event/quest: `00377970` - shared machinery across the layer boundary, no shared ownership.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-contract-field-music-selection-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00343710` | 48 B | calls `0026DEF0` with the result of `00267E10(r9)`; when that result is negative (signed) it tail-jumps to `00361200(-1, 1, 1)`, otherwise it returns that result | `00343717`, `0034371E`, `00343725`, `0034372C`, `00343736` |

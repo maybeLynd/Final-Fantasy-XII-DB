@@ -1,0 +1,15 @@
+{
+  "complete": true,
+  "driver_sha256": "3ee7b1d08a9857dba896f77a3ba3bd238e850d6a4fb5bfe556cfcb78b37008dd",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "requested": [
+    "0x331990",
+    "0x331991"
+  ],
+  "requested_sha256": "c3641f8544d7c02f3580b07c0f9887f0c6a27ff5ab1d4a3e29caf197cfc299ae",
+  "maps_examined": 1318,
+  "matches": [],
+  "malformed_candidates": [],
+  "decision": "NO_COVERING_MAP_IN_SEARCHED_CORPUS",
+  "limits": "Bounded physical byte coverage in named source-map corpus, not global absence, provenance acceptance, source semantics or live initialization. Retain/check original lineage and receipts before semantic use."
+}

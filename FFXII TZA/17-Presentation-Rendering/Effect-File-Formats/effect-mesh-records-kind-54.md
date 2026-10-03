@@ -1,7 +1,7 @@
 ---
 system: kind-0x54 effect mesh records
 category: 17-Presentation-Rendering
-status: PARTIAL — record layout and census complete; the consumers read 2026-09-30 renormalise the +0x24 vectors (normals); SD-140 answered 2026-10-01 (SWE2-ORACLE, execution-proven: +0x28 is a per-corner RGBA8 vertex colour on the GS 0x80=1.0 scale, +0x2C a per-corner float texture coordinate, the 00432300 kernel the PS2 colour modulate); the six pass operators and the clipper 00521450 read and execution-proven 2026-10-02 (FABLE, kind54-pass-operators-fable-1002, k54_ops.py 34 checks FAILS 0); open residue: what 003962F0/00396A30/00396560/00395CF0/00395780 write into the per-normal table (status line current 2026-10-02, SWE2-DATA)
+status: PARTIAL — record layout and census complete; the consumers read 2026-09-30 renormalise the +0x24 vectors (normals); SD-140 answered 2026-10-01 (SWE2-ORACLE, execution-proven: +0x28 is a per-corner RGBA8 vertex colour on the GS 0x80=1.0 scale, +0x2C a per-corner float texture coordinate, the 00432300 kernel the PS2 colour modulate); the six pass operators and the clipper 00521450 read and execution-proven 2026-10-02 (FABLE, kind54-pass-operators-fable-1002, k54_ops.py 34 checks FAILS 0); the per-normal table the five lighting routines write answered 2026-10-02 (OPUS, opus-k54-lighting-1002, k54_light.py 22 checks FAILS 0: sphere-map or planar-projection UVs by pass byte +0x1B0); the residue answered 2026-10-03 (FABLE, fable-k54-residue-1003, k54_residue.py 100 checks FAILS 0, census_k54_modes.py FAILS 0: all five draw paths share one pass switch and read the planar scalar of their own pass, k = p; the pass bytes are authored slot bytes, and shipped data authors modes 1-4 in 348 of 9,846 active pass slots, none above 4); open: what the matrices hold at draw time, the non-constant planar scalars, and what +0x1F1 bit 3 changes in the drawing (status line current 2026-10-03, SWE2-DATA, applying FABLE's fable-k54-residue-1003)
 owner_layer: PrimaryOwner:Presentation
 evidence_tier: 1
 verified_against:
@@ -31,7 +31,7 @@ dispatcher `003A9EF0` hands it the record payload. Evidence classes:
 distribution below. ~~Semantic labels (normals / colours / UVs) remain
 distributional hypotheses — no consumer body was read for them here.~~ *(Corrected 2026-09-30, SWE2-DATA: the two
 vertex-prep consumers are now read (§8). They renormalise blended `+0x24` vectors to unit length, so the normals label
-is consumer-backed; the colour and UV labels for `+0x28` / `+0x2C` stay distributional (`SD-140`).)*
+is consumer-backed; the colour and UV labels for `+0x28` / `+0x2C` ~~stay distributional~~ (`SD-140`).)* *(answered: see §8 - SD-140 answered 2026-09-30; 2026-10-02, OPUS)*
 
 | | |
 |---|---|
@@ -117,8 +117,8 @@ answered vacuously: no authored record approaches it.
 | array | element | entries | distribution |
 |---|---|---:|---|
 | `+0x24` vectors | 16 B × c16 | 52,808 | **100 % unit-length** (\|v\|² = 1 ± 1e-3); w field `0x00000000` in all — direction vectors, not points. Normals hypothesis. |
-| `+0x28` 4-byte | 4 B × c18 | 147,220 | 1,358 distinct u32s; `0x80808080` alone is 47 %; byte-3 dominated by `0x80`/`0x81`/`0x00`/`0x40` — consistent with packed RGBA where `0x80` is the GS full-opacity alpha. Colour hypothesis. |
-| `+0x2C` 8-byte | 8 B × c1A | 155,916 pairs | float pairs: 74 % both components in `[0,1]`, 15 % in `[-1,2]`, 11 % larger floats, **0 NaN** — consistent with texture UVs. UV hypothesis. |
+| `+0x28` 4-byte | 4 B × c18 | ~~147,220~~ 155,916 *(corrected 2026-10-02, OPUS: the sum of `c18` over the 2,252 records of `members/effect-mesh-54-records.tsv`, equal to `c1A`'s)* | 1,358 distinct u32s; `0x80808080` alone is 47 %; byte-3 dominated by `0x80`/`0x81`/`0x00`/`0x40` — consistent with packed RGBA where `0x80` is the GS full-opacity alpha. ~~Colour hypothesis.~~ *(answered: see §8, SD-140 - a per-corner RGBA8 vertex colour; 2026-10-02, OPUS)* |
+| `+0x2C` 8-byte | 8 B × c1A | 155,916 pairs | float pairs: 74 % both components in `[0,1]`, 15 % in `[-1,2]`, 11 % larger floats, **0 NaN** — consistent with texture UVs. ~~UV hypothesis.~~ *(answered: see §8, SD-140 - a per-corner texture coordinate; 2026-10-02, OPUS)* |
 
 `+0x20` positions: file-side w is `0x3F800000` (1.0 f) for all 50,707 entries —
 the loader's forced `w = 1.0` is a no-op over shipped data; positions are
@@ -137,7 +137,7 @@ records — consistent with normals indexed separately from positions.
 - Per-primitive byte `+0x188`: values `{0: 40,922, 1: 264, 2: 612}` — a small
   selector, mostly 0.
 - `+0x1C` id bytes: `c1C` is 0 in 1,813 records, 1 in 425, 2 in 14. Every nonzero
-  id resolves to a same-file kind-`0x52` record (key 0, sub = id) — **439 / 439
+  id resolves to a same-file kind-`0x52` record (key 0, sub = id) — **439 / 439** *(scope named 2026-10-02, OPUS: the 439 records with a nonzero `c1C`, 425 + 14; their ids number 453 - recount of the TSV)* **
   all-match, 0 partial**.
 
 ## 5. Element type `0x05` — the mesh consumers
@@ -153,7 +153,7 @@ byte.
 
 | | |
 |---|---|
-| type-`0x05` elements | 5,164 (all `0xA00` records, all ≥ `0x640` B — every one carries the full `+0x570`/`+0x590`/`+0x5A0` region) |
+| type-`0x05` elements | 5,164 *(scope named 2026-10-02, OPUS: this page's walk, which stops at each `.efb`'s first blob; over every stream 5,204 - 5,168 in `.efx` / `.efb` and 36 embedded, `type_census.tsv`)* (all `0xA00` records, all ≥ `0x640` B — every one carries the full `+0x570`/`+0x590`/`+0x5A0` region) |
 | files using type `0x05` | 1,088 |
 | slots filled (of 32) | `0:1, 1:4,268, 2:894, 3:1` — **max 3** |
 | id → same-file kind-`0x54` sub linkage | **5,163 all-match**, 1 all-zeros, 0 partial |
@@ -240,8 +240,77 @@ The clipper `00521450` clips each triangle in homogeneous space against `|x|, |y
 (Sutherland–Hodgman). It interpolates position, colour, UV and clip position linearly and returns the polygon's vertex
 count. A count of 0 drops the triangle; any other count is re-projected and emitted as an n-gon.
 
-What stays open is what the lighting routines write into the per-normal table (`003962F0` / `00396A30` /
-`00396560` / `00395CF0` / `00395780`), which decides what the regenerated UVs mean.
+The lit per-normal table is answered (OPUS, 2026-10-02, executed: record
+[`opus-k54-lighting-1002`](../../_index/candidates/opus-k54-lighting-1002/README.md), `k54_light.py` 22 checks
+FAILS 0). Each of the five routines forms `m = M n` from the caller's three matrix columns (`022D91B0` / `022D91C0` /
+`022D91D0`). Pass byte `+0x1B0` then picks a reflection sphere map (1: `00395CF0` about y, `00395780` about z), a
+planar normal projection `(−s·m.x, s·m.y, 0)` with `s` at `param + 0x1D8 + 4k` (2: `003962F0`), or a normal sphere
+map (3 and 4: `00396A30` about y, `00396560` about z), with `+0x1B4` choosing the y or z axis. Lane 3 is `(M n).w` for
+modes 1 and 2 and the carried `022D9310.w` for modes 3 and 4, and a zero vector lands on the centre 0.5. The entry's
+lanes 0-1 become the UV through `00396F20`, and its lane 3 feeds the alpha kernel `00432CC0`. So the regenerated UVs
+are sphere-map coordinates (modes 1, 3, 4) or a planar normal projection (mode 2).
+~~*Not established (the record's Limits): which modes and matrices shipped effects use and what the matrices hold at
+draw time (a population and runtime question); the selectors of the four other draw paths (`00437130`, `00438860`,
+`004434D0`, `00444340`), which call the same five routines; and whether the planar index k equals the pass index.*~~
+*(Answered 2026-10-03, FABLE, except the matrices' contents. Record
+`../../_index/candidates/fable-k54-residue-1003/README.md`: `k54_residue.py` 100 checks FAILS 0, static and executed;
+`census_k54_modes.py` FAILS 0, authored data.)*
+
+- **The per-pass selector is one switch in all five draw paths.**
+  - Each path reads the mode byte `param + 0x1B0 + p` (`00437486`, `00438C70`, `00443865`, `00444711`) and the axis
+    byte `param + 0x1B4 + p`.
+  - Each reaches the same routine per mode and axis as above. Mode 0, and every mode from 5 to 255, builds no table.
+  - The planar call sits on the mode-2 arm only.
+- **Which path draws a kind-`0x54` mesh** is chosen per element, by the parameter block's byte `+0x1F1`.
+  - The dispatcher has one caller, `00449AB0`+0x6AB. It runs `00438860` when `+0x1F1` is `0x80` or above, else
+    `00437130` when bit 3 is set, else its inline path.
+  - `00449AB0` builds `+0x1F1` from definition byte `+0x590` (executed over all 256 values):
+    - bit 7 is `+0x590` bit 5;
+    - bit 3 is bit 0 or bit 5;
+    - bits 4-6, the two-mesh switches of §8, are bits 1-3.
+  - Over every EFX stream, the 5,204 type-`0x05` elements split 1,800 / 522 / 2,882 (`00437130` / `00438860` /
+    inline).
+- **`004434D0` and `00444340` draw no kind-`0x54` record.**
+  - Their only callers are the type-`0x04`, `0x06` and `0x07` walks of `the-element-types-00-0a.md`. The calls are at
+    `00445AF8` / `00445AFF`, `004477D9` / `004477E0` and `004487A1` / `004487A8`; there is no other branch reference and
+    no stored pointer.
+  - Each walk draws the procedural ring, column or dome grid it builds itself.
+  - Definition bit 0 of `+0x672` (type `0x04`) or of `+0x6D2` (`0x06` / `0x07`) picks `00444340`; clear, it picks
+    `004434D0`. The same bit becomes `+0x1F1` bit 3.
+  - Shipped elements, `004434D0` / `00444340`: type `0x04` 169 / 4, type `0x06` 3 / 22. Type `0x07` is not authored.
+- **The planar index k equals the pass index p.**
+  - In all five paths the planar call's pointer is `param + 0x1D8 + 4p`, with the same p that indexes `+0x1B0` (call
+    sites `004375BE`, `00438D98`, `004439AE`, `00444864` and the inline path's).
+  - This is proven inductively over each pass loop: every counter starts at 0 and gains 1 on every back edge.
+  - The walks write `+0x1D8 + 4p` with that same p. The value comes from the float track 0x10 bytes before the pass's
+    slot, evaluated at `00449AB0`+0x543. So a mode-2 pass scales by the scalar authored for its own slot.
+- **The pass bytes are authored.** Each walk goes through the definition's four `0xF0`-byte pass slots (type `0x05`:
+  definition `+0x250`).
+  - For the p-th kept slot it copies slot byte `+7` to `+0x1B0 + p` and slot byte `+0xB` bit 0 to `+0x1B4 + p`
+    (`00449D08`).
+  - It skips a slot whose byte `+0` is 0 or whose texture lookup fails, and later slots move down (executed, 2,592 slot
+    patterns per walk).
+  - The element setups, `00538DB0` among them, leave those bytes as loaded.
+- **What ships.** All EFX streams, all locales; 9,846 active pass slots, none of mode 5 or above:
+
+| element type | active slots | mode 0 | mode 1 (axis y / z) | mode 2 | mode 3 (y / z) | mode 4 (y / z) |
+|---|---:|---:|---:|---:|---:|---:|
+| `0x05` kind-`0x54` mesh | 9,622 | 9,294 | 54 (28 / 26) | 152 | 21 (7 / 14) | 101 (44 / 57) |
+| `0x04` ring band | 173 | 157 | 0 | 16 | 0 | 0 |
+| `0x06` column | 51 | 47 | 3 (3 / 0) | 0 | 1 (1 / 0) | 0 |
+
+  - **Mesh paths.** `00437130` meets mode 2 only (8 slots). Mode 1 runs on `00438860` 24 times and inline 30, mode 3 on
+    17 and 4, mode 4 on 36 and 65.
+  - **Grid paths.** `004434D0` meets modes 2 (16) and 3 (1); `00444340` meets mode 1 only (3).
+  - **The constant planar scalar.** 21 of the 152 type-`0x05` mode-2 slots author it as the constant 0.0.
+
+*Not established:*
+- *what the matrices hold at draw time (a runtime question). Modes 1 and 3 read one matrix global and modes 2 and 4
+  another, in 79 and 269 shipped slots;*
+- *the planar scalars authored as resource or curve tracks;*
+- *the runtime pass index, since a failed texture lookup drops a slot;*
+- *what `+0x1F1` bit 3 changes in the drawing beyond selecting the path.*
+*(Residue replaced 2026-10-03, SWE2-DATA, consuming `OPUS-REQ-DATA-K54-LIGHTING-RESIDUE-1002`.)*
 
 ## Cross-subsystem neighbours — FINAL-AUDIT pass 22
 

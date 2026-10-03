@@ -1,0 +1,25 @@
+entry	class	mutated
+00160210	returned	
+0017d260	returned	
+0019c570	stubbed	
+0019c580	stubbed	
+00584730	returned	
+00597690	returned	
+0059a3b0	returned	yes
+0059a6f0	returned	yes
+0059a780	returned	
+0059a8b0	returned	
+0059c180	returned	yes
+0059fdb0	returned+faulted	yes
+00632d80	returned	
+006373d0	returned	
+0063ce80	returned+faulted	yes
+0063dc80	returned	
+0063df90	returned	
+0063dfa0	returned	
+0063e2e0	returned+faulted	yes
+0067b100	returned	
+00686d00	returned	
+0069e780	returned	
+00808b90	stubbed	
+00861eba	returned	

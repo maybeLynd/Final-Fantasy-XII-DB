@@ -923,7 +923,7 @@ small call beside the discarded Mersenne draw, not a shared responsibility.
 
 ## SWE2-EC7-36 update (2026-09-19) - `0062BCB0`
 
-`0062BCB0` (647 B) is ~~an RNG stream body - `01F7F590`/`01F7F5B8` state~~ a renderer helper, not a generator: it walks a `0x58`-stride element array off `[rbx+0x38]` and calls `0062EC70`, with no generator constant or recurrence; `01F7F590` is a `u32` read by nine functions and `01F7F5B8` a pointer set by `005A08E0` *(corrected 2026-10-02, OPUS: checked at `0062BCB0`, 34 call sites in 22 functions; §8a's family-4 note lists it among the renderer's receivers)* - `0062EC70`/`0062B870`/`0062B100`/`00584730`. Interior anchor `0062BCBE` (an `0062EC70` call).
+`0062BCB0` (647 B) is ~~an RNG stream body - `01F7F590`/`01F7F5B8` state~~ a renderer helper, not a generator: it walks a `0x58`-stride element array off `[rbx+0x38]` and calls `0062EC70`, with no generator constant or recurrence; `01F7F590` is a `u32` read by nine functions and `01F7F5B8` a pointer set by `005A08E0` *(corrected 2026-10-02, OPUS: checked at `0062BCB0`, 34 call sites in 22 functions; §8a's family-4 note lists it among the renderer's receivers)* - `0062EC70`/`0062B870`/`0062B100`/`00584730`. Interior anchor `0062BCBE` (~~an `0062EC70` call~~ a `0062B100` call; the `0062EC70` call is at `0062BD75` *(corrected 2026-10-03, SWE2-EC7: ASTRA's T17/K1, routed by FABLE as R2; ec7_corr_check.py)*).
 
 ## SWE2-EC7-44 update (2026-09-19) - `0018D740`
 

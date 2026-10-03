@@ -334,7 +334,7 @@ reader: still not found" predate the reader section below (FABLE, 2026-09-25), w
 - **WorldAreaField — SERVICE (2 edges).** 2 outbound (page-cited `0037B4D0` call WorldAreaField bodies `00377A90`, `00377DB0`).
 ## The `002E60F0` exclusive subtree — 1 member bound (SWE2-FRONTIER, followup queue)
 
-`002E60F0` (~62 B) — `dword[rcx]`-keyed table op (`002E60FA`).
+`002E60F0` (~~~62 B~~ 491 B *(corrected 2026-10-02, OPUS: its last instruction ends at `002E60F0+0x1EB`; 62 B is the member `003A1290`)*) — `dword[rcx]`-keyed table op (`002E60FA`).
 
 | member | role | interior |
 | --- | --- | --- |

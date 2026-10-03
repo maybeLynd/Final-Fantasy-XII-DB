@@ -1,0 +1,11 @@
+entry	class	mutated
+0020e600	returned	
+00253690	stubbed	
+00253770	stubbed	
+00254ee0	stubbed	
+00300bc0	stubbed	
+00300ce0	stubbed	
+00305640	returned+faulted	yes
+00308ff0	stubbed	
+00309110	stubbed	
+00316440	stubbed	

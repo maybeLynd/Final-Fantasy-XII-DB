@@ -35,7 +35,7 @@ audit:
 
 # The unlabelled procedures
 
-**Status:** PARTIAL — the 25 atlas rows with no layout-key evidence, grouped by installer ancestry and dispatch shape. "Unlabelled" does not mean unexplained: every row's installer lands inside a labelled screen's subtree, so each is a pane of a known screen or a screen the key-family evidence can't see. Roles below are structural + signature-level; the four big families got dispatch reads.
+**Status:** ~~PARTIAL~~ DOCUMENTED *(corrected 2026-10-02, OPUS: the front matter says `status: DOCUMENTED`, GI-6 answered 2026-09-29)* — the 25 atlas rows with no layout-key evidence, grouped by installer ancestry and dispatch shape. "Unlabelled" does not mean unexplained: every row's installer lands inside a labelled screen's subtree, so each is a pane of a known screen or a screen the key-family evidence can't see. Roles below are structural + signature-level; the four big families got dispatch reads.
 
 ## The classification
 

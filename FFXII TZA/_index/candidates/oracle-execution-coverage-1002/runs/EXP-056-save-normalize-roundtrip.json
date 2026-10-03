@@ -1,0 +1,21 @@
+{
+ "blocks_in_image": 29,
+ "blocks_outside_image": 1,
+ "catalogue": "e2a67b07700c2ec3fbfae3213965de35",
+ "classes": {
+  "entered": 1,
+  "open": 1,
+  "scripted": 10
+ },
+ "elapsed_s": 0.8,
+ "emu_starts": 13,
+ "entries_executed": 0,
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "instrument": "execcov-shim v2",
+ "patched_blocks": 12,
+ "rc": 0,
+ "receipt_md5": "8c2b317f255b0defc3ba2849c6279888",
+ "run": "EXP-056-save-normalize-roundtrip",
+ "status": "ok",
+ "unique_blocks": 30
+}

@@ -56,7 +56,7 @@ of [the frame dispatcher](../../22-Middleware-PhyreEngine/The-Frame/what-happens
 | 5, the capture-backed frame | `0022BC20` | `0022BCC8`–`0022BCCF`, same label | **1** | 1 |
 
 The field frame reaches its call only when `001800E0()` is zero and `001800C0()` is zero or
-`001EC560()` is zero (`0022ABB9`–`0022ABD2`) — three unread gates that skip the tick entirely.
+`001EC560()` is zero (`0022ABB9`–`0022ABD2`) — three unread gates *(answered: see EX-6, ANSWERED 2026-09-12 (FABLE), which reads all three; 2026-10-02, OPUS)* that skip the tick entirely.
 
 ### 2.2 `World_UpdateSimulationTick` — five slots, up to sixteen sub-steps, one fixed tail
 
@@ -91,7 +91,7 @@ group-completion event lock writes is zeroed here first.
 > **This call sits before the mode test (`0031410C`), so a menu does not stop queued area preparation, the roster
 > clear or the deferred mode request below** — only the slot loops depend on the mode. The one producer read so
 > far is `0026A5F0` (requesting manager 0 also requests 1–3); whether ordinary callbacks change the mask during a
-> pass is not established (`EX-9`).
+> pass is not established (`EX-9`) *(answered: see EX-9, ANSWERED 2026-09-18 (FABLE); 2026-10-02, OPUS)*.
 
 **The slot loops — the shape depends on the mode** (`00314103`–`0031420F`):
 
@@ -451,7 +451,7 @@ empty arms; the bit-to-arm table, and the arms that switch rig controllers, are 
 consume the `+0x20` block with the **per-arm parameter index** in `edx` (observed
 0,1,2,3,4,5,6,7,9,0xD — not a constant); `0051DDC0` and `0051DBF0` consume the `+0x70` block;
 `003E1350` / `003E1610` / `003E1310` are the resolve-by-id pair (`0020E600`); `00428F10`
-is the commit/notify tail; `0016D6A0` is the string-member release.
+is the commit/notify tail; ~~`0016D6A0` is the string-member release.~~ the call to `0016D6A0` does nothing *(corrected 2026-10-02, OPUS: `0016D6A0` is `ret 0`, three bytes)*.
 
 | arm | shape |
 |---|---|
@@ -508,7 +508,7 @@ table names the members.
 | request mailbox | `002E0940` (`00254440` + `0215F1AC`/`0215F1B0` — the three mailbox cells §7 names), `002E15F0` (`0215F1B2`), `002E8700` (`022C6F28` read), `0025D950` (calls `00226B10`/`002E15F0`, reads `02099DA3`/`02099DA5` deferred-request bytes) | the router-facing request cells |
 | audio listener | `00361700` (the `(x, 0)` step the listener update calls), `00362DA0` (`022CBA9B`), `00362DB0` (`022CBB28`), `00363A90` (`00362DC0`), `003606E0` (`022CB9DC`/`E4`) | listener-block byte accessors around `022CBA80`–`022CBB0C` |
 | flag stubs | `00259AF0` (`02098DEC`), `0025D640`, `002673F0` (`02098E23`), `0025A620` (`02097D20` + consts `008F3108`/`009156E0`) | single-global reads |
-| evaluators | `0037C1A0` (resolve `0020E600` ×2 + `00263750`/`0020E620`/`002DEBD0`/`002DEB90` + `0016D6A0` free + `002EA6A0`/`0037B4D0`), `003DE640` (`003ABD00` ×2 over `02B58C58`/`02B59358`), `003DF670` (`003590D0`/`003588B0`/`002EA6A0`/`0029CAB0`), `004742A0` (777 B — `sqrtf`/`00861F02` ×2 each + `002DDCF0`/`00380800`), `0046AFA0` (`02CA6040`–`4C` const bank) | mixed per-tick evaluators |
+| evaluators | `0037C1A0` (resolve `0020E600` ×2 + `00263750`/`0020E620`/`002DEBD0`/`002DEB90` + ~~`0016D6A0` free~~ `0016D6A0`, a `ret 0` stub *(corrected 2026-10-02, OPUS: `0016D6A0` is `ret 0`, three bytes)* + `002EA6A0`/`0037B4D0`), `003DE640` (`003ABD00` ×2 over `02B58C58`/`02B59358`), `003DF670` (`003590D0`/`003588B0`/`002EA6A0`/`0029CAB0`), `004742A0` (777 B — `sqrtf`/`00861F02` ×2 each + `002DDCF0`/`00380800`), `0046AFA0` (`02CA6040`–`4C` const bank) | mixed per-tick evaluators |
 | list/table readers | `003DAA40` (`02B4E4C0` — the `0x130`-stride separation-pass list of EX-4 — plus `02B57CE0`), `0036E1E0` (`0024DE70` + `022D94B0`), `0036FD90` (`00809728` tail), `00268650` (`003587C0`/`003589B0` + `0209A2B4`/`B8`), `0017DFC0` (the `00198790`/`00197710`/`0079E6A0` quad + `00796E20`) | table reads feeding the sub-steps |
 
 ### The `00234590` exclusive subtree — the orchestrator's 31 helpers
@@ -680,7 +680,7 @@ walks is the eight `0x68`-stride records at `0215F200` (`lea r15` at `002E09E4`)
 
 | member | role | interior |
 | --- | --- | --- |
-| `00267360` (50 B) | the slot-0 probe called after the walk: indexes the `0x288`-stride table at `0209BE10`, and when `+0x10` bit 0 is set returns `([+0x11] & 1) \| ([+0x10] >> 7)` — its result decides whether the pending byte `0215F1A0` survives (`002E0B8B`–`002E0C65`) | [`0026737B`](../../_index/ADDRESS-INDEX.md) |
+| `00267360` (50 B) | the slot-0 probe called after the walk: indexes the `0x288`-stride table at ~~`0209BE10`~~ `02098E10` *(corrected 2026-10-02, OPUS: `00267360+0xA` `lea rax, [02098E10]`)*, and when `+0x10` bit 0 is set returns `([+0x11] & 1) \| ([+0x10] >> 7)` — its result decides whether the pending byte `0215F1A0` survives (`002E0B8B`–`002E0C65`) | [`0026737B`](../../_index/ADDRESS-INDEX.md) |
 | `002A28B0` (46 B) | the state-6 completion probe: sign-extends `byte[rec+0x3B8]` into the eight-qword registration table `0209C4D0`, and returns `([rec+0x40] >> 9) & 1` only when the table slot still points back at the record | [`002A28C6`](../../_index/ADDRESS-INDEX.md) |
 | `002A2A60` (75 B) | the per-record status query: dispatches on `byte[rec+0x180]` (0–7) through the RVA table at `02A2AAC` (image-base relative) and returns code 1–5, which the root maps to slot states 1/3/4/5/8 (`002E0AB7`–`002E0AD7`) | [`002A2A7C`](../../_index/ADDRESS-INDEX.md) |
 | `002A38C0` (158 B) | the mailbox-mode setter: stores its arg at `0209C62C`, runs `003EC830`/`003EC810` for mode 1/0, then sweeps the same `0209C4D0`–`0209C510` pointer table — mode 1 calls `002A3730(obj, 1)` per entry; mode 0 clears `+0x3C5` when `[+0x44] & 0x180000 == 0x180000` and `+0x3F3` bit 7 when `== 0x100000` | [`002A38F5`](../../_index/ADDRESS-INDEX.md) |
@@ -804,7 +804,7 @@ Shared callees deliberately outside the census: `00583920`, `0032F6E0`,
   10. `003B08F0` purges the 36-record `0x18`-stride pool at `02EBEC00`: every live record whose
       byte `+0x13` lacks bit 0 and whose byte `+0x10` is not `0x63` goes to `003B0770`.
   11. `003DEE10(m)` drains and frees the manager's eight `0x38`-stride streaming slots at
-      `02B58960 + m × 8 × 0x38`, by state (`+0x10` 1–4: drain the request queue with `0032E520(0)`
+      ~~`02B58960 + m × 8 × 0x38`~~ `02B59360 + m × 8 × 0x38` *(corrected 2026-10-02, OPUS: `003DEE10+0x37` `lea rcx, [02B59360]`, `+0x59` `imul rbx, rax, 0x38`)*, by state (`+0x10` 1–4: drain the request queue with `0032E520(0)`
       and `0035EA30`, `003DEB30`, `002DEE90(−1)`, `003697F0` frees).
   Then `00267310(m)` decides the instant cut. What arms a skip is already above (`00360980`
   registers the request and sets its pending bit). **Residual:** the identity of the pools at
@@ -926,7 +926,7 @@ Shared callees deliberately outside the census: `00583920`, `0032F6E0`,
   has zero image references; which command sets the byte is not matched); `001800C0` is
   *the ring behind `001BDAB0()` is not empty* (`001BD620`: head `+0xFC` equals tail `+0x100`,
   inverted); `001EC560` is *the current cutscene slot `01DFE40C` is 0–4, its per-slot flag at
-  `01F832B0` is set, and `00265680()` holds* — the same marker and flag array [the cutscene name-slot page](../../99-Unresolved-Residual/Cutscene-Asset-Slots/cutscene-name-slots-and-the-depth-of-field-sidecar.md) §2
+  `01F832B0` is set, and ~~`00265680()` holds~~ `00265680()` answers zero* *(corrected 2026-10-02, OPUS: `001EC560+0x20` `call 00265680`, `+0x25` `test eax, eax`, `+0x27` `lea eax, [rbx+1]`, `+0x2A` `je` — 1 only when it returned 0)* — the same marker and flag array [the cutscene name-slot page](../../99-Unresolved-Residual/Cutscene-Asset-Slots/cutscene-name-slots-and-the-depth-of-field-sidecar.md) §2
   decodes. `00265680` requires manager slot 0 live with `+0x10` bit 7 / `+0x11` bit 0 clear, every
   live slot's `+0x17` bits 0–1 set (`002656C0`–`002656DF`, [the actor-manager record map](../../04-Actor-Entity/Actor-Manager-Record/the-actor-manager-record-field-map.md)), no entry of the eight
   `0x68`-byte records at `0215F200` flagged at `+0x38` / `+0x3E` bit 7 (`002E0540`), and then
@@ -975,7 +975,7 @@ Shared callees deliberately outside the census: `00583920`, `0032F6E0`,
 | `+0x63` is set to 2 by insert / remove and halved by every post-pass; the walk promotes state 1 to 2 | the storage census rows for `0x63` (two `\|= 2`, three `shr 1`, three reads); `003DB222`–`003DB25A` | 1 | PROVEN |
 | The three entry gates | `001800E0`, `001800C0`, `001BD620`, `001EC560`, `00265680`, `002E0540` read whole; globals resolved from the instructions (`01DFE40C`, `01F832B0`, `02098E20`, `0215F200`) | 1 | PROVEN (mechanism) |
 | Bits 1 / 3 / 24 setters and clearers; bit 16 has none | the battle-unit flag table (census) | 1 | PROVEN / narrowed |
-| What the unread callees do | **not established** | — | UNKNOWN |
+| What the unread callees do | **not established** *(answered: see EX-3, ANSWERED 2026-09-12 (FABLE); 2026-10-02, OPUS)* | — | UNKNOWN |
 
 ## 9. Related
 
@@ -1325,9 +1325,9 @@ the shared counters; `00360A50` touches the `022CB730` base.
 
 ## The `00360710` exclusive subtree — all 2 members bound (SWE2-FRONTIER, followup queue)
 
-`00360710` (64 B) — an 8-byte-element range bound: `rsi =
+`00360710` ~~(64 B) — an 8-byte-element range bound~~ (360 B, `ret` at `00360710+0x167`) *(corrected 2026-10-02, OPUS: measured)* — a 16-byte-entry index: `rsi =
 movsxd(edx)` count, `r14 = movsxd(ecx)` start, `edx == 0` → return 0
-(`00360728`); else `rdi = r14 + rsi*8` over the `022CB730` array
+(`00360728`); else ~~`rdi = r14 + rsi*8` over the `022CB730` array~~ `rdi = 022CB730 + (r14 + rsi*8) × 16`, a 16-byte entry *(corrected 2026-10-02, OPUS: `00360710+0x3B` `lea rdi, [r14+rsi*8]`, `+0x41` `shl rdi, 4`, `+0x45` `add rdi, rax`)*
 (`00360744`/`0036074B`).
 
 | member | role | interior |
@@ -1432,7 +1432,7 @@ gates on `dword[02089340] & 0x600`, non-null `rcx` and `qword[+0x698]`,
 | --- | --- | --- |
 | `0026A060` (97 B) | kind-dispatched angle apply — `(byte[+3] & 0xE0) == 0x60` → `[[rcx+0xB8]+0xA0]`; sign of `xmm1` picks `+π` (`0x40490FDB`) or `−π` (`0xC0490FDB`) (`0026A067`/`0026A084`) | [`0026A067`](../../_index/ADDRESS-INDEX.md) |
 
-`00265A20` (`ActorSystem_BindBattleUnitsForEligibleRecords`, ~200 B) —
+`00265A20` (`ActorSystem_BindBattleUnitsForEligibleRecords`~~, ~200 B~~, 320 B) *(corrected 2026-10-02, OPUS: `ret` at `00265A20+0x13F`)* —
 loops `dword[rcx+0x20]` slots (`00265A2C`/`00265A3C`), binding eligible
 records through the member.
 
@@ -1465,14 +1465,14 @@ Shared callees outside the census: `00253C70`, `003C9550`.
 
 ## The `0022BC20`/`00234520`/`002EF910` exclusive-subtree triple — all 3 roots bound (SWE2-FRONTIER, followup queue)
 
-`0022BC20` (~80 B) — `0016D6A0(3)`, `0017F740(0)`, `0036F2F0`, then a
+`0022BC20` ~~(~80 B)~~ (463 B, through the tick call at `0022BC20+0xA8`) *(corrected 2026-10-02, OPUS: measured)* — `0016D6A0(3)`, `0017F740(0)`, `0036F2F0`, then a
 `"PAD CONTROL"` tagged block (`0022BC29`/`0022BC3A`).
 
 | member | role | interior |
 | --- | --- | --- |
 | `00375EC0` | `02EBF9F0`/`02EC07F0` clear twin — `and dword[rax], 0xFFFFFFFE` under the same `+0x58` gate (`00375ED0`/`00375ED6`) | [`00375ED0`](../../_index/ADDRESS-INDEX.md) |
 
-`00234520` (~220 B) — 64-aligned stack frame; `ecx == 0` runs
+`00234520` ~~(~220 B)~~ (109 B, `ret` at `00234520+0x6C`) *(corrected 2026-10-02, OPUS: measured)* — 64-aligned stack frame; `ecx == 0` runs
 `0023B040` (`00234531`/`00234533`).
 
 | member | role | interior |
@@ -1490,7 +1490,7 @@ Shared callees outside the census: `0016D6A0`, `0017F740`, `0036F2F0`,
 
 ## The `00304440`/`00307D10` exclusive-subtree pair — both roots bound (SWE2-FRONTIER, followup queue)
 
-`00304440` (~27 B) — `byte[02EBF190 + 0x5AE0] & 1` gate, then
+`00304440` ~~(~27 B)~~ (345 B, `ret` at `00304440+0x158`) *(corrected 2026-10-02, OPUS: measured)* — `byte[02EBF190 + 0x5AE0] & 1` gate, then
 `0017D380()` (`0030444B`/`00304458`).
 
 | member | role | interior |
@@ -1540,7 +1540,7 @@ Three leaf helpers the tick's callers share, read against the shipping image:
   (`4×vec4`) copy `rdx → rcx`; the sibling of `00202C90`'s 16-byte copy.
 - `001EDDA0` — 27 B, 38 frontier callers. Interior verified: [`001EDDA9`](../../_index/ADDRESS-INDEX.md)
   is the second global compare — the body is a two-global enable predicate returning 1 iff
-  `dword[01FCE0C0] != 0` **or** `dword[0209DE38] == 0`; equivalently it returns 0 only when the
+  ~~`dword[01FCE0C0] != 0` **or** `dword[0209DE38] == 0`~~ `dword[01DFE0C0] != 0` **or** `dword[01F82E38] == 0` *(corrected 2026-10-02, OPUS: `001EDDA0+0x0` `cmp [01DFE0C0], 0`, `+0x9` `cmp [01F82E38], 0`)*; equivalently it returns 0 only when the
   first flag is clear while the second is set. Callers treat it as "is the field frame's auxiliary
   path live".
 
@@ -1551,10 +1551,10 @@ is census-derived, not owner evidence).
 
 `00226280` — 952 B, 9 A-measured callers; the table scan this page already places next to
 `00226BE0`. Interior verified: gated on byte `01FD46D0` (`00226287`); the loop at
-[`002262E4`](../../_index/ADDRESS-INDEX.md) walks a packed table rooted at `01FD4410` with `ebp = 0x3FF` as the
-element mask and `0x20000000000` as a validity bit, tracking the minimum slot dword in `ecx`
-(`cmp ecx,edx` / `cmov` shape at `002262F4`–`00226301`) — a best-fit/free-slot search over a
-1024-entry index space, not a linear lookup.
+[`002262E4`](../../_index/ADDRESS-INDEX.md) walks ~~a packed table~~ the 28 `0x18`-byte stop records rooted at `01FD4410` ~~with `ebp = 0x3FF` as the~~
+~~element mask and `0x20000000000` as a validity bit~~ (ANDing record A's first qword into `rdi` and record B's into `rbx`, and setting bit 41, `0x20000000000`, in record B), tracking the minimum slot dword in `ecx`
+(`cmp ecx,edx` / `cmov` shape at `002262F4`–`00226301`) — ~~a best-fit/free-slot search over a~~ an AND over all 28 slots
+~~1024-entry index space, not a linear lookup.~~ *(corrected 2026-10-02, OPUS: `00226280+0x57` `lea rax, [01FD4410]`, `+0x64`/`+0x6B` the two ANDs, `+0x8E`–`+0x95` stride `0x18` up to `01FD46B0`; `ebp = 0x3FF` seeds the mask built after the loop; CONTRACT-system-stop-registry.md SS-1)*
 
 `003ABCA0` — 94 B, 8 callers; the intrusive-list remove-by-key the parent-init runs ×6.
 Interior verified: the list head is `02B3F508`, tail pointer `02B3F510`, node count byte
@@ -1574,9 +1574,9 @@ both clear it runs `00226260()` or `00227640()` by `bl`, then `00226280()` at
 set/clear on slot 6 vs 0 through the `0215F1C0` table.
 
 `0032E520` — 107 B, 7 callers; the drain/status pair to `0032E040`'s kick. Interior
-verified: `ecx == 0` loops `0032E070(0)` at [`0032E563`](../../_index/ADDRESS-INDEX.md), re-polls `[020C51C0]` and
+verified: `ecx == 0` loops `0032E070(0)` at [`0032E563`](../../_index/ADDRESS-INDEX.md), re-polls ~~`[020C51C0]`~~ `[022C51C0]` *(corrected 2026-10-02, OPUS: `0032E520+0x48` `cmp qword [022C51C0], 0`)* and
 `0046DFE0()`, and re-invokes `0035EA30(0)` while either is still busy — the blocking drain.
-`ecx != 0` is the non-blocking status read: returns `([020C51C0] != 0) | !0046DFE0()`.
+`ecx != 0` is the non-blocking status read: returns ~~`([020C51C0] != 0) | !0046DFE0()`~~ `([022C51C0] != 0) or !0046DFE0()` *(corrected 2026-10-02, OPUS: `0032E520+0x16` reads `022C51C0`)*.
 
 
 ## Interior citation — frontier hubs `00263C30`, `002EFD20`, `00263BE0` (2026-09-18, SWE2-EC7)
@@ -1663,9 +1663,9 @@ sub-records.
 ### Interior citation — frontier hubs `003DF760`, `003098D0` (2026-09-18, SWE2-EC7)
 
 `003DF760` — 48 B, 6 callers. An indexed registry-slot setter: index `edx`
-selects parallel arrays — `qword[0x2A39C40 + i*8] = r9`,
-`qword[0x2A39C80 + i*8] = stack arg`, `dword[0x2A39CC0 + i*4] = r8d`,
-`dword[0x2A39CE0 + i*4] = ecx` ([`003DF76F`](../../_index/ADDRESS-INDEX.md)).
+selects parallel arrays — ~~`qword[0x2A39C40 + i*8] = r9`,~~ `qword[02B59C40 + i*8] = r9`,
+~~`qword[0x2A39C80 + i*8] = stack arg`, `dword[0x2A39CC0 + i*4] = r8d`,~~ `qword[02B59C80 + i*8] = stack arg`, `dword[02B59CC0 + i*4] = r8d`,
+~~`dword[0x2A39CE0 + i*4] = ecx`~~ `dword[02B59CE0 + i*4] = ecx` *(corrected 2026-10-02, OPUS: the displacements are image-base relative, `003DF760+0x8` `lea rdx, [00120000]`)* ([`003DF76F`](../../_index/ADDRESS-INDEX.md)).
 Four field stores, no validation, returns void.
 
 `003098D0` — 182 B, 5 callers, `BattleAction_SelectGlobalSequenceP…`. Bit 31 of
@@ -1784,7 +1784,7 @@ into a stack record — into `00383F10`. Interior anchor `0038414E`.
 
 `0036DE70` (179 B) sweeps the `022D94B0` 24-byte-stride table with `ebx`
 clamped to `min(ebx, ebx+0x1F)`: on `byte[+8] == cl` and `word[+4] & 0xFFFB`
-set, it stores `bx+4` into `word[+4]` then runs `003B24C0`/`003B1700` on the
+set, it stores ~~`bx+4`~~ the constant 4 *(corrected 2026-10-02, OPUS: `r15d = ebx + 4` is computed once at `0036DE70+0x32`, before the loop, while `ebx` is 0; `0036DE70+0x78` `mov word [rdi+4], r15w`)* into `word[+4]` then runs `003B24C0`/`003B1700` on the
 entry's head dword. Interior anchor `0036DEBB` (the `movsx`).
 
 `003669D0` (27 B) classifies `word[022CBE1A]`: `&1` clear returns 0, `&4`
@@ -2168,7 +2168,7 @@ Interior anchor `00254937` (the `jmp rbx` fourth call).
 
 ## SWE2-EC7-58 update (2026-09-19) - `003605A0`
 
-`003605A0` (165 B) is a call-free multi-table flag writer - `0x21AB9C0`/`0x21AB9D8` dword tables, `022CB732` `rax<<7` records, byte-pair writes and `shl` masks. Interior anchor `00360604` (the record byte write).
+`003605A0` (165 B) is a call-free multi-table flag writer - ~~`0x21AB9C0`/`0x21AB9D8`~~ `022CB9C0`/`022CB9D8` dword tables *(corrected 2026-10-02, OPUS: image-base relative, `003605A0+0x1A` `lea rcx, [00120000]`)*, `022CB732` `rax<<7` records, byte-pair writes and `shl` masks. Interior anchor `00360604` (the record byte write).
 
 ## SWE2-EC7-59 update (2026-09-19) - `002EB5E0`
 
@@ -2499,8 +2499,8 @@ Interior anchor `004735E4` (the `00466AD0` call).
 ## SWE2-EC7-83 update (2026-09-20) - `00467730` element-broadcast measured
 
 `00467730` (112 B) is the indexed broadcast the tick callers run:
-`ecx` bounds-checks against `dword[01EAB6D8]`, selects the x80 record
-in `01EAB6E0`, and on a live `[+8]` clears `+0x4C` bit2 then sets
+`ecx` bounds-checks against ~~`dword[01EAB6D8]`, selects the x80 record~~ `dword[02EBB6E0]`, selects the `0x50`-byte record
+~~in `01EAB6E0`~~ at `*02EBB6F0` *(corrected 2026-10-02, OPUS: `00467730+0x4` `cmp ecx, [02EBB6E0]`, `+0xC`–`+0x17` index × `0x50` + `[02EBB6F0]`)*, and on a live `[+8]` clears `+0x4C` bit2 then sets
 bit3, stores `xmm1` to `+0x44` and 0 to `+0x48`; then `word[+0x30]`
 elements of the `[+0x20]` table each take `xmm1` at `+i*0x18+8` and
 0 at `+i*0x18+0x10` - a per-record flag set plus payload fan-out.
@@ -2603,8 +2603,8 @@ Interior anchor `00362DF1` (the `0020E600` call).
 
 `003604D0` (194 B) is the 5-by-8 bit-clear sweep `002628B0` and
 `00266D10` run: an outer 0-4 slot loop wraps an inner 0-7 bit loop
-that ANDs `~(1<<n)` out of the two `02CDC4xx`-region dword masks at
-`+0x21AB9C0`/`+0x21AB9D8` per slot, while a parallel 0x10-stride
+that ANDs `~(1<<n)` out of the two ~~`02CDC4xx`-region~~ dword masks at
+~~`+0x21AB9C0`/`+0x21AB9D8`~~ `022CB9C0`/`022CB9D8` *(corrected 2026-10-02, OPUS: image-base relative, `003604D0+0x23` `lea r15, [00120000]`)* per slot, while a parallel 0x10-stride
 record gets `byte[+0]=bit`, `byte[-1]=slot`, `byte[-2]=counter` and
 `qword[+6]=0`; the `02CDBB2D` byte is re-cleared on exit.
 Interior anchor `00360541` (the `1<<n` shift inside the bit loop).
@@ -2813,3 +2813,14 @@ Interior anchor `002913B9` (function `00291320`).
 `00332FA0` (141 B) is the slot teardown `00333350`'s tick machinery runs over its `0x30`-stride entries: for each populated slot `002DEE80` runs first, then `003B3EA0` with size `0x10` on the payload, the slot is zeroed, and the count byte is reset when the sweep ends - the prime/clear helper the world-tick timer channel reuses each pass.
 
 Interior anchor `00332FDB` (function `00332FA0`).
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-the-world-tick-and-the-field-frame-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00340970` | 118 B | takes `p = 002640C0()` (incoming registers still in place) and `v = 00267E10(r9)`, then calls `0025AE00(p, k, v)` for `k` = 0, 1, 4, 2 and tail-jumps to `0025AE00(p, 3, v)` | `0034097D`, `00340988`, `00340997`, `003409C7`, `003409E1` |
+| `003DF810` | 208 B | scans the dwords from `02B59CDC` down to `02B59CC0` (indices 7 to 0) for the first non-zero value `v` at index `i`; when one is found calls `0029CAB0(dword 02B59CE0[i], v, qword 02B59C40[i], qword 02B59C80[i])` and stores those values in `02B59D14`, `02B59D10`, `02B59D00` and `02B59D08`; when none is found calls `0029CAB0(0, 0, 0, 0)` and zeroes qwords `02B59D00`, `02B59D08` and dwords `02B59D10`, `02B59D14` | `003DF832`, `003DF84B`, `003DF88D`, `003DF8AC`, `003DF8D4` |
+| `003EB470` | 129 B | returns without work when `rcx` is null; otherwise calls `002ED470(dword +0x10)`, `002EB870(qword +0x18)` and `00265F90(rcx+0x10)`, unlinks `rcx` from its neighbours through qwords `+0` and `+8` (each side patched only when non-null) and zeroes both, then pushes it at the head of the list whose head qword is `02B5EB70` (`+0` = old head, `+8` = `02B5EB70`, the old head's `+8` = `rcx` when non-null) and clears byte `+0x40` | `003EB485`, `003EB497`, `003EB4AD`, `003EB4C9`, `003EB4E7` |
+| `003EF750` | 20 B | tail-jumps to `00244F50(0x108, 003EF830, 0)` | `003EF753`, `003EF75A`, `003EF75F` |

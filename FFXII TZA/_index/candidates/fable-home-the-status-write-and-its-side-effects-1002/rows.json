@@ -1,0 +1,161 @@
+{
+ "page": "10-Status-Periodic-Terminal/Status-Write/the-status-write-and-its-side-effects.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_013d18gLR7WCyczJCeHPeArU",
+ "report": "home-the-status-write-and-its-side-effects.json",
+ "rows": [
+  {
+   "fn": "002C7620",
+   "entered_from": "`002C6F70` + 0x126",
+   "text": "unlinks node `rdx` from a doubly linked list (qword `+0x18` and qword `+0x20` links): when its `+0x20` neighbour is non-null that neighbour's qword `+0x18` takes `rdx`'s `+0x18`, when its `+0x18` neighbour is non-null that neighbour's qword `+0x20` takes `rdx`'s `+0x20`, and both of `rdx`'s links are zeroed; it returns `rcx`, or `rcx`'s qword `+0x18` (read before the unlink) when `rdx` equals `rcx`",
+   "anchors": [
+    [
+     "002C7628",
+     "mov"
+    ],
+    [
+     "002C7639",
+     "mov"
+    ],
+    [
+     "002C764A",
+     "mov"
+    ],
+    [
+     "002C7650",
+     "mov"
+    ],
+    [
+     "002C7654",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "002EA1E0",
+   "entered_from": "`002C6F70` + 0xD2",
+   "text": "returns 1 when `rcx` is null, its qword `+0xC0` is null, or the dword at that pointer is -1; otherwise takes the word at that pointer, returns 0 when it is -1, when the `0x740`-stride record it indexes from qword `022C6F28` has a zero address, or when that record's dword `+0x284` is zero, and else returns 1 when bit 3 (`0x8`) of that dword is clear and 0 when it is set",
+   "anchors": [
+    [
+     "002EA1F1",
+     "cmp"
+    ],
+    [
+     "002EA1F9",
+     "cmp"
+    ],
+    [
+     "002EA216",
+     "mov"
+    ],
+    [
+     "002EA225",
+     "and"
+    ],
+    [
+     "002EA229",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00322950",
+   "entered_from": "`002C7660` + 0x1AD",
+   "text": "returns 0 when bit `0x10` of byte `02089340` is clear; otherwise passes the result of the call at `00322950` + 0xD to the call at `00322950` + 0x1A and that result with 0 to the call at `00322950` + 0x29, returning 0 if either of the first two results is null and else 1 when the last call returns 0 and 0 when it returns non-zero",
+   "anchors": [
+    [
+     "00322954",
+     "test"
+    ],
+    [
+     "0032295D",
+     "call"
+    ],
+    [
+     "0032296A",
+     "call"
+    ],
+    [
+     "00322979",
+     "call"
+    ],
+    [
+     "00322982",
+     "sete"
+    ]
+   ]
+  },
+  {
+   "fn": "0035D570",
+   "entered_from": "`002C6F70` + 0xF1",
+   "text": "scans the dword `022C83F0` (signed count) dwords starting at `022C83F8` and returns 1 when one of them equals `ecx`, otherwise 0 (also 0 when the count is zero or less)",
+   "anchors": [
+    [
+     "0035D57C",
+     "jle"
+    ],
+    [
+     "0035D585",
+     "cmp"
+    ],
+    [
+     "0035D58F",
+     "cmp"
+    ],
+    [
+     "0035D594",
+     "xor"
+    ],
+    [
+     "0035D597",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "003F19D0",
+   "entered_from": "`003F0170` + 0xB1",
+   "text": "zeroes qwords `+0xB0`, `+0xB8` and `+0xC0` of node `rdx` on every path, then returns `rdx` when `rcx` is null; otherwise descends a binary tree from `rcx`, taking qword `+0xB8` when the current node's float `+0xC8` is greater than `rdx`'s float `+0xC8` and qword `+0xB0` otherwise (equal or unordered included), stores `rdx` into the first null child slot, stores that parent into `rdx`'s qword `+0xC0`, and returns `rcx`",
+   "anchors": [
+    [
+     "003F19D5",
+     "mov"
+    ],
+    [
+     "003F1A08",
+     "comiss"
+    ],
+    [
+     "003F1A2F",
+     "mov"
+    ],
+    [
+     "003F1A41",
+     "mov"
+    ],
+    [
+     "003F1A48",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "003F2580",
+   "why": [
+    "already cited by 04-Actor-Entity\\Unit-Display-Record\\the-record-00329220-builds.md"
+   ]
+  }
+ ],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "003F19D0",
+   "was": "zeroes qwords `+0xB0`, `+0xB8` and `+0xC0` of node `rdx` and returns `rdx` when `rcx` is null; otherwise descends a binary tree from `rcx`, taking qword `+0xB8` when the current node's float `+0xC8` is greater than `rdx`'s float `+0xC8` and qword `+0xB0` otherwise (equal or unordered included), stores `rdx` into the first null child slot, stores that parent into `rdx`'s qword `+0xC0`, and returns `rcx`",
+   "now": "zeroes qwords `+0xB0`, `+0xB8` and `+0xC0` of node `rdx` on every path, then returns `rdx` when `rcx` is null; otherwise descends a binary tree from `rcx`, taking qword `+0xB8` when the current node's float `+0xC8` is greater than `rdx`'s float `+0xC8` and qword `+0xB0` otherwise (equal or unordered included), stores `rdx` into the first null child slot, stores that parent into `rdx`'s qword `+0xC0`, and returns `rcx`",
+   "why": "the three stores happen before the null test, on both paths; the old wording read as if they happen only when rcx is null"
+  }
+ ]
+}

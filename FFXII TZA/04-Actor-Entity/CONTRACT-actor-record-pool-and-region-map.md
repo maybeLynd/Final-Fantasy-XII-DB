@@ -891,3 +891,12 @@ Interior anchor `00268564` (function `00268530`).
 | `0026ADF0` | 49 B | when byte `rcx+3` AND 0xE0 equals 0x60, takes the qword at `+0xF0` of the qword at `rcx+0xB8` and stores `edx` to its dword `+0`, `r8d` to its dword `+4` and 1 to its byte `+0x2A`; otherwise returns without writing | `0026ADF4`, `0026ADF6`, `0026AE08`, `0026AE11`, `0026AE1C` |
 | `0030BFB0` | 96 B | calls `ActorWork_GetBattleUnit` and returns 0 when the result is null or the `0x10` bit (bit 4) of its first byte is clear; otherwise, with `d` = its qword `+0x698`, returns bit 23 of the result's first dword when (`d` dword `+0x64` OR dword `+0x3C`) AND 0x8000201B is non-zero, else tail-jumps to `BattleUnit_ComputePartyBattleStance` (`rcx` = the result, `rdx` = `d`) when `d` is non-null and its byte `+5` is 0, and to `BattleUnit_HasNonPartyEngagementEvidence(result, 0)` otherwise | `0030BFB4`, `0030BFC1`, `0030BFD3`, `0030BFF9`, `0030C004` |
 | `003DC0D0` | 93 B | calls `003587C0(dword rdx+8, word rdx+6)` and, when that returns non-null, builds a stack record (word `0x402`, then byte `rdx+3`, dword 0x80000000, byte 1, dword `rdx+8`, dword `rdx+0xC`) and calls `003DBCF0(result, &record, 1)`; a null result returns without the call | `003DC0E0`, `003DC0E8`, `003DC10E`, `003DC115`, `003DC122` |
+
+## Homed bodies: functions reached only indirectly whose callees this page cites (OPUS, 2026-10-02, F homing)
+
+*No page cited these functions and none of their callers is documented: they are reached by table or pointer dispatch or through undocumented callers. Each one calls something this page documents, which the sentence names. Each sentence states what the body does (access and representation, not purpose); the anchors are instructions inside it that do it. Drafted locally and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-contract-actor-record-pool-and-region-ma-homing-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00269060` | 33 B | calls `00268690(9)`, then tail-jumps to `00314DA0` with what `003148D0()` returns, bits `0x8` and `0x10` cleared | `00269064`, `00269069`, `0026906E`, `00269073`, `0026907C` |
+| `003446D0` | 61 B | calls `00268530(00267E10(r9))`, then for indices 0 to 3 calls `00263750(index)` and, for each non-null result, `0035AE10(result, 1)` | `003446D9`, `003446E0`, `003446E9`, `003446FB`, `00344702` |

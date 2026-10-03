@@ -164,7 +164,7 @@ Full table: [`widget-message-handlers.tsv`](widget-message-handlers.tsv).
 | 11 | 2 | 0.9 % | ~~UNRESOLVED~~ **INPUT NOTICE DURING A TRANSITION** — `002481C0` sends `{11}` to the focus top when a node on its chain has `+0x40` bit 9, and `{10}` otherwise (§10, 2026-09-25) *(table brought current 2026-09-25, FABLE, Claude Opus 5.5)* |
 | **12** | 66 | 28.4 % | **enable/disable: `self->disabledFlag = (msg->a == 1)`** — from the Config screen |
 | 13 | 5 | 2.2 % | **notify, carrying a command id in `msg->a`** — from the Config screen |
-| **14** | 55 | 23.7 % | ~~teardown-ish~~ **opening transition started** (corrected 2026-09-13 on `OPUS-DL1-MESSAGE14-RECEIVER`): its only framework sender, `00246AD0`, clears the close bit 6, sets `+0x7C` state 2 with direction +1, and sends record `01E0C0E0` = `{14}` as its last act (`00246BEF`–`00246C09`; the record's only reference). The Config brightness row's arm tail-calls `002470D0`, which pushes the widget onto the focus stack (`00244830`) — a receiver taking focus as it opens. The re-base of `0208F570` that `00228130` performs is **message 18**, not 14: its dispatch subtracts 1, 1 and 2 before `cmp ecx, 0xE` (`0022813B`–`00228159`), so it answers 1, 2, 4 and 18 |
+| **14** | 55 | 23.7 % | ~~teardown-ish~~ **opening transition started** (corrected 2026-09-13 on `OPUS-DL1-MESSAGE14-RECEIVER`): its only framework sender, `00246AD0`, clears the close bit 6, sets `+0x7C` state 2 with direction +1, and sends record `01E0C0E0` = `{14}` as its last act (`00246BEF`–`00246C09`; the record's only reference). The Config brightness row's arm tail-calls `002470D0`, which pushes the widget onto the focus stack ~~(`00244830`)~~ (`00244640`, at `002470D0+0x40`) and then switches focus to it (`00244830`, at `002470D0+0x52`) *(corrected 2026-10-02, OPUS: `00244830` sends `{9}`/`{8}` and stores `0208EBC0`; it pushes nothing)* — a receiver taking focus as it opens. The re-base of `0208F570` that `00228130` performs is **message 18**, not 14: its dispatch subtracts 1, 1 and 2 before `cmp ecx, 0xE` (`0022813B`–`00228159`), so it answers 1, 2, 4 and 18 |
 | **15** | 63 | 27.2 % | **ABOUT TO BE DESTROYED**, self only — sent by `00244F00`; §9 |
 | 16 | 35 | 15.1 % | ~~UNRESOLVED~~ **RESOURCE BATCH COMPLETE** — framework senders `00249410` / `002494F0` / `002495C0`, named 2026-09-13 (`DL-1`); also the most widely sent application message, ~~20 senders~~ 17 senders *(Corrected 2026-10-01 (SWE2-STRUCT for OPUS, DD batch 17): of the 20 sites, three are the framework senders themselves; §8's note)*; §8 *(table brought current 2026-09-25, FABLE, Claude Opus 5.5)* |
 | **17** | 8 | 3.4 % | **POSITION TWEEN FINISHED** — `00246C20` channel 0, sent exactly when the eased value reaches `1.0` (§9a, 2026-09-20) |
@@ -443,7 +443,7 @@ framework table. *The three individual meanings stay open and are recorded as su
 now read them.* **285** is the reply a shared dialog (the Yes/No box `002CDF20`, the message box `002CE370`, or
 `002C2320`) posts to the widget that opened it, `{285, the opener's code, the answer}`
 ([the licence-board widgets](../License-Board-View/the-license-board-screen-widgets.md) §8a, `GI-3`). **289** is the
-gambit list's destroy notice to its editor child, which sets the child's `+0x331` to 6
+gambit ~~list's destroy notice to its editor child, which sets the child's `+0x331` to 6~~ pick list `0056B4D0`'s destroy notice to the editor that created it, which sets its own `+0x331` to 6 *(corrected 2026-10-02, OPUS: `0056B4D0+0x4F`–`0056B4D0+0x79` send `{0x121}` to `[self+0xC8]`, the editor, whose `+0xE8` `0056B350+0x7A` set to the list)*
 ([the gambit screens](../Gambit-Screens/the-gambit-screens.md), the `0x121` row). **287** is the code message that
 `002C9EB0` builds; in the Config screen's procedure `00280DE0` its `0x8001` arm applies one change to every row
 ([the Config screen](../Config-Screen/the-config-screen-and-what-a-setting-change-runs.md) §7.1, "the batch twin").
@@ -576,7 +576,7 @@ constructor, teardown, the traversal and the setters:
 |---|---|
 | **framework only** | 3, 5, 8, 9, 17, 18, 19, 24, 25 |
 | **both** | 1, 2, 4, 12, 14, 15, 20, 23 |
-| **application only** | 0, 10, 13, 16, 26, 29–53, 61, 92, 95, 114, 119, 192, 285–289 |
+| **application only** | 0, ~~10,~~ 13, ~~16,~~ 26, 29–53, 61, 92, 95, 114, 119, 192, 285–289 *(corrected 2026-10-02, OPUS: 10 has a framework sender — the focus notice, `002481C0+0x34` `lea rdx, [009150D8]`, the record's only reference — and 16 is a "both" id, sent by the batch seal at `00249410+0x46`–`00249410+0x6D`)* |
 
 > **No id above 25 has a sender inside the widget core.** The low ids are the framework's own
 > protocol; everything above is defined by the game code that uses it. Id **16** is the most widely
@@ -877,7 +877,7 @@ bits 0, 1 and 2 as an **if / else-if chain** — `and eax,1 / je 00246DC3`, then
 `and eax,4 / je 00246FA9`. So the three channels are alternatives, not a set, and that is what lets them share
 storage: **`+0x84`…`+0x8E` is a union**, read as `int16` pairs by channels 0 and 1 and as `f32` by channel 2.
 
-**All three share the same clock.** Duration `dword[+0x90]`, start tick `dword[+0x94]`, the millisecond clock
+**All three share the same clock.** Duration `dword[+0x90]`, start tick `dword[+0x94]`, the ~~millisecond clock~~ frame clock *(corrected 2026-10-02, OPUS: the UI pass adds a step of 1 to 3 frames per pass — `00250540+0x89` `add [0208F570], r14d`, or `00250540+0x47` adding `00184950()`, clamped to 1..3 at `00798E90+0x14` — and `00244DD0+0xF2`–`00244DD0+0x104` convert a millisecond duration to 60 Hz frames before it meets the clock)*
 `[0208F570]`; a start tick further ahead than `clock + duration` is snapped back to `clock` (the stale-start clamp,
 e.g. `00246CB3`–`00246CC1`); the elapsed value is scaled by the rate `xmm7` — `1.0f`, or `float[+0xB8]` when
 `00229DF0()` is non-zero and `00229EA0()` is 2 (`00246C58`–`00246C7D`) — and handed with the curve kind
@@ -915,7 +915,7 @@ and re-sending `{22}` every frame forever. *Whether any of the sixteen curve kin
 > 2^31 ticks or more, where `cvttss2si` returns `0x80000000`. Elapsed is `clock − start` in 32 bits, so that happens
 > either when the start tick sits less than one duration ahead of the clock (it wraps, and clears once the clock
 > passes the start), or when the first frame that runs the channel comes 2^31 scaled ticks or more after its start
-> (about 24.8 days at rate 1.0). A frame that runs earlier ends the tween normally, because both tests agree below
+> (about ~~24.8 days~~ 414 days at rate 1.0, the clock counting 60 Hz frames *(corrected 2026-10-02, OPUS: see the clock correction above)*). A frame that runs earlier ends the tween normally, because both tests agree below
 > 2^31. Neither case depends on the curve kind. Whether either ever happens in play is run-time state; the static
 > reading gives the curve kind no way to cause it.*
 
@@ -981,7 +981,7 @@ by the time `00276650` sends `{29}`; construct says "you exist", 29 says "the fi
 **Message 30 is narrowed, not named — its senders do not agree.** Of its three, `0029A0A0` sends it to **another
 object** (`qword[rbp + 0x120]`, a delegate) and **consumes the return** (`0029A19C call rax` / `test eax, eax` /
 `je`), while `002778C0` sends a **16-byte constant argument block** (`movdqa xmm0, [00915BC0]`, first dword 2) to
-`rsi`, immediately after a `{31}` carrying a pointer. A query with a gating answer and a constant-payload
+`rsi` and, through `002753F0` (`002778C0+0x45E`), to every descendant of it *(corrected 2026-10-02, OPUS: `002753F0+0x15`–`002753F0+0x2B` recurse over the children — a subtree broadcast)*, immediately after a `{31}` carrying a pointer. A query with a gating answer and a constant-payload
 notification are not the same message used twice; until one of the two shapes is read through to its receiver, 30
 gets no name.
 *(Pointer 2026-10-01, SWE2-STRUCT for OPUS, DD batch 17: 30 was dispositioned on 2026-09-25 as an application-defined
@@ -1678,11 +1678,11 @@ child's subtree with the visitor `002418E0`, which sets bit 5 from its argument.
 ## Interior citation — frontier hub `00249410` (2026-09-17, SWE2-EC7)
 
 `00249410` — 133 B, 27 frontier callers at census; the "resource batch complete" seal this page's
-message-16 row names. Interior verified: `or [rcx],2` sets the sealed bit; if it was **already**
+message-16 row names. Interior verified: `or [rcx],2` sets the sealed bit; if ~~it was **already**~~ it is now *(corrected 2026-10-02, OPUS: the seal is set first, `00249410+0x15`, so the test at `00249410+0x1B` always passes)*
 sealed and `word [+0x18] == word [+0x1A]` (counts meet at
 [`00249430`](../../_index/ADDRESS-INDEX.md)) it dispatches completion — `dword [+4] != 0` calls
-`[rcx+0x10]` directly, else it vcalls `*[rcx+8]` with a `{0x10,0,0,0}` arg block. Exit clears bit
-0 (`and [rbx],~1`). Exactly the seal-and-count gate §16 describes, now anchored inside the body.
+`[rcx+0x10]` directly, else it vcalls `*[rcx+8]` with a `{0x10,0,0,0}` arg block. ~~Exit clears bit~~ Only that vcall path clears bit
+0 (`and [rbx],~1`, at `00249410+0x6F`); the custom call returns with bit 0 still set *(corrected 2026-10-02, OPUS: `00249410+0x30` `call [rcx+0x10]` is followed by the epilogue)*. Exactly the seal-and-count gate §16 describes, now anchored inside the body.
 
 
 ## Interior citation — frontier hub `002445C0` (2026-09-18, SWE2-EC7)
@@ -1731,10 +1731,10 @@ edx−edi)` / `max(0, r9d−esi)` selected against the view sizes
 
 ## SWE2-EC7-21 update (2026-09-18) — `0023DFC0` kind→string selector
 
-`0023DFC0` (95 B) is a `0x2E0`-tagged packet submit the widget record readers
+`0023DFC0` (95 B) is ~~a `0x2E0`-tagged packet submit~~ a `0x2E0`-byte widget build *(corrected 2026-10-02, OPUS: `00244F50` takes the size in `ecx`, the handler in `rdx` and the init message in `r8` — `0023DFC0+0x39` `mov ecx, 0x2e0`, `0023DFC0+0x28` `lea rdx, [0023E020]`; `0023E020` is the handler)* the widget record readers
 use: it packs `{byte cl, byte dl, qword r8, dword 0, qword &rsp+0x20, qword 0}`
 into a `rsp+0x20` record (`0023DFD6`..`0023E008`), passes `rdx = 0023E020` as the
-continuation and `ecx = 0x2E0` as the tag (`0023DFE8`/`0023DFF9`), and posts
+~~continuation and `ecx = 0x2E0` as the tag~~ handler and `ecx = 0x2E0` as the size (`0023DFE8`/`0023DFF9`), and ~~posts~~ constructs *(corrected 2026-10-02, OPUS: as above)*
 through `00244F50` (`0023E008`) — cookie-guarded, returns after the security
 check (`0023E00D`..`0023E01E`). The `0023E020` continuation is the dispatch
 body that re-reads `[rdx]` kinds 1/2/0xC/0xF. Callers `0023BD40`/`0023C5C0`/
@@ -1760,8 +1760,8 @@ remaining range. Interior anchor `00249D8F` (the `call r13`
 comparator).
 
 `002481C0` (81 B) is the focus notice the phase paragraph names:
-the `0208EBC0` chain is walked (`rax = [rax+0x10]`) for the first
-node whose `dword[+0x40]` carries both bits `0x1` and `0x8`; bit
+the `0208EBC0` chain is walked (`rax = [rax+0x10]`) ~~for the first~~ while each
+~~node whose~~ node's `dword[+0x40]` carries both bits `0x1` and `0x8`, and a node lacking either ends the walk with no message *(corrected 2026-10-02, OPUS: `002481C0+0x16`/`002481C0+0x1B` `je` to the `ret`)*; bit
 `0x200` there selects the `009150F0` arm (the `0xB` message),
 otherwise the walk continues and an exhausted chain tail-calls the
 head's `qword[rcx]` vfunc with `009150D8` (the `0xA` message).
@@ -2040,9 +2040,9 @@ pair.
 Interior anchor `002D1867` (the `*r8` store).
 
 `002CF8B0` (131 B) is the conditional post `00280DE0`
-calls: when `0209AC30`'s `+0x278` object is null it posts
-command `0xC8` with record `{0, movsxd(ecx), 0}` and code
-`002CF940` through `00244F50`; when the object exists and
+calls: when `0209AC30`'s `+0x278` object is null it ~~posts~~ builds
+~~command `0xC8` with record `{0, movsxd(ecx), 0}` and code~~ a `0xC8`-byte widget whose handler is
+`002CF940` through `00244F50`, with `{0, movsxd(ecx), 0}` as its init message *(corrected 2026-10-02, OPUS: `00244F50` takes the size in `ecx`, the handler in `rdx` and the init message in `r8` — `00244F50+0x14`–`00244F50+0x1A` keep them)*; when the object exists and
 its `byte[+0x7C]` bit 5 is set, `0208EA28` goes to
 `00246AD0` instead - the occupied/free fork the message
 posts share.
@@ -2075,9 +2075,9 @@ Interior anchor `002C9E8E` (the `+0xEC` read).
 
 `002C41F0` (38 B) and `002C2F60` (38 B) are the twin
 post-if-absent arms `00280DE0` and `002D70F0` call:
-`002C41F0` posts command `0x7B0` with code `002C4460`
+`002C41F0` ~~posts command `0x7B0` with code `002C4460`~~ builds a `0x7B0`-byte widget with handler `002C4460` *(corrected 2026-10-02, OPUS: `002C41F0+0x14` `lea rdx, [002C4460]`, `002C41F0+0x1B` `mov ecx, 0x7b0`, then `jmp 00244F50`)*
 through `00244F50` only while `0209AC30`'s `+0x128` slot
-is empty; `002C2F60` posts `0xAF8` with code `002C3560`
+is empty; `002C2F60` ~~posts `0xAF8` with code `002C3560`~~ builds a `0xAF8`-byte widget with handler `002C3560` *(corrected 2026-10-02, OPUS: `002C2F60+0x1B` `mov ecx, 0xaf8`, then `jmp 00244F50`)*
 only while `+0x120` is empty - the two guarded
 registrations the protocol keeps on the shared table.
 Interior anchors `002C420B` and `002C2F7B` (the `ecx`
@@ -2606,3 +2606,33 @@ code means is each receiving screen's, as for 30.
 | `00407C90` | 127 B | when dword `+0x44` masked by `0x180000` equals `0x100000`, stores word `+0x54` (plus dword `[rdx]` when `rdx` is non-null) in word `+0x98` and word `+0x56` (plus dword `rdx+4`) in `+0x9A` (skipped when `rcx` is null); then calls itself on each child from qword `+0x18`, following each call's return value, and returns qword `+0x20` | `00407CAB`, `00407CD0`, `00407CF6`, `00407D00` |
 | `0057E8D0` | 117 B | by the kind in dword `[rdx]`: 1 stores `rcx` in qword `02CA99D0`, zeroes qword `+0xC8` and dword `+0xC0`, calls `00244960` with the qword read from `0208EA28` and `rcx`, `00247870(rcx, 0)` and `00247930(rcx, 100)` and returns 0; 18 zeroes `02CA99D0` and returns 0; any other kind tail-jumps to `005C5230` with the same arguments | `0057E8E6`, `0057E8F4`, `0057E903`, `0057E921`, `0057E938` |
 | `0057EB30` | 117 B | by the kind in dword `[rdx]`: 1 stores `rcx` in qword `02CA99D8`, zeroes qword `+0xC8` and dword `+0xC0`, calls `00244960` with the qword read from `0208EA28` and `rcx`, `00247870(rcx, 0)` and `00247930(rcx, 100)` and returns 0; 18 zeroes `02CA99D8` and returns 0; any other kind tail-jumps to `005C5230` with the same arguments | `0057EB46`, `0057EB54`, `0057EB63`, `0057EB81`, `0057EB98` |
+
+## Homed bodies: functions reached only indirectly whose callees this page cites (OPUS, 2026-10-02, F homing)
+
+*No page cited these functions and none of their callers is documented: they are reached by table or pointer dispatch or through undocumented callers. Each one calls something this page documents, which the sentence names. Each sentence states what the body does (access and representation, not purpose); the anchors are instructions inside it that do it. Drafted locally and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-the-widget-message-protocol-homing-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0023BB20` | 407 B | clears bit `0x1` of dword `+8` in each of the 18 objects whose pointers sit in the array at qword `[rdx+0x10]`, then sets that bit again only in the object whose index equals dword `+8` of the 0x14-byte record `r9d` of the table at `00914710`; when that record's dword `+4` is 0 it calls `0029FE20(that object, &local word, &local)` and, on the object of array entry `+0x70`, sets bit `0x1` of dword `+8`, stores word `+0xC` = word `+4` of the object its first qword points to plus the local word and word `+0x10` = word `+8` of that object minus the local word; otherwise it stores `002F9860(record dword +0xC)` at qword `+0x18` of the selected object, `0020E620(0)` at dword `+0x20` and `002DD7E0(2 when bit r9d of qword [rcx+0x720] is set, else 0)` at dword `+0x24`; both paths return 1 | `0023BB49`, `0023BBCF`, `0023BC07`, `0023BC20`, `0023BC99` |
+| `0023CD20` | 236 B | indexes the 0x14-byte record `r9d` of the table at `0208E6E0` and works on the pointer array at qword `[rdx+0x10]`: when record dword `+4` is 0 it stores `002F9860(record dword +8)` at qword `+0x18` and `0020E620(0)` at dword `+0x20` of array entry 0, sets its bit `0x1` of dword `+8`, calls `0029FE20(entry 0, &local word, &local)`, then on entry 2 sets bit `0x1`, stores word `+0xC` = word `+4` of the object its first qword points to plus the local word and word `+0x10` = word `+8` of it minus the local word, and clears bit `0x1` of entry 3; when record dword `+4` is 1 to 4 it sets bit `0x1` of entry 3, stores the same two calls' results at its `+0x18` and `+0x20`, and clears bit `0x1` of entries 2 and 0; any other value changes nothing; returns 1 on every path | `0023CD4E`, `0023CD55`, `0023CD63`, `0023CDC2`, `0023CDDB` |
+| `00241D00` | 59 B | calls `002F9860(0x3E8, or 0x3E9 when r8d is non-zero)` and passes the result as the fourth argument of `002D8910(rdx, 0, 0, result, 0)`, returning that call's value | `00241D0E`, `00241D17`, `00241D30` |
+| `00242A80` | 264 B | with `p` = qword `+0x20` of qword `0208EA90` plus 0x30, reads the 8-byte entry indexed by word `[p+0x24+2*word [p+0x14]]` from the table at `p` + word `[p+0x10]` and unpacks it into a local block of four words (entry words `+0` and `+2`, entry word `+4` AND 0xFFF, entry dword `+4` shifted right 12 AND 0xFFF); stores entry byte `+7` low nibble plus byte `[p + word [p+0x12] + (entry byte +7 high nibble)]` at byte `[rcx+0x5C]` and `002DD7E0(0x65)` at dword `[rcx+0x90]`; packs `dx`, `r8w`, `r9w` and the fifth (stack) argument into a second local block of four words and calls `002D8BB0(rcx, 1)`, `002D8C80(rcx, qword 0208EA90, &first block, &second block)` and `002D8BB0(rcx, 0)` | `00242AB5`, `00242B1C`, `00242B25`, `00242B4D`, `00242B66` |
+| `00276770` | 80 B | calls `002753F0(rcx, &local)` with a local block holding dword 0x2D at `+0`, at qword `+8` the address of a local dword set to 0, and 0 at qword `+0x10`, then returns that local dword | `00276785`, `002767A0`, `002767A5`, `002767AA` |
+| `0027F1A0` | 100 B | zeroes the 0x20 bytes at `rcx` and stores `dx` at word `+8`; when `dx` is not 0xFFFF it calls `0035D330(1, edx shifted left 16)`, stores `002B58B0(qword +0x18 of that result, 0)` at qword `[rcx]`, and copies the result's bytes `+0x2C` and `+0x38` into bytes `+0xA` and `+0xB` | `0027F1BF`, `0027F1C6`, `0027F1D5`, `0027F1E3`, `0027F1FB` |
+| `00283620` | 103 B | scans the 9 object pointers at `+0xAC8` of qword `0209AC30` for the first whose signed word `+0x60` is non-negative and equals `ecx`; on a match it calls `002527B0(6, 4, that index)` and returns 1, otherwise it returns 0 | `0028364C`, `00283654`, `00283678`, `00283666` |
+| `00283BB0` | 647 B | switches on dword `[rdx]` and returns 0 except on other values, which return `005C5230(rcx, rdx)`; 1 clears bit `0x800` of dword `+0x40`, calls `002432B0(rcx+0x50, qword +0x30 of qword 0209AC30, 0xE, rcx)`, copies its words `+4` to `+0xA` into words `+0x98` to `+0x9E`, copies byte `[rdx+0x10]` into byte `+0xF8` and bit `0x1` of dword `[rdx+8]` into bit `0x40` of dword `+0xFC`; 2 writes (signed word `+0xF0` greater than 0) into bit `0x1` of dword `+8` of the objects at qwords `+0x140`, `+0x120`, `+0x128`, `+0x130`, `+0x138` of qword `[rcx+0x60]`, and (signed word `+0xF4` greater than 0) into those at `+0x190`, `+0x178`, `+0x180`, `+0x188`; 3, when bit `0x1` of byte `+0xFC` is set, calls `00368360(rcx, &local)` with word 0x12, then word (signed word `+0x9E` divided by 2 toward zero, minus 8), byte 0 at `+8` and dword 0x60001 at `+0xA`; 4, for each positive signed word `+0xF0` and `+0xF4`, calls `0029F6E0` on the object at qword `+0x120` (args 4, 3) or `+0x178` (args 3, 3) of qword `[rcx+0x60]` with `002DD7E0(5 when that word is greater than signed word +0xF2 or +0xF6, else 4)` and the word as fifth argument | `00283BF4`, `00283CDD`, `00283D07`, `00283DCB`, `00283E17` |
+| `00284450` | 400 B | switches on dword `[rdx]` and returns 0 except on unlisted values, which tail-jump to `005C5230(rcx, rdx)`; 0x12 does nothing; 0x11, when qword `[rdx+8]` is 1, calls `00247510(qword [rcx+0x10], or 0 when rcx is null, 0, 0)`; 3, when qword `[rcx+0xD8]` is non-null and bit `0x1` of its byte `+0xFC` is set, calls `00242C90(qword [rcx+0x38], 0x20, 0, its signed word +0x9C minus 0x20, its signed word +0x9E, 0)`; 2 calls `002D0410(rcx)`, first (when qword `+0xD8` is non-null) clearing bit `0x1` of dword `+8` of the object at qword `+0x30` of qword `[rcx+0x60]` if bits `0x30` of byte `+0xFC` of the `+0xD8` object are clear, or else setting it and storing bit `0x20` of that object's dword `+0xFC` as 0 or 1 at word `+0xA` of the object and byte `[qword +0x20 of the object + 8*that bit + 7]` at its byte `+0x39`; 1 calls `002432B0(rcx+0x50, qword +0x30 of qword 0209AC30, 0x10, rcx)`, copies its words `+4` to `+0xA` into words `+0x98` to `+0x9E` when `rcx` is non-null, and clears bit `0x800` of dword `+0x40` | `00284488`, `002844A4`, `0028450C`, `0028453E`, `00284599` |
+| `00296A10` | 86 B | returns at once when `rcx` is null; otherwise stores `rdx` at qword `+0xB50`, calls `0029AEF0(rcx, rdx)` and, for the 0x160-byte entry at `+0x318` indexed by signed byte `+0xB48`, sets bit `0x4` of that word when its bit `0x1` is set, otherwise calls `0029AE50(rcx, 0)` | `00296A1D`, `00296A24`, `00296A40`, `00296A48`, `00296A5B` |
+| `00299AC0` | 196 B | switches on dword `[rdx]`, tail-jumping to `005C5230(rcx, rdx)` for values other than 1 and 0x11; 0x11 calls `00247930(rcx, 7)` when qword `[rdx+8]` is 1 and `00247930(rcx, 8)` otherwise; 1 calls `002432B0(rcx+0x50, qword +8 of qword 0209AC30, 0x33, rcx)`, copies its words `+4` to `+0xA` into words `+0x98` to `+0x9E` when `rcx` is non-null, then calls `00247930(rcx, 7)` and `00247570(rcx, 002735E0(0))`; both handled values return 0 | `00299ADD`, `00299AEE`, `00299B25`, `00299B6C`, `00299B77` |
+| `0029B120` | 147 B | for each index `i` below byte `[rcx+0xB42]`, calls `00247930` on the 0x160-byte entry at `rcx+0x240+i*0x160` and then on the 0xD8-byte entry at `rcx+0x7C0+i*0xD8`, with arguments 2 and 3 when `i` equals `edx`, and 4 and 5 otherwise | `0029B136`, `0029B157`, `0029B160`, `0029B18C`, `0029B19C` |
+| `0029B700` | 143 B | when dword `[rdx]` is 1, calls `002432B0(rcx+0x50, qword +8 of qword 0209AC30, 0x31, rcx)`, copies its words `+4` to `+0xA` into words `+0x98` to `+0x9E` when `rcx` is non-null, then calls `00247570(rcx, 002735E0(0))` and `00247930(rcx, 0xA)` and returns 0; any other value tail-jumps to `005C5230(rcx, rdx)` | `0029B706`, `0029B713`, `0029B730`, `0029B76A`, `0029B782` |
+| `0029C850` | 379 B | with `o` = `rcx+0xC0`: when `00273A20(o)` is 0, calls `00245000(o, 0xC0, 00299AC0, 0)`, stores at word `+0x15A` the word `+0x2DA` of the 0x160-byte entry indexed by dword `+0xB58`, minus word `+6` of qword `+0x298`, plus word `+6` of qword `+0x118`, and calls `00244960(rcx, result)` and `00246AC0(result)`; when it is non-zero and bit `0x8` of byte `+0xB4A` is set, calls `002468A0(o, signed word +0x158, the same sum from signed words, 1, 0xC8)`; both paths then call `0029B120(rcx, dword +0xB58)` and `00273A20(o)`, clear bit `0x4` and set bit `0x8` of word `+0xB4A` and return 1; when bit `0x8` is clear it returns 0 after calling `00245020(o)` if the low nibble of dword `[o+0x7C]` is 1, nothing if it is 4, or `00244F00(o)` otherwise | `0029C867`, `0029C874`, `0029C91C`, `0029C93A`, `0029C99A` |
+| `0029D9D0` | 151 B | stores `002DD7E0(3 when bit 0x1 of word [rdx+0x10] is set, else 7 for bit 0x2, else 0x106 for bit 0x8, else 0)` at dword `[r8+0x90]`; when that word is non-negative (signed) it then replaces byte `[r8+0x93]` with (byte `[rcx+0x140]` times that byte) shifted right 7, otherwise it writes that byte back unchanged | `0029D9EC`, `0029DA0F`, `0029DA14`, `0029DA26`, `0029DA56` |
+| `0029E7D0` | 110 B | when dword `[rdx]` is 1, calls `002432B0(rcx+0x50, qword [rdx+8], dword [rdx+0x10], rcx)`, copies its words `+4` to `+0xA` into words `+0x98` to `+0x9E` when `rcx` is non-null, sets bit `0x40000` of dword `+0x40` and returns 0; any other value tail-jumps to `005C5230(rcx, rdx)` | `0029E7D6`, `0029E7E3`, `0029E7F7`, `0029E812`, `0029E82F` |
+| `002B6CE0` | 202 B | switches on dword `[rdx]`: 0xF sets bit `0x1` of dword `+0xC0`; 1 calls `002432B0(rcx+0x50, qword [rdx+8], 3, rcx)`, copies its words `+4` to `+0xA` into words `+0x98` to `+0x9E` when `rcx` is non-null, stores `002B6C80` at qword `+0x120` and `rcx` at qwords `+0xD8` and `+0xC8` of the object at qword `+0x18` of qword `+0x10` of qword `[rcx+0x60]` (read from address 0x18 when `rcx` is null), and calls `00247570(rcx, 00916850)` and `00247930(rcx, 0x62)`; both return 0, and other values tail-jump to `005C5230(rcx, rdx)` | `002B6CFD`, `002B6D02`, `002B6D22`, `002B6D78`, `002B6D9D` |
+| `002BC310` | 202 B | switches on dword `[rdx]`: 0xF sets bit `0x1` of dword `+0xC0`; 1 calls `002432B0(rcx+0x50, qword [rdx+8], 3, rcx)`, copies its words `+4` to `+0xA` into words `+0x98` to `+0x9E` when `rcx` is non-null, stores `002BA650` at qword `+0x120` and `rcx` at qwords `+0xD8` and `+0xC8` of the object at qword `+0x18` of qword `+0x10` of qword `[rcx+0x60]` (read from address 0x18 when `rcx` is null), and calls `00247570(rcx, 00916A48)` and `00247930(rcx, 0x62)`; both return 0, and other values tail-jump to `005C5230(rcx, rdx)` | `002BC32D`, `002BC332`, `002BC352`, `002BC3A8`, `002BC3CD` |
+| `002BD680` | 502 B | for dword `[rdx]` 1 to 0xF jumps through a table to arms that return 0 (other values return `005C5230(rcx, rdx)`): one calls `00247570(rcx, 00916BD8)`, `00247930(rcx, 0x62)` and `0029E6D0(0)`; one calls `002470D0(rcx)`; one calls `002D3900` on qword `+0x18` of qword `+0x10` of qword `[rcx+0x60]` (read from address 0x18 when `rcx` is null); one sets word `+0x3DA` to 1, calls `0029E6D0(1)` and sends id 0x26; one sends id 0x27 only when word `+0x3DA` is 0; one calls `0027FB50(dword [rdx] equals 8)`; one reads qword `[rdx+8]`: 0x8002 calls `00244F00(rcx)`, other values do nothing, and 0x8000 sends id 0x25 with the sign-extended words `+0xC8` and `+0xCA` of the 0x18-byte entry indexed by qword `[rdx+0x10]`; a send calls the function pointer at qword `[o]`, `o` = qword `+0x3C0`, as `(o, &local)` with the dword id and two qwords (zero unless given) only when `o` and that pointer are non-null | `002BD6BD`, `002BD745`, `002BD79F`, `002BD7CB`, `002BD83E` |
+| `002C34F0` | 97 B | with `e` = the 0x20-byte entry `r9d` at `rcx` and `o` = the first object of the pointer array at qword `[rdx+0x10]`, copies word `+4` of the object `o`'s first qword points to into word `[o+0xC]` and qword `[e]` into qword `[o+0x18]`, stores `0020E620(0)` at dword `[o+0x20]` and `002DD7E0(0 when bit 0x20000 of dword [e+0x18] is set, else 2)` at dword `[o+0x24]`, and returns 1 | `002C3512`, `002C351B`, `002C351F`, `002C3527`, `002C3539` |
+| `002C4400` | 86 B | with `e` = the 0x20-byte entry `r9d` at `rcx` and `o` = the first object of the pointer array at qword `[rdx+0x10]`, copies qword `[e]` into qword `[o+0x18]`, stores `0020E620(0)` at dword `[o+0x20]` and `002DD7E0(0 when bit 0x20000 of dword [e+0x18] is set, else 2)` at dword `[o+0x24]`, and returns 1 | `002C4420`, `002C4424`, `002C442C`, `002C443E`, `002C4448` |
+| `002CA2E0` | 202 B | when bits `0x3` of dword `[rcx+0xC0]` are not both clear, takes `o` = qword `[qword [rcx+0x60] + 8*signed word +0xC6]` and calls `00248F40((dword +0xC0 shifted right 2) AND 0xF, dword +0xCC, dword 0208F570 minus dword +0xD0)`; when the float result equals 1.0 (`01CEBBA8`) it stores byte `+0xC8` plus byte `+0xC4` at byte `[o+0x3B]` and clears bits `0x3` of dword `+0xC0`, otherwise it stores there the truncation of signed word `+0xC8` times the result plus signed word `+0xC4`; it then writes that byte `b` as `b*0x10101` OR `0x80000000` to dwords `+0x28`, `+0x2C`, `+0x30` and `+0x34` of `o` | `002CA2E6`, `002CA32B`, `002CA330`, `002CA378`, `002CA393` |
+| `002CA430` | 89 B | calls `0035D330(1, ecx shifted left 16)` and maps dword `+0x38` of the result 7 to 0x17, 8 to 0x18, 9 to 0x19 and 0x11 to 0x1A, returning 0 for any other value | `002CA43E`, `002CA443`, `002CA458`, `002CA45A` |

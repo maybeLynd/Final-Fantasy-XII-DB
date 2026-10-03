@@ -1,0 +1,36 @@
+{
+  "complete": true,
+  "method": "A STATIC_ONLY original physical metadata",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "driver_sha256": "b69d32de7accbef9e1da7fe10a98df3880c991d29a5527a5fdfac89738772979",
+  "directory_bytes": "0080e7020c8a0600",
+  "lookups": [
+    {
+      "path": "mode-getter-entry-retained-preflight-01.json",
+      "sha256": "849a86d72f898b7b7a5505c324d6259ef7142df710e3a09697b293e74447328d"
+    }
+  ],
+  "bodies": [
+    {
+      "entry": "0x17d470",
+      "end_exclusive": "0x17d484",
+      "bytes": 20,
+      "sha256": "a7ea2bd577c99891ad2a3cf374e2246d4fc66f45ac7e6915f0ac907e2f9b605f",
+      "physical_bytes": "4883ec28e8577c05008b80200c00004883c428c3",
+      "records": [
+        {
+          "begin": "0x17d470",
+          "end_exclusive": "0x17d484",
+          "chain": [
+            {
+              "record_bytes": "70d4050084d40500c82bc301",
+              "header_address": "0x1d52bc8",
+              "header_bytes": "01040100"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "limits": "Physical extents only. Code/data distinction, helper effects and natural reachability not established by metadata."
+}

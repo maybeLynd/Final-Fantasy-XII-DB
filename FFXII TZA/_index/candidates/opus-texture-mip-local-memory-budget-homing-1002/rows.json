@@ -1,0 +1,91 @@
+{
+ "page": "17-Presentation-Rendering/Legacy-PS2-GS/texture-mip-local-memory-budget.md",
+ "date": "2026-10-02",
+ "session": "local-h3-opus",
+ "report": "texture-mip-local-memory-budget.json",
+ "rows": [
+  {
+   "fn": "008641B0",
+   "text": "takes the low 14 bits of dword `+0x50` of `rcx` as an id (0xE00 becomes 0xDFF when dword `02EC3ECC` is 0 and stays 0xE00 otherwise), stores the first qword of what `002D7FA0(id)` returns at qword `+0x20`, then calls `002D7EE0(qword +0x50)` twice, storing the first qword of the first result at qword `+0x28` and dword `+8` of the second at dword `+0x30`",
+   "anchors": [
+    [
+     "008641BC",
+     "and"
+    ],
+    [
+     "008641CA",
+     "cmp"
+    ],
+    [
+     "008641DB",
+     "call"
+    ],
+    [
+     "008641EB",
+     "call"
+    ],
+    [
+     "00864203",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00864750",
+   "text": "takes the low 14 bits of dword `+0xC8` of `rcx` as an id (0xE00 becomes 0xDFF when dword `02EC3ECC` is 0 and stays 0xE00 otherwise), stores the first qword of what `002D7FA0(id)` returns at qword `+0xA0`, then calls `002D7EE0(qword +0xC8)` twice, storing the first qword of the first result at qword `+0xA8` and dword `+8` of the second at dword `+0xB0`",
+   "anchors": [
+    [
+     "0086475F",
+     "and"
+    ],
+    [
+     "0086476D",
+     "cmp"
+    ],
+    [
+     "0086477E",
+     "call"
+    ],
+    [
+     "00864794",
+     "call"
+    ],
+    [
+     "008647B2",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00864CA0",
+   "text": "takes the low 14 bits of dword `+0xF8` of `rcx` as an id (0xE00 becomes 0xDFF when dword `02EC3ECC` is 0 and stays 0xE00 otherwise), stores the first qword of what `002D7FA0(id)` returns at qword `+0xD0`, then calls `002D7EE0(qword +0xF8)` twice, storing the first qword of the first result at qword `+0xD8` and dword `+8` of the second at dword `+0xE0`",
+   "anchors": [
+    [
+     "00864CAF",
+     "and"
+    ],
+    [
+     "00864CBD",
+     "cmp"
+    ],
+    [
+     "00864CCE",
+     "call"
+    ],
+    [
+     "00864CE4",
+     "call"
+    ],
+    [
+     "00864D02",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing"
+}

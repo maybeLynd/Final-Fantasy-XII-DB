@@ -836,7 +836,7 @@ hand off.
 ## Interior citation — frontier hub `00334120` (2026-09-18, SWE2-EC7)
 
 `00334120` — 116 B, 8 callers; `Angle_ApproachWrappedRadians` confirmed. `0033CB70`
-normalises `target - current` into the wrapped delta, `andps` with the `0x7FFFFFFF` mask at
+normalises `target - current` into the wrapped delta, `andps` with the ~~`0x7FFFFFFF`~~ `0x7FFFFFFFFFFFFFFF` double mask *(corrected 2026-10-02, OPUS: `00334120+0x21` widens the delta with `cvtss2sd`, `00334120+0x25` masks it and `00334120+0x2C` narrows it with `cvtpd2ps`; `01CEBD80` holds two copies of `0x7FFFFFFFFFFFFFFF`)* at
 `01CEBD80` takes its absolute value, and `|delta| <= step` returns `target` unchanged
 (`00334187`). Otherwise it adds or subtracts `step` on the delta's sign and re-wraps through
 `0033CB70` before returning ([`0033415D`](../../_index/ADDRESS-INDEX.md)). The steering

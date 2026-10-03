@@ -699,7 +699,7 @@ subsystem leaf). Interior verified: [`005CD82A`](../../_index/ADDRESS-INDEX.md) 
 `lock cmpxchg [rcx+0x20], edx` with `eax=1`/`edx=0` — a spin-lock **release**: decrement
 `[rcx+0x24]` (hold depth), clear the lock flag atomically, then when `dword[rcx+0x18] > 0`
 tail-jumps `005CD570(rcx+8)` to wake the delegated waiters. The unlock half of the
-one-time-init / shared-lock pair this page documents.
+~~one-time-init /~~ shared-lock pair, which is not the one-time-init lock this page documents *(corrected 2026-10-02, OPUS: `005CD820` clears a `lock cmpxchg` flag at `[rcx+0x20]` and wakes through `005CD570` (`SetEvent`); it never touches `_Init_thread_lock` `02EAED40`)*.
 
 **Audio — CLIENT (11 edges).** `005CD820` is called by eleven Audio-tagged bodies
 (`00212050`/`002120E0`/`00212300`/`00219C40` and seven more in `0021xxxx`); the crossing is that

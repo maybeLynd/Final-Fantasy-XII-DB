@@ -446,10 +446,10 @@ page's 2026-09-17 answer said did not exist.
 ## SWE2-EC7-82 update (2026-09-20) - `0051BC10` slot release measured
 
 `0051BC10` (93 B) is the `cl`-indexed release the bone-trail callers
-run: `cl * 0x3C0` into the `02A48F40` slot table, and when
+run: `cl * 0x3C0` into the ~~`02A48F40`~~ `02CA8420` slot table *(corrected 2026-10-02, OPUS: `0051BC10`+0xA `add r8, qword ptr [02CA8420]`; `02A48F40`, `02A48F04`, `02A48EF4` and `02A48F08` have no reference in the image)*, and when
 `dword[slot]` matches `ecx` the slot clears to 0, the global count
-`02A48F04` decrements, and the slot unlinks from the `+0x18`/`+0x20`
-doubly-linked chain (head/tail at `02A48EF4`/`02A48F08` updated when
+~~`02A48F04`~~ `02CA8400` (u16) decrements *(corrected 2026-10-02, OPUS: `0051BC10`+0x22 `add word ptr [02CA8400], ax`)*, and the slot unlinks from the `+0x18`/`+0x20`
+doubly-linked chain (head/tail at ~~`02A48EF4`/`02A48F08`~~ `02CA8408`/`02CA8410` *(corrected 2026-10-02, OPUS: `0051BC10`+0x3C and `0051BC10`+0x55)* updated when
 it is an end).
 Interior anchor `0051BC13` (the `imul` slot index).
 
@@ -500,3 +500,13 @@ exit 0. Carried:
 | B4 | sections 5, 5a | **survives**: the template `02CA8A90`; `0053F490`'s address taken once, at `0051C147`; the phase-2 tail-jump at `0041E4EF`; the VIF top bytes `0x03`, `0x02`, `0x01`, `0x6C`, `0x10` at the five cited stores |
 
 No correction.
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-the-bone-trails-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `003712C0` | 17 B | compares dword `+0x9C` of `rcx` with 2: when equal, tail-jumps through the jump at `003712C0`+0xC with the arguments unchanged; otherwise returns 0 | `003712C7`, `003712C9`, `003712CC` |
+| `0042BDD0` | 8 B | replaces `edx` with dword `+0x38` of `rdx` and tail-jumps `003E6770` with `rcx` unchanged | `0042BDD3` |
+| `0042E440` | 63 B | calls `00426220(rcx, qword +8 of rdx)`; only when that returns 0 does it call `00424010` with the original `rcx` and the floats `+0x2C`, `+0x30` and `+0x34` of `rdx` in `xmm1`, `xmm2` and `xmm3`, otherwise it returns without the second call | `0042E450`, `0042E454`, `0042E45B`, `0042E465`, `0042E46F` |

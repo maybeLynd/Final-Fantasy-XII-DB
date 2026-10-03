@@ -26,9 +26,9 @@ the existing charter quality/readiness gate.
 
 | level | state |
 |---|---|
-| **L1 MODDING-GRADE** | **strong and the project's real achievement.** ~~211 documents, 26/26 categories~~ **346 documents, 28/28 categories**, evidence standard mature. |
-| **L2 RECONSTRUCTION-GRADE** | **not reached by any subsystem.** Three specific gaps: game-type recovery, behavioural contracts, runtime validation. Not "depth" in general. |
-| **L3 PARITY-CERTIFIED** | ~~not started; no reconstruction tree, no differential harness.~~ **Not reached:** 44 reimplemented operations under `Reconstruction/`, each with a differential harness against the shipped bytes, and **0 parity-certified** (`program_coverage.py`, HEAD `c65b1a16`, 2026-09-15). |
+| **L1 MODDING-GRADE** | **strong and the project's real achievement.** ~~211 documents, 26/26 categories~~ ~~**346 documents, 28/28 categories**~~, evidence standard mature *(corrected 2026-10-03, SWE2-DATA: a copied count goes stale; the live document count comes from `progress.py` and [PROGRESS.md](../PROGRESS.md) - 491 documents at `8c22cbe8f`)*. |
+| **L2 RECONSTRUCTION-GRADE** | ~~**not reached by any subsystem.** Three specific gaps: game-type recovery, behavioural contracts, runtime validation. Not "depth" in general.~~ **Scoped L2 verdicts are MET for every system [L2-VERDICTS.md](L2-VERDICTS.md) lists; the whole-database goal is NOT_MET** *(corrected 2026-10-03, SWE2-DATA: [PROGRESS.md](../PROGRESS.md) reads 52 MET of 52 systems, scoped, and DB_GOAL NOT_MET with `final_audits` 0 / 30; `goal_gate.py` is the instrument of record, and a scoped verdict is not whole-database completion)*. |
+| **L3 PARITY-CERTIFIED** | ~~not started; no reconstruction tree, no differential harness.~~ **Not reached:** 44 reimplemented operations under `Reconstruction/`, each with a differential harness against the shipped bytes, and **0 parity-certified** (`program_coverage.py`, HEAD `c65b1a16`, 2026-09-15). *(qualified 2026-10-03, SWE2-DATA: L3 is not a prerequisite for the database goal ([RECONSTRUCTION-CHARTER.md section 0](../../../RECONSTRUCTION-CHARTER.md#0-project-lifecycle-user-directive-2026-10-02)); parity pilots run now are database-phase evidence probes, and [PARITY-STATUS.md](PARITY-STATUS.md) reads 0 of 45 pilots certified.)* |
 
 **The ten tracks, their state and next actions:**
 [`GOAL-REVISION-2026-09-08.md`](GOAL-REVISION-2026-09-08.md) §7. **`C` type reconstruction and
@@ -37,7 +37,9 @@ without runtime evidence cannot pass the readiness gate.
 
 ## 2. Multidimensional coverage (charter section 9)
 
-### Current at HEAD `c65b1a16` — 2026-09-15 (OPUS)
+### Measured at HEAD `c65b1a16` — 2026-09-15 (OPUS; relabelled from "Current at" 2026-10-03, SWE2-DATA)
+
+*(SWE2-DATA, 2026-10-03: these figures are a dated measurement, not current state. Regenerate them with `program_coverage.py`; the generated current summary is [PROGRESS.md](../PROGRESS.md).)*
 
 Every figure below comes from a run, not from memory. `program_coverage.py --db <git archive of HEAD>`
 wrote [`COVERAGE-DIMENSIONS.md`](COVERAGE-DIMENSIONS.md). `types_index.py --coverage` wrote

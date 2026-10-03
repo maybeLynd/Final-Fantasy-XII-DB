@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-resource-eligibility-domain\controls-01\incomplete-current-wrapper\qualify-singleton.py", line 104, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-resource-eligibility-domain\controls-01\incomplete-current-wrapper\qualify-singleton.py", line 76, in main
+    C.check(P,'prepare-singleton-extents.py','capture-singleton.py','singleton-extents-01','singleton-capture-01','singleton-extents-01.json','singleton-source-01.json',['0x1d50d0'])]
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-resource-eligibility-domain\controls-01\incomplete-current-wrapper\capture_prerequisites.py", line 17, in check
+    if c.get('wrapper_complete') is not True or c.get('invocation_driver_sha256')!=sha(folder/capture):raise ValueError('required complete current capture wrapper')
+                                                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: required complete current capture wrapper

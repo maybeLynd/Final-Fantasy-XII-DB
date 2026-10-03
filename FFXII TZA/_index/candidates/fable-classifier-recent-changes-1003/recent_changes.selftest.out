@@ -1,0 +1,40 @@
+recent_changes.py --self-test
+fixtures (live EVENT_CLASS):
+  PASS  register transition -> knowledge                                   
+  PASS  register answered + page + index text -> knowledge only (covered)  
+  PASS  superseded with dated lead -> knowledge                            
+  PASS  narrowed with dated lead -> knowledge                              
+  PASS  answered without a date -> UNCLASSIFIED                            
+  PASS  new open question registered -> UNCLASSIFIED                       
+  PASS  partly answered -> UNCLASSIFIED (no DATA row)                      
+  PASS  board-only -> workflow                                             
+  PASS  workflow docs -> workflow                                          
+  PASS  generated-only -> bookkeeping                                      
+  PASS  tools-only -> tooling                                              
+  PASS  correction record -> corrected                                     
+  PASS  keywordless strike + table-shaped consumer record -> corrected     
+  PASS  correction-shaped record, nothing struck, page edit -> UNCLASSIFIED 
+  PASS  affected record + control + new page section, nothing struck -> knowledge (rule f) 
+  PASS  unknown path -> UNCLASSIFIED                                       
+  PASS  page-only edit -> UNCLASSIFIED                                     
+  PASS  tools/work scratch -> UNCLASSIFIED                                 
+  PASS  page section + new candidate record -> knowledge (rule f)          
+  PASS  accepting review of an evidence record -> evidence                 
+  PASS  repeat review of an already-accepted record -> workflow            
+  PASS  REJECT review of a package -> workflow                             
+  PASS  new evidence record never reviewed -> UNCLASSIFIED                 
+  PASS  new evidence record accepted later -> no event at the addition     
+  PASS  type row promoted -> type/contract                                 
+  PASS  type row evidence-text edit only -> UNCLASSIFIED                   
+  PASS  package accepted -> type/contract                                  
+  PASS  package moved to review -> UNCLASSIFIED                            
+  PASS  L2 cell newly MET -> type/contract                                 
+  PASS  parity row change -> probe                                         
+  PASS  pilots certified moved -> parity evidence                          
+  PASS  JSON contract: keys, class list, axis = class                      
+  PASS  JSON validator rejects an axis that does not match                
+  PASS  every EVENT_CLASS entry is exercised by a fixture                  (22 kinds)
+sensitivity (swapped EVENT_CLASS entries must fail the fixtures):
+  PASS  swap register-answered <-> board                                   3 fixture(s) fail
+  PASS  every swap of two differently-classed entries is caught            204 of 204 caught
+FAILS 0

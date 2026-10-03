@@ -1,0 +1,24 @@
+{
+ "blocks_in_image": 672,
+ "blocks_outside_image": 8,
+ "catalogue": "e2a67b07700c2ec3fbfae3213965de35",
+ "classes": {
+  "entered": 1,
+  "faulted": 1,
+  "open": 2,
+  "returned": 54,
+  "returned+faulted": 26,
+  "scripted": 4
+ },
+ "elapsed_s": 117.3,
+ "emu_starts": 602,
+ "entries_executed": 81,
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "instrument": "execcov-shim v2",
+ "patched_blocks": 179,
+ "rc": 0,
+ "receipt_md5": "8cd243989252e7ca155b0214290323f7",
+ "run": "nav-obj-accessor-exec",
+ "status": "ok",
+ "unique_blocks": 680
+}

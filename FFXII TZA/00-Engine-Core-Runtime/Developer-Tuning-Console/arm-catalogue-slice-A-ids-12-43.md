@@ -282,7 +282,11 @@ console dispatch  001D1660
         to the getter or the cell; its control reproduces UQ-18's Huge Damage reader and rejects two impostors:
         - **Invincible** is read by `BattleTarget_ComputeUnitEligibilityMask` through `0017D470` (`0030B883`,
           `0030B8B6`). So invincibility is implemented as a target-eligibility mode, which is why the arm cycles
-          it through three states.
+          it through three states. *(narrowed 2026-10-02, FABLE, reviewing ASTRA's `ov42-resource-eligibility-domain`:
+          the two reads are separate getter calls. Mode 1 sets bit 0 of the mask's upper WORD when the unit's
+          current stats exist and their byte `+5` is 0, and mode 2 sets bit 1. A nonzero upper WORD stops an MP
+          decrease in `BattleStats_ModifyPrimaryResource` after its notification attempt. See the OV-42 mode-17
+          subsection of `07-Combat-Action/Action-Availability/battle-command-availability-and-reason-codes.md`.)*
         - **Use normal map** is read by the render bodies `001BC190`, `001E2AF0` and `001F8D10` (`001F8F96`).
         - **Display texture density** is read by `001E2AF0` (`001E37DC`).
         - **Debug high model skeleton** is a float read through `00180090` by `AddMotion_ApplyBonePose`
@@ -420,3 +424,12 @@ Interior anchor `001A7560` (function `001A74A0`).
 - **Input — CLIENT and SERVICE (13 edges).** 8 inbound (Input bodies `InputManager_PollAndBuildControlState` (00196FF0), `001E0DA0`, `001E0E70` call page-cited `001D50D0`, `005CC930`, `InputManager_TranslateBindingProfileToControlState` (00197160)); 5 outbound (page-cited `InputManager_TranslateBindingProfileToControlState` (00197160) call Input bodies `InputBackend_IsControlCode28To283ActiveForBank` (0079E6A0), `InputBackend_IsControlCode11To27ActiveAnyDevice` (0079E650), `InputBackend_IsPrimaryControlCode1To3Active` (0079E6D0)). Substantive edges include `InputManager_TranslateBindingProfileToControlState` (00197160) is called by `InputManager_PollAndBuildControlState` (00196FF0); `InputManager_TranslateBindingProfileToControlState` (00197160) calls `InputBackend_IsControlCode28To283ActiveForBank` (0079E6A0); `InputManager_TranslateBindingProfileToControlState` (00197160) calls `InputBackend_IsControlCode11To27ActiveAnyDevice` (0079E650); `InputManager_TranslateBindingProfileToControlState` (00197160) calls `InputBackend_IsPrimaryControlCode1To3Active` (0079E6D0).
 - **Platform — SERVICE (2 edges).** 2 outbound (page-cited `001CCB20`, `00799980` call Platform bodies `005CC930`). Substantive edges include `001CCB20` calls `005CC930`; `00799980` calls `005CC930`.
 - **PlatformOnlineAchievements — SERVICE (1 edge).** 1 outbound (page-cited `001CD0E0` call PlatformOnlineAchievements bodies `003166F0`). Substantive edges include `001CD0E0` calls `003166F0`.
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../../_index/candidates/fable-home-arm-catalogue-slice-a-ids-12-43-1002/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `001BBF40` | 118 B | `001BC190` + 0x148 | walks the `0x20` qwords starting at `rcx+0xA0` and issues the call at `001BBF40` + 0x2B on each non-null one, then issues the call at `001BBF40` + 0x49 with (`rcx+0xA0`, 0, `0x100`) and tail-jumps at `001BBF40` + 0x71 with (`rcx+0x1A0`, 0, `0x100`) | Interior anchor `001BBF63`; Interior anchor `001BBF6B`; Interior anchor `001BBF74`; Interior anchor `001BBF89`; Interior anchor `001BBFB1` |
+| `001DE180` | 116 B | `001DE5D0` + 0x720 | takes the dword `+4` of the table at qword `rcx-0x90` as an offset `d` (read before each of the first two stores), stores the address `00901028` to the qword at `rcx - 0x90 + d` and `d - 0x90` to the dword at `rcx - 0x94 + d`, stores `00900F20` to qword `rcx-0x80`, issues the call at `001DE180` + 0x50 and then the indirect call at `001DE180` + 0x59, both with `rcx-0x80`, and tail-jumps through the indirect jump at `001DE180` + 0x6D with `rcx-0x78` | Interior anchor `001DE19F`; Interior anchor `001DE1C0`; Interior anchor `001DE1C8`; Interior anchor `001DE1D0`; Interior anchor `001DE1ED` |

@@ -595,3 +595,11 @@ Shared callees deliberately outside the census: `006372A0` (tag getter),
 ## Cross-subsystem neighbours — SWE2-STRUCT (pass-22 dispositions)
 
 - **Resource - CLIENT (69 edges).** `0062FF50`, `00630420`, `00630490` are called by bodies filed to Resource: `005850F0`, `00585270`, `005853F0`, `00585570` (+59 more) - shared machinery across the layer boundary, no shared ownership.
+
+## Homed bodies: functions reached only indirectly whose callees this page cites (OPUS, 2026-10-02, F homing)
+
+*No page cited these functions and none of their callers is documented: they are reached by table or pointer dispatch or through undocumented callers. Each one calls something this page documents, which the sentence names. Each sentence states what the body does (access and representation, not purpose); the anchors are instructions inside it that do it. Drafted locally and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-the-lua-loader-and-what-it-accepts-homing-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0063C450` | 68 B | calls `008113D0(rdx, -1)` and keeps whether it returned non-zero, calls `00811130(rdx, -2)`, then stores that flag as a byte at `[r8]` | `0063C468`, `0063C46B`, `0063C47A`, `0063C47D`, `0063C482` |

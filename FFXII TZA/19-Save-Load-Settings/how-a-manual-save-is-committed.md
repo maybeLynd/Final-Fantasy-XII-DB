@@ -233,3 +233,11 @@ write and a delete. Script: `Tools/analysis-kit/gfz-scripts/falsify_manual_save.
 | M5 | section 2: states 7 and 8 | **survives**: `0x56690` bytes, then `{checksum, 1}` |
 | M6 | section 1: delete if present | **survives**: `_wfopen_s` in mode `rb`, then `fclose`, then `_wremove` |
 | M7 | a consumer: the save-image page's arm list | **REFUTED there (CON-192).** The table at `00582020` sends states 4, 5 and 6 to one arm, 7 to the submission and 8 to the stamp, as section 2 of this page says. The save-image page had numbered them 5 and 7 |
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../_index/candidates/fable-home-how-a-manual-save-is-committed-1002/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `003BB6A0` | 133 B | `00582040` + 0xFF | returns 0 when `ecx` is above `0xC7` (unsigned); otherwise stores qword `[rdx]` in the qword table `02B407C0` at index `ecx`, copies the zero-terminated string at `r8` (terminator included) to `02B40E28`, stores `ecx` in dword `02B40558`, 0 in dwords `02B40EC0`, `02B40E18` and `02B40FE4`, 8 in dword `02B40E1C` and the qword 1 at `02B40E10`, makes the call at `003BB6A0` + 0x6F and returns 1 | Interior anchor `003BB6A4`; Interior anchor `003BB6C3`; Interior anchor `003BB6D4`; Interior anchor `003BB6FA`; Interior anchor `003BB70F` |

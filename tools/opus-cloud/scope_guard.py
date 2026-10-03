@@ -10,9 +10,12 @@ PAGE is relative to 'FFXII TZA/' (e.g. 16-UI/the-selection-the-menu-publishes.md
   CLEAR  none of the above.
 Exit status 0 only when every page is CLEAR or WARN. Run it immediately before every launch and again before ingesting
 the result (a lane may have started in between)."""
-import json, os, sys
+import json, os, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import cloudlib as cl  # noqa: E402
+
+SWEEP_RE = re.compile(r"contradictions from the cloud readiness map settled|held readiness edits released"
+                      r"|counts and stale items settled|consolidated publish: progress-report cluster", re.I)
 
 args = sys.argv[1:]
 fns = []
@@ -47,6 +50,10 @@ for p in pages:
     if base in census:
         reasons.append("overlay carrier (census)")
     peers = cl.recent_peer_commits("FFXII TZA/" + rel, 24)
+    if os.environ.get("OPUS_SWEEPS_OK") == "1":
+        # FABLE's --sweeps-ok rule (fable_fpack.py SWEEP_RE, 2026-10-02), mirrored: a finished one-shot sweep that does
+        # not mention interior work does not block. Claims, dirty pages and every other peer commit still block.
+        peers = [x for x in peers if not (SWEEP_RE.search(x) and "interior" not in x.lower())]
     if peers:
         reasons.append("peer commits <24h: %s" % "; ".join(x[:110] for x in peers[:3]))
     else:

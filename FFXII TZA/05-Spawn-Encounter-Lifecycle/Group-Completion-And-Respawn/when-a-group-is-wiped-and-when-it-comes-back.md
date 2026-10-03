@@ -1169,3 +1169,27 @@ Interior anchor `0028C950` (the loop head).
 `003C8A50` (173 B) is the completion-kind emit `003C8B70` runs on the `02B47730` record: `ecx-1` in 0..6 rides a jump table (one arm forcing `ecx=3`, another `ebx=1`, default `ecx=5`) into `00249C60`, then `0035D060(1)`, `002470C0` on the record, `ebx` committed to `[rax+0xD0]`, `0035C080`, `[rax+0xC8]` cleared, `0028FFE0(1,0)`, `00252D90`, and a tail `002E1CA0(8,0)`
 
 Interior anchor `003C8A77` (function `003C8A50`).
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-when-a-group-is-wiped-and-when-it-comes--cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00234990` | 102 B | loops `ebx` from 0 while it is signed-less than dword `0208E6A0` (re-read each pass), calling `00234990 + 0x18` with `ebx`; when the returned object is non-null, its qword `+0x698` is non-null, byte `+5` of that sub-object equals 1, and bit (byte `+0xE98` of the object, mod 32) of `ecx` is set, calls `00234990 + 0x4C` with the object and 0; does nothing when the count is 0 or negative | `0023499E`, `002349A8`, `002349C5`, `002349D5`, `002349DC` |
+| `002EDCC0` | 93 B | returns without work when `cx` is -1, when `(movsx cx) * 0x740` plus qword `022C6F28` is zero, or when dword `+0x284` of that row is 0; otherwise rewrites that dword with bit 31 set to (`edx` != 0) and then bit 28 set when `edx` is 0 or cleared when `edx` is non-zero | `002EDCC4`, `002EDCCA`, `002EDCFA`, `002EDD09`, `002EDD15` |
+| `0035C880` | 17 B | stores `(dword 022C83EC AND NOT ecx) OR edx` back to dword `022C83EC` | `0035C882`, `0035C888`, `0035C88A` |
+| `0035DC90` | 44 B | scans the `edx` 12-byte records at `rcx` in order and returns the index of the first whose dword `+0` equals `r8d`, or -1 when none matches or `edx` is 0 or negative | `0035DC99`, `0035DCA0`, `0035DCAB`, `0035DCB4`, `0035DCB8` |
+| `0035DEB0` | 108 B | sorts the `edx` 12-byte records at `rcx` into ascending signed order of dword `+4`: for each position i from 0 to `edx` - 2 it compares record i with every record from i to the end and, when record i's dword `+4` is greater, swaps the two records (qword `+0` and dword `+8`); does nothing when `edx` is 1 or less | `0035DEBE`, `0035DED9`, `0035DEEC`, `0035DEF8`, `0035DF14` |
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../../_index/candidates/fable-home-when-a-group-is-wiped-and-when-it-comes-1002/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `002739B0` | 31 B | `003C8B70` + 0x3CF | calls `002739B0` + 0x4 and returns its null result unchanged; otherwise tail-jumps (`002739B0` + 0x1A) with that result in `rcx` | Interior anchor `002739B4`; Interior anchor `002739BC`; Interior anchor `002739CA` |
+| `0028FE40` | 89 B | `0035C150` + 0x0 | returns 0 when qword `0209BE80` is null; otherwise calls `0028FE40` + 0x2E with qword `0209BE80` plus 0x8FA0 and tail-jumps (`0028FE40` + 0x54) with qword `0209BE80` (re-read) plus 0x8FA0 in `rcx`, the incoming `ecx` in `edx`, the incoming `edx` in `r8d` and -1 in `r9d` | Interior anchor `0028FE58`; Interior anchor `0028FE5A`; Interior anchor `0028FE6E`; Interior anchor `0028FE7A`; Interior anchor `0028FE94` |
+| `002FB250` | 71 B | `00319B10` + 0x17E | stores 0 into the ten bytes every 0x20 bytes from `022BE7F0` through `022BE910` and returns | Interior anchor `002FB257`; Interior anchor `002FB273`; Interior anchor `002FB28F` |
+| `00363B00` | 31 B | `0026C5D0` + 0x174 | stores `cl` into byte `022CBA9A`; when `ecx` is 1 it also copies the 16 bytes at `rdx` to `022CBB10` and the float in `xmm2` to dword `022CBAAC` | Interior anchor `00363B06`; Interior anchor `00363B0B`; Interior anchor `00363B0E`; Interior anchor `00363B16` |
+| `003C94A0` | 71 B | `003C8B70` + 0x54B | calls `003C94A0` + 0x4 and, on a non-null result r, returns when dword `[r]` AND 0x8000 is non-zero and tail-jumps (`003C94A0` + 0x3D) with dword `r+8` in `ecx` when dword `r+4` differs from it; when the result is null or those two dwords are equal, stores 0 into dword `+0xC8` of the object at qword `02B47730` when that qword is non-null, and returns | Interior anchor `003C94AC`; Interior anchor `003C94AE`; Interior anchor `003C94B9`; Interior anchor `003C94CA`; Interior anchor `003C94DD` |

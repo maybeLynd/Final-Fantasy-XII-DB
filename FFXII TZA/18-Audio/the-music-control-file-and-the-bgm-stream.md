@@ -599,3 +599,22 @@ Interior anchor `003BB950` (function `003BB920`).
 `003BA720` (143 B) is the consume/release `003BB790`'s dispatcher runs on the same block: gated on `02B40E14`, `003BA3E0` snapshots `02B40E28` into the out record, then `ecx` is clamped against `02B4054C` - the remainder writes `02B4054C`, `02B40E14` and `02B40E10` are released and `dword[02B40540 + 0x284 + idx*8]` takes the result code; the over-budget arm writes 0 there instead - the dequeue-and-account half.
 
 Interior anchor `003BA778` (function `003BA720`).
+
+## Homed bodies: functions reached only indirectly whose callees this page cites (OPUS, 2026-10-02, F homing)
+
+*No page cited these functions and none of their callers is documented: they are reached by table or pointer dispatch or through undocumented callers. Each one calls something this page documents, which the sentence names. Each sentence states what the body does (access and representation, not purpose); the anchors are instructions inside it that do it. Drafted locally and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-the-music-control-file-and-the-bgm-strea-homing-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00224890` | 111 B | when `edx` is 0 stores 0 to the dword at absolute address 0 (a deliberate fault) and returns `al` = 1; otherwise calls `00221ED0` with the incoming registers and, when it returns an object for which `00225680(object)` is non-zero, calls `007A77F0(object+8, float [r8], float [r8+4], float [r8+8])` and returns 1, else 0 | `00224899`, `002248A2`, `002248B2`, `002248CD`, `002248EC` |
+| `0050CEC0` | 43 B | calls `0017D280` with the address `00D22968` and what `0035E810()` returns, then `0016D6A0(1)`, and tail-jumps to `0016D6A0` again without reloading `ecx` | `0050CEC4`, `0050CED3`, `0050CEDD`, `0050CEE6` |
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-the-music-control-file-and-the-bgm-strea-ee-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `003BA5F0` | 135 B | switches on dword `02B40E14`: 0 stores 1 there and 0 to dword `02B40EC0`; 1 calls `00862130(byte [02B40E20], 02B40E3E)` and stores 0xc to `02B40E14`; 12 tests `ecx` and, when `ecx` is 0 or -4 (`ecx`+4 with bit `0x4` masked off is zero), zeroes the qword at `02B40E14` and the dword at `02B40E10`, otherwise stores 9 to dword `02B40E18` and zeroes the qword at `02B40E10`; any other value returns without writing | `003BA5FC`, `003BA60B`, `003BA62C`, `003BA64C`, `003BA662` |
+| `007A7A20` | 231 B | returns `0x82000000` when qword `[rcx]` is zero; when its low byte is 2, 8 or 9 it calls `007AB460(rsp+0x20)` and, if that is not negative, writes 0xd to dword `[p]`, qword `[rcx]` to `[p+8]`, `xmm1` to float `[p+0x10]` and `r8d` to dword `[p+0x14]` of the returned record `p` and returns `007AB550(p)`; when the low byte is 7 it calls `007BAD60(rsp+0x20)` and, if that is not negative, writes 0x10, qword `[rcx]` and `xmm1` to `p`, `p+8` and `p+0x10` and returns `007BAE50(p)`; a negative result from either first call is returned as is, and any other low byte returns -1; the stack cookie is checked through `00808C40` | `007A7A59`, `007A7A6E`, `007A7A9D`, `007A7AAE`, `007A7AE5` |
+| `007A88F0` | 243 B | calls `007B24F0` with the incoming registers to get `h`, calls through `008C20B8` with `h` and calls `007B2470` with a stack copy of qword `[rcx]`; when that returns null it calls through `008C20C0` with `h` and returns 0, otherwise it calls `007D0A10` with the returned pointer, calls through `008C20C0` with `h`, and when `dl` is non-zero returns the `eax` of `007D0A10`; when `dl` is zero it repeats the `008C20B8`, `007B2470`, `008C20C0` sequence, calling through `008C21B0` with 1 after each lookup that returns non-null, and returns 0 once a lookup returns null | `007A8923`, `007A8930`, `007A8950`, `007A8963`, `007A899A` |

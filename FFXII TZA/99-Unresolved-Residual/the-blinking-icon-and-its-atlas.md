@@ -47,7 +47,7 @@ that walks a list of **sub-items and draws each one** on top.
 fVar16 = sinf((DAT_0208F570 * 3.1415927f) / 30.0f);
 ```
 
-**`DAT_0208F570` is a frame counter and the argument advances by `π/30` per frame**, so the sine
+**`DAT_0208F570` is a ~~frame counter~~ 60 Hz tick counter** *(answered: see the falsification row: it counts 60 Hz ticks whatever the present interval; 2026-10-02, OPUS)* **and the argument advances by `π/30` per frame**, so the sine
 completes a cycle every **60 frames**. It is evaluated twice, in the two branches, and applied to the
 same field — `context + 0x5A` — in two different ways:
 
@@ -289,7 +289,7 @@ called from here twice**, so the cluster is a real call cluster and not just a s
 | Are the two pulse formulas really different, or one the decompiler split? | Different centres (`base` vs the literal `128.0`), different shifts (`>> 8` on `(base>>1)×amount` vs on `amount<<4`), in different branches. **Two expressions.** |
 | Is the atlas two-level indexing real? | `atlas[0x44 + atlas[0x44] * 2]` — **the table at `+0x44` is indexed by its own first element**, then the record's byte is added. Unusual enough to be worth stating exactly rather than paraphrasing. |
 | Why is so little of this document anchored to instructions? | **`002B8EE0` has no defined function body**, so `search_instructions` cannot see inside it — it scanned 554,739 instructions and matched none of them here. Anchors had to be recovered by direct `disassemble_bytes` on guessed ranges, and §3 is the section that got them. **The rest rests on decompilation**, and that is stated rather than papered over. |
-| Could `002B7B80`'s missing callers be the empty-body artifact? | **No** — this was checked. `edges.tsv` is the complete source (see [drawing a line character by character](Glyph-Run-Rendering/drawing-a-line-character-by-character.md) §5), and the three references it has are all `DATA`. |
+| Could `002B7B80`'s missing callers be the empty-body artifact? | **No** — this was checked. `edges.tsv` is the complete source (see [drawing a line character by character](Glyph-Run-Rendering/drawing-a-line-character-by-character.md) §5), and the three references it has are ~~all `DATA`~~ not all data *(answered: see §3: `lea r8` at `002B6350`+0xD7 takes `002B7B80`'s address in code; 2026-10-02, OPUS)*. |
 
 ## 8. What this document does not claim
 
@@ -307,7 +307,7 @@ The `002Bxxxx` neighbourhood contains functions calling
 map or field overlay — **but those are different functions in the same address range, and a
 neighbourhood is not a call relationship.** Nothing in `002B8EE0` names its own subject.
 
-What `002D8530`, `002DBDD0`, `00403970`, `00403BC0`, `00404120` and `00404730` do. What the four
+What `002D8530`, `002DBDD0`, `00403970`, `00403BC0`, `00404120` and `00404730` do *(answered: see `002DBDD0` and `00403970` on the rectangle page, `002D8530`, `00403BC0` and `00404120` on the second-icon page; `00404730` stays open; 2026-10-02, OPUS)*. What the four
 bytes at `01E0CE60` are. What `003BC160` / `003BDCD0` / `003BDB30` enumerate — only that the loop is
 bounded by `003BDCD0`'s return and gated on bit 6 of `record + 0x28`. ~~What the dispatch table at
 `01D70800` dispatches on.~~

@@ -651,6 +651,30 @@ the methods. `006A57C0`, `00853FE0` and `0083A030` are called and **not entered*
 
 *(Read by OPUS 2026-09-14. Closes `BN-3` and `UQ-303`, which are the same question asked twice.)*
 
-`006A0A50` (249 B) is the basis-write `006A0A40` runs on a live `[rcx+0x118]` record: the record's 3x3 basis at `+0x120`..`+0x148` multiplies the `rdx` input vector, each axis is scaled by `+0x260`/`+0x264`/`+0x268`, offset by `+0x160`/`+0x164`/`+0x168` and stored back into `+0x160`..`+0x164` - then `0083A030` is called on the record, the post-write commit this page's rigid-body path performs.
+`006A0A50` (249 B) is ~~the basis-write~~ an angular-velocity write, not a basis write *(corrected 2026-10-02, OPUS: it adds the matrix product into the angular velocity `+0x160`..`+0x168`, which `008531F0` damps by `+0x1E4`; nothing at `+0x120`..`+0x148` is written)* `006A0A40` runs on a live `[rcx+0x118]` record: the record's 3x3 basis at `+0x120`..`+0x148` multiplies the `rdx` input vector, each axis is scaled by `+0x260`/`+0x264`/`+0x268`, offset by `+0x160`/`+0x164`/`+0x168` and stored back into ~~`+0x160`..`+0x164`~~ `+0x160`..`+0x168` *(corrected 2026-10-02, OPUS: three stores, `006A0A50+0xC3`, `+0xDB` and `+0xD3`)* - then `0083A030` is called on the record, the post-write commit this page's rigid-body path performs.
 
 Interior anchor `006A0B3A` (function `006A0A50`).
+
+`006A3AF0` (11 B, no direct call; `btSphereShape` vtable slot 10) multiplies the float at `+0x30` by the float at `+0x20` and returns it - the implicit-dimension x times the local-scaling x, the shape's radius as Bullet's `btSphereShape` computes it.
+
+Interior anchor `006A3AF5` (function `006A3AF0`).
+
+`006A3D40` (127 B, no direct call; `btBoxShape` vtable slot 19) switches on an index 0-5 through the six-entry RVA table at `006A3DC0` and writes a unit axis into the out vector with `w` = 0: +x, -x, +y, -y, +z, -z in that order (`0x3F800000` / `0xBF800000` in one lane, zeros elsewhere); an index above 5 returns without a write - the box's six preferred penetration directions.
+
+Interior anchor `006A3D59` (function `006A3D40`).
+
+`006A4550` (92 B, no direct call; `btBoxShape` vtable slot 15) returns, through the hidden result pointer, the half-extent vector at `+0x30`/`+0x34`/`+0x38` with each component negated (xor with the sign mask `01CEBDA0`) where the direction's matching component is below zero, `w` = 0 - the box's supporting vertex without margin.
+
+Interior anchor `006A4581` (function `006A4550`).
+
+`006A45B0` (26 B, no direct call; slot 1 of `btCollisionWorld::ConvexResultCallback`, shared by `ClosestConvexResultCallback` and `objectQuerySingle`'s local callback) is the filter test: it returns 1 only when the proxy's 16-bit group (`+8`) meets the callback's mask (`+0xE`) and the proxy's mask (`+0xA`) meets the callback's group (`+0xC`), else 0 - `needsCollision` for convex sweeps.
+
+Interior anchor `006A45BA` (function `006A45B0`).
+
+`006A45D0` (26 B, no direct call; slot 1 of `btCollisionWorld::RayResultCallback`, shared by `ClosestRayResultCallback` and `rayTestSingle`'s local callback) is the same filter test on the ray callback's layout: proxy group `+8` against the callback's mask `+0x1A`, proxy mask `+0xA` against its group `+0x18` - `needsCollision` for ray tests.
+
+Interior anchor `006A45DA` (function `006A45D0`).
+
+`0069EEB0` (109 B, no direct call; `btGhostPairCallback` vtable slot 1) takes the two proxies of a new overlapping pair, and for each whose client object's type word `+0x104` equals 4 (the ghost-object type) calls that object's slot at `+0x30` with the other proxy; it returns 0 - the ghost-pair callback's add-overlap hook that keeps a ghost object's overlap list in step with the broadphase.
+
+Interior anchor `0069EECF` (function `0069EEB0`).

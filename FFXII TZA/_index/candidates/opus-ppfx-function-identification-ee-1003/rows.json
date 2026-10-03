@@ -1,0 +1,96 @@
+{
+ "page": "17-Presentation-Rendering/Post-Processing/ppfx-function-identification.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "ppfx-function-identification.json",
+ "rows": [
+  {
+   "fn": "006FE080",
+   "text": "stores `edx` to dword `[rcx+0x500]`; when byte `[rcx+0xd09]` is zero it stores `edx` to `+0x508` and returns it; otherwise it stores `edx` to `+0x504` and `+0x50c` and applies a step rule to it (a value equal to dword `+0x4d0` becomes dword `+0x4d4`, any other value is incremented and replaced by `+0x4d0` when it is unsigned above `+0x4d4` + dword `+0x36c` - 1), then when dword `+0xd10` is at least 2 (signed) it stores the result to `+0x504` and steps it again, then when dword `+0xd0c` equals 2 and qwords `+0xa88` and `+0x148` are both zero it stores the result to `+0x50c` and steps it again, and finally stores the result to `+0x508` and returns it in `eax`",
+   "anchors": [
+    [
+     "006FE093",
+     "je"
+    ],
+    [
+     "006FE0CC",
+     "cmova"
+    ],
+    [
+     "006FE0D8",
+     "jl"
+    ],
+    [
+     "006FE11E",
+     "mov"
+    ],
+    [
+     "006FE14C",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00724F50",
+   "text": "reads the dword counter `02EA198C` and, only when it is zero or its signed remainder modulo 100 equals 25 and the dwords `01F3BA80` and `01F3BA8C` are both non-zero, calls `006DF480(00D9C530, 0x1627)` and then `006DF480(00D9C368)` with `edx` as the first call left it; on every path it increments `02EA198C` and returns `0x80004001`",
+   "anchors": [
+    [
+     "00724F68",
+     "imul"
+    ],
+    [
+     "00724F7A",
+     "cmp"
+    ],
+    [
+     "00724F9D",
+     "call"
+    ],
+    [
+     "00724FA9",
+     "call"
+    ],
+    [
+     "00724FC6",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00724FF0",
+   "text": "reads the dword counter `02EA1990` and, only when it is zero or its signed remainder modulo 100 equals 25 and the dwords `01F3BA80` and `01F3BA8C` are both non-zero, calls `006DF480(00D9CA20, 0x16d6)` and then `006DF480(00D9C578)` with `edx` as the first call left it; on every path it increments `02EA1990` and returns `0x80004001`",
+   "anchors": [
+    [
+     "00725008",
+     "imul"
+    ],
+    [
+     "0072501A",
+     "cmp"
+    ],
+    [
+     "0072503D",
+     "call"
+    ],
+    [
+     "00725049",
+     "call"
+    ],
+    [
+     "00725066",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [
+  "006E04F0",
+  "006E07A0",
+  "00722900",
+  "0078A120"
+ ],
+ "corrections": [],
+ "mode": "ee"
+}

@@ -1,0 +1,31 @@
+ok   0030EDA7 add     rcx, 0x6b0
+ok   0030EDB1 mov     edx, 9
+ok   0030EDB6 lea     rcx, [rcx + 0x80]
+ok   0030EDC0 lea     rax, [rax + 0x80]
+ok   0030EE03 sub     rdx, 1
+ok   0030EE07 jne     0x30edb6
+ok   0030F04A lea     rax, [rbx + 0x6b0]
+ok   0030F051 mov     edx, 9
+ok   0030F056 lea     rcx, [rcx + 0x80]
+ok   0030F060 lea     rax, [rax + 0x80]
+ok   0030F0A3 sub     rdx, 1
+ok   0030F0A7 jne     0x30f056
+ok   0030EE13 tail k=0  movups xmmword ptr [rcx], xmm0
+ok   0030EE1A tail k=1  movups xmmword ptr [rcx + 0x10], xmm1
+ok   0030EE22 tail k=2  movups xmmword ptr [rcx + 0x20], xmm0
+ok   0030EE2A tail k=3  movups xmmword ptr [rcx + 0x30], xmm1
+ok   0030EE32 tail k=4  movups xmmword ptr [rcx + 0x40], xmm0
+ok   0030EE3A tail k=5  movups xmmword ptr [rcx + 0x50], xmm1
+ok   0030EE44 tail k=6  movups xmmword ptr [rcx + 0x60], xmm0
+ok   0030F0A9 tail k=0  movups xmm0, xmmword ptr [rax]
+ok   0030F0B5 tail k=1  movups xmm1, xmmword ptr [rax + 0x10]
+ok   0030F0BD tail k=2  movups xmm0, xmmword ptr [rax + 0x20]
+ok   0030F0C5 tail k=3  movups xmm1, xmmword ptr [rax + 0x30]
+ok   0030F0CD tail k=4  movups xmm0, xmmword ptr [rax + 0x40]
+ok   0030F0D5 tail k=5  movups xmm1, xmmword ptr [rax + 0x50]
+ok   0030F0DD tail k=6  movups xmm0, xmmword ptr [rax + 0x60]
+== 04-Actor-Entity\Battle-Unit\battle-unit-accesses.tsv
+   changed 0, dropped 0
+== 04-Actor-Entity\Battle-Unit\battle-target-buffer-accesses.tsv
+   changed 0, dropped 0
+FAILS 0

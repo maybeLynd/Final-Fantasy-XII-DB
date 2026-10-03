@@ -1,0 +1,1103 @@
+{
+ "page": "99-Unresolved-Residual/Unlisted-Code/referenced-code-the-list-never-had.md",
+ "date": "2026-10-02",
+ "session": "local-uc1-drafter",
+ "report": "uc1_rows.json",
+ "rows": [
+  {
+   "fn": "00125743",
+   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after a `ret` and is not 16-byte aligned; it reserves 8 bytes of stack, stores the incoming `rcx` to `[rsp]`, loads the x87 control word from that slot's low word with `fldcw`, releases the slot and returns; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "00125747",
+     "mov"
+    ],
+    [
+     "0012574B",
+     "fldcw"
+    ],
+    [
+     "0012574E",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "00125753",
+   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after a `ret` and is not 16-byte aligned; it reserves 8 bytes of stack, executes `wait`, stores the x87 control word to the low word of `[rsp]` with `fnstcw`, loads the qword at `[rsp]` into `rax` (its upper six bytes are not written by the body), releases the slot and returns; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "00125757",
+     "wait"
+    ],
+    [
+     "00125758",
+     "fnstcw"
+    ],
+    [
+     "0012575B",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00195340",
+   "text": "entered through the 32-bit image-relative destructor field at `01DEAAA4` of the C++ throw-info record for `std::bad_cast` at `01DEAAA0`; it starts right after `int3` padding; it stores the address `008F35E8` to qword `+0x0` of `rcx`, advances `rcx` by 8 and tail-jumps through the qword at `008C2A28` with the other registers incoming; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "00195347",
+     "mov"
+    ],
+    [
+     "0019534A",
+     "add"
+    ],
+    [
+     "0019534E",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "001DDAC0",
+   "text": "entered from `001DDBA0` + 0x99; it stores `edx` to dword `+0x10` and `r8d` to dword `+0x14` of `rcx` and forms the f32 ratio `edx` / `r8d` (both zero-extended); when the ratio is at or below f32 1.777778 (`008C5B38`) it stores f32 1.0 to `+0x4` and `+0x8`, 0 to `+0xC` and `+0x0` and the truncated `edx` / 1.777778 to `+0x14`; when it is above f32 5.333333 (`00900A0C`) it stores f32 1.0 to `+0x4` and `+0x8`, 0 to `+0xC`, `r8d` to `+0x14`, 1 to `+0x0` and the truncated `r8d` * 5.333333 to `+0x10`; otherwise (`001DDB53`) it stores `r8d` to `+0x14`, 1 to `+0x0`, the f32 of `edx` minus the unsigned quotient `r8d` / `edx` to `+0x4` and the f32 of the unsigned quotient (`edx` - `r8d`) / `edx` times f32 0.5 (`01CEBB70`) to `+0xC`; it returns on every path; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "001DDAD7",
+     "mov"
+    ],
+    [
+     "001DDAF0",
+     "comiss"
+    ],
+    [
+     "001DDB21",
+     "comiss"
+    ],
+    [
+     "001DDB63",
+     "div"
+    ],
+    [
+     "001DDB98",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "0025D9C0",
+   "text": "entered from `0034C880` + 0x3; it reads the qword at `02099D70`, sets `edx` to the zero-extended word at `[rcx]` and `ecx` to dword `+0x28` of that qword's target, and tail-jumps to `00263A30` with the other registers incoming; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "0025D9C7",
+     "movzx"
+    ],
+    [
+     "0025D9CA",
+     "mov"
+    ],
+    [
+     "0025D9CD",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002697F0",
+   "text": "entered from `0050E390` + 0x3; it sets `edx` to 1 and tail-jumps to `00269860` with the other registers incoming; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "002697F5",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00269E00",
+   "text": "entered from `00353630` + 0x8 and `00353A50` + 0x5; it clears bit `0x20` of byte `+0x14` of `rcx` and ORs in bit `0x1` of `dl` shifted up to bit `0x20`; when `edx` is zero it tail-jumps (conditional `je`) to `0025B500` with `rcx` and `edx` as incoming (`eax` holds the shifted bit), otherwise it returns; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "00269E04",
+     "movzx"
+    ],
+    [
+     "00269E0C",
+     "or"
+    ],
+    [
+     "00269E11",
+     "je"
+    ]
+   ]
+  },
+  {
+   "fn": "00269F00",
+   "text": "entered from `00353D00` + 0x8 and `00354910` + 0x5; it clears bit `0x1` of byte `+0x8` of `rcx` and ORs in bit `0x1` of `dl`; when `edx` is zero it tail-jumps (conditional `je`) to `0025B500` with `rcx` and `edx` as incoming (`eax` holds the masked bit), otherwise it returns; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "00269F04",
+     "movzx"
+    ],
+    [
+     "00269F09",
+     "or"
+    ],
+    [
+     "00269F0E",
+     "je"
+    ]
+   ]
+  },
+  {
+   "fn": "0026AF70",
+   "text": "entered from `0034D350` + 0x5; it stores the incoming `cl` to byte `02099DA0` and returns; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "0026AF76",
+     "ret"
+    ]
+   ]
+  },
+  {
+   "fn": "002969D0",
+   "text": "entered by a conditional jump (`jne`) from `002905B0` + 0x13; it starts right after `int3` padding; when `rcx` is non-null it stores `dl` to byte `+0xB43` of `rcx`; it returns on both paths; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "002969D3",
+     "je"
+    ],
+    [
+     "002969D5",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "002E4C90",
+   "text": "entered by a conditional jump (`je`) from `002673D0` + 0xD; it starts right after `int3` padding; it returns 1 in `eax` when `rcx` is null, when qword `+0xC0` of `rcx` is null, when the dword it points to is -1, when that dword's low word is -1, when that word sign-extended times 0x740 plus qword `022C6F28` is zero, or when dword `+0x284` of that entry is zero; otherwise it tail-jumps (conditional `jne`) to `004232D0` with `rcx` = the entry address, `rax` = the sign-extended word and `rdx`, `r8`, `r9` incoming; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "002E4C95",
+     "mov"
+    ],
+    [
+     "002E4CB3",
+     "imul"
+    ],
+    [
+     "002E4CBA",
+     "add"
+    ],
+    [
+     "002E4CC3",
+     "cmp"
+    ],
+    [
+     "002E4CCA",
+     "jne"
+    ]
+   ]
+  },
+  {
+   "fn": "002E5B00",
+   "text": "entered by a conditional jump (`je`) from `0026A420` + 0x8; it starts right after `int3` padding; it returns when `rcx` is null, when qword `+0xC0` of `rcx` is null, when the dword that block starts with is -1, or when qword `+0x138` of the block (loaded into `rdx`) is null; when bit `0x10` of byte `+0x151` of the block is clear it tail-jumps to `002ED6A0` with `rcx` incoming, `rax` = the block and `rdx` = that qword; when the bit is set it stores the f32 stack argument at `[rsp+0x28]` to `+0x5C` and `+0x6C`, `xmm1` to `+0x50` and `+0x60`, `xmm2` to `+0x54` and `+0x64` and `xmm3` to `+0x58` and `+0x68` of the `rdx` target and returns; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "002E5B16",
+     "mov"
+    ],
+    [
+     "002E5B22",
+     "test"
+    ],
+    [
+     "002E5B31",
+     "movss"
+    ],
+    [
+     "002E5B5A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002EB5D0",
+   "text": "entered from `0037C3F0` + 0x1F8; it zeroes `r9d` and `r8d` and tail-jumps to `002EB5E0` with `rcx` and `rdx` incoming; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "002EB5D3",
+     "xor"
+    ],
+    [
+     "002EB5D6",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002EBD40",
+   "text": "entered from `0037C3F0` + 0x150; when `rcx` is non-null it clears bit `0x10` of byte `+0x19` of `rcx` and ORs in bit `0x1` of `dl` shifted up to bit `0x10`; it returns on both paths; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "002EBD43",
+     "je"
+    ],
+    [
+     "002EBD45",
+     "and"
+    ],
+    [
+     "002EBD4F",
+     "or"
+    ]
+   ]
+  },
+  {
+   "fn": "002EC3C0",
+   "text": "entered from `0034ED80` + 0x8; when byte `+0x3` of `rcx` masked with 0xE0 equals 0x60 it loads qword `+0xB8` of `rcx`, then qword `+0xF0` of that target into `r8`, and rewrites byte `+0x6A` of the `r8` target with bit `0x1` set when `edx` is non-zero and cleared otherwise (other bits kept); otherwise it returns without a write; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "002EC3C6",
+     "cmp"
+    ],
+    [
+     "002EC3CA",
+     "mov"
+    ],
+    [
+     "002EC3D6",
+     "mov"
+    ],
+    [
+     "002EC3E6",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "002ECD20",
+   "text": "entered by a jump from `0026DC50` + 0x0; it returns when byte `+0x18` of `rcx` equals 1 or when byte `+0x3` masked with 0xE0 is not 0x60; otherwise it loads qword `+0xC0` of `rcx` into `rax`, clears bit `0x2` of byte `+0x11` of that target and ORs in bit `0x1` of `dl` shifted up to bit `0x2`, then tail-jumps to `002E8FD0` with `rcx` incoming and `dl` holding the shifted bit; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "002ECD24",
+     "je"
+    ],
+    [
+     "002ECD2C",
+     "cmp"
+    ],
+    [
+     "002ECD30",
+     "mov"
+    ],
+    [
+     "002ECD40",
+     "or"
+    ],
+    [
+     "002ECD43",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002ED250",
+   "text": "entered by a conditional jump (`jge`) from `003EB8C0` + 0xC; it starts right after a `ret`; it returns when `rcx` is null, when dword `[rcx]` is -1 or when word `[rcx]` is -1; it forms the entry address as that word sign-extended times 0x740 plus qword `022C6F28` and returns when that sum is zero or dword `+0x284` of the entry is zero; otherwise it clears bit `0x10` of byte `+0xD2` of the entry and sets it again when `edx` is non-zero (`neg`/`sbb`), then returns; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "002ED267",
+     "imul"
+    ],
+    [
+     "002ED26E",
+     "add"
+    ],
+    [
+     "002ED277",
+     "cmp"
+    ],
+    [
+     "002ED280",
+     "and"
+    ],
+    [
+     "002ED28D",
+     "or"
+    ]
+   ]
+  },
+  {
+   "fn": "002ED350",
+   "text": "entered by a conditional jump (`jge`) from `003EB960` + 0xC; it starts right after `int3` padding; it returns when `rcx` is null, when dword `[rcx]` is -1 or when word `[rcx]` is -1; it forms the entry address as that word sign-extended times 0x740 plus qword `022C6F28` and returns when that sum is zero or dword `+0x284` of the entry is zero; otherwise it clears bit `0x8` of dword `+0x304` of the entry and sets it again when `edx` is non-zero (`neg`/`sbb`), ORs bit `0x40` into dword `+0x290` and returns; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "002ED36E",
+     "add"
+    ],
+    [
+     "002ED377",
+     "cmp"
+    ],
+    [
+     "002ED380",
+     "and"
+    ],
+    [
+     "002ED38E",
+     "or"
+    ],
+    [
+     "002ED394",
+     "or"
+    ]
+   ]
+  },
+  {
+   "fn": "002FE7D0",
+   "text": "entered through the qword table entry at `01EEC568`; it loads qword `+0x708` of `rcx` into `r8` and switches on byte `+0x6B4`: for a value other than 0 or 1 it returns 1; for 0 it stores 0 to qword `+0x750`, sets byte `+0x6B4` to 1 and continues as for 1; for 1 it returns 0 when word `+0x2` of the `r8` target is zero, otherwise it compares dword `+0x75C` (signed) with the truncated f32 product of the f32 at `01DFE0B8` (1.0 in the image; writable data) and `008F8D80` (30.0) times that sign-extended word, returning 0 when below and otherwise incrementing byte `+0x6B4` and returning 1; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "002FE7DA",
+     "movzx"
+    ],
+    [
+     "002FE7F4",
+     "mov"
+    ],
+    [
+     "002FE801",
+     "movzx"
+    ],
+    [
+     "002FE823",
+     "cmp"
+    ],
+    [
+     "002FE82B",
+     "inc"
+    ]
+   ]
+  },
+  {
+   "fn": "0031AD90",
+   "text": "entered by a conditional jump (`jne`) from `00359B80` + 0xC; it starts right after a `ret`; it returns in `rax` the incoming `rcx` plus 0xED0, or 0 when `rcx` is null (`cmove`); UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "0031AD92",
+     "lea"
+    ],
+    [
+     "0031AD9C",
+     "cmove"
+    ]
+   ]
+  },
+  {
+   "fn": "003594C0",
+   "text": "entered from `0034ED30` + 0x5; it reads byte `022C7FF8` and, when it is non-zero, stores the incoming `cl` to it, otherwise stores the read value (zero) back; it returns with `eax` = the zero-extended `cl`; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "003594C7",
+     "test"
+    ],
+    [
+     "003594CF",
+     "cmovne"
+    ],
+    [
+     "003594D3",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00365660",
+   "text": "entered by a conditional jump (`jg`) from `0029CCF0` + 0x5; it starts right after `int3` padding; when `edx` (signed) is below 8 it returns 0; otherwise it stores the bytes 0x65, 0x78, 0x30, 0x30 to `+0x0` of `rcx`, word 0x2B to `+0x4` when `r8d` is non-zero or word 0x2D when it is zero, word 0 to `+0x6`, and returns 8; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "00365663",
+     "jge"
+    ],
+    [
+     "00365668",
+     "mov"
+    ],
+    [
+     "00365673",
+     "mov"
+    ],
+    [
+     "00365685",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00379F50",
+   "text": "entered by a conditional jump (`jne`) from `00379860` + 0x8; it starts right after `int3` padding; when `ecx` - 1 is at most 2 unsigned (`ecx` 1 to 3) it stores `ecx` - 1 to dword `02EBF408`; it returns on both paths; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "00379F53",
+     "cmp"
+    ],
+    [
+     "00379F5B",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0037AA00",
+   "text": "entered by a conditional jump (`jne`) from `003DEA10` + 0x2; it starts right after `int3` padding; it forms `r8` = `02EBF420` + sign-extended `ecx` times 0x50 and loads qword `+0x18` of it; when that qword is null or dword `+0x4` of its target is zero it returns; otherwise for each index i from 0 while i is below dword `+0x4` (re-read through qword `+0x18` every pass) it stores byte 1 at `+0x12` + i*8 of the target, then returns; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "0037AA07",
+     "shl"
+    ],
+    [
+     "0037AA15",
+     "mov"
+    ],
+    [
+     "0037AA30",
+     "mov"
+    ],
+    [
+     "0037AA3F",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003B6950",
+   "text": "entered from `004174D0` + 0x17; it forms `r9` = qword `02B40528` + zero-extended `cl` times 0xE0 and returns when dword `+0x10` of that entry differs from `ecx`; when `dl` is non-zero it stores `dl` to byte `+0x3` and stores (`xmm2` - f32 `+0x78`) times (f32 1.0 from `01CEBBA8` divided by `dl`) to f32 `+0x7C`; when `dl` is zero it stores `xmm2` to f32 `+0x78` and 0 to byte `+0x3`; it returns on every path; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "003B695B",
+     "add"
+    ],
+    [
+     "003B6962",
+     "cmp"
+    ],
+    [
+     "003B697D",
+     "mov"
+    ],
+    [
+     "003B6990",
+     "movss"
+    ],
+    [
+     "003B6997",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "003B69B0",
+   "text": "entered from `00417440` + 0x17; it forms `r9` = qword `02B40528` + zero-extended `cl` times 0xE0 and returns when dword `+0x10` of that entry differs from `ecx`; when `dl` is non-zero it stores `dl` to byte `+0x1` and stores (`xmm2` - f32 `+0x70`) times (f32 1.0 from `01CEBBA8` divided by `dl`) to f32 `+0x74`; when `dl` is zero it stores `xmm2` to f32 `+0x70` and 0 to byte `+0x1`; it returns on every path; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "003B69BB",
+     "add"
+    ],
+    [
+     "003B69C2",
+     "cmp"
+    ],
+    [
+     "003B69DD",
+     "mov"
+    ],
+    [
+     "003B69F0",
+     "movss"
+    ],
+    [
+     "003B69F7",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "003DCF20",
+   "text": "entered by a conditional jump (`je`) from `003DC780` + 0x43; it starts right after `int3` padding; when byte `+0x6` of `rcx` equals 3 and word `+0x4` is zero it adds 0x10 to dword `+0x8`, sets byte `+0x6` to 4, stores 1 to dword `02B58170` and, when dword `+0x8` masked with 0xFFFF0 is then zero, stores the zero-extended byte `+0x13` ORed with 0x10 to dword `+0x8`; otherwise it returns without a write; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "003DCF2D",
+     "add"
+    ],
+    [
+     "003DCF31",
+     "test"
+    ],
+    [
+     "003DCF3C",
+     "mov"
+    ],
+    [
+     "003DCF4F",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "003DE3E0",
+   "text": "entered from `00354950` + 0x5; it rewrites byte `02B58C3C` with bit `0x1` set when `ecx` is non-zero and cleared otherwise, other bits kept, and returns; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "003DE3E9",
+     "setne"
+    ],
+    [
+     "003DE3EC",
+     "and"
+    ],
+    [
+     "003DE3F0",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "003F5030",
+   "text": "entered by a conditional jump (`jne`) from `00290BE0` + 0x16; it starts right after a `ret`; when `rcx` is non-null it walks the list linked through qword `+0x868` and for each node clears bit `0x2` of word `+0x842`, stores 0 to dword `+0x83C` and word 5 to `+0x850`; it returns when the link is null or `rcx` was null; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "003F5042",
+     "and"
+    ],
+    [
+     "003F5049",
+     "mov"
+    ],
+    [
+     "003F504F",
+     "mov"
+    ],
+    [
+     "003F5057",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "003F7000",
+   "text": "entered by a conditional jump (`jne`) from `00290940` + 0x13; it starts right after `int3` padding; when `rcx` is non-null it walks the list linked through qword `+0x300` and, for each node whose dword `+0x2D0` equals `edx` and whose word `+0x2F0` has any bit other than `0x4` set, stores word 4 to `+0x2F0` when it was 1 and word 3 otherwise; it returns when the link is null or `rcx` was null; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "003F7015",
+     "cmp"
+    ],
+    [
+     "003F7024",
+     "test"
+    ],
+    [
+     "003F7030",
+     "mov"
+    ],
+    [
+     "003F703A",
+     "mov"
+    ],
+    [
+     "003F7042",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "004223F0",
+   "text": "entered through the qword table entry at `01F003A0`; it zeroes `edx` and tail-jumps to `004256E0` with the other registers incoming; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "004223F2",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "004278D0",
+   "text": "entered by a conditional jump (`jne`) from `002EB4A0` + 0x3A; it starts right after `int3` padding; it ORs bit `0x2000` into dword `+0x294` of `rcx` and returns; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "004278DA",
+     "ret"
+    ]
+   ]
+  },
+  {
+   "fn": "0042FCC0",
+   "text": "entered by a conditional jump (`ja`) from `00317EC0` + 0x6; it starts right after `int3` padding; when `ecx` is zero it returns 0; otherwise it increments dword `02CA4ED8` and tail-jumps to `002FCB60` with the incoming registers; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "0042FCC2",
+     "jne"
+    ],
+    [
+     "0042FCC7",
+     "inc"
+    ],
+    [
+     "0042FCCD",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0055B310",
+   "text": "entered from `0055BFF0` + 0x463; with `r10d` = 0 it clears byte `+0x408` of `rcx` when bit `0x1` of dword `+0x570` is set, then for each row below signed byte `+0x55A` and each column below signed byte `+0x559` takes the 0x38-byte element at qword `+0x120` + (row times byte `+0x559` + column) * 0x38 and, when bits `0xF0` of its dword `+0x18` differ from its bits `0xF00` shifted down 4, sets `r10d` = 1 and either (bit `0x1` of `+0x570` set) stores the element address into the qword array at `+0x308` indexed by byte `+0x408` and increments that byte while it is below 0x20 (signed), or (bit clear) copies bits `0xF0` of dword `+0x18` up into bits `0xF00`; finally it clears bit `0x1` of dword `+0x570` and returns `r10d`; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "0055B313",
+     "test"
+    ],
+    [
+     "0055B36C",
+     "test"
+    ],
+    [
+     "0055B388",
+     "mov"
+    ],
+    [
+     "0055B3A6",
+     "mov"
+    ],
+    [
+     "0055B3D6",
+     "and"
+    ]
+   ]
+  },
+  {
+   "fn": "00710000",
+   "text": "entered from `006DE0D0` + 0x7; it copies the 64 bytes at `r8` to `rcx` + 0x7A4 + sign-extended `edx` times 0x40, stores byte 1 at `rcx` + `edx` + 0x924 and returns 0; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "0071000E",
+     "movups"
+    ],
+    [
+     "00710035",
+     "movups"
+    ],
+    [
+     "0071003D",
+     "mov"
+    ],
+    [
+     "00710046",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "00710050",
+   "text": "entered from `006DE0F0` + 0x7; it copies the 64 bytes at `rcx` + 0x7A4 + sign-extended `edx` times 0x40 to `r8` and returns 0; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "0071005F",
+     "movups"
+    ],
+    [
+     "00710085",
+     "xor"
+    ],
+    [
+     "00710087",
+     "movups"
+    ]
+   ]
+  },
+  {
+   "fn": "008824F0",
+   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after `int3` padding; it rotates `ecx` by 16 and then swaps bytes, nibbles, bit pairs and single bits with mask-and-shift steps (masks 0xFF00FF, 0xF0F0F0F and the alternating 2-bit and 1-bit masks), returning in `eax` the incoming `ecx` with its 32 bits in reversed order; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "00882502",
+     "and"
+    ],
+    [
+     "00882519",
+     "and"
+    ],
+    [
+     "00882536",
+     "and"
+    ],
+    [
+     "0088254A",
+     "and"
+    ],
+    [
+     "0088254F",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "008832D0",
+   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after `int3` padding; it returns in `eax` the number of right shifts by 1 that bring `ecx` to zero (0 when `ecx` is zero), the count of bits up to and including the highest set bit; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "008832D6",
+     "inc"
+    ],
+    [
+     "008832D8",
+     "shr"
+    ],
+    [
+     "008832DA",
+     "jne"
+    ]
+   ]
+  },
+  {
+   "fn": "00884090",
+   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after `int3` padding; it rotates `ecx` by 16 and then swaps bytes, nibbles, bit pairs and single bits with mask-and-shift steps (masks 0xFF00FF, 0xF0F0F0F and the alternating 2-bit and 1-bit masks), returning in `eax` the incoming `ecx` with its 32 bits in reversed order; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "008840A2",
+     "and"
+    ],
+    [
+     "008840B9",
+     "and"
+    ],
+    [
+     "008840D6",
+     "and"
+    ],
+    [
+     "008840EA",
+     "and"
+    ],
+    [
+     "008840EF",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "008858B0",
+   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after `int3` padding; it takes a count from the dword stack argument at `[rsp+0x40]` and returns when it is not positive; otherwise for each index i below the count it writes dword 1 or 0 to the i-th dword of the array at qword `[rsp+0x30]`: 1 when the threshold (incoming `xmm1` while i is below `ecx` minus dword `[rsp+0x38]`, else incoming `xmm2`) is at or below, or unordered with, the double absolute value of the i-th f32 of the `r9` array (mask at `01CEBD80`) divided by the i-th f32 of the array at qword `[rsp+0x28]`, rounded back to f32; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "008858C7",
+     "sub"
+    ],
+    [
+     "008858E0",
+     "cmp"
+    ],
+    [
+     "00885904",
+     "andps"
+    ],
+    [
+     "00885907",
+     "divsd"
+    ],
+    [
+     "00885917",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00888650",
+   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after `int3` padding; it broadcasts the low f32 of `xmm1` to all four lanes and adds it to each of the 56 f32 values at `rcx` (seven passes of two unaligned 16-byte loads and stores), then returns; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "00888655",
+     "shufps"
+    ],
+    [
+     "00888667",
+     "addps"
+    ],
+    [
+     "0088866A",
+     "movups"
+    ],
+    [
+     "0088867F",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00888690",
+   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after `int3` padding; for 56 f32 positions (14 passes of four) it stores the f32 at `rdx` + i*4 into `rcx` + i*4 when it is above the f32 already there (ordered `comiss`), leaving it otherwise, then returns; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "008886A6",
+     "comiss"
+    ],
+    [
+     "008886AC",
+     "movss"
+    ],
+    [
+     "008886E5",
+     "sub"
+    ]
+   ]
+  },
+  {
+   "fn": "00888700",
+   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after `int3` padding; for 56 f32 positions (14 passes of four) it stores the f32 at `rdx` + i*4 into `rcx` + i*4 when the f32 already there is above it (ordered `comiss`), leaving it otherwise, then returns; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "0088871B",
+     "comiss"
+    ],
+    [
+     "00888720",
+     "movss"
+    ],
+    [
+     "00888765",
+     "sub"
+    ]
+   ]
+  },
+  {
+   "fn": "00888780",
+   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after `int3` padding; it spills `xmm0` to `[rsp+8]`, keeps only the sign bit and the f32 1.0 exponent bits of it (`and`), ORs in the f32 1.0 bit pattern and reloads `xmm0`, so it returns f32 1.0 carrying the incoming sign bit; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "00888786",
+     "mov"
+    ],
+    [
+     "0088878A",
+     "and"
+    ],
+    [
+     "0088878F",
+     "or"
+    ],
+    [
+     "00888798",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "008888C0",
+   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after `int3` padding; when `rcx` is null it returns; otherwise it zeroes the five qwords `+0x0` to `+0x20` of `rcx` and tail-jumps through the qword at `01CEB630` with `rcx` incoming and `rax` = 0; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "008888C3",
+     "je"
+    ],
+    [
+     "008888C7",
+     "mov"
+    ],
+    [
+     "008888D6",
+     "mov"
+    ],
+    [
+     "008888DA",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00889330",
+   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after `int3` padding; it zeroes the seven qwords `+0x0` to `+0x30` of `rcx` and returns 0 in `rax`; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "00889332",
+     "mov"
+    ],
+    [
+     "00889349",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0088D4E0",
+   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after `int3` padding; when `ecx` equals 1 it returns; otherwise it advances `rdx` by sign-extended `ecx` times 4 and tail-jumps to `0088D500` with `rcx`, `r8` and `r9` incoming; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "0088D4E3",
+     "je"
+    ],
+    [
+     "0088D4E8",
+     "lea"
+    ],
+    [
+     "0088D4EC",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0088DB60",
+   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after `int3` padding; it returns in `rax` the qword at `01CEAE30` + sign-extended `ecx` times 8 (`rcx` is overwritten with the table address); UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "0088DB63",
+     "lea"
+    ],
+    [
+     "0088DB6A",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "008922A0",
+   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after `int3` padding; it returns in `eax` the number of set bits in `ecx`, adding bit `0x1` of `ecx` per right shift until `ecx` is zero (0 when `ecx` is zero); UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "008922B2",
+     "and"
+    ],
+    [
+     "008922B5",
+     "add"
+    ],
+    [
+     "008922B7",
+     "shr"
+    ]
+   ]
+  },
+  {
+   "fn": "00892990",
+   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after `int3` padding; with i = sign-extended `r8d` it reads dword `[rcx+i*4]` into `eax` and dword `[rdx+i*4]` into `r8d`; when the `rdx` value is negative it returns the `rcx` value, otherwise it returns their 32-bit sum shifted right arithmetically by 1; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "0089299B",
+     "mov"
+    ],
+    [
+     "0089299F",
+     "mov"
+    ],
+    [
+     "008929A5",
+     "js"
+    ],
+    [
+     "008929AA",
+     "sar"
+    ]
+   ]
+  },
+  {
+   "fn": "00893A80",
+   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after `int3` padding; it reads f32 `[rcx]`, multiplies it by f32 7.314286 (`01CEBC7C`), adds f32 1023.5 (`01CEBC94`), truncates to `eax` and returns 0x3FF when that is greater than 0x3FF (signed), 0 when it is negative (`cmovs`), else the value; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "00893A84",
+     "mulss"
+    ],
+    [
+     "00893A8C",
+     "addss"
+    ],
+    [
+     "00893A98",
+     "cmp"
+    ],
+    [
+     "00893AA9",
+     "cmovs"
+    ]
+   ]
+  },
+  {
+   "fn": "00893AC0",
+   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after `int3` padding; with `r8d` and `r9d` masked to 0x7FFF it computes `eax` = the absolute value of (`r9d` - `r8d`) times (dword stack argument `[rsp+0x28]` - `ecx`) divided signed by (`edx` - `ecx`) (`idiv`), then returns `r8d` - `eax` when `r9d` - `r8d` is negative, else `r8d` + `eax`; UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "00893ACA",
+     "and"
+    ],
+    [
+     "00893AE9",
+     "imul"
+    ],
+    [
+     "00893AED",
+     "idiv"
+    ],
+    [
+     "00893AF5",
+     "sub"
+    ],
+    [
+     "00893AFC",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "00895570",
+   "text": "no direct reference was found (call/jump, rip-reference and table scans); it starts right after `int3` padding; it reads f32 `[rcx]` and f32 `[rdx]` and returns in `eax` 1 when the `rdx` value is above the `rcx` value, -1 when the `rcx` value is above, else 0 (also when unordered); UC-1 body admitted to frontier 2026-09-28, explained by interior citation 2026-10-03",
+   "anchors": [
+    [
+     "0089557C",
+     "comiss"
+    ],
+    [
+     "0089557F",
+     "seta"
+    ],
+    [
+     "00895585",
+     "seta"
+    ],
+    [
+     "00895588",
+     "sub"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "0026DC50": "single-instruction body (one `jmp` at the extent start); rule 7 needs an anchor strictly inside the extent and not the first instruction, so no valid anchor exists; it is a 5-byte jump thunk to 002ECD20 entered from 00350320 + 0x5 and 003505F0 + 0x8",
+  "0036E9A0": "single-instruction body (one `jmp` at the extent start); rule 7 needs an anchor strictly inside the extent and not the first instruction, so no valid anchor exists; it is a 5-byte jump thunk to 003B1560 entered from 00340010 + 0x5",
+  "00862028": "single-instruction body (one `jmp` at the extent start); rule 7 needs an anchor strictly inside the extent and not the first instruction, so no valid anchor exists; it is a 6-byte jmp through the qword at 008C2D28, entered from 00808D78 + 0x14D",
+  "00862034": "single-instruction body (one `jmp` at the extent start); rule 7 needs an anchor strictly inside the extent and not the first instruction, so no valid anchor exists; it is a 6-byte jmp through the qword at 008C2D90, entered from 00808D78 + 0x15A",
+  "0017E780": "dropped by OPUS: citing the body pulls its tail-jump target's cross-layer caller edge (001DF340 / 001DD170) into the page as an UNACCOUNTED NEIGHBOUR; stays F",
+  "0017E760": "dropped by OPUS: citing the body pulls its tail-jump target's cross-layer caller edge (001DF340 / 001DD170) into the page as an UNACCOUNTED NEIGHBOUR; stays F"
+ },
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "002FE7D0",
+   "why": "01DFE0B8 is writable data: its 1.0 is the image value, not a constant"
+  },
+  {
+   "fn": "(all 55)",
+   "why": "OPUS re-read every row against its listing at the bytes (the ruling's non-drafting re-read): entry statements match uc1_credible.json, every path and stored value checked; one wording correction above"
+  },
+  {
+   "fn": "0017E760, 0017E780",
+   "why": "the tail-jump target is written as a plain address, not a citation: citing it pulled a caller edge from another layer into the page (nb_page)"
+  },
+  {
+   "fn": "0017E760, 0017E780",
+   "why": "rows dropped - nb_page: their tail-jump target's caller edge is another layer's (001DF340 caller 001DD170)"
+  },
+  {
+   "fn": "00195340, 002969D0, 002E4C90, 002E5B00, 002ED250, 002ED350, 0031AD90, 00365660, 00379F50, 0037AA00, 003DCF20, 003F5030, 003F7000, 004278D0, 0042FCC0",
+   "why": "SWE2-AUDIT-SPEC REJECT (auditspec-review-opus-referenced-code-the-list-never-had-uc1-1002): the first census missed 0F 8x conditional jumps and 32-bit image-relative fields, so these 15 rows said no direct reference was found; entry statements replaced with SPEC's verified sites; uc1_entry_check.py is the regression"
+  }
+ ],
+ "mode": "uc1"
+}

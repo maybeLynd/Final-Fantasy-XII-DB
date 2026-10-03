@@ -1,0 +1,50 @@
+{
+  "status": "PASS_ACTUAL_PREREQUISITE_CONTROLS_INDEPENDENT_PENDING",
+  "driver_sha256": "53fc0b8f02d1c0b545cb1e6a095cc0a40ec62ba89c405f0f2f05ae5350414de7",
+  "producer_sha256": "0051dcc87091772d3888375c694b3d53dd05277fb9acad90732d977fb5fd6422",
+  "cases": [
+    {
+      "label": "failed-upstream-proof",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-resource-eligibility-domain\\controls-01\\failed-upstream-proof\\qualify-singleton.py",
+        "fresh-result.json"
+      ],
+      "exit": 1,
+      "expected_error": "base invariant result/status failed",
+      "expected_error_seen": true,
+      "result_absent": true,
+      "driver_sha256": "0051dcc87091772d3888375c694b3d53dd05277fb9acad90732d977fb5fd6422"
+    },
+    {
+      "label": "incomplete-current-metadata",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-resource-eligibility-domain\\controls-01\\incomplete-current-metadata\\qualify-singleton.py",
+        "fresh-result.json"
+      ],
+      "exit": 1,
+      "expected_error": "required complete current extent artifact",
+      "expected_error_seen": true,
+      "result_absent": true,
+      "driver_sha256": "0051dcc87091772d3888375c694b3d53dd05277fb9acad90732d977fb5fd6422"
+    },
+    {
+      "label": "incomplete-current-wrapper",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-resource-eligibility-domain\\controls-01\\incomplete-current-wrapper\\qualify-singleton.py",
+        "fresh-result.json"
+      ],
+      "exit": 1,
+      "expected_error": "required complete current capture wrapper",
+      "expected_error_seen": true,
+      "result_absent": true,
+      "driver_sha256": "0051dcc87091772d3888375c694b3d53dd05277fb9acad90732d977fb5fd6422"
+    }
+  ],
+  "limits": "Three actual Python CLI artifact refusals, not game/native execution, semantic acceptance or extra original instruction coverage."
+}

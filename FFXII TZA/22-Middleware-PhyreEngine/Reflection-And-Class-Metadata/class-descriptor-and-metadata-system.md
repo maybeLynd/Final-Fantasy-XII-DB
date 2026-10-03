@@ -1727,7 +1727,7 @@ find-or-register pair.
 
 ## SWE2-EC7-19 update (2026-05-15) — `00639160` guarded registration-call helper
 
-`00639160` (299 B) is the registration-splice sibling of the guarded class-registration stubs this page's family row describes: `rsi=[rdx+0x30]` and `0063BA10(rsi)` resolve the candidate — a non-null result differing from `rdi` tails to `005CDAA0` with the `00D58870` report string and `ecx=2` (`0063916F`..`006391AD`). On the null arm it reads the `[rbx+0x10]` link (`rbp = rax-0x50`, both cmove-nulled on the self-link), dispatches `[rbx+0x20]` kind `1` → `0063E410(rdi)` / kind `2` → `005CDAA0` with `00D588B8` and `ecx=kind-1` (`006391B2`..`006391FA`), then splices the `+0x50` list node — relinking `rdx`'s `+0x50` pair when `[rdx+0x70]==rbx`, else appending `rdi+0x50` into `[rbx+0x10]`'s list (`006391FF`..`00639244`) — and when `rbp` was null links `rbx` into the `006373D0()` singleton's `+0x28` list (`00639256`..`00639277`). The intrusive-list splice the registration stubs wrap.
+`00639160` (299 B) is the registration-splice sibling of the guarded class-registration stubs this page's family row describes: `rsi=[rdx+0x30]` and `0063BA10(rsi)` resolve the candidate — a non-null result differing from `rdi` tails to `005CDAA0` with the `00D58870` report string and `ecx=2` (`0063916F`..`006391AD`). On the null arm it reads the `[rbx+0x10]` link (`rbp = rax-0x50`, both cmove-nulled on the self-link), dispatches `[rbx+0x20]` kind `1` → `0063E410(rdi)` / kind `2` → `005CDAA0` with `00D588B8` and `ecx=kind-1` (`006391B2`..`006391FA`), then splices the `+0x50` list node — relinking `rdx`'s `+0x50` pair when `[rdx+0x70]==rbx`, else ~~appending~~ linking `rdi+0x50` at the head of `[rbx+0x10]`'s list *(corrected 2026-10-02, OPUS: `r14 = rbx+0x10` is the sentinel, `006391C2`; `00639244 mov [r14], rdx` makes the node the first, next being node `+0`, as `006B6710` walks it)* (`006391FF`..`00639244`) — and when `rbp` was null links `rbx` into the `006373D0()` singleton's `+0x28` list (`00639256`..`00639277`). The intrusive-list splice the registration stubs wrap.
 
 ## SWE2-EC7-39 update (2026-09-19) - `0063CB80`
 
@@ -1999,3 +1999,1927 @@ Interior anchor `0063310E`
 | `00680910` | 32 B | takes `rdx - 8` as an object (null when `rdx` is null), calls its virtual slot `+0x10` with `edx = 0` and returns 1 in `al` | `00680916`, `0068091D`, `00680926`, `00680929` |
 | `00689FC0` | 102 B | calls virtual slot `+8` of qword `[rdx + 0x118]` and the first virtual slot of qword `[rdx + 0x120]`, each with `edx = 1` and only when the pointer is non-null, then zeroes qwords `+0x120`, `+0x118` and `+0xC8`, passes `rdx` to a 109-byte routine and returns 1 in `al` | `00689FE6`, `00689FFD`, `0068A001`, `0068A00F`, `0068A019` |
 | `0068C4E0` | 32 B | takes `rdx - 8` as an object (null when `rdx` is null), calls its virtual slot `+0x18` with `edx = 0` and returns 1 in `al` | `0068C4E6`, `0068C4ED`, `0068C4F6`, `0068C4F9` |
+
+## Homed bodies: functions reached only indirectly whose callees this page cites (OPUS, 2026-10-02, F homing)
+
+*No page cited these functions and none of their callers is documented: they are reached by table or pointer dispatch or through undocumented callers. Each one calls something this page documents, which the sentence names. Each sentence states what the body does (access and representation, not purpose); the anchors are instructions inside it that do it. Drafted locally and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-class-descriptor-and-metadata-system-homing-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00164100` | 119 B | calls `00632780` with the addresses `02CF8A80` and `02CF8270` and 0; then clears bit `0x2` and sets bit `0x8` of dword `02CF8B7C`, stores the addresses `02CF8E20`, `02CF8E40` and `02CF8E60` to qwords `02CF8B40`, `02CF8B48` and `02CF8B50`, stores the address `00D56D10` to qword `02CF8A80`, and tail-jumps to `00808B90` with the address `008AF170` | `00164115`, `00164138`, `0016414C`, `00164160`, `00164172` |
+| `005D1500` | 39 B | calls `006388C0` with the address `02CB9C00`, ORs 0x20 into dword `02CB9CFC` and tail-jumps to `00639450` with the address `02CB9C00` | `005D150B`, `005D1510`, `005D1522` |
+| `005D7060` | 39 B | calls `006388C0` with the address `02CB7CA0`, ORs 0x20 into dword `02CB7D9C` and tail-jumps to `00639450` with the address `02CB7CA0` | `005D706B`, `005D7070`, `005D7082` |
+| `0060F2D0` | 116 B | calls `00630180` with the incoming registers and then slot `+8` of the returned object's vtable; when `rdx` equals `rcx` + 8, `r8d` is 1 and that slot's result is non-null it calls `00639850(result, rcx + 8, 1)`, otherwise `006C7D00(rcx, rdx, r8d)`; returns 0 | `0060F2F1`, `0060F2FC`, `0060F305`, `0060F318`, `0060F328` |
+| `0063AA50` | 123 B | when byte `+0xFC` of `r8` has bit `0x8` set, calls `005CDAA0(1, the address 00D58750, qword r8+0x30)` and takes 0 as the value; otherwise calls `00639510` with the incoming `rcx`, dword `r8+0x38`, 1, `r8` and 0 as the fifth (stack) argument and, when it returns a record, takes its qword `+0x58` and calls `0063C910(r8, that)`; finally stores the value to qword `[rdx]` and `r8` to qword `rdx+8` and returns `rdx` | `0063AA5F`, `0063AA7F`, `0063AA98`, `0063AAAC`, `0063AABC` |
+| `006777D0` | 120 B | reads dword `+4` of the thread-local block indexed by dword `02EAED3C` (through `gs:[0x58]`); when dword `02D3ECF8` is greater than it (signed) it calls `008092FC` with the address `02D3ECF8` and, only when `02D3ECF8` is then -1, stores `006372A0()` OR 1 to qword `02D3ECE8`, zeroes qword `02D3ECF0` and calls `0080929C` with the address `02D3ECF8`; every path returns the address `02D3ECE8` | `006777F8`, `00677807`, `00677815`, `0067781E`, `00677837` |
+| `0068D700` | 80 B | when `rdx` is non-null zeroes qword `[rdx]`, stores `006372A0()` to qword `rdx+8`, zeroes qword `rdx+0x10`, stores a second `006372A0()` result to qword `rdx+0x18` and zeroes dword `rdx+0x20`; returns `al` = 1 on both paths | `0068D720`, `0068D727`, `0068D72C`, `0068D73D`, `0068D741` |
+| `006AF4F0` | 112 B | when `r8` is non-null walks the 16-byte entries from qword `rcx+0x20` (count: dword `rcx+0x18` with its top bit cleared, `btr 0x1f`), following each entry's chain from qword `+8` through qword `+0x78` links, and when it meets `r8` copies that 16-byte entry to `[rdx]`; when `r8` is null or not found it zeroes qword `[rdx]` and stores `006372A0()` to qword `rdx+8`; returns `rdx` | `006AF505`, `006AF520`, `006AF525`, `006AF53E`, `006AF557` |
+| `006CEE50` | 79 B | calls `006372B0` with the incoming registers, builds a stack pair (the address `00D2D310`, that result) and calls slot `+0x78` of `rcx`'s vtable with `rcx`, `rdx` and the pair's address; returns `al` = 1 | `006CEE6A`, `006CEE7B`, `006CEE8E`, `006CEE92` |
+| `006D9E30` | 79 B | calls `006372B0` with the incoming registers, builds a stack pair (the address `00D2D310`, that result) and calls slot `+0x78` of `rcx`'s vtable with `rcx`, `rdx` and the pair's address; returns `al` = 1 | `006D9E4A`, `006D9E5B`, `006D9E6E`, `006D9E72` |
+
+## Per-member rows: which reflected data member each metadata teardown destroys (OPUS, 2026-10-03)
+
+The family `PDataMemberMetadata static teardowns` (frontmatter: 853 members; 803 get a row here) shares one 12-byte form, shown in section 2 and not repeated per row: `lea rcx, [X]` then a tail jump to a `PClassDataMember` destructor helper (`00633240`, or 006332A0 for members registered through the array constructor). Members differ only at that first instruction, the static object X, so the anchor is the entry `lea` itself (SWE2-AUDIT-SPEC's family sentence, as adopted by OPUS in `opus-ee-rulings-1003`, allows the entry instruction when members differ there). Each row states X and the data member X describes. Both are read from the image: the one registration that loads X with `lea rcx, [X]` immediately before a call to a data-member constructor (`00632960`, or the array form `00632A10`) is decoded from its function's own entry; the `lea r9` there is the member's name and an immediate `mov dword ptr [rsp + 0x20]` its offset (given as passed in a register otherwise). [`fam_rows.py`](../../_index/candidates/opus-ee-metadata-teardowns-1003/fam_rows.py) re-derives every row and compares it with the committed [`rows.tsv`](../../_index/candidates/opus-ee-metadata-teardowns-1003/rows.tsv). A body that leaves the form, a registration that is not unique or unnamed, or a value that differs fails it. Two controls are refused: a swapped value and a moved anchor. Members without a unique named registration get no row; they are listed in [`excluded.tsv`](../../_index/candidates/opus-ee-metadata-teardowns-1003/excluded.tsv).
+
+### Registered through constructor `00632960` (641, OPUS)
+
+| member | distinguishing instruction | static object X | the data member X describes |
+|---|---|---|---|
+| 008AA000 | `008AA000` `lea` | `02CB0A40` | member "m_animationSet", offset 0x20 (constructor 00632960, called at 005AD994) |
+| 008AA010 | `008AA010` `lea` | `02CB2700` | member "m_animationSet", offset 0x10 (constructor 00632960, called at 005B0E38) |
+| 008AA020 | `008AA020` `lea` | `02CB0B70` | member "m_animationTargetBlenderController", offset 0x70 (constructor 00632960, called at 005ADB11) |
+| 008AA030 | `008AA030` `lea` | `02CB0B10` | member "m_animationWeightedBlenderController", offset 0x38 (constructor 00632960, called at 005ADA9F) |
+| 008AA040 | `008AA040` `lea` | `02CB1A50` | member "m_baseObject", offset 0x18 (constructor 00632960, called at 005AF8C7) |
+| 008AA050 | `008AA050` `lea` | `02CB19F0` | member "m_baseObjectType", offset 0x10 (constructor 00632960, called at 005AF854) |
+| 008AA060 | `008AA060` `lea` | `02CB2210` | member "m_binding", offset passed in a register (constructor 00632960, called at 005B064A) |
+| 008AA070 | `008AA070` `lea` | `02CB24B0` | member "m_channelCount", offset 0x2 (constructor 00632960, called at 005B0808) |
+| 008AA090 | `008AA090` `lea` | `02CB2510` | member "m_constantChannelCount", offset 0x4 (constructor 00632960, called at 005B087B) |
+| 008AA0A0 | `008AA0A0` `lea` | `02CB21B0` | member "m_constantChannelEndTime", offset 0x2C (constructor 00632960, called at 005B05DC) |
+| 008AA0B0 | `008AA0B0` `lea` | `02CB2150` | member "m_constantChannelStartTime", offset 0x28 (constructor 00632960, called at 005B0569) |
+| 008AA0D0 | `008AA0D0` `lea` | `02CB3C60` | member "m_count", offset passed in a register (constructor 00632960, called at 005B4F9A) |
+| 008AA0E0 | `008AA0E0` `lea` | `02CB3A30` | member "m_count", offset passed in a register (constructor 00632960, called at 005B52CA) |
+| 008AA0F0 | `008AA0F0` `lea` | `02CB40C0` | member "m_count", offset passed in a register (constructor 00632960, called at 005B55FA) |
+| 008AA100 | `008AA100` `lea` | `02CB5010` | member "m_count", offset passed in a register (constructor 00632960, called at 005B593A) |
+| 008AA110 | `008AA110` `lea` | `02CB4750` | member "m_count", offset passed in a register (constructor 00632960, called at 005B5C7A) |
+| 008AA120 | `008AA120` `lea` | `02CB42F0` | member "m_count", offset passed in a register (constructor 00632960, called at 005B5FAA) |
+| 008AA130 | `008AA130` `lea` | `02CB5240` | member "m_count", offset passed in a register (constructor 00632960, called at 005B62DA) |
+| 008AA140 | `008AA140` `lea` | `02CB4BB0` | member "m_count", offset passed in a register (constructor 00632960, called at 005B660A) |
+| 008AA150 | `008AA150` `lea` | `02CB5470` | member "m_count", offset passed in a register (constructor 00632960, called at 005B693A) |
+| 008AA160 | `008AA160` `lea` | `02CB56A0` | member "m_count", offset passed in a register (constructor 00632960, called at 005B6C6A) |
+| 008AA170 | `008AA170` `lea` | `02CB4DE0` | member "m_count", offset passed in a register (constructor 00632960, called at 005B6F9A) |
+| 008AA180 | `008AA180` `lea` | `02CB4980` | member "m_count", offset passed in a register (constructor 00632960, called at 005B72CA) |
+| 008AA190 | `008AA190` `lea` | `02CB58D0` | member "m_count", offset passed in a register (constructor 00632960, called at 005B75FA) |
+| 008AA1A0 | `008AA1A0` `lea` | `02CB3E90` | member "m_count", offset passed in a register (constructor 00632960, called at 005B792A) |
+| 008AA1B0 | `008AA1B0` `lea` | `02CB45A0` | member "m_count", offset passed in a register (constructor 00632960, called at 005B7D28) |
+| 008AA1C0 | `008AA1C0` `lea` | `02CB29C0` | member "m_dataSource", offset passed in a register (constructor 00632960, called at 005B0EFD) |
+| 008AA1E0 | `008AA1E0` `lea` | `02CB2AF0` | member "m_destSlotArray", offset 0x8C (constructor 00632960, called at 005B1058) |
+| 008AA1F0 | `008AA1F0` `lea` | `02CB22D0` | member "m_destSlotArrayIndex", offset passed in a register (constructor 00632960, called at 005B09C5) |
+| 008AA2F0 | `008AA2F0` `lea` | `02CB2880` | member "m_id", offset 0x4 (constructor 00632960, called at 005B1281) |
+| 008AA300 | `008AA300` `lea` | `02CB1B80` | member "m_index", offset 0x30 (constructor 00632960, called at 005AFA1E) |
+| 008AA310 | `008AA310` `lea` | `02CB2A20` | member "m_inputCount", offset 0x8 (constructor 00632960, called at 005B0F70) |
+| 008AA330 | `008AA330` `lea` | `02CB1990` | member "m_instanceObject", offset 0x8 (constructor 00632960, called at 005AF7E2) |
+| 008AA340 | `008AA340` `lea` | `02CB1930` | member "m_instanceObjectType", offset passed in a register (constructor 00632960, called at 005AF76F) |
+| 008AA370 | `008AA370` `lea` | `02CB2330` | member "m_interp", offset 0x2 (constructor 00632960, called at 005B0A38) |
+| 008AA390 | `008AA390` `lea` | `02CB2570` | member "m_interpCountLength", offset 0x6 (constructor 00632960, called at 005B08EE) |
+| 008AA3A0 | `008AA3A0` `lea` | `02CB1680` | member "m_keyCount", offset 0x60 (constructor 00632960, called at 005AF242) |
+| 008AA3B0 | `008AA3B0` `lea` | `02CB1C50` | member "m_keyCount", offset passed in a register (constructor 00632960, called at 005AFB8C) |
+| 008AA3C0 | `008AA3C0` `lea` | `02CB16E0` | member "m_keyType", offset 0x38 (constructor 00632960, called at 005AF30D) |
+| 008AA3D0 | `008AA3D0` `lea` | `02CB32F0` | member "m_keyType", offset passed in a register (constructor 00632960, called at 005B201E) |
+| 008AA3E0 | `008AA3E0` `lea` | `02CB3740` | member "m_localBase", offset 0x1C (constructor 00632960, called at 005B2B07) |
+| 008AA3F0 | `008AA3F0` `lea` | `02CB37A0` | member "m_localRange", offset 0x20 (constructor 00632960, called at 005B2B7A) |
+| 008AA400 | `008AA400` `lea` | `02CB1B20` | member "m_name", offset 0x28 (constructor 00632960, called at 005AF9AB) |
+| 008AA410 | `008AA410` `lea` | `02CB2270` | member "m_name", offset 0x30 (constructor 00632960, called at 005B06BC) |
+| 008AA420 | `008AA420` `lea` | `02CB3290` | member "m_nodeCentricReIndex", offset 0x10 (constructor 00632960, called at 005B22B6) |
+| 008AA430 | `008AA430` `lea` | `02CB3350` | member "m_nodeName", offset 0x8 (constructor 00632960, called at 005B2090) |
+| 008AA440 | `008AA440` `lea` | `02CB38C0` | member "m_offset", offset 0x1C (constructor 00632960, called at 005B2D27) |
+| 008AA450 | `008AA450` `lea` | `02CB3680` | member "m_parent", offset 0x10 (constructor 00632960, called at 005B2A21) |
+| 008AA460 | `008AA460` `lea` | `02CB3800` | member "m_parent", offset 0x10 (constructor 00632960, called at 005B2C41) |
+| 008AA470 | `008AA470` `lea` | `02CB36E0` | member "m_parentBase", offset 0x18 (constructor 00632960, called at 005B2A94) |
+| 008AA490 | `008AA490` `lea` | `02CB2B50` | member "m_persistentBufferOffset", offset 0x90 (constructor 00632960, called at 005B10CB) |
+| 008AA4A0 | `008AA4A0` `lea` | `02CB2BB0` | member "m_preprocessBufferOffset", offset 0x94 (constructor 00632960, called at 005B113E) |
+| 008AA4B0 | `008AA4B0` `lea` | `02CB2E20` | member "m_preprocessBufferSize", offset 0x50 (constructor 00632960, called at 005B1827) |
+| 008AA4C0 | `008AA4C0` `lea` | `02CB3860` | member "m_scale", offset 0x18 (constructor 00632960, called at 005B2CB4) |
+| 008AA4D0 | `008AA4D0` `lea` | `02CB2D50` | member "m_slotArrayElementsRequired", offset 0x38 (constructor 00632960, called at 005B1716) |
+| 008AA510 | `008AA510` `lea` | `02CB2390` | member "m_sourceChannelIndex", offset 0x14 (constructor 00632960, called at 005B0B09) |
+| 008AA550 | `008AA550` `lea` | `02CB0980` | member "m_speed", offset 0xC (constructor 00632960, called at 005B27B6) |
+| 008AA560 | `008AA560` `lea` | `02CB2450` | member "m_spuBindingSize", offset passed in a register (constructor 00632960, called at 005B0795) |
+| 008AA570 | `008AA570` `lea` | `02CB2CF0` | member "m_targetBlender", offset 0x30 (constructor 00632960, called at 005B16A3) |
+| 008AA580 | `008AA580` `lea` | `02CB3230` | member "m_targetIndex", offset 0xC (constructor 00632960, called at 005B2243) |
+| 008AA5A0 | `008AA5A0` `lea` | `02CB2820` | member "m_time", offset passed in a register (constructor 00632960, called at 005B120E) |
+| 008AA5B0 | `008AA5B0` `lea` | `02CB26A0` | member "m_timeController", offset 0x20 (constructor 00632960, called at 005B0D73) |
+| 008AA5C0 | `008AA5C0` `lea` | `02CB27C0` | member "m_timeController", offset 0x20 (constructor 00632960, called at 005B13C3) |
+| 008AA5D0 | `008AA5D0` `lea` | `02CB0860` | member "m_timeIntervalController", offset 0x10 (constructor 00632960, called at 005B265F) |
+| 008AA5F0 | `008AA5F0` `lea` | `02CB08C0` | member "m_timeScaleOffsetController", offset 0x38 (constructor 00632960, called at 005B26D1) |
+| 008AA600 | `008AA600` `lea` | `02CB15B0` | member "m_times", offset 0x48 (constructor 00632960, called at 005AF131) |
+| 008AA650 | `008AA650` `lea` | `02CB23F0` | member "m_valueWidthAndKeyCount", offset 0x10 (constructor 00632960, called at 005B0B7C) |
+| 008AA660 | `008AA660` `lea` | `02CB09E0` | member "m_weight", offset 0x8 (constructor 00632960, called at 005B2829) |
+| 008AD010 | `008AD010` `lea` | `02CE3D10` | member "m_alphaThreshold", offset 0x74 (constructor 00632960, called at 005E5C12) |
+| 008AD020 | `008AD020` `lea` | `02CE8640` | member "m_arrayElementCount", offset passed in a register (constructor 00632960, called at 005E9856) |
+| 008AD030 | `008AD030` `lea` | `02CE73C0` | member "m_baseLevel", offset 0x14 (constructor 00632960, called at 005E74A5) |
+| 008AD040 | `008AD040` `lea` | `02CE7360` | member "m_borderColor", offset 0x10 (constructor 00632960, called at 005E7432) |
+| 008AD050 | `008AD050` `lea` | `02CE3940` | member "m_bounds", offset 0x38 (constructor 00632960, called at 005E576F) |
+| 008AD060 | `008AD060` `lea` | `02CE86A0` | member "m_bufferLoc", offset 0x10 (constructor 00632960, called at 005E98C4) |
+| 008AD070 | `008AD070` `lea` | `02CE96E0` | member "m_bufferLoc", offset 0x10 (constructor 00632960, called at 005EA985) |
+| 008AD080 | `008AD080` `lea` | `02CE9350` | member "m_code", offset passed in a register (constructor 00632960, called at 005EA5ED) |
+| 008AD0A0 | `008AD0A0` `lea` | `02CE7E30` | member "m_computeEntryPoint", offset 0x18 (constructor 00632960, called at 005E9F40) |
+| 008AD0B0 | `008AD0B0` `lea` | `02CE7E90` | member "m_computeProfile", offset 0x2C (constructor 00632960, called at 005E9FAF) |
+| 008AD0C0 | `008AD0C0` `lea` | `02CE8A40` | member "m_computeProgram", offset 0x18 (constructor 00632960, called at 005E9B53) |
+| 008AD0D0 | `008AD0D0` `lea` | `02CE8C90` | member "m_constantBuffer", offset 0x10 (constructor 00632960, called at 005E964F) |
+| 008AD0E0 | `008AD0E0` `lea` | `02CE8400` | member "m_constantBufferLocation", offset 0x4 (constructor 00632960, called at 005E8A4E) |
+| 008AD0F0 | `008AD0F0` `lea` | `02CE8700` | member "m_constantBufferLocation", offset 0x14 (constructor 00632960, called at 005E9933) |
+| 008AD110 | `008AD110` `lea` | `02CE8070` | member "m_contextVariantCsIndex", offset 0x10 (constructor 00632960, called at 005E3E76) |
+| 008AD120 | `008AD120` `lea` | `02CE7FB0` | member "m_contextVariantFpIndex", offset 0x8 (constructor 00632960, called at 005E3D98) |
+| 008AD130 | `008AD130` `lea` | `02CE8010` | member "m_contextVariantGsIndex", offset 0xC (constructor 00632960, called at 005E3E07) |
+| 008AD140 | `008AD140` `lea` | `02CE7EF0` | member "m_contextVariantIndex", offset passed in a register (constructor 00632960, called at 005E3CBA) |
+| 008AD160 | `008AD160` `lea` | `02CE7F50` | member "m_contextVariantVpIndex", offset 0x4 (constructor 00632960, called at 005E3D29) |
+| 008AD170 | `008AD170` `lea` | `02CEBFB0` | member "m_count", offset passed in a register (constructor 00632960, called at 005EB95A) |
+| 008AD180 | `008AD180` `lea` | `02CECF00` | member "m_count", offset passed in a register (constructor 00632960, called at 005EBC9A) |
+| 008AD190 | `008AD190` `lea` | `02CEBD80` | member "m_count", offset passed in a register (constructor 00632960, called at 005EBFDA) |
+| 008AD1A0 | `008AD1A0` `lea` | `02CEC640` | member "m_count", offset passed in a register (constructor 00632960, called at 005EC31A) |
+| 008AD1B0 | `008AD1B0` `lea` | `02CEC1E0` | member "m_count", offset passed in a register (constructor 00632960, called at 005EC65A) |
+| 008AD1C0 | `008AD1C0` `lea` | `02CEC410` | member "m_count", offset passed in a register (constructor 00632960, called at 005EC99A) |
+| 008AD1D0 | `008AD1D0` `lea` | `02CEB6F0` | member "m_count", offset passed in a register (constructor 00632960, called at 005ECCDA) |
+| 008AD1E0 | `008AD1E0` `lea` | `02CEB920` | member "m_count", offset passed in a register (constructor 00632960, called at 005ED00A) |
+| 008AD1F0 | `008AD1F0` `lea` | `02CEA110` | member "m_count", offset passed in a register (constructor 00632960, called at 005ED33A) |
+| 008AD200 | `008AD200` `lea` | `02CECCD0` | member "m_count", offset passed in a register (constructor 00632960, called at 005ED66A) |
+| 008AD210 | `008AD210` `lea` | `02CEC870` | member "m_count", offset passed in a register (constructor 00632960, called at 005ED99A) |
+| 008AD220 | `008AD220` `lea` | `02CEBB50` | member "m_count", offset passed in a register (constructor 00632960, called at 005EDCCA) |
+| 008AD230 | `008AD230` `lea` | `02CEB290` | member "m_count", offset passed in a register (constructor 00632960, called at 005EDFFA) |
+| 008AD240 | `008AD240` `lea` | `02CEAC00` | member "m_count", offset passed in a register (constructor 00632960, called at 005EE32A) |
+| 008AD250 | `008AD250` `lea` | `02CEA7A0` | member "m_count", offset passed in a register (constructor 00632960, called at 005EE65A) |
+| 008AD260 | `008AD260` `lea` | `02CEA9D0` | member "m_count", offset passed in a register (constructor 00632960, called at 005EE98A) |
+| 008AD270 | `008AD270` `lea` | `02CEA570` | member "m_count", offset passed in a register (constructor 00632960, called at 005EECBA) |
+| 008AD280 | `008AD280` `lea` | `02CEAE30` | member "m_count", offset passed in a register (constructor 00632960, called at 005EEFEA) |
+| 008AD290 | `008AD290` `lea` | `02CEB4C0` | member "m_count", offset passed in a register (constructor 00632960, called at 005EF31A) |
+| 008AD2A0 | `008AD2A0` `lea` | `02CEA340` | member "m_count", offset passed in a register (constructor 00632960, called at 005EF64A) |
+| 008AD2B0 | `008AD2B0` `lea` | `02CE9EE0` | member "m_count", offset passed in a register (constructor 00632960, called at 005EF97A) |
+| 008AD2C0 | `008AD2C0` `lea` | `02CEB0E0` | member "m_count", offset passed in a register (constructor 00632960, called at 005EFD76) |
+| 008AD2D0 | `008AD2D0` `lea` | `02CECB20` | member "m_count", offset passed in a register (constructor 00632960, called at 005F00C8) |
+| 008AD2E0 | `008AD2E0` `lea` | `02CE3CB0` | member "m_cubeMapFactor", offset 0x70 (constructor 00632960, called at 005E5B9F) |
+| 008AD2F0 | `008AD2F0` `lea` | `02CE3C50` | member "m_cubeMapIntensity", offset 0x6C (constructor 00632960, called at 005E5B2C) |
+| 008AD310 | `008AD310` `lea` | `02CE9050` | member "m_dataBlock", offset 0x18 (constructor 00632960, called at 005E85DA) |
+| 008AD320 | `008AD320` `lea` | `02CE91D0` | member "m_dataBlock", offset 0x10 (constructor 00632960, called at 005E869F) |
+| 008AD330 | `008AD330` `lea` | `02CE8ED0` | member "m_dataBlock", offset 0x18 (constructor 00632960, called at 005E919A) |
+| 008AD340 | `008AD340` `lea` | `02CE85E0` | member "m_dataType", offset 0x3 (constructor 00632960, called at 005E97EB) |
+| 008AD350 | `008AD350` `lea` | `02CE9620` | member "m_dataType", offset 0x16 (constructor 00632960, called at 005EA8A4) |
+| 008AD360 | `008AD360` `lea` | `02CE9CE0` | member "m_depth", offset 0x30 (constructor 00632960, called at 005EAF08) |
+| 008AD370 | `008AD370` `lea` | `02CE4190` | member "m_destination", offset passed in a register (constructor 00632960, called at 005E648D) |
+| 008AD380 | `008AD380` `lea` | `02CE2680` | member "m_dynamicMesh", offset 0x8 (constructor 00632960, called at 005E3F38) |
+| 008AD390 | `008AD390` `lea` | `02CE38E0` | member "m_dynamicMeshInstance", offset 0x30 (constructor 00632960, called at 005E56FD) |
+| 008AD3A0 | `008AD3A0` `lea` | `02CE2BB0` | member "m_effect", offset passed in a register (constructor 00632960, called at 005E4642) |
+| 008AD3B0 | `008AD3B0` `lea` | `02CE27A0` | member "m_effectFile", offset 0x8 (constructor 00632960, called at 005E40D7) |
+| 008AD3C0 | `008AD3C0` `lea` | `02CE2800` | member "m_effectFileFromBasePath", offset 0x10 (constructor 00632960, called at 005E4145) |
+| 008AD3D0 | `008AD3D0` `lea` | `02CE2860` | member "m_effectSource", offset 0x68 (constructor 00632960, called at 005E41B3) |
+| 008AD3E0 | `008AD3E0` `lea` | `02CE3020` | member "m_effectVariant", offset passed in a register (constructor 00632960, called at 005E4B37) |
+| 008AD3F0 | `008AD3F0` `lea` | `02CE4590` | member "m_effectVariant", offset 0x8 (constructor 00632960, called at 005E6DA2) |
+| 008AD410 | `008AD410` `lea` | `02CE9800` | member "m_elementCount", offset passed in a register (constructor 00632960, called at 005EAB2E) |
+| 008AD420 | `008AD420` `lea` | `02CE9860` | member "m_elementSize", offset 0x4 (constructor 00632960, called at 005EABA1) |
+| 008AD580 | `008AD580` `lea` | `02CE93B0` | member "m_entry", offset 0x8 (constructor 00632960, called at 005EA65F) |
+| 008AD5A0 | `008AD5A0` `lea` | `02CE3AD0` | member "m_extraFlag", offset 0x5C (constructor 00632960, called at 005E5960) |
+| 008AD5B0 | `008AD5B0` `lea` | `02CE3B30` | member "m_extraZBias", offset 0x60 (constructor 00632960, called at 005E59D3) |
+| 008AD5C0 | `008AD5C0` `lea` | `02CE3B90` | member "m_farPlane", offset 0x64 (constructor 00632960, called at 005E5A46) |
+| 008AD5D0 | `008AD5D0` `lea` | `02CE30E0` | member "m_flag", offset 0x10 (constructor 00632960, called at 005E4C18) |
+| 008AD5E0 | `008AD5E0` `lea` | `02CE3A70` | member "m_flags", offset 0x58 (constructor 00632960, called at 005E58ED) |
+| 008AD5F0 | `008AD5F0` `lea` | `02CE7480` | member "m_flags", offset 0x1C (constructor 00632960, called at 005E758B) |
+| 008AD600 | `008AD600` `lea` | `02CE98C0` | member "m_flags", offset 0x8 (constructor 00632960, called at 005EAC14) |
+| 008AD610 | `008AD610` `lea` | `02CE9920` | member "m_format", offset passed in a register (constructor 00632960, called at 005EAFD3) |
+| 008AD620 | `008AD620` `lea` | `02CE7CB0` | member "m_fragmentEntryPoint", offset 0x8 (constructor 00632960, called at 005E9D86) |
+| 008AD630 | `008AD630` `lea` | `02CE7D10` | member "m_fragmentProfile", offset 0x24 (constructor 00632960, called at 005E9DF5) |
+| 008AD640 | `008AD640` `lea` | `02CE8980` | member "m_fragmentProgram", offset 0x8 (constructor 00632960, called at 005E9A6F) |
+| 008AD650 | `008AD650` `lea` | `02CE7D70` | member "m_geometryEntryPoint", offset 0x10 (constructor 00632960, called at 005E9E63) |
+| 008AD660 | `008AD660` `lea` | `02CE7DD0` | member "m_geometryProfile", offset 0x28 (constructor 00632960, called at 005E9ED2) |
+| 008AD670 | `008AD670` `lea` | `02CE89E0` | member "m_geometryProgram", offset 0x10 (constructor 00632960, called at 005E9AE1) |
+| 008AD680 | `008AD680` `lea` | `02CE9BC0` | member "m_height", offset 0x2C (constructor 00632960, called at 005EAD55) |
+| 008AD690 | `008AD690` `lea` | `02CE9C80` | member "m_height", offset 0x2C (constructor 00632960, called at 005EAE95) |
+| 008AD6A0 | `008AD6A0` `lea` | `02CE8B10` | member "m_importantState", offset passed in a register (constructor 00632960, called at 005EA395) |
+| 008AD6B0 | `008AD6B0` `lea` | `02CE35C0` | member "m_index", offset 0x12 (constructor 00632960, called at 005E6A96) |
+| 008AD6C0 | `008AD6C0` `lea` | `02CE97A0` | member "m_index", offset 0x17 (constructor 00632960, called at 005EAA6B) |
+| 008AD6D0 | `008AD6D0` `lea` | `02CE9230` | member "m_indexDataBlock", offset 0x10 (constructor 00632960, called at 005E875F) |
+| 008AD6E0 | `008AD6E0` `lea` | `02CE3620` | member "m_inputSet", offset 0x13 (constructor 00632960, called at 005E6B09) |
+| 008AD6F0 | `008AD6F0` `lea` | `02CE3880` | member "m_instanceSegment", offset 0x28 (constructor 00632960, called at 005E568B) |
+| 008AD700 | `008AD700` `lea` | `02CE2D60` | member "m_largestShaderPassCount", offset 0x38 (constructor 00632960, called at 005E4867) |
+| 008AD710 | `008AD710` `lea` | `02CE3750` | member "m_localToWorldMatrix", offset 0x8 (constructor 00632960, called at 005E5509) |
+| 008AD720 | `008AD720` `lea` | `02CE72A0` | member "m_lodBias", offset 0x8 (constructor 00632960, called at 005E734C) |
+| 008AD730 | `008AD730` `lea` | `02CE39A0` | member "m_lodLevel", offset 0x40 (constructor 00632960, called at 005E57E1) |
+| 008AD740 | `008AD740` `lea` | `02CE7120` | member "m_magFilter", offset 0x1 (constructor 00632960, called at 005E7180) |
+| 008AD750 | `008AD750` `lea` | `02CE3820` | member "m_materialSet", offset 0x20 (constructor 00632960, called at 005E5619) |
+| 008AD760 | `008AD760` `lea` | `02CE7300` | member "m_maxAnisotropy", offset 0xC (constructor 00632960, called at 005E73BF) |
+| 008AD770 | `008AD770` `lea` | `02CE7420` | member "m_maxLevel", offset 0x18 (constructor 00632960, called at 005E7518) |
+| 008AD780 | `008AD780` `lea` | `02CE2AF0` | member "m_maxLightCount", offset 0x70 (constructor 00632960, called at 005E450B) |
+| 008AD790 | `008AD790` `lea` | `02CE9A40` | member "m_maxMipLevel", offset 0x14 (constructor 00632960, called at 005EB12C) |
+| 008AD7A0 | `008AD7A0` `lea` | `02CE9980` | member "m_memoryType", offset 0x9 (constructor 00632960, called at 005EB046) |
+| 008AD7B0 | `008AD7B0` `lea` | `02CE36F0` | member "m_mesh", offset passed in a register (constructor 00632960, called at 005E5497) |
+| 008AD7C0 | `008AD7C0` `lea` | `02CE42B0` | member "m_meshInstance", offset 0x28 (constructor 00632960, called at 005E6641) |
+| 008AD7E0 | `008AD7E0` `lea` | `02CE70C0` | member "m_minFilter", offset passed in a register (constructor 00632960, called at 005E710D) |
+| 008AD7F0 | `008AD7F0` `lea` | `02CE99E0` | member "m_mipmapCount", offset 0x10 (constructor 00632960, called at 005EB0B9) |
+| 008AD810 | `008AD810` `lea` | `02CE4660` | member "m_msaaType", offset 0x9 (constructor 00632960, called at 005E6FC2) |
+| 008AD820 | `008AD820` `lea` | `02CE2F60` | member "m_name", offset passed in a register (constructor 00632960, called at 005E5359) |
+| 008AD830 | `008AD830` `lea` | `02CE3E30` | member "m_name", offset 0x80 (constructor 00632960, called at 005E5D6A) |
+| 008AD840 | `008AD840` `lea` | `02CE3500` | member "m_name", offset 0x8 (constructor 00632960, called at 005E69B0) |
+| 008AD850 | `008AD850` `lea` | `02CE8520` | member "m_name", offset 0x8 (constructor 00632960, called at 005E970D) |
+| 008AD860 | `008AD860` `lea` | `02CE95C0` | member "m_name", offset 0x8 (constructor 00632960, called at 005EA831) |
+| 008AD870 | `008AD870` `lea` | `02CE3560` | member "m_nameHash", offset 0x10 (constructor 00632960, called at 005E6A23) |
+| 008AD880 | `008AD880` `lea` | `02CE9740` | member "m_nameHash", offset 0x14 (constructor 00632960, called at 005EA9F8) |
+| 008AD890 | `008AD890` `lea` | `02CE2B50` | member "m_numSupportedShaderLODLevels", offset 0x74 (constructor 00632960, called at 005E457A) |
+| 008AD8A0 | `008AD8A0` `lea` | `02CE82E0` | member "m_offset", offset passed in a register (constructor 00632960, called at 005E8811) |
+| 008AD8C0 | `008AD8C0` `lea` | `02CE3080` | member "m_parameterBuffer", offset 0x8 (constructor 00632960, called at 005E4BA9) |
+| 008AD8D0 | `008AD8D0` `lea` | `02CE8280` | member "m_parameterBufferFrequenciesRequired", offset passed in a register (constructor 00632960, called at 005E848F) |
+| 008AD8E0 | `008AD8E0` `lea` | `02CE4530` | member "m_parameterBufferSize", offset passed in a register (constructor 00632960, called at 005E6EF8) |
+| 008AD8F0 | `008AD8F0` `lea` | `02CE8220` | member "m_parameterBufferSize", offset 0x38 (constructor 00632960, called at 005E8424) |
+| 008AD960 | `008AD960` `lea` | `02CE8B70` | member "m_parameterType", offset passed in a register (constructor 00632960, called at 005E93E5) |
+| 008AD970 | `008AD970` `lea` | `02CE8580` | member "m_parameterType", offset 0x2 (constructor 00632960, called at 005E977C) |
+| 008AD980 | `008AD980` `lea` | `02CE7970` | member "m_passType", offset passed in a register (constructor 00632960, called at 005E7EEE) |
+| 008AD9B0 | `008AD9B0` `lea` | `02CE7B90` | member "m_platformsAreInclude", offset 0x48 (constructor 00632960, called at 005E81A5) |
+| 008AD9C0 | `008AD9C0` `lea` | `02CE9480` | member "m_profile", offset 0x20 (constructor 00632960, called at 005EA76B) |
+| 008AD9D0 | `008AD9D0` `lea` | `02CE3140` | member "m_remapFrom", offset 0x18 (constructor 00632960, called at 005E4C8B) |
+| 008AD9E0 | `008AD9E0` `lea` | `02CE31A0` | member "m_remapTo", offset 0x20 (constructor 00632960, called at 005E4CFE) |
+| 008AD9F0 | `008AD9F0` `lea` | `02CE34A0` | member "m_renderDataType", offset passed in a register (constructor 00632960, called at 005E693E) |
+| 008ADA00 | `008ADA00` `lea` | `02CE46C0` | member "m_renderTargetFlags", offset 0xC (constructor 00632960, called at 005E7035) |
+| 008ADA10 | `008ADA10` `lea` | `02CE9680` | member "m_renderType", offset passed in a register (constructor 00632960, called at 005EA913) |
+| 008ADA20 | `008ADA20` `lea` | `02CE9110` | member "m_rwDataBlock", offset 0x18 (constructor 00632960, called at 005E8C6A) |
+| 008ADA30 | `008ADA30` `lea` | `02CE8F90` | member "m_rwDataBlock", offset 0x18 (constructor 00632960, called at 005E8E1A) |
+| 008ADA40 | `008ADA40` `lea` | `02CE9170` | member "m_rwIndirectArgsBuffer", offset 0x20 (constructor 00632960, called at 005E8CDC) |
+| 008ADA50 | `008ADA50` `lea` | `02CE90B0` | member "m_rwStructuredBuffer", offset 0x10 (constructor 00632960, called at 005E8BF8) |
+| 008ADA60 | `008ADA60` `lea` | `02CE8F30` | member "m_rwStructuredBuffer", offset 0x10 (constructor 00632960, called at 005E8DA8) |
+| 008ADA70 | `008ADA70` `lea` | `02CE8BD0` | member "m_samplerState", offset 0x8 (constructor 00632960, called at 005E9457) |
+| 008ADAC0 | `008ADAC0` `lea` | `02CE2620` | member "m_size", offset passed in a register (constructor 00632960, called at 005E3BF5) |
+| 008ADAE0 | `008ADAE0` `lea` | `02CE8340` | member "m_size", offset 0x2 (constructor 00632960, called at 005E88C5) |
+| 008ADAF0 | `008ADAF0` `lea` | `02CE8460` | member "m_size", offset 0x8 (constructor 00632960, called at 005E8ABD) |
+| 008ADB00 | `008ADB00` `lea` | `02CE9D40` | member "m_size", offset 0x28 (constructor 00632960, called at 005EB339) |
+| 008ADB10 | `008ADB10` `lea` | `02CE41F0` | member "m_source", offset 0x8 (constructor 00632960, called at 005E64FF) |
+| 008ADB20 | `008ADB20` `lea` | `02CE4250` | member "m_sourceMatrixIndex", offset 0x10 (constructor 00632960, called at 005E656E) |
+| 008ADB30 | `008ADB30` `lea` | `02CE3D70` | member "m_specialRenderOrder", offset 0x78 (constructor 00632960, called at 005E5C85) |
+| 008ADB40 | `008ADB40` `lea` | `02CE3DD0` | member "m_specialTextureWrapType", offset 0x7C (constructor 00632960, called at 005E5CF8) |
+| 008ADB50 | `008ADB50` `lea` | `02CE3BF0` | member "m_specularIntensity", offset 0x68 (constructor 00632960, called at 005E5AB9) |
+| 008ADBA0 | `008ADBA0` `lea` | `02CE8FF0` | member "m_structuredBuffer", offset 0x10 (constructor 00632960, called at 005E8568) |
+| 008ADBB0 | `008ADBB0` `lea` | `02CE8E70` | member "m_structuredBuffer", offset 0x10 (constructor 00632960, called at 005E9128) |
+| 008ADBC0 | `008ADBC0` `lea` | `02CE26E0` | member "m_supportedLightMask", offset passed in a register (constructor 00632960, called at 005E3FFA) |
+| 008ADBE0 | `008ADBE0` `lea` | `02CE2740` | member "m_supportedShadowCasterMask", offset 0x4 (constructor 00632960, called at 005E4069) |
+| 008ADC10 | `008ADC10` `lea` | `02CE9290` | member "m_texture", offset 0x10 (constructor 00632960, called at 005E8EDF) |
+| 008ADC20 | `008ADC20` `lea` | `02CE92F0` | member "m_texture", offset 0x10 (constructor 00632960, called at 005E8F9F) |
+| 008ADC30 | `008ADC30` `lea` | `02CE8CF0` | member "m_texture", offset 0x10 (constructor 00632960, called at 005E925F) |
+| 008ADC40 | `008ADC40` `lea` | `02CE8D50` | member "m_texture", offset 0x10 (constructor 00632960, called at 005E931F) |
+| 008ADC50 | `008ADC50` `lea` | `02CE8DB0` | member "m_texture", offset 0x10 (constructor 00632960, called at 005E958F) |
+| 008ADC60 | `008ADC60` `lea` | `02CE8C30` | member "m_textureBufferIndex", offset 0x4 (constructor 00632960, called at 005E94CA) |
+| 008ADC70 | `008ADC70` `lea` | `02CE9AA0` | member "m_textureFlags", offset 0x18 (constructor 00632960, called at 005EB19F) |
+| 008ADC80 | `008ADC80` `lea` | `02CE2EA0` | member "m_tweakableParameterBufferSize", offset 0x60 (constructor 00632960, called at 005E49F3) |
+| 008ADCB0 | `008ADCB0` `lea` | `02CE83A0` | member "m_type", offset 0x2 (constructor 00632960, called at 005E8985) |
+| 008ADCC0 | `008ADCC0` `lea` | `02CE84C0` | member "m_type", offset 0xC (constructor 00632960, called at 005E8B2C) |
+| 008ADCF0 | `008ADCF0` `lea` | `02CE2F00` | member "m_untweakableParameterBufferSize", offset 0x62 (constructor 00632960, called at 005E4A62) |
+| 008ADD10 | `008ADD10` `lea` | `02CE8E10` | member "m_unusedPointer", offset 0x10 (constructor 00632960, called at 005E905F) |
+| 008ADD20 | `008ADD20` `lea` | `02CE2FC0` | member "m_value", offset 0x8 (constructor 00632960, called at 005E53C7) |
+| 008ADD40 | `008ADD40` `lea` | `02CE7BF0` | member "m_vertexEntryPoint", offset passed in a register (constructor 00632960, called at 005E9CA9) |
+| 008ADD50 | `008ADD50` `lea` | `02CE7C50` | member "m_vertexProfile", offset 0x20 (constructor 00632960, called at 005E9D18) |
+| 008ADD60 | `008ADD60` `lea` | `02CE8920` | member "m_vertexProgram", offset passed in a register (constructor 00632960, called at 005E99FD) |
+| 008ADD70 | `008ADD70` `lea` | `02CE9B60` | member "m_width", offset 0x28 (constructor 00632960, called at 005EACE2) |
+| 008ADD80 | `008ADD80` `lea` | `02CE9C20` | member "m_width", offset 0x28 (constructor 00632960, called at 005EAE22) |
+| 008ADD90 | `008ADD90` `lea` | `02CE4310` | member "m_worldMatrix", offset 0x10 (constructor 00632960, called at 005E66B3) |
+| 008ADDA0 | `008ADDA0` `lea` | `02CE7240` | member "m_wrapR", offset 0x4 (constructor 00632960, called at 005E72D9) |
+| 008ADDB0 | `008ADDB0` `lea` | `02CE7180` | member "m_wrapS", offset 0x2 (constructor 00632960, called at 005E71F3) |
+| 008ADDC0 | `008ADDC0` `lea` | `02CE71E0` | member "m_wrapT", offset 0x3 (constructor 00632960, called at 005E7266) |
+| 008AE950 | `008AE950` `lea` | `02CF6430` | member "AlphaToCoverageEnable", offset passed in a register (constructor 00632960, called at 00613902) |
+| 008AE960 | `008AE960` `lea` | `02CF5750` | member "AntialiasedLineEnable", offset 0x24 (constructor 00632960, called at 00614367) |
+| 008AE970 | `008AE970` `lea` | `02CF5E50` | member "BackFace", offset 0x24 (constructor 00632960, called at 00613E39) |
+| 008AE980 | `008AE980` `lea` | `02CF5FC0` | member "BlendEnable", offset passed in a register (constructor 00632960, called at 00614742) |
+| 008AE9C0 | `008AE9C0` `lea` | `02CF5510` | member "DepthBias", offset 0xC (constructor 00632960, called at 006140CD) |
+| 008AE9D0 | `008AE9D0` `lea` | `02CF5570` | member "DepthBiasClamp", offset 0x10 (constructor 00632960, called at 0061413C) |
+| 008AE9E0 | `008AE9E0` `lea` | `02CF5630` | member "DepthClipEnable", offset 0x18 (constructor 00632960, called at 0061421A) |
+| 008AE9F0 | `008AE9F0` `lea` | `02CF5B90` | member "DepthEnable", offset passed in a register (constructor 00632960, called at 00613B32) |
+| 008AEA50 | `008AEA50` `lea` | `02CF54B0` | member "FrontCounterClockwise", offset 0x8 (constructor 00632960, called at 0061405E) |
+| 008AEA60 | `008AEA60` `lea` | `02CF5DF0` | member "FrontFace", offset 0x14 (constructor 00632960, called at 00613DCA) |
+| 008AEA70 | `008AEA70` `lea` | `02CF6490` | member "IndependentBlendEnable", offset 0x4 (constructor 00632960, called at 00613971) |
+| 008AEA80 | `008AEA80` `lea` | `02CF56F0` | member "MultisampleEnable", offset 0x20 (constructor 00632960, called at 006142F8) |
+| 008AEAA0 | `008AEAA0` `lea` | `02CF62C0` | member "RenderTargetWriteMask", offset 0x1C (constructor 00632960, called at 00614A45) |
+| 008AEAB0 | `008AEAB0` `lea` | `02CF5690` | member "ScissorEnable", offset 0x1C (constructor 00632960, called at 00614289) |
+| 008AEAC0 | `008AEAC0` `lea` | `02CF55D0` | member "SlopeScaledDepthBias", offset 0x14 (constructor 00632960, called at 006141AB) |
+| 008AEB00 | `008AEB00` `lea` | `02CF5CD0` | member "StencilEnable", offset 0xC (constructor 00632960, called at 00613C7D) |
+| 008AEB40 | `008AEB40` `lea` | `02CF5D30` | member "StencilReadMask", offset 0x10 (constructor 00632960, called at 00613CEC) |
+| 008AEB50 | `008AEB50` `lea` | `02CF5D90` | member "StencilWriteMask", offset 0x11 (constructor 00632960, called at 00613D5B) |
+| 008AEC60 | `008AEC60` `lea` | `02CF6620` | member "m_blendDesc", offset 0x60 (constructor 00632960, called at 00617FD8) |
+| 008AEC80 | `008AEC80` `lea` | `02CF50E0` | member "m_computeParameterLocation", offset 0x220 (constructor 00632960, called at 00617C59) |
+| 008AEC90 | `008AEC90` `lea` | `02CF5260` | member "m_computeTexParameterLocation", offset 0x2A0 (constructor 00632960, called at 00617E21) |
+| 008AECA0 | `008AECA0` `lea` | `02CF69A0` | member "m_constantBufferSize", offset 0x28 (constructor 00632960, called at 006181B0) |
+| 008AECB0 | `008AECB0` `lea` | `02CF6D50` | member "m_count", offset passed in a register (constructor 00632960, called at 00618B0A) |
+| 008AECC0 | `008AECC0` `lea` | `02CF6F80` | member "m_count", offset passed in a register (constructor 00632960, called at 00618E3A) |
+| 008AECD0 | `008AECD0` `lea` | `02CF6800` | member "m_d3dFormat", offset 0x14 (constructor 00632960, called at 00618576) |
+| 008AECE0 | `008AECE0` `lea` | `02CF65C0` | member "m_depthDesc", offset 0x2C (constructor 00632960, called at 00617F65) |
+| 008AECF0 | `008AECF0` `lea` | `02CF6B20` | member "m_dimX", offset 0x80 (constructor 00632960, called at 006178A2) |
+| 008AED00 | `008AED00` `lea` | `02CF6B80` | member "m_dimY", offset 0x84 (constructor 00632960, called at 00617915) |
+| 008AED10 | `008AED10` `lea` | `02CF6BE0` | member "m_dimZ", offset 0x88 (constructor 00632960, called at 00617988) |
+| 008AED40 | `008AED40` `lea` | `02CF5020` | member "m_fragmentParameterLocation", offset 0x1E0 (constructor 00632960, called at 00617B75) |
+| 008AED50 | `008AED50` `lea` | `02CF51A0` | member "m_fragmentTexParameterLocation", offset 0x260 (constructor 00632960, called at 00617D3D) |
+| 008AED60 | `008AED60` `lea` | `02CF5080` | member "m_geometryParameterLocation", offset 0x200 (constructor 00632960, called at 00617BE7) |
+| 008AED70 | `008AED70` `lea` | `02CF5200` | member "m_geometryTexParameterLocation", offset 0x280 (constructor 00632960, called at 00617DAF) |
+| 008AED80 | `008AED80` `lea` | `02CF6A00` | member "m_globalConstantBufferIndex", offset 0x2C (constructor 00632960, called at 00618223) |
+| 008AED90 | `008AED90` `lea` | `02CF6AC0` | member "m_inputLayout", offset 0x78 (constructor 00632960, called at 00618358) |
+| 008AEDA0 | `008AEDA0` `lea` | `02CF6860` | member "m_inputSlot", offset 0x18 (constructor 00632960, called at 006185E9) |
+| 008AEDB0 | `008AEDB0` `lea` | `02CF6560` | member "m_rasterDesc", offset 0x4 (constructor 00632960, called at 00617EF2) |
+| 008AEDC0 | `008AEDC0` `lea` | `02CF6740` | member "m_renderType", offset 0x8 (constructor 00632960, called at 00618490) |
+| 008AEDD0 | `008AEDD0` `lea` | `02CF66E0` | member "m_semantic", offset passed in a register (constructor 00632960, called at 0061841D) |
+| 008AEDE0 | `008AEDE0` `lea` | `02CF67A0` | member "m_semanticIndex", offset 0x10 (constructor 00632960, called at 00618503) |
+| 008AEDF0 | `008AEDF0` `lea` | `02CF6A60` | member "m_shaderProfile", offset 0x70 (constructor 00632960, called at 00618296) |
+| 008AEE00 | `008AEE00` `lea` | `02CF4F60` | member "m_state", offset 0x30 (constructor 00632960, called at 00617A91) |
+| 008AEE10 | `008AEE10` `lea` | `02CF6680` | member "m_stencilRef", offset 0x188 (constructor 00632960, called at 0061804B) |
+| 008AEE30 | `008AEE30` `lea` | `02CF4FC0` | member "m_vertexParameterLocation", offset 0x1C0 (constructor 00632960, called at 00617B03) |
+| 008AEE40 | `008AEE40` `lea` | `02CF5140` | member "m_vertexTexParameterLocation", offset 0x240 (constructor 00632960, called at 00617CCB) |
+| 008B08D0 | `008B08D0` `lea` | `02D370C0` | member "m_ambientColor", offset 0x40D0 (constructor 00632960, called at 0064892E) |
+| 008B08E0 | `008B08E0` `lea` | `02D37C60` | member "m_asymmetry", offset 0x8C (constructor 00632960, called at 0064826C) |
+| 008B08F0 | `008B08F0` `lea` | `02D37C00` | member "m_atmosphereStart", offset 0x88 (constructor 00632960, called at 006481FD) |
+| 008B0900 | `008B0900` `lea` | `02D37D20` | member "m_betaM", offset 0xA0 (constructor 00632960, called at 0064834A) |
+| 008B0910 | `008B0910` `lea` | `02D37CC0` | member "m_betaR", offset 0x90 (constructor 00632960, called at 006482DB) |
+| 008B0920 | `008B0920` `lea` | `02D38380` | member "m_count", offset passed in a register (constructor 00632960, called at 0064ABBA) |
+| 008B0930 | `008B0930` `lea` | `02D37A00` | member "m_edgeColor", offset 0x74 (constructor 00632960, called at 0064886A) |
+| 008B0940 | `008B0940` `lea` | `02D37000` | member "m_effectMaterial", offset 0x10 (constructor 00632960, called at 00649101) |
+| 008B0960 | `008B0960` `lea` | `02D37060` | member "m_enabled", offset 0x41 (constructor 00632960, called at 00649170) |
+| 008B0970 | `008B0970` `lea` | `02D37560` | member "m_focusBlurRange", offset 0x58 (constructor 00632960, called at 00648DDC) |
+| 008B0980 | `008B0980` `lea` | `02D374A0` | member "m_focusPlaneDistance", offset 0x50 (constructor 00632960, called at 00648CFE) |
+| 008B0990 | `008B0990` `lea` | `02D37500` | member "m_focusRange", offset 0x54 (constructor 00632960, called at 00648D6D) |
+| 008B09A0 | `008B09A0` `lea` | `02D37300` | member "m_fogAmount", offset 0x40F8 (constructor 00632960, called at 00648BC8) |
+| 008B09B0 | `008B09B0` `lea` | `02D37360` | member "m_fogColor", offset 0x40E0 (constructor 00632960, called at 00648C37) |
+| 008B09C0 | `008B09C0` `lea` | `02D37240` | member "m_fogDistance", offset 0x40F0 (constructor 00632960, called at 00648AEA) |
+| 008B09D0 | `008B09D0` `lea` | `02D372A0` | member "m_fogNearDistance", offset 0x40F4 (constructor 00632960, called at 00648B59) |
+| 008B09E0 | `008B09E0` `lea` | `02D37F00` | member "m_fogParameters", offset 0xDC (constructor 00632960, called at 00648575) |
+| 008B09F0 | `008B09F0` `lea` | `02D37940` | member "m_gamma", offset 0x60 (constructor 00632960, called at 0064878C) |
+| 008B0A00 | `008B0A00` `lea` | `02D376C0` | member "m_glowAmountScale", offset 0x5C (constructor 00632960, called at 00648E9E) |
+| 008B0A10 | `008B0A10` `lea` | `02D37780` | member "m_glowLuminanceScale", offset 0x64 (constructor 00632960, called at 00648F7C) |
+| 008B0A20 | `008B0A20` `lea` | `02D37720` | member "m_glowLuminanceThreshold", offset 0x60 (constructor 00632960, called at 00648F0D) |
+| 008B0A30 | `008B0A30` `lea` | `02D37180` | member "m_instantLightIntensity", offset 0x4108 (constructor 00632960, called at 00648A0C) |
+| 008B0A40 | `008B0A40` `lea` | `02D371E0` | member "m_instantLightScatteringIntensity", offset 0x410C (constructor 00632960, called at 00648A7B) |
+| 008B0A50 | `008B0A50` `lea` | `02D37120` | member "m_instantLightsEnabled", offset 0x41D0 (constructor 00632960, called at 0064899D) |
+| 008B0A60 | `008B0A60` `lea` | `02D37DE0` | member "m_invHM", offset 0xC4 (constructor 00632960, called at 00648428) |
+| 008B0A70 | `008B0A70` `lea` | `02D37D80` | member "m_invHR", offset 0xC0 (constructor 00632960, called at 006483B9) |
+| 008B0A80 | `008B0A80` `lea` | `02D379A0` | member "m_lightColor", offset 0x64 (constructor 00632960, called at 006487FB) |
+| 008B0A90 | `008B0A90` `lea` | `02D37880` | member "m_lineThickness", offset 0x58 (constructor 00632960, called at 006486AE) |
+| 008B0AA0 | `008B0AA0` `lea` | `02D37AE0` | member "m_marchStepFactor", offset 0x54 (constructor 00632960, called at 0064979D) |
+| 008B0AB0 | `008B0AB0` `lea` | `02D37A80` | member "m_minReflectionDirZ", offset 0x50 (constructor 00632960, called at 0064972E) |
+| 008B0AD0 | `008B0AD0` `lea` | `02D37BA0` | member "m_radius", offset 0x84 (constructor 00632960, called at 0064818E) |
+| 008B0AE0 | `008B0AE0` `lea` | `02D37F60` | member "m_renderDebugTextures", offset 0x61 (constructor 00632960, called at 006485E4) |
+| 008B0AF0 | `008B0AF0` `lea` | `02D37EA0` | member "m_sunDir", offset 0xCC (constructor 00632960, called at 00648506) |
+| 008B0B00 | `008B0B00` `lea` | `02D37E40` | member "m_sunIntensity", offset 0xC8 (constructor 00632960, called at 00648497) |
+| 008B0B10 | `008B0B10` `lea` | `02D378E0` | member "m_threshold", offset 0x5C (constructor 00632960, called at 0064871D) |
+| 008B0B20 | `008B0B20` `lea` | `02D37620` | member "m_velocityScale", offset 0xD10 (constructor 00632960, called at 00649035) |
+| 008B1500 | `008B1500` `lea` | `02D3C9C0` | member "m_count", offset passed in a register (constructor 00632960, called at 00668C7A) |
+| 008B1510 | `008B1510` `lea` | `02D3DD70` | member "m_count", offset passed in a register (constructor 00632960, called at 00668FAA) |
+| 008B1520 | `008B1520` `lea` | `02D3D4B0` | member "m_count", offset passed in a register (constructor 00632960, called at 006692DA) |
+| 008B1530 | `008B1530` `lea` | `02D3DFA0` | member "m_count", offset passed in a register (constructor 00632960, called at 0066960A) |
+| 008B1540 | `008B1540` `lea` | `02D3D910` | member "m_count", offset passed in a register (constructor 00632960, called at 0066993A) |
+| 008B1550 | `008B1550` `lea` | `02D3DB40` | member "m_count", offset passed in a register (constructor 00632960, called at 00669C6A) |
+| 008B1560 | `008B1560` `lea` | `02D3D280` | member "m_count", offset passed in a register (constructor 00632960, called at 00669F9A) |
+| 008B1570 | `008B1570` `lea` | `02D3CBF0` | member "m_count", offset passed in a register (constructor 00632960, called at 0066A2CA) |
+| 008B1580 | `008B1580` `lea` | `02D3D760` | member "m_count", offset passed in a register (constructor 00632960, called at 0066A6C8) |
+| 008B1590 | `008B1590` `lea` | `02D3CEA0` | member "m_count", offset passed in a register (constructor 00632960, called at 0066AA15) |
+| 008B15A0 | `008B15A0` `lea` | `02D3D0D0` | member "m_count", offset passed in a register (constructor 00632960, called at 0066AD65) |
+| 008B15C0 | `008B15C0` `lea` | `02D3B150` | member "m_dataSize", offset 0x78 (constructor 00632960, called at 00665990) |
+| 008B15D0 | `008B15D0` `lea` | `02D3B020` | member "m_dataSize", offset 0x70 (constructor 00632960, called at 006664A0) |
+| 008B15E0 | `008B15E0` `lea` | `02D3BFB0` | member "m_defaultMaterials", offset 0x60 (constructor 00632960, called at 00666CEA) |
+| 008B1610 | `008B1610` `lea` | `02D3B2D0` | member "m_elementCount", offset 0x4 (constructor 00632960, called at 00665794) |
+| 008B1620 | `008B1620` `lea` | `02D3B400` | member "m_elementCount", offset 0x4 (constructor 00632960, called at 00665B41) |
+| 008B1630 | `008B1630` `lea` | `02D3B600` | member "m_elementCount", offset 0x8 (constructor 00632960, called at 00666024) |
+| 008B1640 | `008B1640` `lea` | `02D3B860` | member "m_elementCount", offset 0x8 (constructor 00632960, called at 006661D5) |
+| 008B16D0 | `008B16D0` `lea` | `02D3C400` | member "m_gatherIndex", offset 0x24 (constructor 00632960, called at 006671F5) |
+| 008B16E0 | `008B16E0` `lea` | `02D3BC50` | member "m_hierarchyMatrixIndex", offset 0xC (constructor 00632960, called at 00667878) |
+| 008B16F0 | `008B16F0` `lea` | `02D3C0E0` | member "m_hierarchyMatrixIndex", offset passed in a register (constructor 00632960, called at 006679AE) |
+| 008B1700 | `008B1700` `lea` | `02D3B660` | member "m_indexCount", offset 0xC (constructor 00632960, called at 00666097) |
+| 008B1710 | `008B1710` `lea` | `02D3C5A0` | member "m_indexCount", offset passed in a register (constructor 00632960, called at 00667544) |
+| 008B1720 | `008B1720` `lea` | `02D3AF50` | member "m_indexData", offset 0x40 (constructor 00632960, called at 00667363) |
+| 008B1730 | `008B1730` `lea` | `02D3C540` | member "m_indexFormat", offset 0x31 (constructor 00632960, called at 006674D5) |
+| 008B1750 | `008B1750` `lea` | `02D3C340` | member "m_lodIndex", offset 0x1C (constructor 00632960, called at 0066710F) |
+| 008B1760 | `008B1760` `lea` | `02D3C1A0` | member "m_materialIndex", offset passed in a register (constructor 00632960, called at 00666F1E) |
+| 008B1780 | `008B1780` `lea` | `02D3C200` | member "m_matrixIndex", offset 0x4 (constructor 00632960, called at 00666F91) |
+| 008B17B0 | `008B17B0` `lea` | `02D3B980` | member "m_maximumIndex", offset 0x4 (constructor 00632960, called at 0066632A) |
+| 008B17C0 | `008B17C0` `lea` | `02D3B210` | member "m_memoryType", offset 0x1D (constructor 00632960, called at 006656B2) |
+| 008B17D0 | `008B17D0` `lea` | `02D3B800` | member "m_memoryType", offset 0xD (constructor 00632960, called at 00666162) |
+| 008B17E0 | `008B17E0` `lea` | `02D3B7A0` | member "m_mesh", offset 0x8 (constructor 00632960, called at 00665E73) |
+| 008B1810 | `008B1810` `lea` | `02D3B920` | member "m_minimumIndex", offset passed in a register (constructor 00632960, called at 006662B7) |
+| 008B1820 | `008B1820` `lea` | `02D3C790` | member "m_offset", offset passed in a register (constructor 00632960, called at 00667B61) |
+| 008B1830 | `008B1830` `lea` | `02D3B080` | member "m_offsetInIndexBuffer", offset 0x68 (constructor 00632960, called at 00666513) |
+| 008B1840 | `008B1840` `lea` | `02D3B1B0` | member "m_offsetInVertexBuffer", offset 0x70 (constructor 00632960, called at 00665A03) |
+| 008B1850 | `008B1850` `lea` | `02D3BCB0` | member "m_pad", offset 0x1C (constructor 00632960, called at 006678EB) |
+| 008B1880 | `008B1880` `lea` | `02D3C7F0` | member "m_renderDataType", offset 0x8 (constructor 00632960, called at 00667BD4) |
+| 008B18A0 | `008B18A0` `lea` | `02D3C3A0` | member "m_shapeIndex", offset 0x20 (constructor 00632960, called at 00667182) |
+| 008B18E0 | `008B18E0` `lea` | `02D3C140` | member "m_skeletonMatrixIndex", offset 0x2 (constructor 00632960, called at 00667A21) |
+| 008B1900 | `008B1900` `lea` | `02D3B540` | member "m_startStreamIndex", offset passed in a register (constructor 00632960, called at 00665F3E) |
+| 008B1910 | `008B1910` `lea` | `02D3B5A0` | member "m_streamCount", offset 0x4 (constructor 00632960, called at 00665FB1) |
+| 008B1920 | `008B1920` `lea` | `02D3C850` | member "m_streamSet", offset 0x11 (constructor 00632960, called at 00667C47) |
+| 008B1950 | `008B1950` `lea` | `02D3B270` | member "m_stride", offset passed in a register (constructor 00632960, called at 00665721) |
+| 008B1960 | `008B1960` `lea` | `02D3B3A0` | member "m_stride", offset passed in a register (constructor 00632960, called at 00665ACE) |
+| 008B1970 | `008B1970` `lea` | `02D3B8C0` | member "m_type", offset 0xC (constructor 00632960, called at 00666248) |
+| 008B1980 | `008B1980` `lea` | `02D3C730` | member "m_type", offset 0x10 (constructor 00632960, called at 00667AF2) |
+| 008B19C0 | `008B19C0` `lea` | `02D3C6D0` | member "m_vertexCount", offset 0x18 (constructor 00632960, called at 006676C1) |
+| 008B19F0 | `008B19F0` `lea` | `02D3C670` | member "m_vertexFormat", offset 0x30 (constructor 00632960, called at 0066764E) |
+| 008B1D40 | `008B1D40` `lea` | `02D3E910` | member "m_asset", offset 0x38 (constructor 00632960, called at 0067584C) |
+| 008B1D70 | `008B1D70` `lea` | `02D3E970` | member "m_assetType", offset 0x40 (constructor 00632960, called at 006758BE) |
+| 008B1D80 | `008B1D80` `lea` | `02D3E8B0` | member "m_id", offset 0x30 (constructor 00632960, called at 006757D9) |
+| 008B1D90 | `008B1D90` `lea` | `02D3EBE0` | member "m_id", offset 0x8 (constructor 00632960, called at 00675E4B) |
+| 008B1DA0 | `008B1DA0` `lea` | `02D3EC40` | member "m_targetAssetType", offset passed in a register (constructor 00632960, called at 00675EB9) |
+| 008B1E50 | `008B1E50` `lea` | `02D3F6B0` | member "m_aspect", offset 0xC8 (constructor 00632960, called at 0067895A) |
+| 008B1E60 | `008B1E60` `lea` | `02D3F5F0` | member "m_farPlane", offset 0xBC (constructor 00632960, called at 006787B1) |
+| 008B1E70 | `008B1E70` `lea` | `02D3F530` | member "m_localToWorldMatrix", offset 0xB0 (constructor 00632960, called at 006786CB) |
+| 008B1E80 | `008B1E80` `lea` | `02D3F590` | member "m_nearPlane", offset 0xB8 (constructor 00632960, called at 0067873E) |
+| 008B1E90 | `008B1E90` `lea` | `02D3F470` | member "m_projectionMatrix", offset 0x30 (constructor 00632960, called at 006785E6) |
+| 008B1EA0 | `008B1EA0` `lea` | `02D3F410` | member "m_viewMatrix", offset passed in a register (constructor 00632960, called at 00678573) |
+| 008B1EB0 | `008B1EB0` `lea` | `02D3F4D0` | member "m_viewProjectionMatrix", offset 0x70 (constructor 00632960, called at 00678659) |
+| 008B2000 | `008B2000` `lea` | `02E40010` | member "m_baselineOffset", offset 0xC (constructor 00632960, called at 0067D1C7) |
+| 008B2010 | `008B2010` `lea` | `02E40150` | member "m_bitmapFontTexture", offset 0x30 (constructor 00632960, called at 0067D370) |
+| 008B2020 | `008B2020` `lea` | `02E3FB60` | member "m_characterCode", offset passed in a register (constructor 00632960, called at 0067D43E) |
+| 008B2040 | `008B2040` `lea` | `02E402C0` | member "m_count", offset passed in a register (constructor 00632960, called at 0067D9AA) |
+| 008B2060 | `008B2060` `lea` | `02E3FEF0` | member "m_fontSize", offset 0x4 (constructor 00632960, called at 0067D072) |
+| 008B2070 | `008B2070` `lea` | `02E3FD50` | member "m_height", offset 0x18 (constructor 00632960, called at 0067D67F) |
+| 008B2080 | `008B2080` `lea` | `02E3FF50` | member "m_isSDF", offset passed in a register (constructor 00632960, called at 0067D0E1) |
+| 008B2090 | `008B2090` `lea` | `02E3FC20` | member "m_kernOffset", offset 0x8 (constructor 00632960, called at 0067D524) |
+| 008B20A0 | `008B20A0` `lea` | `02E3FBC0` | member "m_kernPairs", offset 0x4 (constructor 00632960, called at 0067D4B1) |
+| 008B20C0 | `008B20C0` `lea` | `02E3FFB0` | member "m_lineSpacing", offset 0x8 (constructor 00632960, called at 0067D154) |
+| 008B20E0 | `008B20E0` `lea` | `02E3FE90` | member "m_rotated", offset 0x2C (constructor 00632960, called at 0067D7DC) |
+| 008B2100 | `008B2100` `lea` | `02E3FCF0` | member "m_width", offset 0x14 (constructor 00632960, called at 0067D60C) |
+| 008B21F0 | `008B21F0` `lea` | `02E406D0` | member "m_matrix", offset passed in a register (constructor 00632960, called at 0067E9B6) |
+| 008B24E0 | `008B24E0` `lea` | `02E42830` | member "m_defaultEntryPoint", offset 0x40 (constructor 00632960, called at 00682624) |
+| 008B24F0 | `008B24F0` `lea` | `02E42320` | member "m_entryPoint", offset 0x60 (constructor 00632960, called at 00681EED) |
+| 008B2500 | `008B2500` `lea` | `02E42380` | member "m_entryPoint", offset passed in a register (constructor 00632960, called at 00682849) |
+| 008B2510 | `008B2510` `lea` | `02E42950` | member "m_executionInterval", offset 0x54 (constructor 00632960, called at 0068277C) |
+| 008B2530 | `008B2530` `lea` | `02E423E0` | member "m_handler", offset 0x8 (constructor 00632960, called at 006828B7) |
+| 008B2540 | `008B2540` `lea` | `02E428F0` | member "m_isPersistent", offset 0x50 (constructor 00632960, called at 00682709) |
+| 008B2550 | `008B2550` `lea` | `02E422C0` | member "m_nameAsString", offset 0x58 (constructor 00632960, called at 00681E7F) |
+| 008B2560 | `008B2560` `lea` | `02E42770` | member "m_onLoadEntryPoint", offset 0x30 (constructor 00632960, called at 00682540) |
+| 008B2570 | `008B2570` `lea` | `02E427D0` | member "m_onUnloadEntryPoint", offset 0x38 (constructor 00632960, called at 006825B2) |
+| 008B2580 | `008B2580` `lea` | `02E42260` | member "m_script", offset 0x50 (constructor 00632960, called at 00681E11) |
+| 008B25B0 | `008B25B0` `lea` | `02E42890` | member "m_sourceName", offset 0x48 (constructor 00632960, called at 00682696) |
+| 008B3620 | `008B3620` `lea` | `02E4BEE0` | member "m_amount", offset 0x20 (constructor 00632960, called at 006940E6) |
+| 008B3630 | `008B3630` `lea` | `02E4B8F0` | member "m_angularDamping", offset 0xC4 (constructor 00632960, called at 00696B79) |
+| 008B3640 | `008B3640` `lea` | `02E4CB30` | member "m_characterControllers", offset 0x50 (constructor 00632960, called at 0069844B) |
+| 008B3650 | `008B3650` `lea` | `02E4BA70` | member "m_collisionGroup", offset 0xE0 (constructor 00632960, called at 00696D3E) |
+| 008B3660 | `008B3660` `lea` | `02E4CCB0` | member "m_collisionObject", offset 0x20 (constructor 00632960, called at 00698674) |
+| 008B3670 | `008B3670` `lea` | `02E4BE20` | member "m_collisionObjectA", offset passed in a register (constructor 00632960, called at 00694009) |
+| 008B3680 | `008B3680` `lea` | `02E4BE80` | member "m_collisionObjectB", offset 0x10 (constructor 00632960, called at 00694077) |
+| 008B3690 | `008B3690` `lea` | `02E4CD10` | member "m_collisionObjectClassDescriptor", offset 0x28 (constructor 00632960, called at 006986E6) |
+| 008B36A0 | `008B36A0` `lea` | `02E4A260` | member "m_collisionRadius", offset 0x10 (constructor 00632960, called at 006942FB) |
+| 008B36B0 | `008B36B0` `lea` | `02E4A380` | member "m_contactEpsilon", offset 0x1C (constructor 00632960, called at 00694448) |
+| 008B36C0 | `008B36C0` `lea` | `02E4CC50` | member "m_contactNormal", offset 0x10 (constructor 00632960, called at 00698601) |
+| 008B36D0 | `008B36D0` `lea` | `02E4CBF0` | member "m_contactPoint", offset passed in a register (constructor 00632960, called at 0069858E) |
+| 008B36E0 | `008B36E0` `lea` | `02E4D200` | member "m_count", offset passed in a register (constructor 00632960, called at 00698B98) |
+| 008B36F0 | `008B36F0` `lea` | `02E4C480` | member "m_density", offset 0x10 (constructor 00632960, called at 00697498) |
+| 008B3700 | `008B3700` `lea` | `02E4B0A0` | member "m_dynamicFriction", offset passed in a register (constructor 00632960, called at 0069565E) |
+| 008B3710 | `008B3710` `lea` | `02E4BAD0` | member "m_enabled", offset 0xE9 (constructor 00632960, called at 00696DB1) |
+| 008B3720 | `008B3720` `lea` | `02E4B340` | member "m_equationCoefficient", offset 0x70 (constructor 00632960, called at 00695A79) |
+| 008B3730 | `008B3730` `lea` | `02E4A8C0` | member "m_forward", offset 0xE8 (constructor 00632960, called at 00694C79) |
+| 008B3740 | `008B3740` `lea` | `02E4AD40` | member "m_graphicsOffset", offset 0x48 (constructor 00632960, called at 006951D7) |
+| 008B3750 | `008B3750` `lea` | `02E4A6E0` | member "m_gravity", offset 0x28 (constructor 00632960, called at 00694A3C) |
+| 008B3760 | `008B3760` `lea` | `02E4C9B0` | member "m_gravity", offset passed in a register (constructor 00632960, called at 00698280) |
+| 008B3770 | `008B3770` `lea` | `02E4A130` | member "m_halfExtents", offset 0x70 (constructor 00632960, called at 00693F49) |
+| 008B3780 | `008B3780` `lea` | `02E4A200` | member "m_height", offset 0x78 (constructor 00632960, called at 0069422C) |
+| 008B3790 | `008B3790` `lea` | `02E4AC20` | member "m_height", offset 0xF8 (constructor 00632960, called at 0069507F) |
+| 008B37A0 | `008B37A0` `lea` | `02E4AF90` | member "m_height", offset 0x78 (constructor 00632960, called at 0069559C) |
+| 008B37B0 | `008B37B0` `lea` | `02E4C7B0` | member "m_height", offset 0x80 (constructor 00632960, called at 006978DC) |
+| 008B37C0 | `008B37C0` `lea` | `02E4C8F0` | member "m_height", offset 0x80 (constructor 00632960, called at 00697A8C) |
+| 008B37D0 | `008B37D0` `lea` | `02E4C3C0` | member "m_hollow", offset 0x8 (constructor 00632960, called at 006973B2) |
+| 008B37E0 | `008B37E0` `lea` | `02E4B580` | member "m_inertiaTensor", offset 0x58 (constructor 00632960, called at 0069674B) |
+| 008B37F0 | `008B37F0` `lea` | `02E4B640` | member "m_initialAngularVelocity", offset 0x78 (constructor 00632960, called at 00696831) |
+| 008B3800 | `008B3800` `lea` | `02E4B5E0` | member "m_initialLinearVelocity", offset 0x68 (constructor 00632960, called at 006967BE) |
+| 008B3810 | `008B3810` `lea` | `02E4B520` | member "m_initialOrientation", offset 0x48 (constructor 00632960, called at 006966D8) |
+| 008B3820 | `008B3820` `lea` | `02E4B4C0` | member "m_initialPosition", offset 0x38 (constructor 00632960, called at 00696665) |
+| 008B3830 | `008B3830` `lea` | `02E4ADA0` | member "m_invGraphicsOffset", offset 0x88 (constructor 00632960, called at 0069524A) |
+| 008B3840 | `008B3840` `lea` | `02E4A9E0` | member "m_isOnGround", offset 0x105 (constructor 00632960, called at 00694DD2) |
+| 008B3850 | `008B3850` `lea` | `02E4A980` | member "m_jump", offset 0x104 (constructor 00632960, called at 00694D5F) |
+| 008B3860 | `008B3860` `lea` | `02E4ABC0` | member "m_jumpHeight", offset 0xF4 (constructor 00632960, called at 0069500C) |
+| 008B3870 | `008B3870` `lea` | `02E4CB90` | member "m_kinematicRigidBodies", offset 0x58 (constructor 00632960, called at 006984BD) |
+| 008B3880 | `008B3880` `lea` | `02E4B890` | member "m_linearDamping", offset 0xC0 (constructor 00632960, called at 00696B06) |
+| 008B38B0 | `008B38B0` `lea` | `02E4B3A0` | member "m_mass", offset 0xE4 (constructor 00632960, called at 0069650C) |
+| 008B38C0 | `008B38C0` `lea` | `02E4C420` | member "m_mass", offset 0xC (constructor 00632960, called at 00697425) |
+| 008B38D0 | `008B38D0` `lea` | `02E4B460` | member "m_massFrameTransform", offset 0x8 (constructor 00632960, called at 006965F2) |
+| 008B38E0 | `008B38E0` `lea` | `02E4B760` | member "m_material", offset 0x98 (constructor 00632960, called at 00696987) |
+| 008B38F0 | `008B38F0` `lea` | `02E4C4E0` | member "m_material", offset 0x18 (constructor 00632960, called at 0069750A) |
+| 008B3900 | `008B3900` `lea` | `02E4AA40` | member "m_maxSlopeAngle", offset 0xF0 (constructor 00632960, called at 00694E45) |
+| 008B3910 | `008B3910` `lea` | `02E4A3E0` | member "m_minimumCameraDistance", offset 0x20 (constructor 00632960, called at 006944B7) |
+| 008B3920 | `008B3920` `lea` | `02E4B9B0` | member "m_model", offset 0xC8 (constructor 00632960, called at 00696C59) |
+| 008B3930 | `008B3930` `lea` | `02E4C950` | member "m_models", offset 0x48 (constructor 00632960, called at 00698211) |
+| 008B3940 | `008B3940` `lea` | `02E4A500` | member "m_nearCameraYAdjust", offset 0x34 (constructor 00632960, called at 00694604) |
+| 008B3950 | `008B3950` `lea` | `02E4AAA0` | member "m_next", offset passed in a register (constructor 00632960, called at 00694EB3) |
+| 008B3960 | `008B3960` `lea` | `02E4B280` | member "m_next", offset passed in a register (constructor 00632960, called at 0069593F) |
+| 008B3970 | `008B3970` `lea` | `02E4B950` | member "m_next", offset passed in a register (constructor 00632960, called at 00696BE7) |
+| 008B3980 | `008B3980` `lea` | `02E4BA10` | member "m_nextKinematicRigidBody", offset 0xD8 (constructor 00632960, called at 00696CCB) |
+| 008B3990 | `008B3990` `lea` | `02E4AC80` | member "m_radius", offset 0xFC (constructor 00632960, called at 006950F2) |
+| 008B39A0 | `008B39A0` `lea` | `02E4C670` | member "m_radius", offset 0x70 (constructor 00632960, called at 00697729) |
+| 008B39D0 | `008B39D0` `lea` | `02E4B160` | member "m_restitution", offset 0x8 (constructor 00632960, called at 00695744) |
+| 008B39E0 | `008B39E0` `lea` | `02E4A860` | member "m_right", offset 0xE4 (constructor 00632960, called at 00694C06) |
+| 008B39F0 | `008B39F0` `lea` | `02E4B220` | member "m_rigidBodies", offset 0x8 (constructor 00632960, called at 006958D1) |
+| 008B3A00 | `008B3A00` `lea` | `02E4B400` | member "m_rigidBodyType", offset 0xE8 (constructor 00632960, called at 0069657F) |
+| 008B3A10 | `008B3A10` `lea` | `02E4A800` | member "m_rotate", offset 0xE0 (constructor 00632960, called at 00694B93) |
+| 008B3A20 | `008B3A20` `lea` | `02E4AB60` | member "m_scale", offset 0x18 (constructor 00632960, called at 00694F99) |
+| 008B3A30 | `008B3A30` `lea` | `02E4B830` | member "m_scale", offset 0x88 (constructor 00632960, called at 00696A93) |
+| 008B3A40 | `008B3A40` `lea` | `02E4C5A0` | member "m_scale", offset 0x50 (constructor 00632960, called at 006975F0) |
+| 008B3A50 | `008B3A50` `lea` | `02E4AE00` | member "m_scriptHandler", offset 0x118 (constructor 00632960, called at 006952BC) |
+| 008B3A60 | `008B3A60` `lea` | `02E4BB30` | member "m_scriptHandler", offset 0x100 (constructor 00632960, called at 00696E23) |
+| 008B3A70 | `008B3A70` `lea` | `02E4B1C0` | member "m_shape", offset 0x70 (constructor 00632960, called at 00695808) |
+| 008B3A90 | `008B3A90` `lea` | `02E4A440` | member "m_smoothingRate", offset 0x24 (constructor 00632960, called at 00694526) |
+| 008B3AA0 | `008B3AA0` `lea` | `02E4A4A0` | member "m_springTension", offset 0x30 (constructor 00632960, called at 00694595) |
+| 008B3AB0 | `008B3AB0` `lea` | `02E4AB00` | member "m_startPosition", offset 0x8 (constructor 00632960, called at 00694F26) |
+| 008B3AC0 | `008B3AC0` `lea` | `02E4B100` | member "m_staticFriction", offset 0x4 (constructor 00632960, called at 006956D1) |
+| 008B3AD0 | `008B3AD0` `lea` | `02E4A2C0` | member "m_targetDistance", offset 0x14 (constructor 00632960, called at 0069436A) |
+| 008B3AE0 | `008B3AE0` `lea` | `02E4A320` | member "m_targetHeight", offset 0x18 (constructor 00632960, called at 006943D9) |
+| 008B3AF0 | `008B3AF0` `lea` | `02E4A740` | member "m_targetNode", offset 0xC8 (constructor 00632960, called at 00694AAE) |
+| 008B3B00 | `008B3B00` `lea` | `02E4B6A0` | member "m_targetNode", offset 0xA0 (constructor 00632960, called at 006968A3) |
+| 008B3B10 | `008B3B10` `lea` | `02E4A7A0` | member "m_targetWorldMatrix", offset 0xD0 (constructor 00632960, called at 00694B20) |
+| 008B3B20 | `008B3B20` `lea` | `02E4B700` | member "m_targetWorldMatrix", offset 0xA8 (constructor 00632960, called at 00696915) |
+| 008B3B30 | `008B3B30` `lea` | `02E4CA10` | member "m_timeStep", offset 0x10 (constructor 00632960, called at 006982F3) |
+| 008B3B40 | `008B3B40` `lea` | `02E4C540` | member "m_transform", offset 0x20 (constructor 00632960, called at 0069757D) |
+| 008B3B90 | `008B3B90` `lea` | `02E4A920` | member "m_velocity", offset 0xEC (constructor 00632960, called at 00694CEC) |
+| 008B3BA0 | `008B3BA0` `lea` | `02E4ACE0` | member "m_world", offset 0xD8 (constructor 00632960, called at 00695164) |
+| 008B3BB0 | `008B3BB0` `lea` | `02E4B2E0` | member "m_world", offset 0x10 (constructor 00632960, called at 006959B1) |
+| 008B3BC0 | `008B3BC0` `lea` | `02E4CAD0` | member "m_worldMax", offset 0x24 (constructor 00632960, called at 006983D9) |
+| 008B3BD0 | `008B3BD0` `lea` | `02E4CA70` | member "m_worldMin", offset 0x14 (constructor 00632960, called at 00698366) |
+| 008B4090 | `008B4090` `lea` | `02E4DF40` | member "m_count", offset passed in a register (constructor 00632960, called at 006A8728) |
+| 008B40A0 | `008B40A0` `lea` | `02E4DBD0` | member "m_enabled", offset 0x50 (constructor 00632960, called at 006A8159) |
+| 008B40B0 | `008B40B0` `lea` | `02E4DAA0` | member "m_localToWorldMatrix", offset 0x18 (constructor 00632960, called at 006A7FEA) |
+| 008B40C0 | `008B40C0` `lea` | `02E4DB00` | member "m_previousLocalToWorldMatrix", offset 0x20 (constructor 00632960, called at 006A8058) |
+| 008B40E0 | `008B40E0` `lea` | `02E4DA40` | member "m_type", offset passed in a register (constructor 00632960, called at 006A7F78) |
+| 008B4180 | `008B4180` `lea` | `02E4E340` | member "m_min", offset 0x48 (constructor 00632960, called at 006A993C) |
+| 008B4190 | `008B4190` `lea` | `02E4E2E0` | member "m_previousLocalToWorldMatrix", offset 0x18 (constructor 00632960, called at 006A98CD) |
+| 008B41A0 | `008B41A0` `lea` | `02E4E3A0` | member "m_size", offset 0x58 (constructor 00632960, called at 006A99AB) |
+| 008B41D0 | `008B41D0` `lea` | `02E4E590` | member "m_classDescriptor", offset 0x8 (constructor 00632960, called at 006AA010) |
+| 008B41E0 | `008B41E0` `lea` | `02E4E530` | member "m_object", offset passed in a register (constructor 00632960, called at 006A9F9E) |
+| 008B42E0 | `008B42E0` `lea` | `02E4E9A0` | member "m_componentType", offset 0x10 (constructor 00632960, called at 006AAD8F) |
+| 008B42F0 | `008B42F0` `lea` | `02E4E8E0` | member "m_entity", offset 0x8 (constructor 00632960, called at 006AACAF) |
+| 008B4300 | `008B4300` `lea` | `02E4E940` | member "m_next", offset passed in a register (constructor 00632960, called at 006AAD1D) |
+| 008B4540 | `008B4540` `lea` | `02E4EC50` | member "m_firstComponent", offset passed in a register (constructor 00632960, called at 006AB946) |
+| 008B4550 | `008B4550` `lea` | `02E4ECB0` | member "m_worldMatrix", offset 0x8 (constructor 00632960, called at 006AB9B8) |
+| 008B4640 | `008B4640` `lea` | `02E4F390` | member "m_height", offset 0xD0 (constructor 00632960, called at 006AD137) |
+| 008B46D0 | `008B46D0` `lea` | `02E4F810` | member "m_FOV", offset 0xD0 (constructor 00632960, called at 006AD999) |
+| 008B48B0 | `008B48B0` `lea` | `02E4FD00` | member "m_count", offset passed in a register (constructor 00632960, called at 006AE91A) |
+| 008B4960 | `008B4960` `lea` | `02E50060` | member "m_name", offset 0x28 (constructor 00632960, called at 006AFCB2) |
+| 008B5520 | `008B5520` `lea` | `02E51F70` | member "m_firstChild", offset 0x10 (constructor 00632960, called at 006B4E40) |
+| 008B5530 | `008B5530` `lea` | `02E52090` | member "m_localMatrix", offset 0x20 (constructor 00632960, called at 006B4F93) |
+| 008B5540 | `008B5540` `lea` | `02E520F0` | member "m_name", offset 0x60 (constructor 00632960, called at 006B5005) |
+| 008B5550 | `008B5550` `lea` | `02E51FD0` | member "m_next", offset passed in a register (constructor 00632960, called at 006B4EAE) |
+| 008B5560 | `008B5560` `lea` | `02E51F10` | member "m_parent", offset 0x8 (constructor 00632960, called at 006B4DCE) |
+| 008B5570 | `008B5570` `lea` | `02E52030` | member "m_worldMatrix", offset 0x18 (constructor 00632960, called at 006B4F20) |
+| 008B5DC0 | `008B5DC0` `lea` | `02E585B0` | member "m_count", offset passed in a register (constructor 00632960, called at 006BCDDA) |
+| 008B5DD0 | `008B5DD0` `lea` | `02E58A10` | member "m_count", offset passed in a register (constructor 00632960, called at 006BD11A) |
+| 008B5DE0 | `008B5DE0` `lea` | `02E587E0` | member "m_count", offset passed in a register (constructor 00632960, called at 006BD44A) |
+| 008B5E20 | `008B5E20` `lea` | `02E58160` | member "m_modifierNetwork", offset passed in a register (constructor 00632960, called at 006BCAAD) |
+| 008B5E60 | `008B5E60` `lea` | `02E58280` | member "m_modifierOutputsAreConsumed", offset 0x10 (constructor 00632960, called at 006BCC06) |
+| 008B5E70 | `008B5E70` `lea` | `02E581C0` | member "m_segmentInputGroupStart", offset 0x8 (constructor 00632960, called at 006BCB20) |
+| 008B5E90 | `008B5E90` `lea` | `02E58220` | member "m_segmentOutputGroupStart", offset 0xC (constructor 00632960, called at 006BCB93) |
+| 008B61B0 | `008B61B0` `lea` | `02E58F20` | member "m_color", offset passed in a register (constructor 00632960, called at 006BEDFA) |
+| 008B61C0 | `008B61C0` `lea` | `02E590A0` | member "m_innerConeAngle", offset 0x28 (constructor 00632960, called at 006BEFC4) |
+| 008B61D0 | `008B61D0` `lea` | `02E591C0` | member "m_innerRange", offset 0x34 (constructor 00632960, called at 006BF11D) |
+| 008B61E0 | `008B61E0` `lea` | `02E59160` | member "m_intensity", offset 0x30 (constructor 00632960, called at 006BF0AA) |
+| 008B61F0 | `008B61F0` `lea` | `02E59040` | member "m_lightType", offset 0x20 (constructor 00632960, called at 006BEF51) |
+| 008B6200 | `008B6200` `lea` | `02E58F80` | member "m_localToWorldMatrix", offset 0x10 (constructor 00632960, called at 006BEE6C) |
+| 008B6210 | `008B6210` `lea` | `02E59100` | member "m_outerConeAngle", offset 0x2C (constructor 00632960, called at 006BF037) |
+| 008B6220 | `008B6220` `lea` | `02E59220` | member "m_outerRange", offset 0x38 (constructor 00632960, called at 006BF190) |
+| 008B6230 | `008B6230` `lea` | `02E59280` | member "m_scatteringIntensity", offset 0x3C (constructor 00632960, called at 006BF203) |
+| 008B6240 | `008B6240` `lea` | `02E58FE0` | member "m_shadowCaster", offset 0x18 (constructor 00632960, called at 006BEEDE) |
+| 008B68B0 | `008B68B0` `lea` | `02E5A230` | member "m_count", offset passed in a register (constructor 00632960, called at 006C1ABA) |
+| 008B68D0 | `008B68D0` `lea` | `02E59F30` | member "m_farPlane", offset 0xC8 (constructor 00632960, called at 006C1899) |
+| 008B68E0 | `008B68E0` `lea` | `02E5A0C0` | member "m_light", offset passed in a register (constructor 00632960, called at 006C17DC) |
+| 008B68F0 | `008B68F0` `lea` | `02E5A000` | member "m_shadowCasterType", offset 0x8 (constructor 00632960, called at 006C16FB) |
+| 008B6910 | `008B6910` `lea` | `02E5A060` | member "m_zbias", offset 0x50 (constructor 00632960, called at 006C176E) |
+| 008B69B0 | `008B69B0` `lea` | `02E5AB90` | member "m_count", offset passed in a register (constructor 00632960, called at 006C399A) |
+| 008B69C0 | `008B69C0` `lea` | `02E5A7C0` | member "m_elementSize", offset 0x8 (constructor 00632960, called at 006C3612) |
+| 008B69E0 | `008B69E0` `lea` | `02E5A8E0` | member "m_list", offset 0x4 (constructor 00632960, called at 006C37C1) |
+| 008B69F0 | `008B69F0` `lea` | `02E5A940` | member "m_modifierNetwork", offset passed in a register (constructor 00632960, called at 006C340D) |
+| 008B6A20 | `008B6A20` `lea` | `02E5A820` | member "m_renderStream", offset 0x10 (constructor 00632960, called at 006C3684) |
+| 008B6A30 | `008B6A30` `lea` | `02E5A880` | member "m_source", offset passed in a register (constructor 00632960, called at 006C374E) |
+| 008B6C00 | `008B6C00` `lea` | `02E5B3D0` | member "m_blendRange", offset 0x30 (constructor 00632960, called at 006C5C54) |
+| 008B6C10 | `008B6C10` `lea` | `02E5B9B0` | member "m_count", offset passed in a register (constructor 00632960, called at 006C63CA) |
+| 008B6C20 | `008B6C20` `lea` | `02E5B800` | member "m_count", offset passed in a register (constructor 00632960, called at 006C67C8) |
+| 008B6C40 | `008B6C40` `lea` | `02E5B550` | member "m_isEnabled", offset 0x60 (constructor 00632960, called at 006C5E18) |
+| 008B6C60 | `008B6C60` `lea` | `02E5B4F0` | member "m_lodBlendType", offset 0x48 (constructor 00632960, called at 006C5DA9) |
+| 008B6C70 | `008B6C70` `lea` | `02E5B110` | member "m_lodGroup", offset passed in a register (constructor 00632960, called at 006C607D) |
+| 008B6C80 | `008B6C80` `lea` | `02E5B490` | member "m_lodMetricType", offset 0x40 (constructor 00632960, called at 006C5D36) |
+| 008B6C90 | `008B6C90` `lea` | `02E5B370` | member "m_maxBounds", offset 0x10 (constructor 00632960, called at 006C5BE5) |
+| 008B6CA0 | `008B6CA0` `lea` | `02E5B240` | member "m_maximumThreshold", offset 0x1C (constructor 00632960, called at 006C61ED) |
+| 008B6CC0 | `008B6CC0` `lea` | `02E5B310` | member "m_minBounds", offset passed in a register (constructor 00632960, called at 006C5B76) |
+| 008B6CD0 | `008B6CD0` `lea` | `02E5B1E0` | member "m_minimumThreshold", offset 0x18 (constructor 00632960, called at 006C617E) |
+| 008B6CE0 | `008B6CE0` `lea` | `02E5B430` | member "m_shaderLODLevelDistance", offset 0x34 (constructor 00632960, called at 006C5CC3) |
+| 008B6DE0 | `008B6DE0` `lea` | `02E5BD10` | member "m_localToWorldMatrix", offset 0x8 (constructor 00632960, called at 006C8414) |
+| 008B6DF0 | `008B6DF0` `lea` | `02E5BCB0` | member "m_occluder", offset passed in a register (constructor 00632960, called at 006C83A2) |
+| 008B6F80 | `008B6F80` `lea` | `02E5C1B0` | member "m_entryPoint", offset 0x20 (constructor 00632960, called at 006CD0FF) |
+| 008B6F90 | `008B6F90` `lea` | `02E5C150` | member "m_script", offset 0x28 (constructor 00632960, called at 006CD091) |
+| 008B7040 | `008B7040` `lea` | `02E5C590` | member "m_entryCount", offset 0x20 (constructor 00632960, called at 006CDB3C) |
+| 008B7050 | `008B7050` `lea` | `02E5C530` | member "m_quarryComponent", offset 0x18 (constructor 00632960, called at 006CDACD) |
+| 008B7060 | `008B7060` `lea` | `02E5C4D0` | member "m_trigger", offset 0x10 (constructor 00632960, called at 006CDA5B) |
+| 008B7070 | `008B7070` `lea` | `02E5C470` | member "m_triggerReceiverComponent", offset passed in a register (constructor 00632960, called at 006CD9E9) |
+| 008B70A0 | `008B70A0` `lea` | `02E5C870` | member "m_entryHandler", offset 0x28 (constructor 00632960, called at 006CE293) |
+| 008B70B0 | `008B70B0` `lea` | `02E5C8D0` | member "m_exitHandler", offset 0x40 (constructor 00632960, called at 006CE305) |
+| 008B70C0 | `008B70C0` `lea` | `02E5C810` | member "m_script", offset 0x18 (constructor 00632960, called at 006CE221) |
+| 008B72A0 | `008B72A0` `lea` | `02E5ED10` | member "m_codeIndex", offset 0x8 (constructor 00632960, called at 006D205B) |
+| 008B72B0 | `008B72B0` `lea` | `02E9F960` | member "m_count", offset passed in a register (constructor 00632960, called at 006D252A) |
+| 008B72C0 | `008B72C0` `lea` | `02E9FB90` | member "m_count", offset passed in a register (constructor 00632960, called at 006D285A) |
+| 008B72D0 | `008B72D0` `lea` | `02E9F730` | member "m_count", offset passed in a register (constructor 00632960, called at 006D2B8A) |
+| 008B72E0 | `008B72E0` `lea` | `02E5E700` | member "m_dataBlock", offset passed in a register (constructor 00632960, called at 006D219D) |
+| 008B72F0 | `008B72F0` `lea` | `02E5E8E0` | member "m_elementSize", offset 0x10 (constructor 00632960, called at 006D1767) |
+| 008B7300 | `008B7300` `lea` | `02E5EDE0` | member "m_elementSize", offset passed in a register (constructor 00632960, called at 006D1CFC) |
+| 008B7340 | `008B7340` `lea` | `02E5E940` | member "m_info", offset 0x14 (constructor 00632960, called at 006D17DA) |
+| 008B7350 | `008B7350` `lea` | `02E5F430` | member "m_infoPacket", offset 0x48 (constructor 00632960, called at 006D134E) |
+| 008B7360 | `008B7360` `lea` | `02E5EF60` | member "m_inputCount", offset 0xC (constructor 00632960, called at 006D19FE) |
+| 008B7370 | `008B7370` `lea` | `02E5EB90` | member "m_inputCount", offset 0x8 (constructor 00632960, called at 006D1E38) |
+| 008B73C0 | `008B73C0` `lea` | `02E5F550` | member "m_isCompiled", offset 0x58 (constructor 00632960, called at 006D14A7) |
+| 008B73D0 | `008B73D0` `lea` | `02E5E9A0` | member "m_modifier", offset passed in a register (constructor 00632960, called at 006D0DDE) |
+| 008B73E0 | `008B73E0` `lea` | `02E5E820` | member "m_modifier", offset 0x8 (constructor 00632960, called at 006D1681) |
+| 008B73F0 | `008B73F0` `lea` | `02E5EB30` | member "m_modifier", offset passed in a register (constructor 00632960, called at 006D1DC5) |
+| 008B7400 | `008B7400` `lea` | `02E5EEA0` | member "m_modifierCodeCount", offset 0x4 (constructor 00632960, called at 006D1918) |
+| 008B7410 | `008B7410` `lea` | `02E5EF00` | member "m_modifierInstanceCount", offset 0x8 (constructor 00632960, called at 006D198B) |
+| 008B7430 | `008B7430` `lea` | `02E5EFC0` | member "m_outputCount", offset 0xE (constructor 00632960, called at 006D1A71) |
+| 008B7440 | `008B7440` `lea` | `02E5EBF0` | member "m_outputCount", offset 0xC (constructor 00632960, called at 006D1EAB) |
+| 008B7460 | `008B7460` `lea` | `02E5EA00` | member "m_persistentStateOffset", offset 0x8 (constructor 00632960, called at 006D0E51) |
+| 008B7470 | `008B7470` `lea` | `02E5EC50` | member "m_persistentStateOffset", offset passed in a register (constructor 00632960, called at 006D1F75) |
+| 008B7480 | `008B7480` `lea` | `02E5EE40` | member "m_size", offset passed in a register (constructor 00632960, called at 006D18A5) |
+| 008B7490 | `008B7490` `lea` | `02E5E640` | member "m_source", offset passed in a register (constructor 00632960, called at 006D22DE) |
+| 008B74A0 | `008B74A0` `lea` | `02E5F150` | member "m_spuModifierCodeSize", offset 0x1C (constructor 00632960, called at 006D1C3C) |
+| 008B74B0 | `008B74B0` `lea` | `02E5EA60` | member "m_stateBlockOffset", offset 0xC (constructor 00632960, called at 006D0EC4) |
+| 008B74C0 | `008B74C0` `lea` | `02E5ECB0` | member "m_stateBlockOffset", offset 0x4 (constructor 00632960, called at 006D1FE8) |
+| 008B74D0 | `008B74D0` `lea` | `02E5E880` | member "m_stream", offset 0xC (constructor 00632960, called at 006D16F4) |
+| 008B74E0 | `008B74E0` `lea` | `02E5E6A0` | member "m_stream", offset 0x4 (constructor 00632960, called at 006D2351) |
+| 008B7510 | `008B7510` `lea` | `02E5F220` | member "m_totalInputCount", offset 0x18 (constructor 00632960, called at 006D10D0) |
+| 008B7520 | `008B7520` `lea` | `02E5F360` | member "m_totalOutputElementSize", offset passed in a register (constructor 00632960, called at 006D126A) |
+| 008B7530 | `008B7530` `lea` | `02E5F490` | member "m_totalPersistentStateSize", offset 0x50 (constructor 00632960, called at 006D13C1) |
+| 008B7540 | `008B7540` `lea` | `02E5F090` | member "m_totalPersistentStateSize", offset 0x14 (constructor 00632960, called at 006D1B56) |
+| 008B7550 | `008B7550` `lea` | `02E5F4F0` | member "m_totalStateBlockSize", offset 0x54 (constructor 00632960, called at 006D1434) |
+| 008B7560 | `008B7560` `lea` | `02E5F0F0` | member "m_totalStateBlockSize", offset 0x18 (constructor 00632960, called at 006D1BC9) |
+| 008B7570 | `008B7570` `lea` | `02E5E7C0` | member "m_type", offset passed in a register (constructor 00632960, called at 006D160E) |
+| 008B7580 | `008B7580` `lea` | `02E5E760` | member "m_vertexStream", offset 0x8 (constructor 00632960, called at 006D220F) |
+| 008B78D0 | `008B78D0` `lea` | `02EA0A20` | member "m_edgeCount", offset 0x8 (constructor 00632960, called at 006DA12F) |
+| 008B78E0 | `008B78E0` `lea` | `02EA0AE0` | member "m_maxBounds", offset 0x20 (constructor 00632960, called at 006DA20D) |
+| 008B78F0 | `008B78F0` `lea` | `02EA0A80` | member "m_minBounds", offset 0x10 (constructor 00632960, called at 006DA19E) |
+| 008B7900 | `008B7900` `lea` | `02EA0960` | member "m_planeCount", offset passed in a register (constructor 00632960, called at 006DA051) |
+| 008B7910 | `008B7910` `lea` | `02EA09C0` | member "m_vertexCount", offset 0x4 (constructor 00632960, called at 006DA0C0) |
+| 008B85A0 | `008B85A0` `lea` | `02EAC340` | member "m_autoClear", offset 0x50 (constructor 00632960, called at 0079554C) |
+| 008B85B0 | `008B85B0` `lea` | `02EACB70` | member "m_inputMap", offset passed in a register (constructor 00632960, called at 00795627) |
+| 008B9680 | `008B9680` `lea` | `02EB7970` | member "m_count", offset passed in a register (constructor 00632960, called at 0086E60A) |
+| 008B9690 | `008B9690` `lea` | `02EB7740` | member "m_count", offset passed in a register (constructor 00632960, called at 0086E94A) |
+| 008B96C0 | `008B96C0` `lea` | `02EB6F50` | member "m_id", offset 0x18 (constructor 00632960, called at 0086DB71) |
+| 008B96F0 | `008B96F0` `lea` | `02EB6FB0` | member "m_invert", offset 0x1C (constructor 00632960, called at 0086DBE0) |
+| 008B9700 | `008B9700` `lea` | `02EB71F0` | member "m_joypadAxisSemantic", offset 0x30 (constructor 00632960, called at 0086DD19) |
+| 008B9710 | `008B9710` `lea` | `02EB72B0` | member "m_modifierButtonSemantic", offset 0x30 (constructor 00632960, called at 0086E1E2) |
+| 008B9720 | `008B9720` `lea` | `02EB7370` | member "m_modifierButtonSemantic", offset 0x30 (constructor 00632960, called at 0086E322) |
+| 008B9730 | `008B9730` `lea` | `02EB7310` | member "m_modifierKeySemantic", offset 0x38 (constructor 00632960, called at 0086E255) |
+| 008B9740 | `008B9740` `lea` | `02EB73D0` | member "m_modifierKeySemantic", offset 0x38 (constructor 00632960, called at 0086E395) |
+| 008B9750 | `008B9750` `lea` | `02EB7250` | member "m_mouseButtonSemantic", offset 0x30 (constructor 00632960, called at 0086E119) |
+| 008B9760 | `008B9760` `lea` | `02EB7430` | member "m_name", offset 0x8 (constructor 00632960, called at 0086D705) |
+| 008B9770 | `008B9770` `lea` | `02EB7190` | member "m_negativeButtonSemantic", offset 0x38 (constructor 00632960, called at 0086DE55) |
+| 008B9780 | `008B9780` `lea` | `02EB70D0` | member "m_negativeKeySemantic", offset 0x38 (constructor 00632960, called at 0086DF95) |
+| 008B9790 | `008B9790` `lea` | `02EB7130` | member "m_positiveButtonSemantic", offset 0x30 (constructor 00632960, called at 0086DDE2) |
+| 008B97A0 | `008B97A0` `lea` | `02EB7070` | member "m_positiveKeySemantic", offset 0x30 (constructor 00632960, called at 0086DF22) |
+| 008B97B0 | `008B97B0` `lea` | `02EB7010` | member "m_scale", offset 0x20 (constructor 00632960, called at 0086DC4F) |
+| 008B97C0 | `008B97C0` `lea` | `02EB6EF0` | member "m_typeSemantic", offset 0x10 (constructor 00632960, called at 0086DB02) |
+| 008BDDC0 | `008BDDC0` `lea` | `02EB9950` | member "m_bounds", offset 0x18 (constructor 00632960, called at 00878862) |
+| 008BDDD0 | `008BDDD0` `lea` | `02EB98F0` | member "m_cachedPosition", offset 0x8 (constructor 00632960, called at 008787F0) |
+| 008BDDE0 | `008BDDE0` `lea` | `02EB9470` | member "m_center", offset passed in a register (constructor 00632960, called at 0087817E) |
+| 008BDDF0 | `008BDDF0` `lea` | `02EB9A70` | member "m_center", offset passed in a register (constructor 00632960, called at 00878A0A) |
+| 008BDE10 | `008BDE10` `lea` | `02EB96B0` | member "m_currentObjectCount", offset 0x30 (constructor 00632960, called at 00878430) |
+| 008BDE20 | `008BDE20` `lea` | `02EB9C50` | member "m_dynamicOctree", offset 0x78 (constructor 00632960, called at 00878C3B) |
+| 008BDE30 | `008BDE30` `lea` | `02EB94D0` | member "m_halfSize", offset 0x10 (constructor 00632960, called at 008781F1) |
+| 008BDE40 | `008BDE40` `lea` | `02EB9AD0` | member "m_halfSize", offset 0x10 (constructor 00632960, called at 00878A79) |
+| 008BDE50 | `008BDE50` `lea` | `02EB9590` | member "m_level", offset 0x24 (constructor 00632960, called at 008782D7) |
+| 008BDE60 | `008BDE60` `lea` | `02EB95F0` | member "m_maxLevel", offset 0x28 (constructor 00632960, called at 0087834A) |
+| 008BDE70 | `008BDE70` `lea` | `02EB9B90` | member "m_maxLevel", offset 0x24 (constructor 00632960, called at 00878B57) |
+| 008BDE80 | `008BDE80` `lea` | `02EB9530` | member "m_maxRadius", offset 0x20 (constructor 00632960, called at 00878264) |
+| 008BDE90 | `008BDE90` `lea` | `02EB9A10` | member "m_next", offset 0x20 (constructor 00632960, called at 00878946) |
+| 008BDEA0 | `008BDEA0` `lea` | `02EB9650` | member "m_objectsPerLevel", offset 0x2C (constructor 00632960, called at 008783BD) |
+| 008BDEB0 | `008BDEB0` `lea` | `02EB9B30` | member "m_objectsPerLevel", offset 0x20 (constructor 00632960, called at 00878AE8) |
+| 008BDEC0 | `008BDEC0` `lea` | `02EB9890` | member "m_octree", offset passed in a register (constructor 00632960, called at 0087877D) |
+| 008BDED0 | `008BDED0` `lea` | `02EB9BF0` | member "m_octree", offset 0x28 (constructor 00632960, called at 00878BC9) |
+| 008BDEE0 | `008BDEE0` `lea` | `02EB9770` | member "m_octreeChildren", offset 0x40 (constructor 00632960, called at 00878515) |
+| 008BDEF0 | `008BDEF0` `lea` | `02EB97D0` | member "m_octreeData", offset 0x38 (constructor 00632960, called at 00878587) |
+| 008BDF00 | `008BDF00` `lea` | `02EB9830` | member "m_parent", offset 0x48 (constructor 00632960, called at 008785F9) |
+| 008BDF10 | `008BDF10` `lea` | `02EB99B0` | member "m_prev", offset 0x28 (constructor 00632960, called at 008788D4) |
+| 008BDF20 | `008BDF20` `lea` | `02EB9710` | member "m_totalObjectCount", offset 0x34 (constructor 00632960, called at 008784A3) |
+| 008C1530 | `008C1530` `lea` | `02EBA140` | member "m_count", offset passed in a register (constructor 00632960, called at 0087A05A) |
+| 008C1550 | `008C1550` `lea` | `02EB9F60` | member "m_inputMap", offset 0x10 (constructor 00632960, called at 00879DF1) |
+
+### Registered through constructor `00632A10` (162, OPUS)
+
+| member | distinguishing instruction | static object X | the data member X describes |
+|---|---|---|---|
+| 008AA080 | `008AA080` `lea` | `02CB2070` | member "m_channels", offset 0x8 (constructor 00632A10, called at 005B0448) |
+| 008AA0C0 | `008AA0C0` `lea` | `02CB20E0` | member "m_constantChannels", offset 0x18 (constructor 00632A10, called at 005B04E1) |
+| 008AA1D0 | `008AA1D0` `lea` | `02CB3480` | member "m_deferredLoad", offset 0x30 (constructor 00632A10, called at 005B1F43) |
+| 008AA200 | `008AA200` `lea` | `02CB3D00` | member "m_els", offset 0x8 (constructor 00632A10, called at 005B50A8) |
+| 008AA210 | `008AA210` `lea` | `02CB3AD0` | member "m_els", offset 0x8 (constructor 00632A10, called at 005B53D8) |
+| 008AA220 | `008AA220` `lea` | `02CB4160` | member "m_els", offset 0x8 (constructor 00632A10, called at 005B570A) |
+| 008AA230 | `008AA230` `lea` | `02CB50B0` | member "m_els", offset 0x8 (constructor 00632A10, called at 005B5A4A) |
+| 008AA240 | `008AA240` `lea` | `02CB47F0` | member "m_els", offset 0x8 (constructor 00632A10, called at 005B5D87) |
+| 008AA250 | `008AA250` `lea` | `02CB4390` | member "m_els", offset 0x8 (constructor 00632A10, called at 005B60B7) |
+| 008AA260 | `008AA260` `lea` | `02CB52E0` | member "m_els", offset 0x8 (constructor 00632A10, called at 005B63E7) |
+| 008AA270 | `008AA270` `lea` | `02CB4C50` | member "m_els", offset 0x8 (constructor 00632A10, called at 005B6717) |
+| 008AA280 | `008AA280` `lea` | `02CB5510` | member "m_els", offset 0x8 (constructor 00632A10, called at 005B6A47) |
+| 008AA290 | `008AA290` `lea` | `02CB5740` | member "m_els", offset 0x8 (constructor 00632A10, called at 005B6D77) |
+| 008AA2A0 | `008AA2A0` `lea` | `02CB4E80` | member "m_els", offset 0x8 (constructor 00632A10, called at 005B70A7) |
+| 008AA2B0 | `008AA2B0` `lea` | `02CB4A20` | member "m_els", offset 0x8 (constructor 00632A10, called at 005B73D7) |
+| 008AA2C0 | `008AA2C0` `lea` | `02CB5970` | member "m_els", offset 0x8 (constructor 00632A10, called at 005B7707) |
+| 008AA2D0 | `008AA2D0` `lea` | `02CB3F30` | member "m_els", offset 0x8 (constructor 00632A10, called at 005B7A38) |
+| 008AA2E0 | `008AA2E0` `lea` | `02CB28E0` | member "m_events", offset passed in a register (constructor 00632A10, called at 005B1496) |
+| 008AA350 | `008AA350` `lea` | `02CB2C80` | member "m_instanceTargetNodes", offset 0x18 (constructor 00632A10, called at 005B161C) |
+| 008AA480 | `008AA480` `lea` | `02CB2DB0` | member "m_persistentBuffer", offset 0x40 (constructor 00632A10, called at 005B179F) |
+| 008AA4E0 | `008AA4E0` `lea` | `02CB2FD0` | member "m_slotArrayIndices", offset 0x20 (constructor 00632A10, called at 005B1ADB) |
+| 008AA4F0 | `008AA4F0` `lea` | `02CB2E80` | member "m_slotArrays", offset 0x58 (constructor 00632A10, called at 005B18AB) |
+| 008AA500 | `008AA500` `lea` | `02CB33B0` | member "m_slotBlockList", offset 0x18 (constructor 00632A10, called at 005B1E38) |
+| 008AA520 | `008AA520` `lea` | `02CB14D0` | member "m_sourceWeights", offset 0x28 (constructor 00632A10, called at 005AEF65) |
+| 008AA530 | `008AA530` `lea` | `02CB35B0` | member "m_sourceWeights", offset 0x28 (constructor 00632A10, called at 005B2515) |
+| 008AA540 | `008AA540` `lea` | `02CB1540` | member "m_sources", offset 0x18 (constructor 00632A10, called at 005AF050) |
+| 008AA590 | `008AA590` `lea` | `02CB2F60` | member "m_targets", offset 0x10 (constructor 00632A10, called at 005B1A42) |
+| 008AA5E0 | `008AA5E0` `lea` | `02CB1BE0` | member "m_timeKeys", offset 0x8 (constructor 00632A10, called at 005AFB08) |
+| 008AA620 | `008AA620` `lea` | `02CB4520` | member "m_u", offset 0x8 (constructor 00632A10, called at 005B7C6D) |
+| 008AA640 | `008AA640` `lea` | `02CB1610` | member "m_valueKeys", offset 0x50 (constructor 00632A10, called at 005AF1BA) |
+| 008AD090 | `008AD090` `lea` | `02CE9410` | member "m_compileOptions", offset 0x10 (constructor 00632A10, called at 005EA6E3) |
+| 008AD100 | `008AD100` `lea` | `02CE2A10` | member "m_contextSwitches", offset 0x48 (constructor 00632A10, called at 005E43FC) |
+| 008AD150 | `008AD150` `lea` | `02CE2A80` | member "m_contextVariantSwitches", offset 0x58 (constructor 00632A10, called at 005E448E) |
+| 008AD300 | `008AD300` `lea` | `02CE37B0` | member "m_currentPose", offset 0x10 (constructor 00632A10, called at 005E5592) |
+| 008AD400 | `008AD400` `lea` | `02CE28C0` | member "m_effectVariants", offset 0x18 (constructor 00632A10, called at 005E4237) |
+| 008AD430 | `008AD430` `lea` | `02CEC050` | member "m_els", offset 0x8 (constructor 00632A10, called at 005EBA6A) |
+| 008AD440 | `008AD440` `lea` | `02CECFA0` | member "m_els", offset 0x8 (constructor 00632A10, called at 005EBDAA) |
+| 008AD450 | `008AD450` `lea` | `02CEBE20` | member "m_els", offset 0x8 (constructor 00632A10, called at 005EC0EA) |
+| 008AD460 | `008AD460` `lea` | `02CEC6E0` | member "m_els", offset 0x8 (constructor 00632A10, called at 005EC42B) |
+| 008AD470 | `008AD470` `lea` | `02CEC280` | member "m_els", offset 0x8 (constructor 00632A10, called at 005EC76B) |
+| 008AD480 | `008AD480` `lea` | `02CEC4B0` | member "m_els", offset 0x8 (constructor 00632A10, called at 005ECAAB) |
+| 008AD490 | `008AD490` `lea` | `02CEB790` | member "m_els", offset 0x8 (constructor 00632A10, called at 005ECDE7) |
+| 008AD4A0 | `008AD4A0` `lea` | `02CEB9C0` | member "m_els", offset 0x8 (constructor 00632A10, called at 005ED117) |
+| 008AD4B0 | `008AD4B0` `lea` | `02CEA1B0` | member "m_els", offset 0x8 (constructor 00632A10, called at 005ED448) |
+| 008AD4C0 | `008AD4C0` `lea` | `02CECD70` | member "m_els", offset 0x8 (constructor 00632A10, called at 005ED777) |
+| 008AD4D0 | `008AD4D0` `lea` | `02CEC910` | member "m_els", offset 0x8 (constructor 00632A10, called at 005EDAA7) |
+| 008AD4E0 | `008AD4E0` `lea` | `02CEBBF0` | member "m_els", offset 0x8 (constructor 00632A10, called at 005EDDD7) |
+| 008AD4F0 | `008AD4F0` `lea` | `02CEB330` | member "m_els", offset 0x8 (constructor 00632A10, called at 005EE107) |
+| 008AD500 | `008AD500` `lea` | `02CEACA0` | member "m_els", offset 0x8 (constructor 00632A10, called at 005EE437) |
+| 008AD510 | `008AD510` `lea` | `02CEA840` | member "m_els", offset 0x8 (constructor 00632A10, called at 005EE767) |
+| 008AD520 | `008AD520` `lea` | `02CEAA70` | member "m_els", offset 0x8 (constructor 00632A10, called at 005EEA97) |
+| 008AD530 | `008AD530` `lea` | `02CEA610` | member "m_els", offset 0x8 (constructor 00632A10, called at 005EEDC7) |
+| 008AD540 | `008AD540` `lea` | `02CEAED0` | member "m_els", offset 0x8 (constructor 00632A10, called at 005EF0F7) |
+| 008AD550 | `008AD550` `lea` | `02CEB560` | member "m_els", offset 0x8 (constructor 00632A10, called at 005EF427) |
+| 008AD560 | `008AD560` `lea` | `02CEA3E0` | member "m_els", offset 0x8 (constructor 00632A10, called at 005EF757) |
+| 008AD570 | `008AD570` `lea` | `02CE9F80` | member "m_els", offset 0x8 (constructor 00632A10, called at 005EFA87) |
+| 008AD590 | `008AD590` `lea` | `02CE7A40` | member "m_entryPoints", offset 0x18 (constructor 00632A10, called at 005E8004) |
+| 008AD800 | `008AD800` `lea` | `02CE4450` | member "m_modifierNetworkInstances", offset 0x18 (constructor 00632A10, called at 005E6BE0) |
+| 008AD8B0 | `008AD8B0` `lea` | `02CE44C0` | member "m_packedSwitches", offset passed in a register (constructor 00632A10, called at 005E6CCB) |
+| 008AD910 | `008AD910` `lea` | `02CE9550` | member "m_parameterDefinitions", offset 0x10 (constructor 00632A10, called at 005EA515) |
+| 008AD920 | `008AD920` `lea` | `02CE8140` | member "m_parameterDefinitionsForPasses", offset 0x18 (constructor 00632A10, called at 005E8315) |
+| 008AD930 | `008AD930` `lea` | `02CE8840` | member "m_parameterLocations", offset 0x10 (constructor 00632A10, called at 005EA090) |
+| 008AD940 | `008AD940` `lea` | `02CE88B0` | member "m_parameterLocations", offset 0x10 (constructor 00632A10, called at 005EA2C0) |
+| 008AD990 | `008AD990` `lea` | `02CE80D0` | member "m_passes", offset 0x8 (constructor 00632A10, called at 005E8283) |
+| 008AD9A0 | `008AD9A0` `lea` | `02CE7B20` | member "m_platforms", offset 0x38 (constructor 00632A10, called at 005E8128) |
+| 008ADA80 | `008ADA80` `lea` | `02CE2CF0` | member "m_sceneRenderPassLookup", offset 0x28 (constructor 00632A10, called at 005E47EA) |
+| 008ADA90 | `008ADA90` `lea` | `02CE2C80` | member "m_sceneRenderPasses", offset 0x18 (constructor 00632A10, called at 005E4758) |
+| 008ADAA0 | `008ADAA0` `lea` | `02CE3A00` | member "m_segmentContext", offset 0x48 (constructor 00632A10, called at 005E5865) |
+| 008ADAB0 | `008ADAB0` `lea` | `02CE79D0` | member "m_shaders", offset 0x8 (constructor 00632A10, called at 005E7F72) |
+| 008ADB60 | `008ADB60` `lea` | `02CE3680` | member "m_streamBindings", offset 0x38 (constructor 00632A10, called at 005E6860) |
+| 008ADB70 | `008ADB70` `lea` | `02CE94E0` | member "m_streamDefinitions", offset 0x0 (constructor 00632A10, called at 005EA474) |
+| 008ADB80 | `008ADB80` `lea` | `02CE81B0` | member "m_streamDefinitionsForPasses", offset 0x28 (constructor 00632A10, called at 005E83A7) |
+| 008ADB90 | `008ADB90` `lea` | `02CE8AA0` | member "m_streamLocations", offset 0x20 (constructor 00632A10, called at 005E9BD7) |
+| 008ADBD0 | `008ADBD0` `lea` | `02CE2930` | member "m_supportedLightTypes", offset 0x28 (constructor 00632A10, called at 005E42CE) |
+| 008ADBF0 | `008ADBF0` `lea` | `02CE29A0` | member "m_supportedShadowCasterTypes", offset 0x38 (constructor 00632A10, called at 005E4365) |
+| 008ADC00 | `008ADC00` `lea` | `02CE2C10` | member "m_switches", offset 0x8 (constructor 00632A10, called at 005E46C6) |
+| 008ADC90 | `008ADC90` `lea` | `02CE2DC0` | member "m_tweakableShaderParameterDefinitions", offset 0x40 (constructor 00632A10, called at 005E48F2) |
+| 008ADCA0 | `008ADCA0` `lea` | `02CE45F0` | member "m_tweakableShaderParameterDefinitions", offset 0x10 (constructor 00632A10, called at 005E6E2E) |
+| 008ADCD0 | `008ADCD0` `lea` | `02CEB060` | member "m_u", offset 0x8 (constructor 00632A10, called at 005EFCBB) |
+| 008ADCE0 | `008ADCE0` `lea` | `02CECAA0` | member "m_u", offset 0x8 (constructor 00632A10, called at 005F000D) |
+| 008ADD00 | `008ADD00` `lea` | `02CE2E30` | member "m_untweakableShaderParameterDefinitions", offset 0x50 (constructor 00632A10, called at 005E497D) |
+| 008ADD30 | `008ADD30` `lea` | `02CE7AB0` | member "m_variantsFoldingTable", offset 0x28 (constructor 00632A10, called at 005E8096) |
+| 008AEC70 | `008AEC70` `lea` | `02CF6930` | member "m_compiledCode", offset 0x18 (constructor 00632A10, called at 00618128) |
+| 008AED20 | `008AED20` `lea` | `02CF6DF0` | member "m_els", offset 0x8 (constructor 00632A10, called at 00618C18) |
+| 008AED30 | `008AED30` `lea` | `02CF7020` | member "m_els", offset 0x8 (constructor 00632A10, called at 00618F47) |
+| 008AEE20 | `008AEE20` `lea` | `02CF68C0` | member "m_streams", offset passed in a register (constructor 00632A10, called at 006186B6) |
+| 008B0950 | `008B0950` `lea` | `02D38420` | member "m_els", offset 0x8 (constructor 00632A10, called at 0064ACCA) |
+| 008B0AC0 | `008B0AC0` `lea` | `02D38020` | member "m_postEffects", offset passed in a register (constructor 00632A10, called at 0064925B) |
+| 008B14E0 | `008B14E0` `lea` | `02D3B0E0` | member "m_buffers", offset 0x20 (constructor 00632A10, called at 00665913) |
+| 008B14F0 | `008B14F0` `lea` | `02D3AFB0` | member "m_buffers", offset 0x18 (constructor 00632A10, called at 00666423) |
+| 008B15B0 | `008B15B0` `lea` | `02D3B4D0` | member "m_data", offset 0x18 (constructor 00632A10, called at 00665C63) |
+| 008B15F0 | `008B15F0` `lea` | `02D3BE60` | member "m_defaultPose", offset 0x30 (constructor 00632A10, called at 00666B33) |
+| 008B1600 | `008B1600` `lea` | `02D3B6C0` | member "m_dynamicStreams", offset 0x10 (constructor 00632A10, called at 00665D53) |
+| 008B1650 | `008B1650` `lea` | `02D3CA60` | member "m_els", offset 0x8 (constructor 00632A10, called at 00668D88) |
+| 008B1660 | `008B1660` `lea` | `02D3DE10` | member "m_els", offset 0x8 (constructor 00632A10, called at 006690B8) |
+| 008B1670 | `008B1670` `lea` | `02D3D550` | member "m_els", offset 0x8 (constructor 00632A10, called at 006693E7) |
+| 008B1680 | `008B1680` `lea` | `02D3E040` | member "m_els", offset 0x8 (constructor 00632A10, called at 00669717) |
+| 008B1690 | `008B1690` `lea` | `02D3D9B0` | member "m_els", offset 0x8 (constructor 00632A10, called at 00669A47) |
+| 008B16A0 | `008B16A0` `lea` | `02D3DBE0` | member "m_els", offset 0x8 (constructor 00632A10, called at 00669D77) |
+| 008B16B0 | `008B16B0` `lea` | `02D3D320` | member "m_els", offset 0x8 (constructor 00632A10, called at 0066A0A7) |
+| 008B16C0 | `008B16C0` `lea` | `02D3CC90` | member "m_els", offset 0x8 (constructor 00632A10, called at 0066A3D7) |
+| 008B1740 | `008B1740` `lea` | `02D3C4D0` | member "m_indices", offset 0x8 (constructor 00632A10, called at 00667454) |
+| 008B1770 | `008B1770` `lea` | `02D3B9E0` | member "m_materials", offset passed in a register (constructor 00632A10, called at 006665F9) |
+| 008B1790 | `008B1790` `lea` | `02D3BED0` | member "m_matrixNames", offset 0x40 (constructor 00632A10, called at 00666BC5) |
+| 008B17A0 | `008B17A0` `lea` | `02D3BF40` | member "m_matrixParents", offset 0x50 (constructor 00632A10, called at 00666C6A) |
+| 008B17F0 | `008B17F0` `lea` | `02D3BD10` | member "m_meshSegments", offset passed in a register (constructor 00632A10, called at 0066695E) |
+| 008B1870 | `008B1870` `lea` | `02D3C070` | member "m_ps2DLIndices", offset 0x70 (constructor 00632A10, called at 00666E3D) |
+| 008B1890 | `008B1890` `lea` | `02D3B730` | member "m_segments", offset 0x20 (constructor 00632A10, called at 00665DEC) |
+| 008B18C0 | `008B18C0` `lea` | `02D3BDF0` | member "m_skeletonBounds", offset 0x20 (constructor 00632A10, called at 00666A95) |
+| 008B18D0 | `008B18D0` `lea` | `02D3BD80` | member "m_skeletonMatrices", offset 0x10 (constructor 00632A10, called at 00666A03) |
+| 008B18F0 | `008B18F0` `lea` | `02D3C260` | member "m_skinBones", offset 0x8 (constructor 00632A10, called at 00667015) |
+| 008B1930 | `008B1930` `lea` | `02D3B330` | member "m_streams", offset 0x8 (constructor 00632A10, called at 00665818) |
+| 008B1940 | `008B1940` `lea` | `02D3B460` | member "m_streams", offset 0x8 (constructor 00632A10, called at 00665BC5) |
+| 008B1990 | `008B1990` `lea` | `02D3D6E0` | member "m_u", offset 0x8 (constructor 00632A10, called at 0066A60D) |
+| 008B19A0 | `008B19A0` `lea` | `02D3CE20` | member "m_u", offset 0x8 (constructor 00632A10, called at 0066A95A) |
+| 008B19B0 | `008B19B0` `lea` | `02D3D050` | member "m_u", offset 0x8 (constructor 00632A10, called at 0066ACAA) |
+| 008B19D0 | `008B19D0` `lea` | `02D3AEE0` | member "m_vertexData", offset 0x30 (constructor 00632A10, called at 006672D4) |
+| 008B19E0 | `008B19E0` `lea` | `02D3C600` | member "m_vertexData", offset 0x20 (constructor 00632A10, called at 006675CD) |
+| 008B2030 | `008B2030` `lea` | `02E40070` | member "m_characterInfo", offset 0x10 (constructor 00632A10, called at 0067D24B) |
+| 008B2050 | `008B2050` `lea` | `02E40360` | member "m_els", offset 0x8 (constructor 00632A10, called at 0067DAB7) |
+| 008B20B0 | `008B20B0` `lea` | `02E400E0` | member "m_kerningInfo", offset 0x20 (constructor 00632A10, called at 0067D2E9) |
+| 008B2520 | `008B2520` `lea` | `02E42700` | member "m_functionNames", offset 0x20 (constructor 00632A10, called at 006824B9) |
+| 008B2590 | `008B2590` `lea` | `02E42620` | member "m_scriptChunk32", offset passed in a register (constructor 00632A10, called at 00682390) |
+| 008B25A0 | `008B25A0` `lea` | `02E42690` | member "m_scriptChunk64", offset 0x10 (constructor 00632A10, called at 00682427) |
+| 008B3A80 | `008B3A80` `lea` | `02E4B7C0` | member "m_shapes", offset 0xB0 (constructor 00632A10, called at 00696A0B) |
+| 008B3B60 | `008B3B60` `lea` | `02E4D180` | member "m_u", offset 0x8 (constructor 00632A10, called at 00698ADD) |
+| 008B3F10 | `008B3F10` `lea` | `02E4D730` | member "m_buffer", offset passed in a register (constructor 00632A10, called at 006A734E) |
+| 008B40D0 | `008B40D0` `lea` | `02E4DB60` | member "m_triggerReceivers", offset 0x8 (constructor 00632A10, called at 006A80DC) |
+| 008B40F0 | `008B40F0` `lea` | `02E4DEC0` | member "m_u", offset 0x8 (constructor 00632A10, called at 006A866D) |
+| 008B48C0 | `008B48C0` `lea` | `02E4FDA0` | member "m_els", offset 0x8 (constructor 00632A10, called at 006AEA27) |
+| 008B48D0 | `008B48D0` `lea` | `02E4FB80` | member "m_instances", offset 0x18 (constructor 00632A10, called at 006AE725) |
+| 008B5DF0 | `008B5DF0` `lea` | `02E58650` | member "m_els", offset 0x8 (constructor 00632A10, called at 006BCEEB) |
+| 008B5E00 | `008B5E00` `lea` | `02E58AB0` | member "m_els", offset 0x8 (constructor 00632A10, called at 006BD227) |
+| 008B5E10 | `008B5E10` `lea` | `02E58880` | member "m_els", offset 0x8 (constructor 00632A10, called at 006BD557) |
+| 008B5E30 | `008B5E30` `lea` | `02E58350` | member "m_modifierNetworkInputRenderStreams", offset 0x48 (constructor 00632A10, called at 006BC891) |
+| 008B5E40 | `008B5E40` `lea` | `02E582E0` | member "m_modifierNetworkInputs", offset 0x38 (constructor 00632A10, called at 006BC7F8) |
+| 008B5E50 | `008B5E50` `lea` | `02E583C0` | member "m_modifierNetworkOutputs", offset 0x58 (constructor 00632A10, called at 006BC92F) |
+| 008B5E80 | `008B5E80` `lea` | `02E58430` | member "m_segmentInputs", offset 0x68 (constructor 00632A10, called at 006BC9C8) |
+| 008B68C0 | `008B68C0` `lea` | `02E5A2D0` | member "m_els", offset 0x8 (constructor 00632A10, called at 006C1BC7) |
+| 008B6900 | `008B6900` `lea` | `02E59F90` | member "m_splits", offset 0x10 (constructor 00632A10, called at 006C1673) |
+| 008B69D0 | `008B69D0` `lea` | `02E5AC30` | member "m_els", offset 0x8 (constructor 00632A10, called at 006C3AAB) |
+| 008B6A00 | `008B6A00` `lea` | `02E5A9A0` | member "m_modifierUserData", offset 0x8 (constructor 00632A10, called at 006C3496) |
+| 008B6A10 | `008B6A10` `lea` | `02E5AA10` | member "m_persistentState", offset 0x18 (constructor 00632A10, called at 006C3534) |
+| 008B6C30 | `008B6C30` `lea` | `02E5BA50` | member "m_els", offset 0x8 (constructor 00632A10, called at 006C64D7) |
+| 008B6C50 | `008B6C50` `lea` | `02E5B2A0` | member "m_levels", offset 0x50 (constructor 00632A10, called at 006C5AFD) |
+| 008B6CB0 | `008B6CB0` `lea` | `02E5B170` | member "m_meshInstances", offset 0x8 (constructor 00632A10, called at 006C6101) |
+| 008B6CF0 | `008B6CF0` `lea` | `02E5B780` | member "m_u", offset 0x8 (constructor 00632A10, called at 006C670D) |
+| 008B7310 | `008B7310` `lea` | `02E9FA00` | member "m_els", offset 0x8 (constructor 00632A10, called at 006D2637) |
+| 008B7320 | `008B7320` `lea` | `02E9FC30` | member "m_els", offset 0x8 (constructor 00632A10, called at 006D2967) |
+| 008B7330 | `008B7330` `lea` | `02E9F7D0` | member "m_els", offset 0x8 (constructor 00632A10, called at 006D2C97) |
+| 008B7380 | `008B7380` `lea` | `02E5F5B0` | member "m_inputElementCountSources", offset 0x60 (constructor 00632A10, called at 006D1530) |
+| 008B73A0 | `008B73A0` `lea` | `02E5EAC0` | member "m_inputs", offset 0x10 (constructor 00632A10, called at 006D0F48) |
+| 008B73B0 | `008B73B0` `lea` | `02E5F280` | member "m_inputs", offset 0x20 (constructor 00632A10, called at 006D115B) |
+| 008B7420 | `008B7420` `lea` | `02E5F1B0` | member "m_modifiers", offset 0x8 (constructor 00632A10, called at 006D1048) |
+| 008B7450 | `008B7450` `lea` | `02E5F2F0` | member "m_outputs", offset 0x30 (constructor 00632A10, called at 006D11ED) |
+| 008B76A0 | `008B76A0` `lea` | `02EA0670` | member "m_weights", offset passed in a register (constructor 00632A10, called at 006D8F8B) |
+| 008B96A0 | `008B96A0` `lea` | `02EB7A10` | member "m_els", offset 0x8 (constructor 00632A10, called at 0086E71A) |
+| 008B96B0 | `008B96B0` `lea` | `02EB77E0` | member "m_els", offset 0x8 (constructor 00632A10, called at 0086EA5A) |
+| 008B96D0 | `008B96D0` `lea` | `02EB75C0` | member "m_inputActions", offset passed in a register (constructor 00632A10, called at 0086DA26) |
+| 008B96E0 | `008B96E0` `lea` | `02EB7490` | member "m_inputSources", offset 0x10 (constructor 00632A10, called at 0086D789) |
+| 008C1540 | `008C1540` `lea` | `02EBA1E0` | member "m_els", offset 0x8 (constructor 00632A10, called at 0087A16A) |
+| 008C1560 | `008C1560` `lea` | `02EB9FC0` | member "m_inputMaps", offset passed in a register (constructor 00632A10, called at 00879E71) |
+
+## Per-member rows: the vtable each descriptor destructor thunk restores, and its reflected type (OPUS, 2026-10-03)
+
+The family `PClassDescriptorForType destructor thunks` (frontmatter: 384 members; 384 get a row here) shares one form, not repeated per row: `lea rax, [V]`, `mov qword ptr [rcx], rax`, then a tail jump to the shared descriptor destructor `00633390`. Members differ only at the first instruction, the vtable V the thunk stores back into the object before the shared destructor runs, so the anchor is the entry `lea` (the family sentence OPUS adopted in `opus-ee-rulings-1003` allows the entry instruction when members differ there). Each row states V and the class whose MSVC RTTI complete-object locator precedes V, read from the certified image: the template argument T of `PClassDescriptor*<T>`, or the decorated name when it is a template type. [`fam_rows.py`](../../_index/candidates/opus-ee-descriptor-dtor-thunks-1003/fam_rows.py) re-derives every row and compares it with the committed [`rows.tsv`](../../_index/candidates/opus-ee-descriptor-dtor-thunks-1003/rows.tsv). A body that leaves the form, a vtable without a locator, or a value that differs fails it. Two controls are refused: a swapped value and a moved anchor. Members that do not derive are listed in [`excluded.tsv`](../../_index/candidates/opus-ee-descriptor-dtor-thunks-1003/excluded.tsv).
+
+### All 384 thunks (OPUS)
+
+| member | distinguishing instruction | vtable V restored | reflected type (RTTI before V) |
+|---|---|---|---|
+| 00597EC0 | `00597EC0` `lea` | `00D24898` | Phyre::PSerialization::PBinary::PClusterHeader |
+| 00597ED0 | `00597ED0` `lea` | `00D24540` | Phyre::PSerialization::PBinary::PClusterHeaderBase |
+| 00597EE0 | `00597EE0` `lea` | `00D246F0` | Phyre::PSerialization::PBinary::PClusterHeaderD3D11 |
+| 00597EF0 | `00597EF0` `lea` | `00D24A48` | Phyre::PSerialization::PBinary::PInternal::PInstanceListHeader |
+| 005A99C0 | `005A99C0` `lea` | `00D32DD0` | decorated `V?$PArray@I$03@Phyre@@` |
+| 005A99D0 | `005A99D0` `lea` | `00D32BB8` | decorated `V?$PArray@M$03@Phyre@@` |
+| 005A99E0 | `005A99E0` `lea` | `00D331C0` | decorated `V?$PArray@PEAVPAnimationChannel@PAnimation@Phyre@@$07@Phyre@@` |
+| 005A99F0 | `005A99F0` `lea` | `00D33F90` | decorated `V?$PArray@PEAVPAnimationDataSource@PAnimation@Phyre@@$07@Phyre@@` |
+| 005A9A00 | `005A9A00` `lea` | `00D337B0` | decorated `V?$PArray@VPAnimationChannelTarget@PAnimation@Phyre@@$07@Phyre@@` |
+| 005A9A10 | `005A9A10` `lea` | `00D333B8` | decorated `V?$PArray@VPAnimationConstantChannel@PAnimation@Phyre@@$07@Phyre@@` |
+| 005A9A20 | `005A9A20` `lea` | `00D34188` | decorated `V?$PArray@VPAnimationDataSourceListEntry@PAnimation@Phyre@@$07@Phyre@@` |
+| 005A9A30 | `005A9A30` `lea` | `00D33BA0` | decorated `V?$PArray@VPAnimationEvent@PAnimation@Phyre@@$03@Phyre@@` |
+| 005A9A40 | `005A9A40` `lea` | `00D34380` | decorated `V?$PArray@VPAnimationNetworkInstanceTarget@PAnimation@Phyre@@$07@Phyre@@` |
+| 005A9A50 | `005A9A50` `lea` | `00D34578` | decorated `V?$PArray@VPAnimationSlotArray@PAnimation@Phyre@@$07@Phyre@@` |
+| 005A9A60 | `005A9A60` `lea` | `00D33D98` | decorated `V?$PArray@VPAnimationSlotFilterDeferredLoad@PAnimation@Phyre@@$07@Phyre@@` |
+| 005A9A70 | `005A9A70` `lea` | `00D339A8` | decorated `V?$PArray@VPAnimationSlotListIndex@PAnimation@Phyre@@$07@Phyre@@` |
+| 005A9A80 | `005A9A80` `lea` | `00D34770` | decorated `V?$PArray@VPBlendableAnimationSource@PAnimation@Phyre@@$07@Phyre@@` |
+| 005A9A90 | `005A9A90` `lea` | `00D32FC8` | decorated `V?$PArray@VPQWord@Phyre@@$0BA@@Phyre@@` |
+| 005A9AA0 | `005A9AA0` `lea` | `00D335B0` | decorated `V?$PSharray@PEAVPAnimationClip@PAnimation@Phyre@@@Phyre@@` |
+| 005A9AB0 | `005A9AB0` `lea` | `00D29A38` | Phyre::PAnimation::PAnimatableComponent |
+| 005A9AC0 | `005A9AC0` `lea` | `00D2C4D0` | Phyre::PAnimation::PAnimationAdditiveBlenderController |
+| 005A9AD0 | `005A9AD0` `lea` | `00D2B060` | Phyre::PAnimation::PAnimationBlenderController |
+| 005A9AE0 | `005A9AE0` `lea` | `00D29928` | Phyre::PAnimation::PAnimationChannel |
+| 005A9AF0 | `005A9AF0` `lea` | `00D29198` | Phyre::PAnimation::PAnimationChannelBase |
+| 005A9B00 | `005A9B00` `lea` | `00D27DE8` | Phyre::PAnimation::PAnimationChannelTarget |
+| 005A9B10 | `005A9B10` `lea` | `00D2C558` | Phyre::PAnimation::PAnimationChannelTimes |
+| 005A9B20 | `005A9B20` `lea` | `00D28A78` | Phyre::PAnimation::PAnimationClip |
+| 005A9B30 | `005A9B30` `lea` | `00D2B298` | Phyre::PAnimation::PAnimationClipBinding |
+| 005A9B40 | `005A9B40` `lea` | `00D2BB18` | Phyre::PAnimation::PAnimationClipBinding::PAnimationClipBindingChannelMap |
+| 005A9B50 | `005A9B50` `lea` | `00D2C200` | Phyre::PAnimation::PAnimationClipBinding::PAnimationClipBindingDataBlockCache |
+| 005A9B60 | `005A9B60` `lea` | `00D2A470` | Phyre::PAnimation::PAnimationConstantChannel |
+| 005A9B70 | `005A9B70` `lea` | `00D280B8` | Phyre::PAnimation::PAnimationController |
+| 005A9B80 | `005A9B80` `lea` | `00D2C0A8` | Phyre::PAnimation::PAnimationDataSource |
+| 005A9B90 | `005A9B90` `lea` | `00D29F18` | Phyre::PAnimation::PAnimationDataSourceListEntry |
+| 005A9BA0 | `005A9BA0` `lea` | `00D2B3A8` | Phyre::PAnimation::PAnimationEvent |
+| 005A9BB0 | `005A9BB0` `lea` | `00D2CA90` | Phyre::PAnimation::PAnimationEventController |
+| 005A9BC0 | `005A9BC0` `lea` | `00D2C3C0` | Phyre::PAnimation::PAnimationEventList |
+| 005A9BD0 | `005A9BD0` `lea` | `00D2CED0` | Phyre::PAnimation::PAnimationHierarchyNode |
+| 005A9BE0 | `005A9BE0` `lea` | `00D2CCE0` | Phyre::PAnimation::PAnimationNetworkInstance |
+| 005A9BF0 | `005A9BF0` `lea` | `00D2A980` | Phyre::PAnimation::PAnimationNetworkInstanceTarget |
+| 005A9C00 | `005A9C00` `lea` | `00D2AB88` | Phyre::PAnimation::PAnimationSet |
+| 005A9C10 | `005A9C10` `lea` | `00D2B9F0` | Phyre::PAnimation::PAnimationSlotArray |
+| 005A9C20 | `005A9C20` `lea` | `00D29E08` | Phyre::PAnimation::PAnimationSlotFilter |
+| 005A9C30 | `005A9C30` `lea` | `00D28C78` | Phyre::PAnimation::PAnimationSlotFilterDeferredLoad |
+| 005A9C40 | `005A9C40` `lea` | `00D2B100` | Phyre::PAnimation::PAnimationSlotListIndex |
+| 005A9C50 | `005A9C50` `lea` | `00D2CFE0` | Phyre::PAnimation::PAnimationSpuTargetBlenderController |
+| 005A9C60 | `005A9C60` `lea` | `00D286B8` | Phyre::PAnimation::PAnimationTargetBlenderController |
+| 005A9C70 | `005A9C70` `lea` | `00D2B888` | Phyre::PAnimation::PAnimationWeightedBlenderController |
+| 005A9C80 | `005A9C80` `lea` | `00D284B0` | Phyre::PAnimation::PBlendableAnimationSource |
+| 005A9C90 | `005A9C90` `lea` | `00D28D78` | Phyre::PAnimation::PTimeController |
+| 005A9CA0 | `005A9CA0` `lea` | `00D29700` | Phyre::PAnimation::PTimeIntervalController |
+| 005A9CB0 | `005A9CB0` `lea` | `00D2A268` | Phyre::PAnimation::PTimeScaleOffsetController |
+| 005DCFF0 | `005DCFF0` `lea` | `00D4D338` | decorated `V?$PArray@PEAVPEffectVariant@PRendering@Phyre@@$07@Phyre@@` |
+| 005DD000 | `005DD000` `lea` | `00D4E100` | decorated `V?$PArray@PEAVPModifierNetworkInstance@PDynamicGeometry@Phyre@@$07@Phyre@@` |
+| 005DD010 | `005DD010` `lea` | `00D4D140` | decorated `V?$PArray@PEAVPSceneRenderPass@PRendering@Phyre@@$07@Phyre@@` |
+| 005DD020 | `005DD020` `lea` | `00D4D920` | decorated `V?$PArray@PEBVPContextSwitch@PRendering@Phyre@@$07@Phyre@@` |
+| 005DD030 | `005DD030` `lea` | `00D4D530` | decorated `V?$PArray@PEBVPLightType@PRendering@Phyre@@$07@Phyre@@` |
+| 005DD040 | `005DD040` `lea` | `00D4D728` | decorated `V?$PArray@PEBVPShadowCasterType@PRendering@Phyre@@$07@Phyre@@` |
+| 005DD050 | `005DD050` `lea` | `00D4CB58` | decorated `V?$PArray@VPContextVariantFoldingTable@PRendering@Phyre@@$03@Phyre@@` |
+| 005DD060 | `005DD060` `lea` | `00D4CD50` | decorated `V?$PArray@VPMaterialSwitch@PRendering@Phyre@@$07@Phyre@@` |
+| 005DD070 | `005DD070` `lea` | `00D4B7A8` | decorated `V?$PArray@VPMatrix4@Phyre@@$03@Phyre@@` |
+| 005DD080 | `005DD080` `lea` | `00D4DF08` | decorated `V?$PArray@VPMeshInstanceSegmentContext@PRendering@Phyre@@$07@Phyre@@` |
+| 005DD090 | `005DD090` `lea` | `00D4DB18` | decorated `V?$PArray@VPNodeContext@PRendering@Phyre@@$07@Phyre@@` |
+| 005DD0A0 | `005DD0A0` `lea` | `00D4CF48` | decorated `V?$PArray@VPSceneRenderPass@PRendering@Phyre@@$07@Phyre@@` |
+| 005DD0B0 | `005DD0B0` `lea` | `00D4C768` | decorated `V?$PArray@VPShader@PRendering@Phyre@@$07@Phyre@@` |
+| 005DD0C0 | `005DD0C0` `lea` | `00D4C180` | decorated `V?$PArray@VPShaderParameterCaptureBufferLocation@PRendering@Phyre@@$01@Phyre@@` |
+| 005DD0D0 | `005DD0D0` `lea` | `00D4BD90` | decorated `V?$PArray@VPShaderParameterCaptureBufferLocationType@PRendering@Phyre@@$01@Phyre@@` |
+| 005DD0E0 | `005DD0E0` `lea` | `00D4BF88` | decorated `V?$PArray@VPShaderParameterCaptureBufferLocationTypeConstantBuffer@PRendering@Phyre@@$03@Phyre@@` |
+| 005DD0F0 | `005DD0F0` `lea` | `00D4BB98` | decorated `V?$PArray@VPShaderParameterDefinition@PRendering@Phyre@@$07@Phyre@@` |
+| 005DD100 | `005DD100` `lea` | `00D4C378` | decorated `V?$PArray@VPShaderPass@PRendering@Phyre@@$07@Phyre@@` |
+| 005DD110 | `005DD110` `lea` | `00D4C960` | decorated `V?$PArray@VPShaderPassInfo@PRendering@Phyre@@$07@Phyre@@` |
+| 005DD120 | `005DD120` `lea` | `00D4B9A0` | decorated `V?$PArray@VPShaderStreamDefinition@PRendering@Phyre@@$07@Phyre@@` |
+| 005DD130 | `005DD130` `lea` | `00D4B5B0` | decorated `V?$PArray@VPString@Phyre@@$07@Phyre@@` |
+| 005DD140 | `005DD140` `lea` | `00D4C570` | decorated `V?$PSharray@I@Phyre@@` |
+| 005DD150 | `005DD150` `lea` | `00D4DD10` | decorated `V?$PSharray@PEBVPMeshInstanceSegmentStreamBinding@PRendering@Phyre@@@Phyre@@` |
+| 005DD160 | `005DD160` `lea` | `00D3B780` | Phyre::PRendering::PConstantBuffer |
+| 005DD170 | `005DD170` `lea` | `00D36738` | Phyre::PRendering::PConstantBufferBase |
+| 005DD180 | `005DD180` `lea` | `00D36DF8` | Phyre::PRendering::PContextVariantFoldingTable |
+| 005DD190 | `005DD190` `lea` | `00D413A0` | Phyre::PRendering::PDynamicMeshInstance |
+| 005DD1A0 | `005DD1A0` `lea` | `00D3F608` | Phyre::PRendering::PEffect |
+| 005DD1B0 | `005DD1B0` `lea` | `00D381F8` | Phyre::PRendering::PEffectVariant |
+| 005DD1C0 | `005DD1C0` `lea` | `00D40078` | Phyre::PRendering::PForwardShadowRenderer |
+| 005DD1D0 | `005DD1D0` `lea` | `00D42650` | Phyre::PRendering::PIndirectArgsBuffer |
+| 005DD1E0 | `005DD1E0` `lea` | `00D3FCC0` | Phyre::PRendering::PIndirectArgsBufferBase |
+| 005DD1F0 | `005DD1F0` `lea` | `00D3E8B8` | Phyre::PRendering::PMaterial |
+| 005DD200 | `005DD200` `lea` | `00D3C940` | Phyre::PRendering::PMaterialSwitch |
+| 005DD210 | `005DD210` `lea` | `00D3F550` | Phyre::PRendering::PMeshInstance |
+| 005DD220 | `005DD220` `lea` | `00D361C0` | Phyre::PRendering::PMeshInstanceAttachPoint |
+| 005DD230 | `005DD230` `lea` | `00D3B3F0` | Phyre::PRendering::PMeshInstanceBounds |
+| 005DD240 | `005DD240` `lea` | `00D37920` | Phyre::PRendering::PMeshInstanceSegmentContext |
+| 005DD250 | `005DD250` `lea` | `00D41DE8` | Phyre::PRendering::PMeshInstanceSegmentStreamBinding |
+| 005DD260 | `005DD260` `lea` | `00D367F0` | Phyre::PRendering::PModifierNetworkDynamicMeshInstance |
+| 005DD270 | `005DD270` `lea` | `00D3A418` | Phyre::PRendering::PNodeContext |
+| 005DD280 | `005DD280` `lea` | `00D3ADA8` | Phyre::PRendering::PParameterBuffer |
+| 005DD290 | `005DD290` `lea` | `00D39498` | Phyre::PRendering::PParameterBufferBase |
+| 005DD2A0 | `005DD2A0` `lea` | `00D3D500` | Phyre::PRendering::PRenderTarget |
+| 005DD2B0 | `005DD2B0` `lea` | `00D39050` | Phyre::PRendering::PRenderTargetBase |
+| 005DD2C0 | `005DD2C0` `lea` | `00D36BB8` | Phyre::PRendering::PSamplerState |
+| 005DD2D0 | `005DD2D0` `lea` | `00D40398` | Phyre::PRendering::PSamplerStateBase |
+| 005DD2E0 | `005DD2E0` `lea` | `00D3C380` | Phyre::PRendering::PSceneRenderPass |
+| 005DD2F0 | `005DD2F0` `lea` | `00D41A58` | Phyre::PRendering::PSceneWideParameterBuffer |
+| 005DD300 | `005DD300` `lea` | `00D3D810` | Phyre::PRendering::PShader |
+| 005DD310 | `005DD310` `lea` | `00D416A0` | Phyre::PRendering::PShaderComputeProgram |
+| 005DD320 | `005DD320` `lea` | `00D3E460` | Phyre::PRendering::PShaderFragmentProgram |
+| 005DD330 | `005DD330` `lea` | `00D40420` | Phyre::PRendering::PShaderGeometryProgram |
+| 005DD340 | `005DD340` `lea` | `00D3CEA0` | Phyre::PRendering::PShaderParameterCaptureBufferByteAddressBuffer |
+| 005DD350 | `005DD350` `lea` | `00D41090` | Phyre::PRendering::PShaderParameterCaptureBufferDataBlock |
+| 005DD360 | `005DD360` `lea` | `00D42140` | Phyre::PRendering::PShaderParameterCaptureBufferIndexDataBlock |
+| 005DD370 | `005DD370` `lea` | `00D3DEA0` | Phyre::PRendering::PShaderParameterCaptureBufferLocation |
+| 005DD380 | `005DD380` `lea` | `00D3FBB0` | Phyre::PRendering::PShaderParameterCaptureBufferLocationSize |
+| 005DD390 | `005DD390` `lea` | `00D41118` | Phyre::PRendering::PShaderParameterCaptureBufferLocationType |
+| 005DD3A0 | `005DD3A0` `lea` | `00D42268` | Phyre::PRendering::PShaderParameterCaptureBufferLocationTypeConstantBuffer |
+| 005DD3B0 | `005DD3B0` `lea` | `00D3DF28` | Phyre::PRendering::PShaderParameterCaptureBufferRWByteAddressBuffer |
+| 005DD3C0 | `005DD3C0` `lea` | `00D3BB20` | Phyre::PRendering::PShaderParameterCaptureBufferRWStructuredBuffer |
+| 005DD3D0 | `005DD3D0` `lea` | `00D36120` | Phyre::PRendering::PShaderParameterCaptureBufferRWTexture2D |
+| 005DD3E0 | `005DD3E0` `lea` | `00D377D8` | Phyre::PRendering::PShaderParameterCaptureBufferRWTexture3D |
+| 005DD3F0 | `005DD3F0` `lea` | `00D39190` | Phyre::PRendering::PShaderParameterCaptureBufferSampler |
+| 005DD400 | `005DD400` `lea` | `00D3B130` | Phyre::PRendering::PShaderParameterCaptureBufferStream |
+| 005DD410 | `005DD410` `lea` | `00D3A4A0` | Phyre::PRendering::PShaderParameterCaptureBufferStructuredBuffer |
+| 005DD420 | `005DD420` `lea` | `00D3F2A8` | Phyre::PRendering::PShaderParameterCaptureBufferTexture2D |
+| 005DD430 | `005DD430` `lea` | `00D40C18` | Phyre::PRendering::PShaderParameterCaptureBufferTexture3D |
+| 005DD440 | `005DD440` `lea` | `00D3C9C8` | Phyre::PRendering::PShaderParameterCaptureBufferTextureBase |
+| 005DD450 | `005DD450` `lea` | `00D41C40` | Phyre::PRendering::PShaderParameterCaptureBufferTextureCubeMap |
+| 005DD460 | `005DD460` `lea` | `00D3FAA0` | Phyre::PRendering::PShaderParameterCaptureConstantBuffer |
+| 005DD470 | `005DD470` `lea` | `00D38168` | Phyre::PRendering::PShaderParameterDefinition |
+| 005DD480 | `005DD480` `lea` | `00D3AE30` | Phyre::PRendering::PShaderPass |
+| 005DD490 | `005DD490` `lea` | `00D40100` | Phyre::PRendering::PShaderPassBase |
+| 005DD4A0 | `005DD4A0` `lea` | `00D42A30` | Phyre::PRendering::PShaderPassInfo |
+| 005DD4B0 | `005DD4B0` `lea` | `00D39A40` | Phyre::PRendering::PShaderPassParameterLocationTypes |
+| 005DD4C0 | `005DD4C0` `lea` | `00D36920` | Phyre::PRendering::PShaderPassParameterLocationTypesBase |
+| 005DD4D0 | `005DD4D0` `lea` | `00D3C060` | Phyre::PRendering::PShaderPassParameterLocationTypesConstantBuffer |
+| 005DD4E0 | `005DD4E0` `lea` | `00D3D150` | Phyre::PRendering::PShaderPassStateBase |
+| 005DD4F0 | `005DD4F0` `lea` | `00D3C720` | Phyre::PRendering::PShaderProgramBase |
+| 005DD500 | `005DD500` `lea` | `00D3AF40` | Phyre::PRendering::PShaderProgramParamsAndStreams |
+| 005DD510 | `005DD510` `lea` | `00D36CE8` | Phyre::PRendering::PShaderSource |
+| 005DD520 | `005DD520` `lea` | `00D39E80` | Phyre::PRendering::PShaderStreamDefinition |
+| 005DD530 | `005DD530` `lea` | `00D3D270` | Phyre::PRendering::PShaderVertexProgram |
+| 005DD540 | `005DD540` `lea` | `00D3E130` | Phyre::PRendering::PShadowRenderer |
+| 005DD550 | `005DD550` `lea` | `00D3DDA0` | Phyre::PRendering::PStructuredBuffer |
+| 005DD560 | `005DD560` `lea` | `00D38D90` | Phyre::PRendering::PStructuredBufferBase |
+| 005DD570 | `005DD570` `lea` | `00D3D588` | Phyre::PRendering::PTexture2D |
+| 005DD580 | `005DD580` `lea` | `00D374E0` | Phyre::PRendering::PTexture2DBase |
+| 005DD590 | `005DD590` `lea` | `00D38B38` | Phyre::PRendering::PTexture3D |
+| 005DD5A0 | `005DD5A0` `lea` | `00D3FFF0` | Phyre::PRendering::PTexture3DBase |
+| 005DD5B0 | `005DD5B0` `lea` | `00D42000` | Phyre::PRendering::PTextureCommonBase |
+| 005DD5C0 | `005DD5C0` `lea` | `00D40E98` | Phyre::PRendering::PTextureCubeMap |
+| 005DD5D0 | `005DD5D0` `lea` | `00D3AD08` | Phyre::PRendering::PTextureCubeMapBase |
+| 006162F0 | `006162F0` `lea` | `00D55658` | decorated `V?$PArray@E$00@Phyre@@` |
+| 00616300 | `00616300` `lea` | `00D55850` | decorated `V?$PArray@VPStreamInputDescD3D11@PRendering@Phyre@@$07@Phyre@@` |
+| 00616310 | `00616310` `lea` | `00D50EB8` | Phyre::PRendering::PConstantBufferD3D11 |
+| 00616320 | `00616320` `lea` | `00D52248` | Phyre::PRendering::PIndirectArgsBufferD3D11 |
+| 00616330 | `00616330` `lea` | `00D51400` | Phyre::PRendering::PRenderTargetD3D11 |
+| 00616340 | `00616340` `lea` | `00D52660` | Phyre::PRendering::PSamplerStateD3D11 |
+| 00616350 | `00616350` `lea` | `00D512D8` | Phyre::PRendering::PShaderComputeProgramD3D11 |
+| 00616360 | `00616360` `lea` | `00D50A90` | Phyre::PRendering::PShaderFragmentProgramD3D11 |
+| 00616370 | `00616370` `lea` | `00D50FE8` | Phyre::PRendering::PShaderGeometryProgramD3D11 |
+| 00616380 | `00616380` `lea` | `00D50BF8` | Phyre::PRendering::PShaderPassD3D11 |
+| 00616390 | `00616390` `lea` | `00D502D8` | Phyre::PRendering::PShaderPassStateD3D11 |
+| 006163A0 | `006163A0` `lea` | `00D525D8` | Phyre::PRendering::PShaderProgramD3D11 |
+| 006163B0 | `006163B0` `lea` | `00D50360` | Phyre::PRendering::PShaderVertexProgramD3D11 |
+| 006163C0 | `006163C0` `lea` | `00D519B8` | Phyre::PRendering::PStreamInputDescD3D11 |
+| 006163D0 | `006163D0` `lea` | `00D52018` | Phyre::PRendering::PStreamInputLayoutD3D11 |
+| 006163E0 | `006163E0` `lea` | `00D51598` | Phyre::PRendering::PStructuredBufferD3D11 |
+| 006163F0 | `006163F0` `lea` | `00D51238` | Phyre::PRendering::PTexture2DD3D11 |
+| 00616400 | `00616400` `lea` | `00D50250` | Phyre::PRendering::PTexture3DD3D11 |
+| 00616410 | `00616410` `lea` | `00D51CB0` | Phyre::PRendering::PTextureCubeMapD3D11 |
+| 006462C0 | `006462C0` `lea` | `00D63568` | decorated `V?$PArray@PEAVPPostEffectBase@PPostProcessing@Phyre@@$07@Phyre@@` |
+| 006462D0 | `006462D0` `lea` | `00D5AB98` | Phyre::PPostProcessing::PAtmospherics |
+| 006462E0 | `006462E0` `lea` | `00D5F218` | Phyre::PPostProcessing::PAtmosphericsBase |
+| 006462F0 | `006462F0` `lea` | `00D597C8` | Phyre::PPostProcessing::PAtmosphericsD3D11 |
+| 00646300 | `00646300` `lea` | `00D5DAE8` | Phyre::PPostProcessing::PCelShading |
+| 00646310 | `00646310` `lea` | `00D5C5A0` | Phyre::PPostProcessing::PCelShadingBase |
+| 00646320 | `00646320` `lea` | `00D5D080` | Phyre::PPostProcessing::PCelShadingD3D11 |
+| 00646330 | `00646330` `lea` | `00D5CEF8` | Phyre::PPostProcessing::PDeferredLighting |
+| 00646340 | `00646340` `lea` | `00D5A1C8` | Phyre::PPostProcessing::PDeferredLightingBase |
+| 00646350 | `00646350` `lea` | `00D5BF38` | Phyre::PPostProcessing::PDeferredLightingD3D11 |
+| 00646360 | `00646360` `lea` | `00D596C8` | Phyre::PPostProcessing::PDepthOfField |
+| 00646370 | `00646370` `lea` | `00D5D940` | Phyre::PPostProcessing::PDepthOfFieldBase |
+| 00646380 | `00646380` `lea` | `00D5EC00` | Phyre::PPostProcessing::PDepthOfFieldD3D11 |
+| 00646390 | `00646390` `lea` | `00D5EE50` | Phyre::PPostProcessing::PFXAA |
+| 006463A0 | `006463A0` `lea` | `00D5D798` | Phyre::PPostProcessing::PFXAABase |
+| 006463B0 | `006463B0` `lea` | `00D5E338` | Phyre::PPostProcessing::PFXAAD3D11 |
+| 006463C0 | `006463C0` `lea` | `00D5CD68` | Phyre::PPostProcessing::PGlow |
+| 006463D0 | `006463D0` `lea` | `00D5A5A0` | Phyre::PPostProcessing::PGlowBase |
+| 006463E0 | `006463E0` `lea` | `00D5BFC0` | Phyre::PPostProcessing::PGlowD3D11 |
+| 006463F0 | `006463F0` `lea` | `00D5B4C0` | Phyre::PPostProcessing::PGlowGPUBase |
+| 00646400 | `00646400` `lea` | `00D5B7F8` | Phyre::PPostProcessing::PLowResParticles |
+| 00646410 | `00646410` `lea` | `00D5B908` | Phyre::PPostProcessing::PMLAA |
+| 00646420 | `00646420` `lea` | `00D59C70` | Phyre::PPostProcessing::PMLAABase |
+| 00646430 | `00646430` `lea` | `00D5AC20` | Phyre::PPostProcessing::PMLAAD3D11 |
+| 00646440 | `00646440` `lea` | `00D5C518` | Phyre::PPostProcessing::PMaterialPostEffect |
+| 00646450 | `00646450` `lea` | `00D5E2B0` | Phyre::PPostProcessing::PMeshParticleSystemBase |
+| 00646460 | `00646460` `lea` | `00D5AE28` | Phyre::PPostProcessing::PMotionBlur |
+| 00646470 | `00646470` `lea` | `00D5F000` | Phyre::PPostProcessing::PMotionBlurBase |
+| 00646480 | `00646480` `lea` | `00D59AF0` | Phyre::PPostProcessing::PMotionBlurD3D11 |
+| 00646490 | `00646490` `lea` | `00D5E5C8` | Phyre::PPostProcessing::PPostEffectBase |
+| 006464A0 | `006464A0` `lea` | `00D5D9D8` | Phyre::PPostProcessing::PPostEffectManager |
+| 006464B0 | `006464B0` `lea` | `00D5D2C0` | Phyre::PPostProcessing::PScreenSpaceAmbientOcclusion |
+| 006464C0 | `006464C0` `lea` | `00D5BB10` | Phyre::PPostProcessing::PScreenSpaceAmbientOcclusionBase |
+| 006464D0 | `006464D0` `lea` | `00D5C6C8` | Phyre::PPostProcessing::PScreenSpaceAmbientOcclusionD3D11 |
+| 006464E0 | `006464E0` `lea` | `00D5B6E0` | Phyre::PPostProcessing::PScreenSpaceReflection |
+| 006464F0 | `006464F0` `lea` | `00D598E8` | Phyre::PPostProcessing::PScreenSpaceReflectionBase |
+| 00646500 | `00646500` `lea` | `00D5A758` | Phyre::PPostProcessing::PScreenSpaceReflectionD3D11 |
+| 00662CB0 | `00662CB0` `lea` | `00D697E8` | decorated `V?$PArray@E$03@Phyre@@` |
+| 00662CC0 | `00662CC0` `lea` | `00D6A9A0` | decorated `V?$PArray@H$03@Phyre@@` |
+| 00662CD0 | `00662CD0` `lea` | `00D6A1C0` | decorated `V?$PArray@VPDataBlockD3D11@PGeometry@Phyre@@$07@Phyre@@` |
+| 00662CE0 | `00662CE0` `lea` | `00D6AB98` | decorated `V?$PArray@VPDynamicSegmentDesc@PDynamicMesh@PGeometry@Phyre@@$03@Phyre@@` |
+| 00662CF0 | `00662CF0` `lea` | `00D6A5B0` | decorated `V?$PArray@VPMeshSegment@PGeometry@Phyre@@$07@Phyre@@` |
+| 00662D00 | `00662D00` `lea` | `00D6A7A8` | decorated `V?$PArray@VPSkeletonJointBounds@PGeometry@Phyre@@$03@Phyre@@` |
+| 00662D10 | `00662D10` `lea` | `00D69FC8` | decorated `V?$PArray@VPSkinBoneRemap@PGeometry@Phyre@@$01@Phyre@@` |
+| 00662D20 | `00662D20` `lea` | `00D699E0` | decorated `V?$PArray@VPVertexStream@PGeometry@Phyre@@$07@Phyre@@` |
+| 00662D30 | `00662D30` `lea` | `00D6A3B8` | decorated `V?$PSharray@PEAVPMaterial@PRendering@Phyre@@@Phyre@@` |
+| 00662D40 | `00662D40` `lea` | `00D69BD8` | decorated `V?$PSharray@VPDataBlockBufferD3D11@PGeometry@Phyre@@@Phyre@@` |
+| 00662D50 | `00662D50` `lea` | `00D69DD0` | decorated `V?$PSharray@VPIndexDataBlockBufferD3D11@PGeometry@Phyre@@@Phyre@@` |
+| 00662D60 | `00662D60` `lea` | `00D66578` | Phyre::PGeometry::PDataBlock |
+| 00662D70 | `00662D70` `lea` | `00D65D78` | Phyre::PGeometry::PDataBlockBase |
+| 00662D80 | `00662D80` `lea` | `00D64E48` | Phyre::PGeometry::PDataBlockBufferD3D11 |
+| 00662D90 | `00662D90` `lea` | `00D657F0` | Phyre::PGeometry::PDataBlockD3D11 |
+| 00662DA0 | `00662DA0` `lea` | `00D63978` | Phyre::PGeometry::PDynamicDataBlock |
+| 00662DB0 | `00662DB0` `lea` | `00D65520` | Phyre::PGeometry::PDynamicMesh |
+| 00662DC0 | `00662DC0` `lea` | `00D65888` | Phyre::PGeometry::PDynamicMesh::PDynamicSegmentDesc |
+| 00662DD0 | `00662DD0` `lea` | `00D66058` | Phyre::PGeometry::PIndexDataBlock |
+| 00662DE0 | `00662DE0` `lea` | `00D643C0` | Phyre::PGeometry::PIndexDataBlockBase |
+| 00662DF0 | `00662DF0` `lea` | `00D64AC0` | Phyre::PGeometry::PIndexDataBlockBufferD3D11 |
+| 00662E00 | `00662E00` `lea` | `00D655A8` | Phyre::PGeometry::PIndexDataBlockD3D11 |
+| 00662E10 | `00662E10` `lea` | `00D65998` | Phyre::PGeometry::PMaterialSet |
+| 00662E20 | `00662E20` `lea` | `00D646A0` | Phyre::PGeometry::PMesh |
+| 00662E30 | `00662E30` `lea` | `00D652D8` | Phyre::PGeometry::PMeshSegment |
+| 00662E40 | `00662E40` `lea` | `00D63F88` | Phyre::PGeometry::PMeshSegmentBase |
+| 00662E50 | `00662E50` `lea` | `00D64A38` | Phyre::PGeometry::PMeshSegmentD3D11 |
+| 00662E60 | `00662E60` `lea` | `00D663C8` | Phyre::PGeometry::PShape |
+| 00662E70 | `00662E70` `lea` | `00D65EF0` | Phyre::PGeometry::PSkeletonJointBounds |
+| 00662E80 | `00662E80` `lea` | `00D66970` | Phyre::PGeometry::PSkinBoneRemap |
+| 00662E90 | `00662E90` `lea` | `00D650D8` | Phyre::PGeometry::PVertexStream |
+| 00675420 | `00675420` `lea` | `00D6BA78` | Phyre::PAssetReference |
+| 00675430 | `00675430` `lea` | `00D6BC90` | Phyre::PAssetReferenceImport |
+| 006784C0 | `006784C0` `lea` | `00D6C618` | Phyre::PCamera |
+| 006784D0 | `006784D0` `lea` | `00D6C888` | Phyre::PCameraProjection |
+| 0067CBF0 | `0067CBF0` `lea` | `00D6DA60` | decorated `V?$PArray@VPBitmapFontCharInfo@PText@Phyre@@$03@Phyre@@` |
+| 0067CC00 | `0067CC00` `lea` | `00D6D2D0` | Phyre::PText::PBitmapFont |
+| 0067CC10 | `0067CC10` `lea` | `00D6D5B8` | Phyre::PText::PBitmapFontCharInfo |
+| 0067E680 | `0067E680` `lea` | `00D6DD68` | Phyre::PWorldMatrix |
+| 006816D0 | `006816D0` `lea` | `00D6EC98` | Phyre::PScripting::PAsyncProcessHeader |
+| 006816E0 | `006816E0` `lea` | `00D6EAE8` | Phyre::PScripting::PClassCallableMethodScript |
+| 006816F0 | `006816F0` `lea` | `00D6F120` | Phyre::PScripting::PScheduler |
+| 00681700 | `00681700` `lea` | `00D6F2B8` | Phyre::PScripting::PScript |
+| 00681710 | `00681710` `lea` | `00D6F090` | Phyre::PScripting::PScriptCallbackHandler |
+| 006917D0 | `006917D0` `lea` | `00D7AB98` | decorated `V?$PSharray@PEAVPPhysicsShape@PPhysics@Phyre@@@Phyre@@` |
+| 006917E0 | `006917E0` `lea` | `00D757B8` | Phyre::PPhysics::PPhysicsBox |
+| 006917F0 | `006917F0` `lea` | `00D746A0` | Phyre::PPhysics::PPhysicsBoxBase |
+| 00691800 | `00691800` `lea` | `00D74FA8` | Phyre::PPhysics::PPhysicsBoxBullet |
+| 00691810 | `00691810` `lea` | `00D749C0` | Phyre::PPhysics::PPhysicsCallbackData |
+| 00691820 | `00691820` `lea` | `00D75930` | Phyre::PPhysics::PPhysicsCapsule |
+| 00691830 | `00691830` `lea` | `00D74728` | Phyre::PPhysics::PPhysicsCapsuleBase |
+| 00691840 | `00691840` `lea` | `00D75030` | Phyre::PPhysics::PPhysicsCapsuleBullet |
+| 00691850 | `00691850` `lea` | `00D74B58` | Phyre::PPhysics::PPhysicsCharacterCamera |
+| 00691860 | `00691860` `lea` | `00D71600` | Phyre::PPhysics::PPhysicsCharacterController |
+| 00691870 | `00691870` `lea` | `00D75F50` | Phyre::PPhysics::PPhysicsCharacterControllerBase |
+| 00691880 | `00691880` `lea` | `00D70770` | Phyre::PPhysics::PPhysicsCharacterControllerBullet |
+| 00691890 | `00691890` `lea` | `00D73F58` | Phyre::PPhysics::PPhysicsCylinder |
+| 006918A0 | `006918A0` `lea` | `00D72960` | Phyre::PPhysics::PPhysicsCylinderBase |
+| 006918B0 | `006918B0` `lea` | `00D73518` | Phyre::PPhysics::PPhysicsCylinderBullet |
+| 006918C0 | `006918C0` `lea` | `00D73490` | Phyre::PPhysics::PPhysicsInterface |
+| 006918D0 | `006918D0` `lea` | `00D71770` | Phyre::PPhysics::PPhysicsInterfaceBase |
+| 006918E0 | `006918E0` `lea` | `00D72A50` | Phyre::PPhysics::PPhysicsInterfaceBullet |
+| 006918F0 | `006918F0` `lea` | `00D75638` | Phyre::PPhysics::PPhysicsMaterial |
+| 00691900 | `00691900` `lea` | `00D71B60` | Phyre::PPhysics::PPhysicsMesh |
+| 00691910 | `00691910` `lea` | `00D76470` | Phyre::PPhysics::PPhysicsMeshBase |
+| 00691920 | `00691920` `lea` | `00D70F58` | Phyre::PPhysics::PPhysicsMeshBullet |
+| 00691930 | `00691930` `lea` | `00D73ED0` | Phyre::PPhysics::PPhysicsModel |
+| 00691940 | `00691940` `lea` | `00D735A0` | Phyre::PPhysics::PPhysicsPlane |
+| 00691950 | `00691950` `lea` | `00D71C70` | Phyre::PPhysics::PPhysicsPlaneBase |
+| 00691960 | `00691960` `lea` | `00D72AD8` | Phyre::PPhysics::PPhysicsPlaneBullet |
+| 00691970 | `00691970` `lea` | `00D73290` | Phyre::PPhysics::PPhysicsRigidBody |
+| 00691980 | `00691980` `lea` | `00D70958` | Phyre::PPhysics::PPhysicsRigidBodyBase |
+| 00691990 | `00691990` `lea` | `00D72408` | Phyre::PPhysics::PPhysicsRigidBodyBullet |
+| 006919A0 | `006919A0` `lea` | `00D71A00` | Phyre::PPhysics::PPhysicsShape |
+| 006919B0 | `006919B0` `lea` | `00D765F8` | Phyre::PPhysics::PPhysicsShapeBase |
+| 006919C0 | `006919C0` `lea` | `00D70CD8` | Phyre::PPhysics::PPhysicsShapeBullet |
+| 006919D0 | `006919D0` `lea` | `00D73DD8` | Phyre::PPhysics::PPhysicsSphere |
+| 006919E0 | `006919E0` `lea` | `00D72850` | Phyre::PPhysics::PPhysicsSphereBase |
+| 006919F0 | `006919F0` `lea` | `00D73408` | Phyre::PPhysics::PPhysicsSphereBullet |
+| 00691A00 | `00691A00` `lea` | `00D71068` | Phyre::PPhysics::PPhysicsTaperedCapsule |
+| 00691A10 | `00691A10` `lea` | `00D76570` | Phyre::PPhysics::PPhysicsTaperedCylinder |
+| 00691A20 | `00691A20` `lea` | `00D70860` | Phyre::PPhysics::PPhysicsWorld |
+| 00691A30 | `00691A30` `lea` | `00D731C8` | Phyre::PPhysics::PPhysicsWorldBase |
+| 00691A40 | `00691A40` `lea` | `00D756C0` | Phyre::PPhysics::PPhysicsWorldBullet |
+| 00691A50 | `00691A50` `lea` | `00D72380` | Phyre::PPhysics::PRaycastResult |
+| 006A7240 | `006A7240` `lea` | `00D7B300` | Phyre::PString |
+| 006A7C50 | `006A7C50` `lea` | `00D7BD38` | decorated `V?$PSharray@PEAVPTriggerReceiverComponent@PGameplay@Phyre@@@Phyre@@` |
+| 006A7C60 | `006A7C60` `lea` | `00D7B7B8` | Phyre::PGameplay::PTrigger |
+| 006A9830 | `006A9830` `lea` | `00D7C198` | Phyre::PGameplay::PQuarryComponent |
+| 006A9F00 | `006A9F00` `lea` | `00D7C500` | Phyre::PTypedObject |
+| 006AAA40 | `006AAA40` `lea` | `00D7C930` | Phyre::PComponent |
+| 006AB730 | `006AB730` `lea` | `00D7CDB8` | Phyre::PEntity |
+| 006AD090 | `006AD090` `lea` | `00D7D420` | Phyre::PCameraOrthographic |
+| 006AD900 | `006AD900` `lea` | `00D7D800` | Phyre::PCameraPerspective |
+| 006ADF70 | `006ADF70` `lea` | `00D7E118` | decorated `V?$PArray@VPTypedObject@Phyre@@$07@Phyre@@` |
+| 006ADF80 | `006ADF80` `lea` | `00D7DB40` | Phyre::PInstancesComponent |
+| 006AFC10 | `006AFC10` `lea` | `00D7E598` | Phyre::PNameComponent |
+| 006B04A0 | `006B04A0` `lea` | `00D7E968` | Phyre::PRandom::PRandomGenerator |
+| 006B3FF0 | `006B3FF0` `lea` | `00D80048` | Phyre::PScene::PNode |
+| 006B85E0 | `006B85E0` `lea` | `00D80AE0` | Phyre::PRendering::PMeshSegmentContext |
+| 006BBC20 | `006BBC20` `lea` | `00D82008` | decorated `V?$PArray@PEBE$07@Phyre@@` |
+| 006BBC30 | `006BBC30` `lea` | `00D823F8` | decorated `V?$PArray@VPModifierNetworkDynamicMeshSegment@PDynamicGeometry@Phyre@@$07@Phyre@@` |
+| 006BBC40 | `006BBC40` `lea` | `00D82200` | decorated `V?$PArray@VPRenderStream@PDynamicGeometry@Phyre@@$07@Phyre@@` |
+| 006BBC50 | `006BBC50` `lea` | `00D817A0` | Phyre::PDynamicGeometry::PModifierNetworkDynamicMesh |
+| 006BBC60 | `006BBC60` `lea` | `00D81420` | Phyre::PDynamicGeometry::PModifierNetworkDynamicMeshSegment |
+| 006BEC30 | `006BEC30` `lea` | `00D82A48` | Phyre::PRendering::PLight |
+| 006C0FB0 | `006C0FB0` `lea` | `00D83C98` | decorated `V?$PArray@VPShadowSplit@PShadowCaster@PRendering@Phyre@@$07@Phyre@@` |
+| 006C0FC0 | `006C0FC0` `lea` | `00D83240` | Phyre::PRendering::PShadowCaster |
+| 006C0FD0 | `006C0FD0` `lea` | `00D833E8` | Phyre::PRendering::PShadowCaster::PShadowSplit |
+| 006C3040 | `006C3040` `lea` | `00D84E58` | decorated `V?$PArray@PEBVPBase@Phyre@@$07@Phyre@@` |
+| 006C3050 | `006C3050` `lea` | `00D84568` | Phyre::PDynamicGeometry::PModifierNetworkInstance |
+| 006C3060 | `006C3060` `lea` | `00D841F0` | Phyre::PDynamicGeometry::PModifierNetworkInstanceInput |
+| 006C3070 | `006C3070` `lea` | `00D843B0` | Phyre::PDynamicGeometry::PModifierNetworkInstancePacketInput |
+| 006C5290 | `006C5290` `lea` | `00D86198` | decorated `V?$PArray@VPLODLevel@PLOD@Phyre@@$07@Phyre@@` |
+| 006C52A0 | `006C52A0` `lea` | `00D85FA0` | decorated `V?$PSharray@PEAVPMeshInstance@PRendering@Phyre@@@Phyre@@` |
+| 006C52B0 | `006C52B0` `lea` | `00D85408` | Phyre::PLOD::PLODGroup |
+| 006C52C0 | `006C52C0` `lea` | `00D851A0` | Phyre::PLOD::PLODLevel |
+| 006C8300 | `006C8300` `lea` | `00D865F8` | Phyre::POccluderGeometry::POccluderGeometryInstance |
+| 006CCFF0 | `006CCFF0` `lea` | `00D89D20` | Phyre::PGameplay::PScriptableComponent |
+| 006CD950 | `006CD950` `lea` | `00D89FC8` | Phyre::PGameplay::PTriggerReceiverTypeCallbackData |
+| 006CE090 | `006CE090` `lea` | `00D8A398` | Phyre::PGameplay::PTriggerReceiverComponent |
+| 006D01D0 | `006D01D0` `lea` | `00D8CF88` | decorated `V?$PArray@VPModifierAndInputs@PDynamicGeometry@Phyre@@$07@Phyre@@` |
+| 006D01E0 | `006D01E0` `lea` | `00D8D180` | decorated `V?$PArray@VPModifierNetworkBuffer@PDynamicGeometry@Phyre@@$07@Phyre@@` |
+| 006D01F0 | `006D01F0` `lea` | `00D8CD90` | decorated `V?$PArray@VPRenderStreamInput@PDynamicGeometry@Phyre@@$03@Phyre@@` |
+| 006D0200 | `006D0200` `lea` | `00D8B3B0` | Phyre::PDynamicGeometry::PModifierAndInputs |
+| 006D0210 | `006D0210` `lea` | `00D8BD08` | Phyre::PDynamicGeometry::PModifierNetwork |
+| 006D0220 | `006D0220` `lea` | `00D8B200` | Phyre::PDynamicGeometry::PModifierNetworkBuffer |
+| 006D0230 | `006D0230` `lea` | `00D8AE20` | Phyre::PDynamicGeometry::PModifierNetworkInfoPacket |
+| 006D0240 | `006D0240` `lea` | `00D8AB40` | Phyre::PDynamicGeometry::PModifierNetworkInfoPacket_Buffer |
+| 006D0250 | `006D0250` `lea` | `00D8B948` | Phyre::PDynamicGeometry::PModifierNetworkInfoPacket_ModifierCode |
+| 006D0260 | `006D0260` `lea` | `00D8BE08` | Phyre::PDynamicGeometry::PModifierNetworkInfoPacket_ModifierInstance |
+| 006D0270 | `006D0270` `lea` | `00D8AFC8` | Phyre::PDynamicGeometry::PRenderStream |
+| 006D0280 | `006D0280` `lea` | `00D8ACF0` | Phyre::PDynamicGeometry::PRenderStreamInput |
+| 006D8EE0 | `006D8EE0` `lea` | `00D8D850` | Phyre::PDynamicGeometry::PMorphModifierWeightsUserDataObject |
+| 006D9FB0 | `006D9FB0` `lea` | `00D8DE98` | Phyre::POccluderGeometry::POccluderGeometryObject |
+| 007930A0 | `007930A0` `lea` | `01CB0D98` | Phyre::PFramework::PApplication |
+| 007930B0 | `007930B0` `lea` | `01CB0EC0` | Phyre::PFramework::PApplicationViewport |
+| 007930C0 | `007930C0` `lea` | `01CB0A50` | Phyre::PFramework::PDebugUtils |
+| 007930D0 | `007930D0` `lea` | `01CB1068` | Phyre::PFramework::PInputMapper |
+| 0086C650 | `0086C650` `lea` | `01CD69D8` | decorated `V?$PArray@PEAVPInputAction@PInputs@Phyre@@$07@Phyre@@` |
+| 0086C660 | `0086C660` `lea` | `01CD67E0` | decorated `V?$PArray@PEAVPInputSource@PInputs@Phyre@@$07@Phyre@@` |
+| 0086C670 | `0086C670` `lea` | `01CD0DD0` | Phyre::PInputs::PInputAction |
+| 0086C680 | `0086C680` `lea` | `01CD1E48` | Phyre::PInputs::PInputMap |
+| 0086C690 | `0086C690` `lea` | `01CD0ED8` | Phyre::PInputs::PInputSource |
+| 0086C6A0 | `0086C6A0` `lea` | `01CD2AA0` | Phyre::PInputs::PInputSourceJoypadAxis |
+| 0086C6B0 | `0086C6B0` `lea` | `01CD1F80` | Phyre::PInputs::PInputSourceJoypadButton |
+| 0086C6C0 | `0086C6C0` `lea` | `01CD16C0` | Phyre::PInputs::PInputSourceKey |
+| 0086C6D0 | `0086C6D0` `lea` | `01CD09F8` | Phyre::PInputs::PInputSourceMotionAngularVelocityX |
+| 0086C6E0 | `0086C6E0` `lea` | `01CD0F60` | Phyre::PInputs::PInputSourceMotionAngularVelocityY |
+| 0086C6F0 | `0086C6F0` `lea` | `01CD17E8` | Phyre::PInputs::PInputSourceMotionAngularVelocityZ |
+| 0086C700 | `0086C700` `lea` | `01CD2108` | Phyre::PInputs::PInputSourceMotionLinearAccelerationX |
+| 0086C710 | `0086C710` `lea` | `01CD2BA8` | Phyre::PInputs::PInputSourceMotionLinearAccelerationY |
+| 0086C720 | `0086C720` `lea` | `01CD3678` | Phyre::PInputs::PInputSourceMotionLinearAccelerationZ |
+| 0086C730 | `0086C730` `lea` | `01CD0578` | Phyre::PInputs::PInputSourceMotionQuatW |
+| 0086C740 | `0086C740` `lea` | `01CD3700` | Phyre::PInputs::PInputSourceMotionQuatX |
+| 0086C750 | `0086C750` `lea` | `01CD3FA0` | Phyre::PInputs::PInputSourceMotionQuatY |
+| 0086C760 | `0086C760` `lea` | `01CCFE28` | Phyre::PInputs::PInputSourceMotionQuatZ |
+| 0086C770 | `0086C770` `lea` | `01CD3578` | Phyre::PInputs::PInputSourceMouseButton |
+| 0086C780 | `0086C780` `lea` | `01CD3EA0` | Phyre::PInputs::PInputSourceMouseDeltaX |
+| 0086C790 | `0086C790` `lea` | `01CCFF28` | Phyre::PInputs::PInputSourceMouseDeltaY |
+| 0086C7A0 | `0086C7A0` `lea` | `01CD2278` | Phyre::PInputs::PInputSourceTouchDragX |
+| 0086C7B0 | `0086C7B0` `lea` | `01CD2CA8` | Phyre::PInputs::PInputSourceTouchDragY |
+| 0086C7C0 | `0086C7C0` `lea` | `01CD0A80` | Phyre::PInputs::PInputSourceTouchPinch |
+| 0086C7D0 | `0086C7D0` `lea` | `01CD0600` | Phyre::PInputs::PInputSourceTouchRotate |
+| 0086C7E0 | `0086C7E0` `lea` | `01CD10E8` | Phyre::PInputs::PInputSourceTouchTwoFingerDragX |
+| 0086C7F0 | `0086C7F0` `lea` | `01CD18F8` | Phyre::PInputs::PInputSourceTouchTwoFingerDragY |
+| 0086C800 | `0086C800` `lea` | `01CD3E18` | Phyre::PInputs::PInputSourceVisionTrackerX |
+| 0086C810 | `0086C810` `lea` | `01CD45E8` | Phyre::PInputs::PInputSourceVisionTrackerY |
+| 0086C820 | `0086C820` `lea` | `01CD04F0` | Phyre::PInputs::PInputSourceVisionTrackerZ |
+| 00874D70 | `00874D70` `lea` | `01CD73C0` | Phyre::PVision::PVisionMoveTracker |
+| 00874D80 | `00874D80` `lea` | `01CD7018` | Phyre::PVision::PVisionMoveTrackerBase |
+| 00874D90 | `00874D90` `lea` | `01CD71B0` | Phyre::PVision::PVisionMoveTrackerWin32 |
+| 00875950 | `00875950` `lea` | `01CD75D8` | Phyre::PVision::PVisionTracker |
+| 00875960 | `00875960` `lea` | `01CD77F8` | Phyre::PVision::PVisionTrackerBase |
+| 00875970 | `00875970` `lea` | `01CD7920` | Phyre::PVision::PVisionTrackerWin32 |
+| 00878030 | `00878030` `lea` | `01CD9190` | Phyre::PHierarchy::POctree |
+| 00878040 | `00878040` `lea` | `01CD9338` | Phyre::PHierarchy::POctreeChildren |
+| 00878050 | `00878050` `lea` | `01CD8FF0` | Phyre::PHierarchy::POctreeData |
+| 00878060 | `00878060` `lea` | `01CD8CA0` | Phyre::PHierarchy::POctreeWorld |
+| 00879AE0 | `00879AE0` `lea` | `01CD9E90` | decorated `V?$PArray@PEAVPInputMap@PInputs@Phyre@@$07@Phyre@@` |
+| 00879AF0 | `00879AF0` `lea` | `01CD9A68` | Phyre::PGame::PGameConfig |
+
+## Per-member rows: the class name and size each base-aware descriptor constructor registers (OPUS, 2026-10-03)
+
+The family `AbstractClassDescriptor base-aware constructors` (frontmatter: 132 members; 132 get a row here) shares one form, not repeated per row. It calls the two context getters, passes them to the shared descriptor constructor `00632D80` with the class name in `r8` and the instance size in `r9d`, stores the concrete vtable, sets bit `0x2` of dword `+0xFC`, and calls the three member-registration helpers. What differs from member to member is the name and size it passes. Each row anchors the `lea r8, [S]` before the `00632D80` call (the member's distinguishing instruction) and states S, the class-name string at S, and the immediate size from `mov r9d`. All are read from the certified image. [`fam_rows.py`](../../_index/candidates/opus-ee-base-aware-ctors-1003/fam_rows.py) re-derives every row and compares it with the committed [`rows.tsv`](../../_index/candidates/opus-ee-base-aware-ctors-1003/rows.tsv). A body without exactly one `00632D80` call, a name that is not a clean string, or a value that differs fails it. Two controls are refused: a swapped value and a moved anchor. Members that do not derive are listed in [`excluded.tsv`](../../_index/candidates/opus-ee-base-aware-ctors-1003/excluded.tsv).
+
+### All 132 constructors (OPUS)
+
+| member | distinguishing instruction | name string S | class name and instance size passed |
+|---|---|---|---|
+| 00597730 | `00597776` `lea` | `00D244A8` | "PClusterHeaderBase", size 0x48 |
+| 00597880 | `005978C6` `lea` | `00D24A28` | "PInstanceListHeader", size 0x24 |
+| 005A81F0 | `005A8236` `lea` | `00D2D060` | "PAnimationChannelTarget", size 0x38 |
+| 005A82A0 | `005A82E6` `lea` | `00D2C3A0` | "PAnimationChannelTimes", size 0x18 |
+| 005A8350 | `005A8396` `lea` | `00D287C0` | "PAnimationClip", size 0x38 |
+| 005A8400 | `005A8446` `lea` | `00D2B0E0` | "PAnimationClipBinding", size 0x8 |
+| 005A84B0 | `005A84F6` `lea` | `00D2B908` | "PAnimationClipBindingChannelMap", size 0x4 |
+| 005A8560 | `005A85A6` `lea` | `00D2C060` | "PAnimationClipBindingDataBlockCache", size 0x18 |
+| 005A87F0 | `005A8836` `lea` | `00D29BC8` | "PAnimationDataSourceListEntry", size 0x98 |
+| 005A88A0 | `005A88E6` `lea` | `00D2B180` | "PAnimationEvent", size 0x8 |
+| 005A89F0 | `005A8A36` `lea` | `00D2C1C8` | "PAnimationEventList", size 0x10 |
+| 005A8AA0 | `005A8AE6` `lea` | `00D2CC98` | "PAnimationHierarchyNode", size 0x10 |
+| 005A8B50 | `005A8B96` `lea` | `00D2CB80` | "PAnimationNetworkInstance", size 0x78 |
+| 005A8C00 | `005A8C46` `lea` | `00D2A770` | "PAnimationNetworkInstanceTarget", size 0x30 |
+| 005A8CB0 | `005A8CF6` `lea` | `00D2AA00` | "PAnimationSet", size 0x30 |
+| 005A8D60 | `005A8DA6` `lea` | `00D2B7E8` | "PAnimationSlotArray", size 0x8 |
+| 005A8EB0 | `005A8EF6` `lea` | `00D288B0` | "PAnimationSlotFilterDeferredLoad", size 0x10 |
+| 005A8F60 | `005A8FA6` `lea` | `00D2AFC8` | "PAnimationSlotListIndex", size 0x18 |
+| 005A91F0 | `005A9236` `lea` | `00D282D8` | "PBlendableAnimationSource", size 0x80 |
+| 005D8FC0 | `005D9006` `lea` | `00D36370` | "PConstantBufferBase", size 0xC |
+| 005D9070 | `005D90B6` `lea` | `00D368F8` | "PContextVariantFoldingTable", size 0x14 |
+| 005D9120 | `005D9166` `lea` | `00D40F18` | "PDynamicMeshInstance", size 0x18 |
+| 005D91D0 | `005D9216` `lea` | `00D3E8A8` | "PEffect", size 0x78 |
+| 005D9280 | `005D92C6` `lea` | `00D37B18` | "PEffectVariant", size 0x68 |
+| 005D9470 | `005D94B6` `lea` | `00D3F5D0` | "PIndirectArgsBufferBase", size 0x8 |
+| 005D9520 | `005D9566` `lea` | `00D3E448` | "PMaterial", size 0x28 |
+| 005D95D0 | `005D9616` `lea` | `00D3C510` | "PMaterialSwitch", size 0x10 |
+| 005D9680 | `005D96C6` `lea` | `00D3E810` | "PMeshInstance", size 0xC8 |
+| 005D9730 | `005D9776` `lea` | `00D42E30` | "PMeshInstanceAttachPoint", size 0x18 |
+| 005D97E0 | `005D9826` `lea` | `00D3AD88` | "PMeshInstanceBounds", size 0x30 |
+| 005D9930 | `005D9976` `lea` | `00D41970` | "PMeshInstanceSegmentStreamBinding", size 0x18 |
+| 005D9A80 | `005D9AC6` `lea` | `00D3A080` | "PNodeContext", size 0x10 |
+| 005D9BD0 | `005D9C16` `lea` | `00D38F88` | "PParameterBufferBase", size 0x4 |
+| 005D9D20 | `005D9D66` `lea` | `00D389F8` | "PRenderTargetBase", size 0x10 |
+| 005D9E70 | `005D9EB6` `lea` | `00D3FD40` | "PSamplerStateBase", size 0x20 |
+| 005D9F20 | `005D9F66` `lea` | `00D3BEB0` | "PSceneRenderPass", size 0x50 |
+| 005DA070 | `005DA0B6` `lea` | `00D3D2F0` | "PShader", size 0x40 |
+| 005DA4E0 | `005DA526` `lea` | `00D3DAA8` | "PShaderParameterCaptureBufferLocation", size 0x2 |
+| 005DAA90 | `005DAAD6` `lea` | `00D3ACD8` | "PShaderParameterCaptureBufferStream", size 0x18 |
+| 005DAD20 | `005DAD66` `lea` | `00D3C520` | "PShaderParameterCaptureBufferTextureBase", size 0x10 |
+| 005DAF10 | `005DAF56` `lea` | `00D37A58` | "PShaderParameterDefinition", size 0x18 |
+| 005DB060 | `005DB0A6` `lea` | `00D3FA20` | "PShaderPassBase", size 0x30 |
+| 005DB110 | `005DB156` `lea` | `00D424F8` | "PShaderPassInfo", size 0x30 |
+| 005DB260 | `005DB2A6` `lea` | `00D36448` | "PShaderPassParameterLocationTypesBase", size 0x10 |
+| 005DB3B0 | `005DB3F6` `lea` | `00D3CCE8` | "PShaderPassStateBase", size 0x4 |
+| 005DB460 | `005DB4A6` `lea` | `00D3C270` | "PShaderProgramBase", size 0x1 |
+| 005DB510 | `005DB556` `lea` | `00D3A9C0` | "PShaderProgramParamsAndStreams", size 0x20 |
+| 005DB5C0 | `005DB606` `lea` | `00D367B8` | "PShaderSource", size 0x28 |
+| 005DB670 | `005DB6B6` `lea` | `00D39AC0` | "PShaderStreamDefinition", size 0x18 |
+| 005DB7C0 | `005DB806` `lea` | `00D3DB80` | "PShadowRenderer", size 0x10 |
+| 005DB910 | `005DB956` `lea` | `00D386B8` | "PStructuredBufferBase", size 0x14 |
+| 005DBC40 | `005DBC86` `lea` | `00D41B88` | "PTextureCommonBase", size 0x28 |
+| 00615170 | `006151B6` `lea` | `00D51920` | "PStreamInputDescD3D11", size 0x20 |
+| 00615220 | `00615266` `lea` | `00D51F80` | "PStreamInputLayoutD3D11", size 0x18 |
+| 00645000 | `00645046` `lea` | `00D5E3B8` | "PPostEffectBase", size 0x50 |
+| 006450B0 | `006450F6` `lea` | `00D5D778` | "PPostEffectManager", size 0x28 |
+| 00661BD0 | `00661C16` `lea` | `00D65D00` | "PDataBlockBase", size 0x20 |
+| 00661C80 | `00661CC6` `lea` | `00D64BA8` | "PDataBlockBufferD3D11", size 0x48 |
+| 00661DD0 | `00661E16` `lea` | `00D66BD0` | "PDynamicDataBlock", size 0x28 |
+| 00661E80 | `00661EC6` `lea` | `00D65508` | "PDynamicMesh", size 0x38 |
+| 00661F30 | `00661F76` `lea` | `00D65748` | "PDynamicSegmentDesc", size 0x10 |
+| 00662080 | `006620C6` `lea` | `00D642C8` | "PIndexDataBlockBase", size 0x14 |
+| 00662130 | `00662176` `lea` | `00D64888` | "PIndexDataBlockBufferD3D11", size 0x48 |
+| 00662280 | `006622C6` `lea` | `00D65870` | "PMaterialSet", size 0x10 |
+| 00662330 | `00662376` `lea` | `00D64598` | "PMesh", size 0x80 |
+| 00662480 | `006624C6` `lea` | `00D63E88` | "PMeshSegmentBase", size 0x30 |
+| 006625D0 | `00662616` `lea` | `00D66048` | "PShape", size 0x38 |
+| 00662680 | `006626C6` `lea` | `00D65E00` | "PSkeletonJointBounds", size 0x20 |
+| 00662730 | `00662776` `lea` | `00D66800` | "PSkinBoneRemap", size 0x4 |
+| 006627E0 | `00662826` `lea` | `00D64F38` | "PVertexStream", size 0x18 |
+| 006751A0 | `006751E6` `lea` | `00D6BA60` | "PAssetReference", size 0x50 |
+| 00675250 | `00675296` `lea` | `00D6BC70` | "PAssetReferenceImport", size 0x18 |
+| 00678370 | `006783B6` `lea` | `00D6C608` | "PCamera", size 0xC0 |
+| 0067CA70 | `0067CAB6` `lea` | `00D6D2B8` | "PBitmapFont", size 0x38 |
+| 0067CB20 | `0067CB66` `lea` | `00D6D598` | "PBitmapFontCharInfo", size 0x30 |
+| 0067E5D0 | `0067E616` `lea` | `00D6DD50` | "PWorldMatrix", size 0x30 |
+| 00681200 | `00681246` `lea` | `00D6EC78` | "PAsyncProcessHeader", size 0x28 |
+| 00681350 | `00681396` `lea` | `00D6F078` | "PScheduler", size 0x2F8 |
+| 00681400 | `00681446` `lea` | `00D6F110` | "PScript", size 0x58 |
+| 006814B0 | `006814F6` `lea` | `00D6F060` | "PScriptCallbackHandler", size 0x18 |
+| 0068F430 | `0068F476` `lea` | `00D747A8` | "PPhysicsCallbackData", size 0x28 |
+| 0068F6C0 | `0068F706` `lea` | `00D74938` | "PPhysicsCharacterCamera", size 0x208 |
+| 0068F810 | `0068F856` `lea` | `00D75B30` | "PPhysicsCharacterControllerBase", size 0x130 |
+| 0068FBE0 | `0068FC26` `lea` | `00D715E0` | "PPhysicsInterfaceBase", size 0x18 |
+| 0068FD30 | `0068FD76` `lea` | `00D75500` | "PPhysicsMaterial", size 0xC |
+| 0068FFC0 | `00690006` `lea` | `00D73D38` | "PPhysicsModel", size 0x18 |
+| 006902F0 | `00690336` `lea` | `00D70658` | "PPhysicsRigidBodyBase", size 0x118 |
+| 006904E0 | `00690526` `lea` | `00D76368` | "PPhysicsShapeBase", size 0x68 |
+| 006909F0 | `00690A36` `lea` | `00D73078` | "PPhysicsWorldBase", size 0x60 |
+| 00690B40 | `00690B86` `lea` | `00D72068` | "PRaycastResult", size 0x30 |
+| 006A7190 | `006A71D6` `lea` | `00D6FD28` | "PString", size 0x8 |
+| 006A7BA0 | `006A7BE6` `lea` | `00D7B7A0` | "PTrigger", size 0x58 |
+| 006A9E50 | `006A9E96` `lea` | `00D7C4E8` | "PTypedObject", size 0x10 |
+| 006AA970 | `006AA9B6` `lea` | `00D7C918` | "PComponent", size 0x18 |
+| 006AB680 | `006AB6C6` `lea` | `00D7CDA8` | "PEntity", size 0x38 |
+| 006B03F0 | `006B0436` `lea` | `00D7E948` | "PRandomGenerator", size 0x1 |
+| 006B3F40 | `006B3F86` `lea` | `00D80038` | "PNode", size 0x68 |
+| 006BBB70 | `006BBBB6` `lea` | `00D81370` | "PModifierNetworkDynamicMeshSegment", size 0x18 |
+| 006BEB80 | `006BEBC6` `lea` | `00D82A34` | "PLight", size 0x40 |
+| 006C0D50 | `006C0D96` `lea` | `00D837B0` | "PShadowCaster", size 0x80 |
+| 006C0E00 | `006C0E46` `lea` | `00D833D0` | "PShadowSplit", size 0xE8 |
+| 006C2E40 | `006C2E86` `lea` | `00D84540` | "PModifierNetworkInstance", size 0x28 |
+| 006C2F90 | `006C2FD6` `lea` | `00D84380` | "PModifierNetworkInstancePacketInput", size 0x8 |
+| 006C4EC0 | `006C4F06` `lea` | `00D853F0` | "PLODGroup", size 0x68 |
+| 006C4F70 | `006C4FB6` `lea` | `00D85188` | "PLODLevel", size 0x38 |
+| 006C8250 | `006C8296` `lea` | `00D86808` | "POccluderGeometryInstance", size 0x10 |
+| 006CD8A0 | `006CD8E6` `lea` | `00D89F98` | "PTriggerReceiverTypeCallbackData", size 0x28 |
+| 006CFBA0 | `006CFBE6` `lea` | `00D8B390` | "PModifierAndInputs", size 0x20 |
+| 006CFC50 | `006CFC96` `lea` | `00D8BC48` | "PModifierNetwork", size 0x70 |
+| 006CFD00 | `006CFD46` `lea` | `00D8B1E0` | "PModifierNetworkBuffer", size 0x18 |
+| 006CFDB0 | `006CFDF6` `lea` | `00D8AD70` | "PModifierNetworkInfoPacket", size 0x20 |
+| 006CFE60 | `006CFEA6` `lea` | `00D8AA88` | "PModifierNetworkInfoPacket_Buffer", size 0x2 |
+| 006CFF10 | `006CFF56` `lea` | `00D8B918` | "PModifierNetworkInfoPacket_ModifierCode", size 0x20 |
+| 006CFFC0 | `006D0006` `lea` | `00D8BCD0` | "PModifierNetworkInfoPacket_ModifierInstance", size 0x20 |
+| 006D0070 | `006D00B6` `lea` | `00D8AFB0` | "PRenderStream", size 0x10 |
+| 006D0120 | `006D0166` `lea` | `00D8ACD0` | "PRenderStreamInput", size 0x8 |
+| 006D8E30 | `006D8E76` `lea` | `00D8D818` | "PMorphModifierWeightsUserDataObject", size 0x10 |
+| 006D9F00 | `006D9F46` `lea` | `00D8DE78` | "POccluderGeometryObject", size 0x30 |
+| 00791AC0 | `00791B06` `lea` | `01CB0D80` | "PApplication", size 0x1130 |
+| 00791B70 | `00791BB6` `lea` | `01CB0EA0` | "PApplicationViewport", size 0x38 |
+| 00791C20 | `00791C66` `lea` | `01CB09D0` | "PDebugUtils", size 0x58 |
+| 00791CD0 | `00791D16` `lea` | `01CB1050` | "PInputMapper", size 0x2C8 |
+| 0086B2B0 | `0086B2F6` `lea` | `01CD0D20` | "PInputAction", size 0x28 |
+| 0086B360 | `0086B3A6` `lea` | `01CD1C98` | "PInputMap", size 0x18 |
+| 0086B410 | `0086B456` `lea` | `01CD0D30` | "PInputSource", size 0x28 |
+| 00874C10 | `00874C56` `lea` | `01CD6FF8` | "PVisionMoveTrackerBase", size 0x8 |
+| 00875800 | `00875846` `lea` | `01CD77D8` | "PVisionTrackerBase", size 0x8 |
+| 00877BE0 | `00877C26` `lea` | `01CD9180` | "POctree", size 0x50 |
+| 00877C90 | `00877CD6` `lea` | `01CD9320` | "POctreeChildren", size 0x288 |
+| 00877D40 | `00877D86` `lea` | `01CD8FD8` | "POctreeData", size 0x38 |
+| 00877DF0 | `00877E36` `lea` | `01CD8C88` | "POctreeWorld", size 0xC8 |
+| 00879A30 | `00879A76` `lea` | `01CD9A50` | "PGameConfig", size 0x18 |
+
+## Per-member rows: the class descriptor each of the reflection object traversal adapters loads (OPUS, 2026-10-03)
+
+The family `reflection object traversal adapters` (frontmatter: 304 members; 304 get a row here) shares one shape, stated here once and not repeated per row: a null-guarded selection of the object pointer and the flag, then `lea rcx, [X]` and a call to the shared traversal `0063E2E0` on each path. What differs from member to member is the class descriptor X its `lea rcx, [X]` loads (every load of it in the body names the same X). Each row anchors the first such `lea`, the member's distinguishing instruction, and states X and the class X describes. The class is read from the certified image: the static initialiser that does `lea rcx, [X]` and calls a descriptor-constructor wrapper, and that wrapper's `lea r8, [name]` before its one call to `00632D80`; every such initialiser must agree. [`fam_rows.py`](../../_index/candidates/opus-ee-traversal-adapters-1003/fam_rows.py) re-derives every row and compares it with the committed [`rows.tsv`](../../_index/candidates/opus-ee-traversal-adapters-1003/rows.tsv). A member whose loads name more than one X, a descriptor not named by exactly one class, or a value that differs fails it. Two controls are refused: a swapped value and a moved anchor. Members that do not derive are listed in [`excluded.tsv`](../../_index/candidates/opus-ee-traversal-adapters-1003/excluded.tsv).
+
+### All 304 members (OPUS)
+
+| member | distinguishing instruction | class descriptor X | class X describes |
+|---|---|---|---|
+| 005A2B10 | `005A2B2C` `lea` | `02CAF0E0` | PTimeScaleOffsetController |
+| 005A2E70 | `005A2E74` `lea` | `02CADC50` | PAnimationConstantChannel |
+| 005A32B0 | `005A32B4` `lea` | `02CAE450` | PAnimationNetworkInstanceTarget |
+| 005A3440 | `005A3444` `lea` | `02CAE660` | PAnimationSet |
+| 005A37A0 | `005A37BC` `lea` | `02CAD340` | PAnimationBlenderController |
+| 005A3850 | `005A3854` `lea` | `02CAE760` | PAnimationSlotListIndex |
+| 005A39D0 | `005A39D4` `lea` | `02CADB40` | PAnimationClipBinding |
+| 005A3A90 | `005A3A94` `lea` | `02CAE050` | PAnimationEvent |
+| 005A3F60 | `005A3F7C` `lea` | `02CAEDE0` | PAnimationWeightedBlenderController |
+| 005A40E0 | `005A40E4` `lea` | `02CAE860` | PAnimationSlotArray |
+| 005A4170 | `005A4174` `lea` | `02CAD940` | PAnimationClipBindingChannelMap |
+| 005A4600 | `005A461C` `lea` | `02CADE50` | PAnimationDataSource |
+| 005A4780 | `005A4784` `lea` | `02CADA40` | PAnimationClipBindingDataBlockCache |
+| 005A4870 | `005A4874` `lea` | `02CAE150` | PAnimationEventList |
+| 005A49D0 | `005A49EC` `lea` | `02CAD240` | PAnimationAdditiveBlenderController |
+| 005A4AA0 | `005A4AA4` `lea` | `02CAD740` | PAnimationChannelTimes |
+| 005A5140 | `005A515C` `lea` | `02CADF50` | PAnimationEventController |
+| 005A52E0 | `005A52FC` `lea` | `02CAE550` | PAnimationNetworkInstance |
+| 005A54C0 | `005A54DC` `lea` | `02CAE250` | PAnimationHierarchyNode |
+| 005A55A0 | `005A55BC` `lea` | `02CAEBE0` | PAnimationSpuTargetBlenderController |
+| 005A58F0 | `005A58F4` `lea` | `02CAD640` | PAnimationChannelTarget |
+| 005CDE20 | `005CDE24` `lea` | `02CB6380` | PConstantBufferBase |
+| 005CDE90 | `005CDEAC` `lea` | `02CB7180` | PModifierNetworkDynamicMeshInstance |
+| 005CDFA0 | `005CDFA4` `lea` | `02CB9600` | PShaderPassParameterLocationTypesBase |
+| 005CE200 | `005CE204` `lea` | `02CB78A0` | PSamplerState |
+| 005CE3F0 | `005CE3F4` `lea` | `02CBAB00` | PShaderSource |
+| 005CE480 | `005CE484` `lea` | `02CB7BA0` | PContextVariantFoldingTable |
+| 005CE920 | `005CE924` `lea` | `02CBB800` | PTexture2DBase |
+| 005CEA70 | `005CEA74` `lea` | `02CBAA00` | PShaderParameterCaptureBufferRWTexture3D |
+| 005CEC80 | `005CEC84` `lea` | `02CB6D80` | PMeshInstanceSegmentContext |
+| 005CF230 | `005CF234` `lea` | `02CB9500` | PShaderParameterDefinition |
+| 005CF260 | `005CF264` `lea` | `02CB6780` | PEffectVariant |
+| 005CF7D0 | `005CF7D4` `lea` | `02CBBB00` | PTexture3D |
+| 005CF8C0 | `005CF8C4` `lea` | `02CBB500` | PStructuredBufferBase |
+| 005CFB30 | `005CFB34` `lea` | `02CB75A0` | PRenderTargetBase |
+| 005CFD00 | `005CFD04` `lea` | `02CBA200` | PShaderParameterCaptureBufferSampler |
+| 005CFE40 | `005CFE44` `lea` | `02CB7380` | PParameterBufferBase |
+| 005D01E0 | `005D01E4` `lea` | `02CB9700` | PShaderPassParameterLocationTypes |
+| 005D0570 | `005D0574` `lea` | `02CBAE00` | PShaderStreamDefinition |
+| 005D0850 | `005D0854` `lea` | `02CB7280` | PNodeContext |
+| 005D0880 | `005D0884` `lea` | `02CBA300` | PShaderParameterCaptureBufferStructuredBuffer |
+| 005D0D00 | `005D0D04` `lea` | `02CBBC00` | PTextureCubeMapBase |
+| 005D0E30 | `005D0E34` `lea` | `02CB7480` | PParameterBuffer |
+| 005D0E60 | `005D0E64` `lea` | `02CB9A00` | PShaderPass |
+| 005D0E90 | `005D0E94` `lea` | `02CBAC00` | PShaderProgramParamsAndStreams |
+| 005D1140 | `005D1144` `lea` | `02CB9C00` | PShaderParameterCaptureBufferStream |
+| 005D1340 | `005D1344` `lea` | `02CB7080` | PMeshInstanceBounds |
+| 005D1590 | `005D1594` `lea` | `02CB6480` | PConstantBuffer |
+| 005D1840 | `005D1844` `lea` | `02CBA400` | PShaderParameterCaptureBufferRWStructuredBuffer |
+| 005D1D00 | `005D1D04` `lea` | `02CB9800` | PShaderPassParameterLocationTypesConstantBuffer |
+| 005D20D0 | `005D20D4` `lea` | `02CB79A0` | PSceneRenderPass |
+| 005D22B0 | `005D22B4` `lea` | `02CBAD00` | PShaderProgramBase |
+| 005D2530 | `005D2534` `lea` | `02CB6A80` | PMaterialSwitch |
+| 005D2560 | `005D2564` `lea` | `02CB9D00` | PShaderParameterCaptureBufferTextureBase |
+| 005D2920 | `005D2924` `lea` | `02CBA500` | PShaderParameterCaptureBufferByteAddressBuffer |
+| 005D2CE0 | `005D2CE4` `lea` | `02CB9B00` | PShaderPassStateBase |
+| 005D2E00 | `005D2E04` `lea` | `02CBAF00` | PShaderVertexProgram |
+| 005D3060 | `005D3064` `lea` | `02CB76A0` | PRenderTarget |
+| 005D30B0 | `005D30B4` `lea` | `02CBB900` | PTexture2D |
+| 005D32F0 | `005D32F4` `lea` | `02CB9000` | PShader |
+| 005D38A0 | `005D38A4` `lea` | `02CBB600` | PStructuredBuffer |
+| 005D39B0 | `005D39B4` `lea` | `02CB9100` | PShaderParameterCaptureBufferLocation |
+| 005D39E0 | `005D39E4` `lea` | `02CBA600` | PShaderParameterCaptureBufferRWByteAddressBuffer |
+| 005D3C30 | `005D3C34` `lea` | `02CBB300` | PShadowRenderer |
+| 005D3FD0 | `005D3FD4` `lea` | `02CBB000` | PShaderFragmentProgram |
+| 005D4310 | `005D4314` `lea` | `02CB6B80` | PMaterial |
+| 005D4690 | `005D4694` `lea` | `02CB9F00` | PShaderParameterCaptureBufferTexture2D |
+| 005D4790 | `005D4794` `lea` | `02CB6E80` | PMeshInstance |
+| 005D4800 | `005D4804` `lea` | `02CB6680` | PEffect |
+| 005D4B80 | `005D4B84` `lea` | `02CB9E00` | PShaderParameterCaptureConstantBuffer |
+| 005D4BB0 | `005D4BB4` `lea` | `02CB9200` | PShaderParameterCaptureBufferLocationSize |
+| 005D4BE0 | `005D4BE4` `lea` | `02CB6880` | PIndirectArgsBufferBase |
+| 005D5150 | `005D5154` `lea` | `02CBBA00` | PTexture3DBase |
+| 005D5190 | `005D5194` `lea` | `02CBB400` | PForwardShadowRenderer |
+| 005D5210 | `005D5214` `lea` | `02CB9900` | PShaderPassBase |
+| 005D5470 | `005D5474` `lea` | `02CB77A0` | PSamplerStateBase |
+| 005D54C0 | `005D54C4` `lea` | `02CBB100` | PShaderGeometryProgram |
+| 005D5DC0 | `005D5DC4` `lea` | `02CBA000` | PShaderParameterCaptureBufferTexture3D |
+| 005D61D0 | `005D61D4` `lea` | `02CBBD00` | PTextureCubeMap |
+| 005D6390 | `005D6394` `lea` | `02CBA700` | PShaderParameterCaptureBufferDataBlock |
+| 005D63C0 | `005D63C4` `lea` | `02CB9300` | PShaderParameterCaptureBufferLocationType |
+| 005D65B0 | `005D65CC` `lea` | `02CB6580` | PDynamicMeshInstance |
+| 005D6990 | `005D6994` `lea` | `02CBB200` | PShaderComputeProgram |
+| 005D6C70 | `005D6C74` `lea` | `02CB7CA0` | PSceneWideParameterBuffer |
+| 005D6E90 | `005D6E94` `lea` | `02CBA100` | PShaderParameterCaptureBufferTextureCubeMap |
+| 005D7030 | `005D7034` `lea` | `02CB6C80` | PMeshInstanceSegmentStreamBinding |
+| 005D7250 | `005D7254` `lea` | `02CBB700` | PTextureCommonBase |
+| 005D73C0 | `005D73C4` `lea` | `02CBA800` | PShaderParameterCaptureBufferIndexDataBlock |
+| 005D7400 | `005D7404` `lea` | `02CB9400` | PShaderParameterCaptureBufferLocationTypeConstantBuffer |
+| 005D7870 | `005D7874` `lea` | `02CB6980` | PIndirectArgsBuffer |
+| 005D7A90 | `005D7A94` `lea` | `02CB7AA0` | PShaderPassInfo |
+| 005D80E0 | `005D80E4` `lea` | `02CBA900` | PShaderParameterCaptureBufferRWTexture2D |
+| 005D8140 | `005D8144` `lea` | `02CB6F80` | PMeshInstanceAttachPoint |
+| 00610F30 | `00610F34` `lea` | `02CF1E40` | PTexture3DD3D11 |
+| 00610FC0 | `00610FC4` `lea` | `02CF1540` | PShaderPassStateD3D11 |
+| 00611130 | `00611134` `lea` | `02CF1940` | PShaderVertexProgramD3D11 |
+| 00611690 | `00611694` `lea` | `02CF1A40` | PShaderFragmentProgramD3D11 |
+| 006117A0 | `006117A4` `lea` | `02CF1440` | PShaderPassD3D11 |
+| 00611B40 | `00611B44` `lea` | `02CF2440` | PConstantBufferD3D11 |
+| 00611C50 | `00611C54` `lea` | `02CF1B40` | PShaderGeometryProgramD3D11 |
+| 00611FF0 | `00611FF4` `lea` | `02CF1D40` | PTexture2DD3D11 |
+| 006120A0 | `006120A4` `lea` | `02CF1C40` | PShaderComputeProgramD3D11 |
+| 00612240 | `00612244` `lea` | `02CF2040` | PRenderTargetD3D11 |
+| 006123A0 | `006123A4` `lea` | `02CF2240` | PStructuredBufferD3D11 |
+| 006128C0 | `006128C4` `lea` | `02CF1640` | PStreamInputDescD3D11 |
+| 00612B90 | `00612B94` `lea` | `02CF1F40` | PTextureCubeMapD3D11 |
+| 00612DE0 | `00612DE4` `lea` | `02CF1740` | PStreamInputLayoutD3D11 |
+| 00612F80 | `00612F84` `lea` | `02CF2340` | PIndirectArgsBufferD3D11 |
+| 00613250 | `00613254` `lea` | `02CF1840` | PShaderProgramD3D11 |
+| 00613330 | `00613334` `lea` | `02CF2140` | PSamplerStateD3D11 |
+| 0063EB60 | `0063EB7C` `lea` | `02D34C40` | PDepthOfField |
+| 0063EC90 | `0063ECAC` `lea` | `02D369A0` | PAtmosphericsD3D11 |
+| 0063ED40 | `0063ED5C` `lea` | `02D364A0` | PScreenSpaceReflectionBase |
+| 0063EE10 | `0063EE2C` `lea` | `02D35040` | PMotionBlurD3D11 |
+| 0063F060 | `0063F07C` `lea` | `02D356A0` | PMLAABase |
+| 0063F430 | `0063F44C` `lea` | `02D34840` | PDeferredLightingBase |
+| 0063F890 | `0063F8AC` `lea` | `02D35AA0` | PGlowBase |
+| 0063F9E0 | `0063F9FC` `lea` | `02D366A0` | PScreenSpaceReflectionD3D11 |
+| 0063FCB0 | `0063FCCC` `lea` | `02D368A0` | PAtmospherics |
+| 0063FD90 | `0063FDAC` `lea` | `02D358A0` | PMLAAD3D11 |
+| 0063FFD0 | `0063FFEC` `lea` | `02D34F40` | PMotionBlur |
+| 00640530 | `0064054C` `lea` | `02D35BA0` | PGlowGPUBase |
+| 006406C0 | `006406DC` `lea` | `02D365A0` | PScreenSpaceReflection |
+| 00640790 | `006407AC` `lea` | `02D36AA0` | PLowResParticles |
+| 00640990 | `006409AC` `lea` | `02D357A0` | PMLAA |
+| 00640B50 | `00640B6C` `lea` | `02D35300` | PScreenSpaceAmbientOcclusionBase |
+| 00640F80 | `00640F9C` `lea` | `02D34A40` | PDeferredLightingD3D11 |
+| 00641110 | `0064112C` `lea` | `02D35DA0` | PGlowD3D11 |
+| 00641670 | `0064168C` `lea` | `02D36BA0` | PMaterialPostEffect |
+| 006416C0 | `006416DC` `lea` | `02D361A0` | PCelShadingBase |
+| 00641890 | `006418AC` `lea` | `02D35500` | PScreenSpaceAmbientOcclusionD3D11 |
+| 00641DB0 | `00641DCC` `lea` | `02D35CA0` | PGlow |
+| 00641F20 | `00641F3C` `lea` | `02D34940` | PDeferredLighting |
+| 00642000 | `0064201C` `lea` | `02D363A0` | PCelShadingD3D11 |
+| 00642290 | `006422AC` `lea` | `02D35400` | PScreenSpaceAmbientOcclusion |
+| 006427D0 | `006427EC` `lea` | `02D35EA0` | PFXAABase |
+| 00642880 | `0064289C` `lea` | `02D34B40` | PDepthOfFieldBase |
+| 00642990 | `00642994` `lea` | `02D36CA0` | PPostEffectManager |
+| 00642A20 | `00642A3C` `lea` | `02D362A0` | PCelShading |
+| 00643180 | `0064319C` `lea` | `02D359A0` | PMeshParticleSystemBase |
+| 006431F0 | `0064320C` `lea` | `02D360A0` | PFXAAD3D11 |
+| 006433E0 | `006433FC` `lea` | `02D34740` | PPostEffectBase |
+| 006438A0 | `006438BC` `lea` | `02D34D40` | PDepthOfFieldD3D11 |
+| 006439D0 | `006439EC` `lea` | `02D35FA0` | PFXAA |
+| 00643AA0 | `00643ABC` `lea` | `02D34E40` | PMotionBlurBase |
+| 00643C80 | `00643C9C` `lea` | `02D367A0` | PAtmosphericsBase |
+| 0065E8B0 | `0065E8B4` `lea` | `02D3A840` | PMeshSegmentBase |
+| 0065EB00 | `0065EB04` `lea` | `02D3A240` | PIndexDataBlockBase |
+| 0065ED70 | `0065ED74` `lea` | `02D3A640` | PMesh |
+| 0065EFF0 | `0065EFF4` `lea` | `02D39840` | PMeshSegmentD3D11 |
+| 0065F020 | `0065F024` `lea` | `02D39940` | PIndexDataBlockBufferD3D11 |
+| 0065F2E0 | `0065F2E4` `lea` | `02D39B40` | PDataBlockBufferD3D11 |
+| 0065F5E0 | `0065F5E4` `lea` | `02D3ADE0` | PVertexStream |
+| 0065F850 | `0065F854` `lea` | `02D3A940` | PMeshSegment |
+| 0065FC80 | `0065FC9C` `lea` | `02D3A140` | PDynamicMesh |
+| 0065FCD0 | `0065FCD4` `lea` | `02D39A40` | PIndexDataBlockD3D11 |
+| 0065FFC0 | `0065FFC4` `lea` | `02D39C40` | PDataBlockD3D11 |
+| 006600E0 | `006600E4` `lea` | `02D3A040` | PDynamicSegmentDesc |
+| 00660290 | `00660294` `lea` | `02D3A440` | PMaterialSet |
+| 00660810 | `00660814` `lea` | `02D39D40` | PDataBlockBase |
+| 00660930 | `00660934` `lea` | `02D3A540` | PSkeletonJointBounds |
+| 00660B60 | `00660B64` `lea` | `02D3A340` | PIndexDataBlock |
+| 00660D30 | `00660D34` `lea` | `02D3ACE0` | PShape |
+| 00660F50 | `00660F54` `lea` | `02D39E40` | PDataBlock |
+| 00661410 | `00661414` `lea` | `02D3A740` | PSkinBoneRemap |
+| 00661690 | `00661694` `lea` | `02D39F40` | PDynamicDataBlock |
+| 00674A50 | `00674A54` `lea` | `02D3E680` | PAssetReference |
+| 00677FA0 | `00677FA4` `lea` | `02D3F210` | PCamera |
+| 006781D0 | `006781EC` `lea` | `02D3F310` | PCameraProjection |
+| 0067C740 | `0067C744` `lea` | `02E3FA60` | PBitmapFont |
+| 0067C970 | `0067C974` `lea` | `02E3F960` | PBitmapFontCharInfo |
+| 0067E350 | `0067E354` `lea` | `02E404B0` | PWorldMatrix |
+| 00680440 | `00680444` `lea` | `02E41070` | PClassCallableMethodScript |
+| 00680650 | `00680654` `lea` | `02E41270` | PAsyncProcessHeader |
+| 006808E0 | `006808E4` `lea` | `02E41170` | PScriptCallbackHandler |
+| 00680950 | `0068096C` `lea` | `02E41370` | PScheduler |
+| 00680AE0 | `00680AE4` `lea` | `02E41470` | PScript |
+| 00687F70 | `00687F74` `lea` | `02E49FD0` | PPhysicsCharacterControllerBullet |
+| 00688060 | `00688064` `lea` | `02E494D0` | PPhysicsWorld |
+| 00688170 | `00688174` `lea` | `02E489D0` | PPhysicsRigidBodyBase |
+| 00688420 | `0068843C` `lea` | `02E495D0` | PPhysicsShapeBullet |
+| 00688630 | `0068864C` `lea` | `02E499D0` | PPhysicsMeshBullet |
+| 00688680 | `0068869C` `lea` | `02E490D0` | PPhysicsTaperedCapsule |
+| 00689180 | `00689184` `lea` | `02E47ED0` | PPhysicsCharacterController |
+| 00689210 | `0068922B` `lea` | `02E481D0` | PPhysicsInterfaceBase |
+| 006893E0 | `006893FC` `lea` | `02E48DD0` | PPhysicsShape |
+| 00689430 | `0068944C` `lea` | `02E485D0` | PPhysicsMesh |
+| 00689610 | `0068962C` `lea` | `02E487D0` | PPhysicsPlaneBase |
+| 00689F70 | `00689F74` `lea` | `02E493D0` | PRaycastResult |
+| 0068A0D0 | `0068A0D4` `lea` | `02E49CD0` | PPhysicsRigidBodyBullet |
+| 0068A460 | `0068A47C` `lea` | `02E48ED0` | PPhysicsSphereBase |
+| 0068A5A0 | `0068A5BC` `lea` | `02E47FD0` | PPhysicsCylinderBase |
+| 0068A630 | `0068A64B` `lea` | `02E49ED0` | PPhysicsInterfaceBullet |
+| 0068A6E0 | `0068A6FC` `lea` | `02E49AD0` | PPhysicsPlaneBullet |
+| 0068B2C0 | `0068B2C4` `lea` | `02E492D0` | PPhysicsWorldBase |
+| 0068B370 | `0068B374` `lea` | `02E48BD0` | PPhysicsRigidBody |
+| 0068B550 | `0068B56C` `lea` | `02E49BD0` | PPhysicsSphereBullet |
+| 0068B5A0 | `0068B5BB` `lea` | `02E482D0` | PPhysicsInterface |
+| 0068B6A0 | `0068B6BC` `lea` | `02E498D0` | PPhysicsCylinderBullet |
+| 0068B770 | `0068B78C` `lea` | `02E488D0` | PPhysicsPlane |
+| 0068C470 | `0068C48C` `lea` | `02E48FD0` | PPhysicsSphere |
+| 0068C520 | `0068C524` `lea` | `02E486D0` | PPhysicsModel |
+| 0068C550 | `0068C56C` `lea` | `02E480D0` | PPhysicsCylinder |
+| 0068CDC0 | `0068CDDC` `lea` | `02E478D0` | PPhysicsBoxBase |
+| 0068CE10 | `0068CE2C` `lea` | `02E47AD0` | PPhysicsCapsuleBase |
+| 0068D040 | `0068D044` `lea` | `02E48AD0` | PPhysicsCallbackData |
+| 0068D430 | `0068D44C` `lea` | `02E47CD0` | PPhysicsCharacterCamera |
+| 0068D880 | `0068D89C` `lea` | `02E496D0` | PPhysicsBoxBullet |
+| 0068D8D0 | `0068D8EC` `lea` | `02E497D0` | PPhysicsCapsuleBullet |
+| 0068DF50 | `0068DF54` `lea` | `02E483D0` | PPhysicsMaterial |
+| 0068DF80 | `0068DF84` `lea` | `02E49DD0` | PPhysicsWorldBullet |
+| 0068E160 | `0068E17C` `lea` | `02E479D0` | PPhysicsBox |
+| 0068E1B0 | `0068E1CC` `lea` | `02E47BD0` | PPhysicsCapsule |
+| 0068E680 | `0068E684` `lea` | `02E47DD0` | PPhysicsCharacterControllerBase |
+| 0068ED30 | `0068ED4C` `lea` | `02E484D0` | PPhysicsMeshBase |
+| 0068EDE0 | `0068EDFC` `lea` | `02E491D0` | PPhysicsTaperedCylinder |
+| 0068EE30 | `0068EE4C` `lea` | `02E48CD0` | PPhysicsShapeBase |
+| 006A6F10 | `006A6F14` `lea` | `02E4D630` | PString |
+| 006A7990 | `006A7994` `lea` | `02E4D940` | PTrigger |
+| 006A9470 | `006A9474` `lea` | `02E4E1E0` | PQuarryComponent |
+| 006A9C10 | `006A9C14` `lea` | `02E4E430` | PTypedObject |
+| 006AA6F0 | `006AA6F4` `lea` | `02E4E720` | PComponent |
+| 006AB2F0 | `006AB2F4` `lea` | `02E4EAF0` | PEntity |
+| 006ACD40 | `006ACD5C` `lea` | `02E4F290` | PCameraOrthographic |
+| 006AD5B0 | `006AD5CC` `lea` | `02E4F710` | PCameraPerspective |
+| 006ADC70 | `006ADC74` `lea` | `02E4F900` | PInstancesComponent |
+| 006AF970 | `006AF974` `lea` | `02E4FF60` | PNameComponent |
+| 006B0210 | `006B0214` `lea` | `02E50160` | PRandomGenerator |
+| 006B3BC0 | `006B3BDC` `lea` | `02E518D0` | PNode |
+| 006B6940 | `006B6944` `lea` | `02E522F0` | PMeshSegmentContext |
+| 006BB450 | `006BB454` `lea` | `02E57F60` | PModifierNetworkDynamicMeshSegment |
+| 006BB990 | `006BB9AC` `lea` | `02E58060` | PModifierNetworkDynamicMesh |
+| 006BE810 | `006BE814` `lea` | `02E58DB0` | PLight |
+| 006C06E0 | `006C06E4` `lea` | `02E59DC0` | PShadowCaster |
+| 006C0900 | `006C0904` `lea` | `02E59CC0` | PShadowSplit |
+| 006C27E0 | `006C27E4` `lea` | `02E5A4C0` | PModifierNetworkInstanceInput |
+| 006C2A10 | `006C2A14` `lea` | `02E5A5C0` | PModifierNetworkInstancePacketInput |
+| 006C2C30 | `006C2C34` `lea` | `02E5A6C0` | PModifierNetworkInstance |
+| 006C48D0 | `006C48D4` `lea` | `02E5AD00` | PLODLevel |
+| 006C4BD0 | `006C4BD4` `lea` | `02E5AE00` | PLODGroup |
+| 006C8030 | `006C8034` `lea` | `02E5BBB0` | POccluderGeometryInstance |
+| 006CCDB0 | `006CCDCC` `lea` | `02E5C050` | PScriptableComponent |
+| 006CD6B0 | `006CD6B4` `lea` | `02E5C370` | PTriggerReceiverTypeCallbackData |
+| 006CDD80 | `006CDD84` `lea` | `02E5C710` | PTriggerReceiverComponent |
+| 006CE8D0 | `006CE8D4` `lea` | `02E5E330` | PModifierNetworkInfoPacket_Buffer |
+| 006CEAE0 | `006CEAE4` `lea` | `02E5DD30` | PRenderStreamInput |
+| 006CEC00 | `006CEC04` `lea` | `02E5E430` | PModifierNetworkInfoPacket |
+| 006CEEC0 | `006CEEC4` `lea` | `02E5DE30` | PRenderStream |
+| 006CF120 | `006CF124` `lea` | `02E5DF30` | PModifierNetworkBuffer |
+| 006CF370 | `006CF374` `lea` | `02E5E030` | PModifierAndInputs |
+| 006CF5A0 | `006CF5A4` `lea` | `02E5E130` | PModifierNetworkInfoPacket_ModifierCode |
+| 006CF7D0 | `006CF7D4` `lea` | `02E5E540` | PModifierNetwork |
+| 006CF8C0 | `006CF8C4` `lea` | `02E5E230` | PModifierNetworkInfoPacket_ModifierInstance |
+| 006D7170 | `006D7174` `lea` | `02E9FDF0` | PMorphModifierWeightsUserDataObject |
+| 006D9CB0 | `006D9CB4` `lea` | `02EA0850` | POccluderGeometryObject |
+| 00791230 | `00791234` `lea` | `02EA9400` | PDebugUtils |
+| 00791470 | `0079148C` `lea` | `02EA5660` | PApplication |
+| 00791610 | `0079162C` `lea` | `02EA5380` | PApplicationViewport |
+| 00791820 | `00791824` `lea` | `02EA5560` | PInputMapper |
+| 00867310 | `0086732C` `lea` | `02EB6BF0` | PInputSourceVisionTrackerZ |
+| 008673C0 | `008673DC` `lea` | `02EB62F0` | PInputSourceMotionQuatW |
+| 00867470 | `0086748C` `lea` | `02EB59F0` | PInputSourceTouchRotate |
+| 00867A80 | `00867A9C` `lea` | `02EB63F0` | PInputSourceMotionAngularVelocityX |
+| 00867B30 | `00867B4C` `lea` | `02EB5AF0` | PInputSourceTouchPinch |
+| 00867F80 | `00867F9C` `lea` | `02EB6CF0` | PInputAction |
+| 00868030 | `0086804C` `lea` | `02EB52F0` | PInputSource |
+| 00868150 | `0086816C` `lea` | `02EB64F0` | PInputSourceMotionAngularVelocityY |
+| 00868260 | `0086827C` `lea` | `02EB5DF0` | PInputSourceTouchTwoFingerDragX |
+| 00868890 | `008688AC` `lea` | `02EB53F0` | PInputSourceKey |
+| 008689B0 | `008689CC` `lea` | `02EB65F0` | PInputSourceMotionAngularVelocityZ |
+| 00868A60 | `00868A7C` `lea` | `02EB5EF0` | PInputSourceTouchTwoFingerDragY |
+| 00869060 | `00869064` `lea` | `02EB6DF0` | PInputMap |
+| 00869160 | `0086917C` `lea` | `02EB54F0` | PInputSourceJoypadButton |
+| 00869230 | `0086924C` `lea` | `02EB66F0` | PInputSourceMotionLinearAccelerationX |
+| 008693A0 | `008693BC` `lea` | `02EB5BF0` | PInputSourceTouchDragX |
+| 00869A00 | `00869A1C` `lea` | `02EB55F0` | PInputSourceJoypadAxis |
+| 00869AB0 | `00869ACC` `lea` | `02EB67F0` | PInputSourceMotionLinearAccelerationY |
+| 00869B60 | `00869B7C` `lea` | `02EB5CF0` | PInputSourceTouchDragY |
+| 0086A1D0 | `0086A1EC` `lea` | `02EB56F0` | PInputSourceMouseButton |
+| 0086A240 | `0086A25C` `lea` | `02EB68F0` | PInputSourceMotionLinearAccelerationZ |
+| 0086A330 | `0086A34C` `lea` | `02EB5FF0` | PInputSourceMotionQuatX |
+| 0086A930 | `0086A94C` `lea` | `02EB69F0` | PInputSourceVisionTrackerX |
+| 0086A9A0 | `0086A9BC` `lea` | `02EB57F0` | PInputSourceMouseDeltaX |
+| 0086AA30 | `0086AA4C` `lea` | `02EB60F0` | PInputSourceMotionQuatY |
+| 0086B0A0 | `0086B0BC` `lea` | `02EB6AF0` | PInputSourceVisionTrackerY |
+| 0086B150 | `0086B16C` `lea` | `02EB61F0` | PInputSourceMotionQuatZ |
+| 0086B200 | `0086B21C` `lea` | `02EB58F0` | PInputSourceMouseDeltaY |
+| 00874740 | `00874744` `lea` | `02EB7BD0` | PVisionMoveTrackerBase |
+| 008748D0 | `008748D4` `lea` | `02EB7DD0` | PVisionMoveTrackerWin32 |
+| 00874A60 | `00874A64` `lea` | `02EB7CD0` | PVisionMoveTracker |
+| 008753B0 | `008753B4` `lea` | `02EB7F60` | PVisionTrackerBase |
+| 00875540 | `00875544` `lea` | `02EB8160` | PVisionTrackerWin32 |
+| 008756D0 | `008756D4` `lea` | `02EB8060` | PVisionTracker |
+| 008773E0 | `008773E4` `lea` | `02EB9270` | POctreeWorld |
+| 00877610 | `00877614` `lea` | `02EB9170` | POctreeData |
+| 00877860 | `00877864` `lea` | `02EB9070` | POctree |
+| 00877AC0 | `00877AC4` `lea` | `02EB9370` | POctreeChildren |
+| 00879800 | `00879804` `lea` | `02EB9E60` | PGameConfig |
+| 005A0E30 | `005A0E4C` `lea` | `02CADD50` | PAnimationController |
+| 005A12A0 | `005A12BC` `lea` | `02CAECE0` | PAnimationTargetBlenderController |
+| 005A1920 | `005A193C` `lea` | `02CAEEE0` | PTimeController |
+| 005A2140 | `005A215C` `lea` | `02CAEFE0` | PTimeIntervalController |
+| 005A2390 | `005A23AC` `lea` | `02CAD140` | PAnimatableComponent |
+| 005A26A0 | `005A26BC` `lea` | `02CAEA60` | PAnimationSlotFilter |
+
+## Per-member rows: the class descriptor each of the PType name-only class-registration initialisers loads (OPUS, 2026-10-03)
+
+The family `PType name-only class-registration initialisers` (frontmatter: 110 members; 91 get a row here) shares one shape, stated here once and not repeated per row: `lea rcx, [X]`, a call to `006388C0`, `lea rcx, [X]` again and a tail jump to `00639450`. What differs from member to member is the class descriptor X its `lea rcx, [X]` loads (every load of it in the body names the same X). Each row anchors the first such `lea`, the member's distinguishing instruction, and states X and the class X describes. The class is read from the certified image: the static initialiser that does `lea rcx, [X]` and calls a descriptor-constructor wrapper, and that wrapper's `lea r8, [name]` before its one call to `00632D80`; every such initialiser must agree. [`fam_rows.py`](../../_index/candidates/opus-ee-name-only-registration-1003/fam_rows.py) re-derives every row and compares it with the committed [`rows.tsv`](../../_index/candidates/opus-ee-name-only-registration-1003/rows.tsv). A member whose loads name more than one X, a descriptor not named by exactly one class, or a value that differs fails it. Two controls are refused: a swapped value and a moved anchor. Members that do not derive are listed in [`excluded.tsv`](../../_index/candidates/opus-ee-name-only-registration-1003/excluded.tsv).
+
+### All 91 members (OPUS)
+
+| member | distinguishing instruction | class descriptor X | class X describes |
+|---|---|---|---|
+| 00584D10 | `00584D14` `lea` | `02CAA0A0` | PClusterHeader |
+| 005A3400 | `005A3404` `lea` | `02CAE450` | PAnimationNetworkInstanceTarget |
+| 005A4280 | `005A4284` `lea` | `02CAE860` | PAnimationSlotArray |
+| 005A5710 | `005A5714` `lea` | `02CAE250` | PAnimationHierarchyNode |
+| 005CE620 | `005CE624` `lea` | `02CB78A0` | PSamplerState |
+| 005CFB60 | `005CFB64` `lea` | `02CBBB00` | PTexture3D |
+| 005D12D0 | `005D12D4` `lea` | `02CB9A00` | PShaderPass |
+| 005D1BB0 | `005D1BB4` `lea` | `02CB6480` | PConstantBuffer |
+| 005D26D0 | `005D26D4` `lea` | `02CBAD00` | PShaderProgramBase |
+| 005D3250 | `005D3254` `lea` | `02CBAF00` | PShaderVertexProgram |
+| 005D3480 | `005D3484` `lea` | `02CB76A0` | PRenderTarget |
+| 005D34B0 | `005D34B4` `lea` | `02CBB900` | PTexture2D |
+| 005D3DB0 | `005D3DB4` `lea` | `02CBB600` | PStructuredBuffer |
+| 005D3FB0 | `005D3FB4` `lea` | `02CBB300` | PShadowRenderer |
+| 005D43A0 | `005D43A4` `lea` | `02CBB000` | PShaderFragmentProgram |
+| 005D5280 | `005D5284` `lea` | `02CB6880` | PIndirectArgsBufferBase |
+| 005D58A0 | `005D58A4` `lea` | `02CBB400` | PForwardShadowRenderer |
+| 005D5A80 | `005D5A84` `lea` | `02CBB100` | PShaderGeometryProgram |
+| 005D6530 | `005D6534` `lea` | `02CBBD00` | PTextureCubeMap |
+| 005D6CA0 | `005D6CA4` `lea` | `02CBB200` | PShaderComputeProgram |
+| 005D7D40 | `005D7D44` `lea` | `02CB6980` | PIndirectArgsBuffer |
+| 00611110 | `00611114` `lea` | `02CF1E40` | PTexture3DD3D11 |
+| 00612550 | `00612554` `lea` | `02CF2040` | PRenderTargetD3D11 |
+| 00612640 | `00612644` `lea` | `02CF2240` | PStructuredBufferD3D11 |
+| 006130D0 | `006130D4` `lea` | `02CF2340` | PIndirectArgsBufferD3D11 |
+| 006177D0 | `006177D4` `lea` | `02CF2440` | PConstantBufferD3D11 |
+| 006177F0 | `006177F4` `lea` | `02CF2140` | PSamplerStateD3D11 |
+| 006179C0 | `006179C4` `lea` | `02CF1A40` | PShaderFragmentProgramD3D11 |
+| 006179E0 | `006179E4` `lea` | `02CF1B40` | PShaderGeometryProgramD3D11 |
+| 00618700 | `00618704` `lea` | `02CF1D40` | PTexture2DD3D11 |
+| 00618720 | `00618724` `lea` | `02CF1F40` | PTextureCubeMapD3D11 |
+| 0063EC70 | `0063EC74` `lea` | `02D34C40` | PDepthOfField |
+| 0063EF40 | `0063EF44` `lea` | `02D369A0` | PAtmosphericsD3D11 |
+| 0063F200 | `0063F204` `lea` | `02D35040` | PMotionBlurD3D11 |
+| 0063F350 | `0063F354` `lea` | `02D356A0` | PMLAABase |
+| 0063FBE0 | `0063FBE4` `lea` | `02D366A0` | PScreenSpaceReflectionD3D11 |
+| 0063FFB0 | `0063FFB4` `lea` | `02D368A0` | PAtmospherics |
+| 006400A0 | `006400A4` `lea` | `02D358A0` | PMLAAD3D11 |
+| 00640200 | `00640204` `lea` | `02D34F40` | PMotionBlur |
+| 006406A0 | `006406A4` `lea` | `02D35BA0` | PGlowGPUBase |
+| 00640970 | `00640974` `lea` | `02D365A0` | PScreenSpaceReflection |
+| 00640AB0 | `00640AB4` `lea` | `02D36AA0` | PLowResParticles |
+| 00640CE0 | `00640CE4` `lea` | `02D357A0` | PMLAA |
+| 00640E90 | `00640E94` `lea` | `02D35300` | PScreenSpaceAmbientOcclusionBase |
+| 00641350 | `00641354` `lea` | `02D34A40` | PDeferredLightingD3D11 |
+| 00641430 | `00641434` `lea` | `02D35DA0` | PGlowD3D11 |
+| 00641940 | `00641944` `lea` | `02D36BA0` | PMaterialPostEffect |
+| 00641A70 | `00641A74` `lea` | `02D35500` | PScreenSpaceAmbientOcclusionD3D11 |
+| 00641F70 | `00641F74` `lea` | `02D35CA0` | PGlow |
+| 00642130 | `00642134` `lea` | `02D34940` | PDeferredLighting |
+| 00642250 | `00642254` `lea` | `02D363A0` | PCelShadingD3D11 |
+| 00642580 | `00642584` `lea` | `02D35400` | PScreenSpaceAmbientOcclusion |
+| 00642950 | `00642954` `lea` | `02D35EA0` | PFXAABase |
+| 00642D20 | `00642D24` `lea` | `02D362A0` | PCelShading |
+| 00643340 | `00643344` `lea` | `02D359A0` | PMeshParticleSystemBase |
+| 006433C0 | `006433C4` `lea` | `02D360A0` | PFXAAD3D11 |
+| 006439B0 | `006439B4` `lea` | `02D34D40` | PDepthOfFieldD3D11 |
+| 00643C50 | `00643C54` `lea` | `02D35FA0` | PFXAA |
+| 0065F5A0 | `0065F5A4` `lea` | `02D39B40` | PDataBlockBufferD3D11 |
+| 0065FA20 | `0065FA24` `lea` | `02D3A940` | PMeshSegment |
+| 00660CD0 | `00660CD4` `lea` | `02D3A340` | PIndexDataBlock |
+| 00661170 | `00661174` `lea` | `02D39E40` | PDataBlock |
+| 00666360 | `00666364` `lea` | `02D39940` | PIndexDataBlockBufferD3D11 |
+| 006882A0 | `006882A4` `lea` | `02E49FD0` | PPhysicsCharacterControllerBullet |
+| 006888E0 | `006888E4` `lea` | `02E495D0` | PPhysicsShapeBullet |
+| 00688B30 | `00688B34` `lea` | `02E499D0` | PPhysicsMeshBullet |
+| 00689320 | `00689324` `lea` | `02E47ED0` | PPhysicsCharacterController |
+| 006893C0 | `006893C4` `lea` | `02E481D0` | PPhysicsInterfaceBase |
+| 006897B0 | `006897B4` `lea` | `02E48DD0` | PPhysicsShape |
+| 006898B0 | `006898B4` `lea` | `02E485D0` | PPhysicsMesh |
+| 0068A3A0 | `0068A3A4` `lea` | `02E49CD0` | PPhysicsRigidBodyBullet |
+| 0068AB40 | `0068AB44` `lea` | `02E49ED0` | PPhysicsInterfaceBullet |
+| 0068AB60 | `0068AB64` `lea` | `02E49AD0` | PPhysicsPlaneBullet |
+| 0068BA40 | `0068BA44` `lea` | `02E49BD0` | PPhysicsSphereBullet |
+| 0068BA60 | `0068BA64` `lea` | `02E482D0` | PPhysicsInterface |
+| 0068BC30 | `0068BC34` `lea` | `02E498D0` | PPhysicsCylinderBullet |
+| 0068BC50 | `0068BC54` `lea` | `02E488D0` | PPhysicsPlane |
+| 0068C700 | `0068C704` `lea` | `02E48FD0` | PPhysicsSphere |
+| 0068C7F0 | `0068C7F4` `lea` | `02E480D0` | PPhysicsCylinder |
+| 0068DB00 | `0068DB04` `lea` | `02E496D0` | PPhysicsBoxBullet |
+| 0068DB20 | `0068DB24` `lea` | `02E497D0` | PPhysicsCapsuleBullet |
+| 0068E140 | `0068E144` `lea` | `02E49DD0` | PPhysicsWorldBullet |
+| 0068E480 | `0068E484` `lea` | `02E479D0` | PPhysicsBox |
+| 0068E4A0 | `0068E4A4` `lea` | `02E47BD0` | PPhysicsCapsule |
+| 006B8910 | `006B8914` `lea` | `02E522F0` | PMeshSegmentContext |
+| 00874830 | `00874834` `lea` | `02EB7BD0` | PVisionMoveTrackerBase |
+| 008749C0 | `008749C4` `lea` | `02EB7DD0` | PVisionMoveTrackerWin32 |
+| 00874B50 | `00874B54` `lea` | `02EB7CD0` | PVisionMoveTracker |
+| 00875290 | `00875294` `lea` | `02EB8060` | PVisionTracker |
+| 008754A0 | `008754A4` `lea` | `02EB7F60` | PVisionTrackerBase |
+| 00875630 | `00875634` `lea` | `02EB8160` | PVisionTrackerWin32 |
+
+## Per-member rows: the registry-fetch function each traversal adapter calls, and the class it returns (OPUS, 2026-10-03)
+
+The family `registry-fetch reflection traversal adapters` (frontmatter: 84 members; 15 get a row here) shares one shape, stated here once and not repeated per row: on each path the adapter calls a registry-fetch function and hands its result with the object to the shared traversal `0063E2E0`. What differs from member to member is that fetch function: no two members call the same one. Each row anchors the adapter's first call to it (the member's distinguishing instruction) and states the fetch function and the class whose descriptor it constructs and returns. The class name is read from the certified image: the `lea r8, [name]` before the fetch function's first call to a descriptor constructor (`00632C90` or `00632D80`). The fetch function is printed as a bare address, not a citation. [`fam_rows.py`](../../_index/candidates/opus-ee-registry-fetch-adapters-1003/fam_rows.py) re-derives every row and compares it with the committed [`rows.tsv`](../../_index/candidates/opus-ee-registry-fetch-adapters-1003/rows.tsv). Two controls are refused: a swapped value and a moved anchor. Members that do not derive are listed in [`excluded.tsv`](../../_index/candidates/opus-ee-registry-fetch-adapters-1003/excluded.tsv).
+
+### All 15 adapters (OPUS)
+
+| member | distinguishing instruction | registry-fetch function called | class whose descriptor it returns |
+|---|---|---|---|
+| 005A0C00 | `005A0C0E` `call` | 005A02D0 | PTimer |
+| 0062ADF0 | `0062ADFE` `call` | 00613800 | CD3D11_BLEND_DESC |
+| 0062AE40 | `0062AE4E` `call` | 00613A30 | CD3D11_DEPTH_STENCIL_DESC |
+| 0062AE90 | `0062AE9E` `call` | 00613E80 | CD3D11_RASTERIZER_DESC |
+| 0062AEE0 | `0062AEEE` `call` | 006143B0 | D3D11_DEPTH_STENCILOP_DESC |
+| 0062AF30 | `0062AF3E` `call` | 00614640 | D3D11_RENDER_TARGET_BLEND_DESC |
+| 006B2EA0 | `006B2EAE` `call` | 006B0760 | Matrix3 |
+| 006B2EF0 | `006B2EFE` `call` | 006B08A0 | Matrix4 |
+| 006B2F40 | `006B2F4E` `call` | 006B09E0 | PMatrix4 |
+| 006B2F90 | `006B2F9E` `call` | 006B0B20 | Point3 |
+| 006B2FE0 | `006B2FEE` `call` | 006B0EC0 | Quat |
+| 006B3030 | `006B303E` `call` | 006B1320 | Vector2 |
+| 006B3080 | `006B308E` `call` | 006B1600 | Vector3 |
+| 006B30D0 | `006B30DE` `call` | 006B19A0 | Vector4 |
+| 006B3AC0 | `006B3ACE` `call` | 006B33F0 | PMatrix4x3 |
+
+## Per-member rows: the vtable each guarded class-registration stub installs, and its reflected type (OPUS, 2026-10-03)
+
+The family `guarded class-registration stubs` (frontmatter: 99 members; 43 get a row here) shares one pattern in many spellings, stated here once and not repeated per row. Under the thread-safe static-init guard (`008092FC` / `0080929C`), each stub constructs its static class descriptor through `00632D80`, installs that descriptor's vtable, and registers members and teardowns. What differs from member to member is the static descriptor and the vtable stored into it. Each row anchors the `lea rax, [V]` whose following `mov` stores V into the static descriptor X the body also loads with a `lea` (the member's distinguishing instruction), and states V and the class V's MSVC RTTI complete-object locator names, read from the certified image. [`fam_rows.py`](../../_index/candidates/opus-ee-guarded-registration-1003/fam_rows.py) re-derives every row and compares it with the committed [`rows.tsv`](../../_index/candidates/opus-ee-guarded-registration-1003/rows.tsv). Two controls are refused: a swapped value and a moved anchor. Members that do not derive are listed in [`excluded.tsv`](../../_index/candidates/opus-ee-guarded-registration-1003/excluded.tsv).
+
+### All 43 stubs (OPUS)
+
+| member | distinguishing instruction | vtable V installed | reflected type (RTTI before V) |
+|---|---|---|---|
+| 005B5130 | `005B51D9` `lea` | `00D32C40` | decorated `V?$PArray@M$03@Phyre@@` |
+| 005B7790 | `005B7839` `lea` | `00D33050` | decorated `V?$PArray@VPQWord@Phyre@@$0BA@@Phyre@@` |
+| 005EBB00 | `005EBBA9` `lea` | `00D4E188` | decorated `V?$PArray@PEAVPModifierNetworkInstance@PDynamicGeometry@Phyre@@$07@Phyre@@` |
+| 005ED1A0 | `005ED249` `lea` | `00D4B830` | decorated `V?$PArray@VPMatrix4@Phyre@@$03@Phyre@@` |
+| 005EFB10 | `005EFBB9` `lea` | `00D4C5F8` | decorated `V?$PSharray@I@Phyre@@` |
+| 005EFE60 | `005EFF09` `lea` | `00D4DD98` | decorated `V?$PSharray@PEBVPMeshInstanceSegmentStreamBinding@PRendering@Phyre@@@Phyre@@` |
+| 006143B0 | `0061442A` `lea` | `00D546C8` | D3D11_DEPTH_STENCILOP_DESC |
+| 00618080 | `0061812D` `lea` | `00D54D68` | decorated `.?AV?$PClassDataMemberPhyreArray@E@Phyre@@` |
+| 00618620 | `006186BB` `lea` | `00D54CE8` | decorated `.?AV?$PClassDataMemberPhyreArray@VPStreamInputDescD3D11@PRendering@Phyre@@@Phyre@@` |
+| 00618970 | `00618A19` `lea` | `00D556E0` | decorated `V?$PArray@E$00@Phyre@@` |
+| 006315B0 | `0063167C` `lea` | `00D311B0` | decorated `.?AV?$PTypeDefault@I@Phyre@@` |
+| 00635DC0 | `00635F9D` `lea` | `00D58EC0` | decorated `.?AV?$PClassDataMemberArrayDynamic@V?$PSharray@VPString@Phyre@@@Phyre@@@Phyre@@` |
+| 00661A70 | `00661AEF` `lea` | `00D69710` | decorated `.?AV?$PNamedSemanticDescriptorForType@VPRenderDataType@PGeometry@Phyre@@@Phyre@@` |
+| 00665870 | `00665918` `lea` | `00D69068` | decorated `.?AV?$PClassDataMemberPhyreSharray@VPDataBlockBufferD3D11@PGeometry@Phyre@@@Phyre@@` |
+| 00666380 | `00666428` `lea` | `00D68EF8` | decorated `.?AV?$PClassDataMemberPhyreSharray@VPIndexDataBlockBufferD3D11@PGeometry@Phyre@@@Phyre@@` |
+| 00667230 | `006672D9` `lea` | `00D68E50` | decorated `.?AV?$PClassDataMemberPhyreArray@VPDataBlockD3D11@PGeometry@Phyre@@@Phyre@@` |
+| 00668AE0 | `00668B89` `lea` | `00D69870` | decorated `V?$PArray@E$03@Phyre@@` |
+| 00668E10 | `00668EB9` `lea` | `00D6AA28` | decorated `V?$PArray@H$03@Phyre@@` |
+| 0066A460 | `0066A509` `lea` | `00D6A440` | decorated `V?$PSharray@PEAVPMaterial@PRendering@Phyre@@@Phyre@@` |
+| 00696470 | `00696A10` `lea` | `00D79E18` | decorated `.?AV?$PClassDataMemberPhyreSharray@PEAVPPhysicsShape@PPhysics@Phyre@@@Phyre@@` |
+| 00698930 | `006989D9` `lea` | `00D7AC20` | decorated `V?$PSharray@PEAVPPhysicsShape@PPhysics@Phyre@@@Phyre@@` |
+| 006A72B0 | `006A7353` `lea` | `00D7B5D8` | decorated `.?AV?$PClassDataMemberArrayDynamic@VPString@Phyre@@@Phyre@@` |
+| 006AE350 | `006AE72A` `lea` | `00D7E070` | decorated `.?AV?$PClassDataMemberPhyreArray@VPTypedObject@Phyre@@@Phyre@@` |
+| 006B0760 | `006B07DA` `lea` | `00D7F960` | sce::Vectormath::Scalar::Aos::Matrix3 |
+| 006B08A0 | `006B091A` `lea` | `00D7FA70` | sce::Vectormath::Scalar::Aos::Matrix4 |
+| 006B09E0 | `006B0A5A` `lea` | `00D7FB80` | Phyre::PMatrix4 |
+| 006B0B20 | `006B0BA6` `lea` | `00D7F628` | sce::Vectormath::Scalar::Aos::Point3 |
+| 006B0EC0 | `006B0F46` `lea` | `00D7F850` | sce::Vectormath::Scalar::Aos::Quat |
+| 006B1320 | `006B13A9` `lea` | `00D7F3E0` | sce::Vectormath::Scalar::Aos::Vector2 |
+| 006B1600 | `006B1686` `lea` | `00D7F510` | sce::Vectormath::Scalar::Aos::Vector3 |
+| 006B19A0 | `006B1A26` `lea` | `00D7F738` | sce::Vectormath::Scalar::Aos::Vector4 |
+| 006B33F0 | `006B346F` `lea` | `00D7FE58` | Phyre::PMatrix4x3 |
+| 006BC750 | `006BC7FD` `lea` | `00D81E30` | decorated `.?AV?$PClassDataMemberPhyreArray@PEAE@Phyre@@` |
+| 006BCC40 | `006BCCE9` `lea` | `00D82090` | decorated `V?$PArray@PEBE$07@Phyre@@` |
+| 006C3380 | `006C349B` `lea` | `00D84DC8` | decorated `.?AV?$PClassDataMemberPhyreArray@PEAVPBase@Phyre@@@Phyre@@` |
+| 006C3800 | `006C38A9` `lea` | `00D84EE0` | decorated `V?$PArray@PEBVPBase@Phyre@@$07@Phyre@@` |
+| 006C6560 | `006C6609` `lea` | `00D86028` | decorated `V?$PSharray@PEAVPMeshInstance@PRendering@Phyre@@@Phyre@@` |
+| 006D0D50 | `006D0F4D` `lea` | `00D8CA88` | decorated `.?AV?$PClassDataMemberPhyreArray@VPRenderStreamInput@PDynamicGeometry@Phyre@@@Phyre@@` |
+| 006D0FA0 | `006D104D` `lea` | `00D8CC18` | decorated `.?AV?$PClassDataMemberPhyreArray@VPModifierAndInputs@PDynamicGeometry@Phyre@@@Phyre@@` |
+| 006D5810 | `006D588F` `lea` | `00D8D7B8` | decorated `.?AV?$PNamedSemanticDescriptorForType@VPModifier@PDynamicGeometry@Phyre@@@Phyre@@` |
+| 006D8EF0 | `006D8F90` `lea` | `00D31C50` | decorated `.?AV?$PClassDataMemberPhyreArray@M@Phyre@@` |
+| 00879D60 | `00879E76` `lea` | `01CD9E20` | decorated `.?AV?$PClassDataMemberPhyreArray@PEAVPInputMap@PInputs@Phyre@@@Phyre@@` |
+| 00879EC0 | `00879F69` `lea` | `01CD9F18` | decorated `V?$PArray@PEAVPInputMap@PInputs@Phyre@@$07@Phyre@@` |
+
+## Per-member rows: the class descriptor each of the flag-selected reflection traversal adapters loads (OPUS, 2026-10-03)
+
+The family `flag-selected reflection traversal adapters` (frontmatter: 11 members; 11 get a row here) shares one shape, stated here once and not repeated per row: `lea rcx, [X]`, then a call to the shared traversal `0063E2E0` with the flag in `r8b` normalised to 1 or 0. What differs from member to member is the class descriptor X its `lea rcx, [X]` loads (every load of it in the body names the same X). Each row anchors the first such `lea`, the member's distinguishing instruction, and states X and the class X describes. The class is read from the certified image: the static initialiser that does `lea rcx, [X]` and calls a descriptor-constructor wrapper, and that wrapper's `lea r8, [name]` before its one call to `00632D80`; every such initialiser must agree. [`fam_rows.py`](../../_index/candidates/opus-ee-flag-selected-adapters-1003/fam_rows.py) re-derives every row and compares it with the committed [`rows.tsv`](../../_index/candidates/opus-ee-flag-selected-adapters-1003/rows.tsv). A member whose loads name more than one X, a descriptor not named by exactly one class, or a value that differs fails it. Two controls are refused: a swapped value and a moved anchor. Members that do not derive are listed in [`excluded.tsv`](../../_index/candidates/opus-ee-flag-selected-adapters-1003/excluded.tsv).
+
+### All 11 members (OPUS)
+
+| member | distinguishing instruction | class descriptor X | class X describes |
+|---|---|---|---|
+| 00584750 | `00584754` `lea` | `02CA9FA0` | PClusterHeaderBase |
+| 005849B0 | `005849B4` `lea` | `02CA9DA0` | PClusterHeaderD3D11 |
+| 00584C20 | `00584C24` `lea` | `02CAA0A0` | PClusterHeader |
+| 00584EC0 | `00584EC4` `lea` | `02CA9EA0` | PInstanceListHeader |
+| 005A1140 | `005A1144` `lea` | `02CAD040` | PBlendableAnimationSource |
+| 005A1650 | `005A1654` `lea` | `02CAD840` | PAnimationClip |
+| 005A17F0 | `005A17F4` `lea` | `02CAE960` | PAnimationSlotFilterDeferredLoad |
+| 005A1C60 | `005A1C64` `lea` | `02CAD540` | PAnimationChannelBase |
+| 005A22A0 | `005A22A4` `lea` | `02CAD440` | PAnimationChannel |
+| 005A27C0 | `005A27C4` `lea` | `02CAE350` | PAnimationDataSourceListEntry |
+| 00674CD0 | `00674CD4` `lea` | `02D3E780` | PAssetReferenceImport |
+
+## Per-member rows: the vtable each two-member descriptor registrar installs, and its reflected type (OPUS, 2026-10-03)
+
+The family `two-member class-descriptor registrars (m_count + m_els)` (frontmatter: 38 members; 38 get a row here) shares one pattern in many spellings, stated here once and not repeated per row. Under the thread-safe static-init guard (`008092FC` / `0080929C`), each stub constructs its static class descriptor through `00632D80`, installs that descriptor's vtable, and registers members and teardowns. What differs from member to member is the static descriptor and the vtable stored into it. Each row anchors the `lea rax, [V]` whose following `mov` stores V into the static descriptor X the body also loads with a `lea` (the member's distinguishing instruction), and states V and the class V's MSVC RTTI complete-object locator names, read from the certified image. [`fam_rows.py`](../../_index/candidates/opus-ee-two-member-registrars-1003/fam_rows.py) re-derives every row and compares it with the committed [`rows.tsv`](../../_index/candidates/opus-ee-two-member-registrars-1003/rows.tsv). Two controls are refused: a swapped value and a moved anchor. Members that do not derive are listed in [`excluded.tsv`](../../_index/candidates/opus-ee-two-member-registrars-1003/excluded.tsv).
+
+### All 38 registrars (OPUS)
+
+| member | distinguishing instruction | vtable V installed | reflected type (RTTI before V) |
+|---|---|---|---|
+| 005B5AE0 | `005B5B89` `lea` | `00D33838` | decorated `V?$PArray@VPAnimationChannelTarget@PAnimation@Phyre@@$07@Phyre@@` |
+| 005B5E10 | `005B5EB9` `lea` | `00D33440` | decorated `V?$PArray@VPAnimationConstantChannel@PAnimation@Phyre@@$07@Phyre@@` |
+| 005B6140 | `005B61E9` `lea` | `00D34210` | decorated `V?$PArray@VPAnimationDataSourceListEntry@PAnimation@Phyre@@$07@Phyre@@` |
+| 005B6470 | `005B6519` `lea` | `00D33C28` | decorated `V?$PArray@VPAnimationEvent@PAnimation@Phyre@@$03@Phyre@@` |
+| 005B67A0 | `005B6849` `lea` | `00D34408` | decorated `V?$PArray@VPAnimationNetworkInstanceTarget@PAnimation@Phyre@@$07@Phyre@@` |
+| 005B6AD0 | `005B6B79` `lea` | `00D34600` | decorated `V?$PArray@VPAnimationSlotArray@PAnimation@Phyre@@$07@Phyre@@` |
+| 005B6E00 | `005B6EA9` `lea` | `00D33E20` | decorated `V?$PArray@VPAnimationSlotFilterDeferredLoad@PAnimation@Phyre@@$07@Phyre@@` |
+| 005B7130 | `005B71D9` `lea` | `00D33A30` | decorated `V?$PArray@VPAnimationSlotListIndex@PAnimation@Phyre@@$07@Phyre@@` |
+| 005B7460 | `005B7509` `lea` | `00D347F8` | decorated `V?$PArray@VPBlendableAnimationSource@PAnimation@Phyre@@$07@Phyre@@` |
+| 005ECB40 | `005ECBE9` `lea` | `00D4CBE0` | decorated `V?$PArray@VPContextVariantFoldingTable@PRendering@Phyre@@$03@Phyre@@` |
+| 005ECE70 | `005ECF19` `lea` | `00D4CDD8` | decorated `V?$PArray@VPMaterialSwitch@PRendering@Phyre@@$07@Phyre@@` |
+| 005ED4D0 | `005ED579` `lea` | `00D4DF90` | decorated `V?$PArray@VPMeshInstanceSegmentContext@PRendering@Phyre@@$07@Phyre@@` |
+| 005ED800 | `005ED8A9` `lea` | `00D4DBA0` | decorated `V?$PArray@VPNodeContext@PRendering@Phyre@@$07@Phyre@@` |
+| 005EDB30 | `005EDBD9` `lea` | `00D4CFD0` | decorated `V?$PArray@VPSceneRenderPass@PRendering@Phyre@@$07@Phyre@@` |
+| 005EDE60 | `005EDF09` `lea` | `00D4C7F0` | decorated `V?$PArray@VPShader@PRendering@Phyre@@$07@Phyre@@` |
+| 005EE190 | `005EE239` `lea` | `00D4C208` | decorated `V?$PArray@VPShaderParameterCaptureBufferLocation@PRendering@Phyre@@$01@Phyre@@` |
+| 005EE4C0 | `005EE569` `lea` | `00D4BE18` | decorated `V?$PArray@VPShaderParameterCaptureBufferLocationType@PRendering@Phyre@@$01@Phyre@@` |
+| 005EE7F0 | `005EE899` `lea` | `00D4C010` | decorated `V?$PArray@VPShaderParameterCaptureBufferLocationTypeConstantBuffer@PRendering@Phyre@@$03@Phyre@@` |
+| 005EEB20 | `005EEBC9` `lea` | `00D4BC20` | decorated `V?$PArray@VPShaderParameterDefinition@PRendering@Phyre@@$07@Phyre@@` |
+| 005EEE50 | `005EEEF9` `lea` | `00D4C400` | decorated `V?$PArray@VPShaderPass@PRendering@Phyre@@$07@Phyre@@` |
+| 005EF180 | `005EF229` `lea` | `00D4C9E8` | decorated `V?$PArray@VPShaderPassInfo@PRendering@Phyre@@$07@Phyre@@` |
+| 005EF4B0 | `005EF559` `lea` | `00D4BA28` | decorated `V?$PArray@VPShaderStreamDefinition@PRendering@Phyre@@$07@Phyre@@` |
+| 005EF7E0 | `005EF889` `lea` | `00D4B638` | decorated `V?$PArray@VPString@Phyre@@$07@Phyre@@` |
+| 00618CA0 | `00618D49` `lea` | `00D558D8` | decorated `V?$PArray@VPStreamInputDescD3D11@PRendering@Phyre@@$07@Phyre@@` |
+| 00669140 | `006691E9` `lea` | `00D6A248` | decorated `V?$PArray@VPDataBlockD3D11@PGeometry@Phyre@@$07@Phyre@@` |
+| 00669470 | `00669519` `lea` | `00D6AC20` | decorated `V?$PArray@VPDynamicSegmentDesc@PDynamicMesh@PGeometry@Phyre@@$03@Phyre@@` |
+| 006697A0 | `00669849` `lea` | `00D6A638` | decorated `V?$PArray@VPMeshSegment@PGeometry@Phyre@@$07@Phyre@@` |
+| 00669AD0 | `00669B79` `lea` | `00D6A830` | decorated `V?$PArray@VPSkeletonJointBounds@PGeometry@Phyre@@$03@Phyre@@` |
+| 00669E00 | `00669EA9` `lea` | `00D6A050` | decorated `V?$PArray@VPSkinBoneRemap@PGeometry@Phyre@@$01@Phyre@@` |
+| 0066A130 | `0066A1D9` `lea` | `00D69A68` | decorated `V?$PArray@VPVertexStream@PGeometry@Phyre@@$07@Phyre@@` |
+| 0067D810 | `0067D8B9` `lea` | `00D6DAE8` | decorated `V?$PArray@VPBitmapFontCharInfo@PText@Phyre@@$03@Phyre@@` |
+| 006AE780 | `006AE829` `lea` | `00D7E1A0` | decorated `V?$PArray@VPTypedObject@Phyre@@$07@Phyre@@` |
+| 006BCF80 | `006BD029` `lea` | `00D82480` | decorated `V?$PArray@VPModifierNetworkDynamicMeshSegment@PDynamicGeometry@Phyre@@$07@Phyre@@` |
+| 006BD2B0 | `006BD359` `lea` | `00D82288` | decorated `V?$PArray@VPRenderStream@PDynamicGeometry@Phyre@@$07@Phyre@@` |
+| 006C1920 | `006C19C9` `lea` | `00D83D20` | decorated `V?$PArray@VPShadowSplit@PShadowCaster@PRendering@Phyre@@$07@Phyre@@` |
+| 006D2390 | `006D2439` `lea` | `00D8D010` | decorated `V?$PArray@VPModifierAndInputs@PDynamicGeometry@Phyre@@$07@Phyre@@` |
+| 006D26C0 | `006D2769` `lea` | `00D8D208` | decorated `V?$PArray@VPModifierNetworkBuffer@PDynamicGeometry@Phyre@@$07@Phyre@@` |
+| 006D29F0 | `006D2A99` `lea` | `00D8CE18` | decorated `V?$PArray@VPRenderStreamInput@PDynamicGeometry@Phyre@@$03@Phyre@@` |

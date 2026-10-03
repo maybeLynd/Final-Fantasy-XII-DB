@@ -92,8 +92,8 @@ restarts at 0. Otherwise the record index is handed to the viewer singleton, whi
 `002EEB20` (416 B) closes a slot - only while the machine is idle: it frees the body record and each attachment record
 and drops each resource's use count (`+0x1C`), releasing a resource nobody else holds.
 
-`002EF050` (165 B) is the per-tick tail: every slot whose record has **`+0x6E0` = 0** has the angle at its `+0x124` advanced by a fixed
-step (`0215FD40`) and wrapped at 2π - **a turntable**. Mode-1 models are exempt: the handbook poses
+`002EF050` (165 B) is the per-tick tail: every slot whose record has **`+0x6E0` = 0** has the angle at its `+0x124` advanced by a ~~fixed~~
+step (`0215FD40`) *(corrected 2026-10-02, OPUS: not a constant — `0215FD40` lies past the image's file data and has no direct writer; its only references are the reads `002EEED0` and `002EF050+0x45`)* and wrapped at 2π - **a turntable**. Mode-1 models are exempt: the handbook poses
 its monsters by the file's `cameraYaw`. *No requester of mode 0 was found in the image - `001EB9C0` is the loader's only
 caller and passes 1 - so the turntable is dead in this build.*
 

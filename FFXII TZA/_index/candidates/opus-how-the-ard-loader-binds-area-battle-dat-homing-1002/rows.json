@@ -1,0 +1,57 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/how-the-ard-loader-binds-area-battle-data.md",
+ "date": "2026-10-02",
+ "session": "local-h4-opus",
+ "report": "how-the-ard-loader-binds-area-battle-data.json",
+ "rows": [
+  {
+   "fn": "00340450",
+   "text": "zeroes dword `[r8]`, calls `002E3E20(byte rdx+0x15, 0)` and `002E4000(byte rdx+0x15, 0)`, then tail-jumps to `002EC500`",
+   "anchors": [
+    [
+     "00340456",
+     "mov"
+    ],
+    [
+     "00340466",
+     "call"
+    ],
+    [
+     "00340471",
+     "call"
+    ],
+    [
+     "0034047B",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00340EC0",
+   "text": "zeroes dword `[r8]`, calls `002E3E20(byte rdx+0x15, -1)` and tail-jumps to `002E4000(byte rdx+0x15, -1)`",
+   "anchors": [
+    [
+     "00340EC6",
+     "mov"
+    ],
+    [
+     "00340ED7",
+     "call"
+    ],
+    [
+     "00340EE0",
+     "or"
+    ],
+    [
+     "00340EE8",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing"
+}

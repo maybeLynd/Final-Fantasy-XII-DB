@@ -58,7 +58,7 @@ being restored here:
 - **The reset call site is `0023A5B0`** (`call 00236A60`, I2).
 - **The party path nulls the spawn explicitly** (`0023AAB1 xor ebp, ebp`), so `+0x6A0` is null for a
   party unit (§3).
-- **`EXP-047`** executed the two re-key wrappers' local stores; the delegate's effects remain static.
+- **`EXP-047`** executed the two re-key wrappers' local stores; ~~the delegate's effects remain static.~~ *(answered: EXP-151 executed the delegate end-to-end, below; 2026-10-02, OPUS)*
 
 ## 3. Types
 

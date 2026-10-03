@@ -87,14 +87,14 @@ bound-slot route (writes, reads) and on the array route.
 
 | offset | width | type | name (source) | w / r / abs | writers (bound) | readers (bound) | array-route references |
 |---|---|---|---|---|---|---|---|
-| `+0x000` | 8 | ptr | **the bound definition payload (`rdx` of the bind, `0026C95A`)** | 2 / 10 / 5 | `003DD1F0` (`003DD1FB`); `003DA2D0` (`003DA2DB`) | `003565C0` (`003565E8`); `0050D8F0` (`0050D91D`); +8 more | `0025AFC0` (`0025AFD7`); `0025B250` (`0025B260`); +3 more |
+| `+0x000` | 8 | ptr | **the bound definition payload (`rdx` of the bind, `0026C95A`)** | 2 / 10 / 5 | ~~`003DD1F0` (`003DD1FB`); `003DA2D0` (`003DA2DB`)~~ *(corrected 2026-10-02, OPUS: census artefacts — both store an entry's `+0x10` rate, `movss [rcx + (ch + 0x10) × 24]`, `003DD1F0`–`003DD1FB`, `003DA2D0`–`003DA2DB`)* | `003565C0` (`003565E8`); `0050D8F0` (`0050D91D`); +8 more | `0025AFC0` (`0025AFD7`); `0025B250` (`0025B260`); +3 more |
 | `+0x008` | 8 |  | *not named by any page* | 0 / 1 / 0 |  | `ActorManager_GetRecordByOrdinal` `00358940` (`00358940`) |  |
 | `+0x010` | 1 | u32 | **status bits — bit 0 = slot live** ([page](../../00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md)) | 0 / 2 / 6 |  | `002642C0` (`002642CA`); `00264390` (`002643A8`) | `0025B500` (`0025B52C` +2); `0025C830` (`0025D3D1` +2); +4 more |
 | `+0x012` | 1 |  | *not named by any page* | 0 / 1 / 0 |  | `003565C0` (`003565E2`) |  |
 | `+0x014` | 1 |  | *not named by any page* | 2 / 0 / 0 | `0026C5D0` (`0026C606`); `0026C3E0` (`0026C410`) |  |  |
 | `+0x016` | 1 |  | *not named by any page* | 2 / 0 / 0 | `0026B8A0` (`0026B8A4`); `0026B8C0` (`0026B8C4`) |  |  |
 | `+0x017` | 1 |  | *not named by any page* | 1 / 0 / 0 | `0034A250` (`0034A26D` +1) |  |  |
-| `+0x018` | 2 |  | *not named by any page* | 4 / 0 / 0 | `003DA370` (`003DA3A2`); `003DA400` (`003DA4B9`); `003DA000` (`003DA005`); +1 more |  |  |
+| `+0x018` | 2 |  | ~~*not named by any page*~~ the side-A reverse-lookup words (`003DA4B9`) *(answered: CONTRACT-manager-slot-entry-tables.md, and FH-1's 2026-09-27 note — named by the store; 2026-10-02, OPUS)* | 4 / 0 / 0 | `003DA370` (`003DA3A2`); `003DA400` (`003DA4B9`); `003DA000` (`003DA005`); +1 more |  |  |
 | `+0x01A` | 2 |  | *not named by any page* | 2 / 0 / 0 | `003DA370` (`003DA3A6`); `003DA000` (`003DA009`) |  |  |
 | `+0x01C` | 2 | s16 | **the shake driver that owns output channel 0** — an ordinal 0-3, written at `003DD2EC`; negative = none [shake](#the-camera-shake-fields-0x1c-0xf0-and-0x170-opus-2026-09-19) | 3 / 0 / 0 | `003DD230` (`003DD2EC`); `003DCF60` (`003DCF65`); `003DD350` (`003DD36E`) |  |  |
 | `+0x01E` | 2 | s16 | **the shake driver that owns output channel 1** [shake](#the-camera-shake-fields-0x1c-0xf0-and-0x170-opus-2026-09-19) | 1 / 0 / 0 | `003DCF60` (`003DCF69`) |  |  |
@@ -142,7 +142,7 @@ bound-slot route (writes, reads) and on the array route.
 | `+0x1C0` | 2 |  | *not named by any page* | 1 / 0 / 0 | `003DCF60` (`003DCF97`) |  |  |
 | `+0x1C2` | 2 |  | *not named by any page* | 1 / 0 / 0 | `003DCF60` (`003DCF9E`) |  |  |
 | `+0x1C8` | 0 |  | *not a field — the `lea` at `00259652` is a foreign array's loop bound, never dereferenced (§2.7)* | 0 / 0 / 1 |  |  | `00259620` (`00259652`) |
-| `+0x1E0` | 4 | u64 | **zeroed at bind (`0026CB1F`)** | 0 / 0 / 4 |  |  | `002628B0` (`00262EB8` +2); `00263050` (`002630C5` +2); +2 more |
+| `+0x1E0` | 4 | ~~u64~~ u32 *(corrected 2026-10-02, OPUS: a dword counter — `002630B7 dec dword ptr [r14 + 0x1E0]`; the bind's qword store `0026CB1F` zeroes `+0x1E4` with it)* | **zeroed at bind (`0026CB1F`)** | 0 / 0 / 4 |  |  | `002628B0` (`00262EB8` +2); `00263050` (`002630C5` +2); +2 more |
 | `+0x200` | 1 | u8 | **bit 2 cleared at bind (`0026C950`)** | 2 / 0 / 1 | `0034AD70` (`0034AD79`); `0034B1C0` (`0034B1C9`) |  | `00264830` (`00264830` +1) |
 
 ### 2.4 The `+0x110`–`+0x1D0` band is two arrays of four 24-byte entries
@@ -192,12 +192,12 @@ back into: A guards on `+0xD8` and writes `+0x18`, B guards on `+0xF0` and write
 guard is also what resolved `+0xF0` — it is dereferenced and compared against zero as a qword, so it
 is a pointer, the counterpart of `+0xD8`.
 
-The names of the members remain open; the layout does not depend on them.
+~~The names of the members remain open;~~ *(answered: CONTRACT-manager-slot-entry-tables.md names them — `definitionValue`, `lookupIndex`, `recordIndex`, `clock`, `rate`, `clockRunning`; 2026-10-02, OPUS)* the layout does not depend on them.
 
 ### 2.5 What nobody reaches
 
 23 ranges totalling 373 bytes have no access on either route (the eight bind-zeroed
-qwords counted as covered). The ones of 32 bytes or more: `+0x68`–`+0x97` (48 B), `+0x244`–`+0x287` (68 B).
+qwords counted as covered). The ones of 32 bytes or more: ~~`+0x68`–`+0x97` (48 B),~~ `+0x244`–`+0x287` (68 B) *(corrected 2026-10-02, OPUS: `+0x68`–`+0x8F` is written by the bind — `0026CB43`, `0026CB4E`, `0026CB6B`, `0026CB59`, `0026CAE6` — and `+0x68` / `+0x70` are read by the interpreter at `00261855` / `0026187D`; whether `+0x90`–`+0x97` is reached is not settled here)*.
 *`+0x201`–`+0x243` was listed here before the folded-base sweep: `+0x201` has a reader and
 `+0x204`–`+0x243` is cleared at bind — both reached through folded-base addresses the
 displacement census cannot see (§2.7).*
@@ -242,7 +242,7 @@ seven had no row. All seven were read at the instruction level. Verdicts:
 | `+0x0E0` | **qword** | setter stub `0026CE20`: stores `rdx` — section_009 from its handler `0032FAC0`; no reader through the slot (readers use `022C6D58[m]`) |
 | `+0x0F8` | **qword** | setter stub `0026D3C0`: stores `rdx` — section_011 from its handler `003316B0`; readers use `022C6DD0[m]` |
 | `+0x108` | **qword** | `ActorManager_SetResourceTeardownCallback` `00268630`: stores `rdx`. The name claims a function pointer; the body proves a qword store and no more |
-| `+0x1C8` | **refused** | the `lea` at `00259652` → `020994E8` is the loop bound of a foreign `0x860`-stride array at `02098428` (`cmp rdi,rbp` at `002597B9`) — the address is compared, never dereferenced. A folded-base `lea` is *address-taken*, not a field access |
+| `+0x1C8` | **refused** | the `lea` at `00259652` → `020994E8` is the loop bound of a foreign `0x860`-stride array ~~at `02098428`~~ whose cursor starts at `02098428`, element 0's `+0x708`; the array is two elements at `02097D20`, ending `02098DE0` before the slot array *(corrected 2026-10-02, OPUS: `002593D0` / `00259470` copy `0x860` bytes between `02097D20` and `02098580`)* (`cmp rdi,rbp` at `002597B9`) — the address is compared, never dereferenced. A folded-base `lea` is *address-taken*, not a field access |
 | `+0x1DE` | **uint16** | `movzx word[rdi]` on slots 0 and 3 in `0026DC70`/`0026DD50`, gated by `test byte[rdi-0x1CE],1` (the `+0x10` live bit); compared against `word[+0x1D6]` plus itself |
 | `+0x1D6` | **uint16** | the `word[rdi-8]` half of that pair — a second offset the same folded base revealed |
 | `+0x204` | **uint8[64]** | `ActorManager_BindLoadedDefinitionPayload` clears eight qwords `+0x204..+0x243` on slots 0–3 (`rax` from `02099014`, step `0x288`, bound `020997AC`, `rbx` xor-zeroed), under `test ecx,ecx`. Bulk storage; element type unknown |
@@ -289,7 +289,7 @@ field state, not in a vacuum.
 ActorManagerSlot (0x288) x5 at 02098E10; bound slot in 02099D70   (the type's one name is ActorManagerSlot - the store's, the tooling's and the prose's; this folder and its census file keep 'record' in their file names only)
   +0x000 ptr  bound definition payload      +0x010 u32 status (bit 0 live)     +0x028 u32 manager index
   +0x050 +0x058 +0x060 +0x068 ptr  the pointer block from the bind
-  +0x1E0 u64 zeroed at bind                 +0x200 u8 (bit 2 cleared at bind)   +0x201 u8 sub-step opt-in
+  +0x1E0 u64 zeroed at bind                 +0x200 u8 (bit 2 cleared at bind)   +0x201 u8 sub-step opt-in   <- corrected 2026-10-02, OPUS - +0x1E0 is a u32 counter (002630B7 dec dword); the bind's qword store 0026CB1F zeroes +0x1E0 and +0x1E4
   +0x244..+0x27C u64[8] zeroed at bind
 ```
 
@@ -337,7 +337,7 @@ slot address.
 - [x] **FH-3.** **Who writes `02099D70` besides the bind** (fifteen functions, `globals_index`), and whether *(closed — the register row is WITHDRAWN.)*
   the bound slot ever differs from slot 0 in play. **FH-3.**
   *Partly answered 2026-09-14 (FABLE); the register row is PARTIAL (FH-3):* **`02099D70` is a scoped "current manager"
-  binding, not a mode.** A RIP-relative census gives 33 stores in 17 functions. **Twelve functions save, bind and restore:**
+  binding, not a mode.** A RIP-relative census gives 33 stores in ~~17~~ 16 functions *(corrected 2026-10-02, OPUS: the stores to `02099D70`, the bind `0026C8C0` among them; no image-base-relative form exists)*. **Twelve functions save, bind and restore:**
   each loads the old value, stores its slot, does its work and stores the old value back. They are `0025AFC0`,
   `ActorManager_RunFieldRuntimePass` `0025D9E0`, `0025E400`, `002623A0`, `00263050`, `00263230`, `00263AC0`, `00264050` (binds
   its argument, or slot 0 `02098E10` when null, and restores on each of three exits), `0026C3E0`, `0026C5D0` (two pairs),
@@ -406,7 +406,7 @@ global at `02099D70` — they do not overlap.)*
 
 ### The evidence file has grown, and the `57` now reproduces for the wrong reason
 
-`actor-manager-record-accesses.tsv` holds **194** rows today, not 167. §2.6 added the interpreter's
+`actor-manager-record-accesses.tsv` holds ~~**194** rows today~~ **194** rows at this pass (204 on 2026-10-02, measured), not 167 *(corrected 2026-10-02, OPUS: the file on disk)*. §2.6 added the interpreter's
 argument seed on 2026-09-11 (`4e8b832`), and **27 rows carry its note**. `194 − 27 = 167`, and with
 those rows excluded every figure in §2.1 comes back exactly. **§2.1 is correct as authored; it simply
 predates §2.6.**
@@ -643,7 +643,7 @@ Shared callees outside the census: none.
 chain through. Interior verified: `003588B0(ecx)` resolves the manager/side-object
 (`002E9B84`), then `[rax + 0xC0]` must be non-null and its `[0]` dword is returned
 ([`002E9B9A`](../../_index/ADDRESS-INDEX.md)); either null leg returns `-1`. The `0xC0` link is the secondary
-context record this map's own `+0xC0` entries describe — `-1` is the caller-visible "no
+context record ~~this map's own `+0xC0` entries describe~~ an actor record's `+0xC0` points at (`rec + 0x350`), not this slot's `+0xC0` *(corrected 2026-10-02, OPUS: `003588B0` returns an actor record — `00358909 mov rax, [rcx + rbx*8 + 8]` out of the slot's pool `[slot + 8]`, generation-checked at `00358913` — and `002E9B8E` reads its `+0xC0`)* — `-1` is the caller-visible "no
 record" sentinel, distinct from a stored `-1`.
 
 
@@ -858,7 +858,7 @@ of `005C5230` (`003DD265`), which is the retail stub `xor eax, eax` / `ret`, so 
 channel 0 (*2026-09-26, FABLE*). A default is what a channel selector has and a tag does not. It
 is then used as the subscript in correction 1. **Named `the output channel`.**
 
-### Refinement — the record table is at `02ADD990`, and `+0x28` indexes it
+### Refinement — the record table is at ~~`02ADD990`~~ `02ADD980` (corrected 2026-10-02, OPUS), and `+0x28` indexes it
 
 The request says `+0x28` *"is also the record index into the five-record shake table at
 `02ADDA34`"*. The index claim holds and the base is off by `0xA4`:
@@ -868,11 +868,11 @@ The request says `+0x28` *"is also the record index into the five-record shake t
 0037D1F9  imul   r8, rax, 0x3d0        ; 0x3D0 per record
 0037D208  movsxd rax, r9d              ; the driver ordinal
 0037D20B  imul   rsi, rax, 0xf0        ; 0xF0 per driver
-0037D212  lea    rax, [rip + 0x2760777]  ; 02ADD990  <- THE BASE
+0037D212  lea    rax, [rip + 0x2760777]  ; 02ADD990  <- THE BASE   <- corrected 2026-10-02, OPUS - not the base: 02ADD990 = 02ADD980 + 0x10, driver block 0; the same function's 0037D243 lea r9, [02ADD980] reads each record's header qwords (0037D25F, 0037D267), and 0037DCFA uses 02ADD980
 ```
 
 `0x3D0 = 4 * 0xF0 + 0x10`, which is the four driver blocks plus a sixteen-byte record header, and
-`02ADDA34` is `+0xA4` inside record 0 — a field of the table, not its base. `+0x28` already carried
+`02ADDA34` is ~~`+0xA4`~~ `+0xB4` inside record 0, driver 0's `+0xA4` *(corrected 2026-10-02, OPUS: the record base is `02ADD980`, its sixteen-byte header first)* — a field of the table, not its base. `+0x28` already carried
 a name (*the manager index*); this adds what it additionally indexes rather than renaming it.
 
 ### What is still not named
@@ -1041,6 +1041,17 @@ Interior anchor `0046BDDF` (function `0046BD60`).
 
 Interior anchor `0024DD74` (function `0024DCE0`).
 
-`0046BE80` (215 B) is the filtered index pack `0046B560` runs: iterates slots `[+0x1D6] .. +0x1D6+[+0x1DE]` of the `00263FF0()` manager object, `00358940`-resolves each, keeps only entries with `byte[+0x18] != 1`, a live `002E97B0` result whose first dword != -1, and `byte[+9]` bit 1 clear - packing `((+0x16 & 0x7FF) << 4 | (+0x15 & 0xF)) << 0x10 | u16[+0x00]` into `[+0x1F0]` and counting in `ebp`
+`0046BE80` (215 B) is the filtered index pack `0046B560` runs: iterates slots ~~`[+0x1D6] .. +0x1D6+[+0x1DE]`~~ `[+0x1DE] .. [+0x1DE] + [+0x1D6]` *(corrected 2026-10-02, OPUS: `0046BEA0` loads the start from `+0x1DE`, `0046BEAC` the count from `+0x1D6`)* of the `00263FF0()` manager object, `00358940`-resolves each, keeps only entries with `byte[+0x18] != 1`, a live `002E97B0` result whose first dword != -1, and `byte[+9]` bit 1 clear - packing `((+0x16 & 0x7FF) << 4 | (+0x15 & 0xF)) << 0x10 | u16[+0x00]` into `[+0x1F0]` and counting in `ebp`
 
 Interior anchor `0046BED5` (function `0046BE80`).
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-the-actor-manager-record-field-map-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00263AC0` | 118 B | returns 0 for a null `rcx` and returns byte `rcx+0xF` zero-extended when it is not 2; when it is 2 it saves qword `02099D70`, stores `02098E10` there, calls `003590D0` (`rcx` unchanged) and, when that returns non-zero r, `003588B0(r)` (else uses 0), restores `02099D70`, and returns 1 when `rcx` equals that result, else 2 | `00263AD3`, `00263AEF`, `00263B01`, `00263B0D`, `00263B1E` |
+| `002A26A0` | 122 B | returns at once when bit 7 of byte `rcx+0x3F3` is set; otherwise sets bit 3 of that byte and takes the `0x60`-byte entry e at `qword rcx+0x3F8 + 0x60*edx` (sign-extended); when the sixth (stack) argument is 0 it clears bit `0x10` of dword `e+8` and stores `xmm2`/`xmm3` to floats `e+0x24`/`e+0x28`; else it sets that bit, stores the fifth (stack) argument's low word to word `e+0x5C`, the old floats `e+0x24`/`e+0x28` to `e+0x48`/`e+0x50`, `xmm2` and `xmm3` minus those old floats to `e+0x4C`/`e+0x54`, 0 to word `e+0x58` and the sixth argument's low word to word `e+0x5A` | `002A26A9`, `002A26AD`, `002A26CD`, `002A26DC`, `002A2715` |
+| `00345CD0` | 336 B | takes three floats f1, f2, f3 from three successive `00267DB0(r9)` calls and a value v from `00267E10(r9)`, and returns when a = `00359CA0(v, 1, 1)` is null or `002EA6A0(a)` is 0; otherwise calls `00264420(a)` (b), `0030BEB0(a)` (d), `0035A720(a, 0)`, `002ECF10(a, b, 2)`, then calls `00267F60(r9, x)` four times with x = f3, f2, f1 and the `003590B0()` result, then `00357A20(rcx, a, r8, r9)` with the incoming `rcx`, `r8`, `r9`, `002EB430(00263F40(a))`, `0026C120(a, 2)` and `00269D80(a, 1, d)` | `00345D2B`, `00345D46`, `00345D7F`, `00345DC2`, `00345DEF` |
+| `00537BA0` | 117 B | returns 1 when `004FE930(rcx)` is 0; otherwise calls `003A56C0(qword rcx+0xE0 + 0xD0, rcx, rcx+0x110, stack buffer)` and returns 0 when that is 0, else calls `004FEAD0(rcx, buffer)` and returns 1 | `00537BB9`, `00537BC3`, `00537BE2`, `00537BF3`, `00537BF8` |

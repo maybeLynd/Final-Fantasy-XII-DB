@@ -1,0 +1,38 @@
+{
+ "page": "23-Third-Party-Libraries/PostEffects-Yebis-PPFX/yebis-ppfx-source-map.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01VEcx1tvvdhZnx7o8bCur26",
+ "report": "yebis-ppfx-source-map.json",
+ "rows": [
+  {
+   "fn": "00786F42",
+   "text": "with `rbx` as it holds on entry (this body never sets it), stores `edx` in dword `+0xEC`, `rcx` in qword `+0`, `rdx` in qword `+0xF0` and 3 in dword `+0x10` of `rbx`, then adds 0x20 to `rsp`, pops `rbx` and returns the entry `rbx`",
+   "anchors": [
+    [
+     "00786F45",
+     "mov"
+    ],
+    [
+     "00786F4B",
+     "mov"
+    ],
+    [
+     "00786F4E",
+     "mov"
+    ],
+    [
+     "00786F55",
+     "mov"
+    ],
+    [
+     "00786F5C",
+     "add"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

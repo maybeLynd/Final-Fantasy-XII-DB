@@ -140,7 +140,7 @@ pass is unconditional — flag bit 0 exempts only the entry pass — and it test
 halves where the entry pass tested the low (`00300DDD`–`00300DFE` against `00300D46`–`00300D63`);
 ASTRA's [EXP-061](../_experiments/EXP-061-mp-writer-controls.md) ran the body in isolation with
 flags `1` and a global mask `0x00010000`: both publishers fire, nothing is stored, and a mutant
-with the late global test removed is rejected. After the store the order is: the secondary
+with the late global test removed is rejected. *(qualified 2026-10-02, OPUS, on FABLE's review of ASTRA `ov42-mode17-query-boundaries`: the global mask in that run was a substituted callee. The shipping `BattleTarget_ComputeGlobalEligibilityMask` zeroes its result and writes only the low WORD, so its high half is always 0. On the shipping code the late veto can come only from the unit mask's high half, which is the console's Invincible setting (`+0xC20`) read twice - see "The two eligibility masks" below.)* After the store the order is: the secondary
 modifier when the **original** delta is positive (the full delta, not the amount gained), then
 the accumulator clear when a unit exists and the new value is below the old (`00300E00`–`00300E25`).
 
@@ -780,3 +780,24 @@ listed as unread in §5, which remain unread.~~ *(answered: see §5 — every it
 | `00353530` | 86 B | reads two values by calling `00267E10(r9)` twice; when the second is non-zero tail-jumps `00359410(003589B0(00264010(first value)))`, otherwise tail-jumps `00359410(0)` | `00353540`, `00353551`, `00353555`, `0035356E`, `00353581` |
 | `00473A90` | 123 B | builds a flag word from `r8d`: bit 0 shifted to bit 28, bit 29 set when `r8d` bit 1 is set and bit 30 set when `r8d` bit 2 is set; when `rcx` is null returns -1, otherwise tail-jumps `00329B70(003589B0(rcx), 1, edx, flag word)` | `00473AAC`, `00473ABB`, `00473AE0`, `00473AF3`, `00473AFD` |
 | `0050D2F0` | 23 B | tail-jumps `003593A0(003589B0(rdx))` | `0050D2F7`, `0050D302` |
+
+## The two eligibility masks (OPUS, 2026-10-02)
+
+From FABLE's review of ASTRA's [`ov42-mode17-query-boundaries`](../_index/candidates/fable-review-astra-ov42-mode17-query-boundaries-1002/REVIEW.md)
+(ACCEPT-WITH-NARROWING). OPUS re-read the global mask's zeroing, the setting getter and the settings root at the bytes
+([`batch6_check.py`](../_index/candidates/opus-ov42-batch6-routes-1002/batch6_check.py)). The unit mask's arms rest on FABLE's `rv_mode17q.py`.
+- **Global** (`BattleTarget_ComputeGlobalEligibilityMask`, `0030B770`): the DWORD result is zeroed at + 0x15, and only
+  its low WORD is written after that. The high WORD is 0 for every input. The low WORD is 0..31: bit `0x1` when `02089340` has any of 0x3080, bit `0x2` from
+  bit `0x1` of `022C2158`, and bits `0x4`, `0x8` and `0x10` from its bits `0x400`, `0x200` and `0x800`.
+- **Unit** (`0030B7F0(unit, edx)`): 0 unless the unit is non-NULL and bit `0x10` of its first DWORD is set. Its high
+  WORD has two bits *(FABLE)*:
+  - bit `0x1` when the first setting read is 1, unit `+0x698` is non-NULL and that record's byte `+5` is 0;
+  - bit `0x2` when the second read is 2.
+  Both reads go through `0017D470`, which returns DWORD `+0xC20` of the settings object. Two calls make two reads, so the
+  high WORD is 0..3 in general and 0..2 when both reads see one value. The low bit `0x2` needs EDX != 0. The MP writer
+  `00300CE0` passes EDX = 0 at both its call sites.
+- **The settings root** (read by the accessor `0017D470` calls first): a non-NULL root at `01F81428` is returned as is, with no call. A NULL root
+  allocates 0x10E8 bytes, runs the constructor `001CCB20` on success and stores the result as the root. A failed
+  allocation leaves it NULL, and the getter then reads `[0xC20]`.
+- **Premises:** an initialized root, no other write to the root or `+0xC20` during the query, and private frames
+  under the Win64 ABI.

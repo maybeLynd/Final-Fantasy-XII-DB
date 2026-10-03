@@ -166,7 +166,7 @@ helpers they share — `003DA860(out_scaled, out_unscaled, x, y, sx, sy)` stores
 `x*sx`,`y*sy` at the first pointer and the raw pair at the second; `003DA890`
 copies a `{u64, u32, f32@+0xC}` block. Kind 3 (mask `0x60`): scaled command dir →
 `+0x50`/`+0x54` (`steerCmdVecX/Y`, init 2π/0), its unscaled copy → `+0x80`/`+0x84`,
-the turn/blend scalar `max(0.05, (x·scaleX + y·scaleZ)·0.5)` → `+0xFC`, plus
+the turn/blend scalar ~~`max(0.05, (x·scaleX + y·scaleZ)·0.5)`~~ `max(0.01, (x·scaleX + y·scaleZ)·0.5)` *(corrected 2026-10-02, OPUS: `008F30E4` holds 0.01, `maxss` at `0026B37D`)* → `+0xFC`, plus
 secondary dir scaled → `+0x70`/`+0x74` and unscaled → `+0x90`/`+0x94` (`0026BBC0`).
 Gate bytes `+0xDE`/`+0xDF` (`dirCopy70Pending`/`dirCopy60Pending`, verb-set,
 init `0x0101`) make the next `0026B2E0` pass block-copy `+0x50` into `+0x70` /
@@ -307,7 +307,7 @@ ActorStorageRecord (0x6E0)
   +0xC0  ptr -> +0x350   SecondaryContext (0x188)
 ```
 
-SecondaryContext's first 192 bytes are a **4 × 0x30 element array** (proven 2026-09-16,
+~~SecondaryContext's first 192 bytes are a **4 × 0x30 element array**~~ SecondaryContext opens with an array of `0x30`-byte elements that does not end at `+0xC0` *(corrected 2026-10-02, OPUS: the binder `002E3110`'s `k = 3` arm addresses `ctx + (r8 + 4) × 0x30`, `002E31F8`–`002E3207`; how many elements exist is not settled here)*; the first four (proven 2026-09-16,
 `OPUS-REQ-SWE2-STRUCT-SECONDARYCONTEXT-0X30-ELEMENTS`). `002E35B0`, `002E8FD0` and
 `002E4A40` each `lea` the bases `ctx+0x30`/`+0x60`/`+0x90` and drive byte-identical access
 sequences through all four: the `entryId` idiom (`cmp dword [el],-1` / `movzx word [el]`,

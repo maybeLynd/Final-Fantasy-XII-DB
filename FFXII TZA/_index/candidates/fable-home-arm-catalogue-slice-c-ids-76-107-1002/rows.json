@@ -1,0 +1,89 @@
+{
+ "page": "00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-C-ids-76-107.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01B5JAqPgewUFviUD5ZfpMqA",
+ "report": "home-arm-catalogue-slice-c-ids-76-107.json",
+ "rows": [
+  {
+   "fn": "001C2D10",
+   "entered_from": "`001C2980` + 0x111",
+   "text": "when `rdx` and `r8` are both non-null, replaces float `[rdx]` with float `rcx+0x4664` times it minus 1.65 (`008F9DD0`) and float `[r8]` with float `rcx+0x4668` times it minus 2.0 (`01CEBC08`); otherwise returns without writing",
+   "anchors": [
+    [
+     "001C2D18",
+     "je"
+    ],
+    [
+     "001C2D26",
+     "subss"
+    ],
+    [
+     "001C2D2E",
+     "movss"
+    ],
+    [
+     "001C2D3F",
+     "subss"
+    ],
+    [
+     "001C2D47",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "001C2D50",
+   "entered_from": "`001C2980` + 0x23C",
+   "text": "when qword `rcx+8` is below qword `rcx+0x10` (unsigned), advances `+8` by 0x230 and, when the old value is non-null, calls `001C2D50` + 0x34 with it in `rcx` and the incoming `rdx`; otherwise tail-jumps (`001C2D50` + 0x49) with `rcx`, qword `+8` in `rdx` and the incoming `rdx` in `r8`",
+   "anchors": [
+    [
+     "001C2D64",
+     "cmp"
+    ],
+    [
+     "001C2D76",
+     "mov"
+    ],
+    [
+     "001C2D84",
+     "call"
+    ],
+    [
+     "001C2D99",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "001EE5D0",
+   "entered_from": "`00187950` + 0x6B",
+   "text": "with ints `r8d`, `r9d` and the fifth and sixth (stack) arguments c and d: when `r8d` equals c and `r9d` equals d, stores 0 into dwords `[rdx]` and `[rcx]`; otherwise, when float c divided by float d exceeds float `r8d` divided by float `r9d`, stores the absolute value of (`r8d` minus c) divided by 2 (signed, truncated) into `[rcx]` and 0 into `[rdx]`, else stores 0 into `[rcx]` and the absolute value of (`r9d` minus d) divided by 2 into `[rdx]`",
+   "anchors": [
+    [
+     "001EE5DB",
+     "cmp"
+    ],
+    [
+     "001EE60B",
+     "divss"
+    ],
+    [
+     "001EE613",
+     "comiss"
+    ],
+    [
+     "001EE629",
+     "mov"
+    ],
+    [
+     "001EE647",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

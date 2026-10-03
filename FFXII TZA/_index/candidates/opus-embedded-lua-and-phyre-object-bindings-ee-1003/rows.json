@@ -1,0 +1,1191 @@
+{
+ "page": "22-Middleware-PhyreEngine/Embedded-Lua-And-Object-Bindings/embedded-lua-and-phyre-object-bindings.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "embedded-lua-and-phyre-object-bindings.json",
+ "rows": [
+  {
+   "fn": "005C3CA0",
+   "text": "reads dword `+4` of the qword at index dword `02EAED3C` of the array at `gs:[0x58]` and, when dword `02CB5D40` is above it, calls `008092FC(02CB5D40)` and, if `02CB5D40` is then -1, stores `02CAD140` with bit `0x1` set to qword `02CB5D28`, the result of a call to `00630180` to qword `02CB5D30` and 0 to qword `02CB5D38`, and calls `0080929C(02CB5D40)`; every path returns `02CB5D28`",
+   "anchors": [
+    [
+     "005C3CC8",
+     "cmp"
+    ],
+    [
+     "005C3CD7",
+     "call"
+    ],
+    [
+     "005C3CDC",
+     "cmp"
+    ],
+    [
+     "005C3CF7",
+     "call"
+    ],
+    [
+     "005C3D15",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00683DC0",
+   "text": "when `rdx` is null it calls `0080F420(rcx, 1)` and tail-jumps to `00810620` with `rcx`; otherwise it calls `0080F420(rcx, 1)` and `00810240(rcx, 0x10)`, and when that returns a non-null block stores `02E41370` and `rdx`+8 to its qwords `+0` and `+8`, then calls `0080FA50(rcx, -1001000, 'PhyreObject')` and tail-jumps to `00810F60(rcx, -2)`",
+   "anchors": [
+    [
+     "00683DDA",
+     "call"
+    ],
+    [
+     "00683DE7",
+     "call"
+    ],
+    [
+     "00683DF8",
+     "mov"
+    ],
+    [
+     "00683E12",
+     "call"
+    ],
+    [
+     "00683E29",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0080F420",
+   "text": "with `n` = the sign-extended `edx`: when (qword `[rcx+0x30]` - qword `[rcx+0x10]`)>>4 is above `n` it takes the result-1 path; otherwise it returns 0 when (qword `[rcx+0x10]` - qword `[rcx+0x38]`)>>4 + 5 is above 1000000 - `n`, else calls `0081E050(rcx, 0080F2F0, rsp+0x38)` (the stack slot holding `edx`) and returns 0 when that is non-zero, taking the result-1 path with `n` re-read from the slot otherwise; the result-1 path stores qword `[rcx+0x10]` + `n`*16 to qword `+8` of the record qword `[rcx+0x20]` (read on entry) when that field is below it, and returns 1",
+   "anchors": [
+    [
+     "0080F447",
+     "cmp"
+    ],
+    [
+     "0080F467",
+     "cmp"
+    ],
+    [
+     "0080F487",
+     "call"
+    ],
+    [
+     "0080F4A9",
+     "cmp"
+    ],
+    [
+     "0080F4AF",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0080FA50",
+   "text": "resolves the index `edx` to a slot (for `edx` > 0 qword `[[rcx+0x20]]` + `edx`*16, or `01CCB510` when that is not below qword `[rcx+0x10]`; for -1001000 < `edx` <= 0 qword `[rcx+0x10]` + `edx`*16; for -1001000 qword `[rcx+0x18]` + 0x40; below that, with `u` = -1001000 - `edx` and `f` = qword `[[rcx+0x20]]`, `01CCB510` when dword `[f+8]` is 0x16 or `u` is above byte `+0xa` of `g` = qword `[f]`, else `g` + (`u`+1)*16); it then reads `t` = qword `[rcx+0x10]`, calls `0081EF90(rcx, r8)`, stores the result `v` to qword `[t]` and byte `[v+8]` with bit `0x40` set to dword `[t+8]`, adds 0x10 to `[rcx+0x10]` and tail-jumps to `00822BC0(rcx, slot, top-0x10, top-0x10)` with `top` the new qword `[rcx+0x10]`",
+   "anchors": [
+    [
+     "0080FA7F",
+     "cmovb"
+    ],
+    [
+     "0080FAAC",
+     "cmp"
+    ],
+    [
+     "0080FAE1",
+     "call"
+    ],
+    [
+     "0080FAF0",
+     "or"
+    ],
+    [
+     "0080FAF9",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "0080FBA0",
+   "text": "resolves the index `edx` to a slot (for `edx` > 0 qword `[[rcx+0x20]]` + `edx`*16, or `01CCB510` when that is not below qword `[rcx+0x10]`; for -1001000 < `edx` <= 0 qword `[rcx+0x10]` + `edx`*16; for -1001000 qword `[rcx+0x18]` + 0x40; below that, with `u` = -1001000 - `edx` and `f` = qword `[[rcx+0x20]]`, `01CCB510` when dword `[f+8]` is 0x16 or `u` is above byte `+0xa` of `g` = qword `[f]`, else `g` + (`u`+1)*16); with `tt` = dword `[slot+8]` it takes `m` = qword `+0x10` of the object qword `[slot]` when `tt` & 0xf is 5 or 7, else the qword at qword `[rcx+0x18]` + (`tt` & 0xf)*8 + 0x1a8, and returns 0 when `m` is null; otherwise it stores `m` to the qword at `[rcx+0x10]` and 0x45 to the dword after it, adds 0x10 to `[rcx+0x10]` and returns 1",
+   "anchors": [
+    [
+     "0080FBBD",
+     "cmovb"
+    ],
+    [
+     "0080FBEA",
+     "cmp"
+    ],
+    [
+     "0080FC21",
+     "cmp"
+    ],
+    [
+     "0080FC33",
+     "mov"
+    ],
+    [
+     "0080FC53",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00810DF0",
+   "text": "resolves the index `edx` to a slot (for `edx` > 0 qword `[[rcx+0x20]]` + `edx`*16, or `01CCB510` when that is not below qword `[rcx+0x10]`; for -1001000 < `edx` <= 0 qword `[rcx+0x10]` + `edx`*16; for -1001000 qword `[rcx+0x18]` + 0x40; below that, with `u` = -1001000 - `edx` and `f` = qword `[[rcx+0x20]]`, `01CCB510` when dword `[f+8]` is 0x16 or `u` is above byte `+0xa` of `g` = qword `[f]`, else `g` + (`u`+1)*16); it then reads `t` = qword `[rcx+0x10]`, stores `t`+0x10 there, calls `0081EF90(rcx, r8)`, stores the result `v` to qword `[t]` and byte `[v+8]` with bit `0x40` set to dword `[t+8]`, calls `00823030(rcx, slot, top-0x10, top-0x20)` with `top` re-read from `[rcx+0x10]`, and subtracts 0x20 from `[rcx+0x10]`",
+   "anchors": [
+    [
+     "00810E1F",
+     "cmovb"
+    ],
+    [
+     "00810E4C",
+     "cmp"
+    ],
+    [
+     "00810E89",
+     "call"
+    ],
+    [
+     "00810EAD",
+     "call"
+    ],
+    [
+     "00810EB2",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "00811950",
+   "text": "resolves the index `edx` to a slot (for `edx` > 0 qword `[[rcx+0x20]]` + `edx`*16, or `01CCB510` when that is not below qword `[rcx+0x10]`; for -1001000 < `edx` <= 0 qword `[rcx+0x10]` + `edx`*16; for -1001000 qword `[rcx+0x18]` + 0x40; below that, with `u` = -1001000 - `edx` and `f` = qword `[[rcx+0x20]]`, `01CCB510` when dword `[f+8]` is 0x16 or `u` is above byte `+0xa` of `g` = qword `[f]`, else `g` + (`u`+1)*16); it returns qword `[slot]` when dword `[slot+8]` & 0xf is 2, qword `[slot]` + 0x30 when it is 7, and 0 otherwise",
+   "anchors": [
+    [
+     "00811970",
+     "cmovb"
+    ],
+    [
+     "0081199D",
+     "cmp"
+    ],
+    [
+     "008119D0",
+     "cmp"
+    ],
+    [
+     "008119E0",
+     "add"
+    ],
+    [
+     "008119E5",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00812590",
+   "text": "calls `00811640(rcx, edx, rsp+0x50)` and returns its `xmm0` result; when the dword at `rsp+0x50` is zero afterwards it first calls `00811A70(rcx, 3)`, `008119F0(rcx, edx)` and `00811A70(rcx, that type)`, then `00810540(rcx, '%s expected, got %s', first name, second name)` and `008122D0(rcx, edx, that string)`",
+   "anchors": [
+    [
+     "008125A9",
+     "call"
+    ],
+    [
+     "008125AE",
+     "cmp"
+    ],
+    [
+     "008125D2",
+     "call"
+    ],
+    [
+     "008125F1",
+     "call"
+    ],
+    [
+     "008125FE",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00813450",
+   "text": "with qwords `p` = `[rcx]`, `n` = `[rcx+8]`, `u` = `[rcx+0x10]` and `L` = `[rcx+0x18]`: when `n` - `u` is not below `rdx` it returns `p` + `u`; otherwise it takes the new size as 2`n`, or `u` + `rdx` when 2`n` - `u` is below `rdx`, calls `00812960(L, 'buffer too large')` when the new size is below `u` or still leaves less than `rdx` above `u`, calls `00810240(L, new size)` and `00861EBA(new block, p, u)`, calls `00810D20(L, -2)` when `p` is not `rcx+0x20`, stores the new block and size to `[rcx]` and `[rcx+8]` and returns the new block + `u`",
+   "anchors": [
+    [
+     "00813477",
+     "jae"
+    ],
+    [
+     "0081348C",
+     "lea"
+    ],
+    [
+     "008134AA",
+     "call"
+    ],
+    [
+     "008134C7",
+     "call"
+    ],
+    [
+     "008134DD",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00814120",
+   "text": "gets `n` = `0080FD00(rcx)` and calls `008122D0(rcx, 2, 'value expected')` when `n` is below 2, then calls `00810730(rcx, 1)`, `0080F690(rcx, 2, 1)`, `00810DC0(rcx, 2)` and `00810340(rcx, n-2, -1, 1)` with stack arguments 0 and `00815020`, and tail-jumps to `00814DE0(rcx, 1 when that returned 0 and 0 otherwise)`",
+   "anchors": [
+    [
+     "0081412D",
+     "call"
+    ],
+    [
+     "00814148",
+     "call"
+    ],
+    [
+     "00814166",
+     "call"
+    ],
+    [
+     "00814198",
+     "call"
+    ],
+    [
+     "008141A2",
+     "sete"
+    ]
+   ]
+  },
+  {
+   "fn": "008145B0",
+   "text": "gets `t` = `008119F0(rcx, 2)`, calls `00812740(rcx, 1, 5)` and, when `t` is neither 0 nor 5, `008122D0(rcx, 2, 'nil or table expected')`; when `00812AF0(rcx, 1, '__metatable')` returns non-zero it tail-jumps to `00812960(rcx, 'cannot change a protected metatable')`, otherwise it calls `00811130(rcx, 2)` and `00810F60(rcx, 1)` and returns 1",
+   "anchors": [
+    [
+     "008145C2",
+     "call"
+    ],
+    [
+     "008145D5",
+     "call"
+    ],
+    [
+     "008145F2",
+     "call"
+    ],
+    [
+     "00814606",
+     "call"
+    ],
+    [
+     "00814623",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "008147B0",
+   "text": "gets `k` = `00812620(rcx, 1, 'collect', 01CCA560)` and `op` = the dword at `01CCA5C0` + `k`*4, then `r` = `0080F800(rcx, op, 00813330(rcx, 2, 0))`; when `op` is 3 it gets `s` = `0080F800(rcx, 4, 0)`, calls `00810640(rcx)` with `xmm1` = (float)`r` + (float)`s`*0.0009765625 and `00810580(rcx, s)`, and returns 2; when `op` is 5 or 9 it calls `00810450(rcx, r)`, otherwise `00810580(rcx, r)`, and returns 1",
+   "anchors": [
+    [
+     "008147D5",
+     "call"
+    ],
+    [
+     "008147EA",
+     "mov"
+    ],
+    [
+     "008147FE",
+     "call"
+    ],
+    [
+     "0081480E",
+     "test"
+    ],
+    [
+     "00814875",
+     "mulss"
+    ]
+   ]
+  },
+  {
+   "fn": "00814950",
+   "text": "calls `00812AF0(rcx, 1, '__pairs')`; when that returns 0 it calls `00812740(rcx, 1, 5)`, `00810470(rcx, 008148F0, 0)`, `00810730(rcx, 1)` and `00810620(rcx)`, otherwise it calls `00810730(rcx, 1)` and `0080F3A0(rcx, 1, 3, 0)` with a zero stack argument; both paths return 3",
+   "anchors": [
+    [
+     "00814965",
+     "call"
+    ],
+    [
+     "00814974",
+     "jne"
+    ],
+    [
+     "0081498C",
+     "call"
+    ],
+    [
+     "008149A1",
+     "call"
+    ],
+    [
+     "008149CD",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008149E0",
+   "text": "calls `00812AF0(rcx, 1, '__ipairs')`; when that returns 0 it calls `00812740(rcx, 1, 5)`, `00810470(rcx, 00814F20, 0)`, `00810730(rcx, 1)` and `00810580(rcx, 0)`, otherwise it calls `00810730(rcx, 1)` and `0080F3A0(rcx, 1, 3, 0)` with a zero stack argument; both paths return 3",
+   "anchors": [
+    [
+     "008149F5",
+     "call"
+    ],
+    [
+     "00814A04",
+     "jne"
+    ],
+    [
+     "00814A1C",
+     "call"
+    ],
+    [
+     "00814A33",
+     "call"
+    ],
+    [
+     "00814A5F",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00814A70",
+   "text": "gets `a` = `00813380(rcx, 1, 0, 0)` and `b` = `00813380(rcx, 2, 0, 0)` and notes whether `008119F0(rcx, 3)` is not -1; when `00812FA0(rcx, a, b)` returns non-zero it calls `00810620(rcx)` and `0080FEE0(rcx, -2)` and returns 2; otherwise, when the noted flag is set, it calls `00810730(rcx, 3)` and `00811180(rcx, -2, 1)`, and returns 1",
+   "anchors": [
+    [
+     "00814A91",
+     "call"
+    ],
+    [
+     "00814AC9",
+     "setne"
+    ],
+    [
+     "00814ACD",
+     "call"
+    ],
+    [
+     "00814AF1",
+     "call"
+    ],
+    [
+     "00814B0D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00814D20",
+   "text": "gets `n` = `0080FD00(rcx)`; when `008119F0(rcx, 1)` is 4 and the first byte of the string from `00811530(rcx, 1, 0)` is 0x23 it calls `00810580(rcx, n-1)` and returns 1; otherwise it gets `i` = `00812470(rcx, 1)`, adds `n` to it when it is negative or lowers it to `n` when it is above, calls `008122D0(rcx, 1, 'index out of range')` when `i` is below 1, and returns `n` - `i`",
+   "anchors": [
+    [
+     "00814D41",
+     "cmp"
+    ],
+    [
+     "00814D54",
+     "cmp"
+    ],
+    [
+     "00814D62",
+     "call"
+    ],
+    [
+     "00814D84",
+     "call"
+    ],
+    [
+     "00814DAD",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00814F90",
+   "text": "calls `008109F0(rcx, -1001000, 2)` twice, then `00810DF0(rcx, -2, 01CCA894)`, `008135B0(rcx, 01CCA3F0, 0)`, `008105C0(rcx, 'Lua 5.2', 7)` and `00810DF0(rcx, -2, '_VERSION')`, and returns 1",
+   "anchors": [
+    [
+     "00814FA4",
+     "call"
+    ],
+    [
+     "00814FB7",
+     "call"
+    ],
+    [
+     "00814FCB",
+     "call"
+    ],
+    [
+     "00814FDD",
+     "call"
+    ],
+    [
+     "00814FF2",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00815050",
+   "text": "gets `co` = `00811800(rcx, 1)` and calls `008122D0(rcx, 1, 'coroutine expected')` when it is null, then gets `r` = `00815330(rcx, co, 0080FD00(rcx) - 1)`; when `r` is negative it calls `00810450(rcx, 0)` and `0080FEE0(rcx, -2)` and returns 2, otherwise it calls `00810450(rcx, 1)` and `0080FEE0(rcx, -1 - r)` and returns `r` + 1",
+   "anchors": [
+    [
+     "00815062",
+     "call"
+    ],
+    [
+     "0081507C",
+     "call"
+    ],
+    [
+     "00815093",
+     "call"
+    ],
+    [
+     "008150B0",
+     "call"
+    ],
+    [
+     "008150D7",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00815540",
+   "text": "calls `00812740(rcx, 1, 5)` and takes `e` = `00812F10(rcx, 1)` + 1 and `n` = `0080FD00(rcx)`; when `n` is 2 it calls `00810C50(rcx, 1, e)` and returns 0; when `n` is 3 it takes `p` = `00812470(rcx, 2)`, for `i` from the larger of `p` and `e` down to `p` + 1 calls `008109F0(rcx, 1, i-1)` and `00810C50(rcx, 1, i)`, then calls `00810C50(rcx, 1, p)` and returns 0; any other `n` returns the result of `00812960(rcx, 01CCA9E0)` (the wrong-number-of-arguments message)",
+   "anchors": [
+    [
+     "0081556D",
+     "call"
+    ],
+    [
+     "00815580",
+     "je"
+    ],
+    [
+     "00815591",
+     "call"
+    ],
+    [
+     "008155BE",
+     "call"
+    ],
+    [
+     "008155E8",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00815610",
+   "text": "calls `00812740(rcx, 1, 5)`, takes `e` = `00812F10(rcx, 1)` and `p` = `00813330(rcx, 2, e)`, and returns 0 when `p` is below 1 or above `e`; otherwise it calls `008109F0(rcx, 1, p)`, then for `i` from `p` to `e`-1 calls `008109F0(rcx, 1, i+1)` and `00810C50(rcx, 1, i)`, then calls `00810620(rcx)` and `00810C50(rcx, 1, e)` and returns 1",
+   "anchors": [
+    [
+     "0081564B",
+     "call"
+    ],
+    [
+     "00815656",
+     "jl"
+    ],
+    [
+     "0081566B",
+     "call"
+    ],
+    [
+     "0081569E",
+     "call"
+    ],
+    [
+     "008156C1",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008158A0",
+   "text": "takes `n` = `0080FD00(rcx)`, calls `0080F740(rcx, n, 1)`, `00810580(rcx, n)` and `00810DF0(rcx, -2, 01CCA1B0)`; when `n` is positive it calls `00810730(rcx, 1)`, `00810C50(rcx, -2, 1)` and `00810DC0(rcx, 1)`, then `00810C50(rcx, 1, i)` for `i` from `n` down to 2; it returns 1",
+   "anchors": [
+    [
+     "008158C0",
+     "call"
+    ],
+    [
+     "008158DF",
+     "call"
+    ],
+    [
+     "00815901",
+     "call"
+    ],
+    [
+     "0081590E",
+     "call"
+    ],
+    [
+     "0081592B",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00815950",
+   "text": "calls `00812740(rcx, 1, 5)` and takes `i` = `00813330(rcx, 2, 1)` and `e` = `00812470(rcx, 3)` when `008119F0(rcx, 3)` is positive, else `00812F10(rcx, 1)`, and returns 0 when `i` is above `e`; with `n` = `e` - `i` + 1 it returns the result of `00812960(rcx, 'too many results to unpack')` when `n` is not positive or `0080F420(rcx, n)` returns 0, and otherwise calls `008109F0(rcx, 1, k)` for `k` from `i` to `e` and returns `n`",
+   "anchors": [
+    [
+     "0081597C",
+     "call"
+    ],
+    [
+     "0081598C",
+     "call"
+    ],
+    [
+     "008159DD",
+     "call"
+    ],
+    [
+     "008159F1",
+     "call"
+    ],
+    [
+     "00815A24",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00815A40",
+   "text": "calls `00812740(rcx, 1, 5)`, takes `e` = `00812F10(rcx, 1)`, calls `008126E0(rcx, 0x28, 01CEB638)`, calls `00812740(rcx, 2, 6)` when `008119F0(rcx, 2)` is positive, then calls `00811130(rcx, 2)` and `00815AD0(rcx, 1, e)`, and returns 0",
+   "anchors": [
+    [
+     "00815A63",
+     "call"
+    ],
+    [
+     "00815A79",
+     "call"
+    ],
+    [
+     "00815A9B",
+     "call"
+    ],
+    [
+     "00815AA8",
+     "call"
+    ],
+    [
+     "00815AB8",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008167C0",
+   "text": "gets `s` = `00812500(rcx, 1, rsp+0x48)` with the length `len` written to `rsp+0x48`, `i` = `00812470(rcx, 2)` and `j` = `00813330(rcx, 3, -1)`, maps each negative value `v` of `i` and `j` to `len` + `v` + 1 (or to 0 when -`v` is above `len`), raises `i` to 1 and lowers `j` to `len` (unsigned), and calls `008105C0(rcx, s + i - 1, j - i + 1)` when `i` is not above `j`, else `008105C0(rcx, 01CEB638, 0)`; it returns 1",
+   "anchors": [
+    [
+     "008167E3",
+     "call"
+    ],
+    [
+     "008167F7",
+     "call"
+    ],
+    [
+     "00816826",
+     "call"
+    ],
+    [
+     "0081684C",
+     "cmovb"
+    ],
+    [
+     "00816879",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008168A0",
+   "text": "gets `s` = `00812500(rcx, 1, rsp+0x20)` with the length `len` written to `rsp+0x20` and `b` = `00812400(rcx, rsp+0x30, len)`, writes the `len` bytes of `s` into `b` in reverse order, calls `00813560(rsp+0x30, len)` and returns 1; the stack cookie is checked through `00808C40`",
+   "anchors": [
+    [
+     "008168CC",
+     "call"
+    ],
+    [
+     "008168E1",
+     "call"
+    ],
+    [
+     "008168F5",
+     "movzx"
+    ],
+    [
+     "008168FA",
+     "mov"
+    ],
+    [
+     "0081690F",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00816940",
+   "text": "gets `s` = `00812500(rcx, 1, rsp+0x20)` with the length `len` written to `rsp+0x20` and `b` = `00812400(rcx, rsp+0x30, len)`, stores into each of the `len` bytes of `b` the low byte returned by a call through the qword at `008C3020` with the matching byte of `s` zero-extended, calls `00813560(rsp+0x30, len)` and returns 1; the stack cookie is checked through `00808C40`",
+   "anchors": [
+    [
+     "0081696C",
+     "call"
+    ],
+    [
+     "00816981",
+     "call"
+    ],
+    [
+     "008169A8",
+     "call"
+    ],
+    [
+     "008169AE",
+     "mov"
+    ],
+    [
+     "008169CF",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00816A00",
+   "text": "gets `s` = `00812500(rcx, 1, rsp+0x20)` with the length `len` written to `rsp+0x20` and `b` = `00812400(rcx, rsp+0x30, len)`, stores into each of the `len` bytes of `b` the low byte returned by a call through the qword at `008C2FF0` with the matching byte of `s` zero-extended, calls `00813560(rsp+0x30, len)` and returns 1; the stack cookie is checked through `00808C40`",
+   "anchors": [
+    [
+     "00816A2C",
+     "call"
+    ],
+    [
+     "00816A41",
+     "call"
+    ],
+    [
+     "00816A68",
+     "call"
+    ],
+    [
+     "00816A6E",
+     "mov"
+    ],
+    [
+     "00816A8F",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00816D70",
+   "text": "takes `n` = `0080FD00(rcx)` and `b` = `00812400(rcx, rsp+0x20, n)`, and for `i` = 1 to `n` gets `v` = `00812470(rcx, i)`, calls `008122D0(rcx, i, 'value out of range')` when `v` differs from its own zero-extended low byte, and stores the low byte to `b[i-1]`; it then calls `00813560(rsp+0x20, n)` and returns 1; the stack cookie is checked through `00808C40`",
+   "anchors": [
+    [
+     "00816DAE",
+     "call"
+    ],
+    [
+     "00816DD5",
+     "call"
+    ],
+    [
+     "00816DE0",
+     "cmp"
+    ],
+    [
+     "00816DF0",
+     "call"
+    ],
+    [
+     "00816DF5",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00816E50",
+   "text": "calls `00812740(rcx, 1, 6)`, `00811130(rcx, 1)`, `008123E0(rcx, rsp+0x20)` and `0080F7B0(rcx, 00818490, rsp+0x20)`; when that returns non-zero it returns the result of `00812960(rcx, 'unable to dump given function')`, otherwise it calls `00813510(rsp+0x20)` and returns 1; the stack cookie is checked through `00808C40`",
+   "anchors": [
+    [
+     "00816E77",
+     "call"
+    ],
+    [
+     "00816E91",
+     "call"
+    ],
+    [
+     "00816EA5",
+     "call"
+    ],
+    [
+     "00816EB8",
+     "call"
+    ],
+    [
+     "00816EC4",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00818880",
+   "text": "takes `v` = `00812800(rcx, 1)`, `f` = `00812470(rcx, 2)` and `w` = `00813330(rcx, 3, 1)`, calls `008122D0(rcx, 2, 'field cannot be negative')` when `f` is negative, `008122D0(rcx, 3, 'width must be positive')` when `w` is not positive and `00812960(rcx, 'trying to access non-existent bits')` when `f` + `w` is above 32, then calls `00810700(rcx)` with `edx` = (`v` >> `f`) AND NOT (-2 << (`w`-1)), using 32-bit shifts by `cl`, and returns 1",
+   "anchors": [
+    [
+     "0081889C",
+     "call"
+    ],
+    [
+     "008188C9",
+     "jns"
+    ],
+    [
+     "008188FA",
+     "cmp"
+    ],
+    [
+     "00818916",
+     "shl"
+    ],
+    [
+     "00818923",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00818950",
+   "text": "takes `v` = `00812800(rcx, 1)`, `x` = `00812800(rcx, 2)`, `f` = `00812470(rcx, 3)` and `w` = `00813330(rcx, 4, 1)`, calls `008122D0(rcx, 3, 'field cannot be negative')` when `f` is negative, `008122D0(rcx, 4, 'width must be positive')` when `w` is not positive and `00812960(rcx, 'trying to access non-existent bits')` when `f` + `w` is above 32, then with `m` = NOT (-2 << (`w`-1)) calls `00810700(rcx)` with `edx` = (`v` AND NOT (`m` << `f`)) OR ((`x` AND `m`) << `f`), using 32-bit shifts by `cl`, and returns 1",
+   "anchors": [
+    [
+     "00818972",
+     "call"
+    ],
+    [
+     "00818981",
+     "call"
+    ],
+    [
+     "008189E0",
+     "cmp"
+    ],
+    [
+     "00818A0B",
+     "shl"
+    ],
+    [
+     "00818A1A",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00818F40",
+   "text": "takes `x` = `00812590(rcx, 1)`; when `008119F0(rcx, 2)` is not positive the result is `00861FB6((double)x)`, otherwise with `b` = `00812590(rcx, 2)` it is `00862076((double)x)` when `b` equals 10.0 and `00861FB6((double)x)` / `00861FB6((double)b)` otherwise; it calls `00810640(rcx)` with the result converted to float in `xmm1` and returns 1",
+   "anchors": [
+    [
+     "00818F53",
+     "call"
+    ],
+    [
+     "00818F73",
+     "call"
+    ],
+    [
+     "00818F96",
+     "ucomiss"
+    ],
+    [
+     "00818FA8",
+     "call"
+    ],
+    [
+     "00818FD1",
+     "divsd"
+    ]
+   ]
+  },
+  {
+   "fn": "00825490",
+   "text": "calls `00812430(rcx, 1)` and gets `p` = `008136B0(rcx, 1, 'FILE*')`; when `p` is null it calls `00810620(rcx)`, when qword `[p+8]` is zero it calls `008105C0(rcx, 'closed file', 0xb)`, otherwise `008105C0(rcx, 'file', 4)`; every path returns 1",
+   "anchors": [
+    [
+     "0082549E",
+     "call"
+    ],
+    [
+     "008254B2",
+     "call"
+    ],
+    [
+     "008254BF",
+     "call"
+    ],
+    [
+     "008254CF",
+     "cmp"
+    ],
+    [
+     "00825500",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00825570",
+   "text": "calls `0080FA50(rcx, -1001000, '_IO_output')` when `008119F0(rcx, 1)` returns -1, gets `p` = `00812780(rcx, 1, 'FILE*')` and calls `00812960(rcx, 'attempt to use a closed file')` when qword `[p+8]` is zero, then gets `p` again the same way, zeroes `[p+8]` and tail-jumps through its old value with `rcx` unchanged and `rdx` holding that value",
+   "anchors": [
+    [
+     "00825583",
+     "cmp"
+    ],
+    [
+     "00825597",
+     "call"
+    ],
+    [
+     "008255B0",
+     "cmp"
+    ],
+    [
+     "008255D5",
+     "call"
+    ],
+    [
+     "008255E1",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00825770",
+   "text": "gets `name` = `00812500(rcx, 1, 0)`, `mode` = `00813380(rcx, 2, 008C5880, 0)` and `p` = `00810240(rcx, 0x10)`, zeroes qword `[p+8]`, calls `00813680(rcx, 'FILE*')`, stores to `[p]` the result of a call through the qword at `008C2EC8` with `name` and `mode` and stores `00826370` to `[p+8]`; it returns 1 when that result is non-null and otherwise the result of `00812A50(rcx, 0, name)`",
+   "anchors": [
+    [
+     "0082578E",
+     "call"
+    ],
+    [
+     "008257A7",
+     "call"
+    ],
+    [
+     "008257D1",
+     "call"
+    ],
+    [
+     "008257DC",
+     "call"
+    ],
+    [
+     "008257FD",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008258A0",
+   "text": "when `008119F0(rcx, 1)` is positive it gets `s` = `00811530(rcx, 1, 0)` and calls `008266D0(rcx, s, 008C5880)` when `s` is non-null, otherwise `008269F0(rcx)` with the other registers as left and then `00810730(rcx, 1)`, and calls `00810DF0(rcx, -1001000, '_IO_input')`; on both paths it then calls `0080FA50(rcx, -1001000, '_IO_input')` and returns 1",
+   "anchors": [
+    [
+     "008258B5",
+     "jle"
+    ],
+    [
+     "008258C1",
+     "call"
+    ],
+    [
+     "008258D8",
+     "call"
+    ],
+    [
+     "008258DF",
+     "call"
+    ],
+    [
+     "00825900",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00825930",
+   "text": "when `008119F0(rcx, 1)` is positive it gets `s` = `00811530(rcx, 1, 0)` and calls `008266D0(rcx, s, 008C587C)` when `s` is non-null, otherwise `008269F0(rcx)` with the other registers as left and then `00810730(rcx, 1)`, and calls `00810DF0(rcx, -1001000, '_IO_output')`; on both paths it then calls `0080FA50(rcx, -1001000, '_IO_output')` and returns 1",
+   "anchors": [
+    [
+     "00825945",
+     "jle"
+    ],
+    [
+     "00825951",
+     "call"
+    ],
+    [
+     "00825968",
+     "call"
+    ],
+    [
+     "0082596F",
+     "call"
+    ],
+    [
+     "00825990",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00825A10",
+   "text": "calls `00810620(rcx)` when `008119F0(rcx, 1)` returns -1 and then calls `008119F0(rcx, 1)` again; when that is 0 it calls `0080FA50(rcx, -1001000, '_IO_input')` and `00810DC0(rcx, 1)`, gets `p` = `00812780(rcx, 1, 'FILE*')`, calls `00812960(rcx, 'attempt to use a closed file')` when qword `[p+8]` is zero, and calls `00825F20(rcx, 0)`; otherwise it calls `008266D0(rcx, 00812500(rcx, 1, 0), 008C5880)`, `00810DC0(rcx, 1)` and `00825F20(rcx, 1)`; both paths return 1",
+   "anchors": [
+    [
+     "00825A2B",
+     "call"
+    ],
+    [
+     "00825A50",
+     "call"
+    ],
+    [
+     "00825A76",
+     "cmp"
+    ],
+    [
+     "00825A91",
+     "call"
+    ],
+    [
+     "00825ABA",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00825CA0",
+   "text": "gets `p` = `00812780(rcx, 1, 'FILE*')` and calls `00812960(rcx, 'attempt to use a closed file')` when qword `[p+8]` is zero, then takes `f` = qword `[p]`, `k` = `00812620(rcx, 2, 01CCC214, 01CCC060)` and `x` = `00813400(rcx, 3)` with `xmm2` = 0.0, and calls `008122D0(rcx, 3, 'not an integer in proper range')` when the float of the truncated 64-bit `n` of `x` differs from `x`; it then calls through the qword at `008C2E38` with `f`, `n` and the dword at `01CCC050` + `k`*4, returns `00812A50(rcx, 0, 0)` when that is non-zero, and otherwise calls `00810640(rcx)` with `xmm1` = the float of the result of a call through `008C2EB0` with `f` and returns 1",
+   "anchors": [
+    [
+     "00825CC3",
+     "call"
+    ],
+    [
+     "00825CFA",
+     "call"
+    ],
+    [
+     "00825D1F",
+     "ucomiss"
+    ],
+    [
+     "00825D4B",
+     "call"
+    ],
+    [
+     "00825D67",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00825DA0",
+   "text": "gets `p` = `00812780(rcx, 1, 'FILE*')` and calls `00812960(rcx, 'attempt to use a closed file')` when qword `[p+8]` is zero, then takes `f` = qword `[p]`, `k` = `00812620(rcx, 2, 0, 01CCC090)` and `n` = `00813330(rcx, 3, 0x200)`, calls through the qword at `008C2F20` with `f`, 0, the dword at `01CCC080` + `k`*4 and `n`, and tail-jumps to `00812A50(rcx, 1 when that returned 0 and 0 otherwise, 0)`",
+   "anchors": [
+    [
+     "00825DBE",
+     "call"
+    ],
+    [
+     "00825DF0",
+     "call"
+    ],
+    [
+     "00825E06",
+     "call"
+    ],
+    [
+     "00825E1E",
+     "call"
+    ],
+    [
+     "00825E2B",
+     "sete"
+    ]
+   ]
+  },
+  {
+   "fn": "00827570",
+   "text": "calls `008122D0(rcx, 1, 'full userdata expected, got light userdata')` when `008119F0(rcx, 1)` is 2, calls `00812740(rcx, 1, 7)`, calls `00812740(rcx, 2, 5)` when `008119F0(rcx, 2)` is positive, then calls `00811130(rcx, 2)` and `008112E0(rcx, 1)` and returns 1",
+   "anchors": [
+    [
+     "00827583",
+     "cmp"
+    ],
+    [
+     "00827595",
+     "call"
+    ],
+    [
+     "008275A6",
+     "call"
+    ],
+    [
+     "008275C8",
+     "call"
+    ],
+    [
+     "008275E2",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00827B60",
+   "text": "uses `o` = 1 and `L` = `00811800(rcx, 1)` when `008119F0(rcx, 1)` is 8, and `o` = 0 and `L` = `rcx` otherwise; it calls `0081D6C0(L, 00812470(rcx, o+1), rsp+0x20)` and, when that returns 0, returns the result of `008122D0(rcx, o+1, 'level out of range')`; otherwise it calls `00812430(rcx, o+3)`, `00811130(rcx, o+3)` and `00811D30(rcx, L, 1)`, then `00810660(rcx, 0081D740(L, rsp+0x20, 00812470(rcx, o+2)))`, and returns 1; the stack cookie is checked through `00808C40`",
+   "anchors": [
+    [
+     "00827B96",
+     "cmp"
+    ],
+    [
+     "00827BCA",
+     "call"
+    ],
+    [
+     "00827BE0",
+     "call"
+    ],
+    [
+     "00827C06",
+     "call"
+    ],
+    [
+     "00827C2C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00827DA0",
+   "text": "takes `a` = `008283F0(rcx, 1, 2)` and `b` = `008283F0(rcx, 3, 4)`, calls `008122D0(rcx, 1, 'Lua function expected')` when `0080FF90(rcx, 1)` is non-zero and `008122D0(rcx, 3, 'Lua function expected')` when `0080FF90(rcx, 3)` is non-zero, then calls `00811BD0(rcx, 1, a, 3)` with `b` as the fifth argument and returns 0",
+   "anchors": [
+    [
+     "00827DBB",
+     "call"
+    ],
+    [
+     "00827DCE",
+     "call"
+    ],
+    [
+     "00827DDD",
+     "call"
+    ],
+    [
+     "00827E02",
+     "call"
+    ],
+    [
+     "00827E33",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00828330",
+   "text": "uses `o` = 1 and `L` = `00811800(rcx, 1)` when `008119F0(rcx, 1)` is 8, and `o` = 0 and `L` = `rcx` otherwise; it takes `s` = `00811530(rcx, o+1, 0)` and, when `s` is null and `008119F0(rcx, o+1)` is positive, calls `00810730(rcx, o+1)`; otherwise it calls `008138A0(rcx, L, s, 00813330(rcx, o+2, 1 when L is rcx and 0 otherwise))`; it returns 1",
+   "anchors": [
+    [
+     "00828358",
+     "cmp"
+    ],
+    [
+     "00828380",
+     "call"
+    ],
+    [
+     "008283A2",
+     "call"
+    ],
+    [
+     "008283B9",
+     "call"
+    ],
+    [
+     "008283CA",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [
+  "005850F0",
+  "00585270",
+  "005853F0",
+  "00599B70",
+  "00599CA0",
+  "00599DD0",
+  "005EF7E0",
+  "00618970",
+  "00682E30",
+  "006836B0",
+  "006853C0",
+  "00685560",
+  "006B33F0",
+  "00810810",
+  "008141F0",
+  "00814340",
+  "00814B30",
+  "008151F0",
+  "008156F0",
+  "00815FA0",
+  "00816AC0",
+  "00816C50",
+  "00819270",
+  "00825660",
+  "00826500",
+  "00826C50",
+  "00826F50",
+  "00827A10",
+  "00827E50",
+  "00828000",
+  "00828140",
+  "00828D30",
+  "00830760"
+ ],
+ "corrections": [],
+ "mode": "ee"
+}

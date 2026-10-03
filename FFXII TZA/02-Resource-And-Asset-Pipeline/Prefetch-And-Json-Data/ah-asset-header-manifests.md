@@ -328,7 +328,7 @@ single table-slot call, not inlined scanning.
 into it, then a `001A1220`/`001A0A90`-allocated node is stamped
 — `+0` = 4 (the kind), `+8` = `0019EF20` (the handler), `+0x10` =
 the arena base, `+0x18` = 1, `+0x20` = a second string copy —
-`+0x120` self-links, and `001A0BB0(alloc, node, 0)` enlists it.
+`+0x120` ~~self-links~~ holds the address of the arena record's own `+0x120` cell, the buffer pointer the reader scans *(corrected 2026-10-02, OPUS: `0019EB60+0x34` `lea r14, [rax + 0x120]` on the arena `001BA860` returned, `0019EB60+0x49` zeroes it and `0019EB60+0x9F` stores it at node `+0x120`; the token reader takes `[node + 0x120]` at `0019E7B0+0x2F`)*, and `001A0BB0(alloc, node, 0)` enlists it.
 Interior anchor `0019EC14` (the `call 001A0BB0` insert).
 
 ## SWE2-EC7-39 update (2026-09-19) - `001BE730`

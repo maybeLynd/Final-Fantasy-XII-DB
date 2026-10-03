@@ -193,7 +193,7 @@ count, or every stale pointer into a live reference.
 - [x] ~~Establish full consumer scheduling/reentrancy where required; the local pin pair is not a threading proof.~~ *SUPERSEDED 2026-09-29 (SWE2-FRONTIER): duplicate of OV-2 - the same ask in substance; OV-2 carries it. Register OV-22.*
 - [x] ~~Complete independent peer review and incorporate accepted claims at their earned evidence level. No L2 or final-audit acceptance is self-awarded.~~ *NOT A QUESTION 2026-09-29 (SWE2-FRONTIER) under the class-2 ruling: an independent-acceptance/process item, carried by board task FABLE-CARRIER-SECTION-OVERLAY-ACCEPTANCE-0929. Register OV-23.*
 
-The deployed Windows copy-overlap dependency from SECTION-07 is still unresolved. SECTION-08's
+The deployed Windows copy-overlap dependency from SECTION-07 is ~~still unresolved~~ *(answered: see [the mover](the-source-block-mover-and-separate-consumer-refresh.md) OV-46 and [the PRF page](the-nonempty-prf-registration-and-specialized-relocation.md) OV-43 - the image imports `memcpy` from `VCRUNTIME140.dll` (IAT `008C2A68`) and that `memcpy` is overlap-safe; 2026-10-02, OPUS)*. SECTION-08's
 copy bridge rejects overlapping inputs rather than silently changing them to memmove.
 
 
@@ -221,7 +221,7 @@ Interior anchor `003AB8DC` (function `003AB8B0`).
 
 Interior anchor `003B36A2` (function `003B3550`).
 
-`0024D970` (73 B) is the extent-delta drain the registration paths `003B3480`/`003B3550` run when a record's span moves: `arg2 - [rcx+0x858]` becomes a signed count fed in order to `003AA3D0`, `003A9BA0` and `003A9860`, and the new extent is then stored back into `+0x858` - the three callees consuming the queue backlog the delta represents before the record is marked current.
+`0024D970` (73 B) is the extent-delta drain the registration paths `003B3480`/`003B3550` run when a record's span moves: `arg2 - [rcx+0x858]` becomes a ~~signed count~~ signed 32-bit address delta fed in order to `003AA3D0`, `003A9BA0` and `003A9860`, and the new ~~extent~~ base is then stored back into `+0x858` - the three ~~callees consuming the queue backlog the delta represents~~ walks that add the delta to every stored pointer *(corrected 2026-10-02, OPUS: `0024D970+0x14` `sub ebx, dword ptr [rcx + 0x858]` is the low-32 difference of two bases, `0024D970+0x37` stores the new 64-bit base, and `003A9BA0+0x48` `add qword ptr [rbx + rcx], rsi` adds the sign-extended delta to each live slot: a relocation, the EFX source-rebase contract §3)* before the record is marked current.
 
 Interior anchor `0024D994` (function `0024D970`).
 
@@ -237,13 +237,13 @@ Interior anchor `00504F94` (function `00504F00`).
 
 Interior anchor `00504A7F` (function `005049E0`).
 
-`00409960` (208 B) is the kind-dispatched record resolver `0041FCF0` runs: `00409780` yields the index (-1 returns 0); `+4 == 0` resolves the inline `+0x10` array through `0051EE30`/`006B5C70`, `+4 == 1` resolves the `+0x30` external row through `003AB880`, and `+0x40` adds a base offset - the borrow-vs-inline split made concrete at each access
+`00409960` (208 B) is the kind-dispatched record resolver `0041FCF0` runs: `00409780` yields the ~~index~~ section offset (-1 returns 0); `+4 == 0` resolves the inline `+0x10` array through `0051EE30`/`006B5C70`, `+4 == 1` resolves the `+0x30` external row through `003AB880`, and ~~`+0x40` adds a base offset~~ that offset is added to the resolved base, while `+0x40` is only copied into the stack view and never read back *(corrected 2026-10-02, OPUS: `00409960+0x8A` `mov eax, dword ptr [rdi + 0x40]` and `00409960+0x8D` `mov dword ptr [rsp + 0x70], eax`; the result is `00409960+0xAE` `lea eax, [rsi + rbx]` with `esi` the fifth output of `00409780`, and neither `0051EE30` nor `006B5C70` reads that view slot)* - the borrow-vs-inline split made concrete at each access
 
 Interior anchor `004099A7` (function `00409960`).
 
 **Movement, ActorEntity and Script VM — CLIENT (shared-callee edges, SWE2-EC7-189).** The `006C0520` vec4-fill helper my `005049E0` entry names is also consulted by the movement layer (`00268380`), and that caller is itself reached by actor-entity callers `00266530`/`00269E20`/`00269E40` (with `0032E620`/`0032FCA0` on the same side); `00269E20`, `0032E620`, `00369800` and `003DD420` in turn carry script-VM callers (`003419A0`/`0050DFE0`/`0050DDA0`). The crossing is those layers calling shared primitives this page names, not shared responsibility. Edge list from `edges.tsv`.
 
-`003AB880` (42 B) is the alignment guard `00409960` and `0041E490` both run on a resolved record pointer: a null input returns 0, a pointer with `ptr & 3 == 0` returns itself, and anything misaligned tail-jumps `0036A000` (the subsystem's invalid-parameter handler) with `ecx = ptr` - the 'aligned or die' check both record-resolver families share
+`003AB880` (42 B) is ~~the alignment guard~~ the tagged-handle release `00409960` and `0041E490` both run on a ~~resolved record pointer~~ record handle: a null input returns 0, a pointer with `ptr & 3 == 0` (an untagged raw pointer) returns itself, and ~~anything misaligned~~ a tagged handle tail-jumps `0036A000` ~~(the subsystem's invalid-parameter handler)~~ with `ecx = ptr`, which checks the generation, removes the node from its arena tree and returns the payload ~~- the 'aligned or die' check both record-resolver families share~~ *(corrected 2026-10-02, OPUS: `003AB880+0x21` `jmp 0x36a000`; `0036A000+0x38` `cmp word ptr [rdx + 6], ax` is the generation test, `0036A000+0x73` `call 0x36c790` the tree removal and `0036A000+0x78` `and byte ptr [rbx + 0x15], 0xfd` clears membership before `rbx + 0x40` is returned)*
 
 Interior anchor `003AB88B` (function `003AB880`).
 
@@ -255,7 +255,7 @@ Interior anchor `0051D284` (function `0051D220`).
 
 Interior anchor `00504958` (function `00504940`).
 
-`00442460` (121 B) is the `+0x282` subtype dispatcher `003A9860`'s rebase sweep runs over every live `02EBEF90` slot: `byte[rcx+0x282]` indexes the nine-entry RVA table at `004424B4` whose cases tail to `00442380`, `005322F0`, `00532310`, `00532380`, `005323F0`, `00532440` (twice), `005324C0` and `00532520`; a subtype past 8 falls through and returns the payload itself - the per-record front dispatch on the lifetime table.
+`00442460` (~~121 B~~ 82 B *(corrected 2026-10-02, OPUS: the body ends with `00442460+0x51` `ret`; the nine-entry case table that follows it is data, not code)*) is the `+0x282` subtype dispatcher `003A9860`'s rebase sweep runs over every live `02EBEF90` slot: `byte[rcx+0x282]` indexes the nine-entry RVA table at `004424B4` whose cases tail to `00442380`, `005322F0`, `00532310`, `00532380`, `005323F0`, `00532440` (twice), `005324C0` and `00532520`; a subtype past 8 falls through and returns the payload itself - the per-record front dispatch on the lifetime table.
 
 Interior anchor `0044248B` (function `00442460`).
 - **Audio — CLIENT (4 edges).** 4 inbound (Audio bodies `003A1650`, `003A12D0`, `003A1330` call page-cited `0036D170`, `00369800`). Substantive edges include `00369800` is called by `003A1650`; the remaining edges run through shared helpers the page cites.
@@ -280,7 +280,7 @@ The behavioural results are SECTION-08 and SECTION-09's executed controls and ar
 
 No correction, so no consumer record.
 
-`00442380` (213 B) is the fourteen-slot field apply that `00442460`'s case table and its seven direct callers share: `004304F0` runs over the seven `0x10`-stride subfields `+0x00`..`+0x60`, then `00430AF0` over the seven `0x40`-stride subfields `+0x70`..`+0x1F0` - the common sweep every subtype apply begins with before its own tail.
+`00442380` (213 B) is the ~~fourteen-slot~~ fifteen-slot field apply that `00442460`'s case table and its seven direct callers share: `004304F0` runs over the seven `0x10`-stride subfields `+0x00`..`+0x60`, then `00430AF0` over the seven `0x40`-stride subfields `+0x70`..`+0x1F0`, then `0042FCF0` once at `+0x230` *(corrected 2026-10-02, OPUS: `00442380+0xB5` `lea rcx, [rdi + 0x230]` and `00442380+0xBE` `call 0x42fcf0`)* - the common sweep every subtype apply begins with before its own tail.
 
 Interior anchor `004423DC` (function `00442380`).
 

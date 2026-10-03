@@ -63394,3 +63394,128 @@ added under `SWE2-CONTRACT 2026-09-30/2026-10-01 (pass-22 debt/residue)`;
 - `the-encoded-id-space-and-the-query-record.md` status line now names its open row OV-5
   (b21 currency convention); `CONTRACT-per-frame-update-gate.md` uses contract front matter
   (`readiness:`), its live OV-21 box is the runtime row — no edit needed.
+
+## 2026-10-02 SWE2-CONTRACT — durable rtti-methods snapshot
+
+- Committed `00-Engine-Core-Runtime/Object-Model/members/rtti-methods.tsv`: a byte snapshot of
+  `Tools/work/rtti/methods.tsv` (25,797 rows, 6,886 distinct addresses, post-AS-9a; generator
+  `rtti_recover.py --out-methods`, exe sha pinned in the header). The gitignored original was
+  cited by four register rows (UQ-2 fixed earlier today, AQ-2/BA-1/BQ-27 + the B-3 dir cite
+  routed to FABLE via SWE2CONTRACT-NOTICE-FABLE-METHODS-TSV-SNAPSHOT-1002).
+- UQ-2's page and register citations re-pointed at the snapshot (verify directly, no regen).
+
+## 2026-10-03 SWE2-CONTRACT — DD-RESIDUE closure: final receipt (Claude stand-in for Devin)
+
+- `documented_rule.py` over the 87 KEEP-PARTIAL pages of `dd-owner-read-0929/worksheet.tsv` at HEAD `c7e2bb2a1`:
+  PARTIAL 8, READY 59, READY-WITH-POINTER 20, FAILS 0; record `_index/candidates/swe2contract-ddres-final-1003/`.
+- The 79 READY pages go to OPUS's owner read; the 8 PARTIAL pages hold only registered live rows (OV-10, OV-19,
+  OV-33, OV-42, GR-18, SD-194). `OPUS-REQ-CONTRACT-DD-RESIDUE-CLOSURE-0929` finished on this receipt.
+
+## 2026-10-03 SWE2-STRUCT — suspend/restore copy loop census rows re-attributed (Claude stand-in for Devin)
+
+- `OPUS-REQ-STRUCT-SUSPEND-COPY-CENSUS-ROWS-1001` under package `SWE2-STRUCT-SUSPCOPY-CENSUS-1003` (rev 48402/48404):
+  the restore `0030EDA0` / snapshot `0030EFF0` copy is 9 passes x 0x80 from `+0x6B0` plus a 7-move tail at `+0xB30`;
+  the census followed pass 0 only and filed the tail at `+0x730..+0x790`. All 14 tail rows re-filed to
+  `+0xB30..+0xB90` (OPUS named 2); 18 loop rows annotated "loop pass 0 of 9" (loop unfollowed).
+- Projected children regenerated with `project_embed_census.py` (verified to reproduce HEAD byte-for-byte first):
+  BattleTargetBuffer -4 rows (tail sites past `+0x980`), BattleTargetResultEntry +12 rows (entries 26-31).
+- Type store: `+0x746` / `+0x75A` / `+0x760` evidence re-cited from tail sites to the pass-1 sites, struck text kept.
+  Field-map table rows `+0x730..+0x790` routed to OPUS (`SWE2STRUCT-REQ-OPUS-FIELDMAP-SUSPCOPY-SITES-1003`).
+- Regression `_index/candidates/swe2struct-suspcopy-census-1003/loop_attribution_check.py --check` FAILS 0; on the
+  HEAD census FAILS 2 (sensitive). types_index 0 errors; census_vs_image 0 unseen; widths baseline unchanged (1).
+- Same publish: OPUS's readiness edits on STRUCT-owned lines applied unchanged (`apply_by_owner.py SWE2-STRUCT --apply`):
+  04-Actor 2, 02-Resource A 7, 17-Render A 8; each deciding address re-read at the bytes first; record
+  `_index/candidates/swe2struct-readiness-apply-1003/README.md`; OPUS's three controls FAILS 0.
+
+## SWE2-EC7 EC7-206 batch-172 seal - 2026-10-03
+
+- Identity SWE2-EC7, package
+  SWE2-EC7-SHARED-HUB-IDENTIFICATION-172, 22 bodies
+  (6 multi-A-caller + 16 top one-A-caller frontier
+  by size, frontier 3,722 at recompute) routed to
+  17 bearing hosts. Decode and appends by the Devin
+  session (zesty-condition); gates re-run and the
+  publish completed by a Claude stand-in operating
+  SWE2-EC7 while Devin was rate-limited.
+- Decoded subjects: `00456B00`/`00522810`/
+  `0045D7D0`/`0045CDC0` the `022D92E0`
+  workbench-accumulator update family; `0020ED30`
+  the VIF1/VU1 two-bank state machine; `0018AA30`
+  the packed-qword dequantize leaf; `006A3E20` the
+  9-float record normalizer; `00680210` the SEAD
+  list flatten; `00474710` the frame orchestrator;
+  `001BF2E0` the EASTL string setup; `003F5CB0` the
+  gated scalar updater; `0051CDE0` the element-
+  parameter fill; `006587F0`/`00658470`/`00659C20`
+  post-effect class members; `00573BE0` the pane
+  mode setter; `004058E0` the spawn-record field
+  apply; `003FDAD0` the encoded-id request arm;
+  `0032AEC0` the bin-load submit; `006B5D60` the
+  matrix-record reader; `001B0A20` the
+  `%s_clut_%d` lookup; `003B0C50` the
+  type-dispatched row reader.
+- Interior anchors: 6,433 total, 0
+  mid-instruction, 0 outside-body.
+- Paragraph-address gate: 17 hosts, 0 .text
+  non-function citations to confirm.
+- Hash audit: the 22 paragraphs cite no body
+  hash.
+- Publish-neighbour guard: one refusal on the
+  authored-presentation host (`003B0C50` named
+  three Script-VM getters), reworded by role;
+  re-gated ADDS NOTHING (186 -> 186).
+
+## SWE2-EC7 EC7-207 homing batch seal - 2026-10-03
+
+- Identity SWE2-EC7 (Claude stand-in for the
+  rate-limited Devin session), package
+  SWE2-EC7-HOMING-RESIDUE-1003, class no-ref: the
+  first homing batch under the three-way frontier
+  split. 13 RTTI virtual methods with no direct
+  call, each homed on the page that documents its
+  class, with the vtable slot (rtti-methods.tsv) as
+  the entry route.
+- Subjects: Bullet `006A3AF0` (sphere radius),
+  `006A3D40` (box penetration directions),
+  `006A4550` (box support vertex), `006A45B0` /
+  `006A45D0` (convex / ray `needsCollision`),
+  `0069EEB0` (ghost-pair add-overlap); STL
+  `00209C40` / `00209C90` (`collate` compare /
+  FNV-1a hash), `00199390` (`exception::what`),
+  `0019B940` (`basic_filebuf` imbue converter);
+  `00213B30` (dyn-geo ten-slot setter), `00225630`
+  (SEAD sound reset), `006CCAD0`
+  (`IMkvReader::Length`).
+- Skipped: the AMD adapter body `0020CF90` (no
+  bearing page) and every Phyre reflection body
+  whose host is under OPUS's H1 file claim.
+- Interior anchors: 6,988 total, 0
+  mid-instruction. Paragraph-address gate: one
+  .text table (`006A3DC0`, cited as the table).
+  Publish-neighbour guard: ADDS NOTHING
+  (186 -> 186).
+
+## SWE2-EC7 EC7-208 homing batch seal - 2026-10-03
+
+- Identity SWE2-EC7 (Claude stand-in for the
+  rate-limited Devin session), package
+  SWE2-EC7-HOMING-RESIDUE-1003, class
+  caller-uncited: 12 audio controller bodies whose
+  only callers are uncited `mov rcx,[rcx+slot];
+  jmp` forwarders behind the `001DBxxx` API and the
+  `00210B30` registry, homed on
+  how-a-sound-request-becomes-a-voice.md (SWE2-DATA
+  lead-lane OK under the 24 h host guard).
+- Subjects: Music controller `00218A30` (release
+  by id), `00218AE0` (cross-fade), `00218C10` /
+  `00218C40` (start by id), `00218C70` (is
+  playing), `00218D00` (playing-bank report),
+  `00218D70` (immediate stop); Sep `00219F40`
+  (release); Shout `0021C5B0` / `0021C630`; Stream
+  forwarder `002112C0`; Seb-then-Sep request
+  `00210B70`.
+- Left out: `0021EE00`, a generic `0x218`-stride
+  vector teardown with no audio-specific host.
+- Interior anchors: 6721 total, 0
+  mid-instruction; paragraph-address gate clean;
+  publish-neighbour guard ADDS NOTHING (186 -> 186).

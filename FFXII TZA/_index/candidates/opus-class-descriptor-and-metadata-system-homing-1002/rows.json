@@ -1,0 +1,254 @@
+{
+ "page": "22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/class-descriptor-and-metadata-system.md",
+ "date": "2026-10-02",
+ "session": "local-h1-opus",
+ "report": "class-descriptor-and-metadata-system.json",
+ "rows": [
+  {
+   "fn": "00164100",
+   "text": "calls `00632780` with the addresses `02CF8A80` and `02CF8270` and 0; then clears bit `0x2` and sets bit `0x8` of dword `02CF8B7C`, stores the addresses `02CF8E20`, `02CF8E40` and `02CF8E60` to qwords `02CF8B40`, `02CF8B48` and `02CF8B50`, stores the address `00D56D10` to qword `02CF8A80`, and tail-jumps to `00808B90` with the address `008AF170`",
+   "anchors": [
+    [
+     "00164115",
+     "call"
+    ],
+    [
+     "00164138",
+     "and"
+    ],
+    [
+     "0016414C",
+     "mov"
+    ],
+    [
+     "00164160",
+     "mov"
+    ],
+    [
+     "00164172",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005D1500",
+   "text": "calls `006388C0` with the address `02CB9C00`, ORs 0x20 into dword `02CB9CFC` and tail-jumps to `00639450` with the address `02CB9C00`",
+   "anchors": [
+    [
+     "005D150B",
+     "call"
+    ],
+    [
+     "005D1510",
+     "or"
+    ],
+    [
+     "005D1522",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005D7060",
+   "text": "calls `006388C0` with the address `02CB7CA0`, ORs 0x20 into dword `02CB7D9C` and tail-jumps to `00639450` with the address `02CB7CA0`",
+   "anchors": [
+    [
+     "005D706B",
+     "call"
+    ],
+    [
+     "005D7070",
+     "or"
+    ],
+    [
+     "005D7082",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0060F2D0",
+   "text": "calls `00630180` with the incoming registers and then slot `+8` of the returned object's vtable; when `rdx` equals `rcx` + 8, `r8d` is 1 and that slot's result is non-null it calls `00639850(result, rcx + 8, 1)`, otherwise `006C7D00(rcx, rdx, r8d)`; returns 0",
+   "anchors": [
+    [
+     "0060F2F1",
+     "call"
+    ],
+    [
+     "0060F2FC",
+     "call"
+    ],
+    [
+     "0060F305",
+     "cmp"
+    ],
+    [
+     "0060F318",
+     "call"
+    ],
+    [
+     "0060F328",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0063AA50",
+   "text": "when byte `+0xFC` of `r8` has bit `0x8` set, calls `005CDAA0(1, the address 00D58750, qword r8+0x30)` and takes 0 as the value; otherwise calls `00639510` with the incoming `rcx`, dword `r8+0x38`, 1, `r8` and 0 as the fifth (stack) argument and, when it returns a record, takes its qword `+0x58` and calls `0063C910(r8, that)`; finally stores the value to qword `[rdx]` and `r8` to qword `rdx+8` and returns `rdx`",
+   "anchors": [
+    [
+     "0063AA5F",
+     "test"
+    ],
+    [
+     "0063AA7F",
+     "call"
+    ],
+    [
+     "0063AA98",
+     "call"
+    ],
+    [
+     "0063AAAC",
+     "call"
+    ],
+    [
+     "0063AABC",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006777D0",
+   "text": "reads dword `+4` of the thread-local block indexed by dword `02EAED3C` (through `gs:[0x58]`); when dword `02D3ECF8` is greater than it (signed) it calls `008092FC` with the address `02D3ECF8` and, only when `02D3ECF8` is then -1, stores `006372A0()` OR 1 to qword `02D3ECE8`, zeroes qword `02D3ECF0` and calls `0080929C` with the address `02D3ECF8`; every path returns the address `02D3ECE8`",
+   "anchors": [
+    [
+     "006777F8",
+     "cmp"
+    ],
+    [
+     "00677807",
+     "call"
+    ],
+    [
+     "00677815",
+     "call"
+    ],
+    [
+     "0067781E",
+     "mov"
+    ],
+    [
+     "00677837",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0068D700",
+   "text": "when `rdx` is non-null zeroes qword `[rdx]`, stores `006372A0()` to qword `rdx+8`, zeroes qword `rdx+0x10`, stores a second `006372A0()` result to qword `rdx+0x18` and zeroes dword `rdx+0x20`; returns `al` = 1 on both paths",
+   "anchors": [
+    [
+     "0068D720",
+     "mov"
+    ],
+    [
+     "0068D727",
+     "call"
+    ],
+    [
+     "0068D72C",
+     "mov"
+    ],
+    [
+     "0068D73D",
+     "mov"
+    ],
+    [
+     "0068D741",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006AF4F0",
+   "text": "when `r8` is non-null walks the 16-byte entries from qword `rcx+0x20` (count: dword `rcx+0x18` with its top bit cleared, `btr 0x1f`), following each entry's chain from qword `+8` through qword `+0x78` links, and when it meets `r8` copies that 16-byte entry to `[rdx]`; when `r8` is null or not found it zeroes qword `[rdx]` and stores `006372A0()` to qword `rdx+8`; returns `rdx`",
+   "anchors": [
+    [
+     "006AF505",
+     "btr"
+    ],
+    [
+     "006AF520",
+     "cmp"
+    ],
+    [
+     "006AF525",
+     "mov"
+    ],
+    [
+     "006AF53E",
+     "call"
+    ],
+    [
+     "006AF557",
+     "movups"
+    ]
+   ]
+  },
+  {
+   "fn": "006CEE50",
+   "text": "calls `006372B0` with the incoming registers, builds a stack pair (the address `00D2D310`, that result) and calls slot `+0x78` of `rcx`'s vtable with `rcx`, `rdx` and the pair's address; returns `al` = 1",
+   "anchors": [
+    [
+     "006CEE6A",
+     "call"
+    ],
+    [
+     "006CEE7B",
+     "mov"
+    ],
+    [
+     "006CEE8E",
+     "call"
+    ],
+    [
+     "006CEE92",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006D9E30",
+   "text": "calls `006372B0` with the incoming registers, builds a stack pair (the address `00D2D310`, that result) and calls slot `+0x78` of `rcx`'s vtable with `rcx`, `rdx` and the pair's address; returns `al` = 1",
+   "anchors": [
+    [
+     "006D9E4A",
+     "call"
+    ],
+    [
+     "006D9E5B",
+     "mov"
+    ],
+    [
+     "006D9E6E",
+     "call"
+    ],
+    [
+     "006D9E72",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "00212600",
+   "why": "dropped: homed here only through 00212050, it pulls 26 Resource / Input / Presentation neighbour edges onto a Phyre page (pass-22); released back to the callee-host pool for a Resource host"
+  }
+ ],
+ "mode": "homing"
+}

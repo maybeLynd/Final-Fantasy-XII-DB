@@ -1,0 +1,77 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY complete original caller CFG/stack proof; no machine-code or game execution",
+  "driver_sha256": "be8c4760a78eeb3b6fb8ef5c1001f08db5d93a47d04384f3e40875f10ab02b06",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "9219775d17c960e0f4eefce420b2fbd0d76e6282ebad2abd4f46edd75e5a094c"
+    },
+    {
+      "path": "retained-loader-source-01.json",
+      "sha256": "2c66378a2f9fb4125671f1f5f5ee4211a7397abf52e904137ba474a07e5a9fa8"
+    }
+  ],
+  "annotation_prerequisite": {
+    "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+    "instruction_records": 90,
+    "capstone": "5.0.7",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+  },
+  "original_bytes": 325,
+  "operation_pins": 14,
+  "actual_rsp_writers": [
+    "0x331990",
+    "0x331992",
+    "0x331998",
+    "0x3319a4",
+    "0x3319ab",
+    "0x3319ba",
+    "0x3319be",
+    "0x378a74",
+    "0x378a76",
+    "0x378aa4",
+    "0x378aab",
+    "0x378acf",
+    "0x378aea",
+    "0x378af5",
+    "0x378afa",
+    "0x378b01",
+    "0x378b0f",
+    "0x378b2b",
+    "0x378b41",
+    "0x378b51",
+    "0x378b6a",
+    "0x378b6e",
+    "0x378b70"
+  ],
+  "premise": "Normal return restores opaque-call RSP; valid private stack/noninterference/intact code. Both request legs reach the named377DC0 boundary.",
+  "relative_to_331990_entry_rsp": {
+    "mode0_loader_entry": -112,
+    "mode1_loader_entry": -64,
+    "mode0_name_input": -440,
+    "mode1_name_input": -392,
+    "name_input_delta": 48
+  },
+  "admitted_260_byte_name_spans": {
+    "mode0": [
+      -440,
+      -180
+    ],
+    "mode1": [
+      -392,
+      -132
+    ],
+    "overlap_bytes": 212,
+    "interval_convention": "half-open; admitted successful-lookup capacity, not actual observed contents"
+  },
+  "semantic_implication": "Second mode1 uses a name input48bytes above mode0. Same-address inheritance is refuted under stated normal ABI paths; different buffers are not disjoint spans.",
+  "limits": [
+    "Mode0 can skip request entirely and wrapper has additional gates/opaque calls; both entries are premises, not reachability proof.",
+    "Other intervening helpers, former stack use and sequential alias overlap prevent a guarantee of surviving mode0 bytes.",
+    "No actual null-slot contents/name/field entry/scheduling/queue acceptance/native effect or game consequence.",
+    "Original source and producer controls are not independent acceptance."
+  ]
+}

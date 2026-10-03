@@ -235,7 +235,26 @@ def frontmatter(text):
     return m.group(1) if m else ""
 
 
-def measure_a(db, sizes, paths=None):
+# FABLE's R1 amendment (fable-uc1-gamecode-route-ruling-1003, 2026-10-02): a game-code UC-1 frontier body may be A by
+# the ordinary interior route when the citing row also names the series break with this literal phrase. A row is one
+# table line, or one blank-line-separated paragraph outside a table. Every other UC-1 frontier body stays stripped.
+# The gate checks the phrase and the interior anchor; the ruling's other tests (a credible body, a non-drafting
+# re-read, a SWE2-AUDIT-SPEC review) are review duties, as for every interior citation.
+UC1_INTERIOR_BREAK = "UC-1 body admitted to frontier 2026-09-28, explained by interior citation"
+
+
+def _rows(text):
+    """Rows for the UC-1 break-phrase test: each table line on its own, otherwise each paragraph."""
+    for block in re.split(r"\n\s*\n", text):
+        lines = block.split("\n")
+        if any(l.lstrip().startswith("|") for l in lines):
+            for l in lines:
+                yield l
+        else:
+            yield block
+
+
+def measure_a(db, sizes, paths=None, uc1=None, uc1_credited=None):
     """A = a DOCUMENTED page cites an address STRICTLY INSIDE a body. Entry-only is not A.
 
     Two filters separate this from `engine_explained`: the page must be DOCUMENTED, and the
@@ -247,6 +266,8 @@ def measure_a(db, sizes, paths=None):
     entries = sorted(sizes)
     a_set, entry_only = set(), set()
     any_interior, documented_any = set(), set()
+    uc1f = (uc1_band.frontier_starts() if uc1 is None else set(uc1)) & set(sizes)
+    credited = set()
     for p in (paths if paths is not None else docs(db)):
         t = io.open(p, encoding="utf-8", errors="replace").read()
         # ONE LADDER, NOT TWO. `^status:\s*DOCUMENTED$` was blind to every CONTRACT page, which
@@ -269,15 +290,27 @@ def measure_a(db, sizes, paths=None):
             if is_doc:
                 documented_any.add(e)
                 (a_set if v > e else entry_only).add(e)
+        if is_doc and uc1f and UC1_INTERIOR_BREAK in t:
+            for row in _rows(t):
+                if UC1_INTERIOR_BREAK not in row:
+                    continue
+                for h in CITE.findall(row):
+                    v = int(h, 16)
+                    i = bisect.bisect_right(entries, v) - 1
+                    if i >= 0 and entries[i] in uc1f and entries[i] < v < entries[i] + sizes[entries[i]]:
+                        credited.add(entries[i])
     # UC-1 frontier bodies are frontier BY RULING, never A/B/C by default (FABLE
     # band ruling s5).  A mechanical interior cite cannot explain one; strip them
     # from every measured set.  `& set(sizes)` keeps fixture populations (which
     # never carry the band) unaffected.
-    uc1f = uc1_band.frontier_starts() & set(sizes)
-    a_set -= uc1f
-    entry_only -= uc1f
-    any_interior -= uc1f
-    documented_any -= uc1f
+    # The R1 amendment's exception: a body credited above by a break-phrase row stays A.
+    strip = uc1f - credited
+    a_set -= strip
+    entry_only -= strip
+    any_interior -= strip
+    documented_any -= strip
+    if uc1_credited is not None:
+        uc1_credited.update(credited & a_set)
     return a_set, (entry_only - a_set), any_interior, documented_any
 
 
@@ -349,8 +382,9 @@ def uc1_span_row(letter, members, uc1f, note):
 
 
 def evaluate(db, sizes, paths=None, uc1=None):
-    a_set, entry_only, any_interior, documented_any = measure_a(db, sizes, paths)
     uc1_all = (uc1_band.frontier_starts() if uc1 is None else set(uc1)) & set(sizes)
+    uc1_credited = set()
+    a_set, entry_only, any_interior, documented_any = measure_a(db, sizes, paths, uc1_all, uc1_credited)
     rows = parse_families(db, paths)
 
     accepted, refused = [], []
@@ -452,6 +486,7 @@ def evaluate(db, sizes, paths=None, uc1=None):
              "frontier_left": len(uc1f & frontier)} if uc1f else None)
     return {
         "total": len(sizes), "band": band, "uc1_frontier": len(uc1f),
+        "uc1_interior_credited": len(uc1_credited), "uc1_interior_credited_set": uc1_credited,
         "A": len(buckets["A"]), "B": len(buckets["B"]),
         "C": len(buckets["C"]), "D": len(buckets["D"]),
         "explained": len(explained), "frontier": len(frontier),
@@ -669,6 +704,30 @@ def self_test(tmp):
     r = run([p], U)
     assert r["families_accepted"] == 0 and "series-break count says 2" in r["refusals"][0][1], r
     ok += 1
+    # 12. FABLE's R1 amendment (UC-1 game-code route): an interior cite of a UC-1 body credits A only when the same
+    #     row carries the break phrase. Positive control first, then: no phrase, phrase in ANOTHER row, entry-only cite,
+    #     and a non-bearing page.
+    BRK = UC1_INTERIOR_BREAK + " 2026-10-03"
+    p = doc("uc1int", None, None, body="\n| body | note |\n|---|---|\n| `00120010` | interior `00120014`; " + BRK + " |\n")
+    r = run([p], U)
+    assert r["A"] == 1 and r["uc1_interior_credited"] == 1, r
+    ok += 1
+    p = doc("uc1nophrase", None, None, body="interior `00120014` of a game-code body\n")
+    r = run([p], U)
+    assert r["A"] == 0 and r["uc1_interior_credited"] == 0, r
+    ok += 1
+    p = doc("uc1otherrow", None, None, body="\n| a | b |\n|---|---|\n| `00120014` | read |\n| other | " + BRK + " |\n")
+    r = run([p], U)
+    assert r["A"] == 0, r
+    ok += 1
+    p = doc("uc1entry", None, None, body="entry `00120010` only. " + BRK + "\n")
+    r = run([p], U)
+    assert r["A"] == 0, r
+    ok += 1
+    p = doc("uc1partial", None, None, status="PARTIAL", body="interior `00120014`. " + BRK + "\n")
+    r = run([p], U)
+    assert r["A"] == 0, r
+    ok += 1
     print("self-test: %d case(s) passed, including every refusal reason" % ok)
     return 0
 
@@ -688,7 +747,7 @@ def main(argv=None):
     sizes = load_functions(a.functions)
     r = evaluate(db, sizes)
     if a.json:
-        print(json.dumps({k: v for k, v in r.items() if k not in ("refusals", "accepted")}))
+        print(json.dumps({k: v for k, v in r.items() if k not in ("refusals", "accepted") and not k.endswith("_set")}))
     else:
         report(r, a.quiet)
     return 1 if r["families_refused"] else 0

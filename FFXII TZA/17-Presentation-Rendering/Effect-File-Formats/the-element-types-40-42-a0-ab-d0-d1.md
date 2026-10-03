@@ -63,7 +63,7 @@ Main-range `0xA0`/`0xA1`/`0xA2`/`0xA5`; sub-range `0xA3`/`0xA4`/`0xA6`–`0xAB`
 
 | type | methods | notes |
 |---|---|---|
-| `0xA0` | step `00460B80` (54 B: base+PRNG+tail `00460F30`), walk `00460BC0` 874 B, setup `0053A6F0` | compact record (`+0x80`–`+0x1F0`); walk calls `00398F90` (point transform) + `0039AF70` + `003A2D80`/`003A3010` |
+| `0xA0` | step `00460B80` (54 B: ~~base+PRNG+tail `00460F30`~~ base + tail `00460F30` + PRNG *(corrected 2026-10-02, OPUS: `00460B80`+0x1B and +0x20)*), walk `00460BC0` 874 B, setup `0053A6F0` | compact record (`+0x80`–`+0x1F0`); walk calls `00398F90` (point transform) + `0039AF70` + `003A2D80`/`003A3010` |
 | `0xA1` | step `00461090` (441 B heavy), walk `00461270` **3820 B** — the largest walk in the whole matrix | calls `001827B0`/`00182830` and the `00376350`–`00377100` helper family; seventh `00461250` touches `+0x1B4`/`+0x294`; setup has a resource store + `+0x1B0`/`+0x1B1` flag bytes |
 | `0xA2` | step `00462480` (177 B, `003D8E50`-family), walk `00462540` 2921 B | `0017FFD0`+`0024E2E0`/`0024E460`/`0024E640` VU0-path calls; setup reaches `+0x7E0` |
 | `0xA5` | step `004633A0` (same 177 B shape), walk `00463460` 2216 B | same walk family as `0xA2` |

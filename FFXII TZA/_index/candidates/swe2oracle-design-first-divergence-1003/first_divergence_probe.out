@@ -1,0 +1,65 @@
+D0 determinism PASS 9374 events, 625 observation points, no divergence
+m-gate         PASS first divergence at event 4 (branch condition); first execution of the patched instruction 00866B9D at event 3; no observation-point divergence; late visible: stack canary only (contract state equal)
+               ref  X 00866C89 movsxd rcx, ecx
+               cand X 00866BA3 movdqa xmm3, xmmword ptr [rip + 0x1469255]
+m-simd-ecx     PASS first divergence at event 964 (field/type/layout); first execution of the patched instruction 00866BC4 at event 11; observation point 224 (ref s[224]=cbd3d430 vs cand s[225]=710ce0aa); late visible: final s[224] 30D4D3CB vs 5DBF5402
+               ref  W @00866CD6 -> 02EB3BF0 len 4 = cbd3d430
+               cand W @00866CD6 -> 02EB3BF4 len 4 = 710ce0aa
+m-simd-hi      PASS first divergence at event 34 (state transition); first read of the patched constant 01CCFE03 at event 5; observation point 0 (ref s[0]=b1d6b4cb vs cand s[0]=b1d6b48b); late visible: final s[0] CBB4D6B1 vs 8BB4D6B1
+               ref  W @00866C29 -> 02EB3870 len 8 = b1d6b4cb0e8293e3
+               cand W @00866C29 -> 02EB3870 len 8 = b1d6b48b0e8293e3
+m-simd-lo      PASS first divergence at event 34 (state transition); first read of the patched constant 01CCFDF0 at event 7; observation point 0 (ref s[0]=b1d6b4cb vs cand s[0]=b0d6b4cb); late visible: final s[0] CBB4D6B1 vs CBB4D6B0
+               ref  W @00866C29 -> 02EB3870 len 8 = b1d6b4cb0e8293e3
+               cand W @00866C29 -> 02EB3870 len 8 = b0d6b4cb0e8293e3
+m-simd-mag     PASS first divergence at event 34 (state transition); first read of the patched constant 01CCFE10 at event 13; observation point 0 (ref s[0]=b1d6b4cb vs cand s[0]=b0d6b4cb); late visible: final s[0] CBB4D6B1 vs CBB4D6B0
+               ref  W @00866C29 -> 02EB3870 len 8 = b1d6b4cb0e8293e3
+               cand W @00866C29 -> 02EB3870 len 8 = b0d6b4cb0e8293e3
+m-simd-odd     PASS first divergence at event 34 (state transition); first read of the patched constant 01CEBCD0 at event 17; observation point 0 (ref s[0]=b1d6b4cb vs cand s[0]=6e66bc52); late visible: final s[0] CBB4D6B1 vs 52BC666E
+               ref  W @00866C29 -> 02EB3870 len 8 = b1d6b4cb0e8293e3
+               cand W @00866C29 -> 02EB3870 len 8 = 6e66bc520e8293e3
+m-simd-dst     PASS first divergence at event 33 (field/type/layout); first execution of the patched instruction 00866C29 at event 32; observation point 0 (ref s[0]=b1d6b4cb vs cand s[1]=b1d6b4cb); late visible: final s[0] CBB4D6B1 vs A8680699
+               ref  W @00866C29 -> 02EB3870 len 8 = b1d6b4cb0e8293e3
+               cand W @00866C29 -> 02EB3874 len 8 = b1d6b4cb0e8293e3
+m-simd-adv     PASS first divergence at event 66 (field/type/layout); first execution of the patched instruction 00866C73 at event 50; observation point 8 (ref s[8]=f85c22fa vs cand s[4]=00dee8b8); late visible: final s[4] DB67CD41 vs B8E8DE00
+               ref  W @00866C29 -> 02EB3890 len 8 = f85c22fac02dbb9b
+               cand W @00866C29 -> 02EB3880 len 8 = 00dee8b8e661baaa
+m-simd-src     PASS first divergence at event 33 (state transition); first execution of the patched instruction 00866C14 at event 27; observation point 0 (ref s[0]=b1d6b4cb vs cand s[0]=31327580); late visible: final s[0] CBB4D6B1 vs 80753231
+               ref  W @00866C29 -> 02EB3870 len 8 = b1d6b4cb0e8293e3
+               cand W @00866C29 -> 02EB3870 len 8 = 313275802016f130
+m-sc1-mask     PASS first divergence at event 22 (state transition); first execution of the patched instruction 00866CBC at event 15; observation point 0 (ref s[0]=b1d6b4cb vs cand s[0]=b0d6b4cb); late visible: final s[0] CBB4D6B1 vs CBB4D6B0
+               ref  W @00866CD6 -> 02EB3870 len 4 = b1d6b4cb
+               cand W @00866CD6 -> 02EB3870 len 4 = b0d6b4cb
+m-sc1-mag      PASS first divergence at event 22 (state transition); first execution of the patched instruction 00866CC2 at event 16; observation point 0 (ref s[0]=b1d6b4cb vs cand s[0]=b0d6b4cb); late visible: final s[0] CBB4D6B1 vs CBB4D6B0
+               ref  W @00866CD6 -> 02EB3870 len 4 = b1d6b4cb
+               cand W @00866CD6 -> 02EB3870 len 4 = b0d6b4cb
+m-sc1-m        PASS first divergence at event 22 (state transition); first execution of the patched instruction 00866CCF at event 20; observation point 0 (ref s[0]=b1d6b4cb vs cand s[0]=9297aaf6); late visible: final s[0] CBB4D6B1 vs F6AA9792
+               ref  W @00866CD6 -> 02EB3870 len 4 = b1d6b4cb
+               cand W @00866CD6 -> 02EB3870 len 4 = 9297aaf6
+m-sc1-loop     PASS first divergence at event 3416 (branch condition); first execution of the patched instruction 00866CE0 at event 25; observation point 227 (ref s[227]=75478916 vs cand s[227]=2b2f9003); late visible: final s[227] 16894775 vs 03902F2B
+               ref  X 00866CE2 lea r8, [rip + 0x264d543]
+               cand X 00866CB0 mov ecx, dword ptr [r8 + 4]
+m-sc1-odd      PASS first divergence at event 22 (state transition); first execution of the patched instruction 00866CB9 at event 14; observation point 0 (ref s[0]=b1d6b4cb vs cand s[0]=d007ad60); late visible: final s[0] CBB4D6B1 vs 60AD07D0
+               ref  W @00866CD6 -> 02EB3870 len 4 = b1d6b4cb
+               cand W @00866CD6 -> 02EB3870 len 4 = d007ad60
+m-sc2-m        PASS first divergence at event 3429 (state transition); first execution of the patched instruction 00866D0C at event 3427; observation point 227 (ref s[227]=75478916 vs cand s[227]=c4913ddd); late visible: final s[227] 16894775 vs DD3D91C4
+               ref  W @00866D12 -> 02EB3BFC len 4 = 75478916
+               cand W @00866D12 -> 02EB3BFC len 4 = c4913ddd
+m-sc2-loop     PASS first divergence at event 9358 (branch condition); first execution of the patched instruction 00866D1B at event 3432; observation point 623 (ref mti=00000000 vs cand s[623]=3338ebc2); late visible: final s[623] C8678C1C vs C2EB3833
+               ref  X 00866D1D mov edx, dword ptr [rip + 0x264d509]
+               cand X 00866CF0 mov edx, dword ptr [rax]
+m-tail-s0      PASS first divergence at event 9371 (state transition); first execution of the patched instruction 00866D23 at event 9359; observation point 624 (ref s[623]=1c8c67c8 vs cand s[623]=9c967c45); late visible: final s[623] C8678C1C vs 457C969C
+               ref  W @00866D54 -> 02EB422C len 4 = 1c8c67c8
+               cand W @00866D54 -> 02EB422C len 4 = 9c967c45
+m-tail-mag     PASS first divergence at event 9371 (state transition); first execution of the patched instruction 00866D44 at event 9366; observation point 624 (ref s[623]=1c8c67c8 vs cand s[623]=1d8c67c8); late visible: final s[623] C8678C1C vs C8678C1D
+               ref  W @00866D54 -> 02EB422C len 4 = 1c8c67c8
+               cand W @00866D54 -> 02EB422C len 4 = 1d8c67c8
+m-tail-mti     PASS first divergence at event 9363 (state transition); first execution of the patched instruction 00866D31 at event 9362; observation point 623 (ref mti=00000000 vs cand mti=00010000); late visible: final mti 0 vs 256
+               ref  W @00866D31 -> 02EB4230 len 4 = 00000000
+               cand W @00866D31 -> 02EB4230 len 4 = 00010000
+m-sc1-shr      PASS first divergence at event 22 (state transition); first execution of the patched instruction 00866CCB at event 18; observation point 0 (ref s[0]=b1d6b4cb vs cand s[0]=ff790164); late visible: final s[0] CBB4D6B1 vs 640179FF
+               ref  W @00866CD6 -> 02EB3870 len 4 = b1d6b4cb
+               cand W @00866CD6 -> 02EB3870 len 4 = ff790164
+A0 arm parity  PASS instruction streams part at event 4 (the feature gate, expected); observation streams (625 points) equal
+F0 final-only  PASS late visible mismatch final s[227] 16894775 vs DD3D91C4; earlier states not compared
+rows 23 -> first-divergence.tsv
+FAILS 0

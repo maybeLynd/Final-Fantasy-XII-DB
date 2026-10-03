@@ -1,0 +1,132 @@
+{
+  "package": "astra-queue-reconciliation-checkpoint77",
+  "members": [
+    {
+      "path": "build-dispositions.py",
+      "bytes": 20399,
+      "sha256": "60531f14c9ed082ad681dceb9debba8cfcd3a7b3870de140d76d347ad18abc2e"
+    },
+    {
+      "path": "apply-dispositions.py",
+      "bytes": 6890,
+      "sha256": "06e24ce86a4fdd8f478eb9087e04e5f2210545a701d9cc433b14f801a8c5ae1d"
+    },
+    {
+      "path": "resume-bounded.py",
+      "bytes": 7296,
+      "sha256": "4d409f5586a0fbdb7b49ab917761665e12b66110618ecfa69d7a693c8d44c850"
+    },
+    {
+      "path": "route-write-denial.py",
+      "bytes": 3796,
+      "sha256": "9f63903ab4e522b11aee4263c42235fd01b816fcfd6fc8610db096bfe2d2269d"
+    },
+    {
+      "path": "route-write-denial-current.py",
+      "bytes": 3830,
+      "sha256": "30533b078f41fd0e7ed029405ed199fd1c85daf0f6fb6497ed1abafb8b941ffe"
+    },
+    {
+      "path": "route-additive-current.py",
+      "bytes": 2382,
+      "sha256": "585477a888e07e51ad6b7c950e21d00298cad855878b2db2ba63980be32e470f"
+    },
+    {
+      "path": "snapshot-final.py",
+      "bytes": 4111,
+      "sha256": "d247eb85c6e2c2ca909bcf244f109419228d9acec503d827273ce1fd7408bdd1"
+    },
+    {
+      "path": "input-snapshot-01.json",
+      "bytes": 273926,
+      "sha256": "9566b2f3c124b6530b7f2e67bf9384b24d9398861748e5bfa469f76d83e9d535"
+    },
+    {
+      "path": "dispositions-01.json",
+      "bytes": 301609,
+      "sha256": "82a29af972f54394a5b028160dfb4773d2b58a23793e50b8263f9ad2a613cc07"
+    },
+    {
+      "path": "DISPOSITIONS.md",
+      "bytes": 24083,
+      "sha256": "6aa997f416f0bd8a06f53a3cc180dc18c1a2f33b1ed8b5c6795813669513403a"
+    },
+    {
+      "path": "refusal-adjudication-01.json",
+      "bytes": 1160,
+      "sha256": "acea99134f037714b88863f125953e996cc1760c8c144f63945a860aa8c0bd86"
+    },
+    {
+      "path": "write-denial-route-01.json",
+      "bytes": 206,
+      "sha256": "e8455393e01145212d18d226079b620e2a68f36e5d8a71890034691292a5e9f9"
+    },
+    {
+      "path": "write-denial-route-02.json",
+      "bytes": 206,
+      "sha256": "34fa94f268d9b4895c3bc18f7c3bcbe12fd39494e60b49ec1c442041e1e33da3"
+    },
+    {
+      "path": "write-denial-additive-current-receipt-01.json",
+      "bytes": 1023,
+      "sha256": "3b77cd4faec84c1372021887233b85a228222047f9d7bbbcad238415011279e9"
+    },
+    {
+      "path": "write-denial-additive-current-op-01.json",
+      "bytes": 2305,
+      "sha256": "205ace455547f95351d5c1cbbb8446cd1e097fd0d16e875346d2af2b97547203"
+    },
+    {
+      "path": "accepted-operations-01.json",
+      "bytes": 83065,
+      "sha256": "d66bf6857b031e69b8196f1234fe44182ae8e7edb1420613c2662157b0214084"
+    },
+    {
+      "path": "result-partial-01.json",
+      "bytes": 3940,
+      "sha256": "684e214a5c95c5c1dcf9ea453850f464e2df262b2a53171567dbbfa9a5743e16"
+    },
+    {
+      "path": "checkpoint77.py",
+      "bytes": 2611,
+      "sha256": "70e9580b52ae5fd40479708b4b1d3d3b561d35b2e71cd355bfb0529a0b4af5da"
+    },
+    {
+      "path": "checkpoint77-note.txt",
+      "bytes": 6627,
+      "sha256": "c7278d3d4647906ad26cd787a213eb0281e37a685636c138faeda155b2abd341"
+    },
+    {
+      "path": "checkpoint77-op.json",
+      "bytes": 6906,
+      "sha256": "5c4d8f43609742a31cfe870c91e7fb9488ef4ae8d6f930fe4fbf9003f5fafd55"
+    },
+    {
+      "path": "checkpoint77-receipt.json",
+      "bytes": 109,
+      "sha256": "190ea7a960892dd765a89a23b16b6f3457fc03be4d7f73ebea58f35431c7bb49"
+    },
+    {
+      "path": "checkpoint77-current-owner-op.json",
+      "bytes": 6737,
+      "sha256": "18afda2957510a6c56b069d739c3974a26a178c56d98a0cc82b468c214522a0a"
+    },
+    {
+      "path": "checkpoint77-current-owner-receipt.json",
+      "bytes": 416,
+      "sha256": "ed929453615fc3c3a592358aac70ccfeb709ff2ea51a45577c4383e5dd8a9dd4"
+    },
+    {
+      "path": "freeze-gauge-and-queue-checkpoint.py",
+      "bytes": 4697,
+      "sha256": "30cc861cafdce75e6968d251911a97773157aa6d8e4df405bc5677dfc114076b"
+    },
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    }
+  ],
+  "limits": "PARTIAL owner queue audit;12 notices handled/3 existing scoped deliveries finished, snapshot19 READY.61 accepted operations/failed uncommitted62 preserved. Old long-lived audit launch driver identity was not pinned; current source is not fabricated as its original receipt. Board operation lineage checked against canonical history. No new empirical tests or scientific closure. Ownership audit waits FRONTIER request48428. Checkpoint77 current owner write verified; original CAS refusal retained.",
+  "acceptance": "Immutable producer/owner records; no independent acceptance awarded"
+}

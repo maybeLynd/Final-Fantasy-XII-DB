@@ -182,7 +182,7 @@ frontier Presentation bodies) — is the API that arms an oscillator:
 
 ## 6. Members and honest limits
 
-`members/model-oscillator-subsystem.tsv` lists all 36 members with per-function evidence level.
+`members/model-oscillator-subsystem.tsv` lists all ~~36~~ 39 members *(corrected 2026-10-02, OPUS: recount of the TSV, 39 rows)* with per-function evidence level.
 Roles above are read from bodies at the stated addresses; the four heavy stages
 (`0040FF30`, `00413C80`, `00411650`, `0040B780`) are translated VU0 assembly read at head +
 call-shape level only — their inner loops resolve sub-entries through `0020E600` and stream
@@ -353,14 +353,14 @@ belongs to the rig slot loaded before its call, and the order is a slot table - 
 | `00413340` | light stage | ◐ head + call shape |
 | `00415EE0` / `00416AD0` / `00416FB0` | scope / post-step pair | ◐ call-site roles |
 | `0040B780` / `0040DBB0` | blend / direct node apply | ◐ head + store map |
-| `0040AA20` / `0040AAD0` | param setup | ◐ call shape |
+| `0040AA20` / `0040AAD0` | ~~param setup~~ wind phase tick / preset setter *(corrected 2026-10-02, OPUS: `0040AA20`+0x6..+0x7F advances `+0x20` by `+0x24` while `02CA4390` is set and reseeds on the wrap; `0040AAD0` stores the preset)* | ◐ call shape |
 
 ### Data addresses
 
 | Address | Kind | Contents |
 |---|---|---|
 | `009002E0` | `.rdata` f32 | 2π phase wrap (verified `0x40C90FD0`) |
-| `01FD4A90` | `.data` ptr | shared table stored to `02CA43C0` by mode-1/0 arms |
+| `01FD4A90` | `.data` ptr | shared table stored to `02CA43C0` by ~~mode-1/0~~ mode-0/2 arms *(corrected 2026-10-02, OPUS: `0040ACF0`+0x270 `cmp esi, 1` skips the store at +0x287)* |
 | `02B59D60` | `.data` u16 | flag word OR'd into the driver arg - **never written on PC, always 0** (section 6b) |
 | `02B59D68` | `.data` u32 | global override tested beside `[record + 7]` - the status-error display-deny latch (section 6b) |
 | `02CA4380`–`02CA439C` | `.data` ~~f32 ×4-ish~~ six f32 (`80`/`84`/`88`/`8C`/`98`/`9C`), bytes `90`–`92`, dword `94` *(corrected 2026-10-02, OPUS: `0040B3B0`+0x0 byte store, +0x6F dword store; `0040AAD0`+0x2A and +0x31 byte stores)* | global base/amplitude params gated by `02CA4390` - **the map wind** (preset byte `02CA4390`, direction/tilt `02CA4391`/`02CA4392`, section 6b) |

@@ -270,3 +270,7 @@ anything on this page.
 - **World - CLIENT (3 edges).** `00226BE0`, `003590D0` are called by bodies filed to World: `0025E400`, `002623A0`, `00266D10` - shared machinery across the layer boundary, no shared ownership.
 - **Script_VM_Native_Bridge - MECHANICAL and SERVICE (15 edges).** Fourteen script-VM bodies call `PartyFocus_GetCurrentPackedActorHandle` (`003590D0`) - accessor fan-in - and `00266D10` reaches `VMNativeCommandDispatch_InitializeFamilyTables` (`003DC2D0`).
 
+
+`003FDAD0` (764 B) is the encoded-id request arm `003FDFE0` calls: `02F97368`'s word trio reads, bit `0x1B` sets on the `+0xE0` record, `002D45C0` and `002445C0` resolve the id space, `0209AC30`+`0xDE0` resolves through `00282DF0`, and `00249C60`, `002527B0`, `002C1A80`, `002D3900`, `00563EC0`, `00564300`, `005655F0`, `005674B0` carry the row out - the query-to-record bridge the HUD readers share.
+
+Interior anchor `003FDC68` (function `003FDAD0`).

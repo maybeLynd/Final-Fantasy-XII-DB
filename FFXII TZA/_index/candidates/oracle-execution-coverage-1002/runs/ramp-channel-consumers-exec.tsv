@@ -1,0 +1,14 @@
+entry	class	mutated
+0020e600	returned	
+00264670	returned	yes
+002ed570	scripted	
+0036f360	returned+faulted	yes
+00370f60	scripted	
+003a1db0	returned+faulted	yes
+003b6020	returned+faulted	yes
+003b62d0	returned+faulted	yes
+003b6bf0	returned	yes
+003e56a0	scripted	
+003e6f70	returned	yes
+00421ff0	returned+faulted	yes
+0046fae0	returned	yes

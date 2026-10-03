@@ -1,0 +1,65 @@
+{
+ "page": "19-Save-Load-Settings/CONTRACT-save-image-buffers.md",
+ "date": "2026-10-02",
+ "session": "local-h4-opus",
+ "report": "contract-save-image-buffers.json",
+ "rows": [
+  {
+   "fn": "001AA120",
+   "text": "for each 32-byte record in the range from qword `+0x2A0` to qword `+0x2A8` of `rcx`, looks up the node keyed by the record's dword `+0` (node key: dword `+0x20`) in the tree map at `rcx+0x268`, inserting it through `001A37C0` when absent, and calls `00183320(node qword +0x28, record qword +8, record word +0x10, word +0x12, dword +0x14, dword +0x18)`",
+   "anchors": [
+    [
+     "001AA13B",
+     "cmp"
+    ],
+    [
+     "001AA181",
+     "cmp"
+    ],
+    [
+     "001AA1D1",
+     "call"
+    ],
+    [
+     "001AA203",
+     "call"
+    ],
+    [
+     "001AA208",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "005DDBB0",
+   "text": "tears down four members of `rcx` in order: `006167C0(rcx+0x568)`; for `rcx+0x218` `0062C100` only when `00625F20` returns non-zero, then `00616D20`; for `rcx+0x188` `0062BF40` only when `00625F10` returns non-zero, then `00616CC0`; for `rcx` itself `0062BCB0` only when `00625F00` returns non-zero, then `00616C60`",
+   "anchors": [
+    [
+     "005DDBCE",
+     "call"
+    ],
+    [
+     "005DDBDB",
+     "call"
+    ],
+    [
+     "005DDC06",
+     "call"
+    ],
+    [
+     "005DDC2D",
+     "call"
+    ],
+    [
+     "005DDC43",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing"
+}

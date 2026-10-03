@@ -1,0 +1,63 @@
+entry	class	mutated
+0016d670	returned	
+0016d6a0	returned	
+0017d2e0	returned	yes
+0017d3e0	scripted	
+0017d930	returned	
+001d6b70	returned	
+001dada0	returned	
+0020e600	returned	
+0020e620	returned	
+002df6c0	scripted	
+0032e030	body_only	
+0032e070	returned+faulted	yes
+0032e330	returned+faulted	yes
+0032e370	returned	yes
+0032e3b0	returned+faulted	yes
+0032ec40	returned	yes
+0035e7a0	scripted	
+0035e810	returned	
+0035ea30	returned	
+0035eb70	returned	yes
+00368c70	returned	
+00369190	scripted	
+003691b0	scripted	
+003697f0	returned	yes
+00369860	returned+faulted	yes
+0036a2a0	returned+faulted	yes
+0036a490	returned	
+0036a570	returned+faulted	yes
+0036a850	returned+faulted	yes
+0036aad0	returned+faulted	yes
+0036abe0	returned	yes
+0036ace0	returned	yes
+0036ae00	returned	yes
+0036b210	returned	
+0036b2c0	returned	
+0036b410	returned	yes
+0036b490	returned	yes
+0036b4e0	returned	yes
+0036b5a0	returned	yes
+0036b5f0	returned+faulted	
+0036b670	returned	
+0036b730	returned	
+0036b7f0	returned	
+0036b8b0	returned	
+0036bc60	returned+faulted	
+0036c790	returned	yes
+0036c900	returned+faulted	
+0036c9d0	returned	
+0036fd50	returned	
+003bb790	scripted	
+003e9780	scripted	
+003eadd0	scripted	
+0046dd50	scripted	
+0046dfe0	returned	
+0046e030	scripted	
+0046e0e0	returned	
+004746f0	returned+faulted	yes
+00808c40	returned	
+00808f10	returned	yes
+00861eba	returned+faulted	yes
+00862090	scripted	
+008620c0	returned	

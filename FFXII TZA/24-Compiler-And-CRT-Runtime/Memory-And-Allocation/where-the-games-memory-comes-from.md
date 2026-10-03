@@ -1529,6 +1529,8 @@ upper nibble (`shr edx, 4`), so on those paths the index is 0..15. It is 0 or 1 
 
 **So the closure holds for the literal call sites, and is open for this one path.** If a source byte at or above
 `0x20` reaches the factory, the credit lands at `022D8E18` or beyond, on the struct fields the initializer writes.
+*(That remaining question is registered as a runtime residue — `NR-1` in
+[`_index/OPEN-QUESTIONS.md`](../../_index/OPEN-QUESTIONS.md), 2026-10-02.)*
 ~~Whether the shipped game ever supplies such a byte, and whether other writers of `+0x0C1` exist, is not established
 statically.~~ No other writer of `+0x0C1` with a proven render-record receiver exists: an image-wide sweep of stores of every width
 that cover the byte finds only the two known writers, and the defaults reset zeroes it. The source byte's upper nibble has one setter, and all 27 of its call sites pass 0 or 1, so the index is 0 or 1 on every identified path *(answered 2026-10-02, FABLE, static; addresses and controls in [`mempage-residue-fable-1002`](../../_index/candidates/mempage-residue-fable-1002/README.md) item 3)*. ~~Still open, static: the object type behind the `+0xC0` pointer in twelve bodies whose wider stores land on these offsets (no receiver is proven).~~ None of those twelve bodies reaches an actor record: in ten the `+0xC0` belongs to a UI widget (a child or owner widget, a manager slot, an image-registration entry or a private buffer), in one to an audio submix voice (a per-channel buffer), and in one the "pointer" is a stack argument of an audio filter method, so none can change the source byte and the index stays 0 or 1 *(answered 2026-10-02, FABLE, static; [record](../../_index/candidates/c0-receiver-fable-1002/README.md))*. The stored fields' own record is the type store's CharacterRenderRecord `+0x0C1` row (`b83439b6c`).
@@ -1547,7 +1549,7 @@ through `0017D2E0` (`0036CBA6`–`0036CBB2`), `dword[rdx+0x18]` vs `esi`
 
 | member | role | interior |
 | --- | --- | --- |
-| `0036A240` (63 B) | block-link + id copy — `[rcx+8] = rdx` (`0036A25A`), `0020E620` → `dword[rbx+0x20]` (`0036A25E`–`0036A263`), `word[rbx+0x1C]` → `word[rdi+6]` and `word[rbx+0x3E]` (`0036A266`–`0036A270`), byte store at `022D89A8` (`0036A282`–`0036A290`) | [`0036A266`](../../_index/ADDRESS-INDEX.md) |
+| `0036A240` (63 B) | block-link + id copy — `[rcx+8] = rdx` (`0036A25A`), `0020E620` → `dword[rbx+0x20]` (`0036A25E`–`0036A263`), `word[rbx+0x1C]` → `word[rdi+6]` and `word[rbx+0x3E]` (`0036A266`–`0036A270`)~~, byte store at `022D89A8` (`0036A282`–`0036A290`)~~ *(corrected 2026-10-02, OPUS: the body ends at `0036A240+0x3E`; the `022D89A8` store loop is `0036A280`, the identity-map fill)* | [`0036A266`](../../_index/ADDRESS-INDEX.md) |
 | `0036C290` (228 B) | block metadata fill — `word[rcx+0x60]`, `byte[rcx+1]`, `dword[rdx+0x18]` (`0036C2A4`–`0036C2BA`), `0036A490` (`0036C2CB`), `word[rsi+0x3E] = ax` (`0036C2D7`), `[rdi+0x18] = ebp` (`0036C2DE`) | [`0036C2D7`](../../_index/ADDRESS-INDEX.md) |
 | `0036C380` (289 B) | three-field resolve — `byte[rcx+1]` (`0036C3A1`), `dword[r8+4]` / `[r8+8]` / `[r8+0x18]` each through `0020E600` (`0036C3B2`–`0036C3C3`) | [`0036C3B7`](../../_index/ADDRESS-INDEX.md) |
 
@@ -1872,7 +1874,7 @@ exhaustion.
 Interior anchor `00674FE1`
 (the first `strchr` call).
 
-`0036D2F0` (265 B) is the pool-descriptor build `0036D280` runs at init: `0016D6A0` packs a 0x58-byte record on the stack keyed on `word[022D8EB4]`/`word[022D8EB0]` with tag words `{0x31, 2, 1}`, the image lands at `022D8E50..0x98` (qwords `022D8E50`/`022D8E60`, double `022D8E70`, tail `022D8E78`/`022D8E88`/`022D8E98`), `022D8EB8` takes `(word[022D8EB4] x dword[022D8EAC] + (low 11 bits)) >> 11`, the field at `rsp+0x78` has its low 9 bits re-xored before the second copy lands, and `022D8EA0` points at the block - the sized descriptor the allocator registers.
+`0036D2F0` (265 B) is the pool-descriptor build `0036D280` runs at init: ~~`0016D6A0` packs a 0x58-byte record on the stack~~ it hands a 0x58-byte stack record to `0016D6A0`, which is `ret 0` and fills nothing *(corrected 2026-10-02, OPUS: `0036D2F0+0x5E` is `call 0016D6A0`, whose whole body is `C2 00 00`; only the field at `rsp+0x78` is patched before the copies)* keyed on `word[022D8EB4]`/`word[022D8EB0]` with tag words `{0x31, 2, 1}`, the image lands at `022D8E50..0x98` (qwords `022D8E50`/`022D8E60`, double `022D8E70`, tail `022D8E78`/`022D8E88`/`022D8E98`), `022D8EB8` takes `(word[022D8EB4] x dword[022D8EAC] + (low 11 bits)) >> 11`, the field at `rsp+0x78` has its low 9 bits re-xored before the second copy lands, and `022D8EA0` points at the block - the sized descriptor the allocator registers.
 
 Interior anchor `0036D34E` (function `0036D2F0`).
 

@@ -1,0 +1,85 @@
+== raw direct-reference census (E8/E9 rel32 and 0F 8x jcc, .text)
+NOTE  00300CE0 raw direct references (6): 300CAD call, 3056F4 call, 307B3A call, 307B8C call, 30F5FD call, 3110D7 call
+NOTE  00300BC0 raw direct references (8): 300CC4 call, 300E14 call, 30570D call, 30D889 call, 30DC1F call, 30F617 call, 30F679 call, 3116E0 call
+NOTE  0030B770 raw direct references (7): 300BF0 call, 300D46 call, 300DDD call, 30B90D call, 30B964 call, 30B9E2 call, 310F1F call
+NOTE  0030B7F0 raw direct references (7): 300BFC call, 300D52 call, 300DEB call, 30B91B call, 30B970 call, 30B9EE call, 310F2B call
+NOTE  0017D470 raw direct references (2): 30B883 call, 30B8B6 call
+NOTE  001D5090 raw direct references (1): 1C1976 call
+NOTE  001CCB20 raw direct references (2): 1D50BE call, 1D5100 call
+NOTE  001D50D0 raw direct references: 78
+PASS  0017D470 (the C20 getter) has exactly two raw direct references, both in the unit query (+ 0x93, + 0xC6); the constructor 001CCB20 has exactly two, the accessor 001D50D0 + 0x30 and its twin 001D5090 + 0x2E
+== singleton root census (rip-relative and image-base-relative disp32 meeting 01F81428 .. + 8)
+NOTE  1D509D  cmp qword ptr [rip + 0x1dac383], 0           (.pdata record 1D5090..1D50D0)
+NOTE  1D50C4  mov qword ptr [rip + 0x1dac35d], rax         (.pdata record 1D5090..1D50D0)
+NOTE  1D50DD  mov rax, qword ptr [rip + 0x1dac344]         (.pdata record 1D50D0..1D5112)
+NOTE  1D5106  mov qword ptr [rip + 0x1dac31b], rax         (.pdata record 1D50D0..1D5112)
+NOTE  unresolved candidates (no .pdata record or decode desync): []
+PASS  01F81428 census: four instructions; the only stores are 001D5090 + 0x34 and 001D50D0 + 0x36, each on its body's NULL path (the nonNULL branch skips it): no instruction in the census replaces a nonNULL root  | ['1D509D', '1D50C4', '1D50DD', '1D5106']
+PASS  the consume path 00305640 + 0xB4 calls the primary modifier with R8D = 0x10 + (R12D != 0) (+ 0x42 `xor r15d, r15d`, + 0xA0 `mov esi, r15d`, + 0xA8 `setne sil`, + 0xB0 `lea r8d, [rsi + 0x10]`) and EDX = -cost (+ 0xAC `neg ebx`, + 0xAE); + 0xCD calls the secondary with the same R8D (+ 0xC0): mode 16 or 17
+== shipping-image re-derivation
+PASS  image sha256 = 73461d0896204b1c259c...
+PASS  .pdata extents tile and decode exactly: primary 00300CE0 351 B (1 record), secondary 00300BC0 207 B (3 chained), global query 0030B770 119 B, unit query 0030B7F0 226 B, getter 0017D470 20 B, accessor 001D50D0 66 B, constructor 001CCB20 1210 B, twin accessor 001D5090 64 B  | {'primary': (True, 1, True, 351), 'secondary': (True, 3, True, 207), 'global': (True, 1, True, 119), 'unit': (True, 1, True, 226), 'getter': (True, 1, True, 20), 'accessor': (True, 1, True, 66), 'ctor': (True, 1, True, 1210), 'twin': (True, 1, True, 64)}
+PASS  global query: no call; its stores are exactly `mov dword ptr [rbp], 0` (+ 0x15) and five `mov word ptr [rbp], ax` (+ 0x29, + 0x40, + 0x4E, + 0x5C, + 0x6A); RBP = (RSP + 0x40) & ~0x3F, set once; it returns DWORD [rbp] (+ 0x6E) - the upper WORD is written only by the zeroing DWORD store  | [(21, 'rbp', 0, 4), (41, 'rbp', 0, 2), (64, 'rbp', 0, 2), (78, 'rbp', 0, 2), (92, 'rbp', 0, 2), (106, 'rbp', 0, 2)]
+PASS  unit query: its stores are the DWORD 0 at [rsp + 0x30] (+ 0x6), WORD stores to [rsp + 0x30] (+ 0x40, + 0x57, + 0x6B, + 0x8E) and WORD stores to [rsp + 0x32] only at + 0xBA and + 0xD3; its only calls are two to 0017D470 (+ 0x93, + 0xC6); NULL unit (+ 0x14) or DWORD bit 4 clear (+ 0x1D / + 0x21) returns the zeroed DWORD before either call  | [(6, 'rsp', 48, 4), (64, 'rsp', 48, 2), (87, 'rsp', 48, 2), (107, 'rsp', 48, 2), (142, 'rsp', 48, 2), (186, 'rsp', 50, 2), (211, 'rsp', 50, 2)]
+PASS  unit query upper WORD: first read `cmp eax, 1` (+ 0x98), then [unit + 0x698] nonNULL (+ 0xA4) and its byte +5 == 0 (+ 0xA9 .. + 0xAF) -> `or bx, 1`; second read `cmp eax, 2` (+ 0xCB) -> `or bx, ax`; RBX holds the unit across the first call and the WORD across the second (Win64 nonvolatile)
+PASS  the low-WORD arm that needs a nonzero EDX: + 0x5C `bt r8d, 0x1e`, + 0x63 `test edx, edx` -> `or cx, 2`; the primary modifier zeroes EDX before both of its unit-query calls (+ 0x6B, + 0x102 `xor edx, edx`)
+PASS  getter 0017D470: `call 001D50D0` then `mov eax, dword ptr [rax + 0xc20]` (4 B) and return
+PASS  accessor 001D50D0: + 0xD loads QWORD 01F81428; nonNULL -> + 0x3D epilogue (only the stack store + 0x4 on that path); NULL -> `mov ecx, 0x10e8`, `call 00210EC0`, nonNULL result -> `call 001CCB20` with RCX = the allocation, then + 0x36 stores RAX to 01F81428 (on the NULL path only)  | [(4, 'rsp', 8), (35, 'rsp', 8), (54, 'rip', 8)]
+PASS  constructor: + 0x22 `mov rdi, rcx`, + 0x25 `xor ebp, ebp`; RBP and RDI not rewritten before + 0x12B `mov dword ptr [rdi + 0xc20], ebp` (the body's only store covering +0xC20); seven calls follow it (001CCE7E, 001CCEA4, 001CCEB0, 001CCF04 and three to 0019C5D0)  | c20 ['1CCC4B'] after ['1CCE7E', '1CCEA4', '1CCEB0', '1CCF04', '1CCF2A', '1CCF40', '1CCF56']
+PASS  primary modifier flags: R8D -> EBX (+ 0x19) and homed (+ 0x5); bit 0 -> EAX (+ 0x31, + 0x36); inverted bit 4 -> R13D (+ 0x2A .. + 0x39); inverted bit 7 -> R15D (+ 0x54 .. + 0x5E); bit 0 set skips the entry leg (+ 0x62 / + 0x64 -> + 0x89)
+PASS  entry leg tests the LOW WORDs: + 0x66 `call 0030B770`, + 0x72 `call 0030B7F0`, + 0x77 `test bx, bx`, + 0x80 `test ax, ax`, either nonzero -> return (+ 0x14A)
+PASS  notifications then late leg: owner NULL skips both (+ 0xC1 / + 0xC4); R13D gates `call 003283D0` (+ 0xDA); R15D gates `call 0028F1F0` (+ 0xF3) with ECX = DWORD [owner + 8], EDX = old signed WORD +0x4C, R8D = candidate, R9D = 1; then a negative delta (+ 0xF8 / + 0xFB `jns`) calls 0030B770 (+ 0xFD), saves its EAX at [rsp + 0x68] (+ 0x104), calls 0030B7F0 (+ 0x10B), and returns if WORD [rsp + 0x6a] (+ 0x110) or the unit result's upper WORD (+ 0x118 / + 0x11B) is nonzero
+PASS  the store and what follows it: + 0x120 `mov word ptr [rsi + 0x4c], di`; on the negative leg it is reachable from + 0xFD only through both late tests; then delta > 0 -> `call 00300BC0` (+ 0x134) with R8D = the homed flags [rsp + 0x70]; owner and candidate < old -> `call 002FA540` (+ 0x145)
+PASS  secondary modifier: flags in R14D (+ 0x15); bit 0 set skips its entry leg (+ 0x25 / + 0x29 -> + 0x50); + 0xAA `mov word ptr [rdi + 6], cx` dominates + 0xB4 `call 0030E060`, whose EDX is the full R14D (+ 0xAE)
+PASS  emulated global query over every combination of its six mask bits and the flag byte's bit 0, at eight stack alignments, on a stack filled with 0xFF (1024 runs): the upper WORD is 0 every time and the low WORD equals the bit map (0..31); no call
+PASS  emulated unit query, 3456 states (unit NULL / flags / +4 bit 5 / stats NULL / byte +5 / byte +4 / C20 in 0, 1, 2, 3, 0x101, 2^32 - 1 / EDX / state 0, 5, 6), C20 read twice through the initialized accessor: the result equals the formula every time, and the upper WORD is only ever 0, 1 or 2  |  his [0, 1, 2]
+PASS  emulated: for an eligible unit the C20 DWORD is read exactly twice, both from 0017D470 + 0x9, and the fast path makes no non-stack store and no call beyond the two getter / accessor entries; an ineligible unit reads it zero times
+PASS  emulated two different reads (C20 changed between the getter calls): upper = (first == 1 ? 1) | (second == 2 ? 2); first 1 / second 2 gives 3  | []
+PASS  the packet's four conditional-control rows reproduce through the original bytes: (1, 1, stats) -> 1, (2, 2, no stats) -> 2, (1, 2, stats) -> 3, ineligible -> 0  | [(True, 1, 1, True, 1), (True, 2, 2, False, 2), (True, 1, 2, True, 3), (False, 1, 2, True, 0)]
+PASS  emulated lazy path: with the root NULL the first getter call allocates 0x10E8 bytes, calls the constructor with RCX = the allocation and publishes its RAX; the second getter call takes the fast path (one allocation, one constructor call in all)  | [(2166464, 4328), (1887008, 1140850688)]
+PASS  emulated NULL allocation: no constructor call, the root is stored as 0, and the getter then reads address 0xC20 (an unmapped-read fault in emulation; a source prediction, not an observed fault)  | calls [(2166464, 4328)] fault 3104
+PASS  emulated: the root receives the constructor's RAX, not the allocation, when the two differ  | 44001000
+PASS  emulated mode 17, delta -10, C20 0: owner lookup, `0028F1F0` (ECX = owner DWORD 8, EDX = 50, R8D = 40, R9D = 1), then 0030B770, 0030B7F0, the +0x4C store of 40, then `002FA540`; no `003283D0`; no query before the notification  | ['31B860', '28F1F0', '30B770', '30B7F0', 'W4C=40', '2FA540']
+PASS  emulated mode 17 veto: C20 1 (stats byte +5 = 0) and C20 2 each stop the +0x4C store and the `002FA540` call after the notification was already attempted; MP stays 50  | ['31B860', '28F1F0', '30B770', '30B7F0'] ['31B860', '28F1F0', '30B770', '30B7F0']
+PASS  emulated: no veto for C20 1 with stats byte +5 = 1, nor for C20 2 on an ineligible unit  | ['31B860', '28F1F0', '30B770', '30B7F0', 'W4C=40', '2FA540'] ['31B860', '28F1F0', '30B770', '30B7F0', 'W4C=40', '2FA540']
+PASS  emulated intervention: with 0030B770 REPLACED by a stub returning 0x10000 the store is vetoed; the same stub returning 0x1F (a low-WORD-only mask) does not veto - the shipping body never returns the former  | ['31B860', '28F1F0', '30B770', '30B7F0'] ['31B860', '28F1F0', '30B770', '30B7F0', 'W4C=40', '2FA540']
+PASS  emulated frame: in the whole mode-17 run the only write to the modifier's RDX home slot is its own save of the global result (+ 0x104); nothing the unit query runs overwrites it before the WORD test (+ 0x110)  | [('300DE4', 0)]
+PASS  emulated mode 16 (bit 0 clear): the entry leg runs first - 0030B770, 0030B7F0 - before the notification, then the late leg  | ['31B860', '30B770', '30B7F0', '28F1F0', '30B770', '30B7F0', 'W4C=40', '2FA540']
+PASS  emulated mode 17, delta +10 (C20 2): no query, the store of 60, then `00300BC0` with (stats, 10, 0x11); no `002FA540`  | ['31B860', '28F1F0', 'W4C=60', '300BC0']
+PASS  emulated flag roles: mode 1 (bit 4 clear) calls `003283D0` before `0028F1F0`; mode 0x91 (bit 7 set) does not call `0028F1F0`; a NULL owner skips both notifications, its unit query returns 0 and the store happens  | ['31B860', '3283D0', '28F1F0', '30B770', '30B7F0', 'W4C=40', '2FA540'] ['31B860', '30B770', '30B7F0', 'W4C=40', '2FA540'] ['31B860', '30B770', '30B7F0', 'W4C=40']
+PASS  emulated secondary: mode 17 stores WORD +6 (20 - 5 = 15) and then calls `0030E060` with (stats, 0x11), no query; mode 16 runs both queries first  | ['31B860', 'W6=15', '30E060'] ['31B860', '30B770', '30B7F0', 'W6=15', '30E060']
+== packet integrity
+PASS  the record path the board request names (ov42-mode17-query-boundaries/README.md) does not exist; the publication's evidence is the two folders ov42-resource-mutator-mode17 and ov42-resource-eligibility-domain, both first committed in 7b4e2b92c
+PASS  ov42-resource-mutator-mode17 manifest sha256 6db69c8e1cae5b05... equals the manifest committed at 7b4e2b92c; all 32 members hash as listed  | []
+PASS  ov42-resource-eligibility-domain manifest sha256 9f78042a995e6cdd... equals the manifest committed at 7b4e2b92c; all 91 members hash as listed  | []
+NOTE  mutator manifest sha256 6db69c8e1cae5b05951617b386ee2f321a8b04c53c08e443860af6949676b1d2 (32 members) - the 'frozen mode17 package 6db69c8e'; eligibility manifest sha256 9f78042a995e6cdde56c6ad1cfd964c43c240f618148b492097dc307699225ee (91 members)
+PASS  the eligibility README's 'frozen mode17 package 6db69c8e' is the mutator folder's manifest hash (32 members), not a commit
+PASS  every source range in both folders (00300CE0, 00300BC0, 0030B770, 0030B7F0, 0017D470, 001D50D0, 001CCB20) hashes to this image's bytes and its instruction records concatenate to them  | []
+PASS  every extents file's bodies equal this image's physical bytes, sizes and .pdata records  | []
+PASS  retained-constructor-source-01.json is byte-identical to 30754ad4b's special-override-constructor-raw-01.json (sha256 91747eb0ccdd...)
+PASS  qualified-result-02's seven post-store calls equal this review's list
+PASS  result-02's four conditional-control rows equal the emulated original bytes  | [(True, 1, 1, True, 1), (True, 2, 2, False, 2), (True, 1, 2, True, 3), (False, 1, 2, True, 0)]
+PASS  the mutator result-02's three cases (own +0x4C store true / false / false, notification before the late queries, no 003283D0) agree with the emulation (the first-upper case only with 0030B770 replaced)
+PASS  both READMEs keep their limits: no natural initialization or lifetime proof, no whole-call no-effects claim, the call attempt is not visible presentation
+== controls (each patched private image must FAIL at least one check above)
+PASS  null control: an unchanged private copy passes every image check  | 31 of 31; []
+PASS  control: global query + 0x15 zeroing store writes 0x10000  | 7 failed: global query: no call; its stores are exactly `mov dword ptr; emulated global query over every combination of its six mask; emulated mode 17, delta -10, C20 0: owner lookup, `0028F1F0`
+PASS  control: global query + 0x15 zeroing store -> 7-byte NOP  | 2 failed: global query: no call; its stores are exactly `mov dword ptr; emulated global query over every combination of its six mask
+PASS  control: global query + 0x40 WORD store -> DWORD store (66 prefix -> NOP)  | 1 failed: global query: no call; its stores are exactly `mov dword ptr
+PASS  control: unit query + 0xCB `cmp eax, 2` -> `cmp eax, 1`  | 7 failed: unit query upper WORD: first read `cmp eax, 1` (+ 0x98), the; emulated unit query, 300 states (unit NULL / flags / +4 bit ; emulated two different reads (C20 changed between the getter
+PASS  control: unit query + 0x98 `cmp eax, 1` -> `cmp eax, 2`  | 6 failed: unit query upper WORD: first read `cmp eax, 1` (+ 0x98), the; emulated unit query, 300 states (unit NULL / flags / +4 bit ; emulated two different reads (C20 changed between the getter
+PASS  control: unit query + 0xAF byte +5 test's `jne` -> NOP NOP  | 3 failed: unit query upper WORD: first read `cmp eax, 1` (+ 0x98), the; emulated unit query, 300 states (unit NULL / flags / +4 bit ; emulated: no veto for C20 1 with stats byte +5 = 1, nor for 
+PASS  control: getter field +0xC20 -> +0xC24  | 8 failed: getter 0017D470: `call 001D50D0` then `mov eax, dword ptr [r; emulated unit query, 300 states (unit NULL / flags / +4 bit ; emulated: for an eligible unit the C20 DWORD is read exactly
+PASS  control: accessor + 0x17 `jne` -> `je` (fast path inverted)  | 12 failed: emulated unit query, 300 states (unit NULL / flags / +4 bit ; emulated: for an eligible unit the C20 DWORD is read exactly; emulated two different reads (C20 changed between the getter
+PASS  control: accessor + 0x17 `jne` retargeted to the root store + 0x36  | 4 failed: accessor 001D50D0: + 0xD loads QWORD 01F81428; nonNULL -> + ; emulated: for an eligible unit the C20 DWORD is read exactly; emulated lazy path: with the root NULL the first getter call
+PASS  control: primary + 0x116 global-upper veto `jne` -> NOP NOP  | 2 failed: notifications then late leg: owner NULL skips both (+ 0xC1 /; emulated intervention: with 0030B770 REPLACED by a stub retu
+PASS  control: primary + 0x11E unit-upper veto `jne` -> NOP NOP  | 2 failed: notifications then late leg: owner NULL skips both (+ 0xC1 /; emulated mode 17 veto: C20 1 (stats byte +5 = 0) and C20 2 e
+PASS  control: primary + 0x64 bit-0 bypass `jne` -> NOP NOP  | 6 failed: primary modifier flags: R8D -> EBX (+ 0x19) and homed (+ 0x5; emulated mode 17, delta -10, C20 0: owner lookup, `0028F1F0`; emulated mode 17 veto: C20 1 (stats byte +5 = 0) and C20 2 e
+PASS  control: primary + 0xFB `jns` -> `jmp` (late leg never runs)  | 7 failed: notifications then late leg: owner NULL skips both (+ 0xC1 /; emulated mode 17, delta -10, C20 0: owner lookup, `0028F1F0`; emulated mode 17 veto: C20 1 (stats byte +5 = 0) and C20 2 e
+PASS  control: primary + 0x102 `xor edx, edx` -> `mov edx, ebx`  | 2 failed: the low-WORD arm that needs a nonzero EDX: + 0x5C `bt r8d, 0; emulated mode 16 (bit 0 clear): the entry leg runs first - 0
+PASS  control: secondary + 0xAA WORD +6 store -> 4-byte NOP  | 2 failed: secondary modifier: flags in R14D (+ 0x15); bit 0 set skips ; emulated secondary: mode 17 stores WORD +6 (20 - 5 = 15) and
+PASS  control: secondary + 0xAE `mov edx, r14d` -> `mov edx, esi` + NOP  | 2 failed: secondary modifier: flags in R14D (+ 0x15); bit 0 set skips ; emulated secondary: mode 17 stores WORD +6 (20 - 5 = 15) and
+PASS  control: constructor + 0x12B C20 store -> +0xC24  | 1 failed: constructor: + 0x22 `mov rdi, rcx`, + 0x25 `xor ebp, ebp`; R
+PASS  control: constructor + 0x25 `xor ebp, ebp` -> `mov ebp, ebx`  | 1 failed: constructor: + 0x22 `mov rdi, rcx`, + 0x25 `xor ebp, ebp`; R
+PASS  exe on disk still hashes to the pinned sha256 after all controls  | 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
+TOTAL: 65 checks, 65 PASS, 0 FAIL (18 controls)

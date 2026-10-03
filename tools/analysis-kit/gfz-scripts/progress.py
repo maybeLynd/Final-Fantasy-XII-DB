@@ -231,7 +231,156 @@ def self_test():
         return 1
     print("self-test ok: partial reads open, bare **ANSWERED** is untrusted, "
           "escaped pipes do not split a row, a verdictless row is open")
+    return _self_test_row_credits()
+
+
+def _self_test_row_credits():
+    """The UC-1 break-phrase route mirrors check_dispositions' five cases (positive, no phrase, phrase in another row,
+    entry-only, non-bearing page); the template-member spread adds two (a marker-only credit, and a body also explained
+    by a plain row)."""
+    import check_dispositions as CD
+    U, G = 0x120010, 0x120200                       # a UC-1 frontier body and an ordinary body, 0x100 bytes each
+    entries, sizes, uc1f = [U, G], {U: 0x100, G: 0x100}, {U}
+    BRK = CD.UC1_INTERIOR_BREAK + " 2026-10-03"
+    DOC, PART = "---\nstatus: DOCUMENTED\n---\n", "---\nstatus: PARTIAL\n---\n"
+    cases = [
+        ("uc1 positive", DOC + "\n| body | note |\n|---|---|\n| `00120010` | interior `00120014`; " + BRK + " |\n",
+         {U}, None),
+        ("uc1 no phrase", DOC + "interior `00120014` of a game-code body\n", set(), None),
+        ("uc1 phrase in another row", DOC + "\n| a | b |\n|---|---|\n| `00120014` | read |\n| other | " + BRK + " |\n",
+         set(), None),
+        ("uc1 entry-only", DOC + "entry `00120010` only. " + BRK + "\n", set(), None),
+        ("uc1 non-bearing page", PART + "interior `00120014`. " + BRK + "\n", set(), None),
+        ("template marker-only", DOC + "\n| f | anchor |\n|---|---|\n| `00120200` | interior `00120230`; "
+         + TEMPLATE_MEMBER_MARKER + " |\n", set(), ({G}, set())),
+        ("template plus plain row", DOC + "\n| f | anchor |\n|---|---|\n| `00120200` | interior `00120230`; "
+         + TEMPLATE_MEMBER_MARKER + " |\n\nThe body reads `00120240`.\n", set(), ({G}, {G})),
+    ]
+    bad = []
+    for name, text, want_uc1, want_tp in cases:
+        got_u, got_t, got_p = doc_credits(text, entries, sizes, uc1f)
+        if got_u != want_uc1 or (want_tp is not None and (got_t, got_p) != want_tp):
+            bad.append("%s: uc1=%s template=%s plain=%s" % (name, got_u, got_t, got_p))
+    # ee_index_only (OPUS-REQ-DATA-EE-INDEX-ONLY-1003): a citation in a declared section credits nothing; one outside
+    # it, or on a page that declares nothing, still credits; a subsection goes with its section; the next same-level
+    # heading ends it; a declared heading the page lacks is reported.
+    IDX = ("---\nstatus: DOCUMENTED\nee_index_only:\n  - \"Appendix: method index\"\n---\n"
+           "## Body\nThe body reads `00120240`.\n## Appendix: method index\n| `00120230` | slot 3 |\n"
+           "### Detail\n| `00120020` | slot 4 |\n## After\nmore\n")
+    idx_cases = [
+        ("index-only section excluded", IDX, {G}),
+        ("no declaration still credits", IDX.replace("ee_index_only:\n  - \"Appendix: method index\"\n", ""), {G, U}),
+        ("inline form", IDX.replace("ee_index_only:\n  - \"Appendix: method index\"\n",
+                                    "ee_index_only: \"Appendix: method index\"\n").replace("The body reads `00120240`.", ""),
+         set()),
+        ("section ends at the next same-level heading", IDX.replace("## After\nmore\n", "## After\n`00120030` read\n"),
+         {G, U}),
+    ]
+    for name, text, want in idx_cases:
+        stripped, missing = strip_index_only(text)
+        got_u, got_t, got_p = doc_credits(stripped, entries, sizes, set())
+        if (got_t | got_p) != want or missing:
+            bad.append("%s: credited=%s missing=%s" % (name, got_t | got_p, missing))
+    _, missing = strip_index_only(IDX.replace("## Appendix: method index", "## Appendix"))
+    if missing != ["Appendix: method index"]:
+        bad.append("missing declared heading not reported: %s" % missing)
+    cases = cases + idx_cases + [("missing heading reported", "", None, None)]
+    if bad:
+        print("SELF-TEST FAILED (row credits): " + "; ".join(bad))
+        return 1
+    print("self-test ok: %d row-credit cases - the UC-1 break phrase credits only an interior cite in its own row on a "
+          "bearing page; a template-member row is a separate credit from a plain row; an ee_index_only section credits nothing" % len(cases))
     return 0
+
+
+# The two row-scoped credits engine_explained separates (2026-10-03, SWE2-DATA, FABLE-REQ-DATA-EE-TEMPLATE-SPREAD-1003):
+# - SWE2-AUDIT-SPEC's accessor ruling, condition 3: print engine_explained with and without functions whose only credit
+#   is a template-family member row. FABLE's rows carry this literal marker (fable-accessor-descriptors-1003).
+# - SWE2-AUDIT-SPEC's ruling that engine_explained follows FRONTIER's UC-1 phrase rule (a46d39253): a UC-1 frontier body
+#   counts only when an interior cite of it sits in a row carrying check_dispositions.UC1_INTERIOR_BREAK. The phrase
+#   and the row splitter are imported from check_dispositions so the two measures cannot drift apart.
+TEMPLATE_MEMBER_MARKER = "template member: distinguishing operand"
+
+
+_HEADING = re.compile(r"^(#{1,6})[ \t]+(.+?)[ \t]*#*[ \t]*$", re.M)
+
+
+def index_only_headings(text):
+    """The headings a page's frontmatter declares index-only: `ee_index_only: "Heading"` or a YAML list under the key
+    (OPUS-REQ-DATA-EE-INDEX-ONLY-1003; the page lead declares, progress.py honours)."""
+    m = re.match(r"^---\n(.*?)\n---", text.replace("\r\n", "\n"), re.S)
+    if not m:
+        return []
+    fm = m.group(1)
+    k = re.search(r"^ee_index_only:[ \t]*(.*)$", fm, re.M)
+    if not k:
+        return []
+    out = []
+    inline = k.group(1).strip()
+    if inline and inline not in ("|", ">"):
+        out.append(inline.strip("\"'"))
+    for line in fm[k.end():].split("\n")[1:] if not inline else []:
+        lm = re.match(r"^[ \t]+-[ \t]+(.+?)[ \t]*$", line)
+        if not lm:
+            if line.strip():
+                break
+            continue
+        out.append(lm.group(1).strip("\"'"))
+    return [h for h in out if h]
+
+
+def strip_index_only(text):
+    """(text with every declared index-only section's body removed, declared headings the page does not carry).
+    A section runs from its heading to the next heading of the same or a higher level, so its subsections go with it.
+    The original object is returned unchanged when the page declares nothing, so callers can test identity."""
+    want = index_only_headings(text)
+    if not want:
+        return text, []
+    heads = [(mm.start(), mm.end(), len(mm.group(1)), mm.group(2).strip()) for mm in _HEADING.finditer(text)]
+    cut, found = [], set()
+    for k, (s, e, lvl, title) in enumerate(heads):
+        if title not in want:
+            continue
+        found.add(title)
+        end = next((h[0] for h in heads[k + 1:] if h[2] <= lvl), len(text))
+        cut.append((e, end))
+    out, pos = [], 0
+    for s, e in sorted(cut):
+        if s < pos:
+            continue
+        out.append(text[pos:s])
+        pos = e
+    out.append(text[pos:])
+    return "".join(out), [h for h in want if h not in found]
+
+
+def doc_credits(text, entries, sizes, uc1f):
+    """For one page: (UC-1 bodies credited by the break phrase, explaining credits from template-member rows,
+    explaining credits from every other row). Empty unless the page is evidence-bearing. A credit follows the
+    engine_explained rule (interior cite, or an entry cite of a body under 128 bytes); the UC-1 credit needs a strictly
+    interior cite in the phrase's own row, as check_dispositions.measure_a does."""
+    import check_dispositions as CD
+    uc1_ok, tmpl, plain = set(), set(), set()
+    if not evidence_bearing(text):
+        return uc1_ok, tmpl, plain
+    has_t = TEMPLATE_MEMBER_MARKER in text
+    has_u = CD.UC1_INTERIOR_BREAK in text
+    for row in (CD._rows(text) if (has_t or has_u) else [text]):
+        tm = has_t and TEMPLATE_MEMBER_MARKER in row
+        ub = has_u and CD.UC1_INTERIOR_BREAK in row
+        for h in re.findall(r"`(?:0x)?(0[0-9A-Fa-f]{7})`", row):
+            v = int(h, 16)
+            i = bisect.bisect_right(entries, v) - 1
+            if i < 0:
+                continue
+            e = entries[i]
+            if not (e <= v < e + sizes[e]):
+                continue
+            if v != e or sizes[e] < 128:
+                (tmpl if tm else plain).add(e)
+            if ub and e in uc1f and v > e:
+                uc1_ok.add(e)
+    return uc1_ok, tmpl, plain
 
 
 # ONE LADDER, NOT TWO VOCABULARIES. The corpus writes a page's maturity two ways - `status:` on
@@ -663,6 +812,9 @@ def main(argv=None):
     # beside the headline rather than replaced by it. `explained` is the adjudicated rule.
     cited = set()
     explained = set()
+    uc1_phrase_credit, template_credit, plain_credit = set(), set(), set()
+    explained_with_index = set()           # the same rule before ee_index_only sections are removed
+    index_only_pages = 0
     _depth_heads = []
     _doc_paths = []
     total_docs = audited = 0
@@ -698,6 +850,14 @@ def main(argv=None):
         bearing = evidence_bearing(t)
         # Collected for depth_axis_split - a measurement of the ladder, not a change to it.
         _depth_heads.append((t[:t.find("\n---", 3)] if t.startswith("---") else t[:4000], t))
+        # Index-only sections (OPUS-REQ-DATA-EE-INDEX-ONLY-1003): citations inside a section the page's
+        # `ee_index_only:` frontmatter names never credit engine_explained. `cited` keeps them.
+        t_ee, _missing = strip_index_only(t)
+        if t_ee is not t:
+            index_only_pages += 1
+        for _hd in _missing:
+            warn.append("%s declares ee_index_only heading %r, which the page does not carry - nothing was "
+                        "excluded for it" % (os.path.relpath(p, a.db), _hd))
         for h in re.findall(r"`(?:0x)?(0[0-9A-Fa-f]{7})`", t):
             v = int(h, 16)
             i = bisect.bisect_right(entries, v) - 1
@@ -711,14 +871,33 @@ def main(argv=None):
                 # The size cut is the leaf-helper boundary - `0020E600` is ten bytes and completely
                 # explained by naming it, while an entry-only cite of a 512-byte body is a mention.
                 if bearing and (v != e or sizes[e] < 128):
+                    explained_with_index.add(e)
+        for h in re.findall(r"`(?:0x)?(0[0-9A-Fa-f]{7})`", t_ee):
+            v = int(h, 16)
+            i = bisect.bisect_right(entries, v) - 1
+            if i >= 0 and entries[i] <= v < entries[i] + sizes[entries[i]]:
+                e = entries[i]
+                if bearing and (v != e or sizes[e] < 128):
                     explained.add(e)
+        if bearing:
+            _u, _t, _p = doc_credits(t_ee, entries, sizes, uc1_frontier)
+            uc1_phrase_credit |= _u
+            template_credit |= _t
+            plain_credit |= _p
 
     # UC-1 frontier bodies join the denominator but never the numerator: they
     # are unexplained by ruling (never A/B/C by default, never D), and a
     # mechanical interior cite cannot explain one.  `cited` keeps them - a
     # mention is a mention - so the printed spread can separate the two.
+    # SERIES BREAK 2026-10-03 (SWE2-AUDIT-SPEC ruling; FRONTIER's a46d39253 rule): a UC-1 body whose interior cite sits
+    # in a row carrying check_dispositions.UC1_INTERIOR_BREAK is explained. Every other UC-1 frontier body, including
+    # those cited without the phrase, stays subtracted. Before this date every UC-1 body was subtracted.
+    row_split_agrees = (template_credit | plain_credit) == explained
     uc1_cited = cited & uc1_frontier
-    explained -= uc1_frontier
+    uc1_credited = uc1_phrase_credit & explained
+    explained -= (uc1_frontier - uc1_credited)
+    plain_credit -= (uc1_frontier - uc1_credited)
+    template_only = explained - plain_credit
 
     comp = collections.OrderedDict()
     comp["engine_explained"] = (len(explained), total_fn)
@@ -886,8 +1065,15 @@ def main(argv=None):
         print("      held (declared uncertainty, never counted): "
               + ", ".join("%08X-%08X" % h for h in _held))
     if uc1_cited:
-        print("      (%d UC-1 frontier body/bodies carry an interior citation -"
-              " mentions, not explanation)" % len(uc1_cited))
+        print("      (%d UC-1 frontier body/bodies are cited; %d of them count as explained by the break-phrase"
+              " interior route, the other %d stay mentions, not explanation)"
+              % (len(uc1_cited), len(uc1_credited), len(uc1_cited - uc1_credited)))
+    print("      SERIES BREAK 2026-10-03: engine_explained now credits a UC-1 frontier body when its interior cite"
+          " sits in a row")
+    print("      naming check_dispositions.UC1_INTERIOR_BREAK (SWE2-AUDIT-SPEC ruling, FRONTIER a46d39253);"
+          " UC-1-credited: %d." % len(uc1_credited))
+    print("      Every earlier figure subtracted all %d frontier bodies, so compare across the break with this"
+          " count removed." % len(uc1_frontier))
     print("  ledger_resolved keeps the certified-census denominator (%d listed):"
           % listed_fn)
     print("      the coverage ledger measures the listed population; the %d"
@@ -917,6 +1103,19 @@ def main(argv=None):
           "interior" % tight)
     print("  or an entry cite under 128 B), against %.2f%% if any page and any citation counted."
           % loose)
+    # SWE2-AUDIT-SPEC's accessor ruling, condition 3: the template-family member rows' share of the headline.
+    plain_pct = 100.0 * (len(explained) - len(template_only)) / total_fn if total_fn else 0.0
+    print("  template-family spread: engine_explained %d (%.2f%%) with template-member rows, %d (%.2f%%) without -"
+          % (len(explained), tight, len(explained) - len(template_only), plain_pct))
+    print("      %d function(s) are explained ONLY by a row marked \"%s\""
+          % (len(template_only), TEMPLATE_MEMBER_MARKER))
+    # OPUS-REQ-DATA-EE-INDEX-ONLY-1003: what the ee_index_only sections would have credited.
+    idx_lost = explained_with_index - explained - (uc1_frontier - uc1_credited)
+    print("  index-only spread: %d page(s) declare ee_index_only sections; %d function(s) are excluded because"
+          " their only credit sat inside one" % (index_only_pages, len(idx_lost)))
+    if not row_split_agrees:
+        warn.append("row-split credits disagree with the engine_explained scan (template+plain != explained) - the"
+                    " template-family spread above is not trustworthy")
     # AND THE SAME PRINCIPLE ONE STEP FURTHER: the headline is a choice, and so is the AXIS it reads.
     # `evidence_bearing` asks DEPTH and answers it from `status:` whenever `status:` suffices,
     # returning before `readiness:` is ever read. Measured 2026-09-16 on FABLE's two filings

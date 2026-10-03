@@ -1,0 +1,22 @@
+{
+ "blocks_in_image": 45,
+ "blocks_outside_image": 0,
+ "catalogue": "e2a67b07700c2ec3fbfae3213965de35",
+ "classes": {
+  "entered": 1,
+  "open": 1,
+  "returned": 1,
+  "scripted": 9
+ },
+ "elapsed_s": 0.6,
+ "emu_starts": 12,
+ "entries_executed": 1,
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "instrument": "execcov-shim v2",
+ "patched_blocks": 11,
+ "rc": 0,
+ "receipt_md5": "418cfc869750d4c49b840fc0c960e9f3",
+ "run": "EXP-050-focus-fallback-selection",
+ "status": "ok",
+ "unique_blocks": 45
+}

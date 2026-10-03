@@ -1,0 +1,86 @@
+{
+ "page": "09-Combat-AI-And-Gambits/which-gambit-set-fires-and-how-a-command-switches-it.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01Rk789qY4qsCmkfLpxsx7MQ",
+ "report": "which-gambit-set-fires-and-how-a-command-switches-it.json",
+ "rows": [
+  {
+   "fn": "00346A10",
+   "text": "calls the callee at `00346A10` + 0x10 with `rcx` = `r9` and keeps its `eax`, calls the callee at `00346A10` + 0x1A with `rcx` = the incoming `rdx`, calls `0030F2D0` with that second result (no null check), then tail-jumps the callee at `00346A10` + 0x3C with `rcx` = that second result, `edx` = 0 and `r8d` = the kept `eax`",
+   "anchors": [
+    [
+     "00346A20",
+     "call"
+    ],
+    [
+     "00346A2A",
+     "call"
+    ],
+    [
+     "00346A35",
+     "call"
+    ],
+    [
+     "00346A4C",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003473E0",
+   "text": "calls the callee at `003473E0` + 0x12 with `rcx` = `r9` and keeps 1 when its `eax` is non-zero, else 0; then for `ecx` = 0 to 3 calls the callee at `003473E0` + 0x23 and, when that returns non-null, calls `0030F2D0` with the pointer and then the callee at `003473E0` + 0x40 with `rcx` = the pointer, `edx` = 0 and `r8d` = the kept flag",
+   "anchors": [
+    [
+     "003473FD",
+     "setne"
+    ],
+    [
+     "00347403",
+     "call"
+    ],
+    [
+     "0034740E",
+     "je"
+    ],
+    [
+     "00347420",
+     "call"
+    ],
+    [
+     "0034742A",
+     "jl"
+    ]
+   ]
+  },
+  {
+   "fn": "00347970",
+   "text": "calls the callee at `00347970` + 0x17 with `rcx` = `r9` and `edx` = 0, then the callee at `00347970` + 0x1F with `rcx` = `r9`, keeping 1 when its `eax` is non-zero, else 0; then for `ecx` = 0 to 3 calls the callee at `00347970` + 0x32 and, when that returns non-null, calls `0030F2D0` with the pointer and then the callee at `00347970` + 0x4F with `rcx` = the pointer, `edx` = 0 and `r8d` = the kept flag",
+   "anchors": [
+    [
+     "00347987",
+     "call"
+    ],
+    [
+     "0034799A",
+     "setne"
+    ],
+    [
+     "003479A2",
+     "call"
+    ],
+    [
+     "003479BF",
+     "call"
+    ],
+    [
+     "003479C9",
+     "jl"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

@@ -19,7 +19,7 @@ last_reviewed: 2026-09-30
 audit:
   passes: 3
   last_pass: 2026-09-12
-  last_pass_state: ASTRA independent falsification; signed attempt byte, output state and one-bank restore corrected; consumer propagation and remaining caller questions open (§11)
+  last_pass_state: ASTRA independent falsification; signed attempt byte, output state and one-bank restore corrected; consumer propagation and remaining caller questions open (§11)   # <- corrected 2026-10-02, OPUS - superseded by the status line (2026-10-01); L-12 and L-13 are SUPERSEDED, section 7
   crossref_clean: true
   reopened_count: 5
 ---
@@ -173,7 +173,7 @@ exact inverse: `atan2(dx, dz)`, falling back to the supplied heading when the tw
 coincide.
 
 The generated `Y` is **not written** by the polar construction; only `X` and `Z` are. What
-supplies the vertical coordinate is recorded as **L-7**.
+supplies the vertical coordinate ~~is recorded as **L-7**~~ is nothing at generation; a terrain probe supplies it at activation *(answered: see §7, L-7 ANSWERED, and spawn-placement-height-and-authored-tunables.md; 2026-10-02, OPUS)*.
 
 ### Distance validation
 
@@ -530,7 +530,7 @@ BattleUnit                       BattleKeepEntry (BKEI, 0x250 B; was "128 B", §
   +0xE98 bSpawnGroupId                   bStealAvailabilityFlags, bRangeRetireInhibitTag,
         bLifecycleMode  0 off /              bScriptSelection, bPersistenceKey,
                         1 range /            bPersistenceRestoreValue
-                        2 authored point +0x14.. bEnmityTableHeader + aEnmityByCombatantId[0x2E]
+                        2 authored point +0x14.. bEnmityTableHeader + aEnmityByCombatantId[0x2E]   # <- corrected 2026-10-02, OPUS - +0x14 is bStealAvailabilityFlags (0023A7AE-0023A7D3); the decay byte is +0x19 and the enmity table +0x1A..+0x41, 40 bytes (0032156D, 00321D61, bound 0x28 at 00321DA3); the field map is the authority
         bLifecyclePointId                afPersistedWorldPosition[4]
         flLifecyclePointThreshold        candidateStateSecondary[0x10]
                                          flPersistedFacingYaw, dwTransientState_78
@@ -922,7 +922,7 @@ claim that banks rotate on area transition, and it ties the return window direct
 > claimed. The field id is not merely *read* from the save payload — the two history registers
 > the rotation compares against, `g_wSpawnKeepPreviousFieldId` and `g_wSpawnKeepMostRecentFieldId`,
 > are themselves **written into and restored from the persistence buffer** by `00233440` /
-> `00233550`. The return window therefore survives a save/load in both directions.
+> `00233550`. ~~The return window therefore survives a save/load in both directions.~~ The field-id pair survives a save/load; the transition stamp `02089374` and the window setting `0208936C` do not *(corrected 2026-10-02, OPUS: `00233440` stores only `02089372`/`02089370` at buffer `+0x00`/`+0x02` (`00233529`–`0023353A`) and `00233550` restores only those (`002335B9`–`002335C7`); the window test reads `02089374` at `002337F0`; §2)*.
 >
 > **L-5 is no longer open** — §2 now gives the bank layout, count and rotation rule.
 
@@ -1106,8 +1106,8 @@ size divided by the chunk size and says nothing about the record size.** The str
 from any of sixteen sites and none was consulted.
 
 **Nothing else here is disturbed.** The enmity block at `BKEI + 0x19..+0x41` is still inside the
-entry, the copies still carry the whole bank, and the rotation rule is unchanged. The per-entry
-field offsets in §4 stand; the 128-byte extent implied around them was never
+entry, the copies still carry the whole bank, and the rotation rule is unchanged. ~~The per-entry~~
+~~field offsets in §4 stand;~~ The per-entry field offsets in §4 do not all stand - its `+0x14..` enmity label is wrong: `+0x14` is the steal-flag byte and the enmity block is `+0x19..+0x41` *(corrected 2026-10-02, OPUS: `0023A7AE`–`0023A7D3` write the steal bits at `[rbp + 0x14]`; `0032156D` and `00321D61` `lea …, [rax + 0x19]`, loop bound `0x28` at `00321DA3`; the field map is the authority, §8g)*; the 128-byte extent implied around them was never
 load-bearing.
 
 ## 8g. Returned to `DOCUMENTED` — 2026-09-12 (FABLE)
@@ -1553,8 +1553,8 @@ still says the restore helper "copies them back" of both banks (**disagrees; rou
 here). No open board item names this page other than FABLE's DD task (101 DONE, 1 ACTIVE, board revision 41540). *(Rechecked 2026-10-01, SWE2-STRUCT for OPUS, DD batch 21: the routed disagreement still stands, because the gambit page still says the restore helper "copies them back", so it stays with that page's owner. The two review requests on this section, ASTRA-CONTRA-FABLE-SPAWN-LIFECYCLE and ASTRA-CONTRA-OPUS-SPAWN-LIFECYCLE, are DONE.)*
 
 L-12 and L-13 are open above *(as of 2026-09-12; both SUPERSEDED since, §7 — reconciled 2026-09-30, FABLE)*. The 2026-09-12 crossref-clean result in §8g is historical;
-`crossref_clean` is now false because this amended citation surface has not had a fresh graph
-audit. Neither a green local replay nor this independent pass completes L1/L2 or warrants
+~~`crossref_clean` is now false because this amended citation surface has not had a fresh graph~~
+~~audit.~~ *(answered: see the front matter, `crossref_clean` true, and the status line - a fresh graph audit of this page reports 0 findings, owner re-status 2026-10-01; 2026-10-02, OPUS)* Neither a green local replay nor this independent pass completes L1/L2 or warrants
 the programme's final audit.
 
 ## 12. Save-image selection and continuation — ASTRA, 2026-09-12
@@ -3678,8 +3678,8 @@ Shared callees outside the census: `001D8A60`.
 `00235AF0` (~700 B) — a transition-record compare/copy pass:
 `002EF640()` yields the record, `rax + 0x2200` the compare block
 (`00235AF4`/`00235B00`); each `dword`/`word` of `qword[02EBF190]` is
-compared against it (`00235B19`/`00235B1E` …), `002EF4A0` copies the
-matched row (`00235B76`), and four `0020E600` scratch reads plus
+compared against it (`00235B19`/`00235B1E` …), `002EF4A0` ~~copies the~~
+~~matched row~~ copies the `0x6000`-byte block when any of the four compared values differs *(corrected 2026-10-02, OPUS: `00235B1E`, `00235B27` and `00235B37` `jne 0x235b4e` to the call; only all-equal reaches `00235B48` `je 0x235dac`, the skip; §27)* (`00235B76`), and four `0020E600` scratch reads plus
 `00322C50` finish (`00235C20`–`00235C85`).
 
 | member | role | interior |
@@ -3777,3 +3777,7 @@ Shared callees outside the census: none.
 - **UI - CLIENT (216 edges).** `00181000`, `00181250` are also called by bodies filed to UI: `00291010`, `002917E0` - shared machinery across the layer boundary, no shared ownership.
 - **World - CLIENT and SERVICE (8 edges).** `002342F0`, `0026DB30` are also called by bodies filed to World: `00266D10` (NativeSupport); `0022A0B0`, `00314020` reach bodies filed to World: `00266D10` (NativeSupport), `002623A0` (ActorManager) - shared machinery across the layer boundary, no shared ownership.
 - **WorldAreaField - CLIENT (192 edges).** `00182D80`, `001831A0`, `001D6C40` are also called by bodies filed to WorldAreaField (world area): `00314440`, `00314530` - shared machinery across the layer boundary, no shared ownership.
+
+`004058E0` (827 B) is the spawn-record field apply `004061F0` runs: the signed 16-bit `+0x178` field classifies, bit `0x08` of `+0x130` gates the arm, `0035D460` resolves the record row, and `00245020`, `00248F40` and `004076B0` write the derived fields - the placement-parameter stage of the retirement/respawn record update.
+
+Interior anchor `00405AC5` (function `004058E0`).

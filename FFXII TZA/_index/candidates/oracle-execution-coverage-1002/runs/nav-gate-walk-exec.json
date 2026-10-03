@@ -1,0 +1,24 @@
+{
+ "blocks_in_image": 573,
+ "blocks_outside_image": 8,
+ "catalogue": "e2a67b07700c2ec3fbfae3213965de35",
+ "classes": {
+  "entered": 2,
+  "faulted": 1,
+  "open": 1,
+  "returned": 39,
+  "returned+faulted": 21,
+  "scripted": 11
+ },
+ "elapsed_s": 112.4,
+ "emu_starts": 476,
+ "entries_executed": 61,
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "instrument": "execcov-shim v2",
+ "patched_blocks": 138,
+ "rc": 0,
+ "receipt_md5": "2cfddeb4fc8489b6fc97814f4e68bf90",
+ "run": "nav-gate-walk-exec",
+ "status": "ok",
+ "unique_blocks": 581
+}

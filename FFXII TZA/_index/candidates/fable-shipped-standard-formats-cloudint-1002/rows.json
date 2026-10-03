@@ -1,0 +1,38 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/Standard-Formats/shipped-standard-formats.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01M9DqRDfozfMhVgDdX8oP4v",
+ "report": "shipped-standard-formats.json",
+ "rows": [
+  {
+   "fn": "00225C40",
+   "text": "calls `00225C40 + 0x2D` with (qword `+0x210` of `rcx` == 0), then `00584740(0x50)`; when that is non-null calls `00225C40 + 0x47` on it and keeps the result, else keeps 0; stores the kept pointer to qword `+0x210` of `rcx` (the old value is not released) and byte 2 to its `+0x38` (no null check), then copies the zero-terminated byte string at `rdx`, terminator included, to `rcx + 0x10`",
+   "anchors": [
+    [
+     "00225C6D",
+     "call"
+    ],
+    [
+     "00225C87",
+     "call"
+    ],
+    [
+     "00225C8F",
+     "mov"
+    ],
+    [
+     "00225C96",
+     "mov"
+    ],
+    [
+     "00225CA3",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

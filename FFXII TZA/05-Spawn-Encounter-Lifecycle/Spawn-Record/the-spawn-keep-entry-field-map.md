@@ -84,7 +84,7 @@ placement page carries one, and marked ✓ where the bytes bear it out.
 | offset | width | name | what the bytes say | writers | readers |
 |---|---|---|---|---|---|
 | `+0x00` | u32 | `lifecycleFlags` ✓ | eight bits, §2.3 | see §2.3 | see §2.3 |
-| `+0x04` | f32 | `flLifecyclePointThreshold` (placement page) ✓ | the fresh-lifecycle float: `0` → zeroed with bits 3 / 6 cleared; `> 0` → stored, bit 3 set; `< 0` → negated and stored, bit 6 set (`0023A24F`–`0023A2AC`) | `SpawnEntry_ConfigureFreshLifecycleFloatMode` (`0023A200`) | `BattleUnit_HasNonPartyEngagementEvidence` (`00308040`, `0030808B`, `003080D0`): compared with `100.0` and squared into a distance test |
+| `+0x04` | f32 | ~~`flLifecyclePointThreshold` (placement page) ✓~~ *(no GFZ name)* - not the placement page's mode-2 threshold, which is the battle unit's `+0x4C` *(corrected 2026-10-02, OPUS: `0023519C` `movss xmm6, dword ptr [rsi + 0x4c]` with `rsi` = `0031B760()`, the battle unit, `002350F3`–`002350F8`; mode at unit `+0x50`, point id at `+0x51`)* | the fresh-lifecycle float: `0` → zeroed with bits 3 / 6 cleared; `> 0` → stored, bit 3 set; `< 0` → negated and stored, bit 6 set (`0023A24F`–`0023A2AC`) | `SpawnEntry_ConfigureFreshLifecycleFloatMode` (`0023A200`) | `BattleUnit_HasNonPartyEngagementEvidence` (`00308040`, `0030808B`, `003080D0`): compared with `100.0` and squared into a distance test |
 | `+0x08` | u16 | `wDeathCount` ✓ | incremented by the lethal transition | `BattleStats_ModifyHPAndProcessLethalTransition` (`00300530`; [the HP write](../../08-Combat-Formula/Current-HP/the-hp-write-and-the-lethal-transition.md)); zeroed at `0023965C` | `SpawnEntry_GetDeathCount` (`00235F50`, `00235F9A`); `Spawn_SelectAndPrepareAutomaticEntry` (`00235720`, `002358AB`, against `+0x0A`) |
 | `+0x0A` | u16 | `wDeathLimit` ✓ | **authored base plus a random range** — `row.b_00 + rand % (row.b_01 + 1)`, or 0 when the base is 0 (`002395FC`–`00239623`) | the initialiser `002395A0` (§2.4) | `SpawnEntry_GetDeathLimit` (`00235EF0`, `00235F3A`); `00235720` (`002358A1`) |
 | `+0x0C` | u32 | `dwLastDeathTick` (seconds) ✓ | the death second | `00300530`; zeroed at `00239657` | `SpawnEntry_GetElapsedTicksSinceLastDeath` (`00235FB0`, `00236017`: `now / (30 × [01DFE0B8]) − this`); `00235720` (`002358D1`) |
@@ -113,14 +113,14 @@ placement page carries one, and marked ✓ where the bytes bear it out.
 
 | bit | set by | cleared by | tested by | name (placement page) |
 |---|---|---|---|---|
-| 0 (`0x01`) | `SpawnLifecycle_CheckAndRetireByNativeRange` (`002350C0`, `002352A6`) — the range retire | `0023A410` (`0023A46F`), `00239840` (`002398C2`, with bit 2) | the **fresh** test `& 5 == 0` in nine functions (`0023A24A`, `0023A42E`, `002396E2`, `00239918`, `002398C5`, `00239346`, `002394F7`, `0023A349`, `0023541D`); `SpawnEntry_QueryRangeReentryPending` (`00236670`, `002366BC`–`002366C7`: returns bit 0 only when bit 1 is set and bit 2 clear) | `RANGE_REENTRY_PENDING` ✓ |
+| 0 (`0x01`) | `SpawnLifecycle_CheckAndRetireByNativeRange` (`002350C0`, `002352A6`) — the range retire | `0023A410` (`0023A46F`), `00239840` (`002398C2`, with bit 2); `00236860` (`002368AA`) and `00237080` (`00237085`), unconditionally, with bits 2 and 7 *(corrected 2026-10-02, OPUS: both `and dword ptr [rcx], 0xffffff7a`; `0023A2E0`'s same mask at `0023A34E` runs only on fresh entries, where bits 0 and 2 are already clear)* | the **fresh** test `& 5 == 0` in nine functions (`0023A24A`, `0023A42E`, `002396E2`, `00239918`, `002398C5`, `00239346`, `002394F7`, `0023A349`, `0023541D`); `SpawnEntry_QueryRangeReentryPending` (`00236670`, `002366BC`–`002366C7`: returns bit 0 only when bit 1 is set and bit 2 clear) | `RANGE_REENTRY_PENDING` ✓ |
 | 1 (`0x02`) | `BattleUnit_ActivateAppliedDefinitionRuntime` (`00233AD0`, `00233BA8`, kind-1 units) | — (survives until the bank is wiped) | `002395A0` (`002395E3`: an entry already committed is skipped by the initialiser); `00236670`; `00235360` (`00235413`); `Spawn_SelectPreviousMapEntry` (`002354F0`, `0023555C` tests bit 2 alongside) | `ACTIVATION_COMMITTED` ✓ |
-| 2 (`0x04`) | `ActorSystem_ReleaseBattleUnitSlotForActor` (`00234200`, `0023429B`) — the unit's slot is released | `0023A410` (`0023A465`), `00239840` (`002398C2`) | the fresh test; `002391C0` (`002391DE`: refuses when set); `00236670` | *(released)* |
+| 2 (`0x04`) | `ActorSystem_ReleaseBattleUnitSlotForActor` (`00234200`, `0023429B`) — the unit's slot is released | `0023A410` (`0023A465`), `00239840` (`002398C2`); `00236860` (`002368AA`) and `00237080` (`00237085`), unconditionally *(corrected 2026-10-02, OPUS: both `and dword ptr [rcx], 0xffffff7a`)* | the fresh test; `002391C0` (`002391DE`: refuses when set); `00236670` | *(released)* |
 | 3 (`0x08`) | `0023A200` (`0023A282`, float `> 0`) | `0023A200` (`0023A267`), `00312EE0` (`00312F30`) | `00233AD0` (`00233B3A`); `00308040` and `002FFCF0` / `003014C0` / `00384F40` as `0x48` with bit 6; `00312EE0` (`00312F4F`) | *(lifecycle point mode, positive)* |
 | 4 (`0x10`) | `002391C0` (`002391FD`, with the tag at `+0x15`) | `002391C0` (`002391E2`, when the tag is 0) | `002350C0` (`00235159`); `00301AD0` (`00301D70`); `00237D80` (`00237D93`); as `0x30` with bit 5 by `002FFCF0` (`002FFD51`), `003014C0`, `003247F0`, `0030DA30`, `00384F40` | `RANGE_RETIRE_INHIBITED` ✓ |
 | 5 (`0x20`) | `BattleUnit_SetRuntimeUnitCategoryMode` (`002396B0`, `002396F9`, when the mode byte `+0x58` becomes 4) | `002396B0` (`002396E7`), `00237D80` (`00237DD7`) | `00308040` (`00308075`: no engagement evidence while set); `00238BF0` (`00238D98`); `002FFF50` (`00300014`); the `0x30` tests | *(category-4 mode)* |
 | 6 (`0x40`) | `0023A200` (`0023A2AC`, float `< 0`) | `0023A200` (`0023A25D`), `00312EE0` (`00312F21`) | `002FFF50` (`00300023`); `0031FE10` (`0031FE43`); `00329220` (`0032935C`); the `0x48` tests | *(lifecycle point mode, negative)* |
-| 7 (`0x80`) | `003112F0` (`0031195E`–`00311A7E`, once per affinity byte changed) | `0030FED0` does not clear it — nothing found does | `0030FED0` (`0031043A`) | *(affinity dirty)* |
+| 7 (`0x80`) | `003112F0` (`0031195E`–`00311A7E`, once per affinity byte changed) | `0030FED0` does not clear it — ~~nothing found does~~ `00236860` (`002368AA`) and `00237080` (`00237085`) do, and `0023A2E0` (`0023A34E`) on fresh entries *(corrected 2026-10-02, OPUS: each masks the flags with `0xffffff7a`, clearing bits 0, 2 and 7)* | `0030FED0` (`0031043A`) | *(affinity dirty)* |
 
 ### 2.4 The definition-table initialiser — where a record's numbers are authored
 
@@ -156,11 +156,11 @@ is how a banked enemy keeps its HP, statuses and level across a return within th
 
 | address | size | what |
 |---|---|---|
-| `0208E690` | ptr | the live bank (`btlKeepCharWork1`); `0208E698` the history bank; `0208E6A0` the bank flag |
+| `0208E690` | ptr | the live bank (`btlKeepCharWork1`); `0208E698` the history bank; ~~`0208E6A0` the bank flag~~ *(corrected 2026-10-02, OPUS: `0208E6A0` is the battle-unit slot count, 32 - its only writer `002368D0` stores `0x20` (`002368EB`/`002368FE`) and the unit loops bound on `cmp ebx, [0208E6A0]`; no bank flag was found)* |
 | `002395A0` | 268 B | `SpawnKeep_InitializeEntriesFromDefinitionTable` — §2.4 |
 | `0023A2E0` | 161 B | `SpawnUnit_SetEntryMapAndResetTransientEntries` (tail of `VM_Spawn_SetEntryMapAndResetTransientEntries`, `00510620`): installs the lane map at unit `+0x40`, and for every fresh entry clears bits 0 / 2 / 7, sets `+0x16 = 0xFF`, zeroes `+0x78`–`+0x7C`, restores `+0x17` from `+0x18` |
-| `00236860` | 103 B | `SpawnEntry_ResetTransientState` (tail of `VM_Spawn_ResetEntryTransientState`, `005104D0`): the same clears for one entry |
-| `00237080` | 29 B | `SpawnEntry_ClearSelectionTransientStateForTeardown` (research import — `MOB_LIFECYCLE_RESEARCH_HISTORY.md` / `PROGRAM_B_NATIVE_REFERENCE.md` "wipes the keep record's flags/+0x16/+0x78/+0x7C"; body re-read 2026-09-15): null-check, then the same transient clears — flags `& 0xFFFFFF7A` (bits 0 / 2 / 7), `+0x16 = 0xFF`, `+0x78`/`+0x7C` zeroed — minus `00236860`'s `+0x17` restore. Called from `TeardownAndDespawn` mode 0 (`00300E40`) per `X55_NATIVE_REPLAY_CONTRACT.md` |
+| `00236860` | 103 B | `SpawnEntry_ResetTransientState` (tail of `VM_Spawn_ResetEntryTransientState`, `005104D0`): ~~the same clears for one entry~~ `0023A2E0`'s mask for one entry, applied without the fresh test, and `+0x17` zeroed rather than restored *(corrected 2026-10-02, OPUS: `002368AA` `and dword ptr [rcx], 0xffffff7a` runs on any mapped entry; `002368B0` `mov word ptr [rcx + 0x16], 0xff` writes `+0x17` = 0)* |
+| `00237080` | 29 B | `SpawnEntry_ClearSelectionTransientStateForTeardown` (research import — `MOB_LIFECYCLE_RESEARCH_HISTORY.md` / `PROGRAM_B_NATIVE_REFERENCE.md` "wipes the keep record's flags/+0x16/+0x78/+0x7C"; body re-read 2026-09-15): null-check, then the same transient clears — flags `& 0xFFFFFF7A` (bits 0 / 2 / 7), `+0x16 = 0xFF`, `+0x78`/`+0x7C` zeroed — ~~minus `00236860`'s `+0x17` restore~~ the same four stores as `00236860`, which restores no `+0x17` either *(corrected 2026-10-02, OPUS: `00237085`–`00237098` and `002368AA`–`002368BD` match store for store; both zero `+0x17` through the word store at `+0x16`)*. Called from `TeardownAndDespawn` mode 0 (`00300E40`) per `X55_NATIVE_REPLAY_CONTRACT.md` |
 | `00239840` | 168 B | `SpawnUnit_BindEntryAndMarkCapTracked` (tail of `VM_Spawn_BindEntryAndMarkCapTracked`, `005103F0`): lane byte `+0x57`, `+0x16`, unit flag bit 21 |
 | `00239410` | 169 B | `SpawnEntry_SetCurrentCandidateState` (tail of `VM_SpawnEntry_SetCurrentCandidateState`, `0050FCB0`): `+0x50` and `+0x60` from two floats, unit flag bit 26 |
 | `002391C0` | 80 B | `SpawnEntry_SetRangeRetireInhibitTag` (tail of `VM_SpawnEntry_SetRangeRetireInhibitTag`, `00510370`) |
@@ -183,7 +183,7 @@ SpawnRecord (BKEI), 0x250, in btlKeepCharWork1/2 (64 each), reached by lane map 
   +0x00 u32  lifecycleFlags     b0 range-reentry-pending  b1 activation-committed  b2 released
                                 b3 point mode (+)  b4 range-retire-inhibited  b5 category-4 mode
                                 b6 point mode (−)  b7 affinity dirty
-  +0x04 f32  lifecycle threshold (|value|; sign chose b3/b6)
+  +0x04 f32  lifecycle threshold (|value|; sign chose b3/b6)   # <- corrected 2026-10-02, OPUS - not the mode-2 retire threshold (unit +0x4C, 0023519C); read only by 00308040 (003080D0)
   +0x08 u16  death count        +0x0A u16 death limit (base + rand(range))
   +0x0C u32  last death second  +0x10 u16 respawn cooldown (base + rand(range))
   +0x12 u8   spawn-history counter copy      +0x14 u8 steal bits 0-2
@@ -201,7 +201,7 @@ SpawnRecord (BKEI), 0x250, in btlKeepCharWork1/2 (64 each), reached by lane map 
 spawn counter, the script's one-shot statuses, the key restore and the affinity reset all happen
 only then.
 
-**The continuous-entry match**: `history[j].flags & 2 && !(history[j].flags & 5) && history[j].b_17 == live.b_17`
+**The continuous-entry match**: ~~`history[j].flags & 2 && !(history[j].flags & 5) && history[j].b_17 == live.b_17`~~ `history[j].flags & 2 && (history[j].flags & 5) && history[j].b_17 == live.b_17` *(corrected 2026-10-02, OPUS: `00235413` `test r8b, 2` / `je` skip, `00235419` `test r8b, 5` / `je` skip, `0023541F` `cmp r9b, byte ptr [rax + 0x17]`; the `+0x17` row in §2.2 already says so)*
 → `memcpy(live, history[j], 0x250)`.
 
 ## 5. Call chain
@@ -404,6 +404,7 @@ stand unchanged.
 - **RNG_Random_Selection - SERVICE (10 edges).** `002355A0`, `00239210`, `002395A0` reach bodies filed to random selection: `00328370`, `00308EC0` - shared machinery across the layer boundary, no shared ownership.
 - **Save_Load_Settings - SERVICE (1 edge).** `0032A930` reaches bodies filed to save/load/settings: `002EF2B0` - shared machinery across the layer boundary, no shared ownership.
 - **Script_VM_Native_Bridge - CLIENT (112 edges).** `00235360`, `002354F0`, `00235720` are also called by bodies filed to script VM / native bridge: `00510260`, `00510230`, `0050F520` - shared machinery across the layer boundary, no shared ownership.
+- **Resource - SERVICE (1 edge).** `002368D0` (`BattleStorage_InitializeWorkArrays`, the slot-count writer named in §3) calls `003843F0` at `002369CE` to register the authored `"STATIC"` table, index `0x13`, as the [authored-table row lookup contract](../../02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md) documents - a table registration the resource layer serves, no shared ownership. *(SWE2-FRONTIER, 2026-10-03.)*
 
 ## Cross-subsystem neighbours — FINAL-AUDIT pass 22
 
@@ -509,7 +510,7 @@ Shared callees outside the census: `0030B770`.
 | --- | --- | --- |
 | `00387020` | `edx == 0xFF` -> 0 sentinel clear (`00387028`/`00387030`) | [`00387028`](../../_index/ADDRESS-INDEX.md) |
 
-`00312EE0` (~208 B) — `qword[+0x698]` null-gated walk
+`00312EE0` ~~(~208 B)~~ (187 B *(corrected 2026-10-02, OPUS: `ret` at `00312F9A`; `00312FA0` begins the next function)*) — `qword[+0x698]` null-gated walk
 (`00312EE3`/`00312EEE`).
 
 | member | role | interior |

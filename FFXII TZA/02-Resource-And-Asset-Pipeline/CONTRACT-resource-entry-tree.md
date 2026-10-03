@@ -383,7 +383,7 @@ sibling `0036B130` by a 256-byte one. The entry tree is the shared resource aren
 `00409600` (86 B) is the `ResourceEntry_GetResolvedBasePointer` mode dispatch the
 entry-tree docs name: null `rcx` returns 0; `[rcx+4]` selects the path — mode 0
 tails `0051EE00` on `&rcx+0x10`, mode 1 returns the cached `+0x38` base or, when
-the `027A2E10` flag is armed, resolves `+0x30` through `003AB7F0` and republishes
+the ~~`027A2E10`~~ `02B62E10` flag *(corrected 2026-10-02, OPUS: `00409600+0x22` compares the byte at `02B62E10` with 0, and `0041E500+0x9` / `0041E500+0x1C` set and clear it; nothing in the image references `027A2E10`)* is armed, resolves `+0x30` through `003AB7F0` and republishes
 the result to `+0x38`; any other mode returns 0. Interior anchor `00409616` (the
 `+0x4` kind read). Callers `00409660`/`004096C0`/`00417F40`/`004256E0` — including
 the `004256E0` consumer the steering/coast-down contracts name.

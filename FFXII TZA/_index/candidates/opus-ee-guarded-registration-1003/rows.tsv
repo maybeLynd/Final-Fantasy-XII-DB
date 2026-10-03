@@ -1,0 +1,45 @@
+# the guarded class-registration stubs, one row per member - derived from the shipping image by fam_rows.py (kind static_vtable)
+entry	anchor	mnemonic	value	name	callee
+005B5130	005B51D9	lea	00D32C40	decorated `V?$PArray@M$03@Phyre@@`	all
+005B7790	005B7839	lea	00D33050	decorated `V?$PArray@VPQWord@Phyre@@$0BA@@Phyre@@`	all
+005EBB00	005EBBA9	lea	00D4E188	decorated `V?$PArray@PEAVPModifierNetworkInstance@PDynamicGeometry@Phyre@@$07@Phyre@@`	all
+005ED1A0	005ED249	lea	00D4B830	decorated `V?$PArray@VPMatrix4@Phyre@@$03@Phyre@@`	all
+005EFB10	005EFBB9	lea	00D4C5F8	decorated `V?$PSharray@I@Phyre@@`	all
+005EFE60	005EFF09	lea	00D4DD98	decorated `V?$PSharray@PEBVPMeshInstanceSegmentStreamBinding@PRendering@Phyre@@@Phyre@@`	all
+006143B0	0061442A	lea	00D546C8	D3D11_DEPTH_STENCILOP_DESC	all
+00618080	0061812D	lea	00D54D68	decorated `.?AV?$PClassDataMemberPhyreArray@E@Phyre@@`	all
+00618620	006186BB	lea	00D54CE8	decorated `.?AV?$PClassDataMemberPhyreArray@VPStreamInputDescD3D11@PRendering@Phyre@@@Phyre@@`	all
+00618970	00618A19	lea	00D556E0	decorated `V?$PArray@E$00@Phyre@@`	all
+006315B0	0063167C	lea	00D311B0	decorated `.?AV?$PTypeDefault@I@Phyre@@`	all
+00635DC0	00635F9D	lea	00D58EC0	decorated `.?AV?$PClassDataMemberArrayDynamic@V?$PSharray@VPString@Phyre@@@Phyre@@@Phyre@@`	all
+00661A70	00661AEF	lea	00D69710	decorated `.?AV?$PNamedSemanticDescriptorForType@VPRenderDataType@PGeometry@Phyre@@@Phyre@@`	all
+00665870	00665918	lea	00D69068	decorated `.?AV?$PClassDataMemberPhyreSharray@VPDataBlockBufferD3D11@PGeometry@Phyre@@@Phyre@@`	all
+00666380	00666428	lea	00D68EF8	decorated `.?AV?$PClassDataMemberPhyreSharray@VPIndexDataBlockBufferD3D11@PGeometry@Phyre@@@Phyre@@`	all
+00667230	006672D9	lea	00D68E50	decorated `.?AV?$PClassDataMemberPhyreArray@VPDataBlockD3D11@PGeometry@Phyre@@@Phyre@@`	all
+00668AE0	00668B89	lea	00D69870	decorated `V?$PArray@E$03@Phyre@@`	all
+00668E10	00668EB9	lea	00D6AA28	decorated `V?$PArray@H$03@Phyre@@`	all
+0066A460	0066A509	lea	00D6A440	decorated `V?$PSharray@PEAVPMaterial@PRendering@Phyre@@@Phyre@@`	all
+00696470	00696A10	lea	00D79E18	decorated `.?AV?$PClassDataMemberPhyreSharray@PEAVPPhysicsShape@PPhysics@Phyre@@@Phyre@@`	all
+00698930	006989D9	lea	00D7AC20	decorated `V?$PSharray@PEAVPPhysicsShape@PPhysics@Phyre@@@Phyre@@`	all
+006A72B0	006A7353	lea	00D7B5D8	decorated `.?AV?$PClassDataMemberArrayDynamic@VPString@Phyre@@@Phyre@@`	all
+006AE350	006AE72A	lea	00D7E070	decorated `.?AV?$PClassDataMemberPhyreArray@VPTypedObject@Phyre@@@Phyre@@`	all
+006B0760	006B07DA	lea	00D7F960	sce::Vectormath::Scalar::Aos::Matrix3	all
+006B08A0	006B091A	lea	00D7FA70	sce::Vectormath::Scalar::Aos::Matrix4	all
+006B09E0	006B0A5A	lea	00D7FB80	Phyre::PMatrix4	all
+006B0B20	006B0BA6	lea	00D7F628	sce::Vectormath::Scalar::Aos::Point3	all
+006B0EC0	006B0F46	lea	00D7F850	sce::Vectormath::Scalar::Aos::Quat	all
+006B1320	006B13A9	lea	00D7F3E0	sce::Vectormath::Scalar::Aos::Vector2	all
+006B1600	006B1686	lea	00D7F510	sce::Vectormath::Scalar::Aos::Vector3	all
+006B19A0	006B1A26	lea	00D7F738	sce::Vectormath::Scalar::Aos::Vector4	all
+006B33F0	006B346F	lea	00D7FE58	Phyre::PMatrix4x3	all
+006BC750	006BC7FD	lea	00D81E30	decorated `.?AV?$PClassDataMemberPhyreArray@PEAE@Phyre@@`	all
+006BCC40	006BCCE9	lea	00D82090	decorated `V?$PArray@PEBE$07@Phyre@@`	all
+006C3380	006C349B	lea	00D84DC8	decorated `.?AV?$PClassDataMemberPhyreArray@PEAVPBase@Phyre@@@Phyre@@`	all
+006C3800	006C38A9	lea	00D84EE0	decorated `V?$PArray@PEBVPBase@Phyre@@$07@Phyre@@`	all
+006C6560	006C6609	lea	00D86028	decorated `V?$PSharray@PEAVPMeshInstance@PRendering@Phyre@@@Phyre@@`	all
+006D0D50	006D0F4D	lea	00D8CA88	decorated `.?AV?$PClassDataMemberPhyreArray@VPRenderStreamInput@PDynamicGeometry@Phyre@@@Phyre@@`	all
+006D0FA0	006D104D	lea	00D8CC18	decorated `.?AV?$PClassDataMemberPhyreArray@VPModifierAndInputs@PDynamicGeometry@Phyre@@@Phyre@@`	all
+006D5810	006D588F	lea	00D8D7B8	decorated `.?AV?$PNamedSemanticDescriptorForType@VPModifier@PDynamicGeometry@Phyre@@@Phyre@@`	all
+006D8EF0	006D8F90	lea	00D31C50	decorated `.?AV?$PClassDataMemberPhyreArray@M@Phyre@@`	all
+00879D60	00879E76	lea	01CD9E20	decorated `.?AV?$PClassDataMemberPhyreArray@PEAVPInputMap@PInputs@Phyre@@@Phyre@@`	all
+00879EC0	00879F69	lea	01CD9F18	decorated `V?$PArray@PEAVPInputMap@PInputs@Phyre@@$07@Phyre@@`	all

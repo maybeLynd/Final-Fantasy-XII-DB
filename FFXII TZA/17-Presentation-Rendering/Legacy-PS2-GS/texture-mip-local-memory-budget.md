@@ -431,3 +431,13 @@ in this family lands on
 after homing its registers.
 Interior anchor `008620BA`
 (the `r9` home store).
+
+## Homed bodies: functions reached only indirectly whose callees this page cites (OPUS, 2026-10-02, F homing)
+
+*No page cited these functions and none of their callers is documented: they are reached by table or pointer dispatch or through undocumented callers. Each one calls something this page documents, which the sentence names. Each sentence states what the body does (access and representation, not purpose); the anchors are instructions inside it that do it. Drafted locally and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-texture-mip-local-memory-budget-homing-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `008641B0` | 92 B | takes the low 14 bits of dword `+0x50` of `rcx` as an id (0xE00 becomes 0xDFF when dword `02EC3ECC` is 0 and stays 0xE00 otherwise), stores the first qword of what `002D7FA0(id)` returns at qword `+0x20`, then calls `002D7EE0(qword +0x50)` twice, storing the first qword of the first result at qword `+0x28` and dword `+8` of the second at dword `+0x30` | `008641BC`, `008641CA`, `008641DB`, `008641EB`, `00864203` |
+| `00864750` | 110 B | takes the low 14 bits of dword `+0xC8` of `rcx` as an id (0xE00 becomes 0xDFF when dword `02EC3ECC` is 0 and stays 0xE00 otherwise), stores the first qword of what `002D7FA0(id)` returns at qword `+0xA0`, then calls `002D7EE0(qword +0xC8)` twice, storing the first qword of the first result at qword `+0xA8` and dword `+8` of the second at dword `+0xB0` | `0086475F`, `0086476D`, `0086477E`, `00864794`, `008647B2` |
+| `00864CA0` | 110 B | takes the low 14 bits of dword `+0xF8` of `rcx` as an id (0xE00 becomes 0xDFF when dword `02EC3ECC` is 0 and stays 0xE00 otherwise), stores the first qword of what `002D7FA0(id)` returns at qword `+0xD0`, then calls `002D7EE0(qword +0xF8)` twice, storing the first qword of the first result at qword `+0xD8` and dword `+8` of the second at dword `+0xE0` | `00864CAF`, `00864CBD`, `00864CCE`, `00864CE4`, `00864D02` |

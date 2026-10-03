@@ -746,7 +746,7 @@ from the type store as J-4's answer by FABLE on 2026-09-26, the box above). *(na
 
 ## The `00409780` exclusive subtree — 1 member bound (SWE2-FRONTIER, followup queue)
 
-`00409780` (`ResourceEntry_FindSectionIndexAndOffset`, ~101 B) —
+`00409780` (`ResourceEntry_FindSectionIndexAndOffset`~~, ~101 B~~, 429 B *(corrected 2026-10-02, OPUS: the body runs 429 bytes from `00409780`; 101 B is the matcher `00409C30`)*) —
 five-register walk (`00409780`/`00409794`).
 
 | member | role | interior |

@@ -101,8 +101,8 @@ entry's dword `+4`. After the header come **eight parallel byte arrays, one byte
 
 ## 4. Who reads the value
 
-One caller: the add-motion pose applier (`AddMotion_ApplyBonePose`; window 00371F2E..00371FD4 read, the rest of its
-3,387 bytes not). For an add-motion **track of kind 1**, the track's first word is a **slot number**; the applier takes
+One caller: the add-motion pose applier (`AddMotion_ApplyBonePose`; window 00371F2E..00371FD4 read, ~~the rest of its~~
+~~3,387 bytes not~~ *(answered: see adm-add-motion-tables.md - the full disassembly of this function; 2026-10-02, OPUS)*). For an add-motion **track of kind 1**, the track's first word is a **slot number**; the applier takes
 the phase-entry handle and section-7 pointer from the model instance (`+0x1E4`, `+0x1E8` - the fade page has the record
 publishing its `+0x450` there), asks `004776D0` for the slot's value, and **searches the track's groups for the one
 whose id equals that value** (group stride `0x28`, id at `+0x18`). That group's records are what it then applies; no
@@ -252,7 +252,7 @@ callers run: bit 3 of the root record's `+0x4B7` is compared to
 child word - stack-cookie framed.
 Interior anchor `00428BF9` (the first `0042EF90` call).
 
-`0040AA20` (138 B) is the oscillator tick `0054B1F0` calls while `02CA4390` is armed: `+0x20` accumulates `+0x24` each pass and wraps past the `009002E0` threshold by setting `+0x3F` bit 0; when that bit is consumed the `+0x24`/`+0x28` rates are reseeded from `003D8E50` random draws over the `02CA4380`/`02CA4398` ranges - the accumulate-wrap-reseed loop the per-model sway rides.
+`0040AA20` (138 B) is the oscillator tick `0054B1F0` calls while `02CA4390` is armed: `+0x20` accumulates `+0x24` each pass and wraps past the `009002E0` threshold by setting `+0x3F` bit 0; when that bit is consumed the `+0x24`/`+0x28` rates are reseeded from `003D8E50` random draws ~~over the `02CA4380`/`02CA4398` ranges~~ over the ranges `02CA439C` / `02CA4384` added to the bases `02CA4398` / `02CA4380` *(corrected 2026-10-02, OPUS: `0040AA20`+0x50..+0x7F)* - the accumulate-wrap-reseed loop the per-model sway rides.
 
 Interior anchor `0040AA63` (function `0040AA20`).
 
@@ -277,3 +277,12 @@ output `falsify_pose_sequencer.out`, image `73461d08…`, 0 BROKEN, exit 0. The 
 | Q10 | the appended notes | **survives, sharpened**. `00428B30` writes bit 3 on the record named by word `+0`, and on that record's `+8` child. It then walks that child's `+8` and `+0xA` words through `0042EF90(0042D810)`, rather than writing all three directly. `0040AA20` adds `+0x24 × [01DFE0BC]`, a time factor the note omits |
 
 No correction.
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-the-pose-sequencer-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00477670` | 92 B | takes the entry at `02CA6CA0` + zero-extended `cl` * 0x40 and does nothing unless its dword `+4` equals `ecx`; otherwise reads byte `b` at (word `[r8 + edx*2]` + `r8d`, a 32-bit sum) + dword `+0xC` of the entry * 6 and stores 0 at entry bytes `+0x10 + b` and `+0x18 + b` and 0xFF at `+0x20 + b` and `+0x28 + b` | `00477684`, `00477688`, `0047769C`, `004776A7`, `004776BB` |
+| `00504800` | 59 B | calls the callee at `00504800` + 0xF with `ecx` = word `+0x100 + edx*2` of `rcx` (`edx` sign-extended) and returns 0 when it returns null or bit 0 of its byte `+0x1C` is clear; otherwise returns its word `+0x1E` shifted left 16 OR its word `+0x20` | `00504807`, `0050480F`, `0050481C`, `0050482A`, `0050482D` |

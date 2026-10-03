@@ -1,0 +1,173 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY original byte/dataflow/local footprint analysis",
+  "driver_sha256": "91033a449df208020e106e9fe64629736075f4afa6c643e4414f5c674fd4435a",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "2f827754a911df0d3566870f3b447e83d70a6ffbbccaba3446c91f0f579737df"
+    },
+    {
+      "path": "target-source-01.json",
+      "sha256": "e25432db31a70339d8213aebfaf409cd9b0c19ae7a6bf07c06b6c2a27f610d9b"
+    }
+  ],
+  "capture_prerequisites": [
+    {
+      "status": "VERIFIED_ACTUAL_CAPTURE_PREREQUISITES",
+      "metadata": "extents-01.json",
+      "metadata_sha256": "b4fecbfea10883f84f7cd216bd264bb09db4b79efe54ddd4a7dd5a04779fa24b",
+      "source": "source-01.json",
+      "source_sha256": "2f827754a911df0d3566870f3b447e83d70a6ffbbccaba3446c91f0f579737df",
+      "checker_sha256": "2550a7723eb689e2878ae0b5a35fffb81c4675432f1d272de3f2699d7dc6e4b5"
+    },
+    {
+      "status": "VERIFIED_ACTUAL_CAPTURE_PREREQUISITES",
+      "metadata": "target-extents-01.json",
+      "metadata_sha256": "ee8cc558f8b5391b6c7bb174fe178170e0f1ff5ac7fe1e2f63b437bf3626f764",
+      "source": "target-source-01.json",
+      "source_sha256": "e25432db31a70339d8213aebfaf409cd9b0c19ae7a6bf07c06b6c2a27f610d9b",
+      "checker_sha256": "2550a7723eb689e2878ae0b5a35fffb81c4675432f1d272de3f2699d7dc6e4b5"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 145,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 71,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "facts": {
+    "callback_sources": [
+      {
+        "lea": "0x2963c1",
+        "handler": "0x29b7d0"
+      },
+      {
+        "lea": "0x2963e7",
+        "handler": "0x29b810"
+      },
+      {
+        "lea": "0x297c7e",
+        "handler": "0x29b7d0"
+      },
+      {
+        "lea": "0x297c9f",
+        "handler": "0x29b810"
+      }
+    ],
+    "constructor": "3F89C0 reads fifth argument from its currentSP+50h (callerSP+20h), writes QWORDview+38, DWORD+40 and QWORDcontext+48; nonNULL callback is called synchronously with (view,event0,incomingEDX). Normal ABI/private disjoint storage and canonical memory-fill semantics are premises, not natural initialization proof.",
+    "default": "296360 registration leg prescribes29B7D0 at0209C240 and29B810 at0209C298 with the incoming object as context. Entry guards/unregistration occur before that leg; registration is conditional.",
+    "slot": "297C10 free-entry initialization prescribes the same two handlers at row androw+58. Existing matching row jumps to297CE2, writes context+48/+A0 and id+B0 only, and does not call initializer or write callback+38/+90. Thus this call cannot universally re-establish handler identity; prior state remains a premise.",
+    "consumer": "Complete2973E0 has only four direct calls to271960/272730/2726C0/2727C0, no indirect call and no direct handler call. Its own writes are WORDview+14, DWORDview+50 and RMW WORDview+26. The canonical callback table already states handlers call2973E0; the opposite claimed direct edge is not supported by this body.",
+    "synchronous_limit": "A caller reaching3F8980(event1) with a valid nonNULL installed handler can synchronously reach2973E0 and its view updates/helpers before resource code continues. Existing EXP243 zero dispatcher hits do not test this initialized boundary. Opaque animation helper effects, transitive callbacks, actual handler field state and resource-binding preservation remain open.",
+    "direct_calls": [
+      [
+        "0x297414",
+        "0x271960"
+      ],
+      [
+        "0x297430",
+        "0x272730"
+      ],
+      [
+        "0x297450",
+        "0x2726c0"
+      ],
+      [
+        "0x297498",
+        "0x2727c0"
+      ]
+    ],
+    "own_consumer_writes": [
+      {
+        "pc": "0x29749f",
+        "memory": {
+          "base": "rbx",
+          "index": null,
+          "scale": 1,
+          "displacement": 20,
+          "size": 2,
+          "role": "w",
+          "rip_target": null
+        }
+      },
+      {
+        "pc": "0x2974a8",
+        "memory": {
+          "base": "rbx",
+          "index": null,
+          "scale": 1,
+          "displacement": 80,
+          "size": 4,
+          "role": "w",
+          "rip_target": null
+        }
+      },
+      {
+        "pc": "0x2974c0",
+        "memory": {
+          "base": "rbx",
+          "index": null,
+          "scale": 1,
+          "displacement": 38,
+          "size": 2,
+          "role": "rw",
+          "rip_target": null
+        }
+      }
+    ],
+    "remaining": "No native execution, actual initialization, scheduling, lifetime, full resource-window invariance or presentation result. Do not interpret direct call-set completeness as transitive no-callback/no-global-write proof."
+  },
+  "source_controls": [
+    {
+      "label": "secondary-handler-identity",
+      "pc": "0x2963e7",
+      "mutation": {
+        "args": "rax, [rip + 0x5408]"
+      },
+      "refused": "required binding/effect instruction changed 0x2963e7",
+      "method": "Synthetic source mutation, not original execution"
+    },
+    {
+      "label": "matching-row-reinitializes",
+      "pc": "0x297c45",
+      "mutation": {
+        "args": "0x297c7e"
+      },
+      "refused": "required binding/effect instruction changed 0x297c45",
+      "method": "Synthetic source mutation, not original execution"
+    },
+    {
+      "label": "callback-field-store",
+      "pc": "0x3f89f4",
+      "mutation": {
+        "args": "qword ptr [rsi + 0x40], rax"
+      },
+      "refused": "required binding/effect instruction changed 0x3f89f4",
+      "method": "Synthetic source mutation, not original execution"
+    },
+    {
+      "label": "consumer-direct-handler-call",
+      "pc": "0x297414",
+      "mutation": {
+        "args": "0x29b7d0"
+      },
+      "refused": "complete consumer call set changed",
+      "method": "Synthetic source mutation, not original execution"
+    }
+  ],
+  "acceptance": "Producer validity only; project independent review and consumer incorporation pending."
+}

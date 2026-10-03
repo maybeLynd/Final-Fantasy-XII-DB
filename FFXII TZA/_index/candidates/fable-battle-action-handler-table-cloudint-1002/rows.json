@@ -1,0 +1,90 @@
+{
+ "page": "07-Combat-Action/Action-Dispatch/battle-action-handler-table.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01M9DqRDfozfMhVgDdX8oP4v",
+ "report": "battle-action-handler-table.json",
+ "rows": [
+  {
+   "fn": "00265060",
+   "text": "returns qword `+0xB8` of `rcx` when `rcx` is non-null and the top three bits of byte `+3` (`>> 5`) equal 1 or 3; otherwise (null `rcx` or any other value) returns the address `02099DC0`",
+   "anchors": [
+    [
+     "00265063",
+     "je"
+    ],
+    [
+     "00265069",
+     "shr"
+    ],
+    [
+     "00265071",
+     "cmp"
+    ],
+    [
+     "00265076",
+     "mov"
+    ],
+    [
+     "0026507E",
+     "lea"
+    ]
+   ]
+  },
+  {
+   "fn": "00344390",
+   "text": "calls `00344390 + 0x1D` and then `00344390 + 0x27`, each with `r9` (results A and B), passes A to `00344390 + 0x30` and B to `00344390 + 0x3A`, passes those two results to `00344390 + 0x4D` and `00344390 + 0x42` respectively, calls `004686D0` with the mapped A in `rcx` and the mapped B in `rdx`, and tail-jumps to `00344390 + 0x77` with the incoming `rcx` and the returned `xmm0` in `xmm1`",
+   "anchors": [
+    [
+     "003443AD",
+     "call"
+    ],
+    [
+     "003443C0",
+     "call"
+    ],
+    [
+     "003443D2",
+     "call"
+    ],
+    [
+     "003443E8",
+     "call"
+    ],
+    [
+     "00344407",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00426520",
+   "text": "returns without work when `cx` is -1 or when dword `+0x284` of row `(movsx cx) * 0x740` plus qword `022C6F28` is 0 (the row pointer is then zeroed by `cmove`); otherwise ORs 0x40 into byte `+0x4B7` of that row and tail-jumps to `00427320(row, 0x1001)`",
+   "anchors": [
+    [
+     "00426524",
+     "je"
+    ],
+    [
+     "0042653A",
+     "cmp"
+    ],
+    [
+     "00426540",
+     "cmove"
+    ],
+    [
+     "00426549",
+     "or"
+    ],
+    [
+     "00426555",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

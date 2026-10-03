@@ -280,3 +280,11 @@ No correction.
 **ActorEntity — SERVICE (1 edge).** The executor `VMNativeCommand_ExecuteLifecycle` (`002621D0`) calls `ActorManager_GetRecordByOrdinal` (`00358940`), a 30-byte bounds-checked read of the manager's record array that returns 0 for a negative or out-of-range ordinal. The executor looks up a manager record by ordinal through the actor layer's accessor; the wait slot and the value stack it drives stay this contract's.
 
 **World — CLIENT (1 edge).** The area initialiser `00266D10` calls `VMNativeCommandDispatch_InitializeFamilyTables` (`003DC2D0`). Area initialisation is where the sixteen family-table pointers at `02B57EF0` are ~~(re)built~~ built, once *(corrected 2026-10-02, OPUS: `003DC2D0` is their only writer and is reached only through `00266D10` ← the boot routine ← the frame dispatcher's start-up step ← the start-up job (chain addresses in FABLE's record readiness-apply-fable-1002b); static)*, so the world layer owns when the dispatch tables are set up and this contract owns what they hold.
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../_index/candidates/fable-home-contract-native-command-lifecycle-1002/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `0032A7A0` | 65 B | `00342560` + 0x13 | returns 0 when `ecx` is above 5 (unsigned); otherwise forms the record `qword 02EBF190 + 8 + cl * 0x1C8` (or a null base when `cl` is above 0x27) and returns 1 when its byte `+0x1C3` or byte `+0x1C4` is not 0xFF, 0 when both are 0xFF | Interior anchor `0032A7A5`; Interior anchor `0032A7B1`; Interior anchor `0032A7C6`; Interior anchor `0032A7CF`; Interior anchor `0032A7D8` |

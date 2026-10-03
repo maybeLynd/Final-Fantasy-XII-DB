@@ -1,0 +1,56 @@
+{
+  "producer_complete": true,
+  "status": "THREE_ACTUAL_PREREQUISITE_REFUSALS",
+  "driver_sha256": "7ae4714bf87a59cea5d97fe47653c8b398bd9547c6e04221b86cfe17cca33bad",
+  "positive_result_sha256": "3f4fd3eb00dbe7efbd47242f60355ec3fc0cfb9bef87935334b07e5f21e85e57",
+  "cases": [
+    {
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sd194-caller-frames\\prove.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sd194-caller-frames\\controls-01\\upstream-failed\\result.json",
+        "--source",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sd194-caller-frames\\controls-01\\upstream-failed\\source"
+      ],
+      "driver_sha256": "be8c4760a78eeb3b6fb8ef5c1001f08db5d93a47d04384f3e40875f10ab02b06",
+      "exit": 1,
+      "terminal": true,
+      "expected_diagnostic": "required upstream failed: extents-01",
+      "expected_refusal": true,
+      "result_exists": false
+    },
+    {
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sd194-caller-frames\\prove.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sd194-caller-frames\\controls-01\\metadata-incomplete\\result.json",
+        "--source",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sd194-caller-frames\\controls-01\\metadata-incomplete\\source"
+      ],
+      "driver_sha256": "be8c4760a78eeb3b6fb8ef5c1001f08db5d93a47d04384f3e40875f10ab02b06",
+      "exit": 1,
+      "terminal": true,
+      "expected_diagnostic": "incomplete metadata/wrapper",
+      "expected_refusal": true,
+      "result_exists": false
+    },
+    {
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sd194-caller-frames\\prove.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sd194-caller-frames\\controls-01\\same-size-stack-change\\result.json",
+        "--source",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sd194-caller-frames\\controls-01\\same-size-stack-change\\source"
+      ],
+      "driver_sha256": "be8c4760a78eeb3b6fb8ef5c1001f08db5d93a47d04384f3e40875f10ab02b06",
+      "exit": 1,
+      "terminal": true,
+      "expected_diagnostic": "shipping original body identity mismatch",
+      "expected_refusal": true,
+      "result_exists": false
+    }
+  ]
+}

@@ -79,7 +79,7 @@ def audit(db, board_path, batch_path=None):
         return ["transfer record unreadable: %s" % batch], checked
 
     try:
-        board = json.load(open(board_path, encoding="utf-8"))
+        board = json.loads(open(board_path, "rb").read().decode("utf-8"))  # handle closed before the parse (TEAM.json replace)
         live_tasks = {t["id"]: t for t in board.get("tasks", [])}
     except (OSError, KeyError, ValueError):
         return ["board unreadable: %s" % board_path], checked

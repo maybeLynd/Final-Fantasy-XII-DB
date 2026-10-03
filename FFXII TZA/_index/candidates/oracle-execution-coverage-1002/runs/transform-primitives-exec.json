@@ -1,0 +1,20 @@
+{
+ "blocks_in_image": 10,
+ "blocks_outside_image": 0,
+ "catalogue": "e2a67b07700c2ec3fbfae3213965de35",
+ "classes": {
+  "entered": 1,
+  "returned": 3
+ },
+ "elapsed_s": 12.0,
+ "emu_starts": 45,
+ "entries_executed": 3,
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "instrument": "execcov-shim v2",
+ "patched_blocks": 3,
+ "rc": 0,
+ "receipt_md5": "75fa050faa8623eab70dc2f00403b08d",
+ "run": "transform-primitives-exec",
+ "status": "ok",
+ "unique_blocks": 10
+}

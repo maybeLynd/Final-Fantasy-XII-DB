@@ -1,0 +1,238 @@
+{
+  "status": "PREPARED_ADDENDUM",
+  "evidence_method": "offline publication closure, no scientific rerun",
+  "old_manifest_sha256": "5b647504198d614ff8f507eef6efbaf89875d9142853703f65854ec7980d8823",
+  "original_members_checked": 76,
+  "review_identities": [
+    {
+      "kind": "clear-callee-footprints",
+      "copied": {
+        "bytes": 5857,
+        "sha256": "c14cd29c37bffd88d7637216501e733dbfac9837a43e32c6c3d5bc16d02299c4"
+      },
+      "primary": {
+        "bytes": 5948,
+        "sha256": "f6c6a9af98f2f82c505f71f110aaf7247e0f23fe4b32dae529fc2b623e6622ba"
+      },
+      "equality": "decoded UTF-8 with universal newline translation only"
+    },
+    {
+      "kind": "removal-phase-contracts",
+      "copied": {
+        "bytes": 7115,
+        "sha256": "69cb15d5e6e2faabd322b58da649dcea53881f0d6c79504541565d181bed5324"
+      },
+      "primary": {
+        "bytes": 7213,
+        "sha256": "103d671aa510fed420c263cfa6b54d911969fef7364787015374cae1bde14324"
+      },
+      "equality": "decoded UTF-8 with universal newline translation only"
+    },
+    {
+      "kind": "slot-identity-publication",
+      "copied": {
+        "bytes": 5939,
+        "sha256": "31e01c6415dc5647e3486271f347f372fc944eca03ee5a4f51b057a797f57a21"
+      },
+      "primary": {
+        "bytes": 5939,
+        "sha256": "31e01c6415dc5647e3486271f347f372fc944eca03ee5a4f51b057a797f57a21"
+      },
+      "equality": "decoded UTF-8 with universal newline translation only"
+    }
+  ],
+  "additions": [
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/rv_clear.py",
+      "bytes": 21452,
+      "sha256": "dcc0e838fc00fbe54967106dba2fd874f14a343c79df55ffe6c0a46225b22e25",
+      "origins": [
+        {
+          "path": "Database/FFXII TZA/_index/candidates/fable-review-astra-render-clear-callee-footprints-1002/rv_clear.py",
+          "bytes": 21452,
+          "sha256": "dcc0e838fc00fbe54967106dba2fd874f14a343c79df55ffe6c0a46225b22e25"
+        }
+      ]
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/rvlib.py",
+      "bytes": 13365,
+      "sha256": "69f9bc40be32abcc32b189539c35a6738d829306c19d61a0bccc41723c6e33ca",
+      "origins": [
+        {
+          "path": "Database/FFXII TZA/_index/candidates/fable-review-astra-render-clear-callee-footprints-1002/rvlib.py",
+          "bytes": 13365,
+          "sha256": "69f9bc40be32abcc32b189539c35a6738d829306c19d61a0bccc41723c6e33ca"
+        },
+        {
+          "path": "Database/FFXII TZA/_index/candidates/fable-review-astra-render-removal-phase-contracts-1002/rvlib.py",
+          "bytes": 13365,
+          "sha256": "69f9bc40be32abcc32b189539c35a6738d829306c19d61a0bccc41723c6e33ca"
+        },
+        {
+          "path": "Database/FFXII TZA/_index/candidates/fable-review-astra-render-slot-identity-publication-1002/rvlib.py",
+          "bytes": 13365,
+          "sha256": "69f9bc40be32abcc32b189539c35a6738d829306c19d61a0bccc41723c6e33ca"
+        }
+      ]
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/rv_clear.out",
+      "bytes": 6926,
+      "sha256": "9ee5e75a57c9a8d75333ea3fb4ba622d4079ebed5cfa1280b39fef0cf860e8ea",
+      "origins": [
+        {
+          "path": "Database/FFXII TZA/_index/candidates/fable-review-astra-render-clear-callee-footprints-1002/rv_clear.out",
+          "bytes": 6926,
+          "sha256": "9ee5e75a57c9a8d75333ea3fb4ba622d4079ebed5cfa1280b39fef0cf860e8ea"
+        }
+      ]
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/rv_removal.py",
+      "bytes": 15113,
+      "sha256": "3bcb9a6d4656e594e542b9aede2a9ffd9a4c680094718b2e3cfb0cb03a7fa36b",
+      "origins": [
+        {
+          "path": "Database/FFXII TZA/_index/candidates/fable-review-astra-render-removal-phase-contracts-1002/rv_removal.py",
+          "bytes": 15113,
+          "sha256": "3bcb9a6d4656e594e542b9aede2a9ffd9a4c680094718b2e3cfb0cb03a7fa36b"
+        }
+      ]
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/rv_removal.out",
+      "bytes": 6726,
+      "sha256": "2515c28e29acc78dd371b101728a2596dde590188b3f71482ff046a86e07d019",
+      "origins": [
+        {
+          "path": "Database/FFXII TZA/_index/candidates/fable-review-astra-render-removal-phase-contracts-1002/rv_removal.out",
+          "bytes": 6726,
+          "sha256": "2515c28e29acc78dd371b101728a2596dde590188b3f71482ff046a86e07d019"
+        }
+      ]
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/rv_slot.py",
+      "bytes": 16608,
+      "sha256": "96dfdfc5ae69256c385246afcbca426c1bd8081f30b299c0b9815b948fb9124b",
+      "origins": [
+        {
+          "path": "Database/FFXII TZA/_index/candidates/fable-review-astra-render-slot-identity-publication-1002/rv_slot.py",
+          "bytes": 16608,
+          "sha256": "96dfdfc5ae69256c385246afcbca426c1bd8081f30b299c0b9815b948fb9124b"
+        }
+      ]
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/rv_slot.out",
+      "bytes": 8022,
+      "sha256": "a6e0c0fee49cd4ae1efb596b0aa3ec1b219424e9e365d056ed0ac682c06119f8",
+      "origins": [
+        {
+          "path": "Database/FFXII TZA/_index/candidates/fable-review-astra-render-slot-identity-publication-1002/rv_slot.out",
+          "bytes": 8022,
+          "sha256": "a6e0c0fee49cd4ae1efb596b0aa3ec1b219424e9e365d056ed0ac682c06119f8"
+        }
+      ]
+    },
+    {
+      "path": "Database/FFXII TZA/_experiments/evidence/fable-review-astra-render-clear-callee-footprints-1002/REVIEW.md",
+      "bytes": 238,
+      "sha256": "1820ef94651d68caf91d3cae107dc73acd12f88f7a68350f8809842661f53220",
+      "origins": []
+    }
+  ],
+  "links": [
+    {
+      "document": "Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/fable-render-clear-callee-footprints-REVIEW.md",
+      "target": "../../../_experiments/evidence/render-clear-callee-footprints/README.md",
+      "resolved": "Database/FFXII TZA/_experiments/evidence/render-clear-callee-footprints/README.md",
+      "added": false
+    },
+    {
+      "document": "Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/fable-render-clear-callee-footprints-REVIEW.md",
+      "target": "rv_clear.py",
+      "resolved": "Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/rv_clear.py",
+      "added": true
+    },
+    {
+      "document": "Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/fable-render-clear-callee-footprints-REVIEW.md",
+      "target": "rvlib.py",
+      "resolved": "Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/rvlib.py",
+      "added": true
+    },
+    {
+      "document": "Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/fable-render-clear-callee-footprints-REVIEW.md",
+      "target": "rv_clear.out",
+      "resolved": "Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/rv_clear.out",
+      "added": true
+    },
+    {
+      "document": "Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/fable-render-removal-phase-contracts-REVIEW.md",
+      "target": "../../../_experiments/evidence/render-removal-phase-contracts/README.md",
+      "resolved": "Database/FFXII TZA/_experiments/evidence/render-removal-phase-contracts/README.md",
+      "added": false
+    },
+    {
+      "document": "Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/fable-render-removal-phase-contracts-REVIEW.md",
+      "target": "rv_removal.py",
+      "resolved": "Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/rv_removal.py",
+      "added": true
+    },
+    {
+      "document": "Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/fable-render-removal-phase-contracts-REVIEW.md",
+      "target": "rvlib.py",
+      "resolved": "Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/rvlib.py",
+      "added": true
+    },
+    {
+      "document": "Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/fable-render-removal-phase-contracts-REVIEW.md",
+      "target": "rv_removal.out",
+      "resolved": "Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/rv_removal.out",
+      "added": true
+    },
+    {
+      "document": "Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/fable-render-removal-phase-contracts-REVIEW.md",
+      "target": "../fable-review-astra-render-clear-callee-footprints-1002/REVIEW.md",
+      "resolved": "Database/FFXII TZA/_experiments/evidence/fable-review-astra-render-clear-callee-footprints-1002/REVIEW.md",
+      "added": true
+    },
+    {
+      "document": "Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/fable-render-slot-identity-publication-REVIEW.md",
+      "target": "../../../_experiments/evidence/render-slot-identity-publication/README.md",
+      "resolved": "Database/FFXII TZA/_experiments/evidence/render-slot-identity-publication/README.md",
+      "added": false
+    },
+    {
+      "document": "Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/fable-render-slot-identity-publication-REVIEW.md",
+      "target": "rv_slot.py",
+      "resolved": "Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/rv_slot.py",
+      "added": true
+    },
+    {
+      "document": "Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/fable-render-slot-identity-publication-REVIEW.md",
+      "target": "rv_slot.out",
+      "resolved": "Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/rv_slot.out",
+      "added": true
+    },
+    {
+      "document": "Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/fable-render-slot-identity-publication-REVIEW.md",
+      "target": "rvlib.py",
+      "resolved": "Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/rvlib.py",
+      "added": true
+    },
+    {
+      "document": "Database/FFXII TZA/_experiments/evidence/fable-review-astra-render-clear-callee-footprints-1002/REVIEW.md",
+      "target": "../../../_index/candidates/fable-review-astra-render-clear-callee-footprints-1002/REVIEW.md",
+      "resolved": "Database/FFXII TZA/_index/candidates/fable-review-astra-render-clear-callee-footprints-1002/REVIEW.md",
+      "added": false
+    }
+  ],
+  "original_broken_links_resolved": 10,
+  "limitations": [
+    "Projected closure only until explicit guarded commit and HEAD check.",
+    "Reviewer scripts/outputs are retained evidence; not new ASTRA runs.",
+    "No semantic changes or extra independent acceptance."
+  ]
+}

@@ -2055,3 +2055,14 @@ Shared callees outside the census: `00328990`, `003137F0`, `003138D0`,
 - [`../11-Party/Battle-State-Block/the-battle-state-block-field-map.md`](../11-Party/Battle-State-Block/the-battle-state-block-field-map.md) — the three banks and the selected-bank index
 - [`../16-UI/Gambit-Screens/the-gambit-screens.md`](../16-UI/Gambit-Screens/the-gambit-screens.md) — the gambit menu that edits and commits the banks
 - [`../03-World-Area-Field/CONTRACT-field-record-accessors.md`](../03-World-Area-Field/CONTRACT-field-record-accessors.md) — `00377BA0`, the MP regime opcodes 48 / 49 read
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../_index/candidates/fable-home-gambit-evaluation-and-enmity-1002/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `003A7950` | 109 B | `003ED8A0` + 0x135 | with `t` = qword `02EBEFA8` and `k` = byte `rcx+1`, when qword `t+8+k*8` is non-null passes it to `003A7950` + 0x33 and then `003A7950` + 0x3B, then, re-reading `t` from `02EBEFA8` for each access, stores 0 to qword `t+8+k*8` and decrements dword `[t]`; returns `rcx+2` on both paths | Interior anchor `003A7976`; Interior anchor `003A7983`; Interior anchor `003A798B`; Interior anchor `003A7997`; Interior anchor `003A79A7` |
+| `003A7A50` | 73 B | `003ED8A0` + 0x142 | copies the 0x2C bytes at `rcx+4` into the buffer returned by `003A7A50` + 0xE(byte `rcx+1`), passes that buffer (with 0 in `edx`) to `003A7A50` + 0x37, and returns `rcx+0xA4` | Interior anchor `003A7A5E`; Interior anchor `003A7A69`; Interior anchor `003A7A81`; Interior anchor `003A7A87`; Interior anchor `003A7A8C` |
+| `003A7AA0` | 53 B | `003ED8A0` + 0x1C7 | when qword `02EBEFA8` `+8` + byte `rcx+1` times 8 holds a non-null qword, calls `003A7AA0` + 0x26 with it and the zero-extended byte `rcx+2`; returns `rcx+3` on both paths | Interior anchor `003A7AB9`; Interior anchor `003A7AC1`; Interior anchor `003A7AC6`; Interior anchor `003A7ACB` |
+| `003A92B0` | 24 B | `003ED8A0` + 0x1D1 | calls `003A92B0` + 0x9(`rcx`) and returns `rcx+2` | Interior anchor `003A92B9`; Interior anchor `003A92BE` |

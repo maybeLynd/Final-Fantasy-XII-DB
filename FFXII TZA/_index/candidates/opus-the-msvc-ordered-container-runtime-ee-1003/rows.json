@@ -1,0 +1,288 @@
+{
+ "page": "24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/the-msvc-ordered-container-runtime.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-msvc-ordered-container-runtime.json",
+ "rows": [
+  {
+   "fn": "0070E520",
+   "text": "when byte `[rcx]` is non-zero it returns `0x80004005`, first calling `006DF480(00D95EA8, 0x72bb)` and `006DF480(00D95EF0)` (with `edx` as the first call left it) when dwords `01F3BA80` and `01F3BA90` are both non-zero; otherwise it searches the tree with head qword `[rcx+0xa8]` for the first node whose qword key `+0x20` is not below `rdx` (descending from the head's `+8` through `+0x10` or `+0`, nodes with byte `+0x19` set ending the walk) and returns `0x80070057` when that is the head or its key is above `rdx`; for a found node it calls the vtable slot `+8` of the non-null object qword `+0x28`, calls `00714DC0(rcx+0xa8, rsp+0x30, node)` and returns 0",
+   "anchors": [
+    [
+     "0070E547",
+     "call"
+    ],
+    [
+     "0070E583",
+     "cmp"
+    ],
+    [
+     "0070E5A0",
+     "cmp"
+    ],
+    [
+     "0070E5CE",
+     "call"
+    ],
+    [
+     "0070E5DC",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00714CE0",
+   "text": "erases tree nodes from `r8` up to `r9` for the tree whose head node is qword `[rcx]`: when `r8` equals the head's qword `+0` and `r9` is the head itself it calls `00714B60` with the incoming registers and stores the head's qword `+0` to `[rdx]`; otherwise, until the current node equals `r9`, it records the in-order successor (the leftmost node, through qword `+0` links, of the qword `+0x10` subtree, or else the first ancestor reached through qword `+8` links that the node is not the `+0x10` child of, a node whose byte `+0x19` is non-zero ending each walk and leaving the recorded node unchanged when the current node has that byte set), calls `00714DC0(rcx, rsp+0x30, node)` and continues from the recorded node, finally storing it to `[rdx]`; it returns `rdx`",
+   "anchors": [
+    [
+     "00714CFD",
+     "cmp"
+    ],
+    [
+     "00714D07",
+     "call"
+    ],
+    [
+     "00714D30",
+     "cmp"
+    ],
+    [
+     "00714D98",
+     "call"
+    ],
+    [
+     "00714DB1",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00715110",
+   "text": "erases tree nodes from `r8` up to `r9` for the tree whose head node is qword `[rcx]`: when `r8` equals the head's qword `+0` and `r9` is the head itself it calls `00714BE0` with the incoming registers and stores the head's qword `+0` to `[rdx]`; otherwise, until the current node equals `r9`, it records the in-order successor (the leftmost node, through qword `+0` links, of the qword `+0x10` subtree, or else the first ancestor reached through qword `+8` links that the node is not the `+0x10` child of, a node whose byte `+0x19` is non-zero ending each walk and leaving the recorded node unchanged when the current node has that byte set), calls `00714DC0(rcx, rsp+0x30, node)` and continues from the recorded node, finally storing it to `[rdx]`; it returns `rdx`",
+   "anchors": [
+    [
+     "0071512D",
+     "cmp"
+    ],
+    [
+     "00715137",
+     "call"
+    ],
+    [
+     "00715160",
+     "cmp"
+    ],
+    [
+     "007151C8",
+     "call"
+    ],
+    [
+     "007151E1",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007151F0",
+   "text": "erases tree nodes from `r8` up to `r9` for the tree whose head node is qword `[rcx]`: when `r8` equals the head's qword `+0` and `r9` is the head itself it calls `00714C60` with the incoming registers and stores the head's qword `+0` to `[rdx]`; otherwise, until the current node equals `r9`, it records the in-order successor (the leftmost node, through qword `+0` links, of the qword `+0x10` subtree, or else the first ancestor reached through qword `+8` links that the node is not the `+0x10` child of, a node whose byte `+0x19` is non-zero ending each walk and leaving the recorded node unchanged when the current node has that byte set), calls `00714DC0(rcx, rsp+0x30, node)` and continues from the recorded node, finally storing it to `[rdx]`; it returns `rdx`",
+   "anchors": [
+    [
+     "0071520D",
+     "cmp"
+    ],
+    [
+     "00715217",
+     "call"
+    ],
+    [
+     "00715240",
+     "cmp"
+    ],
+    [
+     "007152A8",
+     "call"
+    ],
+    [
+     "007152C1",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0071CD10",
+   "text": "builds a local block at `rsp+0x30` (16 bytes copied from `00D9B600`, dwords 1 at `rsp+0x40` and `rsp+0x44`, and three empty strings with capacity 0xf, length 0 and a zero first byte at `rsp+0x48`, `rsp+0x68` and `rsp+0x88`), zeroes qwords `[rcx+0x50]` and `[rcx+0x48]`, calls `0071D170(rcx, rsp+0x30)` and, when that returns 0, `0071D9E0(rcx, rsp+0x30)`, and when both return 0 copies the local dwords `rsp+0x3c`, `rsp+0x40` and `rsp+0x44` to dwords `[rcx+0x4c]`, `[rcx+0x50]` and `[rcx+0x54]`; it then calls `0071EF10(rsp+0x30)` and returns the first non-zero result or 0; the stack cookie is checked through `00808C40`",
+   "anchors": [
+    [
+     "0071CD3D",
+     "movdqa"
+    ],
+    [
+     "0071CD9C",
+     "call"
+    ],
+    [
+     "0071CDAD",
+     "call"
+    ],
+    [
+     "0071CDBA",
+     "mov"
+    ],
+    [
+     "0071CDD4",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0071E340",
+   "text": "calls `0071F180` with the incoming registers, zeroes word `+0x18` of the returned block `p`, and unless `p+0x20` is null initialises a string at `p+0x20` as empty (capacity qword `+0x18` = 0xf, length `+0x10` = 0, zero first byte), calls `001A4C90(p+0x20)` with `rdx` = qword `[r8]` of the incoming `r8`, and initialises a second empty string the same way at `p+0x40`; it returns `p`",
+   "anchors": [
+    [
+     "0071E360",
+     "call"
+    ],
+    [
+     "0071E36D",
+     "mov"
+    ],
+    [
+     "0071E37C",
+     "mov"
+    ],
+    [
+     "0071E3A2",
+     "call"
+    ],
+    [
+     "0071E3AB",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0071EE70",
+   "text": "for the string at `rcx+0x20` and then the string at `rcx`, calls `001DFA10(string, its qword +0, capacity+1)` when its capacity qword `+0x18` is 0x10 or more, then sets the capacity to 0xf, the length qword `+0x10` to 0 and the first byte of the inline buffer to 0",
+   "anchors": [
+    [
+     "0071EE85",
+     "cmp"
+    ],
+    [
+     "0071EE94",
+     "call"
+    ],
+    [
+     "0071EEB3",
+     "mov"
+    ],
+    [
+     "0071EEC9",
+     "call"
+    ],
+    [
+     "0071EEF6",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0071F3A0",
+   "text": "starting at the root qword `+8` of the head node qword `[rcx]`, and while the current node's byte `+0x19` is zero, calls `0071F1E0(rcx, node's qword +0x10)`, takes the next node from qword `+0`, calls `0071EE70(node+0x20)` and `00210EB0(node)`; it then points the head's qwords `+8`, `+0` and `+0x10` back at the head and zeroes qword `[rcx+8]`",
+   "anchors": [
+    [
+     "0071F3C6",
+     "cmp"
+    ],
+    [
+     "0071F3D7",
+     "call"
+    ],
+    [
+     "0071F3E4",
+     "call"
+    ],
+    [
+     "0071F3ED",
+     "call"
+    ],
+    [
+     "0071F410",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0071F4B0",
+   "text": "erases tree nodes from `r8` up to `r9` for the tree whose head node is qword `[rcx]`: when `r8` equals the head's qword `+0` and `r9` is the head itself it calls `0071F3A0` with the incoming registers and stores the head's qword `+0` to `[rdx]`; otherwise, until the current node equals `r9`, it records the in-order successor (the leftmost node, through qword `+0` links, of the qword `+0x10` subtree, or else the first ancestor reached through qword `+8` links that the node is not the `+0x10` child of, a node whose byte `+0x19` is non-zero ending each walk and leaving the recorded node unchanged when the current node has that byte set), calls `0071F590(rcx, rsp+0x30, node)` and continues from the recorded node, finally storing it to `[rdx]`; it returns `rdx`",
+   "anchors": [
+    [
+     "0071F4CD",
+     "cmp"
+    ],
+    [
+     "0071F4D7",
+     "call"
+    ],
+    [
+     "0071F500",
+     "cmp"
+    ],
+    [
+     "0071F568",
+     "call"
+    ],
+    [
+     "0071F581",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0079B930",
+   "text": "erases tree nodes from `r8` up to `r9` for the tree whose head node is qword `[rcx]`: when `r8` equals the head's qword `+0` and `r9` is the head itself it calls `0079B0D0` with the incoming registers and stores the head's qword `+0` to `[rdx]`; otherwise, until the current node equals `r9`, it records the in-order successor (the leftmost node, through qword `+0` links, of the qword `+0x10` subtree, or else the first ancestor reached through qword `+8` links that the node is not the `+0x10` child of, a node whose byte `+0x19` is non-zero ending each walk and leaving the recorded node unchanged when the current node has that byte set), calls `0079BA10(rcx, rsp+0x30, node)` and continues from the recorded node, finally storing it to `[rdx]`; it returns `rdx`",
+   "anchors": [
+    [
+     "0079B94D",
+     "cmp"
+    ],
+    [
+     "0079B957",
+     "call"
+    ],
+    [
+     "0079B980",
+     "cmp"
+    ],
+    [
+     "0079B9E8",
+     "call"
+    ],
+    [
+     "0079BA01",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [
+  "006DAFB0",
+  "006DEB40",
+  "00705520",
+  "0070E600",
+  "00712F60",
+  "00713210",
+  "00713370",
+  "007134D0",
+  "00714DC0",
+  "0071E500",
+  "0071E7B0",
+  "0071EA80",
+  "0071F590",
+  "0079BA10"
+ ],
+ "corrections": [],
+ "mode": "ee"
+}

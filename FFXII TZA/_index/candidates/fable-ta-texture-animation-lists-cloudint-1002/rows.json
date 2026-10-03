@@ -1,0 +1,445 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/Prefetch-And-Json-Data/ta-texture-animation-lists.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01VEcx1tvvdhZnx7o8bCur26",
+ "report": "ta-texture-animation-lists.json",
+ "rows": [
+  {
+   "fn": "00180830",
+   "text": "keeps `rcx`, `edx` and `r8d`, calls `001A9930` with the incoming registers still in place, then tail-jumps to `001A9DD0(that result, rcx, edx, r8d)`",
+   "anchors": [
+    [
+     "00180847",
+     "call"
+    ],
+    [
+     "0018084F",
+     "mov"
+    ],
+    [
+     "00180855",
+     "mov"
+    ],
+    [
+     "00180867",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00180900",
+   "text": "calls `001A9930` with the incoming registers still in place, then calls `001AA240(that result, rcx, dl, r8b, r9d, the fifth (stack) argument as f32, the low bytes of the sixth and seventh (stack) arguments)` and returns its `rax`",
+   "anchors": [
+    [
+     "00180921",
+     "call"
+    ],
+    [
+     "00180926",
+     "movss"
+    ],
+    [
+     "0018094B",
+     "mov"
+    ],
+    [
+     "00180955",
+     "mov"
+    ],
+    [
+     "00180959",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "001809A0",
+   "text": "when byte `01F7F50D` is 0 and `0018CA40()` returns non-null, stores 1 in byte `01F7F50D` and tail-jumps to `0018C3C0(0018CA40())`; otherwise returns without work",
+   "anchors": [
+    [
+     "001809A4",
+     "cmp"
+    ],
+    [
+     "001809AD",
+     "call"
+    ],
+    [
+     "001809B7",
+     "mov"
+    ],
+    [
+     "001809BE",
+     "call"
+    ],
+    [
+     "001809CA",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "001A1920",
+   "text": "measures the zero-terminated string at `r8` (length 0 when its first byte is 0) and calls `001A5150(rdx, r8, length)` with `r9` also holding `rdx` and a zero fifth (stack) argument; then sets `rcx`'s qword `+0x18` to 0xF, qword `+0x10` to 0 and byte `+0` to 0, calls `001A4C90(rcx, that result)` and returns `rcx`",
+   "anchors": [
+    [
+     "001A1949",
+     "cmp"
+    ],
+    [
+     "001A1956",
+     "call"
+    ],
+    [
+     "001A195B",
+     "mov"
+    ],
+    [
+     "001A1974",
+     "call"
+    ],
+    [
+     "001A1979",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "001A4FE0",
+   "text": "returns without work when `rdx` is null; otherwise, on the qword triple at `rcx+0x90`, when qword `+0x98` is below qword `+0xA0` (unsigned) advances `+0x98` by 8 and stores `rdx` at its old value (the store skipped when that old value is null), else calls `001AB570(rcx+0x90, qword +0x98, the address of the saved rdx)`",
+   "anchors": [
+    [
+     "001A4FEE",
+     "add"
+    ],
+    [
+     "001A4FFC",
+     "cmp"
+    ],
+    [
+     "001A5006",
+     "mov"
+    ],
+    [
+     "001A500F",
+     "mov"
+    ],
+    [
+     "001A501C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "001A7460",
+   "text": "when byte `+0x140` of `rcx` is non-zero, walks 0x20-byte entries from qword `+0x120` up to qword `+0x128` and returns the address of the first entry whose first qword points at a qword equal to `rdx`; returns 0 when the byte is 0, the range is empty or no entry matches",
+   "anchors": [
+    [
+     "001A7467",
+     "test"
+    ],
+    [
+     "001A7479",
+     "cmp"
+    ],
+    [
+     "001A7483",
+     "cmp"
+    ],
+    [
+     "001A7488",
+     "add"
+    ],
+    [
+     "001A7491",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "001A9DD0",
+   "text": "stores a qword at `rdx+0xD0` chosen by `r9d`: 1 stores 3, 2 stores 2, 3 stores 1, any other value stores 0",
+   "anchors": [
+    [
+     "001A9DD4",
+     "je"
+    ],
+    [
+     "001A9DDA",
+     "je"
+    ],
+    [
+     "001A9DE0",
+     "je"
+    ],
+    [
+     "001A9DE4",
+     "mov"
+    ],
+    [
+     "001A9E04",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "001AA240",
+   "text": "maps the fifth (stack) argument 0 to 0, 2 to 2, 3 to 3 and any other value to 1, then calls `001E69A0(rdx, r8b, r9b, the mapped value, the sixth (stack) argument as f32, the low bytes of the seventh and eighth (stack) arguments)` and returns its `rax`; `rcx` is not used",
+   "anchors": [
+    [
+     "001AA255",
+     "test"
+    ],
+    [
+     "001AA25C",
+     "je"
+    ],
+    [
+     "001AA263",
+     "mov"
+    ],
+    [
+     "001AA28A",
+     "movss"
+    ],
+    [
+     "001AA2AD",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "001AA4F0",
+   "text": "copies 0x30-byte records backwards, from the range `rcx` to `rdx` into the range ending at `r8`: per record bytes `+0` to `+5` and `+0x28` are copied directly and `+8` through `0019DDD0(destination+8, source+8)`; returns the destination start (`r8` when `rdx` equals `rcx`)",
+   "anchors": [
+    [
+     "001AA508",
+     "cmp"
+    ],
+    [
+     "001AA514",
+     "add"
+    ],
+    [
+     "001AA520",
+     "mov"
+    ],
+    [
+     "001AA549",
+     "call"
+    ],
+    [
+     "001AA552",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "001AB350",
+   "text": "when `rdx` is below `r8` (unsigned), visits each 0x30-byte record from `rdx` to `r8` (count (`r8`-`rdx`-1)/0x30+1); for each record whose qword `+8` is non-null calls slot `+0x18` of the vtable held in its qword `+0x20`, with `rcx` = the address `record+0x20` (not the qword there), `rdx` = qword `+8` and `r8` = (qword `+0x18` minus qword `+8`) AND ~7",
+   "anchors": [
+    [
+     "001AB353",
+     "jae"
+    ],
+    [
+     "001AB37C",
+     "mul"
+    ],
+    [
+     "001AB393",
+     "test"
+    ],
+    [
+     "001AB3A6",
+     "and"
+    ],
+    [
+     "001AB3AA",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "001ABC80",
+   "text": "returns without work when `r8d` is negative (signed); otherwise calls `001AC810(rcx, r8d)`, then `001AD7B0(that result, rdx, r9d, the fifth (stack) argument)`, and stores byte 1 at offset `2*r9d - 2` (sign-extended) of the buffer the result's first qword points at",
+   "anchors": [
+    [
+     "001ABC83",
+     "js"
+    ],
+    [
+     "001ABC9D",
+     "call"
+    ],
+    [
+     "001ABCB3",
+     "call"
+    ],
+    [
+     "001ABCBB",
+     "lea"
+    ],
+    [
+     "001ABCCF",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "001ABCE0",
+   "text": "returns without work when `r8d` is negative (signed); otherwise calls `001AC810(rcx, r8d)`, then `001AD6E0(that result, rdx, r9d, the fifth (stack) argument)`, and stores byte 1 at offset `2*r9d - 1` (sign-extended) of the buffer the result's first qword points at",
+   "anchors": [
+    [
+     "001ABCE3",
+     "js"
+    ],
+    [
+     "001ABCFD",
+     "call"
+    ],
+    [
+     "001ABD13",
+     "call"
+    ],
+    [
+     "001ABD1B",
+     "lea"
+    ],
+    [
+     "001ABD2F",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "001AC480",
+   "text": "calls `001AD130(rcx, rcx+0x16C)`, then stores byte 1 at `rcx+0x250`",
+   "anchors": [
+    [
+     "001AC486",
+     "lea"
+    ],
+    [
+     "001AC490",
+     "call"
+    ],
+    [
+     "001AC495",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "003ABD20",
+   "text": "walks the list headed by qword `02B3F508` through each node's qword `+0x10` and returns the address `+0x20` of the first node whose byte `+0x23` equals 5; returns 0 when the head is null or no node matches",
+   "anchors": [
+    [
+     "003ABD27",
+     "test"
+    ],
+    [
+     "003ABD30",
+     "cmp"
+    ],
+    [
+     "003ABD36",
+     "mov"
+    ],
+    [
+     "003ABD3F",
+     "xor"
+    ],
+    [
+     "003ABD42",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "00467A70",
+   "text": "copies dword `02CA5FF4` to dword `02CA5FF8`, stores 0 in dwords `02CA5FFC` and `02CA6000`, and returns 0",
+   "anchors": [
+    [
+     "00467A76",
+     "mov"
+    ],
+    [
+     "00467A7C",
+     "xor"
+    ],
+    [
+     "00467A7E",
+     "mov"
+    ],
+    [
+     "00467A84",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00467B60",
+   "text": "subtracts f32 `02AED570` from 20.0 (`00901988`), takes the absolute value in double precision (sign mask `01CEBD80`) and passes it as f32 to the function pointer at `008C2BD8`; multiplies the returned f32 by -16.0 (`00D12518`), truncates it to an int and stores that int, sign-extended and shifted left 32, in qword `02EBB6C8`",
+   "anchors": [
+    [
+     "00467B6C",
+     "subss"
+    ],
+    [
+     "00467B77",
+     "andps"
+    ],
+    [
+     "00467B82",
+     "call"
+    ],
+    [
+     "00467B88",
+     "mulss"
+    ],
+    [
+     "00467B9B",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00468070",
+   "text": "takes the 0x30-byte record at qword `+8` of `rcx` and advances that qword by 0x30 (no bound check); writes qword `+0` = 0x10000002, qword `+8` = 0, dword `+0x10` = 0, dword `+0x14` = 0x10000000, dword `+0x18` = 0x1000404, dword `+0x1C` = `r8d` OR 0x6C010000, and copies the four dwords at `rdx` to `+0x20` through `+0x2C`",
+   "anchors": [
+    [
+     "00468074",
+     "or"
+    ],
+    [
+     "0046807F",
+     "mov"
+    ],
+    [
+     "00468089",
+     "mov"
+    ],
+    [
+     "004680A4",
+     "mov"
+    ],
+    [
+     "004680BF",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "001AB350",
+   "was": "when `rdx` is below `r8` (unsigned), visits each 0x30-byte record from `rdx` to `r8` (count (`r8`-`rdx`-1)/0x30+1); for each record whose qword `+8` is non-null calls slot `+0x18` of the vtable in its qword `+0x20`, with `rcx` = the record's `+0x20`, `rdx` = qword `+8` and `r8` = (qword `+0x18` minus qword `+8`) AND ~7",
+   "now": "when `rdx` is below `r8` (unsigned), visits each 0x30-byte record from `rdx` to `r8` (count (`r8`-`rdx`-1)/0x30+1); for each record whose qword `+8` is non-null calls slot `+0x18` of the vtable held in its qword `+0x20`, with `rcx` = the address `record+0x20` (not the qword there), `rdx` = qword `+8` and `r8` = (qword `+0x18` minus qword `+8`) AND ~7",
+   "why": "rcx is lea rbx+0x18 = record+0x20 (001AB398), an address; the qword there is the vtable loaded into rax at 001AB39C"
+  }
+ ]
+}

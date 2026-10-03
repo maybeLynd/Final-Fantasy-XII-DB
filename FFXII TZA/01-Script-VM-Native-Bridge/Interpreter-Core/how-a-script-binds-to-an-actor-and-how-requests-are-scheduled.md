@@ -403,8 +403,8 @@ nothing here was executed or observed live.
 - **Presentation — SERVICE and CLIENT.** `0025DF00` calls three small Presentation helpers (42–84 B), and `003587C0` is
   read by the 714-byte render-cluster body.
 - **Input — SERVICE.** `00263230` — the mode-1 arm of `ActorResource_StartEntryScriptExecution` — calls
-  `00226BE0`, an Input-layer helper that builds a per-channel bitmask (`movsxd rax, ecx`; `r13d = 1 << cl`
-  at `00226BFA`–`00226C03`): the entry-start path consults the input channel state. (edge: `edges.tsv`)
+  `00226BE0`, ~~an Input-layer helper that builds a per-channel bitmask~~ the system-stop registry's request start for channel 6, which builds a per-channel bitmask *(corrected 2026-10-02, OPUS: it ORs the bit into `01FD46D4` (`00226C7A`), raises `01FD46D0` (`00226C87`) and marks every actor's stop masks (`00226CFC`–`00226D80`); the call at `002632AD` passes `ecx = 6`)* (`movsxd rax, ecx`; `r13d = 1 << cl`
+  at `00226BFA`–`00226C03`): the entry-start path ~~consults the input channel state~~ raises a system stop request *(corrected 2026-10-02, OPUS: it writes the stop state, it does not read input)*. (edge: `edges.tsv`)
 - **CombatAI — MECHANICAL (SWE2-EC7-96, 3 edges).** `00377C20` — the re-check this page's `0030A6E0`
   section cites — is reached through 3 edges on the CombatAI layer (`003014C0`, `00301AD0`, `00305AB0`).
   Shared-helper fan-in; no CombatAI relationship to script binding.
@@ -427,7 +427,7 @@ nothing here was executed or observed live.
 - **WorldAreaField — MECHANICAL (5 edges).** 1 WorldAreaField-side calls into shared helper(s) the page cites (`FieldData_GetActiveFieldRecordBit15` (00377C20)); 4 calls from page-cited bodies into shared WorldAreaField plumbing (`FieldData_GetActiveFieldRecordBit15` (00377C20), `WorldTransition_GetActiveOrPendingFieldId` (003148F0)) - the helpers' general call surface, not a WorldAreaField relationship of this page's subjects.
 ## The `003DBDC0` exclusive subtree — all 2 members bound (SWE2-FRONTIER, followup queue)
 
-`003DBDC0` `ActorResource_StartEntryScriptExecution` (41 B) — the
+`003DBDC0` `ActorResource_StartEntryScriptExecution` (~~41 B~~ 210 B *(corrected 2026-10-02, OPUS: its last `ret` is `003DBE91`, followed by `int3` padding; `003DBE68` is inside it)*) — the
 entry-script dispatcher whose mode-1 arm is `00263230` (bound on the
 time-stop page): `rax = movsx byte[rcx+0x11]` entry index
 (`003DBDD4`), `edx = word[rdx+4]` script id (`003DBDDC`), `r8 =
@@ -436,14 +436,14 @@ rax*5` entry stride (`003DBDE3`).
 | member | role | interior |
 | --- | --- | --- |
 | `0025D460` (20 B) | entry-record init — `qword[rcx]`/`[+8]`/`dword[+0x10]`/`word[+0x14]`/`byte[+0x16]` all zeroed (`0025D462`–`0025D470`) | [`0025D46C`](../../_index/ADDRESS-INDEX.md) |
-| `00358A00` (21 B) | indexed record fetch — `r8 = [rcx+0x48]` list, `edx` vs `dword[r8]` bound (`00358A04`), `eax = dword[r8+rax*8+8]` (`00358A0F`), then `dword[022C7FE0]` + `003588B0` (`00358A24`/`00358A37`) | [`00358A0F`](../../_index/ADDRESS-INDEX.md) |
+| `00358A00` (21 B) | indexed record fetch — `r8 = [rcx+0x48]` list, `edx` vs `dword[r8]` bound (`00358A04`), `eax = dword[r8+rax*8+8]` (`00358A0F`)~~, then `dword[022C7FE0]` + `003588B0` (`00358A24`/`00358A37`)~~ *(corrected 2026-10-02, OPUS: the 21 bytes end with `ret` at `00358A14`; `00358A24`/`00358A37` belong to the next function `00358A20`, called from `003594E0`)* | [`00358A0F`](../../_index/ADDRESS-INDEX.md) |
 
 Shared callees outside the census: `003588B0`. The `022C7FE0` cell is
 the shared resource count.
 
 ## The `00268850` exclusive subtree — 1 member bound (SWE2-FRONTIER, followup queue)
 
-`00268850` (`ScriptVM_SubmitActorRuntimeRequest`, ~250 B) — the submit
+`00268850` (`ScriptVM_SubmitActorRuntimeRequest`, ~~~250 B~~ 545 B *(corrected 2026-10-02, OPUS: its last `ret` is `00268A70`)*) — the submit
 body under a full register save.
 
 | member | role | interior |

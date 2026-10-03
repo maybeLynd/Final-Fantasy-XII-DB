@@ -165,7 +165,7 @@ and three of their names describe something narrower than what they do.
 | `ActorHandle_ResolveRegistryEntryByPackedId` `003588B0` | a packed handle | class = bits 16–19 (must be `< 5`, `003588DF`), manager `02098E10 + class × 0x288` (`00263FF0`), manager checks (`+0` and `+8` non-null, ordinal `< +0x20`, `+0x10` bit 0, ordinal `< [arr]`, `003588EB`–`00358907`), entry `[arr + 8 + ordinal × 8]`, then **generation `entry+0x16` must equal bits 20–30** (`00358913`–`00358925`) | handle 0, bad class, inactive manager, empty entry, **stale generation** |
 | `BattleUnit_ResolveByFocusHandle` `0031B7E0` (35 callers) | a packed handle | only while **bit 4 of `02089340`** is set (`0031B7E4`), resolve as above, then `entry+0x30` — the unit pointer (`00263E30`, tail-jumped at `0031B7FE`) | battle system not initialised, or the handle fails |
 | `BattleStats_GetByBattleSlotIndex` `00320A40` (18) | **party member index** 0–39 | `*(02EBF190) + 8 + i × 0x1C8` (`00320A40`–`00320A5D`) — a stats record, not a unit | `i > 0x27` |
-| `BattleStats_GetByMappedBattleSlot` `00320AB0` (25) | a slot-map key | `BattleSlotMap_ResolveMappedBattleSlot` `0031B9F0` (a class-`0x17` id, then one of five byte arrays of the block at `+0x5A58`…`+0x5A90`), then the same party element (`00320AB9`–`00320AD9`) | invalid id or mode, index `> 0x27` |
+| `BattleStats_GetByMappedBattleSlot` `00320AB0` (25) | a slot-map key | `BattleSlotMap_ResolveMappedBattleSlot` `0031B9F0` (a class-`0x17` id, then one of five ~~byte arrays of the block at `+0x5A58`…`+0x5A90`~~ 18-byte arrays of the block at `+0x5A48`, `+0x5A5A`, `+0x5A6C`, `+0x5A7E` and `+0x5A90`, read as bytes at a two-byte stride *(corrected 2026-10-02, OPUS: `0031B9F0+0x4D` to `+0xBA`)*), then the same party element (`00320AB9`–`00320AD9`) | invalid id or mode, index `> 0x27` |
 | `BattleUnit_FindByCombatantId` `0031B770` (10) | **party member index** 0–39 | builds the party element (`0031B77B`–`0031B790`) and **scans every pool slot for a unit whose `+0x698` equals it** (`0031B79C`–`0031B7C3`) — O(slots) | `i > 0x27`; no unit bound to that party record |
 | `BattleStats_FindOwningBattleUnit` `0031B860` (62) | a stats record | the same scan, for any record (`0031B87D`–`0031B8A4`) | NULL record; no unit bound to it |
 | `BattleUnit_FindByDefinitionSelector` `002367A0` (10) | a class-2 encoded id | `BattleEncodedId_IsValidForClass(2, id)` (`002367BC`), then a pool walk comparing **each unit's stats record `+4` (u16)** with the id (`002367D3`–`002367F3`), **except that 0xFF is compared as 0xFFFF** (`002367E3`–`002367EE`) | invalid id; no unit whose stats carry it |
@@ -206,10 +206,10 @@ and three of their names describe something narrower than what they do.
 | `00265020` | `Actor_GetWorldPosition` | 61 B | 79 | ✅ read |
 | `003148F0` | `WorldTransition_GetActiveOrPendingFieldId` | 27 B | 49 | ✅ read |
 | `00236820` | `BattleUnit_GetBySlotIndex` | 37 B | 40 | ✅ read |
-| `00362850` | *(Audio)* — calls `Actor_GetWorldPosition` | 1,036 B | — | not read |
-| `00233780` | `SpawnKeep_RotatePersistenceBanksForAreaTransition` | 672 B | — | not read |
+| `00362850` | *(Audio)* — calls `Actor_GetWorldPosition` | 1,036 B | — | not read *(answered: see the world-tick page's EX-3, the audio listener update; 2026-10-02, OPUS)* |
+| `00233780` | `SpawnKeep_RotatePersistenceBanksForAreaTransition` | 672 B | — | not read *(answered: see the shared-neighbours page, read in full 2026-09-14; 2026-10-02, OPUS)* |
 | `002F8060` | `BattleUnit_TryTriggerNearbyAuthoredFieldAction` | 648 B | — | not read |
-| — | `SaveImage_GetPersistentPayloadBase` | — | — | not read |
+| — | `SaveImage_GetPersistentPayloadBase` | — | — | not read *(answered: see U-5, ANSWERED 2026-09-12 (FABLE); 2026-10-02, OPUS)* |
 
 ## 4. Data structures and formulas
 
@@ -416,7 +416,7 @@ weighted by frequency, and not proof that a path is hot. "Movement is the larges
 it has the most call sites — recorded as **U-4** rather than dressed up as a runtime claim.
 
 The 49 callers of hub 2 include 21 with no owner tag, and hub 1 has 16. Those are not silently
-dropped from the totals; they are listed, and identifying them is **U-3**.
+dropped from the totals; they are listed, and identifying them is **U-3** *(answered: see U-3, ANSWERED 2026-09-12 (FABLE); 2026-10-02, OPUS)*.
 
 ## 9. Related
 
@@ -540,7 +540,7 @@ Randomness is one more shared service the hubs consume; same argument as the sto
 
 ## The `002F8060` exclusive subtree — 1 member bound (SWE2-FRONTIER, followup queue)
 
-`002F8060` (`BattleUnit_TryTriggerNearbyAuthoredFieldAction`, ~128 B) —
+`002F8060` (~~`BattleUnit_TryTriggerNearbyAuthoredFieldAction`, ~128 B~~ `BattleUnit_TryTriggerNearbyAuthoredFieldAction`, 648 B *(corrected 2026-10-02, OPUS: its extent is 648 B, as the key table above states)*) —
 a seven-register body over the `0x98`-byte frame.
 
 | member | role | interior |
@@ -557,7 +557,7 @@ signed-magic divide that splits the argument: `id / 1000` selects a bucket (boun
 in a qword presence table at `image+0x2DA3D80`, whose sibling pointer table at
 `image+0x2E773C0` gives a per-bucket record; `id % 1000` is bounds-checked against the record's
 dword count at `+0x04`, then indexes a dword array reached through the encoded pointer at
-`+0x14` — every stored pointer resolved through `0020E600`. Returns `01C8B638` (a static empty
+`+0x14` — every stored pointer resolved through `0020E600`. Returns ~~`01C8B638`~~ `01CEB638` *(corrected 2026-10-02, OPUS: `002F9860+0x1E` `lea rax, [01CEB638]`)* (a static empty
 record) on any miss: out-of-range bucket, absent bucket, or index past the slot count.
 
 So the function is the **encoded-id → runtime record resolver** — the bucketed lookup the
@@ -954,3 +954,13 @@ Interior anchor `0031BFE0` (function `0031BF60`).
 - **Rewards_Progression_Economy — CLIENT and SERVICE (13 edges).** 10 inbound (Rewards_Progression_Economy bodies `BattleUnit_ProcessDefeatRewardsAndLoot` (00312280), `Reward_ComputeExperienceForRecipient` (002F8BB0), `Reward_ComputeLicensePointsForRecipient` (002F90C0) call page-cited `Actor_GetWorldPosition` (00265020), `BattleStats_FindOwningBattleUnit` (0031B860), `BattleStats_GetByMappedBattleSlot` (00320AB0)); 3 outbound (page-cited `002341C0`, `BattleSystem_InitializeAreaState` (002342F0), `00329220` call Rewards_Progression_Economy bodies `Loot_InitializeWorldPickupPool` (00319B10), `002F8F20`). Substantive edges include `002341C0` calls `Loot_InitializeWorldPickupPool` (00319B10); `BattleSystem_InitializeAreaState` (002342F0) calls `Loot_InitializeWorldPickupPool` (00319B10); `00264150` is called by `Reward_ComputeLicensePointsForRecipient` (002F90C0); `00329220` calls `002F8F20`; the remaining edges run through shared helpers the page cites.
 - **Script_VM_Native_Bridge — CLIENT and SERVICE (243 edges).** 226 inbound (Script_VM_Native_Bridge bodies `0034B5D0`, `0034BB80`, `003516E0` call page-cited `00263F10`, `00264010`, `Actor_GetWorldPosition` (00265020)); 17 outbound (page-cited `WorldActorScriptVM_InterpretBytecode` (0025E4C0) call Script_VM_Native_Bridge bodies `VMValueStack_PopInt32CoerceFloat32` (00267E10), `ScriptVM_WaitList_HasAnyActorChannelActive` (00267420), `ScriptVM_WaitList_HasAnyActorResourceEntryActive` (002674B0)). Substantive edges include `00203170` is called by `00356160`; `WorldActorScriptVM_InterpretBytecode` (0025E4C0) calls `ScriptVM_WaitList_HasAnyActorChannelActive` (00267420); `WorldActorScriptVM_InterpretBytecode` (0025E4C0) calls `ScriptVM_WaitList_HasAnyActorResourceEntryActive` (002674B0); `WorldActorScriptVM_InterpretBytecode` (0025E4C0) calls `ScriptVM_SubmitActorRuntimeRequest` (00268850); the remaining edges run through shared helpers the page cites.
 - **Spawn_Encounter_Lifecycle — CLIENT and SERVICE (10 edges).** 8 inbound (Spawn_Encounter_Lifecycle bodies `Spawn_CountActiveCapTrackedActors` (00308D90), `SpawnLifecycle_CheckAndRetireByNativeRange` (002350C0), `Spawn_ValidateCandidateDistanceToPlayers` (00234DA0) call page-cited `Actor_GetWorldPosition` (00265020), `FieldData_GetActiveFieldRecordBit15` (00313F60), `BattleUnit_GetBySlotIndex` (00236820)); 2 outbound (page-cited `BattleSystem_InitializeAreaState` (002342F0) call Spawn_Encounter_Lifecycle bodies `SpawnKeep_RotatePersistenceBanksForAreaTransition` (00233780), `SpawnGroup_ResetLifecycleLedger` (00307090)). Substantive edges include `BattleSystem_InitializeAreaState` (002342F0) calls `SpawnKeep_RotatePersistenceBanksForAreaTransition` (00233780); `BattleSystem_InitializeAreaState` (002342F0) calls `SpawnGroup_ResetLifecycleLedger` (00307090); `BattleUnit_GetSlotCount` (00236850) is called by `Spawn_CountActiveCapTrackedActors` (00308D90); `FieldData_GetActiveFieldRecordBit15` (00313F60) is called by `SpawnLifecycle_CheckAndRetireByNativeRange` (002350C0); the remaining edges run through shared helpers the page cites.
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-cross-subsystem-accessor-hubs-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `002EAA10` | 30 B | returns 0 when `rcx` is null, when qword `+0xC0` of `rcx` is null, or when the dword at that pointer is negative; otherwise tail-jumps `003B50E0` with that dword in `ecx` (`jns`) | `002EAA15`, `002EAA21`, `002EAA25`, `002EAA2B` |
+| `0034B5D0` | 64 B | chains `00267E10(r9)` into `00264010`, its result into `00263F10`, that into `003589B0`, and that into `00320790(result, 0)`, then tail-jumps `0026B4E0` with the incoming `rcx` and the `00320790` result as `edx` | `0034B5DC`, `0034B5E3`, `0034B5F3`, `0034B5FC`, `0034B60B` |
+| `00466BF0` | 75 B | returns 0.0 unless the dword `02EBB6E4` is non-negative and less than (signed) dword `02EBB6E0` and qword `+0x8` of the `0x50`-byte entry at qword `02EBB6F0` plus that index times `0x50` is non-zero; then returns 0.01 (`008F30E4`) times the float at the qword `+0xA8` of the entry's qword `+0x28`, or 0.0 when that `+0xA8` pointer is null | `00466BFE`, `00466C0C`, `00466C17`, `00466C2E`, `00466C32` |

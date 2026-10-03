@@ -224,3 +224,11 @@ refute the page if the calls were direct. They are not. The gatherer loads `0030
 
 No correction. Instrument lesson, recorded: a raw E8/E9 caller sweep does not see `call rax`. An absence of callers
 from it cannot refute a stated call without a read of the calling window.
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../_index/candidates/fable-how-an-action-gathers-its-targets-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `002FFED0` | 23 B | calls `002FFED0 + 0x4` with its incoming arguments unchanged and returns 1 when that returns 0, else 0 | `002FFED4`, `002FFEDB`, `002FFEDD` |

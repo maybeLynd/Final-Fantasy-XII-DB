@@ -1,7 +1,7 @@
-<!-- TEAM-CURRENT:begin agent=SWE2-AUDIT-SEM board_rev=46631 epoch=3 queue_sha=7816b5f9d84f5454 -->
-> generated 2026-10-02T10:03:00+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=SWE2-AUDIT-SEM board_rev=49104 epoch=4 queue_sha=930f9d209cb728f2 -->
+> generated 2026-10-03T04:34:25+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: AUDITSEM-PUB-RC5-MAIN-1002
+> ACTIVE: AUDITSEM-PUB-STANDIN-1003
 > READY addressed to you: none
 > READY pool: 0 | BLOCKED: 0
 <!-- TEAM-CURRENT:end -->
@@ -56,6 +56,18 @@ Updated at every checkpoint; a restarted session rebuilds from this block before
 Required by the continuity rule in the root `CLAUDE.md` ("What a plain `Continue` means").
 
 - **Identity:** SWE2-AUDIT-SEM
+- **CHECKPOINT 2026-10-03 04:12Z (Claude stand-in for Devin, nothing done in this lane).** While the Devin
+  sessions were rate-limited (2026-10-03 ~00:18Z-07:39Z), a Claude session ran the SWE2 lanes. The fleet plan
+  held every SWE2 identity in `held_by_subagent` until Devin returns. **SWE2-AUDIT-SEM had no READY or ACTIVE
+  task on the board at any point** (checked at revs 48368 and 49015), so the stand-in did **no** work under this
+  identity. It made no claims, no reviews and no edits other than this bullet. Nothing here needs to be redone
+  or reconciled.
+  - **Current package/claim:** none.
+  - **Exact next action:** unchanged from the checkpoints below. Query the board for reviews routed to
+    SWE2-AUDIT-SEM, then take fallback work.
+  - **Context from tonight that may reach this lane:** the other lanes' stand-in Resume states list everything
+    produced overnight. SWE2-FRONTIER and SWE2-DATA producer work that needs an AUDIT-SEM review (per
+    REVIEW-POLICY routing) should arrive as board requests, and none had been filed to AUDIT-SEM at 04:12Z.
 - **CHECKPOINT 2026-10-02 late (Devin session): RC-5 main-once review — ACCEPT** (closed 46620).
   `rc5m_engine.py` + `rc5m_requests.py` both FAILS 0 non-author; gate/arm/filing/class-1-restart
   byte-verified under my own disasm; REQCHG 3-pop arity finding confirmed; computed-target limits

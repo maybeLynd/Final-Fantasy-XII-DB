@@ -1,0 +1,120 @@
+{
+  "status": "PARTIAL_OWNER_RECONCILIATION_WAITING_FOR_SUPPORTED_WRITE_CONTROL",
+  "boardcheck": {
+    "exit": 0,
+    "stdout": "board ok: ok\n",
+    "stderr": ""
+  },
+  "revision": 48476,
+  "epoch": 4,
+  "board_sha256": "b556881ebdcca89e1b92f9ec57b38d1bec3f59e154e1f17be69e7ea0522dc7ca",
+  "before": 30,
+  "ready_after": 19,
+  "active_after": 6,
+  "handled_notices": [
+    "AUTO-UNBLOCK-FABLE-REQ-ASTRA-LEDGER",
+    "AUTO-UNBLOCK-ASTRA-HWBP-LOADED-DEADLINE",
+    "AUTO-UNBLOCK-ASTRA-HANDLE-SEMANTIC-CLOSURE",
+    "AUTO-UNBLOCK-FABLE-REQ-ASTRA-STATE-ROUNDTRIP",
+    "AUTO-UNBLOCK-FABLE-REQ-ASTRA-REGFILE-REUSE",
+    "AUTO-UNBLOCK-OPUS-REQ-ASTRA-AUDIO-GATE-LIVE",
+    "AUTO-UNBLOCK-FABLE-REQ-ASTRA-KIND-INDEX-TRACE",
+    "AUTO-UNBLOCK-FABLE-REQ-ASTRA-OLD-SAVE-LOAD",
+    "AUTO-UNBLOCK-OPUS-REQ-ASTRA-CML1-COLUMN-STABILITY",
+    "AUTO-UNBLOCK-OPUS-REQ-ASTRA-MGRMARK-RELOAD",
+    "AUTO-UNBLOCK-FABLE-REQ-ASTRA-EO3-PATH-POINTER",
+    "AUTO-UNBLOCK-OPUS-REQ-ASTRA-TWO-PARITY-CLAIMS-ARE-LIVE-ONLY"
+  ],
+  "finished_original_scoped_deliveries": [
+    "ASTRA-HWBP-LOADED-DEADLINE",
+    "ASTRA-HANDLE-SEMANTIC-CLOSURE",
+    "FABLE-REQ-ASTRA-OLD-SAVE-LOAD"
+  ],
+  "ready": [
+    {
+      "id": "AUTO-UNBLOCK-ASTRA-SHAKE-OPTION-BOUNDARY",
+      "priority": "P1"
+    },
+    {
+      "id": "AUTO-UNBLOCK-ASTRA-SKELETAL-RESET-LIVE",
+      "priority": "P1"
+    },
+    {
+      "id": "AUTO-UNBLOCK-FABLE-REQ-ASTRA-MT-CURSOR-ACROSS-A-CAMERA-SHAKE",
+      "priority": "P1"
+    },
+    {
+      "id": "AUTO-UNBLOCK-OPUS-REQ-ASTRA-ARENA-BASE-AT-RUNTIME",
+      "priority": "P1"
+    },
+    {
+      "id": "AUTO-UNBLOCK-OPUS-REQ-ASTRA-BJ1-GUARD-SNAPSHOT",
+      "priority": "P1"
+    },
+    {
+      "id": "AUTO-UNBLOCK-FABLE-REQ-ASTRA-LEADER-STATS-NULL",
+      "priority": "P2"
+    },
+    {
+      "id": "AUTO-UNBLOCK-FABLE-REQ-ASTRA-REAR-HALF-VOICE-PAN-LISTENING-TEST",
+      "priority": "P2"
+    },
+    {
+      "id": "AUTO-UNBLOCK-OPUS-REQ-ASTRA-PHYRE-HIERARCHY-AT-RUNTIME",
+      "priority": "P2"
+    },
+    {
+      "id": "AUTO-UNBLOCK-OPUS-REQ-ASTRA-S33-LOOT-POOL-ISOLATED-RUN",
+      "priority": "P2"
+    },
+    {
+      "id": "AUTO-UNBLOCK-OPUS-REQ-ASTRA-SHAKE-DRIVER-OCCUPANCY-PER-FRAME",
+      "priority": "P2"
+    },
+    {
+      "id": "AUTO-UNBLOCK-SWE2STRUCT-REQ-ASTRA-OV58D-ESPER-ORDER-0930",
+      "priority": "P2"
+    },
+    {
+      "id": "DATA-REQ-ASTRA-SD194-RUNTIME-1001",
+      "priority": "P2"
+    },
+    {
+      "id": "FABLE-REQ-ASTRA-REAR-HALF-VOICE-PAN-LISTENING-TEST",
+      "priority": "P2"
+    },
+    {
+      "id": "FABLE-NOTICE-ASTRA-GG1-SHARPER-CAPTURE",
+      "priority": "P3"
+    },
+    {
+      "id": "FABLE-NOTICE-ASTRA-OV42-PACKET-WORDING-AND-NEXT-1002",
+      "priority": "P3"
+    },
+    {
+      "id": "FABLE-REQ-ASTRA-PC1-OVERRIDE-DWORD-WRITE-WATCH",
+      "priority": "P3"
+    },
+    {
+      "id": "FABLE-REQ-ASTRA-UQ146-IN-PROCESS-FORMATTER-READ",
+      "priority": "P3"
+    },
+    {
+      "id": "FABLE-REQ-ASTRA-UQ147-KO-SUMMONER-DURING-A-SUMMON",
+      "priority": "P3"
+    },
+    {
+      "id": "FRONTIER-REQ-ASTRA-PUBLISH-PATHFILE-1001",
+      "priority": "P3"
+    }
+  ],
+  "accepted_prefix": "1..61",
+  "prepared_uncommitted": 62,
+  "frontier_request": {
+    "id": "ASTRA-REQ-FRONTIER-ATOMIC-BOARD-WRITE-DENIAL-1003",
+    "status": "READY",
+    "checkpoint": "Queued by ASTRA"
+  },
+  "next_action": "After FRONTIER control: re-check current board/task/history and continue only uncommitted62 claim/63 revised block; no accepted-prefix replay. Rear-half voice READY afterresume61 is not a prepared live task.",
+  "limits": "Administrative notice handling is not scientific closure. EXP031 staysPARTIAL; no new runtime observations. Eighteen original unknown-residue dispositions in plan are NOT all applied. FullL1L2/M0M5 goal ACTIVE/NOT_MET. Gauge source package independently advances while queue writes wait."
+}

@@ -1,0 +1,785 @@
+{
+ "page": "22-Middleware-PhyreEngine/Embedded-Lua-And-Object-Bindings/embedded-lua-and-phyre-object-bindings.md",
+ "date": "2026-10-02",
+ "session": "local-h1-opus",
+ "report": "embedded-lua-and-phyre-object-bindings.json",
+ "rows": [
+  {
+   "fn": "005A0C50",
+   "text": "calls the function pointer at qword `rcx+8` with the incoming `rcx` and `rdx`, keeping its `xmm0` result; when `r9` is non-null and `00630260()` equals `r8` it stores it as a double to qword `r9+8`, zeroes qword `[r9]` and returns 1, else returns 0",
+   "anchors": [
+    [
+     "005A0C65",
+     "call"
+    ],
+    [
+     "005A0C70",
+     "call"
+    ],
+    [
+     "005A0C78",
+     "jne"
+    ],
+    [
+     "005A0C7A",
+     "movsd"
+    ],
+    [
+     "005A0C84",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005C80F0",
+   "text": "calls `0080F420(rdx, 1)` and tail-jumps to `00810580` with `rdx` and the dword at `[r8]`",
+   "anchors": [
+    [
+     "005C8108",
+     "call"
+    ],
+    [
+     "005C810D",
+     "mov"
+    ],
+    [
+     "005C811C",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005CBCC0",
+   "text": "calls the function pointer at qword `rcx+8` with the incoming `rcx` and `rdx`, keeping its `xmm0` result; when `r9` is non-null and `006301F0()` equals `r8` it stores it as a float to dword `r9+8`, zeroes qword `[r9]` and returns 1, else returns 0",
+   "anchors": [
+    [
+     "005CBCD5",
+     "call"
+    ],
+    [
+     "005CBCE0",
+     "call"
+    ],
+    [
+     "005CBCE8",
+     "jne"
+    ],
+    [
+     "005CBCEA",
+     "movss"
+    ],
+    [
+     "005CBCF4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005CBD20",
+   "text": "returns 0 when `rdx` is null; otherwise calls the function pointer at qword `rcx+8` with `rdx` - 8 plus the sign-extended dword `rcx+0x10`, keeping its `xmm0` result; when `r9` is non-null and `006301F0()` equals `r8` it stores it as a float to dword `r9+8`, zeroes qword `[r9]` and returns 1, else returns 0",
+   "anchors": [
+    [
+     "005CBD36",
+     "je"
+    ],
+    [
+     "005CBD48",
+     "call"
+    ],
+    [
+     "005CBD54",
+     "call"
+    ],
+    [
+     "005CBD5E",
+     "movss"
+    ],
+    [
+     "005CBD6D",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005CC1F0",
+   "text": "returns 0 when `rdx` is null; otherwise calls the function pointer at qword `rcx+8` with `rdx` - 8 plus the sign-extended dword `rcx+0x10`, keeping the low byte of its result; when `r9` is non-null and `00630490()` equals `r8` it stores that byte to byte `r9+8`, zeroes qword `[r9]` and returns 1, else returns 0",
+   "anchors": [
+    [
+     "005CC206",
+     "je"
+    ],
+    [
+     "005CC218",
+     "call"
+    ],
+    [
+     "005CC224",
+     "call"
+    ],
+    [
+     "005CC22E",
+     "mov"
+    ],
+    [
+     "005CC23C",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005CC360",
+   "text": "returns 0 when `rdx` is null; otherwise calls the function pointer at qword `rcx+8` with `rdx`, keeping its `eax` result; when `r9` is non-null and `00630180()` equals `r8` it stores it to dword `r9+8`, zeroes qword `[r9]` and returns 1, else returns 0",
+   "anchors": [
+    [
+     "005CC376",
+     "je"
+    ],
+    [
+     "005CC380",
+     "call"
+    ],
+    [
+     "005CC38A",
+     "call"
+    ],
+    [
+     "005CC394",
+     "mov"
+    ],
+    [
+     "005CC3A1",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0062FB40",
+   "text": "tail-jumps to `00684080` with `rdx`, `r8` + 0x30 (0 when `r8` is null) and the address `02CF8580`",
+   "anchors": [
+    [
+     "0062FB45",
+     "test"
+    ],
+    [
+     "0062FB53",
+     "cmove"
+    ],
+    [
+     "0062FB5A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0063A110",
+   "text": "calls the function pointer at qword `rcx+8` with the incoming `rcx` and `rdx`, then `00684080(rdx, result + 0x10, the address 02CF8980)` with 0 in place of a null result, and returns 1",
+   "anchors": [
+    [
+     "0063A119",
+     "call"
+    ],
+    [
+     "0063A121",
+     "lea"
+    ],
+    [
+     "0063A133",
+     "call"
+    ],
+    [
+     "0063A138",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0063D0C0",
+   "text": "calls `0080F420(rdx, 1)` and tail-jumps to `00810580` with `rdx` and the byte at `[r8]` sign-extended",
+   "anchors": [
+    [
+     "0063D0D8",
+     "call"
+    ],
+    [
+     "0063D0DD",
+     "movsx"
+    ],
+    [
+     "0063D0EE",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0063D100",
+   "text": "calls `0080F420(rdx, 1)` and tail-jumps to `00810580` with `rdx` and the byte at `[r8]` zero-extended",
+   "anchors": [
+    [
+     "0063D118",
+     "call"
+    ],
+    [
+     "0063D11D",
+     "movzx"
+    ],
+    [
+     "0063D12D",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0063D140",
+   "text": "calls `0080F420(rdx, 1)` and tail-jumps to `00810580` with `rdx` and the word at `[r8]` sign-extended",
+   "anchors": [
+    [
+     "0063D158",
+     "call"
+    ],
+    [
+     "0063D15D",
+     "movsx"
+    ],
+    [
+     "0063D16E",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0063D180",
+   "text": "calls `0080F420(rdx, 1)` and tail-jumps to `00810580` with `rdx` and the word at `[r8]` zero-extended",
+   "anchors": [
+    [
+     "0063D198",
+     "call"
+    ],
+    [
+     "0063D19D",
+     "movzx"
+    ],
+    [
+     "0063D1AD",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0063D1C0",
+   "text": "calls `0080F420(rdx, 1)` and tail-jumps to `00810580` with `rdx` and the dword at `[r8]` sign-extended",
+   "anchors": [
+    [
+     "0063D1D8",
+     "call"
+    ],
+    [
+     "0063D1DD",
+     "movsxd"
+    ],
+    [
+     "0063D1ED",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0063D280",
+   "text": "calls `0080F420(rdx, 1)` and tail-jumps to `00810580` with `rdx` and the qword at `[r8]`",
+   "anchors": [
+    [
+     "0063D298",
+     "call"
+    ],
+    [
+     "0063D29D",
+     "mov"
+    ],
+    [
+     "0063D2AD",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0063D2C0",
+   "text": "calls `0080F420(rdx, 1)` and tail-jumps to `00810450` with `rdx` and the byte at `[r8]` zero-extended",
+   "anchors": [
+    [
+     "0063D2D8",
+     "call"
+    ],
+    [
+     "0063D2DD",
+     "movzx"
+    ],
+    [
+     "0063D2ED",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00677850",
+   "text": "reads dword `+4` of the thread-local block indexed by dword `02EAED3C` (through `gs:[0x58]`); when dword `02D3ED10` is greater than it (signed) it calls `008092FC` with the address `02D3ED10` and, only when `02D3ED10` is then -1, stores `0062FF50()` OR 1 to qword `02D3ED00`, zeroes qword `02D3ED08` and calls `0080929C` with the address `02D3ED10`; every path returns the address `02D3ED00`",
+   "anchors": [
+    [
+     "00677878",
+     "cmp"
+    ],
+    [
+     "00677887",
+     "call"
+    ],
+    [
+     "00677895",
+     "call"
+    ],
+    [
+     "0067789E",
+     "mov"
+    ],
+    [
+     "006778B7",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00683A40",
+   "text": "calls `008119F0(rcx, 0)`; when it returns 5 and the incoming `edx` is non-zero, runs `edx` passes with i counting from 1: `00810580(rcx, i)`, `0080FC70(rcx, -2)` and slot `+0x18` of `r9`'s vtable with `r9`, `rcx` and a pointer that starts at `r8` and advances by dword `r9+0x38` (re-read each pass)",
+   "anchors": [
+    [
+     "00683A63",
+     "call"
+    ],
+    [
+     "00683A68",
+     "cmp"
+    ],
+    [
+     "00683A86",
+     "call"
+    ],
+    [
+     "00683AA4",
+     "call"
+    ],
+    [
+     "00683AAD",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "00683FF0",
+   "text": "calls `0080F740(rcx, edx, 0)` and, when `edx` is non-zero, runs `edx` passes with i counting from 1: `00810580(rcx, i)`, slot `+0x20` of `r9`'s vtable with `r9`, `rcx` and a pointer that starts at `r8` and advances by dword `r9+0x38` (read once), and `00811090(rcx, -3)`",
+   "anchors": [
+    [
+     "0068400B",
+     "call"
+    ],
+    [
+     "00684023",
+     "mov"
+    ],
+    [
+     "00684036",
+     "call"
+    ],
+    [
+     "00684047",
+     "call"
+    ],
+    [
+     "00684052",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006841F0",
+   "text": "calls `0080F740(rcx, edx, 0)` and, when `edx` is non-zero, runs `edx` passes with i counting from 1: `00810580(rcx, i)`, slot `+0x30` of `r9`'s vtable with `r9`, `rcx` and a pointer that starts at `r8` and advances by 8, and `00811090(rcx, -3)`",
+   "anchors": [
+    [
+     "00684213",
+     "call"
+    ],
+    [
+     "00684236",
+     "call"
+    ],
+    [
+     "00684247",
+     "call"
+    ],
+    [
+     "00684252",
+     "call"
+    ],
+    [
+     "0068425A",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "006843D0",
+   "text": "calls `00810240(rcx, 0x10)` and, when it returns a block, calls `0080FA50(rcx, -1001000, the string \"Vector\" at 00D70154)` and `00810F60(rcx, -2)`, copies the three floats at `rdx`, `rdx+4` and `rdx+8` to the block and zeroes its dword `+0xC`",
+   "anchors": [
+    [
+     "006843EA",
+     "call"
+    ],
+    [
+     "006843FE",
+     "mov"
+    ],
+    [
+     "00684406",
+     "call"
+    ],
+    [
+     "00684426",
+     "movss"
+    ],
+    [
+     "00684434",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00684A80",
+   "text": "calls the function pointer at qword `rcx+8` with the incoming `rcx` and `rdx`, then `00683DC0(rdx, result)`, and returns 1",
+   "anchors": [
+    [
+     "00684A89",
+     "call"
+    ],
+    [
+     "00684A92",
+     "call"
+    ],
+    [
+     "00684A97",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006A6780",
+   "text": "returns 0 when `rdx` is null; otherwise calls the function pointer at qword `rcx+8` with `rdx`, keeping its `xmm0` result; when `r9` is non-null and `006301F0()` equals `r8` it stores it as a float to dword `r9+8`, zeroes qword `[r9]` and returns 1, else returns 0",
+   "anchors": [
+    [
+     "006A6796",
+     "je"
+    ],
+    [
+     "006A67A0",
+     "call"
+    ],
+    [
+     "006A67AB",
+     "call"
+    ],
+    [
+     "006A67B5",
+     "movss"
+    ],
+    [
+     "006A67C4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006A6970",
+   "text": "returns 0 when `rdx` is null; otherwise calls the function pointer at qword `rcx+8` with `rdx`, keeping the low byte of its result; when `r9` is non-null and `00630490()` equals `r8` it stores that byte to byte `r9+8`, zeroes qword `[r9]` and returns 1, else returns 0",
+   "anchors": [
+    [
+     "006A6986",
+     "je"
+    ],
+    [
+     "006A6990",
+     "call"
+    ],
+    [
+     "006A699B",
+     "call"
+    ],
+    [
+     "006A69A5",
+     "mov"
+    ],
+    [
+     "006A69B3",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006A7860",
+   "text": "returns 0 when `rdx` is null; otherwise calls the function pointer at qword `rcx+8` with `rdx`, keeping its `rax` result; when `r9` is non-null and `0062FF50()` OR 1 equals `r8` it stores it to qword `r9+8`, zeroes qword `[r9]` and returns 1, else returns 0",
+   "anchors": [
+    [
+     "006A7876",
+     "je"
+    ],
+    [
+     "006A7880",
+     "call"
+    ],
+    [
+     "006A7890",
+     "or"
+    ],
+    [
+     "006A7899",
+     "mov"
+    ],
+    [
+     "006A78A7",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006A9D10",
+   "text": "when qword `[r8]` is non-null tail-jumps to `00684080(rdx, that, qword r8+8)`; otherwise calls `0080F420(rdx, 1)` and tail-jumps to `00810620(rdx)`",
+   "anchors": [
+    [
+     "006A9D1F",
+     "test"
+    ],
+    [
+     "006A9D2D",
+     "jmp"
+    ],
+    [
+     "006A9D37",
+     "call"
+    ],
+    [
+     "006A9D44",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006B0110",
+   "text": "reads dword `+4` of the thread-local block indexed by dword `02EAED3C` (through `gs:[0x58]`); when dword `02E50128` is greater than it (signed) it calls `008092FC` with the address `02E50128` and, only when `02E50128` is then -1, stores `0062FF50()` OR 1 to qword `02E50118`, zeroes qword `02E50120` and calls `0080929C` with the address `02E50128`; every path returns the address `02E50118`",
+   "anchors": [
+    [
+     "006B0138",
+     "cmp"
+    ],
+    [
+     "006B0147",
+     "call"
+    ],
+    [
+     "006B0155",
+     "call"
+    ],
+    [
+     "006B015E",
+     "mov"
+    ],
+    [
+     "006B0177",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006B3A40",
+   "text": "reads qword `[r8]` and calls `006B33F0` with the incoming registers; when that qword is non-null it tail-jumps to `006B3610(rdx, that qword, the 006B33F0 result)`, otherwise calls `0080F420(rdx, 1)` and tail-jumps to `00810620(rdx)`",
+   "anchors": [
+    [
+     "006B3A4A",
+     "mov"
+    ],
+    [
+     "006B3A50",
+     "call"
+    ],
+    [
+     "006B3A6D",
+     "jmp"
+    ],
+    [
+     "006B3A77",
+     "call"
+    ],
+    [
+     "006B3A89",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006DA380",
+   "text": "with q = (dword `[rcx]` + 3) >> 2, m = dword `rcx+4` and s = dword `rcx+8`, calls slot `+8` of `rdx`'s vtable three times with (`rdx`, area, count, a type, 0): area `rcx` + 0x30 and count q with the result of `006B08A0()`; area `rcx` + 0x30 + q*0x40 and count m with `006B0B20()`'s; area `rcx` + 0x30 + (4q + m)*0x10 and count 4s with `0062FFC0()`'s",
+   "anchors": [
+    [
+     "006DA3AE",
+     "shr"
+    ],
+    [
+     "006DA3C0",
+     "call"
+    ],
+    [
+     "006DA3F2",
+     "call"
+    ],
+    [
+     "006DA417",
+     "call"
+    ],
+    [
+     "006DA435",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0079A6C0",
+   "text": "calls the function pointer at qword `rcx+8` with a 16-byte stack slot as its first argument and reads the 16 bytes at the pointer it returns; when their first qword is non-null calls `00684080(rdx, first qword, second qword)`, otherwise `0080F420(rdx, 1)` then `00810620(rdx)`; returns 1",
+   "anchors": [
+    [
+     "0079A6D1",
+     "call"
+    ],
+    [
+     "0079A6E4",
+     "test"
+    ],
+    [
+     "0079A6EE",
+     "call"
+    ],
+    [
+     "0079A703",
+     "call"
+    ],
+    [
+     "0079A70B",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007A32C0",
+   "text": "returns 0 when `rdx` is null; otherwise calls the function pointer at qword `rcx+8` with `rdx` - 8, keeping its `eax` result; when `r9` is non-null and `00630110()` equals `r8` it stores it to dword `r9+8`, zeroes qword `[r9]` and returns 1, else returns 0",
+   "anchors": [
+    [
+     "007A32D6",
+     "je"
+    ],
+    [
+     "007A32E1",
+     "call"
+    ],
+    [
+     "007A32EB",
+     "call"
+    ],
+    [
+     "007A32F5",
+     "mov"
+    ],
+    [
+     "007A3302",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007A3340",
+   "text": "returns 0 when `rdx` is null; otherwise calls the function pointer at qword `rcx+8` with `rdx` - 8, keeping its `eax` result; when `r9` is non-null and `00630180()` equals `r8` it stores it to dword `r9+8`, zeroes qword `[r9]` and returns 1, else returns 0",
+   "anchors": [
+    [
+     "007A3356",
+     "je"
+    ],
+    [
+     "007A3361",
+     "call"
+    ],
+    [
+     "007A336B",
+     "call"
+    ],
+    [
+     "007A3375",
+     "mov"
+    ],
+    [
+     "007A3382",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007A3450",
+   "text": "returns 0 when `rdx` is null; otherwise calls the function pointer at qword `rcx+8` with `rdx` - 8, keeping its `xmm0` result; when `r9` is non-null and `00630260()` equals `r8` it stores it as a double to qword `r9+8`, zeroes qword `[r9]` and returns 1, else returns 0",
+   "anchors": [
+    [
+     "007A3466",
+     "je"
+    ],
+    [
+     "007A3471",
+     "call"
+    ],
+    [
+     "007A347C",
+     "call"
+    ],
+    [
+     "007A3486",
+     "movsd"
+    ],
+    [
+     "007A3495",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007A3630",
+   "text": "returns 0 when `rdx` is null; otherwise calls the function pointer at qword `rcx+8` with `rdx` - 8 plus the sign-extended dword `rcx+0x10`, keeping its `eax` result; when `r9` is non-null and `00630180()` equals `r8` it stores it to dword `r9+8`, zeroes qword `[r9]` and returns 1, else returns 0",
+   "anchors": [
+    [
+     "007A3646",
+     "je"
+    ],
+    [
+     "007A3658",
+     "call"
+    ],
+    [
+     "007A3663",
+     "call"
+    ],
+    [
+     "007A366D",
+     "mov"
+    ],
+    [
+     "007A367A",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "005FE350": "1,298-byte type switch; left for a dedicated pass rather than condensed into one sentence"
+ },
+ "missing": [],
+ "corrections": [],
+ "mode": "homing"
+}

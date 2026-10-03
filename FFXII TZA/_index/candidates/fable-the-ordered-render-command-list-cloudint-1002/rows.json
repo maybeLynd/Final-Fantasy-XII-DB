@@ -1,0 +1,244 @@
+{
+ "page": "17-Presentation-Rendering/Render-Command-List/the-ordered-render-command-list.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01924rEWURNFUyvDKP31ShM7",
+ "report": "the-ordered-render-command-list.json",
+ "rows": [
+  {
+   "fn": "001C3590",
+   "text": "stores `r9` at qword `[rcx]`; then, while the source pointer `rdx` differs from `r8`, calls `001FE6B0` with `rcx` = the current qword `[rcx]` and `rdx` = the current source when that qword is non-null, and advances both the source and qword `[rcx]` by `0x10`; returns `rcx`",
+   "anchors": [
+    [
+     "001C35AB",
+     "mov"
+    ],
+    [
+     "001C35AE",
+     "cmp"
+    ],
+    [
+     "001C35D2",
+     "call"
+    ],
+    [
+     "001C35EA",
+     "add"
+    ],
+    [
+     "001C35F1",
+     "jne"
+    ]
+   ]
+  },
+  {
+   "fn": "001D85A0",
+   "text": "stores the dword `0x40C00000` at `+0x8C` of `rcx` and the dword `0x437F0000` at `+0x88`, then returns",
+   "anchors": [
+    [
+     "001D85AA",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "001E5270",
+   "text": "calls `0018B4E0` with `rcx` unchanged and tail-jumps `0018AFF0` with its result as `rcx` and qword `+0x10` of the original `rcx` as `rdx`",
+   "anchors": [
+    [
+     "001E5279",
+     "call"
+    ],
+    [
+     "001E527E",
+     "mov"
+    ],
+    [
+     "001E528A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "001F1B80",
+   "text": "calls `00212CC0(rcx)`, stores `edx` at dword `+0x18` and the address `009031D0` at qword `+0x0` of `rcx`; then stores to dword `01F82EC0` its old value plus 1 when `edx` is non-zero, or 0 when `edx` is zero (`cmove`); returns `rcx`",
+   "anchors": [
+    [
+     "001F1B8F",
+     "call"
+    ],
+    [
+     "001F1B9B",
+     "mov"
+    ],
+    [
+     "001F1B9E",
+     "mov"
+    ],
+    [
+     "001F1BB2",
+     "cmove"
+    ],
+    [
+     "001F1BB5",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "001F1C30",
+   "text": "calls `00212CC0(rcx)`, stores the address `009032D0` at qword `+0x0` of `rcx` and zeroes qword `+0x18`; stores `00210EC0(0x200)` at `+0x18`, calls `00861EC0(that buffer, 0, 0x200)`, then calls through the import qword `008C2F70` with (qword `+0x18`, `rdx`, `0x1FF`); returns `rcx`",
+   "anchors": [
+    [
+     "001F1C4E",
+     "call"
+    ],
+    [
+     "001F1C6B",
+     "call"
+    ],
+    [
+     "001F1C70",
+     "mov"
+    ],
+    [
+     "001F1C7F",
+     "call"
+    ],
+    [
+     "001F1C91",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "001F2520",
+   "text": "stores the address `009032D0` at qword `+0x0` of `rcx`, calls `00809950(qword +0x18, 1)` and then `00212CE0(rcx)`; when bit 0 of `edx` is set also calls `00809950(rcx, 0x20)`; returns `rcx`",
+   "anchors": [
+    [
+     "001F2533",
+     "mov"
+    ],
+    [
+     "001F2542",
+     "call"
+    ],
+    [
+     "001F254A",
+     "call"
+    ],
+    [
+     "001F254F",
+     "test"
+    ],
+    [
+     "001F255C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "001F29E0",
+   "text": "calls `00188AC0(00189120())`, then tail-jumps `005FEFD0` with `rcx` = the incoming `rdx` and `edx` = dword `+0x18` of the incoming `rcx`",
+   "anchors": [
+    [
+     "001F29F0",
+     "call"
+    ],
+    [
+     "001F29F8",
+     "call"
+    ],
+    [
+     "001F29FD",
+     "mov"
+    ],
+    [
+     "001F2A0D",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "001F32B0",
+   "text": "tail-jumps `00191130` with `rcx` = `00193D50()`, `rdx` unchanged and `r8d` = dword `+0x18` of the incoming `rcx`",
+   "anchors": [
+    [
+     "001F32C0",
+     "call"
+    ],
+    [
+     "001F32C5",
+     "mov"
+    ],
+    [
+     "001F32D9",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "001F39E0",
+   "text": "calls `001B7F20` with `rcx` unchanged and tail-jumps `001B7D50` with its result as `rcx` and the incoming `rdx`",
+   "anchors": [
+    [
+     "001F39E9",
+     "call"
+    ],
+    [
+     "001F39F1",
+     "mov"
+    ],
+    [
+     "001F39F9",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0022A550",
+   "text": "returns 1 when byte `02064AD3` equals 2 and `00358330(1)` returns non-zero; otherwise returns 0",
+   "anchors": [
+    [
+     "0022A554",
+     "cmp"
+    ],
+    [
+     "0022A562",
+     "call"
+    ],
+    [
+     "0022A56B",
+     "mov"
+    ],
+    [
+     "0022A575",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "002640E0",
+   "text": "returns float `+0xE0` of the qword `+0xB8` of `rcx` when byte `+3` of `rcx` AND `0xE0` equals `0x60`; otherwise returns 0.0",
+   "anchors": [
+    [
+     "002640E6",
+     "cmp"
+    ],
+    [
+     "002640EA",
+     "xorps"
+    ],
+    [
+     "002640F5",
+     "movss"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "002986E0": "2468-byte body with many guarded paths (word +0x14/+0x5C/+0x5E clamps, three 002DD7E0 colour-unpack loops, a 0035D330/002B58B0/0029FB50 reload branch, byte +6 ramps and more past the first 0x2A0 bytes); one access sentence cannot state every path without guessing, so it is left for a workstation read"
+ },
+ "missing": [],
+ "corrections": []
+}

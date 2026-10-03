@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-resource-eligibility-domain\controls-01\failed-upstream-proof\qualify-singleton.py", line 104, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-resource-eligibility-domain\controls-01\failed-upstream-proof\qualify-singleton.py", line 70, in main
+    need(status.get('terminal') is True and status.get('exit')==0 and status.get('exception') is None and status.get('driver_sha256')==sha(P/'prove.py') and base.get('producer_complete') is True and base.get('driver_sha256')==sha(P/'prove.py'),'base invariant result/status failed')
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-resource-eligibility-domain\controls-01\failed-upstream-proof\qualify-singleton.py", line 16, in need
+    if not x: raise ValueError(m)
+              ^^^^^^^^^^^^^^^^^^^
+ValueError: base invariant result/status failed

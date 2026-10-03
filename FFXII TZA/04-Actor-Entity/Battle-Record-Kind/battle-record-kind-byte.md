@@ -963,3 +963,15 @@ arm.
 | `0030BE80` (~50 B) | eligibility predicate — `rcx` null → 0; `[rcx] & 8` clear → 0; `qword[+0x698]` null → 0; else `byte[+5]`-derived (`0030BE87`/`0030BE97`) | [`0030BE97`](../../_index/ADDRESS-INDEX.md) |
 
 Shared callees outside the census: none.
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-battle-record-kind-byte-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00235AB0` | 61 B | calls `003272A0()` and returns 0 when the result is null, when its qword `+0x698` is null, when byte `+5` of that record is non-zero, or when byte `+4` minus `0x1B` is above `0xC` as an unsigned byte; otherwise (byte `+5` zero and byte `+4` in `0x1B`-`0x27`) returns 1 | `00235AB4`, `00235ABE`, `00235ACA`, `00235AD8`, `00235ADC` |
+| `0026AA60` | 97 B | takes the float `xmm1` and picks 3.141593 (`01CEBC50`) when it is at least 0.0, else -3.141593 (`00915620`); only when byte `+3` of `rcx` AND `0xE0` equals `0x60` it adds that offset, subtracts the truncated-to-integer quotient by 6.283185 (`01CEBC78`) times 6.283185, subtracts the offset again and stores the float at `+0xB0` of the object at qword `+0xB8` of `rcx`; otherwise it returns without a store | `0026AA6B`, `0026AA87`, `0026AA96`, `0026AAB0`, `0026AAB8` |
+| `00273910` | 56 B | calls `00263C20` on the result of the call at `00273910` + 0x8 (made with the incoming `rcx` still in place) and returns 0 unless it returns 3; when it is 3, returns 1 if `003229A0` called with the incoming `ecx` returns 0, else 0 | `00273918`, `00273920`, `00273925`, `00273934`, `0027393D` |
+| `0030BA80` | 67 B | calls `0031B770(rcx)` and returns 0 when it is null; returns 1 when bit 14 of the result's dword `+0` is set; otherwise returns 1 when its qword `+0x708` is non-zero and its word `+0x714` is at most `0x21E` (unsigned), else 0 | `0030BA84`, `0030BA93`, `0030BAA4`, `0030BAB3`, `0030BABC` |
+| `003528C0` | 44 B | calls `00267E10(r9)` and `00269FE0(rdx, that result)`, then tail-jumps at `003528C0` + 0x27 with `ecx` = byte `+0x15` and `edx` = word `+0` of the incoming `rdx` object, both read after the two calls | `003528CC`, `003528D6`, `003528DB`, `003528DE`, `003528E7` |

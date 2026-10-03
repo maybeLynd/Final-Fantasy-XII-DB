@@ -1,0 +1,386 @@
+# the PClassDescriptorForType destructor thunks, one row per member - derived from the shipping image by fam_rows.py (kind vtable_store)
+entry	anchor	mnemonic	value	name	callee
+00597EC0	00597EC0	lea	00D24898	Phyre::PSerialization::PBinary::PClusterHeader	thunks
+00597ED0	00597ED0	lea	00D24540	Phyre::PSerialization::PBinary::PClusterHeaderBase	thunks
+00597EE0	00597EE0	lea	00D246F0	Phyre::PSerialization::PBinary::PClusterHeaderD3D11	thunks
+00597EF0	00597EF0	lea	00D24A48	Phyre::PSerialization::PBinary::PInternal::PInstanceListHeader	thunks
+005A99C0	005A99C0	lea	00D32DD0	decorated `V?$PArray@I$03@Phyre@@`	thunks
+005A99D0	005A99D0	lea	00D32BB8	decorated `V?$PArray@M$03@Phyre@@`	thunks
+005A99E0	005A99E0	lea	00D331C0	decorated `V?$PArray@PEAVPAnimationChannel@PAnimation@Phyre@@$07@Phyre@@`	thunks
+005A99F0	005A99F0	lea	00D33F90	decorated `V?$PArray@PEAVPAnimationDataSource@PAnimation@Phyre@@$07@Phyre@@`	thunks
+005A9A00	005A9A00	lea	00D337B0	decorated `V?$PArray@VPAnimationChannelTarget@PAnimation@Phyre@@$07@Phyre@@`	thunks
+005A9A10	005A9A10	lea	00D333B8	decorated `V?$PArray@VPAnimationConstantChannel@PAnimation@Phyre@@$07@Phyre@@`	thunks
+005A9A20	005A9A20	lea	00D34188	decorated `V?$PArray@VPAnimationDataSourceListEntry@PAnimation@Phyre@@$07@Phyre@@`	thunks
+005A9A30	005A9A30	lea	00D33BA0	decorated `V?$PArray@VPAnimationEvent@PAnimation@Phyre@@$03@Phyre@@`	thunks
+005A9A40	005A9A40	lea	00D34380	decorated `V?$PArray@VPAnimationNetworkInstanceTarget@PAnimation@Phyre@@$07@Phyre@@`	thunks
+005A9A50	005A9A50	lea	00D34578	decorated `V?$PArray@VPAnimationSlotArray@PAnimation@Phyre@@$07@Phyre@@`	thunks
+005A9A60	005A9A60	lea	00D33D98	decorated `V?$PArray@VPAnimationSlotFilterDeferredLoad@PAnimation@Phyre@@$07@Phyre@@`	thunks
+005A9A70	005A9A70	lea	00D339A8	decorated `V?$PArray@VPAnimationSlotListIndex@PAnimation@Phyre@@$07@Phyre@@`	thunks
+005A9A80	005A9A80	lea	00D34770	decorated `V?$PArray@VPBlendableAnimationSource@PAnimation@Phyre@@$07@Phyre@@`	thunks
+005A9A90	005A9A90	lea	00D32FC8	decorated `V?$PArray@VPQWord@Phyre@@$0BA@@Phyre@@`	thunks
+005A9AA0	005A9AA0	lea	00D335B0	decorated `V?$PSharray@PEAVPAnimationClip@PAnimation@Phyre@@@Phyre@@`	thunks
+005A9AB0	005A9AB0	lea	00D29A38	Phyre::PAnimation::PAnimatableComponent	thunks
+005A9AC0	005A9AC0	lea	00D2C4D0	Phyre::PAnimation::PAnimationAdditiveBlenderController	thunks
+005A9AD0	005A9AD0	lea	00D2B060	Phyre::PAnimation::PAnimationBlenderController	thunks
+005A9AE0	005A9AE0	lea	00D29928	Phyre::PAnimation::PAnimationChannel	thunks
+005A9AF0	005A9AF0	lea	00D29198	Phyre::PAnimation::PAnimationChannelBase	thunks
+005A9B00	005A9B00	lea	00D27DE8	Phyre::PAnimation::PAnimationChannelTarget	thunks
+005A9B10	005A9B10	lea	00D2C558	Phyre::PAnimation::PAnimationChannelTimes	thunks
+005A9B20	005A9B20	lea	00D28A78	Phyre::PAnimation::PAnimationClip	thunks
+005A9B30	005A9B30	lea	00D2B298	Phyre::PAnimation::PAnimationClipBinding	thunks
+005A9B40	005A9B40	lea	00D2BB18	Phyre::PAnimation::PAnimationClipBinding::PAnimationClipBindingChannelMap	thunks
+005A9B50	005A9B50	lea	00D2C200	Phyre::PAnimation::PAnimationClipBinding::PAnimationClipBindingDataBlockCache	thunks
+005A9B60	005A9B60	lea	00D2A470	Phyre::PAnimation::PAnimationConstantChannel	thunks
+005A9B70	005A9B70	lea	00D280B8	Phyre::PAnimation::PAnimationController	thunks
+005A9B80	005A9B80	lea	00D2C0A8	Phyre::PAnimation::PAnimationDataSource	thunks
+005A9B90	005A9B90	lea	00D29F18	Phyre::PAnimation::PAnimationDataSourceListEntry	thunks
+005A9BA0	005A9BA0	lea	00D2B3A8	Phyre::PAnimation::PAnimationEvent	thunks
+005A9BB0	005A9BB0	lea	00D2CA90	Phyre::PAnimation::PAnimationEventController	thunks
+005A9BC0	005A9BC0	lea	00D2C3C0	Phyre::PAnimation::PAnimationEventList	thunks
+005A9BD0	005A9BD0	lea	00D2CED0	Phyre::PAnimation::PAnimationHierarchyNode	thunks
+005A9BE0	005A9BE0	lea	00D2CCE0	Phyre::PAnimation::PAnimationNetworkInstance	thunks
+005A9BF0	005A9BF0	lea	00D2A980	Phyre::PAnimation::PAnimationNetworkInstanceTarget	thunks
+005A9C00	005A9C00	lea	00D2AB88	Phyre::PAnimation::PAnimationSet	thunks
+005A9C10	005A9C10	lea	00D2B9F0	Phyre::PAnimation::PAnimationSlotArray	thunks
+005A9C20	005A9C20	lea	00D29E08	Phyre::PAnimation::PAnimationSlotFilter	thunks
+005A9C30	005A9C30	lea	00D28C78	Phyre::PAnimation::PAnimationSlotFilterDeferredLoad	thunks
+005A9C40	005A9C40	lea	00D2B100	Phyre::PAnimation::PAnimationSlotListIndex	thunks
+005A9C50	005A9C50	lea	00D2CFE0	Phyre::PAnimation::PAnimationSpuTargetBlenderController	thunks
+005A9C60	005A9C60	lea	00D286B8	Phyre::PAnimation::PAnimationTargetBlenderController	thunks
+005A9C70	005A9C70	lea	00D2B888	Phyre::PAnimation::PAnimationWeightedBlenderController	thunks
+005A9C80	005A9C80	lea	00D284B0	Phyre::PAnimation::PBlendableAnimationSource	thunks
+005A9C90	005A9C90	lea	00D28D78	Phyre::PAnimation::PTimeController	thunks
+005A9CA0	005A9CA0	lea	00D29700	Phyre::PAnimation::PTimeIntervalController	thunks
+005A9CB0	005A9CB0	lea	00D2A268	Phyre::PAnimation::PTimeScaleOffsetController	thunks
+005DCFF0	005DCFF0	lea	00D4D338	decorated `V?$PArray@PEAVPEffectVariant@PRendering@Phyre@@$07@Phyre@@`	thunks
+005DD000	005DD000	lea	00D4E100	decorated `V?$PArray@PEAVPModifierNetworkInstance@PDynamicGeometry@Phyre@@$07@Phyre@@`	thunks
+005DD010	005DD010	lea	00D4D140	decorated `V?$PArray@PEAVPSceneRenderPass@PRendering@Phyre@@$07@Phyre@@`	thunks
+005DD020	005DD020	lea	00D4D920	decorated `V?$PArray@PEBVPContextSwitch@PRendering@Phyre@@$07@Phyre@@`	thunks
+005DD030	005DD030	lea	00D4D530	decorated `V?$PArray@PEBVPLightType@PRendering@Phyre@@$07@Phyre@@`	thunks
+005DD040	005DD040	lea	00D4D728	decorated `V?$PArray@PEBVPShadowCasterType@PRendering@Phyre@@$07@Phyre@@`	thunks
+005DD050	005DD050	lea	00D4CB58	decorated `V?$PArray@VPContextVariantFoldingTable@PRendering@Phyre@@$03@Phyre@@`	thunks
+005DD060	005DD060	lea	00D4CD50	decorated `V?$PArray@VPMaterialSwitch@PRendering@Phyre@@$07@Phyre@@`	thunks
+005DD070	005DD070	lea	00D4B7A8	decorated `V?$PArray@VPMatrix4@Phyre@@$03@Phyre@@`	thunks
+005DD080	005DD080	lea	00D4DF08	decorated `V?$PArray@VPMeshInstanceSegmentContext@PRendering@Phyre@@$07@Phyre@@`	thunks
+005DD090	005DD090	lea	00D4DB18	decorated `V?$PArray@VPNodeContext@PRendering@Phyre@@$07@Phyre@@`	thunks
+005DD0A0	005DD0A0	lea	00D4CF48	decorated `V?$PArray@VPSceneRenderPass@PRendering@Phyre@@$07@Phyre@@`	thunks
+005DD0B0	005DD0B0	lea	00D4C768	decorated `V?$PArray@VPShader@PRendering@Phyre@@$07@Phyre@@`	thunks
+005DD0C0	005DD0C0	lea	00D4C180	decorated `V?$PArray@VPShaderParameterCaptureBufferLocation@PRendering@Phyre@@$01@Phyre@@`	thunks
+005DD0D0	005DD0D0	lea	00D4BD90	decorated `V?$PArray@VPShaderParameterCaptureBufferLocationType@PRendering@Phyre@@$01@Phyre@@`	thunks
+005DD0E0	005DD0E0	lea	00D4BF88	decorated `V?$PArray@VPShaderParameterCaptureBufferLocationTypeConstantBuffer@PRendering@Phyre@@$03@Phyre@@`	thunks
+005DD0F0	005DD0F0	lea	00D4BB98	decorated `V?$PArray@VPShaderParameterDefinition@PRendering@Phyre@@$07@Phyre@@`	thunks
+005DD100	005DD100	lea	00D4C378	decorated `V?$PArray@VPShaderPass@PRendering@Phyre@@$07@Phyre@@`	thunks
+005DD110	005DD110	lea	00D4C960	decorated `V?$PArray@VPShaderPassInfo@PRendering@Phyre@@$07@Phyre@@`	thunks
+005DD120	005DD120	lea	00D4B9A0	decorated `V?$PArray@VPShaderStreamDefinition@PRendering@Phyre@@$07@Phyre@@`	thunks
+005DD130	005DD130	lea	00D4B5B0	decorated `V?$PArray@VPString@Phyre@@$07@Phyre@@`	thunks
+005DD140	005DD140	lea	00D4C570	decorated `V?$PSharray@I@Phyre@@`	thunks
+005DD150	005DD150	lea	00D4DD10	decorated `V?$PSharray@PEBVPMeshInstanceSegmentStreamBinding@PRendering@Phyre@@@Phyre@@`	thunks
+005DD160	005DD160	lea	00D3B780	Phyre::PRendering::PConstantBuffer	thunks
+005DD170	005DD170	lea	00D36738	Phyre::PRendering::PConstantBufferBase	thunks
+005DD180	005DD180	lea	00D36DF8	Phyre::PRendering::PContextVariantFoldingTable	thunks
+005DD190	005DD190	lea	00D413A0	Phyre::PRendering::PDynamicMeshInstance	thunks
+005DD1A0	005DD1A0	lea	00D3F608	Phyre::PRendering::PEffect	thunks
+005DD1B0	005DD1B0	lea	00D381F8	Phyre::PRendering::PEffectVariant	thunks
+005DD1C0	005DD1C0	lea	00D40078	Phyre::PRendering::PForwardShadowRenderer	thunks
+005DD1D0	005DD1D0	lea	00D42650	Phyre::PRendering::PIndirectArgsBuffer	thunks
+005DD1E0	005DD1E0	lea	00D3FCC0	Phyre::PRendering::PIndirectArgsBufferBase	thunks
+005DD1F0	005DD1F0	lea	00D3E8B8	Phyre::PRendering::PMaterial	thunks
+005DD200	005DD200	lea	00D3C940	Phyre::PRendering::PMaterialSwitch	thunks
+005DD210	005DD210	lea	00D3F550	Phyre::PRendering::PMeshInstance	thunks
+005DD220	005DD220	lea	00D361C0	Phyre::PRendering::PMeshInstanceAttachPoint	thunks
+005DD230	005DD230	lea	00D3B3F0	Phyre::PRendering::PMeshInstanceBounds	thunks
+005DD240	005DD240	lea	00D37920	Phyre::PRendering::PMeshInstanceSegmentContext	thunks
+005DD250	005DD250	lea	00D41DE8	Phyre::PRendering::PMeshInstanceSegmentStreamBinding	thunks
+005DD260	005DD260	lea	00D367F0	Phyre::PRendering::PModifierNetworkDynamicMeshInstance	thunks
+005DD270	005DD270	lea	00D3A418	Phyre::PRendering::PNodeContext	thunks
+005DD280	005DD280	lea	00D3ADA8	Phyre::PRendering::PParameterBuffer	thunks
+005DD290	005DD290	lea	00D39498	Phyre::PRendering::PParameterBufferBase	thunks
+005DD2A0	005DD2A0	lea	00D3D500	Phyre::PRendering::PRenderTarget	thunks
+005DD2B0	005DD2B0	lea	00D39050	Phyre::PRendering::PRenderTargetBase	thunks
+005DD2C0	005DD2C0	lea	00D36BB8	Phyre::PRendering::PSamplerState	thunks
+005DD2D0	005DD2D0	lea	00D40398	Phyre::PRendering::PSamplerStateBase	thunks
+005DD2E0	005DD2E0	lea	00D3C380	Phyre::PRendering::PSceneRenderPass	thunks
+005DD2F0	005DD2F0	lea	00D41A58	Phyre::PRendering::PSceneWideParameterBuffer	thunks
+005DD300	005DD300	lea	00D3D810	Phyre::PRendering::PShader	thunks
+005DD310	005DD310	lea	00D416A0	Phyre::PRendering::PShaderComputeProgram	thunks
+005DD320	005DD320	lea	00D3E460	Phyre::PRendering::PShaderFragmentProgram	thunks
+005DD330	005DD330	lea	00D40420	Phyre::PRendering::PShaderGeometryProgram	thunks
+005DD340	005DD340	lea	00D3CEA0	Phyre::PRendering::PShaderParameterCaptureBufferByteAddressBuffer	thunks
+005DD350	005DD350	lea	00D41090	Phyre::PRendering::PShaderParameterCaptureBufferDataBlock	thunks
+005DD360	005DD360	lea	00D42140	Phyre::PRendering::PShaderParameterCaptureBufferIndexDataBlock	thunks
+005DD370	005DD370	lea	00D3DEA0	Phyre::PRendering::PShaderParameterCaptureBufferLocation	thunks
+005DD380	005DD380	lea	00D3FBB0	Phyre::PRendering::PShaderParameterCaptureBufferLocationSize	thunks
+005DD390	005DD390	lea	00D41118	Phyre::PRendering::PShaderParameterCaptureBufferLocationType	thunks
+005DD3A0	005DD3A0	lea	00D42268	Phyre::PRendering::PShaderParameterCaptureBufferLocationTypeConstantBuffer	thunks
+005DD3B0	005DD3B0	lea	00D3DF28	Phyre::PRendering::PShaderParameterCaptureBufferRWByteAddressBuffer	thunks
+005DD3C0	005DD3C0	lea	00D3BB20	Phyre::PRendering::PShaderParameterCaptureBufferRWStructuredBuffer	thunks
+005DD3D0	005DD3D0	lea	00D36120	Phyre::PRendering::PShaderParameterCaptureBufferRWTexture2D	thunks
+005DD3E0	005DD3E0	lea	00D377D8	Phyre::PRendering::PShaderParameterCaptureBufferRWTexture3D	thunks
+005DD3F0	005DD3F0	lea	00D39190	Phyre::PRendering::PShaderParameterCaptureBufferSampler	thunks
+005DD400	005DD400	lea	00D3B130	Phyre::PRendering::PShaderParameterCaptureBufferStream	thunks
+005DD410	005DD410	lea	00D3A4A0	Phyre::PRendering::PShaderParameterCaptureBufferStructuredBuffer	thunks
+005DD420	005DD420	lea	00D3F2A8	Phyre::PRendering::PShaderParameterCaptureBufferTexture2D	thunks
+005DD430	005DD430	lea	00D40C18	Phyre::PRendering::PShaderParameterCaptureBufferTexture3D	thunks
+005DD440	005DD440	lea	00D3C9C8	Phyre::PRendering::PShaderParameterCaptureBufferTextureBase	thunks
+005DD450	005DD450	lea	00D41C40	Phyre::PRendering::PShaderParameterCaptureBufferTextureCubeMap	thunks
+005DD460	005DD460	lea	00D3FAA0	Phyre::PRendering::PShaderParameterCaptureConstantBuffer	thunks
+005DD470	005DD470	lea	00D38168	Phyre::PRendering::PShaderParameterDefinition	thunks
+005DD480	005DD480	lea	00D3AE30	Phyre::PRendering::PShaderPass	thunks
+005DD490	005DD490	lea	00D40100	Phyre::PRendering::PShaderPassBase	thunks
+005DD4A0	005DD4A0	lea	00D42A30	Phyre::PRendering::PShaderPassInfo	thunks
+005DD4B0	005DD4B0	lea	00D39A40	Phyre::PRendering::PShaderPassParameterLocationTypes	thunks
+005DD4C0	005DD4C0	lea	00D36920	Phyre::PRendering::PShaderPassParameterLocationTypesBase	thunks
+005DD4D0	005DD4D0	lea	00D3C060	Phyre::PRendering::PShaderPassParameterLocationTypesConstantBuffer	thunks
+005DD4E0	005DD4E0	lea	00D3D150	Phyre::PRendering::PShaderPassStateBase	thunks
+005DD4F0	005DD4F0	lea	00D3C720	Phyre::PRendering::PShaderProgramBase	thunks
+005DD500	005DD500	lea	00D3AF40	Phyre::PRendering::PShaderProgramParamsAndStreams	thunks
+005DD510	005DD510	lea	00D36CE8	Phyre::PRendering::PShaderSource	thunks
+005DD520	005DD520	lea	00D39E80	Phyre::PRendering::PShaderStreamDefinition	thunks
+005DD530	005DD530	lea	00D3D270	Phyre::PRendering::PShaderVertexProgram	thunks
+005DD540	005DD540	lea	00D3E130	Phyre::PRendering::PShadowRenderer	thunks
+005DD550	005DD550	lea	00D3DDA0	Phyre::PRendering::PStructuredBuffer	thunks
+005DD560	005DD560	lea	00D38D90	Phyre::PRendering::PStructuredBufferBase	thunks
+005DD570	005DD570	lea	00D3D588	Phyre::PRendering::PTexture2D	thunks
+005DD580	005DD580	lea	00D374E0	Phyre::PRendering::PTexture2DBase	thunks
+005DD590	005DD590	lea	00D38B38	Phyre::PRendering::PTexture3D	thunks
+005DD5A0	005DD5A0	lea	00D3FFF0	Phyre::PRendering::PTexture3DBase	thunks
+005DD5B0	005DD5B0	lea	00D42000	Phyre::PRendering::PTextureCommonBase	thunks
+005DD5C0	005DD5C0	lea	00D40E98	Phyre::PRendering::PTextureCubeMap	thunks
+005DD5D0	005DD5D0	lea	00D3AD08	Phyre::PRendering::PTextureCubeMapBase	thunks
+006162F0	006162F0	lea	00D55658	decorated `V?$PArray@E$00@Phyre@@`	thunks
+00616300	00616300	lea	00D55850	decorated `V?$PArray@VPStreamInputDescD3D11@PRendering@Phyre@@$07@Phyre@@`	thunks
+00616310	00616310	lea	00D50EB8	Phyre::PRendering::PConstantBufferD3D11	thunks
+00616320	00616320	lea	00D52248	Phyre::PRendering::PIndirectArgsBufferD3D11	thunks
+00616330	00616330	lea	00D51400	Phyre::PRendering::PRenderTargetD3D11	thunks
+00616340	00616340	lea	00D52660	Phyre::PRendering::PSamplerStateD3D11	thunks
+00616350	00616350	lea	00D512D8	Phyre::PRendering::PShaderComputeProgramD3D11	thunks
+00616360	00616360	lea	00D50A90	Phyre::PRendering::PShaderFragmentProgramD3D11	thunks
+00616370	00616370	lea	00D50FE8	Phyre::PRendering::PShaderGeometryProgramD3D11	thunks
+00616380	00616380	lea	00D50BF8	Phyre::PRendering::PShaderPassD3D11	thunks
+00616390	00616390	lea	00D502D8	Phyre::PRendering::PShaderPassStateD3D11	thunks
+006163A0	006163A0	lea	00D525D8	Phyre::PRendering::PShaderProgramD3D11	thunks
+006163B0	006163B0	lea	00D50360	Phyre::PRendering::PShaderVertexProgramD3D11	thunks
+006163C0	006163C0	lea	00D519B8	Phyre::PRendering::PStreamInputDescD3D11	thunks
+006163D0	006163D0	lea	00D52018	Phyre::PRendering::PStreamInputLayoutD3D11	thunks
+006163E0	006163E0	lea	00D51598	Phyre::PRendering::PStructuredBufferD3D11	thunks
+006163F0	006163F0	lea	00D51238	Phyre::PRendering::PTexture2DD3D11	thunks
+00616400	00616400	lea	00D50250	Phyre::PRendering::PTexture3DD3D11	thunks
+00616410	00616410	lea	00D51CB0	Phyre::PRendering::PTextureCubeMapD3D11	thunks
+006462C0	006462C0	lea	00D63568	decorated `V?$PArray@PEAVPPostEffectBase@PPostProcessing@Phyre@@$07@Phyre@@`	thunks
+006462D0	006462D0	lea	00D5AB98	Phyre::PPostProcessing::PAtmospherics	thunks
+006462E0	006462E0	lea	00D5F218	Phyre::PPostProcessing::PAtmosphericsBase	thunks
+006462F0	006462F0	lea	00D597C8	Phyre::PPostProcessing::PAtmosphericsD3D11	thunks
+00646300	00646300	lea	00D5DAE8	Phyre::PPostProcessing::PCelShading	thunks
+00646310	00646310	lea	00D5C5A0	Phyre::PPostProcessing::PCelShadingBase	thunks
+00646320	00646320	lea	00D5D080	Phyre::PPostProcessing::PCelShadingD3D11	thunks
+00646330	00646330	lea	00D5CEF8	Phyre::PPostProcessing::PDeferredLighting	thunks
+00646340	00646340	lea	00D5A1C8	Phyre::PPostProcessing::PDeferredLightingBase	thunks
+00646350	00646350	lea	00D5BF38	Phyre::PPostProcessing::PDeferredLightingD3D11	thunks
+00646360	00646360	lea	00D596C8	Phyre::PPostProcessing::PDepthOfField	thunks
+00646370	00646370	lea	00D5D940	Phyre::PPostProcessing::PDepthOfFieldBase	thunks
+00646380	00646380	lea	00D5EC00	Phyre::PPostProcessing::PDepthOfFieldD3D11	thunks
+00646390	00646390	lea	00D5EE50	Phyre::PPostProcessing::PFXAA	thunks
+006463A0	006463A0	lea	00D5D798	Phyre::PPostProcessing::PFXAABase	thunks
+006463B0	006463B0	lea	00D5E338	Phyre::PPostProcessing::PFXAAD3D11	thunks
+006463C0	006463C0	lea	00D5CD68	Phyre::PPostProcessing::PGlow	thunks
+006463D0	006463D0	lea	00D5A5A0	Phyre::PPostProcessing::PGlowBase	thunks
+006463E0	006463E0	lea	00D5BFC0	Phyre::PPostProcessing::PGlowD3D11	thunks
+006463F0	006463F0	lea	00D5B4C0	Phyre::PPostProcessing::PGlowGPUBase	thunks
+00646400	00646400	lea	00D5B7F8	Phyre::PPostProcessing::PLowResParticles	thunks
+00646410	00646410	lea	00D5B908	Phyre::PPostProcessing::PMLAA	thunks
+00646420	00646420	lea	00D59C70	Phyre::PPostProcessing::PMLAABase	thunks
+00646430	00646430	lea	00D5AC20	Phyre::PPostProcessing::PMLAAD3D11	thunks
+00646440	00646440	lea	00D5C518	Phyre::PPostProcessing::PMaterialPostEffect	thunks
+00646450	00646450	lea	00D5E2B0	Phyre::PPostProcessing::PMeshParticleSystemBase	thunks
+00646460	00646460	lea	00D5AE28	Phyre::PPostProcessing::PMotionBlur	thunks
+00646470	00646470	lea	00D5F000	Phyre::PPostProcessing::PMotionBlurBase	thunks
+00646480	00646480	lea	00D59AF0	Phyre::PPostProcessing::PMotionBlurD3D11	thunks
+00646490	00646490	lea	00D5E5C8	Phyre::PPostProcessing::PPostEffectBase	thunks
+006464A0	006464A0	lea	00D5D9D8	Phyre::PPostProcessing::PPostEffectManager	thunks
+006464B0	006464B0	lea	00D5D2C0	Phyre::PPostProcessing::PScreenSpaceAmbientOcclusion	thunks
+006464C0	006464C0	lea	00D5BB10	Phyre::PPostProcessing::PScreenSpaceAmbientOcclusionBase	thunks
+006464D0	006464D0	lea	00D5C6C8	Phyre::PPostProcessing::PScreenSpaceAmbientOcclusionD3D11	thunks
+006464E0	006464E0	lea	00D5B6E0	Phyre::PPostProcessing::PScreenSpaceReflection	thunks
+006464F0	006464F0	lea	00D598E8	Phyre::PPostProcessing::PScreenSpaceReflectionBase	thunks
+00646500	00646500	lea	00D5A758	Phyre::PPostProcessing::PScreenSpaceReflectionD3D11	thunks
+00662CB0	00662CB0	lea	00D697E8	decorated `V?$PArray@E$03@Phyre@@`	thunks
+00662CC0	00662CC0	lea	00D6A9A0	decorated `V?$PArray@H$03@Phyre@@`	thunks
+00662CD0	00662CD0	lea	00D6A1C0	decorated `V?$PArray@VPDataBlockD3D11@PGeometry@Phyre@@$07@Phyre@@`	thunks
+00662CE0	00662CE0	lea	00D6AB98	decorated `V?$PArray@VPDynamicSegmentDesc@PDynamicMesh@PGeometry@Phyre@@$03@Phyre@@`	thunks
+00662CF0	00662CF0	lea	00D6A5B0	decorated `V?$PArray@VPMeshSegment@PGeometry@Phyre@@$07@Phyre@@`	thunks
+00662D00	00662D00	lea	00D6A7A8	decorated `V?$PArray@VPSkeletonJointBounds@PGeometry@Phyre@@$03@Phyre@@`	thunks
+00662D10	00662D10	lea	00D69FC8	decorated `V?$PArray@VPSkinBoneRemap@PGeometry@Phyre@@$01@Phyre@@`	thunks
+00662D20	00662D20	lea	00D699E0	decorated `V?$PArray@VPVertexStream@PGeometry@Phyre@@$07@Phyre@@`	thunks
+00662D30	00662D30	lea	00D6A3B8	decorated `V?$PSharray@PEAVPMaterial@PRendering@Phyre@@@Phyre@@`	thunks
+00662D40	00662D40	lea	00D69BD8	decorated `V?$PSharray@VPDataBlockBufferD3D11@PGeometry@Phyre@@@Phyre@@`	thunks
+00662D50	00662D50	lea	00D69DD0	decorated `V?$PSharray@VPIndexDataBlockBufferD3D11@PGeometry@Phyre@@@Phyre@@`	thunks
+00662D60	00662D60	lea	00D66578	Phyre::PGeometry::PDataBlock	thunks
+00662D70	00662D70	lea	00D65D78	Phyre::PGeometry::PDataBlockBase	thunks
+00662D80	00662D80	lea	00D64E48	Phyre::PGeometry::PDataBlockBufferD3D11	thunks
+00662D90	00662D90	lea	00D657F0	Phyre::PGeometry::PDataBlockD3D11	thunks
+00662DA0	00662DA0	lea	00D63978	Phyre::PGeometry::PDynamicDataBlock	thunks
+00662DB0	00662DB0	lea	00D65520	Phyre::PGeometry::PDynamicMesh	thunks
+00662DC0	00662DC0	lea	00D65888	Phyre::PGeometry::PDynamicMesh::PDynamicSegmentDesc	thunks
+00662DD0	00662DD0	lea	00D66058	Phyre::PGeometry::PIndexDataBlock	thunks
+00662DE0	00662DE0	lea	00D643C0	Phyre::PGeometry::PIndexDataBlockBase	thunks
+00662DF0	00662DF0	lea	00D64AC0	Phyre::PGeometry::PIndexDataBlockBufferD3D11	thunks
+00662E00	00662E00	lea	00D655A8	Phyre::PGeometry::PIndexDataBlockD3D11	thunks
+00662E10	00662E10	lea	00D65998	Phyre::PGeometry::PMaterialSet	thunks
+00662E20	00662E20	lea	00D646A0	Phyre::PGeometry::PMesh	thunks
+00662E30	00662E30	lea	00D652D8	Phyre::PGeometry::PMeshSegment	thunks
+00662E40	00662E40	lea	00D63F88	Phyre::PGeometry::PMeshSegmentBase	thunks
+00662E50	00662E50	lea	00D64A38	Phyre::PGeometry::PMeshSegmentD3D11	thunks
+00662E60	00662E60	lea	00D663C8	Phyre::PGeometry::PShape	thunks
+00662E70	00662E70	lea	00D65EF0	Phyre::PGeometry::PSkeletonJointBounds	thunks
+00662E80	00662E80	lea	00D66970	Phyre::PGeometry::PSkinBoneRemap	thunks
+00662E90	00662E90	lea	00D650D8	Phyre::PGeometry::PVertexStream	thunks
+00675420	00675420	lea	00D6BA78	Phyre::PAssetReference	thunks
+00675430	00675430	lea	00D6BC90	Phyre::PAssetReferenceImport	thunks
+006784C0	006784C0	lea	00D6C618	Phyre::PCamera	thunks
+006784D0	006784D0	lea	00D6C888	Phyre::PCameraProjection	thunks
+0067CBF0	0067CBF0	lea	00D6DA60	decorated `V?$PArray@VPBitmapFontCharInfo@PText@Phyre@@$03@Phyre@@`	thunks
+0067CC00	0067CC00	lea	00D6D2D0	Phyre::PText::PBitmapFont	thunks
+0067CC10	0067CC10	lea	00D6D5B8	Phyre::PText::PBitmapFontCharInfo	thunks
+0067E680	0067E680	lea	00D6DD68	Phyre::PWorldMatrix	thunks
+006816D0	006816D0	lea	00D6EC98	Phyre::PScripting::PAsyncProcessHeader	thunks
+006816E0	006816E0	lea	00D6EAE8	Phyre::PScripting::PClassCallableMethodScript	thunks
+006816F0	006816F0	lea	00D6F120	Phyre::PScripting::PScheduler	thunks
+00681700	00681700	lea	00D6F2B8	Phyre::PScripting::PScript	thunks
+00681710	00681710	lea	00D6F090	Phyre::PScripting::PScriptCallbackHandler	thunks
+006917D0	006917D0	lea	00D7AB98	decorated `V?$PSharray@PEAVPPhysicsShape@PPhysics@Phyre@@@Phyre@@`	thunks
+006917E0	006917E0	lea	00D757B8	Phyre::PPhysics::PPhysicsBox	thunks
+006917F0	006917F0	lea	00D746A0	Phyre::PPhysics::PPhysicsBoxBase	thunks
+00691800	00691800	lea	00D74FA8	Phyre::PPhysics::PPhysicsBoxBullet	thunks
+00691810	00691810	lea	00D749C0	Phyre::PPhysics::PPhysicsCallbackData	thunks
+00691820	00691820	lea	00D75930	Phyre::PPhysics::PPhysicsCapsule	thunks
+00691830	00691830	lea	00D74728	Phyre::PPhysics::PPhysicsCapsuleBase	thunks
+00691840	00691840	lea	00D75030	Phyre::PPhysics::PPhysicsCapsuleBullet	thunks
+00691850	00691850	lea	00D74B58	Phyre::PPhysics::PPhysicsCharacterCamera	thunks
+00691860	00691860	lea	00D71600	Phyre::PPhysics::PPhysicsCharacterController	thunks
+00691870	00691870	lea	00D75F50	Phyre::PPhysics::PPhysicsCharacterControllerBase	thunks
+00691880	00691880	lea	00D70770	Phyre::PPhysics::PPhysicsCharacterControllerBullet	thunks
+00691890	00691890	lea	00D73F58	Phyre::PPhysics::PPhysicsCylinder	thunks
+006918A0	006918A0	lea	00D72960	Phyre::PPhysics::PPhysicsCylinderBase	thunks
+006918B0	006918B0	lea	00D73518	Phyre::PPhysics::PPhysicsCylinderBullet	thunks
+006918C0	006918C0	lea	00D73490	Phyre::PPhysics::PPhysicsInterface	thunks
+006918D0	006918D0	lea	00D71770	Phyre::PPhysics::PPhysicsInterfaceBase	thunks
+006918E0	006918E0	lea	00D72A50	Phyre::PPhysics::PPhysicsInterfaceBullet	thunks
+006918F0	006918F0	lea	00D75638	Phyre::PPhysics::PPhysicsMaterial	thunks
+00691900	00691900	lea	00D71B60	Phyre::PPhysics::PPhysicsMesh	thunks
+00691910	00691910	lea	00D76470	Phyre::PPhysics::PPhysicsMeshBase	thunks
+00691920	00691920	lea	00D70F58	Phyre::PPhysics::PPhysicsMeshBullet	thunks
+00691930	00691930	lea	00D73ED0	Phyre::PPhysics::PPhysicsModel	thunks
+00691940	00691940	lea	00D735A0	Phyre::PPhysics::PPhysicsPlane	thunks
+00691950	00691950	lea	00D71C70	Phyre::PPhysics::PPhysicsPlaneBase	thunks
+00691960	00691960	lea	00D72AD8	Phyre::PPhysics::PPhysicsPlaneBullet	thunks
+00691970	00691970	lea	00D73290	Phyre::PPhysics::PPhysicsRigidBody	thunks
+00691980	00691980	lea	00D70958	Phyre::PPhysics::PPhysicsRigidBodyBase	thunks
+00691990	00691990	lea	00D72408	Phyre::PPhysics::PPhysicsRigidBodyBullet	thunks
+006919A0	006919A0	lea	00D71A00	Phyre::PPhysics::PPhysicsShape	thunks
+006919B0	006919B0	lea	00D765F8	Phyre::PPhysics::PPhysicsShapeBase	thunks
+006919C0	006919C0	lea	00D70CD8	Phyre::PPhysics::PPhysicsShapeBullet	thunks
+006919D0	006919D0	lea	00D73DD8	Phyre::PPhysics::PPhysicsSphere	thunks
+006919E0	006919E0	lea	00D72850	Phyre::PPhysics::PPhysicsSphereBase	thunks
+006919F0	006919F0	lea	00D73408	Phyre::PPhysics::PPhysicsSphereBullet	thunks
+00691A00	00691A00	lea	00D71068	Phyre::PPhysics::PPhysicsTaperedCapsule	thunks
+00691A10	00691A10	lea	00D76570	Phyre::PPhysics::PPhysicsTaperedCylinder	thunks
+00691A20	00691A20	lea	00D70860	Phyre::PPhysics::PPhysicsWorld	thunks
+00691A30	00691A30	lea	00D731C8	Phyre::PPhysics::PPhysicsWorldBase	thunks
+00691A40	00691A40	lea	00D756C0	Phyre::PPhysics::PPhysicsWorldBullet	thunks
+00691A50	00691A50	lea	00D72380	Phyre::PPhysics::PRaycastResult	thunks
+006A7240	006A7240	lea	00D7B300	Phyre::PString	thunks
+006A7C50	006A7C50	lea	00D7BD38	decorated `V?$PSharray@PEAVPTriggerReceiverComponent@PGameplay@Phyre@@@Phyre@@`	thunks
+006A7C60	006A7C60	lea	00D7B7B8	Phyre::PGameplay::PTrigger	thunks
+006A9830	006A9830	lea	00D7C198	Phyre::PGameplay::PQuarryComponent	thunks
+006A9F00	006A9F00	lea	00D7C500	Phyre::PTypedObject	thunks
+006AAA40	006AAA40	lea	00D7C930	Phyre::PComponent	thunks
+006AB730	006AB730	lea	00D7CDB8	Phyre::PEntity	thunks
+006AD090	006AD090	lea	00D7D420	Phyre::PCameraOrthographic	thunks
+006AD900	006AD900	lea	00D7D800	Phyre::PCameraPerspective	thunks
+006ADF70	006ADF70	lea	00D7E118	decorated `V?$PArray@VPTypedObject@Phyre@@$07@Phyre@@`	thunks
+006ADF80	006ADF80	lea	00D7DB40	Phyre::PInstancesComponent	thunks
+006AFC10	006AFC10	lea	00D7E598	Phyre::PNameComponent	thunks
+006B04A0	006B04A0	lea	00D7E968	Phyre::PRandom::PRandomGenerator	thunks
+006B3FF0	006B3FF0	lea	00D80048	Phyre::PScene::PNode	thunks
+006B85E0	006B85E0	lea	00D80AE0	Phyre::PRendering::PMeshSegmentContext	thunks
+006BBC20	006BBC20	lea	00D82008	decorated `V?$PArray@PEBE$07@Phyre@@`	thunks
+006BBC30	006BBC30	lea	00D823F8	decorated `V?$PArray@VPModifierNetworkDynamicMeshSegment@PDynamicGeometry@Phyre@@$07@Phyre@@`	thunks
+006BBC40	006BBC40	lea	00D82200	decorated `V?$PArray@VPRenderStream@PDynamicGeometry@Phyre@@$07@Phyre@@`	thunks
+006BBC50	006BBC50	lea	00D817A0	Phyre::PDynamicGeometry::PModifierNetworkDynamicMesh	thunks
+006BBC60	006BBC60	lea	00D81420	Phyre::PDynamicGeometry::PModifierNetworkDynamicMeshSegment	thunks
+006BEC30	006BEC30	lea	00D82A48	Phyre::PRendering::PLight	thunks
+006C0FB0	006C0FB0	lea	00D83C98	decorated `V?$PArray@VPShadowSplit@PShadowCaster@PRendering@Phyre@@$07@Phyre@@`	thunks
+006C0FC0	006C0FC0	lea	00D83240	Phyre::PRendering::PShadowCaster	thunks
+006C0FD0	006C0FD0	lea	00D833E8	Phyre::PRendering::PShadowCaster::PShadowSplit	thunks
+006C3040	006C3040	lea	00D84E58	decorated `V?$PArray@PEBVPBase@Phyre@@$07@Phyre@@`	thunks
+006C3050	006C3050	lea	00D84568	Phyre::PDynamicGeometry::PModifierNetworkInstance	thunks
+006C3060	006C3060	lea	00D841F0	Phyre::PDynamicGeometry::PModifierNetworkInstanceInput	thunks
+006C3070	006C3070	lea	00D843B0	Phyre::PDynamicGeometry::PModifierNetworkInstancePacketInput	thunks
+006C5290	006C5290	lea	00D86198	decorated `V?$PArray@VPLODLevel@PLOD@Phyre@@$07@Phyre@@`	thunks
+006C52A0	006C52A0	lea	00D85FA0	decorated `V?$PSharray@PEAVPMeshInstance@PRendering@Phyre@@@Phyre@@`	thunks
+006C52B0	006C52B0	lea	00D85408	Phyre::PLOD::PLODGroup	thunks
+006C52C0	006C52C0	lea	00D851A0	Phyre::PLOD::PLODLevel	thunks
+006C8300	006C8300	lea	00D865F8	Phyre::POccluderGeometry::POccluderGeometryInstance	thunks
+006CCFF0	006CCFF0	lea	00D89D20	Phyre::PGameplay::PScriptableComponent	thunks
+006CD950	006CD950	lea	00D89FC8	Phyre::PGameplay::PTriggerReceiverTypeCallbackData	thunks
+006CE090	006CE090	lea	00D8A398	Phyre::PGameplay::PTriggerReceiverComponent	thunks
+006D01D0	006D01D0	lea	00D8CF88	decorated `V?$PArray@VPModifierAndInputs@PDynamicGeometry@Phyre@@$07@Phyre@@`	thunks
+006D01E0	006D01E0	lea	00D8D180	decorated `V?$PArray@VPModifierNetworkBuffer@PDynamicGeometry@Phyre@@$07@Phyre@@`	thunks
+006D01F0	006D01F0	lea	00D8CD90	decorated `V?$PArray@VPRenderStreamInput@PDynamicGeometry@Phyre@@$03@Phyre@@`	thunks
+006D0200	006D0200	lea	00D8B3B0	Phyre::PDynamicGeometry::PModifierAndInputs	thunks
+006D0210	006D0210	lea	00D8BD08	Phyre::PDynamicGeometry::PModifierNetwork	thunks
+006D0220	006D0220	lea	00D8B200	Phyre::PDynamicGeometry::PModifierNetworkBuffer	thunks
+006D0230	006D0230	lea	00D8AE20	Phyre::PDynamicGeometry::PModifierNetworkInfoPacket	thunks
+006D0240	006D0240	lea	00D8AB40	Phyre::PDynamicGeometry::PModifierNetworkInfoPacket_Buffer	thunks
+006D0250	006D0250	lea	00D8B948	Phyre::PDynamicGeometry::PModifierNetworkInfoPacket_ModifierCode	thunks
+006D0260	006D0260	lea	00D8BE08	Phyre::PDynamicGeometry::PModifierNetworkInfoPacket_ModifierInstance	thunks
+006D0270	006D0270	lea	00D8AFC8	Phyre::PDynamicGeometry::PRenderStream	thunks
+006D0280	006D0280	lea	00D8ACF0	Phyre::PDynamicGeometry::PRenderStreamInput	thunks
+006D8EE0	006D8EE0	lea	00D8D850	Phyre::PDynamicGeometry::PMorphModifierWeightsUserDataObject	thunks
+006D9FB0	006D9FB0	lea	00D8DE98	Phyre::POccluderGeometry::POccluderGeometryObject	thunks
+007930A0	007930A0	lea	01CB0D98	Phyre::PFramework::PApplication	thunks
+007930B0	007930B0	lea	01CB0EC0	Phyre::PFramework::PApplicationViewport	thunks
+007930C0	007930C0	lea	01CB0A50	Phyre::PFramework::PDebugUtils	thunks
+007930D0	007930D0	lea	01CB1068	Phyre::PFramework::PInputMapper	thunks
+0086C650	0086C650	lea	01CD69D8	decorated `V?$PArray@PEAVPInputAction@PInputs@Phyre@@$07@Phyre@@`	thunks
+0086C660	0086C660	lea	01CD67E0	decorated `V?$PArray@PEAVPInputSource@PInputs@Phyre@@$07@Phyre@@`	thunks
+0086C670	0086C670	lea	01CD0DD0	Phyre::PInputs::PInputAction	thunks
+0086C680	0086C680	lea	01CD1E48	Phyre::PInputs::PInputMap	thunks
+0086C690	0086C690	lea	01CD0ED8	Phyre::PInputs::PInputSource	thunks
+0086C6A0	0086C6A0	lea	01CD2AA0	Phyre::PInputs::PInputSourceJoypadAxis	thunks
+0086C6B0	0086C6B0	lea	01CD1F80	Phyre::PInputs::PInputSourceJoypadButton	thunks
+0086C6C0	0086C6C0	lea	01CD16C0	Phyre::PInputs::PInputSourceKey	thunks
+0086C6D0	0086C6D0	lea	01CD09F8	Phyre::PInputs::PInputSourceMotionAngularVelocityX	thunks
+0086C6E0	0086C6E0	lea	01CD0F60	Phyre::PInputs::PInputSourceMotionAngularVelocityY	thunks
+0086C6F0	0086C6F0	lea	01CD17E8	Phyre::PInputs::PInputSourceMotionAngularVelocityZ	thunks
+0086C700	0086C700	lea	01CD2108	Phyre::PInputs::PInputSourceMotionLinearAccelerationX	thunks
+0086C710	0086C710	lea	01CD2BA8	Phyre::PInputs::PInputSourceMotionLinearAccelerationY	thunks
+0086C720	0086C720	lea	01CD3678	Phyre::PInputs::PInputSourceMotionLinearAccelerationZ	thunks
+0086C730	0086C730	lea	01CD0578	Phyre::PInputs::PInputSourceMotionQuatW	thunks
+0086C740	0086C740	lea	01CD3700	Phyre::PInputs::PInputSourceMotionQuatX	thunks
+0086C750	0086C750	lea	01CD3FA0	Phyre::PInputs::PInputSourceMotionQuatY	thunks
+0086C760	0086C760	lea	01CCFE28	Phyre::PInputs::PInputSourceMotionQuatZ	thunks
+0086C770	0086C770	lea	01CD3578	Phyre::PInputs::PInputSourceMouseButton	thunks
+0086C780	0086C780	lea	01CD3EA0	Phyre::PInputs::PInputSourceMouseDeltaX	thunks
+0086C790	0086C790	lea	01CCFF28	Phyre::PInputs::PInputSourceMouseDeltaY	thunks
+0086C7A0	0086C7A0	lea	01CD2278	Phyre::PInputs::PInputSourceTouchDragX	thunks
+0086C7B0	0086C7B0	lea	01CD2CA8	Phyre::PInputs::PInputSourceTouchDragY	thunks
+0086C7C0	0086C7C0	lea	01CD0A80	Phyre::PInputs::PInputSourceTouchPinch	thunks
+0086C7D0	0086C7D0	lea	01CD0600	Phyre::PInputs::PInputSourceTouchRotate	thunks
+0086C7E0	0086C7E0	lea	01CD10E8	Phyre::PInputs::PInputSourceTouchTwoFingerDragX	thunks
+0086C7F0	0086C7F0	lea	01CD18F8	Phyre::PInputs::PInputSourceTouchTwoFingerDragY	thunks
+0086C800	0086C800	lea	01CD3E18	Phyre::PInputs::PInputSourceVisionTrackerX	thunks
+0086C810	0086C810	lea	01CD45E8	Phyre::PInputs::PInputSourceVisionTrackerY	thunks
+0086C820	0086C820	lea	01CD04F0	Phyre::PInputs::PInputSourceVisionTrackerZ	thunks
+00874D70	00874D70	lea	01CD73C0	Phyre::PVision::PVisionMoveTracker	thunks
+00874D80	00874D80	lea	01CD7018	Phyre::PVision::PVisionMoveTrackerBase	thunks
+00874D90	00874D90	lea	01CD71B0	Phyre::PVision::PVisionMoveTrackerWin32	thunks
+00875950	00875950	lea	01CD75D8	Phyre::PVision::PVisionTracker	thunks
+00875960	00875960	lea	01CD77F8	Phyre::PVision::PVisionTrackerBase	thunks
+00875970	00875970	lea	01CD7920	Phyre::PVision::PVisionTrackerWin32	thunks
+00878030	00878030	lea	01CD9190	Phyre::PHierarchy::POctree	thunks
+00878040	00878040	lea	01CD9338	Phyre::PHierarchy::POctreeChildren	thunks
+00878050	00878050	lea	01CD8FF0	Phyre::PHierarchy::POctreeData	thunks
+00878060	00878060	lea	01CD8CA0	Phyre::PHierarchy::POctreeWorld	thunks
+00879AE0	00879AE0	lea	01CD9E90	decorated `V?$PArray@PEAVPInputMap@PInputs@Phyre@@$07@Phyre@@`	thunks
+00879AF0	00879AF0	lea	01CD9A68	Phyre::PGame::PGameConfig	thunks

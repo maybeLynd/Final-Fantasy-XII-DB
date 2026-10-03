@@ -1,0 +1,20 @@
+{
+ "blocks_in_image": 144,
+ "blocks_outside_image": 0,
+ "catalogue": "e2a67b07700c2ec3fbfae3213965de35",
+ "classes": {
+  "returned": 27,
+  "scripted": 1
+ },
+ "elapsed_s": 20.8,
+ "emu_starts": 24,
+ "entries_executed": 27,
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "instrument": "execcov-shim v2",
+ "patched_blocks": 0,
+ "rc": 0,
+ "receipt_md5": "a04b469274a6d15ae21dda48acd63eb6",
+ "run": "spawn-placement-exec",
+ "status": "ok",
+ "unique_blocks": 144
+}

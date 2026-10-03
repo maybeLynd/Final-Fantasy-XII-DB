@@ -58,7 +58,7 @@ which kind it is holding.
 `BattleUnit_ApplyUnitDefinition(BattleUnit *unit /*rcx*/, uint16_t id /*edx*/)` (`0023A570`,
 1,808 B; three callers, section 5). It splits the id at once — `esi = id >> 8`, `r12d = id & 0xFF`
 (`0023A580`–`0023A594`) — remembers the unit's previous id (`+0x698` word `+4`, `0023A5A1`–`0023A5A8`,
-`0xFFFF` when the unit has no record), and **resets the unit** with `BattleUnit_ResetStateForReuse`
+~~`0xFFFF` when the unit has no record~~ `0xFFFF` when the unit is null or its flag bit 2 is clear — the pointer itself is not tested *(corrected 2026-10-02, OPUS: `0023A597`–`0023A5AE`, read before the reset at `0023A5B0`)*), and **resets the unit** with `BattleUnit_ResetStateForReuse`
 (`00236A60`, at `0023A5B0`), which among much else nulls `+0x698`, `+0x6A0`, `+0xE60` and `+0xE68`
 (`00236AB4`–`00236AC9`). With the battle system down (`02089300 == 0`, `0023A5B5`) it returns `0`.
 Rekey is broader than a change on the current selection: the selected-teardown path
@@ -72,13 +72,13 @@ back into the unit's `+0x08` handle (`00322073`). `003220E0` (`003220E0`–`0032
 actor's current handle (`003589B0`), advances the actor's `+0x16` discriminator (`002659D0` at
 `00322107` — [the slot-pool page](../battleunit-slot-pool-and-actor-class.md) §11), encodes the
 new handle, and, if the party-focus record's `+0x08` held the old one (`00327150`, `00322129`–
-`0032212E`), re-points the leader selector at `02EBF190 + 0x5AA4` to the re-keyed unit's type byte
+`0032212E`), ~~re-points the leader selector at `02EBF190 + 0x5AA4` to the re-keyed unit's type byte~~ stores a dword at `[02EBF190] + 0x5AA4` — the pointer is dereferenced — holding the re-keyed unit's stats byte `+4`, or `0xFF` *(corrected 2026-10-02, OPUS: `0032215E`–`00322173`, `movzx ecx, al` / `mov dword ptr [rax + 0x5AA4], ecx`)*
 (`00322139`–`00322179`); it returns the new handle. The actor-side twin `00322080` does the same
 through the actor's back-pointer and tail-calls the delegate when there is no unit. So a definition
 change can **re-key its handle and forget tracked attackers before a later rejection**;
 this is not a claim that every external handle copy is rewritten. ASTRA's
-EXP-047 executed the two wrappers' local stores in isolation; the delegate's effects are the static
-reading above.
+EXP-047 executed the two wrappers' local stores in isolation; ~~the delegate's effects are the static~~
+~~reading above.~~ *(answered: EXP-151 executed the rekey inner `003220E0` through `00322050` end-to-end — CONTRACT-battle-unit-construction.md; 2026-10-02, OPUS)*
 
 ```
 0023A626  test esi, esi / je 0023AA49          high byte 0  -> the PARTY path (2.3)
@@ -94,7 +94,7 @@ installer with `0xFFFF` (`00300F6D`–`00300F75`), which is the third case: **te
 
 > *CB-4 answered 2026-09-12 (FABLE):* the index that selects the `.ard` slot-2 (enemy) row is
 > **`r12d = id & 0xFF`** from the split in §2.1 — the definition id the callers pass (`Spawn_ApplyScriptSelectedUnit`
-> at `0023A3F1` with the script-selected id, `BattleGroup_RefreshFourActorDefinitions` with 0) — bounded at
+> at `0023A3F1` with the script-selected id, `BattleGroup_RefreshFourActorDefinitions` ~~with 0~~ with the word from its four-id array *(corrected 2026-10-02, OPUS: `00326A7B movzx esi, word ptr [r15]` / `00326B04 movzx edx, si`; an id with high byte 0 takes the party path)*) — bounded at
 > `0023A65F` by the table's count dword at `+4` (`0023A656`), and the chosen row's word `+0` then indexes
 > the slot-0 class table `02EBF150` under the same count check (`0023A6B4`–`0023A6BB`).
 
@@ -106,8 +106,8 @@ installer with `0xFFFF` (`00300F6D`–`00300F75`), which is the third case: **te
 | the spawn record | `0023A76E`–`0023A781` | `rbp = SpawnKeep_ResolvePrimaryEntry(unit->p_40, unit->b_57)` (`00236100`, the lane map and the lane byte the bind wrote) — **the `0x250` spawn record**; none → return `0` |
 | the page | `0023A787`–`0023A795` | `page = record + 0x80`, kept at `[rsp+0x90]` |
 | fresh record only | `0023A791`–`0023A7E4` | if the record's byte `+0` has neither bit 0 nor bit 2: `BattleStats_InitializeDefinitionRecord(page, id)` (`0023A7A9`, section 2.5), then **the steal bits**: record `+0x14 = 0`, bit 0 if the row's word `+0x32 != 0xFFFF`, bit 1 for `+0x34`, bit 2 for `+0x36` (`0023A7B2`–`0023A7E4`) |
-| the spawn counter | `0023A7E7`–`0023A840` | if the row's byte `+2 != 0xFF`: `bx = *(u16*)(02089340 + 0x4014 + ((byte 0208D454 << 6) + byte2) × 2)`; if `bx < SpawnHistory_GetCounterWrapThreshold()` the word becomes `bx + 1`; **record `+0x12 = (u8)bx`** — a per-area (the byte at `0208D454`), per-row-byte-2 counter of 64 words each, incremented on every fresh spawn until the wrap threshold, its pre-increment value kept on the record |
-| the definition object | `0023A843`–`0023A8E1` | `+0xE60`-bound: through `02EBF120` again and the row's word `+8 >> 11` into `02EBF170` (`0023A88A`–`0023A89D`), then `002B58B0(that)` → `r14` — an unread resolver (`FB-1`) |
+| the spawn counter | `0023A7E7`–`0023A840` | if the row's byte `+2 != 0xFF`: `bx = *(u16*)(02089340 + 0x4014 + ((byte 0208D454 << 6) + byte2) × 2)`; if `bx < SpawnHistory_GetCounterWrapThreshold()` the word becomes `bx + 1`, else 1 *(corrected 2026-10-02, OPUS: `0023A819`–`0023A838`)*; **record `+0x12 = (u8)bx`** — ~~a per-area (the byte at `0208D454`)~~ a per-bank *(answered: see "The spawn counter, corrected" below — the byte at `0208D454` is a bank selector; 2026-10-02, OPUS)*, per-row-byte-2 counter of 64 words each, incremented on every fresh spawn ~~until the wrap threshold~~ and set back to 1 at the wrap threshold `0x34`, its pre-increment value kept on the record |
+| the definition object | `0023A843`–`0023A8E1` | `+0xE60`-bound: through `02EBF120` again and the row's word `+8 >> 11` into `02EBF170` (`0023A88A`–`0023A89D`), then `002B58B0(that)` → `r14` — ~~an unread resolver~~ the resolver (`FB-1`) *(answered: FB-1, §3; 2026-10-02, OPUS)* |
 | six fields read | `0023A8E6`–`0023A910` | ~~from the **page** (`r15 = [rsp+0x90]`)~~ **corrected 2026-09-12 (FABLE): from the `.ard` slot-0 class row** — `r15 = 02EBF150's base + stride × the spawn row's word +0x00` (`0023A6F0`–`0023A6FC`; `[rsp+0x90]` is reloaded into `r15` only later, at `0023AA15`): bytes `+4` (type), `+5` (kind — the unit's `+0x56`), `+0x22`, `+0x23`, `+0x27`, word `+6` |
 | the two pointers | `0023A915`–`0023A91C` | **`+0xE60 = row`** (the spawn row, `rsi`), **`+0xE68 = ~~page~~ the slot-0 class row`** (`r15`; corrected 2026-09-12 — the page reaches `+0x698` at `0023ABFA` after `0023AA15` reloads `r15`) |
 | `+0x6E0` | `0023A92F`–`0023A95E` | `02EBF168` row selected by the row's word `+0x50`, relocated — or `0` *(variant 0 of the four set indices at `+0x50`–`+0x56`; `btlAtelSetDefaultLogic` and direct commands `0x4112`–`0x4115` reselect by `k` — CB-1, 2026-09-12)* |
@@ -116,8 +116,8 @@ installer with `0xFFFF` (`00300F6D`–`00300F75`), which is the third case: **te
 | `00328FF0` | `0023A9EC`–`0023AA04` | `(0, row byte +3 & 3, unit byte +0xEA9)` — registers the unit in the two-entry tracked-HP table `02EC1380` (§2.9) |
 | bit 43 | `0023AA09`–`0023AA44` | row byte `+3 & 3` or byte `+0x15 & 4` → unit bit 43 **set**, else **cleared**; `r15 = page` reloaded for the stores |
 
-> *The class row's word `+0x52` (2026-09-12, FABLE):* the installer copies it to unit `+0x52`
-> (§2.4), and `0031B9A0` returns it as the unit's **Clan Primer entry id** — 0–376 over the shipped
+> *The class row's word `+0x52` (2026-09-12, FABLE):* ~~the installer copies it to unit `+0x52`~~ the installer does not copy it — unit `+0x52` is the class row's word `+6`, `-1` on the party path *(corrected 2026-10-02, OPUS: `0023A910` → `0023A936` → `0023AC14`; `0023AB73` / `0023AB98`)*
+> ~~(§2.4), and~~ `0031B9A0` reads it from the class row `[unit + 0xE68]` (`0031B9CE`–`0031B9D5`) and returns it as the unit's **Clan Primer entry id** — 0–376 over the shipped
 > rows, `0xFFFF` on 107 of 954 — the index of the bestiary's 512-byte sighting / defeat block at save
 > payload `+0xB404` ([event memory at actor bind](../../14-Story-Event-Quest-Hunt/event-memory-at-actor-bind.md) §3).
 
@@ -126,7 +126,7 @@ installer with `0xFFFF` (`00300F6D`–`00300F75`), which is the third case: **te
 | step | site | what |
 |---|---|---|
 | gate | `0023AA49`–`0023AA60` | `BattleEncodedId_IsValidForClass(2, r12, 1)` (`00322C50`) must hold |
-| the row | `0023AA66`–`0023AAA8` | `row = 02EBF130.base + r12 × stride` — registry slot `02EBF130`, the party table (the registry page records its 456-byte rows and declines to name it) |
+| the row | `0023AA66`–`0023AAA8` | `row = 02EBF130.base + r12 × stride` — registry slot `02EBF130`, the party table (the registry page records ~~its 456-byte rows~~ rows of the descriptor's word `+8` bytes — 40 rows of 128 in the shipped `battle_pack.bin` *(corrected 2026-10-02, OPUS: `0023AA95 movzx esi, word ptr [rdx + 8]` / `0023AA99 imul esi, r12d`; the `st2e` header at blob `+0x44` gives count 40, row size 128)* and declines to name it) |
 | **the stats record** | `0023AAAA`–`0023AAC1` | **`r15 = *(02EBF190) + 8 + r12 × 0x1C8`** — element `r12` of the battle-state block's 40-element array; **`rbp = 0`** (`0023AAB1`): no spawn record |
 | the definition object | `0023AAC4`–`0023AB5A` | through `02EBF130` and the row's word `+0x30 >> 11` into `02EBF170` (`0023AB03`–`0023AB16`), then `002B58B0` → kept at `[rsp+0x90]` and loaded into `r14` |
 | `+0x6E0` | `0023AB64`–`0023AB9F` | **`02089378 + index × 0x170`** — a per-character block outside the registry |
@@ -181,7 +181,7 @@ record, and it does it by **resetting the level to zero and growing back up**:
 | step | site | what |
 |---|---|---|
 | reset | `0030C488`–`0030C4A2` | reads `+4` (row index, `r14`) and `+5` (kind, `esi`); **`+0x1C2 = 0`** — the level byte [the level-up page](../../13-Rewards-Progression-Economy/what-happens-when-a-character-levels-up.md) §2 identifies as the authority |
-| kind 1 | `0030C4A8`–`0030C4B8` | **`+0x88 = kind` (u8)** — the third argument, stored on the enemy branch only — then straight to the growth |
+| kind 1 | `0030C4A8`–`0030C4B8` | ~~**`+0x88 = kind` (u8)**~~ **`+0x88 = r8b` (u8)** — the third argument (`0030C4B1`), stored on the enemy branch only — then ~~straight to the growth~~ straight to `0030C650`, which for kind ≠ 0 skips the per-level stat growth and only advances `+0x1C2` *(corrected 2026-10-02, OPUS: `0030C6D9`–`0030C6DD` → `0030C7A7`–`0030C7BB`)* |
 | kind ≥ 2 | `0030C4AB` | return; nothing is grown |
 | kind 0: base stats | `0030C4BD`–`0030C54F` | `row = 02EBF130 + stride × +4` (the party table again, this time by the record's own index); **`+0x08 (u32) = row.w_16`; `+0x0C (u16) = row.w_1A`; `+0x10`, `+0x14`, `+0x18`, `+0x1C` (floats) = `(float) row.b_1E`, `row.b_21`, `row.b_24`, `row.b_27`; `+0x20 (u8) = row.b_46`** — the four float stats sit three bytes apart in the row, and the level-up page's growth bytes are `+0x1F`, `+0x22`, `+0x25`, `+0x28`: **each stat is a (base, growth) byte pair** |
 | the licence rank | `0030C552`–`0030C55F` | `BattleStats_ComputeLicenseDerivedRank(page)` (`00324100`, 198 B, this is its only caller): starts from `BattleStats_CountLicenseBits00To17(page)` (`00324020`), then for licence nodes `0x12`–`0x1E` present in the record's ownership bitmap at **`+0x194`** (`00324147`), takes the largest `BattleAction_ComputeSecondaryResourceMultiplier(0, entry.w_08)` (`00308FF0`) over the `02EBF038` entries (`00324150`–`00324197`); `+0x20 = max(row.b_46, that)` (`0030C557`–`0030C55F`) |
@@ -197,7 +197,7 @@ record, and it does it by **resetting the level to zero and growing back up**:
 reconcile:** `003105D0(unit)`; if the unit's stats carry none of status bits 0 / 1 / 31 (or
 `00313F60` returns 0) and unit flag bit 1 is clear, `BattleUnit_TeardownAndDespawn(unit, 0)`
 (`00300E40`, `00324420`–`0032442A`); then `002E42D0`, `002699D0` and `002ECEC0` on the actor at
-unit `+0x10`. Its meaning beyond the call list is not read.
+unit `+0x10`. ~~Its meaning beyond the call list is not read.~~ *(answered: `003243F0` is the unit retire helper, §3; 2026-10-02, OPUS)*
 
 **The second caller, `00239960`** (1,187 B, unnamed; called from `BattleSystem_InitializeAreaState`,
 `002342F0`): walks the table at registry slot `02EBF028` (count at `+4`, `00239B70`–`00239BB5`);
@@ -223,8 +223,8 @@ and returns the *n*-th (`002B58C3`–`002B58E9`); otherwise it returns the block
 That the return is a C string has a positive control: `00309E70` (79 B) returns either
 `002B58B0(entry, 0)` or the empty string at `01CEB638` when its lookup fails (`00309E9C`,
 `00309EB2`). So the two row words are **text references**, and `02EBF170` is a table of at most 32
-banks of up to 2,048 text blocks. Which reader consumes unit `+0x18` — and therefore whether it is
-the unit's display name — is `FB-6`.
+banks of up to 2,048 text blocks. ~~Which reader consumes unit `+0x18` — and therefore whether it is~~
+~~the unit's display name — is `FB-6`.~~ *(answered: FB-6 closed 2026-09-12, §3; 2026-10-02, OPUS)*
 
 ### 2.8 What the row does not carry — the foe's statuses and augments come from its script
 
@@ -251,7 +251,7 @@ as an **immunity** in `+0x38` on every rebuild, so code 3 is not a status the fo
 per area visit and incremented per fresh spawn of a row with that byte `+2`; the previous area's bank
 survives one transition. No other function references the table (absolute-address scan over
 `0208D354`–`0208D453`, control `02089340` with 126 references), so **the only readers are this
-installer and the rotation** — the reader of the spawn record's `+0x12` copy is still open (`FB-3`).
+installer and the rotation** — ~~the reader of the spawn record's `+0x12` copy is still open (`FB-3`).~~ *(answered: FB-3, 2026-09-12, §3, with the second reader `00329220` added 2026-10-02; 2026-10-02, OPUS)*
 
 ### 2.9 Extension 2026-09-11 — the three callees read (FB-4)
 
@@ -304,7 +304,7 @@ spawn record), and cleared by `BattleUnit_ActivateAppliedDefinitionRuntime` (`00
 immediate anywhere in `.text`**: a whole-image decode of every function (2026-09-11) finds no
 `test` / `and` / `or` / `bt` of byte `+5` bit 3 or dword `+4` bit 11 on any base register, where
 the same scan does find bit 40 (byte `+5` bit 0) and the dword's other bits — so the installer's
-register-path write is the only known access and the bit is, as far as the image shows, unread.
+~~register-path write is the only known access and the bit is, as far as the image shows, unread.~~ register-path write is not the only access: `0031FDA0` reads the bit through a register mask *(corrected 2026-10-02, OPUS: `0031FDAD movabs rax, 0x80000000000` / `0031FDB7 test qword ptr [rcx], rax`)*.
 ## 3. Key addresses
 
 | address | size | what |
@@ -371,7 +371,7 @@ and HP pages.
 
 **The steal bits**: `spawnRecord->b_14 = (row.w_32 != 0xFFFF) | (row.w_34 != 0xFFFF) << 1 | (row.w_36 != 0xFFFF) << 2`.
 
-**The spawn counter**: `k = (bank << 6) + row.b_02` with `bank = byte 0208D454 ∈ {0, 1}`; `c = counters[k]`; `if (c < threshold) counters[k] = c + 1`; `spawnRecord->b_12 = (u8)c`; every counter of a bank is set to 1 when the bank is selected for a new area.
+**The spawn counter**: `k = (bank << 6) + row.b_02` with `bank = byte 0208D454 ∈ {0, 1}`; `c = counters[k]`; ~~`if (c < threshold) counters[k] = c + 1`~~ `counters[k] = c < threshold ? c + 1 : 1` *(corrected 2026-10-02, OPUS: `0023A819 mov edx, r13d` with `r13d = 1` (`0023A78B`), `0023A81E jae`, store at `0023A838`; the threshold is `0x34`, `00254A40`)*; `spawnRecord->b_12 = (u8)c`; every counter of a bank is set to 1 when the bank is selected for a new area.
 
 **The experience curve** (`002F8F20(n)`, called with `n = level − 1`; four call sites, the award
 path `00312280` among them, so this is the death page's `ExpForLevel`): `n < 1 → 0`; `n > 98 → −1`
@@ -435,7 +435,7 @@ BattleSystem_InitializeAreaState 002342F0 -> 00239960 -> 02EBF028 rows -> 0030C4
   **one** equipment slot, from `+0x1C`.
 - **The spawn-history counter** is authored by the row's byte `+2` (`0xFF` = not counted) and kept
   per area visit in one of two banks (section 2.8); the pre-increment value is on the spawn record at
-  `+0x12`. What reads that copy is `FB-3`.
+  `+0x12`. ~~What reads that copy is `FB-3`.~~ *(answered: FB-3, §3; 2026-10-02, OPUS)*
 - **A foe's innate augments and starting statuses are in its AI script**, not in the row: edit the
   `btlAtelSetAbility` / `btlAtelSetStatus` calls in the `.ebp`, remembering the bit reversal and the
   two-bit codes (section 2.8).
@@ -493,7 +493,7 @@ BattleSystem_InitializeAreaState 002342F0 -> 00239960 -> 02EBF028 rows -> 0030C4
   setter with the `[0, 99,999]` clamp.
 - [x] ~~**Who reads the spawn-history counters** at `02089340 + 0x4014` and the spawn record's `+0x12`
   copy.~~ **FB-3 ANSWERED 2026-09-12 (FABLE):** the table has exactly two references (this installer
-  and the bank rotation, §2.8); the `+0x12` copy is read once, by
+  and the bank rotation, §2.8); the `+0x12` copy is read ~~once,~~ *(corrected 2026-10-02, OPUS: twice — `00329220` also reads it through `+0x6A0`, `003298B1`–`003298C6`, into StatusView `+0x88`)* by
   `BattleUnit_RefreshActorRuntimeFromDefinition` (`00238EA9`, through the unit's `+0x6A0` spawn
   record) and handed with the text pointer to `00269F20(actor, text, n)`, which stores it at the
   actor's `+0x100`. That word has one reader, the instance-number getter `00263A10` (word `+0x100`
@@ -502,7 +502,7 @@ BattleSystem_InitializeAreaState 002342F0 -> 00239960 -> 02EBF028 rows -> 0030C4
   battle message, next to `Actor_GetDisplayName` (`00263990`, [the NPC name dictionary](../Actor-Names/the-npc-name-dictionary.md)).
 - [x] ~~**The three unread installer callees** `00328FF0`, `00237040`, `002FEAB0`~~ read 2026-09-11
   (§2.9: the tracked-HP registration, the engaged-state decision, the HP-stage pulse reset; `00322050`
-  the re-key wrapper). Bit 26 is the spawn side's placement-chosen mark (§2.9); bit 43 has no immediate accessor anywhere in the image (§2.9). `FB-4` — closed to that negative.
+  the re-key wrapper). Bit 26 is the spawn side's placement-chosen mark (§2.9); bit 43 has no immediate accessor anywhere in the image (§2.9), but it has a register-mask reader *(corrected 2026-10-02, OPUS: `0031FDA0`, `0031FDAD` / `0031FDB7`)*. `FB-4` — closed to that negative.
 - [x] ~~**The row fields read but not named**~~ **ANSWERED 2026-09-12 (FABLE) — the two notes below:** enemy `+0x00`, `+0x22`, `+0x24`, `+0x50` (the four
   sibling-table selectors), `+0x03`, `+0x15`, `+0x22`, `+0x23`, `+0x27`; party `+0x2B`, `+0x2C`,
   `+0x30`, `+0x44`. `FB-5`. *Narrowed 2026-09-11:* enemy `+3 & 3` is the tracked-HP code (§2.9);
@@ -517,8 +517,8 @@ BattleSystem_InitializeAreaState 002342F0 -> 00239960 -> 02EBF028 rows -> 0030C4
   (`02EBF140`; 0–8, 2,292 / 2,292), `+0x50` into the gambit order-set directory (`02EBF168`; 0–23).
   Row `+0x15` is a **flags byte**: bit 0 set on 2,240 rows, bit 4 on 616, bit 1 on 252, bit 2 on 52,
   bit 3 on 32, nothing above bit 4. **Row `+0x23`, `+4` and `+5` are 0 in all 2,292 rows** and `+0x27`
-  is 0 or `0xFF` (66 / 2,226) — so the type, kind, facing and perception the installer uses come
-  from the *page*, not the row, and the row's copies are unexercised in the shipped data. `+2`
+  is 0 or `0xFF` (66 / 2,226) — so ~~the type, kind, facing and perception the installer uses come~~
+  ~~from the *page*, not the row,~~ *(answered: the installer reads them from the `.ard` slot-0 class row, corrected 2026-09-12 in §2.2; 2026-10-02, OPUS)* the spawn row's own copies are unused, and and the row's copies are unexercised in the shipped data. `+2`
   (the spawn-counter lane) is 0–11 or `0xFF` (938 rows). The name word `+8` is bank 8 on every row.
   **Slots 5 and 6 are the reward rows** — [the battle-unit field map](../Battle-Unit/the-battle-unit-field-map.md) §7 already names the unit's copies
   `rewardBaseRow` (`+0xE70`, slot 5 via `+0x22`) and `rewardPerLevelRow` (`+0xE78`, slot 6 via
@@ -569,7 +569,7 @@ BattleSystem_InitializeAreaState 002342F0 -> 00239960 -> 02EBF028 rows -> 0030C4
 | The counter table's two banks, its rotation and fill, and its only two referencing functions | `00233933`, `002339B5`–`002339E2`, `00237E6B`; `data_xref_scan --range 0x0208D354 0x02091354`, control `02089340` (126 refs) | 1 | PROVEN |
 | The foe's masks are script-written, not row-written | displacement sweep `+0xE80`/`+0xE90` (control `003103E0`); `002390B0`, `002394C0` | 1 | PROVEN |
 | The per-kind bindings hold in a running game | **EXP-081 (ASTRA), re-derived by FABLE from the raw ReadProcessMemory spans, not the normaliser:** two samples of one loaded field, four units, the pool stride `0xF50` and the three `st2e` table headers read raw. Kind 0 (slot 0): `+0x698 = *(02EBF190) + 8`, `+0x6A0 = 0`, `+0xE60` = party row 0, `+0xE68 = 0`. Kind 1 (slots 4 / 5 / 7): `+0x698 = +0x6A0 + 0x80` exactly, primary keep entries 0 / 1 / 3 at stride `0x250`, the 456 stats bytes identical to that keep slice; `+0xE60` = enemy rows 6 / 5 / 0 (the definition ids' low bytes); `+0xE68` = class rows **4 / 3 / 0 — each enemy row's u16 `+0`, not its own index**, which is the observation that separates this reading from any mapping of `+0xE68` to the spawn record; every class pointer lies outside both keep banks ([EXP-081](../../_experiments/EXP-081-live-battleunit-bindings.md)) | C | OBSERVED (one field, four units) |
-| What the remaining unread callees and unnamed row fields are | **not established** | — | UNKNOWN |
+| What the remaining unread callees and unnamed row fields are | ~~**not established**~~ *(answered: FB-4, §3; 2026-10-02, OPUS)* | — | UNKNOWN |
 
 ## 9. Related
 
@@ -663,7 +663,7 @@ followed by the six member resets in the table, ending with `002FA520`'s field-i
 | field snapshot | `002FA520` (20 B) | tail store — `WorldTransition_GetActiveOrPendingFieldId` (`003148F0`) → `022BE940` | `002FA529` (`mov [022BE940], eax`) |
 | flag pool | `0030E010` (67 B) | `BattleActionSnapshot_ResetPool` — an eight-step `btr` chain clears bits 0–7 of flag byte `022BEFB0` | `0030E02C` (`btr ecx,3`) |
 | block wipes | `0030C3F0` (20 B), `0031A8F0` (11 B), `00322190` (31 B) | `memset(022C1DB0, 0, 0x180)` tail-jump; zero `022C314C`; zero `0208D334`–`0208D34C` | `0030C3F2` (`lea` of `022C1DB0`) / `0031A8F0` (the store — 11-byte leaf) / `00322199` |
-| state-struct resets | `003221B0` (77 B), `00327360` (77 B) | `02EC1380`–`02EC13A8`: head/tail pointers + two `-1` id dwords; `022C25A0`–`022C2644`: bit-0 clear plus four `0x30`-stride slots (`0xFF`/`0xFFFF` sentinels + zeroed dwords) | `003221D6` (`mov dword [02EC1398], -1`) / `00327381` (`mov byte [022C25A4], 0xFF`) |
+| state-struct resets | `003221B0` (77 B), `00327360` (77 B) | `02EC1380`–`02EC13A8`: ~~head/tail pointers + two `-1` id dwords~~ the two 24-byte tracked-HP entries (`02EC1380`–`02EC13AF`), each `+0` set to `-1` and the rest zeroed *(corrected 2026-10-02, OPUS: `003221B2`–`003221F5`; stride 24 at `00328FF3`)*; `022C25A0`–`022C2644`: bit-0 clear plus four `0x30`-stride slots (`0xFF`/`0xFFFF` sentinels + zeroed dwords) | `003221D6` (`mov dword [02EC1398], -1`) / `00327381` (`mov byte [022C25A4], 0xFF`) |
 | slot-array reset | `0033A380` (68 B), `004696A0` (284 B) | `0033A380` zeroes six qwords at `022C7CE0`–`022C7D08` and the dword at `022C7D10`, calling `004696A0`, which resets six `0x28`-stride slots at `02EBB560`–`02EBB688` (`0xFFFF` sentinels, zeroed qwords) plus tail dword `02EBB54C` | `0033A3B0` (`call 004696A0`) / `004696F8` (`mov word [02EBB5C0], 0xFFFF`) |
 | grid rebuild | `003924B0` (607 B), `00384580` (104 B) | `003924B0` sets `02AEE0B8=0x24` (n) — before the getter, so a zero bounds return skips everything but that store — ~~divides `0x2800/(n+1)` for the cell budget, `sqrtf`s `w*h/budget` into a cell size,~~ *(corrected 2026-09-27, FABLE, Claude Opus 5.5, on ASTRA-RETURN-FABLE-NAV-GRID-QUANTIZATION; bytes re-read)* takes the budget `(0x2800 − n)/(n+1)` = 275 cells, a first size `c0 = sqrtf(w*h/275)`, refines it to `max(w/trunc(w/c0), h/trunc(h/c0))` and stores `floorf` of that `+ 1.0` as `NavGridParams.cellSize`; *(qualified 2026-09-28, FABLE, Claude Opus 5.5, on ASTRA-RETURN-FABLE-NAV-GRID-INITIAL-TRUNCATION: `trunc(w/c0)` (`003925A9`) or `trunc(h/c0)` (`003925CE`) is 0 when that side is shorter than `c0`, and the divide at `003925E9` / `003925FC` then gives +infinity under masked exceptions, so `maxss` and `floorf` receive +infinity. ASTRA's thin case, 1 × 400 with `c0` = 3F9A5FB2, gives nx 0, ny 331 and +infinity (the original prefix run under an emulator with a supplied `sqrtf` value; re-derived in `_index/candidates/navgrid-thin-rectangle-consumer/`). Positive extents alone therefore do not guarantee a finite cell size; whether any loaded map has such a shape is not shown.)* the origins and maxima are the getter's rectangle; it derives `cols*rows` as `trunc((w + cell − 1)/cell)` by `trunc((h + cell − 1)/cell)` (`02AEE060`/`02AEE064`), allocates ~~`ebx` bytes~~ `cols*rows*(n+1) + n` bytes via `00384580` and memsets it — base/extent at `02AEE0A0`/`02AEE0A8`/`02AEE0B0`. `00384580` is its synchronized alloc+init: `0036C1D0`/`0036C1A0` enter, `0036A190` allocates, `0036C660` initializes, `0036C110`/`0036C140` leave | `00392590` (`movss [02AEE070], xmm6` — store min_x) / `003845C6` (`call 0036C660`) |
 
@@ -773,7 +773,7 @@ resolves the owner through `0031B860` (`0030C6BC`).
 | member | role | interior |
 | --- | --- | --- |
 | `002F9BD0` | growth-formula evaluator — `mulss xmm1, [008C5B34]` ≈ 0.7778 (`002F9BD7`), `comiss` vs `[008F3134]` (`002F9BE3`), `word[rax+0x50]` vs `0xFFFF` sentinel (`002F9C90`–`002F9C99`), `0031A900` + `0020E600` ×2 on `[02EBF0F8]` (`002F9C69`–`002F9CBE`), `[01F44830]` read (`002F9C0A`) | [`002F9BD7`](../../_index/ADDRESS-INDEX.md) |
-| `00329210` | recompute battery — `lea 0208D328` (`00329213`), `00861EC0` free, `00236850`/`00236820` pair, `[rax+0x698]` vs `r14` compare (`00329293`), `003590D0`, `02089340` bit-4 test (`003292B4`), `003588B0`/`00263E30`/`003135E0`/`00313800` chain (`003292BF`–`003292EA`) | [`00329213`](../../_index/ADDRESS-INDEX.md) |
+| `00329210` | ~~recompute battery —~~ a 14-byte setter, `dword [0208D328 + ecx × 4] = edx` — `lea 0208D328` (`00329213`) *(corrected 2026-10-02, OPUS: every site after `00329213` in this cell lies in `00329220`, and `00861EC0` is the memset thunk `jmp [008C2A60]`)*; ~~`00861EC0` free,~~ then, in `00329220`: `00236850`/`00236820` pair, `[rax+0x698]` vs `r14` compare (`00329293`), `003590D0`, `02089340` bit-4 test (`003292B4`), `003588B0`/`00263E30`/`003135E0`/`00313800` chain (`003292BF`–`003292EA`) | [`00329213`](../../_index/ADDRESS-INDEX.md) |
 | `0046A690` | per-stat lookup walker — `byte[rcx+0x1C2]` again (`0046A6BF`), `0046AB10` probes against indices `0x37`/`0x38`/`0x39` (`0046A741`–`0046A772`) | [`0046A6BF`](../../_index/ADDRESS-INDEX.md) |
 
 Shared callees outside the census: `0031B860`, `0031A900`, `0020E600`,

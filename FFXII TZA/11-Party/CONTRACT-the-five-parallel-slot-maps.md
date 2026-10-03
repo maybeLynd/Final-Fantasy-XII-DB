@@ -365,3 +365,11 @@ call-site census is carried.
 
 Corrected in place: the SM-5 box and §§5, 7, 12, 14 and 15, plus one locator in `CONTRACT-battle-runtime-mode.md`. The
 consumer record is `_index/candidates/slot-maps-falsification-pass-1-0929/`.
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../_index/candidates/fable-home-contract-the-five-parallel-slot-maps-1002/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `00273800` | 78 B | `0035BC50` + 0x375 | issues the call at `00273800` + 0x12 for indices 0 to 3 and, at the first non-null result whose dword `+4` equals `ecx`, returns 1 when bit 3 (`0x8`) of that record's byte `+0` is clear and 0 when it is set; when no index matches it returns 0 | Interior anchor `00273812`; Interior anchor `0027381C`; Interior anchor `00273823`; Interior anchor `00273828`; Interior anchor `00273845` |

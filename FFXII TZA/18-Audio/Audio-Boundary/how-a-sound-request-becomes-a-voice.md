@@ -2446,3 +2446,65 @@ Interior anchor `00204D36` (function `00204D10`).
 | `002DEE30` | 26 B | when `ecx` is not negative (or else dword `0215EF44` is, standing in for it) stores `dl` in byte `0215EF4D` and tail-calls `001DBC70(that value, dl)`; otherwise returns | `002DEE34`, `002DEE3E`, `002DEE44` |
 | `002DF010` | 61 B | returns 0 when `003603C0(ecx)` is non-zero; otherwise tail-calls `001DBDB0(1 when bit 31 of ecx is clear else 0, ecx without bit 31, 0x40, 0x7F)` | `002DF018`, `002DF01D`, `002DF031`, `002DF034`, `002DF048` |
 | `00360C20` | 80 B | searches the four 24-byte slots at `022CB9F0` for one whose byte `+0` is non-zero and byte `+1` equals `ecx`, and returns that slot's byte `+0`, else -1 (the first empty slot it notes is not returned) | `00360C30`, `00360C3B`, `00360C4F`, `00360C53`, `00360C66` |
+
+`00218A30` (164 B; reached from `001DBB30` and `001DBB50` through the registry and the slot-`+0x00` forwarder `00210960`) is the `MusicAudioController`'s release by id: it walks the controller's list (`+8`), and for each bank whose id `+0x50` equals the argument, or every bank when it is -1, calls the bank's slot-2 method (`[vtable+0x10]`), unlinks the node, frees it through the allocator at `+0x18` (`0x18` bytes) and hands the bank to the controller's slot 3 (`[vtable+0x18]`).
+
+Interior anchor `00218A79` (function `00218A30`).
+
+`00218AE0` (141 B; forwarder `00210970`) is the music cross-fade: if a bank with the requested id (or any bank, for -1) is already playing (`00222A20`, bank state 2) it returns at once; otherwise the bank with that id is started through `002228A0` with a frame count (`r9`) and every other bank is faded out over the same count through `00222A80`, whose frames divide by 60.0 into seconds.
+
+Interior anchor `00218B41` (function `00218AE0`).
+
+`00218C10` (43 B; forwarder `00210990`) finds the music bank with the given id and tail-jumps to `002228A0` with the caller's third argument and a zero frame count.
+
+Interior anchor `00218C24` (function `00218C10`).
+
+`00218C40` (46 B; forwarder `002109A0`) is the same lookup with both the third argument and the frame count zero.
+
+Interior anchor `00218C54` (function `00218C40`).
+
+`00218C70` (104 B; forwarder `002109B0`) returns 1 when a music bank with the id (or any, for -1) is playing - `00222A20`, the bank's state equal to 2 - and 0 otherwise.
+
+Interior anchor `00218CA0` (function `00218C70`).
+
+`00218D00` (103 B; forwarder `002109D0`) visits every music bank and, for each one that is playing, calls `00222A40`, which passes the bank's float from `007A91D0` and its id `+0x50` to `00221720` on the object `00221710` returns.
+
+Interior anchor `00218D39` (function `00218D00`).
+
+`00218D70` (80 B; forwarder `002109E0`) fades out the music bank with the id, or every bank for -1, through `00222A80` with a zero frame count - an immediate stop.
+
+Interior anchor `00218DA3` (function `00218D70`).
+
+`00219F40` (245 B; forwarder `00210C30`, registry slot `+0x10`) is the `SepAudioController`'s release: with -1 it hands every bank to the controller's slot 3, frees every node through the allocator at `+0x18` and resets the list to empty; with an id it finds the first bank whose `+0x38` equals it, hands that bank to slot 3, unlinks the node and frees it.
+
+Interior anchor `00219F7A` (function `00219F40`).
+
+`0021C5B0` (115 B; forwarder `002111D0`, registry slot `+0x20`) walks the `ShoutAudioController`'s banks and calls each one's slot-2 method when its `+0x3C` is at least 2 (a non-zero argument) or below 2 (a zero argument).
+
+Interior anchor `0021C5DD` (function `0021C5B0`).
+
+`0021C630` (71 B; forwarder `002111E0`) calls the slot-2 method of every shout bank whose `+0x3C` equals the argument.
+
+Interior anchor `0021C659` (function `0021C630`).
+
+`002112C0` (13 B; from `001DC350`) is the stream forwarder that is more than a forwarder: it loads the `StreamAudioController` (registry slot `+0x18`), masks the fourth argument to 7 bits (`and r9d, 0x7F`, the volume width the play path also uses) and tail-jumps to `0021D920`.
+
+Interior anchor `002112C4` (function `002112C0`).
+
+`00210B70` (105 B; from `001DBD60`) is a registry-level request that tries the `SebAudioController` first and the `SepAudioController` second: it sets bit 31 of the fourth argument unless the second argument is non-zero, calls `0021B540` on the Seb controller (`+0x08`), and only when that returns 0 calls `00219E30` on the Sep controller (`+0x10`) with the same arguments.
+
+Interior anchor `00210BAA` (function `00210B70`).
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../../_index/candidates/fable-home-how-a-sound-request-becomes-a-voice-1002/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `002033C0` | 136 B | `00203CB0` + 0x89 | zeroes the qwords `[rcx]`, `[rcx+8]` and `[rcx+0x10]`; when `r8 - rdx` is nonzero it passes that length in `rdx` (with `rcx` unchanged) to the call at `002033C0` + 0x41, stores the result to `[rcx]` and `[rcx+8]` and the result plus the length to `[rcx+0x10]`, calls the import slot at `002033C0` + 0x64 with (the result, the incoming `rdx`, the length), and sets `[rcx+8]` to the result plus the length, returning that sum; when the length is zero it returns 0 with the three qwords left zero | Interior anchor `002033EE`; Interior anchor `00203401`; Interior anchor `00203414`; Interior anchor `00203424`; Interior anchor `0020342E` |
+| `00207F50` | 96 B | `00205890` + 0x18B | when dword `rcx+0x7C` differs from `edx` it calls through the import slot `008C2430` with `ecx` = `r8d` and stops at `int3`; otherwise, when qword `[rcx]` differs from qword `rcx+0x10`, it checks the byte at `[rcx]` for 0x5C and, when the next byte's address is not qword `rcx+0x10` and either bit 3 (mask 8) of dword `rcx+0x80` is clear and that byte is 0x28 or 0x29, or bit 4 (mask 0x10) is clear and it is 0x7B or 0x7D, stores the next byte's address to `[rcx]`; it then increments qword `[rcx]` (on every path where it differed from `rcx+0x10`) and tail-jumps to `00209530` with `rcx` unchanged | Interior anchor `00207F5C`; Interior anchor `00207F6F`; Interior anchor `00207FA1`; Interior anchor `00207FA4`; Interior anchor `00207FAB` |
+| `002081A0` | 114 B | `00206430` + 0x207 | returns `al` = 0 when the call at `002081A0` + 0x9 on `rcx` returns zero `al`; otherwise stores the sign-extended byte `rcx+0x78` to dword `rcx+0x74`, then, when qword `[rcx]` differs from qword `rcx+0x10`, checks the byte at `[rcx]` for 0x5C and, when the next byte's address is not qword `rcx+0x10` and either bit 3 (mask 8) of dword `rcx+0x80` is clear and that byte is 0x28 or 0x29, or bit 4 (mask 0x10) is clear and it is 0x7B or 0x7D, stores the next byte's address to `[rcx]`, and increments qword `[rcx]`; it then calls `00209530(rcx)` and returns `al` = 1 | Interior anchor `002081A9`; Interior anchor `002081B9`; Interior anchor `002081F4`; Interior anchor `002081FD`; Interior anchor `00208202` |
+| `002109F0` | 67 B | `001DBAC0` + 0x35 | when dword `rcx+0x30` differs from `r8d`, `edx` is not negative and `r9d` is nonzero, it calls the site `002109F0` + 0x22 with qword `[rcx]` in `rcx` and `edx`, `r8d`, `r9d` passed through; on every path it then stores `r8d` to dword `rcx+0x30` | Interior anchor `00210A00`; Interior anchor `00210A08`; Interior anchor `00210A12`; Interior anchor `00210A17`; Interior anchor `00210A25` |
+| `00210A90` | 66 B | `001DBCE0` + 0x17 | calls the site `00210A90` + 0x13 with qword `rcx+0x10` and `edx`; when that returns zero `al` it calls the site `00210A90` + 0x26 with qword `rcx+8` and `edx`; returns 1 when either call returned nonzero `al`, else 0 | Interior anchor `00210AA3`; Interior anchor `00210AAE`; Interior anchor `00210AB6`; Interior anchor `00210AC9` |
+| `00211220` | 13 B | `001DC240` + 0x35 | replaces `rcx` with qword `rcx+0x18`, zero-extends `r9b` into `r9d`, and tail-jumps at `00211220` + 0x8 with `edx` and `r8` passed through | Interior anchor `00211224`; Interior anchor `00211228` |
+| `00218E20` | 45 B | `00210A40` + 0x3 | walks the circular list whose head sits at `rcx+8`, following qword `+0x00` of each node until it is back at `rcx+8`; at the first node whose qword `+0x10` object has dword `+0x50` equal to `edx`, or at the first node at all when `edx` is -1, it tail-jumps at `00218E20` + 0x27 with that object in `rcx` and `edx` unchanged; returns with no call when the list is empty or no node matches | Interior anchor `00218E28`; Interior anchor `00218E30`; Interior anchor `00218E39`; Interior anchor `00218E3E`; Interior anchor `00218E47` |

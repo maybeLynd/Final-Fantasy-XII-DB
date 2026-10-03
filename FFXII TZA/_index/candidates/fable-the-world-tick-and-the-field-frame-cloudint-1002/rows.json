@@ -1,0 +1,108 @@
+{
+ "page": "00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01VEcx1tvvdhZnx7o8bCur26",
+ "report": "the-world-tick-and-the-field-frame.json",
+ "rows": [
+  {
+   "fn": "00340970",
+   "text": "takes `p = 002640C0()` (incoming registers still in place) and `v = 00267E10(r9)`, then calls `0025AE00(p, k, v)` for `k` = 0, 1, 4, 2 and tail-jumps to `0025AE00(p, 3, v)`",
+   "anchors": [
+    [
+     "0034097D",
+     "call"
+    ],
+    [
+     "00340988",
+     "call"
+    ],
+    [
+     "00340997",
+     "call"
+    ],
+    [
+     "003409C7",
+     "call"
+    ],
+    [
+     "003409E1",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003DF810",
+   "text": "scans the dwords from `02B59CDC` down to `02B59CC0` (indices 7 to 0) for the first non-zero value `v` at index `i`; when one is found calls `0029CAB0(dword 02B59CE0[i], v, qword 02B59C40[i], qword 02B59C80[i])` and stores those values in `02B59D14`, `02B59D10`, `02B59D00` and `02B59D08`; when none is found calls `0029CAB0(0, 0, 0, 0)` and zeroes qwords `02B59D00`, `02B59D08` and dwords `02B59D10`, `02B59D14`",
+   "anchors": [
+    [
+     "003DF832",
+     "test"
+    ],
+    [
+     "003DF84B",
+     "call"
+    ],
+    [
+     "003DF88D",
+     "mov"
+    ],
+    [
+     "003DF8AC",
+     "call"
+    ],
+    [
+     "003DF8D4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "003EB470",
+   "text": "returns without work when `rcx` is null; otherwise calls `002ED470(dword +0x10)`, `002EB870(qword +0x18)` and `00265F90(rcx+0x10)`, unlinks `rcx` from its neighbours through qwords `+0` and `+8` (each side patched only when non-null) and zeroes both, then pushes it at the head of the list whose head qword is `02B5EB70` (`+0` = old head, `+8` = `02B5EB70`, the old head's `+8` = `rcx` when non-null) and clears byte `+0x40`",
+   "anchors": [
+    [
+     "003EB485",
+     "call"
+    ],
+    [
+     "003EB497",
+     "call"
+    ],
+    [
+     "003EB4AD",
+     "mov"
+    ],
+    [
+     "003EB4C9",
+     "mov"
+    ],
+    [
+     "003EB4E7",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "003EF750",
+   "text": "tail-jumps to `00244F50(0x108, 003EF830, 0)`",
+   "anchors": [
+    [
+     "003EF753",
+     "lea"
+    ],
+    [
+     "003EF75A",
+     "mov"
+    ],
+    [
+     "003EF75F",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

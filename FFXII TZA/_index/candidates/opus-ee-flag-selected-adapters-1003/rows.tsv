@@ -1,0 +1,13 @@
+# the flag-selected reflection traversal adapters, one row per member - derived from the shipping image by fam_rows.py (kind descriptor_lea)
+entry	anchor	mnemonic	value	name	callee
+00584750	00584754	lea	02CA9FA0	PClusterHeaderBase	all
+005849B0	005849B4	lea	02CA9DA0	PClusterHeaderD3D11	all
+00584C20	00584C24	lea	02CAA0A0	PClusterHeader	all
+00584EC0	00584EC4	lea	02CA9EA0	PInstanceListHeader	all
+005A1140	005A1144	lea	02CAD040	PBlendableAnimationSource	all
+005A1650	005A1654	lea	02CAD840	PAnimationClip	all
+005A17F0	005A17F4	lea	02CAE960	PAnimationSlotFilterDeferredLoad	all
+005A1C60	005A1C64	lea	02CAD540	PAnimationChannelBase	all
+005A22A0	005A22A4	lea	02CAD440	PAnimationChannel	all
+005A27C0	005A27C4	lea	02CAE350	PAnimationDataSourceListEntry	all
+00674CD0	00674CD4	lea	02D3E780	PAssetReferenceImport	all

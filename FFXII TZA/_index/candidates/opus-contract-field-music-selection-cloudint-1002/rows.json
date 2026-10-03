@@ -1,0 +1,38 @@
+{
+ "page": "18-Audio/CONTRACT-field-music-selection.md",
+ "date": "2026-10-02",
+ "session": "local-w44-opus",
+ "report": "contract-field-music-selection.json",
+ "rows": [
+  {
+   "fn": "00343710",
+   "text": "calls `0026DEF0` with the result of `00267E10(r9)`; when that result is negative (signed) it tail-jumps to `00361200(-1, 1, 1)`, otherwise it returns that result",
+   "anchors": [
+    [
+     "00343717",
+     "call"
+    ],
+    [
+     "0034371E",
+     "call"
+    ],
+    [
+     "00343725",
+     "jns"
+    ],
+    [
+     "0034372C",
+     "or"
+    ],
+    [
+     "00343736",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

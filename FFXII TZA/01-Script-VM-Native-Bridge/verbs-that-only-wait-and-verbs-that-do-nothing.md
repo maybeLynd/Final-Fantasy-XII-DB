@@ -370,7 +370,7 @@ only waits on it reads state that area set-up also reads.
 
 ## SWE2-EC7-67 update - `003B7180`
 
-`003B7180` (129 B) is a wait/do-nothing verb body - `0030AA00`/`00263750`/`003589B0`/`0036E750`/`0026DC60`. Interior anchor `003B718D` (a `0030AA00` call).
+`003B7180` (129 B) is ~~a wait/do-nothing verb body~~ the shared tail of two result callbacks, `0x0209` `changetonormalparty`'s `00350F30` and `0x02A4`'s `0034D330` *(corrected 2026-10-02, OPUS: `00350F3D` and `0034D33D` jump to it; it is in no dispatch record; for each ready slot it calls `0036E750(.., 9)` and `0026DC60(actor, 1)`, `003B71D9`, `003B71E6`)* - `0030AA00`/`00263750`/`003589B0`/`0036E750`/`0026DC60`. Interior anchor `003B718D` (a `0030AA00` call).
 
 ## SWE2-EC7-70 update (2026-09-19) - `003E5710` triple-scale compose measured
 
@@ -380,6 +380,6 @@ through: `rdx[0..2] = [rcx+0x260..+0x268] * [rcx+0x160..+0x168] *
 product with a fixed unit w.
 Interior anchor `003E5728` (the first `movss [rdx]` store).
 
-`0030AA00` (179 B) is the four-slot readiness poll `003B7180` runs for the wait verbs: slots `0..3` probe `02EBF190 + 0x5A48 + i*2` for a `0xFFFF` vacancy, `0031B8C0(i)` resolves the slot record, and a live `[+0x698]` block sets bit `i` when `+0x64 | +0x3C` stays clear of `0x80000003` - or when `00377C20` still approves the flagged record; a passed `r14` additionally receives `00320890([02EBF190 + 0x5AD5])`, and the four-bit mask is the result
+`0030AA00` (179 B) is the four-slot readiness poll `003B7180` runs ~~for the wait verbs~~ for those two result callbacks *(corrected 2026-10-02, OPUS: `003B718D` is its only call site)*: slots `0..3` probe `02EBF190 + 0x5A48 + i*2` for a `0xFFFF` vacancy, `0031B8C0(i)` resolves the slot record, and a live `[+0x698]` block sets bit `i` when `+0x64 | +0x3C` stays clear of `0x80000003` - or when `00377C20` still approves the flagged record; a passed `r14` additionally receives `00320890([02EBF190 + 0x5AD5])`, and the four-bit mask is the result
 
 Interior anchor `0030AA39` (function `0030AA00`).

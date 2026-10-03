@@ -949,3 +949,12 @@ That is the growth-versus-base reading, now read rather than proposed.
 
 *Not read here:* what writes `stats + 0x88`, beyond its role as the level the base row describes. Control: [`cc7_base_growth.py`](../../../_index/candidates/cc7-ard-base-growth/cc7_base_growth.py)
 (3 checks, FAILS 0).
+
+## Homed bodies: functions reached only indirectly whose callees this page cites (OPUS, 2026-10-02, F homing)
+
+*No page cited these functions and none of their callers is documented: they are reached by table or pointer dispatch or through undocumented callers. Each one calls something this page documents, which the sentence names. Each sentence states what the body does (access and representation, not purpose); the anchors are instructions inside it that do it. Drafted locally and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../../_index/candidates/opus-how-the-ard-loader-binds-area-battle-dat-homing-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00340450` | 48 B | zeroes dword `[r8]`, calls `002E3E20(byte rdx+0x15, 0)` and `002E4000(byte rdx+0x15, 0)`, then tail-jumps to `002EC500` | `00340456`, `00340466`, `00340471`, `0034047B` |
+| `00340EC0` | 45 B | zeroes dword `[r8]`, calls `002E3E20(byte rdx+0x15, -1)` and tail-jumps to `002E4000(byte rdx+0x15, -1)` | `00340EC6`, `00340ED7`, `00340EE0`, `00340EE8` |

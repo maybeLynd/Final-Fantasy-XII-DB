@@ -1,0 +1,56 @@
+{
+ "page": "03-World-Area-Field/Weather/weather-slot-state-model.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01F7SYgmZJApKhfTARtFcaab",
+ "report": "weather-slot-state-model.json",
+ "rows": [
+  {
+   "fn": "002509A0",
+   "text": "calls `0035C880(0xC, 1)` and then tail-jumps `0028E5F0(ecx, edx)` with the incoming `ecx` and `edx`",
+   "anchors": [
+    [
+     "002509AE",
+     "mov"
+    ],
+    [
+     "002509B3",
+     "lea"
+    ],
+    [
+     "002509B6",
+     "call"
+    ],
+    [
+     "002509C9",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0050C990",
+   "text": "takes the value v returned by `003BB420()`, calls `0017D280(00D228D0, v)` and tail-jumps `0026B4E0(rcx, v)` with the incoming `rcx`",
+   "anchors": [
+    [
+     "0050C99D",
+     "call"
+    ],
+    [
+     "0050C9A4",
+     "lea"
+    ],
+    [
+     "0050C9AD",
+     "call"
+    ],
+    [
+     "0050C9C1",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

@@ -76,7 +76,7 @@ every `.ca` (`3,164`) in the archive. Census: `members/fef_motion_entry_census.p
 | `@FMC` | 209 | 45 | motion command records (this sheet) |
 | `@FEF` | 144 | 144 | model-attached effect (this sheet) |
 | `@FMN` | 111 | 45 | motion name record (this sheet) |
-| `@FMW` | 111 | 45 | motion weight/blend record (this sheet) |
+| `@FMW` | 111 | 45 | motion ~~weight/blend~~ track-data record (this sheet) *(corrected 2026-10-02, OPUS: the `@FMW` section - Euler, translation and scale channels)* |
 | `@FRM` | 0 | 0 | **`.ca`-only** — the motion resource itself |
 
 The three motion tags co-occur — all `45` `.cm` carriers have all three, and
@@ -369,7 +369,7 @@ but unauthored) are dead lanes.
 `+0x360`; `003E73B0` is the mode setter — `obj+0xC0` bits 3–4 hold the
 mode, `0` frees the record via `003AFBE0`, `1` allocates via
 `003AF340(s16[obj])` which defaults `+0x08/+0x10/+0x14` = `1.0`,
-`+0x24..+0x38` = `1.0`, `+0x1C` = `0x11000000`, `+0x18` =
+~~`+0x24..+0x38` = `1.0`~~ `+0x24`/`+0x28`/`+0x34`/`+0x38` = `1.0` and `+0x2C`/`+0x30`/`+0x3C` = 0 *(corrected 2026-10-02, OPUS: `003AF340`+0xC9..+0xE2; the stores at `+0x28` and `+0x38` are qwords of `0x3f800000`, which zero `+0x2C` and `+0x3C`, and `+0x30` is stored 0)*, `+0x1C` = `0x11000000`, `+0x18` =
 `f32[src+8]/u8[src+0x10]`, `+0x20&0xF1|1`. Record fields: five ramped
 channels `{u8 frames; f32 target; f32 rate}` at `{+0x1C,+0x24,+0x2C}`,
 `{+0x1D,+0x28,+0x30}`, `{+0x1E,+0x34,+0x38}`, `{+0x54,+0x3C,+0x48}`,
@@ -427,7 +427,7 @@ the character's left.~~ *(Answered 2026-09-30, pass 18 — the section below.)*
 
 **Selector state record.** Kinds `1`/`2`/`0x10` keep their scratch in the
 `0x740`-byte record at `qword[ctx+0x2E0]` — one of `0xA0` pooled records
-at `[02B3EF28]` (pool init `004269A0` → `0041F730`: `memset 0x740`, then
+at ~~`[02B3EF28]`~~ `[022C6F28]` *(corrected 2026-10-02, OPUS: `02B3EF28` has no reference in the image; `004269A0`+0xF reads the pool pointer `022C6F28`)* (pool init `004269A0` → `0041F730`: `memset 0x740`, then
 `word[+0x40F] = 0xFFFF` so `+0x410` starts undecided; an `ebp = −1` fill
 sets `+0x412`/`+0x2AF`/`+0x408`/`+0x24C`/`+0x288`/`+0xC4`/`+0xC8`/`+0x2C4`/
 `+0x434` to `0xFF`/`−1`). Kind 1
@@ -557,8 +557,8 @@ mismatches, **zero** stream overruns (checks `fmn-tail-grammar`,
 
 ### `@FMW` — the track-data record (`.cm`, `111`; `.ca`, `18,303`)
 
-Header `{'@FMW', kind 0, entryLen, u32 +0x0C = 0}`, `char[0x10]` name at `+0x10`
-(only half the name field — the u16 stream starts at `+0x20`). Exactly `1:1`
+Header `{'@FMW', kind 0, entryLen, ~~u32 +0x0C = 0~~ u32 +0x0C = channel count}`, `char[0x10]` name at `+0x10`
+~~(only half the name field — the u16 stream starts at `+0x20`)~~ (header fields follow at `+0x30`, `+0x34` and the u16 table at `+0x40` *(corrected 2026-10-02, OPUS: `00409170`+0x7 `cmp edx, dword ptr [rcx + 0xc]`, +0xF `movzx eax, word ptr [rcx + rax*2 + 0x40]`; `0041B650`+0x16 `cmp dword ptr [rdx + 0x34], 1`)*). Exactly `1:1`
 with `@FMN`. Bound to `desc+0x58` in `0041BEE0` (`0041C01F`); `0041B4E0`
 resolves `desc+0x78` = the `@FMW` entry pointer (index `0` of section
 `desc+0x58`).
@@ -834,7 +834,7 @@ So the embedded `EFX0010` reaches only the `ret 0` stub. No register row is need
   `00418650`/`004186A0`/`00418700`, `0046D380` (Euler→3×3 via the `01F004E0`
   sin/cos LUT), `0046D350`/`0046D730`/`00476F40`/`00477130` (matrix compose).
 - Archive census `members/fef_motion_entry_census.py`: `FF12_VBF=<vbf> python
-  fef_motion_entry_census.py` — 12 checks, `FAILS 0` on the shipping archive.
+  fef_motion_entry_census.py` — ~~12~~ 25 checks *(corrected 2026-10-02, OPUS: the script's `check(` calls, recounted; FAILS not re-run here)*, `FAILS 0` on the shipping archive.
 - FABLE's evidence record:
   [`../../_index/candidates/uq218-cm-entry-residues/`](../../_index/candidates/uq218-cm-entry-residues/)
   — the `00504940`/`0016D6A0` stub finding, the `02B64380` letter+number index,
@@ -882,7 +882,7 @@ So the embedded `EFX0010` reaches only the `ret 0` stub. No register row is need
   name/callees.~~ *Corrected 2026-09-30 (SWE2-CONTRACT, DD batch 10, M1): `0x12`'s write is read. `005207C0`
   resolves the look object through `003E6DA0` and calls `003E29F0(obj, 4, byte[cmd+2] != 0)`. That function's kind-4
   arm stores the flag into bit 7 of the look record's byte `+0x1C` and leaves the other seven bits alone
-  (`003E2A45`–`003E2A56`). Who reads that bit is not traced here.* (`0x28` is **resolved to mechanism** — the authored
+  (`003E2A45`–`003E2A56`). Who reads that bit is not traced here.* *(qualified 2026-10-03, SWE2-DATA: answered in DD batch 10 below by OPUS's [`opus-look-bit7-0930`](../../_index/candidates/opus-look-bit7-0930/README.md) L1-L4 - no reader: the only bit-7 test covering `+0x1C` at any width, `002698AC`, is on an actor record, and the bit's other writer is `0041DD40`; the census is instruction-shaped and misses a copied record or a computed displacement)* (`0x28` is **resolved to mechanism** — the authored
   dword is a lane index `0..10` into the bound effect's request map
   `byte[def+0xA+lane]`→`dword[def+0x2C+4·map]`, id resolved via
   `0020E600` and spawned by `00333280`; lanes `1`/`10` are per-effect

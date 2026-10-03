@@ -807,7 +807,7 @@ Interior anchor `00246838` (function `002467A0`).
 
 Interior anchor `0028090A` (function `002808D0`).
 
-`00280750` (381 B) is the request builder `002808D0`'s lazy pair wraps: a stack-cookie body that lays an eleven-pointer packet of `01E0C1xx` thunk cells (`009152A0`/`009152B0`/`009152C0`/`009152D0`/`009152D8`/`009152E8`/`00915338`/`00915348`/`009153C0`/`009153D0`) on the frame, lazy-fills the ten `[rcx+0x338..+0x388]` slots through `0024A4E0(2)`, then fires `00249180(rsi, 7, 3, 0xD7, proc 00280740)`
+`00280750` (381 B) is the request builder `002808D0`'s lazy pair wraps: a stack-cookie body that lays an eleven-pointer packet of `01E0C1xx` thunk cells (`009152A0`/`009152B0`/`009152C0`/`009152D0`/`009152D8`/`009152E8`/`00915338`/`00915348`/`009153C0`/`009153D0`) on the frame, lazy-fills the ten `[rcx+0x338..+0x388]` slots through `0024A4E0(2)`, then fires ~~`00249180(rsi, 7, 3, 0xD7, proc 00280740)`~~ `00249180(rsi, 7, 0xD7, 3, 1, 00280740)` *(corrected 2026-10-02, OPUS: `00280750+0xEB` sets `edx = 7` and `00280750+0xFC` sets `r8d = 0xD7`, then `r9d = 3` and `[rsp+0x20] = 1`; `00280750+0x111` is the call, in the same order as `002467A0`'s)*
 
 Interior anchor `00280817` (function `00280750`).
 

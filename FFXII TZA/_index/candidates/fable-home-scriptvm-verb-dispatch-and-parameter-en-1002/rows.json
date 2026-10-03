@@ -1,0 +1,36 @@
+{
+ "page": "01-Script-VM-Native-Bridge/Verb-Dispatch/scriptvm-verb-dispatch-and-parameter-encoding.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_015JQJRUavwc3iK8Y7ZWtHdD",
+ "report": "home-scriptvm-verb-dispatch-and-parameter-encoding.json",
+ "rows": [
+  {
+   "fn": "00379D40",
+   "entered_from": "`0022A0B0` + 0x2F8",
+   "text": "calls `00379D40` + 0x4 with the incoming registers unchanged, then tail-jumps (site `00379D40` + 0xD) with whatever registers that call leaves; it has no other work",
+   "anchors": [
+    [
+     "00379D44",
+     "call"
+    ],
+    [
+     "00379D4D",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [
+  "0025D460",
+  "00264110",
+  "00264B90",
+  "002D75F0",
+  "0036B060",
+  "003944D0",
+  "003DE700",
+  "005688D0"
+ ],
+ "corrections": []
+}

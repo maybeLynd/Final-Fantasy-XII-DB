@@ -30,7 +30,7 @@ floating character bobs. This page is the table of those controllers - the *rig*
 named, **the thing in the game that switches it on**.
 
 [The staged look command](the-staged-look-command.md) section 4a met the rig first, from its reset routine, and could
-name four of its slots. This page names nine, by a different road: not by reading what each controller computes, but by
+name four of its slots. This page names nine *(scope named 2026-10-02, OPUS: nine by this road; section 2's table now describes fifteen of the seventeen, the rest from their bodies in sections 3a and 5 - only slot 8 is unnamed and slot 4 empty)*, by a different road: not by reading what each controller computes, but by
 following **who enables it**.
 
 ## 1. What the player sees, and how much of it there is
@@ -122,8 +122,8 @@ encoded pointer at entry **`+0x84`**, sixteen bytes before the rig's `+0x94`; it
 entry.
 
 **The countdown.** `CharacterRenderRecord_UpdateTimedPresentationStates` (`0042EE90`, 254 B) runs unless bit 1 of the
-record's `+0x290` is up. For each of the three timers, if its bit of the record's byte `+0x40B` is up (bits 5, 6 and 7; what raises them was
-not read) and the timer is non-zero, it subtracts `[01DFE0BC]`; when the timer reaches zero or below it
+record's `+0x290` is up. For each of the three timers, if its bit of the record's byte `+0x40B` is up (bits 5, 6 and 7; ~~what raises them was~~
+~~not read~~ *(answered: see the SWE2-EC7-83 section below - `00429C40`, `0042BBB0` and `00429B40` copy `+0x304` bits 6, 7 and 15 into them; 2026-10-02, OPUS)*) and the timer is non-zero, it subtracts `[01DFE0BC]`; when the timer reaches zero or below it
 **clears the flag bit, zeroes the timer and calls the same wrapper-caller the dirty pass uses** - so a timed lip flap
 ends exactly as `setkutipakustatus(0)` would end it. A timer of zero is never counted, which is what makes the plain
 form permanent.
@@ -186,7 +186,7 @@ zero means one step), and **remembers the current two angles as the start of the
 the OR of the two status dwords of the unit's stats record, the thirty-two bits of
 [the thirty-two statuses](../../10-Status-Periodic-Terminal/the-thirty-two-statuses.md) - compares it with the word it
 saw last, and stores **the bits that were cleared at `+0x144` and the bits that were set at `+0x140`**. Then it runs two
-chains of thirty-one tests, one call per changed bit. [The world tick](../../00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md)
+chains of ~~thirty-one~~ thirty-two tests *(corrected 2026-10-02, OPUS: bit 31 too, at `003E7650`+0x318 and +0x580)*, one call per changed bit. [The world tick](../../00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md)
 lists the forty-four arms by their shape; extracted from the body by script, **the index of an arm is the status bit**:
 
 | bit | status | cleared -> | set -> | | bit | status | cleared -> | set -> |
@@ -205,7 +205,7 @@ lists the forty-four arms by their shape; extracted from the body by script, **t
 | 11 | Oil | `0051E8C0` | `0051E8E0` | | | | | |
 
 **Bits 12, 17 to 23, 25 and 30 - Reverse, Lure, Protect, Shell, Haste, Bravery, Faith, Reflect, Regen and Libra - call an
-empty stub in both chains**: those ten statuses change nothing on the body through this push. Bit 31 is not tested.
+empty stub in both chains**: those ten statuses change nothing on the body through this push. ~~Bit 31 is not tested.~~ Bit 31 is tested: cleared calls `0051E7A0`, which stores 0 to the record's `+0x13C`, and set calls `0051E7B0`, which stores 1 *(corrected 2026-10-02, OPUS: `003E7650`+0x318 `cmp dword ptr [rbx + 0x144], 0x80000000` / `jb`, +0x580 the same on `+0x140`; so 44 non-empty arms, the world tick's count)*.
 
 Eight of the arms were read whole, because they reach the rig:
 
@@ -254,7 +254,7 @@ not read.
 **Controller 12, read whole** (`00471150`, 220 B): a frame counter `+0xD` steps through an **eight-entry** pair of curves
 (`01F22130`, `01F22170`) and stops the controller at the end; the two samples, scaled by the amplitude `+0x10`, are
 rotated by the character's heading (record `+0x124`, through the engine's sine table) into a two-component offset at
-`+0x20` / `+0x28`. An eight-frame shove in a direction relative to the character; what triggers it was not traced.
+`+0x20` / `+0x28`. An eight-frame shove in a direction relative to the character; ~~what triggers it was not traced~~ *(answered: see section 3a - the event handler `00427320` switches it on for the HP write's alive events `0x2005` / `0x2006`; 2026-10-02, OPUS)*.
 
 ## 6. Behaviour a reimplementation must keep
 
@@ -277,7 +277,7 @@ rotated by the character's heading (record `+0x124`, through the engine's sine t
 - ~~What thirty-six of the forty-four status arms push.~~ *Read the same day:*
   [how a status shows on a character](how-a-status-shows-on-a-character.md).
 - The units of the timed forms: the setter divides the frame count by `[01DFE0BC]` and the countdown subtracts the same
-  float each frame; how that float moves with the frame rate was not established here.
+  float each frame; ~~how that float moves with the frame rate was not established here~~ *(answered: see effect-element-type-dispatch.md - `001EDDC0`, the frame-rate switch, stores 2.0 to `01DFE0B8` (+0x18), 0.5 to `01DFE0BC` (+0x20) and 1 to `01F82E38` (+0x28) on its non-zero arm; the image holds 1.0, 1.0 and 0; 2026-10-02, OPUS)*.
 - Nothing on this page was observed running.
 
 ## 8. Where each behaviour is in the bytes

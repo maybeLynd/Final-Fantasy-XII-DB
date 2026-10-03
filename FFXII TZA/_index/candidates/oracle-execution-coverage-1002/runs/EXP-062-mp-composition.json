@@ -1,0 +1,21 @@
+{
+ "blocks_in_image": 115,
+ "blocks_outside_image": 0,
+ "catalogue": "e2a67b07700c2ec3fbfae3213965de35",
+ "classes": {
+  "body_only": 2,
+  "returned": 5,
+  "scripted": 3
+ },
+ "elapsed_s": 0.6,
+ "emu_starts": 20,
+ "entries_executed": 5,
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "instrument": "execcov-shim v2",
+ "patched_blocks": 4,
+ "rc": 0,
+ "receipt_md5": "bcbb9db400bcb4f1c08063a9209e4d59",
+ "run": "EXP-062-mp-composition",
+ "status": "ok",
+ "unique_blocks": 115
+}

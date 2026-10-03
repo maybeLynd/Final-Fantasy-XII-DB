@@ -741,7 +741,7 @@ initialisation and repopulated by script; nothing in the six functions that addr
 
 ## The `00307140` exclusive subtree — 1 member bound (SWE2-FRONTIER, followup queue)
 
-`00307140` (~97 B) — `ecx` switch over the `002E1C20` arm
+`00307140` ~~(~97 B)~~ (183 B *(corrected 2026-10-02, OPUS: the body runs `00307140`–`003071F6`, ending in the tail `jmp 0x26bd20` at `003071F2`)*) — `ecx` switch over the `002E1C20` arm
 (`0030714A`/`0030714C`).
 
 | member | role | interior |

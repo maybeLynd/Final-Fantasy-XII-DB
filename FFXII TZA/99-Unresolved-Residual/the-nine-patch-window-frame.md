@@ -96,7 +96,7 @@ FUN_002dd090(&scratch, ctx);
 ```
 
 **So `00392CE0` is not a caller of `00392A10` or a helper of it — it is the fallback**, chosen at
-runtime by a predicate this document does not resolve. **The two dispatchers draw the same nine
+runtime by a predicate ~~this document does not resolve~~ *(answered: see §9's note: `002DD4B0` returns the word `0215E6D0`; 2026-10-02, OPUS)*. **The two dispatchers draw the same nine
 cells through different primitives**: `00392CE0` through `002DC290`, `00392A10` through `002DC7F0`.
 
 ~~**And `00392A10` has no callers at all** — one of the fifteen no-caller entries the survey listed in~~
@@ -172,7 +172,7 @@ drawn from their own origin with a positive size.
 > from another**, exactly as the flat primitive's `SAR` sequence showed. **Three independent
 > derivations, two functions, one rule.**
 
-**The command block is written into a ring** at `&DAT_02EBEFC8 + DAT_02EBEFF0 * 0x18`, and the ring
+**The command block is written into a ring** ~~at `&DAT_02EBEFC8 + DAT_02EBEFF0 * 0x18`~~ through the buffer pointer stored at `&DAT_02EBEFC8 + DAT_02EBEFF0 * 0x18` *(corrected 2026-10-02, OPUS: that cell is field `+8` of the 24-byte record `02EBEFC0 + index × 0x18`; `002DC290` loads it at +0x5E and writes from buffer `+0x10`)*, and the ring
 pointer is advanced by the bytes written, rounded down to 16. **`DAT_02EBEFF0` is the same index
 the text walk reads at `003649F0`** to pick its own buffer.
 
@@ -205,7 +205,7 @@ mid = ((((c0 + c1) >> 1) + c2) >> 1) + c3) >> 1;
 
 ```c
 if (col == 1 || (uint)(size - 8) > 0x27 || (uint)(axis - 8) > 0x27)
-     flags = (index == 2) ? 0 : 4;     // no split
+     flags = (index == 2) ? 0 : 4;     // no split   <- corrected 2026-10-02, OPUS: (index == 2) ? 4 : 0 - 00392A10+0x24C is cmp esi, 2 / mov eax, 4 / cmovne eax, ecx (the box-renderer page's reading)
 else flags = (index == 1) ? 0 : 8;     // split through the centre
 ```
 
@@ -231,7 +231,7 @@ when **both** its own size and the axis extent fall in `[8, 47]`, and **never in
 
 ## 9. What this document does not claim
 
-What `002DD4B0` tests, and therefore which of the two paths actually runs. What `002DD1E0` and
+~~What `002DD4B0` tests, and therefore which of the two paths actually runs.~~ *(answered: see `002DD4B0` is `mov eax, [0215E6D0]; ret`, the widget-tree page's reading, and the box-renderer page's UQ-352; 2026-10-02, OPUS)* What `002DD1E0` and
 `002DD090` set up and tear down around the richer path. What the command constants
 `0x1000000000000002`, `0x2026400000008004` and `0x41` encode. What `00202B70` computes. Which
 subsystem's windows these are. What asset the mirrored corners in §4 sample — **the primitives
@@ -253,13 +253,13 @@ going for it.
 
 ## Interior citation — frontier hub `00181460` (2026-09-18, SWE2-EC7)
 
-`00181460` — 105 B, 9 A-measured callers; the `00181460(&points, 4)` grid fill this page's
+`00181460` — 105 B, 9 A-measured callers *(corrected 2026-10-02, OPUS: the image has 16 rel32 call sites in 15 functions)*; the `00181460(&points, 4)` ~~grid fill~~ strip-to-triangle-list expansion *(corrected 2026-10-02, OPUS: for each of the `n - 2` triangles it appends three `0x30`-byte vertices — the points `i`, `i+1`, `i+2` read through `rbx` — to the batcher singleton `001B1C00()` through `001B06D0`, the rectangle page's reading)* this page's
 draw path runs. Interior verified: outer loop runs `edx-2` rows (`00181466`), inner loop a
 fixed 3 columns (`edi = 3` at `00181484`); each cell fetches a source row via `001B1C00()`
 at [`00181490`](../_index/ADDRESS-INDEX.md) and `001B06D0(dst, src)` writes it into the destination, which
-advances `rbx += 0x30` per column and `rsi += 0x30` per row — a (n-2)x3 stamp of
-`0x30`-byte vertex/quad records, exactly the interior ring a nine-patch needs between its
-corner rows. The `001B1C00` source-row getter is also run by CoreRuntimeScheduling's
+advances `rbx += 0x30` per column and `rsi += 0x30` per row — a (n-2)x3 ~~stamp of~~
+~~`0x30`-byte vertex/quad records, exactly the interior ring a nine-patch needs between its~~
+~~corner rows.~~ read of `0x30`-byte source vertices, three per triangle *(corrected 2026-10-02, OPUS: `rbx` is the source, passed as `001B06D0`'s second argument at `00181460`+0x38; the destination is the batcher `001B1C00` returns)*. The `001B1C00` source-row getter is also run by CoreRuntimeScheduling's
 `0017D4C0` — the row source is shared scratch, not nine-patch state. `0017D4C0` itself is a
 shared copy/fill routine: it forwards into Input's `00198750` and Save_Load_Settings'
 `001C1710`/`001C18A0`/`001C18E0` — mechanical reach, no nine-patch relationship.
@@ -319,7 +319,7 @@ and `+0x48`, or where that buffer is allocated.**
 When `cursor >= limit` the function does not fail silently: it loads `r8 = src`, pops and
 **tail-jumps `001AED50`** with `(rcx = slot+0x38, rdx = cursor, r8 = src)`
 ([`001B078B`](../_index/ADDRESS-INDEX.md)). `001AED50` appears in this database **only as a table row
-in `actor-storage-record-flag-bit-writes.tsv`**, explained by no page. **NOT CLAIMED: what it does** —
+in `actor-storage-record-flag-bit-writes.tsv`**, explained by no page. **~~NOT CLAIMED: what it does~~** *(answered: see SWE2-EC7-53 below: a `0x30`-stride vector erase/move helper; 2026-10-02, OPUS)* —
 grow, flush or discard are all consistent with the call shape, and the corpus has read none of them.
 The one thing the tail jump does establish is that the overflow argument is the *source* record, not
 the destination, so whatever `001AED50` is, it still has the caller's data.
@@ -382,7 +382,7 @@ Interior anchor `002754E9` (the first
 
 Interior anchor `002A7783` (function `002A7720`).
 
-`002A3DF0` (352 B) is the size differ `002A7720` calls: `0209C610` global record, `002DD7E0` fetches the `0x67`/`0x69` string then `0x68`/`0x6A` by the `ecx` arm, `[rbx + 0xC8]`/`[+0xCC]` are compared and the byte deltas written to `[rbx + 0xD4]` - the frame's string-width refresh.
+`002A3DF0` (352 B) is the size differ `002A7720` calls: `0209C610` global record, `002DD7E0` fetches the `0x67`/`0x69` ~~string~~ palette colour then `0x68`/`0x6A` by the `ecx` arm *(corrected 2026-10-02, OPUS: `002DD7E0` returns the dword `[0215E6C8 + id × 8]`, or `0x80808080` at +0x1E when the id is out of range — the `fontcolor` palette the blinking-icon page reads, not a string)*, `[rbx + 0xC8]`/`[+0xCC]` are compared and the byte deltas written to `[rbx + 0xD4]` - the frame's string-width refresh.
 
 Interior anchor `002A3E1A` (function `002A3DF0`).
 

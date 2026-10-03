@@ -90,8 +90,8 @@ frames from a record that also survives being interrupted.
 > `002E5FB0` with `r8d` still live, `002E5FB0` moves it to `r9d`, and `002E5E10` keeps it in
 > `r14d` until `test r14d, r14d` / `setne bpl` at `002E5F42`–`002E5F4B` writes it as the stack
 > argument to `003EC260`. There `cmp dword [rsp+0x50], ecx` at `003EC362` gates the commit
-> block: flag **0** stages the new `{rate, heading, 0}` triple into the steering slot's
-> `+0x120`–`+0x128` and returns; flag **1** additionally shifts the triple into `+0x250`–`+0x258`
+> block: flag **0** stages the new ~~`{rate, heading, 0}`~~ `{pitch, heading, 0}` triple *(corrected 2026-10-02, OPUS: lane 0 is context `+0xAC`, the pitch — `002E5FBA` loads it, `002E5F4F` passes it, `003EC348` stores it at `+0x120`, and `00420C00` → `0046D380` turns that lane into the rotation about X)* into the steering slot's
+> `+0x120`–`+0x128` ~~and returns~~, after copying the old triple to `+0x250`–`+0x258` when it changed, and returns *(corrected 2026-10-02, OPUS: `003EC316`–`003EC358` run before the flag test at `003EC362`)*; flag **1** additionally shifts the triple into `+0x250`–`+0x258`
 > and calls `004288B0(slot, -1)` (slot bit `0x20000` clear) ~~or~~ **and then**, when `[slot+0x288]` is set,
 > `003B3CA0([slot+0x288], 0x1E)` (`003EC39E` → `003EC3A3` → `003EC3BC`).
 >
@@ -195,7 +195,7 @@ caller
   -> 0026B5A0 / 0026B620   wrap, then
      -> 0026B6A0(a, wrapped, flag)        kind 1 : context->+0x38 = +0x48 = wrapped
      |                                    kind 3 : 002E5FB0 -> 002E5E10 steering-record write
-     |                                             (wraps again; context->+0xA8; three/four
+     |                                             (wraps again; context->+0xA8; three/four   <- corrected 2026-10-02, OPUS - one to four: +0x50 always (002E5EC6), +0x70 / +0x60 only with actor +0x0D bit 5 clear (002E5ECB-002E5EE4), body +0xF0 only when one exists (002E5EF3-002E5F0B)
      |                                              {id,target} sub-records; flag -> 003EC260's
      |                                              commit gate — stage vs stage-and-commit)
      -> tail-jump 0026C090(a, wrapped)    kind 1 : 0026B6A0(a, wrapped, 1)
@@ -303,7 +303,7 @@ while (x >  3.14159274f) x -= 6.28318548f;
 
 - A character turns **the short way round**, because the difference to the target is wrapped before
   its sign is taken.
-- The turn is **9 degrees per step with a half-turn ceiling** (`π/20`, `π`).
+- The turn is **9 degrees per step ~~with a half-turn ceiling~~** (`π/20`~~, `π`~~) *(corrected 2026-10-02, OPUS: `+0x5C` = `π` is never read — `002E5750` reads only `+0x58`, through `00264750` → `002E4BC0` (`002E4BDD`), and `002690D0` divides by `+0x58` at `00269345`; DP-1, §14)*.
 - **Mode 4 ends a frame earlier at one Frame Rate setting than the other** (§7).
 - A character interrupted mid-walk **resumes it**, because the walk's steering state was pushed
   aside rather than overwritten.
@@ -476,9 +476,9 @@ ulp at the same crossing.**
 | kind dispatch in `0026B6A0` and `0026C090` | `movzx ecx,[rcx+3]` / `shr ecx,5` / `sub ecx,1` / `cmp ecx,2` in both. **All three arms of `0026C090` run per case since 2026-09-08**, and they are behaviourally distinct: **kind 1 tail-jumps to `0026B6A0`** carrying the `r8` it never reads, **kind 2 does nothing at all**, and **only kind 3 writes the record** at `[[actor+0xB8]+0xF0]+0x34` | 1 | PROVEN |
 | push/pop are the only slot callers | four instruments, each with a positive control | 1 (static) | PROVEN |
 | mode 4 reads the `FrameLimit` base | `movsx eax,[rcx+0x68]` / `cmp eax,[01DFE0B4]` | 1 | PROVEN |
-| `002E5FB0` is a 12-byte thunk into `002E5E10`: `context = actor[+0xB8]`, `xmm2 = context[+0xAC]` (the prior rate, handed back unchanged), `r9d = flag` | `002E5FB0`–`002E5FC2` in full | 1 (static) | PROVEN |
-| `002E5E10` is the kind-3 steering-record write: re-wraps the heading (third wrap site), stores `context[+0xA8]` and `{id,target}` fields `+0x50`/`+0x60`/`+0x70` via `003DA850` (a `[rcx+8]` leaf) — `+0x60`/`+0x70` only when `actor+0x0D` bit 5 clear — plus `record[+0x138]+0xF0` when that object exists, and finally `003EC260(word[record], prior_rate, heading, 0, flag!=0)` | `002E5E44`–`002E5F57` whole body; `record = actor[+0xC0]` null-bails everything at `002E5E5F`; `dword[record]==-1` skips the `003EC260` call at `002E5F3D` | 1 (static) | PROVEN |
-| the flag is `003EC260`'s commit gate: 0 stages the `{rate, heading, 0}` triple into slot `+0x120`–`+0x128`; 1 additionally shifts it to `+0x250`–`+0x258` and calls `004288B0(slot,-1)` or `003B3CA0([slot+0x288],0x1E)` | `003EC362 cmp dword [rsp+0x50],ecx` / `je` skips the whole commit block; slot table `022C6F28 + id*0x740` at `003EC27C`–`003EC283`; `[rbx+0x290]&0x100000` skips the rate compare at `003EC29D` | 1 (static) | PROVEN |
+| `002E5FB0` is a 12-byte thunk into `002E5E10`: `context = actor[+0xB8]`, `xmm2 = context[+0xAC]` (~~the prior rate~~ the pitch, handed back unchanged *(corrected 2026-10-02, OPUS: `002E5E88` stores it back to `+0xAC`, `003EC348` puts it in render lane `+0x120`, which `0046D380` rotates about X)*), `r9d = flag` | `002E5FB0`–`002E5FC2` in full | 1 (static) | PROVEN |
+| `002E5E10` is the kind-3 steering-record write: re-wraps the heading (third wrap site), stores `context[+0xA8]` and `{id,target}` fields `+0x50`/`+0x60`/`+0x70` via `003DA850` (a `[rcx+8]` leaf) — `+0x60`/`+0x70` only when `actor+0x0D` bit 5 clear — plus `record[+0x138]+0xF0` when that object exists, and finally ~~`003EC260(word[record], prior_rate, heading, 0, flag!=0)`~~ `003EC260(word[record], pitch, heading, 0, flag!=0)` *(corrected 2026-10-02, OPUS: `002E5F4F` `movaps xmm1, xmm8`, the `+0xAC` pitch)* | `002E5E44`–`002E5F57` whole body; `record = actor[+0xC0]` null-bails everything at `002E5E5F`; `dword[record]==-1` skips the `003EC260` call at `002E5F3D` | 1 (static) | PROVEN |
+| the flag is `003EC260`'s commit gate: 0 stages the ~~`{rate, heading, 0}`~~ `{pitch, heading, 0}` triple into slot `+0x120`–`+0x128`, copying the old triple to `+0x250`–`+0x258` when it changed; 1 additionally shifts it to `+0x250`–`+0x258` and calls `004288B0(slot,-1)` (unless `+0x284` bit 17 is set) ~~or~~ and then `003B3CA0([slot+0x288],0x1E)` when `+0x288 != -1` *(corrected 2026-10-02, OPUS: `003EC316`–`003EC358` before the flag test; `003EC368`–`003EC39E`, then `003EC3A3`–`003EC3BC`)* | `003EC362 cmp dword [rsp+0x50],ecx` / `je` skips the whole commit block; slot table `022C6F28 + id*0x740` at `003EC27C`–`003EC283`; `[rbx+0x290]&0x100000` skips the rate compare at `003EC29D` | 1 (static) | PROVEN |
 | `002E6300` is a 10-byte flag gate — `test r8b,r8b` / `js → 00265510` / `ret` | whole body; bit 7 of the flag tail-jumps into `00265510`, the `sub[+0x64]` byte getter (below) | 1 (static) | PROVEN |
 | `00265510`–`0026567F` is an eight-leaf kind-3 accessor cluster — each gated `(+3 & 0xE0)==0x60` (else 0): `sub[+0x64]` byte, `sub[+0x66]` word, `slot[+0xDC]` record `+0x34` float, slot-`edx` (clamped) record `+0x34`, `sub[+0x62]>>6 &1`, `sub[+0x28]&0x7F`, `cvttss2si(sub[+0x78])`, `movsx(sub[+0x68])` | whole cluster; leaves at `00265510`/`00265530`/`00265550`/`00265580`/`002655D0`/`00265600`/`00265630`/`00265660`; `002E6300`'s `js` enters the head leaf with `rcx` still the actor | 1 (static) | PROVEN |
 | `002627C0` copies the `0x80` steering record from slot `+0xDC` to slot `+0xDC+1` | `movsx rax, byte[rcx+0xDC]` / `inc eax` / eight `movaps` pairs at `+0x120`+`idx*0x80`; the push half of the depth-one stack — caller `002EAB80` owns the depth byte itself | 1 (static) | PROVEN |
@@ -543,7 +543,7 @@ not as a memory base, not as an index.
 The kind dispatch is byte-identical in both consumers — `movzx ecx, byte [rcx+3]` / `shr ecx, 5` /
 `sub ecx, 1` / `cmp ecx, 2` in `0026B6A0` **and** `0026C090`.
 
-**Not claimed:** the seven remaining named callees are still unread, and nothing here is a
+**Not claimed:** ~~the seven remaining named callees are still unread, and~~ *(answered: see §14 items 1–2, all read 2026-09-18; 2026-10-02, OPUS)* nothing here is a
 runtime observation. *(`002E5FB0` was read 2026-09-18 — §14 item 1.)*
 
 ## 16. Parity plan
@@ -749,8 +749,8 @@ through (`002E8F44`). The visibility path's "does this record exist and is it po
 ## SWE2-EC7-22 update (2026-09-18) — `0026B5A0` angle wrap-and-quantize
 
 `0026B5A0` (117 B) is the wrap/quantize helper the steering math shares:
-`comiss xmm6, 0` selects `xmm1 = [01CEBC50]` (a `+pi`-class constant) when the
-input is negative, else `[00915620]` (`-pi`-class), `addss` the correction,
+`comiss xmm6, 0` selects ~~`xmm1 = [01CEBC50]` (a `+pi`-class constant)~~ `xmm1 = [00915620]` (`-pi`) when the
+input is negative, else ~~`[00915620]` (`-pi`-class)~~ `[01CEBC50]` (`+pi`) *(corrected 2026-10-02, OPUS: `0026B5B4` `comiss xmm6, 0` / `0026B5B7` `jb` → `0026B5C3` `movss xmm1, [00915620]`; otherwise `0026B5B9` `[01CEBC50]`; the bias is `h >= 0 ? +pi : -pi`, as §12 states)*, `addss` the correction,
 `divss [01CEBC78]`, `cvttss2si` + `cvtdq2ps` round-trip — the signed wrap-then-
 scale sequence the heading/steering evaluators call before quantizing.
 Interior anchor `0026B5B4` (the `comiss` sign test). `rbx = rcx` keeps the
@@ -762,8 +762,8 @@ The earlier claim that `0026B6A0` "never touches `r8`" made the flag dead was tr
 of the dispatcher body and wrong of the path: its kind-3 arm tail-jumps with
 `r8d` still live into `002E5FB0` (`r9d = r8d`) → `002E5E10` (`[rsp+0x50] =
 r14d != 0`) → `003EC260`, where it gates the slot commit. `0026B5A0` (flag 0)
-stages the `{rate, heading, 0}` triple only; `0026B620` (flag 1) stages and
-commits through `004288B0` or `003B3CA0`. The variants are identical only for
+stages the ~~`{rate, heading, 0}`~~ `{pitch, heading, 0}` triple *(corrected 2026-10-02, OPUS: lane 0 is the `+0xAC` pitch, `002E5F4F` → `003EC348`)* only; `0026B620` (flag 1) stages and
+commits through `004288B0` ~~or~~ and then `003B3CA0` *(corrected 2026-10-02, OPUS: `003EC39E`, then `003EC3A3`–`003EC3BC`)*. The variants are identical only for
 kind ≠ 3. §15/§15a wording and the `diff_angle_wrap` CONTRACT_MAP updated to
 match; the old "what `002E5FB0` does" OPEN QUESTION is closed.
 
@@ -775,7 +775,7 @@ stores — the `0026B5A0` wrap sequence applied to a steering-record slot:
 `byte[rcx+3] & 0xE0 == 0x60` gates the write, the
 `divss`/`cvttss2si`/`cvtdq2ps`/`mulss` round-trip through `01CEBC78`
 (2pi) truncates the wrap count, and two `subss` recentre into
-`[-pi, pi)`; the result lands at `[[rcx+0xB8]+0xF0]+0x70` / `+0x74`.
+~~`[-pi, pi)`~~ `[-pi, pi]` — `[-pi, pi)` for a non-negative input and `(-pi, pi]` for a negative one *(corrected 2026-10-02, OPUS: `0026A8E6` `comiss` / `jb` selects the bias by sign; `0026A876`–`0026A8CB` the same in `0026A870`)*; the result lands at `[[rcx+0xB8]+0xF0]+0x70` / `+0x74`.
 Interior anchors `0026A90E`/`0026A89E` (the `divss`). The adjacent
 `0026A950`/`0026A9C0` siblings write `+0x224` and further slots.
 

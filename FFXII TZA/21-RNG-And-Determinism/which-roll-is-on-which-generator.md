@@ -500,7 +500,7 @@ executed and no roll was observed.**
 
 ## SWE2-EC7-49 update (2026-09-19) - `0018EE20`
 
-`0018EE20` (192 B) is `GraphicsNoiseMT19937_TwistState` - call-free MT twist: `(mt[i]&0x7FFFFFFE | mt[i+1]&1) >> 1 ^ (odd ? 0x9908B0DF : 0) ^ mt[i+0x18C]`, a 227-iteration loop then a 396-iteration loop, no `rip`-relative operand (verifies the page's claim). Interior anchor `0018EE30` (the twist loop head).
+`0018EE20` (192 B) is `GraphicsNoiseMT19937_TwistState` - call-free MT twist: ~~`(mt[i]&0x7FFFFFFE | mt[i+1]&1) >> 1 ^ (odd ? 0x9908B0DF : 0) ^ mt[i+0x18C]`, a 227-iteration loop then a 396-iteration loop~~ `y = (mt[i]&0x80000001) | (mt[i+1]&0x7FFFFFFE)`, `mt[i] = partner ^ (y >> 1) ^ (mt[i+1]&1 ? 0x9908B0DF : 0)`, with partner `mt[i+397]` (`[+0x634]`) for 227 iterations, then `mt[i-227]` (`[-0x38C]`) for `0x18C` = 396 iterations, then the last element against `mt[0]` — standard MT19937 *(corrected 2026-10-02, OPUS: checked at `0018EE30`–`0018EECA`; the old text swapped the split masks and used the second loop's count `0x18C` as the partner offset; CONTRACT-gameplay-generators.md §7)*, no `rip`-relative operand (verifies the page's claim). Interior anchor `0018EE30` (the twist loop head).
 
 ## SWE2-EC7-95 update (2026-09-20) - `00322220` + `003209C0` measured
 

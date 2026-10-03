@@ -479,9 +479,9 @@ Interior anchor `00428944` (the `jle 003E5D00` arm select).
 ## SWE2-EC7-72 update (2026-09-19) - `00428AF0` two-bit field setter measured
 
 `00428AF0` (50 B) measured - the page's "sets a two-bit field" claim is
-exact and slightly wider: `+0x304` is masked `0xF801FFFF`, then
-`((r9b << 1 | r8 & 1) << 1 | edx & 1) << 0x11` is folded in - three
-flag bits at `+0x304`[17..19] - and `+0x294` gets `0x4000000`.
+~~exact and slightly wider~~ too narrow *(corrected 2026-10-02, OPUS: the mask clears ten bits, 17 to 26)*: `+0x304` is masked `0xF801FFFF`, then
+`((r9b << 1 | r8 & 1) << 1 | edx & 1) << 0x11` is folded in - ~~three~~
+~~flag bits at `+0x304`[17..19]~~ two flag bits at `+0x304` 17 and 18 and the unmasked byte `r9b` at 19 to 26 *(corrected 2026-10-02, OPUS: `00428AF0`+0xE `movzx eax, r9b` has no `and 1`)* - and `+0x294` gets `0x4000000`.
 Interior anchor `00428B0E` (the `shl eax, 0x11` fold).
 
 ## SWE2-EC7-73 update (2026-09-19) - `003B6B30` conditional record copy measured

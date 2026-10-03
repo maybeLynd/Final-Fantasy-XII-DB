@@ -27,7 +27,7 @@ audit:
 # The movement body — the 128-entry pool behind the movement context's +0x138, its placement record, and the per-tick pass that pushes overlapping actors apart
 
 > **Every placed actor owns one of 128 movement bodies.** The body is a `0x130`-byte entry of a
-> pool at `02B4E4C0`, attached to the actor's movement context at `+0x138` when its presentation
+> pool at `02B4E4C0`, attached to the actor's ~~movement~~ secondary context (actor `+0xC0`) at `+0x138` *(corrected 2026-10-02, OPUS: `002E353D` loads `[actor+0xC0]`, `002E3546` stores there; §2.3's 2026-09-18 correction)* when its presentation
 > is set up and released when the actor is torn down. It carries the actor's field placement
 > (position, ground height, cell), its collision shape (an ellipse from the character parameter
 > block's body radius, a height and a base offset), a weight, and the bookkeeping of one system:
@@ -58,7 +58,7 @@ active list (`02B57CC0`), clears its fields — `+0x100`/`+0x108` and the word `
 ### 2.2 Attachment — created after the presentation, released with the actor
 
 The only creator is `002E3500(record)`: it releases any existing body (`002E3515`–`002E352D`),
-allocates one (`002E3538`) and stores it at the movement context's `+0x138` (`002E3546`); then
+allocates one (`002E3538`) and stores it at the ~~movement~~ secondary context's `+0x138` (`002E3546`) *(corrected 2026-10-02, OPUS: `002E353D` loads `[actor+0xC0]`; §2.3's context correction)*; then
 `00269EC0(record, 0)` sets the layer byte `+6` (`00269ED8`), `002682D0` copies the context's
 `+0x151` bits 0–1 into the flags `+0x90` (`002682F6`–`0026831A`), `002685F0` copies the context's
 float `+0x148` into the weight `+8` (`002685FC`–`0026861A`), and `00268380` sizes the shape
@@ -77,11 +77,11 @@ bits (`+3 & 0xE0`, `00268386`–`0026838F`, `002683CD`–`002683E5`):
 | field | value | site |
 |---|---|---|
 | `+0xF0`, `+0xF4` radii | the movement context's (`+0xB8`, per the correction above) float pair at `+0x50` — ~~the character parameter block's body-radius slot ([the FCP page](../17-Presentation-Rendering/Model-And-Motion-Formats/fcp-character-parameter-block.md) §6.1)~~ *corrected 2026-09-18 (FABLE): the pair is the actor's radius pair (width, depth) × its x / z scale, written by `0026B2E0` from section 1's slots 67 / 68 (79 / 80 by field bit 15) of [the FCP page](../17-Presentation-Rendering/Model-And-Motion-Formats/fcp-character-parameter-block.md) as the bind's default, or from the script's `setradius`; section 9's slot 2 is the battle unit's radius `+0x180`, a different consumer* | `002683A8`, `006C0520` |
-| `+0xF8` heading | secondary `+0xA8` (class 2) or `+0x38` (class 1), else 0 | `00268442`–`0026846B` |
+| `+0xF8` heading | secondary `+0xA8` (class ~~2~~ 3) or `+0x38` (class 1), else 0 *(corrected 2026-10-02, OPUS: `0026843F` `sub ecx, 1` / `00268444` `cmp ecx, 2` selects class 3, the `0x60` kind)* | `00268442`–`0026846B` |
 | `+0xFC` margin | 0 | `002684B0` |
-| `+0xE0` height | secondary `+0xC0 × +0x24` (class 2) or `+0x68` (class 1), else 0 | `00268401`–`0026842B`, `003DB130` |
+| `+0xE0` height | secondary `+0xC0 × +0x24` (class ~~2~~ 3) or `+0x68` (class 1), else 0 *(corrected 2026-10-02, OPUS: `002683FD` `sub r8d, 1` / `00268403` `cmp r8d, 2` selects class 3)* | `00268401`–`0026842B`, `003DB130` |
 | `+0xE4` base offset | movement `+0x140 + +0x144` | `0026842B`–`00268437`, `003DB120` |
-| `+0x40`…`+0x4C` orientation, `+0x94`…`+0x9C` copies, `+0xA0`…`+0xA8` the inner shape | `003DAF20(body, a, b, c)`: `sin`/`cos` of the heading; the radii and height copied; then `a % × +0xF0`, `c % × +0xF4`, `b % × +0xE0 + +0xE4` — 37 / 37 / 50 for the party class `0x60`, else the secondary context's bytes `+0x104`–`+0x106` | `0026846F`–`002684FD`, `003DAF3C`–`003DB000` |
+| `+0x40`…`+0x4C` orientation, `+0x94`…`+0x9C` copies, `+0xA0`…`+0xA8` the inner shape | `003DAF20(body, a, b, c)`: `sin`/`cos` of the heading; the radii and height copied; then ~~`a % × +0xF0`, `c % × +0xF4`, `b % × +0xE0 + +0xE4`~~ `a × +0xF0 / 50`, `c × +0xF4 / 50`, `b × +0xE0 / 50 + +0xE4` — ~~37 / 37 / 50 for the party class `0x60`, else the secondary context's bytes `+0x104`–`+0x106`~~ `a`, `b`, `c` = the `[+0xB8]` context's bytes `+0x104` / `+0x105` / `+0x106` for class 3 (`0x60`), else 37 / 50 / 37 *(corrected 2026-10-02, OPUS: `003DAF68` loads `[008F3130]` = 50.0 and `003DAFB9`–`003DAFF4` divide by it; `0026846F`–`0026847C` set `0x25` / `0x32` / `0x25` when `(+3 & 0xE0) != 0x60`, `00268481`–`00268496` load the bytes otherwise)* | `0026846F`–`002684FD`, `003DAF3C`–`003DB000` |
 
 The movement layer re-sizes the same way from `002E5E10` (`002E5F01`–`002E5F35`, radius through
 `003DA850`).
@@ -154,7 +154,7 @@ does not register during the frame is not active for the pass. Its tail calls
 ### 2.7 The pair — `00314F50(A, B, 1, &out)`
 
 The resolver refuses the pair, returning 0, unless both bodies have positive radii `+0xF0` and
-`+0xF4` (`00314F97`–`00314FCC`), both are active this tick (`00314FD6`–`00314FE4`), their layer
+`+0xF4` (`00314F97`–`00314FCC`), ~~both are active this tick~~ in push mode both are active this tick (`00314FD6`–`00314FE4`) *(corrected 2026-10-02, OPUS: `00314FD2` `test esi, esi` / `00314FD4` `je 00314FEA` skips both tests in query mode; the separation contract's P-4)*, their layer
 bytes `+6` are equal (`00314FEA`–`00314FF1`), and their owner bytes `+0x119` are not equal and
 non-zero (`00314FF7`–`00315008`). Then, with `003DAE00` reading each position
 (`0031508C`–`0031509E`), the vertical extents `[y + base, y + base + height]` must overlap
@@ -171,7 +171,7 @@ a negative separation (`00315157`–`0031515A`). On contact:
 - A receives `w × separation` and B `(1 − w) × separation` along the joining direction, each added
   to `+0x100` (x) and `+0x108` (z), with `+0xE8` the squared length and `+0xEC` set
   (`003152B2`–`00315369`); the return is 1 for a contact, 2, 3 or 4 when the callback ran without
-  a mutual push, and the raw separation is written to `out` when the caller did not ask for a push
+  a mutual push, and ~~the raw separation~~ A's share of it — the weight `w` from `00314E10` — is written to `out` when the caller did not ask for a push *(corrected 2026-10-02, OPUS: `0031523C` `call 00314E10` / `00315241` `movaps xmm4, xmm0`, then `00315377` `movss [r15], xmm4`)*
   (`00315377`).
 
 ### 2.8 Consuming the push
@@ -194,7 +194,7 @@ page](../00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.
 navimap cell, masked through the table at `0209A2D0` (corrected 2026-09-17) and written at every placement by `003808A0`
 (§2.4; FZ-10 answered 2026-09-11). So bit 13 says *the focus actor stands on a cell whose
 attribute nibble is non-zero*. What the nibble and its two sibling fields mean, and what fills the
-mask table, is **FZ-11**. The allocator zeroes the word (`003DA96E`) until the first placement; the
+mask table, is **FZ-11** *(answered: see FZ-11 in §7, ANSWERED 2026-09-18 — the map id, the ground type and the mj class, filled by the `setmapid*` verbs; 2026-10-02, OPUS)*. The allocator zeroes the word (`003DA96E`) until the first placement; the
 neighbouring `+0x8A` also has a setter (`002EBC70`, `002EBC88`) and readers (`002E9830`,
 `002E9D90`), `+0x86` a reader (`002E9890`), and the mask `+0x110` a setter (`002EC5B0`) and reader
 (`002E9BB0`).
@@ -204,7 +204,7 @@ neighbouring `+0x8A` also has a setter (`002EBC70`, `002EBC88`) and readers (`00
 | Address | Name | Size | Role |
 |---|---|---|---|
 | `02B4E4C0` | — | 128 × `0x130` | the pool |
-| `02B525C4` / `02B57CC0` | — | 2 / 2 | free-list head / active-list head |
+| ~~`02B525C4`~~ `02B57CC4` / `02B57CC0` *(corrected 2026-10-02, OPUS: `02B525C4` has no reference and lies inside the pool; `02B57CC4` is used by `003DA8A0`, `003DAD00`, `003DAE30` — the 2026-09-13 correction below)* | — | 2 / 2 | free-list head / active-list head |
 | `02B57CE0` / `02B57EE0` | — | `0x200` / 16 | the 32 cell masks / the candidate set |
 | `003DAE30` | — | 230 B | pool initialiser (← `00266D10`) |
 | `003DA8A0` / `003DAD00` | — | 328 / 224 B | allocate / release |
@@ -280,8 +280,8 @@ tick:    World_UpdateSimulationTick -> 003DAA40 ... 003DAC70(00314F30) -> 003DAA
 - **Layers and owners are the cheap switches.** Equal layers pair; equal non-zero owners never do.
   Neither has a writer beyond the creator's zero in this reading, so a mod that wants actors to
   ignore one another sets `+6` or `+0x119` after creation.
-- **The weight decides who yields.** A zero weight (or a mask bit `00314E10` honours) makes a body
-  immovable; the other body takes the whole separation.
+- **The weight decides who yields.** ~~A zero weight (or a mask bit `00314E10` honours) makes a body~~ A mask bit `00314E10` honours makes a body
+  immovable; the other body takes the whole separation. A zero weight does the opposite: with `wA = 0` and `wB > 0`, `w = wB / (wA + wB)` is 1 and the zero-weight body takes the whole separation, and two zero weights split it evenly *(corrected 2026-10-02, OPUS: `00315017` / `0031502A` load the weights, `0031506A`–`0031506E` replace two zeros with 1.0, `00314E16`–`00314E27` form `w`, `003152BA` → `0031530F` give A `w × separation`; a mask hit returns 0 at `00314E83`)*.
 - **The pass is capped at 128 bodies** and the candidate set is 128 bits wide; nothing here grows.
 
 ## 7. What is not known
@@ -327,7 +327,7 @@ tick:    World_UpdateSimulationTick -> 003DAA40 ... 003DAC70(00314F30) -> 003DAA
 
       **Still not established:** which argument is which axis, what `200.0f` governs, and what the
       accumulated mean at `02CA6040` is eventually consumed for — **nothing divides it in this
-      body.** The bullet stays open for those.
+      body.** ~~The bullet stays open for those.~~ *(answered: see UQ-103's ANSWERED 2026-09-18 note in this bullet — x and z from the caller, `200.0f` unused, the mean divided by `0046AFA0`; 2026-10-02, OPUS)*
 - [x] **UQ-104.** Which mask bits `00314E10` honours (`+0x110` / `+0x114`) and what sets them beyond
       `002EC5B0`.
       **Partly answered 2026-09-14 (FABLE).**
@@ -415,8 +415,8 @@ correctly in one clause and cites a wrong address for one of them in the next.**
 published address would read and write a body's own field as the free-list head, corrupting entry 54
 on every allocation while appearing to work until that entry came into use.
 
-*(`003DAE30` also references `02B57CC8` and `02B57CD0`, which §2.1 does not mention. Recorded as
-unexplained rather than named.)*
+*(`003DAE30` also references `02B57CC8` and `02B57CD0`, which §2.1 does not mention. ~~Recorded as~~
+~~unexplained rather than named.~~)* *(corrected 2026-10-02, OPUS: they are the deferred-registration list's head and tail — `02B57CC8` is used by `003DAA20`, `003DAE20`, `003DAE30`, `003DB0D0` and `02B57CD0` by `003DAA20`, `003DAE30`, `003DB0D0`; `003DAE30` initialises them and `003DB0D0` appends — the list the heading page names `02AC7CC8` / `02AC7CD0`)*
 
 **Not claimed:** nothing here was executed or observed live. §§2.2–2.9 — the attachment chain, the
 shape, the per-frame registration, the pair resolver and battle-state bit 13 — were not re-derived;

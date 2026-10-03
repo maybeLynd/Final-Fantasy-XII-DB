@@ -36,8 +36,8 @@ audit:
 191 B, `00255E80` 353 B, `00257230` 167 B, `002572E0` 570 B, `003DA050` 302 B, `003DA400` 206 B,
 `003DA330` 59 B, `002567E0` 384 B, `003CC5F0` 196 B, `003CC740` 321 B, `003CC890` 218 B,
 `00257B50`, `00258090`, `00257BF0`, `00257D10`, `00257E40`, `00257F60`, `002555D0`, `00258190`
-complete. Not read: `00255850` (961 B) and `00257520` (731 B) beyond their calls into record 5 —
-see §5.
+complete. ~~Not read: `00255850` (961 B) and `00257520` (731 B) beyond their calls into record 5 —~~
+~~see §5.~~ *(answered: see BY-9, answered 2026-09-14; 2026-10-02, OPUS)*
 
 ## 1. What the player sees
 
@@ -128,7 +128,7 @@ for (ch = 0; ch < 4; ch++) {                       // 003DA0E0..003DA15C
     c = &slot->channel[ch];
     if (c->state == 0) continue;
     if (c->state != 2) {
-        step = *(float*)0x02B4E4B0 * c->rate * 1.0f;
+        step = *(float*)0x02B4E4B0 * c->rate * 1.0f;   // <- corrected 2026-10-02, OPUS - the third factor is float [01DFE0BC] (003DA050+0xB0), 1.0 in the image and 0.5 on the 60 fps arm
         if (c->clockRunning) c->clock += step;     // the first positive step only arms the clock
         if (step > 0) c->clockRunning = 1;
     }
@@ -283,7 +283,7 @@ scalars are `0, 0, 1` in 7,609 of 7,614 keys.
 (`+0x184 != -1`) it calls `0025A3B0(frame, 5, &player.view)`: frame 0 copies the view into
 **camera record 5** (`CameraRecord_CopyViewState`, `0025A2C0`; records at `02097300`, stride
 `0x110`) and sets its mode to 3 (`0025A500`); frame 1 copies into a separate view at `02097B80`
-(`0025A3D0`; what consumes it was not traced). Two other producers also write record 5 — `00257520` and `00255850` (not read here).
+(`0025A3D0`; ~~what consumes it was not traced~~ *(answered: see how-a-camera-reaches-the-renderer.md §2 - `00259970` submits the static default view at priority `0x14`; 2026-10-02, OPUS)*). Two other producers also write record 5 — `00257520` and `00255850` (not read here).
 Finally `CameraSystem_SetCameraActive(5, any)` sets bit 5 of the active mask `02098DEC` if any
 player had a frame or either other producer submitted, and clears it otherwise; `CameraSystem_SelectAndPublishActiveView` (`00259820`) publishes **the highest set
 bit**, so record 5 outranks records 0–4 and yields to 6–7.
@@ -474,8 +474,8 @@ all 1,635 paths that have a table.
 +0x15  u8[3]     unread15      nothing observed reads or writes this span (unknown span, not padding)
 ```
 
-The shake channels at `ActorManagerSlot +0x170` share this layout (builder `003DD230`); their tick
-is not read here.
+The shake channels at `ActorManagerSlot +0x170` share this layout (builder `003DD230`)~~; their tick~~
+~~is not read here~~. *(answered: see how-a-camera-reaches-the-renderer.md §4a, the shake chain; 2026-10-02, OPUS)*
 
 ```struct Cam7Player base=record size=0x2E0
 +0x08  f32       segClock      time inside the current segment
@@ -495,7 +495,7 @@ is not read here.
 +0x124 u32       absolute
 +0x128 f32[13]   progress
 +0x15C u8[13]    running
-+0x169 u8[15]    unread169     not observed accessed; between the running array tail and stream
++0x169 u8[15]    unread169     not observed accessed; between the running array tail and stream   <- corrected 2026-10-02, OPUS - +0x16C / +0x170 are the cached yaw / pitch (00256960+0x19E, +0x305, +0x30D; 00256CA0+0x199, +0x287; section 7a)
 +0x178 u64       stream        command pointer
 +0x180 u32       state         1 running, 2 at the end marker
 +0x184 i32       frame         -1 until a frame owns the channel
@@ -927,7 +927,7 @@ disassembled from the shipping image; interior cites are one instruction inside 
 | `002ED130` (70 B) | the bits-9/10 joint-word resolver the root calls under `+0x20`/`+0x24`: same `+0xC0`/`dword`/`0x740`-record/`+0x284` chain, tails `00421D70` for the record's word — returns `0xFFFF` on any dead link | [`002ED153`](../../_index/ADDRESS-INDEX.md) |
 | `002EA890` (31 B) | the object hop after it: `ctx+0xC0` → `dword[+0] != -1` → tails `002ED610`, which resolves the word to the record whose `+0x194`/`+0x198` the root reads into the roll/fov outs | [`002EA8A1`](../../_index/ADDRESS-INDEX.md) |
 
-What BY-7 still owes: the *meaning* of the resolved record's `+0x194`/`+0x198` fields (the roll/fov
+~~What BY-7 still owes: the *meaning* of the resolved record's `+0x194`/`+0x198` fields~~ *(answered: see BY-7, answered 2026-09-26 - two of the three angles of the bone's added rotation; 2026-10-02, OPUS)* (the roll/fov
 adds). `002ED610`'s return type is outside this subtree. `00426770`/`00426650`/`00421D70`/`002ED610`,
 `0020E600`, `002ED570`, `003710E0`, `00265200`/`003CC480`/`00203170`/`00265020` and the CRT cookie
 `00808C40` are shared callees — deliberately not census members.
@@ -948,7 +948,7 @@ returns early when null (`003DA072`), samples the skip flag through `00267300()`
 - **Channel pass** (`003DA0E0`–`003DA15C`): four `0x18`-stride track records at `+0x110`
   (shot dword `+0x110`, mode word `+0x118`, clock float `+0x11C`, rate `+0x120`, latch
   byte `+0x124`). Mode 0 skips; mode 2 skips the advance. The tick delta is
-  `float[0264E4B0] × rate × float[01DFE0BC]` (`003DA0F3`–`003DA100`); once the latch byte
+  ~~`float[0264E4B0] × rate × float[01DFE0BC]`~~ `float[02B4E4B0] × rate × float[01DFE0BC]` *(corrected 2026-10-02, OPUS: `003DA050`+0xA3 `movss xmm1, dword ptr [02B4E4B0]`)* (`003DA0F3`–`003DA100`); once the latch byte
   is set the clock accrues it, and a positive delta sets the latch (`003DA0EF`–`003DA11A`
   — the clock therefore starts one tick after the rate first goes positive). The record is
   then evaluated: skip mode takes `CAM7_RunToEnd(slot, shot, ch)` (`003DA12C`), otherwise
@@ -987,8 +987,8 @@ byte stores complete the entry (`002573B7`/`002573C9`).
 | `00358960` (51 B) | indexed record byte getter — `00263FF0` (`00358969`), `ebx` vs `dword[rcx]` bound (`0035897D`), `rax = [rcx + rbx*8 + 8]` → `byte[rax+3]` (`00358981`/`00358986`) | [`00358981`](../../_index/ADDRESS-INDEX.md) |
 
 Shared callees outside the census: `00263C30`, `00263FF0`, `002671F0`.
-`00257AD0` is the same playhead evaluator `003DA050`'s track loop
-calls — the camera-shot and attachment paths share it.
+~~`00257AD0` is the same playhead evaluator `003DA050`'s track loop~~
+~~calls — the camera-shot and attachment paths share it.~~ `00257AD0` finds the Nth kind-3 member and is not called by `003DA050` *(corrected 2026-10-02, OPUS: `003DA050`+0xDC calls `00257A00`; `00257AD0`+0x3A `cmp eax, 3`)*.
 
 
 ### Interior citation — frontier hub `003CC130` (2026-09-18, SWE2-EC7)

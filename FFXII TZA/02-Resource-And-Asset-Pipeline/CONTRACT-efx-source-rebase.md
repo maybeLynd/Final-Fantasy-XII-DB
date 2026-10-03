@@ -203,8 +203,8 @@ and the two converters are **not symmetric in width**:
 > **`0020E620` computes the offset entirely in 32 bits, and reads the arena base as a `dword` where
 > its inverse reads a `qword`.** The round trip therefore preserves `low32(offset + delta)` and
 > nothing more. **So a second constraint sits alongside the ±2 GiB one: every offset-form pointer
-> must stay inside `[arenaBase, arenaBase + 4 GiB)`.** Past that the stored offset wraps and later
-> resolves to the wrong address *inside* the arena — silently, and without the delta being wrong.
+> must stay inside `[arenaBase, arenaBase + 4 GiB)`.** ~~Past that~~ Above that window the stored offset wraps and later
+> resolves to the wrong address ~~*inside* the arena~~ back inside the window — silently, and without the delta being wrong; below the base it decodes `2^32` too high, outside the window *(corrected 2026-10-02, OPUS: `0020E620` keeps 32 bits and `0020E600+0x2` adds the qword base to the zero-extended offset, so a pointer below the base comes back as `p + 2^32`; the entry-tree contract's 2026-09-15 correction, EXP-083)*.
 >
 > This is the concrete instance of the engine-wide question
 > [the registry page](authored-data-table-registry.md) raised as **BW-2**: whether the allocator
@@ -403,7 +403,7 @@ refresh must not be collapsed into one event or one automatic all-pointer guaran
 - **Untagged handle** — rejected by `test cl,3`; the trampolines pass raw pointers through.
 - **Stale handle** — resolves without a generation check (`0036B130` skips what its three siblings
   do): the caller gets whatever the slot now points at, and the guard does not catch it.
-- **`|delta| >= 2 GiB`** — pointers shift by `delta - 2^32`; the published base stays correct and
+- **~~`|delta| >= 2 GiB`~~ `delta` outside `[-2^31, 2^31)`** — pointers shift by ~~`delta - 2^32`~~ `delta - 2^32` above and `delta + 2^32` below (`-2^31` itself is exact) *(corrected 2026-10-02, OPUS: `0024D970+0x14` `sub ebx, dword ptr [rcx + 0x858]` forms a 32-bit delta and `003A9BA0+0xA` `movsxd rsi, ecx` sign-extends it; §13's `reb-delta-neg2gib-exact`)*; the published base stays correct and
   nothing detects the divergence. At exactly 4 GiB the delta is 0 — the most visible form.
 - **Offset before the arena base** — cannot round-trip at all: `0020E600` zero-extends, so the
   window is unsigned `[base, base + 4 GiB)`, not signed ±2 GiB.
@@ -419,7 +419,7 @@ pointing at the new block while every derived pointer still references the old o
 
 ```
 resolve (0036B130, called via 003AB7F0):
-    if handle == 0 or (handle & 3) == 0: return 0      # tag required
+    if handle == 0 or (handle & 3) == 0: return 0      # tag required   <- corrected 2026-10-02, OPUS - through 003AB7F0 an untagged handle is returned unchanged (003AB7F0+0x13 test dl, 3; 003AB7F0+0x56 mov rax, rdx); only 0036B130 itself returns 0 for it
     if handle < 0x100000: return 0
     rax = qword[(handle & 0xFFFFFFFC) + 8] + 0x40      # block header sits 0x40 below payload
     if u32(sext32(low32(rax))) <= 0x40: rax = 0        # the 32-bit guard on a 64-bit pointer
@@ -601,7 +601,7 @@ property of the allocator at runtime, not of these bodies.
 
 ## 16. Parity plan
 
-No harness exists; §13 names the experiment: plant a small arena, record encoded offsets, rebase to
+~~No harness exists;~~ *(answered: see *Consumed 2026-09-16 (OPUS) from EXP-084* above - 52 / 52 cases; 2026-10-02, OPUS)* §13 names the experiment: plant a small arena, record encoded offsets, rebase to
 a second base, and check every link — driving the two deltas **separately** (the `+0x390` repair and
 the `+0x858` repair are independent inputs, and a reconstruction that drives all four walks from one
 delta is wrong). Two cases stand alone: an identical-base rebase must perform no walk, and an offset
@@ -617,7 +617,7 @@ out of scope); `FULL-SUBSYSTEM`, `TIMING`, `PRESENTATION` do not apply to a relo
 *Classes per [PASS22-WHAT-ACCOUNTING-MEANS](../_index/PASS22-WHAT-ACCOUNTING-MEANS.md) §4.2. Edges are from `edges.tsv`; a role is the ledger name unless a body is cited. The image-address resolver / encoder fan-out is MECHANICAL.*
 
 - **CoreRuntimeScheduling — CLIENT and MECHANICAL.**
-  - The combined path `0024D540` is run by `MainLoop_UpdateAndRenderFrame` and a 463-byte core body, and it calls an
+  - The combined path `0024D540` is run by `MainLoop_UpdateAndRenderFrame` ~~and a 463-byte core body~~, the 463-byte core body and the 1,583-byte frame body `0022B0B0` *(corrected 2026-10-02, OPUS: three direct callers, `0022B0B0+0xE1`, `0022B8C0+0x67` and `0022BC20+0x4F`)*, and it calls an
     8-byte getter.
   - `00369860`, `003AA3D0` and `00503F10` reach tables through the resolver / encoder pair.
 - **Audio — CLIENT.**
@@ -913,11 +913,11 @@ overlap-copy dependency remain open. Local validation does not re-score an L2 ve
 
 Interior anchor `003AA412` (function `003AA3D0`).
 
-`003A9BA0` (105 B) is the delta-rebase loop the same callers run over the `[02EBEF78]` table: for each `rbx` step of 8 through `0x1800`, a live slot gets `005004C0(old + rsi, esi)` and then the stored pointer itself shifts by `rsi` - 768 entries repointed by the source-move delta
+`003A9BA0` (105 B) is the delta-rebase loop the same callers run over the `[02EBEF78]` table: for each `rbx` step of 8 through `0x1800`, a live slot gets `005004C0(old + rsi, esi)` and then the stored pointer itself shifts by `rsi` - ~~768~~ 767 entries repointed (indices 1 to 767; `rbx` starts at 8) by the source-move delta *(corrected 2026-10-02, OPUS: `003A9BA0+0xD` `mov ebx, 8` and `003A9BA0+0x50` `cmp rbx, 0x1800`)*
 
 Interior anchor `003A9BEC` (function `003A9BA0`).
 
-`003A9860` (105 B) is `003A9BA0`'s sibling rebase over the `[02EBEF90]` table, `rbx` stepping 8 through `0xA00` with `00442460` as the per-slot notify - 320 entries repointed by the same delta
+`003A9860` (105 B) is `003A9BA0`'s sibling rebase over the `[02EBEF90]` table, `rbx` stepping 8 through `0xA00` with `00442460` as the per-slot notify - ~~320~~ 319 entries repointed (indices 1 to 319) by the same delta *(corrected 2026-10-02, OPUS: `003A9860+0xD` `mov ebx, 8` and `003A9860+0x50` `cmp rbx, 0xa00`)*
 
 Interior anchor `003A98AC` (function `003A9860`).
 

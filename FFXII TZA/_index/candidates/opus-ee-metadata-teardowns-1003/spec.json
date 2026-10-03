@@ -1,0 +1,18 @@
+{
+ "page": "22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/class-descriptor-and-metadata-system.md",
+ "members": "22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/members/data-member-metadata-static-teardowns.tsv",
+ "kind": "metadata_teardown",
+ "helper": [
+  6500928,
+  6501024
+ ],
+ "entry_anchor": true,
+ "title": "the PDataMemberMetadata static teardowns, one row per member",
+ "heading": "## Per-member rows: which reflected data member each metadata teardown destroys (OPUS, 2026-10-03)",
+ "lead": "The family `PDataMemberMetadata static teardowns` (frontmatter: 853 members; {N} get a row here) shares one 12-byte form, shown in section 2 and not repeated per row: `lea rcx, [X]` then a tail jump to a `PClassDataMember` destructor helper (`00633240`, or 006332A0 for members registered through the array constructor). Members differ only at that first instruction, the static object X, so the anchor is the entry `lea` itself (SWE2-AUDIT-SPEC's family sentence, as adopted by OPUS in `opus-ee-rulings-1003`, allows the entry instruction when members differ there). Each row states X and the data member X describes. Both are read from the image: the one registration that loads X with `lea rcx, [X]` immediately before a call to a data-member constructor (`00632960`, or the array form `00632A10`) is decoded from its function's own entry; the `lea r9` there is the member's name and an immediate `mov dword ptr [rsp + 0x20]` its offset (given as passed in a register otherwise). {CHECK} re-derives every row and compares it with the committed {ROWS}. A body that leaves the form, a registration that is not unique or unnamed, or a value that differs fails it. Two controls are refused: a swapped value and a moved anchor. Members without a unique named registration get no row; they are listed in [`excluded.tsv`](../../_index/candidates/opus-ee-metadata-teardowns-1003/excluded.tsv).",
+ "group_heading": "### Registered through constructor `{CALLEE}` ({N}, OPUS)",
+ "groups": {},
+ "value_col": "static object X",
+ "name_col": "the data member X describes",
+ "name_fmt": "{NAME}"
+}

@@ -1,0 +1,19 @@
+{
+ "blocks_in_image": 142,
+ "blocks_outside_image": 0,
+ "catalogue": "e2a67b07700c2ec3fbfae3213965de35",
+ "classes": {
+  "returned": 19
+ },
+ "elapsed_s": 96.6,
+ "emu_starts": 114,
+ "entries_executed": 19,
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "instrument": "execcov-shim v2",
+ "patched_blocks": 10,
+ "rc": 0,
+ "receipt_md5": "a68145a34bf8c2c72a191e4434baf11c",
+ "run": "reward-gate-exec",
+ "status": "ok",
+ "unique_blocks": 142
+}

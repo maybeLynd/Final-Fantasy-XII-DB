@@ -1,0 +1,9 @@
+{
+  "boardcheck": {
+    "exit": 0,
+    "stdout": "board ok: ok\n",
+    "stderr": ""
+  },
+  "status": "ROUTE_REFUSED_NO_RETRY",
+  "error": "ValueError('expected revision 48407, board is at 48409')"
+}

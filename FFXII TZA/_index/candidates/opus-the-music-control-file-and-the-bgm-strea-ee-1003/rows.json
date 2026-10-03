@@ -1,0 +1,94 @@
+{
+ "page": "18-Audio/the-music-control-file-and-the-bgm-stream.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-music-control-file-and-the-bgm-stream.json",
+ "rows": [
+  {
+   "fn": "003BA5F0",
+   "text": "switches on dword `02B40E14`: 0 stores 1 there and 0 to dword `02B40EC0`; 1 calls `00862130(byte [02B40E20], 02B40E3E)` and stores 0xc to `02B40E14`; 12 tests `ecx` and, when `ecx` is 0 or -4 (`ecx`+4 with bit `0x4` masked off is zero), zeroes the qword at `02B40E14` and the dword at `02B40E10`, otherwise stores 9 to dword `02B40E18` and zeroes the qword at `02B40E10`; any other value returns without writing",
+   "anchors": [
+    [
+     "003BA5FC",
+     "je"
+    ],
+    [
+     "003BA60B",
+     "test"
+    ],
+    [
+     "003BA62C",
+     "mov"
+    ],
+    [
+     "003BA64C",
+     "call"
+    ],
+    [
+     "003BA662",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007A7A20",
+   "text": "returns `0x82000000` when qword `[rcx]` is zero; when its low byte is 2, 8 or 9 it calls `007AB460(rsp+0x20)` and, if that is not negative, writes 0xd to dword `[p]`, qword `[rcx]` to `[p+8]`, `xmm1` to float `[p+0x10]` and `r8d` to dword `[p+0x14]` of the returned record `p` and returns `007AB550(p)`; when the low byte is 7 it calls `007BAD60(rsp+0x20)` and, if that is not negative, writes 0x10, qword `[rcx]` and `xmm1` to `p`, `p+8` and `p+0x10` and returns `007BAE50(p)`; a negative result from either first call is returned as is, and any other low byte returns -1; the stack cookie is checked through `00808C40`",
+   "anchors": [
+    [
+     "007A7A59",
+     "cmp"
+    ],
+    [
+     "007A7A6E",
+     "call"
+    ],
+    [
+     "007A7A9D",
+     "call"
+    ],
+    [
+     "007A7AAE",
+     "call"
+    ],
+    [
+     "007A7AE5",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007A88F0",
+   "text": "calls `007B24F0` with the incoming registers to get `h`, calls through `008C20B8` with `h` and calls `007B2470` with a stack copy of qword `[rcx]`; when that returns null it calls through `008C20C0` with `h` and returns 0, otherwise it calls `007D0A10` with the returned pointer, calls through `008C20C0` with `h`, and when `dl` is non-zero returns the `eax` of `007D0A10`; when `dl` is zero it repeats the `008C20B8`, `007B2470`, `008C20C0` sequence, calling through `008C21B0` with 1 after each lookup that returns non-null, and returns 0 once a lookup returns null",
+   "anchors": [
+    [
+     "007A8923",
+     "call"
+    ],
+    [
+     "007A8930",
+     "call"
+    ],
+    [
+     "007A8950",
+     "call"
+    ],
+    [
+     "007A8963",
+     "je"
+    ],
+    [
+     "007A899A",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [
+  "007A7010",
+  "007A87C0"
+ ],
+ "corrections": [],
+ "mode": "ee"
+}

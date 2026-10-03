@@ -1,0 +1,153 @@
+{
+ "page": "15-Input/Modal-Toggles/r2-force-fight-toggle.md",
+ "date": "2026-10-02",
+ "session": "local-w44-opus",
+ "report": "r2-force-fight-toggle.json",
+ "rows": [
+  {
+   "fn": "0028E5F0",
+   "text": "with b = 1 when `003669D0()` returns 1 or 2 (`dec` then unsigned `cmp 1`) and 0 otherwise, calls `0035C880(0 when b else 2, b*2)`, then `00366990()`, and tail-jumps to `002970C0`",
+   "anchors": [
+    [
+     "0028E5F4",
+     "call"
+    ],
+    [
+     "0028E609",
+     "setbe"
+    ],
+    [
+     "0028E610",
+     "cmovne"
+    ],
+    [
+     "0028E618",
+     "call"
+    ],
+    [
+     "0028E626",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00354EF0",
+   "text": "calls `00363560`, `00360D70`, `002DEE70` and `00249CA0(2)` in that order, then tail-jumps to `003603E0`",
+   "anchors": [
+    [
+     "00354EF4",
+     "call"
+    ],
+    [
+     "00354EF9",
+     "call"
+    ],
+    [
+     "00354EFE",
+     "call"
+    ],
+    [
+     "00354F08",
+     "call"
+    ],
+    [
+     "00354F11",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0035C880",
+   "text": "stores dword `022C83EC` AND NOT `ecx`, OR `edx`, back to dword `022C83EC`",
+   "anchors": [
+    [
+     "0035C882",
+     "and"
+    ],
+    [
+     "0035C888",
+     "or"
+    ],
+    [
+     "0035C88A",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "003667B0",
+   "text": "clears bit 0x80 of word `022CBE1A` and, when `ecx` is non-zero, sets it again",
+   "anchors": [
+    [
+     "003667BC",
+     "and"
+    ],
+    [
+     "003667BF",
+     "mov"
+    ],
+    [
+     "003667C6",
+     "test"
+    ],
+    [
+     "003667D2",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "003667E0",
+   "text": "returns at once when `0035C6F0()` has bit 0 set; otherwise calls `00249C60(0x2A)` when word `022CBE1A` has bit `0x4` set, `00265680()` is non-zero and bit `0x40` is clear; then, when bit `0x10` is set, calls `002DF0F0(dword 022CBE1C, 0)` if `002DEE80(dword 022CBE1C)` is non-zero and clears bit `0x10`; on both paths it stores the word AND `0xFF92` OR 2 back to `022CBE1A`",
+   "anchors": [
+    [
+     "003667EB",
+     "jne"
+    ],
+    [
+     "0036680D",
+     "call"
+    ],
+    [
+     "00366832",
+     "call"
+    ],
+    [
+     "00366854",
+     "and"
+    ],
+    [
+     "0036685B",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00366960",
+   "text": "when `ecx` is non-zero copies word `022CBE08` to word `022CBE18` and stores the word 0x25 to `022CBE1A`; when `ecx` is 0 it zeroes the qword `022CBE18` instead",
+   "anchors": [
+    [
+     "0036696B",
+     "mov"
+    ],
+    [
+     "00366977",
+     "mov"
+    ],
+    [
+     "0036697F",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "003667E0",
+   "why": "OPUS's own draft wrote 'bit 4' for 'test byte, 4' (the bit valued 0x4); bit values written as 0x4 / 0x40 / 0x10"
+  }
+ ]
+}

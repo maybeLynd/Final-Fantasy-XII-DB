@@ -56,7 +56,7 @@ int languageIndex = *(int *)(*(void **)0x01F82D20);      /* field +0x00 of the s
 const char *code   = ((const char **)0x01DF0030)[languageIndex];
 ```
 
-`0x01F82D20` is a global pointer to a shared runtime object — around 150 instructions across
+`0x01F82D20` is a global pointer to a shared runtime object — ~~around 150 instructions~~ 159 instructions (158 reads, 1 write, 63 functions) *(corrected 2026-10-02, OPUS: `retool.py refs 01F82D20`)* across
 `Input`, `Presentation`, `PlatformOnlineAchievements`, `CoreRuntimeScheduling`, `Resource` and
 unowned code reference it, and its pointer is stored exactly once, at `00798261`. **Its field `+0x00`
 is the language index.** What else the object holds is section 4.
@@ -103,7 +103,7 @@ The same singleton carries at least two more fields with one-line accessors:
 | accessor | reads | note |
 |---|---|---|
 | `0017E210` | `+0x64` | **decides the binding pair swap** — see [the input stack](../../15-Input/Input-Stack/input-stack-device-channel-and-bindings.md) section 12 |
-| `0017E260` | `+0x58` | 9 callers, unidentified |
+| `0017E260` | `+0x58` | 9 callers, ~~unidentified~~ `CameraRevise`, index 22 *(answered: see §10 and AV-2; 2026-10-02, OPUS)* |
 | `0017E270` | `+0x00` | the language index, above |
 
 `InputBinding_ShouldKeepAuthoredPairOrderForPlatformState` swaps two adjacent binding dwords when
@@ -118,14 +118,14 @@ here says whether a player can change the swap.~~ *Superseded 2026-09-26 (FABLE,
 
 ## 5. What is not known
 
-- What occupied ids `0`, `6` and `9`. **AV-1.**
-- What the object at `0x01F82D20` is as a whole — three fields are identified out of an unknown
-  total. **AU-6.**
-- What `+0x58` holds. **AV-2.**
-- Where the language index is written from — the settings file, a launcher, or a platform query.
-  The same argument-passing blind spot that hides the `+0x64` writer applies. **AV-3.**
-- Whether the id feeds text asset selection, font selection, or both. No consumer of `0017E270`'s
-  return value is read here. **AV-4.**
+- ~~What occupied ids `0`, `6` and `9`.~~ *(answered: see Open questions, AV-1 closed 2026-09-12; 2026-10-02, OPUS)* **AV-1.**
+- ~~What the object at `0x01F82D20` is as a whole — three fields are identified out of an unknown~~
+  ~~total.~~ *(answered: see §10 — the GameSetting.ini object, 31 settings at index × 4; 2026-10-02, OPUS)* **AU-6.**
+- ~~What `+0x58` holds.~~ *(answered: `CameraRevise`, §10; 2026-10-02, OPUS)* **AV-2.**
+- ~~Where the language index is written from — the settings file, a launcher, or a platform query.~~
+  ~~The same argument-passing blind spot that hides the `+0x64` writer applies.~~ *(answered: see Open questions, AV-3 — the OS, then the settings file, then Steam, which wins; 2026-10-02, OPUS)* **AV-3.**
+- Whether the id feeds text asset selection, font selection, or both. ~~No consumer of `0017E270`'s~~
+  ~~return value is read here.~~ *(answered: `0022A0B0` caches it at `0x01E02814`, §6 and AV-4 under Open questions; 2026-10-02, OPUS)* **AV-4.**
 
 ## Open questions
 
@@ -274,7 +274,7 @@ inferred from it; it is recorded so a later pass reading that block knows both a
 ### What this pass did not do
 
 It did not establish which mask means confirm, what consumes them, or what writes `+0x64`
-(**AU-5**, still open). It converts one lead into a finding and leaves the rest labelled.
+(**AU-5**~~, still open~~ *(answered: `DecideButton`, written by `0017E6E0` through `001DF340(cfg, 0x19)`; 2026-10-02, OPUS)*). It converts one lead into a finding and leaves the rest labelled.
 
 ## 7. The button convention as a complete mechanism (2026-09-02)
 
@@ -303,8 +303,8 @@ void ApplyButtonConvention(void)          /* 0022A4F0, owner Input */
 ```
 
 **It is a separate, self-contained function, not only startup code.** The convention can therefore be
-re-applied while the game is running — which is what an options-menu toggle needs. Whether a menu
-actually calls it is not shown here; the function's existence and shape are. **AV-7.**
+re-applied while the game is running — which is what an options-menu toggle needs. ~~Whether a menu~~
+~~actually calls it is not shown here;~~ *(answered: settings command `0x26` does — `0017E6E0` tail-jumps to `0022A4F0`, game-settings-ini-and-runtime-config.md; 2026-10-02, OPUS)* the function's existence and shape are. **AV-7.**
 
 ### The masks are read almost everywhere
 
@@ -399,9 +399,9 @@ which branch can fail.
 
 - ~~What `0x8001` / `0x8002` are ids in. A third id space, distinct from the `0x4000` battle action
   space and from the button masks. **AV-8.**~~ *Answered (AV-8; superseded 2026-09-26 (FABLE, Claude Opus 5.5)): not an id space; they are the payload codes of message `0x0C`, confirm and cancel.*
-- What sound ids `2` and `3` are named. **AV-9.**
-- What writes `+0x64` — still **AU-5**, and still the question that decides whether a player can
-  change this.
+- ~~What sound ids `2` and `3` are named.~~ *(answered: see Open questions, AV-9 closed 2026-09-12 — the names are not in the image or the data, the roles are; 2026-10-02, OPUS)* **AV-9.**
+- ~~What writes `+0x64` — still **AU-5**, and still the question that decides whether a player can~~
+  ~~change this.~~ *(answered: `+0x64` is `DecideButton`, written by `0017E6E0` through `001DF340(cfg, 0x19)`, so the player can change it — §4's AU-5 note and game-settings-ini-and-runtime-config.md; 2026-10-02, OPUS)*
 
 ## 9. AV-8 not answered, and a name this database invented (2026-09-02)
 

@@ -29,7 +29,7 @@ audit:
 
 # The prefetch manifests — how `FileCachePrefetchManager` reads them
 
-> One flat list of asset paths per scene, read at game start and at every map entry, to pull files
+> One flat list of asset paths per scene, read at game start and at every map entry, ~~to pull files~~ to resolve and mark each path *(answered: see §3's *CORRECTED 2026-09-21* - a prefetch token is never read; 2026-10-02, OPUS)*
 > into the file cache before anything asks for them. **This sheet answers the question the folder
 > README left open: the engine does *not* read the `##Total_data_Size` budget. It throws that line
 > away.**
@@ -127,7 +127,7 @@ tokens — `0x001DA758` opens `common.txt` and `0x001D9B75` opens `eventList.csv
 selector **0** (`xor r8d,r8d` at `0x001DA74C` and `0x001D9B6A`). The per-token request is the
 loop at `0x001DA810`–`0x001DA83F` inside `FUN_001DA610`: it walks the parsed token list and calls
 `FUN_00597970(token, 5)` per node (`mov r8b, 5` at `0x001DA810`; `call` at `0x001DA81B`), then
-`0x0059BD40` (frees the stream's `+0x30`, releases the `+0x40` handle) and `0x00598100` (the
+`0x0059BD40` (~~frees the stream's `+0x30`, releases the `+0x40` handle~~ frees the stream's `+0x30` when nonzero, and releases the `+0x40` handle when it is positive; see the path page section 5c *(corrected 2026-10-03, SWE2-EC7: `je` at `0x0059BD50`, `jle` at `0x0059BD66`, and Close returns AL 1 either way; ASTRA's filecache-close-zero-sentinel packet, FABLE-accepted; ec7_corr_check.py)*) and `0x00598100` (the
 stream destructor) — construct, tear down, destroy, **never read**: a prefetch token is a
 resolve-and-mark, not a fetch of bytes. `eventList.csv` records are `%d,%d,%d,%d` quads and get
 no per-record request at all. An independent census of every `0x00597970` (18) and `0x00597930`
@@ -148,7 +148,7 @@ convention, two payload grammars** — which is why this sheet declares `txt` an
 **Path case does not match the archive.** The engine builds `/PrefetchData/` (`0x00900648`),
 `/Maps/` (`0x009006B0`) and `/common.txt` (`0x00900638`) with capitals; the archive stores
 `prefetchdata/us/maps/…` in lower case. **Lookup is therefore case-insensitive somewhere below this
-layer** — not established here, and named in §7.
+layer** — ~~not established here, and named in §7~~ *(answered: see [the path resolver](../VBF-Archive-And-Authored-Tables/how-a-path-is-resolved-to-bytes.md) - the two key builders, at lookup time; 2026-10-02, OPUS)*.
 
 ## 4. Key addresses
 
@@ -156,12 +156,12 @@ layer** — not established here, and named in §7.
 |---|---|---|
 | `0x001DA0F0` | `FUN_001da0f0` — **the manifest parser**; `##` test at `0x001DA186`, discard at `0x001DA194` | ✅ |
 | `0x008F4438` | `.rdata` — the `"%s"` token format | ✅ |
-| `0x0018A330` | the scan routine the parser calls | ❌ entry only |
+| `0x0018A330` | the scan routine the parser calls | ~~❌ entry only~~ read *(answered: see [the `.ah` sheet](ah-asset-header-manifests.md)'s interior citation of `0018A330`; 2026-10-02, OPUS)* |
 | `0x001DA610` | `FUN_001da610` — `common.txt` at game init; parser call at `0x001DA7F6` | ✅ |
 | `0x001DA290` | `FUN_001da290` — per-map manifest on map entry | ✅ |
 | `0x001D9A40` | `FUN_001d9a40` — `eventList.csv`; `"%d,%d,%d,%d"` at `0x001D9C13` | ✅ |
 | `0x001DAAC0` | `FUN_001daac0` — the only reference to `FileCachePrefetchManager` | partial |
-| `0x00597970` | the file-cache request — opens the two manifest files (selector 0) and resolves each `common.txt` token (selector 5, per-node in the `0x001DA81B` loop) | ❌ entry only |
+| `0x00597970` | ~~the file-cache request~~ the stream-reader constructor *(answered: see [the path resolver](../VBF-Archive-And-Authored-Tables/how-a-path-is-resolved-to-bytes.md); 2026-10-02, OPUS)* — opens the two manifest files (selector 0) and resolves each `common.txt` token (selector 5, per-node in the `0x001DA81B` loop) | ❌ entry only |
 | `0x009005E8` … `0x009006E8` | `.rdata` — the ten-string `[FileCache]` cluster | ✅ |
 
 ## 5. Corpus survey
@@ -240,10 +240,10 @@ the parser itself.
   (11 literal sites + two flag-derived), and `0x001DAFD8` computes `r14+3` (3 or 4) for its
   request. FABLE's sweep finds
   `0x0059EE90` branching on the byte at `0x0059EF38` — selector 0 takes the MD5 package route,
-  non-zero the djb2 index route; what `5` stamps on the resolved entry is still unestablished.
+  non-zero the djb2 index route; ~~what `5` stamps on the resolved entry is still unestablished.~~ *(answered: see [the path resolver](../VBF-Archive-And-Authored-Tables/how-a-path-is-resolved-to-bytes.md) - selector 5 bumps a counter and stamps the entry, 2026-09-30; 2026-10-02, OPUS)*
   This sheet stops at "handed to the file cache".
 - **Where case-insensitive path lookup happens.** The engine's literals are capitalised and the
-  archive's are not; the resolution layer was not read.
+  archive's are not; ~~the resolution layer was not read.~~ *(answered: see [the path resolver](../VBF-Archive-And-Authored-Tables/how-a-path-is-resolved-to-bytes.md); 2026-10-02, OPUS)*
 - **Whether the manifests are complete or advisory** — i.e. what happens to an asset a scene uses
   that its manifest omits. That is the question a modder actually has, and it needs the file-cache
   miss path, not this parser.

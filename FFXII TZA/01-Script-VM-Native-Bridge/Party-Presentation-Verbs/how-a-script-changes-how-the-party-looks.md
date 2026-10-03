@@ -577,7 +577,7 @@ verified: `[+0xC0]` supplies the record, its `+0x30`/`+0x60`/`+0x90` triple beco
 `r12` (`002E8FE6`–`002E902B`); the `& 0xE0 == 0x60` tag gate picks the actor arm
 (`002E902F`–`002E903A`); `byte[+0x11] & 6 == 6` takes the `002EE190` + `002E8AC0` + `002E8A70`
 triple-clear (`002E90A9`–`002E90CC`); otherwise the `word [rbx]` handle indexes the `0x740`
-render-record array at `020FB7xx` (`imul rcx, rax, 0x740` at
+render-record array ~~at `020FB7xx`~~ whose base pointer is held at `022C6F28` *(corrected 2026-10-02, OPUS: `002E90FB` and `002E913D add rcx, qword ptr [022C6F28]`)* (`imul rcx, rax, 0x740` at
 [`002E90F4`](../../_index/ADDRESS-INDEX.md)/`002E9136`) and `00428E10`/`00428DE0`/`00429020`
 write the per-record visibility flags, with `[+0x284]` as the present-check. The `+0x151 >> 3 & 1`
 bit at `002E916A` is the visibility source flag mirrored into the refresh.

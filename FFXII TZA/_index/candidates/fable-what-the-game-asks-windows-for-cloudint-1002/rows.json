@@ -1,0 +1,271 @@
+{
+ "page": "24-Compiler-And-CRT-Runtime/Runtime-Service-Surface/what-the-game-asks-windows-for.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01EX8gVEnmWxiC6Ukpc8Fzck",
+ "report": "what-the-game-asks-windows-for.json",
+ "rows": [
+  {
+   "fn": "001597E0",
+   "text": "halves `rdx` into a wide-character count and returns 0x80070057 when that count is 0 or above 0x7FFFFFFF; otherwise copies words from `r8` to `rcx` until a zero word, the count running out, or 0x7FFFFFFE copied characters, then writes a zero word at the stop point and returns 0, except that when the count runs out the zero word overwrites the last copied word and 0x8007007A is returned",
+   "anchors": [
+    [
+     "001597FA",
+     "mov"
+    ],
+    [
+     "00159820",
+     "movzx"
+    ],
+    [
+     "0015982A",
+     "mov"
+    ],
+    [
+     "0015983B",
+     "mov"
+    ],
+    [
+     "00159858",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00159AA0",
+   "text": "calls `00159420(rcx)`; unless `rcx` is non-null and that result is null, calls `008C2368(result, 0, edx AND 0xFFFFE0F7)` and keeps its return; always passes the `00159420` result to `008C21F8`, and returns the `008C2368` result, or 0 when it was not called",
+   "anchors": [
+    [
+     "00159ABB",
+     "call"
+    ],
+    [
+     "00159ACB",
+     "je"
+    ],
+    [
+     "00159ACD",
+     "and"
+    ],
+    [
+     "00159ADB",
+     "call"
+    ],
+    [
+     "00159AE7",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00159CA0",
+   "text": "when dword `02EAEBC0` is 0, stores 0x11C, 6 and 1 into dwords `02EAEBC0`/`02EAEBC4`/`02EAEBC8` and 0 into word `02EAECD4`, calls `008C2378(02EAEBC0, 0x23, mask)` with the mask chained through three `008C2380` calls (`edx` 2, 1, 0x20, each with `r8b` 3) and stores (result == 0) into dword `01F41FA8`; returns 1 when `01F41FA8` is non-zero; otherwise, for non-null `rcx`, gets a length from `008C2370(rcx, 0, 0, 0)`, allocates `008C2348(0x40, length * 2)` and fills it with `008C2370(rcx, length, buffer, 0)`, giving up unless that second result is below the length; then for the ids 0x24, 0x26 and 0x2A in turn calls `00159B10(id, 01CB0954)` and returns 1 at the first string for which the call at `00159CA0` + 0x161 with (buffer, string, string length) returns 0, else 0 (also 0 for null `rcx`, a 0 length, a failed allocation or a null `00159B10` result), freeing the strings and the buffer through `008C21F8`",
+   "anchors": [
+    [
+     "00159D45",
+     "call"
+    ],
+    [
+     "00159D53",
+     "mov"
+    ],
+    [
+     "00159DA3",
+     "call"
+    ],
+    [
+     "00159DDB",
+     "call"
+    ],
+    [
+     "00159E01",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0015A650",
+   "text": "returns 0 for null `rcx`; otherwise walks the wide string `rcx` back from its end to the first `\\` (0x5C) or `.` (0x2E) and, when that is a `.`, measures the suffix from it: a suffix longer than one character returns `00159E60(rcx)`, the `.` alone returns `00159EF0(rcx, length - 1)`, and no suffix allocates `008C2348(0x40, (length + length of 01CC6BF8) * 2 + 2)`, copies `rcx` into it with `001597E0` and appends `01CC6BF8` with `001599D0`, returning the buffer, or 0 when the allocation fails or either call returns negative (the buffer then freed through `008C21F8`)",
+   "anchors": [
+    [
+     "0015A6C3",
+     "cmove"
+    ],
+    [
+     "0015A6E2",
+     "call"
+    ],
+    [
+     "0015A6FC",
+     "call"
+    ],
+    [
+     "0015A725",
+     "call"
+    ],
+    [
+     "0015A752",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0015AC50",
+   "text": "lazily fills qword `02EAEB38` with `008C2368(00159420(01CC6C68), 0, 0)` (passing the `00159420` result to `008C21F8`) and qwords `02EAEB40`/`02EAEB58` with `008C2130(02EAEB38, \"RegOpenKeyExW\")`/`008C2130(02EAEB38, \"RegCloseKey\")`, returning 0 if any stays null; calls `02EAEB40(rdx, r8, 0, 1, &handle)` and returns 0 when it is non-zero; otherwise walks the null-terminated pointer array `r9` (stride 8), reading each entry through `00159F90(handle, entry, &type, &data)` and, when that returns 0, for type 1 keeping `00159E60(data)` if `001595F0(data, rcx)` is non-zero, for type 7 keeping `00159E60` of the first string in the zero-terminated list `data` for which `001595F0(string, rcx)` is non-zero, and for any other type calling `008C2358(0xD)`; frees each `data` through `008C21F8`, stops at the first kept copy, then calls `02EAEB58(handle)` and returns the copy or 0",
+   "anchors": [
+    [
+     "0015ACC8",
+     "mov"
+    ],
+    [
+     "0015AD4B",
+     "call"
+    ],
+    [
+     "0015AD8C",
+     "call"
+    ],
+    [
+     "0015AE06",
+     "call"
+    ],
+    [
+     "0015AE29",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0015AE60",
+   "text": "lazily fills qword `02EAEB38` with `008C2368(00159420(01CC6C68), 0, 0)` (passing the `00159420` result to `008C21F8`) and qwords `02EAEB40`/`02EAEB48`/`02EAEB58` with `008C2130(02EAEB38, ...)` of \"RegOpenKeyExW\"/\"RegEnumValueW\"/\"RegCloseKey\", returning 0 if any stays null; then for each entry of the null-terminated pointer array `r8` (stride 8) calls `02EAEB40(rdx, entry, 0, 0x20019, &handle)` and, when that returns 0, allocates `008C2348(0x40, 0x10000)` and calls `02EAEB48(handle, index, buffer, &size, 0, 0, 0, 0)` for index 0, 1, 2, ... (zeroing 0x8000 bytes with `00861EC0` and setting size to 0x7FFF before each call), keeping `00159E60(buffer)` for the first 0-returning call where `001595F0(buffer, rcx)` is non-zero and stopping at a kept copy or a 0x103 result; it then frees the buffer through `008C21F8` and calls `02EAEB58(handle)` (a null allocation skips straight to that call), and returns the first kept copy, or 0 when the array runs out",
+   "anchors": [
+    [
+     "0015AF21",
+     "mov"
+    ],
+    [
+     "0015AF86",
+     "call"
+    ],
+    [
+     "0015AFF5",
+     "call"
+    ],
+    [
+     "0015B015",
+     "call"
+    ],
+    [
+     "0015B022",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0015B820",
+   "text": "calls `008C2358(0)`, and when `rcx` is null or the call at `0015B820` + 0x35 on `rcx` returns non-zero calls `008C2358(0xA0)` and returns 0; otherwise takes `0015B5F0(01CC6BE8)` and `rsi = 0015A650(rcx)` (either null skips to the cleanup) and locates the `.` suffix after the last `\\` in `rsi` (the empty end when none), then tries in order, each try only when a fresh `008C20A8()` is 0 and stopping at the first non-null result: `0015A9B0(rsi, 01CC6BE8)` when `00861F20(suffix, 01CC6BF8)` is 0; unless `00861F20(suffix, 01CC70E0)` is 0, `0015AC50(rsi, 0xFFFFFFFF80000002, the 0015B5F0 result, list 01CC7028/01CC7000/01CC6FD0)` and `0015AE60(rsi, 0xFFFFFFFF80000002, list 01CC6F90/01CC6F50)`; `0015AC50(rsi, 0xFFFFFFFF80000002, the 0015B5F0 result, list 01CC6EF0)`; and `0015B440(d, rsi)` with d = `0015B110(01CC6BE8)` when `0015A240(0x37E4)` is non-zero, else the call at +0x24C (a null d skips), dropping that result when `008C2248` on it is -1 or has a bit of 0x50 set (calling `008C2358(0)` first if `008C20A8()` is 2); frees the strings through `008C21F8` and returns the result after `008C2358(0)`, else returns 0, calling `008C2358(0x7E)` first only if `008C20A8()` is 0",
+   "anchors": [
+    [
+     "0015B906",
+     "call"
+    ],
+    [
+     "0015B99C",
+     "call"
+    ],
+    [
+     "0015B9E3",
+     "call"
+    ],
+    [
+     "0015BA7F",
+     "call"
+    ],
+    [
+     "0015BA9A",
+     "test"
+    ]
+   ]
+  },
+  {
+   "fn": "0015BB30",
+   "text": "calls `008C2358(0)`; when the wide string `rcx` contains `\\` (0x5C) or `/` (0x2F) calls `008C2358(0xA0)` and returns 0; otherwise, when `0015A240(0x37E4)` is 1 and the call at `0015BB30` + 0x91 with (`rcx`, `01CC70EC`, length of `01CC70EC`) returns 0, takes `0015B820(rcx)` and, if non-null, returns the result of the call at +0xB5 with (it, the incoming `edx`), freeing it through `008C21F8` after that call, or returns 0 when it is null and `008C20A8()` is not 0x7E; every other path returns `00159AA0(rcx, edx)`",
+   "anchors": [
+    [
+     "0015BB76",
+     "cmp"
+    ],
+    [
+     "0015BB96",
+     "call"
+    ],
+    [
+     "0015BBCD",
+     "call"
+    ],
+    [
+     "0015BBE5",
+     "call"
+    ],
+    [
+     "0015BC16",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "001EDF10",
+   "text": "when qword `01F82E48` is 0, stores `008C2B40(0x20)` into it after, if non-null, setting its dword `+0x0` to 0x2000000, dword `+0x4` to 0x200000, qword `+0x10` to 0 and dword `+0x18` to 0; then tail-jumps to `008C2B60(rdx, r8)`, dropping the incoming `rcx`",
+   "anchors": [
+    [
+     "001EDF2F",
+     "call"
+    ],
+    [
+     "001EDF3A",
+     "mov"
+    ],
+    [
+     "001EDF40",
+     "mov"
+    ],
+    [
+     "001EDF56",
+     "mov"
+    ],
+    [
+     "001EDF6D",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "00159CA0",
+   "was": "when dword `02EAEBC0` is 0, stores 0x11C, 6 and 1 into dwords `02EAEBC0`/`02EAEBC4`/`02EAEBC8` and 0 into word `02EAECD4`, calls `008C2378(02EAEBC0, 0x23, mask)` with the mask chained through three `008C2380` calls (`edx` 2, 1, 0x20, each with `r8b` 3) and stores (result == 0) into dword `01F41FA8`; returns 1 when `01F41FA8` is non-zero; otherwise, for non-null `rcx`, gets a length from `008C2370(rcx, 0, 0, 0)`, allocates `008C2348(0x40, length * 2)` and fills it with `008C2370(rcx, length, buffer, 0)`, giving up unless that second result is below the length; then for the ids 0x24, 0x26 and 0x2A in turn calls `00159B10(id, 01CB0954)` and returns 1 at the first string for which `00861FCE(buffer, string, string length)` is 0, else 0 (also 0 for null `rcx`, a 0 length, a failed allocation or a null `00159B10` result), freeing the strings and the buffer through `008C21F8`",
+   "now": "when dword `02EAEBC0` is 0, stores 0x11C, 6 and 1 into dwords `02EAEBC0`/`02EAEBC4`/`02EAEBC8` and 0 into word `02EAECD4`, calls `008C2378(02EAEBC0, 0x23, mask)` with the mask chained through three `008C2380` calls (`edx` 2, 1, 0x20, each with `r8b` 3) and stores (result == 0) into dword `01F41FA8`; returns 1 when `01F41FA8` is non-zero; otherwise, for non-null `rcx`, gets a length from `008C2370(rcx, 0, 0, 0)`, allocates `008C2348(0x40, length * 2)` and fills it with `008C2370(rcx, length, buffer, 0)`, giving up unless that second result is below the length; then for the ids 0x24, 0x26 and 0x2A in turn calls `00159B10(id, 01CB0954)` and returns 1 at the first string for which the call at `00159CA0` + 0x161 with (buffer, string, string length) returns 0, else 0 (also 0 for null `rcx`, a 0 length, a failed allocation or a null `00159B10` result), freeing the strings and the buffer through `008C21F8`",
+   "why": "content verified (IAT slots resolve to VerSetConditionMask, VerifyVersionInfoW, GetFullPathNameW, LocalAlloc, LocalFree; `00159DC4` jbe gives up unless the second result is below the length); the compare callee, new to the page, is now cited by its site +0x161 (`00159E01`)"
+  },
+  {
+   "fn": "0015AE60",
+   "was": "lazily fills qword `02EAEB38` with `008C2368(00159420(01CC6C68), 0, 0)` (passing the `00159420` result to `008C21F8`) and qwords `02EAEB40`/`02EAEB48`/`02EAEB58` with `008C2130(02EAEB38, ...)` of \"RegOpenKeyExW\"/\"RegEnumValueW\"/\"RegCloseKey\", returning 0 if any stays null; then for each entry of the null-terminated pointer array `r8` (stride 8) calls `02EAEB40(rdx, entry, 0, 0x20019, &handle)` and, when that returns 0, allocates `008C2348(0x40, 0x10000)` and calls `02EAEB48(handle, index, buffer, &size, 0, 0, 0, 0)` for index 0, 1, 2, ... (zeroing 0x8000 bytes with `00861EC0` and setting size to 0x7FFF before each call), keeping `00159E60(buffer)` for the first 0-returning call where `001595F0(buffer, rcx)` is non-zero and stopping at a kept copy or a 0x103 result; it then frees the buffer through `008C21F8` and calls `02EAEB58(handle)`, and returns the first kept copy, or 0 when the array runs out",
+   "now": "lazily fills qword `02EAEB38` with `008C2368(00159420(01CC6C68), 0, 0)` (passing the `00159420` result to `008C21F8`) and qwords `02EAEB40`/`02EAEB48`/`02EAEB58` with `008C2130(02EAEB38, ...)` of \"RegOpenKeyExW\"/\"RegEnumValueW\"/\"RegCloseKey\", returning 0 if any stays null; then for each entry of the null-terminated pointer array `r8` (stride 8) calls `02EAEB40(rdx, entry, 0, 0x20019, &handle)` and, when that returns 0, allocates `008C2348(0x40, 0x10000)` and calls `02EAEB48(handle, index, buffer, &size, 0, 0, 0, 0)` for index 0, 1, 2, ... (zeroing 0x8000 bytes with `00861EC0` and setting size to 0x7FFF before each call), keeping `00159E60(buffer)` for the first 0-returning call where `001595F0(buffer, rcx)` is non-zero and stopping at a kept copy or a 0x103 result; it then frees the buffer through `008C21F8` and calls `02EAEB58(handle)` (a null allocation skips straight to that call), and returns the first kept copy, or 0 when the array runs out",
+   "why": "a null allocation result branches past the free to the close call (`0015AFA8` je to `0015B033`), a path the text did not state"
+  },
+  {
+   "fn": "0015B820",
+   "was": "calls `008C2358(0)`, and when `rcx` is null or `00159520(rcx)` is non-zero calls `008C2358(0xA0)` and returns 0; otherwise takes `0015B5F0(01CC6BE8)` and `rsi = 0015A650(rcx)` (either null skips to the cleanup) and locates the `.` suffix after the last `\\` in `rsi`, then tries in order, each try only when a fresh `008C20A8()` is 0 and stopping at the first non-null result: `0015A9B0(rsi, 01CC6BE8)` when `00861F20(suffix, 01CC6BF8)` is 0; unless `00861F20(suffix, 01CC70E0)` is 0, `0015AC50(rsi, 0xFFFFFFFF80000002, the 0015B5F0 result, list 01CC7028/01CC7000/01CC6FD0)` and `0015AE60(rsi, 0xFFFFFFFF80000002, list 01CC6F90/01CC6F50)`; `0015AC50(rsi, 0xFFFFFFFF80000002, the 0015B5F0 result, list 01CC6EF0)`; and `0015B440(dir, rsi)` with `dir = 0015B110(01CC6BE8)` when `0015A240(0x37E4)` is non-zero, else `00159580()`, dropping that join when `008C2248` on it is -1 or has a bit of 0x50 set (calling `008C2358(0)` first if `008C20A8()` is 2); frees the strings through `008C21F8` and returns the result after `008C2358(0)`, or 0 after `008C2358(0x7E)` if `008C20A8()` is 0",
+   "now": "calls `008C2358(0)`, and when `rcx` is null or the call at `0015B820` + 0x35 on `rcx` returns non-zero calls `008C2358(0xA0)` and returns 0; otherwise takes `0015B5F0(01CC6BE8)` and `rsi = 0015A650(rcx)` (either null skips to the cleanup) and locates the `.` suffix after the last `\\` in `rsi` (the empty end when none), then tries in order, each try only when a fresh `008C20A8()` is 0 and stopping at the first non-null result: `0015A9B0(rsi, 01CC6BE8)` when `00861F20(suffix, 01CC6BF8)` is 0; unless `00861F20(suffix, 01CC70E0)` is 0, `0015AC50(rsi, 0xFFFFFFFF80000002, the 0015B5F0 result, list 01CC7028/01CC7000/01CC6FD0)` and `0015AE60(rsi, 0xFFFFFFFF80000002, list 01CC6F90/01CC6F50)`; `0015AC50(rsi, 0xFFFFFFFF80000002, the 0015B5F0 result, list 01CC6EF0)`; and `0015B440(d, rsi)` with d = `0015B110(01CC6BE8)` when `0015A240(0x37E4)` is non-zero, else the call at +0x24C (a null d skips), dropping that result when `008C2248` on it is -1 or has a bit of 0x50 set (calling `008C2358(0)` first if `008C20A8()` is 2); frees the strings through `008C21F8` and returns the result after `008C2358(0)`, else returns 0, calling `008C2358(0x7E)` first only if `008C20A8()` is 0",
+   "why": "two callees new to the page are now cited by their sites (+0x35 at `0015B855`, +0x24C at `0015BA6C`); 'dir' and 'join' named purposes the listing does not show, so the operand is called d; a null d skips the call (`0015BA77` je); the 0 return calls the 0x7E setter only when the getter returns 0 (`0015BAF7` jne), now stated as such"
+  },
+  {
+   "fn": "0015BB30",
+   "was": "calls `008C2358(0)`; when the wide string `rcx` contains `\\` (0x5C) or `/` (0x2F) calls `008C2358(0xA0)` and returns 0; otherwise, when `0015A240(0x37E4)` is 1 and `00861FCE(rcx, 01CC70EC, length of 01CC70EC)` is 0, takes `0015B820(rcx)` and, if non-null, returns `0015B550(it, edx)` after freeing it through `008C21F8`, or returns 0 when it is null and `008C20A8()` is not 0x7E; every other path returns `00159AA0(rcx, edx)`",
+   "now": "calls `008C2358(0)`; when the wide string `rcx` contains `\\` (0x5C) or `/` (0x2F) calls `008C2358(0xA0)` and returns 0; otherwise, when `0015A240(0x37E4)` is 1 and the call at `0015BB30` + 0x91 with (`rcx`, `01CC70EC`, length of `01CC70EC`) returns 0, takes `0015B820(rcx)` and, if non-null, returns the result of the call at +0xB5 with (it, the incoming `edx`), freeing it through `008C21F8` after that call, or returns 0 when it is null and `008C20A8()` is not 0x7E; every other path returns `00159AA0(rcx, edx)`",
+   "why": "content verified (`0015BB9E` jne on eax 1, `0015BBDB` null test after the getter call at `0015BBD5`, `0015BC0B` je 0x7E falls through to the last call); two callees new to the page are now cited by their sites (+0x91 at `0015BBC1`, +0xB5 at `0015BBE5`)"
+  }
+ ]
+}

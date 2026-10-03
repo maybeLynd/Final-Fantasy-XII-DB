@@ -606,6 +606,30 @@ def check_against_journal(file_text, board, recs):
     return {"action": "ok"}
 
 
+# Wall-clock bound on the transient PermissionError retry when READING TEAM.json (see read_board_text).
+READ_DEADLINE_S = 10.0
+
+
+def read_board_text(path):
+    """TEAM.json's text, retrying a transient PermissionError for at most READ_DEADLINE_S.
+
+    A plain open() that races team.py's tmp -> TEAM.json os.replace can fail with errno 13 (winerror None) for an
+    instant while the replace is in flight: reproduced offline, 28 of ~14,000 racing reads on a small file
+    (SWE2-FRONTIER, 2026-10-03, ASTRA-REQ-FRONTIER-BOARD-READ-DENIAL-1003; ASTRA's board_status watch hit it live).
+    The read is retried, never answered from a stale copy; past the deadline the error propagates exactly as before.
+    """
+    deadline = time.monotonic() + READ_DEADLINE_S
+    attempt = 0
+    while True:
+        try:
+            return Path(path).read_text(encoding="utf-8")
+        except PermissionError:
+            if time.monotonic() >= deadline:
+                raise
+            time.sleep(min(0.02 * (1 << min(attempt, 6)), 0.25))
+            attempt += 1
+
+
 def board_status(path):
     """Non-mutating integrity verdict for callers (watchdog, publish guard).
 
@@ -622,7 +646,7 @@ def board_status(path):
     last = None
     for _ in range(3):
         try:
-            text = Path(path).read_text(encoding="utf-8")
+            text = read_board_text(path)
             board = json.loads(text)
         except (OSError, ValueError) as e:
             return False, "board unreadable: %s" % e
@@ -646,6 +670,10 @@ def _write_board(path, board):
     return text, _write_board_text(path, text)
 
 
+# Wall-clock bound on the transient WinError 5/32 retry at the tmp->TEAM.json replace (see _write_board_text).
+REPLACE_DEADLINE_S = 30.0
+
+
 def _write_board_text(path, text):
     """Atomic replace of an already-serialized board; returns its sha."""
     fd, name = tempfile.mkstemp(prefix="TEAM-", suffix=".tmp", dir=path.parent)
@@ -662,13 +690,24 @@ def _write_board_text(path, text):
         # Bounded retry absorbs the transient class; anything else, or the
         # bound exhausted, propagates so the journaled intent stays pending
         # and the next transaction reconciles it - fail closed, not silent.
-        for attempt in range(8):
+        #
+        # The bound is a DEADLINE, not an attempt count (SWE2-FRONTIER, 2026-10-03,
+        # ASTRA-REQ-FRONTIER-ATOMIC-BOARD-WRITE-DENIAL-1003). The old eight attempts
+        # spanned ~3.2 s; at 70 MB one reader holds TEAM.json open 0.25-0.7 s
+        # (json.load), and Python readers open it without FILE_SHARE_DELETE, so with
+        # many pollers their read windows overlapped past 3.2 s and two ASTRA writes
+        # (2026-10-03 01:40Z / 01:44Z) failed with the board unchanged. Backoff is
+        # capped so a gap between readers is caught promptly.
+        deadline = time.monotonic() + REPLACE_DEADLINE_S
+        attempt = 0
+        while True:
             try:
                 os.replace(name, path)
                 break
             except PermissionError as e:
-                if getattr(e, "winerror", None) in (5, 32) and attempt < 7:
-                    time.sleep(0.025 * (1 << attempt))
+                if getattr(e, "winerror", None) in (5, 32) and time.monotonic() < deadline:
+                    time.sleep(min(0.025 * (1 << min(attempt, 6)), 0.25))
+                    attempt += 1
                     continue
                 raise
     finally:
@@ -1069,7 +1108,7 @@ def main():
             if args.check:
                 require(args.file, "current --check needs --file <inbox md>")
                 text = args.file.read_text(encoding="utf-8")
-                board = json.loads(args.board.read_text(encoding="utf-8"))
+                board = json.loads(read_board_text(args.board))
                 verdicts = check_current(text, board)
                 if not verdicts:
                     print("no TEAM-CURRENT blocks in", args.file)
@@ -1089,15 +1128,15 @@ def main():
                 board = None
                 out = None
                 for _ in range(3):
-                    t1 = args.board.read_text(encoding="utf-8")
+                    t1 = read_board_text(args.board)
                     cand = json.loads(t1)
-                    if _sha_text(args.board.read_text(encoding="utf-8")) == _sha_text(t1):
+                    if _sha_text(read_board_text(args.board)) == _sha_text(t1):
                         board, out = cand, write_current(text, args.agent, cand)
                         break
                 if out is None:
                     # inputs kept moving - write the honest label, never a
                     # silently-stale "current" block
-                    board = json.loads(args.board.read_text(encoding="utf-8"))
+                    board = json.loads(read_board_text(args.board))
                     out = write_current(text, args.agent, board, stale=True)
                     print("inputs moved during generation - block written",
                           "with stale-inputs label; rerun to refresh")
@@ -1106,7 +1145,7 @@ def main():
                       % (args.file, board["revision"]))
                 return
             require(args.agent, "current needs --agent (or --check/--write)")
-            board = json.loads(args.board.read_text(encoding="utf-8"))
+            board = json.loads(read_board_text(args.board))
             print(current_block(board, args.agent))
             return
         if args.command == "apply":
@@ -1122,7 +1161,7 @@ def main():
                 print("note: publish document changes with publish_paths.sh <msg> <path>... "
                       "(TEAM.md) -- never `git add` of shared or unstaged-by-you paths")
         else:
-            b = json.loads(args.board.read_text(encoding="utf-8"))
+            b = json.loads(read_board_text(args.board))
             validate(b)
             if args.command == "validate":
                 print("PASS: %d identities (%s); claims, dependencies, handoffs and summaries valid"

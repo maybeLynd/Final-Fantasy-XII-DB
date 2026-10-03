@@ -1,0 +1,38 @@
+{
+ "page": "26-PKFL-Package-Container/Container/pkfl-package-container.md",
+ "date": "2026-10-02",
+ "session": "local-w43-opus",
+ "report": "pkfl-package-container.json",
+ "rows": [
+  {
+   "fn": "0032F320",
+   "text": "returns -1 when `ecx` is above 3 (signed); otherwise takes the pointer at `022C6EC0` + `ecx`*8 when `r8d` is 0, or at `022C6EE8` + `ecx`*8 when it is non-zero, returns -1 when the first byte it points at is 0, and otherwise returns the dword at that pointer + `edx`*8 + 8 (`edx` sign-extended)",
+   "anchors": [
+    [
+     "0032F323",
+     "jg"
+    ],
+    [
+     "0032F334",
+     "mov"
+    ],
+    [
+     "0032F33E",
+     "mov"
+    ],
+    [
+     "0032F346",
+     "cmp"
+    ],
+    [
+     "0032F34E",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

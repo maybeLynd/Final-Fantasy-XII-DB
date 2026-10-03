@@ -52,6 +52,8 @@ from pathlib import Path
 
 CANDIDATES = "Database/FFXII TZA/_index/candidates/"
 DB_MD = re.compile(r"^Database/FFXII TZA/(?!_index/_inbox/).*\.md$", re.I)
+# What an affected: declaration may name and a publish may touch: database .md and .tsv.
+DB_TOUCHABLE = re.compile(r"^Database/FFXII TZA/(?!_index/_inbox/).*\.(?:md|tsv)$", re.I)
 KEYWORD = re.compile(r"\b(corrected|superseded|refuted)\b", re.I)
 STRIKE = re.compile(r"~~[^~\s][^~]*~~")  # a real strike pair, not a `~~` mention
 AGREE = re.compile(r"agrees|revised-here|routed-to-", re.I)
@@ -269,8 +271,13 @@ def gate(root, paths, msg_text):
                 if not p2.startswith("Database/"):
                     p2 = "Database/FFXII TZA/" + p2
                 declared_paths.add(p2)
+    # A declared path may be a .md or a .tsv (the regex above admits both), so a
+    # touched database TSV - a census, _types/fields.tsv - counts as touched too.
+    # Before 2026-10-03 only DB_MD paths did, and a record honestly naming a TSV
+    # it touched was always refused (SWE2STRUCT-REQ-FRONTIER-CORRECTION-GATE-TSV-
+    # AFFECTED-1003, SWE2-STRUCT's suspend-copy census record).
     touched = {p[2:] if p.startswith("./") else p for p in paths
-               if DB_MD.match(p[2:] if p.startswith("./") else p)}
+               if DB_TOUCHABLE.match(p[2:] if p.startswith("./") else p)}
     touched_names = {t.rsplit("/", 1)[-1] for t in touched}
     for dp in sorted(declared_paths):
         if dp not in touched and dp.rsplit("/", 1)[-1] not in touched_names \

@@ -1,0 +1,43 @@
+{
+  "complete": true,
+  "driver_sha256": "3ee7b1d08a9857dba896f77a3ba3bd238e850d6a4fb5bfe556cfcb78b37008dd",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "requested": [
+    "0x1ccb20",
+    "0x1ccb21"
+  ],
+  "requested_sha256": "44bd7ae60f478fae1061e11a7739f4b94d1daf917982d33b6fc8a01a63f89c21",
+  "maps_examined": 1306,
+  "matches": [
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\returned-review-narrowings\\special-override-constructor-raw-01.json",
+      "file_sha256": "91747eb0ccddaa9a37c3e1fbb3498a3d1995032e7d6137de16d4b62e91529656",
+      "range": [
+        "0x1ccb20",
+        "0x1ccfda"
+      ],
+      "range_sha256": "b60ad1ab63aba38d2a8d0e96788f54caa64783a884cc064e6dbff378b04cb875"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\special-action-override-domain\\special-override-constructor-raw-01.json",
+      "file_sha256": "91747eb0ccddaa9a37c3e1fbb3498a3d1995032e7d6137de16d4b62e91529656",
+      "range": [
+        "0x1ccb20",
+        "0x1ccfda"
+      ],
+      "range_sha256": "b60ad1ab63aba38d2a8d0e96788f54caa64783a884cc064e6dbff378b04cb875"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\special-override-constructor-raw-01.json",
+      "file_sha256": "91747eb0ccddaa9a37c3e1fbb3498a3d1995032e7d6137de16d4b62e91529656",
+      "range": [
+        "0x1ccb20",
+        "0x1ccfda"
+      ],
+      "range_sha256": "b60ad1ab63aba38d2a8d0e96788f54caa64783a884cc064e6dbff378b04cb875"
+    }
+  ],
+  "malformed_candidates": [],
+  "decision": "REUSE_VERIFIED_RETAINED_BYTES",
+  "limits": "Bounded physical byte coverage in named source-map corpus, not global absence, provenance acceptance, source semantics or live initialization. Retain/check original lineage and receipts before semantic use."
+}

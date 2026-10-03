@@ -1708,3 +1708,12 @@ Interior anchor `002EF15D` (function `002EF100`).
 `00196B90` (171 B) is `wstring::erase(pos, len)` the profile-name path runs: `[rcx+0x10]` bounds-checks `rdx` with the `invalid string position` throw on violation, a full-range or zero-length erase just truncates at `rdx`, otherwise `memmove` (IAT `008C2A40`) slides the tail over `r9` chars, `[rcx+0x10]` shortens, and the SSO buffer (`+0x18 >= 8` selects the heap pointer) gets its NUL word
 
 Interior anchor `00196C0E` (function `00196B90`).
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../../_index/candidates/fable-home-binding-profiles-remapping-and-control--1002/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `001E0980` | 36 B | `002284F0` + 0x160 | returns without work when the call at `001E0980` + 0x4 returns null; otherwise repeats that call at `001E0980` + 0xE and tail-jumps through the site `001E0980` + 0x1A with `rcx` = its result | Interior anchor `001E0984`; Interior anchor `001E098C`; Interior anchor `001E098E`; Interior anchor `001E099A` |
+| `002498A0` | 12 B | `001EC060` + 0xEF | returns dword `02F97364` ANDed with `0x800` (bit 11) | Interior anchor `002498A6` |

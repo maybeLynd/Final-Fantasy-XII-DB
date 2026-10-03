@@ -1,0 +1,6 @@
+control: 00599770 with its own descriptor -> verified; with 02D363A0 -> mismatch
+appendix rows 747; compare form 591; other shape 156; no size 0
+constructor callers 400; wrappers 330; core constructors 9 ['PBase', 'PClassDataMemberDynamic', 'PClassDescriptor', 'PClassDescriptorDynamic', 'PClassMember', 'PCluster', 'PClusterDependencyList', 'PNamespace', 'PWorld']; descriptors named 324
+dispositions: getter-form 156, verified 591
+getter form with a named getter descriptor: 58 of 156
+FAILS 0

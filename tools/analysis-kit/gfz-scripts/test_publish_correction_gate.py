@@ -247,6 +247,27 @@ class Gate(unittest.TestCase):
         self.assertFalse(ok)
         self.assertTrue(any("does not touch" in r for r in refuse))
 
+    def test_declared_touched_tsv_passes(self):
+        # SWE2STRUCT-REQ-FRONTIER-CORRECTION-GATE-TSV-AFFECTED-1003: a record
+        # naming a database TSV that this publish touches is not refused.
+        tsv = "Database/FFXII TZA/_types/fields.tsv"
+        self._record("id\tvalue\nA\tnew\n", rel=tsv)
+        self._edit("# page\n\nold prose claim (restated)\n\nother text\n")
+        rec = self._record(
+            "# check\n\naffected: `%s` row A\naffected: CONTRACT-fixture.md\n\n"
+            "| consumer | agrees |\n|---|---|\n| `x.md` | yes |\n" % tsv)
+        ok, refuse, _ = g.gate(self.root, [PAGE, tsv, rec], "msg")
+        self.assertFalse(any("does not touch" in r for r in refuse), refuse)
+
+    def test_declared_untouched_tsv_refuses(self):
+        self._edit("# page\n\nold prose claim (restated)\n\nother text\n")
+        rec = self._record(
+            "# check\n\naffected: Database/FFXII TZA/_types/fields.tsv\n\n"
+            "| consumer | agrees |\n|---|---|\n| `x.md` | yes |\n")
+        ok, refuse, _ = g.gate(self.root, [PAGE, rec], "msg")
+        self.assertFalse(ok)
+        self.assertTrue(any("does not touch" in r for r in refuse))
+
     def test_exec_claim_needs_run_commit(self):
         # The .py control exists but the record pins no commit it ran at.
         self._correct(exec_claim=True)

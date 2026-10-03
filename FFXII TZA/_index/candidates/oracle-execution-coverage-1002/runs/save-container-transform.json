@@ -1,0 +1,21 @@
+{
+ "blocks_in_image": 863,
+ "blocks_outside_image": 29,
+ "catalogue": "e2a67b07700c2ec3fbfae3213965de35",
+ "classes": {
+  "entered": 3,
+  "returned": 65,
+  "returned+faulted": 1
+ },
+ "elapsed_s": 61.1,
+ "emu_starts": 47,
+ "entries_executed": 66,
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "instrument": "execcov-shim v2",
+ "patched_blocks": 9,
+ "rc": 0,
+ "receipt_md5": "545a46720c9a95ace892ac2687a70da8",
+ "run": "save-container-transform",
+ "status": "ok",
+ "unique_blocks": 892
+}

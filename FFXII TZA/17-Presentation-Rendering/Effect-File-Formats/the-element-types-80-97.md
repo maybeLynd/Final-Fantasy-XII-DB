@@ -43,18 +43,18 @@ selects parameter variants, not separate classes.
 | family | setup shape | types |
 |---|---|---|
 | A | base + 3–5 three-track groups from `+0x80`, 4-track groups mid-record, singles, optional `003AA280`+`0020E620` resource stores | `0x80`–`0x8B` |
-| B | base + `4G@+0x80` + `3G@+0xD0` + `3G@+0x110` + `3G@+0x150` + `1T@+0x190` (`0x91`/`0x92` also `1T@+0x1A0`) + `00431770` init(s) + one resource store | `0x8C`–`0x92`, `0x94`–`0x97` |
+| B | base + `4G@+0x80` + `3G@+0xD0` + `3G@+0x110` + `3G@+0x150` + `1T@+0x190` (`0x91`/`0x92` also `1T@+0x1A0`) + `00431770` init(s) + one resource store | ~~`0x8C`–`0x92`, `0x94`–`0x97`~~ `0x8C`–`0x92`, `0x94`, `0x95`, `0x97`; `0x96` is family A *(corrected 2026-10-02, OPUS: `005004C0`'s table (`005004C0`+0x5B..+0x6F) sends type `0x84` and `0x96` to the same setup `00539980`)* |
 
 ## Shared-method clusters
 
-- `0x80`/`0x82`/`0x83` — identical step `0044CC10` (54 B = base + PRNG `0044B960` +
-  tail `00450CE0`), identical update `00450480`, identical setup `00539320`
+- `0x80`/`0x82`/`0x83` — identical step `0044CC10` (54 B = base + ~~PRNG `0044B960` +~~
+  tail `00450CE0` + PRNG `0044B960` *(corrected 2026-10-02, OPUS: `0044CC10`+0x1B calls the tail, +0x20 the PRNG)*), identical update `00450480`, identical setup `00539320`
   (family A: `3G`×3 `+0x80`–`+0x100`, `4G` `+0x140`/`+0x190`, singles `+0x1E0`/
   `+0x1F0`). They differ **only in walk**: `0044CC50` / `0044DD00` / `0044E530`
   (1071/1106/1089 B) — same call family (`003970A0`/`00397910`/`00398030`/
   `00399600`/`0039A9B0`/`0039B550`/`0039B620`/`003A34D0`), three emit variants.
 - `0x8C`/`0x94`/`0x95` **(and `0x97`, corrected 2026-09-29, FABLE, GI-11: same birth, update `0045B260` and tail `0045B640`)** — identical step `00455390` (419 B: base + `0020E600` +
-  `003A6E60` + `003D8E50` + PRNG + tail `0045B640`), identical update `0045B260`,
+  `003A6E60` + `003D8E50` + ~~PRNG + tail `0045B640`~~ tail `0045B640` + PRNG *(corrected 2026-10-02, OPUS: `00455390`+0xB4 and +0xB9)*), identical update `0045B260`,
   identical setup `00539B30` (family B + `00431770@+0x1A0`). Walks differ and are
   all **variant selectors** (below): `00455540` (28 B), `0045AEE0` (10 B),
   `0045B2A0` (10 B).

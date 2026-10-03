@@ -1,0 +1,42 @@
+{
+ "page": "00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-H-ids-236-267.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01Xkefj8Gz4bCEiqGqVRB1MS",
+ "report": "home-arm-catalogue-slice-h-ids-236-267.json",
+ "rows": [
+  {
+   "fn": "00183260",
+   "entered_from": "`0079C140` + 0x37D",
+   "text": "calls `00183260` + 0x4 and, only when the result is non-null, calls `00183260` + 0xE again and stores byte 1 at `+0x2` of that second result; `rax` is left holding the last call's result",
+   "anchors": [
+    [
+     "00183264",
+     "call"
+    ],
+    [
+     "00183269",
+     "test"
+    ],
+    [
+     "0018326E",
+     "call"
+    ],
+    [
+     "00183273",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "00183260",
+   "was": "calls `00183260` + 0x4 and, only when the result is non-null, calls `00183260` + 0xE again and stores byte 1 at `+0x2` of that second result; returns nothing",
+   "now": "calls `00183260` + 0x4 and, only when the result is non-null, calls `00183260` + 0xE again and stores byte 1 at `+0x2` of that second result; `rax` is left holding the last call's result",
+   "why": "'returns nothing' is a claim the bytes do not make: rax is left holding the last call's result on both paths"
+  }
+ ]
+}

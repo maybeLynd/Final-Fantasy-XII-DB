@@ -1,0 +1,21 @@
+{
+ "blocks_in_image": 88,
+ "blocks_outside_image": 0,
+ "catalogue": "e2a67b07700c2ec3fbfae3213965de35",
+ "classes": {
+  "body_only": 1,
+  "returned": 16,
+  "stubbed": 1
+ },
+ "elapsed_s": 1.3,
+ "emu_starts": 52,
+ "entries_executed": 16,
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "instrument": "execcov-shim v2",
+ "patched_blocks": 7,
+ "rc": 0,
+ "receipt_md5": "a27a460b8ee6122acb872bee30146466",
+ "run": "efx-rebase-execution",
+ "status": "ok",
+ "unique_blocks": 88
+}

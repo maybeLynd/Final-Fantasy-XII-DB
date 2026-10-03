@@ -1,0 +1,11 @@
+entry	class	mutated
+0020e600	returned	
+0020e620	returned	
+0036a000	returned	
+0036b410	returned+faulted	
+0036b490	returned	
+0036b4e0	returned+faulted	yes
+0036c790	returned+faulted	yes
+0036d170	returned+faulted	yes
+003ab880	returned	yes
+003ab940	returned	

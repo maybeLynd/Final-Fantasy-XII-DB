@@ -1,0 +1,152 @@
+{
+ "page": "23-Third-Party-Libraries/LibVPX-VP8-Decoder/the-vp8-codec-interface-and-its-control-map.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-vp8-codec-interface-and-its-control-map.json",
+ "rows": [
+  {
+   "fn": "0016E070",
+   "text": "calls through the qword at `008C2B40` with 0x347 and returns 1 when that yields null; otherwise it computes `aligned` as the returned pointer `p` plus 0x17 with the low 4 bits cleared, stores `p` at `aligned-8`, calls `00861EC0(aligned, 0, 0x330)`, stores the aligned pointer to qword `[rcx+0x30]`, copies dword `[rcx+0x20]` to `[aligned+8]`, zeroes qwords `+0x108` and `+0x110`, stores 0x10 to dword `+0xe4`, and when qword `[rcx+0x28]` is non-null copies 8 bytes plus a dword from it to `aligned+0xd8` and repoints `[rcx+0x28]` there; it returns 0",
+   "anchors": [
+    [
+     "0016E07E",
+     "call"
+    ],
+    [
+     "0016E09A",
+     "and"
+    ],
+    [
+     "0016E0A5",
+     "call"
+    ],
+    [
+     "0016E0AD",
+     "mov"
+    ],
+    [
+     "0016E0EC",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0016E290",
+   "text": "returns 8 when `rcx` + the zero-extended `edx` is not above `rcx`; when `r9` is non-null it calls `r9` with the fifth (stack) argument, `rcx`, the local buffer `rsp+0x20` and the smaller of `edx` and 10, and reads from that buffer instead of `rcx`; it then zeroes dword `[r8+0xc]` and returns 5 when `edx` is below 10 or bit `0x1` of byte 0 is set, otherwise stores 1 to `[r8+0xc]` and returns 5 unless bytes 3, 4 and 5 are 0x9d, 0x01 and 0x2a, in which case it stores the little-endian words at bytes 6 and 8, each masked with 0x3fff, to dwords `[r8+4]` and `[r8+8]` and returns 0 when either is non-zero and 5 when both are zero; the stack cookie is checked through `00808C40`",
+   "anchors": [
+    [
+     "0016E2C1",
+     "ja"
+    ],
+    [
+     "0016E2E8",
+     "call"
+    ],
+    [
+     "0016E2FC",
+     "test"
+    ],
+    [
+     "0016E309",
+     "cmp"
+    ],
+    [
+     "0016E355",
+     "cmovne"
+    ]
+   ]
+  },
+  {
+   "fn": "0016E3C0",
+   "text": "zeroes dword `[r9]`, and when dword `[rcx+0x2bc]` is zero calls `00861EC0(rcx+0x2c0, 0, 0x6c)`; when dword `[rcx+0x2b8]` is non-zero it returns 1 if `rdx` and `r8d` are both zero, otherwise appends `rdx` to the qword array at `rcx+0x2c0` and `r8d` to the dword array at `rcx+0x308` at index `[rcx+0x2bc]`, increments that index and, when it exceeds 9, resets it to 0, stores 8 to `[r9]` and returns -1, else returns 0; when `[rcx+0x2b8]` is zero it returns 0 if `rdx` and `r8d` are both zero, otherwise stores them to `[rcx+0x2c0]` and `[rcx+0x308]`, sets `[rcx+0x2bc]` to 1 and returns 1",
+   "anchors": [
+    [
+     "0016E3E2",
+     "mov"
+    ],
+    [
+     "0016E3FE",
+     "call"
+    ],
+    [
+     "0016E41C",
+     "mov"
+    ],
+    [
+     "0016E44D",
+     "mov"
+    ],
+    [
+     "0016E478",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0016EC20",
+   "text": "returns 8 when the record `r` = qword `[rdx]` is null or dword `[rcx+0x1a8]` is non-zero; otherwise it fills a stack block at `rsp+0x20` from `r` (dword `+0x20` at `rsp+0x20` and `rsp+0x28`, dword `+0x24` at `rsp+0x24` and `rsp+0x2c`, dword `+0x58` at `rsp+0x30`, (`+0x20`+1)>>1 at `rsp+0x34` and `rsp+0x3c`, (`+0x24`+1)>>1 at `rsp+0x38` and `rsp+0x40`, dword `+0x5c` at `rsp+0x44`, qwords `+0x38`, `+0x40` and `+0x48` at `rsp+0x58`, `rsp+0x60` and `rsp+0x68`, and (`+0x58` - `+0x20`)>>1 at `rsp+0x84`) and returns `0016F450(qword [rcx+0x1b0], dword [r], rsp+0x20)`",
+   "anchors": [
+    [
+     "0016EC30",
+     "je"
+    ],
+    [
+     "0016EC3D",
+     "jne"
+    ],
+    [
+     "0016EC5B",
+     "shr"
+    ],
+    [
+     "0016EC82",
+     "mov"
+    ],
+    [
+     "0016ECC1",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0016F450",
+   "text": "uses `b` = `rcx+0x12c0` and selects the index dword at `b+0x9d4`, `b+0x9d8` or `b+0x9dc` for `edx` = 1, 2 or 4; any other `edx` calls `0016DE20(b, 1, 'Invalid reference frame')`; for a selected index `k` it compares dwords `+0x4`, `+0x0`, `+0x18` and `+0x14` of the 0x90-byte entry at `b+0x780+k*0x90` with the same dwords of `r8` and on any mismatch calls `0016DE20(b, 1, 'Incorrect buffer dimensions')`; when all match it gets `j` = `0016F550(b)`, decrements dword `[b+0x9c0+j*4]`, decrements dword `[b+0x9c0+k*4]` when it is positive, stores `j` as the index, increments `[b+0x9c0+j*4]` and calls `00173FA0(r8, b+0x780+j*0x90)`; every path returns dword `[b]`",
+   "anchors": [
+    [
+     "0016F499",
+     "cmp"
+    ],
+    [
+     "0016F4CF",
+     "call"
+    ],
+    [
+     "0016F4F7",
+     "mov"
+    ],
+    [
+     "0016F519",
+     "call"
+    ],
+    [
+     "0016F53E",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [
+  "0016EA80",
+  "0016ECE0",
+  "0016F080",
+  "0016F2A0",
+  "0017A320",
+  "0017AC50",
+  "0017B010",
+  "0017B580"
+ ],
+ "corrections": [],
+ "mode": "ee"
+}

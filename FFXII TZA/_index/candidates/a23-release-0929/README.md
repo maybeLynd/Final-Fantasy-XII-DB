@@ -1,8 +1,16 @@
 # A23 release candidate receipts - g20260929T213407Z-9c7238 (SWE2-FRONTIER, 2026-09-29)
 
 Deployment-owner evidence for `ASTRA-REQ-FRONTIER-A23-RELEASE-EXPORT-IDENTITY`. It names one release candidate and
-binds what was served, what was exported and what code produced both. **It is not an A23 PASS**: acceptance needs SOL's
+binds what was served, what was exported and what code produced both. **It is not an A23 PASS**: acceptance needs
 independent comparison against this candidate (REVIEW-POLICY; the release record stays DELIVERED, NOT ACCEPTED).
+
+**2026-10-02:** that comparison exists and was independently accepted - ASTRA's retained packet
+[`_experiments/evidence/a23-release-candidate-059ee3a6c/`](../../../_experiments/evidence/a23-release-candidate-059ee3a6c/README.md)
+(f0322dd8, `verdict:ACCEPT` at 818e85de6) reproduced this candidate's ZIP/store/manifest/component bindings
+byte-exact, with a mutation control refusing. The remaining predicates - module attestation, launcher, live
+restart, current-version suite, live rollback - stay open; see
+[`workflow/RELEASE-DASHBOARD-2026-09-29.md`](../../workflow/RELEASE-DASHBOARD-2026-09-29.md) section 7 and
+[`frontier-incorp-a23-named-1002`](../frontier-incorp-a23-named-1002/README.md).
 
 ## What was run (one bounded run, 2026-09-29 21:37:17Z-21:37:20Z)
 

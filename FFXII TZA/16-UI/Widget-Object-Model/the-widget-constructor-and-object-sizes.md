@@ -415,7 +415,7 @@ executed or observed live.
 
 | function | size | role |
 |---|---:|---|
-| `002B6DB0` | 1033 | widget message body (jump table present, not decoded): `[rbx+0xC8..0xD8]` fields, `00403600`, `002B7210`, `002B6950`, `002B6AE0`, selector resolve `001EDEC0`, `005C5230` |
+| `002B6DB0` | 1033 | widget message body (jump table present, not decoded): `[rbx+0xC8..0xD8]` fields, `00403600`, `002B7210`, `002B6950`, `002B6AE0`, ~~selector resolve~~ half-rate phase predicate `001EDEC0` *(corrected 2026-10-02, OPUS: `001EDEC0+0x1A` `not ecx` / `and ecx, 1`; it selects nothing)*, `005C5230` |
 | `002BA310` | 543 | child-widget create+attach: `[rdi+0xC0]`/`[+0x3D8]`, factory `00244F50`, `002432B0`, `00264150`/`00264770`, `0024ABC0`, `002BA530`, `002D4930`/`002D46F0` |
 
 ## Crossings into other layers — FINAL-AUDIT pass 22 (FABLE, 2026-09-14)

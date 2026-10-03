@@ -92,7 +92,7 @@ instruction in the executable at which a new leader comes into being, and the ot
 
 > **The instrument had to be able to see code the function list never had.** A function-bounded sweep
 > of the request-kind byte `022C7FF8` returns **5** sites; the linear sweep returns **7**, and the two
-> extra are `003594C0` and `003594D4` — *the only writer of kind 2 and its own read of the byte*, in a
+> extra are `003594C0` and ~~`003594D4`~~ `003594D3` *(corrected 2026-10-02, OPUS: `003594D3` is the 7-byte `mov byte ptr [rip + …], r8b`; `003594D4` decodes only as its tail with the REX prefix dropped)* — *the only writer of kind 2 and its own read of the byte*, in a
 > body absent from the function list. **A caller census of this subsystem bounded by the function list
 > is wrong about the one value that selects the alternate teardown.** The same linear instrument
 > returns `linear-only = 0` for all three of the other focus globals, so the gap is specific and not
@@ -123,7 +123,7 @@ the single synchronous path is a developer verb.*
 **PF-4 — A commit that changes nothing is NOT a no-op.** `00358BE4 je 0x358c2f` skips **only** the
 teardown. The store `00358C2F`, the kind clear `00358C35`, the resolve `00358C3C` and the tail call
 `00358C52 jmp 0x2681d0` all still run. *So a redundant request still pushes the leader through the
-locomotion path, and an implementation that early-returns on `current == pending` drops that push.*
+~~locomotion path~~ roster-role notice, which sets the movement body's cell class, and an implementation that early-returns on `current == pending` drops that push.* *(answered: the push is the notice `002681E0` — O-1, party-roster-and-control-suppression.md §2; 2026-10-02, OPUS)*
 
 **PF-5 — The request is CONSUMED before the new leader is resolved and pushed, and the pending handle
 is re-read after the teardown.** The order is fixed: `00358C24` re-read pending → `00358C2F` store
@@ -174,8 +174,8 @@ records, and it is a property of this function, not of the pointer.*
 ## 5. State
 
 **Owned:** the four focus globals. **Read, never written here:** the gate word `02089340`, the
-leader's stats record and its three action fields, the manager record the teardown snapshots.
-**Written outside the block:** the manager record's two `0xB0` blocks and its `+0x850` float, by the
+leader's stats record and its three action fields, ~~the manager record the teardown snapshots~~ camera context 0, which the teardown re-seats.
+**Written outside the block:** ~~the manager record's~~ camera context 0's two `0xB0` blocks and its `+0x850` float *(corrected 2026-10-02, OPUS: `0025A6BE lea rax, [02097D20]` / `0025A6CB imul r15, rdi, 0x860` — one of two `0x860`-byte camera contexts; active-party-reserve-and-the-moment-the-leader-changes.md §9)*, by the
 teardown; and, on the alternate path only, whatever `003D9B80` resets.
 
 ## 6. Relationships
@@ -221,7 +221,7 @@ down differently from an ordinary swap.
 ## 12. Reproduction formula
 
 Sweep `022C7FF8` **bounded by the function list** and assert **5** sites, then sweep `.text` linearly
-and assert **7**, the two extra being `003594C0`/`003594D4` (PF-1). Assert the 25 getter callers and
+and assert **7**, the two extra being `003594C0`/~~`003594D4`~~`003594D3` *(corrected 2026-10-02, OPUS: the store begins at `003594D3`)* (PF-1). Assert the 25 getter callers and
 the 18 direct sites are disjoint (PF-2). Request a handle equal to the current one and assert the
 push still runs (PF-4). Have a controlled teardown request a *third* handle and assert it wins
 (PF-5). Set kind 2 and assert exactly one extra call, `003D9B80` (PF-6). Drive the status words with
@@ -240,9 +240,9 @@ as evidence of execution.*
 - What `003D9B80` resetting `record + 0x10` means for a summon, beyond the fields it writes.
 - Whether the `0025A6A0` pair of `0xB0` blocks and the `+0x850` float are a blend; `00259510` is
   called twice with the same three pointers and the float is forced to `1.0` between them, which is
-  **suggestive and not read**.
-- What mode 2 is — **O-4**, and the gate PF-7's entry test depends on.
-- The secondary handle `022C7FE8`: 8 accesses, 3 writers, and no consumer established here.
+  ~~**suggestive and not read**.~~ *(answered: it is a blend — `00259510` is the family's spherical interpolate, §17 of this page, and active-party-reserve-and-the-moment-the-leader-changes.md §9 reads the five steps; 2026-10-02, OPUS)*
+- ~~What mode 2 is — **O-4**, and the gate PF-7's entry test depends on.~~ *(answered: the chocobo ride — O-4, the mode ladder page §2c; 2026-10-02, OPUS)*
+- The secondary handle `022C7FE8`: 8 accesses, 3 writers~~, and no consumer established here~~ *(answered: the intervention camera's subject, read by the focus update `00358EE0` at `00358F1C` / `00358F2F` — active-party-reserve-and-the-moment-the-leader-changes.md §8b; 2026-10-02, OPUS)*.
 
 ## 15. Evidence
 
@@ -270,7 +270,7 @@ drops a push the original always performs.
 - **Input — SERVICE, and it is PF-7's subject.** The suppression recompute publishes into the
   capability masks that layer owns; this contract states what it computes, not what consumes it.
 - **ActorEntity — SERVICE.** The handle is resolved through the actor registry and the teardown
-  addresses the manager's record; PF-5 and PF-6 are about that seam.
+  addresses ~~the manager's record~~ camera context 0 *(corrected 2026-10-02, OPUS: `0025A6BE`, the `02097D20` contexts)*; PF-5 and PF-6 are about that seam.
 - **Script_VM_Native_Bridge — SERVICE, and PF-3 and PF-6 are the statement.** Two operations here are
   reached only from verb table slots. *The table is cited; the verbs' own bodies are not read.*
 - **CombatAction — MECHANICAL, and PF-8's note is its point.** Three fields are read here and written
@@ -282,8 +282,8 @@ drops a push the original always performs.
   as five operation contracts. *No address is cited for any of them: the statement is made by the
   counts and the disjointness test, and naming a caller would import its edge set for nothing.*
 - **CoreRuntimeScheduling — MECHANICAL.** Reached as callers of the commit thunk `00358BB0`; **when
-  the commit runs is that layer's business and PF-5 asserts nothing about it.** The leader-change
-  page leaves the frame position open and this contract does not close it.
+  the commit runs is that layer's business and PF-5 asserts nothing about it.** ~~The leader-change~~
+  ~~page leaves the frame position open and this contract does not close it.~~ *(answered: once a frame, from whichever of the three mode frame bodies runs — active-party-reserve-and-the-moment-the-leader-changes.md §9, 2026-09-18; the thunk `00358BB0` has seven callers; 2026-10-02, OPUS)*
 - **Presentation — MECHANICAL.** Reached only as a *co-caller* of the teardown's two helpers
   `00259510` and `003D9B80`; those helpers are named in PF-6 and §14 and **their behaviour is
   explicitly unread here**, so this edge is not evidence that the focus path and the presentation
@@ -354,7 +354,7 @@ not repeated.
 
 | # | Clause attacked | Result |
 |---|---|---|
-| F1 | PF-1 | **survives**: 18 accesses to `022C7FE0` on both instruments, writers `00358B6B`/`00358C2F`/`003590FD`; `022C7FF8` 5 bounded against 7 linear, the extra two `003594C0`/`003594D4`; linear-only 0 on the other three globals |
+| F1 | PF-1 | **survives**: 18 accesses to `022C7FE0` on both instruments, writers `00358B6B`/`00358C2F`/`003590FD`; `022C7FF8` 5 bounded against 7 linear, the extra two `003594C0`/~~`003594D4`~~`003594D3` *(corrected 2026-10-02, OPUS: the store begins at `003594D3`)*; linear-only 0 on the other three globals |
 | F2 | PF-2 | **survives**: the 18 sites lie in `00358A24`–`00359481`; 28 getter call sites in 25 functions, none in that span; no `lea`, and no stored copy of the address |
 | F3 | PF-3 | **survives**: thunk `00358BB0` (5 B) has 7 callers. The requester has 3: calls at `00269D34` and `0050C646`, and the tail-jump `003265F6`. Only `0050C610` calls both |
 | F4 | PF-4, PF-5, §10 | **survives**: `00358BE4 je 0x358c2f`, then re-read, store, kind clear, resolve (`call 003588B0`), `jmp 0x2681d0`; both early returns go to `00358C57` |
@@ -364,3 +364,11 @@ not repeated.
 | F8 | §14 | **survives**: `022C7FE8` has 8 accesses, 3 writers |
 
 No correction.
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../_index/candidates/fable-contract-party-focus-and-control-suppres-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `003593A0` | 97 B | reads dword `022C7FEC`; when it is 0 and `ecx` is non-zero, calls `0026D6D0` on `003588B0(dword 022C7FE0)` when that is non-null and re-reads `022C7FEC`; then, when the (re-read) dword is non-zero and differs from `ecx`, calls `0026D6D0` on `003588B0(that dword)` when non-null and then `00259800(0)`; on every path finally stores the incoming `ecx` at dword `022C7FEC` | `003593BC`, `003593C9`, `003593D4`, `003593F0`, `003593F5` |

@@ -25,7 +25,7 @@ audit:
   crossref_clean: false
   reopened_count: 0
 local_production_date: 2026-09-23
-local_production_status: "SECTION-11 locally validated; formal independent acceptance pending"
+local_production_status: "SECTION-11 locally validated; formal independent acceptance pending"  # <- corrected 2026-10-02, OPUS - accepted non-author 2026-09-29 (SWE2-AUDIT-SEM, OV-18), as the interpreter page records
 ---
 
 > **Current production correction — SECTION-11, 2026-09-23.** Original interpreter, actual command callbacks, and selected request-driver paths execute together against synthetic state. Historical audit counters remain history, not acceptance of these changes. No new live game session or whole S-07/L2 acceptance is claimed. See [the section review](../_experiments/evidence/continuation-section11-script-resume/REVIEW.md).
@@ -130,7 +130,7 @@ or prove script reachability, arbitrary reentrancy or real frame timing.
 | Request PC/phase/scratch | Survive native wait; PC advances past CALL only after completion. |
 | Request accumulator | Written/read by bytecodes and the POPA call forms; survives the next interpreter entry. |
 | Command target | Saved ordinal at request+8; manager lookup is repeated by lifecycle. |
-| Bytecode/labels/pools | Caller-bound synthetic inputs in these tests. Full resource lifetime not established. |
+| Bytecode/labels/pools | Caller-bound synthetic inputs in these tests. Full resource lifetime not established *(answered: OV-17 — every shipped operand in range, tables live as long as the bound payload; 2026-10-02, OPUS)*. |
 
 The full original `0025DF00` was executed for selected runnable requests and idle service branches;
 it clears its active-actor global afterward. This is not the entire outer field-frame driver.
@@ -241,11 +241,11 @@ No fresh FF12 session, full Unicorn campaign or complete 100-opcode coverage is 
 
 ## 14. Unresolved
 
-- Remaining opcode semantics, variable/reference forms, actor-call/return stacks and other wait kinds.
+- Remaining opcode semantics, variable/reference forms, actor-call/return stacks and other wait kinds *(answered in part: opcode semantics and actor-call/return BF-1 / OV-13, other wait kinds OV-14 — the-script-from-bytecode-through-wait-and-resume.md section 8; 2026-10-02, OPUS)*.
 - Live allocation identity and register reuse; scheduling, reentrancy and synchronization obligations.
 - Full top-level field-frame composition, nonempty service branches and all native-command callbacks.
-- Authored operand/index bounds and resource lifetime for bytecode, label tables and constant pools.
-- Meaning/producer scope of the actor-indexed control byte; it is not commandPhase by displacement.
+- Authored operand/index bounds and resource lifetime for bytecode, label tables and constant pools *(answered: OV-17, same section 8; 2026-10-02, OPUS)*.
+- Meaning/producer scope of the actor-indexed control byte; it is not commandPhase by displacement *(answered: the target manager's skip mask `+0x201`, OV-15; `00267310` reads `02099011 + sx(idx)*0x288`; 2026-10-02, OPUS)*.
 - Family-alias authoring rationale and unobserved class-specific behavior. These are not waived by
   the selected passing slice.
 

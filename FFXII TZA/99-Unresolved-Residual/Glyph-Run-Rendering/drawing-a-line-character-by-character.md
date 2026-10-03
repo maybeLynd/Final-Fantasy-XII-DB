@@ -162,8 +162,8 @@ selection, and the transform — because `0017FA10` resets the whole record (see
 
 ## 5. What this cost the instruments
 
-**`get_function_callees(002AAE40)` returns an empty list.** The decompilation contains **fifteen
-distinct calls** — `0039C4A0`, `0017F880`, `002B2150`, `002B1F20`, `002AC5F0`, `002AC2F0`,
+**`get_function_callees(002AAE40)` returns an empty list.** The decompilation contains **~~fifteen~~ sixteen
+distinct calls** *(corrected 2026-10-02, OPUS: the sixteen listed, `00808C40` included; the image body has the same sixteen)* — `0039C4A0`, `0017F880`, `002B2150`, `002B1F20`, `002AC5F0`, `002AC2F0`,
 `0020E600`, `0017F8C0`, `0017FC90`, `0017F850`, `0017FA10`, `0017FD30`, `0017FB00`, `0017F7C0`,
 `002B4730`, `00808C40`.
 
@@ -172,7 +172,7 @@ zero-byte body — for a function the exported function list records as **2,440 
 decompiles in full.
 
 > **The project's standing rule is that a negative from a call-graph query is not proof of absence.**
-> This is that rule with a number on it: **0 reported, 15 present**, in the function the residual
+> This is that rule with a number on it: **0 reported, ~~15~~ 16 present** *(corrected 2026-10-02, OPUS: sixteen distinct callees)*, in the function the residual
 > survey called *"the purest example of why a call-context classifier cannot touch these — no
 > caller, and all three of its data references banned exception metadata."*
 >
@@ -228,7 +228,7 @@ separately, and settles it the other way.
 | Could the empty callee list mean the calls are indirect? | **No** — they are direct `CALL` instructions with literal targets; `002AB5B0  call 0x002AC5F0` was read in the disassembly. |
 
 > *AC-9 note, 2026-09-12 (FABLE):* the pen advance in this loop is the spacing-global pair only —
-> `[0209CC6C]` added before each glyph (`002AA0D2`) and `[0209CC68]` after (`002AA734`); the glyph
+> `[0209CC6C]` added before each glyph (~~`002AA0D2`~~ `002AAE40`+0x1BE) and `[0209CC68]` after (~~`002AA734`~~ `002AAE40`+0x82A) *(corrected 2026-10-02, OPUS: the two cited sites are `002A9F00`'s, +0x1D2 and +0x834; this loop's own reads are at the offsets given)*; the glyph
 > descriptor's width sets the quad's right edge (`002AA4BB`–`002AA4C1`) and never the pen. Both
 > globals are written by the callers as a qword pair (the numeric formatter zeroes them and
 > stores its running total in `0209CC68`), so the pitch is per call, not per glyph.
@@ -236,10 +236,10 @@ separately, and settles it the other way.
 ## 7. What this document does not claim
 
 What `DAT_0209CC40`'s fields mean beyond the four touched here (`+0x10D4` a counter reset at 20,
-`+0x10E8` a line height, `+0x10FC` and `+0x1102` mode bytes). What `002AC2F0` decodes. What
-`0020E600` returns. What the two render commands written into `DAT_0209CC50` mean — their bit layout
-is transcribed in the body and **not** decoded here. Why the counter at `+0x10D4` triggers
-`002B4730(1)` every twenty characters. What `state + 0xB8` holds.
+`+0x10E8` a line height, `+0x10FC` and `+0x1102` mode bytes). ~~What `002AC2F0` decodes.~~ *(answered: see the glyph-quads page §7: `002AC2F0` resolves the object bytes to glyph indices, and `+0x1102` is the line-start flag (UQ-370); 2026-10-02, OPUS)* What
+~~`0020E600` returns.~~ *(answered: see §7 note: `0020E600` returns `ecx` plus the qword at `01F83530`, an image address — `mov eax, ecx; add rax, [01F83530]; ret`; 2026-10-02, OPUS)* What the two render commands written into `DAT_0209CC50` mean — their bit layout
+is transcribed in the body and **not** decoded here. ~~Why the counter at `+0x10D4` triggers~~
+~~`002B4730(1)` every twenty characters.~~ *(answered: see the flush note below and the glyph-quads page's emit row: the queue is flushed at `0x14` items; 2026-10-02, OPUS)* What `state + 0xB8` holds.
 
 ## Interior citations — entry-only-large pass (2026-09-14, SWE2-FRONTIER)
 
@@ -253,12 +253,12 @@ image; the notes say what the instruction does, not yet the body's full role.
 | `002B8EE0` | `002B9162` | `call sinf` — first of two sine calls bracketing `002D8C80`/`002DD7E0`; a transform/easing path that also stores `0209E5A8`/`0209E5AC` |
 
 *(Pass 22 adjacency, 2026-09-14: the glyph procs this page reads do not draw in one breath —
-`002A9F00`, `002AAE40`, `002AC2F0` and `002AE610` call the `CoreRuntimeScheduling` yield
-`0020E600`, and `002AC5F0` calls `00229E40` (8 edges). The account the pass asks for is that
-these are the walk's yield points — the draw loop defers to the scheduler mid-glyph, which is
-why a text pass can be preempted between characters. `00229E40` is itself called by
-`Rewards_Progression_Economy` `00317ED0` — the shared yield accessor has economy-side callers
-too.)*
+`002A9F00`, `002AAE40`, `002AC2F0` and `002AE610` call the `CoreRuntimeScheduling` ~~yield~~
+`0020E600`, and `002AC5F0` calls `00229E40` (8 edges). ~~The account the pass asks for is that~~
+~~these are the walk's yield points — the draw loop defers to the scheduler mid-glyph, which is~~
+~~why a text pass can be preempted between characters.~~ `00229E40` is itself called by
+`Rewards_Progression_Economy` `00317ED0` — the shared ~~yield accessor~~ getter has economy-side callers
+too.)* *(corrected 2026-10-02, OPUS: neither is a yield: `0020E600` is `mov eax, ecx; add rax, [01F83530]; ret` (10 B), the image-address resolver, and `00229E40` is `mov eax, [01E02814]; ret` (7 B); no text pass is preempted through them)*
 
 ## Cross-subsystem neighbours — FINAL-AUDIT pass 22
 
@@ -291,7 +291,7 @@ line's elements, not a draw.
 
 ## Interior citation — frontier hub `0017FD30` (2026-09-18, SWE2-EC7)
 
-`0017FD30` — 63 B, 6 A-measured callers; the arg-marshal in front of `001E9D20`. Interior
+`0017FD30` — 63 B, ~~6 A-measured callers~~ 8 calling functions, 18 sites *(corrected 2026-10-02, OPUS: rel32 sweep; the render-target page's eight)*; the arg-marshal in front of `001E9D20`. Interior
 verified: `001B5FA0()` supplies the shared text object twice gated on the `dl` flag
 (`0017FD43`/`0017FD50`), `r8d = 1` or `0` follows it ([`0017FD48`/`0017FD55`](../../_index/ADDRESS-INDEX.md)),
 then `jmp 001E9D20` at `0017FD69` tail-calls with `(obj, edi, r8d, ebx)` — the caller's
@@ -693,3 +693,11 @@ This page describes unowned code in the residual folder, and it cites the bodies
 **UI — MECHANICAL, 83 edges.** `002DD7E0` is called by `00280DE0`, `0028B140`, `002986E0`, `002A86A0` and 16 more; `0017FAE0` is called by `002AC5F0`, `002AE610`, `002AF340`, `002AF960` and 1 more; `0017F880` is called by `002A4830`, `002AC5F0`, `002AE610`, `002AF960`; `0017F940` is called by `002AC5F0`, `002AE610`, `002AF340`, `002B2150`; `0017F850` is called by `002AC5F0`, `002AF960`, `002D28E0`; `0017FA10` is called by `002AC5F0`, `002AF960`, `002D28E0`; `0017FB00` is called by `002AC5F0`, `002AF960`, `002D28E0`; `002AC2F0` is called by `002AE610`, `002AF340`, `002B2150`; `002B2150` is called by `002AC5F0`, `002AF340`, `002AF960`; `0017F8C0` is called by `002AF340`, `002B2150`; `0017FD30` is called by `002AC5F0`, `002AF960`; `00229E40` is called by `0028AAA0`, `002AC5F0`; `002A6190` calls `002A4430`, `002A4830`; `002A9F00` is called by `002AC5F0`, `002AE610`; `002AAE40` calls `002AC5F0`, `002B2150`; `002AC5F0` calls `002AE610`, `002B2150`; `002AC5F0` is called by `002AF340`, `002B2150`; `002AF960` is called by `002A4430`, `002A4830`; `002B0280` calls `002AE610`, `002B2150`; `002B0280` is called by `00243860`, `002A86A0`; `002B1F20` is called by `002AC5F0`, `002AF960`; `0039C4A0` is called by `002AC5F0`, `002AE610`; `RenderCommand_SubmitCurrentBufferAndSwap` (`003A1DB0`) is called by `002AC5F0`, `002AF960`; `002A4830` calls `002AF960`; `002A9F00` calls `002AC5F0`; `002AE610` is called by `002AC5F0`; `002AF960` calls `002B2150`; `002B2150` calls `002AC5F0`; `002B4730` is called by `002AC5F0`; `002D8C80` is called by `0055B6D0`.
 
 *Tier 2: ledger names and `edges.tsv`; no body read for this note (OPUS, 2026-09-29, pass-22 slice OPUS-P22-SLICE-24-99).*
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-drawing-a-line-character-by-character-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `001EADB0` | 92 B | calls p = `001C26B0(rdx)`; unless `rdx` is non-null while p is null, it calls `00584730` on the old qword `rcx+0x38` when that is non-null with bit 0 clear, and stores p to qword `rcx+0x38`; on every path it stores 1 to byte `rcx+0xE8` | `001EADC8`, `001EADD8`, `001EADEC`, `001EADF1`, `001EADFF` |

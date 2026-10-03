@@ -34,7 +34,7 @@ audit:
 
 Weather does not drift while you stand still. It is decided **once**, when a field area's
 runtime initializes. Re-entering a zone can change it; standing in it will not. Some areas
-never change weather (probability 100), some always re-roll (probability 0), most sit
+never change weather (probability 100), ~~some always re-roll (probability 0)~~ some leave the current slot whenever another slot is eligible (probability 0), an area whose three probabilities are all 0 never changes *(corrected 2026-10-02, OPUS: every arm of `0025ABA0` falls back to the current slot — `0025ABF0`, `0025AC1D`, `0025AC47`, `0025AC88`; the 2026-09-21 correction below)*, most sit
 somewhere in between — and it is the *zone's own script data* that says which.
 
 ## 2. Native mechanism
@@ -45,7 +45,7 @@ three.
 `0025ACA0` — the transition owner:
 1. query the current Weather Slot (`00265920`);
 2. read that slot's authored `weatherProbability` (`002658B0`);
-3. probability **0** → current slot cannot be retained → pick an alternate;
+3. probability **0** → ~~current slot cannot be retained →~~ pick an alternate with non-zero probability, or keep the current slot when neither has one *(corrected 2026-10-02, OPUS: `0025ABA0` reads only the alternates' probabilities, `002658B0(slot) > 0`, and every arm falls back to the current slot — `0025ABF0`, `0025AC1D`, `0025AC47`, `0025AC88`)*;
 4. probability **≥ 100** → retain current slot;
 5. probability **1..99** → draw native MT19937, scale to a uniform `0..99`, retain if
    `roll < probability`, else pick an alternate;
@@ -59,15 +59,15 @@ three.
 5. if the script resource is unavailable, return **33**.
 
 `0025ABA0` — the alternate resolver: checks the *other* two slots' probabilities, treats
-nonzero as eligible, picks the single eligible one directly, and draws MT19937 only when two
-remain. **It does not weight the alternatives by their probability values.**
+nonzero as eligible, picks the single eligible one directly, ~~and draws MT19937 only when two~~
+~~remain.~~ and draws MT19937 once, before any probability is read, only when the current slot is 2; from slots 1 and 3 the order is fixed, slot 2 first *(corrected 2026-10-02, OPUS: `0025ABAA sub ecx, 1` / `0025ABAD je`, `0025ABB3 cmp ecx, 2` / `0025ABB6 je`; the only call to `00379CD0` is `0025ABB8`; CON-147 below)*. **It does not weight the alternatives by their probability values.**
 
 ### Timing
 
 `002620E0` runs the roll, and it is gated:
 - requires `managerRecord+0x28 == 0` — the **primary ActorManager, index 0**;
 - tests initialization bit `managerRecord+0x10 & 0x04`;
-- if already set, the whole weather/resource initialization core is skipped;
+- if already set, the ~~whole~~ weather/resource initialization core is skipped, but the two event posts still run *(corrected 2026-10-02, OPUS: `002620F7 jne 002621A8`; `002621A8 mov ecx, 0xB` / `002621AD call 003601C0`, `002621BC jmp 003601C0`)*;
 - otherwise: roll, publish, initialize field resources, then set the bit.
 
 So the roll is a **one-shot per qualifying manager-record lifecycle**. Not per actor, not per
@@ -170,7 +170,7 @@ MT19937.
       `0024F610`) and the rest of `0026F470` are the residue. Tally in
       `Tools/work/FABLE/bf3-scratch/efb_channels-2026-09-12.json`.
 - [x] ~~Whether any path outside field-init re-runs the roll (open question **F-2**).~~
-      **ANSWERED 2026-09-16 (FABLE): no path does.** **The latch, read from the body.** `002620E0` returns immediately unless `dword [rcx + 0x28] == 0` (`002620E6`–`002620ED`), skips its whole body if `byte [rcx + 0x10] & 4` (`002620F3`–`002620F7`), and **sets that bit itself at `002621A4`** on the way out. It is a once-per-field-setup body, not a per-frame one. **The roll cannot be re-run.** `0025ACA0` has **exactly one direct caller**, `002620E0`, and **zero** functions reach it by any route that does not pass that latch. **Movement reconfiguration cannot be reached either.** `0026E8D0` has two direct callers, `00379290` and `00379630`; the only thing that reaches *those* is the same latch. Its entire reverse cone within 8 hops is **12 functions** and contains **one** route. **But APPLY is different, and this is what the question was circling.** `0026D910` has **three** direct callers: the roll `0025ACA0`, one CoreRuntimeScheduling path, and **`003565C0` - the `Script_VM_Native_Bridge` handler for the verb `setweatherslot`, call id `021A`, arity 1.** *(The CoreRuntimeScheduling pair is named on the `F-2` register row rather than here: naming it on this page would pull in two Input edges this document has no crossing section for, and I am not classifying a crossing I have not read.)* So **a script can change the weather slot at runtime, in one hop, bypassing both the roll and the latch entirely.** **Of the five weather verbs in the table, only that one gets anywhere near this machinery:** `021A setweatherslot` reaches APPLY at depth 1, while `2024 debug_setweather`, `209F debug_setlockweatherslot`, `03DD changeenvsoundweather` and `040C getweatherslot` reach **none** of the roll, the apply or the reconfiguration within six hops. **THE ASYMMETRY IS THE ANSWER.** A runtime weather change commits a new slot **without re-rolling and without rebuilding Movement's resource banks** - those keep whatever the field-setup pass built. That is a real behavioural statement about the shipped build, and it is why *which runtime weather changes reach Movement reconfiguration* has the answer **none**. *The limit, and it is the one that matters.* `edges.tsv` carries **direct calls**. An indirect or virtual call into `0026D910`, `00379290` or `0026E8D0` would be **invisible to this method**, and this image has 477 `call reg` sites (`AR-5`). **So this is a statement about every route the direct-call graph contains, not a proof that no route exists.** I also read the latch and the dispatcher bodies but not `00379630`'s.
+      **ANSWERED 2026-09-16 (FABLE): no path does.** **The latch, read from the body.** `002620E0` returns immediately unless `dword [rcx + 0x28] == 0` (`002620E6`–`002620ED`), ~~skips its whole body~~ skips the roll and the resource posts, but not the two `003601C0` event posts at `002621A8` *(corrected 2026-10-02, OPUS: `002620F7 jne 002621A8`; `002621A8 mov ecx, 0xB` / `002621AD call 003601C0`, `002621BC jmp 003601C0`)*, if `byte [rcx + 0x10] & 4` (`002620F3`–`002620F7`), and **sets that bit itself at `002621A4`** on the way out. It is a once-per-field-setup body, not a per-frame one. **The roll cannot be re-run.** `0025ACA0` has **exactly one direct caller**, `002620E0`, and **zero** functions reach it by any route that does not pass that latch. **Movement reconfiguration cannot be reached either.** `0026E8D0` has two direct callers, `00379290` and `00379630`; the only thing that reaches *those* is the same latch. Its entire reverse cone within 8 hops is **12 functions** and contains **one** route. **But APPLY is different, and this is what the question was circling.** `0026D910` has **three** direct callers: the roll `0025ACA0`, one CoreRuntimeScheduling path, and **`003565C0` - the `Script_VM_Native_Bridge` handler for the verb `setweatherslot`, call id `021A`, arity 1.** *(The CoreRuntimeScheduling pair is named on the `F-2` register row rather than here: naming it on this page would pull in two Input edges this document has no crossing section for, and I am not classifying a crossing I have not read.)* So **a script can change the weather slot at runtime, in one hop, bypassing both the roll and the latch entirely.** **Of the five weather verbs in the table, only that one gets anywhere near this machinery:** `021A setweatherslot` reaches APPLY at depth 1, while `2024 debug_setweather`, `209F debug_setlockweatherslot`, `03DD changeenvsoundweather` and `040C getweatherslot` reach **none** of the roll, the apply or the reconfiguration within six hops. **THE ASYMMETRY IS THE ANSWER.** A runtime weather change commits a new slot **without re-rolling and without rebuilding Movement's resource banks** - those keep whatever the field-setup pass built. That is a real behavioural statement about the shipped build, and it is why *which runtime weather changes reach Movement reconfiguration* has the answer **none**. *The limit, and it is the one that matters.* `edges.tsv` carries **direct calls**. An indirect or virtual call into `0026D910`, `00379290` or `0026E8D0` would be **invisible to this method**, and this image has 477 `call reg` sites (`AR-5`). **So this is a statement about every route the direct-call graph contains, not a proof that no route exists.** I also read the latch and the dispatcher bodies but not `00379630`'s.
 
 ## 8. Evidence
 
@@ -245,7 +245,7 @@ and `WorldField_InitializeCurrentFieldRuntimeParameters` both reads and writes `
 day by decompiling all 70 callers of `SaveImage_GetPersistentPayloadBase`:
 
 ```
-+0x1060   u8   field runtime parameter        WorldField_InitializeCurrentFieldRuntimeParameters
++0x1060   u8   field runtime parameter        WorldField_InitializeCurrentFieldRuntimeParameters   <- corrected 2026-10-02, OPUS: s8 - six of its seven readers sign-extend (movsx at 0025ACC1, 00262123, 0026214E, 0026217C, 0026593B, 0026D96F); only 0026D9BB zero-extends
 +0x1061   u8   initialization state           WorldPersistence_ResetBanksAndMarkInitializationState
 ```
 
@@ -407,3 +407,16 @@ Interior anchor `00400134` (function `004000E0`).
 `00400AC0` (559 B) is the per-slot processor `004000E0` calls for each `0x20`-stride row: `[rcx]` bit `0x40000` bypasses the `003588B0`/`00234D40` count query (`r9d` stays 1), the `*rdi` `+0x28`-chain is scanned for `dword[+4] == [rbp+4]`, a hit clears flag bit 2 (re-arming bit `0x4` when `r9d == 2`) or splices the node beside the `esi`-indexed cursor with `00400650` unlink/relink; a miss runs the `+0x1411` modulo-0x40 round-robin to pick a free `+0x10`-block slot (`+0x20` bit 0 clear), `00275550` reclaims it, the node links at `[rdi+8]` tail with `+0x1412` bump and `+0x22 = 0x80`, `[rbp]`/`[rbp+0x10]` copy in as the payload, and `+0x24` gets `1.0f` when `+0x1410` bit 0 is clear
 
 Interior anchor `00400C6B` (function `00400AC0`).
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-weather-probability-and-transition-roll-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00234D40` | 91 B | makes the call at `00234D40` + 0x4 with the incoming `rcx`; returns 0 when that result is null or bit 0x10 of its first byte is clear; otherwise returns 2 when its qword `+0x698` is null, and when it is non-null returns 1 if (dword `+0x64` OR dword `+0x3C`) AND 0x80000003 is 0, else the call at `00234D40` + 0x33 on that qword decides: 1 when non-zero, 2 when zero | `00234D44`, `00234D55`, `00234D6C`, `00234D73`, `00234D93` |
+| `00263AA0` | 14 B | returns the sign-extended byte `+0x21` of `rcx` when bit 0x40 of byte `+0xF` is set, else 0 | `00263AA4`, `00263AA6`, `00263AAB` |
+| `00263AB0` | 14 B | returns the sign-extended byte `+0x22` of `rcx` when bit 0x40 of byte `+0xF` is set, else 0 | `00263AB4`, `00263AB6`, `00263ABB` |
+| `00263AC0` | 118 B | returns 0 when `rcx` is null and byte `+0xF` of `rcx` when that byte is not 2; when it is 2, saves qword `02099D70`, stores the address `02098E10` in it, takes `003588B0` of the no-argument call at `00263AC0` + 0x36 (0 when that call returns 0), restores `02099D70`, and returns 1 when that result equals `rcx`, else 2 | `00263AD7`, `00263AEF`, `00263B01`, `00263B0D`, `00263B1E` |
+| `00400550` | 132 B | returns without work when `edx` is non-zero; otherwise chains four calls `00400CF0(rcx, a, b, 0, previous result, 0)` with (a, b) = (5, 5), (8, 5), (3, 6), (4, 7), the first taking 0 as its previous result, and returns the last result | `00400552`, `00400576`, `00400590`, `004005AA`, `004005C4` |
+| `00400650` | 69 B | unlinks node `rdx` from a doubly linked list with links at qwords `+0x28` and `+0x30`: when qword `+0x30` is non-null stores `rdx`'s `+0x28` into its `+0x28`, when qword `+0x28` is non-null stores `rdx`'s `+0x30` into its `+0x30`; then clears bit 0 of word `+0x20`, zeroes both links and returns `rcx`, or `rdx`'s old `+0x28` when `rcx` equals `rdx` | `00400653`, `00400669`, `0040067A`, `00400683`, `0040068D` |

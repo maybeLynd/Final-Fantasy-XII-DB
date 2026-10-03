@@ -57,8 +57,8 @@ byte-identical).
 
 **Per-bone adjustments for 23 character models.** Each name in the list is a model resource stem
 (`hc1004_02`, `hn1017_03`, `hs0003_01`, …); the skeleton code indexes the table's records by bone while
-composing the model's final pose. What the adjustment looks like on screen, and what the `_town` twin changes,
-are not established (§7).
+composing the model's final pose. What the adjustment looks like on screen~~, and what the `_town` twin changes,~~
+is not established (§7) *(answered: see the `_town` answer near the end - the civilian-area variants of the same additive-pose tracks; 2026-10-02, OPUS)*.
 
 ## 2. The layout
 
@@ -90,13 +90,13 @@ Each track is followed by `groupCount` groups; each group is a 28-byte header fo
 
 ```struct AdmRecord base=record size=0x1C
 +0x00  i32       bone         the bone index AddMotion_ApplyBonePose keys its tables by (00371711)
-+0x04  byte[24]  values       copied as 8 / 4 / 8 / 4-byte pieces; the element types are not fixed by the code
++0x04  byte[24]  values       copied as 8 / 4 / 8 / 4-byte pieces; the element types are not fixed by the code   <- corrected 2026-10-02, OPUS - the full disassembly below reads a record as {i32 bone; f32 eulerDeg[3]; f32 offset[3]}
 ```
 
 The parser copies the 8-byte pieces with `movsd` and the 4-byte ones as dwords, so it fixes positions and widths
 but not element types. Read as `f32`, the first three records' values are `(-179.719, 0.468, -15.674, 0.057,
 -0.055, -0.033)`, `(-179.719, 0.468, -15.674, 0.057, -0.055, 0.033)` and `(-180.0, 0.0, 21.265, 0.057, -0.055,
--0.033)` — plausible numbers, which is a reading of the data and not a traced type (§7). The most common bone
+-0.033)` — plausible numbers~~, which is a reading of the data and not a traced type~~ *(answered: see the full disassembly of `003714A0` below - `{i32 bone; f32 eulerDeg[3]; f32 offset[3]}`; 2026-10-02, OPUS)* (§7). The most common bone
 indices are 6 and 7 (123 records each), 28 (94), 27 (79), 9 (77) and 29 (74).
 
 ## 3. The loader contract
@@ -164,7 +164,7 @@ body-model record too. *What that value is was not established.* Interior: `002E
 | `001BDD20` | `AddMotion_LoadResources` | ✅ full body |
 | `001BE1A0` | `AddMotion_ParseFile` | ✅ full body |
 | `001BE430` | `AddMotion_LookupByModelName` | ✅ full body |
-| `003714A0` | `AddMotion_ApplyBonePose` | ◐ the track/record walk `003716B0`–`0037175C` and the rotation call |
+| `003714A0` | `AddMotion_ApplyBonePose` | ◐ the track/record walk `003716B0`–`0037175C` and the rotation call *(answered: see the full disassembly below; 2026-10-02, OPUS)* |
 
 ### Data addresses
 
@@ -178,11 +178,11 @@ body-model record too. *What that value is was not established.* Interior: `002E
 
 146 tracks in 39 files, 382 groups. Of the tracks, 111 have `field00 = 0` and 35 have `1`; 35 have
 `field02 = 0`, the other 111 carry one of 26 values from 9 to 84. Whether the 35 `field00 = 1` tracks are the 35
-`field02 = 0` tracks was not cross-tabulated.
+`field02 = 0` tracks ~~was not cross-tabulated~~ *(answered: see §6's pass - the same 35 tracks, tested as set equality; 2026-10-02, OPUS)*.
 
 ## 6. Falsification pass
 
-Not yet run. The census walk is the positive control for the layout (39 / 39 end exactly at the file size);
+~~Not yet run.~~ *(answered: see Falsification pass 1 — 2026-09-13 (OPUS), below; 2026-10-02, OPUS)* The census walk is the positive control for the layout (39 / 39 end exactly at the file size);
 the census also corrected this sheet's draft twice — a `field02` range read from the top-twelve list only, and a
 sixth bone index that was a tie-order artefact.
 
@@ -241,7 +241,7 @@ header as an aside. **They are one fact.** The set of tracks with `+0x00 = 1`, t
 > is reading a header as data. Four independent fields mark it, which is why this is worth stating as
 > structure rather than as four distributions that happen to total 35.
 
-**What it is for is not established.** The marking is measured; the meaning is not, and §7's
+~~**What it is for is not established.**~~ *(answered: see the answers near the end - the `field00 = 1` tracks are the id-match track 0, and its sentinel is the base pose; 2026-10-02, OPUS)* The marking is measured; the meaning is not, and §7's
 unknowns stand.
 
 ### Two notes for anyone re-running the census
@@ -499,3 +499,12 @@ authored-data ranges measured over all 39 files.*
 `00262F50` (50 B) is the probe-and-flag shim the motion-table registration callers share: it runs `00262F90(rcx)` first and only when that returns nonzero calls `002ECCF0(rcx, 1)` before handing the probe result back - a conditional mark on the registered object.
 
 Interior anchor `00262F70` (function `00262F50`).
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-adm-add-motion-tables-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00183240` | 32 B | when `001BE420()` returns non-null, calls `001BE420()` again and stores `ecx` at dword `+0x20` of the result; otherwise returns without work | `00183248`, `0018324D`, `00183252`, `00183257` |
+| `00351F40` | 65 B | calls `00267E10(r9)` and stores its low byte at byte `+0xD` of `r8`; stores 1 at byte `+0xC` of `r8` when `002647C0` of that result is non-zero, else 0 (`setne`); then tail-jumps `0026B4A0(rdx, 0xB)` | `00351F53`, `00351F5A`, `00351F5D`, `00351F6F`, `00351F7C` |

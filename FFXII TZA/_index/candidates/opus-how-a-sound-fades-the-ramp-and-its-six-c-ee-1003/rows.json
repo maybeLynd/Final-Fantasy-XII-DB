@@ -1,0 +1,121 @@
+{
+ "page": "18-Audio/Audio-Boundary/how-a-sound-fades-the-ramp-and-its-six-curves.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "how-a-sound-fades-the-ramp-and-its-six-curves.json",
+ "rows": [
+  {
+   "fn": "007A9D30",
+   "text": "starts from the float 1.0 at `01CEBBA8` and, for each of the sign-extended dword `[rcx+0x7c]` records of 0x30 bytes starting at qword `[rcx+0x40]`, multiplies in a factor that is the record's float `+0xc` when its float `+0x14` equals 0.0, and otherwise `007A9E50(+0x10 / +0x14, edx = dword +0x1c)` times (`+0xc` - `+0x8`) plus `+0x8`; it then multiplies by float `[rcx+0x4c]` and returns the product in `xmm0` (a count of zero or below returns 1.0 times `[rcx+0x4c]`)",
+   "anchors": [
+    [
+     "007A9D77",
+     "ucomiss"
+    ],
+    [
+     "007A9D90",
+     "call"
+    ],
+    [
+     "007A9DAC",
+     "mulss"
+    ],
+    [
+     "007A9DB6",
+     "mulss"
+    ],
+    [
+     "007A9DDE",
+     "mulss"
+    ]
+   ]
+  },
+  {
+   "fn": "007A9F40",
+   "text": "starts from the float 1.0 at `01CEBBA8` and, for each of the sign-extended dword `[rcx+0x78]` records of 0x30 bytes starting at qword `[rcx+0x38]`, multiplies in a factor that is the record's float `+0xc` when its float `+0x14` equals 0.0, and otherwise `007A9E50(+0x10 / +0x14, edx = dword +0x1c)` times (`+0xc` - `+0x8`) plus `+0x8`; it then multiplies by float `[rcx+0x48]` and returns the product in `xmm0` (a count of zero or below returns 1.0 times `[rcx+0x48]`)",
+   "anchors": [
+    [
+     "007A9F87",
+     "ucomiss"
+    ],
+    [
+     "007A9FA0",
+     "call"
+    ],
+    [
+     "007A9FBC",
+     "mulss"
+    ],
+    [
+     "007A9FC6",
+     "mulss"
+    ],
+    [
+     "007A9FEE",
+     "mulss"
+    ]
+   ]
+  },
+  {
+   "fn": "007AA320",
+   "text": "negates the word at `+4` of the record qword `[rdx+8]` and returns 0 when the result is not positive (signed 16-bit); otherwise it calls `007AAA20` with that value sign-extended, stores the returned pointer to qword `[rcx+0x58]` and returns 0 when dword `+0x10` of it is non-zero; when that dword is zero it calls `0019C5D0(rsp+0x20, 0x100, 01CB44B0)` with `r9` not set in this body, writes a 0xa byte at the returned length (moved back by 2 when the length is 0xff or more) and a zero byte after it (calling `00809728` when that index reaches 0x100), calls through the qword at `008C2120` with `rsp+0x20` and then calls `007A5570(2, rsp+0x20)`, and returns -1; the stack cookie is checked through `00808C40`",
+   "anchors": [
+    [
+     "007AA346",
+     "neg"
+    ],
+    [
+     "007AA351",
+     "call"
+    ],
+    [
+     "007AA371",
+     "call"
+    ],
+    [
+     "007AA3A0",
+     "call"
+    ],
+    [
+     "007AA3B0",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007BE8A0",
+   "text": "when `xmm1` is at least 0.001953125 (`008C5B30`) and not above 2.0 (`01CEBC08`) it calls `007CA560(rcx+0x188)` with `xmm1` and the other incoming registers, `r9d` = 0 and a zero byte stack argument, and returns that call's result; otherwise it calls `0019C5D0(rsp+0x30, 0x100, '[sead][!warn!]Sound::SetPitch failed range over %f', (double)xmm1)`, writes a 0xa byte at the returned length (moved back by 2 when it is 0xff or more) and a zero byte after it (calling `00809728` when that index reaches 0x100), calls through the qword at `008C2120` with `rsp+0x30` and then calls `007A5570(1, rsp+0x30)`, and returns -1; the stack cookie is checked through `00808C40`",
+   "anchors": [
+    [
+     "007BE8B9",
+     "comiss"
+    ],
+    [
+     "007BE8C2",
+     "comiss"
+    ],
+    [
+     "007BE8DA",
+     "call"
+    ],
+    [
+     "007BE914",
+     "call"
+    ],
+    [
+     "007BE953",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [
+  "007A7010",
+  "007BDBB0",
+  "007BEAF0"
+ ],
+ "corrections": [],
+ "mode": "ee"
+}

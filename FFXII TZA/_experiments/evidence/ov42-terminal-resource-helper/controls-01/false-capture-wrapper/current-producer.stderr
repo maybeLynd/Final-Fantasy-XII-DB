@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-terminal-resource-helper\controls-01\false-capture-wrapper\prove.py", line 59, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-terminal-resource-helper\controls-01\false-capture-wrapper\prove.py", line 43, in main
+    C=module('capture_receipts','capture_prerequisites.py');qualified=C.check(P,'prepare-extents.py','capture.py','extents-01','capture-01','extents-01.json','source-01.json',['0x305640'])
+                                                                      ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-terminal-resource-helper\controls-01\false-capture-wrapper\capture_prerequisites.py", line 17, in check
+    if c.get('wrapper_complete') is not True or c.get('invocation_driver_sha256')!=sha(folder/capture):raise ValueError('required complete current capture wrapper')
+                                                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: required complete current capture wrapper

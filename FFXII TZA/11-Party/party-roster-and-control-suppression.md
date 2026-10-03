@@ -480,8 +480,8 @@ suppression recompute. The seed is `esi = [02089340] & 0x40 ? -1 : 0`
 `00313F60` else `esi = -1` (`0023B0A2`–`0023B0C7`); `[02089340] & 0x600` and
 the `0x400000000000` bit feed the result; `00322600` ×2 and `00322920` ×2
 classify ids (`0023B0ED`–`0023B118`); `003135C0`/`003137F0`/`0031B770`/
-`00313F60`/`003592C0`/`00359200`/`0036FFE0` ×2, `[0208E6B8]` store
-(`0023B22F`–`0023B238`), then tail `0026BD40` publishes `ebx & 1` into
+`00313F60`/`003592C0`/`00359200`~~/`0036FFE0` ×2, `[0208E6B8]` store~~
+~~(`0023B22F`–`0023B238`),~~ then tail `0026BD40` publishes ~~`ebx & 1`~~ the inverse of bit 1 of `ebx` *(corrected 2026-10-02, OPUS: `0023B1E1 shr ebx, 1` / `0023B1E3 not ebx` / `0023B1E5 and ebx, 1` before the tail; the `0036FFE0` pair and the `[0208E6B8]` store at `0023B22F`–`0023B238` belong to the next function, `0023B200`, past this one's last instruction at `0023B1FA` — §2's correction block already says NOT bit 1)* into
 `0209A2C5` (`0023B1FA`).
 
 | member | role | interior |
@@ -491,16 +491,16 @@ classify ids (`0023B0ED`–`0023B118`); `003135C0`/`003137F0`/`0031B770`/
 | `00322920` (36 B) | the inverted twin — `ecx - 0x2001 ≤ 0x30` then `bt 0x1000000000101, rcx`, returns 1 when *not* set (`00322920`–`00322939`) | [`0032292B`](../_index/ADDRESS-INDEX.md) |
 
 Shared callees outside the census: `00303EC0`, `00313F60`, `003272A0`,
-`002E8100`, `003135C0`, `003137F0`, `0031B770`, `003592C0`, `00359200`,
-`0036FFE0`.
+`002E8100`, `003135C0`, `003137F0`, `0031B770`, `003592C0`, `00359200`~~,~~
+~~`0036FFE0`~~ *(corrected 2026-10-02, OPUS: `0036FFE0` is called by `0023B200` at `0023B204` and `0023B221`, not by `0023B040`)*.
 
 
 ### Interior citation — frontier hub `00359200` (2026-09-18, SWE2-EC7)
 
 `00359200` — 76 B, 5 callers, `PartyControl_SetMovementSuppressionBit`: the
-mask setter itself — `ecx` nonzero sets bit `edx` of `dword[022C6FFC]` via
+mask setter itself — `ecx` nonzero sets bit `edx` of ~~`dword[022C6FFC]`~~ `dword[022C8000]` *(corrected 2026-10-02, OPUS: `00359204` resolves to `022C8000`, as the correction at this section's end says)* via
 `or eax, edx` at [`00359217`](../_index/ADDRESS-INDEX.md), zero clears it;
-when the mask is nonzero it resolves `003588B0(dword[022C6FF0])` and tails
+when the mask is nonzero it resolves ~~`003588B0(dword[022C6FF0])`~~ `003588B0(dword[022C7FE0])` *(corrected 2026-10-02, OPUS: `0035922B` loads `022C7FE0`)* and tails
 `0026D6D0` on the record.
 ### Interior citation — frontier hub 0026D6D0 (2026-09-18, SWE2-EC7)
 

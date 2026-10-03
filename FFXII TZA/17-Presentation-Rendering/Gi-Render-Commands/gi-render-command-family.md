@@ -98,7 +98,7 @@ call [rax]              ; returns a write pointer in rax
 
 ## 3. Key addresses
 
-| class | slot 1 | reservation count |
+| class | slot 1 | ~~reservation count~~ count passed to slot 0, which ignores it *(corrected 2026-10-02, OPUS: `006CA760`+0x6 overwrites `rdx` before any read; the 2026-09-26 correction above)* |
 |---|---|---|
 | `GiPolyGT4T` | `00864860` | **4** — constant |
 | `GiSprite` | `00864330` | **4** — constant |
@@ -118,7 +118,7 @@ Also: `GiSetTexture` → `FUN_00210570`; `GiPolyGT4T` slot 0 resolves through `F
 
 ### The PS2 naming test — and why the contrast is the proof
 
-`GiPolyGT4T` predicts **four** vertices, and its body passes literal `4` to the reservation call.
+`GiPolyGT4T` predicts **four** vertices, and its body passes literal `4` to ~~the reservation call~~ slot 0, which ignores it *(corrected 2026-10-02, OPUS: `006CA760`+0x6 `imul rdx, rax, 0x7fe0` overwrites the count)*.
 **A constant alone would be weak evidence.** The discriminator is what the *other* commands pass:
 
 ```
@@ -153,7 +153,7 @@ vocabulary survives into the bodies, not just into the symbols.**
 GiBeginScene   -> [dev+0x130]
    ...
    GiPolyGT4T slot 0   resolve a 14-bit resource id -> [this+0xD0] / [this+0xD8]
-   GiPolyGT4T slot 1   [dev+0x000] reserve 4 vertices -> write pointer
+   GiPolyGT4T slot 1   [dev+0x000] reserve 4 vertices -> write pointer   <- corrected 2026-10-02, OPUS - slot 0 (006CA760) ignores the 4 and returns a fixed 0x7FE0-byte staging area (006CA760+0x6)
                        stream [cmd+0x10], [cmd+0x14], ... into it
                        further [dev+...] calls
 GiEndScene     -> [dev+0x128]
@@ -164,7 +164,7 @@ GiEndScene     -> [dev+0x128]
 - **`[dev+0x000]` is the vertex tap for the quad and primitive emitters — but not for the family.**
   **5 of the 14 shape-A commands reach it**: `GiColorRect`, `GiPolyGT4T`, `GiPrim`, `GiScreenImage`,
   `GiSprite`. A hook there sees those five and **misses `GiTrans`, `GiTransNz`, `GiNormal` and
-  `GiZNormalOnOff` entirely**, which reach the device only through `+0x78`/`+0x88`/`+0xA0`/`+0xA8`.
+  `GiZNormalOnOff` entirely**, which reach the device ~~only~~ through `+0x78`/`+0x88`/`+0xA0`/`+0xA8` and, for `GiTrans`, `GiTransNz` and `GiNormal`, also `+0x98` and `+0x80` *(corrected 2026-10-02, OPUS: `00862D40`+0xCA and +0xF4, `00862EC0`+0xC8 and +0xF2; the eight-of-eight triple holds)*.
   *(Corrected pass 8 — this previously read "every shape-A command", contradicting this document's own
   §2 census, which has always said 5. See §16.)*
 - **`GiSetTexture` bypasses the device**, so a device-level hook will not observe texture changes.
@@ -241,7 +241,7 @@ GiEndScene     -> [dev+0x128]
 
 **Re-verified from the image:** 18 `Gi*` classes; the reservation-count discriminator exactly as
 reported — `GiPolyGT4T`, `GiSprite`, `GiColorRect`, `GiScreenImage` pass constant **4**, `GiPrim`
-passes a field, and the two reset commands pass **3**.
+passes a field~~, and the two reset commands pass **3**~~ *(corrected 2026-10-02, OPUS: WITHDRAWN at pass 8 above: neither reset command makes any device-vtable call)*.
 
 **The one-body generalisation was withdrawn by its author.** An earlier pass read `GiTrans` alone and
 called the family uniform. Reading all eighteen showed **four shapes**, with `GiTrans` representing
@@ -267,7 +267,7 @@ measurements that share a source*). **The bodies are read from the executable an
 - [`../../16-UI/Dynamic-Geometry-Instances/dyngeo-instance-family.md`](../../16-UI/Dynamic-Geometry-Instances/dyngeo-instance-family.md)
   — the `DynGeo*` classes, two of which share this family's destructor-less shape.
 
-## 10. The device is not a C++ class — and the pipeline around it
+## 10. The device is ~~not~~ a C++ class, `PrimitiveRendererD3D11` (corrected 2026-10-02, OPUS: §20e) — and the pipeline around it
 
 ### BG-1 answered: no RTTI, over the complete candidate set
 
@@ -297,10 +297,10 @@ would then be using as a write pointer.
 
 **And no second user exists to name it from the other side.** The reserve idiom — `call [vtbl+0]` with
 a count in `edx` and an immediate store through the returned pointer — occurs at **exactly 4 sites
-image-wide, all `Gi*`.** Nothing outside this family touches the interface.
+image-wide, all `Gi*`.** *(corrected 2026-10-02, OPUS: the true count is 5 - the §17-era re-census below)* Nothing outside this family touches the interface.
 
-> **The device layer is either compiled `/GR-` or is a hand-rolled C-style vtable struct. It is not a
-> Phyre class and not any class in the index.** The layer sits *below* the C++ object system.
+> ~~**The device layer is either compiled `/GR-` or is a hand-rolled C-style vtable struct. It is not a~~
+> ~~Phyre class and not any class in the index.**~~ *(answered: see §20e - the device's class is `PrimitiveRendererD3D11`, RTTI-bearing; 2026-10-02, OPUS)* The layer sits *below* the C++ object system.
 
 **A caveat the analyst attached, and it is the right one:** the 16-candidate check is only as complete
 as its necessary condition. "Slot 39" and "40 slots" assume a contiguous C++ vtable. **Given the
@@ -331,7 +331,7 @@ mov  [rax], rcx             ; install the vtable
 
 **This converts last section's inference into a measurement.** The family's missing deleting
 destructors were read as "commands submitted and discarded"; **this is the allocator call itself.**
-`FUN_001A1470` is **93 bytes with 52 call sites**, and the sizes passed to it span 16 … 360 bytes —
+`FUN_001A1470` is **93 bytes with 52 call sites**, and the sizes passed to it span ~~16 … 360~~ 8 … 1,600 bytes *(corrected 2026-10-02, OPUS: the literal `edx` sizes among the 52 sites run from `001FBD80`+0x36 `mov edx, 8` to `001DB840`+0x35 `mov edx, 0x640`)* —
 including `0xE0` for `GiSprite`. Objects are never individually allocated with `operator new` and
 never freed, which is also **why route B of the object-size census found nothing for them.**
 
@@ -362,7 +362,7 @@ walks of `0x01` and `0x03`.
   §20e names the vtable, and slot 0 `006CA760` is read. It overwrites the count register before reading it, and it
   returns this `+ 0x10880` (the index cell `+0x18860` is touched only by its own read and reset). So it is a fixed
   staging area, not a reservation. See the correction in §2.)*
-- **The display list's drain was not found.** All 28 references to the base are **reads inside
+- ~~**The display list's drain was not found.**~~ *(answered: see §11, The drain - `003A3740` reads the count and sorts the list; 2026-10-02, OPUS)* All 28 references to the base are **reads inside
   emitters**; nothing statically reads it to execute the list. The consumer reaches it through a
   copied pointer — **and that is the one remaining route that could still name the device.** BG-7.
 - ~~`FUN_001A1470` was not read.~~ *Read 2026-09-13, see §17: a ring bump allocator that wraps to its base when full.* **"Bump allocator" is from the call shape and the absence of frees**,
@@ -410,7 +410,7 @@ exactly 40,960 records**, plus a `0xC8028` sort scratch and a data arena.
 `[0x02F8F2D0]` to its base `[0x02F8F308]`.
 
 **That is the third independent leg under one conclusion.** The family has no deleting destructors
-(§2); the commands come from a bump allocator (§10); and **the arena is rewound by a single pointer
+(§2); the commands come from ~~a bump allocator~~ the ring allocator `001A1470` (§10) *(corrected 2026-10-02, OPUS: `001A1470`+0x35 restarts at the base when full; the rewind `003A3A00`+0xE stores `02F8F2D0`, the display list's data arena, not the command arena `01F7F4C0`)*; and **the ~~arena~~ display list's data arena is rewound by a single pointer
 store per frame**. Three separate observations, one mechanism: *nothing is freed because everything is
 discarded at once.*
 
@@ -534,7 +534,7 @@ emitter -> arena-allocate command -> node+8
    -> FUN_0020E630 -> FUN_001FB810 -> FUN_001A17F0
    -> GeometryRenderTargetImmediate::slot0  (FUN_001F48B0)
    -> FUN_001F4950   wrap in a GeometryInstanceOrderedObject (0x28, vtable 00903920)
-   -> its slot 1 (FUN_001F49F0) -> FUN_005FEA50 with callback FUN_001F4A10
+   -> its slot 1 (FUN_001F49F0) -> FUN_005FEA50 with callback FUN_001F4A10   <- corrected 2026-10-02, OPUS - not part of this chain: 001F48B0+0x90 only appends the wrapper to the ordered list; slot 1 runs later from the pass-list walk 0018B100+0x87 (section 12e)
    -> FUN_001F4A10   jmp [cmd_vtable+8](command, device)      EXECUTE
 ```
 
@@ -580,7 +580,7 @@ FUN_001F48B0(handler, command, mask):
 `"EASTL vector"` at `008C5F58` — built **once at device init**, `FUN_00186CD0` → `FUN_0018B480`, with `0x1388` = 5,000
 entries reserved and its filter word `+0x20` set to `0xFFFFFFFF`.
 
-**The drain is the render pass list.** `FUN_0018B100(list, whole, device)` is called twice from `FUN_00187950` —
+**The drain is the render pass list.** ~~`FUN_0018B100(list, whole, device)`~~ `FUN_0018B100(list, whole, renderer)`, with the renderer object `&GameApplication[0xE8]` (a `PRendererBase`), whose `+0x18C0` is the device *(corrected 2026-10-02, OPUS: `0017D000`+0x4F `lea rcx, [rbx + 0xe8]` is stored at record `+8` by `00184F20`+0x2C; `00187950`+0x3AF `mov r8, qword ptr [r14 + 8]` passes it; Gi family page section 19b)*, is called twice from `FUN_00187950` —
 the render pass list that is application slot 8's render path
 ([the game application](../../00-Engine-Core-Runtime/Application-Root/game-application.md) §3) — once with
 `whole = 1` at `00187D05` and once with `whole = 0` at `00188128`:
@@ -615,7 +615,7 @@ FUN_005FEA50(target, fn, arg):   ; reserve 0x80 bytes in the ring [target+0x50 .
 
 `FUN_001F4A10` reads **`[block+0]`** and adds `0x18C0` to it, but the producer leaves the opcode dword there.
 **So something between the producer and the callback writes the context over `block+0`**, and that something is the
-render-thread executor for these `0x80`-byte blocks — **which was not found.** Searched and excluded: every jump table
+render-thread executor for these `0x80`-byte blocks — ~~**which was not found.**~~ *(answered: see §20d - the block is never overwritten; `001F4A10` never sees it; 2026-10-02, OPUS)* Searched and excluded: every jump table
 in the image with 48–64 cases (the opcode vocabulary reaches `0x30`; the only full-width dispatcher, `FUN_007AB5C0`, is
 the sound engine's and reads a different record shape), indexed handler tables in `005C0000`–`00630000`, and the
 `call [reg+8]` / `mov rax,[reg+8]; call rax` shapes image-wide. What *is* established about the stream: **eight bodies
@@ -801,7 +801,7 @@ block** — `[ctx+0x10]` = the command matches `+0x10` = payload exactly.
 `FUN_001F4A10` reads **`[ctx+0x00]` as a pointer** and adds `0x18C0` to it. But `+0x00` holds the
 **hardcoded dword `0x2F`**, and the enqueue never writes a pointer there.
 
-> **Something writes `ctx+0` between enqueue and invocation, and it has not been found.** That is a
+> ~~**Something writes `ctx+0` between enqueue and invocation, and it has not been found.**~~ *(answered: see §20d - nothing writes it; `001F4A10` never sees the block; 2026-10-02, OPUS)* That is a
 > real structural fact, not a gap in the reading: the two ends of this chain are both verified and
 > they **do not join**.
 
@@ -839,7 +839,7 @@ has now resisted three attacks.
 **Against that: 86.5 % of the executable's code bytes are still in functions no document cites.** The
 marginal value of one class name does not compete with that surface.
 
-> **BG-11 stays open with its sharpened question recorded**, so it is cheap to resume for anyone who
+> ~~**BG-11 stays open with its sharpened question recorded**~~ *(answered: see §20d - BG-11 is answered; 2026-10-02, OPUS)*, so it is cheap to resume for anyone who
 > encounters the queue executor from another direction. **The caveat that made it worth doing is
 > unchanged and still live:** §14's elimination assumes the device's dispatch table is a contiguous
 > C++ vtable, and **BG-11 was the only line of attack independent of that assumption.**
@@ -954,7 +954,7 @@ a *no-op* prepare for most of the family.
 *The `Gi*` factories (BQ-21) and the arena (BG-8). Ledger rows are mirrored separately.*
 
 **One vtable-installing function per class, 18 of 18.** A rip-relative census of every reference to the 18 RTTI vtables
-finds exactly one installer per class, and two for each reset class (constructor and deleting destructor). Thirteen
+finds exactly one installer per class, and two for each reset class (constructor and deleting destructor). ~~Thirteen~~ Eleven *(corrected 2026-10-02, OPUS: the table below lists eleven in that range; each of the 18 classes has one installer)*
 factories sit together at `00862E50`–`00865320`.
 
 | class | factory | arena size (`edx`) | per-class global written |
@@ -983,7 +983,7 @@ factories sit together at `00862E50`–`00865320`.
 reference is the factory's own store (ripscan per global). Three further checks found no reference: no data qword,
 absolute-32 or RVA constant holds any of them, the image-base displacement bytes of all 11 occur nowhere in `.text`,
 and register-tracked `lea`-base searches around `02EAF900` and `02EB37F8` find nothing. **So each global records the
-most recently created command of its class, and nothing reads it back.** This reads like a debugging aid kept in the
+most recently created command of its class, ~~and nothing reads it back.~~ and only `01F83078` is read back.** *(corrected 2026-10-02, OPUS: `01F83078`, `GiBeginScene`'s global, is the `+8` of the node `01F83070` that `001FBD80`+0x4F passes to `001FB840`, which reads it at `001FB840`+0x6 `mov rdx, qword ptr [rcx + 8]`)* This reads like a debugging aid kept in the
 build; that reading is an inference. **The BQ-21 answer, then:** the `Gi*` "singleton factory" is a per-call arena
 factory plus a write-only last-created pointer. No command object is shared or reused between calls.
 
@@ -1070,7 +1070,7 @@ float `+0x4B8`/`+0x4BC`, pointer `+0x390` (`001F5C10`), and `001F6E50` a 14 B
 `mov eax, edx` identity thunk. Slot 30 `001FA820` calls `001F0850` + `001945B0` twice.
 Full rows:
 [`members/render-object-vtable-slots.tsv`](members/render-object-vtable-slots.tsv).
-*Unresolved:* what state `+0x4B4` etc. encode; slot numbers 8/13/29 share covered
+*Unresolved:* ~~what state `+0x4B4` etc. encode~~ *(answered: see character-render-object.md - `+0x4B4` is the one-way ready latch; 2026-10-02, OPUS)*; slot numbers 8/13/29 share covered
 bodies and are not frontier.
 
 ## 19. Whose ring the `0x2F` block belongs to — BG-11's container gets a named candidate (2026-09-22, FABLE)
@@ -1124,7 +1124,7 @@ table's slot 0, `005E2C40`, to `PRendering::PRendererBase`. The application obje
 
 `00D498F0` runs **three** entries before the next class's locator at `00D49908`; the index carries one row for the
 class, slot 0. The `Gi*` bodies call their second argument's table at `+0x138`. **The walker's third argument is
-therefore not the table the commands call** — it is the container, and `+0x18C0` of it is the device (§12d, §13b).
+therefore not the table the commands call** — ~~it is the container, and `+0x18C0` of it is the device (§12d, §13b).~~ and it is not the device's container either: the device is `02CC0410` + `0x18C0`, a separate magic-static singleton *(corrected 2026-10-02, OPUS: `005FD050`+0x47 and `005FD050`+0x74 return `02CC0410`; `00615840`+0x310 builds the `+0x18C0` subobject; section 20f)*.
 Both have been written here as *the device*.
 
 Re-measured from the bodies rather than taken from §2, tracking only calls through the **argument** register
@@ -1201,9 +1201,9 @@ should:
 00600DB5  rbx = [target + 0x78]                   ; the completion event
 00600DCF  [02CE4720 + i*0x28 + 0x30] = rsi        ; +0x00  start
 00600DD4  [02CE4720 + i*0x28 + 0x38] = rbp        ; +0x08  end
-00600DD9  [02CE4720 + i*0x28 + 0x50] = rbx        ; +0x20  event
+00600DD9  [02CE4720 + i*0x28 + 0x50] = rbx        ; +0x20  event   ; <- corrected 2026-10-02, OPUS - +0x20 is the completion object [target+0x78]; the per-slot event is +0x10 (section 20a)
 00600DE3  i = (i + 1 == 0x100) ? 0 : i + 1
-00600DF9  005CD5E0(&entry + 0x40)                 ; signal
+00600DF9  005CD5E0(&entry + 0x40)                 ; signal   ; <- corrected 2026-10-02, OPUS - the signal target is the slot's event at entry +0x10, r14 + 0x40 + 0x28i (00600D20+0xD1..+0xD9)
 00600E01  0060FA10(target)                        ; reset the ring
 ```
 
@@ -1335,7 +1335,7 @@ and `FUN_00615840` is the body §13b traced:
 for the same class's **secondary** table `00D86AD0` (offset 8, one slot, `006C88A0`).
 
 > **BG-2: the device vtable holds 45 slots.** The highest the `Gi*` family calls is slot 39
-> (`+0x138`), so nine slots are never touched by this family.
+> (`+0x138`), so ~~nine slots are~~ five slots lie above it and 25 of the 45 are *(corrected 2026-10-02, OPUS: 45 slots less the twenty offsets listed below; slots 40-44 above the highest)* never touched by this family.
 
 And the twenty offsets §2 recovered *by use* all land in that class's method range — which is a test
 this identification could have failed and did not:
@@ -1635,19 +1635,19 @@ side effect. Interior anchor `001E0A2D` (the `call 001986D0`).
 
 ## SWE2-EC7-44 update (2026-09-19) - `008651A0`
 
-`008651A0` (271 B) is the `GiNormal` row body - `0016D6A0`/`001EE650`/`00210510`/`00210560`/`00808C40` plus `call [r10+0x78]`/`[rax+0x98]`/`[rax+0x80]`/`[rax+0x88]` vcalls. Interior anchor `008651C0` (an `0016D6A0` call).
+`008651A0` (271 B) is the `GiNormal` row body - `0016D6A0`/`001EE650`/`00210510`/`00210560`/`00808C40` plus `call [r10+0x78]`/`[rax+0x98]`/`[rax+0x80]`/`[rax+0x88]` vcalls, and `[rax+0xA0]`/`[rax+0xA8]` *(corrected 2026-10-02, OPUS: `008651A0`+0xE8 and +0xF6, six device calls)*. Interior anchor `008651C0` (an `0016D6A0` call).
 
 ## SWE2-EC7-44 update (2026-09-19) - `00862D40`
 
-`00862D40` (269 B) is the `GiTrans` slot-1 row body - `0016D6A0`/`001EE650`/`00210510`/`00210560`/`00808C40` plus `call [rax+0x88]`/`[rax+0xA8]`/`[rax+0xA0]`/`[r10+0x78]` vcalls. Interior anchor `00862D60` (an `0016D6A0` call).
+`00862D40` (269 B) is the `GiTrans` slot-1 row body - `0016D6A0`/`001EE650`/`00210510`/`00210560`/`00808C40` plus `call [rax+0x88]`/`[rax+0xA8]`/`[rax+0xA0]`/`[r10+0x78]` vcalls, and `[rax+0x98]`/`[rax+0x80]` *(corrected 2026-10-02, OPUS: `00862D40`+0xCA and +0xF4, six device calls)*. Interior anchor `00862D60` (an `0016D6A0` call).
 
 ## SWE2-EC7-44 update (2026-09-19) - `00862EC0`
 
-`00862EC0` (267 B) is the `GiTransNz` row body - `0016D6A0`/`001EE650`/`00210510`/`00210560`/`00808C40` plus `call [rax+0x88]`/`[rax+0xA8]`/`[rax+0xA0]`/`[r10+0x78]` vcalls. Interior anchor `00862EE0` (an `0016D6A0` call).
+`00862EC0` (267 B) is the `GiTransNz` row body - `0016D6A0`/`001EE650`/`00210510`/`00210560`/`00808C40` plus `call [rax+0x88]`/`[rax+0xA8]`/`[rax+0xA0]`/`[r10+0x78]` vcalls, and `[rax+0x98]`/`[rax+0x80]` *(corrected 2026-10-02, OPUS: `00862EC0`+0xC8 and +0xF2, six device calls)*. Interior anchor `00862EE0` (an `0016D6A0` call).
 
 ## SWE2-EC7-44 update (2026-09-19) - `001DB220`
 
-`001DB220` (273 B) is a sound-request body - `0016D6A0`/`001A1470`/`00861EC0`. Interior anchor `001DB255` (an `0016D6A0` call).
+`001DB220` (273 B) is ~~a sound-request body~~ the `GiVmax` constructor: it installs vtable `009007E8` (RTTI `GiVmax`) and takes its arrays from the command arena *(corrected 2026-10-02, OPUS: `001DB220`+0xF `lea rax, [009007E8]`, `001DB220`+0x47 `call 001A1470`)* - `0016D6A0`/`001A1470`/`00861EC0`. Interior anchor `001DB255` (an `0016D6A0` call).
 
 ## SWE2-EC7-57 update (2026-09-19) - `0061E6B0`
 
@@ -1862,3 +1862,7 @@ Interior anchor `0062828A` (function `00628250`).
 `00622450` (144 B) is the mode setter `005FE010` calls: with `r9d` and the stack arg both non-null, `0061C1C0(edx)` returns a code compared against cached `01F2DEF8` - a change stores it and fires `01F2DEF0`'s `00616F00`-table callback on `[rdi+0x110]` - then unconditionally calls vtable `+0xA8` on `[rdi+0x110]` with `(esi, stack-arg, ebp)`; returns 1 either way - the compare-then-notify command setter the family records.
 
 Interior anchor `0062249E` (function `00622450`).
+
+`0018AA30` (542 B) is the packed-qword field decoder the command readers (`00863D80`, `00864330`, `00864860`) share: five masked extracts (`rcx>>2&3`, `>>4`, `>>0xE`, `>>0x18`, `>>0x22` each `&0x3FF`) pull the 10-bit channels, `[rdx]>>0x1A &0xF` supplies a `1<<cl` scale, `[rdx]&0x3FFF` bounds against `0xE00`, and every extract widens through `cvtsi2ss` into xmm5..xmm0 - the dequantize leaf the family applies to packed vertex/parameter words.
+
+Interior anchor `0018AB7F` (function `0018AA30`).

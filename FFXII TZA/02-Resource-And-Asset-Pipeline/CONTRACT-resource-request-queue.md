@@ -340,7 +340,7 @@ The owner and queue states therefore cannot substitute for one another.
 
 This does NOT run the OS read or the service producer of that status word. Original common-footer
 services take configured idle/empty paths. Resetting the fixture queue after observing an error is
-not normal recovery. The complete game-level recovery and held-owner dispatcher remain unresolved.
+not normal recovery. The complete game-level recovery ~~and held-owner dispatcher remain unresolved~~ remains unresolved; the held-owner dispatcher does not exist *(answered: see [the indexed-source page](the-indexed-source-request-from-arm-to-terminal-pump.md) OV-34; 2026-10-02, OPUS)*.
 
 One producer invocation can enqueue64 requests with a sufficiently large fixture handle table;
 32 handles yield32 successes followed by genuine handle exhaustion despite byte capacity. Neither

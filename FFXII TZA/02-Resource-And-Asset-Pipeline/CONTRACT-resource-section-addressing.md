@@ -228,7 +228,7 @@ behaviour.
 - [Contract — authored table row lookup](CONTRACT-authored-table-row-lookup.md) — S-09's contracted third
 - [The authored-data table registry](authored-data-table-registry.md)
 
-`00409780` (429 B) is the `PRF@` name-table lookup: the caller's name resolves through `00409210` against `02B62E20`, the section pointer comes from `003AB7F0` (live) or `0051EE00` (blob at `+0x10`), `dword[0] == 0x50524640` gates the scan and the `+0xC`-counted offset table walks `+0x40`-biased (form 1) or `+0x30`-biased (form 0) elements through `00409C30` matches - the first hit writes its index to `*rsi` and its count to `*r9`, all misses writing -1.
+`00409780` (429 B) is the `PRF@` name-table lookup: the caller's name resolves through `00409210` against `02B62E20`, the section pointer comes from `003AB7F0` (live) or `0051EE00` (blob at `+0x10`), `dword[0] == 0x50524640` gates the scan and the `+0xC`-counted offset table walks `+0x40`-biased (form 1) or `+0x30`-biased (form 0) elements through `00409C30` matches - the first hit writes ~~its index to `*rsi` and its count to `*r9`~~ its table-relative offset through the fifth argument (`*rsi`) and its index through the fourth (`*r9`) *(corrected 2026-10-02, OPUS: `00409780+0x1A` loads `rsi` from the fifth-argument slot, `00409780+0x118` `mov dword ptr [rsi], ecx` stores `offset + 0x40` and `00409780+0x18F` `mov dword ptr [r14], r9d` the loop index, `r14` being `r9`)*, all misses writing -1.
 
 Interior anchor `0040981A` (function `00409780`).
 

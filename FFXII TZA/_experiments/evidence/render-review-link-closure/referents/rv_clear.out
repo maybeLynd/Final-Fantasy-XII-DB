@@ -1,0 +1,99 @@
+== packet integrity
+PASS  manifest.json sha256 = c3e8141dc7fafc01...  | c3e8141dc7fafc01b3fc7651abc3f5be49cf623f66e12c72b8a6615ef08439fc
+PASS  all 61 manifest members hash as listed  | []
+== shipping-image re-derivation
+PASS  caller 0041F730..0041FBE8 decodes exactly and .pdata tiles it
+PASS  helper 006C0520..006C053A decodes exactly, has no call, ends in ret/jmp
+PASS  helper 0046D110..0046D11C decodes exactly, has no call, ends in ret/jmp
+PASS  helper 00202C70..00202C8F decodes exactly, has no call, ends in ret/jmp
+PASS  helper 003E5D00..003E5D2C decodes exactly, has no call, ends in ret/jmp
+PASS  helper 003E37E0..003E37EB decodes exactly, has no call, ends in ret/jmp
+PASS  helper bytes total 124  | 124
+PASS  00861EC0 is the IAT thunk for memset
+PASS  caller's direct calls are exactly the seven supplied sites  | 41F754->861EC0 41F95F->6C0520 41F97A->6C0520 41F990->46D110 41F99C->46D110 41FAFA->3E5D00 41FB5A->3E37E0
+PASS  leaf helpers write none of rbx/rbp/rsi/rdi/xmm6  | ['r8', 'rax', 'rdx', 'rflags', 'rsp', 'xmm0', 'xmm2']
+PASS  emulation returns to the sentinel with rsp balanced  | ('S', 0)
+PASS  41F754 memset rcx=R+0 edx=0 r8=740h  | [(8789696, ('R', 0), 0, 1856)]
+PASS  6C0520 calls: rcx = R+210h then R+220h
+PASS  46D110 calls: rcx = R+180h then R+1C0h
+PASS  3E5D00 called 10 times with rcx=R+0 and edx = 0..9  | [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+PASS  3E37E0 called once with rcx = R+580h
+PASS  library fill reached twice: (R+0, 0, 740h) then (R+580h, 0, 50h)  | [(8789696, 'memset-model', ('R', 0), 0, 1856), (8789696, 'memset-model', ('R', 1408), 0, 80)]
+PASS  no write with an unresolved address or a non-record, non-stack base  | []
+PASS  caller's own record writes (static sites, w and rw, LEA excluded) = 125  | 125
+PASS  composed helper writes (6C0520 x2, 46D110 x2, 3E5D00 x10, 3E37E0 fill) = 47  | 47
+PASS  6C0520 footprint = 210h..230h, 4-byte stores  | [(528, 560)]
+PASS  46D110->202C70 footprint = 180h..200h, 16-byte stores  | [(384, 512)]
+PASS  3E5D00 footprint = 4C0h..510h (WORD/DWORD/WORD per index)  | [(1216, 1296)]
+PASS  3E37E0 tail fill footprint = 580h..5D0h  | [(1408, 1488)]
+PASS  every record write lies inside [0, 740h)  | []
+PASS  exactly one write overlaps WORD +0 after the 740h fill: 41F795  | [('0x41f795', 0, 2)]
+PASS  no write overlaps DWORD +284h after the 740h fill (full width)  | []
+PASS  no helper write overlaps WORD +0 or DWORD +284h
+PASS  final WORD +0 = FFFFh  | 65535
+PASS  final DWORD +284h = 0  | 0
+PASS  46D110 copy source is 01F204E0 (in .data)  | 1F204E0
+NOTE  46D110 source initial bytes (file image): 0000803f000000000000000000000000000000000000803f000000000000000000000000000000000000803f000000000000000000000000000000000000803f
+NOTE  46D110 copies the file-initial identity matrix: True
+NOTE  6C0520 stores (xmm1..3 and stack +28h) = ['0x3f800000', '0x3f800000', '0x3f800000', '0x3f800000', '0x3f800000', '0x3f800000', '0x3f800000', '0x3f800000']
+NOTE  3E5D00 WORD at 4C0h + 8i = [4096, 4096, 4096, 4096, 4096, 4096, 4096, 4096, 4096, 4096]
+== composed write log (record writes only, in program order)
+      00861EC0 memset    000..740
+      006C0526 006C0520  21C..220
+      006C052B 006C0520  210..214
+      006C052F 006C0520  214..218
+      006C0534 006C0520  218..21C
+      006C0526 006C0520  22C..230
+      006C052B 006C0520  220..224
+      006C052F 006C0520  224..228
+      006C0534 006C0520  228..22C
+      00202C73 00202C70  180..190
+      00202C7A 00202C70  190..1A0
+      00202C82 00202C70  1A0..1B0
+      00202C8A 00202C70  1B0..1C0
+      00202C73 00202C70  1C0..1D0
+      00202C7A 00202C70  1D0..1E0
+      00202C82 00202C70  1E0..1F0
+      00202C8A 00202C70  1F0..200
+      003E5D0F 003E5D00  4C0..4C2
+      003E5D1A 003E5D00  4C2..4C6
+      003E5D22 003E5D00  4C6..4C8
+      003E5D0F 003E5D00  4C8..4CA
+      003E5D1A 003E5D00  4CA..4CE
+      003E5D22 003E5D00  4CE..4D0
+      003E5D0F 003E5D00  4D0..4D2
+      003E5D1A 003E5D00  4D2..4D6
+      003E5D22 003E5D00  4D6..4D8
+      003E5D0F 003E5D00  4D8..4DA
+      003E5D1A 003E5D00  4DA..4DE
+      003E5D22 003E5D00  4DE..4E0
+      003E5D0F 003E5D00  4E0..4E2
+      003E5D1A 003E5D00  4E2..4E6
+      003E5D22 003E5D00  4E6..4E8
+      003E5D0F 003E5D00  4E8..4EA
+      003E5D1A 003E5D00  4EA..4EE
+      003E5D22 003E5D00  4EE..4F0
+      003E5D0F 003E5D00  4F0..4F2
+      003E5D1A 003E5D00  4F2..4F6
+      003E5D22 003E5D00  4F6..4F8
+      003E5D0F 003E5D00  4F8..4FA
+      003E5D1A 003E5D00  4FA..4FE
+      003E5D22 003E5D00  4FE..500
+      003E5D0F 003E5D00  500..502
+      003E5D1A 003E5D00  502..506
+      003E5D22 003E5D00  506..508
+      003E5D0F 003E5D00  508..50A
+      003E5D1A 003E5D00  50A..50E
+      003E5D22 003E5D00  50E..510
+      00861EC0 memset    580..5D0
+== controls (each patched private image must FAIL at least one check above)
+PASS  control: first 6C0520 receiver moved to R+27Ch (helper span 27C..28C overlaps 284)  | 5 failed, e.g. 6C0520 calls: rcx = R+210h then R+220h; 6C0520 footprint = 210h..230h, 4-byte stores; no write overlaps DWORD +284h after the 740h fill (full width); no helper write overlaps WORD +0 or DWORD +284h
+PASS  control: 41F771 WORD store moved from +2 to +0 (a second ID0 store)  | 1 failed, e.g. exactly one write overlaps WORD +0 after the 740h fill: 41F795
+PASS  control: 41FA2A DWORD store moved from +288h to +286h (overlaps 284 by width)  | 2 failed, e.g. no write overlaps DWORD +284h after the 740h fill (full width); final DWORD +284h = 0
+PASS  control: 41F843 QWORD store of zero moved to +280h (starts below 284, overlaps by width, value still 0)  | 1 failed, e.g. no write overlaps DWORD +284h after the 740h fill (full width)
+PASS  control: loop bound 10 -> 80 at 41FB01 (3E5D00 span grows past 510h)  | 3 failed, e.g. 3E5D00 called 10 times with rcx=R+0 and edx = 0..9; composed helper writes (6C0520 x2, 46D110 x2, 3E5D00 x10, 3E37E0 fill) = 47; 3E5D00 footprint = 4C0h..510h (WORD/DWORD/WORD per index)
+PASS  control: 3E37E0 fill size 50h -> 60h  | 2 failed, e.g. library fill reached twice: (R+0, 0, 740h) then (R+580h, 0, 50h); 3E37E0 tail fill footprint = 580h..5D0h
+PASS  control: 41F9C0 `mov edi, esi` NOPed (index stays FFFFh)  | 4 failed, e.g. 3E5D00 called 10 times with rcx=R+0 and edx = 0..9; composed helper writes (6C0520 x2, 46D110 x2, 3E5D00 x10, 3E37E0 fill) = 47; 3E5D00 footprint = 4C0h..510h (WORD/DWORD/WORD per index); every record write lies inside [0, 740h)
+PASS  control: 41F74B memset size 740h -> 280h (284 no longer filled)  | 7 failed, e.g. 41F754 memset rcx=R+0 edx=0 r8=740h; library fill reached twice: (R+0, 0, 740h) then (R+580h, 0, 50h); composed helper writes (6C0520 x2, 46D110 x2, 3E5D00 x10, 3E37E0 fill) = 47; 3E37E0 tail fill footprint = 580h..5D0h
+PASS  control: 46D110 copy source moved +40h  | 1 failed, e.g. 46D110 copy source is 01F204E0 (in .data)
+TOTAL: 42 checks, 42 PASS, 0 FAIL

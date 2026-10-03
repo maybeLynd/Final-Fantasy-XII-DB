@@ -293,8 +293,8 @@ base `01EEBCC0` finds fifteen functions: the four handlers, these dispatchers, t
 readers `Equipment_CheckMatchingSecondaryPartnerSelectedOrOwned` (`003096F0`),
 `Inventory_QueryEncodedItemDiscoveryBit` (`00309B60`),
 `Inventory_QueryOwnedCountIncludingReservedActionItems` (`00309FB0`) and
-`BattleIdClassD_RefreshPrerequisiteRuntimeFlags` (`0030B270`) — the only code that touches the
-descriptors at all.
+`BattleIdClassD_RefreshPrerequisiteRuntimeFlags` (`0030B270`) — ~~the only code that touches the~~
+~~descriptors at all.~~ the functions that address the table base; 28 functions hold 49 references into the table *(corrected 2026-10-02, OPUS: rip-relative census over `01EEBCC0`–`01EEC1E7`, fifteen `0x58`-byte rows; CONTRACT-encoded-id-space-and-class-registry.md, corrected 2026-09-30)*.
 
 ### 2.7 The packed-count word and the bitset bit — what the two handler pairs store
 
@@ -353,7 +353,7 @@ costs 100 gil and wants loot `0x205C` × 2; *Gilt Shield* 250 gil and `0x2051` �
 loot's *sold* tally (channel 3) against those counts and the purchase that zeroes them (FY-5 answered). **Class 16** (`02EBF060`, `0xB000`,
 128 × 4) has no handler and no name; its rows are one `u32` each — 45 rows hold 1, the rest values
 from 30 to 11,160 — and **nothing consumes it**: a whole-image rip-relative census of `02EBF060`
-finds only the validator (`00322EBB`), the loader (`00236E13`) and the query filler's arm
+finds only the validator (~~`00322EBB`~~ `00322C50+0x295`, the class-16 arm *(corrected 2026-10-02, OPUS: `00322C50+0x26B` is the class-15/30/31 arm, which reads `02EBF068`)*), the loader (`00236E13`) and the query filler's arm
 (`0031D7B0`), where the same census of `02EBF068` (class 15) also finds its consumer
 `InventoryBundleClass0A_ApplyNestedItems` (`002FD662`) — the positive control. The table is bound
 and validated but read by no gameplay code in the image (FY-2 answered as a negative).
@@ -790,7 +790,7 @@ achievement code; the crossings are consumers of the id space, not owners of it.
 - **WorldAreaField — CLIENT and SERVICE (34 edges).** 24 inbound (WorldAreaField bodies `00236C30`, `00238850`, `BattleSystem_InitializeAreaState` (002342F0) call page-cited `003846F0`, `002EFA70`, `002EFE40`); 10 outbound (page-cited `00236C30`, `00237FC0`, `00238160` call WorldAreaField bodies `AreaData_BindAndRebaseSectionDescriptor` (003845F0), `003846F0`, `WorldTransition_GetActiveOrPendingFieldId` (003148F0)). Substantive edges include `00236C30` is called by `00238850`; `00236C30` calls `003846F0`; `00237FC0` is called by `00236C30`; `00238160` is called by `00236C30`; the remaining edges run through shared helpers the page cites.
 ## The `0030B270` exclusive subtree — 1 member bound (SWE2-FRONTIER, followup queue)
 
-`0030B270` (`BattleIdClassD_RefreshPrerequisiteRuntimeFlags`, ~105 B) —
+`0030B270` (`BattleIdClassD_RefreshPrerequisiteRuntimeFlags`~~, ~105 B~~, 564 B) *(corrected 2026-10-02, OPUS: `ret` at `0030B270+0x233`)* —
 `qword[02EBF058]` non-null gate (`0030B279`/`0030B280`).
 
 | member | role | interior |
@@ -801,7 +801,7 @@ Shared callees outside the census: none.
 
 ## The `0031C5D0` exclusive subtree — 1 member bound (SWE2-FRONTIER, followup queue)
 
-`0031C5D0` (~105 B) — six-register body (`0031C5D0`/`0031C5E6`).
+`0031C5D0` ~~(~105 B)~~ (8,136 B, `ret` at `0031C5D0+0x1FC7`) *(corrected 2026-10-02, OPUS: measured)* — six-register body (`0031C5D0`/`0031C5E6`).
 
 | member | role | interior |
 | --- | --- | --- |
@@ -933,7 +933,7 @@ runs when a record changes hands. Interior anchors `00290CD9`/`00290820`
 
 `002F9920` (314 B) is the high-id resolver the page routes `ecx >= 0x186A0`
 into: `edx = ecx / 10000` (signed magic `0x68DB8BAD`, `sar 0xC` + sign fix)
-buckets the id into a 28-entry pointer table at `02FDA3D80`
+buckets the id into a 28-entry pointer table at ~~`02FDA3D80`~~ `02EC3D80` *(corrected 2026-10-02, OPUS: `002F9920+0x47` `cmp qword [r14+rbp+0x2DA3D80], 0` with `rbp` the image base)*
 (`edx >= 0x1C` or a null entry returns the `01CEB638` default). Each bucket
 entry is a `[+4]`-counted list of `0020E600`-resolved handles; the scan
 matches `dword[resolved] == esi`, and a hit chains the leaf resolution -
@@ -1034,7 +1034,7 @@ Interior anchor `00317BAB` (the `00317930` call).
 `0023AF50` and `0032A830` call: it repacks `(rcx, rdx, r8d = 1,
 r9d = 1)` with the caller's `r8d` forwarded through the stack
 slot and falls into `003008A0` - the two-ones-shim into the
-shared query.
+~~shared query.~~ modify entry `Inventory_ModifyEncodedItemAndUpdateDiscoveryState` *(corrected 2026-10-02, OPUS: it calls the row's `+0x48` handler at `003008A0+0xC0`)*.
 Interior anchor `00300BB2` (the `003008A0` call).
 
 ## SWE2-EC7-98 update (2026-09-20) - `0024DE70` measured
@@ -1112,7 +1112,7 @@ query-row fetch `002826F0`,
 `00282A40`, `002CCA40`, `003FCEE0`,
 `00564430`, `00565CD0`, `0057B500`,
 `0057CF20` and `0057D620` call: `ecx
-> 0xB` reports `0016D6A0(0x200)` and
+> 0xB` ~~reports `0016D6A0(0x200)`~~ calls the `ret 0` stub `0016D6A0` with `0x200`, which reports nothing *(corrected 2026-10-02, OPUS: `0016D6A0` is `ret 0`, three bytes)*, and
 clamps the index to 0, then answers
 `02092760 + movsxd(ecx) * 8` - the
 eight-byte stride into the shared

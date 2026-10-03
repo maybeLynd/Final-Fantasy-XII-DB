@@ -888,7 +888,7 @@ queue links; `02AD9E00` the shared flag byte.
 
 ## The `003EADE0` exclusive subtree — all 2 members bound (SWE2-FRONTIER, followup queue)
 
-`003EADE0` (512 B) — the request state machine: `byte[rbx+0x31]` gates the
+`003EADE0` (~~512 B~~ 522 B *(corrected 2026-10-02, OPUS: the body runs 522 bytes from `003EADE0`, as the key-address table states)*) — the request state machine: `byte[rbx+0x31]` gates the
 whole pass (`003EADF4`), `byte[rbx+0x30]-1` in 0..7 selects one of eight
 state arms through the `dword[rdx+rax*4+0x2CAFEC]` jump table
 (`003EAE04`/`003EAE16`/`003EAE20`). Arms call `0032E400`/`0032E4D0`/
@@ -942,7 +942,7 @@ Shared callees outside the census: none.
 
 ## Evidence-only read — frontier hub `0032E040` (2026-09-18, SWE2-EC7)
 
-`0032E040` — 38 B, 8 A-measured callers; the guarded queue-kick. Read against the shipping
+`0032E040` — 38 B, ~~8 A-measured callers~~ ten calling functions at eleven sites *(corrected 2026-10-02, OPUS: direct calls from `0022A0B0`, `0022A770`, `0022AF50`, `0022B000`, `0022B6E0`, `0022B7E0`, `0022B8C0`, `0022BC20`, `00379E30` and twice from `0036EEB0`, the set §2.3 lists)*; the guarded queue-kick. Read against the shipping
 image (page stays PARTIAL — evidence-only): when `001EDE80()` is non-zero **or** the
 `0017D930` thunk's target answers true, the function tail-jumps to `0032E070(0)` at
 [`0032E05C`](../_index/ADDRESS-INDEX.md) — the 605 B `FFXII.ResourceDataLoading` routine this queue drains

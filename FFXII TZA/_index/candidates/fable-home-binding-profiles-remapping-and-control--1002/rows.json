@@ -1,0 +1,90 @@
+{
+ "page": "15-Input/Binding-Profiles/binding-profiles-remapping-and-control-state.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01QmPH3UsJG62wVZQjKE9DWs",
+ "report": "home-binding-profiles-remapping-and-control-state.json",
+ "rows": [
+  {
+   "fn": "001E0980",
+   "entered_from": "`002284F0` + 0x160",
+   "text": "returns without work when the call at `001E0980` + 0x4 returns null; otherwise repeats that call at `001E0980` + 0xE and tail-jumps through the site `001E0980` + 0x1A with `rcx` = its result",
+   "anchors": [
+    [
+     "001E0984",
+     "call"
+    ],
+    [
+     "001E098C",
+     "je"
+    ],
+    [
+     "001E098E",
+     "call"
+    ],
+    [
+     "001E099A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002498A0",
+   "entered_from": "`001EC060` + 0xEF",
+   "text": "returns dword `02F97364` ANDed with `0x800` (bit 11)",
+   "anchors": [
+    [
+     "002498A6",
+     "and"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "0017E500",
+   "why": [
+    "already cited by 16-UI\\Widget-Object-Model\\the-widget-message-protocol.md"
+   ]
+  },
+  {
+   "fn": "002E2570",
+   "why": [
+    "already cited by 16-UI\\Widget-Object-Model\\the-widget-message-protocol.md"
+   ]
+  },
+  {
+   "fn": "0035C100",
+   "reason": "entered_from caller 003C8B70 is cited on the host page only inside a crossing section; a body cite would import its edges into the neighbour gate (H1A pre-check, 2026-10-03). Re-home later.",
+   "row": {
+    "fn": "0035C100",
+    "entered_from": "`003C8B70` + 0x2FF",
+    "text": "returns without work when qword `022C83E0` is null; otherwise makes the call at `0035C100` + 0x12 (`ecx` passed through), zeroes dword `+0xC4` of qword `022C83E0`, and when `ecx` was non-zero tail-jumps through the site `0035C100` + 0x33 with `ecx` = 0",
+    "anchors": [
+     [
+      "0035C110",
+      "je"
+     ],
+     [
+      "0035C112",
+      "call"
+     ],
+     [
+      "0035C11E",
+      "mov"
+     ],
+     [
+      "0035C12A",
+      "je"
+     ],
+     [
+      "0035C133",
+      "jmp"
+     ]
+    ]
+   }
+  }
+ ],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

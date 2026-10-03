@@ -671,7 +671,7 @@ generated into [`PARITY-STATUS.md`](../_index/PARITY-STATUS.md): `CALCULATION`, 
 
 | member | role | interior |
 | --- | --- | --- |
-| `00863C80` | `byte[02EB4234]` debug gate; `01CCFAC8` vtable-ref local; `edx = 0x1571` fallback seed (`00863C84`/`00863C99`) | [`00863C84`](../_index/ADDRESS-INDEX.md) |
+| `00863C80` | `byte[02EB4234]` ~~debug gate~~ lazy-seed latch, `GeneratorInitLatch` *(corrected 2026-10-02, OPUS: `00863C84` tests it, `00863C99` seeds 5489, `00863CBA` sets it to 1 — a do-once latch; §2 and CONTRACT-which-generator-serves-which-roll.md §3)*; `01CCFAC8` vtable-ref local; `edx = 0x1571` fallback seed (`00863C84`/`00863C99`) | [`00863C84`](../_index/ADDRESS-INDEX.md) |
 
 Shared callees outside the census: none.
 

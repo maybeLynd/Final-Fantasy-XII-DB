@@ -1,0 +1,61 @@
+{
+ "page": "18-Audio/the-music-control-file-and-the-bgm-stream.md",
+ "date": "2026-10-02",
+ "session": "local-h4-opus",
+ "report": "the-music-control-file-and-the-bgm-stream.json",
+ "rows": [
+  {
+   "fn": "00224890",
+   "text": "when `edx` is 0 stores 0 to the dword at absolute address 0 (a deliberate fault) and returns `al` = 1; otherwise calls `00221ED0` with the incoming registers and, when it returns an object for which `00225680(object)` is non-zero, calls `007A77F0(object+8, float [r8], float [r8+4], float [r8+8])` and returns 1, else 0",
+   "anchors": [
+    [
+     "00224899",
+     "test"
+    ],
+    [
+     "002248A2",
+     "call"
+    ],
+    [
+     "002248B2",
+     "call"
+    ],
+    [
+     "002248CD",
+     "call"
+    ],
+    [
+     "002248EC",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0050CEC0",
+   "text": "calls `0017D280` with the address `00D22968` and what `0035E810()` returns, then `0016D6A0(1)`, and tail-jumps to `0016D6A0` again without reloading `ecx`",
+   "anchors": [
+    [
+     "0050CEC4",
+     "call"
+    ],
+    [
+     "0050CED3",
+     "call"
+    ],
+    [
+     "0050CEDD",
+     "call"
+    ],
+    [
+     "0050CEE6",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing"
+}

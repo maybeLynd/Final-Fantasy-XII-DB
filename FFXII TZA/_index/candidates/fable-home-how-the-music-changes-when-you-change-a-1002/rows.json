@@ -1,0 +1,31 @@
+{
+ "page": "18-Audio/how-the-music-changes-when-you-change-area.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01G1D6BV8reSc8hRtefJLZec",
+ "report": "home-how-the-music-changes-when-you-change-area.json",
+ "rows": [
+  {
+   "fn": "0046DE50",
+   "entered_from": "`0032EB40` + 0x68",
+   "text": "when `ecx` is below 2 (signed, so negative values also pass), stores 0 to qword `02CA6080` + `ecx`*0xA0; otherwise returns without a write",
+   "anchors": [
+    [
+     "0046DE53",
+     "jge"
+    ],
+    [
+     "0046DE5C",
+     "shl"
+    ],
+    [
+     "0046DE67",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

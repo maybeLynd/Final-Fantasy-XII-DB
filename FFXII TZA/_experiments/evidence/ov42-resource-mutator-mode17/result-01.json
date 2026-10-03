@@ -1,0 +1,94 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY conditional original CFG/dataflow",
+  "driver_sha256": "34456399db30980fa1f133e54042af068daf83081aed0e7e8603d4891f17e827",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "d89a6e1a23f1c711b1b6717263973f83044c5a0a3cddf9e3cf82969ba955d593"
+    }
+  ],
+  "capture_prerequisites": {
+    "status": "VERIFIED_ACTUAL_CAPTURE_PREREQUISITES",
+    "metadata": "extents-01.json",
+    "metadata_sha256": "d4263ff696d5e9047c6c874c77ff4d049e1e0dae69ef47abbadb7c081f6bdb52",
+    "source": "source-01.json",
+    "source_sha256": "d89a6e1a23f1c711b1b6717263973f83044c5a0a3cddf9e3cf82969ba955d593",
+    "checker_sha256": "2550a7723eb689e2878ae0b5a35fffb81c4675432f1d272de3f2699d7dc6e4b5"
+  },
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 182,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "facts": {
+    "flags": "Mode17 bit0=1 bypasses initial eligibility checks; invertedbit4=0 suppresses3283D0; invertedbit7=1 enables28F1F0 when resolvedowner nonNULL. This is source argument composition, not observed game state.",
+    "primary_negative": "The bit0 initial bypass does not bypass the later negative-delta checks.30B770 return upperWORD and30B7F0 return upperWORD are checked after28F1F0 attempt and before own statsWORD4C store. Any supplied nonzero upperWORD vetoes this own write and own later2FA540 decrease hook. Actual query output domains/effects remain unresolved here.",
+    "notification_limit": "28F1F0 is a call attempt with ownerDWORD8/old signedWORD4C/clamped candidate/R9D1. No visible notification, callback effect or actual memory before/after observation is proved. Callees could have other writes; no whole-call no-write guarantee.",
+    "secondary": "Mode17 bypasses300BC0 initial30B770/30B7F0 leg. Original ownWORD6 store precedes30E060 call carrying fullsaved flags17. Postcallee semantic effects remain open.",
+    "cases": [
+      {
+        "label": "both-upper-words-zero",
+        "own_word4c_store": true,
+        "notification_attempt_before_post_queries": true,
+        "initial_3283d0_attempt": false,
+        "method": "Conditional original local CFG, not machine-code execution",
+        "premises": "Mode17, valid stats/storage/ABI, owner returned nonNULL, delta<0, normal callees and supplied upper-word query results; no natural reachability"
+      },
+      {
+        "label": "first-upper-word-nonzero",
+        "own_word4c_store": false,
+        "notification_attempt_before_post_queries": true,
+        "initial_3283d0_attempt": false,
+        "method": "Conditional original local CFG, not machine-code execution",
+        "premises": "Mode17, valid stats/storage/ABI, owner returned nonNULL, delta<0, normal callees and supplied upper-word query results; no natural reachability"
+      },
+      {
+        "label": "second-upper-word-nonzero",
+        "own_word4c_store": false,
+        "notification_attempt_before_post_queries": true,
+        "initial_3283d0_attempt": false,
+        "method": "Conditional original local CFG, not machine-code execution",
+        "premises": "Mode17, valid stats/storage/ABI, owner returned nonNULL, delta<0, normal callees and supplied upper-word query results; no natural reachability"
+      }
+    ],
+    "remaining": "Resolve actual upper-word query domains/effects underthe same action state and30E060/28F1F0/2FA540 transitive effects when needed. No natural veto/reachability, resource-binding preservation, concurrent behavior or full command consequence closure."
+  },
+  "source_controls": [
+    {
+      "label": "remove-negative-query-branch",
+      "pc": "0x300ddb",
+      "mutation": {
+        "mnemonic": "jmp"
+      },
+      "refused": "mode17 operation changed 0x300ddb",
+      "method": "Synthetic source-control, not original execution"
+    },
+    {
+      "label": "unconditional-primary-store",
+      "pc": "0x300df6",
+      "mutation": {
+        "args": "0x300e00"
+      },
+      "refused": "mode17 operation changed 0x300df6",
+      "method": "Synthetic source-control, not original execution"
+    },
+    {
+      "label": "secondary-call-before-ownstore",
+      "pc": "0x300c74",
+      "mutation": {
+        "args": "0x30b770"
+      },
+      "refused": "mode17 operation changed 0x300c74",
+      "method": "Synthetic source-control, not original execution"
+    }
+  ],
+  "limits": "Three supplied branch partitions/three focused source controls, not native/live observations. Actual query domains/callee effects and normal reachability OPEN.",
+  "acceptance": "Producer-valid only; independent review/consumption pending."
+}

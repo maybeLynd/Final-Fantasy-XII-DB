@@ -1,0 +1,19 @@
+{
+ "blocks_in_image": 78,
+ "blocks_outside_image": 0,
+ "catalogue": "e2a67b07700c2ec3fbfae3213965de35",
+ "classes": {
+  "returned": 17
+ },
+ "elapsed_s": 195.1,
+ "emu_starts": 936,
+ "entries_executed": 17,
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "instrument": "execcov-shim v2",
+ "patched_blocks": 13,
+ "rc": 0,
+ "receipt_md5": "160255e0a8209440b6c7e13eb5a4b800",
+ "run": "unit-resolver-family-exec",
+ "status": "ok",
+ "unique_blocks": 78
+}

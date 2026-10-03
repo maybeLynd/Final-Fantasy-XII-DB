@@ -408,7 +408,7 @@ width */ 8` and left `isDynamic` undefined. Both are now read off `0063C0C0` dir
 corrections matter:
 
 * the pointer width is **`ctx->vslot08()`**, supplied by the context the query is made against
-  (`0063C106: call qword ptr [rax+8]` with `rcx = rdx = ctx`), not a constant in this function.
+  (`0063C106: call qword ptr [rax+8]` with `rcx = rdx = ctx`)~~, not a constant in this function~~, and a literal 8 when `ctx` is null *(corrected 2026-10-02, OPUS: `0063C0D3` jumps to `0063C14C`, which loads `mov eax, 8` at `0063C17D`)*.
   So this function answers "how wide is this field **in that context**", and a context is free to
   answer 4. It is therefore **not** on its own an authority for the in-memory layout;
 * `isDynamic` is `rec->vslot08() != NULL && that->[0x5C] == 2` — a virtual on the **record**
@@ -1363,7 +1363,7 @@ next block `02CF93E0` (`m_flags`) plus the method members `create`/`deleteObject
 documents end-to-end. Interior anchor only: `call 00632FB0` base-init first, `[+0x28] = arg3`,
 the `+0x38` intrusive list head is self-linked empty at
 [`006329A4`](../../_index/ADDRESS-INDEX.md)–`006329AF` exactly as the page describes, the vtable
-`00D580B0` installs at `006329B6`, `+0x48`/`+0x50` take the name and context args, `+0x28` bit 1
+`00D580B0` installs at `006329B6`, `+0x48`/`+0x50` ~~take the name and context args~~ take the field offset (argument 5) and zero *(corrected 2026-10-02, OPUS: `006329B9`-`006329C0`; the name goes to the node through `00632FB0` and the context only to the attach call)*, `+0x28` bit 1
 is set when the mode arg is 2, and the tail `call [descriptor-vtable +0x40]` at `006329EE` is
 the descriptor handoff the page counts at 1,186 sites.
 
@@ -1380,7 +1380,7 @@ and replaces `[+0x18]` with the owned copy (`00633026`). Bit 0 of the flag word 
 
 ## SWE2-EC7-47 update (2026-09-19) - `0063C0C0`
 
-`0063C0C0` (210 B) is `FieldStorageWidth` - `call [rax+8]`/`[r8+0x10]`/`[rdx+8]` vcalls, no direct calls; returns 8 when attribute bit 1 is set, else the type's inline size from `type+0x38`. Interior anchor `0063C0E4` (the first vcall).
+`0063C0C0` (210 B) is `FieldStorageWidth` - `call [rax+8]`/`[r8+0x10]`/`[rdx+8]` vcalls, no direct calls; returns ~~8~~ `ctx->vslot08()` *(corrected 2026-10-02, OPUS: `0063C106`; a literal 8 only for a null context, `0063C17D`)* when attribute bit 1 is set, else the type's inline size from `type+0x38`. Interior anchor `0063C0E4` (the first vcall).
 
 ## 12. The in-memory accessor path, and why the width question needed it (2026-09-19, OPUS)
 
@@ -2400,3 +2400,19 @@ evidence verbatim.
   - After a load the dword is 0. Alignment padding between the count and the 8-aligned pointer fits every observation;
     that is a reading, not a proof, because indirect accesses and untraced code are outside the reach. On the create
     path the bytes come from each class's default instance and are not read here.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-member-registration-and-the-recovered-fi-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `005A7B50` | 157 B | returns 0 when `rdx` or `rcx` is null; otherwise walks the circular list headed at `rcx + 0x90` (a link equal to the head ends it), skips nodes whose qword `+0x18` is null, byte-compares each node's `+0x18` string with the string at `rdx` up to the terminator and returns the first node that matches; when a list is exhausted it moves to the object at qword `+0x78` and repeats, returning 0 once that qword is null | `005A7B70`, `005A7B86`, `005A7BA3`, `005A7BC9`, `005A7BE4` |
+| `006045B0` | 22 B | computes the signed offset dword `+0x48` of `rcx` minus dword `+0xF4` of the object at qword `+0x18` of `rcx`, and returns the qword at `rdx` + that offset + 8 | `006045B4`, `006045B7`, `006045C0` |
+| `006065E0` | 24 B | computes the signed offset dword `+0x48` of `rcx` minus dword `+0xF4` of the object at qword `+0x18` of `rcx`, and returns the dword at `rdx` + that offset with bit 31 cleared (`btr 0x1f`) | `006065E4`, `006065E7`, `006065F0`, `006065F3` |
+| `0062A870` | 124 B | addresses the record at `rdx` + (dword `+0x48` of `rcx` minus dword `+0xF4` of the object at qword `+0x18` of `rcx`, signed) and returns 5 when `r9d` is negative (signed); otherwise calls `00584730` on the record's qword `+8` when it differs from `r8`, is non-null and bit 31 of the record's dword `+0` is clear, then stores `r8` at qword `+8`, stores `r9d` with bit 31 set (`bts 0x1f`) at dword `+0` and returns 0 | `0062A89B`, `0062A8BD`, `0062A8CB`, `0062A8D0`, `0062A8DF` |
+| `0062FB80` | 67 B | when `rdx` is non-null, calls `006373D0` (with `rcx` unchanged) and then `00632E80(rdx, that result, 0, the address 02CF8270)`; on both paths returns with `al` = 1 | `0062FB9E`, `0062FBA0`, `0062FBA8`, `0062FBB5`, `0062FBBB` |
+| `0063B9B0` | 48 B | addresses the record at `rdx` + (dword `+0x48` of `rcx` minus dword `+0xF4` of the object at qword `+0x18` of `rcx`, signed) and reads its dword `+0` with bit 31 cleared: above 1 (unsigned) it returns the record's qword `+8`, at 1 it returns the address record + 8, and at 0 it returns 0 | `0063B9C5`, `0063B9CC`, `0063B9CE`, `0063B9D3`, `0063B9DB` |
+| `00672F30` | 243 B | returns 5 when `r8d` is negative (signed); otherwise takes the old storage of `rcx` (qword `+8` when dword `+0` with bit 31 cleared is above 1 unsigned, the address `rcx + 8` when it is 1, null when 0); when `r8d` is 1 it copies the `0x48` bytes at `rdx` field by field to `rcx + 8` except that `+0x28` receives the address `00D68DD0` (copy skipped if `rcx + 8` is null), making `rcx + 8` the new storage and 1 the new count, else the new storage is `rdx` and the new count `r8d` with bit 31 set; calls `00584730` on the old storage when it differs from the new storage and from `rcx + 8`, is non-null and bit 31 of dword `+0` is clear; stores the new storage at qword `+8` unless it is `rcx + 8`, stores the new count at dword `+0` and returns 0 | `00672F43`, `00672F6A`, `00672FBD`, `00672FFD`, `00673011` |
+| `006B66F0` | 15 B | stores `rdx` at qword `+0` of `rcx`, zeroes qword `+8` and returns `rcx` | `006B66F3`, `006B66F6` |
+| `006C7A40` | 176 B | returns 0 at once when `edx` equals the whole dword `+0` of `rcx`; otherwise takes the old storage (qword `+8` when dword `+0` with bit 31 cleared is above 1 unsigned, the address `rcx + 8` when it is 1, null when 0) and calls `006C7450(rcx, edx, old storage, the unsigned minimum of edx and that count)`; when the result is null and `edx` is non-zero it returns 0xD, else it calls `00584730` on the old storage when that differs from the result and from `rcx + 8`, is non-null and bit 31 of dword `+0` is clear, stores the result at qword `+8` unless it is `rcx + 8`, stores `edx` at dword `+0` and returns 0 | `006C7A67`, `006C7A8C`, `006C7A90`, `006C7AC4`, `006C7AD1` |

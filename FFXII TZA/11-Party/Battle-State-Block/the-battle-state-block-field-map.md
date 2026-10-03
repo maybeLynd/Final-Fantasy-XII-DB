@@ -632,3 +632,12 @@ write).
 `00280B70` (298 B) is the nine-record pump `00281ED0` calls on `0209AC30`: `[+0xD8]` null exits; `00283270(1)` opens the pass, then `+0xAC8`'s eight-qword list iterates - each record skips on `word[+0x60] < 0`, `byte[0] & 2`, or `byte[owner+0xFC] & 0x10`, else `00327850(byte[+0x60])` writes the preferred selector and `0035C760` tests it: `00237140`/`0035C940` run on the pass arm, `0035C750`/`003271D0` on the fail arm, and `0035C920` closes before `00244F00` runs on `[+0xD8]` and `0209C318` - the roster sweep that re-publishes the party's preferred definition per member.
 
 Interior anchor `00280BF7` (function `00280B70`).
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-the-battle-state-block-field-map-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0035C920` | 29 B | replaces bit 4 (mask 0x10) of dword `022C83E8` with bit 0 of `ecx` (shift left by 4, XOR-AND-XOR merge), stores the dword back, then tail-jumps through the jump at `0035C920`+0x18 with `ecx` unchanged | `0035C928`, `0035C92D`, `0035C932`, `0035C938` |
+| `0035C940` | 26 B | replaces bit 0 of dword `022C83E8` with bit 0 of `ecx` (XOR-AND-XOR merge), stores the dword back, then tail-jumps through the jump at `0035C940`+0x15 with `ecx` unchanged | `0035C948`, `0035C94A`, `0035C94F`, `0035C955` |

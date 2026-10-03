@@ -33,8 +33,8 @@ Point Vaan at something behind him and he turns — and he turns **the short way
 face you and it does the same. That choice, left or right, is made once when the new heading is set,
 recorded as a single bit, and then spent over the following frames.
 
-The same routine also decides **how fast** the turn goes: **9 degrees per step, and never more than
-a half-turn at once.**
+The same routine also decides **how fast** the turn goes: **9 degrees per step~~, and never more than~~
+~~a half-turn at once~~.** *(corrected 2026-10-02, OPUS: the `π` stored at `0026C237` is never read — DP-1, §5)*
 
 And one of its five modes is **frame-rate sensitive** — it finishes early or late depending on
 whether the game is running its 30 or its 60 frames-per-second time base.
@@ -95,7 +95,7 @@ Modes 2, 3 and 4 all begin with the same three lines:
 ```asm
 movss xmm0, dword ptr [steer + 0x34]     ; target heading
 subss xmm0, dword ptr [body  + 0xA8]     ; minus current heading
-call  0x3A1C50                           ; wrap into (-pi, pi]
+call  0x3A1C50                           ; wrap into (-pi, pi]   ; <- corrected 2026-10-02, OPUS - closed [-pi, pi]: 003A1C58 and 003A1C76 return an exact -pi or +pi unchanged
 comiss xmm0, 0
 jb    -> or  byte ptr [steer + 0x62], 0x40      ; negative: set the bit
       -> and byte ptr [steer + 0x62], 0xBF      ; non-negative: clear it
@@ -110,7 +110,7 @@ while (x >  pi) x -= 6.2831855      ; 01CEBC50 = +pi,  00915624 = -2pi
 
 > **So the turn direction is the sign of the shortest signed angle to the target**, and that is the
 > whole of it: one bit, `steer->+0x62 & 0x40`, decided once. **A character turns the short way round
-> because the difference is wrapped into (−π, π] before its sign is taken.**
+> because the difference is wrapped into ~~(−π, π]~~ [−π, π] before its sign is taken.** *(corrected 2026-10-02, OPUS: `003A1C50` is closed at both ends — `003A1C58` and `003A1C76` leave an exact `−π` or `+π` unchanged)*
 
 ### Modes 2 and 3 also set the rate
 
@@ -119,7 +119,7 @@ while (x >  pi) x -= 6.2831855      ; 01CEBC50 = +pi,  00915624 = -2pi
 0026C237  mov dword ptr [steer + 0x5C], 0x40490FDB     ; pi     = 180 degrees
 ```
 
-**Nine degrees, and a ceiling of a half-turn.** ~~Whether `+0x58` is per-frame or per-step, and whether
+**Nine degrees~~, and a ceiling of a half-turn~~.** *(corrected 2026-10-02, OPUS: no instruction reads `+0x5C`; `002E5750` reads `+0x58` only, `002E57EE`; see the supersession note that follows)* ~~Whether `+0x58` is per-frame or per-step, and whether
 `+0x5C` is a clamp or a threshold, is **not established here** — the consumer was not read. `DP-1`.~~ *Superseded 2026-09-26 (FABLE, Claude Opus 5.5): **DP-1** was answered on 2026-09-12. `+0x58` is the per-frame facing cap in modes 2 and 3 and the frame-count divisor in mode 4; `+0x5C` is read by nothing (a dead store).*
 
 ## 6. Mode 4 is frame-rate sensitive
@@ -196,7 +196,7 @@ reads `turn_step` (`00264750` → `002E4BC0` → `+0x58`) and, **when any mode i
 | 0 | nothing | the teardown callers (§7) |
 | 1 | `heading += +0x3C`, wrapped, through `Actor_SetFacingHeading_Variant0` (`002E5A9E`–`002E5AED`) — **a constant spin**, inert only because `+0x3C` is zero unless `setvelrotangzx` (`0x003C` → `003535C0` → `0026D630` → `002E60C0`) set it | `0026C120`'s downgrade target |
 | 2 | heading approaches **the desired movement heading** (`00263CC0`: context `+0xA4` for class 3, `+0x38` for class 1) by at most `turn_step` (`003A1AD0`, `002E5A78`–`002E5A94`) — "face the way you are going" | every move-family verb, right after its steer (`movea_45`, `amove`, `move`, `rmove`, `cmove`, `ucmove`… — 10 sites pass 2) |
-| 3 | heading approaches **`target_heading` `+0x34`** (`00265550`): by `turn_step` through `003A1AD0`, or, when `002654E0` holds and the actor has a render record with a valid index, along the curve `003EC040(target, +0x78, …)` (`002E595C`–`002E5A5D`); **ends in mode 0 when the heading equals the target exactly** (`ucomiss` / `je` → `0026C120(actor, 0)`) | the untimed turns: `rturn_48` / `turn_62` (`00341AB0`), `rturna` (`0034BE50`), `rturn_50` (`0034CD60`), `rturnt_4b` (`0034D1B0`, first site), `raturn_25e` (`0034E710`), `00357DE0`, `unkCall_3092` — 7 sites pass 3 |
+| 3 | heading approaches **`target_heading` `+0x34`** (`00265550`): by `turn_step` through `003A1AD0`, or, when `002654E0` holds and the actor has a render record with a valid index, ~~along the curve~~ by the constant step of `003EC040(target, +0x78, …)` *(corrected 2026-10-02, OPUS: `003EC12E`–`003EC15A` step = `[01DFE0BC]` × `[rec+0x28]` or × `[rec+0x24]`; `003EC1C3` snaps within one step; SD-193)* (`002E595C`–`002E5A5D`); **ends in mode 0 when the heading equals the target exactly** (`ucomiss` / `je` → `0026C120(actor, 0)`) | the untimed turns: `rturn_48` / `turn_62` (`00341AB0`), `rturna` (`0034BE50`), `rturn_50` (`0034CD60`), `rturnt_4b` (`0034D1B0`, first site), `raturn_25e` (`0034E710`), `00357DE0`, `unkCall_3092` — 7 sites pass 3 |
 | 4 | **timed linear interpolation** from the start heading (`002652A0`) to `+0x34`: `t = +0x78 / +0x68` (frame index over total frames, `00265630` / `00265660`), `heading = start + wrap(target − start) × t`, then `+0x78 += 1` (`0026C300`); at `t ≥ 1` (or when the manager flag `02099011[…]` forces it) the heading is set to the target and the mode to 0 (`002E5862`–`002E5931`) | the timed turns: `turnt` / `rturnt` (`003425D0`), `rturnt_4b` (second site), `rturnat` / `turnat` (`0034D9B0`), `dira` (`0034E040`), `dir_4e` (`0034E360`) — 5 sites pass 4 |
 | 5 | waits: `002EA780` is true when the render record's `+0x284` is set and `002EA910` returns 1 (an animation-state test); then `0026C120(actor, 0)` (`002E5853`–`002E5A6E`) | **nobody found** — all 29 call sites of `0026C120` pass 0, 2, 3 or 4, re-derived independently §11 (`0034DC60` does **not** forward: it is `mov rcx, rdx / xor edx, edx / jmp`, so it hardcodes 0 and takes its *second* argument as the actor) |
 
@@ -236,7 +236,7 @@ boundary crossings).
 | `002E4BF0` (39 B) | `+0x3C` | `spin_rate` itself — null-guards the actor and `+0xC0`, no kind gate (its callers hold it) | `002E4C0D` |
 | `002651C0` (50 B) | `+0x54` / `+0xAC` | actor-class switch: class 1 → `pitch_approach_step`, class 3 → `+0xAC`, else 0.0 | `002651D5` |
 | `002652A0` (34 B) | `+0x38` | mode 4's start-heading getter | `002652BC` |
-| `002654E0` (40 B) | `+0x28` bit 7 | the mode-4 curve-eligibility flag — `record+0x28` tested signed (`cmovl`): the `0x80` bit `002690D0` sets | `00265504` |
+| `002654E0` (40 B) | `+0x28` bit 7 | the ~~mode-4 curve-eligibility flag~~ mode-3 flag that picks the render-step path *(corrected 2026-10-02, OPUS: its one caller `002E596B` is in `002E5750`'s mode-3 arm, reached by the third `sub edi, 1` at `002E583C` / `002E583F`; mode 4 is `002E5862`)* — `record+0x28` tested signed (`cmovl`): the `0x80` bit `002690D0` sets | `00265504` |
 | `002655D0` (38 B) | `+0x62` bit 6 | turn-direction getter — `(flags >> 6) & 1` | `002655E8` |
 | `00265510` (32 B) | `+0x64` | u8 getter | `00265528` |
 | `0026C070` (28 B) | `+0x64` | u8 setter — the write side of the pair | `0026C088` |
@@ -303,8 +303,8 @@ for a caller that has none.
 | the capture-then-write of `+0x28` | `movzx esi, [rax+0x28]` then `mov [rax+0x28], dl` — exact, in that order |
 
 The normaliser's shape is worth stating once more precisely: it is two `while` loops, **`+2π` while
-`-π > x` and `-2π` while `x > +π`** (`003A1C5B`–`003A1C8A`), so the result is closed at `+π` and open
-at `-π` — which is what §5's "(−π, π]" says.
+`-π > x` and `-2π` while `x > +π`** (`003A1C5B`–`003A1C8A`), so the result is closed at `+π` and ~~open~~ closed
+~~at `-π` — which is what §5's "(−π, π]" says.~~ at `-π` too: an input of exactly `-π` fails `-π > x`, skips both loops and is returned unchanged, so §5's "(−π, π]" is wrong *(corrected 2026-10-02, OPUS: `003A1C58` `comiss xmm1(-π), xmm0` / `jbe` skips the `+2π` loop, `003A1C76` `comiss xmm0, xmm1(+π)` / `jbe` returns)*.
 
 ### ○ The frame-rate global, joined rather than discovered
 
@@ -335,12 +335,12 @@ constant's value, not its readers.
 |---|---|---|
 | `0026C120` | the mode setter: kind-3 gate, writes steer `+0x28`, turn direction, rate, mode-4 early end, mode-0 teardown | §3–§8 |
 | `002E5750` | the per-frame integrator, dispatching on `+0x28 & 0x7F` | §10 |
-| `003A1C50` | the angle normaliser into (−π, π] | §5 |
+| `003A1C50` | the angle normaliser into ~~(−π, π]~~ [−π, π] *(corrected 2026-10-02, OPUS: `003A1C58` / `003A1C76`)* | §5 |
 | `0026B620` | `Actor_SetFacingHeading_Variant1`, mode 4's final set | §6 |
 | `002EBE50` / `002E8EE0` / `002E6300` | the mode-0 chain | §7 |
 | `002690D0` | the untimed turn body: frame count from `turn_step`, and the direct store of mode 5 | §10 |
 | `0026C330` | the timed turn setter | §10 |
-| `00263CC0` | the movement-kind speed read (class 1 `+0x38`, class 3 `+0xA4`) | §10, EC7-105 |
+| `00263CC0` | ~~the movement-kind speed read~~ the desired-heading read (class 1 `+0x38`, class 3 `+0xA4`) *(corrected 2026-10-02, OPUS: `00263CD6`–`00263CED` return context `+0xA4` / `+0x38`, the desired movement heading §10's mode-2 row names)* | §10, EC7-105 |
 | `01DFE0B4` / `01DFE0BC` | the `FrameLimit` time base and the frame-rate scale | §6, §10 |
 
 ### Call chain (SWE2-DATA, 2026-09-30)
@@ -352,7 +352,7 @@ script verbs (move family, turns, 0034CD60 / 0034D1B0 / 0034E710 ...) -- 29 site
     mode 4      -> 003A1C50; when +0x68 <= [01DFE0B4]: 0026B620, mode := 0
 untimed turns -> 002690D0 -> 002692E8 stores mode 5 directly
 per frame: WorldActor_UpdateRuntimeAndScriptExecutionState -- 0025E3AA --> 002E5750
-    -> 00265600 (mode), 00264750 -> 002E4BC0 (turn_step), 003A1AD0 (approach), 003EC040 (mode-3 curve),
+    -> 00265600 (mode), 00264750 -> 002E4BC0 (turn_step), 003A1AD0 (approach), 003EC040 (mode-3 curve),   <- corrected 2026-10-02, OPUS - a constant angular step, not a curve (003EC12E-003EC1E1, SD-193)
        002EA780 (mode-5 wait), 0026C120(actor, 0) (ends 3 and 5)
 ```
 
@@ -464,7 +464,7 @@ sign-picked wrap bias - `+π` (`01CEBC50`) for nonnegative input, `-π`
 (`00915620`) for negative - is added before the gate. Only objects whose
 `byte[+3] & 0xE0 == 0x60` (kind 3) continue: `xmm3` is divided by `2π`
 (`01CEBC78`), truncated to int and back, the integer turns subtracted, the
-bias un-added - an exact `(-π, π]` normalize - and the result tails into
+bias un-added - an exact ~~`(-π, π]`~~ `[-π, π]` normalize, `+π` and `-π` swapping *(corrected 2026-10-02, OPUS: `0026AC7E`–`0026ACC5`, the sign-biased truncation of `0026A8E0`)* - and the result tails into
 `002E5B90(rcx, xmm3)` as `xmm1`. Non-kind-3 objects return without the call.
 Interior anchor `0026ACAE` (the `divss xmm0, [01CEBC78]` 2π divide).
 
@@ -522,10 +522,29 @@ arms share.
 Interior anchor `00263D18` (the `0x80`
 compare).
 
-`00263CC0` (55 B) is the movement-kind speed read: `byte[rcx+3] >> 5` selects the class - kind 1 returns `float[[rcx+0xB8] + 0x38]`, ~~kind 2 returns~~ kind 3 returns `float[[rcx+0xB8] + 0xA4]` *(corrected 2026-09-30, SWE2-DATA: `sub edx, 1` then `cmp edx, 2` selects class 3, as §10 says; `_index/candidates/dd-data-5-0930/mm_checks.py` K1)*, every other kind and the null record return 0.0f - the two-speed branch the facing and battle-unit callers share.
+`00263CC0` (55 B) is the ~~movement-kind speed read~~ desired-heading read *(corrected 2026-10-02, OPUS: `00263CDD` / `00263CED` load context `+0xA4` / `+0x38`, the field `Actor_SetDesiredMovementHeading` writes)*: `byte[rcx+3] >> 5` selects the class - kind 1 returns `float[[rcx+0xB8] + 0x38]`, ~~kind 2 returns~~ kind 3 returns `float[[rcx+0xB8] + 0xA4]` *(corrected 2026-09-30, SWE2-DATA: `sub edx, 1` then `cmp edx, 2` selects class 3, as §10 says; `_index/candidates/dd-data-5-0930/mm_checks.py` K1)*, every other kind and the null record return 0.0f - the ~~two-speed~~ two-class heading branch the facing and battle-unit callers share *(corrected 2026-10-02, OPUS: it returns a heading, not a speed, `00263CD6`–`00263CED`)*.
 
 Interior anchor `00263CD6` (function `00263CC0`).
 
 `003EBF60` (219 B) is the speed-factor compute `002690D0` runs for record `cx`: a `-1` index or a `022C6F28` `0x740` record with `+0x284` clear returns `0`; else `003E56C0` resolves the object and its `[+0x24]` scales the `01DFE0BC` frame quantum into `xmm2` - `*rbx` gets `(xmm1 - (1 - (xmm1 - 6.7)^2 / 67.7) * 0.79) / xmm2` (constants `00915730`/`00915738`/`00915614`) and `*rdi` gets `|xmm1 / xmm2|` - the normalized turn/speed pair the mode selector consumes
 
 Interior anchor `003EBFD8` (function `003EBF60`).
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-setting-the-movement-mode-and-which-way--cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0026C330` | 117 B | computes `r8d` as the truncated quotient of `edx` by float `01DFE0BC` (decoded 1.0) when `edx` is greater than 0 (signed), else 0; then, only when byte `+3` of `rcx` AND `0xE0` equals `0x60` (else it returns), takes the qword `+0xF0` of qword `+0xB8` of `rcx` and stores word `01DFE0B4` plus `r8w` at its word `+0x68` and word `+0x66`, and dword `01DFE0B4` (decoded 1) converted to float at its float `+0x78` | `0026C33B`, `0026C353`, `0026C373`, `0026C389`, `0026C3A0` |
+| `0026D630` | 98 B | multiplies `xmm1` by float `01DFE0BC` (decoded 1.0) and adds 3.141593 (`01CEBC50`) when the product is not below 0.0, or -3.141593 (`00915620`) when it is (`jb`); when byte `+3` of `rcx` AND `0xE0` does not equal `0x60` it returns; otherwise it subtracts from the sum the truncated quotient of the sum by 6.283185 (`01CEBC78`) times 6.283185, then the same added offset, and tail-jumps `002E60C0` with `rcx` unchanged and that result in `xmm1` | `0026D636`, `0026D641`, `0026D65F`, `0026D66E`, `0026D68C` |
+| `002E60C0` | 35 B | when `rcx` is non-null and qword `+0xC0` of `rcx` is non-zero, stores `xmm1` at float `+0x3C` of the qword `+0xF0` of qword `+0xB8` of `rcx`; otherwise returns without work | `002E60C5`, `002E60D6`, `002E60DD` |
+| `002E8170` | 87 B | returns without work unless `rcx` is non-null, qword `+0xC0` of `rcx` is non-null, the dword at that pointer is not -1, its low word is not -1, the row qword `022C6F28` plus the sign-extended word times `0x740` is non-null and dword `+0x284` of that row is non-zero; then sets bit 19 (`bts 0x13`) of that dword when `edx` is non-zero, or clears it (`btr`) when `edx` is zero, and stores it back | `002E8193`, `002E81A3`, `002E81B1`, `002E81BC`, `002E81C0` |
+| `002EA780` | 110 B | returns 0 unless `rcx` is non-null, qword `+0xC0` of `rcx` is non-null, the dword at that pointer is not -1, its low word is not -1, the row qword `022C6F28` plus the sign-extended word times `0x740` is non-null, dword `+0x284` of that row is non-zero and the call at `002EA780` + 0x45 (with `rcx` = the row) returns non-zero; then returns 1 when `002EA910` called with the incoming `rcx` returns 1 and 0 otherwise (`sete`) | `002EA7AC`, `002EA7BC`, `002EA7C5`, `002EA7D1`, `002EA7DB` |
+| `002EA910` | 96 B | returns 1 unless `rcx` is non-null, qword `+0xC0` of `rcx` is non-null, the dword at that pointer is not -1, its low word is not -1, the row qword `022C6F28` plus the sign-extended word times `0x740` is non-null, dword `+0x284` of that row is non-zero and the call at `002EA910` + 0x40 (with `rcx` = the row) returns non-null; in that case tail-jumps `003E2C00` with that pointer as `rcx` | `002EA937`, `002EA947`, `002EA950`, `002EA961`, `002EA966` |
+| `003425D0` | 110 B | calls `0026C330(rdx, 00267E10(r9))`, then `0026A1A0(rdx, 0)`, then `00357DE0` with the four incoming arguments `rcx`, `rdx`, `r8`, `r9`, and tail-jumps `0026C120(rdx, 4)` | `003425F3`, `003425FD`, `00342607`, `00342618`, `00342639` |
+| `0034D9B0` | 100 B | calls `0026C330(rdx, 00267E10(r9))`, then `0034BE50` with the four incoming arguments `rcx`, `rdx`, `r8`, `r9`, and tail-jumps `0026C120(rdx, 4)` | `0034D9D3`, `0034D9DD`, `0034D9EE`, `0034DA0F` |
+| `0034E040` | 110 B | calls `00267F90(r9, 0)`, then `0026C330(rdx, 00267E10(r9))`, then `0034BE50` with the four incoming arguments `rcx`, `rdx`, `r8`, `r9`, and tail-jumps `0026C120(rdx, 4)` | `0034E065`, `0034E06D`, `0034E077`, `0034E088`, `0034E0A9` |
+| `0034E360` | 120 B | calls `00267F90(r9, 0)`, then `0026C330(rdx, 00267E10(r9))`, then `0026A1A0(rdx, 0)`, then `00357DE0` with the four incoming arguments `rcx`, `rdx`, `r8`, `r9`, and tail-jumps `0026C120(rdx, 4)` | `0034E385`, `0034E397`, `0034E3A1`, `0034E3B2`, `0034E3D3` |
+| `003A1980` | 23 B | converts `xmm0` to double, clears its sign bit with the mask `01CEBD80` (`andps`), converts it back to float and returns the `minss` of that absolute value and `xmm1` | `003A1983`, `003A1987`, `003A1992` |
+| `003EC510` | 103 B | adds 6.283185 (`01CEBC78`) to `xmm0` while it is below -3.141593 (`00915620`), then adds -6.283185 (`00915624`) while it is above 3.141593 (`01CEBC50`); returns 0.0 when the result equals 0.0; otherwise when `edx` is 0 adds 6.283185 to a negative result, when `edx` is 1 adds -6.283185 to a positive result, and returns the value (unchanged for any other `edx`) | `003EC525`, `003EC543`, `003EC54F`, `003EC568`, `003EC572` |

@@ -1,0 +1,147 @@
+{
+ "page": "17-Presentation-Rendering/Character-Rendering/character-render-object.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_013aUyF9Cw8dmXC6Vyt6UA4p",
+ "report": "character-render-object.json",
+ "rows": [
+  {
+   "fn": "001890A0",
+   "text": "loads qword `+0` and qword `+0x10` of `rcx`, calls `00628570(qword +0, 0, 1)` and `006215A0(qword +0, 1, qword +0x10, qword +0x10 + 0x40)` with stack arguments 0, 4 and 0, then tail-jumps `00628570(qword +0, 1, 1)`",
+   "anchors": [
+    [
+     "001890BA",
+     "call"
+    ],
+    [
+     "001890CD",
+     "mov"
+    ],
+    [
+     "001890E0",
+     "call"
+    ],
+    [
+     "001890FC",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "001AD470",
+   "text": "dereferences the pointers at `rdx` and `rcx` and sets `al` to 1 when the float `+0x34` of the `rdx` object is below, equal to or unordered with the float `+0x34` of the `rcx` object, else 0",
+   "anchors": [
+    [
+     "001AD476",
+     "movss"
+    ],
+    [
+     "001AD47B",
+     "comiss"
+    ],
+    [
+     "001AD480",
+     "setbe"
+    ]
+   ]
+  },
+  {
+   "fn": "001BD840",
+   "text": "scans the qword vector from qword `+0` to qword `+8` of `rcx` (count = byte difference / 8, unsigned index) for `rdx`; when found, passes `rdx` to `001F6E60`, passes `rcx+0x20` and the address of that result to the call at `001BD840` + 0x6B, calls slot `+0x10` of the qword at `+0x10` of the returned node with `rcx` = node+0x10, `edx` = 0x20 and `r8d` = 0, and unless that result plus 0x10 is zero stores 16 stack bytes (qword `rdx`, dword 3, 4 bytes this function does not write) at the result's `+0x10`; it then links the result before the node (result `+0` = node, result `+8` = node `+8`, qword `+0` of the old node `+8` = result, node `+8` = result), copies the vector's last qword into the found slot and adds -8 to qword `+8`; on every path tail-jumps at `001BD840` + 0xEF with `ecx` = 1 when the recomputed count differs from the original, else 0, and `rdx` = \"Can't find character object when try to remove it!\" (`008F9520`)",
+   "anchors": [
+    [
+     "001BD872",
+     "cmp"
+    ],
+    [
+     "001BD8C2",
+     "call"
+    ],
+    [
+     "001BD8CD",
+     "je"
+    ],
+    [
+     "001BD902",
+     "add"
+    ],
+    [
+     "001BD92F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "001E6E70",
+   "text": "takes the floats `+0x30`, `+0x34` and `+0x38` of `rdx` (zeros when `rdx` is null) and, when any differs from (or is unordered with) the floats `+0x244`, `+0x248`, `+0x24C` of `rcx`, stores them there and byte 1 at `+0x240`; then calls `001EF060(element, rdx)` for each qword from `+0x18` up to `+0x20` of `rcx` (none when `+0x18` is above `+0x20`)",
+   "anchors": [
+    [
+     "001E6E97",
+     "movss"
+    ],
+    [
+     "001E6EBA",
+     "ucomiss"
+    ],
+    [
+     "001E6EDB",
+     "movss"
+    ],
+    [
+     "001E6EF3",
+     "mov"
+    ],
+    [
+     "001E6F26",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "001F4C00",
+   "text": "walks 0x18-byte elements from `rcx` up to `rdx` with a parallel 0x18-byte destination from `r8`, and for each non-null destination stores `009010B8` at its `+0`, copies the source's qword `+8` and byte `+0x10` to the same offsets, then stores `00903940` at `+0`; returns the destination pointer past the last element (`r8` unchanged when `rcx` equals `rdx`)",
+   "anchors": [
+    [
+     "001F4C25",
+     "mov"
+    ],
+    [
+     "001F4C2C",
+     "mov"
+    ],
+    [
+     "001F4C34",
+     "mov"
+    ],
+    [
+     "001F4C38",
+     "mov"
+    ],
+    [
+     "001F4C4A",
+     "jne"
+    ]
+   ]
+  },
+  {
+   "fn": "001F6E60",
+   "text": "returns qword `+0x2A0` of the object at qword `+0x488` of `rcx`",
+   "anchors": [
+    [
+     "001F6E67",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "001BD840",
+   "was": "scans the qword vector from `+0` to `+8` of `rcx` for `rdx`; when found, calls `001F6E60(rdx)` and `001BCE30(rcx+0x20, &that result)`, allocates `0x20` bytes through slot `+0x10` of the object at `+0x10` of the returned node, writes the pair {`rdx`, 3} at the new block's `+0x10` and links the block before that node, then moves the vector's last qword into the found slot and subtracts 8 from qword `+8`; on every path tail-jumps `0016D6A0(1 when the vector's count changed else 0, \"Can't find character object when try to remove it!\" (`008F9520`))`",
+   "now": "scans the qword vector from qword `+0` to qword `+8` of `rcx` (count = byte difference / 8, unsigned index) for `rdx`; when found, passes `rdx` to `001F6E60`, passes `rcx+0x20` and the address of that result to the call at `001BD840` + 0x6B, calls slot `+0x10` of the qword at `+0x10` of the returned node with `rcx` = node+0x10, `edx` = 0x20 and `r8d` = 0, and unless that result plus 0x10 is zero stores 16 stack bytes (qword `rdx`, dword 3, 4 bytes this function does not write) at the result's `+0x10`; it then links the result before the node (result `+0` = node, result `+8` = node `+8`, qword `+0` of the old node `+8` = result, node `+8` = result), copies the vector's last qword into the found slot and adds -8 to qword `+8`; on every path tail-jumps at `001BD840` + 0xEF with `ecx` = 1 when the recomputed count differs from the original, else 0, and `rdx` = \"Can't find character object when try to remove it!\" (`008F9520`)",
+   "why": "`001BD8C2` is an indirect call through slot +0x10 of the qword at node+0x10 with rcx = node+0x10, so 'allocates' named a purpose the listing does not show; the 16-byte store is skipped when the result plus 0x10 is zero (`001BD8C9` add, `001BD8CD` je), a path the text missed; the stored pair's upper dword is unwritten stack (`001BD890` writes only a dword); the two callees new to the page are now cited by their sites (+0x6B at `001BD8AB`, +0xEF at `001BD92F`)"
+  }
+ ]
+}

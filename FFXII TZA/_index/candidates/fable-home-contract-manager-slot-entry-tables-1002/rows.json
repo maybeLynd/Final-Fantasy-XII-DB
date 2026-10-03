@@ -1,0 +1,39 @@
+{
+ "page": "04-Actor-Entity/CONTRACT-manager-slot-entry-tables.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01RYbqU7tsSU3HnpGNjV9Ghv",
+ "report": "home-contract-manager-slot-entry-tables.json",
+ "rows": [
+  {
+   "fn": "0037DD50",
+   "entered_from": "`003DCFB0` + 0xA8",
+   "text": "forms the entry `02ADD990 + ecx*0x3D0 + r8d*0xF0` (both indexes sign-extended); when `edx` is -1 stores 2 in its dword `+0xE8`; otherwise reads the zero-extended word `+0x28 + edx*0x60` of the qword at `02ADD980 + ecx*0x3D0`, converts it to float, adds 1.0 (`01CEBBA8`) and stores the result at the entry's float `+8`",
+   "anchors": [
+    [
+     "0037DD53",
+     "imul"
+    ],
+    [
+     "0037DD5D",
+     "imul"
+    ],
+    [
+     "0037DD76",
+     "mov"
+    ],
+    [
+     "0037DD98",
+     "movzx"
+    ],
+    [
+     "0037DDAC",
+     "movss"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

@@ -663,3 +663,15 @@ and the inner answer returns in
 bank/controller pages share.
 Interior anchor `00212110` (the
 `001BA860` call).
+
+## Homed bodies: functions reached only indirectly whose callees this page cites (OPUS, 2026-10-02, F homing)
+
+*No page cited these functions and none of their callers is documented: they are reached by table or pointer dispatch or through undocumented callers. Each one calls something this page documents, which the sentence names. Each sentence states what the body does (access and representation, not purpose); the anchors are instructions inside it that do it. Drafted locally and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-audio-bank-and-controller-family-homing-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0021B2F0` | 91 B | walks the circular list headed at `rcx+8` (next link at node qword `+0`) and for each node calls `00222170(qword node+0x10, edx)`; returns `al` = 1 at the first non-zero result, else 0 once the walk returns to the head | `0021B309`, `0021B316`, `0021B31D`, `0021B322`, `0021B33E` |
+| `00222B20` | 70 B | calls `007A7010(rcx+0x38)` with the other incoming registers and, only when it returns non-zero, calls `007A81F0(rcx+0x38, (float)r8d / 127.0, 0.0, -1)` | `00222B34`, `00222B3B`, `00222B4E`, `00222B56` |
+| `00223320` | 110 B | when `edx` is non-zero calls `00221ED0` with the incoming registers and, when that returns an object for which `00225680(object)` is non-zero, calls `002257E0(object, r9d, 0)` and returns `al` = 1; when `edx` is 0 and dword `+0x38` of `rcx` equals `r8d` it calls `002224F0(rcx, r9d, 0)` and returns 1; every other path returns 0 | `0022332D`, `00223331`, `00223352`, `00223364`, `0022336F` |
+| `00223390` | 122 B | when `edx` is non-zero calls `00221ED0` with the incoming registers and, when that returns an object for which `00225680(object)` is non-zero, calls `007A84A0(object+8, (float)r9d / 60.0, -1)` and returns `al` = 1; when `edx` is 0 and dword `+0x38` of `rcx` equals `r8d` it calls `002225B0(rcx, r9d)` and returns 1; every other path returns 0 | `0022339D`, `002233A1`, `002233C9`, `002233E3`, `002233EB` |
+| `00223410` | 114 B | when `edx` is non-zero calls `00221ED0` with the incoming registers and, when that returns an object for which `00225680(object)` is non-zero, calls `002257E0(object, the fifth (stack) argument, r9d)` and returns `al` = 1; when `edx` is 0 and dword `+0x38` of `rcx` equals `r8d` it calls `002224F0(rcx, the fifth argument, r9d)` and returns 1; every other path returns 0 | `0022341D`, `00223421`, `00223444`, `00223456`, `00223463` |

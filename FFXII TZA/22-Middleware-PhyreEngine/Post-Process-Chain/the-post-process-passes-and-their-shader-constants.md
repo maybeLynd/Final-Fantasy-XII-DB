@@ -51,7 +51,7 @@ All 65 functions tagged `Phyre.Rendering.NativeQualified` were disassembled and 
 `lea` target decoded. **17 reference a string at all; 12 of those reference shader-parameter names.**
 The other five are not passes — one carries an `EASTL vector` diagnostic string and four
 (`005DDBA0`, `005E2BC0`, `005E2C40`, `005E2C90`) point at three bytes that merely decode as text.
-**The remaining 48 reference no string and were not read** (`EA-5`). The names identify the pass:
+**The remaining 48 reference no string and were not read** (`EA-5`) *(answered: see the 2026-09-21 reading - every one of the 48 now has an identity; 2026-10-02, OPUS)*. The names identify the pass:
 
 | address | size | pass | the constants it names |
 |---|---:|---|---|
@@ -221,7 +221,7 @@ or whether both ever run. The `GameSetting.ini` key
 [`HDAO`](../../19-Save-Load-Settings/Game-Settings-Config/game-settings-ini-and-runtime-config.md)
 has three values (`Off`, `HalfResolution`, `FullResolution`) and the scalable-AO pass writes
 `widthAO`/`heightAO` — which is the shape a half-resolution mode would need — **but the link is not
-read, and this document does not claim it.**
+read, and this document does not claim it.** *(answered: see the 2026-09-14 answer below - the `HDAO` setting selects the AO; 2026-10-02, OPUS)*
 
 ## 6. The other passes, with their constants
 
@@ -240,8 +240,8 @@ the blur is masked rather than applied uniformly. Interior read 2026-09-17 (SWE2
 `ColorBufferSampler`, `dofShift` (`00191654`–`00191698`) — with `00861EBA` applies and the
 `005DC190`/`00609710`/`0060D4F0`/`0060DB50`/`0060F6B0`/`0060B980` Phyre render calls around them
 (of those, `0060B980` is read — a sparse render-item body: `006B6410`/`006B64F0` setup pair at
-[`0060BA36`](../../_index/ADDRESS-INDEX.md), `00808F10`, `02CB6360` global, `00606A20`/
-`00606C60`/`00600B30` teardown).
+[`0060BA36`](../../_index/ADDRESS-INDEX.md), `00808F10`, `02CB6360` global, ~~`00606A20`/~~
+`00606C60`/`00600B30` teardown; `00606A20` is the variant-key builder, not a teardown *(corrected 2026-10-02, OPUS: it runs each switch evaluator, `00606AB3`-`00606ADF`, then binary-searches the variant table from `00606AFB`; the context-switch page)*).
 
 **Subsurface scattering** (`001930F0`) writes `sssBlur`, `blendAmount`, `dir` and a `useBigKernel`
 switch, and binds `colorTex`, `depthTex` and `normalTex`. **`dir` plus a per-pass `SingleStepOffset`
@@ -266,7 +266,7 @@ it costs the same whether one word or a full menu is on screen.
 |---|---|
 | `0018D240` | `FindShaderParameter(shader, name)` — 209 B, returns a descriptor or `NULL` |
 | `00861EBA` | `memcpy` — the constant-block write |
-| `001945B0` | 296 B, called before the parameter runs in several passes; **not read** |
+| `001945B0` | 296 B, called before the parameter runs in several passes; ~~**not read**~~ *(answered: see EA-6, 2026-09-12; 2026-10-02, OPUS)* |
 | `008F2D58` … `008F3010` | the shader-parameter name strings, contiguous in `.rdata` |
 | `008F3120` | `3.141592502593994f` |
 | `008F3138` | `180.0f` |
@@ -395,7 +395,7 @@ for the twelve biggest.
     `+0x98` = 0) and **installs no vtable**, so RTTI cannot name it.
   - **Defaults** from the constructor: SMAA quality `+0x184 = 3`, AO enable `+0x198 = 1`, AO implementation
     `+0x344 = 1`.
-  - **The class name is still open.** The reflection-schema route this row proposes remains the way to get it.
+  - **The class name is still open.** *(answered: see the 2026-09-22 reading - not recoverable from this image by any route this database uses; 2026-10-02, OPUS)* The reflection-schema route this row proposes remains the way to get it.
   - **Declared 2026-09-17 (SWE2-STRUCT):** the object is in the type store as `PostProcessParamContext`
     (size `0x4A8`, `PTR 0x01F7F5F0`/`0x01F81300`, ctor `0018CD90`) with a 145-row field map and the
     cross-call census `postprocess-context-accesses.tsv`. Naming stayed honest — the outer object has no
@@ -430,7 +430,7 @@ for the twelve biggest.
     bitfield split. The serializer therefore loads all sixteen bits from the shader asset, and the engine's readers
     use thirteen.
 
-  **Still open:** what the asset puts in bits 13–15. It is an authored-data question (read a shipped shader's
+  ~~**Still open:**~~ *(answered: see the ANSWERED 2026-09-27 line below - the shipped assets store 0; 2026-10-02, OPUS)* what the asset puts in bits 13–15. It is an authored-data question (read a shipped shader's
   parameter table), and the executable cannot settle it.
 
   **ANSWERED 2026-09-27 (OPUS):** the shipped assets store **0** there. Every `.phyre` in the extract was read (35,984, none rejected by the namespace controls); the 2,184 that carry `PShaderParameterDefinition` hold 2,184 lists and **648,027 records, all with bits 13-15 of `m_bufferLoc.m_size` clear**. Each record is located through the file's own schema: 13-byte packed records, `m_bufferLoc` at record byte 5 (its class resolved through the member's type reference), `m_size` at +2 inside it. The largest low-13 value is 7,680 (`0x1E00`), so the `0x1FFF` mask never truncates a shipped size either. The sibling `PShaderStreamDefinition` (13,356 records in 92 lists) is also all zero there. Controls: the same loop reads bits 13-15 set in 218,033 records at the high half of `m_constantBufferLocation` (its `0xFFFFFFFF` value); a copy of a real file with one size word's bit 13 set is flagged exactly once; one schema layout in all 2,184 files. New representation fact from the strict extent check: a list's `m_objectsSize` is `count x 13` rounded up to even (339 odd-count lists carry one pad byte). So the mask is a no-op on this title's data and the bits carry no authored content here; why the SDK masks them is not answerable from this image or data. Not covered: descriptors built by code rather than loaded (the row's own write-side sweep covers code). FABLE's unpublished 2026-09-26 scratch census reached the same 648,027 / 0 by a name-lookup route. Control `_index/candidates/ea3-shader-size-bits/ea3_census.py`.
@@ -455,7 +455,7 @@ for the twelve biggest.
   - **The other 30 are classified, not read**: 11 `0065xxxx` render bodies (13,651 B) each reached from
     one dispatch body and each calling `0060B980`, two bodies with no caller and no data reference
     (4,948 B), nine single-caller leaves (1,349 B), one shared helper (139 B) and seven vtable-slot
-    members (458 B). `UQ-289` stays open on those 30.
+    members (458 B). `UQ-289` stays open on those 30 *(answered: see UQ-289, superseded 2026-09-26; 2026-10-02, OPUS)*.
   - **The eleven are now named, later the same day** — they are the render workers of nine of
     PhyreEngine's post-effect classes, reached from slot 6 of each class's vtable, and the largest two
     are one effect's. [The Phyre post-effect class family](the-phyre-post-effect-class-family.md) reads
@@ -494,7 +494,7 @@ for the twelve biggest.
       containers use.
     - **Array and count loops.** `00613770` (133 B) and `0061C250` (93 B) walk stride-`0x58` and
       stride-`0x10` arrays under a guarded helper; `0061CFA0` (130 B) is a count loop over `this+8`;
-      `005DC2F0` (267 B) is an array constructor over `eh_vector_constructor_iterator`; `0060E9C0`
+      `005DC2F0` (267 B) is ~~an array constructor over `eh_vector_constructor_iterator`~~ `PRenderer`'s constructor, which also builds an embedded array through `eh_vector_constructor_iterator` *(corrected 2026-10-02, OPUS: it stamps `00D49930`, `.?AVPRenderer@PRendering@Phyre@@`, at `005DC375`-`005DC37C`, the only reference to that vtable, then runs `00808FE4` over `+0x140`)*; `0060E9C0`
       (411 B) allocates, frees and rebuilds a container and returns 0.
     - **The shared helper** `006160B0` (139 B, 20 call sites in 13 bodies) resets an object: one call
       to `005DCBE0`, then `[this+0x30] = 0` and a walk from `this+0x38`.
@@ -517,7 +517,7 @@ for the twelve biggest.
   with the first dword rewritten to the descriptor's type when it is not already `0x42`–`0x44`
   (`0019463E`–`00194661`); then `offset = u16 +0x10`, `size = u16 +0x12 & 0x1FFF` (the `EA-3` mask),
   `offset + size ≤ buffer size` and `offset ≥ 4` are required (else 3), and `memcpy(buffer + offset,
-  staged, size)` (`001946AC`) returns 0. Eleven call sites in `0018D850`–`00190260`.
+  staged, size)` (`001946AC`) returns 0. ~~Eleven call sites in `0018D850`–`00190260`.~~ 53 call sites in 21 functions, eleven of them in `0018D850`–`00190260` *(corrected 2026-10-02, OPUS: the rest include `001930F0`, `00191E90`, `001E2AF0`, `001EE8E0` and `001F7790`)*.
 
   `0018D850` (3,093 B) interior read, 2026-09-17 (SWE2-FRONTIER): the **effect-record
   registration battery** — the same five-call idiom unrolled ~9 times:
@@ -586,8 +586,8 @@ for the twelve biggest.
 | Angle bias is degrees | `mulss` by `3.141592502593994f` then `divss` by `180.0f`, twice | 1 |
 | `projScale` is the literal `500.0f` | `008F3140`, loaded directly with no config read | 1 |
 | The SMAA presets match upstream | comparison against the published SMAA reference header | 3 — external |
-| Which setting selects which AO | **not established** | — |
-| The context object's class | **not recovered** | — |
+| Which setting selects which AO | ~~**not established**~~ *(answered: see the 2026-09-14 answer, the `HDAO` setting; 2026-10-02, OPUS)* | — |
+| The context object's class | **not recovered** *(answered: see the 2026-09-22 reading - not recoverable from this image; 2026-10-02, OPUS)* | — |
 | `0018FE00` is FXAA | **not established — deliberately not claimed** | — |
 
 ## 11. Related
@@ -662,7 +662,7 @@ does with the values; `EA-5`'s 48 unread functions stay unread. The tag itself i
 | --- | --- | --- |
 | `00645DB0` | field reset — `006461B0(rcx)` then zeroes `+0x50`/`+0x58`/`+0x60` (`00645DB9`/`00645DC0`) | [`00645DC0`](../../_index/ADDRESS-INDEX.md) |
 
-`001925D0` (~220 B) — an EH-protected pass body (`rbp` frame,
+`001925D0` ~~(~220 B)~~ (2,839 B *(corrected 2026-10-02, OPUS: its extent; the table above and the 2026-09-13 re-measure)*) — an EH-protected pass body (`rbp` frame,
 `0xFFFFFFFE` guard at `rbp+0x17`).
 
 | member | role | interior |
@@ -711,7 +711,7 @@ bounded by `[+0x50]`/`[+0x58]` at [`00600B82`](../../_index/ADDRESS-INDEX.md) �
 stride itself. Returns 1 only when both windows admit the submission; that is the `test al`
 every writer branches on before writing a record.
 
-`001EE8E0` — 840 B, 7 callers; the submit composer that drives the whole ring battery.
+`001EE8E0` — 840 B, ~~7 callers~~ 17 call sites in 16 functions *(corrected 2026-10-02, OPUS: it also looks up `ColorBuffer`, `ColorBufferSampler` and `ColorBufferOffset` at `001EE97A`-`001EE9EC` and submits through `0060B980` at `001EEBE1`)*; the submit composer that drives the whole ring battery.
 Interior verified: `00189120()` supplies the context (`r14 = [rax+8]`), two resource ids are
 resolved through `0018D240` name lookups (`001EE984`/`001EE996`), a `{0, K, 1.0, K*x}` float
 record is staged and `memcpy`-fed from a `(w+0x10, w+0x12 & 0x1FFF)` bounded source
@@ -729,7 +729,7 @@ call sites the full pass chain this page's writers submit.
 (`001EE8E0`, `0018F8F0`, `0018FE00`…) push through. Interior verified: `[rdx+0x10]` and
 `[rdx+0x12] & 0x1FFF` are offset and length; `offset + length > [rcx]` capacity or `r9w < 4`
 returns 3 ([`00194578`–`0019458B`](../../_index/ADDRESS-INDEX.md)); otherwise `memcpy`
-(`00861EBA`) at [`00194599`–`0019459D`](../../_index/ADDRESS-INDEX.md) copies `r9w` bytes from
+(`00861EBA`) at [`00194599`–`0019459D`](../../_index/ADDRESS-INDEX.md) copies ~~`r9w`~~ `r8w` *(corrected 2026-10-02, OPUS: `r9w` is the offset, `0019458D`; the length is `r8w`, `00194599`)* bytes from
 `rdx` into `rcx + offset` and returns 0. The pass producers fill the shared buffer through this
 one bound check.
 
@@ -1533,7 +1533,7 @@ parameter-descriptor write into the constant buffer”* — reads the **same** d
 `cmp ecx, [rsi]` at `0019467C`. `001E2AF0` calls it twice and inlines the rest.
 
 **One value is variable-length and is bounds-checked** (`001E360F`–`001E362F`): the offset is masked
-to 13 bits, `offset + size` is compared against `[rsi]`, a second test requires `size >= 4`, and only
+to 13 bits, `offset + size` is compared against `[rsi]`, a second test requires ~~`size >= 4`~~ `offset >= 4` *(corrected 2026-10-02, OPUS: `001E3619 cmp r9w, 4`, `r9w` the offset loaded at `001E35FE`; the size is `dx`, `001E3620`)*, and only
 then does `memcpy` run. *Not claimed:* that the 34 fixed-width stores are checked — no size compare
 was found guarding them, but absence over one body is not a rule, and their widths are compile-time
 constants while the `memcpy`'s is not.

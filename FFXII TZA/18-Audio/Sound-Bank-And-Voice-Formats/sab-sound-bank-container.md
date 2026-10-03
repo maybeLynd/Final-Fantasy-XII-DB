@@ -523,3 +523,11 @@ Resource layer — `0016D6D0` by `0020B840`/`0020BFA0`/`006761F0` and
 
 Interior anchor `001FB635` (function `001FB5C0`).
 - **Platform - CLIENT (2 edges).** `0016D6D0` is also called by bodies filed to platform: `0019CC50`, `001B1960` - shared machinery across the layer boundary, no shared ownership.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-sab-sound-bank-container-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `001FB770` | 133 B | with K = `r9d` + `r8d`*2, walks the tree whose header is `rcx` + 0x10 from the root qword `+0x20` of `rcx` to the first node whose dword `+0x20` is at least K (signed compares; it descends through qword `+8` when the node's key is at least K and through qword `+0` otherwise); when there is no such node or its key is above K it calls `001FB470(rcx + 8, a stack result slot, that node, the stack pair (K, 0), the low byte of the fifth (stack) argument)` and uses the node returned in the slot; it then stores the incoming `rdx` at qword `+0x28` of the node and returns the node | `001FB785`, `001FB791`, `001FB7AD`, `001FB7E1`, `001FB7EB` |

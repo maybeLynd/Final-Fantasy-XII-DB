@@ -1153,3 +1153,11 @@ pointer null. Interior anchor `005DE8F3` (the
 - **Platform - CLIENT and SERVICE (5 edges).** `00584740`, `0065E5D0` are also called by bodies filed to platform: `00650D40`, `006253D0`; `0079F150` reaches bodies filed to platform: `005CC930`, `005CD0A0`, `006253D0` - shared machinery across the layer boundary, no shared ownership.
 - **Presentation - CLIENT (4 edges).** `005F03A0`, `00671690`, `00671B10` are also called by bodies filed to presentation/rendering: `001B72B0`, `005FD2A0` - shared machinery across the layer boundary, no shared ownership.
 - **Resource - CLIENT and SERVICE (11 edges).** `00584740`, `005CD6D0`, `005CC8C0` are also called by bodies filed to resource: `001DAAC0`, `001A11B0`, `001DAD60` (+3 more); `00792690` reaches bodies filed to resource: `00597970`, `00598100`, `0059BD80` (+1 more) - shared machinery across the layer boundary, no shared ownership.
+
+`00680210` (440 B) is the linked-list-to-array flatten `0083B050`, `0083B580` and `0084C6B0` call: it counts the `[rsi]` chain, allocates `count*0x30` through `0017D260` (alignment 8), then walks the nodes copying each `0x30` record into the fresh array with `00584730` on the per-node extract - the container-materialize half of the SEAD list pair.
+
+Interior anchor `00680328` (function `00680210`).
+
+`00225630` (49 B, no direct call; `AudioSeadObjectSound` vtable slot 2) always sets the state dword `+0x10` to 2; when the second argument is non-NULL it first resets `+0x14` (qword) and `+0x24` to -1, `+0x1C` to `0x7F`, `+0x20` to `0x40` and `+0x28` to 0 - the sound object's reset to its default parameters.
+
+Interior anchor `0022563D` (function `00225630`).

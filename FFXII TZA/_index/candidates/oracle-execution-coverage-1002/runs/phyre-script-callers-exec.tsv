@@ -1,0 +1,42 @@
+entry	class	mutated
+005cdaa0	scripted	
+0062ff50	scripted	
+0062ffc0	scripted	
+00630030	scripted	
+006300a0	scripted	
+00630110	scripted	
+00630180	scripted	
+006301f0	scripted	
+00630260	scripted	
+006302d0	scripted	
+006303b0	scripted	
+00630420	scripted	
+00630490	scripted	
+00636920	scripted	
+006372a0	returned	
+00681010	scripted	
+006810b0	scripted	
+00681130	scripted	
+006811b0	scripted	
+00682aa0	scripted	
+00682d20	scripted	
+00683c30	scripted	
+00684d10	returned+faulted	yes
+00684f60	returned+faulted	yes
+00686280	returned+faulted	yes
+0080f420	scripted	
+0080fb20	faulted	
+0080fd00	returned	yes
+00810340	scripted	
+00810450	returned	yes
+00810580	returned	yes
+008105a0	returned	yes
+00810640	returned	yes
+00810730	scripted	
+00810ed0	scripted	
+00811130	returned	yes
+008113d0	returned	yes
+00811470	scripted	
+00811530	scripted	
+008119f0	returned	yes
+00861eba	scripted	

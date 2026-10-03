@@ -1,0 +1,222 @@
+{
+ "page": "22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/member-registration-and-the-recovered-field-schema.md",
+ "date": "2026-10-02",
+ "session": "local-w42-agent-b",
+ "report": "member-registration-and-the-recovered-field-schema.json",
+ "rows": [
+  {
+   "fn": "005A7B50",
+   "text": "returns 0 when `rdx` or `rcx` is null; otherwise walks the circular list headed at `rcx + 0x90` (a link equal to the head ends it), skips nodes whose qword `+0x18` is null, byte-compares each node's `+0x18` string with the string at `rdx` up to the terminator and returns the first node that matches; when a list is exhausted it moves to the object at qword `+0x78` and repeats, returning 0 once that qword is null",
+   "anchors": [
+    [
+     "005A7B70",
+     "lea"
+    ],
+    [
+     "005A7B86",
+     "mov"
+    ],
+    [
+     "005A7BA3",
+     "movzx"
+    ],
+    [
+     "005A7BC9",
+     "mov"
+    ],
+    [
+     "005A7BE4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006045B0",
+   "text": "computes the signed offset dword `+0x48` of `rcx` minus dword `+0xF4` of the object at qword `+0x18` of `rcx`, and returns the qword at `rdx` + that offset + 8",
+   "anchors": [
+    [
+     "006045B4",
+     "mov"
+    ],
+    [
+     "006045B7",
+     "sub"
+    ],
+    [
+     "006045C0",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006065E0",
+   "text": "computes the signed offset dword `+0x48` of `rcx` minus dword `+0xF4` of the object at qword `+0x18` of `rcx`, and returns the dword at `rdx` + that offset with bit 31 cleared (`btr 0x1f`)",
+   "anchors": [
+    [
+     "006065E4",
+     "mov"
+    ],
+    [
+     "006065E7",
+     "sub"
+    ],
+    [
+     "006065F0",
+     "mov"
+    ],
+    [
+     "006065F3",
+     "btr"
+    ]
+   ]
+  },
+  {
+   "fn": "0062A870",
+   "text": "addresses the record at `rdx` + (dword `+0x48` of `rcx` minus dword `+0xF4` of the object at qword `+0x18` of `rcx`, signed) and returns 5 when `r9d` is negative (signed); otherwise calls `00584730` on the record's qword `+8` when it differs from `r8`, is non-null and bit 31 of the record's dword `+0` is clear, then stores `r8` at qword `+8`, stores `r9d` with bit 31 set (`bts 0x1f`) at dword `+0` and returns 0",
+   "anchors": [
+    [
+     "0062A89B",
+     "jns"
+    ],
+    [
+     "0062A8BD",
+     "shr"
+    ],
+    [
+     "0062A8CB",
+     "call"
+    ],
+    [
+     "0062A8D0",
+     "bts"
+    ],
+    [
+     "0062A8DF",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0062FB80",
+   "text": "when `rdx` is non-null, calls `006373D0` (with `rcx` unchanged) and then `00632E80(rdx, that result, 0, the address 02CF8270)`; on both paths returns with `al` = 1",
+   "anchors": [
+    [
+     "0062FB9E",
+     "je"
+    ],
+    [
+     "0062FBA0",
+     "call"
+    ],
+    [
+     "0062FBA8",
+     "lea"
+    ],
+    [
+     "0062FBB5",
+     "call"
+    ],
+    [
+     "0062FBBB",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0063B9B0",
+   "text": "addresses the record at `rdx` + (dword `+0x48` of `rcx` minus dword `+0xF4` of the object at qword `+0x18` of `rcx`, signed) and reads its dword `+0` with bit 31 cleared: above 1 (unsigned) it returns the record's qword `+8`, at 1 it returns the address record + 8, and at 0 it returns 0",
+   "anchors": [
+    [
+     "0063B9C5",
+     "btr"
+    ],
+    [
+     "0063B9CC",
+     "jbe"
+    ],
+    [
+     "0063B9CE",
+     "mov"
+    ],
+    [
+     "0063B9D3",
+     "add"
+    ],
+    [
+     "0063B9DB",
+     "cmove"
+    ]
+   ]
+  },
+  {
+   "fn": "00672F30",
+   "text": "returns 5 when `r8d` is negative (signed); otherwise takes the old storage of `rcx` (qword `+8` when dword `+0` with bit 31 cleared is above 1 unsigned, the address `rcx + 8` when it is 1, null when 0); when `r8d` is 1 it copies the `0x48` bytes at `rdx` field by field to `rcx + 8` except that `+0x28` receives the address `00D68DD0` (copy skipped if `rcx + 8` is null), making `rcx + 8` the new storage and 1 the new count, else the new storage is `rdx` and the new count `r8d` with bit 31 set; calls `00584730` on the old storage when it differs from the new storage and from `rcx + 8`, is non-null and bit 31 of dword `+0` is clear; stores the new storage at qword `+8` unless it is `rcx + 8`, stores the new count at dword `+0` and returns 0",
+   "anchors": [
+    [
+     "00672F43",
+     "jns"
+    ],
+    [
+     "00672F6A",
+     "mov"
+    ],
+    [
+     "00672FBD",
+     "mov"
+    ],
+    [
+     "00672FFD",
+     "call"
+    ],
+    [
+     "00673011",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006B66F0",
+   "text": "stores `rdx` at qword `+0` of `rcx`, zeroes qword `+8` and returns `rcx`",
+   "anchors": [
+    [
+     "006B66F3",
+     "mov"
+    ],
+    [
+     "006B66F6",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006C7A40",
+   "text": "returns 0 at once when `edx` equals the whole dword `+0` of `rcx`; otherwise takes the old storage (qword `+8` when dword `+0` with bit 31 cleared is above 1 unsigned, the address `rcx + 8` when it is 1, null when 0) and calls `006C7450(rcx, edx, old storage, the unsigned minimum of edx and that count)`; when the result is null and `edx` is non-zero it returns 0xD, else it calls `00584730` on the old storage when that differs from the result and from `rcx + 8`, is non-null and bit 31 of dword `+0` is clear, stores the result at qword `+8` unless it is `rcx + 8`, stores `edx` at dword `+0` and returns 0",
+   "anchors": [
+    [
+     "006C7A67",
+     "cmp"
+    ],
+    [
+     "006C7A8C",
+     "cmovb"
+    ],
+    [
+     "006C7A90",
+     "call"
+    ],
+    [
+     "006C7AC4",
+     "call"
+    ],
+    [
+     "006C7AD1",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

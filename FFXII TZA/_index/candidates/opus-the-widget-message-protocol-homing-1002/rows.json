@@ -1,0 +1,602 @@
+{
+ "page": "16-UI/Widget-Object-Model/the-widget-message-protocol.md",
+ "date": "2026-10-02",
+ "session": "local-h1-agent-c",
+ "report": "the-widget-message-protocol.json",
+ "rows": [
+  {
+   "fn": "0023BB20",
+   "text": "clears bit `0x1` of dword `+8` in each of the 18 objects whose pointers sit in the array at qword `[rdx+0x10]`, then sets that bit again only in the object whose index equals dword `+8` of the 0x14-byte record `r9d` of the table at `00914710`; when that record's dword `+4` is 0 it calls `0029FE20(that object, &local word, &local)` and, on the object of array entry `+0x70`, sets bit `0x1` of dword `+8`, stores word `+0xC` = word `+4` of the object its first qword points to plus the local word and word `+0x10` = word `+8` of that object minus the local word; otherwise it stores `002F9860(record dword +0xC)` at qword `+0x18` of the selected object, `0020E620(0)` at dword `+0x20` and `002DD7E0(2 when bit r9d of qword [rcx+0x720] is set, else 0)` at dword `+0x24`; both paths return 1",
+   "anchors": [
+    [
+     "0023BB49",
+     "and"
+    ],
+    [
+     "0023BBCF",
+     "or"
+    ],
+    [
+     "0023BC07",
+     "call"
+    ],
+    [
+     "0023BC20",
+     "mov"
+    ],
+    [
+     "0023BC99",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0023CD20",
+   "text": "indexes the 0x14-byte record `r9d` of the table at `0208E6E0` and works on the pointer array at qword `[rdx+0x10]`: when record dword `+4` is 0 it stores `002F9860(record dword +8)` at qword `+0x18` and `0020E620(0)` at dword `+0x20` of array entry 0, sets its bit `0x1` of dword `+8`, calls `0029FE20(entry 0, &local word, &local)`, then on entry 2 sets bit `0x1`, stores word `+0xC` = word `+4` of the object its first qword points to plus the local word and word `+0x10` = word `+8` of it minus the local word, and clears bit `0x1` of entry 3; when record dword `+4` is 1 to 4 it sets bit `0x1` of entry 3, stores the same two calls' results at its `+0x18` and `+0x20`, and clears bit `0x1` of entries 2 and 0; any other value changes nothing; returns 1 on every path",
+   "anchors": [
+    [
+     "0023CD4E",
+     "je"
+    ],
+    [
+     "0023CD55",
+     "ja"
+    ],
+    [
+     "0023CD63",
+     "or"
+    ],
+    [
+     "0023CDC2",
+     "call"
+    ],
+    [
+     "0023CDDB",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00241D00",
+   "text": "calls `002F9860(0x3E8, or 0x3E9 when r8d is non-zero)` and passes the result as the fourth argument of `002D8910(rdx, 0, 0, result, 0)`, returning that call's value",
+   "anchors": [
+    [
+     "00241D0E",
+     "setne"
+    ],
+    [
+     "00241D17",
+     "call"
+    ],
+    [
+     "00241D30",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00242A80",
+   "text": "with `p` = qword `+0x20` of qword `0208EA90` plus 0x30, reads the 8-byte entry indexed by word `[p+0x24+2*word [p+0x14]]` from the table at `p` + word `[p+0x10]` and unpacks it into a local block of four words (entry words `+0` and `+2`, entry word `+4` AND 0xFFF, entry dword `+4` shifted right 12 AND 0xFFF); stores entry byte `+7` low nibble plus byte `[p + word [p+0x12] + (entry byte +7 high nibble)]` at byte `[rcx+0x5C]` and `002DD7E0(0x65)` at dword `[rcx+0x90]`; packs `dx`, `r8w`, `r9w` and the fifth (stack) argument into a second local block of four words and calls `002D8BB0(rcx, 1)`, `002D8C80(rcx, qword 0208EA90, &first block, &second block)` and `002D8BB0(rcx, 0)`",
+   "anchors": [
+    [
+     "00242AB5",
+     "movzx"
+    ],
+    [
+     "00242B1C",
+     "mov"
+    ],
+    [
+     "00242B25",
+     "mov"
+    ],
+    [
+     "00242B4D",
+     "call"
+    ],
+    [
+     "00242B66",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00276770",
+   "text": "calls `002753F0(rcx, &local)` with a local block holding dword 0x2D at `+0`, at qword `+8` the address of a local dword set to 0, and 0 at qword `+0x10`, then returns that local dword",
+   "anchors": [
+    [
+     "00276785",
+     "mov"
+    ],
+    [
+     "002767A0",
+     "mov"
+    ],
+    [
+     "002767A5",
+     "call"
+    ],
+    [
+     "002767AA",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0027F1A0",
+   "text": "zeroes the 0x20 bytes at `rcx` and stores `dx` at word `+8`; when `dx` is not 0xFFFF it calls `0035D330(1, edx shifted left 16)`, stores `002B58B0(qword +0x18 of that result, 0)` at qword `[rcx]`, and copies the result's bytes `+0x2C` and `+0x38` into bytes `+0xA` and `+0xB`",
+   "anchors": [
+    [
+     "0027F1BF",
+     "mov"
+    ],
+    [
+     "0027F1C6",
+     "je"
+    ],
+    [
+     "0027F1D5",
+     "call"
+    ],
+    [
+     "0027F1E3",
+     "call"
+    ],
+    [
+     "0027F1FB",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00283620",
+   "text": "scans the 9 object pointers at `+0xAC8` of qword `0209AC30` for the first whose signed word `+0x60` is non-negative and equals `ecx`; on a match it calls `002527B0(6, 4, that index)` and returns 1, otherwise it returns 0",
+   "anchors": [
+    [
+     "0028364C",
+     "js"
+    ],
+    [
+     "00283654",
+     "je"
+    ],
+    [
+     "00283678",
+     "call"
+    ],
+    [
+     "00283666",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "00283BB0",
+   "text": "switches on dword `[rdx]` and returns 0 except on other values, which return `005C5230(rcx, rdx)`; 1 clears bit `0x800` of dword `+0x40`, calls `002432B0(rcx+0x50, qword +0x30 of qword 0209AC30, 0xE, rcx)`, copies its words `+4` to `+0xA` into words `+0x98` to `+0x9E`, copies byte `[rdx+0x10]` into byte `+0xF8` and bit `0x1` of dword `[rdx+8]` into bit `0x40` of dword `+0xFC`; 2 writes (signed word `+0xF0` greater than 0) into bit `0x1` of dword `+8` of the objects at qwords `+0x140`, `+0x120`, `+0x128`, `+0x130`, `+0x138` of qword `[rcx+0x60]`, and (signed word `+0xF4` greater than 0) into those at `+0x190`, `+0x178`, `+0x180`, `+0x188`; 3, when bit `0x1` of byte `+0xFC` is set, calls `00368360(rcx, &local)` with word 0x12, then word (signed word `+0x9E` divided by 2 toward zero, minus 8), byte 0 at `+8` and dword 0x60001 at `+0xA`; 4, for each positive signed word `+0xF0` and `+0xF4`, calls `0029F6E0` on the object at qword `+0x120` (args 4, 3) or `+0x178` (args 3, 3) of qword `[rcx+0x60]` with `002DD7E0(5 when that word is greater than signed word +0xF2 or +0xF6, else 4)` and the word as fifth argument",
+   "anchors": [
+    [
+     "00283BF4",
+     "call"
+    ],
+    [
+     "00283CDD",
+     "call"
+    ],
+    [
+     "00283D07",
+     "or"
+    ],
+    [
+     "00283DCB",
+     "call"
+    ],
+    [
+     "00283E17",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "00284450",
+   "text": "switches on dword `[rdx]` and returns 0 except on unlisted values, which tail-jump to `005C5230(rcx, rdx)`; 0x12 does nothing; 0x11, when qword `[rdx+8]` is 1, calls `00247510(qword [rcx+0x10], or 0 when rcx is null, 0, 0)`; 3, when qword `[rcx+0xD8]` is non-null and bit `0x1` of its byte `+0xFC` is set, calls `00242C90(qword [rcx+0x38], 0x20, 0, its signed word +0x9C minus 0x20, its signed word +0x9E, 0)`; 2 calls `002D0410(rcx)`, first (when qword `+0xD8` is non-null) clearing bit `0x1` of dword `+8` of the object at qword `+0x30` of qword `[rcx+0x60]` if bits `0x30` of byte `+0xFC` of the `+0xD8` object are clear, or else setting it and storing bit `0x20` of that object's dword `+0xFC` as 0 or 1 at word `+0xA` of the object and byte `[qword +0x20 of the object + 8*that bit + 7]` at its byte `+0x39`; 1 calls `002432B0(rcx+0x50, qword +0x30 of qword 0209AC30, 0x10, rcx)`, copies its words `+4` to `+0xA` into words `+0x98` to `+0x9E` when `rcx` is non-null, and clears bit `0x800` of dword `+0x40`",
+   "anchors": [
+    [
+     "00284488",
+     "jmp"
+    ],
+    [
+     "002844A4",
+     "call"
+    ],
+    [
+     "0028450C",
+     "call"
+    ],
+    [
+     "0028453E",
+     "call"
+    ],
+    [
+     "00284599",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00296A10",
+   "text": "returns at once when `rcx` is null; otherwise stores `rdx` at qword `+0xB50`, calls `0029AEF0(rcx, rdx)` and, for the 0x160-byte entry at `+0x318` indexed by signed byte `+0xB48`, sets bit `0x4` of that word when its bit `0x1` is set, otherwise calls `0029AE50(rcx, 0)`",
+   "anchors": [
+    [
+     "00296A1D",
+     "mov"
+    ],
+    [
+     "00296A24",
+     "call"
+    ],
+    [
+     "00296A40",
+     "test"
+    ],
+    [
+     "00296A48",
+     "mov"
+    ],
+    [
+     "00296A5B",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00299AC0",
+   "text": "switches on dword `[rdx]`, tail-jumping to `005C5230(rcx, rdx)` for values other than 1 and 0x11; 0x11 calls `00247930(rcx, 7)` when qword `[rdx+8]` is 1 and `00247930(rcx, 8)` otherwise; 1 calls `002432B0(rcx+0x50, qword +8 of qword 0209AC30, 0x33, rcx)`, copies its words `+4` to `+0xA` into words `+0x98` to `+0x9E` when `rcx` is non-null, then calls `00247930(rcx, 7)` and `00247570(rcx, 002735E0(0))`; both handled values return 0",
+   "anchors": [
+    [
+     "00299ADD",
+     "jmp"
+    ],
+    [
+     "00299AEE",
+     "call"
+    ],
+    [
+     "00299B25",
+     "call"
+    ],
+    [
+     "00299B6C",
+     "call"
+    ],
+    [
+     "00299B77",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0029B120",
+   "text": "for each index `i` below byte `[rcx+0xB42]`, calls `00247930` on the 0x160-byte entry at `rcx+0x240+i*0x160` and then on the 0xD8-byte entry at `rcx+0x7C0+i*0xD8`, with arguments 2 and 3 when `i` equals `edx`, and 4 and 5 otherwise",
+   "anchors": [
+    [
+     "0029B136",
+     "cmp"
+    ],
+    [
+     "0029B157",
+     "cmp"
+    ],
+    [
+     "0029B160",
+     "call"
+    ],
+    [
+     "0029B18C",
+     "call"
+    ],
+    [
+     "0029B19C",
+     "jl"
+    ]
+   ]
+  },
+  {
+   "fn": "0029B700",
+   "text": "when dword `[rdx]` is 1, calls `002432B0(rcx+0x50, qword +8 of qword 0209AC30, 0x31, rcx)`, copies its words `+4` to `+0xA` into words `+0x98` to `+0x9E` when `rcx` is non-null, then calls `00247570(rcx, 002735E0(0))` and `00247930(rcx, 0xA)` and returns 0; any other value tail-jumps to `005C5230(rcx, rdx)`",
+   "anchors": [
+    [
+     "0029B706",
+     "cmp"
+    ],
+    [
+     "0029B713",
+     "jmp"
+    ],
+    [
+     "0029B730",
+     "call"
+    ],
+    [
+     "0029B76A",
+     "call"
+    ],
+    [
+     "0029B782",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0029C850",
+   "text": "with `o` = `rcx+0xC0`: when `00273A20(o)` is 0, calls `00245000(o, 0xC0, 00299AC0, 0)`, stores at word `+0x15A` the word `+0x2DA` of the 0x160-byte entry indexed by dword `+0xB58`, minus word `+6` of qword `+0x298`, plus word `+6` of qword `+0x118`, and calls `00244960(rcx, result)` and `00246AC0(result)`; when it is non-zero and bit `0x8` of byte `+0xB4A` is set, calls `002468A0(o, signed word +0x158, the same sum from signed words, 1, 0xC8)`; both paths then call `0029B120(rcx, dword +0xB58)` and `00273A20(o)`, clear bit `0x4` and set bit `0x8` of word `+0xB4A` and return 1; when bit `0x8` is clear it returns 0 after calling `00245020(o)` if the low nibble of dword `[o+0x7C]` is 1, nothing if it is 4, or `00244F00(o)` otherwise",
+   "anchors": [
+    [
+     "0029C867",
+     "call"
+    ],
+    [
+     "0029C874",
+     "test"
+    ],
+    [
+     "0029C91C",
+     "call"
+    ],
+    [
+     "0029C93A",
+     "call"
+    ],
+    [
+     "0029C99A",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0029D9D0",
+   "text": "stores `002DD7E0(3 when bit 0x1 of word [rdx+0x10] is set, else 7 for bit 0x2, else 0x106 for bit 0x8, else 0)` at dword `[r8+0x90]`; when that word is non-negative (signed) it then replaces byte `[r8+0x93]` with (byte `[rcx+0x140]` times that byte) shifted right 7, otherwise it writes that byte back unchanged",
+   "anchors": [
+    [
+     "0029D9EC",
+     "test"
+    ],
+    [
+     "0029DA0F",
+     "call"
+    ],
+    [
+     "0029DA14",
+     "mov"
+    ],
+    [
+     "0029DA26",
+     "jge"
+    ],
+    [
+     "0029DA56",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0029E7D0",
+   "text": "when dword `[rdx]` is 1, calls `002432B0(rcx+0x50, qword [rdx+8], dword [rdx+0x10], rcx)`, copies its words `+4` to `+0xA` into words `+0x98` to `+0x9E` when `rcx` is non-null, sets bit `0x40000` of dword `+0x40` and returns 0; any other value tail-jumps to `005C5230(rcx, rdx)`",
+   "anchors": [
+    [
+     "0029E7D6",
+     "cmp"
+    ],
+    [
+     "0029E7E3",
+     "jmp"
+    ],
+    [
+     "0029E7F7",
+     "call"
+    ],
+    [
+     "0029E812",
+     "mov"
+    ],
+    [
+     "0029E82F",
+     "or"
+    ]
+   ]
+  },
+  {
+   "fn": "002B6CE0",
+   "text": "switches on dword `[rdx]`: 0xF sets bit `0x1` of dword `+0xC0`; 1 calls `002432B0(rcx+0x50, qword [rdx+8], 3, rcx)`, copies its words `+4` to `+0xA` into words `+0x98` to `+0x9E` when `rcx` is non-null, stores `002B6C80` at qword `+0x120` and `rcx` at qwords `+0xD8` and `+0xC8` of the object at qword `+0x18` of qword `+0x10` of qword `[rcx+0x60]` (read from address 0x18 when `rcx` is null), and calls `00247570(rcx, 00916850)` and `00247930(rcx, 0x62)`; both return 0, and other values tail-jump to `005C5230(rcx, rdx)`",
+   "anchors": [
+    [
+     "002B6CFD",
+     "jmp"
+    ],
+    [
+     "002B6D02",
+     "or"
+    ],
+    [
+     "002B6D22",
+     "call"
+    ],
+    [
+     "002B6D78",
+     "mov"
+    ],
+    [
+     "002B6D9D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "002BC310",
+   "text": "switches on dword `[rdx]`: 0xF sets bit `0x1` of dword `+0xC0`; 1 calls `002432B0(rcx+0x50, qword [rdx+8], 3, rcx)`, copies its words `+4` to `+0xA` into words `+0x98` to `+0x9E` when `rcx` is non-null, stores `002BA650` at qword `+0x120` and `rcx` at qwords `+0xD8` and `+0xC8` of the object at qword `+0x18` of qword `+0x10` of qword `[rcx+0x60]` (read from address 0x18 when `rcx` is null), and calls `00247570(rcx, 00916A48)` and `00247930(rcx, 0x62)`; both return 0, and other values tail-jump to `005C5230(rcx, rdx)`",
+   "anchors": [
+    [
+     "002BC32D",
+     "jmp"
+    ],
+    [
+     "002BC332",
+     "or"
+    ],
+    [
+     "002BC352",
+     "call"
+    ],
+    [
+     "002BC3A8",
+     "mov"
+    ],
+    [
+     "002BC3CD",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "002BD680",
+   "text": "for dword `[rdx]` 1 to 0xF jumps through a table to arms that return 0 (other values return `005C5230(rcx, rdx)`): one calls `00247570(rcx, 00916BD8)`, `00247930(rcx, 0x62)` and `0029E6D0(0)`; one calls `002470D0(rcx)`; one calls `002D3900` on qword `+0x18` of qword `+0x10` of qword `[rcx+0x60]` (read from address 0x18 when `rcx` is null); one sets word `+0x3DA` to 1, calls `0029E6D0(1)` and sends id 0x26; one sends id 0x27 only when word `+0x3DA` is 0; one calls `0027FB50(dword [rdx] equals 8)`; one reads qword `[rdx+8]`: 0x8002 calls `00244F00(rcx)`, other values do nothing, and 0x8000 sends id 0x25 with the sign-extended words `+0xC8` and `+0xCA` of the 0x18-byte entry indexed by qword `[rdx+0x10]`; a send calls the function pointer at qword `[o]`, `o` = qword `+0x3C0`, as `(o, &local)` with the dword id and two qwords (zero unless given) only when `o` and that pointer are non-null",
+   "anchors": [
+    [
+     "002BD6BD",
+     "jmp"
+    ],
+    [
+     "002BD745",
+     "call"
+    ],
+    [
+     "002BD79F",
+     "call"
+    ],
+    [
+     "002BD7CB",
+     "call"
+    ],
+    [
+     "002BD83E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "002C34F0",
+   "text": "with `e` = the 0x20-byte entry `r9d` at `rcx` and `o` = the first object of the pointer array at qword `[rdx+0x10]`, copies word `+4` of the object `o`'s first qword points to into word `[o+0xC]` and qword `[e]` into qword `[o+0x18]`, stores `0020E620(0)` at dword `[o+0x20]` and `002DD7E0(0 when bit 0x20000 of dword [e+0x18] is set, else 2)` at dword `[o+0x24]`, and returns 1",
+   "anchors": [
+    [
+     "002C3512",
+     "mov"
+    ],
+    [
+     "002C351B",
+     "mov"
+    ],
+    [
+     "002C351F",
+     "call"
+    ],
+    [
+     "002C3527",
+     "test"
+    ],
+    [
+     "002C3539",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "002C4400",
+   "text": "with `e` = the 0x20-byte entry `r9d` at `rcx` and `o` = the first object of the pointer array at qword `[rdx+0x10]`, copies qword `[e]` into qword `[o+0x18]`, stores `0020E620(0)` at dword `[o+0x20]` and `002DD7E0(0 when bit 0x20000 of dword [e+0x18] is set, else 2)` at dword `[o+0x24]`, and returns 1",
+   "anchors": [
+    [
+     "002C4420",
+     "mov"
+    ],
+    [
+     "002C4424",
+     "call"
+    ],
+    [
+     "002C442C",
+     "test"
+    ],
+    [
+     "002C443E",
+     "call"
+    ],
+    [
+     "002C4448",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "002CA2E0",
+   "text": "when bits `0x3` of dword `[rcx+0xC0]` are not both clear, takes `o` = qword `[qword [rcx+0x60] + 8*signed word +0xC6]` and calls `00248F40((dword +0xC0 shifted right 2) AND 0xF, dword +0xCC, dword 0208F570 minus dword +0xD0)`; when the float result equals 1.0 (`01CEBBA8`) it stores byte `+0xC8` plus byte `+0xC4` at byte `[o+0x3B]` and clears bits `0x3` of dword `+0xC0`, otherwise it stores there the truncation of signed word `+0xC8` times the result plus signed word `+0xC4`; it then writes that byte `b` as `b*0x10101` OR `0x80000000` to dwords `+0x28`, `+0x2C`, `+0x30` and `+0x34` of `o`",
+   "anchors": [
+    [
+     "002CA2E6",
+     "test"
+    ],
+    [
+     "002CA32B",
+     "call"
+    ],
+    [
+     "002CA330",
+     "ucomiss"
+    ],
+    [
+     "002CA378",
+     "cvttss2si"
+    ],
+    [
+     "002CA393",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "002CA430",
+   "text": "calls `0035D330(1, ecx shifted left 16)` and maps dword `+0x38` of the result 7 to 0x17, 8 to 0x18, 9 to 0x19 and 0x11 to 0x1A, returning 0 for any other value",
+   "anchors": [
+    [
+     "002CA43E",
+     "call"
+    ],
+    [
+     "002CA443",
+     "mov"
+    ],
+    [
+     "002CA458",
+     "je"
+    ],
+    [
+     "002CA45A",
+     "xor"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "0029D550": "jump-table switch (20 values) over seven arms whose case values are only in the table; stating every arm with its guards and arguments does not fit 1,200 characters precisely (0029D7D8 arm alone: y-offset loop over 0x18-byte entries at +0xE8, bit 0x4 / 0x4000 skips, 0029D9D0, 002F9860(0x467C), 002B4090, 002D8910)"
+ },
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "00283BB0, 00284450",
+   "why": "'qword [0209AC30]+0x30' read as pointer arithmetic; the code loads qword +0x30 of qword 0209AC30 (mov rdx, [rax+0x30])"
+  },
+  {
+   "fn": "00296A10",
+   "why": "the entry update runs only on the non-null path; the null-rcx early return is now stated first"
+  }
+ ],
+ "mode": "homing"
+}

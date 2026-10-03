@@ -283,3 +283,12 @@ how long TP-4's cleared bits are remembered. When it runs relative to field entr
 | P6 | TP-7 | **survives**: of the seven `PersistentFlag_Set*` entries, exactly `002F8060` and `002FAFD0` call one and also call `00379CD0` |
 
 No correction.
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../_index/candidates/fable-home-contract-authored-trigger-points-1002/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `0035E500` | 73 B | `0050FAF0` + 0x7A | returns when `rcx` is null or when word `rcx+0x4` (n) is 3 or more (signed); otherwise, in the 8-byte slot at `rcx + n*8 + 0xC`: when `edx` is 0 stores dword 0 at the slot, `r8w` at its `+0x4` and `r9w` at its `+0x6`; when `edx` is 1 stores dword 1 at the slot and `r8d` at its `+0x4`; for any other `edx` stores nothing; on all three paths it then increments word `rcx+0x4` | Interior anchor `0035E50A`; Interior anchor `0035E51E`; Interior anchor `0035E530`; Interior anchor `0035E53E`; Interior anchor `0035E544` |
+| `0035E560` | 28 B | `0050FAF0` + 0x40 | does nothing when `rcx` is null; otherwise clears bits 0 and 1 of dword `rcx+0x8`, stores word 0 at `+0x4` and zeroes the three qwords at `+0xC`, `+0x14` and `+0x1C` | Interior anchor `0035E563`; Interior anchor `0035E567`; Interior anchor `0035E56B`; Interior anchor `0035E56F`; Interior anchor `0035E577` |

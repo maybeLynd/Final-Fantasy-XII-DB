@@ -322,7 +322,7 @@ observed live.
 
 **WorldAreaField — CLIENT (SWE2-EC7 batch-148).** `0053DD10` is likewise called by `003789A0` of that layer, and the `0032E400`-family submit helpers this page already names carry the rest of the field-layer traffic - shared-callee fan-in, not a resource-table relationship.
 
-**Save_Load_Settings — CLIENT (SWE2-EC7 batch-150).** The `001D6FB0` read-item constructor's alloc/enqueue triple `001A1220`/`001A0A90`/`001A0BB0` is shared with that layer's `001C1810` - the same queue machinery the save-image code drives, not a save-format relationship of the fst.
+**Save_Load_Settings — CLIENT (SWE2-EC7 batch-150).** The `001D6FB0` read-item constructor's ~~alloc/enqueue~~ alloc/run triple *(corrected 2026-10-02, OPUS: `001D6FB0+0xC6` `mov r8b, 1` makes `001A0BB0` run the item at once, `001A0BB0+0x29` `test r8b, r8b` to its `+0x2E` call; the 2026-09-30 correction below)* `001A1220`/`001A0A90`/`001A0BB0` is shared with that layer's `001C1810` - the same queue machinery the save-image code drives, not a save-format relationship of the fst.
 
 
 **Platform — CLIENT (SWE2-EC7, batch 169).** The batch-169 `0019AFE0` record-commit's `0019AA20` field-write arm hands to `0019A510` of that layer - a mechanical shared-callee the commit path rides, not a platform relationship of the fst machinery.
@@ -375,7 +375,7 @@ Interior anchor `001D6CB8` (function `001D6CA0`).
 
 Interior anchor `00215182` (function `00215110`).
 
-`0046DD50` (251 B) is the `02CA6068` state stepper the pump `0032E070` runs: after the `0016D6A0` fill, state 4 gates on `0053DD10` and clears, state 3 needs `0053DD10` + `00368F30` quiet then arms `00369050` on `00536F30` and steps to 4, state 2 does `0053DD10` + `00368F30` then zeroes the state, and state 1 sizes the next stage from `02EBB52C`/`02EBB528`/`02EBB520` (each `(x + (x>>31 & 0x7FF))` rounded down by `>> 0xB`) into `02EBA520` via `0016D6A0` before stepping to 3 - the four-state load pipeline the pump advances
+`0046DD50` (251 B) is the `02CA6068` state stepper the pump `0032E070` runs: after the `0016D6A0` fill, ~~state 4 gates on `0053DD10` and clears, state 3 needs `0053DD10` + `00368F30` quiet then arms `00369050` on `00536F30` and steps to 4, state 2 does `0053DD10` + `00368F30` then zeroes the state, and state 1 sizes the next stage from `02EBB52C`/`02EBB528`/`02EBB520` (each `(x + (x>>31 & 0x7FF))` rounded down by `>> 0xB`) into `02EBA520` via `0016D6A0` before stepping to 3 - the four-state load pipeline the pump advances~~ state 1 clears once `0053DD10` returns 0; state 2 needs `0053DD10` at 0, rounds `02EBB52C` and `02EBB528` **up** to the `0x800` sector (`x + 0x7FF` before the sign bias, then the mask or `>> 0xB`) and passes them, with `02EBB520` and `02EBA520`, to `0016D6A0` before stepping to 3; state 3 needs `0053DD10` + `00368F30` quiet, arms `00369050` on `00536F30` and steps to 4; state 4 clears once `00368F30` is quiet. None of it runs: `02CA6068` is BSS (past `.data`'s raw end `0x01F7E400`) and its only writers are this function's own stores, so the word stays 0 and the stepper returns at once *(corrected 2026-10-02, OPUS: the dispatch at `0046DD50+0x12` .. `0046DD50+0x25` sends states 1-4 to `0046DD50+0xDE` / `0046DD50+0x80` / `0046DD50+0x47` / `0046DD50+0x2B`; `0046DD50+0x96` is `add eax, 0x7ff`; the writers are `0046DD50+0x3C`, `0046DD50+0x71`, `0046DD50+0xCF` and `0046DD50+0xF0`; the queue page's §8 reads it as dormant)*
 
 Interior anchor `0046DD97` (function `0046DD50`).
 
@@ -387,7 +387,7 @@ Interior anchor `001D7040` (function `001D6FB0`).
 
 Interior anchor `001D6E2F` (function `001D6D90`).
 
-`002DF6C0` (192 B) is the gated submit-or-decline wrapper `0032E070` runs per request: three admissions must pass in order (`0017D930`, `001D6EF0`, `001D6B40` on `rcx`) before `001D6F20(rcx, 1)` builds the request object and `001D6FB0` configures it with the `0215EFF4` status cell, the `ebp`/`r9d` parameter pair and the `r14` source; a live object is then `001D6E80`-fired, while any gate failure falls to `001D6D90` reporting through the same `0215EFF4` cell - decline is still reported, just on the other lane
+`002DF6C0` (192 B) is the gated submit-or-decline wrapper `0032E070` runs ~~per request~~ for kind-`0xFF` (raw-path) requests only *(corrected 2026-10-02, OPUS: its one call site `0032E070+0xA1` sits behind `0032E070+0x67` `cmp al, 0xff`; every other kind goes `0046E030` → `002DF780`)*: three admissions must pass in order (`0017D930`, `001D6EF0`, `001D6B40` on `rcx`) before `001D6F20(rcx, 1)` builds the request object and `001D6FB0` configures it with the `0215EFF4` status cell, the `ebp`/`r9d` parameter pair and the `r14` source; a live object is then `001D6E80`-fired, while any gate failure falls to `001D6D90` reporting through the same `0215EFF4` cell - decline is still reported, just on the other lane
 
 Interior anchor `002DF719` (function `002DF6C0`).
 
@@ -410,3 +410,16 @@ Interior anchor `0019A7EB` (function `0019A770`).
 `0019A6E0` (143 B) is the chunk-layout planner `0019A770` consults: `0019A660` mints the record and `+0x88` phase resets, then the (size, granule, offset) triple distributes across the three chunk rows - row `+8` takes a bounded first-chunk length `min(granule-offset, size)` and the start offset at `+0x14`, row `+0x10` flags the full-granule continuation, and row `+0x18` carries the `size mod granule` remainder - the shape description the stream-read walks.
 
 Interior anchor `0019A746` (function `0019A6E0`).
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-file-size-tables-fst-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0019A660` | 115 B | calls through the pointer at `008C20E0` with (qword `+8` of `rcx`, -1); when that returns 0 it scans the `0x98`-byte records at qword `+0x18` for indexes below dword `+0x10` (unsigned), atomically changes the first record's dword `+0x90` from 0 to 1 (`lock cmpxchg`), increments that record's dword `+0x40` and returns the record; when the call returns non-zero, dword `+0x10` is 0 or no record is claimed, it increments the dword at address `0x40` through a null `r8` and returns 0 | `0019A670`, `0019A683`, `0019A69F`, `0019A6C6`, `0019A6B2` |
+| `001D6A20` | 77 B | calls `0020C700` with the incoming argument registers unchanged, then calls `0020B680(that result, ecx, rdx, r8d)` with the incoming `r9d` as the fifth (stack) argument and returns its `rax` | `001D6A3F`, `001D6A47`, `001D6A53` |
+| `001F4840` | 98 B | returns at once when `rdx` is null; otherwise compares `rdx` with the 15 addresses qword `+0xA8` of `rcx` + k*`0x30` (k = 0..14, signed loop bound); on a match it calls `002152D0(rdx)` and returns, and with no match it calls `00215040(rdx)` and tail-jumps to `00809950(rdx, 0x30)` | `001F486E`, `001F4875`, `001F4897`, `001F487D`, `001F488F` |
+| `0020C150` | 33 B | returns 0 when `r9d` is 0 or `rdx` is null; otherwise tail-jumps to `00217A70(rdx, r8, r9d)`, moving the incoming `rdx`, `r8` and `r9d` into `rcx`, `rdx` and `r8d` | `0020C156`, `0020C15E`, `0020C169`, `0020C16E` |
+| `00368F30` | 62 B | when `ecx` is non-negative (signed) returns 1 if the qword at `022D7F70` + `ecx`*8 is non-zero, else 0 (`setne`); when `ecx` is negative it scans the qwords from `022D7F70` up to but excluding `022D7F78` (one qword) and returns 1 on a non-zero one, else 0 | `00368F32`, `00368F40`, `00368F44`, `00368F56`, `00368F68` |
+| `00536F30` | 246 B | reads the pointers P = qword `02EBB538` and D = qword `02EBB530`, stores dword `P+8` AND `0x1FFFFFF` to dword `02CA8A70` and stores H = 0xC when byte `P+3` is `0x64`, else 0x10, to dword `02CA8A74`; on dword `P+4` AND 3 = 1 it tail-jumps to `00536DD0`, on 2 to `00537030`, on 3 it returns; on 0, when dword `02EBB528` is non-zero it copies (`02EBB528` minus H) bytes from P + H to D and then dword `02EBB52C` bytes from `02EBA520` right after them, and when `02EBB528` is 0 it copies (`02EBB52C` minus H) bytes from `02EBA520` + H to D; each copy runs only while its count is positive (signed) | `00536F60`, `00536F7F`, `00536FB5`, `00536FE7`, `00537015` |

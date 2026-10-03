@@ -139,6 +139,56 @@ if sj.exists():
 else:
     check("T8 package rows carry discriminator fields", False, "no snapshot")
 
+# T8b every relative link the crosswalk renderer emits resolves from where
+# crosswalk.md lives (_index/progress/). Rendered from the live snapshot, so a
+# depth error in any link path (2026-10-03: the naming-page fallback was
+# rebased twice and wrote ../../../) fails here before it reaches the file.
+if sj.exists():
+    import re as _re
+    s = json.loads(sj.read_text(encoding="utf-8"))
+    if "packages" in s:
+        text = pr._crosswalk_md(s)
+        links = _re.findall(r"\]\(([^)\s]+)\)", text)
+        rel = [l.split("#")[0] for l in links
+               if not _re.match(r"[a-z]+:", l) and not l.startswith("#")]
+        broken = sorted({l for l in rel
+                         if l and not (HERE / l).resolve().exists()})
+        check("T8b every crosswalk link resolves from _index/progress/",
+              rel and not broken,
+              "%d relative links, %d broken %s"
+              % (len(rel), len(broken), broken[:5]))
+    else:
+        check("T8b every crosswalk link resolves from _index/progress/",
+              False, "snapshot is an INCOMPLETE stub")
+else:
+    check("T8b every crosswalk link resolves from _index/progress/", False,
+          "no snapshot")
+
+
+# T8c PROGRESS.md carries the lifecycle authority next to the L3 line, and its
+# charter link resolves from PROGRESS.md's own directory (Database/FFXII TZA/).
+if sj.exists():
+    import re as _re
+    s = json.loads(sj.read_text(encoding="utf-8"))
+    if "levels" in s:
+        pm_text = pr._progress_md(s)
+        l3_at = pm_text.find("L3 is out of scope by directive")
+        lc_at = pm_text.find("Lifecycle: the project is in its DATABASE phase")
+        lc_links = [l.split("#")[0] for l in
+                    _re.findall(r"\]\(([^)\s]+)\)", pm_text[lc_at:])
+                    if "CHARTER" in l] if lc_at >= 0 else []
+        check("T8c lifecycle line beside L3, charter link resolves",
+              l3_at >= 0 and lc_at > l3_at and bool(lc_links)
+              and all((DB / l).resolve().exists() for l in lc_links)
+              and "evidence probes" in pm_text,
+              "l3=%d lifecycle=%d links=%s" % (l3_at, lc_at, lc_links))
+    else:
+        check("T8c lifecycle line beside L3, charter link resolves", False,
+              "snapshot is an INCOMPLETE stub")
+else:
+    check("T8c lifecycle line beside L3, charter link resolves", False,
+          "no snapshot")
+
 
 # ================================================================ fixtures
 def _fx_db(root):

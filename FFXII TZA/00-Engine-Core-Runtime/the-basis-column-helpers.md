@@ -193,3 +193,7 @@ Resource and WorldAreaField
 domains - shared-service
 edges, not basis-column
 subjects.
+
+`006B5D60` (750 B) is the matrix-record reader `006A4E30` runs: the `rcx+8 -> +0x18` record's `+0x20`/`+0x30` 4x4 block transposes through movups/shufps into a stack frame, `00185100` mints a 7-dword record copied into `rbx+0x20..0x38`, and the alternate arm routes `rbp`-span buffers through `006A0E10` and `00187460` after `00185AF0` claims the record - a basis-read variant feeding the same record format this page's helpers produce.
+
+Interior anchor `006B5F3D` (function `006B5D60`).

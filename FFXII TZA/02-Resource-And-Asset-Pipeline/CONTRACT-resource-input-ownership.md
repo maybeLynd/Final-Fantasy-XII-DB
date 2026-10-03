@@ -216,7 +216,7 @@ The concrete indexed owner has the following bounded transitions:
 | State2 plus pending, failed provider/allocation | Set state0, leave pending bit. A later producer sweep does not rearm it. |
 | State2 plus pending, allocation succeeds and hold gate set | Pin source, populate arguments, set state1; consume pending bit without queuing. |
 | State2 plus pending, allocation succeeds and hold gate clear | Submit; write state3 and consume pending even if the requester rejects. |
-| State1, hold gate later clears, producer sweep | No submission by this sweep; another actual submission route/trigger must be established. |
+| State1, hold gate later clears, producer sweep | No submission by this sweep; ~~another actual submission route/trigger must be established.~~ none exists *(answered: see [the indexed-source page](the-indexed-source-request-from-arm-to-terminal-pump.md) OV-34; 2026-10-02, OPUS)* |
 | Prepared owner, explicit submit | Queue submit then state3, even on a negative-index rejection fixture. |
 | State1, delete | Tagged free; clear handle+state and route+0D. |
 | State3, delete | Set state5; do not free or cancel the queue request. |
@@ -392,7 +392,7 @@ no live IO, rendering, optional config parsing or full subtype population. [Revi
    child creation/rendering ownership. SECTION-10 executes nonempty PRF0/1 and A00 subtype0 setup,
    relocation, actual movement/repair and teardown, not all authored variants or scheduling.
 4. The actual service's issuance/completion and higher-level recovery after an owner remains3/5;
-   the eventual submission policy for held state1; callback single-delivery/reuse preconditions;
+   ~~the eventual submission policy for held state1; callback single-delivery/reuse preconditions;~~ *(answered: see [the indexed-source page](the-indexed-source-request-from-arm-to-terminal-pump.md) OV-34 and OV-36; 2026-10-02, OPUS)*
    metadata creation/lifetime, caller bounds and loaded-data reachability of synthetic failure states.
    The original producer's local selection/allocation/rearm and terminal pump composition are now
    executed in SECTION-09; do not schedule another identical sweep as if these were still unexecuted.

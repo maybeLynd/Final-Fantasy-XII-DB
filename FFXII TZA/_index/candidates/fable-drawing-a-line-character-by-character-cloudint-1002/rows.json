@@ -1,0 +1,40 @@
+{
+ "page": "99-Unresolved-Residual/Glyph-Run-Rendering/drawing-a-line-character-by-character.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01VgTzWvj54SWcQeC3wEsotH",
+ "report": "drawing-a-line-character-by-character.json",
+ "rows": [
+  {
+   "fn": "001EADB0",
+   "text": "calls p = `001C26B0(rdx)`; unless `rdx` is non-null while p is null, it calls `00584730` on the old qword `rcx+0x38` when that is non-null with bit 0 clear, and stores p to qword `rcx+0x38`; on every path it stores 1 to byte `rcx+0xE8`",
+   "anchors": [
+    [
+     "001EADC8",
+     "call"
+    ],
+    [
+     "001EADD8",
+     "je"
+    ],
+    [
+     "001EADEC",
+     "call"
+    ],
+    [
+     "001EADF1",
+     "mov"
+    ],
+    [
+     "001EADFF",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "002986E0": "2468-byte body (about 600 instructions) with dozens of flag- and range-gated paths over dword rsi+0 bits 0x100/0x1000/0x2000/0x8000, words rsi+0x5C/+0x5E, the qword rcx+0xC0 record's bytes +6/+7/+0x13 and word +8, three 002DD7E0 lookup loops, and repeated 002752E0/0029F480 calls; every path cannot be stated within the 1,200-character limit, and a partial sentence would break the every-path rule, so it needs a hand-written multi-row treatment on the workstation"
+ },
+ "missing": [],
+ "corrections": []
+}

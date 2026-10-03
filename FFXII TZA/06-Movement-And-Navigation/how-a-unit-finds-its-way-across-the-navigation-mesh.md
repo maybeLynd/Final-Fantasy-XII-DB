@@ -566,3 +566,11 @@ carried, not re-run.
 | N5 | section 7: every door change wipes every route | **survives**. The wipe covers each slot whose byte `+0` has bit 4, on its record at `+0x200` |
 | N6 | section 3: the resets | **survives** |
 | N7 | sections 4 and 8 | **survives**: -2, -3, the `0x80` bound, `0x7FFFFFFF`, -1; the follow step advances while inside, re-aims, stores the region, and keeps the mover's `y` |
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../_index/candidates/fable-how-a-unit-finds-its-way-across-the-navi-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0026E300` | 73 B | reads dword `v` at `00915760 + dx*4` (`dx` sign-extended) and returns -1 when it is negative; otherwise, with `m` = 1 shifted left by `v` (`shl` by `cl`), returns 0 when the dword at `0209A3E0 + ecx*8` (`ecx` sign-extended) has no bit in common with `m`, else 2 when the dword 4 bytes after it does and 1 when not | `0026E30E`, `0026E317`, `0026E330`, `0026E335`, `0026E33E` |

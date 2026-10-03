@@ -62,11 +62,11 @@ decompose both completely enough to name `C-11`'s remainder:
 | | **bit 14** | `00377A40` | `shr 0xE` / `and 1` |
 | | bit 15 | `00377C20`, `00377480` | `shr 0xF` |
 | the byte at `+0xA` | **bit 0** | `00377700` | `not` then `test al, 1` — tested **inverted** |
-| | **bits 4–7** | `00377C70` | `shr 4` |
+| | ~~**bits 4–7**~~ **bits 4–6** | `00377C70` | `shr 4` then `and 7` *(corrected 2026-10-02, OPUS: `00377C99 shr eax, 4` / `00377C9C and eax, 7`; bit 7 is never taken)* |
 
 **`C-11` asks for "the meaning of the other 15 bits of the `u16`, and of the third byte".** The
 *encoding* is now closed: the `u16` is four fields, not one flag and a remainder, and the third byte
-is at least two. **Bits 1–3 of the byte are the only part no accessor touches.**
+is at least two. **~~Bits 1–3 of the byte are the only part no accessor touches.~~** **Bits 1–3 and bit 7 of the byte are the parts no accessor touches** *(corrected 2026-10-02, OPUS: `00377C70` takes bits 4–6, `00377C9C and eax, 7`; §14's execution note)*.
 
 What this does not give is the **semantics** — what a two-bit field at 12–13 selects, or why bit 0 of
 the byte is read inverted. That is authored meaning and is FABLE's; the shapes above are what the
@@ -122,12 +122,12 @@ None of their own.
 - **Consumers — RE-DERIVED 2026-09-11, and the old numbers did not survive.** ~~`00377C20` has 65
   direct callers plus 47 through the thunk.~~ Measured with `check_caller_claims.py` (`memcpy`
   control: 632 sites), counting **sites and functions separately**, because they are different
-  numbers and "65 direct callers" is neither of them:
+  numbers and "65 direct callers" is ~~neither of them~~ the function count without the thunk itself *(corrected 2026-10-02, OPUS: `retool.py callers 00377C20` lists 80 sites in 66 functions, and one of the 66 is the thunk `00313F60`, whose `jmp` is the 80th site; without it, 79 sites in 65 functions)*:
 
   | entry | direct sites | distinct functions | note |
   |---|---:|---:|---|
-  | `00377C20` bit 15 | **79** | **66** | plus one `jmp` from its thunk |
-  | `00313F60` (thunk → `00377C20`) | **67** | **47** | the 47 matches the old figure; the 65 does not match either column |
+  | `00377C20` bit 15 | **79** | ~~**66**~~ **65** | plus one `jmp` from its thunk, whose function makes 66 *(corrected 2026-10-02, OPUS: the 79 sites lie in 65 functions; the thunk `00313F60` is the 66th, `retool.py callers 00377C20`)* |
+  | `00313F60` (thunk → `00377C20`) | **67** | **47** | the 47 matches the old figure; ~~the 65 does not match either column~~ the 65 is the direct column without the thunk *(corrected 2026-10-02, OPUS: `retool.py callers 00377C20 00313F60`)* |
   | `003779F0` bits 0–11 | 9 | 9 | |
   | `00377700` byte 2 bit 0 | 6 | 6 | |
   | `00377A40` bit 14 | 5 | 5 | |
@@ -407,8 +407,8 @@ The single survivor is **kind A, provably equivalent**: `g_saved_field_id < 0 ? 
 
 ## 14. Unresolved
 
-- What the bit regions mean. The referenced page carries what is known; this contract deliberately
-  adds nothing to it.
+- ~~What the bit regions mean. The referenced page carries what is known; this contract deliberately~~
+  ~~adds nothing to it.~~ *(answered: the semantics are cited in §2, "The semantics arrived", 2026-09-12; 2026-10-02, OPUS)*
 - ~~Whether `00377700`'s caller-side save gate has the same replacement shape as `00377BA0`'s.~~
   **CLOSED 2026-09-11 — it does not, and the gate is not caller-side.** It is inside `00377700`,
   through `00314A60`, and it is a **veto** rather than a replacement: the record is read either
@@ -417,7 +417,7 @@ The single survivor is **kind A, provably equivalent**: `g_saved_field_id < 0 ? 
 - ~~Whether the two override helpers read the same save byte.~~ **CLOSED — they do not.** The
   bits-12-13 pair reads `+0x1062` bit 7 and `+0x1063` bits 4–5; the veto reads `+0x1062` **bit 0**.
   One byte, two independent flags, driven independently under execution.
-- The four bytes at the table's `+0x00`, left undeclared — see the type store. **Still open**, and
+- The four bytes at the table's `+0x00`, left undeclared — see the type store. ~~**Still open**~~ *(answered: the magic `'N''A''V'` `0x02` — field-record-table-navimapdata.md's file layout and this contract's own table row; 2026-10-02, OPUS)*, and
   the harness plants zeros there; nothing in the family reads them, which is consistent with the
   store's silence but does not identify them.
 - **NEW.** Bits 1–3 of the record's third byte. §2's decomposition shows no accessor touches them,
@@ -476,8 +476,8 @@ should not guess what a bit governs. But two facts settled elsewhere today name 
    actionable and still harmable.
 2. **110 distinct functions across 16 subsystems reach it**, by two routes with no overlap: 65
    directly and 47 through the 5-byte thunk `00313F60`. (§6's own census counts *call sites* and
-   gets 79/66 and 67/47; these are the same population counted differently, and three functions use
-   both routes.)
+   gets 79/66 and 67/47; these are the same population counted differently, and ~~three functions use~~
+   ~~both routes~~ two functions use both routes, `00253C70` and `003266C0` *(corrected 2026-10-02, OPUS: `retool.py callers 00377C20 00313F60`; 65 + 47 − 2 = 110)*.)
 
 > **Therefore: with no field record table, the override denies at every one of those sites.** §10
 > already says the failure value is `0`; what it could not say is that `0` means *bail* in the guard
@@ -575,8 +575,8 @@ changes what the accessors return.
 isolates. `00377BA0` (102 B): `003148F0` resolves the record
 (`00377BB6`), `[02ADD100]` supplies the bound `dword[r8+4]`
 (`00377BBB`/`00377BC7`), `byte[rcx+rax+9]` and `byte[rcx+rax+8]` are
-the compared kind bytes (`00377BD4`/`00377BDD`), and the value is
-masked to `0xFFF` (`00377BF4`) — matching the documented `shr 0xC /
+~~the compared kind bytes~~ the two bytes of the flags `u16`, combined by `00377BE2 shl edx, 8` / `00377BE5 add` (`00377BD4`/`00377BDD`), ~~and the value is~~
+~~masked to `0xFFF` (`00377BF4`)~~ and the success path has no `0xFFF` mask: `00377BF4` is the missing-table path's failure constant *(corrected 2026-10-02, OPUS: `00377BE7 shr edx, 0xC` / `00377BEA and edx, 3` / `00377BF3 ret`)* — matching the documented `shr 0xC /
 and 3` two-bit read.
 
 | member | role | interior |

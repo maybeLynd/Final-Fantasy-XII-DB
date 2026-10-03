@@ -983,7 +983,7 @@ figure that looks like a finding and is an artifact of counting.
 `CharacterRenderRecord`'s array was not established, and now is. Its `0x48930` block is allocated at
 `003325E7` and published to `022C6F28`. **372 bodies in the image reference that pointer. Not one of
 them calls a deallocator** — checked against `0036A140`, `00809950`, `00210EB0`, `0019C590`,
-`0078A960` and `0085E730`, the free/dealloc entries this corpus has identified. The array is taken
+`0078A960` ~~and `0085E730`~~, the free/dealloc entries this corpus has identified, and the `malloc` stub `0085E730` *(corrected 2026-10-02, OPUS: `0085E730` is `jmp [008C2B40]`, the `malloc` import, not a free)*. The array is taken
 once and held for the life of the process.
 
 **That is a contract fact, not an absence.** A reimplementation may allocate this block at startup
@@ -1025,7 +1025,7 @@ strong negative over a large population rather than a failure to find one.
 
 ## SWE2-EC7-44 update (2026-09-19) - `00194F50`
 
-`00194F50` (270 B) is a sound-request body - `008C25F0`/`008C2628`/`008C2630`/`008C2658` import calls, `00808850`/`00861ECC`. Interior anchor `00194F73` (an `00808850` call).
+`00194F50` (270 B) is ~~a sound-request body~~ `std::use_facet<std::codecvt<wchar_t, char, _Mbstatet>>`, a C++ standard-library body - `008C25F0`/`008C2628`/`008C2630`/`008C2658` import calls, `00808850`/`00861ECC`. Interior anchor `00194F73` (~~an `00808850` call~~ the `_Lockit` call) *(corrected 2026-10-02, OPUS: `00194F50+0x23` constructs a `_Lockit` through `008C25F0`, `00194F50+0x36` reads `codecvt<wchar_t>::id` from `008C2768` and `00194F50+0x96` calls `_Getcat` through `008C2658`; `00808850` is called at `00194F50+0xEB`)*.
 
 ## SWE2-EC7-49 update (2026-09-19) - `001DF8C0`
 
@@ -1124,3 +1124,20 @@ callers are clients across the image, and every one of them is **SERVICE**.
 
 *Tier 2: ledger names, sizes and `edges.tsv`, roles as this page reads them; no new body read (OPUS, 2026-09-29,
 pass-22 slice OPUS-P22-SLICE-24-99).*
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-object-construction-destruction-and-stat-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00199320` | 99 B | loads the word pointer at qword `[qword +0x38]` of `rcx` and, when it is non-null and below itself plus twice the sign-extended dword at `[qword +0x50]` (unsigned `jae`), returns the zero-extended word it points at; otherwise calls vtable slot `+0x38` of `rcx` and, when its word result is not 0xFFFF, calls vtable slot `+0x20` with that word as `edx` and returns the word, else returns 0xFFFF | `00199343`, `00199345`, `00199359`, `00199364`, `00199372` |
+| `001E0F40` | 36 B | calls the callee at `001E0F40` + 0x4 and returns when it returns null; otherwise calls the same callee again (`001E0F40` + 0xE) and tail-jumps `001993B0` with that second result as `rcx` | `001E0F44`, `001E0F4C`, `001E0F4E`, `001E0F5A` |
+
+`00199390` (19 B, no direct call; vtable slot 1 of `std::exception` and `std::bad_cast`) returns the stored message pointer `+8`, or the string at `008F35F8` ("Unknown exception") when it is NULL - `exception::what`.
+
+Interior anchor `0019939E` (function `00199390`).
+
+`0019B940` (80 B, no direct call; `std::basic_filebuf<char>` vtable slot 14) fetches the locale's `codecvt` facet (`0019B2F0`, the facet lookup by id), and when the `MSVCP140` import `codecvt_base::always_noconv` (slot `008C2638`) says no conversion is needed clears the converter pointer `+0x68`; otherwise stores the facet there and tail-jumps to `basic_streambuf::_Init` (slot `008C27B0`) - the converter set-up `imbue` runs.
+
+Interior anchor `0019B95B` (function `0019B940`).

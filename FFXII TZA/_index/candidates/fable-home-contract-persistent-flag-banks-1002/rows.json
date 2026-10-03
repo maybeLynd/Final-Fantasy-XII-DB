@@ -1,0 +1,52 @@
+{
+ "page": "14-Story-Event-Quest-Hunt/CONTRACT-persistent-flag-banks.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01Xkefj8Gz4bCEiqGqVRB1MS",
+ "report": "home-contract-persistent-flag-banks.json",
+ "rows": [
+  {
+   "fn": "002A3210",
+   "entered_from": "`002E16B0` + 0x2D7",
+   "text": "replaces bit 18 of dword `rcx+0x180` with bit 0 of `r9d` and sets its bit 17 (`bts`), stores `dl` at byte `rcx+0x174` and `r8b` at byte `rcx+0x175`, and writes the dword back",
+   "anchors": [
+    [
+     "002A321B",
+     "and"
+    ],
+    [
+     "002A3222",
+     "mov"
+    ],
+    [
+     "002A322F",
+     "bts"
+    ],
+    [
+     "002A3234",
+     "mov"
+    ],
+    [
+     "002A323B",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "001D9930",
+   "why": [
+    "already cited by 04-Actor-Entity\\Actor-Names\\the-npc-name-dictionary.md"
+   ]
+  },
+  {
+   "fn": "001D9EC0",
+   "why": [
+    "already cited by 04-Actor-Entity\\Actor-Names\\the-npc-name-dictionary.md"
+   ]
+  }
+ ],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

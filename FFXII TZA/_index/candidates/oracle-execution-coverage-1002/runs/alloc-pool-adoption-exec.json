@@ -1,0 +1,21 @@
+{
+ "blocks_in_image": 341,
+ "blocks_outside_image": 0,
+ "catalogue": "e2a67b07700c2ec3fbfae3213965de35",
+ "classes": {
+  "returned": 17,
+  "returned+faulted": 6,
+  "scripted": 2
+ },
+ "elapsed_s": 4.2,
+ "emu_starts": 77,
+ "entries_executed": 23,
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "instrument": "execcov-shim v2",
+ "patched_blocks": 32,
+ "rc": 0,
+ "receipt_md5": "c2e19ab467dff8760f31c63e278f87bb",
+ "run": "alloc-pool-adoption-exec",
+ "status": "ok",
+ "unique_blocks": 341
+}

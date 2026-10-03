@@ -373,6 +373,6 @@ quantity encoding.
 
 `00321100` (101 B) is the slot probe `003172E0` and `003286E0`
 run: `ebx` 4..8 calls `00322C50(0x17, ebx, 0)`, and the first
-index whose `byte[base + rbx*2 + 0x5A86]` is not `0xFF` returns
+index whose `byte[base + rbx*2 + 0x5A86]` ~~is not `0xFF`~~ is `0xFF`, or whose class-`0x17` check fails, returns *(corrected 2026-10-02, OPUS: `00321139 cmp byte ptr [rdi + rax], 0xff` / `0032113D je 0x321158`, and `00321158 mov eax, ebx`; a non-`0xFF` byte continues the loop at `0032113F`)*
 in `eax`; a clean run returns -1.
 Interior anchor `00321139` (the `0xFF` compare).

@@ -1,0 +1,40 @@
+{
+ "page": "24-Compiler-And-CRT-Runtime/Binary-Hardening-And-Hooking/image-hardening-cfg-aslr-dep-and-stack-cookies.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01Rk789qY4qsCmkfLpxsx7MQ",
+ "report": "image-hardening-cfg-aslr-dep-and-stack-cookies.json",
+ "rows": [
+  {
+   "fn": "003F9270",
+   "text": "scans 8 entries of 0x250 bytes and returns `rcx + 0x4020 + i*0x250` for the first `i` whose byte at `rcx + 0x425C + i*0x250` has bit 0 clear; returns 0 when all 8 have it set",
+   "anchors": [
+    [
+     "003F9280",
+     "test"
+    ],
+    [
+     "003F9283",
+     "je"
+    ],
+    [
+     "003F928E",
+     "cmp"
+    ],
+    [
+     "003F9293",
+     "xor"
+    ],
+    [
+     "003F9298",
+     "imul"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "00896270": "its whole work is the entry instruction (`jmp rax`); the body is 2 bytes"
+ },
+ "missing": [],
+ "corrections": []
+}

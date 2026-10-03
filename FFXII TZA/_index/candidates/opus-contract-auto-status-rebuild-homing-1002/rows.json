@@ -1,0 +1,143 @@
+{
+ "page": "10-Status-Periodic-Terminal/CONTRACT-auto-status-rebuild.md",
+ "date": "2026-10-02",
+ "session": "local-h2-opus",
+ "report": "contract-auto-status-rebuild.json",
+ "rows": [
+  {
+   "fn": "002ECDC0",
+   "text": "returns at once when byte `+0x18` of `rcx` is 1 or the top three bits of byte `+3` (mask 0xE0) are not 0x60; otherwise, with qword `+0xC0` non-null, it copies bit `0x1` of `dl` into bit `0x1` of that object's byte `+0x70` and tail-jumps to `002E8FD0` with `rcx` and `edx` (low byte masked to bit `0x1`); with qword `+0xC0` null the same bit update is addressed at byte `+0x10` of the null pointer before the same tail-jump",
+   "anchors": [
+    [
+     "002ECDC4",
+     "je"
+    ],
+    [
+     "002ECDCC",
+     "cmp"
+    ],
+    [
+     "002ECDDC",
+     "and"
+    ],
+    [
+     "002ECDEA",
+     "jmp"
+    ],
+    [
+     "002ECDEF",
+     "and"
+    ]
+   ]
+  },
+  {
+   "fn": "002ECE00",
+   "text": "returns at once when byte `+0x18` of `rcx` is 1 or the top three bits of byte `+3` (mask 0xE0) are not 0x60; otherwise, with qword `+0xC0` non-null, it copies bit `0x1` of `dl` into bit `0x1` of that object's byte `+0x40` and tail-jumps to `002E8FD0` with `rcx` and `edx` (low byte masked to bit `0x1`); with qword `+0xC0` null the same bit update is addressed at byte `+0x10` of the null pointer before the same tail-jump",
+   "anchors": [
+    [
+     "002ECE04",
+     "je"
+    ],
+    [
+     "002ECE0C",
+     "cmp"
+    ],
+    [
+     "002ECE1C",
+     "and"
+    ],
+    [
+     "002ECE2A",
+     "jmp"
+    ],
+    [
+     "002ECE2F",
+     "and"
+    ]
+   ]
+  },
+  {
+   "fn": "0034DF40",
+   "text": "for indices 0 to 3 calls `00263750(index)` and, for each non-null result, calls `002E8060` and then `002EB430` on what `00263F40(result)` returns (`00263F40` is called afresh before each)",
+   "anchors": [
+    [
+     "0034DF52",
+     "call"
+    ],
+    [
+     "0034DF62",
+     "call"
+    ],
+    [
+     "0034DF6A",
+     "call"
+    ],
+    [
+     "0034DF7A",
+     "call"
+    ],
+    [
+     "0034DF81",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0034F5A0",
+   "text": "calls `002640C0` with the incoming registers, then four times (slots 3 down to 0) stores `002650B0(that result, rcx, 00267E10(r9))` as a pointer in a local array; calls `0031B510(local dword array, 4)`, fills the dwords from its result index up to 3 with -1, writes dword i to pointer i for all four, and returns what `0026B4E0(rcx, that result)` returns (under the stack-cookie check)",
+   "anchors": [
+    [
+     "0034F5C1",
+     "call"
+    ],
+    [
+     "0034F5E1",
+     "call"
+    ],
+    [
+     "0034F5FD",
+     "call"
+    ],
+    [
+     "0034F61D",
+     "rep stosd"
+    ],
+    [
+     "0034F651",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "003599A0",
+   "text": "compacts the array of `ecx` qwords at `rdx` in place: keeps, in order, each non-null entry for which `002E9600(entry)` returns non-zero, zeroes the slots after the kept ones and returns the kept count (0 when `ecx` is not positive)",
+   "anchors": [
+    [
+     "003599C3",
+     "jle"
+    ],
+    [
+     "003599D8",
+     "call"
+    ],
+    [
+     "003599E4",
+     "mov"
+    ],
+    [
+     "00359A15",
+     "rep stosq"
+    ],
+    [
+     "00359A18",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing"
+}

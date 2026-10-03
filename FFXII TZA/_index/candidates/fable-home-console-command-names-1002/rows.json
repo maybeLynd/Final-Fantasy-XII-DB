@@ -1,0 +1,39 @@
+{
+ "page": "00-Engine-Core-Runtime/Developer-Tuning-Console/console-command-names.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01B5JAqPgewUFviUD5ZfpMqA",
+ "report": "home-console-command-names.json",
+ "rows": [
+  {
+   "fn": "001C0400",
+   "entered_from": "`001CD0E0` + 0x8B8",
+   "text": "divides qword `rcx+0x60` minus qword `rcx+0x58` by 40 (signed, as a multiply-high and shift); returns 1 when the low 32 bits of that quotient are zero or qword `+0x10` is zero, otherwise returns dword `+0x38` of the object at qword `+0x18`",
+   "anchors": [
+    [
+     "001C0412",
+     "imul"
+    ],
+    [
+     "001C0423",
+     "test"
+    ],
+    [
+     "001C0427",
+     "cmp"
+    ],
+    [
+     "001C0432",
+     "mov"
+    ],
+    [
+     "001C0436",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

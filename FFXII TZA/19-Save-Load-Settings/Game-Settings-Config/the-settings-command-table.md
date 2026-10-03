@@ -989,3 +989,7 @@ were turned into checks at their instructions, independently of the page's own r
 | `004082D0` | 38 B | with `[02B62D80]` and its qword `+0xC0` non-null, tail-jumps to `00244DD0` on the latter when bit 20 of its dword `+0x40` is clear | `004082DC`, `004082E8`, `004082EF` |
 | `00408AA0` | 43 B | with `[02B62D80]` and its qword `+0xC0` non-null, tail-jumps to `00246AD0` when the latter's dword `+0xD8` has bit 2 set and bit 3 clear | `00408AB8`, `00408ABE`, `00408AC2`, `00408AC4` |
 | `0046DB10` | 12 B | tail-calls `0035EEB0(0, ecx, 0)` | `0046DB12`, `0046DB15`, `0046DB17` |
+
+`001B0A20` (698 B) is the name-keyed asset lookup `00181390`'s settings command uses: `0019C5D0` formats `"%s_clut_%d"` into a 0x100-byte buffer, `001B1440`/`001AED50` scan the target table on `+0x20` count for the name match, and `00861EC0`/`00808C40` finish the compare - the CLUT-name resolution a settings write triggers.
+
+Interior anchor `001B0BC4` (function `001B0A20`).

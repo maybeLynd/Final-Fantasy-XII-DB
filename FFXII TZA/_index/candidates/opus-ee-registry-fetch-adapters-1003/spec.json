@@ -1,0 +1,15 @@
+{
+ "page": "22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/class-descriptor-and-metadata-system.md",
+ "members": "22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/members/registry-fetch-traversal-adapters.tsv",
+ "kind": "fetch_call",
+ "group": "all",
+ "title": "the registry-fetch reflection traversal adapters, one row per member",
+ "heading": "## Per-member rows: the registry-fetch function each traversal adapter calls, and the class it returns (OPUS, 2026-10-03)",
+ "lead": "The family `registry-fetch reflection traversal adapters` (frontmatter: 84 members; {N} get a row here) shares one shape, stated here once and not repeated per row: on each path the adapter calls a registry-fetch function and hands its result with the object to the shared traversal `0063E2E0`. What differs from member to member is that fetch function: no two members call the same one. Each row anchors the adapter's first call to it (the member's distinguishing instruction) and states the fetch function and the class whose descriptor it constructs and returns. The class name is read from the certified image: the `lea r8, [name]` before the fetch function's first call to a descriptor constructor (`00632C90` or `00632D80`). The fetch function is printed as a bare address, not a citation. {CHECK} re-derives every row and compares it with the committed {ROWS}. Two controls are refused: a swapped value and a moved anchor. Members that do not derive are listed in [`excluded.tsv`](../../_index/candidates/opus-ee-registry-fetch-adapters-1003/excluded.tsv).",
+ "group_heading": "### All {N} adapters (OPUS)",
+ "groups": {},
+ "value_col": "registry-fetch function called",
+ "value_fmt": "{V}",
+ "name_col": "class whose descriptor it returns",
+ "name_fmt": "{NAME}"
+}

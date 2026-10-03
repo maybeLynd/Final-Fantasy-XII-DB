@@ -456,8 +456,8 @@ through the IAT (`001F43A5`), the `008C2EF0`/`008C2E38` import pair
 
 | member | role | interior |
 | --- | --- | --- |
-| `001F3FD0` (144 B) | intrusive red-black insert — `byte[rdx+0x10]` colour (`001F3FD0`), `[rdx]`/`[rdx+8]` link stores (`001F3FEC`/`001F3FEF`), parent walk `[rdx+0x18]` (`001F3FFD`) | [`001F3FEF`](../../_index/ADDRESS-INDEX.md) |
-| `001F4720` (176 B) | index-record accessor — `rbx = [rcx+0x30]`, `edx = dword[rcx+0x4C]` (`001F4745`/`001F474E`) | [`001F4745`](../../_index/ADDRESS-INDEX.md) |
+| `001F3FD0` (144 B) | intrusive red-black insert — `byte[rdx+0x10]` colour (`001F3FD0`), `[rdx]`/`[rdx+8]` link stores (`001F3FEC`/`001F3FEF`), ~~parent walk `[rdx+0x18]`~~ the key walk, `[rdx+0x18]` being the new node's key half *(corrected 2026-10-02, OPUS: `001F3FD0+0x2D` `mov rdx, qword ptr [rdx + 0x18]` loads the inserted key and `001F3FD0+0x38` compares it with each node's `[r8 + 0x18]`)* (`001F3FFD`) | [`001F3FEF`](../../_index/ADDRESS-INDEX.md) |
+| `001F4720` (176 B) | ~~index-record accessor~~ the digest-tree insert: it pops a node from the free list `rbx = [rcx+0x30]` (refilled through `00680150` with `edx = dword[rcx+0x4C]`), copies the key to `+0x18` and the record pointer to `+0x28`, and calls `001F3FD0` *(corrected 2026-10-02, OPUS: `001F4720+0x5E` `movups xmmword ptr [rbx + 0x18], xmm0`, `001F4720+0x65` `mov qword ptr [rbx + 0x28], rax` and `001F4720+0x6F` `call 0x1f3fd0`; the opener calls it per record at `001F4340+0x337`)* (`001F4745`/`001F474E`) | [`001F4745`](../../_index/ADDRESS-INDEX.md) |
 
 Shared callees outside the census: `00210EC0`, `0017D280`, the CRT
 imports `008C2EF8`/`008C2EF0`/`008C2E38`.

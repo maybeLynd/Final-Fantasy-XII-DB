@@ -1,0 +1,7 @@
+{
+  "status": "VERIFIED_SUPPORTED_CURRENT_OWNER_CHECKPOINT",
+  "revision": 48477,
+  "task": "FABLE-REQ-ASTRA-RT-REMAINDERS-PROBES-0929",
+  "checkpoint_sha256": "f5cf51089753215264931ac86eac9822c7f35c7adebd42f8c28c4b87f44c19a3",
+  "limits": "Original global CAS refusal preserved; documented apply loaded current board under lock and enforced current owner/state. No queue ownership retries or board restore."
+}

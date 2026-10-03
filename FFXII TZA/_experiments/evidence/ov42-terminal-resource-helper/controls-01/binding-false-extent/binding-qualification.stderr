@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-terminal-resource-helper\qualify-binding.py", line 20, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-terminal-resource-helper\qualify-binding.py", line 10, in main
+    checks=[C.check(base,'prepare-binding-extents.py','capture-binding.py','binding-extents-01','binding-capture-01','binding-extents-01.json','binding-source-01.json',['0x3845f0','0x236c30']),C.check(base,'prepare-binding-helper-extents.py','capture-binding-helpers.py','binding-helper-extents-01','binding-helper-capture-01','binding-helper-extents-01.json','binding-helper-source-01.json',['0x237fc0','0x3846f0'])]
+            ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-terminal-resource-helper\capture_prerequisites.py", line 16, in check
+    if e.get('complete') is not True or e.get('driver_sha256')!=sha(folder/prepare):raise ValueError('required complete current extent artifact')
+                                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: required complete current extent artifact

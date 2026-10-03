@@ -501,3 +501,19 @@ vtable `+0x40` call (`00864029`). **Still open (GI-14, narrowed):** which class 
 GS-ALPHA-shaped value becomes the actual blend state.~~
 
 **Where the blend value goes (re-corrected 2026-10-01, OPUS - the paragraph above was off by 8).** `008642A0` returns the new `GiPrim` object plus 8 (`lea rax, [rbx + 8]`), and both emitters address the command through that pointer. So their `+0x30` store is object `+0x38`, the record `+0x38` the section above names, and their `+0x44 = 1` is object `+0x4C`. `GiPrim` (`00863D80`, called with the object itself) tests `+0x4C`. When it is set, `GiPrim` passes `+0x38` to `001EE650`, the GS ALPHA to D3D11 blend translator of BC-1 (81-entry table `00902750` indexed `27·A + 9·B + 3·C + D`; [the BC-1 record](../../_index/candidates/bc1-selector-enum/README.md)). It then applies the result through the device's slot `+0x78`. So the value is a PS2 GS ALPHA register, and the port turns it into blend state as the GS would. The dword at object `+0x30` that `GiPrim` passes to the device's slot 8 (`PrimitiveRendererD3D11`, `006CAEB0`, stored at renderer `+0x208FC`) is a different field. **GI-14 is answered.**
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-the-element-types-00-0a-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00430A60` | 139 B | passes dword `+0` of `rcx` to the call at `00430A60`+0x17 and multiplies by `xmm1`, in place, the float at `+4` of each of the first byte-`+0xC` 8-byte entries of the returned pointer; then does the same with the pointer the call at `00430A60`+0x4E returns for dword `+4` and the count in byte `+0xD` (a zero count skips its loop) | `00430A77`, `00430A95`, `00430A9E`, `00430AAE`, `00430AC5` |
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../../_index/candidates/fable-home-the-element-types-00-0a-1002/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `00180100` | 32 B | `004355D0` + 0x38 | passes the `rax` result of the call at `00180100` + 0x4 as `rcx` to the call at `00180100` + 0xC, and returns 1 when that second call's `eax` is not 2, else 0 | Interior anchor `00180104`; Interior anchor `0018010C`; Interior anchor `00180116` |

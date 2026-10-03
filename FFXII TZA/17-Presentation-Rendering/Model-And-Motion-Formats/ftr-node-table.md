@@ -56,7 +56,7 @@ place (UQ-220 proven the copy; this page names the container and the pass).
 +0x10  char[32] name       model name, matches the file stem
 +0x30  u32      count2     == count in 1,066 / 1,066 (duplicated)
 +0x34  u32      auxOff     entry-relative offset of the shared u32/f32 constant pool
-+0x38  u32      tailU16    count of the u16 override slots after the node list
++0x38  u32      tailU16    count of the u16 override slots after the node list   <- corrected 2026-10-02, OPUS - read as a u16: 00373060+0x5A and 003712E0+0x25 movzx word ptr [rax + 0x38]
                           (== the @FDM key count in 1,045/1,045 files; the
                           `00373060` bound)
 +0x3C  u32      _zero      0 in 1,066 / 1,066

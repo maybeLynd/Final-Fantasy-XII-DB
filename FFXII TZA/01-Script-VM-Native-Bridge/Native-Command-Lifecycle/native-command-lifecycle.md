@@ -85,7 +85,7 @@ field width decides it.
 | 1, 2, 4, 6, 8–15 | — | `0x01F26720` | 212 *(shared)* |
 
 **Twelve families share one table**, so their ids alias — `0x2005` and `0x4005` resolve identically.
-Whether that is deliberate aliasing or a fallback for unimplemented families is **not established**
+Whether that is deliberate aliasing or a fallback for unimplemented families is **not established** *(answered: AO-1, 2026-09-12, §7; 2026-10-02, OPUS)*
 (**AO-1**).
 
 Total distinct commands across the four real tables plus the default: **1,960**. The authored catalog
@@ -259,7 +259,7 @@ result list @ rbx
       the return type. Section 11. **AO-3.**
 - [x] What families 3, 5 and 7 contain. **PARTLY ANSWERED 2026-09-02** — family **5**'s single
       command is an exact duplicate of family **7**'s command 0 (same `begin` `003567F0`, same `poll`
-      `005114F0`), so it is not a distinct feature. Family **3** is **spawn**
+      `005114F0`), so it is not a distinct feature. Family **3** is ~~**spawn**~~ *(answered: the battle-actor set, not only spawn — AO-4, 2026-09-27, below; 2026-10-02, OPUS)*
       (`VM_Spawn_ApplySelectedUnit` at `0x3001`). Family 7's contents beyond its first four are
       unread. Section 10. **AO-4.**
       *ANSWERED 2026-09-27 (FABLE, Claude Opus 5.5), static: family 7 is the front end. Its 104 records are 55
@@ -315,7 +315,7 @@ family 7, command 0 (id 0x7000):   begin  FUN_003567F0     poll  FUN_005114F0   
 
 **Identical.** Family 5's entire table is a one-entry copy of family 7's first command. It is not a
 special feature; it is a table that exists to hold one already-existing entry. Why a family was spent
-on it is open, but "family 5 does something singular and important" is **refuted**.
+on it is open *(answered: AO-6 closed 2026-09-12, §7; 2026-10-02, OPUS)*, but "family 5 does something singular and important" is **refuted**.
 
 ### The layout produces coherent commands, which is the real test
 
@@ -343,7 +343,7 @@ rather than a statistic.
 
 ### Cross-confirmation: the `ret 0` no-op appears in a second table
 
-Family 3's commands `0x3001` and `0x3003` carry **`_guard_check_icall`** as their `result` callback —
+Family 3's commands `0x3001` and `0x3003` carry ~~**`_guard_check_icall`**~~ the folded no-op *(corrected 2026-10-02, OPUS: it is the `/OPT:ICF` merge of `ret`-only functions, not the CFG stub — the variables page, 2026-09-13)* as their `result` callback —
 the bare `ret 0` at `0016D6A0`.
 
 The [formula step table](../../08-Combat-Formula/Step-Table/combat-formula-step-table.md) records the
@@ -594,7 +594,7 @@ passes it straight into the camera query:
 ```c
 mgr = FUN_002640c0();
 if (FUN_003da1a0(*(u32 *)(mgr + 0x28), *slot) != 0)
-        return FUN_00267310(actorState[0x15]) == 0;   /* still running? */
+        return FUN_00267310(actorState[0x15]) == 0;   /* still running? */  /* <- corrected 2026-10-02, OPUS: the argument is a manager index and 00267310 reads 02099011 + sx(idx)*0x288, the skip mask (CE-5 below) */
 return false;                                          /* finished */
 ```
 
@@ -774,7 +774,7 @@ the live object (`0026223B`) before dispatch.
 
 | member | role | interior |
 | --- | --- | --- |
-| `003DC240` (39 B) | `GetPollCallback` — bounds-checks `family` against `dword[02B57EF0]` (`003DC253`), returns `tbl[family]`'s record `+16 + 32*command` field (`shl rax, 5` at `003DC25A`) | [`003DC243`](../../_index/ADDRESS-INDEX.md) |
+| `003DC240` (39 B) | `GetPollCallback` — ~~bounds-checks `family` against `dword[02B57EF0]`~~ bounds-checks the command against the table's own count *(corrected 2026-10-02, OPUS: `003DC24A mov rcx, [rcx + rax*8]` then `003DC253 cmp edx, dword ptr [rcx]`; the family index is never bounded)* (`003DC253`), returns `tbl[family]`'s record `+16 + 32*command` field (`shl rax, 5` at `003DC25A`) | [`003DC243`](../../_index/ADDRESS-INDEX.md) |
 | `003DC2A0` (41 B) | `GetResultCallback` — same `02B57EF0` bound + `shl rax, 5` (`003DC2B3`/`003DC2BD`), returns the `+32` callback field with `lea 01F26720` (`003DC2D5`) | [`003DC2A3`](../../_index/ADDRESS-INDEX.md) |
 
 Shared callees outside the census: `00263FF0` and `00358940` — the rebind

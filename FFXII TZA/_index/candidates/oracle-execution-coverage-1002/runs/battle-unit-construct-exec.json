@@ -1,0 +1,21 @@
+{
+ "blocks_in_image": 206,
+ "blocks_outside_image": 0,
+ "catalogue": "e2a67b07700c2ec3fbfae3213965de35",
+ "classes": {
+  "entered": 3,
+  "returned": 21,
+  "scripted": 6
+ },
+ "elapsed_s": 2.7,
+ "emu_starts": 39,
+ "entries_executed": 21,
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "instrument": "execcov-shim v2",
+ "patched_blocks": 3,
+ "rc": 0,
+ "receipt_md5": "c7abed8d195585a186c23bcd589af496",
+ "run": "battle-unit-construct-exec",
+ "status": "ok",
+ "unique_blocks": 206
+}

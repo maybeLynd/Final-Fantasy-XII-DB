@@ -438,3 +438,13 @@ Interior anchor `001AC405` (function `001AC390`).
 - **UI — CLIENT (1 edge).** 1 inbound (UI bodies `0018EEE0` call page-cited `001867B0`). Substantive edges include `001867B0` is called by `0018EEE0`.
 - **World — SERVICE (1 edge).** 1 outbound (page-cited `0022A0B0` call World bodies `00266D10`). Substantive edges include `0022A0B0` calls `00266D10`.
 - **WorldAreaField — CLIENT and SERVICE (3 edges).** 1 inbound (WorldAreaField bodies `World_UpdateSimulationTick` (00314020) call page-cited `002DEBA0`); 2 outbound (page-cited `001CD0E0` call WorldAreaField bodies `WorldTransition_GetTransitionFieldId` (00314910), `FieldData_GetVariable0` (00265270)). Substantive edges include `001CD0E0` calls `WorldTransition_GetTransitionFieldId` (00314910); `001CD0E0` calls `FieldData_GetVariable0` (00265270); `002DEBA0` is called by `World_UpdateSimulationTick` (00314020).
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-arm-catalogue-slice-b-ids-44-75-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `001EE180` | 79 B | does nothing when `rcx` is null or byte `+8` of `rcx` is nonzero; otherwise, when qword `+0` of `rcx` is non-null, calls the function at the call site `001EE180`+0x2A with that qword and, if its `al` result is nonzero, the function at the call site `001EE180`+0x36 with the same qword, then stores `dl` to byte `+9` of `rcx` (a null qword `+0` skips the calls and the store) | `001EE18F`, `001EE1A5`, `001EE1AA`, `001EE1B6`, `001EE1BB` |
+| `0024B100` | 29 B | copies word `01E0C1D8` to word `01E0C1D4` and word `01E0C1DC` to word `01E0C1D6` | `0024B107`, `0024B10E`, `0024B115` |
+| `0024B120` | 46 B | when `ecx` is nonzero stores dword 0x780 to `01E0C1D8` and 0x438 to `01E0C1DC`; when `ecx` is zero stores 0x200 and 0x1C0 to the same two dwords | `0024B122`, `0024B124`, `0024B12E`, `0024B139`, `0024B143` |

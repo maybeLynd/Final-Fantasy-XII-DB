@@ -486,3 +486,11 @@ Interior anchor `0020BEBD` (function `0020BE50`).
 `0020C440` (273 B) is the path canonicaliser `0020BE50`/`0020C1B0` run on the copied name: the leading-edge scan skips bytes until the first `a`-`z` or a `char - 0x30` bit set in `0x7FFFFFE03FF` (the digit-and-symbol band), interior `/` rewrites to `\`, a doubled `\` passes untouched, and every other byte maps through the `008C2FF0` import into `rsi`'s buffer; the tail NUL-terminates and strips trailing spaces - the mount resolver's name-normalising pass.
 
 Interior anchor `0020C4F7` (function `0020C440`).
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-seb-se-block-index-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `001DBD20` | 58 B | calls `001DBD20 + 0x16` with the incoming registers unchanged and tail-jumps to `00210B60` with its result in `rcx`, the incoming `ecx` in `edx`, the incoming `edx` in `r8d` and the incoming `r8` in `r9` | `001DBD36`, `001DBD3B`, `001DBD44`, `001DBD55` |

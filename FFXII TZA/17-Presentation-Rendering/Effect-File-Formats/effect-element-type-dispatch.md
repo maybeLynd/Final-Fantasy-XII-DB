@@ -17,7 +17,7 @@ audit:
   last_pass: 2026-09-13
   last_pass_kind: reproduction
   last_pass_by: OPUS
-  last_pass_state: opus-effect-dispatch-pass-1 - both dispatchers decoded from the shipped image and both counts reproduce EXACTLY, not approximately. 002F3BC0: the bound is `cmp eax,0xD1` / `ja 002F3E37`, so 210 types, and the two-level table resolves to 48 slots of which slot 47 is the default arm - **47 types with their own case and 163 to the default**, precisely as written, with the first five arms calling 002F2D60 / 00442520 / 00448DE0 / 004427A0 / 00445310 in the page's own order. 0043EBF0: `add eax,-0x42` / `cmp eax,0x69` admits types 0x42-0xAB as written, its table has 19 slots of which slot 18 is the reject arm, and **18 types have a handler**, precisely as written. THREE FACTS STRONGER THAN THE PAGE CLAIMS, all verified here: the 47 case targets are 47 DISTINCT addresses and the 18 are 18 distinct addresses, so no two types share a handler in either table; the two sets are DISJOINT - zero types appear in both - so "47 + 18" really is 65 distinct types and every one of the 18 reaches 0043EBF0 through the default arm, which the page implies but does not state; and the sub-range bounds are not arbitrary, being exactly the minimum and maximum of its own handled set (0x42 is handled and alone at the bottom; 0xAB is handled and the top). The 18 otherwise cluster in contiguous runs - 0x68-0x6B, 0x70-0x74, 0xA3-0xAB less 0xA5. ONE COMPLETENESS NOTE, NOT A DEFECT: section 2.1 names the byte map at 002F3F48 but not the dword target table at 002F3E88 that the second level indexes; likewise 0043ECC4 / 0043EC78 for the sub-range. The page calls the structure "two-level", so nothing it says is wrong. NOT CHECKED: the update-routine table and its shared base routine, the callers, the frame counter at +0x3C, and every open item the page lists as unread.
+  last_pass_state: opus-effect-dispatch-pass-1 - both dispatchers decoded from the shipped image and both counts reproduce EXACTLY, not approximately. 002F3BC0: the bound is `cmp eax,0xD1` / `ja 002F3E37`, so 210 types, and the two-level table resolves to 48 slots of which slot 47 is the default arm - **47 types with their own case and 163 to the default**, precisely as written, with the first five arms calling 002F2D60 / 00442520 / 00448DE0 / 004427A0 / 00445310 in the page's own order. 0043EBF0: `add eax,-0x42` / `cmp eax,0x69` admits types 0x42-0xAB as written, its table has 19 slots of which slot 18 is the reject arm, and **18 types have a handler**, precisely as written. THREE FACTS STRONGER THAN THE PAGE CLAIMS, all verified here: the 47 case targets are 47 DISTINCT addresses and the 18 are 18 distinct addresses, so no two types share a handler in either table; the two sets are DISJOINT - zero types appear in both - so "47 + 18" really is 65 distinct types and every one of the 18 reaches 0043EBF0 through the default arm, which the page implies but does not state; and the sub-range bounds are not arbitrary, being exactly the minimum and maximum of its own handled set (0x42 is handled and alone at the bottom; 0xAB is handled and the top). The 18 otherwise cluster in contiguous runs - 0x68-0x6B, 0x70-0x74, 0xA3-0xAB less 0xA5. ONE COMPLETENESS NOTE, NOT A DEFECT: section 2.1 names the byte map at 002F3F48 but not the dword target table at 002F3E88 that the second level indexes; likewise 0043ECC4 / 0043EC78 for the sub-range. The page calls the structure "two-level", so nothing it says is wrong. NOT CHECKED: the update-routine table and its shared base routine, the callers, the frame counter at +0x3C, and every open item the page lists as unread. # <- corrected 2026-10-02, OPUS - the 47 step case blocks call only 41 distinct functions (0044CC10, 00455390 and 00457E10 are shared), so types do share step handlers
   crossref_clean: false
   reopened_count: 0
 ---
@@ -29,19 +29,19 @@ audit:
 > routines all start from one base routine. This page records the tables' shape. It is the class-like structure in
 > which the `0x440000`–`0x45FFFF` and `0x520000`–`0x52FFFF` bodies are the "methods".
 
-**PARTIAL.** Read:
+~~**PARTIAL.**~~ **DOCUMENTED.** *(corrected 2026-10-02, OPUS: the page's front matter says `status: DOCUMENTED`)* Read:
 - the two full-range dispatchers and the sub-range fallback;
 - their callers;
-- the frame counter step.
+- the ~~frame counter~~ birth step *(corrected 2026-10-02, OPUS: §2.1's correction - `002F3BC0` runs once per element, at birth)*.
 
 Not read:
-- what any individual element type is;
+- ~~what any individual element type is;~~ *(answered: see UQ-204, answered 2026-09-27 - a table of what each of the 65 types puts on screen; 2026-10-02, OPUS)*
 - the element object's layout beyond the fields cited;
-- the link from the EFX chunk runs to element creation.
+- ~~the link from the EFX chunk runs to element creation.~~ *(answered: see §2.8 - the chain is closed end to end; 2026-10-02, OPUS)*
 
 *"Effect" is a working name.* It comes from `002F2530`'s label *effect frame advance* on the
 [game-settings page](../../19-Save-Load-Settings/Game-Settings-Config/game-settings-ini-and-runtime-config.md) and from
-the sub-resource path below. The type values have not yet been matched to authored effect data.
+the sub-resource path below. ~~The type values have not yet been matched to authored effect data.~~ *(answered: see §2.8 - the dispatch key is the authored byte; 2026-10-02, OPUS)*
 
 ## 1. What the player sees
 
@@ -50,7 +50,7 @@ step and 18 more a fallback handler, and the type decides what the piece does ea
 
 ## 2. Native mechanism
 
-### 2.1 The per-frame step — `002F3BC0`
+### 2.1 The ~~per-frame~~ birth step (corrected 2026-10-02, OPUS: it runs once per element) — `002F3BC0`
 
 > **Corrected 2026-09-29 (FABLE, GI-9 / GI-11): the step runs once, at the element's birth, not every frame.** Every
 > arm first calls `002F2D60`, which zeroes the age `+0x3C` / `+0x40` and the update count `+0x48` (`002F30DA`, `002F30DE`,
@@ -95,7 +95,7 @@ The same 56-byte form occurs **51 times image-wide**, each with its own `specifi
 
 | dispatcher | callers (raw E8/E9 index) |
 |---|---|
-| `002F3BC0` (frame step) | `00441B30` only (`00441E71`) |
+| `002F3BC0` (~~frame~~ birth step *(corrected 2026-10-02, OPUS: §2.1)*) | `00441B30` only (`00441E71`) |
 | `002F3910` (update) | `0043EF40` (`0043EFBA`), `00442310` (`00442354`) |
 | `00441B30` (element loop) | `003A8AE0` (`003A8C19`), `0043EF40` (`0043F1DB`) |
 | `003A8AE0` | `003A8950`, `003A8DD0`, `0046EFD0` (`0046F218`), `00538820` (`005388D6`) |
@@ -126,7 +126,7 @@ maintenance and are not read here.
    inside `.text`).
 2. **Otherwise** it sets the render byte `02AEE910` from the definition's `+0x4A` / `+0x4C` or from `020926F8`
    (`004419D0`–`00441A0E`).
-3. **It then walks one of two element chains** (`00441A15`–`00441A82`), calling `002F4020(element, instance)` on each:
+3. **It then walks ~~one of two element chains~~** the instance's one doubly-linked element list, forward from head `+0x118` or backward from tail `+0x128`, but only on the step-2 path or for the six kinds `0x40`, `0x41`, `0xA1`, `0xA2`, `0xA5`, `0xD0`; every other kind returns without walking *(corrected 2026-10-02, OPUS: `00441970`+0x3C..+0x5E switch, other kinds to the tail at +0x119; `002F31C0`+0x90..+0xC4 unlinks through `+0x28` prev / `+0x30` next with head `+0x118` and tail `+0x128`; section 2.8)* (`00441A15`–`00441A82`), calling `002F4020(element, instance)` on each:
    - the chain at `+0x118`, linked through element `+0x30`, when `[[+0x100] + 0x2C4] & 3` is clear;
    - otherwise the chain at `+0x128`, linked through element `+0x28`.
 
@@ -146,7 +146,7 @@ not an immediate.
 
 **Three type dispatchers, three roles, one type space.** For an element, `002F4020` is the per-frame work under the
 instance walk. `002F3BC0` (§2.1, from `00441B30`) and `002F3910` (§2.2, from `0043EF40` / `00442310`) serve other paths.
-Which of those paths is update, draw or creation is **not read**. *(Narrowed 2026-09-13, §2.5: creation is a fourth dispatcher, `005004C0`, on byte `+0x44`.)* The 45 routines of `002F4020` are the core of the
+Which of those paths is update, draw or creation ~~is **not read**~~ *(answered: see §2.1 and §2.5 - the step is birth, `005004C0` creation, the update and the walk the per-frame work; 2026-10-02, OPUS)*. *(Narrowed 2026-09-13, §2.5: creation is a fourth dispatcher, `005004C0`, on byte `+0x44`.)* The 45 routines of `002F4020` are the core of the
 139 functions that `003A72F0` exclusively owns.
 
 ### 2.5 The type × method matrix — 2026-09-13 (FABLE)
@@ -155,7 +155,7 @@ Which of those paths is update, draw or creation is **not read**. *(Narrowed 202
 `005004C0`, switches on the byte at `+0x44` (`0050050B`–`0050052F`), with a sub-range partner `00538910` for
 `0x42`–`0xAB` (`00538910`–`00538939`). `003A9A70` writes that byte and then calls it (`003A9A8F`, `003A9AAD`). Its other
 callers are `003A99F0` (after a `memcpy`) and `003A9BA0`, reached from the EFX data parse `003EDAD0` / `003ED8A0` and
-from instance creation `0024D540` / `0024D970`. **So it is the setup method**, run when an element is built. The step,
+from ~~instance creation~~ the context rebase arms of the per-frame effect pass `0024D540` (`0024D540`+0x114) and of `0024D970` (`0024D970`+0x26), which pass the relocation delta *(corrected 2026-10-02, OPUS: `003A9BA0` adds the delta to each element pointer and calls `005004C0`; `0024D540`+0x16 drains the draw list)*. **So it is the setup method**, run when an element is built. The step,
 update and walk methods of §2.1–§2.4 run later.
 
 Decoding the jump tables (the step, update, walk and setup dispatchers; a seventh method, `002F31C0` - **the element's release**: type teardown, unlink from the owner's active list, push onto its free list; read whole 2026-09-19, [an effect element, frame by frame](an-effect-element-frame-by-frame.md) section 3 - over types
@@ -176,7 +176,7 @@ three of which — `0043EAB0`, `0043ED30`, `0043E9C0` — were found by the swit
 | seventh 002F31C0 | element `+0` − `0x40` | 6 | 6 |
 | sub-seventh 0043E9C0 | `+0` − `0x42` | 9 | 9 |
 
-**248 distinct handler functions, 244 of them on the frontier**, for 65 types with at least one dedicated arm. The only function on more than one method is the empty `ret 0` stub `0016D6A0`, which three arms (walk and two sub-range tables) use as a no-op. Within the step, update and walk methods each type has its own function. The setup method alone
+**248 distinct handler functions, 244 of them on the frontier**, for 65 types with at least one dedicated arm. The only function on more than one method is the empty `ret 0` stub `0016D6A0`, which three arms (walk and two sub-range tables) use as a no-op. ~~Within the step, update and walk methods each type has its own function.~~ The step and update methods share too: 47 step cases call 41 functions (`0x80`/`0x82`/`0x83` share `0044CC10`, `0x8C`/`0x94`/`0x95`/`0x97` `00455390`, `0x8F`/`0x90` `00457E10`) and 47 update cases reach 38 *(corrected 2026-10-02, OPUS: decoded from the case blocks of `002F3BC0` and `002F3910`)*. ~~The setup method alone~~ The setup method also
 shares handlers between types (7 of its 38 serve more than one type, e.g. `00538EB0` for types 6 and 7). A type's
 step, update and walk handlers are consecutive functions; that is noted here as a reading aid and is not the evidence,
 which is the tables. Types 1–5, for instance:
@@ -233,7 +233,7 @@ one type code*, which is the role a reader needs before opening a 1,500-byte bod
 
 #### The first arm: type `'h'` sweeps ten sentinel-gated slots — `00522D80`, 1,531 B (partial, FABLE)
 
-*Read for its shape, not whole.* `rdi` is the element and `r14 = qword[element + 0x20]` its owner, the same two
+*Read for its shape, not whole.* `rdi` is the element and `r14 = qword[element + 0x20]` ~~its owner~~ its definition *(corrected 2026-10-02, OPUS: `002F2D60`+0x3B `mov qword ptr [rcx + 0x20], rax` stores the instance's `+0x108` definition there)*, the same two
 fields type `0x05`'s walk uses — **so the arms share an element layout.**
 
 **Two thirds of the body is one pattern, unrolled ten times.** After an opening `002F1F40` and a sentinel test on
@@ -241,7 +241,7 @@ fields type `0x05`'s walk uses — **so the arms share an element layout.**
 `+0x260`, `+0x2B0`, `+0x300`, `+0x350`, `+0x3A0`, `+0x3F0` — and for each one:
 
 ```asm
-0042FDB0(owner + 0x170 + n*0x50, dword[element + 0x44])   ; the transform workbench, with the element's expression id
+0042FDB0(owner + 0x170 + n*0x50, dword[element + 0x44])   ; the transform workbench, with the element's expression id   ; <- corrected 2026-10-02, OPUS - owner is the definition and +0x44 the element's current frame, trunc(+0x3C) or its loop remainder (002F2530+0xB4..+0xFA); 0042FDB0+0x15 keeps it as the time argument of 004314E0
 cmp dword ptr [rsp + 0x24], 0x80808080 / je               ; skip this slot when it is UNSET
 0026EE00(...)                                             ; compose
 00462260(...)
@@ -257,9 +257,9 @@ skipping whichever the data leaves unset.
 
 #### All eight arms are that one shape, repeated a type-specific number of times (FABLE)
 
-*Measured across the whole leaf after reading `'h'`: **12,463 bytes in eight bodies, and one pattern.*** Every arm
+*Measured across ~~the whole leaf~~ the eight arms in bold above after reading `'h'`: **12,463 bytes in eight bodies, and one pattern.*** *(corrected 2026-10-02, OPUS: the leaf routes nine more types through its jmp stubs to bodies of their own - `0047BFA0`, `005294F0`, `0052A360`, `0052B080`, `0052D920`, `0052EA90`, `00528150`, `00528B50` and `0052C070`, decoded at `0043ED30`+0x14..+0x28; most of them also call `0042FDB0` and test `0x80808080`)* Every arm
 opens with the same sentinel test on the element's `+0x1F0` and then sweeps owner slots at **stride `0x50`**, each
-slot handed to `0042FDB0` with the element's expression id from `+0x44` and **skipped when `0x80808080` comes back**.
+slot handed to `0042FDB0` with the element's ~~expression id~~ current frame *(corrected 2026-10-02, OPUS: `002F2530`+0xB4..+0xFA stores `trunc(+0x3C)`, or its remainder by the definition's loop length, in `+0x44`; `0042FDB0`+0x15 passes it on as the key time)* from `+0x44` and **skipped when `0x80808080` comes back**.
 
 | type code | handler | size | slot sweeps | bytes per sweep |
 |---|---|---:|---:|---:|
@@ -351,14 +351,14 @@ supplies its own flags instead of letting `00540F40` compute them.
 00540DE9  mov   word ptr [02F8F2C6], r10w
 ```
 
-So the entry is **40 bytes (`0x28`)**: `qword[+0]` zero, the **24-bit flags** at `+8` with a nibble from
+So the entry is **40 bytes (`0x28`)**: `qword[+0]` zero, the **24-bit ~~flags~~ sort key** *(corrected 2026-10-02, OPUS: the merge sort compares it, `003A3A50`+0x103 and +0x233; below)* at `+8` with a nibble from
 `byte[02AEE910]` shifted into the top byte at `+0xB`, the second argument at `+0xC`, and a zero `qword` at `+0x10`.
 The body then recomputes the same three predicates for a **second** entry.
 
 **That closes the cluster end to end.** An effect element's character type code picks a pair of `0054xxxx` routines;
 those routines sweep the owner's transform slots at stride `0x50`, skipping the ones the data leaves at
 `0x80808080`, applying the element's authored expression; and the finaliser appends 40-byte entries to the draw list
-at `[02F8F2F8]`, each carrying a 24-bit flags word.
+at `[02F8F2F8]`, each carrying a 24-bit ~~flags word~~ sort key *(corrected 2026-10-02, OPUS: `003A3A50`+0x103 `mov eax, dword ptr [rsi + r9 + 8]`; `00540DB0`+0x44 stores it)*.
 
 ##### The list has twenty-four appenders and ~~no reader~~ one reader, the drain `003A3740` (FABLE, same day; heading corrected 2026-09-25)
 
@@ -604,7 +604,7 @@ the seven microprograms draws.
 
 **Not read here:** the per-type `0054xxxx` pairs themselves; what `0xA4` and `0xA7` do instead *(read 2026-09-27, the
 UQ-204 record)*; the three predicates
-`0024E460`, `003A3D20`, `003A2C70`; the drain end of the list; which of the two dispatches in `002F4020` runs first
+`0024E460` *(answered: see its frontier note below; 2026-10-02, OPUS)*, `003A3D20`, `003A2C70`; ~~the drain end of the list~~ *(answered: see "The drain in full" above; 2026-10-02, OPUS)*; which of the two dispatches in `002F4020` runs first
 for a given byte, and therefore which codes ever reach this leaf in practice — the leaf covers `0x42`–`0xAB`, the
 outer bound is `[022BE7D8]`–`0xD1`, and the overlap is not the whole of either.
 
@@ -619,7 +619,7 @@ to a pointer, or it returns.
 
 **It composes a transform into a global scratch.** The scratch is `[01FD4A78] + 0x800`, taken once at entry.
 `0039B620(dword[element + 0x290])` runs first; then `002F1F40(element, element + 0x230, stack)` and
-`0026EE00(scratch + 0x40, element + 0x240, stack)`; then four `movaps` copy `element + 0x250 … +0x27F` — a
+`0026EE00(scratch + 0x40, element + 0x240, stack)`; then four `movaps` copy ~~`element + 0x250 … +0x27F`~~ `element + 0x250 … +0x28F` *(corrected 2026-10-02, OPUS: `00449AB0`+0xB4..+0xD7 read `+0x250`, `+0x260`, `+0x270` and `+0x280`)* — a
 4×4 matrix — into `scratch + 0x00 … +0x3F`.
 
 **It assembles a render-state byte bit by bit.** `scratch + 0x1F1` is built with the copy-these-bits idiom
@@ -654,7 +654,7 @@ to the emitter; the four resolve-and-branch blocks between the state assembly an
 
 ### The queue this came from — 39 large bodies cited only at their entry (FABLE)
 
-Regenerable with `check_entry_only_sizes.py --db <db> --list`; **86,255 bytes** in total, biggest first. Nine are
+Regenerable with `check_entry_only_sizes.py --db <db> --list`; **86,255 bytes** in total, biggest first. ~~Nine~~ Twelve *(corrected 2026-10-02, OPUS: the table that follows has twelve rows, each naming its page)* are
 named by a page in this folder or its neighbours, which is why the lane starts here:
 
 | body | size | the DOCUMENTED page that names its entry |
@@ -687,7 +687,7 @@ in `CONTRACT-render-record-pool-lifecycle.md`. So a row here means *no DOCUMENTE
 which is a property of citations; it is **not** evidence that nothing is understood about the body, and a reader
 should check the other pages before opening one.*
 
-The other 27 report **"no DOCUMENTED citer found"** — the largest being `0040B780` (8,458 B), `007E0B60` (6,716 B)
+The other 27 *(of the first run's 39; the re-check above counts 25 of 40 - scope named 2026-10-02, OPUS)* report **"no DOCUMENTED citer found"** — the largest being `0040B780` (8,458 B), `007E0B60` (6,716 B)
 and `006515C0` (4,129 B) — which means the tool counted them entry-only from a citer that is no longer DOCUMENTED.
 *Those need the re-check the tool asks for before anyone reads them*, because the queue's own premise may not hold
 for them.
@@ -837,7 +837,7 @@ authored exactly once, in one file** (`0x62` has 2, `0x8E` 136).
 `002F2D60` is the type-`0x00` step arm **and** the shared step-base routine — every one of the 47
 step case handlers calls it (call sites `002F3BFB`, `00442529`, `004427A9`, …). Its prologue wires
 the fresh element to its spawn record `[instance+0x100]` → `element+0x18`, its instance → `+0x8`,
-its definition → `+0x20`, and clears the flag byte `+0x1`; the tail of the same body fills the
+its definition → `+0x20`, and ~~clears the flag byte `+0x1`~~ clears bits 1 and 2 of the flag byte `+0x1` *(corrected 2026-10-02, OPUS: `002F2D60`+0x44 `and byte ptr [rcx + 1], 0xf9`)*; the tail of the same body fills the
 element's transform block and defaults the colour word `+0x1F0` to `0x80808080` (the dominant value
 of the mesh `+0x28` array) before stamping the type byte. So the element's dispatch key **is** the
 authored byte, installed by the routine all step arms share.
@@ -875,7 +875,7 @@ bit doesn't force — six kinds walk, the rest are skipped.
 
 ```
 element  +0x00  u8   type, 0..0xD1
-         +0x3C  f32  frame counter, +1.0 per step (unless paused)
+         +0x3C  f32  frame counter, +1.0 per step (unless paused)   <- corrected 2026-10-02, OPUS - += dt in every update (002F2530+0x52); the step adds 1.0 once, at birth, and only when 00314960() is non-zero and 001EDDA0() is 0 (002F3BC0+0x281..+0x2A0); 001EDDA0 is the frame-rate test (0 only while 01F82E38 is set by 001EDDC0+0x28 and 01DFE0C0 is 0), not a pause
          +0x224 u16  stamp from 00250000(), set each step
          +0x226 u16  cleared each step
 ```
@@ -884,7 +884,7 @@ element  +0x00  u8   type, 0..0xD1
 
 | group | page | status |
 |---|---|---|
-| `0x00`–`0x0A` (base + first derived) | [the-element-types-00-0a](the-element-types-00-0a.md) | method vocabulary + per-type record maps read; step/update tail helpers and emit calls `not read` |
+| `0x00`–`0x0A` (base + first derived) | [the-element-types-00-0a](the-element-types-00-0a.md) | method vocabulary + per-type record maps read; ~~step/update tail helpers and emit calls `not read`~~ step/update tails read on an-effect-element-frame-by-frame.md (nine tails and the shared helper `0044B960`), emits in UQ-204 *(answered: see those pages; 2026-10-02, OPUS)* |
 | `0x60`–`0x74` (main `0x60`–`0x67` + sub `0x68`–`0x74`) | [the-element-types-60-74](the-element-types-60-74.md) | record maps + helper roles (PRNG `0044B960`, deferred-free queue `0024B1C0`); `0x70` confirmed definition-only; tails `not read` |
 | `0x80`–`0x97` | [the-element-types-80-97](the-element-types-80-97.md) | shared-method band: sibling types share step/update/setup; variant-selector walks found (record flag bytes `+0x294`/`+0x2A4`/`+0x330`/`+0x337` pick emit paths) |
 | `0x40`–`0x42`, `0xA0`–`0xAB`, `0xD0`–`0xD1` | [the-element-types-40-42-a0-ab-d0-d1](the-element-types-40-42-a0-ab-d0-d1.md) | completes all 65 handled types; `0xD0`/`0xD1` carry their payload in the seventh method; `0x41`/`0xD0` share the 5 B update stub `00464F10` |
@@ -899,7 +899,7 @@ element  +0x00  u8   type, 0..0xD1
       - 7 state-only types.
       *The selector half, kept:* **HALF ANSWERED 2026-09-16 (SWE2-DATA).** Which authored data selects the type:
       the `0xA00` chunk's record-header byte at `+0xE`, proven corpus-wide (§2.8) and copied to
-      element `+0` by `002F2D60` (`002F30F2`). *Not* answered: what each of the types is.
+      element `+0` by `002F2D60` (`002F30F2`). ~~*Not* answered: what each of the types is.~~ *(answered: see the UQ-204 answer above; 2026-10-02, OPUS)*
 - [x] **UQ-205 ANSWERED 2026-09-16 (SWE2-DATA).** The tables are
       [effect-type-methods.tsv](members/effect-type-methods.tsv) — 210 rows, all ten dispatchers
       including walk `002F4020` and the shared-routine groups (e.g. `00538EB0` serves types
@@ -913,7 +913,7 @@ element  +0x00  u8   type, 0..0xD1
          - A non-zero answer lets the update continue with the word still set.
          - Otherwise the word is cleared, and the update continues only if the 27-byte runtime query answers non-zero
            (`002F2550`–`002F2572`).
-      2. **Once per game frame.** If `+0x38` already equals the global frame stamp `[02EBEF88]`, it returns 0. Otherwise
+      2. **Once per game frame.** If `+0x38` already equals ~~the global frame stamp `[02EBEF88]`~~ the frame stamp `dword [[02EBEF88]]`, the first dword of the current context's `+0x1B8` block that `02EBEF88` points to *(corrected 2026-10-02, OPUS: `002F2530`+0x44 `mov rax, qword ptr [02EBEF88]`, +0x4B `mov ecx, dword ptr [rax]`, +0x4D `cmp dword ptr [rbx + 0x38], ecx`; `0024D540`+0xC6 `lea rax, [rdi + 0x1b8]` is what +0xCD stores)*, it returns 0. Otherwise
          `+0x3C += dt`, the float in `xmm2` (`002F2574`–`002F2587`).
       3. **A half-rate gate** for element types `0x67`–`0x74` in the bit set `0x341B`, when a 27-byte runtime query
          answers 0. Such an element skips the frame while `trunc(+0x3C)` is odd (`002F2595`–`002F25B0`).
@@ -928,12 +928,12 @@ element  +0x00  u8   type, 0..0xD1
          `002F2693`), and reaches the completion calls near its end (`002F2C69`, `002F2C76`).
       **Not read:** the track semantics between steps 5 and 6, and the definition byte `+0x44 == 0xA0` branch at
       `002F262D`.
-      ***ANSWERED 2026-09-17 (FABLE): beyond the gates, `002F2530` is the shared motion integrator: it samples the element's three motion tracks, then, once per whole frame, rotates and advances the position on the workbench row, applies a floor arm chosen by the definition, wraps the angle accumulators, refreshes attachments and finally decides completion.** *The `0xA0` branch*: when the definition byte `+0x44` (at `[element + 0x20] + 0x44`) is `0xA0` or more the body is skipped and the frame count returned (`002F262D`..`002F2637`). *Sampling*: the key sampler `004309C0(track, frame +0x44)` runs on the definition's track block `[element + 0x20]` at `+0x00`, `+0x20` and `+0x10` (`002F2693`..`002F26C5`), and the results are cached as `+0x1F8` = track 0 times `+0x50`, `+0x200` = track 2 plus `+0x58`, `+0x1FC` = track 1 plus `+0x54` (`002F26CA`..`002F2707`), with the difference of tracks 0 and 2 scaled by `[008C5F6C]` (degrees to radians) as the turn and `+0x1FC` scaled by `-0.1` (`[00900308]`) as the per-frame vertical term. *Per whole frame* (`n` from step 5, loop `002F2750`..`002F2B84`): the workbench row `022D92E0` receives `+0xB0` plus `+0xC0`, directly when track 0 is exactly zero (`002F2750`..`002F27C9`) and otherwise after `003A2B20` has rotated `+0xB0` by the turn and `003A2900` has run on it (`002F27CE`..`002F2864`); the vector `(0, vertical, 0, w)` at `022D92F0` is then added (`002F286C`..`002F28D7`), so the velocity gains the vertical term and the position the velocity, and `+0x6C` is set to `1.0` on one arm (`002F2963`). The definition byte `+0x45` picks the floor arm: 1 compares the height `002F3750(element, context)` with `+0x64` and, when above it, negates the vertical velocity `+0xB4` (sign mask `[01CEBDA0]`) and damps it by byte `+0x46` percent (`[008F3134]` = 100) (`002F2A00`..`002F2A4E`), a bounce; 2 makes the same test and, when above, ends the element through `002F3890`, `003A8950(3, element)` and `002F31C0` (`002F2A50`..`002F2A5F`, `002F2D37`..`002F2D52`). The three angle accumulators `+0xE0`, `+0xE4`, `+0xE8` are then wrapped by one turn, `[01CEBC78]` = 2π down and `[00915624]` = -2π up (`002F2AE9`..`002F2B77`). *After the loop*: flag byte `+1` bit 1 resolves an attachment through `003A8240(context +0x1C, +0x204)` and bit 2 through `003A8F80(+0x218, +0x21E, +0x21C)` checked by `00441EE0(result, +0x210) == 1` (`002F2B8A`..`002F2C4D`). *Completion*: with the definition's `+0x44` at zero, and either the pause predicate `001EDDA0` true or `+0x40` bit 0 clear, ~~the element is released (`002F3890`) and completed with kind 2~~ **`002F3890` shifts the position history (`+0x70` to
+      ***ANSWERED 2026-09-17 (FABLE): beyond the gates, `002F2530` is the shared motion integrator: it samples the element's three motion tracks, then, once per whole frame, rotates and advances the position on the workbench row, applies a floor arm chosen by the definition, wraps the angle accumulators, refreshes attachments and finally decides completion.** *The `0xA0` branch*: when the definition byte `+0x44` (at `[element + 0x20] + 0x44`) is `0xA0` or more the body is skipped and the frame count returned (`002F262D`..`002F2637`). *Sampling*: the key sampler `004309C0(track, frame +0x44)` runs on the definition's track block `[element + 0x20]` at `+0x00`, `+0x20` and `+0x10` (`002F2693`..`002F26C5`), and the results are cached as `+0x1F8` = track 0 times `+0x50`, `+0x200` = track 2 plus `+0x58`, `+0x1FC` = track 1 plus `+0x54` (`002F26CA`..`002F2707`), with the difference of tracks 0 and 2 scaled by `[008C5F6C]` (degrees to radians) as the turn and `+0x1FC` scaled by `-0.1` (`[00900308]`) as the per-frame vertical term. *Per whole frame* (`n` from step 5, loop `002F2750`..`002F2B84`): the workbench row `022D92E0` receives `+0xB0` plus `+0xC0`, directly when track 0 is exactly zero (`002F2750`..`002F27C9`) and otherwise after `003A2B20` has rotated `+0xB0` by the turn and `003A2900` has run on it (`002F27CE`..`002F2864`); the vector `(0, vertical, 0, w)` at `022D92F0` is then added (`002F286C`..`002F28D7`), so the velocity gains the vertical term and the position the velocity, and `+0x6C` is set to `1.0` on one arm (`002F2963`). The definition byte `+0x45` picks the floor arm: 1 compares the height `002F3750(element, context)` with `+0x64` and, when above it, negates the vertical velocity `+0xB4` (sign mask `[01CEBDA0]`) and damps it by byte `+0x46` percent (`[008F3134]` = 100) (`002F2A00`..`002F2A4E`), a bounce; 2 makes the same test and, when above, ends the element through `002F3890`, `003A8950(3, element)` and `002F31C0` (`002F2A50`..`002F2A5F`, `002F2D37`..`002F2D52`). The three angle accumulators `+0xE0`, `+0xE4`, `+0xE8` are then wrapped by one turn, `[01CEBC78]` = 2π down and `[00915624]` = -2π up (`002F2AE9`..`002F2B77`). *After the loop*: flag byte `+1` bit 1 resolves an attachment through `003A8240(context +0x1C, +0x204)` and bit 2 through `003A8F80(+0x218, +0x21E, +0x21C)` checked by `00441EE0(result, +0x210) == 1` (`002F2B8A`..`002F2C4D`). *Completion*: with the definition's `+0x44` at zero, and either ~~the pause predicate~~ the frame-rate test `001EDDA0` true *(corrected 2026-10-02, OPUS: it returns 0 only while `[01F82E38]` is set and `[01DFE0C0]` is 0, `001EDDA0`+0x0..+0x12; the 60 fps arm `001EDDC0`+0x28 sets `01F82E38`)* or `+0x40` bit 0 clear, ~~the element is released (`002F3890`) and completed with kind 2~~ **`002F3890` shifts the position history (`+0x70` to
 `+0x80`, the parent-transformed `+0x60` to `+0x70`) and copies the colour `+0x1F0` to `+0x1F4` - it releases nothing - and
 the child-spawn slots run with trigger 2; the definition's `+0x44` is the element type, so this is type `0x00`'s own
 spawn step, with no cull (corrected 2026-09-29, OPUS falsification pass 1, `CON-179`; precision on SWE2-AUDIT-SPEC's
 batch-7 review: this gate reads definition `+0x44` at `002F2C51`, while the dispatcher `002F3910` reads the element's
-byte 0, and the two agree through the constructor copy `002F30F2`)** (`003A8950`, `002F2C4D`..`002F2C76`). *Return*: when the pause predicate is false, the owner record at `[[element + 8] + 0x10]` supplies its bytes `+0x3AC`, `+0x3AE`, `+0x3A2` and, unless the element type is `0xD1`, `001EDBB0(+0x40, byte)` may veto the frame with 0 (`002F2C7B`..`002F2CC1`); otherwise the whole-frame count is returned. The callees are named here by what this body does with them; their own bodies were not read. Static, the 2,094-byte body read end to end.*
+byte 0, and the two agree through the constructor copy `002F30F2`)** (`003A8950`, `002F2C4D`..`002F2C76`). *Return*: when ~~the pause predicate~~ the frame-rate test `001EDDA0` *(corrected 2026-10-02, OPUS: not a pause, as above)* is false, the owner record at `[[element + 8] + 0x10]` supplies its bytes `+0x3AC`, `+0x3AE`, `+0x3A2` and, unless the element type is `0xD1`, `001EDBB0(+0x40, byte)` may veto the frame with 0 (`002F2C7B`..`002F2CC1`); otherwise the whole-frame count is returned. The callees are named here by what this body does with them; their own bodies were not read. Static, the 2,094-byte body read end to end.*
 - [x] **UQ-207 ANSWERED 2026-09-15 (OPUS) — they walk the *same* list with the same
       per-node call. The only difference is where the step comes from: `0043EF40` is **caller-timed**
       and `00442310` is **self-timed at a fixed wall-clock rate**.**
@@ -1045,8 +1045,8 @@ Shared callees outside the census: `002F2D60`.
 `002F2D60` — 1,111 B, 41 frontier callers at census; case-arm 1 of the `002F3BC0` dispatcher per
 §2.1. Interior verified: [`002F2DD6`](../../_index/ADDRESS-INDEX.md) is
 `movzx ecx, byte [rsi+0x283]` — the body initialises the `rcx` out-record from `rdx` (links
-`rdx`'s `+0x100`/`+0x108`, copies the `+0x80`/`+0x90` quads to `+0x60`/`+0xB0`, clears `+1` bits
-`0xF9`), then switches on the source's `+0x283` subtype byte over `{2,6,7,9,10}` to fill
+`rdx`'s `+0x100`/`+0x108`, copies the `+0x80`/`+0x90` quads to `+0x60`/`+0xB0`, ~~clears `+1` bits~~ ANDs `+1` with `0xF9`, clearing bits 1 and 2 *(corrected 2026-10-02, OPUS: `002F2D60`+0x44)*
+~~`0xF9`~~), then switches on the source's `+0x283` subtype byte over `{2,6,7,9,10}` to fill
 variant-specific tails (`+0x210`..), finishing with a `003A8950` call when the linked record's
 `+0x44` byte is clear and a final `+0x208` field write from a global object's `+0x1C`.
 
@@ -1193,7 +1193,7 @@ map names `movementStateD4Snapshot`.
 
 ## SWE2-EC7-65 update (2026-09-19) - `0043EAB0`
 
-`0043EAB0` (136 B) is a call-free jump-table leaf - `add r8,r9; jmp r8`, arms `jmp 00522290`/`00522A70`/`00523BF0`/`005247C0`/`00524D30`/`00525D10`/`00526970`/`005270D0`/`005C5230`/`00528050`. Interior anchor `0043EAD8` (the `jmp r8` dispatch).
+`0043EAB0` (136 B) is a call-free jump-table leaf - `add r8,r9; jmp r8`, arms *(eighteen - ten listed here; also `00528AB0`, `005291C0`, `0052A0F0`, `0052ADB0`, `0052BF70`, `0052D370`, `0052E3F0` and `0047BDA0`, `0043EAB0`+0x2B..+0x80; the table's 18; 2026-10-02, OPUS)* `jmp 00522290`/`00522A70`/`00523BF0`/`005247C0`/`00524D30`/`00525D10`/`00526970`/`005270D0`/`005C5230`/`00528050`. Interior anchor `0043EAD8` (the `jmp r8` dispatch).
 
 
 
@@ -2079,63 +2079,63 @@ Interior anchor `00431639` (function `00431610`).
 
 Interior anchor `00545F57` (function `00545EF0`).
 
-`00539030` (316 B) is the `+0x44 = 0x47` creation arm (`005004C0` stub 8): `00500470` prelude, `003AA280`x2, `0042FCF0`x4/`004304F0`x3/`00430AF0`x9 over `+0x80`-`+0x448`.
+`00539030` (316 B) is the ~~`+0x44 = 0x47`~~ `+0x44 = 0x08` *(corrected 2026-10-02, OPUS: `005004C0`'s table (`005004C0`+0x5B..+0x6F) sends type 0x08 here)* creation arm (`005004C0` stub 8): `00500470` prelude, `003AA280`x2, `0042FCF0`x4/`004304F0`x3/`00430AF0`x9 over `+0x80`-`+0x448`.
 
 Interior anchor `0053904D` (function `00539030`).
 
-`00539740` (302 B) is the `+0x44 = 0x52` creation arm (`005004C0` stub 19): `00500470` prelude, `003AA280`x2, `0042FCF0`x2/`004304F0`x10/`00430AF0`x3 over `+0x80`-`+0x2E8`.
+`00539740` (302 B) is the ~~`+0x44 = 0x52`~~ `+0x44 = 0x89` *(corrected 2026-10-02, OPUS: `005004C0`'s table (`005004C0`+0x5B..+0x6F) sends type 0x89 here)* creation arm (`005004C0` stub 19): `00500470` prelude, `003AA280`x2, `0042FCF0`x2/`004304F0`x10/`00430AF0`x3 over `+0x80`-`+0x2E8`.
 
 Interior anchor `0053975D` (function `00539740`).
 
-`00539610` (302 B) is the `+0x44 = 0x51` creation arm (`005004C0` stub 18): `00500470` prelude, `0020E620`x2/`003AA280`x2, `0042FCF0`x2/`004304F0`x9/`00430AF0`x3 over `+0x80`-`+0x2C0`.
+`00539610` (302 B) is the ~~`+0x44 = 0x51`~~ `+0x44 = 0x88` *(corrected 2026-10-02, OPUS: `005004C0`'s table (`005004C0`+0x5B..+0x6F) sends type 0x88 here)* creation arm (`005004C0` stub 18): `00500470` prelude, `0020E620`x2/`003AA280`x2, `0042FCF0`x2/`004304F0`x9/`00430AF0`x3 over `+0x80`-`+0x2C0`.
 
 Interior anchor `0053962D` (function `00539610`).
 
-`00539870` (260 B) is the `+0x44 = 0x53` creation arm (`005004C0` stub 20): `00500470` prelude, `003AA280`x2, `0042FCF0`x2/`004304F0`x7/`00430AF0`x3 over `+0x80`-`+0x2D0`.
+`00539870` (260 B) is the ~~`+0x44 = 0x53`~~ `+0x44 = 0x8A` *(corrected 2026-10-02, OPUS: `005004C0`'s table (`005004C0`+0x5B..+0x6F) sends type 0x8A here)* creation arm (`005004C0` stub 20): `00500470` prelude, `003AA280`x2, `0042FCF0`x2/`004304F0`x7/`00430AF0`x3 over `+0x80`-`+0x2D0`.
 
 Interior anchor `0053988D` (function `00539870`).
 
-`00538DB0` (254 B) is the `+0x44 = 0x44` creation arm (`005004C0` stub 5): `00500470` prelude, `0020E620`/`003AA280`/`0042FCF0`/`004304F0`x2/`00430AF0`x3 over `+0x80`-`+0x620`, `00431770` closer, tail-jumps `00538E7E`.
+`00538DB0` (254 B) is the ~~`+0x44 = 0x44`~~ `+0x44 = 0x05` *(corrected 2026-10-02, OPUS: `005004C0`'s table (`005004C0`+0x5B..+0x6F) sends type 0x05 here)* creation arm (`005004C0` stub 5): `00500470` prelude, `0020E620`/`003AA280`/`0042FCF0`/`004304F0`x2/`00430AF0`x3 over `+0x80`-`+0x620`, `00431770` closer, tail-jumps `00538E7E`.
 
 Interior anchor `00538DD7` (function `00538DB0`).
 
-`00539170` (246 B) is the `+0x44 = 0x48` creation arm (`005004C0` stub 9): `00500470` prelude, `0020E620`x2/`003AA280`x2, `0042FCF0`x2/`004304F0`x3/`00430AF0`x5 over `+0x80`-`+0x2C0`.
+`00539170` (246 B) is the ~~`+0x44 = 0x48`~~ `+0x44 = 0x0A` *(corrected 2026-10-02, OPUS: `005004C0`'s table (`005004C0`+0x5B..+0x6F) sends type 0x0A here)* creation arm (`005004C0` stub 9): `00500470` prelude, `0020E620`x2/`003AA280`x2, `0042FCF0`x2/`004304F0`x3/`00430AF0`x5 over `+0x80`-`+0x2C0`.
 
 Interior anchor `0053918D` (function `00539170`).
 
-`005393B0` (232 B) is the `+0x44 = 0x4E` creation arm (`005004C0` stub 15): `00500470` prelude, `003AA280`x2, `0042FCF0`x2/`004304F0`x3/`00430AF0`x5 over `+0x80`-`+0x2C8`.
+`005393B0` (232 B) is the ~~`+0x44 = 0x4E`~~ `+0x44 = 0x85` *(corrected 2026-10-02, OPUS: `005004C0`'s table (`005004C0`+0x5B..+0x6F) sends type 0x85 here)* creation arm (`005004C0` stub 15): `00500470` prelude, `003AA280`x2, `0042FCF0`x2/`004304F0`x3/`00430AF0`x5 over `+0x80`-`+0x2C8`.
 
 Interior anchor `005393CD` (function `005393B0`).
 
-`00539E90` (225 B) is the `+0x44 = 0x5B`/`0x5C` shared creation arm (`005004C0` stubs 28 and 29): `00500470` prelude, `0020E620`/`003AA280`/`0042FCF0`/`004304F0`x2/`00430AF0`x3 over `+0x80`-`+0x2C0`, `00431770`, tail-jumps `00539F41`.
+`00539E90` (225 B) is the ~~`+0x44 = 0x5B`/`0x5C` shared~~ `+0x44 = 0x91`/`0x92` shared *(corrected 2026-10-02, OPUS: `005004C0`'s table (`005004C0`+0x5B..+0x6F) sends type 0x91 here)* creation arm (`005004C0` stubs 28 and 29): `00500470` prelude, `0020E620`/`003AA280`/`0042FCF0`/`004304F0`x2/`00430AF0`x3 over `+0x80`-`+0x2C0`, `00431770`, tail-jumps `00539F41`.
 
 Interior anchor `00539EB7` (function `00539E90`).
 
-`00539DA0` (225 B) is the `+0x44 = 0x59`/`0x5A` shared creation arm (`005004C0` stubs 26 and 27): `00500470` prelude, `0020E620`/`003AA280`/`0042FCF0`/`004304F0`/`00430AF0`x3 over `+0x80`-`+0x3A0`, `00431770`x2, tail-jumps `00539E51`.
+`00539DA0` (225 B) is the ~~`+0x44 = 0x59`/`0x5A` shared~~ `+0x44 = 0x8F`/`0x90` shared *(corrected 2026-10-02, OPUS: `005004C0`'s table (`005004C0`+0x5B..+0x6F) sends type 0x8F here)* creation arm (`005004C0` stubs 26 and 27): `00500470` prelude, `0020E620`/`003AA280`/`0042FCF0`/`004304F0`/`00430AF0`x3 over `+0x80`-`+0x3A0`, `00431770`x2, tail-jumps `00539E51`.
 
 Interior anchor `00539DC7` (function `00539DA0`).
 
-`00539C10` (223 B) is the `+0x44 = 0x56` creation arm (`005004C0` stub 23): `00500470` prelude, `0020E620`/`003AA280`/`0042FCF0`/`004304F0`x3/`00430AF0`x5 over `+0x80`-`+0x350`, `00431770`, tail-jumps `00539CD2`.
+`00539C10` (223 B) is the ~~`+0x44 = 0x56`~~ `+0x44 = 0x8D` *(corrected 2026-10-02, OPUS: `005004C0`'s table (`005004C0`+0x5B..+0x6F) sends type 0x8D here)* creation arm (`005004C0` stub 23): `00500470` prelude, `0020E620`/`003AA280`/`0042FCF0`/`004304F0`x3/`00430AF0`x5 over `+0x80`-`+0x350`, `00431770`, tail-jumps `00539CD2`.
 
 Interior anchor `00539C2D` (function `00539C10`).
 
-`00539F80` (222 B) is the `+0x44 = 0x5F` creation arm (`005004C0` stub 32): `00500470` prelude, `003AA280`/`0042FCF0`/`004304F0`/`00430AF0`x3 over `+0x80`-`+0x2C0`, `00431770`, tail-jumps `0053A02F`.
+`00539F80` (222 B) is the ~~`+0x44 = 0x5F`~~ `+0x44 = 0x97` *(corrected 2026-10-02, OPUS: `005004C0`'s table (`005004C0`+0x5B..+0x6F) sends type 0x97 here)* creation arm (`005004C0` stub 32): `00500470` prelude, `003AA280`/`0042FCF0`/`004304F0`/`00430AF0`x3 over `+0x80`-`+0x2C0`, `00431770`, tail-jumps `0053A02F`.
 
 Interior anchor `00539FAD` (function `00539F80`).
 
-`00539980` (218 B) is the `+0x44 = 0x4D`/`0x54` shared creation arm (`005004C0` stubs 14 and 21): `00500470` prelude, `0020E620`x2/`003AA280`x2, `0042FCF0`/`004304F0`x4/`00430AF0`x3 over `+0x80`-`+0x240`.
+`00539980` (218 B) is the ~~`+0x44 = 0x4D`/`0x54` shared~~ `+0x44 = 0x84`/`0x96` shared *(corrected 2026-10-02, OPUS: `005004C0`'s table (`005004C0`+0x5B..+0x6F) sends type 0x84 here)* creation arm (`005004C0` stubs 14 and 21): `00500470` prelude, `0020E620`x2/`003AA280`x2, `0042FCF0`/`004304F0`x4/`00430AF0`x3 over `+0x80`-`+0x240`.
 
 Interior anchor `0053999D` (function `00539980`).
 
-`00539B30` (211 B) is the `+0x44 = 0x58`/`0x5D`/`0x5E` shared creation arm (`005004C0` stubs 25, 30, 31): `00500470` prelude, `0020E620`/`003AA280`/`0042FCF0`/`004304F0`/`00430AF0`x3 over `+0x80`-`+0x2B0`, `00431770`, tail-jumps `00539BD3` - the family's widest sharing, three types one body.
+`00539B30` (211 B) is the ~~`+0x44 = 0x58`/`0x5D`/`0x5E` shared~~ `+0x44 = 0x8C`/`0x94`/`0x95` shared *(corrected 2026-10-02, OPUS: `005004C0`'s table (`005004C0`+0x5B..+0x6F) sends type 0x8C here)* creation arm (`005004C0` stubs 25, 30, 31): `00500470` prelude, `0020E620`/`003AA280`/`0042FCF0`/`004304F0`/`00430AF0`x3 over `+0x80`-`+0x2B0`, `00431770`, tail-jumps `00539BD3` - the family's widest sharing, three types one body.
 
 Interior anchor `00539B57` (function `00539B30`).
 
-`00539A60` (204 B) is the `+0x44 = 0x57` creation arm (`005004C0` stub 22): `00500470` prelude, `003AA280`x2, `0042FCF0`/`004304F0`x4/`00430AF0`x3 over `+0x80`-`+0x218`.
+`00539A60` (204 B) is the ~~`+0x44 = 0x57`~~ `+0x44 = 0x8B` *(corrected 2026-10-02, OPUS: `005004C0`'s table (`005004C0`+0x5B..+0x6F) sends type 0x8B here)* creation arm (`005004C0` stub 22): `00500470` prelude, `003AA280`x2, `0042FCF0`/`004304F0`x4/`00430AF0`x3 over `+0x80`-`+0x218`.
 
 Interior anchor `00539A7D` (function `00539A60`).
 
-`005394A0` (178 B) is the `+0x44 = 0x4F` creation arm (`005004C0` stub 16): `00500470` prelude, `0042FCF0`x2/`004304F0`x5/`00430AF0`x3 over `+0x80`-`+0x260`.
+`005394A0` (178 B) is the ~~`+0x44 = 0x4F`~~ `+0x44 = 0x86` *(corrected 2026-10-02, OPUS: `005004C0`'s table (`005004C0`+0x5B..+0x6F) sends type 0x86 here)* creation arm (`005004C0` stub 16): `00500470` prelude, `0042FCF0`x2/`004304F0`x5/`00430AF0`x3 over `+0x80`-`+0x260`.
 
 Interior anchor `005394BD` (function `005394A0`).
 
@@ -2179,7 +2179,7 @@ Interior anchor `00503AC3` (function `00503A80`).
 
 Interior anchor `00376448` (function `00376350`).
 
-`002F3750` (265 B) is the `+0x220` scalar `002F2530` computes per element: when `byte[[rcx+0x20]+0x4B]` lacks bit `4` the answer is `float[[rcx+0x20]+0x70]`; otherwise `byte[+0x4F] & 0x7F` dispatches - `0` copies `+0x70` verbatim, `1` runs `003A3FD0(sbyte[rdx+0x13B])`, `2` runs `003A6BA0(sbyte[rdx+0x13B])`, either guarded by `001EDDA0` plus a `dword[rcx+0x48] > 1`/`> 3` check, and a resolved index (`!= 0xFFFF`) pulls the `x 0x740` `022C6F28` record whose `+0x284` must be nonzero for `00264670([record+0x108])` to add onto `+0x70`; the result stores to `float[rcx+0x220]` and returns - the per-element height/scale the frame walk publishes.
+`002F3750` (265 B) is the `+0x220` scalar `002F2530` computes per element: when `byte[[rcx+0x20]+0x4B]` ~~lacks bit `4`~~ lacks bit 2 (mask `0x04`) *(corrected 2026-10-02, OPUS: `002F3750`+0x2A `test byte ptr [rdi + 0x4b], 4`)* the answer is `float[[rcx+0x20]+0x70]`; otherwise `byte[+0x4F] & 0x7F` dispatches - `0` copies `+0x70` verbatim, `1` runs `003A3FD0(sbyte[rdx+0x13B])`, `2` runs `003A6BA0(sbyte[rdx+0x13B])`, either guarded by `001EDDA0` plus a `dword[rcx+0x48] > 1`/`> 3` check, and a resolved index (`!= 0xFFFF`) pulls the `x 0x740` `022C6F28` record whose `+0x284` must be nonzero for `00264670([record+0x108])` to add onto `+0x70`; the result stores to `float[rcx+0x220]` and returns - the per-element height/scale the frame walk publishes.
 
 Interior anchor `002F3790` (function `002F3750`).
 
@@ -2347,3 +2347,7 @@ Interior anchor `003A3E27` (function `003A3E20`).
 | `00547D80` | 77 B | with `n` = dword `rcx+0x140`, computes (dword `[rdx]` + 0x18 + `n`*0x27) * 0x10, adds `n`*0xC0 for each non-zero byte among `rcx+0x78`, `+0x79` and `+0x7A`, and returns the 32-bit sum shifted right by 4 | `00547D8F`, `00547D96`, `00547D99`, `00547DB7`, `00547DC7` |
 | `0054A980` | 64 B | computes (dword `[rdx]` + 0x3F) * 0x10, adds 0xC0 for each non-zero byte among `rcx+0x156`, `+0x157` and `+0x158`, and returns the 32-bit sum shifted right by 4 | `0054A988`, `0054A995`, `0054A9AA`, `0054A9B8`, `0054A9BC` |
 | `005F01B0` | 111 B | returns at once when `rcx` is null; otherwise, for each of `edx` (unsigned) 0x50-byte entries from `rcx`, calls `0062B7B0(entry)` when `00625EC0(entry)` returns a non-zero byte and then `00616420(entry)`; finally calls `00584730(rcx)` | `005F01B3`, `005F01E3`, `005F01EF`, `005F01F7`, `005F020A` |
+
+`0051CDE0` (998 B) is the element-parameter fill `003E6680` runs: a u16 index selects the `0x740`-stride record off `022C6F28`, `02CA8428` folds in, `01F2B349..4D` byte-table reads pair with `02AEDD30`..`02AEDEA0` vec4 banks, and `00540C70`, `003E5770` (x2), `001FBD80`, `0039D3F0`, `001EDDA0`/`001FBE50` route the result into the element rows - the staged parameter write this dispatch family's callers share.
+
+Interior anchor `0051D043` (function `0051CDE0`).

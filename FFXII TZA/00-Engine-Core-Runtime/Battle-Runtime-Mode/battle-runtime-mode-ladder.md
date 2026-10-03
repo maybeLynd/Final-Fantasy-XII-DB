@@ -985,7 +985,7 @@ together.
 
 ## The `00306760` exclusive subtree — all 2 members bound (SWE2-FRONTIER, followup queue)
 
-`00306760` `BattleAction_UpdateSpecialPresentationSequence` (293 B) —
+`00306760` `BattleAction_UpdateSpecialPresentationSequence` (~~293 B~~ 911 B of code, to the `ret` at `00306760+0x38E`, followed by its switch table up to `00306760+0x3A8`) *(corrected 2026-10-02, OPUS: measured)* —
 the special-presentation tick: `003098D0` (`00306798`), `003299B0`
 (`003067A5`), `dword[022C215C]` sequence state (`003067AA`), the
 `[02EBF190]` context (`003067DB`), member `00306D90` (`003067F4`),
@@ -1003,13 +1003,13 @@ record base.
 
 ## The `00303F00`/`00304060` exclusive-subtree pair — both roots bound (SWE2-FRONTIER, followup queue)
 
-`00303F00` (~27 B) — `qword[02EBF190]` base load (`00303F14`).
+`00303F00` ~~(~27 B)~~ (342 B, `ret` at `00303F00+0x155`) *(corrected 2026-10-02, OPUS: measured)* — `qword[02EBF190]` base load (`00303F14`).
 
 | member | role | interior |
 | --- | --- | --- |
 | `0017D3A0` | `001D50D0()` → `byte[rax+0xE1E] != 0` bool getter (`0017D3A4`/`0017D3AB`) | [`0017D3AB`](../../_index/ADDRESS-INDEX.md) |
 
-`00304060` (~11 B) — `0031B8C0(3)` non-null gate (`0030406B`/`00304073`).
+`00304060` ~~(~11 B)~~ (222 B, `ret` at `00304060+0xDD`) *(corrected 2026-10-02, OPUS: measured)* — `0031B8C0(3)` non-null gate (`0030406B`/`00304073`).
 
 | member | role | interior |
 | --- | --- | --- |
@@ -1020,13 +1020,13 @@ Shared callees outside the census: `001D50D0`, `0031B8C0`, `002E26F0`.
 
 ## The `00303F00`/`00304060` exclusive-subtree pair — both roots bound (SWE2-FRONTIER, followup queue)
 
-`00303F00` (~27 B) — `qword[02EBF190]` base load (`00303F14`).
+`00303F00` ~~(~27 B)~~ (342 B, `ret` at `00303F00+0x155`) *(corrected 2026-10-02, OPUS: measured)* — `qword[02EBF190]` base load (`00303F14`).
 
 | member | role | interior |
 | --- | --- | --- |
 | `0017D3A0` | `001D50D0()` then `byte[rax+0xE1E] != 0` bool getter (`0017D3A4`/`0017D3AB`) | [`0017D3AB`](../../_index/ADDRESS-INDEX.md) |
 
-`00304060` (~11 B) — `0031B8C0(3)` non-null gate (`0030406B`/`00304073`).
+`00304060` ~~(~11 B)~~ (222 B, `ret` at `00304060+0xDD`) *(corrected 2026-10-02, OPUS: measured)* — `0031B8C0(3)` non-null gate (`0030406B`/`00304073`).
 
 | member | role | interior |
 | --- | --- | --- |
@@ -1047,12 +1047,12 @@ Shared callees outside the census: `00303D90`.
 
 ## The `0037D110`/`0037D120` exclusive-subtree pair — both roots bound (SWE2-FRONTIER, followup queue)
 
-Two plain `jmp` thunks into the `02EBF190 + 0x5B04` bit getters.
+Two plain `jmp` thunks into the `02EBF190 + 0x5B04` bit ~~getters~~ setters *(corrected 2026-10-02, OPUS: each compares the bit with `ecx` and writes the word when they differ, `00307200+0x16`–`+0x2C` and `00307240+0x16`–`+0x2C`)*.
 
 | root | member (target) | role | interior |
 | --- | --- | --- | --- |
-| `0037D110` | `00307200` | `dword[+0x5B04] >> 3 & 1` | [`00307210`](../../_index/ADDRESS-INDEX.md) |
-| `0037D120` | `00307240` | `dword[+0x5B04] >> 2 & 1` | [`00307250`](../../_index/ADDRESS-INDEX.md) |
+| `0037D110` | `00307200` | ~~`dword[+0x5B04] >> 3 & 1`~~ sets or clears bit 3 to `ecx`, no write when equal *(corrected 2026-10-02, OPUS: `00307200+0x1E`/`+0x29`)* | [`00307210`](../../_index/ADDRESS-INDEX.md) |
+| `0037D120` | `00307240` | ~~`dword[+0x5B04] >> 2 & 1`~~ sets or clears bit 2 to `ecx`, no write when equal *(corrected 2026-10-02, OPUS: `00307240+0x1E`/`+0x29`)* | [`00307250`](../../_index/ADDRESS-INDEX.md) |
 
 Shared callees outside the census: none.
 
@@ -1239,9 +1239,9 @@ Interior anchor `0035F19A` (the `+0x44` byte fetch).
 
 `00313550` (58 B) is the mode-bit setter `00328BD0`, `0034E1F0`,
 `0034FE80` and `0050FFB0` call: `ecx` is compared against bit 0
-of the `+0x5B04` dword on the `02EC4BA9` object - equal returns,
+of the `+0x5B04` dword on the ~~`02EC4BA9` object~~ `[02EBF190]` block *(corrected 2026-10-02, OPUS: `00313550+0x0` `mov r8, [02EBF190]`)* - equal returns,
 nonzero `ecx` ORs the bit, zero ANDs it off, and both changed
-paths tail `0035C620` to propagate.
+paths tail `0035C620` to propagate *(qualified 2026-10-02, OPUS, from ASTRA's SPEC-accepted [`mode-summon-tail`](../../_experiments/evidence/mode-summon-tail/README.md): 'equal' is the raw 32-bit ECX against bit 0, so 'changed' holds for 0/1 arguments only - with the bit set, any other nonzero value rewrites the same flags and still tails (a source countermodel, no natural caller shown); and the tail is more than propagation: it hands the fixed object `022CA408` to a 2,382-byte UI initializer whose prefix zeroes the object's first 32 bytes, under a normal stack probe, a valid frame and receiver and no interference; the rest of that body is not read)*.
 Interior anchor `00313575` (the `0035C620` tail on the set arm).
 
 ## SWE2-EC7-96 update (2026-09-20) - `00304630` measured

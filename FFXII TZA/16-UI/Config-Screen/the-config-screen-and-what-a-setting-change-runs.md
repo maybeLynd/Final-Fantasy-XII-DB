@@ -225,7 +225,7 @@ which is "newly pressed" is UNRESOLVED — open question `DI-2`.**
    23-entry jump table at 0017DD5C, index = row - 1, bound "> 0x16" -> default
    each live arm: r8d = a property id, then
 0017DD2E   call 001CD040(manager, direction, propertyId)
-0017DD39   call 0016D6A0()                 ; unread
+0017DD39   call 0016D6A0()                 ; unread   <- corrected 2026-10-02, OPUS - 0016D6A0 is ret 0, the stub /OPT:ICF folded empty functions onto
 0017DD40   return 0017E070(row)            ; read the value back out of the config
 ```
 
@@ -289,7 +289,7 @@ tail-jumps to `005C5230`; the distinct arms are:
 | 13 | `002811A5` | not read in detail |
 | 14 | `00280EC3` | `[+0x280]` bit-1 test: set → `002D1AC0([+0x260], 0x8001)`, clear → `002C9EB0(0x8000)`; then `and [+0x280], ~2`, `002CFCF0`, and `[0209AC30]+0xF8` → `00246AD0` |
 | 15 | `002811F0` | not read in detail |
-| 16 | `00280E62` | a 12-call reset battery — `002CE980`, `00291D50`, `00295D10`, `00284E90`, `002CF8B0(0)`, `002CE7A0(0)`, `002CF710`, `002C1390`, `002C2F60`, `002C41F0`, `00567770`, then `00246AD0(0209EA28-obj, self)` and `002470D0(self)` — ends with its own `ret` |
+| 16 | `00280E62` | a 12-call reset battery — `002CE980`, `00291D50`, `00295D10`, `00284E90`, `002CF8B0(0)`, `002CE7A0(0)`, `002CF710`, `002C1390`, `002C2F60`, `002C41F0`, `00567770`, then ~~`00246AD0(0209EA28-obj, self)`~~ `00246AD0(0208EA28-obj, self)` *(corrected 2026-10-02, OPUS: `00280DE0+0xBD` loads `[0208EA28]`; nothing references `0209EA28`)* and `002470D0(self)` — ends with its own `ret` |
 | 18 | `00280E22` | `00281E00`, then clears `[0209AC30]+0xDF8` |
 | 19 | `00280F2A` | not read in detail |
 | `0x11F` | `00281243` | apply-to-all-rows — see below |
@@ -316,7 +316,7 @@ which apply body runs per tick (`00281F3F` writes `+0x11C`/`+0x11E`/`+0x120` on 
 `msg+8 == 0x8001` it loops `i < [self+0xD0]` calling `002C9F20(row_i)` over the `0x20`-stride
 table at `+0xD8` (`00281280`–`002812A0`) — apply the same change to every row.
 
-The row record at `[self+0xD8] + i×0x20` uses the same `0x20` stride as §4's static
+The row record at `[self+0xD8] + i×0x20` ~~uses the same `0x20` stride as §4's static~~ uses a `0x20` stride, not the `0x14` stride of §4's static *(corrected 2026-10-02, OPUS: `0023BD40+0x308` `add r12, 0x14` steps that table, whose first dwords read 0, 1, 2 at 20-byte spacing)*
 `00914710` table (24 rows); whether `+0xD8` points at that table or a per-screen copy is not
 established — `+0` is a `0x4B3`-band request id, the rest not yet field-mapped.
 
@@ -336,7 +336,7 @@ pass.
 names `001D1660` `DevConsole_DispatchCommand` and says the console *"has exactly one entry point"*.
 **Its facts stand and its entry point is now named: the retail Config screen.** 16 of its 282 ids
 (`0x86`, `0xA6`, `0x110`–`0x119`, `0x11B`–`0x11D`) are driven by shipped menu rows a player can reach.
-Whatever else lives in the other 266 arms, **the dispatcher itself is live retail code, and calling the
+Whatever else lives in the other 266 ~~arms~~ ids *(corrected 2026-10-02, OPUS: the 282-entry table holds 226 distinct arms and a default, `001D1660+0x359A`, that 56 ids share)*, **the dispatcher itself is live retail code, and calling the
 whole of it a developer console overstates what was shown.**
 
 ## 9. What this document does not claim
@@ -571,7 +571,7 @@ render layer owns. The crossing is the screen's place inside the draw pass.
 helper-sharing shape as the other screen rows; no resource-semantics crossing.
 
 **Rewards_Progression_Economy — CLIENT.** `002CE7A0`, named in the `00280DE0` id-16 arm's reset
-battery, is 59 bytes that call `00253690`, owned by that layer, take `[[0209EC30]+0x30]`, and post
+battery, is 59 bytes that call `00253690`, owned by that layer, take ~~`[[0209EC30]+0x30]`~~ `[[0209AC30]+0x30]` *(corrected 2026-10-02, OPUS: `002CE7A0+0xD` loads `[0209AC30]`; nothing references `0209EC30`)*, and post
 the result through `002A1F20` with event kind `9` — the progression/economy read the reset performs,
 not a shared responsibility. Read from the shipping bytes 2026-09-15 (SWE2-FRONTIER).
 
@@ -583,7 +583,7 @@ four CombatAction bodies (`00300280`, `00303BD0`, `00305640`, `0030EF20`), one C
 
 ## The `0023BD40` exclusive subtree — 1 member bound (SWE2-FRONTIER, followup queue)
 
-`0023BD40` (~350 B) — a config-screen row handler under a stack cookie.
+`0023BD40` ~~(~350 B)~~ (2,091 B *(corrected 2026-10-02, OPUS: its last instruction is `0023BD40+0x82A` `ret`)*) — a config-screen row handler under a stack cookie.
 
 | member | role | interior |
 | --- | --- | --- |
@@ -673,7 +673,7 @@ arm's `002527B0` tail).
 0x3D0-byte record ensure the settings/dialog builders call: a null
 `rcx` allocates one through `002497B0(0x3D0)` (the `rsp+0x20` flag
 records borrowed-vs-owned), then `002465F0(rec, 0x3D0, 00241D40,
-&out)` runs the table-driven init with the `00241D40` descriptor
+&out)` ~~runs the table-driven init with the `00241D40` descriptor~~ constructs a `0x3D0`-byte widget whose handler is `00241D40` *(corrected 2026-10-02, OPUS: `002465F0` takes the handler in `r8` — `00241BF0+0x7C` `lea r8, [00241D40]`)*
 and returns the record. Interior anchor `00241CE7` (the `call
 002465F0` init).
 

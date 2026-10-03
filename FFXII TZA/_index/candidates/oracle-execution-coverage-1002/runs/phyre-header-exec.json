@@ -1,0 +1,21 @@
+{
+ "blocks_in_image": 137,
+ "blocks_outside_image": 8,
+ "catalogue": "e2a67b07700c2ec3fbfae3213965de35",
+ "classes": {
+  "returned": 18,
+  "returned+faulted": 3,
+  "stubbed": 3
+ },
+ "elapsed_s": 4.2,
+ "emu_starts": 69,
+ "entries_executed": 21,
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "instrument": "execcov-shim v2",
+ "patched_blocks": 14,
+ "rc": 0,
+ "receipt_md5": "3462d8093aee698c927cbf6cf33067b5",
+ "run": "phyre-header-exec",
+ "status": "ok",
+ "unique_blocks": 145
+}

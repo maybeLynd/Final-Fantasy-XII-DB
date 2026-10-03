@@ -1,0 +1,221 @@
+{
+ "page": "15-Input/Input-Name-Registry/CONTRACT-input-name-registry.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "contract-input-name-registry.json",
+ "rows": [
+  {
+   "fn": "006D9680",
+   "text": "reads the name pointer qword `[rcx+8]` and returns 0x11 when it is null; otherwise it walks the list whose head is qword `02EA06D8`, following each node's qword `+0x10`, comparing the zero-terminated string at each node's qword `+8` byte by byte with the name, and returns 0x12 at the first equal string; when no node matches it stores the old head to qword `[rcx+0x10]`, stores `rcx` to `02EA06D8` and returns 0",
+   "anchors": [
+    [
+     "006D968E",
+     "jne"
+    ],
+    [
+     "006D96C8",
+     "sub"
+    ],
+    [
+     "006D96D5",
+     "je"
+    ],
+    [
+     "006D96E0",
+     "mov"
+    ],
+    [
+     "006D96EA",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006D9A70",
+   "text": "reads the name pointer qword `[rcx+8]` and returns 0x11 when it is null; otherwise it walks the list whose head is qword `02EA0748`, following each node's qword `+0x10`, comparing the zero-terminated string at each node's qword `+8` byte by byte with the name, and returns 0x12 at the first equal string; when no node matches it stores the old head to qword `[rcx+0x10]`, stores `rcx` to `02EA0748` and returns 0",
+   "anchors": [
+    [
+     "006D9A7E",
+     "jne"
+    ],
+    [
+     "006D9AB8",
+     "sub"
+    ],
+    [
+     "006D9AC5",
+     "je"
+    ],
+    [
+     "006D9AD0",
+     "mov"
+    ],
+    [
+     "006D9ADA",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "008760A0",
+   "text": "reads the name pointer qword `[rcx+8]` and returns 0x11 when it is null; otherwise it walks the list whose head is qword `02EB8260`, following each node's qword `+0x10`, comparing the zero-terminated string at each node's qword `+8` byte by byte with the name, and returns 0x12 at the first equal string; when no node matches it stores the old head to qword `[rcx+0x10]`, stores `rcx` to `02EB8260` and returns 0",
+   "anchors": [
+    [
+     "008760AE",
+     "jne"
+    ],
+    [
+     "008760E8",
+     "sub"
+    ],
+    [
+     "008760F5",
+     "je"
+    ],
+    [
+     "00876100",
+     "mov"
+    ],
+    [
+     "0087610A",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00876490",
+   "text": "reads the name pointer qword `[rcx+8]` and returns 0x11 when it is null; otherwise it walks the list whose head is qword `02EB82D8`, following each node's qword `+0x10`, comparing the zero-terminated string at each node's qword `+8` byte by byte with the name, and returns 0x12 at the first equal string; when no node matches it stores the old head to qword `[rcx+0x10]`, stores `rcx` to `02EB82D8` and returns 0",
+   "anchors": [
+    [
+     "0087649E",
+     "jne"
+    ],
+    [
+     "008764D8",
+     "sub"
+    ],
+    [
+     "008764E5",
+     "je"
+    ],
+    [
+     "008764F0",
+     "mov"
+    ],
+    [
+     "008764FA",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "008768A0",
+   "text": "reads the name pointer qword `[rcx+8]` and returns 0x11 when it is null; otherwise it walks the list whose head is qword `02EB8348`, following each node's qword `+0x10`, comparing the zero-terminated string at each node's qword `+8` byte by byte with the name, and returns 0x12 at the first equal string; when no node matches it stores the old head to qword `[rcx+0x10]`, stores `rcx` to `02EB8348` and returns 0",
+   "anchors": [
+    [
+     "008768AE",
+     "jne"
+    ],
+    [
+     "008768E8",
+     "sub"
+    ],
+    [
+     "008768F5",
+     "je"
+    ],
+    [
+     "00876900",
+     "mov"
+    ],
+    [
+     "0087690A",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00876D80",
+   "text": "counts the nodes of the list whose head is qword `02EB83B8` (links at qword `+0x10`); when the count differs from dword `[rdx]` it allocates the array with `0017D260(count*8, 8)` and zeroes it (a zero count uses a null array, and a failed allocation returns 0xd), calls `00584730` on the old qword `[rdx+8]` when that differs from the new array, is non-null and dword `[rdx]` is not negative, and stores the new array and count to `[rdx+8]` and `[rdx]`; it then writes each node pointer in list order into the array at `[rdx+8]` and returns 0",
+   "anchors": [
+    [
+     "00876DB5",
+     "cmp"
+    ],
+    [
+     "00876DCC",
+     "call"
+    ],
+    [
+     "00876DD7",
+     "je"
+    ],
+    [
+     "00876E15",
+     "call"
+    ],
+    [
+     "00876E30",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00877060",
+   "text": "reads the name pointer qword `[rcx+8]` and returns 0x11 when it is null; otherwise it walks the list whose head is qword `02EB8428`, following each node's qword `+0x10`, comparing the zero-terminated string at each node's qword `+8` byte by byte with the name, and returns 0x12 at the first equal string; when no node matches it stores the old head to qword `[rcx+0x10]`, stores `rcx` to `02EB8428` and returns 0",
+   "anchors": [
+    [
+     "0087706E",
+     "jne"
+    ],
+    [
+     "008770A8",
+     "sub"
+    ],
+    [
+     "008770B5",
+     "je"
+    ],
+    [
+     "008770C0",
+     "mov"
+    ],
+    [
+     "008770CA",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00879670",
+   "text": "counts the nodes of the list whose head is qword `02EB9D80` (links at qword `+0x10`); when the count differs from dword `[rdx]` it allocates the array with `0017D260(count*8, 8)` and zeroes it (a zero count uses a null array, and a failed allocation returns 0xd), calls `00584730` on the old qword `[rdx+8]` when that differs from the new array, is non-null and dword `[rdx]` is not negative, and stores the new array and count to `[rdx+8]` and `[rdx]`; it then writes each node pointer in list order into the array at `[rdx+8]` and returns 0",
+   "anchors": [
+    [
+     "008796A5",
+     "cmp"
+    ],
+    [
+     "008796BC",
+     "call"
+    ],
+    [
+     "008796C7",
+     "je"
+    ],
+    [
+     "00879705",
+     "call"
+    ],
+    [
+     "00879720",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "ee"
+}

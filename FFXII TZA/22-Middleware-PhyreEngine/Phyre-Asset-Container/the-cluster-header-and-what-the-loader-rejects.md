@@ -135,7 +135,7 @@ if (hdr->m_phyreMarker != 0x50485952) {           /* not 'RYHP' */
     *outWasByteSwapped = 1;                       /* it was big-endian; remember it */
 }
 
-if (checkPlatform && hdr->m_platformID != GetPlatformID())        return 6;   /* 0x44583131 */
+if (checkPlatform && hdr->m_platformID != GetPlatformID())        return 6;   /* 0x44583131 */   // <- corrected 2026-10-02, OPUS - both GetPlatformID (0059A440) and GetPhysicsEngineID (0059A457) are called whatever checkPlatform says; only the compares are guarded (0059A44D, 0059A45C)
 if (checkPlatform && hdr->m_physicsEngineID != GetPhysicsEngineID()
                   && hdr->m_physicsEngineID != 0)                 return 6;   /* 0x424C4C54 or 0 */
 
@@ -143,7 +143,7 @@ if (checkPlatform && hdr->m_physicsEngineID != GetPhysicsEngineID()
                                                                   return 0xD; /* OUT OF MEMORY */
 ```
 
-**Four rejections, three distinct codes: `6` refuse, `9` truncated, `0xD` allocation failed.** Zero
+~~**Four rejections, three distinct codes: `6` refuse, `9` truncated, `0xD` allocation failed.**~~ **Three distinct codes over nine rejection causes: `6` refuse, `9` truncated, `0xD` allocation failed.** *(corrected 2026-10-02, OPUS: in `0059A3B0` code `9` leaves at `0059A3E2` (short header read) and `0059A57A` (short tail read), `0xD` at `0059A524` and `0059A51A`, and `6` for five causes - bad magic `0059A421`, platform or physics mismatch `0059A46C`, null namespace buffer or short-header size mismatch `0059A598`; CONTRACT-phyre-cluster-header.md's return table)* Zero
 is success. The enum is `Phyre::PResult` — a name this database already isolated under `AZ-3` — but
 its symbolic values are not established, so the numbers are reported as numbers.
 *(Checked 2026-09-14, FABLE, against the answered `AZ-3`: still true, and that answer explains why.)* `AZ-3`
@@ -196,7 +196,7 @@ When `m_size != 84` the loader does **not** give up:
   `take = min(84 - m_size, m_packedNamespaceSize)`, and if `84 - m_size` exceeds the namespace size
   the file is refused with `6`.
 - **`m_size > 84`** — a bigger buffer is allocated (`0xD` on failure), the 84 bytes already read are
-  copied in as 21 dwords, and `m_size - 84` further bytes are read; a short read returns `9`.
+  copied in ~~as 21 dwords~~ inline as ten `movups` (five 16-byte loads and stores) plus one dword *(corrected 2026-10-02, OPUS: `0059A536`-`0059A55F`; 84 bytes, no `memcpy` call)*, and `m_size - 84` further bytes are read; a short read returns `9`.
 - **If the file was byte-swapped, the header is swapped *back*** before either path runs.
 
 **Both paths are dead against shipped data** — all 169 files sampled report `m_size == 84`. They
@@ -236,7 +236,7 @@ and the three D3D11 fields partition the corpus exactly as their names say:
 
 **The denominator matters: 169 files is 0.47 % of the 35,984 shipped**, and it is the same extracted
 corpus [`../Reflection-And-Class-Metadata/the-file-schema-against-the-runtime-schema.md`](../Reflection-And-Class-Metadata/the-file-schema-against-the-runtime-schema.md)
-already warns is small and unrepresentative — 6 meshes against 2,097 in the archive. **The uniformity
+already warns is small and unrepresentative — 6 meshes against ~~2,097~~ 2,091 *(corrected 2026-10-02, OPUS: the mesh rows of `members/user-fixup-census.tsv` sum to 2,091 of 35,984, CU-4)* in the archive. **The uniformity
 above is a property of the sample, not a proven property of the shipping data.**
 *Superseded 2026-09-12 by the CU-4 answer directly above, which checked all 35,984 entries and found the uniformity
 holds; noted 2026-09-26 (FABLE, Claude Opus 5.5), `PH-4`. The warning stands for the sample's PROPORTIONS, which
@@ -248,12 +248,12 @@ CU-4 shows it misjudged: textures are 94 % of the archive, not 41 % of the sampl
 |---|---|---:|
 | `0059A3B0` | the header read and validation ladder | 589 B |
 | `0059E070` | its only caller; sets `checkPlatform = 1` | 656 B |
-| `0059A6F0` | reads the packed namespace — **not read here** | 116 B |
+| `0059A6F0` | reads the packed namespace — ~~**not read here**~~ *(answered: see CONTRACT-phyre-cluster-header.md, 0059A6F0 read in full; 2026-10-02, OPUS)* | 116 B |
 | `00686D00` | `GetPlatformID` → `0x44583131` | 6 B |
 | `0069E780` | `GetPhysicsEngineID` → `0x424C4C54` | 6 B |
 | `005983E0` | registers the 18 `PClusterHeaderBase` fields | — |
 | `00598C50` | registers the 3 `PClusterHeaderD3D11` fields | — |
-| `00598DF0` | registers the 10 `PInstanceListHeader` fields — interior verified 2026-09-17 (SWE2-FRONTIER): `006388C0` first at [`00598E0B`](../../_index/ADDRESS-INDEX.md), `008092FC`/`0080929C`/`00808B90`/`00632960` ×9 each — a nine-element registration battery | — |
+| `00598DF0` | registers the ~~10~~ nine *(corrected 2026-10-02, OPUS: nine `00632960` calls, `0059904A` to `00599216`; the same row's nine-element battery)* `PInstanceListHeader` fields — interior verified 2026-09-17 (SWE2-FRONTIER): `006388C0` first at [`00598E0B`](../../_index/ADDRESS-INDEX.md), `008092FC`/`0080929C`/`00808B90`/`00632960` ×9 each — a nine-element registration battery | — |
 | `00632960` | the one field-registration call every one of them uses | — |
 | `01F2E5A0` | `PTypeDefault<unsigned int>` — the type of all 21 fields | — |
 | `02CAA0A0` | byte-swap descriptor for the header | — |
@@ -274,7 +274,7 @@ CU-4 shows it misjudged: textures are 94 % of the archive, not 41 % of the sampl
   wildcard the loader accepts unconditionally; every shipped file uses it.
 - **A truncated file fails differently from a malformed one** — `9` against `6` — but neither is
   shown, so from the outside both look like "the asset didn't load".
-- **The three D3D11 sizes tell the loader how much GPU memory to reserve.** Get them wrong on a mesh
+- **The three D3D11 sizes tell the loader how much ~~GPU~~ memory to reserve.** *(corrected 2026-10-02, OPUS: `00686D10` copies them into the load record and `00686DE0` allocates that many bytes (`00686E2C`-`00686E32`, `0017D260`) and reads them from the file (`00686E44`, `0059D510`); what the D3D11 side does with the buffers is not read here)* Get them wrong on a mesh
   or texture you have rebuilt and the failure will be downstream of every check documented here.
 
 ## 5. What is not known
@@ -296,7 +296,7 @@ CU-4 shows it misjudged: textures are 94 % of the archive, not 41 % of the sampl
 - [x] ~~**What `m_headerClassInstanceCount` and `m_headerClassChildCount` count**, as distinct from
   `m_instanceListCount`. The mesh sample gives 76 and 9,196 against 96 instance lists; the texture
   gives 0 and 0 against 2.~~ **`CU-2` ANSWERED 2026-09-12 (FABLE) over the archive.** A "header
-  class" is a class whose namespace record carries **bit 4 of class word `w7`** — in this title
+  class" is a class whose namespace record carries **~~bit 4~~ the `0x04` bit of class word `w7`** *(corrected 2026-10-02, OPUS: `0x04` is the header flag, CONTRACT-phyre-packed-namespace.md NS-1; 12 and 20 both carry it, and 12 has no `0x10`)* — in this title
   exactly three: `PParameterBuffer` (`w7` = 12), `PAnimationClipBinding` and
   `PModifierNetworkInfoPacket` (`w7` = 20); `w7` is a per-class constant (no class carries two
   values in 684,244 records; `PBase` 32, `PAssetReference` 8, `PClassDescriptor` 2, `PParameterBufferBase`
@@ -747,3 +747,13 @@ through as raw bytes for later linking.
 - When the `PAssetReferenceImport` bytes are consumed, and what their two bytes encode.
 - The fixup types in the corpus beyond the 42-file sample: the census counts fixups, it does not
   decode them.
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-the-cluster-header-and-what-the-loader-r-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00597200` | 17 B | stores `edx` to dword `+4` of `rcx`, then tail-jumps to `0059FFC0(rcx, r8, r9d)` | `00597203`, `00597206`, `00597209`, `0059720C` |
+| `00597F30` | 78 B | calls `0067F6F0(rcx)`, then `00597F30 + 0x21` and `00597F30 + 0x2B` each with `rcx + 0x30`, then `00597F30 + 0x34` and `00597F30 + 0x3D` each with `rcx`, and returns | `00597F47`, `00597F51`, `00597F5B`, `00597F64`, `00597F6D` |
+| `005AA080` | 64 B | calls `0067F6F0(rcx + 0x10)`, then `005AA080 + 0x25` with qword `+8` of `rcx`, then `005AA080 + 0x2F` with `rcx + 0x10`, and returns | `005AA097`, `005AA09B`, `005AA0A1`, `005AA0A5`, `005AA0AF` |

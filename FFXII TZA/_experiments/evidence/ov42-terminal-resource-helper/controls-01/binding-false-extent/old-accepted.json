@@ -1,0 +1,175 @@
+{
+  "producer_complete": true,
+  "method": "A original shipping bytes/static dataflow and arithmetic countermodels",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "driver_sha256": "38c1ef163d3e81df8bbf387d1bb0fea1dfe16a542a93266894b4fde4ddab01bd",
+  "source_pins": [
+    {
+      "path": "binding-source-01.json",
+      "sha256": "cfccd184a8c66d89ba9f29a1af890a60b924597dd18e79dd49eb8a81de712b4a"
+    },
+    {
+      "path": "binding-helper-source-01.json",
+      "sha256": "b9d983e3d51ee3fb1336a961f99fea82d6b15bf36e97a58fd524be60fe4e5f61"
+    },
+    {
+      "path": "retained-resolver-source-01.json",
+      "sha256": "53bb74ce2e587071b463c886cd38bd2f742afe065fe7bb0ba1b641998e4aaa0f"
+    },
+    {
+      "path": "retained-encoder-source-01.json",
+      "sha256": "630c296a59486640f734433628a6c0c1ab15e4b4f6971afb2385d1133b5ca6aa"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 253,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 162,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 442,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 128,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "prerequisite_receipts": [
+    {
+      "path": "binding-extents-01.status.json",
+      "sha256": "e075ebc7ad21147e659104652825e90d13d461c58fa9b46d79289311db20fe7d"
+    },
+    {
+      "path": "binding-capture-01.status.json",
+      "sha256": "5b727fac0e3a9590853cbe57651466f8bc95d2fc75d485155559cc2df14eb488"
+    },
+    {
+      "path": "binding-helper-extents-01.status.json",
+      "sha256": "1f76af539cba8eac08ef18e6f6e48cd6195d684b575400ebd83aa28307a0e0f0"
+    },
+    {
+      "path": "binding-helper-capture-01.status.json",
+      "sha256": "8eb175b5b284e6932a00a75ba7829d2d8e4266ba1ee98f65303e3a1bc435dd4a"
+    }
+  ],
+  "retained_lineage": [
+    {
+      "copy": "retained-resolver-source-01.json",
+      "commit": "d34aa6837ec0c0ed442d0cbfa0d71f5b3e442a02",
+      "member": "Database/FFXII TZA/_experiments/evidence/skeletonref-producer-slice/source-01.json",
+      "sha256": "53bb74ce2e587071b463c886cd38bd2f742afe065fe7bb0ba1b641998e4aaa0f"
+    },
+    {
+      "copy": "retained-encoder-source-01.json",
+      "commit": "134687c7d25bd0f1a4e46ae98d4088532e55537c",
+      "member": "Database/FFXII TZA/_experiments/evidence/ov21-count-publication-window/source-01.json",
+      "blob": "4a376c8cf3d3ac52d3011c99adce1f519e76a6e6",
+      "sha256": "630c296a59486640f734433628a6c0c1ab15e4b4f6971afb2385d1133b5ca6aa"
+    }
+  ],
+  "facts": {
+    "action_binding": {
+      "directory": "QWORD[0208E680], field DWORD+3C at236D82",
+      "wrapper": "237FC0 signextends ECX intoRDX and passes address02EBF138 to3845F0",
+      "slot_publication": "QWORD store3845F4 occurs before nonnull validation/field rebase; not atomic initialization proof"
+    },
+    "scalar_fields": [
+      {
+        "offset": "0xc",
+        "load": "0x384600",
+        "store": "0x38460e",
+        "effect": "x==0 ? 0 : low32(x+low32(D))"
+      },
+      {
+        "offset": "0x10",
+        "load": "0x384614",
+        "store": "0x38461e",
+        "effect": "x==0 ? 0 : low32(x+low32(D))"
+      },
+      {
+        "offset": "0x18",
+        "load": "0x384625",
+        "store": "0x38462f",
+        "effect": "x==0 ? 0 : low32(x+low32(D))"
+      },
+      {
+        "offset": "0x1c",
+        "load": "0x384636",
+        "store": "0x384640",
+        "effect": "x==0 ? 0 : low32(x+low32(D))"
+      }
+    ],
+    "rows": "For a nonzero +C, binder writes low32(+C+low32(D)) without calling20E620; zero stays zero. Decoder consumes that stored DWORD and reads the fullQWORD arena. Same descriptor pointer therefore does not imply the same decoded rows-base after another bind.",
+    "subdirectory": "For initial +14!=0: M=low32(+14+low32(D)); store E=low32(M-low32(A)) through20E620. If M!=0, decode E through20E600 and visit nested directory; +14 stores an encodedDWORD, not a resolved pointer. Decoder=low64(A64+zeroextend32(E)); only low32 roundtrip is universal under unchanged arena.",
+    "fixed_header_writes": "No direct fixed-displacement stores to descriptor+4/+8 in3845F0. Nested directory/child entry writes can alias that storage unless validated resource layout/disjointness rules it out; do not promote direct-field footprint to unconditional whole-call preservation.",
+    "child": "Outer first count entries call3846F0 withR8D=0. Child stores encoder result to the entry slot, decodes child directory, and its zero-depth branch adds child base to each count+1 entry without recursive calls. Callee interpretation assumes valid nonoverlapping storage/ordinary ABI and unchanged arena between paired encode/decode reads.",
+    "resolver": "Complete20E600 and20E620 leaves have no calls and no memory stores. They cannot themselves mutate table or arena; scheduling/concurrent writers and omitted callers remain separate.",
+    "countermodels": [
+      {
+        "descriptor_pointer": "0x100000",
+        "arena": 0,
+        "input_row_offset": "0x20",
+        "first_stored_rows": "0x100020",
+        "second_stored_rows": "0x200020",
+        "first_decoded_low32": "0x100020",
+        "second_decoded_low32": "0x200020",
+        "same_slot_pointer": true,
+        "other_relocated_fields_zero": true,
+        "executed": false,
+        "limits": "Valid supplied descriptor storage and disjoint slot; no claim that the game naturally binds the same prepared descriptor twice."
+      },
+      {
+        "arena": "0x100001000",
+        "rebased_subdir_low32": "0x100100",
+        "stored_encoded": "0xff100",
+        "decoded_full64": "0x100100100",
+        "low32_roundtrip": true,
+        "full64_pointer_equality": false,
+        "executed": false
+      },
+      {
+        "arena": 0,
+        "descriptor": "0x100000",
+        "input_subdirectory_field": 4,
+        "directory_word_count": 0,
+        "directory": "0x100004",
+        "last_entry_address": "0x100008",
+        "original_store": "0x3846b9",
+        "before_stride": 60,
+        "after_stride": 64,
+        "after_dword": "0x100040",
+        "executed": false,
+        "limits": "Constructed overlapping generic descriptor, not a stock action-table sample or natural malformed-resource reachability. Whole-call preservation needs a disjointness/valid-layout premise."
+      }
+    ],
+    "remaining": "No complete writer/alias/callback/concurrency closure across304934 ->304F4D ->3068A7/3068B2 is established. Registrar completion, resource reuse/free, arena reassignment and normal command reachability remain OPEN. Existing quotient bound remains conditional on equal low32 rows-base/equal positiveWORD stride.",
+    "consumer_changes": [
+      "RegistryAG12: replace resolved20E620/pointer wording with encoder then actual20E600 decode; qualify +4/+8 preservation by direct writes versus nested aliases.",
+      "OV42: do not substitute pointer equality for row-base equality; retain binder/reload/arena/disjointness premises until original call-window writers are excluded.",
+      "OPUS: preserve DWORD encoder/QWORD decoder widths, signextended descriptor wrapper and slot-store-before-rebase ordering."
+    ]
+  },
+  "acceptance": "Producer evidence only; independent review and canonical incorporation pending",
+  "cleanup": "No FF12 process, native/emulated execution, PC control, instrumentation, save/config/reference or peer changes."
+}

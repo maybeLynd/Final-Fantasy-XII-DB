@@ -970,3 +970,24 @@ second singleton's flag byte
 gates the first's call.
 Interior anchor `0018035B`
 (the `001A7600` tail).
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../_index/candidates/fable-the-spatial-audio-object-model-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `001A7600` | 41 B | loads qword `+0x88` of `rcx` and returns 0 when it is null, when `r8d` is negative (`js`) or when `r8d` is not below dword `+0x20` (signed `jge`); otherwise returns the qword at index `edx + r8d*2` (both sign-extended, stride 8) of that array | `001A760A`, `001A760F`, `001A7611`, `001A7621`, `001A7626` |
+| `001DBE00` | 58 B | calls the callee at `001DBE00` + 0x16 with the incoming `rcx`, `rdx` and `r8` unchanged, then tail-jumps the callee at `001DBE00` + 0x35 with `rcx` = that call's result, `edx` = the incoming `ecx`, `r8d` = the incoming `edx` and `r9` = the incoming `r8` | `001DBE16`, `001DBE1B`, `001DBE21`, `001DBE35` |
+| `00223EB0` | 35 B | calls the callee at `00223EB0` + 0x19 with `rcx`, `rdx` and `r8` passed through, `r9d` = 0, the fifth (stack) argument the dword 0, the sixth the byte 1 and the seventh the incoming `r9`, and returns its result | `00223EB4`, `00223EB9`, `00223EBC`, `00223EC1`, `00223EC9` |
+| `0026E5D0` | 31 B | returns 0 when qword `0209A670` is zero; otherwise returns the bitwise NOT of qword `0209A6C0` AND qword `0209A6C8` | `0026E5D8`, `0026E5E1`, `0026E5E4`, `0026E5EC` |
+| `0041C970` | 42 B | walks the sign-extended word `+0x28` of `rcx` records of 0xA0 bytes starting at `rcx + 0x30` and returns the address of the first whose dword `+0x80` equals `edx`; returns 0 when the count is not positive or no record matches | `0041C97F`, `0041C981`, `0041C98C`, `0041C995`, `0041C997` |
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../_index/candidates/fable-home-the-spatial-audio-object-model-1002/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `00210BE0` | 30 B | `001DBE00` + 0x35 | moves the arguments down one place (`edx` = `r8d`, `r8` = `r9`) and, when the incoming `edx` is zero, tail-jumps (`00210BE0` + 0x10) with `rcx` = qword `rcx+8`, otherwise tail-jumps (`00210BE0` + 0x19) with `rcx` = qword `rcx+0x10` | Interior anchor `00210BE3`; Interior anchor `00210BE7`; Interior anchor `00210BF0`; Interior anchor `00210BF9` |
+| `002DF280` | 17 B | `003A0E50` + 0x25 | returns 0 when `ecx` is -1; otherwise sets bit 31 of `ecx` (`bts`) and tail-jumps (`002DF280` + 0xC) with the other arguments unchanged | Interior anchor `002DF283`; Interior anchor `002DF285`; Interior anchor `002DF288`; Interior anchor `002DF28C` |

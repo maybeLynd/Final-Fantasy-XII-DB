@@ -1,0 +1,108 @@
+{
+ "page": "17-Presentation-Rendering/Character-Render-Records/render-event-selection-evidence.md",
+ "date": "2026-10-02",
+ "session": "local-w42-agent-a",
+ "report": "render-event-selection-evidence.json",
+ "rows": [
+  {
+   "fn": "00426870",
+   "text": "returns at once when `cx` is -1; otherwise forms the record `qword [022C6F28] + cx*0x740` (`cx` sign-extended), calls the function pointer `rdx` with (that record, `r8`), and when word `+8` of the record is not -1 calls `0042EF90(that word, rdx, r8)`",
+   "anchors": [
+    [
+     "0042688F",
+     "imul"
+    ],
+    [
+     "00426899",
+     "add"
+    ],
+    [
+     "004268A3",
+     "call"
+    ],
+    [
+     "004268AE",
+     "cmp"
+    ],
+    [
+     "004268BA",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0042DC10",
+   "text": "returns when word `+0x2F2` of `rcx` is 1; otherwise takes the signed word at qword `[rdx+8]` as the id, replaced by word `+6` of `rcx` when that is not -1, and when `003E5CF0` returns 0x1C or more (signed) takes the pointer `qword [022C6F28] + id*0x740` (0 when the id is -1 or when that record's dword `+0x284` is 0, and word `+6` is still read through it) and replaces the id with that word `+6` when it is not -1; then calls `0042F310(word [rcx], id zero-extended from 16 bits, 0x10A)`",
+   "anchors": [
+    [
+     "0042DC16",
+     "cmp"
+    ],
+    [
+     "0042DC39",
+     "movsx"
+    ],
+    [
+     "0042DC41",
+     "cmp"
+    ],
+    [
+     "0042DC6A",
+     "cmove"
+    ],
+    [
+     "0042DC8A",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00477610",
+   "text": "indexes 64-byte entries of `02CA6CA0` by the low byte of `edx`; when that entry's dword `+4` equals `edx` it stores `edx - 1` to the entry's dword `+0xC` and returns that value, otherwise it returns 0",
+   "anchors": [
+    [
+     "0047761A",
+     "shl"
+    ],
+    [
+     "00477623",
+     "cmp"
+    ],
+    [
+     "00477626",
+     "cmovne"
+    ],
+    [
+     "00477632",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00520E70",
+   "text": "calls `00426870(word [rcx], 00521050, rdx)` and returns 1",
+   "anchors": [
+    [
+     "00520E74",
+     "movzx"
+    ],
+    [
+     "00520E7A",
+     "lea"
+    ],
+    [
+     "00520E81",
+     "call"
+    ],
+    [
+     "00520E86",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

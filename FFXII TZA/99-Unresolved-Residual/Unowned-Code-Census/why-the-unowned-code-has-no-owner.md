@@ -1487,11 +1487,11 @@ paged-state table.
 
 ## SWE2-EC7-38 update (2026-09-19) - `0041E000`
 
-`0041E000` (461 B) is a call-free unowned body - `[rcx+0x368]` object, `test byte[rdi+0x96], 0x80` gate, `0x80220010` magic, `01EFFAF0`. Interior anchor `0041E034` (inside the gated arm).
+`0041E000` (461 B) is a ~~call-free~~ unowned body *(corrected 2026-10-02, OPUS: it calls `qword [r9 + r13]` through the `01EFFAF0` table at `0041E000`+0x117)* - `[rcx+0x368]` object, `test byte[rdi+0x96], 0x80` gate, `0x80220010` magic, `01EFFAF0`. Interior anchor `0041E034` (inside the gated arm).
 
 ## SWE2-EC7-41 update (2026-09-19) - `0041E1D0`
 
-`0041E1D0` (348 B) is a call-free record walker - `[rcx+0x368]` base plus `[rdx+0x84]`/`[+0x8c]` counts, 6-byte entries tested `byte[+2] & 0x3f` against a `word[+4]` bound, `0x80220040` flag, `01EFFAF0` vtable. Interior anchor `0041E246` (the `test byte [rbp+2], 0x3f`).
+`0041E1D0` (348 B) is a ~~call-free~~ record walker *(corrected 2026-10-02, OPUS: it calls through the `01EFFAF0` table at `0041E1D0`+0xED)* - `[rcx+0x368]` base plus `[rdx+0x84]`/`[+0x8c]` counts, 6-byte entries tested `byte[+2] & 0x3f` against a `word[+4]` bound, `0x80220040` flag, `01EFFAF0` ~~vtable~~ command table *(corrected 2026-10-02, OPUS: 16-byte `{handler, 0}` records with no complete-object locator before them — §19's 128-record table)*. Interior anchor `0041E246` (the `test byte [rbp+2], 0x3f`).
 
 ## SWE2-EC7-41 update (2026-09-19) - `006D5B60`
 

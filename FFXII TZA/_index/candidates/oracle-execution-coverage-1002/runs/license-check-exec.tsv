@@ -1,0 +1,12 @@
+entry	class	mutated
+0020e600	returned	
+002f8fa0	returned	yes
+0030a330	returned	yes
+00322c50	returned	yes
+00323890	returned	yes
+00323bb0	returned	yes
+00323ec0	returned+faulted	yes
+00324020	returned	yes
+003241d0	returned	yes
+00808c40	returned	
+00861ec0	returned	

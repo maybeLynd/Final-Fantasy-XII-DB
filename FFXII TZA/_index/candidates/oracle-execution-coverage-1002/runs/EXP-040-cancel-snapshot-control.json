@@ -1,0 +1,20 @@
+{
+ "blocks_in_image": 7,
+ "blocks_outside_image": 1,
+ "catalogue": "e2a67b07700c2ec3fbfae3213965de35",
+ "classes": {
+  "returned": 1
+ },
+ "elapsed_s": 1.3,
+ "emu_starts": 7,
+ "entries_executed": 1,
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "instrument": "execcov-shim v2",
+ "patched_blocks": 0,
+ "rc": 0,
+ "receipt_md5": "4f8bd46202935b131eca937df229a4cd",
+ "run": "EXP-040-cancel-snapshot-control",
+ "sandboxed": true,
+ "status": "ok",
+ "unique_blocks": 8
+}

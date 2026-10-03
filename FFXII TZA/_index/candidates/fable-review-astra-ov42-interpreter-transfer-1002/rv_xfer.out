@@ -1,0 +1,79 @@
+PASS  exe sha256 = 73461d0896204b1c...
+PASS  manifest.json sha256 = c665e817770ddcde...  | c665e817770ddcde5aaca58279600d8e4914f96c323020d52171514698b988df
+PASS  all 51 manifest members hash as listed  | []
+PASS  00309C00 decodes exactly to its second `ret` (+ 0x31) and has no .pdata entry (a leaf)
+PASS  + 0 reads DWORD 022C2178 (the queue)
+PASS  00309C06 is `cmp eax, -1`
+PASS  queue -1: + 0xB returns 0 with no store
+PASS  + 0x13 stores the queue DWORD raw through RDX (when RDX != 0)
+PASS  + 0x1A / + 0x20 store DWORD 022C218C through RCX (when RCX != 0)
+PASS  + 0x22 resets the queue to -1 and + 0x2C returns 1
+PASS  raw E8/E9 census: two direct calls of 00309C00, at 0034838A (00348330 + 0x5A) and 002D6175 (in the function rooted at 002D5EB0, a chained record from 002D616B)  | ['0x2d6175', '0x34838a']
+PASS  00348355 is `call 0x267e10`
+PASS  0034835A is `mov r8d, eax`
+PASS  00348363 is `call 0x2650b0`
+PASS  0034836B is `mov rsi, rax`
+PASS  0034836E is `call 0x267e10`
+PASS  00348373 is `mov r8d, eax`
+PASS  0034837C is `call 0x2650b0`
+PASS  00348381 is `mov rdx, rsi`
+PASS  00348384 is `mov rcx, rax`
+PASS  0034838A is `call 0x309c00`
+PASS  RSI (the first resolved pointer) is not written between + 0x3B and + 0x51
+PASS  002650BC is `sar eax, 0x18`
+PASS  002650C2 is `and eax, 7`
+PASS  002650C8 is `cmp eax, 5`
+PASS  002650CB is `ja 0x26516c`
+PASS  0026516E is `xor ecx, ecx`
+PASS  002650B0 masks the offset to 24 bits on all seven exits (six scopes + the base-0 default for scopes 6..7)  | 7
+PASS  the reference word is used only through `sar 0x18` / `and 7` and the 24-bit mask: bits 27..31 are never tested
+PASS  PUSHV 00267FC0 decodes exactly to + 0x128; six DWORD jump entries follow (+ 0x128)
+PASS  width = DWORD [rbp - 0x18] >> 28 (+ 0x21)
+PASS  00267FE4 is `cmp eax, 5`
+PASS  the six jump entries resolve to the u8, s8, u16, s16, s32 and f32 loads, in that order  | ['0x267ffc', '0x26800d', '0x26801e', '0x26802f', '0x268040', '0x268050']
+PASS  kind = WORD [rbp - 0x2C] (+ 0xA2), separate from width
+PASS  kind 1 tags 1 (+ 0xF9)
+PASS  kind 1 stores the payload DWORD (+ 0x109)
+PASS  kind 2 tags 2 (+ 0xC0)
+PASS  kind 2 stores the same payload bits (+ 0xD8)
+PASS  both pushes require depth < 0x3F (+ 0xB3 / + 0xF4 `cmp eax, 0x3f`, `jge` skips)
+PASS  00267E18 is `jle 0x267e3b`
+PASS  00267E1A is `dec eax`
+PASS  00267E2A is `je 0x267e51`
+PASS  00267E36 is `call 0x8620c0`
+PASS  00267E42 is `cvttss2si eax, dword ptr [rcx + r8*4 + 0x184]`
+PASS  00267E51 is `mov eax, dword ptr [rcx + r8*4 + 0x184]`
+PASS  00348880 is `call 0x267e10`
+PASS  00348888 is `mov ebx, eax`
+PASS  0034888A is `call 0x267e10`
+PASS  0034888F is `mov edx, ebx`
+PASS  00348891 is `mov ecx, eax`
+PASS  00348893 is `call 0x30eea0`
+PASS  00348898 is `mov ecx, 1`
+PASS  003488A7 is `jmp 0x314d40`
+PASS  00348870 discards the decoder's EAX (+ 0x28 overwrites ECX, EAX is not read before the tail jump)
+PASS  0030EEA6 is `mov ebx, edx`
+PASS  0030EEA8 is `cmp edx, -1`
+PASS  0030EEB2 is `add bx, ax`
+PASS  0030EEB7 is `mov ebx, 0xffff`
+PASS  0030EEF9 is `mov word ptr [rax + 0x758], bx`
+PASS  0030EF00 is `call 0x30cfb0`
+PASS  the decoded word reaches unit +0x758 and 0030CFB0 only when DWORD 022C2170 is 4 (+ 0x2F), after a non-null 0031B7E0(ECX); otherwise it returns -1 or -2
+PASS  emulated original PUSHV -> pop -> decoder, kind 1, u16 / s16 / s32 loads of the raw encoded DWORD w - 0xD0: the decoded word is w for every available queue word (65534 words x 3 widths)  | []
+PASS  words 511..534 through u8 and s8 loads decode to 255..278  | [255, 255, 256, 256]
+PASS  raw 303 / 326 loaded as f32 with kind 2: the pop's CVTTSS2SI gives 0 (positive subnormals), and the decoder gives 208  | [(0, 208), (0, 208)]
+PASS  an integer load with kind 2 converts the integer's bits as a float: 303 as u16 / s32 also decodes to 208  | [208, 208]
+PASS  with DWORD 022C2170 != 4 the decoder writes nothing and does not call 0030CFB0
+PASS  the -1 DWORD decodes to FFFF (the sentinel branch)
+== controls (each patched private image must FAIL at least one check)
+PASS  control: null control: an unchanged private copy passes
+PASS  control: bridge + 0x13 store DWORD -> WORD (`mov word ptr [rdx], ax`)
+PASS  control: native + 0x51 `mov rdx, rsi` -> `mov rdx, rax`
+PASS  control: getter + 0x12 `and eax, 7` -> `and eax, 0xf`
+PASS  control: PUSHV u16 load -> s16 (`movsx`)
+PASS  control: pop + 0x32 CVTTSS2SI -> CVTSS2SI (rounding)
+PASS  control: args + 0x1F `mov edx, ebx` -> `mov edx, eax` (pop order swapped)
+PASS  control: decoder + 0x12 `add bx, ax` -> `add ebx, eax`
+PASS  control: decoder + 0x8 `cmp edx, -1` -> `cmp edx, -2`
+PASS  exe on disk unchanged after the controls
+FAILS 0

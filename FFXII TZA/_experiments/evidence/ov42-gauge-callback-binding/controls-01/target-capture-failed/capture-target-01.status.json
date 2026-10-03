@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-gauge-callback-binding\\capture-target.py",
+    "target-source-01.json"
+  ],
+  "driver_sha256": "a3f8ceab0dc0692db3ee306c40ba099e9b6ecc8f10a13eaebbedec5ceaac504d",
+  "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+  "terminal": true,
+  "exit": 1,
+  "exception": null
+}

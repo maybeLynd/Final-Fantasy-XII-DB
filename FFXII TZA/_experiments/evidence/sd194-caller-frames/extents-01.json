@@ -1,0 +1,62 @@
+{
+  "complete": true,
+  "method": "A STATIC_ONLY original physical metadata",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "driver_sha256": "075f5d5dc8da167d8a3c9689b9ac9d31b1e29550fa62c194417164cac69d6376",
+  "directory_bytes": "0080e7020c8a0600",
+  "lookups": [
+    {
+      "path": "sd194-caller-frame-lookup-01.json",
+      "sha256": "0b15e640982609d4f7288a4e5143986021be068d319f9bd1f2b5b7f11fd674a4"
+    },
+    {
+      "path": "sd194-load-frame-lookup-01.json",
+      "sha256": "321df10b9ca80c411488a66a63ffdf0e4a1b3df4fc6feb1c1cb023b6049e2ef7"
+    }
+  ],
+  "bodies": [
+    {
+      "entry": "0x331990",
+      "end_exclusive": "0x3319c4",
+      "bytes": 52,
+      "sha256": "f53af247e513ecc2fd4d39798d3a52fd375e4a4fa777982c90ff54f4ae1771ce",
+      "physical_bytes": "40534883ec208bd9e8a335f3ff4533c08bd08bcbe8b77004008bcbe86035f3ff41b8010000008bd08bcb4883c4205be99c700400",
+      "records": [
+        {
+          "begin": "0x331990",
+          "end_exclusive": "0x3319c4",
+          "chain": [
+            {
+              "record_bytes": "90192100c4192100d029c301",
+              "header_address": "0x1d529d0",
+              "header_bytes": "01060200"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry": "0x378a60",
+      "end_exclusive": "0x378b71",
+      "bytes": 273,
+      "sha256": "86831f5483b73fd348be8482c65cd86363f4082711c07a5f9dd0b633807f8ea2",
+      "physical_bytes": "48895c240848896c2410488974241848897c242041564883ec304533f6bb010000004489353f6fb402418bf0448935614676028bfa891d7d4676028be94585c0743433c9e8f7d8040033c9e82069fbff85c07413393d22467602750b44383527467602410f44de8bcb893d0d467602e85cf7ffffeb298b050446760285c078083b05f6457602746e33c9e8e168fbff85c075078bcbe836f7ffffe8a1f9ffff33c9e8ca68fbff85c0740cb987a9cbede88c4bdfffeb30895c242841b904000000448bc7897c24208bd58bcee890f2ffff41b904000000897c2420448bc78bd58bcee8eaf4ffff85f6740c8bd7b904000000e8ba0e0000488b5c2440488b6c2448488b742450488b7c24584883c430415ec3",
+      "records": [
+        {
+          "begin": "0x378a60",
+          "end_exclusive": "0x378b71",
+          "chain": [
+            {
+              "record_bytes": "608a2500718b2500c0c1c601",
+              "header_address": "0x1d8c1c0",
+              "header_bytes": "011a0a00"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "limits": "Physical extents only. Code/data distinction, helper effects and natural reachability not established by metadata.",
+  "reused_preparation_sha256": "b54cf063af4e29b4ab6463c8fbd76e3b7b4ddbd40065b6a064c9d828f96c6003",
+  "specialized_source_sha256": "32f25874baba7f0ad5bf586212b1fac53db538e14f82a5ca26416f23b175ac0a"
+}

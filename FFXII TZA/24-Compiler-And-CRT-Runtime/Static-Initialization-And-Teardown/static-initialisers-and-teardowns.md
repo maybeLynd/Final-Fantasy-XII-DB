@@ -136,7 +136,7 @@ registering-initialiser column carrying the audit pointer back to the object tha
 
 ## 4. Modding notes
 
-- **Do not hook a teardown to detect object destruction.** It runs at process exit, after the game
+- **Do not hook a teardown to detect object destruction.** ~~It runs at process exit, after the game~~ On a normal quit it does not run at all, and on a CRT `exit` path it runs after the game *(corrected 2026-10-02, OPUS: the 2,153-byte Phyre framework body calls `ExitProcess` at its `+0x7DF` through `008C2260`; UQ-331's answer, §5)*
   has stopped, and it may not free anything - the flag decides.
 - **The list head is the identity.** Two teardowns differ only by which head they unlink from (the owner of each head is in [`members/static-intrusive-list-teardown-owners.tsv`](members/static-intrusive-list-teardown-owners.tsv), §5 UQ-329), so
   the head address is the only way to tell which object a given routine belongs to.
@@ -207,7 +207,7 @@ outside it and two did not, and the two that did not were worth having.*
 |---|---|---|
 | 224 members, one instruction form, 82 bytes each | `family_prover.py --forms` over the tagged frontier group; 186 byte images collapse to 1 | 1 |
 | exactly one external target, `00584730` × 224 | external call/jmp census with intra-body branches excluded | 1 |
-| `00584730` is `operator delete` | its complete 10-byte body: `test rcx, rcx / jne 0019C570 / ret`, and `0019C570` is the `_aligned_free` import stub resolved through the PE import directory | 1 |
+| `00584730` is ~~`operator delete`~~ `if (p) _aligned_free(p)` *(corrected 2026-10-02, OPUS: the body this row cites tail-jumps `0019C570`, and `0019C570` is `jmp [008C2B70]`, the `_aligned_free` import; the image imports no `operator delete`)* | its complete 10-byte body: `test rcx, rcx / jne 0019C570 / ret`, and `0019C570` is the `_aligned_free` import stub resolved through the PE import directory | 1 |
 | the unlink sequence and the conditional free | the complete body above, read instruction by instruction | 1 |
 
 ## 7. Related
@@ -215,17 +215,17 @@ outside it and two did not, and the two that did not were worth having.*
 - [`../Thunk-Layer/the-thunk-layer-and-why-call-counts-disagree.md`](../Thunk-Layer/the-thunk-layer-and-why-call-counts-disagree.md) - the import stub `00584730` tail-calls, and where `_aligned_free` was resolved
 - [`../../22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/class-descriptor-and-metadata-system.md`](../../22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/class-descriptor-and-metadata-system.md) - the initialiser half, and the four other generated reflection families
 
-## SWE2-EC7-19 update (2026-05-15) — `00632BE0` ICF-folded `??_G` cluster window
+## SWE2-EC7-19 update (2026-05-15) — `00632BE0` ~~ICF-folded `??_G` cluster window~~ a constructor, not a `??_G` (corrected 2026-10-02, OPUS: it installs vtables `00D580B0` and `00D580D8`, returns `this` and has 21 direct call sites)
 
 `00632BE0` (170 B) is the sibling constructor in the same family as batch-17's `00632C90`: it base-constructs `rbx = rcx+8` via `00632FB0` with the `[rsp+0x78]` flags `| 0x20` (`00632C10`..`00632C1F`), stores `[rbx+0x28] = r8`, self-links the `+0x38` node, and installs vtable `00D580B0` (RTTI locator → `01D14A40`) (`00632C24`..`00632C3A`). After saving `dword[r14+0x28]` it runs the `[[rsi]+0x40]` post-construction hook on `rsi` and restores the dword (`00632C4D`..`00632C60`), then re-patches the vtable to `00D580D8` (the "PAc"-family vtable) and stores `[r14+0x58] = [rsp+0x80]` (`00632C64`..`00632C75`), returning `r14` — the derived layer completing its own construction over the base's vtable row.
 
 ## SWE2-EC7-34 update (2026-09-19) - `0059A030`
 
-`0059A030` (884 B) is the static-init driver - the `02CA9D91` once-flag gate, then 17 sequential `0059xxxx` init calls (`00592770` through `0059A368`). Interior anchor `0059A04D` (the `00592770` call).
+`0059A030` (884 B) is ~~the static-init driver~~ the scalar-conversion tree lookup - the `02CA9D91` once-flag gate, then ~~17 sequential `0059xxxx` init calls (`00592770` through `0059A368`)~~ 144 sequential initialiser calls (`0059A030+0x1D` through `0059A030+0x2E8`), then a tree descent that returns the matching node's `+0x28` *(corrected 2026-10-02, OPUS: 144 `call` instructions, then the keyed walk ending `0059A030+0x358`; the hardening page's 144-node conversion tree)*. Interior anchor `0059A04D` (the `00592770` call).
 
 ## SWE2-EC7-35 update (2026-09-19) - `0067F700`
 
-`0067F700` (712 B) is the call-free CRT `_Tree` node relink - `byte[+0x10]&1` nil-flag walk, pointer-chasing `[[rcx+0x10]]` compares, the MSVC tree rebalance skeleton. Interior anchor `0067F730` (the loop-head byte test).
+`0067F700` (712 B) is the call-free ~~CRT `_Tree` node relink~~ red-black rebalance of Phyre's own tree - `byte[+0x10]&1` ~~nil-flag~~ colour-bit walk, pointer-chasing `[[rcx+0x10]]` compares, ~~the MSVC tree rebalance skeleton~~ not MSVC's `_Tree` *(corrected 2026-10-02, OPUS: bit 0 of the parent word at `+0x10` is the colour, `0067F700+0x2` to `0067F700+0x18`; `_Tree` keeps `_Color` and `_Isnil` as bytes at `+0x18` and `+0x19`; the ordered-container page names `0067F700` Phyre's tree)*. Interior anchor `0067F730` (the loop-head byte test).
 
 ## SWE2-EC7-113 update (2026-09-21) - `00865660` measured
 
@@ -296,3 +296,11 @@ The worker-count decision
 the app init consults.
 Interior anchor `007979E4`
 (the popcount loop).
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-static-initialisers-and-teardowns-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00865550` | 7 B | loads the vtable pointer at qword `rcx+0` and tail-jumps through its slot `+8` with all arguments unchanged | `00865553` |

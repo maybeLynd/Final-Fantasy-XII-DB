@@ -285,3 +285,11 @@ No correction.
 **UI — MECHANICAL (3 edges).** `BattleMenu_BuildCommandEntryList` `0031EB20` calls `00322C50` and `00313F60`, and `00322A80` calls `00313F60`. The battle menu builds its command list against the same validator and waiver; it does not read enmity.
 
 **WorldAreaField — DEPENDENCY (4 edges).** `00321850`, `00321B00` and `BattleEnmity_WriteAllCombatantIds` `00321D30` call the waiver `00313F60`, and `BattleSystem_RunFieldFrameOrchestrator` `00234590` calls it too. Every enmity write consults the active field record's bit 15 through that layer's accessor (E-8's waiver), so whether threat is written at all depends on the field record.
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../_index/candidates/fable-contract-enmity-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0030B510` | 93 B | returns 0 unless `cx` AND 0xF000 equals 0xD000 and `00322C50(1, cx, 1)` (`edx` zero-extended) returns non-zero; otherwise returns bit 1 of the byte at `+0x59C8 + (cx AND 0xFFF)` of the pointer in qword `02EBF190` | `0030B529`, `0030B541`, `0030B548`, `0030B55A`, `0030B562` |

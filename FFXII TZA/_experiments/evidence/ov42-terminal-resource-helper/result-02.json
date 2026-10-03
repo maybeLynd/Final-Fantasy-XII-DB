@@ -1,0 +1,122 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY original instruction dataflow",
+  "driver_sha256": "2fd6d8e8cf9e3330c2225601637f816dfce89ca10c03dd28fce8154dcc4035c3",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "980e17e9a3bf6a3ad8f3361c52203b3dc6e16c9c890ed5c269badb527c6089e2"
+    },
+    {
+      "path": "caller-source-01.json",
+      "sha256": "e35188c1b162d8fd17639be5e64cbda5dd394e628855986ee986126a012100d9"
+    }
+  ],
+  "capture_prerequisites": {
+    "status": "VERIFIED_ACTUAL_CAPTURE_PREREQUISITES",
+    "metadata": "extents-01.json",
+    "metadata_sha256": "f90f97c6bae5066cbeef7e04438f9ba12a9333021295de4422c9dec080e708f6",
+    "source": "source-01.json",
+    "source_sha256": "980e17e9a3bf6a3ad8f3361c52203b3dc6e16c9c890ed5c269badb527c6089e2",
+    "checker_sha256": "2550a7723eb689e2878ae0b5a35fffb81c4675432f1d272de3f2699d7dc6e4b5"
+  },
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 109,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 161,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "retained_lineage": [
+    {
+      "commit": "103aa31230175dbfe50ed445e3a3d2b4861ded56",
+      "member": "Database/FFXII TZA/_experiments/evidence/ov42-caller-row-preconditions/current-row-source-01.json",
+      "copy": "caller-source-01.json",
+      "sha256": "e35188c1b162d8fd17639be5e64cbda5dd394e628855986ee986126a012100d9",
+      "blob": "8b8aa292b68a455cde5ffa09f1b4594775627896"
+    }
+  ],
+  "facts": {
+    "cost_id": "First unsigned32 quotient is latched EDI; both309110 and308FF0 receive zeroextended low16(DI) inEDX, with unitRBP inRCX. Ordinary callee ABI retention required.",
+    "counter_id": "Under valid unit/stat class0 and original row+1E==10, the helper recomputes unsigned32 quotient after earlier calls and passes fullEAX to253770 EDX withECX13. The two descriptor loads/base reads are independent;316440 return not tested here.",
+    "countermodel": {
+      "first_full_quotient": 65744,
+      "cost_input_word": 208,
+      "second_full_quotient": 65744,
+      "counter_input_dword": 65744,
+      "executed": false,
+      "limits": "Supplied mathematical width discriminator, not naturally admitted action or native counter invocation"
+    },
+    "mode": "Saves entryR8D, normalizes it to0/1 by TEST/SETNE into clearedESI, forwards16+(R8D!=0) to300CE0 and300BC0. Exact caller304F2C supplies1, hence17; all negative/nonzero low32 values also normalize to17, not the raw original flag.",
+    "null_limit": "Early NULLunit branch skips reset ofE58/DC8 only. After normal earlier callee returns, original code still reads unit+698 and then WORDstats+28. It is not evidence of a NULL-safe whole helper; no observed fault or normalNULL reachability.",
+    "own_nonstack_writes": [
+      {
+        "pc": "0x3056b3",
+        "args": "dword ptr [rbp + 0xe58], r15d"
+      },
+      {
+        "pc": "0x3056ba",
+        "args": "word ptr [rbp + 0xdc8], ax"
+      }
+    ],
+    "callee_boundaries": [
+      {
+        "pc": "0x305671",
+        "target": "0x20e600"
+      },
+      {
+        "pc": "0x3056c7",
+        "target": "0x309110"
+      },
+      {
+        "pc": "0x3056d4",
+        "target": "0x308ff0"
+      },
+      {
+        "pc": "0x3056f4",
+        "target": "0x300ce0"
+      },
+      {
+        "pc": "0x30570d",
+        "target": "0x300bc0"
+      },
+      {
+        "pc": "0x30571a",
+        "target": "0x253690"
+      },
+      {
+        "pc": "0x30572b",
+        "target": "0x254ee0"
+      },
+      {
+        "pc": "0x30575c",
+        "target": "0x316440"
+      },
+      {
+        "pc": "0x30576b",
+        "target": "0x20e600"
+      },
+      {
+        "pc": "0x3057a5",
+        "target": "0x253770"
+      }
+    ],
+    "gil_request": "Caller performs low32(oldgil-unitE54) and signed-nonnegative selection via CMOVNS before254EE0. Setter clamp/meter behavior already canonical and is not re-tested here.",
+    "binding_implication": "Same first/second quotient below65536 makes these ID inputs agree. Prior caller bound<=542/equal binding supplies that only conditionally. No universal identical-ID assumption across narrowed cost inputs and later full counter quotient.",
+    "remaining": "Opaque cost/stats/gil/achievement/counter callees may have additional effects. No transitive callback/table-writer/lifetime/concurrency exclusion, natural initialized binding or normal action reachability established. This packet replaces the vague helper boundary with exact arguments and remaining callees; does not close wholeOV42."
+  },
+  "limits": "No native/emulator/live execution. Supplied quotient discriminator is not normal state. Opaque callee effects, actual table consistency and wholeOV42 remain open.",
+  "cleanup": "No PC/game/instrument/save/config/reference/peer changes. Finite offline children terminal."
+}

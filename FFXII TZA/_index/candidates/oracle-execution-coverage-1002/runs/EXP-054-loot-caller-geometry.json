@@ -1,0 +1,22 @@
+{
+ "blocks_in_image": 18,
+ "blocks_outside_image": 0,
+ "catalogue": "e2a67b07700c2ec3fbfae3213965de35",
+ "classes": {
+  "body_only": 1,
+  "open": 2,
+  "returned": 2,
+  "scripted": 2
+ },
+ "elapsed_s": 0.9,
+ "emu_starts": 10,
+ "entries_executed": 2,
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "instrument": "execcov-shim v2",
+ "patched_blocks": 5,
+ "rc": 0,
+ "receipt_md5": "22fbd6ba99b9f2c5a68a38a8a8de019f",
+ "run": "EXP-054-loot-caller-geometry",
+ "status": "ok",
+ "unique_blocks": 18
+}

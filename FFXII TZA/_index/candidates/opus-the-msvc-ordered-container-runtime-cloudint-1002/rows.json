@@ -1,0 +1,43 @@
+{
+ "page": "24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/the-msvc-ordered-container-runtime.md",
+ "date": "2026-10-02",
+ "session": "local-w43-opus",
+ "report": "the-msvc-ordered-container-runtime.json",
+ "rows": [
+  {
+   "fn": "00169270",
+   "text": "passes `02EA5550` through a 4-byte identity helper (it returns its argument), zeroes the qwords `02EA5550` and `02EA5558`, calls `00799B20(02EA5550)` and stores its result to qword `02EA5550`, then tail-jumps to `00808B90` with the address `008B7940`",
+   "anchors": [
+    [
+     "00169274",
+     "lea"
+    ],
+    [
+     "00169289",
+     "mov"
+    ],
+    [
+     "00169297",
+     "call"
+    ],
+    [
+     "001692A3",
+     "mov"
+    ],
+    [
+     "001692AE",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "00169270",
+   "why": "the identity helper 0016D680 is named by role, not address (pass-22: its address pulled in six Presentation-layer caller edges)"
+  }
+ ]
+}

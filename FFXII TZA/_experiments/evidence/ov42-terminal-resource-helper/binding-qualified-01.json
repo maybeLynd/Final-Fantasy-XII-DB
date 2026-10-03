@@ -1,0 +1,26 @@
+{
+  "complete": true,
+  "driver_sha256": "4c596cebb82988cd492ada20df5b91c4e88b67b85565db56ba58c5a9f0608a5a",
+  "base_commit": "ca2dd6483fdcd24535237d727d8ea2fa34e2c19b",
+  "base_manifest_sha256": "e2ae054634b26a2ca12990781696b3ee041def5477fa4528863ab2f180029da3",
+  "actual_capture_checks": [
+    {
+      "status": "VERIFIED_ACTUAL_CAPTURE_PREREQUISITES",
+      "metadata": "binding-extents-01.json",
+      "metadata_sha256": "6b59f56c24eabea2cec2d82c5785b630af7ea5ed68ad0f80a5a50db550a1c140",
+      "source": "binding-source-01.json",
+      "source_sha256": "cfccd184a8c66d89ba9f29a1af890a60b924597dd18e79dd49eb8a81de712b4a",
+      "checker_sha256": "2550a7723eb689e2878ae0b5a35fffb81c4675432f1d272de3f2699d7dc6e4b5"
+    },
+    {
+      "status": "VERIFIED_ACTUAL_CAPTURE_PREREQUISITES",
+      "metadata": "binding-helper-extents-01.json",
+      "metadata_sha256": "046bc503d83a586a003e0f59f1c06e559b412844c15ce1173fe5ece6d9510dc5",
+      "source": "binding-helper-source-01.json",
+      "source_sha256": "b9d983e3d51ee3fb1336a961f99fea82d6b15bf36e97a58fd524be60fe4e5f61",
+      "checker_sha256": "2550a7723eb689e2878ae0b5a35fffb81c4675432f1d272de3f2699d7dc6e4b5"
+    }
+  ],
+  "base_result_sha256": "2d6260733324a997614b61758a291a37089a5ef2c7bb9c6b9200418ac7e9afef",
+  "limits": "Additive producer-prerequisite qualification only; original bytes/facts unchanged, independent acceptance still pending. Does not prove live/callee/lifetime semantics."
+}

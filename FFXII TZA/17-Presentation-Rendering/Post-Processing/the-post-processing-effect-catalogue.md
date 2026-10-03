@@ -1043,3 +1043,11 @@ depth of field and glare — are not behind these bits.
 ## Cross-subsystem neighbours — FINAL-AUDIT pass 22 (FABLE, Claude Opus 5.5, 2026-09-25)
 
 **Platform — CLIENT (FABLE, Claude Opus 5.5, 2026-09-25).** The wrapper accessor `0065E5D0` has one caller outside this path: `006253D0`, the platform device set-up that [the ordered render command list](../Render-Command-List/the-ordered-render-command-list.md) calls the NvAPI init. It fetches the same wrapper and calls `0065E580(wrapper, 1)` (`00625493`–`0062549D`), a platform-side switch on the library object that is not read here. The crossing is that shared wrapper. The frame path above does not call into Platform.
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-the-post-processing-effect-catalogue-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `006CC2F0` | 63 B | when qword `+0` of `rcx` is non-null, calls virtual slot 1 (vtable `+8`) on it and stores 0 to qword `+0`; then, when qword `+8` of `rcx` is non-null, calls virtual slot 0 (vtable `+0`) on it with `edx` = 1 and stores 0 to qword `+8` | `006CC2FC`, `006CC304`, `006CC307`, `006CC31F`, `006CC321` |

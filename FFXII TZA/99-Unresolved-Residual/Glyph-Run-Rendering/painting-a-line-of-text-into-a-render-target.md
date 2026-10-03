@@ -658,14 +658,14 @@ helpers. Mechanical fan-in.
 ## The `001E8070` exclusive subtree — all 2 members bound (SWE2-FRONTIER, followup queue)
 
 `001E8070` — the glyph emitter this page maps — additionally shows:
-`dword[rdx+0x9C]` element count read (`001E808A`), magic-divide
-`0x92492493` (÷7, `001E809B`), `001E94E0` element resolve → `r15`
+`dword[rdx+0x9C]` ~~element count~~ palette index read (`001E808A`), magic-divide
+`0x92492493` (~~÷7~~ modulo 28, `001E809B`) *(corrected 2026-10-02, OPUS: `001E8070`+0x2B..+0x41 divides by 28 and subtracts `quotient × 0x1C`, so the argument is `[+0x9C] % 28`, §5's formula; a negative value takes `+0x1358` instead)*, `001E94E0` element resolve → `r15`
 (`001E80B8`), float constant `008C5B34` (`001E80CD`), counter seed
 `0x4DF` (`001E80FA`), `00225690` on `qword[rbx]` (`001E815E`).
 
 | member | role | interior |
 | --- | --- | --- |
-| `001E7A20` (610 B) | `0x38`-stride vector insert — `r9=[rcx+8]` end check vs `[rcx+0x10]` (`001E7A35`), `rbx` bounds vs `rdx`/`r9` (`001E7A3F`/`001E7A44`), element moves `dword[r9-4]` → `[r9+0x38]` (`001E7A7B`/`001E7A7F`) | [`001E7A7B`](../../_index/ADDRESS-INDEX.md) |
+| `001E7A20` (610 B) | ~~`0x38`-stride~~ `0x3C`-stride vector insert *(corrected 2026-10-02, OPUS: `add rbx, 0x3c` at `001E7A20`+0x29 and the `[r9-0x3c]` moves: the elements are the `0x3C`-byte vertices of §6)* — `r9=[rcx+8]` end check vs `[rcx+0x10]` (`001E7A35`), `rbx` bounds vs `rdx`/`r9` (`001E7A3F`/`001E7A44`), element moves `dword[r9-4]` → `[r9+0x38]` (`001E7A7B`/`001E7A7F`) | [`001E7A7B`](../../_index/ADDRESS-INDEX.md) |
 | `0079E3C0` (4 B) | dword getter — `eax = dword[rcx+0x28]; ret` | [`0079E3C0`](../../_index/ADDRESS-INDEX.md) |
 
 Shared callees outside the census: `001E94E0`, `00225690`. The

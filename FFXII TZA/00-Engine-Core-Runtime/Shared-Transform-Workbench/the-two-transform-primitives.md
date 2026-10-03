@@ -128,7 +128,7 @@ predicted exactly, and the designed case distinguishes the two orders outright:
 from it would be wrong in a way that still looks like a transform.
 
 **Aliasing is safe, and deliberately so.** The function copies **both** inputs to its stack frame
-before it multiplies (`[rsp+0x40]` and `[rsp+0x80]`), so `out == a` and `out == b` both produce the
+before it multiplies (~~`[rsp+0x40]` and `[rsp+0x80]`~~ `[rsp+0x40]`–`+0x70` and `[rsp]`–`+0x30` *(corrected 2026-10-02, OPUS: `00397910+0x67` `movaps xmmword ptr [rsp+0x40], xmm0`, `+0x97` `movaps xmmword ptr [rsp], xmm0`; no store reaches `[rsp+0x80]`)*), so `out == a` and `out == b` both produce the
 same answer as three distinct buffers. Tested, not assumed. A reconstruction that multiplied in place
 without staging would corrupt its own input halfway through and pass every test that used separate
 buffers.
@@ -287,7 +287,7 @@ satisfy a test**, which is contorting the source to flatter the instrument. Reco
   the physical addresses in its header; it does not write `022D91B0` and friends. **The mapping from
   parameters to those addresses is the caller's, and no caller is reconstructed.**
 - **`RECONSTRUCTION READY` is not claimed for the subsystem.** Two leaf primitives are implemented;
-  the 156 call sites around them are not.
+  the ~~156 call sites~~ 231 call sites (156 caller functions) around them are not *(corrected 2026-10-02, OPUS: 129 direct call sites to `00397910`, 102 to `00398F90`)*.
 
 ## 6. Key addresses
 
@@ -311,7 +311,7 @@ satisfy a test**, which is contorting the source to flatter the instrument. Reco
   and `0039B550` (82 raw call sites, function-list-independent index; `Workbench_InstallMatrix4x4`
   on the position-to-scalar page) is called with **`02AEECB0` at all 82** — the projection with the
   viewport folded in, the matrix `PS-2` describes. No other code writes the slot. So the matrix
-  *is* whichever of the two a caller last installed: the 232 sites (the draw-side families
+  *is* whichever of the two a caller last installed: the ~~232 sites~~ 116 sites *(corrected 2026-10-02, OPUS: 116 direct call sites to `0039AF70`, as the 2026-09-13 correction below says)* (the draw-side families
   `00435xxx`–`00444xxx`, `00530xxx`–`00531xxx`) run points through the workbench matrix, and the 82
   sites (the fade node `002F1F40` and the `0039C4C0`–`0039CCB0` and `00434CD0`–`00455DB0` families; `00455DB0` interior read 2026-09-17, SWE2-FRONTIER: `00434A70` first at [`00455E38`](../../_index/ADDRESS-INDEX.md), `00434900` next)
   project them; the getter `003970A0`'s seven callers are among the latter, taking the slot back
@@ -349,7 +349,7 @@ satisfy a test**, which is contorting the source to flatter the instrument. Reco
   *(Corrected before publication: this first said `022D8F90` had 76 writers, which is the count for
   the whole `022D8F90`–`022D900E` region in the shared-scratch page, not for this address.
   `check_global_claims.py` — written two blocks ago for exactly this class of error — caught it.)*
-- **What the other callers do with the result.** 156 call sites were counted, **none was read**.
+- **What the other callers do with the result.** ~~156 call sites~~ 231 call sites (156 caller functions) were counted *(corrected 2026-10-02, OPUS: 129 + 102 direct call sites)*, **none was read**.
 - **That the workbench is idle in play.** §5a observed the **title screen only**. A title screen
   need not render a 3D scene, so the idle deposit slots bound the claim to that state. **The
   decisive observation is in-world and was not taken** — it needs a loaded save, which is a physical
@@ -622,8 +622,8 @@ calls — but it is the modulate itself, not staging for the channel blends.
 ## Interior citations — four frontier workbench hubs (2026-09-17, SWE2-EC7)
 
 - **`00398F90`** — the point-through-matrix routine this page's §3 covers (377 B leaf). Interior
-  verified: [`00398F94`](../../_index/ADDRESS-INDEX.md) is `movups xmm0, [rip+...]` loading the ACC
-  row, then `movaps xmm6, [rcx]` splats the input point's lanes (`shufps 0x55`/`0`/`0xAA`), scales
+  verified: [`00398F94`](../../_index/ADDRESS-INDEX.md) is `movups xmm0, [rip+...]` loading ~~the ACC~~
+  ~~row~~ vector row 1, `022D91B0` (ACC is `022D91A0`) *(corrected 2026-10-02, OPUS: `00398F90+0x4` resolves to `022D91B0`)*, then `movaps xmm6, [rcx]` splats the input point's lanes (`shufps 0x55`/`0`/`0xAA`), scales
   each by the workbench coefficient banks, accumulates into the `022D9xxx` global cells, and
   stores the vector result at `[rdx]`. 64 frontier callers — the Presentation fan-in this page's
   pass-22 table counts.
@@ -693,7 +693,7 @@ shapes above are measured.
 Interior verified: four `movups`/`movups` pairs copy the four 16-byte blocks at `022D91B0`,
 `+0x10`, `+0x20`, `+0x30` into `[rcx]`..`[rcx+0x30]` verbatim
 ([`003970AA`](../../_index/ADDRESS-INDEX.md) is the first store) — a 64-byte snapshot of the
-vector-unit-5 quadrant into caller storage, exactly the "slot back" read the page describes.
+~~vector-unit-5 quadrant~~ vector rows 1–4 (`022D91B0`–`022D91EF`) *(corrected 2026-10-02, OPUS: the four loads at `003970A0+0x0`, `+0xA`, `+0x15`, `+0x20`)* into caller storage, exactly the "slot back" read the page describes.
 No arithmetic, no tag handling.
 
 ## Interior citation — frontier hubs `00202B10` / `002C9490` (2026-09-17, SWE2-EC7)
@@ -987,9 +987,14 @@ applies the pair. Interior anchor `00202EC7` (the `00861F08` call).
 
 `00183720` (52 B) is the register-on-resolve helper the transform
 and loader bodies share: a null `rcx` returns at once; otherwise
-`00189120(rcx)` resolves the object twice and `00185A90(result,
+~~`00189120(rcx)` resolves the object twice and `00185A90(result,
 &0017ECC0, rcx)` registers the `0017ECC0` leaf on it with the
-original argument as the callback's data. Interior anchor `00183749`
+original argument as the callback's data~~ it reads the shared global `01F7F598` twice through `00189120` (which
+takes no argument: `mov rax, [01F7F598]` / `ret`), tests only the first read for NULL, and passes the second to
+`00185A90` with callback `0017ECC0` and the original argument as data; on the fast arm `00185A90` appends the pair to
+the queue at `ctx+0xC38+32*ctx[+0xCB8]` without calling anything, and when full it hands off to `001858A0`
+*(corrected 2026-10-03, SWE2-EC7: ASTRA's title packets T1/T2, SPEC-supported wording, routed by FABLE as R1;
+ec7_corr_check.py)*. Interior anchor `00183749`
 (the `00185A90` call).
 
 ## SWE2-EC7-70 update (2026-09-19) - `003F1230` axis-fill measured
@@ -1062,25 +1067,32 @@ Interior anchor `00576899` (the flag-word fetch).
 
 ## SWE2-EC7-83 update (2026-09-20) - `0043E7B0` + `00434760` + `00434630` measured
 
-`0043E7B0` (140 B) is the `r9d`-count qword push the workbench callers
+`0043E7B0` (140 B) is ~~the `r9d`-count qword push the workbench callers
 run: each iteration stores `[rcx+i*8]` to `02EB8738`, rotates the
 `02EB8790`/`02EB8798`/`02EB87A0` triplet, and writes `eax`/`edx` into
-`[rdx+i*8-4]`/`[-8]` - a counted copy driving the global ring.
+`[rdx+i*8-4]`/`[-8]` - a counted copy driving the global ring~~ a per-pair UV swap: each source qword is staged in
+the scratch cell `022D8F90`, its low dword stored at `dst+4` (`0043E7F4`) and its high dword at `dst+0`
+(`0043E826`), the counter kept in `022D94A0` - `dst[i] = (v, u)`; a do-while, so a count of 0 still swaps one pair
+*(corrected 2026-10-03, SWE2-EC7: FABLE's kind-0x54 record c4d8dcd31 executed the body bit-exact, E1, 40 trials; the scratch cells are `022D8F90`/`022D94A0`, not `02EB87xx`; ec7_corr_check.py)*.
 Interior anchor `0043E7F4` (the `[r8-4]` store).
 
-`00434760` (404 B) is the larger bank-transform: `[r8]`'s xmm seeds
+`00434760` (404 B) is ~~the larger bank-transform: `[r8]`'s xmm seeds
 `02EB9010`/`02EB9350`, `[rcx]` qwords feed `02EB8E80`-family rotates,
 and each of `r9d` iterations spins `xmm3` through the `02EB8F90` bank
 - `mulss` by `xmm4`/`xmm5`, scaled adds at `rip+0x1ac4bda`, stores to
 `02EB91A8`/`02EB91A4`/`02EB92D8`/`02EB92E0` - before the output xmm
-lands at `[rdx-4]`/`[-8]` and `02EB9498` counts down.
-Interior anchor `00434840` (the `mulss xmm2, xmm4` bank step).
+lands at `[rdx-4]`/`[-8]` and `02EB9498` counts down~~ the per-pair affine map followed by a swap: the same
+arithmetic as `00434630` (`0043480F`-`0043487C`), with the x result stored at `dst+4` (`0043489C`) and the y result at
+`dst+0` (`004348D0`) - `(b1 + v*b3, b0 + u*b2)` *(corrected 2026-10-03, SWE2-EC7: FABLE's kind-0x54 record c4d8dcd31 executed the body bit-exact, E3, 406 pairs; ec7_corr_check.py)*.
+Interior anchor `00434840` (the `mulss xmm2, xmm4` ~~bank step~~ of the affine arithmetic).
 
-`00434630` (289 B) is the reduced sibling: same `[r8]` seed into
+`00434630` (289 B) is ~~the reduced sibling: same `[r8]` seed into
 `02EB8FA0`/`02EB92D0`, same `r9d` bank loop at half the steps, single
 output `[rax-8]` and the `02EB9490` countdown - the two-step variant
-of `00434760`'s three-step pass.
-Interior anchor `004346BA` (the `mulss` bank step).
+of `00434760`'s three-step pass~~ the per-pair affine map: the `[r8]` block is staged as `022D92F0` =
+(b0, b1, b2, b3) and `022D9300` = (b2, b3), then each pair becomes `(b0 + u*b2, b1 + v*b3)`, stored at `dst`
+(`0043473D`); `00434760` is this map plus a swap *(corrected 2026-10-03, SWE2-EC7: FABLE's kind-0x54 record c4d8dcd31 executed the body bit-exact, E2, 388 pairs; ec7_corr_check.py)*.
+Interior anchor `004346BA` (the `mulss` ~~bank step~~ by `b3`, read from `022D9300`).
 
 ## SWE2-EC7-84 update (2026-09-20) - `008642A0` object factory measured
 
@@ -1495,7 +1507,7 @@ Interior anchor `00437CC9` (function `00437130`).
 
 Interior anchor `002D0F24` (function `002D0A20`).
 
-`0043E840` (370 B) is the `022D8F90` state-block snapshot the composer paths run: `[r8]` stages to `022D8FA0`, `0xFFFFFFFFBF000000` writes into `022D8FB0` and half-unpacks to `022D8FB4`/`B8`/`BC`, `rcx`'s pair shifts into `022D8FBC`, and vector copies land at `022D92F0`/`022D9308` - a call-free publish of the workbench header.
+`0043E840` (370 B) is the `022D8F90` state-block snapshot the composer paths run: `[r8]` stages to `022D8FA0`, `0xFFFFFFFFBF000000` writes into `022D8FB0` and half-unpacks to `022D8FB4`/`B8`/`BC`, `rcx`'s pair shifts into `022D8FBC`, and vector copies land at `022D92F0`/`022D9308` - ~~a call-free publish of the workbench header~~ a scale about the centre: with `(a, b)` from `[r8]` and the immediate's low dword -0.5, each pair becomes `((u - 0.5)*a, (v - 0.5)*b)`, stored at `dst` (`0043E98D`) *(corrected 2026-10-03, SWE2-EC7: FABLE's kind-0x54 record c4d8dcd31 executed the body bit-exact, E6, 578 pairs; ec7_corr_check.py)*.
 
 Interior anchor `0043E8FF` (function `0043E840`).
 
@@ -1527,11 +1539,11 @@ Interior anchor `0039B84F` (function `0039B840`).
 
 Interior anchor `0039B8E8` (function `0039B880`).
 
-`00396F20` (161 B) is the index scatter the composers run: `word[rdx]` keys `x16 + r11` records staged into `022D8F90`/`A0`/`B0`/`94A0`, `r9d` counts down while `[rdx]` qwords write into `[rax-8]` slots - a call-free indexed copy.
+`00396F20` (161 B) is ~~the index scatter~~ the normal-index gather the composers run: `word[rdx]` keys `x16 + r11` records staged into `022D8F90`/`A0`/`B0`/`94A0`, `r9d` counts down while `[rdx]` qwords write into `[rax-8]` slots - ~~a call-free indexed copy~~ a gather by normal index: each corner's signed 16-bit index forms `index*16 + table`, and that entry's first qword is copied to the destination pair - `UV'[k] = (L[n_k].x, L[n_k].y)`, the loop ending when the counter equals the cell `022D8F10` *(corrected 2026-10-03, SWE2-EC7: FABLE's kind-0x54 record c4d8dcd31 executed the body bit-exact, E4, 685 corners; ec7_corr_check.py)*.
 
 Interior anchor `00396F70` (function `00396F20`).
 
-`00394B70` (550 B) is the unrolled index-list accumulate: `r9d` groups of four read `word[rdi]` indices into `+rcx*8` record pairs, `cvtdq2ps` against the `008F30EC`/`008C5B30` scale constants, `subss` the `00D113E0`/`00D113E4` minimums, and `addss` into the out vector - the weight scatter under the composers' vertex lists.
+`00394B70` (550 B) is the unrolled index-list accumulate: `r9d` groups of four read `word[rdi]` indices into `+rcx*8` record pairs, `cvtdq2ps` against the `008F30EC`/`008C5B30` scale constants, `subss` the `00D113E0`/`00D113E4` minimums, and `addss` into the out vector - ~~the weight scatter under the composers' vertex lists~~ the screen-position term added into the UV pairs: `UV'[k] += ((X/16)/512 - 3.5, (Y/16)/512 - 3.5625)` from the `u16` screen X, Y at `table + 16*idx` *(corrected 2026-10-03, SWE2-EC7: FABLE's kind-0x54 record c4d8dcd31 executed the body bit-exact, E5, 375 corners; it adds into the gathered pair; ec7_corr_check.py)*.
 
 Interior anchor `00394C8D` (function `00394B70`).
 
@@ -1678,3 +1690,19 @@ Interior anchor `0039D79A` (function `0039D6C0`).
 `0039D5A0` (286 B) is the record constructor `0039C4C0` runs on its other arm: `0020E680` carve, `008642A0`/`0039CDC0` submit, then eight packed bytes widen through `cvtdq2ps` into the record's `+0x00`..`+0x1C` float fields and `+0x48` is zeroed - the 8-channel dequantize sibling of `0039EEF0`/`0039F140`.
 
 Interior anchor `0039D5E4` (function `0039D5A0`).
+
+`00456B00` (999 B) is the update method of the `022D92E0` workbench-accumulator record family: `rdi+0xD0`'s basis copies into `rbx+0x110`, `rbx+0xE0` accumulates into the `022D92E0`/`022D92F0` bank twice (once on the `+0x49` flag, again after `00398480`), then the `0039AF70`/`00398F90`/`00397ED0` transform chain runs and `002F3570`, `00397910`, `003970F0`, `0039ADE0`, `005002E0`, `002F31C0` and `003A8950` submit the staged record - the full update pass three sibling bodies share.
+
+Interior anchor `00456D83` (function `00456B00`).
+
+`00522810` (607 B) is the shorter sibling in the same accumulator family: the `022D92E0` bank write, `movdqa` into `rbx+0x70`, then a `rdi+0x3B1`-gated scaled update that reads `02AEDF20` and `rdi+0x3B4`/`+0x3B8`, with `0036DD80`, `0039AF70` and `00398F90` on the condition chain - the effect-side variant of `00456B00`'s staged update.
+
+Interior anchor `00522983` (function `00522810`).
+
+`0045D7D0` (1154 B) is the `rdi+0x80`-basis member of the `022D92E0` update family: same accumulator write and `0039AF70`/`00398F90`/`00397ED0` chain as `00456B00`, but its tail adds `0042FDB0`, `0026EE00`, `004314E0` and two `0044B960` reads on `01DFE0B4` before `005002E0`/`002F31C0`/`003A8950` submit - a near-clone of `0045CDC0` on a second record layout.
+
+Interior anchor `0045DA9C` (function `0045D7D0`).
+
+`0045CDC0` (1154 B) is `0045D7D0`'s near-identical twin: same `rdi+0x80` basis source, same `022D92E0` accumulate, the same transform chain and `0042FDB0`/`0026EE00`/`004314E0`/`0044B960` tail - the pair are two record-type copies of one update template feeding the workbench bank.
+
+Interior anchor `0045D08C` (function `0045CDC0`).

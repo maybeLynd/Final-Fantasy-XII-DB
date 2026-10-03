@@ -402,7 +402,7 @@ at the region's internals. **The fifth measurement defect found in this run, and
 a plausible number rather than an obvious failure.**
 
 It also killed a second claim that had already been drafted: that `022D8F00`–`022D9500` is *one*
-1,436-byte shared scratchpad. It is **thirteen objects**, one of which is RNG control state. The
+~~1,436-byte~~ 1,536-byte *(corrected 2026-10-02, OPUS: `0x022D9500 − 0x022D8F00` = `0x600`)* shared scratchpad. It is **thirteen objects**, one of which is RNG control state. The
 corrected reading is narrower and true.
 
 ### SURVIVED: the classification is earned
@@ -511,7 +511,7 @@ instantiation `00333280` / `003331A0`) resolves the record through
 `+8` / `+0xA` and float `+0xC` as the playhead; `004FF2C0` (from `0046E990` and `0046EFD0`) does the
 same for kind 2 and routes kinds `≤ 1` and `3` elsewhere (`00538820`, `005372D0`).
 
-**The private state is the current action context.** The singleton `[02F97348]` — 57 references
+~~**The private state is the current action context.**~~ **The state it works on is the current action context, a shared singleton rather than private state** *(corrected 2026-10-02, OPUS: `02F97348` is referenced by 102 functions and stored by 19, e.g. read at `003A3E30+0x4`, stored at `0024B270+0xEF`)*. The singleton `[02F97348]` — 57 references
 in this body — is read as: `+8` the acting unit, `+0x10[i]` and `+0x90[i]` two per-target handle
 arrays, `+0x372` the target count, `+0x374` the hits delivered (incremented per hit opcode), `+0xC`
 a per-target hit mask, `+0x368` / `+0x36A` / `+0x378` flag words. Opcode **3** is the hit: it takes
@@ -530,7 +530,7 @@ Opcodes 13, 26, 34 and 37 pass the acting unit and no target. Kind 6, and kind 4
 34. That is the bit that releases a dead body (`_index/candidates/pkg-gp-spawn-respawn/teardown.py` T). Opcodes **28** / **29** place and turn an
 actor (`ActorHandle_ResolveRegistryEntryByPackedId`, `Actor_GetWorldPosition`, `0026AF80`,
 `Actor_SetFacingHeading_Variant0`); **10** / **11** run the render reset family the frame page
-documents (`003ACA90`, `003AFD30`, `003B6930` — the shadow pools of BT-1); **52** / **53**
+documents (~~`003ACA90`, `003AFD30`, `003B6930`~~ `003ACA90` for 10 or `003ACA80` for 11, then `003AFD30`, `003B6930` — the shadow pools of BT-1) *(corrected 2026-10-02, OPUS: opcode 10 calls `003ACA90` three times from `003B8670+0x1065`; opcode 11 calls `003ACA80` at `003B8670+0x10D6`)*; **52** / **53**
 touch the shadow objects (`003B5310`, `003AF330`); **31** posts audio (`Audio_PostSequenced`);
 **14–19** call the `002FCA00` battle family; **21**, **22**, **32**, **40** resolve a render record
 (`003A3FD0`, `003326C0`) and drive it; 66 opcodes (4, 23, 64–127) are no-ops in this build;
@@ -1015,3 +1015,33 @@ Interior anchor `003A96ED` (function `003A96A0`).
 `003A9790` (198 B) is the find-or-make slot installer `003A96A0`'s bind path calls on `02EBEF90`: a nonzero `ecx` selects that row directly, zero scans `+8` onward for the first empty slot up to `0x140`; a live occupant is released through `003697F0`, `0036A100` carves the replacement, `byte[+0x282] = bpl` and `word[+0x280] = bx` are stamped, and the record lands at `[[02EBEF90]] + idx*8` - a full table returns 0 - the slot-claim half of the shared scratch table.
 
 Interior anchor `003A97DA` (function `003A9790`).
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-intentionally-ownerless-functions-and-sh-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0017F2A0` | 77 B | calls `00189120()` and returns when it is null; otherwise takes the qword at `rdx` when byte `rdx+8` is zero (else 0) and calls `0018B8B0(0018CA40(), that qword, rcx, 0)` with a zero byte as the fifth (stack) argument | `0017F2B8`, `0017F2BA`, `0017F2C0`, `0017F2C7`, `0017F2DD` |
+| `001DC510` | 127 B | returns qword `01F82D10` when it is non-null; otherwise, when `001DDAB0()` is null, returns qword `01F82D10` re-read after that call; else allocates `00210EC0(0x18)` and, when the allocation is non-null, zeroes its qword `+0` and dword `+8`, stores the dwords `0x3F800000`, `0x3F000000` and `0x3F19999A` at `+0xC`, `+0x10` and `+0x14` and calls `001DC3D0` on it; the allocation (null on failure) is stored in `01F82D10` and returned | `001DC529`, `001DC533`, `001DC53A`, `001DC56C`, `001DC576` |
+| `00258130` | 95 B | calls `003CBAD0` on 20 records: for each of 5 blocks starting at `02092A40` with stride `0xBB0`, on 4 records with stride `0x2E0` inside the block | `0025814B`, `00258153`, `0025815B`, `00258160`, `0025816D` |
+| `0025A890` | 77 B | calls `003CBAD0` on 8 records starting at `02097320` with stride `0x110`, then on `02097B80`, then tail-jumps `003CBAD0(02097C50)` | `0025A8A9`, `0025A8AE`, `0025A8C2`, `0025A8D8` |
+| `002EAD00` | 80 B | returns 0 when `edx` is zero; otherwise calls `0042FCB0()` and returns `002FCCC0(ecx, r8, edx, r9d)`, the incoming second and third arguments swapped | `002EAD1E`, `002EAD22`, `002EAD26`, `002EAD36` |
+| `003326F0` | 96 B | returns at once when `rcx` is null; otherwise, for each of the 16 qwords at `rcx` (stride 8) that is non-null, calls `0046EE70` and then `003697F0` on it and zeroes the slot, then calls `003A8C80()` | `0033271C`, `00332724`, `00332729`, `00332730`, `00332736` |
+| `00333430` | 117 B | returns at once when `rcx` or `rdx` is null; otherwise, for each of the 16 qwords at `rcx` (stride 8) that is non-null and differs from `rdx`, calls `0046EE70` and then `003697F0` on it and zeroes the slot, then calls `003A8660(word rdx+8)` | `00333445`, `00333468`, `0033346D`, `0033347A`, `0033348B` |
+| `00333520` | 123 B | returns when `rcx` or `rdx` is null and tail-jumps `00333430` (same arguments) when `r8d` is below 2 (signed); otherwise, on the qword at `02F97348`, sets bit `0x1000` and clears bit `0x2000` of word `+0x368`, stores word `rdx+8` zero-extended to dword `+0x37C`, `r8w` to words `+0x358` and `+0x35A`, and `0x3F800000` to dword `+0x35C` | `0033352E`, `00333540`, `00333553`, `00333565`, `00333590` |
+| `003335A0` | 117 B | returns at once when `rcx` or `rdx` is null; otherwise, for each of the 16 qwords at `rcx` (stride 8) that is non-null and differs from `rdx`, calls `0046EE70` and then `003697F0` on it and zeroes the slot, then calls `003A8CB0(word rdx+8)` | `003335B5`, `003335D8`, `003335DD`, `003335EA`, `003335FB` |
+| `00333620` | 20 B | when `rcx` and `rdx` are both non-null tail-jumps `003A8CE0(word rdx+8)`; otherwise returns | `00333625`, `0033362A`, `0033362E` |
+| `00333640` | 123 B | returns when `rcx` or `rdx` is null and tail-jumps `003336C0` (same arguments) when `r8d` is below 2 (signed); otherwise, on the qword at `02F97348`, sets bit `0x2000` and clears bit `0x1000` of word `+0x368`, stores word `rdx+8` zero-extended to dword `+0x37C`, `r8w` to words `+0x358` and `+0x35A`, and `0x3F800000` to dword `+0x35C` | `0033364E`, `00333660`, `00333673`, `00333685`, `003336B0` |
+| `00370390` | 14 B | tail-jumps `00373160` (same `rcx`) when dword `rcx+0x9C` equals 2; otherwise returns | `00370397` |
+| `003A4070` | 122 B | reads the qword at `02F97348`: when bit `0x200` of its word `+0x378` is set returns dword `02096A20`; when its byte `+0` is 3 returns -1; when that byte is 5, 6 or 9 returns -1 if `003B0BF0(dword +4)` is null or has byte `+0x11` equal to 1; on every other path returns the dword at `+0x90 + 4*ecx` (sign-extended `ecx`) when `ecx` is not -1 and that dword is non-zero, else dword `+8` | `003A4085`, `003A4091`, `003A4099`, `003A40A5`, `003A40C1` |
+| `003A8C80` | 33 B | walks the list that starts at qword `+8` of the qword at `02EBEF88` and links through each node's qword `+8`, storing 1 to byte `+0x139` of every node | `003A8C87`, `003A8C90`, `003A8C97` |
+| `003A8CB0` | 41 B | walks the list that starts at qword `+8` of the qword at `02EBEF88` and links through each node's qword `+8`, storing 1 to byte `+0x139` of every node whose byte `+0x1C` differs from `ecx` | `003A8CC0`, `003A8CC4`, `003A8CC8`, `003A8CCF` |
+| `003A8CE0` | 89 B | walks the list that starts at qword `+8` of the qword at `02EBEF88` and links through each node's qword `+8`; for each node whose byte `+0x1C` differs from `ecx`, whose qword `+0x108` is non-null with byte `+0x44` equal to `0x40`, and whose qword `+0x118` is non-null, it walks the chain from that `+0x118` through qword `+0x30` links, ORing 1 into byte `+0x248` of each element | `003A8CF8`, `003A8D08`, `003A8D20`, `003A8D27`, `003A8D30` |
+| `003A8D40` | 44 B | walks the list that starts at qword `+8` of the qword at `02EBEF88` and links through each node's qword `+8`, storing 1 to byte `+0x139` of every node whose byte `+0x13A` equals `ecx` | `003A8D50`, `003A8D57`, `003A8D5B`, `003A8D62` |
+| `003B9FE0` | 51 B | when qword `+0x380` of the qword at `02F97348` is non-null, calls `0024B240` on it and then zeroes qword `+0x380` of the qword re-read from `02F97348` after that call; otherwise returns | `003B9FF5`, `003B9FF7`, `003BA003` |
+| `00423190` | 72 B | returns 0 when dword `rcx+0xC4` is -1; otherwise calls `0051B9E0(qword +0xDA8 of 0020E600(dword rcx+0x10), dword rcx+0xC4)` and returns 0 when that is null, else bit 6 of its dword `+0xC` | `00423196`, `004231A5`, `004231B7`, `004231C4`, `004231C7` |
+| `004231E0` | 72 B | returns 0 when dword `rcx+0xC4` is -1; otherwise calls `0051B9E0(qword +0xDA8 of 0020E600(dword rcx+0x10), dword rcx+0xC4)` and returns 0 when that is null, else bit 7 of its dword `+0xC` | `004231E6`, `004231F5`, `00423207`, `00423214`, `00423217` |
+| `0046CC20` | 76 B | maps `edx` 1-3 to 0-2 and 4-5 to 6-7 and returns for any other value (signed); then calls `002E9D90(qword rcx+0x108, 2, mapped value, 0)` and, when the result is non-negative, tail-jumps `003A0E20(result, 0x40, 0x7F)`, else returns | `0046CC26`, `0046CC32`, `0046CC37`, `0046CC4A`, `0046CC62` |
+| `00472950` | 20 B | returns when bit 0 of byte `rcx+0` is set; otherwise stores 6 to qword `rcx+8` and writes the byte back with bits 0 and 2 set (OR 5) | `00472953`, `00472957`, `00472959`, `00472961` |
+| `005388F0` | 24 B | calls `004FF2B0` with `rcx` unchanged and returns `rcx+0x20` | `005388F9`, `005388FE` |

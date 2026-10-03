@@ -1,0 +1,12 @@
+SKIP | `+0x730` | (`0030EE13`)
+SKIP | `+0x740` | (`0030EE1A`)
+SKIP | `+0x740` | (`0030F0B5`)
+SKIP | `+0x750` | (`0030F0BD`)
+SKIP | `+0x760` | (`0030EE2A`)
+SKIP | `+0x760` | (`0030F0C5`)
+SKIP | `+0x770` | (`0030F0CD`)
+SKIP | `+0x780` | (`0030EE3A`)
+SKIP | `+0x790` | (`0030EE44`)
+SKIP | `+0x790` | (`0030F0DD`)
+SKIP | `+0x790` | reached by immediate displacem
+FAILS 0

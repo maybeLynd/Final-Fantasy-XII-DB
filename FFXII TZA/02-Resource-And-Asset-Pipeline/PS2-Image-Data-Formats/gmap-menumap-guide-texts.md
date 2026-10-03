@@ -9,7 +9,7 @@ verified_against:
   method: the requester 003C1DF0 and the readers 003BD890 / 003BD8F0 / 003BD860 disassembled from the shipping
     image; an immediate sweep for the id range 0x496..0x4A5 with the three documented 003BC2D0 requests as
     its positive control; every shipped copy decoded and size-closed
-corpus_validated: "all 35 menumap_guide00..04.bin copies (5 units x 7 locales) close under the layout; 30 carry an embedded TIM2 ending exactly at EOF; guide00's 77 entries join menumap_common section 3 record by record 77/77 (shifted control 0/77); .fst sizes exist for kind 7 ids 0x496..0x49A only, 2026-09-29"
+corpus_validated: "all 35 menumap_guide00..04.bin copies (5 units x 7 locales) close under the layout; 30 carry an embedded TIM2 ending exactly at EOF; guide00's 77 entries join menumap_common section 3 record by record 77/77 (shifted control 0/77); .fst sizes exist for kind 7 ids 0x496..0x49A only, 2026-09-29"  # <- corrected 2026-10-02, OPUS: the 35 are 9 + 8 + 6 + 6 + 6 by unit (G1 below), not 5 x 7
 archive_formats:
   - "gmap | explained | menumap_guide##.bin (.bin member): {gmap, u32 0x64, u16 textOff, u16 tim2Off, u16 0, u16 count, {u16 gate, u16 key, u16 textRel, u16 0}[count], strings, optional TIM2} - (kind 7, 0x496 + record byte +4) by 003C1DF0 into widget +0xF8, read by 003BD890 / 003BD8F0; only guide00 is ever requested, sections 2-3"
 last_reviewed: 2026-09-29

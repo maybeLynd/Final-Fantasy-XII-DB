@@ -608,3 +608,28 @@ Interior anchor `002E15D2` (the first clear).
 |---|---|---|---|
 | `00267560` | 85 B | when the dword at `rcx` is below 2 (signed) calls a 14-byte helper with 1 and returns 0; otherwise compares the bytes at `rcx + 4 + (n - 1)` and `rcx + 4 + (n - 2)`, with n that dword, and returns 1 when they are equal and both are 1, else 0 | `0026756E`, `00267577`, `0026758F`, `0026759D`, `002675AA` |
 | `004745B0` | 21 B | stores the dwords 1 at `+0x0`, `0x12` at `+0x4` and 0 at `+0xC` of `rcx`, leaving `+0x8` untouched | `004745B6`, `004745BD` |
+
+## How a native bridge decodes an out-reference (FABLE, 2026-10-03, from SWE2-DATA's OV-42 record)
+
+*Consumed from SWE2-DATA's [`swe2data-ov42-authored-spattack-flow-1003`](../../_index/candidates/swe2data-ov42-authored-spattack-flow-1003/README.md)
+(`c77a50981`), reviewed by SWE2-AUDIT-SPEC ACCEPT
+([review](../../_index/candidates/auditspec-review-swe2data-ov42-authored-spattack-flow-1003/REVIEW.md), `c5f35fc3c`).
+Static only.*
+
+- **Out-references reach native code through `PUSHP` and a decoder.** A verb that takes an out-reference pops a tag-1
+  `PUSHP` entry (section 2.1) and decodes it with `002650B0`. The decoder switches on the class `(desc >> 24) & 7`
+  through its jump table. Class 1 (`file`) returns `[ctx + 0x40] + (desc & 0xFFFFFF)`, the same `[slot + 0x40]` home as
+  class 1 in section 2.3. AUDIT-SPEC re-derived class 1; the record also reports that classes 6 and 7 use base 0.
+- **Two references decoded in one bridge call share a base.** The `029A` bridge reads the context once and decodes both
+  references against it, so the destinations differ by exactly the difference of the two 24-bit offsets.
+- **An authored example.** In `spc_z0000.ebp`, the descriptor table puts vars 0, 1, 5 and 6 in the `file` class at
+  offsets `0x0C`, `0x10`, `0x18` and `0x1C` (s32, float bit clear), and var 3 at `0x15` (s8). The two loop
+  out-references are therefore exactly 4 bytes apart.
+- **The copies are word-preserving.** `PUSHV` on an s32 cell with bit 27 clear pushes the whole dword with tag 1
+  ("The push tag is bit 27" above). `POPV` stores a tag-1 entry's raw dword through the width-4 arm `0026D5E9`,
+  unclamped.
+
+The OV-42 consequences are on
+[battle-command-availability-and-reason-codes](../../07-Combat-Action/Action-Availability/battle-command-availability-and-reason-codes.md).
+This section adds no storage class. It does not establish the context base's value, the image's allocation or
+lifetime, or native writers of the cells outside the bytecode.

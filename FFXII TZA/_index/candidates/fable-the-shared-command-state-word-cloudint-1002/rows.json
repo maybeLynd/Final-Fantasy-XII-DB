@@ -1,0 +1,118 @@
+{
+ "page": "17-Presentation-Rendering/Graphics-Thread-Handshake/the-shared-command-state-word.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01VEcx1tvvdhZnx7o8bCur26",
+ "report": "the-shared-command-state-word.json",
+ "rows": [
+  {
+   "fn": "00181AB0",
+   "text": "keeps qword `+0x270` of `001EBA40()`; returns without further work when `00189120()` is null; otherwise takes `r = 00186910(00189120(), 0)` and calls `0018B8B0(0018CA40(), qword [r] when byte r+8 is 0 else 0, the kept qword, 4)` with a zero byte fifth (stack) argument",
+   "anchors": [
+    [
+     "00181ABB",
+     "mov"
+    ],
+    [
+     "00181AC7",
+     "test"
+    ],
+    [
+     "00181ADB",
+     "call"
+    ],
+    [
+     "00181AE0",
+     "cmp"
+    ],
+    [
+     "00181B06",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "001C5040",
+   "text": "when qword `01F812A8` differs from qword `01F812B0`, stores byte 0 at the address in `01F812A8` and copies `01F812A8` into `01F812B0`; then calls `00202880(01F813A8 + i*0x10)`, `00202880(01F813D8 + i*0x10)` and stores 0xFFFFFFFF in the dwords at `01F81400 + i*4` and `01F81400 + i*4 + 8`, where `i` is the sign-extended dword `01F813F8`, read first and re-read after each `00202880` call",
+   "anchors": [
+    [
+     "001C504B",
+     "cmp"
+    ],
+    [
+     "001C5054",
+     "mov"
+    ],
+    [
+     "001C507A",
+     "call"
+    ],
+    [
+     "001C5094",
+     "call"
+    ],
+    [
+     "001C50AE",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "001EC5A0",
+   "text": "returns 1 when `001B7D20(001B7F20())` returns a non-zero `al`, else 0",
+   "anchors": [
+    [
+     "001EC5A4",
+     "call"
+    ],
+    [
+     "001EC5AC",
+     "call"
+    ],
+    [
+     "001EC5B5",
+     "setne"
+    ]
+   ]
+  },
+  {
+   "fn": "0036D7E0",
+   "text": "stores 0 in dword `02EBA3F8` and stores in qword `022D8EA0` the address `022D8E50` plus 0x28 times the sign-extended dword `022D8EA8`",
+   "anchors": [
+    [
+     "0036D7E7",
+     "mov"
+    ],
+    [
+     "0036D7F1",
+     "lea"
+    ],
+    [
+     "0036D7FC",
+     "lea"
+    ],
+    [
+     "0036D800",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "001CC920",
+   "why": [
+    "names 001CC995, .text outside every function (text-gap)"
+   ]
+  }
+ ],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "001C5040",
+   "was": "when qword `01F812A8` differs from qword `01F812B0`, stores byte 0 at the address in `01F812A8` and copies `01F812A8` into `01F812B0`; then, with `i` the sign-extended dword `01F813F8`, calls `00202880(01F813A8 + i*0x10)` and `00202880(01F813D8 + i*0x10)` and stores 0xFFFFFFFF in the dwords at `01F81400 + i*4` and `01F81400 + i*4 + 8`",
+   "now": "when qword `01F812A8` differs from qword `01F812B0`, stores byte 0 at the address in `01F812A8` and copies `01F812A8` into `01F812B0`; then calls `00202880(01F813A8 + i*0x10)`, `00202880(01F813D8 + i*0x10)` and stores 0xFFFFFFFF in the dwords at `01F81400 + i*4` and `01F81400 + i*4 + 8`, where `i` is the sign-extended dword `01F813F8`, read first and re-read after each `00202880` call",
+   "why": "i is reloaded from 01F813F8 at 001C5065, 001C507F and 001C5099 (after each 00202880 call), not taken once"
+  }
+ ]
+}

@@ -248,9 +248,9 @@ and `001B8400` run:
 `dword[rcx]` latches -1,
 `+4`/`+9`/`+0x18`/`+0x20`
 zero, `0067A9B0(rcx + 0x678)`
-initializes the trailing
-sub-record, then three
-one-argument invokes -
+~~initializes~~ tears down *(corrected 2026-10-02, OPUS: state 1 to 3, `0067A9B0`+0x12..+0x18)* the trailing
+sub-record, then ~~three~~ two
+~~one-argument~~ invokes *(corrected 2026-10-02, OPUS: `001B7690`+0x2B `0017D960(1)` and +0x38 `002E1CA0(1, 0x15)`, then the tail `jmp` at +0x46)* -
 `0017D960(1)`, `002E1CA0(1)`
 (the `edx = 0x15`, `ecx = 1`
 decode) - and the tail

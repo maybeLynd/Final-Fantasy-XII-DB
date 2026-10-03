@@ -1,0 +1,120 @@
+{
+ "page": "04-Actor-Entity/Actor-Storage-Record/the-actor-storage-record-field-map.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01QmPH3UsJG62wVZQjKE9DWs",
+ "report": "home-the-actor-storage-record-field-map.json",
+ "rows": [
+  {
+   "fn": "00198730",
+   "entered_from": "`00182D60` + 0x10",
+   "text": "when bit 0 of byte `+0x3A` of `rcx` is set, sets byte `+0x3B` to 1 and clears that bit (AND `0xFE`); otherwise returns without work",
+   "anchors": [
+    [
+     "00198734",
+     "test"
+    ],
+    [
+     "00198736",
+     "je"
+    ],
+    [
+     "00198738",
+     "and"
+    ],
+    [
+     "0019873A",
+     "mov"
+    ],
+    [
+     "0019873E",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "002E4F40",
+   "entered_from": "`002693D0` + 0xD1",
+   "text": "returns 0 when `rcx` is null, when its qword `+0xC0` is null or when the dword that pointer addresses is -1; otherwise returns 1, first making the call at `002E4F40` + 0x4E with `rcx` = qword `022C6F28` plus the pointer's signed word `+0` times 0x740 unless that word is `0xFFFF`, the sum is zero or dword `+0x284` of that element is 0",
+   "anchors": [
+    [
+     "002E4F63",
+     "cmp"
+    ],
+    [
+     "002E4F6F",
+     "je"
+    ],
+    [
+     "002E4F75",
+     "imul"
+    ],
+    [
+     "002E4F8E",
+     "call"
+    ],
+    [
+     "002E4F93",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "002E9560",
+   "entered_from": "`002693D0` + 0xC6",
+   "text": "returns 0.0 when `rcx` is null, when its qword `+0xC0` is null or when the dword that pointer addresses is -1; returns 30.0 (`008F8D80`) when that pointer's word `+0` is `0xFFFF`, when qword `022C6F28` plus the signed word times 0x740 is zero, or when dword `+0x284` of that element is 0; otherwise tail-jumps through the site `002E9560` + 0x45 with `rcx` = the element",
+   "anchors": [
+    [
+     "002E9571",
+     "cmp"
+    ],
+    [
+     "002E957F",
+     "movss"
+    ],
+    [
+     "002E958C",
+     "imul"
+    ],
+    [
+     "002E959C",
+     "cmp"
+    ],
+    [
+     "002E95A5",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002E9C60",
+   "entered_from": "`002E6BD0` + 0xB6",
+   "text": "returns 0 when `rcx` is null, when its signed word `+0x1E` is negative, when dword `+0x5C` of the 0x120-byte entry at `02161DA0` + that word times 0x120 differs from dword `+0x24` of `rcx`, or when `edx` is negative; otherwise returns 1 when bit `edx` (modulo 32) of the entry's dword `+0x40` is set, else 0",
+   "anchors": [
+    [
+     "002E9C6C",
+     "js"
+    ],
+    [
+     "002E9C72",
+     "shl"
+    ],
+    [
+     "002E9C83",
+     "cmp"
+    ],
+    [
+     "002E9C8B",
+     "js"
+    ],
+    [
+     "002E9C91",
+     "bt"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

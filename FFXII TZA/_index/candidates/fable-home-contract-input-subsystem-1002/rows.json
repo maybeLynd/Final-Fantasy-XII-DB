@@ -1,0 +1,48 @@
+{
+ "page": "15-Input/CONTRACT-input-subsystem.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01Mh9D4U6XdnAn8vURhKVJHy",
+ "report": "home-contract-input-subsystem.json",
+ "rows": [
+  {
+   "fn": "00361480",
+   "entered_from": "`00342770` + 0x83",
+   "text": "walks four 24-byte entries starting at `022CB9F0` and returns the index of the first entry whose byte `+0x0` is non-zero and whose byte `+0x1` (zero-extended) equals `ecx`; when none matches, returns the bitwise NOT of the index of the first entry whose byte `+0x0` is zero, or -5 when every entry's byte `+0x0` is non-zero",
+   "anchors": [
+    [
+     "00361490",
+     "cmp"
+    ],
+    [
+     "0036149B",
+     "cmp"
+    ],
+    [
+     "0036149F",
+     "mov"
+    ],
+    [
+     "003614AB",
+     "not"
+    ],
+    [
+     "003614B4",
+     "cmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "003DD980",
+   "why": [
+    "already cited by 99-Unresolved-Residual\\Cutscene-Asset-Slots\\cutscene-name-slots-and-the-depth-of-field-sidecar.md"
+   ]
+  }
+ ],
+ "skipped": {
+  "0025D5D0": "its whole work is the entry instruction (an AND of byte 02098E27 with 0x7F, then ret)"
+ },
+ "missing": [],
+ "corrections": []
+}

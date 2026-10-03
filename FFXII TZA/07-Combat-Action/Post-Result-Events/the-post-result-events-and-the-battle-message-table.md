@@ -337,7 +337,7 @@ The 17 other functions that call `0046AB10`, with the event ids they carry as im
 
 | function | events | text (us) |
 |---|---|---|
-| `004697C0` | `0x06` | "Action interrupted. … cancels …." |
+| `004697C0` | ~~`0x06`~~ `0x05` / `0x06` / `0x07` | ~~"Action interrupted. … cancels …."~~ "Time exceeded. … cancels …." / "Action interrupted. … cancels …." / "Target out of range. … cancels …." *(corrected 2026-10-02, OPUS: `00469894 mov edx, 6`, and the arm at `0046987B`–`00469899` maps `esi` 1 / 2 / 3 to `edx` 5 / 7 / 6 before `004698A1 call 0046AB10`; the texts are rows 05-07 of battle-message-rows.tsv)* |
 | `00469A50` | `0x08` | "…'s target is too far from the party leader." |
 | `00469AF0` | `0x0D` | "… begins casting …." |
 | `00469BB0` (the lethal path, `EY-3`) | `0x10` | "… has fallen." |
@@ -429,13 +429,13 @@ BattleFormula_ApplyTargetResult 003112F0 -> BattleFormula_ApplyResultMetadata 00
   the widget's `G × 150`-tick life with `0x10`-per-tick fades and a 40-node pool that recycles the
   oldest pending line. **Residue (narrower):** the escape grammar of the two format engines
   (`002B49F0`, `002B40C0`), the runtime-filled style table `020BE610` and palette `0215E6C8`.
-- [x] **FL-2.** **The live check of the binding**: `[02EBF018]` header `+4 == 102`, `+8 == 8`, and one steal *(closed — the register row is WITHDRAWN.)*
+- [x] **FL-2.** **The live check of the binding**: `[02EBF018]` header `+4 == 102`, `+8 == 8`, and one steal *(closed — the register row is ~~WITHDRAWN~~ SUPERSEDED, 2026-09-26.)* *(corrected 2026-10-02, OPUS: _index/OPEN-QUESTIONS.md row FL-2 reads SUPERSEDED under the runtime rule; the live read is ASTRA-QUEUE AQ-16)*
   producing ring entries `0x33` / `0x34` at `02EBB560`. **FL-2.**
   *Narrowed 2026-09-15 (FABLE) — the STATIC half is closed, the live half is untouched.* §2.5 now traces
   the load in five steps from `002368D0`'s `003843F0(0x13, 00238850, "STATIC")` to
   `003845F0(&02EBF018, (i32)[pack + 0xC])`, with the manifest `01E4D830` naming directory entry 2
   `battle_message.bin` and the entry proved byte-identical to the sibling file in all nine languages.
-  **The row stays open**: no process was read, and the steal's ring entries are unobserved. That is a
+  ~~**The row stays open**~~ *(answered: the register row closed SUPERSEDED 2026-09-26, the live read carried by ASTRA-QUEUE AQ-16; 2026-10-02, OPUS)*: no process was read, and the steal's ring entries are unobserved. That is a
   runtime question and it is queued for whoever holds `@runtime`.
 - [x] **UQ-113.** **Which situations hand the dispatcher a target with no owning unit** — the menu on reserve
   members is what the texts say; the caller that does it is not read. **FL-3.** *Narrowed

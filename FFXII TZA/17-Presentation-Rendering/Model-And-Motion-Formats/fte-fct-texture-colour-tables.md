@@ -41,7 +41,7 @@ in `1,044/1,066` `.cm` files (the texture/colour-carrying subset; weapons and mo
 ## `@FTE` — texture entry (SWE2-DATA)
 
 ```
-+0x00  '@FTE', u32 kind = 0, u32 entryLen, u32 0
++0x00  '@FTE', u32 kind = 0, u32 entryLen, u32 0   <- corrected 2026-10-02, OPUS - the last u32 (+0x0C) is the record count, 1 to 12 and never 0 in the 1,044 @FTE entries of the shipped .cm files (vbf_read_entry)
 +0x10  char[0x20] name (file basename)
 +0x30  u8 count + u8[] list — textures uploaded unconditionally, seeded into the
        builder's frame list before the @FOR table-B picks (0053B45A..0053B48A);
@@ -90,12 +90,12 @@ Census over `1,044` files:
 ## `@FCT` — colour/palette entry (SWE2-DATA)
 
 ```
-+0x00  '@FCT', u32 kind = 0, u32 entryLen, u32 0
++0x00  '@FCT', u32 kind = 0, u32 entryLen, u32 0   <- corrected 2026-10-02, OPUS - the last u32 is the +0x0C count below, never 0 in the 1,044 @FCT entries (vbf_read_entry)
 +0x10  char[0x20] name
 +0x0C  u32 count (1..8 typical)
 +0x30  16-byte header records (rec = FCT + 0x30 + idx*0x10):
          +0x00 u16 vramBytes = 0x2000   VRAM reserved per CLUT, top-down
-                                       allocator 00537AA0 (invariant, 1,951/1,951)
+                                       allocator 00537AA0 (invariant, 1,951/1,951)   <- corrected 2026-10-02, OPUS - 1,972/1,972: every @FCT header record of the 1,044 files (extracted archive)
          +0x02 u16 clutBytes           colours = clutBytes>>2
          +0x04 u8  clutRRW             upload width / DBW source
          +0x05 u8  pageCount = 4       palette pages per payload (1,972/1,972)
@@ -108,9 +108,9 @@ Census over `1,044` files:
        page chosen at draw time by `s8[renderRecord+0xBA]` (below)
 ```
 
-Census over `1,044` files / `1,951` header records:
+Census over `1,044` files / ~~`1,951`~~ `1,972` header records *(corrected 2026-10-02, OPUS: the `+0x0C` counts summed over every `@FCT` entry of the extracted archive)*:
 
-- `u16 +0x02` values are `0x400` (1618), `0x200` (318), `0x40` (35) →
+- `u16 +0x02` values are `0x400` (1618), `0x200` (318), `0x40` (~~35~~ 36 *(corrected 2026-10-02, OPUS: same census)*) →
   **256, 128 or 16 RGBA colours** per palette — the PS2 CLUT sizes.
 - **Corrected 2026-09-28 (FABLE evidence record
   `_index/candidates/uq218-cm-entry-residues/`):** the `+0x00` word is a VRAM
@@ -138,8 +138,8 @@ dedups `(idx,sub)` pairs in the record's `+0x180` byte map.
 Each payload holds **four palette pages** (`pageCount × clutBytes` bytes).
 `005044D0` resolves the live page as `entry + payloadOff + s8[rec+0xBA] *
 clutBytes` (`005044F8`..`0050450D`), and `+0xBA` is written only by the setter
-`00504D20` (7 bytes; called from the status-look code at `00428D3C`, plus
-`00428CD0` twice and `0042E520`) — the status-look page names `+0xBA` the
+`00504D20` (7 bytes; called ~~from the status-look code at `00428D3C`, plus~~
+~~`00428CD0` twice and `0042E520`~~ at three sites, `00428CD0`+0x6C and +0xB2 and `0042E4F0`+0x30 *(corrected 2026-10-02, OPUS: retool callers 00504D20; X2 below)*) — the status-look page names `+0xBA` the
 "record mode", with mode 3 = Stone. Corroborating data: **page 3 is grey in
 1,914/1,970 palettes** (mean chroma 1.6 vs 30.6 on page 0 — the Stone palette),
 pages 1/2 are brighter variants (luminance 98.7/98.3 vs 78.9; page 2

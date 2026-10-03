@@ -1,0 +1,15 @@
+{
+ "page": "22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/class-descriptor-and-metadata-system.md",
+ "members": "22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/members/guarded-class-registration-stubs.tsv",
+ "kind": "static_vtable",
+ "reg": "any",
+ "group": "all",
+ "title": "the guarded class-registration stubs, one row per member",
+ "heading": "## Per-member rows: the vtable each guarded class-registration stub installs, and its reflected type (OPUS, 2026-10-03)",
+ "lead": "The family `guarded class-registration stubs` (frontmatter: 99 members; {N} get a row here) shares one pattern in many spellings, stated here once and not repeated per row. Under the thread-safe static-init guard (`008092FC` / `0080929C`), each stub constructs its static class descriptor through `00632D80`, installs that descriptor's vtable, and registers members and teardowns. What differs from member to member is the static descriptor and the vtable stored into it. Each row anchors the `lea rax, [V]` whose following `mov` stores V into the static descriptor X the body also loads with a `lea` (the member's distinguishing instruction), and states V and the class V's MSVC RTTI complete-object locator names, read from the certified image. {CHECK} re-derives every row and compares it with the committed {ROWS}. Two controls are refused: a swapped value and a moved anchor. Members that do not derive are listed in [`excluded.tsv`](../../_index/candidates/opus-ee-guarded-registration-1003/excluded.tsv).",
+ "group_heading": "### All {N} stubs (OPUS)",
+ "groups": {},
+ "value_col": "vtable V installed",
+ "name_col": "reflected type (RTTI before V)",
+ "name_fmt": "{NAME}"
+}

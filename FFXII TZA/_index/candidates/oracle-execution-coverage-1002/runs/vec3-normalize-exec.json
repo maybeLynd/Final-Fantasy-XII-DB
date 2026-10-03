@@ -1,0 +1,22 @@
+{
+ "blocks_in_image": 22,
+ "blocks_outside_image": 1,
+ "catalogue": "e2a67b07700c2ec3fbfae3213965de35",
+ "classes": {
+  "entered": 1,
+  "faulted": 1,
+  "returned": 2,
+  "returned+faulted": 3
+ },
+ "elapsed_s": 2.0,
+ "emu_starts": 51,
+ "entries_executed": 6,
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "instrument": "execcov-shim v2",
+ "patched_blocks": 8,
+ "rc": 0,
+ "receipt_md5": "b6f0fce63aef213713eee97404df7b4b",
+ "run": "vec3-normalize-exec",
+ "status": "ok",
+ "unique_blocks": 23
+}

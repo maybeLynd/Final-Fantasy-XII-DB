@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\sd194-caller-frames\prove.py", line 98, in <module>
+    args=parser.parse_args();main(args.output,args.source)
+                             ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\sd194-caller-frames\prove.py", line 47, in main
+    need(bytes_.hex()==body['physical_bytes'] and hashlib.sha256(bytes_).hexdigest()==body['sha256']==pin,'shipping original body identity mismatch')
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\sd194-caller-frames\prove.py", line 10, in need
+    if not ok:raise ValueError(text)
+              ^^^^^^^^^^^^^^^^^^^^^^
+ValueError: shipping original body identity mismatch

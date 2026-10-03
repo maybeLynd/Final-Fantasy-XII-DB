@@ -31,8 +31,6 @@ function	name	site	disp	kind	instruction	route	note
 00301AD0	AiOrder_EvaluateTargetSelector	003033A4	0x8	r	cmp qword ptr [rdi + 0x780], rax	embed BattleUnit+0x778	
 00308610	BattleUnit_UpdateCombatFrame	00308786	0x8	r	cmp qword ptr [rbx + 0x780], 0	embed BattleUnit+0x778	
 0030C010	FUN_0030c010	0030C03B	0x8	r	cmp qword ptr [rbx + 0x780], 0	embed BattleUnit+0x778	
-0030EDA0	BattleUnit_RestoreSuspendedActionState	0030EE3A	0x8	w	movups xmmword ptr [rcx + 0x50], xmm1	embed BattleUnit+0x778	
-0030EFF0	BattleUnit_SnapshotAndSuspendActionState	0030F0D5	0x8	r	movups xmm1, xmmword ptr [rax + 0x50]	embed BattleUnit+0x778	
 00316CD0	BattleTargetBuffer_TryAppendActorWork	00316CDC	0x8	w	mov qword ptr [rcx + rax*8 + 8], rdx	embed BattleUnit+0x778	
 00316D70	BattleTargetBuffer_FindActorWorkIndex	00316D7F	0x8	addr	lea rax, [rcx + 8]	embed BattleUnit+0x778	
 00316D70	BattleTargetBuffer_FindActorWorkIndex	00316D83	0x8	r	cmp qword ptr [rax], rdx	embed BattleUnit+0x778	
@@ -65,5 +63,3 @@ function	name	site	disp	kind	instruction	route	note
 00322760	FUN_00322760	00322810	0x10	r	cmp byte ptr [rbx + rcx*8 + 0x788], 8	embed BattleUnit+0x778	
 003257D0	FUN_003257d0	003259BD	0x10	addr	lea rdi, [rsi + 0x788]	embed BattleUnit+0x778	
 003257D0	FUN_003257d0	003259C4	0x10	r	movzx eax, byte ptr [rdi]	embed BattleUnit+0x778	
-0030EDA0	BattleUnit_RestoreSuspendedActionState	0030EE44	0x18	w	movups xmmword ptr [rcx + 0x60], xmm0	embed BattleUnit+0x778	
-0030EFF0	BattleUnit_SnapshotAndSuspendActionState	0030F0DD	0x18	r	movups xmm0, xmmword ptr [rax + 0x60]	embed BattleUnit+0x778	

@@ -1,0 +1,22 @@
+{
+ "blocks_in_image": 2004,
+ "blocks_outside_image": 2,
+ "catalogue": "e2a67b07700c2ec3fbfae3213965de35",
+ "classes": {
+  "entered": 2,
+  "returned": 223,
+  "returned+faulted": 12,
+  "scripted": 30
+ },
+ "elapsed_s": 12.3,
+ "emu_starts": 256,
+ "entries_executed": 235,
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "instrument": "execcov-shim v2",
+ "patched_blocks": 0,
+ "rc": 0,
+ "receipt_md5": "d2c7be97d97f10dea88f636f03b7f519",
+ "run": "zone-nav-fixture-exec",
+ "status": "ok",
+ "unique_blocks": 2006
+}

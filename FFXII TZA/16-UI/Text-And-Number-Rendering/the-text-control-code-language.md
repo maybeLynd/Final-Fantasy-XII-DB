@@ -519,7 +519,7 @@ clear bits bounded by `edx`/`r8d`. Interior anchors `002B2D40` /
 `002B1F20` (137 B) is the three-arm position select `byte[+0x9A]`
 keys: `0x25` returns `byte[+0x99]` as float; `0x26` returns
 `word[+0x94] - xmm1 + byte[+0x99]` truncated back to float; `0x27`
-returns `(word[+0x94] - xmm1)/2 + byte[+0x99]` — the left/center/right
+returns `(word[+0x94] - xmm1)/2 + byte[+0x99]` — the ~~left/center/right~~ left/right/centre *(corrected 2026-10-02, OPUS: in selector order `0x25`, `0x26`, `0x27` — `002B1F20+0x7A` the margin alone, `002B1F20+0x4A` the width subtracted, `002B1F20+0x1C` half of it)*
 alignment arms for the control-code position op. Interior anchor
 `002B1F37` (the arm select).
 

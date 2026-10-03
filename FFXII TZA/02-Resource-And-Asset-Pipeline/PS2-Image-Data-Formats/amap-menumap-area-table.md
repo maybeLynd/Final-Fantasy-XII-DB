@@ -36,7 +36,7 @@ audit:
 |---|---|
 | files | `ps2data/image/ff12/myoshiok/<lang>/worldmap/menumap_area.bin`, all **9** locales, byte-identical, 396 B |
 | closure | `16 + (1+39) + (1+59) + (2+2·59) + (4+4·39) = 396`, the four sections back to back |
-| request size | `.fst` kind 7 id `0xA5` = 396 in all nine `FileSizeTable_*.fst` |
+| request size | `.fst` kind 7 id `0xA5` = 396 in ~~all nine~~ eleven of the twelve `FileSizeTable_*.fst`, -1 in `UK` *(corrected 2026-10-02, OPUS: the install ships twelve tables, `ASIA` … `US`; each read at dword `7·5000 + 0xA5`)* |
 | check | [`check_amap.py`](../../_index/candidates/bucket-members-0929/checks/check_amap.py) → [output](../../_index/candidates/bucket-members-0929/checks/check_amap.out.txt): 128 checks, FAILS 0 |
 
 ## 1. What the player sees

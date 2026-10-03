@@ -174,7 +174,7 @@ bucket 1's entry is `{bound=1, base=0x1A}`.
                      bit3 into bit2); bit2 = notify; bit3 = posted/dirty.
                      `0026FAD0(idx, value, mode)` — gated on `byte[02F8F238]` —
                      probes `0024F680` and, finding nothing pending, posts a type-2
-                     message `{u16 idx; u16 mode}` through `0026F470` (queue
+                     message `{u16 idx; u16 mode}` through `0026F470` (queue   <- corrected 2026-10-02, OPUS: not a message post - 0026F470 walks the EFB binding table qword[02F8F228] (row count word[02F8F23A], not a queue and a channel) and builds an effect for every row whose channel byte +4 equals idx and whose enable byte +7+value is set (0026F522-0026F53B); {2, idx, mode} is the 0024F680 lookup key (0026FB03-0026FB12), stamped into each built effect's descriptor (0026F597-0026F5B6)
                      `qword[02F8F228]`, channel `word[02F8F23A]`) bracketed by
                      `0036C1D0`/`0036C140`, then marks `flags[idx] |= 8` and `|= 4`
                      when bit0 clear. `0026FDB0(idx)` re-queries the queue for the
@@ -474,7 +474,7 @@ That makes each tag a fixed-position member, not a record type in a stream:
 | 31 | 0–312,416 | 1 pack | `00232380` nested six-tag parse → first `0x68` sub-record |
 | 17 | 0–119,120 | 29 packs | `00232380` nested six-tag parse → second `0x68` sub-record |
 | 27 | 0–95,776 | 358 packs | `003ED840` — "current/next" cursor pair at `02B5F1A0`/`02B5F1B0` |
-| 23 | 32–257,488 | never | `00466E70` (1453 B handler, unread) |
+| 23 | 32–257,488 | never | `00466E70` (1453 B handler, ~~unread~~ read: it builds the `02EBB6E0` slot family *(answered: the tag table's row 23, interior verified 2026-09-17; 2026-10-02, OPUS)*) |
 | 12 | 16–336 | never | `00468160` — binds against the tag-14 buffer and tag-32 payload |
 
 **Positive control.** The independently re-derived jump table at `002F72F8` (34 image-relative
@@ -567,8 +567,8 @@ and pass `002F71A1` then rewrites any leftover `-1` to 0 (unresolved). So
 
 Final tail (`002F722A`, two iterations): for counts `dword[ctx+0x1F4]` and
 `dword[ctx+0x20C]` allocate a `count×2` u16 array (`+0x1E0`/`+0x1F8`) plus a
-`2·ceil(count/8)` bitmap (`+0x1E8`/`+0x200`). `+0x20C`'s writer is outside
-`002F6AB0` (residue).
+`2·ceil(count/8)` bitmap (`+0x1E8`/`+0x200`). ~~`+0x20C`'s writer is outside~~
+~~`002F6AB0` (residue).~~ *(answered: `ctx+0x20C` was never a standalone field — the closure further down this section; 2026-10-02, OPUS)*
 
 So the `+0x30` record reads as: `{u16 tag22Idx, u16 tag0RowIdx/tag29Idx, u16 tag26Idx|0xFFFF,
 u16 0xFFFF, u16 seq, u16 0, u32 flags{b13 colour|b14 bucket|b30 link|b24-31 bankMask},
@@ -590,9 +590,9 @@ flag `0209A708` is set — a bank-change refresh): walks the tag-30 source recor
   Guard `≤ 0x3FFF`; `+0x04 == 0xFFFF` is an authored sentinel — 10,346 records
   corpus-wide — skipped by the bound check.
 - `dword[rec+0x0C] & (1 << (dword[0209A6E8] + 0x17))` — **the flag dword's bits
-  24–31 (the byte at `+0x0F`) are a per-bank presence mask** (`0209A6E8` = the
-  active bank, so bank *n* = bit *n*+0x17; the census `+0x0E` values `0x8000`/
-  `0x8700`/`0x9700` decode as banks {14} / {7,8,9,14} / {7,8,9,11,14}).
+  24–31 (the byte at `+0x0F`) are a ~~per-bank presence mask~~ per-weather-slot membership mask** (`0209A6E8` = the
+  ~~active bank, so bank *n* = bit *n*+0x17~~ weather slot `1..3`, so slot *n* = bit *n*+0x17 and slots 1–3 are bits 24–26; ~~the census `+0x0E` values `0x8000`/~~
+  ~~`0x8700`/`0x9700` decode as banks {14} / {7,8,9,14} / {7,8,9,11,14}~~ the census `+0x0E` words `0x8000` / `0x8700` / `0x9700` set dword bits {31} / {24,25,26,31} / {24,25,26,28,31}, so slots {none} / {1,2,3} / {1,2,3} *(corrected 2026-10-02, OPUS: `0209A6E8`'s writers are `0026E8E1`, storing the argument both callers take from `00265920()` (`003792A5`, `0037969B`), and the reset to 1 at `0026E653`; `002F7394 add ecx, 0x17` and `002F74C9 test dword ptr [r9 - 0x11], esi` test entry `+0x0C`; Weather/call-chains/field-init-weather-to-legacyps2gs-rebuild.md UQ-88)*).
 - `u8[rec+0x1D]` = a variant byte, deduped against the previous record's
   (`+0x1C` ≈ `0x00FF` in the census = low byte `+0x1C` ≈ `0xFF` constant-ish, high
   byte `+0x1D` the variant).
@@ -602,10 +602,10 @@ walking the `word[entry+0xC]` successor chain too), then keeps entries with
 refcount >1 under a budget — `00467AA0` = `0x1007FF − 3·(G1·G2) − dword[02CA6008]
 − dword[02CA6004]`, `& 0xFFFFF800` — counting a per-entry cost from
 `00466190` (`byte[+5]` clamp 7, `word[+6]`, `word[+8]`) and a type filter
-`00466220` (`byte[entry]` ∈ `{0x14,0x1C}`). The survivors (`ctx+0x228` count)
-get a `count×0x28` zeroed table at `ctx+0x218` — **the active-bank working set**.
+`00466220` (`byte[entry]` ∈ ~~`{0x14,0x1C}`~~ `{0x14, 0x1C, 0x24, 0x2C}`, returning 1 for `0x14`, `0x24`, `0x2C` and 0 for `0x1C` *(corrected 2026-10-02, OPUS: `00466225 lea ecx, [rdx-0x14]` / `00466228 test cl, 0xE7` / `0046622D cmp dl, 0x1C` / `00466235 cmovne`)*). The survivors (`ctx+0x228` count)
+get a `count×0x28` ~~zeroed~~ table at `ctx+0x218`, whose fill writes only `+0x00`, `+0x08`, `+0x10`, `+0x18` and the byte `+0x20` — **the ~~active-bank~~ current weather slot's working set** *(corrected 2026-10-02, OPUS: fill loop `002F7600`–`002F7628`; the table comes from `003EC8D0` at `002F75DC`, whose own zeroing is not checked here; the slot is `0209A6E8`, as above)*.
 So tag-30 records are the authored *instances*, tag-26 the *variant entries* they
-select among per bank, and `002F7380` is the bank-change reselection.
+select among per ~~bank~~ weather slot, and `002F7380` is the ~~bank-change~~ weather-slot reselection *(corrected 2026-10-02, OPUS: `0209A6E8` is the weather slot, as above)*.
 
 **The tag-26 expansion — `00467D20`** (the copy callback of the shared tag-14/26
 arm): the chunk is a `{u32 count; (count+1)×{u24 off16 | u8 0xFF}}` index over
@@ -898,10 +898,10 @@ its second half — which reads a `{u32 count; i32 SPP1-index[]}` list at
 **engine-wide offset-decode base** behind `0020E600`/`0020E620` (`arg ± base`,
 ~815/~279 callers — the universal authored-offset ↔ runtime-pointer pair, see
 [the shared-neighbours pass](../../00-Engine-Core-Runtime/Shared-State-Accessors/the-shared-neighbours-pass-22-keeps-finding.md)
-§4c and OPEN-QUESTIONS CD-2/UQ-83): it is zero-initialised `.data` that no instruction in
-the image writes — the static route to a writer is exhausted (no rip-relative store, no
+§4c and OPEN-QUESTIONS CD-2/UQ-83): it is zero-initialised `.data` ~~that no instruction in~~
+~~the image writes — the static route to a writer is exhausted~~ that no rip-relative instruction writes, though one indexed store can *(corrected 2026-10-02, OPUS: `00210570` tests `cmp cx, 0x4000` / `jge` signed at `00210575`, then `movsx rax, cx` and stores at `[01F83580 + id·16]` (`00210588`, `0021058C`), so id `0xFFFB` = −5 lands on `01F83530`; the route is undriven, not absent — field-record-table-navimapdata.md, the 2026-09-25 scope correction)* (no rip-relative store, no
 `lea`, no stored pointer, no absolute-addressing form), so the decode is zero-extension
-for the process life and the `+0x04` field is an ordinary u32 byte offset. It is **not**
+~~for the process life~~ while that route stays undriven, and the `+0x04` field is an ordinary u32 byte offset. It is **not**
 a per-list runtime cursor: the actual variant selection is
 `ebp = 00265920() - 1` — the named `WorldField_GetCurrentWeatherSlot1To3WithDebugOverride`
 (weather-slot-state-model.md §table: debug override at settings-singleton `+0xAAC` wins
@@ -1178,7 +1178,7 @@ table at `002F72F8` (site `002F6CCC`, bound `0x21`):
 | 17 | `002F6DC8` | `00232380(+0xA8, r14)` — nested chunk parse into the second `0x68` sub-record |
 | 22 | `002F6D91` | `[+0x180]` = chunk ptr — the chunk is a `{u32 count; (count+1)×{u24 off16 \| u8 tag=0}}` index (sentinel `0xFF`, `sentinelOff·16 == size`, 461/461; 5,714 zero-length entry aliases) over `{vec4 AABBmin, vec4 AABBmax, vec4(128×4), u32 axisMode, u32 period, tail}` records — **the per-instance oscillation spec**; only `+0x30`/`+0x34` are consumed (`002F4520` via tag-30 `+0x00`, §2.2), the AABB header and `+0x38` tail are a dead PS2 VIF/GIF packet blob |
 | 23 | `002F6DDC` | `00466E70(r14)` — builds the `02EBB6E0` `0x50`-stride slot family: `[02EBB6E0]` = `dword[chunk+0x10]` bound, `[02EBB6E4]` = `-1` cursor, `[02EBB6F0]` = `003EC8D0`-alloc `count·0x50` table, `[02EBB6F8]` = chunk stash — the same family `ACTL`'s `+0x02` timer-slot ids index and the tag-30 cross-link pass walks via `00466CB0` |
-| 24 | `002F6D33` | `[+0x220]` = count; `[+0x198]` = payload; `[+0x1D0]` = alloc `count·0xE0` — **the per-instance presentation-entry array** (the periodic tick's post-recovery mark writes `+0xC0` of entry `[+8]`) |
+| 24 | `002F6D33` | `[+0x220]` = count; `[+0x198]` = payload; `[+0x1D0]` = alloc `count·0xE0` — **the per-instance presentation-entry array** (~~the periodic tick's post-recovery mark writes `+0xC0` of entry `[+8]`~~ the constructor's tag-30 expansion marks `+0xC0` of the entry a bit-30 record names, and a later loop in the same body allocates it *(corrected 2026-10-02, OPUS: `002F701D`–`002F7037` and `002F71F0`–`002F7211` are inside `002F6AB0`; the table's other users `002F4520`, `002F5450` and `002F5550` were read for `+0xC0` and none writes it)*) |
 | 25 | `002F6DAA` | `003ED190(r14)` — field-aware environment setup: reads field id `003148F0`, special-cases `0x11A`, stores the chunk to `02EBB6xx` globals and sets a flag |
 | 26 | `002F6ED1` | same alloc+init+copy as tag 14 (`00467D00`, `00467D20`, `00467BF0`) plus `[+0x230]` = 1 — the "resource present" flag; the chunk is a **named-TIM2 bank** — `{u32 count; (count+1)×{u24 off16 \| u8 0xFF}}` index (sentinel = EOF exactly, 459/459 packs) over `{char[0x28] name; u32 picCount; u32 0; TIM2}` records (20,809 censused — `members/ym00-tag2226-census.tsv`); `00467D20` sums each TIM2's `u16[+6]` picCount, allocs `Σ × 0x60` at `qword[buf+8]`, and expands each picture (`00536080` walks the TIM2's own header — `+0x05` flag picks `+0x10`/`+0x80` start, `u16[+6]` the count, pictures u32-length-prefixed) |
 | 27 | `002F6EFF` | `003ED840(r14)` — publishes the chunk to `02B5F1A0` and the *next* chunk to `02B5F1B0` (a "current/next" cursor pair) |
@@ -1198,8 +1198,8 @@ The two `0x68` sub-records are nested containers inside the `YM00` chunk stream.
 After the chunk walk (`002F6F2A`+): if `[+0x158]` is live and `[+0x174]` > 0 the body allocs
 `count·0x70` (`003EC8D0`) into `[+0x1C0]`, walks the tag-30 records (`rdi`, `0x30` stride) —
 filling each `0x70` entry with four `1.0f` quads, bucket-counting flag bit 14 into
-`+0x1F4`/`+0x1FC`/`+0x204`, honoring the bit-30 post-recovery mark by writing `-1` into the
-unit's `0xE0` presentation entry `+0xC0` (`002F701D`–`002F7037` — the periodic-tick contract),
+`+0x1F4`/`+0x1FC`/`+0x204`, honoring the bit-30 ~~post-recovery mark~~ tag-24 link by writing `-1` into the
+~~unit's~~ linked `0xE0` presentation entry `+0xC0` (`002F701D`–`002F7037` ~~— the periodic-tick contract~~, in this constructor at pack bind, not in a periodic tick *(corrected 2026-10-02, OPUS: the entry index is `word[rec+0x14]`, `002F7025`; the stored qword is `0x00000000FFFFFFFF` from `002F6FD8 mov r8d, 0xffffffff`; `002F71F0`–`002F7211` then allocate every marked entry)*),
 and sourcing the color either from the record's own RGBA `[+0xC]` (`00466140` × `1/128`, the
 same `xmm6` = `008C5B34` scale at `002F7076`/`002F707A`/`002F709C`/`002F70A0`) or,
 when zero, from the tag-0 table entry `[rdi-0xA]·0x40` transformed through the `+0x40`
@@ -1274,13 +1274,13 @@ positional map, with no world data, navigation or pictures — and 41 carry only
 
 ## 6. Falsification pass
 
-Not yet run.
+~~Not yet run.~~ *(answered: run 2026-09-13 — §9, Falsification pass 1; 2026-10-02, OPUS)*
 
 ## 7. What this document does not claim
 
 - [x] ~~**UQ-86.** Which packs the engine requests in mode 0 and which in mode 1 for each field — the map-reference
       table that supplies both indices was not decoded here. `MP-1`.~~
-      ***ANSWERED 2026-09-17 (FABLE): the map-reference table is `map_ref.bin`, and it names both packs for every field.** `MapRef_BeginLoadResource` `00268750` requests kind 9 id 4 (`0026875A`..`00268762`, the `MRF` file [the five-small-bin page](../../02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/five-small-bin-tables.md) lists) and keeps it at `02099D88`. Its header's words `+4` and `+8` are the offsets of two arrays: 1,315 field rows of 8 bytes `{u16 own pack index, i16 block index, i16, i16}` and 93 block records of 16 bytes `{i16 mode-0 pack index, i16 aux1, ...}`; `MapRef_GetPrimaryFieldValue` `00264F10` returns the row's first word and `MapRef_GetAuxValue0` `00264F40` the first word of the row's block record (`00264F69`..`00264F79`), so the mode-1 request loads the field's own pack and the mode-0 request loads its block's pack. Joining the namespace-4 indices to the archive's 550 `.mpk` entries through `FileSizeTable_US.fst` row 4 (516 of 550 sizes are unique) resolves 457 own packs and 89 block packs; the two index sets never overlap, no row's own pack is its block's, and together they use every kind-4 index. The per-field listing, both packs with their slot sets, is [`members/map-ref-field-packs.tsv`](members/map-ref-field-packs.tsv). DATA from the archive; the reader chain static.*
+      ***ANSWERED 2026-09-17 (FABLE): the map-reference table is `map_ref.bin`, and it names both packs for every field.** `MapRef_BeginLoadResource` `00268750` requests kind 9 id 4 (`0026875A`..`00268762`, the `MRF` file [the five-small-bin page](../../02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/five-small-bin-tables.md) lists) and keeps it at `02099D88`. Its header's words `+4` and `+8` are the offsets of two arrays: 1,315 field rows of 8 bytes ~~`{u16 own pack index, i16 block index, i16, i16}`~~ `{u16 own pack index, i16 block index, u16 area, u16 group}` *(corrected 2026-10-02, OPUS: the last two words are loaded zero-extended — `movzx` at `00264EF9` (`+4`) and at `00264FB9`, `0026DBB2`, `0026DBE7` (`+6`))* and 93 block records of 16 bytes `{i16 mode-0 pack index, i16 aux1, ...}`; `MapRef_GetPrimaryFieldValue` `00264F10` returns the row's first word and `MapRef_GetAuxValue0` `00264F40` the first word of the row's block record (`00264F69`..`00264F79`), so the mode-1 request loads the field's own pack and the mode-0 request loads its block's pack. Joining the namespace-4 indices to the archive's 550 `.mpk` entries through `FileSizeTable_US.fst` row 4 (516 of 550 sizes are unique) resolves 457 own packs and 89 block packs; the two index sets never overlap, no row's own pack is its block's, and together they use every kind-4 index. The per-field listing, both packs with their slot sets, is [`members/map-ref-field-packs.tsv`](members/map-ref-field-packs.tsv). DATA from the archive; the reader chain static.*
 - [x] ~~**MP-2.** The inner layouts of `YM00`, `ACTL`, `SP1`, `WD` and `MRP`, and
       what the navigation section at slot 4 holds beyond its binder. `MP-2`.~~
       ***ANSWERED 2026-09-22 (SWE2-DATA): all five sections decoded end-to-end
@@ -1536,7 +1536,7 @@ extent over the slot's own `+0x18`/`+0x1C`.
 | `003635C0` | `022CBA90`/`022CBA9A` byte clears + `022CBAF0 = rcx` publish (`003635C0`/`003635CE`) | [`003635C0`](../../_index/ADDRESS-INDEX.md) |
 
 `00377DC0` (~89 B) — `r11 = rsp`, `rbp = rsp - 0x1A8`, `0x290` frame
-(`00377DC0`/`00377DCF`).
+(`00377DC0`/`00377DCF`) *(qualified 2026-10-02, OPUS: a 618-byte body, ret at `00377DC0`+0x269; the name input sits at entry-RSP−0x148 (`rbp+0x60`) and the copied output at entry-RSP−0x258 (`rsp+0x50` after the prologue), 272 bytes apart; the `R9 = 0x103` at +0x43 is the copier's signed character limit, not a proven destination capacity - ASTRA's SPEC-accepted sd194-stale-name-slice, method A)*.
 
 | member | role | interior |
 | --- | --- | --- |

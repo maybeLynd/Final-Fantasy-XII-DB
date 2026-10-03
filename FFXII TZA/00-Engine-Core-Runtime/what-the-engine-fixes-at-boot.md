@@ -588,3 +588,14 @@ frame-rate-dependent LUTs this page's boot pass fixes.
 | `00536120` | 24 B | makes `rcx` an empty self-linked list head (`+0` and `+8` = `rcx`), zeroes `+0x14` and `+0x18`, and sets `+0x10` to -1 | `00536125`, `00536129`, `00536130` |
 | `00863540` | 80 B | allocates 8 bytes through `00210EC0`, constructs them with `008632E0(object, [rcx+8], [rcx+4])`, passes 'non-null' to `0016D6A0` and returns the object | `00863552`, `00863568`, `0086357D` |
 | `00863610` | 62 B | passes '`rcx` non-null' to `0016D6A0`, stores `rdx` at `+0x20` of the record `rcx` points to, calls the import at `008C2330` with that record's `+8`, and returns 0 | `00863628`, `00863630`, `0086363B` |
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-what-the-engine-fixes-at-boot-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `003AA240` | 60 B | calls `0020E600(dword +0)` of `rcx` and follows the chain `0020E600(dword +0)` of each result, returning the first record whose word `+0xC` and byte `+0xE` equal those of `rcx`, or 0 once `0020E600` returns null | `003AA24B`, `003AA259`, `003AA263`, `003AA26A`, `003AA274` |
+| `00467AD0` | 42 B | stores 0x4000 to dword `02CA5FF0` and stores dword `022D8EB4` times dword `022D8EAC` (signed `imul`), times 3, divided by 64 with signed rounding toward zero (`cdq`, add 63 when negative, `sar 6`) to dword `02CA5FF4` | `00467AD6`, `00467ADD`, `00467AE7`, `00467AF0`, `00467AF3` |
+| `00467BB0` | 61 B | calls `00536120` on the address `02EBB6A0`, then stores the dword 0x28 to `02EBB6B0`, the address `00467B20` to qword `02EBB6B8` and zeroes the qwords `02EBB6C0` and `02EBB6C8` | `00467BBB`, `00467BC7`, `00467BD1`, `00467BDA`, `00467BE1` |
+| `00475310` | 121 B | stores the floats 10 (`008F8180`) to `02EBA4C4`, 150 (`009155DC`) to `02EBA4C8`, 1.5 (`00901B3C`) to `02EBA4CC` and 16 (`01CEBC84`) to `02EBA4E0`; zeroes the dwords `02EBA4C0` and `02EBA4D0`, stores the dword 5 to `02EBA4D4`, the qword 0x40 to `02EBA4D8`, the dword 0x40800000 to `02EBA4E4` and the qword 0x40800000 to `02EBA4E8` | `00475322`, `00475342`, `0047534A`, `0047535E`, `0047537D` |

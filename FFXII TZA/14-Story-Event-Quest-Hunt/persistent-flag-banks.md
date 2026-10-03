@@ -1440,3 +1440,11 @@ the index the new record
 settles at.
 Interior anchor `001DD9A0`
 (the key-compare loop head).
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../_index/candidates/fable-persistent-flag-banks-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `003EC6C0` | 59 B | calls `003EC6C0 + 0x8` and returns without further work when it returns non-zero; otherwise, for index 0 to 15, calls `003EB720(index)` and then `003EC6C0 + 0x24` with that result and the incoming `ecx` | `003EC6C8`, `003EC6CF`, `003EC6DA`, `003EC6E4`, `003EC6EB` |

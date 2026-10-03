@@ -904,3 +904,7 @@ PARTIAL — no disposition claimed): the MPG record emitter sibling of `008631D0
 `arg3 | 0x4A000000` into the tag slot `[02EAF930 + idx*8]` and `arg2` into `[+8]`, then writes the
 `0020E620`-encoded form of `arg2` into `[rcx+4]` — a {tagged-payload, encoded-pointer} enqueue
 record, same base-image fixup discipline as the `0020E600`/`0020E620` family.
+
+`0020ED30` (1300 B) is the two-bank state machine `0020EC80` and `002104E0` drive: the `01FC35B8`/`01FC35F8` block pointer and the `01FC3600`/`01FC3603`/`01FC3607` state bytes gate each pass, `0018AA30` decodes a packed qword and `0018AA10` runs on the `01F7E340` handle, `0x100000`/`0xE00` size gates bracket three virtual dispatches (`[rdi+0x40]`, `[rax+0x138]`, `[r9+0x48]`) with `0020FF10` between them, and the `0x80` stamp plus `01FC3603`=0 clears sequence the second bank - the dispatch-and-recycle half of the layer's stream submit.
+
+Interior anchor `0020F031` (function `0020ED30`).

@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sd194-caller-frames\\prove.py",
+    "Database/Tools/work/ASTRA/runtime-residue-method-retriage/sd194-caller-frames/result-01.json"
+  ],
+  "driver_sha256": "adfb220a3dad623af7d36f60d7f2638512988ea3653099b77ccaf745638be47b",
+  "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+  "terminal": true,
+  "exit": 0,
+  "exception": null
+}

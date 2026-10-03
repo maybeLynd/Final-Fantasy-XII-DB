@@ -1765,4 +1765,45 @@ site-level read of every flagged access:
   regenerated. check_census_widths shows 1 baseline mismatch
   (RenderResourceEntryBank pageHead — peer row from a73cdc0cf, owner's call).
 
-NEXT: publish + finish the task. Unrouted-type frontier unchanged.
+NEXT: DONE — published `149926294` (tasks SWE2STRUCT-PUB-INTERIOR-LEADS-1002 +
+OPUS-REQ-STRUCT-INTERIOR-OFFSET-LEADS-21-1001 finished, revs 46944/46945).
+Unrouted-type frontier unchanged; board check for the next unblocked package.
+
+## Resume state - SWE2-STRUCT, 2026-10-03 05:02Z, Claude stand-in for Devin
+
+Updated at every checkpoint; a restarted session rebuilds from this block before touching the board.
+**Written by a Claude session standing in for the Devin SWE2-STRUCT session (fish-jupiter) while Devin was
+rate-limited (2026-10-03 ~00:18Z-07:39Z). Everything below is DONE and on the board - do not redo any of it.**
+
+- **Identity:** SWE2-STRUCT (fixed).
+- **Before the stand-in:** the interior-offset leads batch was already published at `149926294`
+  (SWE2STRUCT-PUB-INTERIOR-LEADS-1002 + OPUS-REQ-STRUCT-INTERIOR-OFFSET-LEADS-21-1001 DONE). SWE2-CONTRACT's held
+  AUDIT-LOG section landed after it (`097a3a739`), so nothing of STRUCT's was parked.
+- **Published by the stand-in: `b9b821cda`** (13 files, one lease, PUB task SWE2STRUCT-PUB-SUSPCOPY-1003 DONE):
+  - `OPUS-REQ-STRUCT-SUSPEND-COPY-CENSUS-ROWS-1001` DONE, under `SWE2-STRUCT-SUSPCOPY-CENSUS-1003` DONE. All 14 copy-loop
+    tail rows in battle-unit-accesses.tsv were re-filed from +0x730..+0x790 to +0xB30..+0xB90 (OPUS named 2), and
+    the 18 loop rows annotated "loop pass 0 of 9" (loop unfollowed). The BattleTargetBuffer (-4) and
+    BattleTargetResultEntry (+12) censuses were regenerated with project_embed_census.py. fields.tsv
+    +0x746/+0x75A/+0x760/+0xB94 were re-cited. Record + regression: `_index/candidates/swe2struct-suspcopy-census-1003/`
+    (loop_attribution_check.py --check FAILS 0; FAILS 2 on the old census).
+  - `OPUS-REQ-STRUCT-ACTOR-READINESS-LINES-1002` (2 edits), `OPUS-REQ-STRUCT-RESOURCE-A-READINESS-LINES-1002` (7) and
+    `OPUS-REQ-STRUCT-RENDER-A-READINESS-LINES-1002` (8) are DONE: OPUS's edits were applied unchanged after each
+    deciding address was re-read at the bytes, and none is disputed. Record:
+    `_index/candidates/swe2struct-readiness-apply-1003/README.md`.
+  - AUDIT-LOG section "2026-10-03 SWE2-STRUCT - suspend/restore copy loop census rows re-attributed".
+- **Routed by the stand-in (waiting on others, nothing for STRUCT to do):**
+  `SWE2STRUCT-REQ-OPUS-FIELDMAP-SUSPCOPY-SITES-1003` -> OPUS (the field map's +0x730..+0x790 rows still cite the
+  tail sites; exact replacements are in the request). `SWE2STRUCT-REQ-FRONTIER-CORRECTION-GATE-TSV-AFFECTED-1003`
+  -> SWE2-FRONTIER (publish_correction_gate counts only .md files as touched, so a record's `affected:` line naming
+  a touched TSV is always refused; the stand-in's record lists its TSVs in prose as a workaround).
+- **Design note (user task via FABLE, 2026-10-03):** per-package and integration readiness views (addendum §12/§13/
+  §16 P2 item 15), `_index/candidates/swe2struct-design-readiness-views-1003/README.md`, published in the commit whose
+  subject starts "SWE2-STRUCT: design note - readiness views". The sha was sent to FABLE. It is design only, not
+  implemented; it lists the open points for FABLE (§6 criteria) and DATA (adapter) - nothing for STRUCT to redo.
+- **Current package/claim:** none - every STRUCT task the stand-in touched is DONE; no STRUCT claim is ACTIVE.
+- **Exact next action:** query the board (`team.py show --agent SWE2-STRUCT`) for new requests. If an answer to the
+  routed OPUS request comes back disputed, re-check it against `loop_attribution_check.py`. Otherwise take fallback work.
+- **Pending requests/reviews:** none addressed to STRUCT at 2026-10-03 02:20Z.
+- **Fallback eligible work:** the unrouted-type frontier (unchanged); census width-blind spans
+  (`check_width_blind_spans.py`: 38 covered spans fleet-wide, rows whose REASON should say CARRIED).
+- **Latest coherent commit:** `b9b821cda`.

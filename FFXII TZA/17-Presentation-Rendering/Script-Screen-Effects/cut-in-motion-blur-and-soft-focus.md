@@ -447,3 +447,12 @@ Corrected in place: the two notes. The consumer record is
 | `003DF9C0` | 17 B | stores the float `xmm0` in dword `02B59D24` and the float `xmm1` in dword `02B59D28` | `003DF9C8` |
 | `003DF9F0` | 64 B | stores into byte `02B59D20` a value chosen by `ecx`: 0 to 4 are stored as they are and any other value stores 2 | `003DFA03`, `003DFA08`, `003DFA18`, `003DFA20`, `003DFA28` |
 | `003DFA30` | 17 B | stores the float `xmm0` in dword `02B59D34` and the float `xmm1` in dword `02B59D38` | `003DFA38` |
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../../_index/candidates/fable-home-cut-in-motion-blur-and-soft-focus-1002/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `003B26D0` | 61 B | `0024E910` + 0x56 | walks the 0x30-byte records from `02EBE5E0` while below `02EBEBE0` (at most 32), returning at the first whose dword `+0` is zero; for each record with bit 0 of byte `+0x20` clear it calls `003B26D0` + 0x24 with dword `+0` in `ecx` | Interior anchor `003B26EC`; Interior anchor `003B26EE`; Interior anchor `003B26F4`; Interior anchor `003B2700` |
+| `003B3E40` | 82 B | `003B3D20` + 0x1E | for each dword d at `02EBCC84` plus a multiple of 8 below `02EBCD84` (32 eight-byte records): when the byte at d minus 4 is non-zero, calls `003B3E40` + 0x2A with dword d in `ecx` and 0 in `edx`; then zeroes the byte at d minus 4, the word at d minus 2 and dword d | Interior anchor `003B3E60`; Interior anchor `003B3E6A`; Interior anchor `003B3E6F`; Interior anchor `003B3E77`; Interior anchor `003B3E80` |

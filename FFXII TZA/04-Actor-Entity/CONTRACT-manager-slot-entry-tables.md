@@ -643,3 +643,11 @@ mode-flag-and-suppressor predicate of `CONTRACT-boot-fixups`, which gates many u
 
 *Tier 2: ledger names, sizes and `edges.tsv`, roles as this page and the cited pages read them; no new body read
 (OPUS, 2026-09-29, pass-22 debt `42a617a9a`).*
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../_index/candidates/fable-home-contract-manager-slot-entry-tables-1002/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `0037DD50` | 99 B | `003DCFB0` + 0xA8 | forms the entry `02ADD990 + ecx*0x3D0 + r8d*0xF0` (both indexes sign-extended); when `edx` is -1 stores 2 in its dword `+0xE8`; otherwise reads the zero-extended word `+0x28 + edx*0x60` of the qword at `02ADD980 + ecx*0x3D0`, converts it to float, adds 1.0 (`01CEBBA8`) and stores the result at the entry's float `+8` | Interior anchor `0037DD53`; Interior anchor `0037DD5D`; Interior anchor `0037DD76`; Interior anchor `0037DD98`; Interior anchor `0037DDAC` |

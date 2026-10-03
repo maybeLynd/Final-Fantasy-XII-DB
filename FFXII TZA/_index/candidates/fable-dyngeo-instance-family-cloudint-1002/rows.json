@@ -1,0 +1,132 @@
+{
+ "page": "16-UI/Dynamic-Geometry-Instances/dyngeo-instance-family.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01DvkUokim1xrVUS78Zq26tk",
+ "report": "dyngeo-instance-family.json",
+ "rows": [
+  {
+   "fn": "001EE650",
+   "text": "splits `ecx` into 2-bit fields a (bits 0-1), b (2-3), c (4-5), d (6-7), forms i = 27a + 9b + 3c + d and reads the 16-byte row i of the table at `00902750`; into the output o (the fifth (stack) argument) it copies row `+4` unchanged to dword `+8`, and writes row `+8` to dword `+0` and row `+0xC` to dword `+4`, both remapped 6 to `0x11`, 7 to `0x12`, 2 to `0xF`, 3 to `0x10`, other values unchanged; when row `+0` is 1 it stores 1 at `+4` of o if a is non-zero, else at `+0`; it stores row `+0` at `+0x1C`, replaced by 5 when the low byte of the sixth (stack) argument is non-zero and i is 10; when `+0x1C` is then 3 or 5 it stores 1 at `+0` and 0 at `+4`; finally it stores 0 at `+0x18` and bits 32-39 of `rcx` divided by 255 (`008C5B40`) as float at `+0xC`, `+0x10` and `+0x14`",
+   "anchors": [
+    [
+     "001EE6AC",
+     "mov"
+    ],
+    [
+     "001EE6F4",
+     "cmove"
+    ],
+    [
+     "001EE73F",
+     "cmovne"
+    ],
+    [
+     "001EE760",
+     "cmove"
+    ],
+    [
+     "001EE770",
+     "test"
+    ]
+   ]
+  },
+  {
+   "fn": "00214710",
+   "text": "copies the 16 dwords at `rdx+0` to `rdx+0x3C` into `+0x11C` to `+0x158` of `rcx`",
+   "anchors": [
+    [
+     "00214712",
+     "mov"
+    ],
+    [
+     "00214751",
+     "mov"
+    ],
+    [
+     "00214799",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00215A30",
+   "text": "copies the four dwords at `rdx+0` to `rdx+0xC` into the first four dwords of the `0x30`-byte element whose index is the signed dword `+0x1C0` of `rcx`, in the array at qword `+0x18` of `rcx` (re-reading index and base before each store)",
+   "anchors": [
+    [
+     "00215A4A",
+     "mov"
+    ],
+    [
+     "00215A63",
+     "mov"
+    ],
+    [
+     "00215A7E",
+     "mov"
+    ],
+    [
+     "00215A98",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006CA760",
+   "text": "computes `rcx + 0x10880` plus dword `+0x18860` of `rcx` (zero-extended) times `0x7FE0`, zeroes dword `+0x18860`, stores the pointer at qword `+0xB8` and returns it",
+   "anchors": [
+    [
+     "006CA766",
+     "imul"
+    ],
+    [
+     "006CA76D",
+     "lea"
+    ],
+    [
+     "006CA774",
+     "mov"
+    ],
+    [
+     "006CA781",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006CAC30",
+   "text": "stores `dl` at byte `+0x851` and `r8w` at word `+0x852` of `rcx`",
+   "anchors": [
+    [
+     "006CAC36",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006CAF40",
+   "text": "copies the 16 dwords at `rdx+0` to `rdx+0x3C` into `+0x10` to `+0x4C` of `rcx`, stores byte 1 at `+0x208F3` and returns 0",
+   "anchors": [
+    [
+     "006CAF42",
+     "mov"
+    ],
+    [
+     "006CAF9C",
+     "mov"
+    ],
+    [
+     "006CAF9F",
+     "xor"
+    ],
+    [
+     "006CAFA1",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

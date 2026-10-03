@@ -886,3 +886,11 @@ them is a hardening relationship.
 
 *Tier 2: ledger names, sizes and `edges.tsv`, roles as this page reads them; no new body read (OPUS, 2026-09-29,
 pass-22 slice OPUS-P22-SLICE-24-99).*
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-image-hardening-cfg-aslr-dep-and-stack-c-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `003F9270` | 58 B | scans 8 entries of 0x250 bytes and returns `rcx + 0x4020 + i*0x250` for the first `i` whose byte at `rcx + 0x425C + i*0x250` has bit 0 clear; returns 0 when all 8 have it set | `003F9280`, `003F9283`, `003F928E`, `003F9293`, `003F9298` |

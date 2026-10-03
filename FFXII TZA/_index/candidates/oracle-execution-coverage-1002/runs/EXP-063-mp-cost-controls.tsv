@@ -1,0 +1,5 @@
+entry	class	mutated
+0020e600	returned	
+002f95d0	returned	
+002f9820	returned+faulted	
+00309110	returned+faulted	yes

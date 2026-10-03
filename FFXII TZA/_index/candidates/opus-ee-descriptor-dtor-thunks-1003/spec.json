@@ -1,0 +1,16 @@
+{
+ "page": "22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/class-descriptor-and-metadata-system.md",
+ "members": "22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/members/pclassdescriptor-destructor-thunks.tsv",
+ "kind": "vtable_store",
+ "helper": 6501264,
+ "entry_anchor": true,
+ "group": "thunks",
+ "title": "the PClassDescriptorForType destructor thunks, one row per member",
+ "heading": "## Per-member rows: the vtable each descriptor destructor thunk restores, and its reflected type (OPUS, 2026-10-03)",
+ "lead": "The family `PClassDescriptorForType destructor thunks` (frontmatter: 384 members; {N} get a row here) shares one form, not repeated per row: `lea rax, [V]`, `mov qword ptr [rcx], rax`, then a tail jump to the shared descriptor destructor `00633390`. Members differ only at the first instruction, the vtable V the thunk stores back into the object before the shared destructor runs, so the anchor is the entry `lea` (the family sentence OPUS adopted in `opus-ee-rulings-1003` allows the entry instruction when members differ there). Each row states V and the class whose MSVC RTTI complete-object locator precedes V, read from the certified image: the template argument T of `PClassDescriptor*<T>`, or the decorated name when it is a template type. {CHECK} re-derives every row and compares it with the committed {ROWS}. A body that leaves the form, a vtable without a locator, or a value that differs fails it. Two controls are refused: a swapped value and a moved anchor. Members that do not derive are listed in [`excluded.tsv`](../../_index/candidates/opus-ee-descriptor-dtor-thunks-1003/excluded.tsv).",
+ "group_heading": "### All {N} thunks (OPUS)",
+ "groups": {},
+ "value_col": "vtable V restored",
+ "name_col": "reflected type (RTTI before V)",
+ "name_fmt": "{NAME}"
+}

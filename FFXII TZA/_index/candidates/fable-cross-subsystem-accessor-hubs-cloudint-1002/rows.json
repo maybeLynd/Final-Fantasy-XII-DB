@@ -1,0 +1,86 @@
+{
+ "page": "00-Engine-Core-Runtime/Shared-State-Accessors/cross-subsystem-accessor-hubs.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01924rEWURNFUyvDKP31ShM7",
+ "report": "cross-subsystem-accessor-hubs.json",
+ "rows": [
+  {
+   "fn": "002EAA10",
+   "text": "returns 0 when `rcx` is null, when qword `+0xC0` of `rcx` is null, or when the dword at that pointer is negative; otherwise tail-jumps `003B50E0` with that dword in `ecx` (`jns`)",
+   "anchors": [
+    [
+     "002EAA15",
+     "mov"
+    ],
+    [
+     "002EAA21",
+     "mov"
+    ],
+    [
+     "002EAA25",
+     "jns"
+    ],
+    [
+     "002EAA2B",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "0034B5D0",
+   "text": "chains `00267E10(r9)` into `00264010`, its result into `00263F10`, that into `003589B0`, and that into `00320790(result, 0)`, then tail-jumps `0026B4E0` with the incoming `rcx` and the `00320790` result as `edx`",
+   "anchors": [
+    [
+     "0034B5DC",
+     "call"
+    ],
+    [
+     "0034B5E3",
+     "call"
+    ],
+    [
+     "0034B5F3",
+     "call"
+    ],
+    [
+     "0034B5FC",
+     "call"
+    ],
+    [
+     "0034B60B",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00466BF0",
+   "text": "returns 0.0 unless the dword `02EBB6E4` is non-negative and less than (signed) dword `02EBB6E0` and qword `+0x8` of the `0x50`-byte entry at qword `02EBB6F0` plus that index times `0x50` is non-zero; then returns 0.01 (`008F30E4`) times the float at the qword `+0xA8` of the entry's qword `+0x28`, or 0.0 when that `+0xA8` pointer is null",
+   "anchors": [
+    [
+     "00466BFE",
+     "cmp"
+    ],
+    [
+     "00466C0C",
+     "shl"
+    ],
+    [
+     "00466C17",
+     "cmp"
+    ],
+    [
+     "00466C2E",
+     "movss"
+    ],
+    [
+     "00466C32",
+     "mulss"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

@@ -1,0 +1,26 @@
+WINDOW 24h: 2026-10-02T05:15:05Z .. 2026-10-03T05:15:05Z - 325 commits
+KNOWLEDGE - canonical events (what the project learned or proved)
+  NEW FF12 KNOWLEDGE                                         206 events in  104 commits
+  CORRECTED / FALSIFIED FF12 CLAIM                            77 events in   67 commits
+  NEW RUNTIME / ORIGINAL-CODE EVIDENCE                        45 events in   14 commits
+  NEW RECONSTRUCTION-GRADE TYPE / CONTRACT / RELATIONSHIP      2 events in    2 commits
+  RECONSTRUCTION / DIFFERENTIAL PROBE                          0 events in    0 commits
+  INTEGRATION / PARITY EVIDENCE                                0 events in    0 commits
+ACTIVITY - throughput only; NEVER a knowledge or completion measure
+  TOOLING / INSTRUMENTATION                                   14 events in   14 commits
+  WORKFLOW / COORDINATION                                    353 events in  127 commits
+  GENERATED / BOOKKEEPING ONLY                                 3 events in    3 commits
+UNCLASSIFIED - no rule decides these; listed, never guessed (72 events in 50 commits)
+WINDOW 7d: 2026-09-26T05:15:05Z .. 2026-10-03T05:15:05Z - 2832 commits
+KNOWLEDGE - canonical events (what the project learned or proved)
+  NEW FF12 KNOWLEDGE                                         686 events in  317 commits
+  CORRECTED / FALSIFIED FF12 CLAIM                           347 events in  312 commits
+  NEW RUNTIME / ORIGINAL-CODE EVIDENCE                       118 events in   24 commits
+  NEW RECONSTRUCTION-GRADE TYPE / CONTRACT / RELATIONSHIP    257 events in  122 commits
+  RECONSTRUCTION / DIFFERENTIAL PROBE                          0 events in    0 commits
+  INTEGRATION / PARITY EVIDENCE                                0 events in    0 commits
+ACTIVITY - throughput only; NEVER a knowledge or completion measure
+  TOOLING / INSTRUMENTATION                                  245 events in  245 commits
+  WORKFLOW / COORDINATION                                   1657 events in 1222 commits
+  GENERATED / BOOKKEEPING ONLY                                13 events in   13 commits
+UNCLASSIFIED - no rule decides these; listed, never guessed (2354 events in 1370 commits)

@@ -40,6 +40,15 @@ SHA = re.compile(r"[0-9a-f]{7,40}")
 SAVED = re.compile(r"Saved revision \d+")
 
 
+def _read_board_bytes(path):
+    """The board's text with the file handle already closed. A reader that parses while holding TEAM.json open
+    (json.load(open(...)), ~0.7 s at 70 MB) denies team.py's tmp->TEAM.json replace for that long: Python opens
+    without FILE_SHARE_DELETE (SWE2-FRONTIER, 2026-10-03, ASTRA-REQ-FRONTIER-ATOMIC-BOARD-WRITE-DENIAL-1003)."""
+    with open(path, "rb") as f:
+        data = f.read()
+    return data.decode("utf-8")
+
+
 def link_problem(rv):
     """Why a reviews field cannot drive a transition, or None. Every value is checked for its TYPE before it is used, so
     a truthy dict commit, a non-SHA string, a dict record or a list author is reported, never admitted and never a crash
@@ -182,7 +191,7 @@ def main(argv=None):
     # failed - and the idempotent rerun next cycle picks them up. 0 = unbounded.
     ap.add_argument("--apply-budget-s", type=float, default=0)
     a = ap.parse_args(argv)
-    board = json.load(open(a.board, encoding="utf-8"))
+    board = json.loads(_read_board_bytes(a.board))
     p = plan(board)
     results = []
     t0 = time.monotonic()
@@ -203,7 +212,7 @@ def main(argv=None):
                 on_board = False
                 if r.returncode != 0:
                     try:
-                        on_board = op["task"]["id"] in {x["id"] for x in json.load(open(a.board, encoding="utf-8"))["tasks"]}
+                        on_board = op["task"]["id"] in {x["id"] for x in json.loads(_read_board_bytes(a.board))["tasks"]}
                     except (OSError, ValueError, KeyError, TypeError):
                         on_board = False
                 status = writer_status(r.returncode, out, on_board)

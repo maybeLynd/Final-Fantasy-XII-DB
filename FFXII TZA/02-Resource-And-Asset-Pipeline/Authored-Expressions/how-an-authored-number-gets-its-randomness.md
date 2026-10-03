@@ -93,7 +93,7 @@ of them decide anything.)*:
 |---:|---|
 | `0` | the operand is **absent**. A yields `0`; B absent means the whole expression is just A |
 | `1` | the payload is an **authored-data reference** — `ImageAddress_ResolveRuntimePointer` turns it into a live pointer and the value is read from **`+0x04`** of the target |
-| ≥ `2` | a general operand evaluator, `00431080` (718 B), called with the operand's **index** — `0` for A, `1` for B. **Read 2026-09-18 (FABLE): a piecewise curve.** The kind byte is the number of `(x, y)` `int32` pairs in the table the payload resolves to (`+0` for A, `+4` for B, through `ImageAddress_ResolveRuntimePointer`); the `u16` at `+8` (A) or `+0xA` (B) is a period, and a value above it is reduced modulo it (`004310D0`..`004310EC`); the operand's two flag bits (`+0xE` bits 0..1 for A, bits 2..3 for B) select the curve: **0 linear** — an exact `x` returns its `y`, a value between two points returns `y0 + (y1 - y0)(v - x0) / (x1 - x0)` in integer arithmetic, a value past the last point returns the last `y` (`004312CF`..`00431315`); **1 quadratic B-spline** — with three points or fewer the linear path, otherwise the three control points around the value's segment are the curve `0.5(1-t)² p0 + ((1-t)t + 0.5) p1 + 0.5t² p2` (`0039B630`), `0039B6E0` solves `x(t) = v` for `t` by the quadratic formula (falling back to `(2v - x0 - x1) / (x2 - x0)` when it degenerates, sentinel `2.0`), and `y(t)` is rounded away from zero by `0.5` (`004312A1`..`004312C8`); **2 and 3 return 0** (`00431113`). |
+| ≥ `2` | a general operand evaluator, `00431080` (718 B), called with the operand's **index** — `0` for A, `1` for B. **Read 2026-09-18 (FABLE): a piecewise curve.** The kind byte is the number of `(x, y)` `int32` pairs in the table the payload resolves to (`+0` for A, `+4` for B, through `ImageAddress_ResolveRuntimePointer`); the `u16` at `+8` (A) or `+0xA` (B) is a period, and a value above it is reduced modulo it (`004310D0`..`004310EC`); the operand's two flag bits (`+0xE` bits 0..1 for A, bits 2..3 for B) select the curve: **0 linear** — an exact `x` returns its `y`, a value between two points returns `y0 + (y1 - y0)(v - x0) / (x1 - x0)` in integer arithmetic, a value past the last point returns the last `y` (`004312CF`..`00431315`); **1 quadratic B-spline** — with ~~three points or fewer~~ two points or fewer the linear path *(corrected 2026-10-02, OPUS: `00431080+0xA1` `cmp al, 2` / `00431080+0xA3` `jbe` send a point count of two or fewer to the linear path, so three points already take the spline)*, otherwise the three control points around the value's segment are the curve `0.5(1-t)² p0 + ((1-t)t + 0.5) p1 + 0.5t² p2` (`0039B630`), `0039B6E0` solves `x(t) = v` for `t` by the quadratic formula (falling back to `(2v - x0 - x1) / (x2 - x0)` when it degenerates, sentinel `2.0`), and `y(t)` is rounded away from zero by `0.5` (`004312A1`..`004312C8`); **2 and 3 return 0** (`00431113`). |
 
 Kind 1 is the interesting one for a modder: it means an operand can *point at other authored data*
 rather than carry a literal, and `ImageAddress_ResolveRuntimePointer` (`0020E600`, 10 B) is the
@@ -285,8 +285,8 @@ keep private state there.
 
 > **The image ships this generator inert.** `022D9138` is past `SizeOfRawData` — BSS, so zero at
 > load — and with the shipped values **every bound returns 0**. Both globals must be non-zero before
-> a single call varies. So the sequence a player gets is decided entirely by **whatever seeds these
-> at runtime, which is not established**, and a reimplementation that seeded them differently would
+> a single call varies. So the sequence a player gets is decided entirely by ~~**whatever seeds these~~ **the boot seeder `00259180`** *(corrected 2026-10-02, OPUS: `00259180+0x96` stores `0x458DC800` to `01EF93E8` and `00259180+0xA0` stores 1 to `022D9138`, called once at boot; the key-addresses table)*
+> ~~at runtime, which is not established**~~, and a reimplementation that seeded them differently would
 > produce a different game.
 
 ### One extra draw shifts everything after it
@@ -405,9 +405,9 @@ values 1 and 2, which reach `0042FE85`, are unread.
 
 ## 7. What this document does not establish
 
-- ~~**What kinds ≥ 2 do.** `00431080` is 718 bytes and was not read;~~ **Read 2026-09-18 (FABLE): kinds ≥ 2 are piecewise curves, the kind byte counting the table's points, linear or quadratic-B-spline by the operand's flag bits, with a period (§2's table).** ~~it is where the operand space
-  actually lives, and it takes a *context* argument this page passes through without inspecting.
-- **What the other eleven bits of `+0x0E` mean.** Only bits 4–7 are the operator.
+- ~~**What kinds ≥ 2 do.** `00431080` is 718 bytes and was not read;~~ **Read 2026-09-18 (FABLE): kinds ≥ 2 are piecewise curves, the kind byte counting the table's points, linear or quadratic-B-spline by the operand's flag bits, with a period (§2's table).** ~~it is where the operand space~~
+  ~~actually lives, and it takes a *context* argument this page passes through without inspecting.~~ *(corrected 2026-10-02, OPUS: the strike opened on the line above now closes on each line)*
+- **What the other ~~eleven~~ eight bits of `+0x0E` mean.** Only bits 4–7 are the operator *(answered in part: bits 0–1 and 2–3 select the A and B curves, `00431080+0x47` `shr ecx, 2` and `+0x4D` `and ecx, 3`, §2's table; 2026-10-02, OPUS)*.
 - **What the record is part of**, or who authors it. The four uncited neighbours are the obvious next
   place to look.
 - ~~**The algorithm that produces `u`.** The *scaling* is proven; the generator is not named.~~
@@ -434,14 +434,14 @@ values 1 and 2, which reach `0042FE85`, are unread.
       2026-09-12:** the six dwords at `00431410` resolve to `00431401` (op 0, no draw), `00431390`
       (op 1, `a + rand(b)`), `004313A4` (op 2, `a − rand(b)`), `004313BA` (op 3), `004313D2` (op 4,
       `a × (rand(b) + 1)`) and `004313FD` (op 5, which re-enters op 1's arm through `sub edi, ebx`);
-      the zero-bound path keeps only ops 4 and 5 (`004313F3`–`004313FB`).
+      the zero-bound path ~~keeps only ops 4 and 5~~ tests ops 4 and 5 and only op 5 draws (`004313F3`–`004313FB`) *(corrected 2026-10-02, OPUS: op 4 there returns `a` at `00431350+0xB1`; §3's *Only operator 5 survives it*)*.
 - [x] **Op 3 is a symmetric spread.** *Killer:* different arithmetic. `lea ecx,[r8+r8]` doubles the
       bound, `sub ebx,edi` is `a − b`, and `add eax,ebx` sums them. **SURVIVED 2026-09-12:**
       `004313BA`–`004313C5`, exactly as written.
 - [x] **Op 0 does not draw.** *Killer:* a call in its arm. `00431401` is `mov eax,ebx / mov
       rbx,[rsp+0x30] / add rsp,0x20 / pop rdi / ret` — **no call**. The operand's *value* is still
       computed by the caller at `004314E0` and discarded; whether computing it draws depends on
-      `00431080`, which is unread.
+      ~~`00431080`, which is unread.~~ `00431080`, which draws nothing *(answered: read 2026-09-18, §2's table; it calls only the resolver and the spline helpers, never `003A6E60`; 2026-10-02, OPUS)*.
 - [x] ~~**`f(bound) = trunc-toward-zero(u × bound)`.**~~ *Killer:* one mismatched prediction. `u` was
       recovered from bound `0x7FFFFFFF` and predicted 13 other bounds exactly, **780 / 780** — and
       the killer arrived 2026-09-11 from a bound none of the thirteen covered: 1,000,000,000
@@ -696,7 +696,7 @@ which is a layout difference between the two entry types and not a typo in eithe
 
 ## SWE2-EC7-58 update (2026-09-19) - `0039B630`
 
-`0039B630` (170 B) is a call-free 3x3 matrix-vector transform - `mulss`/`addss` row triples into `[r8]`/`[r8+4]`. Interior anchor `0039B684` (the `addss` row accumulate).
+`0039B630` (170 B) is ~~a call-free 3x3 matrix-vector transform~~ the call-free quadratic B-spline blend `0.5(1-t)² p0 + ((1-t)t + 0.5) p1 + 0.5t² p2` of three 3-vectors at `+0`, `+0x10` and `+0x20` *(corrected 2026-10-02, OPUS: `0039B630+0x4` loads `1.0` and `0039B630+0x1B` forms `1 - t` from the `t` in `xmm0`; the three weights multiply the vectors' x, y and z and the sums are stored at `[r8]`, `[r8+4]`, `[r8+8]`, `0039B630+0x62` the first)* - `mulss`/`addss` row triples into `[r8]`/`[r8+4]`. Interior anchor `0039B684` (the `addss` row accumulate).
 
 
 ## SWE2-EC7-68 update (2026-09-19) - `00503000` expression-channel row locator
@@ -756,12 +756,12 @@ Interior anchor `00501A87` (the `00502EA0` call).
 
 ## SWE2-EC7-83 update (2026-09-20) - `00521450` + `0043DF80` measured
 
-`00521450` (1,886 B, call-free) is the matrix-bank multiply the
+`00521450` (1,886 B, ~~call-free~~ one call, the edge blend at `00521B26`) is ~~the matrix-bank multiply~~ the homogeneous triangle clipper the
 authored builds run between fetches: `[rdx]`/`[rdx+0x40]`/`[rdx+0x80]`
 rows stage into the `022F9xxx` scratch bank alongside `[rcx]`'s four
 rows, the shufps/mulss/addss dot-product web writes the `022F9xxx`
 result rows, and an `r8d = 3` loop over `[r14+0x400]`-offset records
-repeats the accumulate - a pure-SSE 4x4 transform fold with no calls.
+repeats the accumulate - ~~a pure-SSE 4x4 transform fold with no calls~~ the 4x4 transform is only its prologue: the body clips each triangle against six planes (near z first), interpolating a cut edge through the two-record blend that [clamping-a-point-into-a-volume.md](../../06-Movement-And-Navigation/clamping-a-point-into-a-volume.md) describes, and returns the vertex count *(corrected 2026-10-03, SWE2-EC7: FABLE's kind-0x54 record c4d8dcd31 X2/E7; ec7_corr_check.py)*.
 Interior anchor `00521513` (the first `mulps` of the dot web).
 
 `0043DF80` (1,204 B) is the record builder the same callers run on
@@ -846,6 +846,6 @@ Interior anchor `0039CF6E` (function `0039CF10`).
 
 Interior anchor `003B47B1` (function `003B4790`).
 
-`00431430` (165 B) is the mode-keyed combiner `0042FDB0` calls on the authored pair: `word[rcx+0xE] >> 4 & 0xF` selects one of six arms through the `004314BC` table - `rbx + r9`, `rbx - r9`, `2*r9 - r8 + rbx`, `(r9+1) * rbx`, or (modes 4/5 with `r8 != rbx`) `003A6E60(r8 - rbx)` + `rbx` - the authored random-range and offset arms the number evaluator lands on.
+`00431430` (~~165 B~~ 139 B *(corrected 2026-10-02, OPUS: its last instruction ends at `00431430+0x8B`; the 24-byte case table after it is data)*) is the mode-keyed combiner `0042FDB0` calls on the authored pair: `word[rcx+0xE] >> 4 & 0xF` selects one of six arms through the `004314BC` table - `rbx + r9`, `rbx - r9`, `2*r9 - r8 + rbx`, `(r9+1) * rbx`, or ~~(modes 4/5 with `r8 != rbx`)~~ (mode 5 only, with `r8 != rbx`) `003A6E60(r8 - rbx)` + `rbx` *(corrected 2026-10-02, OPUS: op 4 is `00431430+0x55` `lea eax, [r9 + 1]` / `+0x59` `imul eax, ebx` with no call, and with `r8 = 0` `00431430+0x6C` `sub ecx, 4` returns `rbx`; the only `003A6E60` call is op 5's at `00431430+0x7E`)* - the authored random-range and offset arms the number evaluator lands on.
 
 Interior anchor `0043144A` (function `00431430`).

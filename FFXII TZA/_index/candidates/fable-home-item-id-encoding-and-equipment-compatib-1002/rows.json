@@ -1,0 +1,115 @@
+{
+ "page": "12-Items-Equipment-Shops-License/item-id-encoding-and-equipment-compatibility.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01VnuySB6H7e8WAWRL1qnmZN",
+ "report": "home-item-id-encoding-and-equipment-compatibility.json",
+ "rows": [
+  {
+   "fn": "003DFDD0",
+   "entered_from": "`003DFBE0` + 0x2F",
+   "text": "zeroes the two qwords at `r8`; when `ecx - 1` is above 7 (unsigned) it goes straight to the return, otherwise it dispatches on `ecx` through an indexed table: 1 and 2 reach a call (`003DFDD0` + 0x35) whose result is stored to qword `r8` and, when non-null, plus 0x10 to qword `r8+8`; 3, 5, 6 and 8 reach a call (`003DFDD0` + 0x4C) whose result is stored to qword `r8`; 4 and 7 go straight to the return; every path returns 1 when qword `r8` (the incoming `r8`, kept in `rbx`) is non-null and 0 otherwise",
+   "anchors": [
+    [
+     "003DFDDF",
+     "mov"
+    ],
+    [
+     "003DFDEC",
+     "ja"
+    ],
+    [
+     "003DFE05",
+     "call"
+    ],
+    [
+     "003DFE1C",
+     "call"
+    ],
+    [
+     "003DFE2C",
+     "setne"
+    ]
+   ]
+  },
+  {
+   "fn": "003FE3A0",
+   "entered_from": "`003FF360` + 0x4F2",
+   "text": "makes the calls at `003FE3A0` + 0x6 (`ecx` = 0), `003FE3A0` + 0xB and `003FE3A0` + 0x12 (`ecx` = 0); when qword `+0x130` of qword `0209AC30` is non-null it calls `003FE3A0` + 0x33 with that object's qword `+0xC0` and `edx` = 0; it then tail-jumps (`003FE3A0` + 0x40) with `ecx` = `edx` = 0",
+   "anchors": [
+    [
+     "003FE3A6",
+     "call"
+    ],
+    [
+     "003FE3B2",
+     "call"
+    ],
+    [
+     "003FE3C8",
+     "je"
+    ],
+    [
+     "003FE3D3",
+     "call"
+    ],
+    [
+     "003FE3E0",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003FE6E0",
+   "entered_from": "`003FF360` + 0x3A6",
+   "text": "makes the call at `003FE6E0` + 0x6 with `ecx` = 0; then, when qword `+0x130` of qword `0209AC30` is non-null, tail-jumps (`003FE6E0` + 0x2B) with that object's qword `+0xC0` and `edx` = 0, otherwise returns",
+   "anchors": [
+    [
+     "003FE6E6",
+     "call"
+    ],
+    [
+     "003FE6F2",
+     "mov"
+    ],
+    [
+     "003FE6FC",
+     "je"
+    ],
+    [
+     "003FE70B",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "00292F60",
+   "why": [
+    "already cited by 12-Items-Equipment-Shops-License\\item-id-encoding-and-equipment-compatibility.md"
+   ]
+  },
+  {
+   "fn": "003FEDC0",
+   "why": [
+    "already cited by 12-Items-Equipment-Shops-License\\item-id-encoding-and-equipment-compatibility.md"
+   ]
+  },
+  {
+   "fn": "003FFA20",
+   "why": [
+    "already cited by 12-Items-Equipment-Shops-License\\item-id-encoding-and-equipment-compatibility.md"
+   ]
+  }
+ ],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "003DFDD0",
+   "was": "zeroes the two qwords at `r8`; when `ecx - 1` is above 7 (unsigned) it goes straight to the return, otherwise it dispatches on `ecx` (1 to 8) through an indexed table whose per-case targets the listing does not decode, the arms in the body being a call (`003DFDD0` + 0x35) whose result is stored to qword `r8` and, when non-null, plus 0x10 to qword `r8+8`, and a call (`003DFDD0` + 0x4C) whose result is stored to qword `r8`; every path returns 1 when qword `r8` is non-null and 0 otherwise",
+   "now": "zeroes the two qwords at `r8`; when `ecx - 1` is above 7 (unsigned) it goes straight to the return, otherwise it dispatches on `ecx` through an indexed table: 1 and 2 reach a call (`003DFDD0` + 0x35) whose result is stored to qword `r8` and, when non-null, plus 0x10 to qword `r8+8`; 3, 5, 6 and 8 reach a call (`003DFDD0` + 0x4C) whose result is stored to qword `r8`; 4 and 7 go straight to the return; every path returns 1 when qword `r8` (the incoming `r8`, kept in `rbx`) is non-null and 0 otherwise",
+   "why": "the table was left undecoded; its eight dword slots send 1-2 to +0x35, 3/5/6/8 to +0x4C and 4/7 to +0x54 (straight to the return, so 0), a path the row did not state"
+  }
+ ]
+}

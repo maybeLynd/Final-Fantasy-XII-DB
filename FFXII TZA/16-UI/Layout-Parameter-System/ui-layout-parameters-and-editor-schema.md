@@ -60,7 +60,7 @@ All inside `FFXII_TZA.vbf`:
 | `jsondata/monstergallery.json` | 337,640 B | monster gallery data |
 | `jsondata/monstertoweapon.json` | 50,445 B | monster-to-weapon mapping |
 
-The loader is `001CA600` (8,186 bytes), the function that references `mGambitPositionOffsetX`.
+The loader is `001CA600` (~~8,186 bytes~~ 8,191 bytes *(corrected 2026-10-02, OPUS: its last instruction is `001CA600+0x1FFE` `ret`)*), the function that references `mGambitPositionOffsetX`.
 `JsonBox` is the linked parser.
 
 ### The parameters
@@ -258,7 +258,7 @@ Sixteen frontier readers belong to no single screen: they are the generic band, 
 and pause helpers that many procs share. Their convention, covered once here:
 
 - **The band cascade** passes `height → ecx`, `gradient → edx`, `anim-ms → r8d` into `002C9060` /
-  `002C9490` (band build) or `002C99A0` / `002CD7F0` (band animation), each helper binding one
+  `002C9490` (band build) or `002C99A0` / `002CD7F0` (band animation) *(corrected 2026-10-02, OPUS: not for `002C99A0` — its `r8d` is a 0/1 flag, `002C99A0+0x17` `cmp ebx, 1` gating a second call to `002CD800`, and its callers pass 0 or 1, e.g. `00280D20+0x58` `mov r8d, 1`)*, each helper binding one
   screen's `*BlackBandH` triple:
   - `0027EE80` (`Deftop`/`DefUnder`/`PartyGrad`/`AnimTime` → `002C9060`+`002C9490`, `0027EE8E`–`0027EEBD`),
     `0027EED0` (`AnimTime` alone, `0027EED4`) and `002814E0` (`AnimTime`/`PartyBlackBandTime`,
@@ -373,7 +373,7 @@ parametersmanageruisizestruct.csv
   column 5   disable
 ```
 
-**Resolution selection** (inferred from the file pair, not read from code — see **Y-3**):
+**Resolution selection** (~~inferred from the file pair, not read from code~~ *(answered: read from the code, Y-3 below, 2026-09-12; 2026-10-02, OPUS)* — see **Y-3**):
 
 ```
 layout = (standard definition) ? uisize_sd.json : uisize.json
@@ -658,7 +658,7 @@ That is the whole tier-1 chain in §3, and it holds byte for byte.
 ### NOT re-derived: the file counts
 
 `jsondata/parametersmanageruisizestruct.csv` and the parameter JSON are **inside the VBF archive**
-and are not extracted on this machine, so **231 / 266 / 229 could not be recounted**. They stand as
+and are not extracted on this machine, so ~~**231 / 266 / 229 could not be recounted**.~~ *(answered: recounted by the Y-2 join, `members/uisize-y2-join.tsv`, 2026-09-20; 2026-10-02, OPUS)* They stand as
 originally recorded, unconfirmed by this pass. Anyone extracting the VBF should recount them first —
 every other count this database has re-derived has been checked, and these three have not.
 
@@ -808,8 +808,8 @@ through unscaled.
 
 `002CE2F0` — 120 B, 7 A-measured callers; a gated `0xE0`-record submit. Interior verified:
 `[0209AC30]`'s dword `+0x2E8` must be zero or it returns 0 (`002CE30A`–`002CE312`); otherwise it
-packs the caller's `ecx`/`edx` into a stack pair, passes `ecx = 0xE0` and `rdx` = the literal
-block at `002CE370` (the bytes immediately after the body, `002CE33D` `lea rdx,[rip+0x2C]`) to
+packs the caller's `ecx`/`edx` into a stack pair, passes `ecx = 0xE0` and `rdx` = ~~the literal~~ the handler
+~~block at~~ `002CE370` ~~(the bytes immediately after the body,~~ (the next function — `002CE2F0` ends at its `ret`, `002CE2F0+0x77` *(corrected 2026-10-02, OPUS: `00244F50` takes the size in `ecx`, the handler in `rdx` and the init message in `r8`)*, `002CE33D` `lea rdx,[rip+0x2C]`) to
 `00244F50` — the fixed-pool widget allocator this contract already measures — at
 [`002CE351`](../../_index/ADDRESS-INDEX.md). GS-cookie checked (`00808C40`).
 
@@ -943,7 +943,7 @@ the match count in `esi`/`edi` instead of the record.
 Four hubs the layout schema's per-pane machinery calls:
 
 - **002CE280** (26 B, 4 A-measured callers) — chained `00247730` calls: `[rcx]` then `[rcx+0xC0]` then `[[rcx+0xC0]+0xD8]` — the three-level property walk behind a pane's layout read. First interior anchor [`002CE292`](../../_index/ADDRESS-INDEX.md).
-- **0029E770** (27 B, 4 A-measured callers) — writes a word pair `+0xC0/+0xC2` on the `[0209C4A0]` pane-state block — the inline mutation every pane updater performs. Anchor [`0029E77C`](../../_index/ADDRESS-INDEX.md).
+- **0029E770** (27 B, 4 A-measured callers) — writes a word pair `+0xC0/+0xC2` on ~~the `[0209C4A0]` pane-state block — the inline mutation every pane updater performs.~~ `[0209C498]`, the key-signal HUD object *(corrected 2026-10-02, OPUS: `0029E770` loads `[0209C498]`, as the falsification note above says; its four callers are `002BA700`, `002D5EB0`, `0055E9E0` and `005789D0`)*. Anchor [`0029E77C`](../../_index/ADDRESS-INDEX.md).
 - **00249210** (`FFXII.ResourceDataLoading` helper, 265 B, 4 A-measured callers) — the resource-load wrapper the schema's callers reach through `00561390`: nested loops resolve a resource, then `0032E620` commits it and `inc word[rbp+0x18]` bumps the load counter. Anchor [`002492F3`](../../_index/ADDRESS-INDEX.md).
 - **0035BB20** (36 B, 4 A-measured callers) — bounded indexed getter: `ecx < word[022D8060]` → `table + ecx*0xC0`, else 0 — the pane-record lookup the schema's accessor callers (`002D5EB0` chain) use. Anchor [`0035BB3D`](../../_index/ADDRESS-INDEX.md).
 
@@ -1206,7 +1206,7 @@ Interior anchor `002D4892` (the `imul edx, eax` product).
 they are committed back with `byte[+0x80] & ~1`; otherwise
 `002D1870(rcx)` runs, `ebx & 0xFFFF0FFF` selects an op - `3` or `9`/`10`
 pass `r9 = 0`, `7` sets `+0xE0` bit `0x18` and passes `5` - then
-`(result * 0x3E8)` is magic-divided by 55 (`0x88888889`/`>>5`+sign) into
+`(result * 0x3E8)` is magic-divided by ~~55~~ 60 (`0x88888889`/`>>5`+sign; with `>>4` the same reciprocal divides by 30) *(corrected 2026-10-02, OPUS: `002D4A40+0xC5`–`002D4A40+0xDA`)* into
 `rsp+0x20`, `002468A0(rec, r15, r14, r9)` runs, `[rec+0x94]` decrements,
 and the `002D1870` result returns.
 Interior anchor `002D4B05` (the `imul ecx, ebp, 0x3e8` scale).
@@ -1681,7 +1681,7 @@ Interior anchor `002D52C7` (function `002D5280`).
 
 Interior anchor `002D51D5` (function `002D5170`).
 
-`003C1DF0` (268 B) is the lazy block install `002BA700` runs on the `02B457E0` layout object: gated on `dword[+0xD0]` bit `0x20` set with either bit `4` clear or bit `0x40` set, it computes the element span `word[[+0xE8]+0xA] + [+0xE8] + 2 + word[[+0xE8]] x 2` aligned up to 4, `003BD950` allocates it into `+0xF0`, `003BC970` validates, `00249580` opens the context, `00249210` runs with `edx = 7`, `r8d = byte[alloc+4] + 0x496`, `r9d = 3`, and `[result+8]` lands in `+0xF8`; `dword[+0xD0]` is then masked `& ~0x40` and given bit `4`, and `00249410` closes - the deferred sub-record build the layout object performs on first eligible call.
+`003C1DF0` (268 B) is the lazy block install `002BA700` runs on the `02B457E0` layout object: gated on `dword[+0xD0]` bit `0x20` set with either bit `4` clear or bit `0x40` set, it computes the element span `word[[+0xE8]+0xA] + [+0xE8] + 2 + word[[+0xE8]] x 2` aligned up to 4, ~~`003BD950` allocates it into `+0xF0`,~~ `003BD950`, a row probe and not an allocator, runs on it *(corrected 2026-10-02, OPUS: `003BD950` walks the `[rcx]`-counted 8-byte rows backward, comparing `00265270()` with each row's word and testing its flag through `0032A8A0`, `003BD950+0x36`–`003BD950+0x51`)*, `003BC970` validates, `00249580` opens the context, `00249210` runs with `edx = 7`, `r8d = byte[alloc+4] + 0x496`, `r9d = 3`, and `[result+8]` lands in `+0xF8`; `dword[+0xD0]` is then masked `& ~0x40` and given bit `4`, and `00249410` closes - the deferred sub-record build the layout object performs on first eligible call.
 
 Interior anchor `003C1E48` (function `003C1DF0`).
 
@@ -1725,7 +1725,7 @@ Interior anchor `002BA12D` (function `002BA040`).
 
 Interior anchor `00272539` (function `002724A0`).
 
-`003BC450` (137 B) is the deferred-register shim `002BA040` substitutes for the vtable arm and `003CB440` also invokes: while `02B457E0` is empty it registers `003BC4E0` through `00244F50` (code `0x278`) with a stack record carrying `{0}` plus a `{ecx, edx}` pair and a `r8` pointer indirection, stores the handle into `02B457E0`, and returns `1`; an already-taken slot returns `0`
+`003BC450` (137 B) is the deferred-register shim `002BA040` substitutes for the vtable arm and `003CB440` also invokes: while `02B457E0` is empty it registers `003BC4E0` through `00244F50` (~~code~~ size `0x278` *(corrected 2026-10-02, OPUS: `003BC450+0x43` `mov ecx, 0x278`; `00244F50` takes the size in `ecx`, the handler in `rdx` and the init message in `r8`)*) with a stack record carrying `{0}` plus a `{ecx, edx}` pair and a `r8` pointer indirection, stores the handle into `02B457E0`, and returns `1`; an already-taken slot returns `0`
 
 Interior anchor `003BC493` (function `003BC450`).
 
@@ -1788,3 +1788,21 @@ Interior anchor `00299FCF` (function `00299FC0`).
 `003BD950` (145 B) is the deepest-entry find `003C1DF0` installs from (both this page and the map-screens page name it inside the block install): `dword[rcx]` is the pair count, and the body walks `rcx+4 + count*8` backwards testing each `{u16, u16}` row - rows whose threshold `row[0]` does not exceed `00265270()`'s current value are skipped; a row is returned when `row[1] != 0xFFFF` and `0032A8A0(row[1])` resolves non-null - the layout block's resolved-row probe, not an allocator.
 
 Interior anchor `003BD986` (function `003BD950`).
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-ui-layout-parameters-and-editor-schema-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0024B100` | 29 B | copies word `01E0C1D8` to word `01E0C1D4` and word `01E0C1DC` to word `01E0C1D6` | `0024B107`, `0024B10E`, `0024B115` |
+| `0024B120` | 46 B | when `ecx` is nonzero stores dword 0x780 to `01E0C1D8` and 0x438 to `01E0C1DC`; when `ecx` is zero stores 0x200 and 0x1C0 to the same two dwords | `0024B122`, `0024B124`, `0024B12E`, `0024B139`, `0024B143` |
+| `002716F0` | 35 B | returns at once when `ecx` is negative; otherwise calls the function at `002716F0`+0xB with `ecx` and, only when its `eax` result is nonzero, the function at `002716F0`+0x18 with (`ecx`, 0) | `002716F2`, `002716FB`, `00271702`, `00271708` |
+| `00296600` | 110 B | for signed `ecx` 0-6 tail-jumps `002F9860` with the sign-extended word `009161F0`[`ecx`], for 7-0x10 with the word `00916200`[`ecx`-7], and for 0x1B-0x27 with the word `00916218`[`ecx`-0x1B]; returns 0 for every other value (negative, 0x11-0x1A, above 0x27) | `00296613`, `0029663C`, `0029665E`, `00296666`, `0029666B` |
+| `0029F580` | 65 B | stores `rdx` at qword `+0x18` of `rcx`; with `b` = qword `+0x20` of `rdx` plus 0x30 and `w` = word `+0xE` of the record at qword `+0` of `rcx`, takes the index word `i` at `b`+0x14+2*(word at `b`+0x14+2*(high byte of `w`) plus the low byte of `w`) and stores `b` + word `+0x10` of `b` + 8*`i` at qword `+0x20` of `rcx` | `0029F586`, `0029F5A6`, `0029F5B2`, `0029F5B8`, `0029F5BC` |
+| `002C98C0` | 46 B | calls the function at `002C98C0`+0x8 with (0, `ecx`); then, when qword `+0x280` of the record at qword `0209AC30` is non-null, tail-jumps through `002C98C0`+0x24 with that qword in `rcx`, otherwise returns | `002C98C4`, `002C98C8`, `002C98D4`, `002C98DE`, `002C98E4` |
+| `002CB8D0` | 231 B | returns at once when qword `+0x2E0` of the record at qword `0209AC30` is null; otherwise, for each of the 9 record pointers at `+0xD0` of it (stride 8), calls `002CB8D0`+0x49 with the record's dword `+0xD4`, sets the low byte of its dword `+0xC0` to 0x45 (AND 0xFFFFFF45, OR 0x45), stores byte `+0x3B` of the object at qword `+0` of qword `+0x60` as word `+0xC4` and 0x20 minus it as word `+0xC8`, zeroes word `+0xC6`, copies dword `0208F570` to dword `+0xD0` and stores 6 at dword `+0xCC`; then calls `002CAFE0` with (qword `+0xC0` and byte `+0x168` of the `+0x2E0` record, 0, 1) and 1 as the fifth (stack) argument | `002CB8E7`, `002CB919`, `002CB937`, `002CB979`, `002CB998` |
+| `002D5030` | 46 B | calls the function at `002D5030`+0x15 with (0x760, `002D5EB0`, 0), passes the returned pointer to the call at `002D5030`+0x20 and returns that pointer | `002D5039`, `002D5040`, `002D5045`, `002D5050`, `002D5055` |
+| `00345B60` | 180 B | calls the same callee three times on `r9` (call sites `00345B60`+0x23, +0x37, +0x41): `esi` = 1 when the first result is nonzero else 0, `edi` = the second, `ebx` = the third, replaced by the result of the call at `00345B60`+0x4C when negative; zeroes `edi` when the call at `00345B60`+0x57 on byte `+0x15` of `rdx` returns nonzero; calls `002DEE50(ebx, edi, 0)`, the call at `00345B60`+0x75 with (`ebx`, `edi`, `esi`) and then the call at `00345B60`+0x7A; finally repeats the byte `+0x15` call (`00345B60`+0x83) and, only when it returns nonzero, calls `00345B60`+0x94 with (-1, 0, 0) | `00345B93`, `00345BAC`, `00345BC0`, `00345BC9`, `00345BF4` |
+| `003EEEC0` | 388 B | switches on dword `+0` of `rdx`: 1 calls `00251D90(1, 0x3C, 0x78)`, stores qword `+8` of `rdx` at qword `+0xC0` of `rcx`, zeroes byte `+0xC8` and dword `+0xCC`, then calls `003EEEC0`+0x163 with (`rcx`, 0x64) and `003EEEC0`+0x172 with (qword `02B5F1C8`, `rcx`); 2 stops unless the call at `003EEEC0`+0x6D on dword `+0xB4` is nonzero and dword `+0xCC` is zero or decrements to zero, then on byte `+0xC8`: 0 sets it to 1 and `+0xCC` to 0x12 when the call at `003EEEC0`+0x106 returns above 2 (signed), 1 calls `003EEEC0`+0xE6 with (0x3E8, 8, 0), sets it to 2, `+0xCC` to 0x3C and makes the call below with 0x13, 2 sets it to 3, ~~3 calls~~ 4 calls `003EEEC0`+0xB4 with `rcx`, and 3 or any other value returns 0 *(corrected 2026-10-03, FABLE, on SWE2-AUDIT-SPEC's REJECT: after the two `sub ecx, 1` the `cmp ecx, 2` at `003EEEC0`+0xA8 matches state 4, not 3)*; 0xF and 0x12 call `003EEEC0`+0x55 with (qword `+0xC0`, 0xF or 0x12, 1); other values tail-jump `003EEEC0`+0x37 with the arguments unchanged; every other path returns 0 | `003EEEF7`, `003EEF15`, `003EEF47`, `003EEFB0`, `003EEFFA` |
+| `003FE5D0` | 259 B | switches on dword `+0` of `rdx`: 0x12 stores 0 at qword `+0x138` of the record at qword `0209AC30`; 0xF does nothing; 1 calls `003FE5D0`+0x6E with (`rcx`+0x50, qword `+0x38` of the `0209AC30` record, 1, `rcx`), copies the returned record's words `+4`, `+6`, `+8`, `+0xA` to words `+0x98`-`+0x9E` of `rcx` when `rcx` is non-null, calls `003FE5D0`+0xB0 with (`rcx`, `00D12078`), stores word `+8` of `rdx` at word `+0x110`, stores qword `+0x18` of qword `+0x10` of qword `+0x60` at qword `+0xC0`, writes `003FE490` to qword `+0x120` and `rcx` to qword `+0xD8` of that pointer, and clears bit 11 of dword `+0x40`; these three return 0, and any other value tail-jumps `003FE5D0`+0x32 with the arguments unchanged | `003FE602`, `003FE60E`, `003FE63E`, `003FE659`, `003FE6AA` |

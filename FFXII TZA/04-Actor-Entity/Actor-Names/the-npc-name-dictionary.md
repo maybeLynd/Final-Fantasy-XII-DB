@@ -87,7 +87,7 @@ stored at `+0x102` (`00269F40`–`00269F4F`); a negative one is stored as is —
 case above. The two script verbs behind it are `setnpcname` (`0x38A`, `0034B9A0`) and
 `setshopname` (`0x4A9`, `0034C170`): each pops one int (`00267E10`) and, for a **negative** value,
 only stores it if `003EABE0(id)` returns a non-null entry (`0034B9B7`–`0034B9CC`) — a guard
-whose index arithmetic on a negative id is the page's open item.
+whose index arithmetic on a negative id ~~is the page's open item~~ *(answered: FN-2, 2026-09-14, §7; 2026-10-02, OPUS)*.
 
 ### 2.4 The shipped pairs
 
@@ -216,7 +216,7 @@ display: 00263990(actor) -> 0032A930(id) -> 003EAC10(id, flag) -> the string
 | The flag selects the second name | `00263990` read whole: `0032A930` then `003EAC10(id, result != 0)` | 1 | PROVEN |
 | The file's layout | `us/bin/npcdic.bin` extracted: magic, count 2282, first offset `0x23B4 = 0x0C + 4 × 2282`, strings decoded with the section-002 encoding | 1 (shipped data) | PROVEN |
 | The setter and the verbs | `00269F40`, `0034B9A0`, `0034C170` read whole; verb table rows `038A` / `04A9` | 1 | PROVEN |
-| Kind 9 = the language `bin` block | index match and layout match only | 2 | PLAUSIBLE |
+| Kind 9 = the language `bin` block | ~~index match and layout match only~~ index match, layout match and the loader read (`002DF780`, `002DF9A0`) *(answered: see UQ-92, answered 2026-09-14; 2026-10-02, OPUS)* | 2 | PLAUSIBLE |
 
 ## 9. Related
 
@@ -369,8 +369,8 @@ Shared callees outside the census: `003EAC40`, `003EAB60`, `0051ED10`,
 
 `00282DF0` — 19 B, 40 frontier callers at census; this page's name-table accessor. Interior
 verified: [`00282DFA`](../../_index/ADDRESS-INDEX.md) is `mov rax, [rax + rdx*8 + 0xAC8]` — the
-whole body loads the dictionary base `qword[0209AC30]`, sign-extends the caller's index `ecx`,
-and returns `base[idx*8 + 0xAC8]`. An unbounded pointer-table getter over the dictionary's
+whole body loads ~~the dictionary base~~ the base `qword[0209AC30]` *(corrected 2026-10-02, OPUS: not the dictionary — the npcdic block is `02B5E0D8`, stored at `003EAC58`, and `00282DF0` never reads it)*, sign-extends the caller's index `ecx`,
+and returns `base[idx*8 + 0xAC8]`. An unbounded pointer-table getter over ~~the dictionary's~~ that object's *(corrected 2026-10-02, OPUS: see above)*
 `+0xAC8` entry array — bounds are the caller's contract, not the getter's.
 
 NOT claimed: the `+0xAC8` row's element type (pointer or handle slot — the load returns a qword,

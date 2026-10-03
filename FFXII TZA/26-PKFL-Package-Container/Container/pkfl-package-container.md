@@ -502,3 +502,11 @@ the next reader to reuse the argument.
 - **World — CLIENT (2 edges).** 2 inbound (World bodies `00378540`, `00266D10` call page-cited `0032E620`, `0032F430`). Substantive edges include `0032E620` is called by `00378540`; `0032F430` is called by `00266D10`.
 - **WorldAreaField — CLIENT and SERVICE (6 edges).** 5 inbound (WorldAreaField bodies `00379A10`, `MapRef_BeginLoadResources` (00268750), `00378030` call page-cited `0032E620`, `002DF980`, `ActorResource_BeginManagerResourceSetLoad` (0032FCA0)); 1 outbound (page-cited `0032F430` call WorldAreaField bodies `003EA6B0`). Substantive edges include `002DF980` is called by `00379A10`; `0032E620` is called by `MapRef_BeginLoadResources` (00268750); `0032E620` is called by `00378030`; `0032E620` is called by `AreaArd_LoadOrUnloadFieldResource` (003EA820).
 - **Script_VM_Native_Bridge — CLIENT (1 edge).** 1 inbound (Script_VM_Native_Bridge bodies `0050DFE0` call page-cited `0032E620`). Substantive edges include `0032E620` is called by `0050DFE0`.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-pkfl-package-container-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0032F320` | 55 B | returns -1 when `ecx` is above 3 (signed); otherwise takes the pointer at `022C6EC0` + `ecx`*8 when `r8d` is 0, or at `022C6EE8` + `ecx`*8 when it is non-zero, returns -1 when the first byte it points at is 0, and otherwise returns the dword at that pointer + `edx`*8 + 8 (`edx` sign-extended) | `0032F323`, `0032F334`, `0032F33E`, `0032F346`, `0032F34E` |

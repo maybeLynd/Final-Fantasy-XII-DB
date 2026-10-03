@@ -1,7 +1,7 @@
-<!-- TEAM-CURRENT:begin agent=SWE2-CONTRACT board_rev=48009 epoch=3 queue_sha=481b603516f26ff5 -->
-> generated 2026-10-02T23:04:21+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=SWE2-CONTRACT board_rev=49359 epoch=4 queue_sha=6d9d9e97d9458a97 -->
+> generated 2026-10-03T05:22:22+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: OPUS-REQ-CONTRACT-DD-RESIDUE-CLOSURE-0929, SWE2CONTRACT-PUB-UQ2-EVIDENCE-FIX-1002
+> ACTIVE: SWE2CONTRACT-DESIGN-RECON-DEPGRAPH-1003, SWE2CONTRACT-PUB-RECON-DEPGRAPH-DESIGN-1003
 > READY addressed to you: none
 > READY pool: 0 | BLOCKED: 0
 <!-- TEAM-CURRENT:end -->
@@ -82,6 +82,34 @@ Updated at every checkpoint; a restarted session rebuilds from this block before
 Required by the continuity rule in the root `CLAUDE.md` ("What a plain `Continue` means").
 
 - **Identity:** SWE2-CONTRACT (fixed; not renamed).
+- **Claude stand-in for Devin, 2026-10-03 01:43Z-01:50Z** (right-ocean rate-limited until ~07:39Z; a Claude Opus
+  subagent ran this lane under board identity SWE2-CONTRACT, session `claude-standin-contract`). Devin: rebuild from
+  this bullet; do not redo what it lists.
+  - **Current package/claim:** `SWE2CONTRACT-DESIGN-RECON-DEPGRAPH-1003` (ACTIVE since board rev 49335; user task relayed
+    by FABLE 2026-10-03 ~04:50Z). The DD-RESIDUE claim is finished.
+  - **Stand-in, 2026-10-03 05:15Z: reconstruction dependency graph DESIGN NOTE** written for addendum §4 (P2, planning
+    aid, not a metric) at `_index/candidates/swe2contract-design-reconstruction-dependency-graph-1003/README.md`. It
+    covers: sources S1-S6 (edges.tsv/functions.tsv + CODEDOMAIN-OWNER-MAP, neighbour-dispositions.tsv labels,
+    field-access-index x types.tsv, scriptvm-dispatch.tsv, CONTRACT §3/§5/§6/§8, PKG dependencies); level-0/1 nodes;
+    the edge schema; the hard/sequencing rule per fact; why the level-0 SCC swallows 19 of 22 nodes; outputs; checks
+    C1-C6; five verified example edges E1-E5; non-goals. Published with this line, sha sent to FABLE. Next: an optional
+    minimal generator `recon_depgraph.py` + `test_recon_depgraph.py` (design §11), only if time allows before 06:45Z;
+    otherwise finish the task on the design sha.
+  - **Done by the stand-in:**
+    1. Cont. 7's snapshot was still uncommitted at takeover. **PUBLISHED `c7e2bb2a1`** under
+       `SWE2CONTRACT-PUB-METHODS-SNAPSHOT-1003` (5 paths: `members/rtti-methods.tsv`, UQ-2 page + register row,
+       AUDIT-LOG, this file). The register row was spliced: FRONTIER's uncommitted `## NR.` section stays in the
+       worktree. Devin's queued twin `SWE2CONTRACT-PUB-RTTI-METHODS-SNAPSHOT-1002` was closed against the same sha
+       (board 48394/48395). The SD-7 register hunk belonged to SWE2-DATA and landed in `2eefd4ff7`.
+    2. `OPUS-REQ-CONTRACT-DD-RESIDUE-CLOSURE-0929`: final receipt `_index/candidates/swe2contract-ddres-final-1003/`
+       (`documented_rule.py`, 87 pages, at HEAD `c7e2bb2a1`): **PARTIAL 8 / READY 59 / READY-WITH-POINTER 20, FAILS 0**.
+       The 8 PARTIAL pages hold only registered live rows (OV-10/19/33/42, GR-18, SD-194). Published with this
+       file and an AUDIT-LOG entry, and the claim was **finished** on the receipt, which routes the owner read of
+       the 79 READY pages to OPUS.
+  - **Exact next action:** none carried over. Take role-appropriate READY requests targeted at SWE2-CONTRACT, if any.
+    Still routed to FABLE (not ours): `SWE2CONTRACT-NOTICE-FABLE-METHODS-TSV-SNAPSHOT-1002`.
+  - **Latest coherent commit:** the DD receipt publish named in the board finish of
+    `SWE2CONTRACT-PUB-DDRES-FINAL-1003` (its `committed sha:`).
 <!-- P22D-RESUME -->
 - **Session 2026-10-01 (PASS22-DEBT, FRONTIER-REQ-SWE2-CONTRACT-PASS22-DEBT, P2).** The routed 597-pair
   six-folder worklist (00/01/02/24/25/26) is fully dispositioned: fresh `audit_crossrefs.py` reports
@@ -162,7 +190,14 @@ Required by the continuity rule in the root `CLAUDE.md` ("What a plain `Continue
     register row; encoded-id page status now names OV-5. All 11 PARTIALs name their live rows.
   - **Exact next action:** publish the 3 docs + AUDIT-LOG + this file (independent lane fix, no
     routed task). DD-RESIDUE stays ACTIVE+checkpointed (remaining PARTIAL residue = registered
-    runtime rows for ASTRA). Latest coherent commit: `a7cb39140`.
+    runtime rows for ASTRA).
+  - **Session 2026-10-02 cont. 7 (durable rtti-methods snapshot):** published `432aecd3d`; then
+    committed snapshot `Object-Model/members/rtti-methods.tsv` (25,797 rows, post-AS-9a, header
+    pins generator + exe) — the T-rule root cause for 4 register rows; UQ-2 re-pointed at it;
+    `SWE2CONTRACT-NOTICE-FABLE-METHODS-TSV-SNAPSHOT-1002` routes AQ-2/BA-1/BQ-27/B-3 re-points
+    to FABLE (EA-2/EE-11/UQ-297 cite other scratch paths, still open).
+  - **Exact next action:** publish the snapshot + 2 citation fixes + AUDIT-LOG + this file.
+    Latest coherent commit: `432aecd3d`.
 <!-- AWN-A-RESUME -->
 - **Session 2026-10-01 (AWN wave A).** A Claude session started by OPUS as SWE2-CONTRACT, with no subagents and no
   commits (OPUS publishes). Board task `SWE2CONTRACT-AWN-WAVE-A-1001` (research): added rev 44490, claimed 44491,

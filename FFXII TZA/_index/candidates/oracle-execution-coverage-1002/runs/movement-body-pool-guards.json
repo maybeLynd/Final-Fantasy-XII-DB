@@ -1,0 +1,21 @@
+{
+ "blocks_in_image": 146,
+ "blocks_outside_image": 5,
+ "catalogue": "e2a67b07700c2ec3fbfae3213965de35",
+ "classes": {
+  "returned": 21,
+  "returned+faulted": 4,
+  "stubbed": 2
+ },
+ "elapsed_s": 0.7,
+ "emu_starts": 49,
+ "entries_executed": 25,
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "instrument": "execcov-shim v2",
+ "patched_blocks": 11,
+ "rc": 0,
+ "receipt_md5": "3cefc0b62e2dc5bdbba5a8df8d15de9b",
+ "run": "movement-body-pool-guards",
+ "status": "ok",
+ "unique_blocks": 151
+}

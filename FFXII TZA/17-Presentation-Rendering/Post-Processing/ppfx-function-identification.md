@@ -742,3 +742,13 @@ on it.)*
 | function | size | what the body does | interior anchors |
 |---|---|---|---|
 | `007911E0` | 72 B | when bit 31 of dword `+8` of `rdx` is clear, the dword is above 1 (unsigned) and qword `+0x10` is non-null, calls `00584730(qword +0x10)`; on every path then zeroes qword `+0x10` and dword `+8` of `rdx` and returns 1 in `al` | `007911F7`, `00791204`, `00791212`, `00791219`, `0079121D` |
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-ppfx-function-identification-ee-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `006FE080` | 215 B | stores `edx` to dword `[rcx+0x500]`; when byte `[rcx+0xd09]` is zero it stores `edx` to `+0x508` and returns it; otherwise it stores `edx` to `+0x504` and `+0x50c` and applies a step rule to it (a value equal to dword `+0x4d0` becomes dword `+0x4d4`, any other value is incremented and replaced by `+0x4d0` when it is unsigned above `+0x4d4` + dword `+0x36c` - 1), then when dword `+0xd10` is at least 2 (signed) it stores the result to `+0x504` and steps it again, then when dword `+0xd0c` equals 2 and qwords `+0xa88` and `+0x148` are both zero it stores the result to `+0x50c` and steps it again, and finally stores the result to `+0x508` and returns it in `eax` | `006FE093`, `006FE0CC`, `006FE0D8`, `006FE11E`, `006FE14C` |
+| `00724F50` | 130 B | reads the dword counter `02EA198C` and, only when it is zero or its signed remainder modulo 100 equals 25 and the dwords `01F3BA80` and `01F3BA8C` are both non-zero, calls `006DF480(00D9C530, 0x1627)` and then `006DF480(00D9C368)` with `edx` as the first call left it; on every path it increments `02EA198C` and returns `0x80004001` | `00724F68`, `00724F7A`, `00724F9D`, `00724FA9`, `00724FC6` |
+| `00724FF0` | 130 B | reads the dword counter `02EA1990` and, only when it is zero or its signed remainder modulo 100 equals 25 and the dwords `01F3BA80` and `01F3BA8C` are both non-zero, calls `006DF480(00D9CA20, 0x16d6)` and then `006DF480(00D9C578)` with `edx` as the first call left it; on every path it increments `02EA1990` and returns `0x80004001` | `00725008`, `0072501A`, `0072503D`, `00725049`, `00725066` |

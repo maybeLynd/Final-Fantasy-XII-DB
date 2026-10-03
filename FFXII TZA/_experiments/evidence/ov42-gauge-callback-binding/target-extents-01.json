@@ -1,0 +1,38 @@
+{
+  "complete": true,
+  "method": "A STATIC_ONLY original physical metadata",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "driver_sha256": "ab4de10eb4f67b661e6d18db06f33e89c8a6af91e9526291dd5f38b7c69ddcee",
+  "directory_bytes": "0080e7020c8a0600",
+  "lookups": [
+    {
+      "path": "lookup-target-01.json",
+      "sha256": "57c3bf5785c5d2dad3cc6a94448e6144fa9fe3f23e49cedcc90b5fec4258670c"
+    }
+  ],
+  "bodies": [
+    {
+      "entry": "0x2973e0",
+      "end_exclusive": "0x2974d7",
+      "bytes": 247,
+      "sha256": "0dff419f6112b47784079bcec2d9464c98701e7a1c0beafbf0f4be8a806f4886",
+      "physical_bytes": "48895c24084889742410574883ec304963f0418bf9488bd9413bd10f84c40000004585c00f84bb000000f641260175270fbf5114e847a5fdff41b9d4000000c7442420f30000008bd7488bcb458d41c0e8fbb2fdffeb1ec7442428f300000041b994000000448bc7c7442420d4000000e86bb2fdff8b03c1f8042bf88bc79933c22bc24863c84883f9027c54486bc164489948f7fe4883f80a7f07b80a000000eb114883f8327c07b832000000eb0485c0742d8bd0488bcbe823b3fdff33c0668943148b03c1f804894350b801000000488b5c2440488b7424484883c4305fc366834b2601488b5c244033c0488b7424484883c4305fc3",
+      "records": [
+        {
+          "begin": "0x2973e0",
+          "end_exclusive": "0x2974d7",
+          "chain": [
+            {
+              "record_bytes": "e0731700d77417000c0bcc01",
+              "header_address": "0x1de0b0c",
+              "header_bytes": "010f0600"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "limits": "Physical extents only. Code/data distinction, helper effects and natural reachability not established by metadata.",
+  "reused_preparation_sha256": "b54cf063af4e29b4ab6463c8fbd76e3b7b4ddbd40065b6a064c9d828f96c6003",
+  "specialized_source_sha256": "dc25664c8831f1513b99497e146e6cc2f189147323840a3f4f240eabf055bba5"
+}

@@ -1,0 +1,22 @@
+{
+ "page": "24-Compiler-And-CRT-Runtime/Static-Initialization-And-Teardown/static-initialisers-and-teardowns.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01VgTzWvj54SWcQeC3wEsotH",
+ "report": "static-initialisers-and-teardowns.json",
+ "rows": [
+  {
+   "fn": "00865550",
+   "text": "loads the vtable pointer at qword `rcx+0` and tail-jumps through its slot `+8` with all arguments unchanged",
+   "anchors": [
+    [
+     "00865553",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

@@ -182,7 +182,7 @@ def collect(db, residual_path=None, functions_path=None, board_path=None):
         class2 = {r: TA.TASK_TOK.findall(" ".join(c)) for r, c in TA._table_rows(batch, "class 2")}
         problems, _ = TA.audit(db, board_path)
         broken = {p.split(":", 1)[0] for p in problems}
-        tasks = {t["id"]: t for t in json.load(io.open(board_path, encoding="utf-8"))["tasks"]}
+        tasks = {t["id"]: t for t in json.loads(io.open(board_path, "rb").read().decode("utf-8"))["tasks"]}  # handle closed before the parse
         leads = [(g, k) for g in ("NO_ADMISSIBLE", "WITHDRAWN", "CLOSED", "PARTIAL", "BLOCKED") for k in getattr(C, g)]
         sec, seen = None, set()
         for line in text.split("\n"):
@@ -260,7 +260,7 @@ def collect(db, residual_path=None, functions_path=None, board_path=None):
         # which page explains each function: A = evidence-bearing pages citing it interior; B/C/D = the declaring page
         entries = sorted(sizes); import bisect
         pages = collections.defaultdict(set)
-        uc1f = uc1_band.frontier_starts() & set(sizes)
+        uc1f = (uc1_band.frontier_starts() & set(sizes)) - r.get("uc1_interior_credited_set", set())
         for p in CD.docs(db):
             t = io.open(p, encoding="utf-8", errors="replace").read()
             if not CD._bearing(t):

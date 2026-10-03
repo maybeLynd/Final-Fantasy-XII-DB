@@ -1,0 +1,38 @@
+{
+ "page": "14-Story-Event-Quest-Hunt/persistent-flag-banks.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01M9DqRDfozfMhVgDdX8oP4v",
+ "report": "persistent-flag-banks.json",
+ "rows": [
+  {
+   "fn": "003EC6C0",
+   "text": "calls `003EC6C0 + 0x8` and returns without further work when it returns non-zero; otherwise, for index 0 to 15, calls `003EB720(index)` and then `003EC6C0 + 0x24` with that result and the incoming `ecx`",
+   "anchors": [
+    [
+     "003EC6C8",
+     "call"
+    ],
+    [
+     "003EC6CF",
+     "jne"
+    ],
+    [
+     "003EC6DA",
+     "call"
+    ],
+    [
+     "003EC6E4",
+     "call"
+    ],
+    [
+     "003EC6EB",
+     "cmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

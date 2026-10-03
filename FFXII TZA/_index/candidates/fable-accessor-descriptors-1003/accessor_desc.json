@@ -1,0 +1,7711 @@
+{
+"00599770": {
+"type": "PSerialization::PBinary::PClusterHeader &",
+"result": "verified",
+"lea": "005997A9",
+"descriptor": "02CAA0A0",
+"name": [
+"PClusterHeader"
+],
+"cmp": "005997B0",
+"form": "reference"
+},
+"0064DFC0": {
+"type": "PPostProcessing::PCelShadingD3D11 *",
+"result": "verified",
+"lea": "0064E006",
+"descriptor": "02D363A0",
+"name": [
+"PCelShadingD3D11"
+],
+"cmp": "0064E010",
+"form": "pointer"
+},
+"00599870": {
+"type": "PSerialization::PBinary::PClusterHeaderBase &",
+"result": "verified",
+"lea": "005998A9",
+"descriptor": "02CA9FA0",
+"name": [
+"PClusterHeaderBase"
+],
+"cmp": "005998B0",
+"form": "reference"
+},
+"0064E0F0": {
+"type": "PPostProcessing::PDeferredLighting *",
+"result": "verified",
+"lea": "0064E136",
+"descriptor": "02D34940",
+"name": [
+"PDeferredLighting"
+],
+"cmp": "0064E140",
+"form": "pointer"
+},
+"00599970": {
+"type": "PSerialization::PBinary::PClusterHeaderD3D11 &",
+"result": "verified",
+"lea": "005999A9",
+"descriptor": "02CA9DA0",
+"name": [
+"PClusterHeaderD3D11"
+],
+"cmp": "005999B0",
+"form": "reference"
+},
+"0064E220": {
+"type": "PPostProcessing::PDeferredLightingBase *",
+"result": "verified",
+"lea": "0064E266",
+"descriptor": "02D34840",
+"name": [
+"PDeferredLightingBase"
+],
+"cmp": "0064E270",
+"form": "pointer"
+},
+"00599A70": {
+"type": "PSerialization::PBinary::PInternal::PInstanceListHeader &",
+"result": "verified",
+"lea": "00599AA9",
+"descriptor": "02CA9EA0",
+"name": [
+"PInstanceListHeader"
+],
+"cmp": "00599AB0",
+"form": "reference"
+},
+"0064E350": {
+"type": "PPostProcessing::PDeferredLightingD3D11 *",
+"result": "verified",
+"lea": "0064E396",
+"descriptor": "02D34A40",
+"name": [
+"PDeferredLightingD3D11"
+],
+"cmp": "0064E3A0",
+"form": "pointer"
+},
+"00599B70": {
+"type": "PSerialization::PBinary::PClusterHeader *",
+"result": "verified",
+"lea": "00599BB2",
+"descriptor": "02CAA0A0",
+"name": [
+"PClusterHeader"
+],
+"cmp": "00599BC0",
+"form": "pointer"
+},
+"0064E480": {
+"type": "PPostProcessing::PDepthOfField *",
+"result": "verified",
+"lea": "0064E4C6",
+"descriptor": "02D34C40",
+"name": [
+"PDepthOfField"
+],
+"cmp": "0064E4D0",
+"form": "pointer"
+},
+"00599CA0": {
+"type": "PSerialization::PBinary::PClusterHeaderBase *",
+"result": "verified",
+"lea": "00599CE2",
+"descriptor": "02CA9FA0",
+"name": [
+"PClusterHeaderBase"
+],
+"cmp": "00599CF0",
+"form": "pointer"
+},
+"0064E5B0": {
+"type": "PPostProcessing::PDepthOfFieldBase *",
+"result": "verified",
+"lea": "0064E5F6",
+"descriptor": "02D34B40",
+"name": [
+"PDepthOfFieldBase"
+],
+"cmp": "0064E600",
+"form": "pointer"
+},
+"00599DD0": {
+"type": "PSerialization::PBinary::PClusterHeaderD3D11 *",
+"result": "verified",
+"lea": "00599E12",
+"descriptor": "02CA9DA0",
+"name": [
+"PClusterHeaderD3D11"
+],
+"cmp": "00599E20",
+"form": "pointer"
+},
+"0064E6E0": {
+"type": "PPostProcessing::PDepthOfFieldD3D11 *",
+"result": "verified",
+"lea": "0064E726",
+"descriptor": "02D34D40",
+"name": [
+"PDepthOfFieldD3D11"
+],
+"cmp": "0064E730",
+"form": "pointer"
+},
+"00599F00": {
+"type": "PSerialization::PBinary::PInternal::PInstanceListHeader *",
+"result": "verified",
+"lea": "00599F42",
+"descriptor": "02CA9EA0",
+"name": [
+"PInstanceListHeader"
+],
+"cmp": "00599F50",
+"form": "pointer"
+},
+"0064E810": {
+"type": "PPostProcessing::PFXAA *",
+"result": "verified",
+"lea": "0064E856",
+"descriptor": "02D35FA0",
+"name": [
+"PFXAA"
+],
+"cmp": "0064E860",
+"form": "pointer"
+},
+"005A05D0": {
+"type": "PTimer const &",
+"result": "getter-form",
+"call": "005A061A",
+"getter": "005A02D0",
+"getter_name": null
+},
+"0064E940": {
+"type": "PPostProcessing::PFXAABase *",
+"result": "verified",
+"lea": "0064E986",
+"descriptor": "02D35EA0",
+"name": [
+"PFXAABase"
+],
+"cmp": "0064E990",
+"form": "pointer"
+},
+"005A06E0": {
+"type": "PTimer *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"0064EA70": {
+"type": "PPostProcessing::PFXAAD3D11 *",
+"result": "verified",
+"lea": "0064EAB6",
+"descriptor": "02D360A0",
+"name": [
+"PFXAAD3D11"
+],
+"cmp": "0064EAC0",
+"form": "pointer"
+},
+"005B82A0": {
+"type": "PArray<unsigned int,4> &",
+"result": "getter-form",
+"call": "005B82EE",
+"getter": "005B4E00",
+"getter_name": null
+},
+"0064EBA0": {
+"type": "PPostProcessing::PGlow *",
+"result": "verified",
+"lea": "0064EBE6",
+"descriptor": "02D35CA0",
+"name": [
+"PGlow"
+],
+"cmp": "0064EBF0",
+"form": "pointer"
+},
+"005B83B0": {
+"type": "PArray<float,4> &",
+"result": "getter-form",
+"call": "005B83FE",
+"getter": "005B5130",
+"getter_name": null
+},
+"0064ECD0": {
+"type": "PPostProcessing::PGlowBase *",
+"result": "verified",
+"lea": "0064ED16",
+"descriptor": "02D35AA0",
+"name": [
+"PGlowBase"
+],
+"cmp": "0064ED20",
+"form": "pointer"
+},
+"005B84C0": {
+"type": "PArray<PAnimation::PAnimationChannel *,8> &",
+"result": "getter-form",
+"call": "005B850E",
+"getter": "005B5460",
+"getter_name": [
+"PAnimationChannel"
+]
+},
+"0064EE00": {
+"type": "PPostProcessing::PGlowD3D11 *",
+"result": "verified",
+"lea": "0064EE46",
+"descriptor": "02D35DA0",
+"name": [
+"PGlowD3D11"
+],
+"cmp": "0064EE50",
+"form": "pointer"
+},
+"005B85D0": {
+"type": "PArray<PAnimation::PAnimationDataSource *,8> &",
+"result": "getter-form",
+"call": "005B861E",
+"getter": "005B57A0",
+"getter_name": [
+"PAnimationDataSource"
+]
+},
+"0064EF30": {
+"type": "PPostProcessing::PGlowGPUBase *",
+"result": "verified",
+"lea": "0064EF76",
+"descriptor": "02D35BA0",
+"name": [
+"PGlowGPUBase"
+],
+"cmp": "0064EF80",
+"form": "pointer"
+},
+"005B86E0": {
+"type": "PArray<PAnimation::PAnimationChannelTarget,8> &",
+"result": "getter-form",
+"call": "005B872E",
+"getter": "005B5AE0",
+"getter_name": [
+"PAnimationChannelTarget"
+]
+},
+"0064F060": {
+"type": "PPostProcessing::PLowResParticles *",
+"result": "verified",
+"lea": "0064F0A6",
+"descriptor": "02D36AA0",
+"name": [
+"PLowResParticles"
+],
+"cmp": "0064F0B0",
+"form": "pointer"
+},
+"005B87F0": {
+"type": "PArray<PAnimation::PAnimationConstantChannel,8> &",
+"result": "getter-form",
+"call": "005B883E",
+"getter": "005B5E10",
+"getter_name": [
+"PAnimationConstantChannel"
+]
+},
+"0064F190": {
+"type": "PPostProcessing::PMLAA *",
+"result": "verified",
+"lea": "0064F1D6",
+"descriptor": "02D357A0",
+"name": [
+"PMLAA"
+],
+"cmp": "0064F1E0",
+"form": "pointer"
+},
+"005B8900": {
+"type": "PArray<PAnimation::PAnimationDataSourceListEntry,8> &",
+"result": "getter-form",
+"call": "005B894E",
+"getter": "005B6140",
+"getter_name": [
+"PAnimationDataSourceListEntry"
+]
+},
+"0064F2C0": {
+"type": "PPostProcessing::PMLAABase *",
+"result": "verified",
+"lea": "0064F306",
+"descriptor": "02D356A0",
+"name": [
+"PMLAABase"
+],
+"cmp": "0064F310",
+"form": "pointer"
+},
+"005B8A10": {
+"type": "PArray<PAnimation::PAnimationEvent,4> &",
+"result": "getter-form",
+"call": "005B8A5E",
+"getter": "005B6470",
+"getter_name": [
+"PAnimationEvent"
+]
+},
+"0064F3F0": {
+"type": "PPostProcessing::PMLAAD3D11 *",
+"result": "verified",
+"lea": "0064F436",
+"descriptor": "02D358A0",
+"name": [
+"PMLAAD3D11"
+],
+"cmp": "0064F440",
+"form": "pointer"
+},
+"005B8B20": {
+"type": "PArray<PAnimation::PAnimationNetworkInstanceTarget,8> &",
+"result": "getter-form",
+"call": "005B8B6E",
+"getter": "005B67A0",
+"getter_name": [
+"PAnimationNetworkInstanceTarget"
+]
+},
+"0064F520": {
+"type": "PPostProcessing::PMaterialPostEffect *",
+"result": "verified",
+"lea": "0064F566",
+"descriptor": "02D36BA0",
+"name": [
+"PMaterialPostEffect"
+],
+"cmp": "0064F570",
+"form": "pointer"
+},
+"005B8C30": {
+"type": "PArray<PAnimation::PAnimationSlotArray,8> &",
+"result": "getter-form",
+"call": "005B8C7E",
+"getter": "005B6AD0",
+"getter_name": [
+"PAnimationSlotArray"
+]
+},
+"0064F650": {
+"type": "PPostProcessing::PMeshParticleSystemBase *",
+"result": "verified",
+"lea": "0064F696",
+"descriptor": "02D359A0",
+"name": [
+"PMeshParticleSystemBase"
+],
+"cmp": "0064F6A0",
+"form": "pointer"
+},
+"005B8D40": {
+"type": "PArray<PAnimation::PAnimationSlotFilterDeferredLoad,8> &",
+"result": "getter-form",
+"call": "005B8D8E",
+"getter": "005B6E00",
+"getter_name": [
+"PAnimationSlotFilterDeferredLoad"
+]
+},
+"0064F780": {
+"type": "PPostProcessing::PMotionBlur *",
+"result": "verified",
+"lea": "0064F7C6",
+"descriptor": "02D34F40",
+"name": [
+"PMotionBlur"
+],
+"cmp": "0064F7D0",
+"form": "pointer"
+},
+"005B8E50": {
+"type": "PArray<PAnimation::PAnimationSlotListIndex,8> &",
+"result": "getter-form",
+"call": "005B8E9E",
+"getter": "005B7130",
+"getter_name": [
+"PAnimationSlotListIndex"
+]
+},
+"0064F8B0": {
+"type": "PPostProcessing::PMotionBlurBase *",
+"result": "verified",
+"lea": "0064F8F6",
+"descriptor": "02D34E40",
+"name": [
+"PMotionBlurBase"
+],
+"cmp": "0064F900",
+"form": "pointer"
+},
+"005B8F60": {
+"type": "PArray<PAnimation::PBlendableAnimationSource,8> &",
+"result": "getter-form",
+"call": "005B8FAE",
+"getter": "005B7460",
+"getter_name": [
+"PBlendableAnimationSource"
+]
+},
+"0064F9E0": {
+"type": "PPostProcessing::PMotionBlurD3D11 *",
+"result": "verified",
+"lea": "0064FA26",
+"descriptor": "02D35040",
+"name": [
+"PMotionBlurD3D11"
+],
+"cmp": "0064FA30",
+"form": "pointer"
+},
+"005B9070": {
+"type": "PArray<PQWord,16> &",
+"result": "getter-form",
+"call": "005B90BE",
+"getter": "005B7790",
+"getter_name": null
+},
+"0064FB10": {
+"type": "PPostProcessing::PPostEffectBase *",
+"result": "verified",
+"lea": "0064FB56",
+"descriptor": "02D34740",
+"name": [
+"PPostEffectBase"
+],
+"cmp": "0064FB60",
+"form": "pointer"
+},
+"005B9180": {
+"type": "PSharray<PAnimation::PAnimationClip *> &",
+"result": "getter-form",
+"call": "005B91CE",
+"getter": "005B7AC0",
+"getter_name": [
+"PAnimationClip"
+]
+},
+"0064FC40": {
+"type": "PPostProcessing::PPostEffectManager *",
+"result": "verified",
+"lea": "0064FC82",
+"descriptor": "02D36CA0",
+"name": [
+"PPostEffectManager"
+],
+"cmp": "0064FC90",
+"form": "pointer"
+},
+"005B9290": {
+"type": "PAnimation::PAnimatableComponent &",
+"result": "verified",
+"lea": "005B92DE",
+"descriptor": "02CAD140",
+"name": [
+"PAnimatableComponent"
+],
+"cmp": "005B92E5",
+"form": "reference"
+},
+"0064FD70": {
+"type": "PPostProcessing::PScreenSpaceAmbientOcclusion *",
+"result": "verified",
+"lea": "0064FDB6",
+"descriptor": "02D35400",
+"name": [
+"PScreenSpaceAmbientOcclusion"
+],
+"cmp": "0064FDC0",
+"form": "pointer"
+},
+"005B93B0": {
+"type": "PAnimation::PAnimationAdditiveBlenderController &",
+"result": "verified",
+"lea": "005B93FE",
+"descriptor": "02CAD240",
+"name": [
+"PAnimationAdditiveBlenderController"
+],
+"cmp": "005B9405",
+"form": "reference"
+},
+"0064FEA0": {
+"type": "PPostProcessing::PScreenSpaceAmbientOcclusionBase *",
+"result": "verified",
+"lea": "0064FEE6",
+"descriptor": "02D35300",
+"name": [
+"PScreenSpaceAmbientOcclusionBase"
+],
+"cmp": "0064FEF0",
+"form": "pointer"
+},
+"005B94D0": {
+"type": "PAnimation::PAnimationChannel &",
+"result": "verified",
+"lea": "005B9509",
+"descriptor": "02CAD440",
+"name": [
+"PAnimationChannel"
+],
+"cmp": "005B9510",
+"form": "reference"
+},
+"0064FFD0": {
+"type": "PPostProcessing::PScreenSpaceAmbientOcclusionD3D11 *",
+"result": "verified",
+"lea": "00650016",
+"descriptor": "02D35500",
+"name": [
+"PScreenSpaceAmbientOcclusionD3D11"
+],
+"cmp": "00650020",
+"form": "pointer"
+},
+"005B95D0": {
+"type": "PAnimation::PAnimationChannelBase &",
+"result": "verified",
+"lea": "005B9609",
+"descriptor": "02CAD540",
+"name": [
+"PAnimationChannelBase"
+],
+"cmp": "005B9610",
+"form": "reference"
+},
+"00650100": {
+"type": "PPostProcessing::PScreenSpaceReflection *",
+"result": "verified",
+"lea": "00650146",
+"descriptor": "02D365A0",
+"name": [
+"PScreenSpaceReflection"
+],
+"cmp": "00650150",
+"form": "pointer"
+},
+"005B96D0": {
+"type": "PAnimation::PAnimationChannelTarget &",
+"result": "verified",
+"lea": "005B9709",
+"descriptor": "02CAD640",
+"name": [
+"PAnimationChannelTarget"
+],
+"cmp": "005B9710",
+"form": "reference"
+},
+"00650230": {
+"type": "PPostProcessing::PScreenSpaceReflectionBase *",
+"result": "verified",
+"lea": "00650276",
+"descriptor": "02D364A0",
+"name": [
+"PScreenSpaceReflectionBase"
+],
+"cmp": "00650280",
+"form": "pointer"
+},
+"005B97D0": {
+"type": "PAnimation::PAnimationChannelTimes &",
+"result": "verified",
+"lea": "005B9809",
+"descriptor": "02CAD740",
+"name": [
+"PAnimationChannelTimes"
+],
+"cmp": "005B9810",
+"form": "reference"
+},
+"00650360": {
+"type": "PPostProcessing::PScreenSpaceReflectionD3D11 *",
+"result": "verified",
+"lea": "006503A6",
+"descriptor": "02D366A0",
+"name": [
+"PScreenSpaceReflectionD3D11"
+],
+"cmp": "006503B0",
+"form": "pointer"
+},
+"005B98D0": {
+"type": "PAnimation::PAnimationClip &",
+"result": "verified",
+"lea": "005B9909",
+"descriptor": "02CAD840",
+"name": [
+"PAnimationClip"
+],
+"cmp": "005B9910",
+"form": "reference"
+},
+"0066AE50": {
+"type": "PArray<unsigned char,4> &",
+"result": "getter-form",
+"call": "0066AE9E",
+"getter": "00668AE0",
+"getter_name": null
+},
+"005B99D0": {
+"type": "PAnimation::PAnimationClipBinding::PAnimationClipBindingChannelMap &",
+"result": "verified",
+"lea": "005B9A09",
+"descriptor": "02CAD940",
+"name": [
+"PAnimationClipBindingChannelMap"
+],
+"cmp": "005B9A10",
+"form": "reference"
+},
+"0066AF60": {
+"type": "PArray<int,4> &",
+"result": "getter-form",
+"call": "0066AFAE",
+"getter": "00668E10",
+"getter_name": null
+},
+"005B9AD0": {
+"type": "PAnimation::PAnimationClipBinding::PAnimationClipBindingDataBlockCache &",
+"result": "verified",
+"lea": "005B9B09",
+"descriptor": "02CADA40",
+"name": [
+"PAnimationClipBindingDataBlockCache"
+],
+"cmp": "005B9B10",
+"form": "reference"
+},
+"0066B070": {
+"type": "PArray<PGeometry::PDataBlockD3D11,8> &",
+"result": "getter-form",
+"call": "0066B0BE",
+"getter": "00669140",
+"getter_name": [
+"PDataBlockD3D11"
+]
+},
+"005B9BD0": {
+"type": "PAnimation::PAnimationConstantChannel &",
+"result": "verified",
+"lea": "005B9C09",
+"descriptor": "02CADC50",
+"name": [
+"PAnimationConstantChannel"
+],
+"cmp": "005B9C10",
+"form": "reference"
+},
+"0066B180": {
+"type": "PArray<PGeometry::PDynamicMesh::PDynamicSegmentDesc,4> &",
+"result": "getter-form",
+"call": "0066B1CE",
+"getter": "00669470",
+"getter_name": [
+"PDynamicSegmentDesc"
+]
+},
+"005B9CD0": {
+"type": "PAnimation::PAnimationController &",
+"result": "verified",
+"lea": "005B9D1E",
+"descriptor": "02CADD50",
+"name": [
+"PAnimationController"
+],
+"cmp": "005B9D25",
+"form": "reference"
+},
+"0066B290": {
+"type": "PArray<PGeometry::PMeshSegment,8> &",
+"result": "getter-form",
+"call": "0066B2DE",
+"getter": "006697A0",
+"getter_name": [
+"PMeshSegment"
+]
+},
+"005B9DF0": {
+"type": "PAnimation::PAnimationDataSourceListEntry &",
+"result": "verified",
+"lea": "005B9E29",
+"descriptor": "02CAE350",
+"name": [
+"PAnimationDataSourceListEntry"
+],
+"cmp": "005B9E30",
+"form": "reference"
+},
+"0066B3A0": {
+"type": "PArray<PGeometry::PSkeletonJointBounds,4> &",
+"result": "getter-form",
+"call": "0066B3EE",
+"getter": "00669AD0",
+"getter_name": [
+"PSkeletonJointBounds"
+]
+},
+"005B9EF0": {
+"type": "PAnimation::PAnimationEvent &",
+"result": "verified",
+"lea": "005B9F29",
+"descriptor": "02CAE050",
+"name": [
+"PAnimationEvent"
+],
+"cmp": "005B9F30",
+"form": "reference"
+},
+"0066B4B0": {
+"type": "PArray<PGeometry::PSkinBoneRemap,2> &",
+"result": "getter-form",
+"call": "0066B4FE",
+"getter": "00669E00",
+"getter_name": [
+"PSkinBoneRemap"
+]
+},
+"005B9FF0": {
+"type": "PAnimation::PAnimationEventController &",
+"result": "verified",
+"lea": "005BA03E",
+"descriptor": "02CADF50",
+"name": [
+"PAnimationEventController"
+],
+"cmp": "005BA045",
+"form": "reference"
+},
+"0066B5C0": {
+"type": "PArray<PGeometry::PVertexStream,8> &",
+"result": "getter-form",
+"call": "0066B60E",
+"getter": "0066A130",
+"getter_name": [
+"PVertexStream"
+]
+},
+"005BA110": {
+"type": "PAnimation::PAnimationEventList &",
+"result": "verified",
+"lea": "005BA149",
+"descriptor": "02CAE150",
+"name": [
+"PAnimationEventList"
+],
+"cmp": "005BA150",
+"form": "reference"
+},
+"0066B6D0": {
+"type": "PSharray<PRendering::PMaterial *> &",
+"result": "getter-form",
+"call": "0066B71E",
+"getter": "0066A460",
+"getter_name": [
+"PMaterial"
+]
+},
+"005BA210": {
+"type": "PAnimation::PAnimationNetworkInstance &",
+"result": "verified",
+"lea": "005BA25E",
+"descriptor": "02CAE550",
+"name": [
+"PAnimationNetworkInstance"
+],
+"cmp": "005BA265",
+"form": "reference"
+},
+"0066B7E0": {
+"type": "PSharray<PGeometry::PDataBlockBufferD3D11> &",
+"result": "getter-form",
+"call": "0066B82E",
+"getter": "0066A7B0",
+"getter_name": [
+"PDataBlockBufferD3D11"
+]
+},
+"005BA330": {
+"type": "PAnimation::PAnimationNetworkInstanceTarget &",
+"result": "verified",
+"lea": "005BA369",
+"descriptor": "02CAE450",
+"name": [
+"PAnimationNetworkInstanceTarget"
+],
+"cmp": "005BA370",
+"form": "reference"
+},
+"0066B8F0": {
+"type": "PSharray<PGeometry::PIndexDataBlockBufferD3D11> &",
+"result": "getter-form",
+"call": "0066B93E",
+"getter": "0066AB00",
+"getter_name": [
+"PIndexDataBlockBufferD3D11"
+]
+},
+"005BA430": {
+"type": "PAnimation::PAnimationSet &",
+"result": "verified",
+"lea": "005BA469",
+"descriptor": "02CAE660",
+"name": [
+"PAnimationSet"
+],
+"cmp": "005BA470",
+"form": "reference"
+},
+"0066BA00": {
+"type": "PGeometry::PDataBlock &",
+"result": "verified",
+"lea": "0066BA39",
+"descriptor": "02D39E40",
+"name": [
+"PDataBlock"
+],
+"cmp": "0066BA40",
+"form": "reference"
+},
+"005BA530": {
+"type": "PAnimation::PAnimationSlotArray &",
+"result": "verified",
+"lea": "005BA569",
+"descriptor": "02CAE860",
+"name": [
+"PAnimationSlotArray"
+],
+"cmp": "005BA570",
+"form": "reference"
+},
+"0066BB00": {
+"type": "PGeometry::PDataBlockBase &",
+"result": "verified",
+"lea": "0066BB39",
+"descriptor": "02D39D40",
+"name": [
+"PDataBlockBase"
+],
+"cmp": "0066BB40",
+"form": "reference"
+},
+"005BA630": {
+"type": "PAnimation::PAnimationSlotFilter &",
+"result": "verified",
+"lea": "005BA67E",
+"descriptor": "02CAEA60",
+"name": [
+"PAnimationSlotFilter"
+],
+"cmp": "005BA685",
+"form": "reference"
+},
+"0066BC00": {
+"type": "PGeometry::PDataBlockBufferD3D11 &",
+"result": "verified",
+"lea": "0066BC39",
+"descriptor": "02D39B40",
+"name": [
+"PDataBlockBufferD3D11"
+],
+"cmp": "0066BC40",
+"form": "reference"
+},
+"005BA750": {
+"type": "PAnimation::PAnimationSlotFilterDeferredLoad &",
+"result": "verified",
+"lea": "005BA789",
+"descriptor": "02CAE960",
+"name": [
+"PAnimationSlotFilterDeferredLoad"
+],
+"cmp": "005BA790",
+"form": "reference"
+},
+"0066BD00": {
+"type": "PGeometry::PDataBlockD3D11 &",
+"result": "verified",
+"lea": "0066BD39",
+"descriptor": "02D39C40",
+"name": [
+"PDataBlockD3D11"
+],
+"cmp": "0066BD40",
+"form": "reference"
+},
+"005BA850": {
+"type": "PAnimation::PAnimationSlotListIndex &",
+"result": "verified",
+"lea": "005BA889",
+"descriptor": "02CAE760",
+"name": [
+"PAnimationSlotListIndex"
+],
+"cmp": "005BA890",
+"form": "reference"
+},
+"0066BE00": {
+"type": "PGeometry::PDynamicDataBlock &",
+"result": "verified",
+"lea": "0066BE39",
+"descriptor": "02D39F40",
+"name": [
+"PDynamicDataBlock"
+],
+"cmp": "0066BE40",
+"form": "reference"
+},
+"005BA950": {
+"type": "PAnimation::PAnimationSpuTargetBlenderController &",
+"result": "verified",
+"lea": "005BA99E",
+"descriptor": "02CAEBE0",
+"name": [
+"PAnimationSpuTargetBlenderController"
+],
+"cmp": "005BA9A5",
+"form": "reference"
+},
+"0066BF00": {
+"type": "PGeometry::PDynamicMesh::PDynamicSegmentDesc &",
+"result": "verified",
+"lea": "0066BF39",
+"descriptor": "02D3A040",
+"name": [
+"PDynamicSegmentDesc"
+],
+"cmp": "0066BF40",
+"form": "reference"
+},
+"005BAA70": {
+"type": "PAnimation::PAnimationTargetBlenderController &",
+"result": "verified",
+"lea": "005BAABE",
+"descriptor": "02CAECE0",
+"name": [
+"PAnimationTargetBlenderController"
+],
+"cmp": "005BAAC5",
+"form": "reference"
+},
+"0066C000": {
+"type": "PGeometry::PIndexDataBlock &",
+"result": "verified",
+"lea": "0066C039",
+"descriptor": "02D3A340",
+"name": [
+"PIndexDataBlock"
+],
+"cmp": "0066C040",
+"form": "reference"
+},
+"005BAB90": {
+"type": "PAnimation::PAnimationWeightedBlenderController &",
+"result": "verified",
+"lea": "005BABDE",
+"descriptor": "02CAEDE0",
+"name": [
+"PAnimationWeightedBlenderController"
+],
+"cmp": "005BABE5",
+"form": "reference"
+},
+"0066C100": {
+"type": "PGeometry::PIndexDataBlockBase &",
+"result": "verified",
+"lea": "0066C139",
+"descriptor": "02D3A240",
+"name": [
+"PIndexDataBlockBase"
+],
+"cmp": "0066C140",
+"form": "reference"
+},
+"005BACB0": {
+"type": "PAnimation::PBlendableAnimationSource &",
+"result": "verified",
+"lea": "005BACE9",
+"descriptor": "02CAD040",
+"name": [
+"PBlendableAnimationSource"
+],
+"cmp": "005BACF0",
+"form": "reference"
+},
+"0066C200": {
+"type": "PGeometry::PIndexDataBlockBufferD3D11 &",
+"result": "verified",
+"lea": "0066C239",
+"descriptor": "02D39940",
+"name": [
+"PIndexDataBlockBufferD3D11"
+],
+"cmp": "0066C240",
+"form": "reference"
+},
+"005BADB0": {
+"type": "PCluster &",
+"result": "verified",
+"lea": "005BADE9",
+"descriptor": "02CF8780",
+"name": [
+"PCluster"
+],
+"cmp": "005BADF0",
+"form": "reference"
+},
+"0066C300": {
+"type": "PGeometry::PIndexDataBlockD3D11 &",
+"result": "verified",
+"lea": "0066C339",
+"descriptor": "02D39A40",
+"name": [
+"PIndexDataBlockD3D11"
+],
+"cmp": "0066C340",
+"form": "reference"
+},
+"005BAEB0": {
+"type": "PAnimation::PTimeController &",
+"result": "verified",
+"lea": "005BAEFE",
+"descriptor": "02CAEEE0",
+"name": [
+"PTimeController"
+],
+"cmp": "005BAF05",
+"form": "reference"
+},
+"0066C400": {
+"type": "PGeometry::PMaterialSet &",
+"result": "verified",
+"lea": "0066C439",
+"descriptor": "02D3A440",
+"name": [
+"PMaterialSet"
+],
+"cmp": "0066C440",
+"form": "reference"
+},
+"005BAFD0": {
+"type": "PAnimation::PTimeIntervalController &",
+"result": "verified",
+"lea": "005BB01E",
+"descriptor": "02CAEFE0",
+"name": [
+"PTimeIntervalController"
+],
+"cmp": "005BB025",
+"form": "reference"
+},
+"0066C500": {
+"type": "PGeometry::PMesh &",
+"result": "verified",
+"lea": "0066C539",
+"descriptor": "02D3A640",
+"name": [
+"PMesh"
+],
+"cmp": "0066C540",
+"form": "reference"
+},
+"005BB0F0": {
+"type": "PAnimation::PTimeScaleOffsetController &",
+"result": "verified",
+"lea": "005BB13E",
+"descriptor": "02CAF0E0",
+"name": [
+"PTimeScaleOffsetController"
+],
+"cmp": "005BB145",
+"form": "reference"
+},
+"0066C600": {
+"type": "PGeometry::PMeshSegment &",
+"result": "verified",
+"lea": "0066C639",
+"descriptor": "02D3A940",
+"name": [
+"PMeshSegment"
+],
+"cmp": "0066C640",
+"form": "reference"
+},
+"005BB210": {
+"type": "PArray<unsigned int,4> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"0066C700": {
+"type": "PGeometry::PMeshSegmentBase &",
+"result": "verified",
+"lea": "0066C739",
+"descriptor": "02D3A840",
+"name": [
+"PMeshSegmentBase"
+],
+"cmp": "0066C740",
+"form": "reference"
+},
+"005BB350": {
+"type": "PArray<float,4> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"0066C800": {
+"type": "PGeometry::PMeshSegmentD3D11 &",
+"result": "verified",
+"lea": "0066C839",
+"descriptor": "02D39840",
+"name": [
+"PMeshSegmentD3D11"
+],
+"cmp": "0066C840",
+"form": "reference"
+},
+"005BB490": {
+"type": "PArray<PAnimation::PAnimationChannel *,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"0066C900": {
+"type": "PGeometry::PShape &",
+"result": "verified",
+"lea": "0066C939",
+"descriptor": "02D3ACE0",
+"name": [
+"PShape"
+],
+"cmp": "0066C940",
+"form": "reference"
+},
+"005BB5D0": {
+"type": "PArray<PAnimation::PAnimationDataSource *,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"0066CA00": {
+"type": "PGeometry::PSkeletonJointBounds &",
+"result": "verified",
+"lea": "0066CA39",
+"descriptor": "02D3A540",
+"name": [
+"PSkeletonJointBounds"
+],
+"cmp": "0066CA40",
+"form": "reference"
+},
+"005BB710": {
+"type": "PArray<PAnimation::PAnimationChannelTarget,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"0066CB00": {
+"type": "PGeometry::PSkinBoneRemap &",
+"result": "verified",
+"lea": "0066CB39",
+"descriptor": "02D3A740",
+"name": [
+"PSkinBoneRemap"
+],
+"cmp": "0066CB40",
+"form": "reference"
+},
+"005BB850": {
+"type": "PArray<PAnimation::PAnimationConstantChannel,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"0066CC00": {
+"type": "PGeometry::PVertexStream &",
+"result": "verified",
+"lea": "0066CC39",
+"descriptor": "02D3ADE0",
+"name": [
+"PVertexStream"
+],
+"cmp": "0066CC40",
+"form": "reference"
+},
+"005BB990": {
+"type": "PArray<PAnimation::PAnimationDataSourceListEntry,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"0066CD00": {
+"type": "PArray<unsigned char,4> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"005BBAD0": {
+"type": "PArray<PAnimation::PAnimationEvent,4> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"0066CE40": {
+"type": "PArray<int,4> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"005BBC10": {
+"type": "PArray<PAnimation::PAnimationNetworkInstanceTarget,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"0066CF80": {
+"type": "PArray<PGeometry::PDataBlockD3D11,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"005BBD50": {
+"type": "PArray<PAnimation::PAnimationSlotArray,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"0066D0C0": {
+"type": "PArray<PGeometry::PDynamicMesh::PDynamicSegmentDesc,4> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"005BBE90": {
+"type": "PArray<PAnimation::PAnimationSlotFilterDeferredLoad,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"0066D200": {
+"type": "PArray<PGeometry::PMeshSegment,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"005BBFD0": {
+"type": "PArray<PAnimation::PAnimationSlotListIndex,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"0066D340": {
+"type": "PArray<PGeometry::PSkeletonJointBounds,4> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"005BC110": {
+"type": "PArray<PAnimation::PBlendableAnimationSource,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"0066D480": {
+"type": "PArray<PGeometry::PSkinBoneRemap,2> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"005BC250": {
+"type": "PArray<PQWord,16> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"0066D5C0": {
+"type": "PArray<PGeometry::PVertexStream,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"005BC390": {
+"type": "PSharray<PAnimation::PAnimationClip *> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"0066D700": {
+"type": "PSharray<PRendering::PMaterial *> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"005BC4D0": {
+"type": "PAnimation::PAnimatableComponent *",
+"result": "verified",
+"lea": "005BC516",
+"descriptor": "02CAD140",
+"name": [
+"PAnimatableComponent"
+],
+"cmp": "005BC520",
+"form": "pointer"
+},
+"0066D840": {
+"type": "PSharray<PGeometry::PDataBlockBufferD3D11> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"005BC600": {
+"type": "PAnimation::PAnimationAdditiveBlenderController *",
+"result": "verified",
+"lea": "005BC646",
+"descriptor": "02CAD240",
+"name": [
+"PAnimationAdditiveBlenderController"
+],
+"cmp": "005BC650",
+"form": "pointer"
+},
+"0066D980": {
+"type": "PSharray<PGeometry::PIndexDataBlockBufferD3D11> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"005BC730": {
+"type": "PAnimation::PAnimationBlenderController *",
+"result": "verified",
+"lea": "005BC776",
+"descriptor": "02CAD340",
+"name": [
+"PAnimationBlenderController"
+],
+"cmp": "005BC780",
+"form": "pointer"
+},
+"0066DAC0": {
+"type": "PGeometry::PDataBlock *",
+"result": "verified",
+"lea": "0066DB02",
+"descriptor": "02D39E40",
+"name": [
+"PDataBlock"
+],
+"cmp": "0066DB10",
+"form": "pointer"
+},
+"005BC860": {
+"type": "PAnimation::PAnimationChannel *",
+"result": "verified",
+"lea": "005BC8A2",
+"descriptor": "02CAD440",
+"name": [
+"PAnimationChannel"
+],
+"cmp": "005BC8B0",
+"form": "pointer"
+},
+"0066DBF0": {
+"type": "PGeometry::PDataBlockBase *",
+"result": "verified",
+"lea": "0066DC32",
+"descriptor": "02D39D40",
+"name": [
+"PDataBlockBase"
+],
+"cmp": "0066DC40",
+"form": "pointer"
+},
+"005BC990": {
+"type": "PAnimation::PAnimationChannelBase *",
+"result": "verified",
+"lea": "005BC9D2",
+"descriptor": "02CAD540",
+"name": [
+"PAnimationChannelBase"
+],
+"cmp": "005BC9E0",
+"form": "pointer"
+},
+"0066DD20": {
+"type": "PGeometry::PDataBlockBufferD3D11 *",
+"result": "verified",
+"lea": "0066DD62",
+"descriptor": "02D39B40",
+"name": [
+"PDataBlockBufferD3D11"
+],
+"cmp": "0066DD70",
+"form": "pointer"
+},
+"005BCAC0": {
+"type": "PAnimation::PAnimationChannelTarget *",
+"result": "verified",
+"lea": "005BCB02",
+"descriptor": "02CAD640",
+"name": [
+"PAnimationChannelTarget"
+],
+"cmp": "005BCB10",
+"form": "pointer"
+},
+"0066DE50": {
+"type": "PGeometry::PDataBlockD3D11 *",
+"result": "verified",
+"lea": "0066DE92",
+"descriptor": "02D39C40",
+"name": [
+"PDataBlockD3D11"
+],
+"cmp": "0066DEA0",
+"form": "pointer"
+},
+"005BCBF0": {
+"type": "PAnimation::PAnimationChannelTimes *",
+"result": "verified",
+"lea": "005BCC32",
+"descriptor": "02CAD740",
+"name": [
+"PAnimationChannelTimes"
+],
+"cmp": "005BCC40",
+"form": "pointer"
+},
+"0066DF80": {
+"type": "PGeometry::PDynamicDataBlock *",
+"result": "verified",
+"lea": "0066DFC2",
+"descriptor": "02D39F40",
+"name": [
+"PDynamicDataBlock"
+],
+"cmp": "0066DFD0",
+"form": "pointer"
+},
+"005BCD20": {
+"type": "PAnimation::PAnimationClip *",
+"result": "verified",
+"lea": "005BCD62",
+"descriptor": "02CAD840",
+"name": [
+"PAnimationClip"
+],
+"cmp": "005BCD70",
+"form": "pointer"
+},
+"0066E0B0": {
+"type": "PGeometry::PDynamicMesh *",
+"result": "verified",
+"lea": "0066E0F6",
+"descriptor": "02D3A140",
+"name": [
+"PDynamicMesh"
+],
+"cmp": "0066E100",
+"form": "pointer"
+},
+"005BCE50": {
+"type": "PAnimation::PAnimationClipBinding *",
+"result": "verified",
+"lea": "005BCE92",
+"descriptor": "02CADB40",
+"name": [
+"PAnimationClipBinding"
+],
+"cmp": "005BCEA0",
+"form": "pointer"
+},
+"0066E1E0": {
+"type": "PGeometry::PDynamicMesh::PDynamicSegmentDesc *",
+"result": "verified",
+"lea": "0066E222",
+"descriptor": "02D3A040",
+"name": [
+"PDynamicSegmentDesc"
+],
+"cmp": "0066E230",
+"form": "pointer"
+},
+"005BCF80": {
+"type": "PAnimation::PAnimationClipBinding::PAnimationClipBindingChannelMap *",
+"result": "verified",
+"lea": "005BCFC2",
+"descriptor": "02CAD940",
+"name": [
+"PAnimationClipBindingChannelMap"
+],
+"cmp": "005BCFD0",
+"form": "pointer"
+},
+"0066E310": {
+"type": "PGeometry::PIndexDataBlock *",
+"result": "verified",
+"lea": "0066E352",
+"descriptor": "02D3A340",
+"name": [
+"PIndexDataBlock"
+],
+"cmp": "0066E360",
+"form": "pointer"
+},
+"005BD0B0": {
+"type": "PAnimation::PAnimationClipBinding::PAnimationClipBindingDataBlockCache *",
+"result": "verified",
+"lea": "005BD0F2",
+"descriptor": "02CADA40",
+"name": [
+"PAnimationClipBindingDataBlockCache"
+],
+"cmp": "005BD100",
+"form": "pointer"
+},
+"0066E440": {
+"type": "PGeometry::PIndexDataBlockBase *",
+"result": "verified",
+"lea": "0066E482",
+"descriptor": "02D3A240",
+"name": [
+"PIndexDataBlockBase"
+],
+"cmp": "0066E490",
+"form": "pointer"
+},
+"005BD1E0": {
+"type": "PAnimation::PAnimationConstantChannel *",
+"result": "verified",
+"lea": "005BD222",
+"descriptor": "02CADC50",
+"name": [
+"PAnimationConstantChannel"
+],
+"cmp": "005BD230",
+"form": "pointer"
+},
+"0066E570": {
+"type": "PGeometry::PIndexDataBlockBufferD3D11 *",
+"result": "verified",
+"lea": "0066E5B2",
+"descriptor": "02D39940",
+"name": [
+"PIndexDataBlockBufferD3D11"
+],
+"cmp": "0066E5C0",
+"form": "pointer"
+},
+"005BD310": {
+"type": "PAnimation::PAnimationController *",
+"result": "verified",
+"lea": "005BD356",
+"descriptor": "02CADD50",
+"name": [
+"PAnimationController"
+],
+"cmp": "005BD360",
+"form": "pointer"
+},
+"0066E6A0": {
+"type": "PGeometry::PIndexDataBlockD3D11 *",
+"result": "verified",
+"lea": "0066E6E2",
+"descriptor": "02D39A40",
+"name": [
+"PIndexDataBlockD3D11"
+],
+"cmp": "0066E6F0",
+"form": "pointer"
+},
+"005BD440": {
+"type": "PAnimation::PAnimationDataSource *",
+"result": "verified",
+"lea": "005BD486",
+"descriptor": "02CADE50",
+"name": [
+"PAnimationDataSource"
+],
+"cmp": "005BD490",
+"form": "pointer"
+},
+"0066E7D0": {
+"type": "PGeometry::PMaterialSet *",
+"result": "verified",
+"lea": "0066E812",
+"descriptor": "02D3A440",
+"name": [
+"PMaterialSet"
+],
+"cmp": "0066E820",
+"form": "pointer"
+},
+"005BD570": {
+"type": "PAnimation::PAnimationDataSourceListEntry *",
+"result": "verified",
+"lea": "005BD5B2",
+"descriptor": "02CAE350",
+"name": [
+"PAnimationDataSourceListEntry"
+],
+"cmp": "005BD5C0",
+"form": "pointer"
+},
+"0066E900": {
+"type": "PGeometry::PMesh *",
+"result": "verified",
+"lea": "0066E942",
+"descriptor": "02D3A640",
+"name": [
+"PMesh"
+],
+"cmp": "0066E950",
+"form": "pointer"
+},
+"005BD6A0": {
+"type": "PAnimation::PAnimationEvent *",
+"result": "verified",
+"lea": "005BD6E2",
+"descriptor": "02CAE050",
+"name": [
+"PAnimationEvent"
+],
+"cmp": "005BD6F0",
+"form": "pointer"
+},
+"0066EA30": {
+"type": "PGeometry::PMeshSegment *",
+"result": "verified",
+"lea": "0066EA72",
+"descriptor": "02D3A940",
+"name": [
+"PMeshSegment"
+],
+"cmp": "0066EA80",
+"form": "pointer"
+},
+"005BD7D0": {
+"type": "PAnimation::PAnimationEventController *",
+"result": "verified",
+"lea": "005BD816",
+"descriptor": "02CADF50",
+"name": [
+"PAnimationEventController"
+],
+"cmp": "005BD820",
+"form": "pointer"
+},
+"0066EB60": {
+"type": "PGeometry::PMeshSegmentBase *",
+"result": "verified",
+"lea": "0066EBA2",
+"descriptor": "02D3A840",
+"name": [
+"PMeshSegmentBase"
+],
+"cmp": "0066EBB0",
+"form": "pointer"
+},
+"005BD900": {
+"type": "PAnimation::PAnimationEventList *",
+"result": "verified",
+"lea": "005BD942",
+"descriptor": "02CAE150",
+"name": [
+"PAnimationEventList"
+],
+"cmp": "005BD950",
+"form": "pointer"
+},
+"0066EC90": {
+"type": "PGeometry::PMeshSegmentD3D11 *",
+"result": "verified",
+"lea": "0066ECD2",
+"descriptor": "02D39840",
+"name": [
+"PMeshSegmentD3D11"
+],
+"cmp": "0066ECE0",
+"form": "pointer"
+},
+"005BDA30": {
+"type": "PAnimation::PAnimationHierarchyNode *",
+"result": "verified",
+"lea": "005BDA76",
+"descriptor": "02CAE250",
+"name": [
+"PAnimationHierarchyNode"
+],
+"cmp": "005BDA80",
+"form": "pointer"
+},
+"0066EDC0": {
+"type": "PGeometry::PShape *",
+"result": "verified",
+"lea": "0066EE02",
+"descriptor": "02D3ACE0",
+"name": [
+"PShape"
+],
+"cmp": "0066EE10",
+"form": "pointer"
+},
+"005BDB60": {
+"type": "PAnimation::PAnimationNetworkInstance *",
+"result": "verified",
+"lea": "005BDBA6",
+"descriptor": "02CAE550",
+"name": [
+"PAnimationNetworkInstance"
+],
+"cmp": "005BDBB0",
+"form": "pointer"
+},
+"0066EEF0": {
+"type": "PGeometry::PSkeletonJointBounds *",
+"result": "verified",
+"lea": "0066EF32",
+"descriptor": "02D3A540",
+"name": [
+"PSkeletonJointBounds"
+],
+"cmp": "0066EF40",
+"form": "pointer"
+},
+"005BDC90": {
+"type": "PAnimation::PAnimationNetworkInstanceTarget *",
+"result": "verified",
+"lea": "005BDCD2",
+"descriptor": "02CAE450",
+"name": [
+"PAnimationNetworkInstanceTarget"
+],
+"cmp": "005BDCE0",
+"form": "pointer"
+},
+"0066F020": {
+"type": "PGeometry::PSkinBoneRemap *",
+"result": "verified",
+"lea": "0066F062",
+"descriptor": "02D3A740",
+"name": [
+"PSkinBoneRemap"
+],
+"cmp": "0066F070",
+"form": "pointer"
+},
+"005BDDC0": {
+"type": "PAnimation::PAnimationSet *",
+"result": "verified",
+"lea": "005BDE02",
+"descriptor": "02CAE660",
+"name": [
+"PAnimationSet"
+],
+"cmp": "005BDE10",
+"form": "pointer"
+},
+"0066F150": {
+"type": "PGeometry::PVertexStream *",
+"result": "verified",
+"lea": "0066F192",
+"descriptor": "02D3ADE0",
+"name": [
+"PVertexStream"
+],
+"cmp": "0066F1A0",
+"form": "pointer"
+},
+"005BDEF0": {
+"type": "PAnimation::PAnimationSlotArray *",
+"result": "verified",
+"lea": "005BDF32",
+"descriptor": "02CAE860",
+"name": [
+"PAnimationSlotArray"
+],
+"cmp": "005BDF40",
+"form": "pointer"
+},
+"00676600": {
+"type": "PAssetReferenceImport &",
+"result": "verified",
+"lea": "00676639",
+"descriptor": "02D3E780",
+"name": [
+"PAssetReferenceImport"
+],
+"cmp": "00676640",
+"form": "reference"
+},
+"005BE020": {
+"type": "PAnimation::PAnimationSlotFilter *",
+"result": "verified",
+"lea": "005BE066",
+"descriptor": "02CAEA60",
+"name": [
+"PAnimationSlotFilter"
+],
+"cmp": "005BE070",
+"form": "pointer"
+},
+"00676700": {
+"type": "PBase const &",
+"result": "getter-form",
+"call": "0067674A",
+"getter": "006372A0",
+"getter_name": [
+"PBase"
+]
+},
+"005BE150": {
+"type": "PAnimation::PAnimationSlotFilterDeferredLoad *",
+"result": "verified",
+"lea": "005BE192",
+"descriptor": "02CAE960",
+"name": [
+"PAnimationSlotFilterDeferredLoad"
+],
+"cmp": "005BE1A0",
+"form": "pointer"
+},
+"00676810": {
+"type": "PAssetReference *",
+"result": "verified",
+"lea": "00676852",
+"descriptor": "02D3E680",
+"name": [
+"PAssetReference"
+],
+"cmp": "00676860",
+"form": "pointer"
+},
+"005BE280": {
+"type": "PAnimation::PAnimationSlotListIndex *",
+"result": "verified",
+"lea": "005BE2C2",
+"descriptor": "02CAE760",
+"name": [
+"PAnimationSlotListIndex"
+],
+"cmp": "005BE2D0",
+"form": "pointer"
+},
+"00676940": {
+"type": "PAssetReferenceImport *",
+"result": "verified",
+"lea": "00676982",
+"descriptor": "02D3E780",
+"name": [
+"PAssetReferenceImport"
+],
+"cmp": "00676990",
+"form": "pointer"
+},
+"005BE3B0": {
+"type": "PAnimation::PAnimationSpuTargetBlenderController *",
+"result": "verified",
+"lea": "005BE3F6",
+"descriptor": "02CAEBE0",
+"name": [
+"PAnimationSpuTargetBlenderController"
+],
+"cmp": "005BE400",
+"form": "pointer"
+},
+"00678BB0": {
+"type": "PCamera &",
+"result": "verified",
+"lea": "00678BE9",
+"descriptor": "02D3F210",
+"name": [
+"PCamera"
+],
+"cmp": "00678BF0",
+"form": "reference"
+},
+"005BE4E0": {
+"type": "PAnimation::PAnimationTargetBlenderController *",
+"result": "verified",
+"lea": "005BE526",
+"descriptor": "02CAECE0",
+"name": [
+"PAnimationTargetBlenderController"
+],
+"cmp": "005BE530",
+"form": "pointer"
+},
+"00678CB0": {
+"type": "PCamera *",
+"result": "verified",
+"lea": "00678CF2",
+"descriptor": "02D3F210",
+"name": [
+"PCamera"
+],
+"cmp": "00678D00",
+"form": "pointer"
+},
+"005BE610": {
+"type": "PAnimation::PAnimationWeightedBlenderController *",
+"result": "verified",
+"lea": "005BE656",
+"descriptor": "02CAEDE0",
+"name": [
+"PAnimationWeightedBlenderController"
+],
+"cmp": "005BE660",
+"form": "pointer"
+},
+"00678DE0": {
+"type": "PCameraProjection *",
+"result": "verified",
+"lea": "00678E26",
+"descriptor": "02D3F310",
+"name": [
+"PCameraProjection"
+],
+"cmp": "00678E30",
+"form": "pointer"
+},
+"005BE740": {
+"type": "PAnimation::PBlendableAnimationSource *",
+"result": "verified",
+"lea": "005BE782",
+"descriptor": "02CAD040",
+"name": [
+"PBlendableAnimationSource"
+],
+"cmp": "005BE790",
+"form": "pointer"
+},
+"0067DB40": {
+"type": "PArray<PText::PBitmapFontCharInfo,4> &",
+"result": "getter-form",
+"call": "0067DB8E",
+"getter": "0067D810",
+"getter_name": [
+"PBitmapFontCharInfo"
+]
+},
+"005BE870": {
+"type": "PCluster *",
+"result": "verified",
+"lea": "005BE8B2",
+"descriptor": "02CF8780",
+"name": [
+"PCluster"
+],
+"cmp": "005BE8C0",
+"form": "pointer"
+},
+"0067DC50": {
+"type": "PText::PBitmapFontCharInfo &",
+"result": "verified",
+"lea": "0067DC89",
+"descriptor": "02E3F960",
+"name": [
+"PBitmapFontCharInfo"
+],
+"cmp": "0067DC90",
+"form": "reference"
+},
+"005BE9A0": {
+"type": "PAnimation::PTimeController *",
+"result": "verified",
+"lea": "005BE9E6",
+"descriptor": "02CAEEE0",
+"name": [
+"PTimeController"
+],
+"cmp": "005BE9F0",
+"form": "pointer"
+},
+"0067DD50": {
+"type": "PArray<PText::PBitmapFontCharInfo,4> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"005BEAD0": {
+"type": "PAnimation::PTimeIntervalController *",
+"result": "verified",
+"lea": "005BEB16",
+"descriptor": "02CAEFE0",
+"name": [
+"PTimeIntervalController"
+],
+"cmp": "005BEB20",
+"form": "pointer"
+},
+"0067DE90": {
+"type": "PText::PBitmapFont *",
+"result": "verified",
+"lea": "0067DED2",
+"descriptor": "02E3FA60",
+"name": [
+"PBitmapFont"
+],
+"cmp": "0067DEE0",
+"form": "pointer"
+},
+"005BEC00": {
+"type": "PAnimation::PTimeScaleOffsetController *",
+"result": "verified",
+"lea": "005BEC46",
+"descriptor": "02CAF0E0",
+"name": [
+"PTimeScaleOffsetController"
+],
+"cmp": "005BEC50",
+"form": "pointer"
+},
+"0067DFC0": {
+"type": "PText::PBitmapFontCharInfo *",
+"result": "verified",
+"lea": "0067E002",
+"descriptor": "02E3F960",
+"name": [
+"PBitmapFontCharInfo"
+],
+"cmp": "0067E010",
+"form": "pointer"
+},
+"005F0C70": {
+"type": "PArray<PRendering::PEffectVariant *,8> &",
+"result": "getter-form",
+"call": "005F0CBE",
+"getter": "005EB7C0",
+"getter_name": [
+"PEffectVariant"
+]
+},
+"0067EAC0": {
+"type": "PWorldMatrix &",
+"result": "verified",
+"lea": "0067EAF9",
+"descriptor": "02E404B0",
+"name": [
+"PWorldMatrix"
+],
+"cmp": "0067EB00",
+"form": "reference"
+},
+"005F0D80": {
+"type": "PArray<PDynamicGeometry::PModifierNetworkInstance *,8> &",
+"result": "getter-form",
+"call": "005F0DCE",
+"getter": "005EBB00",
+"getter_name": [
+"PModifierNetworkInstance"
+]
+},
+"0067EBC0": {
+"type": "PMatrix4x3 const &",
+"result": "getter-form",
+"call": "0067EC0A",
+"getter": "006B33F0",
+"getter_name": null
+},
+"005F0E90": {
+"type": "PArray<PRendering::PSceneRenderPass *,8> &",
+"result": "getter-form",
+"call": "005F0EDE",
+"getter": "005EBE40",
+"getter_name": [
+"PSceneRenderPass"
+]
+},
+"0067ECD0": {
+"type": "PWorldMatrix const &",
+"result": "verified",
+"lea": "0067ED09",
+"descriptor": "02E404B0",
+"name": [
+"PWorldMatrix"
+],
+"cmp": "0067ED10",
+"form": "reference"
+},
+"005F0FA0": {
+"type": "PArray<PRendering::PContextSwitch const *,8> &",
+"result": "getter-form",
+"call": "005F0FEE",
+"getter": "005EC180",
+"getter_name": null
+},
+"0067EDD0": {
+"type": "PWorldMatrix *",
+"result": "verified",
+"lea": "0067EE12",
+"descriptor": "02E404B0",
+"name": [
+"PWorldMatrix"
+],
+"cmp": "0067EE20",
+"form": "pointer"
+},
+"005F10B0": {
+"type": "PArray<PRendering::PLightType const *,8> &",
+"result": "getter-form",
+"call": "005F10FE",
+"getter": "005EC4C0",
+"getter_name": null
+},
+"00682F40": {
+"type": "PScripting::PAsyncProcessHeader &",
+"result": "verified",
+"lea": "00682F79",
+"descriptor": "02E41270",
+"name": [
+"PAsyncProcessHeader"
+],
+"cmp": "00682F80",
+"form": "reference"
+},
+"005F11C0": {
+"type": "PArray<PRendering::PShadowCasterType const *,8> &",
+"result": "getter-form",
+"call": "005F120E",
+"getter": "005EC800",
+"getter_name": null
+},
+"00683040": {
+"type": "PBase &",
+"result": "getter-form",
+"call": "0068308A",
+"getter": "006372A0",
+"getter_name": [
+"PBase"
+]
+},
+"005F12D0": {
+"type": "PArray<PRendering::PContextVariantFoldingTable,4> &",
+"result": "getter-form",
+"call": "005F131E",
+"getter": "005ECB40",
+"getter_name": [
+"PContextVariantFoldingTable"
+]
+},
+"00683150": {
+"type": "PScripting::PScript &",
+"result": "verified",
+"lea": "00683189",
+"descriptor": "02E41470",
+"name": [
+"PScript"
+],
+"cmp": "00683190",
+"form": "reference"
+},
+"005F13E0": {
+"type": "PArray<PRendering::PMaterialSwitch,8> &",
+"result": "getter-form",
+"call": "005F142E",
+"getter": "005ECE70",
+"getter_name": [
+"PMaterialSwitch"
+]
+},
+"00683250": {
+"type": "PScripting::PScriptCallbackHandler &",
+"result": "verified",
+"lea": "00683289",
+"descriptor": "02E41170",
+"name": [
+"PScriptCallbackHandler"
+],
+"cmp": "00683290",
+"form": "reference"
+},
+"005F14F0": {
+"type": "PArray<PMatrix4,4> &",
+"result": "getter-form",
+"call": "005F153E",
+"getter": "005ED1A0",
+"getter_name": null
+},
+"00683350": {
+"type": "PScripting::PScript const &",
+"result": "verified",
+"lea": "00683389",
+"descriptor": "02E41470",
+"name": [
+"PScript"
+],
+"cmp": "00683390",
+"form": "reference"
+},
+"005F1600": {
+"type": "PArray<PRendering::PMeshInstanceSegmentContext,8> &",
+"result": "getter-form",
+"call": "005F164E",
+"getter": "005ED4D0",
+"getter_name": [
+"PMeshInstanceSegmentContext"
+]
+},
+"00683450": {
+"type": "PScripting::PAsyncProcessHeader *",
+"result": "verified",
+"lea": "00683492",
+"descriptor": "02E41270",
+"name": [
+"PAsyncProcessHeader"
+],
+"cmp": "006834A0",
+"form": "pointer"
+},
+"005F1710": {
+"type": "PArray<PRendering::PNodeContext,8> &",
+"result": "getter-form",
+"call": "005F175E",
+"getter": "005ED800",
+"getter_name": [
+"PNodeContext"
+]
+},
+"00683580": {
+"type": "PScripting::PClassCallableMethodScript *",
+"result": "verified",
+"lea": "006835C2",
+"descriptor": "02E41070",
+"name": [
+"PClassCallableMethodScript"
+],
+"cmp": "006835D0",
+"form": "pointer"
+},
+"005F1820": {
+"type": "PArray<PRendering::PSceneRenderPass,8> &",
+"result": "getter-form",
+"call": "005F186E",
+"getter": "005EDB30",
+"getter_name": [
+"PSceneRenderPass"
+]
+},
+"006836B0": {
+"type": "PScripting::PScheduler *",
+"result": "verified",
+"lea": "006836F6",
+"descriptor": "02E41370",
+"name": [
+"PScheduler"
+],
+"cmp": "00683700",
+"form": "pointer"
+},
+"005F1930": {
+"type": "PArray<PRendering::PShader,8> &",
+"result": "getter-form",
+"call": "005F197E",
+"getter": "005EDE60",
+"getter_name": [
+"PShader"
+]
+},
+"006837E0": {
+"type": "PScripting::PScript *",
+"result": "verified",
+"lea": "00683822",
+"descriptor": "02E41470",
+"name": [
+"PScript"
+],
+"cmp": "00683830",
+"form": "pointer"
+},
+"005F1A40": {
+"type": "PArray<PRendering::PShaderParameterCaptureBufferLocation,2> &",
+"result": "getter-form",
+"call": "005F1A8E",
+"getter": "005EE190",
+"getter_name": [
+"PShaderParameterCaptureBufferLocation"
+]
+},
+"00683910": {
+"type": "PScripting::PScriptCallbackHandler *",
+"result": "verified",
+"lea": "00683952",
+"descriptor": "02E41170",
+"name": [
+"PScriptCallbackHandler"
+],
+"cmp": "00683960",
+"form": "pointer"
+},
+"005F1B50": {
+"type": "PArray<PRendering::PShaderParameterCaptureBufferLocationType,2> &",
+"result": "getter-form",
+"call": "005F1B9E",
+"getter": "005EE4C0",
+"getter_name": [
+"PShaderParameterCaptureBufferLocationType"
+]
+},
+"00698D00": {
+"type": "PSharray<PPhysics::PPhysicsShape *> &",
+"result": "getter-form",
+"call": "00698D4E",
+"getter": "00698930",
+"getter_name": [
+"PPhysicsShape"
+]
+},
+"005F1C60": {
+"type": "PArray<PRendering::PShaderParameterCaptureBufferLocationTypeConstantBuffer,4> &",
+"result": "getter-form",
+"call": "005F1CAE",
+"getter": "005EE7F0",
+"getter_name": [
+"PShaderParameterCaptureBufferLocationTypeConstantBuffer"
+]
+},
+"00698E10": {
+"type": "PPhysics::PPhysicsBox &",
+"result": "verified",
+"lea": "00698E5E",
+"descriptor": "02E479D0",
+"name": [
+"PPhysicsBox"
+],
+"cmp": "00698E65",
+"form": "reference"
+},
+"005F1D70": {
+"type": "PArray<PRendering::PShaderParameterDefinition,8> &",
+"result": "getter-form",
+"call": "005F1DBE",
+"getter": "005EEB20",
+"getter_name": [
+"PShaderParameterDefinition"
+]
+},
+"00698F30": {
+"type": "PPhysics::PPhysicsBoxBase &",
+"result": "verified",
+"lea": "00698F7E",
+"descriptor": "02E478D0",
+"name": [
+"PPhysicsBoxBase"
+],
+"cmp": "00698F85",
+"form": "reference"
+},
+"005F1E80": {
+"type": "PArray<PRendering::PShaderPass,8> &",
+"result": "getter-form",
+"call": "005F1ECE",
+"getter": "005EEE50",
+"getter_name": [
+"PShaderPass"
+]
+},
+"00699050": {
+"type": "PPhysics::PPhysicsBoxBullet &",
+"result": "verified",
+"lea": "0069909E",
+"descriptor": "02E496D0",
+"name": [
+"PPhysicsBoxBullet"
+],
+"cmp": "006990A5",
+"form": "reference"
+},
+"005F1F90": {
+"type": "PArray<PRendering::PShaderPassInfo,8> &",
+"result": "getter-form",
+"call": "005F1FDE",
+"getter": "005EF180",
+"getter_name": [
+"PShaderPassInfo"
+]
+},
+"00699170": {
+"type": "PPhysics::PPhysicsCapsule &",
+"result": "verified",
+"lea": "006991BE",
+"descriptor": "02E47BD0",
+"name": [
+"PPhysicsCapsule"
+],
+"cmp": "006991C5",
+"form": "reference"
+},
+"005F20A0": {
+"type": "PArray<PRendering::PShaderStreamDefinition,8> &",
+"result": "getter-form",
+"call": "005F20EE",
+"getter": "005EF4B0",
+"getter_name": [
+"PShaderStreamDefinition"
+]
+},
+"00699290": {
+"type": "PPhysics::PPhysicsCapsuleBase &",
+"result": "verified",
+"lea": "006992DE",
+"descriptor": "02E47AD0",
+"name": [
+"PPhysicsCapsuleBase"
+],
+"cmp": "006992E5",
+"form": "reference"
+},
+"005F21B0": {
+"type": "PArray<PString,8> &",
+"result": "getter-form",
+"call": "005F21FE",
+"getter": "005EF7E0",
+"getter_name": [
+"PString"
+]
+},
+"006993B0": {
+"type": "PPhysics::PPhysicsCapsuleBullet &",
+"result": "verified",
+"lea": "006993FE",
+"descriptor": "02E497D0",
+"name": [
+"PPhysicsCapsuleBullet"
+],
+"cmp": "00699405",
+"form": "reference"
+},
+"005F22C0": {
+"type": "PSharray<unsigned int> &",
+"result": "getter-form",
+"call": "005F230E",
+"getter": "005EFB10",
+"getter_name": null
+},
+"006994D0": {
+"type": "PPhysics::PPhysicsCharacterCamera &",
+"result": "verified",
+"lea": "0069951E",
+"descriptor": "02E47CD0",
+"name": [
+"PPhysicsCharacterCamera"
+],
+"cmp": "00699525",
+"form": "reference"
+},
+"005F23D0": {
+"type": "PSharray<PRendering::PMeshInstanceSegmentStreamBinding const *> &",
+"result": "getter-form",
+"call": "005F241E",
+"getter": "005EFE60",
+"getter_name": [
+"PMeshInstanceSegmentStreamBinding"
+]
+},
+"006995F0": {
+"type": "PPhysics::PPhysicsCharacterController &",
+"result": "verified",
+"lea": "00699629",
+"descriptor": "02E47ED0",
+"name": [
+"PPhysicsCharacterController"
+],
+"cmp": "00699630",
+"form": "reference"
+},
+"005F24E0": {
+"type": "PRendering::PConstantBuffer &",
+"result": "verified",
+"lea": "005F2519",
+"descriptor": "02CB6480",
+"name": [
+"PConstantBuffer"
+],
+"cmp": "005F2520",
+"form": "reference"
+},
+"006996F0": {
+"type": "PPhysics::PPhysicsCharacterControllerBase &",
+"result": "verified",
+"lea": "00699729",
+"descriptor": "02E47DD0",
+"name": [
+"PPhysicsCharacterControllerBase"
+],
+"cmp": "00699730",
+"form": "reference"
+},
+"005F25E0": {
+"type": "PRendering::PConstantBufferBase &",
+"result": "verified",
+"lea": "005F2619",
+"descriptor": "02CB6380",
+"name": [
+"PConstantBufferBase"
+],
+"cmp": "005F2620",
+"form": "reference"
+},
+"006997F0": {
+"type": "PPhysics::PPhysicsCharacterControllerBullet &",
+"result": "verified",
+"lea": "00699829",
+"descriptor": "02E49FD0",
+"name": [
+"PPhysicsCharacterControllerBullet"
+],
+"cmp": "00699830",
+"form": "reference"
+},
+"005F26E0": {
+"type": "PRendering::PContextVariantFoldingTable &",
+"result": "verified",
+"lea": "005F2719",
+"descriptor": "02CB7BA0",
+"name": [
+"PContextVariantFoldingTable"
+],
+"cmp": "005F2720",
+"form": "reference"
+},
+"006998F0": {
+"type": "PPhysics::PPhysicsCylinder &",
+"result": "verified",
+"lea": "0069993E",
+"descriptor": "02E480D0",
+"name": [
+"PPhysicsCylinder"
+],
+"cmp": "00699945",
+"form": "reference"
+},
+"005F27E0": {
+"type": "PRendering::PEffect &",
+"result": "verified",
+"lea": "005F2819",
+"descriptor": "02CB6680",
+"name": [
+"PEffect"
+],
+"cmp": "005F2820",
+"form": "reference"
+},
+"00699A10": {
+"type": "PPhysics::PPhysicsCylinderBase &",
+"result": "verified",
+"lea": "00699A5E",
+"descriptor": "02E47FD0",
+"name": [
+"PPhysicsCylinderBase"
+],
+"cmp": "00699A65",
+"form": "reference"
+},
+"005F28E0": {
+"type": "PRendering::PForwardShadowRenderer &",
+"result": "verified",
+"lea": "005F2919",
+"descriptor": "02CBB400",
+"name": [
+"PForwardShadowRenderer"
+],
+"cmp": "005F2920",
+"form": "reference"
+},
+"00699B30": {
+"type": "PPhysics::PPhysicsCylinderBullet &",
+"result": "verified",
+"lea": "00699B7E",
+"descriptor": "02E498D0",
+"name": [
+"PPhysicsCylinderBullet"
+],
+"cmp": "00699B85",
+"form": "reference"
+},
+"005F29E0": {
+"type": "PRendering::PIndirectArgsBuffer &",
+"result": "verified",
+"lea": "005F2A19",
+"descriptor": "02CB6980",
+"name": [
+"PIndirectArgsBuffer"
+],
+"cmp": "005F2A20",
+"form": "reference"
+},
+"00699C50": {
+"type": "PPhysics::PPhysicsInterfaceBase &",
+"result": "verified",
+"lea": "00699C9E",
+"descriptor": "02E481D0",
+"name": [
+"PPhysicsInterfaceBase"
+],
+"cmp": "00699CA5",
+"form": "reference"
+},
+"005F2AE0": {
+"type": "PRendering::PIndirectArgsBufferBase &",
+"result": "verified",
+"lea": "005F2B19",
+"descriptor": "02CB6880",
+"name": [
+"PIndirectArgsBufferBase"
+],
+"cmp": "005F2B20",
+"form": "reference"
+},
+"00699D70": {
+"type": "PPhysics::PPhysicsInterfaceBullet &",
+"result": "verified",
+"lea": "00699DBE",
+"descriptor": "02E49ED0",
+"name": [
+"PPhysicsInterfaceBullet"
+],
+"cmp": "00699DC5",
+"form": "reference"
+},
+"005F2BE0": {
+"type": "PRendering::PMaterialSwitch &",
+"result": "verified",
+"lea": "005F2C19",
+"descriptor": "02CB6A80",
+"name": [
+"PMaterialSwitch"
+],
+"cmp": "005F2C20",
+"form": "reference"
+},
+"00699E90": {
+"type": "PPhysics::PPhysicsMaterial &",
+"result": "verified",
+"lea": "00699EC9",
+"descriptor": "02E483D0",
+"name": [
+"PPhysicsMaterial"
+],
+"cmp": "00699ED0",
+"form": "reference"
+},
+"005F2CE0": {
+"type": "PRendering::PMeshInstanceBounds &",
+"result": "verified",
+"lea": "005F2D19",
+"descriptor": "02CB7080",
+"name": [
+"PMeshInstanceBounds"
+],
+"cmp": "005F2D20",
+"form": "reference"
+},
+"00699F90": {
+"type": "PPhysics::PPhysicsMesh &",
+"result": "verified",
+"lea": "00699FDE",
+"descriptor": "02E485D0",
+"name": [
+"PPhysicsMesh"
+],
+"cmp": "00699FE5",
+"form": "reference"
+},
+"005F2DE0": {
+"type": "PRendering::PMeshInstanceSegmentContext &",
+"result": "verified",
+"lea": "005F2E19",
+"descriptor": "02CB6D80",
+"name": [
+"PMeshInstanceSegmentContext"
+],
+"cmp": "005F2E20",
+"form": "reference"
+},
+"0069A0B0": {
+"type": "PPhysics::PPhysicsMeshBase &",
+"result": "verified",
+"lea": "0069A0FE",
+"descriptor": "02E484D0",
+"name": [
+"PPhysicsMeshBase"
+],
+"cmp": "0069A105",
+"form": "reference"
+},
+"005F2EE0": {
+"type": "PRendering::PMeshInstanceSegmentStreamBinding &",
+"result": "verified",
+"lea": "005F2F19",
+"descriptor": "02CB6C80",
+"name": [
+"PMeshInstanceSegmentStreamBinding"
+],
+"cmp": "005F2F20",
+"form": "reference"
+},
+"0069A1D0": {
+"type": "PPhysics::PPhysicsMeshBullet &",
+"result": "verified",
+"lea": "0069A21E",
+"descriptor": "02E499D0",
+"name": [
+"PPhysicsMeshBullet"
+],
+"cmp": "0069A225",
+"form": "reference"
+},
+"005F2FE0": {
+"type": "PRendering::PNodeContext &",
+"result": "verified",
+"lea": "005F3019",
+"descriptor": "02CB7280",
+"name": [
+"PNodeContext"
+],
+"cmp": "005F3020",
+"form": "reference"
+},
+"0069A2F0": {
+"type": "PPhysics::PPhysicsModel &",
+"result": "verified",
+"lea": "0069A329",
+"descriptor": "02E486D0",
+"name": [
+"PPhysicsModel"
+],
+"cmp": "0069A330",
+"form": "reference"
+},
+"005F30E0": {
+"type": "PRendering::PSamplerState &",
+"result": "verified",
+"lea": "005F3119",
+"descriptor": "02CB78A0",
+"name": [
+"PSamplerState"
+],
+"cmp": "005F3120",
+"form": "reference"
+},
+"0069A3F0": {
+"type": "PPhysics::PPhysicsPlane &",
+"result": "verified",
+"lea": "0069A43E",
+"descriptor": "02E488D0",
+"name": [
+"PPhysicsPlane"
+],
+"cmp": "0069A445",
+"form": "reference"
+},
+"005F31E0": {
+"type": "PRendering::PSamplerStateBase &",
+"result": "verified",
+"lea": "005F3219",
+"descriptor": "02CB77A0",
+"name": [
+"PSamplerStateBase"
+],
+"cmp": "005F3220",
+"form": "reference"
+},
+"0069A510": {
+"type": "PPhysics::PPhysicsPlaneBase &",
+"result": "verified",
+"lea": "0069A55E",
+"descriptor": "02E487D0",
+"name": [
+"PPhysicsPlaneBase"
+],
+"cmp": "0069A565",
+"form": "reference"
+},
+"005F32E0": {
+"type": "PRendering::PSceneRenderPass &",
+"result": "verified",
+"lea": "005F3319",
+"descriptor": "02CB79A0",
+"name": [
+"PSceneRenderPass"
+],
+"cmp": "005F3320",
+"form": "reference"
+},
+"0069A630": {
+"type": "PPhysics::PPhysicsPlaneBullet &",
+"result": "verified",
+"lea": "0069A67E",
+"descriptor": "02E49AD0",
+"name": [
+"PPhysicsPlaneBullet"
+],
+"cmp": "0069A685",
+"form": "reference"
+},
+"005F33E0": {
+"type": "PRendering::PSceneWideParameterBuffer &",
+"result": "verified",
+"lea": "005F3419",
+"descriptor": "02CB7CA0",
+"name": [
+"PSceneWideParameterBuffer"
+],
+"cmp": "005F3420",
+"form": "reference"
+},
+"0069A750": {
+"type": "PPhysics::PPhysicsRigidBody &",
+"result": "verified",
+"lea": "0069A789",
+"descriptor": "02E48BD0",
+"name": [
+"PPhysicsRigidBody"
+],
+"cmp": "0069A790",
+"form": "reference"
+},
+"005F34E0": {
+"type": "PRendering::PShader &",
+"result": "verified",
+"lea": "005F3519",
+"descriptor": "02CB9000",
+"name": [
+"PShader"
+],
+"cmp": "005F3520",
+"form": "reference"
+},
+"0069A850": {
+"type": "PPhysics::PPhysicsRigidBodyBase &",
+"result": "verified",
+"lea": "0069A889",
+"descriptor": "02E489D0",
+"name": [
+"PPhysicsRigidBodyBase"
+],
+"cmp": "0069A890",
+"form": "reference"
+},
+"005F35E0": {
+"type": "PRendering::PShaderParameterCaptureBufferByteAddressBuffer &",
+"result": "verified",
+"lea": "005F3619",
+"descriptor": "02CBA500",
+"name": [
+"PShaderParameterCaptureBufferByteAddressBuffer"
+],
+"cmp": "005F3620",
+"form": "reference"
+},
+"0069A950": {
+"type": "PPhysics::PPhysicsRigidBodyBullet &",
+"result": "verified",
+"lea": "0069A989",
+"descriptor": "02E49CD0",
+"name": [
+"PPhysicsRigidBodyBullet"
+],
+"cmp": "0069A990",
+"form": "reference"
+},
+"005F36E0": {
+"type": "PRendering::PShaderParameterCaptureBufferDataBlock &",
+"result": "verified",
+"lea": "005F3719",
+"descriptor": "02CBA700",
+"name": [
+"PShaderParameterCaptureBufferDataBlock"
+],
+"cmp": "005F3720",
+"form": "reference"
+},
+"0069AA50": {
+"type": "PPhysics::PPhysicsShape &",
+"result": "verified",
+"lea": "0069AA9E",
+"descriptor": "02E48DD0",
+"name": [
+"PPhysicsShape"
+],
+"cmp": "0069AAA5",
+"form": "reference"
+},
+"005F37E0": {
+"type": "PRendering::PShaderParameterCaptureBufferIndexDataBlock &",
+"result": "verified",
+"lea": "005F3819",
+"descriptor": "02CBA800",
+"name": [
+"PShaderParameterCaptureBufferIndexDataBlock"
+],
+"cmp": "005F3820",
+"form": "reference"
+},
+"0069AB70": {
+"type": "PPhysics::PPhysicsShapeBullet &",
+"result": "verified",
+"lea": "0069ABBE",
+"descriptor": "02E495D0",
+"name": [
+"PPhysicsShapeBullet"
+],
+"cmp": "0069ABC5",
+"form": "reference"
+},
+"005F38E0": {
+"type": "PRendering::PShaderParameterCaptureBufferLocation &",
+"result": "verified",
+"lea": "005F3919",
+"descriptor": "02CB9100",
+"name": [
+"PShaderParameterCaptureBufferLocation"
+],
+"cmp": "005F3920",
+"form": "reference"
+},
+"0069AC90": {
+"type": "PPhysics::PPhysicsSphere &",
+"result": "verified",
+"lea": "0069ACDE",
+"descriptor": "02E48FD0",
+"name": [
+"PPhysicsSphere"
+],
+"cmp": "0069ACE5",
+"form": "reference"
+},
+"005F39E0": {
+"type": "PRendering::PShaderParameterCaptureBufferLocationSize &",
+"result": "verified",
+"lea": "005F3A19",
+"descriptor": "02CB9200",
+"name": [
+"PShaderParameterCaptureBufferLocationSize"
+],
+"cmp": "005F3A20",
+"form": "reference"
+},
+"0069ADB0": {
+"type": "PPhysics::PPhysicsSphereBase &",
+"result": "verified",
+"lea": "0069ADFE",
+"descriptor": "02E48ED0",
+"name": [
+"PPhysicsSphereBase"
+],
+"cmp": "0069AE05",
+"form": "reference"
+},
+"005F3AE0": {
+"type": "PRendering::PShaderParameterCaptureBufferLocationType &",
+"result": "verified",
+"lea": "005F3B19",
+"descriptor": "02CB9300",
+"name": [
+"PShaderParameterCaptureBufferLocationType"
+],
+"cmp": "005F3B20",
+"form": "reference"
+},
+"0069AED0": {
+"type": "PPhysics::PPhysicsSphereBullet &",
+"result": "verified",
+"lea": "0069AF1E",
+"descriptor": "02E49BD0",
+"name": [
+"PPhysicsSphereBullet"
+],
+"cmp": "0069AF25",
+"form": "reference"
+},
+"005F3BE0": {
+"type": "PRendering::PShaderParameterCaptureBufferLocationTypeConstantBuffer &",
+"result": "verified",
+"lea": "005F3C19",
+"descriptor": "02CB9400",
+"name": [
+"PShaderParameterCaptureBufferLocationTypeConstantBuffer"
+],
+"cmp": "005F3C20",
+"form": "reference"
+},
+"0069AFF0": {
+"type": "PPhysics::PPhysicsTaperedCapsule &",
+"result": "verified",
+"lea": "0069B03E",
+"descriptor": "02E490D0",
+"name": [
+"PPhysicsTaperedCapsule"
+],
+"cmp": "0069B045",
+"form": "reference"
+},
+"005F3CE0": {
+"type": "PRendering::PShaderParameterCaptureBufferRWByteAddressBuffer &",
+"result": "verified",
+"lea": "005F3D19",
+"descriptor": "02CBA600",
+"name": [
+"PShaderParameterCaptureBufferRWByteAddressBuffer"
+],
+"cmp": "005F3D20",
+"form": "reference"
+},
+"0069B110": {
+"type": "PPhysics::PPhysicsTaperedCylinder &",
+"result": "verified",
+"lea": "0069B15E",
+"descriptor": "02E491D0",
+"name": [
+"PPhysicsTaperedCylinder"
+],
+"cmp": "0069B165",
+"form": "reference"
+},
+"005F3DE0": {
+"type": "PRendering::PShaderParameterCaptureBufferRWStructuredBuffer &",
+"result": "verified",
+"lea": "005F3E19",
+"descriptor": "02CBA400",
+"name": [
+"PShaderParameterCaptureBufferRWStructuredBuffer"
+],
+"cmp": "005F3E20",
+"form": "reference"
+},
+"0069B230": {
+"type": "PPhysics::PPhysicsWorld &",
+"result": "verified",
+"lea": "0069B269",
+"descriptor": "02E494D0",
+"name": [
+"PPhysicsWorld"
+],
+"cmp": "0069B270",
+"form": "reference"
+},
+"005F3EE0": {
+"type": "PRendering::PShaderParameterCaptureBufferRWTexture2D &",
+"result": "verified",
+"lea": "005F3F19",
+"descriptor": "02CBA900",
+"name": [
+"PShaderParameterCaptureBufferRWTexture2D"
+],
+"cmp": "005F3F20",
+"form": "reference"
+},
+"0069B330": {
+"type": "PPhysics::PPhysicsWorldBase &",
+"result": "verified",
+"lea": "0069B369",
+"descriptor": "02E492D0",
+"name": [
+"PPhysicsWorldBase"
+],
+"cmp": "0069B370",
+"form": "reference"
+},
+"005F3FE0": {
+"type": "PRendering::PShaderParameterCaptureBufferRWTexture3D &",
+"result": "verified",
+"lea": "005F4019",
+"descriptor": "02CBAA00",
+"name": [
+"PShaderParameterCaptureBufferRWTexture3D"
+],
+"cmp": "005F4020",
+"form": "reference"
+},
+"0069B430": {
+"type": "PPhysics::PPhysicsWorldBullet &",
+"result": "verified",
+"lea": "0069B469",
+"descriptor": "02E49DD0",
+"name": [
+"PPhysicsWorldBullet"
+],
+"cmp": "0069B470",
+"form": "reference"
+},
+"005F40E0": {
+"type": "PRendering::PShaderParameterCaptureBufferSampler &",
+"result": "verified",
+"lea": "005F4119",
+"descriptor": "02CBA200",
+"name": [
+"PShaderParameterCaptureBufferSampler"
+],
+"cmp": "005F4120",
+"form": "reference"
+},
+"0069B530": {
+"type": "PPhysics::PRaycastResult &",
+"result": "verified",
+"lea": "0069B569",
+"descriptor": "02E493D0",
+"name": [
+"PRaycastResult"
+],
+"cmp": "0069B570",
+"form": "reference"
+},
+"005F41E0": {
+"type": "PRendering::PShaderParameterCaptureBufferStream &",
+"result": "verified",
+"lea": "005F4219",
+"descriptor": "02CB9C00",
+"name": [
+"PShaderParameterCaptureBufferStream"
+],
+"cmp": "005F4220",
+"form": "reference"
+},
+"0069B630": {
+"type": "PSharray<PPhysics::PPhysicsShape *> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"005F42E0": {
+"type": "PRendering::PShaderParameterCaptureBufferStructuredBuffer &",
+"result": "verified",
+"lea": "005F4319",
+"descriptor": "02CBA300",
+"name": [
+"PShaderParameterCaptureBufferStructuredBuffer"
+],
+"cmp": "005F4320",
+"form": "reference"
+},
+"0069B770": {
+"type": "PPhysics::PPhysicsBox *",
+"result": "verified",
+"lea": "0069B7B6",
+"descriptor": "02E479D0",
+"name": [
+"PPhysicsBox"
+],
+"cmp": "0069B7C0",
+"form": "pointer"
+},
+"005F43E0": {
+"type": "PRendering::PShaderParameterCaptureBufferTexture2D &",
+"result": "verified",
+"lea": "005F4419",
+"descriptor": "02CB9F00",
+"name": [
+"PShaderParameterCaptureBufferTexture2D"
+],
+"cmp": "005F4420",
+"form": "reference"
+},
+"0069B8A0": {
+"type": "PPhysics::PPhysicsBoxBase *",
+"result": "verified",
+"lea": "0069B8E6",
+"descriptor": "02E478D0",
+"name": [
+"PPhysicsBoxBase"
+],
+"cmp": "0069B8F0",
+"form": "pointer"
+},
+"005F44E0": {
+"type": "PRendering::PShaderParameterCaptureBufferTexture3D &",
+"result": "verified",
+"lea": "005F4519",
+"descriptor": "02CBA000",
+"name": [
+"PShaderParameterCaptureBufferTexture3D"
+],
+"cmp": "005F4520",
+"form": "reference"
+},
+"0069B9D0": {
+"type": "PPhysics::PPhysicsBoxBullet *",
+"result": "verified",
+"lea": "0069BA16",
+"descriptor": "02E496D0",
+"name": [
+"PPhysicsBoxBullet"
+],
+"cmp": "0069BA20",
+"form": "pointer"
+},
+"005F45E0": {
+"type": "PRendering::PShaderParameterCaptureBufferTextureCubeMap &",
+"result": "verified",
+"lea": "005F4619",
+"descriptor": "02CBA100",
+"name": [
+"PShaderParameterCaptureBufferTextureCubeMap"
+],
+"cmp": "005F4620",
+"form": "reference"
+},
+"0069BB00": {
+"type": "PPhysics::PPhysicsCallbackData *",
+"result": "verified",
+"lea": "0069BB42",
+"descriptor": "02E48AD0",
+"name": [
+"PPhysicsCallbackData"
+],
+"cmp": "0069BB50",
+"form": "pointer"
+},
+"005F46E0": {
+"type": "PRendering::PShaderParameterCaptureConstantBuffer &",
+"result": "verified",
+"lea": "005F4719",
+"descriptor": "02CB9E00",
+"name": [
+"PShaderParameterCaptureConstantBuffer"
+],
+"cmp": "005F4720",
+"form": "reference"
+},
+"0069BC30": {
+"type": "PPhysics::PPhysicsCapsule *",
+"result": "verified",
+"lea": "0069BC76",
+"descriptor": "02E47BD0",
+"name": [
+"PPhysicsCapsule"
+],
+"cmp": "0069BC80",
+"form": "pointer"
+},
+"005F47E0": {
+"type": "PRendering::PShaderParameterDefinition &",
+"result": "verified",
+"lea": "005F4819",
+"descriptor": "02CB9500",
+"name": [
+"PShaderParameterDefinition"
+],
+"cmp": "005F4820",
+"form": "reference"
+},
+"0069BD60": {
+"type": "PPhysics::PPhysicsCapsuleBase *",
+"result": "verified",
+"lea": "0069BDA6",
+"descriptor": "02E47AD0",
+"name": [
+"PPhysicsCapsuleBase"
+],
+"cmp": "0069BDB0",
+"form": "pointer"
+},
+"005F48E0": {
+"type": "PRendering::PShaderPass &",
+"result": "verified",
+"lea": "005F4919",
+"descriptor": "02CB9A00",
+"name": [
+"PShaderPass"
+],
+"cmp": "005F4920",
+"form": "reference"
+},
+"0069BE90": {
+"type": "PPhysics::PPhysicsCapsuleBullet *",
+"result": "verified",
+"lea": "0069BED6",
+"descriptor": "02E497D0",
+"name": [
+"PPhysicsCapsuleBullet"
+],
+"cmp": "0069BEE0",
+"form": "pointer"
+},
+"005F49E0": {
+"type": "PRendering::PShaderPassBase &",
+"result": "verified",
+"lea": "005F4A19",
+"descriptor": "02CB9900",
+"name": [
+"PShaderPassBase"
+],
+"cmp": "005F4A20",
+"form": "reference"
+},
+"0069BFC0": {
+"type": "PPhysics::PPhysicsCharacterCamera *",
+"result": "verified",
+"lea": "0069C006",
+"descriptor": "02E47CD0",
+"name": [
+"PPhysicsCharacterCamera"
+],
+"cmp": "0069C010",
+"form": "pointer"
+},
+"005F4AE0": {
+"type": "PRendering::PShaderPassInfo &",
+"result": "verified",
+"lea": "005F4B19",
+"descriptor": "02CB7AA0",
+"name": [
+"PShaderPassInfo"
+],
+"cmp": "005F4B20",
+"form": "reference"
+},
+"0069C0F0": {
+"type": "PPhysics::PPhysicsCharacterController *",
+"result": "verified",
+"lea": "0069C132",
+"descriptor": "02E47ED0",
+"name": [
+"PPhysicsCharacterController"
+],
+"cmp": "0069C140",
+"form": "pointer"
+},
+"005F4BE0": {
+"type": "PRendering::PShaderPassParameterLocationTypes &",
+"result": "verified",
+"lea": "005F4C19",
+"descriptor": "02CB9700",
+"name": [
+"PShaderPassParameterLocationTypes"
+],
+"cmp": "005F4C20",
+"form": "reference"
+},
+"0069C220": {
+"type": "PPhysics::PPhysicsCharacterControllerBase *",
+"result": "verified",
+"lea": "0069C262",
+"descriptor": "02E47DD0",
+"name": [
+"PPhysicsCharacterControllerBase"
+],
+"cmp": "0069C270",
+"form": "pointer"
+},
+"005F4CE0": {
+"type": "PRendering::PShaderPassParameterLocationTypesBase &",
+"result": "verified",
+"lea": "005F4D19",
+"descriptor": "02CB9600",
+"name": [
+"PShaderPassParameterLocationTypesBase"
+],
+"cmp": "005F4D20",
+"form": "reference"
+},
+"0069C350": {
+"type": "PPhysics::PPhysicsCharacterControllerBullet *",
+"result": "verified",
+"lea": "0069C392",
+"descriptor": "02E49FD0",
+"name": [
+"PPhysicsCharacterControllerBullet"
+],
+"cmp": "0069C3A0",
+"form": "pointer"
+},
+"005F4DE0": {
+"type": "PRendering::PShaderPassParameterLocationTypesConstantBuffer &",
+"result": "verified",
+"lea": "005F4E19",
+"descriptor": "02CB9800",
+"name": [
+"PShaderPassParameterLocationTypesConstantBuffer"
+],
+"cmp": "005F4E20",
+"form": "reference"
+},
+"0069C480": {
+"type": "PPhysics::PPhysicsCylinder *",
+"result": "verified",
+"lea": "0069C4C6",
+"descriptor": "02E480D0",
+"name": [
+"PPhysicsCylinder"
+],
+"cmp": "0069C4D0",
+"form": "pointer"
+},
+"005F4EE0": {
+"type": "PRendering::PShaderPassStateBase &",
+"result": "verified",
+"lea": "005F4F19",
+"descriptor": "02CB9B00",
+"name": [
+"PShaderPassStateBase"
+],
+"cmp": "005F4F20",
+"form": "reference"
+},
+"0069C5B0": {
+"type": "PPhysics::PPhysicsCylinderBase *",
+"result": "verified",
+"lea": "0069C5F6",
+"descriptor": "02E47FD0",
+"name": [
+"PPhysicsCylinderBase"
+],
+"cmp": "0069C600",
+"form": "pointer"
+},
+"005F4FE0": {
+"type": "PRendering::PShaderProgramBase &",
+"result": "verified",
+"lea": "005F5019",
+"descriptor": "02CBAD00",
+"name": [
+"PShaderProgramBase"
+],
+"cmp": "005F5020",
+"form": "reference"
+},
+"0069C6E0": {
+"type": "PPhysics::PPhysicsCylinderBullet *",
+"result": "verified",
+"lea": "0069C726",
+"descriptor": "02E498D0",
+"name": [
+"PPhysicsCylinderBullet"
+],
+"cmp": "0069C730",
+"form": "pointer"
+},
+"005F50E0": {
+"type": "PRendering::PShaderProgramParamsAndStreams &",
+"result": "verified",
+"lea": "005F5119",
+"descriptor": "02CBAC00",
+"name": [
+"PShaderProgramParamsAndStreams"
+],
+"cmp": "005F5120",
+"form": "reference"
+},
+"0069C810": {
+"type": "PPhysics::PPhysicsInterface *",
+"result": "verified",
+"lea": "0069C856",
+"descriptor": "02E482D0",
+"name": [
+"PPhysicsInterface"
+],
+"cmp": "0069C860",
+"form": "pointer"
+},
+"005F51E0": {
+"type": "PRendering::PShaderStreamDefinition &",
+"result": "verified",
+"lea": "005F5219",
+"descriptor": "02CBAE00",
+"name": [
+"PShaderStreamDefinition"
+],
+"cmp": "005F5220",
+"form": "reference"
+},
+"0069C940": {
+"type": "PPhysics::PPhysicsInterfaceBase *",
+"result": "verified",
+"lea": "0069C986",
+"descriptor": "02E481D0",
+"name": [
+"PPhysicsInterfaceBase"
+],
+"cmp": "0069C990",
+"form": "pointer"
+},
+"005F52E0": {
+"type": "PRendering::PShadowRenderer &",
+"result": "verified",
+"lea": "005F5319",
+"descriptor": "02CBB300",
+"name": [
+"PShadowRenderer"
+],
+"cmp": "005F5320",
+"form": "reference"
+},
+"0069CA70": {
+"type": "PPhysics::PPhysicsInterfaceBullet *",
+"result": "verified",
+"lea": "0069CAB6",
+"descriptor": "02E49ED0",
+"name": [
+"PPhysicsInterfaceBullet"
+],
+"cmp": "0069CAC0",
+"form": "pointer"
+},
+"005F53E0": {
+"type": "PRendering::PStructuredBuffer &",
+"result": "verified",
+"lea": "005F5419",
+"descriptor": "02CBB600",
+"name": [
+"PStructuredBuffer"
+],
+"cmp": "005F5420",
+"form": "reference"
+},
+"0069CBA0": {
+"type": "PPhysics::PPhysicsMaterial *",
+"result": "verified",
+"lea": "0069CBE2",
+"descriptor": "02E483D0",
+"name": [
+"PPhysicsMaterial"
+],
+"cmp": "0069CBF0",
+"form": "pointer"
+},
+"005F54E0": {
+"type": "PRendering::PStructuredBufferBase &",
+"result": "verified",
+"lea": "005F5519",
+"descriptor": "02CBB500",
+"name": [
+"PStructuredBufferBase"
+],
+"cmp": "005F5520",
+"form": "reference"
+},
+"0069CCD0": {
+"type": "PPhysics::PPhysicsMesh *",
+"result": "verified",
+"lea": "0069CD16",
+"descriptor": "02E485D0",
+"name": [
+"PPhysicsMesh"
+],
+"cmp": "0069CD20",
+"form": "pointer"
+},
+"005F55E0": {
+"type": "PRendering::PTexture2D &",
+"result": "verified",
+"lea": "005F5619",
+"descriptor": "02CBB900",
+"name": [
+"PTexture2D"
+],
+"cmp": "005F5620",
+"form": "reference"
+},
+"0069CE00": {
+"type": "PPhysics::PPhysicsMeshBase *",
+"result": "verified",
+"lea": "0069CE46",
+"descriptor": "02E484D0",
+"name": [
+"PPhysicsMeshBase"
+],
+"cmp": "0069CE50",
+"form": "pointer"
+},
+"005F56E0": {
+"type": "PRendering::PTexture2DBase &",
+"result": "verified",
+"lea": "005F5719",
+"descriptor": "02CBB800",
+"name": [
+"PTexture2DBase"
+],
+"cmp": "005F5720",
+"form": "reference"
+},
+"0069CF30": {
+"type": "PPhysics::PPhysicsMeshBullet *",
+"result": "verified",
+"lea": "0069CF76",
+"descriptor": "02E499D0",
+"name": [
+"PPhysicsMeshBullet"
+],
+"cmp": "0069CF80",
+"form": "pointer"
+},
+"005F57E0": {
+"type": "PRendering::PTexture3D &",
+"result": "verified",
+"lea": "005F5819",
+"descriptor": "02CBBB00",
+"name": [
+"PTexture3D"
+],
+"cmp": "005F5820",
+"form": "reference"
+},
+"0069D060": {
+"type": "PPhysics::PPhysicsModel *",
+"result": "verified",
+"lea": "0069D0A2",
+"descriptor": "02E486D0",
+"name": [
+"PPhysicsModel"
+],
+"cmp": "0069D0B0",
+"form": "pointer"
+},
+"005F58E0": {
+"type": "PRendering::PTexture3DBase &",
+"result": "verified",
+"lea": "005F5919",
+"descriptor": "02CBBA00",
+"name": [
+"PTexture3DBase"
+],
+"cmp": "005F5920",
+"form": "reference"
+},
+"0069D190": {
+"type": "PPhysics::PPhysicsPlane *",
+"result": "verified",
+"lea": "0069D1D6",
+"descriptor": "02E488D0",
+"name": [
+"PPhysicsPlane"
+],
+"cmp": "0069D1E0",
+"form": "pointer"
+},
+"005F59E0": {
+"type": "PRendering::PTextureCommonBase &",
+"result": "verified",
+"lea": "005F5A19",
+"descriptor": "02CBB700",
+"name": [
+"PTextureCommonBase"
+],
+"cmp": "005F5A20",
+"form": "reference"
+},
+"0069D2C0": {
+"type": "PPhysics::PPhysicsPlaneBase *",
+"result": "verified",
+"lea": "0069D306",
+"descriptor": "02E487D0",
+"name": [
+"PPhysicsPlaneBase"
+],
+"cmp": "0069D310",
+"form": "pointer"
+},
+"005F5AE0": {
+"type": "PRendering::PTextureCubeMap &",
+"result": "verified",
+"lea": "005F5B19",
+"descriptor": "02CBBD00",
+"name": [
+"PTextureCubeMap"
+],
+"cmp": "005F5B20",
+"form": "reference"
+},
+"0069D3F0": {
+"type": "PPhysics::PPhysicsPlaneBullet *",
+"result": "verified",
+"lea": "0069D436",
+"descriptor": "02E49AD0",
+"name": [
+"PPhysicsPlaneBullet"
+],
+"cmp": "0069D440",
+"form": "pointer"
+},
+"005F5BE0": {
+"type": "PRendering::PTextureCubeMapBase &",
+"result": "verified",
+"lea": "005F5C19",
+"descriptor": "02CBBC00",
+"name": [
+"PTextureCubeMapBase"
+],
+"cmp": "005F5C20",
+"form": "reference"
+},
+"0069D520": {
+"type": "PPhysics::PPhysicsRigidBody *",
+"result": "verified",
+"lea": "0069D562",
+"descriptor": "02E48BD0",
+"name": [
+"PPhysicsRigidBody"
+],
+"cmp": "0069D570",
+"form": "pointer"
+},
+"005F5CE0": {
+"type": "PArray<PRendering::PEffectVariant *,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"0069D650": {
+"type": "PPhysics::PPhysicsRigidBodyBase *",
+"result": "verified",
+"lea": "0069D692",
+"descriptor": "02E489D0",
+"name": [
+"PPhysicsRigidBodyBase"
+],
+"cmp": "0069D6A0",
+"form": "pointer"
+},
+"005F5E20": {
+"type": "PArray<PDynamicGeometry::PModifierNetworkInstance *,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"0069D780": {
+"type": "PPhysics::PPhysicsRigidBodyBullet *",
+"result": "verified",
+"lea": "0069D7C2",
+"descriptor": "02E49CD0",
+"name": [
+"PPhysicsRigidBodyBullet"
+],
+"cmp": "0069D7D0",
+"form": "pointer"
+},
+"005F5F60": {
+"type": "PArray<PRendering::PSceneRenderPass *,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"0069D8B0": {
+"type": "PPhysics::PPhysicsShape *",
+"result": "verified",
+"lea": "0069D8F6",
+"descriptor": "02E48DD0",
+"name": [
+"PPhysicsShape"
+],
+"cmp": "0069D900",
+"form": "pointer"
+},
+"005F60A0": {
+"type": "PArray<PRendering::PContextSwitch const *,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"0069D9E0": {
+"type": "PPhysics::PPhysicsShapeBase *",
+"result": "verified",
+"lea": "0069DA26",
+"descriptor": "02E48CD0",
+"name": [
+"PPhysicsShapeBase"
+],
+"cmp": "0069DA30",
+"form": "pointer"
+},
+"005F61E0": {
+"type": "PArray<PRendering::PLightType const *,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"0069DB10": {
+"type": "PPhysics::PPhysicsShapeBullet *",
+"result": "verified",
+"lea": "0069DB56",
+"descriptor": "02E495D0",
+"name": [
+"PPhysicsShapeBullet"
+],
+"cmp": "0069DB60",
+"form": "pointer"
+},
+"005F6320": {
+"type": "PArray<PRendering::PShadowCasterType const *,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"0069DC40": {
+"type": "PPhysics::PPhysicsSphere *",
+"result": "verified",
+"lea": "0069DC86",
+"descriptor": "02E48FD0",
+"name": [
+"PPhysicsSphere"
+],
+"cmp": "0069DC90",
+"form": "pointer"
+},
+"005F6460": {
+"type": "PArray<PRendering::PContextVariantFoldingTable,4> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"0069DD70": {
+"type": "PPhysics::PPhysicsSphereBase *",
+"result": "verified",
+"lea": "0069DDB6",
+"descriptor": "02E48ED0",
+"name": [
+"PPhysicsSphereBase"
+],
+"cmp": "0069DDC0",
+"form": "pointer"
+},
+"005F65A0": {
+"type": "PArray<PRendering::PMaterialSwitch,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"0069DEA0": {
+"type": "PPhysics::PPhysicsSphereBullet *",
+"result": "verified",
+"lea": "0069DEE6",
+"descriptor": "02E49BD0",
+"name": [
+"PPhysicsSphereBullet"
+],
+"cmp": "0069DEF0",
+"form": "pointer"
+},
+"005F66E0": {
+"type": "PArray<PMatrix4,4> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"0069DFD0": {
+"type": "PPhysics::PPhysicsTaperedCapsule *",
+"result": "verified",
+"lea": "0069E016",
+"descriptor": "02E490D0",
+"name": [
+"PPhysicsTaperedCapsule"
+],
+"cmp": "0069E020",
+"form": "pointer"
+},
+"005F6820": {
+"type": "PArray<PRendering::PMeshInstanceSegmentContext,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"0069E100": {
+"type": "PPhysics::PPhysicsTaperedCylinder *",
+"result": "verified",
+"lea": "0069E146",
+"descriptor": "02E491D0",
+"name": [
+"PPhysicsTaperedCylinder"
+],
+"cmp": "0069E150",
+"form": "pointer"
+},
+"005F6960": {
+"type": "PArray<PRendering::PNodeContext,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"0069E230": {
+"type": "PPhysics::PPhysicsWorld *",
+"result": "verified",
+"lea": "0069E272",
+"descriptor": "02E494D0",
+"name": [
+"PPhysicsWorld"
+],
+"cmp": "0069E280",
+"form": "pointer"
+},
+"005F6AA0": {
+"type": "PArray<PRendering::PSceneRenderPass,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"0069E360": {
+"type": "PPhysics::PPhysicsWorldBase *",
+"result": "verified",
+"lea": "0069E3A2",
+"descriptor": "02E492D0",
+"name": [
+"PPhysicsWorldBase"
+],
+"cmp": "0069E3B0",
+"form": "pointer"
+},
+"005F6BE0": {
+"type": "PArray<PRendering::PShader,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"0069E490": {
+"type": "PPhysics::PPhysicsWorldBullet *",
+"result": "verified",
+"lea": "0069E4D2",
+"descriptor": "02E49DD0",
+"name": [
+"PPhysicsWorldBullet"
+],
+"cmp": "0069E4E0",
+"form": "pointer"
+},
+"005F6D20": {
+"type": "PArray<PRendering::PShaderParameterCaptureBufferLocation,2> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"0069E5C0": {
+"type": "PPhysics::PRaycastResult *",
+"result": "verified",
+"lea": "0069E602",
+"descriptor": "02E493D0",
+"name": [
+"PRaycastResult"
+],
+"cmp": "0069E610",
+"form": "pointer"
+},
+"005F6E60": {
+"type": "PArray<PRendering::PShaderParameterCaptureBufferLocationType,2> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"006A74B0": {
+"type": "PString &",
+"result": "verified",
+"lea": "006A74E9",
+"descriptor": "02E4D630",
+"name": [
+"PString"
+],
+"cmp": "006A74F0",
+"form": "reference"
+},
+"005F6FA0": {
+"type": "PArray<PRendering::PShaderParameterCaptureBufferLocationTypeConstantBuffer,4> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"006A75B0": {
+"type": "PString *",
+"result": "verified",
+"lea": "006A75F2",
+"descriptor": "02E4D630",
+"name": [
+"PString"
+],
+"cmp": "006A7600",
+"form": "pointer"
+},
+"005F70E0": {
+"type": "PArray<PRendering::PShaderParameterDefinition,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"006A8810": {
+"type": "PSharray<PGameplay::PTriggerReceiverComponent *> &",
+"result": "getter-form",
+"call": "006A885E",
+"getter": "006A84C0",
+"getter_name": [
+"PTriggerReceiverComponent"
+]
+},
+"005F7220": {
+"type": "PArray<PRendering::PShaderPass,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"006A8920": {
+"type": "PGameplay::PTrigger &",
+"result": "verified",
+"lea": "006A8959",
+"descriptor": "02E4D940",
+"name": [
+"PTrigger"
+],
+"cmp": "006A8960",
+"form": "reference"
+},
+"005F7360": {
+"type": "PArray<PRendering::PShaderPassInfo,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"006A8A20": {
+"type": "PSharray<PGameplay::PTriggerReceiverComponent *> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"005F74A0": {
+"type": "PArray<PRendering::PShaderStreamDefinition,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"006A8B60": {
+"type": "PGameplay::PTrigger *",
+"result": "verified",
+"lea": "006A8BA2",
+"descriptor": "02E4D940",
+"name": [
+"PTrigger"
+],
+"cmp": "006A8BB0",
+"form": "pointer"
+},
+"005F75E0": {
+"type": "PArray<PString,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"006A99E0": {
+"type": "PGameplay::PQuarryComponent &",
+"result": "verified",
+"lea": "006A9A19",
+"descriptor": "02E4E1E0",
+"name": [
+"PQuarryComponent"
+],
+"cmp": "006A9A20",
+"form": "reference"
+},
+"005F7720": {
+"type": "PSharray<unsigned int> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"006A9AE0": {
+"type": "PGameplay::PQuarryComponent *",
+"result": "verified",
+"lea": "006A9B22",
+"descriptor": "02E4E1E0",
+"name": [
+"PQuarryComponent"
+],
+"cmp": "006A9B30",
+"form": "pointer"
+},
+"005F7860": {
+"type": "PSharray<PRendering::PMeshInstanceSegmentStreamBinding const *> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"006AA050": {
+"type": "PTypedObject *",
+"result": "verified",
+"lea": "006AA092",
+"descriptor": "02E4E430",
+"name": [
+"PTypedObject"
+],
+"cmp": "006AA0A0",
+"form": "pointer"
+},
+"005F79A0": {
+"type": "PRendering::PConstantBuffer *",
+"result": "verified",
+"lea": "005F79E2",
+"descriptor": "02CB6480",
+"name": [
+"PConstantBuffer"
+],
+"cmp": "005F79F0",
+"form": "pointer"
+},
+"006AAE00": {
+"type": "PComponent &",
+"result": "verified",
+"lea": "006AAE39",
+"descriptor": "02E4E720",
+"name": [
+"PComponent"
+],
+"cmp": "006AAE40",
+"form": "reference"
+},
+"005F7AD0": {
+"type": "PRendering::PConstantBufferBase *",
+"result": "verified",
+"lea": "005F7B12",
+"descriptor": "02CB6380",
+"name": [
+"PConstantBufferBase"
+],
+"cmp": "005F7B20",
+"form": "pointer"
+},
+"006AAF00": {
+"type": "PComponent *",
+"result": "verified",
+"lea": "006AAF42",
+"descriptor": "02E4E720",
+"name": [
+"PComponent"
+],
+"cmp": "006AAF50",
+"form": "pointer"
+},
+"005F7C00": {
+"type": "PRendering::PContextVariantFoldingTable *",
+"result": "verified",
+"lea": "005F7C42",
+"descriptor": "02CB7BA0",
+"name": [
+"PContextVariantFoldingTable"
+],
+"cmp": "005F7C50",
+"form": "pointer"
+},
+"006AC0D0": {
+"type": "PEntity &",
+"result": "verified",
+"lea": "006AC109",
+"descriptor": "02E4EAF0",
+"name": [
+"PEntity"
+],
+"cmp": "006AC110",
+"form": "reference"
+},
+"005F7D30": {
+"type": "PRendering::PDynamicMeshInstance *",
+"result": "verified",
+"lea": "005F7D76",
+"descriptor": "02CB6580",
+"name": [
+"PDynamicMeshInstance"
+],
+"cmp": "005F7D80",
+"form": "pointer"
+},
+"006AC1D0": {
+"type": "PEntity *",
+"result": "verified",
+"lea": "006AC212",
+"descriptor": "02E4EAF0",
+"name": [
+"PEntity"
+],
+"cmp": "006AC220",
+"form": "pointer"
+},
+"005F7E60": {
+"type": "PRendering::PEffect *",
+"result": "verified",
+"lea": "005F7EA2",
+"descriptor": "02CB6680",
+"name": [
+"PEffect"
+],
+"cmp": "005F7EB0",
+"form": "pointer"
+},
+"006AD250": {
+"type": "PCameraOrthographic &",
+"result": "verified",
+"lea": "006AD29E",
+"descriptor": "02E4F290",
+"name": [
+"PCameraOrthographic"
+],
+"cmp": "006AD2A5",
+"form": "reference"
+},
+"005F7F90": {
+"type": "PRendering::PEffectVariant *",
+"result": "verified",
+"lea": "005F7FD2",
+"descriptor": "02CB6780",
+"name": [
+"PEffectVariant"
+],
+"cmp": "005F7FE0",
+"form": "pointer"
+},
+"006AD370": {
+"type": "PCameraOrthographic *",
+"result": "verified",
+"lea": "006AD3B6",
+"descriptor": "02E4F290",
+"name": [
+"PCameraOrthographic"
+],
+"cmp": "006AD3C0",
+"form": "pointer"
+},
+"005F80C0": {
+"type": "PRendering::PForwardShadowRenderer *",
+"result": "verified",
+"lea": "005F8102",
+"descriptor": "02CBB400",
+"name": [
+"PForwardShadowRenderer"
+],
+"cmp": "005F8110",
+"form": "pointer"
+},
+"006AD9D0": {
+"type": "PCameraPerspective &",
+"result": "verified",
+"lea": "006ADA1E",
+"descriptor": "02E4F710",
+"name": [
+"PCameraPerspective"
+],
+"cmp": "006ADA25",
+"form": "reference"
+},
+"005F81F0": {
+"type": "PRendering::PIndirectArgsBuffer *",
+"result": "verified",
+"lea": "005F8232",
+"descriptor": "02CB6980",
+"name": [
+"PIndirectArgsBuffer"
+],
+"cmp": "005F8240",
+"form": "pointer"
+},
+"006ADAF0": {
+"type": "PCameraPerspective *",
+"result": "verified",
+"lea": "006ADB36",
+"descriptor": "02E4F710",
+"name": [
+"PCameraPerspective"
+],
+"cmp": "006ADB40",
+"form": "pointer"
+},
+"005F8320": {
+"type": "PRendering::PIndirectArgsBufferBase *",
+"result": "verified",
+"lea": "005F8362",
+"descriptor": "02CB6880",
+"name": [
+"PIndirectArgsBufferBase"
+],
+"cmp": "005F8370",
+"form": "pointer"
+},
+"006AEAB0": {
+"type": "PArray<PTypedObject,8> &",
+"result": "getter-form",
+"call": "006AEAFE",
+"getter": "006AE780",
+"getter_name": [
+"PTypedObject"
+]
+},
+"005F8450": {
+"type": "PRendering::PMaterial *",
+"result": "verified",
+"lea": "005F8492",
+"descriptor": "02CB6B80",
+"name": [
+"PMaterial"
+],
+"cmp": "005F84A0",
+"form": "pointer"
+},
+"006AEBC0": {
+"type": "PInstancesComponent &",
+"result": "verified",
+"lea": "006AEBF9",
+"descriptor": "02E4F900",
+"name": [
+"PInstancesComponent"
+],
+"cmp": "006AEC00",
+"form": "reference"
+},
+"005F8580": {
+"type": "PRendering::PMaterialSwitch *",
+"result": "verified",
+"lea": "005F85C2",
+"descriptor": "02CB6A80",
+"name": [
+"PMaterialSwitch"
+],
+"cmp": "005F85D0",
+"form": "pointer"
+},
+"006AECC0": {
+"type": "PArray<PTypedObject,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"005F86B0": {
+"type": "PRendering::PMeshInstance *",
+"result": "verified",
+"lea": "005F86F2",
+"descriptor": "02CB6E80",
+"name": [
+"PMeshInstance"
+],
+"cmp": "005F8700",
+"form": "pointer"
+},
+"006AEE00": {
+"type": "PInstancesComponent *",
+"result": "verified",
+"lea": "006AEE42",
+"descriptor": "02E4F900",
+"name": [
+"PInstancesComponent"
+],
+"cmp": "006AEE50",
+"form": "pointer"
+},
+"005F87E0": {
+"type": "PRendering::PMeshInstanceAttachPoint *",
+"result": "verified",
+"lea": "005F8822",
+"descriptor": "02CB6F80",
+"name": [
+"PMeshInstanceAttachPoint"
+],
+"cmp": "005F8830",
+"form": "pointer"
+},
+"006AEF30": {
+"type": "PClassDescriptor const *",
+"result": "verified",
+"lea": "006AEF76",
+"descriptor": "02CF8470",
+"name": [
+"PClassDescriptor"
+],
+"cmp": "006AEF80",
+"form": "pointer"
+},
+"005F8910": {
+"type": "PRendering::PMeshInstanceBounds *",
+"result": "verified",
+"lea": "005F8952",
+"descriptor": "02CB7080",
+"name": [
+"PMeshInstanceBounds"
+],
+"cmp": "005F8960",
+"form": "pointer"
+},
+"006AFF70": {
+"type": "PNameComponent *",
+"result": "verified",
+"lea": "006AFFB2",
+"descriptor": "02E4FF60",
+"name": [
+"PNameComponent"
+],
+"cmp": "006AFFC0",
+"form": "pointer"
+},
+"005F8A40": {
+"type": "PRendering::PMeshInstanceSegmentContext *",
+"result": "verified",
+"lea": "005F8A82",
+"descriptor": "02CB6D80",
+"name": [
+"PMeshInstanceSegmentContext"
+],
+"cmp": "005F8A90",
+"form": "pointer"
+},
+"006B0630": {
+"type": "PRandom::PRandomGenerator *",
+"result": "verified",
+"lea": "006B0672",
+"descriptor": "02E50160",
+"name": [
+"PRandomGenerator"
+],
+"cmp": "006B0680",
+"form": "pointer"
+},
+"005F8B70": {
+"type": "PRendering::PMeshInstanceSegmentStreamBinding *",
+"result": "verified",
+"lea": "005F8BB2",
+"descriptor": "02CB6C80",
+"name": [
+"PMeshInstanceSegmentStreamBinding"
+],
+"cmp": "005F8BC0",
+"form": "pointer"
+},
+"006B3780": {
+"type": "PMatrix4x3 *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"005F8CA0": {
+"type": "PRendering::PModifierNetworkDynamicMeshInstance *",
+"result": "verified",
+"lea": "005F8CE6",
+"descriptor": "02CB7180",
+"name": [
+"PModifierNetworkDynamicMeshInstance"
+],
+"cmp": "005F8CF0",
+"form": "pointer"
+},
+"006B5050": {
+"type": "PScene::PNode &",
+"result": "verified",
+"lea": "006B509E",
+"descriptor": "02E518D0",
+"name": [
+"PNode"
+],
+"cmp": "006B50A5",
+"form": "reference"
+},
+"005F8DD0": {
+"type": "PRendering::PNodeContext *",
+"result": "verified",
+"lea": "005F8E12",
+"descriptor": "02CB7280",
+"name": [
+"PNodeContext"
+],
+"cmp": "005F8E20",
+"form": "pointer"
+},
+"006B5170": {
+"type": "PScene::PNode *",
+"result": "verified",
+"lea": "006B51B6",
+"descriptor": "02E518D0",
+"name": [
+"PNode"
+],
+"cmp": "006B51C0",
+"form": "pointer"
+},
+"005F8F00": {
+"type": "PRendering::PParameterBuffer *",
+"result": "verified",
+"lea": "005F8F42",
+"descriptor": "02CB7480",
+"name": [
+"PParameterBuffer"
+],
+"cmp": "005F8F50",
+"form": "pointer"
+},
+"006B8AE0": {
+"type": "PRendering::PMeshSegmentContext &",
+"result": "verified",
+"lea": "006B8B19",
+"descriptor": "02E522F0",
+"name": [
+"PMeshSegmentContext"
+],
+"cmp": "006B8B20",
+"form": "reference"
+},
+"005F9030": {
+"type": "PRendering::PParameterBufferBase *",
+"result": "verified",
+"lea": "005F9072",
+"descriptor": "02CB7380",
+"name": [
+"PParameterBufferBase"
+],
+"cmp": "005F9080",
+"form": "pointer"
+},
+"006B8BE0": {
+"type": "PRendering::PMeshSegmentContext *",
+"result": "verified",
+"lea": "006B8C22",
+"descriptor": "02E522F0",
+"name": [
+"PMeshSegmentContext"
+],
+"cmp": "006B8C30",
+"form": "pointer"
+},
+"005F9160": {
+"type": "PRendering::PRenderTarget *",
+"result": "verified",
+"lea": "005F91A2",
+"descriptor": "02CB76A0",
+"name": [
+"PRenderTarget"
+],
+"cmp": "005F91B0",
+"form": "pointer"
+},
+"006BD5E0": {
+"type": "PArray<unsigned char const *,8> &",
+"result": "getter-form",
+"call": "006BD62E",
+"getter": "006BCC40",
+"getter_name": null
+},
+"005F9290": {
+"type": "PRendering::PRenderTargetBase *",
+"result": "verified",
+"lea": "005F92D2",
+"descriptor": "02CB75A0",
+"name": [
+"PRenderTargetBase"
+],
+"cmp": "005F92E0",
+"form": "pointer"
+},
+"006BD6F0": {
+"type": "PArray<PDynamicGeometry::PModifierNetworkDynamicMeshSegment,8> &",
+"result": "getter-form",
+"call": "006BD73E",
+"getter": "006BCF80",
+"getter_name": [
+"PModifierNetworkDynamicMeshSegment"
+]
+},
+"005F93C0": {
+"type": "PRendering::PSamplerState *",
+"result": "verified",
+"lea": "005F9402",
+"descriptor": "02CB78A0",
+"name": [
+"PSamplerState"
+],
+"cmp": "005F9410",
+"form": "pointer"
+},
+"006BD800": {
+"type": "PArray<PDynamicGeometry::PRenderStream,8> &",
+"result": "getter-form",
+"call": "006BD84E",
+"getter": "006BD2B0",
+"getter_name": [
+"PRenderStream"
+]
+},
+"005F94F0": {
+"type": "PRendering::PSamplerStateBase *",
+"result": "verified",
+"lea": "005F9532",
+"descriptor": "02CB77A0",
+"name": [
+"PSamplerStateBase"
+],
+"cmp": "005F9540",
+"form": "pointer"
+},
+"006BD910": {
+"type": "PDynamicGeometry::PModifierNetworkDynamicMesh &",
+"result": "verified",
+"lea": "006BD95E",
+"descriptor": "02E58060",
+"name": [
+"PModifierNetworkDynamicMesh"
+],
+"cmp": "006BD965",
+"form": "reference"
+},
+"005F9620": {
+"type": "PRendering::PSceneRenderPass *",
+"result": "verified",
+"lea": "005F9662",
+"descriptor": "02CB79A0",
+"name": [
+"PSceneRenderPass"
+],
+"cmp": "005F9670",
+"form": "pointer"
+},
+"006BDA30": {
+"type": "PDynamicGeometry::PModifierNetworkDynamicMeshSegment &",
+"result": "verified",
+"lea": "006BDA69",
+"descriptor": "02E57F60",
+"name": [
+"PModifierNetworkDynamicMeshSegment"
+],
+"cmp": "006BDA70",
+"form": "reference"
+},
+"005F9750": {
+"type": "PRendering::PSceneWideParameterBuffer *",
+"result": "verified",
+"lea": "005F9792",
+"descriptor": "02CB7CA0",
+"name": [
+"PSceneWideParameterBuffer"
+],
+"cmp": "005F97A0",
+"form": "pointer"
+},
+"006BDB30": {
+"type": "PArray<unsigned char const *,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"005F9880": {
+"type": "PRendering::PShader *",
+"result": "verified",
+"lea": "005F98C2",
+"descriptor": "02CB9000",
+"name": [
+"PShader"
+],
+"cmp": "005F98D0",
+"form": "pointer"
+},
+"006BDC70": {
+"type": "PArray<PDynamicGeometry::PModifierNetworkDynamicMeshSegment,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"005F99B0": {
+"type": "PRendering::PShaderComputeProgram *",
+"result": "verified",
+"lea": "005F99F2",
+"descriptor": "02CBB200",
+"name": [
+"PShaderComputeProgram"
+],
+"cmp": "005F9A00",
+"form": "pointer"
+},
+"006BDDB0": {
+"type": "PArray<PDynamicGeometry::PRenderStream,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"005F9AE0": {
+"type": "PRendering::PShaderFragmentProgram *",
+"result": "verified",
+"lea": "005F9B22",
+"descriptor": "02CBB000",
+"name": [
+"PShaderFragmentProgram"
+],
+"cmp": "005F9B30",
+"form": "pointer"
+},
+"006BDEF0": {
+"type": "PDynamicGeometry::PModifierNetworkDynamicMesh *",
+"result": "verified",
+"lea": "006BDF36",
+"descriptor": "02E58060",
+"name": [
+"PModifierNetworkDynamicMesh"
+],
+"cmp": "006BDF40",
+"form": "pointer"
+},
+"005F9C10": {
+"type": "PRendering::PShaderGeometryProgram *",
+"result": "verified",
+"lea": "005F9C52",
+"descriptor": "02CBB100",
+"name": [
+"PShaderGeometryProgram"
+],
+"cmp": "005F9C60",
+"form": "pointer"
+},
+"006BE020": {
+"type": "PDynamicGeometry::PModifierNetworkDynamicMeshSegment *",
+"result": "verified",
+"lea": "006BE062",
+"descriptor": "02E57F60",
+"name": [
+"PModifierNetworkDynamicMeshSegment"
+],
+"cmp": "006BE070",
+"form": "pointer"
+},
+"005F9D40": {
+"type": "PRendering::PShaderParameterCaptureBufferByteAddressBuffer *",
+"result": "verified",
+"lea": "005F9D82",
+"descriptor": "02CBA500",
+"name": [
+"PShaderParameterCaptureBufferByteAddressBuffer"
+],
+"cmp": "005F9D90",
+"form": "pointer"
+},
+"006BFA10": {
+"type": "PRendering::PLight &",
+"result": "verified",
+"lea": "006BFA49",
+"descriptor": "02E58DB0",
+"name": [
+"PLight"
+],
+"cmp": "006BFA50",
+"form": "reference"
+},
+"005F9E70": {
+"type": "PRendering::PShaderParameterCaptureBufferDataBlock *",
+"result": "verified",
+"lea": "005F9EB2",
+"descriptor": "02CBA700",
+"name": [
+"PShaderParameterCaptureBufferDataBlock"
+],
+"cmp": "005F9EC0",
+"form": "pointer"
+},
+"006BFB10": {
+"type": "PRendering::PLight *",
+"result": "verified",
+"lea": "006BFB52",
+"descriptor": "02E58DB0",
+"name": [
+"PLight"
+],
+"cmp": "006BFB60",
+"form": "pointer"
+},
+"005F9FA0": {
+"type": "PRendering::PShaderParameterCaptureBufferIndexDataBlock *",
+"result": "verified",
+"lea": "005F9FE2",
+"descriptor": "02CBA800",
+"name": [
+"PShaderParameterCaptureBufferIndexDataBlock"
+],
+"cmp": "005F9FF0",
+"form": "pointer"
+},
+"006C1C50": {
+"type": "PArray<PRendering::PShadowCaster::PShadowSplit,8> &",
+"result": "getter-form",
+"call": "006C1C9E",
+"getter": "006C1920",
+"getter_name": [
+"PShadowSplit"
+]
+},
+"005FA0D0": {
+"type": "PRendering::PShaderParameterCaptureBufferLocation *",
+"result": "verified",
+"lea": "005FA112",
+"descriptor": "02CB9100",
+"name": [
+"PShaderParameterCaptureBufferLocation"
+],
+"cmp": "005FA120",
+"form": "pointer"
+},
+"006C1D60": {
+"type": "PRendering::PShadowCaster &",
+"result": "verified",
+"lea": "006C1D99",
+"descriptor": "02E59DC0",
+"name": [
+"PShadowCaster"
+],
+"cmp": "006C1DA0",
+"form": "reference"
+},
+"005FA200": {
+"type": "PRendering::PShaderParameterCaptureBufferLocationSize *",
+"result": "verified",
+"lea": "005FA242",
+"descriptor": "02CB9200",
+"name": [
+"PShaderParameterCaptureBufferLocationSize"
+],
+"cmp": "005FA250",
+"form": "pointer"
+},
+"006C1E60": {
+"type": "PRendering::PShadowCaster::PShadowSplit &",
+"result": "verified",
+"lea": "006C1E99",
+"descriptor": "02E59CC0",
+"name": [
+"PShadowSplit"
+],
+"cmp": "006C1EA0",
+"form": "reference"
+},
+"005FA330": {
+"type": "PRendering::PShaderParameterCaptureBufferLocationType *",
+"result": "verified",
+"lea": "005FA372",
+"descriptor": "02CB9300",
+"name": [
+"PShaderParameterCaptureBufferLocationType"
+],
+"cmp": "005FA380",
+"form": "pointer"
+},
+"006C1F60": {
+"type": "PArray<PRendering::PShadowCaster::PShadowSplit,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"005FA460": {
+"type": "PRendering::PShaderParameterCaptureBufferLocationTypeConstantBuffer *",
+"result": "verified",
+"lea": "005FA4A2",
+"descriptor": "02CB9400",
+"name": [
+"PShaderParameterCaptureBufferLocationTypeConstantBuffer"
+],
+"cmp": "005FA4B0",
+"form": "pointer"
+},
+"006C20A0": {
+"type": "PRendering::PShadowCaster *",
+"result": "verified",
+"lea": "006C20E2",
+"descriptor": "02E59DC0",
+"name": [
+"PShadowCaster"
+],
+"cmp": "006C20F0",
+"form": "pointer"
+},
+"005FA590": {
+"type": "PRendering::PShaderParameterCaptureBufferRWByteAddressBuffer *",
+"result": "verified",
+"lea": "005FA5D2",
+"descriptor": "02CBA600",
+"name": [
+"PShaderParameterCaptureBufferRWByteAddressBuffer"
+],
+"cmp": "005FA5E0",
+"form": "pointer"
+},
+"006C21D0": {
+"type": "PRendering::PShadowCaster::PShadowSplit *",
+"result": "verified",
+"lea": "006C2212",
+"descriptor": "02E59CC0",
+"name": [
+"PShadowSplit"
+],
+"cmp": "006C2220",
+"form": "pointer"
+},
+"005FA6C0": {
+"type": "PRendering::PShaderParameterCaptureBufferRWStructuredBuffer *",
+"result": "verified",
+"lea": "005FA702",
+"descriptor": "02CBA400",
+"name": [
+"PShaderParameterCaptureBufferRWStructuredBuffer"
+],
+"cmp": "005FA710",
+"form": "pointer"
+},
+"006C3B40": {
+"type": "PArray<PBase const *,8> &",
+"result": "getter-form",
+"call": "006C3B8E",
+"getter": "006C3800",
+"getter_name": null
+},
+"005FA7F0": {
+"type": "PRendering::PShaderParameterCaptureBufferRWTexture2D *",
+"result": "verified",
+"lea": "005FA832",
+"descriptor": "02CBA900",
+"name": [
+"PShaderParameterCaptureBufferRWTexture2D"
+],
+"cmp": "005FA840",
+"form": "pointer"
+},
+"006C3C50": {
+"type": "PDynamicGeometry::PModifierNetworkInstance &",
+"result": "verified",
+"lea": "006C3C89",
+"descriptor": "02E5A6C0",
+"name": [
+"PModifierNetworkInstance"
+],
+"cmp": "006C3C90",
+"form": "reference"
+},
+"005FA920": {
+"type": "PRendering::PShaderParameterCaptureBufferRWTexture3D *",
+"result": "verified",
+"lea": "005FA962",
+"descriptor": "02CBAA00",
+"name": [
+"PShaderParameterCaptureBufferRWTexture3D"
+],
+"cmp": "005FA970",
+"form": "pointer"
+},
+"006C3D50": {
+"type": "PDynamicGeometry::PModifierNetworkInstanceInput &",
+"result": "verified",
+"lea": "006C3D89",
+"descriptor": "02E5A4C0",
+"name": [
+"PModifierNetworkInstanceInput"
+],
+"cmp": "006C3D90",
+"form": "reference"
+},
+"005FAA50": {
+"type": "PRendering::PShaderParameterCaptureBufferSampler *",
+"result": "verified",
+"lea": "005FAA92",
+"descriptor": "02CBA200",
+"name": [
+"PShaderParameterCaptureBufferSampler"
+],
+"cmp": "005FAAA0",
+"form": "pointer"
+},
+"006C3E50": {
+"type": "PDynamicGeometry::PModifierNetworkInstancePacketInput &",
+"result": "verified",
+"lea": "006C3E89",
+"descriptor": "02E5A5C0",
+"name": [
+"PModifierNetworkInstancePacketInput"
+],
+"cmp": "006C3E90",
+"form": "reference"
+},
+"005FAB80": {
+"type": "PRendering::PShaderParameterCaptureBufferStream *",
+"result": "verified",
+"lea": "005FABC2",
+"descriptor": "02CB9C00",
+"name": [
+"PShaderParameterCaptureBufferStream"
+],
+"cmp": "005FABD0",
+"form": "pointer"
+},
+"006C3F50": {
+"type": "PArray<PBase const *,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"005FACB0": {
+"type": "PRendering::PShaderParameterCaptureBufferStructuredBuffer *",
+"result": "verified",
+"lea": "005FACF2",
+"descriptor": "02CBA300",
+"name": [
+"PShaderParameterCaptureBufferStructuredBuffer"
+],
+"cmp": "005FAD00",
+"form": "pointer"
+},
+"006C4090": {
+"type": "PDynamicGeometry::PModifierNetworkInstance *",
+"result": "verified",
+"lea": "006C40D2",
+"descriptor": "02E5A6C0",
+"name": [
+"PModifierNetworkInstance"
+],
+"cmp": "006C40E0",
+"form": "pointer"
+},
+"005FADE0": {
+"type": "PRendering::PShaderParameterCaptureBufferTexture2D *",
+"result": "verified",
+"lea": "005FAE22",
+"descriptor": "02CB9F00",
+"name": [
+"PShaderParameterCaptureBufferTexture2D"
+],
+"cmp": "005FAE30",
+"form": "pointer"
+},
+"006C41C0": {
+"type": "PDynamicGeometry::PModifierNetworkInstanceInput *",
+"result": "verified",
+"lea": "006C4202",
+"descriptor": "02E5A4C0",
+"name": [
+"PModifierNetworkInstanceInput"
+],
+"cmp": "006C4210",
+"form": "pointer"
+},
+"005FAF10": {
+"type": "PRendering::PShaderParameterCaptureBufferTexture3D *",
+"result": "verified",
+"lea": "005FAF52",
+"descriptor": "02CBA000",
+"name": [
+"PShaderParameterCaptureBufferTexture3D"
+],
+"cmp": "005FAF60",
+"form": "pointer"
+},
+"006C42F0": {
+"type": "PDynamicGeometry::PModifierNetworkInstancePacketInput *",
+"result": "verified",
+"lea": "006C4332",
+"descriptor": "02E5A5C0",
+"name": [
+"PModifierNetworkInstancePacketInput"
+],
+"cmp": "006C4340",
+"form": "pointer"
+},
+"005FB040": {
+"type": "PRendering::PShaderParameterCaptureBufferTextureBase *",
+"result": "verified",
+"lea": "005FB082",
+"descriptor": "02CB9D00",
+"name": [
+"PShaderParameterCaptureBufferTextureBase"
+],
+"cmp": "005FB090",
+"form": "pointer"
+},
+"006C6A40": {
+"type": "PArray<PLOD::PLODLevel,8> &",
+"result": "getter-form",
+"call": "006C6A8E",
+"getter": "006C6230",
+"getter_name": [
+"PLODLevel"
+]
+},
+"005FB170": {
+"type": "PRendering::PShaderParameterCaptureBufferTextureCubeMap *",
+"result": "verified",
+"lea": "005FB1B2",
+"descriptor": "02CBA100",
+"name": [
+"PShaderParameterCaptureBufferTextureCubeMap"
+],
+"cmp": "005FB1C0",
+"form": "pointer"
+},
+"006C6B50": {
+"type": "PSharray<PRendering::PMeshInstance *> &",
+"result": "getter-form",
+"call": "006C6B9E",
+"getter": "006C6560",
+"getter_name": [
+"PMeshInstance"
+]
+},
+"005FB2A0": {
+"type": "PRendering::PShaderParameterCaptureConstantBuffer *",
+"result": "verified",
+"lea": "005FB2E2",
+"descriptor": "02CB9E00",
+"name": [
+"PShaderParameterCaptureConstantBuffer"
+],
+"cmp": "005FB2F0",
+"form": "pointer"
+},
+"006C6C60": {
+"type": "PLOD::PLODGroup &",
+"result": "verified",
+"lea": "006C6C99",
+"descriptor": "02E5AE00",
+"name": [
+"PLODGroup"
+],
+"cmp": "006C6CA0",
+"form": "reference"
+},
+"005FB3D0": {
+"type": "PRendering::PShaderParameterDefinition *",
+"result": "verified",
+"lea": "005FB412",
+"descriptor": "02CB9500",
+"name": [
+"PShaderParameterDefinition"
+],
+"cmp": "005FB420",
+"form": "pointer"
+},
+"006C6D60": {
+"type": "PLOD::PLODLevel &",
+"result": "verified",
+"lea": "006C6D99",
+"descriptor": "02E5AD00",
+"name": [
+"PLODLevel"
+],
+"cmp": "006C6DA0",
+"form": "reference"
+},
+"005FB500": {
+"type": "PRendering::PShaderPass *",
+"result": "verified",
+"lea": "005FB542",
+"descriptor": "02CB9A00",
+"name": [
+"PShaderPass"
+],
+"cmp": "005FB550",
+"form": "pointer"
+},
+"006C6E60": {
+"type": "PArray<PLOD::PLODLevel,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"005FB630": {
+"type": "PRendering::PShaderPassBase *",
+"result": "verified",
+"lea": "005FB672",
+"descriptor": "02CB9900",
+"name": [
+"PShaderPassBase"
+],
+"cmp": "005FB680",
+"form": "pointer"
+},
+"006C6FA0": {
+"type": "PSharray<PRendering::PMeshInstance *> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"005FB760": {
+"type": "PRendering::PShaderPassInfo *",
+"result": "verified",
+"lea": "005FB7A2",
+"descriptor": "02CB7AA0",
+"name": [
+"PShaderPassInfo"
+],
+"cmp": "005FB7B0",
+"form": "pointer"
+},
+"006C70E0": {
+"type": "PLOD::PLODGroup *",
+"result": "verified",
+"lea": "006C7122",
+"descriptor": "02E5AE00",
+"name": [
+"PLODGroup"
+],
+"cmp": "006C7130",
+"form": "pointer"
+},
+"005FB890": {
+"type": "PRendering::PShaderPassParameterLocationTypes *",
+"result": "verified",
+"lea": "005FB8D2",
+"descriptor": "02CB9700",
+"name": [
+"PShaderPassParameterLocationTypes"
+],
+"cmp": "005FB8E0",
+"form": "pointer"
+},
+"006C7210": {
+"type": "PLOD::PLODLevel *",
+"result": "verified",
+"lea": "006C7252",
+"descriptor": "02E5AD00",
+"name": [
+"PLODLevel"
+],
+"cmp": "006C7260",
+"form": "pointer"
+},
+"005FB9C0": {
+"type": "PRendering::PShaderPassParameterLocationTypesBase *",
+"result": "verified",
+"lea": "005FBA02",
+"descriptor": "02CB9600",
+"name": [
+"PShaderPassParameterLocationTypesBase"
+],
+"cmp": "005FBA10",
+"form": "pointer"
+},
+"006C8520": {
+"type": "POccluderGeometry::POccluderGeometryInstance *",
+"result": "verified",
+"lea": "006C8562",
+"descriptor": "02E5BBB0",
+"name": [
+"POccluderGeometryInstance"
+],
+"cmp": "006C8570",
+"form": "pointer"
+},
+"005FBAF0": {
+"type": "PRendering::PShaderPassParameterLocationTypesConstantBuffer *",
+"result": "verified",
+"lea": "005FBB32",
+"descriptor": "02CB9800",
+"name": [
+"PShaderPassParameterLocationTypesConstantBuffer"
+],
+"cmp": "005FBB40",
+"form": "pointer"
+},
+"006CD140": {
+"type": "PGameplay::PScriptableComponent *",
+"result": "verified",
+"lea": "006CD186",
+"descriptor": "02E5C050",
+"name": [
+"PScriptableComponent"
+],
+"cmp": "006CD190",
+"form": "pointer"
+},
+"005FBC20": {
+"type": "PRendering::PShaderPassStateBase *",
+"result": "verified",
+"lea": "005FBC62",
+"descriptor": "02CB9B00",
+"name": [
+"PShaderPassStateBase"
+],
+"cmp": "005FBC70",
+"form": "pointer"
+},
+"006CDC00": {
+"type": "PGameplay::PTriggerReceiverTypeCallbackData *",
+"result": "verified",
+"lea": "006CDC42",
+"descriptor": "02E5C370",
+"name": [
+"PTriggerReceiverTypeCallbackData"
+],
+"cmp": "006CDC50",
+"form": "pointer"
+},
+"005FBD50": {
+"type": "PRendering::PShaderProgramBase *",
+"result": "verified",
+"lea": "005FBD92",
+"descriptor": "02CBAD00",
+"name": [
+"PShaderProgramBase"
+],
+"cmp": "005FBDA0",
+"form": "pointer"
+},
+"006CE340": {
+"type": "PGameplay::PTriggerReceiverComponent &",
+"result": "verified",
+"lea": "006CE379",
+"descriptor": "02E5C710",
+"name": [
+"PTriggerReceiverComponent"
+],
+"cmp": "006CE380",
+"form": "reference"
+},
+"005FBE80": {
+"type": "PRendering::PShaderProgramParamsAndStreams *",
+"result": "verified",
+"lea": "005FBEC2",
+"descriptor": "02CBAC00",
+"name": [
+"PShaderProgramParamsAndStreams"
+],
+"cmp": "005FBED0",
+"form": "pointer"
+},
+"006CE440": {
+"type": "PGameplay::PTriggerReceiverComponent *",
+"result": "verified",
+"lea": "006CE482",
+"descriptor": "02E5C710",
+"name": [
+"PTriggerReceiverComponent"
+],
+"cmp": "006CE490",
+"form": "pointer"
+},
+"005FBFB0": {
+"type": "PRendering::PShaderSource *",
+"result": "verified",
+"lea": "005FBFF2",
+"descriptor": "02CBAB00",
+"name": [
+"PShaderSource"
+],
+"cmp": "005FC000",
+"form": "pointer"
+},
+"006D3350": {
+"type": "PArray<PDynamicGeometry::PModifierAndInputs,8> &",
+"result": "getter-form",
+"call": "006D339E",
+"getter": "006D2390",
+"getter_name": [
+"PModifierAndInputs"
+]
+},
+"005FC0E0": {
+"type": "PRendering::PShaderStreamDefinition *",
+"result": "verified",
+"lea": "005FC122",
+"descriptor": "02CBAE00",
+"name": [
+"PShaderStreamDefinition"
+],
+"cmp": "005FC130",
+"form": "pointer"
+},
+"006D3460": {
+"type": "PArray<PDynamicGeometry::PModifierNetworkBuffer,8> &",
+"result": "getter-form",
+"call": "006D34AE",
+"getter": "006D26C0",
+"getter_name": [
+"PModifierNetworkBuffer"
+]
+},
+"005FC210": {
+"type": "PRendering::PShaderVertexProgram *",
+"result": "verified",
+"lea": "005FC252",
+"descriptor": "02CBAF00",
+"name": [
+"PShaderVertexProgram"
+],
+"cmp": "005FC260",
+"form": "pointer"
+},
+"006D3570": {
+"type": "PArray<PDynamicGeometry::PRenderStreamInput,4> &",
+"result": "getter-form",
+"call": "006D35BE",
+"getter": "006D29F0",
+"getter_name": [
+"PRenderStreamInput"
+]
+},
+"005FC340": {
+"type": "PRendering::PShadowRenderer *",
+"result": "verified",
+"lea": "005FC382",
+"descriptor": "02CBB300",
+"name": [
+"PShadowRenderer"
+],
+"cmp": "005FC390",
+"form": "pointer"
+},
+"006D3680": {
+"type": "PDynamicGeometry::PModifierAndInputs &",
+"result": "verified",
+"lea": "006D36B9",
+"descriptor": "02E5E030",
+"name": [
+"PModifierAndInputs"
+],
+"cmp": "006D36C0",
+"form": "reference"
+},
+"005FC470": {
+"type": "PRendering::PStructuredBuffer *",
+"result": "verified",
+"lea": "005FC4B2",
+"descriptor": "02CBB600",
+"name": [
+"PStructuredBuffer"
+],
+"cmp": "005FC4C0",
+"form": "pointer"
+},
+"006D3780": {
+"type": "PDynamicGeometry::PModifierNetwork &",
+"result": "verified",
+"lea": "006D37B9",
+"descriptor": "02E5E540",
+"name": [
+"PModifierNetwork"
+],
+"cmp": "006D37C0",
+"form": "reference"
+},
+"005FC5A0": {
+"type": "PRendering::PStructuredBufferBase *",
+"result": "verified",
+"lea": "005FC5E2",
+"descriptor": "02CBB500",
+"name": [
+"PStructuredBufferBase"
+],
+"cmp": "005FC5F0",
+"form": "pointer"
+},
+"006D3880": {
+"type": "PDynamicGeometry::PModifierNetworkBuffer &",
+"result": "verified",
+"lea": "006D38B9",
+"descriptor": "02E5DF30",
+"name": [
+"PModifierNetworkBuffer"
+],
+"cmp": "006D38C0",
+"form": "reference"
+},
+"005FC6D0": {
+"type": "PRendering::PTexture2D *",
+"result": "verified",
+"lea": "005FC712",
+"descriptor": "02CBB900",
+"name": [
+"PTexture2D"
+],
+"cmp": "005FC720",
+"form": "pointer"
+},
+"006D3980": {
+"type": "PDynamicGeometry::PModifierNetworkInfoPacket_Buffer &",
+"result": "verified",
+"lea": "006D39B9",
+"descriptor": "02E5E330",
+"name": [
+"PModifierNetworkInfoPacket_Buffer"
+],
+"cmp": "006D39C0",
+"form": "reference"
+},
+"005FC800": {
+"type": "PRendering::PTexture2DBase *",
+"result": "verified",
+"lea": "005FC842",
+"descriptor": "02CBB800",
+"name": [
+"PTexture2DBase"
+],
+"cmp": "005FC850",
+"form": "pointer"
+},
+"006D3A80": {
+"type": "PDynamicGeometry::PModifierNetworkInfoPacket_ModifierCode &",
+"result": "verified",
+"lea": "006D3AB9",
+"descriptor": "02E5E130",
+"name": [
+"PModifierNetworkInfoPacket_ModifierCode"
+],
+"cmp": "006D3AC0",
+"form": "reference"
+},
+"005FC930": {
+"type": "PRendering::PTexture3D *",
+"result": "verified",
+"lea": "005FC972",
+"descriptor": "02CBBB00",
+"name": [
+"PTexture3D"
+],
+"cmp": "005FC980",
+"form": "pointer"
+},
+"006D3B80": {
+"type": "PDynamicGeometry::PModifierNetworkInfoPacket_ModifierInstance &",
+"result": "verified",
+"lea": "006D3BB9",
+"descriptor": "02E5E230",
+"name": [
+"PModifierNetworkInfoPacket_ModifierInstance"
+],
+"cmp": "006D3BC0",
+"form": "reference"
+},
+"005FCA60": {
+"type": "PRendering::PTexture3DBase *",
+"result": "verified",
+"lea": "005FCAA2",
+"descriptor": "02CBBA00",
+"name": [
+"PTexture3DBase"
+],
+"cmp": "005FCAB0",
+"form": "pointer"
+},
+"006D3C80": {
+"type": "PDynamicGeometry::PRenderStream &",
+"result": "verified",
+"lea": "006D3CB9",
+"descriptor": "02E5DE30",
+"name": [
+"PRenderStream"
+],
+"cmp": "006D3CC0",
+"form": "reference"
+},
+"005FCB90": {
+"type": "PRendering::PTextureCommonBase *",
+"result": "verified",
+"lea": "005FCBD2",
+"descriptor": "02CBB700",
+"name": [
+"PTextureCommonBase"
+],
+"cmp": "005FCBE0",
+"form": "pointer"
+},
+"006D3D80": {
+"type": "PDynamicGeometry::PRenderStreamInput &",
+"result": "verified",
+"lea": "006D3DB9",
+"descriptor": "02E5DD30",
+"name": [
+"PRenderStreamInput"
+],
+"cmp": "006D3DC0",
+"form": "reference"
+},
+"005FCCC0": {
+"type": "PRendering::PTextureCubeMap *",
+"result": "verified",
+"lea": "005FCD02",
+"descriptor": "02CBBD00",
+"name": [
+"PTextureCubeMap"
+],
+"cmp": "005FCD10",
+"form": "pointer"
+},
+"006D3E80": {
+"type": "PArray<PDynamicGeometry::PModifierAndInputs,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"005FCDF0": {
+"type": "PRendering::PTextureCubeMapBase *",
+"result": "verified",
+"lea": "005FCE32",
+"descriptor": "02CBBC00",
+"name": [
+"PTextureCubeMapBase"
+],
+"cmp": "005FCE40",
+"form": "pointer"
+},
+"006D3FC0": {
+"type": "PArray<PDynamicGeometry::PModifierNetworkBuffer,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"006190E0": {
+"type": "PArray<unsigned char,1> &",
+"result": "getter-form",
+"call": "0061912E",
+"getter": "00618970",
+"getter_name": null
+},
+"006D4100": {
+"type": "PArray<PDynamicGeometry::PRenderStreamInput,4> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"006191F0": {
+"type": "PArray<PRendering::PStreamInputDescD3D11,8> &",
+"result": "getter-form",
+"call": "0061923E",
+"getter": "00618CA0",
+"getter_name": [
+"PStreamInputDescD3D11"
+]
+},
+"006D4240": {
+"type": "PDynamicGeometry::PModifierAndInputs *",
+"result": "verified",
+"lea": "006D4282",
+"descriptor": "02E5E030",
+"name": [
+"PModifierAndInputs"
+],
+"cmp": "006D4290",
+"form": "pointer"
+},
+"00619300": {
+"type": "PRendering::PConstantBufferD3D11 &",
+"result": "verified",
+"lea": "00619339",
+"descriptor": "02CF2440",
+"name": [
+"PConstantBufferD3D11"
+],
+"cmp": "00619340",
+"form": "reference"
+},
+"006D4370": {
+"type": "PDynamicGeometry::PModifierNetwork *",
+"result": "verified",
+"lea": "006D43B2",
+"descriptor": "02E5E540",
+"name": [
+"PModifierNetwork"
+],
+"cmp": "006D43C0",
+"form": "pointer"
+},
+"00619400": {
+"type": "PRendering::PIndirectArgsBufferD3D11 &",
+"result": "verified",
+"lea": "00619439",
+"descriptor": "02CF2340",
+"name": [
+"PIndirectArgsBufferD3D11"
+],
+"cmp": "00619440",
+"form": "reference"
+},
+"006D44A0": {
+"type": "PDynamicGeometry::PModifierNetworkBuffer *",
+"result": "verified",
+"lea": "006D44E2",
+"descriptor": "02E5DF30",
+"name": [
+"PModifierNetworkBuffer"
+],
+"cmp": "006D44F0",
+"form": "pointer"
+},
+"00619500": {
+"type": "PRendering::PSamplerStateD3D11 &",
+"result": "verified",
+"lea": "00619539",
+"descriptor": "02CF2140",
+"name": [
+"PSamplerStateD3D11"
+],
+"cmp": "00619540",
+"form": "reference"
+},
+"006D45D0": {
+"type": "PDynamicGeometry::PModifierNetworkInfoPacket *",
+"result": "verified",
+"lea": "006D4612",
+"descriptor": "02E5E430",
+"name": [
+"PModifierNetworkInfoPacket"
+],
+"cmp": "006D4620",
+"form": "pointer"
+},
+"00619600": {
+"type": "PRendering::PShaderPassD3D11 &",
+"result": "verified",
+"lea": "00619639",
+"descriptor": "02CF1440",
+"name": [
+"PShaderPassD3D11"
+],
+"cmp": "00619640",
+"form": "reference"
+},
+"006D4700": {
+"type": "PDynamicGeometry::PModifierNetworkInfoPacket_Buffer *",
+"result": "verified",
+"lea": "006D4742",
+"descriptor": "02E5E330",
+"name": [
+"PModifierNetworkInfoPacket_Buffer"
+],
+"cmp": "006D4750",
+"form": "pointer"
+},
+"00619700": {
+"type": "PRendering::PShaderPassStateD3D11 &",
+"result": "verified",
+"lea": "00619739",
+"descriptor": "02CF1540",
+"name": [
+"PShaderPassStateD3D11"
+],
+"cmp": "00619740",
+"form": "reference"
+},
+"006D4830": {
+"type": "PDynamicGeometry::PModifierNetworkInfoPacket_ModifierCode *",
+"result": "verified",
+"lea": "006D4872",
+"descriptor": "02E5E130",
+"name": [
+"PModifierNetworkInfoPacket_ModifierCode"
+],
+"cmp": "006D4880",
+"form": "pointer"
+},
+"00619800": {
+"type": "PRendering::PStreamInputDescD3D11 &",
+"result": "verified",
+"lea": "00619839",
+"descriptor": "02CF1640",
+"name": [
+"PStreamInputDescD3D11"
+],
+"cmp": "00619840",
+"form": "reference"
+},
+"006D4960": {
+"type": "PDynamicGeometry::PModifierNetworkInfoPacket_ModifierInstance *",
+"result": "verified",
+"lea": "006D49A2",
+"descriptor": "02E5E230",
+"name": [
+"PModifierNetworkInfoPacket_ModifierInstance"
+],
+"cmp": "006D49B0",
+"form": "pointer"
+},
+"00619900": {
+"type": "PRendering::PStructuredBufferD3D11 &",
+"result": "verified",
+"lea": "00619939",
+"descriptor": "02CF2240",
+"name": [
+"PStructuredBufferD3D11"
+],
+"cmp": "00619940",
+"form": "reference"
+},
+"006D4A90": {
+"type": "PDynamicGeometry::PRenderStream *",
+"result": "verified",
+"lea": "006D4AD2",
+"descriptor": "02E5DE30",
+"name": [
+"PRenderStream"
+],
+"cmp": "006D4AE0",
+"form": "pointer"
+},
+"00619A00": {
+"type": "PRendering::PTexture2DD3D11 &",
+"result": "verified",
+"lea": "00619A39",
+"descriptor": "02CF1D40",
+"name": [
+"PTexture2DD3D11"
+],
+"cmp": "00619A40",
+"form": "reference"
+},
+"006D4BC0": {
+"type": "PDynamicGeometry::PRenderStreamInput *",
+"result": "verified",
+"lea": "006D4C02",
+"descriptor": "02E5DD30",
+"name": [
+"PRenderStreamInput"
+],
+"cmp": "006D4C10",
+"form": "pointer"
+},
+"00619B00": {
+"type": "PRendering::PTexture3DD3D11 &",
+"result": "verified",
+"lea": "00619B39",
+"descriptor": "02CF1E40",
+"name": [
+"PTexture3DD3D11"
+],
+"cmp": "00619B40",
+"form": "reference"
+},
+"006D8FD0": {
+"type": "PDynamicGeometry::PMorphModifierWeightsUserDataObject &",
+"result": "verified",
+"lea": "006D9009",
+"descriptor": "02E9FDF0",
+"name": [
+"PMorphModifierWeightsUserDataObject"
+],
+"cmp": "006D9010",
+"form": "reference"
+},
+"00619C00": {
+"type": "PRendering::PTextureCubeMapD3D11 &",
+"result": "verified",
+"lea": "00619C39",
+"descriptor": "02CF1F40",
+"name": [
+"PTextureCubeMapD3D11"
+],
+"cmp": "00619C40",
+"form": "reference"
+},
+"006D90D0": {
+"type": "PDynamicGeometry::PMorphModifierWeightsUserDataObject *",
+"result": "verified",
+"lea": "006D9112",
+"descriptor": "02E9FDF0",
+"name": [
+"PMorphModifierWeightsUserDataObject"
+],
+"cmp": "006D9120",
+"form": "pointer"
+},
+"00619D00": {
+"type": "CD3D11_BLEND_DESC const &",
+"result": "getter-form",
+"call": "00619D4A",
+"getter": "00613800",
+"getter_name": null
+},
+"006DA250": {
+"type": "POccluderGeometry::POccluderGeometryObject *",
+"result": "verified",
+"lea": "006DA292",
+"descriptor": "02EA0850",
+"name": [
+"POccluderGeometryObject"
+],
+"cmp": "006DA2A0",
+"form": "pointer"
+},
+"00619E10": {
+"type": "CD3D11_DEPTH_STENCIL_DESC const &",
+"result": "getter-form",
+"call": "00619E5A",
+"getter": "00613A30",
+"getter_name": null
+},
+"00796640": {
+"type": "PCameraProjection &",
+"result": "verified",
+"lea": "0079668E",
+"descriptor": "02D3F310",
+"name": [
+"PCameraProjection"
+],
+"cmp": "00796695",
+"form": "reference"
+},
+"00619F20": {
+"type": "CD3D11_RASTERIZER_DESC const &",
+"result": "getter-form",
+"call": "00619F6A",
+"getter": "00613E80",
+"getter_name": null
+},
+"00796760": {
+"type": "PFramework::PDebugUtils &",
+"result": "verified",
+"lea": "00796799",
+"descriptor": "02EA9400",
+"name": [
+"PDebugUtils"
+],
+"cmp": "007967A0",
+"form": "reference"
+},
+"0061A030": {
+"type": "D3D11_DEPTH_STENCILOP_DESC const &",
+"result": "getter-form",
+"call": "0061A07A",
+"getter": "006143B0",
+"getter_name": null
+},
+"00796860": {
+"type": "PFramework::PInputMapper &",
+"result": "verified",
+"lea": "00796899",
+"descriptor": "02EA5560",
+"name": [
+"PInputMapper"
+],
+"cmp": "007968A0",
+"form": "reference"
+},
+"0061A140": {
+"type": "D3D11_RENDER_TARGET_BLEND_DESC const &",
+"result": "getter-form",
+"call": "0061A18A",
+"getter": "00614640",
+"getter_name": null
+},
+"00796960": {
+"type": "PFramework::PApplication *",
+"result": "verified",
+"lea": "007969A6",
+"descriptor": "02EA5660",
+"name": [
+"PApplication"
+],
+"cmp": "007969B0",
+"form": "pointer"
+},
+"0061A250": {
+"type": "CD3D11_BLEND_DESC *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"00796A90": {
+"type": "PFramework::PApplicationViewport *",
+"result": "verified",
+"lea": "00796AD6",
+"descriptor": "02EA5380",
+"name": [
+"PApplicationViewport"
+],
+"cmp": "00796AE0",
+"form": "pointer"
+},
+"0061A390": {
+"type": "CD3D11_DEPTH_STENCIL_DESC *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"00796BC0": {
+"type": "PFramework::PDebugUtils *",
+"result": "verified",
+"lea": "00796C02",
+"descriptor": "02EA9400",
+"name": [
+"PDebugUtils"
+],
+"cmp": "00796C10",
+"form": "pointer"
+},
+"0061A4D0": {
+"type": "CD3D11_RASTERIZER_DESC *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"00796CF0": {
+"type": "PFramework::PInputMapper *",
+"result": "verified",
+"lea": "00796D32",
+"descriptor": "02EA5560",
+"name": [
+"PInputMapper"
+],
+"cmp": "00796D40",
+"form": "pointer"
+},
+"0061A610": {
+"type": "D3D11_DEPTH_STENCILOP_DESC *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"0086EAF0": {
+"type": "PArray<PInputs::PInputAction *,8> &",
+"result": "getter-form",
+"call": "0086EB3E",
+"getter": "0086E470",
+"getter_name": [
+"PInputAction"
+]
+},
+"0061A750": {
+"type": "D3D11_RENDER_TARGET_BLEND_DESC *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"0086EC00": {
+"type": "PArray<PInputs::PInputSource *,8> &",
+"result": "getter-form",
+"call": "0086EC4E",
+"getter": "0086E7B0",
+"getter_name": [
+"PInputSource"
+]
+},
+"0061A890": {
+"type": "PArray<unsigned char,1> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"0086ED10": {
+"type": "PInputs::PInputAction &",
+"result": "verified",
+"lea": "0086ED5E",
+"descriptor": "02EB6CF0",
+"name": [
+"PInputAction"
+],
+"cmp": "0086ED65",
+"form": "reference"
+},
+"0061A9D0": {
+"type": "PArray<PRendering::PStreamInputDescD3D11,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"0086EE30": {
+"type": "PInputs::PInputMap &",
+"result": "verified",
+"lea": "0086EE69",
+"descriptor": "02EB6DF0",
+"name": [
+"PInputMap"
+],
+"cmp": "0086EE70",
+"form": "reference"
+},
+"0061AB10": {
+"type": "PRendering::PConstantBufferD3D11 *",
+"result": "verified",
+"lea": "0061AB52",
+"descriptor": "02CF2440",
+"name": [
+"PConstantBufferD3D11"
+],
+"cmp": "0061AB60",
+"form": "pointer"
+},
+"0086EF30": {
+"type": "PInputs::PInputSourceJoypadAxis &",
+"result": "verified",
+"lea": "0086EF7E",
+"descriptor": "02EB55F0",
+"name": [
+"PInputSourceJoypadAxis"
+],
+"cmp": "0086EF85",
+"form": "reference"
+},
+"0061AC40": {
+"type": "PRendering::PIndirectArgsBufferD3D11 *",
+"result": "verified",
+"lea": "0061AC82",
+"descriptor": "02CF2340",
+"name": [
+"PIndirectArgsBufferD3D11"
+],
+"cmp": "0061AC90",
+"form": "pointer"
+},
+"0086F050": {
+"type": "PInputs::PInputSourceJoypadButton &",
+"result": "verified",
+"lea": "0086F09E",
+"descriptor": "02EB54F0",
+"name": [
+"PInputSourceJoypadButton"
+],
+"cmp": "0086F0A5",
+"form": "reference"
+},
+"0061AD70": {
+"type": "PRendering::PRenderTargetD3D11 *",
+"result": "verified",
+"lea": "0061ADB2",
+"descriptor": "02CF2040",
+"name": [
+"PRenderTargetD3D11"
+],
+"cmp": "0061ADC0",
+"form": "pointer"
+},
+"0086F170": {
+"type": "PInputs::PInputSourceKey &",
+"result": "verified",
+"lea": "0086F1BE",
+"descriptor": "02EB53F0",
+"name": [
+"PInputSourceKey"
+],
+"cmp": "0086F1C5",
+"form": "reference"
+},
+"0061AEA0": {
+"type": "PRendering::PSamplerStateD3D11 *",
+"result": "verified",
+"lea": "0061AEE2",
+"descriptor": "02CF2140",
+"name": [
+"PSamplerStateD3D11"
+],
+"cmp": "0061AEF0",
+"form": "pointer"
+},
+"0086F290": {
+"type": "PInputs::PInputSourceMotionAngularVelocityX &",
+"result": "verified",
+"lea": "0086F2DE",
+"descriptor": "02EB63F0",
+"name": [
+"PInputSourceMotionAngularVelocityX"
+],
+"cmp": "0086F2E5",
+"form": "reference"
+},
+"0061AFD0": {
+"type": "PRendering::PShaderComputeProgramD3D11 *",
+"result": "verified",
+"lea": "0061B012",
+"descriptor": "02CF1C40",
+"name": [
+"PShaderComputeProgramD3D11"
+],
+"cmp": "0061B020",
+"form": "pointer"
+},
+"0086F3B0": {
+"type": "PInputs::PInputSourceMotionAngularVelocityY &",
+"result": "verified",
+"lea": "0086F3FE",
+"descriptor": "02EB64F0",
+"name": [
+"PInputSourceMotionAngularVelocityY"
+],
+"cmp": "0086F405",
+"form": "reference"
+},
+"0061B100": {
+"type": "PRendering::PShaderFragmentProgramD3D11 *",
+"result": "verified",
+"lea": "0061B142",
+"descriptor": "02CF1A40",
+"name": [
+"PShaderFragmentProgramD3D11"
+],
+"cmp": "0061B150",
+"form": "pointer"
+},
+"0086F4D0": {
+"type": "PInputs::PInputSourceMotionAngularVelocityZ &",
+"result": "verified",
+"lea": "0086F51E",
+"descriptor": "02EB65F0",
+"name": [
+"PInputSourceMotionAngularVelocityZ"
+],
+"cmp": "0086F525",
+"form": "reference"
+},
+"0061B230": {
+"type": "PRendering::PShaderGeometryProgramD3D11 *",
+"result": "verified",
+"lea": "0061B272",
+"descriptor": "02CF1B40",
+"name": [
+"PShaderGeometryProgramD3D11"
+],
+"cmp": "0061B280",
+"form": "pointer"
+},
+"0086F5F0": {
+"type": "PInputs::PInputSourceMotionLinearAccelerationX &",
+"result": "verified",
+"lea": "0086F63E",
+"descriptor": "02EB66F0",
+"name": [
+"PInputSourceMotionLinearAccelerationX"
+],
+"cmp": "0086F645",
+"form": "reference"
+},
+"0061B360": {
+"type": "PRendering::PShaderPassD3D11 *",
+"result": "verified",
+"lea": "0061B3A2",
+"descriptor": "02CF1440",
+"name": [
+"PShaderPassD3D11"
+],
+"cmp": "0061B3B0",
+"form": "pointer"
+},
+"0086F710": {
+"type": "PInputs::PInputSourceMotionLinearAccelerationY &",
+"result": "verified",
+"lea": "0086F75E",
+"descriptor": "02EB67F0",
+"name": [
+"PInputSourceMotionLinearAccelerationY"
+],
+"cmp": "0086F765",
+"form": "reference"
+},
+"0061B490": {
+"type": "PRendering::PShaderPassStateD3D11 *",
+"result": "verified",
+"lea": "0061B4D2",
+"descriptor": "02CF1540",
+"name": [
+"PShaderPassStateD3D11"
+],
+"cmp": "0061B4E0",
+"form": "pointer"
+},
+"0086F830": {
+"type": "PInputs::PInputSourceMotionLinearAccelerationZ &",
+"result": "verified",
+"lea": "0086F87E",
+"descriptor": "02EB68F0",
+"name": [
+"PInputSourceMotionLinearAccelerationZ"
+],
+"cmp": "0086F885",
+"form": "reference"
+},
+"0061B5C0": {
+"type": "PRendering::PShaderProgramD3D11 *",
+"result": "verified",
+"lea": "0061B602",
+"descriptor": "02CF1840",
+"name": [
+"PShaderProgramD3D11"
+],
+"cmp": "0061B610",
+"form": "pointer"
+},
+"0086F950": {
+"type": "PInputs::PInputSourceMotionQuatW &",
+"result": "verified",
+"lea": "0086F99E",
+"descriptor": "02EB62F0",
+"name": [
+"PInputSourceMotionQuatW"
+],
+"cmp": "0086F9A5",
+"form": "reference"
+},
+"0061B6F0": {
+"type": "PRendering::PShaderVertexProgramD3D11 *",
+"result": "verified",
+"lea": "0061B732",
+"descriptor": "02CF1940",
+"name": [
+"PShaderVertexProgramD3D11"
+],
+"cmp": "0061B740",
+"form": "pointer"
+},
+"0086FA70": {
+"type": "PInputs::PInputSourceMotionQuatX &",
+"result": "verified",
+"lea": "0086FABE",
+"descriptor": "02EB5FF0",
+"name": [
+"PInputSourceMotionQuatX"
+],
+"cmp": "0086FAC5",
+"form": "reference"
+},
+"0061B820": {
+"type": "PRendering::PStreamInputDescD3D11 *",
+"result": "verified",
+"lea": "0061B862",
+"descriptor": "02CF1640",
+"name": [
+"PStreamInputDescD3D11"
+],
+"cmp": "0061B870",
+"form": "pointer"
+},
+"0086FB90": {
+"type": "PInputs::PInputSourceMotionQuatY &",
+"result": "verified",
+"lea": "0086FBDE",
+"descriptor": "02EB60F0",
+"name": [
+"PInputSourceMotionQuatY"
+],
+"cmp": "0086FBE5",
+"form": "reference"
+},
+"0061B950": {
+"type": "PRendering::PStreamInputLayoutD3D11 *",
+"result": "verified",
+"lea": "0061B992",
+"descriptor": "02CF1740",
+"name": [
+"PStreamInputLayoutD3D11"
+],
+"cmp": "0061B9A0",
+"form": "pointer"
+},
+"0086FCB0": {
+"type": "PInputs::PInputSourceMotionQuatZ &",
+"result": "verified",
+"lea": "0086FCFE",
+"descriptor": "02EB61F0",
+"name": [
+"PInputSourceMotionQuatZ"
+],
+"cmp": "0086FD05",
+"form": "reference"
+},
+"0061BA80": {
+"type": "PRendering::PStructuredBufferD3D11 *",
+"result": "verified",
+"lea": "0061BAC2",
+"descriptor": "02CF2240",
+"name": [
+"PStructuredBufferD3D11"
+],
+"cmp": "0061BAD0",
+"form": "pointer"
+},
+"0086FDD0": {
+"type": "PInputs::PInputSourceMouseButton &",
+"result": "verified",
+"lea": "0086FE1E",
+"descriptor": "02EB56F0",
+"name": [
+"PInputSourceMouseButton"
+],
+"cmp": "0086FE25",
+"form": "reference"
+},
+"0061BBB0": {
+"type": "PRendering::PTexture2DD3D11 *",
+"result": "verified",
+"lea": "0061BBF2",
+"descriptor": "02CF1D40",
+"name": [
+"PTexture2DD3D11"
+],
+"cmp": "0061BC00",
+"form": "pointer"
+},
+"0086FEF0": {
+"type": "PInputs::PInputSourceMouseDeltaX &",
+"result": "verified",
+"lea": "0086FF3E",
+"descriptor": "02EB57F0",
+"name": [
+"PInputSourceMouseDeltaX"
+],
+"cmp": "0086FF45",
+"form": "reference"
+},
+"0061BCE0": {
+"type": "PRendering::PTexture3DD3D11 *",
+"result": "verified",
+"lea": "0061BD22",
+"descriptor": "02CF1E40",
+"name": [
+"PTexture3DD3D11"
+],
+"cmp": "0061BD30",
+"form": "pointer"
+},
+"00870010": {
+"type": "PInputs::PInputSourceMouseDeltaY &",
+"result": "verified",
+"lea": "0087005E",
+"descriptor": "02EB58F0",
+"name": [
+"PInputSourceMouseDeltaY"
+],
+"cmp": "00870065",
+"form": "reference"
+},
+"0061BE10": {
+"type": "PRendering::PTextureCubeMapD3D11 *",
+"result": "verified",
+"lea": "0061BE52",
+"descriptor": "02CF1F40",
+"name": [
+"PTextureCubeMapD3D11"
+],
+"cmp": "0061BE60",
+"form": "pointer"
+},
+"00870130": {
+"type": "PInputs::PInputSourceTouchDragX &",
+"result": "verified",
+"lea": "0087017E",
+"descriptor": "02EB5BF0",
+"name": [
+"PInputSourceTouchDragX"
+],
+"cmp": "00870185",
+"form": "reference"
+},
+"006364B0": {
+"type": "PSharray<PString> &",
+"result": "getter-form",
+"call": "006364FE",
+"getter": "00635DC0",
+"getter_name": null
+},
+"00870250": {
+"type": "PInputs::PInputSourceTouchDragY &",
+"result": "verified",
+"lea": "0087029E",
+"descriptor": "02EB5CF0",
+"name": [
+"PInputSourceTouchDragY"
+],
+"cmp": "008702A5",
+"form": "reference"
+},
+"006365C0": {
+"type": "PClusterDependencyList &",
+"result": "verified",
+"lea": "006365F9",
+"descriptor": "02CF8880",
+"name": [
+"PClusterDependencyList"
+],
+"cmp": "00636600",
+"form": "reference"
+},
+"00870370": {
+"type": "PInputs::PInputSourceTouchPinch &",
+"result": "verified",
+"lea": "008703BE",
+"descriptor": "02EB5AF0",
+"name": [
+"PInputSourceTouchPinch"
+],
+"cmp": "008703C5",
+"form": "reference"
+},
+"006366C0": {
+"type": "PClassDescriptor const &",
+"result": "verified",
+"lea": "0063670E",
+"descriptor": "02CF8470",
+"name": [
+"PClassDescriptor"
+],
+"cmp": "00636715",
+"form": "reference"
+},
+"00870490": {
+"type": "PInputs::PInputSourceTouchRotate &",
+"result": "verified",
+"lea": "008704DE",
+"descriptor": "02EB59F0",
+"name": [
+"PInputSourceTouchRotate"
+],
+"cmp": "008704E5",
+"form": "reference"
+},
+"006367E0": {
+"type": "PSharray<PString> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"008705B0": {
+"type": "PInputs::PInputSourceTouchTwoFingerDragX &",
+"result": "verified",
+"lea": "008705FE",
+"descriptor": "02EB5DF0",
+"name": [
+"PInputSourceTouchTwoFingerDragX"
+],
+"cmp": "00870605",
+"form": "reference"
+},
+"00636920": {
+"type": "PBase *",
+"result": "verified",
+"lea": "00636962",
+"descriptor": "02CF8270",
+"name": [
+"PBase"
+],
+"cmp": "00636970",
+"form": "pointer"
+},
+"008706D0": {
+"type": "PInputs::PInputSourceTouchTwoFingerDragY &",
+"result": "verified",
+"lea": "0087071E",
+"descriptor": "02EB5EF0",
+"name": [
+"PInputSourceTouchTwoFingerDragY"
+],
+"cmp": "00870725",
+"form": "reference"
+},
+"00636A50": {
+"type": "PClassDataMemberDynamic *",
+"result": "verified",
+"lea": "00636A96",
+"descriptor": "02CF8370",
+"name": [
+"PClassDataMemberDynamic"
+],
+"cmp": "00636AA0",
+"form": "pointer"
+},
+"008707F0": {
+"type": "PInputs::PInputSourceVisionTrackerX &",
+"result": "verified",
+"lea": "0087083E",
+"descriptor": "02EB69F0",
+"name": [
+"PInputSourceVisionTrackerX"
+],
+"cmp": "00870845",
+"form": "reference"
+},
+"00636B80": {
+"type": "PClassDescriptor *",
+"result": "verified",
+"lea": "00636BC6",
+"descriptor": "02CF8470",
+"name": [
+"PClassDescriptor"
+],
+"cmp": "00636BD0",
+"form": "pointer"
+},
+"00870910": {
+"type": "PInputs::PInputSourceVisionTrackerY &",
+"result": "verified",
+"lea": "0087095E",
+"descriptor": "02EB6AF0",
+"name": [
+"PInputSourceVisionTrackerY"
+],
+"cmp": "00870965",
+"form": "reference"
+},
+"00636CB0": {
+"type": "PClassDescriptorDynamic *",
+"result": "verified",
+"lea": "00636CF6",
+"descriptor": "02CF8580",
+"name": [
+"PClassDescriptorDynamic"
+],
+"cmp": "00636D00",
+"form": "pointer"
+},
+"00870A30": {
+"type": "PInputs::PInputSourceVisionTrackerZ &",
+"result": "verified",
+"lea": "00870A7E",
+"descriptor": "02EB6BF0",
+"name": [
+"PInputSourceVisionTrackerZ"
+],
+"cmp": "00870A85",
+"form": "reference"
+},
+"00636DE0": {
+"type": "PClassMember *",
+"result": "verified",
+"lea": "00636E22",
+"descriptor": "02CF8680",
+"name": [
+"PClassMember"
+],
+"cmp": "00636E30",
+"form": "pointer"
+},
+"00870B50": {
+"type": "PArray<PInputs::PInputAction *,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"00636F10": {
+"type": "PClusterDependencyList *",
+"result": "verified",
+"lea": "00636F52",
+"descriptor": "02CF8880",
+"name": [
+"PClusterDependencyList"
+],
+"cmp": "00636F60",
+"form": "pointer"
+},
+"00870C90": {
+"type": "PArray<PInputs::PInputSource *,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"00637040": {
+"type": "PNamespace *",
+"result": "verified",
+"lea": "00637086",
+"descriptor": "02CF8980",
+"name": [
+"PNamespace"
+],
+"cmp": "00637090",
+"form": "pointer"
+},
+"00870DD0": {
+"type": "PInputs::PInputAction *",
+"result": "verified",
+"lea": "00870E16",
+"descriptor": "02EB6CF0",
+"name": [
+"PInputAction"
+],
+"cmp": "00870E20",
+"form": "pointer"
+},
+"00637170": {
+"type": "PWorld *",
+"result": "verified",
+"lea": "006371B2",
+"descriptor": "02CF8A80",
+"name": [
+"PWorld"
+],
+"cmp": "006371C0",
+"form": "pointer"
+},
+"00870F00": {
+"type": "PInputs::PInputMap *",
+"result": "verified",
+"lea": "00870F42",
+"descriptor": "02EB6DF0",
+"name": [
+"PInputMap"
+],
+"cmp": "00870F50",
+"form": "pointer"
+},
+"0064AF20": {
+"type": "PArray<PPostProcessing::PPostEffectBase *,8> &",
+"result": "getter-form",
+"call": "0064AF6E",
+"getter": "0064AA20",
+"getter_name": [
+"PPostEffectBase"
+]
+},
+"00871030": {
+"type": "PInputs::PInputSource *",
+"result": "verified",
+"lea": "00871076",
+"descriptor": "02EB52F0",
+"name": [
+"PInputSource"
+],
+"cmp": "00871080",
+"form": "pointer"
+},
+"0064B030": {
+"type": "PPostProcessing::PAtmospherics &",
+"result": "verified",
+"lea": "0064B07E",
+"descriptor": "02D368A0",
+"name": [
+"PAtmospherics"
+],
+"cmp": "0064B085",
+"form": "reference"
+},
+"00871160": {
+"type": "PInputs::PInputSourceJoypadAxis *",
+"result": "verified",
+"lea": "008711A6",
+"descriptor": "02EB55F0",
+"name": [
+"PInputSourceJoypadAxis"
+],
+"cmp": "008711B0",
+"form": "pointer"
+},
+"0064B150": {
+"type": "PPostProcessing::PAtmosphericsBase &",
+"result": "verified",
+"lea": "0064B19E",
+"descriptor": "02D367A0",
+"name": [
+"PAtmosphericsBase"
+],
+"cmp": "0064B1A5",
+"form": "reference"
+},
+"00871290": {
+"type": "PInputs::PInputSourceJoypadButton *",
+"result": "verified",
+"lea": "008712D6",
+"descriptor": "02EB54F0",
+"name": [
+"PInputSourceJoypadButton"
+],
+"cmp": "008712E0",
+"form": "pointer"
+},
+"0064B270": {
+"type": "PPostProcessing::PAtmosphericsD3D11 &",
+"result": "verified",
+"lea": "0064B2BE",
+"descriptor": "02D369A0",
+"name": [
+"PAtmosphericsD3D11"
+],
+"cmp": "0064B2C5",
+"form": "reference"
+},
+"008713C0": {
+"type": "PInputs::PInputSourceKey *",
+"result": "verified",
+"lea": "00871406",
+"descriptor": "02EB53F0",
+"name": [
+"PInputSourceKey"
+],
+"cmp": "00871410",
+"form": "pointer"
+},
+"0064B390": {
+"type": "PPostProcessing::PCelShading &",
+"result": "verified",
+"lea": "0064B3DE",
+"descriptor": "02D362A0",
+"name": [
+"PCelShading"
+],
+"cmp": "0064B3E5",
+"form": "reference"
+},
+"008714F0": {
+"type": "PInputs::PInputSourceMotionAngularVelocityX *",
+"result": "verified",
+"lea": "00871536",
+"descriptor": "02EB63F0",
+"name": [
+"PInputSourceMotionAngularVelocityX"
+],
+"cmp": "00871540",
+"form": "pointer"
+},
+"0064B4B0": {
+"type": "PPostProcessing::PCelShadingBase &",
+"result": "verified",
+"lea": "0064B4FE",
+"descriptor": "02D361A0",
+"name": [
+"PCelShadingBase"
+],
+"cmp": "0064B505",
+"form": "reference"
+},
+"00871620": {
+"type": "PInputs::PInputSourceMotionAngularVelocityY *",
+"result": "verified",
+"lea": "00871666",
+"descriptor": "02EB64F0",
+"name": [
+"PInputSourceMotionAngularVelocityY"
+],
+"cmp": "00871670",
+"form": "pointer"
+},
+"0064B5D0": {
+"type": "PPostProcessing::PCelShadingD3D11 &",
+"result": "verified",
+"lea": "0064B61E",
+"descriptor": "02D363A0",
+"name": [
+"PCelShadingD3D11"
+],
+"cmp": "0064B625",
+"form": "reference"
+},
+"00871750": {
+"type": "PInputs::PInputSourceMotionAngularVelocityZ *",
+"result": "verified",
+"lea": "00871796",
+"descriptor": "02EB65F0",
+"name": [
+"PInputSourceMotionAngularVelocityZ"
+],
+"cmp": "008717A0",
+"form": "pointer"
+},
+"0064B6F0": {
+"type": "PPostProcessing::PDeferredLighting &",
+"result": "verified",
+"lea": "0064B73E",
+"descriptor": "02D34940",
+"name": [
+"PDeferredLighting"
+],
+"cmp": "0064B745",
+"form": "reference"
+},
+"00871880": {
+"type": "PInputs::PInputSourceMotionLinearAccelerationX *",
+"result": "verified",
+"lea": "008718C6",
+"descriptor": "02EB66F0",
+"name": [
+"PInputSourceMotionLinearAccelerationX"
+],
+"cmp": "008718D0",
+"form": "pointer"
+},
+"0064B810": {
+"type": "PPostProcessing::PDeferredLightingBase &",
+"result": "verified",
+"lea": "0064B85E",
+"descriptor": "02D34840",
+"name": [
+"PDeferredLightingBase"
+],
+"cmp": "0064B865",
+"form": "reference"
+},
+"008719B0": {
+"type": "PInputs::PInputSourceMotionLinearAccelerationY *",
+"result": "verified",
+"lea": "008719F6",
+"descriptor": "02EB67F0",
+"name": [
+"PInputSourceMotionLinearAccelerationY"
+],
+"cmp": "00871A00",
+"form": "pointer"
+},
+"0064B930": {
+"type": "PPostProcessing::PDeferredLightingD3D11 &",
+"result": "verified",
+"lea": "0064B97E",
+"descriptor": "02D34A40",
+"name": [
+"PDeferredLightingD3D11"
+],
+"cmp": "0064B985",
+"form": "reference"
+},
+"00871AE0": {
+"type": "PInputs::PInputSourceMotionLinearAccelerationZ *",
+"result": "verified",
+"lea": "00871B26",
+"descriptor": "02EB68F0",
+"name": [
+"PInputSourceMotionLinearAccelerationZ"
+],
+"cmp": "00871B30",
+"form": "pointer"
+},
+"0064BA50": {
+"type": "PPostProcessing::PDepthOfField &",
+"result": "verified",
+"lea": "0064BA9E",
+"descriptor": "02D34C40",
+"name": [
+"PDepthOfField"
+],
+"cmp": "0064BAA5",
+"form": "reference"
+},
+"00871C10": {
+"type": "PInputs::PInputSourceMotionQuatW *",
+"result": "verified",
+"lea": "00871C56",
+"descriptor": "02EB62F0",
+"name": [
+"PInputSourceMotionQuatW"
+],
+"cmp": "00871C60",
+"form": "pointer"
+},
+"0064BB70": {
+"type": "PPostProcessing::PDepthOfFieldBase &",
+"result": "verified",
+"lea": "0064BBBE",
+"descriptor": "02D34B40",
+"name": [
+"PDepthOfFieldBase"
+],
+"cmp": "0064BBC5",
+"form": "reference"
+},
+"00871D40": {
+"type": "PInputs::PInputSourceMotionQuatX *",
+"result": "verified",
+"lea": "00871D86",
+"descriptor": "02EB5FF0",
+"name": [
+"PInputSourceMotionQuatX"
+],
+"cmp": "00871D90",
+"form": "pointer"
+},
+"0064BC90": {
+"type": "PPostProcessing::PDepthOfFieldD3D11 &",
+"result": "verified",
+"lea": "0064BCDE",
+"descriptor": "02D34D40",
+"name": [
+"PDepthOfFieldD3D11"
+],
+"cmp": "0064BCE5",
+"form": "reference"
+},
+"00871E70": {
+"type": "PInputs::PInputSourceMotionQuatY *",
+"result": "verified",
+"lea": "00871EB6",
+"descriptor": "02EB60F0",
+"name": [
+"PInputSourceMotionQuatY"
+],
+"cmp": "00871EC0",
+"form": "pointer"
+},
+"0064BDB0": {
+"type": "PPostProcessing::PFXAA &",
+"result": "verified",
+"lea": "0064BDFE",
+"descriptor": "02D35FA0",
+"name": [
+"PFXAA"
+],
+"cmp": "0064BE05",
+"form": "reference"
+},
+"00871FA0": {
+"type": "PInputs::PInputSourceMotionQuatZ *",
+"result": "verified",
+"lea": "00871FE6",
+"descriptor": "02EB61F0",
+"name": [
+"PInputSourceMotionQuatZ"
+],
+"cmp": "00871FF0",
+"form": "pointer"
+},
+"0064BED0": {
+"type": "PPostProcessing::PFXAABase &",
+"result": "verified",
+"lea": "0064BF1E",
+"descriptor": "02D35EA0",
+"name": [
+"PFXAABase"
+],
+"cmp": "0064BF25",
+"form": "reference"
+},
+"008720D0": {
+"type": "PInputs::PInputSourceMouseButton *",
+"result": "verified",
+"lea": "00872116",
+"descriptor": "02EB56F0",
+"name": [
+"PInputSourceMouseButton"
+],
+"cmp": "00872120",
+"form": "pointer"
+},
+"0064BFF0": {
+"type": "PPostProcessing::PFXAAD3D11 &",
+"result": "verified",
+"lea": "0064C03E",
+"descriptor": "02D360A0",
+"name": [
+"PFXAAD3D11"
+],
+"cmp": "0064C045",
+"form": "reference"
+},
+"00872200": {
+"type": "PInputs::PInputSourceMouseDeltaX *",
+"result": "verified",
+"lea": "00872246",
+"descriptor": "02EB57F0",
+"name": [
+"PInputSourceMouseDeltaX"
+],
+"cmp": "00872250",
+"form": "pointer"
+},
+"0064C110": {
+"type": "PPostProcessing::PGlow &",
+"result": "verified",
+"lea": "0064C15E",
+"descriptor": "02D35CA0",
+"name": [
+"PGlow"
+],
+"cmp": "0064C165",
+"form": "reference"
+},
+"00872330": {
+"type": "PInputs::PInputSourceMouseDeltaY *",
+"result": "verified",
+"lea": "00872376",
+"descriptor": "02EB58F0",
+"name": [
+"PInputSourceMouseDeltaY"
+],
+"cmp": "00872380",
+"form": "pointer"
+},
+"0064C230": {
+"type": "PPostProcessing::PGlowBase &",
+"result": "verified",
+"lea": "0064C27E",
+"descriptor": "02D35AA0",
+"name": [
+"PGlowBase"
+],
+"cmp": "0064C285",
+"form": "reference"
+},
+"00872460": {
+"type": "PInputs::PInputSourceTouchDragX *",
+"result": "verified",
+"lea": "008724A6",
+"descriptor": "02EB5BF0",
+"name": [
+"PInputSourceTouchDragX"
+],
+"cmp": "008724B0",
+"form": "pointer"
+},
+"0064C350": {
+"type": "PPostProcessing::PGlowD3D11 &",
+"result": "verified",
+"lea": "0064C39E",
+"descriptor": "02D35DA0",
+"name": [
+"PGlowD3D11"
+],
+"cmp": "0064C3A5",
+"form": "reference"
+},
+"00872590": {
+"type": "PInputs::PInputSourceTouchDragY *",
+"result": "verified",
+"lea": "008725D6",
+"descriptor": "02EB5CF0",
+"name": [
+"PInputSourceTouchDragY"
+],
+"cmp": "008725E0",
+"form": "pointer"
+},
+"0064C470": {
+"type": "PPostProcessing::PGlowGPUBase &",
+"result": "verified",
+"lea": "0064C4BE",
+"descriptor": "02D35BA0",
+"name": [
+"PGlowGPUBase"
+],
+"cmp": "0064C4C5",
+"form": "reference"
+},
+"008726C0": {
+"type": "PInputs::PInputSourceTouchPinch *",
+"result": "verified",
+"lea": "00872706",
+"descriptor": "02EB5AF0",
+"name": [
+"PInputSourceTouchPinch"
+],
+"cmp": "00872710",
+"form": "pointer"
+},
+"0064C590": {
+"type": "PPostProcessing::PLowResParticles &",
+"result": "verified",
+"lea": "0064C5DE",
+"descriptor": "02D36AA0",
+"name": [
+"PLowResParticles"
+],
+"cmp": "0064C5E5",
+"form": "reference"
+},
+"008727F0": {
+"type": "PInputs::PInputSourceTouchRotate *",
+"result": "verified",
+"lea": "00872836",
+"descriptor": "02EB59F0",
+"name": [
+"PInputSourceTouchRotate"
+],
+"cmp": "00872840",
+"form": "pointer"
+},
+"0064C6B0": {
+"type": "PPostProcessing::PMLAA &",
+"result": "verified",
+"lea": "0064C6FE",
+"descriptor": "02D357A0",
+"name": [
+"PMLAA"
+],
+"cmp": "0064C705",
+"form": "reference"
+},
+"00872920": {
+"type": "PInputs::PInputSourceTouchTwoFingerDragX *",
+"result": "verified",
+"lea": "00872966",
+"descriptor": "02EB5DF0",
+"name": [
+"PInputSourceTouchTwoFingerDragX"
+],
+"cmp": "00872970",
+"form": "pointer"
+},
+"0064C7D0": {
+"type": "PPostProcessing::PMLAABase &",
+"result": "verified",
+"lea": "0064C81E",
+"descriptor": "02D356A0",
+"name": [
+"PMLAABase"
+],
+"cmp": "0064C825",
+"form": "reference"
+},
+"00872A50": {
+"type": "PInputs::PInputSourceTouchTwoFingerDragY *",
+"result": "verified",
+"lea": "00872A96",
+"descriptor": "02EB5EF0",
+"name": [
+"PInputSourceTouchTwoFingerDragY"
+],
+"cmp": "00872AA0",
+"form": "pointer"
+},
+"0064C8F0": {
+"type": "PPostProcessing::PMLAAD3D11 &",
+"result": "verified",
+"lea": "0064C93E",
+"descriptor": "02D358A0",
+"name": [
+"PMLAAD3D11"
+],
+"cmp": "0064C945",
+"form": "reference"
+},
+"00872B80": {
+"type": "PInputs::PInputSourceVisionTrackerX *",
+"result": "verified",
+"lea": "00872BC6",
+"descriptor": "02EB69F0",
+"name": [
+"PInputSourceVisionTrackerX"
+],
+"cmp": "00872BD0",
+"form": "pointer"
+},
+"0064CA10": {
+"type": "PPostProcessing::PMaterialPostEffect &",
+"result": "verified",
+"lea": "0064CA5E",
+"descriptor": "02D36BA0",
+"name": [
+"PMaterialPostEffect"
+],
+"cmp": "0064CA65",
+"form": "reference"
+},
+"00872CB0": {
+"type": "PInputs::PInputSourceVisionTrackerY *",
+"result": "verified",
+"lea": "00872CF6",
+"descriptor": "02EB6AF0",
+"name": [
+"PInputSourceVisionTrackerY"
+],
+"cmp": "00872D00",
+"form": "pointer"
+},
+"0064CB30": {
+"type": "PPostProcessing::PMeshParticleSystemBase &",
+"result": "verified",
+"lea": "0064CB7E",
+"descriptor": "02D359A0",
+"name": [
+"PMeshParticleSystemBase"
+],
+"cmp": "0064CB85",
+"form": "reference"
+},
+"00872DE0": {
+"type": "PInputs::PInputSourceVisionTrackerZ *",
+"result": "verified",
+"lea": "00872E26",
+"descriptor": "02EB6BF0",
+"name": [
+"PInputSourceVisionTrackerZ"
+],
+"cmp": "00872E30",
+"form": "pointer"
+},
+"0064CC50": {
+"type": "PPostProcessing::PMotionBlur &",
+"result": "verified",
+"lea": "0064CC9E",
+"descriptor": "02D34F40",
+"name": [
+"PMotionBlur"
+],
+"cmp": "0064CCA5",
+"form": "reference"
+},
+"00874DA0": {
+"type": "PVision::PVisionMoveTracker &",
+"result": "verified",
+"lea": "00874DD9",
+"descriptor": "02EB7CD0",
+"name": [
+"PVisionMoveTracker"
+],
+"cmp": "00874DE0",
+"form": "reference"
+},
+"0064CD70": {
+"type": "PPostProcessing::PMotionBlurBase &",
+"result": "verified",
+"lea": "0064CDBE",
+"descriptor": "02D34E40",
+"name": [
+"PMotionBlurBase"
+],
+"cmp": "0064CDC5",
+"form": "reference"
+},
+"00874EA0": {
+"type": "PVision::PVisionMoveTracker *",
+"result": "verified",
+"lea": "00874EE2",
+"descriptor": "02EB7CD0",
+"name": [
+"PVisionMoveTracker"
+],
+"cmp": "00874EF0",
+"form": "pointer"
+},
+"0064CE90": {
+"type": "PPostProcessing::PMotionBlurD3D11 &",
+"result": "verified",
+"lea": "0064CEDE",
+"descriptor": "02D35040",
+"name": [
+"PMotionBlurD3D11"
+],
+"cmp": "0064CEE5",
+"form": "reference"
+},
+"00874FD0": {
+"type": "PVision::PVisionMoveTrackerBase *",
+"result": "verified",
+"lea": "00875012",
+"descriptor": "02EB7BD0",
+"name": [
+"PVisionMoveTrackerBase"
+],
+"cmp": "00875020",
+"form": "pointer"
+},
+"0064CFB0": {
+"type": "PPostProcessing::PPostEffectBase &",
+"result": "verified",
+"lea": "0064CFFE",
+"descriptor": "02D34740",
+"name": [
+"PPostEffectBase"
+],
+"cmp": "0064D005",
+"form": "reference"
+},
+"00875100": {
+"type": "PVision::PVisionMoveTrackerWin32 *",
+"result": "verified",
+"lea": "00875142",
+"descriptor": "02EB7DD0",
+"name": [
+"PVisionMoveTrackerWin32"
+],
+"cmp": "00875150",
+"form": "pointer"
+},
+"0064D0D0": {
+"type": "PPostProcessing::PPostEffectManager &",
+"result": "verified",
+"lea": "0064D109",
+"descriptor": "02D36CA0",
+"name": [
+"PPostEffectManager"
+],
+"cmp": "0064D110",
+"form": "reference"
+},
+"00875980": {
+"type": "PVision::PVisionTracker &",
+"result": "verified",
+"lea": "008759B9",
+"descriptor": "02EB8060",
+"name": [
+"PVisionTracker"
+],
+"cmp": "008759C0",
+"form": "reference"
+},
+"0064D1D0": {
+"type": "PPostProcessing::PScreenSpaceAmbientOcclusion &",
+"result": "verified",
+"lea": "0064D21E",
+"descriptor": "02D35400",
+"name": [
+"PScreenSpaceAmbientOcclusion"
+],
+"cmp": "0064D225",
+"form": "reference"
+},
+"00875A80": {
+"type": "PVision::PVisionTracker *",
+"result": "verified",
+"lea": "00875AC2",
+"descriptor": "02EB8060",
+"name": [
+"PVisionTracker"
+],
+"cmp": "00875AD0",
+"form": "pointer"
+},
+"0064D2F0": {
+"type": "PPostProcessing::PScreenSpaceAmbientOcclusionBase &",
+"result": "verified",
+"lea": "0064D33E",
+"descriptor": "02D35300",
+"name": [
+"PScreenSpaceAmbientOcclusionBase"
+],
+"cmp": "0064D345",
+"form": "reference"
+},
+"00875BB0": {
+"type": "PVision::PVisionTrackerBase *",
+"result": "verified",
+"lea": "00875BF2",
+"descriptor": "02EB7F60",
+"name": [
+"PVisionTrackerBase"
+],
+"cmp": "00875C00",
+"form": "pointer"
+},
+"0064D410": {
+"type": "PPostProcessing::PScreenSpaceAmbientOcclusionD3D11 &",
+"result": "verified",
+"lea": "0064D45E",
+"descriptor": "02D35500",
+"name": [
+"PScreenSpaceAmbientOcclusionD3D11"
+],
+"cmp": "0064D465",
+"form": "reference"
+},
+"00875CE0": {
+"type": "PVision::PVisionTrackerWin32 *",
+"result": "verified",
+"lea": "00875D22",
+"descriptor": "02EB8160",
+"name": [
+"PVisionTrackerWin32"
+],
+"cmp": "00875D30",
+"form": "pointer"
+},
+"0064D530": {
+"type": "PPostProcessing::PScreenSpaceReflection &",
+"result": "verified",
+"lea": "0064D57E",
+"descriptor": "02D365A0",
+"name": [
+"PScreenSpaceReflection"
+],
+"cmp": "0064D585",
+"form": "reference"
+},
+"00878C70": {
+"type": "PHierarchy::POctree *",
+"result": "verified",
+"lea": "00878CB2",
+"descriptor": "02EB9070",
+"name": [
+"POctree"
+],
+"cmp": "00878CC0",
+"form": "pointer"
+},
+"0064D650": {
+"type": "PPostProcessing::PScreenSpaceReflectionBase &",
+"result": "verified",
+"lea": "0064D69E",
+"descriptor": "02D364A0",
+"name": [
+"PScreenSpaceReflectionBase"
+],
+"cmp": "0064D6A5",
+"form": "reference"
+},
+"00878DA0": {
+"type": "PHierarchy::POctreeChildren *",
+"result": "verified",
+"lea": "00878DE2",
+"descriptor": "02EB9370",
+"name": [
+"POctreeChildren"
+],
+"cmp": "00878DF0",
+"form": "pointer"
+},
+"0064D770": {
+"type": "PPostProcessing::PScreenSpaceReflectionD3D11 &",
+"result": "verified",
+"lea": "0064D7BE",
+"descriptor": "02D366A0",
+"name": [
+"PScreenSpaceReflectionD3D11"
+],
+"cmp": "0064D7C5",
+"form": "reference"
+},
+"00878ED0": {
+"type": "PHierarchy::POctreeData *",
+"result": "verified",
+"lea": "00878F12",
+"descriptor": "02EB9170",
+"name": [
+"POctreeData"
+],
+"cmp": "00878F20",
+"form": "pointer"
+},
+"0064D890": {
+"type": "PArray<PPostProcessing::PPostEffectBase *,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"00879000": {
+"type": "PHierarchy::POctreeWorld *",
+"result": "verified",
+"lea": "00879042",
+"descriptor": "02EB9270",
+"name": [
+"POctreeWorld"
+],
+"cmp": "00879050",
+"form": "pointer"
+},
+"0064D9D0": {
+"type": "PPostProcessing::PAtmospherics *",
+"result": "verified",
+"lea": "0064DA16",
+"descriptor": "02D368A0",
+"name": [
+"PAtmospherics"
+],
+"cmp": "0064DA20",
+"form": "pointer"
+},
+"0087A200": {
+"type": "PArray<PInputs::PInputMap *,8> &",
+"result": "getter-form",
+"call": "0087A24E",
+"getter": "00879EC0",
+"getter_name": [
+"PInputMap"
+]
+},
+"0064DB00": {
+"type": "PPostProcessing::PAtmosphericsBase *",
+"result": "verified",
+"lea": "0064DB46",
+"descriptor": "02D367A0",
+"name": [
+"PAtmosphericsBase"
+],
+"cmp": "0064DB50",
+"form": "pointer"
+},
+"0087A310": {
+"type": "PGame::PGameConfig &",
+"result": "verified",
+"lea": "0087A349",
+"descriptor": "02EB9E60",
+"name": [
+"PGameConfig"
+],
+"cmp": "0087A350",
+"form": "reference"
+},
+"0064DC30": {
+"type": "PPostProcessing::PAtmosphericsD3D11 *",
+"result": "verified",
+"lea": "0064DC76",
+"descriptor": "02D369A0",
+"name": [
+"PAtmosphericsD3D11"
+],
+"cmp": "0064DC80",
+"form": "pointer"
+},
+"0087A410": {
+"type": "PArray<PInputs::PInputMap *,8> *",
+"result": "getter-form",
+"call": null,
+"getter": null,
+"getter_name": null
+},
+"0064DD60": {
+"type": "PPostProcessing::PCelShading *",
+"result": "verified",
+"lea": "0064DDA6",
+"descriptor": "02D362A0",
+"name": [
+"PCelShading"
+],
+"cmp": "0064DDB0",
+"form": "pointer"
+},
+"0087A550": {
+"type": "PGame::PGameConfig *",
+"result": "verified",
+"lea": "0087A592",
+"descriptor": "02EB9E60",
+"name": [
+"PGameConfig"
+],
+"cmp": "0087A5A0",
+"form": "pointer"
+},
+"0064DE90": {
+"type": "PPostProcessing::PCelShadingBase *",
+"result": "verified",
+"lea": "0064DED6",
+"descriptor": "02D361A0",
+"name": [
+"PCelShadingBase"
+],
+"cmp": "0064DEE0",
+"form": "pointer"
+}
+}

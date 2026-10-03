@@ -1543,6 +1543,20 @@ def _hdr(snap, title):
                if snap.get("commit_id") else ""))
 
 
+# Where the project goes after the database, and who decides: the charter's
+# section 0 is the human authority, PROJECT-LIFECYCLE.json its machine twin.
+# Linked relative to PROGRESS.md (Database/FFXII TZA/).
+LIFECYCLE_LINE = (
+    "\n*Lifecycle: the project is in its DATABASE phase; L1+L2 is the "
+    "database goal and L3 is not a prerequisite for it. What follows, and "
+    "who authorizes it, is set by [RECONSTRUCTION-CHARTER.md section 0]"
+    "(../../RECONSTRUCTION-CHARTER.md#0-project-lifecycle-user-directive-2026-10-02) "
+    "(machine-readable twin: `_index/workflow/PROJECT-LIFECYCLE.json`). "
+    "Parity pilots run now are database-phase evidence probes: they test "
+    "whether a database claim or contract is sufficient, they do not start "
+    "reconstruction, and pilot counts are not a completion score.*\n")
+
+
 def _progress_md(snap):
     l1 = snap["levels"]["L1_modding_grade"]
     l2 = snap["levels"]["L2_reconstruction_grade"]
@@ -1668,6 +1682,11 @@ def _progress_md(snap):
                  "computed; every number above names its source. For ETAs: "
                  "none is given - throughput is tracked in history.jsonl and "
                  "no reliable rate is claimed.*\n")
+    # The lifecycle authority beside the L3 line (user context refresh v3 /
+    # addendum; FABLE-REQ-DATA-CONTEXT-REFRESH-MIRROR-PROGRESS-1003). Static
+    # text: the generator does not read the lifecycle JSON, so it adds no
+    # input to the fingerprint.
+    lines.append(LIFECYCLE_LINE)
     return "".join(l + "\n" if not l.endswith("\n") else l for l in lines)
 
 
@@ -1838,13 +1857,19 @@ def _crosswalk_md(snap):
     out.append("| id | status | owner doc | evidence / question | next "
                "action |\n|---|---|---|---|---|\n")
     for r in res["oq_open_rows"]:
-        owner = r["owner"]
-        if not owner:
+        # Only a register-sourced owner cell is written relative to
+        # _index/OPEN-QUESTIONS.md and needs the rebase. The naming-page
+        # fallback is built here already relative to _index/progress/, so
+        # rebasing it as well gave ../../../ (9 broken links, FABLE's final
+        # audit pass 29; fixed 2026-10-03, SWE2-DATA).
+        if r["owner"]:
+            owner = _oq_link_rebase(r["owner"])
+        else:
             pf = page_of.get(r["id"])
             owner = ("[%s](../../%s)" % (pf, pf)) if pf else "UNKNOWN"
         out.append("| %s | %s | %s | %s | answer or withdraw the row |\n"
                    % (r["id"], r["status"],
-                      _oq_link_rebase(owner).replace("|", "\\|"),
+                      owner.replace("|", "\\|"),
                       r["question"].replace("|", "\\|")))
     pb = snap["page_boxes"]
     out.append("\n## Page-box obligations (per unticked checkbox)\n\n")

@@ -1,0 +1,22 @@
+{
+ "blocks_in_image": 60,
+ "blocks_outside_image": 0,
+ "catalogue": "e2a67b07700c2ec3fbfae3213965de35",
+ "classes": {
+  "entered": 2,
+  "open": 1,
+  "returned": 14,
+  "scripted": 2
+ },
+ "elapsed_s": 2.1,
+ "emu_starts": 44,
+ "entries_executed": 14,
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "instrument": "execcov-shim v2",
+ "patched_blocks": 0,
+ "rc": 0,
+ "receipt_md5": "98c093f4ea609b758317f2c22f981167",
+ "run": "boot-predicates-exec",
+ "status": "ok",
+ "unique_blocks": 60
+}

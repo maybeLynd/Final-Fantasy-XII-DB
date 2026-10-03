@@ -1,0 +1,15 @@
+{
+ "page": "22-Middleware-PhyreEngine/Script-Object-Accessors/phyre-script-object-accessors.md",
+ "members": "22-Middleware-PhyreEngine/Script-Object-Accessors/members/object-push-adapters.tsv",
+ "kind": "descriptor_lea",
+ "reg": "r8",
+ "group": "push",
+ "title": "the script-VM object push adapters, one row per member",
+ "heading": "## Per-member rows: the class descriptor each object push adapters pushes (OPUS, 2026-10-03)",
+ "lead": "The family `script-VM object push adapters` (frontmatter: 304 members; {N} get a row here) shares the forms in the census table above (all reach the push target `00684080`), not repeated per row. What differs from member to member is the class descriptor X its one `lea r8, [X]` hands to the push. Each row anchors that `lea` (the member's distinguishing instruction) and states X and the class X describes. The class is read from the certified image: the static initialiser that does `lea rcx, [X]` and calls a descriptor-constructor wrapper, and that wrapper's `lea r8, [name]` before its one call to `00632D80`; every such initialiser must agree. {CHECK} re-derives every row and compares it with the committed {ROWS}. A member without exactly one `lea r8`, a descriptor not named by exactly one class, or a value that differs fails it. Two controls are refused: a swapped value and a moved anchor. Members that do not derive are listed in [`excluded.tsv`](../../_index/candidates/opus-ee-object-push-adapters-1003/excluded.tsv).",
+ "group_heading": "### All {N} adapters (OPUS)",
+ "groups": {},
+ "value_col": "class descriptor X",
+ "name_col": "class X describes",
+ "name_fmt": "{NAME}"
+}

@@ -483,16 +483,16 @@ motion commit. The verb's whole shape in one body.
 `002E9C00` — 33 B, 8 callers, `WorldActor_GetDefinitionByte12OrMinus1`: the
 status read `003580C0` consults mid-dispatch. `rcx` or `[rcx+0xC0]` null
 returns `-1`; otherwise `movsx eax, byte [rax+0x12]` at
-[`002E9C1C`](../../_index/ADDRESS-INDEX.md) — the signed definition byte the
+[`002E9C1C`](../../_index/ADDRESS-INDEX.md) — the signed ~~definition byte~~ runtime byte of the actor's secondary context *(corrected 2026-10-02, OPUS: `002E9C05 mov rax, [rcx + 0xc0]` loads the context the planter puts at record `+0x350`; UQ-51 on the read-in page)* the
 verb predicates on.
 
 ### Interior citation — frontier hub `0037CA80` (2026-09-18, SWE2-EC7)
 
 `0037CA80` — 113 B, 5 callers: the init-and-run — `002F16B0()` result is
 stored to `02EBF400` and its `+0x10` slot gets a function pointer
-(`0037C730`) at [`0037CAA3`](../../_index/ADDRESS-INDEX.md); three sibling
-globals get field resets (`+8` = 0, `dword` = 0, `+4` = 4, `+0x1C` = 0) and
-two flag bytes, then it tails `00233CF0`. The null arm returns silently.
+(`0037C730`) at [`0037CAA3`](../../_index/ADDRESS-INDEX.md); ~~three sibling~~ *(corrected 2026-10-02, OPUS: the four resets are fields of the one task record `[02EBF400]`, `0037CAB0`–`0037CAD2`)*
+~~globals get field resets~~ that record gets resets (`+8` = 0, `dword` = 0, `+4` = 4, `+0x1C` = 0) and
+~~two flag bytes~~ three byte globals are written, `02EBF3FC` = 0, `02EBF3FE` = 0, `02EBF3FD` = 1 *(corrected 2026-10-02, OPUS: `0037CA90`, `0037CAD6`, `0037CADC`)*, then it tails `00233CF0`. The null arm returns silently.
 
 *Crossing note (SWE2-EC7, 2026-09-18):* `002F16B0`, the accessor this init
 calls, is itself called from the Audio layer — the crossing is that call,

@@ -882,10 +882,10 @@ this page owns anything in Platform.**
 - `0042EF90` (`CharacterRenderHierarchy_TraverseIndexDepthFirst`) — 105 B, 43 frontier callers.
   Interior verified: [`0042EFB7`](../../_index/ADDRESS-INDEX.md) is `imul rbx, rax, 0x740` — the
   body is a recursive depth-first walk over the 0x740-stride record table based at
-  `[rip+0x1e97f63]` (`02095210`): per node it calls the visitor `rsi(record, r8)`, recurses on
+  `[rip+0x1e97f63]` (~~`02095210`~~ `022C6F28` *(corrected 2026-10-02, OPUS: the displacement counts from the next instruction, `0042EF90`+0x35, so the target is the pool pointer `022C6F28`)*): per node it calls the visitor `rsi(record, r8)`, recurses on
   `word[rbx+8]` (first child), and iterates `word[rbx+0xA]` (next sibling); `0xFFFF` terminates
-  each link. The `0x740` stride is the character-render record — the walk is over this page's own
-  table.
+  each link. The `0x740` stride is the character-render record — the walk is over ~~this page's own~~
+  ~~table~~ the record array, which §8b shows is not this class *(corrected 2026-10-02, OPUS: §8b, 2026-09-02)*.
 - `00426220` — 183 B, 40 frontier callers. Interior verified: [`00426235`](../../_index/ADDRESS-INDEX.md)
   is `test dword [rcx+0x284], 0x4000000` — a pair-eligibility predicate over two records: returns
   1 early when `rcx==rdx` is false while `+0x284` bit 26 is clear and `word[+0x2F8]==0xFFFF`; when
@@ -1265,3 +1265,16 @@ Interior anchor `001EF09B` (function `001EF060`).
 `001EF1A0` (213 B) is the small-vector resize `001EE1D0` runs on the render object's `{count, ptr}` pair at `[rcx]`/`[rcx+8]`: `edx == count` returns; bit-31-cleared capacity `> 1` means the `+8` heap buffer else inline storage at `rcx+8`; `ebx > 1` `0017D260`s `ebx*8` bytes and `rep stosq` zeroes them before the repoint - the 8-byte-element grow/shrink
 
 Interior anchor `001EF201` (function `001EF1A0`).
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-character-render-object-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `001890A0` | 97 B | loads qword `+0` and qword `+0x10` of `rcx`, calls `00628570(qword +0, 0, 1)` and `006215A0(qword +0, 1, qword +0x10, qword +0x10 + 0x40)` with stack arguments 0, 4 and 0, then tail-jumps `00628570(qword +0, 1, 1)` | `001890BA`, `001890CD`, `001890E0`, `001890FC` |
+| `001AD470` | 20 B | dereferences the pointers at `rdx` and `rcx` and sets `al` to 1 when the float `+0x34` of the `rdx` object is below, equal to or unordered with the float `+0x34` of the `rcx` object, else 0 | `001AD476`, `001AD47B`, `001AD480` |
+| `001BD840` | 244 B | scans the qword vector from qword `+0` to qword `+8` of `rcx` (count = byte difference / 8, unsigned index) for `rdx`; when found, passes `rdx` to `001F6E60`, passes `rcx+0x20` and the address of that result to the call at `001BD840` + 0x6B, calls slot `+0x10` of the qword at `+0x10` of the returned node with `rcx` = node+0x10, `edx` = 0x20 and `r8d` = 0, and unless that result plus 0x10 is zero stores 16 stack bytes (qword `rdx`, dword 3, 4 bytes this function does not write) at the result's `+0x10`; it then links the result before the node (result `+0` = node, result `+8` = node `+8`, qword `+0` of the old node `+8` = result, node `+8` = result), copies the vector's last qword into the found slot and adds -8 to qword `+8`; on every path tail-jumps at `001BD840` + 0xEF with `ecx` = 1 when the recomputed count differs from the original, else 0, and `rdx` = "Can't find character object when try to remove it!" (`008F9520`) | `001BD872`, `001BD8C2`, `001BD8CD`, `001BD902`, `001BD92F` |
+| `001E6E70` | 220 B | takes the floats `+0x30`, `+0x34` and `+0x38` of `rdx` (zeros when `rdx` is null) and, when any differs from (or is unordered with) the floats `+0x244`, `+0x248`, `+0x24C` of `rcx`, stores them there and byte 1 at `+0x240`; then calls `001EF060(element, rdx)` for each qword from `+0x18` up to `+0x20` of `rcx` (none when `+0x18` is above `+0x20`) | `001E6E97`, `001E6EBA`, `001E6EDB`, `001E6EF3`, `001E6F26` |
+| `001F4C00` | 80 B | walks 0x18-byte elements from `rcx` up to `rdx` with a parallel 0x18-byte destination from `r8`, and for each non-null destination stores `009010B8` at its `+0`, copies the source's qword `+8` and byte `+0x10` to the same offsets, then stores `00903940` at `+0`; returns the destination pointer past the last element (`r8` unchanged when `rcx` equals `rdx`) | `001F4C25`, `001F4C2C`, `001F4C34`, `001F4C38`, `001F4C4A` |
+| `001F6E60` | 15 B | returns qword `+0x2A0` of the object at qword `+0x488` of `rcx` | `001F6E67` |

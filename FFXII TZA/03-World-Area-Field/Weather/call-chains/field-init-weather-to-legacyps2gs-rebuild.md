@@ -329,7 +329,7 @@ selected-record entries' content) ~~stays open~~ *(answered 2026-09-26: see UQ-8
 
 ## The `0026D910` exclusive subtree — 1 member bound (SWE2-FRONTIER, followup queue)
 
-`0026D910` (`WorldField_InitializeCurrentFieldRuntimeParameters`, ~44 B)
+`0026D910` (`WorldField_InitializeCurrentFieldRuntimeParameters`~~, ~44 B~~, 418 B *(corrected 2026-10-02, OPUS: its last instruction is the 5-byte `jmp` at `0026DAAD`, so `0x1A2` bytes)*)
 — opens on `0017D490(ecx)` (`0026D921`).
 
 | member | role | interior |

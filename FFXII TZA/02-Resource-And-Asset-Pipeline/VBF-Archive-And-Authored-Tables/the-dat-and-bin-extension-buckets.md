@@ -78,7 +78,7 @@ semantics and the native consumer chain.
 
 **Ruling: `.dat` is separable from `.bin`, and it stays `bucket` for its own reason, not
 `.bin`'s.** `.bin` is refused because it is genuinely heterogeneous — 26 magics over 236 logical
-units, six token families no document names, an open tail. `.dat` is refused for a different,
+units, ~~six token families no document names~~ six token families since named *(answered: see the table below - all six bound 2026-09-29; 2026-10-02, OPUS)*, an open tail. `.dat` is refused for a different,
 narrower reason: **the extension names no single format**, while every shipped unit underneath it
 resolves to a documented, consumer-bound family. In the full-census units (`census_bin_signatures.py`,
 locale segments removed, 343 logical units, 0 `UNDETERMINED`, 0 locale-verdict disagreements):
@@ -145,7 +145,7 @@ enumeration beneath them.
 
 - **Settled:** the metric is honest. `46 explained + 2 bucketed = 48 dispositioned`; the numerator
   ceiling is 46/48 and no declaration can raise it without a real per-family sheet.
-- **Not settled:** `.bin`'s families. `sloc`+`st2e` are 58.6% of `.bin`, six `.bin` token families
+- **Not settled:** `.bin`'s families. `sloc`+`st2e` are 58.6% of `.bin`, six `.bin` token families *(answered: all six bound 2026-09-29, the table above; 2026-10-02, OPUS)*
   are unmentioned anywhere — that is format work, queued as
   `OPUS-REQ-SWE2-DATA-BIN-MENU-IMAGES` and `OPUS-REQ-SWE2-DATA-SIX-UNNAMED-BIN-FAMILIES`, and when
   each family earns a sheet the bucket note shrinks; the row never graduates to `explained` at

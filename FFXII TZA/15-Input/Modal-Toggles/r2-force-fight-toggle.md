@@ -762,3 +762,16 @@ document, which reaches `022CB726` from the other side.
 - **Script_VM_Native_Bridge - CLIENT and SERVICE (27 edges).** `003601B0`, `003601C0`, `00377C20` are also called by bodies filed to script VM / native bridge: `00357040`, `0034C370`, `003444D0` (+19 more); `00266D10`, `003444D0`, `0050C910` reach bodies filed to script VM / native bridge: `00267E10`, `003DC2D0` - shared machinery across the layer boundary, no shared ownership.
 - **Status_Periodic_Terminal - CLIENT and SERVICE (7 edges).** `00377C20`, `00313F60`, `00312280` are also called by bodies filed to status/periodic terminal: `0030E360`, `00320450`, `00329A20` (+2 more); `00300530` reaches bodies filed to status/periodic terminal: `0030E360` - shared machinery across the layer boundary, no shared ownership.
 - **Story_Event_Quest_Hunt - SERVICE (1 edge).** `00253C70` reaches bodies filed to story/event/quest: `0032A8A0` - shared machinery across the layer boundary, no shared ownership.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-r2-force-fight-toggle-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0028E5F0` | 59 B | with b = 1 when `003669D0()` returns 1 or 2 (`dec` then unsigned `cmp 1`) and 0 otherwise, calls `0035C880(0 when b else 2, b*2)`, then `00366990()`, and tail-jumps to `002970C0` | `0028E5F4`, `0028E609`, `0028E610`, `0028E618`, `0028E626` |
+| `00354EF0` | 38 B | calls `00363560`, `00360D70`, `002DEE70` and `00249CA0(2)` in that order, then tail-jumps to `003603E0` | `00354EF4`, `00354EF9`, `00354EFE`, `00354F08`, `00354F11` |
+| `0035C880` | 17 B | stores dword `022C83EC` AND NOT `ecx`, OR `edx`, back to dword `022C83EC` | `0035C882`, `0035C888`, `0035C88A` |
+| `003667B0` | 42 B | clears bit 0x80 of word `022CBE1A` and, when `ecx` is non-zero, sets it again | `003667BC`, `003667BF`, `003667C6`, `003667D2` |
+| `003667E0` | 135 B | returns at once when `0035C6F0()` has bit 0 set; otherwise calls `00249C60(0x2A)` when word `022CBE1A` has bit `0x4` set, `00265680()` is non-zero and bit `0x40` is clear; then, when bit `0x10` is set, calls `002DF0F0(dword 022CBE1C, 0)` if `002DEE80(dword 022CBE1C)` is non-zero and clears bit `0x10`; on both paths it stores the word AND `0xFF92` OR 2 back to `022CBE1A` | `003667EB`, `0036680D`, `00366832`, `00366854`, `0036685B` |
+| `00366960` | 43 B | when `ecx` is non-zero copies word `022CBE08` to word `022CBE18` and stores the word 0x25 to `022CBE1A`; when `ecx` is 0 it zeroes the qword `022CBE18` instead | `0036696B`, `00366977`, `0036697F` |

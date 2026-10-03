@@ -83,7 +83,7 @@ wrapped = ((heading ± π) − 2π·trunc((heading ± π) / 2π)) ∓ π
           +π when heading ≥ 0, −π when heading < 0
 ```
 
-> **The sign-dependent π is what makes the result land in (−π, +π] rather than [0, 2π).** Adding π
+> **The sign-dependent π is what makes the result land in ~~(−π, +π]~~ [−π, +π] rather than [0, 2π).** *(corrected 2026-10-02, OPUS: `0026A8E6` `comiss` / `jb` takes the bias `[00915620]` (`-π`) for a negative angle, else `[01CEBC50]` (`+π`); [−π, +π) for a non-negative input and (−π, +π] for a negative one, so `+π` lands on `−π` and `−π` on `+π`)* Adding π
 > before the modulo and subtracting it after re-centres the interval on zero; choosing the sign of π
 > from the sign of the input keeps the truncating division — which rounds toward zero, not down —
 > from putting negative inputs in the wrong bucket. **A reimplementation that uses `fmod` and a fixed
@@ -228,7 +228,7 @@ record and `ctx` the movement context:
    again — the same four writes `Movement_ClearSteeringRequest` (`002E55C0`) performs for mode 0.
 
    The rest of `002E5030`'s frame — heading publish `002E5C10`, the spatial-grid update
-   `003DB020`/`0046AD20`, and the `02AC7CC8` deferred-register tail `002E6330`/`003DB0D0` —
+   `003DB020`/`0046AD20`, and the ~~`02AC7CC8`~~ `02B57CC8` *(corrected 2026-10-02, OPUS: `02AC7CC8` has no reference; `02B57CC8` is the list head `003DB0D0` appends to)* deferred-register tail `002E6330`/`003DB0D0` —
    is bound member by member on the
    [heading-speed-to-position-delta](../heading-speed-to-position-delta.md) page's `002E5030`
    subtree section.
@@ -251,9 +251,9 @@ So the five values are: **0 off · 1 constant speed · 2 accelerate from the sta
 | `0026B5A0` | 117 B | `Actor_SetFacingHeading_Variant0` — wrap, then `FUN_0026B6A0(a, t, 0)` |
 | `0026B620` | 120 B | `Actor_SetFacingHeading_Variant1` — identical but `mode = 1` |
 | `0026AE90` | 127 B | `Movement_SetSteeringMode` |
-| `0026B6A0` | 120 B | the shared consumer of the wrapped angle — **not read** |
-| `0026C090` | 129 B | the tail target of both variants — **not read** |
-| `002E55C0` | 73 B | `Movement_ClearSteeringRequest` — called on the mode-0 path — **not read** (name and size filled in 2026-09-13) |
+| `0026B6A0` | 120 B | the shared consumer of the wrapped angle — ~~**not read**~~ *(answered: see ED-2 in §5 and the facing contract's §2 — kind 1 writes context `+0x38` / `+0x48`, kind 3 forwards the flag to `002E5FB0`; 2026-10-02, OPUS)* |
+| `0026C090` | 129 B | the tail target of both variants — ~~**not read**~~ *(answered: see ED-3 in §5 — it wraps again and dispatches on the kind; 2026-10-02, OPUS)* |
+| `002E55C0` | 73 B | `Movement_ClearSteeringRequest` — called on the mode-0 path — ~~**not read**~~ *(answered: see ED-5 in §2 — it clears `+0x29`, `+0x24` and `ctx+0xD0` and ends mode 2; 2026-10-02, OPUS)* (name and size filled in 2026-09-13) |
 
 ### Data addresses
 
@@ -299,7 +299,7 @@ So the five values are: **0 off · 1 constant speed · 2 accelerate from the sta
   an asymmetry.~~ **CORRECTED 2026-09-18.** The 2026-09-08 withdrawal was itself too broad:
   `0026B6A0` never touches `r8` in its own 120 bytes, but its **kind-3 arm tail-jumps with the
   flag still live** — `002E5FB0` (`r9d = r8d`) → `002E5E10` → `003EC260`, where it gates the
-  steering-slot commit. Variant0 **stages** the `{rate, heading, 0}` triple; Variant1
+  steering-slot commit. Variant0 **stages** the ~~`{rate, heading, 0}`~~ `{pitch, heading, 0}` triple *(corrected 2026-10-02, OPUS: lane 0 is context `+0xAC`, `002E5FBA` → `002E5F4F` → `003EC348`)*; Variant1
   **stages and commits** (`004288B0`/`003B3CA0`). The asymmetry is real **on kind-3 actors
   only** — hooking one variant changes steering commit behaviour there; on every other kind
   the flag dies and the variants coincide. `ED-2` corrected; see
@@ -360,7 +360,7 @@ So the five values are: **0 off · 1 constant speed · 2 accelerate from the sta
 | `setaccr` writes `+0x2B` / `+0x2C`; two shipped uses | `00352D10` (pushes 4), `003528F0`, `00269C30`; corpus census of 1,114 decompiled scripts | 1 / 2 | PROVEN |
 | `002E55C0` changes neither `+0x03` nor `+0xB8`; the re-check is `0026A640`'s gate inlined | `002E55C0` read in full; writer censuses of `+0x03` (0) and `+0xB8` (2, neither reachable); `0026A640` body | 1 | HIGH — the writer census follows actor-rooted chains only |
 | Class 3 is the steerable class | `BV-4` corpus census plus the carver's stamp `00267AE1`–`00267B13` | 1 / 2 | PROVEN |
-| What `0026B6A0` / `0026C090` do | **not read** | — | UNKNOWN |
+| What `0026B6A0` / `0026C090` do | ~~**not read**~~ *(answered: see ED-2 and ED-3 in §5; 2026-10-02, OPUS)* | — | ~~UNKNOWN~~ PROVEN |
 
 ## 7. Related
 
@@ -419,7 +419,7 @@ Over the same sample the game's own formula stays inside **[−π, +π]** — me
 
 **Not claimed:** nothing here was executed against the game, and no live observation is involved —
 the simulation is arithmetic over the same float32 constants, not the engine running. `0026B6A0`,
-`0026C090` and `002E55C0` remain unread, as § says; the steering-mode gate and §'s 2026-09-12
+`0026C090` and `002E55C0` remain unread, as § says *(answered: see ED-2, ED-3 and ED-5 — all three read; 2026-10-02, OPUS)*; the steering-mode gate and §'s 2026-09-12
 consumer reading were not re-derived.
 
 ## Crossings into other layers — FINAL-AUDIT pass 22 (FABLE, 2026-09-14)
@@ -459,7 +459,7 @@ consumer reading were not re-derived.
 same `byte[rcx+3] & 0xE0 == 0x60` tag gate (`002EBE5A`–`002EBE67`); `edx == 0` clears
 `[+0xB4]`/`[+0x224]` on the `[+0xB8]` context (`002EBE7D`–`002EBE8B`); otherwise it measures
 `[+0xF0]` sub-record fields `+0x70`/`+0x74` minus the stored values through `003A1C50`
-(fabsf-shaped) at [`002EBED0`/`002EBEF2`](../../_index/ADDRESS-INDEX.md), writes the fresh
+~~(fabsf-shaped)~~ (the two-loop wrap into `[-pi, pi]`, no absolute value *(corrected 2026-10-02, OPUS: `002EBEC3`–`002EBED0` and `002EBEE5`–`002EBEF2` call `003A1C50` on the signed difference)*) at [`002EBED0`/`002EBEF2`](../../_index/ADDRESS-INDEX.md), writes the fresh
 pair back (`002EBF01`/`002EBF0A`), and the `+0x62` byte's `0x38` mask chooses which follow-up
 lane runs. This is the "how far did the target drift" half of the turn decision.
 
@@ -470,10 +470,10 @@ lane runs. This is the "how far did the target drift" half of the turn decision.
 +0x24/+0xD0 clears sit next to. `(byte[rec+3] & 0xE0) == 0x60` gates the whole
 body. The steering sub-record is `[rec+0xF0]`; `byte[obj+0x28]` is saved and set
 to `edx`. Arms: `edx` 2–3 and 4 both compute `subss([obj+0x34], [rec+0xA8])`
-through `003A1C50`, set/clear `byte[obj+0x62]` bit `0x40` on the sign, and arm-4
+through `003A1C50`, set/clear `byte[obj+0x62]` bit `0x40` on the sign, and ~~arm-4~~ the mode 2–3 arm *(corrected 2026-10-02, OPUS: `0026C167` `cmp edx, 3` / `0026C16A` `jle 0026C1E6`; the stores `0026C224` / `0026C237` are in that block, while mode 4 calls `0026B620` and clears `+0x28`)*
 additionally stamps `dword[obj+0x58] = 0x3E20D97C`, `dword[obj+0x5C] =
 0x40490FDB` (π) at [`0026C224`](../../_index/ADDRESS-INDEX.md); `edx == 0` runs
-`002EBE50` + `002E8EE0`; `edx <= 1` falls to `002E6300(rec, rbx, sil)`. The mode
+`002EBE50` + `002E8EE0` (when `+0x65` is set) ~~; `edx <= 1` falls to `002E6300(rec, rbx, sil)`.~~ and then `002E6300(rec, rbx, sil)` (`0026C26D`); `edx == 1`, negative modes and modes above 4 go straight to the epilogue *(corrected 2026-10-02, OPUS: `0026C156` `je 0026C244` for 0 only, `0026C15E` `cmp edx, 1` / `0026C161` `jle 0026C272`, `0026C16F` `jne 0026C272`)*. The mode
 table the turn verbs write through.
 ## SWE2-EC7-45 update (2026-09-19) - `0037D000`
 
@@ -531,6 +531,17 @@ record.
 Interior anchors `0026373E` and `0026370C`
 (the `+0x2B` / `+0x2C` loads).
 
-`003A19C0` (268 B) is the yaw/pitch pair `002E45E0` derives from a delta: `xmm8 = [r9] - [r8]`, `xmm6 = [r9+4] - [r8+4]`, `xmm7 = [r9+8] - [r8+8]`; `00861F14` square-roots `dy^2 + dx^2` for the planar magnitude, two `00861F02` calls turn `xmm6`/`(xmm8, xmm7)` into the two angles, and each is wrapped into `[-pi, pi]` by add-`2pi`/`sub-`2pi` loops against `00915620` (`-pi`), `01CEBC78` (`2pi`), `01CEBC50` (`pi`), `00915624` (`-2pi`) before `*rdi` and `*rbx` take them - the heading decomposition every steering consult starts from.
+`003A19C0` (268 B) is the yaw/pitch pair `002E45E0` derives from a delta: `xmm8 = [r9] - [r8]`, `xmm6 = [r9+4] - [r8+4]`, `xmm7 = [r9+8] - [r8+8]`; `00861F14` square-roots ~~`dy^2 + dx^2`~~ `dz^2 + dx^2` *(corrected 2026-10-02, OPUS: `003A1A02`–`003A1A12` square `xmm7` and `xmm8`, the z and x lanes)* for the planar magnitude, two `00861F02` calls turn `xmm6`/`(xmm8, xmm7)` into the two angles, and each is wrapped into `[-pi, pi]` by add-`2pi`/`sub-`2pi` loops against `00915620` (`-pi`), `01CEBC78` (`2pi`), `01CEBC50` (`pi`), `00915624` (`-2pi`) before `*rdi` and `*rbx` take them - the heading decomposition every steering consult starts from.
 
 Interior anchor `003A1A24` (function `003A19C0`).
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-how-a-character-turns-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00269C30` | 53 B | when byte `+3` of `rcx` AND `0xE0` equals `0x60`, takes the qword `+0xF0` of qword `+0xB8` of `rcx`, stores `xmm1` times float `01DFE0BC` (decoded 1.0) at its float `+0x2C` and `r8b` at its byte `+0x2B`; otherwise returns without work | `00269C36`, `00269C49`, `00269C54`, `00269C60` |
+| `0026AE30` | 82 B | builds the 16 bytes (`xmm1`, `xmm2`, `xmm3`, 1.0 from `01CEBBA8`) on the stack; when byte `+3` of `rcx` AND `0xE0` equals `0x60`, copies them to offsets `+0x00`..`+0x0C` of the qword `+0xF0` of qword `+0xB8` of `rcx` and zeroes its byte `+0x2A`; otherwise returns without storing | `0026AE53`, `0026AE59`, `0026AE6F`, `0026AE79` |
+| `0026B450` | 35 B | when `rcx` is non-null and byte `+3` of `rcx` AND `0xE0` equals `0x60`, stores `xmm1` at float `+0x20` of the qword `+0xF0` of qword `+0xB8` of `rcx`; otherwise returns without work | `0026B45B`, `0026B466`, `0026B46D` |
+| `002EA780` | 110 B | returns 0 unless `rcx` is non-null, qword `+0xC0` of `rcx` is non-null, the dword at that pointer is not -1, its low word is not -1, the row qword `022C6F28` plus the sign-extended word times `0x740` is non-null, dword `+0x284` of that row is non-zero and the call at `002EA780` + 0x45 (with `rcx` = the row) returns non-zero; then returns 1 when `002EA910` called with the incoming `rcx` returns 1 and 0 otherwise (`sete`) | `002EA7AC`, `002EA7BC`, `002EA7C5`, `002EA7D1`, `002EA7DB` |

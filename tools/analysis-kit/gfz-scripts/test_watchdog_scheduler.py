@@ -249,8 +249,13 @@ class ApplyBudget(unittest.TestCase):
                      started_at="2026-09-29T00:00:00+00:00",
                      question="q", known_evidence="e", missing_information="m",
                      why_it_matters="w", what_is_blocked="n",
-                     reviews={"author": "OPUS", "commit": "abc123"},
-                     result_refs=["verdict:REJECT", "commit:abc123"])
+                     # link_problem() admits only a full link since f21fe8044/d27e9aff8: a 7-40
+                     # hex commit and a record path. The old 6-hex 'abc123' with no record made
+                     # REV-1 MALFORMED, so no op ever ran and the zero-budget case passed
+                     # without measuring a deferral (SWE2-FRONTIER, 2026-10-03).
+                     reviews={"author": "OPUS", "commit": "abc1234",
+                              "record": "Database/FFXII TZA/_index/candidates/fixture/README.md"},
+                     result_refs=["verdict:REJECT", "commit:abc1234"])
 
     def _apply_board(self, board, *extra):
         fd, path = tempfile.mkstemp(suffix=".json")

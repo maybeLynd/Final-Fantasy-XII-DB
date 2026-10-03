@@ -1,0 +1,17 @@
+PASS  00348330 + 0x1A  call 0x2640c0                        the context, read once
+PASS  00348330 + 0x22  mov rbx, rax                         context kept in RBX
+PASS  00348330 + 0x33  call 0x2650b0                        first pop decoded
+PASS  00348330 + 0x3B  mov rsi, rax                         first destination kept in RSI
+PASS  00348330 + 0x4C  call 0x2650b0                        second pop decoded, same context
+PASS  00348330 + 0x51  mov rdx, rsi                         RDX = first pop = action destination
+PASS  00348330 + 0x54  mov rcx, rax                         RCX = second pop = unit destination
+PASS  00348330 + 0x5A  call 0x309c00                        the writer
+PASS  00348870 + 0x10  call 0x267e10                        first pop
+PASS  00348870 + 0x18  mov ebx, eax                         first value kept
+PASS  00348870 + 0x1F  mov edx, ebx                         EDX = first pop = action word
+PASS  00348870 + 0x21  mov ecx, eax                         ECX = second pop = unit
+PASS  00348870 + 0x23  call 0x30eea0                        the reader
+PASS  002650FC + 0x0  mov rcx, qword ptr [r9 + 0x40]       file-class base
+PASS  002650FC + 0x6  and eax, 0xffffff                    24-bit offset
+PASS  002650FC + 0xB  add rax, rcx                         base + offset
+FAILS 0

@@ -42,7 +42,7 @@ New helper identifications this group (all read from the shipped body):
 
 | helper | role |
 |---|---|
-| `0044B960` | shared PRNG — xorshift-style bit chain over state dword `01EF93E8`, gated by guard dword `022D9138`; called inside the step bodies of `0x0A`, `0x60`–`0x62`, `0x65`, `0x66` before the type tail |
+| `0044B960` | shared PRNG — xorshift-style bit chain over state dword `01EF93E8`, gated by guard dword `022D9138`; called inside the step bodies of `0x0A`, `0x60`–`0x62`, `0x65`, `0x66` before the type tail, except in `0x0A`'s, where it runs ~~before~~ after its tail *(corrected 2026-10-02, OPUS: `0044BA80`+0x1B calls the tail `0044C850`, +0x20 the PRNG)* |
 | `003A3E20` | element field setter: `+0x44 = 0xFFFFFFFF`, `+0x42 = dx` (12 B, `0x65`/`0x66` steps) |
 | `0024DDD0` | reads global object `+0x13B` byte and calls `003A3FD0`/`003A6BA0` storing two results — ~~config-indexed double lookup~~ **(corrected 2026-09-29, FABLE, GI-10: the effect's owner actor `003A3FD0` and target actor `003A6BA0`, for the birth gate `0045F600`)** (`0x67`, `0x6B` steps) |
 | `0024B1C0` | **deferred-free queue**: if count word `02092168` < `0x100`, appends `rcx` to the qword array at `02091150` and increments; else `jmp 003697F0` (immediate free). The `0x6B`/`0x73`/`0x74` sub-seventh entries are wrappers that push element fields (`+0x338`-family) onto this queue — resource release at element teardown |
@@ -85,7 +85,7 @@ family as `0x05`.
 
 Setup `0053A5D0` (287 B): three 3-track groups `+0x80`–`+0x100`, **eight**
 singles `+0x140`–`+0x1B0`, then a nested 3×3 loop (`rbp`/`rdi`, `rbx += 0x50`)
-of **nine** 4-track groups `+0x1C0`–`+0x460`, `00431770@+0x490`, record end
+of **nine** 4-track groups ~~`+0x1C0`–`+0x460`~~ starting `+0x1C0`–`+0x440` *(corrected 2026-10-02, OPUS: `0053A5D0`+0xBE `lea rbx, [r14 + 0x1c0]`, nine passes of +0xD5..+0xED)*, `00431770@+0x490`, record end
 `+0x5F0`. Step `0045FD50`
 (968 B — a real body, not a wrapper): calls `0024DDD0` ~~(config-indexed lookups)~~,
 `0036A190`/`0036C140`/`0036C1D0` (bank ops), `00532EF0`, ~~tail `0045F600`, then~~
@@ -112,7 +112,7 @@ Sub-steps all call base `002F2D60` ~~plus `003A3E20`/`003D8E50`~~ and own tails
   `+0x248` pointer. Sub-walk `00526080` adds `00202D70`/`00203170`/`0024E460`.
 - `0x6B` sub-step `00529200` calls `0024DDD0` + `0036A190` + `00532EF0` (the `0x67`
   config family); setup carries **nine** `0042FCF0` 4-track groups at `0x50`
-  stride `+0x1C0`–`+0x3F0` plus 12 singles and three `00431770` inits
+  stride ~~`+0x1C0`–`+0x3F0`~~ starting `+0x1C0`–`+0x440` *(corrected 2026-10-02, OPUS: `0054F7C0`+0x84 to +0xF4, the last at `lea rcx, [rdi + 0x440]`)* plus 12 singles and three `00431770` inits
   (`+0x550`/`+0x640`/`+0x730`, 0xF0 stride — three repeated sub-blocks); sub-seventh
   `005294B0` pushes `+0x338`/`+0x3B0`/`+0x3C0` onto the deferred-free queue
   `0024B1C0`.
@@ -143,7 +143,7 @@ also call `00861EBA`. Sub-walks share one call family (`0026EE00`/`002F1F40`/
 
 Records are the largest yet — `0x72`/`0x73`/`0x74` carry a `0x50`-stride run of
 **nine** 4-track groups (`+0x120`–`+0x3F0` for `0x72`; `+0x90`/`+0xE0`/`+0x130`
-start for `0x73`/`0x74` then group runs at `+0x190`–`+0x480`), 14–20 single heads,
+start for `0x73`/`0x74` ~~then group runs at `+0x190`–`+0x480`~~, which carry only those three 4-track groups and then 1-track / 3-track pairs from `+0x180` *(corrected 2026-10-02, OPUS: `0054FFF0`+0x2B, +0x39 and +0x47 are its only `0042FCF0` calls, likewise in `00550200`)*), 14–20 single heads,
 and **three–four `00431770` inits at `0xF0` stride** (`0x71`: `+0x570`/`+0x660`/
 `+0x750`; `0x72`: `+0x500`/`+0x5F0`/`+0x6E0`; `0x73`: `+0x4E0`/`+0x5D0`/`+0x6C0`/
 `+0x7B0`; `0x74`: `+0x4C0`/`+0x5B0`/`+0x6A0`/`+0x790`) — repeated equal-size

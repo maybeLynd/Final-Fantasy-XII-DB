@@ -78,7 +78,7 @@ So each surviving site still contains:
 - a `lea` of the `__FILE__` string, and
 - a `mov <reg>, imm` carrying `__LINE__`.
 
-**1,857 such sites survive across 940 functions.** They are authored evidence — the file names are
+**~~1,857 such sites survive across 940 functions.~~** **363 such sites survive across 193 functions**; the other 1,494 sites, in 747 functions, are `PhyreScripting.inl`'s (§2.5) *(corrected 2026-10-02, OPUS: `lea` references to the 25 PPFX path strings counted at the image)*. They are authored evidence — the file names are
 what a Silicon Studio engineer typed — and they are tier 2 in this database's hierarchy.
 
 ### 2.2 The recovered source tree
@@ -161,7 +161,7 @@ scripting layer and belongs to that document, not this one.
 | `00D8FC48` | `..\src\ppfxRenderToTexture.cpp` |
 | `00D90348` | `..\src\GPU\GPUMath.cpp` — 11 copies, one per assertion line |
 | `00D90E50` | `..\src\GPU\GPUPostEffect.cpp` |
-| `00D94ED0`, `00D94F50` | `d:\bamboo\build\yeblic-ppfxlic-bl2015\src\gpu\GPUClassUtil.h` — the referenced copies |
+| `00D94ED0`, `00D94F50` | `d:\bamboo\build\yeblic-ppfxlic-bl2015\src\gpu\GPUClassUtil.h` — ~~the referenced copies~~ two of the six referenced copies, with `00DA7278`, `00DA72B8`, `00DAA000` and `00DAA040` *(corrected 2026-10-02, OPUS: `lea` references counted per copy, 20 sites in all; the other six copies are unreferenced)* |
 | `0016D6A0` | the folded `ret 0` the assertion reporter collapsed onto |
 
 The string blob runs from about `00D8E4C0` to `00DAC3F8` in `.rdata`. Individual paths appear in
@@ -308,7 +308,7 @@ the frame's rendered image
 
 | Claim | Evidence | Tier |
 |---|---|---|
-| 26 source paths exist in the image | regex sweep of every section's raw bytes for a path separator plus a C/C++ extension | 2 |
+| ~~26 source paths exist in the image~~ 29 source paths exist in the image - PPFX's 25, `PhyreScripting.inl` and three FFXII `..\..\katano\` `.c` files *(corrected 2026-10-02, OPUS: `.rdata` sweep; the 26 are the PPFX and Phyre paths)* | regex sweep of every section's raw bytes for a path separator plus a C/C++ extension | 2 |
 | All 26 are referenced from code | RIP-relative operand scan over all 38,161 real function bodies | 1 |
 | 1,857 sites, 940 functions | same scan | 1 |
 | 193 PPFX functions, 192 single-file | reference sets per path, intersected | 1 |
@@ -337,7 +337,7 @@ regenerates the list and prints every figure below). The count fell 1,657 → 1,
 declarations claimed what the span had absorbed: 17 MSVC `std::_Tree` bodies (the ordered-container
 family's `_Isnil` carriers) and A-measured bodies leaving the family under *A beats a declaration*.
 
-**Evidence inside the span.** 465 entries carry it directly: they `lea` one of the 25 `..\src\` paths
+**Evidence inside the span.** 465 entries carry it directly: they `lea` one of the 25 ~~`..\src\`~~ paths *(corrected 2026-10-02, OPUS: 24 `..\src\` paths and the absolute `GPUClassUtil.h`)*
 of §2.2 or a `PPFX` diagnostic (`..\src\ppfx.cpp(%d) : Feb 18 2016 PPFX ERROR:`), or sit at a
 `PPFX::` vtable slot. Only two entries carry foreign RTTI, and both are identical-code-folded bodies:
 `006DA8C0` (shared with `Yebis::YebisPfxMemoryAllocatorD3D11`) and `00786F42` (shared with Bullet's
@@ -455,7 +455,7 @@ absolute path — inverts it: nothing kept anything, the header simply never had
 `d:\bamboo\build\yeblic-ppfxlic-bl2015\src\gpu\GPUClassUtil.h`, with no `(%d)` and no number.
 The line number is a separate argument, and the code supplies it:
 
-> **20 code sites reference the twelve copies, and `73` is a nearby immediate at 19 of them.**
+> **20 code sites reference ~~the twelve copies~~ six of the twelve copies, and `73` is a nearby immediate at 19 of them.** *(corrected 2026-10-02, OPUS: per-copy `lea` counts 6 + 6 + 1 + 1 + 3 + 3; `00D9BC88`, `00D9BCC8`, `00DA61D8`, `00DA6288`, `00DAC3B8` and `00DAC3F8` have none)*
 > (The exception is `00714314` in `FUN_007142F0`, which loads its line number by another route.)
 
 **So both halves are one fact: a macro on line 73 of that header, expanded in many translation
@@ -773,3 +773,11 @@ Interior anchor `006DA867`
 - **CoreRuntimeScheduling - CLIENT (1 edge).** `005CC930` is called by bodies filed to CoreRuntimeScheduling: `001E03F0` - shared machinery across the layer boundary, no shared ownership.
 - **Presentation - CLIENT (12 edges).** `001A52A0`, `001A5630`, `005CC930`, `006DA850` are called by bodies filed to Presentation: `001A6FF0`, `001C3D50`, `001C5570`, `001C5750` (+8 more) - shared machinery across the layer boundary, no shared ownership.
 - **Resource - CLIENT and SERVICE (17 edges).** `001A52A0`, `001A5500`, `001A5630`, `005CC930` (+1 more) are called by bodies filed to Resource: `001D9F90`, `001DA290`, `001DADC0`, `001F4060` (+4 more); `0079D430`, `0079FB10` reach bodies filed to Resource: `00597970`, `00598100`, `0059BD80`, `0059D920` - shared machinery across the layer boundary, no shared ownership.
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-yebis-ppfx-source-map-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00786F42` | 32 B | with `rbx` as it holds on entry (this body never sets it), stores `edx` in dword `+0xEC`, `rcx` in qword `+0`, `rdx` in qword `+0xF0` and 3 in dword `+0x10` of `rbx`, then adds 0x20 to `rsp`, pops `rbx` and returns the entry `rbx` | `00786F45`, `00786F4B`, `00786F4E`, `00786F55`, `00786F5C` |

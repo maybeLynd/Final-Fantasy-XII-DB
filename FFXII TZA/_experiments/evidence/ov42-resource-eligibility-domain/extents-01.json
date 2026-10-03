@@ -1,0 +1,60 @@
+{
+  "complete": true,
+  "method": "A STATIC_ONLY original physical metadata",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "driver_sha256": "114e7f79c850c11693f36cf9367ef19334a74e81be1ae457b0bfe3b122528900",
+  "directory_bytes": "0080e7020c8a0600",
+  "lookups": [
+    {
+      "path": "global-eligibility-entry-retained-preflight-01.json",
+      "sha256": "dc19b2d267a3178d0a47228d332cfd85d4a4820ee807d0137c62b581cb1be747"
+    },
+    {
+      "path": "owner-eligibility-entry-retained-preflight-01.json",
+      "sha256": "373c407cea6fc8cbaea8ca600d23e941fb4698ff8ac63cd5420929097ed4a0a4"
+    }
+  ],
+  "bodies": [
+    {
+      "entry": "0x30b770",
+      "end_exclusive": "0x30b7e7",
+      "bytes": 119,
+      "sha256": "89aff45510225d5b016cf1b2de9789d6c82d4ffabeadb0875f09e60145977a85",
+      "physical_bytes": "40554883ec50488d6c24404883e5c08b0dbbdbd701c7450000000000f7c180300000740bb80100000066894500eb040fb74500f605ae69fb010174086683c802668945000fbae10a73086683c804668945000fbae10973086683c808668945000fbae10b73086683c810668945008b45004883c4505dc3",
+      "records": [
+        {
+          "begin": "0x30b770",
+          "end_exclusive": "0x30b7e7",
+          "chain": [
+            {
+              "record_bytes": "70b71e00e7b71e001c4bc501",
+              "header_address": "0x1d74b1c",
+              "header_bytes": "010f0200"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry": "0x30b7f0",
+      "end_exclusive": "0x30b8d2",
+      "bytes": 226,
+      "sha256": "f5be2f457552de97dc2fb0654649940a168354cc3c48fb1a3de8acd45bdc90ea",
+      "physical_bytes": "40534883ec20c744243000000000488bd94885c90f84be000000448b0141f6c0100f84b1000000f6410420741a8b053d69fb0183c0fb83f801760cb90800000066894c2430eb050fb74c2430410fbae00873096683c90166894c2430410fbae01e730d85d274096683c90266894c2430488b93980600004885d274170fb6420585c0750f807a041a75096683c91066894c2430e8e81be7ff83f8017524488b83980600004885c074180fb6400585c075100fb75c24326683cb0166895c2432eb050fb75c2432e8b51be7ff83f8027508660bd866895c24328b4424304883c4205bc3",
+      "records": [
+        {
+          "begin": "0x30b7f0",
+          "end_exclusive": "0x30b8d2",
+          "chain": [
+            {
+              "record_bytes": "f0b71e00d2b81e00d029c301",
+              "header_address": "0x1d529d0",
+              "header_bytes": "01060200"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "limits": "Physical extents only. Code/data distinction, helper effects and natural reachability not established by metadata."
+}

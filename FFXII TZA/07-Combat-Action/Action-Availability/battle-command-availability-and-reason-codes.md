@@ -868,11 +868,61 @@ FABLE independent review ACCEPT-WITH-NARROWING,
 **Limits kept.** These limits are ASTRA's and FABLE's.
 
 - No authored out-reference binding, backing capacity, alias, lifetime, null or invalid destination, fault or
-  natural command-to-action path is observed or proved.
+  natural command-to-action path is observed or proved. *(Narrowed 2026-10-03 for the shipped `spc_z0000` script: next subsection.)*
 - Whether the bridge's decode can yield an invalid destination is not read.
 - The role of the bridge's copy globals is not established; no reader census was taken.
 - The 8 branch partitions are logical, not native calls. The overlap rows are arithmetic.
 - Whole OV-42 stays OPEN.
+
+### FABLE 2026-10-03: the shipped script that carries the queue reader's output into `spattackread` (OV-42)
+
+*Consumed from SWE2-DATA's record
+[`swe2data-ov42-authored-spattack-flow-1003`](../../_index/candidates/swe2data-ov42-authored-spattack-flow-1003/README.md)
+(`c77a50981`, 34 checks, 6 controls, FAILS 0), reviewed by SWE2-AUDIT-SPEC ACCEPT
+([review](../../_index/candidates/auditspec-review-swe2data-ov42-authored-spattack-flow-1003/REVIEW.md), `c5f35fc3c`, with
+its own extraction and decode). Static only: no game, emulator or native call was run.*
+
+- **The authored caller.** The event script `spc_z0000.ebp` is byte-identical in all nine language copies. Its calls to
+  verb `029A` (`getspattackskillinfo`, whose bridge calls the queue reader above) and to `029B` (`spattackread`, whose
+  bridge passes action and unit to `0030EEA0`) are three sites per copy. The record re-locates them from the decoded
+  image and rests no count on the census.
+- **The two out-references are disjoint.** Both `029A` calls pass two `file`-class s32 cells. The bridge decodes both
+  against one context, so the unit destination lies exactly 4 bytes past the action destination. The two are
+  byte-disjoint, so by the ordered-store formula above both values survive. That neither cell aliases the queue
+  globals is a premise, not a result.
+- **The loop path meets the precondition (H1), under the premises below.**
+  - `監督::全体処理` calls `029A` into vars 5 and 6, stores `!result` in var 3, and copies vars 5 and 6 into vars 0 and
+    1 as whole dwords. It then requests `技読み込み`.
+  - That reader returns at once unless var 3 is 0, that is, unless the same iteration's `029A` returned 1. Otherwise it
+    pushes var 1 and var 0 and calls `029B`.
+  - So `0030EEA0` receives exactly the action word and unit the queue reader stored, provided both destinations are
+    non-null (the reader guards each pointer).
+- **The init path cannot be established statically (H2).**
+  - `監督::init` calls `029A` into vars 0 and 1 and never tests the result. Var 3 is still 0, so the reader calls `029B`
+    whatever `029A` returned.
+  - With a pending queue this path is as clean as the loop path.
+  - With an empty queue (`022C2178` = FFFFFFFF) the reader writes nothing. `029B` then receives the cells' image
+    values, 0 and 0 in the shipped image: action word 0, not the -1 sentinel that `0030EEA0` tests.
+- **What this changes above.** The first "Limits kept" bullet of the queue-reader subsection is narrowed for this one
+  script. An authored out-reference binding is now shown statically on the loop path, and the init path's precondition
+  is shown not to be statically established.
+
+**Premises** (the record's, not proved):
+- the native ABI and the interpreter's stack contract;
+- opcode stack effects, and `REQ` operands read as (priority, actor, function), as the interpreter page records them;
+- the bridge's context global holds this image's slot during both calls;
+- the `file` area holds the image's load bytes;
+- the `file` cells do not alias the queue globals;
+- `監督::init` completes before the loop is requested.
+
+**Still OPEN:**
+1. The queue state when `監督::init` runs in a natural special attack. Next: the order of the producer store
+   `0030DC98` against the event start, or else one watch on `022C2178` at the init call.
+2. Native writers of the `file` cells outside the bytecode.
+3. The image buffer against the queue globals: the loader's allocation.
+4. What action word 0 does in `0030EEA0` / `0030CFB0` (owned by `spattack-native-word-remap`).
+
+This is not a natural command-to-action proof, and whole OV-42 stays OPEN.
 
 ### FABLE 2026-10-02: what the presentation-slot allocator admits (OV-42)
 
@@ -960,8 +1010,9 @@ scripted unit registry.*
     read, at address 0x714, and there is no sentinel return. That is a source prediction, not an observed
     fault, and no caller is shown to pass NULL.
 - **Other direct callers (raw `E8`/`E9` census).** The getter has three. One is this call. One is in a later case
-  of the same routine, where its AX goes to EDX for a different callee. One is in the unit display-record builder.
-  Only the first is read for the transfer. Indirect callers are not covered.
+  of the same routine, where its AX goes to EDX for a different callee *(qualified 2026-10-02, FABLE: that callee
+  is the routine's target builder, in case 9; the terminal-phase subsection below)*. One is in the unit
+  display-record builder. Only the first is read for the transfer. Indirect callers are not covered.
 
 So on this route the effective-id getter adds no bound. A non-`0x9F` word at O2's `+0x714` reaches the slot
 allocator unchanged. The standard producer frontier therefore narrows to whatever writes `+0x714` and what that
@@ -1071,7 +1122,9 @@ and stubbed callees.*
   covered.
 - **The two rows come from different routines.** The classifier's one direct caller is `0030CE10`, which passes its
   own incoming row unchanged; `0030CE10`'s one direct caller is `0030CBE0` (first subsection). The queue routine's
-  one direct caller builds its row separately (queue-writer subsection). Indirect callers are not covered.
+  one direct caller builds its row separately (queue-writer subsection), at the top of each of its invocations,
+  from its unit's WORD `+0x714` (FABLE 2026-10-02, the terminal-phase subsection below). Indirect callers are not
+  covered.
 
 **The conditional invariant.** Suppose the queue routine's dispatch still reads the kind 4 that this classifier
 published, and the queue arm's quotient equals the classifier's. Then q is 208..225, its low 16 bits are q, and the
@@ -1093,5 +1146,312 @@ queues 0. Both are arithmetic run through the original bytes in emulation, not n
 - The native effects of `0032F6E0`, `00309230`, `0032FC30` and `0020E600` are not read. The Win64 ABI, which
   preserves RSI and RBX, and valid, readable, stable row and descriptor state are premises.
 - ASTRA's later packet `summon-kind-row-carrier` (`c40b24340`), on the queue routine's row carrier, is not yet
-  reviewed.
+  reviewed. *(narrowed 2026-10-02, FABLE: the row carrier itself is now read, from ASTRA's
+  `ov42-caller-row-preconditions`, which reuses that packet's switch and table evidence - the terminal-phase
+  subsection below; `summon-kind-row-carrier` as a packet stays unreviewed)*
 - Whole OV-42 stays OPEN.
+
+### FABLE 2026-10-02: what the queue routine's caller hands it, and the bound that follows (OV-42)
+
+*From ASTRA's packet [`ov42-caller-quotient-bound`](../../_experiments/evidence/ov42-caller-quotient-bound/README.md)
+(`c51d5af60`), reviewed by FABLE ACCEPT-WITH-NARROWING
+([record](../../_index/candidates/fable-review-astra-ov42-caller-quotient-bound-1002/REVIEW.md), 67 checks, 0 FAIL, 9 controls).
+Static, plus an emulation of the original row construction feeding the original queue arm.*
+
+- **The id.** The queue routine's one direct caller latches the unit's WORD `+0x714` at its start (`movzx`, its
+  + 0x3D) and rejects any value above 542 with an unsigned compare on that latched register (its + 0x8E / + 0x92).
+- **The row.** It builds the row as the second lookup's result plus id × the descriptor's WORD stride: a 32-bit
+  `imul`, then `add r15d, ecx` (its + 0xE4). The 32-bit add zero-extends, so the row is low32(base + id × stride),
+  a 32-bit value the caller then dereferences. When the descriptor cell is null or the first lookup returns 0, the
+  row is 0. The descriptor cell `02EBF138` is read three times before its switch: a null test, the lookup key, and
+  (after the lookup call) the stride.
+- **The carrier.** R15 holds the row from there to the queue call (`mov rdx, r15`, then `call 00306760`); its other
+  writes restore the saved R15 on exit paths. Ids 208..241 go straight to that call. Other ids first run a helper and
+  then `00305640`, each with the row in RDX. On both routes the call follows a test of bit 30 of the row's DWORD
+  `+0xC`.
+- **The bound.** If the queue arm's lookup base has the same low 32 bits as the caller's and its stride is the same
+  positive WORD, then id × stride ≤ 542 × 65535 = 35,519,970 < 2^32. So the queue's 32-bit subtraction cancels the
+  caller's addition exactly, the quotient is the id, and the queued DWORD is id − 0xD0: 0..334 or FFFFFF30..FFFFFFFF.
+  Ids 511..534, which queue as 303..326, are excluded. Id 207 queues FFFFFFFF by subtraction, without the FFFF branch.
+  Emulated through the original bytes for every id 0..542 at 9 strides and 5 bases, plus 400 random cases.
+- **Weaker than the kind-band invariant.** This bound needs neither the same owner nor the classifier's earlier row
+  (subsection above): equal base low32 and equal positive stride suffice.
+
+**Limits kept.**
+
+- Whether a normal call has equal construction and queue bases and strides stays OPEN. The two reads are separated
+  by the helpers above and the queue routine's own callees. The table binding's writers and lifetime are not read.
+- Three supplied states mark the limits, run through the original bytes: a different queue base gives 511, a halved
+  stride gives 512, and id 720 with the guard bypassed gives 512. None is a native run.
+- Kind-4 dispatch and natural admission of any row are not shown. A row above 4 GiB, or a null row reaching the
+  bit-30 test, is outside the premises.
+- No natural-impossibility claim is made for 511..534. Whole OV-42 stays OPEN.
+
+### FABLE 2026-10-02: what the terminal phase hands the target builder and the special sequence (OV-42)
+
+*From ASTRA's packet [`ov42-caller-row-preconditions`](../../_experiments/evidence/ov42-caller-row-preconditions/README.md)
+(`103aa3123`), reviewed by FABLE ACCEPT-WITH-NARROWING
+([record](../../_index/candidates/fable-review-astra-ov42-caller-row-preconditions-1002/REVIEW.md), 68 checks, 0 FAIL, 15 controls).
+Static, plus an emulation of the original bytes on synthetic units, the retained US action table and stubbed
+callees.*
+
+The routine is the battle-action routine of the effective-id subsection above, with its 13-way switch on the unit's
+phase byte `+0x6B4`. The routine, its target builder and its small helper are named by role here; their addresses
+are in the record.
+
+- **One row per invocation, latched at the top** (the queue-caller subsection above): neither the word nor the row
+  is reloaded later in the invocation.
+- **Case 9, the terminal phase.** Case 8 makes one call and falls into it. Case 9 runs in this order:
+  - it calls `00387090` with the unit's `+0x698`;
+  - it hands the returned AX, zero-extended, to the target builder;
+  - it hands the latched word to the helper, and overwrites the helper's return without testing it;
+  - for a word outside D0..F1 it calls a preview routine and then, if the row has bit 30 of `+0x0C`, `00305640` (next
+    subsection);
+  - if bit 30 is set at a second test, `00306760` receives the latched row.
+
+  The builder latches its word and builds its own row from its own three descriptor reads and two lookups. It never
+  reads the routine's row.
+- **Two carriers, agreeing only under premises.** The builder works from the getter's word, and the sequence from the
+  unit's own word at entry. They name the same row only when all three of these hold:
+  - the getter's owner O2 is this unit;
+  - its `+0x714` is unchanged between the routine's entry and the case-9 getter call;
+  - the word is not `0x9F` with a record selected. In that case the getter returns the record's WORD `+0x10`; see
+    the effective-id subsection.
+
+  None of these is established, and the two rows come from separate descriptor reads.
+- **Nothing here re-checks the classifier.** The routine has no access to the kind `022C215C` or the owner `022C2168`.
+  It reads the state `022C2160` only after the sequence call. The row's bit 30 is read three times: before
+  `00305640`, after it, and after the sequence.
+- **What "not rerun" covers.** An invocation that enters at case 8 or 9 reaches neither the readiness call of case 7
+  nor the acquire wrapper `0030CFB0` of case 6. Cases 6 and 7 fall through into 8 and 9, though. An invocation that
+  enters at case 6 calls the getter twice: once for the acquisition word and once for the builder (emulated).
+- **The helper on 511..534.** For words 278..542 the helper builds the row as a 32-bit pointer and tests bit 6 of row
+  byte `+0x2C`. In the retained US table that bit is clear on every one of 511..534. Under a stable binding to that
+  table, the helper therefore makes only its two lookups, writes nothing outside its stack and returns 0, for all 24
+  words (emulated). In 278..542 the bit is set only on rows 325, 326, 416, 417, 436 and 455. Those rows reach an
+  owner lookup and, except 455, an effect call. A supplied bit-6 row reaches the effect call too.
+- **The builder's indirect call** has two fixed local targets. Bit 2 of the row's WORD `+0x36` picks between them, so
+  it is not a virtual dispatch. Neither target is read, and neither is any of the builder's other 21 calls.
+
+So the terminal phase does not re-establish the classifier's row or owner. It rebuilds its rows from current
+carriers: the unit's `+0x714` at entry for the sequence, and the getter's word for the builder. For the queue leg
+to exclude 511..534 through the kind, the classifier's row and this routine's entry word must agree, and that is an
+earlier lifecycle obligation. It is not established.
+
+**Limits kept.** These limits are ASTRA's and FABLE's.
+
+- Natural pairing of the classifier's slot word (`0030CBE0`) and this routine's entry `+0x714` stays OPEN. So do the
+  writers of `+0x714` and of the phase byte, and whether a natural invocation enters at case 8 or 9 or falls through
+  from 6 or 7.
+- Kind and owner persistence beyond the direct census (kind-band subsection) stays OPEN.
+- The descriptor and table binding, its initialization and its stability across the calls are premises. So are
+  table addresses below 4 GB (all three bodies form 32-bit row pointers) and a positive stride.
+- The native effects of the getter, the builder's 22 calls, the helper's lookups and effect call, the case-8 call
+  and the preview are not read. `00305640`'s own body is read in the next subsection; its callees are not. The
+  Win64 ABI, which preserves the latched registers, is a premise.
+- These are local normal-return CFG facts and emulation on supplied states. They are not native runs or natural
+  reachability.
+- No natural-impossibility claim is made for 511..534.
+- Whole OV-42 stays OPEN.
+
+### FABLE 2026-10-02: what the terminal cost helper reads, writes and passes on (OV-42)
+
+*From ASTRA's packet [`ov42-terminal-resource-helper`](../../_experiments/evidence/ov42-terminal-resource-helper/README.md)
+(`d66234298`), reviewed by FABLE ACCEPT-WITH-NARROWING
+([record](../../_index/candidates/fable-review-astra-ov42-terminal-resource-helper-1002/REVIEW.md), 55 checks, 0 FAIL, 13 controls).
+Static, plus an emulation of the original helper on synthetic units, rows and descriptors with its nine callees
+stubbed. The packet's producer-prerequisite repair is SPEC's to accept; FABLE inspected it and did not re-run it.*
+
+- **The call.** The terminal phase (the terminal-phase subsection above) calls `00305640` with the unit, the latched
+  row and R8D = 1. It does so only for an entry word outside D0..F1 whose row has bit 30 of `+0x0C`. The special
+  sequence follows only after a second bit-30 test.
+- **`00305640` (393 B, one `.pdata` record).** It computes the row's quotient again:
+  q = ((low32(row) - low32(base)) mod 2^32) / u16 stride, unsigned 32-bit. The base and the stride come from two
+  reads of `02EBF138` around one `0020E600` call, with no null test and no zero test. Then:
+  - *Costs.* `FUN_00309110` and `00308FF0`, the functions the resource leg above compares with live MP and with the
+    Mist charge count, each get the unit and q's low 16 bits.
+  - *Stats.* Two further calls (`00305640` + 0xB4 and + 0xCD) get the unit's record `+0x698`. The first gets EDX =
+    minus `FUN_00309110`'s result. The second gets EDX = minus (the record's signed WORD `+0x28` times `00308FF0`'s
+    result). Both get R8D = 16 + (low 32 bits of the entry R8 != 0). That is 17 from the terminal call. Of the
+    helper's four direct callers, three pass 1 and one passes 0.
+  - *Gil.* It calls `00253690`, subtracts the unit's DWORD `+0xE54` in 32 bits, and passes the difference to the gil
+    call (`00305640` + 0xEB). When the difference is negative as a signed 32-bit value, it passes 0 instead, and a
+    32-bit wrap can flip that sign. `+0xE54` is the value that the preview call just before this one stores.
+  - *Its own writes.* It writes only DWORD unit `+0xE58` := 0 and WORD unit `+0xDC8` := `0xFFFF` (the consume path
+    of reason row `0x15`). It writes them only when the unit and its record are non-null and record byte `+5` is 0.
+    It writes neither `02EBF138` nor the table.
+  - *The final call.* With byte `+5` = 0, the row's type byte `+0x1E` picks the final call (`00305640` + 0x165).
+    Types 0, 1 and 2 pass small constants. Type 10 first makes one call (`00305640` + 0x11C), then reads the
+    descriptor again, calls `0020E600` again, recomputes the full 32-bit q and passes it with ECX = 13. Every other
+    type makes no final call.
+- **Two widths, one premise.** The cost inputs are q mod 65536, and the type-10 input is the recomputed q (emulated:
+  q 65744 gives 208 and 65744). The two reads are independent: repointing `02EBF138` during the type-10 leg changes
+  only the second quotient (emulated). Under the equal-binding premise q is the routine's entry word, at most 542,
+  so the two agree.
+- **On this call site the type-10 leg needs an off-premise row.** In all nine shipped language tables the type-10
+  rows are 226..241. All of them lie inside D0..F1, which the terminal phase routes around this helper. In the US
+  table, none of the 53 bit-30 rows outside D0..F1 makes any final call (types 5, 7, 9 and 255; emulated). That
+  includes 511..534, which have type 7.
+- **No NULL safety.** The unit test skips only the reset. A null unit reads address 0x698 after the two cost calls. A
+  null record reads 0x28 after the first stats call. A null descriptor reads 0xC. A zero stride divides by zero.
+  These are source predictions.
+
+So the helper's own effects are the two conditional unit resets, and it rewrites neither the descriptor nor the
+table. The sequence row was latched before this call and is not reloaded, but `00306760` divides it by the
+descriptor that it reads afterwards (queue-writer subsection). So a rebinding of the descriptor or the table by any
+of the helper's nine callees would change the queue's quotient. Whether one of them does is the open frontier.
+
+**Limits kept.** These limits are ASTRA's and FABLE's.
+
+- The native effects of the cost, stats, gil, type-10 and final callees, and of `0020E600`, are not read. That
+  includes any table or arena rebinding, any callback scheduling and any owner change in the window before the
+  special sequence.
+- Equal binding (base low32 and positive stride), table initialization and binding, and stable unit, record, row and
+  descriptor state are premises. So are the Win64 ABI and table addresses below 4 GB.
+- The 65744 case and the repointed descriptors are supplied states run through the original bytes, not native runs.
+  No natural row, live counter call or natural reach of this call site is shown.
+- No canonical cost census is credited here. The cost and gil semantics are the page's existing ones, consumed and
+  not re-tested.
+- Whole OV-42 stays OPEN.
+
+### FABLE 2026-10-02: how the queued word survives the script round trip, and when it does not (OV-42)
+
+*From ASTRA's packet [`ov42-interpreter-transfer`](../../_experiments/evidence/ov42-interpreter-transfer/README.md)
+(`76dfc5dc6`), reviewed by FABLE ACCEPT-WITH-NARROWING
+([record](../../_index/candidates/fable-review-astra-ov42-interpreter-transfer-1002/REVIEW.md), 77 checks, 0 FAIL, 9 controls).
+Static, plus an emulation of the original push, pop and decoder.*
+
+- **The store is raw.** The queue reader `00309C00` writes the queue DWORD through the bridge's first-resolved
+  out-reference with a plain 4-byte store, not the interpreter's typed store. The reference getter picks a base from
+  bits 24..26 of the reference word and adds its low 24 bits; it never reads the width or float bits, so the
+  variable's declared width does not narrow this store. Scopes 6 and 7 take base 0.
+- **Reading it back separates width from kind.** The interpreter's push loads the variable at one of six widths
+  (u8, s8, u16, s16, s32, f32, from bits 28..31 of the resolved record) and tags the payload by the record's kind:
+  kind 1 integer, kind 2 float (the same 32 bits). The pop `00267E10` returns a tag-1 payload exactly and converts a
+  tag-2 payload with CVTTSS2SI. Pushes need depth below 63.
+- **The decoder needs only the low 16 bits.** The decoder's native passes the first pop in EDX and the second in ECX
+  to `0030EEA0`, which turns −1 into FFFF and otherwise adds 0xD0 in BX (16 bits). So any integer-tagged value with
+  the queued word's low 16 bits, other than −1, decodes back to that word. Emulated through the original bytes for
+  all 65,534 available words with u16, s16 and s32 integer loads.
+- **What breaks it.** Through a u8 or s8 load, words 511..534 decode to 255..278. Through a float tag, the raw
+  encoded value (303 for 511) is a positive subnormal, CVTTSS2SI gives 0 and the decoder gives 208 (emulated with
+  exceptions masked).
+- **The decoder is gated.** It stores the decoded word at unit `+0x758` and calls `0030CFB0` only when `0031B7E0`
+  returns a unit for the second pop and DWORD `022C2170` is 4. Otherwise it returns −1 or −2, and the native discards
+  that result.
+
+**Limits kept.**
+
+- Which variable a real script uses, at which declared width and kind, is not read. 511..534 survive the round trip
+  only through a 16- or 32-bit integer variable.
+- A valid four-byte destination, nonaliasing, lifetime, valid stack state and the error handler's effects are
+  premises. The reader's second direct consumer (above) takes the queue without any script store.
+- Whole OV-42 stays OPEN.
+
+### FABLE 2026-10-02: what binding the action table writes, and why the same descriptor pointer does not fix the rows base (OV-42)
+
+*From ASTRA's packet [`ov42-action-table-binding`](../../_experiments/evidence/ov42-action-table-binding/README.md)
+(`ca2dd6483`), reviewed by FABLE ACCEPT-WITH-NARROWING
+([record](../../_index/candidates/fable-review-astra-ov42-action-table-binding-1002/REVIEW.md), 57 checks, 0 FAIL, 17 controls).
+Static, plus an emulation of the original binder, its child binder and both resolver leaves on supplied
+descriptors; nothing else is called.*
+
+- **How the slot is bound.** The section registrar reads DWORD `+0x3C` of its section directory and calls a
+  one-caller wrapper. The wrapper sign-extends that DWORD into the descriptor pointer D and passes it, with the slot
+  `02EBF138`, to the generic section binder (`AreaData_BindAndRebaseSectionDescriptor`, the registry page's AG-12).
+  In a displacement census of `02EBF138`, the wrapper's `lea` is the only instruction that forms the slot's address.
+  No instruction stores to it by displacement, and every other hit reads it.
+- **The slot is written first.** The binder stores D into the slot before it tests D for null and before any
+  rebase. This order is not atomic initialization. Four of the five rebases then address the descriptor through a
+  fresh load of that slot, not through D.
+- **The rows field is rebased in place, with no guard.** For each nonzero `+0x0C`, `+0x10`, `+0x18` and `+0x1C`, the
+  binder adds low32(D) and stores the low 32 bits. Zero fields stay zero, and nothing records that a field was
+  already rebased. So a second bind of the same pointer moves the rows base. With D = 0x100000 and `+0x0C` = 0x20, the
+  first bind stores 0x100020 and the second stores 0x200020, while the slot holds 0x100000 both times. This was
+  emulated on a supplied descriptor and is not a native double bind.
+- **`+0x14` holds an encoded DWORD, not a pointer.** The binder adds low32(D) to get M. It passes M through the
+  encoder, which subtracts the low DWORD of the image-address base, and stores the result, even when M is 0. Only
+  then, if M is nonzero, does it decode that value with `0020E600`, which adds the full QWORD base, and rebase the
+  nested directory there. The directory's entries get + M, not + D. The first `count` entries go through the child
+  binder at depth 0, and the last is rebased in place. When the base's upper half is nonzero, the address the
+  binder visits differs from M (emulated).
+- **What it does not write directly.** None of the binder's own seven stores uses displacement 4 or 8, so it never
+  stores the row count `+4` or the stride `+8` directly. A nested directory that overlapped the header could still
+  write them. In a constructed model, a count-0 directory at D+4 adds M to D+8 and turns a stride of 60 into 64.
+  That model is not a stock action table.
+- **The image-address base has a write route.** Apart from the two resolver leaves, which read the base, no
+  instruction accesses it by displacement. But a texture-bind leaf's signed 16-bit index can store into it
+  (published `de52023ee`, re-read here).
+
+**What this changes for OV-42.** The kind-4 bound in the kind-band subsection needs equal low32 rows bases and equal
+positive strides. Pointer identity of the slot does not supply them: a rebind of the same pointer moves `+0x0C`, and
+a nested overlap or a base write could move the stride or the decoded base. The subsection's own wording, "pointer
+identity is not needed", already avoids the shortcut. This subsection records why the shortcut would fail.
+
+**Limits kept.** These limits are ASTRA's and FABLE's.
+
+- No writer, alias, callback or rebind is excluded in the window from the current-row construction to the kind-4
+  quotient. The next discriminator is the resource registration, reset and reuse paths that reach the registrar, and
+  any writer of `+0x0C`, `+8` or the base during that window. A direct-reference census, pointer identity or an empty
+  live trace cannot replace that proof.
+- Natural double binding, a stock header overlap, and a base write during combat are not shown. The three supplied
+  models are arithmetic through the original bytes, not native runs.
+- Valid, separate slot and descriptor storage, the Win64 ABI and an unchanged base between paired encode and decode
+  reads are premises.
+- Whole OV-42 stays OPEN.
+
+### FABLE 2026-10-02: what can veto the consume path's MP decrease, and what has already happened when it does (OV-42)
+
+*From ASTRA's publication `ov42-mode17-query-boundaries` (`7b4e2b92c`), the two folders
+[`ov42-resource-mutator-mode17`](../../_experiments/evidence/ov42-resource-mutator-mode17/README.md) and
+[`ov42-resource-eligibility-domain`](../../_experiments/evidence/ov42-resource-eligibility-domain/README.md), reviewed by FABLE ACCEPT-WITH-NARROWING
+([record](../../_index/candidates/fable-review-astra-ov42-mode17-query-boundaries-1002/REVIEW.md), 65 checks, 0 FAIL, 18 controls).
+Static, plus an emulation of the original eligibility queries, the `+0xC20` getter and the settings accessor, and of
+both resource modifiers with their outside callees stubbed.*
+
+- **The call.** The consume path `00305640` (+ 0xB4) passes the negated MP cost to the primary resource modifier
+  (`BattleStats_ModifyPrimaryResource`, on the MP page). It passes mode 16 or 17: bit 4 is always set, bit 7 is
+  always clear, and bit 0 is set when the path's R12D is nonzero. Its next call (+ 0xCD) passes the same mode to the
+  secondary modifier.
+- **Mode 17 skips the entry check.** Bit 0 skips the entry leg, which tests the **low** WORDs of the global and unit
+  eligibility masks. In mode 16 that leg runs before anything else.
+- **On a decrease, the notification comes first.** If the owner unit exists, the modifier first calls the publisher
+  that bit 7 leaves enabled. It passes the owner's DWORD `+8`, the old MP, the clamped new MP and 1. Only then does it
+  run both mask queries again and test their **upper** WORDs. If either is nonzero, it returns: MP is not stored, and
+  the recovery accumulator is not cleared. The publisher has already been called by then. That is a call attempt,
+  and what it shows on screen is not read.
+- **The global mask cannot veto.** The shipping global query zeroes its result DWORD and writes only its low WORD,
+  and it makes no call. So its upper WORD is always 0. This was emulated over every input bit at eight stack
+  alignments. The earlier mode-17 model with a nonzero global upper WORD needs a replaced callee. It is an
+  intervention, not shipping behaviour.
+- **The unit mask's upper WORD is the console's Invincible setting.** The unit must be nonNULL with DWORD bit 4
+  set. The unit query then reads `+0xC20` of the console settings object twice, through two separate getter calls.
+  Bit 0 is set when the first read is 1, the unit's current stats exist and their byte `+5` is 0. Bit 1 is set when
+  the second read is 2. With one value read twice, the upper WORD is 0, 1 or 2. Two different reads could make 3,
+  which is a supplied model. So in mode 17, Invincible 1 or 2 stops an MP decrease after its notification attempt.
+  A positive delta never consults the queries.
+- **The settings object.** Its accessor builds the object only when its root is NULL: it allocates 0x10E8 bytes,
+  constructs with `001CCB20` and stores the constructor's result. Otherwise it returns the root with no call and no
+  store. In a displacement census the root is stored only on two such NULL paths. One of them is reached from the
+  startup manager-init burst. The constructor stores 0 to `+0xC20`, but seven unread calls follow that store, so 0
+  is not shown to be the final default.
+- **The secondary modifier.** In mode 17 it stores its WORD `+6` and then calls its follow-up with the full mode,
+  without consulting the queries.
+- **A link to the special-sequence state.** The unit mask's low bit 3 (value 8) is set when the unit's byte `+4`
+  bit 5 is set and `022C2160` is not 5 or 6. It is a low-WORD bit, so it matters only to the mode-16 entry check,
+  never to the late veto.
+
+**What this changes for OV-42.** The first-query uncertainty in the cost leg's mode-17 decrease is narrowed. A late
+veto can come only from the unit mask, that is, from Invincible 1 or 2 on an eligible unit, under the premises
+below. A vetoed decrease splits the call from the effect: the notification call is attempted, but the stored MP does
+not change.
+
+**Limits kept.** These limits are ASTRA's and FABLE's.
+
+- Natural initialization timing of the settings root is not read, and neither are other writers of the root or of
+  `+0xC20` during a query, concurrency, ownership or lifetime. The console's Invincible arm is the known writer of
+  `+0xC20`, and it wraps at 3 (console slice A).
+- The effects of the two publishers, the accumulator clear and the secondary's follow-up are not read. So no
+  visible presentation is claimed for a vetoed decrease, and no whole-call no-effects claim is made.
+- Whether normal play reaches mode 17 with a negative delta and Invincible 1 or 2 is not shown.
+- Valid storage, private frames and the Win64 ABI are premises. The table binding and whole OV-42 stay OPEN.

@@ -781,3 +781,13 @@ Interior anchor `00309A9D` (the `0030D9A0` call).
 `00312DF0` (237 B) is the jittered-point picker `00312730` runs: it seeds a vec3 from `rcx` (or `00320940` default, fail `-> -1`), then up to 9 tries draw two `00328370()` values `idiv`-bounded to `+-r8d` jitter added to base x/z and ask `00317DE0(r14, out, r8d!=0)`; first accept returns 0, exhaustion `-2`
 
 Interior anchor `00312E81` (function `00312DF0`).
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-battle-action-handler-table-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00265060` | 38 B | returns qword `+0xB8` of `rcx` when `rcx` is non-null and the top three bits of byte `+3` (`>> 5`) equal 1 or 3; otherwise (null `rcx` or any other value) returns the address `02099DC0` | `00265063`, `00265069`, `00265071`, `00265076`, `0026507E` |
+| `00344390` | 124 B | calls `00344390 + 0x1D` and then `00344390 + 0x27`, each with `r9` (results A and B), passes A to `00344390 + 0x30` and B to `00344390 + 0x3A`, passes those two results to `00344390 + 0x4D` and `00344390 + 0x42` respectively, calls `004686D0` with the mapped A in `rcx` and the mapped B in `rdx`, and tail-jumps to `00344390 + 0x77` with the incoming `rcx` and the returned `xmm0` in `xmm1` | `003443AD`, `003443C0`, `003443D2`, `003443E8`, `00344407` |
+| `00426520` | 59 B | returns without work when `cx` is -1 or when dword `+0x284` of row `(movsx cx) * 0x740` plus qword `022C6F28` is 0 (the row pointer is then zeroed by `cmove`); otherwise ORs 0x40 into byte `+0x4B7` of that row and tail-jumps to `00427320(row, 0x1001)` | `00426524`, `0042653A`, `00426540`, `00426549`, `00426555` |

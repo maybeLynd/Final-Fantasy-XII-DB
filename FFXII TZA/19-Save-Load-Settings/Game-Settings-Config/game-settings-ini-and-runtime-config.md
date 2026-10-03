@@ -1822,3 +1822,12 @@ Interior anchor `001ED07C` (function `001ED020`).
 | `001ED1E0` | 86 B | returns 0 when dword `01F82E38` is zero or `001EC560()` returns zero; otherwise takes the sign-extended low word of `00265270()` and a value v that is dword `01F832B0[i]` (stride 4) for the dword index i at `01DFE40C` when i is 0 to 4 (unsigned compare) and 0 otherwise, and returns 1 when the word equals `0x14B7` and v equals 4, else 0 | `001ED1F4`, `001ED1F6`, `001ED211`, `001ED218`, `001ED220` |
 | `0020C1A0` | 16 B | stores `edx` at dword `+0x84` and `r8d` at dword `+0x80` of `rcx` and returns 1 in `al` | `0020C1A6`, `0020C1A8` |
 | `008B9040` | 28 B | stores the address `01CC6B60` into qword `02EAEA68` and tail-jumps through the import at `008C20D0` with `rcx` = `02EAEA70` | `008B9047`, `008B904E`, `008B9055` |
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../../_index/candidates/fable-home-game-settings-ini-and-runtime-config-1002/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `002287A0` | 41 B | `002507C0` + 0x2F | returns 1 when `002287A0` + 0x4 returns 6 or, failing that, a second call at `002287A0` + 0xE returns 5, and 0 otherwise | Interior anchor `002287A4`; Interior anchor `002287A9`; Interior anchor `002287B3`; Interior anchor `002287B8`; Interior anchor `002287BF` |
+| `0029FAD0` | 115 B | `0023B6F0` + 0x312 | takes `f` = bits 6-15 of dword `rcx+8` as a signed 10-bit value, zeroes two stack words `a` and `b`, and calls `0029FAD0` + 0x3F(&`a`, &`b`, qword `rcx+0x18`, `0029FAD0` + 0x25(dword `rcx+0x20`), `f` as the fifth (stack) argument); then stores the truncated float(signed word `a`) times float `rcx+0x28` to word `+0xA`, clears bits 6-15 of dword `+8` and sets bit 2 of byte `+0x2D` | Interior anchor `0029FAE8`; Interior anchor `0029FB0F`; Interior anchor `0029FB2E`; Interior anchor `0029FB32`; Interior anchor `0029FB39` |

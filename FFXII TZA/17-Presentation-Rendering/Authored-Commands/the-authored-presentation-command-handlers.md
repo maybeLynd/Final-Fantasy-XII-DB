@@ -1139,3 +1139,7 @@ reaction, and 3 the band-C evades.
 **Not established here:** what the shadow pool's values do on screen; which bone key 29 or `0x1E` is in each model;
 what subtypes 2/6, 4, 5 and 9 look like, and why 7 and 8 are authored at all; which palettes the 7 section-5 models
 carry; whether `004218A0`'s by-name lookup matches on kind-2 data. All are content or live questions, not code.
+
+`003B0C50` (655 B) is the type-dispatched row reader `00520C80` consults: `022C6F28` resolves the `0x740` segment row by id, `rbx+0x108`'s movement body is asked for its ground type (-1 falls out), the 19-arm RVA table `003B0EE0` jumps on the type (`003B0D09`), arms select constants `0x64`..`0x67`/`0x94` and the body's depth flag (bit 3 of its `+0x90` word) and depth float (`+0xC0`) feed xmm6 - the per-type parameter fetch the authored handlers apply.
+
+Interior anchor `003B0DD2` (function `003B0C50`).

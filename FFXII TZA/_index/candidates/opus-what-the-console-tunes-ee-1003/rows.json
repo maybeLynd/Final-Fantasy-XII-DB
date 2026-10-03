@@ -1,0 +1,148 @@
+{
+ "page": "00-Engine-Core-Runtime/Developer-Tuning-Console/what-the-console-tunes.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "what-the-console-tunes.json",
+ "rows": [
+  {
+   "fn": "001FF6B0",
+   "text": "when dword `[rcx]` is not 3 it calls `002001F0` with the incoming registers, stores 3 to `[rcx]`, calls `00210EC0(0x38)` and, when that returns non-null, calls `001EDF00(rsp+0x50, 'EASTL map')` and then `001FE510(block, result)` and stores that call's return to qword `[rcx+8]` (a null block stores 0 there); on both paths it then tail-jumps to `001FF4F0` with `rcx` = qword `[rcx+8]` and `rdx` = the incoming `rdx`",
+   "anchors": [
+    [
+     "001FF6CF",
+     "cmp"
+    ],
+    [
+     "001FF6D4",
+     "call"
+    ],
+    [
+     "001FF6E4",
+     "call"
+    ],
+    [
+     "001FF70D",
+     "call"
+    ],
+    [
+     "001FF713",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0021D280",
+   "text": "returns 0 when dword `[rcx+0x48]` is zero; otherwise it reads node `n` = qword `[rcx+0x30]` and `v` = qword `[n+0x20]`, decrements `[rcx+0x48]`, calls `0016D6D0(n)` and `0016DA60(n, rcx+0x28)`, calls the vtable slot `+0x18` of the object at `rcx+0x50` with that object, `n` and 0x28, calls `00199DB0(rcx+0x58, rsp+0x28, rsp+0x50, low byte of v)`, and returns `00225160(v)` when `v` is non-null, else 0",
+   "anchors": [
+    [
+     "0021D2A0",
+     "jbe"
+    ],
+    [
+     "0021D2AF",
+     "dec"
+    ],
+    [
+     "0021D2D6",
+     "call"
+    ],
+    [
+     "0021D2ED",
+     "call"
+    ],
+    [
+     "0021D2FF",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00220550",
+   "text": "returns 0 when dword `[rcx+0x48]` is zero; otherwise it reads node `n` = qword `[rcx+0x30]` and `v` = qword `[n+0x20]`, decrements `[rcx+0x48]`, calls `0016D6D0(n)` and `0016DA60(n, rcx+0x28)`, calls the vtable slot `+0x18` of the object at `rcx+0x50` with that object, `n` and 0x28, calls `00199DB0(rcx+0x58, rsp+0x28, rsp+0x50, low byte of v)`, and returns `002255C0(v)` when `v` is non-null, else 0",
+   "anchors": [
+    [
+     "00220570",
+     "jbe"
+    ],
+    [
+     "0022057F",
+     "dec"
+    ],
+    [
+     "002205A6",
+     "call"
+    ],
+    [
+     "002205BD",
+     "call"
+    ],
+    [
+     "002205CF",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "002206B0",
+   "text": "returns 0 when dword `[rcx+0x48]` is zero; otherwise it reads node `n` = qword `[rcx+0x30]` and `v` = qword `[n+0x20]`, decrements `[rcx+0x48]`, calls `0016D6D0(n)` and `0016DA60(n, rcx+0x28)`, calls the vtable slot `+0x18` of the object at `rcx+0x50` with that object, `n` and 0x28, calls `00199DB0(rcx+0x58, rsp+0x28, rsp+0x50, low byte of v)`, and returns `00225880(v)` when `v` is non-null, else 0",
+   "anchors": [
+    [
+     "002206D0",
+     "jbe"
+    ],
+    [
+     "002206DF",
+     "dec"
+    ],
+    [
+     "00220706",
+     "call"
+    ],
+    [
+     "0022071D",
+     "call"
+    ],
+    [
+     "0022072F",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007A45C0",
+   "text": "calls `007AB460(rsp+0x20)` and returns -1 when that is negative; otherwise it writes 3 to dword `[p]`, dword `[rcx]` to `[p+8]`, `xmm1` to float `[p+0xc]`, `xmm2` to float `[p+0x10]` and `r9d` to dword `[p+0x14]` of the returned record `p` and returns `007AB550(p)`; the stack cookie is checked through `00808C40`",
+   "anchors": [
+    [
+     "007A45F4",
+     "call"
+    ],
+    [
+     "007A45FB",
+     "jns"
+    ],
+    [
+     "007A4607",
+     "mov"
+    ],
+    [
+     "007A4630",
+     "mov"
+    ],
+    [
+     "007A4638",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [
+  "001967D0",
+  "001FF4F0",
+  "00200BF0",
+  "00202930"
+ ],
+ "corrections": [],
+ "mode": "ee"
+}

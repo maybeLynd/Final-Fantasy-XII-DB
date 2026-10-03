@@ -1,5 +1,5 @@
 ---
-system: Thirteen .bin families reached only by kind/subtype request — pack directories, font packs, and six small tables
+system: Thirteen .bin families reached only by kind/subtype request — pack directories, font packs, and six small tables  # <- corrected 2026-10-02, OPUS: fourteen families (6 packs, 3 kind-9, 5 kind-7 singletons) make the 87 files
 category: 02-Resource-And-Asset-Pipeline
 status: DOCUMENTED
 owner_layer: archive format sheets
@@ -28,7 +28,7 @@ audit:
 
 # The loader-bound `.bin` families
 
-> `FABLE-REQ-SWE2-DATA-LOADERS-FOR-UNNAMED-FILES`. These thirteen families are not in the
+> `FABLE-REQ-SWE2-DATA-LOADERS-FOR-UNNAMED-FILES`. These ~~thirteen~~ fourteen families *(corrected 2026-10-02, OPUS: six pack directories, three kind-9 files and five kind-7 singletons, whose 52 + 4 + 31 files make the 87; fourteen families)* are not in the
 > path tables a loader spells — each is reached by a **numeric kind/subtype request**
 > ([`constant-resource-requests.tsv`](../VBF-Archive-And-Authored-Tables/members/constant-resource-requests.tsv)).
 > The census found their files; this sheet is the other half: **what the loader does with the bytes**.
@@ -91,7 +91,7 @@ the resource object (TIM2 header → `obj+0x18`, picture params → `obj+0x20`).
 Ten named resources — `targetline_p`, `battle_4_c`, `battle_4_p`, `partytop_4_c`,
 `partytop_8_c`, `icons_c`, `extra_c`, `s_font_c`, `mini_face_c`, `party_grd_2` — plus an
 eleventh directory entry (`+0x28`) stored **raw** at `*(0209AC30)+0x388` (no `0024A1D0` bind).
-Binder `00280740` → `00280670` walks slots `+0x338..+0x388` in step-8 lockstep with the offset
+Binder `00280740` → `00280670` walks slots ~~`+0x338..+0x388`~~ `+0x338..+0x380` *(corrected 2026-10-02, OPUS: `00280670+0x5A` `cmp rbx, 0x388` / `+0x61` `jl` stop before `+0x388`, which `00280670+0x84` stores raw)* in step-8 lockstep with the offset
 table step-4.
 
 ### `mrppack_ys` — twenty-three MRP packages, `002808D0` (shared loader)
@@ -170,7 +170,7 @@ consumes.
 
 ## 3. The kind-9 named objects
 
-Kind 9 files arrive as **named resource objects** (`0036A190` allocs, `0036C660` registers the
+~~Kind 9 files arrive as **named resource objects**~~ Two of the three kind-9 files arrive as **named resource objects** *(corrected 2026-10-02, OPUS: the summon-effect loader reads `summoneffectdata` into the fixed `.data` buffer `02AD9B60`, its `+0x5D` `lea r8`, as the row below says)* (`0036A190` allocs, `0036C660` registers the
 name). ~~All three complete through `0032E620` with a bind callback.~~ *(Corrected 2026-09-29, SWE2-DATA:
 two do; `summoneffectdata` passes a null callback and a fixed `.data` destination, see its row.)*
 
@@ -284,7 +284,7 @@ the pair array. Ships only in `ch`/`in` — the locales whose fonts need per-gly
 ### `monotone_chr` — `{CLT2, pixels, CLT2, pixels}` in two sections
 
 `0x1980` bytes: `CLT2` at `+0x0` and again at `+0x880`. The loader's two-iteration loop
-requests subtype `0x74` (this file) and `0x75` (**no file ships — the slot stays null**), sizes
+requests subtype `0x74` (this file) and `0x75` (~~**no file ships — the slot stays null**~~ `Char_Silhouette.as7` *(corrected 2026-10-02, OPUS: `002C8EE0`'s two-pass loop asks for kind 7 ids `0x74` and `0x75` (`002C8EE0+0x38` `lea edx, [rdi + 0x74]`); path-table entry `0x75` is `in\Bin_Menu\Char_Silhouette.as7`, which ships in `in` and `ch` and is 2,134,185 B in all twelve `.fst`)*), sizes
 the first allocation `+0x880`, and copies a `0x80`-block palette out of the `clutpack_ys` slot
 at `*(0209AC30)+0x390` into `alloc+0x1DC0`. **Producer→consumer:** `clutpack_ys`'s binder is the
 producer, `monotone_chr`'s loader is a consumer — one palette authored once, grafted into a
@@ -583,7 +583,7 @@ Interior anchor `001837B5` (the `call 0017E8E0`).
 
 ## SWE2-EC7-60 update (2026-09-19) - `00280AD0`
 
-`00280AD0` (157 B) is the `clutpack_ys` binder - call-free `0209AC30` lazy-pointer table, `+0x390`/`+0x398`/`+0x3A0` populated on zero from `[+0x3C8]` self-relative offsets. Interior anchor `00280AF6` (the `+0x390` lazy-pointer store).
+`00280AD0` (157 B) is the `clutpack_ys` binder - call-free `0209AC30` lazy-pointer table, ~~`+0x390`/`+0x398`/`+0x3A0` populated~~ `+0x390`/`+0x398`/`+0x3A0`/`+0x3A8` populated *(corrected 2026-10-02, OPUS: the fourth store is `00280AD0+0x95` `mov qword ptr [rdx + 0x3a8], rcx`)* on zero from `[+0x3C8]` self-relative offsets. Interior anchor `00280AF6` (the `+0x390` lazy-pointer store).
 
 
 ## SWE2-EC7-60 update (2026-09-19) - `0020BA70`
@@ -742,3 +742,7 @@ Interior anchor `0040EF00` (function `0040EEA0`).
 `00366080` (137 B) is the pointer-table builder `003643A0` runs over the `022CBE00` record: the header word derives a parity-adjusted total into `+0x244`, `+0x10` advances past the u16 header, each entry's `count*3+1`-element span seeds the `+0x90` cursor, and a counted chain walk resolves every entry's offset+dword into the `+0x18` pointer array with its trailing `+0x90`-region span - the bin record's pointer fixup pass.
 
 Interior anchor `003660D2` (function `00366080`).
+
+`0032AEC0` (766 B) is the bin-load submit `003D9930` queues: `r8` stores at `+0x2C0`, `0032B1C0` prepares and `0032B900` submits the request, `+0x320` increments, `001825C0` scales the tick constant into the `01EED440`..`01EED44C` float quad through `00861F14`, and `00202B70`/`00202DE0`/`00203080`/`0032C5E0`/`0032D000`/`003CC080`/`003CC130` finish the bookkeeping - the load-request arm of the bin family's queue.
+
+Interior anchor `0032B074` (function `0032AEC0`).

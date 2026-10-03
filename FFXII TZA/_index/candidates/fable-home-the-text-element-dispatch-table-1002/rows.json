@@ -1,0 +1,58 @@
+{
+ "page": "99-Unresolved-Residual/Glyph-Run-Rendering/the-text-element-dispatch-table.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01B5JAqPgewUFviUD5ZfpMqA",
+ "report": "home-the-text-element-dispatch-table.json",
+ "rows": [
+  {
+   "fn": "002A2860",
+   "entered_from": "`002A6190` + 0x79A",
+   "text": "returns when word `rcx+0x3F0` is 0 or below (signed); otherwise zeroes byte `+0x3F3` and word `+0x3F0`, passes qword `+0x3F8` to the call at `002A2860` + 0x2A and tail-jumps (`002A2860` + 0x3B) with qword `+0x400`",
+   "anchors": [
+    [
+     "002A2871",
+     "jle"
+    ],
+    [
+     "002A2875",
+     "mov"
+    ],
+    [
+     "002A287C",
+     "mov"
+    ],
+    [
+     "002A288A",
+     "call"
+    ],
+    [
+     "002A289B",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "00297290",
+   "why": [
+    "already cited by 99-Unresolved-Residual\\Glyph-Run-Rendering\\the-text-element-dispatch-table.md"
+   ]
+  },
+  {
+   "fn": "002974E0",
+   "why": [
+    "already cited by 99-Unresolved-Residual\\Glyph-Run-Rendering\\the-text-element-dispatch-table.md"
+   ]
+  },
+  {
+   "fn": "002975B0",
+   "why": [
+    "already cited by 99-Unresolved-Residual\\Glyph-Run-Rendering\\the-text-element-dispatch-table.md"
+   ]
+  }
+ ],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

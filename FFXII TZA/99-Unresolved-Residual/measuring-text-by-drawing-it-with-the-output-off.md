@@ -280,7 +280,7 @@ The edges are the call sites this page cites (`002AC0A7`, `002AF4AD`, `002AF783`
 
 ~~What `002AF340` computes or what its return counts.~~ What `002B20B0` maps beyond line index to byte
 offset. ~~What `DAT_00916548` contains — it is the stop-set installed during scroll measurement and~~
-~~its bytes were **not** read.~~ What states `0`, `1`, `4`, `5` and `7` of §5 distinguish~~, or what~~
+~~its bytes were **not** read.~~ ~~What states `0`, `1`, `4`, `5` and `7` of §5 distinguish~~ *(answered: see the reveal-stepper row below; 2026-10-02, OPUS)*~~, or what~~
 ~~`002ABF70`'s object is attached to~~. ~~**Which of the thirteen cluster members drive which.**~~
 
 *(Corrected 2026-09-30, SWE2-DATA: the return and `00916548` are read (§4). The object is the message and selection window, and every cluster member has a reading (UQ-383, ANSWERED). The modes remain, below.)*

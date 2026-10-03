@@ -1,0 +1,202 @@
+{
+  "producer_complete": true,
+  "driver_sha256": "0051dcc87091772d3888375c694b3d53dd05277fb9acad90732d977fb5fd6422",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "method": "A STATIC_ONLY original query invariants and initialized-root boundary",
+  "base_result": {
+    "path": "result-02.json",
+    "sha256": "d0e8c2db85f3d15766df656922c20b976723b7c91bb96ea4ccf9bb776aed35d6"
+  },
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "f0aef305e8fb48cbd193f1a2501e7ac6629d70124e4c7e3effa7c9368b6c417c"
+    },
+    {
+      "path": "mode-source-01.json",
+      "sha256": "6555e55904f9a49b54872c04da9873bb1dbc4119e4c9b09f17adf528be1e7478"
+    },
+    {
+      "path": "caller-mutators-source-01.json",
+      "sha256": "d89a6e1a23f1c711b1b6717263973f83044c5a0a3cddf9e3cf82969ba955d593"
+    },
+    {
+      "path": "singleton-source-01.json",
+      "sha256": "6957bd24ef3e11aeb0e3de4eb838c8c10d607feaea02cc935aeff991b14cf561"
+    },
+    {
+      "path": "retained-constructor-source-01.json",
+      "sha256": "91747eb0ccddaa9a37c3e1fbb3498a3d1995032e7d6137de16d4b62e91529656"
+    }
+  ],
+  "capture_prerequisites": [
+    {
+      "status": "VERIFIED_ACTUAL_CAPTURE_PREREQUISITES",
+      "metadata": "extents-01.json",
+      "metadata_sha256": "d64deb26893737537861d46a3a070fc8d41f90664b56385a3ca8e7aa39d55248",
+      "source": "source-01.json",
+      "source_sha256": "f0aef305e8fb48cbd193f1a2501e7ac6629d70124e4c7e3effa7c9368b6c417c",
+      "checker_sha256": "2550a7723eb689e2878ae0b5a35fffb81c4675432f1d272de3f2699d7dc6e4b5"
+    },
+    {
+      "status": "VERIFIED_ACTUAL_CAPTURE_PREREQUISITES",
+      "metadata": "mode-extents-01.json",
+      "metadata_sha256": "403b200d695b2cbc7ab839bb127ab3ce9d662776bdc99cb4eb6c6c82eb84c2a0",
+      "source": "mode-source-01.json",
+      "source_sha256": "6555e55904f9a49b54872c04da9873bb1dbc4119e4c9b09f17adf528be1e7478",
+      "checker_sha256": "2550a7723eb689e2878ae0b5a35fffb81c4675432f1d272de3f2699d7dc6e4b5"
+    },
+    {
+      "status": "VERIFIED_ACTUAL_CAPTURE_PREREQUISITES",
+      "metadata": "singleton-extents-01.json",
+      "metadata_sha256": "3123fa5b28de3bc81334b654bc7dab947f025db7c770bafd3425c13e76962dec",
+      "source": "singleton-source-01.json",
+      "source_sha256": "6957bd24ef3e11aeb0e3de4eb838c8c10d607feaea02cc935aeff991b14cf561",
+      "checker_sha256": "2550a7723eb689e2878ae0b5a35fffb81c4675432f1d272de3f2699d7dc6e4b5"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 94,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 5,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 182,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 16,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 182,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "facts": {
+    "known_fact": "Lazy allocation/constructor/root publication was already canonical in s26-runtime-per-invariant-exposure and Developer-Tuning-Console. This source qualification is not new discovery or a new execution.",
+    "accessor": "1D50D0 reads QWORD cell01F81428. NonNULL fast path returns that exact pointer without calls or own nonstack writes. NULL path requests0x10E8 bytes through210EC0, conditionally calls1CCB20 with allocation asRCX, then stores resultingRAX to01F81428. Allocation/constructor effects remain opaque; no atomically initialized or thread-safe publication claim.",
+    "conditional_two_reads": "With initially nonNULL01F81428, accessible same object/private frames/ordinaryABI, and no other mutation of the root/C20 during30B7F0, both17D470 calls take the call-free initialized accessor path and read the sameC20. The query body has no calls other than those two getters and only private output-stack writes. Consequently the existing upperWORD formula narrows0..3 to0..2 in that stated window. This does not prove natural initialized root, lifetime or absence of concurrent/alias writes.",
+    "missing_root": "If allocation returnsNULL normally,1D50D0 publishes/returnsNULL and17D470 then attemptsDWORD read[0+C20]. This is a source-level precondition, not an observed fault or proof the shipping allocator returnsNULL.",
+    "constructor_store": "Retained complete1CCB20 has ownDWORDobject+C20=0 store at1CCC4B, EBP zero established1CCB45 under normalnonvolatileABI. Later calls are opaque here: this store alone does not prove final constructor default or allplayC20=0.",
+    "post_store_opaque_calls": [
+      [
+        "0x1cce7e",
+        "0x861ec0"
+      ],
+      [
+        "0x1ccea4",
+        "0x1d0390"
+      ],
+      [
+        "0x1cceb0",
+        "0x202880"
+      ],
+      [
+        "0x1ccf04",
+        "0x5cc930"
+      ],
+      [
+        "0x1ccf2a",
+        "0x19c5d0"
+      ],
+      [
+        "0x1ccf40",
+        "0x19c5d0"
+      ],
+      [
+        "0x1ccf56",
+        "0x19c5d0"
+      ]
+    ],
+    "remaining": "Actual initialized root and writer/alias/lifetime/scheduling closure remain separate. Do not assert Invincible unreachable/unchanging from this body or re-run the prior console dispatcher census.",
+    "limits": "STATIC_ONLY source/dataflow conditional proof. No native/emulated/live execution; no sampled settings values, natural command reachability, visible effects or transitive constructor purity."
+  },
+  "base_facts": {
+    "global_query": "InitialDWORD0, only lowWORD stores and no calls: returned upperWORD is always0 with ordinary valid private frame. Low mask is confined tobits0..4 (0..31), whatever inputglobals; no initialization sample required.",
+    "unit_query": "Normal return upperWORD = (eligible && first_mode==1 && currentstats_nonNULL && statsBYTE5==0 ? 1 : 0) OR (eligible && second_mode==2 ? 2 : 0). eligible requires nonNULLunit andunitDWORD bit4. Validstorage/ABI/privateframe and normalcallee returns required. Outputhigh is0..3 forarbitraryuint32 modevalues; same modevalue acrossreads restricts high to0..2.",
+    "input_zero": "300CE0 passes queryEDX0, so unit-lowbit1 arm requiringEDXnonzero is absent. Lowword reasons remain separate from upperword protection.",
+    "mode_getter": "17D470 obtainsRAX from1D50D0 thenreadsDWORDobject+C20. C20 is the existing canonical Invincible setting. Neither singleton initialization/default nor1D50D0 effects/lifetime are proved here; mode reads remain independent.",
+    "correction": "Earlier mode17 first-global-upper-nonzero supplied CFG case is an instrument/callee-intervention countercontrol, not reachable with the shipping30B770/privateframe. Preserve its original evidence; remove that first-query uncertainty from native semantics. Negative primary own-write veto can onlycome from unitqueryupperword on valid normal original query calls, although callee effects/concurrency still matter.",
+    "formerly_runtime_reduction": "One precise proposition (whether normal original globalqueryupperWORD couldbe nonzero) eliminated by invariant with no live game. Independent acceptance/canonical incorporation pending; accepted historical count remains4.",
+    "conditional_controls": [
+      {
+        "eligible": true,
+        "first": 1,
+        "second": 1,
+        "stats0": true,
+        "upper": 1
+      },
+      {
+        "eligible": true,
+        "first": 2,
+        "second": 2,
+        "stats0": false,
+        "upper": 2
+      },
+      {
+        "eligible": true,
+        "first": 1,
+        "second": 2,
+        "stats0": true,
+        "upper": 3
+      },
+      {
+        "eligible": false,
+        "first": 1,
+        "second": 2,
+        "stats0": true,
+        "upper": 0
+      }
+    ],
+    "limits": "Predicate models and source invariants, not original-code execution/livevalues or natural mode transitions. Upper3 is a two-read countermodel, not observed changing Invincible setting. No visible presentation or wholecall memory-effect claim."
+  },
+  "source_controls": [
+    {
+      "label": "root-publication-different-cell",
+      "refused": "singleton operation changed 0x1d5106",
+      "method": "Synthetic source discrimination control, not original execution"
+    },
+    {
+      "label": "initialized-branch-enters-allocation",
+      "refused": "singleton operation changed 0x1d50e7",
+      "method": "Synthetic source discrimination control, not original execution"
+    },
+    {
+      "label": "narrower-default-store",
+      "refused": "singleton operation changed 0x1ccc4b",
+      "method": "Synthetic source discrimination control, not original execution"
+    },
+    {
+      "label": "zero-register-clobber-prefix",
+      "refused": "constructor register control requires real instruction identity",
+      "method": "Synthetic source discrimination control, not original execution"
+    }
+  ],
+  "limits": "STATIC_ONLY source/dataflow conditional proof. No native/emulated/live execution; no sampled settings values, natural command reachability, visible effects or transitive constructor purity.",
+  "acceptance": "Producer valid; independent review/canonical incorporation pending"
+}

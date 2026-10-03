@@ -546,8 +546,8 @@ This registry indexes *authored game content*. Different systems, different data
       **What remains of AG-4 is one question about one slot:** whether slot 50 is bound through
       `003845F0`'s index and simply never named, or is a genuinely unused hole in the array.
       **NARROWED 2026-09-16 (SWE2-STRUCT), upper-band section below:** it is neither a hole nor
-      merely index-bound — the slot is *initialised in the image* (`0x009224A8`, a pointer into the
-      static region) and sits at index −1 of the `0x02EBF1A0` array, which `0055BFF0` reads through
+      merely index-bound — the slot is ~~*initialised in the image* (`0x009224A8`, a pointer into the~~
+      ~~static region)~~ BSS, zero at load *(corrected 2026-10-02, OPUS: `0x02EBF198` lies past `.data`'s raw end `0x01F7E400`; AG-4's answer above)* and sits at index −1 of the `0x02EBF1A0` array, which `0055BFF0` reads through
       a signed-byte index with no negative guard (`0055C0A8`). So it is reachable code-side as the
       array's underflow element; whether `byte[obj+0x558]` is ever −1 is the live remainder.
 - [x] ~~Whether the header is uniform across all 63 slots or only the three read. **AG-5 — the
@@ -976,9 +976,9 @@ disassembly rather than decompilation. **AG-12.**
 > | `+0x10` u32 | `+= desc` | `00384614`–`0038461E` |
 > | `+0x18` u32 | `+= desc` | `00384625`–`0038462F` |
 > | `+0x1C` u32 | `+= desc` | `00384636`–`00384640` |
-> | `+0x14` u32 | `+= desc`, then **resolved** through `0020E620` and stored back (`00384647`–`00384662`); the resolved pointer is a sub-directory `{u16 count; u32 entry[count + 1]}` whose entries are each rebased by `desc` — the first `count` through the child binder `003846F0(&entry, rebased, 0)`, the last in place (`00384680`–`003846C7`) | |
+> | `+0x14` u32 | `+= desc` ~~, then **resolved** through `0020E620` and stored back~~ giving M, then **encoded** by `0020E620` (M minus the low DWORD of `01F83530`) and that encoded DWORD stored back, even when M is 0 (`00384647`–`00384662`); if M != 0 the sub-directory `{u16 count; u32 entry[count + 1]}` is reached by decoding the stored value with `0020E600` (zero-extend + the full QWORD `01F83530`), and its entries are each rebased by ~~`desc`~~ **M** — the first `count` through the child binder `003846F0(&entry, entry + M, 0)`, the last in place (`00384680`–`003846C7`) *(corrected 2026-10-02, OPUS, on FABLE's review of ASTRA `ov42-action-table-binding`: `0020E620` is the encoder, not a resolver; EBP = M at `003845F0` + 0x6B feeds both the child argument + 0xB9 and the in-place add + 0xC9)* | |
 >
-> `+0x04` (count) and `+0x08` (stride) are not touched — they are values, not offsets. So the
+> `+0x04` (count) and `+0x08` (stride) are not ~~touched~~ written by any of the binder's own stores — they are values, not offsets. *(narrowed 2026-10-02, OPUS, on FABLE's review of ASTRA `ov42-action-table-binding`: that is the direct store footprint, not whole-call preservation; a nested directory overlapping the header can write them through the in-place add, e.g. a count-0 directory at `desc + 4` adds M to `desc + 8`.)* So the
 > descriptor is `{ +0x04 count, +0x08 stride, +0x0C rows, +0x10, +0x14 sub-directory, +0x18, +0x1C }`
 > with five relocatable fields, one of which is a nested table of relocatable entries.
 
@@ -2051,7 +2051,7 @@ an individual slot was proven a table; the upper sixteen contain four different 
 | `0x02EBF180` | 5 | **Table pointer, different header** — the weapon-class map read in the tail section: `u16 +0` stride (=1), `u16 +2` count (=23), byte rows from `+4`. All four consumers load the slot then do `movzx eX, word [ptr]` and `movzx eY, byte [ptr + word*index + 4]` (`00320376`, `0032042D`, `00325A50`, `00325AF5`) | **No** — `+4` is row data, not a count |
 | `0x02EBF188` | 93 | **Write-only state sink** — all 93 sites are `mov [slot], reg` stores; nothing loads it and nothing dereferences a value from it (§8c) | **No** — never dereferenced |
 | `0x02EBF190` | 318 | **BattleSystemState pointer** — the `0x7410`-byte block whose `+0` is magic `0x05071901` and `+4` a flag dword OR-ed with `0x100`/`0x80` (§8b; `BattleSystemState` in the type store) | **No** — `+4` is a bitfield |
-| `0x02EBF198` | 0 | **Initialised but never named** — disposition below | n/a |
+| `0x02EBF198` | 0 | **~~Initialised but~~ BSS and never named** *(corrected 2026-10-02, OPUS: past `.data`'s raw end `0x01F7E400`)* — disposition below | n/a |
 | `0x02EBF1A0`–`0x02EBF1F8` | 16 + 2×11 | **One 12-qword array, not twelve independent slots** — bulk-zeroed by `rep stosq` (`ecx=0xC`) from `lea rdi, [02EBF1A0]` at `002369E5`; per-slot setters at `00238390`–`002385A0` (`0x30` stride) store `movsxd(ecx)` after releasing the previous value through `003844F0` → `003697F0` | **No** — ~~the slots hold scalar values, not table pointers~~ *(corrected 2026-09-30, SWE2-STRUCT for OPUS, DD batch 12, check R2: each slot holds the address of a loaded `licd` board, `{u16 width, u16 height}` at `+4`, not a `st2e` table)* |
 
 **The boundary, stated exactly:** the `+0x04`/`+0x08`/`+0x0C` header is a property of *individual
@@ -2077,7 +2077,7 @@ pointer but uses the `u16 stride, u16 count` header instead.
    **Live tension, recorded rather than resolved:** §2.4 of the request-queue page has the delivery
    callback receive the descriptor's `+8` word, and the tail read has the setters storing `3`; a slot
    holding `3` would fault this reader. Either the slots also receive real pointers on a path not yet
-   read (the image-initial values below are already pointers), or this reader only runs while they
+   read ~~(the image-initial values below are already pointers)~~ (the slots are BSS, zero at load *(corrected 2026-10-02, OPUS: `0x02EBF1A0`–`0x02EBF1F8` lie past `.data`'s raw end `0x01F7E400`)*), or this reader only runs while they
    hold them. The setters' `movsxd` is not itself evidence either way — every pointer value in this
    image is below `0x80000000`, so sign-extending `ecx` preserves a delivered pointer losslessly.
    *(Resolved 2026-09-30, SWE2-STRUCT for OPUS, DD batch 12, check R2: the first branch holds, and on the setters' own
@@ -2086,16 +2086,16 @@ pointer but uses the `u16 stride, u16 count` header instead.
 
 ### `0x02EBF198` — disposition
 
-Allocated and initialised, never named by an instruction, reachable only through the adjacent
+Allocated ~~and initialised~~ in BSS *(corrected 2026-10-02, OPUS: zero at load, past `.data`'s raw end `0x01F7E400`)*, never named by an instruction, reachable only through the adjacent
 array's underflow index.
 
-- **Initialised in the image.** The `.data` bytes hold `0x009224A8` — a non-zero pointer into the
-  image's static region, of the same shape as its fifteen neighbours (each holds a distinct
-  pointer-like initial value, e.g. `0x1A0` → `0x009234D8`). It is not reserved padding and it is not
-  BSS.
+- **~~Initialised in the image.~~ BSS.** ~~The `.data` bytes hold `0x009224A8` — a non-zero pointer into the~~
+  ~~image's static region, of the same shape as its fifteen neighbours (each holds a distinct~~
+  ~~pointer-like initial value, e.g. `0x1A0` → `0x009234D8`). It is not reserved padding and it is not~~
+  ~~BSS.~~ The slot and its fifteen neighbours lie past `.data`'s raw end `0x01F7E400`, so all are zero at load; `0x009224A8` is a path string's address, not this slot's value *(corrected 2026-10-02, OPUS: the section table gives `.data` a raw size of `0x18E400` from `0x01DF0000`; AG-4's answer in §7)*.
 - **No instruction names it.** Zero direct absolute references across all 34,270 function bodies,
   with the positive control (`02EBF138`, 723 refs) passing; a raw `disp32` sweep of the code section
-  for `0x2D9F198` finds zero candidates while finding `0x2D9F1A0`'s. It is also **not** among the 38
+  for `0x2D9F198` finds zero candidates while finding `0x2D9F1A0`'s. It is also **not** among the ~~38~~ 37 *(corrected 2026-10-02, OPUS: 35 `lea`s and the two direct stores `00236C30+0x44` and `00236C30+0x401`)*
   slot addresses the STATIC registrar `00236C30` takes individually, and the `rep stosq` init covers
   `0x02EBF1A0`–`0x02EBF1F8`, starting one slot later.
 - **The one identified reachability channel is index −1 of the `0x02EBF1A0` array.** `0055C0A8`
@@ -2113,7 +2113,7 @@ array's underflow index.
   index is −1. The `AG-4` answer's sentence on the `0055CD40` copy is corrected in §7, and the batch-12 phrase "the path that produces −1
   also zeroes the reader's loop count" holds for the copy path too. [Record](../_index/candidates/swe2struct-residue3-0930/README.md),
   checks G1-G9.)*
-- **Bounded claim.** The slot is populated at image load and consultable through a signed-index
+- **Bounded claim.** The slot is ~~populated at image load~~ zero at load (BSS) *(corrected 2026-10-02, OPUS: past `.data`'s raw end `0x01F7E400`)* and consultable through a signed-index
   underflow of the board-request array — most plausibly a default/spacer element the image ships so
   that index −1 still yields a valid object. It could also still be *written* through the registrar's
   base-plus-index binder path (`003845F0` with a data-driven index, per the AG-4 residual) without
@@ -2255,7 +2255,7 @@ validator, for example. This page relies only on how the filler's arms treat cla
 **UI — PEER.** The filler's name output feeds UI text builders through the shared name formatter. This page
 claims only that class 24 yields a name and classes 22 and 23 do not.
 
-`0037C2E0` (224 B) is the deferred init pump the registry census already lists under `0022B7E0`: the `02EBF3DC` state byte cycles - states `0`/`1` compare the `02EBF3DD` index against `003204B0()`'s count and `00320B30`-step records, `002EAE20`-allocating a `02ADD948` object when rows arrive (state `2`); state `2` probes it through `0024C70`→`002E4C70`, refcounts via `002EAF70` or flag-writes `002EBE20(obj, 1)`; state `3` exits - the `4`-write and `0`/`1` return encode done vs still-pumping
+`0037C2E0` (224 B) is the deferred init pump the registry census already lists under `0022B7E0`: the `02EBF3DC` state byte cycles - states `0`/`1` compare the `02EBF3DD` index against `003204B0()`'s count and `00320B30`-step records, `002EAE20`-allocating a `02ADD948` object when rows arrive (state `2`); state `2` probes it through `0024C70`→`002E4C70`, refcounts via `002EAF70` or flag-writes `002EBE20(obj, 1)`; state `3` ~~exits~~ loops back to state `1` and state `4` exits *(corrected 2026-10-02, OPUS: `0037C2E0+0x29` `mov ebx, 1` loops for state 3; state 4 reaches `0037C2E0+0xBC`, stores 4 and returns 0)* - the `4`-write and `0`/`1` return encode done vs still-pumping
 
 Interior anchor `0037C35E` (function `0037C2E0`).
 - **ActorEntity — CLIENT and SERVICE (53 edges).** 24 inbound (ActorEntity bodies `BattleUnit_ApplyUnitDefinition` (0023A570), `0037B4D0`, `ActorResource_BeginPrimaryPayloadLoad` (00330310) call page-cited `BattleEncodedId_IsValidForClass` (00322C50), `0032E400`, `BattleUnit_ApplyUnitDefinition` (0023A570)); 29 outbound (page-cited `AiOrder_EvaluateTargetSelector` (00301AD0), `BattleMenu_BuildCommandEntryList` (0031EB20), `0037B4D0` call ActorEntity bodies `BattleUnit_GetBySlotIndex` (00236820), `BattleUnit_GetSlotCount` (00236850), `Actor_GetWorldPosition` (00265020)). Substantive edges include `BattleSystem_InitializeAreaState` (002342F0) is called by `ActorSystem_InitializeManagerRuntime` (0026CE60); `00238260` is called by `BattleStorage_InitializeWorkArrays` (002368D0); `BattleUnit_ApplyUnitDefinition` (0023A570) is called by `BattleUnit_TeardownAndDespawn` (00300E40); `BattleUnit_ApplyUnitDefinition` (0023A570) is called by `BattleGroup_RefreshFourActorDefinitions` (003266C0); the remaining edges run through shared helpers the page cites.
@@ -2308,3 +2308,48 @@ they turn a row pointer into an index.
   - The `0032F6E0` return is tested (+ 0x57).
 - **Open, as the register's OV-42 states.** Row-to-kind / caller / owner consistency. A quotient equals an action id
   only for a row on the descriptor's stride grid.
+
+## The action table's forward readers, two more inverse readers and the binder's ABI (OPUS, 2026-10-02)
+
+From FABLE's reviews of ASTRA's [`ov42-caller-row-preconditions`](../_index/candidates/fable-review-astra-ov42-caller-row-preconditions-1002/REVIEW.md),
+[`ov42-caller-quotient-bound`](../_index/candidates/fable-review-astra-ov42-caller-quotient-bound-1002/REVIEW.md),
+[`ov42-terminal-resource-helper`](../_index/candidates/fable-review-astra-ov42-terminal-resource-helper-1002/REVIEW.md) and
+[`ov42-action-table-binding`](../_index/candidates/fable-review-astra-ov42-action-table-binding-1002/REVIEW.md), all ACCEPT-WITH-NARROWING.
+OPUS re-read every instruction named here at the bytes ([`batch6_check.py`](../_index/candidates/opus-ov42-batch6-routes-1002/batch6_check.py), 63 checks,
+FAILS 0). Statements marked *(FABLE)* rest on FABLE's review scripts, not on this record's checks.
+
+**The forward readers.** Three routines build a row pointer from an index through the slot `02EBF138` header. Each
+multiplies by the `+0x08` stride and adds the product to the decoded `+0x0C` base in 32 bits.
+- `00304850`: the index is the WORD at unit `+0x714`, latched at + 0x3D (`movzx r13d, word ptr [rsi + 0x64]`,
+  RSI = unit + 0x6B0). An unsigned compare against 0x21E (+ 0x8E / + 0x92) leaves before the phase switch.
+  - The row build: `+0x0C` at + 0xB3 / + 0xC7, the stride at + 0xD9, `imul ecx, eax` at + 0xE1 and `add r15d, ecx`
+    at + 0xE4. The row is zero-extend32(low32(lookup) + id * stride).
+  - The row is then used as a pointer, so the table must lie below 4 GB.
+- `0030D160`: the index is the incoming DX (+ 0x27). The build: `+0x0C` at + 0x59 / + 0x6D, the stride at + 0x7F,
+  and a 32-bit add into RSI at + 0x89.
+- `00305430`: an unsigned 16-bit `cmp dx, 0x115` bounds the index (+ 0x16 / + 0x23). Three row builds follow: `+0x0C`
+  at + 0x31 / + 0x46, + 0x79 / + 0x8E and + 0x162 / + 0x177, with the stride at + 0x58, + 0xA0 and + 0x186.
+- The stride is re-read after each lookup call, the same two-load shape as the inverse sites. A positive stride is
+  assumed by every inverse reader, and no forward site checks the descriptor's fields.
+
+**Inverse readers four and five: the terminal cost helper `00305640`.**
+- The sites: `+0x0C` at + 0x2E, the stride at + 0x4B, then `div r10d` at + 0x50. A second pair has `+0x0C` at + 0x128,
+  the stride at + 0x13C and `div ecx` at + 0x143. Both are unsigned 32-bit divides with no zero test.
+- Widths: the two comparators get `movzx edx, di` (+ 0x81, + 0x8C), the quotient mod 65536. The full 32-bit
+  recomputed quotient is passed on at + 0x14A (`mov edx, eax`).
+- Mode: + 0xA3 `test r12d, r12d` and + 0xA8 `setne` normalise the incoming flag to 0 / 1. The two stats writers
+  get 16 plus that bit, not the raw flag *(FABLE)*.
+- Own non-stack writes: DWORD unit `+0xE58` := 0 (+ 0x73) and WORD unit `+0xDC8` := 0xFFFF (+ 0x7A). Both are gated
+  by unit, record and record byte `+5` == 0 *(FABLE)*.
+- NULL preconditions: unit (+ 0x99 reads unit `+0x698` unconditionally), the record (+ 0xC4 reads its WORD `+0x28`),
+  the descriptor, and a stride > 0 at both divides.
+
+**The section binder's ABI** (`003845F0`, the AG-12 block above, as corrected):
+- Entry: RCX = slot, RDX = descriptor. The action-table caller `00237FC0` passes RCX = &`02EBF138` and RDX = its own
+  incoming ECX sign-extended (+ 0xF `movsxd`). FABLE's review traces that DWORD to directory `+0x3C`.
+- `*slot = desc` (QWORD, + 0x4) comes before the null test and every rebase. `+0x0C` is addressed through RDX
+  (+ 0x10); `+0x10`, `+0x18`, `+0x1C` and `+0x14` go through reloads of `*slot` (+ 0x21, + 0x32, + 0x43, + 0x54).
+- The rebase is NOT idempotent: x != 0 becomes low32(x + low32(desc)), and there is no already-rebased flag.
+- Widths: the encoder `0020E620` subtracts the low DWORD of `01F83530`, and the decoder `0020E600` zero-extends and
+  adds the full QWORD. Only the low-32 round trip is exact. Full 64-bit identity needs the QWORD's upper half to be 0.
+- Preconditions: valid, separate slot and descriptor storage, and sub-directory storage disjoint from the header.

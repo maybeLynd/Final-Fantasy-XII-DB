@@ -225,3 +225,15 @@ Interior anchor `0036179A` (the `divss`).
   rendering and authored expressions share, not from combat's dice.
 - An animation that plays differently on two machines can change later visual randomness, but **not** a combat roll.
 - The "reload and get the same result" behaviour of combat is unaffected by sounds.
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../_index/candidates/fable-home-how-an-animation-makes-a-sound-1002/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `00360670` | 39 B | `002E9D90` + 0x28 | scans the dwords from `022CB9DC` through `022CB9E4` inclusive (three dwords, 4-byte step) and returns 1 at the first non-zero one, or 0 when all are 0 | Interior anchor `00360677`; Interior anchor `00360680`; Interior anchor `00360689`; Interior anchor `0036068E`; Interior anchor `00360691` |
+| `0036EC50` | 76 B | `002E9D90` + 0x200 | when `ecx` is -1, reads the bytes at absolute addresses 1 and 2 (a null base) and returns the sign-extended byte 1, plus 2 when byte 2 is non-zero; otherwise takes the `0x18`-byte entry `ecx AND 0xF` of the table at `022D9AE0` when `cl AND 0xF0` is non-zero, or of the table at `022D9AB0` when it is 0, and returns its sign-extended byte `+1`, plus 2 when its byte `+2` is non-zero | Interior anchor `0036EC57`; Interior anchor `0036EC6A`; Interior anchor `0036EC88`; Interior anchor `0036EC91`; Interior anchor `0036EC98` |
+| `003A0E80` | 31 B | `0046CC70` + 0x1AF | when `ecx` is 0 tail-jumps through the jump at `003A0E80` + 0x19 with `edx` as the first argument; when `ecx` is 1 tail-jumps through the jump at `003A0E80` + 0x11 with `edx` and 0; any other `ecx` returns without a call | Interior anchor `003A0E85`; Interior anchor `003A0E87`; Interior anchor `003A0E8C`; Interior anchor `003A0E91`; Interior anchor `003A0E99` |
+| `003A10F0` | 11 B | `0046CC70` + 0x3E5 | returns bit 30 of `ecx` inverted: 1 when the bit is clear, 0 when it is set | Interior anchor `003A10F3`; Interior anchor `003A10F5`; Interior anchor `003A10F8` |
+| `003E7CD0` | 59 B | `0046CC70` + 0x11B | returns 0 when byte `02B59D71` is non-zero; otherwise scans the 32 `0x150`-byte entries at `02B59D80` and, at the first whose word `+0` is non-zero and dword `+4` equals `ecx`, returns its dword `+0xC0 + edx*4` (`edx` zero-extended); returns 0 when none matches | Interior anchor `003E7CD5`; Interior anchor `003E7CE4`; Interior anchor `003E7CEA`; Interior anchor `003E7CF9`; Interior anchor `003E7D03` |

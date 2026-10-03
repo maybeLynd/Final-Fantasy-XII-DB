@@ -1,0 +1,83 @@
+entry	class	mutated
+0016d6a0	returned	
+00203080	returned	
+0020e600	returned	
+00236820	returned	
+00236850	returned	
+00253b90	returned	
+00263c20	returned	
+00263e30	returned	
+00263ff0	returned	
+00265020	returned	
+00290b90	returned	
+002ef2b0	returned	
+002ef640	returned	
+002f8e50	returned	
+002f9180	returned	
+002fa3b0	returned	
+002fef30	returned	
+00300140	scripted	
+00300280	returned	
+00300fc0	scripted	
+00301140	scripted	
+00307ce0	returned	
+00307d10	returned+faulted	yes
+00308270	returned+faulted	
+0030ab40	returned	yes
+0030b050	returned	yes
+0030b8e0	scripted	
+0030b9b0	scripted	
+0030bb30	returned	
+0030bf20	returned	yes
+0030c210	returned	yes
+0030c970	returned	
+0030e060	returned	yes
+0030e130	returned	yes
+0030e360	returned	yes
+0030ea40	returned	
+0030eda0	returned+faulted	
+0030fed0	returned	
+003105d0	returned+faulted	
+00310780	returned+faulted	
+003112f0	scripted	
+00312280	scripted	
+003148f0	returned	
+00316cf0	returned	
+00317ec0	returned	
+00319140	returned	
+00319420	returned	
+0031abe0	returned	
+0031b760	returned	
+0031b7e0	returned	
+0031b860	returned	
+00322c50	returned	yes
+00325a00	returned	
+003272a0	returned	
+003279b0	returned	
+003283d0	returned	
+003284d0	scripted	
+003291b0	returned	
+003299b0	scripted	
+00336710	returned+faulted	
+0033c9b0	returned+faulted	
+0033e1f0	scripted	
+003588b0	returned	
+003590d0	returned	
+00377c20	returned	
+003839f0	returned	
+003848e0	returned	
+00384b10	scripted	
+00386a50	returned	
+00386a70	returned	
+00386ae0	returned	
+003876d0	scripted	
+00387730	scripted	
+003a1920	scripted	
+003bbd00	scripted	
+004686d0	entered	
+0046a720	returned	
+0046a790	returned	
+0046a800	scripted	
+00808c40	returned	
+00861ec0	scripted	
+00861f14	scripted	

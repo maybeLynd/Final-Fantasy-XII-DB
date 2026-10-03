@@ -1,0 +1,14 @@
+entry	class	mutated
+002e9c00	returned	
+002f8e90	returned	
+003014c0	returned	yes
+00301830	returned	yes
+00301ad0	stubbed	
+00305cc0	returned+faulted	yes
+00308ec0	returned	
+0030f760	stubbed	
+00316cf0	returned	
+00328370	returned	
+004697c0	returned	
+00808c40	returned	
+00861ec0	returned	

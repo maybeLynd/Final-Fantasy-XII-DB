@@ -96,6 +96,8 @@ NAMED_SUBSTRATE = {"0020E600", "0020E620", "00249C60"}
 #
 # The page's OWN folder path still counts, which is why `folder_low` is passed separately and is not
 # stripped here.
+CONTROL_WORD = re.compile(r"\bcontrol\b", re.I)
+UNRES_PHRASE = re.compile(r"currently unresolved|still unresolved|\*\(unresolved\)\*", re.I)
 FRONTMATTER = re.compile(r"\A---\r?\n.*?\r?\n---\r?\n", re.S)
 LINK_TARGET = re.compile(r"\]\([^)]*\)")
 INLINE_LINK_DEF = re.compile(r"^\s*\[[^\]]+\]:\s*\S+\s*$", re.M)
@@ -645,9 +647,11 @@ def main():
             # or `FUN_0022a0b0`, and a control line naming the lowercase form would otherwise not
             # be recognised as the line that cites it.
             lines_upper = [ln.upper() for ln in doc_lines]
+            # 2026-10-03 (OPUS): the control test per line once, not once per (address, line) - same result.
+            is_control = [bool(CONTROL_WORD.search(ln)) for ln in doc_lines]
             for cited_addr in cited:
                 idxs = [i for i, ln in enumerate(lines_upper) if cited_addr in ln]
-                if idxs and all(re.search(r"\bcontrol\b", doc_lines[i], re.I) for i in idxs):
+                if idxs and all(is_control[i] for i in idxs):
                     control_only.add(cited_addr)
             cited = [c for c in cited if c not in control_only]
 
@@ -697,6 +701,7 @@ def main():
             # Both are findings worth surfacing and neither is a defect.
             declared_sizes = {m.group(1).upper(): int(m.group(2).replace(",", ""))
                               for m in BODYSIZE.finditer(text)}
+            has_unres = UNRES_PHRASE.search(text) is not None
             for addr in cited:
                 rec = fn.get(addr)
                 if rec is None:
@@ -724,7 +729,10 @@ def main():
                     findings.append(("BODY DRIFT", rel, addr,
                                      "document says %d B, current body is %d B"
                                      % (declared_sizes[addr], rec["body_bytes"])))
-                calls_unres = re.search(
+                # 2026-10-03 (OPUS): the per-address pattern can only match when the page holds one of the
+                # three phrases and only matters for a classified body; test those first (same findings,
+                # ~53k fewer one-off regex compiles per run).
+                calls_unres = rec["classified"] and has_unres and re.search(
                     r'`?' + addr + r'`?[^\n]{0,400}?(currently unresolved|still unresolved|'
                     r'\*\(unresolved\)\*)', text, re.I)
                 if calls_unres and rec["classified"]:
@@ -742,6 +750,7 @@ def main():
             # sweeps; the same answer falls out of one, because the only difference between the two
             # runs is which addresses reach the enumeration below.
             trip = {}
+            acct_memo = {}
             for addr in cited:
                 if addr not in fn:
                     continue
@@ -789,7 +798,11 @@ def main():
                         sub = subsystem_of(fn.get(other))
                         if not sub or sub in SUBSTRATE:
                             continue
-                        if not doc_accounts_for(xlow, folder_low, sub):
+                        # 2026-10-03 (OPUS): memoised per document - xlow and folder_low are fixed for the page.
+                        acc = acct_memo.get(sub)
+                        if acc is None:
+                            acc = acct_memo[sub] = doc_accounts_for(xlow, folder_low, sub)
+                        if not acc:
                             (trip if held_by_r6 else seen).setdefault(sub, []).append(
                                 (addr, direction, other))
             neighbours_now[rel] = sorted(seen.keys())

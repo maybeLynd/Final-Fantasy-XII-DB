@@ -586,3 +586,11 @@ Interior anchor `002CB2AA` (function `002CB1F0`).
 `002B5A20` (142 B) is the code-write `0029CCF0` calls: `ebx >= 3` required on `0039C4A0`'s record, `esi` selects `dword[+0x18]`/`+0x14` through `0020E600`, `ebp` selects `word[+0x16]`/`+0x1A`, then `cl` is emitted - `cl - 0x20 <= 0xDF` writes one byte, wider writes `cl >> 8` then `cl` - NUL-terminated with the length+1 returned - the one/two-byte glyph emit for the recipe text.
 
 Interior anchor `002B5A6E` (function `002B5A20`).
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../_index/candidates/fable-home-the-bazaar-recipe-unlock-and-purchase-1002/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `002ABAA0` | 126 B | `0029CCD0` + 0xE | calls `002ABAA0` + 0x8 and, only when that returns 0, `002ABAA0` + 0x11; when the second call returns 7 and `ecx` is zero it returns 26 (`00916484`, truncated) with no further call; on every other path it makes one call (`002ABAA0` + 0x1F, `002ABAA0` + 0x48 or `002ABAA0` + 0x63) and returns the truncated (`cvttss2si`) product of its `xmm0` result with 15 (`00916314`) when `ecx` is non-zero or with 10 (`008F8180`) when `ecx` is zero | Interior anchor `002ABAB6`; Interior anchor `002ABAD6`; Interior anchor `002ABAC4`; Interior anchor `002ABB0C`; Interior anchor `002ABACC` |

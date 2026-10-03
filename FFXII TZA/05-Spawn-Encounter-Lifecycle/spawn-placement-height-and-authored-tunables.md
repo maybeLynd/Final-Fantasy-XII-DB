@@ -186,7 +186,7 @@ applies a unit's authored definition, called from
 00239F93  mov   rax, qword ptr [rdi + 0x698]    ; pBkbi
 00239F9F  movzx eax, byte ptr [rax + 5]
 00239FA5  jne   0x239fab                        ; spawn-backed -> definition path
-00239FA7  mov   ecx, esi                        ; NOT spawn-backed -> esi (1, 2 or 3)
+00239FA7  mov   ecx, esi                        ; NOT spawn-backed -> esi (1, 2 or 3)   # <- corrected 2026-10-02, OPUS - esi is 1 here (00239E33 mov esi, 1, not rewritten before 00239FA7); 2 and 3 are later values for +0x1F4 (00239FEC, 00239FF9)
 00239FA9  jmp   0x239fd4
 00239FAB  mov   rax, qword ptr [rdi + 0xe68]    ; the applied definition record
 00239FB2  movzx edx, byte ptr [rax + 0x18]      ; definition flags byte
@@ -210,7 +210,7 @@ intervening calls, so the value `8` survives to `00239FC9` whenever the definiti
 **Therefore the ground probe runs if and only if the unit is spawn-backed *and* its authored
 definition sets bit 4 of definition byte `+0x18`.** The possible values of `BattleUnit+0x1F6`
 are `1, 2, 5, 6` (no probe) and `8, 12` (probe). A non-spawn-backed unit takes the `esi` path,
-whose values are 1, 2 and 3 — never 8 — so a party member never goes through this path at all.
+whose ~~values are 1, 2 and 3~~ value is 1 *(corrected 2026-10-02, OPUS: `esi` is set to 1 at `00239E33` and not written again before `00239FA7`; it becomes 2 or 3 only afterwards, for `+0x1F4`, at `00239FEC`/`00239FF9`; §7 says a party unit gets 1)* — never 8 — so a party member never goes through this path at all.
 
 The vertical offset added afterwards, `BattleUnit + 0x188`, is written by the same definition
 applier at `0023A026`, from the same authored record.
@@ -560,7 +560,7 @@ BattleUnit_PublishLocomotionPosition(unit, &bkei->candidateX, 0, 1);   // 0023A4
 
 ```c
 if (unit && unit->pBkbi && unit->pBkbi[5] != 1)        // not spawn-backed
-    mode = esi;                                        // 1, 2 or 3 - never 8
+    mode = esi;                                        // 1, 2 or 3 - never 8   # <- corrected 2026-10-02, OPUS - esi is 1 here (00239E33); and the test above is pBkbi[5] == 0 (00239FA3 test eax, eax / jne), with a null unit or pBkbi taking the definition path (00239F91, 00239F9D)
 else {
     d = unit->pAppliedDefinition[0x18];
     base = (d & 0x10) ? 8 : ((d & 0x20) ? 2 : 1);
@@ -869,8 +869,8 @@ terminator (1,786,589 instructions walked); all numeric constants resolved by VA
 against the PE image, never from a decompiler rendering; `ff12-script` v3.00 over 828 scripts
 extracted from `FFXII_TZA.vbf`.
 
-`audit_crossrefs.py` has **not** been run against this document, and no independent party has
-attacked it. `status` is `DOCUMENTED`, `audit.passes` is `0`. What follows is what was tried
+~~`audit_crossrefs.py` has **not** been run against this document, and no independent party has~~
+~~attacked it. `status` is `DOCUMENTED`, `audit.passes` is `0`.~~ *(answered: see §11 and §12, the later passes, and the front matter - `status` AUDITED, `audit.passes` 1, `crossref_clean` true; 2026-10-02, OPUS)* What follows is what was tried
 during authoring, recorded so the eventual pass does not repeat it.
 
 ### Killer observations named and hunted
@@ -968,7 +968,7 @@ re-derived from the image, and the two claims that had already been wrong once w
 (from "296 entries of 128"):
 
 ```
-stride    'imul reg, reg, 0x250' -> 50 sites, concentrated in Spawn*/SpawnKeep*/SpawnEntry*
+stride    'imul reg, reg, 0x250' -> 50 sites, concentrated in Spawn*/SpawnKeep*/SpawnEntry*   # <- corrected 2026-10-02, OPUS - 27 sites in 18 functions (retool.py grep and a raw .text scan agree), 16 Spawn-owned, 10 in 0043F450; section 12 Finding 3
 size      'mov reg, 0x9400'      -> 8 sites, in BattleStorage_InitializeWorkArrays
                                       and SpawnKeep_RotatePersistenceBanksForAreaTransition
 arithmetic 0x9400 / 0x250 = 64 exactly, no remainder
@@ -1004,7 +1004,7 @@ five bits.
 
 ### Refinement 2 — the `0x250` stride is not unique to the keep bank
 
-The stride sweep found **18 of its 50 sites inside one function**, `0043F450` — which is
+The stride sweep found **~~18 of its 50 sites~~ 10 of its 27 sites inside one function** *(corrected 2026-10-02, OPUS: `retool.py grep` and a raw `.text` scan both give 27 `imul r, r, 0x250` sites in 18 functions, ten of them in `0043F450`; §12 Finding 3)*, `0043F450` — which is
 `PrimaryOwner:Presentation`, 9,092 bytes, **references neither `0208E690` nor `0208E698`**, and whose
 RIP targets are all in `02EBxxxx`/`02EC0xxx`/`02F97xxx`. It is an unrelated structure that happens to
 share a 592-byte record size. Interior read 2026-09-17 (SWE2-FRONTIER): the body is a
@@ -1183,7 +1183,7 @@ centering nudge on odd columns. Interior anchor `00233086` (the
 
 ## SWE2-EC7-59 update (2026-09-19) - `0043F210`
 
-`0043F210` (159 B) is a spawn-placement body - `003697F0` single call. Interior anchor `0043F22B` (a `003697F0` call).
+`0043F210` (159 B) ~~is a spawn-placement body~~ is not a spawn-placement body: its only caller is the Presentation function `0043F450` (`0043F488`, §11), and it reads no spawn global or keep entry *(corrected 2026-10-02, OPUS: `retool.py callers 0043F210`, body read)* - `003697F0` single call. Interior anchor `0043F22B` (a `003697F0` call).
 
 ## SWE2-EC7-61 update (2026-09-19) - `00325EA0`
 

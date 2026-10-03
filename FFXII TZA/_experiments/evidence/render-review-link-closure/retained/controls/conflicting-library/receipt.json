@@ -1,0 +1,19 @@
+{
+  "case": "conflicting-library",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\render-review-link-closure\\prepare.py",
+    "--source",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\render-review-link-closure\\controls-01\\conflicting-library\\input",
+    "--output",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\render-review-link-closure\\controls-01\\conflicting-library\\output"
+  ],
+  "exit": 1,
+  "terminal": true,
+  "expected_diagnostic": "conflicting same-name review referent",
+  "diagnostic_observed": true,
+  "result_absent": true,
+  "output_absent": true,
+  "driver_sha256": "a8f417d781a1577c1664d4b89fe883c07de8cacdff1a5aa8355ad5d197a66a1a"
+}

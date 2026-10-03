@@ -291,3 +291,12 @@ No correction.
 **UI — CLIENT (1 edge).** `BattleMenu_BuildCommandEntryList` `0031EB20` calls `BattleUnit_ResolveByFocusHandle` `0031B7E0`. The battle menu resolves focus handles with the same resolver when it builds its command list; it does not touch the command block.
 
 **WorldAreaField — SERVICE (6 edges).** The eligibility test `002FFA60`, `00305AB0`, `0030C010`, the commit `0030F760` and `003714A0` call `FieldData_GetActiveFieldRecordBit15` `00377C20`, and the timeline handler `00325260` calls its five-byte thunk `00313F60`. Each asks the current area's record whether its action-permission override is set; the commit's own call belongs to the steps after the command block is written, not to CM-1 … CM-6.
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../_index/candidates/fable-contract-the-moment-an-action-is-committ-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `003AEF30` | 29 B | stores dword 0 at `[rcx]`, then follows the chain from qword `+0x18` through each node's qword `+0x48` until null, storing byte 0 at the first byte of every node | `003AEF34`, `003AEF3D`, `003AEF40`, `003AEF43`, `003AEF4A` |
+| `003E69A0` | 50 B | when dword `+0x448` of `rcx` is non-zero calls the callee at `003E69A0` + 0x13 with it in `ecx`; then, when dword `+0x44C` is non-zero, tail-jumps the same callee (`003E69A0` + 0x27) with it in `ecx`, else returns | `003E69A9`, `003E69B3`, `003E69B8`, `003E69C7` |

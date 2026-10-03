@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\team.py",
+    "apply",
+    "--agent",
+    "ASTRA",
+    "--session",
+    "SOL-ASTRA-write-denial-additive-1003",
+    "--file",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ready-queue-reconciliation-1002\\write-denial-additive-current-op-01.json"
+  ],
+  "exit": 0,
+  "stdout": "Saved revision 48428\n",
+  "stderr": "",
+  "operation_sha256": "205ace455547f95351d5c1cbbb8446cd1e097fd0d16e875346d2af2b97547203",
+  "driver_sha256": "585477a888e07e51ad6b7c950e21d00298cad855878b2db2ba63980be32e470f",
+  "limits": "New additive unique-ID request through documented current-board CLI; not a retry of ownership-mutating audit, not an existing-row preimage waiver.",
+  "status": "ROUTED_ONCE_VERIFIED_CURRENT"
+}

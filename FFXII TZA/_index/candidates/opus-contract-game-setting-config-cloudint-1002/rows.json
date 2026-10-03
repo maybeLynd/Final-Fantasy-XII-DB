@@ -1,0 +1,60 @@
+{
+ "page": "19-Save-Load-Settings/Game-Settings-Config/CONTRACT-game-setting-config.md",
+ "date": "2026-10-02",
+ "session": "local-w44-opus",
+ "report": "contract-game-setting-config.json",
+ "rows": [
+  {
+   "fn": "001DDFD0",
+   "text": "calls through the pointer at `008C2798` with `rcx`, stores the address `00900F20` at qword `+0` of `rcx`, zeroes qword `+0x68` and stores at dword `+0x70` a mask built from `edx`: 4 when `edx` bit 0 is clear, plus 2 when bit 1 is clear, plus 8 when bit 3 is set, plus 0x10 when bit 2 is set; returns `rcx`",
+   "anchors": [
+    [
+     "001DDFE9",
+     "call"
+    ],
+    [
+     "001DDFF7",
+     "mov"
+    ],
+    [
+     "001DE013",
+     "cmovne"
+    ],
+    [
+     "001DE023",
+     "mov"
+    ],
+    [
+     "001DE036",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "001E00D0",
+   "text": "calls `001E0100` with `rcx` + 8, the incoming `rdx`, `r8` and `r9`, and 0 as the fifth (stack) argument, then returns the incoming `rdx`",
+   "anchors": [
+    [
+     "001E00D6",
+     "add"
+    ],
+    [
+     "001E00DA",
+     "mov"
+    ],
+    [
+     "001E00E5",
+     "call"
+    ],
+    [
+     "001E00EA",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

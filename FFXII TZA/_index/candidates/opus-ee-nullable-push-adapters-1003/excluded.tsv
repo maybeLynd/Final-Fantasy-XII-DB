@@ -1,0 +1,10 @@
+# members the image refuses for this family's per-member form - no row; check verifies each is still refused
+entry	reason
+0062EE50	descriptor not named by exactly one class (0)
+0062F110	descriptor not named by exactly one class (0)
+0062F250	descriptor not named by exactly one class (0)
+0062F430	descriptor not named by exactly one class (0)
+0062F5F0	descriptor not named by exactly one class (0)
+0062F790	descriptor not named by exactly one class (0)
+0062FA10	descriptor not named by exactly one class (0)
+0063CFD0	descriptor not named by exactly one class (0)

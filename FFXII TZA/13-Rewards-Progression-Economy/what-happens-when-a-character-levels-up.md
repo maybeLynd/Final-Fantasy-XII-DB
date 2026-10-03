@@ -714,3 +714,15 @@ Interior anchor `0033405C` (function `00334000`).
 `0046F290` (160 B) is the 192-entry id-table refresh `00334000` runs: each dword slot at `[rsi+0x20]+i*4` resolves through `0020E600`, the result's `byte[+0]` indexes the slot's back-reference, a live entry frees through `003697F0` and re-seeds via `0020E620`, the head cell gets `0020E620(0)`, and `bp = 0xC0`/`r15b` stamp `+1`/`+0` on exit
 
 Interior anchor `0046F2C2` (function `0046F290`).
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../_index/candidates/fable-what-happens-when-a-character-levels-up-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00290610` | 18 B | loads the pointer held in qword `0209BE80` and clears bit 13 (`AND 0xFFFFDFFF`) of the dword at its `+0x10F68`, then returns | Interior anchor `00290617` |
+| `003A72A0` | 56 B | zeroes the first 0x80 bytes (16 qwords, `rep stosq` with `ecx` = 0x10) of the block pointed to by qword `02EBEFB0`, then stores 0 into the dwords at that block's `+0x80` and `+0x84`; `rdi` is saved and restored around the fill | Interior anchor `003A72B0`; Interior anchor `003A72B5`; Interior anchor `003A72C4`; Interior anchor `003A72D1` |
+| `003A8000` | 24 B | stores 0 into the qwords at `+0x0` and `+0x8` of the block pointed to by qword `02EBEF98` | Interior anchor `003A8009`; Interior anchor `003A8013` |
+| `003A8900` | 75 B | through the pointer held in qword `02EBEF88` (reloaded before each store), stores 0 into the qwords at `+0x8` and `+0x10` and the dword at `+0x0`, then loops an offset from 0x18 by 8 while it is below 0x118, storing dword `0xFFFFFFFF` at each of the 32 offsets `+0x18` through `+0x110` | Interior anchor `003A8909`; Interior anchor `003A8914`; Interior anchor `003A891F`; Interior anchor `003A8937`; Interior anchor `003A8948` |
+| `0046F330` | 62 B | stores dword `0xC0000000` at `rcx+0x0`, then 0xC0 (192) times calls `0020E620(0)` and stores each returned `eax` into consecutive dwords starting at `rcx+0x20` (stride 4, through `+0x31C`); `rbx` and `rdi` are saved and restored | Interior anchor `0046F33A`; Interior anchor `0046F344`; Interior anchor `0046F352`; Interior anchor `0046F357`; Interior anchor `0046F361` |

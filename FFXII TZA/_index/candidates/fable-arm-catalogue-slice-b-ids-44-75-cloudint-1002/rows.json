@@ -1,0 +1,82 @@
+{
+ "page": "00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-B-ids-44-75.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_0182wopbAGkg4Gtt5QPc4Pw1",
+ "report": "arm-catalogue-slice-b-ids-44-75.json",
+ "rows": [
+  {
+   "fn": "001EE180",
+   "text": "does nothing when `rcx` is null or byte `+8` of `rcx` is nonzero; otherwise, when qword `+0` of `rcx` is non-null, calls the function at the call site `001EE180`+0x2A with that qword and, if its `al` result is nonzero, the function at the call site `001EE180`+0x36 with the same qword, then stores `dl` to byte `+9` of `rcx` (a null qword `+0` skips the calls and the store)",
+   "anchors": [
+    [
+     "001EE18F",
+     "cmp"
+    ],
+    [
+     "001EE1A5",
+     "je"
+    ],
+    [
+     "001EE1AA",
+     "call"
+    ],
+    [
+     "001EE1B6",
+     "call"
+    ],
+    [
+     "001EE1BB",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0024B100",
+   "text": "copies word `01E0C1D8` to word `01E0C1D4` and word `01E0C1DC` to word `01E0C1D6`",
+   "anchors": [
+    [
+     "0024B107",
+     "mov"
+    ],
+    [
+     "0024B10E",
+     "movzx"
+    ],
+    [
+     "0024B115",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0024B120",
+   "text": "when `ecx` is nonzero stores dword 0x780 to `01E0C1D8` and 0x438 to `01E0C1DC`; when `ecx` is zero stores 0x200 and 0x1C0 to the same two dwords",
+   "anchors": [
+    [
+     "0024B122",
+     "je"
+    ],
+    [
+     "0024B124",
+     "mov"
+    ],
+    [
+     "0024B12E",
+     "mov"
+    ],
+    [
+     "0024B139",
+     "mov"
+    ],
+    [
+     "0024B143",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

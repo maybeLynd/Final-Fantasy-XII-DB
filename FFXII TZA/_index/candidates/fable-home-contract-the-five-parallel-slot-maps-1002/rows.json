@@ -1,0 +1,39 @@
+{
+ "page": "11-Party/CONTRACT-the-five-parallel-slot-maps.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_013d18gLR7WCyczJCeHPeArU",
+ "report": "home-contract-the-five-parallel-slot-maps.json",
+ "rows": [
+  {
+   "fn": "00273800",
+   "entered_from": "`0035BC50` + 0x375",
+   "text": "issues the call at `00273800` + 0x12 for indices 0 to 3 and, at the first non-null result whose dword `+4` equals `ecx`, returns 1 when bit 3 (`0x8`) of that record's byte `+0` is clear and 0 when it is set; when no index matches it returns 0",
+   "anchors": [
+    [
+     "00273812",
+     "call"
+    ],
+    [
+     "0027381C",
+     "cmp"
+    ],
+    [
+     "00273823",
+     "cmp"
+    ],
+    [
+     "00273828",
+     "xor"
+    ],
+    [
+     "00273845",
+     "and"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

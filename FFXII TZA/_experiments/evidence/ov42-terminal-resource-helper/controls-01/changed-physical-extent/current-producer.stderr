@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-terminal-resource-helper\controls-01\changed-physical-extent\prove.py", line 59, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-terminal-resource-helper\controls-01\changed-physical-extent\prove.py", line 43, in main
+    C=module('capture_receipts','capture_prerequisites.py');qualified=C.check(P,'prepare-extents.py','capture.py','extents-01','capture-01','extents-01.json','source-01.json',['0x305640'])
+                                                                      ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-terminal-resource-helper\controls-01\changed-physical-extent\capture_prerequisites.py", line 23, in check
+    if (b['entry'],b['end_exclusive'],b['sha256'])!=(r['start'],r['end_exclusive'],r['sha256']) or len(blob)!=b['bytes'] or blob.hex()!=b['physical_bytes'] or hashlib.sha256(blob).hexdigest()!=b['sha256']:raise ValueError('extent/capture byte identity differs')
+                                                                                                                                                                                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: extent/capture byte identity differs

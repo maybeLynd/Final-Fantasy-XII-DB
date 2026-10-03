@@ -22,7 +22,7 @@ audit:
   crossref_clean: false        # audit_crossrefs.py reports nothing for this document
   reopened_count: 0
 local_production_date: 2026-09-23
-local_production_status: "SECTION-11 locally validated; formal independent acceptance pending"
+local_production_status: "SECTION-11 locally validated; formal independent acceptance pending"  # <- corrected 2026-10-02, OPUS - accepted non-author 2026-09-29 (SWE2-AUDIT-SEM, OV-18), as the interpreter page records
 ---
 
 > **Current production correction — SECTION-11, 2026-09-23.** Original interpreter, actual command callbacks, and selected request-driver paths execute together against synthetic state. Historical audit counters remain history, not acceptance of these changes. No new live game session or whole S-07/L2 acceptance is claimed. See [the section review](../_experiments/evidence/continuation-section11-script-resume/REVIEW.md).
@@ -115,7 +115,7 @@ Four parallel arrays of 64, indexed by slot:
 +0x004  u8[0x40]            TYPE TAG per slot     1 = int32, 2 = float32
  +0x044 u8[0x40]            source-kind byte; direct pushes store6. Existing variable-load
                             evidence distinguishes descriptor byte0 from its separate high-nibble
-                            selector. Do not equate those fields; the complete enum is unresolved.
+                            selector. Do not equate those fields; the complete enum is unresolved.   <- corrected 2026-10-02, OPUS: the enum is two-valued in practice - 75 push sites and PUSHV store 6 (the resolver always sets its out-record +0x00 = 6, 00262667; PUSHV copies it, 00268090/002680C2); only PUSHP stores the descriptor's width nibble 0..5 (00268118-00268150, 00268185); one reader, 00263450 (from 00353D10)
 +0x084  i32[0x40]           written 0 by every push site, read by nothing — reserved
 +0x184  i32/f32[0x40]       THE VALUE
                                              ends at +0x284
@@ -202,9 +202,9 @@ only the busy path leaves1. Selected actor registers and request scratch/accumul
 
 ## 8. Script · resource · event interactions
 
-**This is the script interaction.** The verb ids and their handlers are the 1,224-row dispatch table
+**This is the script interaction.** The verb ids and their handlers are the ~~1,224-row~~ 1,493-row *(corrected 2026-10-02, OPUS: the file's header and data rows, extended 2026-09-19 and 2026-09-26)* dispatch table
 in [`Verb-Dispatch/scriptvm-dispatch.tsv`](Verb-Dispatch/scriptvm-dispatch.tsv); this contract is
-the calling convention every one of them obeys.
+~~the calling convention every one of them obeys.~~ the calling convention their `result` callbacks obey *(corrected 2026-10-02, OPUS: `begin` also receives the manager as a fifth argument, `002622C4`–`002622CD`, and `poll` only three registers, `002622EE`–`002622F8` — as §2 says)*.
 
 ## 9. Determinism
 
@@ -265,7 +265,7 @@ the code and not proven here.**
 > float32, read from `VMResult_WriteFloat32` (`0026B4C0`), which writes the payload at the **same**
 > `+0x0C` the int writer uses and discriminates purely by the tag. **No tag above 3 exists** —
 > resolved 2026-09-14: the entry-typed `+0x15` writer population is enumerated image-wide and
-> writes only 0 (interpreter clear), 2 and 3 (§14 item 2).
+> writes ~~only 0 (interpreter clear), 2 and 3~~ 0, 1, 2 and 3 *(corrected 2026-10-02, OPUS: `0026230B mov byte ptr [rdi + 0x15], 1` in the lifecycle, on the wait slot the interpreter passes, and `00261B97 mov word ptr [rsi + 0x14], 0x107`)* (§14 item 2).
 >
 > **For a reimplementation this is the sharpest trap in the subsystem.** One shared enum for both
 > records compiles, runs, and silently returns a float where an int was meant.
@@ -323,7 +323,7 @@ The cheapest **live** confirmation remains: break on `00267E10` during any spawn
 
 ## 14. Unresolved
 
-1. The complete enum of the source-kind byte and purpose of the +84 array. Existing type-row
+1. The complete enum of the source-kind byte *(answered: 6 from every push and from PUSHV, the width nibble 0..5 from PUSHP — `00262667`, `00268090`, `00268185`; 2026-10-02, OPUS)* and purpose of the +84 array. Existing type-row
    evidence distinguishes descriptor byte0 from a different high-nibble typed-load selector;
    their equality is not established. Historical no-reader census claims are not independently
    re-certified by Section11.
@@ -356,7 +356,7 @@ acceptance of text that this current section supersedes.
 | arguments arrive in reverse | `005103F0` pops twice into `edx` then `r8d` | 1 | PROVEN |
 | `+0x44` source-kind | direct pushes store6; canonical type evidence distinguishes descriptor byte0 from a separate typed-load selector; complete enum remains unresolved | existing scoped evidence | NOT universally resolved |
 | `+0x84` is reserved — written 0, never read | every `+0x84` access in a stack-typed (`+0x184`-touching) function is a store of 0; no read in `0025A000`–`00360000` | 1 | PROVEN |
-| `+0x15` writer population is exactly {clear 0, int 2, float 3} | image-wide sweep for the `slotsA8 + movsx(+0x11)*40` fingerprint: interpreter `= 0` stores (`0025F7B2` +11 more), `0026B4D6` `= 3`, `0026B4F0` `= 2`, `002651B0` `= 2`; no other value written | 1 | PROVEN |
+| `+0x15` writer population ~~is exactly {clear 0, int 2, float 3}~~ includes {clear 0, busy 1, int 2, float 3} *(corrected 2026-10-02, OPUS: `0026230B` writes 1 on a busy poll and `00261B97` writes 1 with wait kind 7)* | image-wide sweep for the `slotsA8 + movsx(+0x11)*40` fingerprint: interpreter `= 0` stores (`0025F7B2` +11 more), `0026B4D6` `= 3`, `0026B4F0` `= 2`, `002651B0` `= 2`; no other value written | 1 | PROVEN |
 | `0026B500` is not a result writer | `test edx, edx` / bit write to `[rcx+0x0D]` / `jmp 002EA970` — a flag setter on a different object | 1 | PROVEN |
 | `002651A0` claims the pending int result | `002651B0` writes state 2 then `002651B5` returns `[entry+0x0C]`; sole caller `00342A80` | 1 | PROVEN |
 | wait-kind byte `+0x14` is a 0..7 jump-table selector; kind 4 = tick wait | `0025DFF4 cmp eax, 7 / ja` + table `0x13E3CC`; kind-4 service `0025B41D cmp byte [entry+0x14], 4` → deadline arithmetic `0025B428`–`0025B435` | 1 | PROVEN |
@@ -395,7 +395,7 @@ the two functions cover them in mirror image:
 
 **Neither pop reports both, and neither is silent about both.** The int pop complains about a tag it
 cannot read and says nothing about an empty stack; the float pop does exactly the reverse. On every
-one of the four paths the depth word at `[rcx]` is left untouched, so a refusal is not a pop.
+one of the four paths ~~the depth word at `[rcx]` is left untouched, so a refusal is not a pop~~ the empty paths leave the depth word alone, but both unknown-tag paths have already stored the decremented depth *(corrected 2026-10-02, OPUS: `00267E1F mov dword ptr [rcx], eax` before the tag test `00267E21`, `00267DBF` before `00267DC1`)*.
 
 That the *empty* halves differ was already documented. **That the difference reverses on the other
 failure mode was not**, and a reconstruction that made either function report both — or neither —

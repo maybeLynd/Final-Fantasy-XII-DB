@@ -160,7 +160,7 @@ with no queued read. Zero calls `003DDA70`, which submits and writes state3 with
 requester's return. Both successful preparation paths consume the production-mask bit.
 
 Clearing the hold byte later and running the same producer does not submit a state1 owner. Its
-bit has been consumed and its state is not2. A separate dispatcher or transition must be proved;
+bit has been consumed and its state is not2. ~~A separate dispatcher or transition must be proved;~~ *(answered: see OV-34 in §9 - none exists; 2026-10-02, OPUS)*
 none is invented here. Deleting prepared state1 does free its backing. Deleting state2 through
 the existing deletion helper does nothing, so an armed request can still be processed afterward.
 
@@ -226,7 +226,7 @@ numeric source handle from the original allocator. Both calls still carry the sa
 
 Thus neither source-handle inequality nor the callback address is an independent per-request
 sequence number. This does not prove duplicate completions happen or every stale callback is
-admitted in normal gameplay. Delivery uniqueness and record-reuse ordering need their own evidence.
+admitted in normal gameplay. ~~Delivery uniqueness and record-reuse ordering need their own evidence.~~ *(answered: see OV-36 in §9 - at-most-once delivery; 2026-10-02, OPUS)*
 
 ## 9. Remaining reconstruction obligations
 
@@ -237,7 +237,7 @@ admitted in normal gameplay. Delivery uniqueness and record-reuse ordering need 
 - [x] ~~Nonempty authored PRF/@FEF registration and specialized consumer ownership/refresh.~~ *ANSWERED 2026-09-29 (SWE2-FRONTIER): answered by the-nonempty-prf-registration-and-specialized-relocation.md, published in the same commit. Register OV-37.*
 - [x] ~~Formal independent acceptance; no L2 or terminal score is awarded by local fixture success.~~ *NOT A QUESTION 2026-09-29 (SWE2-FRONTIER) under the class-2 ruling: an independent-acceptance/process item, carried by board task FABLE-CARRIER-SECTION-OVERLAY-ACCEPTANCE-0929. Register OV-38.*
 
-The Windows overlap-copy question from SECTION-07 remains separate. The native adapter rejects
+The Windows overlap-copy question from SECTION-07 ~~remains separate~~ *(answered: see [the mover](the-source-block-mover-and-separate-consumer-refresh.md) OV-46 - overlap-safe; 2026-10-02, OPUS)*. The native adapter rejects
 overlap rather than silently treating Windows memcpy as memmove. Original historical captures and
 all preceding section evidence remain unchanged.
 

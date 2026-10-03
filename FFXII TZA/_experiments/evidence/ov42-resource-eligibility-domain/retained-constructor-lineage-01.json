@@ -1,0 +1,8 @@
+{
+  "commit": "30754ad4b98a9fc327002a60a2c8612e9e018118",
+  "path": "Database/FFXII TZA/_experiments/evidence/special-action-override-domain/special-override-constructor-raw-01.json",
+  "blob": "f61bb0edffa37b5dacbd2b84dff2a85cd1334ecf",
+  "sha256": "91747eb0ccddaa9a37c3e1fbb3498a3d1995032e7d6137de16d4b62e91529656",
+  "method": "Existing immutable original constructor source, not new capture/execution",
+  "limits": "Own zero store is not final constructor default unless subsequent callee effects are proved"
+}

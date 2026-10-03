@@ -1,0 +1,60 @@
+{
+ "page": "17-Presentation-Rendering/Model-And-Motion-Formats/adm-add-motion-tables.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01924rEWURNFUyvDKP31ShM7",
+ "report": "adm-add-motion-tables.json",
+ "rows": [
+  {
+   "fn": "00183240",
+   "text": "when `001BE420()` returns non-null, calls `001BE420()` again and stores `ecx` at dword `+0x20` of the result; otherwise returns without work",
+   "anchors": [
+    [
+     "00183248",
+     "call"
+    ],
+    [
+     "0018324D",
+     "test"
+    ],
+    [
+     "00183252",
+     "call"
+    ],
+    [
+     "00183257",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00351F40",
+   "text": "calls `00267E10(r9)` and stores its low byte at byte `+0xD` of `r8`; stores 1 at byte `+0xC` of `r8` when `002647C0` of that result is non-zero, else 0 (`setne`); then tail-jumps `0026B4A0(rdx, 0xB)`",
+   "anchors": [
+    [
+     "00351F53",
+     "call"
+    ],
+    [
+     "00351F5A",
+     "mov"
+    ],
+    [
+     "00351F5D",
+     "call"
+    ],
+    [
+     "00351F6F",
+     "mov"
+    ],
+    [
+     "00351F7C",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

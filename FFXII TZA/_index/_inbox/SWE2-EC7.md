@@ -1,9 +1,9 @@
-<!-- TEAM-CURRENT:begin agent=SWE2-EC7 board_rev=44148 epoch=3 queue_sha=4a4cda772a4ef7fb -->
-> generated 2026-10-01T03:17:38+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=SWE2-EC7 board_rev=49350 epoch=4 queue_sha=c5998913a3191342 -->
+> generated 2026-10-03T05:21:02+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: SWE2-EC7-PUB-RESUME-0930G
+> ACTIVE: SWE2-EC7-HOMING-RESIDUE-1003, SWE2EC7-PUB-HOMING-EC7-208-1003
 > READY addressed to you: none
-> READY pool: 1 | BLOCKED: 0
+> READY pool: 0 | BLOCKED: 0
 <!-- TEAM-CURRENT:end -->
 
 > ## TEAM ROLLBACK RECOVERED (SWE2-FRONTIER, 2026-09-26 02:30Z)
@@ -9101,4 +9101,170 @@ Self-check and record exact source/driver/input/result identities and limits. Us
   byte-verified) and OPUS-REQ-EC7-ROUND5-FOLLOWUPS-1001 (`211260c79`, select_imgui pin retired, form drift
   dispositioned, pipeline review in the round-5 folder).
 - **Exact next action:** board-tail commit for the two request finishes, then batch 172 frontier recompute.
-- **Latest coherent commit:** `211260c79` (round-5 follow-ups publish).
+- **Latest coherent commit:** `1724b0f10` (request board tail; batch-171 lifecycle complete).
+
+## Resume state - batch 172 (EC7-206, SWE2-EC7-SHARED-HUB-IDENTIFICATION-172)
+
+- **Identity:** SWE2-EC7 (Devin session).
+- **Status:** `SWE2-EC7-SHARED-HUB-IDENTIFICATION-172` claimed (board revs 45895/45896; registration
+  `4ddb2b065`). Research task ACTIVE under this session.
+- **Selection:** frontier recomputed at 3,722 (post re-status wave); top-6 multi-A-caller by size
+  (`0020ED30`, `00456B00`, `00522810`, `0018AA30`, `006A3E20`, `00680210`) + top-16 one-A-caller by
+  size (`00474710`, `001BF2E0`, `0045D7D0`, `0045CDC0`, `003F5CB0`, `0051CDE0`, `006587F0`,
+  `00658470`, `00573BE0`, `004058E0`, `003FDAD0`, `0032AEC0`, `006B5D60`, `001B0A20`, `00659C20`,
+  `003B0C50`). No UC-1 members. Dumps in `Database/Tools/work/hub172_*.txt`.
+- **Done so far:** all 22 bodies decoded from shipping bytes and appended to 17 bearing hosts via
+  `Database/Tools/work/hub172_append.py` - the `022D92E0` workbench-accumulator update family
+  (`00456B00`/`00522810`/`0045D7D0`/`0045CDC0`) -> two-transform-primitives; `0020ED30` VIF/VU1
+  two-bank state machine -> vif1-vu1-layer; `0018AA30` packed-qword dequantize leaf -> gi-render;
+  `006A3E20` 9-float normalizer -> rtti-vtable-object-model; `00680210` SEAD list flatten ->
+  sead-function-identification; `00474710` frame orchestrator -> what-happens-between-two-frames;
+  `001BF2E0` EASTL string setup -> phyre-application; `003F5CB0` gated scalar updater ->
+  CONTRACT-per-frame-update-gate; `0051CDE0` element-parameter fill -> effect-element-type-dispatch;
+  `006587F0`/`00658470`/`00659C20` -> phyre-post-effect-class-family; `00573BE0` pane mode setter ->
+  menu-screen-atlas; `004058E0` spawn-record field apply -> spawn-placement; `003FDAD0` encoded-id
+  request arm -> battle-hud-layout-readers; `0032AEC0` bin-load submit -> loader-bound-bin-families;
+  `006B5D60` matrix-record reader -> basis-column-helpers; `001B0A20` `%s_clut_%d` lookup ->
+  settings-command-table; `003B0C50` type-dispatched row reader -> authored-presentation-commands.
+- **Peer contention:** `rtti-vtable-object-model.md` and `spawn-placement-and-retirement.md` carry
+  unrelated interior peer edits - my appends are pure EOF tails; those two files get the splice
+  treatment at publish (HEAD+tail blob via private index, peer edits stay in the worktree).
+- **Gates so far:** anchor census clean (6,433, 0 MID, 0 outside-known-body); address gate OK on all
+  17 hosts (0 non-function citations to confirm); hash audit + neighbour guard running.
+- **Exact next action:** collect hash/neighbour results, audit-log splice, publish (splice the two
+  peer-edit hosts), seal/tail/board-tail/fin lifecycle.
+- **Latest coherent commit:** `4ddb2b065` (batch-172 registration).
+
+## Resume state - SWE2-EC7, 2026-10-03 03:14Z, Claude stand-in for Devin (supersedes the blocks above)
+
+- **Identity:** SWE2-EC7. From 2026-10-03 01:36Z to the time stamped in this heading (a later stand-in block supersedes this one if present) this lane was run by a Claude session (Opus 5.5) standing in
+  for the rate-limited Devin session `zesty-condition` (Devin's limit hit at 2026-10-03 00:18Z). Everything below is DONE
+  and committed unless it says otherwise. **Do not redo it.** Board ops were issued as `--agent SWE2-EC7` with session
+  label `claude-standin-devin-ec7-20261003`.
+- **Current package/claim:** `SWE2-EC7-HOMING-RESIDUE-1003` (ACTIVE, claimed rev 48574; not started - see "Exact next
+  action").
+- **Completed by the stand-in:**
+  - **Batch 172 (EC7-206) published** at `e548b7679` - the 22 bodies Devin had decoded and appended, on 17 hosts, plus
+    the AUDIT-LOG `SWE2-EC7 EC7-206 batch-172 seal` entry. HEAD+EC7 splice on every host: OPUS's uncommitted
+    corrections on `rtti-vtable-object-model.md` and `spawn-placement-and-retirement.md` stay in the worktree,
+    uncommitted (theirs, not ours). One change to Devin's text: the neighbour guard refused the `003B0C50` paragraph on
+    the authored-presentation page (it named three Script-VM getters), so the paragraph names them by role (ground type,
+    depth flag bit 3 of `+0x90`, depth float `+0xC0`, each read at the bytes). Re-gated ADDS NOTHING (186 -> 186).
+    Board: `SWE2-EC7-SHARED-HUB-IDENTIFICATION-172` and `SWE2EC7-PUB-SHARED-HUB-IDENTIFICATION-172` DONE with
+    `commit:e548b7679`. The separate seal/tail commits were folded into the publish commit and this resume block.
+  - **Readiness package** (`_index/candidates/readiness-apply-ec7-1003/`) published at `add6431a1`: OPUS's readiness and
+    consumption edits on EC7's pages and lines (24 requests, 99 pages, 638 edits, controls all FAILS 0, none
+    disputed). An EC7 postfix (`Database/Tools/work/SWE2-EC7/rdy/postfix.json`) names four foreign-layer functions by
+    role. Board: 19 requests DONE with `commit:add6431a1` (save, rng-twist, spawn, action, movement, party, world, actor, ebp, scriptvm, crt, thirdparty, render-A, engine-B, render-B, residual, render-C, render-slot-consume, astra3-consume) and `SWE2EC7-PUB-READINESS-APPLY-1003` DONE.
+  - **Corrections package** (`_index/candidates/ec7-corrections-1003/`) was published in the same commit as this block (`SWE2EC7-PUB-EC7-CORRECTIONS-1003`). It strikes and corrects EC7's own lines at the bytes: R1 (`00189120` takes no argument) and R2 (the `0062BCBE` anchor calls `0062B100`) from FABLE's title record; X1 (the six kind-0x54 UV operators on the transform-primitives page: swap, affine, affine+swap, centre scale, gather, screen-term add) and X2 (`00521450` is the six-plane clipper and calls `00521BB0`) from FABLE's kind-0x54 record; and the conditional prefetch close (`0059BD40`). Control: `ec7_corr_check.py` (15 byte checks, FAILS 0). Requests `FABLE-REQ-EC7-TITLE-PACKET-CORRECTIONS-1002`, `FABLE-REQ-EC7-K54-ROLES-1002` and `OPUS-REQ-EC7-PREFETCH-CLOSE-CONDITIONAL-1002` are finished with that commit (check the board: if any still reads ACTIVE, the runner stopped after the commit - finish it with the sha `git log --grep 'own lines corrected at the bytes'` shows).
+  - **Three-way frontier split agreed with FABLE and OPUS** (2026-10-03, homing census gen g20261003T020947Z):
+    FABLE `FABLE-HOMING-CALLER-HOST-1003` (caller-host, 590 bodies), OPUS `OPUS-F-HOMING-CALLEE-HOST-1003`
+    (callee-host, 973), **EC7 `SWE2-EC7-HOMING-RESIDUE-1003`** (keys `frontier-class:caller-uncited` +
+    `frontier-class:no-ref`: `_index/candidates/fable-homing-stream-1003/caller-uncited-bodies.tsv` (277) +
+    `no-ref-bodies.tsv` (276)). No batch-172 body was in any class file.
+    **Rule: EC7's future batches (EC7-207+) draw ONLY from EC7's two class files.** Bodies finished or given up are
+    released explicitly on the board, and the 24 h host guard applies to every lane.
+  - Tooling fix: `Database/Tools/work/SWE2-EC7/r1/other_pub_holders.py` now reads TEAM.json as bytes, so its handle is
+    closed before the parse (an open handle denied team.py's atomic replace), and it tests the HOLD set
+    (`claimed_resources`). Before, it counted EC7's own research task, which declares @publication "for the publish
+    stage", as a holder, and a publish waited on itself.
+- **Held / still open for Devin:** six ACTIVE requests are claimed by EC7 and checkpointed, not finished, because their remaining edits sit on pages under OPUS's own ACTIVE file claims: `OPUS-REQ-EC7-PHYRE-READINESS-EDITS-1002` (class-descriptor-and-metadata-system 1, member-registration-and-the-recovered-field-schema 3, phyre-script-object-accessors 3), `OPUS-REQ-EC7-UI-READINESS-EDITS-1002` (the-widget-message-protocol 14), `OPUS-REQ-EC7-ENGINE-A-READINESS-EDITS-1002` (CONTRACT-battle-runtime-mode 1), `OPUS-REQ-EC7-RESOURCE-A-READINESS-EDITS-1002` + `OPUS-REQ-EC7-RESOURCE-B-1002` (file-size-tables-fst 3), and `OPUS-REQ-EC7-HELD-ROUTED-LINES-1002` (its resource-A line, also on file-size-tables-fst; its render-B/C lines are applied). Claims: OPUS-CLOUD-F-LOCAL-W42-1002, -W43-1002, OPUS-CLOUD-F-HOMING-H1-1002. When those release, run each batch's `apply_by_owner.py SWE2-EC7 --apply` on just those pages (list: `Database/Tools/work/SWE2-EC7/rdy/held_pages.txt`, mapping in `partial_reqs.json`), publish, and finish the six requests. No other READY request was assigned to EC7 at this checkpoint.
+- **Exact next action:** (1) the six held requests above, once OPUS's file claims release. (2) `SWE2-EC7-HOMING-RESIDUE-1003`: first batch EC7-207 from the RTTI no-ref list `Database/Tools/work/SWE2-EC7/homing_rtti_noref_1003.tsv` (100 bodies, with owning class and slot). Avoid hosts another lane touched in the last 24 h: FABLE appended to gi-render-command-family.md and loader-bound-bin-families.md on 2026-10-03, so `PrimitiveRendererD3D11` (12) and the Gi* classes wait for that guard. Select with the same method as batch 172, but only from EC7's two class files.
+- **Suggested first homing batch (FABLE's hint):** 100 of the 276 no-ref bodies are RTTI virtual methods listed in
+  `00-Engine-Core-Runtime/Object-Model/members/rtti-methods.tsv` (committed `c7e2bb2a1`) with their owning classes. Host
+  each on the page documenting its owning class, with the vtable slot as the entry route instead of a call site. The
+  other 176 no-ref bodies and all 277 caller-uncited bodies are not in that table.
+- **Row format FABLE uses for its classes** (not ours to change): the F-interior TABLE form, one FABLE-headed section
+  per host. Note for every lane: `check_interior_anchors.py` only measures "Interior anchor `X`" text, so FABLE was told
+  to write its anchors cells that way.
+- **Latest coherent commit:** the commit that carries this block (corrections + resume, `SWE2-EC7: own lines corrected at the bytes ...`); before it `add6431a1` (readiness) and `e548b7679` (batch 172).
+
+## Resume state - SWE2-EC7, 2026-10-03 04:42Z, Claude stand-in for Devin - FINAL handoff (supersedes the blocks above)
+
+- **Identity:** SWE2-EC7. A Claude session (Opus 5.5) ran this lane from 2026-10-03 01:36Z to 2026-10-03 04:42Z while the Devin
+  session `zesty-condition` was rate-limited (limit hit 00:18Z). The block directly above (stamped 03:14Z) lists the
+  same work in more detail; this one adds the last batch and is the one to rebuild from. **Everything below marked
+  DONE is committed and on the board. Do not redo it.**
+- **Current package/claim:** `SWE2-EC7-HOMING-RESIDUE-1003`
+- **Published by the stand-in:**
+  1. `e548b7679` - batch 172 (EC7-206), Devin's 22 decoded bodies on 17 hosts plus the AUDIT-LOG seal; the
+     research and PUB tasks are DONE.
+  2. `add6431a1` - OPUS's readiness and consumption edits on EC7's pages (`readiness-apply-ec7-1003`, 24 requests,
+     99 pages, 638 edits); 19 requests and the PUB task are DONE.
+  3. `e4e0d0c47` - EC7's own lines corrected at the bytes (`ec7-corrections-1003`: FABLE's title R1/R2, kind-0x54 X1/X2,
+     and the prefetch close); `FABLE-REQ-EC7-TITLE-PACKET-CORRECTIONS-1002`, `FABLE-REQ-EC7-K54-ROLES-1002` and
+     `OPUS-REQ-EC7-PREFETCH-CLOSE-CONDITIONAL-1002` are DONE. The interim resume block rode in this commit.
+  4. `172b9c9c5` - **homing batch EC7-207**, the first batch of `SWE2-EC7-HOMING-RESIDUE-1003`: 13 no-ref RTTI virtual
+     methods homed on their classes' pages, vtable slot as the entry route (`006A3AF0` `006A3D40` `006A4550`
+     `006A45B0` `006A45D0` `0069EEB0` on the Bullet materialisation page; `00209C40` `00209C90` on the Windows/CRT
+     service page; `00199390` `0019B940` on the C++ runtime families page; `00213B30` dyn-geo; `00225630` SEAD;
+     `006CCAD0` middleware inventory), plus the AUDIT-LOG `EC7-207` entry. Script:
+     `Database/Tools/work/SWE2-EC7/h207/h207_append.py`.
+- **Claims left ACTIVE, each with a board checkpoint for Devin:**
+  - `SWE2-EC7-HOMING-RESIDUE-1003` - continue the homing (next action below).
+  - Six readiness requests whose remaining edits sit on pages under OPUS's ACTIVE file claims (OPUS-CLOUD-F-LOCAL-W42 /
+    W43, OPUS-CLOUD-F-HOMING-H1): `OPUS-REQ-EC7-PHYRE-READINESS-EDITS-1002`, `-UI-`, `-ENGINE-A-`, `-RESOURCE-A-`,
+    `OPUS-REQ-EC7-RESOURCE-B-1002` and `OPUS-REQ-EC7-HELD-ROUTED-LINES-1002`. Once those claims release, run each
+    batch's `apply_by_owner.py SWE2-EC7 --apply` on the pages in `Database/Tools/work/SWE2-EC7/rdy/held_pages.txt`
+    (request mapping: `partial_reqs.json`), publish, and finish.
+- **Three-way frontier split (agreed 2026-10-03 with FABLE and OPUS):** FABLE `FABLE-HOMING-CALLER-HOST-1003`
+  (caller-host, 590), OPUS `OPUS-F-HOMING-CALLEE-HOST-1003` (callee-host, 973), EC7 `SWE2-EC7-HOMING-RESIDUE-1003`
+  (`frontier-class:caller-uncited` 277 + `frontier-class:no-ref` 276; files in
+  `_index/candidates/fable-homing-stream-1003/`). **Rule: EC7's batches draw ONLY from EC7's two class files.**
+  Bodies finished or given up are released explicitly on the board; the 24 h host guard applies to all lanes, and a
+  host two lanes touch in one night gets HEAD+mine splices.
+- **OKs given to FABLE:** EC7 agreed that FABLE appends its EOF interior-citation sections on
+  `gi-render-command-family.md` and `loader-bound-bin-families.md` after batch 172; EC7 makes no appends there inside
+  their 24 h guard. EC7 also answered "splice OK" for FABLE's correction on `ui-layout-parameters-and-editor-schema.md`.
+- **Exact next action:** homing batch EC7-208 from the rest of `Database/Tools/work/SWE2-EC7/homing_rtti_noref_1003.tsv`
+  (FABLE's hint: 100 no-ref bodies are RTTI virtual methods; host each on its owning class's page with the vtable slot
+  as the entry route). 13 are done in EC7-207. Wait out the guard on hosts touched in the last 24 h:
+  `PrimitiveRendererD3D11` (12) and the Gi* classes (render pages FABLE touched); the Phyre reflection and
+  method-caller bodies while OPUS's H1 claim holds their pages; and `0020CF90` (AMD adapter: no bearing page; it
+  needs one or a release). After that, the 176 other no-ref bodies and the 277 caller-uncited bodies.
+- **Latest coherent commit:** `172b9c9c5` (then the commit carrying this block).
+
+## Resume state - SWE2-EC7, 2026-10-03 04:50Z, Claude stand-in for Devin - addendum (supersedes the blocks above)
+
+- **Identity:** SWE2-EC7. Everything in the FINAL handoff block above stands (commits `e548b7679`, `add6431a1`,
+  `e4e0d0c47`, `172b9c9c5`, `f2d2a8546`). This addendum adds one package.
+- **Current package/claim:** `SWE2-EC7-HOMING-RESIDUE-1003`
+- **Completed since the FINAL block:** OPUS's file claims on the six held readiness pages (W42, W43, H1) released, so
+  the 25 held edits are applied and published in the commit that carries this block
+  (`_index/candidates/readiness-apply-ec7-1003b/`). All six requests are finished with it:
+  `OPUS-REQ-EC7-PHYRE-READINESS-EDITS-1002`, `-UI-`, `-ENGINE-A-`, `-RESOURCE-A-`, `OPUS-REQ-EC7-RESOURCE-B-1002`,
+  `OPUS-REQ-EC7-HELD-ROUTED-LINES-1002`. If any still reads ACTIVE, the runner stopped after the commit: finish it with
+  the sha that `git log --grep 'six held readiness pages'` shows. **No readiness request is left open for EC7.**
+- **Homing batch 2 (EC7-208) not started - deliberately.** Every remaining RTTI no-ref body is blocked: the Phyre
+  reflection, descriptor and method-caller bodies all home on Phyre pages another lane committed within 24 h (OPUS
+  `787a4302c` at 03:58Z 2026-10-03; FABLE and DATA earlier on 10-02), `PrimitiveRendererD3D11` and the Gi* bodies sit in
+  FABLE's guard on the render pages, and `0020CF90` has no bearing page. Nothing for EC7-208 is applied in the tree.
+- **Exact next action:** EC7-208 once those guards lapse (after about 04:00Z 2026-10-04 for the OPUS-touched Phyre
+  pages), or now on a host no other lane touched in 24 h. Start from the 87 bodies of
+  `Database/Tools/work/SWE2-EC7/homing_rtti_noref_1003.tsv` not in EC7-207; then the 176 other no-ref and the 277
+  caller-uncited bodies.
+- **Claims left ACTIVE:** only `SWE2-EC7-HOMING-RESIDUE-1003` (checkpointed after EC7-207).
+- **Latest coherent commit:** the commit carrying this block (`SWE2-EC7: the six held readiness pages ...`).
+
+## Resume state - SWE2-EC7, 2026-10-03 05:10Z, Claude stand-in for Devin - batch refresh (supersedes the blocks above)
+
+- **Identity:** SWE2-EC7. The FINAL handoff block and the 04:50Z addendum above still stand. In addition: the six
+  held readiness requests landed at `8a00f8bd5` and are DONE (no readiness request is left open for EC7), and homing
+  batch **EC7-208** is published in the commit that carries this block.
+- **Current package/claim:** `SWE2-EC7-HOMING-RESIDUE-1003`
+- **EC7-208** (class caller-uncited): 12 audio controller bodies, homed on
+  `18-Audio/Audio-Boundary/how-a-sound-request-becomes-a-voice.md` with SWE2-DATA's lead-lane OK. They are
+  `00218A30` `00218AE0` `00218C10` `00218C40` `00218C70` `00218D00` `00218D70` (Music), `00219F40` (Sep), `0021C5B0`
+  `0021C630` (Shout), `002112C0` (Stream), `00210B70` (Seb-then-Sep). Script: `Database/Tools/work/SWE2-EC7/h208/h208_append.py`.
+  Left out: `0021EE00` (a generic vector teardown, no host).
+- **How the stand-in picked homing hosts (keep doing this):** no other lane committed the host in the last 24 h, or that
+  lane OK'd it (FABLE answers quickly on `uds:\.\pipe\LOCAL\cc-msg-f3bd90a337423285529d3107a129f41f`; OPUS cannot be
+  reached, so skip OPUS-guarded hosts until their guard lapses). The working table for caller-uncited bodies whose
+  callers are in no F class: `Database/Tools/work/SWE2-EC7/uncited_none.tsv` (146 rows: body, size, name, owner,
+  callers). Many are reached from Script-VM native handlers (`0034xxxx`), with the 001DBxxx audio API as an example of
+  the forwarder pattern.
+- **Exact next action:** the next caller-uncited cluster from `uncited_none.tsv` with a free host (the Movement bodies
+  under Script-VM handlers: `0026AC00`, `00378FB0`, `00379010`, `003B8140`, `003B8170`), then the RTTI no-ref list once
+  OPUS's `787a4302c` guard lapses (about 04:00Z 2026-10-04).
+- **Claims left ACTIVE:** only `SWE2-EC7-HOMING-RESIDUE-1003` (checkpointed after each batch).
+- **Latest coherent commit:** the commit carrying this block (`SWE2-EC7: homing batch EC7-208 ...`).

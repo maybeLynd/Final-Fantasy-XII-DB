@@ -1,0 +1,38 @@
+{
+ "page": "19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/katano-debug-savedata.md",
+ "date": "2026-10-02",
+ "session": "local-w44-opus",
+ "report": "katano-debug-savedata.json",
+ "rows": [
+  {
+   "fn": "001EA380",
+   "text": "when `edx` is below (unsigned) dword `+0x28` of `rcx` with bit 31 cleared, calls `001EAD40(qword +0x30 + edx*8, r8)` (`edx` zero-extended) and sets byte `+0xE8` to 1; otherwise it tail-jumps to `001EA1E0(rcx, r8)`",
+   "anchors": [
+    [
+     "001EA38C",
+     "btr"
+    ],
+    [
+     "001EA392",
+     "jae"
+    ],
+    [
+     "001EA3A1",
+     "call"
+    ],
+    [
+     "001EA3A6",
+     "mov"
+    ],
+    [
+     "001EA3BB",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

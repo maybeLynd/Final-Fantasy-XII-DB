@@ -34,8 +34,8 @@ audit:
 > this database reports.
 >
 > **The block count was first published as "at least 1,471"** — the floor the boundary rule gives.
-> §UC-5 later adjudicated **163 of those blocks as continuations of the body before them, not
-> separate functions** (162 on 2026-09-13, +1 on 2026-09-17 when `0036F22E` lost its only reference -
+> §UC-5 later adjudicated **~~163~~ 162 of those blocks as continuations of the body before them, not
+> separate functions** *(corrected 2026-10-02, OPUS: `unlisted-body-admissions.tsv` holds 162 continuation rows, 3,418 bytes, since the 2026-09-25 table split)* (162 on 2026-09-13, +1 on 2026-09-17 when `0036F22E` lost its only reference -
 > `.pdata`, banned under pass 6), so the corrected figure is ~1,308. **The byte total is barely
 > touched**: 3,797 of 244,619 is 1.6 %, and those bytes are unlisted code either way. `progress.py` prints the corrected
 > count.
@@ -221,7 +221,7 @@ encoding - and the terminator set above omitted it. Three blocks, **802 bytes**,
 | `call` | unreferenced or aligned | 7 | 548 | **ambiguous** - execution returns from the call into these bytes unless the callee is `noreturn`, which was not checked |
 | ~~`mov` | **referenced** | 1 | 13 | **a real body**~~ | ~~1~~ | ~~13~~ | CORRECTED 2026-09-17 - `0036F22E` is listed **only** by `.pdata`, which FINAL-AUDIT-PROTOCOL pass 6 bans as evidence; the `referenced` union has been split per route (`unlisted_admissions.py`, OPUS-REQ-SWE2-EC7-UNLISTED-REFERENCED-ROUTES) and the row moved to fall-through continuation |
 
-**163 blocks - 3,797 bytes - are not separate functions.** The clearest case is the largest group's
+**~~163 blocks - 3,797 bytes~~ 162 blocks - 3,418 bytes - are not separate functions.** *(corrected 2026-10-02, OPUS: the member TSV's continuation rows after the 2026-09-25 split)* The clearest case is the largest group's
 own example: `00121DB0+97` followed by a **one-byte** block. A recorded size that falls mid-instruction
 leaves a tail, and the splitter counted the tail.
 
@@ -467,7 +467,7 @@ database should be read as *"of the 34,270 bodies the list contains"* and not *"
       closed 3-0; the 34,409 floor and FABLE's band ruling both carry independent ACCEPTs; the
       `007EE7C0`/`007EE7F0` collision was owner-adjudicated with two ACCEPTs. The 1-64 B band
       application is GO under FABLE s5 conditions (`OPUS-UC1-POPULATION-CHANGE`); larger bands
-      stay NOT YET. **If the retained-but-unreachable reading holds, most of this is
+      ~~stay NOT YET~~ *(answered: see UC-1: every size band is now adjudicated; 2026-10-02, OPUS)*. **If the retained-but-unreachable reading holds, most of this is
       not engine code at all** - which is an argument about which answer is right, not a licence to
       pick one.
 

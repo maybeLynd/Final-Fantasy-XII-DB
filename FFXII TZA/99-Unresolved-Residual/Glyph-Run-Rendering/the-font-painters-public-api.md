@@ -316,7 +316,7 @@ passes share.
 
 ### Interior citation — frontier hub `0017F8E0` (2026-09-18, SWE2-EC7)
 
-`0017F8E0` — 50 B, 4 callers: the glyph-width query — `001B5FA0()` context,
+`0017F8E0` — 50 B, 4 callers: the glyph-width query — `001B5FA0()` context *(corrected 2026-10-02, OPUS: fetched twice, at `0017F8E0`+0x8 and +0x19, once before each callee — §5's reading)*,
 `001E9780(ctx, ecx)` at [`0017F8F2`](../../_index/ADDRESS-INDEX.md), then
 `001E9BD0(ctx, result)` returns a float converted `cvttss2si` to int. The
 pixel-width read the layout pass uses before breaking a line.

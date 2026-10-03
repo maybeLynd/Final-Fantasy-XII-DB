@@ -350,8 +350,8 @@ Interior anchor `002F16DE` (the `022BE7C0` mask store).
 `0037CE80` (123 B) is the presentation-record init `003523B0` calls:
 `002E97B0` resolves the target and clears its `+0x11` bit 0,
 `0020E620` builds the id (`r8d` negative -> -1) into `[rbx]`, bytes
-`+8`/`+9`/`+0xA`/`+0xB` come from the `002DEBD0`/`002DEB90` pair
-under the `0016D6A0` gate, `[rdi+0x23]` is cleared, and `+8` gains
+~~`+8`/`+9`/`+0xA`/`+0xB` come from the `002DEBD0`/`002DEB90` pair~~ `+8` = 0, `+9` = the param, `+0xA` = 0, `+0xB` = `002DEBD0()` *(corrected 2026-10-02, OPUS: `0037CEC3`, `0037CEBF`, `0037CEBB`, `0037CED1`; `002DEB90(1)`'s result is discarded)*
+~~under the `0016D6A0` gate,~~ *(corrected 2026-10-02, OPUS: `0016D6A0` is called, `0037CED9`, and nothing tests its result)* `[rdi+0x23]` is cleared, and `+8` gains
 `0x80`.
 Interior anchor `0037CEB4` (the `0020E620` call).
 

@@ -36,7 +36,7 @@ addresses:
 
 # The message-window layout-key readers
 
-**Status:** PARTIAL — this page documents where each `uisize.json` key of the message families lands
+**Status:** ~~PARTIAL~~ DOCUMENTED *(corrected 2026-10-02, OPUS: the front matter says `status: DOCUMENTED`)* — this page documents where each `uisize.json` key of the message families lands
 at its native use site (the LAYOUT-KEY-READERS package). It is *not* a full decode of the message
 windows: the procedures' dispatch arms and the `0xC0368C`-family lookup tables are the parts still
 open (see the shared-dialogs page's "Not yet established" for `00556F90`'s id-2 arm). The text
@@ -53,7 +53,7 @@ The battle log (**`002BE4F0`** P, `00253780` family) and the standalone help/aut
 | reader (→ owner) | keys | what the values do at the use site |
 |---|---|---|
 | `002A2C00` (hub; installs `002A6190`, →`002A3090`→`00474100`) | `TalkingMessageOffsetX/Y`, `MaskBottomBlackBandH`, `FontBaseWidth`, `MessageLineWordCount` | `TalkingMessage` offsets `add`ed into the rect origin `[rbp-0x58]`/`[rbp-0x54]` (`002A2DC4`, `002A2DCD`); `MaskBottomBlackBandH` `sub`ed from the frame bottom then `cmp` — the letterbox clamp (`002A2E38`); `FontBaseWidth`/`WordCount` → `movd`+`cvtdq2ps` floats for the measure pass (`002A2E97`, `002A2EA6`) |
-| `002A6190` P (the message window) | — | reads no key directly; its helpers `002A4170`/`002A4430`/`002A7F70`/`002A8100`/`002A8220` feed it (below) |
+| `002A6190` P (the message window) | — | ~~reads no key directly~~ reads three keys itself — `MessageWinMaskBottom` (`002A6190+0x234`), `MsgWinSignalOffsetY` (`002A6190+0x400`) and `MessageWinMaskTop` (`002A6190+0x738`) *(corrected 2026-10-02, OPUS: the `layout-key-readers.tsv` rows, each read at the bytes)*; its helpers `002A4170`/`002A4430`/`002A7F70`/`002A8100`/`002A8220` feed it (below) |
 | `002A4170` (→`002A6190`) | `MsgWinCaptionBaseOffsetX/Y`, `SystemWindowCaptionOffsetX/Y`, `NobuMessageItemGetOffsetY` | caption bases → `xmm7`/`xmm0`/`xmm6`/`xmm1` floats — the caption draw origin (`002A41F5`, `002A4230`, `002A43A9`, `002A43DC`); `ItemGetOffsetY` → `ebx` — the "item get" line's Y (`002A434D`) |
 | `002A4430` (→`002A6190`) | `MsgWinLogCursorOffsetX/Y`, `MsgWinSelectCursorOffsetY`, `FontBaseWidth`, `MessageLineWordCount` | cursor offsets and font metrics → `xmm` registers for the log/select cursor floats (`002A467A`, `002A4682`, `002A463C`, `002A4694`); `LogCursorOffsetY` `sub`ed from `r8d` (`002A46E4`) |
 | `002A7F70` (→`002A6190`; also an installer of `002A86A0`) | `MsgWinSignalLeftOffset` | `ecx − key − eax` — the left "more" signal's X from the window edge (`002A803C`) |

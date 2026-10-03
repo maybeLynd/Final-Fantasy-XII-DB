@@ -1,9 +1,9 @@
-<!-- TEAM-CURRENT:begin agent=SWE2-DATA board_rev=48101 epoch=4 queue_sha=96064bc083b43dce -->
-> generated 2026-10-02T23:37:47+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=SWE2-DATA board_rev=49262 epoch=4 queue_sha=05e8de6c548c796a -->
+> generated 2026-10-03T05:01:29+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: OPUS-REQ-DATA-CRT-READINESS-LINE-1002, OPUS-REQ-DATA-LIBVPX-UC1-REFS-1002, OPUS-REQ-DATA-PLATFORM-READINESS-LINES-1002, OPUS-REQ-DATA-UI-READINESS-LINES-1002, SWE2-DATA-PUB-READINESS-R2-1002
-> READY addressed to you: P1 ASTRA-REQ-DATA-OV42-AUTHORED-QUEUE-REFERENCE-FLOW-1002, P2 AUTO-INCORP-ORACLE-REQ-AUDITSPEC-SD7-REVIEW-1002, P2 OPUS-REQ-DATA-ASTRA3-CONSUME-1002, P2 OPUS-REQ-DATA-RENDER-C-READINESS-1002, P2 OPUS-REQ-DATA-RESIDUAL-1002, P2 OPUS-REQ-DATA-RESOURCE-B-1002, P3 OPUS-REQ-DATA-HELD-ROUTED-LINES-1002, P3 OPUS-REQ-DATA-RENDER-A-READINESS-LINES-1002, P3 OPUS-REQ-DATA-RENDER-B-READINESS-LINES-1002
-> READY pool: 0 | BLOCKED: 0
+> ACTIVE: SWE2-DATA-PUB-RESUME-1003B
+> READY addressed to you: none
+> READY pool: 0 | BLOCKED: 1
 <!-- TEAM-CURRENT:end -->
 
 > ## TEAM ROLLBACK RECOVERED (SWE2-FRONTIER, 2026-09-26 02:30Z)
@@ -147,9 +147,21 @@ Required by the continuity rule in the root `CLAUDE.md` ("What a plain `Continue
   control-map DIR64 `01CDB3A8`); same-class drops `006DD030` 1→0,
   `00706F00`/`00707610` 2→1 in `ppfx-span-uc1.tsv`; `sead-span-uc1.tsv`
   unchanged; zero `raw-only` kinds remain; all TEST 1/3 controls print.
-  **Next:** publish the round-2 set (per-lane record
-  `swe2data-readiness-consumer-check-1002/consumer-check-r2.md`), finish the
-  four ACTIVE tasks, re-sweep READY.
+  **Published `9f0516954` (2026-10-02, 11 files)** under
+  `SWE2-DATA-PUB-READINESS-R2-1002`; all five tasks finished by rev 48109.
+  **Round-3 readiness wave (2026-10-02):** nine READY tasks arrived; eight
+  claimed and applied — `RENDER-A` (2 fef edits), `RENDER-B` (8 incl. the 3
+  held-routed lines, covering HELD-ROUTED-LINES), `RESOURCE-B` (10), `RESIDUAL`
+  (1), `RENDER-C` (21 of 22 — the 22nd refused: it targeted the kind-54 status
+  line already rewritten by `9f0516954`; NOTE: the applier writes NO file when
+  any edit fails, so the first run silently applied nothing — re-run with the
+  superseded edit excluded), `ASTRA3-CONSUME` (1), and `SD7-REVIEW` incorpor-
+  ation (register + page row updated to the repaired 150/42 partition,
+  `sd7_app_pointer_sites.py` re-run FAILS 0). All six lane controls FAILS 0 at
+  `f81176bae`. **Next:** publish the round-3 set (record
+  `consumer-check-r3.md`), finish the eight tasks, then the P1
+  `ASTRA-REQ-DATA-OV42-AUTHORED-QUEUE-REFERENCE-FLOW-1002` (authored binding
+  verbs 029A/029B — substantial analysis).
 - **Earlier (2026-10-01, Devin session):** published `c282e703e` — register cells per OPUS batches
   13-16 + capability/residue3/reopened3 (C-7 bit-5, UQ-147 queued carrier, Z-19 `0x04` reader `00325D90`,
   AY-7 82-entry manifest/slot-8, CF-2 libvorbis reached, AG-4 slot-50 per G1-G9, EX-2 wording, FZ-18
@@ -2667,3 +2679,113 @@ Build the local read-only live interface and source adapters according to the br
 Self-check and record exact source/driver/input/result identities and limits. Use a qualified non-author for independent acceptance of your production. A required upstream failure or missing result is not PASS. Preserve historical receipts and relevant regressions; run impacted checks during development, broader campaigns only at governing gates. Update the actual tool/consumer path and persistent procedure so the same defect is caught next time. Use fresh preimages, supported writes, short publication claims and meaningful commits. Keep contribution DONE separate from parent acceptance and whole L1+L2 completion. Respond through the existing board and continue eligible work without user message relay; honour explicit stops and real limits.
 
 **PRIORITY DISPATCH (SWE2-FRONTIER, 2026-09-29, user-directed).** Please take `OPUS-REQ-DATA-BUCKET-MEMBER-FORMATS` at your next checkpoint — the user asked for it directly. The UNMEASURED figure stays UNMEASURED until `Database/Tools/work/formats/bucket-members.tsv` declares the member formats of the bucketed `.bin`/`.dat` extensions (FABLE ruling mp1-meanings-review C4: a bucketed extension is not an accepted disposition — the members are the requirements). Your UQ-218 claim stays yours; checkpoint it if you context-switch, per the checkpoint-or-narrow request already in your queue.
+
+## Resume state - SWE2-DATA, 2026-10-03 05:15Z, Claude stand-in for Devin (supersedes the blocks above)
+
+- **Identity:** SWE2-DATA, operated by a Claude (Opus) subagent while the Devin session (holy-rock) was
+  rate-limited (breaker to about 07:39Z). The parent Claude session held every SWE2 lane in `fleet-plan.json`
+  `held_by_subagent` for that window. **Devin: read this block first. Everything it lists is DONE on the board and
+  in git; do not redo it.**
+- **Current package/claim:** none ACTIVE. `OPUS-REQ-DATA-EE-FAMILY-DECLARING-PAGE-1003` is BLOCKED (rev 49258) on
+  `SWE2DATA-REQ-FRONTIER-ACCEPTED-FAMILIES-API-1003`; the full design is in its block note and below.
+- **Done by the stand-in, 2026-10-03 (commits are SWE2-DATA's):**
+  - **`2eefd4ff7`, round-3 readiness publish** (19 paths). All seven controls were re-run on the tree at
+    `c2fc944fe`, FAILS 0. `OPEN-QUESTIONS.md` went out as HEAD + the SD-7 row only. The two peer hunks still in the
+    worktree (UQ-2 rtti-methods wording, FRONTIER's `## NR.` section) are NOT DATA's.
+    DONE (revs 48372-48381): `SWE2-DATA-PUB-READINESS-R3-1002`, `OPUS-REQ-DATA-RENDER-A-READINESS-LINES-1002`,
+    `OPUS-REQ-DATA-RENDER-B-READINESS-LINES-1002`, `OPUS-REQ-DATA-HELD-ROUTED-LINES-1002`,
+    `OPUS-REQ-DATA-RESOURCE-B-1002`, `OPUS-REQ-DATA-RESIDUAL-1002`, `OPUS-REQ-DATA-RENDER-C-READINESS-1002`,
+    `OPUS-REQ-DATA-ASTRA3-CONSUME-1002`, `AUTO-INCORP-ORACLE-REQ-AUDITSPEC-SD7-REVIEW-1002`.
+  - **`949d310aa`, kind-54 lit per-normal-table residue** replaced from OPUS's executed record. DONE (revs
+    48485/48487): `OPUS-REQ-DATA-K54-LIGHTING-RESIDUE-1002`, `SWE2-DATA-PUB-K54-LIGHTING-1002`.
+  - **`c77a50981`, P1 OV-42 authored flow:** record `_index/candidates/swe2data-ov42-authored-spattack-flow-1003/`
+    (34 checks FAILS 0).
+    - The loop path `0x605`->`0x744` meets H1 under named premises.
+    - The init path `0x4AD`->`0x744` is H2 "cannot statically establish": `029B` runs even when the init
+      `029A` returned 0.
+    - Four OPEN residues are listed with their discriminators.
+    - DONE (revs 48722/48725): `ASTRA-REQ-DATA-OV42-AUTHORED-QUEUE-REFERENCE-FLOW-1002` (full disposition in the
+      finish note) and `SWE2-DATA-PUB-OV42-AUTHORED-FLOW-1003`.
+    - Review filed (rev 48724): `SWE2DATA-REQ-AUDITSPEC-OV42-AUTHORED-FLOW-1003` → SWE2-AUDIT-SPEC, with
+      `reviews.incorporation_owner` ASTRA.
+  - **`61360cdeb`, progress-reporter link depth** (FABLE pass 29, routed by the coordinator): `_crosswalk_md` rebased
+    the naming-page owner link twice (`../../../`), which broke 9 links in `_index/progress/crosswalk.md`. Fixed, with
+    a new control T8b in `test_progress_report.py` (every crosswalk link must resolve; fails on the old generator).
+    Regenerated set `g20261003T031354Z-78b0d9` in the same commit; check_links shows 0 broken in crosswalk.md.
+    `SWE2-DATA-PUB-CROSSWALK-LINK-DEPTH-1003` DONE (rev 48884). FABLE was sent the sha.
+  - **`67bb95267`:** (DONE: `SWE2-DATA-PUB-K54-FABLE-RESIDUE-NMB-LINK-1003`, `OPUS-REQ-DATA-AREA-NMB-LINK-DEPTH-1002`,
+    revs 48952/48954; FABLE answered directly, option (a))
+    - **FABLE's kind-54 residue answer applied to the page I lead** (`fable-k54-residue-1003`, FABLE's exact
+      OLD->NEW). I spot-checked it: `k54_residue.py` re-run FAILS 0; the mode reads `00437486` / `00438C70` /
+      `00443865` / `00444711`; the dispatcher `0043566F`->`00438860`/`00437130`; the planar pointer
+      `004375A9`/`004375BE`; the six grid-walk call sites.
+    - **Page status kept PARTIAL.** Two remainders are not runtime-only: what `+0x1F1` bit 3 changes beyond the
+      path, and the curve-authored planar scalars. No register row carries this residue.
+    - **`area-nmb-index.md`:** the `namespace-name-copy-limit` link depth fixed (`OPUS-REQ-DATA-AREA-NMB-LINK-DEPTH-1002`).
+  - **`6b7ff727e`, `progress.py`** (`FABLE-REQ-DATA-EE-TEMPLATE-SPREAD-1003`, per SWE2-AUDIT-SPEC's two rulings):
+    - (a) a spread line: engine_explained with and without the functions whose only credit is a row marked
+      `template member: distinguishing operand` (FABLE's literal, confirmed in their record).
+    - (b) engine_explained credits a UC-1 frontier body only through FRONTIER's phrase rule. It imports
+      `check_dispositions.UC1_INTERIOR_BREAK` and `_rows`. Every other UC-1 body stays subtracted (47 are cited
+      today without the phrase). The UC-1-credited count prints separately, with a SERIES BREAK note.
+    - Self-test: 7 row-credit cases; 2 mutations each make it fail.
+    - The live headline is unchanged (17,841 / 35,065); no committed page carries either phrase yet.
+    - Positive control with FABLE's uncommitted 591-row section: 18,431 with, 17,841 without (590 template-only).
+  - **`8c22cbe8f`, context-refresh parts (1) and (2):**
+    - (1) `knowledge_db.py check` read STALE on every table (built 2026-09-25, old generator). Rebuilt with
+      `knowledge_db.py build --pin HEAD` at `19d456935` through the staging guard. The generator and most tables are now
+      current. `check` still lists `documents`/`citations`/`contract_*`/`doc_*` (tree `.md`), `fields` and
+      `reconstructions`, only because the worktree holds peers' uncommitted edits (81 `.md`, `fields.tsv`, 6
+      `Reconstruction/` files). `check` measures the worktree by design ("a pin is information, not an exemption"),
+      so it reads CURRENT once those land. A worktree build was not used: it would publish uncommitted peer work.
+    - (2) `progress_report.py` prints a Lifecycle line under PROGRESS.md's "L3 is out of scope" line: it links
+      RECONSTRUCTION-CHARTER.md section 0, names `_index/workflow/PROJECT-LIFECYCLE.json` (FABLE's, uncommitted, so
+      named, not linked), and says parity pilots are database-phase evidence probes. New control T8c. Regenerated;
+      test_progress_report FAILS 0.
+    - Also in this commit: the fef page's stale "who reads bit 7 is not traced" sentence, qualified to OPUS's answer.
+  - **`df40dbfcc`, context-refresh parts (4) and (3):** record `_index/candidates/swe2data-program-state-present-tense-1003/`.
+    - (4) The present-tense audit is a table in the record. Corrected in PROGRAM-STATE.md: the L1 count (now linked,
+      not copied), the L2 row (scoped L2 MET 52/52; DB_GOAL NOT_MET), the L3 row (lifecycle link; pilots are probes;
+      0 of 45), and section 2's heading ("Measured at", not "Current at"). The header readiness-gate sentence is
+      FABLE's correction and was not touched. Control `ps_present_tense_check.py`: FAILS 0, self-test 5/5, 6 findings
+      on HEAD's file.
+    - (3) The classifier: FABLE is building it against this plan under `FABLE-CLASSIFIER-RECENT-CHANGES-1003`
+      (the user's instruction, relayed by the coordinator). **DATA's role is to REVIEW FABLE's build when it is filed
+      (DATA designed it) and to answer FABLE's questions. DATA does not build it.**
+    - `FABLE-REQ-DATA-CONTEXT-REFRESH-MIRROR-PROGRESS-1003` is finished (rev 49178).
+  - **`df9b40bec`:** (DONE: `OPUS-REQ-DATA-EE-INDEX-ONLY-1003` rev 49238, `ASTRA-REQ-DATA-SD194-CALLER-FRAMES-1003`
+    rev 49240, `SWE2-DATA-PUB-EEIDX-SD194-1003`; the vtable frontmatter is routed as `SWE2DATA-REQ-FRONTIER-EE-INDEX-ONLY-VTABLE-1003`)
+    - **SD-194 caller frames** (`ASTRA-REQ-DATA-SD194-CALLER-FRAMES-1003`): SPEC accepted the packet at
+      `96820750d`. The qualifying clause is applied to `efx-and-efb-effect-containers.md` section 2: the two legs'
+      name inputs are 48 bytes apart (S-440 vs S-392), so there is no shared address; the spans overlap 212 bytes
+      with no surviving bytes shown; premises stated. Neighbour guard 186 = 186.
+    - **`ee_index_only`** (`OPUS-REQ-DATA-EE-INDEX-ONLY-1003`): progress.py honours a page frontmatter key
+      `ee_index_only:` (an inline string or a YAML list of heading texts). Citations inside those sections, including
+      their subsections, never credit engine_explained; `cited` keeps them. A declared heading the page lacks is a
+      printed warning. A new spread line counts the pages and the functions excluded.
+      - Self-test: 12 row-credit cases; the stripping-disabled mutation is caught.
+      - The live headline is unchanged (19,467 / 35,065), because no page declares the key yet.
+      - Positive control, in memory, declaring `vtable-method-index.md`'s "Appendix — the 4,275 unambiguously-owned
+        vtable methods": 16,462, i.e. 3,005 excluded (FABLE estimated 2,983, SPEC 3,089).
+      - The page declaration is FRONTIER's (page lead); a request is filed to SWE2-FRONTIER.
+  - **`OPUS-REQ-DATA-EE-FAMILY-DECLARING-PAGE-1003`: BLOCKED, design ready.**
+    - Why blocked: progress.py needs the families `check_dispositions.evaluate()` ACCEPTS, with their declaring
+      doc paths. Those are internal today (keyed by basename), and reimplementing FRONTIER's acceptance rules would
+      drift, which is the UC-1 import principle. Requested: `SWE2DATA-REQ-FRONTIER-ACCEPTED-FAMILIES-API-1003`.
+    - When it lands:
+      - Build the checker-backed rows from every committed `_index/candidates/*/` folder holding `fam_rows.py`,
+        `spec.json` and `rows.tsv`, keyed by (`spec.page`, `rows.entry`), with the row's `anchor`.
+      - On a family's declaring page, a member cite credits only if it is that row's anchor. An entry cite there no
+        longer credits by size alone; a bare member list never credits. Other pages keep the base rule.
+      - Print the with/without spread.
+      - Self-tests: a bare list does not credit, a checker row does, another page's small entry cite does, and a
+        hand-typed row without a checker does not.
+      - Stage offline and run with live paths through `run_live_paths.py`.
+      - FABLE's eeloss bounds the loss at 278 or fewer.
+- **Pending on others:** SPEC's verdict on the OV-42 record. A REJECT files `AUTO-REPAIR-...` to SWE2-DATA, which
+  is the lane's to answer.
+- **Housekeeping note:** `c77a50981`'s index refresh was deferred by a stale `.git/index.lock`. The coordinator
+  removed the lock and refreshed the shared index at about 02:46Z; nothing of DATA's stays staged.
+- **Exact next action:** re-query `team.py show --agent SWE2-DATA` and READY for newly routed work. Fallback
+  eligible work is in the earlier blocks (SN-1 page accepts, RC static residue).
+- **Latest coherent commit:** `df9b40bec` (before this one).

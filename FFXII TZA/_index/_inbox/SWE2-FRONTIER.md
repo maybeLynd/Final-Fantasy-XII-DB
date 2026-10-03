@@ -1,9 +1,9 @@
-<!-- TEAM-CURRENT:begin agent=SWE2-FRONTIER board_rev=44701 epoch=3 queue_sha=7ad86f394ff218f9 -->
-> generated 2026-10-01T08:34:18+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=SWE2-FRONTIER board_rev=49146 epoch=4 queue_sha=765302a863da0175 -->
+> generated 2026-10-03T04:40:13+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: AUDITSEM-REQ-FRONTIER-P22-B1-EDEC0-LABEL-0930, AUDITSEM-REQ-FRONTIER-P22-B4-ED80-0930, AUDITSEM-REQ-FRONTIER-P22-B8-0930, AUDITSEM-REQ-FRONTIER-P22-DATA-0930, OPUS-REQ-FRONTIER-PUBLISH-REQUEST-QUEUE-CARRIER-0930, OPUS-REQ-FRONTIER-RC37-SPLICE-0930, OPUS-REQ-FRONTIER-REGISTRY-ADDRESSERS-0930, OPUS-REQ-FRONTIER-S08-I3-SPLICE-0930, SWE2CONTRACT-REQ-FRONTIER-PUBLISH-LIFECYCLE-OVERLAY-0930B, SWE2FRONTIER-PUB-REVIEW-INCORPS-1001
-> READY addressed to you: P2 ASTRA-NOTICE-FRONTIER-POSTCOMMIT-INDEX-LOCK-0930, P2 ASTRA-NOTICE-FRONTIER-TITLE-EVIDENCE-PUB-0930, P2 ASTRA-REQ-FRONTIER-PREPARED-EVIDENCE-SLOT-0930, P2 AUDITSEM-REQ-FRONTIER-GI-RESTATUS-RESIDUE-0930, P2 FABLE-REQ-FRONTIER-OV58D-STATIC-0930, P2 OPUS-CON-TRANSFORM-00434CD0-BIT-POLARITY-0930, P2 SWE2AUDITSPEC-REQ-FRONTIER-BOARD-VERDICTS-MISRECORDED-0930, P2 SWE2AUDITSPEC-REQ-FRONTIER-VERDICTS-ADDENDUM-0930, P2 SWE2AUDITSPEC-REQ-FRONTIER-VERDICTS-ADDENDUM2-0930, P3 AUTO-REPAIR-FRONTIER-REQ-AUDITSEM-REVIEW-GI-RESTATUS-0930
-> READY pool: 1 | BLOCKED: 1
+> ACTIVE: ASTRA-REQ-FRONTIER-BOARD-READ-DENIAL-1003, SWE2FRONTIER-PUB-RESUME-STATE-1003
+> READY addressed to you: P1 FABLE-REQ-FRONTIER-DASHBOARD-LIFECYCLE-1003, P2 OPUS-NOTICE-FRONTIER-VTABLE-INDEX-EE-ONLY-1003
+> READY pool: 0 | BLOCKED: 0
 <!-- TEAM-CURRENT:end -->
 
 > ## TEAM ROLLBACK RECOVERED (SWE2-FRONTIER, 2026-09-26 02:30Z)
@@ -65,6 +65,110 @@ idle, and it is not a reason to start something that depends on its outcome.
 Updated at every checkpoint; a restarted session rebuilds from this block before touching the board.
 Required by the continuity rule in the root `CLAUDE.md` ("What a plain `Continue` means").
 
+- **2026-10-03 03:25Z - Claude stand-in for Devin (SWE2-FRONTIER); supersedes the entries below.**
+  While the Devin session `calm-lamp` was rate-limited (breaker to ~07:39Z), a Claude session ran this lane.
+  **Current package/claim:** none - every SWE2-FRONTIER task on the board is DONE (queue empty at board rev ~48900).
+  **The fleet plan holds every SWE2 lane in `held_by_subagent`** for the Claude stand-ins. The parent session releases
+  the hold when Devin returns; if it does not, the plan goes stale at ~07:36Z. The 25 pending DEP_STARVED replans are
+  that hold. Re-read `fleet-plan.json` and run `controller status` before planning.
+  **Done by the stand-in (do not redo; all board tasks finished with these shas):**
+  - `d9b357cae` - the register NR section (NR-1) (`SWE2FRONTIER-PUB-NR-SECTION-1003`).
+  - `9afe32d66` - three items in one commit:
+    - the A23 named-comparison incorporation (`SWE2FRONTIER-PUB-A23-NAMED-INCORP-1002`);
+    - the `test_watchdog_scheduler.py` fixture repair, 16/16 (`OPUS-NOTICE-FRONTIER-WATCHDOG-PYTHONW-NOWIN-1002`);
+    - the review of ASTRA's epoch prefix, `verdict:ACCEPT` (`ASTRA-REQ-FRONTIER-PUBLICATION-EPOCH-PREFIX-1002`).
+  - `3319c2a6f` - the TEAM.json replace-denial repair (`ASTRA-REQ-FRONTIER-ATOMIC-BOARD-WRITE-DENIAL-1003`):
+    - team.py retries WinError 5/32 against a 30 s deadline;
+    - seven board readers close the file before parsing;
+    - record `_index/candidates/swe2frontier-board-replace-denial-1003/`.
+    The long-running dashboard server and the watchdog controller pick up the reader change only after a restart.
+  - `ae00a4a33` - the SWE2-FRONTIER answer section in `_inbox/ASTRA.md`. The commit also carries ASTRA's regenerated
+    TEAM-CURRENT header.
+  - `ef8e5a09a` - the readiness batch (`SWE2FRONTIER-PUB-READINESS-BATCH-1002` and
+    `OPUS-NOTICE-FRONTIER-READINESS-BATCH-OVERLAP-1002`). It carries the FRONTIER share of 17 OPUS packages: 163
+    edits on 47 pages, each rebuilt from HEAD. It also has L2-VERDICTS, the field-map slot labels, the allocator
+    page's NR-1 pointer and a Resource crossing bullet on the spawn keep-entry field map. All 163 edits verified at
+    HEAD. Record `_index/candidates/swe2frontier-readiness-apply-1002/`.
+  - `a46d39253` - the UC-1 interior-citation route in `check_dispositions` / `requirements._f`, from FABLE's R1
+    amendment `e050edc2a` (`FABLE-REQ-FRONTIER-UC1-INTERIOR-CREDIT-1003`, `OPUS-NOTICE-FRONTIER-UC1-GAMECODE-GATE-1003`).
+    No count moves until OPUS's rows carry the phrase. The same commit makes the correction gate count touched `.tsv`
+    (`SWE2STRUCT-REQ-FRONTIER-CORRECTION-GATE-TSV-AFFECTED-1003`).
+  - Filed `SWE2FRONTIER-REQ-FABLE-REVIEWS-AUTHOR-IDENTITY-1003`. FABLE fixed its filer at `1db50c32e`.
+  **Standing planner rule (2026-10-03, F-frontier homing split):** the 2,116 bodies that no bearing page cites are
+  split three ways. Lists are in `_index/candidates/fable-homing-stream-1003/` (dashboard gen g20261003T020947Z):
+  - FABLE has caller-host (590; `FABLE-HOMING-CALLER-HOST-1003`);
+  - OPUS has callee-host (973) plus the 59 UC-1 game-code bodies (`OPUS-F-HOMING-CALLEE-HOST-1003`);
+  - **SWE2-EC7 has caller-uncited (277) + no-ref (276) plus batches 172/173 (`SWE2-EC7-HOMING-RESIDUE-1003`).**
+  Each task holds `frontier-class:<class>` keys. Released bodies go back explicitly on the board, under the same
+  24 h guard and append-only rows, and shared hosts get HEAD+mine splices. **EC7 rotation targets only EC7's
+  classes.** The per-batch SWE2-AUDIT-SPEC reviews of FABLE's stream join AUDIT-SPEC's queue. team.py compares
+  keys as plain strings: equal keys and `/` children conflict, nothing else. The four lists were checked disjoint
+  (union 2,112 data rows). Body-level overlap with other scopes (EC7's shared-hub batches, file: claims) is
+  invisible to the board.
+  **Lessons from tonight:**
+  - `team.py current` rewrites every inbox's TEAM-CURRENT block on board writes, so a PUBLISH_EXPECT pin on an
+    inbox file can fail mid-publish. Publish inbox files in their own commit.
+  - A 0-byte `.git/index.lock` with no live git owner (02:21Z-02:46Z) deferred every post-commit index refresh.
+    `9afe32d66` printed REFRESH-DEFERRED, and its paths were re-added by hand.
+  **Rotation when Devin returns:** the board is nearly drained for SWE2. EC7 has 10 ACTIVE (readiness-edit requests
+  plus the homing residue), and DATA and ORACLE have one each; AUDIT-SPEC has 1 READY P1; CONTRACT and STRUCT have
+  ready-pool P1 work. Suggested first three: SWE2-EC7 (homing residue classes), then SWE2-CONTRACT and SWE2-STRUCT
+  (pool P1). ORACLE's resume reads `stale:claim-done` against an ACTIVE coverage claim; reconcile it at its wake.
+  **Fallback eligible work:** `publish_paths.sh` should print the lock's age and owner liveness when it defers a
+  refresh. Also: restart notes for the dashboard server and controller (owners).
+  **Scratch:** `Database/Tools/work/SWE2-FRONTIER/standin1003/` (runners, logs, blobs, board ops).
+  **Latest coherent commit:** `a46d39253`.
+- **2026-10-02 ~wake before PC restart (Devin session `calm-lamp` executing SWE2-FRONTIER):**
+  **Parked for restart.** No ACTIVE claims, nothing staged, `@publication` held by peers (EC7-172, CONTRACT-B21Z4).
+  **Queue on resume (15 READY):** P1 `ASTRA-REQ-FRONTIER-PUBLICATION-TURN-1002` and
+  `ASTRA-RETURN-FRONTIER-A23-NAMED-COMPARISON-1001` (dep may be done — check SPEC); P2 readiness-edit applies
+  (`SPAWN`, `ACTION-APPLY-CARRIER`, `ACTOR`, `SCRIPTVM`, `ENGINE-A`) + P3 readiness lines
+  (`PARTY`, `WORLD`, `PHYRE`, `UI`, `CRT`), `ACCOUNTING-INDEX-RESIDUE`, `L2VERDICTS-LICENCE-360` notice,
+  `RNG-PARITY-ROW`.
+  **State since last entry:** OPUS answered GI-14..19 (all six) — pages re-DOCUMENTED pending its own AUDIT-SEM
+  reviews; SPEC landed verdicts; board rev ~47002.
+  **Restart notes:** the watchdog controller dies with the PC — `swe2_watchdog.py controller ensure` on resume.
+  **Fleet park notice posted (board rev 48014):** all lanes told to checkpoint resume blocks and hold new
+  publishes; ACTIVE claims preserved on the board for same-identity reclaim — do not double-claim on resume.
+  Live at post: CONTRACT busy-active (`OPUS-REQ-CONTRACT-DD-RESIDUE-CLOSURE-0929`), ORACLE busy-wake pid 33452
+  (`OPUS-REQ-ORACLE-EXECUTION-COVERAGE-INSTRUMENT-0929-R`), SPEC queued for next wake; EC7/STRUCT/DATA have
+  parked ACTIVE claims. Controller had 8 pending `BLOCKED_NEEDS_SPECIALIST` replans — re-evaluate on resume.
+  This inbox file's resume edits are uncommitted (publish when `@publication` frees). Peer worktree edits are
+  theirs — do not sweep.
+- **2026-10-01 ~21:10Z (Devin session `calm-lamp` executing SWE2-FRONTIER):**
+  **GI residue repair published** — `85a2ae3ee` under lease `FRONTIER-PUB-GI-RESIDUE-REPAIR-0930` (14 files,
+  index refresh clean). AUDIT-SEM's REJECT of `c97af7156` repaired at the cause: stale not-read prose struck with
+  pointers on 7 pages; real limits registered **GI-14..GI-19**; `residue_scan.py` widened to whole-line sweep +
+  paragraph rows under residue headings + multi-line strike tracking, `--selftest` embeds the `c97af7156` 80-97
+  `## Not read` paragraph as the rejecting regression; gate re-run READY 7 / PARTIAL 6 / FAILS 0.
+  `AUDITSEM-REQ-FRONTIER-GI-RESTATUS-RESIDUE-0930` + `AUTO-REPAIR-...-RESTATUS-0930` DONE;
+  re-review `FRONTIER-REQ-AUDITSEM-REVIEW-GI-RESIDUE-REPAIR-0930` routed to AUDIT-SEM (rev 45559).
+  **Publish note:** `OPEN-QUESTIONS.md` carried peer hunks (SWE2-DATA C-7, Z-19) — published a surgical
+  HEAD+GI-rows-only blob, restored the worktree byte-exact. `@publication` free.
+  **Live GI items:** GI-14 (00-0a tails/emitter/+0x38/VU0 body), GI-15 (authored commands ×11), GI-16 (license
+  `+0x37D`), GI-17 (shop helpers ×3), GI-18 (gambit editor/list arms), GI-19 (oscillator resolve-chain types).
+  **Queue next:** `ASTRA-RETURN-FRONTIER-A23-NAMED-COMPARISON-1001` (P1 — dep ACTIVE with SPEC).
+  **Standing instruction (user, 2026-10-01):** the final message before standby after every `Continue` wake
+  must report (a) which agents are working and on what, and (b) what this wake accomplished.
+- **2026-10-01 ~13:20Z (Devin session `calm-lamp` executing SWE2-FRONTIER):**
+  **Published the SD-140 contradiction repair** — `d147ab479` under lease `SWE2FRONTIER-PUB-SD140-POLARITY-1001`:
+  `the-two-transform-primitives.md` + the `matrix-buffer-alias` retained mirror. Verified against the shipping
+  EXE (capstone, hash `73461D08`): bits 4/5/6 of `byte[rec+0x1F1]` run **clear → blend / set → copy** (all
+  three were inverted on the page); `00432300` is the PS2 colour-modulate kernel
+  `min(255, (entry*colour)>>7)`, `0x80`=1.0 — not "pure staging". `OPUS-CON-TRANSFORM-00434CD0-BIT-POLARITY-0930`
+  DONE with `commit:d147ab479` + record ref. `@publication` released. Residue noted: the SD-140 record's other
+  X-items (X3 clip builders → `OPUS-CON-TRANSFORM-CLIP-BUILDERS-0930` already with EC7; X4/"§8 precision" on
+  `effect-mesh-records-kind-54.md` line ~201 — the row states set→copy correctly but implies unconditional
+  +0x28 blend; worth a small follow-up if no task covers it).
+  **Earlier this session:** six-commit publish wave (`8006a94ef`, `08ca096bc`, `e325c403b`, `18bf01b79`,
+  `59f0bfff1`, `ba4612812`) — all pre-lease backlog landed; ~12 tasks finished.
+  **Queue next:** `SWE2AUDITSPEC-REQ-FRONTIER-BOARD-VERDICTS-MISRECORDED-0930` + addenda (~85 DONE rows cite a
+  gitignored review file — board repair), `AUDITSEM-REQ-FRONTIER-GI-RESTATUS-RESIDUE-0930` + auto-repair chain,
+  `ASTRA-NOTICE-FRONTIER-POSTCOMMIT-INDEX-LOCK-0930` (bound the publish_paths exit-128 edge),
+  `ASTRA-REQ-FRONTIER-PREPARED-EVIDENCE-SLOT-0930`, plus new `ASTRA-RETURN-FRONTIER-A23-NAMED-COMPARISON-1001`
+  (P1) and `SWE2STRUCT-REQ-FRONTIER-ARG-ROUTE-RULING-1001` (P3). `FABLE-REQ-FRONTIER-OV58D-STATIC-0930` is
+  READY again — its earlier finish didn't stick; answer is already established (row restates neither wrong
+  fact; record committed at `d5fee099d`).
 - **2026-10-01 ~08:20Z (Devin session `calm-lamp` executing SWE2-FRONTIER):**
   **Lane identity fixed:** this interactive session is `calm-lamp` (titled by the user's first question, not
   `SWE2-FRONTIER`), so the controller counted it foreign and spawned a duplicate FRONTIER wake at 07:56Z

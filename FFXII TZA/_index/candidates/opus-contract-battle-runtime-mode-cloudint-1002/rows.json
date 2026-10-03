@@ -1,0 +1,38 @@
+{
+ "page": "00-Engine-Core-Runtime/Battle-Runtime-Mode/CONTRACT-battle-runtime-mode.md",
+ "date": "2026-10-02",
+ "session": "local-w43-opus",
+ "report": "contract-battle-runtime-mode.json",
+ "rows": [
+  {
+   "fn": "00361170",
+   "text": "divides `edx` by the result of `00184950()` (signed `idiv`) and adds 1; when `ecx` is non-negative (signed) and `002F16B0()` returns a non-null record, stores dword 0 at `+0`, that quotient plus 1 at dword `+4`, the address `00361080` at qword `+8`, qword 0 at `+0x10`, dword `0x10001` at `+0x1C`, `ecx` at dword `+0x28` and `r8d` at dword `+0x30`, then calls `00361030` with `ecx` and ORs 2 into byte `+2` of its result when that is non-null; a negative `ecx` or a null record skips everything after the divide",
+   "anchors": [
+    [
+     "00361191",
+     "idiv"
+    ],
+    [
+     "00361199",
+     "js"
+    ],
+    [
+     "003611B5",
+     "mov"
+    ],
+    [
+     "003611CA",
+     "call"
+    ],
+    [
+     "003611D4",
+     "or"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

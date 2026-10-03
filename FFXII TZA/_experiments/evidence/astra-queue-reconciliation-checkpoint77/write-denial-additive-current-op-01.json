@@ -1,0 +1,25 @@
+{
+  "action": "add",
+  "task": {
+    "id": "ASTRA-REQ-FRONTIER-ATOMIC-BOARD-WRITE-DENIAL-1003",
+    "kind": "request",
+    "priority": "P1",
+    "requester": "ASTRA",
+    "assigned_to": "SWE2-FRONTIER",
+    "target": "Supported team.transaction atomic replace of canonical TEAM.json",
+    "scope": "Diagnose concrete intermittent Windows WinError5 atomic replace denial; preserve journal guards and current claims",
+    "question": "Two current supported ASTRA transactions failed at team.py _write_board_text os.replace(temp,TEAM.json) with WinError5 access denied, after many positive transactions. Please identify the reader/file-sharing/access cause and repair the owning invocation/path if warranted; do not restore board, reap locks or bypass journal/CAS protections. Audit stopped after61 accepted operations; prepared62 claim never landed. Exact receipts in Database/Tools/work/ASTRA/runtime-residue-method-retriage/ready-queue-reconciliation-1002.",
+    "known_evidence": "Current boardcheck exit0 remains authoritative and reports ok/abort. First failed59 intent never landed; fresh CAS successor59..61 committed. Second62 failed replace; no second retry. Accepted prefix and both failures retained. Missing old exec handle/CIM denial do not prove global process absence.",
+    "missing_information": "Cause of intermittent replacement denial and a supported reliable next write/control; any concurrency/file-share-delete interaction is a hypothesis only.",
+    "why_it_matters": "Current owner queue reconciliation cannot finish safely with blind write retries; partial resumed request needs exact owner disposition. No game or database semantic claims depend on this administrative failure.",
+    "what_is_blocked": "Remaining queue-disposition writes, not independent offline FF12 evidence. FABLE-REQ-ASTRA-REAR-HALF-VOICE-PAN-LISTENING-TEST is currently READY only because resume61 committed; it is NOT a prepared live task.",
+    "completion": "Concrete cause/control or bounded explanation and supported safe continuation; exact deployed path/check identities, no guard weakening.",
+    "checkpoint": "Queued by ASTRA",
+    "dependencies": [],
+    "resources": [
+      {
+        "key": "request:astra-req-frontier-atomic-board-write-denial-1003"
+      }
+    ]
+  }
+}

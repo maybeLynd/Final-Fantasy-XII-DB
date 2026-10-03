@@ -1,0 +1,39 @@
+{
+ "page": "01-Script-VM-Native-Bridge/CONTRACT-native-command-lifecycle.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01Xkefj8Gz4bCEiqGqVRB1MS",
+ "report": "home-contract-native-command-lifecycle.json",
+ "rows": [
+  {
+   "fn": "0032A7A0",
+   "entered_from": "`00342560` + 0x13",
+   "text": "returns 0 when `ecx` is above 5 (unsigned); otherwise forms the record `qword 02EBF190 + 8 + cl * 0x1C8` (or a null base when `cl` is above 0x27) and returns 1 when its byte `+0x1C3` or byte `+0x1C4` is not 0xFF, 0 when both are 0xFF",
+   "anchors": [
+    [
+     "0032A7A5",
+     "cmp"
+    ],
+    [
+     "0032A7B1",
+     "imul"
+    ],
+    [
+     "0032A7C6",
+     "cmp"
+    ],
+    [
+     "0032A7CF",
+     "cmp"
+    ],
+    [
+     "0032A7D8",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

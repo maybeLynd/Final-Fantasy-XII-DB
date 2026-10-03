@@ -1,0 +1,23 @@
+{
+ "blocks_in_image": 844,
+ "blocks_outside_image": 10,
+ "catalogue": "e2a67b07700c2ec3fbfae3213965de35",
+ "classes": {
+  "entered": 1,
+  "faulted": 1,
+  "returned": 58,
+  "returned+faulted": 34,
+  "scripted": 5
+ },
+ "elapsed_s": 135.7,
+ "emu_starts": 834,
+ "entries_executed": 93,
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "instrument": "execcov-shim v2",
+ "patched_blocks": 274,
+ "rc": 0,
+ "receipt_md5": "d19bbd05e2d1af2656e2af4e86fd52fd",
+ "run": "nav-subsystem-leaf-exec",
+ "status": "ok",
+ "unique_blocks": 854
+}

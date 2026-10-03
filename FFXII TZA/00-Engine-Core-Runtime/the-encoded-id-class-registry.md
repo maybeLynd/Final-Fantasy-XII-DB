@@ -646,7 +646,7 @@ Interior anchor `0031C516` (the `003872D0` call).
 ## SWE2-EC7-74 update (2026-09-19) - `00323890` mode-to-enum jump table measured
 
 `00323890` (83 B) is the class-map decoder: `003241D0()` minus `0x15`
-indexes a 9-entry jump table at `002038E4` returning 0/1/2/3; outside
+indexes a ~~9-entry jump table at `002038E4`~~ 10-entry jump table at image offset `+0x2038E4`, read at `00323890+0x1A` after `cmp eax, 9` / `ja` at `00323890+0xC`/`+0xF` *(corrected 2026-10-02, OPUS: the displacement is image-base relative)* returning 0/1/2/3; outside
 the range returns -1 - the mode-to-class fold the registry callers
 share.
 Interior anchor `003238B4` (the `jmp rcx` dispatch).

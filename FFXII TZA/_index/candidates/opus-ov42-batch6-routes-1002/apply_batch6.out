@@ -1,0 +1,9 @@
+SKIP AuthoredTableHeader 0x08
+SKIP AuthoredTableHeader 0x0C
+SKIP 02-Resource-And-Asset-Pipeline/authored-data-table-registry.md
+SKIP 02-Resource-And-Asset-Pipeline/authored-data-table-registry.md
+SKIP 02-Resource-And-Asset-Pipeline/authored-data-table-registry.md
+SKIP 10-Status-Periodic-Terminal/where-mp-comes-from.md
+SKIP 10-Status-Periodic-Terminal/where-mp-comes-from.md
+SKIP 01-Script-VM-Native-Bridge/Spawn-Verbs/the-script-to-native-calling-convention.md
+FAILS 0

@@ -1,0 +1,69 @@
+PASS  exe sha256 = 73461d0896204b1c...
+PASS  manifest.json sha256 = e244c9a6d8a278b2...  | e244c9a6d8a278b2952e88aa8980532ff132b54cfaba42cdefaf4e59589dfa89
+PASS  all 37 manifest members hash as listed  | []
+PASS  the 4 retained copies are byte-identical to their committed sources  | []
+PASS  00304850's .pdata chain: 7 records tile 00304850 .. + 0x828, all chained to the root; the code ends at the one `ret` (+ 0x7F1); the 54 bytes after it are a 2-byte NOP and the switch's 13 DWORD offsets (+ 0x7F4), each resolving to a switch target  | [('0x304850', '0x3048f6'), ('0x3048f6', '0x304a46'), ('0x304a46', '0x304d70'), ('0x304d70', '0x304f91'), ('0x304f91', '0x305006'), ('0x305006', '0x305017'), ('0x305017', '0x305078')]
+PASS  the caller decodes linearly and exactly to + 0x7F2 (483 instructions)
+PASS  0030487F is `lea rsi, [rcx + 0x6b0]`
+PASS  the latch: + 0x3D `movzx r13d, word ptr [rsi + 0x64]` = zero-extended WORD unit +0x714 (RSI = RCX + 0x6B0)
+PASS  no RCX write before + 0x2F and RSI written only by the + 0x2F `lea` before the latch  | ['0x30487f']
+PASS  the only R13 definition reaching the guard + 0x8E is the latch + 0x3D  | ['0x30488d']
+PASS  the only R13 definition reaching the row's `movzx eax, r13w` + 0xDD is the latch + 0x3D  | ['0x30488d']
+PASS  003048A8 is `mov ebx, 0x21e`
+PASS  the guard: + 0x8E `cmp r13w, bx` on the LATCHED register (EBX = 0x21E = 542)
+PASS  + 0x92 `ja` (unsigned) to + 0x7C7, the rejecting exit  | ja 0x305017
+PASS  EBX is not written between + 0x58 and the guard (the one call between, + 0x7C, preserves RBX under Win64)  | []
+PASS  0030491A is `call 0x20e600`
+PASS  0030491F is `mov r15, rax`
+PASS  00304929 is `movzx ecx, word ptr [rax + 8]`
+PASS  0030492D is `movzx eax, r13w`
+PASS  00304931 is `imul ecx, eax`
+PASS  00304934 is `add r15d, ecx`
+PASS  00304939 is `mov r15, r14`
+PASS  before the switch the caller loads the descriptor cell 02EBF138 three times: + 0x98 (the null test before the first lookup), + 0xC0 (the second lookup's key) and + 0xD2 (the stride)  | ['0x3048e8', '0x304910', '0x304922', '0x304c1d', '0x304c3f']
+PASS  the R15 definitions reaching the queue call's `mov rdx, r15` are exactly + 0xE4 (`add r15d, ecx`) and + 0xE9 (`mov r15, r14`); the five other R15 writes restore the saved R15 on exit paths  | ['0x304934', '0x304939']
+PASS  each of those other writes is `mov r15, qword ptr [rsp + 0x108]` (the restore of the + 0xA6 save)  | ['0x304a39', '0x304d60', '0x304f84', '0x304ff3', '0x30500a']
+PASS  the only R14 definition reaching the null row + 0xE9 is + 0x2C `xor r14d, r14d`, so that row is 0  | ['0x30487c']
+PASS  00304F47 is `mov rdx, r15`
+PASS  the queue call + 0x6FD `call 00306760` with RDX = R15 (+ 0x6F7)
+PASS  one jump-table switch in the body (+ 0x10A, 13 targets), its edges added to the CFG  | {'0x30495a': 13}
+PASS  the queue call is reachable from the entry over that CFG
+PASS  the 542 guard dominates the queue call (unreachable when + 0x8E is removed)
+PASS  the row construction (+ 0xE4) or the null row (+ 0xE9) dominates the queue call
+PASS  00304F05 is `sub r13w, ax`
+PASS  00304F09 is `cmp r13w, 0x21`
+PASS  00304F3D is `test dword ptr [r15 + 0xc], 0x40000000`
+PASS  ids 208..241 jump past 00303830 / 00305640 to + 0x6ED; other ids reach the queue call only through both, and both routes test bit 30 of DWORD [r15 + 0xC] (+ 0x6D2, + 0x6ED)
+PASS  the bit-30 test + 0x6ED dominates the queue call (a null row reads address 0xC before any call)
+PASS  queue routine 00306760 decodes exactly to + 0x38F
+PASS  queue + 0x142 `call 0x20e600`
+PASS  queue + 0x147 `sub edi, eax`
+PASS  queue + 0x149 `xor edx, edx`
+PASS  queue + 0x152 `movzx ecx, word ptr [rax + 8]`
+PASS  queue + 0x156 `mov eax, edi`
+PASS  queue + 0x158 `div ecx`
+PASS  queue + 0x162 `cmp ax, dx`
+PASS  queue + 0x167 `movzx eax, ax`
+PASS  queue + 0x16A `sub eax, 0xd0`
+PASS  queue + 0x138 and + 0x14B both load 02EBF138
+PASS  queue + 0x174 stores EAX as a DWORD to 022C2178  | mov dword ptr [rip + 0x1fbb89e], eax
+PASS  emulated original construction -> original queue arm, equal base and stride, 24435 cases (every id 0..542 x 9 strides x 5 bases): the row is zero-extended low32(base + i*stride) and the stored DWORD is i - 0xD0  | []
+PASS  emulated random ids / strides / 64-bit bases: stored DWORD = i - 0xD0 in every case  | []
+PASS  domain of the stored DWORD over ids 0..542: 0..334 and FFFFFF30..FFFFFFFF; none of 511..534  | 543 values
+PASS  id 207 stores FFFFFFFF by subtraction (the FFFF sentinel compare is not taken: q = 207)
+PASS  the packet's three supplied-state countermodels, run through the original bytes: base changed -> 511, stride halved -> 512, id 720 (guard bypassed) -> 512  | [511, 512, 512]
+PASS  the packet's four boundary checks reproduce through the original bytes  | ['0x14e', '0x0', '0xffffff30', '0xffffffff']
+PASS  max i*S over ids 0..542 and strides 1..65535 = 35519970 < 2^32, so low32(B + i*S) - low32(B) = i*S exactly and q = i for every equal-base, equal-stride pair
+PASS  the integer model agrees at the grid's corners
+== controls (each patched private image must FAIL at least one check)
+PASS  control: null control: an unchanged private copy passes
+PASS  control: + 0x92 `ja` -> `jg` (signed guard)
+PASS  control: + 0x3D latch WORD -> BYTE (`movzx r13d, byte ptr [rsi + 0x64]`)
+PASS  control: + 0xE4 `add r15d, ecx` -> `add r15, rcx` (64-bit row)
+PASS  control: + 0xD9 stride WORD -> BYTE (`movzx ecx, byte ptr [rax + 8]`)
+PASS  control: + 0xE1 `imul ecx, eax` -> `add ecx, eax`
+PASS  control: + 0x6F7 `mov rdx, r15` -> `mov rdx, r14`
+PASS  control: queue + 0x16A `sub eax, 0xd0` -> `sub eax, 0xd1`
+PASS  control: queue + 0x158 `div ecx` -> `idiv ecx`
+PASS  exe on disk unchanged after the controls
+FAILS 0

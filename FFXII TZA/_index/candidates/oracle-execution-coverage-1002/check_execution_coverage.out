@@ -1,0 +1,7 @@
+C1 seal      PASS 251 files, instrument matches
+C2 receipts  PASS 124 ok runs of 124, 0 receipt mismatches []
+C3 stubs     PASS 7 disclosed stubs NOT executed
+C4 executed  PASS 00866B90=returned 00808C40=returned
+C5 image     PASS 187 blocks outside the image across runs
+C6 aggregate PASS 1709 entries, 1307 executed, 402 observed-not-executed, 0 disagreements
+FAILS 0

@@ -337,7 +337,7 @@ Shared callees outside the census: `0067A9B0`, `0067A350`, `0016F070`,
 
 ## Interior citation — frontier hub `002DF980` (2026-09-18, SWE2-EC7)
 
-`002DF980` — 22 B, 34 callers; the two-level index the 0x1C-stride movie table's readers
+`002DF980` — 22 B, ~~34 callers~~ 11 callers *(corrected 2026-10-02, OPUS: eleven direct call sites in eleven functions, no `jmp` or thunk caller)*; the two-level index ~~the 0x1C-stride movie table's readers~~ all `(kind, index)` path readers
 share. Interior verified: `0215F000` is an array of row-pointer tables — `[0215F000][ecx*8]`
 gives the row head ([`002DF98D`](../../_index/ADDRESS-INDEX.md)), `[row][edx*8]` the element
 ([`002DF991`](../../_index/ADDRESS-INDEX.md)). Both indices sign-extend from 32-bit.
@@ -373,3 +373,11 @@ Interior anchor `005CD707` (the `008C23E0` call).
 `008C21E8` writing `[rsp+0x30]`; that dword is stored to `*rdx` and
 0 returns - the exit-code fetch after the wait.
 Interior anchor `005CD346` (the `008C20E0` wait call).
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-shipped-standard-formats-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00225C40` | 127 B | calls `00225C40 + 0x2D` with (qword `+0x210` of `rcx` == 0), then `00584740(0x50)`; when that is non-null calls `00225C40 + 0x47` on it and keeps the result, else keeps 0; stores the kept pointer to qword `+0x210` of `rcx` (the old value is not released) and byte 2 to its `+0x38` (no null check), then copies the zero-terminated byte string at `rdx`, terminator included, to `rcx + 0x10` | `00225C6D`, `00225C87`, `00225C8F`, `00225C96`, `00225CA3` |

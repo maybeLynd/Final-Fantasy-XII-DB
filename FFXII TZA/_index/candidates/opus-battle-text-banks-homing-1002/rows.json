@@ -1,0 +1,91 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/battle-text-banks.md",
+ "date": "2026-10-02",
+ "session": "local-h3-opus",
+ "report": "battle-text-banks.json",
+ "rows": [
+  {
+   "fn": "00393950",
+   "text": "calls `00264150` with the incoming registers and, when it returns non-zero, calls `00393240(W, 1 when r9d is 0 else 0)` where W is the first qword of the array at qword `[rdx+0x10]`; then always stores `r9w` at W's word `+0xA` and byte `+7` of the 8-byte entry `r9d` of the table at W's qword `+0x20` at W's byte `+0x39`, and returns 1",
+   "anchors": [
+    [
+     "0039395A",
+     "movsxd"
+    ],
+    [
+     "00393960",
+     "call"
+    ],
+    [
+     "00393977",
+     "call"
+    ],
+    [
+     "00393987",
+     "movzx"
+    ],
+    [
+     "0039399A",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00510E40",
+   "text": "keeps `rcx` and `r9`; when `00280120` (incoming registers) returns non-zero it returns at once; otherwise it calls `002640C0`, makes four pointers `002650B0(that result, rcx, 00267E10(r9))` in turn, reads a fifth value `00267E10(r9)` and calls `0055FB20(that value, a local of four words)`, then stores the four words sign-extended as dwords through the pointers in reverse order (word 0 to the fourth pointer, word 3 to the first)",
+   "anchors": [
+    [
+     "00510E4E",
+     "call"
+    ],
+    [
+     "00510E88",
+     "call"
+    ],
+    [
+     "00510EEA",
+     "call"
+    ],
+    [
+     "00510EF4",
+     "mov"
+    ],
+    [
+     "00510F18",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0056CF10",
+   "text": "when qword `+0xC8` of `rcx` is null it clears bit `0x1` of dword `+8` in the nine objects at qwords `+0` to `+0x40` of the array at qword `[rdx+0x10]` and returns 1; otherwise, for the 32-byte entry `r9d` of that table, it builds a local flags dword (low two bits from dword `+0xE4`; bit `0x4` when bit `0x2` of it is set and the slot index of qword `+0xC0` equals `r9d`), calls `00253690`, derives a value from the flags, the entry and that result (2 or 0 when flag bit `0x2` is set, else 1 or 0) and passes it to `00393240` for the four array elements indexed by the dwords at `00D23608`; then fills the first element's word `+0xA` / byte `+0x39` from the entry's byte `+0xA`, the second element's qword `+0x18` / dword `+0x20` from the entry's first qword and `0020E620(0)`, calls `0029FF60` and `0029FB50` on element `+0x18` and `0056DA80(entry, rdx, &flags, the address 00D23520)`; returns 1",
+   "anchors": [
+    [
+     "0056CF28",
+     "je"
+    ],
+    [
+     "0056CFA7",
+     "cmp"
+    ],
+    [
+     "0056CFCF",
+     "call"
+    ],
+    [
+     "0056D060",
+     "call"
+    ],
+    [
+     "0056D103",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing"
+}

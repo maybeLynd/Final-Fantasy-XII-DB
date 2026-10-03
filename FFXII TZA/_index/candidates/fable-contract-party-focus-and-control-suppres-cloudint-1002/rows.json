@@ -1,0 +1,38 @@
+{
+ "page": "11-Party/CONTRACT-party-focus-and-control-suppression.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01924rEWURNFUyvDKP31ShM7",
+ "report": "contract-party-focus-and-control-suppression.json",
+ "rows": [
+  {
+   "fn": "003593A0",
+   "text": "reads dword `022C7FEC`; when it is 0 and `ecx` is non-zero, calls `0026D6D0` on `003588B0(dword 022C7FE0)` when that is non-null and re-reads `022C7FEC`; then, when the (re-read) dword is non-zero and differs from `ecx`, calls `0026D6D0` on `003588B0(that dword)` when non-null and then `00259800(0)`; on every path finally stores the incoming `ecx` at dword `022C7FEC`",
+   "anchors": [
+    [
+     "003593BC",
+     "call"
+    ],
+    [
+     "003593C9",
+     "call"
+    ],
+    [
+     "003593D4",
+     "cmp"
+    ],
+    [
+     "003593F0",
+     "call"
+    ],
+    [
+     "003593F5",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

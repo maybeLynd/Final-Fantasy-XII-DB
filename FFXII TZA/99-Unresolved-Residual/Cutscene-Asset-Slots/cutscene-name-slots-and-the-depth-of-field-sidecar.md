@@ -1603,7 +1603,7 @@ returns 1. Interior anchor `001ED1A8` (the `cmp ebx, 0x2F4`
 first kind test).
 
 `001ED130` (73 B) is the two-case field-id exception the section
-names: `edx = movsx(00265270())` is the field id, `ecx` the
+names: `edx = movsx(00265270())` is the ~~field id~~ story-progress value *(answered: see §"The two values in `001ED130` are story progress" and UQ-337; 2026-10-02, OPUS)*, `ecx` the
 `01F832B0` table value at `dword[01DFE40C]` (0 when the index
 passes 4); the function returns 0 for field `0x19`, and 0 for
 field `0x10C7` exactly when the table value is 5 — every other
@@ -1632,7 +1632,7 @@ combination returns 1. Interior anchor `001ED156` (the `cmp edx,
 
 ## SWE2-EC7-53 update (2026-09-19) - `0024AF50`
 
-`0024AF50` (368 B) is a cutscene-slot body - `0024B150`/`003A2090`/`003A21A0`. Interior anchor `0024AF9D` (a `003A2090` call).
+`0024AF50` (368 B) is a ~~cutscene-slot body~~ transfer-queue body *(answered: see the correction above: its caller `0024A710` is the UI atlas registry's layout pass, not cutscene code; 2026-10-02, OPUS)* - `0024B150`/`003A2090`/`003A21A0`. Interior anchor `0024AF9D` (a `003A2090` call).
 
 ## SWE2-EC7-55 update (2026-09-19) - `00252500`
 

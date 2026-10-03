@@ -143,7 +143,7 @@ it walks the `0x38` squares row-major and rebuilds each from the `licd` cell and
 
 **The state word.** Bits 4..7 are the current display state, bits 8..11 the previous one (§3), and bits
 12..15 are purchase flags the sweep derives from `BattleStats_CheckLicenseNodeAcquireReason`
-(`00323600` picks the character's stats block `02EBF190 + 8 + slot * 0x1C8`, `00323D10` decides):
+(`00323600` picks the character's stats block ~~`02EBF190 + 8 + slot * 0x1C8`~~ `[02EBF190] + 8 + slot * 0x1C8` *(corrected 2026-10-02, OPUS: `02EBF190` holds a pointer — `00323600+0x19` `mov rax, [02EBF190]`, then `00323600+0x20` `add rax, 8`)*, `00323D10` decides):
 
 | reason | meaning (`00323D10`) | what `0055BFF0` does (`0055C504` table) |
 |---:|---|---|
@@ -413,7 +413,7 @@ Interior anchor `0055AD88` (function `0055AB20`).
 
 Interior anchor `0055AA5E` (function `0055AA00`).
 
-`0055A180` (108 B) is the detail-pane refresh `0055C740`/`0055F3E0` run: `+0x570` bit 2 set tail-enters `0055A1F0(this)`; else `rsi` is stored into `+0xD0` of each of the four `[+0x140]`..`[+0x158]` children and `00559E30` rebuilds each — the four detail lines track the selected square.
+`0055A180` (108 B) is the detail-pane refresh `0055C740`/`0055F3E0` run: `+0x570` ~~bit 2~~ bit 1 (`& 2`) set tail-enters `0055A1F0(this)` *(corrected 2026-10-02, OPUS: `0055A180+0x6` `test byte ptr [rcx+0x570], 2`)*; else `rsi` is stored into `+0xD0` of each of the four `[+0x140]`..`[+0x158]` children and `00559E30` rebuilds each — the four detail lines track the selected square.
 
 Interior anchor `0055A1CD` (function `0055A180`).
 
@@ -489,7 +489,7 @@ Interior anchor `00557ABE` (function `00557A90`).
 
 Interior anchor `00557A6E` (function `00557A40`).
 
-`00558760` (127 B) is the pane re-drive `00557A90`/`00557A40` call after the armed-slot query passes: `word[0209AC30+0xDE0]` (the armed index) publishes into `this+0x354` and `[this+0xC0]+0xD8`, the `+0xC8` child is `00244F00`-released and rebuilt through `00558C40`'s ensure-create, `005588C0` refreshes, and `002527B0(6, 4, armed)` re-lays the pane — the detail pane's whole rebuild on a page commit.
+`00558760` (127 B) is the pane re-drive `00557A90`/`00557A40` call after the armed-slot query passes: `word[0209AC30+0xDE0]` (the armed index) publishes into `this+0x354` and `[this+0xC0]+0xD8`, the `+0xC8` child is `00244F00`-released and rebuilt through `00558C40`'s ensure-create, `005588C0` refreshes, and `002527B0(6, 4, armed)` ~~re-lays the pane~~ stores `armed` into word 4 of bank 6 *(corrected 2026-10-02, OPUS: `002527B0` writes its third argument into one of three banks at `[020927C0]` — bank 6's words at `+0x30`, `002527B0+0x69`; it lays nothing out)* — the detail pane's whole rebuild on a page commit.
 
 Interior anchor `005587AE` (function `00558760`).
 
@@ -509,7 +509,7 @@ Interior anchor `00282AE4` (function `00282A40`).
 
 Interior anchor `00285930` (function `002858A0`).
 
-`00283E40` (1547 B) is the board-grid rebuild the widget, license-board and layout callers share: `rcx`'s `dword[+0xC0]` indexes `qword[0209AC30 + idx*8 + 0xAC8]` for the slot record `r14`, `[+0xC8]`'s back-link self-heals through `002845E0`, `00243E90(rbx+0x50)` syncs the element flags, and `00247930(rbx, 0x5D - 2*word[r14+0x60])` arms the row count. With `word[r14+0x60] < 0` the body only clears bit 0 on `([rbx+0x50]>>2)&0xFFFF` elements of the `+0x60` array; otherwise it sets `dword[rbx+0x50] |= 1`, clears bit 0 on the ten fixed slots `+0x120..+0x190` and the `0x118`-entry head range, then on `byte[rbx+0xF8] == 0` pulls up to 0xB text rows through `002D0280`/`002D02C0`/`002D03B0`, marking each slot whose row byte differs from 0x1D dirty (`|= 1`) and copying `[r8+0x20]+row*8+7` into the row's `+0x39`/`+0xA`. The `+0xFC` bit6 lane gates `0032A8A0(0x4006)` license checks, mode `word[r14+0x60]` (sign-/-2/-gated) feeds `003236B0`/`00323670`/`00323630`/`00556380` font+icon resolves on `+0xB8`, the `+0xA8/+0xB0` pair gets the `edx` visibility bit, `0029FF60(rbx+0xD0)` formats the cost, and `0029F6E0` writers fill `+0x00/+0x10` (mode byte `r14+0xBA`), `+0x20/+0x40`/`+0x48` (LP `r14+0x20/+0x24/+0x2C/+0x30`) while `002DD7E0(0 or 4)` and `0035D330` (mode 2) build the two picture records `+0x148`/rsi - `+0x87` rows get bit0 set or cleared against `+0x86`, and `+0x150`-block rows copy their `+0x39`/`+0xA` pair.
+`00283E40` (1547 B) is the board-grid rebuild the widget, license-board and layout callers share: `rcx`'s `dword[+0xC0]` indexes ~~`qword[0209AC30 + idx*8 + 0xAC8]`~~ `qword[[0209AC30] + idx*8 + 0xAC8]` *(corrected 2026-10-02, OPUS: `00283E40+0x26` loads the pointer `[0209AC30]`, `00283E40+0x43` indexes it)* for the slot record `r14`, `[+0xC8]`'s back-link self-heals through `002845E0`, `00243E90(rbx+0x50)` syncs the element flags, and `00247930(rbx, 0x5D - 2*word[r14+0x60])` arms the row count. With `word[r14+0x60] < 0` the body only clears bit 0 on `([rbx+0x50]>>2)&0xFFFF` elements of the `+0x60` array; otherwise it sets `dword[rbx+0x50] |= 1`, clears bit 0 on the ten fixed slots `+0x120..+0x190` and the `0x118`-entry head range, then on `byte[rbx+0xF8] == 0` pulls up to 0xB text rows through `002D0280`/`002D02C0`/`002D03B0`, marking each slot whose row byte differs from 0x1D dirty (`|= 1`) and copying `[r8+0x20]+row*8+7` into the row's `+0x39`/`+0xA`. The `+0xFC` bit6 lane gates `0032A8A0(0x4006)` license checks, mode `word[r14+0x60]` (sign-/-2/-gated) feeds `003236B0`/`00323670`/`00323630`/`00556380` font+icon resolves on `+0xB8`, the `+0xA8/+0xB0` pair gets the `edx` visibility bit, `0029FF60(rbx+0xD0)` formats the cost, and `0029F6E0` writers fill `+0x00/+0x10` (mode byte `r14+0xBA`), `+0x20/+0x40`/`+0x48` (LP `r14+0x20/+0x24/+0x2C/+0x30`) while `002DD7E0(0 or 4)` and `0035D330` (mode 2) build the two picture records `+0x148`/rsi - `+0x87` rows get bit0 set or cleared against `+0x86`, and `+0x150`-block rows copy their `+0x39`/`+0xA` pair.
 
 Interior anchor `00283E83` (function `00283E40`).
 

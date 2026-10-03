@@ -1,0 +1,49 @@
+{
+ "page": "19-Save-Load-Settings/Game-Settings-Config/ff12config-and-debglobal.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01Mh9D4U6XdnAn8vURhKVJHy",
+ "report": "home-ff12config-and-debglobal.json",
+ "rows": [
+  {
+   "fn": "00314D60",
+   "entered_from": "`0050C8A0` + 0x24",
+   "text": "calls `00314D60` + 0x8 with the incoming registers and stores to dword `022C2540` the incoming `ecx` when that call returns non-zero, or 0 when it returns zero; that callee is an `xor eax, eax` / `ret` stub, so the stored value is always 0",
+   "anchors": [
+    [
+     "00314D68",
+     "call"
+    ],
+    [
+     "00314D6F",
+     "test"
+    ],
+    [
+     "00314D71",
+     "cmovne"
+    ],
+    [
+     "00314D74",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "001D6BB0",
+   "why": [
+    "already cited by 02-Resource-And-Asset-Pipeline\\Loose-Files-And-Size-Tables\\file-size-tables-fst.md"
+   ]
+  }
+ ],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "00314D60",
+   "was": "calls `00314D60` + 0x8 with the incoming registers and stores to dword `022C2540` the incoming `ecx` when that call returns non-zero, or 0 when it returns zero",
+   "now": "calls `00314D60` + 0x8 with the incoming registers and stores to dword `022C2540` the incoming `ecx` when that call returns non-zero, or 0 when it returns zero; that callee is an `xor eax, eax` / `ret` stub, so the stored value is always 0",
+   "why": "the callee at +0x8 is the folded constant stub `xor eax, eax; ret`, so the `cmovne` never takes `ecx` and the row's non-zero arm is dead"
+  }
+ ]
+}

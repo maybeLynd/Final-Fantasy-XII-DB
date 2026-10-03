@@ -836,3 +836,20 @@ columns differ, 2, 6, 10 and 11**, confirming §10's overturn from the bytes; th
 identical pointers, and slot 0 is `0016D6A0` — the three-byte `ret 0` that `/OPT:ICF` folded every
 empty function in this image onto. `DynGeoFontTextInstance`'s table at `00906DC8` is three slots,
 confirming the three-shape split in §2.
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-dyngeo-instance-family-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `001EE650` | 362 B | splits `ecx` into 2-bit fields a (bits 0-1), b (2-3), c (4-5), d (6-7), forms i = 27a + 9b + 3c + d and reads the 16-byte row i of the table at `00902750`; into the output o (the fifth (stack) argument) it copies row `+4` unchanged to dword `+8`, and writes row `+8` to dword `+0` and row `+0xC` to dword `+4`, both remapped 6 to `0x11`, 7 to `0x12`, 2 to `0xF`, 3 to `0x10`, other values unchanged; when row `+0` is 1 it stores 1 at `+4` of o if a is non-zero, else at `+0`; it stores row `+0` at `+0x1C`, replaced by 5 when the low byte of the sixth (stack) argument is non-zero and i is 10; when `+0x1C` is then 3 or 5 it stores 1 at `+0` and 0 at `+4`; finally it stores 0 at `+0x18` and bits 32-39 of `rcx` divided by 255 (`008C5B40`) as float at `+0xC`, `+0x10` and `+0x14` | `001EE6AC`, `001EE6F4`, `001EE73F`, `001EE760`, `001EE770` |
+| `00214710` | 144 B | copies the 16 dwords at `rdx+0` to `rdx+0x3C` into `+0x11C` to `+0x158` of `rcx` | `00214712`, `00214751`, `00214799` |
+| `00215A30` | 109 B | copies the four dwords at `rdx+0` to `rdx+0xC` into the first four dwords of the `0x30`-byte element whose index is the signed dword `+0x1C0` of `rcx`, in the array at qword `+0x18` of `rcx` (re-reading index and base before each store) | `00215A4A`, `00215A63`, `00215A7E`, `00215A98` |
+| `006CA760` | 41 B | computes `rcx + 0x10880` plus dword `+0x18860` of `rcx` (zero-extended) times `0x7FE0`, zeroes dword `+0x18860`, stores the pointer at qword `+0xB8` and returns it | `006CA766`, `006CA76D`, `006CA774`, `006CA781` |
+| `006CAC30` | 15 B | stores `dl` at byte `+0x851` and `r8w` at word `+0x852` of `rcx` | `006CAC36` |
+| `006CAF40` | 105 B | copies the 16 dwords at `rdx+0` to `rdx+0x3C` into `+0x10` to `+0x4C` of `rcx`, stores byte 1 at `+0x208F3` and returns 0 | `006CAF42`, `006CAF9C`, `006CAF9F`, `006CAFA1` |
+
+`00213B30` (14 B, no direct call; vtable slot 4 shared by `DynGeoFontTextSpecialInstance`, its `Final`, `Shadow` and `ShadowFinal` variants) stores the third argument into the pointer array at `+8` at the index in `edx` when that index is below 10 (a signed `jge`, so a negative index is not refused), and ignores 10 and above - a ten-slot setter.
+
+Interior anchor `00213B38` (function `00213B30`).

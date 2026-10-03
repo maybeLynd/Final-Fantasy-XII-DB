@@ -76,8 +76,8 @@ so a caller cannot distinguish "ran" from "declined" by the return value alone.
 > **`SaveWrite_GetBusyFlag` (`00583920`) is seven bytes and reads one global**:
 > `00583920 mov eax, dword ptr [rip + 0x27260c2]` → **`02CA99E8`**, then `ret`. That is the whole
 > function. **So what is read here is "a global is non-zero", not "a save is in progress"** — the
-> save meaning comes from the ledger name and from whoever writes `02CA99E8`, which this document
-> has not read. (Pointer 2026-10-01 (SWE2-CONTRACT for OPUS): read since 2026-09-11; the next paragraph reads the writers.) The pass's behaviour is established; the trigger's identity is borrowed.
+> save meaning comes from the ledger name and from whoever writes `02CA99E8`, ~~which this document~~
+> ~~has not read~~ *(answered: "Read 2026-09-11", the next paragraph; 2026-10-02, OPUS)*. (Pointer 2026-10-01 (SWE2-CONTRACT for OPUS): read since 2026-09-11; the next paragraph reads the writers.) The pass's behaviour is established; the trigger's identity is borrowed.
 >
 > **Read 2026-09-11:** three writers, all in the save-write operation. `SaveWrite_PrepareAndSubmitFullImage`
 > (`0057E310`) sets it to 1 after handing the image to the write submission (`0057E495`);
@@ -140,9 +140,9 @@ slot's bound definition payload `[slot + 0x00]` (`0025DB2B`–`0025DB31`). This 
 `+0x12` byte is non-zero (`0025DB25`). It drives that one designated record, clears `+0x12` (`0025DB79`), runs
 `002620E0` and jumps to the pass's tail (`0025DB82`). The other call sites of `0025DF00` are listed in §6.*
 
-> **One actor is driven repeatedly inside one frame until it settles.** The loop exits on bit `0x40`
+> ~~**One actor is driven repeatedly inside one frame until it settles.**~~ *(answered: see "Corrected 2026-09-12 (FABLE): nothing ever sets the low nibble" below — each actor is driven once per loop that names it; 2026-10-02, OPUS)* The loop exits on bit `0x40`
 > of the record's `+0x14` — *settled* — or on the low nibble being clear — *nothing pending*.
-> **There is no iteration cap.** A script that keeps work pending and never sets `0x40` has nothing in
+> ~~**There is no iteration cap.**~~ *(answered: the loop is dead code, below; 2026-10-02, OPUS)* A script that keeps work pending and never sets `0x40` has nothing in
 > this function to stop it.
 
 `byte +0x14` of an actor record is therefore a **status byte with two independent halves**: bit `0x40`
@@ -321,8 +321,8 @@ Addresses are Ghidra image base `0x00120000`. Body sizes are the function extent
       per-map driver `003319D0(index)`; then `ActorResource_BeginManagerResourceSetLoad(slot, index)`
       requests the manager's `.ebp` / `.mot` / `.fpk` triple through `ResourcePath_Get` — namespace 5,
       row `index × 3` for slot 0 ([the EBP container page](../25-EBP-Script-Container/Container/ebp2-container.md) §"which resource namespace") — and `0025D4D0`
-      clears the manager slot's `+0x10` bit 1. The runtime pass issues it **once for slot 0 with
-      index `0xD4` = 212** (`0025DACC`–`0025DAF2`): when `00377DB0()` — the WorldAreaField word
+      clears the manager slot's `+0x10` bit 1. The runtime pass issues it **once ~~for slot 0~~ from slot 0's pass with
+      index `0xD4` = 212** (`0025DACC`–`0025DAF2`) *(corrected 2026-10-02, OPUS: with the slot argument 1 — `0025DA86 mov r12d, 1`, `0025DAE1 mov ecx, r12d` — so `0032FC30`'s slot-0 branch, `0032FC3E`–`0032FC40`, is not taken for it)*: when `00377DB0()` — the WorldAreaField word
       `02ADD0D8`, written by `003775D0` (= 1), `00377CC0` and `00378230` — is non-zero and slot 0's
       `+0x10` bit 4 is clear, it requests map 212's set and latches bit 3 so it is not repeated.
       ~~Which map row 636 of namespace 5 names is not in the image: the path tables at `0215F000` are
@@ -602,7 +602,7 @@ the consumer, and they agree.
 ### Limits
 
 - **`0x288` is the stride, not a read layout.** Six fields are declared; `0x000`–`0x007`,
-  `0x012`–`0x047`, `0x050`–`0x057` and `0x068`–`0x287` are undeclared, which is 614 of 648 bytes.
+  `0x012`–`0x047`, `0x050`–`0x057` and `0x068`–`0x287` ~~are undeclared, which is 614 of 648 bytes~~ *(answered: CONTRACT-field-runtime-pass.md declares `+0x12`, `+0x13`, `+0x17`, `+0x20`, `+0x24`, `+0x38`, `+0x200`, and the actor-manager record field map maps 57 offsets; 2026-10-02, OPUS)*.
   *(2026-09-30, FABLE: the slot's layout belongs to
   [the actor-manager record field map](Actor-Manager-Record/the-actor-manager-record-field-map.md), which names far
   more of the block. This page declares only the fields the pass uses.)*
@@ -700,7 +700,7 @@ sweep itself, which lists every writer the census knew."*
 
 **Not claimed:** nothing here was executed or observed live. The eight jump-table arms at
 `0013E3CC + r14` were not each followed; §12's five slots and the four accessors were not re-derived.
-Whether a wider store reaches an actor record's `+0x14` is **not** settled by this pass either — it
+~~Whether a wider store reaches an actor record's `+0x14` is **not** settled by this pass either~~ *(answered: see "Reconciled 2026-09-30" below; 2026-10-02, OPUS)* — it
 needs the bases typed, not the displacements counted.
 
 *Reconciled 2026-09-30 (FABLE):* both items this pass left open are now closed on the page.

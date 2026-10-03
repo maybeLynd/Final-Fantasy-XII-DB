@@ -685,3 +685,22 @@ trusting an id. Interior anchor `0032E4ED` (the `+0x64` compare).
 ## SWE2-EC7-43 update (2026-09-19) - `002F1780`
 
 `002F1780` (286 B) is a music-area-change body - `022BDED0`/`022BE7C0` slot-table walk (0x48 stride, `rol ebp` bitmask rotate), two `call rax` vcalls on `[rbx-0x10]` objects. Interior anchor `002F1814` (the first `call rax`).
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../_index/candidates/fable-how-the-music-changes-when-you-change-ar-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00218E50` | 45 B | walks the circular list whose sentinel is at `rcx + 8` (first node qword `+8`, next link qword `+0` of each node) and, at the first node whose qword `+0x10` object has dword `+0x50` equal to `edx` (or at the first node at all when `edx` is -1), tail-jumps to `00222B70` with that object in `rcx` and `edx`, `r8`, `r9` unchanged; returns without a call when the list is empty or no node matches | `00218E58`, `00218E64`, `00218E69`, `00218E6E`, `00218E77` |
+| `003473A0` | 30 B | calls `003473A0 + 0x4` with the incoming registers unchanged, then `0037C910(0)`, then tail-jumps to `003473A0 + 0x19` with `ecx` = 1 | `003473A4`, `003473AB`, `003473B0`, `003473B9` |
+| `003614C0` | 28 B | calls `003614C0 + 0x12` with `rcx`, `edx` and `r8` unchanged, `r9d` = 0x7F and a fifth (stack) argument of 0, and returns its result | `003614C4`, `003614CA`, `003614D2` |
+| `003EB0D0` | 41 B | returns 1 when byte `02B5E111` is non-zero and 0 otherwise (a loop over 0x38-byte records bounded at one record) | `003EB0D2`, `003EB0E0`, `003EB0EB`, `003EB0F0`, `003EB0F3` |
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../_index/candidates/fable-home-how-the-music-changes-when-you-change-a-1002/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `0046DE50` | 32 B | `0032EB40` + 0x68 | when `ecx` is below 2 (signed, so negative values also pass), stores 0 to qword `02CA6080` + `ecx`*0xA0; otherwise returns without a write | Interior anchor `0046DE53`; Interior anchor `0046DE5C`; Interior anchor `0046DE67` |

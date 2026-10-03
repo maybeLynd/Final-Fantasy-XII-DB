@@ -1,0 +1,110 @@
+[
+  {
+    "path": "Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/rv_clear.py",
+    "bytes": 21452,
+    "sha256": "dcc0e838fc00fbe54967106dba2fd874f14a343c79df55ffe6c0a46225b22e25",
+    "origins": [
+      {
+        "path": "Database/FFXII TZA/_index/candidates/fable-review-astra-render-clear-callee-footprints-1002/rv_clear.py",
+        "bytes": 21452,
+        "sha256": "dcc0e838fc00fbe54967106dba2fd874f14a343c79df55ffe6c0a46225b22e25"
+      }
+    ],
+    "frozen_source": "referents/rv_clear.py"
+  },
+  {
+    "path": "Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/rvlib.py",
+    "bytes": 13365,
+    "sha256": "69f9bc40be32abcc32b189539c35a6738d829306c19d61a0bccc41723c6e33ca",
+    "origins": [
+      {
+        "path": "Database/FFXII TZA/_index/candidates/fable-review-astra-render-clear-callee-footprints-1002/rvlib.py",
+        "bytes": 13365,
+        "sha256": "69f9bc40be32abcc32b189539c35a6738d829306c19d61a0bccc41723c6e33ca"
+      },
+      {
+        "path": "Database/FFXII TZA/_index/candidates/fable-review-astra-render-removal-phase-contracts-1002/rvlib.py",
+        "bytes": 13365,
+        "sha256": "69f9bc40be32abcc32b189539c35a6738d829306c19d61a0bccc41723c6e33ca"
+      },
+      {
+        "path": "Database/FFXII TZA/_index/candidates/fable-review-astra-render-slot-identity-publication-1002/rvlib.py",
+        "bytes": 13365,
+        "sha256": "69f9bc40be32abcc32b189539c35a6738d829306c19d61a0bccc41723c6e33ca"
+      }
+    ],
+    "frozen_source": "referents/rvlib.py"
+  },
+  {
+    "path": "Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/rv_clear.out",
+    "bytes": 6926,
+    "sha256": "9ee5e75a57c9a8d75333ea3fb4ba622d4079ebed5cfa1280b39fef0cf860e8ea",
+    "origins": [
+      {
+        "path": "Database/FFXII TZA/_index/candidates/fable-review-astra-render-clear-callee-footprints-1002/rv_clear.out",
+        "bytes": 6926,
+        "sha256": "9ee5e75a57c9a8d75333ea3fb4ba622d4079ebed5cfa1280b39fef0cf860e8ea"
+      }
+    ],
+    "frozen_source": "referents/rv_clear.out"
+  },
+  {
+    "path": "Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/rv_removal.py",
+    "bytes": 15113,
+    "sha256": "3bcb9a6d4656e594e542b9aede2a9ffd9a4c680094718b2e3cfb0cb03a7fa36b",
+    "origins": [
+      {
+        "path": "Database/FFXII TZA/_index/candidates/fable-review-astra-render-removal-phase-contracts-1002/rv_removal.py",
+        "bytes": 15113,
+        "sha256": "3bcb9a6d4656e594e542b9aede2a9ffd9a4c680094718b2e3cfb0cb03a7fa36b"
+      }
+    ],
+    "frozen_source": "referents/rv_removal.py"
+  },
+  {
+    "path": "Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/rv_removal.out",
+    "bytes": 6726,
+    "sha256": "2515c28e29acc78dd371b101728a2596dde590188b3f71482ff046a86e07d019",
+    "origins": [
+      {
+        "path": "Database/FFXII TZA/_index/candidates/fable-review-astra-render-removal-phase-contracts-1002/rv_removal.out",
+        "bytes": 6726,
+        "sha256": "2515c28e29acc78dd371b101728a2596dde590188b3f71482ff046a86e07d019"
+      }
+    ],
+    "frozen_source": "referents/rv_removal.out"
+  },
+  {
+    "path": "Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/rv_slot.py",
+    "bytes": 16608,
+    "sha256": "96dfdfc5ae69256c385246afcbca426c1bd8081f30b299c0b9815b948fb9124b",
+    "origins": [
+      {
+        "path": "Database/FFXII TZA/_index/candidates/fable-review-astra-render-slot-identity-publication-1002/rv_slot.py",
+        "bytes": 16608,
+        "sha256": "96dfdfc5ae69256c385246afcbca426c1bd8081f30b299c0b9815b948fb9124b"
+      }
+    ],
+    "frozen_source": "referents/rv_slot.py"
+  },
+  {
+    "path": "Database/FFXII TZA/_experiments/evidence/render-review-phase-qualification/rv_slot.out",
+    "bytes": 8022,
+    "sha256": "a6e0c0fee49cd4ae1efb596b0aa3ec1b219424e9e365d056ed0ac682c06119f8",
+    "origins": [
+      {
+        "path": "Database/FFXII TZA/_index/candidates/fable-review-astra-render-slot-identity-publication-1002/rv_slot.out",
+        "bytes": 8022,
+        "sha256": "a6e0c0fee49cd4ae1efb596b0aa3ec1b219424e9e365d056ed0ac682c06119f8"
+      }
+    ],
+    "frozen_source": "referents/rv_slot.out"
+  },
+  {
+    "path": "Database/FFXII TZA/_experiments/evidence/fable-review-astra-render-clear-callee-footprints-1002/REVIEW.md",
+    "bytes": 238,
+    "sha256": "1820ef94651d68caf91d3cae107dc73acd12f88f7a68350f8809842661f53220",
+    "origins": [],
+    "frozen_source": "referents/REVIEW.md"
+  }
+]

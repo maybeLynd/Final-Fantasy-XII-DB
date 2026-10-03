@@ -1,0 +1,21 @@
+{
+ "blocks_in_image": 27,
+ "blocks_outside_image": 3,
+ "catalogue": "e2a67b07700c2ec3fbfae3213965de35",
+ "classes": {
+  "entered": 2,
+  "returned": 4,
+  "scripted": 1
+ },
+ "elapsed_s": 0.5,
+ "emu_starts": 12,
+ "entries_executed": 4,
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "instrument": "execcov-shim v2",
+ "patched_blocks": 2,
+ "rc": 0,
+ "receipt_md5": "6d7cf63b53e3da88850e27740338a304",
+ "run": "EXP-053-loot-overlap-controls",
+ "status": "ok",
+ "unique_blocks": 30
+}

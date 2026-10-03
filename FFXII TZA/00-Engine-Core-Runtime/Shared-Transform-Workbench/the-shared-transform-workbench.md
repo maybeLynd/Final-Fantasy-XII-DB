@@ -586,12 +586,12 @@ overwritten with `r14d` (`0025C8B3`/`0025C8B9`), `byte[rdx+0xD]`
 
 | member | role | interior |
 | --- | --- | --- |
-| `0025A8E0` (164 B) | staging-cell writer — `movss [rdx+0xC]`, `andps 0x7FFF…` abs (`0025A8F7`), `movss [rcx]`, `xorps 0x8000…` negate (`0025A917`), `movss [rcx+4]` (`0025A92C`), bumps the `022D9130` staging bank (`0025A8E5`/`0025A8F1`/`0025A926`) | [`0025A8F7`](../../_index/ADDRESS-INDEX.md) |
+| `0025A8E0` (164 B) | staging-cell writer — `movss [rdx+0xC]`, `andps 0x7FFF…` abs (`0025A8F7`), `movss [rcx]`, `xorps 0x8000…` negate (`0025A917`), `movss [rcx+4]` (`0025A92C`), ~~bumps the `022D9130` staging bank~~ shifts the `022D9130` flag word left by 6 and ORs in comparison bits, the VCLIP result *(corrected 2026-10-02, OPUS: `0025A8E0+0xE` `shl eax, 6`, `+0x2B` `or eax, 1`, `+0x43` `or eax, 2`)* (`0025A8E5`/`0025A8F1`/`0025A926`) | [`0025A8F7`](../../_index/ADDRESS-INDEX.md) |
 | `00227420` (62 B) | gated option setter — `test dword[01FD46D4], 0x40000` arm (`00227424`), `-1` sentinel pair (`00227432`/`0022743D`), `00226BE0`, tail `00226280` (`00227454`). The `0x400` arm cited here earlier lives in `00227460` — a separate 62-B twin on the same `01FD46D4` global, reached through Script-VM thunk `00350400`, not a member of this subtree (AUDITSEM-CONTRA-FRONTIER-27464-ARM, 2026-09-17) | [`00227432`](../../_index/ADDRESS-INDEX.md) |
 
 Shared callees outside the census: `0037C860`, `00226BD0`, `00233D20`,
-`00226BE0`, `00226280`. `0025A8E0`'s `022D9130` cells are the same
-staging bank the `00433830` blend kernel consumes.
+`00226BE0`, `00226280`. ~~`0025A8E0`'s `022D9130` cells are the same~~
+~~staging bank the `00433830` blend kernel consumes.~~ `0025A8E0`'s `022D9130` is the CLIP flag word, and no rip operand of the `00433830` blend kernel reaches it *(corrected 2026-10-02, OPUS: `0025A8E0+0xE` `shl eax, 6`; none of `00433830`'s 3,202 bytes addresses `022D9130`–`022D913F`)*.
 
 ## Cross-subsystem neighbours — FINAL-AUDIT pass 22
 

@@ -33,7 +33,7 @@ audit:
 
 **Package:** `SWE2-DATA-UQ218-FDM-FOR` (UQ-218 residue). **Population:** every `.cm`
 in the archive — `1,066` files; `@FOR` present `1,066/1,066`, `@FDM`
-`1,045/1,066` (the 21 missing are mostly `treasure`/`bg_obj` files). Census:
+`1,045/1,066` (the 21 missing are ~~mostly `treasure`/`bg_obj` files~~ all weapons *(corrected 2026-10-02, OPUS: the tag set of every `.cm` in the extracted archive; FCP's 21 `@FCP @FTR @FOR` weapons)*). Census:
 `members/for_fdm_entry_census.py`. Native proof: `004201F0`, `00504840`,
 `005048A0`, `00521050`, `00504F00` disassembled in full.
 
@@ -73,8 +73,8 @@ dword[record+0x208+4k] (stored offset)` — seen at `00420240`–`00420274` for
 +0x3B  u8    lodCap             (max selectable index)
 +0x3C  u16   lodDistance[0]     — authored in centimeters
 +0x3E  u16   lodDistance[1]     (×0.01f = meters, constant 008F30E4)
-+0x40  table A — small records (3 B stride suggested by the B offset arithmetic; content unresolved)
-…      table B — bytes between u16@0x36 and u16@0x38 (unresolved)
++0x40  table A — small records (3 B stride suggested by the B offset arithmetic; content unresolved)   <- corrected 2026-10-02, OPUS - resolved 2026-09-29, Table A/B section below
+…      table B — bytes between u16@0x36 and u16@0x38 (unresolved)   <- corrected 2026-10-02, OPUS - resolved 2026-09-29, Table A/B section below
 +rb    records[recordCount], stride 0xE0 — proven by 00504840
 …      tail — u16 index lists addressed by the record fields
 ```
@@ -84,18 +84,18 @@ dword[record+0x208+4k] (stored offset)` — seen at `00420240`–`00420274` for
 | off | field | evidence |
 |---|---|---|
 | `+0x00` | u8 key — `i+1` in `1,062/1,066` files (4 exceptions carry reordered keys) | `00504870` `cmp eax, r10d` |
-| `+0x01` | u8 = 0 | sampled |
+| `+0x01` | u8 ~~= 0~~ packing kind of the fourth list *(corrected 2026-10-02, OPUS: `0053AB50`+0x16DF `movzx eax, byte ptr [rbx + 1]` on the flag-1 pass)* | sampled |
 | `+0x02` | ~~u8[6] enable flags = 1~~ **u8[3] per-part packing kind** of the tail list (0 = empty, 1 / 2 / 3 = 2- / 3- / 4-byte elements; `0053C227`), then **u8[3] per-part selector counts** at `+0x05` (`0053B426`) *(corrected 2026-09-30, pass 18)* | sampled; `0053AB50` |
 | `+0x08`/`+0x0A`/`+0x0C` | u16 offsets, from the record base, of the three **per-part draw lists** (`0053C16B`) — ~~u16 index lists~~ packed elements, see below | every list fits its entry under its kind's width, 1,891 lists |
 | `+0x0E` | u16 offset of the fourth list, read on the builder's flag-1 pass (`0053C173`) | non-zero only in the 132 high-model records |
 | `+0x10`/`+0x12`/`+0x14` | u16 element counts of the three lists (`0053C187`) | same |
 | `+0x16` | u16 count of the fourth list (`0053C18F`); its packing kind is `byte[+0x01]` (`0053C22F`) | same |
 | `+0x18` | f32 key value (usually `1.0`) | `00504895` `movss [rcx+r11+0x18]` |
-| `+0x20`+ | 0xA0-byte parameter block, `0xFF` defaults with a `0x00` at `+0x48`/`+0x68` | sampled; consumers unresolved |
+| `+0x20`+ | 0xA0-byte parameter block, `0xFF` defaults with a `0x00` at `+0x48`/`+0x68` | sampled; consumers ~~unresolved~~ partly read *(answered: see the 2026-09-29 table A/B section - five `0x20`-stride part sub-records, read by the builder; 2026-10-02, OPUS)* |
 
 ### `@FOR` consumer 1 — distance LOD select (`004201F0`, `CharacterRenderRecord_SelectLODForViewDepth`)
 
-1. Resolves the `@FOR` entry (index `rec+0x208` + base `rec+0x1F8`), checks
+1. Resolves the `@FOR` entry (index ~~`rec+0x208` + base `rec+0x1F8`~~ `+0x208` + base `+0x1F8` of the model resource `004780B0(word[record+0x64])`, not of the render record *(corrected 2026-10-02, OPUS: `004201F0`+0x42 `call 004780B0`, +0x50 `mov ecx, dword ptr [rax + 0x208]`, +0x6C; the view depth `f32[+0x208]` of step 4 is read from the record or the second argument at +0x192)*), checks
    the `'@FOR'` magic at `00420274`.
 2. Builds the threshold vector `{0, f(u16@3C), f(u16@3E), 1.0e8}` on the
    stack — `u16 × 0.01f`, i.e. authored centimeters → meters (m1283: `600,
@@ -151,7 +151,7 @@ lists (`ctx+0x83B0`/`ctx+0x83D0`, pre-seeded from another entry's
 the `@FTE` side (`dword[@FTE + (slot+2)·0x20]` summed = texture byte total,
 `0053B5B0`–`0053B5F6`, then per-slot `word[ctx68 + slot·2 + 0x100]` +
 `@FTE + (slot+2)·0x20` → `005212E0`), byte 1 the `@FCT` palette side
-(`word[@FCT + (pal+3)·8]` summed, `0053B620`–`0053B64D`). The summed byte
+(~~`word[@FCT + (pal+3)·8]`~~ `word[@FCT + (pal+3)·0x10]` *(corrected 2026-10-02, OPUS: `0053AB50`+0xADC `add rax, rax` then +0xADF `movzx eax, word ptr [rdi + rax*8]`)* summed, `0053B620`–`0053B64D`). The summed byte
 total feeds `00537AF0`. So table B's pairs are
 **`{texture slot, palette slot}` per (part, selector, variant)**.
 The record's `0xA0` parameter block at `+0x20` is **five `0x20`-stride part
@@ -286,7 +286,7 @@ construction below — i.e. group 2, item `0x3CD3`.~~
   i.e. the `tailU16` region after the `0x290` bone records (see
   `ftr-node-table.md`). **Sink resolved 2026-09-28 (FABLE evidence record
   `_index/candidates/uq218-cm-entry-residues/`, controls FAILS 0):**
-  `00373060` bounds the ordinal by `@FTR u32 +0x38` (`003730BA`) — the data
+  `00373060` bounds the ordinal by ~~`@FTR u32 +0x38`~~ `@FTR u16 +0x38` *(corrected 2026-10-02, OPUS: `00373060`+0x5A `movzx ecx, word ptr [rax + 0x38]`)* (`003730BA`) — the data
   join holds: **@FDM key count == @FTR `+0x38` in 1,045/1,045 files** (and
   `+0x38` is 0 in all 21 files without `@FDM`; mutant against the node count
   fails 148/1,045). `0x7FFF` is stored without a flag; any other value also
@@ -320,11 +320,11 @@ the pool is `list -> descriptor -> sub-record -> bone-index stream`
 sink are answered (command `0x14` above; `00373060` → the `@FTR` tailU16
 override slots → `00371330` → VU1 `0053D4B0`) — together with `@FTE`,
 `@FCT`, `@FEF` (`1,044`, `1,044`, `144` files) and `@FMC`/`@FMN`/`@FMW`
-(`209`, `111`, `111` files).
+(`209`, `111`, `111` ~~files~~ entries, in 45 files *(corrected 2026-10-02, OPUS: 29 weapons and 16 treasures carry them; recount of the `.cm` tag sets)*).
 
 ## Evidence
 
-- `004201F0` — `@FOR` LOD select, fully disassembled (144 insns).
+- `004201F0` — `@FOR` LOD select, fully disassembled (~~144~~ 143 insns *(corrected 2026-10-02, OPUS: 648 bytes to the `ret` at `004201F0`+0x287; the falsification pass's count note)*).
 - `00504840` — `@FOR` keyed float reader, fully disassembled.
 - `005048A0` — `@FDM` key→ordinal lookup, fully disassembled.
 - `00521050` — spawn bridge: composite key `((w4 & 0xFFFC) << 14) | w2` = `((w4 >> 2) << 16) | w2`; one command

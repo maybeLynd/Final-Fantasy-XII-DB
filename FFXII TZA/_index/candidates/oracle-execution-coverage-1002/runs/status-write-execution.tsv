@@ -1,0 +1,24 @@
+entry	class	mutated
+0016d6a0	returned	
+0020e600	returned	
+00300140	stubbed	
+00300fc0	stubbed	
+00301140	stubbed	
+00307d10	stubbed	
+0030b8e0	stubbed	
+0030b9b0	stubbed	
+0030e360	returned+faulted	yes
+0030fed0	stubbed	
+00312280	stubbed	
+0031b860	stubbed	
+003284d0	stubbed	
+003299b0	stubbed	
+00377c20	stubbed	
+003848e0	returned	
+00386a50	returned	
+00386a70	returned	
+003876d0	returned	
+00387730	returned+faulted	
+0046a800	stubbed	
+00808c40	returned	
+00861ec0	returned	

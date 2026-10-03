@@ -174,7 +174,7 @@ FRONTIER-SWFAM-STATEMAP`). The edges form a poll-and-retry graph rather than a s
 states 11 and 14 **exit without advancing** while their handle probes report not-ready, state 10
 splits to 11 or 12 on the sign of `+0xC4`, state 12 splits to 13 or 14 on its probe, state 8 holds
 while layer 0's state byte reads 1, resuming at the saved state `+0xC1` once it clears, and only
-state 5 retires the object. The id-1 message enters at state 6. The per-helper bodies (`002DED60`, `00360D70`/`00360E50`, `00360C20`,
+state 5 retires the object. The id-1 message enters at state 6. The per-helper bodies (`002DED60`, ~~`00360D70`/`00360E50`~~ *(answered: see the `00360D70` and `00360E50` sections below; 2026-10-02, OPUS)*, `00360C20`,
 `00361630`, `00303D90`, `003C58B0`) are named here only by their call sites — their bodies are
 **not read** in this pass, and which transition the machine sequences (a party-read, a mode
 change, or both) is left open.
@@ -465,8 +465,8 @@ Shared callees outside the census: none.
 counter. Interior verified: a negative `ecx` arg is replaced by the counter value
 (`002DEE54`); if that is still negative the call is a no-op (`002DEE5C`). Otherwise `r8b` lands
 on the `0215EF4D` byte at [`002DEE5E`](../../_index/ADDRESS-INDEX.md) and `001DBCA0` runs the
-follow-up. The write is the layer's armed/visible flag; the counter gate is "no fade state
-loaded".
+follow-up. ~~The write is the layer's armed/visible flag; the counter gate is "no fade state~~
+~~loaded".~~ The call is a music volume fade: `0215EF44` is the current track, and `001DBCA0` hands the track, the frame count and the volume to the sound side, which divides them by `60.0` and `127.0` *(corrected 2026-10-02, OPUS: `002DEE50`+0x15 `jmp 001DBCA0`; `00222B70`+0x3A and +0x42 `divss`; the mode machine's state 9 calls it with `0x5A` frames and volume 0)*.
 
 
 ### Interior citation — frontier hub `00252D90` (2026-09-18, SWE2-EC7)
@@ -522,7 +522,7 @@ anchor `002839D4` (the `call 00244F50` allocation).
 
 ## SWE2-EC7-68 update (2026-09-19) - `002DEDE0` fade singleton selector
 
-`002DEDE0` (80 B) maintains the fade-layer singleton
+`002DEDE0` (80 B) maintains the ~~fade-layer singleton~~ current music track *(corrected 2026-10-02, OPUS: the same sound-side chain as `002DEE50`)*
 `dword[0215EF44]` the fade-schedule bodies call: `ebx` is the
 argument, or the current value when `ecx < 0`; `001DBC30(ebx)`
 runs when `ecx < 0` or when the argument equals the current value;
@@ -714,7 +714,7 @@ through `005CD0A0`. This page relies only on what `+0x40` counts. It says nothin
 `0015BC40`. It is named here only because the constructor is cited; the page does not describe that
 caller.
 
-`0037DEA0` (239 B) is the two-phase schedule notify `0037DDD0` runs on the `[rcx+0xC8]` record: with `+0xF0` bit 8 clear and the `[rbp+2]`/`[rbp+1]` window reached by `[rsi+0x14]`, it fires `002EFE40(5)` then `002EFA70(0, edi, 1, [rbp+7]&1)` and sets bit 8; the mirror block under bit `0x10` does the same from `[rbp+4]`/`[rbp+3]` against `[rsi+0xC0]+0x10` with `002EFA70`'s flag from `[rbp+7]&2` - the layer's arrival markers, once each
+`0037DEA0` (239 B) is the two-phase schedule notify `0037DDD0` runs on the `[rcx+0xC8]` record: with `+0xF0` ~~bit 8~~ bit 3 (mask `8`) clear and the `[rbp+2]`/`[rbp+1]` window reached by `[rsi+0x14]`, it fires `002EFE40(5)` then `002EFA70(0, edi, 1, [rbp+7]&1)` and sets ~~bit 8~~ that bit; the mirror block under ~~bit `0x10`~~ bit 4 (mask `0x10`) *(corrected 2026-10-02, OPUS: `0037DEA0`+0x1D `test byte ptr [rcx + 0xf0], 8`, +0x6F `or dword ptr [rsi + 0xf0], 8`, +0x76 and +0xD3 for `0x10`)* does the same from `[rbp+4]`/`[rbp+3]` against `[rsi+0xC0]+0x10` with `002EFA70`'s flag from `[rbp+7]&2` - the layer's arrival markers, once each
 
 Interior anchor `0037DF33` (function `0037DEA0`).
 

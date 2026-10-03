@@ -1,0 +1,35 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "failed-committed-path-01.status.json",
+      "bytes": 726,
+      "sha256": "372ddb621266ec96f7580084f6004bd7a384881eca0a6af9f7aad66189ab1f0a"
+    },
+    {
+      "path": "failed-committed-path-01.stderr",
+      "bytes": 907,
+      "sha256": "3336c3844b463585dc10ed326355f1b409b59d88b21d7c5d07f8b899ad6ea75b"
+    },
+    {
+      "path": "failed-committed-path-01.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "launch.py",
+      "bytes": 1174,
+      "sha256": "e9d22fdd227b884ddca02981d53750fc3c951b837aaff51c9260c7475909bf2a"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1220,
+      "sha256": "51edceaadd925e34f3c72c797e3bcead040f2d23205fa403d6c94c4ce8133ec9"
+    }
+  ],
+  "limits": "Additive committed-launcher prerequisite; failed01 invalid, new execution/independent review pending"
+}

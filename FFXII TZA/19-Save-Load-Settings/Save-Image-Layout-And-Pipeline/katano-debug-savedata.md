@@ -397,3 +397,11 @@ Interior anchor `001EA295` (function `001EA1E0`).
 `001EA6C0` (174 B) is the bucketed push `001EA1E0` runs per savedata entry: `esi = [rcx] & ~0x80000000` is the count and `rdx = [rcx+8]` the base array; `001C19A0(rbx)` resolves the row, `rbx + esi*8` addresses the free slot, `001C26B0` converts the `[r15]` value (low-bit-adjusted) into the stored pointer, a moved base with the sign bit set runs `001C2720`, and the commit writes `[rdi+8] = rbx`, `[rdi] = esi+1` - `0` on success, `0xD` when `rdx` is null
 
 Interior anchor `001EA708` (function `001EA6C0`).
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-katano-debug-savedata-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `001EA380` | 64 B | when `edx` is below (unsigned) dword `+0x28` of `rcx` with bit 31 cleared, calls `001EAD40(qword +0x30 + edx*8, r8)` (`edx` zero-extended) and sets byte `+0xE8` to 1; otherwise it tail-jumps to `001EA1E0(rcx, r8)` | `001EA38C`, `001EA392`, `001EA3A1`, `001EA3A6`, `001EA3BB` |

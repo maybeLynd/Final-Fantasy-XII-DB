@@ -1,0 +1,20 @@
+{
+ "blocks_in_image": 52,
+ "blocks_outside_image": 5,
+ "catalogue": "e2a67b07700c2ec3fbfae3213965de35",
+ "classes": {
+  "returned": 3,
+  "returned+faulted": 2
+ },
+ "elapsed_s": 0.6,
+ "emu_starts": 35,
+ "entries_executed": 5,
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "instrument": "execcov-shim v2",
+ "patched_blocks": 7,
+ "rc": 0,
+ "receipt_md5": "8ed279827b5dba9839dd7b2436247f6a",
+ "run": "verb-lifecycle-execution",
+ "status": "ok",
+ "unique_blocks": 57
+}

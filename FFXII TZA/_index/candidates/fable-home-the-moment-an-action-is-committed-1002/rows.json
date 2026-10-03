@@ -1,0 +1,39 @@
+{
+ "page": "07-Combat-Action/the-moment-an-action-is-committed.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01Mh9D4U6XdnAn8vURhKVJHy",
+ "report": "home-the-moment-an-action-is-committed.json",
+ "rows": [
+  {
+   "fn": "00310D30",
+   "entered_from": "`00310920` + 0x147",
+   "text": "calls `00310D30` + 0x15 with the incoming registers and returns when it yields null; otherwise, on that returned pointer, calls + 0x33 with the three floats at `rcx+0x0`, `rcx+0x4` and `rcx+0x8` in `xmm1`, `xmm2` and `xmm3`, then calls + 0x3E and + 0x49 each with the incoming float `xmm1`",
+   "anchors": [
+    [
+     "00310D45",
+     "call"
+    ],
+    [
+     "00310D50",
+     "je"
+    ],
+    [
+     "00310D63",
+     "call"
+    ],
+    [
+     "00310D6E",
+     "call"
+    ],
+    [
+     "00310D79",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

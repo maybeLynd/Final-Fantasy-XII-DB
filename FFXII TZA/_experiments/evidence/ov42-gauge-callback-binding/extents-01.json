@@ -1,0 +1,120 @@
+{
+  "complete": true,
+  "method": "A STATIC_ONLY original physical metadata",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "driver_sha256": "2cbdc2c263eb1e983bb70d40445b81b8d218c8420cb90a45cbc12630c4e65db3",
+  "directory_bytes": "0080e7020c8a0600",
+  "lookups": [
+    {
+      "path": "lookup-registry-binding-01.json",
+      "sha256": "b6e3d8fc23784543cb989cf8b3a6b435963909c61f483fce0be6af26b948f1c9"
+    },
+    {
+      "path": "lookup-default-binding-01.json",
+      "sha256": "e57a19df68ac4c6238620fb5c91d877ba9142da2b795298b7779cac666001438"
+    },
+    {
+      "path": "lookup-view-initializer-01.json",
+      "sha256": "dd77731bbe4917a0c3f316b55cc156a49e0327dd2bd978d447480baba74f4399"
+    }
+  ],
+  "bodies": [
+    {
+      "entry": "0x296360",
+      "end_exclusive": "0x296448",
+      "bytes": 232,
+      "sha256": "b6ed5cf86fa8481d049fd2e734f01d7dee8eafbdaff1a0e5f5b168c7b00130fb",
+      "physical_bytes": "48895c2408574883ec30833d7f5fe001008bfa488bd97432e81392ffff488bc8488d15b95ee001e8a4261600e8ff91ffff488bc8488d15fd5ee001e890261600c705465fe0010000000085ff0f848b0000004885db0f8482000000837b0400747c488d0508540000893d225fe0014c8bcb48894424204533c0488d0d605ee00133d2e8d9251600488d05225400004c8bcb4533c0488944242033d2488d0d965ee001e8b9251600e88491ffff488bc8488d152a5ee001e835261600e87091ffff488bc8488d156e5ee001e82126160048891d525ee00148891da35ee001488b5c24404883c4305fc3",
+      "records": [
+        {
+          "begin": "0x296360",
+          "end_exclusive": "0x296448",
+          "chain": [
+            {
+              "record_bytes": "60631700486417009031c301",
+              "header_address": "0x1d53190",
+              "header_bytes": "010a0400"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry": "0x297c10",
+      "end_exclusive": "0x297d04",
+      "bytes": 244,
+      "sha256": "0eadb321711052ca43d0b4211e7cbbbf9c3080c1e1c99d3fb6b761c9d8742ee6",
+      "physical_bytes": "4889742410574883ec30488d159d43e001488bf1488bc24c8d059046e0016690f640a802488d78827505f60002740c8b4e043948320f84970000004805c0000000493bc07cdaf642a802488d7a827505f6020274194881c2c0000000493bd07ce533c0488b7424484883c4305fc3488d054b3b000048895c24404c8bce48894424204533c033d2488bcfe8210d1600488d056a3b00004c8bce4533c0488944242033d2488d4f58e8040d1600e8cf78ffff488bc8488bd7e8840d1600e8bf78ffff488bc8488d5758e8730d1600488b5c24408b4e04488bc7488977484889b7a0000000488b742448898fb00000004883c4305fc3",
+      "records": [
+        {
+          "begin": "0x297c10",
+          "end_exclusive": "0x297c85",
+          "chain": [
+            {
+              "record_bytes": "107c1700857c1700ec90c501",
+              "header_address": "0x1d790ec",
+              "header_bytes": "010a0400"
+            }
+          ]
+        },
+        {
+          "begin": "0x297c85",
+          "end_exclusive": "0x297ce2",
+          "chain": [
+            {
+              "record_bytes": "857c1700e27c170078ebc401",
+              "header_address": "0x1d6eb78",
+              "header_bytes": "21050200",
+              "chain_footer": "0x1d6eb80",
+              "chain_bytes": "107c1700857c1700ec90c501"
+            },
+            {
+              "record_bytes": "107c1700857c1700ec90c501",
+              "header_address": "0x1d790ec",
+              "header_bytes": "010a0400"
+            }
+          ]
+        },
+        {
+          "begin": "0x297ce2",
+          "end_exclusive": "0x297d04",
+          "chain": [
+            {
+              "record_bytes": "e27c1700047d17008cebc401",
+              "header_address": "0x1d6eb8c",
+              "header_bytes": "21000000",
+              "chain_footer": "0x1d6eb90",
+              "chain_bytes": "107c1700857c1700ec90c501"
+            },
+            {
+              "record_bytes": "107c1700857c1700ec90c501",
+              "header_address": "0x1d790ec",
+              "header_bytes": "010a0400"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry": "0x3f89c0",
+      "end_exclusive": "0x3f8a23",
+      "bytes": 99,
+      "sha256": "951013f444f9ee55232a992f20a2422365aeb38fd5e347a334d4859fdc6f1510",
+      "physical_bytes": "48895c240848896c24104889742418574883ec208bea418bd833d2498bf9488bf1448d4258e8d6944600488b44245066834e260148894638895e4048897e484885c0740a4c8bc533d2488bceffd0488b5c2430488b6c2438488b7424404883c4205fc3",
+      "records": [
+        {
+          "begin": "0x3f89c0",
+          "end_exclusive": "0x3f8a23",
+          "chain": [
+            {
+              "record_bytes": "c0892d00238a2d005c94c501",
+              "header_address": "0x1d7945c",
+              "header_bytes": "01140800"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "limits": "Physical extents only. Code/data distinction, helper effects and natural reachability not established by metadata."
+}

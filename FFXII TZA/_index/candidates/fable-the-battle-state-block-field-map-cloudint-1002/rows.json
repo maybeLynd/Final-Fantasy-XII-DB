@@ -1,0 +1,56 @@
+{
+ "page": "11-Party/Battle-State-Block/the-battle-state-block-field-map.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_0182wopbAGkg4Gtt5QPc4Pw1",
+ "report": "the-battle-state-block-field-map.json",
+ "rows": [
+  {
+   "fn": "0035C920",
+   "text": "replaces bit 4 (mask 0x10) of dword `022C83E8` with bit 0 of `ecx` (shift left by 4, XOR-AND-XOR merge), stores the dword back, then tail-jumps through the jump at `0035C920`+0x18 with `ecx` unchanged",
+   "anchors": [
+    [
+     "0035C928",
+     "shl"
+    ],
+    [
+     "0035C92D",
+     "and"
+    ],
+    [
+     "0035C932",
+     "mov"
+    ],
+    [
+     "0035C938",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0035C940",
+   "text": "replaces bit 0 of dword `022C83E8` with bit 0 of `ecx` (XOR-AND-XOR merge), stores the dword back, then tail-jumps through the jump at `0035C940`+0x15 with `ecx` unchanged",
+   "anchors": [
+    [
+     "0035C948",
+     "xor"
+    ],
+    [
+     "0035C94A",
+     "and"
+    ],
+    [
+     "0035C94F",
+     "mov"
+    ],
+    [
+     "0035C955",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

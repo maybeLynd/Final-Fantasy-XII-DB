@@ -1,0 +1,20 @@
+{
+ "blocks_in_image": 155,
+ "blocks_outside_image": 0,
+ "catalogue": "e2a67b07700c2ec3fbfae3213965de35",
+ "classes": {
+  "returned": 10,
+  "stubbed": 5
+ },
+ "elapsed_s": 0.6,
+ "emu_starts": 16,
+ "entries_executed": 10,
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "instrument": "execcov-shim v2",
+ "patched_blocks": 6,
+ "rc": 0,
+ "receipt_md5": "a146c74a1377fdf9ceed34c8592e560f",
+ "run": "EXP-066-consume-native-composition",
+ "status": "ok",
+ "unique_blocks": 155
+}

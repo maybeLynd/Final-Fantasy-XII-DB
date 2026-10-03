@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\FFXII TZA\_experiments\evidence\render-review-link-closure\drivers-v2\control-publisher-path.py", line 14, in <module>
+    m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
+                                            ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\FFXII TZA\_experiments\evidence\render-review-link-closure\drivers-v2\publisher-driver.py", line 325, in <module>
+    sys.path.insert(0,str(ROOT/'Database/Tools/analysis-kit/gfz-scripts'));import team
+                                                                           ^^^^^^^^^^^
+ModuleNotFoundError: No module named 'team'

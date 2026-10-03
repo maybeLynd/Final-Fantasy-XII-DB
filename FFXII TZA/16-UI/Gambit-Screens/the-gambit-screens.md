@@ -64,7 +64,7 @@ The gambit UI is two related screens, not one: ~~the **gambit list** (the per-me
 | 10 | `0056B81E` | directional input: reads the three pad-mask globals, tests `+0xE0 & 0x200000` (list mode), ~~routes confirm/cancel through `002D3A50`/`002D45C0` on `+0xC0`~~ pages up / down (`0056AAC0` / `0056AD50`) or hands the input to the list child (`002D3A50`) *(corrected 2026-10-01, OPUS: GI-18 section)* |
 | 12 | `0056BA10` | sub-command: computes the slot index `(+0xF2 + +0xF4) * +0xEC + +0xEE + +0xED` (row×cols + col) and dispatches sub-ids `0x8000`–`0x8002` plus `0x8005` (`0x8003`/`0x8004` fall to the `0056BB4F` default) |
 | 15 | `0056B80F` | about-to-destroy: shared with the enable-off tail, zeroes `+0x580` |
-| 18 | `0056B516` | destroy: if `+0x58E` is set, builds `{0x121,0,0}` and calls the `+0xC8` editor child's first vtable slot (`0056B516`–`0056B549`) — the parent→child destroy notification |
+| 18 | `0056B516` | destroy: if `+0x58E` is set, builds `{0x121,0,0}` and calls the `+0xC8` ~~editor child's~~ editor's — its creator's — first vtable slot (`0056B516`–`0056B549`) — the ~~parent→child~~ child→creator destroy notification *(corrected 2026-10-02, OPUS: the editor's `00567D80` builds this list through `0056B350`, which stores it at the editor's `+0xE8`, `0056B350+0x7A`)* |
 | 19 | `0056B7AE` | transition-in flag: if `+0x58E` set, writes `0x302`/`0x18` into `+0x58C`/`+0x58F`; if `+0x5A0 & 4`, sets bit 1 on the child's `+0x358` |
 | 3,4,5,6,7,11,13,14,16,17 | `0056BB53` | default → `005C5230` tail |
 

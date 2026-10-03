@@ -300,9 +300,9 @@ process start
         -> slot 2  GameApplication  : set content root, mount ../FFXII_TZA.vbf
         -> slot 3  GameApplication  : device/viewport setup, install callback
         -> per frame:
-             slot 4  GameApplication : FRAME TICK
+             slot 4  GameApplication : FRAME TICK   <- corrected 2026-10-02, OPUS - order is slot 7 (0079C26B) then slot 4 (0079C2D6), then slot 9 (0079C526), the viewports (0079C5FE) and slot 8 (0079C655), once per call of slot 28 0079C140; 0079C140 makes no slot 6 call
                        -> first frame only: FirstFrameInit(), latch this+0x113D
-                       -> FUN_0017D6E0(frameTime, mode) -> 0 / 1 / 9
+                       -> FUN_0017D6E0(frameTime, mode) -> 0 / 1 / 9   <- corrected 2026-10-02, OPUS - the tick returns 0 (0017CD89, 0017CDA9 -> 005C5230) or 9 (0017CDB2); 0017D6E0 returns 0022A580's eax, 1 at 0022A594 or the mode body's
              slot 7  GameApplication : input pump -> InputManager_GetSingleton()
              slot 6  GameApplication : pre-step -> PApplication::slot6 (0079BF70)
         -> at a rate THIS DOCUMENT DOES NOT ESTABLISH:
@@ -328,7 +328,7 @@ feeds every per-frame system; the input pump feeds the input stack.
 - **`Phyre::PFramework::VPApplication`** (`01CB0D98` and friends) — that is the reflected *class
   descriptor* for the application type, not the application vtable. `VP*` names are reflection
   types; see the subsystem map §2.
-- **The 145 CFG guard adapters.** Slot 22 and 25 inherit `0016D6A0`, which is the CFG check
+- **The 145 CFG guard adapters.** ~~Slot 22 and 25 inherit `0016D6A0`~~ `PApplication`'s slots 22 and 25 hold `0016D6A0`, and the game overrides both *(corrected 2026-10-02, OPUS: `008C5760` slot 22 = `0017D170`, slot 25 = `0017D1E0`, against `0016D6A0` at `01CB2508` - the slot table above)*, which is the CFG check
   address only because empty functions were folded onto it.
 
 ## 6. Modding notes
@@ -397,7 +397,7 @@ ledger by the animation-channel-binding page; these five were never registered a
   | 23 / 24 | — | the base's factor `min(short screen side, device +0x184 / +0x188) · 2 / short side` (`0079D560` / `0079D5B0`), times the UI width `0017E440` (console `+0x10D4`, default 640.0) |
   | 25 | called by the device poll `0079D010` (`0079D087`, `0079D107`, `0079D181`) whenever a polled device state byte changes, with `dl` = 0 or 1. The update calls the poll at `0079C260` only when its mode-change flags `+0x1E/+0x1F/+0x20/+0x21/+0x29` are all clear | stores the byte at `InputManager` `+0x38` (`00198E70`, `0017D1E0`) |
 
-  **Still open for slots 10, 15 and 16:** neither a displacement scan of the framework range 0x790000 up to 0x7A4400 (exclusive) nor a
+  **Still open for slots 10, 15 and 16:** *(answered: see PA-1, ANSWERED 2026-09-27 - nothing in this build dispatches slots 10, 15, 16, 22, 23 or 24; 2026-10-02, OPUS)* neither a displacement scan of the framework range 0x790000 up to 0x7A4400 (exclusive) nor a
   trace of every read of the global application pointer `02EA5368` found a call to them. Those scans cover only direct
   `[vtable + 8·slot]` calls through a register traced from that global, so a call through a copied pointer or from outside
   the range is not excluded.
@@ -435,7 +435,7 @@ ledger by the animation-channel-binding page; these five were never registered a
   viewport's render (`0079C5FE`) and slot 8 (render, `0079C655`). It runs the full-screen / window switch in between
   (its `"[Screen Mode]"` log strings, `01CB2E88`–`01CB3070`), and a non-zero result from any slot ends the frame. The
   run loop `00796490` calls it (`00796613`). Slots 11, 26 and 27 are the empty stubs. Slots 1, 12, 13, 17–20, 29 and
-  30 are not read. Three more slots are called from the **framework's window procedure `00798FF0`**. It dispatches
+  30 ~~are not read~~ *(answered: see the ANSWERED 2026-09-26 block below - every inherited slot now has a behaviour; 2026-10-02, OPUS)*. Three more slots are called from the **framework's window procedure `00798FF0`**. It dispatches
   `msg − 1` through the table `00799788` (`007990D5`–`007990FD`); the import names below are from the import directory:
   - **slot 14** in the `WM_CREATE` arm, called with 1 when `GetForegroundWindow` (`008C2800`) returns the new window, which
     also sets the foreground byte `02EA5213` (`0079912E`–`0079914C`). The game overrides it with a thunk to the
@@ -637,7 +637,7 @@ a reconciliation, not as a contradiction, because both statements are true of di
 It reads a `double` at `this+0x48`, contains a one-shot latch, and returns a small status code —
 all three are what a tick looks like and none is what an initialiser looks like. Held, but the
 identification rests on shape rather than on a caller, since **the caller is inside PhyreEngine and
-was not read**. Stated as such.
+was not read** *(answered: see PA-5 - the framework's per-frame update, inherited slot 28 `0079C140`, calls slot 4 at `0079C2D6`; 2026-10-02, OPUS)*. Stated as such.
 
 **Not attempted, and therefore not claimed:** reading `PApplication`'s own body to confirm it calls
 these slots in the order this document implies; and any runtime observation. ~~the `PBase` / `PMemoryBase` chain above `PApplication`, which is BM-4.~~ **Corrected 2026-09-22 (FABLE): that chain IS claimed — it is `PA-4`, answered in §7 from the RTTI hierarchy descriptors, and `BM-4` was the wrong id for it.**
@@ -1065,7 +1065,7 @@ sticks. Interior anchor
 `0060662F` (the
 `lock cmpxchg`).
 
-`00792F10` (306 B) is the priority and working-set tuner the start-up `007980A0` constructs early: after a normal object head (vtable `01CB2468`, arg2 stored at `+8`, member ctors `005CC8A0` at `+0x20` and `007A3810` at `+0x48`) it calls `GetCurrentProcess` and applies `SetPriorityClass` with `0x8000` (HIGH_PRIORITY_CLASS), fills a `GetSystemInfo` block and a 0x40-byte `GlobalMemoryStatusEx` report, reads the current working set through `GetProcessWorkingSetSize`, and when both bounds differ from -1 applies `SetProcessWorkingSetSize` with min = `dwPageSize * 50` (or the queried min when the query fails) and max = `ullTotalPhys - dwPageSize*512 - 1`; a final `005CD0A0` pass on the `+0x20` member completes the object.
+`00792F10` (306 B) is the priority and working-set tuner the start-up `007980A0` constructs early: after a normal object head (vtable `01CB2468`, arg2 stored at `+8`, member ctors `005CC8A0` at `+0x20` and `007A3810` at `+0x48`) it calls `GetCurrentProcess` and applies `SetPriorityClass` with `0x8000` (~~HIGH_PRIORITY_CLASS~~ `ABOVE_NORMAL_PRIORITY_CLASS` *(corrected 2026-10-02, OPUS: `00792F80 mov edx, 0x8000` before the call at `00792F85`; the Windows SDK defines `0x8000` as `ABOVE_NORMAL_PRIORITY_CLASS`, `HIGH_PRIORITY_CLASS` is `0x80`)*), fills a `GetSystemInfo` block and a 0x40-byte `GlobalMemoryStatusEx` report, reads the current working set through `GetProcessWorkingSetSize`, and when both bounds differ from -1 applies `SetProcessWorkingSetSize` with min = `dwPageSize * 50` (or the queried min when the query fails) and max = `ullTotalPhys - dwPageSize*512 - 1`; a final `005CD0A0` pass on the `+0x20` member completes the object.
 
 Interior anchor `00792FBC` (function `00792F10`).
 
@@ -1087,3 +1087,7 @@ Interior anchor `00792FBC` (function `00792F10`).
 | `007A0B30` | 6 B | stores `dl` to byte `+0x28` of `rcx` and returns 0 | `007A0B33` |
 | `007A0FB0` | 7 B | stores 1 to byte `+0x24` of `rcx` and returns 0 | `007A0FB4` |
 | `007A1180` | 14 B | stores 1 to byte `+0x29` of `rcx`, `edx` to dword `+0x2C` and `r8d` to dword `+0x30`, and returns 0 | `007A1184`, `007A1186`, `007A1189` |
+
+`001BF2E0` (1476 B) is the EASTL `basic_string` setup `001C0DD0` runs at the framework boundary: the `"EASTL basic_string"` type name feeds `001EDF00`, `008C2A40` CRT slots run, and `001A52A0`/`001A9E50`/`001A5760` build and compare name strings against the `".."`/`"color."` rdata constants around `008F9A54` before a `[rax+0x18]` vcall - the string-typed record construction the application root hands its subsystems.
+
+Interior anchor `001BF666` (function `001BF2E0`).

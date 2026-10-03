@@ -1,0 +1,20 @@
+{
+ "blocks_in_image": 49,
+ "blocks_outside_image": 0,
+ "catalogue": "e2a67b07700c2ec3fbfae3213965de35",
+ "classes": {
+  "returned": 4,
+  "stubbed": 1
+ },
+ "elapsed_s": 1088.1,
+ "emu_starts": 180,
+ "entries_executed": 4,
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "instrument": "execcov-shim v2",
+ "patched_blocks": 10,
+ "rc": 0,
+ "receipt_md5": "9beb5b880694f4e528e3613c87252dd4",
+ "run": "class-descriptor-dtor-exec",
+ "status": "ok",
+ "unique_blocks": 49
+}

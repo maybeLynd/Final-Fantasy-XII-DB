@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\render-review-link-closure\prepare.py", line 100, in <module>
+    prepare(args.source.resolve(), args.output.resolve())
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\render-review-link-closure\prepare.py", line 32, in prepare
+    raise ValueError('old published member changed: '+row['path'])
+ValueError: old published member changed: fable-render-clear-callee-footprints-REVIEW.md

@@ -1,0 +1,70 @@
+{
+ "page": "06-Movement-And-Navigation/Movement-Mode-Selection/how-the-engine-chooses-3d-or-flat-movement.md",
+ "date": "2026-10-02",
+ "session": "local-h4-opus",
+ "report": "how-the-engine-chooses-3d-or-flat-movement.json",
+ "rows": [
+  {
+   "fn": "003B79D0",
+   "text": "calls `0017F5B0(1)` when dword `022BE970` is non-zero, then for each of the first dword `02EBCBC0` qwords of the array at `02EBCAC0` (the count re-read after each call) calls `002EB030(entry, 0x1049)` on the non-null ones",
+   "anchors": [
+    [
+     "003B79D6",
+     "cmp"
+    ],
+    [
+     "003B79E4",
+     "call"
+    ],
+    [
+     "003B7A0E",
+     "call"
+    ],
+    [
+     "003B7A13",
+     "mov"
+    ],
+    [
+     "003B7A1F",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003B7D80",
+   "text": "for each of the first dword `02EBCC60` qwords of the array at `02EBCAC0` that is non-null, calls the entry's record lookup (the direct call at + 0x3C) and, when that returns a record, `0026B720(00263F40(entry), float +0x10, float +0x14, float +0x18 of the record)`",
+   "anchors": [
+    [
+     "003B7D88",
+     "cmp"
+    ],
+    [
+     "003B7DB1",
+     "call"
+    ],
+    [
+     "003B7DBC",
+     "call"
+    ],
+    [
+     "003B7DD8",
+     "call"
+    ],
+    [
+     "003B7DE3",
+     "cmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "003B7D80",
+   "why": "the record lookup is named by role: its address pulled a caller edge from another layer into the page (nb_page)"
+  }
+ ],
+ "mode": "homing"
+}

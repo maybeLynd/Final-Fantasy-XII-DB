@@ -1006,7 +1006,7 @@ guesses template arguments invents names, and this is evidence.
 | --- | --- | --- |
 | `00390AB0` | `rbp = r8` eval body (`00390ABF`) | [`00390ABF`](../../_index/ADDRESS-INDEX.md) |
 
-`00385F60` (`BattleFormula_ResolveTargetResult`, ~144 B) —
+`00385F60` (~~`BattleFormula_ResolveTargetResult`, ~144 B~~ `BattleFormula_ResolveTargetResult`, 2,302 B *(corrected 2026-10-02, OPUS: its extent is 2,302 B and `00385F60+0x470` lies inside it)*) —
 five-register body (`00385F60`/`00385F65`).
 
 | member | role | interior |
@@ -1092,9 +1092,9 @@ through `001A1470` on the
 `01F7F4C0` allocator and
 stored at `+0x08`, `+0x10`,
 `+0x18` - each allocation
-immediately handed back to
-`0016D6A0` on the same
-allocator object - then
+~~immediately handed back to~~
+~~`0016D6A0` on the same~~
+~~allocator object~~ kept: the call that follows each one, `0016D6A0(allocator, block)` at `00864210+0x35`/`+0x56`/`+0x77`, does nothing *(corrected 2026-10-02, OPUS: `0016D6A0` is `ret 0`, three bytes, so no block is released)* - then
 `dword[+0x60]` takes the
 element count. Three
 parallel `n*0x10` arrays
@@ -1159,3 +1159,7 @@ source of the transform
 commit.
 Interior anchor `006A585A`
 (the `divss` normalizer).
+
+`006A3E20` (475 B) is a 9-float record normalizer in the `006A` helper region: fields `+0x00`, `+0x10`/`+0x14`/`+0x18` and `+0x20`/`+0x24`/`+0x28` run through 1.0/0.5-scale interpolation and a division, `00861F14` renormalizes, and a `1`-`3` category selects the tail - the trace-shape sibling of the `006A1` math bodies already on this page.
+
+Interior anchor `006A3F23` (function `006A3E20`).

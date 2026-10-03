@@ -1143,7 +1143,7 @@ names but did not enumerate):
 
 ## The `0036BC60` exclusive subtree — 1 member bound (SWE2-FRONTIER, followup queue)
 
-`0036BC60` (~179 B) — arg spill `r9d`/`ecx`, four-register body
+`0036BC60` ~~(~179 B)~~ (887 B) *(corrected 2026-10-02, OPUS: the body runs 887 bytes from `0036BC60`)* — arg spill `r9d`/`ecx`, four-register body
 (`0036BC60`/`0036BC6C`).
 
 | member | role | interior |

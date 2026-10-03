@@ -1,0 +1,27 @@
+{
+ "page": "11-Party/active-party-reserve-and-the-moment-the-leader-changes.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01Dq1LGzf21EuvVAMphWnGMn",
+ "report": "home-active-party-reserve-and-the-moment-the-leader-changes.json",
+ "rows": [
+  {
+   "fn": "0036F510",
+   "entered_from": "`0022A770` + 0x12F",
+   "text": "calls the site `0036F510` + 0x4 with the incoming registers, then tail-jumps at `0036F510` + 0xD with no argument set up between the two, returning what that target returns",
+   "anchors": [
+    [
+     "0036F514",
+     "call"
+    ],
+    [
+     "0036F51D",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

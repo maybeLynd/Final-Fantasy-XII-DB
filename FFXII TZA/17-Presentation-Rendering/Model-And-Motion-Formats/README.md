@@ -37,12 +37,12 @@ name-matched joint index list and a story-progress model replacement table, both
 *2026-09-15:* [the per-model oscillator subsystem](the-per-model-oscillator-subsystem.md) —
 the `0040ACF0`/`0040D890` driver family under `Skeleton_UpdateFinalPoseAndCombatLook`, its
 phase/perturbation record layout, three cost-tier transform paths, and the `0054B1F0`
-parameter-install API (36 members).
+parameter-install API (~~36~~ 39 members *(corrected 2026-10-02, OPUS: 39 rows in `members/model-oscillator-subsystem.tsv`)*).
 
 *2026-09-28:* [the `@FEF` and motion-entry sheet](fef-and-motion-entries.md) — `@FEF` is a
 0x30 header around a verbatim `EFX0010` whose only binder-path consumer is a `ret 0` stub;
 the live spawn is name-keyed to external `chara\h*.efx` through `00409FE0`. `@FMC` carries
-the weapon/treasure command names, `@FMN`/`@FMW` the 1:1 name/blend pair, `@FRM` the
+the weapon/treasure command names, `@FMN`/`@FMW` the 1:1 name/~~blend~~ track-data pair *(corrected 2026-10-02, OPUS: fef-and-motion-entries.md's `@FMW` section)*, `@FRM` the
 `.ca`-only motion resource bound at `entry+0x378/+0x37C`.
 
 > **`nmb` at 56 bytes per file is the most tractable unknown in the archive.** A 332-file corpus of

@@ -526,3 +526,11 @@ Interior anchor `0035FA6B` (function `0035F760`).
 `0035FBD0` (194 B) is the history stage `0035F760` and `0035FAC0` call: `r14 = movsxd r9d` bounds the loop, `word[r8 + r14*2 + 4]` is the indexed source, `edi = 0x10` strides the destination - the channel-history's word-array copy, call-free.
 
 Interior anchor `0035FBF9` (function `0035FBD0`).
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../../_index/candidates/fable-home-ff12config-and-debglobal-1002/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `00314D60` | 32 B | `0050C8A0` + 0x24 | calls `00314D60` + 0x8 with the incoming registers and stores to dword `022C2540` the incoming `ecx` when that call returns non-zero, or 0 when it returns zero; that callee is an `xor eax, eax` / `ret` stub, so the stored value is always 0 | Interior anchor `00314D68`; Interior anchor `00314D6F`; Interior anchor `00314D71`; Interior anchor `00314D74` |

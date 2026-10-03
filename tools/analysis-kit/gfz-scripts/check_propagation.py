@@ -330,7 +330,7 @@ def main(argv=None):
     if not (a.db and a.board):
         return ap.error("--db and --board, or --self-test")
 
-    board = json.load(open(a.board, encoding="utf-8"))
+    board = json.loads(open(a.board, "rb").read().decode("utf-8"))  # handle closed before the parse (TEAM.json replace)
     total, used, counts, survivors = sweep(a.db, board)
 
     # THE REGISTRY THIS PASS ASKED FOR, APPLIED TO THIS PASS. Subject is

@@ -60,7 +60,7 @@ switch (row.b[+6]) {                                      // square kind: 00323D
   - Otherwise it takes record `01EEBCC0 + (id >> 12) × 0x58` (`0030B11C`–`0030B133`).
   - It requires `(id & 0xFFF) ≤ [+0x3C] − 1` (`0030B136`–`0030B143`) and a non-null `[+0x50]` handler (`0030B145`–`0030B14C`).
   - It returns `handler(id, 0) > 0` (`0030B14E`–`0030B15B`).
-  - For nibble `0xC` (class 17) the image holds count `0x20` and handler `002FD970`, so `0xC000`–`0xC01F` are all in range. Mode 0 of `002FD970` tests bit `index & 0xF` of word `index >> 4` in the region-A bitset at descriptor `+8` (`002FDA2F`–`002FDA57`). [The encoded-id page](../00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md) §2.9 places quickenings at `0xC000`–`0xC011` and the Esper range at `0xC012`–`0xC01E`. `0xC01F` is the 32nd and last bit of that class. Its only immediate in the code is `00323E8E` (whole-image `retool grep 0xc01f`, one hit).
+  - For nibble `0xC` (class 17) the image holds count `0x20` and handler `002FD970`, so `0xC000`–`0xC01F` are all in range. Mode 0 of `002FD970` tests bit `index & 0xF` of word `index >> 4` in the region-A bitset at descriptor `+8` (`002FDA2F`–`002FDA57`). [The encoded-id page](../../../00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md) §2.9 places quickenings at `0xC000`–`0xC011` and the Esper range at `0xC012`–`0xC01E`. `0xC01F` is the 32nd and last bit of that class. Its only immediate in the code is `00323E8E` (whole-image `retool grep 0xc01f`, one hit).
 
 **Data read.**
 

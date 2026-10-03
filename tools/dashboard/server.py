@@ -407,7 +407,7 @@ class State:
             except (OSError, ValueError, KeyError):
                 placer = None
         try:
-            board = json.load(open(self.board, encoding="utf-8"))
+            board = json.loads(open(self.board, "rb").read().decode("utf-8"))  # handle closed before the parse (TEAM.json replace)
             st = json.load(open(os.path.join(self.fleet, "watchdog-state.json"), encoding="utf-8"))
         except (OSError, ValueError) as e:
             out = {"status": "UNKNOWN", "why": "board or controller state unreadable (%s)" % type(e).__name__}

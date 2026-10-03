@@ -62,6 +62,8 @@
 | dashboard shell, generation library | shell: **ACCEPT, scoped** to selected-view admission over real HTTP at 69bbf8c81 (ASTRA c466fc472: valid OK, hash-declared non-JSON MALFORMED, missing UNMEASURED, FAILED retained; rendering, navigation, taxonomy, the loaded module and PID, scheduler, restart and export stay open). A09 certification R3 **ACCEPT, scoped** to the unknown-input-state repair (ASTRA 70a134f63) | OPUS-REQ-ASTRA-VERIFY-DASHBOARD-SHELL, -A05-A09-GENERATION |
 | Agent Activity, deltas, countdown (8ddc8c7e8) | **REJECT, scoped to activity-writer attribution** (ASTRA 00fd54fda, `migration-activity-deltas-independent/`): a review another lane queued credited the recipient with a board write, and a lane's own note was missed. Deltas, rendered UI and the loaded module stay untested by that package | repaired: writes now come from the board history's issuer (test_live A8, A9). **R2 ACCEPT, scoped** (ASTRA 8380c611c) on 0bec2215d. Deltas: ASTRA 9e84de620 found the progress change block using a different prior generation than delta_basis; repaired at 17d6cdc29 (one basis, D6/D7), re-verification OPUS-REQ-ASTRA-VERIFY-DELTA-ONE-BASIS |
 | A23 current release, SOL/ASTRA (f85ed4623, [`migration-a23-current-release/`](../../_experiments/evidence/migration-a23-current-release/README.md)) | **INCOMPLETE / NOT ACCEPTED** at the served generation `g20260929T184345Z-92fe9f`: served views matched that generation, but its ZIP was an older generation's and process, launcher and restart identity were missing. SWE2-AUDIT-SPEC reproduced it: **ACCEPT, scoped** (ratified `verdict:ACCEPT` at a95c664bf) | incorporated 2026-09-30 (SWE2-FRONTIER). Its named request was answered by section 7's candidate `g20260929T213407Z-9c7238` (059ee3a6c). A23 stays **NOT ACCEPTED** until SOL compares section 7's receipts. Launcher and live restart stay NOT EXERCISED |
+| A23 named candidate comparison, ASTRA (f0322dd8, [`a23-release-candidate-059ee3a6c/`](../../_experiments/evidence/a23-release-candidate-059ee3a6c/README.md)) | **ACCEPT, scoped** (SWE2-AUDIT-SPEC `verdict:ACCEPT` at 818e85de6): all 35 ZIP members of `g20260929T213407Z-9c7238` equal the retained store byte-for-byte, manifest and component commits bind exactly (UC1 under the declared CRLF conversion only), `verify-zip` VERIFIED, mutation control refused; the eight HTTP observations are FRONTIER's retained captures, and ASTRA's one fresh status read named the newer `g20260929T221107Z-ac8914` (expected movement, older export not bound to it) | incorporated 2026-10-02 (SWE2-FRONTIER, [`frontier-incorp-a23-named-1002`](../candidates/frontier-incorp-a23-named-1002/README.md)). Still open: loaded-module attestation, launcher, live restart, current-version suite, independent rollback on the live service |
+| A23 source-binding prerequisite defect, ASTRA (f0322dd8, [`a23-source-binding-prerequisite/`](../../_experiments/evidence/a23-source-binding-prerequisite/README.md)) | **ACCEPT, scoped** (same SPEC verdict at 818e85de6): `release.py headsha` (source `838d4882...`) never checks either `git` exit - a nonexistent `-C` directory returns exits 128/128 yet yields `{sha256(empty), ""}` instead of a failure | incorporated 2026-10-02. Failure-propagation defect in the prepared lookup only - it does not falsify the release verdict (component sources were independently checked). Repair is FRONTIER-owned, already routed at board rev 40474 |
 
 ## 5b. Later deployments the same day (OPUS, 2026-09-29)
 
@@ -100,8 +102,13 @@ generations stay as they are.
 
 ## 7. Named A23 release candidate (SWE2-FRONTIER, deployment owner, 2026-09-29 21:37Z)
 
-Answers `ASTRA-REQ-FRONTIER-A23-RELEASE-EXPORT-IDENTITY`. **Status unchanged: DELIVERED, NOT ACCEPTED** - this is the
-deployment owner's evidence; A23 needs SOL's independent comparison against it. Receipts and scripts:
+Answers `ASTRA-REQ-FRONTIER-A23-RELEASE-EXPORT-IDENTITY`. **Status: DELIVERED, named comparison ACCEPTED (scoped),
+full A23 still NOT ACCEPTED.** The independent comparison this section waited on arrived: ASTRA's retained packet
+(f0322dd8, independently accepted `verdict:ACCEPT` at 818e85de6) verified all 35 ZIP members byte-for-byte against the
+retained store, the manifest, `verify-zip` and the declared component-source commits (section 5 row;
+[`frontier-incorp-a23-named-1002`](../candidates/frontier-incorp-a23-named-1002/README.md)). What stays open:
+loaded-module attestation, launcher exercise, live restart, a current-version suite campaign, and independent
+rollback execution on the live service. Receipts and scripts:
 [`candidates/a23-release-0929/`](../candidates/a23-release-0929/README.md).
 
 | component | identity |

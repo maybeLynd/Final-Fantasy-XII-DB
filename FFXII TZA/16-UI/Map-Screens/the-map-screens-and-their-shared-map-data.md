@@ -1317,7 +1317,7 @@ cursors return without touching the buffer. Interior anchor
 
 `002D3BA0` (1,904 B) measured - the map-screen page's "list-input
 dispatcher" is exact: it reads the `+0xE0`/`+0xE4` flag words, runs the
-`(flags & 0xF000) - 1` six-arm jump table at `02ED4310` (`00120000` +
+`(flags & 0xF000) - 1` six-arm jump table at ~~`02ED4310`~~ `002D4310` *(corrected 2026-10-02, OPUS: the operand at `002D3BA0`'s `mov ecx, [r8 + rax*4 + 0x1b4310]`)* (`00120000` +
 `0x1B4310`), each arm pairing `002D4A40`/`002D1870`/`00368860` with
 escalating `edi` op codes, and carries the `+0x10B`/`+0x10C` repeat
 throttle against `0208F574`, the `+0xE4` bit-13 commit, and helpers

@@ -1,0 +1,36 @@
+{
+  "complete": false,
+  "method": "A STATIC_ONLY original physical metadata",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "driver_sha256": "f3129ddd4bc2bf13155dcdd52e671b53571fb2de1d30040852f5231bc0bf4fb7",
+  "directory_bytes": "0080e7020c8a0600",
+  "lookups": [
+    {
+      "path": "singleton-entry-retained-preflight-01.json",
+      "sha256": "c0d60b5c50d7add9526543799c0873a90f696588b6dd32905cacb5db59f1c81f"
+    }
+  ],
+  "bodies": [
+    {
+      "entry": "0x1d50d0",
+      "end_exclusive": "0x1d5112",
+      "bytes": 66,
+      "sha256": "fc1ebbe00bb26fb2907334d5fe8c556e9473e01c184d200578bfc3045ac78974",
+      "physical_bytes": "4883ec3848c7442420feffffff488b0544c3da014885c07524b9e8100000e8cdbd030048894424404885c07409488bc8e81b7affff904889051bc3da014883c438c3",
+      "records": [
+        {
+          "begin": "0x1d50d0",
+          "end_exclusive": "0x1d5112",
+          "chain": [
+            {
+              "record_bytes": "d0500b0012510b0008d3c301",
+              "header_address": "0x1d5d308",
+              "header_bytes": "110d0100"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "limits": "Physical extents only. Code/data distinction, helper effects and natural reachability not established by metadata."
+}

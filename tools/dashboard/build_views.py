@@ -426,7 +426,7 @@ def v_depth(inp, t):
 
 
 def _board(inp):
-    b = json.load(open(inp["team"], encoding="utf-8"))
+    b = json.loads(open(inp["team"], "rb").read().decode("utf-8"))  # handle closed before the parse (TEAM.json replace)
     return b, (b["tasks"] if isinstance(b["tasks"], list) else list(b["tasks"].values()))
 
 

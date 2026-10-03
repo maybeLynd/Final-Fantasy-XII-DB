@@ -26,8 +26,8 @@ audit:
 
 # The shared graphics command-state word
 
-> One 32-bit global is the entire handshake between the thread that runs the game and the thread
-> that draws it. **Every instruction that implements it is invisible to Ghidra's decompiler.**
+> One 32-bit global is the entire handshake ~~between the thread that runs the game and the thread~~
+> ~~that draws it~~ *(answered: see CG-3 - no backend thread; both sides run on the main thread inside the frame; 2026-10-02, OPUS)*. **Every instruction that implements it is invisible to Ghidra's decompiler.**
 
 ## 1. What the player sees
 
@@ -69,8 +69,8 @@ and every one of them is in graphics submission, the main loop, or effect captur
 ```
 
 Two loads of **the same address**, compared, looping while they differ. The loop exits only when the
-value is **stable across two consecutive reads** — that is, when the other thread is not part-way
-through updating it. It is a lock-free settle wait, with no atomic instruction, no `lock` prefix and
+value is **stable across two consecutive reads** ~~— that is, when the other thread is not part-way~~
+~~through updating it~~ *(answered: see CG-3 - no other thread writes it, so the wait never iterates; 2026-10-02, OPUS)*. It is a lock-free settle wait, with no atomic instruction, no `lock` prefix and
 no memory barrier.
 
 The whole of `GraphicsSync_ClearSharedCommandStateBits` (`0036F2C0`) is 43 bytes and does exactly
@@ -155,16 +155,16 @@ common-subexpression elimination folds them into one value; `cmp x, x` is then c
 `jne` is proven unreachable, and the loop is deleted as dead code.
 
 That transformation is **correct under the C memory model and wrong about the machine.** Under C, a
-non-`volatile` object cannot change between two adjacent reads; on the hardware, another core writes
-it.
+non-`volatile` object cannot change between two adjacent reads; ~~on the hardware, another core writes~~
+~~it~~ on the PS2 hardware another unit wrote it *(answered: see CG-3 - on the PC port nothing writes it between the reads; 2026-10-02, OPUS)*.
 
 > **Read from decompiled output alone, this engine's frame contains no synchronisation whatsoever.**
 > Eleven waits — including both inside the main loop — vanish, and what remains looks like a plain
 > flag clear.
 
 Originally observed by `xiionline-13` on `0036F2C0`; the census above was produced independently by
-disassembling `.text` and is reported at 12 sites against their 11, the difference being the
-`0x02ADD940` site on a different global.
+disassembling `.text` and ~~is reported at 12 sites against their 11, the difference being the~~
+~~`0x02ADD940` site on a different global~~ agrees with their 11 *(corrected 2026-10-02, OPUS: the `0x02ADD940` loop at `0037CCC0`+0x150 is a copy loop, not a settle-spin - the 2026-09-13 correction above)*.
 
 **Consequence for this database: every threading claim sourced from decompiled output is suspect**
 and owes re-derivation from disassembly. Tracked as `CF-6`. *(2026-09-18: answered - both loop shapes are censused image-wide and the debt is a list of thirty loops; see "The second failure mode, censused" below.)*
@@ -299,7 +299,7 @@ a real instruction boundary by decoding its container from that container's own 
   bit-clearer, or any function that touches `02EBA3F8` or `02EAF6D8`; the Tk workers dispatch through
   per-thread callback tables (`021B7F70`, `021AFF10`), which is the one route this instrument cannot
   follow. **(3) The fence.** The "backend" word `02EAF6D8` the reset spins on (`0036F2F0`–`0036F302`,
-  `and eax, 0x100`), `02EAF6D8` has **no writer**: no rip-relative store (24 listed references, all reads), no
+  `and eax, 0x100`), `02EAF6D8` has **no writer**: no rip-relative store (~~24~~ 17 listed references, all reads *(corrected 2026-10-02, OPUS: retool refs 02EAF6D8: 17 reads in 9 functions - the figure the method note below gives)*), no
   reference in the code outside the function list (gap index), and no store through the two bases
   that are address-taken beside it (`02EAF6C0` `+0x18`, `02EAF6E0` `−8`, in the Tk library
   `00859D20` / `00862130` / `008621E0` / `008624D0` / `00862A20` / `00862A40`); it lies past `.data`'s
@@ -328,12 +328,12 @@ a real instruction boundary by decoding its container from that container's own 
 | claim | evidence | tier |
 |---|---|---|
 | The idiom is a settle-spin on one global | complete 43-byte disassembly of `0036F2C0`; all three RIP-relative operands resolve to `02EBA3F8` | 1 |
-| Eleven inlined sites on this global, twelve overall | `.text` disassembled function by function; loops matched as "≥2 RIP loads of one address + cmp + backward `jne`" | 1 |
+| Eleven inlined sites on this global~~, twelve overall~~ and none elsewhere *(corrected 2026-10-02, OPUS: the `0037CCC0`+0x150 loop is a copy loop, 2026-09-13)* | `.text` disassembled function by function; loops matched as "≥2 RIP loads of one address + cmp + backward `jne`" | 1 |
 | Bit 8 is the published-batch flag | three publishers write the literal `0x100`; the ledger names all three `…PublishState100` | 1 + 4 |
 | Clearing bits 2, 3, 8 | `AND 0xFFFFFEF3`, complement `0x0000010C` | 1 |
 | Capture uses bit 16 | `OR 0x10000` / `AND 0xFFFEFEFF` at four cited sites | 1 |
 | The decompiler deletes the loop | Ghidra output for `0036F2C0` contains the `and` and no loop | 1 |
-| ~~Two threads exist~~ | **WITHDRAWN 2026-09-07** — all nine thread procedures enumerated and disassembled by `xiionline-13`; **none can be a graphics-command consumer.** The far end of the protocol is unknown. Section 10. | — |
+| ~~Two threads exist~~ | **WITHDRAWN 2026-09-07** — all nine thread-creation sites *(eight distinct procedures - §10's 2026-09-16 count; scope named 2026-10-02, OPUS)* enumerated and disassembled by `xiionline-13`; **none can be a graphics-command consumer.** The far end of the protocol is unknown. Section 10. | — |
 
 **The scan that found the census was wrong the first time and returned zero**, including on the site
 already disassembled by hand. The loop-start was computed by adding the branch displacement to the
@@ -892,7 +892,7 @@ contract cites them as this page's rather than restating them.
 
 **What the contract adds that is not a question about this word.** The other half of S-39 — the
 ordered render command list — turned out to hold the subsystem's load-bearing ordering: which of two
-lists owns the command objects, the fixed clear-then-destroy pair at both teardown sites, and a
+lists owns the command objects, the fixed clear-then-destroy pair at ~~both~~ all three teardown sites *(corrected 2026-10-02, OPUS: the contract's I-2, `001E0590`+0x19 / +0x26 the third)*, and a
 forward-walk early exit that ambient occlusion arms. Those are on
 [the list page](../Render-Command-List/the-ordered-render-command-list.md) and in the contract's §4;
 none of them touches `02EBA3F8`.
@@ -925,3 +925,14 @@ Interior anchor `001C7313` (function `001C7290`).
 `0018CA50` (177 B) is the op-record append `00214C30` runs on the shared command list: `0085E730(0x28)` allocates the node, `001F1DF0` initialises it from the `(dl, xmm2, xmm3)` payload, the node pushes onto the `[rcx+8]`/`[rcx+0x10]` vector (`001AB570` when it must grow), and `0018B4E0`'s owner receives it through the `0018AFF0` tail
 
 Interior anchor `0018CAA3` (function `0018CA50`).
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-the-shared-command-state-word-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00181AB0` | 102 B | keeps qword `+0x270` of `001EBA40()`; returns without further work when `00189120()` is null; otherwise takes `r = 00186910(00189120(), 0)` and calls `0018B8B0(0018CA40(), qword [r] when byte r+8 is 0 else 0, the kept qword, 4)` with a zero byte fifth (stack) argument | `00181ABB`, `00181AC7`, `00181ADB`, `00181AE0`, `00181B06` |
+| `001C5040` | 123 B | when qword `01F812A8` differs from qword `01F812B0`, stores byte 0 at the address in `01F812A8` and copies `01F812A8` into `01F812B0`; then calls `00202880(01F813A8 + i*0x10)`, `00202880(01F813D8 + i*0x10)` and stores 0xFFFFFFFF in the dwords at `01F81400 + i*4` and `01F81400 + i*4 + 8`, where `i` is the sign-extended dword `01F813F8`, read first and re-read after each `00202880` call | `001C504B`, `001C5054`, `001C507A`, `001C5094`, `001C50AE` |
+| `001EC5A0` | 31 B | returns 1 when `001B7D20(001B7F20())` returns a non-zero `al`, else 0 | `001EC5A4`, `001EC5AC`, `001EC5B5` |
+| `0036D7E0` | 40 B | stores 0 in dword `02EBA3F8` and stores in qword `022D8EA0` the address `022D8E50` plus 0x28 times the sign-extended dword `022D8EA8` | `0036D7E7`, `0036D7F1`, `0036D7FC`, `0036D800` |

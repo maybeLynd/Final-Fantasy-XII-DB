@@ -1,0 +1,23 @@
+{
+ "blocks_in_image": 932,
+ "blocks_outside_image": 11,
+ "catalogue": "e2a67b07700c2ec3fbfae3213965de35",
+ "classes": {
+  "entered": 1,
+  "faulted": 1,
+  "returned": 67,
+  "returned+faulted": 38,
+  "scripted": 1
+ },
+ "elapsed_s": 132.1,
+ "emu_starts": 833,
+ "entries_executed": 106,
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "instrument": "execcov-shim v2",
+ "patched_blocks": 273,
+ "rc": 0,
+ "receipt_md5": "9c9e4a85798b70144641953816125587",
+ "run": "nav-residual-boundary-exec",
+ "status": "ok",
+ "unique_blocks": 943
+}

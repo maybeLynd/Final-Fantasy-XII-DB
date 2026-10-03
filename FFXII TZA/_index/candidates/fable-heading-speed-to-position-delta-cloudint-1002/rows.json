@@ -1,0 +1,111 @@
+{
+ "page": "06-Movement-And-Navigation/heading-speed-to-position-delta.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01DvkUokim1xrVUS78Zq26tk",
+ "report": "heading-speed-to-position-delta.json",
+ "rows": [
+  {
+   "fn": "0022DE60",
+   "text": "with c = `rcx`, m = qword `+8` of c, p = qword `+0x20` of c and N(x) = `00861F14` of x's squared length, for i below signed word `+0x14` of c, id = word [signed word `+0x12` + i] of qword `+0x28` of m; signed ids from `0x5000` are skipped; a gate on dword x skips when bit 31 is set after the mask/value pair at `0209A2D0` + `0x110` + 8k (k = 32 + bits 13-17 of x) is merged into x; an id from `0x4000` takes the `0x90`-byte element e = id - `0x4000` of qword `+0x18` of m, gates its dword `+4`, fills v by `00381D90(e, &v, p)`, skips unless L = N(v through the 3x3 at qword `+0x18` of c) exceeds r = `003810B0(e, p)`, and scales v by d = L - r; a lower signed id takes the 32-byte element e of qword `+0x10` of m, gates its dword `+0xC` only when its low 3 bits are 1, sets v to its four floats and L likewise, and needs s = (p minus 16-byte vertex [signed word e`+0x10`] of qword `+8` of m) dot v in (-0.001, L), the call at `0022DE60` + 0x35E (m, id, p, &w) non-zero and q = N(w) below L, taking v = w, s = q when q exceeds s; v is scaled by d = L - s over N(v); a d above float `+0x30` of c is stored there with id at word `+0x34`, and v is added to the three floats at qword `+0x28` of c",
+   "anchors": [
+    [
+     "0022DF05",
+     "jge"
+    ],
+    [
+     "0022DF59",
+     "jae"
+    ],
+    [
+     "0022E006",
+     "jbe"
+    ],
+    [
+     "0022E1BE",
+     "call"
+    ],
+    [
+     "0022E21A",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "00232760",
+   "text": "calls the callee at `00232760` + 0x10 with `rcx` and `rdx` unchanged and then `0022EF20(rdx)`; stores 0 in dword `020891E0` and, when the signed word `+0x52` of `rdx` is not negative, stores it in dword `02088FE0` and 1 in `020891E0`; stores 0 in dword `020891E4`, calls `0022F9B0(rcx, rdx, rdx)` and tail-jumps to `0022F250(rdx)`",
+   "anchors": [
+    [
+     "00232778",
+     "call"
+    ],
+    [
+     "00232790",
+     "js"
+    ],
+    [
+     "00232792",
+     "mov"
+    ],
+    [
+     "002327B1",
+     "call"
+    ],
+    [
+     "002327C3",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00380FA0",
+   "text": "builds A = `00202B70(&A, rdx+0x50, r8)` and B = `00202B70(&B, rdx+0x50, r9)` and on dword `+0` of `rdx` calls the callee at `00380FA0` + 0x95 for 0, `00381630` for 1 or `00381450` for 2, each as (&C, &A, &B); for any other kind or a zero result it returns -1.0 (`01CEBC9C`); otherwise it writes `00202B70(rcx, rdx+0x10, &C)` and returns `00861F14` of the squared distance between the first three floats at `rcx` and at `r8`",
+   "anchors": [
+    [
+     "00380FE0",
+     "call"
+    ],
+    [
+     "00380FE5",
+     "mov"
+    ],
+    [
+     "0038103C",
+     "je"
+    ],
+    [
+     "0038104A",
+     "call"
+    ],
+    [
+     "00381087",
+     "movss"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "00381630": "1,168-byte body with about seven exits: two projection arms (y of rdx above 1.0 with y of r8 below 1.0, and y of rdx below -1.0 with y of r8 above -1.0, each through 0046BFA0 with the constant at 00D11280 or 00D11290 and a radius test), a fallback through 0046BF60 (00D11270), 00382020 on both inputs, 00861F56 and 00861F0E, and a final y range check that re-enters the store path; every path cannot be stated reliably in one sentence under the 1,200-character limit, so it is left for a direct read"
+ },
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "0022DE60",
+   "was": "with c = `rcx`, m = qword `+8` of c and p = qword `+0x20` of c and N(x) = `00861F14` of x's squared length, for i below signed word `+0x14` of c it reads id = word [signed word `+0x12` + i] of the array at qword `+0x28` of m, skipping ids from `0x5000`; a gate on dword x skips when bit 31 is set after the mask/value pair at `0209A2D0` + `0x110` + 8k (k = 32 + bits 13-17 of x) is merged into x; an id from `0x4000` takes the `0x90`-byte element e = id - `0x4000` of qword `+0x18` of m, gates its dword `+4`, fills v by `00381D90(e, &v, p)`, skips unless L = N(v through the 3x3 at qword `+0x18` of c) exceeds r = `003810B0(e, p)`, and scales v by d = L - r; a lower id takes the 32-byte element e of qword `+0x10` of m, gates its dword `+0xC` only when its low 3 bits are 1, sets v to its four floats and L likewise, and needs s = (p minus vertex [signed word e`+0x10`] of qword `+8` of m) dot v in (-0.001, L), `0022EAC0(m, id, p, &w)` non-zero and q = N(w) below L, taking v = w, s = q when q exceeds s; v is scaled by d = L - s over N(v); then a d above float `+0x30` of c is stored there with id at word `+0x34`, and v is added to the three floats at qword `+0x28` of c",
+   "now": "with c = `rcx`, m = qword `+8` of c, p = qword `+0x20` of c and N(x) = `00861F14` of x's squared length, for i below signed word `+0x14` of c, id = word [signed word `+0x12` + i] of qword `+0x28` of m; signed ids from `0x5000` are skipped; a gate on dword x skips when bit 31 is set after the mask/value pair at `0209A2D0` + `0x110` + 8k (k = 32 + bits 13-17 of x) is merged into x; an id from `0x4000` takes the `0x90`-byte element e = id - `0x4000` of qword `+0x18` of m, gates its dword `+4`, fills v by `00381D90(e, &v, p)`, skips unless L = N(v through the 3x3 at qword `+0x18` of c) exceeds r = `003810B0(e, p)`, and scales v by d = L - r; a lower signed id takes the 32-byte element e of qword `+0x10` of m, gates its dword `+0xC` only when its low 3 bits are 1, sets v to its four floats and L likewise, and needs s = (p minus 16-byte vertex [signed word e`+0x10`] of qword `+8` of m) dot v in (-0.001, L), the call at `0022DE60` + 0x35E (m, id, p, &w) non-zero and q = N(w) below L, taking v = w, s = q when q exceeds s; v is scaled by d = L - s over N(v); a d above float `+0x30` of c is stored there with id at word `+0x34`, and v is added to the three floats at qword `+0x28` of c",
+   "why": "the id tests are signed word compares (`0022DF05` jge against 0x5000, `0022DF0F` jl against 0x4000, `0022E05E` movsx), so ids 0x8000-0xFFFF take the lower-id path with a negative index; the text gave no signedness; the vertex stride is 16 (`0022E171` shl 4); the callee at `0022E1BE`, new to the page, is now cited by its site +0x35E"
+  },
+  {
+   "fn": "00232760",
+   "was": "calls `00233110` with `rcx` and `rdx` unchanged and then `0022EF20(rdx)`; stores 0 in dword `020891E0` and, when the signed word `+0x52` of `rdx` is not negative, stores it in dword `02088FE0` and 1 in `020891E0`; stores 0 in dword `020891E4`, calls `0022F9B0(rcx, rdx, rdx)` and tail-jumps to `0022F250(rdx)`",
+   "now": "calls the callee at `00232760` + 0x10 with `rcx` and `rdx` unchanged and then `0022EF20(rdx)`; stores 0 in dword `020891E0` and, when the signed word `+0x52` of `rdx` is not negative, stores it in dword `02088FE0` and 1 in `020891E0`; stores 0 in dword `020891E4`, calls `0022F9B0(rcx, rdx, rdx)` and tail-jumps to `0022F250(rdx)`",
+   "why": "content verified (`00232790` js on the movsx word +0x52, ecx still 0 at `002327A2`, `002327AB`/`002327AE` pass the saved rcx and rdx); the first callee, new to the page, is now cited by its site +0x10 (`00232770`)"
+  },
+  {
+   "fn": "00380FA0",
+   "was": "builds A = `00202B70(&A, rdx+0x50, r8)` and B = `00202B70(&B, rdx+0x50, r9)` and on dword `+0` of `rdx` calls `00381AC0` for 0, `00381630` for 1 or `00381450` for 2, each as (&C, &A, &B); for any other kind or a zero result it returns -1.0 (`01CEBC9C`); otherwise it writes `00202B70(rcx, rdx+0x10, &C)` and returns `00861F14` of the squared distance between the first three floats at `rcx` and at `r8`",
+   "now": "builds A = `00202B70(&A, rdx+0x50, r8)` and B = `00202B70(&B, rdx+0x50, r9)` and on dword `+0` of `rdx` calls the callee at `00380FA0` + 0x95 for 0, `00381630` for 1 or `00381450` for 2, each as (&C, &A, &B); for any other kind or a zero result it returns -1.0 (`01CEBC9C`); otherwise it writes `00202B70(rcx, rdx+0x10, &C)` and returns `00861F14` of the squared distance between the first three floats at `rcx` and at `r8`",
+   "why": "content verified (`00380FEA` je for kind 0, `00380FEF` je for kind 1, `00380FF4` jne after sub 1 for kind 2, `0038103C` je on a zero result); the kind-0 callee, new to the page, is now cited by its site +0x95 (`00381035`)"
+  }
+ ]
+}

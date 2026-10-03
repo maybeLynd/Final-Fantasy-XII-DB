@@ -639,6 +639,6 @@ representativeness of the 169-file corpus, all of which remain open exactly as �
 
 Interior anchor `00598057` (function `00598040`).
 
-`00597F80` (183 B) is the four-vector teardown sibling covering the upper half of the same record: `+0x50/+0x58`, `+0x40/+0x48` (this pair additionally requires the `btr 0x1f` count to exceed `1` before deallocating), `+0x30/+0x38`, `+0x20/+0x28`; identical `00584730` dealloc-and-clear pattern. Together with `00598040` it spans `+0x08..+0x58` — eight counted buffers.
+`00597F80` (183 B) is the four-vector teardown sibling ~~covering the upper half of the same record~~ for a different record *(corrected 2026-10-02, OPUS: `0059E070` calls it with `rcx = rbp+0x30` at `0059E27F`-`0059E283` and `00598040` with `rcx = rsp+0x70` at `0059E289`-`0059E28E`; the two offset lists overlap at `+0x38`/`+0x40`)*: `+0x50/+0x58`, `+0x40/+0x48` (this pair additionally requires the `btr 0x1f` count to exceed `1` before deallocating), `+0x30/+0x38`, `+0x20/+0x28`; identical `00584730` dealloc-and-clear pattern. ~~Together with `00598040` it spans `+0x08..+0x58` — eight counted buffers.~~ Each helper frees four counted buffers of its own record *(corrected 2026-10-02, OPUS: different `rcx`, above)*.
 
 Interior anchor `00597F97` (function `00597F80`).

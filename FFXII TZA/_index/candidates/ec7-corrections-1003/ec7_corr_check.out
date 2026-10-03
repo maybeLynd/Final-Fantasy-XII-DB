@@ -1,0 +1,16 @@
+ok   R1 00189120 is mov rax,[rip] ; ret 0x1
+ok   R1 00189120 reads 01F7F598 0x1f7f598
+ok   R2 0062BCBE call target 0x62b100
+ok   R2 0062BD75 call target 0x62ec70
+ok   P 0059BD50 je over the +0x30 free 0x74
+ok   P 0059BD52 frees through 002150D0 0x2150d0
+ok   P 0059BD66 jle over the +0x40 release 0x7e
+ok   P 0059BD78 mov al, 1 b'\xb0\x01'
+ok   X2 00521B26 call target 0x521bb0
+ok   X1 0043E7F4 mov [r8-4], eax b'A\x89@\xfc'
+ok   X1 0043E826 mov [r8-8], edx b'A\x89P\xf8'
+ok   X1 0043E7D7 stages into 022D8F90 0x22d8f90
+ok   X1 004348D0 mov [r8-8], edx b'A\x89P\xf8'
+ok   X1 0043E84D low dword is -0.5 0xbf000000
+ok   X1 00396FB0 reads 022D8F10 0x22d8f10
+FAILS 0

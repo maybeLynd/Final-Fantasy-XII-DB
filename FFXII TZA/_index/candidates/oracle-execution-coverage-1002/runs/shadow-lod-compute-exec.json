@@ -1,0 +1,20 @@
+{
+ "blocks_in_image": 68,
+ "blocks_outside_image": 0,
+ "catalogue": "e2a67b07700c2ec3fbfae3213965de35",
+ "classes": {
+  "returned": 10,
+  "scripted": 4
+ },
+ "elapsed_s": 19.4,
+ "emu_starts": 76,
+ "entries_executed": 10,
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "instrument": "execcov-shim v2",
+ "patched_blocks": 26,
+ "rc": 0,
+ "receipt_md5": "9caf912d78e222c655c233a239a3b80a",
+ "run": "shadow-lod-compute-exec",
+ "status": "ok",
+ "unique_blocks": 68
+}

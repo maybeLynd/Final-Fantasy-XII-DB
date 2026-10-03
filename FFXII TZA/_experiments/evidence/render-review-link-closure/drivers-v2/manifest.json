@@ -1,0 +1,35 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1279,
+      "sha256": "08d8c0c9d56130cbbc400c49fec3cbd838b9906d437770a5a3e42f5062b30ff0"
+    },
+    {
+      "path": "control-publisher-path.py",
+      "bytes": 3837,
+      "sha256": "aae9e61c9cbe59097a3af5a897a361127404abc840d907899a8a18fb7d953699"
+    },
+    {
+      "path": "control.py",
+      "bytes": 2741,
+      "sha256": "2cf69ccb1ad3cfd8127db1dc75d6afdb585ebe3cce808ad512246bccd49de84a"
+    },
+    {
+      "path": "prepare.py",
+      "bytes": 6282,
+      "sha256": "d10cae7b1f4459cf695f0218b9b3a13822a1147d8eda3284a13f8bb80f5e5654"
+    },
+    {
+      "path": "publisher-driver.py",
+      "bytes": 259043,
+      "sha256": "5c1b458faeafcc4b206d30ba1ce660ceebd0e8dc54834f974931445490a6eb18"
+    }
+  ],
+  "limits": "Successor committed-driver prerequisite; actual reruns/sealing pending; old artifacts unchanged"
+}

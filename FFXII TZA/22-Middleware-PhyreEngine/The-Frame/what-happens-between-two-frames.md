@@ -64,7 +64,7 @@ of the shipping game.
 The code around that buffer is shaped like a handshake with a second thread — a wait, a publish,
 a "backend busy" flag. **In the shipping build that handshake does nothing**, for a reason
 §2.4 sets out exactly. Where the commands are actually consumed is the largest thing this
-document does not know.
+document does not know *(answered: see the ANSWERED 2026-09-27 block - nothing in this executable reads a finished batch; 2026-10-02, OPUS)*.
 
 ## 2. Native mechanism
 
@@ -216,7 +216,7 @@ optimisation. It is not a one-off: **all 17 sites are hoisted**, at `0024D40A`, 
 Three further facts say the loop is in the never-entered case rather than the hang case, which is
 also what shipping and playable requires: `02EAF6D8` lies past `.data`'s raw size and is therefore
 **zero at load**; **no RIP-relative store to it exists anywhere in `.text`**; and none of the
-image's **nine** thread procedures is a plausible consumer of a graphics command stream (the
+image's ~~**nine**~~ ten thread procedures *(corrected 2026-10-02, OPUS: thirteen creation sites - the five `CreateThread` and four `_beginthreadex` call sites plus the four calls of the engine's thread API `008636E0` (`0035E920`, `00368D41`, `00368E97`, `00369000`) - start ten bodies: `005CCAB0`, `005CCBA0`, `007DEC40`, `007DD950`, `00171370`, `007A5550` (three `_beginthreadex` sites), and through the trampoline `00863500` (`0086348B`) `0035EA40`, `00368C10`, `00369100`, `00368AE0`; so the next line's "no others" is wrong too)* is a plausible consumer of a graphics command stream (the
 largest is 555 B, and the enumeration is complete — five `CreateThread` and four `_beginthreadex`
 sites, no others). The imports name no graphics module beyond stock `d3d11.dll`, `dxgi.dll` and
 `D3DCOMPILER_47.dll`.
@@ -379,16 +379,16 @@ The passes, in the order `MainLoop_Draw` runs them:
 
 ```
                              "mainLoopDraw"          <- outer scope
-  bit 8   command-buffer flush block (submit / wait / resume)
+  bit 8   command-buffer flush block (submit / wait / resume)   <- corrected 2026-10-02, OPUS - before this the body also runs bits 7 and 5 -> 0036D400 (0022B20C-0022B238), bit 6 or 1 -> 00332420(3) (0022B23F-0022B258), bit 2 -> 00377230 (0022B25F), bit 0 -> 003769E0, 00377520, 0036F410 (0022B26F-0022B282), bit 6 or 1 -> 00332420(0) (0022B289-0022B29F); after post-processing bit 0 -> 0036F440, a jump to 00475390 (0022B57E-0022B587); the bit table below is the complete gate map
   bit 4   VFXSystem_RenderLayerPass(1)
   bit 0   0036FBB0, 0036F430
   bit 4   EffectSystem_ProcessQueuedGraphicsEffectsForPass(2), VFXSystem_RenderLayerPass(2)
   bit 6   00332420(1)
   bit 1   0017F2F0, 0017F070, 00332420(2)
                              "mask border 0"
-                             "AO render"             <- only if 0017FE10() != 0
+                             "AO render"             <- only if 0017FE10() != 0   <- corrected 2026-10-02, OPUS - and dword 01FD49E8 != 0 (0022B3BD-0022B3C8); when 0017FE10() == 0 the draw calls 00229F20(0017FE20() == 0) at 0022B45D instead
   bit 4   VFXSystem_RenderLayerPass(3), EffectSystem_...ForPass(3)
-                             "Water effect"          <- only if 0017FE20() != 0
+                             "Water effect"          <- only if 0017FE20() != 0   <- corrected 2026-10-02, OPUS - and dword 01FD49E8 != 0 (0022B40E-0022B419); a second site at 0022B474 marks it when 01FD49E8 != 0, 0017FE20() == 0 and 0017FE10() != 0
   bit 0   0036F450
                              "post-processing render"
   bit 2   VFXSystem_RenderLayerPass(4)
@@ -413,7 +413,7 @@ enable table at `02EC07E0`, the low nibble of `[+1]` must equal the pass argumen
 `[+0x10] bit 0` must be clear (`00375560`–`003755B4`). The kind byte `[+0]` minus one is
 bounded ≤ `0xC` and dispatched through the RVA table `00375678` (site `003755C0`); the body
 spin-waits on `02EAF6D8 bit 0x100` (`00375528`–`00375535`, the graphics-thread handshake)
-before the walk **and again per entry at `0037559F`–`003755B2`**, and each dispatched kind's
+before the walk **and again per entry at `0037559F`–`003755B2`** *(answered: see section 2.4 - the 17 waits on `02EAF6D8` are hoisted and cannot wait; 2026-10-02, OPUS)*, and each dispatched kind's
 return is tested at `0037562F` — `jne 0037563D` skips the shared `00375470` epilogue when the
 handler returns nonzero (pass-gate mismatch), `dec edi`/`inc edi` then drives the loop tail;
 `0039D570`/`0039D3F0` run once before the walk.
@@ -714,7 +714,7 @@ if (!widescreenCorrected) {
 }
 ```
 
-The field frame calls it as `00184460(0, 0, *(u32*)0x01E0C1D8, *(u32*)0x01E0C1DC, 1)`, and those
+The ~~field frame~~ full-menu frame `0022B8C0` *(corrected 2026-10-02, OPUS: it loads `01E0C1D8`/`01E0C1DC` at `0022B957`-`0022B971` and `0022B9E1`-`0022B9F7`; the field path reaches `00184460` through `00249FD0`, which passes a record's four words, `0024A035`-`0024A04B`)* calls it as `00184460(0, 0, *(u32*)0x01E0C1D8, *(u32*)0x01E0C1DC, 1)`, and those
 two globals hold `0x200` and `0x1C0` in the shipping image. **The full-screen viewport is
 requested in 512 × 448 PlayStation 2 coordinates and scaled up**, which is why the reference
 resolution is the divisor in every term.
@@ -747,11 +747,11 @@ Phyre::PFramework::PApplication  (framework owns the loop)
               |
               +-> 0036F2C0                  settle, clear the command-state bits
               |
-              +-> (via 003A1DB0, from 38 call sites across the engine)
+              +-> (via 003A1DB0, from 38 call sites across the engine)   <- corrected 2026-10-02, OPUS - 47 direct call sites in 38 functions
                      -> 0036F360            publish: 02EBA3F8 = 0x100
                         ~~~~~~ the frame's involvement ends ~~~~~~
                         the consumer of these buffers is NOT in this executable's
-                        frame path and was not found: PROPOSED-xiionline-13-1.
+                        frame path and was not found: PROPOSED-xiionline-13-1.   <- corrected 2026-10-02, OPUS - answered 2026-09-27, nothing in this executable reads a finished batch
                         The 02EAF6D8 fence that would point at it is inert (2.4).
 ```
 
@@ -807,13 +807,13 @@ on this thread.
   Raising the `0x200` capacity without also raising the `0x200` in the terminator logic at
   `0036F360` silently loses the last record of every full batch instead.
 - **Breaks if:** you add work between the settle-read and the bit clear in a mode body. The
-  inlined spin at `0022BAD0` and its eight siblings exists to make the following
+  inlined spin at `0022BAD0` and its ~~eight~~ nine siblings *(corrected 2026-10-02, OPUS: ten inline copies: `0022A850`, `0022AE50`, `0022AFA0`, `0022B040`, `0022B2C0` (in `MainLoop_Draw`), `0022B720`, `0022B820`, `0022BAD0`, `0022BD20`, `00262AE0`)* exists to make the following
   read-modify-write safe; the decompiler does not show it, so a patch written against
   decompiled source will not know it is there. Note the asymmetry: **that** spin is real, while
   the `02EAF6D8` fence wait in the same function is not.
 - **Multiplayer / XIIOnline:** the frame mode is **local presentation state**, not world state.
   Two clients in the same zone can legitimately sit in different modes — one in the field frame,
-  one in the menu — and mode 3 does not advance the world. The world tick is
+  one in the menu — ~~and mode 3 does not advance the world~~ and mode 3 calls the world tick too *(corrected 2026-10-02, OPUS: `0022B8C0` calls `00314020` at `0022BA23` with `ecx = edx = 1`; what those arguments do to the step is not read here)*. The world tick is
   `World_UpdateSimulationTick` (`00314020`), reached from mode 3 as well as mode 2, so "the menu
   is open" is not by itself a reason to expect the simulation to be stopped: check that call,
   not the mode.
@@ -826,7 +826,7 @@ on this thread.
 
 - [x] **CG-6.** **Where the GIF command buffers are consumed.** Reframed by this pass: the question is not
       "which thread clears `02EAF6D8`" — nothing writes that word and the waits on it cannot
-      observe it anyway. Ruled out so far: all 17 fence waits (hoisted), all nine thread
+      observe it anyway. Ruled out so far: all 17 fence waits (hoisted), all ~~nine~~ ten thread *(corrected 2026-10-02, OPUS: thirteen creation sites, ten bodies, see section 2.4)*
       procedures in the image (none is a plausible consumer), and any separate graphics module
       (the imports name only stock D3D11/DXGI). The `0x70000000` record-class mask was searched
       across `.text` and its 12 hits are an unrelated 32-slot handle table at `02EBE5E0`, not a
@@ -968,10 +968,10 @@ on this thread.
 | `02EAF6D8` is never written by game code | displacement census over the whole `.text` section for that exact address: 17 sites, every one a `mov r32, [rip+d]` load, confirmed by disassembling each. Blind to base-pointer writes, per `COVERAGE.md` | 1 |
 | **All 17 fence waits are hoisted and cannot observe a change** | raw disassembly of all 17: in every one the conditional branch targets the `test`, at a *higher* address than the `mov` that loads the word, so the load is outside the loop | 1 |
 | `02EAF6D8` is zero at load | its RVA lies beyond `.data`'s `SizeOfRawData`, so it is zero-filled | 1 |
-| No thread in this image consumes the command stream | complete enumeration of thread creation: 5 `CreateThread` and 4 `_beginthreadex` call sites, each disassembled for the `lea` supplying its start routine; nine procedures, largest 555 B. **Premise corrected 2026-09-12 (FABLE):** the enumeration was not complete — the engine's own thread API `008636E0` creates four more threads the imports never show (`TkSyncVEmulationThread` `0035EA40`, `TkBGThread%d` `00368C10`, `TkSyncvThread%d` `00369100`, `TkPowerOff` `00368AE0`, all from `00368ED0`); a depth-8 walk from each reaches neither the publishers nor the shared word, so the claim stands on thirteen procedures, not nine (CG-3) | 1 |
+| No thread in this image consumes the command stream | complete enumeration of thread creation: 5 `CreateThread` and 4 `_beginthreadex` call sites, each disassembled for the `lea` supplying its start routine; ~~nine procedures~~ ten bodies from these and the four below *(corrected 2026-10-02, OPUS: thirteen creation sites - the five `CreateThread` and four `_beginthreadex` call sites plus the four calls of the engine's thread API `008636E0` (`0035E920`, `00368D41`, `00368E97`, `00369000`) - start ten bodies: `005CCAB0`, `005CCBA0`, `007DEC40`, `007DD950`, `00171370`, `007A5550` (three `_beginthreadex` sites), and through the trampoline `00863500` (`0086348B`) `0035EA40`, `00368C10`, `00369100`, `00368AE0`)*, largest 555 B. **Premise corrected 2026-09-12 (FABLE):** the enumeration was not complete — the engine's own thread API `008636E0` creates four more threads the imports never show (`TkSyncVEmulationThread` `0035EA40`, `TkBGThread%d` `00368C10`, `TkSyncvThread%d` `00369100`, `TkPowerOff` `00368AE0`, all from `00368ED0`); a depth-8 walk from each reaches neither the publishers nor the shared word, so the claim stands on ~~thirteen procedures, not nine~~ thirteen creation sites and ten thread bodies *(corrected 2026-10-02, OPUS: `007A5550` starts three of the `_beginthreadex` sites and `0086348B` starts the trampoline `00863500` that runs the four engine threads)* (CG-3) | 1 |
 | No separate graphics module | every DLL-shaped string in the image: 32, of which the graphics ones are stock `d3d11.dll`, `dxgi.dll`, `D3DCOMPILER_47.dll` | 2 |
 | `0036F2C0` contains a settle-spin the decompiler omits | raw bytes `8b0d…/8b05…/3bc8/75f0` at `0036F2D0`–`0036F2DE`, compared against the decompiler's one-line output for the same function | 1 |
-| The same spin is inlined in the mode bodies | raw disassembly at `0022BAD0` (inside `0022B8C0`) and `0022B2C0` (inside `0022B0B0`); displacement census locates nine more | 1 |
+| The same spin is inlined in the mode bodies | raw disassembly at `0022BAD0` (inside `0022B8C0`) and `0022B2C0` (inside `0022B0B0`); displacement census locates ~~nine~~ eight more *(corrected 2026-10-02, OPUS: ten inline copies in all, `02EBA3F8` reads at `0022A850`, `0022AE50`, `0022AFA0`, `0022B040`, `0022B2C0`, `0022B720`, `0022B820`, `0022BAD0`, `0022BD20`, `00262AE0`)* | 1 |
 | A command record is 16 bytes, `(data, regId)` | the emit idiom in the complete body of `0036D400`, repeated seven times with distinct register numbers | 1 |
 | `NLOOP` is back-patched from the record count | complete bodies of `003A2090` and `003A2020`, read together | 1 |
 | The GIFtag constant `0x1000000000008000` with `REGS = 0xE` | the literal operands at the `003A2090` call site in `0036D400`, decoded against the mask `&0x8000` that `003A2090` applies | 1 |
@@ -1038,7 +1038,7 @@ subsystems are outside this document's scope.
   targets the `test`, not the `mov` — so the loop spins on a register nothing inside it changes:
   it either never runs or never exits. Proved by disassembling the branch target of each of the
   17, then corroborated three ways (the word is zero-filled at load; no `.text` store to it
-  exists; none of the image's nine thread procedures could consume a command stream, and the
+  exists; none of the image's ~~nine~~ ten thread procedures *(corrected 2026-10-02, OPUS: thirteen creation sites, section 2.4)* could consume a command stream, and the
   imports name no graphics module beyond stock D3D11/DXGI).
   **Why the earlier reading was reachable, and where the same mistake will be hiding:** the
   decompiler renders this as `do { } while ((g & 0x100) != 0);` — a perfectly ordinary spin —
@@ -1183,7 +1183,7 @@ Both are pure flag-set leaves: no return value, no reads of the word they modify
 ## Interior citation — frontier hubs `003A1DB0` / `0022CC40`-class anchor (2026-09-17, SWE2-EC7)
 
 `003A1DB0` — 84 B, 17 A-measured callers at census; the submit-and-flip whose complete body this
-page already quotes. Interior anchor only: the flip is `eax = 1 - dword [02F8EFF0]` stored back
+page already quotes. Interior anchor only: the flip is `eax = 1 - dword ~~[02F8EFF0]~~ [02EBEFF0]` *(corrected 2026-10-02, OPUS: `003A1DB6` reads and `003A1DCA` writes `02EBEFF0`)* stored back
 at `003A1DCA`, the two 24-byte slots are `lea rcx,[rdx+rdx*2]`-indexed at
 [`003A1DD0`](../../_index/ADDRESS-INDEX.md), the record count is `(end-begin)>>4`, and
 `call 0036F360` at `003A1DEF` is the submit before `entry[+8] = begin` mirrors the range.
@@ -1248,7 +1248,7 @@ The angle-table state `005376D0` presets. No calls.
 
 `003A2090` (39 B) is the intrusive 16-byte-element freelist push: `[rcx+8]`
 bump cursor, `r10 = [r9+8]` grabbed, `[r9+8] = r10 + 0x10`, `[rcx] = r10` head,
-`[r10] = rdx` link, `[head+8] = r8`, `or [head], 0x8000` flag — the queue push
+`[r10] = rdx` link, `[head+8] = r8`, ~~`or [head], 0x8000` flag~~ `and [head], 0x8000` *(corrected 2026-10-02, OPUS: `003A20B0 and dword ptr [rax], 0x8000` keeps bit 15 and clears NLOOP, the begin-subpacket of section 2's table)* — the queue push
 the frame's record pool drives. Interior anchor `003A209C`.
 
 `003A2020` (102 B) is the load-metric companion: `rdx = ([rax+8] - [r8] - 0x10)
@@ -1545,3 +1545,7 @@ Interior anchor `00375FE0` (function `00375F80`).
 | `00474600` | 75 B | builds a stack record {16 zero bytes, the 24-byte entry `02EBEFC0 + 24*[02EBEFF0]`} and passes it with `rcx` and its fifth argument to `003A22A0`, then calls `003A1DB0` | `0047461D`, `0047462C`, `0047463C`, `00474641` |
 | `00475390` | 31 B | when dword `02EBA4C0` is non-zero and dword `02EBA4D0` is 0, tail-calls `00474710(02EBA4C0)` | `00475399`, `004753A2`, `004753A9` |
 | `00504490` | 20 B | calls `0016D6A0(0)`, then tail-calls `003A1DB0` | `00504494`, `00504496`, `0050449F` |
+
+`00474710` (3064 B) is the large frame-side update `00475390` runs: it reads the `022D8EAC`/`022D8EB4`/`022D8EC8`/`022D8ED0` frame counters and the `02AED560`/`02AED564` pair, then dispatches the render pass chain `001828C0`, `00202D70`, `003666E0`, `003A1DB0`/`003A2020`/`003A2090`/`003A20C0`, `003B40B0`, `003B4150` and `003CBB30` - the per-frame orchestrator body on the frame page.
+
+Interior anchor `00474DF3` (function `00474710`).

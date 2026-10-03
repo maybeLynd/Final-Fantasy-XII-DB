@@ -1,0 +1,1732 @@
+{
+ "page": "22-Middleware-PhyreEngine/Script-Object-Accessors/phyre-script-object-accessors.md",
+ "date": "2026-10-02",
+ "session": "local-h1-agent-a",
+ "report": "phyre-script-object-accessors.json",
+ "rows": [
+  {
+   "fn": "00584910",
+   "text": "calls `00599870(rdx)` and copies 0x48 bytes from the result P to `r8`: four 16-byte blocks at `+0x0` to `+0x30` and the qword at `+0x40`",
+   "anchors": [
+    [
+     "0058491C",
+     "call"
+    ],
+    [
+     "00584924",
+     "movups"
+    ],
+    [
+     "0058493B",
+     "movups"
+    ],
+    [
+     "00584944",
+     "movsd"
+    ]
+   ]
+  },
+  {
+   "fn": "00584B70",
+   "text": "calls `00599970(rdx)` and copies 0x54 bytes from the result P to `r8`: five 16-byte blocks at `+0x0` to `+0x40` and the dword at `+0x50`",
+   "anchors": [
+    [
+     "00584B7C",
+     "call"
+    ],
+    [
+     "00584B84",
+     "movups"
+    ],
+    [
+     "00584BA3",
+     "movups"
+    ],
+    [
+     "00584BAA",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00585060",
+   "text": "calls `00599A70(rdx)` and copies 0x24 bytes from the result P to `r8`: 16-byte blocks at `+0x0` and `+0x10` and the dword at `+0x20`",
+   "anchors": [
+    [
+     "0058506C",
+     "call"
+    ],
+    [
+     "00585074",
+     "movups"
+    ],
+    [
+     "0058507B",
+     "movups"
+    ],
+    [
+     "00585082",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005A0B60",
+   "text": "calls `005A05D0(rdx)` and copies the byte at the result pointer to byte `[r8]`",
+   "anchors": [
+    [
+     "005A0B6C",
+     "call"
+    ],
+    [
+     "005A0B71",
+     "movzx"
+    ],
+    [
+     "005A0B74",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005A0D30",
+   "text": "calls `005BA950(rdx)` and copies from the result P to `r8` at the same offsets the dword `+0x8` and the qwords `+0x10` and `+0x18`",
+   "anchors": [
+    [
+     "005A0D3C",
+     "call"
+    ],
+    [
+     "005A0D44",
+     "mov"
+    ],
+    [
+     "005A0D4B",
+     "mov"
+    ],
+    [
+     "005A0D53",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005A0FB0",
+   "text": "calls `005B96D0(rdx)` and does nothing more when the result P equals `r8`; otherwise copies the dword `+0x20` and the qwords `+0x0`, `+0x8`, `+0x10` and `+0x18` from P to `r8`, then, when `r8+0x28` differs from `P+0x28`, calls `001EAD40(r8+0x28, Q)` where Q is qword `P+0x28` minus (byte `P+0x28` AND 1), and finally copies the dword `+0x30`",
+   "anchors": [
+    [
+     "005A0FC0",
+     "call"
+    ],
+    [
+     "005A0FC8",
+     "cmp"
+    ],
+    [
+     "005A0FD4",
+     "mov"
+    ],
+    [
+     "005A100A",
+     "call"
+    ],
+    [
+     "005A1012",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005A1260",
+   "text": "calls `005B9CD0(rdx)` and copies from the result P to `r8` at the same offsets the dword `+0x8` and the qwords `+0x10`, `+0x18` and `+0x20`",
+   "anchors": [
+    [
+     "005A126C",
+     "call"
+    ],
+    [
+     "005A1274",
+     "mov"
+    ],
+    [
+     "005A127B",
+     "mov"
+    ],
+    [
+     "005A128B",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005A1820",
+   "text": "calls `005BAA70(rdx)` and copies from the result P to `r8` at the same offsets the dword `+0x8` and the qwords `+0x10` and `+0x18`",
+   "anchors": [
+    [
+     "005A182C",
+     "call"
+    ],
+    [
+     "005A1834",
+     "mov"
+    ],
+    [
+     "005A183B",
+     "mov"
+    ],
+    [
+     "005A1843",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005A1BF0",
+   "text": "calls `005B98D0(rdx)` and tail-jumps to `005AA8C0(r8, result)`",
+   "anchors": [
+    [
+     "005A1BFC",
+     "call"
+    ],
+    [
+     "005A1C01",
+     "mov"
+    ],
+    [
+     "005A1C04",
+     "mov"
+    ],
+    [
+     "005A1C0C",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005A1DD0",
+   "text": "calls `005BA750(rdx)` and copies the qword `+0x0` of the result P to `[r8]`; then, when `r8+8` differs from `P+8`, tail-jumps to `001EAD40(r8+8, Q)` where Q is qword `P+8` minus (byte `P+8` AND 1), else returns",
+   "anchors": [
+    [
+     "005A1DDC",
+     "call"
+    ],
+    [
+     "005A1DE8",
+     "mov"
+    ],
+    [
+     "005A1DEF",
+     "cmp"
+    ],
+    [
+     "005A1E05",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005A1EF0",
+   "text": "calls `005BAEB0(rdx)` and copies the dword `+0x8` of the result to dword `r8+0x8`",
+   "anchors": [
+    [
+     "005A1EFC",
+     "call"
+    ],
+    [
+     "005A1F01",
+     "mov"
+    ],
+    [
+     "005A1F04",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005A20B0",
+   "text": "calls `005B95D0(rdx)` and tail-jumps to `005AA840(r8, result)`",
+   "anchors": [
+    [
+     "005A20BC",
+     "call"
+    ],
+    [
+     "005A20C1",
+     "mov"
+    ],
+    [
+     "005A20CC",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005A2430",
+   "text": "calls `005BAFD0(rdx)` and copies from the result P to `r8` at the same offsets the dword `+0x8`, the qword `+0x10` and the dwords `+0x18`, `+0x1C` and `+0x20`",
+   "anchors": [
+    [
+     "005A243C",
+     "call"
+    ],
+    [
+     "005A2444",
+     "mov"
+    ],
+    [
+     "005A244B",
+     "mov"
+    ],
+    [
+     "005A2452",
+     "mov"
+    ],
+    [
+     "005A245E",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005A2770",
+   "text": "calls `005B94D0(rdx)`, then with the result P calls `005AA840(r8, P)`, copies the qword `+0x48` from P to `r8`, calls `005AA3C0(r8+0x50, P+0x50)` and copies the dword `+0x60`",
+   "anchors": [
+    [
+     "005A2780",
+     "call"
+    ],
+    [
+     "005A278E",
+     "call"
+    ],
+    [
+     "005A279B",
+     "mov"
+    ],
+    [
+     "005A27A3",
+     "call"
+    ],
+    [
+     "005A27B0",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005A3260",
+   "text": "calls `005B9BD0(rdx)` and does nothing more when the result P equals `r8`; otherwise calls `005AA840(r8, P)` and copies the qword `+0x38` and the 16 bytes at `+0x48` from P to `r8`",
+   "anchors": [
+    [
+     "005A3270",
+     "call"
+    ],
+    [
+     "005A3278",
+     "cmp"
+    ],
+    [
+     "005A3283",
+     "call"
+    ],
+    [
+     "005A328C",
+     "mov"
+    ],
+    [
+     "005A3294",
+     "movups"
+    ]
+   ]
+  },
+  {
+   "fn": "005A4390",
+   "text": "calls `005BAB90(rdx)`, then with the result P calls `005AA7D0(r8, P)` and tail-jumps to `005AA3C0(r8+0x28, P+0x28)`",
+   "anchors": [
+    [
+     "005A43A0",
+     "call"
+    ],
+    [
+     "005A43AE",
+     "call"
+    ],
+    [
+     "005A43C5",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005A5050",
+   "text": "calls `005B93B0(rdx)`, then with the result P calls `005AA7D0(r8, P)` and tail-jumps to `005AA3C0(r8+0x28, P+0x28)`",
+   "anchors": [
+    [
+     "005A5060",
+     "call"
+    ],
+    [
+     "005A506E",
+     "call"
+    ],
+    [
+     "005A5085",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005A50B0",
+   "text": "calls `005B97D0(rdx)`, copies the dword `+0x0` of the result P to `[r8]` and tail-jumps to `005AA3C0(r8+8, P+8)`",
+   "anchors": [
+    [
+     "005A50BC",
+     "call"
+    ],
+    [
+     "005A50C7",
+     "mov"
+    ],
+    [
+     "005A50D2",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005C1390",
+   "text": "calls `005BC4D0(rdx)` and returns 0 when the result P is null; otherwise calls the function pointer at qword `rcx+8` with P plus the sign-extended dword `rcx+0x10`, then calls `0080F420(rdx, 1)` and `00810580(rdx, eax result)` and returns 1",
+   "anchors": [
+    [
+     "005C13A3",
+     "call"
+    ],
+    [
+     "005C13AB",
+     "je"
+    ],
+    [
+     "005C13B4",
+     "call"
+    ],
+    [
+     "005C13C1",
+     "call"
+    ],
+    [
+     "005C13CB",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C13F0",
+   "text": "calls `005BC4D0(rdx)` and returns 0 when the result P is null; otherwise calls the function pointer at qword `rcx+8` with P plus the sign-extended dword `rcx+0x10`, then calls `0080F420(rdx, 1)` and `00810640(rdx)` with the call's `xmm0` result passed in `xmm1`, and returns 1",
+   "anchors": [
+    [
+     "005C1403",
+     "call"
+    ],
+    [
+     "005C140B",
+     "je"
+    ],
+    [
+     "005C1419",
+     "call"
+    ],
+    [
+     "005C1427",
+     "call"
+    ],
+    [
+     "005C1432",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C15B0",
+   "text": "calls `005BC4D0(rdx)` and returns 0 when the result P is null; otherwise calls the function pointer at qword `rcx+8` with P plus the sign-extended dword `rcx+0x10`; a non-null result R goes to `00684080(rdx, R, 02CAE660)`, a null result to `0080F420(rdx, 1)` then `00810620(rdx)`, and both paths return 1",
+   "anchors": [
+    [
+     "005C15C3",
+     "call"
+    ],
+    [
+     "005C15D4",
+     "call"
+    ],
+    [
+     "005C15DD",
+     "je"
+    ],
+    [
+     "005C15E9",
+     "call"
+    ],
+    [
+     "005C160B",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C1A30",
+   "text": "calls `005BC4D0(rdx)` and, when the result P is non-null, calls the function pointer at qword `rcx+8` with P plus the sign-extended dword `rcx+0x10`; returns 0 on both paths",
+   "anchors": [
+    [
+     "005C1A3C",
+     "call"
+    ],
+    [
+     "005C1A44",
+     "je"
+    ],
+    [
+     "005C1A4D",
+     "call"
+    ],
+    [
+     "005C1A50",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "005C1AC0",
+   "text": "calls `005BC4D0(rdx)` and returns 0 when the result P is null; otherwise calls the function pointer at qword `rcx+8` with P plus the sign-extended dword `rcx+0x10`, zero-extends the low byte of its result, then calls `0080F420(rdx, 1)` and `00810450(rdx, that byte)` and returns 1",
+   "anchors": [
+    [
+     "005C1AD3",
+     "call"
+    ],
+    [
+     "005C1ADB",
+     "je"
+    ],
+    [
+     "005C1AEF",
+     "movzx"
+    ],
+    [
+     "005C1AF2",
+     "call"
+    ],
+    [
+     "005C1AFC",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C1BB0",
+   "text": "calls `005BCAC0(rdx)` and returns 0 when the result P is null; otherwise calls the function pointer at qword `rcx+8` with P; its result R becomes `R+0x30` when non-null (null stays 0) and goes to `00684080(rdx, that, 02CF8470)`, returning 1",
+   "anchors": [
+    [
+     "005C1BC3",
+     "call"
+    ],
+    [
+     "005C1BCB",
+     "je"
+    ],
+    [
+     "005C1BD0",
+     "call"
+    ],
+    [
+     "005C1BD8",
+     "add"
+    ],
+    [
+     "005C1BE9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C1C70",
+   "text": "calls `005BCAC0(rdx)` and returns 0 when the result P is null; otherwise calls the function pointer at qword `rcx+8` with P, then calls `0080F420(rdx, 1)` and `00810660(rdx, 64-bit result)` and returns 1",
+   "anchors": [
+    [
+     "005C1C83",
+     "call"
+    ],
+    [
+     "005C1C8B",
+     "je"
+    ],
+    [
+     "005C1C90",
+     "call"
+    ],
+    [
+     "005C1C9E",
+     "call"
+    ],
+    [
+     "005C1CA9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C1CD0",
+   "text": "calls `005BCAC0(rdx)` and returns 0 when the result P is null; otherwise calls the function pointer at qword `rcx+8` with P; a non-null result R goes to `00684080(rdx, R+0x30, 02CF8470)`, a null result to `0080F420(rdx, 1)` then `00810620(rdx)`, and both paths return 1",
+   "anchors": [
+    [
+     "005C1CE3",
+     "call"
+    ],
+    [
+     "005C1CF0",
+     "call"
+    ],
+    [
+     "005C1CF9",
+     "je"
+    ],
+    [
+     "005C1D06",
+     "call"
+    ],
+    [
+     "005C1D28",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C1E00",
+   "text": "calls `005BCD20(rdx)` and returns 0 when the result P is null; otherwise calls the function pointer at qword `rcx+8` with P, then calls `0080F420(rdx, 1)` and `00810640(rdx)` with the call's `xmm0` result passed in `xmm1`, and returns 1",
+   "anchors": [
+    [
+     "005C1E13",
+     "call"
+    ],
+    [
+     "005C1E1B",
+     "je"
+    ],
+    [
+     "005C1E25",
+     "call"
+    ],
+    [
+     "005C1E33",
+     "call"
+    ],
+    [
+     "005C1E3E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005CF610",
+   "text": "calls `005F2DE0(rdx)` and copies from the result P to `r8` the 16-byte blocks `+0x0` and `+0x10`, the qword `+0x20`, the dword `+0x28` and the qword `+0x30`, then tail-jumps to `00646C00(r8+0x38, P+0x38)`",
+   "anchors": [
+    [
+     "005CF61C",
+     "call"
+    ],
+    [
+     "005CF628",
+     "movups"
+    ],
+    [
+     "005CF638",
+     "movsd"
+    ],
+    [
+     "005CF640",
+     "mov"
+    ],
+    [
+     "005CF654",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005CFA40",
+   "text": "calls `005F47E0(rdx)` and copies from the result P to `r8` the word `+0x0` and the bytes `+0x2` and `+0x3`; when `r8+8` differs from `P+8`, calls `001EAD40(r8+8, Q)` where Q is qword `P+8` minus (byte `P+8` AND 1); then copies the dwords `+0x10` and `+0x14`",
+   "anchors": [
+    [
+     "005CFA50",
+     "call"
+    ],
+    [
+     "005CFA5F",
+     "mov"
+    ],
+    [
+     "005CFA74",
+     "cmp"
+    ],
+    [
+     "005CFA87",
+     "call"
+    ],
+    [
+     "005CFA8F",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005D0710",
+   "text": "calls `005F4BE0(rdx)`, copies the 16 bytes `+0x0` of the result P to `r8`, clears the top bit (bit index 31) of dword `P+0x10` and calls `005E2F20(that value, qword P+0x18)`; when the old qword `r8+0x18` differs from that result, the top bit of the old dword `r8+0x10` is clear and the old qword is non-null, it calls `00584730(old qword)`; then stores the result to qword `r8+0x18` and the cleared value to dword `r8+0x10`",
+   "anchors": [
+    [
+     "005D0725",
+     "call"
+    ],
+    [
+     "005D0737",
+     "btr"
+    ],
+    [
+     "005D073D",
+     "call"
+    ],
+    [
+     "005D075F",
+     "call"
+    ],
+    [
+     "005D076D",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005D09F0",
+   "text": "calls `005F51E0(rdx)` and copies the qword `+0x0` of the result P to `r8`; when `r8+8` differs from `P+8`, calls `001EAD40(r8+8, Q)` where Q is qword `P+8` minus (byte `P+8` AND 1); then copies the dword `+0x10`, the word `+0x14` and the bytes `+0x16` and `+0x17`",
+   "anchors": [
+    [
+     "005D0A00",
+     "call"
+    ],
+    [
+     "005D0A0F",
+     "mov"
+    ],
+    [
+     "005D0A29",
+     "call"
+    ],
+    [
+     "005D0A31",
+     "mov"
+    ],
+    [
+     "005D0A47",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005D1990",
+   "text": "calls `005F50E0(rdx)`, then with the result P calls `005DE830(r8, P)` and tail-jumps to `005DE680(r8+0x10, P+0x10)`",
+   "anchors": [
+    [
+     "005D19A0",
+     "call"
+    ],
+    [
+     "005D19AE",
+     "call"
+    ],
+    [
+     "005D19C5",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005D24C0",
+   "text": "calls `005F4DE0(rdx)`, copies the 16 bytes `+0x0` of the result P to `r8`, clears the top bit (bit index 31) of dword `P+0x10` and calls `005E2FB0(that value, qword P+0x18)`; when the old qword `r8+0x18` differs from that result, the top bit of the old dword `r8+0x10` is clear and the old qword is non-null, it calls `00584730(old qword)`; then stores the result to qword `r8+0x18` and the cleared value to dword `r8+0x10`",
+   "anchors": [
+    [
+     "005D24D5",
+     "call"
+    ],
+    [
+     "005D24E7",
+     "btr"
+    ],
+    [
+     "005D24ED",
+     "call"
+    ],
+    [
+     "005D250F",
+     "call"
+    ],
+    [
+     "005D251D",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005D2C80",
+   "text": "calls `005F2BE0(rdx)`; when the result P differs from `r8`, calls `001EAD40(r8, Q)` where Q is qword `[P]` minus (byte `[P]` AND 1); then, when `r8+8` differs from `P+8`, calls `001EAD40(r8+8, Q)` where Q is qword `P+8` minus (byte `P+8` AND 1)",
+   "anchors": [
+    [
+     "005D2C90",
+     "call"
+    ],
+    [
+     "005D2C98",
+     "cmp"
+    ],
+    [
+     "005D2CAC",
+     "call"
+    ],
+    [
+     "005D2CB9",
+     "cmp"
+    ],
+    [
+     "005D2CCA",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005D3D10",
+   "text": "calls `005F34E0(rdx)`, copies the dword `+0x0` of the result P to `[r8]`, calls `005DE710(r8+8, P+8)`, `005DE680(r8+0x18, P+0x18)` and `005DE830(r8+0x28, P+0x28)`, and copies the dword `+0x38`",
+   "anchors": [
+    [
+     "005D3D20",
+     "call"
+    ],
+    [
+     "005D3D34",
+     "call"
+    ],
+    [
+     "005D3D41",
+     "call"
+    ],
+    [
+     "005D3D4E",
+     "call"
+    ],
+    [
+     "005D3D5B",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005D7990",
+   "text": "calls `005F2EE0(rdx)` and copies the qword `+0x0` of the result P to `r8`; when `r8+8` differs from `P+8`, calls `001EAD40(r8+8, Q)` where Q is qword `P+8` minus (byte `P+8` AND 1); then copies the word `+0x10` and the bytes `+0x12` and `+0x13`",
+   "anchors": [
+    [
+     "005D79A0",
+     "call"
+    ],
+    [
+     "005D79AF",
+     "mov"
+    ],
+    [
+     "005D79C9",
+     "call"
+    ],
+    [
+     "005D79D2",
+     "mov"
+    ],
+    [
+     "005D79E1",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005FF6D0",
+   "text": "calls `00811470(rdx, -1, 0)`, `00811130(rdx, -2)`, `00683B50(rdx)` and `005F8450(rdx)`; when the last is non-null it calls the function pointer at qword `rcx+8` with that result, the `00683B50` result and the `00811470` result as a dword; returns 0 on both paths",
+   "anchors": [
+    [
+     "005FF6F3",
+     "call"
+    ],
+    [
+     "005FF703",
+     "call"
+    ],
+    [
+     "005FF70B",
+     "call"
+    ],
+    [
+     "005FF716",
+     "call"
+    ],
+    [
+     "005FF729",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005FF750",
+   "text": "calls `00811640(rdx, -1, 0)`, `00811130(rdx, -2)`, `00683B50(rdx)` and `005F8450(rdx)`; when the last is non-null it calls the function pointer at qword `rcx+8` with that result, the `00683B50` result and the `00811640` `xmm0` result in `xmm2`; returns 0 on both paths",
+   "anchors": [
+    [
+     "005FF773",
+     "call"
+    ],
+    [
+     "005FF783",
+     "call"
+    ],
+    [
+     "005FF78B",
+     "call"
+    ],
+    [
+     "005FF796",
+     "call"
+    ],
+    [
+     "005FF7A9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005FF880",
+   "text": "calls `00683BF0(rdx)` and loads 16 bytes from its result, then calls `00683B50(rdx)` and `005F8450(rdx)`; when the last is non-null it stores the 16 bytes to a stack slot and calls the function pointer at qword `rcx+8` with that result, the `00683B50` result and the slot's address; returns 0 on both paths",
+   "anchors": [
+    [
+     "005FF89D",
+     "call"
+    ],
+    [
+     "005FF8A5",
+     "movups"
+    ],
+    [
+     "005FF8B3",
+     "call"
+    ],
+    [
+     "005FF8C2",
+     "movdqa"
+    ],
+    [
+     "005FF8CE",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005FF990",
+   "text": "calls `00811470(rdx, -1, 0)`, `00811130(rdx, -2)` and `005F86B0(rdx)`, returning 0 when the last is null; otherwise calls the function pointer at qword `rcx+8` with that result and the `00811470` result as a dword, passes its result to `00684130(rdx, result)` and returns 1",
+   "anchors": [
+    [
+     "005FF9AE",
+     "call"
+    ],
+    [
+     "005FF9BE",
+     "call"
+    ],
+    [
+     "005FF9C6",
+     "call"
+    ],
+    [
+     "005FF9D5",
+     "call"
+    ],
+    [
+     "005FF9DE",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005FFCC0",
+   "text": "calls `00811470(rdx, -1, 0)`, `00811130(rdx, -2)` and `005F94F0(rdx)`, returning 0 when the last is null; otherwise calls the function pointer at qword `rcx+8` with that result and the `00811470` result as a dword, then calls `0080F420(rdx, 1)` and `00810580(rdx, eax result)` and returns 1",
+   "anchors": [
+    [
+     "005FFCDE",
+     "call"
+    ],
+    [
+     "005FFCEE",
+     "call"
+    ],
+    [
+     "005FFCF6",
+     "call"
+    ],
+    [
+     "005FFD05",
+     "call"
+    ],
+    [
+     "005FFD1C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005FFDE0",
+   "text": "calls `005FCB90(rdx)` and returns 0 when the result P is null; otherwise calls the function pointer at qword `rcx+8` with P, then calls `0080F420(rdx, 1)` and `00810660(rdx, 64-bit result)` and returns 1",
+   "anchors": [
+    [
+     "005FFDF3",
+     "call"
+    ],
+    [
+     "005FFDFB",
+     "je"
+    ],
+    [
+     "005FFE00",
+     "call"
+    ],
+    [
+     "005FFE0E",
+     "call"
+    ],
+    [
+     "005FFE19",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00604220",
+   "text": "reads the dword at `+4` of the thread-local block indexed by dword `02EAED3C` (via `gs:[0x58]`) and, unless dword `02CED0B8` is greater (signed) than that dword, returns the address `02CED0A0`; otherwise calls `008092FC` with the address `02CED0B8` and, only when dword `02CED0B8` is then -1, stores the address `02CB77A0` OR 1 to qword `02CED0A0`, calls `005D8CA0()` and stores its result to qword `02CED0A8`, zeroes qword `02CED0B0` and calls `0080929C` with the address `02CED0B8`; both paths return `02CED0A0`",
+   "anchors": [
+    [
+     "0060423F",
+     "cmp"
+    ],
+    [
+     "0060425F",
+     "cmp"
+    ],
+    [
+     "00604273",
+     "mov"
+    ],
+    [
+     "0060427A",
+     "call"
+    ],
+    [
+     "00604298",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006042A0",
+   "text": "reads the dword at `+4` of the thread-local block indexed by dword `02EAED3C` (via `gs:[0x58]`) and, unless dword `02CED098` is greater (signed) than that dword, returns the address `02CED080`; otherwise calls `008092FC` with the address `02CED098` and, only when dword `02CED098` is then -1, stores the address `02CB77A0` OR 1 to qword `02CED080`, calls `005D8D70()` and stores its result to qword `02CED088`, zeroes qword `02CED090` and calls `0080929C` with the address `02CED098`; both paths return `02CED080`",
+   "anchors": [
+    [
+     "006042BF",
+     "cmp"
+    ],
+    [
+     "006042DF",
+     "cmp"
+    ],
+    [
+     "006042F3",
+     "mov"
+    ],
+    [
+     "006042FA",
+     "call"
+    ],
+    [
+     "00604318",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00611460",
+   "text": "calls `00619700(rdx)` and copies 0x190 bytes from the result to `r8`: a loop of 3 passes each moving 0x80 bytes as eight 16-byte blocks, then one final 16-byte block at `+0x180`",
+   "anchors": [
+    [
+     "0061146C",
+     "call"
+    ],
+    [
+     "00611471",
+     "mov"
+    ],
+    [
+     "00611487",
+     "movups"
+    ],
+    [
+     "006114C7",
+     "jne"
+    ],
+    [
+     "006114CC",
+     "movups"
+    ]
+   ]
+  },
+  {
+   "fn": "00612A60",
+   "text": "calls `00619800(rdx)`; when the result P differs from `r8`, calls `001EAD40(r8, Q)` where Q is qword `[P]` minus (byte `[P]` AND 1); then on both paths copies the qword `+0x8` and the dwords `+0x10`, `+0x14` and `+0x18` from P to `r8`",
+   "anchors": [
+    [
+     "00612A70",
+     "call"
+    ],
+    [
+     "00612A78",
+     "cmp"
+    ],
+    [
+     "00612A8C",
+     "call"
+    ],
+    [
+     "00612A95",
+     "mov"
+    ],
+    [
+     "00612AAD",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00624820",
+   "text": "calls `00619D00(rdx)` and copies 0x108 bytes from the result to `r8`: a loop of 2 passes each moving 0x80 bytes as eight 16-byte blocks, then the qword at `+0x100`",
+   "anchors": [
+    [
+     "0062482C",
+     "call"
+    ],
+    [
+     "00624831",
+     "mov"
+    ],
+    [
+     "00624847",
+     "movups"
+    ],
+    [
+     "00624887",
+     "jne"
+    ],
+    [
+     "0062488C",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0063A150",
+   "text": "calls `006366C0(rdx)` and `00636B80(rdx)`, returning 0 when the latter's result P is null; otherwise calls the function pointer at qword `rcx+8` with P plus the sign-extended dword `rcx+0x10` and the `006366C0` result, zero-extends the low byte of its result, calls `0080F420(rdx, 1)` and `00810450(rdx, that byte)` and returns 1",
+   "anchors": [
+    [
+     "0063A168",
+     "call"
+    ],
+    [
+     "0063A173",
+     "call"
+    ],
+    [
+     "0063A187",
+     "call"
+    ],
+    [
+     "0063A192",
+     "movzx"
+    ],
+    [
+     "0063A19F",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0063C310",
+   "text": "calls `00811640(rdx, -1, 0)`, keeps its `xmm0` result, calls `00811130(rdx, -2)` and stores the kept value as a 4-byte float to `[r8]`",
+   "anchors": [
+    [
+     "0063C32E",
+     "call"
+    ],
+    [
+     "0063C33E",
+     "call"
+    ],
+    [
+     "0063C348",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "0063C360",
+   "text": "calls `00811640(rdx, -1, 0)`, converts its `xmm0` result from single to double precision, calls `00811130(rdx, -2)` and stores the double to qword `[r8]`",
+   "anchors": [
+    [
+     "0063C37E",
+     "call"
+    ],
+    [
+     "0063C38E",
+     "cvtss2sd"
+    ],
+    [
+     "0063C392",
+     "call"
+    ],
+    [
+     "0063C39C",
+     "movsd"
+    ]
+   ]
+  },
+  {
+   "fn": "0065F390",
+   "text": "calls `0066C800(rdx)`, then with the result P calls `006638A0(r8, P)` and `006632F0(r8+0x30, P+0x30)` and tail-jumps to `006636B0(r8+0x40, P+0x40)`",
+   "anchors": [
+    [
+     "0065F3A0",
+     "call"
+    ],
+    [
+     "0065F3AE",
+     "call"
+    ],
+    [
+     "0065F3BB",
+     "call"
+    ],
+    [
+     "0065F3D2",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0065FB70",
+   "text": "calls `0066C600(rdx)`, then with the result P calls `006638A0(r8, P)` and `006632F0(r8+0x30, P+0x30)` and tail-jumps to `006636B0(r8+0x40, P+0x40)`",
+   "anchors": [
+    [
+     "0065FB80",
+     "call"
+    ],
+    [
+     "0065FB8E",
+     "call"
+    ],
+    [
+     "0065FB9B",
+     "call"
+    ],
+    [
+     "0065FBB2",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00660510",
+   "text": "calls `0066BD00(rdx)`, then with the result P calls `00663560(r8, P)` and `00663400(r8+0x20, P+0x20)` and copies the dwords `+0x70`, `+0x74` and `+0x78` and the qword `+0x80` from P to `r8`",
+   "anchors": [
+    [
+     "00660520",
+     "call"
+    ],
+    [
+     "0066052E",
+     "call"
+    ],
+    [
+     "0066053B",
+     "call"
+    ],
+    [
+     "00660543",
+     "mov"
+    ],
+    [
+     "0066055E",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006613B0",
+   "text": "calls `0066BA00(rdx)`, then with the result P calls `00663560(r8, P)` and `00663400(r8+0x20, P+0x20)` and copies the dwords `+0x70`, `+0x74` and `+0x78` and the qword `+0x80` from P to `r8`",
+   "anchors": [
+    [
+     "006613C0",
+     "call"
+    ],
+    [
+     "006613CE",
+     "call"
+    ],
+    [
+     "006613DB",
+     "call"
+    ],
+    [
+     "006613E3",
+     "mov"
+    ],
+    [
+     "006613FE",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0066FD90",
+   "text": "calls `00683B50(rdx)` and `0066E900(rdx)`, returning 0 when the latter is null; otherwise calls the function pointer at qword `rcx+8` with that result and the `00683B50` result, sign-extends its `eax` result to 64 bits, calls `0080F420(rdx, 1)` and `00810580(rdx, that value)` and returns 1",
+   "anchors": [
+    [
+     "0066FDA8",
+     "call"
+    ],
+    [
+     "0066FDB3",
+     "call"
+    ],
+    [
+     "0066FDC3",
+     "call"
+    ],
+    [
+     "0066FDCE",
+     "movsxd"
+    ],
+    [
+     "0066FDDC",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00674E90",
+   "text": "calls `00676600(rdx)` and copies the qword `+0x0` of the result P to `r8`; when `r8+8` differs from `P+8`, calls `001EAD40(r8+8, Q)` where Q is qword `P+8` minus (byte `P+8` AND 1); both paths then copy the qword `+0x10`",
+   "anchors": [
+    [
+     "00674EA0",
+     "call"
+    ],
+    [
+     "00674EAF",
+     "mov"
+    ],
+    [
+     "00674EC9",
+     "call"
+    ],
+    [
+     "00674ED2",
+     "mov"
+    ],
+    [
+     "00674EE5",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00677680",
+   "text": "calls `00676810(rdx)` and returns 0 when the result P is null; otherwise calls the function pointer at qword `rcx+8` with P plus the sign-extended dword `rcx+0x10`; its result R becomes `R+0x30` when non-null (null stays 0) and goes to `00684080(rdx, that, 02CF8470)`, returning 1",
+   "anchors": [
+    [
+     "00677693",
+     "call"
+    ],
+    [
+     "0067769B",
+     "je"
+    ],
+    [
+     "006776A4",
+     "call"
+    ],
+    [
+     "006776AC",
+     "add"
+    ],
+    [
+     "006776BD",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006776E0",
+   "text": "calls `00676810(rdx)` and returns 0 when the result P is null; otherwise calls the function pointer at qword `rcx+8` with P plus the sign-extended dword `rcx+0x10`, passes its result R to `00684080(rdx, R, 02E4D630)` and returns 1",
+   "anchors": [
+    [
+     "006776F3",
+     "call"
+    ],
+    [
+     "006776FB",
+     "je"
+    ],
+    [
+     "00677704",
+     "call"
+    ],
+    [
+     "00677714",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00678F90",
+   "text": "calls `00811640(rdx, -1, 0)`, keeps its `xmm0` result, calls `00811130(rdx, -2)` and `00678DE0(rdx)`; when the result P is non-null it calls the function pointer at qword `rcx+8` with P plus the sign-extended dword `rcx+0x10` and the kept value in `xmm1`; returns 0 on both paths",
+   "anchors": [
+    [
+     "00678FAE",
+     "call"
+    ],
+    [
+     "00678FBE",
+     "call"
+    ],
+    [
+     "00678FC6",
+     "call"
+    ],
+    [
+     "00678FD7",
+     "add"
+    ],
+    [
+     "00678FDA",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0067EF00",
+   "text": "calls `0067EDD0(rdx)` and returns 0 when the result P is null; otherwise calls the function pointer at qword `rcx+8` with P, passes its result to `006B3610(rdx, result)` and returns 1",
+   "anchors": [
+    [
+     "0067EF13",
+     "call"
+    ],
+    [
+     "0067EF1B",
+     "je"
+    ],
+    [
+     "0067EF20",
+     "call"
+    ],
+    [
+     "0067EF29",
+     "call"
+    ],
+    [
+     "0067EF2E",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00680D20",
+   "text": "calls `00683250(rdx)`; when the result P differs from `r8`, calls `001EAD40(r8, Q)` where Q is qword `[P]` minus (byte `[P]` AND 1); then on both paths copies the qwords `+0x8` and `+0x10` from P to `r8`",
+   "anchors": [
+    [
+     "00680D30",
+     "call"
+    ],
+    [
+     "00680D38",
+     "cmp"
+    ],
+    [
+     "00680D4C",
+     "call"
+    ],
+    [
+     "00680D55",
+     "mov"
+    ],
+    [
+     "00680D62",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0068A850",
+   "text": "calls `0069A950(rdx)`, then with the result P calls `006928B0(r8, P)` and copies the qwords `+0x118` and `+0x120` from P to `r8`",
+   "anchors": [
+    [
+     "0068A860",
+     "call"
+    ],
+    [
+     "0068A86E",
+     "call"
+    ],
+    [
+     "0068A87A",
+     "mov"
+    ],
+    [
+     "0068A88D",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0068BCC0",
+   "text": "calls `0069A750(rdx)`, then with the result P calls `006928B0(r8, P)` and copies the qwords `+0x118` and `+0x120` from P to `r8`",
+   "anchors": [
+    [
+     "0068BCD0",
+     "call"
+    ],
+    [
+     "0068BCDE",
+     "call"
+    ],
+    [
+     "0068BCEA",
+     "mov"
+    ],
+    [
+     "0068BCFD",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006A0EE0",
+   "text": "calls `0069BFC0(rdx)` and returns 0 when the result P is null; otherwise calls the function pointer at qword `rcx+8` with P plus the sign-extended dword `rcx+0x10`, passes its result to `006843D0(rdx, result)` and returns 1",
+   "anchors": [
+    [
+     "006A0EF3",
+     "call"
+    ],
+    [
+     "006A0EFB",
+     "je"
+    ],
+    [
+     "006A0F04",
+     "call"
+    ],
+    [
+     "006A0F0D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006A0FE0",
+   "text": "calls `0069C220(rdx)` and returns 0 when the result P is null; otherwise calls the function pointer at qword `rcx+8` with P, then calls `0080F420(rdx, 1)` and `00810640(rdx)` with the call's `xmm0` result passed in `xmm1`, and returns 1",
+   "anchors": [
+    [
+     "006A0FF3",
+     "call"
+    ],
+    [
+     "006A0FFB",
+     "je"
+    ],
+    [
+     "006A1005",
+     "call"
+    ],
+    [
+     "006A1013",
+     "call"
+    ],
+    [
+     "006A101E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006A1050",
+   "text": "calls `0069C220(rdx)` and returns 0 when the result P is null; otherwise calls the function pointer at qword `rcx+8` with P, zero-extends the low byte of its result, then calls `0080F420(rdx, 1)` and `00810450(rdx, that byte)` and returns 1",
+   "anchors": [
+    [
+     "006A1063",
+     "call"
+    ],
+    [
+     "006A106B",
+     "je"
+    ],
+    [
+     "006A107B",
+     "movzx"
+    ],
+    [
+     "006A107E",
+     "call"
+    ],
+    [
+     "006A1088",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006A10B0",
+   "text": "calls `0069D520(rdx)` and returns 0 when the result P is null; otherwise calls the function pointer at qword `rcx+8` with P and the address of a 16-byte stack slot, copies the 16 bytes at its returned pointer to a second stack slot, calls `006843D0(rdx, address of that copy)` and returns 1",
+   "anchors": [
+    [
+     "006A10C3",
+     "call"
+    ],
+    [
+     "006A10CB",
+     "je"
+    ],
+    [
+     "006A10D5",
+     "call"
+    ],
+    [
+     "006A10E3",
+     "movaps"
+    ],
+    [
+     "006A10E8",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006A11C0",
+   "text": "calls `0069D650(rdx)` and returns 0 when the result P is null; otherwise calls the function pointer at qword `rcx+8` with P, then calls `0080F420(rdx, 1)` and `00810640(rdx)` with the call's `xmm0` result passed in `xmm1`, and returns 1",
+   "anchors": [
+    [
+     "006A11D3",
+     "call"
+    ],
+    [
+     "006A11DB",
+     "je"
+    ],
+    [
+     "006A11E5",
+     "call"
+    ],
+    [
+     "006A11F3",
+     "call"
+    ],
+    [
+     "006A11FE",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006A1230",
+   "text": "calls `0069D650(rdx)` and returns 0 when the result P is null; otherwise calls the function pointer at qword `rcx+8` with P; a non-null result R goes to `00684080(rdx, R+8, 02E518D0)`, a null result to `0080F420(rdx, 1)` then `00810620(rdx)`, and both paths return 1",
+   "anchors": [
+    [
+     "006A1243",
+     "call"
+    ],
+    [
+     "006A1250",
+     "call"
+    ],
+    [
+     "006A1259",
+     "je"
+    ],
+    [
+     "006A1266",
+     "call"
+    ],
+    [
+     "006A1288",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006A1330",
+   "text": "calls `0069D650(rdx)` and, when the result P is non-null, calls the function pointer at qword `rcx+8` with P; returns 0 on both paths",
+   "anchors": [
+    [
+     "006A133C",
+     "call"
+    ],
+    [
+     "006A1344",
+     "je"
+    ],
+    [
+     "006A1349",
+     "call"
+    ],
+    [
+     "006A134C",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "006A13B0",
+   "text": "calls `0069D650(rdx)` and returns 0 when the result P is null; otherwise calls the function pointer at qword `rcx+8` with P, zero-extends the low byte of its result, then calls `0080F420(rdx, 1)` and `00810450(rdx, that byte)` and returns 1",
+   "anchors": [
+    [
+     "006A13C3",
+     "call"
+    ],
+    [
+     "006A13CB",
+     "je"
+    ],
+    [
+     "006A13DB",
+     "movzx"
+    ],
+    [
+     "006A13DE",
+     "call"
+    ],
+    [
+     "006A13E8",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "00604220, 006042A0",
+   "why": "'greater (signed)' now says greater than what: the thread-local dword (cmp [global], eax / jg)"
+  }
+ ],
+ "mode": "homing"
+}

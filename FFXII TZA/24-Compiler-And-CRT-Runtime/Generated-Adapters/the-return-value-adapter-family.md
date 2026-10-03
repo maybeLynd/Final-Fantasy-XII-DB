@@ -454,13 +454,13 @@ descriptor **slot 11**, so it cannot account for any part of a slot-5 gap; `DF-1
 its own last sentence. This line was left standing beside the answer that retired it.
 ## The `00624580` exclusive subtree — 1 member bound (SWE2-FRONTIER, followup queue)
 
-`00624580` (~32 B) — the standard `mov rcx, rdx; mov rbx, r8; call
-0061A250` slot-3 adapter
+`00624580` ~~(~32 B)~~ (26 B) — the standard `mov rcx, rdx; mov rbx, r8; call
+0061A250` ~~slot-3~~ slot-5 adapter *(corrected 2026-10-02, OPUS: its 26 bytes are the family template; `.rdata` holds it at `00D54AE8` and `00D54B70`, slot 5 after the type pointers `00D54AB8` and `00D54B40`)*
 (`00624586`/`00624589`/`0062458C`).
 
 | member | role | interior |
 | --- | --- | --- |
-| `0061A250` | `PClassDescriptorConcrete` class body | [`0061A250`](../../_index/ADDRESS-INDEX.md) |
+| `0061A250` | ~~`PClassDescriptorConcrete` class body~~ the script-VM object-pointer accessor (`Phyre.ScriptVM.ObjectPointerAccessor`) *(corrected 2026-10-02, OPUS: `0061A250+0x15` calls the `PhyreObject` registry check `00682980`, `0061A250+0x55` walks the class chain at `+0x78`, and a mismatch reports through `00812960` at `0061A250+0x96`)* | [`0061A250`](../../_index/ADDRESS-INDEX.md) |
 
 Shared callees outside the census: none.
 
@@ -496,3 +496,406 @@ Edges are from `edges.tsv`; each sentence rests on the read body named.*
   calls.
 - **UI — CLIENT.** The widget system's set-up, which allocates the `0x7E00`-byte widget pool and the roots and is filed
   under UI, calls the initialiser `002465F0` for the widgets it builds.
+
+## Per-member rows: the getter each return-value adapter calls, and the type it is installed for (OPUS, 2026-10-03)
+
+The DF-4 family (402 members in the frontmatter; 394 get a row here) shares the 26-byte shape of section 2, stated there once and not repeated here: `mov rcx, rdx`, `mov rbx, r8`, one `call`, `mov [rbx], rax`. What differs from member to member is that one `call`: each adapter calls its own getter (no two rows share a target). Each row anchors that call, the member's distinguishing instruction, and states its target and the reflected type T. T is the template argument of every `PClassDescriptor*<T>` vtable that holds the adapter at slot 5 (section 8), read from that vtable's MSVC RTTI type descriptor in the certified image, and every such vtable must agree on T. [`fam_rows.py`](../../_index/candidates/opus-ee-return-value-adapters-1003/fam_rows.py) derives every row from the image and compares it with the committed [`rows.tsv`](../../_index/candidates/opus-ee-return-value-adapters-1003/rows.tsv). A member that is not exactly one direct call fails, and so does a member whose slot-5 vtables disagree on T or whose target or T differs from the row. Two controls are refused: a swapped target and a moved anchor. The getter is given as a bare address, not a citation, because the getters are explained, or not, on their own pages. Only the adapter's anchor counts here, per SWE2-AUDIT-SPEC's ruling `202e59a0a`. Eight DF-4 members get no row, and each is listed with its reason in [`excluded.tsv`](../../_index/candidates/opus-ee-return-value-adapters-1003/excluded.tsv): five are not a single direct call, and three sit in descriptor vtables that do not name one template type T (a non-template descriptor class beside the template one, or several Vectormath types sharing one body). The checker fails if any of them starts deriving. The 46 DF-1 members have no distinguishing instruction (their bodies are identical), so they get no rows.
+
+### All 394 adapters (descriptor slot 5, OPUS)
+
+| member | distinguishing instruction | getter called | reflected type T |
+|---|---|---|---|
+| 00584780 | `0058478C` `call` | 00599CA0 | Phyre::PSerialization::PBinary::PClusterHeaderBase |
+| 005849E0 | `005849EC` `call` | 00599DD0 | Phyre::PSerialization::PBinary::PClusterHeaderD3D11 |
+| 00584C50 | `00584C5C` `call` | 00599B70 | Phyre::PSerialization::PBinary::PClusterHeader |
+| 00584EF0 | `00584EFC` `call` | 00599F00 | Phyre::PSerialization::PBinary::PInternal::PInstanceListHeader |
+| 005A0B40 | `005A0B4C` `call` | 005A06E0 | Phyre::PTimer |
+| 005A0EA0 | `005A0EAC` `call` | 005BD310 | Phyre::PAnimation::PAnimationController |
+| 005A1170 | `005A117C` `call` | 005BE740 | Phyre::PAnimation::PBlendableAnimationSource |
+| 005A1350 | `005A135C` `call` | 005BE4E0 | Phyre::PAnimation::PAnimationTargetBlenderController |
+| 005A1680 | `005A168C` `call` | 005BCD20 | Phyre::PAnimation::PAnimationClip |
+| 005A1850 | `005A185C` `call` | 005BE150 | Phyre::PAnimation::PAnimationSlotFilterDeferredLoad |
+| 005A19D0 | `005A19DC` `call` | 005BE9A0 | Phyre::PAnimation::PTimeController |
+| 005A1CB0 | `005A1CBC` `call` | 005BC990 | Phyre::PAnimation::PAnimationChannelBase |
+| 005A2190 | `005A219C` `call` | 005BEAD0 | Phyre::PAnimation::PTimeIntervalController |
+| 005A22D0 | `005A22DC` `call` | 005BC860 | Phyre::PAnimation::PAnimationChannel |
+| 005A2410 | `005A241C` `call` | 005BC4D0 | Phyre::PAnimation::PAnimatableComponent |
+| 005A2750 | `005A275C` `call` | 005BE020 | Phyre::PAnimation::PAnimationSlotFilter |
+| 005A2890 | `005A289C` `call` | 005BD570 | Phyre::PAnimation::PAnimationDataSourceListEntry |
+| 005A2B80 | `005A2B8C` `call` | 005BEC00 | Phyre::PAnimation::PTimeScaleOffsetController |
+| 005A2EA0 | `005A2EAC` `call` | 005BD1E0 | Phyre::PAnimation::PAnimationConstantChannel |
+| 005A32E0 | `005A32EC` `call` | 005BDC90 | Phyre::PAnimation::PAnimationNetworkInstanceTarget |
+| 005A3490 | `005A349C` `call` | 005BDDC0 | Phyre::PAnimation::PAnimationSet |
+| 005A37F0 | `005A37FC` `call` | 005BC730 | Phyre::PAnimation::PAnimationBlenderController |
+| 005A38E0 | `005A38EC` `call` | 005BE280 | Phyre::PAnimation::PAnimationSlotListIndex |
+| 005A3A10 | `005A3A1C` `call` | 005BCE50 | Phyre::PAnimation::PAnimationClipBinding |
+| 005A3B00 | `005A3B0C` `call` | 005BD6A0 | Phyre::PAnimation::PAnimationEvent |
+| 005A3FB0 | `005A3FBC` `call` | 005BE610 | Phyre::PAnimation::PAnimationWeightedBlenderController |
+| 005A4110 | `005A411C` `call` | 005BDEF0 | Phyre::PAnimation::PAnimationSlotArray |
+| 005A41A0 | `005A41AC` `call` | 005BCF80 | Phyre::PAnimation::PAnimationClipBinding::PAnimationClipBindingChannelMap |
+| 005A4650 | `005A465C` `call` | 005BD440 | Phyre::PAnimation::PAnimationDataSource |
+| 005A47B0 | `005A47BC` `call` | 005BD0B0 | Phyre::PAnimation::PAnimationClipBinding::PAnimationClipBindingDataBlockCache |
+| 005A4900 | `005A490C` `call` | 005BD900 | Phyre::PAnimation::PAnimationEventList |
+| 005A4A60 | `005A4A6C` `call` | 005BC600 | Phyre::PAnimation::PAnimationAdditiveBlenderController |
+| 005A4B10 | `005A4B1C` `call` | 005BCBF0 | Phyre::PAnimation::PAnimationChannelTimes |
+| 005A51F0 | `005A51FC` `call` | 005BD7D0 | Phyre::PAnimation::PAnimationEventController |
+| 005A5330 | `005A533C` `call` | 005BDB60 | Phyre::PAnimation::PAnimationNetworkInstance |
+| 005A5520 | `005A552C` `call` | 005BDA30 | Phyre::PAnimation::PAnimationHierarchyNode |
+| 005A5630 | `005A563C` `call` | 005BE3B0 | Phyre::PAnimation::PAnimationSpuTargetBlenderController |
+| 005A5980 | `005A598C` `call` | 005BCAC0 | Phyre::PAnimation::PAnimationChannelTarget |
+| 005C4D50 | `005C4D5C` `call` | 005BB210 | decorated `V?$PArray@I$03@Phyre@@` |
+| 005C4D70 | `005C4D7C` `call` | 005BB350 | decorated `V?$PArray@M$03@Phyre@@` |
+| 005C4D90 | `005C4D9C` `call` | 005BB490 | decorated `V?$PArray@PEAVPAnimationChannel@PAnimation@Phyre@@$07@Phyre@@` |
+| 005C4DB0 | `005C4DBC` `call` | 005BB5D0 | decorated `V?$PArray@PEAVPAnimationDataSource@PAnimation@Phyre@@$07@Phyre@@` |
+| 005C4DD0 | `005C4DDC` `call` | 005BB710 | decorated `V?$PArray@VPAnimationChannelTarget@PAnimation@Phyre@@$07@Phyre@@` |
+| 005C4DF0 | `005C4DFC` `call` | 005BB850 | decorated `V?$PArray@VPAnimationConstantChannel@PAnimation@Phyre@@$07@Phyre@@` |
+| 005C4E10 | `005C4E1C` `call` | 005BB990 | decorated `V?$PArray@VPAnimationDataSourceListEntry@PAnimation@Phyre@@$07@Phyre@@` |
+| 005C4E30 | `005C4E3C` `call` | 005BBAD0 | decorated `V?$PArray@VPAnimationEvent@PAnimation@Phyre@@$03@Phyre@@` |
+| 005C4E50 | `005C4E5C` `call` | 005BBC10 | decorated `V?$PArray@VPAnimationNetworkInstanceTarget@PAnimation@Phyre@@$07@Phyre@@` |
+| 005C4E70 | `005C4E7C` `call` | 005BBD50 | decorated `V?$PArray@VPAnimationSlotArray@PAnimation@Phyre@@$07@Phyre@@` |
+| 005C4E90 | `005C4E9C` `call` | 005BBE90 | decorated `V?$PArray@VPAnimationSlotFilterDeferredLoad@PAnimation@Phyre@@$07@Phyre@@` |
+| 005C4EB0 | `005C4EBC` `call` | 005BBFD0 | decorated `V?$PArray@VPAnimationSlotListIndex@PAnimation@Phyre@@$07@Phyre@@` |
+| 005C4ED0 | `005C4EDC` `call` | 005BC110 | decorated `V?$PArray@VPBlendableAnimationSource@PAnimation@Phyre@@$07@Phyre@@` |
+| 005C4EF0 | `005C4EFC` `call` | 005BC250 | decorated `V?$PArray@VPQWord@Phyre@@$0BA@@Phyre@@` |
+| 005C4F10 | `005C4F1C` `call` | 005BC390 | decorated `V?$PSharray@PEAVPAnimationClip@PAnimation@Phyre@@@Phyre@@` |
+| 005CDE70 | `005CDE7C` `call` | 005F7AD0 | Phyre::PRendering::PConstantBufferBase |
+| 005CDF80 | `005CDF8C` `call` | 005F8CA0 | Phyre::PRendering::PModifierNetworkDynamicMeshInstance |
+| 005CE090 | `005CE09C` `call` | 005FB9C0 | Phyre::PRendering::PShaderPassParameterLocationTypesBase |
+| 005CE2A0 | `005CE2AC` `call` | 005F93C0 | Phyre::PRendering::PSamplerState |
+| 005CE4C0 | `005CE4CC` `call` | 005FBFB0 | Phyre::PRendering::PShaderSource |
+| 005CE4E0 | `005CE4EC` `call` | 005F7C00 | Phyre::PRendering::PContextVariantFoldingTable |
+| 005CE970 | `005CE97C` `call` | 005FC800 | Phyre::PRendering::PTexture2DBase |
+| 005CEB80 | `005CEB8C` `call` | 005FA920 | Phyre::PRendering::PShaderParameterCaptureBufferRWTexture3D |
+| 005CED20 | `005CED2C` `call` | 005F8A40 | Phyre::PRendering::PMeshInstanceSegmentContext |
+| 005CF290 | `005CF29C` `call` | 005FB3D0 | Phyre::PRendering::PShaderParameterDefinition |
+| 005CF2E0 | `005CF2EC` `call` | 005F7F90 | Phyre::PRendering::PEffectVariant |
+| 005CF800 | `005CF80C` `call` | 005FC930 | Phyre::PRendering::PTexture3D |
+| 005CF950 | `005CF95C` `call` | 005FC5A0 | Phyre::PRendering::PStructuredBufferBase |
+| 005CFB80 | `005CFB8C` `call` | 005F9290 | Phyre::PRendering::PRenderTargetBase |
+| 005CFD40 | `005CFD4C` `call` | 005FAA50 | Phyre::PRendering::PShaderParameterCaptureBufferSampler |
+| 005CFEE0 | `005CFEEC` `call` | 005F9030 | Phyre::PRendering::PParameterBufferBase |
+| 005D0280 | `005D028C` `call` | 005FB890 | Phyre::PRendering::PShaderPassParameterLocationTypes |
+| 005D05A0 | `005D05AC` `call` | 005FC0E0 | Phyre::PRendering::PShaderStreamDefinition |
+| 005D08B0 | `005D08BC` `call` | 005F8DD0 | Phyre::PRendering::PNodeContext |
+| 005D08D0 | `005D08DC` `call` | 005FACB0 | Phyre::PRendering::PShaderParameterCaptureBufferStructuredBuffer |
+| 005D0E10 | `005D0E1C` `call` | 005FCDF0 | Phyre::PRendering::PTextureCubeMapBase |
+| 005D0F00 | `005D0F0C` `call` | 005F8F00 | Phyre::PRendering::PParameterBuffer |
+| 005D0F20 | `005D0F2C` `call` | 005FB500 | Phyre::PRendering::PShaderPass |
+| 005D0F40 | `005D0F4C` `call` | 005FBE80 | Phyre::PRendering::PShaderProgramParamsAndStreams |
+| 005D1240 | `005D124C` `call` | 005FAB80 | Phyre::PRendering::PShaderParameterCaptureBufferStream |
+| 005D1370 | `005D137C` `call` | 005F8910 | Phyre::PRendering::PMeshInstanceBounds |
+| 005D15C0 | `005D15CC` `call` | 005F79A0 | Phyre::PRendering::PConstantBuffer |
+| 005D1970 | `005D197C` `call` | 005FA6C0 | Phyre::PRendering::PShaderParameterCaptureBufferRWStructuredBuffer |
+| 005D1DA0 | `005D1DAC` `call` | 005FBAF0 | Phyre::PRendering::PShaderPassParameterLocationTypesConstantBuffer |
+| 005D2120 | `005D212C` `call` | 005F9620 | Phyre::PRendering::PSceneRenderPass |
+| 005D23A0 | `005D23AC` `call` | 005FBD50 | Phyre::PRendering::PShaderProgramBase |
+| 005D2590 | `005D259C` `call` | 005F8580 | Phyre::PRendering::PMaterialSwitch |
+| 005D25D0 | `005D25DC` `call` | 005FB040 | Phyre::PRendering::PShaderParameterCaptureBufferTextureBase |
+| 005D2A10 | `005D2A1C` `call` | 005F9D40 | Phyre::PRendering::PShaderParameterCaptureBufferByteAddressBuffer |
+| 005D2D20 | `005D2D2C` `call` | 005FBC20 | Phyre::PRendering::PShaderPassStateBase |
+| 005D2EB0 | `005D2EBC` `call` | 005FC210 | Phyre::PRendering::PShaderVertexProgram |
+| 005D30E0 | `005D30EC` `call` | 005F9160 | Phyre::PRendering::PRenderTarget |
+| 005D3130 | `005D313C` `call` | 005FC6D0 | Phyre::PRendering::PTexture2D |
+| 005D3920 | `005D392C` `call` | 005FC470 | Phyre::PRendering::PStructuredBuffer |
+| 005D3A10 | `005D3A1C` `call` | 005FA0D0 | Phyre::PRendering::PShaderParameterCaptureBufferLocation |
+| 005D3A30 | `005D3A3C` `call` | 005FA590 | Phyre::PRendering::PShaderParameterCaptureBufferRWByteAddressBuffer |
+| 005D3C90 | `005D3C9C` `call` | 005FC340 | Phyre::PRendering::PShadowRenderer |
+| 005D4040 | `005D404C` `call` | 005F9AE0 | Phyre::PRendering::PShaderFragmentProgram |
+| 005D4420 | `005D442C` `call` | 005F8450 | Phyre::PRendering::PMaterial |
+| 005D4830 | `005D483C` `call` | 005F86B0 | Phyre::PRendering::PMeshInstance |
+| 005D48A0 | `005D48AC` `call` | 005F7E60 | Phyre::PRendering::PEffect |
+| 005D4C10 | `005D4C1C` `call` | 005FB2A0 | Phyre::PRendering::PShaderParameterCaptureConstantBuffer |
+| 005D4C30 | `005D4C3C` `call` | 005FA200 | Phyre::PRendering::PShaderParameterCaptureBufferLocationSize |
+| 005D4C70 | `005D4C7C` `call` | 005F8320 | Phyre::PRendering::PIndirectArgsBufferBase |
+| 005D52A0 | `005D52AC` `call` | 005FCA60 | Phyre::PRendering::PTexture3DBase |
+| 005D52C0 | `005D52CC` `call` | 005F80C0 | Phyre::PRendering::PForwardShadowRenderer |
+| 005D52E0 | `005D52EC` `call` | 005FB630 | Phyre::PRendering::PShaderPassBase |
+| 005D5510 | `005D551C` `call` | 005F94F0 | Phyre::PRendering::PSamplerStateBase |
+| 005D5550 | `005D555C` `call` | 005F9C10 | Phyre::PRendering::PShaderGeometryProgram |
+| 005D5E20 | `005D5E2C` `call` | 005FAF10 | Phyre::PRendering::PShaderParameterCaptureBufferTexture3D |
+| 005D6200 | `005D620C` `call` | 005FCCC0 | Phyre::PRendering::PTextureCubeMap |
+| 005D63F0 | `005D63FC` `call` | 005F9E70 | Phyre::PRendering::PShaderParameterCaptureBufferDataBlock |
+| 005D6410 | `005D641C` `call` | 005FA330 | Phyre::PRendering::PShaderParameterCaptureBufferLocationType |
+| 005D66A0 | `005D66AC` `call` | 005F7D30 | Phyre::PRendering::PDynamicMeshInstance |
+| 005D69D0 | `005D69DC` `call` | 005F99B0 | Phyre::PRendering::PShaderComputeProgram |
+| 005D6DE0 | `005D6DEC` `call` | 005F9750 | Phyre::PRendering::PSceneWideParameterBuffer |
+| 005D6EE0 | `005D6EEC` `call` | 005FB170 | Phyre::PRendering::PShaderParameterCaptureBufferTextureCubeMap |
+| 005D70F0 | `005D70FC` `call` | 005F8B70 | Phyre::PRendering::PMeshInstanceSegmentStreamBinding |
+| 005D72A0 | `005D72AC` `call` | 005FCB90 | Phyre::PRendering::PTextureCommonBase |
+| 005D7430 | `005D743C` `call` | 005F9FA0 | Phyre::PRendering::PShaderParameterCaptureBufferIndexDataBlock |
+| 005D74D0 | `005D74DC` `call` | 005FA460 | Phyre::PRendering::PShaderParameterCaptureBufferLocationTypeConstantBuffer |
+| 005D7910 | `005D791C` `call` | 005F81F0 | Phyre::PRendering::PIndirectArgsBuffer |
+| 005D7B40 | `005D7B4C` `call` | 005FB760 | Phyre::PRendering::PShaderPassInfo |
+| 005D8120 | `005D812C` `call` | 005FA7F0 | Phyre::PRendering::PShaderParameterCaptureBufferRWTexture2D |
+| 005D81B0 | `005D81BC` `call` | 005F87E0 | Phyre::PRendering::PMeshInstanceAttachPoint |
+| 00606690 | `0060669C` `call` | 005F5CE0 | decorated `V?$PArray@PEAVPEffectVariant@PRendering@Phyre@@$07@Phyre@@` |
+| 006066B0 | `006066BC` `call` | 005F5E20 | decorated `V?$PArray@PEAVPModifierNetworkInstance@PDynamicGeometry@Phyre@@$07@Phyre@@` |
+| 006066D0 | `006066DC` `call` | 005F5F60 | decorated `V?$PArray@PEAVPSceneRenderPass@PRendering@Phyre@@$07@Phyre@@` |
+| 006066F0 | `006066FC` `call` | 005F60A0 | decorated `V?$PArray@PEBVPContextSwitch@PRendering@Phyre@@$07@Phyre@@` |
+| 00606710 | `0060671C` `call` | 005F61E0 | decorated `V?$PArray@PEBVPLightType@PRendering@Phyre@@$07@Phyre@@` |
+| 00606730 | `0060673C` `call` | 005F6320 | decorated `V?$PArray@PEBVPShadowCasterType@PRendering@Phyre@@$07@Phyre@@` |
+| 00606750 | `0060675C` `call` | 005F6460 | decorated `V?$PArray@VPContextVariantFoldingTable@PRendering@Phyre@@$03@Phyre@@` |
+| 00606770 | `0060677C` `call` | 005F65A0 | decorated `V?$PArray@VPMaterialSwitch@PRendering@Phyre@@$07@Phyre@@` |
+| 00606790 | `0060679C` `call` | 005F66E0 | decorated `V?$PArray@VPMatrix4@Phyre@@$03@Phyre@@` |
+| 006067B0 | `006067BC` `call` | 005F6820 | decorated `V?$PArray@VPMeshInstanceSegmentContext@PRendering@Phyre@@$07@Phyre@@` |
+| 006067D0 | `006067DC` `call` | 005F6960 | decorated `V?$PArray@VPNodeContext@PRendering@Phyre@@$07@Phyre@@` |
+| 006067F0 | `006067FC` `call` | 005F6AA0 | decorated `V?$PArray@VPSceneRenderPass@PRendering@Phyre@@$07@Phyre@@` |
+| 00606810 | `0060681C` `call` | 005F6BE0 | decorated `V?$PArray@VPShader@PRendering@Phyre@@$07@Phyre@@` |
+| 00606830 | `0060683C` `call` | 005F6D20 | decorated `V?$PArray@VPShaderParameterCaptureBufferLocation@PRendering@Phyre@@$01@Phyre@@` |
+| 00606850 | `0060685C` `call` | 005F6E60 | decorated `V?$PArray@VPShaderParameterCaptureBufferLocationType@PRendering@Phyre@@$01@Phyre@@` |
+| 00606870 | `0060687C` `call` | 005F6FA0 | decorated `V?$PArray@VPShaderParameterCaptureBufferLocationTypeConstantBuffer@PRendering@Phyre@@$03@Phyre@@` |
+| 00606890 | `0060689C` `call` | 005F70E0 | decorated `V?$PArray@VPShaderParameterDefinition@PRendering@Phyre@@$07@Phyre@@` |
+| 006068B0 | `006068BC` `call` | 005F7220 | decorated `V?$PArray@VPShaderPass@PRendering@Phyre@@$07@Phyre@@` |
+| 006068D0 | `006068DC` `call` | 005F7360 | decorated `V?$PArray@VPShaderPassInfo@PRendering@Phyre@@$07@Phyre@@` |
+| 006068F0 | `006068FC` `call` | 005F74A0 | decorated `V?$PArray@VPShaderStreamDefinition@PRendering@Phyre@@$07@Phyre@@` |
+| 00606910 | `0060691C` `call` | 005F75E0 | decorated `V?$PArray@VPString@Phyre@@$07@Phyre@@` |
+| 00606930 | `0060693C` `call` | 005F7720 | decorated `V?$PSharray@I@Phyre@@` |
+| 00606950 | `0060695C` `call` | 005F7860 | decorated `V?$PSharray@PEBVPMeshInstanceSegmentStreamBinding@PRendering@Phyre@@@Phyre@@` |
+| 00610F60 | `00610F6C` `call` | 0061BCE0 | Phyre::PRendering::PTexture3DD3D11 |
+| 00610FF0 | `00610FFC` `call` | 0061B490 | Phyre::PRendering::PShaderPassStateD3D11 |
+| 00611160 | `0061116C` `call` | 0061B6F0 | Phyre::PRendering::PShaderVertexProgramD3D11 |
+| 006116C0 | `006116CC` `call` | 0061B100 | Phyre::PRendering::PShaderFragmentProgramD3D11 |
+| 006117D0 | `006117DC` `call` | 0061B360 | Phyre::PRendering::PShaderPassD3D11 |
+| 00611B70 | `00611B7C` `call` | 0061AB10 | Phyre::PRendering::PConstantBufferD3D11 |
+| 00611C80 | `00611C8C` `call` | 0061B230 | Phyre::PRendering::PShaderGeometryProgramD3D11 |
+| 00612020 | `0061202C` `call` | 0061BBB0 | Phyre::PRendering::PTexture2DD3D11 |
+| 006120D0 | `006120DC` `call` | 0061AFD0 | Phyre::PRendering::PShaderComputeProgramD3D11 |
+| 00612270 | `0061227C` `call` | 0061AD70 | Phyre::PRendering::PRenderTargetD3D11 |
+| 00612420 | `0061242C` `call` | 0061BA80 | Phyre::PRendering::PStructuredBufferD3D11 |
+| 006128F0 | `006128FC` `call` | 0061B820 | Phyre::PRendering::PStreamInputDescD3D11 |
+| 00612BC0 | `00612BCC` `call` | 0061BE10 | Phyre::PRendering::PTextureCubeMapD3D11 |
+| 00612E10 | `00612E1C` `call` | 0061B950 | Phyre::PRendering::PStreamInputLayoutD3D11 |
+| 00612FB0 | `00612FBC` `call` | 0061AC40 | Phyre::PRendering::PIndirectArgsBufferD3D11 |
+| 00613280 | `0061328C` `call` | 0061B5C0 | Phyre::PRendering::PShaderProgramD3D11 |
+| 00613360 | `0061336C` `call` | 0061AEA0 | Phyre::PRendering::PSamplerStateD3D11 |
+| 006245A0 | `006245AC` `call` | 0061A390 | CD3D11_DEPTH_STENCIL_DESC |
+| 006245C0 | `006245CC` `call` | 0061A4D0 | CD3D11_RASTERIZER_DESC |
+| 006245E0 | `006245EC` `call` | 0061A610 | D3D11_DEPTH_STENCILOP_DESC |
+| 00624600 | `0062460C` `call` | 0061A750 | D3D11_RENDER_TARGET_BLEND_DESC |
+| 00624620 | `0062462C` `call` | 0061A890 | decorated `V?$PArray@E$00@Phyre@@` |
+| 00624640 | `0062464C` `call` | 0061A9D0 | decorated `V?$PArray@VPStreamInputDescD3D11@PRendering@Phyre@@$07@Phyre@@` |
+| 0062EE30 | `0062EE3C` `call` | 00636F10 | Phyre::PClusterDependencyList |
+| 0062F230 | `0062F23C` `call` | 005BE870 | Phyre::PCluster |
+| 0062F410 | `0062F41C` `call` | 00636A50 | Phyre::PClassDataMemberDynamic |
+| 0062F5D0 | `0062F5DC` `call` | 00637040 | Phyre::PNamespace |
+| 0062F770 | `0062F77C` `call` | 00637170 | Phyre::PWorld |
+| 0062F990 | `0062F99C` `call` | 00636CB0 | Phyre::PClassDescriptorDynamic |
+| 0062F9B0 | `0062F9BC` `call` | 00636DE0 | Phyre::PClassMember |
+| 0063BFE0 | `0063BFEC` `call` | 006367E0 | decorated `V?$PSharray@VPString@Phyre@@@Phyre@@` |
+| 0063EBB0 | `0063EBBC` `call` | 0064E480 | Phyre::PPostProcessing::PDepthOfField |
+| 0063ECE0 | `0063ECEC` `call` | 0064DC30 | Phyre::PPostProcessing::PAtmosphericsD3D11 |
+| 0063EDB0 | `0063EDBC` `call` | 00650230 | Phyre::PPostProcessing::PScreenSpaceReflectionBase |
+| 0063F0C0 | `0063F0CC` `call` | 0064F2C0 | Phyre::PPostProcessing::PMLAABase |
+| 0063F560 | `0063F56C` `call` | 0064E220 | Phyre::PPostProcessing::PDeferredLightingBase |
+| 0063F8E0 | `0063F8EC` `call` | 0064ECD0 | Phyre::PPostProcessing::PGlowBase |
+| 0063FA90 | `0063FA9C` `call` | 00650360 | Phyre::PPostProcessing::PScreenSpaceReflectionD3D11 |
+| 0063FD30 | `0063FD3C` `call` | 0064D9D0 | Phyre::PPostProcessing::PAtmospherics |
+| 0063FDE0 | `0063FDEC` `call` | 0064F3F0 | Phyre::PPostProcessing::PMLAAD3D11 |
+| 00640020 | `0064002C` `call` | 0064F780 | Phyre::PPostProcessing::PMotionBlur |
+| 00640580 | `0064058C` `call` | 0064EF30 | Phyre::PPostProcessing::PGlowGPUBase |
+| 00640710 | `0064071C` `call` | 00650100 | Phyre::PPostProcessing::PScreenSpaceReflection |
+| 006407E0 | `006407EC` `call` | 0064F060 | Phyre::PPostProcessing::PLowResParticles |
+| 006409F0 | `006409FC` `call` | 0064F190 | Phyre::PPostProcessing::PMLAA |
+| 00640BA0 | `00640BAC` `call` | 0064FEA0 | Phyre::PPostProcessing::PScreenSpaceAmbientOcclusionBase |
+| 00641040 | `0064104C` `call` | 0064E350 | Phyre::PPostProcessing::PDeferredLightingD3D11 |
+| 006411C0 | `006411CC` `call` | 0064EE00 | Phyre::PPostProcessing::PGlowD3D11 |
+| 00641710 | `0064171C` `call` | 0064F520 | Phyre::PPostProcessing::PMaterialPostEffect |
+| 00641730 | `0064173C` `call` | 0064DE90 | Phyre::PPostProcessing::PCelShadingBase |
+| 00641960 | `0064196C` `call` | 0064FFD0 | Phyre::PPostProcessing::PScreenSpaceAmbientOcclusionD3D11 |
+| 00641E00 | `00641E0C` `call` | 0064EBA0 | Phyre::PPostProcessing::PGlow |
+| 00641F90 | `00641F9C` `call` | 0064E0F0 | Phyre::PPostProcessing::PDeferredLighting |
+| 00642050 | `0064205C` `call` | 0064DFC0 | Phyre::PPostProcessing::PCelShadingD3D11 |
+| 006422E0 | `006422EC` `call` | 0064FD70 | Phyre::PPostProcessing::PScreenSpaceAmbientOcclusion |
+| 00642820 | `0064282C` `call` | 0064E940 | Phyre::PPostProcessing::PFXAABase |
+| 00642970 | `0064297C` `call` | 0064E5B0 | Phyre::PPostProcessing::PDepthOfFieldBase |
+| 00642A00 | `00642A0C` `call` | 0064FC40 | Phyre::PPostProcessing::PPostEffectManager |
+| 00642AB0 | `00642ABC` `call` | 0064DD60 | Phyre::PPostProcessing::PCelShading |
+| 006431D0 | `006431DC` `call` | 0064F650 | Phyre::PPostProcessing::PMeshParticleSystemBase |
+| 00643280 | `0064328C` `call` | 0064EA70 | Phyre::PPostProcessing::PFXAAD3D11 |
+| 00643450 | `0064345C` `call` | 0064FB10 | Phyre::PPostProcessing::PPostEffectBase |
+| 006438F0 | `006438FC` `call` | 0064E6E0 | Phyre::PPostProcessing::PDepthOfFieldD3D11 |
+| 00643A20 | `00643A2C` `call` | 0064E810 | Phyre::PPostProcessing::PFXAA |
+| 00643B50 | `00643B5C` `call` | 0064F8B0 | Phyre::PPostProcessing::PMotionBlurBase |
+| 00643CD0 | `00643CDC` `call` | 0064DB00 | Phyre::PPostProcessing::PAtmosphericsBase |
+| 00653B90 | `00653B9C` `call` | 0064D890 | decorated `V?$PArray@PEAVPPostEffectBase@PPostProcessing@Phyre@@$07@Phyre@@` |
+| 0065E8E0 | `0065E8EC` `call` | 0066EB60 | Phyre::PGeometry::PMeshSegmentBase |
+| 0065EB30 | `0065EB3C` `call` | 0066E440 | Phyre::PGeometry::PIndexDataBlockBase |
+| 0065EDA0 | `0065EDAC` `call` | 0066E900 | Phyre::PGeometry::PMesh |
+| 0065F050 | `0065F05C` `call` | 0066EC90 | Phyre::PGeometry::PMeshSegmentD3D11 |
+| 0065F070 | `0065F07C` `call` | 0066E570 | Phyre::PGeometry::PIndexDataBlockBufferD3D11 |
+| 0065F370 | `0065F37C` `call` | 0066DD20 | Phyre::PGeometry::PDataBlockBufferD3D11 |
+| 0065F670 | `0065F67C` `call` | 0066F150 | Phyre::PGeometry::PVertexStream |
+| 0065F880 | `0065F88C` `call` | 0066EA30 | Phyre::PGeometry::PMeshSegment |
+| 0065FD00 | `0065FD0C` `call` | 0066E0B0 | Phyre::PGeometry::PDynamicMesh |
+| 0065FD20 | `0065FD2C` `call` | 0066E6A0 | Phyre::PGeometry::PIndexDataBlockD3D11 |
+| 00660050 | `0066005C` `call` | 0066DE50 | Phyre::PGeometry::PDataBlockD3D11 |
+| 00660170 | `0066017C` `call` | 0066E1E0 | Phyre::PGeometry::PDynamicMesh::PDynamicSegmentDesc |
+| 006602C0 | `006602CC` `call` | 0066E7D0 | Phyre::PGeometry::PMaterialSet |
+| 00660840 | `0066084C` `call` | 0066DBF0 | Phyre::PGeometry::PDataBlockBase |
+| 006609C0 | `006609CC` `call` | 0066EEF0 | Phyre::PGeometry::PSkeletonJointBounds |
+| 00660B90 | `00660B9C` `call` | 0066E310 | Phyre::PGeometry::PIndexDataBlock |
+| 00660D90 | `00660D9C` `call` | 0066EDC0 | Phyre::PGeometry::PShape |
+| 00661000 | `0066100C` `call` | 0066DAC0 | Phyre::PGeometry::PDataBlock |
+| 00661440 | `0066144C` `call` | 0066F020 | Phyre::PGeometry::PSkinBoneRemap |
+| 006616C0 | `006616CC` `call` | 0066DF80 | Phyre::PGeometry::PDynamicDataBlock |
+| 00671080 | `0067108C` `call` | 0066CD00 | decorated `V?$PArray@E$03@Phyre@@` |
+| 006710A0 | `006710AC` `call` | 0066CE40 | decorated `V?$PArray@H$03@Phyre@@` |
+| 006710C0 | `006710CC` `call` | 0066CF80 | decorated `V?$PArray@VPDataBlockD3D11@PGeometry@Phyre@@$07@Phyre@@` |
+| 006710E0 | `006710EC` `call` | 0066D0C0 | decorated `V?$PArray@VPDynamicSegmentDesc@PDynamicMesh@PGeometry@Phyre@@$03@Phyre@@` |
+| 00671100 | `0067110C` `call` | 0066D200 | decorated `V?$PArray@VPMeshSegment@PGeometry@Phyre@@$07@Phyre@@` |
+| 00671120 | `0067112C` `call` | 0066D340 | decorated `V?$PArray@VPSkeletonJointBounds@PGeometry@Phyre@@$03@Phyre@@` |
+| 00671140 | `0067114C` `call` | 0066D480 | decorated `V?$PArray@VPSkinBoneRemap@PGeometry@Phyre@@$01@Phyre@@` |
+| 00671160 | `0067116C` `call` | 0066D5C0 | decorated `V?$PArray@VPVertexStream@PGeometry@Phyre@@$07@Phyre@@` |
+| 00671180 | `0067118C` `call` | 0066D700 | decorated `V?$PSharray@PEAVPMaterial@PRendering@Phyre@@@Phyre@@` |
+| 006711A0 | `006711AC` `call` | 0066D840 | decorated `V?$PSharray@VPDataBlockBufferD3D11@PGeometry@Phyre@@@Phyre@@` |
+| 006711C0 | `006711CC` `call` | 0066D980 | decorated `V?$PSharray@VPIndexDataBlockBufferD3D11@PGeometry@Phyre@@@Phyre@@` |
+| 00674A80 | `00674A8C` `call` | 00676810 | Phyre::PAssetReference |
+| 00674D00 | `00674D0C` `call` | 00676940 | Phyre::PAssetReferenceImport |
+| 00677FD0 | `00677FDC` `call` | 00678CB0 | Phyre::PCamera |
+| 00678220 | `0067822C` `call` | 00678DE0 | Phyre::PCameraProjection |
+| 0067C770 | `0067C77C` `call` | 0067DE90 | Phyre::PText::PBitmapFont |
+| 0067C9A0 | `0067C9AC` `call` | 0067DFC0 | Phyre::PText::PBitmapFontCharInfo |
+| 0067E140 | `0067E14C` `call` | 0067DD50 | decorated `V?$PArray@VPBitmapFontCharInfo@PText@Phyre@@$03@Phyre@@` |
+| 0067E380 | `0067E38C` `call` | 0067EDD0 | Phyre::PWorldMatrix |
+| 00680470 | `0068047C` `call` | 00683580 | Phyre::PScripting::PClassCallableMethodScript |
+| 00680680 | `0068068C` `call` | 00683450 | Phyre::PScripting::PAsyncProcessHeader |
+| 00680930 | `0068093C` `call` | 00683910 | Phyre::PScripting::PScriptCallbackHandler |
+| 006809B0 | `006809BC` `call` | 006836B0 | Phyre::PScripting::PScheduler |
+| 00680B10 | `00680B1C` `call` | 006837E0 | Phyre::PScripting::PScript |
+| 00688040 | `0068804C` `call` | 0069C350 | Phyre::PPhysics::PPhysicsCharacterControllerBullet |
+| 00688150 | `0068815C` `call` | 0069E230 | Phyre::PPhysics::PPhysicsWorld |
+| 006881E0 | `006881EC` `call` | 0069D650 | Phyre::PPhysics::PPhysicsRigidBodyBase |
+| 00688490 | `0068849C` `call` | 0069DB10 | Phyre::PPhysics::PPhysicsShapeBullet |
+| 00688700 | `0068870C` `call` | 0069CF30 | Phyre::PPhysics::PPhysicsMeshBullet |
+| 00688780 | `0068878C` `call` | 0069DFD0 | Phyre::PPhysics::PPhysicsTaperedCapsule |
+| 006891B0 | `006891BC` `call` | 0069C0F0 | Phyre::PPhysics::PPhysicsCharacterController |
+| 00689260 | `0068926C` `call` | 0069C940 | Phyre::PPhysics::PPhysicsInterfaceBase |
+| 00689480 | `0068948C` `call` | 0069D8B0 | Phyre::PPhysics::PPhysicsShape |
+| 006894A0 | `006894AC` `call` | 0069CCD0 | Phyre::PPhysics::PPhysicsMesh |
+| 00689690 | `0068969C` `call` | 0069D2C0 | Phyre::PPhysics::PPhysicsPlaneBase |
+| 00689FA0 | `00689FAC` `call` | 0069E5C0 | Phyre::PPhysics::PRaycastResult |
+| 0068A100 | `0068A10C` `call` | 0069D780 | Phyre::PPhysics::PPhysicsRigidBodyBullet |
+| 0068A4D0 | `0068A4DC` `call` | 0069DD70 | Phyre::PPhysics::PPhysicsSphereBase |
+| 0068A730 | `0068A73C` `call` | 0069C5B0 | Phyre::PPhysics::PPhysicsCylinderBase |
+| 0068A750 | `0068A75C` `call` | 0069CA70 | Phyre::PPhysics::PPhysicsInterfaceBullet |
+| 0068A7B0 | `0068A7BC` `call` | 0069D3F0 | Phyre::PPhysics::PPhysicsPlaneBullet |
+| 0068B2F0 | `0068B2FC` `call` | 0069E360 | Phyre::PPhysics::PPhysicsWorldBase |
+| 0068B3A0 | `0068B3AC` `call` | 0069D520 | Phyre::PPhysics::PPhysicsRigidBody |
+| 0068B650 | `0068B65C` `call` | 0069DEA0 | Phyre::PPhysics::PPhysicsSphereBullet |
+| 0068B670 | `0068B67C` `call` | 0069C810 | Phyre::PPhysics::PPhysicsInterface |
+| 0068B7E0 | `0068B7EC` `call` | 0069C6E0 | Phyre::PPhysics::PPhysicsCylinderBullet |
+| 0068B800 | `0068B80C` `call` | 0069D190 | Phyre::PPhysics::PPhysicsPlane |
+| 0068C500 | `0068C50C` `call` | 0069DC40 | Phyre::PPhysics::PPhysicsSphere |
+| 0068C5E0 | `0068C5EC` `call` | 0069D060 | Phyre::PPhysics::PPhysicsModel |
+| 0068C600 | `0068C60C` `call` | 0069C480 | Phyre::PPhysics::PPhysicsCylinder |
+| 0068CE60 | `0068CE6C` `call` | 0069B8A0 | Phyre::PPhysics::PPhysicsBoxBase |
+| 0068CE80 | `0068CE8C` `call` | 0069BD60 | Phyre::PPhysics::PPhysicsCapsuleBase |
+| 0068D070 | `0068D07C` `call` | 0069BB00 | Phyre::PPhysics::PPhysicsCallbackData |
+| 0068D480 | `0068D48C` `call` | 0069BFC0 | Phyre::PPhysics::PPhysicsCharacterCamera |
+| 0068D920 | `0068D92C` `call` | 0069B9D0 | Phyre::PPhysics::PPhysicsBoxBullet |
+| 0068D940 | `0068D94C` `call` | 0069BE90 | Phyre::PPhysics::PPhysicsCapsuleBullet |
+| 0068DFB0 | `0068DFBC` `call` | 0069CBA0 | Phyre::PPhysics::PPhysicsMaterial |
+| 0068DFD0 | `0068DFDC` `call` | 0069E490 | Phyre::PPhysics::PPhysicsWorldBullet |
+| 0068E200 | `0068E20C` `call` | 0069B770 | Phyre::PPhysics::PPhysicsBox |
+| 0068E220 | `0068E22C` `call` | 0069BC30 | Phyre::PPhysics::PPhysicsCapsule |
+| 0068E770 | `0068E77C` `call` | 0069C220 | Phyre::PPhysics::PPhysicsCharacterControllerBase |
+| 0068ED80 | `0068ED8C` `call` | 0069CE00 | Phyre::PPhysics::PPhysicsMeshBase |
+| 0068EE80 | `0068EE8C` `call` | 0069E100 | Phyre::PPhysics::PPhysicsTaperedCylinder |
+| 0068EEA0 | `0068EEAC` `call` | 0069D9E0 | Phyre::PPhysics::PPhysicsShapeBase |
+| 006A3D20 | `006A3D2C` `call` | 0069B630 | decorated `V?$PSharray@PEAVPPhysicsShape@PPhysics@Phyre@@@Phyre@@` |
+| 006A6F40 | `006A6F4C` `call` | 006A75B0 | Phyre::PString |
+| 006A79C0 | `006A79CC` `call` | 006A8B60 | Phyre::PGameplay::PTrigger |
+| 006A9160 | `006A916C` `call` | 006A8A20 | decorated `V?$PSharray@PEAVPTriggerReceiverComponent@PGameplay@Phyre@@@Phyre@@` |
+| 006A94A0 | `006A94AC` `call` | 006A9AE0 | Phyre::PGameplay::PQuarryComponent |
+| 006A9C40 | `006A9C4C` `call` | 006AA050 | Phyre::PTypedObject |
+| 006AA720 | `006AA72C` `call` | 006AAF00 | Phyre::PComponent |
+| 006AB320 | `006AB32C` `call` | 006AC1D0 | Phyre::PEntity |
+| 006ACD90 | `006ACD9C` `call` | 006AD370 | Phyre::PCameraOrthographic |
+| 006AD600 | `006AD60C` `call` | 006ADAF0 | Phyre::PCameraPerspective |
+| 006ADCA0 | `006ADCAC` `call` | 006AEE00 | Phyre::PInstancesComponent |
+| 006AF9A0 | `006AF9AC` `call` | 006AFF70 | Phyre::PNameComponent |
+| 006B0240 | `006B024C` `call` | 006B0630 | Phyre::PRandom::PRandomGenerator |
+| 006B39C0 | `006B39CC` `call` | 006B3780 | Phyre::PMatrix4x3 |
+| 006B3C10 | `006B3C1C` `call` | 006B5170 | Phyre::PScene::PNode |
+| 006B6970 | `006B697C` `call` | 006B8BE0 | Phyre::PRendering::PMeshSegmentContext |
+| 006BB480 | `006BB48C` `call` | 006BE020 | Phyre::PDynamicGeometry::PModifierNetworkDynamicMeshSegment |
+| 006BB9E0 | `006BB9EC` `call` | 006BDEF0 | Phyre::PDynamicGeometry::PModifierNetworkDynamicMesh |
+| 006BE240 | `006BE24C` `call` | 006BDB30 | decorated `V?$PArray@PEBE$07@Phyre@@` |
+| 006BE260 | `006BE26C` `call` | 006BDC70 | decorated `V?$PArray@VPModifierNetworkDynamicMeshSegment@PDynamicGeometry@Phyre@@$07@Phyre@@` |
+| 006BE280 | `006BE28C` `call` | 006BDDB0 | decorated `V?$PArray@VPRenderStream@PDynamicGeometry@Phyre@@$07@Phyre@@` |
+| 006BE840 | `006BE84C` `call` | 006BFB10 | Phyre::PRendering::PLight |
+| 006C0710 | `006C071C` `call` | 006C20A0 | Phyre::PRendering::PShadowCaster |
+| 006C0930 | `006C093C` `call` | 006C21D0 | Phyre::PRendering::PShadowCaster::PShadowSplit |
+| 006C25B0 | `006C25BC` `call` | 006C1F60 | decorated `V?$PArray@VPShadowSplit@PShadowCaster@PRendering@Phyre@@$07@Phyre@@` |
+| 006C2810 | `006C281C` `call` | 006C41C0 | Phyre::PDynamicGeometry::PModifierNetworkInstanceInput |
+| 006C2A40 | `006C2A4C` `call` | 006C42F0 | Phyre::PDynamicGeometry::PModifierNetworkInstancePacketInput |
+| 006C2C60 | `006C2C6C` `call` | 006C4090 | Phyre::PDynamicGeometry::PModifierNetworkInstance |
+| 006C4490 | `006C449C` `call` | 006C3F50 | decorated `V?$PArray@PEBVPBase@Phyre@@$07@Phyre@@` |
+| 006C4900 | `006C490C` `call` | 006C7210 | Phyre::PLOD::PLODLevel |
+| 006C4C00 | `006C4C0C` `call` | 006C70E0 | Phyre::PLOD::PLODGroup |
+| 006C7820 | `006C782C` `call` | 006C6E60 | decorated `V?$PArray@VPLODLevel@PLOD@Phyre@@$07@Phyre@@` |
+| 006C7840 | `006C784C` `call` | 006C6FA0 | decorated `V?$PSharray@PEAVPMeshInstance@PRendering@Phyre@@@Phyre@@` |
+| 006C8060 | `006C806C` `call` | 006C8520 | Phyre::POccluderGeometry::POccluderGeometryInstance |
+| 006CCE00 | `006CCE0C` `call` | 006CD140 | Phyre::PGameplay::PScriptableComponent |
+| 006CD6E0 | `006CD6EC` `call` | 006CDC00 | Phyre::PGameplay::PTriggerReceiverTypeCallbackData |
+| 006CDDB0 | `006CDDBC` `call` | 006CE440 | Phyre::PGameplay::PTriggerReceiverComponent |
+| 006CE900 | `006CE90C` `call` | 006D4700 | Phyre::PDynamicGeometry::PModifierNetworkInfoPacket_Buffer |
+| 006CEB10 | `006CEB1C` `call` | 006D4BC0 | Phyre::PDynamicGeometry::PRenderStreamInput |
+| 006CEC30 | `006CEC3C` `call` | 006D45D0 | Phyre::PDynamicGeometry::PModifierNetworkInfoPacket |
+| 006CEEF0 | `006CEEFC` `call` | 006D4A90 | Phyre::PDynamicGeometry::PRenderStream |
+| 006CF150 | `006CF15C` `call` | 006D44A0 | Phyre::PDynamicGeometry::PModifierNetworkBuffer |
+| 006CF3A0 | `006CF3AC` `call` | 006D4240 | Phyre::PDynamicGeometry::PModifierAndInputs |
+| 006CF5D0 | `006CF5DC` `call` | 006D4830 | Phyre::PDynamicGeometry::PModifierNetworkInfoPacket_ModifierCode |
+| 006CF800 | `006CF80C` `call` | 006D4370 | Phyre::PDynamicGeometry::PModifierNetwork |
+| 006CF900 | `006CF90C` `call` | 006D4960 | Phyre::PDynamicGeometry::PModifierNetworkInfoPacket_ModifierInstance |
+| 006D4EC0 | `006D4ECC` `call` | 006D3E80 | decorated `V?$PArray@VPModifierAndInputs@PDynamicGeometry@Phyre@@$07@Phyre@@` |
+| 006D4EE0 | `006D4EEC` `call` | 006D3FC0 | decorated `V?$PArray@VPModifierNetworkBuffer@PDynamicGeometry@Phyre@@$07@Phyre@@` |
+| 006D4F00 | `006D4F0C` `call` | 006D4100 | decorated `V?$PArray@VPRenderStreamInput@PDynamicGeometry@Phyre@@$03@Phyre@@` |
+| 006D71A0 | `006D71AC` `call` | 006D90D0 | Phyre::PDynamicGeometry::PMorphModifierWeightsUserDataObject |
+| 006D9CE0 | `006D9CEC` `call` | 006DA250 | Phyre::POccluderGeometry::POccluderGeometryObject |
+| 00791260 | `0079126C` `call` | 00796BC0 | Phyre::PFramework::PDebugUtils |
+| 007914C0 | `007914CC` `call` | 00796960 | Phyre::PFramework::PApplication |
+| 00791660 | `0079166C` `call` | 00796A90 | Phyre::PFramework::PApplicationViewport |
+| 00791850 | `0079185C` `call` | 00796CF0 | Phyre::PFramework::PInputMapper |
+| 00867360 | `0086736C` `call` | 00872DE0 | Phyre::PInputs::PInputSourceVisionTrackerZ |
+| 00867410 | `0086741C` `call` | 00871C10 | Phyre::PInputs::PInputSourceMotionQuatW |
+| 008674C0 | `008674CC` `call` | 008727F0 | Phyre::PInputs::PInputSourceTouchRotate |
+| 00867AD0 | `00867ADC` `call` | 008714F0 | Phyre::PInputs::PInputSourceMotionAngularVelocityX |
+| 00867B80 | `00867B8C` `call` | 008726C0 | Phyre::PInputs::PInputSourceTouchPinch |
+| 00867FD0 | `00867FDC` `call` | 00870DD0 | Phyre::PInputs::PInputAction |
+| 00868080 | `0086808C` `call` | 00871030 | Phyre::PInputs::PInputSource |
+| 008681A0 | `008681AC` `call` | 00871620 | Phyre::PInputs::PInputSourceMotionAngularVelocityY |
+| 008682E0 | `008682EC` `call` | 00872920 | Phyre::PInputs::PInputSourceTouchTwoFingerDragX |
+| 008688E0 | `008688EC` `call` | 008713C0 | Phyre::PInputs::PInputSourceKey |
+| 00868A00 | `00868A0C` `call` | 00871750 | Phyre::PInputs::PInputSourceMotionAngularVelocityZ |
+| 00868AB0 | `00868ABC` `call` | 00872A50 | Phyre::PInputs::PInputSourceTouchTwoFingerDragY |
+| 00869090 | `0086909C` `call` | 00870F00 | Phyre::PInputs::PInputMap |
+| 008691B0 | `008691BC` `call` | 00871290 | Phyre::PInputs::PInputSourceJoypadButton |
+| 00869280 | `0086928C` `call` | 00871880 | Phyre::PInputs::PInputSourceMotionLinearAccelerationX |
+| 00869400 | `0086940C` `call` | 00872460 | Phyre::PInputs::PInputSourceTouchDragX |
+| 00869A50 | `00869A5C` `call` | 00871160 | Phyre::PInputs::PInputSourceJoypadAxis |
+| 00869B00 | `00869B0C` `call` | 008719B0 | Phyre::PInputs::PInputSourceMotionLinearAccelerationY |
+| 00869BB0 | `00869BBC` `call` | 00872590 | Phyre::PInputs::PInputSourceTouchDragY |
+| 0086A220 | `0086A22C` `call` | 008720D0 | Phyre::PInputs::PInputSourceMouseButton |
+| 0086A2D0 | `0086A2DC` `call` | 00871AE0 | Phyre::PInputs::PInputSourceMotionLinearAccelerationZ |
+| 0086A380 | `0086A38C` `call` | 00871D40 | Phyre::PInputs::PInputSourceMotionQuatX |
+| 0086A980 | `0086A98C` `call` | 00872B80 | Phyre::PInputs::PInputSourceVisionTrackerX |
+| 0086AA80 | `0086AA8C` `call` | 00872200 | Phyre::PInputs::PInputSourceMouseDeltaX |
+| 0086AAA0 | `0086AAAC` `call` | 00871E70 | Phyre::PInputs::PInputSourceMotionQuatY |
+| 0086B0F0 | `0086B0FC` `call` | 00872CB0 | Phyre::PInputs::PInputSourceVisionTrackerY |
+| 0086B1A0 | `0086B1AC` `call` | 00871FA0 | Phyre::PInputs::PInputSourceMotionQuatZ |
+| 0086B250 | `0086B25C` `call` | 00872330 | Phyre::PInputs::PInputSourceMouseDeltaY |
+| 00873CF0 | `00873CFC` `call` | 00870B50 | decorated `V?$PArray@PEAVPInputAction@PInputs@Phyre@@$07@Phyre@@` |
+| 00873D10 | `00873D1C` `call` | 00870C90 | decorated `V?$PArray@PEAVPInputSource@PInputs@Phyre@@$07@Phyre@@` |
+| 00874770 | `0087477C` `call` | 00874FD0 | Phyre::PVision::PVisionMoveTrackerBase |
+| 00874900 | `0087490C` `call` | 00875100 | Phyre::PVision::PVisionMoveTrackerWin32 |
+| 00874A90 | `00874A9C` `call` | 00874EA0 | Phyre::PVision::PVisionMoveTracker |
+| 008753E0 | `008753EC` `call` | 00875BB0 | Phyre::PVision::PVisionTrackerBase |
+| 00875570 | `0087557C` `call` | 00875CE0 | Phyre::PVision::PVisionTrackerWin32 |
+| 00875700 | `0087570C` `call` | 00875A80 | Phyre::PVision::PVisionTracker |
+| 00877410 | `0087741C` `call` | 00879000 | Phyre::PHierarchy::POctreeWorld |
+| 00877640 | `0087764C` `call` | 00878ED0 | Phyre::PHierarchy::POctreeData |
+| 00877890 | `0087789C` `call` | 00878C70 | Phyre::PHierarchy::POctree |
+| 00877AF0 | `00877AFC` `call` | 00878DA0 | Phyre::PHierarchy::POctreeChildren |
+| 00879830 | `0087983C` `call` | 0087A550 | Phyre::PGame::PGameConfig |
+| 0087A6D0 | `0087A6DC` `call` | 0087A410 | decorated `V?$PArray@PEAVPInputMap@PInputs@Phyre@@$07@Phyre@@` |

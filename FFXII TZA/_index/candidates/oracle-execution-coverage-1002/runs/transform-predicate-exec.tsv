@@ -1,0 +1,15 @@
+entry	class	mutated
+00202b10	returned	yes
+00202de0	returned	yes
+00202e10	returned	yes
+00202fe0	returned	yes
+00203080	returned	yes
+00216660	returned	yes
+00335e50	returned+faulted	yes
+0033d3e0	scripted	
+00383f10	faulted	
+00384130	faulted	
+00808c40	returned+faulted	
+00809654	entered	
+00861f14	returned	
+0087af34	faulted	

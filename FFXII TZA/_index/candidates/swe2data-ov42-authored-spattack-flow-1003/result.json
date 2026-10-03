@@ -1,0 +1,485 @@
+{
+ "script": "Database/FFXII TZA/_index/candidates/swe2data-ov42-authored-spattack-flow-1003/prove_spattack_flow.py",
+ "script_sha256": "8f16a5096a1b12efee0e3fb5329d7f7da1b56a69a42f1a5082200f7ce697a734",
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "ebp_copies": {
+  "ps2data/plan_master/ch/event/spc_z/spc_z0000/spc_z0000.ebp": "616f885d0ecd77c53fd612132ad11bb86f45d8385d7139c0a3f30273f4332fa6",
+  "ps2data/plan_master/cn/event/spc_z/spc_z0000/spc_z0000.ebp": "616f885d0ecd77c53fd612132ad11bb86f45d8385d7139c0a3f30273f4332fa6",
+  "ps2data/plan_master/de/event/spc_z/spc_z0000/spc_z0000.ebp": "616f885d0ecd77c53fd612132ad11bb86f45d8385d7139c0a3f30273f4332fa6",
+  "ps2data/plan_master/es/event/spc_z/spc_z0000/spc_z0000.ebp": "616f885d0ecd77c53fd612132ad11bb86f45d8385d7139c0a3f30273f4332fa6",
+  "ps2data/plan_master/fr/event/spc_z/spc_z0000/spc_z0000.ebp": "616f885d0ecd77c53fd612132ad11bb86f45d8385d7139c0a3f30273f4332fa6",
+  "ps2data/plan_master/in/event/spc_z/spc_z0000/spc_z0000.ebp": "616f885d0ecd77c53fd612132ad11bb86f45d8385d7139c0a3f30273f4332fa6",
+  "ps2data/plan_master/it/event/spc_z/spc_z0000/spc_z0000.ebp": "616f885d0ecd77c53fd612132ad11bb86f45d8385d7139c0a3f30273f4332fa6",
+  "ps2data/plan_master/kr/event/spc_z/spc_z0000/spc_z0000.ebp": "616f885d0ecd77c53fd612132ad11bb86f45d8385d7139c0a3f30273f4332fa6",
+  "ps2data/plan_master/us/event/spc_z/spc_z0000/spc_z0000.ebp": "616f885d0ecd77c53fd612132ad11bb86f45d8385d7139c0a3f30273f4332fa6"
+ },
+ "facts": {
+  "vars": {
+   "0": {
+    "class": 1,
+    "offset": 12,
+    "float": 0,
+    "width": 4,
+    "descriptor": "4100000C"
+   },
+   "1": {
+    "class": 1,
+    "offset": 16,
+    "float": 0,
+    "width": 4,
+    "descriptor": "41000010"
+   },
+   "3": {
+    "class": 1,
+    "offset": 21,
+    "float": 0,
+    "width": 1,
+    "descriptor": "11000015"
+   },
+   "4": {
+    "class": 1,
+    "offset": 22,
+    "float": 0,
+    "width": 1,
+    "descriptor": "11000016"
+   },
+   "5": {
+    "class": 1,
+    "offset": 24,
+    "float": 0,
+    "width": 4,
+    "descriptor": "41000018"
+   },
+   "6": {
+    "class": 1,
+    "offset": 28,
+    "float": 0,
+    "width": 4,
+    "descriptor": "4100001C"
+   }
+  },
+  "d_0_1": 4,
+  "d_5_6": 4,
+  "requests_to_reader": [
+   [
+    "監督",
+    "4CB",
+    2
+   ],
+   [
+    "監督",
+    "627",
+    3
+   ]
+  ],
+  "census": {
+   "0": [
+    [
+     "監督",
+     1166,
+     "PUSHDBG"
+    ],
+    [
+     "監督",
+     1194,
+     "PUSHP"
+    ],
+    [
+     "監督",
+     1371,
+     "PUSHV"
+    ],
+    [
+     "監督",
+     1557,
+     "POPV"
+    ],
+    [
+     "技読み込み",
+     1857,
+     "PUSHV"
+    ],
+    [
+     "メッセージ監督",
+     1878,
+     "PUSHV"
+    ],
+    [
+     "PC00",
+     1904,
+     "PUSHV"
+    ]
+   ],
+   "1": [
+    [
+     "監督",
+     1173,
+     "PUSHDBG"
+    ],
+    [
+     "監督",
+     1191,
+     "PUSHP"
+    ],
+    [
+     "監督",
+     1365,
+     "PUSHV"
+    ],
+    [
+     "監督",
+     1402,
+     "PUSHV"
+    ],
+    [
+     "監督",
+     1441,
+     "PUSHV"
+    ],
+    [
+     "監督",
+     1463,
+     "PUSHV"
+    ],
+    [
+     "監督",
+     1563,
+     "POPV"
+    ],
+    [
+     "技読み込み",
+     1854,
+     "PUSHV"
+    ],
+    [
+     "技読み込み",
+     1864,
+     "PUSHV"
+    ]
+   ],
+   "3": [
+    [
+     "監督",
+     1139,
+     "POPV"
+    ],
+    [
+     "監督",
+     1145,
+     "PUSHDBG"
+    ],
+    [
+     "監督",
+     1551,
+     "POPV"
+    ],
+    [
+     "監督",
+     1586,
+     "PUSHV"
+    ],
+    [
+     "技読み込み",
+     1819,
+     "PUSHV"
+    ]
+   ],
+   "5": [
+    [
+     "監督",
+     1180,
+     "PUSHDBG"
+    ],
+    [
+     "監督",
+     1544,
+     "PUSHP"
+    ],
+    [
+     "監督",
+     1554,
+     "PUSHV"
+    ]
+   ],
+   "6": [
+    [
+     "監督",
+     1187,
+     "PUSHDBG"
+    ],
+    [
+     "監督",
+     1541,
+     "PUSHP"
+    ],
+    [
+     "監督",
+     1560,
+     "PUSHV"
+    ]
+   ]
+  },
+  "writers": {
+   "0": [
+    [
+     "監督",
+     "4AA",
+     "PUSHP"
+    ],
+    [
+     "監督",
+     "615",
+     "POPV"
+    ]
+   ],
+   "1": [
+    [
+     "監督",
+     "4A7",
+     "PUSHP"
+    ],
+    [
+     "監督",
+     "61B",
+     "POPV"
+    ]
+   ],
+   "3": [
+    [
+     "監督",
+     "473",
+     "POPV"
+    ],
+    [
+     "監督",
+     "60F",
+     "POPV"
+    ]
+   ],
+   "5": [
+    [
+     "監督",
+     "608",
+     "PUSHP"
+    ]
+   ],
+   "6": [
+    [
+     "監督",
+     "605",
+     "PUSHP"
+    ]
+   ]
+  },
+  "depth": {
+   "init_0x37": 23,
+   "loop_0x195": 0,
+   "read_0x24": 0
+  }
+ },
+ "checks": [
+  {
+   "id": "N0-exe-identity",
+   "pass": true,
+   "text": "EXE sha256 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+  },
+  {
+   "id": "N1-029A-first-pop-to-rdx",
+   "pass": true,
+   "text": "10 instructions as stated"
+  },
+  {
+   "id": "N2-029A-one-context-for-both-decodes",
+   "pass": true,
+   "text": "4 instructions as stated"
+  },
+  {
+   "id": "N3-029A-unconditional-postcall-reads",
+   "pass": true,
+   "text": "2 instructions as stated"
+  },
+  {
+   "id": "N4-029B-first-pop-to-edx",
+   "pass": true,
+   "text": "6 instructions as stated"
+  },
+  {
+   "id": "N5-pop-int-tag1-raw-dword",
+   "pass": true,
+   "text": "4 instructions as stated"
+  },
+  {
+   "id": "N6-ref-decoder-class-switch",
+   "pass": true,
+   "text": "9 instructions as stated"
+  },
+  {
+   "id": "N7-pushp-packing-tag1",
+   "pass": true,
+   "text": "8 instructions as stated"
+  },
+  {
+   "id": "N8-pushv-s32-dword-load",
+   "pass": true,
+   "text": "2 instructions as stated"
+  },
+  {
+   "id": "N10-popv-int-raw-s32-store",
+   "pass": true,
+   "text": "5 instructions as stated"
+  },
+  {
+   "id": "N11-popv-store-s32-arm",
+   "pass": true,
+   "text": "store jump table 0026D5F4: width 4 (s32) -> 0026D5E9"
+  },
+  {
+   "id": "N9-ref-decoder-class1-arm",
+   "pass": true,
+   "text": "jump table 00265180: class arms 002650E8,002650FC,00265110,00265155,0026512D,00265141; class 1 -> 002650FC (reads [ctx+0x40])"
+  },
+  {
+   "id": "S1-language-copies",
+   "pass": true,
+   "text": "9 copies of event/spc_z/spc_z0000/spc_z0000.ebp, 1 distinct sha256 (616f885d0ecd77c53fd612132ad11bb86f45d8385d7139c0a3f30273f4332fa6)"
+  },
+  {
+   "id": "S2-ebp2-magic",
+   "pass": true,
+   "text": "EBP2 script magic at +0x80"
+  },
+  {
+   "id": "S2b-file-area-zero-in-image",
+   "pass": true,
+   "text": "file area +0xC0..+0x100 (to the msp region): cells 0xC..0x14 hold 0000000000000000 in the shipped image"
+  },
+  {
+   "id": "S0-verb-arity",
+   "pass": true,
+   "text": "verb table: 029A arity 2, 029B arity 2"
+  },
+  {
+   "id": "S3-four-cells-file-s32-int",
+   "pass": true,
+   "text": "vars 0,1,5,6: 0=file s32 off 0xC float 0, 1=file s32 off 0x10 float 0, 5=file s32 off 0x18 float 0, 6=file s32 off 0x1C float 0"
+  },
+  {
+   "id": "S4-init-outputs-disjoint",
+   "pass": true,
+   "text": "action var 0 [0xC,0x10) unit var 1 [0x10,0x14) in one 'file' home, RCX-RDX = +4"
+  },
+  {
+   "id": "S5-loop-outputs-disjoint",
+   "pass": true,
+   "text": "action var 5 [0x18,0x1C) unit var 6 [0x1C,0x20) in one 'file' home, RCX-RDX = +4"
+  },
+  {
+   "id": "S6-function-tables",
+   "pass": true,
+   "text": "監督 functions [('init', 0), ('main', 65), ('全体処理', 76), ('技入力終了～ホワイトアウト', 498), ('終了処理', 578)]; 技読み込み functions [('init', 0), ('技読み込み', 1), ('技読み込み終了待ち', 46)]; linear decode anomaly-free in both"
+  },
+  {
+   "id": "S7-census-sites",
+   "pass": true,
+   "text": "029A CALLPOPA at 0x4AD, 029A CALL at 0x60B, 029B CALLPOPA at 0x744 (image offsets; the census lists 4ad / 60b / 744)"
+  },
+  {
+   "id": "F1-init-call-pushes",
+   "pass": true,
+   "text": "init: PUSHP var1 (pushed first -> second pop -> RCX unit), PUSHP var0 (top -> first pop -> RDX action), CALLPOPA 029A; result to A, never tested"
+  },
+  {
+   "id": "F2-loop-call-copy-request",
+   "pass": true,
+   "text": "loop: PUSHP var6, PUSHP var5, CALL 029A, OPNOT, POPV var3, PUSHV var5, POPV var0, PUSHV var6, POPV var1, REQEW(3, actor 1, function 1) - straight line, no branch between"
+  },
+  {
+   "id": "F3-reader-guard-and-pushes",
+   "pass": true,
+   "text": "技読み込み::技読み込み: skips to RET (label 2 = 0x2D) unless var3 == 0; then PUSHV var1 (second pop -> ECX unit), PUSHV var0 (first pop -> EDX action), CALLPOPA 029B"
+  },
+  {
+   "id": "F4-request-targets",
+   "pass": true,
+   "text": "全体処理 0x52..0x5B REQEW(2, actor 1, fn 1) and 0x1AE..0x1B7 REQEW(3, actor 1, fn 1); actor 1 = 技読み込み, fn 1 = 技読み込み"
+  },
+  {
+   "id": "S9-reader-requests",
+   "pass": true,
+   "text": "requests naming actor 1 function 1 (and any request with non-immediate operands): [[\"監督\", \"4CB\", 2], [\"監督\", \"627\", 3]]"
+  },
+  {
+   "id": "S8-image-writer-census",
+   "pass": true,
+   "text": "every POPV/PUSHP naming vars 0,1,3,5,6 in all 5 actors: {\"0\": [[\"監督\", \"4AA\", \"PUSHP\"], [\"監督\", \"615\", \"POPV\"]], \"1\": [[\"監督\", \"4A7\", \"PUSHP\"], [\"監督\", \"61B\", \"POPV\"]], \"3\": [[\"監督\", \"473\", \"POPV\"], [\"監督\", \"60F\", \"POPV\"]], \"5\": [[\"監督\", \"608\", \"PUSHP\"]], \"6\": [[\"監督\", \"605\", \"PUSHP\"]]}"
+  },
+  {
+   "id": "D1-stack-depth",
+   "pass": true,
+   "text": "depth before the first pushed argument: init <= 23 (straight-line bound), loop 0, reader 0 (both pushes stored while depth < 63)"
+  },
+  {
+   "id": "C-overlapping-unit-cell",
+   "pass": true,
+   "text": "synthetic mutation must make S5-loop-outputs-disjoint refuse"
+  },
+  {
+   "id": "C-unit-cell-other-home",
+   "pass": true,
+   "text": "synthetic mutation must make S5-loop-outputs-disjoint refuse"
+  },
+  {
+   "id": "C-action-cell-s16",
+   "pass": true,
+   "text": "synthetic mutation must make S3-four-cells-file-s32-int refuse"
+  },
+  {
+   "id": "C-extra-writer-in-another-actor",
+   "pass": true,
+   "text": "synthetic mutation must make S8-image-writer-census refuse"
+  },
+  {
+   "id": "C-swapped-loop-pushes",
+   "pass": true,
+   "text": "synthetic mutation must make F2-loop-call-copy-request refuse"
+  },
+  {
+   "id": "C-reader-guard-removed",
+   "pass": true,
+   "text": "synthetic mutation must make F3-reader-guard-and-pushes refuse"
+  }
+ ],
+ "controls": [
+  {
+   "control": "overlapping-unit-cell",
+   "target": "S5-loop-outputs-disjoint",
+   "refused": true
+  },
+  {
+   "control": "unit-cell-other-home",
+   "target": "S5-loop-outputs-disjoint",
+   "refused": true
+  },
+  {
+   "control": "action-cell-s16",
+   "target": "S3-four-cells-file-s32-int",
+   "refused": true
+  },
+  {
+   "control": "extra-writer-in-another-actor",
+   "target": "S8-image-writer-census",
+   "refused": true
+  },
+  {
+   "control": "swapped-loop-pushes",
+   "target": "F2-loop-call-copy-request",
+   "refused": true
+  },
+  {
+   "control": "reader-guard-removed",
+   "target": "F3-reader-guard-and-pushes",
+   "refused": true
+  }
+ ],
+ "fails": []
+}

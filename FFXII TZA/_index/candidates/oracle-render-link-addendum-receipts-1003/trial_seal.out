@@ -1,0 +1,19 @@
+prepared keys: ['additions', 'evidence_method', 'limitations', 'links', 'old_manifest_sha256', 'original_broken_links_resolved', 'original_members_checked', 'review_identities', 'status']
+controls case keys: ['argv', 'case', 'diagnostic_observed', 'driver_sha256', 'exit', 'expected_diagnostic', 'output_absent', 'result_absent', 'terminal']
+origin inputs: 9 missing: []
+== prepared-01 r-7d6ed004708da8ed verify: intact
+   drivers: {'prepare.py': ('fffbf9080f42e617fb4dc497d518a8e06745fc4a', False)}
+   REFUSE: driver prepare.py is not a committed source (git blob fffbf9080f42e617fb4dc497d518a8e06745fc4a not in the repository): a truncated or unpublished working copy carries no execution credit
+   REFUSE: result is not a parseable case list: no cases in the result
+== controls-01 r-3dd3106bbca3485b verify: intact
+   drivers: {'control.py': ('466ba67fc315cf830caa7a47186aae7fd2579414', False), 'prepare.py': ('fffbf9080f42e617fb4dc497d518a8e06745fc4a', False)}
+   REFUSE: driver control.py is not a committed source (git blob 466ba67fc315cf830caa7a47186aae7fd2579414 not in the repository): a truncated or unpublished working copy carries no execution credit
+   REFUSE: driver prepare.py is not a committed source (git blob fffbf9080f42e617fb4dc497d518a8e06745fc4a not in the repository): a truncated or unpublished working copy carries no execution credit
+   REFUSE: result is not a parseable case list: 'id'
+== FIX prepared-with-ids (15 cases) r-b6a6843254093a9b
+   REFUSE: driver prepare.py is not a committed source (git blob fffbf9080f42e617fb4dc497d518a8e06745fc4a not in the repository): a truncated or unpublished working copy carries no execution credit
+   remaining refusals all driver-commit: True
+== FIX controls-with-ids r-166f07449f41eaa6
+   REFUSE: driver control.py is not a committed source (git blob 466ba67fc315cf830caa7a47186aae7fd2579414 not in the repository): a truncated or unpublished working copy carries no execution credit
+   REFUSE: driver prepare.py is not a committed source (git blob fffbf9080f42e617fb4dc497d518a8e06745fc4a not in the repository): a truncated or unpublished working copy carries no execution credit
+   remaining refusals all driver-commit: True

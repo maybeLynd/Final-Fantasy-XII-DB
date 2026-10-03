@@ -84,7 +84,7 @@ a 4-component vector:
 | `movement_state + 0xA0` | **pitch** — drives the vertical Y term and foreshortens X/Z |
 | `movement_state + 0xD0` | **speed** |
 
-Both angles are first wrapped into `(-π, π]` by the truncating-`fmod` idiom described in §4.
+Both angles are first wrapped into ~~`(-π, π]`~~ `[-π, π]`, an exact `+π` becoming `-π` and `-π` becoming `+π`, *(corrected 2026-10-02, OPUS: `0026A8E6` `comiss` / `jb` takes the bias `[00915620]` (`-π`) for a negative angle, else `[01CEBC50]` (`+π`), then truncates at `0026A90E`–`0026A93B`; the contract's LD-6)* by the truncating-`fmod` idiom described in §4.
 Then:
 
 ```c
@@ -271,7 +271,7 @@ All fifteen resolve in the current parent with the body extents shown
 **Names inherited from GFZ annotation.** `002E4380`, `0026D6F0`, `0026A0D0`, `002E5610`,
 `002E5380`, `002E54A0`, `002E5030`, `002E5C10`, `00424080`, `00265020` and `0023A070` were read
 at tier 1 in this pass and all match their names. `002E45E0` is named but its body is not yet
-read here.
+read here *(answered: see [how a character turns](Facing-And-Steering/how-a-character-turns.md), where `002E45E0` is read in full; 2026-10-02, OPUS)*.
 
 ## 4. Data structures and formulas
 
@@ -319,7 +319,7 @@ movement permitted   iff  (actor.bActor_class_flags & 0xE0) == 0x60
 position readable    iff  (actor.bActor_class_flags >> 5) == 1  ||  == 3
 ```
 
-**Angle wrap into `(-π, π]`** — used identically by `Actor_SetDesiredMovementHeading` and by
+**Angle wrap into ~~`(-π, π]`~~ `[-π, π]`, the endpoints swapping** *(corrected 2026-10-02, OPUS: `0026A8E6` `comiss` / `jb` takes the bias `[00915620]` (`-π`) for a negative angle, else `[01CEBC50]` (`+π`); `+π` maps to `-π` and `-π` to `+π`)* — used identically by `Actor_SetDesiredMovementHeading` and by
 both angles inside `ComputeDelta`:
 
 ```
@@ -400,7 +400,7 @@ per frame
         +-> Movement_ComputeDeltaFromHeadingSpeed (002E4380)       <- THIS
         |      -> Movement_ModifyHeadingSpeedForObjectState (00424080)   [Presentation data]
         |      -> sinf / cosf, or the verbatim override
-        +-> Movement_PublishHeadingState (002E5C10)                -> CharacterRenderObject +0x240
+        +-> Movement_PublishHeadingState (002E5C10)                -> CharacterRenderObject +0x240   <- corrected 2026-10-02, OPUS - the 0x740-byte render record at 022C6F28 (002E5C33-002E5C4C, section 8f), not CharacterRenderObject
         +-> Movement_IntegratePositionAndMeasureDisplacement (002E5610)   [mode = 0 always]
                -> world_ctx == NULL : position += delta
                -> otherwise         : 002E5380 -> 002E54A0
@@ -424,7 +424,7 @@ not call the integrator either.
 | `Movement_ClearSteeringRequest` (`002E55C0`) | zeroes the steering mode and both speeds |
 | `BattleUnit_ApplyMovementIntentToWorldActor` (`0023A070`) | drives the two setters for combat actors |
 
-**Downstream:** the actor's world position, and the CharacterRenderObject record (`+0x240`).
+**Downstream:** the actor's world position, and the ~~CharacterRenderObject record~~ `0x740`-byte render record at `022C6F28` (`+0x240`) *(corrected 2026-10-02, OPUS: `002E5C33`–`002E5C4C`; §8f)*.
 
 **Do not confuse with:** `BattleUnit_ApplyMovementIntentToWorldActor` (`0023A070`) — but note it
 is not a lookalike, it is the **upstream producer** for every battle unit. It reads the combat
@@ -443,10 +443,10 @@ boundary crossings).
 | cluster | members | role | interior |
 |---|---|---|---|
 | heading publish | `002E5C10` `Movement_PublishHeadingState` (85 B) | copies the `+0xA0`/`+0xA4` angle pair (plus a zero third float) into the render record — `+0xC0` context → word id `×0x740` over the `022C6F28` base, gated on `+0x284`, stores xmm1/2/3 at `+0x240`–`+0x248` | `002E5C4C` |
-| spatial-grid update | `003DB020` (168 B) | the occupancy publish the driver calls when `002EA7F0` passes: sets `+7` on the context's `+0x138` mover object, gates `003B7730`, runs `0046AD20(record+0x120, max(+0,+4) radius, position)`, then walks the returned mask and ORs `1<<(id&0x3F)` into the `02AC7CE0` bucket array by `id>>6` (16-byte stride) | `003DB068` |
+| spatial-grid update | `003DB020` (168 B) | the occupancy publish the driver calls when `002EA7F0` passes: sets `+7` on the context's `+0x138` mover object, gates `003B7730`, runs `0046AD20(record+0x120, max(+0,+4) radius, position)`, then walks the returned mask and ORs `1<<(id&0x3F)` into the ~~`02AC7CE0`~~ `02B57CE0` bucket array *(corrected 2026-10-02, OPUS: `02AC7CE0` has no reference; `02B57CE0` is used by `003DAA40`, `003DAAB0`, `003DAE30`, `003DB020`)* by `id>>6` (16-byte stride) | `003DB068` |
 | cell recompute | `0046AD20` (638 B) | the position→cell worker: caches the last position in the `02CA60xx` state block, `003A1D30` + `00861F02` float helpers, hysteresis compare, refreshes the cell mask | `0046AD3E` |
-| deferred register | `002E6330` (117 B) | the driver's tail: same class gates plus `+9` bit 6, `002E9FE0`, flag byte `00263FB0` == 1 → context `+0x151` bit 7 via `00264EA0`, then `+0x138` non-null + `+0x14E` set → tail-appends the record to the `02AC7CC8`/`02AC7CD0` list via `003DB0D0` | `002E635A` |
-| list append | `003DB0D0` (73 B) | intrusive single-link append — node `rcx+0x30`, link at `+0xA0`, head `02AC7CC8` / tail `02AC7CD0` | `003DB106` |
+| deferred register | `002E6330` (117 B) | the driver's tail: same class gates plus `+9` bit 6, `002E9FE0`, flag byte `00263FB0` == 1 → context `+0x151` bit 7 via `00264EA0`, then `+0x138` non-null + `+0x14E` set → tail-appends the record to the ~~`02AC7CC8`/`02AC7CD0`~~ `02B57CC8`/`02B57CD0` list via `003DB0D0` *(corrected 2026-10-02, OPUS: the `02AC7Cxx` pair has no reference; `02B57CC8` / `02B57CD0` are used by `003DAA20`, `003DAE30`, `003DB0D0`)* | `002E635A` |
+| list append | `003DB0D0` (73 B) | intrusive single-link append — node `rcx+0x30`, link at `+0xA0`, head ~~`02AC7CC8`~~ `02B57CC8` / tail ~~`02AC7CD0`~~ `02B57CD0` *(corrected 2026-10-02, OPUS: the same references as the row above)* | `003DB106` |
 | flag probes | `00263FB0` (8 B), `00264EA0` (24 B) | the `0209BDA3` flag-byte getter, and context `+0x151` bit-7 extractor | `00263FB0` / `00264EB3` |
 
 `002E45E0`/`002E4380`/`002E5610`/`002EA7F0`/`002E9FE0`/`003B7730`/`003A1D30`/`00861F02`/`00808C40`
@@ -529,7 +529,7 @@ are shared callees already bound in §3–§5 — deliberately not census member
           heading from the angle between it and the current forward vector, wrapped to ±π (`0033C003`–`0033C0CD`).
         - **So a battle unit that the field solver has moved turns toward the direction it actually moved**, the resolved
           (e.g. slid) direction rather than the requested one.
-      - **Not traced:** what `00267260` tests, and the part of `0033BFB0` after the angle.
+      - **Not traced:** ~~what `00267260` tests, and~~ *(answered for `00267260`: see K-7 below and [the 3-D or flat page](Movement-Mode-Selection/how-the-engine-chooses-3d-or-flat-movement.md)'s flat selector; 2026-10-02, OPUS)* the part of `0033BFB0` after the angle.
 - [x] ~~Where the delta's `X` component is applied.~~ **K-5 ANSWERED — there was never a missing
       path.** The no-context branch adds all three components; the earlier transcription dropped
       the `X` line. See §8d.
@@ -581,7 +581,7 @@ are shared callees already bound in §3–§5 — deliberately not census member
 | `W = 1.0` on every path | `mov dword ptr [rbx+0xC], 0x3F800000` at `002E45B9`, plus the gate-rejection and override stores | 1 |
 | Delta zeroed before the gate | `xor eax,eax; mov [rdx],rax; mov [rdx+8],eax` at `002E4389`-`002E4394` | 1 |
 | Override copies verbatim and stores `sqrt(Σ squares)` at `+0xF8` | `002E43BC`-`002E4419`; `003A1D30` disassembly `andps` + `jmp sqrtf` | 1 |
-| **The override input must not be the output buffer** (added 2026-09-29, FABLE, on ASTRA `2ada8a5a0`): the entry keeps only the input *pointer* (`002E438B` `mov r14, r9`), clears the output's `+0`..`+0xB` (`002E4389`-`002E4394`), and only then reads the input's `+4`, `+0`, `+8` (`002E43BC`, `002E43C2`, `002E43C7`); for an input that *is* the output, those first reads see zero bits. The one recorded caller passes a local output (`002E50C0`, `rsp+0x30`) and the input `r9 = r14` from its entry `r8` (`002E50BD`, `002E504C`), so the buffers differ as constructed. *Limits:* a conditional calculation from the bytes, not an executed run; nothing is claimed about partial overlap, the later `sqrtf` and `+0xF8` results, or every live pointer; `002E45E0` between the two gates is 963 B with 21 calls, so no leaf argument about it is made here (the contract's section-14 closure that used one is reopened, CON-172) | `002E438B`, `002E4389`-`002E4394`, `002E43BC`-`002E43C7`, `002E50BD`-`002E50C5`; ASTRA [`heading-passthrough-alias-boundary`](../_experiments/evidence/heading-passthrough-alias-boundary/README.md) | 1 |
+| **The override input must not be the output buffer** (added 2026-09-29, FABLE, on ASTRA `2ada8a5a0`): the entry keeps only the input *pointer* (`002E438B` `mov r14, r9`), clears the output's `+0`..`+0xB` (`002E4389`-`002E4394`), and only then reads the input's `+4`, `+0`, `+8` (`002E43BC`, `002E43C2`, `002E43C7`); for an input that *is* the output, those first reads see zero bits. The one recorded caller passes a local output (`002E50C0`, `rsp+0x30`) and the input `r9 = r14` from its entry `r8` (`002E50BD`, `002E504C`), so the buffers differ as constructed. *Limits:* a conditional calculation from the bytes, not an executed run; nothing is claimed about partial overlap, the later `sqrtf` and `+0xF8` results, or every live pointer; `002E45E0` between the two gates is 963 B with 21 calls, so no leaf argument about it is made here (the contract's section-14 closure that used one is reopened, CON-172 *(answered: see the heading-speed contract's §14, ANSWERED 2026-09-30 (OPUS) — the refusal does not run there; 2026-10-02, OPUS)*) | `002E438B`, `002E4389`-`002E4394`, `002E43BC`-`002E43C7`, `002E50BD`-`002E50C5`; ASTRA [`heading-passthrough-alias-boundary`](../_experiments/evidence/heading-passthrough-alias-boundary/README.md) | 1 |
 | `+0xF8` also repaired from a negative sentinel | `comiss xmm7,[rdi+0xF8]; jbe; movss [rdi+0xF8],xmm3` at `002E443E` | 1 |
 | Angle wrap into `(-π, π]`, `TWO_PI = 01CEBC78`, `PI = 01CEBC50` | `0026A0D0` disassembly; constants read from the image: `6.2831855`, `3.1415927` | 1 |
 | Integration adds all three components on the no-context path | complete body of `002E5610` | 1 |
@@ -751,8 +751,8 @@ described nowhere in this document is unreachable from walking.
 
 ### Not a correction, but newly documented
 
-The animation-state override (`00424080`), the heading publication into the CharacterRenderObject
-array (`002E5C10`), the negative-sentinel repair at `+0xF8`, the displacement-measure switch, and
+The animation-state override (`00424080`), the heading publication into the ~~CharacterRenderObject~~ render-record
+array (`002E5C10`) *(corrected 2026-10-02, OPUS: `022C6F28` + id × `0x740`, `002E5C33`–`002E5C4C`; §8f)*, the negative-sentinel repair at `+0xF8`, the displacement-measure switch, and
 the `DAT_01DFE0BC` / `DAT_01DFE0B8` scalars are all mechanisms this document did not mention at
 all. None contradicts what was written; all four change what a modder would do.
 
@@ -778,7 +778,7 @@ scalar of `1.0` that makes the return window **300 seconds**.
 **What this does and does not settle.** It ties the triple firmly to the engine's *time base* —
 frames-per-unit, a rate scale and its reciprocal — and it shows `01DFE0BC` scaling authored
 locomotion speed directly, which is the tie to something player-facing that Z-10 said was
-missing. It does **not** show the triple ever being written away from `1.0` during play; the
+missing. ~~It does **not** show the triple ever being written away from `1.0` during play;~~ The image writes it away from `1.0`: `001EDDC0` stores 2.0, 0.5 and 2 into `01DFE0B8` / `01DFE0BC` / `01DFE0B4` when its argument is non-zero *(corrected 2026-10-02, OPUS: `001EDDC4` `test ecx, ecx`, stores at `001EDDD8`, `001EDDE0`, `001EDDF2`; tail-jumped from `0022BDF0` at `0022BE7D`)*; the
 single writer identified in audit pass 129 remains the only one. Registered as **K-8**.
 
 ## 8f. Correction, falsification pass 2 (2026-09-02) — a conflation of my own, caught before it propagated
@@ -831,7 +831,7 @@ database has not documented yet, registered as **K-10**.
 
 **What the correct structure is, as far as this pass establishes it.** A Presentation-owned array
 of **160 records × 1,856 bytes** at the pointer `022C6F28`, with a dword at `base + 0x48830` and a
-256-byte trailer, allocated and initialised by `CharacterRenderSystem_AllocateAndInitialize`. Its
+~~256-byte~~ 304-byte (`0x130`) trailer *(corrected 2026-10-02, OPUS: `003325E7` `mov ecx, 0x48930` allocates; 160 × `0x740` = `0x48800`; the 2026-09-19 propagation above)*, allocated and initialised by `CharacterRenderSystem_AllocateAndInitialize`. Its
 sibling pointer `022C6F20` is written by `RenderSystem_RunCharacterUpdatePipeline` (`003323D0`).
 The pass dispatcher `FUN_00332440` selects one of five stages by an integer argument, each pushing
 an authored profiler label: **`"display character : preprocessing"`, `"display character : shadow"`,
@@ -1159,7 +1159,7 @@ largest input for which the wrap lands in range is not derived here.
 
 **It is not `Angle_NormalizeRadiansPi`'s result.** `FUN_0033CB70` (`0033CB70`–`0033CBEF`) is a
 different algorithm: only when `|x| > 4pi` (`00D10B0C` / `00D10B20`) does it take the truncating
-division, and then it **loops** — `addss −2pi` while `x > pi` (`0033CBA0`–`0033CBA7`), `addss +2pi`
+division ~~, and then it **loops**~~ and returns without a loop, leaving a result in `(−2pi, 2pi)` (`0033CBCD`–`0033CBEF`); only an input within `±4pi` **loops** *(corrected 2026-10-02, OPUS: `0033CB73` / `0033CB84` jump to `0033CBCD` beyond `±4pi`)* — `addss −2pi` while `x > pi` (`0033CBA0`–`0033CBA7`), `addss +2pi`
 while `x < −pi` (`0033CBC0`–`0033CBC7`) — and leaves an exact `±pi` untouched. The facing writer
 never loops and flips the endpoints. "The same result, open-coded" is withdrawn; the two agree only
 on inputs where a single biased pass suffices.
@@ -1188,7 +1188,7 @@ of `-1` skips the call (`002E5F3A`). Inside, the callee compares `cx` with `-1` 
 (`003EC267`, `003EC276`) as an index into the `0x740`-byte render records at `[022C6F28]`, so the
 `0xFFFF` case is rejected there as well. The remaining arguments are `XMM1 = aux`,
 `XMM2 = the wrapped facing`, `XMM3 = 0.0f`, and the stack fifth `= (commit != 0)`. The body, for a
-record whose `+0x284` is non-zero: with `+0x290` bit 20 clear and word `+6 == -1` it zeroes the
+record whose `+0x284` is non-zero: with `+0x290` bit 20 clear and word ~~`+6 == -1`~~ `+6 != -1` (and `+0x284` bit 27 clear; with that bit set such a record returns untouched) *(corrected 2026-10-02, OPUS: `003EC2AA`–`003EC2BB`, then `003EC2C1` `cmp word [rbx+6], -1` / `je` to the staging path; the reset `003EC2C8`–`003EC2D5` runs only for `+6 != -1`)* it zeroes the
 four-lane group `+0x120..+0x12C` to `{0, 0, 0, 1.0}` and returns; otherwise it compares
 `{aux, facing, 0}` with `+0x120 / +0x124 / +0x128` and, when any lane differs, clears `+0x284`
 bit 9, moves the old lanes to `+0x250 / +0x254 / +0x258` and stores the new group with `+0x12C =
@@ -1542,3 +1542,13 @@ Interior anchor `00380F29` (function `00380EB0`).
 `00380E00` (171 B) is the per-component heading wrap `00381D90` applies to the delta vector: `+0`/`+4`/`+8` zero with `+0xC` = `1.0f`, then each `rdx` component is folded into range - `> 0.999390` (the `3F7FBE77` lane at `00D112A0`) subtracts it, `< -0.999390` (`BF7FBE77`) adds it - three scalar single-wrap corrections into `rcx`
 
 Interior anchor `00380E23` (function `00380E00`).
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../_index/candidates/fable-heading-speed-to-position-delta-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0022DE60` | 1240 B | with c = `rcx`, m = qword `+8` of c, p = qword `+0x20` of c and N(x) = `00861F14` of x's squared length, for i below signed word `+0x14` of c, id = word [signed word `+0x12` + i] of qword `+0x28` of m; signed ids from `0x5000` are skipped; a gate on dword x skips when bit 31 is set after the mask/value pair at `0209A2D0` + `0x110` + 8k (k = 32 + bits 13-17 of x) is merged into x; an id from `0x4000` takes the `0x90`-byte element e = id - `0x4000` of qword `+0x18` of m, gates its dword `+4`, fills v by `00381D90(e, &v, p)`, skips unless L = N(v through the 3x3 at qword `+0x18` of c) exceeds r = `003810B0(e, p)`, and scales v by d = L - r; a lower signed id takes the 32-byte element e of qword `+0x10` of m, gates its dword `+0xC` only when its low 3 bits are 1, sets v to its four floats and L likewise, and needs s = (p minus 16-byte vertex [signed word e`+0x10`] of qword `+8` of m) dot v in (-0.001, L), the call at `0022DE60` + 0x35E (m, id, p, &w) non-zero and q = N(w) below L, taking v = w, s = q when q exceeds s; v is scaled by d = L - s over N(v); a d above float `+0x30` of c is stored there with id at word `+0x34`, and v is added to the three floats at qword `+0x28` of c | `0022DF05`, `0022DF59`, `0022E006`, `0022E1BE`, `0022E21A` |
+| `00232760` | 104 B | calls the callee at `00232760` + 0x10 with `rcx` and `rdx` unchanged and then `0022EF20(rdx)`; stores 0 in dword `020891E0` and, when the signed word `+0x52` of `rdx` is not negative, stores it in dword `02088FE0` and 1 in `020891E0`; stores 0 in dword `020891E4`, calls `0022F9B0(rcx, rdx, rdx)` and tail-jumps to `0022F250(rdx)` | `00232778`, `00232790`, `00232792`, `002327B1`, `002327C3` |
+| `00380FA0` | 263 B | builds A = `00202B70(&A, rdx+0x50, r8)` and B = `00202B70(&B, rdx+0x50, r9)` and on dword `+0` of `rdx` calls the callee at `00380FA0` + 0x95 for 0, `00381630` for 1 or `00381450` for 2, each as (&C, &A, &B); for any other kind or a zero result it returns -1.0 (`01CEBC9C`); otherwise it writes `00202B70(rcx, rdx+0x10, &C)` and returns `00861F14` of the squared distance between the first three floats at `rcx` and at `r8` | `00380FE0`, `00380FE5`, `0038103C`, `0038104A`, `00381087` |

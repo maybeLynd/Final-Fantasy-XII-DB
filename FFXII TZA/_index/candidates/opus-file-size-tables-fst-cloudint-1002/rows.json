@@ -1,0 +1,156 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/Loose-Files-And-Size-Tables/file-size-tables-fst.md",
+ "date": "2026-10-02",
+ "session": "local-w42-agent-b",
+ "report": "file-size-tables-fst.json",
+ "rows": [
+  {
+   "fn": "0019A660",
+   "text": "calls through the pointer at `008C20E0` with (qword `+8` of `rcx`, -1); when that returns 0 it scans the `0x98`-byte records at qword `+0x18` for indexes below dword `+0x10` (unsigned), atomically changes the first record's dword `+0x90` from 0 to 1 (`lock cmpxchg`), increments that record's dword `+0x40` and returns the record; when the call returns non-zero, dword `+0x10` is 0 or no record is claimed, it increments the dword at address `0x40` through a null `r8` and returns 0",
+   "anchors": [
+    [
+     "0019A670",
+     "call"
+    ],
+    [
+     "0019A683",
+     "jbe"
+    ],
+    [
+     "0019A69F",
+     "lock cmpxchg"
+    ],
+    [
+     "0019A6C6",
+     "inc"
+    ],
+    [
+     "0019A6B2",
+     "inc"
+    ]
+   ]
+  },
+  {
+   "fn": "001D6A20",
+   "text": "calls `0020C700` with the incoming argument registers unchanged, then calls `0020B680(that result, ecx, rdx, r8d)` with the incoming `r9d` as the fifth (stack) argument and returns its `rax`",
+   "anchors": [
+    [
+     "001D6A3F",
+     "call"
+    ],
+    [
+     "001D6A47",
+     "mov"
+    ],
+    [
+     "001D6A53",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "001F4840",
+   "text": "returns at once when `rdx` is null; otherwise compares `rdx` with the 15 addresses qword `+0xA8` of `rcx` + k*`0x30` (k = 0..14, signed loop bound); on a match it calls `002152D0(rdx)` and returns, and with no match it calls `00215040(rdx)` and tail-jumps to `00809950(rdx, 0x30)`",
+   "anchors": [
+    [
+     "001F486E",
+     "cmp"
+    ],
+    [
+     "001F4875",
+     "cmp"
+    ],
+    [
+     "001F4897",
+     "call"
+    ],
+    [
+     "001F487D",
+     "call"
+    ],
+    [
+     "001F488F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0020C150",
+   "text": "returns 0 when `r9d` is 0 or `rdx` is null; otherwise tail-jumps to `00217A70(rdx, r8, r9d)`, moving the incoming `rdx`, `r8` and `r9d` into `rcx`, `rdx` and `r8d`",
+   "anchors": [
+    [
+     "0020C156",
+     "test"
+    ],
+    [
+     "0020C15E",
+     "je"
+    ],
+    [
+     "0020C169",
+     "jmp"
+    ],
+    [
+     "0020C16E",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "00368F30",
+   "text": "when `ecx` is non-negative (signed) returns 1 if the qword at `022D7F70` + `ecx`*8 is non-zero, else 0 (`setne`); when `ecx` is negative it scans the qwords from `022D7F70` up to but excluding `022D7F78` (one qword) and returns 1 on a non-zero one, else 0",
+   "anchors": [
+    [
+     "00368F32",
+     "js"
+    ],
+    [
+     "00368F40",
+     "cmp"
+    ],
+    [
+     "00368F44",
+     "setne"
+    ],
+    [
+     "00368F56",
+     "cmp"
+    ],
+    [
+     "00368F68",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00536F30",
+   "text": "reads the pointers P = qword `02EBB538` and D = qword `02EBB530`, stores dword `P+8` AND `0x1FFFFFF` to dword `02CA8A70` and stores H = 0xC when byte `P+3` is `0x64`, else 0x10, to dword `02CA8A74`; on dword `P+4` AND 3 = 1 it tail-jumps to `00536DD0`, on 2 to `00537030`, on 3 it returns; on 0, when dword `02EBB528` is non-zero it copies (`02EBB528` minus H) bytes from P + H to D and then dword `02EBB52C` bytes from `02EBA520` right after them, and when `02EBB528` is 0 it copies (`02EBB52C` minus H) bytes from `02EBA520` + H to D; each copy runs only while its count is positive (signed)",
+   "anchors": [
+    [
+     "00536F60",
+     "cmove"
+    ],
+    [
+     "00536F7F",
+     "jmp"
+    ],
+    [
+     "00536FB5",
+     "mov"
+    ],
+    [
+     "00536FE7",
+     "mov"
+    ],
+    [
+     "00537015",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

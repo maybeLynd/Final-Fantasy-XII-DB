@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\sd194-caller-frames\prove.py", line 98, in <module>
+    args=parser.parse_args();main(args.output,args.source)
+                             ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\sd194-caller-frames\prove.py", line 33, in main
+    need(state.get('terminal') is True and state.get('exit')==0 and state.get('exception') is None and state.get('driver_sha256')==sha(source/driver)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         and(source/(tag+'.stdout')).read_bytes() and not(source/(tag+'.stderr')).read_bytes(),'required upstream failed: '+tag)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\sd194-caller-frames\prove.py", line 10, in need
+    if not ok:raise ValueError(text)
+              ^^^^^^^^^^^^^^^^^^^^^^
+ValueError: required upstream failed: extents-01

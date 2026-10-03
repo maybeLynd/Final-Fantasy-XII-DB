@@ -18,7 +18,7 @@ verified_against:
   exe_sha256: 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8
 last_reviewed: 2026-09-02
 archive_formats:
-  - "GRMI | explained | gramap_weatherinfo.bin (.bin member): {GRMI01, u16 count at +6 = 776, 9-bit packed (selector, slot) records from +8} - read by 003777C0 (bit base 9*(3*selector+slot)); corpus decode D-7"
+  - "GRMI | explained | gramap_weatherinfo.bin (.bin member): {GRMI01, u16 count at +6 = 776, 9-bit packed (selector, slot) records from +8} - read by 003777C0 (bit base 9*(3*selector+slot)); corpus decode D-7"   # <- corrected 2026-10-02, OPUS - with a zero-based slot; the callers pass 1..3 and 003777C0 subtracts 9 (003777F9 lea r10d,[r9-9]), so the entry is 3*selector + slot - 1
 audit:
   passes: 1
   last_pass: 2026-09-02
@@ -47,7 +47,7 @@ state.
 All three field extractors share one packed-bit reader, `003777C0`, with effective bit base:
 
 ```
-9 * (3 * selector + weatherSlotIndex)
+9 * (3 * selector + weatherSlotIndex)   <- corrected 2026-10-02, OPUS: for the 1..3 slot the callers pass it is 9 * (3 * selector + slot - 1) - 003777E9 lea eax,[rcx+rcx*8], 003777F9 lea r10d,[r9-9] (CONTRACT-weather.md I-4)
 ```
 
 where `selector` is a MapRef-derived value. **9 bits per (selector, Weather Slot) pair.**
@@ -153,7 +153,7 @@ Stored at `02099DAC`, read by CombatFormula. **MWeather is therefore not purely 
 ```
 MWeather packed record
   9 bits per (MapRef-derived selector, Weather Slot) combination
-  bitBase = 9 * (3 * selector + weatherSlotIndex)
+  bitBase = 9 * (3 * selector + weatherSlotIndex)   <- corrected 2026-10-02, OPUS: 9 * (3 * selector + slot - 1) for the 1..3 slot the callers pass (003777F9 lea r10d,[r9-9]; CONTRACT-weather.md I-4)
 
     bits 0..2   u3   presentation preset / mode      0..7
     bits 3..6   u4   azimuth sector                  16 x 22.5 deg
@@ -196,7 +196,7 @@ apply path
       2026-09-12 (FABLE): not in the image.** The selector is the word `+0` of the field's 8-byte row
       in the map-reference table `[02099D88]` (`MapRef_GetPrimaryFieldValue`, `00264F29`–`00264F39`),
       a header-offset file image that `MapRef_BeginLoadResources` (`00268750`) requests at bootstrap
-      as loader id 9, kinds 4 and 2 (`00268803`–`0026883E`), and that carries no column names; the
+      as loader id 9, ~~kinds 4 and 2~~ kind 4 (`00268803`–`00268809`; the kind-2 request at `0026880E`–`0026883E` is a second file, `test_area_ref.bin`, kept at `02099D98`) *(corrected 2026-10-02, OPUS: `002687CF` stores the kind-4 buffer at `02099D88` and `00268829` the kind-2 buffer at `02099D98`; choosing-the-field-environment-variant.md, the two test_ siblings)*, and that carries no column names; the
       authoring tool's grammar names only `weatherProbability` on the script side. The mechanism —
       selector × Weather Slot → the 9-bit packed record — is fully read (§2, §4); the designer's
       label for the selector is not recoverable from the shipped data and the row is retired as a
@@ -206,7 +206,7 @@ apply path
       `gramap_weatherinfo.bin` (`GRMI01`, count word `+6` = **776** selectors, bits from `+8`,
       2,620 bytes for the 2,619 the 776 × 27 bits need; the `ch` and `in` copies are byte-identical
       and no `us` copy ships) decoded with `003777C0`'s own rule — bit base `9 × (3 × selector +
-      slot)`, `width` bits read most-significant first — gives, over all 2,328 (selector, slot)
+      slot)` with the slot zero-based *(corrected 2026-10-02, OPUS: the callers pass `1..3` and `003777C0` takes the 9 bits back off, `003777F9 lea r10d, [r9-9]`; CONTRACT-weather.md I-4)*, `width` bits read most-significant first — gives, over all 2,328 (selector, slot)
       entries: elevation **0 × 1,865, 1 × 214, 2 × 249, 3 × 0**; presets 0 × 1,180, 1 × 550, 2 × 420,
       4 × 153, 5 × 24, 6 × 1 (3 and 7 never); 391 selectors carry any non-zero field. *Mode 1 (the
       verb):* all **174** `setmapwind` calls in the 1,114 shipped scripts push immediates, and the
@@ -239,7 +239,7 @@ apply path
       alike, and the azimuth/elevation inputs that feed it are equally neutral. The one thing it
       does rule out is reading the second vector as an independent second direction. Naming it
       still needs `0040FF30`, the sole identified consumer, read - which is where this question (D-9 since
-      2026-09-26) has always pointed.*
+      2026-09-26) has always pointed.* *(answered: see the ANSWERED 2026-09-26 note above — the map's wind direction, read through `0040FF30`; 2026-10-02, OPUS)*
 
 ## 8. Evidence
 
@@ -280,8 +280,8 @@ The shared reader bounds-checks `param_1 < *(ushort *)(DAT_02ADD0B0 + 6)`, so th
 carries its entry count at `+6`.
 
 **Width caveat:** only the first wrapper's width argument (`3`) survives decompilation; the other two
-pass offset only. The widths 4 and 2 are inferred from the offsets being 3 and 7 with a 9-bit total,
-not read directly.
+pass offset only. ~~The widths 4 and 2 are inferred from the offsets being 3 and 7 with a 9-bit total,~~
+~~not read directly.~~ *(answered: the widths are read, not inferred — "The field widths are read" below closes this caveat; 2026-10-02, OPUS)*
 
 **Stamp advanced because the bodies were re-read**, per the evidence standard.
 
@@ -411,7 +411,7 @@ Shared callees outside the census: `0032E400`, `0036C1D0`, `0036C750`.
 
 ## SWE2-EC7-63 update (2026-09-19) - `003777C0`
 
-`003777C0` (144 B) is the 3-bit weather preset body - call-free index arithmetic (`rdx+rcx*2`, `rcx*9`, `r9-9` bounds), `02ADD0B0`. Interior anchor `003777E9` (the `rcx*9` index form).
+`003777C0` (144 B) is ~~the 3-bit weather preset body~~ the packed-bit reader the three extractors share, and the preset is `00377850`'s *(corrected 2026-10-02, OPUS: `retool.py callers 003777C0` — `00377850`, `003777A0` and `003777B0` all enter it)* - call-free index arithmetic (`rdx+rcx*2`, `rcx*9`, `r9-9` bounds), `02ADD0B0`. Interior anchor `003777E9` (the `rcx*9` index form).
 
 `00377850` (14 B) is the preset extractor — the third of the field readers sharing `003777C0`: tail-enters `003777C0(ecx, edx, 0, 3)`, i.e. `(selector, slot, bitOffset 0, width 3)`, which is exactly the 3-bit weather preset `choosing-the-field-environment-variant.md` describes.
 

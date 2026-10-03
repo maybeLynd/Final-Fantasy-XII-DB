@@ -81,7 +81,7 @@ the **field of view** and `+0xD0` the projection scale `1 / tan(fov / 2)` - osci
 oscillator 6. The position offset `02AEDF70` is rotated by the camera's own matrix at `02AED5C0` and added to the **eye**
 at `02AED5F0` (the matrix's fourth row); the target offset `02AEDF80` is rotated the same way and added to the vector
 that follows the matrix at `02AED600` - the **look-at point**, by the sampler's position / target pairing and the
-rebuild that follows; `003CBD60` itself was not read. A
+rebuild that follows; ~~`003CBD60` itself was not read~~ *(answered: see the SWE2-EC7-53 section - `003CBD60` read; 2026-10-02, OPUS)*. A
 shake is therefore authored in the camera's frame - *left* is the camera's left, wherever it is facing - and
 `003CBD60` then rebuilds the camera's matrices from the moved eye and target.
 
@@ -147,8 +147,8 @@ is -1 when the channel is idle and otherwise names the draw of the frame (0 or 1
 **The reset - `0037D890`** (209 B) stores -1 in all twenty draw tags, calls the setter with zero vectors and zero
 scalars, and zeroes the two accumulator rows at `02EBF380`.
 
-**The gather - `0037D4C0`** (808 B) runs once per draw. It takes two base scalars from `002563F0`, steps the table with
-`0037D970`, reads which draw is being prepared from the pass-mask block's byte `+8`, and walks the five records **from
+**The gather - `0037D4C0`** (808 B) runs once per draw. It takes two base scalars from `002563F0`, ~~steps the table with~~
+~~`0037D970`~~ calls `0037D970` *(corrected 2026-10-02, OPUS: §4a's 2026-09-21 section - not a table step; it fills the accumulator rows)*, reads which draw is being prepared from the pass-mask block's byte `+8`, and walks the five records **from
 the last to the first**, channels 0 to 3 in each. For every channel whose draw tag equals the current draw: its two
 **scalars are added** to the running pair, and its two **vectors replace** the running vectors. So scalar shakes from
 several sources sum, while of several vector shakes only one survives - the one in the lowest-numbered record, highest
@@ -278,7 +278,7 @@ driver whose state is non-zero
 > measurement of *how often*, and it cannot support a claim that one consumer dominates by volume.
 > Those are different quantities and only a run distinguishes them. - **including a finished one**: the driver sets state 2 on finish, state 2 is non-zero,
 and the sampler only leaves early for an entry of -1. A shake that has run out therefore keeps taking sixteen words a
-frame until a script stops or clears it (the shipped scripts do pair their 328 starts with 315 clears and 178 stops).
+frame until a script stops or clears it (the shipped scripts do pair their 328 starts with 315 clears and 178 stops *(corrected 2026-10-02, OPUS: and 2 more under the plain `camerashakestop` name, `members/camerashake-census.tsv`)*).
 For anything that must reproduce the stream - a replay, a second machine - **camera shake is not cosmetic**.
 Static evidence; no run was made.
 
@@ -304,7 +304,7 @@ state 0 and bank index -1.
 
 *In the shipped scripts* ([camerashake_census.py](members/camerashake_census.py),
 [camerashake-census.tsv](members/camerashake-census.tsv); 842 calls, parsed count equal to a plain substring count):
-328 starts, **all in the two-argument form**, 315 clears, 178 stops, 13 syncs, 6 changes. 327 of the 328 ids carry the
+328 starts, **all in the two-argument form**, 315 clears, 178 stops, 13 syncs, 6 changes *(corrected 2026-10-02, OPUS: and 2 `camerashakestop` - the TSV's sixth verb row, so 842)*. 327 of the 328 ids carry the
 top byte `0x0D` and one `0x02`; the handler discards that byte. Channel 0 takes the great majority, bank indices 0, 1
 and 2 most of those. The one-argument `camerashakestart` is never called - and as read it would pass a channel of -1,
 which `003DD230` rejects.
@@ -315,7 +315,7 @@ invokes immediately before the shake driver - and started by `camerastart` with 
 `0x02`-tagged id in the shake census is: a camera id handed to a shake verb. The handler discards the tag, so the call
 starts shake bank entry *n*, whatever its author meant.
 
-*Still not read:* the table step, `camerashakechange` / `camerashakeratio` / the two sync verbs, and the
+*Still not read:* ~~the table step,~~ *(answered: see §4a - `0037D970` is read; 2026-10-02, OPUS)* `camerashakechange` / `camerashakeratio` / the two sync verbs, and the
 bank's entry layout beyond its data id.
 
 ## 5. Behaviour a reimplementation must keep
@@ -330,7 +330,7 @@ bank's entry layout beyond its data id.
 - The rest of the `0xD0`-byte camera record. Read so far: `+0` near, `+4` far, `+8` field of view, `+0xC` a second
   field-of-view float, `+0x10` `1 / tan(fov / 2)`, `+0x20` the view matrix, `+0x60` the camera's world matrix (fourth
   row the eye), `+0xA0` the look-at point, `+0xC4` the roll.
-- What the matrix at the head of the working block is (the extra factor in `02AEDD30` and `02AEDD70`), what the device
+- ~~What the matrix at the head of the working block is (the extra factor in `02AEDD30` and `02AEDD70`),~~ *(answered: see how-a-position-becomes-a-single-number.md - `00382910` builds it with the 512 x 448 PS2 frame size; 2026-10-02, OPUS)* what the device
   method behind `001824E0` does to the field of view, what the Movement object of the tail is, and what `0024E180` does
   with `02AEDD30`.
 - What the shared predicate of section 2 tests and whose vectors override the submitted camera.
@@ -346,7 +346,7 @@ bank's entry layout beyond its data id.
 | | copy, priority, submitted flag | `00382A8A`, `00382B01`, `00382B07` |
 | | default-view test and the two wrappers | `00382B18`, `00382B21`, `00382B28` |
 | `00382910` reset (163 B) | the eight flags; offsets zeroed and their fourth components; `02AEDFA0` | `0038292A`..`00382954`, `0038295A`, `00382975`, `003829A4` |
-| `0037D4C0` shake gather (808 B) | base scalars; table step; current draw | `0037D4EC`, `0037D4F1`, `0037D514` |
+| `0037D4C0` shake gather (808 B) | base scalars; ~~table step~~ the accumulator fill `0037D970` *(corrected 2026-10-02, OPUS: §4a)*; current draw | `0037D4EC`, `0037D4F1`, `0037D514` |
 | | channel 0: tag test, scalars added, vectors replaced | `0037D557`, `0037D564`, `0037D569`, `0037D573`..`0037D58B` |
 | | channels 1, 2, 3 | `0037D5BD`, `0037D644`, `0037D6CB` |
 | | previous record; accumulator row; setter | `0037D74D`, `0037D75C`, `0037D765`, `0037D7C4` |

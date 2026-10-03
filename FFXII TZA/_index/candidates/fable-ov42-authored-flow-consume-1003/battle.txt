@@ -1,0 +1,49 @@
+### FABLE 2026-10-03: the shipped script that carries the queue reader's output into `spattackread` (OV-42)
+
+*Consumed from SWE2-DATA's record
+[`swe2data-ov42-authored-spattack-flow-1003`](../../_index/candidates/swe2data-ov42-authored-spattack-flow-1003/README.md)
+(`c77a50981`, 34 checks, 6 controls, FAILS 0), reviewed by SWE2-AUDIT-SPEC ACCEPT
+([review](../../_index/candidates/auditspec-review-swe2data-ov42-authored-spattack-flow-1003/REVIEW.md), `c5f35fc3c`, with
+its own extraction and decode). Static only: no game, emulator or native call was run.*
+
+- **The authored caller.** The event script `spc_z0000.ebp` is byte-identical in all nine language copies. Its calls to
+  verb `029A` (`getspattackskillinfo`, whose bridge calls the queue reader above) and to `029B` (`spattackread`, whose
+  bridge passes action and unit to `0030EEA0`) are three sites per copy. The record re-locates them from the decoded
+  image and rests no count on the census.
+- **The two out-references are disjoint.** Both `029A` calls pass two `file`-class s32 cells. The bridge decodes both
+  against one context, so the unit destination lies exactly 4 bytes past the action destination. The two are
+  byte-disjoint, so by the ordered-store formula above both values survive. That neither cell aliases the queue
+  globals is a premise, not a result.
+- **The loop path meets the precondition (H1), under the premises below.**
+  - `監督::全体処理` calls `029A` into vars 5 and 6, stores `!result` in var 3, and copies vars 5 and 6 into vars 0 and
+    1 as whole dwords. It then requests `技読み込み`.
+  - That reader returns at once unless var 3 is 0, that is, unless the same iteration's `029A` returned 1. Otherwise it
+    pushes var 1 and var 0 and calls `029B`.
+  - So `0030EEA0` receives exactly the action word and unit the queue reader stored, provided both destinations are
+    non-null (the reader guards each pointer).
+- **The init path cannot be established statically (H2).**
+  - `監督::init` calls `029A` into vars 0 and 1 and never tests the result. Var 3 is still 0, so the reader calls `029B`
+    whatever `029A` returned.
+  - With a pending queue this path is as clean as the loop path.
+  - With an empty queue (`022C2178` = FFFFFFFF) the reader writes nothing. `029B` then receives the cells' image
+    values, 0 and 0 in the shipped image: action word 0, not the -1 sentinel that `0030EEA0` tests.
+- **What this changes above.** The first "Limits kept" bullet of the queue-reader subsection is narrowed for this one
+  script. An authored out-reference binding is now shown statically on the loop path, and the init path's precondition
+  is shown not to be statically established.
+
+**Premises** (the record's, not proved):
+- the native ABI and the interpreter's stack contract;
+- opcode stack effects, and `REQ` operands read as (priority, actor, function), as the interpreter page records them;
+- the bridge's context global holds this image's slot during both calls;
+- the `file` area holds the image's load bytes;
+- the `file` cells do not alias the queue globals;
+- `監督::init` completes before the loop is requested.
+
+**Still OPEN:**
+1. The queue state when `監督::init` runs in a natural special attack. Next: the order of the producer store
+   `0030DC98` against the event start, or else one watch on `022C2178` at the init call.
+2. Native writers of the `file` cells outside the bytecode.
+3. The image buffer against the queue globals: the loader's allocation.
+4. What action word 0 does in `0030EEA0` / `0030CFB0` (owned by `spattack-native-word-remap`).
+
+This is not a natural command-to-action proof, and whole OV-42 stays OPEN.

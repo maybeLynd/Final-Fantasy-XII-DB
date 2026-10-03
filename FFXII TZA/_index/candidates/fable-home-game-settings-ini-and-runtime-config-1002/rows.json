@@ -1,0 +1,79 @@
+{
+ "page": "19-Save-Load-Settings/Game-Settings-Config/game-settings-ini-and-runtime-config.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01G1D6BV8reSc8hRtefJLZec",
+ "report": "home-game-settings-ini-and-runtime-config.json",
+ "rows": [
+  {
+   "fn": "002287A0",
+   "entered_from": "`002507C0` + 0x2F",
+   "text": "returns 1 when `002287A0` + 0x4 returns 6 or, failing that, a second call at `002287A0` + 0xE returns 5, and 0 otherwise",
+   "anchors": [
+    [
+     "002287A4",
+     "call"
+    ],
+    [
+     "002287A9",
+     "cmp"
+    ],
+    [
+     "002287B3",
+     "cmp"
+    ],
+    [
+     "002287B8",
+     "xor"
+    ],
+    [
+     "002287BF",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0029FAD0",
+   "entered_from": "`0023B6F0` + 0x312",
+   "text": "takes `f` = bits 6-15 of dword `rcx+8` as a signed 10-bit value, zeroes two stack words `a` and `b`, and calls `0029FAD0` + 0x3F(&`a`, &`b`, qword `rcx+0x18`, `0029FAD0` + 0x25(dword `rcx+0x20`), `f` as the fifth (stack) argument); then stores the truncated float(signed word `a`) times float `rcx+0x28` to word `+0xA`, clears bits 6-15 of dword `+8` and sets bit 2 of byte `+0x2D`",
+   "anchors": [
+    [
+     "0029FAE8",
+     "sar"
+    ],
+    [
+     "0029FB0F",
+     "call"
+    ],
+    [
+     "0029FB2E",
+     "mov"
+    ],
+    [
+     "0029FB32",
+     "and"
+    ],
+    [
+     "0029FB39",
+     "or"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "00158F60",
+   "why": [
+    "already cited by 19-Save-Load-Settings\\Game-Settings-Config\\game-settings-ini-and-runtime-config.md"
+   ]
+  },
+  {
+   "fn": "00441EE0",
+   "why": [
+    "already cited by 17-Presentation-Rendering\\Effect-File-Formats\\effect-element-type-dispatch.md"
+   ]
+  }
+ ],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

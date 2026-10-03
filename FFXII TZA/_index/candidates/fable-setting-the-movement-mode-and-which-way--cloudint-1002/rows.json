@@ -1,0 +1,323 @@
+{
+ "page": "06-Movement-And-Navigation/Movement-Mode-Selection/setting-the-movement-mode-and-which-way-a-character-turns.md",
+ "date": "2026-10-02",
+ "session": "https://claude.ai/code/session_01924rEWURNFUyvDKP31ShM7",
+ "report": "setting-the-movement-mode-and-which-way-a-character-turns.json",
+ "rows": [
+  {
+   "fn": "0026C330",
+   "text": "computes `r8d` as the truncated quotient of `edx` by float `01DFE0BC` (decoded 1.0) when `edx` is greater than 0 (signed), else 0; then, only when byte `+3` of `rcx` AND `0xE0` equals `0x60` (else it returns), takes the qword `+0xF0` of qword `+0xB8` of `rcx` and stores word `01DFE0B4` plus `r8w` at its word `+0x68` and word `+0x66`, and dword `01DFE0B4` (decoded 1) converted to float at its float `+0x78`",
+   "anchors": [
+    [
+     "0026C33B",
+     "divss"
+    ],
+    [
+     "0026C353",
+     "cmp"
+    ],
+    [
+     "0026C373",
+     "mov"
+    ],
+    [
+     "0026C389",
+     "movss"
+    ],
+    [
+     "0026C3A0",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0026D630",
+   "text": "multiplies `xmm1` by float `01DFE0BC` (decoded 1.0) and adds 3.141593 (`01CEBC50`) when the product is not below 0.0, or -3.141593 (`00915620`) when it is (`jb`); when byte `+3` of `rcx` AND `0xE0` does not equal `0x60` it returns; otherwise it subtracts from the sum the truncated quotient of the sum by 6.283185 (`01CEBC78`) times 6.283185, then the same added offset, and tail-jumps `002E60C0` with `rcx` unchanged and that result in `xmm1`",
+   "anchors": [
+    [
+     "0026D636",
+     "mulss"
+    ],
+    [
+     "0026D641",
+     "jb"
+    ],
+    [
+     "0026D65F",
+     "cmp"
+    ],
+    [
+     "0026D66E",
+     "cvttss2si"
+    ],
+    [
+     "0026D68C",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002E60C0",
+   "text": "when `rcx` is non-null and qword `+0xC0` of `rcx` is non-zero, stores `xmm1` at float `+0x3C` of the qword `+0xF0` of qword `+0xB8` of `rcx`; otherwise returns without work",
+   "anchors": [
+    [
+     "002E60C5",
+     "cmp"
+    ],
+    [
+     "002E60D6",
+     "mov"
+    ],
+    [
+     "002E60DD",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "002E8170",
+   "text": "returns without work unless `rcx` is non-null, qword `+0xC0` of `rcx` is non-null, the dword at that pointer is not -1, its low word is not -1, the row qword `022C6F28` plus the sign-extended word times `0x740` is non-null and dword `+0x284` of that row is non-zero; then sets bit 19 (`bts 0x13`) of that dword when `edx` is non-zero, or clears it (`btr`) when `edx` is zero, and stores it back",
+   "anchors": [
+    [
+     "002E8193",
+     "imul"
+    ],
+    [
+     "002E81A3",
+     "mov"
+    ],
+    [
+     "002E81B1",
+     "bts"
+    ],
+    [
+     "002E81BC",
+     "btr"
+    ],
+    [
+     "002E81C0",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "002EA780",
+   "text": "returns 0 unless `rcx` is non-null, qword `+0xC0` of `rcx` is non-null, the dword at that pointer is not -1, its low word is not -1, the row qword `022C6F28` plus the sign-extended word times `0x740` is non-null, dword `+0x284` of that row is non-zero and the call at `002EA780` + 0x45 (with `rcx` = the row) returns non-zero; then returns 1 when `002EA910` called with the incoming `rcx` returns 1 and 0 otherwise (`sete`)",
+   "anchors": [
+    [
+     "002EA7AC",
+     "imul"
+    ],
+    [
+     "002EA7BC",
+     "cmp"
+    ],
+    [
+     "002EA7C5",
+     "call"
+    ],
+    [
+     "002EA7D1",
+     "call"
+    ],
+    [
+     "002EA7DB",
+     "sete"
+    ]
+   ]
+  },
+  {
+   "fn": "002EA910",
+   "text": "returns 1 unless `rcx` is non-null, qword `+0xC0` of `rcx` is non-null, the dword at that pointer is not -1, its low word is not -1, the row qword `022C6F28` plus the sign-extended word times `0x740` is non-null, dword `+0x284` of that row is non-zero and the call at `002EA910` + 0x40 (with `rcx` = the row) returns non-null; in that case tail-jumps `003E2C00` with that pointer as `rcx`",
+   "anchors": [
+    [
+     "002EA937",
+     "imul"
+    ],
+    [
+     "002EA947",
+     "cmp"
+    ],
+    [
+     "002EA950",
+     "call"
+    ],
+    [
+     "002EA961",
+     "jmp"
+    ],
+    [
+     "002EA966",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "003425D0",
+   "text": "calls `0026C330(rdx, 00267E10(r9))`, then `0026A1A0(rdx, 0)`, then `00357DE0` with the four incoming arguments `rcx`, `rdx`, `r8`, `r9`, and tail-jumps `0026C120(rdx, 4)`",
+   "anchors": [
+    [
+     "003425F3",
+     "call"
+    ],
+    [
+     "003425FD",
+     "call"
+    ],
+    [
+     "00342607",
+     "call"
+    ],
+    [
+     "00342618",
+     "call"
+    ],
+    [
+     "00342639",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0034D9B0",
+   "text": "calls `0026C330(rdx, 00267E10(r9))`, then `0034BE50` with the four incoming arguments `rcx`, `rdx`, `r8`, `r9`, and tail-jumps `0026C120(rdx, 4)`",
+   "anchors": [
+    [
+     "0034D9D3",
+     "call"
+    ],
+    [
+     "0034D9DD",
+     "call"
+    ],
+    [
+     "0034D9EE",
+     "call"
+    ],
+    [
+     "0034DA0F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0034E040",
+   "text": "calls `00267F90(r9, 0)`, then `0026C330(rdx, 00267E10(r9))`, then `0034BE50` with the four incoming arguments `rcx`, `rdx`, `r8`, `r9`, and tail-jumps `0026C120(rdx, 4)`",
+   "anchors": [
+    [
+     "0034E065",
+     "call"
+    ],
+    [
+     "0034E06D",
+     "call"
+    ],
+    [
+     "0034E077",
+     "call"
+    ],
+    [
+     "0034E088",
+     "call"
+    ],
+    [
+     "0034E0A9",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0034E360",
+   "text": "calls `00267F90(r9, 0)`, then `0026C330(rdx, 00267E10(r9))`, then `0026A1A0(rdx, 0)`, then `00357DE0` with the four incoming arguments `rcx`, `rdx`, `r8`, `r9`, and tail-jumps `0026C120(rdx, 4)`",
+   "anchors": [
+    [
+     "0034E385",
+     "call"
+    ],
+    [
+     "0034E397",
+     "call"
+    ],
+    [
+     "0034E3A1",
+     "call"
+    ],
+    [
+     "0034E3B2",
+     "call"
+    ],
+    [
+     "0034E3D3",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003A1980",
+   "text": "converts `xmm0` to double, clears its sign bit with the mask `01CEBD80` (`andps`), converts it back to float and returns the `minss` of that absolute value and `xmm1`",
+   "anchors": [
+    [
+     "003A1983",
+     "cvtss2sd"
+    ],
+    [
+     "003A1987",
+     "andps"
+    ],
+    [
+     "003A1992",
+     "minss"
+    ]
+   ]
+  },
+  {
+   "fn": "003EC510",
+   "text": "adds 6.283185 (`01CEBC78`) to `xmm0` while it is below -3.141593 (`00915620`), then adds -6.283185 (`00915624`) while it is above 3.141593 (`01CEBC50`); returns 0.0 when the result equals 0.0; otherwise when `edx` is 0 adds 6.283185 to a negative result, when `edx` is 1 adds -6.283185 to a positive result, and returns the value (unchanged for any other `edx`)",
+   "anchors": [
+    [
+     "003EC525",
+     "addss"
+    ],
+    [
+     "003EC543",
+     "addss"
+    ],
+    [
+     "003EC54F",
+     "ucomiss"
+    ],
+    [
+     "003EC568",
+     "addss"
+    ],
+    [
+     "003EC572",
+     "addss"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "002EA780",
+   "was": "returns 0 unless `rcx` is non-null, qword `+0xC0` of `rcx` is non-null, the dword at that pointer is not -1, its low word is not -1, the row qword `022C6F28` plus the sign-extended word times `0x740` is non-null, dword `+0x284` of that row is non-zero and `003E6AF0` (with `rcx` = the row) returns non-zero; then returns 1 when `002EA910(rcx)` returns 1 and 0 otherwise (`sete`)",
+   "now": "returns 0 unless `rcx` is non-null, qword `+0xC0` of `rcx` is non-null, the dword at that pointer is not -1, its low word is not -1, the row qword `022C6F28` plus the sign-extended word times `0x740` is non-null, dword `+0x284` of that row is non-zero and `003E6AF0` (with `rcx` = the row) returns non-zero; then returns 1 when `002EA910` called with the incoming `rcx` returns 1 and 0 otherwise (`sete`)",
+   "why": "002EA7CE reloads rcx from rbx (the incoming rcx) for 002EA7D1; the old `002EA910(rcx)` read as the row just named rcx at 002EA7AC/002EA7C5"
+  },
+  {
+   "fn": "002EA780",
+   "was": "returns 0 unless `rcx` is non-null, qword `+0xC0` of `rcx` is non-null, the dword at that pointer is not -1, its low word is not -1, the row qword `022C6F28` plus the sign-extended word times `0x740` is non-null, dword `+0x284` of that row is non-zero and `003E6AF0` (with `rcx` = the row) returns non-zero; then returns 1 when `002EA910` called with the incoming `rcx` returns 1 and 0 otherwise (`sete`)",
+   "now": "returns 0 unless `rcx` is non-null, qword `+0xC0` of `rcx` is non-null, the dword at that pointer is not -1, its low word is not -1, the row qword `022C6F28` plus the sign-extended word times `0x740` is non-null, dword `+0x284` of that row is non-zero and the call at `002EA780` + 0x45 (with `rcx` = the row) returns non-zero; then returns 1 when `002EA910` called with the incoming `rcx` returns 1 and 0 otherwise (`sete`)",
+   "why": "FABLE neighbour pre-check: the entry citation of the callee imported that callee's foreign-layer edges onto the page; the call is cited by its site instead"
+  },
+  {
+   "fn": "002EA910",
+   "was": "returns 1 unless `rcx` is non-null, qword `+0xC0` of `rcx` is non-null, the dword at that pointer is not -1, its low word is not -1, the row qword `022C6F28` plus the sign-extended word times `0x740` is non-null, dword `+0x284` of that row is non-zero and `003E6DF0` (with `rcx` = the row) returns non-null; in that case tail-jumps `003E2C00` with that pointer as `rcx`",
+   "now": "returns 1 unless `rcx` is non-null, qword `+0xC0` of `rcx` is non-null, the dword at that pointer is not -1, its low word is not -1, the row qword `022C6F28` plus the sign-extended word times `0x740` is non-null, dword `+0x284` of that row is non-zero and the call at `002EA910` + 0x40 (with `rcx` = the row) returns non-null; in that case tail-jumps `003E2C00` with that pointer as `rcx`",
+   "why": "FABLE neighbour pre-check: the entry citation of the callee imported that callee's foreign-layer edges onto the page; the call is cited by its site instead"
+  }
+ ]
+}

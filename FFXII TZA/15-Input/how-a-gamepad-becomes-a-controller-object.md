@@ -241,3 +241,20 @@ Interior anchor `007A37F5`
   Each later walk therefore builds another Steam object for it.
 - All those Steam objects share one set of global handles.
 - Whether the duplicates cause doubled input depends on each kind's poll, which is still not read.
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../_index/candidates/fable-how-a-gamepad-becomes-a-controller-objec-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00796230` | 75 B | switches on byte `+0x24` of `rcx`: 0x12 calls `00796230 + 0x3C`, 0x13 calls `00796230 + 0x2D`, 0x14, 0x15 and 0x18 call `00797690`, each with `rcx`, and every other value (0x19 included) calls nothing; returns 1 on every path | `00796238`, `00796245`, `0079624E`, `0079625D`, `0079626C` |
+| `00798A40` | 55 B | switches on byte `+0x24` of `rcx`: 0x12 calls `00798A40 + 0x28`, 0x14, 0x15 and 0x18 call `00797690`, each with `rcx`, and every other value (0x13 and 0x19 included) calls nothing; returns 1 on every path | `00798A48`, `00798A50`, `00798A57`, `00798A59`, `00798A68` |
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../_index/candidates/fable-home-how-a-gamepad-becomes-a-controller-obje-1002/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `00797460` | 547 B | `00796230` + 0x3C | when qword `02EA58B8` (o) is non-null, unlinks each of the six 0x48-stride nodes from `o+0x30` to `o+0x198` whose qword `+0x10` equals o (self-linking it and zeroing its qwords `+0x10`, `+0x38` and `+0x40`), unlinks the node at `o+8` and links it before the head `01F401F8` (updating qword `01F40200`), and stores 1 into byte `02EA537A`; then calls vtable slot `+0x18` of qword `02EA5370` with `rcx+4`, a stack out-pointer and 0, and on the object it writes there calls slots `+0x58` (with `01CC7130`), `+0x68` (with qword `02EA5248` and 6) and `+0x38`, returning early, without the final store, when slot `+0x18` or slot `+0x58` returns a negative value or slot `+0x68` returns 0x80004001; finally stores into qword `02EA58B8` the result of the call at `00797460` + 0x209 on a 0x1F8-byte allocation (`00797460` + 0x1F4) given a 0x10-byte block (`00797460` + 0x1DC) holding byte 0 and the object, or 0 when that allocation is null | Interior anchor `0079748D`; Interior anchor `007975C8`; Interior anchor `007975EC`; Interior anchor `00797625`; Interior anchor `00797671` |

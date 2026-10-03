@@ -37,7 +37,7 @@ audit:
 > talks to the panes only by message records. The panes answer back through `00247510` with `{0x10, pane+3}` /
 > `{0x12, pane}` records — the parent clears a child's slot itself only when the child announces its own destruction.
 
-**PARTIAL.** Read: the procedure tree, the parent's full message protocol, the child's state machine, and every
+~~**PARTIAL.**~~ **AUDITED.** *(corrected 2026-10-02, OPUS: the front matter says `status: AUDITED`)* Read: the procedure tree, the parent's full message protocol, the child's state machine, and every
 subtree member's role with an interior citation. Not read: what each pane draws per row, and the meaning of the
 command numbers forwarded to the children (`005770A0` commands 2, 4, 5, 6, 0xA are named by call site, not decoded).
 
@@ -82,7 +82,7 @@ Chain dispatch: ids 1, 2, 16, 18, default → `005C5230` (`00575879`–`0057589F
 - **id 2** (`0057595B`): when `+0xEC & 1` and idle (`+0xC9 == 0`), clears the bit and broadcasts its own teardown
   through `00244F00`.
 - **id 16** (`005758C5`): the workhorse. `+0xC9` state 2 → `00575710` builds the pane content; state 3 → frees the
-  `+0xF0` record, pops one stacked row (`00575A50` on `self + 0x6A + 6*(+0xD3 - 1)`), then notifies the parent
+  `+0xF0` record, pops one stacked row (`00575A50` on ~~`self + 0x6A + 6*(+0xD3 - 1)`~~ `self + 0xD4 + 6*(+0xD3 - 1)` *(corrected 2026-10-02, OPUS: `00575870+0xB5`–`00575870+0xBD` form `2 × (0x6A + 3n)`, so `0x6A` is in words)*), then notifies the parent
   `{0x10, pane+3}` via `00247510` (`00575936`–`00575953`).
 - **id 18** (`005758A4`): sends `{0x12, pane}` to the parent — the record the parent's id-12/0x12 arm clears its
   slot on.
@@ -113,7 +113,7 @@ helpers):
 | `00575640` | pane teardown — frees `+0xF0` (`003697F0`) and the `+0xF8` label (`0039BB60`), then notifies the parent `{0x10, pane+3}` (`005756DE`–`005756FB`) |
 | `00575710` | pane content build — resolves the quest record `+0xF8 = menuquest-data + [data+0xC]` (`00575750`–`00575765`), registers its TIM2 (`0039BEC0`), then emits the row text through `0017FA90`/`0017FB70`/`0017F790`/`0017FBE0` (`00575782`–`005757DE`) |
 | `00575A10` | clear the pane's `+0xF8` label — `0024A680(obj, 0)`, reset `+0xD0 = 0xFFFF` (`00575A19`–`00575A3C`) |
-| `00575A50` | breadcrumb stack — compares the incoming record's kind byte against `+0xD2` and its word against `+0xCC`; pushes `{kind, w1, w2}` onto a 3-deep stack at `+0xD4`/`+0xD6`/`+0x48` counted by `+0xD3` (`00575AC0`–`00575B0A`) — the drill-down history for quest → target → detail |
+| `00575A50` | breadcrumb stack — compares the incoming record's kind byte against `+0xD2` and its word against `+0xCC`; pushes `{kind, w1, w2}` onto a 3-deep stack at ~~`+0xD4`/`+0xD6`/`+0x48`~~ `+0xD4` (the kind byte, at a fixed offset), `+0xD6 + 6n` and `+0xD8 + 6n` *(corrected 2026-10-02, OPUS: `00575A50+0x86`–`00575A50+0xB6`; the third word's index is `(n + 0x24) × 6`)* counted by `+0xD3` (`00575AC0`–`00575B0A`) — the drill-down history for quest → target → detail |
 | `00575B80` | pane-2 detail row — bounds-checks `+0xCE` inside the record's `{+8 count, +0xA window}`, resolves the row pointer `+0xF0 + 0xC + 4*(idx - [+8])` (`00575BF7`–`00575C04`), and creates a text label via `0024A440` stored at `+0xF8` |
 | `00575C30` | pane image load — picks a TIM2 index from the word table at `0xD23730`-region by `msg->kind` (`00575C60`), loads it via `00249580`/`00249210`, sets `+0xC9 = 2`, copies `{kind→+0xD2, w→+0xCC, w→+0xCE}` (`00575CC7`–`00575CE9`) |
 | `0024A440` | text-label create — `0024A4E0` then `0024A1D0` (`0024A44A`–`0024A468`) |
@@ -135,7 +135,7 @@ helpers):
   is `00575810`, which runs only inside this screen's CONSTRUCT arm.
 - ~~Not resolved: the semantics of forwarded commands 4/5/6/0xA, what the `+0x100 & 0x3C0` handshake waits for, and the~~
   ~~  pane-side meaning of `+0xC9` states 2 and 3 beyond "content ready" / "row popped".~~
-  **Resolved 2026-09-18 (FABLE) — both halves, from the two bodies.** *The handshake:* inside the parent's id-12 arm the sub-command `0x10` switches on `msg->b`: arms 0–2 forward commands 4, 5 and 6 to the `+0xC0` child (`005773DD`–`0057740A`), and arms 3, 4 and 5 **set bits `0x80`, `0x100` and `0x200` of `+0x100`** (`00577411`–`00577429`); every arm then falls into one test — `+0x100 & 0x3C0 == 0x3C0` (`00577433`–`00577443`) — and only when all four bits are up (bit `0x40`, set by the opening path, plus the three arm bits) does it forward **command `0xA`** to the child and clear bit `0x40` (`00577449`–`0057745A`). So the handshake waits for the three *pane-ready* sub-commands 3, 4, 5 after the opening, and `0xA` is the *all panes ready* command that fires once per opening. *The forwarded numbers:* the child procedure `00575870` never reads them — its id-16 arm (`005758C5`–`0057595B`) consults only its own `+0xC9` state (2 → build content via `00575710`, 3 → free the `+0xF0` record and pop a stacked row) and the message's third dword is dropped — so 4, 5, 6 and `0xA` are one wake-up at the receiver; they distinguish the parent's arms, not the child's behaviour. Static: both arms decoded.
+  **Resolved 2026-09-18 (FABLE) — both halves, from the two bodies.** *The handshake:* inside the parent's id-12 arm the sub-command `0x10` switches on `msg->b`: arms 0–2 forward commands 4, 5 and 6 to the `+0xC0` child (`005773DD`–`0057740A`), and arms 3, 4 and 5 **set bits `0x80`, `0x100` and `0x200` of `+0x100`** (`00577411`–`00577429`); every arm then falls into one test — `+0x100 & 0x3C0 == 0x3C0` (`00577433`–`00577443`) — and only when all four bits are up (bit `0x40`, set ~~by the opening path~~ by `005776D0`, whose only caller is `0056F2A0` *(corrected 2026-10-02, OPUS: `005776D0+0x20`–`005776D0+0x28` `and eax, 0xFFFFFC7F` / `or eax, 0x40`, which also clears the three arm bits)*, plus the three arm bits) does it forward **command `0xA`** to the child and clear bit `0x40` (`00577449`–`0057745A`). So the handshake waits for the three *pane-ready* sub-commands 3, 4, 5 after the opening, and `0xA` is the *all panes ready* command that fires once per opening. *The forwarded numbers:* the child procedure `00575870` never reads them — its id-16 arm (`005758C5`–`0057595B`) consults only its own `+0xC9` state (2 → build content via `00575710`, 3 → free the `+0xF0` record and pop a stacked row) and the message's third dword is dropped — so 4, 5, 6 and `0xA` are one wake-up at the receiver; they distinguish the parent's arms, not the child's behaviour. Static: both arms decoded.
 
 ## Falsification pass
 
@@ -390,7 +390,7 @@ Interior anchor `003C1118` (function `003C1070`).
 
 Interior anchor `003BE881` (function `003BE810`).
 
-`003BD9F0` (309 B) is the row probe `003BE3A0` calls on the `02B457E0` table: `dword[+0xD0]` requires bit8 set and bit9 clear else 0; `003BC260` returns the kind, then `byte[+0xCB]` rows iterate through `00473BB0(0, i, kind, rsp+0x20)` and keep the rows where `dword[+0x20]==1`, `dword[+0x34]` nonzero and `dword[+0x2C]==r14w` - the screen's indexed entry enumeration beside `003C1070`'s two-level lookup.
+`003BD9F0` (309 B) is the row probe `003BE3A0` calls on the `02B457E0` table: `dword[+0xD0]` requires bit8 ~~set and bit9 clear~~ and bit9 both set *(corrected 2026-10-02, OPUS: `003BD9F0+0x3F` `bt eax, 8`, `003BD9F0+0x4C` `bt eax, 9` / `003BD9F0+0x50` `jae` to the 0 return)* else 0; `003BC260` returns the kind, then `byte[+0xCB]` rows iterate through `00473BB0(0, i, kind, rsp+0x20)` and keep the rows where `dword[+0x20]==1`, `dword[+0x34]` nonzero and `dword[+0x2C]==r14w` - the screen's indexed entry enumeration beside `003C1070`'s two-level lookup.
 
 Interior anchor `003BDA7C` (function `003BD9F0`).
 
@@ -425,3 +425,14 @@ Interior anchor `0040356A` (function `00403550`).
 **Movement — CLIENT (3 edges).** `0033A720`, `003ED190` and `003ED3F0` call the field-id getter `003148F0`: movement bodies asking which field is active or pending. That is the same read the quest-list emit does, and it shares nothing else with this screen.
 
 **Spawn_Encounter_Lifecycle — CLIENT (1 edge).** `SpawnKeep_RotatePersistenceBanksForAreaTransition` (`00233780`) calls `003148F0` to learn the field it is rotating banks for. It is the same read, and it has no role in the quest list.
+
+## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-the-quest-list-screen-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `001B6430` | 61 B | scans the qword pointers from qword `rcx+0x250` up to qword `rcx+0x258` (stride 8) and stores to qword `rcx+0x270` the first pointed-to entry whose dword `+4` equals `edx` and whose byte `+0x10` is non-zero, or 0 when none matches | `001B643E`, `001B6446`, `001B644C`, `001B6459`, `001B6461` |
+| `001B6510` | 80 B | gets an entry from `001BA860(rcx+0x190)`, zeroes its qword `+8`, dwords `+4` and `+0x14` and bytes `+0` and `+0x10`, stores `(dword rcx+0 shifted left 5) + edx` to its dword `+0x18`, and tail-jumps `001B4590(rcx, entry)` | `001B6526`, `001B6530`, `001B653D`, `001B654D`, `001B655B` |
+| `00274790` | 31 B | swaps dwords `rcx+0` and `rcx+4` when the first is greater (signed), then swaps dwords `rcx+8` and `rcx+0xC` under the same test | `00274795`, `00274799`, `0027479B`, `002747A4`, `002747A8` |
+| `00402BF0` | 52 B | returns when `rcx` is null; otherwise walks the list from `rcx` through qword `+0x60` links and, for every node whose byte `+2` is 1, clears bits 1 and 2 (AND `0xFFF9`) and then sets bits 0 and 3 (OR 9) of word `+0x4E`, stores `0x3F800000` to dword `+0x38` and `0x80` to word `+0x4C` | `00402C00`, `00402C06`, `00402C0A`, `00402C0F`, `00402C16` |

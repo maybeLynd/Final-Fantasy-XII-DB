@@ -1,0 +1,116 @@
+{
+ "page": "00-Engine-Core-Runtime/what-the-engine-fixes-at-boot.md",
+ "date": "2026-10-02",
+ "session": "local-w42-agent-b",
+ "report": "what-the-engine-fixes-at-boot.json",
+ "rows": [
+  {
+   "fn": "003AA240",
+   "text": "calls `0020E600(dword +0)` of `rcx` and follows the chain `0020E600(dword +0)` of each result, returning the first record whose word `+0xC` and byte `+0xE` equal those of `rcx`, or 0 once `0020E600` returns null",
+   "anchors": [
+    [
+     "003AA24B",
+     "call"
+    ],
+    [
+     "003AA259",
+     "cmp"
+    ],
+    [
+     "003AA263",
+     "cmp"
+    ],
+    [
+     "003AA26A",
+     "call"
+    ],
+    [
+     "003AA274",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "00467AD0",
+   "text": "stores 0x4000 to dword `02CA5FF0` and stores dword `022D8EB4` times dword `022D8EAC` (signed `imul`), times 3, divided by 64 with signed rounding toward zero (`cdq`, add 63 when negative, `sar 6`) to dword `02CA5FF4`",
+   "anchors": [
+    [
+     "00467AD6",
+     "imul"
+    ],
+    [
+     "00467ADD",
+     "mov"
+    ],
+    [
+     "00467AE7",
+     "lea"
+    ],
+    [
+     "00467AF0",
+     "sar"
+    ],
+    [
+     "00467AF3",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00467BB0",
+   "text": "calls `00536120` on the address `02EBB6A0`, then stores the dword 0x28 to `02EBB6B0`, the address `00467B20` to qword `02EBB6B8` and zeroes the qwords `02EBB6C0` and `02EBB6C8`",
+   "anchors": [
+    [
+     "00467BBB",
+     "call"
+    ],
+    [
+     "00467BC7",
+     "mov"
+    ],
+    [
+     "00467BD1",
+     "mov"
+    ],
+    [
+     "00467BDA",
+     "mov"
+    ],
+    [
+     "00467BE1",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00475310",
+   "text": "stores the floats 10 (`008F8180`) to `02EBA4C4`, 150 (`009155DC`) to `02EBA4C8`, 1.5 (`00901B3C`) to `02EBA4CC` and 16 (`01CEBC84`) to `02EBA4E0`; zeroes the dwords `02EBA4C0` and `02EBA4D0`, stores the dword 5 to `02EBA4D4`, the qword 0x40 to `02EBA4D8`, the dword 0x40800000 to `02EBA4E4` and the qword 0x40800000 to `02EBA4E8`",
+   "anchors": [
+    [
+     "00475322",
+     "movss"
+    ],
+    [
+     "00475342",
+     "movss"
+    ],
+    [
+     "0047534A",
+     "movss"
+    ],
+    [
+     "0047535E",
+     "mov"
+    ],
+    [
+     "0047537D",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

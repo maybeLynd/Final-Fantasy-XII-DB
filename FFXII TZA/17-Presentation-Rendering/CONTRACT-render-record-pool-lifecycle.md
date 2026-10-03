@@ -51,7 +51,7 @@ consistent across five functions that never call one another.
 | allocate | `004279B0` | `rcx` = name, `rdx`/`r8` = two 32-byte buffers, `r9d` + stack = flags | `rax` = record pointer, or `0` |
 | promote pending → active | `00428710` | none used from the pool | none |
 | retire flagged actives | `00427C90` | none | none |
-| release a record | `00429140` | `rcx` = record pointer | `eax` = 0 on a null argument, **1 on every other input** |
+| release a record | `00429140` | `rcx` = record pointer | `eax` = 0 on a null argument, **1 on every other input**, which is not a free-slot certificate: a 1 can mean a deferred mark, a no-op or a direct unlink and clear *(qualified 2026-10-02, OPUS: render-removal-phase-contracts, accepted)* |
 
 Microsoft x64 throughout. The two failure returns of `allocate` are both `xor eax, eax` and are
 **indistinguishable to the caller** — see §10.
@@ -86,7 +86,7 @@ contract, not an implementation detail.
 
 There is a **third index of a different width again**: `+0x2C` is 16-bit with an `0xFFFF` sentinel,
 scaled by `0x740` and added to the pool base at `0042E954`–`0042E973`. It is not one of the six
-above and no lifecycle operation here touches it.
+above ~~and no lifecycle operation here touches it~~; construct stores `0xFFFF` in it (section 7) and no other lifecycle operation here touches it *(corrected 2026-10-02, OPUS: `004269A0`+0x66 `mov word ptr [rsi + 0x4882c], ax` with `eax` = -1)*.
 
 ## 4. Preconditions · postconditions · invariants
 
@@ -98,7 +98,7 @@ operation validates this; `004269A0` is the only writer of the initial state.
 1. `headActiveIndex == -1` if and only if the active list is empty, and likewise for pending. Both
    emptiness tests are written as `cmp dword ptr [...], -1` (`00427A18`, `0042882A`).
 2. `0 <= liveCount <= 160`. The ceiling is enforced only at `004279E9`, **before** the increment, so
-   the pool holds exactly 160 records and the 161st allocation is refused.
+   the pool holds exactly 160 records and the 161st allocation is refused *(qualified 2026-10-02, OPUS: the signed gate bounds the count and nothing else - the starting cursor is read signed at `004279B0`+0x4A with no range check before the clear it addresses, and neither remover tests the count before its decrement, so the lower bound is not enforced: a count of 0 would become -1, an arithmetic case and not an observed one; render-slot-identity-publication and render-removal-phase-contracts, accepted)*.
 3. `liveCount == 0` implies `nextFreeIndex == 0`. This is enforced identically and independently in
    the two release paths — `00427D48`/`00427D50` and `0042927D`/`00429288` — and in the constructor.
    It is the only invariant in this contract that is asserted in two places at once, which is what
@@ -106,18 +106,18 @@ operation validates this; `004269A0` is the only writer of the initial state.
 4. `liveCount` counts records on **either** list. Promotion moves a record between lists and does not
    touch it (`00428710` has no access at `+0x0C`).
 5. A record whose state word `+0x284` is `0` is free. The free-cursor advance scans for exactly that
-   (`00427AD2`) and the record initializer sets it non-zero (`0042049A`).
+   (`00427AD2`) and the record initializer sets it non-zero (`0042049A`) *(qualified 2026-10-02, OPUS: "free" is the scan's predicate, not an ownership certificate - a count below 160 does not by itself imply that any row has a zero `+0x284`, and nothing checks the count against the 160 flags; render-slot-identity-publication, accepted)*.
 
 **And the advance has NO ITERATION BOUND**, which makes the three facts above load-bearing together
 rather than separately. `00427AB0`–`00427ADA` increments the cursor, wraps it at 160 and re-tests
 `+0x284`, with nothing counting the trips. It terminates because **invariant 2 guarantees a free slot
 exists** — the ceiling refuses the 161st allocation *before* the increment at `00427A7F` — and
 because **every release really does clear `+0x284`**: `0041F730` opens with `memset(record, 0, 0x740)`
-at `0041F754`, the whole record.
+at `0041F754`, the whole record *(qualified 2026-10-02, OPUS: both legs are conditional. The cap yields a zero `+0x284` only while the count agrees with the flags - the accepted countermodel, count 0 with every flag non-zero, passes the cap and the scan then never meets a zero, a mathematical case and not an observed hang - and the scan stops within 160 visits only under stable readable flags with at least one zero. Nor is the memset the clear's last write: 125 direct writes and six calls into four helpers follow it, their composed footprints stay inside the record and miss `+0x0` and `+0x284`, and so the clear returns with id -1 and `+0x284` 0 under its premises - a valid writable record, a private frame, readable constant inputs, normal returns, a fill confined to its span, ABI preservation and no interference; render-slot-identity-publication and render-clear-callee-footprints, accepted)*.
 
 > **Both release paths reach that memset, but only one of them directly.** `00429140` calls
 > `0041F730` at `00429291`. `00427C90` does **not call it at all** — it calls
-> `004200A0 CharacterRenderRecord_TeardownAndReset` at `00427DAE`, which calls `0041F730` in turn.
+> `004200A0 CharacterRenderRecord_TeardownAndReset` at `00427DAE`, which calls `0041F730` in turn *(qualified 2026-10-02, OPUS: as a tail jump at `004200A0`+0x146, after `004200A0`'s fifteen calls; `00429140`'s direct arm makes no `004200A0` call, so that cleanup does not run on it - render-removal-phase-contracts, accepted)*.
 > §7's wording reads as though the release path calls the reset itself; for that path it is one
 > level deeper. *(Added 2026-09-12 by the falsification pass below, which went looking for a release
 > that decremented `liveCount` without resetting the record — the one thing that would make this
@@ -135,13 +135,13 @@ callee does to it. What the bits mean is not established here.
 **Corrected 2026-09-12 by execution.** This section said no lifecycle operation reads or writes the
 tuning fields at `+0x1C`, `+0x20`, `+0x24`, `+0x28`, `+0x40` and `+0x4C..+0x70`. **`+0x28` is read by
 promotion** at `0042876A` and copied into every promoted record's `+0x414` at `00428773`. The rest of
-that list stands: written only by the constructor and by the reset helper `0042ED30`.
+that list stands~~: written only by the constructor and by the reset helper `0042ED30`.~~: written by the constructor and by the reset helper `0042ED30`, and `+0x1C` also by the keyed setter `002EBC30` *(corrected 2026-10-02, OPUS: `002EBC30`+0x7 `movss dword ptr [rax + 0x4881c], xmm0`, reached from `0026C8C0`+0x4F9)*.
 
 ## 6. Relationships
 
-- **Consumer:** `CONTRACT-character-transform-publish` operates on records reached by walking the
-  active list from `+0x00`. It sees a record only after `00428710` has promoted it, which is the
-  ordering guarantee this contract exists to state.
+- **Consumer:** ~~`CONTRACT-character-transform-publish` operates on records reached by walking the~~
+  ~~active list from `+0x00`. It sees a record only after `00428710` has promoted it, which is the~~
+  ~~ordering guarantee this contract exists to state.~~ not `CONTRACT-character-transform-publish`, which reads no record of this pool *(corrected 2026-10-02, OPUS: `001FB120`+0x2A `imul rdi, rax, 0x318` and `001FB120`+0x3C `add rdi, qword ptr [rcx + 0x58]` index the render object's own `0x318`-stride array; `001FB120` never reads `022C6F28`)*.
 - **Consumer:** `CONTRACT-coast-down-latch` addresses a record by id and tests `record[+0x06] == -1`.
   It does not consult the pool.
 - **Producer:** `00420480`, the record initializer called by `allocate` with the record and the two
@@ -151,9 +151,9 @@ that list stands: written only by the constructor and by the reset helper `0042E
 
 **Construct — `004269A0`.** Calls the per-record clear `0041F730` on all 160 records, then writes,
 in this order: `headActive = -1`, `tailActive = -1`, one 8-byte store putting `0` into both
-`nextFreeIndex` and `liveCount`, `headPending = -1`, `tailPending = -1`, flag word `= 0`, `+0x2C`
+`nextFreeIndex` and `liveCount`, `headPending = -1`, `tailPending = -1`, flag word `= 0` *(corrected 2026-10-02, OPUS: not its final value - `004269A0`+0x2B9 `or dword ptr [rax + 0x48818], 5` runs at the end of the constructor, so a constructed pool's flag word is 5)*, `+0x2C`
 `= 0xFFFF`. The tuning block follows. **The 8-byte store at `004269ED` covers two 4-byte fields and
-is not evidence that they are one field** — they are read separately at 4 bytes everywhere else.
+is not evidence that they are one field** — they are read separately at 4 bytes everywhere else *(qualified 2026-10-02, OPUS: each per-record clear is a memset followed by the clear's own sentinel and default stores, so a constructed row is not all-zero - `+0x0` ends at -1, and no direct store or helper footprint after the memset touches `+0x284`; render-slot-identity-publication with FABLE's narrowing and render-clear-callee-footprints, accepted)*.
 
 **Look up — `004278E0`.** Walks the active list from `headActive`, skipping any record whose
 `+0x290` has bit 1 set, and byte-compares the caller's name against the record's name at `+0x1C`
@@ -164,7 +164,7 @@ way". The loop at `00427952` tests nothing at `+0x290`: a record marked for reti
 to the active walk and **visible** to the pending one. The asymmetry is not decorative — it decides
 whether a name can be re-allocated while its old record is waiting to be retired, and the answer is
 different depending on which list that record is on. A reconstruction that hoisted the test out of
-the first loop to cover both, which is the obvious tidy, changes 370 of this suite's 492 lines.
+the first loop to cover both, which is the obvious tidy, changes 370 of this suite's 492 lines *(scope named 2026-10-02, OPUS: the suite's first generation; the current 525-command suite compares 581 lines - re-run 2026-10-02, 0 mismatches - and the same control changes 460 of 583, §13)*.
 
 A hit returns `movzx eax, r10w` — the index zero-extended from 16 bits — and a miss `or eax, -1`.
 The one caller compares `ax` alone (`004279DC`), so only 16 bits of the answer are ever read.
@@ -174,16 +174,16 @@ The one caller compares `ax` alone (`004279DC`), so only 16 bits of the answer a
 1. `call 004278E0(name)`; if it returns anything but `-1`, **return 0**. Allocation is keyed by
    name and a duplicate is refused rather than replaced.
 2. If `liveCount >= 160`, **return 0**.
-3. `index = nextFreeIndex`; `record = pool + index * 0x740`; `call 0041F730(record)` clears it.
+3. `index = nextFreeIndex`; `record = pool + index * 0x740`; `call 0041F730(record)` clears it *(qualified 2026-10-02, OPUS: the cursor is read signed at `004279B0`+0x4A and nothing compares it before this clear, so the step is in range only under the precondition 0 <= nextFreeIndex <= 159, which the count gate in step 2 does not supply; render-slot-identity-publication, accepted)*.
 4. Link at the **tail of the pending list**: if `headPending == -1` then `headPending = index`,
    else the old tail's `nextActiveIndex` takes `index` and this record's `prevIndex` takes the old
-   tail. Then `tailPending = index` and `record.id = index`.
+   tail. Then `tailPending = index` and `record.id = index` *(qualified 2026-10-02, OPUS: in that order - the list writes precede the self-index WORD store at `004279B0`+0x9D, so the id is not the slot's first publication; the id store does precede `00420480`'s first OR of `0x2010F9` into `+0x284` (`00420480`+0x1A, step 5) and the count increment (step 6). These are separate stores, not one atomic publication; render-slot-identity-publication with FABLE's narrowing, accepted)*.
 5. `call 0020E600(encodedRootPointer)` with the tail's `+0x30` in `ecx`, and pass its result as
    the fifth argument of `call 00420480(record, buf1, buf2, ...)`.
 6. **Set bit 0 of the record's own `+0x290`** (`00427A76`), which promotion later clears — see
    below. Then `liveCount++` (`00427A7F`).
 7. Advance the free cursor: if `liveCount >= 160` set `nextFreeIndex = 0` and stop; otherwise
-   increment `nextFreeIndex`, wrapping to `0` at 160, until the record it names has `+0x284 == 0`.
+   increment `nextFreeIndex`, wrapping to `0` at 160, until the record it names has `+0x284 == 0` *(qualified 2026-10-02, OPUS: from a start in 0..159 every visited index stays in 0..159 and one full cycle is 160 visits; the loop stops within 160 only if the flags are stable and readable and at least one is zero, which the count does not prove; render-slot-identity-publication, accepted)*.
 8. Return the record.
 
 **The record is on the PENDING list when allocate returns.** Nothing that walks the active list can
@@ -226,7 +226,7 @@ flag-bit bracket were all missing.
 successor again read before anything else (`00427CD4`). For each record whose `+0x290` has bit 1 set:
 
 1. Patch the neighbours' links.
-2. `liveCount--` (`00427D18`) — **before** the two end fixups, not after them.
+2. `liveCount--` (`00427D18`) — **before** the two end fixups, not after them *(qualified 2026-10-02, OPUS: and before every call of steps 5-7, with no positive-count test and no read of the id at `+0x0` before it - the only selection test is `+0x290` mask 02 at `00427C90`+0x3D, and the signed next link is cached at +0x44 before the branch. A count of 0 would decrement to -1 and skip step 4's reset, arithmetic only; render-removal-phase-contracts, accepted)*.
 3. `headActive` from the record's `next` and `tailActive` from its `prev`, each guarded by comparing
    the ends against the **record's own id at `+0x00`**, not against the index the walk is holding.
    The two are the same until something plants a record whose id disagrees with its position, and
@@ -266,7 +266,7 @@ successor again read before anything else (`00427CD4`). For each record whose `+
 
 **Release — `00429140`.** Given a record pointer. A null answers `0` and does nothing. Otherwise the
 record's own state selects **one of two entirely different paths**, and the answer is `1` either way
-— and `1` as well when neither applies.
+— and `1` as well when neither applies *(qualified 2026-10-02, OPUS: so a 1 reports "not null", not completion - it covers path one's deferred mark, the no-op when neither applies (`00429140`+0xC4 jumping to +0x156, no call and no non-stack write) and path two's direct unlink and clear, and only path two leaves the row cleared on return; render-removal-phase-contracts, accepted)*.
 
 **Path one, when `+0x284` has bit 2 set (a live record).** Nothing is unlinked and no count moves:
 
@@ -282,7 +282,7 @@ record's own state selects **one of two entirely different paths**, and the answ
 
 **Path two, when bit 2 is clear and `+0x290` has bit 0 set (allocated, never promoted).** The unlink
 shape against `headPending`/`tailPending`, `liveCount--`, `liveCount == 0 → nextFreeIndex = 0`, and
-then `call 0041F730(record)` — the full reset, which is what returns the record to the free cursor.
+then `call 0041F730(record)` — the full reset, which is what returns the record to the free cursor *(qualified 2026-10-02, OPUS: the count drops at `00429140`+0x10D, after the neighbour links and before the end fixups, the new-count-0 cursor reset (+0x148) and the clear (+0x151), with no positive-count test; this arm makes no `004200A0` call, so none of retirement's step-7 cleanup runs. "Returns to the free cursor" means the clear leaves `+0x284` at 0 for the scan to find, under the clear's premises; render-removal-phase-contracts and render-clear-callee-footprints, accepted)*.
 
 **Corrected 2026-09-12 by execution. This is the largest correction in the contract.** The section
 said the unlink happens *when bit 2 is set*. It happens when bit 2 is **clear**; a live record is
@@ -315,9 +315,9 @@ indices are written into other structures (`+0x2C` here, and the transform publi
   `liveCount >= 160` test at step 7 precedes it, so at least one record is free. If `liveCount` ever
   disagreed with the records' `+0x284` state words, the scan would not terminate. Nothing in the
   binary checks that agreement; it is an unstated invariant between two representations of the same
-  fact, and it is the sharpest fragility in this family.
+  fact, and it is the sharpest fragility in this family *(qualified 2026-10-02, OPUS: the accepted slot packet states the same condition as a premise - stable readable flags with at least one zero - and names a second unchecked input: a starting cursor outside 0..159 addresses a row outside the pool at the first clear, before the scan begins. Both are conditional countermodels, not observed faults or hangs; render-slot-identity-publication, accepted)*.
 - Retire and release both call a per-record teardown *after* the unlink and the decrement, so a
-  teardown that re-entered the pool would see consistent indices but a decremented count.
+  teardown that re-entered the pool would see consistent indices but a decremented count *(qualified 2026-10-02, OPUS: retirement's teardown is `004200A0`, release's is the bare clear `0041F730` with no `004200A0`; in both the decrement and the new-count-0 cursor reset precede the call, and retirement then sets bit 5 of the flag word after `004200A0` returns (`00427C90`+0x123); render-removal-phase-contracts with FABLE's narrowing, accepted)*.
 
 ## 11. Observable behaviour
 
@@ -377,7 +377,7 @@ otherwise.**
 under Unicorn at their real virtual addresses** — `004278E0`, `004279B0`, `00428710`, `00427C90` and
 `00429140` — against `Reconstruction/Game/Render/render_pool.c`, built by MSVC at `/W4 /O2`. The
 look-up is **not** stubbed inside allocate: allocate really calls it. Neither are `0020E600` and
-`0020E620`, three instructions each, which the reconstruction reproduces rather than scripts. Eleven
+`0020E620`, three instructions each, which the reconstruction reproduces rather than scripts. ~~Eleven~~ Thirteen *(corrected 2026-10-02, OPUS: `diff_render_pool.py` scripts 13 - `RESET`, `INIT`, `PREP`, `ASK`, `STAMP`, `FINISH`, `HANDOFF`, `CHILD`, `FREEA`, `FREEB`, `DESTROY`, `ASKREL`, `FIND` - the 13 the §15 row lists)*
 other callees are oracles at their own real addresses, and every one of their calls is compared as a
 trace line, so an argument that changed would fail even where no state does.
 
@@ -428,9 +428,9 @@ so without that one case the suite would have proved a claim it never tested.
   loop is undriven and its termination is **the callee's postcondition, not retire's**.
 - The promotion **flag-bit-0 bracket** is driven with the bit set and clear, but the oracle never
   changes it, so the restore is shown preserving a bit and never undoing a callee's write to it.
-- What the **eleven scripted callees** do to a record beyond the fields this pool reads is not
+- What the **~~eleven~~ thirteen scripted callees** *(corrected 2026-10-02, OPUS: the 13 oracles of `diff_render_pool.py`)* do to a record beyond the fields this pool reads is not
   established. Only the reset's link writes are modelled, from its own bytes at `0041F771`-`0041F795`,
-  and only because the list logic reads them. **A stubbed effect is not a proved one.**
+  and only because the list logic reads them. **A stubbed effect is not a proved one.** *(qualified 2026-10-02, OPUS: for the reset's own helper calls this is now bounded statically - their composed write footprints lie inside the record and miss `+0x0` and `+0x284` (see §4) - which bounds the effect without executing it; the other scripted callees remain oracles; render-clear-callee-footprints, accepted)*
 
 **Still wanted from a running game**, unchanged by this run and in the order they would pay:
 
@@ -457,7 +457,7 @@ document.
 | 2 | `0 <= liveCount <= 160`, ceiling **before** the increment | the compare is `>`, or against another constant, or after the increment | **holds exactly.** `004279E9 cmp dword [rbx+0x4880C], 0xA0` / `jge` returning 0, and the `inc` is at `00427A7F` — after |
 | 3 | `liveCount == 0 → nextFreeIndex = 0`, in both release paths **identically** | one path stores something other than zero | **holds.** `00429140` is literal (`0042927D cmp …, 0` / `xor eax,eax` / `00429288`). `00427C90` stores a **register** — `ebp` — and `00427CBA xor ebp, ebp` is the only write to it before the use, so it is zero |
 | 4 | `liveCount` is untouched by promotion | `00428710` accesses `+0x4880C` | **holds.** No access to that offset anywhere in the function |
-| 5 | `+0x284 == 0` means free | the scan tests another offset or another value, or a release leaves it non-zero | **holds.** `00427AD2` compares `[record + 0x284]` against `eax`, and `eax` is zero from `00427A7D`. `0042049A` sets it to `0x2010F9`. Both release paths reach `0041F730`'s whole-record `memset` |
+| 5 | `+0x284 == 0` means free | the scan tests another offset or another value, or a release leaves it non-zero | **holds.** `00427AD2` compares `[record + 0x284]` against `eax`, and `eax` is zero from `00427A7D`. `0042049A` sets it to `0x2010F9`. Both release paths reach `0041F730`'s whole-record `memset` *(qualified 2026-10-02, OPUS: reaching the memset is not the postcondition by itself - 125 direct writes and six calls into four helpers follow it, and `+0x284` is 0 and `+0x0` is -1 on return under the clear's premises; render-clear-callee-footprints, accepted)* |
 
 **What was tried and did not break it.** The pool arithmetic was recomputed rather than accepted:
 `160 × 0x740 = 0x48800`, `+ 0x130 = 0x48930`, the stated allocation. Every stated body size was
@@ -472,7 +472,7 @@ the unbounded free-cursor scan spin forever — failed: the path that does not c
 in pieces and never joined, and the fact that one release path reaches the reset indirectly.
 
 > **One pass is one pass.** `AUDITED` means *survived a deliberate attack against a named program
-> state*, not *true*. The five operations are still **unexecuted** — §13's pilot does not exist — so
+> state*, not *true*. ~~The five operations are still **unexecuted** — §13's pilot does not exist —~~ *(answered: see §13 - `diff_render_pool.py` runs all five as shipped bytes, re-run 2026-10-02: 581 lines, 0 mismatches; and the correction below; 2026-10-02, OPUS)* so
 > everything above rests on reading the instructions, and reading is what this session has twice seen
 > a pilot refute within the hour.
 
@@ -528,7 +528,7 @@ machinery (`0032E…`, `0035E…`), neither of which this contract covers.
 
 ## 14. Unresolved
 
-- The bit meanings of the flag word at `+0x18`. Bit 5 is set by promotion; bits 0, 2 and 4 are
+- The bit meanings of the flag word at `+0x18`. Bit 5 is set by promotion ~~;~~ and by retirement *(corrected 2026-10-02, OPUS: `00427C90`+0x123 `or dword ptr [rdi + 0x48818], 0x20`, §5)*; bits 0, 2 and 4 are
   touched by callers outside this family. FABLE.
 - `+0x40` and `+0x4C..+0x70`: written once by the constructor, no reader observed in a depth-2 route
   census. Absence of a reader in that census is not absence of a reader.
@@ -575,17 +575,17 @@ the tail. **No row claims live evidence**; nothing here has been observed in a r
 | the narrowing is correct rather than lucky | a 32-bit `-1` truncated to 16 bits is the 16-bit sentinel the link field uses — the truncation sites are the link stores `00427A3C`→`00427A43` and `00428853`→`0042885A` on the row above; widening the links without widening the comparisons, or making either side unsigned, breaks it | 1 (static) | PROVEN |
 | the 8-byte store in the constructor is not evidence that two fields are one | `004269ED` covers `nextFreeIndex` and `liveCount`, which are read separately at 4 bytes everywhere else | 1 (static) | PROVEN |
 | allocation is keyed by name and refuses a duplicate rather than replacing it | step 1 of `004279B0` returns 0 when `004278E0` finds the name | 1 (static) | PROVEN |
-| allocate's two failure returns are indistinguishable to the caller | both are `xor eax, eax` — `004279E2` (duplicate refused) and `00427A7D` (pool full); a refused duplicate and a full pool look the same | 1 (static) | PROVEN |
+| allocate's two failure returns are indistinguishable to the caller | ~~both are `xor eax, eax` — `004279E2` (duplicate refused) and `00427A7D` (pool full)~~ both leave through the one `xor eax, eax` at `004279B0`+0x32: a duplicate falls into it and the pool-full test `004279B0`+0x39 (`cmp ..., 0xa0` then `jge`) jumps back to it *(corrected 2026-10-02, OPUS: the other cited site is `004279B0`+0xCD, on the success path, the zero the free-cursor wrap uses)*; a refused duplicate and a full pool look the same | 1 (static) | PROVEN |
 | a newly allocated record is on the PENDING list, invisible to any active walk | step 4 links at the tail of pending; nothing sets an active link until `00428710` | 1 (static) | PROVEN |
-| the free cursor advances to the next record whose state word +0x284 is 0, wrapping at 160 | step 7, against the initializer that sets it non-zero at `0042049A` and the scan at `00427AD2` | 1 (static) | PROVEN |
+| the free cursor advances to the next record whose state word +0x284 is 0, wrapping at 160 | step 7, against the initializer that sets it non-zero at `0042049A` and the scan at `00427AD2`; it stops within 160 visits only under stable flags with at least one zero *(qualified 2026-10-02, OPUS: render-slot-identity-publication, accepted)* | 1 (static) | PROVEN |
 | liveCount == 0 implies nextFreeIndex == 0 | enforced identically and independently in both release paths — `00427D48`/`00427D50` and `0042927D`/`00429288` — and in the constructor. The only invariant here asserted in two places at once | 1 (static) | PROVEN |
 | liveCount counts records on EITHER list, and promotion does not change it | `00428710` has no access at `+0x0C` | 1 (static) | PROVEN |
 | promotion unlinks each record AND clears both pending ends afterwards | `004287C4`-`00428824` is a full unlink per record; `0042888C`/`00428893` then set both ends to `-1` anyway, and run even when the list was empty. **This row said the ends are cleared "not by the per-record unlinks"**; both happen. Corrected 2026-09-12 | 1 (isolated original-code) | PROVEN |
-| promotion sets bit 5 of the tail's flag word | `00428863`; the other bits of `+0x18` are set by unrelated callers and are not established here | 1 (static) | PROVEN |
+| promotion sets bit 5 of the tail's flag word | `00428863`; ~~the other bits of `+0x18` are set by unrelated callers~~ retire sets it too (`00427C90`+0x123), the constructor sets bits 0 and 2 (`004269A0`+0x2B9 `or ..., 5`) and promotion brackets bit 0 (`00428710`+0x80..+0xA7); the other writers, `002E8700`, `002E8CC0`, `002EBBB0` and `002EBBF0`, are outside the family *(corrected 2026-10-02, OPUS: every `+0x48818` access in the image, retool grep)*; their meanings are not established here | 1 (static) | PROVEN |
 | retire acts only on actives whose +0x290 has bit 1 set | `00427CCD test byte [rbx+0x290], 2` | 1 (isolated original-code) | PROVEN |
-| the lifecycle never reads or writes the tuning fields EXCEPT +0x28 | `+0x1C`, `+0x20`, `+0x24`, `+0x40` and `+0x4C..+0x70` are written only by the constructor and by `0042ED30`; **`+0x28` is read by promotion** at `0042876A` and stamped into each promoted record's `+0x414`. Corrected 2026-09-12 | 1 (isolated original-code) | PROVEN |
-| the +0x2C index is a third width again and no lifecycle operation touches it | 16-bit with an `0xFFFF` sentinel, scaled by `0x740` at `0042E954`–`0042E973` | 1 (static) | PROVEN |
-| the pending walk has no retirement test, and the active walk does | `0042790A` tests `+0x290` bit 1 in the first loop; the second loop at `00427952` has no such test. Executed: a marked record is invisible to a look-up when active and answers one when pending, and hoisting the test to cover both changes 370 of 492 lines | 1 (isolated original-code) | PROVEN |
+| the lifecycle never reads or writes the tuning fields EXCEPT +0x28 | `+0x1C`, `+0x20`, `+0x24`, `+0x40` and `+0x4C..+0x70` are written ~~only~~ by the constructor and by `0042ED30`, and `+0x1C` also by the keyed setter `002EBC30` *(corrected 2026-10-02, OPUS: `002EBC30`+0x7, reached from `0026C8C0`+0x4F9)*; **`+0x28` is read by promotion** at `0042876A` and stamped into each promoted record's `+0x414`. Corrected 2026-09-12 | 1 (isolated original-code) | PROVEN |
+| the +0x2C index is a third width again and ~~no lifecycle operation touches it~~ only construct touches it, storing `0xFFFF` *(corrected 2026-10-02, OPUS: `004269A0`+0x66 `mov word ptr [rsi + 0x4882c], ax`)* | 16-bit with an `0xFFFF` sentinel, scaled by `0x740` at `0042E954`–`0042E973` | 1 (static) | PROVEN |
+| the pending walk has no retirement test, and the active walk does | `0042790A` tests `+0x290` bit 1 in the first loop; the second loop at `00427952` has no such test. Executed: a marked record is invisible to a look-up when active and answers one when pending, and hoisting the test to cover both changes 370 of 492 lines *(the first suite; 460 of 583 in the current one, §13 - scope named 2026-10-02, OPUS)* | 1 (isolated original-code) | PROVEN |
 | allocate sets bit 0 of the record's +0x290 and promotion clears it | `00427A76 or dword [rdi+0x290], 1` and `004287BD and dword [rsi+0x290], 0xFE`. The bit therefore means "allocated and never promoted", which is the state release's second path acts on. Executed on both sides of a promotion | 1 (isolated original-code) | PROVEN |
 | a fresh record's links are the RESET's postcondition, not allocate's | allocate writes `prevIndex` only in the non-empty case and never writes `nextActiveIndex`; `0041F771`-`0041F795` writes six 16-bit links at `-1`. Executed with the reset's link effect modelled from those bytes: without it the first promotion walks into record 0 | 1 (isolated original-code) | PROVEN |
 | the free cursor reads +0x284 as a DWORD, starts at the record just taken, wraps at 160 and parks at 0 when the pool fills | `00427AD2 cmp dword [r8+rbx+0x284], eax` with `eax` zero; `00427AB0`-`00427AC2`. Executed against a byte-wide read, which differs on a state word of `0x100` | 1 (isolated original-code) | PROVEN |
@@ -595,9 +595,9 @@ the tail. **No row claims live evidence**; nothing here has been observed in a r
 | retirement frees two handles and drains a child list at +0x08 | `003B6000(+0x114)` and `003AFBE0(+0x118)`, each guarded by a non-zero test, then `004200A0(record)` and flag bit 5 at `00427DB3`. The child loop at `00427D5E`-`00427D8B` re-reads the parent's `+0x08` and retire never writes it, so **its terminator is `00426EC0`'s postcondition**; the handle frees are executed, the child loop is not and cannot be from a scripted oracle | 1 (isolated original-code) | PROVEN |
 | release does not unlink a live record: it marks it for retirement | `0042916F or dword [rcx+0x290], 2` on the bit-2 path, with no list write anywhere on it. Executed: the ends, both lists and the count are unchanged, and a following retire is what removes the record | 1 (isolated original-code) | PROVEN |
 | release's unlink path is the one for a record that was never promoted | `00429204` tests `+0x290` bit 0 after the bit-2 path is not taken, and only that branch unlinks, decrements and resets. **This section's §7 said the unlink happens when bit 2 is SET.** Corrected 2026-09-12 | 1 (isolated original-code) | PROVEN |
-| release answers 1 for every non-null record, including one that matches neither path | every path but the null converges on `00429296 mov eax, 1`. Executed at all three | 1 (isolated original-code) | PROVEN |
+| release answers 1 for every non-null record, including one that matches neither path | ~~every path but the null converges on `00429296 mov eax, 1`.~~ Every non-null path answers 1, through two returns: the mark arm's full path loads 1 at `00429140`+0xB9 and returns at +0xC3, and every other non-null path converges on +0x156 *(corrected 2026-10-02, OPUS: three returns - +0x1C with 0, +0xC3 and +0x165 with 1; render-removal-phase-contracts and FABLE's review, accepted)*. Executed at all three | 1 (isolated original-code) | PROVEN |
 | release's live path drops two side objects through the resolver pair | `00422D50` then `+0x0C &= ~2`; `0020E600(+0x10)`, the owner at `+0xD98`, `002ED570(owner, +0x18)`, then `first &= ~4` and `+0xA0 = 0020E620(0)`. Executed at each combination of the two answers and both values of `+0x18` | 1 (isolated original-code) | PROVEN |
-| what the eleven scripted callees do to a record beyond these fields is NOT established | `0041F730`, `00420480`, `0041FCF0`, `003E68E0`, `003B56D0`, `0042C410`, `0042F4C0`, `00426EC0`, `003B6000`, `003AFBE0`, `004200A0`, `00422D50` and `002ED570` ran as oracles. Only the reset's link writes are modelled, and only because the list logic reads them | none | UNKNOWN |
+| what the ~~eleven~~ thirteen scripted callees do to a record beyond these fields is NOT established *(corrected 2026-10-02, OPUS: this row lists thirteen)* | `0041F730`, `00420480`, `0041FCF0`, `003E68E0`, `003B56D0`, `0042C410`, `0042F4C0`, `00426EC0`, `003B6000`, `003AFBE0`, `004200A0`, `00422D50` and `002ED570` ran as oracles. Only the reset's link writes are modelled, and only because the list logic reads them; for `0041F730` alone its helper write footprints are now bounded statically, inside the record and clear of `+0x0` and `+0x284`, which narrows this row for that callee without executing it *(qualified 2026-10-02, OPUS: render-clear-callee-footprints, accepted)* | none | UNKNOWN |
 | `0051BA80` admits through `0051F080` with `refresh = 0` when the caller's slot is `-1` | `r9d` zeroed at `0051BAE9`, call at `0051BAF5`; the `0x3B0` record is then copied in (`0051BB20`–`0051BB7D`) and `0041CA70` finalizes | 1 (static) | PROVEN |
 | `0051F620` resolves its base by the signed low-2-bit mode of `[rcx+4]` and rebases every linked node's `+0x18` | `shl/sar 0x1E` mode select at `0051F63A`; walk headed `[rbx+0x1C]`, `0x30` stride, `[node+0x18] = 003AB7F0([node+0x10]) + [node+0x20]` | 1 (static) | PROVEN |
 | the rebase walk reads each node's `+0x0C` link AFTER the `003AB7F0` call, with no snapshot | `call` at `0051F682`, next-index read at `0051F690` | 1 (static) | PROVEN |
@@ -779,7 +779,7 @@ ASTRA's; container capacity, source/ID/refresh lifetime and native initialisatio
 
 ## 20. What execution measured — [`EXP-109`](../_experiments/EXP-109-render-pool-lifecycle-exec.md), folded in 2026-09-19 (OPUS)
 
-`EXP-109` executed all six lifecycle operations plus the constructor and the default writers from
+`EXP-109` executed all six ~~lifecycle operations plus the constructor~~ entry points - the constructor and the five operations *(corrected 2026-10-02, OPUS: §2's interface lists six entries, `004269A0` the constructor among them, and EXP-109's title names the same six)* - and the default writers from
 shipped bytes. **§15's "static, from the shipping image, instruction by instruction" is no longer
 the only evidence class here**, and the two must not be summed: execution shows what these bodies
 compute for planted inputs, and says nothing about which inputs the game supplies.
@@ -853,7 +853,7 @@ record's `+0x414` (already in §5 as the tail block's `+0x28`). **It is a float 
 - **`CLR` is a 1,208-byte default writer, not a memset** — a `0x740` clear followed by ~100 stores:
   `-1` sentinels, `1.0f` fields, `0x1000` array values, `0x2A0 = 0xF`, `0x2F4 = 0x03050303`,
   `b[0x4B7] = 0x20`, `b[0x66D] = 2`, and a `0x40`-byte constant struct copied from `01F204E0`.
-  **A reconstruction that zero-fills a record produces a different record.**
+  **A reconstruction that zero-fills a record produces a different record.** *(qualified 2026-10-02, OPUS: exactly 125 direct non-stack writes plus 47 composed helper writes; the `0x40`-byte block is copied twice, to `+0x180` and `+0x1C0`, a copy and not a zero fill, whose values hold only while that writable constant is unchanged; the vec4 helper writes four 4-byte scalars per call, 16 bytes per call, at `+0x210` and `+0x220`; the channel helper writes ten 8-byte entries `+0x4C0`..`+0x510` (loop bound 10); and a named fill zeroes `+0x580`..`+0x5D0`; render-clear-callee-footprints with FABLE's narrowing, accepted)*
 
 ### Unreachable is not dead
 

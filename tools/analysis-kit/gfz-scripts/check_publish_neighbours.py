@@ -166,7 +166,9 @@ def build_sides(rels, tmp):
         for cmd in (["sparse-checkout", "init", "--no-cone"],
                     ["sparse-checkout", "set", "--", DB_REL.replace(os.sep, "/") + "/*"],
                     ["checkout"]):
-            r = subprocess.run(["git", "-C", wt] + cmd, capture_output=True, text=True)
+            # core.longpaths: the _experiments/evidence tree has paths past MAX_PATH under any temp
+            # directory, and without it the checkout aborts (2026-10-02, OPUS).
+            r = subprocess.run(["git", "-c", "core.longpaths=true", "-C", wt] + cmd, capture_output=True, text=True)
             if r.returncode:
                 print("worktree %s: git %s failed: %s"
                       % (os.path.basename(wt), cmd[0], r.stderr.strip()), file=sys.stderr)
@@ -188,6 +190,76 @@ def build_sides(rels, tmp):
         os.makedirs(os.path.dirname(dst), exist_ok=True)
         shutil.copyfile(src, dst)
     return wt_head, wt_pub, made
+
+
+CACHE_DIR = os.path.join(ROOT, "Database", "Tools", "work", "graph", ".pass22-head-cache")
+
+
+def head_key():
+    """HEAD commit + the inputs the HEAD side depends on (function and edge tables, the audit and the link check)."""
+    import hashlib
+    r = subprocess.run(["git", "-C", ROOT, "rev-parse", "HEAD"], capture_output=True, text=True)
+    if r.returncode:
+        return None
+    h = hashlib.sha1(r.stdout.strip().encode())
+    for f in (os.path.join(GRAPH, "functions.tsv"), os.path.join(GRAPH, "edges.tsv"),
+              os.path.join(HERE, "audit_crossrefs.py"), os.path.join(HERE, "check_links.py")):
+        try:
+            st = os.stat(f)
+            h.update(("%s:%d:%d" % (os.path.basename(f), st.st_size, int(st.st_mtime))).encode())
+        except OSError:
+            return None
+    return h.hexdigest()
+
+
+def head_cache_get(key):
+    p = os.path.join(CACHE_DIR, key + ".json")
+    try:
+        d = json.load(io.open(p, encoding="utf-8"))
+        return {tuple(x) for x in d["findings"]}, {tuple(x) for x in d["links"]}
+    except (OSError, ValueError, KeyError):
+        return None
+
+
+def head_cache_put(key, fset, links):
+    try:
+        os.makedirs(CACHE_DIR, exist_ok=True)
+        json.dump({"findings": sorted(fset), "links": sorted(links)},
+                  io.open(os.path.join(CACHE_DIR, key + ".json"), "w", encoding="utf-8"))
+    except OSError:
+        pass
+
+
+def build_head(tmp):
+    """One detached sparse HEAD worktree (the publish side is the same worktree with the batch copied over it)."""
+    made = []
+    r = subprocess.run(["git", "-C", ROOT, "rev-parse", "HEAD"], capture_output=True, text=True)
+    if r.returncode:
+        print("could not resolve HEAD: %s" % r.stderr.strip(), file=sys.stderr)
+        return None, made
+    head = r.stdout.strip()
+    wt = os.path.join(tmp, "side")
+    r = subprocess.run(["git", "-C", ROOT, "worktree", "add", "--no-checkout", "--detach", wt, head],
+                       capture_output=True, text=True)
+    if r.returncode:
+        print("could not create a worktree at %s: %s" % (head[:8], r.stderr.strip()), file=sys.stderr)
+        return None, made
+    made.append(wt)
+    for cmd in (["sparse-checkout", "init", "--no-cone"],
+                ["sparse-checkout", "set", "--", DB_REL.replace(os.sep, "/") + "/*"],
+                ["checkout"]):
+        r = subprocess.run(["git", "-c", "core.longpaths=true", "-C", wt] + cmd, capture_output=True, text=True)
+        if r.returncode:
+            print("worktree: git %s failed: %s" % (cmd[0], r.stderr.strip()), file=sys.stderr)
+            return None, made
+    want = subprocess.run(["git", "-C", ROOT, "ls-tree", "-r", "--name-only", head, "--", DB_REL],
+                          capture_output=True, text=True).stdout.count("\n")
+    got = sum(len(f) for _p, _d, f in os.walk(os.path.join(wt, DB_REL)))
+    if want and got < want:
+        print("worktree is INCOMPLETE: %d of %d files under %s. Re-run with a shorter temp path (set TMP/TEMP)."
+              % (got, want, DB_REL), file=sys.stderr)
+        return None, made
+    return wt, made
 
 
 def remove_sides(made, tmp):
@@ -309,13 +381,29 @@ def main(argv=None):
     try:
         # The second side is HEAD + this publish. Nothing else from the shared tree crosses over,
         # so a peer's in-flight edit can neither refuse this publish nor be credited to it.
-        wt_head, wt_pub, made = build_sides(rels, tmp)
-        if wt_head is None:
+        # 2026-10-03 (OPUS, the script's owner): one worktree instead of two, and the HEAD side cached by
+        # everything it depends on. The HEAD audit + link check are computed once per HEAD commit; the published
+        # files are then copied over the same worktree for the second side. Each side still runs the full audit,
+        # so the comparison is unchanged; only the duplicate checkout and the repeated HEAD run are gone.
+        key = head_key()
+        cached = head_cache_get(key) if key else None
+        wt, made = build_head(tmp)
+        if wt is None:
             return 2
-        before = findings(os.path.join(wt_head, DB_REL), os.path.join(tmp, "head.json"))
-        after = findings(os.path.join(wt_pub, DB_REL), os.path.join(tmp, "publish.json"))
-        links_before = broken_links(os.path.join(wt_head, DB_REL))
-        links_after = broken_links(os.path.join(wt_pub, DB_REL))
+        if cached is not None:
+            before, links_before = cached
+            print("HEAD side from cache (%s)" % key[:12])
+        else:
+            before = findings(os.path.join(wt, DB_REL), os.path.join(tmp, "head.json"))
+            links_before = broken_links(os.path.join(wt, DB_REL))
+            if key and links_before is not None:
+                head_cache_put(key, before, links_before)
+        for src, rel in rels:
+            dst = os.path.join(wt, rel.replace("/", os.sep))
+            os.makedirs(os.path.dirname(dst), exist_ok=True)
+            shutil.copyfile(src, dst)
+        after = findings(os.path.join(wt, DB_REL), os.path.join(tmp, "publish.json"))
+        links_after = broken_links(os.path.join(wt, DB_REL))
     finally:
         remove_sides(made, tmp)
     if links_before is None or links_after is None:

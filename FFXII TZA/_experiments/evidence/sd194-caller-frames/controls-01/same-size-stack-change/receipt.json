@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sd194-caller-frames\\prove.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sd194-caller-frames\\controls-01\\same-size-stack-change\\result.json",
+    "--source",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sd194-caller-frames\\controls-01\\same-size-stack-change\\source"
+  ],
+  "driver_sha256": "be8c4760a78eeb3b6fb8ef5c1001f08db5d93a47d04384f3e40875f10ab02b06",
+  "exit": 1,
+  "terminal": true,
+  "expected_diagnostic": "shipping original body identity mismatch",
+  "expected_refusal": true,
+  "result_exists": false
+}

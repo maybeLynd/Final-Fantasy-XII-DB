@@ -1,0 +1,24 @@
+{
+ "blocks_in_image": 3891,
+ "blocks_outside_image": 6,
+ "catalogue": "e2a67b07700c2ec3fbfae3213965de35",
+ "classes": {
+  "body_only": 1,
+  "entered": 18,
+  "open": 1,
+  "returned": 410,
+  "returned+faulted": 18,
+  "scripted": 25
+ },
+ "elapsed_s": 31.5,
+ "emu_starts": 580,
+ "entries_executed": 428,
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "instrument": "execcov-shim v2",
+ "patched_blocks": 0,
+ "rc": 0,
+ "receipt_md5": "b5f9f763470c07a13cbc25c0ef16f937",
+ "run": "member-block-chain-exec",
+ "status": "ok",
+ "unique_blocks": 3897
+}

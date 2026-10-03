@@ -701,7 +701,7 @@ callback-chain walker — invokes `[rcx]`'s vfn, then recurses through the
 variant calling before descending.
 ## SWE2-EC7-35 update (2026-09-19) - `002D6990`
 
-`002D6990` (783 B) is the dead nine-patch draw body - `0209AC30` bank, `002DAF30`/`002DAC70`/`002DA7C0` draw helpers plus `00808C40`. Interior anchor `002D6AC5` (an `00808C40` call).
+`002D6990` (783 B) is the ~~dead~~ live nine-patch draw body *(corrected 2026-10-02, OPUS: called by two functions, a bounded-loop caller at its +0x75 and `003C6B70` at +0x72C; UQ-355 keeps it live)* - `0209AC30` bank, `002DAF30`/`002DAC70`/`002DA7C0` draw helpers plus `00808C40`. Interior anchor `002D6AC5` (an `00808C40` call).
 
 ## SWE2-EC7-100 update (2026-09-20) - `002BEF70` measured
 

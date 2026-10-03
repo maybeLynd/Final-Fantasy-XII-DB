@@ -71,9 +71,9 @@ differently. Nothing on screen tells you this is happening.
 ### 2a. Where the table comes from
 
 `00378540` is the World/Area/Field boot-time registration routine. It asks the resource system
-for authored tables and installs a ten-byte publisher for each. **Three were read here; two more
-were found on 2026-09-08 and are marked below.** The routine is 943 bytes and has been read only
-at the registration sites an operand scan pointed to, so five is a floor, not a total:
+for authored tables and installs a ten-byte publisher for each. ~~**Three were read here; two more~~
+~~were found on 2026-09-08 and are marked below.**~~ The routine is 943 bytes ~~and has been read only~~
+~~at the registration sites an operand scan pointed to, so five is a floor, not a total~~ and installs seven *(answered: the 2026-09-14 note below; `00378540` makes seven `0032E620` submissions; 2026-10-02, OPUS)*:
 
 | Requested as | resource `(kind, index)` | Publisher | Global | Shipped file |
 |---|---|---|---|---|
@@ -108,7 +108,7 @@ request the installer issues.)*
 > `EventMemory_QueryDefinitionIdAbsent`; the derivation, the path-array controls and the
 > `.fst` sizes are in
 > [`persistent-flag-banks.md` §8f](../../14-Story-Event-Quest-Hunt/persistent-flag-banks.md).
-> The “Requested as” column is blank for both because **the string keys were not read** — only
+> The “Requested as” column is blank for both because ~~**the string keys were not read**~~ *(answered: decoded 2026-09-14, the note above; 2026-10-02, OPUS)* — only
 > the `(kind, index)` pair and the publisher.
 
 The `(kind, index)` pair indexes the executable's own file table — a `.data` array of path
@@ -127,7 +127,7 @@ the resource arena evidently lives below 4 GB. Recorded, not explained — open 
 Every accessor bounds-checks the same way and **fails to a fixed default record** rather than
 reading out of range — `0x0FFF` for the `u16`, `0` for the third byte. That default matters: it is
 the *permissive* value for the navigation-map id (`0xFFF` = "none") and the *restrictive* value for
-every flag.
+~~every flag.~~ every flag but the third byte's bit 0, which `00377700` reads inverted, so its default is the permissive 1 *(corrected 2026-10-02, OPUS: `00377713 je` / `00377718 jae` → `00377728 xor dl, dl`, then `0037772D not` / `0037772F test al, 1` and `0037773C mov eax, 1` unless the save veto `00314A60` fires)*.
 
 | Accessor | Reads | Takes | Reached by |
 |---|---|---|---|
@@ -183,7 +183,7 @@ id order, and `status_data.bin` is the status definition table the engine itself
 |---:|---|
 | **0** | *"The character has lost consciousness and cannot move or act. Remove with a tuft of Phoenix Down."* — **KO** |
 | **1** | *"The character has been turned to stone and cannot move or act. Remove with a Gold Needle."* — **Stone** |
-| **31** | *"The character has vanished without a trace. The effect cannot be reversed."* — **Vanished** |
+| **31** | *"The character has vanished without a trace. The effect cannot be reversed."* — ~~**Vanished**~~ **X-Zone** *(corrected 2026-10-02, OPUS: status 31's name in bank 5, this page's 2026-09-26 note)* |
 
 The alignment of that list to the id space is not taken on trust; it is cross-checked against the
 engine's own table in §8, and the checks are what make this claim tier 1 rather than tier 9.
@@ -210,7 +210,7 @@ Two consequences worth stating plainly:
 | `00377700` | `FieldRecord_GetThirdByteBit0Inverted` | 77 B | third byte bit 0, gated by a save flag |
 | `00377C70` | `FieldRecord_GetDefaultFocusCombatantId` | 68 B | third byte bits 4-6 |
 | `003148F0` | `WorldTransition_GetActiveOrPendingFieldId` | 27 B | supplies the field id |
-| `00378540` | `WorldAreaField_RequestAuthoredMapTables` | 943 B | requests all three map tables |
+| `00378540` | `WorldAreaField_RequestAuthoredMapTables` | 943 B | requests ~~all three map tables~~ seven authored tables *(corrected 2026-10-02, OPUS: seven `0032E620` submissions in `00378540`; §2a's 2026-09-14 note)* |
 | `00378B80` | `FieldRecord_PublishLoadedTable` | 10 B | publishes into `02ADD100` |
 | `00378BB0` | `MapName_PublishLoadedTable` | 10 B | publishes into `02ADD0F8` |
 | `00378F70` | `MWeather_PublishLoadedTable` | 10 B | publishes into `02ADD0B0` |
@@ -469,7 +469,7 @@ Shipped values that carry the C-9 argument:
 | 15 | Slow | 0 | `0x00100000` — clears 20 (Haste) |
 | 20 | Haste | 0 | `0x00008000` — clears 15 (Slow) |
 | 25 | Regen | 15 | `0x00000400` — clears 10 (Sap) |
-| 31 | Vanished | 0 | `0x7FFFFFFC` — clears **2 through 30**, i.e. everything except ids 0, 1 and itself |
+| 31 | ~~Vanished~~ X-Zone *(corrected 2026-10-02, OPUS: status 31's name in bank 5)* | 0 | `0x7FFFFFFC` — clears **2 through 30**, i.e. everything except ids 0, 1 and itself |
 
 ### C-10 — every field that sets bit 15
 
@@ -514,7 +514,7 @@ Two internal cross-checks on that set, both from the same file:
 | Field | Distinct shipped values | Consumers | What is proven |
 |---|---|---|---|
 | bits 0-11 | 370 values; `0xFFF` on 556 fields, `0` on 200, otherwise 0..368 | UI (`003C5E50`, `003C17E0`, `003C60F0`, `003C8670`, `00576A50`), achievements (`003160C0`), `002550E0`/`002551B0`/`00255200` | a navigation-map entry id. `003160C0` uses it to index a per-bit "seen" bitmap at `DAT_022C2550 + 4 + (n>>3)`; shop interiors carry `0`, wilderness carries `0xFFF` |
-| bits 12-13 | `0`:945 `1`:36 `2`:69 `3`:104 | `BattleAction_ComputeTargetPrimaryResourceGainFromHpDamage`, `…CasterPrimaryResourceGain…`, `BattleUnit_ResolvePeriodicPrimaryResourceRecoveryStep`, `AiOrder_EvaluateTargetSelector` — all through thunk `00320160` | a 2-bit per-field selector feeding primary-resource gain and AI target selection, **overridable by a persistent save flag**. **The MP meaning is settled 2026-09-07: values 2 and 3 — and only those — triple MP gain from damage in both formula functions (`lea ebx,[rbx+rbx*2]`) and divide the walk-recovery interval by `3.0` (`divss xmm6,[008F311C]`). For MP it is the one-bit test `>= 2`, true in 173 of these 1,154 fields.** The `AiOrder_EvaluateTargetSelector` use is **not** examined, so **PROPOSED-repos2d-2 stays open**. See [`../../10-Status-Periodic-Terminal/where-mp-comes-from.md`](../../10-Status-Periodic-Terminal/where-mp-comes-from.md) |
+| bits 12-13 | `0`:945 `1`:36 `2`:69 `3`:104 | `BattleAction_ComputeTargetPrimaryResourceGainFromHpDamage`, `…CasterPrimaryResourceGain…`, `BattleUnit_ResolvePeriodicPrimaryResourceRecoveryStep`, `AiOrder_EvaluateTargetSelector` — all through thunk `00320160` | a 2-bit per-field selector feeding primary-resource gain and AI target selection, **overridable by a persistent save flag**. **The MP meaning is settled 2026-09-07: values 2 and 3 — and only those — triple MP gain from damage in both formula functions (`lea ebx,[rbx+rbx*2]`) and divide the walk-recovery interval by `3.0` (`divss xmm6,[008F311C]`). For MP it is the one-bit test `>= 2`, true in 173 of these 1,154 fields.** ~~The `AiOrder_EvaluateTargetSelector` use is **not** examined, so **PROPOSED-repos2d-2 stays open**.~~ *(answered: examined 2026-09-12 — one selector predicate compares the raw value with its operand, `00303043`–`0030304D`; 2026-10-02, OPUS)* See [`../../10-Status-Periodic-Terminal/where-mp-comes-from.md`](../../10-Status-Periodic-Terminal/where-mp-comes-from.md) |
 | bit 14 | 155 fields | 5 UI functions; `003F92B0` reads it and then calls the **area-name** reader `00377870` | gates area-name display for the field |
 | bit 15 | 193 fields | 110 functions, 15 subsystems | the action-permission override |
 | third byte bit 0 | 170 fields | 6 ActorEntity/Movement functions | the same safe-area flag, ANDed with save flag `payload[0x1062] & 1` |
@@ -626,11 +626,11 @@ accessor reads them, and no function reads the third byte other than through `00
 ## 5. Call chain
 
 ```
-area load / transition
+area load / transition   <- corrected 2026-10-02, OPUS: boot, once - 00377CC0's one caller is 00266D10 (00267146), whose one caller is the boot routine
   -> 00377CC0  WorldAreaField_BootMapTables
      -> 00378540  request (1,32) planmapname.bin  -> 00378BB0 -> 02ADD0F8
                   request (9, 8) navimapdata.bin  -> 00378B80 -> 02ADD100     [OWNER]
-                  request (9,39) gramap_weatherinfo.bin -> 00378F70 -> 02ADD0B0
+                  request (9,39) gramap_weatherinfo.bin -> 00378F70 -> 02ADD0B0   <- corrected 2026-10-02, OPUS: four more requests follow - seven 0032E620 submissions in 00378540 (section 2a)
 
 any gameplay decision about a unit
   -> (bkbi[+0x64] | bkbi[+0x3C]) & 0x80000003          "is this unit KO / Stone / Vanished?"
@@ -680,8 +680,8 @@ Movement, Presentation, UI command lists, Items, Rewards.
   paths, and the shipped data never disagrees between them except on the 23 system slots.
 - **The record is authored map data, not code.** Nothing recomputes it; the file is published
   once per boot into `02ADD100` and read directly thereafter.
-- **It fails closed.** An absent table or an out-of-range field id yields record `0x0FFF` /
-  third byte `0`: no navigation map, and every flag clear — the restrictive answer. Preserve that
+- **It fails closed except at `00377700`.** An absent table or an out-of-range field id yields record `0x0FFF` /
+  third byte `0`: no navigation map, and every flag clear ~~— the restrictive answer~~, which `00377700` reads inverted as the permissive 1 *(corrected 2026-10-02, OPUS: `00377728 xor dl, dl` / `0037772D not` / `0037773C mov eax, 1`; CONTRACT-field-record-accessors.md §10)*. Preserve that
   if you rebuild the file; the fail path is a literal constant, not a zero return.
 - **Free real estate:** `thirdByte` bits 4-6 are read by the engine and set by nothing. Writing
   `n` there makes combatant `n` the default focus in that field whenever the runtime is in mode 3
@@ -715,7 +715,7 @@ Movement, Presentation, UI command lists, Items, Rewards.
       what the consumers make of bits 12–13". **PROPOSED-repos2d-2.**
       **Half answered 2026-09-07:** for the MP economy the field is the test `>= 2` — values 2 and 3
       triple gain from damage and third the walk-recovery interval, values 0 and 1 do nothing.
-      **The `AiOrder_EvaluateTargetSelector` consumer is still unread, so this box stays unticked.**
+      ~~**The `AiOrder_EvaluateTargetSelector` consumer is still unread, so this box stays unticked.**~~ *(answered: read 2026-09-12, `00303043`–`0030304D`, as C-11's box records; 2026-10-02, OPUS)*
       [`../../10-Status-Periodic-Terminal/where-mp-comes-from.md`](../../10-Status-Periodic-Terminal/where-mp-comes-from.md)
 - [x] ~~Why `thirdByte` bits 1-3 are authored across 638 fields and read by nothing.~~ **Closed
       2026-09-12 (FABLE, C-11): not in the image** — no reader by any accessor or hop, so the *why* is
@@ -933,7 +933,7 @@ areas.
 ### Attack 4 — "the pairing statistic is a window artefact"
 
 The claim "117 of 173 mask sites pair with the escape call" depends on a proximity window. Re-run
-at ±8 instructions: 116 PAIRED, 55 NO-ESCAPE. At ±25: 117 / 55. The statistic does not move with
+at ±8 instructions: 116 PAIRED, 55 NO-ESCAPE. At ±25: 117 / 55. *(corrected 2026-10-02, OPUS: the two figures are not a partition of 173. The 55 are the sites in the 42 functions that never call `00377C20` or its thunk `00313F60`; the other 118 lie in functions that do, and the third class — the call present but outside the window — holds 2 at ±8 and 1 at ±25, both in `0030E360` (`0030E454`, 28 instructions from the nearest call, and `0030E48A`, 12). So 116 + 2 + 55 = 117 + 1 + 55 = 173, re-derived over `retool.py grep 0x80000003`: 173 sites in 131 functions.)* The statistic does not move with
 the window, and the 55 no-escape sites are a real population — `PartyFollow_SolveFormation` and
 both reward functions are among them, which is why §5 warns against reading bit 15 as a blanket
 waiver.
@@ -956,7 +956,7 @@ thunk** at `00320160`, itself called by four functions in three subsystems.
   bits 4-6 modding advice in §6 is explicitly marked untested in play.
 - The area-id space behind `00377870` / `MapRef_GetPersistenceGroupId` was not derived, so the
   59 area names in `planmapname.bin` are not joined to fields in this document.
-- `audit_crossrefs.py` has not yet been run against this document — `crossref_clean: false`.
+- ~~`audit_crossrefs.py` has not yet been run against this document — `crossref_clean: false`.~~ *(answered: run since — the front matter says `crossref_clean: true`; 2026-10-02, OPUS)*
 
 ## 11. Cross-subsystem neighbours — disposition
 
@@ -1020,7 +1020,7 @@ input frame snapshot. **A bit-15 field forces the toggle off.** The value is han
 `FUN_00252B60`, which routes it through the gameplay capability mask (`FUN_002E0FA0`) and
 `FUN_0035C880(0xC, …)`.
 
-**What the toggle is remains unnamed** — that is 15-Input's to close, and this session does not
+~~**What the toggle is remains unnamed** — that is 15-Input's to close~~ *(answered: `020927E0` is the R2 force-fight toggle, this page's 2026-09-12 note; 2026-10-02, OPUS)*, and this session does not
 write in that category. But C-12's question — *what is this structurally different consumer?* — is
 answered: **a per-press input toggle that towns force off**, held in one function's private state,
 not a parallel status gate.
@@ -1097,7 +1097,7 @@ Shared callees outside the census: `002DE050`.
 
 ## The `00326500` exclusive subtree — 1 member bound (SWE2-FRONTIER, followup queue)
 
-`00326500` (`PartyFocus_SelectAndRequestDefaultActor`, ~119 B) —
+`00326500` (`PartyFocus_SelectAndRequestDefaultActor`~~, ~119 B~~, 274 B *(corrected 2026-10-02, OPUS: its last instruction is the short `jmp` at `00326610`, so `0x112` bytes)*) —
 `bl = 0xFF` then `00311E20()` + `00326620()` (`0032650A`/`00326511`).
 
 | member | role | interior |
@@ -1108,7 +1108,7 @@ Shared callees outside the census: `00311E20`, `00326620`, `003137E0`.
 
 ## The `00378540` exclusive subtree — 1 member bound (SWE2-FRONTIER, followup queue)
 
-`00378540` (~85 B) — `rbp = rsp` frame (`00378550`/`00378553`).
+`00378540` ~~(~85 B)~~ (943 B *(corrected 2026-10-02, OPUS: its last instruction is the `ret` at `003788EE`, so `0x3AF` bytes, as §2a says)*) — `rbp = rsp` frame (`00378550`/`00378553`).
 
 | member | role | interior |
 | --- | --- | --- |

@@ -5,7 +5,7 @@ Static, from the shipping image: a read-only reader pass, byte-checked by OPUS (
 `_index/candidates/opus-gi19-sway-layout-1001/`).
 
 **Where the record comes from.** The oscillator record is controller 0 of the rig, so it is authored data: a
-sub-block of the model's `@FCP` section 2 ([the rig](../Character-Render-Records/the-rig-of-seventeen-controllers.md)
+sub-block of the model's `@FCP` section 2 ([the rig](../../../17-Presentation-Rendering/Character-Render-Records/the-rig-of-seventeen-controllers.md)
 §2). The rig's slot initialiser `003E1C50` calls `0040EEA0(rig, S)`, where S is the sway section, rig base plus its
 slot-0 offset (`003E1D9A`). `0040EEA0` is a relocation pass. Every offset field is turned into an encoded pointer
 relative to S (`0020E600`, `lea ecx, [S + rax]`, `0020E620`), so every relocated target lies inside the sway section.

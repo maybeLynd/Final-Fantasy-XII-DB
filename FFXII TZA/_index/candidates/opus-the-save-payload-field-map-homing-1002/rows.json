@@ -1,0 +1,161 @@
+{
+ "page": "19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/the-save-payload-field-map.md",
+ "date": "2026-10-02",
+ "session": "local-h2-opus",
+ "report": "the-save-payload-field-map.json",
+ "rows": [
+  {
+   "fn": "00264A40",
+   "text": "maps `ecx` through the 9-entry jump table placed right after the body to a record index and tail-jumps to `002649B0` with it: 0, 1 and 2 give 0, 3 gives 2, 4 gives 1, 5 gives 3 and 8 gives 4; 6, 7 and every value above 8 (unsigned compare) return 0 without the call",
+   "anchors": [
+    [
+     "00264A43",
+     "ja"
+    ],
+    [
+     "00264A4F",
+     "mov"
+    ],
+    [
+     "00264A61",
+     "jmp"
+    ],
+    [
+     "00264A7C",
+     "jmp"
+    ],
+    [
+     "00264A8B",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "002E23E0",
+   "text": "copies `edx` to `r9d`, calls `002E13C0` with the incoming registers, then tail-jumps to `00254E00` with that result as `ecx` and the low byte of `r9` (`movzx edx, r9b` after the call) as `edx`",
+   "anchors": [
+    [
+     "002E23E4",
+     "mov"
+    ],
+    [
+     "002E23E7",
+     "call"
+    ],
+    [
+     "002E23EE",
+     "movzx"
+    ],
+    [
+     "002E23F6",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00344D30",
+   "text": "keeps `r9` in `rdi`, calls `003137E0` with the incoming registers and then `00267F90(rdi, that result)`, calls `00267E10(rdi)` twice and tail-jumps to `0036E6F0` with the second result as `ecx` and the first as `edx`",
+   "anchors": [
+    [
+     "00344D3D",
+     "call"
+    ],
+    [
+     "00344D47",
+     "call"
+    ],
+    [
+     "00344D4F",
+     "call"
+    ],
+    [
+     "00344D59",
+     "call"
+    ],
+    [
+     "00344D6C",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0034A590",
+   "text": "keeps `rcx` in `rdi` and starts the value at -1; calls `0037C8F0` with the incoming registers and, only when it returns non-zero, calls `003137E0` and takes its result as the value; tail-jumps to `0026B4E0(rdi, value)`",
+   "anchors": [
+    [
+     "0034A59D",
+     "or"
+    ],
+    [
+     "0034A5A0",
+     "call"
+    ],
+    [
+     "0034A5A9",
+     "call"
+    ],
+    [
+     "0034A5BF",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00356E10",
+   "text": "calls `00267E10(r9)` and, when the result is negative, calls `003148B0` and uses its result instead; passes that value and a 16-byte local to `00377AB0`, hands the local's first three floats to `00267F60(r9, float)` in turn, reads three floats from `00267DB0(r9)` and passes them in reverse order (third, second, first) to `0026B0C0(rdx, ...)` when byte `+0x10` of `rdx` is non-zero, else to `0026AF80(rdx, ...)`; then calls `0026AE90(rdx, 0)`, `00267F60(r9, the local's fourth float)` and `00267F90(r9, 0)`, and returns what `0034D1B0` returns for the four incoming arguments (under the stack-cookie check)",
+   "anchors": [
+    [
+     "00356E44",
+     "call"
+    ],
+    [
+     "00356E4D",
+     "call"
+    ],
+    [
+     "00356E59",
+     "call"
+    ],
+    [
+     "00356EA6",
+     "cmp"
+    ],
+    [
+     "00356EF2",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00574160",
+   "text": "takes W, the first qword of the array at qword `[rdx+0x10]`; when qword `rcx+0xF8` is null it stores the address `01CEB638` at W's qword `+0x18` and clears bits `0x8`, `0x10` and `0x20` of W's byte `+0x2D`; otherwise it reads the 16-byte entry `r9d` at `rcx+0x41E0` (qword source, dword `+8`, word `+0xC` length, byte `+0xF` flag), and when the dword is not 0x80808080 calls `002AB870(0x10, local buffer, that dword)` and `00861EBA(rcx+0x4120, local buffer, the result)`, keeping the result minus 1 as a prefix length (else 0); then calls `00861EBA(rcx+0x4120+prefix, the source, the word length capped at 0x7F minus the prefix)`, zeroes the byte after, and when the flag byte is non-zero calls `0029FE20(W, &local word, &local)`, stores W's word `+0xA` = word `+0x10` + word `+0xC` - local word - 4 and sets bit `0x10` with bits `0x8` and `0x20` cleared in byte `+0x2D` (flag zero: clears all three); this path stores `rcx+0x4120` at W's qword `+0x18`; both paths store `0020E620(005766B0())` at W's dword `+0x20` and return 1",
+   "anchors": [
+    [
+     "00574178",
+     "cmp"
+    ],
+    [
+     "005741CF",
+     "cmp"
+    ],
+    [
+     "005741DF",
+     "call"
+    ],
+    [
+     "00574243",
+     "mov"
+    ],
+    [
+     "0057427F",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing"
+}

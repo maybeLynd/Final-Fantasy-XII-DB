@@ -1,0 +1,39 @@
+{
+ "page": "23-Third-Party-Libraries/Lua-Core/the-lua-loader-and-what-it-accepts.md",
+ "date": "2026-10-02",
+ "session": "local-h5-opus",
+ "report": "the-lua-loader-and-what-it-accepts.json",
+ "rows": [
+  {
+   "fn": "0063C450",
+   "text": "calls `008113D0(rdx, -1)` and keeps whether it returned non-zero, calls `00811130(rdx, -2)`, then stores that flag as a byte at `[r8]`",
+   "anchors": [
+    [
+     "0063C468",
+     "or"
+    ],
+    [
+     "0063C46B",
+     "call"
+    ],
+    [
+     "0063C47A",
+     "setne"
+    ],
+    [
+     "0063C47D",
+     "call"
+    ],
+    [
+     "0063C482",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing"
+}

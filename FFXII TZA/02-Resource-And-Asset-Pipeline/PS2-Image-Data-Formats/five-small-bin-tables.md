@@ -409,7 +409,7 @@ bytes **UNDETERMINED**, and the decode keeps it that way:
 tail   8 B       zero pad
 ```
 
-*Superseded 2026-09-29 (below): `dP<d` is not a tag but record 0's first four bytes, and the 668 bytes are 64 ten-byte records and a 32-byte tail.*
+*Superseded 2026-09-29 (below): `dP<d` is not a tag but record 0's first four bytes, and ~~the 668 bytes are~~ the file's 672 bytes, from `+0x00`, are 64 ten-byte records and a 32-byte tail.* *(corrected 2026-10-02, OPUS: 64 · 10 + 32 = 672 = `0x2A0`, the tail at `0x280`)*
 
 ~~The payload resists a record-grid reading: an exhaustive stride/offset scan finds no column
 constant above 71%, and the value histogram is dominated by `0x64` (36%), `0x80` (16%) and

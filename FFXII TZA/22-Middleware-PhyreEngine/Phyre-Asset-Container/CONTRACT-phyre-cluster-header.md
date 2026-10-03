@@ -165,7 +165,7 @@ thing that sizes it.
 > the failure reaches the caller.
 
 **And that swap says what "byte-swapped" means here.** `0059C180` is 202 bytes of
-`mov eax, [rcx+n]` / `bswap eax` / `mov [rcx+n], eax` — **fourteen `bswap`s over eight fixed dwords,
+`mov eax, [rcx+n]` / `bswap eax` / `mov [rcx+n], eax` — **~~fourteen~~ eight `bswap`s over eight fixed dwords *(corrected 2026-10-02, OPUS: `0059C18B`-`0059C1C2`; the body has fourteen in all, six more in the loop at `0059C206`-`0059C22E`)*,
 then a counted loop**, before tail-jumping to `0059A8B0`. So this loader's convention is a
 **per-dword `bswap`**, not a reversal of the byte range.
 
@@ -257,7 +257,7 @@ first.** It is a register reload after a call clobbered `eax`. Two consequences:
 | **short** | `m_size < 84` | the surplus already read *is* the namespace head: `take = min(84 - m_size, m_packedNamespaceSize)` via `cmovb` at `0059A58F`, `memcpy` from `header + m_size`, then the remainder from the stream | **`6`** when `84 - m_size` exceeds the namespace size — `0059A593 cmp ebp, r12d / jne` |
 | **long** | `m_size > 84` | grow the buffer (`0067B100`), copy the 84 bytes already read, then read `m_size - 84` more | **`0xD`** on grow failure (`0059A51A`); a short read on the remainder returns **`9`** |
 
-> **The oversized copy is SSE, and it is not a call.** `0059A536`–`0059A55F` is five `movups` of 16
+> **The oversized copy is SSE, and it is not a call.** `0059A536`–`0059A55F` is ~~five `movups` of 16~~ ten `movups`, five 16-byte loads and five stores *(corrected 2026-10-02, OPUS: §15a)*, of 16
 > bytes plus one 4-byte `mov` — `0x50 + 4 = 84` — **inline**, so the oversized path makes **no**
 > `memcpy` call at all, while the short path at `0059A5A9` makes exactly one. The source page
 > describes the copy as "21 dwords", which is the field count rather than the instruction shape.
@@ -283,7 +283,7 @@ leaves.
 | 7 | oversized header, grow fails | **`0xD`** |
 | 8 | oversized header, the remainder read is short | **`9`** |
 
-> **Five distinct causes share the code `6`,** and nothing the caller receives distinguishes them. The fifth — row 5a — was **missing from this contract until the pilot drove it**, and it is the one a reader is least likely to predict: a *zero-length* namespace is refused, while a zero-length namespace whose capacity already reads zero is accepted, because the second never replaces the buffer.
+> **Five distinct causes share the code `6`,** and nothing the caller receives distinguishes them. The fifth — row 5a — was **missing from this contract until the pilot drove it**, and it is the one a reader is least likely to predict: a *zero-length* namespace is refused, while a zero-length namespace whose capacity already reads zero is ~~accepted, because the second never replaces the buffer~~ refused too in this build *(corrected 2026-10-02, OPUS: the null-buffer test at `0059A4D3`-`0059A4D6` comes first, as §13a says, and the only caller `0059E070` zeroes the buffer, `0059E115`-`0059E11A`; it would pass only with a non-null buffer of capacity zero, which nothing supplies)*.
 > `PResult` is the enum's name — isolated under `AZ-3` — but **its symbolic values are not
 > established**, so this contract reports numbers as numbers.
 
@@ -296,7 +296,7 @@ buffer, `*outSize`, `*outWasByteSwapped`, the namespace buffer and `bytesConsume
 
 ```c
 int PhyreClusterHeader_Read(Stream *s, ClusterHeader *h, Buf *nsBuf,
-                            bool checkPlatform, uint32 *outSize, bool *outSwapped)
+                            bool checkPlatform, uint32 *outSize, bool *outSwapped)   // <- corrected 2026-10-02, OPUS - real order is (s, h, nsBuf r8, buf r9, outSwapped [rsp+0x28], outSize [rsp+0x30], checkPlatform [rsp+0x38]): 0059A3C3, 0059A3CB, 0059A3F6, 0059A4DF, 0059A445 - section 2
 {
     int n = s->vtbl.read(s, h, 84);
     s->bytesConsumed += n;                       /* BEFORE the test */
@@ -340,11 +340,11 @@ int PhyreClusterHeader_Read(Stream *s, ClusterHeader *h, Buf *nsBuf,
         if (surplus != take) return 6;            /* surplus exceeds the namespace */
         memcpy(nsBuf->p, (char *)h + size, take);
         return ReadPackedNamespace(s, nsBuf->p + take,
-                                   h->m_packedNamespaceSize - take, *outSwapped);
+                                   h->m_packedNamespaceSize - take, *outSwapped);   // <- corrected 2026-10-02, OPUS - 0059A6F0 takes (s, swapped dl, buffer r8, length r9d): 0059A5B5-0059A5BF
     }
     if (size > 84) {
-        if (!grow(nsBuf, size)) return 0xD;
-        memcpy(nsBuf->p, h, 84);                  /* 5 x movups + 1 dword */
+        if (!grow(nsBuf, size)) return 0xD;   // <- corrected 2026-10-02, OPUS - the grown buffer is r9's, not nsBuf: 0059A50E mov rcx, r12 (r9) then 0067B100
+        memcpy(nsBuf->p, h, 84);                  /* 5 x movups + 1 dword */   // <- corrected 2026-10-02, OPUS - into r9's buffer (0059A52E rdx = [r12+8]), as ten movups plus one dword
         /* read size - 84 more; a short read returns 9 */
     }
     return ReadPackedNamespace(s, nsBuf->p, h->m_packedNamespaceSize, *outSwapped);
@@ -379,7 +379,7 @@ stream read, the allocator, the grow and the buffer release; the BYTE-SWAP BLOCK
 reader ran as shipped bytes (§13a).** The memcpy was always performed by the hook, so its bytes were
 real even though the call was not. **A stub is not proof of its native effects.**
 
-> **The byte-swap block is the one that matters and the one that cannot be run.** Its descriptor at
+> **The byte-swap block is the one that matters and the one that cannot be run.** *(answered: see §13a - it was run 2026-09-18; 2026-10-02, OPUS)* Its descriptor at
 > `02CAA0A0` is `.bss` — zero at load — so it is built at runtime and cannot be read out of the
 > image.
 >
@@ -568,7 +568,7 @@ Receipts: `Database/Tools/work/OPUS/litsuffix/phyre_header`, `phyre_header2` and
 3. ~~**`PH-3`**~~ — **ANSWERED 2026-09-12: it imposes none** (§5). It reads exactly the length it
    is handed and guards only on a zero length and a null buffer, both of which succeed. What
    remains of the question is `0059C180`, the namespace byte-swap it calls, which ~~is unread~~
-   **was read since — 2026-09-18 re-check:** it is the table layout made executable — fourteen
+   **was read since — 2026-09-18 re-check:** it is the table layout made executable — ~~fourteen~~ eight *(corrected 2026-10-02, OPUS: `0059C18B`-`0059C1C2`; fourteen is the whole body's count)*
    `bswap`s over eight fixed dwords at `+0x00`…`+0x1C`, documented in
    [the packed namespace's file-side schema](the-packed-namespace-and-the-file-side-schema.md) §8 —
    and which `check_caller_claims` confirms has this function as its only caller.
@@ -627,13 +627,13 @@ Receipts: `Database/Tools/work/OPUS/litsuffix/phyre_header`, `phyre_header2` and
 | `r9` is the same TYPE as `r8` (`PhyreNamespaceBuffer`) | inference from identical layout, identical zero-init, identical release gate and adjacent parameter position - no reflection registration names it | 2 | HIGH |
 | the short path takes `min(84 - m_size, namespaceSize)` and refuses when the surplus exceeds it | **re-read**: `0059A588 sub ebp, eax`, `0059A58F cmovb r12d, ebp`, `0059A593 cmp ebp, r12d / jne` to `mov eax, 6` | 1 | PROVEN |
 | **the oversized copy is five `movups` plus one dword, not a dword loop** | **re-read**: `0059A536`–`0059A55F` | 1 | PROVEN  **§15a: five 16-byte TRANSFERS, which are TEN `movups` instructions** — each transfer is a load and a store (`0059A536`/`39`, `3C`/`40`, `44`/`48`, `4C`/`50`, `54`/`58`), then `0059A55C mov eax, [rsi+0x50]`. **5 × 16 + 4 = 84**, which re-derives the header size from the copy |
-| the three size paths converge on `0059A6F0` | **re-read**: `0059A5BF`, `0059A5D7` and the equal path all call it | 1 | PROVEN |
+| the three size paths converge on `0059A6F0` | **re-read**: ~~`0059A5BF`, `0059A5D7` and the equal path all call it~~ two call sites, `0059A5BF` for the short and long paths and `0059A5D7` for the equal path *(corrected 2026-10-02, OPUS: the only two direct callers of `0059A6F0`)* | 1 | PROVEN |
 | `m_size == 84` in 169 of 169 sampled files | the source page's corpus — **0.47 % of the shipped files**, and a file-side measurement that executed no code | 1 | PROVEN |
 | **bit 31 of the capacity word is an ownership flag, and a set bit skips the release** | **executed**: `0059A4AB shr edx,0x1f / not dl / test dl,1` gating `0059A4BA call 0x584730`, driven with the bit set and clear against the same sizes — the pilot compares the release count | 1 | PROVEN |
 | **a NULL namespace buffer is refused with 6, which is what a zero size against a non-matching capacity produces** | **executed**: `0059A4D3 test r13,r13 / je 0059A598` where `0059A598 mov eax, 6`. **Found by the pilot** — the case faulted on the unmapped release before this branch had ever been reached | 1 | PROVEN |
 | the namespace reader imposes NO bound: it reads the length it is handed | **read in full by me**: `0059A6F0`'s only guards are `test r9d,r9d` and `test r8,r8`, both succeeding, and the read at `0059A723` passes `r9d` straight through. **Static: the pilot scripts this function** | 1 | PROVEN |
 | a short namespace read returns 9 and byte-swaps anyway | **read in full by me**: `0059A748 call 0x59c180` is gated at `0059A73B`/`0059A740` on the buffer and the flag, not on the result computed at `0059A72D` | 1 | PROVEN |
-| any execution of this ladder, isolated or live | **none**; §13 | none | UNKNOWN |
+| any execution of this ladder, isolated or live | ~~**none**; §13~~ *(answered: see §13, executed 2026-09-12 by diff_phyre_header.py, and §13a, 2026-09-18; 2026-10-02, OPUS)* | none | UNKNOWN |
 | the symbolic values of `PResult` | **not established, and dispositioned rather than open** — `UQ-286` (2026-09-22, FABLE: `PH-1` is its duplicate) closed it as **NO ADMISSIBLE SOURCE**: the image reflects the type with no enumerators and the names appear in no admissible file, so the numbers are the identifiers | none | UNKNOWN |
 | **`0063E2E0` walks the descriptor's member list and its base chain, calling `0063CE80` per member** | **read**: `rsi = desc+0x80` is a circular list head (loop ends when the cursor equals `rsi`); each node becomes its member by `-8` (`0063E324`); `0063CE80(&ctx, member)` at `0063E338`/`0063E398`; then `rdi = [desc+0x78]` and repeat while non-null (`0063E351`, `0063E3B4`). `r8b` picks the direction: forward uses `[rsi]` then `[rbx+8]`, reverse uses `[rsi+8]` then `[rbx+0x10]` | 1 | PROVEN |
 | the descriptor's `+0x38` dword is handed to every member callback | **read**: `0063E2EF mov eax, [rcx+0x38]` stored into the context at `+0x04` (`0063E2F5`); the context is `{dword 0, dword desc+0x38, qword object, byte direction}` at `[rsp+0x20]` | 1 | PROVEN |
@@ -934,15 +934,15 @@ Interior anchor `006A59DE`
 (the `00584730` call).
 
 `00686D10` (43 B) is the
-three-field status copy
+three-field ~~status~~ size copy *(corrected 2026-10-02, OPUS: it returns 0 on both paths, `00686D26` and `00686D38`)*
 `0059E300` runs: when
 `r8`'s `+0x48`/`+0x4C`/
 `+0x50` are not all zero it
 writes them to `rcx`'s
 `+0x20`/`+0x1C` and
 conditionally `+0x24` -
-the loader's error-field
-propagation.
+~~the loader's error-field~~
+~~propagation.~~ the header's three D3D11 sizes, which `00686DE0` allocates (`00686E2C`-`00686E32`) and reads from the file (`00686E44`) *(corrected 2026-10-02, OPUS: no error is produced or propagated)*.
 Interior anchor `00686D28`
 (the `+0x20` store).
 

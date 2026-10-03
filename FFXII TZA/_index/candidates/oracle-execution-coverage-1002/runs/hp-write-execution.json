@@ -1,0 +1,21 @@
+{
+ "blocks_in_image": 523,
+ "blocks_outside_image": 6,
+ "catalogue": "e2a67b07700c2ec3fbfae3213965de35",
+ "classes": {
+  "entered": 1,
+  "returned": 67,
+  "stubbed": 7
+ },
+ "elapsed_s": 68.2,
+ "emu_starts": 76,
+ "entries_executed": 67,
+ "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+ "instrument": "execcov-shim v2",
+ "patched_blocks": 19,
+ "rc": 0,
+ "receipt_md5": "6f95c095a7da41aa4d8f928be9d8548b",
+ "run": "hp-write-execution",
+ "status": "ok",
+ "unique_blocks": 529
+}
