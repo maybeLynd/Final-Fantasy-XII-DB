@@ -1,0 +1,105 @@
+{
+ "page": "01-Script-VM-Native-Bridge/Verb-Dispatch/scriptvm-verb-dispatch-and-parameter-encoding.md",
+ "session": "session_01SRPAB4nYztytvoFuWnwY9e",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "003B8030",
+   "text": "when dword `02EBCBC0` is greater than 0 (signed), for each index i below that dword (re-read every pass) calls `0026B620(00263F40(qword at 02EBCAC0 + i*8), xmm0)`, passing the incoming `xmm0` float as the second argument; returns nothing when the count is 0 or less",
+   "anchors": [
+    [
+     "003B803D",
+     "cmp"
+    ],
+    [
+     "003B8057",
+     "call"
+    ],
+    [
+     "003B8062",
+     "call"
+    ],
+    [
+     "003B806D",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0050D3B0",
+   "text": "calls `002640C0` with the incoming registers unchanged, then `00267E10(r9)`, then `002650B0(first result, rdx, second result)`, and ends with the tail jump at `0050D3B0+0x4C` with (`00D229F8`, that result)",
+   "anchors": [
+    [
+     "0050D3C5",
+     "call"
+    ],
+    [
+     "0050D3D0",
+     "call"
+    ],
+    [
+     "0050D3DE",
+     "call"
+    ],
+    [
+     "0050D3E6",
+     "lea"
+    ],
+    [
+     "0050D3FC",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0050D420",
+   "text": "calls `002640C0` with the incoming registers unchanged, then `00267E10(r9)`, then `002650B0(first result, rdx, second result)`, and ends with the tail jump at `0050D420+0x4C` with (`008F4438`, that result)",
+   "anchors": [
+    [
+     "0050D435",
+     "call"
+    ],
+    [
+     "0050D440",
+     "call"
+    ],
+    [
+     "0050D44E",
+     "call"
+    ],
+    [
+     "0050D456",
+     "lea"
+    ],
+    [
+     "0050D46C",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0050EA80",
+   "text": "calls `0036F000` with the incoming registers unchanged; returns 0 when it returns non-zero, and when it returns 0 makes the call at `0050EA80+0x19` with 1 and returns 1",
+   "anchors": [
+    [
+     "0050EA84",
+     "call"
+    ],
+    [
+     "0050EA8B",
+     "je"
+    ],
+    [
+     "0050EA99",
+     "call"
+    ],
+    [
+     "0050EA9E",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Calls to 0017D280 and 00314D40 are cited by site because this page does not name them. 00D229F8 and 008F4438 are rip-relative lea targets (not decoded in the listing)."
+}
