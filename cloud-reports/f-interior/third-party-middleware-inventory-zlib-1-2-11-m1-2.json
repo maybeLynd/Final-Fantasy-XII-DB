@@ -1,0 +1,374 @@
+{
+ "page": "23-Third-Party-Libraries/third-party-middleware-inventory.md",
+ "mode": "member",
+ "family": "zlib 1.2.11",
+ "session": "session_016AduKBeymFT4Ug3TxqT399",
+ "rows": [
+  {
+   "fn": "0087DB80",
+   "text": "when dword `rcx+0x1714` is 16, appends bytes `rcx+0x1710` and `rcx+0x1711` at dword index `rcx+0x28` of the buffer at qword `rcx+0x10` (incrementing the index after each) and zeroes dword `+0x1714` and word `+0x1710`; when it is not 16 but 8 or more (signed), appends byte `+0x1710` the same way, stores byte `+0x1711` zero-extended to word `+0x1710` and subtracts 8 from dword `+0x1714`; below 8 writes nothing",
+   "anchors": [
+    [
+     "0087DB9D",
+     "mov"
+    ],
+    [
+     "0087DBB3",
+     "mov"
+    ],
+    [
+     "0087DBC3",
+     "mov"
+    ],
+    [
+     "0087DBE0",
+     "mov"
+    ],
+    [
+     "0087DBEF",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "0087DC00",
+   "text": "runs a loop at least once and again while the decremented `edx` stays above 0 (signed), each pass setting `eax` = (`eax` OR (`ecx` AND 1)) * 2 and shifting `ecx` right by 1 (unsigned), and returns `eax` >> 1, i.e. the low max(`edx`, 1) bits of `ecx` in reversed order",
+   "anchors": [
+    [
+     "0087DC07",
+     "and"
+    ],
+    [
+     "0087DC0B",
+     "shr"
+    ],
+    [
+     "0087DC10",
+     "add"
+    ],
+    [
+     "0087DC14",
+     "jg"
+    ],
+    [
+     "0087DC16",
+     "shr"
+    ]
+   ]
+  },
+  {
+   "fn": "0087DC20",
+   "text": "when signed dword `rcx+0x1714` is above 8 appends bytes `rcx+0x1710` and `rcx+0x1711`, when it is 1 to 8 appends byte `rcx+0x1710` only, each at dword index `rcx+0x28` of the buffer at qword `rcx+0x10` with that index incremented after each; on every path then zeroes word `+0x1710` and dword `+0x1714`",
+   "anchors": [
+    [
+     "0087DC3D",
+     "mov"
+    ],
+    [
+     "0087DC4F",
+     "jle"
+    ],
+    [
+     "0087DC60",
+     "mov"
+    ],
+    [
+     "0087DC69",
+     "mov"
+    ],
+    [
+     "0087DC71",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0087DC80",
+   "text": "calls `0087E880(rcx, rcx+0xBC, dword rcx+0xB48)`, `0087E880(rcx, rcx+0x9B0, dword rcx+0xB60)` and `0087DD50(rcx, rcx+0xB70)`, then finds the largest `k` from 18 down to 3 for which word `rcx+0xAA6+4*b` is non-zero, `b` being byte `k` of the table `01CDACF8` (`k` = 2 when none is), adds 3*`k` + 17 to dword `rcx+0x1700` and returns `k`",
+   "anchors": [
+    [
+     "0087DC97",
+     "call"
+    ],
+    [
+     "0087DCAD",
+     "call"
+    ],
+    [
+     "0087DCBC",
+     "call"
+    ],
+    [
+     "0087DCD5",
+     "cmp"
+    ],
+    [
+     "0087DD39",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "0087DD50",
+   "text": "with `t` = qword `[rdx]`, `n` = signed dword `+0x14` and `st` = qword `+0` of qword `rdx+0x10`, and `H[i]` = dword `rcx+0xBA8+4i`, `D[i]` = byte `rcx+0x14A4+i`: zeroes dword `rcx+0x149C` (`h`) and stores 0x23D to dword `rcx+0x14A0` (`q`); for `i` < `n`, when word `t+4i` is non-zero sets `H[++h]` = `i`, `D[i]` = 0 and `mx` = `i` (initially -1), else zeroes word `t+4i+2`; while `h` < 2 sets `H[++h]` = `e` (`e` = ++`mx` when `mx` < 2, else 0), word `t+4e` = 1 and `D[e]` = 0, decrements dword `rcx+0x1700` and, when `st` is non-null, subtracts word `st+4e+2` from dword `rcx+0x1704`; stores `mx` to dword `rdx+8`; calls `0087E790(rcx, t, j)` for `j` = `h`/2 down to 1; then, with `m` from `n` upward, repeatedly takes `a` = `H[1]`, sets `H[1]` = `H[h--]`, calls `0087E790(rcx, t, 1)`, takes `b` = `H[1]`, sets `H[--q]` = `a` and `H[--q]` = `b`, word `t+4m` = sum of words `t+4a` and `t+4b`, `D[m]` = 1 + the larger of `D[a]`, `D[b]` (unsigned), words `t+4a+2` and `t+4b+2` = `m`, `H[1]` = `m++` and calls `0087E790(rcx, t, 1)`, until `h` < 2; finally sets `H[--q]` = `H[1]`, calls `0087E470(rcx, rdx)` and tail-jumps to `0087E680(t, mx, rcx+0xB88)`",
+   "anchors": [
+    [
+     "0087DDBB",
+     "mov"
+    ],
+    [
+     "0087DE15",
+     "mov"
+    ],
+    [
+     "0087DE69",
+     "call"
+    ],
+    [
+     "0087DEE8",
+     "mov"
+    ],
+    [
+     "0087DF8E",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0087DFA0",
+   "text": "with the bit emitter E(`v`, `n`) ORs `v` << dword `rcx+0x1714` into word `rcx+0x1710` and adds `n` to that dword, but when the dword is above 16 - `n` (signed) it also appends the word's low and high bytes at dword index `rcx+0x28` of the buffer at qword `rcx+0x10` (index +1 each), stores `v` >> (16 - old dword) to the word and adds `n` - 16: for `i` from 0 while `i` < dword `rcx+0x16F4` (unsigned; skipped when it is 0) reads `d` = word `i` of qword `rcx+0x16F8` and `c` = byte `i` of qword `rcx+0x16E8`; when `d` is 0 emits E(word `rdx+4c`, word `rdx+4c+2`); otherwise, with `k` = byte `c` of the table at image base + 0x1BBA350, emits entry `k`+0x101 of `rdx` the same way and, when dword `k` of `01CDA650` is non-zero, E(`c` - dword `k` of `01CDAD10`, that dword); then with `d'` = `d` - 1 and `j` = byte `d'` (when `d'` < 0x100) or byte 0x100 + (`d'` >> 7) of the table at image base + 0x1BBA450, emits E(word `r8+4j`, word `r8+4j+2`) and, when dword `j` of the table at image base + 0x1BBA6D0 is non-zero, E(`d'` - dword `j` of the table at image base + 0x1BBAD90, that dword); after the loop emits E(word `rdx+0x400`, word `rdx+0x402`)",
+   "anchors": [
+    [
+     "0087E098",
+     "movzx"
+    ],
+    [
+     "0087E130",
+     "mov"
+    ],
+    [
+     "0087E1EA",
+     "movzx"
+    ],
+    [
+     "0087E321",
+     "jb"
+    ],
+    [
+     "0087E3A9",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "0087E3F0",
+   "text": "returns 0 when, for some `n` from 0 to 31 whose bit is set in 0xF3FFC07F (bit 0 first), word `rcx+0xBC+4n` is non-zero; otherwise returns 1 when word `rcx+0xE0`, `rcx+0xE4` or `rcx+0xF0`, or any word `rcx+0xBC+4n` for `n` from 32 to 255, is non-zero, and 0 when all are zero; consistent with detect_data_type in zlib (the 0xF3FFC07F mask)",
+   "anchors": [
+    [
+     "0087E402",
+     "test"
+    ],
+    [
+     "0087E408",
+     "cmp"
+    ],
+    [
+     "0087E41E",
+     "cmp"
+    ],
+    [
+     "0087E448",
+     "cmp"
+    ],
+    [
+     "0087E461",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0087E470",
+   "text": "with `t` = qword `[rdx]`, `mc` = dword `rdx+8` and, from qword `rdx+0x10`, `st` = qword `+0`, `x` = qword `+8`, `b` = dword `+0x10` and `L` = dword `+0x18`, `H[i]` = dword `rcx+0xBA8+4i` and `C[k]` = word `rcx+0xB88+2k`: zeroes `C[0..15]` and word `t+4*H[q]+2` (`q` = dword `rcx+0x14A0`); for each `H[i]`, `i` from `q`+1 to 572, sets word `t+4n+2` (`n` = `H[i]`) to 1 + word `+2` of entry (word `t+4n+2`), clamped to `L` with a clamp count, and when `n` <= `mc` (signed) increments `C[bits]` and adds word `t+4n` * (bits + `e`) to dword `rcx+0x1700` and, when `st` is non-null, word `t+4n` * (word `st+4n+2` + `e`) to dword `rcx+0x1704`, `e` being dword `x+4(n-b)` when `n` >= `b` and 0 otherwise; when the clamp count is non-zero, repeatedly decrements the highest non-zero `C[k]` below `L`, adds 2 to `C[k+1]` and decrements `C[L]`, subtracting 2 from the count while it stays above 0, and then for `k` = `L` down to 1 walks `H` down from index 573, giving `C[k]` entries `n` <= `mc` the value `k` in word `t+4n+2` and, when it changes, adding (`k` - old value) * word `t+4n` to dword `rcx+0x1700`",
+   "anchors": [
+    [
+     "0087E52E",
+     "jle"
+    ],
+    [
+     "0087E546",
+     "inc"
+    ],
+    [
+     "0087E56C",
+     "add"
+    ],
+    [
+     "0087E5E7",
+     "add"
+    ],
+    [
+     "0087E65F",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0087E680",
+   "text": "builds stack words `v[1..15]` from a 32-bit running value `s` (initially 0) with `s` = (`s` + word `r8+2(k-1)`) * 2 stored as `v[k]`; then for `n` from 0 to `edx` (none when `edx` is negative) whose word `rcx+4n+2` (`len`) is non-zero, stores `0087DC00(v[len], len)` to word `rcx+4n`, passing `v[len]` as it was before the body increments it",
+   "anchors": [
+    [
+     "0087E6BC",
+     "add"
+    ],
+    [
+     "0087E6BF",
+     "mov"
+    ],
+    [
+     "0087E6ED",
+     "mov"
+    ],
+    [
+     "0087E6F1",
+     "call"
+    ],
+    [
+     "0087E6F6",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0087E710",
+   "text": "zeroes word `+0` of 0x11E four-byte entries from `rcx+0xBC`, of 0x1E entries from `rcx+0x9B0` and of 0x13 entries from `rcx+0xAA4`, zeroes qword `rcx+0x1700` and dwords `rcx+0x1708` and `rcx+0x16F4`, and stores 1 to word `rcx+0x4BC`",
+   "anchors": [
+    [
+     "0087E720",
+     "mov"
+    ],
+    [
+     "0087E740",
+     "mov"
+    ],
+    [
+     "0087E760",
+     "mov"
+    ],
+    [
+     "0087E773",
+     "mov"
+    ],
+    [
+     "0087E77A",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0087E790",
+   "text": "with `H[i]` = dword `rcx+0xBA8+4i`, `v` = `H[r8d]`, `k` = `r8d` and `j` = 2*`r8d`, and entry `a` ranking before `b` when word `rdx+4a` < word `rdx+4b` or they are equal and byte `rcx+0x14A4+a` <= byte `rcx+0x14A4+b` (unsigned): while `j` <= dword `rcx+0x149C` (signed) it moves to `j`+1 when `j` is below that dword and `H[j+1]` ranks before `H[j]`, stops when `v` ranks before `H[j]`, and otherwise copies `H[j]` to `H[k]`, sets `k` = `j` and doubles `j`; on every exit it stores `v` to `H[k]`",
+   "anchors": [
+    [
+     "0087E7B1",
+     "jg"
+    ],
+    [
+     "0087E7F5",
+     "inc"
+    ],
+    [
+     "0087E80F",
+     "jb"
+    ],
+    [
+     "0087E82E",
+     "mov"
+    ],
+    [
+     "0087E861",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0087E880",
+   "text": "stores 0xFFFF to word `rdx+4*r8d+6` and, unless `r8d` is negative, runs over words `rdx+4n+2` for `n` from 0 to `r8d` in runs of equal values, a run ending when its count reaches the limit or the next word differs; the limit and minimum are 7 and 4, or 138 and 3 when the next word is 0, or 6 and 3 when it equals the run's value (the first from word `rdx+2`); at a run end with value `c` and count `k` it adds `k` to word `rcx+0xAA4+4c` when `k` is below the minimum, else for `c` non-zero increments word `rcx+0xAE4` and, when `c` differs from the previous run's value (initially -1), word `rcx+0xAA4+4c`, and for `c` = 0 increments word `rcx+0xAE8` (`k` <= 10) or `rcx+0xAEC`",
+   "anchors": [
+    [
+     "0087E8B4",
+     "mov"
+    ],
+    [
+     "0087E8E7",
+     "add"
+    ],
+    [
+     "0087E903",
+     "inc"
+    ],
+    [
+     "0087E913",
+     "inc"
+    ],
+    [
+     "0087E91D",
+     "inc"
+    ]
+   ]
+  },
+  {
+   "fn": "0087E970",
+   "text": "with the bit emitter E(`v`, `n`) ORs `v` << dword `rcx+0x1714` into word `rcx+0x1710` and adds `n` to that dword, but when the dword is above 16 - `n` (signed) it also appends the word's low and high bytes at dword index `rcx+0x28` of the buffer at qword `rcx+0x10` (index +1 each), stores `v` >> (16 - old dword) to the word and adds `n` - 16: emits E(`edx` - 0x101, 5), E(`r8d` - 1, 5) and E(`r9d` - 4, 4), then for each of the first `r9d` bytes `b` of the table `01CDACF8` (none when `r9d` <= 0) E(word `rcx+0xAA6+4b`, 3); then calls `0087EBF0(rcx, rcx+0xBC, edx - 1)` and tail-jumps to `0087EBF0(rcx, rcx+0x9B0, r8d - 1)`",
+   "anchors": [
+    [
+     "0087E9A6",
+     "or"
+    ],
+    [
+     "0087EAA4",
+     "or"
+    ],
+    [
+     "0087EB2F",
+     "movzx"
+    ],
+    [
+     "0087EBC4",
+     "call"
+    ],
+    [
+     "0087EBE6",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0087EBF0",
+   "text": "with the bit emitter E(`v`, `n`) ORs `v` << dword `rcx+0x1714` into word `rcx+0x1710` and adds `n` to that dword, but when the dword is above 16 - `n` (signed) it also appends the word's low and high bytes at dword index `rcx+0x28` of the buffer at qword `rcx+0x10` (index +1 each), stores `v` >> (16 - old dword) to the word and adds `n` - 16 and code `x` meaning E(word `rcx+0xAA4+4x`, word `rcx+0xAA6+4x`): unless `r8d` is negative, runs over words `rdx+4n+2` for `n` from 0 to `r8d` in runs of equal values, a run ending when its count reaches the limit or the next word differs (limit and minimum 7 and 4, or 138 and 3 when the next word is 0, or 6 and 3 when it equals the run's value; the first from word `rdx+2`); at a run end with value `c` and count `k` it emits code `c` `k` times when `k` is below the minimum, else for `c` non-zero emits code `c` once (counting `k` - 1) only when `c` differs from the previous run's value (initially -1), then code 16 and E(`k` - 3, 2), and for `c` = 0 emits code 17 and E(`k` - 3, 3) when `k` <= 10, else code 18 and E(`k` - 11, 7)",
+   "anchors": [
+    [
+     "0087EC9D",
+     "or"
+    ],
+    [
+     "0087EDF5",
+     "or"
+    ],
+    [
+     "0087EEF1",
+     "cmp"
+    ],
+    [
+     "0087F0AB",
+     "lea"
+    ],
+    [
+     "0087F154",
+     "jne"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "All callees cited by address are members of this pack (0087DC00, 0087DD50, 0087E470, 0087E680, 0087E790, 0087E880, 0087EBF0). 0087DD50: the call to 0087E470 receives rcx = rcx because 0087E790 never writes rcx. 0087DFA0: four of its six tables are addressed as image base + offset without a resolved address in the listing, so they are written that way, not as 8-digit addresses. 0087E680: v[0] is never written; entries with len 0 skip the call. Doubts: 0087DD50 and 0087E470 are dense and stated at structure level; worth a second read of the heap index bookkeeping (q starts at 0x23D, decremented before each store)."
+}
