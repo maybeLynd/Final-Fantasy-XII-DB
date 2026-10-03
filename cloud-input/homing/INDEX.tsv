@@ -190,3 +190,9 @@ home-effect-element-type-dispatch	17-Presentation-Rendering/Effect-File-Formats/
 home-intentionally-ownerless-functions-and-shared-scratch	00-Engine-Core-Runtime/Ownership-Boundary/intentionally-ownerless-functions-and-shared-scratch.md	2	255	2026-10-03 09:39	PACKED-FABLE-HOMING
 home-license-board-grid-format	12-Items-Equipment-Shops-License/license-board-grid-format.md	1	98	2026-10-03 09:39	PACKED-FABLE-HOMING
 home-character-render-object	17-Presentation-Rendering/Character-Rendering/character-render-object.md	1	928	2026-10-03 09:39	PACKED-FABLE-HOMING
+home-h9-what-the-game-asks-windows-for	24-Compiler-And-CRT-Runtime/Runtime-Service-Surface/what-the-game-asks-windows-for.md	3	350	2026-10-03 11:24	PACKED-FABLE-HOMING
+home-h9-the-battle-unit-field-map	04-Actor-Entity/Battle-Unit/the-battle-unit-field-map.md	2	133	2026-10-03 11:24	PACKED-FABLE-HOMING
+home-h9-contract-save-image-buffers	19-Save-Load-Settings/CONTRACT-save-image-buffers.md	2	90	2026-10-03 11:24	PACKED-FABLE-HOMING
+home-h9-weather-apply-and-environment-materialization	03-World-Area-Field/Weather/weather-apply-and-environment-materialization.md	1	110	2026-10-03 11:24	PACKED-FABLE-HOMING
+home-h9-the-music-control-file-and-the-bgm-stream	18-Audio/the-music-control-file-and-the-bgm-stream.md	1	98	2026-10-03 11:24	PACKED-FABLE-HOMING
+home-h9-the-shop-table-and-its-stock-gates	12-Items-Equipment-Shops-License/the-shop-table-and-its-stock-gates.md	1	9	2026-10-03 11:24	PACKED-FABLE-HOMING
