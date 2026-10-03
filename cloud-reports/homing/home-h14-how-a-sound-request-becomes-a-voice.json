@@ -1,0 +1,14 @@
+{
+ "page": "18-Audio/Audio-Boundary/how-a-sound-request-becomes-a-voice.md",
+ "session": "session_019ww1AYv6HUCASSLr6wdSTQ",
+ "rows": [
+  {"fn": "00205C70", "entered_from": "`00206E90` + 0x16",
+   "text": "calls (at `00205C70` + 0x23) with 0x28 and, when non-null, initializes that object A with the address `009058F0` at +0, dword 0xB (when `dl` is non-zero) or 0xA at `+0x8` and zero at dword `+0xC` and qwords `+0x10`, `+0x18`, `+0x20`; calls (at `00205C70` + 0x6D) with 0x20 and, when non-null, initializes that object B with the address `009058C0` at +0, qword 1 at `+0x8` and zero at `+0x10` and `+0x18`; it then links them through qword `rcx+8` (node N): A `+0x18` = N, A `+0x10` = N's qword `+0x10` (whose `+0x18` is set to A when it is non-null), N `+0x10` = A, A `+0x20` = B, B `+0x18` = A and `rcx+8` = B, and returns A",
+   "anchors": [["00205C93", "call"], ["00205CB2", "mov"], ["00205CDD", "call"], ["00205D32", "mov"], ["00205D3E", "mov"]]},
+  {"fn": "00212970", "entered_from": "`002129F0` + 0x9",
+   "text": "increments dword `01FD36B0`, masks it with 0x7FFFFFFF and replaces 0 by 1, storing the result there and at dword `[rcx]`; it then scans the 8-byte slots from the cursor qword `01E027D0`, wrapping from `01FD3AC0` back to `01FD36C0`, for one whose dword +0 is 0: a found slot gets that id at dword +0 and `edx` at dword +4, the cursor moves to the next slot (wrapped) and the slot index (offset from `01FD36C0` shifted right by 3) is returned; a scan that comes back to the cursor returns -1",
+   "anchors": [["00212993", "cmove"], ["0021299C", "mov"], ["002129B6", "cmovb"], ["002129C6", "or"], ["002129E7", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "00205C70: neither allocation result is null-checked before the linking stores (a null A or B would be written through). 00212970: on the -1 path only eax is set (or eax, -1), the upper half of rax is zeroed by the 32-bit op."
+}
