@@ -1,0 +1,11 @@
+{
+ "page": "13-Rewards-Progression-Economy/gil-storage-clamp-and-every-path-that-moves-it.md",
+ "session": "session_01U2ms7GBJ3ZiXCPQHy7WKZA",
+ "rows": [
+  {"fn": "002BE290", "entered_from": "`002BE490` + 0x4B",
+   "text": "when bit 0 of byte `rcx+0x57E` is set and the call at `002BE290` + 0x12 (`rcx` unchanged) returns non-null, makes the call at `002BE290` + 0x22 with (`rcx`, that result); then, when p = qword `rcx+0x570` is non-null and word `p+0x280` has bit 0 clear and bit 2 set, makes the call at `002BE290` + 0x42 with `rcx` = p, zeroes qword `rcx+0x570` and clears bit 1 of word `rcx+0x57E` (`AND 0xfffd`); otherwise it returns after the first part",
+   "anchors": [["002BE296", "test"], ["002BE2B2", "call"], ["002BE2CE", "test"], ["002BE2D2", "call"], ["002BE2E7", "and"]]}
+ ],
+ "skipped": [],
+ "notes": "002BE290: in all three calls rcx is the incoming rcx (kept in rbx) except the third, where rcx is still the qword loaded from rcx+0x570; no return value is set by the body itself."
+}
