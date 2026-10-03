@@ -1,0 +1,631 @@
+{
+ "page": "23-Third-Party-Libraries/third-party-middleware-inventory.md",
+ "session": "session_01KtQZhtQA1irJtgt5Sjzg2C",
+ "mode": "member",
+ "family": "Bullet physics library",
+ "rows": [
+  {
+   "fn": "008582F0",
+   "text": "for each index below dword `rcx+0xC` takes the pointer at qword `+0x18` + index*8 and, when its byte `+0x104` has bit `2` set, its dword `+0xF4` is not 2 and its dword `+0xE8` has bit `2` set, passes it with `xmm1` to the call at `008582F0`+0x59",
+   "anchors": [
+    [
+     "00858328",
+     "test"
+    ],
+    [
+     "00858331",
+     "cmp"
+    ],
+    [
+     "00858342",
+     "test"
+    ],
+    [
+     "00858349",
+     "call"
+    ],
+    [
+     "00858354",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00858370",
+   "text": "calls virtual `+0x38` of `rdx`, then `008583C0(rcx, rdx)`, then the call at `00858370`+0x2A with (`rcx`, `rdx`), and tail-jumps to virtual `+0x40` of `rdx`",
+   "anchors": [
+    [
+     "00858386",
+     "call"
+    ],
+    [
+     "0085838F",
+     "call"
+    ],
+    [
+     "0085839A",
+     "call"
+    ],
+    [
+     "008583AF",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "008583C0",
+   "text": "for each index below dword `rcx+0xC` whose object (qword `+0x18` + index*8) has bit `2` in byte `+0x104`, gets a size from the object's virtual `+0x18`, a chunk from virtual `+0x18` of `rdx` with (size, 1), a value from the object's virtual `+0x20` with (qword chunk`+8`, `rdx`), and calls virtual `+0x20` of `rdx` with (chunk, value, `0x59444252`, object); then for each index below dword `+0x104` does the same for the object at qword `+0x110` + index*8 with its virtual `+0x40` and `+0x48` and the tag `0x534E4F43`; consistent with the rigid-body and constraint serialization of Bullet's dynamics world (the tags spell RBDY and CONS)",
+   "anchors": [
+    [
+     "00858408",
+     "test"
+    ],
+    [
+     "00858445",
+     "mov"
+    ],
+    [
+     "00858459",
+     "call"
+    ],
+    [
+     "008584BE",
+     "mov"
+    ],
+    [
+     "008584D2",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00858500",
+   "text": "when byte `rcx+0x155` is non-zero passes qword `+0xF0` to the call at `00858500`+0x20; on both paths it then clears byte `+0x155` and stores `rdx` at qword `+0xF0`",
+   "anchors": [
+    [
+     "0085850A",
+     "cmp"
+    ],
+    [
+     "00858520",
+     "call"
+    ],
+    [
+     "00858525",
+     "mov"
+    ],
+    [
+     "0085852C",
+     "mov"
+    ],
+    [
+     "0085854A",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00858AC0",
+   "text": "when qword `rdx+0x208` is non-null and byte `rdx+0xE8` has neither bit 1 nor bit 2 set, passes (`rdx+0x50`, `rdx+0x90`, `rdx+0xA0`, float `rdx+0x110` times float `rcx+0x150`, a 64-byte local) to the call at `00858AC0`+0x5A and then the local to virtual `+0x10` of the object at `rdx+0x208`; the stack cookie is checked through the call at `00858AC0`+0x79 on both paths",
+   "anchors": [
+    [
+     "00858AD8",
+     "cmp"
+    ],
+    [
+     "00858AE5",
+     "test"
+    ],
+    [
+     "00858AFD",
+     "mulss"
+    ],
+    [
+     "00858B1A",
+     "call"
+    ],
+    [
+     "00858B2E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00858B50",
+   "text": "on the 8-byte entries (dword link, dword count) of the array at qword `rcx+0x10`, follows links from index `edx` and from index `r8d` until an entry links to itself, rewriting each visited link to its target's link; when the two roots differ it stores the `r8d` root in the `edx` root's link and adds the `edx` root's dword `+4` to the `r8d` root's",
+   "anchors": [
+    [
+     "00858B7F",
+     "mov"
+    ],
+    [
+     "00858BBF",
+     "mov"
+    ],
+    [
+     "00858BD8",
+     "cmp"
+    ],
+    [
+     "00858BEC",
+     "mov"
+    ],
+    [
+     "00858C00",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "00858C80",
+   "text": "for each non-null body pointer among the dword `rcx+0x124` qwords at qword `+0x130`: when its dword `+0xF4` is neither 2 nor 4 it adds `xmm1` to its float `+0xF8` if the squared lengths of the float triples `+0x150` and `+0x160` are both below the squares of floats `+0x1FC` and `+0x200`, else zeroes `+0xF8` and passes (body, 0) to the call at `00858C80`+0x113; then, unless `+0xF4` is now 4: when byte `02EAF3C0` is 0, the float `01F44CC8` is non-zero and `+0xF4` is 2 or 3 or `+0xF8` exceeds that float, it passes (body, 2) to the call at `00858C80`+0x1A6 if byte `+0xE8` has bit 1 or 2 set, otherwise passes (body, 3) to the call at `00858C80`+0x173 when `+0xF4` is 1 and zeroes the 32 bytes at `+0x150` when `+0xF4` is then 2; in every other case it passes (body, 1) to the call at `00858C80`+0x1A6",
+   "anchors": [
+    [
+     "00858CED",
+     "test"
+    ],
+    [
+     "00858D7D",
+     "movss"
+    ],
+    [
+     "00858DA7",
+     "cmp"
+    ],
+    [
+     "00858DF3",
+     "call"
+    ],
+    [
+     "00858E26",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00858E80",
+   "text": "stores the pointer `01CCF830` at qword `rcx+0`, then for each of six blocks at stride `0x20` from `+0xC` zeroes the qwords at the block (`+0xC` to `+0xAC`) and at block`+0xC` (`+0x18` to `+0xB8`) and sets byte block`+0x14` (`+0x20` to `+0xC0`) to 1; zeroes dword `+0xC8` and returns `rcx`",
+   "anchors": [
+    [
+     "00858E87",
+     "mov"
+    ],
+    [
+     "00858E8C",
+     "mov"
+    ],
+    [
+     "00858E94",
+     "mov"
+    ],
+    [
+     "00858EE2",
+     "mov"
+    ],
+    [
+     "00858EE9",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00858F00",
+   "text": "stores the pointer `01CCF830` at qword `rcx+0`; then for the six blocks from `+0xAC` down to `+0xC` (stride `0x20`), when the pointer at block`+0xC` (`+0xB8` down to `+0x18`) is non-null and byte block`+0x14` is non-zero, passes the pointer to the call at `00858F00`+0x38, `00858F00`+0x6F, `00858F00`+0xA3, `00858F00`+0xCB, `00858F00`+0xF0 or `00858F00`+0x115 respectively, and for every block sets that byte to 1 and zeroes the pointer and the qword at the block; finally stores the pointer `01CCF800` at qword `+0`",
+   "anchors": [
+    [
+     "00858F21",
+     "mov"
+    ],
+    [
+     "00858F38",
+     "call"
+    ],
+    [
+     "00858F45",
+     "mov"
+    ],
+    [
+     "00859015",
+     "call"
+    ],
+    [
+     "00859032",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00859040",
+   "text": "stores the pointer `01CCF800` at qword `rcx+0`, and when bit 0 of `edx` is set passes (`rcx`, 8) to the call at `00859040`+0x1D; returns `rcx`",
+   "anchors": [
+    [
+     "00859050",
+     "mov"
+    ],
+    [
+     "00859053",
+     "test"
+    ],
+    [
+     "0085905D",
+     "call"
+    ],
+    [
+     "00859062",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "008590B0",
+   "text": "when dword `rcx+0x4C` equals dword `+0x50`, grows the array at qword `+0x58` to twice the count (1 for 0) entries of `0xC0` bytes: gets the block from the call at `008590B0`+0x67 (alignment 16), copies the existing entries, passes the old array to the call at `008590B0`+0x145 when byte `+0x60` is set, and stores the new array, 1 in byte `+0x60` and the capacity in `+0x50`; it then takes the entry at the old count, increments `+0x4C`, stores the fifth (stack) argument at the entry's dword `+0x7C`, calls `0085BE20(rcx, entry, rdx, r8, r9, arguments six to thirteen)` and returns the entry",
+   "anchors": [
+    [
+     "008590DF",
+     "jne"
+    ],
+    [
+     "00859117",
+     "call"
+    ],
+    [
+     "00859202",
+     "mov"
+    ],
+    [
+     "00859269",
+     "mov"
+    ],
+    [
+     "008592AD",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008592D0",
+   "text": "when `rcx` is non-null and dword `rcx+0xC0` is non-zero, replaces the float triple `v` at `rdx` (and its fourth float with 0) by `M` times (`S` times (`M`-transposed times `v`)), where `M` has the rows of three floats at `rcx+0x10`, `+0x20` and `+0x30` and `S` scales the components by the floats at `+0xB0`, `+0xB4` and `+0xB8`; otherwise it writes nothing",
+   "anchors": [
+    [
+     "008592DD",
+     "cmp"
+    ],
+    [
+     "00859313",
+     "mulss"
+    ],
+    [
+     "0085934C",
+     "mulss"
+    ],
+    [
+     "0085935F",
+     "mulss"
+    ],
+    [
+     "008593E6",
+     "movdqa"
+    ]
+   ]
+  },
+  {
+   "fn": "008593F0",
+   "text": "returns at once unless a body at qword `rdx+0x490` or `rdx+0x498` with bit `2` in byte `+0x104` has a non-zero float `+0x170`; for each of the dword `rdx+0x4A0` points `p` (stride `0x120` from `rdx+0x10`) with float `+0x50` at most float `rdx+0x4A8` it appends a `0xC0`-byte entry to the array at qword `rcx+0x18` (count `+0xC`, capacity `+0x10`), stores both bodies (`00859D20()` for one without the bit) and `p` at entry `+0x80` to `+0x90`, calls `0085B370` and copies dword `rcx+0x4C` to entry `+0x7C`; with bit `0x20` in dword `r8+0x3C` and byte `p+0x7C` set it calls `008590B0` for `p+0xA0` (and `p+0xB0` with bit `0x10`); otherwise it sets `p+0xA0` to `0085B370`'s velocity minus `p+0x40` times its normal speed and, when bit `0x40` is clear and its squared length exceeds the float with bits `0x34000000`, normalizes it and puts its normalized cross product with `p+0x40` in `p+0xB0`, else builds both from `p+0x40` (split at absolute z 0.7071068), runs them through `008592D0` for both bodies, calls `008590B0` for `p+0xB0` (bit `0x10` only) and `p+0xA0` and sets byte `p+0x7C`; each point ends with `0085AE40(rcx, entry, kept bodies or null, p, r8)`",
+   "anchors": [
+    [
+     "00859548",
+     "comiss"
+    ],
+    [
+     "00859744",
+     "call"
+    ],
+    [
+     "008597C2",
+     "call"
+    ],
+    [
+     "008598BD",
+     "comiss"
+    ],
+    [
+     "00859C73",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00859D20",
+   "text": "when dword `02EAF6C0` exceeds dword `+4` of the thread-local block selected by dword `02EAED3C`, passes `02EAF6C0` to the call at `00859D20`+0x39 and, if `02EAF6C0` then reads -1, calls `00859D20`+0x69 with (`02EAF400`, 0.0, 0, 0, a zeroed 16-byte local), `00859D20`+0x75 with `008B90A0` and `00859D20`+0x82 with `02EAF6C0`; on every path it then passes (`02EAF400`, 0.0, a zeroed 16-byte local) to the call at `00859D20`+0x9E and returns the address `02EAF400`",
+   "anchors": [
+    [
+     "00859D4A",
+     "cmp"
+    ],
+    [
+     "00859D59",
+     "call"
+    ],
+    [
+     "00859D89",
+     "call"
+    ],
+    [
+     "00859DBE",
+     "call"
+    ],
+    [
+     "00859DC3",
+     "lea"
+    ]
+   ]
+  },
+  {
+   "fn": "00859DD0",
+   "text": "unless float `rcx+0x170` is 0, adds the float triple `+0x240` to the triple `+0x150` and the triple `+0x250` to the triple `+0x160`, writing each sum as 16 bytes with a 0 fourth float",
+   "anchors": [
+    [
+     "00859DDF",
+     "ucomiss"
+    ],
+    [
+     "00859DF2",
+     "addss"
+    ],
+    [
+     "00859E37",
+     "movdqa"
+    ],
+    [
+     "00859E47",
+     "addss"
+    ],
+    [
+     "00859E8C",
+     "movdqa"
+    ]
+   ]
+  },
+  {
+   "fn": "00859EB0",
+   "text": "with row `r9` and bodies `rdx` and `r8` (dot products over float triples), computes `d` = float `r9+0x98` - `r9+0x60`*`r9+0x9C` - `r9+0x74`*(dot(`r9+0x10`, `rdx+0x240`) + dot(`r9+0`, `rdx+0x250`)) - `r9+0x74`*(dot(`r9+0x20`, `r8+0x250`) - dot(`r9+0x10`, `r8+0x240`)); when `r9+0x60`+`d` is below `r9+0xA0` it uses that bound (and `d` = bound - `r9+0x60`), else when it is above `r9+0xA4` that bound, else the sum, storing the value in all four floats at `r9+0x60`; then, when float `rdx+0x170` is non-zero, adds `d`*`r9+0x10`*`rdx+0x270` (per component) to `rdx+0x240` and `d`*`rdx+0x260`*`r9+0x30` to `rdx+0x250`, and when float `r8+0x170` is non-zero adds -`d`*`r9+0x10`*`r8+0x270` to `r8+0x240` and `d`*`r8+0x260`*`r9+0x40` to `r8+0x250`",
+   "anchors": [
+    [
+     "00859FD5",
+     "comiss"
+    ],
+    [
+     "00859FEC",
+     "comiss"
+    ],
+    [
+     "0085A004",
+     "movaps"
+    ],
+    [
+     "0085A075",
+     "movss"
+    ],
+    [
+     "0085A173",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "0085A1F0",
+   "text": "with row `r9` and bodies `rdx` and `r8`, in four-wide arithmetic summing the first three lanes of each product, computes `d` = `r9+0x98` - `r9+0x9C`*`r9+0x60` - `r9+0x74`*(sum(`r9+0x10`*`rdx+0x240`) + sum(`r9+0`*`rdx+0x250`)) - `r9+0x74`*(sum(`r9+0x20`*`r8+0x250`) - sum(`r9+0x10`*`r8+0x240`)); with `s` = `r9+0x60` + `d` it stores at `r9+0x60` the value `r9+0xA4` when `s` is not below it, else `r9+0xA0` when `s` is below that, else `s` (and uses the stored value minus the old `r9+0x60` as `d` in the bound cases); it then adds `d`*`rdx+0x270`*`r9+0x10` to the 16 bytes at `rdx+0x240` and `d`*`r9+0x30` to `rdx+0x250`, subtracts `d`*`r8+0x270`*`r9+0x10` from `r8+0x240` and adds `d`*`r9+0x40` to `r8+0x250`, with no check of float `+0x170`",
+   "anchors": [
+    [
+     "0085A318",
+     "cmpltps"
+    ],
+    [
+     "0085A31D",
+     "cmpltps"
+    ],
+    [
+     "0085A342",
+     "movaps"
+    ],
+    [
+     "0085A3A6",
+     "movaps"
+    ],
+    [
+     "0085A3CF",
+     "movaps"
+    ]
+   ]
+  },
+  {
+   "fn": "0085A400",
+   "text": "with row `r9` and bodies `rdx` and `r8` (dot products over float triples), computes `d` = float `r9+0x98` - `r9+0x60`*`r9+0x9C` - `r9+0x74`*(dot(`r9+0x10`, `rdx+0x240`) + dot(`r9+0`, `rdx+0x250`)) - `r9+0x74`*(dot(`r9+0x20`, `r8+0x250`) - dot(`r9+0x10`, `r8+0x240`)); when `r9+0x60`+`d` is below `r9+0xA0` it stores that bound (and `d` = bound - `r9+0x60`), else the sum, in all four floats at `r9+0x60`, with no upper bound; then, when float `rdx+0x170` is non-zero, adds `d`*`r9+0x10`*`rdx+0x270` (per component) to `rdx+0x240` and `d`*`rdx+0x260`*`r9+0x30` to `rdx+0x250`, and when float `r8+0x170` is non-zero adds -`d`*`r9+0x10`*`r8+0x270` to `r8+0x240` and `d`*`r8+0x260`*`r9+0x40` to `r8+0x250`",
+   "anchors": [
+    [
+     "0085A520",
+     "comiss"
+    ],
+    [
+     "0085A53A",
+     "movaps"
+    ],
+    [
+     "0085A547",
+     "ucomiss"
+    ],
+    [
+     "0085A5AB",
+     "movss"
+    ],
+    [
+     "0085A6A9",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "0085A730",
+   "text": "with row `r9` and bodies `rdx` and `r8`, in four-wide arithmetic summing the first three lanes of each product, computes `d` = `r9+0x98` - `r9+0x9C`*`r9+0x60` - `r9+0x74`*(sum(`r9+0x10`*`rdx+0x240`) + sum(`r9+0`*`rdx+0x250`)) - `r9+0x74`*(sum(`r9+0x20`*`r8+0x250`) - sum(`r9+0x10`*`r8+0x240`)); stores at `r9+0x60` the bound `r9+0xA0` when `r9+0x60`+`d` is below it (then `d` = bound - old `r9+0x60`), else the sum; then adds `d`*`rdx+0x270`*`r9+0x10` to the 16 bytes at `rdx+0x240` and `d`*`r9+0x30` to `rdx+0x250`, subtracts `d`*`r8+0x270`*`r9+0x10` from `r8+0x240` and adds `d`*`r9+0x40` to `r8+0x250`, with no check of float `+0x170`",
+   "anchors": [
+    [
+     "0085A842",
+     "cmpltps"
+    ],
+    [
+     "0085A85B",
+     "movaps"
+    ],
+    [
+     "0085A88D",
+     "movaps"
+    ],
+    [
+     "0085A8CF",
+     "movaps"
+    ],
+    [
+     "0085A8ED",
+     "movaps"
+    ]
+   ]
+  },
+  {
+   "fn": "0085A900",
+   "text": "does nothing when float `r9+0xA8` is 0; otherwise increments dword `02EAF3CC` and computes `d` = `r9+0xA8` - `r9+0x50`*`r9+0x9C` - `r9+0x74`*(dot(`r9+0x10`, `rdx+0x280`) + dot(`r9+0`, `rdx+0x290`)) - `r9+0x74`*(dot(`r9+0x20`, `r8+0x290`) - dot(`r9+0x10`, `r8+0x280`)) over float triples; when `r9+0x50`+`d` is below `r9+0xA0` it stores that bound (and `d` = bound - `r9+0x50`), else the sum, in all four floats at `r9+0x50`; then, when float `rdx+0x170` is non-zero, adds `d`*`r9+0x10`*`rdx+0x270` (per component) to `rdx+0x280` and `d`*`rdx+0x260`*`r9+0x30` to `rdx+0x290`, and when float `r8+0x170` is non-zero adds -`d`*`r9+0x10`*`r8+0x270` to `r8+0x280` and `d`*`r8+0x260`*`r9+0x40` to `r8+0x290`",
+   "anchors": [
+    [
+     "0085A914",
+     "ucomiss"
+    ],
+    [
+     "0085A91F",
+     "inc"
+    ],
+    [
+     "0085AA42",
+     "comiss"
+    ],
+    [
+     "0085AA59",
+     "movaps"
+    ],
+    [
+     "0085ABC8",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "0085AC50",
+   "text": "does nothing when float `r9+0xA8` is 0; otherwise increments dword `02EAF3CC` and, in four-wide arithmetic summing the first three lanes of each product, computes `d` = `r9+0xA8` - `r9+0x9C`*`r9+0x50` - `r9+0x74`*(sum(`r9+0x10`*`rdx+0x280`) + sum(`r9+0`*`rdx+0x290`)) - `r9+0x74`*(sum(`r9+0x20`*`r8+0x290`) - sum(`r9+0x10`*`r8+0x280`)); it stores at `r9+0x60` (not `+0x50`) the bound `r9+0xA0` when `r9+0x50`+`d` is below it (then `d` = bound - `r9+0x50`), else that sum; then adds `d`*`rdx+0x270`*`r9+0x10` to the 16 bytes at `rdx+0x280` and `d`*`r9+0x30` to `rdx+0x290`, subtracts `d`*`r8+0x270`*`r9+0x10` from `r8+0x280` and adds `d`*`r9+0x40` to `r8+0x290`, with no check of float `+0x170`",
+   "anchors": [
+    [
+     "0085AC60",
+     "ucomiss"
+    ],
+    [
+     "0085AC6B",
+     "inc"
+    ],
+    [
+     "0085AD80",
+     "cmpltps"
+    ],
+    [
+     "0085AD99",
+     "movdqa"
+    ],
+    [
+     "0085AE12",
+     "movaps"
+    ]
+   ]
+  },
+  {
+   "fn": "0085AE40",
+   "text": "with the `0xC0`-byte entry `e` at index dword `rdx+0x7C` of the array at qword `rcx+0x58`, `p` the fifth and `g` the sixth (stack) argument: when dword `g+0x3C` lacks bit 8 it zeroes the 16 bytes at `e+0x60` (and at the next entry's `+0x60` with bit `0x10`) and returns; otherwise, for `e` and (with bit `0x10`) the next entry: without bit 4 it zeroes the entry's `+0x60`; with bit 4 it stores `v` = float `p+0x80` (next entry: `p+0x84`) times float `g+0x38` in all four floats of entry `+0x60`, and for a non-null `r8` with non-zero float `+0x170` adds to its triple `+0x240` entry `+0x10` times that float times `v` (and times its triple `+0x180` for `e` only) and to its triple `+0x250` `v` times its triple `+0x260` times entry `+0x30`; for a non-null `r9` with non-zero `+0x170` it does the same with `-v` on `+0x240` and adds `v` times its `+0x260` times entry `+0x40` (both negated in the listing) to `+0x250`",
+   "anchors": [
+    [
+     "0085AE59",
+     "je"
+    ],
+    [
+     "0085AEAD",
+     "movdqa"
+    ],
+    [
+     "0085AF48",
+     "movss"
+    ],
+    [
+     "0085B11A",
+     "movdqa"
+    ],
+    [
+     "0085B337",
+     "movdqa"
+    ]
+   ]
+  },
+  {
+   "fn": "0085B370",
+   "text": "with `p`/`g` the fifth/sixth (stack) arguments, `n` = triple `p+0x40`, `r8`/`r9` kept only with bit `2` in byte `+0x104`: writes `r1` = `p+0x30` - `r8+0x40` and `r2` = `p+0x20` - `r9+0x40` to the tenth and eleventh arguments and 1.0 to the ninth; stores `r1` x `n` at `rdx+0`, -(`r2` x `n`) at `+0x20`, these times the kept bodies' rows `+0x120` to `+0x140` scaled by triple `+0x260` at `+0x30`/`+0x40`, `n` at `+0x10`, and 1.0 over the bodies' float `+0x170` plus cross terms at float `+0x74`; writes the velocity difference (triples `+0x150`/`+0x160`) to the seventh argument and its `n` component to the eighth; copies dword `p+0x54` to `rdx+0x70`; with bit 4 of dword `g+0x3C` stores `p+0x78` times `g+0x38` at `+0x60` and applies it to the kept bodies' `+0x240`/`+0x250` (non-zero `+0x170` only), else zeroes `+0x60`; zeroes `+0x50`, `+0x9C`, `+0xA0`, stores `0x501502F9` at `+0xA4`, and at `+0x98` (max(0, -`p+0x58`*normal speed) if dword `p+0x98` <= dword `g+0x40`, else 0, minus the relative normal velocity) times `+0x74`, plus -(`p+0x50` + `g+0x34`)*`g+0x20`/`g+0xC`*`+0x74`, moved to `+0xA8` when dword `g+0x2C` is non-zero and that distance is at most `g+0x30` (else `+0xA8` = 0)",
+   "anchors": [
+    [
+     "0085B44E",
+     "mov"
+    ],
+    [
+     "0085B799",
+     "movss"
+    ],
+    [
+     "0085BA28",
+     "mov"
+    ],
+    [
+     "0085BA69",
+     "movdqa"
+    ],
+    [
+     "0085BE03",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "0085BE20",
+   "text": "with `n` the 16 bytes at `r8` and stack arguments six to thirteen: copies `n` to `rdx+0x10`; keeps the ninth and tenth arguments only when byte `+0x104` has bit `2` and stores each, or `00859D20()` for a dropped one, at qwords `rdx+0x80` and `+0x88`; zeroes `rdx+0x60`, `+0x50` and qword `+0x90` and copies dword `+0x54` of the sixth argument to `+0x70`; writes the seventh argument x `n` to `rdx+0` and the eighth x (-`n`) to `rdx+0x20`, and at `+0x30`/`+0x40` those vectors multiplied by each kept body's rows `+0x120`/`+0x130`/`+0x140` and scaled by its triple `+0x260` (zero for a dropped body); sets float `+0x74` to the eleventh argument divided by the sum, over kept bodies, of float `+0x170` plus the cross terms; zeroes `+0xA0`, stores `0x501502F9` at `+0xA4` and the thirteenth argument at `+0x9C`, and at `+0x98` stores (the twelfth argument minus (`+0x10`.L0 + `+0`.A0 + `+0x20`.A1 - `+0x10`.L1)) times `+0x74`, with L and A the kept bodies' triples `+0x150` and `+0x160` (zero for a dropped body)",
+   "anchors": [
+    [
+     "0085BE84",
+     "movdqa"
+    ],
+    [
+     "0085BE98",
+     "mov"
+    ],
+    [
+     "0085BF41",
+     "movdqa"
+    ],
+    [
+     "0085C242",
+     "movss"
+    ],
+    [
+     "0085C3BC",
+     "movss"
+    ]
+   ]
+  }
+ ],
+ "skipped": [
+  {
+   "fn": "00859EA0",
+   "why": "its whole work is the entry instruction (stores 0 to dword rcx+0xC8) followed by ret"
+  }
+ ],
+ "notes": "Calls outside this pack are cited by call site; same-pack callees (008583C0, 008590B0, 008592D0, 00859D20, 0085AE40, 0085B370, 0085BE20) by address. Virtual calls are written as virtual +0xNN of the object. Stack arguments are numbered from the entry (fifth = [rsp+0x28] at entry). 008583C0: tags 0x59444252/0x534E4F43 read RBDY/CONS in little-endian ASCII, which is why the clause naming Bullet's serialization is included. 00858C80: 01F44CC8 is a writable global whose image value decodes as 2.0. 008593F0 (2345 B), 0085B370 (2730 B) and 0085BE20 (1457 B) are stated as top-level structure in clauses; the shape (contact points at stride 0x120, 0xC0-byte solver rows, friction rows, 0x501502F9 = 1e10 upper limit) is consistent with Bullet's btSequentialImpulseConstraintSolver convertContact/setupContactConstraint/setupFrictionConstraint/addFrictionConstraint, and 00859EB0/0085A1F0/0085A400/0085A730/0085A900/0085AC50 with its resolveSingleConstraintRow Generic/LowerLimit/SplitPenetration (scalar and SIMD) bodies, not stated as fact. 00859D20 looks like a thread-safe function-local static (guard 02EAF6C0, object 02EAF400, atexit-style registration of 008B90A0). Doubts: (a) 0085AC50 writes the clamped value to r9+0x60 while it reads r9+0x50 (as the listing shows at 0085AD99); (b) 0085AE40 multiplies by the body triple +0x180 only for the first entry, not for the second (listing 0085B151 onward); (c) 008593F0 is the densest row, the vector-building paths are summarized (exact component formulas are in the listing at 00859A6B-00859B61)."
+}
