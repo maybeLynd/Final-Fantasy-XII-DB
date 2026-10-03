@@ -1,0 +1,14 @@
+{
+ "page": "17-Presentation-Rendering/Script-Screen-Effects/cut-in-motion-blur-and-soft-focus.md",
+ "session": "session_01B5JAqPgewUFviUD5ZfpMqA",
+ "rows": [
+  {"fn": "003B26D0", "entered_from": "`0024E910` + 0x56",
+   "text": "walks the 0x30-byte records from `02EBE5E0` while below `02EBEBE0` (at most 32), returning at the first whose dword `+0` is zero; for each record with bit 0 of byte `+0x20` clear it calls `003B26D0` + 0x24 with dword `+0` in `ecx`",
+   "anchors": [["003B26EC", "je"], ["003B26EE", "test"], ["003B26F4", "call"], ["003B2700", "jl"]]},
+  {"fn": "003B3E40", "entered_from": "`003B3D20` + 0x1E",
+   "text": "for each dword d at `02EBCC84` plus a multiple of 8 below `02EBCD84` (32 eight-byte records): when the byte at d minus 4 is non-zero, calls `003B3E40` + 0x2A with dword d in `ecx` and 0 in `edx`; then zeroes the byte at d minus 4, the word at d minus 2 and dword d",
+   "anchors": [["003B3E60", "cmp"], ["003B3E6A", "call"], ["003B3E6F", "mov"], ["003B3E77", "mov"], ["003B3E80", "jl"]]}
+ ],
+ "skipped": [],
+ "notes": "003B3E40: the records start 4 bytes before 02EBCC84; that start address is not in the listing, so the sentence anchors on 02EBCC84. Both loop bounds are signed jl compares on pointers."
+}
