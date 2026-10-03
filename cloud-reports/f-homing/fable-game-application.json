@@ -1,0 +1,501 @@
+{
+ "page": "00-Engine-Core-Runtime/Application-Root/game-application.md",
+ "session": "cloud FABLE c2-1",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "00158DA0",
+   "text": "stores the pointer `01CC6B60` at qword `[rcx]`, then makes the indirect call through `008C20D0` (site `00158DA0` + 0x1E) with `rcx+8`; when bit 0 of `edx` is set it calls `00210EB0(rcx)`, otherwise skips it; returns the original `rcx` on both paths",
+   "anchors": [
+    [
+     "00158DB8",
+     "mov"
+    ],
+    [
+     "00158DBE",
+     "call"
+    ],
+    [
+     "00158DC4",
+     "test"
+    ],
+    [
+     "00158DCC",
+     "call"
+    ],
+    [
+     "00158DD1",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00158DE0",
+   "text": "when `edx` is 0, calls the import through `008C2130` (site `00158DE0` + 0x13) with `rcx` and \"nvapi_QueryInterface\" (`01CC6B80`) and stores the result at qword `02EAE0E0`, returning -1 when it is null; otherwise it calls that pointer with `0x150E828`, and a null result clears `02EAE0E0` and returns -1; else it calls the returned pointer, and a nonzero result clears `02EAE0E0` and is returned; on zero it stores `[02EAE0E0](0x33C7358C)` at `02EAE0F0` and `[02EAE0E0](0x593E8644)` at `02EAE0F8`, then clears both unless `02EAE0F0` is non-null and `02EAE0F8` is null; when `edx` is 1 it calls the same import (site `00158DE0` + 0xAB) with \"nvapi_pepQueryInterface\" (`01CC6B68`), stores it at `02EAE0E8` and returns -1 when null; every remaining path (including any other `edx`) calls `00861EC0(02EAE150, 0, 0x918)` and returns 0",
+   "anchors": [
+    [
+     "00158DF9",
+     "mov"
+    ],
+    [
+     "00158E0A",
+     "call"
+    ],
+    [
+     "00158E57",
+     "cmp"
+    ],
+    [
+     "00158E91",
+     "mov"
+    ],
+    [
+     "00158EB0",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0015CE40",
+   "text": "calls the function at site `0015CE40` + 0x10 with (`01F82F10`, 0x64), then tail-jumps to `00808B90(008A6D20)`",
+   "anchors": [
+    [
+     "0015CE44",
+     "mov"
+    ],
+    [
+     "0015CE50",
+     "call"
+    ],
+    [
+     "0015CE60",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0015DCA0",
+   "text": "calls `0016D680(01E02590)`, then stores the pointer `00906760` at qword `01E02580`, zeroes qword `01E025A0`, byte `01E025A8`, dword `01E025AC` and the 16 bytes at `01E02590`, and tail-jumps to `00808B90(008A7430)`",
+   "anchors": [
+    [
+     "0015DCAB",
+     "call"
+    ],
+    [
+     "0015DCB9",
+     "mov"
+    ],
+    [
+     "0015DCD6",
+     "mov"
+    ],
+    [
+     "0015DCDD",
+     "movdqa"
+    ],
+    [
+     "0015DCE9",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0015DCF0",
+   "text": "calls `0016D680` 0x2AA times, on `01FC3620` and each following record at a stride of 0x30 bytes",
+   "anchors": [
+    [
+     "0015DCFA",
+     "mov"
+    ],
+    [
+     "0015DD09",
+     "call"
+    ],
+    [
+     "0015DD0E",
+     "add"
+    ],
+    [
+     "0015DD12",
+     "sub"
+    ],
+    [
+     "0015DD16",
+     "jne"
+    ]
+   ]
+  },
+  {
+   "fn": "001605C0",
+   "text": "calls the function at site `001605C0` + 0xB with `02CADB40`, stores the pointer `005BFF30` at qword `02CADC40` and `00D2B768` at qword `02CADB40`, clears bits 1 and 3 and sets bit 2 of dword `02CADC3C`, then tail-jumps to `00808B90(008A8F20)`",
+   "anchors": [
+    [
+     "001605CB",
+     "call"
+    ],
+    [
+     "001605D7",
+     "mov"
+    ],
+    [
+     "001605EE",
+     "mov"
+    ],
+    [
+     "00160602",
+     "mov"
+    ],
+    [
+     "0016060C",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "001615C0",
+   "text": "calls the function at site `001615C0` + 0xB with `02CB7480`, stores the pointer `00D3BC30` at qword `02CB7480` and `005FE350` at qword `02CB7580`, clears bit 1 and sets bits 2 and 3 of dword `02CB757C`, then tail-jumps to `00808B90(008AB0B0)`",
+   "anchors": [
+    [
+     "001615CB",
+     "call"
+    ],
+    [
+     "001615D7",
+     "mov"
+    ],
+    [
+     "001615EC",
+     "mov"
+    ],
+    [
+     "001615FF",
+     "mov"
+    ],
+    [
+     "00161609",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00163760",
+   "text": "calls the function at site `00163760` + 0x43 with (`02CF72C0`, `00D560D8`, 0, 0x1F8) and stack arguments 0, 0x3D, 0x3D, 0x3D, 0x3D, then tail-jumps to `00808B90(008AEF70)`",
+   "anchors": [
+    [
+     "0016378A",
+     "mov"
+    ],
+    [
+     "0016379B",
+     "mov"
+    ],
+    [
+     "001637A3",
+     "call"
+    ],
+    [
+     "001637B3",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00163D60",
+   "text": "calls the function at site `00163D60` + 0x2F with (`02CF7A30`, \"UNKNOWN\" (`00D26D00`), 0x33, 0) and five zero stack arguments, then tail-jumps to `00808B90(008AF070)`",
+   "anchors": [
+    [
+     "00163D66",
+     "lea"
+    ],
+    [
+     "00163D87",
+     "lea"
+    ],
+    [
+     "00163D8F",
+     "call"
+    ],
+    [
+     "00163D9F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00163F20",
+   "text": "calls the function at site `00163F20` + 0x15 with (`02CF8680`, `02CF8270`, 0), clears bit 1 and sets bit 3 of dword `02CF877C`, stores the pointers `02CF7ED0`, `02CF7F00` and `02CF7F30` at qwords `02CF8740`, `02CF8748` and `02CF8750` and `00D56F58` at qword `02CF8680`, then tail-jumps to `00808B90(008AF0F0)`",
+   "anchors": [
+    [
+     "00163F35",
+     "call"
+    ],
+    [
+     "00163F47",
+     "mov"
+    ],
+    [
+     "00163F6C",
+     "mov"
+    ],
+    [
+     "00163F80",
+     "mov"
+    ],
+    [
+     "00163F92",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00163FA0",
+   "text": "calls the function at site `00163FA0` + 0x15 with (`02CF8780`, `02CF8270`, 0), sets bit 1 of dword `02CF887C`, stores the pointer `00D56878` at qword `02CF8780` and `02CF8C40`, `02CF8CE0` and `02CF8D80` at qwords `02CF8840`, `02CF8848` and `02CF8850`, then tail-jumps to `00808B90(008AF110)`",
+   "anchors": [
+    [
+     "00163FB5",
+     "call"
+    ],
+    [
+     "00163FBA",
+     "or"
+    ],
+    [
+     "00163FC8",
+     "mov"
+    ],
+    [
+     "00163FDD",
+     "mov"
+    ],
+    [
+     "00164004",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00164010",
+   "text": "calls the function at site `00164010` + 0x15 with (`02CF8880`, `02CF8270`, 0), clears bit 1 of dword `02CF897C` (it ORs 2 then ANDs it off), stores the pointers `02CF7EA0`, `02CF7EB0` and `02CF7EC0` at qwords `02CF8940`, `02CF8948` and `02CF8950` and `00D56488` at qword `02CF8880`, then tail-jumps to `00808B90(008AF130)`",
+   "anchors": [
+    [
+     "00164025",
+     "call"
+    ],
+    [
+     "00164037",
+     "mov"
+    ],
+    [
+     "00164067",
+     "mov"
+    ],
+    [
+     "00164075",
+     "mov"
+    ],
+    [
+     "0016407F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00164090",
+   "text": "calls the function at site `00164090` + 0x18 with (`02CF8980`, `02CF8270`, 0x10), sets bit 1 of dword `02CF8A7C`, stores the pointer `00D56C00` at qword `02CF8980` and `02CF8B80`, `02CF8BC0` and `02CF8C00` at qwords `02CF8A40`, `02CF8A48` and `02CF8A50`, then tail-jumps to `00808B90(008AF150)`",
+   "anchors": [
+    [
+     "001640A8",
+     "call"
+    ],
+    [
+     "001640AD",
+     "or"
+    ],
+    [
+     "001640BB",
+     "mov"
+    ],
+    [
+     "001640D0",
+     "mov"
+    ],
+    [
+     "001640F7",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "001641C0",
+   "text": "calls the function at site `001641C0` + 0x12 with (`02CF8570`, \"WriteMask\" (`00D56508`)), then tail-jumps to `00808B90(008AF1B0)`",
+   "anchors": [
+    [
+     "001641C4",
+     "lea"
+    ],
+    [
+     "001641D2",
+     "call"
+    ],
+    [
+     "001641E2",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00165370",
+   "text": "calls `00808FE4(02D351F0, 0x88, 2, 00645880)` with `00662EA0` as the fifth (stack) argument, then tail-jumps to `00808B90(008B0670)`",
+   "anchors": [
+    [
+     "00165387",
+     "mov"
+    ],
+    [
+     "0016538C",
+     "mov"
+    ],
+    [
+     "00165399",
+     "call"
+    ],
+    [
+     "001653A9",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "001674B0",
+   "text": "when qword `02E58CB0` is 0, calls the function at site `001674B0` + 0x1D with `01F2ED48` and, when that returns 0, stores 1 at qword `01F2ED60` and the pointer `01F2ED48` at `02E58CB0` (a nonzero return or a non-null `02E58CB0` skips the stores); on every path it then tail-jumps to `00808B90(008B6000)`",
+   "anchors": [
+    [
+     "001674B4",
+     "cmp"
+    ],
+    [
+     "001674CD",
+     "call"
+    ],
+    [
+     "001674D6",
+     "mov"
+    ],
+    [
+     "001674E1",
+     "mov"
+    ],
+    [
+     "001674F8",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "001676A0",
+   "text": "when qword `02E59BC0` is 0, calls the function at site `001676A0` + 0x1D with `01F2EDC8` and, when that returns 0, stores 1 at qword `01F2EDE0` and the pointer `01F2EDC8` at `02E59BC0` (a nonzero return or a non-null `02E59BC0` skips the stores); on every path it then tail-jumps to `00808B90(008B6730)`",
+   "anchors": [
+    [
+     "001676A4",
+     "cmp"
+    ],
+    [
+     "001676BD",
+     "call"
+    ],
+    [
+     "001676C6",
+     "mov"
+    ],
+    [
+     "001676D1",
+     "mov"
+    ],
+    [
+     "001676E8",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00167DB0",
+   "text": "calls the function at site `00167DB0` + 0xB with `02E5E430`, stores the pointer `006D4CF0` at qword `02E5E530` and `00D8B050` at qword `02E5E430`, clears bits 1 and 3 and sets bit 2 of dword `02E5E52C`, then tail-jumps to `00808B90(008B7150)`",
+   "anchors": [
+    [
+     "00167DBB",
+     "call"
+    ],
+    [
+     "00167DC7",
+     "mov"
+    ],
+    [
+     "00167DDE",
+     "mov"
+    ],
+    [
+     "00167DF2",
+     "mov"
+    ],
+    [
+     "00167DFC",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "001688F0",
+   "text": "calls the function at site `001688F0` + 0xB with `02EA0850`, stores the pointer `006DA380` at qword `02EA0950` and `00D8DFA8` at qword `02EA0850`, clears bits 1 and 3 and sets bit 2 of dword `02EA094C`, then tail-jumps to `00808B90(008B78B0)`",
+   "anchors": [
+    [
+     "001688FB",
+     "call"
+    ],
+    [
+     "00168907",
+     "mov"
+    ],
+    [
+     "0016891E",
+     "mov"
+    ],
+    [
+     "00168932",
+     "mov"
+    ],
+    [
+     "0016893C",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00169450",
+   "text": "calls the function at site `00169450` + 0x16 with `02EA5850`, stores the pointer `01CB3950` at qword `02EA5850` and zeroes qwords `02EA5888` and `02EA5890`; when qword `02EA5878` is not `02EA5888`, bit 31 of dword `02EA5870` is clear and `02EA5878` is non-null, it calls `00584730(02EA5878 value)`, otherwise skips it; then stores `02EA5888` at `02EA5878` and `0x80000001` at dword `02EA5870`, and tail-jumps to `00808B90(008B7B60)`",
+   "anchors": [
+    [
+     "00169466",
+     "call"
+    ],
+    [
+     "00169498",
+     "cmp"
+    ],
+    [
+     "001694B1",
+     "call"
+    ],
+    [
+     "001694BD",
+     "mov"
+    ],
+    [
+     "001694D3",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Calls to functions the page does not name are cited by site (entry + offset). 00158DA0/00158DE0: the indirect calls go through the import slots 008C20D0/008C2130 that the listing resolves; those slot addresses are named only as the slot read, not as callees. 00158DE0 doubt: the clear-both condition (kept only when 02EAE0F0 is non-null and 02EAE0F8 is null) is stated literally from the branch order at 00158E57-00158E6B; please re-check. 00158DE0: 'calls the returned pointer' at 00158E20 passes whatever rcx holds after the previous call (not set in the body). 00169450: '02EA5878 value' is the qword loaded at 0016948A."
+}
