@@ -1,0 +1,20 @@
+{
+ "page": "03-World-Area-Field/Weather/weather-apply-and-environment-materialization.md",
+ "session": "session_01Xkefj8Gz4bCEiqGqVRB1MS",
+ "rows": [
+  {"fn": "0028F830", "entered_from": "`00299090` + 0x67",
+   "text": "returns 0 when qword `0209BE80` is null; otherwise returns that pointer plus the sign-extended `ecx` times 32",
+   "anchors": [["0028F837", "test"], ["0028F83C", "xor"], ["0028F83F", "movsxd"], ["0028F842", "shl"], ["0028F846", "add"]]},
+  {"fn": "002E80B0", "entered_from": "`003DCD00` + 0x34",
+   "text": "returns 1 when `rcx` is null, when qword `rcx+0xC0` is null or when the dword it points to is -1; otherwise returns 0 when its word is -1, when the record `movsx(word) * 0x740 + qword 022C6F28` is zero or when that record's dword `+0x284` is 0, and else tail-jumps (`002E80B0` + 0x3F) with `rcx` = the record",
+   "anchors": [["002E80C1", "cmp"], ["002E80C9", "cmp"], ["002E80D6", "imul"], ["002E80E6", "cmp"], ["002E80EF", "jmp"]]},
+  {"fn": "0037D7F0", "entered_from": "`00379D00` + 0x4",
+   "text": "stores dword 1 at `02EBF3C4` and at `02EBF3C0`, then for a pointer stepping by 0x3D0 from `02ADD988` while below `02ADEC98` (five passes) zeroes the qwords at pointer `-0x8` and `+0x0` and, for each of four 0xF0-byte blocks starting at pointer `+0x8`, calls `00861EC0`(block, 0, 0xF0) and stores dword -1 at the block's `+0xEC`",
+   "anchors": [["0037D80A", "mov"], ["0037D830", "mov"], ["0037D84B", "call"], ["0037D850", "mov"], ["0037D86E", "cmp"]]},
+  {"fn": "003DC6A0", "entered_from": "`003DCD00` + 0x15E",
+   "text": "walks 16 entries of 20 bytes at `02B57F70` and, for each whose byte `+0x6` is 3 and word `+0x4` is 0, adds 0x10 to its dword `+0x8`, stores byte 4 at `+0x6` and dword 1 at `02B58170`, and when the sum AND `0xFFFF0` is 0 replaces dword `+0x8` with its zero-extended byte `+0x13` OR `0x10`; other entries are left unchanged",
+   "anchors": [["003DC6BA", "cmp"], ["003DC6CB", "add"], ["003DC6DA", "mov"], ["003DC6E0", "mov"], ["003DC6F5", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "0037D7F0: 00861EC0 is named by address because the host excerpt names it; the five-pass count is (02ADEC98 - 02ADD988) / 0x3D0 = 0x1310 / 0x3D0; the loop compare is a signed jl on the pointers. 003DC6A0: the AND 0xFFFF0 test runs before the byte-4 and 02B58170 stores, which do not change the flags; the entry index is masked with 0xF so the 16 passes cover entries 0-15. 0028F830 is also entered from 0029BE50 + 0x384; 003DC6A0 also from 003DCD00 + 0x1A1."
+}
