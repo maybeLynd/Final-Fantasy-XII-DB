@@ -1,0 +1,14 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/Prefetch-And-Json-Data/ta-texture-animation-lists.md",
+ "session": "session_0141duvveFVGsG54cn7rpP77",
+ "rows": [
+  {"fn": "0019DDD0", "entered_from": "`001AA4F0` + 0x59",
+   "text": "copies the array of 8-byte elements bounded by qwords `[rdx]` and `[rdx+8]` into the array at `rcx` (qwords `+0`, `+8`, `+0x10` start, end, limit) and returns `rcx`, doing nothing when `rdx` equals `rcx`: when the source count `n` is above (unsigned) the destination capacity (limit minus start)/8 it gets an `n`*8-byte block through virtual slot `+0x10` of the object at `rcx+0x18`, copies the source into it with the import call at `0019DDD0` + 0x78, frees a non-null old start through slot `+0x18` of that object and stores the new start and the limit start+`n`*8; otherwise, when `n` is above the current count (end minus start)/8 it copies that many elements over the current ones (import call at + 0xCD) and the remainder after the current end (+ 0xF7), and when it is not it copies `n` elements over the start (+ 0xF7); on every copying path it then stores start+`n`*8 at qword `[rcx+8]`",
+   "anchors": [["0019DE1A", "jbe"], ["0019DE31", "call"], ["0019DE6F", "call"], ["0019DE93", "jbe"], ["0019DEE5", "mov"]]},
+  {"fn": "001AC810", "entered_from": "`001ABC80` + 0x1D",
+   "text": "with the pointer array at qwords `rcx+0xF0`, `+0xF8`, `+0x100` (start, end, limit): when `edx` minus the count (end minus start)/8 is not negative, appends that difference plus one entries, each a 0x48-byte block from the call at `001AC810` + 0x75 set up by the call at `001AC810` + 0xB9 with (block, current count, 80.0 (`008F6D58`) as third and 2.0 (`01CEBC08`) as fourth argument, and 60.0 (`008F6D54`), 1, 0.0 and 6 as fifth to eighth (stack) arguments), or null when the block is null; each entry is stored at the end, with the end advanced by 8, when end is below limit, otherwise passed through `001AC810` + 0xF4 with (array, end, pointer to the entry); finally stores `edx` at dword `+0x38` of entry `edx` and returns that entry",
+   "anchors": [["001AC855", "js"], ["001AC8C9", "call"], ["001AC8F4", "mov"], ["001AC904", "call"], ["001AC919", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "0019DDD0: the three copy calls go through the import slot 008C2A40 (not named in the sentence). 001AC810: r8 is not loaded before the +0xB9 call (its third integer register is whatever the count computation left; the 80.0 travels in xmm2)."
+}
