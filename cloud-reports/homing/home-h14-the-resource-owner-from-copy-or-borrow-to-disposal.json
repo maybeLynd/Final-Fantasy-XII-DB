@@ -1,0 +1,11 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md",
+ "session": "session_01PfF5HpG9wWe4vsreQxCTLf",
+ "rows": [
+  {"fn": "003EE260", "entered_from": "`003EE2D0` + 0x90",
+   "text": "switches on word `[rcx+2]` with `p` = `rcx+8`: 0x3000 makes the call at `003EE260` + 0x27 with `p`; 0xB00 stores 2 to word `[p]` and makes the call at `003EE260` + 0x3C with `p`; 0x540 copies dword `[p]` to a stack dword, overwrites that copy's low word with 2 and makes the call at `003EE260` + 0x5B with the copy's address; any other value returns without a call",
+   "anchors": [["003EE26C", "cmp"], ["003EE287", "call"], ["003EE296", "mov"], ["003EE2B1", "mov"], ["003EE2BB", "call"]]}
+ ],
+ "skipped": [],
+ "notes": ""
+}
