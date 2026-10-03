@@ -1,0 +1,11 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md",
+ "session": "session_01RTHsxVMB4gEbgZ4DBoNz7W",
+ "rows": [
+  {"fn": "003EE260", "entered_from": "`003EE2D0` + 0x90",
+   "text": "dispatches on word `rcx+2`: for 0x3000 it calls (`003EE260` + 0x27) with `rcx+8`; for 0xB00 it stores word 2 at `rcx+8` and calls (`003EE260` + 0x3C) with `rcx+8`; for 0x540 it copies dword `rcx+8` to a stack local, overwrites the local's low word with 2 and calls (`003EE260` + 0x5B) with the local's address; any other value returns without a call",
+   "anchors": [["003EE26C", "cmp"], ["003EE287", "call"], ["003EE296", "mov"], ["003EE2B1", "mov"], ["003EE2BB", "call"]]}
+ ],
+ "skipped": [],
+ "notes": "003EE260: the 0x3000 arm's callee is the one the host excerpt names as the tail of kind 3; cited by its site here for uniformity."
+}
