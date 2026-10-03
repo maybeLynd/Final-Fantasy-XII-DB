@@ -11,7 +11,21 @@
 
 ## Summary
 
-*(Filled in when sections 1 to 3 were complete.)*
+| item | count |
+|---|---:|
+| pages read | **22** (1 category README, 1 namespace README, 14 mechanism pages, 6 contracts) |
+| pass-1 gaps (CLOSED / NARROWED / OPEN / WRONG-IN-PASS-1) | n/a: pass 1 did not map this system |
+| register rows owned by these pages, still open | **0** (§2.1) |
+| new gaps, total | **17** (§2.2) |
+| new gaps, STATIC | **7** (G-3, G-5, G-6, G-8, G-9, G-10, G-11) |
+| new gaps, DOC | **7** (G-1, G-2, G-7, G-13, G-14, G-15, G-16) |
+| new gaps, DATA | **2** (G-4, G-12) |
+| new gaps, RUNTIME | **1** (G-17) |
+| rating | **MOSTLY** (new; no pass-1 rating) |
+
+The gaps that matter most: **G-1**, the merged-bitmap status / augment contradiction between this folder and
+10-Status; **G-3**, the slot 96 conditions on every weapon hit; and **G-5** / **G-6**, the slot formulas and the 109
+recipe lists still to extract.
 
 ## 1. Interface
 
@@ -180,8 +194,38 @@ is named.
 | G-10 | **The terrain class: its domain and its failure value.** The terrain table lists classes 0–2 only. The contract says an unresolvable target "falls back through `00263DD0`'s own path; this contract does not read it". No page in the folder states what `00263DD0` returns when the field record cannot be resolved, or whether values above 2 occur. The environment class needed exactly this fix (class 4, `CON-146`). | STATIC | `Weather-Terrain-Element-Scaling/weather-terrain-element-scaling.md:60-62`, `:121-127`, `:292-307`; `CONTRACT-environmental-element-scaling.md:169-172` | — |
 | G-11 | **What un-KOs a unit with a non-zero HP floor.** Such a unit dies at its floor, and the HP write's revive arm (which tests old HP against zero) can never fire for it. "Whether anything *else* in the game clears that KO is not read here and is not claimed." | STATIC | `CONTRACT-hp-write-and-lethal-transition.md:244-248`; `Current-HP/the-hp-write-and-the-lethal-transition.md:202-208` | — |
 | G-12 | **Thirteen of the fourteen floor-setting scripts are unread to their event code.** One case is read (`lus_g01`, Ba'Gamnan ends at 796 HP); "the other thirteen scripts share the floor-plus-mode-1 shape but were not read to their event code". | DATA | `Current-HP/the-hp-write-and-the-lethal-transition.md:151` | `EY-2` (ANSWERED; the residue is in its cell) |
-| G-13 | **Text left stale after corrections, read by a re-implementer as current.** (a) The scratch block's §4 struct still names `02AEDFC4` / `02AEDFDC` `parryRolled` / `parryChance`, `02AEDFF8`..`02AEE000` "resolver-private", and `02AEE044` / `48` "u8 (two bytes)"; §2.2 corrects all of these (counter flag and chance; charge loss / gain; the new levels). (b) The scratch §2.6 kind table still says "parry". (c) `FT-4`'s status cell and scratch §7 still call entry bit 11 "the mode-2 resource reaction" (it is the ranged critical). (d) The stats record's §4 struct gives `+0x88` as "u8 grower arg" and omits the party gambit block. (e) The preparation contract says slots 73 and 131 "are reachable by nothing at all" (refuted on the step table, §12b.2); that "semantic names for the nine unnamed members" are open (named on the attack-defence page §5.1); and §6 still says "the preview runs the first [list]" without the execution-time correction. (f) The environmental contract says the step table and the weapon recipes are "uncontracted". (g) The weapon-recipe contract §16a calls the preview caller "§14's open question" (answered in §14). (h) The category README still lists "Magick / Technick / item formula families" as not yet documented. | DOC | (a) `Scratch-Block/the-formula-scratch-block.md:275-286` against `:64`, `:70`, `:77-78`, `:96-97`; (b) `:204-210`; (c) `:413` and `../_index/OPEN-QUESTIONS.md` row `FT-4`; (d) `Battle-Stats-Record/the-battle-stats-record-field-map.md:435` against `:163`; (e) `CONTRACT-preparation-step-family.md:92-94` against `Step-Table/combat-formula-step-table.md:866`, `:916-918`; `CONTRACT-preparation-step-family.md:360-361` against `Attack-Vs-Defense/attack-defense-preparation-and-stat-scaling.md:260-274`; (f) `CONTRACT-environmental-element-scaling.md:226`; (g) `CONTRACT-weapon-recipes.md:261-263` against `:223-227`; (h) `README.md:83` | `FT-4` (ANSWERED) |
+| G-13 | **Text left stale after corrections, read by a re-implementer as current.** (a) The scratch block's §4 struct still names `02AEDFC4` / `02AEDFDC` `parryRolled` / `parryChance`, `02AEDFF8`..`02AEE000` "resolver-private", and `02AEE044` / `48` "u8 (two bytes)"; §2.2 corrects all of these (counter flag and chance; charge loss / gain; the new levels). (b) The scratch §2.6 kind table still says "parry". (c) `FT-4`'s status cell and scratch §7 still call entry bit 11 "the mode-2 resource reaction" (it is the ranged critical). (d) The stats record's §4 struct gives `+0x88` as "u8 grower arg" and omits the party gambit block. (e) The preparation contract says slots 73 and 131 "are reachable by nothing at all" (refuted on the step table, §12b.2); and that "semantic names for the nine unnamed members" are open (named on the attack-defence page §5.1). (f) The environmental contract says the step table and the weapon recipes are "uncontracted". (g) The weapon-recipe contract §16a calls the preview caller "§14's open question" (answered in §14). (h) The category README still lists "Magick / Technick / item formula families" as not yet documented. | DOC | (a) `Scratch-Block/the-formula-scratch-block.md:275-286` against `:64`, `:70`, `:77-78`, `:96-97`; (b) `:204-210`; (c) `:413` and `../_index/OPEN-QUESTIONS.md` row `FT-4`; (d) `Battle-Stats-Record/the-battle-stats-record-field-map.md:435` against `:163`; (e) `CONTRACT-preparation-step-family.md:92-94` against `Step-Table/combat-formula-step-table.md:866`, `:916-918`; `CONTRACT-preparation-step-family.md:360-361` against `Attack-Vs-Defense/attack-defense-preparation-and-stat-scaling.md:260-274`; (f) `CONTRACT-environmental-element-scaling.md:226`; (g) `CONTRACT-weapon-recipes.md:261-263` against `:223-227`; (h) `README.md:83` | `FT-4` (ANSWERED) |
 | G-14 | **Slot 166 reads a byte the action-row page calls padding.** The attack-defence page says slot 166 (recipe 64 only) adds `value × row +0x15 / 100`, "keyed by the parked action row". The action-row page says `+0x15`–`+0x17` are 0 on all 543 rows and calls them padding. Either the row is a different table, or the step is a no-op on shipped data. Neither page says which. | DOC | `Attack-Vs-Defense/attack-defense-preparation-and-stat-scaling.md:718-720`; `Step-Table/combat-formula-step-table.md:300`; against `../07-Combat-Action/Action-Definition-Row/the-action-definition-row.md:72` | — |
 | G-15 | **Action row `+0x13`: one bit per element, or a gate?** The action-row page says "bit 0 gates the weather / terrain scaling". This folder reads `+0x13` as the element mask, with bit 0 = Fire tested by the first rule of the stage, and the stage gated by layer id 16 instead. | DOC | `../07-Combat-Action/Action-Definition-Row/the-action-definition-row.md:70`; against `CONTRACT-environmental-element-scaling.md:54-56`, `:124-131`, `Weather-Terrain-Element-Scaling/weather-terrain-element-scaling.md:64-75` | — |
 | G-16 | **The affinity stage's nested `0x400` arm is left as "a status that reacts".** Elsewhere it is shown to be dead. The page names layer id 52 "a status that reacts specifically to being hit by an element the target is weak to", calls `00384B10` (a random pick from the element mask), and sets result `+0x140` bit `0x400`. It does not say what consumes that bit or the pick. The two-layer page has since read id 52 as the "NOT USED" augment, which nothing the tables ship grants. | DOC | `elemental-affinity-and-the-five-bytes.md:88-96`, `:136-141`; against `../10-Status-Periodic-Terminal/Status-And-Augment-Layers/two-layer-effect-model.md:331-335` | — |
 | G-17 | **No live observation of anything in the system.** Every contract carries isolated native replay at most. Explicit requests are open: break on `003863D0` and record the slots that actually occur; confirm that `0038AA90` faults with a null registry; and the two queued checks for the alias (a petrifying bow user in severe weather; a diseased caster against weather scaling). G-1 changes what the second pair should expect. | RUNTIME | `CONTRACT-formula-step-table.md:210`; `CONTRACT-weapon-recipes.md:207`; `CONTRACT-environmental-element-scaling.md:219-220`; `CONTRACT-preparation-step-family.md:330-338`; `CONTRACT-hp-write-and-lethal-transition.md:476-482`; `Status-And-Augment-Namespaces/README.md:44-46` | — |
+
+## 3. Rating
+
+**MOSTLY** (first rating; pass 1 did not map this system).
+
+The machinery a re-implementation needs is stated to the instruction, and most of it has been executed in isolation:
+- the recipe resolver, its two lists, the skip and stop rules, and the `-1` sentinel (`CONTRACT-weapon-recipes.md` RW-1 to RW-5);
+- the 202-slot table and the order-is-the-semantics rule (ST-1 to ST-7);
+- the 44 scratch words, with resets and the copy-out (`Scratch-Block/the-formula-scratch-block.md` §2.2, §2.7);
+- the evaluation context, at `0x30` bytes;
+- the sixteen preparation members, as six closed forms with bit-exact partial writes;
+- the damage equation, the modifier chain and the outcome ladder;
+- the HP write with its floor, cap, gates, event variants and lethal sequence;
+- the stat rebuild with its caps and the second store;
+- the auto-status rebuild;
+- the stats record, offset by offset;
+- steal, weather / terrain scaling, element affinity, combos, and the count / walk / bank recipes.
+
+Every register row these pages raised is closed (§2.1).
+
+The system is not READY for two reasons, and neither is structural:
+- **The per-slot catalogue is not complete at the formula level.** Slot 96, which runs on every weapon hit, has unstated
+  conditions (G-3). Some recipe-reached bodies are named but not given a formula (G-5). The 109 slot lists themselves
+  are not published (G-6). Each of these is a bounded desk read of the image.
+- **One cross-page contradiction changes outcomes.** G-1 decides whether inflicting Lure, Disease, Silence, Petrify or
+  Stone changes the steal, the weather bypasses, slot 72, the stat bonuses and slots 0 / 129. The builder's bytes settle
+  it, so the fix is to reconcile the pages.
+
+The remaining gaps (G-2, G-7 to G-16) are single facts, pointers or stale sentences. G-17 is the usual live-observation
+residue.
