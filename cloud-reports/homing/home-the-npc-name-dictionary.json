@@ -1,0 +1,32 @@
+{
+ "page": "04-Actor-Entity/Actor-Names/the-npc-name-dictionary.md",
+ "session": "session_01RYbqU7tsSU3HnpGNjV9Ghv",
+ "rows": [
+  {"fn": "0017F0B0", "entered_from": "`0053AB50` + 0x2CA",
+   "text": "returns when `rcx` is null; otherwise sets `edx` to 0 and tail-jumps through the qword at `+8` of the table pointer `[rcx]`, with `rcx` unchanged",
+   "anchors": [["0017F0B3", "je"], ["0017F0B8", "xor"], ["0017F0BA", "jmp"]]},
+  {"fn": "0017F200", "entered_from": "`0053AB50` + 0x4A1",
+   "text": "returns when `rcx` is null; otherwise tail-jumps through the qword at `+0xC0` of the table pointer `[rcx]`, with the incoming arguments unchanged",
+   "anchors": [["0017F203", "je"], ["0017F208", "jmp"]]},
+  {"fn": "0017F210", "entered_from": "`0053AB50` + 0x242D",
+   "text": "returns when `rcx` is null; otherwise tail-jumps through the qword at `+0x80` of the table pointer `[rcx]`, with the incoming arguments unchanged",
+   "anchors": [["0017F213", "je"], ["0017F218", "jmp"]]},
+  {"fn": "0017F220", "entered_from": "`0053AB50` + 0x41D",
+   "text": "returns when `rcx` is null; otherwise sets `dl` to 1 when `edx` is non-zero and 0 when it is 0 (`setne`) and tail-jumps through the qword at `+0xA8` of the table pointer `[rcx]`, with `rcx` unchanged",
+   "anchors": [["0017F223", "je"], ["0017F22A", "setne"], ["0017F22D", "jmp"]]},
+  {"fn": "00182870", "entered_from": "`00382BF0` + 0xCC",
+   "text": "makes the call at `00182870` + 0x17 and returns when it gives null; otherwise repeats that call at `00182870` + 0x21 and passes its result, `ecx`, the float `xmm1` (as the third argument) and `r8` (as the fourth) to the call at `00182870` + 0x31",
+   "anchors": [["00182887", "call"], ["0018288F", "je"], ["00182891", "call"], ["0018289C", "movaps"], ["001828A1", "call"]]},
+  {"fn": "002BA1B0", "entered_from": "`002BA700` + 0x2F1",
+   "text": "makes the call at `002BA1B0` + 0xD with 0x80; when its result plus `ecx` is 0, returns dword `01E0C1DC` (0x1C0 in the image) minus 0, otherwise returns dword `01E0C1DC` minus the result of the call at `002BA1B0` + 0x1B with 0x81",
+   "anchors": [["002BA1BD", "call"], ["002BA1C2", "add"], ["002BA1CB", "call"], ["002BA1D8", "sub"], ["002BA1E0", "mov"]]},
+  {"fn": "00370BB0", "entered_from": "`0041BEE0` + 0x14A",
+   "text": "reads dword `rcx+0x9C` and, with the incoming arguments unchanged, tail-jumps through the jump at `00370BB0` + 0x14 when it is 0 and through the jump at `00370BB0` + 0xF when it is 2; any other value returns with that value in `eax`",
+   "anchors": [["00370BB6", "test"], ["00370BBA", "cmp"], ["00370BBF", "jmp"], ["00370BC4", "jmp"]]},
+  {"fn": "003E41F0", "entered_from": "`0053AB50` + 0x427",
+   "text": "follows a chain through the `0x740`-byte records at qword `022C6F28`, starting at the index `cx`: while the index is not -1, the record at sign-extended index * 0x740 has a non-zero dword `+0x284` (and a non-null address) and its word `+6` is not -1, the index becomes that word `+6`; returns the zero-extended last index reached (0xFFFF when it is -1)",
+   "anchors": [["003E4200", "cmp"], ["003E420A", "imul"], ["003E4214", "cmp"], ["003E421B", "cmove"], ["003E4228", "cmp"]]}
+ ],
+ "skipped": [],
+ "notes": "0017F0B0, 0017F200, 0017F210, 0017F220 are null-guarded virtual tail calls; the slot offsets are stated, the targets are not resolvable from the listing. 002BA1B0: 0x1C0 is the image's initial value of dword `01E0C1DC`, which may be written at run time. 00370BB0: on the fall-through path `eax` still holds dword `+0x9C`."
+}
