@@ -1,0 +1,9 @@
+{
+ "page": "12-Items-Equipment-Shops-License/item-id-encoding-and-equipment-compatibility.md",
+ "session": "session_01VNt9U2NfNQBph7nwiLwJy4",
+ "rows": [],
+ "skipped": [
+  {"fn": "00264E40", "why": "returns -1 when ecx is above 8 (unsigned); otherwise it dispatches on ecx (0 to 8) through a dword offset table after the body that the listing does not decode, to arms returning 2, 3, 4, 0 or 1, so which value of ecx reaches which return value cannot be read from the listing; a sentence stating every path would be a guess"}
+ ],
+ "notes": "00264E40: the five arms return 2, 3, 4, 0 and 1 in code order, and nine table entries share them, so at least some values share an arm. The host row says the caller handles ecx 6 and 9 itself before this call, which does not decode the table either. FABLE can row it from the table contents."
+}
