@@ -1,0 +1,60 @@
+{
+ "page": "15-Input/how-a-gamepad-becomes-a-controller-object.md",
+ "session": "session_01M9DqRDfozfMhVgDdX8oP4v",
+ "rows": [
+  {
+   "fn": "00796230",
+   "text": "switches on byte `+0x24` of `rcx`: 0x12 calls `00796230 + 0x3C`, 0x13 calls `00796230 + 0x2D`, 0x14, 0x15 and 0x18 call `00797690`, each with `rcx`, and every other value (0x19 included) calls nothing; returns 1 on every path",
+   "anchors": [
+    [
+     "00796238",
+     "cmp"
+    ],
+    [
+     "00796245",
+     "test"
+    ],
+    [
+     "0079624E",
+     "call"
+    ],
+    [
+     "0079625D",
+     "call"
+    ],
+    [
+     "0079626C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00798A40",
+   "text": "switches on byte `+0x24` of `rcx`: 0x12 calls `00798A40 + 0x28`, 0x14, 0x15 and 0x18 call `00797690`, each with `rcx`, and every other value (0x13 and 0x19 included) calls nothing; returns 1 on every path",
+   "anchors": [
+    [
+     "00798A48",
+     "cmp"
+    ],
+    [
+     "00798A50",
+     "test"
+    ],
+    [
+     "00798A57",
+     "je"
+    ],
+    [
+     "00798A59",
+     "call"
+    ],
+    [
+     "00798A68",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "FABLE w5-3 draft. Calls to callees the page context does not name are cited by call site (`<entry> + 0xNN`)."
+}
