@@ -181,3 +181,42 @@ and callees that are named but not described (N9, N10).
 | N10 | **The device-side feedback write `007A1080` is named but not described.** `00198E80` "looks up `0079D620(qword +0xDF8 of 00796E20(), edx)` and, when found, calls `007A1080(it, r9b, r8b)`". No page read describes `007A1080`, so how the two motor bytes reach a pad (XInput, DirectInput or Steam) is not stated. | STATIC | STK:1167 | — |
 | N11 | **What `SetCooperativeLevel` flags `6` mean.** STK reads 6 as "`DISCL_NONEXCLUSIVE \| DISCL_BACKGROUND`" and concludes "**Window focus therefore does not gate the keyboard read.**" PAD reads the same value for pads as "**non-exclusive, foreground** - the pad goes quiet when the window loses focus" and keeps "DirectInput pads are foreground-only". The mouse arm passes 6 as well (PAD:260). A re-implementer gets opposite focus behaviour depending on which page they follow. | STATIC | STK:189-190 vs PAD:73-74, PAD:120 | — |
 | N12 | **BPC's keymap path omits the account folder.** BPC: "`keymap.ini` lives at `<Documents>\My Games\FINAL FANTASY XII THE ZODIAC AGE\keymap.ini`". KMI's evidence: "Path is `<Documents>\My Games\FINAL FANTASY XII THE ZODIAC AGE\<SteamID64>\keymap.ini`". | DOC | BPC:316 vs KMI:1030 | — |
+
+---
+
+## 4. Rating
+
+**MOSTLY** (pass 1: MOSTLY). Unchanged.
+
+**What moved since pass 1.** The edges of the stack were already writable from the database alone, and are more so
+now:
+- AU-4 is answered, so all three binding blocks have three records.
+- Profile 1's range check, the copy-out count and the per-entry axis sign were corrected at the bytes, so three of
+  pass 1's contradictions are gone (G-C1x, G-C2x, G-C3x).
+- The input stack's channel record has one base and stated initial values (STK:355-372).
+- The binding contract's open list was mostly reconciled with the register.
+- On the capability side, C-7 and SD-3 name readers for most aggregate bits, and the bit-21 effect is known (the
+  pause-menu gate).
+- GG-1 statically places 50 of the 51 snapshot readers.
+
+**Why it is still not READY.** Both whole-function blockers pass 1 named are only narrowed:
+1. **The arbiter `00253C70`.** Its decision logic is now spread over the request-router, mode-ladder and boot
+   pages: Triangle posts request 2, Decide/Square posts request 1, the `0x21` and flag-`0x5E` parameters, and the
+   22-member subtree with its gates. 15-Input still states only its reads, writes and invariants, and no page gives
+   the branch order end to end (G-A3). Flag `0x5E`'s authored name is unknown (G-A4, DATA).
+2. **The device bodies.** The pad polls exist only as button-store facts in a candidate record (G-L6). The
+   backend's 3,269-byte resolved-state pass `007A2440` is described only through two callees (G-C4). The feedback
+   write to the device `007A1080` is undescribed (N10). Only the keyboard path is complete, and even its focus
+   behaviour is now contradicted between two pages (N11).
+
+Also still missing:
+- the snapshot field map past channel 0, and the rebuilder's lookback (G-A1, G-A2);
+- who raises the rumble inputs (G-C1), and what channel 1 is (G-C2);
+- the initial value of the capability table (G-B2);
+- the cross-thread hand-off between the poll and the frame (G-A6).
+
+Nothing in the frame order or the assignment path has been observed live (G-L1, G-L4).
+
+None of these is structural: each names one body, one field or one observation. Twelve of the 41 open or narrowed
+items, and eight of the twelve new ones, are text that a page could carry today: DOC classes, or answers that already
+sit on another system's page without a pointer. The other STATIC items are desk reads.
