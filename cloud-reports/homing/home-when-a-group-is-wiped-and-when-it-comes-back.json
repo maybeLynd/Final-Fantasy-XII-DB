@@ -1,0 +1,23 @@
+{
+ "page": "05-Spawn-Encounter-Lifecycle/Group-Completion-And-Respawn/when-a-group-is-wiped-and-when-it-comes-back.md",
+ "session": "session_01B5JAqPgewUFviUD5ZfpMqA",
+ "rows": [
+  {"fn": "002739B0", "entered_from": "`003C8B70` + 0x3CF",
+   "text": "calls `002739B0` + 0x4 and returns its null result unchanged; otherwise tail-jumps (`002739B0` + 0x1A) with that result in `rcx`",
+   "anchors": [["002739B4", "call"], ["002739BC", "jne"], ["002739CA", "jmp"]]},
+  {"fn": "0028FE40", "entered_from": "`0035C150` + 0x0",
+   "text": "returns 0 when qword `0209BE80` is null; otherwise calls `0028FE40` + 0x2E with qword `0209BE80` plus 0x8FA0 and tail-jumps (`0028FE40` + 0x54) with qword `0209BE80` (re-read) plus 0x8FA0 in `rcx`, the incoming `ecx` in `edx`, the incoming `edx` in `r8d` and -1 in `r9d`",
+   "anchors": [["0028FE58", "jne"], ["0028FE5A", "xor"], ["0028FE6E", "call"], ["0028FE7A", "or"], ["0028FE94", "jmp"]]},
+  {"fn": "002FB250", "entered_from": "`00319B10` + 0x17E",
+   "text": "stores 0 into the ten bytes every 0x20 bytes from `022BE7F0` through `022BE910` and returns",
+   "anchors": [["002FB257", "mov"], ["002FB273", "mov"], ["002FB28F", "mov"]]},
+  {"fn": "00363B00", "entered_from": "`0026C5D0` + 0x174",
+   "text": "stores `cl` into byte `022CBA9A`; when `ecx` is 1 it also copies the 16 bytes at `rdx` to `022CBB10` and the float in `xmm2` to dword `022CBAAC`",
+   "anchors": [["00363B06", "cmp"], ["00363B0B", "movaps"], ["00363B0E", "movdqa"], ["00363B16", "movss"]]},
+  {"fn": "003C94A0", "entered_from": "`003C8B70` + 0x54B",
+   "text": "calls `003C94A0` + 0x4 and, on a non-null result r, returns when dword `[r]` AND 0x8000 is non-zero and tail-jumps (`003C94A0` + 0x3D) with dword `r+8` in `ecx` when dword `r+4` differs from it; when the result is null or those two dwords are equal, stores 0 into dword `+0xC8` of the object at qword `02B47730` when that qword is non-null, and returns",
+   "anchors": [["003C94AC", "je"], ["003C94AE", "test"], ["003C94B9", "cmp"], ["003C94CA", "mov"], ["003C94DD", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "0028FE40 is entered by a jmp at offset 0 of 0035C150 (the site is copied as listed). 002FB250: the entry instruction is the first of the ten stores; the anchors are the later stores."
+}
