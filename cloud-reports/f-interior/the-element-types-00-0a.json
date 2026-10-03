@@ -1,0 +1,34 @@
+{
+ "page": "17-Presentation-Rendering/Effect-File-Formats/the-element-types-00-0a.md",
+ "session": "session_0182wopbAGkg4Gtt5QPc4Pw1",
+ "rows": [
+  {
+   "fn": "00430A60",
+   "text": "passes dword `+0` of `rcx` to the call at `00430A60`+0x17 and multiplies by `xmm1`, in place, the float at `+4` of each of the first byte-`+0xC` 8-byte entries of the returned pointer; then does the same with the pointer the call at `00430A60`+0x4E returns for dword `+4` and the count in byte `+0xD` (a zero count skips its loop)",
+   "anchors": [
+    [
+     "00430A77",
+     "call"
+    ],
+    [
+     "00430A95",
+     "mulss"
+    ],
+    [
+     "00430A9E",
+     "movss"
+    ],
+    [
+     "00430AAE",
+     "call"
+    ],
+    [
+     "00430AC5",
+     "mulss"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "The page context does not name the resolver both calls reach, so it is cited by its two call sites."
+}
