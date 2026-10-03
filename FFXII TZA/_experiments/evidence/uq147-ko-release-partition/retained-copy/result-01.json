@@ -1,0 +1,1464 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY original finite copy-address proof",
+  "driver_sha256": "7f9968296398a8b9a1ef6a76ae7584593fcdb97457d3d9cd2b171d92a3e08afd",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "31c27aa8b2da192db7c62c62420ef2f44d2cc5cabe79b1149d90dcd782ded67d"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 173,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "instruction_assertions": 29,
+  "graphs": [
+    {
+      "entry": "0x30eda0",
+      "visited": 66,
+      "returns": [
+        "0x30ee6e",
+        "0x30ee99"
+      ],
+      "calls": []
+    },
+    {
+      "entry": "0x30eff0",
+      "visited": 75,
+      "returns": [
+        "0x30f046",
+        "0x30f113",
+        "0x30f120"
+      ],
+      "calls": [
+        [
+          3207210,
+          "0x30dfa0"
+        ],
+        [
+          3207404,
+          "0x861ec0"
+        ]
+      ]
+    },
+    {
+      "entry": "0x30dfa0",
+      "visited": 32,
+      "returns": [
+        "0x30dfea",
+        "0x30e00f"
+      ],
+      "calls": []
+    }
+  ],
+  "restore": {
+    "source_start": [
+      "saved_slot",
+      0
+    ],
+    "destination_start": [
+      "unit",
+      1712
+    ],
+    "bytes": 1264,
+    "vector_pairs": 79,
+    "first": {
+      "read_origin": "saved_slot",
+      "read_offset": 0,
+      "write_origin": "unit",
+      "write_offset": 1712,
+      "bytes": 16,
+      "store": "0x30edc7"
+    },
+    "last": {
+      "read_origin": "saved_slot",
+      "read_offset": 1248,
+      "write_origin": "unit",
+      "write_offset": 2960,
+      "bytes": 16,
+      "store": "0x30ee44"
+    },
+    "pairs": [
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 0,
+        "write_origin": "unit",
+        "write_offset": 1712,
+        "bytes": 16,
+        "store": "0x30edc7"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 16,
+        "write_origin": "unit",
+        "write_offset": 1728,
+        "bytes": 16,
+        "store": "0x30edcf"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 32,
+        "write_origin": "unit",
+        "write_offset": 1744,
+        "bytes": 16,
+        "store": "0x30edd7"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 48,
+        "write_origin": "unit",
+        "write_offset": 1760,
+        "bytes": 16,
+        "store": "0x30eddf"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 64,
+        "write_origin": "unit",
+        "write_offset": 1776,
+        "bytes": 16,
+        "store": "0x30ede7"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 80,
+        "write_origin": "unit",
+        "write_offset": 1792,
+        "bytes": 16,
+        "store": "0x30edef"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 96,
+        "write_origin": "unit",
+        "write_offset": 1808,
+        "bytes": 16,
+        "store": "0x30edf7"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 112,
+        "write_origin": "unit",
+        "write_offset": 1824,
+        "bytes": 16,
+        "store": "0x30edff"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 128,
+        "write_origin": "unit",
+        "write_offset": 1840,
+        "bytes": 16,
+        "store": "0x30edc7"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 144,
+        "write_origin": "unit",
+        "write_offset": 1856,
+        "bytes": 16,
+        "store": "0x30edcf"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 160,
+        "write_origin": "unit",
+        "write_offset": 1872,
+        "bytes": 16,
+        "store": "0x30edd7"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 176,
+        "write_origin": "unit",
+        "write_offset": 1888,
+        "bytes": 16,
+        "store": "0x30eddf"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 192,
+        "write_origin": "unit",
+        "write_offset": 1904,
+        "bytes": 16,
+        "store": "0x30ede7"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 208,
+        "write_origin": "unit",
+        "write_offset": 1920,
+        "bytes": 16,
+        "store": "0x30edef"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 224,
+        "write_origin": "unit",
+        "write_offset": 1936,
+        "bytes": 16,
+        "store": "0x30edf7"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 240,
+        "write_origin": "unit",
+        "write_offset": 1952,
+        "bytes": 16,
+        "store": "0x30edff"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 256,
+        "write_origin": "unit",
+        "write_offset": 1968,
+        "bytes": 16,
+        "store": "0x30edc7"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 272,
+        "write_origin": "unit",
+        "write_offset": 1984,
+        "bytes": 16,
+        "store": "0x30edcf"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 288,
+        "write_origin": "unit",
+        "write_offset": 2000,
+        "bytes": 16,
+        "store": "0x30edd7"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 304,
+        "write_origin": "unit",
+        "write_offset": 2016,
+        "bytes": 16,
+        "store": "0x30eddf"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 320,
+        "write_origin": "unit",
+        "write_offset": 2032,
+        "bytes": 16,
+        "store": "0x30ede7"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 336,
+        "write_origin": "unit",
+        "write_offset": 2048,
+        "bytes": 16,
+        "store": "0x30edef"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 352,
+        "write_origin": "unit",
+        "write_offset": 2064,
+        "bytes": 16,
+        "store": "0x30edf7"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 368,
+        "write_origin": "unit",
+        "write_offset": 2080,
+        "bytes": 16,
+        "store": "0x30edff"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 384,
+        "write_origin": "unit",
+        "write_offset": 2096,
+        "bytes": 16,
+        "store": "0x30edc7"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 400,
+        "write_origin": "unit",
+        "write_offset": 2112,
+        "bytes": 16,
+        "store": "0x30edcf"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 416,
+        "write_origin": "unit",
+        "write_offset": 2128,
+        "bytes": 16,
+        "store": "0x30edd7"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 432,
+        "write_origin": "unit",
+        "write_offset": 2144,
+        "bytes": 16,
+        "store": "0x30eddf"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 448,
+        "write_origin": "unit",
+        "write_offset": 2160,
+        "bytes": 16,
+        "store": "0x30ede7"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 464,
+        "write_origin": "unit",
+        "write_offset": 2176,
+        "bytes": 16,
+        "store": "0x30edef"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 480,
+        "write_origin": "unit",
+        "write_offset": 2192,
+        "bytes": 16,
+        "store": "0x30edf7"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 496,
+        "write_origin": "unit",
+        "write_offset": 2208,
+        "bytes": 16,
+        "store": "0x30edff"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 512,
+        "write_origin": "unit",
+        "write_offset": 2224,
+        "bytes": 16,
+        "store": "0x30edc7"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 528,
+        "write_origin": "unit",
+        "write_offset": 2240,
+        "bytes": 16,
+        "store": "0x30edcf"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 544,
+        "write_origin": "unit",
+        "write_offset": 2256,
+        "bytes": 16,
+        "store": "0x30edd7"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 560,
+        "write_origin": "unit",
+        "write_offset": 2272,
+        "bytes": 16,
+        "store": "0x30eddf"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 576,
+        "write_origin": "unit",
+        "write_offset": 2288,
+        "bytes": 16,
+        "store": "0x30ede7"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 592,
+        "write_origin": "unit",
+        "write_offset": 2304,
+        "bytes": 16,
+        "store": "0x30edef"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 608,
+        "write_origin": "unit",
+        "write_offset": 2320,
+        "bytes": 16,
+        "store": "0x30edf7"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 624,
+        "write_origin": "unit",
+        "write_offset": 2336,
+        "bytes": 16,
+        "store": "0x30edff"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 640,
+        "write_origin": "unit",
+        "write_offset": 2352,
+        "bytes": 16,
+        "store": "0x30edc7"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 656,
+        "write_origin": "unit",
+        "write_offset": 2368,
+        "bytes": 16,
+        "store": "0x30edcf"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 672,
+        "write_origin": "unit",
+        "write_offset": 2384,
+        "bytes": 16,
+        "store": "0x30edd7"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 688,
+        "write_origin": "unit",
+        "write_offset": 2400,
+        "bytes": 16,
+        "store": "0x30eddf"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 704,
+        "write_origin": "unit",
+        "write_offset": 2416,
+        "bytes": 16,
+        "store": "0x30ede7"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 720,
+        "write_origin": "unit",
+        "write_offset": 2432,
+        "bytes": 16,
+        "store": "0x30edef"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 736,
+        "write_origin": "unit",
+        "write_offset": 2448,
+        "bytes": 16,
+        "store": "0x30edf7"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 752,
+        "write_origin": "unit",
+        "write_offset": 2464,
+        "bytes": 16,
+        "store": "0x30edff"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 768,
+        "write_origin": "unit",
+        "write_offset": 2480,
+        "bytes": 16,
+        "store": "0x30edc7"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 784,
+        "write_origin": "unit",
+        "write_offset": 2496,
+        "bytes": 16,
+        "store": "0x30edcf"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 800,
+        "write_origin": "unit",
+        "write_offset": 2512,
+        "bytes": 16,
+        "store": "0x30edd7"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 816,
+        "write_origin": "unit",
+        "write_offset": 2528,
+        "bytes": 16,
+        "store": "0x30eddf"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 832,
+        "write_origin": "unit",
+        "write_offset": 2544,
+        "bytes": 16,
+        "store": "0x30ede7"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 848,
+        "write_origin": "unit",
+        "write_offset": 2560,
+        "bytes": 16,
+        "store": "0x30edef"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 864,
+        "write_origin": "unit",
+        "write_offset": 2576,
+        "bytes": 16,
+        "store": "0x30edf7"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 880,
+        "write_origin": "unit",
+        "write_offset": 2592,
+        "bytes": 16,
+        "store": "0x30edff"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 896,
+        "write_origin": "unit",
+        "write_offset": 2608,
+        "bytes": 16,
+        "store": "0x30edc7"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 912,
+        "write_origin": "unit",
+        "write_offset": 2624,
+        "bytes": 16,
+        "store": "0x30edcf"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 928,
+        "write_origin": "unit",
+        "write_offset": 2640,
+        "bytes": 16,
+        "store": "0x30edd7"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 944,
+        "write_origin": "unit",
+        "write_offset": 2656,
+        "bytes": 16,
+        "store": "0x30eddf"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 960,
+        "write_origin": "unit",
+        "write_offset": 2672,
+        "bytes": 16,
+        "store": "0x30ede7"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 976,
+        "write_origin": "unit",
+        "write_offset": 2688,
+        "bytes": 16,
+        "store": "0x30edef"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 992,
+        "write_origin": "unit",
+        "write_offset": 2704,
+        "bytes": 16,
+        "store": "0x30edf7"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 1008,
+        "write_origin": "unit",
+        "write_offset": 2720,
+        "bytes": 16,
+        "store": "0x30edff"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 1024,
+        "write_origin": "unit",
+        "write_offset": 2736,
+        "bytes": 16,
+        "store": "0x30edc7"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 1040,
+        "write_origin": "unit",
+        "write_offset": 2752,
+        "bytes": 16,
+        "store": "0x30edcf"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 1056,
+        "write_origin": "unit",
+        "write_offset": 2768,
+        "bytes": 16,
+        "store": "0x30edd7"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 1072,
+        "write_origin": "unit",
+        "write_offset": 2784,
+        "bytes": 16,
+        "store": "0x30eddf"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 1088,
+        "write_origin": "unit",
+        "write_offset": 2800,
+        "bytes": 16,
+        "store": "0x30ede7"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 1104,
+        "write_origin": "unit",
+        "write_offset": 2816,
+        "bytes": 16,
+        "store": "0x30edef"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 1120,
+        "write_origin": "unit",
+        "write_offset": 2832,
+        "bytes": 16,
+        "store": "0x30edf7"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 1136,
+        "write_origin": "unit",
+        "write_offset": 2848,
+        "bytes": 16,
+        "store": "0x30edff"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 1152,
+        "write_origin": "unit",
+        "write_offset": 2864,
+        "bytes": 16,
+        "store": "0x30ee13"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 1168,
+        "write_origin": "unit",
+        "write_offset": 2880,
+        "bytes": 16,
+        "store": "0x30ee1a"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 1184,
+        "write_origin": "unit",
+        "write_offset": 2896,
+        "bytes": 16,
+        "store": "0x30ee22"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 1200,
+        "write_origin": "unit",
+        "write_offset": 2912,
+        "bytes": 16,
+        "store": "0x30ee2a"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 1216,
+        "write_origin": "unit",
+        "write_offset": 2928,
+        "bytes": 16,
+        "store": "0x30ee32"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 1232,
+        "write_origin": "unit",
+        "write_offset": 2944,
+        "bytes": 16,
+        "store": "0x30ee3a"
+      },
+      {
+        "read_origin": "saved_slot",
+        "read_offset": 1248,
+        "write_origin": "unit",
+        "write_offset": 2960,
+        "bytes": 16,
+        "store": "0x30ee44"
+      }
+    ],
+    "operation_count": 158
+  },
+  "snapshot": {
+    "source_start": [
+      "unit",
+      1712
+    ],
+    "destination_start": [
+      "saved_slot",
+      0
+    ],
+    "bytes": 1264,
+    "vector_pairs": 79,
+    "first": {
+      "read_origin": "unit",
+      "read_offset": 1712,
+      "write_origin": "saved_slot",
+      "write_offset": 0,
+      "bytes": 16,
+      "store": "0x30f067"
+    },
+    "last": {
+      "read_origin": "unit",
+      "read_offset": 2960,
+      "write_origin": "saved_slot",
+      "write_offset": 1248,
+      "bytes": 16,
+      "store": "0x30f0e1"
+    },
+    "pairs": [
+      {
+        "read_origin": "unit",
+        "read_offset": 1712,
+        "write_origin": "saved_slot",
+        "write_offset": 0,
+        "bytes": 16,
+        "store": "0x30f067"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 1728,
+        "write_origin": "saved_slot",
+        "write_offset": 16,
+        "bytes": 16,
+        "store": "0x30f06f"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 1744,
+        "write_origin": "saved_slot",
+        "write_offset": 32,
+        "bytes": 16,
+        "store": "0x30f077"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 1760,
+        "write_origin": "saved_slot",
+        "write_offset": 48,
+        "bytes": 16,
+        "store": "0x30f07f"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 1776,
+        "write_origin": "saved_slot",
+        "write_offset": 64,
+        "bytes": 16,
+        "store": "0x30f087"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 1792,
+        "write_origin": "saved_slot",
+        "write_offset": 80,
+        "bytes": 16,
+        "store": "0x30f08f"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 1808,
+        "write_origin": "saved_slot",
+        "write_offset": 96,
+        "bytes": 16,
+        "store": "0x30f097"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 1824,
+        "write_origin": "saved_slot",
+        "write_offset": 112,
+        "bytes": 16,
+        "store": "0x30f09f"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 1840,
+        "write_origin": "saved_slot",
+        "write_offset": 128,
+        "bytes": 16,
+        "store": "0x30f067"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 1856,
+        "write_origin": "saved_slot",
+        "write_offset": 144,
+        "bytes": 16,
+        "store": "0x30f06f"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 1872,
+        "write_origin": "saved_slot",
+        "write_offset": 160,
+        "bytes": 16,
+        "store": "0x30f077"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 1888,
+        "write_origin": "saved_slot",
+        "write_offset": 176,
+        "bytes": 16,
+        "store": "0x30f07f"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 1904,
+        "write_origin": "saved_slot",
+        "write_offset": 192,
+        "bytes": 16,
+        "store": "0x30f087"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 1920,
+        "write_origin": "saved_slot",
+        "write_offset": 208,
+        "bytes": 16,
+        "store": "0x30f08f"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 1936,
+        "write_origin": "saved_slot",
+        "write_offset": 224,
+        "bytes": 16,
+        "store": "0x30f097"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 1952,
+        "write_origin": "saved_slot",
+        "write_offset": 240,
+        "bytes": 16,
+        "store": "0x30f09f"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 1968,
+        "write_origin": "saved_slot",
+        "write_offset": 256,
+        "bytes": 16,
+        "store": "0x30f067"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 1984,
+        "write_origin": "saved_slot",
+        "write_offset": 272,
+        "bytes": 16,
+        "store": "0x30f06f"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2000,
+        "write_origin": "saved_slot",
+        "write_offset": 288,
+        "bytes": 16,
+        "store": "0x30f077"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2016,
+        "write_origin": "saved_slot",
+        "write_offset": 304,
+        "bytes": 16,
+        "store": "0x30f07f"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2032,
+        "write_origin": "saved_slot",
+        "write_offset": 320,
+        "bytes": 16,
+        "store": "0x30f087"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2048,
+        "write_origin": "saved_slot",
+        "write_offset": 336,
+        "bytes": 16,
+        "store": "0x30f08f"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2064,
+        "write_origin": "saved_slot",
+        "write_offset": 352,
+        "bytes": 16,
+        "store": "0x30f097"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2080,
+        "write_origin": "saved_slot",
+        "write_offset": 368,
+        "bytes": 16,
+        "store": "0x30f09f"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2096,
+        "write_origin": "saved_slot",
+        "write_offset": 384,
+        "bytes": 16,
+        "store": "0x30f067"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2112,
+        "write_origin": "saved_slot",
+        "write_offset": 400,
+        "bytes": 16,
+        "store": "0x30f06f"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2128,
+        "write_origin": "saved_slot",
+        "write_offset": 416,
+        "bytes": 16,
+        "store": "0x30f077"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2144,
+        "write_origin": "saved_slot",
+        "write_offset": 432,
+        "bytes": 16,
+        "store": "0x30f07f"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2160,
+        "write_origin": "saved_slot",
+        "write_offset": 448,
+        "bytes": 16,
+        "store": "0x30f087"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2176,
+        "write_origin": "saved_slot",
+        "write_offset": 464,
+        "bytes": 16,
+        "store": "0x30f08f"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2192,
+        "write_origin": "saved_slot",
+        "write_offset": 480,
+        "bytes": 16,
+        "store": "0x30f097"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2208,
+        "write_origin": "saved_slot",
+        "write_offset": 496,
+        "bytes": 16,
+        "store": "0x30f09f"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2224,
+        "write_origin": "saved_slot",
+        "write_offset": 512,
+        "bytes": 16,
+        "store": "0x30f067"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2240,
+        "write_origin": "saved_slot",
+        "write_offset": 528,
+        "bytes": 16,
+        "store": "0x30f06f"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2256,
+        "write_origin": "saved_slot",
+        "write_offset": 544,
+        "bytes": 16,
+        "store": "0x30f077"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2272,
+        "write_origin": "saved_slot",
+        "write_offset": 560,
+        "bytes": 16,
+        "store": "0x30f07f"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2288,
+        "write_origin": "saved_slot",
+        "write_offset": 576,
+        "bytes": 16,
+        "store": "0x30f087"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2304,
+        "write_origin": "saved_slot",
+        "write_offset": 592,
+        "bytes": 16,
+        "store": "0x30f08f"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2320,
+        "write_origin": "saved_slot",
+        "write_offset": 608,
+        "bytes": 16,
+        "store": "0x30f097"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2336,
+        "write_origin": "saved_slot",
+        "write_offset": 624,
+        "bytes": 16,
+        "store": "0x30f09f"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2352,
+        "write_origin": "saved_slot",
+        "write_offset": 640,
+        "bytes": 16,
+        "store": "0x30f067"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2368,
+        "write_origin": "saved_slot",
+        "write_offset": 656,
+        "bytes": 16,
+        "store": "0x30f06f"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2384,
+        "write_origin": "saved_slot",
+        "write_offset": 672,
+        "bytes": 16,
+        "store": "0x30f077"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2400,
+        "write_origin": "saved_slot",
+        "write_offset": 688,
+        "bytes": 16,
+        "store": "0x30f07f"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2416,
+        "write_origin": "saved_slot",
+        "write_offset": 704,
+        "bytes": 16,
+        "store": "0x30f087"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2432,
+        "write_origin": "saved_slot",
+        "write_offset": 720,
+        "bytes": 16,
+        "store": "0x30f08f"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2448,
+        "write_origin": "saved_slot",
+        "write_offset": 736,
+        "bytes": 16,
+        "store": "0x30f097"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2464,
+        "write_origin": "saved_slot",
+        "write_offset": 752,
+        "bytes": 16,
+        "store": "0x30f09f"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2480,
+        "write_origin": "saved_slot",
+        "write_offset": 768,
+        "bytes": 16,
+        "store": "0x30f067"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2496,
+        "write_origin": "saved_slot",
+        "write_offset": 784,
+        "bytes": 16,
+        "store": "0x30f06f"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2512,
+        "write_origin": "saved_slot",
+        "write_offset": 800,
+        "bytes": 16,
+        "store": "0x30f077"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2528,
+        "write_origin": "saved_slot",
+        "write_offset": 816,
+        "bytes": 16,
+        "store": "0x30f07f"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2544,
+        "write_origin": "saved_slot",
+        "write_offset": 832,
+        "bytes": 16,
+        "store": "0x30f087"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2560,
+        "write_origin": "saved_slot",
+        "write_offset": 848,
+        "bytes": 16,
+        "store": "0x30f08f"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2576,
+        "write_origin": "saved_slot",
+        "write_offset": 864,
+        "bytes": 16,
+        "store": "0x30f097"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2592,
+        "write_origin": "saved_slot",
+        "write_offset": 880,
+        "bytes": 16,
+        "store": "0x30f09f"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2608,
+        "write_origin": "saved_slot",
+        "write_offset": 896,
+        "bytes": 16,
+        "store": "0x30f067"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2624,
+        "write_origin": "saved_slot",
+        "write_offset": 912,
+        "bytes": 16,
+        "store": "0x30f06f"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2640,
+        "write_origin": "saved_slot",
+        "write_offset": 928,
+        "bytes": 16,
+        "store": "0x30f077"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2656,
+        "write_origin": "saved_slot",
+        "write_offset": 944,
+        "bytes": 16,
+        "store": "0x30f07f"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2672,
+        "write_origin": "saved_slot",
+        "write_offset": 960,
+        "bytes": 16,
+        "store": "0x30f087"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2688,
+        "write_origin": "saved_slot",
+        "write_offset": 976,
+        "bytes": 16,
+        "store": "0x30f08f"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2704,
+        "write_origin": "saved_slot",
+        "write_offset": 992,
+        "bytes": 16,
+        "store": "0x30f097"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2720,
+        "write_origin": "saved_slot",
+        "write_offset": 1008,
+        "bytes": 16,
+        "store": "0x30f09f"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2736,
+        "write_origin": "saved_slot",
+        "write_offset": 1024,
+        "bytes": 16,
+        "store": "0x30f067"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2752,
+        "write_origin": "saved_slot",
+        "write_offset": 1040,
+        "bytes": 16,
+        "store": "0x30f06f"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2768,
+        "write_origin": "saved_slot",
+        "write_offset": 1056,
+        "bytes": 16,
+        "store": "0x30f077"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2784,
+        "write_origin": "saved_slot",
+        "write_offset": 1072,
+        "bytes": 16,
+        "store": "0x30f07f"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2800,
+        "write_origin": "saved_slot",
+        "write_offset": 1088,
+        "bytes": 16,
+        "store": "0x30f087"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2816,
+        "write_origin": "saved_slot",
+        "write_offset": 1104,
+        "bytes": 16,
+        "store": "0x30f08f"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2832,
+        "write_origin": "saved_slot",
+        "write_offset": 1120,
+        "bytes": 16,
+        "store": "0x30f097"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2848,
+        "write_origin": "saved_slot",
+        "write_offset": 1136,
+        "bytes": 16,
+        "store": "0x30f09f"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2864,
+        "write_origin": "saved_slot",
+        "write_offset": 1152,
+        "bytes": 16,
+        "store": "0x30f0b2"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2880,
+        "write_origin": "saved_slot",
+        "write_offset": 1168,
+        "bytes": 16,
+        "store": "0x30f0b9"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2896,
+        "write_origin": "saved_slot",
+        "write_offset": 1184,
+        "bytes": 16,
+        "store": "0x30f0c1"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2912,
+        "write_origin": "saved_slot",
+        "write_offset": 1200,
+        "bytes": 16,
+        "store": "0x30f0c9"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2928,
+        "write_origin": "saved_slot",
+        "write_offset": 1216,
+        "bytes": 16,
+        "store": "0x30f0d1"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2944,
+        "write_origin": "saved_slot",
+        "write_offset": 1232,
+        "bytes": 16,
+        "store": "0x30f0d9"
+      },
+      {
+        "read_origin": "unit",
+        "read_offset": 2960,
+        "write_origin": "saved_slot",
+        "write_offset": 1248,
+        "bytes": 16,
+        "store": "0x30f0e1"
+      }
+    ],
+    "operation_count": 158
+  },
+  "answer": "Both copies cover unit[6B0,BA0), not [730,C20). Restore includes phase6B4, current714 and B88; bitmap release compares original incoming source R8 despite overwritten B88.",
+  "fields": [
+    {
+      "unit_offset": "0x6b4",
+      "saved_offset": "0x4",
+      "meaning": "phase"
+    },
+    {
+      "unit_offset": "0x714",
+      "saved_offset": "0x64",
+      "meaning": "current action"
+    },
+    {
+      "unit_offset": "0xb88",
+      "saved_offset": "0x4d8",
+      "meaning": "saved pointer field"
+    }
+  ],
+  "release_pointer": "R8 loaded at30EDA0 before any copy, not rewritten before30EE5D; fieldB88 contents may differ after the copy. Actual paired slot match clears its bitmap bit, no match still returns1.",
+  "release_slots": [
+    {
+      "slot": 0,
+      "pointer": "022BEFC0+0x0",
+      "bitmap_byte": "022BEFB0",
+      "bit": 0
+    },
+    {
+      "slot": 1,
+      "pointer": "022BEFC0+0x4f0",
+      "bitmap_byte": "022BEFB0",
+      "bit": 1
+    },
+    {
+      "slot": 2,
+      "pointer": "022BEFC0+0x9e0",
+      "bitmap_byte": "022BEFB0",
+      "bit": 2
+    },
+    {
+      "slot": 3,
+      "pointer": "022BEFC0+0xed0",
+      "bitmap_byte": "022BEFB0",
+      "bit": 3
+    },
+    {
+      "slot": 4,
+      "pointer": "022BEFC0+0x13c0",
+      "bitmap_byte": "022BEFB0",
+      "bit": 4
+    },
+    {
+      "slot": 5,
+      "pointer": "022BEFC0+0x18b0",
+      "bitmap_byte": "022BEFB0",
+      "bit": 5
+    },
+    {
+      "slot": 6,
+      "pointer": "022BEFC0+0x1da0",
+      "bitmap_byte": "022BEFB0",
+      "bit": 6
+    },
+    {
+      "slot": 7,
+      "pointer": "022BEFC0+0x2290",
+      "bitmap_byte": "022BEFB0",
+      "bit": 7
+    }
+  ],
+  "snapshot_order": "Allocate slot, copy current block, call memset(unit+6B0,0,4F0) with RDX decremented to0, then set B88 to allocated RDI. No slot 694/695/696 is in the copied range.",
+  "limitations": [
+    "Address/order proof only, no native/emulated original-code execution or live observation",
+    "Copy-source and unit destination must be mapped valid disjoint 4F0-byte buffers; arbitrary overlaps are not proven safe",
+    "Snapshot allocator/native memset normal return and memory validity are assumptions, not stub-established effects",
+    "Restored B88 is saved content, not automatically null; neither unique ownership, nesting, reuse safety nor scheduler ordering is established",
+    "EXP091 prior85cases/mutations belong to ORACLE, not this package; known consumers require additive correction and a copy-origin producer regression"
+  ]
+}

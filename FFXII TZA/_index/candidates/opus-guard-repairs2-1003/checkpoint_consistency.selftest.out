@@ -1,0 +1,31 @@
+ok   summary table parsed: [('contract', {'MET': 47, 'SCOPE-SHORT': 3}, 1)]
+ok   PROGRESS headline parsed
+ok   CURRENT claim detected
+ok   STALE label is not a CURRENT claim
+ok   C9 unchanged worklist cell -> STALE worklist, not FAIL
+ok   C9 SAME-DAY re-score of a worklist cell without the citation -> FAIL (the date-ordered rule called it old)
+ok   C9 a new exclusion on a non-worklist cell, dated the policy day -> FAIL
+ok   C9 a re-read cell citing the amendment clears the worklist
+ok   full C1-C9 result set is complete
+ok   a result set without C5 is incomplete (named C5)
+ok   the partial set is complete only against the partial requirement
+ok   C5 correct control -> PASS
+ok   C5 wrong count -> FAIL
+ok   C5 wrong denominator -> FAIL
+ok   C5 MET while rows hold NOT MET -> FAIL
+ok   C5 NOT_MET with an unparseable count -> FAIL
+ok   C5 missing verdicts line -> FAIL (was: nm is None -> PASS)
+ok   C5 malformed JSON -> FAIL
+ok   C5 no JSON -> FAIL
+ok   C5 unknown verdict -> FAIL
+ok   C5 zero NOT MET rows: verdicts OK, gate NOT_MET for another check -> PASS (explicitly evaluated)
+ok   C5 zero NOT MET rows: NOT_MET although every detail line is OK -> FAIL
+ok   C5 zero NOT MET rows: wrong denominator in the OK line -> FAIL
+ok   C9 before the policy commit, no marker -> not in force
+ok   C9 descendant of the policy commit with the marker removed -> FAIL (was: PASS 'not in force')
+ok   C9 descendant with the marker -> evaluated
+ok   C9 marker gone but a versioned successor in force -> successor
+ok   a run that rewrites its copied input leaves the live original unchanged
+ok   an undeclared input is not materialized
+ok   inputs are copied (no link) and the receipt hash is the source's
+self-test: 0 failure(s)

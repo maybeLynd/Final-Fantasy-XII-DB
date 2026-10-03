@@ -1,0 +1,19 @@
+{
+  "producer_complete": true,
+  "status": "ACTUAL_CLI_FAILED_UPSTREAM_REFUSED",
+  "positive_reused_sha256": "021098f4b4df344db937192ec660887ee0a9e896bff9c7485248443fea1d0983",
+  "receipt": {
+    "argv": [
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+      "-B",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\uq147-summoner-cleanup-order\\prove-ko-release-partition.py",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\uq147-summoner-cleanup-order\\ko-release-status-control-01\\refused-result.json",
+      "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\uq147-summoner-cleanup-order\\ko-release-status-control-01\\failed-upstream.json"
+    ],
+    "driver_sha256": "aac8b52cc0b60928c3526cd1690c4c8cfe087d76967e8e03ee775b9986643c53",
+    "terminal": true,
+    "exit": 1,
+    "result_exists": false,
+    "method": "Labelled disposable failed capture-status input to the actual producer CLI; source/game untouched"
+  }
+}

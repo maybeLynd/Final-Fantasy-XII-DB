@@ -54,7 +54,7 @@ indexes and the discipline the steps share.
 
 ```
 02AEE054  u32  \
-02AEE058  u32   |  the shared scratch record — the ONLY channel between steps (ST-4)
+02AEE058  u32   |  ~~the shared scratch record — the ONLY channel between steps (ST-4)~~ three words (+0x9C/+0xA0/+0xA4) of the shared scratch record BattleFormulaScratch 02AEDFB8 (0xA8): the preparation-to-finalize channel, one of 15 cross-step cells of the block, not the only one (ST-4) *(corrected 2026-10-03, FABLE, on SWE2-AUDIT-SPEC's L2 expansion)*
 02AEE05C  u32  /   <- corrected 2026-10-02, OPUS: all three words are f32, not u32 (0038A15B-0038A163 addss / movss [02AEE054]; 0038BE0A-0038BE1A mulss)
 ```
 
@@ -91,8 +91,16 @@ than one id.** Re-measured and enumerated:
 read at the bytes. *A recipe naming one of those ids is well-formed and does nothing, which is a
 way authored data can disable a step without restructuring the list.*
 
-**ST-4 — The steps share NO arguments and NO return values; they communicate only through the
-scratch record, so the ORDER in the recipe is the semantics.** Preparation steps (the 60–79 band)
+~~**ST-4 — The steps share NO arguments and NO return values; they communicate only through the
+scratch record, so the ORDER in the recipe is the semantics.**~~ **ST-4 — No step hands an argument or a return value to the next: the loop reloads the same three
+arguments before every call (`003863C5`–`003863CD`) and never reads `rax`. The steps communicate through
+the shared scratch record, which is the whole `BattleFormulaScratch` block (`02AEDFB8`, 0xA8) and not only
+its three words `02AEE054`/`58`/`5C`, so the ORDER in the recipe is the semantics.** In the 152 target
+bodies themselves (callees not followed), 15 cells of the block are written by one step and read by a
+different step, and 12 of them lie outside the three words. For example, slot 21 (`00388F20`) writes the
+hit chance `02AEDFE0` (`+0x28`) at `00388F37` and `00388FA1`. Slot 40 (`00389670`) compares that cell with
+its draw at `0038968D` and, on a miss, sets `02AEDFB8` (`003896A0`), which ends the recipe at `003863D7`.
+No cell outside the block passes between step bodies. *(corrected 2026-10-03, FABLE, on SWE2-AUDIT-SPEC's L2 expansion)* Preparation steps (the 60–79 band)
 write `02AEE054`/`58`/`5C`; the modifier band rewrites the same three slots; the finalize step reads
 them and produces the damage. *So the same step id means different things at different positions in
 a list, and a reimplementation may not reorder, memoise or parallelise steps — there is no data
@@ -113,7 +121,7 @@ synchronise the stream rather than the outcome.*
 
 ## 5. State
 
-**Owned:** nothing. **Written and read across operations:** the three scratch words (`ST-4`).
+**Owned:** nothing. **Written and read across operations:** ~~the three scratch words (`ST-4`)~~ the `BattleFormulaScratch` block `02AEDFB8` (0xA8). It holds the three words `02AEE054`/`58`/`5C` between preparation and finalize, and further cells such as the hit chance `02AEDFE0` and the stop flag `02AEDFB8` (`ST-4`) *(corrected 2026-10-03, FABLE, on SWE2-AUDIT-SPEC's L2 expansion)*.
 **Read, never written by this contract's subject:** the table itself — though see `§10`.
 
 ## 6. Relationships
@@ -127,8 +135,10 @@ synchronise the stream rather than the outcome.*
 
 ## 7. State transitions
 
-*recipe id → table lookup → call → the step mutates the scratch record → next id.* There is no
-other channel and no return path (`ST-4`).
+*recipe id → table lookup → call → the step mutates the scratch record → next id.* ~~There is no
+other channel and no return path (`ST-4`).~~ There is no
+return path. The channel is the scratch block, and a step that leaves `02AEDFB8 == 1` ends the list at
+`003863D7` (`ST-4`). *(corrected 2026-10-03, FABLE, on SWE2-AUDIT-SPEC's L2 expansion)*
 
 ## 8. Script · resource · event interactions
 
@@ -163,9 +173,41 @@ enumerate targets with more than one id and assert **seven**, and that `42 + 160
 
 ## 13. Runtime validation
 
-**None.** No experiment executes this dispatch. S-22's runtime cell is not addressed by this
+~~**None.** No experiment executes this dispatch. S-22's runtime cell is not addressed by this
 contract. *Stated rather than left blank so a CONTRACT READY header is not read as evidence of
-execution.*
+execution.*~~ **Isolated native replay, not a running game.** Evidence class NATIVE-REPLAY (unicorn), `live_game: false`:
+the shipped bytes run at their own addresses, with no application stub and planted data only. Three OPUS
+packages execute this dispatch. FABLE re-ran all of them on 2026-10-03 under unicorn 2.1.4, and every
+`result.json` reproduced byte-identically.
+
+- [`s22-opus-replay-steps-and-element-scaling`](../_index/candidates/s22-opus-replay-steps-and-element-scaling/README.md)
+  (2026-09-25, 9/9; `result.json` md5 `99336e05…`):
+  - §12's table facts, read from the mapped image (`ST-1`, `ST-2`, `ST-3`, `ST-5`; these are static by nature).
+  - All 42 no-op ids executed, and none writes anything (`ST-3`).
+  - Id 65 then id 113, called through `stepTable[id]`. The preparation writes exactly `02AEE054`/`58`/`5C`
+    and draws the shared MT19937 once (`ST-7`). The finalize writes `trunc((058 − 05C) × 054)`; that is
+    `ST-4`'s three-word part.
+  - Ids 113 and 125 run one body (`ST-5`).
+- [`s22-opus-replay-recipe-resolver`](../_index/candidates/s22-opus-replay-recipe-resolver/README.md)
+  (2026-09-25, md5 `a226db98…`) and its `we1.py` (2026-09-26, 4/4, md5 `5680857b…`):
+  - Steps are called by the real loop (`003863D0`) on shipped recipes 2, 4, 5, 6, 39, 74 and 90, and on
+    the seven dual-stage recipes.
+  - The loop stopping on `02AEDFB8 == 1` is recorded, not asserted.
+- [`s22-opus-replay-severe-weather-gate`](../_index/candidates/s22-opus-replay-severe-weather-gate/README.md)
+  (2026-09-26, 5/5, md5 `867bbaf3…`): steps 35 and 36 scale the hit chance `02AEDFE0` by 0.8 and 0.5.
+
+**What is static, or executed only in isolation.**
+- `ST-4` as corrected on 2026-10-03: none of the three packages asserts a hand-off through a block cell
+  outside the three words. Recipe 14 (`[21, 31, 32, 40]`, run by `we1.py`) does run slot 21 before slot 40,
+  but the run records only the slot list.
+- [`check_s22.py`](../_index/candidates/fable-l2exp-s22-1003/check_s22.py) executes that hand-off
+  directly. With the three words equal, slot 40 ends the recipe when it runs alone and does not when slot 21
+  ran first.
+- The 15-cell figure is an own-body census; callees are not followed.
+- `ST-6` (no shipped user) is a corpus fact.
+- These packages do not pin unicorn (SWE2-AUDIT-SPEC's L2 expansion, item 5).
+
+Nothing here has been observed in a running game. *(corrected 2026-10-03, FABLE, on SWE2-AUDIT-SPEC's L2 expansion)*
 
 ## 14. Unresolved
 

@@ -1,0 +1,45 @@
+{
+ "page": "99-Unresolved-Residual/Unlisted-Code/referenced-code-the-list-never-had.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter-r4",
+ "report": "referenced-code-the-list-never-had-r4.json",
+ "rows": [
+  {
+   "fn": "0088D500",
+   "text": "Factorises `ecx` by trial division (the four divisors at `01CE3060`, then the last divisor plus 2 repeatedly, each kept while it divides the remainder exactly), storing each factor as a dword from `r8+8` onward and moving a factor 2 found after the first position to the front by shifting the earlier factors up one slot, then stores `ecx` to `[r8]` and the factor count to `r8+4`; with the step 6.283185 (`01CEBC78`) divided by `ecx`, for each factor except the last it takes, factor minus 1 times (none when that is not positive), the next multiple of the product of the earlier factors (1 for the first factor) and, when `ecx` divided by that product times this factor is above 2, writes (quotient - 3) / 2 + 1 float pairs into the array at `rdx` from the running offset: the cosine (`00861F62`) and sine (`00861F68`), computed in double from the float product and narrowed, of 1, 2, 3 and so on times the multiple times the step, advancing the offset by that quotient per multiple; it returns with no result value.",
+   "anchors": [
+    [
+     "0088D556",
+     "idiv"
+    ],
+    [
+     "0088D5A3",
+     "mov"
+    ],
+    [
+     "0088D5FF",
+     "divss"
+    ],
+    [
+     "0088D6E7",
+     "call"
+    ],
+    [
+     "0088D6FA",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "0088D500",
+   "why": "byte re-read by a non-drafting agent: 'walks that factor's multiples' and 'the multiple's angle' are wrong: the inner loop advances `ld` by the product of the EARLIER factors (`r12d`, 1 for the first factor; `0088D6A0 add ebp, r12d`), not by the factor, and the angle is that running multiple times the step (`0088D6AF mulss xmm8, xmm10`); the argument to cos/sin is the float product widened to double (`cvtss2sd`)."
+  }
+ ],
+ "mode": "ee",
+ "family": ""
+}

@@ -562,3 +562,11 @@ Interior anchor `00320654` (function `00320640`).
 | function | size | entered from | what the body does | interior anchors | moved from |
 |---|---|---|---|---|---|
 | `00322950` | 67 B | `002C7660` + 0x1AD | returns 0 when bit `0x10` of byte `02089340` is clear; otherwise passes the result of the call at `00322950` + 0xD to the call at `00322950` + 0x1A and that result with 0 to the call at `00322950` + 0x29, returning 0 if either of the first two results is null and else 1 when the last call returns 0 and 0 when it returns non-zero | Interior anchor `00322954`; Interior anchor `0032295D`; Interior anchor `0032296A`; Interior anchor `00322979`; Interior anchor `00322982` | [the-status-write-and-its-side-effects](../../10-Status-Periodic-Terminal/Status-Write/the-status-write-and-its-side-effects.md) |
+
+## Homed bodies: functions reached only indirectly whose callees this page cites (FABLE, 2026-10-03, F homing)
+
+*No page cited these functions and none of their callers is documented: they are reached by table or pointer dispatch or through undocumented callers. Each one calls something this page documents, which the sentence names. Each sentence states what the body does (access and representation, not purpose); the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's F homing pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-the-record-00329220-builds-homing-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0035D5C0` | 43 B | when bit 0x200 of dword `022C83E8` is clear, calls `00273BA0(022C8B08)` and then sets that bit; does nothing when the bit is already set | Interior anchor `0035D5C4`; Interior anchor `0035D5CE`; Interior anchor `0035D5D7`; Interior anchor `0035D5DC` |

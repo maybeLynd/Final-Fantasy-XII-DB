@@ -60,18 +60,29 @@ movement step spends on its next candidate position.
 CollisionBody
   +0x06   u8     layer
   +0x07   u8     active this tick          (set by registration, cleared by the reset)
-  +0x08   ?      weight
+  +0x08   ~~?~~ f32  weight: read as f32 for both bodies (00315017, 0031502A); 00314E10 forms A's share from the two (00314E16-00314E27)  *(corrected 2026-10-03, FABLE, on OPUS-REQ-FABLE-S19-SEPARATION-CONTRACT-1003; record _index/candidates/fable-s19-section3-1003/README.md)*
   +0x18   u128   remembered pair bitmap
-  +0xE8   f32    squared push length
+  +0xE8   f32    ~~squared push length~~ squared length of the increment the latest push-mode contact gave the OTHER body
+                 (00315303 stores B's from A's increment, 0031533F A's from B's); overwritten per contact, not accumulated;
+                 the one reader found is 002E5380, which tests it against 0 (002E53B4)  *(corrected 2026-10-03, FABLE, on OPUS-REQ-FABLE-S19-SEPARATION-CONTRACT-1003; record _index/candidates/fable-s19-section3-1003/README.md)*
   +0xEC   u8     "a push is pending"
   +0xED   u8     contact count
-  +0xEE   u8     immovable-contact marker
+  +0xEE   u8     ~~immovable-contact marker~~ sole-share marker: 1 on the body that took the whole push of a push-mode contact
+                 (B at 00315263 when w = 0, A at 00315287 when w = 1), 0 on both when they share it (003152A4, 003152AB),
+                 left as it was on the partner that took none; read by 002E5380 (002E53C6), which sets +0xEF when +0xEC is set,
+                 +0xE8 is 0 and this byte is non-zero (002E53CF)  *(corrected 2026-10-03, FABLE, on OPUS-REQ-FABLE-S19-SEPARATION-CONTRACT-1003; record _index/candidates/fable-s19-section3-1003/README.md)*
   +0xF0   f32    radius A         +0xF4  f32  radius B
   +0xFC   ?      margins
-  +0x100  f32    accumulated push x     +0x104  f32  (third component)     +0x108  f32  push z
+  +0x100  f32    accumulated push x     +0x104  f32  ~~(third component)~~ push y     +0x108  f32  push z
+                 +0x104 is written only as the high half of the qword zero with +0x100 (the clear, 003DA9F2, and at allocation),
+                 so it is always 0; the pass's six bodies never touch it alone; 002E5380 reads it alone, as f32, and adds it to
+                 the delta's middle float (002E53F1-002E53FF), between x (002E53DF) and z (002E5405)  *(corrected 2026-10-03, FABLE, on OPUS-REQ-FABLE-S19-SEPARATION-CONTRACT-1003; record _index/candidates/fable-s19-section3-1003/README.md)*
   +0x110 / +0x114  weight masks
   +0x119  u8     owner
-  +0x120  u128   the cells this body registered in
+  +0x120  ~~u128~~ u32    the cells this body registered in, one bit per 16-byte mask at 02B57CE0: read as a dword by
+                 registration (003DB078, one mask per bit) and by the walk (003DACAF); the cell routine called at 003DB020+0x48
+                 writes the 16 bytes from +0x120: +0x124 a dword nothing found reads, +0x128 / +0x12C two f32 the walk hands to
+                 the visit (003DACC8, 003DACBD)  *(corrected 2026-10-03, FABLE, on OPUS-REQ-FABLE-S19-SEPARATION-CONTRACT-1003; record _index/candidates/fable-s19-section3-1003/README.md)*
 ```
 
 Shared: 32 cell masks of 16 bytes at `02B57CE0`; the candidate scratch at `02B57EE0`.

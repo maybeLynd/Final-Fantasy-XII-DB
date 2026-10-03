@@ -623,3 +623,11 @@ Interior anchor `001DF9CD` (function `001DF990`).
 |---|---|---|---|
 | `001DDFD0` | 119 B | calls through the pointer at `008C2798` with `rcx`, stores the address `00900F20` at qword `+0` of `rcx`, zeroes qword `+0x68` and stores at dword `+0x70` a mask built from `edx`: 4 when `edx` bit 0 is clear, plus 2 when bit 1 is clear, plus 8 when bit 3 is set, plus 0x10 when bit 2 is set; returns `rcx` | `001DDFE9`, `001DDFF7`, `001DE013`, `001DE023`, `001DE036` |
 | `001E00D0` | 35 B | calls `001E0100` with `rcx` + 8, the incoming `rdx`, `r8` and `r9`, and 0 as the fifth (stack) argument, then returns the incoming `rdx` | `001E00D6`, `001E00DA`, `001E00E5`, `001E00EA` |
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-contract-game-setting-config-ee-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `001E0100` | 600 B | returns `rdx` as a std::string built from `b` = `rcx` (mode dword `[b+0x70]`): when the mode lacks `0x2` and qword `[qword [b+0x40]]` is non-null, from base qword `[qword [b+0x20]]` up to the larger (unsigned) of that pointer and qword `[b+0x68]`; else when it lacks `0x4` and qword `[qword [b+0x38]]` is non-null, from qword `[qword [b+0x18]]` up to that pointer plus the sign-extended dword `[qword [b+0x50]]`; else empty; the bytes go to a stack string through `001A5630`, the result is set empty (capacity 0xF) and given it by `001A4C90`, and a stack string of capacity 0x10 or more is freed with `00210EB0` (when capacity + 1 is 0x1000 or more it frees the stored base qword before the pointer instead, first checking: a pointer with any of `0x1F` set, a stored base not below it, or a gap under 8 or over 0x27 calls `_invalid_parameter_noinfo_noreturn` (IAT `008C2DA8`)); stack cookie `01F44830`, checked by `00808C40` | `001E0128`, `001E014E`, `001E016B`, `001E0209`, `001E0338` |

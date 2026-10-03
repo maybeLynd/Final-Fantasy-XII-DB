@@ -1,0 +1,167 @@
+{
+  "producer_complete": true,
+  "method": "A complete local original CFG/bit22 partition plus accepted copy-domain dependency",
+  "driver_sha256": "aac8b52cc0b60928c3526cd1690c4c8cfe087d76967e8e03ee775b9986643c53",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "source-ko-release-01.json",
+      "sha256": "119783a71346a83977bb0cd7081988d6ec8f6631e5b3cd169153d1966ffafbda"
+    },
+    {
+      "path": "source-restore-gate-01.json",
+      "sha256": "b80601120e4d34f64e2567610a0f7c3b2f9f9d520575baee513fe9d5dbda83ff"
+    },
+    {
+      "path": "retained-copy/source-01.json",
+      "sha256": "31c27aa8b2da192db7c62c62420ef2f44d2cc5cabe79b1149d90dcd782ded67d"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 53,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 25,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 173,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "facts": {
+    "graphs": [
+      {
+        "entry": "0x310780",
+        "instructions": 53,
+        "normal_return_sites": [
+          "0x310860"
+        ],
+        "limits": "Finite normal local CFG; opaque returning calls, no exception/callback/native-effect model"
+      },
+      {
+        "entry": "0x308270",
+        "instructions": 25,
+        "normal_return_sites": [
+          "0x3082e7"
+        ],
+        "limits": "Finite normal local CFG; opaque returning calls, no exception/callback/native-effect model"
+      }
+    ],
+    "local_writes": [
+      {
+        "pc": "0x3107dd",
+        "base": "rdi",
+        "offset": "0xea8",
+        "bytes": 1,
+        "role": "rw"
+      },
+      {
+        "pc": "0x3107ea",
+        "base": "rdi",
+        "offset": "0xea4",
+        "bytes": 4,
+        "role": "w"
+      },
+      {
+        "pc": "0x31080b",
+        "base": "rbx",
+        "offset": "0x0",
+        "bytes": 8,
+        "role": "rw"
+      },
+      {
+        "pc": "0x310825",
+        "base": "rbx",
+        "offset": "0x694",
+        "bytes": 1,
+        "role": "w"
+      }
+    ],
+    "calls": [
+      {
+        "pc": "0x3107af",
+        "target": "0x31b7e0"
+      },
+      {
+        "pc": "0x3107f6",
+        "target": "0x313b30"
+      },
+      {
+        "pc": "0x3107fe",
+        "target": "0x2fead0"
+      },
+      {
+        "pc": "0x310806",
+        "target": "0x308270"
+      },
+      {
+        "pc": "0x310819",
+        "target": "0x30c970"
+      },
+      {
+        "pc": "0x31082c",
+        "target": "0x319420"
+      },
+      {
+        "pc": "0x310839",
+        "target": "0x319140"
+      },
+      {
+        "pc": "0x310856",
+        "target": "0x317e50"
+      }
+    ],
+    "facts": [
+      "310780: with nonNULL receiver/stats/target, BT bit22 -> JB skips target contributor decrement/mask clear when bit22 SET. CLEAR plus target mask bit present admits the block. The DWORD SHL uses CL modulo32; a byte slot index alone is not a proven 0..31 natural bound.",
+      "310780 directly writes only target EA8/EA4, acting flags0 and acting byte694. It has no direct committed714/pendingBA0/battle-mode store, under private separated stack/ordinary object field identity. Callee effects are not excluded.",
+      "308270 separately reads acting flags: BT bit22 -> JAE returns when CLEAR; SET reaches 30C970 and, after normal return, 30EDA0. Earlier calls/interference may change bit22; no atomic first/second observation invariant.",
+      "Accepted d7500f9f/49d0564f2 copy-domain result is reused, not rerun: 30EDA0 copies [unit+6B0,unit+BA0), including committed714 at saved offset64, excluding pendingBA0. Thus supplied valid snapshot can replace current action; it need not clear it. Native helper31B7E0/313B30/2FEAD0/30C970/319420/319140 and natural reachable states remain qualified separately."
+    ],
+    "limits": "Original local code/normal ABI/valid readable and writable state/private separated stack/returning opaque helpers/no interference during each branch. No complete transitive effect, preserved bit22 across calls, natural KO-Dismiss coexistence, live initialization, lifetime, scheduling, presentation or wholeUQ147 proof."
+  },
+  "controls": [
+    {
+      "id": "release-bit22-reversed",
+      "diagnostic": "branch/call/dataflow changed 0x3107c3",
+      "method": "Labelled static source-record control, not original-byte alteration/native execution"
+    },
+    {
+      "id": "restore-bit22-reversed",
+      "diagnostic": "branch/call/dataflow changed 0x308280",
+      "method": "Labelled static source-record control, not original-byte alteration/native execution"
+    },
+    {
+      "id": "restore-target-replaced",
+      "diagnostic": "branch/call/dataflow changed 0x3082c6",
+      "method": "Labelled static source-record control, not original-byte alteration/native execution"
+    },
+    {
+      "id": "command-store-retarget",
+      "diagnostic": "local object-write census changed",
+      "method": "Labelled static source-record control, not original-byte alteration/native execution"
+    }
+  ],
+  "retained_copy": {
+    "commit": "d7500f9f91183c3f48f749d345fb8a35bdb16644",
+    "independent_acceptance": "49d0564f2",
+    "source_sha256": "31c27aa8b2da192db7c62c62420ef2f44d2cc5cabe79b1149d90dcd782ded67d",
+    "result_sha256": "3d07f53b92b6543177a47d895734edc872e044f6355af1be9b641536f11fec7d",
+    "limits": "Existing accepted bounded result consumed, no repeated 79-pair reduction/native regression or external run credit"
+  },
+  "acceptance": "Producer-valid only; new bit22 correction independent review/owning consumption pending, fullUQ147 OPEN"
+}

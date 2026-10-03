@@ -212,3 +212,11 @@ No correction.
 | function | size | what the body does | interior anchors |
 |---|---|---|---|
 | `0051B970` | 96 B | calls `0051F580(rcx, 0051BBE0, rcx)`, then sets dword `02CA83F4` to 1 and calls `0051F580(rcx, 0051BBF0, rcx)`, then sets it to 2 and calls `0051F580(rcx, 0051BBF0, rcx)` again, and finally sets dword `02CA83F4` to 0 | `0051B983`, `0051B98B`, `0051B9A7`, `0051B9BB`, `0051B9C0` |
+
+## No-reference bodies homed by the table that reaches them (FABLE, 2026-10-03)
+
+*No page cited these functions and no census-listed instruction calls or jumps to them: each is reached through data or through code this page documents. Each sentence states what the body does (access and representation, not purpose) and ends with the reference that reaches it; the anchors are instructions inside the body that do it. Handed over by SWE2-EC7 and read whole by FABLE against the certified image; verified by [`apply.py`](../../_index/candidates/fable-noref-how-a-presentation-entry-picks-its-track-data-1003/apply.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic, and every named reference holds or forms the body's address at the bytes.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0051BBE0` | 14 B | when bit 0x1000 of dword `+0xC` is set it tail-jumps at `0051BBE0` + 0x7 (`0051BBE7`); otherwise it returns; passed as the `rdx` argument of the `0051F580` call by `0051B970` + 0x9 | Interior anchor `0051BBE7` |

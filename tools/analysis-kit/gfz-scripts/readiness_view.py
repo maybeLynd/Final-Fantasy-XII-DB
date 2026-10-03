@@ -165,12 +165,19 @@ def readiness_edits(db):
     return out
 
 
+def l2_verdicts(db):
+    """{S-id: L2 verdict word} through the one shared table reader (l2_verdict_table -> progress_report). The old regex
+    took the first S-id row anywhere in the file and the word after its first `|` - the contract column, or a cell of an
+    earlier table - and read 45 systems L2 MET against the table's 31 (SWE2-FRONTIER, 2026-10-03)."""
+    import l2_verdict_table
+    p = os.path.join(db, "_index", "L2-VERDICTS.md")
+    return l2_verdict_table.l2_by_system(p) if os.path.exists(p) else {}
+
+
 def measure(db, lifecycle_path, board_path):
     idx = os.path.join(db, "_index")
     subs = [l.rstrip("\r\n").split("\t") for l in rd(os.path.join(idx, "important-subsystems.tsv")).splitlines()][1:]
-    l2 = {}
-    for m in re.finditer(r"^\|\s*\*?\*?(S-\d+)\*?\*?[^|]*\|\s*\**(MET|NOT MET|PARTIAL|UNMET)?", rd(os.path.join(idx, "L2-VERDICTS.md")), re.M):
-        l2.setdefault(m.group(1), m.group(2) or "UNKNOWN")
+    l2 = l2_verdicts(db)
     types = {}
     for l in rd(os.path.join(db, "_types", "types.tsv")).splitlines()[1:]:
         c = l.split("\t")

@@ -1,0 +1,25 @@
+00308270  push     rbx
+00308272  sub      rsp, 0x20
+00308276  mov      eax, dword ptr [rcx]
+00308278  mov      rbx, rcx
+0030827B  bt       rax, 0x16
+00308280  jae      0x3082e2
+00308282  mov      dword ptr [rcx + 0x28], 0
+00308289  movzx    ecx, byte ptr [rcx + 0x695]
+00308290  call     0x30c970
+00308295  mov      byte ptr [rbx + 0x695], 0xff
+0030829C  lea      rcx, [rip + 0x1fb9b0d]  ; -> 022C1DB0
+003082A3  movzx    eax, byte ptr [rbx + 0xea9]
+003082AA  lea      rdx, [rax + rax*2]
+003082AE  movzx    eax, word ptr [rcx + rdx*4]
+003082B2  mov      word ptr [rbx + 0xdc8], ax
+003082B9  mov      eax, dword ptr [rcx + rdx*4 + 4]
+003082BD  mov      rcx, rbx
+003082C0  mov      dword ptr [rbx + 0xe58], eax
+003082C6  call     0x30eda0
+003082CB  movabs   rax, 0xffffbfffffbfffff
+003082D5  mov      dword ptr [rbx + 0x690], 0
+003082DF  and      qword ptr [rbx], rax
+003082E2  add      rsp, 0x20
+003082E6  pop      rbx
+003082E7  ret      

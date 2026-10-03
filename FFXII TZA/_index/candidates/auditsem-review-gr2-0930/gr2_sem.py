@@ -12,7 +12,7 @@ Run from the repo root:  python -B "Database/FFXII TZA/_index/candidates/auditse
 import collections, csv, io, os, struct, sys
 import capstone, pefile
 
-ROOT = os.getcwd()
+ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), *[os.pardir] * 5))  # repo root, not the cwd (OPUS-REQ-AUDITSEM-SEM-REGRESSIONS-UNRUNNABLE-1003, SWE2-AUDIT-SEM 2026-10-03)
 DB = os.path.join(ROOT, "Database")
 EXE = os.path.join(DB, "Tools", "work", "exe", "FFXII_TZA.exe")
 FUNCS = os.path.join(DB, "Tools", "work", "graph", "functions.tsv")
@@ -173,6 +173,7 @@ check("F8 record: scriptvm-verb-adapter-callbacks.tsv rows 0034DA20 -> 048E npc_
 # =============================== data =================================================================================
 sys.path.insert(0, os.path.join(DB, "FFXII TZA", "25-EBP-Script-Container", "Bytecode-And-Opcodes", "members"))
 cwd = os.getcwd()
+sys.path.insert(0, os.path.join(ROOT, "agent_flow", "tools"))  # the census imports vbfextract from a cwd-relative path (SWE2-AUDIT-SEM 2026-10-03)
 import gen_req_channel_census as G  # noqa: E402
 U32 = lambda b, o: struct.unpack_from("<I", b, o)[0]
 WANT = {0x265: "setfreetargettype", 0x3005: "btlAtelSetUnitType", 0x48E: "npc_to_gimmick", 0x48F: "gimmick_to_npc"}

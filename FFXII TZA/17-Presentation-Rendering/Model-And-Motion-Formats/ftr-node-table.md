@@ -328,3 +328,11 @@ evidence record is routed, not edited. The consumer record is `_index/candidates
 - **Resource - CLIENT and SERVICE (27 edges).** `003AB7F0`, ResourceEntry_FindSectionOffsetByTagAndName (`00409A30`) are called by bodies filed to Resource: ResourceTable_ResolveEntryByIndex (`002ED570`), ResourceEntry_GetResolvedBasePointer (`00409600`), ResourceEntry_FindSectionIndexAndOffset (`00409780`), `00409A60` (+9 more); `003712E0`, `00371330`, `003713C0`, `00372820` (+3 more) reach bodies filed to Resource: ResourceTable_ResolveEntryByIndex (`002ED570`), ResourceEntry_FindSectionPointerByTagAndName (`00409660`), ResourceEntry_ResolveSectionOffset (`004096C0`), ResourceEntry_FindSectionIndexAndOffset (`00409780`) (+2 more) - shared machinery across the layer boundary, no shared ownership.
 - **Save_Load_Settings - CLIENT (1 edge).** `00000100` is also called by bodies filed to save/load/settings: `001DEE90` - shared machinery across the layer boundary, no shared ownership.
 - **StoryEvent - SERVICE (2 edges).** `00418880` reaches bodies filed to story event: `001EC6B0`, `001ED240` - shared machinery across the layer boundary, no shared ownership.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-ftr-node-table-ee-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00800000` | 183 B | with `o` = `rcx`: for each qword `p` of the range qword `[o]`..qword `[o+8]` it skips a null `p`, else calls `00210EB0(qword [p+8])` and `00809950(p, 0x18)`; then calls `00210EB0(qword [o])`; for each qword `p` of the range qword `[o+0x10]`..qword `[o+0x18]` it skips a null `p`, else calls `00210EB0` on qwords `[p+8]`, `[p+0x18]` and `[p+0x28]` and then `00809950(p, 0x50)`; finally tail-jumps to `00210EB0(qword [o+0x10])`; no pointer it frees is cleared | `00800034`, `00800041`, `0080004E`, `00800082`, `0080008F` |

@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\deliver-uq147-ko-release-partition.py",
+    "--deliver",
+    "fresh02"
+  ],
+  "driver_sha256": "1349077844c18af178639e50d295846e3b9157d524f7edc538cd3bce2765717a",
+  "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+  "terminal": false,
+  "exit": null,
+  "exception": "TimeoutExpired(['C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Collaboration\\\\Tools\\\\analysis\\\\venv\\\\Scripts\\\\python.exe', '-B', 'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\Tools\\\\work\\\\ASTRA\\\\runtime-residue-method-retriage\\\\deliver-uq147-ko-release-partition.py', '--deliver', 'fresh02'], 150)"
+}

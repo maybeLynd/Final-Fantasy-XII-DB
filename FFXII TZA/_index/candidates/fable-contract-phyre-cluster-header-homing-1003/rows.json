@@ -1,0 +1,133 @@
+{
+ "page": "22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01HfPRM3vgupD1jscEXG8z9Y",
+ "report": [
+  "fable-contract-phyre-cluster-header-c3.json"
+ ],
+ "rows": [
+  {
+   "fn": "006305A0",
+   "text": "builds a stack record (dword 0, dword `02CF82A8`, qword `rcx`, byte 1) and, for each block in the chain starting at `02CF8270` and linked through qword `+0x78`, walks the ring headed at the block's `+0x80` forward through qword `+0` of each link, stopping at the head or a null link and calling `0063CE80(&record, link - 8)` for each link while `link - 8` is non-null",
+   "anchors": [
+    [
+     "006305AF",
+     "mov"
+    ],
+    [
+     "006305CD",
+     "mov"
+    ],
+    [
+     "006305E7",
+     "mov"
+    ],
+    [
+     "00630608",
+     "call"
+    ],
+    [
+     "00630624",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006306E0",
+   "text": "builds a stack record (dword 0, dword `02CF84A8`, qword `rcx + 0x30`, or 0 when `rcx` is null, byte 1) and, for each block in the chain starting at `02CF8470` and linked through qword `+0x78`, walks the ring headed at the block's `+0x80` forward through qword `+0` of each link, stopping at the head or a null link and calling `0063CE80(&record, link - 8)` for each link while `link - 8` is non-null",
+   "anchors": [
+    [
+     "006306EF",
+     "mov"
+    ],
+    [
+     "00630712",
+     "cmove"
+    ],
+    [
+     "00630727",
+     "mov"
+    ],
+    [
+     "00630748",
+     "call"
+    ],
+    [
+     "00630764",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00630BE0",
+   "text": "builds a stack record (dword 0, dword `02CF82A8`, qword `rcx`, byte 0) and, for each block in the chain starting at `02CF8270` and linked through qword `+0x78`, walks the ring headed at the block's `+0x80` backward through qword `+8` of each link, stopping at the head or a null link and calling `0063CE80(&record, link - 8)` for each link while `link - 8` is non-null",
+   "anchors": [
+    [
+     "00630BEF",
+     "mov"
+    ],
+    [
+     "00630C0D",
+     "mov"
+    ],
+    [
+     "00630C27",
+     "mov"
+    ],
+    [
+     "00630C48",
+     "call"
+    ],
+    [
+     "00630C4D",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00630D20",
+   "text": "builds a stack record (dword 0, dword `02CF84A8`, qword `rcx + 0x30`, or 0 when `rcx` is null, byte 0) and, for each block in the chain starting at `02CF8470` and linked through qword `+0x78`, walks the ring headed at the block's `+0x80` backward through qword `+8` of each link, stopping at the head or a null link and calling `0063CE80(&record, link - 8)` for each link while `link - 8` is non-null",
+   "anchors": [
+    [
+     "00630D2F",
+     "mov"
+    ],
+    [
+     "00630D51",
+     "cmove"
+    ],
+    [
+     "00630D67",
+     "mov"
+    ],
+    [
+     "00630D88",
+     "call"
+    ],
+    [
+     "00630D8D",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "001C1A60",
+   "why": [
+    "not a callee-host homing body (or already explained)"
+   ]
+  },
+  {
+   "fn": "001C2230",
+   "why": [
+    "not a callee-host homing body (or already explained)"
+   ]
+  }
+ ],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing",
+ "family": ""
+}

@@ -659,3 +659,11 @@ Interior anchor `002B3B40` (function `002B3B20`).
 `002DD8B0` (85 B) is the int-to-float position scatter: `edx`, `r9d`, `r8d` and the stack arg convert via `cvtdq2ps` into `+0x20/+0x24`, `+0x50/+0x54`, `+0x80`, `+0x84` and `+0xB0/+0xB4` - the quad/rect float write the two text-control callers share.
 
 Interior anchor `002DD8C5` (function `002DD8B0`).
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-the-text-control-code-language-ee-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `002B5240` | 333 B | returns at once for a null `rcx` = `o`; stores 0x80808080 to dword `[o+0x28]`, and returns when source qword `[o+8]` or destination qword `[o]` is null; otherwise copies the source into the destination token by token: for each token at source offset `p` (length `n` = `002B1FB0(token)`), when `n` + `p` exceeds the signed word `[o+0x20]` it empties the destination (byte 0, word `+0x22` = 0) and returns; a token starting 0x0F, 0x38 is replaced by the C string `002639E0(word)` (word from `003FFB00(token+1, &word)`, copied with `memcpy` `00861EBA` for its `strlen`), and a null string ends the copy; any other token is copied as its `n` bytes; it continues while the source byte at the next offset is non-zero (an empty source copies nothing), then writes a terminating 0 and stores the written length + 1 to word `+0x22` | `002B526F`, `002B52B3`, `002B52DB`, `002B5317`, `002B5356` |

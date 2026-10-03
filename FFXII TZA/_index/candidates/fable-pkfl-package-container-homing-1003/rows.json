@@ -1,0 +1,42 @@
+{
+ "page": "26-PKFL-Package-Container/Container/pkfl-package-container.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01U9MRHY1rprnFC3Ptyv2Mfo",
+ "report": [
+  "fable-pkfl-package-container.json"
+ ],
+ "rows": [
+  {
+   "fn": "003DF2C0",
+   "text": "with `rbx` = `ecx` sign-extended to 64 bits, calls `003DF2C0`+0x18 with (qword `[rbx+0x18]`, a 16-byte local buffer, 2) and returns at once when that returns 0; otherwise copies the buffer's two qwords to `rbx+0x18`/`+0x20`, returns when `rbx` is 0, and, when qword `+0x18` is non-null and its word `+0x10` is non-zero, calls `0032F3A0(signed byte rbx+0x11, signed word +0x12 of that qword modulo 10 (signed remainder))`; then calls `003DF2C0`+0x83 with (signed byte `+0x11`, signed byte `+0x12`, qword `+0x18`, qword `+0x20`), zeroes qword `+0x18` and stores byte 4 at `+0x10`",
+   "anchors": [
+    [
+     "003DF2DF",
+     "je"
+    ],
+    [
+     "003DF2E6",
+     "mov"
+    ],
+    [
+     "003DF32E",
+     "call"
+    ],
+    [
+     "003DF343",
+     "call"
+    ],
+    [
+     "003DF350",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing",
+ "family": ""
+}

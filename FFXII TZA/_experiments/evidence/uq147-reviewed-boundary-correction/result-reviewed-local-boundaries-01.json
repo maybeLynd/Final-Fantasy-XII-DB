@@ -1,0 +1,106 @@
+{
+  "producer_complete": true,
+  "driver_sha256": "d9d59ba4f8facd411574b706990ef8de6e9e4ff7d6af761f02a4b32fe1c8b303",
+  "method": "A retained shipping bytes + additive source-record controls; no original instruction execution",
+  "sources": [
+    {
+      "path": "source-request-tail-01.json",
+      "sha256": "7536b76bfaabfee9319268822c1463df39550d0516f17f22c580ea14e4889454"
+    },
+    {
+      "path": "source-defeat-boundary-01.json",
+      "sha256": "a4febab7a65d9eb7e3b27524ca69f6906b80715e6291c946a03fd39ab27afb95"
+    }
+  ],
+  "reviewed_adapter_agreement": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 43,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 126,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "facts": {
+    "caller_own_writes": [
+      {
+        "pc": "0x317e9a",
+        "memory": {
+          "base": "rax",
+          "index": null,
+          "scale": 1,
+          "displacement": 0,
+          "size": 8,
+          "role": "rw",
+          "rip_target": null
+        }
+      }
+    ],
+    "notification_writes_excluded": [
+      "0x25aaf2",
+      "0x25aaf8",
+      "0x25ab00",
+      "0x25ab06",
+      "0x25ab15"
+    ],
+    "caller_gates": [
+      "byte[02089340]&0x10",
+      "3588B0 result non-NULL",
+      "263E30 result non-NULL",
+      "unit byte+0 bit3 set"
+    ],
+    "caller_effect": "Conditional own QWORD flag32 RMW at317E9A precedes33C9B0(unit+80) and the(1,0) notification tail; neither is excluded.",
+    "scope": "Only25AAD0 publication block/2F1710 excluded on this leg. Earlier calls and conditional unit write persist; opaque helper effects, natural admission, lifetime and mode preservation OPEN."
+  },
+  "checked_lookup_calls": [
+    [
+      "0x31b79c",
+      "call",
+      "0x236850"
+    ],
+    [
+      "0x31b7a7",
+      "call",
+      "0x236820"
+    ],
+    [
+      "0x31b7bc",
+      "call",
+      "0x236850"
+    ]
+  ],
+  "controls": [
+    {
+      "id": "caller-store-role-omitted",
+      "refused": "caller memory effect/identity changed"
+    },
+    {
+      "id": "caller-store-offset-changed",
+      "refused": "caller memory effect/identity changed"
+    },
+    {
+      "id": "caller-mask-changed",
+      "refused": "caller instruction/branch/mask domain changed"
+    },
+    {
+      "id": "extra-caller-store",
+      "refused": "caller memory effect/identity changed"
+    },
+    {
+      "id": "lookup-helper-redirected",
+      "refused": "lookup helper transfer identity changed"
+    }
+  ],
+  "control_limits": "Synthetic labelled record mutants, not coherent byte/native mutants.",
+  "accepted_scope": "SPEC original verdict ACCEPT-WITH-NARROWING; this producer repair independently pending.",
+  "unresolved": "Natural KO/Esper113, opaque helpers, ownership/lifetime, scheduling/presentation/fullUQ147 OPEN."
+}

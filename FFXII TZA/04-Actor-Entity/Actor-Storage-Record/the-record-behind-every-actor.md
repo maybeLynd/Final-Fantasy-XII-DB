@@ -2975,3 +2975,25 @@ kind remap (`r9-1`->0, `r9-2`->2, else keep with flag bit 0 set) lands at
 | `0026BDD0` | 35 B | `00355A00` + 0x1AC | when the top three bits of byte `rcx+3` (`shr 5`) equal 1, stores `xmm1`, `xmm2` and `xmm3` to floats `+0x20`, `+0x24` and `+0x28` of qword `rcx+0xB8`; for any other value it returns without a write | Interior anchor `0026BDD7`; Interior anchor `0026BDE3`; Interior anchor `0026BDED` | [native-command-seam](../../07-Combat-Action/Command-And-Action-Seam/native-command-seam.md) |
 | `0026BFF0` | 113 B | `00355A00` + 0x11B | takes the absolute values of `xmm1` and `xmm2` (widened to double, sign cleared with the mask at `01CEBD80`, narrowed back) and switches on the top three bits of byte `rcx+3` (`shr 5`): for 1 it ORs 2 into byte `+0x5D` of qword `rcx+0xB8`, stores the two values to floats `+0x30` and `+0x34`, and lowers float `+0x40` to the first and float `+0x44` to the second wherever the stored float is greater; for 3 it tail-jumps (`0026BFF0` + 0x38) with the two values in `xmm1` and `xmm2`; for any other value it returns without a write | Interior anchor `0026BFFE`; Interior anchor `0026C028`; Interior anchor `0026C034`; Interior anchor `0026C04C`; Interior anchor `0026C05B` | [native-command-seam](../../07-Combat-Action/Command-And-Action-Seam/native-command-seam.md) |
 | `003DF790` | 27 B | `00355A00` + 0xB6 | maps `ecx` to a return value: 0 returns 3, 1 returns 2, and any other value returns 1 | Interior anchor `003DF792`; Interior anchor `003DF797`; Interior anchor `003DF799`; Interior anchor `003DF79F`; Interior anchor `003DF7A5` | [native-command-seam](../../07-Combat-Action/Command-And-Action-Seam/native-command-seam.md) |
+
+## SWE2-EC7-215 update (2026-10-03) - five verb bodies on the record
+
+Five more verbs reach this record through the handler's bound actor in `rcx` (the handlers pass their `rdx`). `00269FC0` (21 B; `settargetliststatus` `0x053A`, the `+0x0E` bit-6 row of the verb table above) does nothing when `rcx` is null. Otherwise it replaces bit 6 of byte `+0x0E` with `edx != 0` (`setne`, `shl 6`).
+
+Interior anchor `00269FD1` (function `00269FC0`).
+
+`0026A560` (26 B; `setwalkspeed` `0x020E`) acts only on kind 3 (`(byte +0x03 & 0xE0) == 0x60`). It stores the popped number in `xmm1` as float `+0xE0` of the context at qword `+0xB8`, with no null test of `rcx` or of the context.
+
+Interior anchor `0026A571` (function `0026A560`).
+
+`0026AC00` (98 B; `sethomingangzx` `0x0074`) takes `v` = `xmm1` times float `01DFE0BC`, and `w` = pi when `v` is not below 0.0 and -pi otherwise. For kind 3 only it wraps `v + w` by subtracting `2*pi` times the quotient truncated toward zero (`cvttss2si`), then subtracts `w`. It tail-jumps `002E5B60(rcx, that value)`; any other kind returns without the call.
+
+Interior anchor `0026AC3E` (function `0026AC00`).
+
+`00269EE0` (31 B; `set_ignore_hitgroup` `0x0503`) follows the nullable `secondaryContext` pointer `+0xC0`, then that context's qword `+0x138`, testing each for null, and stores `dl` at byte `+0x119` of the second object.
+
+Interior anchor `00269EF8` (function `00269EE0`).
+
+`00263880` (50 B; called by the handler of `getduplicateid` `0x0238`, which returns its value to the script) returns 0 when `rcx` is null. Otherwise it takes the manager slot `02098E10 + 0x288 * byte +0x15`, with no `>= 5` bound here, unlike the handle decoder `003588B0`. It returns 0 when that slot's qword `+0` is null or points at a word below 8 (unsigned `jb`), and otherwise returns word `+0x20` of the `actorImageEntry` at `+0x40`.
+
+Interior anchor `002638AA` (function `00263880`).

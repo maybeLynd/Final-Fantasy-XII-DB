@@ -1,0 +1,418 @@
+{
+ "page": "99-Unresolved-Residual/Glyph-Run-Rendering/how-a-line-of-text-becomes-glyph-quads.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01N8PUkJsja9yJNF2AzvWKKK",
+ "report": [
+  "fable-how-a-line-of-text-becomes-glyph-quads.json"
+ ],
+ "rows": [
+  {
+   "fn": "00290FF0",
+   "text": "when dword `[rdx]` is 4 it stores byte 4 at `+0x5c` of qword `rcx+0x38`; on both paths it tail-jumps to `003F7F50` with the incoming registers",
+   "anchors": [
+    [
+     "00290FF3",
+     "jne"
+    ],
+    [
+     "00290FF9",
+     "mov"
+    ],
+    [
+     "00290FFD",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002D5690",
+   "text": "switches on dword `[rdx]`: 1 copies qword `[q]`, dword `[q+8]`, qword `[q+0x10]` (q = qword `rdx+8`) to `rcx+0xc0`, `+0xc8`, `+0xd8`, passes `002D5690`+0xE1(3) to `002D5690`+0xEC, copies words `+4` to `+0xa` of the record from `002D5690`+0x106 to `+0x98` to `+0x9e`, stores (that record's word `+8` minus the word `002D5690`+0x151 writes at `rsp+0x40`) halved (signed) at dword `+0xcc`, zeroes qword `+0x18` and stores `0020E620(0)` at dword `+0x20` of qword `[qword +0x60]`, and clears bit 7 of dword `+0x40`; 2 decrements a non-zero dword `+0xc8` when `001EDEC0(dword +0xb4)` is non-zero, calling `002D5690`+0xA8(`rcx`) when it reaches 0 or below; 4 calls `002D8910(qword +0x38, dword +0xcc, dword +0xd0, qword +0xc0, 0)`; 0x12 stores qword 0 through qword `+0xd8`; these return 0, and any other value tail-jumps to `005C5230` with `rcx`, `rdx`",
+   "anchors": [
+    [
+     "002D569E",
+     "je"
+    ],
+    [
+     "002D56F7",
+     "call"
+    ],
+    [
+     "002D5727",
+     "mov"
+    ],
+    [
+     "002D57F8",
+     "mov"
+    ],
+    [
+     "002D56BB",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002E08C0",
+   "text": "clamps `ecx` to 0..7 and takes entry e at `0215F200` + index times `0x68`; when qword `[e]` is null it stores byte `0xfe` at `e+0x40` and returns 0; otherwise calls `002A2720(qword [e])`, stores dword 6 at `e+8`, calls `002E08C0`+0x48(byte `0215F1B6`) only when byte `e+0x40` is `0xff`, stores byte `0xfe` there and returns 1",
+   "anchors": [
+    [
+     "002E08D9",
+     "imul"
+    ],
+    [
+     "002E08EF",
+     "call"
+    ],
+    [
+     "002E08F8",
+     "mov"
+    ],
+    [
+     "002E0908",
+     "call"
+    ],
+    [
+     "002E0912",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00352A50",
+   "text": "calls `002640C0` with the incoming registers, then `00264D60(that result, 00267E10(r9))`, and tail-jumps to `00352A50`+0x37 with the `002640C0` result and the `00264D60` result",
+   "anchors": [
+    [
+     "00352A5D",
+     "call"
+    ],
+    [
+     "00352A68",
+     "call"
+    ],
+    [
+     "00352A72",
+     "call"
+    ],
+    [
+     "00352A87",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00352EC0",
+   "text": "calls `002640C0` with the incoming registers, then `00264D60(that result, 00267E10(r9))`, and tail-jumps to `00352EC0`+0x37 with the `002640C0` result and the `00264D60` result",
+   "anchors": [
+    [
+     "00352ECD",
+     "call"
+    ],
+    [
+     "00352ED8",
+     "call"
+    ],
+    [
+     "00352EE2",
+     "call"
+    ],
+    [
+     "00352EF7",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003534F0",
+   "text": "calls `002640C0` with the incoming registers, then `00264D60(that result, 00267E10(r9))`, and tail-jumps to `003534F0`+0x37 with the `002640C0` result and the `00264D60` result",
+   "anchors": [
+    [
+     "003534FD",
+     "call"
+    ],
+    [
+     "00353508",
+     "call"
+    ],
+    [
+     "00353512",
+     "call"
+    ],
+    [
+     "00353527",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00354C50",
+   "text": "calls `00354C50`+0x6(0) and `00354C50`+0xD(0), then tail-jumps to `002EC590(0)`",
+   "anchors": [
+    [
+     "00354C56",
+     "call"
+    ],
+    [
+     "00354C5D",
+     "call"
+    ],
+    [
+     "00354C68",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00355060",
+   "text": "calls `00355060`+0x9(1) and `00355060`+0x13(1), then tail-jumps to `002EC590(1)`",
+   "anchors": [
+    [
+     "00355069",
+     "call"
+    ],
+    [
+     "00355073",
+     "call"
+    ],
+    [
+     "00355081",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003555F0",
+   "text": "calls `00267E10(r9)` twice (a, then b), calls `002640C0` and keeps its result p, then returns `003555F0`+0x6E(`003555F0`+0x55(`rdx`), 5 when dword `p+0x28` is non-zero else 4, b, qword `p+0xb0`) with `00264D60(p, a)` as the fifth (stack) argument",
+   "anchors": [
+    [
+     "00355613",
+     "call"
+    ],
+    [
+     "00355624",
+     "call"
+    ],
+    [
+     "00355631",
+     "call"
+    ],
+    [
+     "00355641",
+     "setne"
+    ],
+    [
+     "0035565E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "003F8510",
+   "text": "switches on dword `[rdx]`: 1 passes `003F8510`+0xF6(6) to `003F8510`+0x101 with `rcx` and stores dword `rdx+8` at `rcx+0xe0`; 4 copies qword `+0x98` to a local and, when `00249EE0(&local, rcx+0x98, qword +0xd8)` is non-zero, subtracts words `+0x98` and `+0x9a` from its first two words, calls `003F8510`+0x8C(o, &local) with o = qword `+0x38`, stores dword `0x3f400000` at `o+0x60`, then calls `002D8910(o, dword +0xd0, 0, qword +0xc0, 0)` with byte `o+0x65` set to 0 and `002D8910(o, dword +0xd0 + 0x10, 0, qword +0xc8, 0)` with it set to `0xfe`; both return 0, and any other value tail-jumps to `005C5230` with `rcx`, `rdx`",
+   "anchors": [
+    [
+     "003F8576",
+     "je"
+    ],
+    [
+     "003F85A1",
+     "mov"
+    ],
+    [
+     "003F85C6",
+     "call"
+    ],
+    [
+     "003F85EA",
+     "call"
+    ],
+    [
+     "003F8619",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "004085B0",
+   "text": "takes o = qword `+0xc0` of qword `02B62D80` only when both are non-null and o's byte `+0xc0` is 0, and returns when `02B62D80` is non-null with bit 1 of its byte `+0xc8` set or o is null; otherwise stores dword 0 at `o+0x118` and `ecx` at `o+0xe4` and, since byte `+0xc0` is 0, tail-jumps to `00407450` with o and `ecx` in `edx` (the arms for 1, to `00407720`, and 3, to `00225580` with qword `o+0xd0`, are unreachable here)",
+   "anchors": [
+    [
+     "004085D4",
+     "cmovne"
+    ],
+    [
+     "004085E5",
+     "test"
+    ],
+    [
+     "004085F3",
+     "mov"
+    ],
+    [
+     "00408602",
+     "mov"
+    ],
+    [
+     "00408636",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00408640",
+   "text": "takes o = qword `+0xc0` of qword `02B62D80` only when both are non-null and o's byte `+0xc0` is 0, and returns when `02B62D80` is non-null with bit 1 of its byte `+0xc8` set, o is null or qword `o+0xc8` is null; otherwise, when `00394690(qword o+0xc8, 0)` returns non-null r, calls `003937C0(o+0x170, 0x80, rdx)` and stores `o+0x170` at qword `r+0x18` and `0020E620(rcx)` at dword `r+0x20`",
+   "anchors": [
+    [
+     "00408677",
+     "cmovne"
+    ],
+    [
+     "004086A9",
+     "call"
+    ],
+    [
+     "004086C8",
+     "call"
+    ],
+    [
+     "004086D0",
+     "mov"
+    ],
+    [
+     "004086D9",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00408700",
+   "text": "takes o = qword `+0xc0` of qword `02B62D80` only when both are non-null and o's byte `+0xc0` is 0, and returns when `02B62D80` is non-null with bit 1 of its byte `+0xc8` set or o is null; otherwise calls `003937C0(o+0x1f0, 0x80, rdx)` and stores `rcx` at qword `o+0x270`",
+   "anchors": [
+    [
+     "0040872F",
+     "cmovne"
+    ],
+    [
+     "00408740",
+     "test"
+    ],
+    [
+     "0040875D",
+     "call"
+    ],
+    [
+     "00408762",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "004088D0",
+   "text": "takes o = qword `+0xc0` of qword `02B62D80` only when both are non-null and o's byte `+0xc0` is 1, and returns when `02B62D80` is non-null with bit 1 of its byte `+0xc8` set or o is null; otherwise stores dword 0 at `o+0x118` and `ecx` times `0x3c` at `o+0xe4` and, since byte `+0xc0` is 1, tail-jumps to `00407720` with o and that product in `edx` (the arms for 0, to `00407450`, and 3, to `00225580` with qword `o+0xd0`, are unreachable here)",
+   "anchors": [
+    [
+     "004088F4",
+     "cmovne"
+    ],
+    [
+     "00408903",
+     "test"
+    ],
+    [
+     "00408917",
+     "imul"
+    ],
+    [
+     "00408923",
+     "mov"
+    ],
+    [
+     "00408952",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00408960",
+   "text": "takes o = qword `+0xc0` of qword `02B62D80` only when both are non-null and o's byte `+0xc0` is 1, and returns when `02B62D80` is non-null with bit 1 of its byte `+0xc8` set, o is null or qword `o+0xc8` is null; otherwise, when `00394690(qword o+0xc8, 0)` returns non-null r, calls `003937C0(o+0x174, 0x80, rdx)` and stores `o+0x174` at qword `r+0x18` and `0020E620(rcx)` at dword `r+0x20`",
+   "anchors": [
+    [
+     "00408997",
+     "cmovne"
+    ],
+    [
+     "004089C9",
+     "call"
+    ],
+    [
+     "004089E8",
+     "call"
+    ],
+    [
+     "004089F0",
+     "mov"
+    ],
+    [
+     "004089F9",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00578310",
+   "text": "with i = sign-extended `r9d` and E = the qword array at qword `rdx+0x10`: when byte `rcx+0xf8` is 0 it finds i among the first byte-`+0xf4` bytes at `rcx+0xe8`, sets bit 0 of dword `+8` of E[2] to 1 only when the match is the last byte and `00578310`+0x7D(word at qword `rcx+0xd0`) returns 0, sets bit 0 of E[0]'s dword `+8` to the inverse of that bit when a match exists (to 0 when none), and uses E[1], else E[0]; s = qword `rcx+0x100+i*8`; when `002B39A0(s, 2)` is non-null it copies the bytes before it (0x7f when 0x80 or more) into qword `rcx+0xe0` with `00861EBA`, NUL-terminates, and uses that buffer as s; it stores s at qword `+0x18` of the chosen entry and `0020E620(00578310+0x104())` at its dword `+0x20`, and returns 1",
+   "anchors": [
+    [
+     "00578368",
+     "cmp"
+    ],
+    [
+     "00578394",
+     "cmove"
+    ],
+    [
+     "005783DB",
+     "call"
+    ],
+    [
+     "00578406",
+     "call"
+    ],
+    [
+     "00578434",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0057C3E0",
+   "text": "does nothing when byte `rcx+0x636` is 0; otherwise, with record r at `rcx` + sign-extended `r8d` times 16, stores `0057C3E0`+0x4E(6) at dword `rdx+0x90` when word `r+0x5b8` equals word `rcx+0x638`, else `0057C3E0`+0x4E(2) when bit 0 of byte `r+0x5bc` is clear (no store when set); then calls `002D8910(rdx, 0, 0, qword r+0x5b0, 0)` and stores `0057C3E0`+0x7C(0) at dword `rdx+0x90`",
+   "anchors": [
+    [
+     "0057C3F7",
+     "je"
+    ],
+    [
+     "0057C40F",
+     "cmp"
+    ],
+    [
+     "0057C433",
+     "mov"
+    ],
+    [
+     "0057C455",
+     "call"
+    ],
+    [
+     "0057C466",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing",
+ "family": ""
+}

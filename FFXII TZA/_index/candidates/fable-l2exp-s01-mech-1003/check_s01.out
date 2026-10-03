@@ -1,0 +1,41 @@
+FABLE check_s01 (S-01 archive mount and startup latch), EXE sha256 verified by rvlib
+PASS  V1  vtable 008C5760 slots 2/3/4/7/8 = 2:0017CEB0, 3:0017CF30, 4:0017CCD0, 7:0017CE50, 8:0017D090
+PASS  F1  0079F150 calls slot 2 ([rax+0x10], 0079F591) then slot 3 ([rax+0x18], 0079F69A); each non-zero return leaves init (0079F598 / 0079F6A1)
+PASS  F2  the two failure strings are initApplication (01CB2CD8) and initScene (01CB2D28)
+PASS  F3  0079F150's only .text reference is 0079E5ED (in 0079E520): ['0079E5ED']
+PASS  M1  slot 2 stores rdx -> +0x1130 (0017CEC2), r8d -> +0x1138 (0017CEC9), then calls 0059A770, 0019B190, 0019B1F0, 0019B070, 0017D6B0, 00182F70
+PASS  M2  '../../..' (008C5858) is stored by 0059A770 into 02CA9D80; '../FFXII_TZA.vbf' (008C5868) is the mount path
+PASS  M3  slot 2 has no branch, one ret (0017CF27), and its only eax write after the last call is `xor eax, eax` (0017CF1B); the mount's al is not tested (0017CEFB)
+PASS  M4  the mount context is the 0x80-byte singleton [01F81110] (ensure 0019B190, getter 0019B1F0)
+PASS  K1  0019B070: five slots at +0x20..+0x47 (0019B0A7), none free -> al 0 (0019B0AD); open 001F4340 (0019B0E5); a failed open clears the slot (0019B10F)
+PASS  K2  001F4340: magic 'SRYK' (001F43D7), CALG_MD5 0x8003 (001F44AB), 16-byte digest (001F4407); accept al=1 (001F4701), reject al=0 (001F4705)
+PASS  K3  001F4340's only fclose is 001F4471, after the magic test: the bad-magic exit (001F43EC) leaves the FILE open
+PASS  K4  on accept 001F4340 builds 15 x 0x30 stream records (001F4687/001F4695) and 00215290 fopen()s the archive once more for each (002152AD), unchecked
+PASS  J1  slot 3: ensure 0019A0A0 (0017CF77), get [01F810F8] (0017CF7C), pool node 00199F10 (0017CF84), {fn=0017D150, arg=this} (0017CF8C..96), enqueue 0019A000 (0017CFA5), tail 005C5230 (0017CFC1)
+PASS  J2  slot 3 is the only caller of the AsyncJobManager ensure 0019A0A0: ['0017CF77']
+PASS  J3  0017D150 is `jmp 0017D000`; 005C5230 is `xor eax, eax; ret`
+PASS  J4  worker 0019A1A0: Sleep(5) per pass (0019A1D0/0019A1D5 -> 005CCB80 -> Sleep), takes the oldest node ([+0x58], 0019A1FF), calls fn(arg) (0019A246/0019A24A), loops while +0x154 (0019A27E)
+PASS  J5  ensure 0019A0A0 -> ctor 001999D0 (0019A0D3) -> 00199F60 (00199A62) starts thread proc 0019A190 -> 0019A1A0 through 005CD1E0 (CreateThread at 005CD228), 'AsyncJobManager Thread' (008F3C70); a failed allocation stores NULL to 01F810F8 (0019A0DA/0019A0DD)
+PASS  W1  0017D000: 0017D4C0 (0017D01F), alloc 0x80 (0017D029), 0018A840 (0017D03B), 00189000 (0017D06F), then +0x113C = 1 (0017D074), its last memory write; its one branch (0017D036) rejoins before the store
+PASS  L1  [reg+0x113C], any width, image-wide: 4 sites (1 write, 3 reads): ['0017CCD6', '0017CE77', '0017D074', '0017D094']
+PASS  L2  no non-stack access from +0x1130..+0x113B reaches +0x113C: []
+PASS  L3  rip refs to the static object's 01F7F488..01F7F48F: the constructor's word clear of +0x113C/+0x113D (0015BC68 -> 01F7F48C) and ['0017D24A mov eax, dword ptr [rip + 0x1e02238]']
+PASS  L4  the static GameApplication 01F7E350 is named in .text only by its constructor 0015BC40 (3 sites; vtable 008C5760 at 0015BC5A), the constructor's unwind funclet 00896280 and the atexit destructor 008A6970 (registered at 0015BCB7); both of the latter only run the base destructor 00793250
+PASS  L5  slot 2's stored pair +0x1130/+0x1138 is also read rip-relative by the getter 0017D240 (0017D240, 0017D24A), whose one caller is the FF12CONFIG loader 00408C30 (00408C6A)
+PASS  L6  the constructor 0015BC40 (whose only pointer is .rdata 008C31F0) passes 01F7E350 to the base ctor 00792350, which publishes it to the handle 02EA5368 (00792550; rsi = this, unchanged since 00792370)
+PASS  R1  slot 4: latch clear -> 0017CD84 -> tail 005C5230 (returns 0)
+PASS  R2  slot 7: 00228480 ([01FD4948] != 0) arm runs BEFORE the latch test (0017CE59..6A, input 001967D0); the latched arm's only call is 0016D6A0 = `ret 0` (0017CE95)
+PASS  O1  Open-list sites: 005CD236 GetLastError, 005CD262 FormatMessageA, 005CD2D8 RaiseException(0x406D1388 at 005CD2CF); slot 4 reads +0x48 at 0017CCF0
+PASS  R3  slot 8: latch clear -> return 0 (0017D09D); set -> render pass list 00187950 (0017D0B0)
+PASS  X1  executed: slot 4, latch 0 -> eax 0, callees entered []
+PASS  X2  executed: slot 8, latch 0 -> eax 0, callees []; latch 1 -> first callee ['00189120']
+PASS  X3  executed: slot 7, latch 0 -> first callee ['00228480'] (the ungated test runs first)
+PASS  H1  shipped archive: magic b'SRYK', header 11995716 bytes, 89414 entries, MD5(header) = trailer = b74187bd5c88f564281dc290ab0ee051
+PASS  U1  executed 001F4340 on the shipped D:\FFXII MP Mod\FFXII_TestClient1\FFXII_TZA.vbf: accept (alg 0x8003, opens 1, closes 1)
+PASS  U2  sensitivity: header byte 1000 flipped in the read buffer -> reject (no message; FILE closed before hashing)
+PASS  U3  sensitivity: magic 'SRYX' -> reject, prints [b'BigFile head wrong!\n'], FILE left open (closes 0)
+PASS  U4  sensitivity: fopen returns NULL -> reject, no message
+PASS  C1  control: latch store retargeted to +0x113D -> the check FAILS as required
+PASS  C2  control: magic immediate changed to 0x4B595254 -> the check FAILS as required
+PASS  C3  control: slot 2 returns esi instead of 0 -> the check FAILS as required
+FAILS 0

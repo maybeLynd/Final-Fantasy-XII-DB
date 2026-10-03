@@ -1,0 +1,45 @@
+{
+ "page": "19-Save-Load-Settings/Game-Settings-Config/CONTRACT-game-setting-config.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "contract-game-setting-config-r5.json",
+ "rows": [
+  {
+   "fn": "001E0100",
+   "text": "returns `rdx` as a std::string built from `b` = `rcx` (mode dword `[b+0x70]`): when the mode lacks `0x2` and qword `[qword [b+0x40]]` is non-null, from base qword `[qword [b+0x20]]` up to the larger (unsigned) of that pointer and qword `[b+0x68]`; else when it lacks `0x4` and qword `[qword [b+0x38]]` is non-null, from qword `[qword [b+0x18]]` up to that pointer plus the sign-extended dword `[qword [b+0x50]]`; else empty; the bytes go to a stack string through `001A5630`, the result is set empty (capacity 0xF) and given it by `001A4C90`, and a stack string of capacity 0x10 or more is freed with `00210EB0` (when capacity + 1 is 0x1000 or more it frees the stored base qword before the pointer instead, first checking: a pointer with any of `0x1F` set, a stored base not below it, or a gap under 8 or over 0x27 calls `_invalid_parameter_noinfo_noreturn` (IAT `008C2DA8`)); stack cookie `01F44830`, checked by `00808C40`",
+   "anchors": [
+    [
+     "001E0128",
+     "jne"
+    ],
+    [
+     "001E014E",
+     "cmovb"
+    ],
+    [
+     "001E016B",
+     "call"
+    ],
+    [
+     "001E0209",
+     "movsxd"
+    ],
+    [
+     "001E0338",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "001E0100",
+   "why": "byte re-read by a non-drafting agent: 'stream buffer' and 'put pointer' are role names no string or import in this function shows; the bytes only show the offsets; for a capacity + 1 of 0x1000 or more the pointer freed by `00210EB0` is the stored base qword at pointer - 8 (001E01BB, 001E0335), not the string pointer; the sentence says only that the string is freed"
+  }
+ ],
+ "mode": "ee",
+ "family": ""
+}

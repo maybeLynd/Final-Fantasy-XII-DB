@@ -1,0 +1,27 @@
+ok    correct package builds and is VERIFIED
+ok    build refuses an existing target
+ok    (a) report cites a commit with no PROVENANCE entry -> A_UNPROVENANCED_CITE
+ok    (b) FORMAT_PATCH entry with its patch removed -> B_PATCH_MISSING
+ok    (b) patch From line names another commit -> B_PATCH_FROM_MISMATCH
+ok    (c) patch member not in PROVENANCE -> C_STRAY_PATCH
+ok    (d) unknown representation -> D_BAD_REPRESENTATION
+ok    (d) missing representation -> D_BAD_REPRESENTATION
+ok    (e) patch name sha9 disagrees with From line -> E_NAME_SHA_MISMATCH
+ok    (f) member changed without MANIFEST update -> F_MANIFEST
+ok    (f) member missing from MANIFEST -> F_MANIFEST
+ok    (g) FINAL_SNAPSHOT names no file member -> G_SNAPSHOT_NO_FILE
+ok    (overclaim) 'every listed commit ... format-patch' with non-patch commits -> R_OVERCLAIM
+ok    (overclaim) stated patch count disagrees -> R_OVERCLAIM
+ok    build refuses a report that cites an unexported commit and overclaims
+ok    (L2) the generator's progress_report.py is available to the self-test
+ok    (L2) consistent control: an L2 headline package builds and VERIFIES (struck history ignored)
+ok    (L2) build auto-adds the minimal set and names what HEAD lacks
+ok    (L2) L2 headline but no L2-VERDICTS.md in the package -> L_MISSING_AUTHORITATIVE
+ok    (L2) report says 3 MET while the file parses 2 -> L_REPORT_MISMATCH
+ok    (L2) report 'N MET of M' disagrees -> L_REPORT_MISMATCH
+ok    (L2) checkpoint receipt C3 disagrees -> L_RECEIPT_MISMATCH
+ok    (L2) no checkpoint receipt -> L_RECEIPT_MISSING
+ok    (L2) a C3-shaped fixture string inside files/ source is not read as a receipt
+ok    (L2) included PROGRESS.md disagrees -> L_PROGRESS_MISMATCH
+ok    (L2) authoritative member changed without AUTHORITATIVE.json -> L_AUTH_HASH
+self-test: 0 failure(s)

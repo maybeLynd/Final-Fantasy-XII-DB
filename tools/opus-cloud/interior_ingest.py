@@ -168,9 +168,9 @@ def check(report, session):
         lines, _t = L.listing(f) if L.sizes().get(f) else ([], set())
         out += ["## %s %s" % (r["fn"], "REJECTED: " + "; ".join(w) if w else ""), "", r.get("text", ""), "",
                 "anchors: " + ", ".join("%s %s" % tuple(a) for a in r.get("anchors", [])), "", "```"] + lines + ["```", ""]
-    io.open(os.path.join(REVIEW, slug + ".md"), "w", encoding="utf-8", newline="\n").write("\n".join(out))
+    io.open(os.path.join(REVIEW, rec + ".md"), "w", encoding="utf-8", newline="\n").write("\n".join(out))
     print("RECORD %s\nrows ok %d, rejected %d, skipped %d, missing %d\nreview sheet: %s" % (
-        rec, len(ok), len(bad), len(skipped), len(missing), os.path.join(REVIEW, slug + ".md")))
+        rec, len(ok), len(bad), len(skipped), len(missing), os.path.join(REVIEW, rec + ".md")))
     for r, w in bad:
         print("  REJECTED %s: %s" % (r["fn"], "; ".join(w)))
     for s, why in skipped.items():

@@ -1,0 +1,71 @@
+{
+ "page": "18-Audio/Sound-Bank-And-Voice-Formats/sead-win-config.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter-r4",
+ "report": "sead-win-config-r4.json",
+ "rows": [
+  {
+   "fn": "007DD2B0",
+   "text": "Initialises the object at `rcx` without calls and returns it in `rax`: it stores -1 to the qwords `+0x40`, `+0x48`, `+0x50` and `+0x58`, the pointers `01CB81C8` and `01CB81D8` to `+0` and `+8`, and zero to the qwords `+0x10`, `+0x18`, `+0x20`, `+0x28`, `+0x30`, `+0x60`, `+0x68`, `+0x84`, `+0x98`, `+0xA8`, `+0xB8`, `+0xC8`, `+0xD8` and the dwords `+0x38`, `+0xA0`, `+0xB0`, `+0xC0`, `+0xD0`, `+0xE0`.",
+   "anchors": [
+    [
+     "007DD2B8",
+     "lea"
+    ],
+    [
+     "007DD2DE",
+     "mov"
+    ],
+    [
+     "007DD2F6",
+     "mov"
+    ],
+    [
+     "007DD337",
+     "mov"
+    ],
+    [
+     "007DD34E",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007DE8D0",
+   "text": "Copies config dword `rdx+0x24` and qwords `rdx+8`/`rdx+0x10` to `rcx+0x70`, `+0x60` and `+0x68`, creates three handles through the import at `008C2320` (arguments 0, 0, 1, 0x1F0003) into `+0x40`, `+0x48`, `+0x50`, returning 0x80004005 when one is null, initialises `+0xF0`, `+0x90` and `+0xE8` through the import at `008C22F0`, and passes `007DD950`, the object and flag 4 (zeros elsewhere) to the import at `008C21C8`, storing the returned handle to `+0x58`; when that handle is null (then storing -1) or the import at `008C21E0` with config dword `+0x1C` returns zero, it takes the code from the import at `008C20A8` (0x80070000 OR its low word when positive), formats `01CB81E0` or `01CB8180` with it via `0019C5D0` into a 256-byte buffer with a newline, passes the buffer to the import at `008C2120` and to `007A5570` with 2 and returns the code; otherwise it calls the import at `008C2200` unless config dword `+0x20` is -1, copies config dwords `+0`, `+4`, `+0x18`, `+0x1C`, `+0x24` and sign-extended `+0x20` into the object, calls `007DD9F0` and returns its result, first calling the import at `008C2330` on `+0x58` and setting `+0x38` to 1 when it is not negative.",
+   "anchors": [
+    [
+     "007DE919",
+     "call"
+    ],
+    [
+     "007DE928",
+     "mov"
+    ],
+    [
+     "007DE9B2",
+     "call"
+    ],
+    [
+     "007DEA45",
+     "call"
+    ],
+    [
+     "007DEAF6",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "007DE8D0",
+   "why": "byte re-read by a non-drafting agent: 'starts `007DD950`' is a purpose claim the bytes do not show: the import at `008C21C8` is called with flag 4 (`007DE9A6`), and the code later calls the import at `008C2330` on the handle (`007DEAF6`); the sentence should only state the arguments passed."
+  }
+ ],
+ "mode": "ee",
+ "family": ""
+}

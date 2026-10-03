@@ -899,3 +899,11 @@ Interior anchor `003A9BD9` (function `003A9BA0`).
 `003A9860` (105 B) is the twin rebase on the sibling table: same `rsi = ecx`, stride-8 shape but bound 0xA00 over `02EBEF90`, with `00442460` per non-null slot and the same `qword += rsi` store - the second table's delta fix-up.
 
 Interior anchor `003A9899` (function `003A9860`).
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-03, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../_index/candidates/fable-home-resource-section-addressing-1003/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `00512C50` | 45 B | `003E1C50` + 0x717 | replaces dword `rcx+0x30` with `0020E620(0020E600(dword rcx+0x30) + edx)` (32-bit sum) and returns that value | Interior anchor `00512C5F`; Interior anchor `00512C62`; Interior anchor `00512C67`; Interior anchor `00512C6A`; Interior anchor `00512C74` |

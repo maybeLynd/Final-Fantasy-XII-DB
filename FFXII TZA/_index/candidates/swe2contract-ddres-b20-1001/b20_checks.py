@@ -349,9 +349,13 @@ other = [(os.path.basename(p), n + body_lines(p)[1] + 1) for p in (MAP, RTR) for
          if TAG in t and re.search(r"~~", t[t.find(TAG):]) and not (p == MAP and n + body_lines(p)[1] + 1 in (333, 1294))]
 check("Z3 no other batch-20 note carries a strike", not other, other)
 eol = {os.path.basename(p): (open(p, "rb").read().count(b"\n"), open(p, "rb").read().count(b"\r\n")) for p in (MAP, RTR)}
-# the map page's line pin moved 1338 -> 1342 when SWE2-EC7's batch-171 commit 7f773f19f appended the 00402C30 entry
-check("Z4 the map page is CRLF on every line (1342 / 1342) and the router page LF on every line (961 / 0)",
-      eol == {"the-map-screens-and-their-shared-map-data.md": (1342, 1342), "ui-request-router.md": (961, 0)}, eol)
+# Z4 is the EOL invariant itself, not a line count (SWE2-CONTRACT 2026-10-03, OPUS-REQ-CONTRACT-B20-Z4-STALE-PIN-1003): the
+# pinned counts went stale every time a later package grew a page (1338 -> 1342 by hand in 7225ed5b4, then 8bf9aedef,
+# 8bd4e78fd, bc6245a96, 60f3e63b3) while the invariant held. Sensitive: one LF line on the map page, or one CRLF on the
+# router page, fails it.
+_m, _r = eol["the-map-screens-and-their-shared-map-data.md"], eol["ui-request-router.md"]
+check("Z4 the map page is CRLF on every line and the router page LF on every line",
+      _m[0] > 0 and _m[1] == _m[0] and _r[0] > 0 and _r[1] == 0, eol)
 head = {}
 for p in (MAP, RTR):
     rel = os.path.relpath(p, TZA).replace(os.sep, "/")
@@ -361,3 +365,6 @@ check("Z5 line counts equal HEAD's (notes are appended in place)", head == {k: v
 
 print("PASSES %d" % PASSES)
 print("FAILS %d" % FAILS)
+# EXIT STATUS FOLLOWS THE FAIL COUNT (OPUS, 2026-10-03, the user's directive item 1): it printed FAILS N but
+# exited 0, so the regression runner counted it PASS.
+sys.exit(1 if FAILS else 0)

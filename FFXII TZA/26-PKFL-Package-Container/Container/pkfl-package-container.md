@@ -510,3 +510,11 @@ the next reader to reuse the argument.
 | function | size | what the body does | interior anchors |
 |---|---|---|---|
 | `0032F320` | 55 B | returns -1 when `ecx` is above 3 (signed); otherwise takes the pointer at `022C6EC0` + `ecx`*8 when `r8d` is 0, or at `022C6EE8` + `ecx`*8 when it is non-zero, returns -1 when the first byte it points at is 0, and otherwise returns the dword at that pointer + `edx`*8 + 8 (`edx` sign-extended) | `0032F323`, `0032F334`, `0032F33E`, `0032F346`, `0032F34E` |
+
+## Homed bodies: functions reached only indirectly whose callees this page cites (FABLE, 2026-10-03, F homing)
+
+*No page cited these functions and none of their callers is documented: they are reached by table or pointer dispatch or through undocumented callers. Each one calls something this page documents, which the sentence names. Each sentence states what the body does (access and representation, not purpose); the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's F homing pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-pkfl-package-container-homing-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `003DF2C0` | 154 B | with `rbx` = `ecx` sign-extended to 64 bits, calls `003DF2C0`+0x18 with (qword `[rbx+0x18]`, a 16-byte local buffer, 2) and returns at once when that returns 0; otherwise copies the buffer's two qwords to `rbx+0x18`/`+0x20`, returns when `rbx` is 0, and, when qword `+0x18` is non-null and its word `+0x10` is non-zero, calls `0032F3A0(signed byte rbx+0x11, signed word +0x12 of that qword modulo 10 (signed remainder))`; then calls `003DF2C0`+0x83 with (signed byte `+0x11`, signed byte `+0x12`, qword `+0x18`, qword `+0x20`), zeroes qword `+0x18` and stores byte 4 at `+0x10` | Interior anchor `003DF2DF`; Interior anchor `003DF2E6`; Interior anchor `003DF32E`; Interior anchor `003DF343`; Interior anchor `003DF350` |

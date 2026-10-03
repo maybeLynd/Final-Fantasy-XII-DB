@@ -183,6 +183,18 @@ def _norm_sha256(b):
     return hashlib.sha256(b.replace(b"\r\n", b"\n")).hexdigest() if b is not None else None
 
 
+def _tree_file_digest(b, suffix):
+    """Per-file digest inside a tree dependency, exactly as build() writes its manifest: .md documents are hashed
+    after a utf-8 decode with errors='replace' (build reads them as text), other trees as raw bytes. Hashing raw
+    bytes for .md made every doc table falsely STALE whenever a document holds invalid utf-8 (3 at 14bd5582d -
+    SWE2-DATA 2026-10-03)."""
+    if b is None:
+        return "-"
+    if suffix == ".md":
+        b = b.decode("utf-8", "replace").replace("\r\n", "\n").encode("utf-8")
+    return _norm_sha256(b) or "-"
+
+
 def dep_key(desc):
     """Stable source label stored in provenance.source: 'file:<rel>' or 'tree:<rel>;<suffix>'."""
     if desc[0] == "file":
@@ -190,10 +202,63 @@ def dep_key(desc):
     return "tree:%s;%s" % (_git_rel(desc[1]), desc[2] or "*")
 
 
+AGAINST = None  # set by `check --against REV`: digests come from REV's blobs instead of the worktree
+
+
+def _rev_blobs(rev, rel_prefix):
+    """{root-relative path: bytes} for every file under rel_prefix at rev, read in ONE `git cat-file --batch`
+    stream (thousands of documents; one process per file would take minutes)."""
+    r = subprocess.run(["git", "-C", ROOT, "ls-tree", "-r", rev, "--", rel_prefix], capture_output=True)
+    ents = []
+    for line in r.stdout.decode("utf-8", "replace").splitlines():
+        meta, _, path = line.partition("\t")
+        parts = meta.split()
+        if len(parts) == 3 and parts[1] == "blob":
+            ents.append((path, parts[2]))
+    if not ents:
+        return {}
+    p = subprocess.run(["git", "-C", ROOT, "cat-file", "--batch"], input="".join(o + "\n" for _p, o in ents).encode(),
+                       capture_output=True)
+    out, i, blobs = p.stdout, 0, {}
+    for path, _o in ents:
+        nl = out.index(b"\n", i)
+        size = int(out[i:nl].split()[2])
+        blobs[path] = out[nl + 1:nl + 1 + size]
+        i = nl + 1 + size + 1
+    return blobs
+
+
+def dep_digest_at(desc, rev):
+    """The same fingerprint as dep_digest, computed from rev's committed blobs (`check --against REV`). A source with
+    no versioned home (an untracked Tools/work TSV) is read from the worktree, as a pinned build reads it."""
+    rel = _git_rel(desc[1])
+    if desc[0] == "file":
+        r = subprocess.run(["git", "-C", ROOT, "show", "%s:%s" % (rev, rel)], capture_output=True)
+        if r.returncode == 0:
+            return _norm_sha256(r.stdout)
+        global AGAINST
+        saved, AGAINST = AGAINST, None   # worktree fallback must not re-enter this function
+        try:
+            return dep_digest(desc)
+        finally:
+            AGAINST = saved
+    blobs = _rev_blobs(rev, rel)
+    h = hashlib.sha256()
+    for p in sorted(k for k in blobs if not desc[2] or k.endswith(desc[2])):
+        h.update((p + "\n" + _tree_file_digest(blobs[p], desc[2]) + "\n").encode("utf-8"))
+    return h.hexdigest()
+
+
 def dep_digest(desc):
     """Current-state fingerprint of one dependency. Worktree always - `check` compares what a
     build RECORDED against what the inputs are NOW; a pinned build's pin is information, not
-    an exemption. Missing files hash as None (deletion IS a change)."""
+    an exemption. Missing files hash as None (deletion IS a change). Under `check --against REV`
+    (AGAINST set) the committed state of REV is the comparison instead (SWE2-DATA 2026-10-03,
+    OPUS-REQ-DATA-MIRROR-COMMITTED-FRESHNESS-1003): in an active fleet the worktree always holds
+    uncommitted edits, so a checkpoint could never carry a CURRENT mirror. Live queries keep the
+    worktree rule - AGAINST is set only by that explicit mode."""
+    if AGAINST:
+        return dep_digest_at(desc, AGAINST)
     if desc[0] == "file":
         if not os.path.exists(desc[1]):
             return None
@@ -213,7 +278,7 @@ def dep_digest(desc):
     for p in sorted(_git_rel(x) for x in files):
         with open(os.path.join(ROOT, p.replace("/", os.sep)), "rb") as f:
             b = f.read()
-        h.update((p + "\n" + (_norm_sha256(b) or "-") + "\n").encode("utf-8"))
+        h.update((p + "\n" + _tree_file_digest(b, desc[2]) + "\n").encode("utf-8"))
     return h.hexdigest()
 
 
@@ -1107,6 +1172,9 @@ def main():
     ap.add_argument("--pin", default=None, metavar="REF",
                     help="build sources from this git ref's blobs (e.g. HEAD) instead of the "
                          "worktree; provenance then pins every row to the resolved commit")
+    ap.add_argument("--against", default=None, metavar="REV",
+                    help="check only: compare the recorded inputs with REV's committed blobs instead of the "
+                         "worktree (checkpoint mode); live queries keep the worktree rule")
     ap.add_argument("--refresh", action="store_true",
                     help="rebuild through the staging guard first if the index is stale")
     ap.add_argument("--snapshot", action="store_true",
@@ -1115,7 +1183,11 @@ def main():
 
     if a.command == "build":
         global PIN
-        PIN = a.pin
+        # Resolve the ref ONCE (SWE2-DATA 2026-10-03): a symbolic `--pin HEAD` was re-resolved by every `git show
+        # HEAD:<path>` of a minutes-long build, so with the fleet committing the mirror read blobs from several commits
+        # and recorded whichever HEAD came last - a pinned build that matched no commit (measured: the doc-tree digest
+        # recorded 66cad161 against 14bd5582d's own f5d4558a).
+        PIN = pinned_commit(a.pin) if a.pin else None
         d = os.path.dirname(a.out)
         if d and not os.path.isdir(d):
             os.makedirs(d)
@@ -1126,6 +1198,10 @@ def main():
         return 2
 
     if a.command == "check":
+        global AGAINST
+        AGAINST = pinned_commit(a.against) if a.against else None   # resolved once, like --pin
+        if AGAINST:
+            print("check against the committed state of %s (%s), not the worktree" % (AGAINST, pinned_commit(AGAINST)[:12]))
         status, stale, meta = freshness_report(a.out)
         _freshness_banner(status, stale, meta)
         if status == "current":

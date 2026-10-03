@@ -1,0 +1,71 @@
+{
+ "page": "22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/class-descriptor-and-metadata-system.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter-r4",
+ "report": "class-descriptor-and-metadata-system-r4.json",
+ "rows": [
+  {
+   "fn": "00631A60",
+   "text": "Constructs the object at `rcx` and returns it: on first use (the guard dword `02CF94EC` greater than the thread's epoch read through `gs:[0x58]` and the index at `02EAED3C`) it calls `008092FC` on the guard and, when the guard then reads -1, self-links the static record at `01F2E330` (qwords `01F2E330`/`01F2E338`, `01F2E340`/`01F2E348`, `01F2E358`/`01F2E360`, dword `01F2E350` zero), registers `008AF490` through `00808B90` and calls `0080929C` on the guard; it then self-links the list heads at `+8` (three qwords), `+0x50`, `+0x60`, `+0x80`, `+0x90`, `+0xA0` and `+0xB0`, zeroes `+0x20`, `+0x28`, `+0x40`, `+0x48` and `+0xC0` to `+0xE0`, stores `00D569B8` to `+0x30`, 0x60 and 8 to dwords `+0x38`/`+0x3C`, `01F2E330` and `rdx` to `+0x70`/`+0x78`, the counter at `02CF8260` to `+0xE8` (then increments it), `r8d` to `+0xF0`, -1 to `+0xEC`, zeroes `+0xF4` to `+0xFF`, and leaves the vtable pointer at `+0` as `00D56A38` (written over `00D581C0`).",
+   "anchors": [
+    [
+     "00631AA9",
+     "cmp"
+    ],
+    [
+     "00631AED",
+     "mov"
+    ],
+    [
+     "00631B87",
+     "inc"
+    ],
+    [
+     "00631BCD",
+     "call"
+    ],
+    [
+     "00631C24",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006458A0",
+   "text": "Calls `006461B0` on `rcx`, sets the vtable pointer `00D61EA0`, fills 0x80 entries of 0x80 bytes from `+0x50` and one more at `+0x4050` with the same fixed pattern (zeros and 1.0 floats, with 50.0 at entry `+0x54`, 100.0 at `+0x58` and the largest finite float at `+0x70`), writes 0.2 to the floats `+0x40D0` to `+0x40D8`, 1.0 to `+0x40DC`, `+0x40EC`, `+0x40FC`, `+0x4104`, `+0x4108` and `+0x410C`, 100.0 to `+0x40F0` and 20.0 to `+0x40F4`, and zero to the other dwords up to `+0x412F`, constructs the member at `+0x4130` with `00615CD0`, zeroes the qwords `+0x4158` to `+0x41C8`, sets byte `+0x41D0` to 1 and writes 1, 1, 2, 2 into the member's bytes `+0` to `+3` and sets bit `0x40` of its dword `+0x1C`, each of these five writes done only when bit `0x80` of that dword is clear, returning `rcx`.",
+   "anchors": [
+    [
+     "006458C0",
+     "call"
+    ],
+    [
+     "00645938",
+     "mov"
+    ],
+    [
+     "00645977",
+     "jne"
+    ],
+    [
+     "00645AEF",
+     "call"
+    ],
+    [
+     "00645BA7",
+     "or"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "006458A0",
+   "why": "byte re-read by a non-drafting agent: The `+0x40D0`..`+0x410C` block summary ('0.2 three times, then 1.0, 100.0 and 20.0 values') is not exact: 1.0 is written at `+0x40DC`, `+0x40EC`, `+0x40FC`, `+0x4104`, `+0x4108` and `+0x410C` (some after the 100.0 at `+0x40F0` and 20.0 at `+0x40F4`), and zero dwords are interleaved (`+0x40E0`..`+0x40E8`, `+0x40F8`, `+0x4100`)."
+  }
+ ],
+ "mode": "ee",
+ "family": ""
+}

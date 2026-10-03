@@ -1,0 +1,14 @@
+check_s22_recipes.py  HEAD 1e18553b0
+PASS S1 the hook site 003863D0 (call [rbx+rax*8+0x1DDA5C0]) lies in the resolver 00385F60 (chained .pdata): 00385F60-003860B2 003860B2-00386225 00386225-00386242 00386242-0038685E
+PASS R1 recorded: RW-1 extent and RW-2/RW-4 decode pass (static, read from the mapped image): next qword 000000B4FFFFFFFF
+PASS R2 recorded and ASSERTED in the package: the committed path calls only the second list (39 calls none): each completed case calls exactly its committed list, in order (a prefix when the flag sto
+PASS R3 asserted here from the record: every completed run calls its committed list up to the first step leaving [02AEDFB8]=1: completed ['2', '4', '5', '6', '39', '74', '90']; cut short: 6 -> [3, 4], 2 -> [20, 30, 32, 40]
+PASS R4 the package's own early-exit case is a recorded observation (literal pass), not an assertion: observed: when a step leaves [02AEDFB8] = 1 the loop stops before the 
+PASS R5 not covered: recipe 25 (bow) stops in its first committed slot 29 at an unplanted read (0x1C): ok False called [29] stopped_at ['0000001C']
+PASS R6 recorded and asserted: RW-5 gate on steps 35/36 (+0x1A bit 0x04 clear and class 2 scale 100 -> 80 / 50): {"clear_class2": [80, 50], "bit4_class2": [100, 100], "clear_class1": [100, 100], "clear_class0": [100, 100], "others_set_class2": [80, 50], "bit4_class1": [100, 100]}
+PASS C1 sensitivity: OLD 'no experiment executes this resolver' is FALSE: recorded steps called through 003863D0 in 7 of 8 cases
+PASS C2 sensitivity: 'the committed path runs every slot' predicts called == committed for 6 and 2; FALSE: 6: 2 of 7, 2: 4 of 5
+PASS RR s22-opus-replay-recipe-resolver/check.py re-run reproduces result.json: exit 0, re-run a226db98, committed a226db98, recorded a226db98
+PASS RR s22-opus-replay-recipe-resolver/we1.py re-run reproduces we1_result.json: exit 0, re-run 5680857b, committed 5680857b, recorded 5680857b
+PASS RR s22-opus-replay-severe-weather-gate/check.py re-run reproduces result.json: exit 0, re-run 867bbaf3, committed 867bbaf3, recorded 867bbaf3
+FAILS 0

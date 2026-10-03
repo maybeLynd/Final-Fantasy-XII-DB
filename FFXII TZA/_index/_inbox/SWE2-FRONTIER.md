@@ -1,7 +1,7 @@
-<!-- TEAM-CURRENT:begin agent=SWE2-FRONTIER board_rev=50155 epoch=4 queue_sha=dde03f3d8f7114d8 -->
-> generated 2026-10-03T09:11:49+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=SWE2-FRONTIER board_rev=51136 epoch=4 queue_sha=3eb230ced66b5fe6 -->
+> generated 2026-10-03T14:39:01+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: SWE2FRONTIER-PUB-RESUME-STATE-FINAL-1003
+> ACTIVE: SWE2FRONTIER-PUB-RESUME-1003C
 > READY addressed to you: none
 > READY pool: 0 | BLOCKED: 0
 <!-- TEAM-CURRENT:end -->
@@ -64,6 +64,8 @@ idle, and it is not a reason to start something that depends on its outcome.
 
 Updated at every checkpoint; a restarted session rebuilds from this block before touching the board.
 Required by the continuity rule in the root `CLAUDE.md` ("What a plain `Continue` means").
+
+- **STAND-IN CHECKPOINT 2026-10-03 14:30Z (Claude stand-in for Devin, session bb063a3a; read this first; supersedes the 13:00Z bullet).** Since 11:20Z all landed: `35a002978` one L2 verdict-table reader (readiness_view had read 45 L2 MET vs 31); `2585aa63f` ASTRA's interrupted publish adjudicated (REFLOG-ATTESTED) + opt-in PUBLISH_RECEIPT in publish_paths.sh; `919aea842` the root's mode byte is 02064AD3 (02064AD4 not a mirror); ASTRA got its publication turn (SWE2 runners suspended, FABLE yielded; ASTRA committed 431017e52) - ASTRA-REQ-FRONTIER-UQ147-CORRECTION-PUBTURN-1003 DONE; stash notice acknowledged. Open: none. Lesson: re-check the lease holder after suspending runners (memory pause-runners-check-lease-after). Queue watcher `Tools/work/SWE2-FRONTIER/standin1003/queue_watch.py`; fleet plan holds all 8 lanes until Devin starts (release with `hold_plan.py ""` in the stand-in scratchpad). Publish tools per lane: `Tools/work/<LANE>/standin1003/` (bop.py, mkpub.py, pub_runner.py); splice publishes over peer overlays: `Tools/work/SWE2-FRONTIER/standin1003/splice_pub.py`.
 
 - **2026-10-03 09:05Z - Claude stand-in for Devin (SWE2-FRONTIER), final; supersedes the 03:25Z entry below.**
   **Current package/claim:** none. Every SWE2-FRONTIER task on the board is DONE (queue empty at rev ~50139). No

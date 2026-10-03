@@ -17,6 +17,19 @@ import cloudlib as cl  # noqa: E402
 SWEEP_RE = re.compile(r"contradictions from the cloud readiness map settled|held readiness edits released"
                       r"|counts and stale items settled|consolidated publish: progress-report cluster", re.I)
 
+_BREADTH = {}
+
+
+def _breadth(sha):
+    """How many .md pages a commit touched (cached)."""
+    if sha not in _BREADTH:
+        import subprocess
+        out = subprocess.run(["git", "-C", cl.DB, "show", "--name-only", "--format=", sha], capture_output=True,
+                             text=True).stdout
+        _BREADTH[sha] = sum(1 for l in out.splitlines() if l.endswith(".md"))
+    return _BREADTH[sha]
+
+
 args = sys.argv[1:]
 fns = []
 if "--fns" in args:
@@ -56,8 +69,18 @@ for p in pages:
     if os.environ.get("OPUS_SWEEPS_OK") == "1":
         # FABLE's --sweeps-ok rule (fable_fpack.py SWEEP_RE, 2026-10-02), mirrored: a finished one-shot sweep that does
         # not mention interior work does not block. Claims, dirty pages and every other peer commit still block.
-        peers = [x for x in peers if not (SWEEP_RE.search(x) and "interior" not in x.lower())]
-    if peers:
+        # 2026-10-03 (OPUS): also by BREADTH, not only by subject - a finished peer commit that touched 15 or more pages
+        # is a mass sweep (front-matter key retirement, readiness batches), not work on this page. Subject patterns
+        # missed five such sweeps (19-110 pages each) and blocked every OPUS-led page they touched.
+        peers = [x for x in peers if not ((SWEEP_RE.search(x) or _breadth(x.split("\t")[0]) >= 15)
+                                          and "interior" not in x.lower())]
+    if peers and os.environ.get("OPUS_ACTIVE_ONLY") == "1":
+        # 2026-10-03, the user's rule: a recent peer commit is FINISHED work, not someone actively working here. Only
+        # an open board claim, uncommitted edits (dirty) or an overlay carrier block; this becomes a WARN, and the
+        # page's lead gets a notice naming what OPUS added so nothing is repeated.
+        warns.append("peer commits <24h (finished work; notify the page lead after publishing): %s"
+                     % "; ".join(x[:110] for x in peers[:3]))
+    elif peers:
         reasons.append("peer commits <24h: %s" % "; ".join(x[:110] for x in peers[:3]))
     else:
         older = cl.recent_peer_commits("FFXII TZA/" + rel, 72)

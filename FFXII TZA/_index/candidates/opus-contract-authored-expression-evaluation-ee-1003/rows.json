@@ -1,0 +1,40 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/Authored-Expressions/CONTRACT-authored-expression-evaluation.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "contract-authored-expression-evaluation-r5.json",
+ "rows": [
+  {
+   "fn": "0039B6E0",
+   "text": "with `t` = `xmm0` and floats `a` = `[rdx]`, `b` = `[rdx+0x10]`, `c` = `[rdx+0x20]`: forms `A` = `a` - (`b` + `b`) + `c`; when `A` compares equal to 0.0 (ordered, so not NaN) it stores 2.0 (0x40000000) to dword `[r8]`; otherwise (unordered included) it stores (`sqrtf`((`b` - `a`)^2 - (`a` + `b` - 2`t`)*`A`) - (`b` - `a`)) / `A` there, `sqrtf` through the CRT thunk `00861F14`; returns nothing",
+   "anchors": [
+    [
+     "0039B715",
+     "subss"
+    ],
+    [
+     "0039B725",
+     "ucomiss"
+    ],
+    [
+     "0039B72C",
+     "mov"
+    ],
+    [
+     "0039B752",
+     "call"
+    ],
+    [
+     "0039B760",
+     "divss"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

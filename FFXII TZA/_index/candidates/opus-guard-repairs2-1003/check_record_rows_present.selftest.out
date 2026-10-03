@@ -1,0 +1,8 @@
+SELFTEST ok (6 cases)
+ok   OPUS publish adding a row keeps every row
+ok   second lane (FABLE) publish dropping OPUS rows from the shared page
+ok   later same-heading record re-rendering the earlier section
+ok   overwritten rows.json (another report's rows in the folder)
+ok   legitimate explicit move: the row is declared moved and leaves the page
+ok   legitimate retirement: the record is retired and its rows leave the page
+SCENARIOS ok (6 publication-boundary scenarios)

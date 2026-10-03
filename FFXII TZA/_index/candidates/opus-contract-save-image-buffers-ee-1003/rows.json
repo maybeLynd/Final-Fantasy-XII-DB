@@ -1,0 +1,101 @@
+{
+ "page": "19-Save-Load-Settings/CONTRACT-save-image-buffers.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "contract-save-image-buffers-r5.json",
+ "rows": [
+  {
+   "fn": "005FCF20",
+   "text": "returns the static object `02CC03D8`, constructing it once under the thread-safe guard dword `02CC0400` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before, `0080929C` after): when the guard is greater than the epoch (signed: `jle` skips) it enters `008092FC(&guard)`, and if the guard then reads -1 it calls `005CC8A0(02CC03D8)` and registers the exit routine `00808B90(008ACDA0)`; every path returns `02CC03D8`",
+   "anchors": [
+    [
+     "005FCF4A",
+     "cmp"
+    ],
+    [
+     "005FCF59",
+     "call"
+    ],
+    [
+     "005FCF71",
+     "call"
+    ],
+    [
+     "005FCF7D",
+     "call"
+    ],
+    [
+     "005FCF8A",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00622010",
+   "text": "with `o` = `rcx` and its element array `E` = qword `[o+0x38]` when dword `[o+0x30]` without its sign bit is above 1, `o+0x38` when it is 1, else 0: takes `p` = qword `[E+edx*0x58+0x28]`, `w`/`h` = dwords `+0x28`/`+0x2C`, `n` = the unsigned minimum of 0xB and (0 when dword `+0x18` has `0x2`, else dword `+0x10`), and `d` = qword `+0x110` of `005FD050()`; for each level `l` from 0 to `n` it calls `d`'s vtable slot `+0x180` with (`d`, qword `[E+edx*0x58]`, `l`, 0, `p`, (dword `[f+0x14]` * `w'` * `k`) >> 3, 0), where `f` = qword `[o]`, `w'` = `w` (dword `+0x28` if `w` is 0) rounded up to a multiple of 4 with `k` = 4 when byte `[f+0x18]` has `0x1`, else unrounded with `k` = 1; then adds (dword `[f+0x14]` * `w'` * `h'`) >> 3 to `p` (`h'` likewise from `h` or dword `+0x2C`; 32-bit products) and halves `w` and `h` (each at least 1); after the loop, only when that masked count is exactly 1, it calls `00584730(qword [E+edx*0x58+0x28])` and stores 0 there; returns nothing",
+   "anchors": [
+    [
+     "00622055",
+     "imul"
+    ],
+    [
+     "0062207B",
+     "call"
+    ],
+    [
+     "006220FD",
+     "call"
+    ],
+    [
+     "00622139",
+     "add"
+    ],
+    [
+     "00622190",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007A05D0",
+   "text": "builds a stack object `s` (`00615BC0(&s)`), reads its size pair (`a`, `b`) through `00624960(00624670(&s), &a, &b, &c)`; when dwords `[rcx+0xD24]`/`[rcx+0xD28]` already equal `a`/`b` it calls `001825A0()` and returns 0; otherwise `r` = `006278B0(00624670(&s), dword +0xD24, dword +0xD28)`, and for non-zero `r` it returns `r`; else it logs '======== Call resize w = %d,h = %d =======' through `005CDAA0(2, ..)`, takes `r` = `0060F6B0(rcx+0xE8, 0, 0, dword +0xD24, dword +0xD28, 0)` (non-zero `r` returned), then for each of the dword `+0xDB8` (sign bit cleared) items `t` = qword `[qword [rcx+0xDC0] + 8i]`: when dwords `[t+0x2C]` and `[t+0x30]` are both non-zero it computes, without writing them back, dwords `[t+0x24]`, `[t+0x2C]` times dword `+0xD24` / `a` and `[t+0x28]`, `[t+0x30]` times dword `+0xD28` / `b` (32-bit multiply then unsigned divide), calls `007A10A0(t, x, y, w, h)` with the four (rescaled or as read) and returns `r` = `t`'s vtable slot `+0x20` when non-zero; after the last item (or at once when the masked count is 0) it calls `001825A0()` and returns 0; every return first destroys `s` (`00616700(&s)`)",
+   "anchors": [
+    [
+     "007A05F3",
+     "call"
+    ],
+    [
+     "007A0663",
+     "call"
+    ],
+    [
+     "007A06B0",
+     "call"
+    ],
+    [
+     "007A070A",
+     "div"
+    ],
+    [
+     "007A0760",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "005FCF20",
+   "why": "byte re-read by a non-drafting agent: the guard test is signed (`cmp [02CC0400], eax` then `jle` skips at 005FCF50); 'above' is the unsigned term and should be 'greater than (signed)'"
+  },
+  {
+   "fn": "007A05D0",
+   "why": "byte re-read by a non-drafting agent: 'it rescales `[t+0x24]`, `[t+0x2C]` ... and `[t+0x28]`, `[t+0x30]`' reads as stores into `t`; the products are only computed in registers and passed to `007A10A0`, nothing is written back to `t`; with a masked count of 0 the loop is skipped (`test`/`jbe` at 007A06CB) and it goes straight to `001825A0()` and returns 0; 'after the last item' should cover that path"
+  }
+ ],
+ "mode": "ee",
+ "family": ""
+}

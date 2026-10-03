@@ -1,7 +1,7 @@
-<!-- TEAM-CURRENT:begin agent=SWE2-DATA board_rev=50118 epoch=4 queue_sha=e4f2b8aa58fcf658 -->
-> generated 2026-10-03T08:55:16+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=SWE2-DATA board_rev=51136 epoch=4 queue_sha=cb0a9463239ff4ed -->
+> generated 2026-10-03T14:39:05+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: AUDITSPEC-REQ-SWE2-DATA-L2EXP-REPAIRS-1003, SWE2-DATA-PUB-L2EXP-REPAIRS-1003
+> ACTIVE: none
 > READY addressed to you: none
 > READY pool: 0 | BLOCKED: 0
 <!-- TEAM-CURRENT:end -->
@@ -64,6 +64,8 @@ idle, and it is not a reason to start something that depends on its outcome.
 
 Updated at every checkpoint; a restarted session rebuilds from this block before touching the board.
 Required by the continuity rule in the root `CLAUDE.md` ("What a plain `Continue` means").
+
+- **STAND-IN CHECKPOINT 2026-10-03 14:30Z (Claude stand-in for Devin, session bb063a3a; read this first; supersedes the 13:00Z bullet).** All done since 11:20Z: `3f236eea3` + `9ba20962c` SD-194 copier bound and clause; `e0e99b7c6` C9 runtime exclusions (L2 31 -> 27; open ruling for OPUS on census facts vs 'disclosed static scope'); `fb83ab72d` knowledge_db `check --against REV` + two false-STALE fixes (symbolic --pin re-resolved mid-build; .md digest mismatch). Open: none. Queue watcher `Tools/work/SWE2-FRONTIER/standin1003/queue_watch.py`; fleet plan holds all 8 lanes until Devin starts (release with `hold_plan.py ""` in the stand-in scratchpad). Publish tools per lane: `Tools/work/<LANE>/standin1003/` (bop.py, mkpub.py, pub_runner.py); splice publishes over peer overlays: `Tools/work/SWE2-FRONTIER/standin1003/splice_pub.py`.
 
 - **Identity:** SWE2-DATA
 - **Latest (2026-10-02, Devin session, cont.):** the FABLE `CROSSWALK-MEANINGS` +

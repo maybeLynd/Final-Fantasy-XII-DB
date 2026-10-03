@@ -1,0 +1,66 @@
+{
+ "page": "06-Movement-And-Navigation/the-unit-shape-distance-primitives.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter-r4",
+ "report": "the-unit-shape-distance-primitives-r4.json",
+ "rows": [
+  {
+   "fn": "00381630",
+   "text": "Tests the segment `rdx` to `r8` (length via `00861F14`, the fourth float of `[r8]` carried into the result; each float test is ordered, failing on unordered): when the start height `[rdx+4]` is above 1 it returns 0 unless the end height is below 1, else intersects the segment with the reference at `00D11280` through `0046BFA0` and, when that distance is above 0 and below the length and the hit's horizontal radius (x, z) is below 1, writes the hit point and the carried float to `rcx`..`rcx+0xC` and returns 1; failing that, when the start height is below -1 it does the same against `00D11290` (returning 0 unless the end height is above -1); otherwise it projects onto the horizontal direction (zero when its length is below the constant at `00908E10`) with `0046BF60` on `00D11270`, takes the closest horizontal distance and, unless `00382020` returns non-zero for either endpoint, returns 0 when that distance is above 1 or the parameter lies below 0 or above 1; it then backs off by `00861F0E` of `00861F56` of the distance, writes the point and carried float to `rcx` and returns 1 unless its height is above 1 or below -1 (then 0), with the stack cookie checked via `00808C40`.",
+   "anchors": [
+    [
+     "00381728",
+     "call"
+    ],
+    [
+     "003817A8",
+     "movss"
+    ],
+    [
+     "0038180E",
+     "call"
+    ],
+    [
+     "00381959",
+     "call"
+    ],
+    [
+     "003819F7",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00381AC0",
+   "text": "For the segment from `rdx` to `r8` it forms the unit direction (zero when the length from `00861F14` is below the constant at `00908E10`) followed by the end point's fourth float, gets a distance along it from `0046BF60` on `00D11260`, and takes the closest point (start plus direction times that distance), its length from the origin and the parameter (distance divided by segment length); every float test is an ordered compare that an unordered value fails: when neither the start nor the end point has length below 1 it returns 0 if the closest length is above 1 or the parameter is below 0 or above 1; otherwise it backs the closest point off along the direction by `00861F0E` of `00861F56` of the closest length, writes it and the carried fourth float to `rcx`..`rcx+0xC` and returns 1, checking the stack cookie through `00808C40` on both returns.",
+   "anchors": [
+    [
+     "00381B74",
+     "comiss"
+    ],
+    [
+     "00381BC7",
+     "call"
+    ],
+    [
+     "00381C7E",
+     "seta"
+    ],
+    [
+     "00381CE5",
+     "call"
+    ],
+    [
+     "00381D1D",
+     "movss"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

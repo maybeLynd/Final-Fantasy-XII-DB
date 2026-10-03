@@ -1,0 +1,179 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter-r4",
+ "report": "the-fifteen-modules-registered-before-main-r4.json",
+ "rows": [
+  {
+   "fn": "005BFC40",
+   "text": "Copies the 0x28-byte records of the array at `[[rdx]]` to the array at `[rcx]` for indexes 0 up to the dword `+8` of the sixth argument's record (unrolled by four, then singly), leaving a record unwritten when the next unconsumed entry of a sorted dword list (count at `r9` plus the dword `[r9]`, entries after it, entries below the record's dword `+0xC` skipped first, unsigned) equals that dword `+0xC` plus the index, in which case the entry is consumed; it returns 0.",
+   "anchors": [
+    [
+     "005BFC77",
+     "cmp"
+    ],
+    [
+     "005BFCA9",
+     "cmp"
+    ],
+    [
+     "005BFCB5",
+     "mov"
+    ],
+    [
+     "005BFDE5",
+     "jb"
+    ],
+    [
+     "005BFE16",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005FD2A0",
+   "text": "Points `02CB8450` at `02CB7DA0` with count 0x17 plus the top bit in `02CB8448` (first calling `005F03A0` if it pointed elsewhere with that bit clear), then for 23 0x18-byte entries from `02CB7DA8` copies the string whose pointer is at `-8` of each 16-byte step from `00D3EB38` into the 2-aligned pool `02CBC390` (`00861EBA`), stores that address plus 1 (releasing an old non-null even one via `00584730`), the source dwords `+0`/`+4` as bytes at `-6`/`-5`, clears word `+8` and keeps the top three bits of word `+0xA`; sizes a slot via `005FD700` (with the `006372B0` result), stores it rounded to 16 as the word at `02CB8458`, allocates and zeroes that times `ecx` rounded up to even bytes via `0017D260`/`00861EC0` into `02CB8460` (count at `02CB8468`, `02CB84A8` cleared), when that count differs from `02CB8470` replaces the array `02CB8478` with new 0x50-byte elements built with `00615550` (freeing the old via `005F01B0`; a failed allocation keeps it), calls `00628050` with 8 on each element whose dword `+0x18` (low 31 bits, 0 read as 1) is not 8, clearing `+4` when it returns 0, sets each dword `+0` to 0x5E4, zeroes 0xB30 bytes at `02CB84B0`, calls `005CD0A0` on `02CB8480` and returns 0.",
+   "anchors": [
+    [
+     "005FD344",
+     "call"
+    ],
+    [
+     "005FD3D6",
+     "call"
+    ],
+    [
+     "005FD422",
+     "call"
+    ],
+    [
+     "005FD508",
+     "call"
+    ],
+    [
+     "005FD515",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00617810",
+   "text": "Calls `006388C0` on `02CF1C40`, then for three thread-safe statics (guards `02CF6B78`, `02CF6BD8`, `02CF6C38`, each entered through `008092FC` only when the guard exceeds the thread's epoch read through `gs:[0x58]` and the index at `02EAED3C`, and initialised only when the guard then reads -1) builds the member records `02CF6B20`, `02CF6B80` and `02CF6BE0` through `00632960` with `02CF1C40`, the `00630180` result, the names `00D5517C`, `00D55184` and `00D5518C`, offsets 0x80, 0x84 and 0x88, size 0x10 and two zeros, registers `008AECF0`, `008AED00` and `008AED10` through `00808B90` and calls `0080929C` on the guard; it ends by tail-jumping to `00639450` with `02CF1C40`.",
+   "anchors": [
+    [
+     "0061782B",
+     "call"
+    ],
+    [
+     "0061785E",
+     "call"
+    ],
+    [
+     "006178A2",
+     "call"
+    ],
+    [
+     "00617915",
+     "call"
+    ],
+    [
+     "006179B7",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006A5C00",
+   "text": "Returns 0x15 when qword `rcx+8` is null, else forms an eye at `[rdx]` plus floats `+0x38`..`+0x40` and a base by subtracting the `+0x68` direction times `+0x14` (its height raised to at least `[rdx+4]` + `+0x18`, plus `+0x2C`), and for 20 samples (offsets from `rcx+0x78`, weights from `rcx+0x1B8`) casts from the eye to base plus offset through `006A1A70` with 0xF: a hit not on `02E47ED0` (one on `02E48BD0` with byte `+0xE8` = 1 skips the sample) gives the base shifted by (hit point + normal times `+0x1C` - cast target) and 0.1 times that shift's length (`00861F14`), a miss or a hit on `02E47ED0` gives the base and 0; the weight moves toward that value by at most 0.5 times min(1.0, third argument times `+0x30`) and weights the point into an average seeded at 0.1 times the base; if `+0x20` exceeds the average's distance from the eye it raises the average's height by the shortfall times `+0x34` and the eye's by 0.8 of that; if the third argument and `+0x24` are above 0 it blends `+0x48`..`+0x50` toward the average by `00861F6E` (powf) of `+0x24` and the third argument, minus 1, clamped to 0..1 (the plain average if only the third is), stores the eye to `+0x58`..`+0x60` and returns 0.",
+   "anchors": [
+    [
+     "006A5C18",
+     "mov"
+    ],
+    [
+     "006A5DFE",
+     "call"
+    ],
+    [
+     "006A5EF1",
+     "minss"
+    ],
+    [
+     "006A5FFF",
+     "comiss"
+    ],
+    [
+     "006A60C0",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006BC540",
+   "text": "Returns 0 when `ecx` is zero; otherwise it allocates `ecx` times 0x18 bytes through `0017D260` with 8, returns null when that fails, and otherwise copies `ecx` consecutive 0x18-byte records from `rdx` into the block and returns it.",
+   "anchors": [
+    [
+     "006BC567",
+     "call"
+    ],
+    [
+     "006BC572",
+     "je"
+    ],
+    [
+     "006BC58F",
+     "movups"
+    ],
+    [
+     "006BC59B",
+     "movsd"
+    ],
+    [
+     "006BC5A4",
+     "jne"
+    ]
+   ]
+  },
+  {
+   "fn": "007A15A0",
+   "text": "Walks the circular list headed at `rcx+0x18` (stopping when a node's next qword `+0` is the header) and for each node: when its qword `+0x38` is set it reads the byte that points to as the new state, sets byte `+0x31` to 1 only when the old state byte `+0x30` was 0 and the new one is 1, sets byte `+0x32` to 1 only when the old one was 1 and the new one is 0 (each else 0) and stores the new state to `+0x30`; otherwise, when its qword `+0x40` is set, it calls `0079A5F0` with the node and the dword that points to.",
+   "anchors": [
+    [
+     "007A15D2",
+     "movzx"
+    ],
+    [
+     "007A15DD",
+     "mov"
+    ],
+    [
+     "007A15EF",
+     "mov"
+    ],
+    [
+     "007A15FB",
+     "mov"
+    ],
+    [
+     "007A160E",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "005FD2A0",
+   "why": "byte re-read by a non-drafting agent: The string is not named by the source at `00D3EB38`: each step reads the string pointer from the qword 8 bytes BEFORE the stepping pointer (`005FD32A mov rdx, qword ptr [r14 - 8]`), while the dwords are at `+0`/`+4` of it.; The rounded slot size is stored as a word (`005FD3EF mov word ptr [rip+...], ax`); the width was not stated."
+  },
+  {
+   "fn": "006A5C00",
+   "why": "byte re-read by a non-drafting agent: The blend factor omits the arguments of `00861F6E` (the CRT `powf` thunk): it is called with float `+0x24` in `xmm0` and the third argument in `xmm1` (`006A608B`, `006A60B5`, `006A60C0`)."
+  }
+ ],
+ "mode": "ee",
+ "family": ""
+}

@@ -1,0 +1,1 @@
+Conditional target-fixup closure writes only flag52; legacy EXP091 initializes resolver base at wrong address, with no retained action-row positive control.

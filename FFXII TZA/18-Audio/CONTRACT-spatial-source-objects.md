@@ -241,3 +241,11 @@ each slot-34 size was checked against its `.pdata` chain union, and SA-7's squar
 | P8 | §10 | **survives**: Polygon stores `+0xE0 = 0` and returns `-1` on the early-out, and 0 on the computed path |
 
 No correction.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-contract-spatial-source-objects-ee-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `007F74E0` | 135 B | with `u` = `[rdx]` - `[rcx]` and `v` = `[r8]` - `[rdx]` (4-float lanes, aligned loads), forms the cross product `n` = `u` x `v` by four shuffles (lane orders z,x,y,w and y,z,x,w of `u` and of `v`), two multiplies and a subtract (fourth lane: `u.w`*`v.w` minus the same product), takes `s` = `n.x`^2 + `n.y`^2 + `n.z`^2 (mask 1,1,1,0 and two horizontal adds), refines `r` = `rsqrtps`(`s`) once as (3 - `s`*`r`*`r`) * (0.5*`r`), and stores (`n.x`*`r`, `n.y`*`r`, `n.z`*`r`, `n.w`) as 16 aligned bytes to `[r9]`; returns nothing | `007F750D`, `007F7516`, `007F7525`, `007F7548`, `007F755D` |

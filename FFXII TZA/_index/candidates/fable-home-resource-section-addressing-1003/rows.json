@@ -1,0 +1,46 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/resource-section-addressing.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01HFDWqiFGBo93D32pyB6Lkx",
+ "report": "home-resource-section-addressing.json",
+ "rows": [
+  {
+   "fn": "00512C50",
+   "entered_from": "`003E1C50` + 0x717",
+   "text": "replaces dword `rcx+0x30` with `0020E620(0020E600(dword rcx+0x30) + edx)` (32-bit sum) and returns that value",
+   "anchors": [
+    [
+     "00512C5F",
+     "mov"
+    ],
+    [
+     "00512C62",
+     "call"
+    ],
+    [
+     "00512C67",
+     "lea"
+    ],
+    [
+     "00512C6A",
+     "call"
+    ],
+    [
+     "00512C74",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "0046C1E0",
+   "why": [
+    "already cited by 17-Presentation-Rendering\\Character-Render-Records\\the-character-render-record-array.md"
+   ]
+  }
+ ],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

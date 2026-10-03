@@ -1,0 +1,26 @@
+{
+ "page": "17-Presentation-Rendering/Character-Render-Records/how-a-character-fades-the-ten-channels.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_011Dcenz5EPZBdrLRrFP8ia6",
+ "report": [
+  "fable-how-a-character-fades-the-ten-channels.json"
+ ],
+ "rows": [
+  {
+   "fn": "0042E540",
+   "text": "tail-jumps to `00420E70(rcx, dword rdx+0x74)` with the incoming `rcx`",
+   "anchors": [
+    [
+     "0042E543",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing",
+ "family": ""
+}

@@ -1,0 +1,9 @@
+page Database/FFXII TZA/08-Combat-Formula/CONTRACT-formula-step-table.md  source working tree (clean)  HEAD 1e18553b0  mode dry-run
+line endings LF
+PASS E1 section 3 types fence: the three words are one channel, not the only one: anchored once, would replace (+272 chars)
+PASS E2 ST-4 lead: the channel is the whole scratch block: anchored once, would replace (+958 chars)
+PASS E3 section 5: the cross-operation state is the block: anchored once, would replace (+293 chars)
+PASS E4 section 7: no return path; the block is the channel: anchored once, would replace (+207 chars)
+PASS E5 section 13: three native replays execute this dispatch: anchored once, would replace (+2441 chars)
+edits 5, to change 5
+FAILS 0

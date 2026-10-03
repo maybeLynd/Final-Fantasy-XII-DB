@@ -1,0 +1,54 @@
+PASS  I exe sha256 73461d08...21f8, base 0x120000
+PASS  manifest.json sha256 = 153a65ee9386436e...  | 153a65ee9386436e5e69962241be8adcddc2314b3629fdd5d2fcd6c6b8e1e683
+PASS  all 98 manifest members hash as listed  | []
+PASS  H 0029B7D0 .pdata root 0029B7D0-0029B802 = 50 B, exact decode
+PASS  E 0029B7D0 event 0 ends at RET (got RETURN at 29B801)
+PASS  E 0029B7D0 event 0: no call, no non-stack write  | []
+PASS  E 0029B7D0 event 0: one non-stack read, qword [rcx+0x48], rcx unwritten before it  | [('0x29b7d7', 'rcx', '0x48', 8)]
+PASS  E 0029B7D0 event 0: EAX = 0 at RET  | 0
+PASS  E 0029B7D0 the +0x48 read is at 0x29b7d7, before the first edx test
+PASS  H 0029B810 .pdata root 0029B810-0029B862 = 82 B, exact decode
+PASS  E 0029B810 event 0 ends at RET (got RETURN at 29B835)
+PASS  E 0029B810 event 0: no call, no non-stack write  | []
+PASS  E 0029B810 event 0: one non-stack read, qword [rcx+0x48], rcx unwritten before it  | [('0x29b814', 'rcx', '0x48', 8)]
+PASS  E 0029B810 event 0: EAX = 0 at RET  | 0
+PASS  E 0029B810 the +0x48 read is at 0x29b814, before the first edx test
+PASS  P 0029B7D0 event 1 reaches CALL 002973E0 at 0029B7EA
+PASS  P 0029B810 event 1 reaches CALL 002973E0 at 0029B851
+PASS  P 0029B810 event 2 reaches the dword store [rcx+4] at 0029B82C
+PASS  R 003F89C0 .pdata root 003F89C0-003F8A23 = 99 B, exact decode
+PASS  R 003F89D4 is `mov ebp, edx`
+PASS  R 003F89DB is `mov rdi, r9`
+PASS  R 003F89DE is `mov rsi, rcx`
+PASS  R 003F89E1 is `lea r8d, [rdx + 0x58]`
+PASS  R 003F89EA is `mov rax, qword ptr [rsp + 0x50]`
+PASS  R 003F89EF is `or word ptr [rsi + 0x26], 1`
+PASS  R 003F89F4 is `mov qword ptr [rsi + 0x38], rax`
+PASS  R 003F89F8 is `mov dword ptr [rsi + 0x40], ebx`
+PASS  R 003F89FB is `mov qword ptr [rsi + 0x48], rdi`
+PASS  R 003F89FF is `test rax, rax`
+PASS  R 003F8A02 is `je 0x3f8a0e`
+PASS  R 003F8A04 is `mov r8, rbp`
+PASS  R 003F8A07 is `xor edx, edx`
+PASS  R 003F8A09 is `mov rcx, rsi`
+PASS  R 003F8A0C is `call rax`
+PASS  R the one direct call (the 0x58-byte zeroing) precedes the stores
+PASS  R no store between 003F89FB and the call; rsi unchanged
+PASS  R the je at 003F8A02 skips the call to 003F8A0E (NULL callback)
+PASS  Q the clause is absent at HEAD
+PASS  Q README quotes the two handler rows (2)
+PASS  Q quoted row present verbatim at HEAD: | `0029B7D0` | 5...
+PASS  Q quoted row present verbatim at HEAD: | `0029B810` | 8...
+PASS  Q README quotes the 00296360 paragraph verbatim from HEAD
+PASS  Q all 16 clause addresses are instruction boundaries in functions HEAD already cites
+PASS  Q apply.patch on HEAD inserts exactly one paragraph after the anchor
+PASS  Q apply.patch is idempotent (ALREADY on its own output)
+PASS  Q the clause does not touch the sibling fable-ov42-handler-edge-1003 line, and both edits compose
+PASS  control C1 29B7DB cmp edx,1 -> cmp edx,0: event 0 reaches the call -> check FAILS (sensitive)
+PASS  control C2 29B81B sub edx,1 -> add edx,1: event 0 reaches the [rcx+4] store -> check FAILS (sensitive)
+PASS  control C3 29B7D4 mov rax,r8 -> mov rcx,r8: +0x48 read off the payload -> check FAILS (sensitive)
+PASS  control C4 3F89FB context store +0x48 -> +0x50 -> check FAILS (sensitive)
+PASS  control C5 3F8A07 xor edx,edx -> xor ecx,ecx: event not 0 -> check FAILS (sensitive)
+PASS  control baseline: the unpatched image still passes all byte checks
+PASS  exe on disk unchanged after controls
+FAILS 0

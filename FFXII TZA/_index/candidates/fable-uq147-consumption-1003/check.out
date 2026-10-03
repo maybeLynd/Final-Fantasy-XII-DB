@@ -1,0 +1,173 @@
+NOTE  image sha256 pinned by rvlib (73461d08...21f8), base 120000
+PASS  image base is 0x120000
+PASS  A classifier body 00306C5B-00306CEC decodes exactly
+PASS  00306C82 is `div ecx`
+PASS  00306C84 is `add eax, 0xffffff6c`
+PASS  00306C89 is `cmp eax, 0x7f`
+PASS  A quotient 0x113 -> map byte [00306D08+127] = 5  | got 5
+PASS  A jump entry 5 -> 00306CB0  | 306CB0
+PASS  00306CB0 is `mov ebx, 2`
+PASS  A 00306CDB stores EBX to the kind word 022C215C
+PASS  A 00306760-00306AEF decodes exactly (911 B, stops before the 00306AF0 table)
+PASS  A 003067AA reads the kind word
+PASS  003067B0 is `dec eax`
+PASS  A kind table: kind 1 -> 00306931, kind 2 -> 00306A3D  | 306931 306A3D 3067DB 306848 3069F8 306A8E
+PASS  00306A44 is `test byte ptr [rax + 0x5ad0], 1`
+PASS  00306A4F is `call 0x35dae0`
+PASS  00306A68 is `call 0x306d90`
+PASS  A 00306A6D reloads [02EBF190]
+PASS  00306A74 is `mov eax, dword ptr [rcx + 0x5b04]`
+PASS  00306A7A is `test al, 1`
+PASS  00306A7C is `je 0x306a95`
+PASS  00306A7E is `and eax, 0xfffffffe`
+PASS  A 00306A81 is a dword store to [rcx+0x5B04] (the mode word)
+PASS  00306A87 is `call 0x35c620`
+PASS  00306798 is `call 0x3098d0`
+PASS  003067A5 is `call 0x3299b0`
+PASS  00306A9A is `call 0x236850`
+PASS  00306AA3 is `call 0x236820`
+PASS  00306AC0 is `and dword ptr [rax], 0xfffffcff`
+PASS  00306AC6 is `lea rax, [rax + 0xf50]`
+PASS  00306AD3 is `mov ecx, 3`
+PASS  00306AD8 is `call 0x332130`
+PASS  A 00306ADF writes the immediate 5 to the state word 022C2160
+PASS  A 00306ADF is reachable after 00306A81
+PASS  A 00306A81 is not reachable after 00306ADF
+PASS  A bit-already-clear path reaches 00306ADF without 00306A81
+PASS  A census: the only reference to 022C2160 in 00306760 is the write at 00306ADF  | [('306ADF', True)]
+PASS  A census: +0x5B04 writers in 00306760 are 00306949 (kind 1, bit 0), 00306A16 (kind 5, bit 1), 00306A81 (kind 2)  | ['306949', '306A16', '306A81']
+PASS  A on the kind-2 arm the only +0x5B04 writer is 00306A81
+PASS  00306946 is `or ecx, 1`
+PASS  00306A13 is `or ecx, 2`
+PASS  B 00300FC0-00301133 decodes exactly (371 B)
+PASS  003010F6 is `test edi, edi`
+PASS  003010F8 is `jne 0x301128`
+PASS  003010FA is `call 0x30d9a0`
+PASS  003010FF is `cmp eax, 1`
+PASS  00301102 is `jne 0x301128`
+PASS  0030110B is `movzx ecx, byte ptr [rax + 0x5ad5]`
+PASS  00301112 is `call 0x31b770`
+PASS  00301117 is `cmp rbx, rax`
+PASS  0030111A is `jne 0x301128`
+PASS  0030111C is `xor ecx, ecx`
+PASS  0030111E is `call 0x3138d0`
+PASS  00301123 is `call 0x23b040`
+PASS  00301132 is `ret`
+PASS  B 00301104 loads [02EBF190]
+PASS  B straight line: the instruction after 0030111E is 00301123
+PASS  C 003138D0-00313993 decodes exactly (195 B)
+PASS  C 003138D0's one call to 00311CF0 is at 0031395D  | ['31395D']
+PASS  0031394A is `mov r9d, ebp`
+PASS  003138FE is `mov ebp, 0x113`
+PASS  C 00311CF0-00311E0B decodes exactly (283 B)
+PASS  00311D45 is `cmp word ptr [rbx + 0x714], ax`
+PASS  00311D4C is `je 0x311df1`
+PASS  00311D5E is `and word ptr [rax + 0x5ad0], cx`
+PASS  00311DF1 is `mov eax, 0xfffffffe`
+PASS  00311D7A is `mov word ptr [rbx + 0xba0], si`
+PASS  00311D72 is `test ecx, 0x8800203b`
+PASS  00311D78 is `jne 0x311ded`
+PASS  00311DED is `xor eax, eax`
+PASS  00311D1B is `je 0x311df1`
+PASS  00311D35 is `je 0x311df1`
+PASS  C 00311CF0 writes none of +0x708/+0x710/+0x714  | []
+PASS  C 00317E60-00317EB7 decodes exactly (87 B)
+PASS  00311DE8 is `call 0x317e60`
+PASS  C 00317E69 tests bit 4 of byte 02089340
+PASS  00317E8B is `test byte ptr [rax], 8`
+PASS  00317E90 is `movabs rcx, 0x100000000`
+PASS  C 00317E9A is 00317E60's own qword RMW write on the unit
+PASS  C 00317E60's only non-stack write is 00317E9A  | ['317E9A']
+PASS  00317E9D is `lea rcx, [rax + 0x80]`
+PASS  00317EA4 is `call 0x33c9b0`
+PASS  00317EA9 is `xor edx, edx`
+PASS  00317EAB is `lea ecx, [rdx + 1]`
+PASS  00317EB2 is `jmp 0x25aad0`
+PASS  C 0025AAD0-0025AB22 decodes exactly (82 B)
+PASS  0025AAD6 is `mov ebx, ecx`
+PASS  0025AADA is `call 0x3588b0`
+PASS  0025AADF is `test ebx, ebx`
+PASS  0025AAE1 is `jne 0x25ab1c`
+PASS  C 0025AAD0's non-stack writes are the five publication stores  | ['25AAF2', '25AAF8', '25AB00', '25AB06', '25AB15']
+PASS  C with EBX = 1 the taken jne at 0025AAE1 skips all five stores and the 002F1710 call (0025AB10)
+PASS  C no direct transfer to 00306760 in 00300FC0/003138D0/00311CF0/00317E60/0025AAD0
+PASS  C no +0x5B04 write in those five bodies
+PASS  003138DD is `cmp eax, 1`
+PASS  003138E6 is `lea ecx, [rax + 2]`
+PASS  003138E9 is `call 0x31b8c0`
+PASS  D 0031B8C0 (31 B), 00263750 (23 B), 00263E30 (5 B) decode exactly
+PASS  D 0031B8C0 has a .pdata root; 00263750 and 00263E30 have none
+PASS  D 0031B8C0 calls only 00263750 and tail-jumps to 00263E30
+PASS  0031B8CC is `jne 0x31b8d3`
+PASS  0031B8D2 is `ret`
+PASS  00263750 is `cmp ecx, 3`
+PASS  00263753 is `ja 0x263764`
+PASS  D 00263758 forms the roster base 0209A1F0; index 3 -> qword 0209A208
+PASS  00263E30 is `mov rax, qword ptr [rcx + 0x30]`
+PASS  D no memory write of any kind in the three bodies  | []
+PASS  D no read of a status/HP/stats field (+0x3C/+0x48/+0x64/+0x698)
+PASS  D no call in 00263750 or 00263E30
+PASS  E 0030D9A0-0030DA09 decodes exactly (105 B)
+PASS  E [02EBF190] loaded twice (0030D9A4, 0030D9E2)  | ['30D9A4', '30D9E2']
+PASS  E the mode word +0x5B04 read twice (0030D9AB, 0030D9E9)  | ['30D9AB', '30D9E9']
+PASS  0030D9B1 is `test cl, 8`
+PASS  0030D9C0 is `test cl, 4`
+PASS  0030D9CF is `call 0x377c20`
+PASS  0030D9EF is `test cl, 2`
+PASS  0030DA01 is `and eax, 1`
+PASS  E order: bits 3/2 read, then 00377C20, then the second read
+PASS  E the chain decodes exactly: 78 + 27 + 20 + 8 = 133 B, 23 + 8 + 5 + 2 = 38 instructions
+PASS  E no memory write of any kind in the chain  | []
+PASS  E calls are exactly the chain 00377C20->003148F0->002EF2B0->002EF640
+PASS  E 002EF640 forms 02164280 with lea (a fixed image address, no load)
+PASS  002EF2B9 is `add rax, 0x200`
+PASS  003148FB is `mov eax, dword ptr [rax + 0x1044]`
+PASS  00314903 is `cmovs eax, ecx`
+PASS  E field cell 02164280 + 0x200 + 0x1044 = 021654C4
+PASS  E 00377C29 loads the descriptor qword 02ADD100
+PASS  00377C33 is `je 0x377c5f`
+PASS  00377C35 is `cmp eax, dword ptr [r8 + 4]`
+PASS  00377C39 is `jae 0x377c5f`
+PASS  00377C42 is `movzx edx, byte ptr [rcx + rax + 9]`
+PASS  00377C4B is `movzx ecx, byte ptr [rcx + rax + 8]`
+PASS  00377C55 is `shr edx, 0xf`
+PASS  00377C5F is `mov edx, 0xfff`
+PASS  E pdata: three roots, 002EF640 a leaf without a row
+PASS  003138E0 is `jne 0x31398d`
+PASS  003138F1 is `je 0x31398d`
+PASS  00313903 is `bt rdx, 0xe`
+PASS  0031390A is `movzx ecx, word ptr [rax + 0xba0]`
+PASS  00313913 is `je 0x313988`
+PASS  00313915 is `cmp word ptr [rax + 0x714], bp`
+PASS  0031391C is `je 0x313988`
+PASS  F 00313981 writes word +0x5AD0 (bit 0 := argument)
+PASS  F exit 313988 reaches neither 0031395D nor 00313981
+PASS  F exit 31398D reaches neither 0031395D nor 00313981
+PASS  F the early-exit paths do not contain 0031395D or 00313981
+PASS  F the early-exit paths' only memory store is the [rsp+0x48] home slot  | nonstack [] stack ['3138F9']
+PASS  0031392D is `call 0x31b7e0`
+PASS  0031393C is `call 0x31b7e0`
+PASS  00313941 is `test ebx, ebx`
+PASS  00313943 is `je 0x31394a`
+PASS  00313938 is `je 0x313962`
+PASS  00313948 is `je 0x313962`
+PASS  F the 0031B7E0-NULL exits skip 0031395D but still reach 00313981
+PASS  manifest.json sha256 = 8138136d62841224...  | 8138136d62841224f88f0c756b0959fc2448d00c134cad78078b420dd78ab478
+PASS  all 42 manifest members hash as listed  | []
+PASS  manifest.json sha256 = d6df38e07fca5621...  | d6df38e07fca5621a9222d68f1dcb24faad7d41a7f2cf5e0b1097e84a9ca0c8f
+PASS  all 66 manifest members hash as listed  | []
+PASS  manifest.json sha256 = f6d762b35072e327...  | f6d762b35072e327ba67f46b48a87a88cf83dbca60faf90981d400d40dd7bf0e
+PASS  all 60 manifest members hash as listed  | []
+PASS  CONTROL c1 selector byte map[127] 5 -> 4 (quotient 275 no longer kind 2): group grp_dismiss passes unpatched, FAILS on the patched copy
+PASS  CONTROL c2 00306A81 displacement +0x5B04 -> +0x5AD0 (the clear is not the mode word): group grp_dismiss passes unpatched, FAILS on the patched copy
+PASS  CONTROL c3 a direct 022C2160 write injected at 00306A5B, before 00306A81: group grp_dismiss passes unpatched, FAILS on the patched copy
+PASS  CONTROL c4 00306ADF target 022C2160 -> 022C215C (the 5 is not the state word): group grp_dismiss passes unpatched, FAILS on the patched copy
+PASS  CONTROL c5 00301123 call 0023B040 -> nops (no same-call recompute): group grp_defeat passes unpatched, FAILS on the patched copy
+PASS  CONTROL c6 00317E9A or qword [rax],rcx -> nops (no own write): group grp_seam passes unpatched, FAILS on the patched copy
+PASS  CONTROL c7 0025AAE1 jne -> nops (the tail no longer skips the publication): group grp_seam passes unpatched, FAILS on the patched copy
+PASS  CONTROL c8 00263E30 load -> store [rcx+0x30],rax (selector writes): group grp_selector passes unpatched, FAILS on the patched copy
+PASS  CONTROL c9 0030D9E9 second mode read -> mov ecx,ecx (one read only): group grp_mode passes unpatched, FAILS on the patched copy
+PASS  CONTROL c10 003148FB field read -> store [rax+0x1044],eax (chain writes): group grp_mode passes unpatched, FAILS on the patched copy
+PASS  CONTROL c11 0031391C je 00313988 -> je 00313962 (committed-0x113 exit runs the +0x5AD0 write): group grp_early passes unpatched, FAILS on the patched copy
+PASS  image on disk unchanged after the controls (sha256 re-read)
+FAILS 0

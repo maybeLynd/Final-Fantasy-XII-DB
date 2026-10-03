@@ -1,0 +1,285 @@
+{
+ "current": [
+  {
+   "line": "MovementBody\t0x006\t1\tfield006\tuint8\tr0 w1 at 003DA99C. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tcensus_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)",
+   "offset": "0x006",
+   "size": "1",
+   "name": "field006",
+   "ctype": "uint8",
+   "meaning": "r0 w1 at 003DA99C. MEANING NOT CLAIMED",
+   "readiness": "TYPE RESOLVED",
+   "confidence": "PROVEN",
+   "evidence": "census_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)"
+  },
+  {
+   "line": "MovementBody\t0x007\t1\tfield007\tuint8\tr0 w2 at 003DAA9F, 003DAF09. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tcensus_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)",
+   "offset": "0x007",
+   "size": "1",
+   "name": "field007",
+   "ctype": "uint8",
+   "meaning": "r0 w2 at 003DAA9F, 003DAF09. MEANING NOT CLAIMED",
+   "readiness": "TYPE RESOLVED",
+   "confidence": "PROVEN",
+   "evidence": "census_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)"
+  },
+  {
+   "line": "MovementBody\t0x008\t4\tfield008\tuint32\tr0 w1 at 003DA98E. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tcensus_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)",
+   "offset": "0x008",
+   "size": "4",
+   "name": "field008",
+   "ctype": "uint32",
+   "meaning": "r0 w1 at 003DA98E. MEANING NOT CLAIMED",
+   "readiness": "TYPE RESOLVED",
+   "confidence": "PROVEN",
+   "evidence": "census_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)"
+  },
+  {
+   "line": "MovementBody\t0x018\t8\tfield018\tu64\tr0 w1 at 003DA9A4. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tcensus_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)",
+   "offset": "0x018",
+   "size": "8",
+   "name": "field018",
+   "ctype": "u64",
+   "meaning": "r0 w1 at 003DA9A4. MEANING NOT CLAIMED",
+   "readiness": "TYPE RESOLVED",
+   "confidence": "PROVEN",
+   "evidence": "census_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)"
+  },
+  {
+   "line": "MovementBody\t0x020\t8\tfield020\tu64\tr0 w1 at 003DA9A8. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tcensus_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)",
+   "offset": "0x020",
+   "size": "8",
+   "name": "field020",
+   "ctype": "u64",
+   "meaning": "r0 w1 at 003DA9A8. MEANING NOT CLAIMED",
+   "readiness": "TYPE RESOLVED",
+   "confidence": "PROVEN",
+   "evidence": "census_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)"
+  },
+  {
+   "line": "MovementBody\t0x0E8\t8\tfield0E8\tu64\tr0 w1 at 003DA9C6. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tcensus_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)",
+   "offset": "0x0E8",
+   "size": "8",
+   "name": "field0E8",
+   "ctype": "u64",
+   "meaning": "r0 w1 at 003DA9C6. MEANING NOT CLAIMED",
+   "readiness": "TYPE RESOLVED",
+   "confidence": "PROVEN",
+   "evidence": "census_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)"
+  },
+  {
+   "line": "MovementBody\t0x0F0\t4\tfield0F0\tuint32\tr0 w1 at 003DA832. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tcensus_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)",
+   "offset": "0x0F0",
+   "size": "4",
+   "name": "field0F0",
+   "ctype": "uint32",
+   "meaning": "r0 w1 at 003DA832. MEANING NOT CLAIMED",
+   "readiness": "TYPE RESOLVED",
+   "confidence": "PROVEN",
+   "evidence": "census_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)"
+  },
+  {
+   "line": "MovementBody\t0x0F4\t8\tfield0F4\tu64\tr0 w1 at 003DA83B. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tcensus_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)",
+   "offset": "0x0F4",
+   "size": "8",
+   "name": "field0F4",
+   "ctype": "u64",
+   "meaning": "r0 w1 at 003DA83B. MEANING NOT CLAIMED",
+   "readiness": "TYPE RESOLVED",
+   "confidence": "PROVEN",
+   "evidence": "census_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)"
+  },
+  {
+   "line": "MovementBody\t0x0FC\t4\tfield0FC\tuint32\tr0 w1 at 003DA838. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tcensus_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)",
+   "offset": "0x0FC",
+   "size": "4",
+   "name": "field0FC",
+   "ctype": "uint32",
+   "meaning": "r0 w1 at 003DA838. MEANING NOT CLAIMED",
+   "readiness": "TYPE RESOLVED",
+   "confidence": "PROVEN",
+   "evidence": "census_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)"
+  },
+  {
+   "line": "MovementBody\t0x100\t8\tfield100\tu64\tr0 w2 at 003DA97A, 003DA9B9. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tcensus_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)",
+   "offset": "0x100",
+   "size": "8",
+   "name": "field100",
+   "ctype": "u64",
+   "meaning": "r0 w2 at 003DA97A, 003DA9B9. MEANING NOT CLAIMED",
+   "readiness": "TYPE RESOLVED",
+   "confidence": "PROVEN",
+   "evidence": "census_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)"
+  },
+  {
+   "line": "MovementBody\t0x108\t4\tfield108\tuint32\tr0 w2 at 003DA988, 003DA9C0. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tcensus_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)",
+   "offset": "0x108",
+   "size": "4",
+   "name": "field108",
+   "ctype": "uint32",
+   "meaning": "r0 w2 at 003DA988, 003DA9C0. MEANING NOT CLAIMED",
+   "readiness": "TYPE RESOLVED",
+   "confidence": "PROVEN",
+   "evidence": "census_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)"
+  },
+  {
+   "line": "MovementBody\t0x110\t8\tfield110\tu64\tr0 w1 at 003DA9CD. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tcensus_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)",
+   "offset": "0x110",
+   "size": "8",
+   "name": "field110",
+   "ctype": "u64",
+   "meaning": "r0 w1 at 003DA9CD. MEANING NOT CLAIMED",
+   "readiness": "TYPE RESOLVED",
+   "confidence": "PROVEN",
+   "evidence": "census_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)"
+  },
+  {
+   "line": "MovementBody\t0x118\t2\tfield118\tuint16\tr0 w1 at 003DA995. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tcensus_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)",
+   "offset": "0x118",
+   "size": "2",
+   "name": "field118",
+   "ctype": "uint16",
+   "meaning": "r0 w1 at 003DA995. MEANING NOT CLAIMED",
+   "readiness": "TYPE RESOLVED",
+   "confidence": "PROVEN",
+   "evidence": "census_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)"
+  },
+  {
+   "line": "MovementBody\t0x120\t4\tfield120\tuint32\tr1 w0 at 003DACAF. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tcensus_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)",
+   "offset": "0x120",
+   "size": "4",
+   "name": "field120",
+   "ctype": "uint32",
+   "meaning": "r1 w0 at 003DACAF. MEANING NOT CLAIMED",
+   "readiness": "TYPE RESOLVED",
+   "confidence": "PROVEN",
+   "evidence": "census_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)"
+  }
+ ],
+ "proposed": [
+  {
+   "old": "MovementBody\t0x006\t1\tfield006\tuint8\tr0 w1 at 003DA99C. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tcensus_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)",
+   "new": "MovementBody\t0x006\t1\tlayer\tuint8\tcontact layer: the resolve 00314F50 refuses a pair whose bytes +6 differ; 0 at allocation\tSEMANTICALLY IDENTIFIED\tPROVEN\t00314FEA/00314FEE compare A.+6 with B.+6, jne -> refuse; 003DA99C writes 0; OPUS L2 S-19 re-cut 2026-10-03, re-read with retool; contract CONTRACT-separation-pass.md section 3; was field006 uint8 (1 B)",
+   "evidence": "byte read and compare in the resolve; behaviour forced by the bytes, the name is the contract's"
+  },
+  {
+   "old": "MovementBody\t0x007\t1\tfield007\tuint8\tr0 w2 at 003DAA9F, 003DAF09. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tcensus_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)",
+   "new": "MovementBody\t0x007\t1\tactiveThisTick\tuint8\t1 when the body registers this tick (003DB020); cleared for every body by the reset 003DAA40 and the pool init 003DAE30; with a non-zero mode the resolve refuses a pair unless both bodies have it non-zero\tSEMANTICALLY IDENTIFIED\tPROVEN\t003DB03D writes 1; 003DAA9F and 003DAF09 write 0; 00314FD6/00314FE0 test it when esi (mode) != 0; OPUS L2 S-19 re-cut 2026-10-03, re-read with retool; contract CONTRACT-separation-pass.md section 3; was field007 uint8 (1 B)",
+   "evidence": "writers and the mode-gated test"
+  },
+  {
+   "old": "MovementBody\t0x008\t4\tfield008\tuint32\tr0 w1 at 003DA98E. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tcensus_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)",
+   "new": "MovementBody\t0x008\t4\tweight\tfloat\tcontact weight: 1.0 at allocation; the resolve reads it as f32 for both bodies, negates both when both are negative, sets both to 1.0 when they are equal and 0 (ordered compares), and 00314E10 forms the share wB/(wA+wB) from them (a 0 sum keeps 0), forcing 0 for a negative wA and 1.0 for a negative wB\tSEMANTICALLY IDENTIFIED\tPROVEN\t003DA98E stores 0x3F800000; 00315017/0031502A movss; 00315041/00315049 negate; 00315051-0031506E equal-and-zero -> 1.0; 00314E16-00314E2B ratio; 00314E96-00314EA3 sign overrides; OPUS L2 S-19 re-cut 2026-10-03, re-read with retool; contract CONTRACT-separation-pass.md section 3; was field008 uint32 (4 B)",
+   "evidence": "the census cut it as uint32 from the 1.0f store; every reader is f32"
+  },
+  {
+   "old": "MovementBody\t0x018\t8\tfield018\tu64\tr0 w1 at 003DA9A4. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tcensus_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)",
+   "new": "MovementBody\t0x018\t16\trememberedPairBitmap\tu128\tthe remembered contact pairs as a 128-bit set over body indices: for each candidate or remembered index i the visit 003DAB50 clears bit i (qword +0x18 + 8*(i>>6), bit i AND 63) and sets it again when the pair callback returns non-zero; a set bit makes the visit call the callback even when i is not a candidate; zeroed at allocation\tSEMANTICALLY IDENTIFIED\tPROVEN\t003DABD8 test, 003DABE8 clear, 003DABFF set, all [r15+rax*8+0x18]; 003DA9A4/003DA9A8 zero the two qwords; OPUS L2 S-19 re-cut 2026-10-03, re-read with retool; contract CONTRACT-separation-pass.md section 3; was field018 u64 (8 B)",
+   "evidence": "one 16-byte bitmap addressed by index>>6; replaces field018 and field020 (u64 each, cut at the two zeroing stores)"
+  },
+  {
+   "old": "MovementBody\t0x020\t8\tfield020\tu64\tr0 w1 at 003DA9A8. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tcensus_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)",
+   "new": null,
+   "evidence": "merged into rememberedPairBitmap +0x018 (16 B): the visit indexes qword +0x18 + 8*(i>>6), i < 128"
+  },
+  {
+   "old": "MovementBody\t0x0E8\t8\tfield0E8\tu64\tr0 w1 at 003DA9C6. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tcensus_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)",
+   "new": "MovementBody\t0x0E8\t4\tpartnerPushSqLength\tfloat\tper contact with a non-zero mode, the resolve stores here the squared length (x^2+z^2) of the push increment it gives the OTHER body of the pair; overwritten, not accumulated; zeroed by the clear 003DA9F0 and at allocation\tSEMANTICALLY IDENTIFIED\tPROVEN\t00315303 writes B.+0xE8 from A's increment, 0031533F writes A.+0xE8 from B's; 003DAA06 and 003DA9C6 zero it; OPUS L2 S-19 re-cut 2026-10-03, re-read with retool; contract CONTRACT-separation-pass.md section 3; was field0E8 u64 (8 B)",
+   "evidence": "the census cut +0xE8 as one u64 from the allocation zeroing qword; the resolve and the clear access it at 4/1/1/1"
+  },
+  {
+   "old": null,
+   "new": "MovementBody\t0x0EC\t1\tpushPending\tuint8\tset to 1 when the resolve (non-zero mode only) adds a push to this body; zeroed with +0xED as a word by the clear and with the allocation qword\tSEMANTICALLY IDENTIFIED\tPROVEN\t0031531F, 00315359 write 1; 003DA9FF word 0; 003DA9C6; OPUS L2 S-19 re-cut 2026-10-03, re-read with retool; contract CONTRACT-separation-pass.md section 3; was field0E8 u64 (8 B)",
+   "evidence": "the census cut +0xE8 as one u64 from the allocation zeroing qword; the resolve and the clear access it at 4/1/1/1"
+  },
+  {
+   "old": null,
+   "new": "MovementBody\t0x0ED\t1\tcontactCount\tuint8\tincremented by the resolve (non-zero mode only) for each counted contact the body takes part in (the solo-share body only, or both when shared); zeroed with +0xEC\tSEMANTICALLY IDENTIFIED\tPROVEN\t0031525D, 00315281, 00315298, 0031529E inc; 003DA9FF; OPUS L2 S-19 re-cut 2026-10-03, re-read with retool; contract CONTRACT-separation-pass.md section 3; was field0E8 u64 (8 B)",
+   "evidence": "the census cut +0xE8 as one u64 from the allocation zeroing qword; the resolve and the clear access it at 4/1/1/1"
+  },
+  {
+   "old": null,
+   "new": "MovementBody\t0x0EE\t1\tsoleShareMarker\tuint8\twith a non-zero mode, 1 when this body took the whole contact (share 0 from 00314E10: B, at 00315263; share 1.0: A, at 00315287), 0 when both shared it (003152A4/003152AB); zeroed by the clear; the contract calls it the immovable-contact marker\tSEMANTICALLY IDENTIFIED\tHIGH\t00315263, 00315287, 003152A4, 003152AB; 003DAA0C; OPUS L2 S-19 re-cut 2026-10-03, re-read with retool; contract CONTRACT-separation-pass.md section 3; was field0E8 u64 (8 B)",
+   "evidence": "the census cut +0xE8 as one u64 from the allocation zeroing qword; the resolve and the clear access it at 4/1/1/1"
+  },
+  {
+   "old": null,
+   "new": "MovementBody\t0x0EF\t1\tunobserved0EF\tu8[1]\tno access found besides the allocation qword at +0xE8; meaning not claimed\tDISCOVERED\tHIGH\t003DA9C6 (qword +0xE8..+0xEF) only; OPUS L2 S-19 re-cut 2026-10-03, re-read with retool; contract CONTRACT-separation-pass.md section 3; was field0E8 u64 (8 B)",
+   "evidence": "the census cut +0xE8 as one u64 from the allocation zeroing qword; the resolve and the clear access it at 4/1/1/1"
+  },
+  {
+   "old": "MovementBody\t0x0F0\t4\tfield0F0\tuint32\tr0 w1 at 003DA832. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tcensus_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)",
+   "new": "MovementBody\t0x0F0\t4\tradiusA\tfloat\tfirst radius of the shape block at +0xF0: 1e-5 at allocation (003DA830 on body+0xF0); the resolve returns 0 when 0 >= it for either body (ordered compare, so a NaN is not refused); read by the support helper 003DA730\tSEMANTICALLY IDENTIFIED\tPROVEN\t003DA832 stores 0x3727C5AC; 00314F97/00314FB0 comiss; 003DA7C1 [rbx]; OPUS L2 S-19 re-cut 2026-10-03, re-read with retool; contract CONTRACT-separation-pass.md section 3; was field0F0 uint32 (4 B)",
+   "evidence": "f32 at every reader; the census cut it as uint32 from the constant store"
+  },
+  {
+   "old": "MovementBody\t0x0F4\t8\tfield0F4\tu64\tr0 w1 at 003DA83B. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tcensus_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)",
+   "new": "MovementBody\t0x0F4\t4\tradiusB\tfloat\tsecond radius: 1e-5 at allocation (low half of the qword store); the resolve's same refusal (00314FA0/00314FC5); read by 003DA730\tSEMANTICALLY IDENTIFIED\tPROVEN\t003DA83B qword 0x3727C5AC; 00314FA0, 00314FC5; 003DA7CD [rbx+4]; OPUS L2 S-19 re-cut 2026-10-03, re-read with retool; contract CONTRACT-separation-pass.md section 3; was field0F4 u64 (8 B)",
+   "evidence": "the census cut +0xF4 as one u64 from the allocation store; the readers use two separate floats"
+  },
+  {
+   "old": null,
+   "new": "MovementBody\t0x0F8\t4\tshape0F8\tfloat\t0 at allocation (high half of the +0xF4 qword store); read as f32 and scaled by 003DA730 (003DA73E, 003DA743); meaning not claimed (the contract does not name it)\tTYPE RESOLVED\tPROVEN\t003DA83B; 003DA73E; OPUS L2 S-19 re-cut 2026-10-03, re-read with retool; contract CONTRACT-separation-pass.md section 3; was field0F4 u64 (8 B)",
+   "evidence": "the census cut +0xF4 as one u64 from the allocation store; the readers use two separate floats"
+  },
+  {
+   "old": "MovementBody\t0x0FC\t4\tfield0FC\tuint32\tr0 w1 at 003DA838. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tcensus_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)",
+   "new": "MovementBody\t0x0FC\t4\tmargin\tfloat\t0 at allocation; added as f32 to each body's support distance by 003DA5A0 (the contract's margins)\tSEMANTICALLY IDENTIFIED\tHIGH\t003DA838 stores 0; 003DA60F, 003DA623 addss [block+0xC]; OPUS L2 S-19 re-cut 2026-10-03, re-read with retool; contract CONTRACT-separation-pass.md section 3; was field0FC uint32 (4 B)",
+   "evidence": "f32 at its reader; the name follows the contract"
+  },
+  {
+   "old": "MovementBody\t0x100\t8\tfield100\tu64\tr0 w2 at 003DA97A, 003DA9B9. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tcensus_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)",
+   "new": "MovementBody\t0x100\t4\tpushX\tfloat\taccumulated push x: with a non-zero mode the resolve adds each contact's x share (0031532B for A, 00315360 for B) and offsets the probe positions by it (003150F8, 0031512A); zeroed with +0x104 by the clear and at allocation\tSEMANTICALLY IDENTIFIED\tPROVEN\t0031530F/0031532B, 00315347/00315360; 003DA9F2, 003DA97A, 003DA9B9; OPUS L2 S-19 re-cut 2026-10-03, re-read with retool; contract CONTRACT-separation-pass.md section 3; was field100 u64 (8 B)",
+   "evidence": "the census cut +0x100 as one u64 from the zeroing qword; the resolve accesses +0x100 and +0x108 as single floats"
+  },
+  {
+   "old": null,
+   "new": "MovementBody\t0x104\t4\tpushY\tfloat\tzeroed with +0x100 as one qword by the clear and at allocation; no other access in the separation pass; the contract calls it the push's third component (type not forced by the bytes)\tTYPE RESOLVED\tHIGH\t003DA9F2, 003DA97A, 003DA9B9 (qword +0x100); OPUS L2 S-19 re-cut 2026-10-03, re-read with retool; contract CONTRACT-separation-pass.md section 3; was field100 u64 (8 B)",
+   "evidence": "the census cut +0x100 as one u64 from the zeroing qword; the resolve accesses +0x100 and +0x108 as single floats"
+  },
+  {
+   "old": "MovementBody\t0x108\t4\tfield108\tuint32\tr0 w2 at 003DA988, 003DA9C0. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tcensus_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)",
+   "new": "MovementBody\t0x108\t4\tpushZ\tfloat\taccumulated push z, the counterpart of +0x100 (non-zero mode only) (00315333 for A, 00315369 for B; 00315100, 0031513E); zeroed by the clear and at allocation\tSEMANTICALLY IDENTIFIED\tPROVEN\t00315317/00315333, 00315350/00315369; 003DA9F9, 003DA988, 003DA9C0; OPUS L2 S-19 re-cut 2026-10-03, re-read with retool; contract CONTRACT-separation-pass.md section 3; was field108 uint32 (4 B)",
+   "evidence": "f32 at every reader"
+  },
+  {
+   "old": "MovementBody\t0x110\t8\tfield110\tu64\tr0 w1 at 003DA9CD. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tcensus_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)",
+   "new": "MovementBody\t0x110\t4\tweightMask0\tuint32\tOR-ed with +0x114 into the body's 32-bit weight mask by 00314E10; for the union u of both bodies' masks, each mask keeps only its low byte minus the bits of byte 1 of u; when either kept byte meets bits 16+ of u the share is 0.0, else unequal kept bytes give 0 (A greater, unsigned) or 1.0 (B greater)\tSEMANTICALLY IDENTIFIED\tPROVEN\t00314E35, 00314E42 or; 00314E50-00314E93; OPUS L2 S-19 re-cut 2026-10-03, re-read with retool; contract CONTRACT-separation-pass.md section 3; was field110 u64 (8 B)",
+   "evidence": "the census cut +0x110 as one u64 from the zeroing qword 003DA9CD; 00314E10 reads two dwords"
+  },
+  {
+   "old": null,
+   "new": "MovementBody\t0x114\t4\tweightMask1\tuint32\tthe second half of the weight mask, OR-ed with +0x110 (same use)\tSEMANTICALLY IDENTIFIED\tPROVEN\t00314E2E, 00314E3C; OPUS L2 S-19 re-cut 2026-10-03, re-read with retool; contract CONTRACT-separation-pass.md section 3; was field110 u64 (8 B)",
+   "evidence": "the census cut +0x110 as one u64 from the zeroing qword 003DA9CD; 00314E10 reads two dwords"
+  },
+  {
+   "old": "MovementBody\t0x118\t2\tfield118\tuint16\tr0 w1 at 003DA995. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tcensus_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)",
+   "new": "MovementBody\t0x118\t1\tfield118\tuint8\tzeroed with +0x119 as a word at allocation; no separate access found; meaning not claimed\tTYPE RESOLVED\tHIGH\t003DA995 word store; OPUS L2 S-19 re-cut 2026-10-03, re-read with retool; contract CONTRACT-separation-pass.md section 3; was field118 uint16 (2 B)",
+   "evidence": "the contract names byte +0x119; the census cut +0x118 as a word from the allocation store"
+  },
+  {
+   "old": null,
+   "new": "MovementBody\t0x119\t1\towner\tuint8\tthe resolve refuses a pair when this byte is non-zero and equal on both bodies (the contract's owner)\tSEMANTICALLY IDENTIFIED\tPROVEN\t00314FF7, 00315002; OPUS L2 S-19 re-cut 2026-10-03, re-read with retool; contract CONTRACT-separation-pass.md section 3; was field118 uint16 (2 B)",
+   "evidence": "the contract names byte +0x119; the census cut +0x118 as a word from the allocation store"
+  },
+  {
+   "old": "MovementBody\t0x120\t4\tfield120\tuint32\tr1 w0 at 003DACAF. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tcensus_receiver_fixpoint SEED=static 02B4E4C0 extent 0x130, converged, 2026-09-25 (OPUS)",
+   "new": "MovementBody\t0x120\t4\tcellBitmap\tuint32\tthe cells the body registered in, one bit per 16-byte mask at 02B57CE0 + 0x10*k: written by 0046AD20 on body+0x120 (0, -1 or computed) from the registration 003DB020, which then ORs the body's index bit into each selected mask; the walk 003DAC70 passes it to the pair set 003DAAB0\tSEMANTICALLY IDENTIFIED\tPROVEN\t0046ADA3, 0046AE0A, 0046AF3F; 003DB078, 003DB0A8; 003DACAF; OPUS L2 S-19 re-cut 2026-10-03, re-read with retool; contract CONTRACT-separation-pass.md section 3; was field120 uint32 (4 B)",
+   "evidence": "32-bit at every reader and writer; see the disagreement on the contract's u128"
+  }
+ ],
+ "disagreements": [
+  "+0x120: the contract says 'u128 the cells this body registered in'. Only dword +0x120 is the cell set (32 bits, one per 02B57CE0 mask; read 003DACAF, 003DB078). 0046AD20 fills a 16-byte block at +0x120: dword +0x124 (0046AF4A) and f32 +0x128/+0x12C (0046AF59/0046AF65), which the walk passes to the visit (003DACBD/003DACC8). The contract line should narrow to u32.",
+  "+0xE8: the contract says 'squared push length' of the body; the bytes store the squared length of the increment given to the PARTNER body in the latest contact (00315303, 0031533F), overwritten per contact, not accumulated.",
+  "+0x08: the contract types it '?'; it is f32 (1.0 at allocation, movss at every reader).",
+  "+0x18: agrees (u128 pair bitmap), but the census rows are two u64 cut at the zeroing stores; one 16-byte row replaces both.",
+  "+0x104: the contract calls it the third component; the separation pass never reads or writes it alone (only the qword zeroing with +0x100), so its type is not forced by these bytes.",
+  "+0xEE 'immovable-contact marker': the bytes show 'this body took the whole share' (ratio 0 for B, 1.0 for A); kept HIGH with the bytes' meaning stated.",
+  "Not changed (contract does not name them), but the census rows are now known stale: +0x124 is not unobserved (0046AF4A writes it); +0x128 and +0x12C are f32 (movss reads at 003DACC8/003DACBD), not uint32."
+ ],
+ "types_tsv": "types.tsv MovementBody needs no change: size 0x130 and route ARRAY 0x02B4E4C0 stride=0x130 count=128 agree with the pool init 003DAE30 (0x80 bodies, imul 0x130) and every body address in the pass.",
+ "notes": [
+  "fields.tsv column order: type, offset, size, name, ctype, meaning, readiness, confidence, evidence",
+  "an entry with new = null deletes that old line (merged); entries with old = null are added after the preceding replacement",
+  "no '|' in any proposed line"
+ ]
+}

@@ -1232,3 +1232,11 @@ byte fetch).
 | `00255330` | 132 B | when `ecx` is not 1, calls `00251F40(dword 020927E8)`, ORs word `01E0C2AC` with 0xC and returns; when `ecx` is 1, unless both bits 0xC0 of dword `01E0C320` are set it calls `003C8990()`, `0035DAC0()`, `0028FF20()`, `003C58B0()`, `002B6140()`, `0035D5A0()`, `0035D0E0(dword 020927EC)`, `003C9900()` and `003BBFA0(0)` and clears bit 7 of dword `020927EC`, then in either case ANDs word `01E0C2AC` with 0xFFF3 and tail-jumps to `0017E7D0()` | `00255344`, `0025537D`, `0025538C`, `00255397`, `002553A7` |
 | `002AC2C0` | 17 B | stores `cl` OR 0x80 to byte `01E0CDFF` and returns the address `01E0CDFC` | `002AC2C3`, `002AC2CA` |
 | `003778B0` | 68 B | takes `i` = `00264F90()` and `p` = qword `02ADD0F8`; when `p` is non-null, `i` is below dword `p+8` (unsigned) and the word `w` at `p+0x10+2*(dword p+4 + i)` is non-zero, returns `p + w`, and otherwise returns the address `01CEB638` | `003778B4`, `003778C7`, `003778D3`, `003778E0`, `003778E8` |
+
+## Homed bodies: functions reached only indirectly whose callees this page cites (FABLE, 2026-10-03, F homing)
+
+*No page cited these functions and none of their callers is documented: they are reached by table or pointer dispatch or through undocumented callers. Each one calls something this page documents, which the sentence names. Each sentence states what the body does (access and representation, not purpose); the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's F homing pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-field-record-table-navimapdata-homing-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0031BD80` | 62 B | returns `0xffff` when `rcx` is null, when the call at `0031BD80+0xd` (with `rcx`) returns null, or when qword `+0x698` of that result is null; otherwise tail-jumps to `0031BDC0(that qword + 0x50, edx)` with the incoming `edx` | Interior anchor `0031BD8D`; Interior anchor `0031BD97`; Interior anchor `0031BDA3`; Interior anchor `0031BDAE`; Interior anchor `0031BDB3` |

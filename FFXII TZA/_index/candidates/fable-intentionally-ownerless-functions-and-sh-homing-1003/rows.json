@@ -1,0 +1,343 @@
+{
+ "page": "00-Engine-Core-Runtime/Ownership-Boundary/intentionally-ownerless-functions-and-shared-scratch.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_0113mD5fGL648y6vQqrtN2Rj",
+ "report": [
+  "fable-intentionally-ownerless-functions-and-shared-scratch.json"
+ ],
+ "rows": [
+  {
+   "fn": "00182BE0",
+   "text": "returns 0 when `001B6C40()` or `00189120()` returns null; otherwise builds a stack record of dword W = truncate(unsigned 32-bit `00186AA0(00189120())` as float * `xmm0`), dword H = truncate(unsigned 32-bit `00186A90(00189120())` as float * `xmm1`) and the address `02CF7480` (taken with lea, stored as a qword), and returns `001B66F0(001B6C40(), &record)`",
+   "anchors": [
+    [
+     "00182BFC",
+     "je"
+    ],
+    [
+     "00182C23",
+     "mulss"
+    ],
+    [
+     "00182C46",
+     "mulss"
+    ],
+    [
+     "00182C59",
+     "mov"
+    ],
+    [
+     "00182C76",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0024E0F0",
+   "text": "stores (word `020926E4` AND 0xfffb) OR 2 back; when qword `020926D8` is non-null it passes it to the call at `0024E0F0+0x3B` when word `0209216A` is 0x100 or more (unsigned), else stores it at qword `02091950` + word `0209216A` * 8 and increments that word; then stores `00182B40` (with `xmm0` = `xmm1` = 1.0 (`01CEBBA8`)) at qword `020926D8`, zeroes dword `020926E0` and, when that result is null, ANDs word `020926E4` with 0xfff9",
+   "anchors": [
+    [
+     "0024E10E",
+     "mov"
+    ],
+    [
+     "0024E129",
+     "jb"
+    ],
+    [
+     "0024E13C",
+     "mov"
+    ],
+    [
+     "0024E152",
+     "call"
+    ],
+    [
+     "0024E172",
+     "and"
+    ]
+   ]
+  },
+  {
+   "fn": "0024F6C0",
+   "text": "returns at once when `ecx` equals bit 6 of dword `020926E4`; otherwise copies bit 0 of `ecx` into bit 6 of word `020926E4`, then: for 1 it stores `00182B40` (with `xmm0` = `xmm1` = 0.5 (`01CEBB70`)) at qword `020926D0`; for 0, when qword `020926D0` is non-null, it passes it to the call at `0024F6C0+0x79` when word `0209216A` is 0x100 or more (unsigned), else stores it at qword `02091950` + word `0209216A` * 8 and increments that word, and zeroes qword `020926D0` on both paths; other values return after the bit update",
+   "anchors": [
+    [
+     "0024F6D0",
+     "cmp"
+    ],
+    [
+     "0024F6F0",
+     "mov"
+    ],
+    [
+     "0024F70B",
+     "call"
+    ],
+    [
+     "0024F739",
+     "call"
+    ],
+    [
+     "0024F758",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "002E8400",
+   "text": "returns without a call when `rcx` is null, qword `rcx+0xc0` is null, the dword it points to is -1, its low word is 0xffff, the entry `022C6F28` (qword) + signed word * 0x740 is null, or that entry's dword `+0x284` is 0; otherwise tail-jumps `00428AF0` with `rcx` = that entry, `edx` unchanged, `r8` = 0 and `r9b` = 0x40",
+   "anchors": [
+    [
+     "002E8411",
+     "cmp"
+    ],
+    [
+     "002E8419",
+     "cmp"
+    ],
+    [
+     "002E842A",
+     "add"
+    ],
+    [
+     "002E8433",
+     "cmp"
+    ],
+    [
+     "002E8442",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003460C0",
+   "text": "passes `rdx` to the call at `003460C0+0x9`, passes its result P to the call at `003460C0+0x14` (whose return is discarded), then tail-jumps `002ECF10(P, 1, 1)`",
+   "anchors": [
+    [
+     "003460C6",
+     "mov"
+    ],
+    [
+     "003460C9",
+     "call"
+    ],
+    [
+     "003460D4",
+     "call"
+    ],
+    [
+     "003460E1",
+     "mov"
+    ],
+    [
+     "003460E9",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00346EB0",
+   "text": "calls the function at `00346EB0+0x6`, then for `ebx` = 0 to 3 calls the function at `00346EB0+0x12` with `ecx` = `ebx` and, when it returns non-null, calls `002ECF10(result, 1, 1)`",
+   "anchors": [
+    [
+     "00346EB6",
+     "call"
+    ],
+    [
+     "00346EC2",
+     "call"
+    ],
+    [
+     "00346ECA",
+     "je"
+    ],
+    [
+     "00346ED7",
+     "call"
+    ],
+    [
+     "00346EE1",
+     "jl"
+    ]
+   ]
+  },
+  {
+   "fn": "0035B460",
+   "text": "walks the 8 dwords at `022C8030` (stride 4) and, for each non-zero one, calls `0035B1A0` with it and then zeroes it",
+   "anchors": [
+    [
+     "0035B480",
+     "mov"
+    ],
+    [
+     "0035B484",
+     "je"
+    ],
+    [
+     "0035B486",
+     "call"
+    ],
+    [
+     "0035B48B",
+     "mov"
+    ],
+    [
+     "0035B495",
+     "jne"
+    ]
+   ]
+  },
+  {
+   "fn": "0036D050",
+   "text": "when `r8d` is 0 it calls `00369860(rdx, 0)` if `rdx` is non-null and returns 0; when `rdx` is null it returns `0036BFE0(rcx, r8d, 0, r9, the fifth (stack) argument, 1)`; otherwise, with A = (`r8d` + 0x3f) AND 0xffffffc0 (rounded toward zero for a negative sum), B = `022D7FD0` + byte `rdx-0x3d` * 0xa8 (null when that byte is 0xf or more) and S = dword `rdx-0x28`, it subtracts S from dword `022D8E10`[byte `rdx-0x29`] when that byte is non-zero, calls `0036D050+0xC7`(B, `rdx-0x40`, `rdx`, A, `r9d`, the fifth argument) and, when that returns non-null X, adds A - S to dword `B+0x68` + 4 * byte `rdx-0x2a` and adds dword `X-0x28` to dword `022D8E10`[byte `X-0x29`] when that byte is non-zero; returns X",
+   "anchors": [
+    [
+     "0036D069",
+     "call"
+    ],
+    [
+     "0036D08F",
+     "call"
+    ],
+    [
+     "0036D0FE",
+     "sub"
+    ],
+    [
+     "0036D117",
+     "call"
+    ],
+    [
+     "0036D126",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "003DDF90",
+   "text": "with E = `02B58A80` + 0x68 * (`ecx` clamped to 0..3, signed), when dword `E+0` is non-zero it passes it to the call at `003DDF90+0x47` and zeroes it; stores `00375900(E+0x10)` at dword `E+0`, calls `00861EC0(E+0x10, 0, 0x58)`, then stores (byte `E+0x2C` AND 0xe3) OR 3 back, dword 0x13602 at `E+0x10`, qword 0 at `E+0x30`, 0x3f800000 at dword `E+0x38` and as a qword at `E+0x3C`, 0x3f000000 at dword `E+0x44` and 0x80ffffff at dword `E+0x48`",
+   "anchors": [
+    [
+     "003DDFBF",
+     "cmovg"
+    ],
+    [
+     "003DDFD7",
+     "call"
+    ],
+    [
+     "003DDFFB",
+     "call"
+    ],
+    [
+     "003DE00C",
+     "call"
+    ],
+    [
+     "003DE02B",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "003EB940",
+   "text": "when `rcx` is non-null and dword `rcx+0x10` is not negative (signed) it tail-jumps `002EE050` with `ecx` = word `rcx+0x10` zero-extended; otherwise it returns",
+   "anchors": [
+    [
+     "003EB943",
+     "je"
+    ],
+    [
+     "003EB945",
+     "cmp"
+    ],
+    [
+     "003EB949",
+     "jl"
+    ],
+    [
+     "003EB94B",
+     "movzx"
+    ],
+    [
+     "003EB94F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00423380",
+   "text": "returns 0.0 in `xmm0` when dword `rcx+0xc4` is -1 or when `0051B9E0`(qword `+0xda8` of `0020E600(dword rcx+0x10)`, dword `rcx+0xc4`) returns null; otherwise tail-jumps at `00423380+0x39` with `rcx` = that result",
+   "anchors": [
+    [
+     "00423386",
+     "cmp"
+    ],
+    [
+     "00423395",
+     "call"
+    ],
+    [
+     "004233A7",
+     "call"
+    ],
+    [
+     "004233B9",
+     "jmp"
+    ],
+    [
+     "004233BE",
+     "xorps"
+    ]
+   ]
+  },
+  {
+   "fn": "00423920",
+   "text": "when dword `rcx+0xc4` is not -1 and `0051B9E0`(qword `+0xda8` of `0020E600(dword rcx+0x10)`, dword `rcx+0xc4`) returns non-null X, stores 0x3f800000 at dword `X+0x4c` + i * 0xa0 for each i below the signed word `X+0x28` (none when it is 0 or less); otherwise it returns at once",
+   "anchors": [
+    [
+     "00423926",
+     "cmp"
+    ],
+    [
+     "00423947",
+     "call"
+    ],
+    [
+     "00423956",
+     "cmp"
+    ],
+    [
+     "00423960",
+     "mov"
+    ],
+    [
+     "00423976",
+     "jl"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "0029BE50": "1,663 B body built on two jump-table switches (a byte-indexed table over dword [rdx] - 1 and a second over the 0029B870 result - 2) whose tables the listing does not decode, so the case-to-arm mapping cannot be stated, and the arms could not be stated with every path under 1,200 characters"
+ },
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "00182BE0",
+   "was": "returns 0 when `001B6C40()` or `00189120()` returns null; otherwise builds a stack record of dword W = truncate(unsigned 32-bit `00186AA0(00189120())` as float * `xmm0`), dword H = truncate(unsigned 32-bit `00186A90(00189120())` as float * `xmm1`) and qword `02CF7480`, and returns `001B66F0(001B6C40(), &record)`",
+   "now": "returns 0 when `001B6C40()` or `00189120()` returns null; otherwise builds a stack record of dword W = truncate(unsigned 32-bit `00186AA0(00189120())` as float * `xmm0`), dword H = truncate(unsigned 32-bit `00186A90(00189120())` as float * `xmm1`) and the address `02CF7480` (taken with lea, stored as a qword), and returns `001B66F0(001B6C40(), &record)`",
+   "why": "`00182C52` takes the address 02CF7480 with lea and `00182C59` stores that pointer; the record holds the address, not the qword at it"
+  },
+  {
+   "fn": "003460C0",
+   "was": "passes `rdx` to the call at `003460C0+0x9`, passes its result to the call at `003460C0+0x14`, then tail-jumps `002ECF10(that result, 1, 1)`",
+   "now": "passes `rdx` to the call at `003460C0+0x9`, passes its result P to the call at `003460C0+0x14` (whose return is discarded), then tail-jumps `002ECF10(P, 1, 1)`",
+   "why": "`003460DE` passes rbx (the +0x9 call result) to 002ECF10; the +0x14 call return is discarded, \"that result\" read as the latter"
+  }
+ ],
+ "mode": "homing",
+ "family": ""
+}

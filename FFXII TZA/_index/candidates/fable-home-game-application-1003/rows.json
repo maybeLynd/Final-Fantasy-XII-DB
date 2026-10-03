@@ -1,0 +1,34 @@
+{
+ "page": "00-Engine-Core-Runtime/Application-Root/game-application.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01RTHsxVMB4gEbgZ4DBoNz7W",
+ "report": "home-game-application.json",
+ "rows": [
+  {
+   "fn": "0025A880",
+   "entered_from": "`00229590` + 0x293",
+   "text": "stores 1 at dword `02098354` when `ecx` is non-zero and 0 otherwise",
+   "anchors": [
+    [
+     "0025A884",
+     "setne"
+    ],
+    [
+     "0025A887",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "001A49C0",
+   "why": [
+    "already cited by 00-Engine-Core-Runtime\\Application-Root\\game-application.md"
+   ]
+  }
+ ],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

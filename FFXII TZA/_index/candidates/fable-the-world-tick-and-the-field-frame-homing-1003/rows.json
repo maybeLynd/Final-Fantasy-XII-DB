@@ -1,0 +1,130 @@
+{
+ "page": "00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01HfPRM3vgupD1jscEXG8z9Y",
+ "report": [
+  "fable-the-world-tick-and-the-field-frame-c3.json"
+ ],
+ "rows": [
+  {
+   "fn": "002DF1E0",
+   "text": "when `edx` is 0 or less (signed) tail-jumps to `001DBF00(1, 0, ecx, r8d)`; otherwise makes the call at `002DF1E0` + 0x2C with (1, 0, `ecx`, `edx`, `r8d` as the fifth stack argument) and returns its result",
+   "anchors": [
+    [
+     "002DF1E6",
+     "jg"
+    ],
+    [
+     "002DF1F7",
+     "jmp"
+    ],
+    [
+     "002DF1FF",
+     "mov"
+    ],
+    [
+     "002DF20C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "002EC630",
+   "text": "returns 0 when `rcx` is null or dword `[rcx]` is -1; otherwise, when word `[rcx]` is not `0xffff`, forms the record at qword `022C6F28` + sign-extended word * 0x740 and, when that pointer is non-null and its dword `+0x284` is non-zero, calls `00426E20` on it; returns 1 on every path past the first guard",
+   "anchors": [
+    [
+     "002EC639",
+     "cmp"
+    ],
+    [
+     "002EC641",
+     "cmp"
+    ],
+    [
+     "002EC64B",
+     "imul"
+    ],
+    [
+     "002EC65B",
+     "cmp"
+    ],
+    [
+     "002EC664",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "003EB190",
+   "text": "does nothing when `ecx` is above 0x1f (unsigned); otherwise, when qword slot `02B5EA20[ecx]` (stride 8) is non-null, calls `003EB470` on it and clears the slot, then stores into the slot, and returns, the result of the call at `003EB190` + 0x52 with (`rdx`, `r8d`, `r9d`, the fifth (stack) argument)",
+   "anchors": [
+    [
+     "003EB193",
+     "ja"
+    ],
+    [
+     "003EB1C9",
+     "call"
+    ],
+    [
+     "003EB1CE",
+     "mov"
+    ],
+    [
+     "003EB1E2",
+     "call"
+    ],
+    [
+     "003EB1F1",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00473490",
+   "text": "calls `00466C40(ecx)`, then the call at `00473490` + 0x17 with the same `ecx`, and returns in `xmm0` the second float minus the first",
+   "anchors": [
+    [
+     "0047349D",
+     "call"
+    ],
+    [
+     "004734A7",
+     "call"
+    ],
+    [
+     "004734AC",
+     "subss"
+    ]
+   ]
+  },
+  {
+   "fn": "004734C0",
+   "text": "calls `00466BB0(ecx)`, then `00466C40(ecx)`, and returns in `xmm0` the first float minus the second",
+   "anchors": [
+    [
+     "004734CD",
+     "call"
+    ],
+    [
+     "004734D7",
+     "call"
+    ],
+    [
+     "004734DC",
+     "subss"
+    ],
+    [
+     "004734E0",
+     "movaps"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing",
+ "family": ""
+}

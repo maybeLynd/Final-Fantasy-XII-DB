@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\uq147-summoner-cleanup-order\prove-reviewed-local-boundaries.py", line 134, in <module>
+    if __name__ == '__main__': main()
+                               ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\uq147-summoner-cleanup-order\prove-reviewed-local-boundaries.py", line 79, in main
+    need(st.get('terminal') is True and st.get('exit') == 0 and st.get('exception') is None,
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         'successful prerequisite required')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\uq147-summoner-cleanup-order\prove-reviewed-local-boundaries.py", line 16, in need
+    raise ValueError(message)
+ValueError: successful prerequisite required

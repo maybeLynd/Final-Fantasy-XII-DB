@@ -1,0 +1,46 @@
+{
+ "page": "17-Presentation-Rendering/Model-And-Motion-Formats/adm-add-motion-tables.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_015VFSZr38WAiiWF7vDja8Ar",
+ "report": "home-adm-add-motion-tables.json",
+ "rows": [
+  {
+   "fn": "002EDB80",
+   "entered_from": "`002E7CE0` + 0xCD",
+   "text": "returns when `cx` is -1; otherwise forms the record address qword `022C6F28` + sign-extended `cx` times 0x740 and, when that address is non-zero and the record's dword `+0x284` is non-zero, makes the call at `002EDB80` + 0x2F with the record and ORs 0x800 into its dword `+0x290`; on the other paths it returns without writing",
+   "anchors": [
+    [
+     "002EDB84",
+     "cmp"
+    ],
+    [
+     "002EDB93",
+     "imul"
+    ],
+    [
+     "002EDBA3",
+     "cmp"
+    ],
+    [
+     "002EDBAF",
+     "call"
+    ],
+    [
+     "002EDBB4",
+     "or"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "002ECCF0",
+   "why": [
+    "already cited by 06-Movement-And-Navigation\\Movement-Mode-Selection\\how-the-engine-chooses-3d-or-flat-movement.md"
+   ]
+  }
+ ],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

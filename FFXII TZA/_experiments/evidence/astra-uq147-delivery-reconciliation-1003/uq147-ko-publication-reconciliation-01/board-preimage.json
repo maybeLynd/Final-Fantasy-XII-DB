@@ -1,0 +1,30 @@
+{
+  "revision": 50328,
+  "epoch": 4,
+  "task": {
+    "id": "ASTRA-PUBLISH-UQ147-KO-RELEASE-PARTITION-1003",
+    "kind": "research",
+    "priority": "P2",
+    "assigned_to": "ASTRA",
+    "target": "Original KO cleanup bit22 partition and existing restore-domain consumption",
+    "scope": "66 frozen members and owned handoff via existing guarded publisher",
+    "completion": "Exact reviewed paths committed/blobverified/released, new scoped independent review/consumer routes",
+    "dependencies": [],
+    "resources": [
+      {
+        "key": "@publication"
+      },
+      {
+        "key": "file:database/ffxii tza/_index/_inbox/astra.md"
+      },
+      {
+        "key": "file:database/ffxii tza/_experiments/evidence/uq147-ko-release-partition"
+      }
+    ],
+    "agent": "ASTRA",
+    "status": "ACTIVE",
+    "started_at": "2026-10-03T11:28:44+00:00",
+    "updated_at": "2026-10-03T11:28:44+00:00",
+    "checkpoint": "Fresh free-slot check for existing curated packet; one supported claim. No reaping/bypass/old-op replay."
+  }
+}

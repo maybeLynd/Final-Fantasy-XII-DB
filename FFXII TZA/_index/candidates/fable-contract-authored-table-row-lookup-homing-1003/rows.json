@@ -1,0 +1,49 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01HfPRM3vgupD1jscEXG8z9Y",
+ "report": [
+  "fable-contract-authored-table-row-lookup-c3.json"
+ ],
+ "rows": [
+  {
+   "fn": "0019CD40",
+   "text": "computes the element count (qword `[rcx+8]` minus qword `[rcx]`) / 0x18 and, when `edx` is above it (unsigned), calls `0020BB10(rcx, qword [rcx+8], edx - count, pointer to a zeroed 0x18-byte stack value)` and returns its result; otherwise adds to qword `[rcx+8]` the signed 0x18-byte-element distance that moves it to qword `[rcx]` + `edx` * 0x18, and returns that byte delta in `rax`",
+   "anchors": [
+    [
+     "0019CD60",
+     "imul"
+    ],
+    [
+     "0019CD77",
+     "jbe"
+    ],
+    [
+     "0019CD98",
+     "call"
+    ],
+    [
+     "0019CDB1",
+     "lea"
+    ],
+    [
+     "0019CDD1",
+     "add"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "0019CD40",
+   "was": "computes the element count (qword `[rcx+8]` minus qword `[rcx]`) / 0x18 and, when `edx` is above it (unsigned), calls `0020BB10(rcx, qword [rcx+8], edx - count, pointer to a zeroed 0x18-byte stack value)` and returns its result; otherwise adds to qword `[rcx+8]` the signed 0x18-byte-element distance that moves it to qword `[rcx]` + `edx` * 0x18",
+   "now": "computes the element count (qword `[rcx+8]` minus qword `[rcx]`) / 0x18 and, when `edx` is above it (unsigned), calls `0020BB10(rcx, qword [rcx+8], edx - count, pointer to a zeroed 0x18-byte stack value)` and returns its result; otherwise adds to qword `[rcx+8]` the signed 0x18-byte-element distance that moves it to qword `[rcx]` + `edx` * 0x18, and returns that byte delta in `rax`",
+   "why": "0019CDC9-0019CDD1: rax = delta*0x18 is added to [rbx+8] and left in rax at ret 0019CDDA; the else-path return was unstated"
+  }
+ ],
+ "mode": "homing",
+ "family": ""
+}

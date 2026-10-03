@@ -1,0 +1,3 @@
+VERIFY 8 functions, 36 anchors
+DRY (verified; --apply writes)
+FAILS 0

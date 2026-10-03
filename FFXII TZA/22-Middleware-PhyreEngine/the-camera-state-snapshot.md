@@ -226,3 +226,10 @@ edge, so it is described rather than named.*
 - **Application - SERVICE (1 edge).** `00186CD0` reaches `001A98B0`.
 - **Movement - SERVICE (2 edges; added 2026-09-30, SWE2-DATA, with the SD-60 incorporation).** `003820C0`, named above as the producer that stores block 1's inverse head matrix, calls two bodies filed to Movement (described, not named, so that their own edges are not imported) - services the producer uses on its way, no shared ownership. Neither far end is a claim of this page.
 
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-the-camera-state-snapshot-ee-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00216720` | 2200 B | Without calls, computes sixteen cofactor expressions of the 4x4 float matrix at `rdx` (sums and differences of three-factor products of its sixteen floats, held in registers and stack temporaries), takes the determinant as the floats `+0`, `+0x10`, `+0x20` and `+0x30` times the first four cofactors, and writes each cofactor times a factor to the sixteen floats `rcx`..`rcx+0x3C`, the factor being 1.0 (`01CEBBA8`) divided by the determinant, or 0 (all outputs zero) when the determinant compares equal to 0 (an unordered determinant takes the division path through `jp`), then returns. | `00216741`, `00216E93`, `00216EA2`, `00216EF0`, `00216FAA` |

@@ -174,9 +174,37 @@ set bit 16 and assert it still does (`RW-5`).
 
 ## 13. Runtime validation
 
-**None.** No experiment executes this resolver. S-22's runtime cell is not addressed by this
+~~**None.** No experiment executes this resolver. S-22's runtime cell is not addressed by this
 contract. *Stated rather than left blank so a CONTRACT READY header is not read as evidence of
-execution.*
+execution.*~~ **Isolated native replay, not a running game.** Evidence class NATIVE-REPLAY (unicorn), `live_game: false`:
+the shipped bytes run at their own addresses with no application stub. The recipes are the shipped ones
+(pointer table `01EF96C0`, step table `01EFA5C0`); only the stats blocks, the result record and the action
+rows are planted. FABLE re-ran both packages on 2026-10-03 under unicorn 2.1.4, and every result file
+reproduced byte-identically.
+
+- [`s22-opus-replay-recipe-resolver`](../_index/candidates/s22-opus-replay-recipe-resolver/README.md)
+  (2026-09-25, md5 `a226db98…`, 871-function allowed set) runs the resolver `00385F60` on authored recipes.
+  - The static parts of `RW-1`, `RW-2` and `RW-4` are read from the mapped image.
+  - `RW-2`, executed and asserted: the committed path runs only the second list. Recipe 39 (first list
+    `[193]`, second list empty) calls no step. Recipes 74, 90, 5 and 4 call exactly their second lists, in
+    order.
+  - The cut-short arm executed. Recipe 6 stops after slot 4 and recipe 2 after slot 40, each when the step
+    just run left `02AEDFB8 = 1`. The package records this without asserting it;
+    [`check_s22_recipes.py`](../_index/candidates/fable-l2exp-s22-recipes-1003/check_s22_recipes.py)
+    asserts it from the record.
+  - Not covered: recipe 25 (bow) stops in its first committed slot, 29, at a read of `0x1C` that the
+    fixture does not plant, so no weapon family's committed run executes. The skip-entirely arm
+    (`00386249`–`003862AE`), the recipe taken from the equipped item (`0038618B`–`00386210`) and the effects
+    of the post-loop `00390F20` are static only.
+- [`s22-opus-replay-severe-weather-gate`](../_index/candidates/s22-opus-replay-severe-weather-gate/README.md)
+  (2026-09-26, 5/5, md5 `867bbaf3…`) asserts `RW-5` on steps 35 (`003895D0`) and 36 (`00389610`).
+  - With context byte `+0x1A` bit `0x04` clear and weather class 2, a hit chance of 100 becomes 80 and 50.
+  - With that bit set, or with class 0 or 1, it is unchanged.
+  - No other bit of `+0x18`..`+0x1B`, the element bypass's included, opens or closes the gate.
+  - The package measures the byte. "Merged bit 2" names the same bit only if the merged context is counted
+    from `+0x1A`; it is bit 18 of a dword at `+0x18`.
+
+Nothing here has been observed in a running game. *(corrected 2026-10-03, FABLE, on SWE2-AUDIT-SPEC's L2 expansion)*
 
 ## 14. Unresolved
 

@@ -1,0 +1,75 @@
+{
+ "page": "18-Audio/Sound-Selection/sound-variant-selection.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter-r4",
+ "report": "sound-variant-selection-r4.json",
+ "rows": [
+  {
+   "fn": "007BC8D0",
+   "text": "Fills the object at `rcx` without calls and returns it in `rax`: pointers `01CB5A30`, `01CB5B98` and `01CB5BA8` at `+0`, `+8`, `+0x10` and `01CB43E0` at `+0x28`, the other qwords `+0x18` to `+0x58` and word `+0x60` zeroed; four 0x40-byte slots from `+0x88` headed by `01CB5A20` with `01CB4890` at slot `+0x30`, qword `+0x38` zero and five fields cleared (qwords `+8`/`+0x10`, dwords `+0x1C`/`+0x24`, byte `+0x20`); thirteen 0x30-byte slots headed by `01CB44A0` (at `+0x188`, three from `+0x1B8`, two from `+0x248`, `+0x2A8`, `+0x2D8`, four from `+0x308` and `+0x3C8`) with the same five fields cleared; the four 0x40-byte entries from `+0x400` zeroed twice and the qwords `+0x500` to `+0x530` zeroed except dword `+0x520` = -1; then dword `+8` = 0, float `+0xC` = 1.0, dwords `+0x10`/`+0x14` = 0 and `+0x1C`/`+0x20`/`+0x24` cleared again in the slots at `+0x88`, `+0x108`, `+0x148`, `+0x188`, `+0x1E8`, `+0x2A8`, `+0x2D8`, `+0x308`, `+0x338`, `+0x368` and `+0x398`, and the five fields cleared again at `+0xC8`, `+0x1B8`, `+0x218`, `+0x248` and `+0x278`; the floats `+0x64` to `+0x7C` set to 1.0, bytes `+0x80` to `+0x83` set to 0xFE and byte `+0x3F8` cleared.",
+   "anchors": [
+    [
+     "007BC963",
+     "mov"
+    ],
+    [
+     "007BC976",
+     "jne"
+    ],
+    [
+     "007BCB15",
+     "mov"
+    ],
+    [
+     "007BCB8E",
+     "mov"
+    ],
+    [
+     "007BCD12",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007CFD00",
+   "text": "Reads the curve header whose pointer is the qword at `rcx+8` and returns 0.0 when its word `+4` (point count) is zero; when its type byte `+0` is at least 1 it normalises `xmm1` to (`xmm1` - float `+8`) / (float `+0xC` - float `+8`), returning 0.0 unless that range is above zero, then clamps the input to 0 when below 0 or unordered and to at most 1.0 (`01CEBBA8`); it locates the 16-byte points at the header plus word `+2` (plus byte `+1` plus 0x10 masked with 0xF0 when the type is above 3), binary-searches their float keys with signed bounds (stopping early on an equal or unordered key), steps one point back when the input is below the found key (or unordered) and the index is positive (otherwise capping the index at the last point), and returns the found point's float `+4` when it is the last point, else that value plus the next point's value minus it times `007A9E50` of the fraction between the two keys and the point's byte `+8`.",
+   "anchors": [
+    [
+     "007CFD34",
+     "ja"
+    ],
+    [
+     "007CFD53",
+     "minss"
+    ],
+    [
+     "007CFDA8",
+     "ucomiss"
+    ],
+    [
+     "007CFDD8",
+     "cmovge"
+    ],
+    [
+     "007CFE31",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "007BC8D0",
+   "why": "byte re-read by a non-drafting agent: The 'most then given dword `+8` = 0, float `+0xC` = 1.0 ...' clause is attributed only to the 0x30-byte slots, but the same writes also go to three of the four 0x40-byte slots (`+0x88` via `007BCB95`, `+0x108`, `+0x148`), while the slot at `+0xC8` and the 0x30-byte slots at `+0x1B8`, `+0x218`, `+0x248`, `+0x278` and `+0x3C8` only get their five fields cleared (again for all but `+0x3C8`); 'most' does not say which.; The 0x40-byte slots' cleared fields (qwords `+8`/`+0x10`, dwords `+0x1C`/`+0x24`, byte `+0x20`, qword `+0x38`) are not stated."
+  },
+  {
+   "fn": "007CFD00",
+   "why": "byte re-read by a non-drafting agent: The curve header is not at `rcx+8`: `007CFD04 mov rdx, qword ptr [rcx + 8]` loads its pointer from the qword at `rcx+8`."
+  }
+ ],
+ "mode": "ee",
+ "family": ""
+}

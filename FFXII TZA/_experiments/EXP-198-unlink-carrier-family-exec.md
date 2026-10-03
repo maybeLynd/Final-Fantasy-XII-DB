@@ -65,7 +65,7 @@ protect the shared tail.
 
 - Early out on `rcx==0` or `q[obj+0x698]==0`.
 - `0031B7E0(d[obj+0x710])` → contributor row; iff nonnull AND `q[obj]` bit22
-  set AND `d[row2+0xEA4]` has bit `1 << b[obj+0xEA9]`: `b[row2+0xEA8]--`,
+  ~~set~~ **clear** (`003107BE bt rcx,0x16` / `003107C3 jb` skips when set) *(corrected 2026-10-03, SWE2-ORACLE, on ASTRA's SPEC-accepted `uq147-ko-release-partition` - review `auditspec-review-astra-uq147-ko-release-partition-1003`; record `swe2oracle-ko-consumers-1003`)* AND `d[row2+0xEA4]` has bit `1 << b[obj+0xEA9]`: `b[row2+0xEA8]--`,
   `d[row2+0xEA4] &= ~bit`, then `00313B30(obj,row2)` + `002FEAD0(row2)`
   (scripted boundaries, arg-captured).
 - Then `00308270(obj)` (scripted), `q[obj] &= 0xFFFFFFFFEFFFFFDF` (clears

@@ -508,3 +508,21 @@ Interior anchor `00262F70` (function `00262F50`).
 |---|---|---|---|
 | `00183240` | 32 B | when `001BE420()` returns non-null, calls `001BE420()` again and stores `ecx` at dword `+0x20` of the result; otherwise returns without work | `00183248`, `0018324D`, `00183252`, `00183257` |
 | `00351F40` | 65 B | calls `00267E10(r9)` and stores its low byte at byte `+0xD` of `r8`; stores 1 at byte `+0xC` of `r8` when `002647C0` of that result is non-zero, else 0 (`setne`); then tail-jumps `0026B4A0(rdx, 0xB)` | `00351F53`, `00351F5A`, `00351F5D`, `00351F6F`, `00351F7C` |
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-03, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../../_index/candidates/fable-home-adm-add-motion-tables-1003/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `002EDB80` | 72 B | `002E7CE0` + 0xCD | returns when `cx` is -1; otherwise forms the record address qword `022C6F28` + sign-extended `cx` times 0x740 and, when that address is non-zero and the record's dword `+0x284` is non-zero, makes the call at `002EDB80` + 0x2F with the record and ORs 0x800 into its dword `+0x290`; on the other paths it returns without writing | Interior anchor `002EDB84`; Interior anchor `002EDB93`; Interior anchor `002EDBA3`; Interior anchor `002EDBAF`; Interior anchor `002EDBB4` |
+
+## Homed bodies: functions reached only indirectly whose callees this page cites (FABLE, 2026-10-03, F homing)
+
+*No page cited these functions and none of their callers is documented: they are reached by table or pointer dispatch or through undocumented callers. Each one calls something this page documents, which the sentence names. Each sentence states what the body does (access and representation, not purpose); the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's F homing pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-adm-add-motion-tables-homing-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0034DEA0` | 61 B | converts `00267E10(r9)` to a float f, makes the call at `0034DEA0+0x23` with (`rdx`, f) and ends with the tail jump to `0025B470(rdx, f)` | Interior anchor `0034DEB1`; Interior anchor `0034DEBD`; Interior anchor `0034DEC3`; Interior anchor `0034DED8` |
+| `00357570` | 163 B | reads three values a, b, c with `00267E10(r9)` in that order and makes the call at `00357570+0x46` with (c, b, a); when that returns null calls `0026B4E0(rcx, 0)`; otherwise calls `00262F50(rdx, result)` and, when it returns 0, calls `0026B4E0(rcx, 0)`, else calls `0026B4E0(rcx, 1)` and `0035AE10(result, 1)` | Interior anchor `003575B6`; Interior anchor `003575C1`; Interior anchor `003575C9`; Interior anchor `003575DA`; Interior anchor `003575E7` |
+| `003B7210` | 221 B | takes base b = qword `[rcx]` and off = `0020E600(dword b+0x68)`, makes the call at `003B7210+0x21`, and returns when off is 0 or dword `[b+off]` is not greater than 0 (signed); otherwise points at the word list at b + `0020E600(dword b+off+4)` and, for each index i below its leading word count, skips entries whose word `+2+i*2` is negative, and calls `00262F50(00358940(rcx, entry), q)` where q is qword `02EBCC68` for i = 0 (skipped when that qword is 0) and qword `[02EBCAC0 + (i-1)*8]` for i > 0 (skipped when i-1 is not below dword `02EBCBC0`, signed) | Interior anchor `003B7229`; Interior anchor `003B7242`; Interior anchor `003B7287`; Interior anchor `003B72A1`; Interior anchor `003B72C1` |

@@ -1,0 +1,3 @@
+ASTRA: correct KO cleanup bit22 partition and consume accepted restore bounds
+
+Scoped immutable original-source evidence; explicit limits and independent acceptance pending. No live gameplay.

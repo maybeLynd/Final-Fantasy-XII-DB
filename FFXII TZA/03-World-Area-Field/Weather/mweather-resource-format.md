@@ -416,3 +416,12 @@ Shared callees outside the census: `0032E400`, `0036C1D0`, `0036C750`.
 `00377850` (14 B) is the preset extractor — the third of the field readers sharing `003777C0`: tail-enters `003777C0(ecx, edx, 0, 3)`, i.e. `(selector, slot, bitOffset 0, width 3)`, which is exactly the 3-bit weather preset `choosing-the-field-environment-variant.md` describes.
 
 Interior anchor `00377859` (function `00377850`).
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-mweather-resource-format-ee-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0046D160` | 147 B | with `m` = `rcx` and `u` = `xmm1` / 6.283185: reads `s` = float `[01F004E0 + 4*(trunc(u*32768) AND 0x7FFF)]` and `k` = float `[01F004E0 + 4*((0x2000 - trunc(u*-32768)) AND 0x7FFF)]` (a table whose entry 1 is 0.00019 and entry 0x2000 is 1.0), copies the 64-byte identity matrix at `01F204E0` into `m` (`00202C70`), then stores `k` to floats `+0x14` and `+0x28`, `s` to `+0x18` and -`s` (sign flipped by XOR with `01CEBDA0`) to `+0x24`; returns nothing | `0046D166`, `0046D1A3`, `0046D1B4`, `0046D1C3`, `0046D1D9` |
+| `0046D200` | 149 B | with `m` = `rcx` and `u` = `xmm1` / 6.283185: reads `s` = float `[01F004E0 + 4*(trunc(u*32768) AND 0x7FFF)]` and `k` = float `[01F004E0 + 4*((0x2000 - trunc(u*-32768)) AND 0x7FFF)]`, copies the 64-byte identity matrix at `01F204E0` into `m` (`00202C70`), then stores `k` to floats `+0` and `+0x28`, -`s` (XOR with `01CEBDA0`) to `+8` and `s` to `+0x20`; returns nothing | `0046D206`, `0046D243`, `0046D254`, `0046D263`, `0046D27B` |

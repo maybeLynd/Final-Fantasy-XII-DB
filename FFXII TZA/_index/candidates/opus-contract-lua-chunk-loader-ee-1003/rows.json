@@ -1,0 +1,40 @@
+{
+ "page": "23-Third-Party-Libraries/Lua-Core/CONTRACT-lua-chunk-loader.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "contract-lua-chunk-loader-r5.json",
+ "rows": [
+  {
+   "fn": "008242A0",
+   "text": "initialises the lexer state `ls` = `rdx` for Lua state `L` = `rcx`: dword `[ls]` = the fifth argument, byte `+0x68` = 0x2E, qword `+0x38` = `L`, dword `+0x20` = 0x11E, qword `+0x40` = `r8`, qword `+0x30` = 0, dwords `+4` and `+8` = 1, qword `+0x58` = `r9`, qword `+0x60` = `0081EF90(L, '_ENV')` with byte `+9` of that string gaining `0x20`; then for the buffer at qword `+0x48` stores `00823670(L, qword [buf], qword [buf+0x10], 0x20)` to qword `[buf]` and 0x20 to qword `[buf+0x10]`; returns nothing",
+   "anchors": [
+    [
+     "008242AF",
+     "mov"
+    ],
+    [
+     "008242B7",
+     "mov"
+    ],
+    [
+     "008242E3",
+     "call"
+    ],
+    [
+     "008242F2",
+     "or"
+    ],
+    [
+     "00824305",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

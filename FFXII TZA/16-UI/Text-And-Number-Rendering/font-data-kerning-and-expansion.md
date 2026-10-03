@@ -1114,3 +1114,20 @@ Interior anchor `003301C8` (function `00330190`).
 `00330220` (138 B) is the high bit-lane sibling of `00330190`: identical `ecx & 0xF` slot selection and `rdx & ~0xF` store but into the `022C6CC8` row table via `0026C8A0`, clearing bit `0x20` of the `022CBE48`-region entry with the same `00263FF0` `+0x11` cleanup and `0032F1B0` empty-transition call - the second bit-lane `003304A0` drives..
 
 Interior anchor `00330258` (function `00330220`).
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-03, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../../_index/candidates/fable-home-font-data-kerning-and-expansion-1003/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `001FDE60` | 85 B | `001B58E0` + 0x219 | zeroes qwords `rdx+0`, `+8` and `+0x10`, calls (`001FDE60` + 0x2C) with `rdx+0x18` and `rcx+0x118`, then calls (`001FDE60` + 0x42) with `rdx`, qword `rcx+0x100` and qword `rcx+0x108`, and returns `rdx` | Interior anchor `001FDE6F`; Interior anchor `001FDE8C`; Interior anchor `001FDE9B`; Interior anchor `001FDEA2`; Interior anchor `001FDEAC` |
+
+## Homed bodies: functions reached only indirectly whose callees this page cites (FABLE, 2026-10-03, F homing)
+
+*No page cited these functions and none of their callers is documented: they are reached by table or pointer dispatch or through undocumented callers. Each one calls something this page documents, which the sentence names. Each sentence states what the body does (access and representation, not purpose); the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's F homing pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-font-data-kerning-and-expansion-homing-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `001B5140` | 119 B | calls `001B4930(rcx)`; then walks 0x20-byte entries `E` from qword `rcx+8` up to qword `rcx+0x10` (re-read after each entry; nothing when they are equal), and for each one zeroes a local 0x18-byte block `B`, calls `001EDF00` with the address of the local qword just past `B` and `E+0x18`, calls `001A4BF0(B, qword [E], qword [E+8])`, and passes `rcx` and `B` to the call at `001B5140` + 0x58 | Interior anchor `001B514D`; Interior anchor `001B5156`; Interior anchor `001B517A`; Interior anchor `001B518B`; Interior anchor `001B5198` |
+| `00679ED0` | 107 B | returns 0 at once when dword `rcx+0x258` is 1; otherwise loops: passes `rcx+0x4f8` to the call at `00679ED0` + 0x27, then calls `00679BF0(rcx)` only when dword `rcx+0x268` is 1 or 2 and dword `rcx+0x25c` is not 2, and repeats until dword `rcx+0x258` reads 1, then returns 0 | Interior anchor `00679EDF`; Interior anchor `00679EF7`; Interior anchor `00679F12`; Interior anchor `00679F1E`; Interior anchor `00679F29` |

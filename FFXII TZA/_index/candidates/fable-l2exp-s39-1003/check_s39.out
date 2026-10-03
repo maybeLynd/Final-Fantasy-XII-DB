@@ -1,0 +1,14 @@
+PASS S1_00182970_passes_the_owner_list_to_0018C610  00182982 call 0018CA40 (mov rax,[01F7F5E8]; ret), 00182987 mov rcx,rax, 00182991 jmp 0018C610
+PASS S2_failed_malloc_appends_null_to_owner_then_ordered  0018C644 je -> 0018C655 xor ebx,ebx; owner push 0018C673 mov [rdx],rbx (grow arm 0018C680 from [rsp+0x40]=rbx, 0018C657); ordered via 0018C692 rdx=rbx, 0018C69F jmp 0018AFF0
+PASS S3_teardown_001E0590_flushes_0018CA40s_list  001E05A9 clear, 001E05AE call 0018CA40, 001E05B6 call 0018C8F0
+PASS S4_flush_loop1_reads_entry_plus10_untested  0018C930 mov rdi,[rbx]; 0018C933 cmp byte [rdi+0x10],bpl; null-tested=False, first deref 18C933
+PASS S5_loop1_entered_only_by_fallthrough_and_its_back_edge  branches into 0018C930..0018C933: ['18C956->18C930']
+PASS S6_destroy_loops_do_test_null  0018C97A test rcx,rcx (flush loop 2); 0018B853 (0018B810): tested=True/True
+PASS R1_flush_0018C8F0_has_one_reference_call_001E05B6  raw refs: ['call 1E05B6']
+PASS R2_enqueue_0018C610_has_one_reference_jmp_00182991  raw refs: ['jmp 182991']
+unicorn 2.1.4
+PASS U1_null_owner_entry_faults_at_0018C933  status fault, rip 18C933, unmapped read at 10
+PASS U2_harness_control_nonnull_entry_returns_and_empties  status returned, vector emptied True (the harness itself does not fault)
+PASS C1_old_reading_flush_null_tests_is_false_on_shipping_image  old reading evaluates to False (must be False)
+PASS C2_patched_null_test_is_detected_and_null_run_returns  patched image: detector tested=True, null-entry run returned (shipping image: tested=False, fault at 18C933)
+FAILS 0

@@ -1,0 +1,45 @@
+{
+ "page": "18-Audio/CONTRACT-spatial-source-objects.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "contract-spatial-source-objects-r5.json",
+ "rows": [
+  {
+   "fn": "007F74E0",
+   "text": "with `u` = `[rdx]` - `[rcx]` and `v` = `[r8]` - `[rdx]` (4-float lanes, aligned loads), forms the cross product `n` = `u` x `v` by four shuffles (lane orders z,x,y,w and y,z,x,w of `u` and of `v`), two multiplies and a subtract (fourth lane: `u.w`*`v.w` minus the same product), takes `s` = `n.x`^2 + `n.y`^2 + `n.z`^2 (mask 1,1,1,0 and two horizontal adds), refines `r` = `rsqrtps`(`s`) once as (3 - `s`*`r`*`r`) * (0.5*`r`), and stores (`n.x`*`r`, `n.y`*`r`, `n.z`*`r`, `n.w`) as 16 aligned bytes to `[r9]`; returns nothing",
+   "anchors": [
+    [
+     "007F750D",
+     "subps"
+    ],
+    [
+     "007F7516",
+     "mulps"
+    ],
+    [
+     "007F7525",
+     "rsqrtps"
+    ],
+    [
+     "007F7548",
+     "mulps"
+    ],
+    [
+     "007F755D",
+     "movdqa"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "007F74E0",
+   "why": "byte re-read by a non-drafting agent: the cross product uses four `shufps` (0xD2 and 0xC9 on each of `u` and `v`), two `mulps` and one `subps`; 'two shuffles, a multiply each' miscounts the shuffles"
+  }
+ ],
+ "mode": "ee",
+ "family": ""
+}

@@ -356,3 +356,27 @@ built by `00244F50` from the inline template at `002CA1F0` — the `lea rdx,[rip
 as parameters, the new pointer stores back to `+0x2D8` ([`002CA1B6`](../../_index/ADDRESS-INDEX.md)–`002CA1C5`),
 and `00246AD0(0208EA28, rax)` registers it. Same `[0209AC30]` band state record `002C9490`
 writes.
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-03, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../../_index/candidates/fable-home-the-license-board-screen-widgets-1003/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `0027F150` | 69 B | `002C2320` + 0x895 | reads five words starting at `+0xD48` of qword `0209AC30` with stride `0x20` and returns 0 at the first one that is neither `0xFFFF` nor `0x1000`; returns 1 when all five are one of those two values | Interior anchor `0027F159`; Interior anchor `0027F173`; Interior anchor `0027F179`; Interior anchor `0027F186`; Interior anchor `0027F18C` |
+| `003FF160` | 129 B | `002C2320` + 0x35F | builds a stack block of a zero dword followed by the sign-extended `ecx` and `edx` as qwords; when qword `+0x108` of qword `0209AC30` is null, calls `003FF160` + 0x4D with (`0x190`, `003FF360`, the block), stores the result to that `+0x108` and calls `003FF160` + 0x6A with (qword `0208EA28`, the result); when `+0x108` is already non-null it does neither; both paths end with the stack-cookie check (cookie `01F44830`) at `003FF160` + 0x77 | Interior anchor `003FF176`; Interior anchor `003FF192`; Interior anchor `003FF1AD`; Interior anchor `003FF1BC`; Interior anchor `003FF1CA` |
+| `003FF9F0` | 48 B | `002C2320` + 0x5E2 | when qword `+0x108` of qword `0209AC30` is non-null, stores `ecx` to its dword `+0x178` and `rdx` to its qword `+0x180`; otherwise does nothing | Interior anchor `003FF9FE`; Interior anchor `003FFA03`; Interior anchor `003FFA18` |
+
+## SWE2-EC7-213 update (2026-10-03) - the fsmenu license verbs on the board view
+
+Three `fsmenu_*` Script-VM verbs (family 7) reach the license board through the widget at `[0209AC30] + 0x320`. That is the board view `0055CD40`: its installer `0055C690` publishes it there (`0055C6FD`), and its id-18 arm clears it (table above). The 0x390-byte cursor handler's installer `00557AE0` also stores its widget in that slot (`00557B4D`), but the fields below lie past `0x390`, inside the view's `0x580` bytes. `0055F740` (49 B; the begin of `fsmenu_changelicense` `0x7012`, whose handler pops the verb's one argument into `ecx`) acts only when the view is non-null and its byte `+0x563` is 0. It stores `+0x563` = 4, `+0x565` = 1 and dword `+0x56C` = `ecx`. The confirm-commit step `0055F3E0` tests `+0x563` for 4 (`0055F434`) and stores 0 there (`0055F461`), and `0055AA00` runs the `+0x563` modes 1 to 3 while `+0x565` is set.
+
+Interior anchor `0055F75C` (function `0055F740`).
+
+`0055FF90` (37 B; the poll of `fsmenu_movepanel` `0x7011` and `fsmenu_changelicense`) returns 1 when the `+0x320` slot is null; otherwise it returns 1 when the view's byte `+0x563` is 0, and 0 when it is not (`sete`).
+
+Interior anchor `0055FFA5` (function `0055FF90`).
+
+`0055FAE0` (64 B; called by the handlers of `fsmenu_ispanel` `0x7024`, which tests the result for 2, and `fsmenu_isthumbnail` `0x7025`, which tests it for 1) returns 0 when qword `[0209AC30] + 0x158` is null. That is the slot the widget procedure `00560910` stores itself in (`00560A40`) and clears (`005609BD`). Otherwise the body returns 2 when the `+0x320` view is non-null and bit 3 (`0x8`) of its dword `+0x570` is set, the bit its id-8/9 arms set and clear; failing that, 1 when byte `+0x183` of the `+0x158` widget is non-zero, else 0.
+
+Interior anchor `0055FAFF` (function `0055FAE0`).

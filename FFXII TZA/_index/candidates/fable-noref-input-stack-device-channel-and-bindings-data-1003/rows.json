@@ -1,0 +1,37 @@
+{
+ "page": "15-Input/Input-Stack/input-stack-device-channel-and-bindings.md",
+ "date": "2026-10-03",
+ "rows": [
+  {
+   "fn": "005DBEE0",
+   "text": "stores word 0 to `[rcx]` and qword 0 to `+8`, zeroes the 0x200 bytes from `+0x10` as 32 passes of two qword stores, stores dword 0 to `+0x210` and returns `rcx`; passed in `r9` to the `00808FE4` call at `0060A410` + 0xAF with `edx` = 0x218, `r8d` = 2 and `0016D6A0` as the fifth argument",
+   "anchors": [
+    [
+     "005DBEE3",
+     "mov"
+    ],
+    [
+     "005DBF00",
+     "mov"
+    ],
+    [
+     "005DBF0B",
+     "sub"
+    ],
+    [
+     "005DBF11",
+     "mov"
+    ]
+   ],
+   "why_here": "0060A410 passes it to 00808FE4; this page reads 0060A410",
+   "ref": {
+    "kind": "code",
+    "container": "0060A410",
+    "site": "0060A4A9"
+   },
+   "cites": [
+    "0060A410"
+   ]
+  }
+ ]
+}

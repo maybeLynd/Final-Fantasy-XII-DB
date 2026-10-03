@@ -1,0 +1,42 @@
+{
+ "page": "00-Engine-Core-Runtime/ABI-Recovery/derived-call-signatures.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01SRPAB4nYztytvoFuWnwY9e",
+ "report": [
+  "fable-derived-call-signatures.json"
+ ],
+ "rows": [
+  {
+   "fn": "00511660",
+   "text": "makes the call at `00511660+0x09` with the incoming registers unchanged and returns its value when non-zero; otherwise reads a and then b with the calls at `00511660+0x1A` and `00511660+0x24` (each with `r9`) and returns `002D6640(b, a)`",
+   "anchors": [
+    [
+     "00511669",
+     "call"
+    ],
+    [
+     "00511670",
+     "jne"
+    ],
+    [
+     "0051167A",
+     "call"
+    ],
+    [
+     "00511684",
+     "call"
+    ],
+    [
+     "0051168D",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing",
+ "family": ""
+}

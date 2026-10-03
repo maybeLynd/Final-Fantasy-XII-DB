@@ -1,0 +1,40 @@
+{
+ "page": "18-Audio/the-voice-pack-slots-and-the-voice-verbs.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter-r4",
+ "report": "the-voice-pack-slots-and-the-voice-verbs-r4.json",
+ "rows": [
+  {
+   "fn": "00351020",
+   "text": "Reads three dwords from the object in `r9` with three calls to `00267E10`, then calls `00267F90` on that object five times with -1, the third value read, the second, the first and finally 1, and tail-jumps to `003581B0` with the original `rcx`, `rdx`, `r8` and `r9`.",
+   "anchors": [
+    [
+     "00351057",
+     "call"
+    ],
+    [
+     "0035106E",
+     "call"
+    ],
+    [
+     "0035108C",
+     "call"
+    ],
+    [
+     "00351099",
+     "call"
+    ],
+    [
+     "003510C8",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

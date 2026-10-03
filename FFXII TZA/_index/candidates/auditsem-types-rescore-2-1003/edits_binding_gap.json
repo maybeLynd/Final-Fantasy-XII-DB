@@ -1,0 +1,32 @@
+[
+ {
+  "row": "S-09",
+  "column": "binding gap",
+  "old": "**types PARTIAL (2026-10-03, SWE2-AUDIT-SEM, on SWE2-AUDIT-SPEC's independent finding; record `auditsem-types-rescore-1003`): `ResourceSectionHeader` (`+0x00` tag, `+0x10..+0x2F` name key) has no declared type; closes with OPUS's declaration (`AUDITSPEC-REQ-OPUS-L2EXP-REPAIRS-1003`).**",
+  "new": "~~**types PARTIAL (2026-10-03, SWE2-AUDIT-SEM, on SWE2-AUDIT-SPEC's independent finding; record `auditsem-types-rescore-1003`): `ResourceSectionHeader` (`+0x00` tag, `+0x10..+0x2F` name key) has no declared type; closes with OPUS's declaration (`AUDITSPEC-REQ-OPUS-L2EXP-REPAIRS-1003`).**~~ **types MET — closed 2026-10-03 (SWE2-AUDIT-SEM, record `auditsem-types-rescore-2-1003`): the item is declared in OPUS's `5f91e98be`.**"
+ },
+ {
+  "row": "S-10",
+  "column": "binding gap",
+  "old": "**types PARTIAL (2026-10-03, SWE2-AUDIT-SEM, on SWE2-AUDIT-SPEC's independent finding; record `auditsem-types-rescore-1003`): the vf00.w cell `01EF93FC` has no declared type; closes with OPUS's declaration (`AUDITSPEC-REQ-OPUS-L2EXP-REPAIRS-1003`).**",
+  "new": "~~**types PARTIAL (2026-10-03, SWE2-AUDIT-SEM, on SWE2-AUDIT-SPEC's independent finding; record `auditsem-types-rescore-1003`): the vf00.w cell `01EF93FC` has no declared type; closes with OPUS's declaration (`AUDITSPEC-REQ-OPUS-L2EXP-REPAIRS-1003`).**~~ **types MET — closed 2026-10-03 (SWE2-AUDIT-SEM, record `auditsem-types-rescore-2-1003`): the item is declared in OPUS's `5f91e98be`.**"
+ },
+ {
+  "row": "S-14",
+  "column": "binding gap",
+  "old": "**types PARTIAL (2026-10-03, SWE2-AUDIT-SEM, on SWE2-AUDIT-SPEC's independent finding; record `auditsem-types-rescore-1003`): the spawn-counter table `0208D354` (`02089340+0x4014`) has no declared type; closes with OPUS's declaration (`AUDITSPEC-REQ-OPUS-L2EXP-REPAIRS-1003`).**",
+  "new": "~~**types PARTIAL (2026-10-03, SWE2-AUDIT-SEM, on SWE2-AUDIT-SPEC's independent finding; record `auditsem-types-rescore-1003`): the spawn-counter table `0208D354` (`02089340+0x4014`) has no declared type; closes with OPUS's declaration (`AUDITSPEC-REQ-OPUS-L2EXP-REPAIRS-1003`).**~~ **types MET — closed 2026-10-03 (SWE2-AUDIT-SEM, record `auditsem-types-rescore-2-1003`): the item is declared in OPUS's `5f91e98be`.**"
+ },
+ {
+  "row": "S-17",
+  "column": "binding gap",
+  "old": "**types PARTIAL (2026-10-03, SWE2-AUDIT-SEM, on SWE2-AUDIT-SPEC's independent finding; record `auditsem-types-rescore-1003`): capability row 12 `0215F1F0` and the byte `0209A2C6` has no declared type; closes with OPUS's declaration (`AUDITSPEC-REQ-OPUS-L2EXP-REPAIRS-1003`).**",
+  "new": "~~**types PARTIAL (2026-10-03, SWE2-AUDIT-SEM, on SWE2-AUDIT-SPEC's independent finding; record `auditsem-types-rescore-1003`): capability row 12 `0215F1F0` and the byte `0209A2C6` has no declared type; closes with OPUS's declaration (`AUDITSPEC-REQ-OPUS-L2EXP-REPAIRS-1003`).**~~ **types MET — closed 2026-10-03 (SWE2-AUDIT-SEM, record `auditsem-types-rescore-2-1003`): the item is declared in OPUS's `5f91e98be`.**"
+ },
+ {
+  "row": "S-39",
+  "column": "binding gap",
+  "old": "**types PARTIAL (2026-10-03, SWE2-AUDIT-SEM, on SWE2-AUDIT-SPEC's independent finding; record `auditsem-types-rescore-1003`): the handshake word `02EBA3F8` has no declared type; closes with OPUS's declaration (`AUDITSPEC-REQ-OPUS-L2EXP-REPAIRS-1003`).**",
+  "new": "~~**types PARTIAL (2026-10-03, SWE2-AUDIT-SEM, on SWE2-AUDIT-SPEC's independent finding; record `auditsem-types-rescore-1003`): the handshake word `02EBA3F8` has no declared type; closes with OPUS's declaration (`AUDITSPEC-REQ-OPUS-L2EXP-REPAIRS-1003`).**~~ **types MET — closed 2026-10-03 (SWE2-AUDIT-SEM, record `auditsem-types-rescore-2-1003`): the item is declared in OPUS's `5f91e98be`.**"
+ }
+]

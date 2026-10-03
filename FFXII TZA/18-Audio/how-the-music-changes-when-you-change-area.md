@@ -704,3 +704,11 @@ trusting an id. Interior anchor `0032E4ED` (the `+0x64` compare).
 | function | size | entered from | what the body does | interior anchors |
 |---|---|---|---|---|
 | `0046DE50` | 32 B | `0032EB40` + 0x68 | when `ecx` is below 2 (signed, so negative values also pass), stores 0 to qword `02CA6080` + `ecx`*0xA0; otherwise returns without a write | Interior anchor `0046DE53`; Interior anchor `0046DE5C`; Interior anchor `0046DE67` |
+
+## Homed bodies: functions reached only indirectly whose callees this page cites (FABLE, 2026-10-03, F homing)
+
+*No page cited these functions and none of their callers is documented: they are reached by table or pointer dispatch or through undocumented callers. Each one calls something this page documents, which the sentence names. Each sentence states what the body does (access and representation, not purpose); the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's F homing pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../_index/candidates/fable-how-the-music-changes-when-you-change-ar-homing-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00347310` | 128 B | reads byte `[r8+3]`: when its bit 7 is clear it calls `00347310`+0x1B with `ecx` = 1 and returns 1 if that returns non-zero, else 0; when bit 7 is set it takes the low 6 bits sign-extended: for 0 it calls `003614C0(signed word [r8], dword [r8+8], signed byte [r8+2] >> 4 (arithmetic))` and returns 1 when that returns 0, otherwise sets the low 6 bits of byte `[r8+3]` to 1 (AND `0xc1`, OR 1) and continues as for 1; for 1 it calls `00347310`+0x67 and returns 1 if that returns non-zero, else 0; any other value returns 0 | Interior anchor `00347324`; Interior anchor `0034733D`; Interior anchor `00347367`; Interior anchor `00347370`; Interior anchor `00347380` |

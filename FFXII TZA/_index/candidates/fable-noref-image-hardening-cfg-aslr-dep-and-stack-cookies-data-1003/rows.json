@@ -1,0 +1,2066 @@
+{
+ "page": "24-Compiler-And-CRT-Runtime/Binary-Hardening-And-Hooking/image-hardening-cfg-aslr-dep-and-stack-cookies.md",
+ "date": "2026-10-03",
+ "rows": [
+  {
+   "fn": "005928F0",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it sign-extends a byte to a word for each of the n elements; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrars `005853F0` + 0x8D and `00585570` + 0x8D",
+   "anchors": [
+    [
+     "00592920",
+     "cmovne"
+    ],
+    [
+     "00592940",
+     "movsx"
+    ],
+    [
+     "00592946",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 2 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "005853F0",
+    "site": "0058547D",
+    "store_site": "00585484",
+    "store_target": "02CAB080"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00592960",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it sign-extends a byte to a dword for each of the n elements; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrars `005856F0` + 0x8D and `00585870` + 0x8D",
+   "anchors": [
+    [
+     "00592990",
+     "cmovne"
+    ],
+    [
+     "005929B0",
+     "movsx"
+    ],
+    [
+     "005929B6",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 2 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "005856F0",
+    "site": "0058577D",
+    "store_site": "00585784",
+    "store_target": "02CAB0F0"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "005929D0",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it converts a sign-extended byte to a float (`cvtdq2ps`) for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `005859F0` + 0x8D",
+   "anchors": [
+    [
+     "00592A05",
+     "cmovne"
+    ],
+    [
+     "00592A40",
+     "movsx"
+    ],
+    [
+     "00592A4A",
+     "cvtdq2ps"
+    ],
+    [
+     "00592A4D",
+     "movss"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "005859F0",
+    "site": "00585A7D",
+    "store_site": "00585A84",
+    "store_target": "02CAB1D0"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00592AD0",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it converts a sign-extended byte to a double (`cvtdq2pd`) for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `00585B70` + 0x8D",
+   "anchors": [
+    [
+     "00592B05",
+     "cmovne"
+    ],
+    [
+     "00592B40",
+     "movsx"
+    ],
+    [
+     "00592B4A",
+     "cvtdq2pd"
+    ],
+    [
+     "00592B4E",
+     "movsd"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "00585B70",
+    "site": "00585BFD",
+    "store_site": "00585C04",
+    "store_target": "02CAB208"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00592BD0",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it writes 16 bytes (`movdqa` from a stack copy) whose low qword is the sign-extended byte and whose high qword is 0 for each of the n elements; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `00585CF0` + 0x8D",
+   "anchors": [
+    [
+     "00592C00",
+     "cmovne"
+    ],
+    [
+     "00592C30",
+     "movsx"
+    ],
+    [
+     "00592C3F",
+     "movdqa"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "00585CF0",
+    "site": "00585D7D",
+    "store_site": "00585D84",
+    "store_target": "02CAB240"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00592C60",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it sign-extends a byte to a qword for each of the n elements; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrars `00585E70` + 0x8D and `00585FF0` + 0x8D",
+   "anchors": [
+    [
+     "00592C90",
+     "cmovne"
+    ],
+    [
+     "00592CB0",
+     "movsx"
+    ],
+    [
+     "00592CB7",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 2 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "00585E70",
+    "site": "00585EFD",
+    "store_site": "00585F04",
+    "store_target": "02CAB198"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00592CD0",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it zero-extends a byte to a word for each of the n elements; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrars `005865F0` + 0x8D, `00586770` + 0x8D, `005919F0` + 0x8D and `00591B70` + 0x8D",
+   "anchors": [
+    [
+     "00592D00",
+     "cmovne"
+    ],
+    [
+     "00592D20",
+     "movzx"
+    ],
+    [
+     "00592D26",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 4 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "005865F0",
+    "site": "0058667D",
+    "store_site": "00586684",
+    "store_target": "02CAB320"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00592D40",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it zero-extends a byte to a dword for each of the n elements; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrars `005868F0` + 0x8D, `00586A70` + 0x8D, `00591CF0` + 0x8D and `00591E70` + 0x8D",
+   "anchors": [
+    [
+     "00592D70",
+     "cmovne"
+    ],
+    [
+     "00592D90",
+     "movzx"
+    ],
+    [
+     "00592D96",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 4 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "005868F0",
+    "site": "0058697D",
+    "store_site": "00586984",
+    "store_target": "02CAB390"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00592DB0",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it writes 16 bytes (`movdqa` from a stack copy) whose low qword is the zero-extended byte and whose high qword is 0 for each of the n elements; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrars `00586EF0` + 0x8D and `005922F0` + 0x8D",
+   "anchors": [
+    [
+     "00592DE0",
+     "cmovne"
+    ],
+    [
+     "00592E02",
+     "movzx"
+    ],
+    [
+     "00592E10",
+     "movdqa"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 2 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "00586EF0",
+    "site": "00586F7D",
+    "store_site": "00586F84",
+    "store_target": "02CAB4E0"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00592E30",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it zero-extends a byte to a qword for each of the n elements; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrars `00587070` + 0x8D, `005871F0` + 0x8D, `00592470` + 0x8D and `005925F0` + 0x8D",
+   "anchors": [
+    [
+     "00592E60",
+     "cmovne"
+    ],
+    [
+     "00592E80",
+     "movzx"
+    ],
+    [
+     "00592E86",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 4 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "00587070",
+    "site": "005870FD",
+    "store_site": "00587104",
+    "store_target": "02CAB438"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00592EA0",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it writes byte 1 when the source byte is non-zero and 0 when it is zero for each of the n elements; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrars `00586170` + 0x8D, `00587370` + 0x8D and `00592770` + 0x8D",
+   "anchors": [
+    [
+     "00592ED0",
+     "cmovne"
+    ],
+    [
+     "00592EF0",
+     "cmp"
+    ],
+    [
+     "00592EF9",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 3 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "00586170",
+    "site": "005861FD",
+    "store_site": "00586204",
+    "store_target": "02CAAFD8"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00592F10",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it sign-extends a word to a dword for each of the n elements; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrars `00587AF0` + 0x8D and `00587C70` + 0x8D",
+   "anchors": [
+    [
+     "00592F40",
+     "cmovne"
+    ],
+    [
+     "00592F60",
+     "movsx"
+    ],
+    [
+     "00592F66",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 2 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "00587AF0",
+    "site": "00587B7D",
+    "store_site": "00587B84",
+    "store_target": "02CAB630"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00592F80",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it converts a sign-extended word to a float (`cvtdq2ps`) for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `00587DF0` + 0x8D",
+   "anchors": [
+    [
+     "00592FB5",
+     "cmovne"
+    ],
+    [
+     "00592FF0",
+     "movsx"
+    ],
+    [
+     "00592FFA",
+     "cvtdq2ps"
+    ],
+    [
+     "00592FFD",
+     "movss"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "00587DF0",
+    "site": "00587E7D",
+    "store_site": "00587E84",
+    "store_target": "02CAB710"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00593080",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it converts a sign-extended word to a double (`cvtdq2pd`) for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `00587F70` + 0x8D",
+   "anchors": [
+    [
+     "005930B5",
+     "cmovne"
+    ],
+    [
+     "005930F0",
+     "movsx"
+    ],
+    [
+     "005930FA",
+     "cvtdq2pd"
+    ],
+    [
+     "005930FE",
+     "movsd"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "00587F70",
+    "site": "00587FFD",
+    "store_site": "00588004",
+    "store_target": "02CAB748"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00593180",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it writes 16 bytes (`movdqa` from a stack copy) whose low qword is the sign-extended word and whose high qword is 0 for each of the n elements; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `005880F0` + 0x8D",
+   "anchors": [
+    [
+     "005931B0",
+     "cmovne"
+    ],
+    [
+     "005931E0",
+     "movsx"
+    ],
+    [
+     "005931EF",
+     "movdqa"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "005880F0",
+    "site": "0058817D",
+    "store_site": "00588184",
+    "store_target": "02CAB780"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00593210",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it sign-extends a word to a qword for each of the n elements; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrars `00588270` + 0x8D and `005883F0` + 0x8D",
+   "anchors": [
+    [
+     "00593240",
+     "cmovne"
+    ],
+    [
+     "00593260",
+     "movsx"
+    ],
+    [
+     "00593267",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 2 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "00588270",
+    "site": "005882FD",
+    "store_site": "00588304",
+    "store_target": "02CAB6D8"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00593280",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it zero-extends a word to a dword for each of the n elements; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrars `00588CF0` + 0x8D and `00588E70` + 0x8D",
+   "anchors": [
+    [
+     "005932B0",
+     "cmovne"
+    ],
+    [
+     "005932D0",
+     "movzx"
+    ],
+    [
+     "005932D6",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 2 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "00588CF0",
+    "site": "00588D7D",
+    "store_site": "00588D84",
+    "store_target": "02CAB8D0"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "005932F0",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it converts a zero-extended word to a float (`cvtdq2ps`) for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `00588FF0` + 0x8D",
+   "anchors": [
+    [
+     "00593325",
+     "cmovne"
+    ],
+    [
+     "00593360",
+     "movzx"
+    ],
+    [
+     "0059336A",
+     "cvtdq2ps"
+    ],
+    [
+     "0059336D",
+     "movss"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "00588FF0",
+    "site": "0058907D",
+    "store_site": "00589084",
+    "store_target": "02CAB9B0"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "005933F0",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it converts a zero-extended word to a double (`cvtdq2pd`) for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `00589170` + 0x8D",
+   "anchors": [
+    [
+     "00593425",
+     "cmovne"
+    ],
+    [
+     "00593460",
+     "movzx"
+    ],
+    [
+     "0059346A",
+     "cvtdq2pd"
+    ],
+    [
+     "0059346E",
+     "movsd"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "00589170",
+    "site": "005891FD",
+    "store_site": "00589204",
+    "store_target": "02CAB9E8"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "005934F0",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it writes 16 bytes (`movdqa` from a stack copy) whose low qword is the zero-extended word and whose high qword is 0 for each of the n elements; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `005892F0` + 0x8D",
+   "anchors": [
+    [
+     "00593520",
+     "cmovne"
+    ],
+    [
+     "00593542",
+     "movzx"
+    ],
+    [
+     "00593550",
+     "movdqa"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "005892F0",
+    "site": "0058937D",
+    "store_site": "00589384",
+    "store_target": "02CABA20"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00593570",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it zero-extends a word to a qword for each of the n elements; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrars `00589470` + 0x8D and `005895F0` + 0x8D",
+   "anchors": [
+    [
+     "005935A0",
+     "cmovne"
+    ],
+    [
+     "005935C0",
+     "movzx"
+    ],
+    [
+     "005935C6",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 2 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "00589470",
+    "site": "005894FD",
+    "store_site": "00589504",
+    "store_target": "02CAB978"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "005935E0",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it writes byte 1 when the source word is non-zero and 0 when it is zero for each of the n elements; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrars `00588570` + 0x8D and `00589770` + 0x8D",
+   "anchors": [
+    [
+     "00593610",
+     "cmovne"
+    ],
+    [
+     "00593630",
+     "cmp"
+    ],
+    [
+     "0059363A",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 2 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "00588570",
+    "site": "005885FD",
+    "store_site": "00588604",
+    "store_target": "02CAB518"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00593650",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it converts a signed dword to a float (`cvtdq2ps`) for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `0058A1F0` + 0x8D",
+   "anchors": [
+    [
+     "00593685",
+     "cmovne"
+    ],
+    [
+     "005936B2",
+     "movd"
+    ],
+    [
+     "005936B9",
+     "cvtdq2ps"
+    ],
+    [
+     "005936BC",
+     "movss"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058A1F0",
+    "site": "0058A27D",
+    "store_site": "0058A284",
+    "store_target": "02CABC50"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00593730",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it converts a signed dword to a double (`cvtdq2pd`) for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `0058A370` + 0x8D",
+   "anchors": [
+    [
+     "00593765",
+     "cmovne"
+    ],
+    [
+     "005937A0",
+     "movd"
+    ],
+    [
+     "005937A7",
+     "cvtdq2pd"
+    ],
+    [
+     "005937AB",
+     "movsd"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058A370",
+    "site": "0058A3FD",
+    "store_site": "0058A404",
+    "store_target": "02CABC88"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00593820",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it writes 16 bytes (`movdqa` from a stack copy) whose low qword is the sign-extended dword and whose high qword is 0 for each of the n elements; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `0058A4F0` + 0x8D",
+   "anchors": [
+    [
+     "00593850",
+     "cmovne"
+    ],
+    [
+     "00593872",
+     "movsxd"
+    ],
+    [
+     "00593880",
+     "movdqa"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058A4F0",
+    "site": "0058A57D",
+    "store_site": "0058A584",
+    "store_target": "02CABCC0"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "005938A0",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it sign-extends a dword to a qword for each of the n elements; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrars `0058A670` + 0x8D and `0058A7F0` + 0x8D",
+   "anchors": [
+    [
+     "005938D0",
+     "cmovne"
+    ],
+    [
+     "005938F0",
+     "movsxd"
+    ],
+    [
+     "005938F6",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 2 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058A670",
+    "site": "0058A6FD",
+    "store_site": "0058A704",
+    "store_target": "02CABC18"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00593910",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it writes byte 1 when the source dword is non-zero and 0 when it is zero for each of the n elements; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrars `0058A970` + 0x8D and `0058BB70` + 0x8D",
+   "anchors": [
+    [
+     "00593940",
+     "cmovne"
+    ],
+    [
+     "00593960",
+     "cmp"
+    ],
+    [
+     "00593969",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 2 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058A970",
+    "site": "0058A9FD",
+    "store_site": "0058AA04",
+    "store_target": "02CABA58"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00593980",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it copies a word for each of the n elements; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `005877F0` + 0x8D and the 13 other registrars that `members/guard-adapter-registrars.tsv` lists against it",
+   "anchors": [
+    [
+     "005939B0",
+     "cmovne"
+    ],
+    [
+     "005939D0",
+     "movzx"
+    ],
+    [
+     "005939D6",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 14 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "005877F0",
+    "site": "0058787D",
+    "store_site": "00587884",
+    "store_target": "02CAB5C0"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "005939F0",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it copies a dword for each of the n elements; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `00589EF0` + 0x8D and the 9 other registrars that `members/guard-adapter-registrars.tsv` lists against it",
+   "anchors": [
+    [
+     "00593A20",
+     "cmovne"
+    ],
+    [
+     "00593A40",
+     "mov"
+    ],
+    [
+     "00593A45",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 10 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "00589EF0",
+    "site": "00589F7D",
+    "store_site": "00589F84",
+    "store_target": "02CABB70"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00593A60",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it converts a zero-extended dword to a float as a signed 64-bit integer (`cvtsi2ss` from `rax`) for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `0058B3F0` + 0x8D",
+   "anchors": [
+    [
+     "00593A95",
+     "cmovne"
+    ],
+    [
+     "00593AD0",
+     "mov"
+    ],
+    [
+     "00593AD8",
+     "cvtsi2ss"
+    ],
+    [
+     "00593ADD",
+     "movss"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058B3F0",
+    "site": "0058B47D",
+    "store_site": "0058B484",
+    "store_target": "02CABEF0"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00593B60",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it converts a zero-extended dword to a double as a signed 64-bit integer (`cvtsi2sd` from `rax`) for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `0058B570` + 0x8D",
+   "anchors": [
+    [
+     "00593B95",
+     "cmovne"
+    ],
+    [
+     "00593BD0",
+     "mov"
+    ],
+    [
+     "00593BD8",
+     "cvtsi2sd"
+    ],
+    [
+     "00593BDD",
+     "movsd"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058B570",
+    "site": "0058B5FD",
+    "store_site": "0058B604",
+    "store_target": "02CABF28"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00593C60",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it writes 16 bytes (`movdqa` from a stack copy) whose low qword is the zero-extended dword and whose high qword is 0 for each of the n elements; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `0058B6F0` + 0x8D",
+   "anchors": [
+    [
+     "00593C90",
+     "cmovne"
+    ],
+    [
+     "00593CB2",
+     "mov"
+    ],
+    [
+     "00593CBF",
+     "movdqa"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058B6F0",
+    "site": "0058B77D",
+    "store_site": "0058B784",
+    "store_target": "02CABF60"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00593CE0",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it zero-extends a dword to a qword for each of the n elements; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrars `0058B870` + 0x8D and `0058B9F0` + 0x8D",
+   "anchors": [
+    [
+     "00593D10",
+     "cmovne"
+    ],
+    [
+     "00593D30",
+     "mov"
+    ],
+    [
+     "00593D35",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 2 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058B870",
+    "site": "0058B8FD",
+    "store_site": "0058B904",
+    "store_target": "02CABEB8"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00593D50",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it truncates a float to a 32-bit integer (`cvttss2si eax`) and writes its low byte for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `0058BCF0` + 0x8D",
+   "anchors": [
+    [
+     "00593D85",
+     "cmovne"
+    ],
+    [
+     "00593DC0",
+     "cvttss2si"
+    ],
+    [
+     "00593DC7",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058BCF0",
+    "site": "0058BD7D",
+    "store_site": "0058BD84",
+    "store_target": "02CAC510"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00593E30",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it truncates a float to a 64-bit integer (`cvttss2si rax`) and writes its low byte for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `0058BE70` + 0x8D",
+   "anchors": [
+    [
+     "00593E65",
+     "cmovne"
+    ],
+    [
+     "00593EA0",
+     "cvttss2si"
+    ],
+    [
+     "00593EA8",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058BE70",
+    "site": "0058BEFD",
+    "store_site": "0058BF04",
+    "store_target": "02CAC548"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00593F10",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it truncates a float to a 32-bit integer (`cvttss2si eax`) and writes its low word for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `0058BFF0` + 0x8D",
+   "anchors": [
+    [
+     "00593F45",
+     "cmovne"
+    ],
+    [
+     "00593F80",
+     "cvttss2si"
+    ],
+    [
+     "00593F87",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058BFF0",
+    "site": "0058C07D",
+    "store_site": "0058C084",
+    "store_target": "02CAC580"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00593FF0",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it truncates a float to a 64-bit integer (`cvttss2si rax`) and writes its low word for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `0058C170` + 0x8D",
+   "anchors": [
+    [
+     "00594025",
+     "cmovne"
+    ],
+    [
+     "00594060",
+     "cvttss2si"
+    ],
+    [
+     "00594068",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058C170",
+    "site": "0058C1FD",
+    "store_site": "0058C204",
+    "store_target": "02CAC5B8"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "005940D0",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it truncates a float to a 32-bit integer (`cvttss2si eax`) and writes the dword for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `0058C2F0` + 0x8D",
+   "anchors": [
+    [
+     "00594105",
+     "cmovne"
+    ],
+    [
+     "00594140",
+     "cvttss2si"
+    ],
+    [
+     "00594147",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058C2F0",
+    "site": "0058C37D",
+    "store_site": "0058C384",
+    "store_target": "02CAC5F0"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "005941B0",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it truncates a float to a 64-bit integer (`cvttss2si rax`) and writes its low dword for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `0058C470` + 0x8D",
+   "anchors": [
+    [
+     "005941E5",
+     "cmovne"
+    ],
+    [
+     "00594220",
+     "cvttss2si"
+    ],
+    [
+     "00594228",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058C470",
+    "site": "0058C4FD",
+    "store_site": "0058C504",
+    "store_target": "02CAC628"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00594290",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it copies a dword for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `0058C5F0` + 0x8D",
+   "anchors": [
+    [
+     "005942C5",
+     "cmovne"
+    ],
+    [
+     "005942F4",
+     "mov"
+    ],
+    [
+     "005942F9",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058C5F0",
+    "site": "0058C67D",
+    "store_site": "0058C684",
+    "store_target": "02CAC6D0"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00594430",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it reads a float, converts it with `cvttss2si rax`, first subtracting the float 2^63 at `00D27A70` when the float is not below that value and then adding 0x8000000000000000 to the result when the reduced value is below it, and writes 16 bytes (`movdqa` from a stack copy) whose low qword is the result and whose high qword is 0 for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `0058C8F0` + 0x8D",
+   "anchors": [
+    [
+     "00594482",
+     "cmovne"
+    ],
+    [
+     "005944C0",
+     "movss"
+    ],
+    [
+     "005944C7",
+     "comiss"
+    ],
+    [
+     "005944EE",
+     "movdqa"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058C8F0",
+    "site": "0058C97D",
+    "store_site": "0058C984",
+    "store_target": "02CAC740"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00594600",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it truncates a float to a 64-bit integer (`cvttss2si rax`) and writes the qword for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `0058CA70` + 0x8D",
+   "anchors": [
+    [
+     "00594635",
+     "cmovne"
+    ],
+    [
+     "00594670",
+     "cvttss2si"
+    ],
+    [
+     "00594678",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058CA70",
+    "site": "0058CAFD",
+    "store_site": "0058CB04",
+    "store_target": "02CAC698"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "005946E0",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it reads a float, converts it with `cvttss2si rax`, first subtracting the float 2^63 at `00D27A70` when the float is not below that value and then adding 0x8000000000000000 to the result when the reduced value is below it, and writes the qword for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `0058CBF0` + 0x8D",
+   "anchors": [
+    [
+     "0059472E",
+     "cmovne"
+    ],
+    [
+     "00594760",
+     "movss"
+    ],
+    [
+     "00594767",
+     "comiss"
+    ],
+    [
+     "00594786",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058CBF0",
+    "site": "0058CC7D",
+    "store_site": "0058CC84",
+    "store_target": "02CAC660"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00594860",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it writes byte 0 when the float compares equal to 0.0 (`ucomiss`, ordered) and 1 otherwise, an unordered compare included for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `0058CD70` + 0x8D",
+   "anchors": [
+    [
+     "00594898",
+     "cmovne"
+    ],
+    [
+     "005948C7",
+     "movss"
+    ],
+    [
+     "005948CB",
+     "ucomiss"
+    ],
+    [
+     "005948DB",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058CD70",
+    "site": "0058CDFD",
+    "store_site": "0058CE04",
+    "store_target": "02CAC4D8"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00594970",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it truncates a double to a 32-bit integer (`cvttsd2si eax`) and writes its low byte for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `0058CEF0` + 0x8D",
+   "anchors": [
+    [
+     "005949A5",
+     "cmovne"
+    ],
+    [
+     "005949E0",
+     "cvttsd2si"
+    ],
+    [
+     "005949E7",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058CEF0",
+    "site": "0058CF7D",
+    "store_site": "0058CF84",
+    "store_target": "02CAC7B0"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00594A50",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it truncates a double to a 64-bit integer (`cvttsd2si rax`) and writes its low byte for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `0058D070` + 0x8D",
+   "anchors": [
+    [
+     "00594A85",
+     "cmovne"
+    ],
+    [
+     "00594AC0",
+     "cvttsd2si"
+    ],
+    [
+     "00594AC8",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058D070",
+    "site": "0058D0FD",
+    "store_site": "0058D104",
+    "store_target": "02CAC7E8"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00594B30",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it truncates a double to a 32-bit integer (`cvttsd2si eax`) and writes its low word for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `0058D1F0` + 0x8D",
+   "anchors": [
+    [
+     "00594B65",
+     "cmovne"
+    ],
+    [
+     "00594BA0",
+     "cvttsd2si"
+    ],
+    [
+     "00594BA7",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058D1F0",
+    "site": "0058D27D",
+    "store_site": "0058D284",
+    "store_target": "02CAC820"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00594C10",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it truncates a double to a 64-bit integer (`cvttsd2si rax`) and writes its low word for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `0058D370` + 0x8D",
+   "anchors": [
+    [
+     "00594C45",
+     "cmovne"
+    ],
+    [
+     "00594C80",
+     "cvttsd2si"
+    ],
+    [
+     "00594C88",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058D370",
+    "site": "0058D3FD",
+    "store_site": "0058D404",
+    "store_target": "02CAC858"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00594CF0",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it truncates a double to a 32-bit integer (`cvttsd2si eax`) and writes the dword for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `0058D4F0` + 0x8D",
+   "anchors": [
+    [
+     "00594D25",
+     "cmovne"
+    ],
+    [
+     "00594D60",
+     "cvttsd2si"
+    ],
+    [
+     "00594D67",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058D4F0",
+    "site": "0058D57D",
+    "store_site": "0058D584",
+    "store_target": "02CAC890"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00594DD0",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it truncates a double to a 64-bit integer (`cvttsd2si rax`) and writes its low dword for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `0058D670` + 0x8D",
+   "anchors": [
+    [
+     "00594E05",
+     "cmovne"
+    ],
+    [
+     "00594E40",
+     "cvttsd2si"
+    ],
+    [
+     "00594E48",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058D670",
+    "site": "0058D6FD",
+    "store_site": "0058D704",
+    "store_target": "02CAC8C8"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00594FA0",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it copies a qword for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `0058D970` + 0x8D",
+   "anchors": [
+    [
+     "00594FD5",
+     "cmovne"
+    ],
+    [
+     "00595010",
+     "mov"
+    ],
+    [
+     "00595016",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058D970",
+    "site": "0058D9FD",
+    "store_site": "0058DA04",
+    "store_target": "02CAC9A8"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00595080",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it reads a double, converts it with `cvttsd2si rax`, first subtracting the double 2^63 at `00D27A60` when the double is not below that value and then adding 0x8000000000000000 to the result when the reduced value is below it, and writes 16 bytes (`movdqa` from a stack copy) whose low qword is the result and whose high qword is 0 for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `0058DAF0` + 0x8D",
+   "anchors": [
+    [
+     "005950D2",
+     "cmovne"
+    ],
+    [
+     "00595110",
+     "movsd"
+    ],
+    [
+     "00595117",
+     "comisd"
+    ],
+    [
+     "00595140",
+     "movdqa"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058DAF0",
+    "site": "0058DB7D",
+    "store_site": "0058DB84",
+    "store_target": "02CAC9E0"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00595260",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it truncates a double to a 64-bit integer (`cvttsd2si rax`) and writes the qword for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `0058DC70` + 0x8D",
+   "anchors": [
+    [
+     "00595295",
+     "cmovne"
+    ],
+    [
+     "005952D0",
+     "cvttsd2si"
+    ],
+    [
+     "005952D8",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058DC70",
+    "site": "0058DCFD",
+    "store_site": "0058DD04",
+    "store_target": "02CAC938"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00595340",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it reads a double, converts it with `cvttsd2si rax`, first subtracting the double 2^63 at `00D27A60` when the double is not below that value and then adding 0x8000000000000000 to the result when the reduced value is below it, and writes the qword for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `0058DDF0` + 0x8D",
+   "anchors": [
+    [
+     "0059538E",
+     "cmovne"
+    ],
+    [
+     "005953C0",
+     "movsd"
+    ],
+    [
+     "005953C7",
+     "comisd"
+    ],
+    [
+     "005953E8",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058DDF0",
+    "site": "0058DE7D",
+    "store_site": "0058DE84",
+    "store_target": "02CAC900"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "005954D0",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it writes byte 0 when the double compares equal to 0.0 (`ucomisd`, ordered) and 1 otherwise, an unordered compare included for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `0058DF70` + 0x8D",
+   "anchors": [
+    [
+     "00595508",
+     "cmovne"
+    ],
+    [
+     "00595540",
+     "movsd"
+    ],
+    [
+     "00595544",
+     "ucomisd"
+    ],
+    [
+     "00595555",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058DF70",
+    "site": "0058DFFD",
+    "store_site": "0058E004",
+    "store_target": "02CAC778"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "005955F0",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it converts a signed qword to a float (`cvtsi2ss`) for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrars `0058E9F0` + 0x8D and `0058FBF0` + 0x8D",
+   "anchors": [
+    [
+     "00595625",
+     "cmovne"
+    ],
+    [
+     "00595663",
+     "cvtsi2ss"
+    ],
+    [
+     "0059566B",
+     "movss"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 2 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058E9F0",
+    "site": "0058EA7D",
+    "store_site": "0058EA84",
+    "store_target": "02CACC10"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "005956E0",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it converts a signed qword to a double (`cvtsi2sd`) for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrars `0058EB70` + 0x8D and `0058FD70` + 0x8D",
+   "anchors": [
+    [
+     "00595715",
+     "cmovne"
+    ],
+    [
+     "00595753",
+     "cvtsi2sd"
+    ],
+    [
+     "0059575B",
+     "movsd"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 2 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058EB70",
+    "site": "0058EBFD",
+    "store_site": "0058EC04",
+    "store_target": "02CACC48"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "005957D0",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it copies 16 bytes with an aligned load and store (`movaps`, `movdqa`) for each of the n elements; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `0058ECF0` + 0x8D",
+   "anchors": [
+    [
+     "005957FC",
+     "cmovne"
+    ],
+    [
+     "00595820",
+     "movaps"
+    ],
+    [
+     "00595826",
+     "movdqa"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058ECF0",
+    "site": "0058ED7D",
+    "store_site": "0058ED84",
+    "store_target": "02CACC80"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00595840",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it writes 16 bytes (`movdqa` from a stack copy) whose low qword is the source qword and whose high qword is 0 for each of the n elements; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrars `0058FEF0` + 0x8D and `005910F0` + 0x8D",
+   "anchors": [
+    [
+     "00595870",
+     "cmovne"
+    ],
+    [
+     "00595892",
+     "mov"
+    ],
+    [
+     "005958A0",
+     "movdqa"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 2 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058FEF0",
+    "site": "0058FF7D",
+    "store_site": "0058FF84",
+    "store_target": "02CAC4A0"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "005958C0",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it writes byte 1 when the source qword is non-zero and 0 when it is zero for each of the n elements; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrars `0058F170` + 0x8D, `00590370` + 0x8D and `00591570` + 0x8D",
+   "anchors": [
+    [
+     "005958F0",
+     "cmovne"
+    ],
+    [
+     "00595910",
+     "cmp"
+    ],
+    [
+     "0059591A",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 3 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058F170",
+    "site": "0058F1FD",
+    "store_site": "0058F204",
+    "store_target": "02CACA18"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00595930",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it converts a qword to a float as a signed integer (`cvtsi2ss`) and adds the float 2^64 at `008C5B60` when the qword is negative as signed for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `00590DF0` + 0x8D",
+   "anchors": [
+    [
+     "0059596D",
+     "cmovne"
+    ],
+    [
+     "005959A0",
+     "mov"
+    ],
+    [
+     "005959A6",
+     "cvtsi2ss"
+    ],
+    [
+     "005959B4",
+     "movss"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "00590DF0",
+    "site": "00590E7D",
+    "store_site": "00590E84",
+    "store_target": "02CAC190"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00595A60",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it converts a qword to a double as a signed integer (`cvtsi2sd`) and adds the double 2^64 at `00D27A68` when the qword is negative as signed for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `00590F70` + 0x8D",
+   "anchors": [
+    [
+     "00595A9D",
+     "cmovne"
+    ],
+    [
+     "00595AD0",
+     "mov"
+    ],
+    [
+     "00595AD6",
+     "cvtsi2sd"
+    ],
+    [
+     "00595AE4",
+     "movsd"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 1 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "00590F70",
+    "site": "00590FFD",
+    "store_site": "00591004",
+    "store_target": "02CAC1C8"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00595B90",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it copies a qword for each of the n elements; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `0058EE70` + 0x8D and the 5 other registrars that `members/guard-adapter-registrars.tsv` lists against it",
+   "anchors": [
+    [
+     "00595BC0",
+     "cmovne"
+    ],
+    [
+     "00595BE0",
+     "mov"
+    ],
+    [
+     "00595BE6",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 6 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "0058EE70",
+    "site": "0058EEFD",
+    "store_site": "0058EF04",
+    "store_target": "02CACBD8"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00595C00",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it copies a byte for each of the n elements; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrar `005850F0` + 0x8D and the 19 other registrars that `members/guard-adapter-registrars.tsv` lists against it",
+   "anchors": [
+    [
+     "00595C30",
+     "cmovne"
+    ],
+    [
+     "00595C50",
+     "movzx"
+    ],
+    [
+     "00595C56",
+     "mov"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 20 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "005850F0",
+    "site": "0058517D",
+    "store_site": "00585184",
+    "store_target": "02CAB010"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00595C70",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it converts a zero-extended byte to a float (`cvtdq2ps`) for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrars `00586BF0` + 0x8D and `00591FF0` + 0x8D",
+   "anchors": [
+    [
+     "00595CA5",
+     "cmovne"
+    ],
+    [
+     "00595CE0",
+     "movzx"
+    ],
+    [
+     "00595CEA",
+     "cvtdq2ps"
+    ],
+    [
+     "00595CED",
+     "movss"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 2 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "00586BF0",
+    "site": "00586C7D",
+    "store_site": "00586C84",
+    "store_target": "02CAB470"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  },
+  {
+   "fn": "00595D70",
+   "text": "with n = dword `[r8]`, it adds dword `+8` of qword `[r9+8]` to the source `rcx` and dword `+0x48` of qword `[r9+0x10]` to the destination `rdx` when byte `[r8+0xC]` is non-zero and swaps the two offsets when it is zero, and steps the two pointers by dwords `[r8+4]` and `[r8+8]`; it converts a zero-extended byte to a double (`cvtdq2pd`) for each of the n elements, four per pass while four remain and then one at a time; stored as the code pointer (qword `+0x28`) of its node in the scalar-conversion tree under `01F2CDA0` by registrars `00586D70` + 0x8D and `00592170` + 0x8D",
+   "anchors": [
+    [
+     "00595DA5",
+     "cmovne"
+    ],
+    [
+     "00595DE0",
+     "movzx"
+    ],
+    [
+     "00595DEA",
+     "cvtdq2pd"
+    ],
+    [
+     "00595DEE",
+     "movsd"
+    ]
+   ],
+   "why_here": "stored at +0x28 of the scalar-conversion tree node by 2 registrar(s) of family C (members/guard-adapter-registrars.tsv); this page declares the family and explains the tree",
+   "ref": {
+    "kind": "registrar",
+    "container": "00586D70",
+    "site": "00586DFD",
+    "store_site": "00586E04",
+    "store_target": "02CAB4A8"
+   },
+   "cites": [
+    "01F2CDA0",
+    "005850F0"
+   ]
+  }
+ ]
+}

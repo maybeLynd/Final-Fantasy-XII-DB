@@ -1,0 +1,148 @@
+{
+ "page": "00-Engine-Core-Runtime/System-Stop-Registry/the-time-stop-and-system-stop-registry.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01DtsGzxAwuV39oMMCAfQd2j",
+ "report": "home-the-time-stop-and-system-stop-registry.json",
+ "rows": [
+  {
+   "fn": "001986B0",
+   "entered_from": "`00182CF0` + 0x10",
+   "text": "reads byte `+0x3A` of `rcx`; when its bit 0 is clear, stores 1 to byte `+0x3B` and writes byte `+0x3A` back with bit 0 set (OR 1); when bit 0 is already set it changes nothing",
+   "anchors": [
+    [
+     "001986B4",
+     "test"
+    ],
+    [
+     "001986B8",
+     "or"
+    ],
+    [
+     "001986BA",
+     "mov"
+    ],
+    [
+     "001986BE",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "002FD060",
+   "entered_from": "`0024BFD0` + 0x67",
+   "text": "walks the list headed by qword `02EC3D60` through qword `+0x28` of each node until a null link (returning at once when the head is null), and for every node whose qword `+0x10` is non-null clears bit `0x4` of word `+0x368` of that object (AND `0xFFFB`)",
+   "anchors": [
+    [
+     "002FD067",
+     "test"
+    ],
+    [
+     "002FD071",
+     "mov"
+    ],
+    [
+     "002FD07A",
+     "and"
+    ],
+    [
+     "002FD081",
+     "mov"
+    ],
+    [
+     "002FD088",
+     "jne"
+    ]
+   ]
+  },
+  {
+   "fn": "003B1000",
+   "entered_from": "`0024BFD0` + 0x6C",
+   "text": "walks up to 36 (`0x24`) records of stride `0x18` whose qword field starts at `02EBEC08`, stopping at the first record whose dword 8 bytes before that qword is 0; for each record whose qword is non-null and whose pointee's word `+0x368` has bit `0x4` set, writes that word back with the bit cleared (AND `0xFFFB`)",
+   "anchors": [
+    [
+     "003B1010",
+     "cmp"
+    ],
+    [
+     "003B1026",
+     "test"
+    ],
+    [
+     "003B1030",
+     "mov"
+    ],
+    [
+     "003B103A",
+     "add"
+    ],
+    [
+     "003B103E",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003C8B20",
+   "entered_from": "`00252E30` + 0x0",
+   "text": "returns dword `+0xC8` of qword `02B47730` when that pointer is non-null and bit `0x4` of its byte `+0xC0` is set; returns 0 when the pointer is null or the bit is clear",
+   "anchors": [
+    [
+     "003C8B27",
+     "test"
+    ],
+    [
+     "003C8B2C",
+     "test"
+    ],
+    [
+     "003C8B35",
+     "mov"
+    ],
+    [
+     "003C8B3F",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "003C9590",
+   "entered_from": "`00252E50` + 0x0",
+   "text": "returns 1 when qword `02B47730` is non-null, bit `0x4` of its byte `+0xC0` is set and its dword `+0xC8` is non-zero (`setne`); returns 0 otherwise",
+   "anchors": [
+    [
+     "003C9599",
+     "test"
+    ],
+    [
+     "003C959E",
+     "test"
+    ],
+    [
+     "003C95A7",
+     "cmp"
+    ],
+    [
+     "003C95AD",
+     "setne"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "00182610",
+   "why": [
+    "already cited by 00-Engine-Core-Runtime\\System-Stop-Registry\\the-time-stop-and-system-stop-registry.md"
+   ]
+  },
+  {
+   "fn": "0029D210",
+   "why": [
+    "already cited by 00-Engine-Core-Runtime\\System-Stop-Registry\\the-time-stop-and-system-stop-registry.md"
+   ]
+  }
+ ],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

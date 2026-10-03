@@ -1,0 +1,317 @@
+{
+  "producer_complete": true,
+  "method": "A retained-code normalization, full conditional call/effect closure and primary producer inspection",
+  "driver_sha256": "31bd50f77d1c4891b0fb0019d19e76fa615be18c6d14eccf4af828047382477f",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_sha256": "4b303e3629b8d360b4192c9f242d90d6a83266f5e88c77af7e58b0d6b9b27215",
+  "required_status_sha256": "118ede7f6cc8431a42563d31b50e43d84245252406288e5114aaf19b78575a2c",
+  "annotation_prerequisite": {
+    "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+    "instruction_records": 251,
+    "capstone": "5.0.7",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+  },
+  "facts": {
+    "graphs": [
+      {
+        "entry": "0x2fead0",
+        "instructions": 53,
+        "returns": [
+          "0x2feb23",
+          "0x2feb66",
+          "0x2feb7b"
+        ]
+      },
+      {
+        "entry": "0x30c0e0",
+        "instructions": 78,
+        "returns": [
+          "0x30c1ec",
+          "0x30c201"
+        ]
+      },
+      {
+        "entry": "0x236820",
+        "instructions": 12,
+        "returns": [
+          "0x236841",
+          "0x236844"
+        ]
+      },
+      {
+        "entry": "0x236850",
+        "instructions": 2,
+        "returns": [
+          "0x236856"
+        ]
+      },
+      {
+        "entry": "0x31b7e0",
+        "instructions": 12,
+        "returns": [
+          "0x31b809"
+        ]
+      },
+      {
+        "entry": "0x20e600",
+        "instructions": 3,
+        "returns": [
+          "0x20e609"
+        ]
+      },
+      {
+        "entry": "0x3588b0",
+        "instructions": 46,
+        "returns": [
+          "0x3588be",
+          "0x35892d",
+          "0x35893e"
+        ]
+      },
+      {
+        "entry": "0x263ff0",
+        "instructions": 5,
+        "returns": [
+          "0x264004"
+        ]
+      },
+      {
+        "entry": "0x263e30",
+        "instructions": 2,
+        "returns": [
+          "0x263e34"
+        ]
+      },
+      {
+        "entry": "0x377c20",
+        "instructions": 23,
+        "returns": [
+          "0x377c5e",
+          "0x377c6d"
+        ]
+      },
+      {
+        "entry": "0x3148f0",
+        "instructions": 8,
+        "returns": [
+          "0x31490a"
+        ]
+      },
+      {
+        "entry": "0x2ef2b0",
+        "instructions": 5,
+        "returns": [
+          "0x2ef2c3"
+        ]
+      },
+      {
+        "entry": "0x2ef640",
+        "instructions": 2,
+        "returns": [
+          "0x2ef647"
+        ]
+      }
+    ],
+    "call_edges": [
+      {
+        "source": "0x2fead0",
+        "pc": "0x2feafa",
+        "target": "0x377c20",
+        "kind": "call"
+      },
+      {
+        "source": "0x2fead0",
+        "pc": "0x2feb03",
+        "target": "0x30c0e0",
+        "kind": "call"
+      },
+      {
+        "source": "0x30c0e0",
+        "pc": "0x30c0f1",
+        "target": "0x236850",
+        "kind": "call"
+      },
+      {
+        "source": "0x30c0e0",
+        "pc": "0x30c105",
+        "target": "0x236820",
+        "kind": "call"
+      },
+      {
+        "source": "0x30c0e0",
+        "pc": "0x30c13c",
+        "target": "0x377c20",
+        "kind": "call"
+      },
+      {
+        "source": "0x30c0e0",
+        "pc": "0x30c158",
+        "target": "0x31b7e0",
+        "kind": "call"
+      },
+      {
+        "source": "0x30c0e0",
+        "pc": "0x30c196",
+        "target": "0x20e600",
+        "kind": "call"
+      },
+      {
+        "source": "0x30c0e0",
+        "pc": "0x30c1aa",
+        "target": "0x20e600",
+        "kind": "call"
+      },
+      {
+        "source": "0x30c0e0",
+        "pc": "0x30c1ce",
+        "target": "0x236850",
+        "kind": "call"
+      },
+      {
+        "source": "0x31b7e0",
+        "pc": "0x31b7ed",
+        "target": "0x3588b0",
+        "kind": "call"
+      },
+      {
+        "source": "0x31b7e0",
+        "pc": "0x31b7fe",
+        "target": "0x263e30",
+        "kind": "tail"
+      },
+      {
+        "source": "0x3588b0",
+        "pc": "0x3588e6",
+        "target": "0x263ff0",
+        "kind": "call"
+      },
+      {
+        "source": "0x377c20",
+        "pc": "0x377c24",
+        "target": "0x3148f0",
+        "kind": "call"
+      },
+      {
+        "source": "0x3148f0",
+        "pc": "0x3148f4",
+        "target": "0x2ef2b0",
+        "kind": "call"
+      },
+      {
+        "source": "0x2ef2b0",
+        "pc": "0x2ef2b4",
+        "target": "0x2ef640",
+        "kind": "call"
+      }
+    ],
+    "nonstack_writes": [
+      {
+        "body": "0x2fead0",
+        "pc": "0x2feb0c",
+        "base": "rbx",
+        "offset": 4,
+        "bytes": 4,
+        "role": "rw"
+      },
+      {
+        "body": "0x2fead0",
+        "pc": "0x2feb1b",
+        "base": "rbx",
+        "offset": 4,
+        "bytes": 4,
+        "role": "rw"
+      },
+      {
+        "body": "0x2fead0",
+        "pc": "0x2feb54",
+        "base": "rbx",
+        "offset": 4,
+        "bytes": 4,
+        "role": "rw"
+      },
+      {
+        "body": "0x2fead0",
+        "pc": "0x2feb5e",
+        "base": "rbx",
+        "offset": 4,
+        "bytes": 4,
+        "role": "rw"
+      },
+      {
+        "body": "0x2fead0",
+        "pc": "0x2feb69",
+        "base": "rbx",
+        "offset": 4,
+        "bytes": 4,
+        "role": "rw"
+      },
+      {
+        "body": "0x2fead0",
+        "pc": "0x2feb73",
+        "base": "rbx",
+        "offset": 4,
+        "bytes": 4,
+        "role": "rw"
+      }
+    ],
+    "facts": [
+      "Conditional complete original 2FEAD0 closure: all twelve other reachable helper bodies are read-only outside the private Win64 stack. No indirect/opaque callee remains in this closure. Original implicit CALL/PUSH/RET writes are confined to the disjoint private stack.",
+      "For a valid BattleUnit receiver with readable inputs and normal finite execution/no interference, only DWORD[unit+4] bit20 (QWORD flag bit52) is modified; other bits of that DWORD are preserved. No command714/pendingBA0 or separate mode field is written by this closure. NULL receiver writes no object. The AND then OR are separate writes, not an atomic flag update.",
+      "After the status/field gate passes, a positive global roster predicate sets bit52; otherwise set bits0..31 of contributorEA4 are compared to the full EA9 byte. An unequal index sets bit52; equal index sets it when byte6B6==0. No general EA9<32 bound follows.",
+      "Global30C0E0 is read-only: initial COUNT<=0 returns0; other guarded roster/target/kind/action paths can return1 from action row byte6. Count is re-read each loop, not a stable snapshot. Current714<=21E is a fixed command bound, not a dynamic table row-count check.",
+      "30C0E0 does not use its incoming receiver argument to choose a target: it starts roster index0, calls the argument-independent COUNT leaf, then overwrites ECX with that index before GET. A qualifying command toward any party-kind0 target can make it true; it is not a per-receiver engagement predicate. With equal global/input memory and valid separate stacks its return does not depend on incoming RCX.",
+      "Under no-interference/readable-state assumptions the read-only roster closure leaves COUNT fixed. Signed COUNT<=0 exits immediately; positive N<=INT32_MAX admits indices0..N-1 and increments at most toN before the signedJL fails, with no EDI overflow. Early positive return only shortens this bound. The local contributor scan is bounded by32 bit indices. This conditional termination proof is not a live scheduling guarantee.",
+      "Action table/global/base resolver reads repeat. Row address uses u32(stride*command + low32(second resolved base)), zero-extended intoRCX. First resolver nonNULL is not a full-width or second-result validity promise. Table NULL or first resolve NULL setsRCX0, then reads[RCX+6]; absent binding can fault instead of returning false."
+    ],
+    "limits": "Method A full bounded original code effect closure, not native execution or natural reachability. Ordinary valid object/table identity, readable inputs, disjoint private writable Win64 stack/home space, normal ABI, no external concurrent/intervention mutation, finite stable roster for termination. Exception/fault paths are not successful returns. Does not close preceding313B30 effects, other KO callees, natural KO/Esper113 coexistence, initialization/ownership/lifetime/timing/presentation or wholeUQ147."
+  },
+  "legacy_setup": {
+    "status": "CONCRETE_SETUP_MISMATCH",
+    "producer_sha256": "3a8028419796303e1c9cc27d15440b786eddea5a0be54009600958917be64068",
+    "result_sha256": "e74106aadbaa76260fdb3405d0c4116604759dec9ec96c90f6d869c54821f5ea",
+    "configured_global": "0x1f85d30",
+    "original_read_global": "0x1f83530",
+    "initializer_line": 352,
+    "configured_line": 154,
+    "retained_results": 97,
+    "baseline_cases": 87,
+    "mutant_cases": 10,
+    "observed_imgadd_entries": 0,
+    "observed_tvalid_cases": [
+      "canc-fixup"
+    ],
+    "implication": "EXP091 explicit image-base initialization does not prepare the address read by shipping20E600. Retained traces do not contain an imgadd entry, so they do not provide a positive control for30C0E0 action-row byte6 path. Preserve the other measured cases; do not use overall87PASS as row-binding or complete effect proof.",
+    "next": "ORACLE owns fixture correction and smallest actual resolver-address/positive action-row control, no blanket rerun or raw result overwrite.",
+    "limits": "Static producer/setup discrepancy and deterministic retained trace reduction. No new native tests run; zero recorded imgadd entries is not global absence or a live negative observation. Exact old assertions must be adjudicated by owning producer/reviewer."
+  },
+  "controls": [
+    {
+      "name": "helper-store",
+      "diagnostic": "nonstack effect census changed",
+      "method": "Labelled source-record detector control, not coherent instruction patch or native execution"
+    },
+    {
+      "name": "opaque-callee",
+      "diagnostic": "unknown callee 0x333333",
+      "method": "Labelled source-record detector control, not coherent instruction patch or native execution"
+    },
+    {
+      "name": "wrong-flag-bit",
+      "diagnostic": "specific dataflow changed 0x2feb54",
+      "method": "Labelled source-record detector control, not coherent instruction patch or native execution"
+    },
+    {
+      "name": "wrong-null-branch",
+      "diagnostic": "specific dataflow changed 0x30c191",
+      "method": "Labelled source-record detector control, not coherent instruction patch or native execution"
+    },
+    {
+      "name": "incoming-receiver-dependency",
+      "diagnostic": "specific dataflow changed 0x30c0ef",
+      "method": "Labelled source-record detector control, not coherent instruction patch or native execution"
+    }
+  ],
+  "acceptance": "Producer-valid only, independent review and owning consumption pending; wholeUQ147 OPEN"
+}

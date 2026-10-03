@@ -1,0 +1,81 @@
+{
+ "page": "23-Third-Party-Libraries/LibVPX-VP8-Decoder/the-vp8-codec-interface-and-its-control-map.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-vp8-codec-interface-and-its-control-map-r3.json",
+ "rows": [
+  {
+   "fn": "0017AC50",
+   "text": "with decoder `d` = `rcx` (`B(p)`: a VP8 boolean read, by `00174470(d, p)` or inline on qword `[d+0x10]`, dword `[d+0x18]` refilled by `00179ED0(d)` when negative, dword `[d+0x1C]`): split type `s` and count `n` are (3, 16) unless `B(0x6E)`, then (2, 4) unless `B(0x6F)`, then (`B(0x96)`, 2); for each `k` below `n`, with `j` = the byte at image-base offset 0x1BBD0B0 + 16`s` + `k`, `L` = dword `[rdx+4j+8]` when `j` AND 3 is non-zero, else dword `[r8+4j+0x18]` when byte `[r8]` is 9 or dword `[r8+4]`, and `A` = dword `[rdx+4j-4]` when `j` is at least 4, else dword `[r9+4j+0x3C]` when byte `[r9]` is 9 or dword `[r9+4]`, and `q` = `01CDCFF0` + 3*((`L`=`A`) + 2(`L`=0) + 4(`A`=0)), the vector `v` is `L` unless `B(q[0])`, `A` unless `B(q[1])`, 0 unless `B(q[2])`, else the words 2*`0017A490(d, a7)` + low word of `a6` and 2*`0017A490(d, a7+0x13)` + high word of `a6`; it ORs into byte `[a5+0xA]` 1 when `v`'s low word is below `a10` or above `a11` or its high word below `a8` or above `a9` (signed), and stores `v` to dword `[rdx+0xC+4b]` for the byte-`01CDCB14`[`s`] block indices `b` listed at `01CDCFB0` + 16`s` + that count*`k`; finally stores `s` to byte `[a5+8]` (`aN` is argument N)",
+   "anchors": [
+    [
+     "0017AC90",
+     "call"
+    ],
+    [
+     "0017AD0E",
+     "movzx"
+    ],
+    [
+     "0017AD74",
+     "lea"
+    ],
+    [
+     "0017AEE6",
+     "call"
+    ],
+    [
+     "0017AFB7",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0017B580",
+   "text": "with cursor `m` = qword `[rcx+0x1EB0]`, decoder `d` = `rcx+0x42C0` and `B(p)` a VP8 boolean read on `d` (qword `+0x10`, dword `+0x18` refilled by `00179ED0(d)` when negative, dword `+0x1C`, shift table `01CDC180`): calls `0017A850(rcx)`, stores 0 to dword `+0xF8C` and dword `[rcx+0x1E74]`*0x80 - 0x80 to dword `+0xF90`; for each of dword `[rcx+0x1E74]` rows (signed) stores 0 to dword `+0xF84` and dword `[rcx+0x1E78]`*0x80 - 0x80 (read at entry) to dword `+0xF88`, and for each of dword `[rcx+0x1E78]` columns: when bytes `+0xF61` and `+0xF60` are non-zero stores to byte `[m+0xB]` 2 + `B(byte +0xF66)` if `B(byte +0xF64)` else `B(byte +0xF65)`, and when byte `+0xF61` is 0 and dword `+0x1E64` is 0 stores 0 there; stores to byte `[m+9]` `B(byte +0x4447)` when dword `+0x1E80` is non-zero, else 0; stores 0 to byte `[m+3]`; calls `0017A320(rcx, m)` when dword `+0x1E64` is 0, else `0017B010(rcx, m, m)`; subtracts 0x80 from dwords `+0xF84` and `+0xF88` and advances `m` by 0x4C; after each row subtracts 0x80 from dwords `+0xF8C` and `+0xF90` and advances `m` by 0x4C",
+   "anchors": [
+    [
+     "0017B593",
+     "call"
+    ],
+    [
+     "0017B5B8",
+     "mov"
+    ],
+    [
+     "0017B661",
+     "call"
+    ],
+    [
+     "0017B717",
+     "mov"
+    ],
+    [
+     "0017B826",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "0017B010": "not statable exactly in 1200 characters even at block level (1380 B): an inlined near-vector search over three neighbour records (sign-bias negation, duplicate merging, count weighting and a reorder) feeds five mode branches, each with its own clamping or split call"
+ },
+ "missing": [
+  "001260E7",
+  "001263AD",
+  "00126E10",
+  "00127104",
+  "00172CE0",
+  "00172DC0",
+  "00172F00",
+  "00173040",
+  "00173180",
+  "00173270",
+  "00173360",
+  "00173450"
+ ],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

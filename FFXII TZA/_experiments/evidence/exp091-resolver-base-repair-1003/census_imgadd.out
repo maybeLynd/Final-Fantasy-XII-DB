@@ -1,0 +1,8 @@
+# python "Database/FFXII TZA/_experiments/evidence/exp091-resolver-base-repair-1003/census_imgadd.py"
+fixtures executed: 89 cases + 10 mutants
+fixtures with imgadd>0, tvalid>0 or a base-cell read: 3
+  case   canc-fixup             imgadd=0 tvalid=1 base_cell_reads=-
+  case   tv-row6-set            imgadd=2 tvalid=1 base_cell_reads=['1F83530']
+  case   tv-row6-zero           imgadd=2 tvalid=1 base_cell_reads=['1F83530']
+fixtures with imgadd>0: ['tv-row6-set', 'tv-row6-zero']
+# exit=0

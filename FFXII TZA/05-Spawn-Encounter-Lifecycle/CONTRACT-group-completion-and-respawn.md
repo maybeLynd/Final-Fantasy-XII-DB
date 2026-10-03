@@ -416,6 +416,95 @@ slots — `call qword [02CA4430]` (id 4) at `00417B52`/`69`/`80`, `call rax` on 
 > **after `N+1` whole seconds**. Writing `>=`, or comparing in floating point, changes every
 > respawn in the game by one second.
 
+## 10a. The cooldown clock across a runtime reset and a load (FABLE, 2026-10-03)
+
+*Added for SWE2-AUDIT-SPEC's narrow SCOPE-SHORT on S-17 ([`auditspec-l2-expansion-1003`](../_index/candidates/auditspec-l2-expansion-1003/README.md) item 3): the
+clock of §10 has two inputs with different lifetimes, and a load or a reset can separate them. Static and
+isolated original-code; every fact below is checked by [`check_s17.py`](../_index/candidates/fable-l2exp-s17-mech-1003/check_s17.py) (FAILS 0).
+The banks, the window and the history are [the respawn page](why-the-enemies-you-killed-come-back.md)'s §"What a load does
+to the two banks and the window"; the clock helper's body is [the save-image contract](../19-Save-Load-Settings/CONTRACT-save-image-buffers.md)'s
+§13. This section states only what the two meet in: the cooldown.*
+
+**Interface.** No new entry. The clock is §10's formula, read at two places:
+
+| reader | site | compares | how |
+|---|---|---|---|
+| script accessor `00235FB0` → verb wrapper `0050FAB0` → `0026B4E0` (result phase 2), pushed as an int (type 1, `00262318`/`00262331`, [the verb ABI](../01-Script-VM-Native-Bridge/Verb-Dispatch/CONTRACT-verb-dispatch-abi.md) (3)) | `00236015` `div ecx`, `00236017` `sub eax, [rbx+0xC]` | the scripts' `btlAtelGetElapseTime(i) > btlAtelGetRespawnTime(i)` (§10) | **signed**: two ints compare with `cmp`/`setg` (`OPGT`, [the interpreter page](../01-Script-VM-Native-Bridge/Interpreter-Core/worldactor-scriptvm-interpreter.md) "What the comparator returns") |
+| automatic selector `00235720` | seconds at `002357D9`–`002357FB`; gate `002358D1` `sub ecx, [r14+0xC]`, `002358D5` `cmp ecx, eax`, `002358D7` `jb` (skip) | elapsed against cooldown `+0x10`, for a committed entry (`+0x00` bit 1, bit 0 clear) with a non-zero cooldown (`002358B6`–`002358C9`) | **unsigned** |
+
+**Reads and writes.**
+- **The counter `0208D45C`** (BSS) has exactly **two writers** in the image: `0032A135` `inc` in `0032A100`, which runs only
+  when the timer value `003EBA90(0)` differs from the one kept at `022C317C` (`0032A12A`–`0032A133`), and `0032A160`
+  `mov dword [0208D45C], 0`. Seven other instructions read it (`0032A150`, `00317680`, `00319220`, `0031967C`, `00319712`,
+  `00319746`, `00324DAD`). No pointer constant and no image-base-relative operand names it, so **no save writes or
+  restores it**.
+- **`0032A160` has one caller**, `00237E37` in `BattleSystem_ResetRuntimeState`, which is branch-free from
+  its loop exit `00237E32` to its `ret`. The same tail zeroes the window stamp `02089374` (`00237E53`), sets the field
+  history `02089372`/`02089370` to `-1` (`00237E5D`, `00237E64`) and clears the parity `0208D454` (`00237E6B`).
+- **The death stamp `+0x0C`** is written by the death tail of `00300530` (§6): `00300805` reads the counter, `00300820`
+  divides it by `(int)(30.0f × [01DFE0B8])` and `00300829` stores the whole seconds through `unit +0x6A0`. Its other
+  writer, the initialiser `002395A0`, zeroes it (`00239657`) only for an entry whose `+0x00` bit 1 is clear
+  (`002395E3`/`002395E7`); a committed entry keeps its stamp.
+
+**When the counter returns to 0.** `BattleSystem_ResetRuntimeState` is reached from six sites in four functions and from no pointer constant:
+
+| route | site | condition |
+|---|---|---|
+| the lazy bind | `00233C3F` and `00233C48` | `*(02EBF190)` null (`00233C23`): the reset runs **twice** |
+| the lazy bind | `00233C59` | the bound block's dword `+0` is not `0x05071901` (`00233C4D`/`00233C53`) |
+| the save-image reset `002EF650` → its tail-jump callee | `002EF67D`, `00238AA2` | none |
+| area initialisation `002342F0` → the SetSaveData apply it calls | `00234349`, `0023998E` | byte `0208D455` is `-2` (`00239966`, `00239982`) |
+| verb `7055` `fsttl_initialize` `00511EA0` → `00394460` | `00511EAD`, `00394486` | none |
+
+The lazy bind's callers are `00280140` (`002803B8`), `00285E60` (`00285E86`, the load: `SaveLoad_ControllerLifecycleHandler`
+calls it at `00582CD0`/`00582CE6`), `0036FCC0` (`0036FCF2`) and `00394130` (`00394222`, the task proc that verb `705D`
+`fsttl_newgamestart` registers at `0039464D`). `002EF650`'s are `0022B78B`, `0028037B`, `003941E5` and `003942F2`. Byte
+`0208D455` is written by verb `302B` `btlAtelSetNextSetSaveData` (`0050F81C`) and by the slot-0 restore `005843E0`
+(`00584482`, from the image's transition metadata byte `+0x4E660`). **So an ordinary load whose bound block passes the
+stamp test does not restart the counter**; a stamp mismatch, a save-image reset, a new game, the title, or a
+`-2` request does.
+
+**Invariant G9 — the clock has one epoch per counter run, and the stamps do not follow it.** *(G9 continues the G1–G8
+ids that the S-17 replay gives §4's invariants.)*
+- **G9a.** A restart zeroes the counter and leaves the bank-1 stamps as they were. The reset's own body addresses
+  neither bank pointer nor a `+0x0C` field. It hands the definition initialiser it calls at `00237E26` the element index (`00237E00`–`00237E0E`), so that
+  function's kind byte (`edx >> 8`, `0023ACA1`) is 0. In its static call closure, 2,156 functions with 843 indirect
+  sites not followed, the only bank-pointer touch is the read `0023612D` in the lane resolver `00236100`. The initialiser
+  `002395A0` is unreachable from it, and `00300530` is reached only through the HP refill `0030F340`, which passes
+  `max − current` (`0030F3C2`–`0030F3DC`).
+- **G9b.** After a restart below a kept stamp the two readers disagree, and both are right about their own bytes:
+  - the accessor returns `now − stamp` as a **negative** int32, so the scripts' `>` first passes at second
+    **stamp + cooldown + 1 of the new clock**, not cooldown + 1 after the death;
+  - the selector's `jb` sees `2³² − (stamp − now)` and **re-admits the entry at once**.
+  - Executed under Unicorn 2.1.4 at both scales (stamp 40, cooldown 30, 5 s after the restart): accessor `-35`,
+    gate *admit*; the scripts' test first holds at second 71.
+- **G9c.** A restarted clock can return `-1`, the accessor's own failure value (`00236020` `or eax, -1`): stamp
+  `now + 1` (executed: stamp 1 at counter 0). The scripts cannot tell it from "no such lane".
+- **G9d.** A slot-0 load imports a second epoch. `00582E8A`/`00582E91` gate `005843E0` (`00582EA2`), whose keep restore
+  `00233550` (`0058443B` or `0058445E`) copies bank 2 from the image structure-blind, `0x128` blocks of `0x80` from image
+  `+0x10` (`0023355C`, `00233560`). So bank 2's `+0x0C` stamps are the **saving session's** seconds. When the rotation
+  swaps bank 2 in as the current bank (the respawn page), G9b's arithmetic applies to them with the sign set by which
+  counter is larger. Bank 1 is never restored.
+
+**Failure paths.**
+- **Respawn by script is delayed after a restart** by up to the stamp's value in seconds. A stamp from late in a long
+  session can hold an entry for hours of new play.
+- **The selector ignores the cooldown entirely after a restart** while any stamp exceeds the new clock.
+- **`-1` from the accessor is ambiguous** on a restarted clock (G9c).
+- **A reimplementation that keeps one monotonic clock across these routes**, or that compares both readers the same
+  way, removes G9b's divergence and changes respawn timing after every new game, title return, save-image reset and
+  mismatched load.
+
+**Evidence class.** Static: K1–K5 and K7 of `check_s17.py` (raw index in all forms: E8/E9, 0F 8x, EB/7x, rip-relative,
+image-base-relative, pointer constants; chained `.pdata` closure). Isolated original-code: K6, under Unicorn 2.1.4, runs
+`00235FB0`'s whole body (with `0031B760` answered by a hook), `00300530`'s stamp tail and the selector's seconds and gate.
+Four sensitivity controls each turn a check to FAIL: `jb`→`jl`, the zero store NOPed, the stamp moved to `+0x10`, and the
+claim "never negative". **Live: none of G9.** EXP-080 read the counter as `0` at "fresh title" and "Load complete" (the
+save-image contract §13). That agrees with the `fsttl_initialize` route and is not a capture of a restart under kept
+stamps. **Not traced:** whether `00236100`'s callers in the closure run during a reset, the 843 indirect sites, and the
+player-visible respawn after any route. The reset, the lazy bind and the two route callees are named by role and
+call site here; their entry addresses are in `check_s17.py`.
+
 ## 11. Observable behaviour
 
 - **Order does not matter and overkill does not count.** The checklist is a mask.

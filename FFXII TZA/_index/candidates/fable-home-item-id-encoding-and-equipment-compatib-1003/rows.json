@@ -1,0 +1,46 @@
+{
+ "page": "12-Items-Equipment-Shops-License/item-id-encoding-and-equipment-compatibility.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01DtsGzxAwuV39oMMCAfQd2j",
+ "report": "home-item-id-encoding-and-equipment-compatibility.json",
+ "rows": [
+  {
+   "fn": "00264CA0",
+   "entered_from": "`003DFDD0` + 0x4C",
+   "text": "when `ecx` is 6 or 9, tail-jumps to `00264CA0` + 0x33 with `ecx` and `edx` unchanged; otherwise calls `00264CA0` + 0x11 with `ecx` and `edx`, returns 0 when its result is negative (signed), and else tail-jumps to `00264CA0` + 0x23 with (that result, the incoming `edx`)",
+   "anchors": [
+    [
+     "00264CA7",
+     "cmp"
+    ],
+    [
+     "00264CAC",
+     "cmp"
+    ],
+    [
+     "00264CB8",
+     "js"
+    ],
+    [
+     "00264CC3",
+     "jmp"
+    ],
+    [
+     "00264CD3",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [
+  "00292F60",
+  "003DFDD0",
+  "003FE3A0",
+  "003FE6E0",
+  "003FEDC0",
+  "003FFA20"
+ ],
+ "corrections": []
+}

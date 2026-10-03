@@ -870,3 +870,11 @@ No correction.
 | `00420F90` | 29 B | ORs `0x10` into dword `rcx+0x284` when `edx` is 1 and clears that bit otherwise, then on both paths tail-jumps `00421030(rcx)` | `00420F95`, `00420F9C`, `00420FA1`, `00420FA8` |
 | `004293C0` | 67 B | tail-jumps `003E5D00` with its arguments unchanged when `r9d` is at most 1 (signed); otherwise, when the fifth (stack) argument is 1, replaces `rcx` with the sign-extended word `rcx+8` times `0x740` plus qword `022C6F28` (returning when that word is -1, and using null when that entry's dword `+0x284` is zero), and then tail-jumps `003E5D60` when `rcx` is non-null and returns otherwise | `004293C4`, `004293CA`, `004293DF`, `004293F5`, `004293FC` |
 | `0042DE50` | 59 B | when a 183-byte helper (`rcx`, qword `rdx+8`) returns zero, calls `0041FBF0(rcx, dword rdx+0x38)` and then `00421030(rcx)`; otherwise calls neither | `0042DE64`, `0042DE6D`, `0042DE73`, `0042DE7B` |
+
+## Homed bodies: functions reached only indirectly whose callees this page cites (FABLE, 2026-10-03, F homing)
+
+*No page cited these functions and none of their callers is documented: they are reached by table or pointer dispatch or through undocumented callers. Each one calls something this page documents, which the sentence names. Each sentence states what the body does (access and representation, not purpose); the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's F homing pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-how-a-character-fades-the-ten-channels-homing-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0042E540` | 8 B | tail-jumps to `00420E70(rcx, dword rdx+0x74)` with the incoming `rcx` | Interior anchor `0042E543` |

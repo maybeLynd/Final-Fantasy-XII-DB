@@ -287,3 +287,12 @@ controller drives the same widget helpers the menu uses — shared-widget fan-in
 | function | size | entered from | what the body does | interior anchors | moved from |
 |---|---|---|---|---|---|
 | `00273800` | 78 B | `0035BC50` + 0x375 | issues the call at `00273800` + 0x12 for indices 0 to 3 and, at the first non-null result whose dword `+4` equals `ecx`, returns 1 when bit `0x8` of that record's byte `+0` is clear and 0 when it is set; when no index matches it returns 0 | Interior anchor `00273812`; Interior anchor `0027381C`; Interior anchor `00273823`; Interior anchor `00273828`; Interior anchor `00273845` | [CONTRACT-the-five-parallel-slot-maps](../11-Party/CONTRACT-the-five-parallel-slot-maps.md) |
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-03, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../_index/candidates/fable-home-the-selection-the-menu-publishes-1003/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `0039C100` | 18 B | `0027E530` + 0x188 | reads the sign-extended dword `02AEE894` and returns the dword at index that value of the dword array at `02AEE898` (`02AEE898 + value*4`), with no bounds check | Interior anchor `0039C107`; Interior anchor `0039C10E` |
+| `0039C120` | 36 B | `0027E530` + 0x196 | clamps `ecx` to the range 1 to 0x1A (signed: values below 1 become 1, values above 0x1A become 0x1A) and returns the dword at index `clamped - 1` of the dword array at `02AEE898` | Interior anchor `0039C127`; Interior anchor `0039C131`; Interior anchor `0039C134`; Interior anchor `0039C140` |

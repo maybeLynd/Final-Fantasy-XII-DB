@@ -1,0 +1,42 @@
+{
+ "page": "25-EBP-Script-Container/Container/ebp2-container.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01Jt7JVDWnpXmUBxAYuwnHXL",
+ "report": [
+  "fable-ebp2-container.json"
+ ],
+ "rows": [
+  {
+   "fn": "003545B0",
+   "text": "calls `002640C0` with the incoming registers (result p), then reads five values a, b, c, d, e by the calls at `003545B0+0x2C`, `+0x36`, `+0x40`, `+0x4B`, `+0x56` (each with `r9`); calls `00264D60(p, e)` and `002673A0(p, e)`, and only when `002673A0` returns 0 calls `003545B0+0x94` with (the `00264D60` result, d, c, b, a, qword `[p+0xb0]`)",
+   "anchors": [
+    [
+     "003545D1",
+     "call"
+    ],
+    [
+     "00354612",
+     "call"
+    ],
+    [
+     "0035461F",
+     "call"
+    ],
+    [
+     "00354626",
+     "jne"
+    ],
+    [
+     "00354644",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing",
+ "family": ""
+}

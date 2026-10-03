@@ -1,0 +1,37 @@
+{
+ "page": "22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/member-registration-and-the-recovered-field-schema.md",
+ "date": "2026-10-03",
+ "rows": [
+  {
+   "fn": "008AF490",
+   "text": "walks the intrusive list headed at `01F2E340` (link qword `+0x50` of each object, read before the call) and, for each object with bit 0 of byte `+0xFC` set, calls slot 7 (qword `+0x38`) of its vtable with `edx` = 1; its address is formed into `rcx` by `006316C0` + 0x193 for the `00808B90` exit registration at +0x1C4, and 15 other sites form it the same way",
+   "anchors": [
+    [
+     "008AF49A",
+     "mov"
+    ],
+    [
+     "008AF4C0",
+     "mov"
+    ],
+    [
+     "008AF4D6",
+     "test"
+    ],
+    [
+     "008AF4E7",
+     "call"
+    ]
+   ],
+   "why_here": "exit routine registered by 006316C0 and 15 more member registrars this page reads",
+   "ref": {
+    "kind": "code",
+    "container": "006316C0",
+    "site": "00631853"
+   },
+   "cites": [
+    "006316C0"
+   ]
+  }
+ ]
+}

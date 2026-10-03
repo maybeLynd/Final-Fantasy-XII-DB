@@ -1,0 +1,52 @@
+{
+ "page": "17-Presentation-Rendering/Model-And-Motion-Formats/fef-and-motion-entries.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01HFDWqiFGBo93D32pyB6Lkx",
+ "report": "home-fef-and-motion-entries.json",
+ "rows": [
+  {
+   "fn": "00422FD0",
+   "entered_from": "`00423B10` + 0x13F",
+   "text": "returns 0 when `rdx` is null; otherwise passes `rdx` to the call at `00422FD0` + 0x18 and its result, with 0 when `r8d AND 0xF000` is `0x5000` and `r8d AND 0xFFF` otherwise, to the call at `00422FD0` + 0x3C, and returns 1 only when that second result is non-null, dword `rcx+0x284` has bit `0x10000` set and the second result's dword `+4` has a bit of `0x30000` set, else 0",
+   "anchors": [
+    [
+     "00422FE8",
+     "call"
+    ],
+    [
+     "00422FF5",
+     "cmp"
+    ],
+    [
+     "0042300C",
+     "call"
+    ],
+    [
+     "00423016",
+     "test"
+    ],
+    [
+     "00423022",
+     "test"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "0025C130",
+   "why": [
+    "already cited by 17-Presentation-Rendering\\Model-And-Motion-Formats\\fef-and-motion-entries.md"
+   ]
+  },
+  {
+   "fn": "003CD7F0",
+   "why": [
+    "already cited by 17-Presentation-Rendering\\Model-And-Motion-Formats\\fef-and-motion-entries.md"
+   ]
+  }
+ ],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

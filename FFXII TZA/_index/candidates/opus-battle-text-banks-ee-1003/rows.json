@@ -1,0 +1,52 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/battle-text-banks.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter-r4",
+ "report": "battle-text-banks-r4.json",
+ "rows": [
+  {
+   "fn": "002B5390",
+   "text": "Returns 0 when `rcx` is null; otherwise clears byte `+0x27`, takes the text at qword `+0x10` (else `+0`) and as limit the float of signed word `+0x24`, prepares a stack context with `002AC1E0` and `0039BAD0` (on `rdx`, or qword `+0x18` when `rdx` is null), copies dword `+0x28` and a context byte to `+0x10D0`/`+0x1104` of the record at `[0209CC40]`, measures the text with `002B2150` and copies `+0x10D0` back; when the truncated width is not above the truncated limit (signed `jg`), or when `00254A10` returns zero, it stores the text to `+8`, the returned length to word `+0x22`, the byte there to `+0x26`, the address after that byte (0 when it is zero) to `+0x10`, and to `+0x27` the value 2 when byte `+0x1104` is 0x26 else 0 (OR 1 in the `00254A10` case); otherwise it extends a prefix chunk by chunk (`002B1FB0` lengths), measuring each prefix with `002B2150` behind a temporary terminator, and when a prefix is above the limit (`comiss`/`ja`) sets bit `0x1` of `+0x27` and records the previous prefix the same way (with `+0x10` pointing at the break byte), or, when a chunk length is 0 or the text is null, zeroes `+8`, `+0x10`, `+0x22` and `+0x26`; it returns the value stored to `+0x10`.",
+   "anchors": [
+    [
+     "002B5449",
+     "call"
+    ],
+    [
+     "002B546E",
+     "jg"
+    ],
+    [
+     "002B54B1",
+     "call"
+    ],
+    [
+     "002B555E",
+     "call"
+    ],
+    [
+     "002B5655",
+     "or"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "0055FB20",
+   "why": [
+    "names 0055FEAC, .text outside every function (text-gap)"
+   ]
+  }
+ ],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "002B5390",
+   "why": "byte re-read by a non-drafting agent: The record at `0209CC40` is not at that address: both copies (`002B5412`, `002B544E`) load the record pointer from the qword at `0209CC40` (`mov rcx, qword ptr [rip+...]`), so `+0x10D0`/`+0x1104` belong to the pointed-to record."
+  }
+ ],
+ "mode": "ee",
+ "family": ""
+}

@@ -25,4 +25,4 @@ FAILS 0:
 **Reviewer.** None yet. These are FABLE's author controls. An independent review is requested from AUDIT-SPEC
 (FABLE-REQ-AUDITSPEC-REVIEW-BOX3-ANSWERS).
 
-Regression: `be6_all_roles.py`, `uq213_programs.py`, `uq215_routes.py`. Run verified at b9022cc9f.
+Regression: `_index/candidates/be6-two-pump-singletons/be6_all_roles.py`, `_index/candidates/uq213-microprogram-draws/uq213_programs.py`, `_index/candidates/uq215-no-data-borne-packets/uq215_routes.py` (paths named in full 2026-10-03 by FABLE, so the regression runner finds them). Run verified at b9022cc9f.

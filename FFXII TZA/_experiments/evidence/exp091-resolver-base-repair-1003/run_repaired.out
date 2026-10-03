@@ -1,0 +1,14 @@
+# cwd: repo root; HEAD 45ce9d74e; 2026-10-03
+# python "Database/FFXII TZA/_experiments/evidence/exp091-resolver-base-repair-1003/check_repaired.py" --only tv-row6-set,tv-row6-zero,neg-oldbase-tv-row6-set,neg-oldbase-tv-row6-zero,canc-fixup
+PASS tv-row6-set
+    detail tv-row6-set: ret=0x1 imgadd=2 ['rcx=3c0000', 'rcx=3c0000'] imgret=['0x403c0000', '0x403c0000'] row6=[['0x403c0086', '01']] faults=[]
+PASS tv-row6-zero
+    detail tv-row6-zero: ret=0x0 imgadd=2 ['rcx=3c0000', 'rcx=3c0000'] imgret=['0x403c0000', '0x403c0000'] row6=[['0x403c0086', '00']] faults=[]
+PASS neg-oldbase-tv-row6-set (old-base run refused by the positive check)
+    detail neg-oldbase-tv-row6-set: ret=0x1 imgadd=2 ['rcx=3c0000', 'rcx=3c0000'] imgret=['0x3c0000', '0x3c0000'] row6=[['0x3c0086', '89']] faults=[]
+PASS neg-oldbase-tv-row6-zero (old-base run refused by the positive check)
+    detail neg-oldbase-tv-row6-zero: ret=0x1 imgadd=2 ['rcx=3c0000', 'rcx=3c0000'] imgret=['0x3c0000', '0x3c0000'] row6=[['0x3c0086', '89']] faults=[]
+PASS canc-fixup
+    detail canc-fixup: ret=0x40100290 imgadd=0 [] imgret=None row6=None faults=[]
+5/5 selected
+# exit=0

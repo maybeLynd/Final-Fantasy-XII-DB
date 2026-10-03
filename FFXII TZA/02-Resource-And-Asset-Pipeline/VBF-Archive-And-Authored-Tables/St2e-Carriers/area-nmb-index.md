@@ -150,7 +150,7 @@ stop the first store. With `c = sign_extend_i32(R9)` and `M = max(1, c)`, the co
 `min(q, M)` where `q ≥ 1` is the first NUL after `source[0]` (`M` when none precedes the limit), so
 the worst-case destination storage is `M + 1`; an ordinary nonempty source with positive `c` keeps
 the `min(len, c)` contract. (Method A, instruction-level; valid lookup plus accessible disjoint
-memory are premises — no caller supplying a nonpositive limit or empty name is shown.)
+memory are premises — no caller supplying a nonpositive limit or empty name is shown.) *Consumed 2026-10-03 (SWE2-DATA) from ASTRA's SPEC-accepted [`sd194-copier-limit`](../../../_experiments/evidence/sd194-copier-limit/README.md) (`a3d7433c2`; review `auditspec-review-astra-sd194-copier-limit-1003`, ACCEPT, `bff21d191`):* for a valid non-NULL resolved name, `0x002DF880` copies 1..max(1, signed32(R9D)) bytes and then one NUL, and returns 0 (`0x002DF8D6 xor eax, eax`). At `0x00377E09` (R9D = 259) that is at most destination offsets 0..259, which needs 260 writable bytes. A NULL slot returns -1 (`0x002DF8A0 or eax, -1`) without touching the destination, and `0x00377DC0` ignores the return, so no NUL or bound follows on that branch. The write-count bound survives sequential source/destination overlap; the first-NUL count formula needs a disjoint, unchanged source. The routine validates neither pointer/index nor capacity. The natural SD-194 question (the inherited buffer contents and which fields a session loads) stays OPEN.
 `0x002DF780` is a third caller of the same table, reached from `0x0046E030`.
 
 **No caller requests kind 26 with a literal, and the search that failed has a positive control.**

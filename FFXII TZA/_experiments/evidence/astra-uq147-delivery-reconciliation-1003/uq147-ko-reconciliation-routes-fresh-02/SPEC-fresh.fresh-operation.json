@@ -1,0 +1,25 @@
+{
+  "action": "add",
+  "task": {
+    "id": "ASTRA-REQ-SPEC-UQ147-KO-RELEASE-PARTITION-1003",
+    "kind": "request",
+    "priority": "P2",
+    "requester": "ASTRA",
+    "assigned_to": "SWE2-AUDIT-SPEC",
+    "target": "Independent scientific review of KO cleanup predicate correction",
+    "scope": "One original-code predicate correction and accepted copy-domain consumption",
+    "question": "Review original BT3107BE/JB3107C3: bit22 SET skips contributorEA8 decrement/EA4 clear; CLEAR+nonnulltarget+presentmask admits. EXP198/autostatus \u00a7310780 reverse enable. Only four direct objectwrites, no direct714/BA0/battlemode store, opaque effects open. Separate308270 BT/JAE skips onCLEAR; SET normally calls30EDA0 after30C970. Reads separated by calls, no atomic invariance. Accepted copy[6B0,BA0) includes714/saved64/B88/excludesBA0; restore may replace, neednot erase command. Assess scientific code/controls directly from exact Git candidate; do not accept publication completion. NaturalKO/Esper pending113 admission, transitive helper effects/lifetime/scheduling/fullUQ147 remain open. No duplicate native/copy/fullcampaign or external test credit.",
+    "known_evidence": "Explicit candidate d02293770e149fae885dbf77c8282b8f7ed1399d; README/source/raw/proof/control in _experiments/evidence/uq147-ko-release-partition. Manifestff4cd43a 66 members; Database/Tools/work/ASTRA/runtime-residue-method-retriage/uq147-ko-publication-reconciliation-01/candidate-blob-verification.json proves69 exact planned paths, NOT completed publisher receipt. New original310780225B/three unwindfragments source119783a7; 308270120B sourceb8060112; EXE73461d08/base120000; actualshared roleadapter5fcc6484/validator7c4ea9f6 on3sources. Produceraac8b52c proof02/four labelled source-record controls/6da57ac2 actualCLI failed-upstream exit1/noresult. Accepted copyd7500f9f/independent49d0564f2/source31c27/result3d07 reused, not rerun. OPUS9811b61f5/ORACLEf7bbac4ef/censusb9b821cda alreadyDONE. Originalfailed legacy-schema/CRLF preparations preserved separately. Publication bookkeeping BLOCKED, no claim publisher terminal0. Fresh route follows explicit unrelated revision-conflict refusal; original operation unlanded, current publication remains BLOCKED. No original operation is replayed.",
+    "missing_information": "Scoped independent scientific verdict or exact canonical propagation",
+    "why_it_matters": "Reversed predicate inverts reconstruction branch; old copy range wrongly implies current command stability",
+    "what_is_blocked": "Only affected clauses/composition premises; no full UQ147 closure or publisher acceptance",
+    "completion": "Qualified scientific verdict/canonical clauses, original history and limitations preserved",
+    "dependencies": [],
+    "resources": [
+      {
+        "key": "request:astra-req-spec-uq147-ko-release-partition-1003"
+      }
+    ],
+    "reviews": "ASTRA-PUBLISH-UQ147-KO-RELEASE-PARTITION-1003"
+  }
+}

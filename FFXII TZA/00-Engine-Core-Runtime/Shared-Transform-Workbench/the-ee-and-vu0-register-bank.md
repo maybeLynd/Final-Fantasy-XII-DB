@@ -404,3 +404,11 @@ thread; the platform edges are what a boot chain and a timer look like from the 
 | `00510870` | 220 B | reads three values a, b, c with three `VMValueStack_PopInt32CoerceFloat32(r9)` calls and takes `p` = a 421-byte helper's result for (c, b, a); when `p` is non-null and a 50-byte helper (`rdx`, `p`) returns non-zero it calls `VMResult_WriteInt32(rcx, 1)`, an 85-byte helper (`00D22B30`, c), a 27-byte helper (`p`, 1) and the 85-byte helper (`00D22B58`, a 109-byte helper's result for (byte `p+0x15`, word `p`)); otherwise it calls `VMResult_WriteInt32(rcx, 0)` and the 85-byte helper (`00D22B80`, c) | `005108B8`, `005108CB`, `005108DC`, `00510903`, `0051091E` |
 | `006BA940` | 99 B | stores `00D81200` at qword `[rcx]`, calls a 300-byte helper (`rcx`), then eh_vector_destructor_iterator (`rcx+0x58`, `0x10`, 2, the address of `_guard_check_icall`) and eh_vector_destructor_iterator (`rcx+0x38`, `0x10`, 2, the address of `_guard_check_icall`), and tail-jumps a 34-byte helper (`rcx`) | `006BA959`, `006BA95C`, `006BA976`, `006BA990`, `006BA99E` |
 | `00863410` | 26 B | when qword `rcx+0x18` is non-null calls it with qword `rcx+0x20` as `rcx`; returns 0 on both paths | `00863414`, `0086341D`, `00863421`, `00863423` |
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-03, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../../_index/candidates/fable-home-the-ee-and-vu0-register-bank-1003/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `003AC870` | 24 B | `00376470` + 0x82 | stores 1.0 (`01CEBBA8`) to dword `02B3F51C` and byte 0 to `02B3F503` | Interior anchor `003AC878`; Interior anchor `003AC880` |

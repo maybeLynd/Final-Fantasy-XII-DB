@@ -1,0 +1,28 @@
+CURRENT      out/GENERATION-BINDING.json (t, generation gd58f8a)
+ok   1 a valid generation committed with its inputs is CURRENT
+ok   2 the old generation is no longer CURRENT once its verdict input moved (FALSE-CURRENT, names reg/L2.md)
+FALSE-CURRENT out/GENERATION-BINDING.json (t, generation gd58f8a); bound inputs moved: reg/L2.md
+ok   2b the checkpoint check fails on it
+ok   3 the gate accepts the publish
+ok   4 the regenerated, included output reflects the changed verdict
+CURRENT      out/GENERATION-BINDING.json (t, generation gce86aa)
+ok   5 the gated commit is CURRENT
+ok   6 the gate still lets a source edit publish (never blocked on a derived surface)
+ok   7 the committed text says STALE and names the moved input
+ok   8 the committed JSON says STALE
+STALE        out/GENERATION-BINDING.json (t, generation gce86aa); bound inputs moved: reg/L2.md
+ok   9 an honestly STALE surface passes the checkpoint check (explicit stale is legal)
+INCOHERENT   out/GENERATION-BINDING.json (t, generation gce86aa); bound inputs moved: reg/L2.md; outputs differ: out/P.md
+ok   10 a hand-edited output is INCOHERENT and fails the check
+ok   11 the volatile board is recorded as-of, never bound
+ok   12 relabelling an already-STALE output is idempotent
+ok   13 an output with no freshness line is still refused
+ok   14 STALE (moved: A) + new moved set B -> displayed STALE reason names B, not A
+ok   15 the live template's reason is rewritten in place to B; the rest of the line and the unmatched lines are untouched
+ok   16 a relabel with an unchanged moved set changes nothing
+ok   17 a nested-parenthesis reason and an older wording are both replaced whole
+ok   18 the JSON stale_moved names B
+ok   19a publish 1: output and binding both name A = two/a.txt
+ok   19b publish 2: output and binding both name B = two/b.txt, A is gone
+ok   19c publish 3 with the same moved set commits an identical tree
+self-test: 0 failure(s)

@@ -469,3 +469,11 @@ Interior anchor `003EA3B0` (function `003EA330`).
 | `003522C0` | 91 B | with `a` = dword `[r8]` and `b` = dword `[r8+4]`, does nothing when `00264170()` returns 0, when `001C3370()` returns 1 or when `a` is negative; otherwise, with `n` = `a`+1 held between 1 and 3 (signed), calls `0032FC30(n, b)` and `0032ED70(n)` | `003522D1`, `003522DF`, `003522E6`, `003522FD`, `00352304` |
 | `00352DB0` | 35 B | with `n` = `00267E10(r9)`, calls `003EA330(n)` and tail-jumps to `003E98B0(n)` | `00352DB9`, `00352DC2`, `00352DCE` |
 | `00353080` | 107 B | calls `00314D40(1)` first; then, with `a` = dword `[r8]` and `b` = dword `[r8+4]`, does nothing more when `00264170()` returns 0, when `001C3370()` returns 1 or when `a` is negative; otherwise, with `n` = `a`+1 held between 1 and 3 (signed), calls `0032FC30(n, b)` and `0032ED70(n)` | `00353099`, `003530A3`, `003530B7`, `003530C8`, `003530CF` |
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted, opus-the-voice-pack-slots-and-the-voice-verbs-ee-1003)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-the-voice-pack-slots-and-the-voice-verbs-ee-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00351020` | 173 B | Reads three dwords from the object in `r9` with three calls to `00267E10`, then calls `00267F90` on that object five times with -1, the third value read, the second, the first and finally 1, and tail-jumps to `003581B0` with the original `rcx`, `rdx`, `r8` and `r9`. | `00351057`, `0035106E`, `0035108C`, `00351099`, `003510C8` |

@@ -1,0 +1,8 @@
+{
+  "producer_complete": true,
+  "control": "ACTUAL_CLI_REQUIRED_UPSTREAM_FAIL",
+  "exit": 1,
+  "result_absent": true,
+  "positive_receipt": "prove-target-fixup-effects-01.status.json",
+  "limits": "Deliberately failed qualifier receipt; no original/native/live intervention or repeated positive execution"
+}

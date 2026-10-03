@@ -1,0 +1,68 @@
+{
+ "page": "07-Combat-Action/Action-Dispatch/battle-action-handler-table.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01SCNjBjkQLVBQa4akEYXVn4",
+ "report": [
+  "fable-battle-action-handler-table.json"
+ ],
+ "rows": [
+  {
+   "fn": "00346780",
+   "text": "calls `00267E10(r9)` and `00267DB0(r9)`, scaling the float result by 0.5 (`01CEBB70`); takes pointer A = `00265060(rdx)` and pointer B = `00265060(00264010(the 00267E10 result))`; calls `00346780+0x65` with `rdx`, then `00346780+0x8B` with `xmm1` = the scaled float, `xmm2`/`xmm3` = floats A `+0`/A `+8` and stack arguments B `+0` (first) and B `+8` (second); tail-jumps to `00346780+0xB4` with the incoming `rcx` and that call's result in `edx`",
+   "anchors": [
+    [
+     "003467AB",
+     "call"
+    ],
+    [
+     "003467C0",
+     "mulss"
+    ],
+    [
+     "003467C8",
+     "call"
+    ],
+    [
+     "003467DA",
+     "call"
+    ],
+    [
+     "00346834",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00346EF0",
+   "text": "calls `00267DB0(r9)` three times (results f1, f2, f3, with f3 scaled by 0.5 (`01CEBB70`)); takes pointer B = `00265060(rdx)`; calls `00346EF0+0x60` with `rdx`, then `00346EF0+0x7E` with `xmm1` = scaled f3, `xmm2`/`xmm3` = floats B `+0`/B `+8` and stack arguments f2 (first) and f1 (second); tail-jumps to `00346EF0+0xA7` with the incoming `rcx` and that call's result in `edx`",
+   "anchors": [
+    [
+     "00346F1B",
+     "call"
+    ],
+    [
+     "00346F3D",
+     "mulss"
+    ],
+    [
+     "00346F45",
+     "call"
+    ],
+    [
+     "00346F6E",
+     "call"
+    ],
+    [
+     "00346F97",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing",
+ "family": ""
+}

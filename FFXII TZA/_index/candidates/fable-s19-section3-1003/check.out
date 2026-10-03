@@ -1,0 +1,212 @@
+image sha256 ok (rvlib)
+HEAD b5028e7e9
+
+== A. raw reference census of MovementBody accesses (whole image)
+  units 36732; self-seeded 142; records 789 in 131 functions; body-chain (pool/ctx138/cb/ret/arg) records 418 in 73 functions
+  body-chain functions: 00217060 0022EF20 0022F050 0022F250 0022F9B0 00231890 00231A90 00232760 002327D0 00233050 00233110 0025A180 0025B600 0025B740 0025D540 00263DD0 002681E0 002682D0 002685F0 00269EC0 00269EE0 0026AFE0 0026D6F0 0026D810 0026DAC0 0026E530 002E5180 002E5380 002E5610 002E5B00 002E9830 002E9860 002E9890 002E98C0 002E9BB0 002E9D90 002EA7F0 002EBC70 002EC5B0 002ED6A0 00314E10 00314EB0 00314F50 00329B00 003484E0 00380800 003808A0 00380A70 00380B80 00380C40 00380D30 003D9E20 003DA5A0 003DA730 003DA830 003DA850 003DA8A0 003DA9F0 003DAA40 003DAB50 003DAC70 003DAD00 003DAE00 003DAE30 003DAF20 003DB020 003DB0D0 003DB120 003DB130 003DB150 003DB1B0 0046AD20 006C0520
+  ok   census control: reaches 0026861A  -- ctx138 (weight copy, +0x08)
+  ok   census control: reaches 002E5227  -- ctx138 (002E5180, +0xEC)
+  ok   census control: reaches 002E53B4  -- arg<ctx138 (consumer, +0xE8)
+  ok   census control: reaches 002E53F1  -- arg<ctx138 (+0x104)
+  ok   census control: reaches 00315263  -- cb (+0xEE)
+  ok   census control: reaches 00315303  -- cb (resolver, +0xE8)
+  ok   census control: reaches 0031533F  -- cb (+0xE8)
+  ok   census control: reaches 003DA98E  -- pool (allocator, +0x08)
+  ok   census control: reaches 003DACAF  -- pool (walk, +0x120)
+  ok   census control: reaches 003DB078  -- arg<ctx138 (registration, +0x120)
+  ok   census control: reaches 0046AF4A  -- arg<ctx138 at offset 0x120 (cell routine, +0x124)
+  pointers to body storage written to non-stack memory (the census does not follow these):
+      002E3546 in 002E3500  mov qword ptr [rcx + 0x138], rax  [(0, 'ret')]
+      003DB0DE in 003DB0D0  mov qword ptr [rip + 0x277cbe3], rcx  [(48, 'arg<ctx138')]
+      003DB0E5 in 003DB0D0  mov qword ptr [rip + 0x277cbe4], rcx  [(48, 'arg<ctx138')]
+      003DB0FF in 003DB0D0  mov qword ptr [rip + 0x277cbca], rcx  [(48, 'arg<ctx138')]
+      003DB106 in 003DB0D0  mov qword ptr [rax + 0xa0], rcx  [(48, 'arg<ctx138')]
+  ok   census control: escapes are the creator's store and the placement-list links of body+0x30 only
+  ok   census control: 003DB0D0 links body+0x30, the 0xB0-byte placement record (+0x30..+0xDF), which ends before every corrected field
+  ok   the allocator clears the placement record +0x30..+0xDF (0xB0 bytes)
+  -- +0x08, body-chain accesses:
+      +0x008 w4  w  0026861A in 002685F0  ctx138        movss dword ptr [rcx + 8], xmm0
+      +0x008 w4  w  0026DAFE in 0026DAC0  ctx138        movss dword ptr [rcx + 8], xmm0
+      +0x008 w4  r  00315017 in 00314F50  arg<cb        movss xmm8, dword ptr [rcx + 8]
+      +0x008 w4  r  0031502A in 00314F50  arg<cb        movss xmm9, dword ptr [rdx + 8]
+      +0x008 w4  w  003DA98E in 003DA8A0  pool          mov dword ptr [rdi + 8], 0x3f800000
+  -- +0xE8..+0xEF, body-chain accesses:
+      +0x0E8 w4  r  002E53B4 in 002E5380  arg<ctx138    movss xmm1, dword ptr [rdx + 0xe8]
+      +0x0E8 w4  w  00315303 in 00314F50  arg<cb        movss dword ptr [rdi + 0xe8], xmm1
+      +0x0E8 w4  w  0031533F in 00314F50  arg<cb        movss dword ptr [rbx + 0xe8], xmm1
+      +0x0E8 w8  w  003DA9C6 in 003DA8A0  pool          mov qword ptr [rdi + 0xe8], rsi
+      +0x0E8 w4  w  003DAA06 in 003DA9F0  arg<ctx138    mov dword ptr [rcx + 0xe8], eax
+      +0x0EC w1  r  002E5227 in 002E5180  ctx138        cmp byte ptr [rsi + 0xec], 0
+      +0x0EC w1  r  002E53AB in 002E5380  arg<ctx138    cmp byte ptr [rdx + 0xec], 0
+      +0x0EC w1  r  002E5419 in 002E5380  arg<ctx138    cmp byte ptr [rdx + 0xec], 0
+      +0x0EC w1  w  0031531F in 00314F50  arg<cb        mov byte ptr [rbx + 0xec], 1
+      +0x0EC w1  w  00315359 in 00314F50  arg<cb        mov byte ptr [rdi + 0xec], 1
+      +0x0EC w2  w  003DA9FF in 003DA9F0  arg<ctx138    mov word ptr [rcx + 0xec], ax
+      +0x0ED w1  rw 0031525D in 00314F50  arg<cb        inc byte ptr [rdi + 0xed]
+      +0x0ED w1  rw 00315281 in 00314F50  arg<cb        inc byte ptr [rbx + 0xed]
+      +0x0ED w1  rw 00315298 in 00314F50  arg<cb        inc byte ptr [rbx + 0xed]
+      +0x0ED w1  rw 0031529E in 00314F50  arg<cb        inc byte ptr [rdi + 0xed]
+      +0x0EE w1  r  002E53C6 in 002E5380  arg<ctx138    cmp byte ptr [rdx + 0xee], 0
+      +0x0EE w1  w  00315263 in 00314F50  arg<cb        mov byte ptr [rdi + 0xee], 1
+      +0x0EE w1  w  00315287 in 00314F50  arg<cb        mov byte ptr [rbx + 0xee], 1
+      +0x0EE w1  w  003152A4 in 00314F50  arg<cb        mov byte ptr [rdi + 0xee], 0
+      +0x0EE w1  w  003152AB in 00314F50  arg<cb        mov byte ptr [rbx + 0xee], 0
+      +0x0EE w1  w  003DAA0C in 003DA9F0  arg<ctx138    mov byte ptr [rcx + 0xee], al
+      +0x0EF w1  w  0025D56F in 0025D540  ctx138        mov byte ptr [rbx + 0xef], 0
+      +0x0EF w1  w  0026B0A1 in 0026AFE0  ctx138        mov byte ptr [rbx + 0xef], 0
+      +0x0EF w1  w  002E5289 in 002E5180  ctx138        mov byte ptr [rsi + 0xef], 0
+      +0x0EF w1  w  002E53CF in 002E5380  arg<ctx138    mov byte ptr [rdx + 0xef], 1
+      +0x0EF w1  w  002E53D8 in 002E5380  arg<ctx138    mov byte ptr [rdx + 0xef], 0
+  -- +0x100..+0x10B, body-chain accesses:
+      +0x100 w4  r  002E53DF in 002E5380  arg<ctx138    movss xmm0, dword ptr [rdx + 0x100]
+      +0x100 w4  r  003150F8 in 00314F50  arg<cb        addss xmm0, dword ptr [rbx + 0x100]
+      +0x100 w4  r  0031512A in 00314F50  arg<cb        addss xmm0, dword ptr [rdi + 0x100]
+      +0x100 w4  r  0031530F in 00314F50  arg<cb        addss xmm2, dword ptr [rbx + 0x100]
+      +0x100 w4  w  0031532B in 00314F50  arg<cb        movss dword ptr [rbx + 0x100], xmm2
+      +0x100 w4  r  00315347 in 00314F50  arg<cb        addss xmm10, dword ptr [rdi + 0x100]
+      +0x100 w4  w  00315360 in 00314F50  arg<cb        movss dword ptr [rdi + 0x100], xmm10
+      +0x100 w8  w  003DA97A in 003DA8A0  pool          mov qword ptr [rdi + 0x100], rsi
+      +0x100 w8  w  003DA9B9 in 003DA8A0  pool          mov qword ptr [rdi + 0x100], rsi
+      +0x100 w8  w  003DA9F2 in 003DA9F0  arg<ctx138    mov qword ptr [rcx + 0x100], rax
+      +0x104 w4  r  002E53F1 in 002E5380  arg<ctx138    movss xmm1, dword ptr [rdx + 0x104]
+      +0x108 w4  r  002E5405 in 002E5380  arg<ctx138    movss xmm0, dword ptr [rdx + 0x108]
+      +0x108 w4  r  00315100 in 00314F50  arg<cb        addss xmm1, dword ptr [rbx + 0x108]
+      +0x108 w4  r  0031513E in 00314F50  arg<cb        addss xmm1, dword ptr [rdi + 0x108]
+      +0x108 w4  r  00315317 in 00314F50  arg<cb        addss xmm3, dword ptr [rbx + 0x108]
+      +0x108 w4  w  00315333 in 00314F50  arg<cb        movss dword ptr [rbx + 0x108], xmm3
+      +0x108 w4  r  00315350 in 00314F50  arg<cb        addss xmm11, dword ptr [rdi + 0x108]
+      +0x108 w4  w  00315369 in 00314F50  arg<cb        movss dword ptr [rdi + 0x108], xmm11
+      +0x108 w4  w  003DA988 in 003DA8A0  pool          mov dword ptr [rdi + 0x108], esi
+      +0x108 w4  w  003DA9C0 in 003DA8A0  pool          mov dword ptr [rdi + 0x108], esi
+      +0x108 w4  w  003DA9F9 in 003DA9F0  arg<ctx138    mov dword ptr [rcx + 0x108], eax
+  -- +0x120..+0x12F, body-chain accesses:
+      +0x120 w4  r  003DACAF in 003DAC70  pool          mov ecx, dword ptr [rbx + 0x120]
+      +0x120 w4  r  003DB078 in 003DB020  arg<ctx138    mov edx, dword ptr [rdi + 0x120]
+      +0x120 w8  w  0046ADA3 in 0046AD20  arg<ctx138    mov qword ptr [rcx], rbp
+      +0x120 w4  w  0046AE0A in 0046AD20  arg<ctx138    mov dword ptr [rdi], 0xffffffff
+      +0x120 w4  w  0046AF3F in 0046AD20  arg<ctx138    mov dword ptr [rdi], r14d
+      +0x124 w4  w  0046AF4A in 0046AD20  arg<ctx138    mov dword ptr [rdi + 4], ebp
+      +0x128 w4  r  003DACC8 in 003DAC70  pool          movss xmm0, dword ptr [rbx + 0x128]
+      +0x128 w8  w  0046ADA6 in 0046AD20  arg<ctx138    mov qword ptr [rcx + 8], rbp
+      +0x128 w4  w  0046AF59 in 0046AD20  arg<ctx138    movss dword ptr [rdi + 8], xmm11
+      +0x12C w4  r  003DACBD in 003DAC70  pool          movss xmm1, dword ptr [rbx + 0x12c]
+      +0x12C w4  w  0046AF65 in 0046AD20  arg<ctx138    movss dword ptr [rdi + 0xc], xmm12
+  -- the same ranges through a +0x138 pointer that is NOT from a secondary context (p138):
+      +0x000 w16 rw 00746738 in 00744B90  p138          movups xmmword ptr [rcx], xmm0
+      +0x000 w16 r  00746C4F in 007467E0  p138          movups xmm0, xmmword ptr [rax]
+      +0x000 w16 r  0074BB78 in 0074BA10  p138          movups xmm0, xmmword ptr [rax]
+      +0x008 w4  w  00121FA0 in 00121F40  arg<p138      mov dword ptr [rsi + 8], eax
+      +0x008 w8  w  00209476 in 00209450  arg<p138      mov qword ptr [rbx + 8], rax
+      +0x008 w8  r  002483CA in 002482E0  arg<p138      mov rbx, qword ptr [rdi + 8]
+      +0x008 w4  rw 00283D4B in 00283BB0  p138          and dword ptr [rcx + 8], 0xfffffffe
+      +0x008 w4  rw 00283D4F in 00283BB0  p138          or dword ptr [rcx + 8], edx
+      +0x008 w4  rw 00283F8E in 00283E40  p138          and dword ptr [rcx + 8], r15d
+      +0x008 w2  r  00553537 in 005528C0  p138          movzx eax, word ptr [r15 + 8]
+      +0x008 w2  r  0055396F in 005528C0  p138          movzx eax, word ptr [r15 + 8]
+      +0x008 w8  r  00553995 in 005528C0  p138          cmp qword ptr [r15 + 8], 0
+      +0x008 w8  r  005539AC in 005528C0  p138          cmp qword ptr [r15 + 8], 0
+      +0x008 w2  r  005539D0 in 005528C0  p138          movzx eax, word ptr [r15 + 8]
+      +0x008 w4  r  00553A0F in 005528C0  p138          mov edx, dword ptr [r15 + 8]
+      +0x008 w4  r  006E81F2 in 006E5A20  p138          addss xmm0, dword ptr [rax + 8]
+      +0x0E8 w8  r  00122250 in 00122230  arg<p138      mov r14, qword ptr [rcx + 0xe8]
+      +0x0E8 w8  r  001223DE in 001223D0  arg<p138      mov rax, qword ptr [rcx + 0xe8]
+      +0x0E8 w8  r  00123B56 in 00123A50  arg<p138      mov r15, qword ptr [r12 + 0xe8]
+      +0x0E8 w8  r  00123D5E in 00123D40  arg<p138      mov rdi, qword ptr [rcx + 0xe8]
+      +0x0E8 w4  w  003FE9B3 in 003FE720  p138+idx      mov dword ptr [rcx + r9 + 0xe8], edx
+      +0x0E8 w4  w  003FEC83 in 003FEAD0  p138+idx      mov dword ptr [rcx + r9 + 0xe8], edx
+      +0x100 w8  w  001221C6 in 001221B0  arg<p138      mov qword ptr [rcx + 0x100], r8
+      +0x100 w8  r  001221FF in 001221E0  arg<p138      cmp qword ptr [rcx + 0x100], 0
+      +0x100 w8  r  001240D0 in 00124070  arg<p138      mov rdi, qword ptr [rcx + 0x100]
+      +0x100 w8  rw 001240F5 in 00124070  arg<p138      add qword ptr [rbx + 0x100], -0x80
+      +0x100 w8  r  001240FD in 00124070  arg<p138      cmp qword ptr [rbx + 0x100], 0
+      +0x100 w8  rw 00124287 in 00124070  arg<p138      sub qword ptr [rbx + 0x100], rax
+      +0x100 w8  r  0012428E in 00124070  arg<p138      cmp qword ptr [rbx + 0x100], 0
+      +0x108 w8  r  00122257 in 00122230  arg<p138      mov rsi, qword ptr [rcx + 0x108]
+      +0x108 w8  w  002B3460 in 002B3400  arg<p138      mov qword ptr [rdi + 0x28], rsi
+      +0x108 w8  r  0055319E in 005528C0  p138          mov rcx, qword ptr [r15 + 0x108]
+      +0x124 w4  rw 002AC1F6 in 002AC1E0  arg<p138      or dword ptr [rbx + 0x44], 0x200
+      +0x124 w4  r  002AC1FD in 002AC1E0  arg<p138      mov ecx, dword ptr [rbx + 0x44]
+      +0x124 w4  rw 002B343D in 002B3400  arg<p138      or dword ptr [rdi + 0x44], 0x800
+      +0x124 w4  r  002B3444 in 002B3400  arg<p138      mov ecx, dword ptr [rdi + 0x44]
+  -- p138 roots behind those hits, with the base register's provenance:
+      00283BB0  base from 00283D40 mov rax, qword ptr [rbx + 0x60]  => [rbx+0x60] holds sibling pointers at +0x128/+0x130/+0x138 whose +8 is a flag dword: widget code
+  ok   p138 root 00283BB0 dispositioned
+      00283E40  base from 00283F83 mov rax, qword ptr [rbx + 0x60]  => [rbx+0x60] holds sibling pointers at +0x128/+0x130/+0x138 whose +8 is a flag dword: widget code
+  ok   p138 root 00283E40 dispositioned
+      003FE720  base from 003FE8C0 mov rax, qword ptr [rip + 0x1c9c369]  => a global object pointer (rip-relative), table indexed by r9: the item-compatibility code
+  ok   p138 root 003FE720 dispositioned
+      003FEAD0  base from 003FEB90 mov rax, qword ptr [rip + 0x1c9c099]  => a global object pointer (rip-relative), table indexed by r9: the item-compatibility code
+  ok   p138 root 003FEAD0 dispositioned
+      005528C0  base from 005528F1 mov rdi, rcx  => its own rcx argument (map-screen code); the pointee's +8 is read as a word and a qword
+  ok   p138 root 005528C0 dispositioned
+      0055DBD0  base from 0055DBD6 mov rbx, rcx  => its own rcx argument: license-board widget code
+  ok   p138 root 0055DBD0 dispositioned
+      00561800  base from entry argument  => its own rcx argument: license-board widget code
+  ok   p138 root 00561800 dispositioned
+      006E5A20  base from 006E5A2F lea rbp, [rax - 0x328]  => frame pointer (rbp = rax - 0x328 after mov rax, rsp): a stack slot
+  ok   p138 root 006E5A20 dispositioned
+      00744B90  base from 00744B9D lea rbp, [rsp - 0xfd8]  => frame pointer (rbp = rsp - 0xFD8): a stack slot
+  ok   p138 root 00744B90 dispositioned
+      007467E0  base from 007467ED lea rbp, [rsp - 0x798]  => frame pointer (rbp = rsp - 0x798): a stack slot
+  ok   p138 root 007467E0 dispositioned
+      0074BA10  base from 0074BA1A lea rbp, [rax - 0x78]  => frame pointer (rbp = rax - 0x78 after mov rax, rsp): a stack slot
+  ok   p138 root 0074BA10 dispositioned
+      007EAA60  base from 007EAA8A mov r14, rcx  => its own rcx argument: the SEAD sound driver (third-party)
+  ok   p138 root 007EAA60 dispositioned
+      007EBAD0  base from 007EBF57 mov rbx, qword ptr [rsp + 0x2b0]  => a spilled object of the SEAD sound driver (third-party)
+  ok   p138 root 007EBAD0 dispositioned
+      008999C0  base from entry argument  => rdx at entry of a stub that also does lea rcx, [rdx+0x30] / jmp: not a context
+  ok   p138 root 008999C0 dispositioned
+
+== B. the five points (NEW must hold; OLD and MUTANT must not)
+P1  +0x120: a u32 cell set, not a u128
+  ok   P1 NEW  dword read at 003DB078 walked one 16-byte mask per bit (02B57CE0, add 0x10, shr edx); dword read at 003DACAF; every body-chain read of +0x120 is 4 bytes; +0x124 written as a dword, never read; +0x128/+0x12C f32  -- [True, True, True, True, True, True, True, True]
+  ok   P1 OLD  (u128 cell set) refuted: no read of +0x120..+0x12F wider than a dword, and the bit walk shifts a 32-bit register
+  ok   P1 MUTANT  003DB078 re-pointed at +0x124: NEW fails
+P2  +0xE8: the squared length of the PARTNER's increment, overwritten per contact
+      w=0.3  A inc (0.210000, -0.120000)  B inc (-0.490000, 0.280000)  A.+0xE8 0.318500  B.+0xE8 0.058500  (old +0xE8 values 123 / 456 discarded)
+      w=0.8  A inc (0.560000, -0.320000)  B inc (-0.140000, 0.080000)  A.+0xE8 0.026000  B.+0xE8 0.416000  (old +0xE8 values 123 / 456 discarded)
+  ok   P2 NEW  rdi = B, rbx = A (00314F72/00314F75); 00315303 stores |A's increment|^2 into B, 0031533F |B's increment|^2 into A, both by movss (no read of +0xE8 in the resolver); the one body-chain reader is 002E53B4  -- [True, True, True, True, True, True, True]
+  ok   P2 OLD  (a body's own push length, or accumulated) refuted at w = 0.3
+  ok   P2 MUTANT  00315303 re-based on rbx (A): NEW fails
+P3  +0x08: f32
+  ok   P3 NEW  movss reads at 00315017/0031502A; every body-chain access to +0x08 is a 4-byte SSE op or the allocator's store of the bits of 1.0  -- [True, True, True, True, True, True, True, True]
+  ok   P3 OLD  (untyped / integer, the census's uint32) refuted: no integer use of +0x08
+  ok   P3 MUTANT  00315017 made movsd: NEW fails
+P4  +0x104: push y, the middle component; read alone outside the pass
+  ok   P4 NEW  002E5380 reads +0x104 alone (002E53F1) into the delta's middle float [r9+4], between x [r9] and z [r9+8]; every write is the qword zero at +0x100; inside the six pass bodies it is never touched alone  -- [True, True, True, True, True, True, True, True, True, True, True]
+  ok   P4 OLD-a  (OPUS's 'never accessed alone', taken image-wide) refuted by 002E53F1
+  ok   P4 OLD-b  ('third component' as vector index 2) refuted: +0x104 goes to [r9+4], not [r9+8]
+  ok   P4 MUTANT  002E53F1 re-pointed at +0x10C: NEW fails
+P5  +0xEE: set on the body that took the whole push
+      w=0.0  A inc (0.000000, 0.000000)  B inc (-0.700000, 0.400000)
+      w=1.0  A inc (0.700000, -0.400000)  B inc (0.000000, 0.000000)
+  ok   P5 NEW  w = 0 marks B at 00315263 and only B's increment is non-zero; w = 1 marks A at 00315287 and only A's is; the shared arm clears both (003152A4/003152AB); the one body-chain reader is 002E53C6  -- [True, True, True, True, True, True, True, True, True, True, True]
+  ok   P5 OLD  ('immovable' = the marked body does not move) refuted at w = 0
+  ok   P5 MUTANT  00315263 re-based on rbx (A): NEW fails
+  ok   002E5380: +0xEF = 1 when +0xEC is set, +0xE8 == 0 and +0xEE != 0, else 0
+
+== C. citation pre-check: inserted addresses lie in functions the page already cites
+  ok   CONTRACT-separation-pass.md / point 3: +0x08 is f32: 00314E10,00314E16,00314E27 in unit 00314E10
+  ok   CONTRACT-separation-pass.md / point 3: +0x08 is f32: 00315017,0031502A in unit 00314F50
+  ok   CONTRACT-separation-pass.md / point 3: +0x08 is f32: struck '?' is the page's own text at HEAD
+  ok   CONTRACT-separation-pass.md / point 2: +0xE8 is the partner's increment: 002E5380,002E53B4 in unit 002E5380
+  ok   CONTRACT-separation-pass.md / point 2: +0xE8 is the partner's increment: 00315303,0031533F in unit 00314F50
+  ok   CONTRACT-separation-pass.md / point 2: +0xE8 is the partner's increment: struck 'squared push length' is the page's own text at HEAD
+  ok   CONTRACT-separation-pass.md / point 5: +0xEE marks the body that took the whole push: 002E5380,002E53C6,002E53CF in unit 002E5380
+  ok   CONTRACT-separation-pass.md / point 5: +0xEE marks the body that took the whole push: 00315263,00315287,003152A4,003152AB in unit 00314F50
+  ok   CONTRACT-separation-pass.md / point 5: +0xEE marks the body that took the whole push: struck 'immovable-contact marker' is the page's own text at HEAD
+  ok   CONTRACT-separation-pass.md / point 4: +0x104 is push y, the middle component: 002E5380,002E53DF,002E53F1,002E53FF,002E5405 in unit 002E5380
+  ok   CONTRACT-separation-pass.md / point 4: +0x104 is push y, the middle component: 003DA9F2 in unit 003DA9F0
+  ok   CONTRACT-separation-pass.md / point 4: +0x104 is push y, the middle component: struck '(third component)' is the page's own text at HEAD
+  ok   CONTRACT-separation-pass.md / point 1: +0x120 is a u32 cell set: 003DACAF,003DACBD,003DACC8 in unit 003DAC70
+  ok   CONTRACT-separation-pass.md / point 1: +0x120 is a u32 cell set: 003DB020,003DB078 in unit 003DB020
+  ok   CONTRACT-separation-pass.md / point 1: +0x120 is a u32 cell set: struck 'u128' is the page's own text at HEAD
+  ok   the-movement-body-pool-and-the-separation-pass.md / pool 2.7: the 0 / 1 arms mark the body that takes the push: 00315263,00315287 in unit 00314F50
+  ok   the-movement-body-pool-and-the-separation-pass.md / pool 2.7: the 0 / 1 arms mark the body that takes the push: struck 'marks one body immovable' is the page's own text at HEAD
+  ok   the-movement-body-pool-and-the-separation-pass.md / pool 2.7: +0xE8 is the other body's increment: 00315303,0031533F in unit 00314F50
+  ok   the-movement-body-pool-and-the-separation-pass.md / pool 2.7: +0xE8 is the other body's increment: struck 'the squared length' is the page's own text at HEAD
+  ok   the-movement-body-pool-and-the-separation-pass.md / pool 4 layout: +0xE8 name: 00315303,0031533F in unit 00314F50
+  ok   the-movement-body-pool-and-the-separation-pass.md / pool 4 layout: +0xE8 name: struck 'pushLengthSq' is the page's own text at HEAD
+
+FAILS 0

@@ -903,3 +903,11 @@ The DF-4 family (402 members in the frontmatter; 398 get a row here) shares the 
 | 00877AF0 | `00877AFC` `call` | 00878DA0 | Phyre::PHierarchy::POctreeChildren |
 | 00879830 | `0087983C` `call` | 0087A550 | Phyre::PGame::PGameConfig |
 | 0087A6D0 | `0087A6DC` `call` | 0087A410 | decorated `V?$PArray@PEAVPInputMap@PInputs@Phyre@@$07@Phyre@@` |
+
+## Homed bodies: functions reached only indirectly whose callees this page cites (FABLE, 2026-10-03, F homing)
+
+*No page cited these functions and none of their callers is documented: they are reached by table or pointer dispatch or through undocumented callers. Each one calls something this page documents, which the sentence names. Each sentence states what the body does (access and representation, not purpose); the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's F homing pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-the-return-value-adapter-family-homing-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `006B2A60` | 120 B | calls `00683B10(rdx)` and copies the 0x40 bytes at the returned pointer to `r8` as 16 dwords (`+0` through `+0x3c`) | Interior anchor `006B2A6C`; Interior anchor `006B2A74`; Interior anchor `006B2A76`; Interior anchor `006B2ACC`; Interior anchor `006B2ACF` |

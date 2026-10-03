@@ -1,0 +1,9 @@
+PASS  1a ebx = 2 at 0022B841
+PASS  1b 0022B84F loads byte 02064AD3
+PASS  1c 0022B858 cmove ecx, ebx (2 when 0037C2E0 returned 0)
+PASS  1d 0022B85B stores the byte back to 02064AD3
+PASS  2 0022B8A1 tests 02064AD3 against 2 before 00184960
+PASS  3 no rip-relative reference to 02064AD4 in 0022B7E0
+PASS  3C control: the same scan finds 02064AD3 three times (3)
+PASS  4 the page carries the correction with the original struck
+FAILS 0

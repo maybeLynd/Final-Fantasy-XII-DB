@@ -1,0 +1,21 @@
+PASS body_decodes_contiguously  2862 instructions to 1D4C1C: 2861 up to the final ret + one alignment nop
+PASS census_denominator_481  RIP-relative operands of the four mnemonics: 481 {'movss': 272, 'mulss': 5, 'subss': 55, 'addss': 149}
+PASS census_splits_by_section  .data past raw data (.bss settings cells) 249; file-backed .data 6; .rdata 226; other 0
+PASS rdata_constant_set_is_the_27_values  27 distinct .rdata values over 226 references: 0.01 x88, -0.01 x28, 0.02 x19, 0.1 x18, 0.001 x13, 0.05 x12, -0.05 x8, 1 x8, -1 x3, -0.03 x3, -0.02 x3, 0.002 x3, 0.03 x3, -0.005 x2, 0.005 x2, 0.005556 x2, -0.5 x1, -0.1 x1, -0.001 x1, 0.0722 x1, 0.2126 x1, 0.5 x1, 0.7152 x1, 0.99 x1, 1.01 x1, 10 x1, 48 x1
+PASS printed_rows_are_each_right  all ten printed (constant, refs) pairs match the .rdata census
+PASS CONTROL old_reading_printed_table_is_the_whole_set  the printed table covers 10 of 27 values and 195 of 226 references; missing: 1 x8, -0.02 x3, 0.002 x3, -0.005 x2, 0.005 x2, 0.005556 x2, -0.5 x1, -0.1 x1, -0.001 x1, 0.0722 x1, 0.2126 x1, 0.5 x1, 0.7152 x1, 0.99 x1, 1.01 x1, 10 x1, 48 x1
+PASS CONTROL old_reading_the_cut_is_a_reference_threshold  -0.02 x3, 0.002 x3 and 1.0 x8 are omitted while -1.0/-0.03/0.03 x3 are printed: the cut is not a count threshold
+PASS data_operands_are_two_setting_cells  file-backed .data operands: 1DFE194=0.5 x3, 1DFE1AC=1 x3
+PASS one_point_zero_x11_is_8_rdata_plus_3_data  the contract's 1.0 x11 = 8 .rdata + 3 .data (01DFE1AC)
+PASS zero_point_five_x4_is_1_rdata_plus_3_data  falsification pass 1's 0.5 x4 = 1 .rdata (01CEBB70) + 3 .data (01DFE194)
+PASS step_0_005556_is_rdata_009002B8_in_arm_104  f32 0.005555559881031513 (1/180 = 0.005555555555555556); subss 001D2B59, addss 001D2B6E; table[104] = 1D2B4D
+PASS no_0_52_or_1_1_operand_immediate_or_byte_pattern_in_body  rip operands of ANY mnemonic with value 0.52: 0, 1.1: 0; imm32 hits 0; raw f32 patterns in body: []
+PASS unicorn_pinned  2.1.4
+PASS arms_from_the_table  table[111] = 1D2881, table[169] = 1D29CC
+PASS image_start_reproduces_the_replay_values  from the image's own cell values (01DFE194 = 0.5, 01DFE1AC = 1), bl=0 then bl=1 on one cell: id 111 [0.52, 0.5], id 169 [1.1, 1.0]
+PASS zero_start_gives_the_steps  with the cell planted 0: id 111 writes [0.02] (step 0.02, .rdata 009002BC), id 169 writes [0.1] (step 0.1, .rdata 008C5F6C)
+PASS CONTROL old_reading_0_52_and_1_1_are_step_constants  0.52 in the .rdata set: False; 1.1 in the .rdata set: False
+PASS printed_runtime_counts_are_the_replays_signed_tally  the paragraph's nine counts equal the replay's per-signed-value tally
+PASS arms_per_step_deduplicated  0.01 (55), 0.02 (8), 0.1 (7), 0.001 (6), 0.05 (5), 0.03 (3), 0.005 (2), 1 (2), 0.005556 (1) = 89 arms; arms seen writing both signs: 001D1867 001D1ED4 001D1F0D 001D2A38 001D2B4D 001D2B83
+PASS CONTROL old_reading_printed_counts_are_arm_counts  differs at: 0.01 printed 56, arms 55, 0.02 printed 7, arms 8, 1 printed 4, arms 2, 0.005 printed 4, arms 2, 0.005556 printed 2, arms 1
+FAILS 0

@@ -1,0 +1,19 @@
+ok   declared regression with its invocation: [('Database/Tools/analysis-kit/gfz-scripts/check_questions.py', ('--db', 'C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA'))]
+ok   bare name resolves in its record: [('Database/FFXII TZA/_index/candidates/rec-9/sq1_dword0.py', ())]
+ok   a script a consumer table merely mentions is not a declared regression
+ok   exit 0 + FAILS 0 -> PASS (got PASS)
+ok   exit 1 + any text -> FAIL (got FAIL)
+ok   exit 0 + FAILS 1 -> FAIL (got FAIL)
+ok   exit 0 + FAILS 5 -> FAIL (got FAIL)
+ok   exit 0 + malformed summary (FAILS ?) -> fail closed (got UNINTERPRETABLE)
+ok   exit 0 + malformed summary (FAILS -1) -> fail closed (got UNINTERPRETABLE)
+ok   inline summaries reading 0 -> PASS (got PASS)
+ok   any summary above 0 fails, not only the last (got FAIL)
+ok   exit 0 + self-test: 2 failure(s) -> FAIL (got FAIL)
+ok   prose mentioning FAILS is not a summary (got PASS)
+ok   no summary -> the exit-code contract (got PASS)
+ok   a regression that holds passes
+ok   a reverted correction fails its regression
+ok   end to end: a script printing FAILS 1 and exiting 0 is a FAIL
+ok   a declared but absent regression is MISSING
+self-test: 0 failure(s)

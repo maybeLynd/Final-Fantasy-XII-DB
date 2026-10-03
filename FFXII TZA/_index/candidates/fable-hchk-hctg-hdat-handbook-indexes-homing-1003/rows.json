@@ -1,0 +1,42 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/hchk-hctg-hdat-handbook-indexes.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01Jt7JVDWnpXmUBxAYuwnHXL",
+ "report": [
+  "fable-hchk-hctg-hdat-handbook-indexes.json"
+ ],
+ "rows": [
+  {
+   "fn": "005792F0",
+   "text": "sets bit 0 of dword `+8` of the 9 objects `[[rdx+0x10] + 8*w]` (w the words at `00D238A0`) to whether byte `rcx+0xc5` is non-zero; when that byte is 0 calls `002F9860(0x868, plus 1 when byte rcx+0xc4 is non-zero)`, passes the result as the fourth argument of the call at `005792F0+0x10B` (`r8`, 0, 0, result, 0) and returns 1; otherwise takes k = `r9d`, or word `[[rcx+0xc8]+0xe8]` - `r9d` - 1 when byte `+0xc4` is not 1; returns 0 when byte `+0xc0` AND 3 is non-zero and k equals byte `+0xc1` of qword `[[02CA9748]+0x128]` (-1 when that qword is null), else calls `00577C30(byte +0xc4, rdx, k, 00D237C0, qword +0xd0)` and returns 1",
+   "anchors": [
+    [
+     "00579346",
+     "or"
+    ],
+    [
+     "00579377",
+     "lea"
+    ],
+    [
+     "005793A4",
+     "cmp"
+    ],
+    [
+     "005793C9",
+     "call"
+    ],
+    [
+     "005793FB",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing",
+ "family": ""
+}

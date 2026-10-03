@@ -1,0 +1,120 @@
+{
+ "page": "16-UI/Dynamic-Geometry-Instances/dyngeo-instance-family.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01RTHsxVMB4gEbgZ4DBoNz7W",
+ "report": "home-dyngeo-instance-family.json",
+ "rows": [
+  {
+   "fn": "00623EB0",
+   "entered_from": "`0062A0A0` + 0x45D",
+   "text": "returns 0 when `edx` is not below (unsigned) dword `rcx+0x18` with bit 31 cleared; otherwise returns qword `+0` of the 0x10-stride entry `edx`, on the base qword `rcx+0x20` when that count is above 1 and on `rcx+0x20` itself when it is 1",
+   "anchors": [
+    [
+     "00623EB3",
+     "btr"
+    ],
+    [
+     "00623EBC",
+     "jae"
+    ],
+    [
+     "00623EC8",
+     "jbe"
+    ],
+    [
+     "00623ED4",
+     "mov"
+    ],
+    [
+     "00623EEB",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00624040",
+   "entered_from": "`0062A0A0` + 0x276",
+   "text": "returns 0 when `edx` is not below (unsigned) dword `rcx+0x30` with bit 31 cleared; otherwise returns qword `+8` of the 0x40-stride entry `edx`, on the base qword `rcx+0x38` when that count is above 1 and on `rcx+0x38` itself when it is 1",
+   "anchors": [
+    [
+     "00624043",
+     "btr"
+    ],
+    [
+     "0062404C",
+     "jae"
+    ],
+    [
+     "00624058",
+     "jbe"
+    ],
+    [
+     "00624065",
+     "mov"
+    ],
+    [
+     "0062407E",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00624690",
+   "entered_from": "`0062A0A0` + 0x363",
+   "text": "returns 0 when `edx` is not below (unsigned) dword `rcx+0x20` with bit 31 cleared or when bit 0 of byte `rcx+0x74` is clear; otherwise returns qword `+8` of the 0x48-stride entry `edx`, on the base qword `rcx+0x28` when that count is above 1 and on `rcx+0x28` itself when it is 1",
+   "anchors": [
+    [
+     "0062469C",
+     "jae"
+    ],
+    [
+     "0062469E",
+     "test"
+    ],
+    [
+     "006246AE",
+     "jbe"
+    ],
+    [
+     "006246B8",
+     "mov"
+    ],
+    [
+     "006246CE",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006246E0",
+   "entered_from": "`0062A0A0` + 0x56D",
+   "text": "returns 0 when `edx` is not below (unsigned) dword `rcx+0x18` with bit 31 cleared or when bit 0 of byte `rcx+0x6C` is clear; otherwise returns qword `+8` of the 0x48-stride entry `edx`, on the base qword `rcx+0x20` when that count is above 1 and on `rcx+0x20` itself when it is 1",
+   "anchors": [
+    [
+     "006246EC",
+     "jae"
+    ],
+    [
+     "006246EE",
+     "test"
+    ],
+    [
+     "006246FE",
+     "jbe"
+    ],
+    [
+     "00624708",
+     "mov"
+    ],
+    [
+     "0062471E",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

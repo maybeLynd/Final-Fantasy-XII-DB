@@ -1,0 +1,94 @@
+{
+ "page": "16-UI/Dynamic-Geometry-Instances/dyngeo-instance-family.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_011Dcenz5EPZBdrLRrFP8ia6",
+ "report": [
+  "fable-dyngeo-instance-family.json"
+ ],
+ "rows": [
+  {
+   "fn": "001B6110",
+   "text": "returns at once when `rcx` is null; otherwise calls `001B6110+0x24` with (`rcx`, a local `L`), then `n` = the call at `001B6110+0x38` with the result of the call at `001B6110+0x2d` and the qword at the first call's returned pointer; when qword `L+0x10` minus qword `L` is above 1 (signed) and qword `L` is non-null it calls slot `+0x18` of the vtable of the local object at `L+0x18` with (that object, qword `L`, the low-dword difference); when `n` is non-null it walks the circular list headed at `n+0x38` (next = qword `+0`) for the first node whose chain from qword `+0x50` through qword `+0x78` links reaches `02CBB900` and whose dword `+0x74` is non-zero (unsigned); for that node, with `p` = qword `+0x50`, `a` = qword `+0x60` and `q` = qword `+0x10`, while `a` equals `q` it adds dword `p+0x38` to `a` and sets `q` = qword `[q]`, then calls `00213540(rcx, a + dword p+0xf8)` with the incoming `rcx`; no call is made when `n` is null or no node matches",
+   "anchors": [
+    [
+     "001B6134",
+     "call"
+    ],
+    [
+     "001B6178",
+     "call"
+    ],
+    [
+     "001B61B0",
+     "cmp"
+    ],
+    [
+     "001B6200",
+     "add"
+    ],
+    [
+     "001B6212",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "001B6230",
+   "text": "returns at once when `rcx` is null; otherwise calls `001B6230+0x24` with (`rcx`, a local `L`), then `n` = the call at `001B6230+0x38` with the result of the call at `001B6230+0x2d` and the qword at the first call's returned pointer; when qword `L+0x10` minus qword `L` is above 1 (signed) and qword `L` is non-null it calls slot `+0x18` of the vtable of the local object at `L+0x18` with (that object, qword `L`, the low-dword difference); when `n` is non-null it walks the circular list headed at `n+0x38` (next = qword `+0`) for the first node whose chain from qword `+0x50` through qword `+0x78` links reaches `02CBB900` and whose dword `+0x74` is non-zero (unsigned); for that node, with `p` = qword `+0x50`, `a` = qword `+0x60` and `q` = qword `+0x10`, while `a` equals `q` it adds dword `p+0x38` to `a` and sets `q` = qword `[q]`, then calls `00213560(rcx, a + dword p+0xf8)` with the incoming `rcx`; no call is made when `n` is null or no node matches",
+   "anchors": [
+    [
+     "001B6254",
+     "call"
+    ],
+    [
+     "001B6298",
+     "call"
+    ],
+    [
+     "001B62D0",
+     "cmp"
+    ],
+    [
+     "001B6320",
+     "add"
+    ],
+    [
+     "001B6332",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006C8BF0",
+   "text": "calls `006CB2A0` with the incoming registers unchanged, then the function at `006C8BF0+0x40` with (`rcx+0x880`, `edx`, the fifth (stack) argument, the sixth (stack) argument as a dword) and the incoming `r8` and `r9d` as its fifth and sixth (stack) arguments; returns 0",
+   "anchors": [
+    [
+     "006C8C0F",
+     "call"
+    ],
+    [
+     "006C8C19",
+     "lea"
+    ],
+    [
+     "006C8C2B",
+     "mov"
+    ],
+    [
+     "006C8C30",
+     "call"
+    ],
+    [
+     "006C8C3A",
+     "xor"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing",
+ "family": ""
+}

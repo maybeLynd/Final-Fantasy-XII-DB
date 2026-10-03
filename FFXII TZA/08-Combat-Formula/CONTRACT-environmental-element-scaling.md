@@ -185,9 +185,39 @@ assert the same. Drive the MWeather preset across 0, 3 and 4 and assert the clas
 
 ## 13. Runtime validation
 
-**None.** No experiment executes these four bodies. S-22's runtime cell is not addressed by this
+~~**None.** No experiment executes these four bodies. S-22's runtime cell is not addressed by this
 contract. *Stated rather than left blank so a CONTRACT READY header is not read as evidence of
-execution.*
+execution.*~~ **Isolated native replay, not a running game.** Evidence class NATIVE-REPLAY (unicorn), `live_game: false`:
+the shipped bytes run at their own addresses, with no application stub and planted data only. FABLE re-ran
+each package on 2026-10-03 under unicorn 2.1.4, and every result file reproduced byte-identically.
+
+- [`s22-opus-replay-steps-and-element-scaling`](../_index/candidates/s22-opus-replay-steps-and-element-scaling/README.md)
+  (2026-09-25, md5 `99336e05…`) calls the stage `0038B220` directly, with the three getters live behind
+  their thunks.
+  - `WE-4`/`WE-5`, asserted: bit 16 on the target's mutable byte `+0x6A`, on its derived byte `+0x7A`, or on
+    the caster's merged bitmap `+0x1C` skips the whole stage. With none set, the same action scales.
+  - `WE-6`, asserted as a write-set bound: the stage writes only `02AEE054` and the cached unit pointer
+    `02EBF188`.
+  - `WE-2` and the rule table: all 288 element × environment × MWeather × terrain combinations executed. The
+    multipliers are recorded, not asserted. The record includes the shared multiply named by the
+    2026-10-02 correction: where an environment rule and a terrain rule for one element both hold, the
+    recorded factor is 1.2, not 1.44. Those cells are Lightning e0/t0, Ice e2/t2, Earth e1/t1, and Water e3/t0
+    outside MWeather 2.
+    [`check_s22_envscaling.py`](../_index/candidates/fable-l2exp-s22-envscaling-1003/check_s22_envscaling.py)
+    asserts those cells from the record and reads the one `mulss` (`0038B420`) at the bytes.
+- [`s22-opus-replay-recipe-resolver`](../_index/candidates/s22-opus-replay-recipe-resolver/README.md)
+  `we1.py` (2026-09-26, 4/4, md5 `5680857b…`) covers `WE-1`'s order and read site.
+  - Through the real recipe resolver `BattleFormula_ResolveTargetResult` (its contract is
+    [`CONTRACT-weapon-recipes.md`](CONTRACT-weapon-recipes.md)), recipes 7, 63, 83, 105 and 106 run step 94 (`0038B220`) immediately
+    before step 95 (`0038B6A0`), and both read the action row's `+0x13`.
+  - The planted row carries only `+0x08`, so that byte is 0 and no element rule fires on this path. The
+    composition of the two stages is not executed.
+- [`s22-opus-replay-severe-weather-gate`](../_index/candidates/s22-opus-replay-severe-weather-gate/README.md)
+  (2026-09-26, md5 `867bbaf3…`) asserts `WE-3`'s consumer side: `00263E20` returns `[02099DAC]` verbatim
+  for 0, 1, 2 and 5.
+
+**Static only:** the banding boundaries (`WE-3`, which belong to the publisher) and whether `WE-4`'s
+asymmetry is deliberate (§14). Nothing here has been observed in a running game. *(corrected 2026-10-03, FABLE, on SWE2-AUDIT-SPEC's L2 expansion)*
 
 ## 14. Unresolved
 

@@ -475,3 +475,11 @@ the load's shared callees (49 call sites corpus-wide — `derived-call-signature
   logger consultation.
 - **Audio — CLIENT (1 edge).** 1 inbound (Audio bodies `00225BA0` call page-cited `0059F4A0`). Substantive edges include `0059F4A0` is called by `00225BA0`.
 - **Platform — SERVICE (1 edge).** 1 outbound (page-cited `0019AA20` call Platform bodies `0019A510`).
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-03, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../../_index/candidates/fable-home-how-the-bigfile-index-loads-and-is-veri-1003/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `002150B0` | 26 B | `001F4250` + 0x67 | stores `rdx` at qword `rcx+0x18`, zeroes qword `rcx+0x20` and qwords `+0x10` and `+8` of the object at qword `rcx+0x28`, and stores byte 1 at `[rcx]` | Interior anchor `002150B4`; Interior anchor `002150BA`; Interior anchor `002150BE`; Interior anchor `002150C2`; Interior anchor `002150C6` |

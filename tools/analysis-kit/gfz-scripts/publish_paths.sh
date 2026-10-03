@@ -748,6 +748,24 @@ if ! ( cd "$root/Database/Tools/analysis-kit/gfz-scripts" && \
     exit 7
 fi
 
+# ---------------------------------------------------------------------------
+# PUBLISHED RECORD ROWS CANNOT VANISH, added 2026-10-03 (OPUS) at the shared publication boundary.
+#
+# 890844135, 33eb7192f and e63502b10 deleted 55 published interior-citation rows: a later record re-rendered an
+# earlier record's page section, and nothing compared a published record with its page. The first fix gated only
+# OPUS's own publish wrapper; every lane publishes through THIS script, so the invariant lives here. For every record
+# (any candidates/*/rows.json of the record shape - interior, homing or member; OPUS or FABLE or any lane) whose
+# rows.json or page this commit touches, the PRIVATE INDEX must still carry each row on its page, and its rows.json
+# must not have lost rows against the base - unless the loss is declared ("moved" rows, or the record "retired").
+# Refuses with exit 9; the regression is check_record_rows_present.py --selftest (six publication scenarios).
+# ---------------------------------------------------------------------------
+if ! ( cd "$root/Database/Tools/analysis-kit/gfz-scripts" && \
+       python -B check_record_rows_present.py --index "$tmp" --base "$base" --paths "$@" ) >&2; then
+    echo "publish_paths.sh: this commit would remove published record rows (see ROW-LOSS above) - nothing committed." >&2
+    echo "  Declare a deliberate move (rows.json \"moved\") or retirement (\"retired\"), or restore the rows." >&2
+    exit 9
+fi
+
 echo "--- staged in the private index (this is the whole commit) ---"
 GIT_INDEX_FILE="$tmp" git -C "$root" diff --cached --numstat "$base"
 
@@ -808,6 +826,13 @@ if [ "$attempt" -ge 3 ]; then
 fi
 done
 
+# Durable receipt (SWE2-FRONTIER 2026-10-03, ASTRA-REQ-FRONTIER-UQ147-INTERRUPTED-PUBLISH-1003): a controller that
+# captured this script's stdout in memory and was killed after the commit left no committed-sha record. When the
+# caller sets PUBLISH_RECEIPT, each outcome line is appended to that file as it happens, before the next step, so an
+# interrupted run still leaves the publisher's own record. publish_receipt.py classifies it: committed + no exit line
+# = COMMITTED-INCOMPLETE (never a success).
+receipt() { [ -n "${PUBLISH_RECEIPT:-}" ] && printf '%s\n' "$1" >> "$PUBLISH_RECEIPT" || true; }
+receipt "committed sha: $commit"
 echo "--- committed ---"
 # Print the object this run wrote, not HEAD: a peer can commit between the
 # update-ref above and this line, and `git log -1` would then name THEIR commit.
@@ -858,10 +883,12 @@ publish_paths.sh: REFRESH-DEFERRED -- the commit DID land as $commit.
   Delivery bookkeeping: this run is NOT a complete delivery. Verify the exact
   commit sha and blobs, then re-run only the refresh -- never the commit.
 EOF
+        receipt "refresh: deferred"; receipt "exit: 4"
         exit 4
     fi
     sleep 1
 done
+receipt "refresh: ok"
 
 # The repository index still holds whatever it held before, including a peer's
 # staging. Show that it survived, because the point of the script is that it does.
@@ -877,3 +904,4 @@ progdir="$root/Database/FFXII TZA/_index/progress"
 if [ -d "$progdir" ]; then
     touch "$progdir/.dirty" 2>/dev/null || true
 fi
+receipt "exit: 0"

@@ -1,0 +1,45 @@
+{
+ "page": "00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-E-ids-140-171.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "arm-catalogue-slice-e-ids-140-171-r5.json",
+ "rows": [
+  {
+   "fn": "001DC9D0",
+   "text": "with `o` = `rcx`, `e` = qword `[o+0x78]` + dword `[o+0x48]`*0x140 and two zeroed 0x100-byte stack buffers `A` and `B` (`memset` `00861EC0`): formats '(%ws)' with qword `[e+0x138]` + (dword `[o+0x60]` - 1)*0x60 into `B` (`001A1E40`; the decrement is 32-bit and zero-extended, so a 0 dword wraps to 2^32 - 1) and deletes every 0x5C and 0x2E byte of `B` in place; builds a stack object `V` (`0020D2B0`) and, when the byte result (al) of `0020D9F0(&V, dword [e+0x104], A)` is 0, formats '%ws' with `e` into `A`; then formats '%s%s' with `A` and `B` into `A`, copies `A` with its terminator to `rdx`, and when `V`'s qword `+0x10` is non-null calls `001CD050(&V+0x10, that, (qword [V+0x20] - that) / 12)` (signed); stack cookie `01F44830`, checked by `00808C40`",
+   "anchors": [
+    [
+     "001DCA5C",
+     "call"
+    ],
+    [
+     "001DCA83",
+     "cmp"
+    ],
+    [
+     "001DCAC8",
+     "call"
+    ],
+    [
+     "001DCB0A",
+     "call"
+    ],
+    [
+     "001DCB62",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "001DC9D0",
+   "why": "byte re-read by a non-drafting agent: the offset (dword `[o+0x60]` - 1)*0x60 is computed with a 32-bit decrement that is zero-extended (lea from eax after `dec eax`), so a 0 dword gives (2^32 - 1)*0x60, not -0x60; the sentence's plain subtraction hides this; `0020D9F0` returns a byte flag (`test al, al` at 001DCACD); 'returns 0' should say its byte result (al) is 0"
+  }
+ ],
+ "mode": "ee",
+ "family": ""
+}

@@ -136,7 +136,7 @@ mode word is load-bearing for.
 | any but 5 | 4 | bit 2 set | script VM — `seteventpartymode` (`0x050F`, 1 arg) → `00351B40` → `00307240` |
 | any but 5, 4 | 3 | the active field record's bit 15 | **authored area data** — no setter, no verb |
 | any but 5, 4, 3 | 2 | bit 1 set | **the chocobo** — `ridechocobo` / `getoffchocobo` / `setchocobomode`, the mount block of the presentation sequence (`00306A13`), the ride's end (`00304680`) |
-| any but 5, 4, 3, 2 | 1 | bit 0 set | **the summon** — `summonread` / `summontopartyread` / `btlAtelSetSummonMode`, the summon presentation (`00306946` sets, `00306A7E` clears), `00313840` clears |
+| any but 5, 4, 3, 2 | 1 | bit 0 set | **the summon** — `summonread` / `summontopartyread` / `btlAtelSetSummonMode`, the summon presentation (`00306946` sets, `00306A7E` clears *(qualified 2026-10-03, OPUS, on ASTRA's SPEC-accepted [`uq147-dismiss-stage`](../../_experiments/evidence/uq147-dismiss-stage/README.md), [review](../../_index/candidates/auditspec-review-astra-uq147-dismiss-stage-1003/REVIEW.md), ACCEPT: the clear is on the kind-2 (Dismiss) arm `00306A3D` of `00306760`; only when bit `0x1` is set does `00306A81` store the cleared dword `+0x5B04`, before that routine's own direct write of state 5 to `022C2160` at `00306ADF`; with the bit already clear the store is skipped and the same suffix runs from `00306A95`; no state-6/7 guard surrounds it. Local order under normal-returning helpers (`35DAE0`, `306D90`, `35C620`, `236850`/`236820`, `332130` stay opaque), not visible timing, a first state 5 or a lasting clear)*), `00313840` clears |
 | any | 0 | none of the above | — |
 
 > **The two labels this table does not use.** The page's hierarchy diagram calls bit 1

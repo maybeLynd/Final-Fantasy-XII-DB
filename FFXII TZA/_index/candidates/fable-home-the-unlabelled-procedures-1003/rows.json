@@ -1,0 +1,108 @@
+{
+ "page": "16-UI/Unlabelled-Panes/the-unlabelled-procedures.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_015VFSZr38WAiiWF7vDja8Ar",
+ "report": "home-the-unlabelled-procedures.json",
+ "rows": [
+  {
+   "fn": "00181BD0",
+   "entered_from": "`005701B0` + 0x1A0",
+   "text": "reads qword `+0x278` of the object returned by the call at `00181BD0` + 0x6 and returns when it is null; otherwise returns when the call at + 0x17 returns null, and else tail-jumps at + 0x31 with `rcx` = the result of the call at + 0x21 and `rdx` = that `+0x278` qword",
+   "anchors": [
+    [
+     "00181BDB",
+     "mov"
+    ],
+    [
+     "00181BE5",
+     "je"
+    ],
+    [
+     "00181BEF",
+     "je"
+    ],
+    [
+     "00181BF9",
+     "mov"
+    ],
+    [
+     "00181C01",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00181D50",
+   "entered_from": "`005701B0` + 0xAF",
+   "text": "makes the call at `00181D50` + 0x11 with `xmm0` and `xmm1` both 1.0 (`01CEBBA8`) and stores its result at qword `+0x270` of the object returned by the call at + 0x19",
+   "anchors": [
+    [
+     "00181D56",
+     "movss"
+    ],
+    [
+     "00181D61",
+     "call"
+    ],
+    [
+     "00181D69",
+     "call"
+    ],
+    [
+     "00181D6E",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00181D80",
+   "entered_from": "`005701B0` + 0xB4",
+   "text": "makes the call at `00181D80` + 0x11 with `xmm0` and `xmm1` both 1.0 (`01CEBBA8`) and stores its result at qword `+0x278` of the object returned by the call at + 0x19",
+   "anchors": [
+    [
+     "00181D86",
+     "movss"
+    ],
+    [
+     "00181D91",
+     "call"
+    ],
+    [
+     "00181D99",
+     "call"
+    ],
+    [
+     "00181D9E",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0056FEA0",
+   "entered_from": "`005701B0` + 0x189",
+   "text": "makes the call at `0056FEA0` + 0x10 with qword `rcx+0xC0`, then the calls at + 0x21 and + 0x32 with qwords `rcx+0x140` and `rcx+0x150`, each only when that qword is non-null, and finally tail-jumps at + 0x3F (the same callee as + 0x21 and + 0x32) with `rcx` itself",
+   "anchors": [
+    [
+     "0056FEB0",
+     "call"
+    ],
+    [
+     "0056FEBF",
+     "je"
+    ],
+    [
+     "0056FED0",
+     "je"
+    ],
+    [
+     "0056FEDF",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

@@ -96,6 +96,36 @@ def retired():
     return out
 
 
+# 2026-10-03 (OPUS, the user's directive item 1): exit code 0 alone is not a PASS. Two declared regressions
+# (b20_checks.py "FAILS 1", awn_b_checks.py "FAILS 5") exited 0 and were counted PASS. The output's own explicit
+# failure summary now has a vote, and it can only make a result worse:
+#   SUMMARY    a line ending in `FAILS N` (optionally `FAILS: N` / `FAILS=N`), or `self-test: N failure(s)`;
+#   MALFORMED  a line ending in the FAILS token followed by something that is not a non-negative integer
+#              (`FAILS ?`, `FAILS n/a`, `FAILS -1`) - fail closed as UNINTERPRETABLE;
+#   prose      ("... FAILS the check") is neither: the token must be the line's last-but-one word.
+SUMMARY_FAILS = re.compile(r"\bFAILS[ \t]*[:=]?[ \t]*(\S+)[ \t]*$")
+SUMMARY_SELFTEST = re.compile(r"^\s*self-?test:\s*(\S+)\s+failures?(?:\(s\))?\s*$", re.I)
+
+
+def classify(returncode, output):
+    """(state, why). Nonzero exit -> FAIL. Exit 0 -> PASS only when no explicit failure summary in the output reports a
+    failure: a summary with N > 0 -> FAIL; a malformed summary -> UNINTERPRETABLE. No summary -> the exit-code contract."""
+    counts, malformed = [], []
+    for line in (output or "").splitlines():
+        for rx in (SUMMARY_FAILS, SUMMARY_SELFTEST):
+            m = rx.search(line)
+            if m:
+                v = m.group(1)
+                (counts.append(int(v)) if v.isdigit() else malformed.append(line.strip()[:120]))
+    if returncode != 0:
+        return "FAIL", "exit %s" % returncode
+    if malformed:
+        return "UNINTERPRETABLE", "exit 0 but a malformed failure summary: %r" % malformed[0]
+    if any(c > 0 for c in counts):
+        return "FAIL", "exit 0 but its own summary reports failures (FAILS %d): exit status contradicts output" % max(counts)
+    return "PASS", ""
+
+
 def run_one(key, timeout=300):
     rel, args = key if isinstance(key, tuple) else (key, ())
     p = os.path.join(ROOT, *rel.split("/"))
@@ -105,8 +135,9 @@ def run_one(key, timeout=300):
     try:
         r = subprocess.run([sys.executable, "-B", p] + list(args), cwd=os.path.dirname(p), capture_output=True, text=True,
                            timeout=timeout, encoding="utf-8", errors="replace")
-        tail = ((r.stdout + r.stderr).strip().splitlines() or [""])[-1][:200]
-        return rel, "PASS" if r.returncode == 0 else "FAIL", time.time() - t0, tail
+        state, why = classify(r.returncode, r.stdout + "\n" + r.stderr)
+        tail = why or ((r.stdout + r.stderr).strip().splitlines() or [""])[-1][:200]
+        return rel, state, time.time() - t0, tail
     except subprocess.TimeoutExpired:
         return rel, "TIMEOUT", time.time() - t0, "over %ds" % timeout
 
@@ -132,14 +163,15 @@ def main(argv):
             print("%-8s %s  (%s)  <- %s" % (r["state"], r["regression"], r["tail"], ", ".join(r["records"][:3])))
     for p in problems:
         print("RETIRED-BAD", p)
-    n = {s: sum(1 for r in res if r["state"] == s) for s in ("PASS", "FAIL", "MISSING", "TIMEOUT")}
-    print("CORRECTION REGRESSIONS: %d declared, %d retired, %d run - PASS %d, FAIL %d, MISSING %d, TIMEOUT %d%s" % (
-        len(regs), len(ret), len(res), n["PASS"], n["FAIL"], n["MISSING"], n["TIMEOUT"],
+    n = {s: sum(1 for r in res if r["state"] == s) for s in ("PASS", "FAIL", "UNINTERPRETABLE", "MISSING", "TIMEOUT")}
+    print("CORRECTION REGRESSIONS: %d declared, %d retired, %d run - PASS %d, FAIL %d, UNINTERPRETABLE %d, MISSING %d, "
+          "TIMEOUT %d%s" % (
+        len(regs), len(ret), len(res), n["PASS"], n["FAIL"], n["UNINTERPRETABLE"], n["MISSING"], n["TIMEOUT"],
         (", retired-list problems %d" % len(problems)) if problems else ""))
     if "--json" in argv:
         json.dump({"results": res, "retired": ret, "problems": problems},
                   io.open(argv[argv.index("--json") + 1], "w", encoding="utf-8"), indent=1)
-    bad = n["FAIL"] + n["MISSING"] + n["TIMEOUT"] + len(problems)
+    bad = n["FAIL"] + n["UNINTERPRETABLE"] + n["MISSING"] + n["TIMEOUT"] + len(problems)
     return 1 if bad else 0
 
 
@@ -158,6 +190,20 @@ def _self_test():
     ok(m == [("Database/FFXII TZA/_index/candidates/rec-9/sq1_dword0.py", ())], "bare name resolves in its record: %s" % m)
     m = _declared("| `_index/candidates/bq23-tier6/bq23_tier6.py` (FABLE receipt) | T4 | receipt unchanged |", "r")
     ok(m == [], "a script a consumer table merely mentions is not a declared regression")
+    # classification (directive item 1): the exit code and the output's own summary must agree
+    for rc, out, want, what in [
+            (0, "checks 3\nFAILS 0\n", "PASS", "exit 0 + FAILS 0 -> PASS"),
+            (1, "anything at all\nFAILS 0\n", "FAIL", "exit 1 + any text -> FAIL"),
+            (0, "checks 9\nFAILS 1\n", "FAIL", "exit 0 + FAILS 1 -> FAIL"),
+            (0, "FAILS 5\n", "FAIL", "exit 0 + FAILS 5 -> FAIL"),
+            (0, "FAILS ?\n", "UNINTERPRETABLE", "exit 0 + malformed summary (FAILS ?) -> fail closed"),
+            (0, "FAILS -1\n", "UNINTERPRETABLE", "exit 0 + malformed summary (FAILS -1) -> fail closed"),
+            (0, "rows 4  FAILS 0\nPASSES 3 FAILS 0\n", "PASS", "inline summaries reading 0 -> PASS"),
+            (0, "a  FAILS 0\nb  FAILS 2\n", "FAIL", "any summary above 0 fails, not only the last"),
+            (0, "self-test: 2 failure(s)\n", "FAIL", "exit 0 + self-test: 2 failure(s) -> FAIL"),
+            (0, "the reverted text FAILS the check, as designed\n", "PASS", "prose mentioning FAILS is not a summary"),
+            (0, "", "PASS", "no summary -> the exit-code contract")]:
+        ok(classify(rc, out)[0] == want, what + " (got %s)" % classify(rc, out)[0])
     os.makedirs(os.path.join(ROOT, "Database", "Tools", "work"), exist_ok=True)
     d = tempfile.mkdtemp(dir=os.path.join(ROOT, "Database", "Tools", "work"))
     try:
@@ -165,14 +211,18 @@ def _self_test():
         bad = os.path.join(d, "bad.py")
         io.open(good, "w").write("import sys; sys.exit(0)\n")
         io.open(bad, "w").write("print('FAIL the corrected sentence was reverted'); import sys; sys.exit(1)\n")
+        lie = os.path.join(d, "lie.py")
+        io.open(lie, "w").write("print('FAILS 1')\n")
         rg = os.path.relpath(good, ROOT).replace(os.sep, "/")
         rb = os.path.relpath(bad, ROOT).replace(os.sep, "/")
         if not rg.startswith(".."):
             ok(run_one(rg)[1] == "PASS", "a regression that holds passes")
             ok(run_one(rb)[1] == "FAIL", "a reverted correction fails its regression")
+            rl = os.path.relpath(lie, ROOT).replace(os.sep, "/")
+            ok(run_one(rl)[1] == "FAIL", "end to end: a script printing FAILS 1 and exiting 0 is a FAIL")
         ok(run_one("Database/Tools/nope/missing_check.py")[1] == "MISSING", "a declared but absent regression is MISSING")
     finally:
-        for f in ("good.py", "bad.py"):
+        for f in ("good.py", "bad.py", "lie.py"):
             try:
                 os.remove(os.path.join(d, f))
             except OSError:

@@ -1,0 +1,66 @@
+{
+ "page": "03-World-Area-Field/Weather/mweather-resource-format.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "mweather-resource-format-r5.json",
+ "rows": [
+  {
+   "fn": "0046D160",
+   "text": "with `m` = `rcx` and `u` = `xmm1` / 6.283185: reads `s` = float `[01F004E0 + 4*(trunc(u*32768) AND 0x7FFF)]` and `k` = float `[01F004E0 + 4*((0x2000 - trunc(u*-32768)) AND 0x7FFF)]` (a table whose entry 1 is 0.00019 and entry 0x2000 is 1.0), copies the 64-byte identity matrix at `01F204E0` into `m` (`00202C70`), then stores `k` to floats `+0x14` and `+0x28`, `s` to `+0x18` and -`s` (sign flipped by XOR with `01CEBDA0`) to `+0x24`; returns nothing",
+   "anchors": [
+    [
+     "0046D166",
+     "divss"
+    ],
+    [
+     "0046D1A3",
+     "movss"
+    ],
+    [
+     "0046D1B4",
+     "movss"
+    ],
+    [
+     "0046D1C3",
+     "call"
+    ],
+    [
+     "0046D1D9",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "0046D200",
+   "text": "with `m` = `rcx` and `u` = `xmm1` / 6.283185: reads `s` = float `[01F004E0 + 4*(trunc(u*32768) AND 0x7FFF)]` and `k` = float `[01F004E0 + 4*((0x2000 - trunc(u*-32768)) AND 0x7FFF)]`, copies the 64-byte identity matrix at `01F204E0` into `m` (`00202C70`), then stores `k` to floats `+0` and `+0x28`, -`s` (XOR with `01CEBDA0`) to `+8` and `s` to `+0x20`; returns nothing",
+   "anchors": [
+    [
+     "0046D206",
+     "divss"
+    ],
+    [
+     "0046D243",
+     "movss"
+    ],
+    [
+     "0046D254",
+     "movss"
+    ],
+    [
+     "0046D263",
+     "call"
+    ],
+    [
+     "0046D27B",
+     "movss"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

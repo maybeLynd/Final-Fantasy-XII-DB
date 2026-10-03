@@ -1,0 +1,3 @@
+VERIFY 66 functions, 218 anchors, 66 references, page 24-Compiler-And-CRT-Runtime/Binary-Hardening-And-Hooking/image-hardening-cfg-aslr-dep-and-stack-cookies.md (LF)
+DRY (verified; --apply appends 66 rows)
+FAILS 0

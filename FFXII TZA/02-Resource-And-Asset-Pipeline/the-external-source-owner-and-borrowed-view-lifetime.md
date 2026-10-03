@@ -287,3 +287,11 @@ Interior anchor `004423DC` (function `00442380`).
 `00532520` (174 B) is the extended apply `00442460` dispatches for its deepest subtype: the shared `00442380` sweep runs first, `00430AF0`/`004304F0` extend it over `+0x2DC`..`+0x35C`, then a 32-iteration loop reads the byte row at `+0x36C`, resolves each nonzero byte through `003AA280(0, 0x54, b)` and `0020E620`, and writes the resulting dwords at `+0x39C` - the largest of the table's case bodies.
 
 Interior anchor `00532580` (function `00532520`).
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-03, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../_index/candidates/fable-home-the-external-source-owner-and-borrowed--1003/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `003AED50` | 23 B | `0041FCF0` + 0x210 | stores 1 to dword `+0` of `rcx`, 0 to qwords `+0x18` and `+0x20` and to dword `+0x28`, and `edx` to dword `+4` | Interior anchor `003AED52`; Interior anchor `003AED58`; Interior anchor `003AED60`; Interior anchor `003AED63` |

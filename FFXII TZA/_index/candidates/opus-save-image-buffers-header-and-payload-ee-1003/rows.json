@@ -1,0 +1,101 @@
+{
+ "page": "19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/save-image-buffers-header-and-payload.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter-r4",
+ "report": "save-image-buffers-header-and-payload-r4.json",
+ "rows": [
+  {
+   "fn": "007B9F80",
+   "text": "Returns at once when `rcx` is null; otherwise it zeroes bytes `+0x16` to `+0x19` of the buffer whose pointer is the qword at `[rcx]`, runs a table-driven checksum (starting at 0, each step `crc = table[(crc >> 24) ^ byte] ^ (crc << 8)` with the dword table at `01CB5380`) over that buffer's first `dword [rcx+8]` bytes and then over the first `dword [rcx+0x18]` bytes of the buffer at `[rcx+0x10]` (each loop skipped when its count is not greater than zero and running while the index is below the count, signed `jl`), and writes the 32-bit result little-endian into bytes `+0x16` to `+0x19` of the first buffer.",
+   "anchors": [
+    [
+     "007B9FA4",
+     "mov"
+    ],
+    [
+     "007B9FE6",
+     "mov"
+    ],
+    [
+     "007B9FEE",
+     "jl"
+    ],
+    [
+     "007BA020",
+     "jl"
+    ],
+    [
+     "007BA048",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007BA7E0",
+   "text": "On the stream state at `rcx` (data pointer `+0`, dword `+8`, fill `+0xC`, consumed `+0x10`, header and body counts `+0x18`/`+0x1C`) it returns 0 when bit `0x80000000` of `+8` is set; with no cached header it returns 0 if fewer than 27 bytes remain (signed), resyncs if the dword at the read position differs from `01CB5780`, returns 0 if fewer than 27 plus byte `+0x1A` bytes remain, else sums the segment-table bytes into `+0x1C` and caches that header length in `+0x18`; it returns 0 while header plus body exceed the remaining bytes, then zeroes the dword at read position `+0x16`, recomputes it with `007B9F80` and on mismatch restores it and resyncs: clears `+0x18`/`+0x1C`, finds byte 0x4F after the read position through the import at `008C2A18` (end of data when absent), sets `+0x10` there and returns minus the skipped count; on a match it fills the record at `rdx` (when non-null) with header pointer, header length, body pointer and body length, adds the page size to `+0x10`, clears `+0x14`, `+0x18` and `+0x1C` and returns the page size.",
+   "anchors": [
+    [
+     "007BA80B",
+     "xor"
+    ],
+    [
+     "007BA835",
+     "cmp"
+    ],
+    [
+     "007BA8B6",
+     "call"
+    ],
+    [
+     "007BA8D6",
+     "call"
+    ],
+    [
+     "007BA924",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "0087AF40",
+   "text": "Reads the dword at `[rdx]` as the output capacity and zeroes it, zeroes the qwords at `+0x30`, `+0x38` and `+0x40` of a stack stream record and initialises it through `0087C9F0` with the fifth argument, the version string at `01CC73A4` and 0x58, returning that call's result when it is non-zero; it then stores the input pointer `r8` and output pointer `rcx` into the record and loops calling `0087BD60` on it (flush argument 4 once the unconsumed part of `r9d` is zero, else 0), first refilling the record's output and input dword counts from the remaining capacity and `r9d` (each capped at the maximum dword, unsigned `cmova`) whenever they are zero, and repeats while the call returns 0; on the first non-zero result it stores the record's output-total dword to `[rdx]`, calls `0087C6C0` on the record and returns the `0087BD60` result, with 1 mapped to 0.",
+   "anchors": [
+    [
+     "0087AF63",
+     "mov"
+    ],
+    [
+     "0087AF91",
+     "call"
+    ],
+    [
+     "0087AFBD",
+     "cmova"
+    ],
+    [
+     "0087AFE7",
+     "call"
+    ],
+    [
+     "0087B010",
+     "cmove"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "007BA7E0",
+   "why": "byte re-read by a non-drafting agent: 'caches 27 plus byte `+0x1A` as header length (0 if not that many remain)' is wrong: when fewer than 27 + byte `+0x1A` bytes remain it RETURNS 0 (`007BA84C jl 0x7ba885`) and caches nothing; the header length is stored to `+0x18` only after the segment-table sum (`007BA877`).; Calling `+8` a 'flag dword' is a purpose claim; the bytes only test its bit `0x80000000` (`007BA7FF`)."
+  },
+  {
+   "fn": "0087AF40",
+   "why": "byte re-read by a non-drafting agent: 'returns that result' after `0087C6C0` reads as the `0087C6C0` result; the function returns the saved `0087BD60` result (`esi`, `0087B00D cmp esi, 1` / `cmove esi, r15d`) with 1 mapped to 0, ignoring `0087C6C0`'s return.; The input pointer `r8` and output pointer `rcx` are stored into the record AFTER `0087C9F0` returns (`0087AF9D`, `0087AFB0`); only the qwords `+0x30`/`+0x38`/`+0x40` are set before that call."
+  }
+ ],
+ "mode": "ee",
+ "family": ""
+}

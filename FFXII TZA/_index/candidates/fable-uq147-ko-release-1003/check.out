@@ -1,0 +1,70 @@
+image 73461d0896204b1c base 120000
+PASS  R .pdata entry begins at 00310780
+PASS  R 00310780-00310861 (225 B) decodes exactly, last insn ret
+PASS  00310780 is `test rcx, rcx`
+PASS  00310783 is `je 0x310860`
+PASS  0031078E is `cmp qword ptr [rcx + 0x698], 0`
+PASS  00310799 is `je 0x31085b`
+PASS  0031079F is `mov ecx, dword ptr [rcx + 0x710]`
+PASS  003107AF is `call 0x31b7e0`
+PASS  003107BA is `je 0x310803`
+PASS  003107BC is `mov ecx, dword ptr [rbx]`
+PASS  003107BE is `bt rcx, 0x16`
+PASS  003107C3 is `jb 0x310803`
+PASS  003107C5 is `movzx ecx, byte ptr [rbx + 0xea9]`
+PASS  003107D1 is `mov eax, dword ptr [rax + 0xea4]`
+PASS  003107D9 is `test edx, eax`
+PASS  003107DB is `je 0x310803`
+PASS  003107DD is `dec byte ptr [rdi + 0xea8]`
+PASS  003107EA is `mov dword ptr [rdi + 0xea4], edx`
+PASS  00310806 is `call 0x308270`
+PASS  0031080B is `and qword ptr [rbx], 0xffffffffefffffdf`
+PASS  00310825 is `mov byte ptr [rbx + 0x694], 0xff`
+PASS  0031084D is `cmp word ptr [rbx + 0x714], ax`
+PASS  00310854 is `jne 0x31085b`
+PASS  00310856 is `call 0x317e50`
+PASS  R +0x8B clears flag bits [5, 28] only  | [5, 28]
+PASS  R +0x5D / +0x6A / +0x76 / +0x7E unreachable without the +0x43 fall-through (bit 22 clear)
+PASS  R +0x43 jb target is the merge point +0x83 (skip when SET)
+PASS  R every path from the admitted body to +0x8B / +0xA5 / +0xCD passes +0x86
+PASS  R +0x86 reached both with and without the bookkeeping block
+PASS  R exactly four non-stack stores at +0x5D, +0x6A, +0x8B, +0xA5  | 003107DD 003107EA 0031080B 00310825
+PASS  R no store with displacement +0x714 or +0xBA0  | []
+PASS  R eight direct calls: 0031B7E0 00313B30 002FEAD0 00308270 0030C970 00319420 00319140 00317E50  | 0031B7E0 00313B30 002FEAD0 00308270 0030C970 00319420 00319140 00317E50
+PASS  R call sites +0x76 / +0x7E / +0x99 / +0xAC / +0xB9 are calls
+PASS  S .pdata entry 00308270-003082E8
+PASS  S 00308270-003082E8 (120 B) decodes exactly
+PASS  00308276 is `mov eax, dword ptr [rcx]`
+PASS  0030827B is `bt rax, 0x16`
+PASS  00308280 is `jae 0x3082e2`
+PASS  003082C6 is `call 0x30eda0`
+PASS  003082CB is `movabs rax, 0xffffbfffffbfffff`
+PASS  003082DF is `and qword ptr [rbx], rax`
+PASS  S with bit 22 clear (jae taken) neither 003082C6 nor 003082DF is reached
+PASS  T three calls between the bit-22 read at +0x3E and the restore's own read (+0x76, +0x7E, +0x86)  | 003107F6 003107FE 00310806
+PASS  T the bookkeeping path reaches the restore call
+PASS  D 00300FC0-00301133 decodes exactly
+PASS  0030100D is `call 0x310780`
+PASS  0030111E is `call 0x3138d0`
+PASS  00301123 is `call 0x23b040`
+PASS  D 00300FC0+0x4D dominates +0x15E and +0x163
+PASS  X the clauses cite 23 call-site offsets  | 23
+PASS  X every cited fn+0xNN is an instruction boundary  | []
+PASS  X E1 cites only 8-hex functions its page already cites (00300FC0,00310780,0031B7E0)  | []
+PASS  X E2 cites only 8-hex functions its page already cites (0023B040,00300FC0,003138D0)  | []
+PASS  manifest.json sha256 = ff4cd43a997cb98d...  | ff4cd43a997cb98df7007fdd1e8b2fd73ffc317fee4abcf0fa6e3f7310ac2458
+PASS  all 66 manifest members hash as listed  | []
+PASS  CONTROL c1 +0x43 jb -> jae (bit 22 SET would admit the bookkeeping): grp_release passes on the clean image, FAILS on the patched copy  | baseline fails 0, patched fails 1
+PASS  CONTROL c2 0030827B bt imm 0x16 -> 0x15 (the restore reads bit 21): grp_restore passes on the clean image, FAILS on the patched copy  | baseline fails 0, patched fails 1
+PASS  CONTROL c3 00308280 jae -> jb (restore runs with bit 22 CLEAR): grp_restore passes on the clean image, FAILS on the patched copy  | baseline fails 0, patched fails 1
+PASS  CONTROL c4 +0xCD cmp word [rbx+0x714],ax -> mov (a direct +0x714 store): grp_release passes on the clean image, FAILS on the patched copy  | baseline fails 0, patched fails 3
+PASS  CONTROL c5 +0x8B mask also clears bit 22: grp_release passes on the clean image, FAILS on the patched copy  | baseline fails 0, patched fails 2
+PASS  CONTROL c6 +0x3E bt imm 0x16 -> 0x15: grp_release passes on the clean image, FAILS on the patched copy  | baseline fails 0, patched fails 1
+PASS  CONTROL c7 +0x76 call -> 5 nops (one call fewer between the reads): grp_tworeads passes on the clean image, FAILS on the patched copy  | baseline fails 0, patched fails 1
+PASS  CONTROL c8 00300FC0+0x4D call 00310780 -> 5 nops: grp_defeat passes on the clean image, FAILS on the patched copy  | baseline fails 0, patched fails 1
+PASS  CONTROL c9 +0x6A store +0xEA4 -> +0xBA0 (a direct +0xBA0 store): grp_release passes on the clean image, FAILS on the patched copy  | baseline fails 0, patched fails 2
+PASS  CONTROL t1 E1 cites `00310780`+0x3F (not an instruction boundary): grp_text passes on the clean clauses, FAILS on the mutated text  | baseline fails 0, mutated fails 1
+PASS  CONTROL t2 E1 names the restore by address `00308270` (a new neighbour edge): grp_text passes on the clean clauses, FAILS on the mutated text  | baseline fails 0, mutated fails 1
+PASS  CONTROL t3 E2 names `00310780` (not cited on the capability page): grp_text passes on the clean clauses, FAILS on the mutated text  | baseline fails 0, mutated fails 1
+PASS  image on disk unchanged after the controls (sha256 re-read)
+FAILS 0

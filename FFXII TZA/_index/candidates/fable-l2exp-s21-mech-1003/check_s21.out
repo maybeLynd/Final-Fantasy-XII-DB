@@ -1,0 +1,49 @@
+FABLE check_s21 - the S-21 post-result events: route, poster, ring, realiser (2026-10-03)
+unicorn 2.1.4
+image sha256 verified (rvlib), base 00120000
+PASS  V0  unicorn pinned 2.1.4
+PASS  V1  us battle_message.bin: 102 rows x 8 B at +0x20, 6668 B
+PASS  V2  us rows: 28 with +4 bit 0 (rate-limited), 70 with +3 bit 7 (always shown)
+PASS  V3  nine languages, rows 0-99 agree with us in bytes +3/+4/+6/+7 (only kind bytes differ): {'ch': (100, True), 'cn': (100, True), 'de': (102, True), 'es': (102, True), 'fr': (102, True), 'in': (100, True), 'it': (102, True), 'kr': (100, True), 'us': (102, True)}
+PASS  K1a  0046AB10: 48 sites (['call']), 18 functions after chained-fragment roots, 0 unconfirmed
+PASS  K1b  the dispatcher 00469EC0 holds 10 of them (with its fragment 00469FE0); 17 other functions hold 38
+      callers: 004697C0:1 004698C0:1 00469A50:1 00469AF0:1 00469BB0:1 00469C00:14 00469E30:1 00469E80:1 00469EC0:10 0046A630:1 0046A690:1 0046A6E0:1 0046A720:3 0046A790:3 0046A800:1 0046A870:1 0046A9D0:4 0046AA70:2
+PASS  K1c  005369C0/00469570/00469EC0/00385BA0/0035B990/00536410 each have exactly one call site []
+PASS  K1e  25 of the 48 sites load a literal event id; the largest is 0x4D (the other 23 are computed)
+PASS  K1d  no pointer constant names these entries: 5 u32 matches are chained-unwind parent records ['01D89898', '01D898A8', '01D89868', '01D79D34', '01D79D44'], 1 lie inside an unwind-code array (opcode bytes) ['01DCD7BC']; other []
+PASS  K2a  0031137A calls 00385BA0 after the eligibility gate 00311354..00311367 (bit 0 bypass, non-zero return exits)
+PASS  K2b  00385BA0 does not read its ecx before 00385BC9 overwrites it []
+PASS  K2c  dispatch only when result +0x1C == 1, with ecx = word [02AEDFD4]: ['cmp byte ptr [rbx + 0x1c], 1', 'jne 0x385c8a', 'movzx ecx, word ptr [rip + 0x2768358]', 'call 0x469ec0']
+PASS  K2d  02AEDFD4: 110 references; writers ['003857EC mov dword ptr [rip + 0x27687e1], r15d', '00385806 mov dword ptr [rip + 0x27687c7], r15d', '00385FE4 mov dword ptr [rip + 0x2767fea], ebp', '00385FFB mov dword ptr [rip + 0x2767fd3], ebp'] (the resolver's store 00385FE4 among them)
+PASS  K3a  ctx +0x28 = zero-extended 16-bit action, +0x2C..+0x2F = 0 (qword clear 00469EF0, dword store 00469F33)
+PASS  K3b  all ten dispatcher sites pass r8 = rbp-0x48: ['lea r8, [rbp - 0x48]']
+PASS  K3c  no path from a dispatcher site reads the poster's rax before writing it []
+PASS  K4a  the poster's gates, row read, window compare and ring arithmetic read as stated []
+PASS  K4b  the poster's only tests are the gates, the row bit and the ring scan; edi (the event) is compared only with a ring entry's word (0046ABDD), never with the table's row count []
+PASS  K4c  the filter: row +3 >= 0x80 admits; one 002FA3B0 verdict per path
+PASS  K5a  rip writers of the ring and its index: 41 in the leaf 004696A0..004697BB, plus the poster's index store 0046AC5D (its entry stores are [rax+r15] off the `lea r15` at 0046ABB7): others=['0046AC5D']
+PASS  K5b  004696A0 is branch-free: event word := 0xFFFF, stats := 0, tick := 0, +0x18 := 0 for ten entries, index := 0
+PASS  K5c  004696A0 <- 0033A3B0 (in 0033A380) <- 00234463, in area initialisation 002342F0; no pointer constants
+PASS  K5d  from the counter-restart call 00234349 to the ring reset 00234463: every forward branch lands at or before 00234463 ['0023438E->00234360', '002343CB->00234423', '002343FC->0023441B', '00234411->0023441B', '0023444D->00234454'], and the one back-edge is the counted 0x28-iteration loop 0023438E -> 00234360
+PASS  K5e  veto bits 7 / 12 / 13 are set by 00238AE0 / 00238B00 / 00238B20; area initialisation clears all three (0023432D and 0xFFFFC01E)
+PASS  K6a  admitted: realiser called with (stats, 0x10, ctx); ring[0] = (16, 1000, 285216768), index 1
+PASS  K6b  cap: action 0x1FF dropped with no ring write (True, index 0); 0x1FE admitted True; -1 admitted True (signed jge)
+PASS  K6c  02089340 bits 7/12/13 drop a post only when ctx +0x08 has an owning unit (bit, with unit, unit-less target, null target): [('0x80', False, True, True), ('0x1000', False, True, True), ('0x2000', False, True, True)]
+PASS  K6d  target unit byte +4 bit 5 drops (True); the other seven bits do not (True)
+PASS  K6e  filter on row 0x0D (+3 bit 7 clear): source verdict 0 drops though the target's is 1 (True); source 1 admits though the target's is 0 (True); no source unit -> the target decides (0: True, 1: True); row 0x00 (+3 bit 7) admits with both verdicts 0 (True)
+PASS  K6f  row 0x05 (+4 bit 0): admitted, then suppressed at stamp + 0x1C2*G - 1, admitted for other stats at the same tick, admitted at stamp + 0x1C2*G; G=1 and G=2: {1: (True, True, True, True), 2: (True, True, True, True)}
+PASS  K6g  ten later unlimited posts evict the stamp: row 0x05 repeats for the same stats at stamp + 100 (True)
+PASS  K6h  stamp 5000, counter restarted to 10: suppressed (True), still at 5449 (True), admitted at 5450 (True); after 004696A0 (event 0xFFFF, index 0) admitted at 10 (True)
+PASS  K6i  [02EBF018] = 0 and the filter admits: the poster faults at 0046ABB3 (Invalid memory read (UC_ERR_READ_UNMAPPED))
+PASS  K6j  eleven posts: index 1, slot 0 holds the 11th stamp 2010, slot 1 the 2nd 2001
+PASS  K7a  row 0x18 (0205008600000000): slot 0 = target name word 0202 + letter 4, slot 1 = ctx +0x18 = 00001002
+PASS  K7b  kinds 3..9 -> ctx +0x10/+0x14/+0x18/+0x1C/+0x20/+0x28/+0x24, kind 0 and 10 -> 0, slot 3 read from row +5: {0: ['0'], 3: ['C0000010'], 4: ['C0000014'], 5: ['C0000018'], 6: ['C000001C'], 7: ['C0000020'], 8: ['77'], 9: ['C0000024'], 10: ['0']}
+PASS  K7c  request to 0035B990: +0 = 7, names F000101/F000202, letters 3/4, +0x1A action 1A9, +0x1C BEEF, +0x1F category 1, +0x20 -1, +0x28 = the 00536410 buffer (cap 0x180), +0x30 = ctx word +0x2C (0, 7 for 0x25), +0x32 = 1 only for 0x24/0x25 ([0, 1, 1, 0]); id word 8018 (bit 15 = 002FA390)
+      id dword bits 16-31 = A5A5 with the stack pre-filled 0xA5: 005369C0 does not initialise them (005369F0 reads the slot before any store); 00536410 masks them away (00536448-0053645B)
+PASS  K8  0035B990: +0x30 = 0 -> 0028E110(text, +0x1F) once whether or not the measure runs (measure only for +0x32 != 0 with 00254A10() = 0: False / True / False); +0x30 != 0 -> 00254F30([022CA430] + 0x568, text, 0x180) and no HUD call (0 HUD calls)
+PASS  S1  0046AB29 jge -> jg: K6b fails (action 0x1FF admitted)
+PASS  S2  0046ABB3 tests bit 1: K6f fails (the limited row is no longer limited)
+PASS  S3  00536B00 bound 8 -> 7: K7b fails (kind 9 no longer reads ctx +0x24)
+PASS  S4  0035B9CB je -> jne: K8 fails
+PASS  S5  the claim 'the 0x3080 veto drops every post' is refuted by K6c's execution
+FAILS 0

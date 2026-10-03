@@ -705,3 +705,15 @@ Interior anchor `001889E8` (function `001889C0`).
 `002E0540` (82 B) is the slot-occupancy probe over the `0215F200` table: eight `0x68`-stride rows are scanned (index clamps into 0..7), and a row counts when its `qword[+0]` is set and `byte[+0x3E]`'s sign-fold or `byte[+0x38]` is nonzero - returns 1 on the first live row, the "any slot active" test the cutscene and roster callers share.
 
 Interior anchor `002E0564` (function `002E0540`).
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-party-roster-and-control-suppression-ee-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `007A05D0` | 485 B | builds a stack object `s` (`00615BC0(&s)`), reads its size pair (`a`, `b`) through `00624960(00624670(&s), &a, &b, &c)`; when dwords `[rcx+0xD24]`/`[rcx+0xD28]` already equal `a`/`b` it calls `001825A0()` and returns 0; otherwise `r` = `006278B0(00624670(&s), dword +0xD24, dword +0xD28)`, and for non-zero `r` it returns `r`; else it logs '======== Call resize w = %d,h = %d =======' through `005CDAA0(2, ..)`, takes `r` = `0060F6B0(rcx+0xE8, 0, 0, dword +0xD24, dword +0xD28, 0)` (non-zero `r` returned), then for each of the dword `+0xDB8` (sign bit cleared) items `t` = qword `[qword [rcx+0xDC0] + 8i]`: when dwords `[t+0x2C]` and `[t+0x30]` are both non-zero it computes, without writing them back, dwords `[t+0x24]`, `[t+0x2C]` times dword `+0xD24` / `a` and `[t+0x28]`, `[t+0x30]` times dword `+0xD28` / `b` (32-bit multiply then unsigned divide), calls `007A10A0(t, x, y, w, h)` with the four (rescaled or as read) and returns `r` = `t`'s vtable slot `+0x20` when non-zero; after the last item (or at once when the masked count is 0) it calls `001825A0()` and returns 0; every return first destroys `s` (`00616700(&s)`) | `007A05F3`, `007A0663`, `007A06B0`, `007A070A`, `007A0760` |
+
+### Crossings into other layers - functions this page's newest interior rows name (OPUS, 2026-10-03)
+
+- **Platform - SERVICE (8 edges).** `00615BC0` is also called by `001DD170`, `001DD420`, `0061F200`, `0061F710` (+2 more); `00616700` is also called by `001DD170`, `001DD420`, filed to platform - shared machinery across the layer boundary, no shared ownership.

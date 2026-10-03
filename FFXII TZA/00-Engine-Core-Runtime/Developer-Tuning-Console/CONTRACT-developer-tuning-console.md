@@ -118,8 +118,8 @@ table: 227 distinct targets, of which `001D4BFA` is pointed at by **exactly 56 i
 of the console's ids do nothing**, and a reimplementation that gives each id its own handler has
 invented 55 behaviours.
 
-**I-4 — THE CONSOLE IS A STEPPER, AND THE STEP IS A HUNDREDTH.** Every RIP-relative operand of an
-`addss`/`subss`/`movss`/`mulss` in the body, resolved through the correct section:
+**I-4 — THE CONSOLE IS A STEPPER, AND THE STEP IS A HUNDREDTH.** ~~Every RIP-relative operand of an
+`addss`/`subss`/`movss`/`mulss` in the body, resolved through the correct section:~~ The body has **481** RIP-relative operands of an `addss`/`subss`/`movss`/`mulss`, resolved through the correct section: **249** load or store `.bss` setting cells, **6** load or store two file-backed `.data` setting cells (`01DFE194`, `01DFE1AC`), and **226** read `.rdata` constants with **27** distinct values. The table prints ten of the 27, and the cut is not a reference threshold (`1.0` x8, `-0.02` x3 and `0.002` x3 are not printed); the full set follows it: *(corrected 2026-10-03, FABLE, on SWE2-AUDIT-SPEC's L2 expansion)*
 
 | constant | refs | | constant | refs |
 |---:|---:|---|---:|---:|
@@ -129,15 +129,17 @@ invented 55 behaviours.
 | 0.1 | 18 | | −0.03 | 3 |
 | 0.001 | 13 | | 0.03 | 3 |
 
+**The full `.rdata` set** *(added 2026-10-03, FABLE, on SWE2-AUDIT-SPEC's L2 expansion; [`check_s06.py`](../../_index/candidates/fable-l2exp-s06-1003/check_s06.py))*: the ten above, plus `1.0` x8, `-0.02` x3, `0.002` x3, `0.005` x2, `-0.005` x2, `0.005556` x2 (`009002B8`, f32 of 1/180; `subss` `001D2B59` and `addss` `001D2B6E`, both in id 104's arm `001D2B4D`), and one reference each to `-0.001`, `-0.1`, `-0.5`, `0.5`, `0.0722`, `0.2126`, `0.7152`, `0.99`, `1.01`, `10.0` and `48.0`: **27 values, 226 references**, of which the printed ten carry 195.
+
 **A hundredth, referenced 88 times, is what this function is mostly made of** — a value being walked
-by hand while somebody watches the screen. *One discrepancy with the page, recorded rather than
+by hand while somebody watches the screen. ~~*One discrepancy with the page, recorded rather than
 smoothed: it ranks `1.0` at 8 references and this scan finds **11**. The scan covers
 `addss`/`subss`/`movss`/`mulss`; the page does not state its instruction set, so the two are
-measuring slightly different things and the difference is method, not error.*
+measuring slightly different things and the difference is method, not error.*~~ The page's `1.0` x8 is right for the constant: this scan's 11 are 8 `.rdata` references plus 3 to the `.data` setting cell `01DFE1AC` (id 169's *SSS Diffuse a*, image value `1.0`), which is a setting the arm steps, not a step. The same holds for falsification pass 1's `0.5` x4: one `.rdata` reference (`01CEBB70`) and 3 to the setting cell `01DFE194` (id 111, image value `0.5`). *(corrected 2026-10-03, FABLE, on SWE2-AUDIT-SPEC's L2 expansion)*
 
 **At run time the steps are these, and two are not in the table above** *(2026-09-25, FABLE, Claude Opus 5.5, on OPUS block 315, which executed every id; [its package](../../_index/candidates/s06-opus-replay-console-arms/README.md) was read.)*. Started from zero, the value a
-float-stepping arm writes is its step. **56 arms step by exactly 0.01**, then 0.1 (7), 0.02 (7), 0.001 (6), 0.05 (5),
-1.0 (4), **0.005 (4)**, 0.03 (3) and **0.005556 (2)**. ~~The last two are loaded as no literal. The arms compute them,~~ All three are `.rdata` literals: 0.005 at `009002B4` (−0.005 at `009002F0`), 0.03 at `009002C4`, 0.005556 at `009002B8` *(corrected 2026-10-02, OPUS: the scalar-float rip operands of `001D1660`, e.g. `subss` / `addss` on `009002B8` at `001D1660+0x14F9` / `+0x150E`)*;
+float-stepping arm writes is its step. ~~**56 arms step by exactly 0.01**, then 0.1 (7), 0.02 (7), 0.001 (6), 0.05 (5),
+1.0 (4), **0.005 (4)**, 0.03 (3) and **0.005556 (2)**.~~ **55 arms step by exactly 0.01**, then 0.02 (8), 0.1 (7), 0.001 (6), 0.05 (5), 0.03 (3), 1.0 (2), **0.005 (2)** and **0.005556 (1)**: 89 arms. The earlier figures were the replay's own tally, which counts an arm once per signed value written, so the six arms seen writing both +k and -k (`001D1867`, `001D1ED4`, `001D1F0D`, `001D2A38`, `001D2B4D`, `001D2B83`) counted twice. Two arms do not start from zero, because they step file-backed `.data` setting cells the fixture leaves at their image values: id 111 (`001D2881`) steps `01DFE194` (0.5) by 0.02, and id 169 (`001D29CC`) steps `01DFE1AC` (1.0) by 0.1. The replay therefore recorded 0.52 / 0.5 and 1.1 / 1.0 for them, and those are not steps. *(corrected 2026-10-03, FABLE, on SWE2-AUDIT-SPEC's L2 expansion)* ~~The last two are loaded as no literal. The arms compute them,~~ All three are `.rdata` literals: 0.005 at `009002B4` (−0.005 at `009002F0`), 0.03 at `009002C4`, 0.005556 at `009002B8` *(corrected 2026-10-02, OPUS: the scalar-float rip operands of `001D1660`, e.g. `subss` / `addss` on `009002B8` at `001D1660+0x14F9` / `+0x150E`)*;
 ~~so a census of literal operands, like the one above, cannot list every step size~~ the table above omits them by its cut, not because they are computed. *The headline holds: the step is
 mostly a hundredth.*
 

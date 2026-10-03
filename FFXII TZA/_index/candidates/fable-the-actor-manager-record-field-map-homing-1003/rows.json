@@ -1,0 +1,75 @@
+{
+ "page": "04-Actor-Entity/Actor-Manager-Record/the-actor-manager-record-field-map.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01HfPRM3vgupD1jscEXG8z9Y",
+ "report": [
+  "fable-the-actor-manager-record-field-map-c3.json"
+ ],
+ "rows": [
+  {
+   "fn": "003E9480",
+   "text": "calls `002E1040` with the incoming registers and does nothing more when the returned record's qword `+0` is null, when `edx` is not below its word `+0x54` (signed compare), or when the pointed object's byte `+0x3f3` is negative (signed); otherwise stores `r8b` shifted left by 4 at byte `+0xd` of the 0x60-byte entry `edx` of the array at that object's qword `+0x3f8`",
+   "anchors": [
+    [
+     "003E9490",
+     "call"
+    ],
+    [
+     "003E94A1",
+     "cmp"
+    ],
+    [
+     "003E94A5",
+     "cmp"
+    ],
+    [
+     "003E94BA",
+     "shl"
+    ],
+    [
+     "003E94C1",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "003E94D0",
+   "text": "calls `002E1040` with the incoming registers and does nothing more when the returned record's qword `+0` is null or `edx` is not below its word `+0x54` (signed compare); otherwise makes the call at `003E94D0` + 0x45 with (that qword, `edx`, `r8`, dword `r8+4`, and as fifth (stack) argument dword `r8+8` converted to float, divided by float `01DFE0BC` and truncated back to an integer)",
+   "anchors": [
+    [
+     "003E94DF",
+     "call"
+    ],
+    [
+     "003E94F0",
+     "cmp"
+    ],
+    [
+     "003E9505",
+     "divss"
+    ],
+    [
+     "003E950D",
+     "cvttss2si"
+    ],
+    [
+     "003E9515",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "003E94D0",
+   "was": "calls `002E1040` with the incoming registers and does nothing more when the returned record's qword `+0` is null or `edx` is not below its word `+0x54` (signed compare); otherwise makes the call at `003E94D0` + 0x45 with (that qword, `edx`, `r8`, dword `r8+4`, and as fifth (stack) argument dword `r8+8` converted to float, divided by 1.0 (`01DFE0BC`) and truncated back to an integer)",
+   "now": "calls `002E1040` with the incoming registers and does nothing more when the returned record's qword `+0` is null or `edx` is not below its word `+0x54` (signed compare); otherwise makes the call at `003E94D0` + 0x45 with (that qword, `edx`, `r8`, dword `r8+4`, and as fifth (stack) argument dword `r8+8` converted to float, divided by float `01DFE0BC` and truncated back to an integer)",
+   "why": "003E9505 divss reads 01DFE0BC, which lies in .data (01DF0000-02F97530): mutable, so its initial 1.0 is not a constant"
+  }
+ ],
+ "mode": "homing",
+ "family": ""
+}

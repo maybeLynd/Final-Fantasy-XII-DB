@@ -279,3 +279,13 @@ Corrected in place: the four notes. The consumer record is `_index/candidates/vf
 | `0017FEE0` | 57 B | when `ecx` is non-zero calls a 33-byte helper, otherwise a 75-byte helper, each with the pointer the 8-byte getter of qword `01F7F598` returns; when byte `+0x8` of the returned record is zero it returns that record's qword `+0x0`, otherwise it returns 0 | `0017FEE4`, `0017FEF0`, `0017FEFF`, `0017FF04`, `0017FF0A` |
 | `001B2600` | 44 B | calls a 157-byte helper (`rcx`); then, when byte `+0x98` of `rcx` is non-zero, tail-jumps a 38-byte helper with 3, otherwise returns | `001B2609`, `001B260E`, `001B2617`, `001B2621` |
 | `003A3990` | 97 B | when dword `02AEF414` is non-zero, calls a 63-byte helper (qword, 2) for each qword of the array at `02AEF420` while the index stays unsigned-below dword `02AEF414` (re-read every pass), then zeroes dword `02AEF414`; when that dword is zero it returns without work | `003A3994`, `003A39C9`, `003A39D0`, `003A39E2` |
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-03, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../../_index/candidates/fable-home-the-six-vfx-display-layers-1003/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `001868A0` | 66 B | `0017FE60` + 0x10 | calls the site `001868A0` + 0x9 and, only when it returns non-zero, the site `001868A0` + 0x12; then returns qword `rcx+0xB50+i*8` when byte `rcx+0xDBB` is non-zero and qword `rcx+0xB48+i*8` when it is 0, where `i` is dword `rcx+0xDD0` (the incoming `rcx`, kept in `rbx`) | Interior anchor `001868A9`; Interior anchor `001868B2`; Interior anchor `001868B7`; Interior anchor `001868C6`; Interior anchor `001868D4` |
+| `00186A50` | 33 B | `0017FEE0` + 0x10 | returns qword `rcx+0xB50+i*8` when byte `rcx+0xDBB` is non-zero and qword `rcx+0xB48+i*8` when it is 0, where `i` is dword `rcx+0xDD0` | Interior anchor `00186A57`; Interior anchor `00186A5D`; Interior anchor `00186A5F`; Interior anchor `00186A68` |
+| `00862C00` | 14 B | `003A3740` + 0xF2 | returns dword `+0x90` of the object whose pointer is the qword at `01F7F4D8` | Interior anchor `00862C07` |

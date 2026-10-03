@@ -203,6 +203,187 @@ events; the item writer crosses into inventory/discovery; level and status calle
 can notify other systems. Therefore the earlier claim of no direct event interaction
 is too narrow. Metadata and several callbacks are scripted in EXP-149, not closed by it.
 
+## 8a. The post-result events: the route, the poster, the ring and the message realiser (FABLE, 2026-10-03)
+
+*Added for SWE2-AUDIT-SPEC's SCOPE-SHORT on S-21 ([`auditspec-l2-expansion-1003`](../_index/candidates/auditspec-l2-expansion-1003/README.md) item 3):
+the registry subject names the post-result events and the battle message table, and §8 gave them one sentence. Static
+and isolated original-code; every fact below is checked by [`check_s21.py`](../_index/candidates/fable-l2exp-s21-mech-1003/check_s21.py) (FAILS 0). Which event
+each result posts, the row texts and the log widget's line lifetime are [the post-result events page](Post-Result-Events/the-post-result-events-and-the-battle-message-table.md)
+§2.2, §2.5 and §2.7. The poster's arms were executed earlier with the realiser scripted, in EXP-246 and EXP-249 to
+EXP-256 ([the auto-status contract](../10-Status-Periodic-Terminal/CONTRACT-auto-status-rebuild.md) §13bc–§13bm). This section states the contract those
+pages leave implicit: the route from this applier, the gates in order, the ring's lifetime and what the realiser
+hands on.*
+
+**Interface (FABLE).**
+
+| entry | callers (raw index: E8/E9, 0F 8x, EB/7x, rip-relative, image-base-relative, pointer constants) | role |
+|---|---|---|
+| `BattleFormula_ApplyResultMetadata` `00385BA0(_, source, target, record)` | one: `0031137A` in this applier, after the eligibility gate `00311354`–`00311367` | dispatches when record byte `+0x1C` is `1` (`00385C6F`) |
+| `BattleFormula_DispatchPostResultEvents` `00469EC0(action, source, target, record)` | one: `00385C85` | builds the context, posts 0..n events |
+| the poster `0046AB10(stats, event, ctx)` | **48 sites in 18 functions**: the dispatcher (10, with its fragment `00469FE0`) and 17 other posters (38) | gates, ring, realise; **defines no return value** |
+| the filter `00469570(event, ctx.q_00, ctx.q_08)` | one: `0046AB65` | visibility verdict |
+| the realiser `005369C0(stats, event, ctx)` | one: `0046AC66` | four argument slots, then the formatter `00536410` and the last mile `0035B990` (one caller each, `00536C06` and `00536D79`) |
+
+No pointer constant names any of these entries. Six `.rdata` dwords equal one of their RVAs: five are chained-unwind
+parent records and one lies inside an unwind-code array.
+
+**The context the dispatcher builds** (`rbp-0x48`, 0x30 bytes; all ten dispatcher sites pass it):
+- `+0x00` source stats, `+0x08` target stats;
+- `+0x10` record `+0x08`, `+0x14` `|record +0x24|`, `+0x18` the status (0 unless events `0x18`/`0x1A` set it);
+- `+0x1C` the source's level byte `+0x1C2`, `+0x20` record `+0x38`;
+- `+0x28` the action id **zero-extended from 16 bits** (`00469EFB`, `00469F33`), and `+0x2C`–`+0x2F` **zero**
+  (`00469EF0` clears the qword, and only the low dword is stored).
+
+**Reads and writes.**
+- Read: the table pointer `[02EBF018]` (registry slot 7, `battle_message.bin`), its row stride word `+0x08` and its
+  rebased row pointer `+0x0C`; the frame base `[01DFE0B4]` (`G`); the raw tick counter `[0208D45C]` through
+  `0032A150`; the battle-state word `02089340`; the owning unit's byte `+0x04`.
+- Written by the poster: the ten-entry ring `02EBB560` (32 B per entry) and its index `02EBB54C`.
+- Written by the filter and the realiser: the owner cell `02EBF188` (each `0031B860` result is stored there).
+
+**Invariant I9 — one route, keyed by the scratch action word.** The applier reaches the events only through
+`0031137A` → `00385BA0` → `00385C85` → `00469EC0`. Each link has exactly one caller.
+- The dispatch condition is record byte `+0x1C == 1` (`00385C6F`/`00385C73`).
+- The action id it passes is `word [02AEDFD4]` (`00385C75`). The gate never reads the `ecx` the applier hands it
+  (`00385BC9` overwrites it first), so **the applier's own action argument is not what the events are keyed by**.
+  - `02AEDFD4` is written by the preview `00385680` (`003857EC`, `00385806`) and the resolver `00385F60` (`00385FE4`,
+    `00385FFB`), and nothing resets it ([the scratch block](../08-Combat-Formula/Scratch-Block/the-formula-scratch-block.md)).
+- The dispatcher's posts carry a 16-bit action at `+0x28`, so the poster's cap drops every dispatcher post whose
+  action is `0x1FF` or above.
+- Their `+0x2C` is 0, so none of them takes the stash arm of I12.
+- No path from a dispatcher site reads the poster's `rax`. The one site that falls into the dispatcher's `ret`
+  (`0046A617`) returns it through `00385BA0`'s epilogue (`00385C8A`–`00385C99`), which does not read it either.
+
+**Invariant I10 — the poster's gates, in this order, each a silent return** (`0046AB10`):
+1. **Cap** — `ctx.dw_28 ≥ 0x1FF`, a **signed** `jge` (`0046AB19`/`0046AB29`). Executed: `0x1FF` is dropped with no ring
+   write, while `0x1FE` and `-1` are admitted.
+2. **Veto, only when `ctx.q_08` is non-null and `0031B860` finds its owning unit** (`0046AB2F`–`0046AB40`). Then
+   `02089340 & 0x3080` drops the post (`0046AB42`), and so does the unit's byte `+4` bit 5 (`0046AB52`).
+   - Bits 7, 12 and 13 are set by `00238AE0`, `00238B00` and `00238B20`, the event lock, the definition load in flight
+     and the focus condition ([the world-tick page](../00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md)'s bit table).
+     Area initialisation clears all three (`0023432D`, `and 0xFFFFC01E`).
+   - Executed: with each bit set, a post is dropped when the target has a unit, and **admitted when the target has none
+     or is null**. So the veto never stops the dispatcher's no-unit world (the page's (c)).
+3. **Filter** — `00469570` returns 0 (`0046AB65`/`0046AB6C`).
+   - It admits when row byte `+3` is `≥ 0x80` (`004695F9`).
+   - Otherwise the **source's** owning unit decides alone, if it has an actor link at `+0x10`: `002FA3B0(link)`
+     (`0046963D`). The target is consulted (`0046967E`) only when the source has no unit or no link.
+   - With neither, it admits (`00469685`).
+   - Executed: a source verdict of 0 drops the post even when the target's verdict is 1.
+4. **Rate limit** — only when row byte `+4` bit 0 is set (`0046ABB3`; 28 rows of 102 in `us`).
+   - The key is `(word +0, qword +8) == (event, the poster's first argument)`. It is not a context field (`0046ABD4`,
+     `0046ABDA`).
+   - A live entry suppresses when `(u32)(stamp + 0x1C2 × G) > (u32)now`, an **unsigned** `ja` (`0046ABE6`–`0046ABF5`).
+   - Executed with the shipped `us` table, row `0x05`, at G = 1 and G = 2: suppressed at stamp + 0x1C2·G − 1; admitted
+     at stamp + 0x1C2·G; admitted for other stats at the same tick.
+5. **Record and realise** — slot `[02EBB54C]` is overwritten whole: `{event, now, stats}`, with `+0x10`/`+0x18` zero
+   (`0046AC00`–`0046AC3B`). The index becomes `(i + 1) mod 10` (`0046AC40`–`0046AC5D`), and `005369C0(stats, event, ctx)`
+   is called (`0046AC66`).
+
+The exits do not set `rax`. EXP-252 pinned the veto exit returning the owner row; on a suppress `rax` is the tick.
+
+**Invariant I11 — one ring for every admitted post; its epoch is the area, not the clock.**
+- **Every admitted post takes a slot, rate-limited or not.** So a limited row's stamp lives only until ten more posts
+  land. Executed: after ten unlimited posts, row `0x05` repeats for the same stats 100 ticks after its stamp.
+- **The ring is reset in one place.** The leaf `004696A0` is branch-free. It sets event `0xFFFF`, stats 0, tick 0 and
+  word `+0x18` 0 in all ten entries, and sets the index to 0 (41 rip-relative stores).
+  - Its only caller is `0033A380` (`0033A3B0`), whose only caller is `00234463` in area initialisation `002342F0`.
+  - No other instruction writes the ring or its index except the poster's.
+- **The tick counter has its own reset.** `0032A160` stores 0 through `00237DF0`, on four routes
+  ([S-17's package](../_index/candidates/fable-l2exp-s17-mech-1003/README.md), K1–K3).
+  - Only the area-initialisation route (`00234349`, byte `0208D455 == -2`) is followed by the ring reset in the same
+    body (`00234349` → `00234463`: forward branches and one counted loop).
+  - After a counter restart without a ring reset, a kept stamp `T` suppresses a repeat of its `(event, stats)` until
+    the new clock reaches `T + 0x1C2·G`.
+  - Executed: stamp 5000, counter restarted to 10. The repeat is suppressed at 10 and at 5449, and admitted at 5450.
+    After `004696A0`, it is admitted at 10.
+
+**Invariant I12 — the realiser reads four kind bytes of the row and hands on a fixed request.**
+- **The row address is `rebase(+0x0C) + event × stride` in 32-bit arithmetic**, with no bound against the row count
+  `+0x04`: poster `0046ABA6`–`0046ABAD`, filter `004695BD`–`004695C4`, realiser `00536A86`–`00536A97`. The only compare
+  on the event is the ring key (`0046ABDD`).
+- **The slots and their kinds.** Slots 0–2 take their kind from row bytes `+0`–`+2`, and slot 3 from `+5`
+  (`00536A58`/`00536A5C`). The 9-entry table at `00536DA8` (`dec eax; cmp eax, 8; ja`, `00536AFE`–`00536B15`) maps:
+  - kind 1 → the source's name word (`00536310`) and its letter byte;
+  - kind 2 → the target's name word and letter byte;
+  - kinds 3–9 → ctx `+0x10` / `+0x14` / `+0x18` / `+0x1C` / `+0x20` / `+0x28` / `+0x24`;
+  - kind 0 and kinds ≥ 10 → 0 (`00536BA1`).
+
+  The letter byte comes from `00263A10`, only for stats with byte `+5` set whose unit has an actor link.
+  Executed over shipped row `0x18` (`02 05`) and synthetic rows covering every kind.
+- **The id word** is the event's low 15 bits, plus bit 15 = `002FA390(stats)` (`005369F0`–`00536A45`).
+  - Bits 16–31 of that dword are never initialised by `005369C0`: it reads the stack slot before any store. Executed
+    with a patterned stack, they come back as the pattern.
+  - `00536410` masks them away (`00536448`–`0053645B`).
+- **The request to `0035B990`** (0x38 bytes, executed):
+
+  | offset | value |
+  |---|---|
+  | `+0x00` | `7` |
+  | `+0x08` / `+0x10` | source / target display name from `00536280`, or 0 when that side has no unit with an actor link |
+  | `+0x18` / `+0x19` | the letter bytes |
+  | `+0x1A` | ctx word `+0x28` |
+  | `+0x1C` | ctx word `+0x14` |
+  | `+0x1F` | the category `(row[3] >> 2) & 0x1F` |
+  | `+0x20` | `-1` |
+  | `+0x28` | the `0x180`-byte text `00536410` wrote |
+  | `+0x30` | ctx word `+0x2C` |
+  | `+0x32` | `1` exactly for events `0x24` / `0x25` (`00536C7C`–`00536C84`) |
+
+- **The last mile.** `0035B990`, executed:
+  - **word `+0x30` non-zero selects the stash**: the text is copied to `[022CA430] + 0x568` (`0x180` bytes), and
+    there is **no HUD line**;
+  - **otherwise `0028E110(text, +0x1F, 0, 0)` is always called**. `00254A10() == 0` together with `+0x32` gates only
+    the strip-and-measure step (`0035BA0F`–`0035BA65`), never the post.
+  - So every dispatcher post that passes I10 reaches the HUD log.
+
+**Failure paths (FABLE).**
+- **An unbound table faults.** With `[02EBF018]` null (or its rebase null), the filter skips the row test, but the
+  poster's row pointer becomes 0 (`0046ABB1`). If the filter admits, `test byte [rcx+4]` reads address 4. Executed: an
+  unmapped read at `0046ABB3`. A post before slot 7 is bound must therefore be refused by the filter, or it crashes.
+- **An event id past the table reads the next bytes as a row.** No literal id at the 48 sites exceeds `0x4D`, and the
+  computed ones top out at `0x62` (`0x5D + n`, the page §2.7). The 100-row `ch` / `cn` / `in` / `kr` tables therefore cover every
+  posted id. Their rows 0–99 differ from `us` only in kind bytes, not in layout.
+- **Suppression is silent** at every gate. No caller learns that a line was dropped, and none reads `rax`.
+- **A row address above 4 GB** cannot be formed (I12). A reimplementation that keeps 64-bit row pointers is a widening,
+  not a behaviour the image has.
+- **A reimplementation** that keys the events on the applier's action argument, vetoes unit-less targets, consults the
+  target when the source has a verdict, compares the window signed, or gives rate-limited rows a private ring changes
+  which battle lines the player sees.
+
+**Evidence class (FABLE).**
+- **Static:** K1–K5 of `check_s21.py`. That covers the raw index in every form, chained-`.pdata` roots, the route,
+  the context, the body reads, the ring writers, and the reset chain.
+- **Isolated original code, under Unicorn 2.1.4:**
+  - K6 runs `0046AB10`, `00469570`, `0020E600`, `0032A150` and `004696A0` real. `0031B860`, `002FA3B0` and
+    `005369C0` are answered by hooks, and the table is the shipped `us` `battle_message.bin` (102 × 8 B), rebased as
+    `003845F0` does;
+  - K7 runs `005369C0` real with its ten callees hooked;
+  - K8 runs `0035B990` real with its seven callees hooked.
+- **Sensitivity controls.** Four byte mutations each turn a check to FAIL: `jge`→`jg` at `0046AB29`, bit 1 at
+  `0046ABB3`, bound 7 at `00536B00`, and `je`→`jne` at `0035B9CB`. So does one mutated claim ("the `0x3080` veto drops
+  every post").
+- **Live: none.** The page's `FL-2` live read is ASTRA-QUEUE AQ-16.
+- **Not traced:**
+  - whether every counter restart is followed by an area initialisation before the next post;
+  - which of the 17 other posters set ctx `+0x2C`. `0046AA70` stores `edx` there (`0046AABC`) before its gil post;
+  - the engines' escape grammar;
+  - `00536410`'s text.
+
+### Crossings into other layers (FABLE, 2026-10-03)
+
+*The edges this section's citations add, each with what crosses it.*
+
+- **Save/Load/Settings — CLIENT and SERVICE (2 edges).**
+  - The tick counter's reset `00237DF0` is reached from the save-image rebind
+    `SaveRuntime_RebindImageBackedGameplayState` `00238A80` (`00238AA2`). It is one of the four counter-restart routes
+    that I11 names, and not the area-initialisation route that is followed by the ring reset `004696A0`.
+  - The locale gate `00254A10`, which returns 1 when `00229E40()` is 0, 7, 8, 10 or 11 (`00254A19`–`00254A28`,
+    mask `0xD81`), is also called by `SaveSlotMetadata_BuildSubmissionDescriptor` `005832B0` (`00583358`). It is a
+    shared locale getter. §8a cites it only as the strip-and-measure gate in `0035B990`.
+
+  The message ring's epoch depends on a save-path reset. The locale answer is shared. The ownership is not shared.
+
 ## 9. Determinism
 
 The applier has no direct random-draw instruction/call identified in this body.

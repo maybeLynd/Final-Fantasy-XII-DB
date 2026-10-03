@@ -1845,3 +1845,12 @@ Interior anchor `003F5F45` (function `003F5CB0`).
 | function | size | entered from | what the body does | interior anchors | moved from |
 |---|---|---|---|---|---|
 | `0035D070` | 12 B | `003C6000` + 0x13 | loads the address `022C8060` into `rcx` and tail-jumps (site `0035D070` + 0x7) with the other incoming registers unchanged; it has no other work | Interior anchor `0035D077` | [CONTRACT-boot-fixups](../00-Engine-Core-Runtime/CONTRACT-boot-fixups.md) |
+
+## Homed bodies: functions reached only indirectly whose callees this page cites (FABLE, 2026-10-03, F homing)
+
+*No page cited these functions and none of their callers is documented: they are reached by table or pointer dispatch or through undocumented callers. Each one calls something this page documents, which the sentence names. Each sentence states what the body does (access and representation, not purpose); the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's F homing pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../_index/candidates/fable-contract-per-frame-update-gate-homing-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0028E070` | 77 B | returns at once when qword `0209BE80` is null; otherwise ORs 0x40 into its dword `+0x10f68`, calls `002BDB60(qword 0209BE80 + 0x8fa0)`, reloads the qword and, when it is still non-null, tail-jumps to `002BDCA0(qword 0209BE80 + 0x8fa0, 0)`, else returns | Interior anchor `0028E07E`; Interior anchor `0028E080`; Interior anchor `0028E095`; Interior anchor `0028E0A4`; Interior anchor `0028E0B3` |
+| `0028E0C0` | 80 B | returns at once when qword `0209BE80` is null; otherwise ANDs its dword `+0x10f68` with `0xffffffbf` (clearing bit 0x40), calls `002BDC00(qword 0209BE80 + 0x8fa0)`, reloads the qword and, when it is still non-null, tail-jumps to `002BDCA0(qword 0209BE80 + 0x8fa0, 1)`, else returns | Interior anchor `0028E0CE`; Interior anchor `0028E0D0`; Interior anchor `0028E0E5`; Interior anchor `0028E0F4`; Interior anchor `0028E106` |

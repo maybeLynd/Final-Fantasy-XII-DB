@@ -165,11 +165,11 @@ a negative separation (`00315157`–`0031515A`). On contact:
 
 - the weights `+8` (negated when both are negative, both 1 when equal and zero,
   `00315017`–`0031506E`) go through `00314E10` with the masks `+0x110` / `+0x114`, which returns
-  A's share `w` of the separation (`0031522E`–`0031523C`): 0 or 1 marks one body immovable
+  A's share `w` of the separation (`0031522E`–`0031523C`): 0 or 1 ~~marks one body immovable~~ gives one body the whole separation and sets that body's `+0xEE` (`00315263` marks B when `w` = 0, `00315287` marks A when `w` = 1), not the body that stays *(corrected 2026-10-03, FABLE, on OPUS-REQ-FABLE-S19-SEPARATION-CONTRACT-1003; record [fable-s19-section3-1003](../_index/candidates/fable-s19-section3-1003/README.md))*
   (`00315249`–`0031528E`), otherwise both counts `+0xED` advance and `+0xEE` is cleared
   (`00315290`–`003152AB`);
 - A receives `w × separation` and B `(1 − w) × separation` along the joining direction, each added
-  to `+0x100` (x) and `+0x108` (z), with `+0xE8` the squared length and `+0xEC` set
+  to `+0x100` (x) and `+0x108` (z), with `+0xE8` ~~the squared length~~ the squared length of the increment just given to the OTHER body, overwritten per contact (`00315303` stores B's from A's increment, `0031533F` A's from B's) *(corrected 2026-10-03, FABLE, on OPUS-REQ-FABLE-S19-SEPARATION-CONTRACT-1003; record [fable-s19-section3-1003](../_index/candidates/fable-s19-section3-1003/README.md))* and `+0xEC` set
   (`003152B2`–`00315369`); the return is 1 for a contact, 2, 3 or 4 when the callback ran without
   a mutual push, and ~~the raw separation~~ A's share of it — the weight `w` from `00314E10` — is written to `out` when the caller did not ask for a push *(corrected 2026-10-02, OPUS: `0031523C` `call 00314E10` / `00315241` `movaps xmm4, xmm0`, then `00315377` `movss [r15], xmm4`)*
   (`00315377`).
@@ -240,7 +240,7 @@ MovementBody (0x130 B)
                               bit 2 attr bit 12; bit 3 second height above ground; bit 4 integrator mode);
                               +0x94/+0x98/+0x9C copies of the radii and height; +0xA0/+0xA4/+0xA8 the inner shape;
                               +0xAC f32 groundHeight; +0xC0 f32 secondHeight; +0xC8 f32 requestedSpeed
-  +0x0E0 f32 height  +0x0E4 f32 baseOffset  +0x0E8 f32 pushLengthSq
+  +0x0E0 f32 height  +0x0E4 f32 baseOffset  +0x0E8 f32 ~~pushLengthSq~~ partnerPushSqLength (00315303, 0031533F)  *(corrected 2026-10-03, FABLE, on OPUS-REQ-FABLE-S19-SEPARATION-CONTRACT-1003; record _index/candidates/fable-s19-section3-1003/README.md)*
   +0x0EC u8 pushed   +0x0ED u8 contacts     +0x0EE u8 partnerImmovable   +0x0EF u8
   +0x0F0 f32 radiusA +0x0F4 f32 radiusB     +0x0F8 f32 heading           +0x0FC f32 margin
   +0x100 f32 pushX   +0x104 f32 pushY       +0x108 f32 pushZ

@@ -356,3 +356,9 @@ widgets apart, that matters.
 
 *Not claimed:* anything about `00249580` when all twelve of its ticket slots are busy (it then returns 0, and
 `00393FF0` does not test for that). It is outside every clause above and is recorded here as an observation only.
+
+## SWE2-EC7-214 update (2026-10-03) - fsttl_closecommand on the consumer
+
+`00394350` (33 B; the result handler of script verb `fsttl_closecommand` `0x7059`, reached through a `jmp` thunk) reads the consumer published at `02AEE4C8` and, when it is non-null and bit 2 of its dword `+0xC4` is clear, sets that bit (`or ecx, 4`, read-modify-write); otherwise it writes nothing. The bit is read in the consumer's own handler `003939B0`: the arm that clears `02AEE4C8` (`00393E0E`) stores 6 into byte `01EFAC12` when bit 2 is set and keeps the byte's value otherwise (`00393DF1`, `cmovne`). The message-1 arm stored 2 there (`00393A0A`) and zeroed the whole dword (`003939FD`), and the consumer factory `00394530` clears bit 2 on one path (`003945BB`).
+
+Interior anchor `0039436A` (function `00394350`).

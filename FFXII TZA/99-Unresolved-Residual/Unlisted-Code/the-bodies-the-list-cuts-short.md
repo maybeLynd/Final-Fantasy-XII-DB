@@ -265,3 +265,11 @@ interpreter, and the dispatch `002AB8F0` (a jump-table control in pass 2) calls 
 *Tier 2: ledger names, sizes and `edges.tsv`; no new body read (OPUS, 2026-09-29, pass-22 debt `42a617a9a`).*
 - **Save_Load_Settings - SERVICE (1 edge).** `0026C8C0` reaches bodies filed to save/load/settings: `002EF2B0` - shared machinery across the layer boundary, no shared ownership.
 - **Story_Event_Quest_Hunt - SERVICE (1 edge).** `0026C8C0` reaches bodies filed to story/event: `00377440` - shared machinery across the layer boundary, no shared ownership.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-the-bodies-the-list-cuts-short-ee-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0082A5D0` | 135 B | Increments the word at `+0x46` of the object at `rcx+0x38` and returns when it is at most 0xC8 (unsigned `jbe`); otherwise, with the state record at `rcx+0x30`, it takes a location string (`01CCCFD8` when the dword `+0x68` of the record's first-qword object is zero, else `0081BFF0` formatting `01CCCFE8` with that dword), formats `01CCD000` with `01CCD068`, 0xC8 and that string through `0081BFF0` (both formats on the qword `+0x38` of the record's `+0x18` object), and passes the result with the record's `+0x18` qword to `00824330`, where the listed range ends. | `0082A5E3`, `0082A5EF`, `0082A628`, `0082A646`, `0082A652` |

@@ -1,0 +1,94 @@
+{
+ "page": "17-Presentation-Rendering/Movie-Containers/mh-movie-seek-index.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_011Dcenz5EPZBdrLRrFP8ia6",
+ "report": [
+  "fable-mh-movie-seek-index.json"
+ ],
+ "rows": [
+  {
+   "fn": "00211B60",
+   "text": "calls `00211AC0` with the incoming `rcx` (and `edx`) unchanged; then, only when bit `0x1` of `edx` is set, calls `00211B60+0x2e(rcx)` when bit `0x4` is clear or `00211B60+0x3e(rcx, 0x158)` when it is set; returns `rcx` on every path",
+   "anchors": [
+    [
+     "00211B79",
+     "call"
+    ],
+    [
+     "00211B7F",
+     "test"
+    ],
+    [
+     "00211B85",
+     "test"
+    ],
+    [
+     "00211B8E",
+     "call"
+    ],
+    [
+     "00211B9E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006792C0",
+   "text": "stores `00D6CD90` at qword `[rcx]`, calls `005CD700(rcx+0x48)` and zeroes byte `+0x50`, calls `005CD700(rcx+0x30)` and zeroes byte `+0x38`, then stores `00D6CD78` at qword `[rcx]` (left in `rax` on return)",
+   "anchors": [
+    [
+     "006792DE",
+     "mov"
+    ],
+    [
+     "006792E5",
+     "call"
+    ],
+    [
+     "006792EB",
+     "mov"
+    ],
+    [
+     "006792F3",
+     "call"
+    ],
+    [
+     "00679304",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00679330",
+   "text": "stores `00D6CD90` at qword `[rcx]`, calls `005CD700(rcx+0x48)` and zeroes byte `+0x50`, calls `005CD700(rcx+0x30)` and zeroes byte `+0x38`, stores `00D6CD78` at qword `[rcx]`, and when bit `0x1` of `edx` is set calls `00809950(rcx, 0x60)`; returns `rcx` on both paths",
+   "anchors": [
+    [
+     "00679355",
+     "mov"
+    ],
+    [
+     "0067935C",
+     "call"
+    ],
+    [
+     "0067937B",
+     "mov"
+    ],
+    [
+     "0067937E",
+     "test"
+    ],
+    [
+     "0067938C",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing",
+ "family": ""
+}

@@ -1,0 +1,31 @@
+{
+ "page": "24-Compiler-And-CRT-Runtime/Lazy-Static-Initialization/lazy-statics-and-the-one-time-init-lock.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01RTHsxVMB4gEbgZ4DBoNz7W",
+ "report": "home-lazy-statics-and-the-one-time-init-lock.json",
+ "rows": [
+  {
+   "fn": "001D9F70",
+   "entered_from": "`0017D940` + 0x17",
+   "text": "returns without a write when `edx` is above 1 (unsigned); otherwise atomically adds 1 (`lock xadd`) to dword `rcx+0x24` + sign-extended `edx` * 4 and returns that dword's previous value",
+   "anchors": [
+    [
+     "001D9F73",
+     "ja"
+    ],
+    [
+     "001D9F78",
+     "lea"
+    ],
+    [
+     "001D9F7C",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

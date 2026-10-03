@@ -1,0 +1,17 @@
+FABLE S-16 retirement / window / rotation section, dry run (no file is written)
+HEAD 890844135
+PASS  G1  Database/FFXII TZA/05-Spawn-Encounter-Lifecycle/CONTRACT-spawn-placement.md is clean
+      line endings kept: LF
+PASS  S0  section.txt starts with its heading
+PASS  H1  every heading in section.txt names FABLE (2 headings)
+PASS  A1  anchor '## 7. State transitions' occurs 1 time(s) at line 135
+PASS  A2  anchor '## 8. Script · resource · event interactions' occurs 1 time(s) at line 146
+PASS  A3  anchors are in order 7 < 8
+PASS  A4  no other '## 7a.' heading exists []
+PASS  E1  7a inserted before line 146 (## 8. Script · resource · event interactions)
+PASS  L1  9 relative link(s) in the section resolve from the contract's folder []
+PASS  T1  each of the 3 tables keeps one cell-separator count per row [[4], [5], [3]]
+PASS  C1  the census does not read 7a as a state section (state sections: ['3. Types', '5. State'])
+PASS  O1  staged order 7 < 7a < 8: [135, 146, 353]
+      dry run: contract +207 lines
+FAILS 0

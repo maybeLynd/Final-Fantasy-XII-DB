@@ -1,0 +1,46 @@
+{
+ "page": "00-Engine-Core-Runtime/Developer-Tuning-Console/what-the-console-tunes.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01B5SV9waPUkdPQzR9MzNgSH",
+ "report": "home-what-the-console-tunes.json",
+ "rows": [
+  {
+   "fn": "001C36F0",
+   "entered_from": "`002001F0` + 0xA7",
+   "text": "calls the site `001C36F0` + 0x2B on each 0x10-byte element from qword `[rcx]` up to (not including) qword `rcx+8`; then, when qword `[rcx]` is non-null, calls slot `+0x18` of the vtable of the object at `rcx+0x18` with that object, qword `[rcx]` and `(qword rcx+0x10 - qword [rcx])` rounded down to a multiple of 0x10; when it is null it returns without that call",
+   "anchors": [
+    [
+     "001C3713",
+     "cmp"
+    ],
+    [
+     "001C371B",
+     "call"
+    ],
+    [
+     "001C3721",
+     "add"
+    ],
+    [
+     "001C3740",
+     "and"
+    ],
+    [
+     "001C3744",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "001EF540",
+   "why": [
+    "already cited by 00-Engine-Core-Runtime\\Developer-Tuning-Console\\what-the-console-tunes.md"
+   ]
+  }
+ ],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

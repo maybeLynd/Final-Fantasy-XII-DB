@@ -1,0 +1,42 @@
+{
+ "page": "01-Script-VM-Native-Bridge/Party-Presentation-Verbs/how-a-script-changes-the-battle-party.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01SRPAB4nYztytvoFuWnwY9e",
+ "report": [
+  "fable-how-a-script-changes-the-battle-party.json"
+ ],
+ "rows": [
+  {
+   "fn": "0034B4B0",
+   "text": "makes the call at `0034B4B0+0x21` with the incoming registers unchanged, then for local pointer slots 5 down to 0 stores the result of the call at `0034B4B0+0x41` with (that first result, `rcx`, the value of the call at `0034B4B0+0x33` with `r9`); calls `00320800(a local 6-dword array, 6)`, clamps a negative return to 0 and, when it is below 6, fills the array's dwords from that index to 5 with -1; writes array dword k through the pointer in slot k for k = 0 to 5, makes the call at `0034B4B0+0xCB` with (`rcx`, the clamped count) and returns through the stack-cookie check `00808C40`",
+   "anchors": [
+    [
+     "0034B4F6",
+     "mov"
+    ],
+    [
+     "0034B50D",
+     "call"
+    ],
+    [
+     "0034B518",
+     "cmovs"
+    ],
+    [
+     "0034B530",
+     "or"
+    ],
+    [
+     "0034B57B",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing",
+ "family": ""
+}

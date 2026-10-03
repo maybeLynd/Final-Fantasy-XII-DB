@@ -1,0 +1,58 @@
+{
+ "page": "17-Presentation-Rendering/Model-And-Motion-Formats/fcp-character-parameter-block.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01HFDWqiFGBo93D32pyB6Lkx",
+ "report": "home-fcp-character-parameter-block.json",
+ "rows": [
+  {
+   "fn": "003B4750",
+   "entered_from": "`0042CBF0` + 0x130",
+   "text": "passes `rcx` and qword `01FD4A78` (as `rdx`) to the call at `003B4750` + 0xB and returns 1 when its 32-bit result is non-zero, else 0",
+   "anchors": [
+    [
+     "003B4754",
+     "mov"
+    ],
+    [
+     "003B475B",
+     "call"
+    ],
+    [
+     "003B4764",
+     "setne"
+    ]
+   ]
+  },
+  {
+   "fn": "004096F0",
+   "entered_from": "`004292B0` + 0xB0",
+   "text": "reads dword `rcx+4`: when it is 0, tail-jumps at `004096F0` + 0x18 with `rcx+0x10`; when it is 1, returns qword `rcx+0x30`; otherwise returns 0",
+   "anchors": [
+    [
+     "004096F3",
+     "test"
+    ],
+    [
+     "004096F7",
+     "cmp"
+    ],
+    [
+     "004096FC",
+     "mov"
+    ],
+    [
+     "00409701",
+     "xor"
+    ],
+    [
+     "00409708",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

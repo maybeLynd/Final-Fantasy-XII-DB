@@ -395,3 +395,21 @@ cited accessor `00263E30`. Pure fan-in.
 **Script_VM_Native_Bridge — CLIENT (6 edges, batch 6).** Five script-command bodies call helpers this page cites. `005116E0` calls the word setter `002D66A0`. `005109B0` calls `002D78B0`, which writes four words into record `i` (at most 7, stride `0x18` from `+0xC0`) of the object at `[[0209AC30]+0xF0]` and clears bit 4 of its `+0x14`. `00510A40` and `00510AE0` call `002D7CB0`, which sets or clears a flag in the same record. `00510B80` and `00510C80` call `00568460` and `005685B0`, which first resolve the active character's gambit set from the pointer table at `02CA96E0`. Scripts set these records and gambit state through the same entry points the screens use.
 
 **WorldAreaField — SERVICE (4 edges, batch 6).** `BattleMenu_BuildCommandEntryList` (`0031EB20`), `00326D60`, `00329A80` and `003911D0` call `FieldData_GetActiveFieldRecordBit15` (`00313F60`), a tail jump to the field record's bit-15 read. These bodies ask the field's permission bit, and the field layer owns it.
+
+## SWE2-EC7-213 update (2026-10-03) - the fsmenu chip verbs on the gambit editor
+
+Four `fsmenu_*` Script-VM verbs (family 7, the fullscreen-menu set) drive the gambit editor `005691E0` from a script. The editor's setup arm stores the centre editor (`02CA9700`) at `[0209AC30] + 0x160` (`0056951A`), and the centre editor's destroy arm clears it (`0056927A`). Three of the bodies (the two begins and the `registopenchip` poll) index the three-editor table `02CA96E0` by the member's current set index, `dword [[02EBF190] + 0x7370 + member * 4]`, with `member` = dword `+0xF0` of the `+0x160` editor, which they read without a null test. The two begins and the chip poll use the pane-transition state byte `+0x331` that `0056A3D0` switches on. `005688A0` (37 B; the poll of `fsmenu_changechip` `0x700B`, `fsmenu_movechip` `0x700C` and `fsmenu_movelist` `0x700D`) returns 1 when `[0209AC30] + 0x160` is null; otherwise it returns 1 when that editor's byte `+0x331` is 0, and 0 when it is not (`sete`).
+
+Interior anchor `005688B5` (function `005688A0`).
+
+`00568940` (70 B; the poll of `fsmenu_registopenchip`, `0x7035`) looks up that table entry and returns 1 when it is null, else bit 1 of its dword `+0x358` (`shr eax, 1` then `and eax, 1`), the bit the pick list's id-19 arm sets on the editor.
+
+Interior anchor `0056897A` (function `00568940`).
+
+`00568990` (159 B; the begin of `fsmenu_movechip`, whose handler pops the verb's one argument into `ecx`) acts only when the table entry is non-null and its byte `+0x331` is 0. It stores `+0x331` = 1, `+0x336` = `cl`, `+0x337` = the cursor slot of the list child at qword `+0xD8` (`(+0xF4 + +0xF2) * +0xEC + +0xEE + +0xED` on bytes, kept to 8 bits), `+0x330` = 1, `+0x339` = 1 and `+0x33B` = 0.
+
+Interior anchor `005689D5` (function `00568990`).
+
+`00568A30` (111 B; the begin of `fsmenu_movelist`, argument in `ecx`) has the same guard and stores `+0x336` = byte `+0x33E` (the column), word `+0x330` = `0x101` (bytes `+0x330` and `+0x331` both 1), `+0x337` = `cl`, `+0x339` = 1 and `+0x33B` = 0. Both begins therefore put the editor in state 1 of `0056A3D0`. The begins write the table entry, while the `005688A0` poll reads the `+0x160` editor and waits for its `+0x331` to return to 0.
+
+Interior anchor `00568A7D` (function `00568A30`).

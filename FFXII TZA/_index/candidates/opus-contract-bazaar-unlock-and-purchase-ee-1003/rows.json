@@ -1,0 +1,40 @@
+{
+ "page": "12-Items-Equipment-Shops-License/CONTRACT-bazaar-unlock-and-purchase.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "contract-bazaar-unlock-and-purchase-r5.json",
+ "rows": [
+  {
+   "fn": "002534C0",
+   "text": "with `i` = `ecx`, an index above 0xB is replaced by 0 after a call `0016D6A0(0x200)` (made twice, once per use); takes the entry `e` = `02092760` + 8`i` and the counter cell `c` = qword `[020927C0]` + 4`i` + 0x47B8, and the word list `w` = `0020E600(dword [e+4])`; for each position `j` below dword `[c]` (signed) whose word `w[j]` is 0xFFFF, it re-decodes `w` and scans positions `j`+1 upward while below dword `[c]` for the first word that is not 0xFFFF: when one is found it moves it to `w[j]` and writes 0xFFFF in its place, and when none is found it stores `j` to dword `[c]` and returns; returns nothing",
+   "anchors": [
+    [
+     "002534DE",
+     "mov"
+    ],
+    [
+     "0025351A",
+     "call"
+    ],
+    [
+     "00253544",
+     "cmp"
+    ],
+    [
+     "0025357C",
+     "mov"
+    ],
+    [
+     "0025359F",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

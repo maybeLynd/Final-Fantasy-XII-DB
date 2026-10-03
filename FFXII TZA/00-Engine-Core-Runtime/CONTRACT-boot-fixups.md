@@ -101,6 +101,157 @@ and lays out only `size` bytes** — so ~~**what the extra tail bytes serve is n
 > observed writes them — but the shape of the answer has changed, and a reimplementation that lays
 > records into the tail would be wrong **[EXP-142]**.
 
+## 4a. The archive mount and the startup latch — the two boot operations this contract left out (FABLE, 2026-10-03)
+
+*Added on SWE2-AUDIT-SPEC's L2 expansion (S-01, item 3: the VBF mount `0017CEB0` and the startup latch `+0x113C`
+were in no contract). Two provenance tags are new here. **[image]** means read at the bytes of the certified image
+(`73461d08…`, base `00120000`), with every caller and every reference taken from a raw index: E8/E9 rel32, 0F 8x rel32,
+EB/7x rel8, rip-relative, `[reg+RVA]` and pointer constants. **[exec]** means the original code was run under
+Unicorn 2.1.4 by [`check_s01.py`](../_index/candidates/fable-l2exp-s01-mech-1003/check_s01.py) (39 PASS, FAILS 0).
+This section adds I6–I9. I1–I5 are unchanged, but I8 says on which thread their code runs.*
+
+**Interface.**
+
+| | |
+|---|---|
+| the framework's init | `0079F150` (one caller, `0079E5ED`). It calls `GameApplication` vtable `008C5760` slot 2 (`0079F591`), then slot 3 (`0079F69A`), and leaves on the first non-zero return, logging `"App failed during initApplication"` / `"… initScene"` (`0079F598`, `0079F6A1`) **[image]** |
+| the archive mount | slot 2 `0017CEB0(this, a, b)`, the framework's *initApplication* **[image]** |
+| the mount primitive | `0019B070(ctx, path)` over the mount context `[01F81110]` (ensure `0019B190`, getter `0019B1F0`); the archive open is `001F4340(archive, path)` **[image]** |
+| the latch poster | slot 3 `0017CF30`, the framework's *initScene*, which posts the job `{0017D150, this}` **[image]** |
+| the latch writer | `0017D000`, reached only as that job (`0017D150` is `jmp 0017D000`) **[image]** |
+| the latch readers | slot 4 `0017CCD0` (`0017CCD6`), slot 7 `0017CE50` (`0017CE77`), slot 8 `0017D090` (`0017D094`) **[image]** |
+
+**Cells read and written.** None of these cells is declared in the type store yet. The declarations are routed to SWE2-STRUCT.
+
+- The application is a static object at `01F7E350`, `0x1140` bytes. Its constructor is `0015BC40`, whose only pointer is the
+  `.rdata` initialiser slot `008C31F0`. The base constructor it calls at `0015BC40` + 0x14 publishes it to the handle `[02EA5368]`
+  (`00792550`), and that handle is how the framework reaches it.
+- Slot 2 writes `+0x1130` (qword `a`, `0017CEC2`) and `+0x1138` (dword `b`, `0017CEC9`), and stores the content root
+  `"../../.."` into `02CA9D80` through `0059A770`. The pair has three readers:
+  - `0017D000` (`0017D012`, `0017D019`), which hands it to `0017D4C0`;
+  - the getter `0017D240`, which reads it rip-relative. Its one caller is the FF12CONFIG loader `00408C30`
+    (`00408C6A`).
+
+  Nothing in this contract depends on what the pair means.
+- `+0x113C` is the latch byte. Its writers are the constructor's word clear `mov word [01F7F48C], 0` (`0015BC68`,
+  which clears `+0x113C` and `+0x113D` together) and `0017D000`'s `mov byte [rbx+0x113C], 1` (`0017D074`).
+- The job manager is `AsyncJobManager [01F810F8]`. Its ensure is `0019A0A0`, which also creates a second instance at
+  `[01F81100]`. The job queue is that object's `+0x50` list, locked at `+0x28`.
+
+**I6 — THE ARCHIVE IS MOUNTED BY SLOT 2, BEFORE SLOT 3 RUNS, AND A FAILED MOUNT IS NOT REPORTED.**
+- Slot 2 makes six calls, with no branch (`0017CEDD`–`0017CF11`):
+  1. it sets the content root (`0059A770`);
+  2. it ensures the mount context (`0019B190`);
+  3. it fetches the context (`0019B1F0`);
+  4. it mounts `"../FFXII_TZA.vbf"` (`0019B070`, `0017CEF6`);
+  5. it calls `0017D6B0`;
+  6. it calls `00182F70` with the window size `+0xD24`/`+0xD28`.
+- The mount's `al` is never tested. The next instruction is `mov rdx, rbx` (`0017CEFB`).
+- Slot 2's only exit returns `xor eax, eax` (`0017CF1B`, `0017CF27`). The framework's `initApplication` failure arm
+  (`0079F598`) is therefore unreachable from this override, and init goes on to slot 3 whether or not an archive
+  was mounted **[image]**.
+- The path is relative. A process whose working directory is not the executable's folder resolves it elsewhere. The
+  check resolves it from `x64\` to the shipped archive.
+
+**I7 — AN ARCHIVE IS ACCEPTED ONLY BY ITS MAGIC AND AN MD5 OF ITS HEADER.** `0019B070` takes the first free one of five
+context slots (`+0x20..+0x47`, `0019B0A7`), allocates an `0xB0`-byte archive (`0019B0B4`) and calls `001F4340`
+(`0019B0E5`). `001F4340` then:
+1. `fopen`s the path `"rb"` (`001F43A9`);
+2. requires the first dword to be `'SRYK'` (`0x4B595253`, `001F43D7`);
+3. reads the header size from offset 4;
+4. reads the last 16 bytes of the file (`_fseeki64(-0x10, SEEK_END)`, `001F4424`);
+5. reads the header from offset 0 and closes the file (`001F4471`);
+6. hashes the header with `CALG_MD5` (`0x8003`, `001F44AB`);
+7. requires the 16-byte digest to equal those last 16 bytes (`001F4503`–`001F4535`).
+
+Only then does it build its index, and it returns 1 (`001F4701`).
+- **Executed on the shipped archive [exec]:** `001F4340` runs from its entry to the accept point `001F453B`, with
+  import stubs doing the real file reads. The header is 11,995,716 bytes with 89,414 entries, and
+  MD5 = trailer = `b74187bd5c88f564281dc290ab0ee051`.
+- **The same run rejects at `001F4705`** for each of these: one header byte flipped, a wrong magic, and a missing
+  file.
+
+**I8 — THE STARTUP LATCH IS SET ON THE ASYNC JOB THREAD, AS THE LAST STORE OF THE INIT JOB, SO I1–I5 RUN ON THAT
+THREAD TOO.**
+- **Slot 3 sets nothing itself.**
+  1. It ensures the `AsyncJobManager` pair. Slot 3 is the only caller of `0019A0A0`, at `0017CF77`. The ensure's
+     constructor `001999D0` → `00199F60` starts the thread `"AsyncJobManager Thread"` (proc `0019A190` → `0019A1A0`,
+     `CreateThread` at `005CD228`).
+  2. It takes a pool node (`0017CF84`) and fills it with `{0017D150, this}` (`0017CF8C`–`0017CF96`).
+  3. It enqueues the node (`0019A000`, `0017CFA5`) and returns 0 through `005C5230`.
+- **The worker runs the job.** It loops:
+  1. `Sleep(5)` (`0019A1D5`);
+  2. take the oldest node (`0019A1FF`);
+  3. call `fn(arg)` (`0019A24A`).
+- **The job is `0017D000`.** It calls, in order:
+  1. the init burst `0017D4C0`, which contains this contract's fixer `0022A0B0` (`0017D5CC`);
+  2. a `0x80` allocation into `[01F7E340]`, then `0018A840`;
+  3. the renderer `00189000`.
+
+  Its last memory write is then `+0x113C = 1` (`0017D074`). Its one branch (`0017D036`) rejoins before that store
+  **[image]**.
+- **The seeding (I1), the frame base (I3) and the eleven allocations (I4) execute on the job thread, not in the
+  framework's init call.** Nothing waits for them. `0079F150` carries on past `0079F69A` without reading `+0x113C`, and the
+  census below finds no reader of it outside slots 4, 7 and 8. The only ordering the game imposes is therefore the latch.
+- **The latch is published without a lock or fence:** a plain byte `mov`. On x86-64, stores become visible in program
+  order, so a reader that sees 1 also sees `0017D000`'s earlier stores. That is an inference from the memory model;
+  nothing here observes it.
+
+**I9 — THE LATCH IS CLEARED ONCE AND SET ONCE. IT GATES ALL OF SLOTS 4 AND 8, BUT IN SLOT 7 ONLY AN ARM THAT DOES
+NOTHING.**
+- **Census [image]:**
+  - `[reg+0x113C]` at any width, image-wide, gives exactly four sites: the writer `0017D074` and the readers
+    `0017CCD6`, `0017CE77` and `0017D094`.
+  - No non-stack access from `+0x1130..+0x113B` overlaps the byte.
+  - The only rip-relative reference to the byte is the constructor's word clear `0015BC68`.
+  - The static object is named in `.text` only by its constructor, its unwind funclet `00896280` and its `atexit`
+    destructor `008A6970`. The last two only tail-jump to the base destructor (`00896280` + 0x7, `008A6970` + 0x15).
+- **No code path clears the byte after construction.**
+- **Slot 4, latch clear:** jumps to `0017CD84` and tail-calls `005C5230`, so it returns 0 having entered nothing
+  **[exec]**.
+- **Slot 8, latch clear:** returns 0 (`0017D09D`) **[exec]**. **Latch set:** calls the renderer getter `00189120`
+  first **[exec]**, then the render pass list `00187950` (`0017D0B0`).
+- **Slot 7 tests `00228480` (`[01FD4948] != 0`) before the latch.** When that holds, it drives the input object
+  `[01F7FFE0]` through `001967D0` and returns, latch or not (`0017CE59`–`0017CE76`). Its latched arm calls only
+  `0016D6A0`, which is `ret 0` (`0017CE95`).
+- **The latch therefore orders the frame tick and the render pass after the init job. It does not order slot 7's
+  input step.** The run with the latch clear enters `00228480` first **[exec]**.
+
+**Failure paths and edge conditions.**
+- **Any mount failure is silent.** The causes are: five slots full; an allocation failure; a null path; `fopen` NULL;
+  a bad magic; a digest mismatch. On each, `0019B070` frees the archive and clears its slot (`0019B0F1`–`0019B10F`).
+  Slot 2 still returns 0 (I6). What the game does later with no archive mounted is not established here.
+- **A bad magic prints `"BigFile head wrong!"`** (`0017D280`, `001F43E7`) and leaves the `FILE` open. The only
+  `fclose` is `001F4471`, past the magic test **[image]**, and the run counts one open and no close **[exec]**.
+- **On accept, `001F4340` opens the archive 15 more times**, one per `0x30`-byte stream record (`001F4687`,
+  `00215290` → `fopen` at `002152AD`). None of those `fopen` results is tested **[image]**.
+- **Slot 3 does not test the job-manager pointer.** `[01F810F8]` goes to `00199F10` without a test
+  (`0017CF7C`–`0017CF84`), and `0019A0A0` stores NULL when its allocation fails (`0019A0DA`) **[image]**.
+- **If the job never runs, the latch stays 0.** Slots 4 and 8 then return 0 on every frame.
+  `005CD1E0`'s behaviour on `CreateThread` failure was not read in full (see Open, below).
+
+**Evidence class.**
+- **NATIVE/STATIC [image]:** I6, I8, and I9's census.
+- **NATIVE-REPLAY [exec]:**
+  - I7, on the shipped archive's own bytes;
+  - I9's three slot behaviours.
+- **Sensitivity controls.** Each makes its check FAIL as required:
+  - the latch store retargeted to `+0x113D`;
+  - the magic immediate changed;
+  - slot 2 returning `esi`.
+- **No live observation exists of the thread on which `0017D000` runs, or of how many frames pass before the latch is
+  set.** That count depends on scheduling (a 5 ms poll plus the length of the init burst), so it is not covered by
+  §9's "boot is fully deterministic".
+
+**Open.**
+- What `005CD1E0` does when `CreateThread` fails. That path calls `GetLastError` (`005CD236`) and `FormatMessageA`
+  (`005CD262`), and was not traced to its end. The `RaiseException` at `005CD2D8` raises `0x406D1388`, the
+  thread-naming exception; it is not a failure path.
+- What reads from the archive when no mount succeeded.
+- What `0017D6B0` builds, and what slot 2's argument pair means.
+- Whether the first game frame after the latch sees one framework delta or the delta accumulated while it was clear
+  (slot 4 reads `+0x48` at `0017CCF0`).
+
 ## 5. State
 
 `DAT_02EB4234` first-use latch · `DAT_01DFE0B4` frame limit · `uRam_02064ACC` frame-base constant ·
@@ -825,6 +976,7 @@ Interior anchor `004C7FEE` (function `004C7FE0`).
 - **RNG_Random_Selection — MECHANICAL (6 edges).** 3 RNG_Random_Selection-side calls into shared helper(s) the page cites (`RNG_MT19937_SeedState` (00866D60)); 3 calls from page-cited bodies into shared RNG_Random_Selection plumbing (`RNG_MT19937_Seed` (00379CF0), `RNG_MT19937_NextU32_Thunk` (00379CD0), `RNG_MT19937_SeedState` (00866D60)) - the helpers' general call surface, not a RNG_Random_Selection relationship of this page's subjects.
 - **UI — CLIENT and SERVICE (22 edges).** 18 inbound (UI bodies `0024B9B0`, `003FA790`, `0035D6B0` call page-cited `001EDEC0`, `00229EA0`, `001EDDA0`); 4 outbound (page-cited `002507C0`, `00250540` call UI bodies `00367200`, `0035BC40`, `003C6000`). Substantive edges include `001EDE80` is called by `003FA790`; `00250540` calls `00367200`; `002507C0` calls `00367200`; `002507C0` calls `0035BC40`; the remaining edges run through shared helpers the page cites.
 - **Party — SERVICE (3 edges).** 3 outbound (page-cited `002628B0`, `002695A0` call Party bodies `PartyFocus_ClearCurrentActorIfEligible` (00358B40), `PartyControl_SetMovementSuppressionBit` (00359200), `PartyFocus_ResetState` (003590E0)).
+- **Application — SERVICE (1 edge; FABLE, 2026-10-03, §4a).** 1 outbound: page-cited `0017CEB0` (slot 2, the archive mount) calls the Application bootstrap body `0017D6B0` as its fifth call (`0017CEB0` + 0x50, I6), `0017CEB0` -> `0017D6B0`. The mount is this page's subject; what `0017D6B0` builds is open (§4a).
 ## Falsification pass 1 — 2026-09-29 (OPUS): the seeds and the budget hold; the frame base is not evaluated once
 
 Every static claim was re-derived from the shipping image by

@@ -1,0 +1,26 @@
+check_s22.py  HEAD 1e18553b0  image sha256 73461d08... (asserted by rvlib)
+PASS S1 table: slot 21 -> 00388F20, slot 40 -> 00389670: 00388F20 00389670
+PASS S2 00388F37 mov [02AEDFE0]: mov dword ptr [rip + 0x276509f], 0x64  (slot 21 stores 100 (ctx +0x1C bit 2 set))
+PASS S2 00388FA1 mov [02AEDFE0]: mov dword ptr [rip + 0x2765039], ecx  (slot 21 stores row+0x12 - target+0x2C + source+0x2B)
+PASS S2 0038968D cmp [02AEDFE0]: cmp dword ptr [rip + 0x276494c], r8d  (slot 40 compares the hit chance with draw % 100)
+PASS S2 00389696 mov [02AEDFBC]: mov dword ptr [rip + 0x276491c], 1  (slot 40 sets failed on a miss)
+PASS S2 003896A0 mov [02AEDFB8]: mov dword ptr [rip + 0x276490e], 1  (slot 40 sets rollOver on a miss)
+PASS S3 loop 003863C0..003863F8: args reloaded per call, rax overwritten or unread, [02AEDFB8]==1 stops it: 003863C0 movsxd rax, dword ptr [r13 + rbp*4] | 003863C5 lea r8, [rsp + 0x48] | 003863CA mov rdx, rsi | 003863CD mov rcx, r14 | 003863D0 call qword ptr [rbx + rax*8 + 0x1dda5c0] | 003863D7 cmp dword ptr [rip + 0x2767bda], 1 | 003863DE je 0x3863e8 || exit 003863E8 mov rbx, qword ptr [rsp + 0x30] | 003863ED lea r8, [rsp + 0x48] | 003863F2 mov rdx, rsi | 003863F5 mov rcx, r14 | 003863F8 call 0x390f20
+PASS S4 store: BattleFormulaScratch 0xA8 at 02AEDFB8: BattleFormulaScratch	0xA8	08-Combat-Formula	static, at 0x02AEDFB8	IMAGE 02AEDFB8
+PASS S5 store fields: +0x00 rollOver, +0x04 failed, +0x28 hitChance, +0x9C/+0xA0/+0xA4: +0x00 rollOver, +0x04 failed, +0x28 hitChance, +0x9C multiplier, +0xA0 attackVariance, +0xA4 targetDefense
+PASS N0 census denominator: 152 distinct targets: 152
+PASS N1 census: 15 block cells written by one step and read by a different step, 12 outside the three words: 15 / 12: +00 +0C +10 +14 +18 +20 +24 +28 +30 +34 +38 +3C +9C +A0 +A4
+PASS N2 census: +0x28 hit chance and +0x00 rollOver are among them: +0x28 writers 18, other readers 2
+PASS N3 census: no cell outside the block is written by one step body and read by another: none
+PASS C2 positive: the census finds the three words themselves: 02AEE054 02AEE058 02AEE05C
+     X data: with slot 21 {'slot21': 'ok', 'hit_before_40': 100, 'three_before_40': (0, 0, 0), 'slot40': 'ok', 'rollOver': 0, 'failed': 0}
+     X data: slot 40 alone {'slot21': 'not run', 'hit_before_40': 0, 'three_before_40': (0, 0, 0), 'slot40': 'ok', 'rollOver': 1, 'failed': 1}
+PASS X1 executed: slot 21 writes hit chance 02AEDFE0 = 100: slot21 ok, [02AEDFE0] 100
+PASS X2 executed: slot 40 runs in both cases with the three words equal before it: three words (0, 0, 0) / (0, 0, 0)
+PASS X3 executed: slot 40 stops the recipe only when slot 21 did not run first: rollOver with 21: 0, without: 1 (failed 1)
+PASS C1 sensitivity: the OLD 'only the three words' reading predicts equal outcomes; it is FALSE: outcomes (0, 0) vs (1, 1)
+PASS RR s22-opus-replay-steps-and-element-scaling/check.py re-run reproduces result.json: exit 0, re-run 99336e05, committed 99336e05, recorded 99336e05
+PASS RR s22-opus-replay-recipe-resolver/check.py re-run reproduces result.json: exit 0, re-run a226db98, committed a226db98, recorded a226db98
+PASS RR s22-opus-replay-recipe-resolver/we1.py re-run reproduces we1_result.json: exit 0, re-run 5680857b, committed 5680857b, recorded 5680857b
+PASS RR s22-opus-replay-severe-weather-gate/check.py re-run reproduces result.json: exit 0, re-run 867bbaf3, committed 867bbaf3, recorded 867bbaf3
+FAILS 0

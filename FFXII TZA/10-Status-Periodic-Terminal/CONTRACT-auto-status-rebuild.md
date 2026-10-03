@@ -713,12 +713,12 @@ disclosed boundaries:
   `0023B040`; the `edx==0` tail runs `0030D9A0()==1` + `0031B770(b[glob+0x5AD5])==obj`
   → `003138D0(0)` + `0023B040`.
 - **`00310780`** — contributor accounting: `0031B7E0(d[obj+0x710])` row, iff
-  `q[obj]` bit22 and `d[row2+0xEA4]` has `1<<b[obj+0xEA9]`: `b[row2+0xEA8]--`,
+  `q[obj]` bit22 ~~and~~ **clear** (`003107BE bt` / `003107C3 jb` skips when set) *(corrected 2026-10-03, SWE2-ORACLE, on ASTRA's SPEC-accepted `uq147-ko-release-partition` - review `auditspec-review-astra-uq147-ko-release-partition-1003`; record `swe2oracle-ko-consumers-1003`)* and `d[row2+0xEA4]` has `1<<b[obj+0xEA9]`: `b[row2+0xEA8]--`,
   `d[row2+0xEA4] &= ~bit`. Then `q[obj] &= 0xFFFFFFFFEFFFFFDF`,
   `0030C970(b[obj+0x694])` + `b[obj+0x694]=0xFF`, `00319420(&obj+0x6B0)`,
   `00319140(obj,1)`, `00317E50` iff `w[+0x714]==0x414E`.
 - **`003138D0(arg)`** — mode-1-gated (`0030D9A0` bit-map of `d[glob+0x5B04]`):
-  `0031B8C0(3)` row lookup, sentinel bail on `w[+0xBA0]==0x113`/`w[+0x714]==0x113`,
+  `0031B8C0(3)` row lookup, sentinel bail on ~~`w[+0xBA0]==0x113`/`w[+0x714]==0x113`~~ `w[+0x714]==0x113`, and on `w[+0xBA0]==0x113` only when `d[row] & 0x4000` (`00313903 bt rdx,0xE` / `00313908 jae`) *(corrected 2026-10-03, SWE2-ORACLE, on OPUS-REQ-ORACLE-13G-PENDING-113-BIT14-1003; 13bh-b states the same; record `swe2oracle-13g-bit14-1003`)*,
   `0031B7E0` twice, `00311CF0`, then `w[glob+0x5AD0] ^= (w ^ arg) & 1` — arg 0
   clears bit0, keeps the rest.
 - **`00301140(obj)`** — bail iff `(d[rec+0x64]|d[rec+0x3C]) & 0x80000003`; else the
@@ -2069,6 +2069,75 @@ Result: `546/546, stable ×3`, hash `943cc4c7`
 Still unclaimed: `00311CF0`'s `edi==0`/stack-arg/`00377C20`/`0x113`-
 skip arms and the `00311B20` caller, `00317E60`'s `b[rax]&8` arm,
 `0031B8C0` `ecx>3`.
+
+### 13bh-a. The defeat-cleanup order, the roster-slot-3 selector and the `(1,0)` request tail: local boundaries (OPUS, 2026-10-03)
+
+*On ASTRA's [`uq147-local-boundaries`](../_experiments/evidence/uq147-local-boundaries/README.md) (commit `6d74079f1`,
+manifest `d6df38e0…`), reviewed **ACCEPT-WITH-NARROWING** by SWE2-AUDIT-SPEC
+([review](../_index/candidates/auditspec-review-astra-uq147-local-boundaries-1003/REVIEW.md), task
+`ASTRA-REQ-SPEC-UQ147-LOCAL-BOUNDARIES-1003`, committed `bff21d191`). Method A, static: no FF12 instruction was executed for
+it. Premises: intact shipping code, the normal ABI with a private valid stack, readable state and tables, and no
+interference. It adds bounds to §13g and §13bh; their executed results are unchanged.*
+
+- **Same-call order on the defeat leg.** In `00300FC0`'s `edx==0` tail, once its gates pass (`0030D9A0()` = 1 and
+  `0031B770(byte [glob+0x5AD5])` = the unit, `0030111A jne 00301128`), `0030111C xor ecx,ecx` / `0030111E call 003138D0`
+  / `00301123 call 0023B040` / `00301128` epilogue is straight-line. When `003138D0` returns normally, `0023B040` runs in
+  the same call, immediately after it. This is call order only, not a claim about a later tick or about what either call
+  changes. `0031B770`'s helpers `00236850`/`00236820` stay opaque.
+- **`003138D0`'s mode-1 leg selects roster slot 3, read-only.** `003138E6 lea ecx,[rax+2]` (= 3) / `003138E9 call
+  0031B8C0`. `0031B8C0` calls `00263750(3)`, which returns qword `0209A1F0 + 3*8` = `0209A208` (index above 3 returns 0,
+  `00263750`–`00263766`). A NULL actor returns NULL (`0031B8CE`). Otherwise it tail-jumps to `00263E30` (`0031B8DA`),
+  which returns qword `[actor+0x30]`. The composition has no status or health read, no object write, no allocation and
+  no opaque call. Index 3 is a roster slot, not ActorStorage class 3.
+- **The `(1,0)` request tail.** Every normal `00317E60` tail passes `(1,0)` to `0025AAD0` (`00317EA9 xor edx,edx` /
+  `00317EAB lea ecx,[rdx+1]` / `00317EB2 jmp 0025AAD0`). Under the normal ABI the saved `ebx` = 1 takes `0025AAE1 jne
+  0025AB1C`. That excludes `0025AAD0`'s five publication writes (`0025AAF2`, `0025AAF8`, `0025AB00`, `0025AB06`,
+  `0025AB15`) and its `002F1710` call at `0025AB10`. Its `003588B0` resolver call at `0025AADA` still executes.
+  **Before the tail, `00317E60` itself** calls `003590D0`. When byte `[02089340]` has `0x10` set, it calls `003588B0` and
+  then `00263E30`. When the resolved unit is non-NULL and its byte `+0` has `0x8` set, it performs an own read-modify-write
+  `or qword [unit], 0x100000000` at `00317E9A` and calls `0033C9B0(unit+0x80)` at `00317EA4`. Neither is excluded. *So the
+  exclusion covers `0025AAD0`'s publication block and `002F1710` only; `00317E60`'s conditional `00317E9A` write and
+  `0033C9B0` call precede it* (SPEC's narrowing). This is the `b[rax]&8` arm §13bh lists as unclaimed, read statically,
+  not executed.
+- **What stays OPEN** (unchanged by this record): whether real KO admission reaches these paths; the relationship of the
+  roster slot to `+0x5AD5`; persistence of mode `+0x5B04`, KO state or member across the preceding and later helpers;
+  request versus acceptance, commit and execution; mask-7 and override-clear reachability; scheduling, ownership,
+  lifetime and presentation; and whole UQ-147. No game, emulator or native run is claimed.
+- **Caller census, already canonical.** `00311CF0` has three call sites in two functions: `00311C7B` and `00311CA6` in
+  `00311B20`, and `0031395D` in `003138D0` (`c480be543`, re-checked by SPEC's raw census). ASTRA withdrew its contrary
+  extra-caller reading, and SPEC confirmed the retraction.
+
+### 13bh-b. `003138D0(0)` can return before `00311CF0` and its own `+0x5AD0` write: the mode query and the early returns (OPUS, 2026-10-03)
+
+*On ASTRA's [`uq147-mode-query`](../_experiments/evidence/uq147-mode-query/README.md) (commit `ecbfeb641`, manifest
+`f6d762b3…`), reviewed **ACCEPT** by SWE2-AUDIT-SPEC
+([review](../_index/candidates/auditspec-review-astra-uq147-mode-query-1003/REVIEW.md), task
+`ASTRA-REQ-SPEC-UQ147-MODE-QUERY-1003`, committed `bff21d191`). Method A, static; no FF12 instruction was executed for it.
+Premises: readable battle pointer, descriptor, field row and unit; a private, separated stack and the normal ABI; and no
+interference. It builds on §13bh-a's selector and does not repeat CS-1, EXP-198 or S20.*
+
+- **The field-bit query is closed and writes nothing.** `00377C20` → `003148F0` → `002EF2B0` → `002EF640` (133 B in all)
+  has no memory-destination operand, stack included, and no opaque call. `002EF640` returns `02164280`; `002EF2B0` adds
+  `0x200`; `003148F0` reads dword `+0x1044` (`003148FB`), so the field id is dword `021654C4`, and a negative id becomes 0
+  (`00314903 cmovs`). `00377C20` returns 0 when qword `[02ADD100]` is NULL or the id is not below its dword `+4`
+  (`00377C33`, `00377C39`, unsigned); otherwise it returns bit `0x8000` of the word built from bytes `+8+3*id` (low) and
+  `+9+3*id` (high), that is value `0x80` of byte `+9+3*id` (`00377C42`–`00377C55`).
+- **`0030D9A0` reads the mode word twice, not atomically.** It loads `[02EBF190]` and dword `+0x5B04` (`0030D9A4`/`0030D9AB`):
+  `0x8` → 5, `0x4` → 4; then `00377C20()` non-zero → 3; then it **reloads** both (`0030D9E2`/`0030D9E9`): `0x2` → 2, else the
+  value of `0x1`. So a result of 1 means: the low nibble of dword `[[02EBF190]+0x5B04]` is `0001` at both reads (`0x8` and
+  `0x4` clear at the first, `0x2` clear and `0x1` set at the second), with the field helper returning 0.
+- **`003138D0(0)` early returns.** Under those premises and mode 1, `003138D0(0)` returns before `00311CF0` (`0031395D`) and
+  before its own `+0x5AD0` write (`00313981`) when:
+  - roster slot 3 or its unit is NULL (`003138F1 je 0031398D`);
+  - dword `[unit]` has `0x4000` set (`00313903 bt rdx,0xE`) and pending word `+0xBA0` is `0x113` (`00313913 je 00313988`);
+  - committed word `+0x714` is `0x113` (`0031391C je 00313988`), reached when `0x4000` is clear or the pending word is not
+    `0x113`.
+
+  Both targets (`00313988`, `0031398D`) lie after `00313981`. The only store on these paths is the shadow-space slot
+  `[rsp+0x48]` (`003138F9`), inside the private-stack premise. So **invoking `003138D0(0)` does not by itself guarantee
+  the cleanup command or the `+0x5AD0` change**. This holds at local implementation scope only.
+- **What stays OPEN:** whether naturally initialized summoner KO, or a pending or committed Esper `0x113`, reaches these
+  states; actual command execution, lifetime and scheduling; and whole UQ-147.
 
 ### 13bi. `0046AB10` owner-scan mid-gate exits — EXP-252
 

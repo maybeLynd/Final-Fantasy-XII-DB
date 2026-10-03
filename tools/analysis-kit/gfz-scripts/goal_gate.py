@@ -145,28 +145,19 @@ def check_verdicts(db, root):
     # from the wrong table this way). The verdict column is a controlled
     # vocabulary; a leading MET token counts, its basis belongs in the
     # binding-gap cell.
-    lines = open(verd, encoding="utf-8", errors="replace").read().splitlines()
-    width = None
-    for l in lines:
-        if re.match(r"^\|\s*system\b", l, re.I) and "binding gap" in l:
-            width = len([c for c in re.split(r"(?<!\\)\|", l) if c.strip()])
-    if width is None:
+    # One shared reader since 2026-10-03 (SWE2-FRONTIER, OPUS-REQ-FRONTIER-ONE-VERDICT-PARSER-1003): the reporter's
+    # parse_verdicts via l2_verdict_table - the table found by its header, struck history skipped, the controlled
+    # vocabulary - so this gate, PROGRESS.md, readiness_view and the dashboard read every cell the same way.
+    import l2_verdict_table
+    verdicts = l2_verdict_table.l2_by_system(verd)
+    if not re.search(r"^\|\s*system\s*\|\s*contract\s*\|", open(verd, encoding="utf-8", errors="replace").read(), re.M):
         return False, "verdict table header not found in L2-VERDICTS.md", \
             "restore the verdict table's header row (system .. binding gap)"
-    verdicts = {}
-    for l in lines:
-        m = re.match(r"^\|\s*(?:\*\*)?(S-\d+)\b([^|]*)\|(.*)$", l)
-        if not m:
-            continue
-        cells = [c.strip().strip("*").strip() for c in re.split(r"(?<!\\)\|", m.group(3))]
-        cells = [c for c in cells if c]
-        if len(cells) == width - 1:
-            verdicts[m.group(1)] = cells[-2]  # verdict is the cell before binding gap
     missing = [s for s in ids if s not in verdicts]
     if missing:
         return False, "no verdict row for %s" % ", ".join(missing[:6]), \
             "score %s in L2-VERDICTS.md" % missing[0]
-    unmet = [(s, verdicts[s]) for s in ids if not re.match(r"^MET\b", verdicts[s])]
+    unmet = [(s, verdicts[s]) for s in ids if verdicts[s] != "MET"]
     if unmet:
         return False, "%d/%d systems NOT MET (first: %s)" \
             % (len(unmet), len(ids), unmet[0][0]), \

@@ -1,0 +1,39 @@
+{
+ "page": "17-Presentation-Rendering/Character-Rendering/character-render-object.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01HFDWqiFGBo93D32pyB6Lkx",
+ "report": "home-character-render-object.json",
+ "rows": [
+  {
+   "fn": "00186840",
+   "entered_from": "`001FA1A0` + 0x104",
+   "text": "calls the site `00186840` + 0xD and, when it returns non-zero, the site + 0x16; then, with i the dword `rcx+0xDD0`, returns qword `rcx+0xB50+i*8` when byte `rcx+0xDBB` is non-zero and the call at + 0x2A returns non-zero, and qword `rcx+0xB48+i*8` otherwise",
+   "anchors": [
+    [
+     "0018684D",
+     "call"
+    ],
+    [
+     "00186856",
+     "call"
+    ],
+    [
+     "0018685B",
+     "cmp"
+    ],
+    [
+     "00186875",
+     "mov"
+    ],
+    [
+     "0018688A",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

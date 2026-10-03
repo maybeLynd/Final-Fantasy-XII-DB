@@ -1,0 +1,8 @@
+page Database/FFXII TZA/00-Engine-Core-Runtime/Developer-Tuning-Console/CONTRACT-developer-tuning-console.md  source working tree (clean)  HEAD 1e18553b0  mode dry-run
+line endings LF
+PASS I-4 lead sentence: the table is ten of 27 constants, not every operand: anchored once, would change (+537 chars)
+PASS I-4 full .rdata constant set after the table: anchored once, would change (+556 chars)
+PASS I-4 1.0 x11 note: three of the eleven are a .data setting cell: anchored once, would change (+452 chars)
+PASS I-4 runtime-step arm counts: one count per arm, and the two .data-cell arms re-attributed: anchored once, would change (+770 chars)
+edits 4, to change 4
+FAILS 0

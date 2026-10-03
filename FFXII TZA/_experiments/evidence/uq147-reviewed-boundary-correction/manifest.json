@@ -1,0 +1,170 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture-defeat-boundary-01.status.json",
+      "bytes": 599,
+      "sha256": "84b06def2d5375f97f8309923432d558321432bf0694b7e76a6bcf0686acb93b"
+    },
+    {
+      "path": "capture-defeat-boundary-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "capture-defeat-boundary-01.stdout",
+      "bytes": 166,
+      "sha256": "5b966824ede9dd8856546bda0be5521b304aeda42d8dcdbde2fa61eb466dcc1d"
+    },
+    {
+      "path": "capture-defeat-boundary.py",
+      "bytes": 5563,
+      "sha256": "e318100b6f9582028bbdd4206d4c8643f351b270841b3a8a924d070b824be784"
+    },
+    {
+      "path": "capture-request-tail-01.status.json",
+      "bytes": 593,
+      "sha256": "238b74428633b22d6d0ffeab94cf4eeb8c38c619a7fa5be23996f66524c1bf3d"
+    },
+    {
+      "path": "capture-request-tail-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "capture-request-tail-01.stdout",
+      "bytes": 164,
+      "sha256": "c3f2f9c21ab092e5c28c17557b70caa2f5e42004c666016b49f066028c59c4e6"
+    },
+    {
+      "path": "capture-request-tail.py",
+      "bytes": 5694,
+      "sha256": "89796185513456c9faffc1bea6cfe1f6aaaf492eab7215fd9c7114d4a9f497e1"
+    },
+    {
+      "path": "control-reviewed-boundaries-prerequisite-01.status.json",
+      "bytes": 577,
+      "sha256": "fb7e3daca3611d63cff7290794e93750ab8657ab4aec1d8b358fd4322f14a87f"
+    },
+    {
+      "path": "control-reviewed-boundaries-prerequisite-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "control-reviewed-boundaries-prerequisite-01.stdout",
+      "bytes": 77,
+      "sha256": "80198e720e7590a80ecefa873955028f095c84b38d5975d5434758841d10cc41"
+    },
+    {
+      "path": "control-reviewed-boundaries-prerequisite.py",
+      "bytes": 1722,
+      "sha256": "4f02d17140da7e7e550b04f83fcbfcd14f3fa81e566035babae91be8975df13d"
+    },
+    {
+      "path": "freeze-reviewed-local-boundaries.py",
+      "bytes": 7504,
+      "sha256": "9a9939c176b6ea5f5ed4de6a79141b29c4d81058e965dce1dae8c78e52d1e42a"
+    },
+    {
+      "path": "prove-reviewed-local-boundaries-01.status.json",
+      "bytes": 617,
+      "sha256": "695c561aa0301a44dfe77611c8bd31991af4536f08214570a8da548d0325bcb9"
+    },
+    {
+      "path": "prove-reviewed-local-boundaries-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "prove-reviewed-local-boundaries-01.stdout",
+      "bytes": 133,
+      "sha256": "e6b6dd1b0acfe825aaaa42f1b158b75eccb3c76313947a5bf75853a23523f060"
+    },
+    {
+      "path": "prove-reviewed-local-boundaries.py",
+      "bytes": 8775,
+      "sha256": "d9d59ba4f8facd411574b706990ef8de6e9e4ff7d6af761f02a4b32fe1c8b303"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3560,
+      "sha256": "055d6f6d04510719b5259146778e06ab146e024fdc6badb949b5d4c4b379d5c5"
+    },
+    {
+      "path": "result-reviewed-local-boundaries-01.json",
+      "bytes": 3628,
+      "sha256": "3f47c542015585f80c9e6b49ed36668eeb60ce41b539fefd8c587220259b4110"
+    },
+    {
+      "path": "retained/prove-defeat-recompute-boundary.py",
+      "bytes": 5813,
+      "sha256": "689baa77842cc738fb20837cbe407b086bba837afe2b8ef09797092aa7e570e4"
+    },
+    {
+      "path": "retained/reduce-request-tail-boundary.py",
+      "bytes": 4498,
+      "sha256": "b4a8732fab891ecece0117f9e3bda681416528abec532730d2d3b4d527f75f2a"
+    },
+    {
+      "path": "review/dismiss-stage.md",
+      "bytes": 9290,
+      "sha256": "a16328dc7c189e06b65829b6323e479c24ed4c25beeec5726cbf10bb4e82f952"
+    },
+    {
+      "path": "review/local-boundaries.md",
+      "bytes": 10548,
+      "sha256": "88779580cc354882a0c5fcb58c1e82d2ec3899ba843dfbd253cabb9e1fccc1e3"
+    },
+    {
+      "path": "review/mode-query.md",
+      "bytes": 9278,
+      "sha256": "fa755234a420bfbf3ad041785fbba9cc5c226100ea6fc538a4af1fd8f900eb86"
+    },
+    {
+      "path": "reviewed-boundaries-failed-prerequisite-01.json",
+      "bytes": 99,
+      "sha256": "51cfcceda7fa78189750a64c3d4dc29039841be532d1bc6ba604f72d8dba3243"
+    },
+    {
+      "path": "reviewed-boundaries-prerequisite-control-01.json",
+      "bytes": 684,
+      "sha256": "ddbbedb583101a318a60119ef017aa09cde7d06590db3fb97b105485b092a54d"
+    },
+    {
+      "path": "reviewed-boundaries-refusal-01.stderr",
+      "bytes": 1049,
+      "sha256": "0be4bba24d6e4cd80cd905ae97004a39c8f9d112f70c77f9db62f35b433c86e8"
+    },
+    {
+      "path": "reviewed-boundaries-refusal-01.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "SETUP-LESSONS.md",
+      "bytes": 1080,
+      "sha256": "00835586c5b12c2788753e8f89d4c7f00f62e5dc804f0b1fe801b502c59b08ba"
+    },
+    {
+      "path": "source-defeat-boundary-01.json",
+      "bytes": 33603,
+      "sha256": "a4febab7a65d9eb7e3b27524ca69f6906b80715e6291c946a03fd39ab27afb95"
+    },
+    {
+      "path": "source-request-tail-01.json",
+      "bytes": 13720,
+      "sha256": "7536b76bfaabfee9319268822c1463df39550d0516f17f22c580ea14e4889454"
+    },
+    {
+      "path": "validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    }
+  ],
+  "limits": "Integrity only; additive independent scientific acceptance pending"
+}

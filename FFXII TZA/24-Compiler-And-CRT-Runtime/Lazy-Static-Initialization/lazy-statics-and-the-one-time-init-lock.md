@@ -806,3 +806,11 @@ MECHANICAL.**
 
 *Tier 2: ledger names, sizes and `edges.tsv`, roles as this page reads them; no new body read (OPUS, 2026-09-29,
 pass-22 slice OPUS-P22-SLICE-24-99).*
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-03, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../../_index/candidates/fable-home-lazy-statics-and-the-one-time-init-lock-1003/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `001D9F70` | 23 B | `0017D940` + 0x17 | returns without a write when `edx` is above 1 (unsigned); otherwise atomically adds 1 (`lock xadd`) to dword `rcx+0x24` + sign-extended `edx` * 4 and returns that dword's previous value | Interior anchor `001D9F73`; Interior anchor `001D9F78`; Interior anchor `001D9F7C` |

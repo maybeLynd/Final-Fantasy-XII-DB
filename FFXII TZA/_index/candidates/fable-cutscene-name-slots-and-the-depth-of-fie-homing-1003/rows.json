@@ -1,0 +1,428 @@
+{
+ "page": "99-Unresolved-Residual/Cutscene-Asset-Slots/cutscene-name-slots-and-the-depth-of-field-sidecar.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_0137cceA3k2cA9BjsRcas6z4",
+ "report": [
+  "fable-cutscene-name-slots-and-the-depth-of-field-sidecar.json"
+ ],
+ "rows": [
+  {
+   "fn": "001B5610",
+   "text": "passes `rcx+0xd0` and `rdx` to the call at `001B5610` + 0x29 and, with its result `P`, zeroes qwords `P+0x20` and `P+0x28` and, only when `P` differs from `rdx`, calls `001A5760(P, qword [rdx], qword [rdx+8])`; takes `Q` from the call at `001B5610` + 0x5D (whose `rcx` is the result of the call at `001B5610` + 0x55) and stores dword 4, the address `001B5FE0`, `P` and byte 0 at `Q`, `Q+8`, `Q+0x10`, `Q+0x18`; calls `001B31E0(local L, rdx, qword 01DF6E08)` and passes `Q+0x20`, 0x100 and qword `[L]` to the indirect call at `001B5610` + 0xA1 (through `008C3038`); stores `P+0x20` and `P+0x28` at qwords `Q+0x120` and `Q+0x128`; passes the result of the call at `001B5610` + 0xB5, `Q` and 0 to the call at `001B5610` + 0xC3; then, for `L` and then for `rdx`, when qword `+0x10` minus qword `+0` is above 1 (signed) and qword `+0` is non-null, calls vtable slot `+0x18` of the object at `+0x18` with that object, qword `+0` and the low dword of the difference",
+   "anchors": [
+    [
+     "001B5659",
+     "call"
+    ],
+    [
+     "001B5675",
+     "mov"
+    ],
+    [
+     "001B569D",
+     "call"
+    ],
+    [
+     "001B56B1",
+     "call"
+    ],
+    [
+     "001B572A",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0033FFC0",
+   "text": "calls the site at `0033FFC0` + 0x9 with the incoming registers unchanged, passes `rdx` to the call at `0033FFC0` + 0x11 and its result to `002EB430`, then tail-jumps at `0033FFC0` + 0x2B with `rcx` = `rdx` and `edx` = 2",
+   "anchors": [
+    [
+     "0033FFC9",
+     "call"
+    ],
+    [
+     "0033FFD1",
+     "call"
+    ],
+    [
+     "0033FFD9",
+     "call"
+    ],
+    [
+     "0033FFDE",
+     "mov"
+    ],
+    [
+     "0033FFEB",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0034A290",
+   "text": "calls the site at `0034A290` + 0x9 with the incoming registers unchanged, passes `rdx` to the call at `0034A290` + 0x11 and its result to `002EB430`, then tail-jumps at `0034A290` + 0x2B with `rcx` = `rdx` and `edx` = 2",
+   "anchors": [
+    [
+     "0034A299",
+     "call"
+    ],
+    [
+     "0034A2A1",
+     "call"
+    ],
+    [
+     "0034A2A9",
+     "call"
+    ],
+    [
+     "0034A2AE",
+     "mov"
+    ],
+    [
+     "0034A2BB",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00348580",
+   "text": "takes floats `a` and `b` from the calls at `00348580` + 0x16 and `00348580` + 0x21 (each with `rcx` = `r9`) and `id` = `00267E10(r9)`, calls `0016D6A0(id)` and `003EB720(id)`, and returns at once when that result `P` is null; otherwise, when `a` is not below 0.0 (ordered), replaces `a` with `maxss(b, a)`, then calls the site at `00348580` + 0x61 with `P` and `b` (in `xmm1`) and the site at `00348580` + 0x6C with `P` and `a` (in `xmm1`)",
+   "anchors": [
+    [
+     "003485AC",
+     "call"
+    ],
+    [
+     "003485BC",
+     "call"
+    ],
+    [
+     "003485C7",
+     "je"
+    ],
+    [
+     "003485D4",
+     "maxss"
+    ],
+    [
+     "003485EC",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00348A90",
+   "text": "takes float `a` from the call at `00348A90` + 0x11 (with `rcx` = `r9`) and `id` = `00267E10(r9)`, calls `0016D6A0(id)` and `003EB720(id)`, and only when that result is non-null calls the site at `00348A90` + 0x40 with it and `maxss(0.0, a)` in `xmm1`",
+   "anchors": [
+    [
+     "00348AAC",
+     "call"
+    ],
+    [
+     "00348ABC",
+     "call"
+    ],
+    [
+     "00348AC4",
+     "je"
+    ],
+    [
+     "00348ACC",
+     "maxss"
+    ],
+    [
+     "00348AD0",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "003490F0",
+   "text": "takes float `a` from the call at `003490F0` + 0x11 (with `rcx` = `r9`) and `id` = `00267E10(r9)`, calls `0016D6A0(id)`, takes `P` = `003EB720(id)` without a null check, multiplies `a` by the float returned by the call at `003490F0` + 0x37 on `P`, and tail-jumps at `003490F0` + 0x50 with `rcx` = `P` and that product in `xmm1`",
+   "anchors": [
+    [
+     "0034910C",
+     "call"
+    ],
+    [
+     "0034911C",
+     "call"
+    ],
+    [
+     "00349127",
+     "call"
+    ],
+    [
+     "0034912C",
+     "mulss"
+    ],
+    [
+     "00349140",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00349460",
+   "text": "takes `id` = `00267E10(r9)`, calls `0016D6A0(id)`, and tail-jumps at `00349460` + 0x26 with `rcx` = `003EB720(id)` (no null check)",
+   "anchors": [
+    [
+     "00349469",
+     "call"
+    ],
+    [
+     "00349472",
+     "call"
+    ],
+    [
+     "00349479",
+     "call"
+    ],
+    [
+     "00349486",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003498D0",
+   "text": "takes `id` = `00267E10(r9)`, calls `0016D6A0(id)`, takes `P` = `003EB720(id)` without a null check, passes `P` to the call at `003498D0` + 0x24, then tail-jumps at `003498D0` + 0x31 with `rcx` = `P`",
+   "anchors": [
+    [
+     "003498D9",
+     "call"
+    ],
+    [
+     "003498E2",
+     "call"
+    ],
+    [
+     "003498E9",
+     "call"
+    ],
+    [
+     "003498F4",
+     "call"
+    ],
+    [
+     "00349901",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0034B0A0",
+   "text": "calls `00267E10(r9)` twice, keeping the first result `v` and the second `id`, calls `0016D6A0(id)` and tail-jumps at `0034B0A0` + 0x3E with `rcx` = `003EB720(id)` (no null check) and `edx` = `v`",
+   "anchors": [
+    [
+     "0034B0B0",
+     "call"
+    ],
+    [
+     "0034B0BA",
+     "call"
+    ],
+    [
+     "0034B0C3",
+     "call"
+    ],
+    [
+     "0034B0CA",
+     "call"
+    ],
+    [
+     "0034B0DE",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0034B710",
+   "text": "calls `00267F90(r9, 1)`, then calls `00267E10(r9)` twice, keeping the first result `v` and the second `id`, calls `0016D6A0(id)` and tail-jumps at `0034B710` + 0x4B with `rcx` = `003EB720(id)` (no null check) and `edx` = `v`",
+   "anchors": [
+    [
+     "0034B725",
+     "call"
+    ],
+    [
+     "0034B72D",
+     "call"
+    ],
+    [
+     "0034B737",
+     "call"
+    ],
+    [
+     "0034B747",
+     "call"
+    ],
+    [
+     "0034B75B",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0034BAB0",
+   "text": "calls `00267F90(r9, 0)`, then calls `00267E10(r9)` twice, keeping the first result `v` and the second `id`, calls `0016D6A0(id)` and tail-jumps at `0034BAB0` + 0x48 with `rcx` = `003EB720(id)` (no null check) and `edx` = `v`",
+   "anchors": [
+    [
+     "0034BAC2",
+     "call"
+    ],
+    [
+     "0034BACA",
+     "call"
+    ],
+    [
+     "0034BAD4",
+     "call"
+    ],
+    [
+     "0034BAE4",
+     "call"
+    ],
+    [
+     "0034BAF8",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0034BF40",
+   "text": "calls `00267E10(r9)` twice, keeping the first result `v` and the second `id`, calls `0016D6A0(id)` and `003EB720(id)`, and only when that result is non-null calls the site at `0034BF40` + 0x39 with it and `edx` = `v`",
+   "anchors": [
+    [
+     "0034BF50",
+     "call"
+    ],
+    [
+     "0034BF5A",
+     "call"
+    ],
+    [
+     "0034BF6A",
+     "call"
+    ],
+    [
+     "0034BF72",
+     "je"
+    ],
+    [
+     "0034BF79",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0034C900",
+   "text": "calls `00267E10(r9)` twice, keeping the first result `v` and the second `id`, calls `0016D6A0(id)` and `003EB720(id)`, and only when that result is non-null calls the site at `0034C900` + 0x39 with it and `edx` = `v`",
+   "anchors": [
+    [
+     "0034C910",
+     "call"
+    ],
+    [
+     "0034C91A",
+     "call"
+    ],
+    [
+     "0034C92A",
+     "call"
+    ],
+    [
+     "0034C932",
+     "je"
+    ],
+    [
+     "0034C939",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0034CCF0",
+   "text": "calls `00267E10(r9)` twice, keeping the first result `v` and the second `id`, calls `0016D6A0(id)` and tail-jumps at `0034CCF0` + 0x3E with `rcx` = `003EB720(id)` (no null check) and `edx` = `v`",
+   "anchors": [
+    [
+     "0034CD00",
+     "call"
+    ],
+    [
+     "0034CD0A",
+     "call"
+    ],
+    [
+     "0034CD13",
+     "call"
+    ],
+    [
+     "0034CD1A",
+     "call"
+    ],
+    [
+     "0034CD2E",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0034D2B0",
+   "text": "calls `00267F90(r9, 1)`, then calls `00267E10(r9)` twice, keeping the first result `v` and the second `id`, calls `0016D6A0(id)` and tail-jumps at `0034D2B0` + 0x4B with `rcx` = `003EB720(id)` (no null check) and `edx` = `v`",
+   "anchors": [
+    [
+     "0034D2C5",
+     "call"
+    ],
+    [
+     "0034D2CD",
+     "call"
+    ],
+    [
+     "0034D2D7",
+     "call"
+    ],
+    [
+     "0034D2E7",
+     "call"
+    ],
+    [
+     "0034D2FB",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0034D640",
+   "text": "calls `00267F90(r9, 0)`, then calls `00267E10(r9)` twice, keeping the first result `v` and the second `id`, calls `0016D6A0(id)` and tail-jumps at `0034D640` + 0x48 with `rcx` = `003EB720(id)` (no null check) and `edx` = `v`",
+   "anchors": [
+    [
+     "0034D652",
+     "call"
+    ],
+    [
+     "0034D65A",
+     "call"
+    ],
+    [
+     "0034D664",
+     "call"
+    ],
+    [
+     "0034D674",
+     "call"
+    ],
+    [
+     "0034D688",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing",
+ "family": ""
+}

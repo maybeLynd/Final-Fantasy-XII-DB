@@ -1061,3 +1061,11 @@ pass-22 debt `42a617a9a`).*
 | `0046D8E0` | 54 B | multiplies the float `rcx+0x3C` (read once, before any store) by the four floats at `rdx`, `rdx+4`, `rdx+8` and `rdx+0xC` and stores the products at `rcx+0x30`, `+0x34`, `+0x38` and `+0x3C` | `0046D8EB`, `0046D8EF`, `0046D8FC`, `0046D906`, `0046D910` |
 | `0046D920` | 41 B | multiplies the float `rcx+0x3C` by the three floats at `rdx`, `rdx+4` and `rdx+8` and stores the products at `rcx+0x30`, `+0x34` and `+0x38`, leaving `+0x3C` unchanged | `0046D92B`, `0046D92F`, `0046D939`, `0046D943` |
 | `0046FB40` | 100 B | with `n` = dword `01F20530` (decoded 0x32), truncates `(n - 1) * xmm0` to an integer `i`, using 0 when it is negative and `n - 1` when it is above `n - 1` (unsigned compare), and copies the three dwords at index `3i`, `3i+1`, `3i+2` of the dword table `01F20540` to `rdx`, `rdx+4` and `rdx+8` | `0046FB5F`, `0046FB65`, `0046FB6C`, `0046FB84`, `0046FB9F` |
+
+## Homed bodies: functions reached only indirectly whose callees this page cites (FABLE, 2026-10-03, F homing)
+
+*No page cited these functions and none of their callers is documented: they are reached by table or pointer dispatch or through undocumented callers. Each one calls something this page documents, which the sentence names. Each sentence states what the body does (access and representation, not purpose); the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's F homing pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../_index/candidates/fable-contract-authored-command-ramp-channels-homing-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0042DFC0` | 83 B | calls `00422EB0` with the incoming registers when word `rcx+6` is `0xffff`, word `rcx+0x2f2` is 1, word `rcx+0x2f8` is not `0xffff`, or bit `0x8000000` of dword `rcx+0x284` is set, and otherwise skips it with `eax` = 0; then, when word `rcx+6` (re-read) is `0xffff`, stores `eax` (the call's result, or 0) at dword `rdx+0x58`; returns `eax` on every path | Interior anchor `0042DFCF`; Interior anchor `0042DFD9`; Interior anchor `0042DFED`; Interior anchor `0042DFF9`; Interior anchor `0042E005` |

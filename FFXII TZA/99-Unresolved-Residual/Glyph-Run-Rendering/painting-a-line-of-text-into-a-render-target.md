@@ -853,3 +853,11 @@ This page describes unowned code in the residual folder, and it cites the bodies
 **WorldAreaField — MECHANICAL, 1 edge.** `0017D280` is called by `World_UpdateSimulationTick` (`00314020`).
 
 *Tier 2: ledger names and `edges.tsv`; no body read for this note (OPUS, 2026-09-29, pass-22 slice OPUS-P22-SLICE-24-99).*
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-painting-a-line-of-text-into-a-render-ta-ee-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00200BF0` | 609 B | opens `F` = `00597970(&F, qword [rdx], 1)` on the stack (byte `r8b` = 1; `r9` is not set); when dword `[F+0x1C]` is not -1 and `n` = it - dword `[F+0x18]` is positive, it allocates `n`+1 bytes (`00210EC0`), reads `n` bytes into them with `0059F4A0(&F+0x20, buf, n)` and terminates them, copies them up to the first 0 into a std::string `s` (`001A5630`), builds a std::stringstream on the stack (`basic_ios` and `basic_iostream` constructors, IAT `008C25E0`/`008C2520`; vtables `00900FA0` and `00900F20`; `basic_streambuf` `008C2798`) seeded from `s` by `001DF7D0`, frees and empties `s` (with the same large-block checks that call `_invalid_parameter_noinfo_noreturn` `008C2DA8`), calls `00200E60(rcx, &stream)`, frees the buffer (`00210EB0`) and destroys the stream (`001DE280`, then `basic_ios` destructor `008C25E8`); on every path it then calls `0059BD40(&F)` and `00598100(&F)`; stack cookie `01F44830`, checked by `00808C40` | `00200C3B`, `00200C54`, `00200C73`, `00200D6F`, `00200DF9` |

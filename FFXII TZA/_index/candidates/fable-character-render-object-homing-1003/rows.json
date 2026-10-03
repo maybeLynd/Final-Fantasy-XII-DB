@@ -1,0 +1,94 @@
+{
+ "page": "17-Presentation-Rendering/Character-Rendering/character-render-object.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01U9MRHY1rprnFC3Ptyv2Mfo",
+ "report": [
+  "fable-character-render-object.json"
+ ],
+ "rows": [
+  {
+   "fn": "001E5370",
+   "text": "computes `n` = (qword `[rcx+8]` minus qword `[rcx]`) / 0x18 (signed); when `edx` is at most `n` (unsigned, 32-bit) it calls `001E3D80(rcx, qword [rcx] + edx*0x18, qword [rcx+8])`; otherwise it calls `001E5370`+0x52 on a stack local, then `001E5370`+0x81 with (`rcx`, qword `[rcx+8]`, `edx` minus `n`, that call's result), then `001E5370`+0x8C on the same local",
+   "anchors": [
+    [
+     "001E53A8",
+     "imul"
+    ],
+    [
+     "001E53BB",
+     "jbe"
+    ],
+    [
+     "001E53F1",
+     "call"
+    ],
+    [
+     "001E53FC",
+     "call"
+    ],
+    [
+     "001E5411",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "001F4C50",
+   "text": "zeroes qwords `rcx+0`/`+8`/`+0x10` and calls `001EDF00(rcx+0x18, \"EASTL vector\" 008C5F58)`; then for `B` = `rcx+0x20` and again for `B` = `rcx+0x58` it calls `001EDF00(stack slot, \"EASTL set\" 008F3CB0)`, zeroes qwords `B+8`..`B+0x20` and dword `B+0x28`, calls `001EDF00(B+0x30, that call's result)`, stores the address `B+8` at qwords `B+8` and `B+0x10` and 0 at qword `B+0x18`, byte `B+0x20` and dword `B+0x28`; then calls `001F8A70(rcx, edx)` and, when `edx` is non-zero, calls `001F4C50`+0x124 `edx` times with (`rcx+0x20`, a pointer to a slot holding `rcx+0x58`, a pointer to a slot holding qword `[rcx]` + `i`*0x18 for `i` = 0, 1, ..., and a byte of the incoming `rdx` home slot, which this body never writes); returns `rcx`",
+   "anchors": [
+    [
+     "001F4C88",
+     "call"
+    ],
+    [
+     "001F4CD2",
+     "mov"
+    ],
+    [
+     "001F4D3D",
+     "call"
+    ],
+    [
+     "001F4D74",
+     "call"
+    ],
+    [
+     "001F4D81",
+     "jne"
+    ]
+   ]
+  },
+  {
+   "fn": "0042E130",
+   "text": "calls `00426220(rcx, qword [rdx+8])` and returns its result when it is non-zero; otherwise calls `0042E130`+0x27 with `rcx` only when word `[rcx+0x3fa]` is below `0x1000` (unsigned), then tail-jumps to `0042E130`+0x34 with `rcx`",
+   "anchors": [
+    [
+     "0042E13D",
+     "call"
+    ],
+    [
+     "0042E144",
+     "jne"
+    ],
+    [
+     "0042E14B",
+     "cmp"
+    ],
+    [
+     "0042E157",
+     "call"
+    ],
+    [
+     "0042E164",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing",
+ "family": ""
+}

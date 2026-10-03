@@ -307,3 +307,11 @@ check that fails if the shipping image says otherwise. The checks decode every l
 
 Consumer record: [`_index/candidates/authored-expression-falsification-pass-1-0929/`](../../_index/candidates/authored-expression-falsification-pass-1-0929/README.md).
 Contradiction: `CON-162`.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-contract-authored-expression-evaluation-ee-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0039B6E0` | 147 B | with `t` = `xmm0` and floats `a` = `[rdx]`, `b` = `[rdx+0x10]`, `c` = `[rdx+0x20]`: forms `A` = `a` - (`b` + `b`) + `c`; when `A` compares equal to 0.0 (ordered, so not NaN) it stores 2.0 (0x40000000) to dword `[r8]`; otherwise (unordered included) it stores (`sqrtf`((`b` - `a`)^2 - (`a` + `b` - 2`t`)*`A`) - (`b` - `a`)) / `A` there, `sqrtf` through the CRT thunk `00861F14`; returns nothing | `0039B715`, `0039B725`, `0039B72C`, `0039B752`, `0039B760` |

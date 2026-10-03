@@ -1,0 +1,53 @@
+00310780  test     rcx, rcx
+00310783  je       0x310860
+00310789  push     rbx
+0031078A  sub      rsp, 0x20
+0031078E  cmp      qword ptr [rcx + 0x698], 0
+00310796  mov      rbx, rcx
+00310799  je       0x31085b
+0031079F  mov      ecx, dword ptr [rcx + 0x710]
+003107A5  mov      qword ptr [rsp + 0x30], rsi
+003107AA  mov      qword ptr [rsp + 0x38], rdi
+003107AF  call     0x31b7e0
+003107B4  mov      rdi, rax
+003107B7  test     rax, rax
+003107BA  je       0x310803
+003107BC  mov      ecx, dword ptr [rbx]
+003107BE  bt       rcx, 0x16
+003107C3  jb       0x310803
+003107C5  movzx    ecx, byte ptr [rbx + 0xea9]
+003107CC  mov      edx, 1
+003107D1  mov      eax, dword ptr [rax + 0xea4]
+003107D7  shl      edx, cl
+003107D9  test     edx, eax
+003107DB  je       0x310803
+003107DD  dec      byte ptr [rdi + 0xea8]
+003107E3  not      edx
+003107E5  and      edx, eax
+003107E7  xor      r8d, r8d
+003107EA  mov      dword ptr [rdi + 0xea4], edx
+003107F0  mov      rcx, rbx
+003107F3  mov      rdx, rdi
+003107F6  call     0x313b30
+003107FB  mov      rcx, rdi
+003107FE  call     0x2fead0
+00310803  mov      rcx, rbx
+00310806  call     0x308270
+0031080B  and      qword ptr [rbx], 0xffffffffefffffdf
+00310812  movzx    ecx, byte ptr [rbx + 0x694]
+00310819  call     0x30c970
+0031081E  lea      rcx, [rbx + 0x6b0]
+00310825  mov      byte ptr [rbx + 0x694], 0xff
+0031082C  call     0x319420
+00310831  mov      edx, 1
+00310836  mov      rcx, rbx
+00310839  call     0x319140
+0031083E  mov      rdi, qword ptr [rsp + 0x38]
+00310843  mov      eax, 0x414e
+00310848  mov      rsi, qword ptr [rsp + 0x30]
+0031084D  cmp      word ptr [rbx + 0x714], ax
+00310854  jne      0x31085b
+00310856  call     0x317e50
+0031085B  add      rsp, 0x20
+0031085F  pop      rbx
+00310860  ret      

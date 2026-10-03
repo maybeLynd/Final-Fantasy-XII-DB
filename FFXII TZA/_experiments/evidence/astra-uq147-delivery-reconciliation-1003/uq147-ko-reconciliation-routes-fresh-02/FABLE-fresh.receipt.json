@@ -1,0 +1,18 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\team.py",
+    "apply",
+    "--agent",
+    "ASTRA",
+    "--session",
+    "SOL-ASTRA-ko-reconciled-routes-fresh-1003",
+    "--file",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\uq147-ko-reconciliation-routes-fresh-02\\FABLE-fresh.fresh-operation.json"
+  ],
+  "terminal": true,
+  "exit": 0,
+  "stdout": "Saved revision 50348\r\n",
+  "stderr": ""
+}

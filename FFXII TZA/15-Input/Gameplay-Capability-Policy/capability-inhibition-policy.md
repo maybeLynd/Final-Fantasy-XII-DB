@@ -794,6 +794,70 @@ responsibility and resource admission) and UQ-194 (initialization and scheduling
       - *Pointer 2026-10-01 (SWE2-STRUCT for OPUS):* the static half is narrowed further in the falsification pass at
         the end of this page. Under the typed BattleUnit access census, no writer produces a unit that
         `BattleUnit_GetPartyLeader` returns while its `+0x698` is null.
+      - *Local boundaries of the summon cleanup (FABLE, 2026-10-03, on ASTRA's [`uq147-local-boundaries`](../../_experiments/evidence/uq147-local-boundaries/README.md) evidence accepted by SWE2-AUDIT-SPEC, with its narrowing; [review](../../_index/candidates/auditspec-review-astra-uq147-local-boundaries-1003/REVIEW.md), [record](../../_index/candidates/fable-uq147-consumption-1003/README.md)).* Static only; no game, emulator or native session.
+        - **Same call.** In the defeat cleanup `00300FC0`, with flag 0, mode 1 (`003010FA`-`00301102`) and the
+          defeated unit equal to the one `0031B770` finds for `+0x5AD5` (`00301104`-`0030111A`), `0030111C`
+          `xor ecx,ecx`, `0030111E` `call 003138D0` and `00301123` `call 0023B040` are straight-line. The recompute
+          runs in the same call as soon as `003138D0` returns, with no dispatcher between them.
+        - **An invocation is not a completed cleanup.** `003138D0`'s only seam call (`0031395D`) reaches
+          `00311CF0`, which records intent and never writes the commit fields. It can also refuse with nothing
+          recorded: see CS-1 on [the command-seam contract](../../07-Combat-Action/CONTRACT-native-command-seam.md)
+          (OPUS's correction of 2026-10-03: three -2 cases and the `0x8800203B` 0 return). The mode-bit clear is on
+          the Dismiss arm of `00306760` ([the mode ladder](../../00-Engine-Core-Runtime/Battle-Runtime-Mode/battle-runtime-mode-ladder.md)
+          §2c, `00306A81`). None of `00300FC0`, `003138D0`, `00311CF0`, `00317E60` or `0025AAD0` calls that
+          routine directly or writes `+0x5B04`; their other helpers are not read. On the seam's tail, `00317E60`
+          passes `(1,0)` to `0025AAD0`, whose `0025AAE1` `jne` skips that function's five publication stores and its
+          `002F1710` call. That excludes those only. Before the tail, `00317E60` makes a write of its own: when bit
+          4 of byte `02089340` is set and the resolved unit's byte `+0` has bit 3, it ORs bit 32 into the unit's
+          qword `+0` at `00317E9A` and calls `0033C9B0(unit+0x80)` at `00317EA4`.
+        - **The roster selector has no KO filter and no cleanup.** The mode-1 leg passes 3 to `0031B8C0`
+          (`003138E6`). That composes `00263750`, which for index 3 reads the roster qword at `0209A208`, and
+          `00263E30`, which reads actor `+0x30`; an empty slot returns NULL. It reads no HP or status, writes
+          nothing and calls nothing else. Index 3 is a roster slot, not ActorStorage class 3.
+      - *The mode query and a conditional early return (FABLE, 2026-10-03, on ASTRA's [`uq147-mode-query`](../../_experiments/evidence/uq147-mode-query/README.md) evidence accepted by SWE2-AUDIT-SPEC; [review](../../_index/candidates/auditspec-review-astra-uq147-mode-query-1003/REVIEW.md)).*
+        - **Two reads, not atomic.** `0030D9A0` reads the DWORD `[[02EBF190]+0x5B04]` and tests bits 3 and 2
+          (`0030D9AB`-`0030D9C3`). It then calls `00377C20` (`0030D9CF`), reloads the pointer and the word
+          (`0030D9E2`-`0030D9E9`), and tests bits 1 and 0. "Mode 1" therefore means that the low nibble is `0001`
+          at both reads and the field helper returns false.
+        - **The field helper is closed and read-only.** `00377C20` -> `003148F0` -> `002EF2B0` -> `002EF640` is 133
+          bytes with no memory write and no other call; [the field-record page](../../03-World-Area-Field/Field-Record-Table/field-record-bit15-action-permission.md)
+          §2 gives its descriptor test and bit 15. The field id it indexes with is the DWORD at `021654C4`:
+          `002EF640` forms `02164280` with `lea`, then `+0x200` (`002EF2B9`) and `+0x1044` (`003148FB`), and a
+          negative value clamps to 0 (`00314903`). These are fixed image addresses, not live pointers; no
+          run-time value was observed.
+        - **The early-return counterexample.** With mode 1 at both reads, `003138D0(0)` returns before the seam
+          call `0031395D` and before its own `+0x5AD0` write `00313981` in three cases. The first is when
+          `0031B8C0(3)` returns NULL (`003138F1`): an empty slot, or a NULL actor `+0x30`. The other two are the
+          pending and committed `0x113` exits that [the periodic-tick page](../../10-Status-Periodic-Terminal/Periodic-Tick/what-the-periodic-tick-does.md)
+          already gives (`00313913`, `0031391C`). On those paths the only store is the home slot `[rsp+0x48]`
+          (`003138F9`). FABLE's own byte reading adds one more case: when `0031B7E0` resolves NULL (`00313938`,
+          or `00313948` for a non-zero handle), the seam call is skipped but the `00313981` write still runs. So
+          an invocation alone does not guarantee a state change. The premises are explicit: the normal ABI, a
+          private stack, no interference, and readable, stable state.
+        - **Combined with the same call above.** When `0023B040` runs at `00301123`, nothing here shows that
+          Dismiss has executed or that `+0x5B04` bit 0 is clear. The recompute's mode-1 counterpart gate (§11, the
+          last row of its table) reads whatever mode word and member state the helpers left.
+        - **Still OPEN:** native initialization of the roster and of `+0x5AD5`; natural KO admission; whether a
+          Dismiss in progress coexists with the acting member; mode and member persistence and lifetime across the
+          earlier and later helpers; scheduling; command acceptance, commit and execution; natural mask 7 and the
+          override clear. UQ-147 stays SUPERSEDED; its live half is
+          `FABLE-REQ-ASTRA-UQ147-KO-SUMMONER-DURING-A-SUMMON`.
+      - *What the earlier release leaves for the Dismiss and the recompute (FABLE, 2026-10-03, on ASTRA's [`uq147-ko-release-partition`](../../_experiments/evidence/uq147-ko-release-partition/README.md) evidence accepted by SWE2-AUDIT-SPEC; [review](../../_index/candidates/auditspec-review-astra-uq147-ko-release-partition-1003/REVIEW.md), [record](../../_index/candidates/fable-uq147-ko-release-1003/README.md)).* Static only.
+        - For a fallen summoner that is not an Esper, the defeat cleanup `00300FC0` calls the target-relation
+          release first (`00300FC0`+0x4D), before the same-call pair above (`00300FC0`+0x15E and +0x163).
+          [The status-write page](../../10-Status-Periodic-Terminal/Status-Write/the-status-write-and-its-side-effects.md)
+          §2.7a gives what that release does: the contributor bookkeeping on the fallen unit's target runs only
+          with flag bit 22 clear, and the separate restore of a suspended action runs only with bit 22 set, at a
+          second read.
+        - So when `003138D0(0)` and `0023B040` are called, the target's attacker count and mask have been reversed only
+          if bit 22 was clear and the slot bit present at the first read. The release makes no direct store to
+          the fallen unit's committed command `+0x714`, but if bit 22 was set the restore may have replaced it
+          with the saved command. Nothing here shows that command was kept, cleared or made Dismiss. The
+          release's four direct stores are on the fallen unit and its target; none is to the battle-state
+          block's `+0x5B04` or `+0x5AD0`.
+        - **Still OPEN:** natural summoner KO and its bit-22 state; Esper pending-`0x113` admission (whether
+          `003138D0`'s pending-`0x113` exit is taken in natural play); the lifetime of the restored contents;
+          timing and scheduling; the helpers' transitive effects. UQ-147 stays SUPERSEDED.
   > *FABLE, 2026-09-12 (for the item below, which stays ASTRA's to tick):* the selection half is resolved by
   > [the render-event selection evidence](../../17-Presentation-Rendering/Character-Render-Records/render-event-selection-evidence.md) §4, and FABLE agrees on primary grounds
   > (see §10's note); the event and flag meanings (entry `+0x2C8` bit 12, the priority table's extent) remain open.

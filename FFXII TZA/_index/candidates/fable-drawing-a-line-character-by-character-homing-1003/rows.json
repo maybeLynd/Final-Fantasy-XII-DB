@@ -1,0 +1,120 @@
+{
+ "page": "99-Unresolved-Residual/Glyph-Run-Rendering/drawing-a-line-character-by-character.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01CZh28JMQoyNT8qWV5qwsPp",
+ "report": [
+  "fable-drawing-a-line-character-by-character.json"
+ ],
+ "rows": [
+  {
+   "fn": "002CB4B0",
+   "text": "dispatches on dword `[rdx]`: 1 calls `002CB4B0`+0x178 (`rcx+0x50`, qword `+0x38` of qword `0209AC30`, 9, `rcx`), copies the result's words `+4`..`+0xa` to `+0x98`..`+0x9e` if `rcx` is non-null, stores dword `[rdx+8]` at `+0xd4` and qword `[rdx+0x10]` at `+0xd8`, and if dword `+0x168` of that qword has no bit of `0xf0000` clears bit `0x1` of dword `+0x50`, else sets it, sets bit `0x1` of dword `+8` of the objects in qword `[rcx+0x60]` slots `+0x58` and `+0`..`+0x40` (stride 8) and clears it for slots `+0x80`, `+0x50`, `+0x48`; then stores `002DD7E0(0xf5)` in dwords `+0x28`..`+0x34` of the slot `+0x50` object and `002DD7E0(0xf4)` in those of slot `+0x48`, clears bit `0x800` of dword `+0x40` and calls +0x2C6 (`rcx`, 0x65); 2 calls +0x3E (`rcx`) and tests qword `+0xd8` the same way: no bit clears bit `0x1` of `+0x50`, else sets it and bit `0x1` of the slot `+0x58` object and copies bit `0x1` of dword `+0xe4` into bit `0x1` of dword `+8` of the slot `+0`..`+0x40` objects; 4 does nothing; these return 0, and other values tail-jump to `002CB4B0`+0x36 (`rcx`)",
+   "anchors": [
+    [
+     "002CB628",
+     "call"
+    ],
+    [
+     "002CB674",
+     "test"
+    ],
+    [
+     "002CB738",
+     "call"
+    ],
+    [
+     "002CB53B",
+     "or"
+    ],
+    [
+     "002CB4E6",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00559910",
+   "text": "with `E` = `rcx` + `r9d`*0x20 (signed) and `S` = qword `+8` of qword `[rdx+0x10]`, stores qword `E+0xe8` at `S+0x18`, the result of the call at `00559910`+0x38 (0) at `S+0x20` and `002DD7E0(0 if word E+0xf4 is non-zero, else 2)` at `S+0x24`; sets bit `0x1` of dword `+8` of `T` = qword `[[rdx+0x10]]` when word `E+0xf0` is not `0xffff` and byte `E+0xf2` is not `0xff`, and clears it otherwise; in the set case also writes byte `E+0xf2` to word `T+0xa` and byte `+7` of that 8-byte entry of qword `T+0x20` to byte `T+0x39`; returns 1",
+   "anchors": [
+    [
+     "00559944",
+     "mov"
+    ],
+    [
+     "00559962",
+     "call"
+    ],
+    [
+     "00559985",
+     "cmovne"
+    ],
+    [
+     "00559998",
+     "or"
+    ],
+    [
+     "005599B6",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005639D0",
+   "text": "with `B` = qword `+8` of qword `[rdx+0x10]`: when qword `rcx+0xe0` is null calls `005639D0`+0x2F (`rdx`, 0), sets bit `0x1` of dword `B+8` and stores the result of call +0x45 (0x7d8) at `B+0x18`, that of call +0x50 (0) at `B+0x20`, word `[B]+4` minus `0x14` at `B+0xc` and word `[B]+6` at `B+0xe`; otherwise, with `E` = `[rcx+0xe0]` + `r9d`*0x20 and `T` = qword `[[rdx+0x10]]`, clears bit `0x1` of dword `T+8` when byte `E+0xa` is `0xff`, else sets it and writes that byte to word `T+0xa` and byte `+7` of that 8-byte entry of qword `T+0x20` to byte `T+0x39`, stores qword `[E]`, the result of call +0xC3 (0) and words `[B]+4`/`[B]+6` at `B+0x18`/`+0x20`/`+0xc`/`+0xe`, stores `002DD7E0(6 if bit 0x100 of dword rcx+0x180 is set and signed word rcx+0x17c equals r9d, else 0)` at `B+0x24`, and calls +0x117 (`rdx`, `E`, 2, 7); returns 1 on both paths",
+   "anchors": [
+    [
+     "005639F8",
+     "jne"
+    ],
+    [
+     "00563A33",
+     "mov"
+    ],
+    [
+     "00563A57",
+     "cmp"
+    ],
+    [
+     "00563ACF",
+     "call"
+    ],
+    [
+     "00563AE7",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00563C00",
+   "text": "with `B` = qword `+8` of qword `[rdx+0x10]`: when qword `rcx+0xe0` is null calls `00563C00`+0x29 (`rdx`, 0), sets bit `0x1` of dword `B+8` and stores the result of call +0x3F (0x7d8) at `B+0x18`, that of call +0x4A (0) at `B+0x20`, word `[B]+4` minus `0x14` at `B+0xc` and word `[B]+6` at `B+0xe`; otherwise, with `E` = `[rcx+0xe0]` + `r9d`*0x20 and `T` = qword `[[rdx+0x10]]`, clears bit `0x1` of dword `T+8` when byte `E+0xa` is `0xff`, else sets it and writes that byte to word `T+0xa` and byte `+7` of that 8-byte entry of qword `T+0x20` to byte `T+0x39`, stores qword `[E]`, the result of call +0xBA (0) and words `[B]+4`/`[B]+6` at `B+0x18`/`+0x20`/`+0xc`/`+0xe`, and stores `002DD7E0(6 if bit 0x100 of dword rcx+0x180 is set and signed word rcx+0x17c equals r9d, else 0)` at `B+0x24`; returns 1 on both paths",
+   "anchors": [
+    [
+     "00563C22",
+     "jne"
+    ],
+    [
+     "00563C5D",
+     "mov"
+    ],
+    [
+     "00563C7C",
+     "cmp"
+    ],
+    [
+     "00563CF5",
+     "call"
+    ],
+    [
+     "00563CFA",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing",
+ "family": ""
+}

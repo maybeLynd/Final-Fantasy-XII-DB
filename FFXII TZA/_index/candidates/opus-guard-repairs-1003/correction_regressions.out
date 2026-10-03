@@ -1,0 +1,6 @@
+MISSING  Database/FFXII TZA/_index/candidates/box3-answers-0927/be6_all_roles.py  (the declared regression file does not exist)  <- box3-answers-0927
+MISSING  Database/FFXII TZA/_index/candidates/box3-answers-0927/uq213_programs.py  (the declared regression file does not exist)  <- box3-answers-0927
+MISSING  Database/FFXII TZA/_index/candidates/box3-answers-0927/uq215_routes.py  (the declared regression file does not exist)  <- box3-answers-0927
+FAIL     Database/FFXII TZA/_index/candidates/swe2contract-ddres-b20-1001/b20_checks.py  (exit 1)  <- swe2contract-ddres-b20-1001, swe2ec7-blinking-icon-eq0-1001
+FAIL     Database/FFXII TZA/_index/candidates/swe2struct-awn-wave-b-1001/awn_b_checks.py  (exit 1)  <- opus-awn-followups-1001, swe2struct-awn-wave-b-1001
+CORRECTION REGRESSIONS: 139 declared, 4 retired, 139 run - PASS 134, FAIL 2, UNINTERPRETABLE 0, MISSING 3, TIMEOUT 0

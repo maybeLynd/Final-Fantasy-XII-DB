@@ -1,0 +1,7 @@
+PASS  1 ebp = 0x113 at 003138FE
+PASS  2 bt rdx,0xE / jae 00313915: the +0xBA0 test is skipped when bit 14 of dword [row] is clear
+PASS  3 the +0xBA0 == 0x113 bail sits inside that guard
+PASS  4 the +0x714 == 0x113 bail is the jae target: unconditional
+PASS  C control: an unconditional-+0xBA0 model predicts no jae before 0031390A; the bytes have one
+PASS  5 the 13g bullet carries the condition, the original struck
+FAILS 0

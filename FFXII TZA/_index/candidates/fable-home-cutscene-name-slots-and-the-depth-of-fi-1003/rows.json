@@ -1,0 +1,46 @@
+{
+ "page": "99-Unresolved-Residual/Cutscene-Asset-Slots/cutscene-name-slots-and-the-depth-of-field-sidecar.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01DtsGzxAwuV39oMMCAfQd2j",
+ "report": "home-cutscene-name-slots-and-the-depth-of-field-sidecar.json",
+ "rows": [
+  {
+   "fn": "00276190",
+   "entered_from": "`00271760` + 0x24",
+   "text": "stores the dword `0x44FFF000` to `+0x80`, `+0x84`, `+0x88`, `+0x8C` of `rcx` and `0x3F800000` to `+0xC0`, `+0xC4`, `+0xC8`, `+0xCC`; then calls `00276190` + 0x6B with (`rcx+0x40`, `02AEDDB0`) and tail-jumps to the same callee at `00276190` + 0x80 with (`rcx`, the incoming `rdx`)",
+   "anchors": [
+    [
+     "0027619D",
+     "mov"
+    ],
+    [
+     "002761C5",
+     "mov"
+    ],
+    [
+     "002761CF",
+     "mov"
+    ],
+    [
+     "002761FB",
+     "call"
+    ],
+    [
+     "00276210",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "002EC960",
+   "why": [
+    "already cited by 99-Unresolved-Residual\\Cutscene-Asset-Slots\\cutscene-name-slots-and-the-depth-of-field-sidecar.md"
+   ]
+  }
+ ],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

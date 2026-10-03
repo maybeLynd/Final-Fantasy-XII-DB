@@ -1,0 +1,11 @@
+{
+  "status": "RECONCILED_READ_ONLY",
+  "current_revision": 50328,
+  "current_epoch": 4,
+  "producer_sha256": "9c27433e0e077354e43d58f31f5b7efbc7569b8aa88ae30a8814cca483372ceb",
+  "candidate_commit": "d02293770e149fae885dbf77c8282b8f7ed1399d",
+  "current_board_check": "ok",
+  "attributable_descendants": 0,
+  "publication_receipt_missing": true,
+  "next": "Release only owned publication hold after process ownership reconciliation; ask FRONTIER/OPUS to adjudicate missing receipt and timeout invocation. Never republish unchanged payload."
+}

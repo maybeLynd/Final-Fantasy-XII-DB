@@ -1,0 +1,35 @@
+{
+ "page": "99-Unresolved-Residual/Glyph-Run-Rendering/how-a-line-of-text-becomes-glyph-quads.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01HFDWqiFGBo93D32pyB6Lkx",
+ "report": "home-how-a-line-of-text-becomes-glyph-quads.json",
+ "rows": [
+  {
+   "fn": "00408AD0",
+   "entered_from": "`003EC850` + 0x0",
+   "text": "when qword `02B62D80` is non-null and bit 1 (`0x2`) of its dword `+0xC8` is clear, clears bit 2 of that dword (AND `0xFFFFFFFB`); otherwise it writes nothing",
+   "anchors": [
+    [
+     "00408AD7",
+     "test"
+    ],
+    [
+     "00408AE2",
+     "test"
+    ],
+    [
+     "00408AE7",
+     "and"
+    ],
+    [
+     "00408AEA",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

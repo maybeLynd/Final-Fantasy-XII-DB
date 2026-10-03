@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\uq147-summoner-cleanup-order\\prove-reviewed-local-boundaries.py",
+    "reviewed-boundaries-refused-output-01.json",
+    "reviewed-boundaries-failed-prerequisite-01.json"
+  ],
+  "terminal": true,
+  "exit": 1,
+  "result_absent": true,
+  "positive_reused_sha256": "695c561aa0301a44dfe77611c8bd31991af4536f08214570a8da548d0325bcb9",
+  "limits": "One actual CLI negative; retained positive reused. Not native execution."
+}

@@ -1,0 +1,190 @@
+{
+ "page": "01-Script-VM-Native-Bridge/Native-Command-Lifecycle/native-command-lifecycle.md",
+ "date": "2026-10-03",
+ "rows": [
+  {
+   "fn": "00341D00",
+   "text": "calls `00363B20` with `ecx` = -1 and then tail-jumps to `003631A0` with `ecx` = 0 and `edx` = 0; reached through the result field (`+0x20`) of record 0x1D7 of the family-0 command table `01EED700` (cell `01EF1200`), so it is the result callback of command id 0x01D7",
+   "anchors": [
+    [
+     "00341D04",
+     "or"
+    ],
+    [
+     "00341D07",
+     "call"
+    ],
+    [
+     "00341D0E",
+     "xor"
+    ],
+    [
+     "00341D14",
+     "jmp"
+    ]
+   ],
+   "why_here": "result slot of family-0 record 0x1D7; this page gives the table base and record layout",
+   "ref": {
+    "kind": "slot",
+    "table": "01EED700",
+    "field": "20",
+    "stride": "20",
+    "index": 471,
+    "site": "01EF1200",
+    "width": 8,
+    "counted": true
+   },
+   "cites": [
+    "01EED700"
+   ]
+  },
+  {
+   "fn": "00345A30",
+   "text": "calls `0035A090` with the incoming registers; when it returns other than 2 it stores word 0xFFFF to `[r8]` and returns -1, and when it returns 2 it calls `0035A660` and stores the low word of that result to `[r8]`, returning the result; reached through the begin field (`+8`) of record 0x6C of the family-0 command table `01EED700` (cell `01EEE488`), so it is the begin callback of command id 0x006C",
+   "anchors": [
+    [
+     "00345A36",
+     "mov"
+    ],
+    [
+     "00345A39",
+     "call"
+    ],
+    [
+     "00345A43",
+     "or"
+    ],
+    [
+     "00345A4F",
+     "call"
+    ],
+    [
+     "00345A54",
+     "mov"
+    ]
+   ],
+   "why_here": "begin slot of family-0 record 0x6C; this page gives the table base and record layout",
+   "ref": {
+    "kind": "slot",
+    "table": "01EED700",
+    "field": "8",
+    "stride": "20",
+    "index": 108,
+    "site": "01EEE488",
+    "width": 8,
+    "counted": true
+   },
+   "cites": [
+    "01EED700"
+   ]
+  },
+  {
+   "fn": "0034AA70",
+   "text": "calls `0025C0F0` with dword `[r8]`; when that returns non-zero it calls `0026BE50` with dword `[r8]` and 0 and returns 0, and when it returns zero it returns 1; reached through the poll field (`+0x10`) of record 0x29F of the family-0 command table `01EED700` (cell `01EF2AF0`), so it is the poll callback of command id 0x029F",
+   "anchors": [
+    [
+     "0034AA76",
+     "mov"
+    ],
+    [
+     "0034AA7C",
+     "call"
+    ],
+    [
+     "0034AA89",
+     "call"
+    ],
+    [
+     "0034AA96",
+     "mov"
+    ]
+   ],
+   "why_here": "poll slot of family-0 record 0x29F; this page gives the table base and record layout",
+   "ref": {
+    "kind": "slot",
+    "table": "01EED700",
+    "field": "10",
+    "stride": "20",
+    "index": 671,
+    "site": "01EF2AF0",
+    "width": 8,
+    "counted": true
+   },
+   "cites": [
+    "01EED700"
+   ]
+  },
+  {
+   "fn": "00352390",
+   "text": "calls `003C5DF0` with `ecx` = 0 and then tail-jumps to `003C5E00`; reached through the result field (`+0x20`) of record 0x16D of the family-0 command table `01EED700` (cell `01EF04C0`), so it is the result callback of command id 0x016D",
+   "anchors": [
+    [
+     "00352394",
+     "xor"
+    ],
+    [
+     "00352396",
+     "call"
+    ],
+    [
+     "0035239F",
+     "jmp"
+    ]
+   ],
+   "why_here": "result slot of family-0 record 0x16D; this page gives the table base and record layout",
+   "ref": {
+    "kind": "slot",
+    "table": "01EED700",
+    "field": "20",
+    "stride": "20",
+    "index": 365,
+    "site": "01EF04C0",
+    "width": 8,
+    "counted": true
+   },
+   "cites": [
+    "01EED700"
+   ]
+  },
+  {
+   "fn": "0050ED10",
+   "text": "calls `002E1130` with dword `[r8]`; it returns 0 when that result is 7, and when the result is 3 and dword `[r8+8]` is 0 it first calls `002E08C0` with dword `[r8]`; every other path returns 1; reached through the poll field (`+0x10`) of records 0x1F and 0x43 of the shared command table `01F26720` (cells `01F26B10` and `01F26F90`), so it is the poll callback of command 0x01F and 0x043 in every family that table serves",
+   "anchors": [
+    [
+     "0050ED16",
+     "mov"
+    ],
+    [
+     "0050ED1C",
+     "call"
+    ],
+    [
+     "0050ED21",
+     "cmp"
+    ],
+    [
+     "0050ED33",
+     "cmp"
+    ],
+    [
+     "0050ED3B",
+     "call"
+    ]
+   ],
+   "why_here": "poll slot of shared-table records 0x1F and 0x43; this page gives the table base and record layout",
+   "ref": {
+    "kind": "slot",
+    "table": "01F26720",
+    "field": "10",
+    "stride": "20",
+    "index": 31,
+    "site": "01F26B10",
+    "width": 8,
+    "counted": true
+   },
+   "cites": [
+    "01F26720"
+   ]
+  }
+ ]
+}

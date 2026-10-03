@@ -1,0 +1,92 @@
+{
+ "page": "18-Audio/sqex-sd-sound-driver-architecture.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "sqex-sd-sound-driver-architecture-r3.json",
+ "rows": [
+  {
+   "fn": "007B9050",
+   "text": "returns -1 for `r9d` = 0; else stores argument 5 to qword `[rcx+0x70]`, argument 7 to dword `+0x484`, (`r8d`*4 for `r9d` = 2, `r8d`*2 for 1, else 0)*0x100 to dword `+0x500` and `007AD550(that, 0)` to qwords `+0x508` and `+0x510`; from list `L` = argument 6 it builds stack entries (`007AC410(qword 02EAD0A8, dword [L+8i])`, dword `[L+8i+4]`) per dword `[L+0x20]` pair with a non-null lookup (none for a negative count), or for null `L` or count 0 one entry (`007AC410(qword 02EAD0A8, 0)`, 1.0); takes `r` = `007AEA20(rcx+0x68, edx, r8d, r9d, rcx+0x10, entries, count, 0, 0, 1)`; for negative `r` it formats '[sead][!!error!!]ExternalSourceVoice Initialize failed' + newline into a 0x100-byte buffer (`0019C5D0`; `00809728` on an out-of-range index), passes it to `OutputDebugStringA` (IAT `008C2120`) and `007A5570(2, ..)`, stores 0 to qword `+0x68` and returns `r`; else gives slot `+0x40` of qword `+0x68` a stack matrix (1.0 at row = column, else 0; `r8d` by `007AECE0()`), calls `007B9AF0(rcx, 0.0)`, appends `rcx` to the list at tail qword `02EADD30`, head `02EADD38` (links `+0x4F0`/`+0x4F8`; dword `02EADD40` += 1) inside critical section `02EADD48`, and returns slot `+0x18` of it",
+   "anchors": [
+    [
+     "007B9088",
+     "jne"
+    ],
+    [
+     "007B9119",
+     "call"
+    ],
+    [
+     "007B9165",
+     "call"
+    ],
+    [
+     "007B91E7",
+     "call"
+    ],
+    [
+     "007B9355",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007DCE20",
+   "text": "with config `c` = `rdx`: stores dword `[c+8]` to dword `[rcx+0xA4]` and calls `007DCC60(rcx+0xA8, dword [c])`; stores `007AD550(0x200, 5)` to qword `[rcx+0x50+8i]` for each `i` below dword `+0xA4` (signed) and `007AD550(dword +0xA4 * 0x200, 5)` to qwords `+0x90` and `+0x98`; stores 0 to dword `+0xA0`; with `z` = 4*(dword `[c]`*(dword `[c+4]`*dword `[c+8]` + 0x10) + dword `[c+8]`*0x218) + 0x100, stores `p` = `007AD550(z, 5)` to qword `+0x38` and calls `001218B0(dword [c], dword [c+4], dword [c+8], p, z, rcx+0x40)`; calls `007AEA20(rcx+0x48, dword [c+0xC], dword [c+8], 2, rcx+8, &b, 1, 0, 0, 0)` with the stack pair `b` = (`007AC410(qword 02EAD0A8, 0)`, 1.0); then on the object `w` = qword `+0x48` (re-read for each) calls vtable slot `+0x40` with an 8x8 float identity matrix on the stack, slot `+0x48` with (qword `02EAE098`, dword `02EAE090` sign-extended, 0, 0) and slot `+0x18`; returns 0; stack cookie `01F44830`, checked by `00808C40`",
+   "anchors": [
+    [
+     "007DCE5F",
+     "call"
+    ],
+    [
+     "007DCE8A",
+     "call"
+    ],
+    [
+     "007DCF2A",
+     "call"
+    ],
+    [
+     "007DCF92",
+     "call"
+    ],
+    [
+     "007DD007",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007DFBB0",
+   "text": "copies word `[rcx+0x72]` to word `+0x74`, takes `n` = `007AECE0()`; when that word is at most 0 (signed) it zeroes `007AECD0()` bytes at qword `+0x30` and, under the critical section `rcx+8`, zeroes `n` dwords at qword `+0x60` (and at qword `+0x68` when byte `+0x70` is non-zero) and stores 0 to byte `+0x70`; flag `f` = word `+0x74` above 0; with `k` = `007AECF0()` and a stack block (qword `+0x30`, `k`, `n`), for each object `o` at qword `[rcx+0x38+8i]` below dword `+0x58` whose vtable slot `+8` returns 0 in `al` and (word `+0x74` above 0 or slot `+0x10` non-zero) it calls slot `+0x18` with the block and sets `f`; when `f` is set it scales the `k` 32-byte float blocks at qword `+0x30` by float `+0x5C` unless that is 1.0 (`ucomiss`, unordered counts as equal) and, under the critical section, stores 0 to the 8 floats at qword `+0x60`, folds in each block's absolute values by `maxps`, then copies them to qword `+0x68` when byte `+0x70` is non-zero, else stores there the `maxps` of the two, and stores 0 to byte `+0x70`; returns 0",
+   "anchors": [
+    [
+     "007DFBD8",
+     "mov"
+    ],
+    [
+     "007DFBFE",
+     "call"
+    ],
+    [
+     "007DFD10",
+     "call"
+    ],
+    [
+     "007DFD57",
+     "mulps"
+    ],
+    [
+     "007DFDB4",
+     "maxps"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

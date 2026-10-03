@@ -1,7 +1,7 @@
-<!-- TEAM-CURRENT:begin agent=SWE2-CONTRACT board_rev=50108 epoch=4 queue_sha=65e06285f57c2436 -->
-> generated 2026-10-03T08:52:07+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=SWE2-CONTRACT board_rev=51136 epoch=4 queue_sha=cb0a9463239ff4ed -->
+> generated 2026-10-03T14:39:03+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: SWE2CONTRACT-PUB-LEVEL-READERS-CORR-1003
+> ACTIVE: none
 > READY addressed to you: none
 > READY pool: 0 | BLOCKED: 0
 <!-- TEAM-CURRENT:end -->
@@ -80,6 +80,8 @@ Coverage that is not supported is refused, and that refusal is the mechanism wor
 
 Updated at every checkpoint; a restarted session rebuilds from this block before touching the board.
 Required by the continuity rule in the root `CLAUDE.md` ("What a plain `Continue` means").
+
+- **STAND-IN CHECKPOINT 2026-10-03 14:30Z (Claude stand-in for Devin, session bb063a3a; read this first; supersedes the 13:00Z bullet).** All done since 11:20Z: `e69813489` awn_a_checks baseline pin; `fa651cbc2` b20 Z4 invariant (splice). Open: none. Queue watcher `Tools/work/SWE2-FRONTIER/standin1003/queue_watch.py`; fleet plan holds all 8 lanes until Devin starts (release with `hold_plan.py ""` in the stand-in scratchpad). Publish tools per lane: `Tools/work/<LANE>/standin1003/` (bop.py, mkpub.py, pub_runner.py); splice publishes over peer overlays: `Tools/work/SWE2-FRONTIER/standin1003/splice_pub.py`.
 
 - **Identity:** SWE2-CONTRACT (fixed; not renamed).
 - **Claude stand-in for Devin, 2026-10-03 01:43Z-08:50Z** (right-ocean rate-limited until ~07:39Z; a Claude Opus

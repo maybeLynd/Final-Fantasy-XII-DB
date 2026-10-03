@@ -1,0 +1,9 @@
+ok   summary table parsed: [('contract', {'MET': 47, 'SCOPE-SHORT': 3}, 1)]
+ok   PROGRESS headline parsed
+ok   CURRENT claim detected
+ok   STALE label is not a CURRENT claim
+ok   C9 unchanged worklist cell -> STALE worklist, not FAIL
+ok   C9 SAME-DAY re-score of a worklist cell without the citation -> FAIL (the date-ordered rule called it old)
+ok   C9 a new exclusion on a non-worklist cell, dated the policy day -> FAIL
+ok   C9 a re-read cell citing the amendment clears the worklist
+self-test: 0 failure(s)

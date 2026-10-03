@@ -1,0 +1,45 @@
+{
+ "page": "11-Party/party-roster-and-control-suppression.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "party-roster-and-control-suppression-r5.json",
+ "rows": [
+  {
+   "fn": "007A05D0",
+   "text": "builds a stack object `s` (`00615BC0(&s)`), reads its size pair (`a`, `b`) through `00624960(00624670(&s), &a, &b, &c)`; when dwords `[rcx+0xD24]`/`[rcx+0xD28]` already equal `a`/`b` it calls `001825A0()` and returns 0; otherwise `r` = `006278B0(00624670(&s), dword +0xD24, dword +0xD28)`, and for non-zero `r` it returns `r`; else it logs '======== Call resize w = %d,h = %d =======' through `005CDAA0(2, ..)`, takes `r` = `0060F6B0(rcx+0xE8, 0, 0, dword +0xD24, dword +0xD28, 0)` (non-zero `r` returned), then for each of the dword `+0xDB8` (sign bit cleared) items `t` = qword `[qword [rcx+0xDC0] + 8i]`: when dwords `[t+0x2C]` and `[t+0x30]` are both non-zero it computes, without writing them back, dwords `[t+0x24]`, `[t+0x2C]` times dword `+0xD24` / `a` and `[t+0x28]`, `[t+0x30]` times dword `+0xD28` / `b` (32-bit multiply then unsigned divide), calls `007A10A0(t, x, y, w, h)` with the four (rescaled or as read) and returns `r` = `t`'s vtable slot `+0x20` when non-zero; after the last item (or at once when the masked count is 0) it calls `001825A0()` and returns 0; every return first destroys `s` (`00616700(&s)`)",
+   "anchors": [
+    [
+     "007A05F3",
+     "call"
+    ],
+    [
+     "007A0663",
+     "call"
+    ],
+    [
+     "007A06B0",
+     "call"
+    ],
+    [
+     "007A070A",
+     "div"
+    ],
+    [
+     "007A0760",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "007A05D0",
+   "why": "byte re-read by a non-drafting agent: 'it rescales `[t+0x24]`, `[t+0x2C]` ... and `[t+0x28]`, `[t+0x30]`' reads as stores into `t`; the products are only computed in registers and passed to `007A10A0`, nothing is written back to `t`; with a masked count of 0 the loop is skipped (`test`/`jbe` at 007A06CB) and it goes straight to `001825A0()` and returns 0; 'after the last item' should cover that path"
+  }
+ ],
+ "mode": "ee",
+ "family": ""
+}

@@ -39,8 +39,9 @@ audit:
 >
 > **Provenance.** Sections 2–7 and 9–12 on the **list** half are **NATIVE/STATIC**, read here. The
 > **handshake** half is carried from an AUDITED page and spot-verified; every claim about thread
-> topology is that page's and is cited as such. Section 13 is **empty**: nothing here is observed
-> live.
+> topology is that page's and is cited as such. ~~Section 13 is **empty**: nothing here is observed
+> live.~~ Section 13 records OPUS's native replay of the list half (isolated shipped code on planted state); nothing
+> here is observed live. *(corrected 2026-10-03, FABLE, on SWE2-AUDIT-SPEC's L2 expansion)*
 
 ## 1. Purpose
 
@@ -60,7 +61,7 @@ other end**.
 | calling convention | Microsoft x64 throughout. `enqueue(rcx = owning vector, edx…= the command's own arguments)`; `0018B100(rcx = ordered list, dl = part, r8 = device)`; `0018B1B0(rcx = ordered list, rdx = device, r8d = class mask, r9b = reverse)`; the manager methods all take the list in `rcx`. |
 | parameters | `0018B100`'s `dl` selects the half: **non-zero = part 1**, entries `[0, split)`; **zero = part 0**, entries `[split, count)` (`0018B11B`–`0018B138`). `0018B1B0`'s `r8d` is ANDed with each command's order key. |
 | return type | The enqueue functions return nothing useful; `0018C610` **tail-jumps** into `0018AFF0` at `0018C69F`, so its result is that call's. The walks return `void`. |
-| return semantics | Failure is silent everywhere. A failed `malloc` in an enqueue leaves `rbx = 0` (`0018C655`) and **a null is still appended to both lists**; both walks skip a null entry (`0018B159`, `0018B23F`). |
+| return semantics | ~~Failure is silent everywhere.~~ Failure is silent on every path but one: a null left on the owner list faults in the flush `0018C8F0` at `0018C933` (§10.1). *(corrected 2026-10-03, FABLE, on SWE2-AUDIT-SPEC's L2 expansion)* A failed `malloc` in an enqueue leaves `rbx = 0` (`0018C655`) and **a null is still appended to both lists**; both walks skip a null entry (`0018B159`, `0018B23F`). |
 | callbacks / indirect dispatch | Every job runs through its own vtable: slot 0 `+0x00` destructor, slot 1 `+0x08` **execute**, slot 2 `+0x10` **order key**. The walks call slots 2 and 1 indirectly (`0018B164`, `0018B187`; `0018B247`, `0018B258`, `0018B26D`). The list's allocator is also virtual — `0018B320` calls `[allocator+0x10]` to allocate (`0018B36D`) and `[allocator+0x18]` to free (`0018B3AF`). |
 
 ## 3. Types
@@ -317,7 +318,7 @@ must add the synchronisation too, because the original has none to inherit.**
 
 1. **`malloc` returns null in an enqueue** → `0018C644` skips the constructor, `rbx = 0`, and **the
    null is appended to both lists anyway** (`0018C657`). Both walks skip nulls; the destroy pass
-   skips nulls (`0018B853`). So the failure is absorbed silently and the frame draws one job short.
+   skips nulls (`0018B853`). ~~So the failure is absorbed silently and the frame draws one job short.~~ The walks and the frame-end destroy absorb it, and the frame draws one job short. **The owner list's flush does not:** `0018C8F0`, which the scene teardown `001E0590` runs on the same owner list `[01F7F5E8]` (getter `0018CA40` at `001E05AE`, flush at `001E05B6`), loads each entry at `0018C930` and reads its `+0x10` at `0018C933` with **no null test**; only its destroy loop tests (`0018C97A`). A null still on the owner list when the flush runs is read at address `0x10` and faults. The four ordered-only appenders of I-1 push nothing onto the owner list, so this concerns the owner-side enqueues (`0018C610` appends the null to the owner list at `0018C673`, or through the grow arm `0018C680`). Whether a null can still be on the owner list when the teardown flushes it in play is not established here: the frame-end destroy `0018B810` (`00188211`, `0017CD60`) skips and drops it if it runs first. The fault is executed on a planted owner list in [`fable-l2exp-s39-1003`](../_index/candidates/fable-l2exp-s39-1003/README.md) (`check_s39.py` U1), not in a running game. *(corrected 2026-10-03, FABLE, on SWE2-AUDIT-SPEC's L2 expansion)*
 2. **A list global is null** → the getters return it; the folded assert (I-9) does nothing. The
    caller dereferences it.
 3. **`split == 0`** → part 1 walks nothing and part 0 walks everything. This is the state the
@@ -412,9 +413,16 @@ settleSpin():                                     # 0036F2C0
 
 ## 13. Runtime validation
 
-**Empty. Nothing in this contract has been observed on a running game.** Every claim is static —
+~~**Empty. Nothing in this contract has been observed on a running game.** Every claim is static —
 the shipping image. That is what holds this contract at `BEHAVIORALLY UNDERSTOOD`, and what §16
-routes.
+routes.~~ **No live observation; the list half has been executed as shipped code in isolation.** Evidence class: **NATIVE-REPLAY (unicorn 2.1.4), `live_game: false`.** Nothing in this contract has been observed on a running game, which is what holds it at `BEHAVIORALLY UNDERSTOOD` and what §16 routes; the table below records live observation and stays empty.
+
+The execution is OPUS's [`s39-opus-replay-command-lists`](../_index/candidates/s39-opus-replay-command-lists/README.md) (block 312). It maps the whole SHA-asserted image, uses no application stub, traps every import except five bridged allocator and `memmove` imports, and runs every indirect call as shipped code on planted data. `check.py` passes 7/7 and `i2.py` 5/5; FABLE re-ran both on a scratch copy on 2026-10-03 and got the recorded `result.json` (md5 `46d4ccb6…`) and `i2_result.json` (md5 `7421772e…`) byte for byte.
+
+- **Executed and asserted:** both constructors and the 5,000-entry reserve (§3, I-3); the enqueue appending one pointer to both lists, and a failed `malloc` appending a null to both (I-1, §10.1's first half); the forward walk's split, null skip, mask test and I-7 exit (I-4, I-7); two slot-2 calls per entry in the reverse walk (I-5); the marks and the clear (I-8); the owner destroy skipping a null (I-1); the flush's selection and destroy (I-6); clear-then-flush at the scene teardown `001E05A9` / `001E05B6` (I-2, one of its three sites); the settle-spin `0036F2C0` returning at once with bits 2, 3 and 8 clear (I-10's shape).
+- **Not asserted or not reached:** I-10's premise that no other thread writes `02EBA3F8`. The case plants a constant on one thread and cannot fail on that premise, so it stays static (`CG-3`, §14.5). `0018B1B0`'s descending order under `r9b = 1` is recorded, not asserted, and its `+0x2C` / `+0x49C` range selection runs at `+0x49C = 0` only. **No case puts a null on the owner list before the flush** (the flush case plants three non-null objects), so §10.1's fault at `0018C933` is not part of this replay; FABLE's `check_s39.py` executes it on a planted list. The frame-tick and render-pass teardown pairs (`0017CD53`/`0017CD60`, `00188204`/`00188211`), the other owner-side enqueues and the command classes' own execute bodies are not run.
+
+So §13 is no longer empty, but its only evidence class is isolated native replay. *(corrected 2026-10-03, FABLE, on SWE2-AUDIT-SPEC's L2 expansion)*
 
 | claim | how it was observed live | date | result |
 |---|---|---|---|
@@ -519,7 +527,7 @@ Each is registered in `OPEN-QUESTIONS.md`; the first three are new with this con
 - **PRESENTATION** — what each `execute` draws belongs to the individual pass documents and to
   S-38/S-40, not to this contract.
 - **SERIALIZATION** — nothing here is persisted.
-- **FULL SUBSYSTEM** — cannot be claimed while §13 is empty, and the grow path (§10.6) cannot be
+- **FULL SUBSYSTEM** — ~~cannot be claimed while §13 is empty~~ cannot be claimed while §13 holds no live observation (its replays are isolated shipped code on planted state) *(corrected 2026-10-03, FABLE, on SWE2-AUDIT-SPEC's L2 expansion)*, and the grow path (§10.6) cannot be
   claimed at all from a build that never reaches it.
 
 ## Falsification pass 1 — 2026-09-29 (OPUS): the machinery holds; one citation was a byte late

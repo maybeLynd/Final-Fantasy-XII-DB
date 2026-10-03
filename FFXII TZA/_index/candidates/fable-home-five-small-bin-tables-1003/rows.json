@@ -1,0 +1,39 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/five-small-bin-tables.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01DtsGzxAwuV39oMMCAfQd2j",
+ "report": "home-five-small-bin-tables.json",
+ "rows": [
+  {
+   "fn": "0029D4D0",
+   "entered_from": "`0029E110` + 0x203",
+   "text": "calls `0029D4D0` + 0x21 with (qword `0209C498` + `0x160`, `0x148`, the address loaded by the `lea` at `0029D4DB`, 0) and the same callee at `0029D4D0` + 0x43 with (qword `0209C498` + `0x2A8`, `0x148`, the same address, 0); then calls `0029D4D0` + 0x56 with (qword `0209C498`, that pointer + `0x160`) and tail-jumps to the same callee at `0029D4D0` + 0x6D with (qword `0209C498`, that pointer + `0x2A8`), re-reading `0209C498` before each call",
+   "anchors": [
+    [
+     "0029D4E2",
+     "add"
+    ],
+    [
+     "0029D4F1",
+     "call"
+    ],
+    [
+     "0029D513",
+     "call"
+    ],
+    [
+     "0029D526",
+     "call"
+    ],
+    [
+     "0029D53D",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

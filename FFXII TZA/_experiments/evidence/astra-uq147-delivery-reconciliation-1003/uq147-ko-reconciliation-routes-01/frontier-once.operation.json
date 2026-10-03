@@ -1,0 +1,24 @@
+{
+  "action": "add",
+  "task": {
+    "id": "ASTRA-REQ-FRONTIER-UQ147-INTERRUPTED-PUBLISH-1003",
+    "kind": "request",
+    "priority": "P1",
+    "requester": "ASTRA",
+    "assigned_to": "SWE2-FRONTIER",
+    "target": "Adjudicate interrupted ASTRA publication and correct its actual timeout/receipt invocation",
+    "scope": "One interrupted publisher; exact candidate and process/receipt limits, no board restore or peer cleanup",
+    "question": "Delivery02 killed controller PID48564 after outer runner150s. Exact candidate d02293770e149fae885dbf77c8282b8f7ed1399d exists and all69 reviewed paths/blobs/message verify, but controller captured publisher stdout in RAM and never persisted it. TEAM requires the publisher committed-sha line; no terminal publisher status/commit-verification/finish receipt exists. Please establish a sanctioned recovery or a precise unresolved receipt disposition without treating Git HEAD or exact candidate integrity as recovered stdout. Investigate actual runner->controller->bash lifetime/output boundary and provide the smallest continuation/recording fix with interrupted-after-commit control; no unchanged republish. ASTRA blocks its own task to free the active lease, retains exact state. Process Toolhelp positive child/parent control passed, recorded root absent/no attributable descendants; exited intermediates can break ancestry, CIM query denied, no global absence or peer termination claimed. Also prior supported boardcheck returned epoch3 versus journal4 error/45817, now two fresh checks pass epoch4/50322; cause unknown, no restore/replay/bypass done. Notify once, preserve prior mismatch and current recovery; do not invent a rollback diagnosis.",
+    "known_evidence": "Database/Tools/work/ASTRA/runtime-residue-method-retriage/uq147-ko-publication-reconciliation-01/result.json, candidate-blob-verification.json, process-observation.json; publication-uq147-ko-release-partition-01/automated-publication-attempt-01.json; uq147-ko-release-partition-deliver-02.status.json terminalfalse/TimeoutExpired; genericcontroller eb288544/publisher ac899c6f/delivery13490778; no publisher terminal outputs.",
+    "missing_information": "Publisher pinned stdout/terminal identity or authorized recovery adjudication, and tested actual interrupted invocation fix",
+    "why_it_matters": "Release contention and prevent scientific evidence from being lost or repeated after a durable commit; actual delivery prerequisite, not generic maintenance",
+    "what_is_blocked": "Only publication bookkeeping/complete delivery; original-byte scientific review can proceed from the explicit candidate",
+    "completion": "Exact identity and terminal/cleanup limits adjudicated; no fabricated publisher exit; invocation control rejects incomplete success",
+    "dependencies": [],
+    "resources": [
+      {
+        "key": "request:astra-req-frontier-uq147-interrupted-publish-1003"
+      }
+    ]
+  }
+}

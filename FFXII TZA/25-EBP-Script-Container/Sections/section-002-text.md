@@ -446,3 +446,33 @@ Interior anchors `002E1E95` / `002E1E63` (the mask arms).
 |---|---|---|---|
 | `002E1D50` | 52 B | clamps `ecx` to 0..7 (signed) and, in the 0x68-byte entry `i` of the table at `0215F200`, stores byte 1 at `+0x3b`, `edx` at dword `+0x24`, `r8d` at dword `+0x28` and `r9b` at byte `+0x39` | `002E1D52`, `002E1D5F`, `002E1D70`, `002E1D75`, `002E1D7E` |
 | `002E1FD0` | 63 B | clamps `ecx` to 0..7 (signed) and stores `dl` at byte `0215F242` + `i`*0x68, on both of its paths | `002E1FDD`, `002E1FEE`, `002E1FF4`, `002E200B` |
+
+## SWE2-EC7-215 update (2026-10-03) - the message verbs on the `0215F200` slots
+
+Seven more message verbs act on the eight `0x68`-byte message slots at `0215F200` that `mes` and the slot setters above write. Each verb clamps the slot argument in `ecx` to 0..7 (signed: negative to 0, above 7 to 7) unless stated otherwise. `002E1080` (63 B; `mesisselect` `0x01EB`) returns the slot's dword `+0x2C`.
+
+Interior anchor `002E109E` (function `002E1080`).
+
+`002E1B70` (48 B; `setmesmacro` `0x01A8`) indexes a separate table of 8-byte entries at `0215F540` by `slot * 32 + edx` (`edx` sign-extended, with no bound), and stores `r8d` at the entry's dword `+0` and `r9d` at `+4`.
+
+Interior anchor `002E1B96` (function `002E1B70`).
+
+`002E1D10` (60 B; `mesopenspeed` `0x001A` and `mesopenspeed_1b` `0x001B`) stores dword `+0x30` = `edx * 0x21` and dword `+0x34` = `r8d * 0x21`. A negative argument is stored unscaled (`cmovs`).
+
+Interior anchor `002E1D38` (function `002E1D10`).
+
+`002E2160` (51 B; `setmeswinactive` `0x0476`) returns without a write when `ecx` is 8 or more (signed `jge`). Otherwise it replaces bit 0 of the slot's byte `+0x44` with bit 0 of `edx`.
+
+Interior anchor `002E218F` (function `002E2160`).
+
+`002E21E0` (89 B; `setmeswinhidestatus` `0x03D3`) returns when `ecx` is 8 or more or when the slot's window qword `+0` is null. Otherwise it tail-jumps `002A31F0(window, m)` with `m` = 1 for `edx` 1, 2 for `edx` 2 and 0 for any other value. `002A31F0` (21 B) sets bit 20 (`0x100000`) of the window's dword `+0x40` when `m` is 2 and clears it otherwise.
+
+Interior anchor `002E2212` (function `002E21E0`).
+
+`00357790` (143 B; the poll of `messync` `0x0011` and `messync2` `0x0129`) takes the slot from dword `[r8]` of the VM record. It reads `s`, the slot's state dword `+8` (or 7 when its window qword `+0` is null, through `002E1130`), and `f`, bit 0 of byte `+0x3E` (`002E10C0`). For `s` = 3 it returns 0 when `f` is clear, and otherwise calls `002E08C0(slot)` and returns 1. For `s` = 6 it returns 1 when byte `+0xD` of the VM record is non-zero, else 0. For `s` = 7 it returns 0, and for any other state 1. Every path that returns 1 also stores 1 at dword `022C7F88`.
+
+Interior anchor `003577AA` (function `00357790`).
+
+`0034BDC0` (135 B; the poll of `aask` `0x0010` and `aaske` `0x014A`) returns 0 unless byte `+0xC` of the VM record is 1. Then, for `s` = 3, it stores the slot's dword `+0xC` (`002E10F0`) at dword `+4` of the VM record. When the slot's signed byte `+0x40` (`002E1170`) is not -1 it also calls `002E08C0(slot)` and returns 1; otherwise it returns 0. For `s` = 7 it returns 0, and for any other state 1.
+
+Interior anchor `0034BE0E` (function `0034BDC0`).

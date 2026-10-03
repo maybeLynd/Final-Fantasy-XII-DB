@@ -370,3 +370,11 @@ This page describes unowned code in the residual folder, and it cites the bodies
 **UI — MECHANICAL, 33 edges.** `0017FAE0` is called by `002AC5F0`, `002AE610`, `002AF340`, `002AF960` and 1 more; `0017F880` is called by `002A4830`, `002AC5F0`, `002AE610`, `002AF960`; `0017F940` is called by `002AC5F0`, `002AE610`, `002AF340`, `002B2150`; `0017F850` is called by `002AC5F0`, `002AF960`, `002D28E0`; `0017FA10` is called by `002AC5F0`, `002AF960`, `002D28E0`; `0017FB00` is called by `002AC5F0`, `002AF960`, `002D28E0`; `0017F8C0` is called by `002AF340`, `002B2150`; `0017FD30` is called by `002AC5F0`, `002AF960`; `0017F650` is called by `002D28E0`; `0017F8A0` is called by `002AF960`; `0017F920` is called by `002AC5F0`; `0017F960` is called by `002AF960`; `0017F980` is called by `002AF960`; `0017F9C0` is called by `002AC5F0`; `001A1470` is called by `0018EEE0`.
 
 *Tier 2: ledger names and `edges.tsv`; no body read for this note (OPUS, 2026-09-29, pass-22 slice OPUS-P22-SLICE-24-99).*
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-03, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../../_index/candidates/fable-home-the-font-painters-public-api-1003/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `001E9380` | 51 B | `0017FC50` + 0x10 | calls the site `001E9380` + 0x19 on each of 0x40 consecutive 0x38-byte elements starting at `rcx+0x1500` | Interior anchor `001E938A`; Interior anchor `001E9391`; Interior anchor `001E9399`; Interior anchor `001E939E`; Interior anchor `001E93A6` |

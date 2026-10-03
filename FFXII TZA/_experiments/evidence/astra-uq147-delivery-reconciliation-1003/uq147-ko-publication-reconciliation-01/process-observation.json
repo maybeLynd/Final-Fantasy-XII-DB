@@ -1,0 +1,17 @@
+{
+  "status": "CONTROLLED_SNAPSHOT",
+  "root_pid": 48564,
+  "root_present": false,
+  "descendants": [],
+  "detection_control": {
+    "parent": 18260,
+    "child": 47692,
+    "observed": {
+      "pid": 47692,
+      "parent": 18260,
+      "name": "python.exe"
+    }
+  },
+  "limits": "Snapshot only; exited intermediate parents can break ancestry. No peer-by-name termination; no all-process absence claim.",
+  "control_child_terminal_exit": 1
+}

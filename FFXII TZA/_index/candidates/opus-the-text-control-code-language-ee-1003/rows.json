@@ -1,0 +1,40 @@
+{
+ "page": "16-UI/Text-And-Number-Rendering/the-text-control-code-language.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-text-control-code-language-r5.json",
+ "rows": [
+  {
+   "fn": "002B5240",
+   "text": "returns at once for a null `rcx` = `o`; stores 0x80808080 to dword `[o+0x28]`, and returns when source qword `[o+8]` or destination qword `[o]` is null; otherwise copies the source into the destination token by token: for each token at source offset `p` (length `n` = `002B1FB0(token)`), when `n` + `p` exceeds the signed word `[o+0x20]` it empties the destination (byte 0, word `+0x22` = 0) and returns; a token starting 0x0F, 0x38 is replaced by the C string `002639E0(word)` (word from `003FFB00(token+1, &word)`, copied with `memcpy` `00861EBA` for its `strlen`), and a null string ends the copy; any other token is copied as its `n` bytes; it continues while the source byte at the next offset is non-zero (an empty source copies nothing), then writes a terminating 0 and stores the written length + 1 to word `+0x22`",
+   "anchors": [
+    [
+     "002B526F",
+     "mov"
+    ],
+    [
+     "002B52B3",
+     "call"
+    ],
+    [
+     "002B52DB",
+     "cmp"
+    ],
+    [
+     "002B5317",
+     "call"
+    ],
+    [
+     "002B5356",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

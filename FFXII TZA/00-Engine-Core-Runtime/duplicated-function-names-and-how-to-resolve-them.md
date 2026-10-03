@@ -430,3 +430,11 @@ Shared callees outside the census: none.
 |---|---|---|---|
 | `00237690` | 81 B | for each index from 0 while it is below the signed dword `0208E6A0`, calls `BattleUnit_GetBySlotIndexIfUnitFlag4Set(index)` and, when the result is non-null, its qword `+0x698` is non-null with byte `+5` of that object equal to 1, and its byte `+0xE98` is 0, calls `00300E40(result, 0)` | `00237698`, `002376A2`, `002376B8`, `002376BE`, `002376CC` |
 | `00379F20` | 7 B | sets `dl` to 2 at the entry and tail-jumps to `0035B450`, leaving the other argument registers as passed in | `00379F22` |
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-duplicated-function-names-and-how-to-res-ee-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `008087C4` | 137 B | Takes the object in `rcx` and a flag dword in `edx`, loads the pointer at `rcx+8` and calls that object's vtable slot `+0x10` (first passing the slot target to `00809958`), and when that call returns a non-null pointer calls the returned object's vtable slot `+0` with `edx`=1 (again after `00809958` on the target); then, when bit `0x1` of the flag is set, it calls `00809950` with the original object and `edx`=0x10, and returns the original object in `rax` on every path. | `008087FC`, `00808805`, `0080881E`, `00808821`, `0080882F` |

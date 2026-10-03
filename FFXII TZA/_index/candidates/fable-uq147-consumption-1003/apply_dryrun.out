@@ -1,0 +1,3 @@
+E1 00-Engine-Core-Runtime/Battle-Runtime-Mode/battle-runtime-mode-ladder.md: WOULD PATCH (+2 lines after "modes' exits."; LF kept)
+E2 15-Input/Gameplay-Capability-Policy/capability-inhibition-policy.md: WOULD PATCH (+48 lines after '        `BattleUnit_GetPartyLeader` returns while its `+0x69'; LF kept)
+FAILS 0

@@ -1,0 +1,42 @@
+{
+ "page": "18-Audio/the-spatial-audio-object-model.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01DtsGzxAwuV39oMMCAfQd2j",
+ "report": "home-the-spatial-audio-object-model.json",
+ "rows": [
+  {
+   "fn": "00219BC0",
+   "entered_from": "`00210BE0` + 0x19",
+   "text": "walks the circular list whose sentinel is `rcx+8`, from qword `+8` through qword `+0` of each node, stopping at the first node whose object at qword `+0x10` has dword `+0x38` equal to `edx`; then calls `00219BC0` + 0x41 with the incoming registers unchanged and, only when a node matched, calls `00219BC0` + 0x59 with (that object, the first call's result, `edx`, `r8`); returns the first call's result on both paths",
+   "anchors": [
+    [
+     "00219BE7",
+     "cmp"
+    ],
+    [
+     "00219BF4",
+     "cmp"
+    ],
+    [
+     "00219BF9",
+     "mov"
+    ],
+    [
+     "00219C01",
+     "call"
+    ],
+    [
+     "00219C19",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [
+  "00210BE0",
+  "002DF280"
+ ],
+ "corrections": []
+}

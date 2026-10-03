@@ -1,0 +1,46 @@
+FABLE check_s17 - the S-17 cooldown clock across a reset and a load (2026-10-03)
+unicorn 2.1.4
+image sha256 verified (rvlib), base 00120000
+PASS  V0  unicorn pinned 2.1.4
+      counter 0208D45C: 9 references (0 unconfirmed raw candidates)
+        00317680 rip    read  mov r9d, dword ptr [rip + 0x1d75dd5]
+        00319220 rip    read  mov ecx, dword ptr [rip + 0x1d74236]
+        0031967C rip    read  cmp dword ptr [rip + 0x1d73dda], eax
+        00319712 rip    read  cmp dword ptr [rip + 0x1d73d44], eax
+        00319746 rip    read  mov eax, dword ptr [rip + 0x1d73d10]
+        00324DAD rip    read  cmp eax, dword ptr [rip + 0x1d686a9]
+        0032A135 rip    WRITE inc dword ptr [rip + 0x1d63321]
+        0032A150 rip    read  mov eax, dword ptr [rip + 0x1d63306]
+        0032A160 rip    WRITE mov dword ptr [rip + 0x1d632f2], 0
+PASS  K1a  exactly two writers: ['0032A135 inc dword ptr [rip + 0x1d63321]', '0032A160 mov dword ptr [rip + 0x1d632f2], 0']
+PASS  K1b  no .rdata/.data pointer constant names the counter
+PASS  K1c  no image-base-relative [reg+RVA] reference
+PASS  K2a  0032A160 callers: ['00237E37 call 0x32a160']
+PASS  K2b  00237DF0 is branch-free from 00237E32 to its ret 00237E9C (0 jumps)
+PASS  K3a  00237DF0 reached from six sites: ['00233C3F call fn=00233C10', '00233C48 jmp fn=00233C10', '00233C59 jmp fn=00233C10', '00238AA2 jmp fn=00238A80', '0023998E jmp fn=00239960', '00394486 call fn=00394460']
+PASS  K3b  no 8-byte pointer constant names 00237DF0
+PASS  K3c  route gates read as stated (00233C23/00233C53/00239982/002EF67D/00511EAD; 0208D455 at 00239966, 0050F81C, 00584482) []
+PASS  K3d  route entries: {'00238A80': ['002EF67D'], '00394460': ['00511EAD'], '00239960': ['00234349']}
+PASS  K3e  00234349 lies in area initialisation 002342F0 (chained .pdata root ['002342F0'])
+PASS  K3f  callers of the gated routes: {'00233C10': ['002803B8', '00285E86', '0036FCF2', '00394222'], '002EF650': ['0022B78B', '0028037B', '003941E5', '003942F2'], '00285E60': ['00582CD0', '00582CE6'], '00394130': ['0039464D']}
+PASS  K3g  00394130 is registered as a task proc by 00394640 (`lea rdx, [00394130]` at 0039464D, then 00244F50) - it is not orphaned
+PASS  K4  stamp = counter / (int)(scale x 30.0) stored at record +0x0C (00300829) []
+PASS  K5a  00237DF0's own body addresses neither bank pointer nor a +0x0C field (0 hits)
+PASS  K5b  00237DF0 passes edx = i (0..0x27), so 0023AC80's kind (edx >> 8) is 0 and its kind-1 arm (0031A630 at 0023ADB5/0023ADC7) is skipped at 0023AD9D []
+      closure of 00237DF0: 2156 functions (843 indirect call/jmp sites not followed); bank-pointer sites reached ['0023612D']; 00300530 reached True
+PASS  K5c  the closure touches a bank pointer at one site only, 0023612D `add rax, [0208E690]` in the lane resolver 00236100 (a read that returns a record pointer), with or without 0023AC80's kind-1 arm: ['0023612D'] / ['0023612D']
+PASS  K5d  the only remaining static route to the death-stamp writer 00300530 is 0030C470 -> 0030F340 (call 0030C5A5)
+PASS  K5e  the other +0x0C writer 002395A0 (00239657) is not reachable from the reset at all
+PASS  K5f  positive control: the pruned closure still contains the counter store 0032A160
+PASS  K5g  0030F340 calls 00300530 with edx = max - current (0030F3C2..0030F3DC), a refill []
+PASS  K6a  one clock: stamp 40 (death at counter 1207), elapsed 60 at second 100, gate admit; script 60 > 30
+PASS  K6b  after a restart: accessor returns -35 (signed), selector `jb` on FFFFFFDD sees admit
+PASS  K6c  script test first passes at second 71 of the new clock (= stamp 40 + cooldown 30 + 1); the selector admitted at second 0
+PASS  K6d  stamp 1 at counter 0 returns -1; the empty-lane exit returns -1
+PASS  K6e  scale 2.0: second 5, accessor -35, gate admit
+PASS  K7  00233550 reads the bank-2 pointer 0208E698 and copies 0x128 x 0x80 bytes from image+0x10 []
+PASS  S1  002358D7 jb -> jl (signed gate): K6b fails, so K6b measures the unsigned compare
+PASS  S2  0032A160's store NOPed: K1 fails on the writer count
+PASS  S3  00300829 stores to +0x10: K4 fails
+PASS  S4  the mutated claim 'elapsed is never negative after a restart' is refuted by the execution (accessor -35)
+FAILS 0

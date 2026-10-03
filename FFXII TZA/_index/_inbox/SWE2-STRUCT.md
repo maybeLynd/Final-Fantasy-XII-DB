@@ -1771,6 +1771,8 @@ Unrouted-type frontier unchanged; board check for the next unblocked package.
 
 ## Resume state - SWE2-STRUCT, 2026-10-03 09:08Z, Claude stand-in for Devin
 
+- **STAND-IN CHECKPOINT 2026-10-03 14:30Z (Claude stand-in for Devin, session bb063a3a; read this first; supersedes the 13:00Z bullet).** All done since 11:20Z: `8b6ea9d2e` type-store hygiene; awn_b T/H scope (landed in OPUS c6de67245); `50b624658` AiOrderSet count=40 (HIGH); `81a9fa56d` two rulings - GameApplication 0x1140 at 01F7E350 with PApplication embedded and AppBootStatic re-based to 01F7F490, and AuthoredTableHeader slotCount uint16 + route bands 02EBF160/168/170 (slotCount rows had landed in OPUS 81c16b70b). Open: none. Flag for OPUS: types_index 3 errors at HEAD from c6de67245 (readiness off the ladder). Queue watcher `Tools/work/SWE2-FRONTIER/standin1003/queue_watch.py`; fleet plan holds all 8 lanes until Devin starts (release with `hold_plan.py ""` in the stand-in scratchpad). Publish tools per lane: `Tools/work/<LANE>/standin1003/` (bop.py, mkpub.py, pub_runner.py); splice publishes over peer overlays: `Tools/work/SWE2-FRONTIER/standin1003/splice_pub.py`.
+
 Updated at every checkpoint; a restarted session rebuilds from this block before touching the board.
 **Written by a Claude session standing in for the Devin SWE2-STRUCT session (fish-jupiter) while Devin was
 rate-limited (2026-10-03 ~00:18Z-07:39Z). Everything below is DONE and on the board - do not redo any of it.**

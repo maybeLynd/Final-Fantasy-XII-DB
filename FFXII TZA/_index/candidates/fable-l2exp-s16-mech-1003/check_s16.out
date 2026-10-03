@@ -1,0 +1,73 @@
+FABLE check_s16 - S-16 range retirement, the return window and the keep-bank rotation (2026-10-03)
+unicorn 2.1.4
+image sha256 verified (rvlib), base 00120000
+PASS  V0  unicorn pinned 2.1.4
+PASS  K1a  002350C0 callers: ['00234022 call fn=00233F70']
+PASS  K1b  no 8-byte pointer constant names 002350C0
+PASS  K1c  00233F70 is named only at 00265A4F (lea r13) and stored at record +0x38 by 00265AA8
+PASS  K1d  drive loop clears +0x0D bit 6 (0025E1AD), sets it (0025E217) and calls record+0x38 (0025E222); 002672F0 returns that bit; the unit is record+0x30 and unit+0x10 is the record (binder 002344EF / 002134A0); 00233F70's gates and its call at 00234022 []
+PASS  K2a  gate chain, mode split (1 = slot loop on [02089368], 2 = leader vs anchor with unit +0x4C) and action sites []
+PASS  K2b  02089368: read at 00235205 only; written by 0023A1E0 (in 0023A1D0) and 0023A540 (in 0023A520) ['00235205 r', '0023A1E0 W', '0023A540 W']
+PASS  K2c  0023A520 installs 43.0 (constant 009146F4)
+PASS  K2d  setters reached only from verb wrappers: {'0023A1D0': ['0050F459'], '0023A520': ['00510710'], '00238FC0': ['0050F4F5']}
+PASS  K2e  00238FC0 stores the mode always and the threshold/anchor only for mode 2 []
+PASS  K3a  teardown 00300E40: arg2 held in ebx from 00300E4F (no rewrite before 00300EEC []); spawn-backed tail calls the record clear 00237080 (0xFFFFFF7A: bits 0, 2, 7) only when arg2 == 0 []
+      teardown call 00233F37 fn=00233EA0  xor edx, edx
+      teardown call 00234100 fn=00233F70  xor edx, edx
+      teardown call 002348BC fn=00234880  xor edx, edx
+      teardown call 00234919 fn=002348E0  xor edx, edx
+      teardown call 002349DC fn=00234990  xor edx, edx
+      teardown call 002352B1 fn=002351EE  mov edx, 1
+      teardown call 002376CC fn=00237690  xor edx, edx
+      teardown call 0032442A fn=003243F0  xor edx, edx
+      teardown call 003244C1 fn=00324470  xor edx, edx
+      teardown call 00326ADA fn=00326A40  xor edx, edx
+PASS  K3b  ten teardown call sites: the retire alone passes 1 (002352A9); the other nine pass 0 (xor edx, edx), so every other teardown of a spawn-backed unit clears record bits 0/2/7; constant-1 callers: ['002352B1']
+PASS  K3c  the automatic selector tests the death limit (002358A1-002358B0), then admits a bit-0 entry past the cooldown (002358B9/002358BB) []
+PASS  K3d  SpawnEntry_QueryRangeReentryPending 00236670 has one caller, verb wrapper 0050FC90 (['0050FC9C'])
+PASS  K4a  0208936C: readers 002337FA, 00235330; writers 0023534A, 00236A0D ['002337FA r', '00235330 r', '0023534A W', '00236A0D W']
+PASS  K4b  00236A0D stores 300 inside 002368D0, whose one caller is 0022A41A
+PASS  K4c  getter 00235330 <- 00510819 (wrapper 00510810) only; setter 00235340 <- 00510802 (wrapper 005107F0) only []
+PASS  K4d  no .rdata/.data pointer constant names 0208936C
+PASS  K5a  00233780: one caller 00234423 (chained body 002343CD of 002342F0), no pointer constant
+PASS  K5b  002342F0 skips everything when [02089300] == 0 (002342F4), else calls the -2 reset route 00239960 (00234349) and reaches the rotation on both arms of 002343CB []
+PASS  K5c  002342F0 callers 00267136, 0026CEC6
+      00233529 r 02089372  movzx eax, word ptr [rip + 0x1e55e42]
+      00233533 r 02089370  movzx eax, word ptr [rip + 0x1e55e36]
+      002335BC W 02089372  mov word ptr [rip + 0x1e55daf], ax
+      002335C7 W 02089370  mov word ptr [rip + 0x1e55da2], ax
+      002337CD r 02089372  movsx ecx, word ptr [rip + 0x1e55b9e]
+      002337F0 r 02089374  sub ecx, dword ptr [rip + 0x1e55b7e]
+      002339E5 r 02089370  movzx eax, word ptr [rip + 0x1e55984]
+      002339F4 W 02089370  mov word ptr [rip + 0x1e55975], si
+      00233A03 W 02089374  mov dword ptr [rip + 0x1e5596b], ebx
+      00233A11 W 02089372  mov word ptr [rip + 0x1e5595a], ax
+      00237E53 W 02089374  mov dword ptr [rip + 0x1e51517], 0
+      00237E5D W 02089372  mov word ptr [rip + 0x1e5150e], ax
+      00237E64 W 02089370  mov word ptr [rip + 0x1e51505], ax
+PASS  K5d  history/stamp writers: the rotation tail, the reset 00237DF0 and the restore 00233550 (field words only)
+PASS  K5e  readers: serializer 00233529/00233533 (field words only), the rotation's compare 002337CD (previous), its window 002337F0 (stamp) and its shift 002339E5 (last)
+PASS  K5f  rotation: null bank -> 00233A18 (no shift, no stamp); field id clamped >= 0 (00314903); signed-extended previous word compared (002337CD); unsigned window `ja` (00233803) []
+PASS  K6a  A->B->A after 150 s of a 300 s window: contents exchanged, pointers kept, parity 1, counters untouched, no memset; history (prev, last) = (34, 12), stamp 5500
+PASS  K6b  elapsed 9000 ticks (= 30 x 1.0 x 300) restores; 9001 wipes
+PASS  K6c  a third field wipes: bank 2 <- bank 1, bank 1 zeroed (one memset 0x9400), parity 0 -> 1, the 64 counters at 0208D3D4 = 1, the 64 at 0208D354 untouched
+PASS  K6d  stamp 5000 > clock 4000: the unsigned difference FFFFFC18 wipes
+PASS  K6e  previous = -1 (the reset's value): fields 0, 1, 0x7FFF all wipe []
+PASS  K6f  bank 1 null: returns with history, stamp and parity unchanged
+PASS  K6g  scale 2.0: 18000 ticks restores, 18001 wipes
+PASS  K6h  field == last (B) with previous A: wipes
+PASS  K7a  mode 0 and mode 3: return 0, no call
+PASS  K7b  mode 1, range 43: focus at 10 kept, at 50 retired, at exactly 43 retired (`ja` keeps only when nearer)
+PASS  K7c  mode 1 with the range unset (0.0): focus at 0.5 retired
+PASS  K7d  mode 1 ignores a near non-focus slot (retired); no eligible focus slot keeps the unit
+PASS  K7e  mode 2, threshold 6: leader at 5 and 6 retires (`jbe`), at 7 kept; anchor index from unit +0x51
+PASS  K7f  mode 2: failed anchor fetch or no leader keeps the unit
+PASS  K7g  inhibit bit 4 / opt-in clear / bkbi[5]==0 / status without waiver / unit bit 4 clear keep; status with waiver retires [True, True, True, True, True, True]
+PASS  K7h  action: record bit 0 already set at teardown(unit, 1), then unregister(unit, 0); returns 1; record flags 00000003
+PASS  K7i  an unordered (NaN) distance retires in mode 1 and in mode 2
+PASS  S1  00233803 ja -> jg (signed window): K6d fails, so K6d measures the unsigned compare
+PASS  S2  002337CD reads 02089370 (last) instead of 02089372 (previous): K6a fails
+PASS  S3  002351B9 jbe -> ja (mode 2 sense inverted): K7e fails
+PASS  S4  002352A9 edx 1 -> 0: K7h fails, so K7h measures the teardown's second argument
+PASS  S5  the mutated claim 'an unset range (0.0) never retires a unit 0.5 from the focus member' is refuted by the execution (K7c retired it)
+FAILS 0

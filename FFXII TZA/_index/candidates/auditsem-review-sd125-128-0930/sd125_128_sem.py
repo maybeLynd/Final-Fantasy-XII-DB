@@ -8,7 +8,7 @@ Run from the repo root:  python -B "Database/FFXII TZA/_index/candidates/auditse
 import bisect, csv, os, struct, sys
 import capstone, pefile
 
-ROOT = os.getcwd()
+ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), *[os.pardir] * 5))  # repo root, not the cwd (OPUS-REQ-AUDITSEM-SEM-REGRESSIONS-UNRUNNABLE-1003, SWE2-AUDIT-SEM 2026-10-03)
 DB = os.path.join(ROOT, "Database")
 EXE = os.path.join(DB, "Tools", "work", "exe", "FFXII_TZA.exe")
 FUNCS = os.path.join(DB, "Tools", "work", "graph", "functions.tsv")

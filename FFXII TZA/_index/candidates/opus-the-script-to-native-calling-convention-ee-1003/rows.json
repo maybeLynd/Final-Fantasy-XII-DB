@@ -1,0 +1,40 @@
+{
+ "page": "01-Script-VM-Native-Bridge/Spawn-Verbs/the-script-to-native-calling-convention.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-script-to-native-calling-convention-r5.json",
+ "rows": [
+  {
+   "fn": "00348330",
+   "text": "takes `b` = `002640C0()`, then `x` = `002650B0(b, rcx, 00267E10(r9))` and `y` = `002650B0(b, rcx, 00267E10(r9))` (two reads through the same `r9`), and `r` = `00309C00(y, x)`; moves dword `01EF920C` to `01EF9208` and dword `01EF9214` to `01EF9210`, stores dword `[y]` to `01EF920C` and dword `[x]` to `01EF9214`, and tail-jumps to `0026B4E0(rcx, r)`",
+   "anchors": [
+    [
+     "00348355",
+     "call"
+    ],
+    [
+     "00348363",
+     "call"
+    ],
+    [
+     "0034838A",
+     "call"
+    ],
+    [
+     "00348397",
+     "mov"
+    ],
+    [
+     "003483B3",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

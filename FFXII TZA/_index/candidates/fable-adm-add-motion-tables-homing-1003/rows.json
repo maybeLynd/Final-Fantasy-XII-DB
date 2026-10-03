@@ -1,0 +1,90 @@
+{
+ "page": "17-Presentation-Rendering/Model-And-Motion-Formats/adm-add-motion-tables.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01SRPAB4nYztytvoFuWnwY9e",
+ "report": [
+  "fable-adm-add-motion-tables.json"
+ ],
+ "rows": [
+  {
+   "fn": "0034DEA0",
+   "text": "converts `00267E10(r9)` to a float f, makes the call at `0034DEA0+0x23` with (`rdx`, f) and ends with the tail jump to `0025B470(rdx, f)`",
+   "anchors": [
+    [
+     "0034DEB1",
+     "call"
+    ],
+    [
+     "0034DEBD",
+     "cvtdq2ps"
+    ],
+    [
+     "0034DEC3",
+     "call"
+    ],
+    [
+     "0034DED8",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00357570",
+   "text": "reads three values a, b, c with `00267E10(r9)` in that order and makes the call at `00357570+0x46` with (c, b, a); when that returns null calls `0026B4E0(rcx, 0)`; otherwise calls `00262F50(rdx, result)` and, when it returns 0, calls `0026B4E0(rcx, 0)`, else calls `0026B4E0(rcx, 1)` and `0035AE10(result, 1)`",
+   "anchors": [
+    [
+     "003575B6",
+     "call"
+    ],
+    [
+     "003575C1",
+     "je"
+    ],
+    [
+     "003575C9",
+     "call"
+    ],
+    [
+     "003575DA",
+     "call"
+    ],
+    [
+     "003575E7",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "003B7210",
+   "text": "takes base b = qword `[rcx]` and off = `0020E600(dword b+0x68)`, makes the call at `003B7210+0x21`, and returns when off is 0 or dword `[b+off]` is not greater than 0 (signed); otherwise points at the word list at b + `0020E600(dword b+off+4)` and, for each index i below its leading word count, skips entries whose word `+2+i*2` is negative, and calls `00262F50(00358940(rcx, entry), q)` where q is qword `02EBCC68` for i = 0 (skipped when that qword is 0) and qword `[02EBCAC0 + (i-1)*8]` for i > 0 (skipped when i-1 is not below dword `02EBCBC0`, signed)",
+   "anchors": [
+    [
+     "003B7229",
+     "call"
+    ],
+    [
+     "003B7242",
+     "cmp"
+    ],
+    [
+     "003B7287",
+     "cmp"
+    ],
+    [
+     "003B72A1",
+     "cmp"
+    ],
+    [
+     "003B72C1",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing",
+ "family": ""
+}

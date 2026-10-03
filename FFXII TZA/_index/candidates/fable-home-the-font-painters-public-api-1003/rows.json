@@ -1,0 +1,39 @@
+{
+ "page": "99-Unresolved-Residual/Glyph-Run-Rendering/the-font-painters-public-api.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01B5SV9waPUkdPQzR9MzNgSH",
+ "report": "home-the-font-painters-public-api.json",
+ "rows": [
+  {
+   "fn": "001E9380",
+   "entered_from": "`0017FC50` + 0x10",
+   "text": "calls the site `001E9380` + 0x19 on each of 0x40 consecutive 0x38-byte elements starting at `rcx+0x1500`",
+   "anchors": [
+    [
+     "001E938A",
+     "lea"
+    ],
+    [
+     "001E9391",
+     "mov"
+    ],
+    [
+     "001E9399",
+     "call"
+    ],
+    [
+     "001E939E",
+     "add"
+    ],
+    [
+     "001E93A6",
+     "jne"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

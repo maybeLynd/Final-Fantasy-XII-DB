@@ -1,0 +1,6 @@
+PASS  002973E0's direct references are 0029B7EA and 0029B851 (in the two handlers)  | 0029B7EA 0029B851
+PASS  0029B7EA lies in 0029B7D0 and 0029B851 in 0029B810
+PASS  no instruction inside 002973E0..002974D7 transfers to either handler  | handler refs:  / 
+PASS  002973E0 has no indirect call or jump (so no handler dispatch through a pointer)
+PASS  CONTROL: the old reading '002973E0 calls the handlers' is refuted
+FAILS 0

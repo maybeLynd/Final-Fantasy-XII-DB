@@ -1,0 +1,33 @@
+{
+ "page": "17-Presentation-Rendering/Character-Render-Records/how-a-presentation-entry-picks-its-track.md",
+ "date": "2026-10-03",
+ "rows": [
+  {
+   "fn": "0051BBE0",
+   "text": "when bit 0x1000 of dword `+0xC` is set it tail-jumps at `0051BBE0` + 0x7 (`0051BBE7`); otherwise it returns; passed as the `rdx` argument of the `0051F580` call by `0051B970` + 0x9",
+   "anchors": [
+    [
+     "0051BBE7",
+     "jne"
+    ]
+   ],
+   "why_here": "argument of 0051B970, which section 7b of this page reads",
+   "ref": {
+    "kind": "code",
+    "container": "0051B970",
+    "site": "0051B979"
+   },
+   "cites": [
+    "0051B970"
+   ]
+  }
+ ],
+ "corrections": [
+  {
+   "fn": "0051BBE0",
+   "was": "when bit 0x1000 of dword `+0xC` is set it tail-jumps to `0041C410`; otherwise it returns; passed as the `rdx` argument of the `0051F580` call by `0051B970` + 0x9",
+   "now": "when bit 0x1000 of dword `+0xC` is set it tail-jumps at `0051BBE0` + 0x7 (`0051BBE7`); otherwise it returns; passed as the `rdx` argument of the `0051F580` call by `0051B970` + 0x9",
+   "why": "neighbour gate: the tail-jump target, new to the page, was cited by entry and imported its callee edge into CoreRuntimeScheduling (target callee `00229EA0`), a layer this page never mentions; the target is now cited by its site, the `jne` at `0051BBE0` + 0x7 (`0051BBE7`, the row's interior anchor). The bytes and the claim are unchanged: the jump still leaves the body only when bit 0x1000 is set."
+  }
+ ]
+}

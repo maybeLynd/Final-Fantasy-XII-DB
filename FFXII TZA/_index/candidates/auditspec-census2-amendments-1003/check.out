@@ -1,0 +1,11 @@
+PASS  1a 002369A3 loads qword 0208E680
+PASS  1b 002369AF releases it through 00384500
+PASS  1c 002369B4 stores a qword to 0208E680
+PASS  1C control: the decoder finds no access to 0208E681
+PASS  2a 0036D990 stores an f32 to 01EF93FC (from [01CEBBA8])
+PASS  2b the stored constant [01CEBBA8] = 1.0 (1.0f)
+PASS  2c zeros stored to 01EF93F0 (qword) and 01EF93F8 (dword)
+PASS  2C control: a model claiming the cell is stored 0.0 disagrees with the bytes
+PASS  3a types.tsv AiOrderSet carries the static route 0x02089378 + setIndex * 0x170
+PASS  3C control: no route at the wrong base 0x02089370
+FAILS 0

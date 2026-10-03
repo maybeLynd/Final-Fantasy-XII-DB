@@ -289,3 +289,13 @@ semantics.
 ## Cross-subsystem neighbours of the interior rows (OPUS, 2026-10-02)
 
 - **Platform — SERVICE (1 edge).** The countdown step `001D9F90` in the rows above calls the timer read `005CC930`, which calls `QueryPerformanceCounter` through the import slot `008C2188` (`005CC930+0x9`) and scales the count by the frequency held at `02CB6120`. The step uses it to stamp the float at `+0x8C`: the timer value less the double at `02CB60E8`, plus 2.0. Edge from `edges.tsv`; both bodies read.
+
+## Homed bodies: functions reached only indirectly whose callees this page cites (FABLE, 2026-10-03, F homing)
+
+*No page cited these functions and none of their callers is documented: they are reached by table or pointer dispatch or through undocumented callers. Each one calls something this page documents, which the sentence names. Each sentence states what the body does (access and representation, not purpose); the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's F homing pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-mh-movie-seek-index-homing-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00211B60` | 82 B | calls `00211AC0` with the incoming `rcx` (and `edx`) unchanged; then, only when bit `0x1` of `edx` is set, calls `00211B60+0x2e(rcx)` when bit `0x4` is clear or `00211B60+0x3e(rcx, 0x158)` when it is set; returns `rcx` on every path | Interior anchor `00211B79`; Interior anchor `00211B7F`; Interior anchor `00211B85`; Interior anchor `00211B8E`; Interior anchor `00211B9E` |
+| `006792C0` | 82 B | stores `00D6CD90` at qword `[rcx]`, calls `005CD700(rcx+0x48)` and zeroes byte `+0x50`, calls `005CD700(rcx+0x30)` and zeroes byte `+0x38`, then stores `00D6CD78` at qword `[rcx]` (left in `rax` on return) | Interior anchor `006792DE`; Interior anchor `006792E5`; Interior anchor `006792EB`; Interior anchor `006792F3`; Interior anchor `00679304` |
+| `00679330` | 117 B | stores `00D6CD90` at qword `[rcx]`, calls `005CD700(rcx+0x48)` and zeroes byte `+0x50`, calls `005CD700(rcx+0x30)` and zeroes byte `+0x38`, stores `00D6CD78` at qword `[rcx]`, and when bit `0x1` of `edx` is set calls `00809950(rcx, 0x60)`; returns `rcx` on both paths | Interior anchor `00679355`; Interior anchor `0067935C`; Interior anchor `0067937B`; Interior anchor `0067937E`; Interior anchor `0067938C` |

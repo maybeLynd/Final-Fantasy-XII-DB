@@ -1,0 +1,48 @@
+{
+ "page": "99-Unresolved-Residual/Unlisted-Code/the-bodies-the-list-cuts-short.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter-r4",
+ "report": "the-bodies-the-list-cuts-short-r4.json",
+ "rows": [
+  {
+   "fn": "0082A5D0",
+   "text": "Increments the word at `+0x46` of the object at `rcx+0x38` and returns when it is at most 0xC8 (unsigned `jbe`); otherwise, with the state record at `rcx+0x30`, it takes a location string (`01CCCFD8` when the dword `+0x68` of the record's first-qword object is zero, else `0081BFF0` formatting `01CCCFE8` with that dword), formats `01CCD000` with `01CCD068`, 0xC8 and that string through `0081BFF0` (both formats on the qword `+0x38` of the record's `+0x18` object), and passes the result with the record's `+0x18` qword to `00824330`, where the listed range ends.",
+   "anchors": [
+    [
+     "0082A5E3",
+     "inc"
+    ],
+    [
+     "0082A5EF",
+     "jbe"
+    ],
+    [
+     "0082A628",
+     "call"
+    ],
+    [
+     "0082A646",
+     "call"
+    ],
+    [
+     "0082A652",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "00729920",
+   "why": [
+    "names 00729A58, .text outside every function (text-gap)",
+    "names 00729A60, .text outside every function (text-gap)"
+   ]
+  }
+ ],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

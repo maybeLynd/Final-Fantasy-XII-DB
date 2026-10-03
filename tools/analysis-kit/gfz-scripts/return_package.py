@@ -8,7 +8,16 @@ SPEC.json:
   {"commits":  [{"sha": "...", "representation": "FORMAT_PATCH" | "FINAL_SNAPSHOT" | "RECEIPT_ONLY", "reason": "..."}],
    "files":    ["repo/path", ...],        exported as files/<path> from HEAD (git show HEAD:<path>)
    "receipts": ["repo/path", ...],        exported as receipts/<path> from the working tree
+   "authoritative": ["repo/path", ...],   exported as authoritative/<path> from HEAD, hashed in AUTHORITATIVE.json
    "report":   "repo/path/to/report.md"}  exported as REPORT.md
+
+AUTHORITATIVE INPUTS (OPUS, 2026-10-03, the user's directive item 5). A report that states a current-state headline
+must carry the authoritative files an outside reviewer needs to recount it. When REPORT.md states an L2 headline
+("N MET / K NOT MET" or "N MET of M"), build adds the minimal set from HEAD even if the spec omits it: L2-VERDICTS.md,
+PROGRESS.md and its GENERATION-BINDING.json, PROGRAM-STATE.md (the DB_GOAL receipt input), PROJECT-LIFECYCLE.json and
+the generator progress_report.py (the parser of record); and it runs check_status_residue.py into
+receipts/status-residue.out. Paths that do not exist at HEAD are listed as missing in AUTHORITATIVE.json, never
+silently dropped. Figures a report quotes as history must be struck (~~..~~) or they are read as claims.
 
 The builder writes patches/NNNN-<sha9>.patch (git format-patch -1 --stdout) for every FORMAT_PATCH commit, files/,
 receipts/, REPORT.md, PROVENANCE.json and MANIFEST.json. PROVENANCE is derived from the members actually written: a
@@ -29,7 +38,14 @@ verify fails (exit 1) and names every problem by rule:
                          patch/commit count that disagrees with the package
   X_STRUCTURE            missing REPORT.md/PROVENANCE.json/MANIFEST.json, unreadable JSON, duplicate or unresolvable sha,
                          or a PROVENANCE member that is not in the zip
-"""
+  L_MISSING_AUTHORITATIVE  REPORT.md states an L2 headline but the package carries no authoritative L2-VERDICTS.md
+  L_NO_PARSER            no copy of progress_report.parse_verdicts (package or repository) could parse it
+  L_REPORT_MISMATCH      a REPORT.md L2 headline disagrees with the totals parsed from the included L2-VERDICTS.md
+  L_PROGRESS_MISMATCH    the included PROGRESS.md "N MET of M systems" disagrees with the parsed totals
+  L_RECEIPT_MISSING      REPORT.md states an L2 headline but no receipt carries a checkpoint C3 line
+  L_RECEIPT_MISMATCH     a checkpoint receipt's C3 line ("PROGRESS.md N/M = L2-VERDICTS rows N/M") disagrees
+  L_AUTH_HASH            an authoritative/ member disagrees with AUTHORITATIVE.json, or is listed but absent
+verify prints which parser copy it used (L2 PARSER line in the problem-free report of verify_l2)."""
 import argparse
 import hashlib
 import io
@@ -50,6 +66,21 @@ HEX_TOKEN = re.compile(r"(?<![0-9A-Za-z])[0-9a-f]{7,40}(?![0-9A-Za-z])")
 CLAIM = re.compile(r"\b(every|all)\b[^\n.]{0,120}?\b(commits?|patch(?:es)?)\b", re.I)
 COUNT = re.compile(r"\b(\d+)\s+(?:listed\s+)?(commits?|format-patch(?:es)?|patch(?:es| files?)?)\b", re.I)
 FIXED = ("REPORT.md", "PROVENANCE.json", "MANIFEST.json")
+
+# authoritative inputs (directive item 5)
+DBP = "Database/FFXII TZA/"
+L2_PATH = DBP + "_index/L2-VERDICTS.md"
+PARSER_PATH = DBP + "_index/progress/progress_report.py"
+PROGRESS_PATH = DBP + "PROGRESS.md"
+L2_MINIMAL = (L2_PATH, PROGRESS_PATH, DBP + "_index/progress/GENERATION-BINDING.json",
+              DBP + "_index/PROGRAM-STATE.md", DBP + "_index/workflow/PROJECT-LIFECYCLE.json", PARSER_PATH)
+RESIDUE_SCRIPT = "Database/Tools/analysis-kit/gfz-scripts/check_status_residue.py"
+RESIDUE_RECEIPT = "receipts/status-residue.out"
+L2_SLASH = re.compile(r"\b(\d+)\s+MET\s*(?:/|,|and)\s*(\d+)\s+NOT\s+MET\b", re.I)
+L2_OF = re.compile(r"\b(\d+)\s+MET\s+of\s+(\d+)\b", re.I)
+STRUCK = re.compile(r"~~.*?~~", re.S)
+C3_LINE = re.compile(r"C3\s+PROGRESS\.md\s+(\d+)/(\d+)\s*=\s*L2-VERDICTS rows\s+(\d+)/(\d+)")
+PROGRESS_HEADLINE = re.compile(r"\b(\d+)\s+MET\s+of\s+(\d+)\s+systems\b")
 
 
 class BuildError(Exception):
@@ -107,6 +138,34 @@ def assemble(spec, repo):
             members["receipts/" + p] = f.read()
     with open(os.path.join(repo, repo_path(spec["report"])), "rb") as f:
         members["REPORT.md"] = f.read()
+
+    # authoritative inputs: the spec's own list, plus the minimal L2 set whenever the report states an L2 headline
+    auth = [repo_path(p) for p in spec.get("authoritative") or []]
+    auto = []
+    if l2_claims(members["REPORT.md"].decode("utf-8", "replace")):
+        for p in L2_MINIMAL:
+            if p not in auth:
+                auth.append(p)
+                auto.append(p)
+    record = {"files": {}, "auto_added": auto, "missing": []}
+    for p in auth:
+        r = git(repo, "show", "HEAD:" + p, check=False)
+        if r.returncode:
+            record["missing"].append(p)
+            continue
+        members["authoritative/" + p] = r.stdout
+        record["files"][p] = sha256(r.stdout)
+    if auto:
+        script = os.path.join(repo, RESIDUE_SCRIPT)
+        if os.path.exists(script):
+            r = subprocess.run([sys.executable, "-B", script, "--db", os.path.join(repo, "Database", "FFXII TZA")],
+                               capture_output=True, cwd=repo)
+            members[RESIDUE_RECEIPT] = (b"$ check_status_residue.py (exit %d)\n" % r.returncode) + r.stdout + r.stderr
+            record["status_residue"] = {"receipt": RESIDUE_RECEIPT, "exit": r.returncode}
+        else:
+            record["missing"].append(RESIDUE_SCRIPT)
+    if auth:
+        members["AUTHORITATIVE.json"] = json.dumps(record, indent=1).encode("utf-8")
 
     prov, seen, n = [], set(), 0
     for c in commits:
@@ -281,6 +340,132 @@ def verify_members(members, repo):
             if k != want:
                 P.append("R_OVERCLAIM: REPORT.md states %d %s (%r) but the package has %d" %
                          (k, what, line.strip()[:120], want))
+    P.extend(verify_l2(members, repo))
+    return P
+
+
+# ------------------------------------------------------------------------------ authoritative inputs (directive 5)
+
+def l2_claims(report):
+    """[(kind, a, b, text)] for every L2 headline in REPORT.md outside struck text: ("slash", MET, NOT MET) for
+    'N MET / K NOT MET' (also ', ' or 'and'), ("of", MET, total) for 'N MET of M'."""
+    text = STRUCK.sub("", report)
+    out = []
+    for m in L2_SLASH.finditer(text):
+        out.append(("slash", int(m.group(1)), int(m.group(2)), m.group(0)))
+    for m in L2_OF.finditer(text):
+        out.append(("of", int(m.group(1)), int(m.group(2)), m.group(0)))
+    return out
+
+
+def load_parser(members, repo):
+    """(parse_verdicts, which) from the package's own progress_report.py when it carries one, else the repository's;
+    (None, reason) when neither imports."""
+    import importlib.util
+    tried = []
+    pkg = members.get("authoritative/" + PARSER_PATH)
+    candidates = []
+    if pkg is not None:
+        candidates.append(("package copy authoritative/" + PARSER_PATH, pkg))
+    if repo and os.path.exists(os.path.join(repo, PARSER_PATH)):
+        with open(os.path.join(repo, PARSER_PATH), "rb") as f:
+            candidates.append(("repository copy " + PARSER_PATH, f.read()))
+    for which, src in candidates:
+        d = tempfile.mkdtemp(prefix="rp_parser_")
+        try:
+            p = os.path.join(d, "progress_report.py")
+            with open(p, "wb") as f:
+                f.write(src)
+            spec = importlib.util.spec_from_file_location("rp_progress_report_%d" % len(tried), p)
+            mod = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(mod)
+            if hasattr(mod, "parse_verdicts"):
+                return mod.parse_verdicts, which
+            tried.append("%s has no parse_verdicts" % which)
+        except Exception as e:  # an unimportable copy is reported, then the next copy is tried
+            tried.append("%s: %s" % (which, e))
+        finally:
+            _rmtree(d)
+    return None, "; ".join(tried) or "no copy of progress_report.py in the package or the repository"
+
+
+def parse_l2(members, repo):
+    """{'met', 'not_met', 'total', 'parser'} from the package's authoritative L2-VERDICTS.md, or a problem string."""
+    import pathlib
+    data = members.get("authoritative/" + L2_PATH)
+    if data is None:
+        return None, "L_MISSING_AUTHORITATIVE: REPORT.md states an L2 headline but the package has no authoritative/%s" % L2_PATH
+    fn, which = load_parser(members, repo)
+    if fn is None:
+        return None, "L_NO_PARSER: %s" % which
+    d = tempfile.mkdtemp(prefix="rp_l2_")
+    try:
+        p = os.path.join(d, "L2-VERDICTS.md")
+        with open(p, "wb") as f:
+            f.write(data)
+        rows = fn(pathlib.Path(p))
+    finally:
+        _rmtree(d)
+    met = sum(1 for r in rows if r.get("l2") == "MET")
+    not_met = sum(1 for r in rows if r.get("l2") == "NOT MET")
+    return {"met": met, "not_met": not_met, "total": len(rows), "parser": which}, None
+
+
+def verify_l2(members, repo):
+    P = []
+    # authoritative hashes
+    raw = members.get("AUTHORITATIVE.json")
+    listed = {}
+    if raw is not None:
+        try:
+            listed = json.loads(raw).get("files") or {}
+            if not isinstance(listed, dict):
+                raise ValueError("files is not an object")
+        except (ValueError, AttributeError) as e:
+            P.append("X_STRUCTURE: AUTHORITATIVE.json unreadable (%s)" % e)
+            listed = {}
+        for p, h in listed.items():
+            b = members.get("authoritative/" + p)
+            if b is None:
+                P.append("L_AUTH_HASH: AUTHORITATIVE.json lists %s, which is not in the zip" % p)
+            elif sha256(b) != h:
+                P.append("L_AUTH_HASH: authoritative/%s disagrees with AUTHORITATIVE.json" % p)
+    for name in sorted(members):
+        if name.startswith("authoritative/") and name[len("authoritative/"):] not in listed:
+            P.append("L_AUTH_HASH: %s is not listed in AUTHORITATIVE.json" % name)
+    claims = l2_claims(members.get("REPORT.md", b"").decode("utf-8", "replace"))
+    if not claims:
+        return P
+    tot, problem = parse_l2(members, repo)
+    if problem:
+        return P + [problem]
+    for kind, a, b, text in claims:
+        if kind == "slash" and (a, b) != (tot["met"], tot["not_met"]):
+            P.append("L_REPORT_MISMATCH: REPORT.md says %r but the included L2-VERDICTS.md parses %d MET / %d NOT MET "
+                     "(%s)" % (text, tot["met"], tot["not_met"], tot["parser"]))
+        if kind == "of" and (a, b) != (tot["met"], tot["total"]):
+            P.append("L_REPORT_MISMATCH: REPORT.md says %r but the included L2-VERDICTS.md parses %d MET of %d (%s)" %
+                     (text, tot["met"], tot["total"], tot["parser"]))
+    prog = members.get("authoritative/" + PROGRESS_PATH)
+    if prog is not None:
+        m = PROGRESS_HEADLINE.search(prog.decode("utf-8", "replace"))
+        if m and (int(m.group(1)), int(m.group(2))) != (tot["met"], tot["total"]):
+            P.append("L_PROGRESS_MISMATCH: the included PROGRESS.md says %s MET of %s, L2-VERDICTS.md parses %d of %d" %
+                     (m.group(1), m.group(2), tot["met"], tot["total"]))
+    c3 = []
+    for name, b in sorted(members.items()):
+        # receipts/ only (OPUS 2026-10-03): a checkpoint C3 line is checker OUTPUT. files/ carries source, and the
+        # first real package failed on fixture strings inside return_package.py's own self-test ("C3 ... 2/3").
+        if name.startswith("receipts/"):
+            for m in C3_LINE.finditer(b.decode("utf-8", "replace")):
+                c3.append((name, tuple(int(x) for x in m.groups())))
+    if not c3:
+        P.append("L_RECEIPT_MISSING: REPORT.md states an L2 headline but no receipts/ member carries a "
+                 "checkpoint C3 line")
+    for name, (pm, pt, rm, rt) in c3:
+        if (rm, rt) != (tot["met"], tot["total"]) or (pm, pt) != (tot["met"], tot["total"]):
+            P.append("L_RECEIPT_MISMATCH: %s C3 says PROGRESS.md %d/%d = L2-VERDICTS rows %d/%d, the included "
+                     "L2-VERDICTS.md parses %d/%d" % (name, pm, pt, rm, rt, tot["met"], tot["total"]))
     return P
 
 
@@ -416,6 +601,80 @@ def self_test():
             check("build refuses a report that cites an unexported commit and overclaims",
                   "A_UNPROVENANCED_CITE" in s and "R_OVERCLAIM" in s and not os.path.exists(bad_zip)
                   and not os.path.exists(bad_zip + ".tmp-%d" % os.getpid()))
+
+        # ---- directive item 5: a current-state L2 headline needs its authoritative inputs, recounted at verify
+        parser_src = find_parser_source()
+        check("(L2) the generator's progress_report.py is available to the self-test", parser_src is not None)
+        if parser_src is not None:
+            commit(PARSER_PATH, parser_src, "parser of record")
+            table = ("# L2 verdicts\n\n| system | contract | types | relationships | runtime | script/data | **L2** | "
+                     "binding gap |\n|---|---|---|---|---|---|---|---|\n"
+                     "| **S-01** one | MET | MET | MET | MET | MET | **MET** | - |\n"
+                     "| **S-02** two | MET | MET | MET | MET | MET | **MET** | - |\n"
+                     "| **S-03** three | MET | NOT MET | MET | MET | MET | **NOT MET** | types |\n")
+            commit(L2_PATH, table, "three systems, 2 MET")
+            c_prog = commit(PROGRESS_PATH, "# Progress\n\n| L2 | **2 MET of 3 systems** |\n", "progress 2/3")
+            with open(os.path.join(repo, "checkpoint.out"), "w", encoding="utf-8", newline="\n") as f:
+                f.write("PASS  C3  PROGRESS.md 2/3 = L2-VERDICTS rows 2/3\n")
+            l2_report = ("# Report\n\nState at %s: L2 2 MET / 1 NOT MET (2 MET of 3 systems); the rollback figure "
+                         "~~3 MET of 3~~ is history.\n" % c_prog[:9])
+            write_report(l2_report)
+            spec2 = {"commits": [{"sha": c_prog, "representation": "FORMAT_PATCH"}], "receipts": ["checkpoint.out"],
+                     "report": "REPORT-src.md"}
+            spec2_path = os.path.join(root, "spec2.json")
+            with open(spec2_path, "w", encoding="utf-8") as f:
+                json.dump(spec2, f)
+            l2_zip = os.path.join(root, "l2.zip")
+            try:
+                build(spec2_path, l2_zip, repo)
+                built2 = True
+            except BuildError as e:
+                print("   ", e)
+                built2 = False
+            base2 = read_zip(l2_zip) if built2 else {}
+            check("(L2) consistent control: an L2 headline package builds and VERIFIES (struck history ignored)",
+                  built2 and not verify(l2_zip, repo))
+            auth = json.loads(base2.get("AUTHORITATIVE.json", b"{}"))
+            check("(L2) build auto-adds the minimal set and names what HEAD lacks",
+                  ("authoritative/" + L2_PATH) in base2 and ("authoritative/" + PROGRESS_PATH) in base2
+                  and L2_PATH in auth.get("auto_added", []) and DBP + "_index/PROGRAM-STATE.md" in auth.get("missing", []))
+
+            def variant2(label, rule, mutate):
+                m = {k: v for k, v in base2.items()}
+                mutate(m)
+                m["MANIFEST.json"] = manifest_bytes(m)
+                hit = [p for p in verify_members(m, repo) if p.startswith(rule)]
+                check("%s -> %s" % (label, rule), bool(hit))
+
+            def drop_l2(m):
+                m.pop("authoritative/" + L2_PATH)
+                a = json.loads(m["AUTHORITATIVE.json"])
+                a["files"].pop(L2_PATH)
+                m["AUTHORITATIVE.json"] = json.dumps(a).encode()
+            variant2("(L2) L2 headline but no L2-VERDICTS.md in the package", "L_MISSING_AUTHORITATIVE", drop_l2)
+            variant2("(L2) report says 3 MET while the file parses 2", "L_REPORT_MISMATCH",
+                     lambda m: m.__setitem__("REPORT.md", m["REPORT.md"].replace(b"2 MET / 1 NOT MET",
+                                                                                 b"3 MET / 0 NOT MET")))
+            variant2("(L2) report 'N MET of M' disagrees", "L_REPORT_MISMATCH",
+                     lambda m: m.__setitem__("REPORT.md", m["REPORT.md"] + b"Now 3 MET of 3.\n"))
+            variant2("(L2) checkpoint receipt C3 disagrees", "L_RECEIPT_MISMATCH",
+                     lambda m: m.__setitem__("receipts/checkpoint.out",
+                                             b"PASS  C3  PROGRESS.md 3/3 = L2-VERDICTS rows 3/3\n"))
+            variant2("(L2) no checkpoint receipt", "L_RECEIPT_MISSING", lambda m: m.pop("receipts/checkpoint.out"))
+            # a source file under files/ that merely CONTAINS a C3-shaped string (a test fixture) is not a receipt
+            m_src = {k: v for k, v in base2.items()}
+            m_src["files/tools/fixture.py"] = b'FIXTURE = "PASS  C3  PROGRESS.md 9/9 = L2-VERDICTS rows 9/9"\n'
+            m_src["MANIFEST.json"] = manifest_bytes(m_src)
+            check("(L2) a C3-shaped fixture string inside files/ source is not read as a receipt",
+                  not [x for x in verify_members(m_src, repo) if x.startswith("L_RECEIPT")])
+            variant2("(L2) included PROGRESS.md disagrees", "L_PROGRESS_MISMATCH",
+                     lambda m: (m.__setitem__("authoritative/" + PROGRESS_PATH, b"**3 MET of 3 systems**\n"),
+                                m.__setitem__("AUTHORITATIVE.json", json.dumps(dict(
+                                    json.loads(m["AUTHORITATIVE.json"]), files=dict(
+                                        json.loads(m["AUTHORITATIVE.json"])["files"],
+                                        **{PROGRESS_PATH: sha256(b"**3 MET of 3 systems**\n")}))).encode())))
+            variant2("(L2) authoritative member changed without AUTHORITATIVE.json", "L_AUTH_HASH",
+                     lambda m: m.__setitem__("authoritative/" + L2_PATH, m["authoritative/" + L2_PATH] + b"\n"))
     finally:
         _rmtree(root)
     print("self-test: %d failure(s)" % len(fails))
@@ -423,6 +682,16 @@ def self_test():
 
 
 # ----------------------------------------------------------------------------------------------------------- main
+
+def find_parser_source():
+    """The generator's progress_report.py text for the self-test: next to this kit, else under the current git root."""
+    here = os.path.dirname(os.path.abspath(__file__))
+    for root in (os.path.normpath(os.path.join(here, "..", "..", "..", "..")), default_repo()):
+        if root and os.path.exists(os.path.join(root, PARSER_PATH)):
+            with open(os.path.join(root, PARSER_PATH), encoding="utf-8") as f:
+                return f.read()
+    return None
+
 
 def default_repo():
     r = subprocess.run(["git", "rev-parse", "--show-toplevel"], capture_output=True)
@@ -455,6 +724,12 @@ def main(argv):
         print("VERIFIED %s (%d members)" % (a.out, len(members)))
         return 0
     problems = verify(a.zip, repo)
+    members = read_zip(a.zip) if os.path.exists(a.zip) else {}
+    if l2_claims(members.get("REPORT.md", b"").decode("utf-8", "replace")):
+        tot, problem = parse_l2(members, repo)
+        if tot:
+            print("L2 PARSER: %s -> %d MET / %d NOT MET of %d" % (tot["parser"], tot["met"], tot["not_met"],
+                                                                   tot["total"]))
     for p in problems:
         print(p)
     print(("FAILED: %d problem(s)" % len(problems)) if problems else "VERIFIED %s" % a.zip)

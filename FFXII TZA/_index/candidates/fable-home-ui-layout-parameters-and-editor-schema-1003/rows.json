@@ -1,0 +1,112 @@
+{
+ "page": "16-UI/Layout-Parameter-System/ui-layout-parameters-and-editor-schema.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01DtsGzxAwuV39oMMCAfQd2j",
+ "report": "home-ui-layout-parameters-and-editor-schema.json",
+ "rows": [
+  {
+   "fn": "00251D20",
+   "entered_from": "`003EEEC0` + 0x106",
+   "text": "returns null when qword `020927F0` is null; otherwise returns the sign-extended word `+0xE6` of that record when bit 0 of its byte `+0xE8` is set, else 2",
+   "anchors": [
+    [
+     "00251D27",
+     "test"
+    ],
+    [
+     "00251D2C",
+     "test"
+    ],
+    [
+     "00251D35",
+     "movsx"
+    ],
+    [
+     "00251D3D",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00270880",
+   "entered_from": "`0028D260` + 0x1AC",
+   "text": "multiplies each of the four floats at `rdx`, `rdx+4`, `rdx+8`, `rdx+0xC` by the float third argument (`xmm2`) and stores the products to the same offsets of `rcx`",
+   "anchors": [
+    [
+     "00270886",
+     "mulss"
+    ],
+    [
+     "0027088A",
+     "movss"
+    ],
+    [
+     "002708A5",
+     "mulss"
+    ],
+    [
+     "002708AA",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "002C5660",
+   "entered_from": "`002C59D0` + 0xEF",
+   "text": "for indices 0 to 8 calls `002C5660` + 0x12 and ORs dword `+0x44` of each result whose word `+0x60` is not negative into a mask; returns 0 when the mask is 0; otherwise for each set bit i of the 32 calls `002C5660` + 0x4B with (`0x1A`, i), then `002B3050(0, qword +0x10 of that result, &w, &x)`, and keeps the signed maximum of the word w (starting from 0), which it returns sign-extended",
+   "anchors": [
+    [
+     "002C567B",
+     "jl"
+    ],
+    [
+     "002C567D",
+     "or"
+    ],
+    [
+     "002C56AB",
+     "call"
+    ],
+    [
+     "002C56C0",
+     "call"
+    ],
+    [
+     "002C56CA",
+     "cmovg"
+    ]
+   ]
+  },
+  {
+   "fn": "00404D40",
+   "entered_from": "`00405310` + 0x302",
+   "text": "when qword `02B62D88` is non-null, its qword `+0xC0` is non-null and `ecx` is below 2 (signed compare), returns the qword at `+0xC8 + 8*ecx` of that `+0xC0` object; otherwise returns 0",
+   "anchors": [
+    [
+     "00404D4A",
+     "je"
+    ],
+    [
+     "00404D56",
+     "je"
+    ],
+    [
+     "00404D5B",
+     "jge"
+    ],
+    [
+     "00404D60",
+     "mov"
+    ],
+    [
+     "00404D69",
+     "xor"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

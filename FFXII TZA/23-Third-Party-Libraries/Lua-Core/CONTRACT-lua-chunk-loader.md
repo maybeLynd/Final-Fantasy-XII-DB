@@ -520,3 +520,11 @@ reconstructed.
 3. **Return the right refusal.** Five messages, each selected by an exact byte range.
 4. **This build's `lua_Number` is four bytes.** A chunk from a stock x64 `luac` is rejected, and as
    `incompatible`.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-contract-lua-chunk-loader-ee-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `008242A0` | 131 B | initialises the lexer state `ls` = `rdx` for Lua state `L` = `rcx`: dword `[ls]` = the fifth argument, byte `+0x68` = 0x2E, qword `+0x38` = `L`, dword `+0x20` = 0x11E, qword `+0x40` = `r8`, qword `+0x30` = 0, dwords `+4` and `+8` = 1, qword `+0x58` = `r9`, qword `+0x60` = `0081EF90(L, '_ENV')` with byte `+9` of that string gaining `0x20`; then for the buffer at qword `+0x48` stores `00823670(L, qword [buf], qword [buf+0x10], 0x20)` to qword `[buf]` and 0x20 to qword `[buf+0x10]`; returns nothing | `008242AF`, `008242B7`, `008242E3`, `008242F2`, `00824305` |

@@ -1,9 +1,9 @@
-<!-- TEAM-CURRENT:begin agent=SWE2-ORACLE board_rev=50205 epoch=4 queue_sha=77a967653e47725b -->
-> generated 2026-10-03T09:34:15+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=SWE2-ORACLE board_rev=51136 epoch=4 queue_sha=cb0a9463239ff4ed -->
+> generated 2026-10-03T14:39:06+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: SWE2-ORACLE-PUB-RESUME-1003E
+> ACTIVE: none
 > READY addressed to you: none
-> READY pool: 1 | BLOCKED: 0
+> READY pool: 0 | BLOCKED: 0
 <!-- TEAM-CURRENT:end -->
 
 > ## TEAM ROLLBACK RECOVERED (SWE2-FRONTIER, 2026-09-26 02:30Z)
@@ -64,6 +64,8 @@ idle, and it is not a reason to start something that depends on its outcome.
 
 Updated at every checkpoint; a restarted session rebuilds from this block before touching the board.
 Required by the continuity rule in the root `CLAUDE.md` ("What a plain `Continue` means").
+
+- **STAND-IN CHECKPOINT 2026-10-03 14:30Z (Claude stand-in for Devin, session bb063a3a; read this first; supersedes the 13:00Z bullet).** All done since 11:20Z: `14bd5582d` 13g bit-14 condition; `c03ad4d97` KO consumers (EXP-198 / contract 13g bit-22 predicate, EXP-231 copy bound); `78271194d` EXP-091 resolver-base repair (G_IMGB 1F83530, positive + negative controls, no old case depended on the branch) - ASTRA-REQ-ORACLE-EXP091-RESOLVER-BASE-CONTROL-1003 DONE. NEXT (owner pass, not yet done): EXP-091 L14/L139 and CONTRACT-commit-action L321-323/L372-373 over-claim 0x20E600 (and six bodies.json entries) as executed; the record-page (the-record-00329220-builds.md L428-433) bit-20 sentence looks reversed against 002FEB41/45 - see `_experiments/evidence/exp091-resolver-base-repair-1003/README.md`. Queue watcher `Tools/work/SWE2-FRONTIER/standin1003/queue_watch.py`; fleet plan holds all 8 lanes until Devin starts (release with `hold_plan.py ""` in the stand-in scratchpad). Publish tools per lane: `Tools/work/<LANE>/standin1003/` (bop.py, mkpub.py, pub_runner.py); splice publishes over peer overlays: `Tools/work/SWE2-FRONTIER/standin1003/splice_pub.py`.
 
 ### Latest: 04:33Z, Claude stand-in for Devin (SWE2-ORACLE)
 

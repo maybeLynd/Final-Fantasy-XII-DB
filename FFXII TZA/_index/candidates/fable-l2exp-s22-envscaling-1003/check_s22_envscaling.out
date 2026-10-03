@@ -1,0 +1,18 @@
+check_s22_envscaling.py  HEAD 1e18553b0
+PASS S1 Lightning (bit 0x02): one mulss 0038B420 serves the environment test and the terrain test: 0038B3E1 test byte ptr [rcx + 0x13], 2 | 0038B3ED je 0x38b42c | 0038B3EF call 0x321490 | 0038B3F4 test eax, eax | 0038B3F6 je 0x38b418 | 0038B3FB call 0x31b860 | 0038B407 test rax, rax | 0038B40A je 0x38b42c | 0038B40F call 0x3210e0 | 0038B414 test eax, eax | 0038B416 jne 0x38b42c | 0038B420 mulss xmm0, xmm6
+PASS W1 recorded: WE-4/WE-5 bit-16 skip case passes (asserted in the package): 
+PASS W2 recorded: WE-6 write set is 02AEE054 + the cached unit pointer 02EBF188: 02AEE054 02EBF188 02EBF18C
+PASS W3 recorded: rule table over 6 elements (the run iterates 288 combinations; neutral cells are omitted): Fire 24, Lightning 21, Ice 21, Earth 30, Water 30, Wind 16
+PASS W4 the WE-2 table is RECORDED, not asserted: the case's pass flag is the write-set bound only: observed: which (environment, weather, terrain) combinations
+PASS S2 shared multiply: where an environment and a terrain rule of one element both hold, the factor is 1.2 once: Lightning [1.2, 1.2, 1.2]; Ice [1.2, 1.2, 1.2]; Earth [1.2, 1.2, 1.2]; Water [1.2, 1.2]
+PASS C1 sensitivity: OLD 'multiplied in sequence' predicts 1.44 in those cells; it is FALSE: prediction holds: False
+PASS S3 composition across DIFFERENT rules still multiplies (x0.5 x1.2 = 0.6): Water e3w2t0 0.6, Fire e0w2t0 0.6
+PASS C2 sensitivity: OLD 'no experiment executes these four bodies' is FALSE: stage called True, writes True, environment/terrain/MWeather each change the factor: True/True/True
+PASS W5 we1 plants only the action row's +0x08 (so +0x13 = 0 and no element rule fires on that path): ['rows[0x20 * action_id + 8] = rid']
+PASS W6 we1 recorded: 4/4 cases pass (WE-1 order and +0x13 read site), live_game false: executed_94_runs_before_95_wherever_both_run, executed_both_stages_read_the_element_byte_plus13, executed_recipes_return, static_every_recipe_with_both_lists_94_before_95
+PASS W7 recorded: 00263E20 returns [02099DAC] verbatim for 0,1,2,5 (WE-3 consumer side): {"0": [true, 0], "1": [true, 1], "2": [true, 2], "5": [true, 5]}
+PASS RR s22-opus-replay-steps-and-element-scaling/check.py re-run reproduces result.json: exit 0, re-run 99336e05, committed 99336e05, recorded 99336e05
+PASS RR s22-opus-replay-recipe-resolver/check.py re-run reproduces result.json: exit 0, re-run a226db98, committed a226db98, recorded a226db98
+PASS RR s22-opus-replay-recipe-resolver/we1.py re-run reproduces we1_result.json: exit 0, re-run 5680857b, committed 5680857b, recorded 5680857b
+PASS RR s22-opus-replay-severe-weather-gate/check.py re-run reproduces result.json: exit 0, re-run 867bbaf3, committed 867bbaf3, recorded 867bbaf3
+FAILS 0

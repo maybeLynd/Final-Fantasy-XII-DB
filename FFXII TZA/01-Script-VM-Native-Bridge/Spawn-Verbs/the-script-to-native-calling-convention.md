@@ -880,3 +880,11 @@ SWE2-DATA's `prove_spattack_flow.py` and the reviewer's own decode, and is not r
   - native writers of these cells outside the bytecode;
   - allocation, non-aliasing and lifetime of the image buffer against the queue globals;
   - the meaning of action word 0.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-the-script-to-native-calling-convention-ee-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00348330` | 165 B | takes `b` = `002640C0()`, then `x` = `002650B0(b, rcx, 00267E10(r9))` and `y` = `002650B0(b, rcx, 00267E10(r9))` (two reads through the same `r9`), and `r` = `00309C00(y, x)`; moves dword `01EF920C` to `01EF9208` and dword `01EF9214` to `01EF9210`, stores dword `[y]` to `01EF920C` and dword `[x]` to `01EF9214`, and tail-jumps to `0026B4E0(rcx, r)` | `00348355`, `00348363`, `0034838A`, `00348397`, `003483B3` |

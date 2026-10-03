@@ -69,10 +69,16 @@ for e in EDITS:
         check("K %s.%d" % (e["id"], i + 1), ("~~" + s + "~~") in t)
     check("C " + e["id"], b.count(e["old"]) == 1 and e["new"] not in b, "base " + BASE[:9])
 
+# T/H are scoped to wave B's OWN commit (SWE2-STRUCT 2026-10-03, OPUS-REQ-STRUCT-AWN-B-TH-SCOPE-1003): comparing the whole
+# live page with BASE made later legitimate packages fail them (as7 FABLE 8bd4e78fd, cmap OPUS 3c6900936, mg OPUS
+# 69f92df6b, btm/lst SWE2-CONTRACT d0809ac13). The question they ask is what THIS batch did: its commit against its parent.
+WAVE = "39bcf15b9"   # OPUS-PUB-AWN-WAVE-B-1001, the commit that applied these edits
+_rb = lambda rev, f: norm(subprocess.run(["git", "show", "%s:./%s" % (rev, f)], cwd=ROOT, capture_output=True).stdout.decode("utf-8"))
 for f in files:
     st = lambda x: [l for l in x.split("\n")[:12] if l.startswith("status:")]
-    check("T " + os.path.basename(f), st(cur[f]) == st(base[f]))
-    added = set(l for l in cur[f].split("\n") if l.startswith("## ")) - set(l for l in base[f].split("\n") if l.startswith("## "))
+    w_new, w_old = _rb(WAVE, f), _rb(WAVE + "^", f)
+    check("T " + os.path.basename(f), bool(w_new) and st(w_new) == st(w_old), "in " + WAVE)
+    added = set(l for l in w_new.split("\n") if l.startswith("## ")) - set(l for l in w_old.split("\n") if l.startswith("## "))
     check("H " + os.path.basename(f), all("(SWE2-STRUCT for OPUS)" in l for l in added), "%d new ## heading(s)" % len(added))
 
 check("R register", MARK not in read("_index/OPEN-QUESTIONS.md"))
@@ -97,3 +103,6 @@ for l in readme.split("\n"):
 
 print("EDITS %d in %d files" % (len(EDITS), len(files)))
 print("FAILS %d" % fails)
+# EXIT STATUS FOLLOWS THE FAIL COUNT (OPUS, 2026-10-03, the user's directive item 1): it printed FAILS N but
+# exited 0, so the regression runner counted it PASS.
+sys.exit(1 if fails else 0)

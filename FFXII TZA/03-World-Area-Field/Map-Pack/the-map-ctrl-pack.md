@@ -1856,3 +1856,63 @@ Interior anchor `00379040` (function `00379010`).
 `00378FB0` (92 B; from four handlers of the same shape: `003455B0` pops a mode and a bit, and `00345AC0`, `003460A0` and `00346600` pop the bit with a fixed mode) is the identical tri-state setter on the next pair of the `0209A6xx` block: mode 0 sets the bit in `0209A6D8` and clears it in `0209A6D0`, mode 1 the reverse, mode 2 clears both. The reader of `0209A6D0`/`0209A6D8` is not read here.
 
 Interior anchor `00378FE0` (function `00378FB0`).
+
+## SWE2-EC7-212 update (2026-10-03) - the gauge verbs' bodies on the `02B62D80` gauge task
+
+The gauge verbs that follow `initgauge` reach their bodies through one-instruction `jmp` thunks, and every verb body below loads the qword `02B62D80` and tests it for null first. That qword is the gauge task `00406E80` itself: its create branch stores the task there (`00406FB1`) and keeps the `00244F50` window at task `+0xC0` (`00407107`). All but the two getters return without writing when bit 1 of the task's dword `+0xC8` is set. `00408250` (44 B; verb `getgaugecounter`, `0x01C0`) takes no argument and returns the window's dword `+0xE4` when the window's byte `+0xC0` is 0, and -1 (`or eax, 0xffffffff`) when the task or the window is null or that byte is non-zero; it stores nothing.
+
+Interior anchor `00408271` (function `00408250`).
+
+`00408280` (74 B; `getgaugetimer`, `0x01BF`) is the mode-1 getter: when the window's byte `+0xC0` is 1 it takes dword `+0xE4`, adds 59 (`0x3B`) when its `ecx` argument is non-zero, and returns the signed quotient by 60 (`imul` by `0x88888889`, `sar 5`, plus the sign bit, so it truncates toward zero) - a non-zero `ecx` rounds a non-negative count up to the next multiple of 60; otherwise it returns -1 and stores nothing.
+
+Interior anchor `004082B5` (function `00408280`).
+
+`004083E0` (103 B; `resetgaugetimer`, `0x01B8`, whose verb-table entry is itself a `jmp` thunk) takes no argument and returns without writing when the task exists with bit 1 of `+0xC8` set, or when the window exists with byte `+0xC0` equal to 1. On the remaining path the window pointer it tested is known to be null, and the compiler folded it: the arms address absolute `0xDC`, `0xE0` and `0xE4` with no base register (`movzx ecx, byte ptr [0xdc]` at `0040841E`). Byte `0xDC` = 1 stores 0 at dword `0xE4`, 2 copies dword `0xE0` there, and any other value writes nothing - so as compiled that path reads the null page, not a window.
+
+Interior anchor `0040841E` (function `004083E0`).
+
+`00408450` (112 B; `changegaugecounterbyframe`, `0x01B2`) takes the target value in `ecx`. With `c` = the window's dword `+0xE4`, it stores dword `+0x120` = target minus `c`, `+0x11C` = `c`, `+0x124` = `c`, `+0x114` = 0, `+0x128` = 0, and `+0x118` = the sign-extended word `+0x108`, or 1 when that word is 0. It does not test byte `+0xC0`.
+
+Interior anchor `0040848C` (function `00408450`).
+
+`004084C0` (48 B; `changegaugecounterbyratio`, `0x01B3`) tail-jumps (`jmp`, not `call`) to `00407290` with the window in `rcx` (0 when the task is null) and its own `ecx` (the target) in `edx`.
+
+Interior anchor `004084E3` (function `004084C0`).
+
+`00407290` (104 B; its only caller is `004084C0`) returns when `rcx` is null or dword `+0x110` is 0. Otherwise, with `c` = dword `+0xE4` and `d` = `edx` minus `c`, it stores `+0x11C` = `c`, `+0x120` = `d`, `+0x124` = `c`, `+0x114` = 0, `+0x128` = 0, and `+0x118` = abs(`d`) times dword `+0x10C` divided by dword `+0x110` (signed: `cdq`/`idiv`), or 1 when that quotient is 0. These are the fields `00408450` writes, with the step count taken from a ratio instead of a frame count.
+
+Interior anchor `004072D3` (function `00407290`).
+
+`004084F0` (46 B; `setgaugechangeframe`, `0x01B0`) stores the low word of `ecx` as word `+0x108` of the window, the frame count `00408450` reads.
+
+Interior anchor `00408516` (function `004084F0`).
+
+`00408520` (55 B; `setgaugechangeratio`, `0x01B1`) stores `ecx` as dword `+0x10C` and `edx` as dword `+0x110` of the window, the two factors `00407290` reads.
+
+Interior anchor `00408549` (function `00408520`).
+
+`00408560` (67 B; one handler serves `setgaugecountercondition` `0x01B6`, `setgaugetimercondition` `0x01B7` and `setgaugeracecondition` `0x0349`) tail-jumps to `00407300` with the window in `rcx` (0 when the task is null) and its own `ecx`, `edx` and `r8d` moved to `edx`, `r8d` and `r9d`; `00407300` stores those three values as the window's words `+0xEA`/`+0xEC`/`+0xEE`, multiplied by 60 when the window's byte `+0xC0` is 1, in an order chosen by its byte `+0xDC`, and skipping any value of -1.
+
+Interior anchor `0040858D` (function `00408560`).
+
+`00408860` (56 B; verb `0x01BB`, which the verb table labels `gaugepadding0`) replaces bit 1 of the window's dword `+0xD8` with bit 0 of `ecx` (`and` with `0xFFFFFFFD`, then `or` with `(ecx & 1) * 2`); it writes nothing when the window is null.
+
+Interior anchor `00408885` (function `00408860`).
+
+`004083B0` (33 B; `stopgaugetimer`, `0x01BA`, reached through three chained `jmp` thunks, the verb-table entry first) sets bit 2 of the task's dword `+0xC8` (`or ecx, 4`, read-modify-write) when bit 1 is clear, and does not touch the window. The `startgaugetimer` verb's body clears the same bit under the same guard.
+
+Interior anchor `004083C7` (function `004083B0`).
+
+## SWE2-EC7-216 update (2026-10-03) - the gauge type, colour and hide verbs on the `02B62D80` gauge task
+
+Three more gauge verbs reach the `02B62D80` gauge task of the EC7-212 section above; each handler pops its integer arguments and passes them on in registers. `003E8F70` (67 B; one handler serves `setgaugecountertype` `0x01C1`, `setgaugetimertype` `0x01C2` and `setgaugeracetype` `0x0348`) passes `ecx` values 1 to 4 through unchanged and any other value as 0, and tail-jumps (`jmp`, not `call`) to `00408A20` with it. `00408A20` (119 B) does nothing when the task is null, when bit 1 of the task's dword `+0xC8` is set, or when the window at task `+0xC0` is null. Otherwise it stores the value as the window's byte `+0xDC` (the byte by which `00407300` orders its three stores above), and, when the window's qword `+0xD0` is non-null, clears bit 25 (`0x2000000`) of that object's dword `+0x20` for 1 and 3 and sets it for 2 and 4; the value 0 leaves that bit alone.
+
+Interior anchor `003E8F7F` (function `003E8F70`).
+
+`003E9120` (98 B; called, not jumped to, by the `setgaugecolor` `0x01CC` handler, which pops five values and passes the fifth popped in `ecx`, the fourth, third and second in `edx`, `r8d` and `r9d`, and the first popped as the fifth argument) clamps `ecx` to 0..3 (signed: negative to 0, above 3 to 3) and stores at `02B5D098 + 4 * index` one dword packed from the low byte of each of the other four arguments: the fifth argument in bits 24-31, `r9b` in bits 16-23, `r8b` in bits 8-15 and `dl` in bits 0-7 (`shl 8` / `or` steps). It then tail-jumps to `00408780` with the four dwords `02B5D098`, `02B5D09C`, `02B5D0A0` and `02B5D0A4`. `00408780` (87 B), behind the same three guards as `00408A20`, stores each of its four arguments that is not -1 as the window's dwords `+0xF8`, `+0xFC`, `+0x100` and `+0x104`; so a colour whose four bytes are all `0xFF` is kept in the `02B5D098` table but never reaches the window.
+
+Interior anchor `003E9160` (function `003E9120`).
+
+`002E1BB0` (37 B; `setgaugehidestatus` `0x03D4`) passes `ecx` values 1 and 2 through and any other value as 0, and tail-jumps to `004087E0` with it. `004087E0` (67 B), behind the same three guards, returns for a negative value, clears bit 20 (`0x100000`) of the window's dword `+0x40` for 0 or 1, and sets it for 2.
+
+Interior anchor `002E1BBA` (function `002E1BB0`).

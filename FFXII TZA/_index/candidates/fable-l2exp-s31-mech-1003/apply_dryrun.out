@@ -1,0 +1,15 @@
+FABLE S-31 section 8a, dry run (no file is written)
+HEAD 7572732b7
+PASS  G1  Database/FFXII TZA/12-Items-Equipment-Shops-License/CONTRACT-license-check.md is clean
+      line endings kept: LF
+PASS  A1  anchor '## 8. Script' occurs 1 time(s) at line 149
+PASS  A2  anchor '## 9. Determinism' occurs 1 time(s) at line 154
+PASS  A3  8 < 9 and nothing but section 8 lies between them: []
+PASS  H1  section.txt's heading is the marker and carries 'FABLE, 2026-10-03'
+PASS  E1  8a inserted before line 154 (## 9. Determinism)
+PASS  L1  10 relative links in section.txt resolve from the contract's folder
+PASS  C1  the census does not read 8a as a state section (state sections: ['3. Types', '5. State'])
+PASS  C2  the census's state lines are identical before and after (26 lines)
+PASS  K1  110 addresses cited in section.txt; every one is in check_s31.py or listed as carried
+      dry run: contract +203 lines
+FAILS 0

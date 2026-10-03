@@ -775,3 +775,11 @@ document, which reaches `022CB726` from the other side.
 | `003667B0` | 42 B | clears bit 0x80 of word `022CBE1A` and, when `ecx` is non-zero, sets it again | `003667BC`, `003667BF`, `003667C6`, `003667D2` |
 | `003667E0` | 135 B | returns at once when `0035C6F0()` has bit 0 set; otherwise calls `00249C60(0x2A)` when word `022CBE1A` has bit `0x4` set, `00265680()` is non-zero and bit `0x40` is clear; then, when bit `0x10` is set, calls `002DF0F0(dword 022CBE1C, 0)` if `002DEE80(dword 022CBE1C)` is non-zero and clears bit `0x10`; on both paths it stores the word AND `0xFF92` OR 2 back to `022CBE1A` | `003667EB`, `0036680D`, `00366832`, `00366854`, `0036685B` |
 | `00366960` | 43 B | when `ecx` is non-zero copies word `022CBE08` to word `022CBE18` and stores the word 0x25 to `022CBE1A`; when `ecx` is 0 it zeroes the qword `022CBE18` instead | `0036696B`, `00366977`, `0036697F` |
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-r2-force-fight-toggle-ee-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `007A5E50` | 191 B | Returns at once when the byte at `02EACFE9` is non-zero; otherwise it loops: calls `007AD630`, converts that result minus the qword at `02EACFF0` to a double as an unsigned value (adding the 2^64 constant at `00D27A68` when the difference is negative) and divides it by the result of `007AD670` converted the same way, stores the `007AD630` result to `02EACFF0`, narrows the quotient to a float and passes it in `xmm0` to `007BAEC0`, `007BB670`, `007BB780` and `007BC4F0`, calls the import at `008C21B0` with `ecx`=0x20, and repeats while the byte at `02EACFE9` stays zero, then returns. | `007A5E80`, `007A5EB6`, `007A5EBA`, `007A5EEA`, `007A5EF9` |

@@ -650,3 +650,13 @@ indexes a ~~9-entry jump table at `002038E4`~~ 10-entry jump table at image offs
 the range returns -1 - the mode-to-class fold the registry callers
 share.
 Interior anchor `003238B4` (the `jmp rcx` dispatch).
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-03, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../_index/candidates/fable-home-the-encoded-id-class-registry-1003/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `00243EE0` | 133 B | `002C4720` + 0x8D5 | returns at once when bits 2-17 of dword `[rcx]` are zero; otherwise walks the qword pointer array at qword `rcx+0x10` (stride 8) for `(dword [rcx] >> 2) AND 0xFFFF` entries, re-read each pass, and for each entry takes the kind `(dword +8 >> 2) AND 0xF`: kinds 2, 5 and 9 copy words `+4` and `+6` of the qword `[entry]` record into the entry's words `+0xC` and `+0xE`; kind 8 copies the same two words into words `+0x98` and `+0x9A` of qword `entry+0x18` when that is non-null; other kinds write nothing | Interior anchor `00243EE6`; Interior anchor `00243EFC`; Interior anchor `00243F1D`; Interior anchor `00243F54`; Interior anchor `00243F3C` |
+| `002CFDA0` | 146 B | `002D0100` + 0x73 | looks up the words `[rcx]` and `[rdx]` as `0035D330(1, word << 0x10)` and returns the difference of the two records' dwords `+0x38` (first minus second) when it is non-zero; otherwise looks both up again and returns the difference of their dwords `+0x30` when non-zero, else the difference of the two zero-extended words | Interior anchor `002CFDC9`; Interior anchor `002CFDE0`; Interior anchor `002CFE0D`; Interior anchor `002CFE0F`; Interior anchor `002CFE14` |
+| `002D01A0` | 82 B | `002CFEE0` + 0xA2 | looks up the words `[rcx]` and `[rdx]` as `0035D330(1, word << 0x10)` and returns the difference of the two records' dwords `+0x30` (first minus second) when it is non-zero, else the difference of the two zero-extended words | Interior anchor `002D01BF`; Interior anchor `002D01D1`; Interior anchor `002D01D6`; Interior anchor `002D01D8`; Interior anchor `002D01DD` |

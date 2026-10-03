@@ -1,0 +1,40 @@
+{
+ "page": "15-Input/Modal-Toggles/r2-force-fight-toggle.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter-r4",
+ "report": "r2-force-fight-toggle-r4.json",
+ "rows": [
+  {
+   "fn": "007A5E50",
+   "text": "Returns at once when the byte at `02EACFE9` is non-zero; otherwise it loops: calls `007AD630`, converts that result minus the qword at `02EACFF0` to a double as an unsigned value (adding the 2^64 constant at `00D27A68` when the difference is negative) and divides it by the result of `007AD670` converted the same way, stores the `007AD630` result to `02EACFF0`, narrows the quotient to a float and passes it in `xmm0` to `007BAEC0`, `007BB670`, `007BB780` and `007BC4F0`, calls the import at `008C21B0` with `ecx`=0x20, and repeats while the byte at `02EACFE9` stays zero, then returns.",
+   "anchors": [
+    [
+     "007A5E80",
+     "call"
+    ],
+    [
+     "007A5EB6",
+     "divsd"
+    ],
+    [
+     "007A5EBA",
+     "mov"
+    ],
+    [
+     "007A5EEA",
+     "call"
+    ],
+    [
+     "007A5EF9",
+     "je"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

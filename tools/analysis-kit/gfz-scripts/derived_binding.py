@@ -173,22 +173,43 @@ def state(b, read):
     return {"state": st, "moved": moved, "outputs_bad": bad}
 
 
+_VAL = r"(?:[^()\n]|\([^()\n]*\))*"   # a placeholder's value: anything on the line, parentheses balanced one deep
+
+
+def _stale_patterns(replace, stale_tok):
+    """-> (exact, loose): `exact` matches an annotation this rule's `replace` template produced, whatever moved set and
+    generation it named; `loose` matches the stale token plus an optional parenthesised reason directly after it
+    (an annotation written by an earlier wording of the template)."""
+    parts = re.split(r"(\{moved\}|\{generation\})", replace)
+    exact = re.compile("".join(_VAL if p in ("{moved}", "{generation}") else re.escape(p) for p in parts))
+    loose = re.compile(re.escape(stale_tok) + r"(?: \(" + _VAL + r"\))?")
+    return exact, loose
+
+
 def relabel(data, rule, moved, generation):
     """Apply one stale_label rule to output bytes. kind 'text': replace `find` with `replace` on lines matching
-    `line_regex` (at least one must match); kind 'json': set the key path to `value` and add `stale_moved`."""
+    `line_regex` (at least one must match); kind 'json': set the key path to `value` and add `stale_moved`.
+    Relabelling an output that already says STALE is legal and rewrites its annotation to the CURRENT moved set, so
+    the output names exactly what the binding's `stale_moved` names; an unchanged moved set reproduces the same bytes."""
     note = ", ".join(moved) or "unknown"
     if rule["kind"] == "text":
         text = data.decode("utf-8")
         rx = re.compile(rule["line_regex"])
         out, hit = [], 0
         stale_tok = rule["replace"].split(" ", 1)[0]   # e.g. "`STALE`"
+        label = rule["replace"].format(moved=note, generation=generation)
+        exact, loose = _stale_patterns(rule["replace"], stale_tok) if stale_tok else (None, None)
         for line in text.splitlines(keepends=True):
             if rx.search(line) and rule["find"] in line:
-                line = line.replace(rule["find"], rule["replace"].format(moved=note, generation=generation), 1)
+                line = line.replace(rule["find"], label, 1)
                 hit += 1
             elif rx.search(line) and stale_tok and stale_tok in line:
-                # already labelled stale by an earlier publish: relabelling is idempotent (SWE2-FRONTIER 2026-10-03;
-                # before this, every publish was refused once the committed surface already said STALE)
+                # already labelled stale by an earlier publish: relabelling is legal (SWE2-FRONTIER 2026-10-03; before
+                # that, every publish was refused once the committed surface said STALE) and REWRITES the annotation
+                # to the moved set of this relabel (OPUS 2026-10-03; before that, `STALE (moved: old.txt)` stayed
+                # when new.txt moved, so the output and GENERATION-BINDING.json named different inputs)
+                m = exact.search(line) or loose.search(line)
+                line = line[:m.start()] + label + line[m.end():]
                 hit += 1
             out.append(line)
         if not hit:
@@ -437,6 +458,7 @@ def _self_test():
         # 12. relabelling an output that already says STALE is idempotent (never refuses the publish)
         r12 = {"path": "out/P.md", "kind": "text", "line_regex": "freshness", "find": "`CURRENT`",
                "replace": "`STALE` (moved: {moved})"}
+        o12 = ""
         try:
             o12 = relabel(b"**freshness:** `STALE` (moved: old)\n", r12, ["reg/L2.md"], "g1").decode()
             ok("`STALE`" in o12 and "`CURRENT`" not in o12, "12 relabelling an already-STALE output is idempotent")
@@ -447,6 +469,72 @@ def _self_test():
             ok(False, "13 an output with no freshness line is still refused")
         except ValueError:
             ok(True, "13 an output with no freshness line is still refused")
+        # 14-18. relabelling an already-STALE output rewrites the reason to the CURRENT moved set (the regression for
+        # `STALE (moved: old.txt)` staying in place after new.txt moved)
+        ok("(moved: reg/L2.md)" in o12 and "old" not in o12,
+           "14 STALE (moved: A) + new moved set B -> displayed STALE reason names B, not A")
+        rp = {"path": "o.md", "kind": "text", "line_regex": r"\*\*freshness:\*\*", "find": "`CURRENT`",
+              "replace": "`STALE` (bound inputs moved since generation {generation}: {moved}; regenerate with "
+                         "progress_report.py generate)"}
+        base = b"# P\n**as of:** t \xc2\xb7 **freshness:** `CURRENT` (fp `f1`)\nbody `STALE` mention\n"
+        a1 = relabel(base, rp, ["x/old.txt"], "g7")
+        b1 = relabel(a1, rp, ["x/new.txt", "x/two.txt"], "g7")
+        b2 = relabel(b1, rp, ["x/new.txt", "x/two.txt"], "g7")
+        want = (b"# P\n**as of:** t \xc2\xb7 **freshness:** `STALE` (bound inputs moved since generation g7: x/new.txt, "
+                b"x/two.txt; regenerate with progress_report.py generate) (fp `f1`)\nbody `STALE` mention\n")
+        ok(b1 == want, "15 the live template's reason is rewritten in place to B; the rest of the line and the "
+                       "unmatched lines are untouched")
+        ok(b2 == b1 and relabel(a1, rp, ["x/old.txt"], "g7") == a1,
+           "16 a relabel with an unchanged moved set changes nothing")
+        rn = {"path": "o.md", "kind": "text", "line_regex": "freshness", "find": "`CURRENT`",
+              "replace": "`STALE` (moved: {moved})"}
+        n1 = relabel(b"**freshness:** `STALE` (moved: (binding disagreed with its outputs)) tail\n", rn, ["a.txt"], "g")
+        n2 = relabel(b"**freshness:** `STALE` (an older wording: old.txt) tail\n", rn, ["a.txt"], "g")
+        ok(n1 == n2 == b"**freshness:** `STALE` (moved: a.txt) tail\n",
+           "17 a nested-parenthesis reason and an older wording are both replaced whole")
+        rj = {"path": "s.json", "kind": "json", "key": ["freshness", "state"], "value": "STALE"}
+        j1 = relabel(b'{"freshness": {"state": "STALE", "stale_moved": ["old.txt"]}}', rj, ["new.txt"], "g")
+        ok(json.loads(j1)["freshness"]["stale_moved"] == ["new.txt"], "18 the JSON stale_moved names B")
+        # 19. end to end through the gate: two publishes with different moved sets; the committed output names exactly
+        # the binding's stale_moved each time, and a third publish with the same moved set leaves the tree unchanged
+        os.makedirs(os.path.join(d, "two"))
+        for n in ("a", "b"):
+            open(os.path.join(d, "two", n + ".txt"), "w").write(n + "0\n")
+        open(os.path.join(d, "two", "O.md"), "w").write("**freshness:** `CURRENT`\n")
+
+        def raw(rel):
+            return hashlib.sha256(open(os.path.join(d, rel), "rb").read()).hexdigest()
+        man2 = {"generation": "g2", "committed_at": "t", "inputs": {
+            n: {"path": os.path.join(d, "two", n + ".txt"), "state": "present", "sha256": raw("two/%s.txt" % n)}
+            for n in ("a", "b")}}
+        write_binding(os.path.join(d, "two", NAME), d, "two", man2, {"two/O.md": os.path.join(d, "two", "O.md")}, [],
+                      [dict(rn, path="two/O.md")])
+        git("add", "two")
+        git("commit", "-qm", "second surface")
+
+        def publish(a, b_):
+            open(os.path.join(d, "two", "a.txt"), "w").write(a)
+            open(os.path.join(d, "two", "b.txt"), "w").write(b_)
+            subprocess.run(["git", "-C", d, "read-tree", "HEAD"], env=env, check=True)
+            subprocess.run(["git", "-C", d, "add", "--", "two/a.txt", "two/b.txt"], env=env, check=True)
+            rc = gate(d, idx, regen=False, log=[].append)
+            t = subprocess.run(["git", "-C", d, "write-tree"], env=env, capture_output=True, text=True).stdout.strip()
+            c = subprocess.run(["git", "-C", d, "commit-tree", t, "-p", "HEAD", "-m", "p"], capture_output=True,
+                               text=True).stdout.strip()
+            git("update-ref", "HEAD", c)
+            git("reset", "-q")
+            r = git_reader(d, rev="HEAD")
+            bb = load(r("two/" + NAME))
+            return rc, t, r("two/O.md").decode(), bb, state(bb, r)["state"]
+        rc1, _, o1, bb1, s1 = publish("a1\n", "b0\n")
+        rc2, t2, o2, bb2, s2 = publish("a0\n", "b1\n")
+        rc3, t3, o3, bb3, s3 = publish("a0\n", "b1\n")
+        ok(rc1 == 0 and s1 == "STALE" and bb1["stale_moved"] == ["two/a.txt"] and "(moved: two/a.txt)" in o1,
+           "19a publish 1: output and binding both name A = two/a.txt")
+        ok(rc2 == 0 and s2 == "STALE" and bb2["stale_moved"] == ["two/b.txt"] and "(moved: two/b.txt)" in o2
+           and "a.txt" not in o2, "19b publish 2: output and binding both name B = two/b.txt, A is gone")
+        ok(rc3 == 0 and s3 == "STALE" and t3 == t2 and o3 == o2 and bb3 == bb2,
+           "19c publish 3 with the same moved set commits an identical tree")
     finally:
         shutil.rmtree(d, ignore_errors=True)
     print("self-test: %d failure(s)" % len(fails))

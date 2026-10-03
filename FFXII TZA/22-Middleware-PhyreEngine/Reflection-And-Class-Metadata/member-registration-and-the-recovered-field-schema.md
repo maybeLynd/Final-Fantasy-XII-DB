@@ -2452,3 +2452,20 @@ Interior anchor `00604596` (function `00604580`).
 `0060F3D0` (33 B, no direct call; slot 8 of the same specialisations) forwards to the function pointer at `+0x70` with the object and the next two arguments when one is installed, and otherwise returns `0x15`.
 
 Interior anchor `0060F3EB` (function `0060F3D0`).
+
+## No-reference bodies homed by the table that reaches them (FABLE, 2026-10-03)
+
+*No page cited these functions and no census-listed instruction calls or jumps to them: each is reached through data or through code this page documents. Each sentence states what the body does (access and representation, not purpose) and ends with the reference that reaches it; the anchors are instructions inside the body that do it. Handed over by SWE2-EC7 and read whole by FABLE against the certified image; verified by [`apply.py`](../../_index/candidates/fable-noref-member-registration-and-the-recovered-field-schema-data-1003/apply.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic, and every named reference holds or forms the body's address at the bytes.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `008AF490` | 106 B | walks the intrusive list headed at `01F2E340` (link qword `+0x50` of each object, read before the call) and, for each object with bit 0 of byte `+0xFC` set, calls slot 7 (qword `+0x38`) of its vtable with `edx` = 1; its address is formed into `rcx` by `006316C0` + 0x193 for the `00808B90` exit registration at +0x1C4, and 15 other sites form it the same way | Interior anchor `008AF49A`; Interior anchor `008AF4C0`; Interior anchor `008AF4D6`; Interior anchor `008AF4E7` |
+
+## Homed bodies: functions reached only indirectly whose callees this page cites (FABLE, 2026-10-03, F homing)
+
+*No page cited these functions and none of their callers is documented: they are reached by table or pointer dispatch or through undocumented callers. Each one calls something this page documents, which the sentence names. Each sentence states what the body does (access and representation, not purpose); the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's F homing pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-member-registration-and-the-recovered-fi-homing-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0063BBC0` | 49 B | calls virtual slot `+8` of the object at qword `rcx+0x30`; when the result is non-null and bit 0 of its byte `+0xfc` is set, returns the address `02CF8580`; otherwise tail-jumps to `00630340` (without reloading `rcx` after the virtual call) | Interior anchor `0063BBC4`; Interior anchor `0063BBCB`; Interior anchor `0063BBD3`; Interior anchor `0063BBDC`; Interior anchor `0063BBEC` |
+| `006ABEC0` | 201 B | returns 0 when qword `[rcx]` is null; when the chain from qword `rcx+8` through qword `+0x78` reaches `02E404B0`, the key is qword `[rcx]`; otherwise calls `005A7B50(qword rcx+8, "getLocalToWorldMatrix")` and then the call at `006ABEC0` + 0x50 with (that result, qword `[rcx]`), returning 0 when either gives null, and the key is the second result; it then searches the tree rooted at qword `01F2EB58` with sentinel `01F2EB40`, taking child qword `+0` when node qword `+0x18` is above the key and `+8` when below (unsigned), and returns qword `[node + 0x20]` of the matching node, or 0 when the sentinel is reached | Interior anchor `006ABEE1`; Interior anchor `006ABF00`; Interior anchor `006ABF10`; Interior anchor `006ABF5A`; Interior anchor `006ABF84` |

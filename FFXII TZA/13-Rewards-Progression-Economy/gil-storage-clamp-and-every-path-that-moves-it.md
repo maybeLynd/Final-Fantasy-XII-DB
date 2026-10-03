@@ -513,3 +513,13 @@ compare).
 | `003F4BD0` | 92 B | builds a stack block (byte 0, qword `rdx`, dword `ecx`) and a stack record (dword 0, a pointer to that block, qword 0), calls `00244F50(0x100, 003F4E70, &record)`, and checks the stack cookie from `01F44830` through `00808C40` | `003F4BE9`, `003F4BF5`, `003F4BF9`, `003F4C15`, `003F4C22` |
 | `003FA760` | 35 B | calls `00275550(rcx, 0x26C0)` and then stores 0xFFFF to word `rcx+0x249A` | `003FA766`, `003FA76E`, `003FA773`, `003FA776` |
 | `00863240` | 53 B | calls `0020CE00()` and, when it is non-null, calls `0020CB50(0020CE00(), ecx, edx)` with a second `0020CE00()` call supplying `rcx`; a null result returns without the second call | `0086324E`, `00863256`, `00863258`, `00863265` |
+
+## Homed bodies: functions reached only indirectly whose callees this page cites (FABLE, 2026-10-03, F homing)
+
+*No page cited these functions and none of their callers is documented: they are reached by table or pointer dispatch or through undocumented callers. Each one calls something this page documents, which the sentence names. Each sentence states what the body does (access and representation, not purpose); the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's F homing pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../_index/candidates/fable-gil-storage-clamp-and-every-path-that-mo-homing-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00300490` | 28 B | stores `r8d` as the fifth (stack) argument, sets `r9d` to 4 and `r8d` to 0, and calls `003008A0(rcx, rdx, 0, 4, incoming r8d)`, returning its result | Interior anchor `00300494`; Interior anchor `00300499`; Interior anchor `0030049F`; Interior anchor `003004A2` |
+| `0030DD70` | 78 B | when dword `01EEBCFC` is greater than 0 (signed), calls `003008A0(i, 0x63, 0, 1, 0)` for `i` = 0, 1, ... (passed zero-extended from its low word), re-reading dword `01EEBCFC` after each call and looping while `i` is less than it (signed); when the dword is 0 or less it calls nothing; it sets no return value of its own | Interior anchor `0030DD7E`; Interior anchor `0030DDA0`; Interior anchor `0030DDA4`; Interior anchor `0030DDAB`; Interior anchor `0030DDB1` |
+| `0032A810` | 24 B | calls `00300B80(rcx, rdx, 0)` and returns its result, except that a negative result (signed) is returned as 0 | Interior anchor `0032A814`; Interior anchor `0032A817`; Interior anchor `0032A81E`; Interior anchor `0032A820` |

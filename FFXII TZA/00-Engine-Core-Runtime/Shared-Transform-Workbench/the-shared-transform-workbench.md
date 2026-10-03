@@ -732,3 +732,11 @@ read).
 `0036E1E0` (173 B) is the 32-slot refresh `00314020` (`World_UpdateSimulationTick`) runs over the `022D94B0` record table: index `ebx` clamps into `0..0x1F`, each `0x18`-stride slot with a live `+4` word gets `0024DE70(dword[+0])` stored at `+6` - a `5` result back-stamps `+4`, a `0` clears `+0` and `+4` outright - while slots already at `+4 == 0` fold `ebp &= 1`; the function returns whether any slot stayed live
 
 Interior anchor `0036E23B` (function `0036E1E0`).
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-03, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../../_index/candidates/fable-home-the-shared-transform-workbench-1003/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `003B2750` | 79 B | `0036E9B0` + 0x32 | when `ecx AND 0xF0000000` is `0x70000000`, scans the 32 records of 48 bytes from `02EBE5E0` (below `02EBEBE0`) for the first whose dword `+0` equals `ecx`, stopping without a write at a record whose dword `+0` is 0, and in the matching record replaces bit 0 of byte `+0x20` with bit 0 of `edx`; with no match, or any other top nibble, it writes nothing | Interior anchor `003B275A`; Interior anchor `003B2777`; Interior anchor `003B277B`; Interior anchor `003B278B`; Interior anchor `003B279A` |

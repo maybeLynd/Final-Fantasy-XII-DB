@@ -1,0 +1,29 @@
+{
+ "proposed": [
+  {
+   "old": "BattleTargetBuffer\t0x01\t2\tclearedWord01\tuint16\tword cleared after the whole-buffer fill || cleared as a word AFTER the whole-buffer fill, which is what proves it is a 2-byte field rather than two bytes the fill already covered. Meaning is FABLE's.\tTYPE RESOLVED\tPROVEN\t00316D1D mov word ptr [rdi + 1], 0, following the 0x208-byte fill at 00316D0B. | OPUS 2026-09-16: NO READER EXISTS ANYWHERE IN THE IMAGE. The buffer is never independently allocated, so a reader outside the three entry points must reach the word through an inline base - unit+0x779 or unit+0xBC1. Decoding every function body in functions_live.tsv (38,161) for any access whose byte range OVERLAPS that word, at either base and at any size, gives ZERO 2-byte accesses at +0x779 or +0xBC1 and 32 wider overlaps at +0x770/+0x778/+0xBBC/+0xBC0. Those 32 are a FALSE-POSITIVE CLASS, not readers: the 21 functions holding them are DISJOINT from the 9 functions that demonstrably form a battle-unit buffer address (the scan's positive control, 20 lea sites incl. BattleUnit_CommitAction 0030F7A7 and AiOrder_BuildCandidateTargetBuffer 0030F163), and they movss/movups/movq at the same displacement in unrelated structures. So the field is written - zeroed - and never read by anything. IT STAYS UNRESOLVED ON PURPOSE: a field with no reader has no role to name, and a gap is a question, never a label. What would change this is a reader, not a better guess.",
+   "new": null,
+   "type": "BattleTargetBuffer"
+  },
+  {
+   "old": null,
+   "new": "BattleTargetBuffer\t0x01\t1\tkeyType\tuint8\tcandidate-selection recipe, key kind (0 none, 1 int key, 2 float key per the contract); written as the low byte of the word stores at +0x01\tSEMANTICALLY IDENTIFIED\tHIGH\t00301ECC mov word [r14+1], 0x100 (byte +1 = 0, byte +2 = 1); 00316D1D mov word [rdi+1], 0 (reset); OPUS L2 UNATTRIBUTED attribution 2026-10-03, re-read with retool; was clearedWord01 uint16 (2 B)",
+   "type": "BattleTargetBuffer"
+  },
+  {
+   "old": null,
+   "new": "BattleTargetBuffer\t0x02\t1\tpickRule\tuint8\tcandidate-selection recipe, pick rule (0 nearest, 1 random, 2 minimum, 3 maximum per the contract); written alone as a byte\tSEMANTICALLY IDENTIFIED\tPROVEN\t003022CE mov byte [r14+2], al; also the high byte of the word stores 00301ECC/00316D1D; OPUS L2 UNATTRIBUTED attribution 2026-10-03, re-read with retool; split from clearedWord01 uint16",
+   "type": "BattleTargetBuffer"
+  },
+  {
+   "old": "ActorManagerSlot\t0x012\t1\tslotStateByte12\tuint8\tzero-tested byte - only cmp==0 observed, so zero/nonzero is the meaningful distinction || TESTED AGAINST ZERO and nothing else: 003565E2 `cmp byte ptr [rax + 0x12], 0`. So zero is meaningful to its reader and the rest of the value set is not established - one comparison cannot enumerate what it does not mention.\tTYPE RESOLVED\tPROVEN\twidth from the access instruction, never from the next offset: 1 of 1 observed accesses at this displacement are 1-byte; e.g. 003565E2 cmp byte ptr [rax + 0x12], 0. Census: actor-manager-record-accesses.tsv",
+   "new": null,
+   "type": "ActorManagerSlot"
+  },
+  {
+   "old": null,
+   "new": "ActorManagerSlot\t0x012\t1\tdriveNamedActor\tuint8\t1 when the bound definition's word +0x50 (the driven actor's ordinal) is not negative: the bind stores (word [definition+0x50] >= 0, signed); the field runtime pass's settled exit stores r12b, 0 on that path, clearing it; readers test it against 0\tSEMANTICALLY IDENTIFIED\tPROVEN\t0026CD1A cmp word [r15+0x50], bx / 0026CD25 setge al / 0026CD28 mov [rdi+0x12], al; 0025DB79 mov [rbx+0x12], r12b; 003565E2 cmp byte [rax+0x12], 0; OPUS L2 UNATTRIBUTED attribution 2026-10-03, re-read with retool; was slotStateByte12 uint8, TYPE RESOLVED, 'zero-tested byte'",
+   "type": "ActorManagerSlot"
+  }
+ ]
+}

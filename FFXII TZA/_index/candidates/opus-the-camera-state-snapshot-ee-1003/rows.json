@@ -1,0 +1,40 @@
+{
+ "page": "22-Middleware-PhyreEngine/the-camera-state-snapshot.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter-r4",
+ "report": "the-camera-state-snapshot-r4.json",
+ "rows": [
+  {
+   "fn": "00216720",
+   "text": "Without calls, computes sixteen cofactor expressions of the 4x4 float matrix at `rdx` (sums and differences of three-factor products of its sixteen floats, held in registers and stack temporaries), takes the determinant as the floats `+0`, `+0x10`, `+0x20` and `+0x30` times the first four cofactors, and writes each cofactor times a factor to the sixteen floats `rcx`..`rcx+0x3C`, the factor being 1.0 (`01CEBBA8`) divided by the determinant, or 0 (all outputs zero) when the determinant compares equal to 0 (an unordered determinant takes the division path through `jp`), then returns.",
+   "anchors": [
+    [
+     "00216741",
+     "mulss"
+    ],
+    [
+     "00216E93",
+     "ucomiss"
+    ],
+    [
+     "00216EA2",
+     "divss"
+    ],
+    [
+     "00216EF0",
+     "movss"
+    ],
+    [
+     "00216FAA",
+     "movss"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

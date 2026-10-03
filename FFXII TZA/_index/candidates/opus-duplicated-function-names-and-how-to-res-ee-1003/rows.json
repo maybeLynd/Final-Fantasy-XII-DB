@@ -1,0 +1,40 @@
+{
+ "page": "00-Engine-Core-Runtime/duplicated-function-names-and-how-to-resolve-them.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter-r4",
+ "report": "duplicated-function-names-and-how-to-resolve-them-r4.json",
+ "rows": [
+  {
+   "fn": "008087C4",
+   "text": "Takes the object in `rcx` and a flag dword in `edx`, loads the pointer at `rcx+8` and calls that object's vtable slot `+0x10` (first passing the slot target to `00809958`), and when that call returns a non-null pointer calls the returned object's vtable slot `+0` with `edx`=1 (again after `00809958` on the target); then, when bit `0x1` of the flag is set, it calls `00809950` with the original object and `edx`=0x10, and returns the original object in `rax` on every path.",
+   "anchors": [
+    [
+     "008087FC",
+     "call"
+    ],
+    [
+     "00808805",
+     "je"
+    ],
+    [
+     "0080881E",
+     "call"
+    ],
+    [
+     "00808821",
+     "test"
+    ],
+    [
+     "0080882F",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

@@ -298,9 +298,13 @@ table-population machine boot mode 1 pumps once the async-read queue goes idle:
 | `002EBE20` | 18 B | record bit-1 setter — clears `+0x19 & 2`, writes `(arg & 1) << 1` | `002EBE29` |
 
 The root's side of the contract: `0022B7E0` runs `0037C2E0` only on frames where `0032E520(1)`
-reports the queue idle (`jne` skips it while reads are outstanding); while the machine works,
+reports the queue idle (`jne` skips it while reads are outstanding); ~~while the machine works,
 `02064AD4` mirrors the byte at `02064AD3`, and when the machine returns 0 (its state-4 exit)
-`02064AD4` is set to `2` — the mode-2 advance the resource-request-queue page records, after which
+`02064AD4` is set to `2`~~ the byte at `02064AD3` is re-stored with its own value while the machine works,
+and when the machine returns 0 (its state-4 exit) it is set to `2` instead (`0022B84F` load, `0022B858 cmove ecx, ebx`
+with `ebx` = 2, `0022B85B` store back to `02064AD3`); `02064AD4` takes no part - it is one of the boot `1.0f` values
+(`0022A190`) *(corrected 2026-10-03, SWE2-FRONTIER, on OPUS-REQ-FRONTIER-02064AD4-MIRROR-QUESTION-1003; record
+`swe2frontier-02064ad3-mode-byte-1003`)* — the mode-2 advance the resource-request-queue page records, after which
 `00184960(2)` runs each frame. `002EAE20`/`002EAEB0` (record alloc / deferred-release marker) and `0020E600` (the
 stored-id resolver) are shared callees — deliberately not census members.
 

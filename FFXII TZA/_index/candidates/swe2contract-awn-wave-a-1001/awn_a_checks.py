@@ -34,8 +34,15 @@ def read(rel):
     return io.open(os.path.join(DB, rel), encoding="utf-8", newline="").read()
 
 
+# The pre-apply baseline. Until the batch was published HEAD was that baseline; after `8e43c3f63` (the commit that
+# applied this record) HEAD carries the applied text, so comparing with HEAD failed every A and X check by construction
+# (OPUS-REQ-CONTRACT-AWN-REGRESSION-FAILS-1003: FAILS 50, none a reversion). Pinned to the applying commit's parent,
+# SWE2-CONTRACT 2026-10-03; AWN_BASE overrides it.
+BASE = os.environ.get("AWN_BASE", "8e43c3f63^")
+
+
 def head(rel):
-    r = subprocess.run(["git", "show", "HEAD:./" + rel], cwd=DB, capture_output=True)
+    r = subprocess.run(["git", "show", BASE + ":./" + rel], cwd=DB, capture_output=True)
     return r.stdout.decode("utf-8", "replace") if r.returncode == 0 else ""
 
 

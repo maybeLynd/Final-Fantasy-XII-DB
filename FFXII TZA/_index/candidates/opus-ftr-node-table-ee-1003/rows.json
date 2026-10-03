@@ -1,0 +1,40 @@
+{
+ "page": "17-Presentation-Rendering/Model-And-Motion-Formats/ftr-node-table.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "ftr-node-table-r5.json",
+ "rows": [
+  {
+   "fn": "00800000",
+   "text": "with `o` = `rcx`: for each qword `p` of the range qword `[o]`..qword `[o+8]` it skips a null `p`, else calls `00210EB0(qword [p+8])` and `00809950(p, 0x18)`; then calls `00210EB0(qword [o])`; for each qword `p` of the range qword `[o+0x10]`..qword `[o+0x18]` it skips a null `p`, else calls `00210EB0` on qwords `[p+8]`, `[p+0x18]` and `[p+0x28]` and then `00809950(p, 0x50)`; finally tail-jumps to `00210EB0(qword [o+0x10])`; no pointer it frees is cleared",
+   "anchors": [
+    [
+     "00800034",
+     "call"
+    ],
+    [
+     "00800041",
+     "call"
+    ],
+    [
+     "0080004E",
+     "call"
+    ],
+    [
+     "00800082",
+     "call"
+    ],
+    [
+     "0080008F",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

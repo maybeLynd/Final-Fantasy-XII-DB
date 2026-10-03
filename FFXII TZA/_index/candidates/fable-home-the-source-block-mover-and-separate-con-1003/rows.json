@@ -1,0 +1,50 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/the-source-block-mover-and-separate-consumer-refresh.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01B5SV9waPUkdPQzR9MzNgSH",
+ "report": "home-the-source-block-mover-and-separate-consumer-refresh.json",
+ "rows": [
+  {
+   "fn": "00420860",
+   "entered_from": "`00427DE0` + 0xD7",
+   "text": "calls the site `00420860` + 0x19 with `rcx+0x210`, `rdx`, `r8` and `r9` passed through, and 1.0 (`01CEBBA8`) as the fifth (stack) argument, then returns",
+   "anchors": [
+    [
+     "00420864",
+     "movss"
+    ],
+    [
+     "0042086C",
+     "add"
+    ],
+    [
+     "00420873",
+     "movss"
+    ],
+    [
+     "00420879",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "004209F0",
+   "entered_from": "`00427DE0` + 0xA2",
+   "text": "ORs 0x200 into dword `rcx+0x284`, then tail-jumps at the site `004209F0` + 0x11 with `rcx+0x180` and the other registers unchanged",
+   "anchors": [
+    [
+     "004209FA",
+     "add"
+    ],
+    [
+     "00420A01",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

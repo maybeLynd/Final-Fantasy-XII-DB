@@ -51,10 +51,23 @@ def row_lines(text):
     return out
 
 
+def moved_fns(cfg):
+    """Functions a record declares moved: {"FN": "why"} (OPUS form) or [{"fn": ...}, ...] / ["FN", ...] (FABLE form)."""
+    m = cfg.get("moved") or {}
+    if isinstance(m, dict):
+        return {k.upper() for k in m}
+    out = set()
+    for x in m if isinstance(m, list) else []:
+        f = x.get("fn") if isinstance(x, dict) else x
+        if isinstance(f, str):
+            out.add(f.upper())
+    return out
+
+
 def missing_rows(cfg, page_text):
     """[(fn, [missing anchors] or None when the function has no row at all)] for one record."""
     rows = row_lines(page_text)
-    moved = {k.upper() for k in (cfg.get("moved") or {})}
+    moved = moved_fns(cfg)
     bad = []
     for r in cfg.get("rows") or []:
         if not isinstance(r, dict) or "fn" not in r:
@@ -80,7 +93,7 @@ def shrunk(head_raw, cfg):
     except ValueError:
         return []
     have = {r["fn"].upper() for r in cfg.get("rows") or [] if isinstance(r, dict) and "fn" in r}
-    have |= {k.upper() for k in (cfg.get("moved") or {})}
+    have |= moved_fns(cfg)
     return sorted({r["fn"].upper() for r in (h.get("rows") or []) if isinstance(r, dict) and "fn" in r} - have)
 
 
@@ -90,9 +103,180 @@ def records(rev):
     else:
         r = git("ls-tree", "-r", "-z", "--name-only", rev, "--", DBP + "/_index/candidates")
     files = set(q for q in r.stdout.decode("utf-8", "replace").split("\0") if q)
+    # 2026-10-03 (hardening item 6): a record is any candidates/*/rows.json whose CONTENT has the record shape (checked
+    # by is_record), whatever its applier is called - FABLE's 80 homing_applier.py records were invisible to the old
+    # "rows.json + interior_applier.py" rule.
     for f in sorted(files):
-        if f.endswith("/rows.json") and f[:-len("rows.json")] + "interior_applier.py" in files:
+        if f.endswith("/rows.json") and f.count("/") == DBP.count("/") + 4:
             yield f[:-len("/rows.json")]
+
+
+def is_record(cfg):
+    return (isinstance(cfg, dict) and isinstance(cfg.get("page"), str) and isinstance(cfg.get("rows"), list)
+            and any(isinstance(r, dict) and "fn" in r for r in cfg["rows"]))
+
+
+def _batch_read(root, env, specs):
+    """{spec: bytes or None} for 'REV:path' / ':path' specs through one git cat-file --batch."""
+    out = {}
+    if not specs:
+        return out
+    r = subprocess.run(["git", "-C", root, "cat-file", "--batch"], input="".join(x + "\n" for x in specs).encode("utf-8"),
+                       capture_output=True, env=env)
+    data, i = r.stdout, 0
+    for spec in specs:
+        nl = data.index(b"\n", i)
+        head = data[i:nl].decode("utf-8", "replace").split()
+        i = nl + 1
+        if len(head) == 3 and head[1] == "blob":
+            n = int(head[2])
+            out[spec] = data[i:i + n]
+            i += n + 1
+        else:
+            out[spec] = None
+    return out
+
+
+def check_index(root, index_file, base, paths):
+    """PUBLICATION-BOUNDARY mode (publish_paths.sh, every lane): the commit about to be made is `index_file` over
+    `base`. Every record whose rows.json or page is among `paths` must, in the index, still carry each row on its page
+    and must not have lost rows against `base` - unless the loss is declared ("moved" rows, or the record "retired").
+    -> list of (record, page, fn, why)."""
+    env = dict(os.environ, GIT_INDEX_FILE=index_file)
+    touched = {x.replace(os.sep, "/") for x in paths}
+    ls = subprocess.run(["git", "-C", root, "ls-files", "-z", "--", DBP + "/_index/candidates"], capture_output=True,
+                        env=env).stdout.decode("utf-8", "replace").split("\0")
+    rjs = [f for f in ls if f.endswith("/rows.json") and f.count("/") == DBP.count("/") + 4]
+    now = _batch_read(root, env, [":" + f for f in rjs])
+    cfgs = {}
+    for f in rjs:
+        try:
+            c = json.loads(now[":" + f]) if now[":" + f] is not None else None
+        except ValueError:
+            c = None
+        if is_record(c):
+            cfgs[f] = c
+    # records this publish can affect: its rows.json is published, or its page is
+    hit = {f: c for f, c in cfgs.items() if f in touched or (DBP + "/" + c["page"]) in touched}
+    # a published rows.json that no longer has the record shape (overwritten with garbage) is itself a loss
+    for f in rjs:
+        if f in touched and f not in cfgs:
+            hit[f] = None
+    pages = sorted({DBP + "/" + c["page"] for c in hit.values() if c})
+    blobs = _batch_read(root, env, [":" + p for p in pages] + ["%s:%s" % (base, f) for f in hit])
+    fails = []
+    for f, c in sorted(hit.items()):
+        rec = f.split("/")[-2]
+        before_raw = blobs.get("%s:%s" % (base, f))
+        try:
+            before = json.loads(before_raw) if before_raw else None
+        except ValueError:
+            before = None
+        if c is None:
+            if is_record(before) and not before.get("retired"):
+                fails.append((rec, "?", "*", "rows.json no longer has the record shape (overwritten?)"))
+            continue
+        if c.get("retired"):
+            continue
+        page = blobs.get(":" + DBP + "/" + c["page"])
+        if page is None:
+            fails.append((rec, c["page"], "*", "page missing from the commit"))
+            continue
+        for fn, miss in missing_rows(c, page.decode("utf-8", "replace")):
+            fails.append((rec, c["page"], fn, "no row on the page" if miss is None else "anchors missing: " + ",".join(miss)))
+        for fn in shrunk(before_raw.decode("utf-8", "replace") if before_raw else None, c):
+            fails.append((rec, c["page"], fn, "rows.json lost this row against %s" % base[:12]))
+    return fails
+
+
+def main_index(index_file, base, paths):
+    fails = check_index(REPO, index_file, base, paths)
+    for rec, page, fn, why in fails:
+        print("ROW-LOSS %s | %s | %s | %s" % (rec, page, fn, why))
+    print("publication boundary: %d row loss(es) in the records this commit touches" % len(fails))
+    print("FAILS %d" % len(fails))
+    return 1 if fails else 0
+
+
+def scenario_test():
+    """The six publication-boundary scenarios in a throwaway git repository, through a real private index."""
+    import shutil, tempfile
+    bad = []
+    d = tempfile.mkdtemp()
+    try:
+        def g(*a, env=None):
+            return subprocess.run(["git", "-C", d] + list(a), capture_output=True, env=env)
+        g("init", "-q")
+        g("config", "user.email", "t@t")
+        g("config", "user.name", "t")
+        g("config", "core.autocrlf", "false")
+        cand = os.path.join(d, *DBP.split("/"), "_index", "candidates")
+        page_rel = "Area/p.md"
+        page_abs = os.path.join(d, *DBP.split("/"), *page_rel.split("/"))
+        os.makedirs(os.path.dirname(page_abs))
+
+        def rec(name, fns, extra=None):
+            c = {"page": page_rel, "rows": [{"fn": f, "anchors": [["%08X" % (int(f, 16) + 4), "nop"]]} for f in fns]}
+            c.update(extra or {})
+            os.makedirs(os.path.join(cand, name), exist_ok=True)
+            io.open(os.path.join(cand, name, "rows.json"), "w").write(json.dumps(c))
+
+        def row(f):
+            return "| `%s` | 9 B | x | `%08X` |\n" % (f, int(f, 16) + 4)
+        rec("opus-a-1003", ["00100000", "00100100"])
+        rec("fable-b-1003", ["00200000"])
+        io.open(page_abs, "w").write("# P\n\n" + row("00100000") + row("00100100") + "\n" + row("00200000"))
+        g("add", "-A")
+        g("commit", "-q", "-m", "base")
+        base = g("rev-parse", "HEAD").stdout.decode().strip()
+        idx = os.path.join(d, "priv.idx")
+
+        def publish(files):
+            """stage `files` {repo-relative: text} into a fresh private index over base; -> check_index fails"""
+            if os.path.exists(idx):
+                os.remove(idx)
+            env = dict(os.environ, GIT_INDEX_FILE=idx)
+            g("read-tree", base, env=env)
+            for rel, text in files.items():
+                ab = os.path.join(d, *rel.split("/"))
+                os.makedirs(os.path.dirname(ab), exist_ok=True)
+                io.open(ab, "w").write(text)
+                g("add", "--", rel, env=env)
+            out = check_index(d, idx, base, list(files))
+            g("checkout", "-q", base, "--", ".")            # restore the worktree for the next scenario
+            return out
+        P = DBP + "/" + page_rel
+        full = "# P\n\n" + row("00100000") + row("00100100") + "\n" + row("00200000")
+        cases = [
+            ("OPUS publish adding a row keeps every row", {P: full + row("00100200")}, False),
+            ("second lane (FABLE) publish dropping OPUS rows from the shared page", {P: "# P\n\n" + row("00200000")}, True),
+            ("later same-heading record re-rendering the earlier section",
+             {P: "# P\n\n" + row("00300000") + "\n" + row("00200000"),
+              DBP + "/_index/candidates/opus-c-1003/rows.json": json.dumps(
+                  {"page": page_rel, "rows": [{"fn": "00300000", "anchors": [["00300004", "nop"]]}]})}, True),
+            ("overwritten rows.json (another report's rows in the folder)",
+             {DBP + "/_index/candidates/opus-a-1003/rows.json": json.dumps(
+                 {"page": page_rel, "rows": [{"fn": "00100000", "anchors": [["00100004", "nop"]]}]})}, True),
+            ("legitimate explicit move: the row is declared moved and leaves the page",
+             {P: "# P\n\n" + row("00100000") + "\n" + row("00200000"),
+              DBP + "/_index/candidates/opus-a-1003/rows.json": json.dumps(
+                  {"page": page_rel, "moved": {"00100100": "to q.md"},
+                   "rows": [{"fn": "00100000", "anchors": [["00100004", "nop"]]},
+                            {"fn": "00100100", "anchors": [["00100104", "nop"]]}]})}, False),
+            ("legitimate retirement: the record is retired and its rows leave the page",
+             {P: "# P\n\n" + row("00200000"),
+              DBP + "/_index/candidates/opus-a-1003/rows.json": json.dumps(
+                  {"page": page_rel, "retired": "superseded by opus-z", "rows": [
+                      {"fn": "00100000", "anchors": [["00100004", "nop"]]}]})}, False),
+        ]
+        for name, files, want_fail in cases:
+            got = publish(files)
+            if bool(got) != want_fail:
+                bad.append("%s: expected %s, got %s" % (name, "FAIL" if want_fail else "PASS", got))
+            print("%s %s" % ("ok  " if bool(got) == want_fail else "FAIL", name))
+    finally:
+        shutil.rmtree(d, ignore_errors=True)
+    return bad
 
 
 def main(rev):
@@ -104,7 +288,7 @@ def main(rev):
             cfg = json.loads(raw)
         except (TypeError, ValueError):
             continue
-        if not isinstance(cfg, dict) or cfg.get("retired") or not cfg.get("page"):
+        if not is_record(cfg) or cfg.get("retired"):
             continue
         page = show(rev, DBP + "/" + cfg["page"])
         recs += 1
@@ -162,7 +346,13 @@ def selftest():
 
 if __name__ == "__main__":
     if "--selftest" in sys.argv:
-        sys.exit(selftest())
+        rc = selftest()
+        sc = scenario_test()
+        print("SCENARIOS", "FAILED: " + "; ".join(sc) if sc else "ok (6 publication-boundary scenarios)")
+        sys.exit(rc or (1 if sc else 0))
+    if "--index" in sys.argv:
+        a = sys.argv
+        sys.exit(main_index(a[a.index("--index") + 1], a[a.index("--base") + 1], a[a.index("--paths") + 1:]))
     rev = sys.argv[sys.argv.index("--rev") + 1] if "--rev" in sys.argv else "HEAD"
     if "--worktree" in sys.argv:
         rev = None

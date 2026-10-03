@@ -176,9 +176,22 @@ def sid(s):
     return int(s[2:])
 
 
+def require_level_key(cs):
+    """Refuse to report when no contract carries `level:` (OPUS, 2026-10-03, SWE2CONTRACT-REQ-OPUS-LEVEL-READER-CENSUS-
+    PIN-1003). FABLE retired the key (ruling rev 49820; 015712a7a). This census splits contracts by it, so at a tree
+    without it, it printed '0 L1 contracts' and exited 0 - a false current result. It reproduces at c49f03691, the last
+    tree that carried the key; elsewhere it exits 2 and says why. (The grain is now `scope:`.)"""
+    if cs and all(c["level"] == "(none)" for c in cs):
+        print("REFUSED: none of the %d production contracts carries the front-matter key `level:` - FABLE retired it "
+              "(ruling rev 49820, 015712a7a). This census splits by that key and reproduces only at c49f03691; "
+              "nothing it would print here is a measurement." % len(cs))
+        sys.exit(2)
+
+
 def main():
     g26 = gate26()
     cs = contracts(g26)
+    require_level_key(cs)
     reg = registry()
     ver = verdicts()
     met = {s for s, v in ver.items() if re.match(r"^MET\b", v["verdict"])}

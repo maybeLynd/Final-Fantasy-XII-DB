@@ -1,0 +1,68 @@
+{
+ "page": "16-UI/Text-And-Number-Rendering/font-data-kerning-and-expansion.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_0137cceA3k2cA9BjsRcas6z4",
+ "report": [
+  "fable-font-data-kerning-and-expansion.json"
+ ],
+ "rows": [
+  {
+   "fn": "001B5140",
+   "text": "calls `001B4930(rcx)`; then walks 0x20-byte entries `E` from qword `rcx+8` up to qword `rcx+0x10` (re-read after each entry; nothing when they are equal), and for each one zeroes a local 0x18-byte block `B`, calls `001EDF00` with the address of the local qword just past `B` and `E+0x18`, calls `001A4BF0(B, qword [E], qword [E+8])`, and passes `rcx` and `B` to the call at `001B5140` + 0x58",
+   "anchors": [
+    [
+     "001B514D",
+     "call"
+    ],
+    [
+     "001B5156",
+     "cmp"
+    ],
+    [
+     "001B517A",
+     "call"
+    ],
+    [
+     "001B518B",
+     "call"
+    ],
+    [
+     "001B5198",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00679ED0",
+   "text": "returns 0 at once when dword `rcx+0x258` is 1; otherwise loops: passes `rcx+0x4f8` to the call at `00679ED0` + 0x27, then calls `00679BF0(rcx)` only when dword `rcx+0x268` is 1 or 2 and dword `rcx+0x25c` is not 2, and repeats until dword `rcx+0x258` reads 1, then returns 0",
+   "anchors": [
+    [
+     "00679EDF",
+     "cmp"
+    ],
+    [
+     "00679EF7",
+     "call"
+    ],
+    [
+     "00679F12",
+     "cmp"
+    ],
+    [
+     "00679F1E",
+     "call"
+    ],
+    [
+     "00679F29",
+     "cmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing",
+ "family": ""
+}

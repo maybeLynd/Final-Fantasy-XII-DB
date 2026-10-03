@@ -1,0 +1,584 @@
+{
+ "page": "17-Presentation-Rendering/Effect-File-Formats/the-element-types-60-74.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01HFDWqiFGBo93D32pyB6Lkx",
+ "report": "home-the-element-types-60-74.json",
+ "rows": [
+  {
+   "fn": "004B0F60",
+   "entered_from": "`004B1190` + 0x5057",
+   "text": "with W = word `02064B0C`, a = float `02064CB0` and b = float `02064CB4`: stores `0x3F000000` to dword `02064B04`, W+1 to word `02064DC8`, W+`0xE0` to word `02064DD8` and a - b to `02064B10`, and returns when word `02064DD0` is W+1; else ANDs `02064DD8` with word `02064B10` and sets `02064DC8` to W+`0x118`; if `02064DD8` is now W and word `02064DD4` is not, it returns, first adding word `02064DCC` minus 1 to `02064DC8` unless `02064DCC` is W; if both are W, it stores q = a/b (`0x7F7FFFFF` if b is 0) to `02064B00`, subtracts trunc(q + float `01E02830`) times b from a (the product to `02064CC0`) and calls the site `004B0F60` + 0x103; then, on that path or when `02064DD8` is not W: if `02064DCC` is not W, it truncates a to an integer in place and, from index `02064DC8`, subtracts the word `+0` of each 16-byte record at `02064E34` (each to `02064DD0`) until the 16-bit remainder is negative, storing the last index to `02064DC8` and the remainder to `02064DD4`; if it is W, it stores r = a/float `02064CB8` (`0x7F7FFFFF` for zero) to `02064B00` and r + float `01E02834` to b, calls the site + 0x1F1 when b is 0 and + 0x203 when negative, and truncates b in place",
+   "anchors": [
+    [
+     "004B0F94",
+     "cmp"
+    ],
+    [
+     "004B0FC6",
+     "and"
+    ],
+    [
+     "004B1063",
+     "call"
+    ],
+    [
+     "004B10C1",
+     "sub"
+    ],
+    [
+     "004B1174",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "004B97F0",
+   "entered_from": "`004B1190` + 0x566F",
+   "text": "returns 1.0 (`01CEBBA8`) in `xmm0` when dword `02064AFC` is 0; otherwise replaces dword `01E02828` with `((v AND 0x3FFFFF) OR 0x1FC00000) * 2` OR bit 0 of `((v >> 18) XOR v) >> 4` (v its old value) and returns the new value as a float in `xmm0`",
+   "anchors": [
+    [
+     "004B97F9",
+     "movss"
+    ],
+    [
+     "004B980D",
+     "xor"
+    ],
+    [
+     "004B9817",
+     "or"
+    ],
+    [
+     "004B9823",
+     "mov"
+    ],
+    [
+     "004B9829",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "004B9840",
+   "entered_from": "`004B1190` + 0x67D1",
+   "text": "stores the sums of the three floats at `rdx+0`, `+4`, `+8` and the three at `r8+0`, `+4`, `+8` to the floats at `rcx+0`, `+4`, `+8`",
+   "anchors": [
+    [
+     "004B9844",
+     "addss"
+    ],
+    [
+     "004B9849",
+     "movss"
+    ],
+    [
+     "004B9858",
+     "movss"
+    ],
+    [
+     "004B9868",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "004B9870",
+   "entered_from": "`004B1190` + 0x6AA1",
+   "text": "stores `xmm1` divided by `xmm2` to the float at `rcx`, except that when `xmm2` compares equal to 0.0 it stores the float `0x7F7FFFFF` (`00900360`) instead",
+   "anchors": [
+    [
+     "004B9873",
+     "ucomiss"
+    ],
+    [
+     "004B9882",
+     "movss"
+    ],
+    [
+     "004B9887",
+     "divss"
+    ],
+    [
+     "004B988B",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "004B9890",
+   "entered_from": "`004B1190` + 0x6C46",
+   "text": "multiplies each of the three floats at `rdx+0`, `+4`, `+8` by 16.0 (`01CEBC84`), truncates them to integers and stores them to the dwords at `rcx+0`, `+4`, `+8`",
+   "anchors": [
+    [
+     "004B9894",
+     "movss"
+    ],
+    [
+     "004B989C",
+     "mulss"
+    ],
+    [
+     "004B98A0",
+     "cvttss2si"
+    ],
+    [
+     "004B98B3",
+     "mov"
+    ],
+    [
+     "004B98C3",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "004B98F0",
+   "entered_from": "`004B1190` + 0x6FF8",
+   "text": "copies the word at `02064E34` plus `edx * 16` (the 32-bit product sign-extended) to the word at `rcx`",
+   "anchors": [
+    [
+     "004B98F6",
+     "lea"
+    ],
+    [
+     "004B98FD",
+     "movzx"
+    ],
+    [
+     "004B9901",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "004B99D0",
+   "entered_from": "`004B1190` + 0x6786",
+   "text": "copies the dword at `02064E34` plus `edx * 16` (the 32-bit product sign-extended) to the dword at `rcx+4`",
+   "anchors": [
+    [
+     "004B99D6",
+     "lea"
+    ],
+    [
+     "004B99DD",
+     "mov"
+    ],
+    [
+     "004B99E0",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "004B99F0",
+   "entered_from": "`004B1190` + 0x6600",
+   "text": "copies the qword at `02064E38` plus `edx * 16` (the 32-bit product sign-extended) to the qword at `rcx+8`",
+   "anchors": [
+    [
+     "004B99F6",
+     "lea"
+    ],
+    [
+     "004B99FD",
+     "mov"
+    ],
+    [
+     "004B9A01",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "004B9A10",
+   "entered_from": "`004B1190` + 0x659C",
+   "text": "adds the float at `rdx+0xC` times the float at `r8+4` to the float at `rcx+0xC`",
+   "anchors": [
+    [
+     "004B9A15",
+     "mulss"
+    ],
+    [
+     "004B9A1B",
+     "addss"
+    ],
+    [
+     "004B9A20",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "004B9A30",
+   "entered_from": "`004B1190` + 0x6A3D",
+   "text": "adds each of the four floats at `rdx+0` to `+0xC` times the float at `r8+4` to the float at the same offset of `rcx`",
+   "anchors": [
+    [
+     "004B9A36",
+     "mulss"
+    ],
+    [
+     "004B9A3E",
+     "movss"
+    ],
+    [
+     "004B9A52",
+     "movss"
+    ],
+    [
+     "004B9A67",
+     "movss"
+    ],
+    [
+     "004B9A7C",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "004B9A90",
+   "entered_from": "`004B1190` + 0x6A5B",
+   "text": "adds each of the four floats at `rdx+0` to `+0xC` times the float at `r8+8` to the float at the same offset of `rcx`",
+   "anchors": [
+    [
+     "004B9A96",
+     "mulss"
+    ],
+    [
+     "004B9A9E",
+     "movss"
+    ],
+    [
+     "004B9AB2",
+     "movss"
+    ],
+    [
+     "004B9AC7",
+     "movss"
+    ],
+    [
+     "004B9ADC",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "004B9AF0",
+   "entered_from": "`004B1190` + 0x6A80",
+   "text": "stores each of the four floats at `rdx+0` to `+0xC` times the float at `r8+0xC`, plus the matching float at `02064B20`, `02064B24`, `02064B28` or `02064B2C`, to the float at the same offset of `rcx`",
+   "anchors": [
+    [
+     "004B9AF6",
+     "mulss"
+    ],
+    [
+     "004B9AFA",
+     "addss"
+    ],
+    [
+     "004B9B02",
+     "movss"
+    ],
+    [
+     "004B9B41",
+     "addss"
+    ],
+    [
+     "004B9B49",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "004B9B50",
+   "entered_from": "`004B1190` + 0x655E",
+   "text": "stores the element-wise products of the three floats at `rdx+0`, `+4`, `+8` and the three at `r8+0`, `+4`, `+8` to the floats at `rcx+0`, `+4`, `+8`",
+   "anchors": [
+    [
+     "004B9B54",
+     "mulss"
+    ],
+    [
+     "004B9B59",
+     "movss"
+    ],
+    [
+     "004B9B68",
+     "movss"
+    ],
+    [
+     "004B9B78",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "004B9B80",
+   "entered_from": "`004B1190` + 0x6A1F",
+   "text": "stores each of the four floats at `rdx+0` to `+0xC` times the float at `r8` to the float at the same offset of `rcx`",
+   "anchors": [
+    [
+     "004B9B84",
+     "mulss"
+    ],
+    [
+     "004B9B89",
+     "movss"
+    ],
+    [
+     "004B9B97",
+     "movss"
+    ],
+    [
+     "004B9BA6",
+     "movss"
+    ],
+    [
+     "004B9BB5",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "004B9BC0",
+   "entered_from": "`004B1190` + 0x65F1",
+   "text": "stores `xmm2` times each of the three floats at `rdx+0`, `+4`, `+8` to the floats at `rcx+0`, `+4`, `+8`",
+   "anchors": [
+    [
+     "004B9BC6",
+     "mulss"
+    ],
+    [
+     "004B9BCA",
+     "movss"
+    ],
+    [
+     "004B9BD3",
+     "movss"
+    ],
+    [
+     "004B9BD8",
+     "mulss"
+    ],
+    [
+     "004B9BDD",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "004B9BF0",
+   "entered_from": "`004B1190` + 0x66B4",
+   "text": "stores each of the three floats at `rdx+0`, `+4`, `+8` times the float at `r8+0xC` to the floats at `rcx+0`, `+4`, `+8`",
+   "anchors": [
+    [
+     "004B9BF4",
+     "mulss"
+    ],
+    [
+     "004B9BFA",
+     "movss"
+    ],
+    [
+     "004B9C09",
+     "movss"
+    ],
+    [
+     "004B9C19",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "004B9C20",
+   "entered_from": "`004B1190` + 0x67AB",
+   "text": "stores each of the three floats at `rdx+0`, `+4`, `+8` times the float at `r8+4` to the floats at `rcx+0`, `+4`, `+8`",
+   "anchors": [
+    [
+     "004B9C24",
+     "mulss"
+    ],
+    [
+     "004B9C2A",
+     "movss"
+    ],
+    [
+     "004B9C39",
+     "movss"
+    ],
+    [
+     "004B9C49",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "004B9C50",
+   "entered_from": "`004B1190` + 0x6613",
+   "text": "stores 1.0 (`01CEBBA8`) to the float at `rcx` when dword `02064AFC` is 0; otherwise replaces dword `01E02828` with `((v AND 0x3FFFFF) OR 0x1FC00000) * 2` OR bit 0 of `((v >> 18) XOR v) >> 4` (v its old value) and stores the new value to the float at `rcx`",
+   "anchors": [
+    [
+     "004B9C64",
+     "movss"
+    ],
+    [
+     "004B9C74",
+     "xor"
+    ],
+    [
+     "004B9C7E",
+     "or"
+    ],
+    [
+     "004B9C8A",
+     "mov"
+    ],
+    [
+     "004B9C98",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "004B9CA0",
+   "entered_from": "`004B1190` + 0x7197",
+   "text": "stores 1.0 (`01CEBBA8`) to the float at `rcx+4` when dword `02064AFC` is 0; otherwise replaces dword `01E02828` with `((v AND 0x3FFFFF) OR 0x1FC00000) * 2` OR bit 0 of `((v >> 18) XOR v) >> 4` (v its old value) and stores the new value to the float at `rcx+4`",
+   "anchors": [
+    [
+     "004B9CB4",
+     "movss"
+    ],
+    [
+     "004B9CC5",
+     "xor"
+    ],
+    [
+     "004B9CCF",
+     "or"
+    ],
+    [
+     "004B9CDB",
+     "mov"
+    ],
+    [
+     "004B9CE9",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "004B9CF0",
+   "entered_from": "`004B1190` + 0x67F3",
+   "text": "stores 1.0 (`01CEBBA8`) to the float at `rcx+8` when dword `02064AFC` is 0; otherwise replaces dword `01E02828` with `((v AND 0x3FFFFF) OR 0x1FC00000) * 2` OR bit 0 of `((v >> 18) XOR v) >> 4` (v its old value) and stores the new value to the float at `rcx+8`",
+   "anchors": [
+    [
+     "004B9D04",
+     "movss"
+    ],
+    [
+     "004B9D15",
+     "xor"
+    ],
+    [
+     "004B9D1F",
+     "or"
+    ],
+    [
+     "004B9D2B",
+     "mov"
+    ],
+    [
+     "004B9D39",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "004B9D80",
+   "entered_from": "`004B1190` + 0x2D29",
+   "text": "compares the floats at `rdx+0`, `+4`, `+8` (a0, a1, a2) with those at `r8+0`, `+4`, `+8` (b0, b1, b2) and stores to the word at `rcx` the sum of `0x80` if b0 > a0, `0x40` if b1 > a1, `0x20` if b2 > a2, 8 if a0 = b0, 4 if a1 = b1 and 2 if a2 = b2 (an unordered pair adds nothing)",
+   "anchors": [
+    [
+     "004B9D99",
+     "ucomiss"
+    ],
+    [
+     "004B9DE7",
+     "cmova"
+    ],
+    [
+     "004B9E00",
+     "cmova"
+    ],
+    [
+     "004B9E0D",
+     "add"
+    ],
+    [
+     "004B9E22",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "004B9E30",
+   "entered_from": "`004B1190` + 0x6539",
+   "text": "stores each of the three floats at `rdx+0`, `+4`, `+8` minus `xmm2` to the floats at `rcx+0`, `+4`, `+8`",
+   "anchors": [
+    [
+     "004B9E34",
+     "subss"
+    ],
+    [
+     "004B9E38",
+     "movss"
+    ],
+    [
+     "004B9E45",
+     "movss"
+    ],
+    [
+     "004B9E53",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "004B9E60",
+   "entered_from": "`004B1190` + 0x7051",
+   "text": "compares the float at `rdx+4` (a) with the float at `r8+0xC` (b) and stores to the word at `rcx` the sum of `0x40` if b > a and 4 if a = b (an unordered pair stores 0)",
+   "anchors": [
+    [
+     "004B9E6D",
+     "ucomiss"
+    ],
+    [
+     "004B9E79",
+     "comiss"
+    ],
+    [
+     "004B9E82",
+     "cmova"
+    ],
+    [
+     "004B9E8A",
+     "shl"
+    ],
+    [
+     "004B9E8E",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "004B0F60",
+   "was": "with W = word `02064B0C`: stores `0x3F000000` to dword `02064B04`, W+1 to word `02064DC8`, W+`0xE0` to word `02064DD8` and float `02064CB0` minus float `02064CB4` to `02064B10`, and returns when word `02064DD0` is W+1; else ANDs `02064DD8` with word `02064B10` and sets `02064DC8` to W+`0x118`; if `02064DD8` is now W and word `02064DD4` is not, it returns, first adding word `02064DCC` minus 1 to `02064DC8` unless `02064DCC` is W; if both are W, it stores `02064CB0`/`02064CB4` (`0x7F7FFFFF` if zero) to `02064B00`, subtracts the truncated quotient times `02064CB4` from `02064CB0` (the product to `02064CC0`) and calls the site `004B0F60` + 0x103; then, on that path or when `02064DD8` is not W: if `02064DCC` is not W, it truncates `02064CB0` to an integer in place and, from index `02064DC8`, subtracts the word `+0` of each 16-byte record at `02064E34` (each to `02064DD0`) until the 16-bit remainder is negative, storing the last index to `02064DC8` and the remainder to `02064DD4`; if it is W, it stores `02064CB0`/float `02064CB8` (`0x7F7FFFFF` for zero) to `02064B00` and `02064CB4`, calls the site + 0x1F1 when that is 0 and + 0x203 when negative, and truncates `02064CB4` in place",
+   "now": "with W = word `02064B0C`, a = float `02064CB0` and b = float `02064CB4`: stores `0x3F000000` to dword `02064B04`, W+1 to word `02064DC8`, W+`0xE0` to word `02064DD8` and a - b to `02064B10`, and returns when word `02064DD0` is W+1; else ANDs `02064DD8` with word `02064B10` and sets `02064DC8` to W+`0x118`; if `02064DD8` is now W and word `02064DD4` is not, it returns, first adding word `02064DCC` minus 1 to `02064DC8` unless `02064DCC` is W; if both are W, it stores q = a/b (`0x7F7FFFFF` if b is 0) to `02064B00`, subtracts trunc(q + float `01E02830`) times b from a (the product to `02064CC0`) and calls the site `004B0F60` + 0x103; then, on that path or when `02064DD8` is not W: if `02064DCC` is not W, it truncates a to an integer in place and, from index `02064DC8`, subtracts the word `+0` of each 16-byte record at `02064E34` (each to `02064DD0`) until the 16-bit remainder is negative, storing the last index to `02064DC8` and the remainder to `02064DD4`; if it is W, it stores r = a/float `02064CB8` (`0x7F7FFFFF` for zero) to `02064B00` and r + float `01E02834` to b, calls the site + 0x1F1 when b is 0 and + 0x203 when negative, and truncates b in place",
+   "why": "004B1034 and 004B112E add the .data floats 01E02830 / 01E02834 (written by 004BF500, reset by the callee at +0x103) before the truncation and the 02064CB4 store; the draft dropped them"
+  }
+ ]
+}

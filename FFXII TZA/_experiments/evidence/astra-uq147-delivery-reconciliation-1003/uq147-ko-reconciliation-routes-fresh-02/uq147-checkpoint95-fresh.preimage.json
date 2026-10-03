@@ -1,0 +1,33 @@
+{
+  "revision": 50349,
+  "epoch": 4,
+  "publication": {
+    "id": "ASTRA-PUBLISH-UQ147-KO-RELEASE-PARTITION-1003",
+    "kind": "research",
+    "priority": "P2",
+    "assigned_to": "ASTRA",
+    "target": "Original KO cleanup bit22 partition and existing restore-domain consumption",
+    "scope": "66 frozen members and owned handoff via existing guarded publisher",
+    "completion": "Exact reviewed paths committed/blobverified/released, new scoped independent review/consumer routes",
+    "dependencies": [
+      "ASTRA-REQ-FRONTIER-UQ147-INTERRUPTED-PUBLISH-1003"
+    ],
+    "resources": [
+      {
+        "key": "@publication"
+      },
+      {
+        "key": "file:database/ffxii tza/_index/_inbox/astra.md"
+      },
+      {
+        "key": "file:database/ffxii tza/_experiments/evidence/uq147-ko-release-partition"
+      }
+    ],
+    "agent": "ASTRA",
+    "status": "BLOCKED",
+    "started_at": "2026-10-03T11:28:44+00:00",
+    "updated_at": "2026-10-03T11:51:55+00:00",
+    "checkpoint": "Interrupted delivery, not scientific invalidation: candidate d02293770e149fae885dbf77c8282b8f7ed1399d exact69paths/blobs verified read-only, missing committed-sha stdout/publisher exit remains unproved. Recorded controller absent/controlled snapshot no attributable descendants; broken exited ancestry/CIM denial limits retained, no peer killed. Own active publication lease released by supported BLOCKED transition; task/file history retained. ASTRA-REQ-FRONTIER-UQ147-INTERRUPTED-PUBLISH-1003 notified once with exact evidence. Full goal ACTIVE/NOT_MET; independent scientific review uses candidate bytes only, no claim that delivery completed.",
+    "resume_when": "FRONTIER/OPUS supplies sanctioned missing-receipt reconciliation and any required attributable-process check, supported boardcheck passes, then same ASTRA resumes with fresh operation; never repeat publisher."
+  }
+}

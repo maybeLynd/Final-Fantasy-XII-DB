@@ -151,6 +151,209 @@ None — the check is a pure query. It mutates nothing.
 The action rows and the board grid are **authored data**; the grid format has its own page and
 loader contract **[page]**.
 
+## 8a. The board grid and the writers of the owned bits (FABLE, 2026-10-03; S-31's narrow SCOPE-SHORT from the L2 expansion)
+
+> **Why this section exists.** The check reads exactly one piece of mutable state, the 46 bytes at
+> `statsRecord + 0x194` (§3), and §8 sends the board to another page. SWE2-AUDIT-SPEC's L2 expansion (item 3, S-31)
+> found that no contract states either the board grid loader or the code that writes those bits. The check only
+> reads what the purchase writes, so that is a cross-operation dependency this contract has to carry. **The check
+> itself never reads the grid.** No body in §2 references the board slots `02EBF1A0`..`02EBF1F8`; the raw index of
+> those slots is under §8a.4. The grid matters to the check only through the bits that grid-driven code writes.
+> Everything below was read from the certified image and checked by
+> [`check_s31.py`](../_index/candidates/fable-l2exp-s31-mech-1003/check_s31.py) (FAILS 0).
+
+### 8a.1 Interface (FABLE)
+
+| | |
+|---|---|
+| set or clear one node | `BattleStats_SetLicenseNodeStateAndApplySideEffects(RCX = statsRecord, EDX = node, R8D = set, R9D = flags)` (`00323910`). Returns **0**, or **−1** when it refuses. When `flags` bit 0 is set, the grant does not charge LP |
+| purchase gate | `BattleStats_CheckLicenseNodeAcquireReason(RCX = statsRecord, EDX = node, R8D = flags)` (`00323D10`) returns a reason code, and 0 means the node may be taken. The rule table is on [the check page](license-check-what-the-board-actually-tests.md), section "13. Buying a licence square" |
+| menu purchase | `003235C0(CL = slot, DX = node, R8D = set)`. It resolves `[02EBF190] + 8 + slot × 0x1C8` (`003235D8`–`003235ED`; `slot > 0x27` passes a null record, `003235C5`) and tail-jumps to `00323910` with `flags = 0` (`003235CA` / `003235D5`). **Its one caller, `0055DA6E`, passes `set = 1`** (`0055DA60`) |
+| board un-learn | `00328990(RCX = statsRecord, EDX = slot, R8D = board)` returns 0, or −1 for `board > 11` |
+| job reset | script verb `0x05D6` `resetJobs` → its native handler (native-table slot `01EF91E0`), which tail-jumps to the job-reset body with `slot`. That calls `00328990` once with each of the record's board selectors, `+0x1C3` (`00328C16`/`00328C23`) and `+0x1C4` (`00328C28`/`00328C35`) |
+| the twelve job boards | `02EBF1A0 + 8k`, k = 0..11, each a pointer to the loaded `board_{k+1}.bin` ([registry page](../02-Resource-And-Asset-Pipeline/authored-data-table-registry.md), "`02EBF1A0`–`02EBF1F8`") |
+
+### 8a.2 What it reads and writes (FABLE)
+
+- **On the record:**
+  - `+0x194` `licenceOwnedBits`, node *n* = bit `n & 7` of byte `n >> 3` (`003239E7`–`00323A29`);
+  - `+0x190` LP (`u32`);
+  - `+0x20`, the licence-derived rank byte (`00323B64`–`00323B7C`);
+  - the board selectors `+0x1C3` / `+0x1C4`, which the reset reads and then sets back to `0xFFFF` and `+0x1C5 = 0xFF`
+    (`00328D52`, `00328D5D`);
+  - `+4` (the slot) and `+5` (the kind byte).
+- **On the node table `02EBF038`:** this is the licence record table of §3, 361 rows of 24 bytes. The fields read
+  are:
+  - row `+4`, the LP cost (`003239C3`);
+  - `+5`, the category;
+  - `+6`, the square kind;
+  - `+7`, the **start mask**, one bit per party slot. It is tested as `1 << slot` at `0023AE68` and `00239D41`, and
+    reaches the reset as query-buffer `+0x36` (`0031E0E9`–`0031E0ED`, read at `00328A5B`);
+  - `+8`, the ids (the class-`0x20` query copies `+4` to buffer `+0x20` at `0031E093`–`0031E097`).
+- **`0208E680` holds the encoded handle of the `battle_pack.bin` blob.** The handle setter, called as
+  `(&0208E680, blob, 0)`, stores `0020E620(blob)` there (`00384704`–`00384709`). The node table is bound from that blob's directory `+0x34`
+  (`00236D5C`–`00236D67`). Executed: the cell equals the blob address under the image's zero codec base (check X1b).
+
+### 8a.3 Invariants (FABLE)
+
+**I6 — THE OWNED BITS HAVE FIVE CODE WRITERS, AND ONLY TWO OF THEM CHANGE ONE BIT.**
+
+| writer | site | what it writes | reached from |
+|---|---|---|---|
+| `00323910` set / clear | `00323A29` (`bts` `00323A04`, `btr` `00323A26`) | one bit | the menu purchase `003235C0` (`0055DA6E`; set, LP charged); the definition initialiser (its call `0023AE7C`) and the SetSaveData preset apply (its call `00239D55`), both set with `flags = 1` (`0023AE6E`/`0023AE76`, `00239D47`/`00239D4F`), for every node whose row `+7` has the record's slot bit, slot ≤ 6 (`0023AE10`) |
+| `00328990` un-learn | `00328A76` (`btr` `00328A73`) | one bit | `resetJobs` only (`00328C23`, `00328C35`) |
+| the SetSaveData preset apply | `00239C0D`–`00239C39` | all 46 bytes zeroed, before its start grants | the SetSaveData apply, called once from `00234349` |
+| the definition initialiser | `memset(rec, 0, 0x1C8)` at `0023ACBD` | the whole record | three callers: `00237E26`, `00239AC4`, `0023A7A9` |
+| `002370C0` | `memset([02EBF190], 0, 0x7410)` at `002370CD`/`002370D3` | the whole battle-state block, all 40 records | `002399E9`, `0023AF56` |
+
+*The two writers named by role in this table are cited by their instruction sites; their entry addresses are in
+[`check_s31.py`](../_index/candidates/fable-l2exp-s31-mech-1003/check_s31.py) and the package README.*
+
+- **No caller passes `set = 0`.** All four raw references to `00323910` (`00239D55`, `0023AE7C`, `003235CD`,
+  `003235F0`) arrive with `R8D = 1`. The clear arm (`00323A09`–`00323A26`) is therefore unreachable from any call
+  site. It is still executed in isolation (check X7): it skips the gate and refunds nothing. **So a bit is cleared at
+  runtime only by `resetJobs` or by a whole-range zeroing.**
+- **The census bound.** This was a displacement sweep over record offsets `+0x194`..`+0x1C1` and over block offsets
+  `+0x19C`..`+0x1C9` (the same bytes of record 0 seen from `*(02EBF190)`), at every width, base-only and base+index.
+  - **On a record route:** it took functions that reference `02EBF190`, `02EBF038` or the board slots, or that
+    appear in the record's access file. That is 393 roots and 17 sites. Each site is dispositioned in the check: 9
+    write the bitmap; 2 are `BattleUnit +0x19C`; 6 are the level and selectors.
+  - **Off the route:** the 28 byte-wide index-form stores are in four functions whose base also addresses
+    displacements of 0x1C8 or more, so they belong to a larger object.
+  - **Leaves without `.pdata`:** of 115, none is called from a route function.
+- **Not seen by the census:** bulk copies. **The bitmap persists because the block is part of the save image**: the
+  block `*(02EBF190)` is save buffer `+0x4E48C`
+  ([the save payload map](../19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/the-save-payload-field-map.md)), so
+  a load restores the bits byte for byte, without any per-node code.
+
+**I7 — THE SETTER, IN ORDER** (`00323910`, read whole, 0x299 B in three chained `.pdata` entries):
+
+```c
+if (rec == NULL || rec[5] != 0)                     return -1;   // 00323930, 0032393D
+if (!BattleEncodedId_IsValidForClass(0x19, node))   return -1;   // 0032394C: node < [02EBF038]+4
+if (set) {
+    if (00323D10(rec, node, flags) != 0)            return -1;   // 0032396D-00323979: no write at all
+    if (!(flags & 1)) {                                           // 0032397E-00323984
+        lp = rec.u32[0x190] - row(node).b[+4];                    // 003239C3-003239CF
+        rec.u32[0x190] = lp < 0 ? 0 : min(lp, 99999);             // 003239D1-003239E1: an unaffordable grant still lands
+    }
+    rec.b[0x194 + node/8] |=  1 << node%8;                        // 003239FC-00323A04, 00323A29
+} else
+    rec.b[0x194 + node/8] &= ~(1 << node%8);                      // 00323A1E-00323A29 (no caller, see I6)
+if (node == 0xE5 && (o = call_12B(rec)))  call_138(o);            // 00323A30-00323A48 - before the set test
+if (set) {
+    n = 0;
+    if (node <= 0x11) {                                           // 00323A58
+        n = 00324020(rec);                                        // count of bits 0..17, 00323A64
+        id = 0030A310(partyRow(rec[4]), n - 1);                   // 00323AAF
+        if (id in 0xD0..0xE1)  call_1FD(actionRow(id).w[+0x22], 1, 0);   // 00323AB8-00323B0D
+    }
+    if (node - 0x12 <= 0xC)                                       // 00323B12-00323B18: 18..30 INCLUSIVE
+        n = 00308FF0(0, row(node).w[+8]);                         // 00323B5D
+    if (rec.b[0x20] < n)  rec.b[0x20] = clamp(n, 0, 3);           // 00323B64-00323B7C
+}
+call_277(rec, 0x97);  return 0;                                   // 00323B7F-00323B8C
+```
+
+`call_NNN` is the callee of the setter's call at `00323910` + 0xNNN (0x12B, 0x138, 0x1FD and 0x277); the four
+entries are in `check_s31.py`.
+
+- **Executed** (check X2–X10), over the shipped node table and with `call_277` stubbed:
+  - a silent grant sets exactly one bit and leaves LP alone;
+  - the gate then answers 1 ("owned");
+  - a second grant returns −1 and changes nothing;
+  - a charged grant takes `row +4` from LP, and floors at 0 when LP is short;
+  - node 361, kind byte 1 and a null record each return −1 and write nothing.
+- **The rank byte, which [EXP-196](../_experiments/EXP-196-level-grant-proximity-exec.md) does not record:**
+  - Granting Quickening nodes 0, 1, 2 and 3 in turn leaves `+0x20` at 1, 2, 3, 3. The count from `00324020` is
+    still in `esi` when `00323B64` compares.
+  - Node 30 (`0x1E`) **is** in the `00308FF0` arm; node 31 is not. EXP-196 and
+    [the construction contract](../04-Actor-Entity/Unit-Definition/CONTRACT-battle-unit-construction.md) write the
+    range as `[0x12,0x1E)`.
+  - These two cases stub `00323D10` and `0030A310`; the second also stubs `00308FF0`.
+
+**I8 — THE CHECK READS WHAT THE SETTER WRITES, BIT FOR BIT.** The check's I4 loop reads
+`byte [rbx + rdx + 0x194]` (`00323C18`). The setter stores the same byte (`00323A29`), using the same LSB-first bit
+order that the mask builder's `bts` uses (`002F9082`). Executed over shipped data (check X8):
+- `00323BB0(rec, 1, 0x1)` returns **0** with nothing owned;
+- it returns **1** after `00323910` grants node 182, a row that lists id 1.
+
+The control: with `bts` mutated to `btr` at `00323A04`, the same case fails (C1).
+
+**I9 — THE BOARD GRID: LOADED AT BOOT, READ WITHOUT VALIDATION, AND WRITTEN NEVER.**
+- **Loading.** Boot (the fixer of [the boot-fixups contract](../00-Engine-Core-Runtime/CONTRACT-boot-fixups.md)) calls
+  the board-slot initialiser at `0022A41A`.
+  - That clears the twelve slots (`002369E5`, `rep stosq` at `00236A01`) and calls the slot requester with k = 0..11
+    (`00236A17`–`00236A24`).
+  - The requester refuses `k > 11` (`00238304`) and returns when slot k is already set (`00238324`).
+  - Otherwise it asks the resident gate `00233E00`, which allows the request when fewer than six of the twelve slots
+    are set (`00233E8D`–`00233E91`). It then requests loader id `0x47 + k` (`0023836A`) through the loader's
+    request call (`0023837D`). The generated setter `00238390 + 0x30k` is the delivery callback: it releases the previous buffer
+    (`003844F0`, `002383A5`) and stores the new one (`002383AA`).
+  - `license_board.bin` (path index 70) is not one of the twelve.
+- **Format accepted.** The header has `u16 width` at `+4` and `u16 height` at `+6`. Cells are `u16` from `+8`,
+  row-major, and `0xFFFF` means "no square here".
+- **The readers.** The raw index of the slot array finds 39 sites in 25 functions (check S3): the twelve setters, the
+  clear, the request, the gate, the predicate `00237630`, and nine readers: `00328990`, `003FC900`, `0055B3F0`,
+  `0055BFF0`, `0055E2C0`, `0055E600`, `0055F830` and `00560610`, and a ninth whose entry check S3 lists.
+- **No reader validates the file:**
+  - The magic is never compared. The reset behaves identically with it overwritten (check X14).
+  - No reader compares the header against the buffer size. The grid page measured 1,160 bytes, exactly
+    `8 + 24 × 24 × 2`, on all shipped files.
+  - Out-of-range cells read as `0xFFFF` in `00328990` (`00328A1C`).
+- **No code writes a grid** ([grid page](license-board-grid-format.md) §3).
+
+**I10 — WHAT THE JOB RESET TAKES BACK.** For one board (`00328990`), and for every cell whose node is owned
+(`00328A51`) and whose row's start mask lacks the slot bit (`00328A5B`–`00328A68`):
+1. the bit is cleared (`00328A76`);
+2. the row's LP cost is summed (`00328A7E`);
+3. the sum is added to LP and capped at 99,999 (`00328AC2`–`00328AF2`).
+
+Squares the slot starts with are kept, and so are owned nodes that are not on that board. Executed over the shipped
+`board_1.bin` (24×24, 139 squares), check X11–X12:
+- with slot 0 owning {31 (a start square), 0, 359 (not on the board)}, the result is {31, 359} and LP + 50;
+- with all 139 owned, 1 is kept, the refund is 7,835 and LP stops at 99,999.
+
+The control: NOP the keep test at `00328A68` and both cases fail (C3).
+
+### 8a.4 Failure paths and edge conditions (FABLE)
+
+- **The setter refuses without writing** in four cases: a null record, kind byte ≠ 0, a node outside `[0, count)`,
+  and a non-zero gate reason (I7).
+- **An unaffordable grant is not a failure.** The setter does not test LP; it floors LP at 0 (check X5). In the
+  gate, the LP comparison sits only in the kind ≥ 4 arm, and no shipped row has that kind ([the check page](license-check-what-the-board-actually-tests.md) §13).
+  Affordability is the menu's job.
+- **Null row with a live descriptor.** If the node table's descriptor is non-null but its handle decodes to 0, both
+  `003239C3` (cost) and the class-`0x20` arm (`0031E093`, through `00328990`) dereference address 4. This has the
+  same shape as §10's `00323F52` fault. It is static only.
+- **Board index.** `00328990` rejects `board > 11` unsigned (`003289A4`), so the unset selector `0xFF`, which
+  `00328C16` sign-extends to −1, returns −1 with no read (check X13). `0055BFF0` indexes the slots with a signed
+  byte and no bound (`0055C0A8`), which reaches `02EBF198` at −1 (registry page, AG-4).
+- **A zero-height board un-learns nothing** (`003289D3`, check X15). The header's width and height are the cell
+  readers' only bounds (`00328A01`, `00328A0A`). A header larger than the buffer would make them read past it, and
+  nothing guards against that.
+- **`resetJobs` refuses slot > 5** (`00328BD9`).
+
+### 8a.5 Evidence class (FABLE)
+
+- **Static (STATIC):** every cited instruction (117 decoded as quoted, check S1); the raw reference indexes (E8/E9,
+  0F 8x, EB/7x, rip, `[reg+RVA]`, `.rdata`/`.data` pointers) of every entry named here (S2, S3); the bitmap writer
+  census (S4–S4c).
+- **Executed (NATIVE-REPLAY, Unicorn 2.1.4, `live_game: false`).** The shipped `battle_pack.bin` (us, `d1bb89aa…`)
+  is relocated and its node table bound by the shipped binder bodies (the handle setter and its caller; entries in
+  `check_s31.py`). The shipped `board_1.bin` (in) is
+  planted in slot 0. The setter, gate, check and un-learn bodies run real.
+  - Stubs, disclosed per case: `call_277` (a side-effect sink); `00323D10`, `0030A310` and `00308FF0` in the
+    rank-byte cases only; in the reset cases, the query's callee that sets only query `+0x24` bit 0, which
+    `00328990` never reads (its entry is in `check_s31.py`).
+  - Planted records are fixtures, so this claims nothing about which records a running game holds.
+- **Live:** none.
+- **Not settled:**
+  - Whether the resident gate ever limits the boot requests. The twelve calls run right after the clear, and
+    whether a delivery lands between them depends on the request queue; it was not executed.
+  - The meaning of the `0xE5` hook (`call_12B` → `call_138`, I7).
+  - Which shipped script context calls `resetJobs`. One decompiled zone script, `rbn_a14`, does.
+
 ## 9. Determinism
 
 **Fully deterministic.** No RNG, no time, no frame state. The same unit and action always answer the

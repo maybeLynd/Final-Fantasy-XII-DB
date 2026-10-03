@@ -1,0 +1,7 @@
+ok    pre-fix --rev without --slow: C5 absent, full label still printed
+ok    pre-fix C5: remaining without a parseable count -> PASS
+ok    pre-fix C5: verdict MET while rows hold NOT MET -> PASS
+ok    pre-fix C9: descendant with the marker deleted -> PASS (not in force)
+ok    pre-fix snapshot linked live Tools/work (mklink /J), so a write could reach it
+ok    pre-fix record rule could not see 92 of 92 homing_applier.py records (FABLE's)
+controls: 6 of 6 show the old rule missing its defect

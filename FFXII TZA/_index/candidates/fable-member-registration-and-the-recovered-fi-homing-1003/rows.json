@@ -1,0 +1,75 @@
+{
+ "page": "22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/member-registration-and-the-recovered-field-schema.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01HfPRM3vgupD1jscEXG8z9Y",
+ "report": [
+  "fable-member-registration-and-the-recovered-field-schema-c3.json"
+ ],
+ "rows": [
+  {
+   "fn": "0063BBC0",
+   "text": "calls virtual slot `+8` of the object at qword `rcx+0x30`; when the result is non-null and bit 0 of its byte `+0xfc` is set, returns the address `02CF8580`; otherwise tail-jumps to `00630340` (without reloading `rcx` after the virtual call)",
+   "anchors": [
+    [
+     "0063BBC4",
+     "mov"
+    ],
+    [
+     "0063BBCB",
+     "call"
+    ],
+    [
+     "0063BBD3",
+     "test"
+    ],
+    [
+     "0063BBDC",
+     "lea"
+    ],
+    [
+     "0063BBEC",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006ABEC0",
+   "text": "returns 0 when qword `[rcx]` is null; when the chain from qword `rcx+8` through qword `+0x78` reaches `02E404B0`, the key is qword `[rcx]`; otherwise calls `005A7B50(qword rcx+8, \"getLocalToWorldMatrix\")` and then the call at `006ABEC0` + 0x50 with (that result, qword `[rcx]`), returning 0 when either gives null, and the key is the second result; it then searches the tree rooted at qword `01F2EB58` with sentinel `01F2EB40`, taking child qword `+0` when node qword `+0x18` is above the key and `+8` when below (unsigned), and returns qword `[node + 0x20]` of the matching node, or 0 when the sentinel is reached",
+   "anchors": [
+    [
+     "006ABEE1",
+     "cmp"
+    ],
+    [
+     "006ABF00",
+     "call"
+    ],
+    [
+     "006ABF10",
+     "call"
+    ],
+    [
+     "006ABF5A",
+     "cmp"
+    ],
+    [
+     "006ABF84",
+     "cmove"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "006ABEC0",
+   "was": "returns 0 when qword `[rcx]` is null; when the chain from qword `rcx+8` through qword `+0x78` reaches `02E404B0`, the key is qword `[rcx]`; otherwise calls `005A7B50(qword rcx+8, \"getLocalToWorldMatrix\")` and then the call at `006ABEC0` + 0x50 with (that result, qword `[rcx]`), returning 0 when either gives null, and the key is the second result; it then searches the tree rooted at qword `01F2EB58` with sentinel `01F2EB40`, taking child qword `+0` when node qword `+0x18` is above the key and `+8` when below (unsigned), and yields the matching node + 0x20, or 0 when the sentinel is reached",
+   "now": "returns 0 when qword `[rcx]` is null; when the chain from qword `rcx+8` through qword `+0x78` reaches `02E404B0`, the key is qword `[rcx]`; otherwise calls `005A7B50(qword rcx+8, \"getLocalToWorldMatrix\")` and then the call at `006ABEC0` + 0x50 with (that result, qword `[rcx]`), returning 0 when either gives null, and the key is the second result; it then searches the tree rooted at qword `01F2EB58` with sentinel `01F2EB40`, taking child qword `+0` when node qword `+0x18` is above the key and `+8` when below (unsigned), and returns qword `[node + 0x20]` of the matching node, or 0 when the sentinel is reached",
+   "why": "006ABF80 lea rax,[rdx+0x20] / 006ABF84 cmove, then a mov rax,[rax] two instructions later (past the census body window) dereferences it before ret; the null path returns r8 = 0"
+  }
+ ],
+ "mode": "homing",
+ "family": ""
+}

@@ -1,0 +1,126 @@
+{
+ "page": "19-Save-Load-Settings/Language-And-Locale/language-selection-and-locale-ids.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01HPphrAiHTMT5Nr1N4ZnQXK",
+ "report": [
+  "fable-language-selection-and-locale-ids.json"
+ ],
+ "rows": [
+  {
+   "fn": "002CFE40",
+   "text": "looks up two records with `0035D330(1, word rcx+8 << 0x10)` and `0035D330(1, word rdx+8 << 0x10)` and, when their dwords `+0x38` differ, returns the first minus the second; otherwise repeats both lookups and returns the first record's dword `+0x30` minus the second's when non-zero, else word `rcx+8` minus word `rdx+8`",
+   "anchors": [
+    [
+     "002CFE6A",
+     "call"
+    ],
+    [
+     "002CFE81",
+     "sub"
+    ],
+    [
+     "002CFEB1",
+     "sub"
+    ],
+    [
+     "002CFEB6",
+     "cmovne"
+    ]
+   ]
+  },
+  {
+   "fn": "002D0070",
+   "text": "calls `0035D330(1, word rcx+8 << 0x10)` and, when that record's dword `+0` is 6, tail-jumps (at `002D0070`+0x36) with `rcx` and `rdx` unchanged; otherwise looks up `0035D330(1, word rcx+8 << 0x10)` and `0035D330(1, word rdx+8 << 0x10)` and returns the first record's dword `+0x30` minus the second's when non-zero, else word `rcx+8` minus word `rdx+8`",
+   "anchors": [
+    [
+     "002D008C",
+     "call"
+    ],
+    [
+     "002D0091",
+     "cmp"
+    ],
+    [
+     "002D00A6",
+     "jmp"
+    ],
+    [
+     "002D00DB",
+     "sub"
+    ],
+    [
+     "002D00E0",
+     "cmovne"
+    ]
+   ]
+  },
+  {
+   "fn": "002D5C30",
+   "text": "takes the signed byte `+0x13` of qword `rcx+0x150` (0 when that qword is null), calls `0035BB20` with the signed word `rcx+0x140`, and tail-jumps (at `002D5C30`+0x44) with `rcx`, that byte as `edx` and the returned record's byte `+0x87` as `r8d`",
+   "anchors": [
+    [
+     "002D5C49",
+     "movsx"
+    ],
+    [
+     "002D5C58",
+     "call"
+    ],
+    [
+     "002D5C62",
+     "movzx"
+    ],
+    [
+     "002D5C74",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0056D870",
+   "text": "indexes the qword table pointed to by qword `rdx+0x10` with the three signed dwords at `r8`, `r8+4`, `r8+8`: in the first entry it sets bit 0 of dword `+8` to (byte `rcx+0xa` not equal to `0xff`) keeping the other bits, stores that byte as word `+0xa` and copies the byte at `[qword +0x20] + byte*8 + 7` to byte `+0x39`; in the second it stores qword `[rcx]` at `+0x18` and the result of the call at `0056D870`+0x6C (with 0) at dword `+0x20`; then calls `0029FF60(third entry, 0, 0, dword rcx+0x10 with bit 31 cleared, 0, 0)` and tail-jumps (at `0056D870`+0xC4) with the third entry",
+   "anchors": [
+    [
+     "0056D89F",
+     "setne"
+    ],
+    [
+     "0056D8B1",
+     "mov"
+    ],
+    [
+     "0056D8D8",
+     "mov"
+    ],
+    [
+     "0056D90F",
+     "call"
+    ],
+    [
+     "0056D934",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "0023EA10": "three-way message switch whose case-1 path (record copy, table 01E0BF60 bounds checks, text-id lookup, layout adjust) cannot be stated with every path in under 1,200 characters",
+  "002BF8C0": "three message cases with timer arithmetic, division and five calls; every path cannot be stated in under 1,200 characters",
+  "003CB150": "dispatches through a jump table of 0x12 cases whose contents the listing does not decode, so the case-to-arm mapping cannot be stated",
+  "00563560": "two long paths (null and indexed 0x20-stride record) with many stores and six calls; every path cannot be stated in under 1,200 characters",
+  "005637D0": "same shape as 00563560 with paths merging into shared stores; every path cannot be stated in under 1,200 characters",
+  "0056DA80": "flag-driven selection of indices and four conditional table updates plus two guarded 0029FF60 calls; every path cannot be stated in under 1,200 characters"
+ },
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "0056D870",
+   "was": "indexes the qword table at `rdx+0x10` with the three signed dwords at `r8`, `r8+4`, `r8+8`: in the first entry it sets bit 0 of dword `+8` to (byte `rcx+0xa` not equal to `0xff`) keeping the other bits, stores that byte as word `+0xa` and copies the byte at `[qword +0x20] + byte*8 + 7` to byte `+0x39`; in the second it stores qword `[rcx]` at `+0x18` and the result of the call at `0056D870`+0x6C (with 0) at dword `+0x20`; then calls `0029FF60(third entry, 0, 0, dword rcx+0x10 with bit 31 cleared, 0, 0)` and tail-jumps (at `0056D870`+0xC4) with the third entry",
+   "now": "indexes the qword table pointed to by qword `rdx+0x10` with the three signed dwords at `r8`, `r8+4`, `r8+8`: in the first entry it sets bit 0 of dword `+8` to (byte `rcx+0xa` not equal to `0xff`) keeping the other bits, stores that byte as word `+0xa` and copies the byte at `[qword +0x20] + byte*8 + 7` to byte `+0x39`; in the second it stores qword `[rcx]` at `+0x18` and the result of the call at `0056D870`+0x6C (with 0) at dword `+0x20`; then calls `0029FF60(third entry, 0, 0, dword rcx+0x10 with bit 31 cleared, 0, 0)` and tail-jumps (at `0056D870`+0xC4) with the third entry",
+   "why": "`0056D884` loads the table pointer from qword rdx+0x10; the table is not at rdx+0x10"
+  }
+ ],
+ "mode": "homing",
+ "family": ""
+}

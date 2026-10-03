@@ -1,0 +1,170 @@
+{
+ "page": "18-Audio/sead-engine-identity-and-diagnostics.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter-r4",
+ "report": "sead-engine-identity-and-diagnostics-r4.json",
+ "rows": [
+  {
+   "fn": "007AB240",
+   "text": "Releases the 0x18-byte element array at `rcx+8` when it is non-null (through the first element's vtable slot `+0` with `edx`=3 when the count qword before it is non-zero, else `00210EB0` on the block), zeroes the qwords `+8` to `+0x20` and dword `+0x2C`, and returns 0xF0000000 when `edx` is zero; otherwise it stores `edx` to `+0x28`, allocates the count times 0x18 plus 8 bytes (saturated to -1 on overflow) through `007AD460` with 8 and 0, writes the count to the block's first qword and initialises each element to the pointer `01CB45D8` followed by two zero qwords (using a null array when the allocation fails), stores the array to `+8` and `+0x10`, links each element's qword `+0x10` to the next element, zeroes `+0x18`, `+0x20` and `+0x2C` and returns 0.",
+   "anchors": [
+    [
+     "007AB26D",
+     "call"
+    ],
+    [
+     "007AB293",
+     "mov"
+    ],
+    [
+     "007AB2E6",
+     "call"
+    ],
+    [
+     "007AB310",
+     "mov"
+    ],
+    [
+     "007AB366",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007BAB30",
+   "text": "Releases the 0x18-byte element array at `rcx+8` when it is non-null (through the first element's vtable slot `+0` with `edx`=3 when the count qword before it is non-zero, else `00210EB0` on the block), zeroes the qwords `+8` to `+0x20` and dword `+0x2C`, and returns 0xF0000000 when `edx` is zero; otherwise it stores `edx` to `+0x28`, allocates the count times 0x18 plus 8 bytes (saturated to -1 on overflow) through `007AD460` with 8 and 3, writes the count to the block's first qword and initialises each element to the pointer `01CB57D8` followed by two zero qwords (using a null array when the allocation fails), stores the array to `+8` and `+0x10`, links each element's qword `+0x10` to the next element, zeroes `+0x18`, `+0x20` and `+0x2C` and returns 0.",
+   "anchors": [
+    [
+     "007BAB5D",
+     "call"
+    ],
+    [
+     "007BAB83",
+     "mov"
+    ],
+    [
+     "007BABD7",
+     "call"
+    ],
+    [
+     "007BAC00",
+     "mov"
+    ],
+    [
+     "007BAC56",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007E71F0",
+   "text": "Copies the qword at `[rdx]` to `rcx+8`, the qword at `[r8]` to `rcx+0x10` and the qword at `r9+8` to `rcx+0x28`; when that last value is non-zero it sets dword `+0x9C` to 1, stores the pointer `01CB4D48` to `[r9]` and returns 0, otherwise it formats `01CB8FA8` through `0019C5D0` into a 256-byte stack buffer, appends a newline (calling `00809728` if the terminator index reaches 0x100), passes the buffer to the import at `008C2120` and to `007A5570` with 2, sets `+0x9C` to 4, stores `01CB4D48` to `[r9]` and returns -1, both returns checking the stack cookie from `01F44830` through `00808C40`.",
+   "anchors": [
+    [
+     "007E7227",
+     "mov"
+    ],
+    [
+     "007E7241",
+     "call"
+    ],
+    [
+     "007E7280",
+     "call"
+    ],
+    [
+     "007E728C",
+     "mov"
+    ],
+    [
+     "007E72A5",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007F31F0",
+   "text": "Returns 0.0 in `xmm0` when `xmm1` compares equal to 0 or unordered (`ucomiss`/`je`), and also, after formatting `01CBA280` with the dword `rcx+0x30` through `0019C5D0` and logging it through the import at `008C2120` and `007A5570` with 2, when that dword is not greater than zero; otherwise it converts `xmm1` to a truncated integer by the unit code in `r8d` (0: times dword `+0x30`; 1: as is; 2, 3, 4: times dword `+0x24`, `+0x28` or `+0x2C` when byte `+0x18` is non-zero, else times `+0x30` and 0.125 (`00915508`), 0.5 (`01CEBB70`) or 2; other codes give 0), then converts that integer to the unit code in `r9d` as a float (0: divided by `+0x30`; 1: as is; 2, 3, 4: divided by `+0x24`, `+0x28` or `+0x2C` when byte `+0x18` is non-zero, else by `+0x30` divided by 8, by `+0x30` divided by 2, or by twice `+0x30`; other codes 0.0) and returns it, checking the stack cookie through `00808C40`.",
+   "anchors": [
+    [
+     "007F3217",
+     "ucomiss"
+    ],
+    [
+     "007F3227",
+     "jg"
+    ],
+    [
+     "007F32E3",
+     "mulss"
+    ],
+    [
+     "007F3321",
+     "cvttss2si"
+    ],
+    [
+     "007F33FC",
+     "divss"
+    ]
+   ]
+  },
+  {
+   "fn": "007F3570",
+   "text": "When byte `rcx+0x18` is zero it formats `01CBA220` with 0 and the signed word `+0`, byte `+2` and byte `+3` of the position at `rdx` through `0019C5D0`, logs it through the import at `008C2120` and `007A5570` with 2, and returns the dword at `rcx+0`; otherwise it copies the position to a stack triple and, if that compares greater (signed: word, then byte `+2`, then byte `+3`) than the triple at `+0xC`/`+0xE`/`+0xF`, logs `01CBA140` with word `+0xC` (`007A5570` with 1) and replaces the copy with that triple, or if it compares below the triple at `+8`/`+0xA`/`+0xB`, logs `01CBA1B0` with word `+8` and replaces the copy with that one; it returns the dword `+4` when the copy equals the `+0xC` triple, else calls `007F3140` with the copy, `rcx+8` and `rcx` and returns dword `+0` plus the copy's signed word times dword `+0x2C`, byte `+2` times dword `+0x28` and byte `+3` times dword `+0x24`, checking the stack cookie through `00808C40`.",
+   "anchors": [
+    [
+     "007F35BE",
+     "jg"
+    ],
+    [
+     "007F3625",
+     "movsx"
+    ],
+    [
+     "007F3694",
+     "movsx"
+    ],
+    [
+     "007F374A",
+     "call"
+    ],
+    [
+     "007F3774",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "007F3800",
+   "text": "Zeroes the dword at `rdx` and, when byte `rcx+0x18` is zero or `r8d` lies outside the dwords `rcx+0` and `rcx+4` (signed `jg` compares), formats `01CBA0C0` with that byte, both bounds and `r8d` through `0019C5D0`, logs it through the import at `008C2120` and `007A5570` with 2 and returns `rdx`; otherwise it splits `r8d` minus dword `+0` by signed division into a quotient by dword `+0x2C` (added to word `+8`), the remainder's quotient by dword `+0x28` (added to byte `+0xA`) and the rest's quotient by dword `+0x24` (added to byte `+0xB`), stores them as word `+0`, byte `+2` and byte `+3` of the out-record at `rdx`, calls `007F2EA0` with it and `rcx`, and returns `rdx`, checking the stack cookie through `00808C40`.",
+   "anchors": [
+    [
+     "007F3822",
+     "mov"
+    ],
+    [
+     "007F3837",
+     "jg"
+    ],
+    [
+     "007F3848",
+     "idiv"
+    ],
+    [
+     "007F3891",
+     "mov"
+    ],
+    [
+     "007F389B",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

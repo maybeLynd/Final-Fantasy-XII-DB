@@ -1,0 +1,126 @@
+{
+ "page": "00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-C-ids-76-107.md",
+ "date": "2026-10-03, wave h4",
+ "session": "https://claude.ai/code/session_015VFSZr38WAiiWF7vDja8Ar",
+ "report": "home-arm-catalogue-slice-c-ids-76-107.json",
+ "rows": [
+  {
+   "fn": "001C1A60",
+   "entered_from": "`001C2790` + 0x6F",
+   "text": "returns `r8` unchanged when `rdx` equals `rcx`; otherwise steps a source pointer down from `rdx` and a destination pointer down from `r8` by 0x230 until the source reaches `rcx`, and for each element copies dwords `+0` and `+4`, copies the 0x100 bytes at `+8` two bytes per iteration (0x80 iterations), and makes the call at `001C1A60` + 0x81 with the destination's and the source's `+0x108`; returns the last (lowest) destination pointer",
+   "anchors": [
+    [
+     "001C1A78",
+     "cmp"
+    ],
+    [
+     "001C1A87",
+     "sub"
+    ],
+    [
+     "001C1AC5",
+     "mov"
+    ],
+    [
+     "001C1AE1",
+     "call"
+    ],
+    [
+     "001C1AE6",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "001C1B00",
+   "entered_from": "`001C2790` + 0xF6",
+   "text": "stores `r9` at qword `[rcx]` and, for each 0x230-byte element from `rdx` up to `r8` (none when they are equal), reads the destination qword `[rcx]`: when it is non-null it copies the element's dwords `+0` and `+4` and the 0x100 bytes at `+8` (16-byte `movups` moves in two 0x80-byte passes) to it and makes the call at `001C1B00` + 0xC0 with the destination's and the element's `+0x108`; in both cases it adds 0x230 to `[rcx]`; returns `rcx`",
+   "anchors": [
+    [
+     "001C1B1B",
+     "mov"
+    ],
+    [
+     "001C1B3D",
+     "test"
+    ],
+    [
+     "001C1B63",
+     "movups"
+    ],
+    [
+     "001C1BC0",
+     "call"
+    ],
+    [
+     "001C1BDB",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "001C1E70",
+   "entered_from": "`001C1C80` + 0x89",
+   "text": "copies from `rdx` to `rcx` the 16 bytes at `+0` and qwords `+0x10`, `+0x18`, `+0x20`; makes the call at `001C1E70` + 0x44 with `rcx+0x28` and `rdx+0x28`, stores at qword `rcx+0x38` the result of the call at + 0x58 on qword `rdx+0x38` with its bit 0 subtracted, and makes the call at + 0x69 with `rcx+0x40` and `rdx+0x40`; then copies the 0x90 bytes at `+0x58`, bytes `+0xE8`, `+0xE9`, `+0xEA`, dwords `+0xEC` to `+0xFC`, the 16 bytes at `+0x100` and dwords `+0x110` to `+0x124`; returns `rcx`",
+   "anchors": [
+    [
+     "001C1E91",
+     "movups"
+    ],
+    [
+     "001C1EB4",
+     "call"
+    ],
+    [
+     "001C1ECD",
+     "mov"
+    ],
+    [
+     "001C1ED9",
+     "call"
+    ],
+    [
+     "001C1FFD",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "001C2230",
+   "entered_from": "`001C2790` + 0x7A",
+   "text": "copies dwords `+0` and `+4` of `rdx` to `rcx`, copies the 0x100 bytes at `rdx+8` to `rcx+8` two bytes per iteration (0x80 iterations), then makes the call at `001C2230` + 0x5A with `rcx+0x108` and `rdx+0x108`; returns `rcx`",
+   "anchors": [
+    [
+     "001C223C",
+     "mov"
+    ],
+    [
+     "001C2247",
+     "mov"
+    ],
+    [
+     "001C2265",
+     "mov"
+    ],
+    [
+     "001C228A",
+     "call"
+    ],
+    [
+     "001C228F",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [
+  "001C1C80",
+  "001C2790",
+  "001C2D10",
+  "001C2D50",
+  "001EE5D0"
+ ],
+ "corrections": []
+}

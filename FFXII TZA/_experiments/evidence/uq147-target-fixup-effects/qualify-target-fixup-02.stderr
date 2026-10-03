@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\uq147-summoner-cleanup-order\qualify-target-fixup-retained.py", line 48, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\uq147-summoner-cleanup-order\qualify-target-fixup-retained.py", line 21, in main
+    z=[x for x in old if int(x['va'],16)==va];need(len(z)==1,'missing/ambiguous retained body')
+                             ~^^^^^^
+TypeError: string indices must be integers, not 'str'

@@ -1,0 +1,66 @@
+FABLE check_s31 - licence board grid and the writers of licenceOwnedBits (2026-10-03)
+HEAD 890844135   unicorn 2.1.4
+PASS  P0  inputs: battle_pack.bin (us) d1bb89aa..., board_1.bin (in) 5a220b2d..., unicorn 2.1.4
+PASS  S1  117 cited instructions decode as quoted
+PASS  S2.0  raw .text references to 00233E00: ['00238329']
+PASS  S2.1  raw .text references to 002368D0: ['0022A41A']
+PASS  S2.2  raw .text references to 002370C0: ['002399E9', '0023AF56']
+PASS  S2.3  raw .text references to 00237630: ['00558BE3']
+PASS  S2.4  raw .text references to 00238260: ['00236A1A']
+PASS  S2.5  raw .text references to 00239960: ['00234349']
+PASS  S2.6  raw .text references to 0023AC80: ['00237E26', '00239AC4', '0023A7A9']
+PASS  S2.7  raw .text references to 003235C0: ['0055DA6E']
+PASS  S2.8  raw .text references to 00323910: ['00239D55', '0023AE7C', '003235CD', '003235F0']
+PASS  S2.9  raw .text references to 00328990: ['00328C23', '00328C35']
+PASS  S2.10  raw .text references to 00328BD0: ['00342242']
+PASS  S2.11  raw .text references to 00342230: none
+PASS  S2.v  00342230's only pointer is the native-table slot 01EF91E0 (verb 0x05D6 resetJobs, 01-Script-VM-Native-Bridge/Verb-Dispatch/scriptvm-dispatch.tsv)
+PASS  S2.u  00323910's .rdata u32 hits ['01D76E64', '01D76E74'] are CHAININFO copies of its primary entry (next dword = end RVA 0x203955)
+PASS  S3  raw references into the board array 02EBF1A0..02EBF1FF: 39 sites in 25 functions = 12 generated setters 00238390 + 0x30k (a load and a store each) + clear 002368D0, request 00238260, gate 00233E00, predicate 00237630 and 9 readers ['00328990', '003FC900', '0055B3F0', '0055BFF0', '0055E2C0', '0055E600', '0055F830', '00560070', '00560610']
+PASS  S4  route-filtered writes into +0x194..+0x1C1 (record) / +0x19C..+0x1C9 (block), 393 route functions (roots referencing 02EBF190, 02EBF038 or 02EBF1A0.., or in the record accesses TSV): 17 sites, each dispositioned
+      00239C0D  fn 00239960  mov qword ptr [rbx + 0x194], rax                 BITMAP: 00239960 zeroes bytes 0..7 (SetSaveData preset apply, before the start grants)
+      00239C17  fn 00239960  mov qword ptr [rbx + 0x19c], rax                 BITMAP: 00239960, bytes 8..15
+      00239C1E  fn 00239960  mov qword ptr [rbx + 0x1a4], rax                 BITMAP: 00239960, bytes 16..23
+      00239C25  fn 00239960  mov qword ptr [rbx + 0x1ac], rax                 BITMAP: 00239960, bytes 24..31
+      00239C2C  fn 00239960  mov qword ptr [rbx + 0x1b4], rax                 BITMAP: 00239960, bytes 32..39
+      00239C33  fn 00239960  mov dword ptr [rbx + 0x1bc], eax                 BITMAP: 00239960, bytes 40..43
+      00239C39  fn 00239960  mov word ptr [rbx + 0x1c0], ax                   BITMAP: 00239960, bytes 44..45
+      0023A035  fn 00239E10  mov dword ptr [rdi + 0x19c], 0x3da3d70a          not the record: BattleUnit +0x19C (same body loads the unit's stats record from [rdi+0x698], 00239FDA)
+      0023ACD5  fn 0023AC80  mov word ptr [rdi + 0x1c3], r13w                 record +0x1C3 selectors (block window only; base rdi is the record)
+      0023ACDD  fn 0023AC80  mov byte ptr [rdi + 0x1c5], 0xff                 record +0x1C5 selector
+      00305867  fn 003057D0  movss dword ptr [rbx + 0x19c], xmm8              not the record: BattleUnit +0x19C (the body reads the actor at [rbx+0x10])
+      0030C496  fn 0030C470  mov byte ptr [rcx + 0x1c2], dil                  record +0x1C2 level
+      0030C7BB  fn 0030C650  mov byte ptr [rdi + 0x1c2], al                   record +0x1C2 level
+      00323A29  fn 00323910  mov byte ptr [rdx + rdi + 0x194], cl             BITMAP: 00323910 sets / clears one bit (the purchase / start-grant setter)
+      00328A76  fn 00328990  mov byte ptr [rdx + r14 + 0x194], al             BITMAP: 00328990 clears one bit (resetJobs' un-learn)
+      00328D52  fn 00328BD0  mov word ptr [rdi + 0x1c3], 0xffff               record +0x1C3 selectors
+      00328D5D  fn 00328BD0  mov byte ptr [rdi + 0x1c5], 0xff                 record +0x1C5 selector
+PASS  S4a  displacement-form bitmap writers: 00323910 (00323A29), 00328990 (00328A76), 00239960 (00239C0D-00239C39)
+PASS  S4c  byte-wide index-form writes off the route (28 sites, image-wide) are all in ['004453D0', '00447020', '00447ED0', '00449AB0'], whose same base registers also address displacements >= 0x1C8 (an object larger than the 0x1C8-byte record, e.g. +0x1F0 at 00445895)
+      non-byte index-form writes off the route: 30 (dword/qword/xmm, roots ['001BAA30', '0020CB50', '00418700', '00418880', '00504D30', '0053AB50', '006515C0', '0074ED10', '0074F740', '00810F60', '0084DC20', '0084EB60', '00894EE0'])
+PASS  S4b  115 leaf (no .pdata) writes on a real boundary: none called from a route function; the six in leaves that load 02EBF190 are record +0x1C3..+0x1C5 selector stores ['00323722', '00323729', '00323772', '00323779', '00324341', '0032434B']
+      all write hits in the window before the route filter: 1319; stack-frame forms dropped: 266
+PASS  X1  shipped 003846F0 + 003845F0 bind the node table: 361 x 24 at blob+8E48 (00236D5C-00236D67's call)
+PASS  X1b  0208E680 holds the encoded handle of the battle_pack.bin blob after 003846F0 (00384709 `mov [rdi], eax`, eax = 0020E620(blob) = blob - [01F83530]; got 10000000, blob 10000000)
+PASS  X1c  node 360's row is the file's own bytes (offset B028) and its category +5 is 0x1E
+PASS  X2  00323910(rec, 31, set=1, flags=1) returns 0, sets only byte 3 bit 7 (got 80), LP 100 -> 100
+PASS  X2b  00323D10 on the same node now returns reason 1 (owned; read at 00323D85): 1
+PASS  X3  a second grant returns -1 (00323972-00323979) with no write and no LP change
+PASS  X4  charged grant: LP 100 - row.b[+4] (1) = 99 (003239C3-003239E1), bit set
+PASS  X5  with LP 0 and cost 1 the grant still lands and LP floors at 0 (`jns` 003239D1 / `mov edx, ebx`)
+PASS  X6  node 361 (class-0x19 validator, 0032394C), kind byte +5 = 1 (0032393D) and a null record (00323930) each return -1 and write nothing
+PASS  X7  set = 0 clears the bit with `btr` (00323A26), skips 00323D10 (`je 00323A09` at 0032395F) and refunds nothing
+PASS  X8  action 0x1: 00323BB0(rec, 1, id) is 0 before and 1 after the PURCHASE SETTER grants node 182 - the check's byte-wise read `[rbx+rdx+0x194]` (00323C18) and the setter's `bts` byte (00323A29) agree
+PASS  X9  granting Quickening nodes 0,1,2,3 leaves +0x20 at [1, 2, 3, 3]: max(cur, min(popcount 0..17, 3)) - esi keeps 00324020's count (00323A69) into 00323B64 (stubs: 00323D10 -> 0, 0030A310 -> 0)
+PASS  X10  +0x20 after one grant: {17: 1, 18: 2, 30: 2, 31: 0} - node 30 (0x1E) IS in the 00308FF0 arm (`lea eax,[rbp-0x12]` / `cmp eax,0xc` / `ja`, 00323B12-00323B18), node 31 is not (stub 00308FF0 -> 2)
+PASS  X11  board_1 (24x24, 139 squares), slot 0: owned {31 start-owned, 0, 359 off-board} -> {31, 359}; LP 10 -> 60 (+50 = row.b[+4] via query +0x20, 00328A7E); the start mask is row.b[+7] via query +0x36 (0031E0E9) tested at 00328A5B-00328A68 (stub 0030B0E0 -> 0)
+PASS  X12  all 139 squares owned: 1 start-owned kept, refund 7835, LP 99990 -> 99999 (cap 0x1869F, 00328AE6-00328AEF)
+PASS  X13  board 12 and board -1 (the unset selector 0xFF, sign-extended at 00328C16) return -1 at 003289A4 (`cmp r8d, 0xb` / `ja`, unsigned) and change nothing
+PASS  X14  with the magic 'licd' overwritten the reset does exactly the same (no reader of +0x00)
+PASS  X15  height 0: the row loop never runs (003289D3 `cmp dx, [r8+6]` / `jae`), nothing is un-learned
+      calls serviced: {'memset': 644, '00308FF0': 2, '0030A310': 5, '0030B0E0': 39, '0030FED0': 14, '00323D10': 8}
+PASS  C1  image mutated bts -> btr at 00323A04: X2/X8 now FAIL
+PASS  C2  image mutated `cmp eax, 0xc` -> `cmp eax, 0xb` at 00323B15: X10 (node 30 in the arm) now FAILS
+PASS  C3  image mutated: the reset's keep test `jne` at 00328A68 NOPed: X11/X12 now FAIL
+PASS  C4  image mutated: 00239960's last zeroing store moved from +0x1C0 to +0x1C2 (00239C3C): the census no longer matches its dispositions (S4/S4a FAIL)
+FAILS 0

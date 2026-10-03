@@ -1,0 +1,6 @@
+binding generation: g20261003T112703Z-50d8a2 | declared state: CURRENT
+tracked PKG-*.md at HEAD: 5 | covered by the binding (bound or as-of): 0
+edited in memory: Database/FFXII TZA/_index/completion-packages/PKG-GP-HP-LETHAL.md | stage accepted-and-incorporated -> research
+state() over the moved input: CURRENT | moved: - | outputs_bad: -
+PROGRESS.md still renders: | completion packages by stage | accepted-and-incorporated 3, evidence-ready 1, research 1 | _index/completion-packages/ |
+COUNTER-EXAMPLE: a tracked consumed input moved and the surface stays CURRENT

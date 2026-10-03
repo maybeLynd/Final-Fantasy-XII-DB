@@ -1,0 +1,76 @@
+{
+ "page": "19-Save-Load-Settings/Game-Settings-Config/game-settings-ini-and-runtime-config.md",
+ "date": "2026-10-03",
+ "rows": [
+  {
+   "fn": "00798910",
+   "text": "stores byte 1 to `+0x18`; while the import slot `008C2978` called with a stack block, three zero arguments and a fifth argument 0 returns non-zero and the block's dword `+8` is not 0x12, it calls `008C2978` again with fifth argument 1 and, when that returns non-zero, calls the import slots `008C2988` and `008C2980` with the block; when the loop ends it stores byte 0 to `+0x18`; passed as the `rcx` argument of the `0061C540` call by `007980A0` + 0x58B",
+   "anchors": [
+    [
+     "0079891D",
+     "mov"
+    ],
+    [
+     "00798938",
+     "call"
+    ],
+    [
+     "00798942",
+     "cmp"
+    ],
+    [
+     "0079896D",
+     "call"
+    ],
+    [
+     "00798999",
+     "mov"
+    ]
+   ],
+   "why_here": "argument of the startup body 007980A0 this page reads",
+   "ref": {
+    "kind": "code",
+    "container": "007980A0",
+    "site": "0079862B"
+   },
+   "cites": [
+    "007980A0"
+   ]
+  },
+  {
+   "fn": "007989B0",
+   "text": "stores byte 1 to `+0x18`; when the import slot `008C2978` called with a stack block, three zero arguments and a fifth argument 0 returns non-zero and the block's dword `+8` is not 0x12, it calls `008C2978` again with fifth argument 1 and, when that returns non-zero, calls the import slots `008C2988` and `008C2980` with the block, once only; then it stores byte 0 to `+0x18`; passed as the `rcx` argument of the `005FE190` call by `007980A0` + 0x59B",
+   "anchors": [
+    [
+     "007989B8",
+     "mov"
+    ],
+    [
+     "007989D4",
+     "call"
+    ],
+    [
+     "007989DE",
+     "cmp"
+    ],
+    [
+     "00798A09",
+     "call"
+    ],
+    [
+     "00798A1A",
+     "mov"
+    ]
+   ],
+   "why_here": "argument of the startup body 007980A0 this page reads",
+   "ref": {
+    "kind": "code",
+    "container": "007980A0",
+    "site": "0079863B"
+   },
+   "cites": [
+    "007980A0"
+   ]
+  }
+ ]
+}

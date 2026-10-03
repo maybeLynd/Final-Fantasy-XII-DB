@@ -1531,3 +1531,11 @@ Every citation on this page is a census entry of unresolved or unowned code, so 
 **WorldAreaField — MECHANICAL, 3 edges.** `Battle_EmitReactionPresentationForSlot` (`003176E0`) calls `FieldData_GetActiveFieldRecordBit15` (`00313F60`); `00326D60` calls `FieldData_GetActiveFieldRecordBit15` (`00313F60`); `00329A80` calls `FieldData_GetActiveFieldRecordBit15` (`00313F60`).
 
 *Tier 2: ledger names and `edges.tsv`; no body read for this note (OPUS, 2026-09-29, pass-22 slice OPUS-P22-SLICE-24-99).*
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-03, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../../_index/candidates/fable-home-why-the-unowned-code-has-no-owner-1003/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `006D5940` | 174 B | `008B75A0` + 0x7 | walks the list whose head qword is `02E9FD60` (each node links on to qword `+8`) for the node equal to `rcx` and, when it finds it, stores that node's qword `+8` into the head or the predecessor's `+8` and zeroes it; then, for dword `+0x20` with qword `+0x28` and for dword `+0x10` with qword `+0x18`, calls (`006D5940` + 0x74, + 0x96 respectively) with the qword when bit 31 of the dword is clear and the qword is non-null, and zeroes the qword and the dword in either case | Interior anchor `006D597B`; Interior anchor `006D5998`; Interior anchor `006D59A2`; Interior anchor `006D59B4`; Interior anchor `006D59D6` |

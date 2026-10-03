@@ -1,0 +1,40 @@
+{
+ "page": "99-Unresolved-Residual/measuring-text-by-drawing-it-with-the-output-off.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "measuring-text-by-drawing-it-with-the-output-off-r5.json",
+ "rows": [
+  {
+   "fn": "002B5390",
+   "text": "returns 0 for a null `o` = `rcx`; else clears byte `[o+0x27]`, takes `s` = qword `+0x10` (or qword `[o]`), `W` = float(signed word `+0x24`) and `g` = qword `[0209CC40]`, sets dword `[g+0x10D0]` = dword `[o+0x28]` and byte `[g+0x1104]` = byte `+0x9A` of a stack measurer `M` (`002AC1E0`; byte `+0xA6` = `0039BAD0(rdx, or qword [o+0x18] if null)`), measures `n` = `002B2150(&M, s, &w, &h)` and copies dword `[g+0x10D0]` back to `[o+0x28]`; when trunc(`w`) <= trunc(`W`), or `00254A10()` is 0, it sets word `+0x22` = `n`, qword `+8` = `s`, byte `+0x26` = `s[n]`, qword `+0x10` = `s`+`n`+1 (0 if `s[n]` is 0) and byte `+0x27` = (2 if byte `[g+0x1104]` is 0x26, else 0), OR 1 on the `00254A10` path, and returns that qword; otherwise it grows a prefix token by token (`002B1FB0`, `M` rebuilt), measuring it 0-terminated (byte restored), copying `[g+0x10D0]` to `[o+0x28]` after each fit, until a width exceeds `W` (ordered `ja`): then it sets `0x1` in byte `+0x27`, drops that token, stores `s`, the offset and its byte to `+8`/`+0x22`/`+0x26` and stores and returns `s`+offset (0 at a 0 byte) at `+0x10`; a 0-length token or null `s` zeroes `+0x22`, `+0x26`, `+8`, `+0x10` and returns 0",
+   "anchors": [
+    [
+     "002B5449",
+     "call"
+    ],
+    [
+     "002B546E",
+     "jg"
+    ],
+    [
+     "002B54B1",
+     "call"
+    ],
+    [
+     "002B559A",
+     "mov"
+    ],
+    [
+     "002B55C9",
+     "ja"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

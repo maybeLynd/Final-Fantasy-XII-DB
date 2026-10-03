@@ -102,6 +102,7 @@ def main():
     cnsc = load_module("contract_named_state_census", os.path.join(KIT, "contract_named_state_census.py"))
     g26 = l1c.gate26()
     cs = l1c.contracts(g26)
+    l1c.require_level_key(cs)   # refuses (exit 2) where the retired `level:` key is absent (OPUS, 2026-10-03)
     reg, ver = l1c.registry(), l1c.verdicts()
     met = {s for s, v in ver.items() if re.match(r"^MET\b", v["verdict"])}
 

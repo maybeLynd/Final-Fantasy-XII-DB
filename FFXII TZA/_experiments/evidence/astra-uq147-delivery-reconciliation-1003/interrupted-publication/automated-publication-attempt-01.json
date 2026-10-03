@@ -1,0 +1,20 @@
+{
+  "status": "STARTED",
+  "task": "ASTRA-PUBLISH-UQ147-KO-RELEASE-PARTITION-1003",
+  "board_revision": 50315,
+  "own_pid": 48564,
+  "transport": {
+    "pathfile": "Database/Tools/work/ASTRA/runtime-residue-method-retriage/publication-uq147-ko-release-partition-01/reviewed-publisher-paths-01.txt",
+    "pathfile_sha256": "6413d6093318a69ffa72c2ad7d26f277d6c1f10b10dc74d29a639bf0a3a2cbda",
+    "transport_sha256": "2d18bfe5ecc986ac6bab99f3fba57869b0b8a1513baddeaef0560d68541cde46",
+    "explicit_paths": 69,
+    "native_path_budget": {
+      "path_argv_utf16_units": 7112,
+      "limit": 24000,
+      "limits": "Conservative setup guard; actual publisher/health/commit checks still required"
+    }
+  },
+  "driver_sha256": "eb288544f19601871b6ac381f11b315114d871c5fb8a2ef2f72bf38e400786be",
+  "publisher_sha256": "ac899c6f4c956d3afc0462af90e70d54bb09880087c81c02b020908bcbbad029",
+  "explicit_paths": 69
+}

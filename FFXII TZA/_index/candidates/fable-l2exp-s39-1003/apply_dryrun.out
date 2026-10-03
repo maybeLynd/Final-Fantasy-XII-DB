@@ -1,0 +1,9 @@
+page Database/FFXII TZA/17-Presentation-Rendering/CONTRACT-render-command-list-and-graphics-handshake.md  source working tree (clean)  HEAD 1e18553b0  mode dry-run
+line endings LF
+PASS E1 section 2 return semantics: anchored once, would replace (+196 chars)
+PASS E2 provenance note on section 13: anchored once, would replace (+203 chars)
+PASS E3 section 10.1 null entry: anchored once, would replace (+1143 chars)
+PASS E4 section 13 body: anchored once, would replace (+2408 chars)
+PASS E5 section 16 FULL SUBSYSTEM: anchored once, would replace (+182 chars)
+edits 5, to change 5
+FAILS 0

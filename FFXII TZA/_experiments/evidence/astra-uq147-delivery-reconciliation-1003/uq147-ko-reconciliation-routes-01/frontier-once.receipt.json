@@ -1,0 +1,20 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\analysis-kit\\gfz-scripts\\team.py",
+    "apply",
+    "--agent",
+    "ASTRA",
+    "--session",
+    "SOL-ASTRA-ko-interruption-reconciliation-1003",
+    "--file",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\uq147-ko-reconciliation-routes-01\\frontier-once.operation.json",
+    "--expect-revision",
+    "50338"
+  ],
+  "terminal": true,
+  "exit": 0,
+  "stdout": "Saved revision 50339\r\n",
+  "stderr": ""
+}

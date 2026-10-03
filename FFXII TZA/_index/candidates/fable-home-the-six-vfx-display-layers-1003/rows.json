@@ -1,0 +1,73 @@
+{
+ "page": "17-Presentation-Rendering/Effect-File-Formats/the-six-vfx-display-layers.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01B5SV9waPUkdPQzR9MzNgSH",
+ "report": "home-the-six-vfx-display-layers.json",
+ "rows": [
+  {
+   "fn": "001868A0",
+   "entered_from": "`0017FE60` + 0x10",
+   "text": "calls the site `001868A0` + 0x9 and, only when it returns non-zero, the site `001868A0` + 0x12; then returns qword `rcx+0xB50+i*8` when byte `rcx+0xDBB` is non-zero and qword `rcx+0xB48+i*8` when it is 0, where `i` is dword `rcx+0xDD0` (the incoming `rcx`, kept in `rbx`)",
+   "anchors": [
+    [
+     "001868A9",
+     "call"
+    ],
+    [
+     "001868B2",
+     "call"
+    ],
+    [
+     "001868B7",
+     "cmp"
+    ],
+    [
+     "001868C6",
+     "mov"
+    ],
+    [
+     "001868D4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00186A50",
+   "entered_from": "`0017FEE0` + 0x10",
+   "text": "returns qword `rcx+0xB50+i*8` when byte `rcx+0xDBB` is non-zero and qword `rcx+0xB48+i*8` when it is 0, where `i` is dword `rcx+0xDD0`",
+   "anchors": [
+    [
+     "00186A57",
+     "mov"
+    ],
+    [
+     "00186A5D",
+     "je"
+    ],
+    [
+     "00186A5F",
+     "mov"
+    ],
+    [
+     "00186A68",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00862C00",
+   "entered_from": "`003A3740` + 0xF2",
+   "text": "returns dword `+0x90` of the object whose pointer is the qword at `01F7F4D8`",
+   "anchors": [
+    [
+     "00862C07",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

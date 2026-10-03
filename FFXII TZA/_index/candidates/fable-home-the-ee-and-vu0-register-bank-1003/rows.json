@@ -1,0 +1,40 @@
+{
+ "page": "00-Engine-Core-Runtime/Shared-Transform-Workbench/the-ee-and-vu0-register-bank.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01DtsGzxAwuV39oMMCAfQd2j",
+ "report": "home-the-ee-and-vu0-register-bank.json",
+ "rows": [
+  {
+   "fn": "003AC870",
+   "entered_from": "`00376470` + 0x82",
+   "text": "stores 1.0 (`01CEBBA8`) to dword `02B3F51C` and byte 0 to `02B3F503`",
+   "anchors": [
+    [
+     "003AC878",
+     "movss"
+    ],
+    [
+     "003AC880",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "006AA200",
+   "why": [
+    "already cited by 22-Middleware-PhyreEngine\\Subsystem-Map\\the-fifteen-modules-registered-before-main.md"
+   ]
+  },
+  {
+   "fn": "006AA600",
+   "why": [
+    "already cited by 22-Middleware-PhyreEngine\\Subsystem-Map\\the-fifteen-modules-registered-before-main.md"
+   ]
+  }
+ ],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

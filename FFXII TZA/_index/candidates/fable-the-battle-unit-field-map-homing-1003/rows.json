@@ -1,0 +1,75 @@
+{
+ "page": "04-Actor-Entity/Battle-Unit/the-battle-unit-field-map.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01HfPRM3vgupD1jscEXG8z9Y",
+ "report": [
+  "fable-the-battle-unit-field-map-c3.json"
+ ],
+ "rows": [
+  {
+   "fn": "00239370",
+   "text": "compares the floats `xmm3`, `xmm2` and `xmm1` with 0.0 in that order and, for each one not below 0.0 (comiss, so NaN also skips), calls with (`rcx`, that float): `0026BB50` for `xmm3`, the call at `00239370` + 0x3D for `xmm2` and the call at `00239370` + 0x4D for `xmm1`",
+   "anchors": [
+    [
+     "00239386",
+     "comiss"
+    ],
+    [
+     "0023939B",
+     "call"
+    ],
+    [
+     "002393A0",
+     "comiss"
+    ],
+    [
+     "002393AD",
+     "call"
+    ],
+    [
+     "002393BD",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0026BE00",
+   "text": "returns at once unless byte `rcx+3` AND `0xe0` equals `0x60`; otherwise stores `xmm1` at float `+0xe4` of the record at qword `rcx+0xb8`, re-tests the same bits and, when they still equal `0x60`, tail-jumps to `002E86B0(rcx, that float reloaded)`, else returns",
+   "anchors": [
+    [
+     "0026BE06",
+     "cmp"
+    ],
+    [
+     "0026BE11",
+     "movss"
+    ],
+    [
+     "0026BE1F",
+     "cmp"
+    ],
+    [
+     "0026BE2A",
+     "movss"
+    ],
+    [
+     "0026BE32",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "0026BE00",
+   "was": "returns at once unless byte `rcx+3` AND `0xe0` equals `0x60`; otherwise stores `xmm1` at float `+0xe4` of the record at qword `rcx+0xb8`, re-tests the same bits, and tail-jumps to `002E86B0(rcx, that float reloaded)`",
+   "now": "returns at once unless byte `rcx+3` AND `0xe0` equals `0x60`; otherwise stores `xmm1` at float `+0xe4` of the record at qword `rcx+0xb8`, re-tests the same bits and, when they still equal `0x60`, tail-jumps to `002E86B0(rcx, that float reloaded)`, else returns",
+   "why": "0026BE1F cmp al,0x60 / 0026BE21 jne 0026BE37 ret: the tail jump at 0026BE32 is conditional on the re-test"
+  }
+ ],
+ "mode": "homing",
+ "family": ""
+}

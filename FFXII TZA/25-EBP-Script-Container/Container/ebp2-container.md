@@ -754,3 +754,11 @@ Interior anchor `003355C4` (function `003355A0`).
 | function | size | what the body does | interior anchors |
 |---|---|---|---|
 | `00297640` | 167 B | returns 0 for `edx` above 7 (unsigned); otherwise dispatches on `edx` through an 8-entry case table (decoded from the bytes): 0 returns 1; 1 calls `0029B440(0035BB00(r8d))` and `00249C60(1)` and returns 1; 2 tests bit 1 of byte `+0x318` of the `0x160`-byte record `r9d` at `rcx` and returns 0 after `00249C60(5)` when it is set, else 1 after `00249C60(0x15)`; 3 returns 0 after `00249C60(5)` when `00299B90(signed word +0x14 of 0035D320())` is zero, else calls `0035BC30()` and `00249C60(3)` and returns 1; 6 returns 0 after `00249C60(5)`; 4, 5 and 7 return 0 | `00297644`, `0029765E`, `0029766A`, `002976A3`, `002976C5` |
+
+## Homed bodies: functions reached only indirectly whose callees this page cites (FABLE, 2026-10-03, F homing)
+
+*No page cited these functions and none of their callers is documented: they are reached by table or pointer dispatch or through undocumented callers. Each one calls something this page documents, which the sentence names. Each sentence states what the body does (access and representation, not purpose); the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's F homing pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-ebp2-container-homing-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `003545B0` | 184 B | calls `002640C0` with the incoming registers (result p), then reads five values a, b, c, d, e by the calls at `003545B0+0x2C`, `+0x36`, `+0x40`, `+0x4B`, `+0x56` (each with `r9`); calls `00264D60(p, e)` and `002673A0(p, e)`, and only when `002673A0` returns 0 calls `003545B0+0x94` with (the `00264D60` result, d, c, b, a, qword `[p+0xb0]`) | Interior anchor `003545D1`; Interior anchor `00354612`; Interior anchor `0035461F`; Interior anchor `00354626`; Interior anchor `00354644` |

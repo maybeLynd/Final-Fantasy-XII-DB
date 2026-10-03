@@ -22,7 +22,12 @@ one), it extracts:
         name followed by indented `+0xNN` lines) - Name resolved against types.tsv, then against ALIASES below
         (each alias carries its evidence), and the offset against the type's field rows (old field_at()).
 
-Classes: ABS -> FIELD / GAP-SPAN / PTR-CELL / UNDECLARED / RANGE-END / RANGE-START (as the old census);
+Classes: ABS -> FIELD / GAP-SPAN / PTR-CELL / UNDECLARED / RANGE-END / RANGE-START (as the old census) / OBJECT;
+         OBJECT (SWE2-AUDIT-SPEC ruling 2026-10-03, OPUS-REQ-AUDITSPEC-CENSUS2-BARE-BASE-1003): a bare address (no
+         displacement) that is exactly the base of a declared data span (a STATIC/ARRAY/PARRAY route) and has no
+         field row at +0 names the OBJECT, which the route already covers - not an undeclared field at +0. The
+         contract need not invent a +0 field to satisfy the census. With a displacement, or off the base, the old
+         classes stand;
          REC -> FIELD / GAP-SPAN / OUT-OF-EXTENT / UNTYPED (no declared type of that name or alias).
 MEANING-OPEN flag: a FIELD whose store row is DISCOVERED/UNKNOWN or whose meaning text says the meaning is not
 established, while the contract line gives that offset a meaning. It is a worklist flag, not a defect by itself.
@@ -149,6 +154,14 @@ ActionDefinition
 """
 
 
+def bare_base(v, d, cls, spans):
+    """OBJECT when the token is a bare declared span base with no +0 field (see Classes)."""
+    if d or cls != "GAP-SPAN":
+        return None
+    base = [sp for sp in spans if sp[0] == v and sp[3] != "pointer cell"]
+    return base[0][2] if base else None
+
+
 def selftest(names):
     new = list(extract_new(FIXTURE))
     old = set(extract_old(FIXTURE))
@@ -162,6 +175,15 @@ def selftest(names):
         ("old finds positive control 02AEE054 (instrument alive)", 0x02AEE054 in old),
         ("old MISSES 02EBA3F8 (the blind spot exists)", 0x02EBA3F8 not in old),
         ("EvaluationContext is a declared type (store alive)", "EvaluationContext" in names),
+    ]
+    # bare-base OBJECT: sensitive both ways - a bare declared base is OBJECT, the same base + 8 is not, and an
+    # address outside every span is never OBJECT
+    sp = [(0x02097D20, 0x02097D20 + 2 * 0x860, "CameraContext", "static", 0x860)]
+    checks += [
+        ("bare declared base with no +0 field -> OBJECT", bare_base(0x02097D20, 0, "GAP-SPAN", sp) == "CameraContext"),
+        ("base + displacement is not OBJECT", bare_base(0x02097D20, 8, "GAP-SPAN", sp) is None),
+        ("an address off the span base is not OBJECT", bare_base(0x02097D28, 0, "GAP-SPAN", sp) is None),
+        ("a FIELD at +0 stays FIELD", bare_base(0x02097D20, 0, "FIELD", sp) is None),
     ]
     for k, v in checks:
         print("  %-55s %s" % (k, "PASS" if v else "FAIL"))
@@ -217,6 +239,10 @@ def main():
                     # `*(char**)ADDR + off`: the displacement is on the POINTEE; classify the cell itself, mark DEREF
                     cls, tname, where = OLD.resolve(v, spans, fields, sizes)
                     where = "DEREF pointee +0x%X (pointee type needs a hand read); cell: %s" % (d, where)
+                bb = bare_base(v, d, cls, spans)
+                if bb:
+                    cls, tname, where = "OBJECT", bb, ("the base of the declared %s span; the contract names the object,"
+                                                         " covered by its route (bare-base ruling)" % bb)
                 if cls in ("UNDECLARED", "GAP-SPAN") and v in ends:
                     cls = "RANGE-END"
                 elif cls == "UNDECLARED" and v in starts and starts[v] > v:
@@ -262,7 +288,7 @@ def main():
                 per[s][r[8]] += 1
     bad = ("UNDECLARED", "UNTYPED", "OUT-OF-EXTENT")
     with io.open(os.path.join(HERE, "census2_systems.tsv"), "w", encoding="utf-8", newline="\n") as f:
-        cols = ["FIELD", "GAP-SPAN", "PTR-CELL", "UNDECLARED", "UNTYPED", "OUT-OF-EXTENT", "RANGE-END",
+        cols = ["FIELD", "OBJECT", "GAP-SPAN", "PTR-CELL", "UNDECLARED", "UNTYPED", "OUT-OF-EXTENT", "RANGE-END",
                 "UNATTRIBUTED", "MEANING-OPEN", "NEW-ONLY"]
         f.write("system\t" + "\t".join(cols) + "\n")
         for s in sorted(per, key=lambda x: int(x[2:]) if x[2:].isdigit() else 999):
