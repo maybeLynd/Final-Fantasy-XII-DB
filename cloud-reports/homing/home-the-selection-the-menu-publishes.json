@@ -1,0 +1,20 @@
+{
+ "page": "16-UI/the-selection-the-menu-publishes.md",
+ "session": "session_01B5SV9waPUkdPQzR9MzNgSH",
+ "rows": [
+  {"fn": "00270F50", "entered_from": "`003F6370` + 0x192",
+   "text": "sets `r9d` to 0x10 and tail-jumps at the site `00270F50` + 0x6 with `rcx`, `rdx` and `r8` passed through unchanged",
+   "anchors": [["00270F56", "jmp"]]},
+  {"fn": "0039C100", "entered_from": "`0027E530` + 0x188",
+   "text": "reads the sign-extended dword `02AEE894` and returns the dword at index that value of the dword array at `02AEE898` (`02AEE898 + value*4`), with no bounds check",
+   "anchors": [["0039C107", "lea"], ["0039C10E", "mov"]]},
+  {"fn": "0039C120", "entered_from": "`0027E530` + 0x196",
+   "text": "clamps `ecx` to the range 1 to 0x1A (signed: values below 1 become 1, values above 0x1A become 0x1A) and returns the dword at index `clamped - 1` of the dword array at `02AEE898`",
+   "anchors": [["0039C127", "cmovge"], ["0039C131", "cmovg"], ["0039C134", "dec"], ["0039C140", "mov"]]},
+  {"fn": "003F3080", "entered_from": "`002907F0` + 0x30",
+   "text": "when `edx` is non-zero ORs 8 into byte `rcx+0x991`; when `edx` is 0 clears that bit instead (AND 0xF7)",
+   "anchors": [["003F3082", "je"], ["003F3084", "or"], ["003F308C", "and"]]}
+ ],
+ "skipped": [],
+ "notes": "00270F50: the whole body is two instructions (the entry mov and the tail jmp); it is rowed because the tail jump is interior work, with the single anchor on the jmp. If FABLE treats a set-and-forward as entry-only work, skip it."
+}
