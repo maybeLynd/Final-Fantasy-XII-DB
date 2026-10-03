@@ -1,0 +1,513 @@
+{
+ "page": "23-Third-Party-Libraries/third-party-middleware-inventory.md",
+ "session": "session_017xjc7Mufp2Duoak7yA6of2",
+ "mode": "member",
+ "family": "Bullet physics library",
+ "rows": [
+  {
+   "fn": "00835E20",
+   "text": "runs the call at `00835E20 + 0x10` with (`rdx`, `rcx+0x30`) and returns `rdx`",
+   "anchors": [
+    [
+     "00835E26",
+     "mov"
+    ],
+    [
+     "00835E29",
+     "lea"
+    ],
+    [
+     "00835E30",
+     "call"
+    ],
+    [
+     "00835E35",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00835E40",
+   "text": "runs the call at `00835E40 + 0x10` with (`rcx`, `rdx`), then copies dwords `rcx+0x30`..`+0x3C` to `rdx+0x20`..`+0x2C`, `rcx+0x20`..`+0x2C` to `rdx+0x10`..`+0x1C`, `rcx+0x40` to `rdx+0x30` and `rcx+0x50` to `rdx+0x38`, and returns \"btCylinderShapeData\" (`01CCDD18`); consistent with btCylinderShape::serialize in Bullet (that string)",
+   "anchors": [
+    [
+     "00835E50",
+     "call"
+    ],
+    [
+     "00835E58",
+     "mov"
+    ],
+    [
+     "00835E70",
+     "mov"
+    ],
+    [
+     "00835E93",
+     "mov"
+    ],
+    [
+     "00835E96",
+     "lea"
+    ]
+   ]
+  },
+  {
+   "fn": "00835EB0",
+   "text": "takes m1, m2, m3 from three successive calls through `rcx`'s vtable `+0x50` and forms (m3 + dword `+0x30`) / dword `+0x20`, (m2 + `+0x34`) / `+0x24` and (m1 + `+0x38`) / `+0x28`; it runs the call at `00835EB0 + 0x86` with (`rcx`, `rdx`), then multiplies each quotient by the dword `+0x20`, `+0x24`, `+0x28` read after that call, subtracts m3, m2, m1 respectively, and stores the three floats with a fourth 0.0 as 16 bytes at `rcx+0x30`",
+   "anchors": [
+    [
+     "00835EE4",
+     "call"
+    ],
+    [
+     "00835F26",
+     "divss"
+    ],
+    [
+     "00835F36",
+     "call"
+    ],
+    [
+     "00835F5A",
+     "subss"
+    ],
+    [
+     "00835FA5",
+     "movdqa"
+    ]
+   ]
+  },
+  {
+   "fn": "00836000",
+   "text": "gets a part count from `rcx`'s vtable `+0x30` and, for each part, fetches vertex base, vertex count, vertex type, vertex stride, index base, index stride, face count and index type through vtable `+0x18`; for vertex type 0 (three floats) or 1 (three doubles narrowed to float) with index type 2 (three dwords per face) or 3 (three words per face) it builds for each face three vertices (x, y, z multiplied by the floats `rcx+0x10`, `+0x14`, `+0x18`, w 0) in a stack array and calls the `rdx` object's vtable `+8` with (array, part, face); other types skip the faces, and each part ends with `rcx`'s vtable `+0x28` called with the part",
+   "anchors": [
+    [
+     "0083602B",
+     "call"
+    ],
+    [
+     "008360CB",
+     "call"
+    ],
+    [
+     "00836154",
+     "cvtpd2ps"
+    ],
+    [
+     "0083645F",
+     "call"
+    ],
+    [
+     "0083656A",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008365C0",
+   "text": "stores the part count from `rcx`'s vtable `+0x30` at dword `rdx+0x18` and 0 at qword `rdx+0`; when it is nonzero it allocates a chunk of 0x30-byte records through `r8`'s vtable `+0x18`, stores the pointer from `r8`'s vtable `+0x30` at `rdx+0` and, for each part, fetches the mesh arrays through `rcx`'s vtable `+0x18`, writes the face count at record `+0x28` and the vertex count at `+0x2C`, zeroes record `+0` to `+0x27`, and copies index type 2 faces as three dwords (\"btIntIndexData\" `01CCDD48`, pointer at `+0x10`) or index type 3 faces as three words in 8-byte entries (\"btShortIntIndexTripletData\" `01CCDD58`, `+0x18`), and vertex type 0 as three floats in 16-byte entries (\"btVector3FloatData\" `01CCDA18`, `+0`) or type 1 as three qwords in 32-byte entries (\"btVector3DoubleData\" `01CCDD78`, `+8`), each block allocated and finalised through `r8`'s vtable `+0x18` and `+0x20` with 0x59415241, then calls `rcx`'s vtable `+0x28` with the part; it finalises the records as \"btMeshPartData\" (`01CCDD90`), copies dwords `rcx+0x10`..`+0x1C` to `rdx+8`..`+0x14` and returns \"btStridingMeshInterfaceData\" (`01CCDDA0`); consistent with btStridingMeshInterface::serialize in Bullet (those strings)",
+   "anchors": [
+    [
+     "008365E6",
+     "mov"
+    ],
+    [
+     "00836620",
+     "call"
+    ],
+    [
+     "008366BA",
+     "mov"
+    ],
+    [
+     "008367FB",
+     "call"
+    ],
+    [
+     "0083696A",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008369C0",
+   "text": "stores `00D7A9A0` at qword `[rcx]`; when qword `+0x30` is non-null it runs the call at `008369C0 + 0x32` on it if byte `+0x38` is nonzero, then zeroes `+0x30`; it sets byte `+0x38` to 1, zeroes qwords `+0x30` and `+0x24`, and tail-jumps at `+0x55` with `rcx`",
+   "anchors": [
+    [
+     "008369DE",
+     "mov"
+    ],
+    [
+     "008369F2",
+     "call"
+    ],
+    [
+     "008369FC",
+     "mov"
+    ],
+    [
+     "00836A04",
+     "mov"
+    ],
+    [
+     "00836A15",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00836A80",
+   "text": "copies the 16 bytes at `rcx+0x50` to `[rdx]` and the 16 bytes at `rcx+0x60` to `[r8]`",
+   "anchors": [
+    [
+     "00836A84",
+     "movdqa"
+    ],
+    [
+     "00836A88",
+     "movaps"
+    ],
+    [
+     "00836A8C",
+     "movdqa"
+    ]
+   ]
+  },
+  {
+   "fn": "00836AA0",
+   "text": "returns `al` = 1 when dword `rcx+0x48` equals 1, else 0",
+   "anchors": [
+    [
+     "00836AA4",
+     "sete"
+    ]
+   ]
+  },
+  {
+   "fn": "00836AB0",
+   "text": "copies the 16 bytes at `[rdx]` to `rcx+0x50` and the 16 bytes at `[r8]` to `rcx+0x60`, and stores 1 at dword `rcx+0x48`",
+   "anchors": [
+    [
+     "00836AB3",
+     "movdqa"
+    ],
+    [
+     "00836ABC",
+     "movdqa"
+    ],
+    [
+     "00836AC1",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00836AD0",
+   "text": "runs the call at `00836AD0 + 0x28` with the incoming registers, stores `01CCDEF8` at qword `[rcx]`, zeroes qwords `+0x50` and `+0x58`, stores `r8b` at byte `+0x60` and 0 at byte `+0x61`, sets dword `+8` to 0x15, calls `00836C60(rcx)` when `r9b` is nonzero, and returns `rcx`",
+   "anchors": [
+    [
+     "00836AF8",
+     "call"
+    ],
+    [
+     "00836B05",
+     "mov"
+    ],
+    [
+     "00836B12",
+     "mov"
+    ],
+    [
+     "00836B18",
+     "mov"
+    ],
+    [
+     "00836B27",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00836B50",
+   "text": "stores `01CCDEE0` at qword `[rcx]`, runs the call at `00836B50 + 0x1D` with (`rcx`, 0x18) when bit 0 of `dl` is set, and returns `rcx`",
+   "anchors": [
+    [
+     "00836B60",
+     "mov"
+    ],
+    [
+     "00836B63",
+     "test"
+    ],
+    [
+     "00836B6D",
+     "call"
+    ],
+    [
+     "00836B72",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00836B80",
+   "text": "stores `01CCDEE0` at qword `[rcx]`, runs the call at `00836B80 + 0x1D` with (`rcx`, 0x50) when bit 0 of `dl` is set, and returns `rcx`",
+   "anchors": [
+    [
+     "00836B90",
+     "mov"
+    ],
+    [
+     "00836B93",
+     "test"
+    ],
+    [
+     "00836B9D",
+     "call"
+    ],
+    [
+     "00836BA2",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00836BB0",
+   "text": "stores `01CCDEF8` at qword `[rcx]`; when byte `+0x61` is nonzero it calls the first vtable slot of the object at qword `+0x50` with 0 and runs the call at `00836BB0 + 0x39` on that object; it runs the call at `+0x42` on `rcx` and, when bit 0 of `edx` is set, the call at `+0x57` on `rcx` (bit 2 clear) or the call at `+0x67` with (`rcx`, 0x70) (bit 2 set); returns `rcx`",
+   "anchors": [
+    [
+     "00836BD0",
+     "mov"
+    ],
+    [
+     "00836BE2",
+     "call"
+    ],
+    [
+     "00836BF2",
+     "call"
+    ],
+    [
+     "00836C07",
+     "call"
+    ],
+    [
+     "00836C17",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00836C30",
+   "text": "stores `01CCDEE0` at qword `[rcx]`, runs the call at `00836C30 + 0x1D` with (`rcx`, 8) when bit 0 of `dl` is set, and returns `rcx`",
+   "anchors": [
+    [
+     "00836C40",
+     "mov"
+    ],
+    [
+     "00836C43",
+     "test"
+    ],
+    [
+     "00836C4D",
+     "call"
+    ],
+    [
+     "00836C52",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00836C60",
+   "text": "when byte `rcx+0x61` is nonzero calls the first vtable slot of the object at qword `+0x50` with 0 and runs the call at `00836C60 + 0x27` on it; it then gets a block from the call at `+0x36` with (0x100, 0x10), stores at qword `+0x50` the call at `+0x4D`'s result on it (0 for a null block), runs the call at `+0x73` with (that object, qword `+0x40`, byte `+0x60`, `rcx+0x20`, `rcx+0x30`) and sets byte `+0x61` to 1",
+   "anchors": [
+    [
+     "00836C81",
+     "call"
+    ],
+    [
+     "00836C96",
+     "call"
+    ],
+    [
+     "00836CB9",
+     "mov"
+    ],
+    [
+     "00836CD3",
+     "call"
+    ],
+    [
+     "00836CD8",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00836D20",
+   "text": "calls `rcx`'s vtable `+0x78` with `rcx` and the incoming `rdx`, and returns `rdx`",
+   "anchors": [
+    [
+     "00836D26",
+     "mov"
+    ],
+    [
+     "00836D2C",
+     "call"
+    ],
+    [
+     "00836D2F",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00836DE0",
+   "text": "builds at a stack slot the qwords `01CCDFD8`, `[rcx+0x40]` and `rdx`, and runs the call at `00836DE0 + 0x45` with (qword `rcx+0x50`, that slot), `r8` and `r9` passed through unchanged",
+   "anchors": [
+    [
+     "00836E0D",
+     "mov"
+    ],
+    [
+     "00836E12",
+     "mov"
+    ],
+    [
+     "00836E17",
+     "mov"
+    ],
+    [
+     "00836E25",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00836E50",
+   "text": "fetches, through the vtable `+0x18` of the object at qword `rcx+8` for part `edx`, the vertex base, stride, type, index base, index stride and index type; for face `r8d` it reads three indexes (words when the index type is 3, else dwords) and for each builds a vertex of three floats (vertex type 0) or three doubles narrowed to float (otherwise), multiplied by that object's floats `+0x10`, `+0x14`, `+0x18`, with w 0, in a stack array of three 16-byte entries in index order; it then calls the vtable `+8` of the object at qword `rcx+0x10` with (array, `edx`, `r8d`) and the first object's vtable `+0x28` with `edx`",
+   "anchors": [
+    [
+     "00836EBF",
+     "call"
+    ],
+    [
+     "00836EDA",
+     "movzx"
+    ],
+    [
+     "00836F47",
+     "cvtpd2ps"
+    ],
+    [
+     "008370E7",
+     "call"
+    ],
+    [
+     "008370F3",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00837580",
+   "text": "when qword `rcx+0x50` is non-null, allocates through `rdx`'s vtable `+0x18` a chunk of (that object's vtable `+0x18` result, 1), has the object's vtable `+8` fill the chunk's qword `+8` with `rdx`, and finalises through `rdx`'s vtable `+0x20` with (chunk, the returned value, 0x48564251, the object)",
+   "anchors": [
+    [
+     "008375A1",
+     "call"
+    ],
+    [
+     "008375B3",
+     "call"
+    ],
+    [
+     "008375C8",
+     "call"
+    ],
+    [
+     "008375D0",
+     "mov"
+    ],
+    [
+     "008375E7",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00837600",
+   "text": "when qword `rcx+0x58` is non-null, allocates through `rdx`'s vtable `+0x18` a chunk of (that object's vtable `+8` result, 1), has the object's vtable `+0x10` fill the chunk's qword `+8` with `rdx`, and finalises through `rdx`'s vtable `+0x20` with (chunk, the returned value, 0x50414D54, the object)",
+   "anchors": [
+    [
+     "00837621",
+     "call"
+    ],
+    [
+     "00837633",
+     "call"
+    ],
+    [
+     "00837648",
+     "call"
+    ],
+    [
+     "00837650",
+     "mov"
+    ],
+    [
+     "00837667",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00837680",
+   "text": "takes the three floats at the pointer from `rcx`'s vtable `+0x30`, and when the squared distance to the three floats at `rdx` exceeds the float at `00D841C0` (bits 0x34000000) runs the call at `00837680 + 0x55` with (`rcx`, `rdx`) and then `00836C60(rcx)`",
+   "anchors": [
+    [
+     "00837693",
+     "call"
+    ],
+    [
+     "008376B2",
+     "mulss"
+    ],
+    [
+     "008376C6",
+     "comiss"
+    ],
+    [
+     "008376D5",
+     "call"
+    ],
+    [
+     "008376DD",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "skipped": [
+  {
+   "fn": "00836CF0",
+   "why": "its whole work is the entry instruction (mov eax, 0x50) before ret"
+  },
+  {
+   "fn": "00836D00",
+   "why": "its whole work is the entry instruction (movss xmm0 from dword rcx+0x18) before ret"
+  },
+  {
+   "fn": "00836D10",
+   "why": "its whole work is the entry instruction (lea rax to the string \"BVHTRIANGLEMESH\") before ret"
+  },
+  {
+   "fn": "008376F0",
+   "why": "its whole work is the entry instruction (movss dword rcx+0x18 from xmm1) before ret"
+  }
+ ],
+ "notes": "Calls to functions outside this pack are cited by call site; after the first, a bare `+0xNN` in a row is a call site or tail jump of that row's function. Virtual calls are written as vtable slot offsets. 00836AA0 is rowed under rule 4: its result is produced by the interior sete. Doubts: 00836AD0 passes rdx, r8, r9 to the call at +0x28 unchanged; whether the callee uses them is not visible."
+}
