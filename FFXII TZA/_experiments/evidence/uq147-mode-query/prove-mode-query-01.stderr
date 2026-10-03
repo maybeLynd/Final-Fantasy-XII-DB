@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\uq147-summoner-cleanup-order\prove-mode-query-boundary.py", line 94, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\uq147-summoner-cleanup-order\prove-mode-query-boundary.py", line 83, in main
+    annotations=[v.validate(x) for x in sources];facts=derive(s,c,sel);controls=[]
+                                                       ~~~~~~^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\uq147-summoner-cleanup-order\prove-mode-query-boundary.py", line 40, in derive
+    need(len(ix)==37,'extra/uncovered helper instruction')
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\uq147-summoner-cleanup-order\prove-mode-query-boundary.py", line 8, in need
+    if not x:raise ValueError(m)
+             ^^^^^^^^^^^^^^^^^^^
+ValueError: extra/uncovered helper instruction

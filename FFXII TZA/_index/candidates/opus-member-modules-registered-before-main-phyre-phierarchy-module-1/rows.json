@@ -1,0 +1,267 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-fifteen-modules-registered-before-main-phyre-phierarchy-module-1.json",
+ "rows": [
+  {
+   "fn": "00877EA0",
+   "text": "stores 0 to qword `+0x10`, dwords `+0x18` and `+0`, copies dword `+0x14` to dword `+4` and the (now 0) dword `+0x18` to dword `+8`, stores 0 to dwords `+0x20`, `+0x24` and `+0x34` and qwords `+0x38`, `+0x40` and `+0x48`, 0xA to dword `+0x28` and 1 to qword `+0x2C`; returns `rcx`",
+   "anchors": [
+    [
+     "00877EA2",
+     "mov"
+    ],
+    [
+     "00877EAE",
+     "mov"
+    ],
+    [
+     "00877EBD",
+     "mov"
+    ],
+    [
+     "00877EC4",
+     "mov"
+    ],
+    [
+     "00877EDA",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00878070",
+   "text": "when `s` = qword `[rcx+0x40]` is non-null and byte `[s]` is non-zero, calls `00809054(s+8, 0x50, 8, 00878070)` and `00680200(qword [02EBA2A0], s)` (that qword read first); on every path stores 0 to qwords `[rcx+0x38]` and `[rcx+0x40]`",
+   "anchors": [
+    [
+     "00878095",
+     "cmp"
+    ],
+    [
+     "008780B5",
+     "call"
+    ],
+    [
+     "008780C1",
+     "call"
+    ],
+    [
+     "008780C9",
+     "mov"
+    ],
+    [
+     "008780D5",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00879130",
+   "text": "returns the record at `02EB9D20`, building it once under the thread-safe guard dword `02EB9D48` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before, `0080929C` after) by `0067FFB0(02EB9D20, 0x78, 0x64, 8, 'PCheckVisibleBoundsJob')` with exit routine `00808B90(008BDDA0)`",
+   "anchors": [
+    [
+     "0087915A",
+     "cmp"
+    ],
+    [
+     "00879169",
+     "call"
+    ],
+    [
+     "0087919A",
+     "call"
+    ],
+    [
+     "008791A6",
+     "call"
+    ],
+    [
+     "008791B3",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008791D0",
+   "text": "returns the record at `02EB9D50`, building it once under the thread-safe guard dword `02EB9D78` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before, `0080929C` after) by `0067FFB0(02EB9D50, 0x28, 0x64, 8, 'PMergeOctreeNodesJob')` with exit routine `00808B90(008BDDB0)`",
+   "anchors": [
+    [
+     "008791FA",
+     "cmp"
+    ],
+    [
+     "00879209",
+     "call"
+    ],
+    [
+     "0087923A",
+     "call"
+    ],
+    [
+     "00879246",
+     "call"
+    ],
+    [
+     "00879253",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00879270",
+   "text": "calls `006803D0(00879130())` and tail-jumps to `00680210(00879130())`",
+   "anchors": [
+    [
+     "00879274",
+     "call"
+    ],
+    [
+     "0087927C",
+     "call"
+    ],
+    [
+     "00879281",
+     "call"
+    ],
+    [
+     "0087928D",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "008792A0",
+   "text": "calls `006803D0(008791D0())` and tail-jumps to `00680210(008791D0())`",
+   "anchors": [
+    [
+     "008792A4",
+     "call"
+    ],
+    [
+     "008792AC",
+     "call"
+    ],
+    [
+     "008792B1",
+     "call"
+    ],
+    [
+     "008792BD",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "008792D0",
+   "text": "with `a` = qword `[rcx+0x18]` and `c0`, `c1`, `c2` = (float `[a+k]` + (float `[a+k]` + float `[a+0x18+k]`)) * 0.5 for `k` = 0, 4, 8: when `m` = qword `[a+0x10]` is null stores `c0`, `c1`, `c2` to floats `[rcx+8]`, `[rcx+0xC]`, `[rcx+0x10]`; otherwise stores `c1`*m0 + `c0`*m0xC + `c2`*m0x10 + m0x20, `c1`*m4 + `c0`*m0x1C + `c2`*m0x14 + m0x24 and `c1`*m8 + `c0`*m0x2C + `c2`*m0x18 + m0x28 there, where mN is float `[m+N]`",
+   "anchors": [
+    [
+     "008792F0",
+     "addss"
+    ],
+    [
+     "0087931C",
+     "mulss"
+    ],
+    [
+     "0087932B",
+     "je"
+    ],
+    [
+     "00879377",
+     "addss"
+    ],
+    [
+     "00879392",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "0087AE00",
+   "text": "calls `008786F0()`, `008780F0()`, `00878980()`, `00878630()` and `0087A8C0(02EBA2A8, 2)`; takes `p` = `00584740(0x28)` and, when non-null, calls `0067FFB0(p, 0x288, 0xA, 8, 'POctreeChildren')`; stores `p` to qword `02EBA2A0` and returns 0",
+   "anchors": [
+    [
+     "0087AE0D",
+     "call"
+    ],
+    [
+     "0087AE2D",
+     "call"
+    ],
+    [
+     "0087AE37",
+     "call"
+    ],
+    [
+     "0087AE64",
+     "call"
+    ],
+    [
+     "0087AE6A",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0087AE80",
+   "text": "when `o` = qword `02EBA2A0` is non-null calls `00680030(o)` and `00584730(o)` and stores 0 there; for the count/pointer pairs (dword `02EBA2A8`, qword `02EBA2B0`) and (dword `02EBA2C8`, qword `02EBA2D0`) whose dword is non-zero, calls `00584730` on the qword when it is non-null and bit `0x80000000` of the dword is clear, and stores 0 to both; then calls `008792A0()` and `00879270()` and returns 0",
+   "anchors": [
+    [
+     "0087AEA5",
+     "call"
+    ],
+    [
+     "0087AEAE",
+     "call"
+    ],
+    [
+     "0087AEDA",
+     "call"
+    ],
+    [
+     "0087AF0B",
+     "call"
+    ],
+    [
+     "0087AF22",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008BDDA0",
+   "text": "tail-jumps to `00680030(02EB9D20)`",
+   "anchors": [
+    [
+     "008BDDA7",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "008BDDB0",
+   "text": "tail-jumps to `00680030(02EB9D50)`",
+   "anchors": [
+    [
+     "008BDDB7",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "00877EE0": "too large for one precise sentence (325 B, 67 instructions)",
+  "008780F0": "too large for one precise sentence (1341 B, 256 instructions)",
+  "008786F0": "too large for one precise sentence (650 B, 123 instructions)",
+  "00878980": "too large for one precise sentence (751 B, 147 instructions)",
+  "0087A8C0": "too large for one precise sentence (1337 B, 276 instructions)"
+ },
+ "missing": [],
+ "corrections": [],
+ "mode": "member",
+ "family": "Phyre PHierarchy module",
+ "method": "The page declares the family `Phyre PHierarchy module` (a classification family: ordinary functions grouped by module, not template copies). engine_explained did not credit these members. Another local Claude session (repos-91, session local-ee-drafter) drafted one sentence and 1-5 interior anchors per body from OPUS's pack (`mem_pack.py`, filtered against engine_explained's own set); OPUS checked every row mechanically with `interior_ingest.py` (member mode). A second local agent, not the drafter, then read every one of the 154 rows of this batch against the disassembly: 150 stood, 4 rows were corrected in 4 clauses (three signed compares worded above/below, one operand grouping). OPUS confirmed corrections at the bytes on a sample; they are listed below. Neither agent is an independent reviewer: the non-author check is SWE2-AUDIT-SPEC's."
+}

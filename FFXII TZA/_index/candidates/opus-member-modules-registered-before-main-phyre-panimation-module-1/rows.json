@@ -1,0 +1,975 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-fifteen-modules-registered-before-main-phyre-panimation-module-1.json",
+ "rows": [
+  {
+   "fn": "005A5E50",
+   "text": "when `r8d` is non-zero, copies `r8d` 16-byte records from `rdx` to `rcx`: qword `+0` is copied, and with `p` = qword `+8` of the source minus its bit `0x1`, qword `+8` of the destination gets a copy of the zero-terminated string at `p` in `0017D260(len+1, 2)` (`00861EBA`), or 0 when `p` is zero or the allocation fails; a null destination address (only `rcx` null on the first record) writes nothing and does not advance the source",
+   "anchors": [
+    [
+     "005A5E96",
+     "je"
+    ],
+    [
+     "005A5E9C",
+     "mov"
+    ],
+    [
+     "005A5EA9",
+     "sub"
+    ],
+    [
+     "005A5EC8",
+     "call"
+    ],
+    [
+     "005A5EE7",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005A65B0",
+   "text": "returns the record at `02CB2950`, building it once under the thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before and `0080929C` after the one-time body, which registers an exit routine with `00808B90`): `006B6820(02CB2950, 'PAnimationKeyDataType', 0x18, 8, 006CD4C0, 005BF070)`, qword `02CB2950` = `00D323B0`, exit routine `008A97B0`",
+   "anchors": [
+    [
+     "005A65DA",
+     "cmp"
+    ],
+    [
+     "005A65E9",
+     "call"
+    ],
+    [
+     "005A662A",
+     "call"
+    ],
+    [
+     "005A6636",
+     "mov"
+    ],
+    [
+     "005A6651",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005A6740",
+   "text": "with `d` = `rdx` and `s` = qword `[d+0x60]` minus its bit `0x1`, when `s` is non-zero and not empty it hashes `h` = 0x7B5, then `h`*0x21 + (byte AND 0x1F) per byte, takes its length `n`, and searches the tree with sentinel `rcx+0x18` from qword `[rcx+0x30]` for the key (dword `+0x18` = `h`, dword `+0x1C` = `n`, `memcmp` (thunk `00861ED2`) of `s` with qword `+0x20` over `n` bytes; positive goes to qword `[node]`, negative to qword `[node+8]`); on a hit it stores `d` to qword `[qword [rcx+8] + 8*i]` with `i` = (node - qword `[rcx+0x10]`) / 0x28 when that slot is 0; then it walks the nodes below `d` in pre-order (first child qword `+0x10`, next sibling qword `+0`, parent qword `+8`, never leaving `d`), returning the first non-zero `005CC7D0(rcx, node)`, else 0",
+   "anchors": [
+    [
+     "005A6793",
+     "imul"
+    ],
+    [
+     "005A67ED",
+     "cmp"
+    ],
+    [
+     "005A681E",
+     "call"
+    ],
+    [
+     "005A6868",
+     "mov"
+    ],
+    [
+     "005A6896",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005A6900",
+   "text": "with `f` = `rcx`, `m` = `rdx`, `l` = `r8` and `n` = (`l` - `f`) / 0x18: when `n` is greater than 0x28 (signed), with `s` = (`n` + 1) / 8 elements of 0x18 bytes, calls `005A6D40` on (`f`, `f`+`s`, `f`+2`s`), (`m`-`s`, `m`, `m`+`s`) and (`l`-2`s`, `l`-`s`, `l`) and tail-jumps to it with (`f`+`s`, `m`, `l`-`s`); otherwise tail-jumps to it with (`f`, `m`, `l`); `r9` is passed through as the fourth argument each time",
+   "anchors": [
+    [
+     "005A6934",
+     "cmp"
+    ],
+    [
+     "005A6981",
+     "call"
+    ],
+    [
+     "005A6996",
+     "call"
+    ],
+    [
+     "005A69B0",
+     "call"
+    ],
+    [
+     "005A69DF",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005A6A00",
+   "text": "insertion-sorts the 0x18-byte elements in [`rcx`, `rdx`) by `key(e)` = (dword `+0x14` of qword `[e]`, 0 when that qword is null) shifted left 24, OR dword `[e+0xC]`, compared unsigned: for each element after the first it copies the element to a stack copy `t`; when `key(t)` is below `key(first)` it moves [first, element) up by 0x18 bytes with `memmove` (IAT slot `008C2A40`) and stores `t` at the first element; otherwise it moves each preceding element up one place while `key(t)` is below its key and stores `t` into the place left free; an empty range writes nothing",
+   "anchors": [
+    [
+     "005A6A03",
+     "je"
+    ],
+    [
+     "005A6A93",
+     "cmp"
+    ],
+    [
+     "005A6AA3",
+     "call"
+    ],
+    [
+     "005A6AEE",
+     "cmp"
+    ],
+    [
+     "005A6B0E",
+     "movups"
+    ]
+   ]
+  },
+  {
+   "fn": "005A6B40",
+   "text": "with base `rcx`, `n` = (`rdx` - `rcx`) / 0x18 and `key(e)` = (dword `+0x14` of qword `[e]`, 0 when that qword is null) shifted left 24, OR dword `[e+0xC]`, compared unsigned, does nothing when `n` is less than 2 (signed); otherwise for each `i` from `n`/2 - 1 down to 0 it copies element `i` to a value `v` and, with hole `h` = `i`, while `h` is less than `q` (signed) = (`n` - 1) / 2 takes child `c` = 2`h` + 2 (or `c` - 1 when `key(c)` is below `key(c-1)`), copies element `c` into `h` and sets `h` = `c`; when `h` then equals `q` and bit `0x1` of `n` is clear it copies element `n` - 1 into `h` and sets `h` = `n` - 1; then while `h` is greater than `i` (signed) and `key(p)` is below `key(v)` for `p` = (`h` - 1) / 2 it copies element `p` into `h` and sets `h` = `p`, and finally stores `v` into element `h`",
+   "anchors": [
+    [
+     "005A6B6E",
+     "jl"
+    ],
+    [
+     "005A6C1C",
+     "cmp"
+    ],
+    [
+     "005A6C67",
+     "movups"
+    ],
+    [
+     "005A6CD0",
+     "cmp"
+    ],
+    [
+     "005A6D07",
+     "movups"
+    ]
+   ]
+  },
+  {
+   "fn": "005A6D40",
+   "text": "orders the three 0x18-byte elements `a` = `rcx`, `b` = `rdx`, `c` = `r8` by `key(e)` = (dword `+0x14` of qword `[e]`, 0 when that qword is null) shifted left 24, OR dword `[e+0xC]`, compared unsigned: swaps `a` and `b` when `key(b)` is below `key(a)`; then, when `key(c)` is below `key(b)`, swaps `b` and `c` and again swaps `a` and `b` when `key(b)` is below `key(a)`",
+   "anchors": [
+    [
+     "005A6D77",
+     "cmp"
+    ],
+    [
+     "005A6D87",
+     "movups"
+    ],
+    [
+     "005A6DCE",
+     "cmp"
+    ],
+    [
+     "005A6DE0",
+     "movups"
+    ],
+    [
+     "005A6E2A",
+     "movups"
+    ]
+   ]
+  },
+  {
+   "fn": "005A7220",
+   "text": "with base `rcx` of 0x18-byte elements, hole `h` = `rdx` (also the top), count `n` = `r8`, value at `r9` and `key(e)` = (dword `+0x14` of qword `[e]`, 0 when that qword is null) shifted left 24, OR dword `[e+0xC]`, compared unsigned: while `h` is less than `q` (signed) = (`n` - 1) / 2 takes child `c` = 2`h` + 2 (or `c` - 1 when `key(c)` is below `key(c-1)`), copies element `c` into `h` and sets `h` = `c`; when `h` then equals `q` and bit `0x1` of `n` is clear copies element `n` - 1 into `h` and sets `h` = `n` - 1; then while `h` is greater than the top (signed) and `key(p)` is below `key(value)` for `p` = (`h` - 1) / 2 copies element `p` into `h` and sets `h` = `p`; finally copies the value into element `h`",
+   "anchors": [
+    [
+     "005A7257",
+     "jge"
+    ],
+    [
+     "005A729C",
+     "cmp"
+    ],
+    [
+     "005A72E7",
+     "movups"
+    ],
+    [
+     "005A7340",
+     "cmp"
+    ],
+    [
+     "005A738F",
+     "movups"
+    ]
+   ]
+  },
+  {
+   "fn": "005A73B0",
+   "text": "for the 0x18-byte elements in [`rcx`, `rdx`), while at least two remain, takes the last element `l` into a stack copy `t`, copies the first element over `l` and calls `005A7220(rcx, 0, (l - rcx) / 0x18, &t, r8)`, then drops `l` from the range",
+   "anchors": [
+    [
+     "005A73F5",
+     "jl"
+    ],
+    [
+     "005A7418",
+     "movups"
+    ],
+    [
+     "005A742B",
+     "movups"
+    ],
+    [
+     "005A7451",
+     "call"
+    ],
+    [
+     "005A747C",
+     "jge"
+    ]
+   ]
+  },
+  {
+   "fn": "005A74A0",
+   "text": "sorts the 0x18-byte elements in [`f` = `rcx`, `l` = `rdx`) with depth budget `d` = `r8` and `r9` passed through: while more than 0x20 elements remain, when `d` is at most 0 (signed) it calls `005A6B40(f, l, r9)` and `005A73B0(f, l, r9)` and returns; otherwise it calls `005A6E40(&pair, f, l, r9)`, sets `d` = `d`/2 + `d`/4 (signed), recurses into the smaller of [`f`, `pair.lo`) and [`pair.hi`, `l`) with `d` and continues with the other; when two or more elements are left it calls `005A6A00(f, l, r9)`",
+   "anchors": [
+    [
+     "005A74E5",
+     "jle"
+    ],
+    [
+     "005A7507",
+     "call"
+    ],
+    [
+     "005A7581",
+     "call"
+    ],
+    [
+     "005A75D7",
+     "call"
+    ],
+    [
+     "005A760E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005A7620",
+   "text": "searches the 0x38-byte elements of qword `[rcx+8]` from index `r8d` while below dword `[rcx]` AND 0x7FFFFFFF for one matching `rdx` in dword `+0x20`, qwords `+0`, `+8`, `+0x10` and `+0x18`, the string at qword `+0x28` minus its bit `0x1` (the same pointer, or both non-null and equal bytes up to the terminator) and dword `+0x30`, and returns its index, or -1 when none matches",
+   "anchors": [
+    [
+     "005A765A",
+     "cmp"
+    ],
+    [
+     "005A7667",
+     "cmp"
+    ],
+    [
+     "005A76A8",
+     "cmp"
+    ],
+    [
+     "005A76C8",
+     "sub"
+    ],
+    [
+     "005A76DB",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005A7720",
+   "text": "searches the tree whose sentinel is `rcx`, starting at qword `[rcx+0x18]`, for the node whose key (qword `[node+0x18]`) matches the record at qword `[rdx]`, comparing in order dword `+0x30` (unsigned), dword `+0x20` (signed) and qwords `+8`, `+0`, `+0x18` and `+0x10` (unsigned) and then the zero-terminated strings at qword `+0x28` minus its bit `0x1` byte by byte (unsigned); at each node it goes to qword `[node]` when the node's key is larger and to qword `[node+8]` when smaller, returns the node on a full match and returns 0 on reaching `rcx`",
+   "anchors": [
+    [
+     "005A7747",
+     "cmp"
+    ],
+    [
+     "005A7767",
+     "cmp"
+    ],
+    [
+     "005A77A6",
+     "cmp"
+    ],
+    [
+     "005A7813",
+     "cmp"
+    ],
+    [
+     "005A7832",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005A7850",
+   "text": "searches the tree whose sentinel is `rcx`, starting at qword `[rcx+0x18]`, for the node whose key (at `node+0x18`) matches the record at `rdx`, comparing in order dwords `+0`, `+0x10`, `+0x18`, `+0x20`, `+0x28`, `+0x30` and `+0x34` (unsigned) and then the zero-terminated strings at qword `+8` byte by byte (unsigned); at each node it goes to qword `[node]` when the node's key is larger and to qword `[node+8]` when smaller, returns the node on a full match and returns 0 on reaching `rcx`",
+   "anchors": [
+    [
+     "005A787D",
+     "cmp"
+    ],
+    [
+     "005A78B5",
+     "mov"
+    ],
+    [
+     "005A7926",
+     "cmp"
+    ],
+    [
+     "005A7946",
+     "cmp"
+    ],
+    [
+     "005A7965",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005A7990",
+   "text": "searches the tree whose sentinel is `rcx`, starting at qword `[rcx+0x18]`: for each node `n` with key `k` = `n` + 0x18 it orders `k` against `rdx` by dword `+0` and then dword `+4` (unsigned), and when both match by `memcmp` (thunk `00861ED2`) of qword `[rdx+8]` and qword `[k+8]` over dword `[k+4]` bytes; it returns `n` on a 0 result, otherwise moves to qword `[n]` when the result is positive (`k` larger in the dword compares, the bytes at qword `[rdx+8]` larger in the `memcmp`) or qword `[n+8]` when negative, and returns 0 on reaching `rcx`",
+   "anchors": [
+    [
+     "005A79CD",
+     "cmp"
+    ],
+    [
+     "005A79E5",
+     "cmp"
+    ],
+    [
+     "005A7A02",
+     "call"
+    ],
+    [
+     "005A7A11",
+     "mov"
+    ],
+    [
+     "005A7A15",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005A7BF0",
+   "text": "inserts node `rdx` into the tree whose sentinel is `rcx`: sets bit `0x1` of qword `[rdx+0x10]` and stores `rcx` to qwords `[rdx]` and `[rdx+8]`; from qword `[rcx+0x18]` it compares each node's key at `+0x18` with `rdx+0x18` by dwords `+0`, `+0x10`, `+0x18`, `+0x20`, `+0x28`, `+0x30` and `+0x34` (unsigned) and then the zero-terminated strings at qword `+8` byte by byte (positive when the node's is larger); on a full match it returns that node; otherwise it goes to qword `[node]` when positive or qword `[node+8]` when negative; on reaching `rcx` it stores the last node (or `rcx+0x18` when the tree is empty) with bit `0x1` to qword `[rdx+0x10]`, stores `rdx` into the child slot taken (qword `[rcx+0x18]` for an empty tree) and returns 0",
+   "anchors": [
+    [
+     "005A7C17",
+     "add"
+    ],
+    [
+     "005A7C1D",
+     "mov"
+    ],
+    [
+     "005A7C50",
+     "cmp"
+    ],
+    [
+     "005A7D23",
+     "cmp"
+    ],
+    [
+     "005A7D63",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005A7D90",
+   "text": "inserts node `rdx` into the tree whose sentinel is `rcx`: sets bit `0x1` of qword `[rdx+0x10]` and stores `rcx` to qwords `[rdx]` and `[rdx+8]`; from qword `[rcx+0x18]` it compares each node's key at `+0x18` with `rdx+0x18` by dword `+0` and then dword `+4` (unsigned, positive when the node's is larger) and then by `memcmp` (thunk `00861ED2`) of qword `+8` of `rdx`'s key against the node's over that dword `+4` length; on a 0 result it returns that node; otherwise it goes to qword `[node]` when positive or qword `[node+8]` when negative; on reaching `rcx` it stores the last node (or `rcx+0x18` when the tree is empty) with bit `0x1` to qword `[rdx+0x10]`, stores `rdx` into the child slot taken (qword `[rcx+0x18]` for an empty tree) and returns 0",
+   "anchors": [
+    [
+     "005A7DC0",
+     "add"
+    ],
+    [
+     "005A7DC6",
+     "mov"
+    ],
+    [
+     "005A7DFE",
+     "cmp"
+    ],
+    [
+     "005A7E34",
+     "call"
+    ],
+    [
+     "005A7E5F",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005A9480",
+   "text": "calls `006AAA20(rcx+8, 02CAD140)`; stores `00D31898` to qword `[rcx]`, `00D31620` to qword `+0x38`, `00D31768` to qword `+0x70` and `00D31880` to qword `+0x90`; stores 0 to qwords `+0x20`, `+0x30`, `+0x48`, `+0x58`, `+0x68`, `+0x80`, `+0x88`, `+0xA0`, `+0xB0`, `+0xB8`, `+0xC0`, `+0xD8`, `+0xF0`, `+0xF8` and `+0x100` and to dwords `+0x28`, `+0x40`, `+0x50`, `+0x60`, `+0x78`, `+0x98`, `+0xA8`, `+0xC8`, `+0xD0`, `+0xE0` and `+0xE8`; returns `rcx`",
+   "anchors": [
+    [
+     "005A9494",
+     "call"
+    ],
+    [
+     "005A94A2",
+     "mov"
+    ],
+    [
+     "005A94C5",
+     "mov"
+    ],
+    [
+     "005A94F3",
+     "mov"
+    ],
+    [
+     "005A9552",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005A9560",
+   "text": "stores `rdx` to qword `[rcx]` and self-links the six qwords `rcx+0x10`..`rcx+0x38` to `h` = `rcx+0x10`; with `n` = dword `[rdx+0x10]` AND 0x7FFFFFFF stores `a` = `0017D260(n*0x50, 8)` to qword `[rcx+8]`; when `a` is non-null, for each `i` below `n` that is still below that count, with `s` = qword `[rdx+0x18]` + 0x38*`i` non-null and node `e` = `a` + 0x50*`i`, it self-links qwords `e`, `e+8` and `e+0x10`, calls `005C5BC0(e+0x18, s)`, then `0067F700(h, e)` when `005A7BF0(h, e)` returns 0, else `005CDAA0(3, 00D32930, qword [s+0x28] minus its bit `0x1`)` ('Hash collision inserting animation set target lookup entry...'); returns `rcx`",
+   "anchors": [
+    [
+     "005A9597",
+     "mov"
+    ],
+    [
+     "005A95D0",
+     "mov"
+    ],
+    [
+     "005A9621",
+     "call"
+    ],
+    [
+     "005A963C",
+     "call"
+    ],
+    [
+     "005A965D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005A98B0",
+   "text": "when bit `0x80000000` of dword `[rcx]` is clear and `p` = qword `[rcx+8]` is non-null, stores `00D312F0` to qwords `+0x10`, `+0x38` and `+0x58` of each of the dword AND 0x7FFFFFFF elements at `p` (stride 0x80) and calls `00584730(p)`; on every path stores 0 to qword `[rcx+8]` and dword `[rcx]`",
+   "anchors": [
+    [
+     "005A98CD",
+     "je"
+    ],
+    [
+     "005A98DA",
+     "je"
+    ],
+    [
+     "005A98F0",
+     "mov"
+    ],
+    [
+     "005A990B",
+     "call"
+    ],
+    [
+     "005A9917",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005A9D80",
+   "text": "stores 0 to qword `[rcx+0x48]` and dword `[rcx+0x60]`; calls `00584730(qword [rcx+0x58])` when bit `0x80000000` of dword `[rcx+0x50]` is clear and that qword is non-null, then stores 0 to qword `+0x58`, dword `+0x50` and qword `+0x38`; finally calls `00584730(qword [rcx+0x28])` when that qword is non-null with bit `0x1` clear",
+   "anchors": [
+    [
+     "005A9D99",
+     "mov"
+    ],
+    [
+     "005A9DAA",
+     "je"
+    ],
+    [
+     "005A9DB5",
+     "call"
+    ],
+    [
+     "005A9DC2",
+     "mov"
+    ],
+    [
+     "005A9DD7",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005A9E70",
+   "text": "stores 0 to qword `[rcx]`; calls `00584730(qword [rcx+0x30])` when that qword is non-null with bit `0x1` clear; calls `005B7FD0(qword [rcx+0x20], dword [rcx+0x18] AND 0x7FFFFFFF)` when bit `0x80000000` of that dword is clear and stores 0 to qword `+0x20` and dword `+0x18`; calls `00584730(qword [rcx+0x10])` when bit `0x80000000` of dword `[rcx+8]` is clear and that qword is non-null, and stores 0 to qword `+0x10` and dword `+8`",
+   "anchors": [
+    [
+     "005A9E89",
+     "mov"
+    ],
+    [
+     "005A9E9D",
+     "call"
+    ],
+    [
+     "005A9EB9",
+     "call"
+    ],
+    [
+     "005A9EDB",
+     "call"
+    ],
+    [
+     "005A9EE5",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005A9F10",
+   "text": "stores `00D31880` to qword `[rcx]`, calls `00584730(qword [rcx+0x68])` and stores 0 to qword `+0x28`; then for each count/pointer pair (dword `+N`, qword `+N+8`) with `N` = 0x58, 0x40, 0x18 and 8, calls `00584730` on the qword when bit `0x80000000` of the dword is clear and the qword is non-null, and stores 0 to both",
+   "anchors": [
+    [
+     "005A9F2E",
+     "mov"
+    ],
+    [
+     "005A9F35",
+     "call"
+    ],
+    [
+     "005A9F3D",
+     "mov"
+    ],
+    [
+     "005A9F56",
+     "call"
+    ],
+    [
+     "005A9FC6",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005A9FE0",
+   "text": "calls `00584730(qword [rcx+0x28])` when bit `0x80000000` of dword `[rcx+0x20]` is clear and that qword is non-null, and stores 0 to both; calls `005B7E10(qword [rcx+0x18], dword [rcx+0x10] AND 0x7FFFFFFF)` when bit `0x80000000` of that dword is clear, and stores 0 to both; calls `00584730(qword [rcx+8])` when bit `0x80000000` of dword `[rcx]` is clear, its low 31 bits are above 1 and the qword is non-null, and stores 0 to both",
+   "anchors": [
+    [
+     "005AA00C",
+     "call"
+    ],
+    [
+     "005AA031",
+     "call"
+    ],
+    [
+     "005AA04F",
+     "cmp"
+    ],
+    [
+     "005AA05D",
+     "call"
+    ],
+    [
+     "005AA067",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005AA1D0",
+   "text": "stores `00D31620` to qword `[rcx]`; calls `00584730(qword [rcx+0x30])` when bit `0x80000000` of dword `[rcx+0x28]` is clear and that qword is non-null, and stores 0 to both; stores `00D315B0` to qword `[rcx]`; does the same for qword `+0x20` and dword `+0x18`; then stores `00D312F0` to qword `[rcx]`",
+   "anchors": [
+    [
+     "005AA1EE",
+     "mov"
+    ],
+    [
+     "005AA206",
+     "call"
+    ],
+    [
+     "005AA21C",
+     "mov"
+    ],
+    [
+     "005AA234",
+     "call"
+    ],
+    [
+     "005AA248",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005AA450",
+   "text": "with `n` = dword `[rdx]` AND 0x7FFFFFFF, sets `p` = 0 when `n` is 0, else `p` = `0017D260(n*0x38, 8)` and, when that is non-null, calls `005A5BD0(p, qword [rdx+8], n)`; calls `005B7E10(old, dword [rcx] AND 0x7FFFFFFF)` on the old qword `[rcx+8]` when it is not `p` and bit `0x80000000` of dword `[rcx]` is clear; stores `n` to dword `[rcx]` and `p` to qword `[rcx+8]` and returns `rcx`",
+   "anchors": [
+    [
+     "005AA478",
+     "jbe"
+    ],
+    [
+     "005AA483",
+     "call"
+    ],
+    [
+     "005AA499",
+     "call"
+    ],
+    [
+     "005AA4B8",
+     "call"
+    ],
+    [
+     "005AA4CC",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005AA4E0",
+   "text": "with `n` = dword `[rdx]` AND 0x7FFFFFFF, sets `p` = 0 when `n` is 0, else `p` = `0017D260(n*0x58, 8)` and, when that is non-null, calls `005A5CC0(p, qword [rdx+8], n)`; calls `005B7FD0(old, dword [rcx] AND 0x7FFFFFFF)` on the old qword `[rcx+8]` when it is not `p` and bit `0x80000000` of dword `[rcx]` is clear; stores `n` to dword `[rcx]` and `p` to qword `[rcx+8]` and returns `rcx`",
+   "anchors": [
+    [
+     "005AA508",
+     "jbe"
+    ],
+    [
+     "005AA513",
+     "call"
+    ],
+    [
+     "005AA529",
+     "call"
+    ],
+    [
+     "005AA548",
+     "call"
+    ],
+    [
+     "005AA55C",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005AA570",
+   "text": "with `n` = dword `[rdx]` AND 0x7FFFFFFF, sets `p` = 0 when `n` is 0, else `p` = `0017D260(n*0x98, 8)` and, when that is non-null, calls `005A5DC0(p, qword [rdx+8], n)`; calls `00584730` on the old qword `[rcx+8]` when it is not `p`, is non-null and bit `0x80000000` of dword `[rcx]` is clear; stores `n` to dword `[rcx]` and `p` to qword `[rcx+8]` and returns `rcx`",
+   "anchors": [
+    [
+     "005AA598",
+     "jbe"
+    ],
+    [
+     "005AA5A6",
+     "call"
+    ],
+    [
+     "005AA5BC",
+     "call"
+    ],
+    [
+     "005AA5DA",
+     "call"
+    ],
+    [
+     "005AA5EE",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005AA600",
+   "text": "with `n` = dword `[rdx]` AND 0x7FFFFFFF takes `p` = 0 when `n` is 0, else `0017D260(n*0x10, 8)` filled by `005A5E50(p, qword [rdx+8], n)` when non-null; when the old qword `[rcx+8]` differs from `p` and bit `0x80000000` of dword `[rcx]` is clear it calls `005B8050(old qword, dword [rcx] AND 0x7FFFFFFF)`; stores `n` to dword `[rcx]` and `p` to qword `[rcx+8]`; returns `rcx`",
+   "anchors": [
+    [
+     "005AA622",
+     "and"
+    ],
+    [
+     "005AA633",
+     "call"
+    ],
+    [
+     "005AA649",
+     "call"
+    ],
+    [
+     "005AA668",
+     "call"
+    ],
+    [
+     "005AA67C",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005AA690",
+   "text": "with `n` = dword `[rdx]` AND 0x7FFFFFFF, sets `p` = 0 when `n` is 0, else `p` = `0017D260(n*0x80, 8)` and, when that is non-null, calls `005A5F10(p, qword [rdx+8], n)`; then calls `005C9910(rcx, p, n)` and returns `rcx`",
+   "anchors": [
+    [
+     "005AA6B8",
+     "jbe"
+    ],
+    [
+     "005AA6C3",
+     "call"
+    ],
+    [
+     "005AA6D9",
+     "call"
+    ],
+    [
+     "005AA6E7",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005AA710",
+   "text": "copies qwords `+8`, `+0x10`, `+0x18` and `+0x20` of `rdx` to `rcx`, calls `005AA690(rcx+0x28, rdx+0x28)`, `005AA7D0(rcx+0x38, rdx+0x38)` and `005AA3C0(rcx+0x60, rdx+0x60)`, copies dword `+0x78` and qwords `+0x80` and `+0x88`, calls `005AA970(rcx+0x90, rdx+0x90)` and returns `rcx`",
+   "anchors": [
+    [
+     "005AA73A",
+     "mov"
+    ],
+    [
+     "005AA75E",
+     "call"
+    ],
+    [
+     "005AA76B",
+     "call"
+    ],
+    [
+     "005AA778",
+     "call"
+    ],
+    [
+     "005AA7AD",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005AA7D0",
+   "text": "copies dword `[rdx+8]` to dword `[rcx+8]` and qword `[rdx+0x10]` to qword `[rcx+0x10]`; with `n` = dword `[rdx+0x18]` AND 0x7FFFFFFF takes `p` = `006BC4C0(n, qword [rdx+0x20])`, calls `00584730` on the old qword `[rcx+0x20]` when it is not `p`, is non-null and bit `0x80000000` of dword `[rcx+0x18]` is clear, stores `p` to qword `[rcx+0x20]` and `n` to dword `[rcx+0x18]`, and returns `rcx`",
+   "anchors": [
+    [
+     "005AA7E5",
+     "mov"
+    ],
+    [
+     "005AA7EC",
+     "mov"
+    ],
+    [
+     "005AA7FD",
+     "call"
+    ],
+    [
+     "005AA820",
+     "call"
+    ],
+    [
+     "005AA831",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005AA8C0",
+   "text": "copies qword `[rdx]` to qword `[rcx]`; with `n` = dword `[rdx+8]` AND 0x7FFFFFFF takes `p` = `006BC4C0(n, qword [rdx+0x10])`, calls `00584730` on the old qword `[rcx+0x10]` when it is not `p`, is non-null and bit `0x80000000` of dword `[rcx+8]` is clear, and stores `p` and `n` there; calls `005AA4E0(rcx+0x18, rdx+0x18)`, copies dwords `+0x28` and `+0x2C`, and when `rcx+0x30` is not `rdx+0x30` calls `001EAD40(rcx+0x30, qword [rdx+0x30] minus its bit `0x1`)`; returns `rcx`",
+   "anchors": [
+    [
+     "005AA8DA",
+     "mov"
+    ],
+    [
+     "005AA8ED",
+     "call"
+    ],
+    [
+     "005AA910",
+     "call"
+    ],
+    [
+     "005AA924",
+     "call"
+    ],
+    [
+     "005AA94E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005AA970",
+   "text": "calls `005AA570(rcx+8, rdx+8)`; with `n` = dword `+0x18` of `rdx` AND 0x7FFFFFFF takes `p` = `00693C40(n, qword [rdx+0x20])`, frees the old qword `+0x20` of `rcx` (`00584730`) when it is not `p`, is non-null and bit `0x80000000` of dword `+0x18` is clear, and stores `n` and `p` there; copies qwords `+0x28` and `+0x30` and dword `+0x38`; does the same for dword `+0x40`/qword `+0x48` with `005AD230`, copies dword `+0x50`, and for dword `+0x58`/qword `+0x60` with `006BC4C0`; copies qwords `+0x68` and `+0x70` and returns `rcx`",
+   "anchors": [
+    [
+     "005AA992",
+     "call"
+    ],
+    [
+     "005AA9A4",
+     "call"
+    ],
+    [
+     "005AA9C7",
+     "call"
+    ],
+    [
+     "005AA9F6",
+     "call"
+    ],
+    [
+     "005AAA38",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005AAB10",
+   "text": "copies dword `[rdx+8]` and qword `[rdx+0x10]` to the same offsets of `rcx`; with `n` = dword `[rdx+0x18]` AND 0x7FFFFFFF takes `p` = `00664F80(n, qword [rdx+0x20])`, calls `00584730` on the old qword `[rcx+0x20]` when it is not `p`, is non-null and bit `0x80000000` of dword `[rcx+0x18]` is clear, and stores `p` and `n` there; copies qword `+0x28`, calls `005AA600(rcx+0x30, rdx+0x30)` and returns `rcx`",
+   "anchors": [
+    [
+     "005AAB2A",
+     "mov"
+    ],
+    [
+     "005AAB45",
+     "call"
+    ],
+    [
+     "005AAB68",
+     "call"
+    ],
+    [
+     "005AAB80",
+     "mov"
+    ],
+    [
+     "005AAB84",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005AC8C0",
+   "text": "stores `00D31898` to qword `[rcx]`, calls `005A9F10(rcx+0x90)`, stores `00D312F0` to qword `[rcx+0x70]`, and calls `005AA1D0(rcx+0x38)`, `005A98B0(rcx+0x28)` and `006AAA50(rcx+8)`; when bit `0x1` of `dl` is set it calls `00584730(rcx)` if bit `0x4` of `dl` is clear, or `0016D6A0(rcx, 0x108)` if it is set; returns `rcx`",
+   "anchors": [
+    [
+     "005AC8E0",
+     "mov"
+    ],
+    [
+     "005AC8EA",
+     "call"
+    ],
+    [
+     "005AC8F7",
+     "mov"
+    ],
+    [
+     "005AC913",
+     "call"
+    ],
+    [
+     "005AC938",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005ACA40",
+   "text": "stores `00D317D8` to qword `[rcx]`, calls `00809950(rcx, 8)` when bit `0x1` of `dl` is set, and returns `rcx`",
+   "anchors": [
+    [
+     "005ACA50",
+     "mov"
+    ],
+    [
+     "005ACA53",
+     "test"
+    ],
+    [
+     "005ACA5D",
+     "call"
+    ],
+    [
+     "005ACA62",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "005A5F10": "too large for one precise sentence (1686 B, 386 instructions)",
+  "005A6E40": "too large for one precise sentence (992 B, 299 instructions)"
+ },
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "005A6900",
+   "why": "byte verifier, re-read by OPUS: signed compare (jle at 005A6938) worded as 'above'"
+  },
+  {
+   "fn": "005A6B40",
+   "why": "byte verifier, re-read by OPUS: signed compare (jl at 005A6B6E) worded as 'below'"
+  },
+  {
+   "fn": "005A6B40",
+   "why": "byte verifier, re-read by OPUS: signed compare (jge/jl at 005A6BDD/005A6C48) worded as 'below'"
+  },
+  {
+   "fn": "005A6B40",
+   "why": "byte verifier, re-read by OPUS: signed compare (jge/jl at 005A6C8C/005A6D01) worded as 'above'"
+  },
+  {
+   "fn": "005A7220",
+   "why": "byte verifier, re-read by OPUS: signed compare (jge/jl at 005A7257/005A72C8) worded as 'below'"
+  },
+  {
+   "fn": "005A7220",
+   "why": "byte verifier, re-read by OPUS: signed compare (jge/jl at 005A730C/005A7371) worded as 'above'"
+  },
+  {
+   "fn": "005A7990",
+   "why": "byte verifier, re-read by OPUS: the memcmp at 005A7A02 is memcmp(qword [rdx+8], qword [k+8]); a positive result means the rdx bytes are larger, not k"
+  }
+ ],
+ "mode": "member",
+ "family": "Phyre PAnimation module",
+ "method": "The page declares the family `Phyre PAnimation module` (a classification family: ordinary functions grouped by module, not template copies). engine_explained did not credit these members. Another local Claude session (repos-91, session local-ee-drafter) drafted one sentence and 1-5 interior anchors per body from OPUS's pack (`mem_pack.py`, filtered against engine_explained's own set); OPUS checked every row mechanically with `interior_ingest.py` (member mode). A second local agent, not the drafter, then read every one of the 295 rows of this batch against the disassembly: 286 stood, 9 rows were corrected in 14 clauses (signed compares worded above/below, two missing pass-through arguments, one wrong value on a path, one overgeneralised compare direction, one 16-bit edge). OPUS confirmed corrections at the bytes on a sample; they are listed below. Neither agent is an independent reviewer: the non-author check is SWE2-AUDIT-SPEC's."
+}

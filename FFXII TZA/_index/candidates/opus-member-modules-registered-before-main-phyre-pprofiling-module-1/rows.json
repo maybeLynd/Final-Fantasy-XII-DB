@@ -1,0 +1,41 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-fifteen-modules-registered-before-main-phyre-pprofiling-module-1.json",
+ "rows": [
+  {
+   "fn": "006BA9B0",
+   "text": "when bit `0x2` of `dl` is set, with `n` = qword `[rcx-8]`, calls `00809054(rcx, 8, n, 005DDAF0)` and, when bit `0x1` of `dl` is set, `00809950(rcx-8, n*8 + 8)`, and returns `rcx-8`; otherwise calls `006BA860(rcx)` and, when bit `0x1` of `dl` is set, `00809950(rcx, 8)`, and returns `rcx`",
+   "anchors": [
+    [
+     "006BA9CE",
+     "test"
+    ],
+    [
+     "006BA9E3",
+     "call"
+    ],
+    [
+     "006BA9FF",
+     "call"
+    ],
+    [
+     "006BAA0B",
+     "call"
+    ],
+    [
+     "006BAA1F",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "member",
+ "family": "Phyre PProfiling module",
+ "method": "The page declares the family `Phyre PProfiling module` (a classification family: ordinary functions grouped by module, not template copies). engine_explained did not credit these members. Another local Claude session (repos-91, session local-ee-drafter) drafted one sentence and 1-5 interior anchors per body from OPUS's pack (`mem_pack.py`, filtered against engine_explained's own set); OPUS checked every row mechanically with `interior_ingest.py` (member mode). A second local agent, not the drafter, then read every one of the 154 rows of this batch against the disassembly: 150 stood, 4 rows were corrected in 4 clauses (three signed compares worded above/below, one operand grouping). OPUS confirmed corrections at the bytes on a sample; they are listed below. Neither agent is an independent reviewer: the non-author check is SWE2-AUDIT-SPEC's."
+}

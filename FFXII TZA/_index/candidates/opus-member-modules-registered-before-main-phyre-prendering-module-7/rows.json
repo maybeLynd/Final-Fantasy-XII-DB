@@ -1,0 +1,515 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-fifteen-modules-registered-before-main-phyre-prendering-module-7.json",
+ "rows": [
+  {
+   "fn": "006BA590",
+   "text": "with `c` = dword `[rcx]` AND 0x7FFFFFFF, sets the low 31 bits of dword `[rcx]` to min(`edx`, `c`) keeping bit `0x80000000`; when that bit is clear, for each index from the new count up to `c` - 1 calls `00584730` on the qword of the array at qword `[rcx+8]` when it is non-null with bit `0x1` clear, and then, when dword `[rcx]` is 0, calls `00584730(qword [rcx+8])` and stores 0 there",
+   "anchors": [
+    [
+     "006BA5B2",
+     "and"
+    ],
+    [
+     "006BA5BD",
+     "or"
+    ],
+    [
+     "006BA5CA",
+     "je"
+    ],
+    [
+     "006BA5F5",
+     "call"
+    ],
+    [
+     "006BA613",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006BE2A0",
+   "text": "with `o` = qword `[qword [rcx+0x70] + edx*0x18]`, returns 0 when `o` is null, else tail-jumps to `006D4F20(o, r8)`",
+   "anchors": [
+    [
+     "006BE2A2",
+     "lea"
+    ],
+    [
+     "006BE2AA",
+     "mov"
+    ],
+    [
+     "006BE2B1",
+     "jne"
+    ],
+    [
+     "006BE2B9",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006BE410",
+   "text": "with `o` = qword `[qword [rcx+0x70] + edx*0x18]`, returns 0 when `o` is null, else tail-jumps to `006D5120(o, r8, r9)`",
+   "anchors": [
+    [
+     "006BE415",
+     "lea"
+    ],
+    [
+     "006BE41D",
+     "mov"
+    ],
+    [
+     "006BE424",
+     "je"
+    ],
+    [
+     "006BE42C",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006BEAC0",
+   "text": "returns the record at `02E58EB0`, building it once under the thread-safe guard dword `02E58F10` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before, `0080929C` after): `006B6820(02E58EB0, 'PLightType', 0x20, 8, 00876870, 006BFCF0)`, qword `02E58EB0` = `00D82F48`, and `00808B90(008B6140)`",
+   "anchors": [
+    [
+     "006BEAEA",
+     "cmp"
+    ],
+    [
+     "006BEAF9",
+     "call"
+    ],
+    [
+     "006BEB3A",
+     "call"
+    ],
+    [
+     "006BEB46",
+     "mov"
+    ],
+    [
+     "006BEB61",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006BFC40",
+   "text": "returns qword `ecx` of the table at `02E58CB0` when `ecx` is below 0x20 (unsigned), else 0",
+   "anchors": [
+    [
+     "006BFC43",
+     "jae"
+    ],
+    [
+     "006BFC47",
+     "lea"
+    ],
+    [
+     "006BFC4E",
+     "mov"
+    ],
+    [
+     "006BFC53",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "006BFCF0",
+   "text": "looks up `rdx` in the list whose head is qword `02E58CA0` (next entry at qword `+0x10`): the first entry whose qword `+8` string equals the string at `rdx` byte for byte up to the terminator; stores that entry, or 0 (also when `rdx` is null), to qword `[rcx]` and returns 0 when found and 0x13 when not",
+   "anchors": [
+    [
+     "006BFCFD",
+     "test"
+    ],
+    [
+     "006BFD10",
+     "mov"
+    ],
+    [
+     "006BFD23",
+     "movzx"
+    ],
+    [
+     "006BFD37",
+     "mov"
+    ],
+    [
+     "006BFD46",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006C0540",
+   "text": "with `a` = `xmm1` * 0.5 and `b` = `xmm2` * 0.5 (0.5 from `01CEBB70`), stores `a` to float `[rcx+0x28]` and `a` + `b` to float `[rcx+0x2C]` when `b` is above 0.0, else `a` + `b` to `+0x28` and `a` to `+0x2C` (`comiss`, unordered counts as not above)",
+   "anchors": [
+    [
+     "006C0553",
+     "comiss"
+    ],
+    [
+     "006C055A",
+     "jbe"
+    ],
+    [
+     "006C0561",
+     "movss"
+    ],
+    [
+     "006C0567",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "006C0580",
+   "text": "with `a` = float `[rdx]` * 0.5 and `b` = float `[rdx+4]` * 0.5 (0.5 from `01CEBB70`), stores `a` to float `[rcx+0x28]` and `a` + `b` to float `[rcx+0x2C]` when `b` is above 0.0, else `a` + `b` to `+0x28` and `a` to `+0x2C` (`comiss`, unordered counts as not above); a null `rdx` writes nothing",
+   "anchors": [
+    [
+     "006C0583",
+     "je"
+    ],
+    [
+     "006C05A1",
+     "comiss"
+    ],
+    [
+     "006C05A8",
+     "jbe"
+    ],
+    [
+     "006C05AF",
+     "movss"
+    ],
+    [
+     "006C05B5",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "006C05C0",
+   "text": "stores `xmm1` to float `[rcx+0x28]`",
+   "anchors": [
+    [
+     "006C05C5",
+     "ret"
+    ]
+   ]
+  },
+  {
+   "fn": "006C05D0",
+   "text": "stores `xmm1` to float `[rcx+0x30]`",
+   "anchors": [
+    [
+     "006C05D5",
+     "ret"
+    ]
+   ]
+  },
+  {
+   "fn": "006C05E0",
+   "text": "stores `xmm1` to float `[rcx+0x2C]`",
+   "anchors": [
+    [
+     "006C05E5",
+     "ret"
+    ]
+   ]
+  },
+  {
+   "fn": "006C05F0",
+   "text": "stores `xmm1` to float `[rcx+0x34]` and `xmm2` to float `[rcx+0x38]`",
+   "anchors": [
+    [
+     "006C05F5",
+     "movss"
+    ],
+    [
+     "006C05FA",
+     "ret"
+    ]
+   ]
+  },
+  {
+   "fn": "006C0600",
+   "text": "stores `xmm1` to float `[rcx+0x3C]`",
+   "anchors": [
+    [
+     "006C0605",
+     "ret"
+    ]
+   ]
+  },
+  {
+   "fn": "006C0C90",
+   "text": "returns the record at `02E59EC0`, building it once under the thread-safe guard dword `02E59F20` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before, `0080929C` after): `006B6820(02E59EC0, 'PShadowCasterType', 0x20, 8, 00876870, 006C2410)`, qword `02E59EC0` = `00D83B88`, and `00808B90(008B68A0)`",
+   "anchors": [
+    [
+     "006C0CBA",
+     "cmp"
+    ],
+    [
+     "006C0CC9",
+     "call"
+    ],
+    [
+     "006C0D0A",
+     "call"
+    ],
+    [
+     "006C0D16",
+     "mov"
+    ],
+    [
+     "006C0D31",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006C0EB0",
+   "text": "stores 0 to qword `[rcx]`, `01F2EDC8` to qword `+8`, 0 to dword `+0x10` and qword `+0x18` and 0x3727C5AC to dword `+0x50`; calls `00615CD0(b)` for `b` = `rcx+0x58`, then, each only while bit `0x80` of dword `[b+0x1C]` is clear (re-read each time), stores 1 to bytes `[b]` and `[b+1]`, 2 to bytes `[b+2]` and `[b+3]` and sets bit `0x40` of dword `[b+0x1C]`; returns `rcx`",
+   "anchors": [
+    [
+     "006C0ED7",
+     "mov"
+    ],
+    [
+     "006C0EE2",
+     "mov"
+    ],
+    [
+     "006C0EF5",
+     "call"
+    ],
+    [
+     "006C0F1F",
+     "mov"
+    ],
+    [
+     "006C0F40",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006C1060",
+   "text": "with `n` = dword `[rdx]` AND 0x7FFFFFFF, sets `p` = 0 when `n` is 0, else `p` = `0017D260(n*0xE8, 8)` and, when that is non-null, calls `006C0BA0(p, qword [rdx+8], n)`; calls `00584730` on the old qword `[rcx+8]` when it is not `p`, is non-null and bit `0x80000000` of dword `[rcx]` is clear; stores `n` to dword `[rcx]` and `p` to qword `[rcx+8]` and returns `rcx`",
+   "anchors": [
+    [
+     "006C1088",
+     "jbe"
+    ],
+    [
+     "006C1096",
+     "call"
+    ],
+    [
+     "006C10AC",
+     "call"
+    ],
+    [
+     "006C10CA",
+     "call"
+    ],
+    [
+     "006C10DE",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006C10F0",
+   "text": "copies the 0xE4 bytes at `rdx` to `rcx` (dwords `+0`..`+0xBC`, a qword at `+0xC0`, dwords `+0xC8`..`+0xD0` and 16 bytes at `+0xD4`) and returns `rcx`",
+   "anchors": [
+    [
+     "006C10F2",
+     "mov"
+    ],
+    [
+     "006C1275",
+     "mov"
+    ],
+    [
+     "006C1282",
+     "mov"
+    ],
+    [
+     "006C12AA",
+     "movups"
+    ]
+   ]
+  },
+  {
+   "fn": "006C15D0",
+   "text": "calls `006388C0(02E59DC0)` and `006C1920(qword 01F2EE48)`; under the thread-safe guard dwords `02E59FF0`, `02E5A058`, `02E5A0B8` and `02E5A118` (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routines `00808B90` of `008B6900`, `008B68F0`, `008B6910` and `008B68E0`) it registers `m_splits` by `00632A10(02E59F90, 02E59DC0, 006C1920(0), name, 0x10, 0, 3, 8)` and stores `00D83C00` to qword `02E59F90`, then (on every path) sets bit `0x10` of dword `02E59FB8`; it registers `m_shadowCasterType` by `00632960(02E5A000, 02E59DC0, 006C0C90(), name, 8, 0x12, 0, 0)`, `m_zbias` by `00632960(02E5A060, 02E59DC0, 006301F0(), name, 0x50, 0x10, 0, 0)` and `m_light` by `00632960(02E5A0C0, 02E59DC0, 02E58DB0, name, 0, 0x12, 0, 0)`; then tail-jumps to `00639450(02E59DC0)`",
+   "anchors": [
+    [
+     "006C15F7",
+     "call"
+    ],
+    [
+     "006C1673",
+     "call"
+    ],
+    [
+     "006C169F",
+     "or"
+    ],
+    [
+     "006C16FB",
+     "call"
+    ],
+    [
+     "006C17DC",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006C1810",
+   "text": "calls `006388C0(02E59CC0)`; under the thread-safe guard dword `02E59F88` (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routine `00808B90(008B68D0)`) it registers `m_farPlane` by `00632960(02E59F30, 02E59CC0, 006301F0(), name, 0xC8, 0x10, 0, 0)`; then tail-jumps to `00639450(02E59CC0)`",
+   "anchors": [
+    [
+     "006C1824",
+     "call"
+    ],
+    [
+     "006C1844",
+     "cmp"
+    ],
+    [
+     "006C1861",
+     "call"
+    ],
+    [
+     "006C1899",
+     "call"
+    ],
+    [
+     "006C18C2",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006C2300",
+   "text": "returns qword `ecx` of the table at `02E59BC0` when `ecx` is below 0x20 (unsigned), else 0",
+   "anchors": [
+    [
+     "006C2303",
+     "jae"
+    ],
+    [
+     "006C2307",
+     "lea"
+    ],
+    [
+     "006C230E",
+     "mov"
+    ],
+    [
+     "006C2313",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "006C2410",
+   "text": "looks up `rdx` in the list whose head is qword `02E59BB8` (next entry at qword `+0x10`): the first entry whose qword `+8` string equals the string at `rdx` byte for byte up to the terminator; stores that entry, or 0 (also when `rdx` is null), to qword `[rcx]` and returns 0 when found and 0x13 when not",
+   "anchors": [
+    [
+     "006C241D",
+     "test"
+    ],
+    [
+     "006C2430",
+     "mov"
+    ],
+    [
+     "006C2443",
+     "movzx"
+    ],
+    [
+     "006C2457",
+     "mov"
+    ],
+    [
+     "006C2466",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006D4F20",
+   "text": "with `n` = dword `[rcx+8]` AND 0x7FFFFFFF and `m` = dword `[rcx+0x30]` AND 0x7FFFFFFF, starts `s` = (2`n` + 0x4F) AND 0xFFFFFFF0; for each `i` below `n` it stores `i` to dword `[rdx+0x18]` and, with `e` = qword `i` (stride 0x20) of qword `[rcx+0x10]`, when qword `[e+0x38]` is non-null calls it with (0, `rdx`, stack block) and adds 0x10 plus its result rounded up to 0x10, else when qword `[e+0x40]` is non-null calls it with (0, `rdx`) and adds its result rounded up to 0x10; returns `s` + 8`m`; stack cookie `01F44830`, checked by `00808C40`",
+   "anchors": [
+    [
+     "006D4F5A",
+     "lea"
+    ],
+    [
+     "006D4F80",
+     "mov"
+    ],
+    [
+     "006D4FA5",
+     "call"
+    ],
+    [
+     "006D4FBF",
+     "call"
+    ],
+    [
+     "006D4FDC",
+     "lea"
+    ]
+   ]
+  },
+  {
+   "fn": "006D5120",
+   "text": "with `h` = `rdx`+0x10: qword `[h]` = qword `[rcx+0x48]`, word `[h+0x18]` = the word it points to (0 when null), qword `[h+8]` and word `[h+0x1A]` = 0; qword `[h+0x10]` = qword `+0x20` of qword `[r8+0x10]` and word `[h+0x1C]` = word `[rcx+0x50]` when that qword is non-null, else both 0; qword `[h+0x38]` = `rdx`+8; then with `n` = dword `[rcx+8]` AND 0x7FFFFFFF, `m` = dword `[rcx+0x30]` AND 0x7FFFFFFF and `s` = (2`n` + 0x4F) AND 0xFFFFFFF0, for each `i` below `n` stores `s` to word `[h+0x40+2i]` and `i` to dword `[r8+0x18]` and, with `e` = qword `i` (stride 0x20) of qword `[rcx+0x10]`, when qword `[e+0x38]` is non-null calls it with (`h`+`s`+0x10, `r8`) and adds 0x10 plus its result rounded up to 0x10 to `s`, else when qword `[e+0x40]` is non-null calls it with (`h`+`s`, `r8`) and adds its result rounded up to 0x10; then stores 0xFFFF to each word from `h`+0x40+2`n` up to the next 16-byte boundary, `s` to word `[h+0x1E]`, zeroes `m` qwords at `h`+`s` and returns 0",
+   "anchors": [
+    [
+     "006D5143",
+     "mov"
+    ],
+    [
+     "006D517E",
+     "mov"
+    ],
+    [
+     "006D51E0",
+     "mov"
+    ],
+    [
+     "006D5221",
+     "call"
+    ],
+    [
+     "006D52C2",
+     "rep stosq"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "006BED60": "too large for one precise sentence (3248 B, 620 instructions)"
+ },
+ "missing": [],
+ "corrections": [],
+ "mode": "member",
+ "family": "Phyre PRendering module",
+ "method": "The page declares the family `Phyre PRendering module` (a classification family: ordinary functions grouped by module, not template copies). engine_explained did not credit these members. Another local Claude session (repos-91, session local-ee-drafter) drafted one sentence and 1-5 interior anchors per body from OPUS's pack (`mem_pack.py`, filtered against engine_explained's own set); OPUS checked every row mechanically with `interior_ingest.py` (member mode). A second local agent, not the drafter, then read every one of the 203 rows of this batch against the disassembly: 199 stood, 4 rows were corrected in 6 clauses (signed compares written as above/below). OPUS confirmed corrections at the bytes on a sample; they are listed below. Neither agent is an independent reviewer: the non-author check is SWE2-AUDIT-SPEC's."
+}

@@ -1,0 +1,790 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-fifteen-modules-registered-before-main-phyre-prendering-module-2.json",
+ "rows": [
+  {
+   "fn": "005E2AF0",
+   "text": "stores `00D498D0` to qword `[rcx]`; calls `00584730(qword [rcx+0x20])` when bit `0x80000000` of dword `[rcx+0x18]` is clear and the qword is non-null, zeroes both, and stores `00D498B0` to qword `[rcx]`; when bit `0x1` of `dl` is set it calls `00584730(rcx)` if bit `0x4` of `dl` is clear, or `0016D6A0(rcx, 0x28)` if it is set; returns `rcx`",
+   "anchors": [
+    [
+     "005E2B10",
+     "mov"
+    ],
+    [
+     "005E2B28",
+     "call"
+    ],
+    [
+     "005E2B3E",
+     "mov"
+    ],
+    [
+     "005E2B50",
+     "call"
+    ],
+    [
+     "005E2B60",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005E2CE0",
+   "text": "returns 0 when `ecx` is 0 or `p` = `0017D260(ecx*0xC, 4)` is null; otherwise initialises each of the `ecx` 12-byte elements with words `+0` and `+2` = 0, dword `+4` = 1 and dword `+8` = 0xFFFFFFFF, and returns `p`",
+   "anchors": [
+    [
+     "005E2CEE",
+     "test"
+    ],
+    [
+     "005E2D04",
+     "call"
+    ],
+    [
+     "005E2D29",
+     "mov"
+    ],
+    [
+     "005E2D30",
+     "mov"
+    ],
+    [
+     "005E2D36",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005E2D70",
+   "text": "returns 0 when `ecx` is 0; otherwise `p` = `0017D260(ecx*0x14, 4)`; when `p` is non-null it copies `ecx` 0x14-byte elements from `rdx` into it; returns `p`",
+   "anchors": [
+    [
+     "005E2D7F",
+     "test"
+    ],
+    [
+     "005E2D97",
+     "call"
+    ],
+    [
+     "005E2DBF",
+     "movups"
+    ],
+    [
+     "005E2DC9",
+     "mov"
+    ],
+    [
+     "005E2DD2",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005E2EA0",
+   "text": "returns 0 when `ecx` is 0; otherwise `p` = `0017D260(ecx*2, 2)`; when `p` is non-null it copies `ecx` words from `rdx` into it; returns `p`",
+   "anchors": [
+    [
+     "005E2EAF",
+     "test"
+    ],
+    [
+     "005E2EC3",
+     "call"
+    ],
+    [
+     "005E2EEC",
+     "movzx"
+    ],
+    [
+     "005E2EF3",
+     "mov"
+    ],
+    [
+     "005E2EFC",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005E2F20",
+   "text": "returns 0 when `ecx` is 0; otherwise `p` = `0017D260(ecx*4, 2)`; when `p` is non-null it copies `ecx` 4-byte elements (word `+0` and byte `+2` of each; byte `+3` is not written) from `rdx` into it; returns `p`",
+   "anchors": [
+    [
+     "005E2F2F",
+     "test"
+    ],
+    [
+     "005E2F47",
+     "call"
+    ],
+    [
+     "005E2F6F",
+     "mov"
+    ],
+    [
+     "005E2F7A",
+     "mov"
+    ],
+    [
+     "005E2F83",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005E2FB0",
+   "text": "returns 0 when `ecx` is 0; otherwise `p` = `0017D260(ecx*0x10, 4)`; when `p` is non-null it copies `ecx` 0x10-byte elements (word `+0`, dwords `+4` and `+8` and byte `+0xC` of each) from `rdx` into it; returns `p`",
+   "anchors": [
+    [
+     "005E2FBF",
+     "test"
+    ],
+    [
+     "005E2FD5",
+     "call"
+    ],
+    [
+     "005E3000",
+     "mov"
+    ],
+    [
+     "005E300B",
+     "mov"
+    ],
+    [
+     "005E3016",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005E30E0",
+   "text": "returns 0 when `ecx` is 0 or `p` = `0017D260(ecx*0x14, 4)` is null; otherwise copies `r8d` 0x14-byte elements from `rdx` into `p`, sets dword `+0` and qwords `+4` and `+0xC` of each of the remaining `ecx` - `r8d` elements to 0, and returns `p`",
+   "anchors": [
+    [
+     "005E30FE",
+     "test"
+    ],
+    [
+     "005E3111",
+     "call"
+    ],
+    [
+     "005E313F",
+     "movups"
+    ],
+    [
+     "005E3170",
+     "mov"
+    ],
+    [
+     "005E3176",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005E31B0",
+   "text": "returns 0 when `ecx` is 0; otherwise `p` = `0017D260(ecx*0x10, 8)`, returned null when null; else it calls `005D8230(p, rdx, r8d)` for the first `r8d` elements, zeroes qwords `+0` and `+8` of each remaining element, and returns `p`",
+   "anchors": [
+    [
+     "005E31D2",
+     "je"
+    ],
+    [
+     "005E31E3",
+     "call"
+    ],
+    [
+     "005E31F9",
+     "call"
+    ],
+    [
+     "005E3215",
+     "mov"
+    ],
+    [
+     "005E3218",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005E3410",
+   "text": "returns 0 when `ecx` is 0; otherwise `p` = `0017D260(ecx*0x10, 8)`, returned null when null; else it calls `005D83E0(p, rdx, r8d)` for the first `r8d` elements, stores 0 to dword `+0` and qword `+8` of each remaining element, and returns `p`",
+   "anchors": [
+    [
+     "005E3432",
+     "je"
+    ],
+    [
+     "005E3443",
+     "call"
+    ],
+    [
+     "005E3459",
+     "call"
+    ],
+    [
+     "005E3475",
+     "mov"
+    ],
+    [
+     "005E3478",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005E34B0",
+   "text": "returns 0 when `ecx` is 0; otherwise `p` = `0017D260(ecx*0x50, 8)`, returned null when null; else it calls `005D8450(p, rdx, r8d)` for the first `r8d` elements and `005FD1D0(p + r8d*0x50, ecx - r8d)` for the rest, and returns `p`",
+   "anchors": [
+    [
+     "005E34C9",
+     "je"
+    ],
+    [
+     "005E34DD",
+     "call"
+    ],
+    [
+     "005E34F3",
+     "call"
+    ],
+    [
+     "005E3507",
+     "call"
+    ],
+    [
+     "005E350C",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005E3540",
+   "text": "returns 0 when `ecx` is 0; otherwise `p` = `0017D260(ecx*0x40, 8)`, returned null when null; else it calls `005D8650(p, rdx, r8d)` for the first `r8d` elements, sets each remaining element's dword `+0` to 0xF and dwords `+8`, `+0x18`, `+0x28` and `+0x38` and qwords `+0x10`, `+0x20` and `+0x30` to 0, and returns `p`",
+   "anchors": [
+    [
+     "005E3562",
+     "je"
+    ],
+    [
+     "005E3577",
+     "call"
+    ],
+    [
+     "005E358D",
+     "call"
+    ],
+    [
+     "005E35AE",
+     "mov"
+    ],
+    [
+     "005E35CB",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005E3600",
+   "text": "returns 0 when `ecx` is 0 or `p` = `0017D260(ecx*2, 2)` is null; otherwise copies `r8d` words from `rdx` into `p`, sets the remaining `ecx` - `r8d` words to 0, and returns `p`",
+   "anchors": [
+    [
+     "005E361E",
+     "test"
+    ],
+    [
+     "005E362A",
+     "call"
+    ],
+    [
+     "005E3654",
+     "mov"
+    ],
+    [
+     "005E365D",
+     "sub"
+    ],
+    [
+     "005E366C",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005E36A0",
+   "text": "returns 0 when `ecx` is 0 or `p` = `0017D260(ecx*4, 2)` is null; otherwise copies word `+0` and byte `+2` of `r8d` 4-byte elements from `rdx` into `p`, sets each remaining element's word `+0` to 0 and byte `+2` to 0x34, and returns `p`",
+   "anchors": [
+    [
+     "005E36BE",
+     "test"
+    ],
+    [
+     "005E36CB",
+     "call"
+    ],
+    [
+     "005E36F1",
+     "mov"
+    ],
+    [
+     "005E3715",
+     "mov"
+    ],
+    [
+     "005E3718",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005E3750",
+   "text": "returns 0 when `ecx` is 0 or `p` = `0017D260(ecx*0x10, 4)` is null; otherwise copies word `+0`, dwords `+4` and `+8` and byte `+0xC` of `r8d` 0x10-byte elements from `rdx` into `p`, sets each remaining element's word `+0` and qword `+4` to 0 and byte `+0xC` to 0x34, and returns `p`",
+   "anchors": [
+    [
+     "005E376E",
+     "test"
+    ],
+    [
+     "005E377F",
+     "call"
+    ],
+    [
+     "005E37B0",
+     "mov"
+    ],
+    [
+     "005E37EC",
+     "mov"
+    ],
+    [
+     "005E37F3",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005E38B0",
+   "text": "returns 0 when `ecx` is 0; otherwise `p` = `0017D260(ecx*0x2C0, 8)`, returned null when null; else it calls `005D88C0(p, rdx, r8d)` for the first `r8d` elements, `00615DD0(element)` for each remaining element (skipped only at address 0), and returns `p`",
+   "anchors": [
+    [
+     "005E38D6",
+     "test"
+    ],
+    [
+     "005E38E4",
+     "call"
+    ],
+    [
+     "005E38FA",
+     "call"
+    ],
+    [
+     "005E3912",
+     "sub"
+    ],
+    [
+     "005E3933",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005E3960",
+   "text": "returns 0 when `ecx` is 0; otherwise `p` = `0017D260(ecx*0x30, 8)`, returned null when null; else it calls `005D8930(p, rdx, r8d)` for the first `r8d` elements, zeroes the six qwords `+0`..`+0x28` of each remaining element, and returns `p`",
+   "anchors": [
+    [
+     "005E3982",
+     "je"
+    ],
+    [
+     "005E3999",
+     "call"
+    ],
+    [
+     "005E39AF",
+     "call"
+    ],
+    [
+     "005E39D9",
+     "mov"
+    ],
+    [
+     "005E39EB",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005E3A20",
+   "text": "returns 0 when `ecx` is 0; otherwise `p` = `0017D260(ecx*0x18, 8)`, returned null when null; else it calls `005D8B00(p, rdx, r8d)` for the first `r8d` elements, sets each remaining element's qwords `+0` and `+8` and dword `+0x10` to 0 and dword `+0x14` to 0x340000, and returns `p`",
+   "anchors": [
+    [
+     "005E3A42",
+     "je"
+    ],
+    [
+     "005E3A59",
+     "call"
+    ],
+    [
+     "005E3A6F",
+     "call"
+    ],
+    [
+     "005E3A99",
+     "mov"
+    ],
+    [
+     "005E3AA3",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005E3B70",
+   "text": "calls `006388C0(02CB6380)`; under the thread-safe guard dword `02CE2678` (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routine `00808B90(008ADAC0)`) it registers `m_size` by `00632960(02CE2620, 02CB6380, 00630180(), name, 0, 0x10, 0, 0)`; then tail-jumps to `00639450(02CB6380)`",
+   "anchors": [
+    [
+     "005E3B84",
+     "call"
+    ],
+    [
+     "005E3BA4",
+     "cmp"
+    ],
+    [
+     "005E3BC1",
+     "call"
+    ],
+    [
+     "005E3BF5",
+     "call"
+    ],
+    [
+     "005E3C1E",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005E3C30",
+   "text": "calls `006388C0(02CB7BA0)`; each once under its own thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before and `0080929C` after the one-time body, which registers an exit routine with `00808B90`), registers with `00632960(record, 02CB7BA0, 00630180(), name, n, 0, 0, 0)` `m_contextVariantIndex` (`02CE7EF0`, 0), `m_contextVariantVpIndex` (`02CE7F50`, 4), `m_contextVariantFpIndex` (`02CE7FB0`, 8), `m_contextVariantGsIndex` (`02CE8010`, 0xC) and `m_contextVariantCsIndex` (`02CE8070`, 0x10); then tail-jumps to `00639450(02CB7BA0)`",
+   "anchors": [
+    [
+     "005E3C4B",
+     "call"
+    ],
+    [
+     "005E3CBA",
+     "call"
+    ],
+    [
+     "005E3D29",
+     "call"
+    ],
+    [
+     "005E3E07",
+     "call"
+    ],
+    [
+     "005E3E76",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005E3EB0",
+   "text": "calls `006388C0(02CB6580)`; under its thread-safe guard dword (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routine by `00808B90`) it registers `m_dynamicMesh` by `00632960(02CE2680, 02CB6580, 02D3A140, name, 8, 0xA, 0, 0)`; then tail-jumps to `00639450(02CB6580)`",
+   "anchors": [
+    [
+     "005E3EC4",
+     "call"
+    ],
+    [
+     "005E3EE4",
+     "cmp"
+    ],
+    [
+     "005E3F38",
+     "call"
+    ],
+    [
+     "005E3F61",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005E52D0",
+   "text": "calls `006388C0(02CB6A80)`; each once under its own thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before and `0080929C` after the one-time body, which registers an exit routine with `00808B90`), registers `m_name` by `00632960(02CE2F60, 02CB6A80, 02E4D630, name, 0, 0, 0, 0)` and `m_value` by `00632960(02CE2FC0, 02CB6A80, 02E4D630, name, 8, 0, 0, 0)`; then tail-jumps to `00639450(02CB6A80)`",
+   "anchors": [
+    [
+     "005E52EB",
+     "call"
+    ],
+    [
+     "005E530F",
+     "cmp"
+    ],
+    [
+     "005E5359",
+     "call"
+    ],
+    [
+     "005E5379",
+     "cmp"
+    ],
+    [
+     "005E53C7",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005E6400",
+   "text": "calls `006388C0(02CB6F80)`; each once under its own thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before and `0080929C` after the one-time body, which registers an exit routine with `00808B90`), registers with `00632960(record, 02CB6F80, type, name, n, f, 0, 0)` `m_destination` (`02CE4190`, `02E404B0`, 0, 2), `m_source` (`02CE41F0`, `02CB6E80`, 8, 2) and `m_sourceMatrixIndex` (`02CE4250`, `00630180()`, 0x10, 0); then tail-jumps to `00639450(02CB6F80)`",
+   "anchors": [
+    [
+     "005E641B",
+     "call"
+    ],
+    [
+     "005E648D",
+     "call"
+    ],
+    [
+     "005E64FF",
+     "call"
+    ],
+    [
+     "005E653C",
+     "call"
+    ],
+    [
+     "005E656E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005E65B0",
+   "text": "calls `006388C0(02CB7080)`; each once under its own thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before and `0080929C` after the one-time body, which registers an exit routine with `00808B90`), registers `m_meshInstance` by `00632960(02CE42B0, 02CB7080, 02CB6E80, name, 0x28, 2, 0, 0)`, `m_worldMatrix` by `00632960(02CE4310, 02CB7080, 02E404B0, name, 0x10, 2, 0, 0)`, `m_min` by `00632A70(02CE4370, 02CB7080, 006301F0(), name, 0, 0, 3)` and `m_size` by `00632A70(02CE43E0, 02CB7080, 006301F0(), name, 0x18, 0, 3)`; then tail-jumps to `00639450(02CB7080)`",
+   "anchors": [
+    [
+     "005E65CB",
+     "call"
+    ],
+    [
+     "005E6641",
+     "call"
+    ],
+    [
+     "005E66B3",
+     "call"
+    ],
+    [
+     "005E671D",
+     "call"
+    ],
+    [
+     "005E678B",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005E68B0",
+   "text": "calls `006388C0(02CB6C80)`; each once under its own thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before and `0080929C` after the one-time body, which registers an exit routine with `00808B90`), registers with `00632960(record, 02CB6C80, type, name, n, f, 0, 0)` `m_renderDataType` (`02CE34A0`, `00661A70()`, 0, 0xA), `m_name` (`02CE3500`, `02E4D630`, 8, 8), `m_nameHash` (`02CE3560`, `006300A0()`, 0x10, 8), `m_index` (`02CE35C0`, `0062FFC0()`, 0x12, 8) and `m_inputSet` (`02CE3620`, `0062FFC0()`, 0x13, 8); then tail-jumps to `00639450(02CB6C80)`",
+   "anchors": [
+    [
+     "005E690C",
+     "call"
+    ],
+    [
+     "005E693E",
+     "call"
+    ],
+    [
+     "005E69B0",
+     "call"
+    ],
+    [
+     "005E6A23",
+     "call"
+    ],
+    [
+     "005E6B09",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005E6B40",
+   "text": "calls `006388C0(02CB7180)` and an unguarded `005EBB00(qword 01F2DE08)`; under its thread-safe guard dword (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routine by `00808B90`) it registers `m_modifierNetworkInstances` by `00632A10(02CE4450, 02CB7180, 005EBB00(0), name, 0x18, 0, 3, 8)` with qword `02CE4450` = `00D4A568`; then sets bit `0x8` of dword `02CE4478` unguarded and tail-jumps to `00639450(02CB7180)`",
+   "anchors": [
+    [
+     "005E6B54",
+     "call"
+    ],
+    [
+     "005E6B60",
+     "call"
+    ],
+    [
+     "005E6BE0",
+     "call"
+    ],
+    [
+     "005E6BEC",
+     "mov"
+    ],
+    [
+     "005E6C0C",
+     "or"
+    ]
+   ]
+  },
+  {
+   "fn": "005E6C30",
+   "text": "calls `006388C0(02CB7280)`, `00630180()` and `005EFB10(qword 01F2DE10)` unguarded; under its thread-safe guard dword (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routine by `00808B90`) it registers `m_packedSwitches` by `00632A10(02CE44C0, 02CB7280, 005EFB10(0), name, 0, 0, 4, 4)` with qword `02CE44C0` = `00D4A600`; then sets bit `0x8` of dword `02CE44E8` unguarded and tail-jumps to `00639450(02CB7280)`",
+   "anchors": [
+    [
+     "005E6C44",
+     "call"
+    ],
+    [
+     "005E6C55",
+     "call"
+    ],
+    [
+     "005E6CCB",
+     "call"
+    ],
+    [
+     "005E6CD7",
+     "mov"
+    ],
+    [
+     "005E6CF7",
+     "or"
+    ]
+   ]
+  },
+  {
+   "fn": "005E6E70",
+   "text": "calls `006388C0(02CB7380)` and sets bit `0x20` of dword `02CB747C`; under its thread-safe guard dword (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routine by `00808B90`) it registers `m_parameterBufferSize` by `00632960(02CE4530, 02CB7380, 00630180(), name, 0, 0, 0, 0)`; then tail-jumps to `00639450(02CB7380)`",
+   "anchors": [
+    [
+     "005E6E84",
+     "call"
+    ],
+    [
+     "005E6E89",
+     "or"
+    ],
+    [
+     "005E6EC8",
+     "call"
+    ],
+    [
+     "005E6EF8",
+     "call"
+    ],
+    [
+     "005E6F21",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005E84D0",
+   "text": "calls `006388C0(02CBA500)` and sets bit `0x20` of dword `02CBA5FC`; each once under its own thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before and `0080929C` after the one-time body, which registers an exit routine with `00808B90`), registers `m_structuredBuffer` by `00632960(02CE8FF0, 02CBA500, 02CBB600, name, 0x10, 0x12, 0, 0)` and `m_dataBlock` by `00632960(02CE9050, 02CBA500, 02D39E40, name, 0x18, 0x12, 0, 0)`; then tail-jumps to `00639450(02CBA500)`",
+   "anchors": [
+    [
+     "005E84EB",
+     "call"
+    ],
+    [
+     "005E84F0",
+     "or"
+    ],
+    [
+     "005E8568",
+     "call"
+    ],
+    [
+     "005E85DA",
+     "call"
+    ],
+    [
+     "005E8609",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005E8610",
+   "text": "calls `006388C0(02CBA700)` and sets bit `0x20` of dword `02CBA7FC`; under its thread-safe guard dword (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routine by `00808B90`) it registers `m_dataBlock` by `00632960(02CE91D0, 02CBA700, 02D39E40, name, 0x10, 0x12, 0, 0)`; then tail-jumps to `00639450(02CBA700)`",
+   "anchors": [
+    [
+     "005E8624",
+     "call"
+    ],
+    [
+     "005E8629",
+     "or"
+    ],
+    [
+     "005E869F",
+     "call"
+    ],
+    [
+     "005E86C8",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005E86D0",
+   "text": "calls `006388C0(02CBA800)` and sets bit `0x20` of dword `02CBA8FC`; under its thread-safe guard dword (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routine by `00808B90`) it registers `m_indexDataBlock` by `00632960(02CE9230, 02CBA800, 02D3A340, name, 0x10, 0x12, 0, 0)`; then tail-jumps to `00639450(02CBA800)`",
+   "anchors": [
+    [
+     "005E86E4",
+     "call"
+    ],
+    [
+     "005E86E9",
+     "or"
+    ],
+    [
+     "005E875F",
+     "call"
+    ],
+    [
+     "005E8788",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "005E3F70": "too large for one precise sentence (1598 B, 306 instructions)",
+  "005E45B0": "too large for one precise sentence (1259 B, 240 instructions)",
+  "005E4AA0": "too large for one precise sentence (2082 B, 395 instructions)",
+  "005E7070": "too large for one precise sentence (3555 B, 677 instructions)",
+  "005E7E60": "too large for one precise sentence (889 B, 169 instructions)",
+  "005E81E0": "too large for one precise sentence (739 B, 142 instructions)"
+ },
+ "missing": [],
+ "corrections": [],
+ "mode": "member",
+ "family": "Phyre PRendering module",
+ "method": "The page declares the family `Phyre PRendering module` (a classification family: ordinary functions grouped by module, not template copies). engine_explained did not credit these members. Another local Claude session (repos-91, session local-ee-drafter) drafted one sentence and 1-5 interior anchors per body from OPUS's pack (`mem_pack.py`, filtered against engine_explained's own set); OPUS checked every row mechanically with `interior_ingest.py` (member mode). A second local agent, not the drafter, then read every one of the 203 rows of this batch against the disassembly: 199 stood, 4 rows were corrected in 6 clauses (signed compares written as above/below). OPUS confirmed corrections at the bytes on a sample; they are listed below. Neither agent is an independent reviewer: the non-author check is SWE2-AUDIT-SPEC's."
+}

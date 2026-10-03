@@ -1,0 +1,152 @@
+{
+  "producer_complete": true,
+  "method": "A exact complete original CFG/effect and guarded-path composition; no emulator/native/game execution",
+  "driver_sha256": "e83a3f7b3e717c41f9a5b8292684d59c04c82e242d01c0df2d978f185cc9f9f0",
+  "source_pins": [
+    {
+      "path": "source-mode-query-01.json",
+      "sha256": "2218c4f027e33a8d878c65301004911e83076848de74303c2b44de3824473651"
+    },
+    {
+      "path": "source-boundary-01.json",
+      "sha256": "7ff80975a29c048ec08a1915669cf1d62ffd1eb5d6878503e0330a059e0f2b25"
+    },
+    {
+      "path": "source-selector-01.json",
+      "sha256": "d788aa2956d6c8c47e9d630e0e9321861d61541b3c6648fdd81c16ecbbf8d9ba"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 38,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 146,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 19,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "physical_bodies": [
+    {
+      "entry": "0x377c20",
+      "end_exclusive": "0x377c6e",
+      "bytes": 78,
+      "sha256": "838eebb2e591312c7953d60d668fd101677629bfdcd4a50e703de99c3ede27ea",
+      "physical_bytes": "4883ec28e8c7ccf9ff4c8b05d05476024d85c0742a413b400473244863c8498d04480fb6540109498d04480fb64c0108c1e20803d1c1ea0f8bc24883c428c3baff0f0000c1ea0f8bc24883c428c3",
+      "records": [
+        {
+          "begin": "0x377c20",
+          "end_exclusive": "0x377c6e",
+          "chain": [
+            {
+              "record_bytes": "207c25006e7c2500c82bc301",
+              "header_address": "0x1d52bc8",
+              "header_bytes": "01040100"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry": "0x3148f0",
+      "end_exclusive": "0x31490b",
+      "bytes": 27,
+      "sha256": "2511629da75bf40f5fd421f66ef5c9b6b30c2f1ca1c807cb5db7701a42d3e82c",
+      "physical_bytes": "4883ec28e8b7a9fdff33c98b804410000085c00f48c14883c428c3",
+      "records": [
+        {
+          "begin": "0x3148f0",
+          "end_exclusive": "0x31490b",
+          "chain": [
+            {
+              "record_bytes": "f0481f000b491f00c82bc301",
+              "header_address": "0x1d52bc8",
+              "header_bytes": "01040100"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry": "0x2ef2b0",
+      "end_exclusive": "0x2ef2c4",
+      "bytes": 20,
+      "sha256": "d78155dd28ee5cb1fdc32336a7d9ceba8f3da5f7c04eeb48a75b1edf4355bdd7",
+      "physical_bytes": "4883ec28e8870300004805000200004883c428c3",
+      "records": [
+        {
+          "begin": "0x2ef2b0",
+          "end_exclusive": "0x2ef2c4",
+          "chain": [
+            {
+              "record_bytes": "b0f21c00c4f21c00c82bc301",
+              "header_address": "0x1d52bc8",
+              "header_bytes": "01040100"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry": "0x2ef640",
+      "end_exclusive": "0x2ef648",
+      "bytes": 8,
+      "sha256": "e3fac9ce296c5db1edad84be8a6c5ec48fb10d8e6cea19a87cc531ac4a2dc802",
+      "physical_bytes": "488d05394ce701c3",
+      "records": [],
+      "identity_kind": "Direct original target, declared closed leaf span; no .pdata root"
+    }
+  ],
+  "facts": {
+    "query": "Closed377C20->3148F0->2EF2B0->2EF640 has no object writes/opaque calls on any normal local path. Stack CALL/RET/sub/add effects remain private-valid-stack premises.2EF640 forms reference address02164280; payload+200 then fieldDWORD+1044 means reference cell021654C4. Signednegative field id clamps0; otherwise signednonnegative id. Descriptor QWORD02ADD100 NULL or unsigned index>=DWORDdesc+4 returns0. Accepted index readsBYTEdesc+8+3*id andBYTEdesc+9+3*id, assembles16 bits and returns bit15.",
+    "mode": "30D9A0 has no object writes/opaque calls after closing377C20. First modeDWORD read bit3->5/bit2->4; helpertrue->3; second modeDWORD read bit1->2/else bit0->0or1. The pointer/mode are read twice; no atomic/stability guarantee without noninterference.",
+    "conditional_counterexample": "With both mode reads1 and closedfieldhelperfalse,3138D0(0) selects roster index3. Empty actor/unit returns immediately. For a nonNULL valid unit, (flagbit14 and pendingWORD+BA0==113) OR committedWORD+714==113 returns before311CF0 and before direct5AD0 write. The committed branch is reached if flagbit14clear or pending!=113. Only private saved-RBP/RSI stack operations occur on those paths; no battle mode/member/KO/object writes in the closed calls or selected path.",
+    "implication": "A call to3138D0(0) alone does not universally guarantee a cleanup/state change. Under these conditional supplied-state premises, mode1 can survive that call. Same-call order from the predecessor does not by itself prove cleanup completed before23B040. No full constructor/interpreter/gameplay proof follows.",
+    "premises": "Exact intact complete shipping code; readable static image fieldcell, battle pointer/mode, descriptor and accepted row if present, roster/actor/unit queried fields; normal ABI/private valid separated stack, normal returns, no interference or aliasing of stack stores into observed objects. Addresses are reference-image identities, not observed process pointers.",
+    "unresolved": "Whether real initialized summon+KO state can reach any early-return case, whether recompute sees same unit/mode/status, preceding KO processing, lifetime/ownership/scheduling/presentation and wholeUQ147 remain OPEN."
+  },
+  "controls": [
+    {
+      "id": "closed-helper-call-changed",
+      "diagnostic": "helper call chain changed",
+      "method": "Synthetic source-record semantic control, not executed FF12 instructions"
+    },
+    {
+      "id": "fieldcell-offset-changed",
+      "diagnostic": "required memory effect/address changed 0x3148fb",
+      "method": "Synthetic source-record semantic control, not executed FF12 instructions"
+    },
+    {
+      "id": "image-base-changed",
+      "diagnostic": "required memory effect/address changed 0x2ef640",
+      "method": "Synthetic source-record semantic control, not executed FF12 instructions"
+    },
+    {
+      "id": "committed-action-offset-changed",
+      "diagnostic": "required memory effect/address changed 0x313915",
+      "method": "Synthetic source-record semantic control, not executed FF12 instructions"
+    },
+    {
+      "id": "early-return-branch-changed",
+      "diagnostic": "required instruction/transfer changed 0x31391c",
+      "method": "Synthetic source-record semantic control, not executed FF12 instructions"
+    }
+  ],
+  "acceptance": "Producer-valid partial boundary only; independent review/canonical consumption pending. No naturally initialized KO closure."
+}

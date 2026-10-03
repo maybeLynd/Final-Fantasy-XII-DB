@@ -1,0 +1,706 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-fifteen-modules-registered-before-main-phyre-panimation-module-4.json",
+ "rows": [
+  {
+   "fn": "005C3480",
+   "text": "returns 0 when `rdx` is null; otherwise over the dword `[rcx]` AND 0x7FFFFFFF element pointers (at qword `[rcx+8]` when that count is above 1, else inline at `rcx+8`), passing over null elements and those whose qword `+0x30` minus its bit `0x1` is zero, it returns the first element whose string there equals the one at `rdx` byte for byte, else the first whose string contains it by `strstr` (IAT slot `008C2A08`), else 0",
+   "anchors": [
+    [
+     "005C34A3",
+     "je"
+    ],
+    [
+     "005C34D1",
+     "mov"
+    ],
+    [
+     "005C34F4",
+     "movzx"
+    ],
+    [
+     "005C3536",
+     "mov"
+    ],
+    [
+     "005C3563",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C37B0",
+   "text": "returns 1 when `r9` is null; otherwise, over the dword `[rcx]` AND 0x7FFFFFFF 8-byte entries at qword `[rcx+8]` (float key at `+0`), with `i` = the first index whose key is not below `xmm1`: when `xmm1` is above `xmm2` it calls `r9(entry, fifth argument)` for each entry from `i` to the end and restarts at index 0; then it calls `r9(entry, fifth argument)` for each entry from there while its key is at most `xmm2`; returns 0",
+   "anchors": [
+    [
+     "005C37C9",
+     "jne"
+    ],
+    [
+     "005C3802",
+     "comiss"
+    ],
+    [
+     "005C380E",
+     "comiss"
+    ],
+    [
+     "005C383B",
+     "call"
+    ],
+    [
+     "005C3873",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C3990",
+   "text": "returns qword `edx` of the array at qword `[rcx+0x10]`",
+   "anchors": [
+    [
+     "005C3994",
+     "mov"
+    ],
+    [
+     "005C3996",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005C39A0",
+   "text": "returns dword `[rcx+8]` AND 0x7FFFFFFF",
+   "anchors": [
+    [
+     "005C39A3",
+     "btr"
+    ]
+   ]
+  },
+  {
+   "fn": "005C39F0",
+   "text": "returns qword `+0` of element `edx` (stride 0x80) of qword `[rcx+0x30]` when `edx` is below dword `[rcx+0x28]` AND 0x7FFFFFFF, else 0",
+   "anchors": [
+    [
+     "005C39F3",
+     "btr"
+    ],
+    [
+     "005C39F9",
+     "jae"
+    ],
+    [
+     "005C3A01",
+     "shl"
+    ],
+    [
+     "005C3A05",
+     "mov"
+    ],
+    [
+     "005C3A0A",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "005C3A10",
+   "text": "returns qword `[rcx+0x20]` + `edx`*0x58",
+   "anchors": [
+    [
+     "005C3A12",
+     "imul"
+    ],
+    [
+     "005C3A16",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "005C3A40",
+   "text": "finds the first element `e` (stride 0x80) of the dword `[rcx+0x28]` AND 0x7FFFFFFF at qword `[rcx+0x30]` whose qword `[e]` is non-null and returns 0.0 when there is none; otherwise calls `005C5400(qword [e], &a, &b)` with stack floats `a` and `b` set to 0, takes `v` = the result of vtable slot `+0x20` of the object at `e+0x10` (with `e+0x10` in `rcx`) when qword `[e]` is still non-null, else 0.0, and returns `v` - `a` in `xmm0`",
+   "anchors": [
+    [
+     "005C3A69",
+     "cmp"
+    ],
+    [
+     "005C3A75",
+     "xorps"
+    ],
+    [
+     "005C3AA3",
+     "call"
+    ],
+    [
+     "005C3AB6",
+     "call"
+    ],
+    [
+     "005C3ABC",
+     "subss"
+    ]
+   ]
+  },
+  {
+   "fn": "005C3AD0",
+   "text": "with `e` = element `edx` (stride 0x80) of qword `[rcx+0x30]`, when `edx` is below dword `[rcx+0x28]` AND 0x7FFFFFFF and qword `[e]` is non-null tail-calls vtable slot `+0x20` of the object at `e+0x10` (its vtable is qword `[e+0x10]`) with `rcx` = `e+0x10`; otherwise returns 0.0 in `xmm0`",
+   "anchors": [
+    [
+     "005C3ADC",
+     "jae"
+    ],
+    [
+     "005C3AE8",
+     "cmp"
+    ],
+    [
+     "005C3AF2",
+     "add"
+    ],
+    [
+     "005C3AF6",
+     "jmp"
+    ],
+    [
+     "005C3AFA",
+     "xorps"
+    ]
+   ]
+  },
+  {
+   "fn": "005C4CD0",
+   "text": "calls `005C5400(rcx, &a, &b)` with two stack floats `a` and `b` set to 0 and returns `b` - `a` in `xmm0`",
+   "anchors": [
+    [
+     "005C4CD9",
+     "mov"
+    ],
+    [
+     "005C4CE6",
+     "mov"
+    ],
+    [
+     "005C4CEE",
+     "call"
+    ],
+    [
+     "005C4CF9",
+     "subss"
+    ]
+   ]
+  },
+  {
+   "fn": "005C4D10",
+   "text": "returns dword `[rcx+0x28]` AND 0x7FFFFFFF",
+   "anchors": [
+    [
+     "005C4D13",
+     "btr"
+    ]
+   ]
+  },
+  {
+   "fn": "005C4F30",
+   "text": "returns 0 when `s` = qword `[rcx+0x10]` is null; otherwise returns the largest (unsigned, at least 0), over the dword `[s]` AND 0x7FFFFFFF element pointers `p` (at qword `[s+8]` when that count is above 1, else inline at `s+8`), of `a`*0xD0 + `b`*0x58 + ((((`c`+3) AND 0xFFFFFFFC) + 2(`a`+`b`))*2 + 7 AND 0xFFFFFFF8) + 0x17 AND 0xFFFFFFF0) + 0x20, with `a` = dword `[p+8]` AND 0x7FFFFFFF, `b` = dword `[p+0x18]` AND 0x7FFFFFFF and `c` = `005C2FE0(p)`",
+   "anchors": [
+    [
+     "005C4F42",
+     "je"
+    ],
+    [
+     "005C4F7A",
+     "mov"
+    ],
+    [
+     "005C4FAA",
+     "call"
+    ],
+    [
+     "005C4FE9",
+     "add"
+    ],
+    [
+     "005C4FEE",
+     "cmova"
+    ]
+   ]
+  },
+  {
+   "fn": "005C5120",
+   "text": "returns ((dword `+0x20` of qword `[rcx+0x10]` AND 0x7FFFFFFF)*4 + 0x13) AND 0xFFFFFFF0, plus 0x10",
+   "anchors": [
+    [
+     "005C5124",
+     "mov"
+    ],
+    [
+     "005C512B",
+     "lea"
+    ],
+    [
+     "005C5132",
+     "and"
+    ],
+    [
+     "005C5135",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "005C5140",
+   "text": "returns ((dword `+0x20` of qword `[rcx+0x10]` AND 0x7FFFFFFF)*8 + 0x2F) AND 0xFFFFFFF0, plus 0x10",
+   "anchors": [
+    [
+     "005C5144",
+     "mov"
+    ],
+    [
+     "005C514B",
+     "lea"
+    ],
+    [
+     "005C5152",
+     "and"
+    ],
+    [
+     "005C5155",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "005C5160",
+   "text": "returns ((dword `[rcx+0x28]` AND 0x7FFFFFFF)*4 + 0xF) AND 0xFFFFFFF0, plus 0x10",
+   "anchors": [
+    [
+     "005C5163",
+     "btr"
+    ],
+    [
+     "005C5167",
+     "lea"
+    ],
+    [
+     "005C516E",
+     "and"
+    ],
+    [
+     "005C5171",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "005C5180",
+   "text": "returns the address `005BF0E0`",
+   "anchors": [
+    [
+     "005C5187",
+     "ret"
+    ]
+   ]
+  },
+  {
+   "fn": "005C51A0",
+   "text": "returns the address `005C5230`",
+   "anchors": [
+    [
+     "005C51A7",
+     "ret"
+    ]
+   ]
+  },
+  {
+   "fn": "005C51B0",
+   "text": "returns the address `005BFC40`",
+   "anchors": [
+    [
+     "005C51B7",
+     "ret"
+    ]
+   ]
+  },
+  {
+   "fn": "005C51C0",
+   "text": "returns the address `005BFE70`",
+   "anchors": [
+    [
+     "005C51C7",
+     "ret"
+    ]
+   ]
+  },
+  {
+   "fn": "005C51D0",
+   "text": "returns the address `005BFEA0`",
+   "anchors": [
+    [
+     "005C51D7",
+     "ret"
+    ]
+   ]
+  },
+  {
+   "fn": "005C52F0",
+   "text": "returns float `+0xC` of element `edx` (stride 0x80) of qword `[rcx+0x30]` when `edx` is below dword `[rcx+0x28]` AND 0x7FFFFFFF, else 0.0",
+   "anchors": [
+    [
+     "005C52F3",
+     "btr"
+    ],
+    [
+     "005C52F9",
+     "jae"
+    ],
+    [
+     "005C5301",
+     "shl"
+    ],
+    [
+     "005C5305",
+     "movss"
+    ],
+    [
+     "005C530C",
+     "xorps"
+    ]
+   ]
+  },
+  {
+   "fn": "005C5320",
+   "text": "returns qword `[rcx+0x28]` minus its bit `0x1`",
+   "anchors": [
+    [
+     "005C5324",
+     "mov"
+    ],
+    [
+     "005C5328",
+     "and"
+    ],
+    [
+     "005C532B",
+     "sub"
+    ]
+   ]
+  },
+  {
+   "fn": "005C5330",
+   "text": "with `t` = the result of vtable slot `+0x20` of `o` = qword `[rcx+0x10]` (with `o` in `rcx`) when `o` is non-null, else float `[02CACF14]`, `s` = -1.0 when float `[rcx+0x20]` is below 0.0 and 1.0 otherwise and `m` = `s` * float `[rcx+0x20]`, takes `r` = `fmodf(t - float [rcx+0x18], m)` (thunk `00861F8C`), adds `m` when `r` is below 0.0, and returns `r`*`s` + float `[rcx+0x1C]` in `xmm0`",
+   "anchors": [
+    [
+     "005C5355",
+     "call"
+    ],
+    [
+     "005C536B",
+     "comiss"
+    ],
+    [
+     "005C5392",
+     "call"
+    ],
+    [
+     "005C539D",
+     "addss"
+    ],
+    [
+     "005C53B5",
+     "addss"
+    ]
+   ]
+  },
+  {
+   "fn": "005C53C0",
+   "text": "returns in `xmm0` `t` * float `[rcx+0x18]` + float `[rcx+0x1C]` with `t` = the result of vtable slot `+0x20` of `o` = qword `[rcx+0x10]` (with `o` in `rcx`) when `o` is non-null, else float `[02CACF14]`",
+   "anchors": [
+    [
+     "005C53D5",
+     "call"
+    ],
+    [
+     "005C53D8",
+     "mulss"
+    ],
+    [
+     "005C53DD",
+     "addss"
+    ],
+    [
+     "005C53E8",
+     "movss"
+    ],
+    [
+     "005C53F5",
+     "addss"
+    ]
+   ]
+  },
+  {
+   "fn": "005C5400",
+   "text": "with `n` = dword `[rcx+8]` AND 0x7FFFFFFF channels at qword `[rcx+0x10]`: for each channel `c` it returns 7 when `k` = qword `[c+0x48]` is null or dword `[k]` is 0, and otherwise takes the first and last floats of qword `[k+0x10]` (dword `[k]` of them), storing them to `[rdx]` and `[r8]` for the first channel and the min with `[rdx]` and max with `[r8]` afterwards; with `lo` = float `[rcx+0x28]` and `hi` = float `[rcx+0x2C]`, it returns 7 when `n` is 0 and `lo` is above `hi`; when `hi` is not below `lo` it stores min(`[rdx]`, `lo`) and max(`[r8]`, `hi`) when `n` is non-zero, or `lo` and `hi` themselves when `n` is 0; returns 0",
+   "anchors": [
+    [
+     "005C542C",
+     "mov"
+    ],
+    [
+     "005C544D",
+     "mov"
+    ],
+    [
+     "005C54BF",
+     "minss"
+    ],
+    [
+     "005C54F5",
+     "comiss"
+    ],
+    [
+     "005C5517",
+     "minss"
+    ]
+   ]
+  },
+  {
+   "fn": "005C5A20",
+   "text": "returns float `+8` of element `edx` (stride 0x80) of qword `[rcx+0x30]` when `edx` is below dword `[rcx+0x28]` AND 0x7FFFFFFF, else 0.0",
+   "anchors": [
+    [
+     "005C5A23",
+     "btr"
+    ],
+    [
+     "005C5A29",
+     "jae"
+    ],
+    [
+     "005C5A31",
+     "shl"
+    ],
+    [
+     "005C5A35",
+     "movss"
+    ],
+    [
+     "005C5A3C",
+     "xorps"
+    ]
+   ]
+  },
+  {
+   "fn": "005C5B20",
+   "text": "returns 0 in `al` when dword `[rcx+0x28]` AND 0x7FFFFFFF is 0; otherwise tail-jumps to `005C5B40` with `rcx` = qword `[rcx+0x30]`",
+   "anchors": [
+    [
+     "005C5B27",
+     "jbe"
+    ],
+    [
+     "005C5B29",
+     "mov"
+    ],
+    [
+     "005C5B2D",
+     "jmp"
+    ],
+    [
+     "005C5B32",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "005C5B40",
+   "text": "returns 0 in `al` when qword `[rcx]` is null; otherwise calls `005C5400(qword [rcx], &a, &b)` with stack floats `a` and `b` set to 0, takes `v` = the result of vtable slot `+0x20` of the object at `rcx+0x10` (with `rcx+0x10` in `rcx`), and returns 1 when `a` is above `v` or `v` is above `b`, else 0 (`comiss`, unordered gives 0)",
+   "anchors": [
+    [
+     "005C5B4F",
+     "je"
+    ],
+    [
+     "005C5B6B",
+     "call"
+    ],
+    [
+     "005C5B78",
+     "call"
+    ],
+    [
+     "005C5B84",
+     "ja"
+    ],
+    [
+     "005C5B8B",
+     "jbe"
+    ]
+   ]
+  },
+  {
+   "fn": "005C5BA0",
+   "text": "returns 0 in `al` when `edx` is not below dword `[rcx+0x28]` AND 0x7FFFFFFF; otherwise tail-jumps to `005C5B40` with `rcx` = element `edx` (stride 0x80) of qword `[rcx+0x30]`",
+   "anchors": [
+    [
+     "005C5BAA",
+     "cmp"
+    ],
+    [
+     "005C5BAC",
+     "jae"
+    ],
+    [
+     "005C5BB4",
+     "add"
+    ],
+    [
+     "005C5BB8",
+     "jmp"
+    ],
+    [
+     "005C5BBD",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "005C5BC0",
+   "text": "with `s` = qword `[rdx+0x28]` minus its bit `0x1`, or 'Un-named' (`00D318A0`) when that is zero, stores `s` to qword `[rcx+8]`, copies qwords `[rdx]`, `[rdx+8]`, `[rdx+0x10]` and `[rdx+0x18]` to qwords `+0x10`..`+0x28` of `rcx` and dwords `[rdx+0x20]` and `[rdx+0x30]` to dwords `+0x30` and `+0x34`, and stores to dword `[rcx]` the XOR of dwords `[rdx]`, `[rdx+8]`, `[rdx+0x10]`, `[rdx+0x18]`, `[rdx+0x20]` and `[rdx+0x30]` with `h` = 0x7B5, then `h`*0x21 + (byte AND 0x1F) for each byte of `s`",
+   "anchors": [
+    [
+     "005C5BDE",
+     "cmovne"
+    ],
+    [
+     "005C5BE2",
+     "mov"
+    ],
+    [
+     "005C5C0E",
+     "mov"
+    ],
+    [
+     "005C5C43",
+     "imul"
+    ],
+    [
+     "005C5C6D",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005C61A0",
+   "text": "for each `i` below `r9d`, when float `i` of qword `[rcx+0x30]` is not equal to 0.0 (`ucomiss`, unordered counts as not equal) stores 1 to byte `[rdx + dword [r8 + 4i]]`",
+   "anchors": [
+    [
+     "005C6208",
+     "movss"
+    ],
+    [
+     "005C620D",
+     "ucomiss"
+    ],
+    [
+     "005C6218",
+     "mov"
+    ],
+    [
+     "005C629C",
+     "movss"
+    ],
+    [
+     "005C62AB",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005C6730",
+   "text": "returns `r` = `005C7130(rcx, rdx)` when it is non-zero, else returns `005C6980(rcx, 0, rdx)`",
+   "anchors": [
+    [
+     "005C6740",
+     "call"
+    ],
+    [
+     "005C6747",
+     "jne"
+    ],
+    [
+     "005C6751",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C6770",
+   "text": "stores -(float `[02CACF14]`) (sign flip by `01CEBDA0`) to float `[rcx+0x54]` and 1.0 to float `[rcx+0x50]`, takes `v1` = vtable slot `+0x20` of the object at `rcx+0x38` (with it in `rcx`), stores the float `[rcx+0xC]` read earlier to `+0x50`, takes `v2` by the same call, stores `rdx` to qword `[rcx]` and `v1` - `v2` + float `[rcx+0x54]` to that float; returns 0x11 when `l` = qword `[rcx+0x68]` is null and 0x13 unless `rdx` is non-null and among the dword `[l]` AND 0x7FFFFFFF pointers of `l` (at qword `[l+8]` when above 1, else inline); then stores `rdx` to qword `[rcx+0x70]` and returns `r` = `005C5400(rdx, &a, &b)` (stack floats set to 0) when non-zero; otherwise stores `rcx+0x10` to qword `[rcx+0x78]`, `a` to float `[rcx+0x2C]` and `b` - `a` to float `[rcx+0x30]` and returns 0",
+   "anchors": [
+    [
+     "005C67A2",
+     "movss"
+    ],
+    [
+     "005C67B7",
+     "call"
+    ],
+    [
+     "005C67D9",
+     "movss"
+    ],
+    [
+     "005C681D",
+     "cmp"
+    ],
+    [
+     "005C685F",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C68B0",
+   "text": "returns 0x11 when qword `[rcx+0x20]` is null and 0x13 when `p` = `005C3480(qword [rcx+0x20], rdx)` is null; otherwise returns `r` = `005C7130(rcx, p)` when it is non-zero, else `005C6980(rcx, 0, p)`",
+   "anchors": [
+    [
+     "005C68C0",
+     "jne"
+    ],
+    [
+     "005C68D0",
+     "call"
+    ],
+    [
+     "005C68DB",
+     "jne"
+    ],
+    [
+     "005C68F1",
+     "call"
+    ],
+    [
+     "005C6902",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "005C68B0",
+   "why": "byte verifier, re-read by OPUS: 005C3480 also receives the caller's rdx (the string it searches for, rdx is not changed before the call at 005C68D0); the row drops that argument"
+  }
+ ],
+ "mode": "member",
+ "family": "Phyre PAnimation module",
+ "method": "The page declares the family `Phyre PAnimation module` (a classification family: ordinary functions grouped by module, not template copies). engine_explained did not credit these members. Another local Claude session (repos-91, session local-ee-drafter) drafted one sentence and 1-5 interior anchors per body from OPUS's pack (`mem_pack.py`, filtered against engine_explained's own set); OPUS checked every row mechanically with `interior_ingest.py` (member mode). A second local agent, not the drafter, then read every one of the 295 rows of this batch against the disassembly: 286 stood, 9 rows were corrected in 14 clauses (signed compares worded above/below, two missing pass-through arguments, one wrong value on a path, one overgeneralised compare direction, one 16-bit edge). OPUS confirmed corrections at the bytes on a sample; they are listed below. Neither agent is an independent reviewer: the non-author check is SWE2-AUDIT-SPEC's."
+}

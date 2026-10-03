@@ -1,0 +1,9 @@
+{
+  "complete": true,
+  "status": "ACTUAL_CLI_REFUSAL_WITHOUT_RESULT",
+  "method": "Labelled synthetic upstream-failure receipt through unchanged current producer CLI; not a failed real capture or FF12 execution",
+  "positive": "Retained actual prove-mode-query-02, no repeat",
+  "negative_exit": 1,
+  "result_absent": true,
+  "producer_sha256": "e83a3f7b3e717c41f9a5b8292684d59c04c82e242d01c0df2d978f185cc9f9f0"
+}

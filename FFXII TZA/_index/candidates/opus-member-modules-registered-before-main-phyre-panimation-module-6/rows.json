@@ -1,0 +1,141 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-fifteen-modules-registered-before-main-phyre-panimation-module-6.json",
+ "rows": [
+  {
+   "fn": "005CB780",
+   "text": "returns 0 in `al` when vtable slot `+0x10` of `rdx` called with (`rdx`, `rcx`) returns 0 in `al`, or when `o` = qword `[rcx+0x10]` is non-null and `o`'s vtable slot `+0x18` called with (`o`, `rdx`, `rcx`) does; otherwise calls vtable slot `+0x20` of `rdx` with (`rdx`, `rcx`, `r8`) and returns 1",
+   "anchors": [
+    [
+     "005CB7A1",
+     "call"
+    ],
+    [
+     "005CB7A6",
+     "jne"
+    ],
+    [
+     "005CB7CC",
+     "call"
+    ],
+    [
+     "005CB7DF",
+     "call"
+    ],
+    [
+     "005CB7E7",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005CB800",
+   "text": "stores 0 to qword `[rcx+0x30]`; for each count/pointer pair (dword `+N`, qword `+N+8`) with `N` = 8, 0x40, 0x58 and 0x18 whose dword is non-zero, calls `00584730` on the qword when it is non-null and bit `0x80000000` of the dword is clear and stores 0 to both; it stores 0 to dword `+0x38` after the 0x40 pair and to dword `+0x50` after the 0x58 pair whether or not those dwords were non-zero; then stores 0 to qword `+0x28`, calls `00584730(qword [rcx+0x68])`, stores 0 there and returns 0",
+   "anchors": [
+    [
+     "005CB80F",
+     "mov"
+    ],
+    [
+     "005CB82C",
+     "call"
+    ],
+    [
+     "005CB85D",
+     "mov"
+    ],
+    [
+     "005CB885",
+     "mov"
+    ],
+    [
+     "005CB8B5",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005CC680",
+   "text": "adds 1 to dword `[rcx+0xC]` and returns 1 in `al`",
+   "anchors": [
+    [
+     "005CC683",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005CC690",
+   "text": "adds 1 to dword `[rcx+8]` and returns 1 in `al`",
+   "anchors": [
+    [
+     "005CC693",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005CC6A0",
+   "text": "with `n` = dword `[rcx+0x10]` elements of 0x98 bytes at qword `[rcx+8]`, finds the first `i` whose qword `+0` is `rdx`; when there is none it stores `rdx` to qword `+0` of element `n` and adds 1 to dword `[rcx+0x10]`; otherwise it copies each element `j`+1 over element `j` for `j` from `i` to `n` - 2 and stores `rdx` to qword `+0` of element `n` - 1; returns 1 in `al`",
+   "anchors": [
+    [
+     "005CC6CA",
+     "cmp"
+    ],
+    [
+     "005CC6E5",
+     "mov"
+    ],
+    [
+     "005CC6EB",
+     "inc"
+    ],
+    [
+     "005CC720",
+     "movups"
+    ],
+    [
+     "005CC7C2",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005CC7D0",
+   "text": "with `s` = qword `[rdx+0x60]` minus its bit `0x1`, when `s` is non-zero and not empty it builds a stack key (dword `h` = 0x7B5, then `h`*0x21 + (byte AND 0x1F) per byte; dword length; qword `s`) and, when `n` = `005A7990(rcx+0x18, &key)` is non-null, stores `rdx` to qword `[qword [rcx+8] + 8i]` with `i` = (`n` - qword `[rcx+0x10]`) / 0x28 when that slot is 0; returns 0",
+   "anchors": [
+    [
+     "005CC7EB",
+     "sub"
+    ],
+    [
+     "005CC813",
+     "imul"
+    ],
+    [
+     "005CC84C",
+     "call"
+    ],
+    [
+     "005CC87E",
+     "cmp"
+    ],
+    [
+     "005CC885",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "005CB8D0": "too large for one precise sentence (999 B, 289 instructions)"
+ },
+ "missing": [],
+ "corrections": [],
+ "mode": "member",
+ "family": "Phyre PAnimation module",
+ "method": "The page declares the family `Phyre PAnimation module` (a classification family: ordinary functions grouped by module, not template copies). engine_explained did not credit these members. Another local Claude session (repos-91, session local-ee-drafter) drafted one sentence and 1-5 interior anchors per body from OPUS's pack (`mem_pack.py`, filtered against engine_explained's own set); OPUS checked every row mechanically with `interior_ingest.py` (member mode). A second local agent, not the drafter, then read every one of the 295 rows of this batch against the disassembly: 286 stood, 9 rows were corrected in 14 clauses (signed compares worded above/below, two missing pass-through arguments, one wrong value on a path, one overgeneralised compare direction, one 16-bit edge). OPUS confirmed corrections at the bytes on a sample; they are listed below. Neither agent is an independent reviewer: the non-author check is SWE2-AUDIT-SPEC's."
+}

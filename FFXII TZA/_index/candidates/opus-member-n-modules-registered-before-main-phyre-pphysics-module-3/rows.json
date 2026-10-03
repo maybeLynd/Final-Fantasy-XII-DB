@@ -1,0 +1,772 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-fifteen-modules-registered-before-main-phyre-pphysics-module-3.json",
+ "rows": [
+  {
+   "fn": "0069EFA0",
+   "text": "with `n` = dword `[rcx+0x3C]`: when `n` is not below dword `[rcx+0xB8]` it stores 2*that + 1 there and calls `006A5560(rcx+0x98, new)` and `006A55F0(rcx+0xA8, new)`; then stores `n` to dword `[r9]` and, in element `n` (stride 0x24) of qword `[rcx+0xA0]`, the three dwords at `rdx` to `+0`..`+8`, the three at `r8` to `+0x10`..`+0x18` and the fifth argument (dword) to `+0x20`; adds 1 to dword `[rcx+0x3C]` and returns 0",
+   "anchors": [
+    [
+     "0069EFC7",
+     "cmp"
+    ],
+    [
+     "0069EFE0",
+     "call"
+    ],
+    [
+     "0069EFF2",
+     "call"
+    ],
+    [
+     "0069F00A",
+     "mov"
+    ],
+    [
+     "0069F05D",
+     "inc"
+    ]
+   ]
+  },
+  {
+   "fn": "0069F070",
+   "text": "with `s` = qword `[rdx+0x118]` and `k` = byte `[rdx+0xE9]`: calls vtable slot `+0xA0` of `o` = qword `[rcx+0x60]` with (`o`, `s`) when both are non-null; when `k` is non-zero, calls slot `+0xA0` of `w` = qword `+0x60` of qword `+0x10` of qword `[rdx+0xC8]` with (`w`, qword `[rdx+0x118]`) when every link and that qword are non-null, and stores 0 to byte `[rdx+0xE9]`; when `s` is null returns `r` = `0069FB10(rdx)` if non-zero; when qword `[rcx+0x60]` is 0 returns `r` = `006A0310(rcx)` if non-zero and returns 0 if that qword is still 0; then, when `k` was non-zero, calls `006A65A0(rdx, 1, byte [rdx+0xE9])`; returns 0",
+   "anchors": [
+    [
+     "0069F0A5",
+     "call"
+    ],
+    [
+     "0069F0E4",
+     "call"
+    ],
+    [
+     "0069F0F9",
+     "call"
+    ],
+    [
+     "0069F10C",
+     "call"
+    ],
+    [
+     "0069F12E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0069F770",
+   "text": "when qword `[rcx+0x80]` is 0, takes `p` = `0085E680(0x50, 0x10)` and, when non-null, calls `00831D90(p)`, stores `00D7A838` to qword `[p]` and 0 to dword `[p+8]`, and with `m` = float `[p+0x40]` stores (float `[rcx+0x70]` * float `[p+0x20]` - `m`, float `[rcx+0x74]` * float `[p+0x24]` - `m`, float `[rcx+0x78]` * float `[p+0x28]` - `m`, 0.0) to the 16 bytes at `p+0x30`; stores `p` to qword `[rcx+0x80]` and returns 0xE when it is null; otherwise copies qword `[rcx+0x80]` to qword `[rcx+0x68]` and returns 0",
+   "anchors": [
+    [
+     "0069F794",
+     "cmp"
+    ],
+    [
+     "0069F7D2",
+     "call"
+    ],
+    [
+     "0069F7DE",
+     "mov"
+    ],
+    [
+     "0069F7FD",
+     "subss"
+    ],
+    [
+     "0069F82B",
+     "movdqa"
+    ]
+   ]
+  },
+  {
+   "fn": "0069F870",
+   "text": "when qword `[rcx+0x88]` is 0, stores to it `p` = `0085E680(0x60, 0x10)` after, for non-null `p`, `008348A0(p, float [rcx+0x70] in xmm1, float [rcx+0x78] in xmm2)`, and returns 0xE when `p` is null; otherwise copies qword `[rcx+0x88]` to qword `[rcx+0x68]` and returns 0",
+   "anchors": [
+    [
+     "0069F882",
+     "cmp"
+    ],
+    [
+     "0069F894",
+     "call"
+    ],
+    [
+     "0069F8B0",
+     "call"
+    ],
+    [
+     "0069F8B6",
+     "mov"
+    ],
+    [
+     "0069F8D0",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0069F8E0",
+   "text": "when qword `[rcx+0x80]` is 0, stores to it `p` = `0085E680(0x60, 0x10)` after, for non-null `p`, `008353F0(p, &v)` with the stack vector `v` = (float `[rcx+0x70]`, float `[rcx+0x78]` * 0.5, float `[rcx+0x70]`, 0.0), and returns 0xE when `p` is null; otherwise copies qword `[rcx+0x80]` to qword `[rcx+0x68]` and returns 0",
+   "anchors": [
+    [
+     "0069F8F2",
+     "cmp"
+    ],
+    [
+     "0069F904",
+     "call"
+    ],
+    [
+     "0069F918",
+     "mulss"
+    ],
+    [
+     "0069F948",
+     "call"
+    ],
+    [
+     "0069F968",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006A0280",
+   "text": "returns 0 when qword `[rcx+0x78]` is non-zero; otherwise takes `p` = `0085E680(0x50, 0x10)` and, when non-null, calls `00831990(p)` and stores `00D7AA18` to qword `[p]`, 8 to dword `[p+8]` and float `[rcx+0x70]` to floats `[p+0x30]` and `[p+0x40]`; stores `p` to qwords `[rcx+0x78]` and `[rcx+0x68]` and returns 0xE when it is null, else 0",
+   "anchors": [
+    [
+     "006A029C",
+     "cmp"
+    ],
+    [
+     "006A02AB",
+     "call"
+    ],
+    [
+     "006A02C5",
+     "call"
+    ],
+    [
+     "006A02D4",
+     "mov"
+    ],
+    [
+     "006A02E9",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006A0540",
+   "text": "returns `r` = vtable slot `+0` of `rcx` called with `rcx` when it is non-zero; returns 9 when `w` = qword `[rdx+0x120]` is null; otherwise calls vtable slot `+0x28` of `s` = qword `[rcx+0x80]` with (`s`, &v) for the stack vector `v` = (floats `[rcx+0x50]`, `[rcx+0x54]`, `[rcx+0x58]`, 0.0), then `00832590(w, 006A2600(&t, rcx+0x20), qword [rcx+0x80])` and returns 0; stack cookie `01F44830`, checked by `00808C40`",
+   "anchors": [
+    [
+     "006A0565",
+     "call"
+    ],
+    [
+     "006A056B",
+     "cmp"
+    ],
+    [
+     "006A05AE",
+     "call"
+    ],
+    [
+     "006A05BA",
+     "call"
+    ],
+    [
+     "006A05D0",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006A0600",
+   "text": "returns `r` = vtable slot `+0` of `rcx` called with `rcx` when it is non-zero; otherwise, when `w` = qword `[rdx+0x120]` is non-null, calls `00832590(w, 006A2600(&t, rcx+0x20), qword [rcx+0x88])` and returns 0, else returns 9; stack cookie `01F44830`, checked by `00808C40`",
+   "anchors": [
+    [
+     "006A0622",
+     "call"
+    ],
+    [
+     "006A0628",
+     "cmp"
+    ],
+    [
+     "006A063B",
+     "call"
+    ],
+    [
+     "006A0651",
+     "call"
+    ],
+    [
+     "006A065A",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006A0980",
+   "text": "returns `r` = vtable slot `+0` of `rcx` called with `rcx` when it is non-zero; returns 9 when `w` = qword `[rdx+0x120]` is null; otherwise calls vtable slot `+0x28` of `s` = qword `[rcx+0x78]` with (`s`, &v) for the stack vector `v` = (floats `[rcx+0x50]`, `[rcx+0x54]`, `[rcx+0x58]`, 0.0), then `00832590(w, 006A2600(&t, rcx+0x20), qword [rcx+0x78])` and returns 0; stack cookie `01F44830`, checked by `00808C40`",
+   "anchors": [
+    [
+     "006A09A5",
+     "call"
+    ],
+    [
+     "006A09AB",
+     "cmp"
+    ],
+    [
+     "006A09EB",
+     "call"
+    ],
+    [
+     "006A09F7",
+     "call"
+    ],
+    [
+     "006A0A0A",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006A0B60",
+   "text": "when `b` = qword `[rcx+0x118]` is non-null, adds float `[b+0x170]` * (float `[rdx+k]` * float `[b+0x180+k]`) to float `[b+0x150+k]` for `k` = 0, 4 and 8, then tail-jumps to `0083A030(b, 0)`; a null `b` does nothing",
+   "anchors": [
+    [
+     "006A0B6A",
+     "je"
+    ],
+    [
+     "006A0B70",
+     "mulss"
+    ],
+    [
+     "006A0BC6",
+     "movss"
+    ],
+    [
+     "006A0BD6",
+     "movss"
+    ],
+    [
+     "006A0BE5",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006A1C70",
+   "text": "calls `006A1A70(rcx, r8, r9, &k, 0xF)` with a stack block `k` whose bytes `+0x20`..`+0x2F` are zeroed first; when it returns non-zero `al` and qwords `k+0x20` and `k+0x28` are both non-null, copies the 16 bytes at `k` to the fifth argument and those at `k+0x10` to the sixth (each when that pointer is non-null) and stores the two qwords to qwords `[rdx]` and `[rdx+8]`; otherwise stores 0 to qword `[rdx]` and `006372A0()` to qword `[rdx+8]`; returns `rdx`",
+   "anchors": [
+    [
+     "006A1C79",
+     "mov"
+    ],
+    [
+     "006A1C95",
+     "movdqu"
+    ],
+    [
+     "006A1C9B",
+     "call"
+    ],
+    [
+     "006A1CD4",
+     "movups"
+    ],
+    [
+     "006A1D04",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006A1D20",
+   "text": "calls `006A1A70(rcx, r8, r9, &k, seventh argument)` with a stack block `k` whose bytes `+0x20`..`+0x2F` are zeroed first; when it returns non-zero `al` and qwords `k+0x20` and `k+0x28` are both non-null, copies the 16 bytes at `k` to the fifth argument and those at `k+0x10` to the sixth (each when that pointer is non-null) and stores the two qwords to qwords `[rdx]` and `[rdx+8]`; otherwise stores 0 to qword `[rdx]` and `006372A0()` to qword `[rdx+8]`; returns `rdx`",
+   "anchors": [
+    [
+     "006A1D33",
+     "mov"
+    ],
+    [
+     "006A1D48",
+     "movdqu"
+    ],
+    [
+     "006A1D4E",
+     "call"
+    ],
+    [
+     "006A1D87",
+     "movups"
+    ],
+    [
+     "006A1DB7",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006A23F0",
+   "text": "when `b` = qword `[rcx+0x118]` is non-null, clears bits `0x1` and `0x2` of dword `[b+0xE8]` and calls `0083A3A0(b, 1)`; stores 0 to byte `[rcx+0xE0]` when it is 0xF; then, with `t` = qword `+0x10` of qword `[rcx+0xC8]` (both links non-null), unlinks `rcx` from the list headed by qword `[t+0x58]` (next at qword `+0xD8`; its predecessor's link takes qword `[rcx+0xD8]`, which becomes 0) when it is on it; stores 1 to byte `[rcx+0xE8]` and returns 0",
+   "anchors": [
+    [
+     "006A2405",
+     "and"
+    ],
+    [
+     "006A2418",
+     "call"
+    ],
+    [
+     "006A2426",
+     "mov"
+    ],
+    [
+     "006A247F",
+     "mov"
+    ],
+    [
+     "006A248D",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006A24A0",
+   "text": "when `b` = qword `[rcx+0x118]` is non-null, clears bit `0x1` and sets bit `0x2` of dword `[b+0xE8]` and calls `0083A3A0(b, 4)`; stores 1 to byte `[rcx+0xE0]` when it is 0xF; then, with `t` = qword `+0x10` of qword `[rcx+0xC8]` (both links non-null), pushes `rcx` onto the list headed by qword `[t+0x58]` (qword `[rcx+0xD8]` = old head) unless it is already on it (next at qword `+0xD8`); stores 2 to byte `[rcx+0xE8]` and returns 0",
+   "anchors": [
+    [
+     "006A24B5",
+     "and"
+    ],
+    [
+     "006A24CF",
+     "call"
+    ],
+    [
+     "006A24DD",
+     "mov"
+    ],
+    [
+     "006A251E",
+     "mov"
+    ],
+    [
+     "006A252B",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006A2540",
+   "text": "when `b` = qword `[rcx+0x118]` is non-null, clears bit `0x2` and sets bit `0x1` of dword `[b+0xE8]` and calls `0083A3A0(b, 2)`; stores 1 to byte `[rcx+0xE0]` when it is 0xF; then, with `t` = qword `+0x10` of qword `[rcx+0xC8]` (both links non-null), unlinks `rcx` from the list headed by qword `[t+0x58]` (next at qword `+0xD8`; its predecessor's link takes qword `[rcx+0xD8]`, which becomes 0) when it is on it; stores 0 to byte `[rcx+0xE8]` and returns 0",
+   "anchors": [
+    [
+     "006A2555",
+     "and"
+    ],
+    [
+     "006A256F",
+     "call"
+    ],
+    [
+     "006A257D",
+     "mov"
+    ],
+    [
+     "006A25D4",
+     "mov"
+    ],
+    [
+     "006A25E2",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006A2780",
+   "text": "calls vtable slot `+0` of qword `[rcx+0x88]` with (that object, 1) when it is non-null, then stores 0 to qwords `+0x68` and `+0x88`",
+   "anchors": [
+    [
+     "006A2793",
+     "je"
+    ],
+    [
+     "006A279D",
+     "call"
+    ],
+    [
+     "006A27A1",
+     "mov"
+    ],
+    [
+     "006A27A5",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006A27C0",
+   "text": "when qwords `[rcx+0x138]` and `w` = `[rcx+0x130]` are non-null, calls `w`'s vtable slot `+0x78` with (`w`, qword `[rcx+0x138]`) and then slot `+0x40` of the re-read qword `[rcx+0x130]` with (it, `005C5310(qword [rcx+0x138])`); calls vtable slot `+0` of qword `[rcx+0x148]` with (it, 1) when non-null; when qword `[rcx+0x138]` is non-null calls its vtable slot `+0` with (it, 0) and `00584730` on it; calls vtable slot `+8` of qword `[rcx+0x140]` with (it, 1) when non-null; then stores 0 to qwords `+0x148`, `+0x138` and `+0x140`",
+   "anchors": [
+    [
+     "006A27E9",
+     "call"
+    ],
+    [
+     "006A280C",
+     "call"
+    ],
+    [
+     "006A2828",
+     "call"
+    ],
+    [
+     "006A2844",
+     "call"
+    ],
+    [
+     "006A285D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006A2880",
+   "text": "calls vtable slot `+0` of qword `[rcx+0x80]` with (that object, 1) when it is non-null, then stores 0 to qwords `+0x68` and `+0x80`",
+   "anchors": [
+    [
+     "006A2893",
+     "je"
+    ],
+    [
+     "006A289D",
+     "call"
+    ],
+    [
+     "006A28A1",
+     "mov"
+    ],
+    [
+     "006A28A5",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006A28C0",
+   "text": "for each of qwords `[rcx+0x78]`, `[rcx+0x80]` and `[rcx+0x88]` that is non-null calls its vtable slot `+0` with (that object, 1); then stores 0 to qwords `+0x78`, `+0x80`, `+0x88` and `+0x68`",
+   "anchors": [
+    [
+     "006A28DA",
+     "call"
+    ],
+    [
+     "006A28F0",
+     "call"
+    ],
+    [
+     "006A2906",
+     "call"
+    ],
+    [
+     "006A290A",
+     "mov"
+    ],
+    [
+     "006A291C",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006A2930",
+   "text": "calls vtable slot `+0` of qword `[rcx+0x78]` with (that object, 1) when it is non-null, then stores 0 to qwords `+0x68` and `+0x78`",
+   "anchors": [
+    [
+     "006A2940",
+     "je"
+    ],
+    [
+     "006A294A",
+     "call"
+    ],
+    [
+     "006A294E",
+     "mov"
+    ],
+    [
+     "006A2952",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006A2960",
+   "text": "when byte `[rcx+0xE9]` is non-zero: with `w` = qword `+0x60` of qword `+0x10` of qword `[rcx+0xC8]`, calls `w`'s vtable slot `+0xA0` with (`w`, qword `[rcx+0x118]`) when every link in that chain and qword `[rcx+0x118]` are non-null, then stores 0 to byte `[rcx+0xE9]`; returns 0",
+   "anchors": [
+    [
+     "006A2966",
+     "cmp"
+    ],
+    [
+     "006A2987",
+     "mov"
+    ],
+    [
+     "006A2990",
+     "mov"
+    ],
+    [
+     "006A299F",
+     "call"
+    ],
+    [
+     "006A29A5",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006A29C0",
+   "text": "when byte `[rcx+0xE9]` is not 1: with `t` = qword `+0x10` of qword `[rcx+0xC8]`, `w` = qword `[t+0x60]`, `b` = qword `[rcx+0x118]` and `k` = byte `[rcx+0xE0]`, when all of these links are non-null calls `w`'s vtable slot `+0x130` with (`w`, `b`, 1 shifted left `k` (16-bit), word `[t+0x78+2k]`) and then `0083A030(qword [rcx+0x118], 0)`; then stores 1 to byte `[rcx+0xE9]`; returns 0",
+   "anchors": [
+    [
+     "006A29C6",
+     "cmp"
+    ],
+    [
+     "006A2A10",
+     "shl"
+    ],
+    [
+     "006A2A20",
+     "call"
+    ],
+    [
+     "006A2A30",
+     "call"
+    ],
+    [
+     "006A2A35",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006A2A60",
+   "text": "stores 0 to the three floats at `rdx`, then, when `b` = qword `[rcx+0x118]` is non-null, copies floats `+0x160`, `+0x164` and `+0x168` of `b` to them; returns `rdx`",
+   "anchors": [
+    [
+     "006A2A62",
+     "mov"
+    ],
+    [
+     "006A2A72",
+     "je"
+    ],
+    [
+     "006A2A7E",
+     "movss"
+    ],
+    [
+     "006A2A8A",
+     "movss"
+    ],
+    [
+     "006A2A8F",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "006A3770",
+   "text": "with `e` = element `r8d` (stride 0x30) of qword `[rcx+0xB0]`, when `r8d` is below dword `[rcx+0x38]`, float `[e+0xC]` is not 0.0 (`ucomiss`, unordered counts as not equal) and qwords `[e+0x20]` and `[e+0x28]` are both non-null, stores floats `e+0`..`e+8` and 1.0 to the four floats at `r9`, floats `e+0x10`..`e+0x18` and 0 to the four at the fifth argument, and the two qwords to qwords `[rdx]` and `[rdx+8]`; otherwise stores 0 to qword `[rdx]` and `006372A0()` to qword `[rdx+8]`; returns `rdx`",
+   "anchors": [
+    [
+     "006A3783",
+     "cmp"
+    ],
+    [
+     "006A37A8",
+     "ucomiss"
+    ],
+    [
+     "006A3802",
+     "mov"
+    ],
+    [
+     "006A3818",
+     "mov"
+    ],
+    [
+     "006A3840",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006A3860",
+   "text": "with `e` = element `r8d` (stride 0x30) of qword `[rcx+0xD8]`, when `r8d` is below dword `[rcx+0x38]`, float `[e+0xC]` is not 0.0 (`ucomiss`, unordered counts as not equal) and qwords `[e+0x20]` and `[e+0x28]` are both non-null, stores floats `e+0`..`e+8` and 1.0 to the four floats at `r9`, floats `e+0x10`..`e+0x18` and 0 to the four at the fifth argument, and the two qwords to qwords `[rdx]` and `[rdx+8]`; otherwise stores 0 to qword `[rdx]` and `006372A0()` to qword `[rdx+8]`; returns `rdx`",
+   "anchors": [
+    [
+     "006A3873",
+     "cmp"
+    ],
+    [
+     "006A3898",
+     "ucomiss"
+    ],
+    [
+     "006A38F2",
+     "mov"
+    ],
+    [
+     "006A3908",
+     "mov"
+    ],
+    [
+     "006A3930",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006A3AA0",
+   "text": "stores 0 to the three floats at `rdx`, then, when `b` = qword `[rcx+0x118]` is non-null, copies floats `+0x150`, `+0x154` and `+0x158` of `b` to them; returns `rdx`",
+   "anchors": [
+    [
+     "006A3AA2",
+     "mov"
+    ],
+    [
+     "006A3AB2",
+     "je"
+    ],
+    [
+     "006A3ABE",
+     "movss"
+    ],
+    [
+     "006A3ACA",
+     "movss"
+    ],
+    [
+     "006A3ACF",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "006A4670",
+   "text": "when `rdx` is on the list headed by qword `[rcx+0x50]` (next at qword `+0`), unlinks it (its predecessor's link takes qword `[rdx]`, which becomes 0) and, when `w` = qword `[rdx+0x130]` is non-null, calls `w`'s vtable slot `+0x78` with (`w`, qword `[rdx+0x138]`) and slot `+0x40` of the re-read qword `[rdx+0x130]` with (it, qword `[rdx+0x140]`) and stores 0 to qword `[rdx+0x130]`; returns 0",
+   "anchors": [
+    [
+     "006A4686",
+     "cmp"
+    ],
+    [
+     "006A46C0",
+     "mov"
+    ],
+    [
+     "006A46E0",
+     "call"
+    ],
+    [
+     "006A46F4",
+     "call"
+    ],
+    [
+     "006A46F7",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006A4710",
+   "text": "for each node `n` of the list headed by qword `[rcx+0x50]` (next at qword `+0`, read first): when `n` is still on that list it unlinks it (its predecessor's link takes qword `[n]`, which becomes 0) and, when `w` = qword `[n+0x130]` is non-null, calls `w`'s vtable slot `+0x78` with (`w`, qword `[n+0x138]`) and slot `+0x40` of the re-read qword `[n+0x130]` with (it, qword `[n+0x140]`) and stores 0 to qword `[n+0x130]`; it then stores 0 to qword `[n+0xD8]`; returns 0",
+   "anchors": [
+    [
+     "006A4743",
+     "mov"
+    ],
+    [
+     "006A478A",
+     "mov"
+    ],
+    [
+     "006A47A6",
+     "call"
+    ],
+    [
+     "006A47BA",
+     "call"
+    ],
+    [
+     "006A47C4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006A49A0",
+   "text": "for each node `g` of the list from qword `[rcx+0x48]` (next at qword `+0`) and each node `b` of `g`'s list from qword `[g+8]` (next at qword `+0`, read first): with `s` = qword `[b+0xC8]` non-null and `w` = qword `+0x60` of qword `[s+0x10]` (0 when that is null), when `o` = qword `[rcx+0x60]` is non-null, equals `w`, and qword `[b+0x118]` is non-null, calls `o`'s vtable slot `+0xA0` with (`o`, qword `[b+0x118]`); after each `g` stores 0 to qword `[g+0x10]`; returns 0",
+   "anchors": [
+    [
+     "006A49C2",
+     "mov"
+    ],
+    [
+     "006A49EB",
+     "mov"
+    ],
+    [
+     "006A49F8",
+     "cmp"
+    ],
+    [
+     "006A4A0C",
+     "call"
+    ],
+    [
+     "006A4A1A",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "0069F150": "too large for one precise sentence (818 B, 200 instructions)",
+  "0069F690": "too large for one precise sentence (220 B, 48 instructions)",
+  "0069F980": "too large for one precise sentence (391 B, 105 instructions)",
+  "006A0310": "too large for one precise sentence (558 B, 119 instructions)",
+  "006A0680": "too large for one precise sentence (767 B, 197 instructions)",
+  "006A2080": "too large for one precise sentence (323 B, 78 instructions)",
+  "006A21D0": "too large for one precise sentence (322 B, 79 instructions)",
+  "006A2600": "too large for one precise sentence (302 B, 66 instructions)",
+  "006A4870": "too large for one precise sentence (303 B, 86 instructions)"
+ },
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "006A0B60",
+   "why": "byte verifier, re-read by OPUS: operand grouping: mulss at 006A0B70 forms float [rdx+k] * float [b+0x180+k] first, then mulss at 006A0B9F multiplies float [b+0x170] by that product; the flat left-to-right product implies the other grouping"
+  }
+ ],
+ "mode": "member",
+ "family": "Phyre PPhysics module",
+ "method": "The page declares the family `Phyre PPhysics module` (a classification family: ordinary functions grouped by module, not template copies). engine_explained did not credit these members. Another local Claude session (repos-91, session local-ee-drafter) drafted one sentence and 1-5 interior anchors per body from OPUS's pack (`mem_pack.py`, filtered against engine_explained's own set); OPUS checked every row mechanically with `interior_ingest.py` (member mode). A second local agent, not the drafter, then read every one of the 154 rows of this batch against the disassembly: 150 stood, 4 rows were corrected in 4 clauses (three signed compares worded above/below, one operand grouping). OPUS confirmed corrections at the bytes on a sample; they are listed below. Neither agent is an independent reviewer: the non-author check is SWE2-AUDIT-SPEC's."
+}

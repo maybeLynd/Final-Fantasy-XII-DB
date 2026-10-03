@@ -1,0 +1,539 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-fifteen-modules-registered-before-main-phyre-prendering-module-6.json",
+ "rows": [
+  {
+   "fn": "0067AE30",
+   "text": "when `rdx` is null stores 0 to dword `[rcx+0x10]`; otherwise, with `n` = the length of the zero-terminated string at `rdx` plus 1, calls `0067B100(rcx, n+0x80)`, stores `n` to dword `[rcx+0x10]` and, when qword `[rcx+8]` is non-null, copies `n` bytes from `rdx` to it (`00861EBA`)",
+   "anchors": [
+    [
+     "0067AE43",
+     "je"
+    ],
+    [
+     "0067AE61",
+     "call"
+    ],
+    [
+     "0067AE6A",
+     "mov"
+    ],
+    [
+     "0067AE70",
+     "je"
+    ],
+    [
+     "0067AE78",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0067AEA0",
+   "text": "formats `edx` with '%u' (`00D6CF10`) into a 0x32-byte stack buffer by `0019C5D0(buf, 0x32, 00D6CF10, edx)` and calls `0067AF00(rcx, buf)`; stack cookie `01F44830`, checked by `00808C40`",
+   "anchors": [
+    [
+     "0067AEA6",
+     "mov"
+    ],
+    [
+     "0067AEB8",
+     "lea"
+    ],
+    [
+     "0067AECC",
+     "call"
+    ],
+    [
+     "0067AED9",
+     "call"
+    ],
+    [
+     "0067AEE6",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006B6B60",
+   "text": "returns the record at `02E524E0`, building it once under the thread-safe guard dword `02E52540` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before, `0080929C` after): `006B6820(02E524E0, 'PContextSwitch', 0x28, 8, 00876870, 006B8DB0)`, qword `02E524E0` = `00D81010`, and `00808B90(008B5C90)`",
+   "anchors": [
+    [
+     "006B6B8A",
+     "cmp"
+    ],
+    [
+     "006B6B99",
+     "call"
+    ],
+    [
+     "006B6BDA",
+     "call"
+    ],
+    [
+     "006B6BE6",
+     "mov"
+    ],
+    [
+     "006B6BF4",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006B6E50",
+   "text": "with `f` = `rcx`, `m` = `rdx`, `l` = `r8` and `n` = (`l` - `f`) / 16: when `n` is greater than 0x28 (signed), with `s` = (`n` + 1) / 8 elements of 16 bytes, calls `006B75E0` on (`f`, `f`+`s`, `f`+2`s`), (`m`-`s`, `m`, `m`+`s`) and (`l`-2`s`, `l`-`s`, `l`) and tail-jumps to it with (`f`+`s`, `m`, `l`-`s`); otherwise tail-jumps to it with (`f`, `m`, `l`); `r9` is passed through as the fourth argument each time",
+   "anchors": [
+    [
+     "006B6E71",
+     "jle"
+    ],
+    [
+     "006B6EB3",
+     "call"
+    ],
+    [
+     "006B6EC8",
+     "call"
+    ],
+    [
+     "006B6EE2",
+     "call"
+    ],
+    [
+     "006B6F11",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006B70C0",
+   "text": "insertion-sorts the 16-byte elements in [`rcx`, `rdx`) with the function pointer `f` at qword `[r8]`: for each element after the first it copies the element to a stack copy `t`; when `f(&t, first)` returns non-zero `al` it moves [first, element) up by 16 bytes with `memmove` (IAT slot `008C2A40`) and stores `t` at the first element; otherwise it moves each preceding element up one place while `f(&t, preceding)` returns non-zero and stores `t` into the place left free; an empty range writes nothing",
+   "anchors": [
+    [
+     "006B70C3",
+     "je"
+    ],
+    [
+     "006B7113",
+     "call"
+    ],
+    [
+     "006B7126",
+     "call"
+    ],
+    [
+     "006B7131",
+     "movups"
+    ],
+    [
+     "006B7171",
+     "movups"
+    ]
+   ]
+  },
+  {
+   "fn": "006B73E0",
+   "text": "with base `rcx`, `n` = (`rdx` - `rcx`) / 16 and the function pointer `f` at qword `[r8]`, does nothing when `n` is less than 2 (signed); otherwise for each `i` from `n`/2 - 1 down to 0 it copies element `i` to a stack value `v` and, with hole `h` = `i`, while `h` is less than `q` (signed) = (`n` - 1) / 2 takes child `c` = 2`h` + 2 (or `c` - 1 when `f(base + 16c, base + 16(c-1))` returns non-zero `al`), copies element `c` into element `h` and sets `h` = `c`; when `h` then equals `q` and bit `0x1` of `n` is clear it copies element `n` - 1 into `h` and sets `h` = `n` - 1; then while `h` is greater than `i` (signed) and `f(base + 16p, &v)` returns non-zero for `p` = (`h` - 1) / 2 it copies element `p` into `h` and sets `h` = `p`, and finally stores `v` into element `h`",
+   "anchors": [
+    [
+     "006B73FE",
+     "jl"
+    ],
+    [
+     "006B7486",
+     "call"
+    ],
+    [
+     "006B74C6",
+     "movups"
+    ],
+    [
+     "006B74F3",
+     "call"
+    ],
+    [
+     "006B752C",
+     "movups"
+    ]
+   ]
+  },
+  {
+   "fn": "006B75E0",
+   "text": "orders the three 16-byte elements `a` = `rcx`, `b` = `rdx`, `c` = `r8` with the function pointer `f` at qword `[r9]`: swaps `a` and `b` when `f(b, a)` returns non-zero `al`; then, when `f(c, b)` does, swaps `b` and `c` and again swaps `a` and `b` when `f(b, a)` does",
+   "anchors": [
+    [
+     "006B7606",
+     "call"
+    ],
+    [
+     "006B7613",
+     "movups"
+    ],
+    [
+     "006B761F",
+     "call"
+    ],
+    [
+     "006B7632",
+     "movups"
+    ],
+    [
+     "006B7639",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006B7E00",
+   "text": "with base `rcx`, hole `h` = `rdx` (also the top), count `n` = `r8`, value at `r9` and the function pointer `f` at qword `[fifth argument]`: while `h` is less than `q` (signed) = (`n` - 1) / 2 it takes child `c` = 2`h` + 2, uses `c` - 1 instead when `f(base + 16c, base + 16(c-1))` returns non-zero `al`, copies element `c` into element `h` and sets `h` = `c`; when `h` then equals `q` and bit `0x1` of `n` is clear it copies element `n` - 1 into element `h` and sets `h` = `n` - 1; finally tail-jumps to `006B7F00(base, h, top, r9, fifth argument)`",
+   "anchors": [
+    [
+     "006B7E50",
+     "jge"
+    ],
+    [
+     "006B7E76",
+     "call"
+    ],
+    [
+     "006B7E8D",
+     "movups"
+    ],
+    [
+     "006B7EB5",
+     "movups"
+    ],
+    [
+     "006B7EEC",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006B7F00",
+   "text": "with base `rcx`, hole index `h` = `rdx`, top index `r8`, value at `r9` and the function pointer `f` at qword `[fifth argument]`: while `h` is greater than `r8` (signed) and `f(base + 16*p, r9)` returns non-zero `al` for `p` = (`h` - 1) / 2, copies element `p` into element `h` and sets `h` = `p`; then copies the 16 bytes at `r9` into element `h`",
+   "anchors": [
+    [
+     "006B7F31",
+     "jge"
+    ],
+    [
+     "006B7F60",
+     "call"
+    ],
+    [
+     "006B7F79",
+     "movups"
+    ],
+    [
+     "006B7F87",
+     "jl"
+    ],
+    [
+     "006B7F9A",
+     "movups"
+    ]
+   ]
+  },
+  {
+   "fn": "006B8100",
+   "text": "for the 16-byte elements in [`rcx`, `rdx`), while at least two remain, takes the last element `l` into a stack copy `t`, copies the first element over `l` and calls `006B7E00(rcx, 0, (l - rcx) / 16, &t, r8)`, then drops `l` from the range",
+   "anchors": [
+    [
+     "006B811E",
+     "jl"
+    ],
+    [
+     "006B813C",
+     "movups"
+    ],
+    [
+     "006B814D",
+     "movups"
+    ],
+    [
+     "006B8150",
+     "call"
+    ],
+    [
+     "006B816B",
+     "jge"
+    ]
+   ]
+  },
+  {
+   "fn": "006B83C0",
+   "text": "sorts the 16-byte elements in [`f` = `rcx`, `l` = `rdx`) with depth budget `d` = `r8` and predicate `r9`: while more than 0x20 elements remain, when `d` is at most 0 (signed) it calls `006B73E0(f, l, r9)` and `006B8100(f, l, r9)` and returns; otherwise it calls `006B7A00(&pair, f, l, r9)`, sets `d` = `d`/2 + `d`/4 (signed), recurses into the smaller of [`f`, `pair.lo`) and [`pair.hi`, `l`) with `d` and continues with the other; when two or more elements are left it calls `006B70C0(f, l, r9)`",
+   "anchors": [
+    [
+     "006B83EE",
+     "jle"
+    ],
+    [
+     "006B840B",
+     "call"
+    ],
+    [
+     "006B8455",
+     "call"
+    ],
+    [
+     "006B8494",
+     "call"
+    ],
+    [
+     "006B84CB",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006B8930",
+   "text": "returns in `al` 1 when dword `[rcx+8]` is below dword `[rdx+8]` (unsigned), else 0",
+   "anchors": [
+    [
+     "006B8933",
+     "cmp"
+    ],
+    [
+     "006B8936",
+     "setb"
+    ]
+   ]
+  },
+  {
+   "fn": "006B8940",
+   "text": "when `rcx` is non-null, for each of the `edx` 16-byte entries at `rcx` calls `00584730(qword [e+8])` when bit `0x80000000` of dword `[e]` is clear and that qword is non-null, stores 0 to both, then calls `00584730(rcx)`; a null `rcx` writes nothing",
+   "anchors": [
+    [
+     "006B8943",
+     "je"
+    ],
+    [
+     "006B8979",
+     "je"
+    ],
+    [
+     "006B8984",
+     "call"
+    ],
+    [
+     "006B8989",
+     "mov"
+    ],
+    [
+     "006B899C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006B89C0",
+   "text": "returns 0 when `rcx` is null; returns the first entry of the list from qword `02E522D0` (next at qword `+0x10`) whose qword `+8` string matches `rcx` by `_stricmp` (IAT slot `008C3000`); otherwise it calls `005CDAA0(1, 00D4E5C0, rcx)` (`PNamedSemanticDynamic::FindOrCreateDynamic : Performance war...`), pops `e` from the free list at qword `02E52488` and `s` from the one at qword `02E524B0` (each refilled first with `00680150(list, dword 02E524A4` or `02E524CC)` when empty; the head becomes qword `[entry]`), and, when both are non-null, copies the string with its terminator into `s` (`00861EBA`) and returns `006B8590(e, 0, s)`; otherwise it returns `e`",
+   "anchors": [
+    [
+     "006B89E7",
+     "call"
+    ],
+    [
+     "006B8A20",
+     "call"
+    ],
+    [
+     "006B8A52",
+     "mov"
+    ],
+    [
+     "006B8AB3",
+     "call"
+    ],
+    [
+     "006B8AC0",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006B8D10",
+   "text": "returns in `al` 1 when dword `[rcx+0x18]` is below dword `[rdx+0x18]` (unsigned), else 0",
+   "anchors": [
+    [
+     "006B8D13",
+     "cmp"
+    ],
+    [
+     "006B8D16",
+     "setb"
+    ]
+   ]
+  },
+  {
+   "fn": "006B8DE0",
+   "text": "reads bits lowest-first from the dword stream at qword `[r8]` (each field may span two dwords): a 4-bit count `k` first, then for each `j` below `k` two 5-bit fields, storing the first to dword `[rcx + 4j]` and the second to dword `[rdx + 4j]`; then adds 4 * ((bits read + 0x1F) / 32) to qword `[r8]` and returns `k`",
+   "anchors": [
+    [
+     "006B8E25",
+     "mov"
+    ],
+    [
+     "006B8E50",
+     "je"
+    ],
+    [
+     "006B8ED1",
+     "mov"
+    ],
+    [
+     "006B8F31",
+     "mov"
+    ],
+    [
+     "006B8F65",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "006B94C0",
+   "text": "reads `n` = the dword at qword `[rdx]` and advances that qword by 4; returns 0 when `n` is 0; otherwise, when dword `[r9]` is not 1, replaces the array at qword `[r9+8]` with `p` = `0017D260(8, 8)` (returns 0xD when null; qword `[p]` = 0; the old array goes to `001C2720(old, count AND 0x7FFFFFFF)` when it is not `p` and bit `0x80000000` of the count is clear) and stores 1 to dword `[r9]`; builds a stack string `s` = '-D' (`00D81068`, `0067AD60`) + qword `[rcx+8]` + '=' (`01CEBB4C`, both by `0067AF00`) + decimal `n` (`0067AEA0`); with `q` = qword `[r9+8]`, copies `s` with its terminator into `c` = `0017D260(len, 2)` (`00861EBA`), and on a failed allocation releases `s` (`0067AD90`) and returns 0xD; otherwise calls `00584730` on qword `[q]` when it is non-null with bit `0x1` clear, stores `c` (0 when `s` is empty) to qword `[q]`, releases `s` and returns 0",
+   "anchors": [
+    [
+     "006B94EC",
+     "mov"
+    ],
+    [
+     "006B9540",
+     "call"
+    ],
+    [
+     "006B955B",
+     "call"
+    ],
+    [
+     "006B9587",
+     "call"
+    ],
+    [
+     "006B95FD",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006B9A20",
+   "text": "reads `n` = the dword at qword `[rdx]` and advances that qword by 4; returns 0 when `n` is 0; otherwise, when dword `[r9]` is not 1, replaces the array at qword `[r9+8]` with `p` = `0017D260(8, 8)` (returns 0xD when null; qword `[p]` = 0; the old array goes to `001C2720(old, count AND 0x7FFFFFFF)` when it is not `p` and bit `0x80000000` of the count is clear) and stores 1 to dword `[r9]`; builds a stack string `s` = '-D' (`00D81068`, `0067AD60`) + qword `[rcx+8]` + '=' (`01CEBB4C`, both by `0067AF00`) + decimal `n` (`0067AEA0`); with `q` = qword `[r9+8]`, copies `s` with its terminator into `c` = `0017D260(len, 2)` (`00861EBA`), and on a failed allocation releases `s` (`0067AD90`) and returns 0xD; otherwise calls `00584730` on qword `[q]` when it is non-null with bit `0x1` clear, stores `c` (0 when `s` is empty) to qword `[q]`, releases `s` and returns 0",
+   "anchors": [
+    [
+     "006B9A4C",
+     "mov"
+    ],
+    [
+     "006B9AA0",
+     "call"
+    ],
+    [
+     "006B9ABB",
+     "call"
+    ],
+    [
+     "006B9AE7",
+     "call"
+    ],
+    [
+     "006B9B5D",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006B9B90",
+   "text": "when dword `[r8]` is not 2, replaces the array at qword `[r8+8]` with `b` = `0017D260(0x20, 8)` (returns 0xD when null) holding two 16-byte entries (dword `+0` and qword `+8` = 0; the old array goes to `006B8940(old, count AND 0x7FFFFFFF)` when it is not `b` and bit `0x80000000` of the count is clear) and stores 2 to dword `[r8]`; then for each entry `e` of the two whose dword `+0` is not 1, replaces qword `[e+8]` with `0017D260(4, 4)` (returns 0xD when null; the old block goes to `00584730` when it differs, is non-null and bit `0x80000000` of dword `[e]` is clear) and stores 1 to dword `[e]`; finally stores 0 to the dword at qword `[e0+8]` and 1 to the one at qword `[e1+8]` and returns 0",
+   "anchors": [
+    [
+     "006B9BB0",
+     "call"
+    ],
+    [
+     "006B9BF2",
+     "call"
+    ],
+    [
+     "006B9C16",
+     "call"
+    ],
+    [
+     "006B9C41",
+     "call"
+    ],
+    [
+     "006B9CAD",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006BA3A0",
+   "text": "with `n` = dword `[rdx+0x74]`, when `n` differs from dword `[r8]`, replaces the array at qword `[r8+8]` with `a` = 0 for `n` = 0 or `0017D260(n*16, 8)` holding `n` entries with dword `+0` and qword `+8` = 0 (returns 0xD when that is null; the old array goes to `006B8940(old, count AND 0x7FFFFFFF)` when it is not `a` and bit `0x80000000` of the count is clear) and stores `n` to dword `[r8]`; then for each entry `e` = `j` below `n` whose dword `+0` is not 1 replaces qword `[e+8]` with `0017D260(4, 4)` (returns 0xD when null; the old block goes to `00584730` when it differs, is non-null and bit `0x80000000` of dword `[e]` is clear) and stores 1 to dword `[e]`, and stores `j` to the dword at qword `[e+8]`; returns 0",
+   "anchors": [
+    [
+     "006BA3BC",
+     "cmp"
+    ],
+    [
+     "006BA3D5",
+     "call"
+    ],
+    [
+     "006BA42B",
+     "call"
+    ],
+    [
+     "006BA457",
+     "call"
+    ],
+    [
+     "006BA49A",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "006B7A00": "too large for one precise sentence (535 B, 169 instructions)",
+  "006B9630": "too large for one precise sentence (999 B, 291 instructions)"
+ },
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "006B6E50",
+   "why": "byte verifier, re-read by OPUS: signed compare worded as 'above' (jle at 006B6E71 is signed); use greater/less"
+  },
+  {
+   "fn": "006B73E0",
+   "why": "byte verifier, re-read by OPUS: signed compare worded as 'below' (jl at 006B73FE is signed); use greater/less"
+  },
+  {
+   "fn": "006B73E0",
+   "why": "byte verifier, re-read by OPUS: signed compare worded as 'below' (jge/jl at 006B746E/006B74A7 is signed); use greater/less"
+  },
+  {
+   "fn": "006B73E0",
+   "why": "byte verifier, re-read by OPUS: signed compare worded as 'above' (jge/jl at 006B74DF/006B7519 is signed); use greater/less"
+  },
+  {
+   "fn": "006B7E00",
+   "why": "byte verifier, re-read by OPUS: signed compare worded as 'below' (jge/jl at 006B7E50/006B7E97 is signed); use greater/less"
+  },
+  {
+   "fn": "006B7F00",
+   "why": "byte verifier, re-read by OPUS: signed compare worded as 'above' (jge/jl at 006B7F31/006B7F87 is signed); use greater/less"
+  }
+ ],
+ "mode": "member",
+ "family": "Phyre PRendering module",
+ "method": "The page declares the family `Phyre PRendering module` (a classification family: ordinary functions grouped by module, not template copies). engine_explained did not credit these members. Another local Claude session (repos-91, session local-ee-drafter) drafted one sentence and 1-5 interior anchors per body from OPUS's pack (`mem_pack.py`, filtered against engine_explained's own set); OPUS checked every row mechanically with `interior_ingest.py` (member mode). A second local agent, not the drafter, then read every one of the 203 rows of this batch against the disassembly: 199 stood, 4 rows were corrected in 6 clauses (signed compares written as above/below). OPUS confirmed corrections at the bytes on a sample; they are listed below. Neither agent is an independent reviewer: the non-author check is SWE2-AUDIT-SPEC's."
+}

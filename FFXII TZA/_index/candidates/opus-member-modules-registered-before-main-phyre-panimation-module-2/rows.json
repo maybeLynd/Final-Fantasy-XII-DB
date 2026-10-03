@@ -1,0 +1,884 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-fifteen-modules-registered-before-main-phyre-panimation-module-2.json",
+ "rows": [
+  {
+   "fn": "005ACA70",
+   "text": "stores `00D317D8` to qword `[rcx]`, calls `00809950(rcx, 0x20)` when bit `0x1` of `dl` is set, and returns `rcx`",
+   "anchors": [
+    [
+     "005ACA80",
+     "mov"
+    ],
+    [
+     "005ACA83",
+     "test"
+    ],
+    [
+     "005ACA8D",
+     "call"
+    ],
+    [
+     "005ACA92",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005ACAA0",
+   "text": "stores `00D317D8` to qword `[rcx]`, calls `00809950(rcx, 0x10)` when bit `0x1` of `dl` is set, and returns `rcx`",
+   "anchors": [
+    [
+     "005ACAB0",
+     "mov"
+    ],
+    [
+     "005ACAB3",
+     "test"
+    ],
+    [
+     "005ACABD",
+     "call"
+    ],
+    [
+     "005ACAC2",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005ACAD0",
+   "text": "stores `00D317D8` to qword `[rcx]`, calls `00809950(rcx, 0x18)` when bit `0x1` of `dl` is set, and returns `rcx`",
+   "anchors": [
+    [
+     "005ACAE0",
+     "mov"
+    ],
+    [
+     "005ACAE3",
+     "test"
+    ],
+    [
+     "005ACAED",
+     "call"
+    ],
+    [
+     "005ACAF2",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005ACB50",
+   "text": "stores `00D312F0` to qword `[rcx]`; when bit `0x1` of `dl` is set it calls `00584730(rcx)` if bit `0x4` of `dl` is clear, or `0016D6A0(rcx, 0x18)` if it is set; returns `rcx`",
+   "anchors": [
+    [
+     "005ACB69",
+     "mov"
+    ],
+    [
+     "005ACB6C",
+     "test"
+    ],
+    [
+     "005ACB76",
+     "call"
+    ],
+    [
+     "005ACB7E",
+     "mov"
+    ],
+    [
+     "005ACB83",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005ACBA0",
+   "text": "stores `00D312F0` to qword `[rcx]` and, when bit `0x1` of `edx` is set, releases `rcx`: `0016D6A0(rcx, 0x28)` when bit `0x4` of `edx` is set, else `00584730(rcx)`; returns `rcx`",
+   "anchors": [
+    [
+     "005ACBB9",
+     "mov"
+    ],
+    [
+     "005ACBBC",
+     "test"
+    ],
+    [
+     "005ACBC6",
+     "call"
+    ],
+    [
+     "005ACBD3",
+     "call"
+    ],
+    [
+     "005ACBD9",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005ACBF0",
+   "text": "stores `00D312C0` to qword `[rcx]`, calls `00809950(rcx, 0x10)` when bit `0x1` of `dl` is set, and returns `rcx`",
+   "anchors": [
+    [
+     "005ACC00",
+     "mov"
+    ],
+    [
+     "005ACC03",
+     "test"
+    ],
+    [
+     "005ACC0D",
+     "call"
+    ],
+    [
+     "005ACC12",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005ACC20",
+   "text": "stores `00D312F0` to qword `[rcx]`; when bit `0x1` of `dl` is set it calls `00584730(rcx)` if bit `0x4` of `dl` is clear, or `0016D6A0(rcx, 0x10)` if it is set; returns `rcx`",
+   "anchors": [
+    [
+     "005ACC39",
+     "mov"
+    ],
+    [
+     "005ACC3C",
+     "test"
+    ],
+    [
+     "005ACC46",
+     "call"
+    ],
+    [
+     "005ACC53",
+     "call"
+    ],
+    [
+     "005ACC59",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005ACC70",
+   "text": "stores `00D312C0` to qword `[rcx]`, calls `00809950(rcx, 0x18)` when bit `0x1` of `dl` is set, and returns `rcx`",
+   "anchors": [
+    [
+     "005ACC80",
+     "mov"
+    ],
+    [
+     "005ACC83",
+     "test"
+    ],
+    [
+     "005ACC8D",
+     "call"
+    ],
+    [
+     "005ACC92",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005ACCA0",
+   "text": "stores `00D312C0` to qword `[rcx]`, calls `00809950(rcx, 8)` when bit `0x1` of `dl` is set, and returns `rcx`",
+   "anchors": [
+    [
+     "005ACCB0",
+     "mov"
+    ],
+    [
+     "005ACCB3",
+     "test"
+    ],
+    [
+     "005ACCBD",
+     "call"
+    ],
+    [
+     "005ACCC2",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005ACD90",
+   "text": "stores `00D312F0` to qword `[rcx]`; when bit `0x1` of `dl` is set it calls `00584730(rcx)` if bit `0x4` of `dl` is clear, or `0016D6A0(rcx, 0x20)` if it is set; returns `rcx`",
+   "anchors": [
+    [
+     "005ACDA9",
+     "mov"
+    ],
+    [
+     "005ACDAC",
+     "test"
+    ],
+    [
+     "005ACDB6",
+     "call"
+    ],
+    [
+     "005ACDC3",
+     "call"
+    ],
+    [
+     "005ACDC9",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005ACE90",
+   "text": "stores `00D31280` to qword `[rcx]`, calls `00809950(rcx, 0x18)` when bit `0x1` of `dl` is set, and returns `rcx`",
+   "anchors": [
+    [
+     "005ACEA0",
+     "mov"
+    ],
+    [
+     "005ACEA3",
+     "test"
+    ],
+    [
+     "005ACEAD",
+     "call"
+    ],
+    [
+     "005ACEB2",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005ACEC0",
+   "text": "stores `00D31280` to qword `[rcx]`, calls `00809950(rcx, 8)` when bit `0x1` of `dl` is set, and returns `rcx`",
+   "anchors": [
+    [
+     "005ACED0",
+     "mov"
+    ],
+    [
+     "005ACED3",
+     "test"
+    ],
+    [
+     "005ACEDD",
+     "call"
+    ],
+    [
+     "005ACEE2",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005ACEF0",
+   "text": "stores `00D31298` to qword `[rcx]`, calls `00584730(qword [rcx+8])` when that qword is non-null, and calls `00809950(rcx, 0x18)` when bit `0x1` of `dl` is set; returns `rcx`",
+   "anchors": [
+    [
+     "005ACF10",
+     "mov"
+    ],
+    [
+     "005ACF1C",
+     "call"
+    ],
+    [
+     "005ACF26",
+     "je"
+    ],
+    [
+     "005ACF30",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005ACF50",
+   "text": "stores `00D312F0` to qword `[rcx]`; when bit `0x1` of `dl` is set it calls `00584730(rcx)` if bit `0x4` of `dl` is clear, or `0016D6A0(rcx, 0x10)` if it is set; returns `rcx`",
+   "anchors": [
+    [
+     "005ACF69",
+     "mov"
+    ],
+    [
+     "005ACF6C",
+     "test"
+    ],
+    [
+     "005ACF76",
+     "call"
+    ],
+    [
+     "005ACF83",
+     "call"
+    ],
+    [
+     "005ACF89",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005ACFA0",
+   "text": "stores `00D312F0` to qword `[rcx]` and, when bit `0x1` of `edx` is set, releases `rcx`: `0016D6A0(rcx, 0x28)` when bit `0x4` of `edx` is set, else `00584730(rcx)`; returns `rcx`",
+   "anchors": [
+    [
+     "005ACFB9",
+     "mov"
+    ],
+    [
+     "005ACFBC",
+     "test"
+    ],
+    [
+     "005ACFC6",
+     "call"
+    ],
+    [
+     "005ACFD3",
+     "call"
+    ],
+    [
+     "005ACFD9",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005ACFF0",
+   "text": "stores `00D312F0` to qword `[rcx]`; when bit `0x1` of `dl` is set it calls `00584730(rcx)` if bit `0x4` of `dl` is clear, or `0016D6A0(rcx, 0x20)` if it is set; returns `rcx`",
+   "anchors": [
+    [
+     "005AD009",
+     "mov"
+    ],
+    [
+     "005AD00C",
+     "test"
+    ],
+    [
+     "005AD016",
+     "call"
+    ],
+    [
+     "005AD023",
+     "call"
+    ],
+    [
+     "005AD029",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005AD0B0",
+   "text": "returns 0 when `ecx` is 0; otherwise `p` = `0017D260(ecx*0x30, 8)`, and when `p` is non-null stores 0 to dword `+0`, qword `+8`, dword `+0x10` and qwords `+0x18`, `+0x20` and `+0x28` of each of the `ecx` 0x30-byte elements (passing over a null element address); returns `p`",
+   "anchors": [
+    [
+     "005AD0C0",
+     "je"
+    ],
+    [
+     "005AD0D4",
+     "call"
+    ],
+    [
+     "005AD0F9",
+     "mov"
+    ],
+    [
+     "005AD0FF",
+     "mov"
+    ],
+    [
+     "005AD109",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005AD140",
+   "text": "returns 0 when `ecx` is 0; otherwise `p` = `0017D260(ecx*0x10, 0x10)`, and when `p` is non-null stores 0 to both qwords of each of the `ecx` 16-byte elements (passing over a null element address); returns `p`",
+   "anchors": [
+    [
+     "005AD150",
+     "je"
+    ],
+    [
+     "005AD162",
+     "call"
+    ],
+    [
+     "005AD178",
+     "mov"
+    ],
+    [
+     "005AD17B",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005AD640",
+   "text": "returns 0 when `ecx` is 0; otherwise `p` = `0017D260(ecx*0x10, 8)`, returned null when null; else it calls `005A5E50(p, rdx, r8d)` for the first `r8d` elements, zeroes qwords `+0` and `+8` of each remaining element, and returns `p`",
+   "anchors": [
+    [
+     "005AD662",
+     "je"
+    ],
+    [
+     "005AD673",
+     "call"
+    ],
+    [
+     "005AD689",
+     "call"
+    ],
+    [
+     "005AD6A5",
+     "mov"
+    ],
+    [
+     "005AD6A8",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005AD6E0",
+   "text": "returns 0 when `ecx` is 0 or `p` = `0017D260(ecx*0x18, 8)` is null; otherwise copies the first `r8d` 0x18-byte elements from `rdx` into `p`, and for each of the remaining `ecx` - `r8d` elements stores 0 to qword `+0`, 3 to qword `+8` and 0 to dword `+0x10` (a null element address is passed over); returns `p`",
+   "anchors": [
+    [
+     "005AD700",
+     "je"
+    ],
+    [
+     "005AD711",
+     "call"
+    ],
+    [
+     "005AD73F",
+     "movups"
+    ],
+    [
+     "005AD779",
+     "mov"
+    ],
+    [
+     "005AD77C",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005AD7B0",
+   "text": "returns 0 when `ecx` is 0 or `p` = `0017D260(ecx*0x80, 8)` is null; otherwise calls `005A5F10(p, rdx, r8d)` and `005BEEC0(p + r8d*0x80, ecx - r8d)` and returns `p`",
+   "anchors": [
+    [
+     "005AD7C9",
+     "je"
+    ],
+    [
+     "005AD7DB",
+     "call"
+    ],
+    [
+     "005AD7F1",
+     "call"
+    ],
+    [
+     "005AD803",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005AEEC0",
+   "text": "calls `006388C0(02CAD240)`, `006301F0()` and `005B5130(qword 01F2D0A0)`; under the thread-safe guard dword `02CB1530` (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routine `00808B90(008AA520)`) it registers `m_sourceWeights` by `00632A10(02CB14D0, 02CAD240, 005B5130(0), name, 0x28, 0, 3, 4)` and stores `00D31C50` to qword `02CB14D0`; on every path it then sets bit `0x10` of dword `02CB14F8` and tail-jumps to `00639450(02CAD240)`",
+   "anchors": [
+    [
+     "005AEED4",
+     "call"
+    ],
+    [
+     "005AEF05",
+     "cmp"
+    ],
+    [
+     "005AEF65",
+     "call"
+    ],
+    [
+     "005AEF71",
+     "mov"
+    ],
+    [
+     "005AEF91",
+     "or"
+    ]
+   ]
+  },
+  {
+   "fn": "005AEFB0",
+   "text": "calls `006388C0(02CAD340)` and `005B57A0(qword 01F2D0A8)`; under the thread-safe guard dword `02CB15A0` (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routine `00808B90(008AA540)`) it registers `m_sources` by `00632A10(02CB1540, 02CAD340, 005B57A0(0), name, 0x18, 0, 3, 8)` and stores `00D31CE0` to qword `02CB1540`; on every path it then sets bit `0x10` of dword `02CB1568` and tail-jumps to `00639450(02CAD340)`",
+   "anchors": [
+    [
+     "005AEFC4",
+     "call"
+    ],
+    [
+     "005AEFF0",
+     "cmp"
+    ],
+    [
+     "005AF050",
+     "call"
+    ],
+    [
+     "005AF05C",
+     "mov"
+    ],
+    [
+     "005AF07C",
+     "or"
+    ]
+   ]
+  },
+  {
+   "fn": "005AF0A0",
+   "text": "calls `006388C0(02CAD440)`; under the thread-safe guard dwords `02CB1608`, `02CB1670` and `02CB16D8` (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routines `00808B90` of `008AA600`, `008AA640` and `008AA3A0`) it registers `m_times` by `00632960(02CB15B0, 02CAD440, 02CAD740, name, 0x48, 0x12, 0, 0)`; calls `006301F0()` and `005B5130(qword 01F2D0B0)`; registers `m_valueKeys` by `00632A10(02CB1610, 02CAD440, 005B5130(0), name, 0x50, 0, 3, 4)` and stores `00D31C50` to qword `02CB1610`, then (on every path) sets bit `0x10` of dword `02CB1638`; registers `m_keyCount` by `00632960(02CB1680, 02CAD440, 00630180(), name, 0x60, 0x10, 0, 0)`; then tail-jumps to `00639450(02CAD440)`",
+   "anchors": [
+    [
+     "005AF131",
+     "call"
+    ],
+    [
+     "005AF15B",
+     "call"
+    ],
+    [
+     "005AF1BA",
+     "call"
+    ],
+    [
+     "005AF1E6",
+     "or"
+    ],
+    [
+     "005AF242",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005AF280",
+   "text": "calls `006388C0(02CAD540)`; under the thread-safe guard dwords `02CB1738` and `02CB17A0` (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routines `00808B90` of `008AA3C0` and `008AA360`) it registers `m_keyType` by `00632960(02CB16E0, 02CAD540, 005A65B0(), name, 0x38, 0x12, 0, 0)` and `m_interp` by `00632BE0(02CB1740, 02CAD540, 00630110(), name, 0x40, 0x10, 3)`; then tail-jumps to `00639450(02CAD540)`",
+   "anchors": [
+    [
+     "005AF296",
+     "call"
+    ],
+    [
+     "005AF2B8",
+     "cmp"
+    ],
+    [
+     "005AF30D",
+     "call"
+    ],
+    [
+     "005AF37F",
+     "call"
+    ],
+    [
+     "005AF3A9",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005AFA60",
+   "text": "calls `006388C0(02CAD740)`, `006301F0()` and `005B5130(qword 01F2D0B8)`; under the thread-safe guard dwords `02CB1C40` and `02CB1CA8` (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routines `00808B90` of `008AA5E0` and `008AA3B0`) it registers `m_timeKeys` by `00632A10(02CB1BE0, 02CAD740, 005B5130(0), name, 8, 0, 3, 4)` and stores `00D31C50` to qword `02CB1BE0`, then (on every path) sets bit `0x10` of dword `02CB1C08`, and registers `m_keyCount` by `00632960(02CB1C50, 02CAD740, 00630180(), name, 0, 0x10, 0, 0)`; then tail-jumps to `00639450(02CAD740)`",
+   "anchors": [
+    [
+     "005AFA8C",
+     "call"
+    ],
+    [
+     "005AFB08",
+     "call"
+    ],
+    [
+     "005AFB14",
+     "mov"
+    ],
+    [
+     "005AFB34",
+     "or"
+    ],
+    [
+     "005AFB8C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005B0700",
+   "text": "calls `006388C0(02CADB40)` and sets bit `0x10` of dword `02CADC3C`; then, each once under its own thread-safe guard dword (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`) with its exit routine by `00808B90`, registers by `00632960(record, 02CADB40, 006300A0(), name, offset, 0x10, 0, 0)` `m_spuBindingSize` (record `02CB2450`, offset 0, guard `02CB24A8`, exit `008AA560`), `m_channelCount` (`02CB24B0`, 2, `02CB2508`, `008AA070`), `m_constantChannelCount` (`02CB2510`, 4, `02CB2568`, `008AA090`) and `m_interpCountLength` (`02CB2570`, 6, `02CB25C8`, `008AA390`); then tail-jumps to `00639450(02CADB40)`",
+   "anchors": [
+    [
+     "005B0720",
+     "or"
+    ],
+    [
+     "005B0795",
+     "call"
+    ],
+    [
+     "005B0808",
+     "call"
+    ],
+    [
+     "005B087B",
+     "call"
+    ],
+    [
+     "005B08EE",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005B0930",
+   "text": "calls `006388C0(02CAD940)` and sets bit `0x20` of dword `02CADA3C`; under the thread-safe guard dwords `02CB2328` and `02CB2388` (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routines `00808B90` of `008AA1F0` and `008AA370`) it registers `m_destSlotArrayIndex` by `00632960(02CB22D0, 02CAD940, 00630030(), name, 0, 0x10, 0, 0)` and `m_interp` by `00632960(02CB2330, 02CAD940, 006300A0(), name, 2, 0x10, 0, 0)`; then tail-jumps to `00639450(02CAD940)`",
+   "anchors": [
+    [
+     "005B094B",
+     "call"
+    ],
+    [
+     "005B0950",
+     "or"
+    ],
+    [
+     "005B0976",
+     "cmp"
+    ],
+    [
+     "005B09C5",
+     "call"
+    ],
+    [
+     "005B0A38",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005B0A70",
+   "text": "calls `006388C0(02CADA40)` and sets bit `0x20` of dword `02CADB3C`; under the thread-safe guard dwords `02CB23E8` and `02CB2448` (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routines `00808B90` of `008AA510` and `008AA650`) it registers `m_sourceChannelIndex` by `00632960(02CB2390, 02CADA40, 006300A0(), name, 0x14, 0x10, 0, 0)` and `m_valueWidthAndKeyCount` by `00632960(02CB23F0, 02CADA40, 00630180(), name, 0x10, 0x10, 0, 0)`; then tail-jumps to `00639450(02CADA40)`",
+   "anchors": [
+    [
+     "005B0A8B",
+     "call"
+    ],
+    [
+     "005B0A90",
+     "or"
+    ],
+    [
+     "005B0AB6",
+     "cmp"
+    ],
+    [
+     "005B0B09",
+     "call"
+    ],
+    [
+     "005B0B7C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005B0C70",
+   "text": "calls `006388C0(02CADD50)`; under the thread-safe guard dwords `02CB2698` and `02CB26F8` (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routines `00808B90` of `008A9F80` and `008AA5B0`) it registers `m_animationClip` by `00632960(02CB2640, 02CADD50, 02CAD840, name, 0x18, 0x12, 0, 0)` and `m_timeController` by `00632960(02CB26A0, 02CADD50, 02CAEEE0, name, 0x20, 0x12, 0, 0)`; then tail-jumps to `00639450(02CADD50)`",
+   "anchors": [
+    [
+     "005B0C8B",
+     "call"
+    ],
+    [
+     "005B0CAF",
+     "cmp"
+    ],
+    [
+     "005B0D01",
+     "call"
+    ],
+    [
+     "005B0D73",
+     "call"
+    ],
+    [
+     "005B0DA2",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005B0DB0",
+   "text": "calls `006388C0(02CADE50)`; under the thread-safe guard dword `02CB2758` (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routine `00808B90(008AA010)`) it registers `m_animationSet` by `00632960(02CB2700, 02CADE50, 02CAE660, name, 0x10, 0x12, 0, 0)`; then tail-jumps to `00639450(02CADE50)`",
+   "anchors": [
+    [
+     "005B0DC4",
+     "call"
+    ],
+    [
+     "005B0DE4",
+     "cmp"
+    ],
+    [
+     "005B0E38",
+     "call"
+    ],
+    [
+     "005B0E44",
+     "call"
+    ],
+    [
+     "005B0E61",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005B0E70",
+   "text": "calls `006388C0(02CAE350)`; then, each once under its own thread-safe guard dword (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`) with its exit routine by `00808B90`, registers `m_dataSource` by `00632960(02CB29C0, 02CAE350, 02CADE50, name, 0, 0x12, 0, 0)` (guard `02CB2A18`, exit `008AA1C0`), `m_inputCount` by `00632960(02CB2A20, 02CAE350, 00630180(), name, 8, 0x10, 0, 0)` (`02CB2A78`, `008AA310`) and `m_inputIndex` by `00632A70(02CB2A80, 02CAE350, 00630180(), name, 0xC, 0, 0x20)` (`02CB2AE8`, `008AA320`), then (on every path) sets bit `0x10` of dword `02CB2AA8`, and registers by `00632960(record, 02CAE350, 00630180(), name, offset, 0x10, 0, 0)` `m_destSlotArray` (`02CB2AF0`, 0x8C, `02CB2B48`, `008AA1E0`), `m_persistentBufferOffset` (`02CB2B50`, 0x90, `02CB2BA8`, `008AA490`) and `m_preprocessBufferOffset` (`02CB2BB0`, 0x94, `02CB2C08`, `008AA4A0`); then tail-jumps to `00639450(02CAE350)`",
+   "anchors": [
+    [
+     "005B0EFD",
+     "call"
+    ],
+    [
+     "005B0FDE",
+     "call"
+    ],
+    [
+     "005B0FFC",
+     "or"
+    ],
+    [
+     "005B1058",
+     "call"
+    ],
+    [
+     "005B113E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005B1180",
+   "text": "calls `006388C0(02CAE050)`; under the thread-safe guard dwords `02CB2878` and `02CB28D8` (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routines `00808B90` of `008AA5A0` and `008AA2F0`) it registers `m_time` by `00632960(02CB2820, 02CAE050, 006301F0(), name, 0, 0x10, 0, 0)` and `m_id` by `00632960(02CB2880, 02CAE050, 00630180(), name, 4, 0x10, 0, 0)`; then tail-jumps to `00639450(02CAE050)`",
+   "anchors": [
+    [
+     "005B119B",
+     "call"
+    ],
+    [
+     "005B11BF",
+     "cmp"
+    ],
+    [
+     "005B120E",
+     "call"
+    ],
+    [
+     "005B1281",
+     "call"
+    ],
+    [
+     "005B12B0",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005B12C0",
+   "text": "calls `006388C0(02CADF50)`; under the thread-safe guard dwords `02CB27B8` and `02CB2818` (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routines `00808B90` of `008A9FE0` and `008AA5C0`) it registers `m_animationEventList` by `00632960(02CB2760, 02CADF50, 02CAE150, name, 0x18, 0x12, 0, 0)` and `m_timeController` by `00632960(02CB27C0, 02CADF50, 02CAEEE0, name, 0x20, 0x12, 0, 0)`; then tail-jumps to `00639450(02CADF50)`",
+   "anchors": [
+    [
+     "005B12DB",
+     "call"
+    ],
+    [
+     "005B12FF",
+     "cmp"
+    ],
+    [
+     "005B1351",
+     "call"
+    ],
+    [
+     "005B13C3",
+     "call"
+    ],
+    [
+     "005B13F2",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005B1400",
+   "text": "calls `006388C0(02CAE150)` and `005B6470(qword 01F2D0D0)`; under the thread-safe guard dword `02CB2940` (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routine `00808B90(008AA2E0)`) it registers `m_events` by `00632A10(02CB28E0, 02CAE150, 005B6470(0), name, 0, 0, 3, 4)` and stores `00D32340` to qword `02CB28E0`; on every path it then sets bit `0x10` of dword `02CB2908` and tail-jumps to `00639450(02CAE150)`",
+   "anchors": [
+    [
+     "005B1414",
+     "call"
+    ],
+    [
+     "005B1440",
+     "cmp"
+    ],
+    [
+     "005B1496",
+     "call"
+    ],
+    [
+     "005B14A2",
+     "mov"
+    ],
+    [
+     "005B14C2",
+     "or"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "005AF3B0": "too large for one precise sentence (1708 B, 323 instructions)",
+  "005AFBC0": "too large for one precise sentence (2880 B, 543 instructions)"
+ },
+ "missing": [],
+ "corrections": [],
+ "mode": "member",
+ "family": "Phyre PAnimation module",
+ "method": "The page declares the family `Phyre PAnimation module` (a classification family: ordinary functions grouped by module, not template copies). engine_explained did not credit these members. Another local Claude session (repos-91, session local-ee-drafter) drafted one sentence and 1-5 interior anchors per body from OPUS's pack (`mem_pack.py`, filtered against engine_explained's own set); OPUS checked every row mechanically with `interior_ingest.py` (member mode). A second local agent, not the drafter, then read every one of the 295 rows of this batch against the disassembly: 286 stood, 9 rows were corrected in 14 clauses (signed compares worded above/below, two missing pass-through arguments, one wrong value on a path, one overgeneralised compare direction, one 16-bit edge). OPUS confirmed corrections at the bytes on a sample; they are listed below. Neither agent is an independent reviewer: the non-author check is SWE2-AUDIT-SPEC's."
+}

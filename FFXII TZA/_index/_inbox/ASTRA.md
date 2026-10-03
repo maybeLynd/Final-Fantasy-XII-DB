@@ -1,3 +1,33 @@
+## SOL in ASTRA — uq147-mode-query publication package, 2026-10-03
+
+Full L1+L2 plus accepted deployed M0-M5 goal ACTIVE/NOT_MET. Current supported
+board checked epoch4 revision50234; publication task ASTRA-PUBLISH-UQ147-MODE-QUERY-1003.
+Scientific evidence is prepared; current supported task/terminal receipts govern
+exact commit/release status. Producer validity is not independent acceptance.
+
+MethodA UQ147 local implementation question:3138D0(0) invocation is not an unconditional cleanup guarantee. New133B complete377C20->3148F0->2EF2B0->2EF640 closes every normal local helper call and excludes object writes/opaque callbacks, under valid private separated stack/readable state/intactcode/normalABI/nointerference. Getter forms reference-image02164280/payload+200/fieldDWORD+1044 (021654C4); negative signedfieldid clamps0. Descriptor02ADD100 NULL or unsignedid>=count returns0, else row3 byte8/9 yieldsbit15.30D9A0 reads pointer/mode twice, not atomic; first bits3/2, fieldflag, then second bits1/0. Conditional stable mode1/fieldflagfalse Dismiss path returns for NULL actorunit, pending113 withbit14, or committed113, before311CF0 and own5AD0 write. Mode1 can survive under those supplied premises; no naturally initialized summonerKO/capability proof follows. Actual new capture05173bed/source2218c4f0, corrected prover e83a3f7b, five specifically diagnosed source-record semantic controls and one actual CLI upstream-failure refusal7c0fc975 are retained. Firstprover07640581 failed beforeoutput on mistaken37 count; original38 instructions23+8+5+2 established, originalsource/failure kept.60member f6d762b3 integrity only, independent review/qualified consumption pending. No machine-code/emulator/game execution; addresses reference identities, not process pointers.
+Predecessor UQ147 local-boundaries6d74079f120a000cc54d6615355a7716b46cd352 delivered69 exactpaths/released; SPEC/FABLE/OPUS once-routed50225..27. Same-call KOcleanup30111E then recompute301123 is invocation order, not cleanup-effect completion. Conditionalnotification(1,0) excludes own block only; rosterindex3 lookup is read-only/noKOfilter, not class3. CS1 c480be543 correction stays consumed:3sites/TWO functions, all3refusals canonical. NaturalKO admission, initialized mode/member/KO stability, command accepted/committed/executed, mask7/overrideclear, ownership/lifetime/scheduling/presentation remain OPEN. Next discriminator is original earlier KO processing and natural pending/committedDismiss state admissibility, first consume existing static/type evidence; no EXP198/S20 or settledhelper rerun.
+Gauge detector repair2a65beb55016paths/released successorSPEC once-routed50218. Mixed prerequisite fix independently ACCEPT6435250e4; reviewer18runs external, actual a3d7433 guarded131path queue78/copier delivery supplies concrete end-to-end continuation. Copier/event0 six review/consumer routes await returned verdicts, no duplication. Authoredflow actual FABLE3f6/OPUS3a61 consumers read, AUTO DONE50143; four natural/storage residuals OPEN. Heading flagmaskACCEPT818e85de6 and actual OPUS9d6115d1e/FABLE acknowledgement consumed; bounded producer task can finish without closing CON172 class/lifetime/alias residue. No repeat512/R13/oldfixtures.
+FullL1L2+required independently accepted deployedM0M5 ACTIVE/NOT_MET. Current protected epoch4 board and receipts govern, not stale header/export/counts. No PC/game/native/emulator/instrument/save/config/reference/peerprocess action; own finite helpers terminal, no detach/restoration needed. Parked menu spent/unapprovedextension,EXP127INVALID/crashunknown,K14acceptedclosed persist. Continue exact review/consumer agreement and next cheapest discriminator.
+
+Class20/SP1 delivery1cf5316d0, remap/render1f6569546, selector exclusions7f625ac43
+and title routing0fcf9349e are committed/exact payload verified and their
+publication holds released. Existing independent routes are unblocked.
+Conditional override-domain30754ad4b is also committed/verified/released;
+its review and consumption remain pending, separately from the current packet.
+No self-acceptance. Heading supplement8969fe745 was SPEC acceptedcd86f404d and
+OPUS consumedc4eb91ad3. SP1 repair1c1dfec separately ACCEPTED.
+WholeOV42/21/29 remain OPEN. Four scoped historical runtime needs have prior
+source elimination; current packet scope above. No extra native/live credit.
+No FF12/PC/input/instrument/save/config/reference writes. EXP127 INVALID; parked
+menu allowance remains spent/unapproved. Next original-source work and remaining
+prepared deliveries follow current board, not an unchecked export.
+User resource preference: close only our shells/terminals/helpers when done.
+Completed helpers are terminal; no PC/runtime session retained. Use current
+task/handle evidence to distinguish a live publisher from finished delivery.
+Failed CIM inventory and unavailable optional psutil do not establish absence
+of other processes; do not terminate peers by process name.
+
 ## SOL in ASTRA — uq147-local-boundaries publication package, 2026-10-03
 
 Full L1+L2 plus accepted deployed M0-M5 goal ACTIVE/NOT_MET. Current supported
@@ -11336,10 +11366,10 @@ PC OFF; no live process/intervention, save/config/reference changes/restoration 
 Player version: the grid-code finding is preserved. Publishing it is waiting for
 the shared task list to be recovered so recent teammates' work is not overwritten.
 
-<!-- TEAM-CURRENT:begin agent=ASTRA board_rev=50222 epoch=4 queue_sha=71f83f05a37c34cb -->
-> generated 2026-10-03T09:50:49+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=ASTRA board_rev=50234 epoch=4 queue_sha=1d700051b8b3cc45 -->
+> generated 2026-10-03T10:08:03+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: ASTRA-HEADING-CLASS-EFFECTS-SLICE, ASTRA-OV42-GAUGE-CALLBACK-BINDING-1002, ASTRA-OV42-REGISTER-EVENT0-CLOSURE-1003, ASTRA-PUBLISH-UQ147-LOCAL-BOUNDARIES-1003, DATA-REQ-ASTRA-SD194-RUNTIME-1001, FABLE-REQ-ASTRA-OV10-OV42-REACHABILITY, FABLE-REQ-ASTRA-OV21-BANK-REACHABILITY, FABLE-REQ-ASTRA-RT-REMAINDERS-PROBES-0929, FABLE-REQ-ASTRA-UQ147-KO-SUMMONER-DURING-A-SUMMON, FRONTIER-REQ-ASTRA-WORKFLOW-INDEPENDENT-VERIFY
+> ACTIVE: ASTRA-HEADING-CLASS-EFFECTS-SLICE, ASTRA-OV42-GAUGE-CALLBACK-BINDING-1002, ASTRA-OV42-REGISTER-EVENT0-CLOSURE-1003, ASTRA-PUBLISH-UQ147-MODE-QUERY-1003, DATA-REQ-ASTRA-SD194-RUNTIME-1001, FABLE-REQ-ASTRA-OV10-OV42-REACHABILITY, FABLE-REQ-ASTRA-OV21-BANK-REACHABILITY, FABLE-REQ-ASTRA-RT-REMAINDERS-PROBES-0929, FABLE-REQ-ASTRA-UQ147-KO-SUMMONER-DURING-A-SUMMON, FRONTIER-REQ-ASTRA-WORKFLOW-INDEPENDENT-VERIFY
 > READY addressed to you: P3 FABLE-REQ-ASTRA-PC1-OVERRIDE-DWORD-WRITE-WATCH, P3 FABLE-REQ-ASTRA-UQ146-IN-PROCESS-FORMATTER-READ
 > READY pool: 1 | BLOCKED: 28
 <!-- TEAM-CURRENT:end -->

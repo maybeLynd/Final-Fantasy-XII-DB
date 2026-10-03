@@ -1,0 +1,256 @@
+{
+  "method": "A STATIC_ONLY",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "image_base": "0x120000",
+  "adapter_path": "Database\\Tools\\analysis-kit\\gfz-scripts\\reg_tracking.py",
+  "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+  "driver_sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497",
+  "capstone": "5.0.7",
+  "controls": [
+    {
+      "bytes": "0f1101",
+      "expected": "w",
+      "observed": "w"
+    },
+    {
+      "bytes": "488d4104",
+      "expected": "addr",
+      "observed": "addr"
+    },
+    {
+      "bytes": "f00fb101",
+      "expected": "rw",
+      "observed": "rw"
+    }
+  ],
+  "ranges": [
+    {
+      "start": "0x31b8c0",
+      "end_exclusive": "0x31b8df",
+      "sha256": "6d9d2bd026f75533782c6d7b1d3fb12c1f4eaa9305b2367f15423d95de7e3e99",
+      "instructions": [
+        {
+          "pc": "0x31b8c0",
+          "bytes": "4883ec28",
+          "mnemonic": "sub",
+          "args": "rsp, 0x28",
+          "memory": []
+        },
+        {
+          "pc": "0x31b8c4",
+          "bytes": "e8877ef4ff",
+          "mnemonic": "call",
+          "args": "0x263750",
+          "memory": []
+        },
+        {
+          "pc": "0x31b8c9",
+          "bytes": "4885c0",
+          "mnemonic": "test",
+          "args": "rax, rax",
+          "memory": []
+        },
+        {
+          "pc": "0x31b8cc",
+          "bytes": "7505",
+          "mnemonic": "jne",
+          "args": "0x31b8d3",
+          "memory": []
+        },
+        {
+          "pc": "0x31b8ce",
+          "bytes": "4883c428",
+          "mnemonic": "add",
+          "args": "rsp, 0x28",
+          "memory": []
+        },
+        {
+          "pc": "0x31b8d2",
+          "bytes": "c3",
+          "mnemonic": "ret",
+          "args": "",
+          "memory": []
+        },
+        {
+          "pc": "0x31b8d3",
+          "bytes": "488bc8",
+          "mnemonic": "mov",
+          "args": "rcx, rax",
+          "memory": []
+        },
+        {
+          "pc": "0x31b8d6",
+          "bytes": "4883c428",
+          "mnemonic": "add",
+          "args": "rsp, 0x28",
+          "memory": []
+        },
+        {
+          "pc": "0x31b8da",
+          "bytes": "e95185f4ff",
+          "mnemonic": "jmp",
+          "args": "0x263e30",
+          "memory": []
+        }
+      ]
+    },
+    {
+      "start": "0x263750",
+      "end_exclusive": "0x263767",
+      "sha256": "ff091c1ef3b977d1b3cab6c534cbc0cc1dc4b133dea71619e029404ee8486b9e",
+      "instructions": [
+        {
+          "pc": "0x263750",
+          "bytes": "83f903",
+          "mnemonic": "cmp",
+          "args": "ecx, 3",
+          "memory": []
+        },
+        {
+          "pc": "0x263753",
+          "bytes": "770f",
+          "mnemonic": "ja",
+          "args": "0x263764",
+          "memory": []
+        },
+        {
+          "pc": "0x263755",
+          "bytes": "4863c1",
+          "mnemonic": "movsxd",
+          "args": "rax, ecx",
+          "memory": []
+        },
+        {
+          "pc": "0x263758",
+          "bytes": "488d0d916ae301",
+          "mnemonic": "lea",
+          "args": "rcx, [rip + 0x1e36a91]",
+          "memory": [
+            {
+              "base": "rip",
+              "index": null,
+              "scale": 1,
+              "displacement": 31681169,
+              "size": 8,
+              "role": "addr",
+              "rip_target": "0x209a1f0"
+            }
+          ]
+        },
+        {
+          "pc": "0x26375f",
+          "bytes": "488b04c1",
+          "mnemonic": "mov",
+          "args": "rax, qword ptr [rcx + rax*8]",
+          "memory": [
+            {
+              "base": "rcx",
+              "index": "rax",
+              "scale": 8,
+              "displacement": 0,
+              "size": 8,
+              "role": "r",
+              "rip_target": null
+            }
+          ]
+        },
+        {
+          "pc": "0x263763",
+          "bytes": "c3",
+          "mnemonic": "ret",
+          "args": "",
+          "memory": []
+        },
+        {
+          "pc": "0x263764",
+          "bytes": "33c0",
+          "mnemonic": "xor",
+          "args": "eax, eax",
+          "memory": []
+        },
+        {
+          "pc": "0x263766",
+          "bytes": "c3",
+          "mnemonic": "ret",
+          "args": "",
+          "memory": []
+        }
+      ]
+    },
+    {
+      "start": "0x263e30",
+      "end_exclusive": "0x263e35",
+      "sha256": "efbd103662ccda4c0f468ab461257f1b371879ef59acc4189da3ceb1394859cc",
+      "instructions": [
+        {
+          "pc": "0x263e30",
+          "bytes": "488b4130",
+          "mnemonic": "mov",
+          "args": "rax, qword ptr [rcx + 0x30]",
+          "memory": [
+            {
+              "base": "rcx",
+              "index": null,
+              "scale": 1,
+              "displacement": 48,
+              "size": 8,
+              "role": "r",
+              "rip_target": null
+            }
+          ]
+        },
+        {
+          "pc": "0x263e34",
+          "bytes": "c3",
+          "mnemonic": "ret",
+          "args": "",
+          "memory": []
+        }
+      ]
+    }
+  ],
+  "wrapper_complete": true,
+  "invocation_driver_sha256": "4dde5e091a8c95718fc21f2003718552bc7c241faf7e2dcabd61205b7ae70737",
+  "physical_exception_directory": "0080e7020c8a0600",
+  "physical_bodies": [
+    {
+      "entry": "0x31b8c0",
+      "end_exclusive": "0x31b8df",
+      "bytes": 31,
+      "sha256": "6d9d2bd026f75533782c6d7b1d3fb12c1f4eaa9305b2367f15423d95de7e3e99",
+      "physical_bytes": "4883ec28e8877ef4ff4885c075054883c428c3488bc84883c428e95185f4ff",
+      "records": [
+        {
+          "begin": "0x31b8c0",
+          "end_exclusive": "0x31b8df",
+          "chain": [
+            {
+              "record_bytes": "c0b81f00dfb81f00c82bc301",
+              "header_address": "0x1d52bc8",
+              "header_bytes": "01040100"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry": "0x263750",
+      "end_exclusive": "0x263767",
+      "bytes": 23,
+      "sha256": "ff091c1ef3b977d1b3cab6c534cbc0cc1dc4b133dea71619e029404ee8486b9e",
+      "physical_bytes": "83f903770f4863c1488d0d916ae301488b04c1c333c0c3",
+      "records": [],
+      "identity_kind": "Direct original target, declared closed leaf span; no .pdata root"
+    },
+    {
+      "entry": "0x263e30",
+      "end_exclusive": "0x263e35",
+      "bytes": 5,
+      "sha256": "efbd103662ccda4c0f468ab461257f1b371879ef59acc4189da3ceb1394859cc",
+      "physical_bytes": "488b4130c3",
+      "records": [],
+      "identity_kind": "Direct original target, declared closed leaf span; no .pdata root"
+    }
+  ],
+  "limits": "One .pdata-bounded selector and two declared direct-target leaf spans without .pdata roots. Consumer must verify their complete local CFG/RET closure. Preview labels class3 refer to roster slot index3, NOT ActorStorage class3. Physical bytes/reviewed roles, not initialized roster, KO admission, lifetime, gameplay scheduling or presentation. No fixture/live rerun."
+}

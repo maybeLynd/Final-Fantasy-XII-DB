@@ -1,0 +1,935 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-fifteen-modules-registered-before-main-phyre-phyrecore-module-7.json",
+ "rows": [
+  {
+   "fn": "00629680",
+   "text": "sets bit `0x1` of dword `[rcx]`, stores `dl` zero-extended to dword `[rcx+0x20]` and returns 0",
+   "anchors": [
+    [
+     "00629683",
+     "movzx"
+    ],
+    [
+     "00629686",
+     "mov"
+    ],
+    [
+     "00629689",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "0062A9E0",
+   "text": "stores `dl` to dword `[rcx+0x38]`, the fifth argument's byte to byte `+0x3C` and the ninth's to byte `+0x3D`; dword `+0x4C` = `0061C010(r8d)`, `+0x40`, `+0x44` and `+0x48` = `0061C150` of the sixth, seventh and eighth arguments, `+0x5C` = `0061C010(tenth)`, and `+0x50`, `+0x54` and `+0x58` = `0061C150` of the thirteenth, fourteenth and fifteenth arguments; then sets bit `0x4` of dword `[rcx]` and returns 0",
+   "anchors": [
+    [
+     "0062A9EC",
+     "mov"
+    ],
+    [
+     "0062AA02",
+     "call"
+    ],
+    [
+     "0062AA0E",
+     "call"
+    ],
+    [
+     "0062AA32",
+     "call"
+    ],
+    [
+     "0062AA64",
+     "or"
+    ]
+   ]
+  },
+  {
+   "fn": "0062DD80",
+   "text": "stores `00D562A8` to qword `[rcx]` and calls `006CB680(rcx)`; when bit `0x1` of `dl` is set it calls `00584730(rcx)` if bit `0x4` of `dl` is clear, or `0016D6A0(rcx, 0x88)` if it is set; returns `rcx`",
+   "anchors": [
+    [
+     "0062DDA0",
+     "mov"
+    ],
+    [
+     "0062DDA3",
+     "call"
+    ],
+    [
+     "0062DDB8",
+     "call"
+    ],
+    [
+     "0062DDC0",
+     "mov"
+    ],
+    [
+     "0062DDC8",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0062DDE0",
+   "text": "with `s` = `xmm1` and all inputs read first, writes the 16 floats `+0x38`..`+0x74` as `[+0x14]`, `[+0x24]`, `[+0x34]`, 0, `[+8]`, `[+0xC]`, `[+0x10]`, 0, `[+0x18]`, `[+0x1C]`, `[+0x20]`, 0, then `[+0x28]` + `[+0x18]`*(-s), `[+0x2C]` + `[+0x1C]`*(-s), `[+0x30]` + `[+0x20]`*(-s) (negation by XOR with `01CEBDA0`) and 1.0; it then copies that block back over floats `+8`..`+0x34`, which leaves `+0x28`, `+0x2C` and `+0x30` holding the three new values and rewrites every other float there with its own value",
+   "anchors": [
+    [
+     "0062DE61",
+     "xorps"
+    ],
+    [
+     "0062DEAC",
+     "mov"
+    ],
+    [
+     "0062DECA",
+     "mulss"
+    ],
+    [
+     "0062DEE0",
+     "movss"
+    ],
+    [
+     "0062DFA0",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "0062E980",
+   "text": "copies floats from `rdx` into `rcx`: `+8`/`+0xC`/`+0x10` = `rdx+0x10`/`+0x14`/`+0x18`, `+0x14` = `rdx+0`, `+0x18`/`+0x1C`/`+0x20` = `rdx+0x20`/`+0x24`/`+0x28`, `+0x24` = `rdx+4`, `+0x28`/`+0x2C`/`+0x30` = `rdx+0x30`/`+0x34`/`+0x38` and `+0x34` = `rdx+8` (`+0x14` and `+0x24` are first written from `rdx+0x1C` and `rdx+0x2C`)",
+   "anchors": [
+    [
+     "0062E98E",
+     "movss"
+    ],
+    [
+     "0062E9A8",
+     "movss"
+    ],
+    [
+     "0062E9D2",
+     "movss"
+    ],
+    [
+     "0062E9FF",
+     "movss"
+    ],
+    [
+     "0062EA0D",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "0062F0A0",
+   "text": "calls vtable slot `+0x38` of `o` = `rdx` - 0x30 (0 when `rdx` is null) with (`o`, 0) and returns 1",
+   "anchors": [
+    [
+     "0062F0A6",
+     "lea"
+    ],
+    [
+     "0062F0AD",
+     "cmove"
+    ],
+    [
+     "0062F0B6",
+     "call"
+    ],
+    [
+     "0062F0B9",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00630500",
+   "text": "fills a stack record (dword `+0` = 0, dword `+4` = dword `+0x38` of `T`, qword `+8` = `rcx`, byte `+0x10` = 1) and, for the class `T` = `00635DC0(0)` and then each parent along qword `+0x78`, walks the two-way list whose sentinel is `T+0x80` from its first node (qword `T+0x80`) along each node's next link (qword `+0`), calling `0063CE80(&record, node - 8)` for each node until it reaches the sentinel, a null node or a node at address 8",
+   "anchors": [
+    [
+     "00630514",
+     "call"
+    ],
+    [
+     "00630529",
+     "mov"
+    ],
+    [
+     "0063052E",
+     "mov"
+    ],
+    [
+     "00630568",
+     "call"
+    ],
+    [
+     "00630584",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00630640",
+   "text": "fills a stack record (dword `+0` = 0, dword `+4` = dword `02CF83A8`, qword `+8` = `rcx`+8 (0 when `rcx` is null), byte `+0x10` = 1) and, for the class `T` = `02CF8370` and then each parent along qword `+0x78`, walks the two-way list whose sentinel is `T+0x80` from its first node (qword `T+0x80`) along each node's next link (qword `+0`), calling `0063CE80(&record, node - 8)` for each node until it reaches the sentinel, a null node or a node at address 8",
+   "anchors": [
+    [
+     "0063064F",
+     "mov"
+    ],
+    [
+     "00630655",
+     "lea"
+    ],
+    [
+     "00630672",
+     "cmove"
+    ],
+    [
+     "006306A8",
+     "call"
+    ],
+    [
+     "006306C4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00630780",
+   "text": "fills a stack record (dword `+0` = 0, dword `+4` = dword `02CF85B8`, qword `+8` = `rcx`+0x30 (0 when `rcx` is null), byte `+0x10` = 1) and, for the class `T` = `02CF8580` and then each parent along qword `+0x78`, walks the two-way list whose sentinel is `T+0x80` from its first node (qword `T+0x80`) along each node's next link (qword `+0`), calling `0063CE80(&record, node - 8)` for each node until it reaches the sentinel, a null node or a node at address 8",
+   "anchors": [
+    [
+     "0063078F",
+     "mov"
+    ],
+    [
+     "00630795",
+     "lea"
+    ],
+    [
+     "006307B2",
+     "cmove"
+    ],
+    [
+     "006307E8",
+     "call"
+    ],
+    [
+     "00630804",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00630820",
+   "text": "fills a stack record (dword `+0` = 0, dword `+4` = dword `02CF86B8`, qword `+8` = `rcx`, byte `+0x10` = 1) and, for the class `T` = `02CF8680` and then each parent along qword `+0x78`, walks the two-way list whose sentinel is `T+0x80` from its first node (qword `T+0x80`) along each node's next link (qword `+0`), calling `0063CE80(&record, node - 8)` for each node until it reaches the sentinel, a null node or a node at address 8",
+   "anchors": [
+    [
+     "0063082F",
+     "mov"
+    ],
+    [
+     "00630835",
+     "lea"
+    ],
+    [
+     "0063084D",
+     "mov"
+    ],
+    [
+     "00630888",
+     "call"
+    ],
+    [
+     "006308A4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006308C0",
+   "text": "fills a stack record (dword `+0` = 0, dword `+4` = dword `02CF87B8`, qword `+8` = `rcx`, byte `+0x10` = 1) and, for the class `T` = `02CF8780` and then each parent along qword `+0x78`, walks the two-way list whose sentinel is `T+0x80` from its first node (qword `T+0x80`) along each node's next link (qword `+0`), calling `0063CE80(&record, node - 8)` for each node until it reaches the sentinel, a null node or a node at address 8",
+   "anchors": [
+    [
+     "006308CF",
+     "mov"
+    ],
+    [
+     "006308D5",
+     "lea"
+    ],
+    [
+     "006308ED",
+     "mov"
+    ],
+    [
+     "00630928",
+     "call"
+    ],
+    [
+     "00630944",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00630960",
+   "text": "fills a stack record (dword `+0` = 0, dword `+4` = dword `02CF88B8`, qword `+8` = `rcx`, byte `+0x10` = 1) and, for the class `T` = `02CF8880` and then each parent along qword `+0x78`, walks the two-way list whose sentinel is `T+0x80` from its first node (qword `T+0x80`) along each node's next link (qword `+0`), calling `0063CE80(&record, node - 8)` for each node until it reaches the sentinel, a null node or a node at address 8",
+   "anchors": [
+    [
+     "0063096F",
+     "mov"
+    ],
+    [
+     "00630975",
+     "lea"
+    ],
+    [
+     "0063098D",
+     "mov"
+    ],
+    [
+     "006309C8",
+     "call"
+    ],
+    [
+     "006309E4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00630A00",
+   "text": "fills a stack record (dword `+0` = 0, dword `+4` = dword `02CF89B8`, qword `+8` = `rcx`+0x10 (0 when `rcx` is null), byte `+0x10` = 1) and, for the class `T` = `02CF8980` and then each parent along qword `+0x78`, walks the two-way list whose sentinel is `T+0x80` from its first node (qword `T+0x80`) along each node's next link (qword `+0`), calling `0063CE80(&record, node - 8)` for each node until it reaches the sentinel, a null node or a node at address 8",
+   "anchors": [
+    [
+     "00630A0F",
+     "mov"
+    ],
+    [
+     "00630A15",
+     "lea"
+    ],
+    [
+     "00630A32",
+     "cmove"
+    ],
+    [
+     "00630A68",
+     "call"
+    ],
+    [
+     "00630A84",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00630AA0",
+   "text": "fills a stack record (dword `+0` = 0, dword `+4` = dword `02CF8AB8`, qword `+8` = `rcx`, byte `+0x10` = 1) and, for the class `T` = `02CF8A80` and then each parent along qword `+0x78`, walks the two-way list whose sentinel is `T+0x80` from its first node (qword `T+0x80`) along each node's next link (qword `+0`), calling `0063CE80(&record, node - 8)` for each node until it reaches the sentinel, a null node or a node at address 8",
+   "anchors": [
+    [
+     "00630AAF",
+     "mov"
+    ],
+    [
+     "00630AB5",
+     "lea"
+    ],
+    [
+     "00630ACD",
+     "mov"
+    ],
+    [
+     "00630B08",
+     "call"
+    ],
+    [
+     "00630B24",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00630B40",
+   "text": "fills a stack record (dword `+0` = 0, dword `+4` = dword `+0x38` of `T`, qword `+8` = `rcx`, byte `+0x10` = 0) and, for the class `T` = `00635DC0(0)` and then each parent along qword `+0x78`, walks the two-way list whose sentinel is `T+0x80` from its last node (qword `T+0x88`) along each node's previous link (qword `+8`), calling `0063CE80(&record, node - 8)` for each node until it reaches the sentinel, a null node or a node at address 8",
+   "anchors": [
+    [
+     "00630B54",
+     "call"
+    ],
+    [
+     "00630B69",
+     "mov"
+    ],
+    [
+     "00630B6E",
+     "mov"
+    ],
+    [
+     "00630BA8",
+     "call"
+    ],
+    [
+     "00630BC4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00630C80",
+   "text": "fills a stack record (dword `+0` = 0, dword `+4` = dword `02CF83A8`, qword `+8` = `rcx`+8 (0 when `rcx` is null), byte `+0x10` = 0) and, for the class `T` = `02CF8370` and then each parent along qword `+0x78`, walks the two-way list whose sentinel is `T+0x80` from its last node (qword `T+0x88`) along each node's previous link (qword `+8`), calling `0063CE80(&record, node - 8)` for each node until it reaches the sentinel, a null node or a node at address 8",
+   "anchors": [
+    [
+     "00630C8F",
+     "mov"
+    ],
+    [
+     "00630C95",
+     "lea"
+    ],
+    [
+     "00630CB1",
+     "cmove"
+    ],
+    [
+     "00630CE8",
+     "call"
+    ],
+    [
+     "00630D04",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00630DC0",
+   "text": "fills a stack record (dword `+0` = 0, dword `+4` = dword `02CF85B8`, qword `+8` = `rcx`+0x30 (0 when `rcx` is null), byte `+0x10` = 0) and, for the class `T` = `02CF8580` and then each parent along qword `+0x78`, walks the two-way list whose sentinel is `T+0x80` from its last node (qword `T+0x88`) along each node's previous link (qword `+8`), calling `0063CE80(&record, node - 8)` for each node until it reaches the sentinel, a null node or a node at address 8",
+   "anchors": [
+    [
+     "00630DCF",
+     "mov"
+    ],
+    [
+     "00630DD5",
+     "lea"
+    ],
+    [
+     "00630DF1",
+     "cmove"
+    ],
+    [
+     "00630E28",
+     "call"
+    ],
+    [
+     "00630E44",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00630E60",
+   "text": "fills a stack record (dword `+0` = 0, dword `+4` = dword `02CF86B8`, qword `+8` = `rcx`, byte `+0x10` = 0) and, for the class `T` = `02CF8680` and then each parent along qword `+0x78`, walks the two-way list whose sentinel is `T+0x80` from its last node (qword `T+0x88`) along each node's previous link (qword `+8`), calling `0063CE80(&record, node - 8)` for each node until it reaches the sentinel, a null node or a node at address 8",
+   "anchors": [
+    [
+     "00630E6F",
+     "mov"
+    ],
+    [
+     "00630E75",
+     "lea"
+    ],
+    [
+     "00630E8D",
+     "mov"
+    ],
+    [
+     "00630EC8",
+     "call"
+    ],
+    [
+     "00630EE4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00630F00",
+   "text": "fills a stack record (dword `+0` = 0, dword `+4` = dword `02CF87B8`, qword `+8` = `rcx`, byte `+0x10` = 0) and, for the class `T` = `02CF8780` and then each parent along qword `+0x78`, walks the two-way list whose sentinel is `T+0x80` from its last node (qword `T+0x88`) along each node's previous link (qword `+8`), calling `0063CE80(&record, node - 8)` for each node until it reaches the sentinel, a null node or a node at address 8",
+   "anchors": [
+    [
+     "00630F0F",
+     "mov"
+    ],
+    [
+     "00630F15",
+     "lea"
+    ],
+    [
+     "00630F2D",
+     "mov"
+    ],
+    [
+     "00630F68",
+     "call"
+    ],
+    [
+     "00630F84",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00630FA0",
+   "text": "fills a stack record (dword `+0` = 0, dword `+4` = dword `02CF88B8`, qword `+8` = `rcx`, byte `+0x10` = 0) and, for the class `T` = `02CF8880` and then each parent along qword `+0x78`, walks the two-way list whose sentinel is `T+0x80` from its last node (qword `T+0x88`) along each node's previous link (qword `+8`), calling `0063CE80(&record, node - 8)` for each node until it reaches the sentinel, a null node or a node at address 8",
+   "anchors": [
+    [
+     "00630FAF",
+     "mov"
+    ],
+    [
+     "00630FB5",
+     "lea"
+    ],
+    [
+     "00630FCD",
+     "mov"
+    ],
+    [
+     "00631008",
+     "call"
+    ],
+    [
+     "00631024",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00631040",
+   "text": "fills a stack record (dword `+0` = 0, dword `+4` = dword `02CF89B8`, qword `+8` = `rcx`+0x10 (0 when `rcx` is null), byte `+0x10` = 0) and, for the class `T` = `02CF8980` and then each parent along qword `+0x78`, walks the two-way list whose sentinel is `T+0x80` from its last node (qword `T+0x88`) along each node's previous link (qword `+8`), calling `0063CE80(&record, node - 8)` for each node until it reaches the sentinel, a null node or a node at address 8",
+   "anchors": [
+    [
+     "0063104F",
+     "mov"
+    ],
+    [
+     "00631055",
+     "lea"
+    ],
+    [
+     "00631071",
+     "cmove"
+    ],
+    [
+     "006310A8",
+     "call"
+    ],
+    [
+     "006310C4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006310E0",
+   "text": "fills a stack record (dword `+0` = 0, dword `+4` = dword `02CF8AB8`, qword `+8` = `rcx`, byte `+0x10` = 0) and, for the class `T` = `02CF8A80` and then each parent along qword `+0x78`, walks the two-way list whose sentinel is `T+0x80` from its last node (qword `T+0x88`) along each node's previous link (qword `+8`), calling `0063CE80(&record, node - 8)` for each node until it reaches the sentinel, a null node or a node at address 8",
+   "anchors": [
+    [
+     "006310EF",
+     "mov"
+    ],
+    [
+     "006310F5",
+     "lea"
+    ],
+    [
+     "0063110D",
+     "mov"
+    ],
+    [
+     "00631148",
+     "call"
+    ],
+    [
+     "00631164",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00633880",
+   "text": "with `n` = dword `[rdx]` AND 0x7FFFFFFF and its elements at qword `[rdx+8]` (`n` above 1), `rdx+8` (`n` = 1) or 0, takes `x` = `00639650(rcx, n, elements)`; then, with `c` = dword `[rcx]` AND 0x7FFFFFFF and `e` = `rcx`'s elements chosen the same way, calls `0063DCA0(rcx, x, n, e, c)` and returns `rcx`",
+   "anchors": [
+    [
+     "00633893",
+     "btr"
+    ],
+    [
+     "006338B1",
+     "call"
+    ],
+    [
+     "006338B8",
+     "btr"
+    ],
+    [
+     "006338D1",
+     "mov"
+    ],
+    [
+     "006338DE",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00633F10",
+   "text": "stores `00D580B0` to qword `[rcx]`; when qword `[rcx+8]` is not `rcx+8` it calls vtable slot `+0x48` of qword `[rcx+0x18]` with (that object, `rcx`); calls `006B6700(rcx+0x38)` and, when bit `0x1` of byte `[rcx+0x28]` is set, `00584730(qword [rcx+0x20])`; when bit `0x1` of `dl` is set it calls `00584730(rcx)` if bit `0x4` of `dl` is clear, or `0016D6A0(rcx, 0x58)` if it is set; returns `rcx`",
+   "anchors": [
+    [
+     "00633F2E",
+     "lea"
+    ],
+    [
+     "00633F4B",
+     "call"
+    ],
+    [
+     "00633F53",
+     "call"
+    ],
+    [
+     "00633F63",
+     "call"
+    ],
+    [
+     "00633F88",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00633FB0",
+   "text": "stores `00D580B0` to qword `[rcx]`; when qword `[rcx+8]` is not `rcx+8` it calls vtable slot `+0x48` of qword `[rcx+0x18]` with (that object, `rcx`); calls `006B6700(rcx+0x38)` and, when bit `0x1` of byte `[rcx+0x28]` is set, `00584730(qword [rcx+0x20])`; when bit `0x1` of `dl` is set it calls `00584730(rcx)` if bit `0x4` of `dl` is clear, or `0016D6A0(rcx, 0x60)` if it is set; returns `rcx`",
+   "anchors": [
+    [
+     "00633FCE",
+     "lea"
+    ],
+    [
+     "00633FEB",
+     "call"
+    ],
+    [
+     "00633FF3",
+     "call"
+    ],
+    [
+     "00634003",
+     "call"
+    ],
+    [
+     "00634028",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00634050",
+   "text": "stores `00D580B0` to qword `[rcx]`; when qword `[rcx+8]` is not `rcx+8` it calls vtable slot `+0x48` of qword `[rcx+0x18]` with (that object, `rcx`); calls `006B6700(rcx+0x38)` and, when bit `0x1` of byte `[rcx+0x28]` is set, `00584730(qword [rcx+0x20])`; when bit `0x1` of `dl` is set it calls `00584730(rcx)` if bit `0x4` of `dl` is clear, or `0016D6A0(rcx, 0x68)` if it is set; returns `rcx`",
+   "anchors": [
+    [
+     "0063406E",
+     "lea"
+    ],
+    [
+     "0063408B",
+     "call"
+    ],
+    [
+     "00634093",
+     "call"
+    ],
+    [
+     "006340A3",
+     "call"
+    ],
+    [
+     "006340C8",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00634150",
+   "text": "stores `00D580B0` to qword `[rcx]`; when qword `[rcx+8]` is not `rcx+8` it calls vtable slot `+0x48` of qword `[rcx+0x18]` with (that object, `rcx`); calls `006B6700(rcx+0x38)` and, when bit `0x1` of byte `[rcx+0x28]` is set, `00584730(qword [rcx+0x20])`; when bit `0x1` of `dl` is set it calls `00584730(rcx)` if bit `0x4` of `dl` is clear, or `0016D6A0(rcx, 0x60)` if it is set; returns `rcx`",
+   "anchors": [
+    [
+     "0063416E",
+     "lea"
+    ],
+    [
+     "0063418B",
+     "call"
+    ],
+    [
+     "00634193",
+     "call"
+    ],
+    [
+     "006341A3",
+     "call"
+    ],
+    [
+     "006341C8",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00634310",
+   "text": "stores `00D58098` to qword `[rcx]` and 0 to qword `+0x50` of qword `[rcx+8]`; calls `00809950(rcx, 0x10)` when bit `0x1` of `dl` is set; returns `rcx`",
+   "anchors": [
+    [
+     "00634320",
+     "mov"
+    ],
+    [
+     "00634327",
+     "mov"
+    ],
+    [
+     "0063432F",
+     "test"
+    ],
+    [
+     "00634339",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006361C0",
+   "text": "for each of dword `[rcx+0x70]` records `r` from qword `[rcx+0x58]` - 8 (0 when that qword is null; stride dword `+0x38` of qword `[rcx+0x50]`) it self-links qwords `r+8`/`r+0x10` (unless `r` is null) and `r+0x38`/`r+0x40`, clears bit `0x1` of dword `r+0x28`, stores qword `r+0x58` with bit `0x1` cleared to qword `r+0x20`, and calls `0063D410(qword [r+0x18], r)` when bit `0x1` of byte `+0xFC` of qword `[r+0x18]` is set; returns 0",
+   "anchors": [
+    [
+     "006361DF",
+     "cmove"
+    ],
+    [
+     "00636210",
+     "mov"
+    ],
+    [
+     "00636232",
+     "and"
+    ],
+    [
+     "0063623D",
+     "mov"
+    ],
+    [
+     "0063624D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00637800",
+   "text": "returns the record `R` = `01F2E410`, filling it once under the thread-safe guard dword `02CF94F8` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before, `0080929C` after): dwords `R+0x38` and `R+0x3C` = 1, dword `R+0x20` = 0, qwords `R+8`, `R+0x10` and `R+0x18` = `R+8`, qword `R+0x30` = 'PChar', qword `R` = `00D58A68`, qwords `R+0x28`, `R+0x40` and `R+0x48` = 0, and exit routine `00808B90(008AFE00)`",
+   "anchors": [
+    [
+     "0063781F",
+     "cmp"
+    ],
+    [
+     "0063783A",
+     "call"
+    ],
+    [
+     "0063784A",
+     "mov"
+    ],
+    [
+     "00637884",
+     "mov"
+    ],
+    [
+     "006378B8",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006379A0",
+   "text": "returns the record `R` = `01F2E3C0`, filling it once under the thread-safe guard dword `02CF94F4` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before, `0080929C` after): dwords `R+0x38` and `R+0x3C` = 1, dword `R+0x20` = 0, qwords `R+8`, `R+0x10` and `R+0x18` = `R+8`, qword `R+0x30` = 'bool', qword `R` = `00D58A18`, qwords `R+0x28`, `R+0x40` and `R+0x48` = 0, and exit routine `00808B90(008AFEC0)`",
+   "anchors": [
+    [
+     "006379BF",
+     "cmp"
+    ],
+    [
+     "006379DA",
+     "call"
+    ],
+    [
+     "006379EA",
+     "mov"
+    ],
+    [
+     "00637A24",
+     "mov"
+    ],
+    [
+     "00637A58",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00637E10",
+   "text": "stores the byte-reversed qword `[rdx+8]` to qword `[rcx]` and the byte-reversed qword `[rdx]` to qword `[rcx+8]` (built with shifts and masks), and returns `rcx`",
+   "anchors": [
+    [
+     "00637E28",
+     "shl"
+    ],
+    [
+     "00637E88",
+     "sar"
+    ],
+    [
+     "00637EB0",
+     "mov"
+    ],
+    [
+     "00637EE3",
+     "shl"
+    ],
+    [
+     "00637F16",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00639650",
+   "text": "returns 0 when `edx` is 0; otherwise `p` = `rcx+8` for `edx` = 1 or `0017D260(edx*8, 8)` for more, and when `p` is non-null calls `001C19A0(p, r8, edx)`; returns `p`",
+   "anchors": [
+    [
+     "00639668",
+     "test"
+    ],
+    [
+     "0063968F",
+     "call"
+    ],
+    [
+     "00639697",
+     "test"
+    ],
+    [
+     "006396A5",
+     "call"
+    ],
+    [
+     "006396AF",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006396C0",
+   "text": "returns 0 when `edx` is 0; otherwise `p` = `rcx+8` for `edx` = 1 or `0017D260(edx*8, 8)` for more, and when `p` is non-null calls `001C19A0(p, r8, r9d)` and zeroes the remaining `edx` - `r9d` qwords; returns `p`",
+   "anchors": [
+    [
+     "006396E0",
+     "test"
+    ],
+    [
+     "006396F9",
+     "call"
+    ],
+    [
+     "0063970F",
+     "call"
+    ],
+    [
+     "00639714",
+     "sub"
+    ],
+    [
+     "00639725",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0063A770",
+   "text": "with `o` = qword `[rcx+0x78]`, tail-calls `o`'s vtable slot `+0x50` (with `o` in `rcx`) when `o` is non-null, else returns 0 in `al`",
+   "anchors": [
+    [
+     "0063A774",
+     "test"
+    ],
+    [
+     "0063A77C",
+     "jmp"
+    ],
+    [
+     "0063A780",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "0063AFF0",
+   "text": "with `o` = qword `[rcx+0x78]`, tail-calls `o`'s vtable slot `+0x70` (with `o` in `rcx`) when `o` is non-null, else returns 0",
+   "anchors": [
+    [
+     "0063AFF4",
+     "test"
+    ],
+    [
+     "0063AFFC",
+     "jmp"
+    ],
+    [
+     "0063B000",
+     "xor"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "00639A40",
+   "why": [
+    "not an entry-only frontier function of the page"
+   ]
+  }
+ ],
+ "skipped": {
+  "0062E1C0": "too large for one precise sentence (978 B, 244 instructions)",
+  "0062E5A0": "too large for one precise sentence (985 B, 220 instructions)",
+  "0062FC90": "too large for one precise sentence (694 B, 188 instructions)"
+ },
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "00633880",
+   "why": "byte verifier, re-read by OPUS: the fourth argument of `0063DCA0` is `rcx`'s element pointer (`r9` from 006338C1/006338C9), not the `rdx` elements that `elements` names earlier in the sentence"
+  }
+ ],
+ "mode": "member",
+ "family": "Phyre PhyreCore module",
+ "method": "The page declares the family `Phyre PhyreCore module` (a classification family: ordinary functions grouped by module, not template copies). engine_explained did not credit these members. Another local Claude session (repos-91, session local-ee-drafter) drafted one sentence and 1-5 interior anchors per body from OPUS's pack (`mem_pack.py`, filtered against engine_explained's own set); OPUS checked every row mechanically with `interior_ingest.py` (member mode). A second local agent, not the drafter, then read every one of the 294 rows of this batch against the disassembly: 260 stood, 34 rows were corrected in 40 clauses (18 inline sub-objects written as the qword they hold, 6 signed compares written as above/below, 6 wrong arguments or offsets, 2 missed paths). OPUS confirmed corrections at the bytes on a sample; they are listed below. Neither agent is an independent reviewer: the non-author check is SWE2-AUDIT-SPEC's."
+}

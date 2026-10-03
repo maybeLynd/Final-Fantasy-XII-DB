@@ -10,8 +10,13 @@ import sys
 C = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", "..", "FFXII TZA",
                                   "_index", "candidates"))
 prefix, drafter, total, stood, fixed, clauses, note = sys.argv[1:8]
+import subprocess
 n = 0
 for p in sorted(glob.glob(os.path.join(C, prefix + "*", "rows.json"))):
+    # a PUBLISHED record's method is history: never rewrite it (2026-10-03: a broad prefix overwrote 28 published
+    # records' method text with another batch's counts; restored from HEAD)
+    if subprocess.run(["git", "-C", C, "ls-files", "--error-unmatch", p], capture_output=True).returncode == 0:
+        continue
     d = json.load(io.open(p, encoding="utf-8"))
     if d.get("mode") != "member":
         continue

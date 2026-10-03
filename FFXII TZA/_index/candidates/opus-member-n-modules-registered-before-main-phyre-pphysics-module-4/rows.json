@@ -1,0 +1,237 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-fifteen-modules-registered-before-main-phyre-pphysics-module-4.json",
+ "rows": [
+  {
+   "fn": "006A5450",
+   "text": "when `edx` differs from dword `[rcx]`, takes `p` = 0 for `edx` = 0 or `0017D260(edx*0x24, 4)`, returns 0xD when `p` is null and `edx` is non-zero, calls `00584730` on the old qword `[rcx+8]` when it is not `p`, is non-null and bit `0x80000000` of dword `[rcx]` is clear, and stores `p` to qword `[rcx+8]` and `edx` to dword `[rcx]`; returns 0",
+   "anchors": [
+    [
+     "006A5464",
+     "cmp"
+    ],
+    [
+     "006A5479",
+     "call"
+    ],
+    [
+     "006A548A",
+     "mov"
+    ],
+    [
+     "006A54B8",
+     "call"
+    ],
+    [
+     "006A54C1",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006A54E0",
+   "text": "when `edx` differs from dword `[rcx]`, takes `p` = `00693BC0(edx)`, returns 0xD when `p` is null and `edx` is non-zero, calls `00584730` on the old qword `[rcx+8]` when it is not `p`, is non-null and bit `0x80000000` of dword `[rcx]` is clear, and stores `p` to qword `[rcx+8]` and `edx` to dword `[rcx]`; returns 0",
+   "anchors": [
+    [
+     "006A54F4",
+     "cmp"
+    ],
+    [
+     "006A54FA",
+     "call"
+    ],
+    [
+     "006A5509",
+     "je"
+    ],
+    [
+     "006A5537",
+     "call"
+    ],
+    [
+     "006A5540",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006A5770",
+   "text": "copies the four dwords at `rdx` to dwords `[rcx+0x48]`..`[rcx+0x54]`",
+   "anchors": [
+    [
+     "006A5772",
+     "mov"
+    ],
+    [
+     "006A5778",
+     "mov"
+    ],
+    [
+     "006A577E",
+     "mov"
+    ],
+    [
+     "006A5784",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006A5790",
+   "text": "copies the three dwords at `rdx` to dwords `[rcx+0x38]`..`[rcx+0x40]`",
+   "anchors": [
+    [
+     "006A5792",
+     "mov"
+    ],
+    [
+     "006A5798",
+     "mov"
+    ],
+    [
+     "006A579E",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006A5B10",
+   "text": "when qword `[rcx+0x60]` is non-null calls its vtable slot `+0` with (it, 0), `00584730` on it, and stores 0 there; calls vtable slot `+0` with (object, 1) of qwords `[rcx+0x68]` and `[rcx+0x70]` when non-null and stores 0 to both; then for the count/pointer pairs (dword `+0x98`, qword `+0xA0`) and (dword `+0xA8`, qword `+0xB0`) whose dword is non-zero, calls `00584730` on the qword when it is non-null and bit `0x80000000` of the dword is clear, and stores 0 to both; returns 0",
+   "anchors": [
+    [
+     "006A5B2D",
+     "call"
+    ],
+    [
+     "006A5B33",
+     "call"
+    ],
+    [
+     "006A5B4D",
+     "call"
+    ],
+    [
+     "006A5B89",
+     "call"
+    ],
+    [
+     "006A5BBA",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006A5BE0",
+   "text": "copies the three dwords at `r8` to dwords `[rcx+0x68]`..`[rcx+0x70]` and tail-jumps to `006A5C00` with `xmm2` = `xmm3` and the other registers as passed",
+   "anchors": [
+    [
+     "006A5BE3",
+     "movaps"
+    ],
+    [
+     "006A5BE6",
+     "mov"
+    ],
+    [
+     "006A5BF4",
+     "mov"
+    ],
+    [
+     "006A5BF7",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006A65A0",
+   "text": "when `dl` differs from `r8b`: with `t` = qword `+0x10` of qword `[rcx+0xC8]`, `w` = qword `[t+0x60]` and `b` = qword `[rcx+0x118]`, when all these links are non-null it calls, for non-zero `dl`, `w`'s vtable slot `+0x130` with (`w`, `b`, 1 shifted left by byte `[rcx+0xE0]` (16-bit), word `[t+0x78 + 2*byte [rcx+0xE0]]`) and then `0083A030(qword [rcx+0x118], 0)`, or for zero `dl` slot `+0xA0` with (`w`, `b`); then stores `dl` to byte `[rcx+0xE9]`; returns 0",
+   "anchors": [
+    [
+     "006A65B0",
+     "cmp"
+    ],
+    [
+     "006A65F8",
+     "shl"
+    ],
+    [
+     "006A6608",
+     "call"
+    ],
+    [
+     "006A6625",
+     "call"
+    ],
+    [
+     "006A662B",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006BA630",
+   "text": "maps `ecx` (unsigned) through an in-image byte table and jump table and returns `ecx` AND 0xFFFFFFFC for 4..0x2F, 0x33 for 0x32, and 0 for 0..3, 0x30, 0x31 and anything above 0x32",
+   "anchors": [
+    [
+     "006BA632",
+     "cmp"
+    ],
+    [
+     "006BA641",
+     "movzx"
+    ],
+    [
+     "006BA655",
+     "jmp"
+    ],
+    [
+     "006BA6AF",
+     "mov"
+    ],
+    [
+     "006BA6B4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "008B3BE0",
+   "text": "calls `0016D6A0(02E4B038)`; calls `00584730(qword 02E4B028)` when bit `0x80000000` of dword `02E4B020` is clear and that qword is non-null, and stores 0 to both; then tail-jumps to `0016D6A0(02E4AFF0)`",
+   "anchors": [
+    [
+     "008B3BF4",
+     "call"
+    ],
+    [
+     "008B3C07",
+     "je"
+    ],
+    [
+     "008B3C15",
+     "call"
+    ],
+    [
+     "008B3C1C",
+     "mov"
+    ],
+    [
+     "008B3C34",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "006A4E30": "too large for one precise sentence (1555 B, 302 instructions)",
+  "006A5C00": "too large for one precise sentence (1395 B, 258 instructions)",
+  "006A6180": "too large for one precise sentence (1049 B, 208 instructions)"
+ },
+ "missing": [],
+ "corrections": [],
+ "mode": "member",
+ "family": "Phyre PPhysics module",
+ "method": "The page declares the family `Phyre PPhysics module` (a classification family: ordinary functions grouped by module, not template copies). engine_explained did not credit these members. Another local Claude session (repos-91, session local-ee-drafter) drafted one sentence and 1-5 interior anchors per body from OPUS's pack (`mem_pack.py`, filtered against engine_explained's own set); OPUS checked every row mechanically with `interior_ingest.py` (member mode). A second local agent, not the drafter, then read every one of the 154 rows of this batch against the disassembly: 150 stood, 4 rows were corrected in 4 clauses (three signed compares worded above/below, one operand grouping). OPUS confirmed corrections at the bytes on a sample; they are listed below. Neither agent is an independent reviewer: the non-author check is SWE2-AUDIT-SPEC's."
+}

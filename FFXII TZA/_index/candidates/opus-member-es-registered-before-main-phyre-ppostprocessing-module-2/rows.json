@@ -1,0 +1,717 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-fifteen-modules-registered-before-main-phyre-ppostprocessing-module-2.json",
+ "rows": [
+  {
+   "fn": "00647A90",
+   "text": "stores `00D622B0` to qword `[rcx]` and calls `0065D610(rcx)`; then stores `00D61E50` to qword `[rcx]`, calls `00584730(qword [rcx+0x38])` when bit `0x80000000` of dword `[rcx+0x30]` is clear, its low 31 bits are above 1 and the qword is non-null, and stores 0 to both; when bit `0x1` of `dl` is set it calls `00584730(rcx)` if bit `0x4` of `dl` is clear, or `0016D6A0(rcx, 0xB0)` if it is set; returns `rcx`",
+   "anchors": [
+    [
+     "00647AB0",
+     "mov"
+    ],
+    [
+     "00647AB3",
+     "call"
+    ],
+    [
+     "00647AC0",
+     "mov"
+    ],
+    [
+     "00647AE3",
+     "call"
+    ],
+    [
+     "00647B11",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00647B30",
+   "text": "stores `00D61E50` to qword `[rcx]`, calls `00584730(qword [rcx+0x38])` when bit `0x80000000` of dword `[rcx+0x30]` is clear, its low 31 bits are above 1 and the qword is non-null, and stores 0 to both; when bit `0x1` of `dl` is set it calls `00584730(rcx)` if bit `0x4` of `dl` is clear, or `0016D6A0(rcx, 0x68)` if it is set; returns `rcx`",
+   "anchors": [
+    [
+     "00647B50",
+     "mov"
+    ],
+    [
+     "00647B65",
+     "cmp"
+    ],
+    [
+     "00647B73",
+     "call"
+    ],
+    [
+     "00647B7B",
+     "mov"
+    ],
+    [
+     "00647BA1",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00647BC0",
+   "text": "calls `00646920(rcx+0x50)`; then stores `00D61E50` to qword `[rcx]`, calls `00584730(qword [rcx+0x38])` when bit `0x80000000` of dword `[rcx+0x30]` is clear, its low 31 bits are above 1 and the qword is non-null, and stores 0 to both; when bit `0x1` of `dl` is set it calls `00584730(rcx)` if bit `0x4` of `dl` is clear, or `0016D6A0(rcx, 0x3248)` if it is set; returns `rcx`",
+   "anchors": [
+    [
+     "00647BDD",
+     "call"
+    ],
+    [
+     "00647BEA",
+     "mov"
+    ],
+    [
+     "00647C0D",
+     "call"
+    ],
+    [
+     "00647C15",
+     "mov"
+    ],
+    [
+     "00647C3B",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00647CB0",
+   "text": "stores `00D61E50` to qword `[rcx]`, calls `00584730(qword [rcx+0x38])` when bit `0x80000000` of dword `[rcx+0x30]` is clear, its low 31 bits are above 1 and the qword is non-null, and stores 0 to both; when bit `0x1` of `dl` is set it calls `00584730(rcx)` if bit `0x4` of `dl` is clear, or `0016D6A0(rcx, 0xD68)` if it is set; returns `rcx`",
+   "anchors": [
+    [
+     "00647CD0",
+     "mov"
+    ],
+    [
+     "00647CE5",
+     "cmp"
+    ],
+    [
+     "00647CF3",
+     "call"
+    ],
+    [
+     "00647CFB",
+     "mov"
+    ],
+    [
+     "00647D21",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00647DA0",
+   "text": "stores `00D61E50` to qword `[rcx]`, calls `00584730(qword [rcx+0x38])` when bit `0x80000000` of dword `[rcx+0x30]` is clear, its low 31 bits are above 1 and the qword is non-null, and stores 0 to both; when bit `0x1` of `dl` is set it calls `00584730(rcx)` if bit `0x4` of `dl` is clear, or `0016D6A0(rcx, 0x50)` if it is set; returns `rcx`",
+   "anchors": [
+    [
+     "00647DC0",
+     "mov"
+    ],
+    [
+     "00647DD5",
+     "cmp"
+    ],
+    [
+     "00647DE3",
+     "call"
+    ],
+    [
+     "00647DEB",
+     "mov"
+    ],
+    [
+     "00647E11",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00647E30",
+   "text": "stores `00D61E50` to qword `[rcx]`, calls `00584730(qword [rcx+0x38])` when bit `0x80000000` of dword `[rcx+0x30]` is clear, its low 31 bits are above 1 and the qword is non-null, and stores 0 to both; when bit `0x1` of `dl` is set it calls `00584730(rcx)` if bit `0x4` of `dl` is clear, or `0016D6A0(rcx, 0x68)` if it is set; returns `rcx`",
+   "anchors": [
+    [
+     "00647E50",
+     "mov"
+    ],
+    [
+     "00647E65",
+     "cmp"
+    ],
+    [
+     "00647E73",
+     "call"
+    ],
+    [
+     "00647E7B",
+     "mov"
+    ],
+    [
+     "00647EA1",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00647EC0",
+   "text": "stores `00D61E50` to qword `[rcx]`, calls `00584730(qword [rcx+0x38])` when bit `0x80000000` of dword `[rcx+0x30]` is clear, its low 31 bits are above 1 and the qword is non-null, and stores 0 to both; when bit `0x1` of `dl` is set it calls `00584730(rcx)` if bit `0x4` of `dl` is clear, or `0016D6A0(rcx, 0x68)` if it is set; returns `rcx`",
+   "anchors": [
+    [
+     "00647EE0",
+     "mov"
+    ],
+    [
+     "00647EF5",
+     "cmp"
+    ],
+    [
+     "00647F03",
+     "call"
+    ],
+    [
+     "00647F0B",
+     "mov"
+    ],
+    [
+     "00647F31",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00647F50",
+   "text": "stores `00D61E50` to qword `[rcx]`, calls `00584730(qword [rcx+0x38])` when bit `0x80000000` of dword `[rcx+0x30]` is clear, its low 31 bits are above 1 and the qword is non-null, and stores 0 to both; when bit `0x1` of `dl` is set it calls `00584730(rcx)` if bit `0x4` of `dl` is clear, or `0016D6A0(rcx, 0x68)` if it is set; returns `rcx`",
+   "anchors": [
+    [
+     "00647F70",
+     "mov"
+    ],
+    [
+     "00647F85",
+     "cmp"
+    ],
+    [
+     "00647F93",
+     "call"
+    ],
+    [
+     "00647F9B",
+     "mov"
+    ],
+    [
+     "00647FC1",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00648100",
+   "text": "calls `006388C0(02D367A0)`; then, each once under its own thread-safe guard dword (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`) with its exit routine by `00808B90`, registers by `00632960(record, 02D367A0, type, name, offset, 0, 0, 0)` `m_radius` (`006301F0()`, record `02D37BA0`, offset 0x84, guard `02D37BF8`, exit `008B0AD0`), `m_atmosphereStart` (`006301F0()`, `02D37C00`, 0x88, `02D37C58`, `008B08F0`), `m_asymmetry` (`006301F0()`, `02D37C60`, 0x8C, `02D37CB8`, `008B08E0`), `m_betaR` (`006B1600()`, `02D37CC0`, 0x90, `02D37D18`, `008B0910`), `m_betaM` (`006B1600()`, `02D37D20`, 0xA0, `02D37D78`, `008B0900`), `m_invHR` (`006301F0()`, `02D37D80`, 0xC0, `02D37DD8`, `008B0A70`), `m_invHM` (`006301F0()`, `02D37DE0`, 0xC4, `02D37E38`, `008B0A60`), `m_sunIntensity` (`006301F0()`, `02D37E40`, 0xC8, `02D37E98`, `008B0B00`), `m_sunDir` (`006B1600()`, `02D37EA0`, 0xCC, `02D37EF8`, `008B0AF0`), `m_fogParameters` (`006B1320()`, `02D37F00`, 0xDC, `02D37F58`, `008B09E0`) and `m_renderDebugTextures` (`00630490()`, `02D37F60`, 0x61, `02D37FB8`, `008B0AE0`); then tail-jumps to `00639450(02D367A0)`",
+   "anchors": [
+    [
+     "0064811B",
+     "call"
+    ],
+    [
+     "0064818E",
+     "call"
+    ],
+    [
+     "006483B9",
+     "call"
+    ],
+    [
+     "006485E4",
+     "call"
+    ],
+    [
+     "00648613",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00648620",
+   "text": "calls `006388C0(02D361A0)`; then, each once under its own thread-safe guard dword (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`) with its exit routine by `00808B90`, registers by `00632960(record, 02D361A0, type, name, offset, 0, 0, 0)` `m_lineThickness` (`006301F0()`, record `02D37880`, offset 0x58, guard `02D378D8`, exit `008B0A90`), `m_threshold` (`006301F0()`, `02D378E0`, 0x5C, `02D37938`, `008B0B10`), `m_gamma` (`006301F0()`, `02D37940`, 0x60, `02D37998`, `008B09F0`), `m_lightColor` (`006B19A0()`, `02D379A0`, 0x64, `02D379F8`, `008B0A80`) and `m_edgeColor` (`006B19A0()`, `02D37A00`, 0x74, `02D37A58`, `008B0930`); then tail-jumps to `00639450(02D361A0)`",
+   "anchors": [
+    [
+     "0064863B",
+     "call"
+    ],
+    [
+     "006486AE",
+     "call"
+    ],
+    [
+     "0064878C",
+     "call"
+    ],
+    [
+     "0064886A",
+     "call"
+    ],
+    [
+     "00648899",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006488A0",
+   "text": "calls `006388C0(02D34840)`; then, each once under its own thread-safe guard dword (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`) with its exit routine by `00808B90`, registers by `00632960(record, 02D34840, type, name, offset, 0, 0, 0)` `m_ambientColor` (`006B19A0()`, record `02D370C0`, offset 0x40D0, guard `02D37118`, exit `008B08D0`), `m_instantLightsEnabled` (`00630490()`, `02D37120`, 0x41D0, `02D37178`, `008B0A50`), `m_instantLightIntensity` (`006301F0()`, `02D37180`, 0x4108, `02D371D8`, `008B0A30`), `m_instantLightScatteringIntensity` (`006301F0()`, `02D371E0`, 0x410C, `02D37238`, `008B0A40`), `m_fogDistance` (`006301F0()`, `02D37240`, 0x40F0, `02D37298`, `008B09C0`), `m_fogNearDistance` (`006301F0()`, `02D372A0`, 0x40F4, `02D372F8`, `008B09D0`), `m_fogAmount` (`006301F0()`, `02D37300`, 0x40F8, `02D37358`, `008B09A0`) and `m_fogColor` (`006B19A0()`, `02D37360`, 0x40E0, `02D373B8`, `008B09B0`); then tail-jumps to `00639450(02D34840)`",
+   "anchors": [
+    [
+     "006488BB",
+     "call"
+    ],
+    [
+     "0064892E",
+     "call"
+    ],
+    [
+     "00648AEA",
+     "call"
+    ],
+    [
+     "00648C37",
+     "call"
+    ],
+    [
+     "00648C66",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00648C70",
+   "text": "calls `006388C0(02D34B40)`; then, each once under its own thread-safe guard dword (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`) with its exit routine by `00808B90`, registers by `00632960(record, 02D34B40, `006301F0()`, name, offset, 0, 0, 0)` `m_focusPlaneDistance` (record `02D374A0`, offset 0x50, guard `02D374F8`, exit `008B0980`), `m_focusRange` (`02D37500`, 0x54, `02D37558`, `008B0990`) and `m_focusBlurRange` (`02D37560`, 0x58, `02D375B8`, `008B0970`); then tail-jumps to `00639450(02D34B40)`",
+   "anchors": [
+    [
+     "00648C8B",
+     "call"
+    ],
+    [
+     "00648CFE",
+     "call"
+    ],
+    [
+     "00648D6D",
+     "call"
+    ],
+    [
+     "00648DDC",
+     "call"
+    ],
+    [
+     "00648E0B",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00648E10",
+   "text": "calls `006388C0(02D35AA0)`; then, each once under its own thread-safe guard dword (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`) with its exit routine by `00808B90`, registers by `00632960(record, 02D35AA0, `006301F0()`, name, offset, 0, 0, 0)` `m_glowAmountScale` (record `02D376C0`, offset 0x5C, guard `02D37718`, exit `008B0A00`), `m_glowLuminanceThreshold` (`02D37720`, 0x60, `02D37778`, `008B0A20`) and `m_glowLuminanceScale` (`02D37780`, 0x64, `02D377D8`, `008B0A10`); then tail-jumps to `00639450(02D35AA0)`",
+   "anchors": [
+    [
+     "00648E2B",
+     "call"
+    ],
+    [
+     "00648E9E",
+     "call"
+    ],
+    [
+     "00648F0D",
+     "call"
+    ],
+    [
+     "00648F7C",
+     "call"
+    ],
+    [
+     "00648FAB",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00648FB0",
+   "text": "calls `006388C0(02D34E40)`; under the thread-safe guard dword `02D37678` (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routine `00808B90(008B0B20)`) it registers `m_velocityScale` by `00632960(02D37620, 02D34E40, 006301F0(), name, 0xD10, 0, 0, 0)`; then tail-jumps to `00639450(02D34E40)`",
+   "anchors": [
+    [
+     "00648FC4",
+     "call"
+    ],
+    [
+     "00648FE4",
+     "cmp"
+    ],
+    [
+     "00649035",
+     "call"
+    ],
+    [
+     "00649041",
+     "call"
+    ],
+    [
+     "0064905E",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00649070",
+   "text": "calls `006388C0(02D34740)`; under the thread-safe guard dwords `02D37058` and `02D370B8` (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routines `00808B90` of `008B0940` and `008B0960`) it registers `m_effectMaterial` by `00632960(02D37000, 02D34740, 02CB6B80, name, 0x10, 2, 0, 0)` and `m_enabled` by `00632960(02D37060, 02D34740, 00630490(), name, 0x41, 0, 0, 0)`; then tail-jumps to `00639450(02D34740)`",
+   "anchors": [
+    [
+     "0064908B",
+     "call"
+    ],
+    [
+     "006490AF",
+     "cmp"
+    ],
+    [
+     "00649101",
+     "call"
+    ],
+    [
+     "00649170",
+     "call"
+    ],
+    [
+     "0064919F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006496A0",
+   "text": "calls `006388C0(02D364A0)`; under the thread-safe guard dwords `02D37AD8` and `02D37B38` (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routines `00808B90` of `008B0AB0` and `008B0AA0`) it registers `m_minReflectionDirZ` by `00632960(02D37A80, 02D364A0, 006301F0(), name, 0x50, 0, 0, 0)` and `m_marchStepFactor` by `00632960(02D37AE0, 02D364A0, 006301F0(), name, 0x54, 0, 0, 0)`; then tail-jumps to `00639450(02D364A0)`",
+   "anchors": [
+    [
+     "006496BB",
+     "call"
+    ],
+    [
+     "006496DF",
+     "cmp"
+    ],
+    [
+     "0064972E",
+     "call"
+    ],
+    [
+     "0064979D",
+     "call"
+    ],
+    [
+     "006497CC",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0064A000",
+   "text": "with `st` = the seventh argument, or a stack dword when it is null, stores 0 to dword `[st]`; returns 0 when `o` = `0063A990(rcx, 1, 02CBB900, 0)` or `b` = `005D8E40(rcx, o)` is null; otherwise stores `r` = `00650490(b, edx, r8d, r9, fifth argument, sixth argument)` to dword `[st]` and returns `b` when `r` is 0, else calls `0063ABF0(rcx, b)` and `0063ABF0(rcx, o)` and returns 0",
+   "anchors": [
+    [
+     "0064A043",
+     "mov"
+    ],
+    [
+     "0064A04E",
+     "call"
+    ],
+    [
+     "0064A066",
+     "call"
+    ],
+    [
+     "0064A095",
+     "call"
+    ],
+    [
+     "0064A0B2",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0064AEA0",
+   "text": "for each of the dword `[rcx+0x70]` records `e` from qword `[rcx+0x58]` - 8 (0 when that qword is null; stride dword `+0x38` of qword `[rcx+0x50]`) returns the first non-zero result of `e`'s vtable slot `+8` called with (`e`, 0, 0) or then of slot `+0x10` called with `e`; returns 0 when all are 0",
+   "anchors": [
+    [
+     "0064AEC4",
+     "lea"
+    ],
+    [
+     "0064AEEB",
+     "call"
+    ],
+    [
+     "0064AEF0",
+     "jne"
+    ],
+    [
+     "0064AEF8",
+     "call"
+    ],
+    [
+     "0064AF01",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "00650490",
+   "text": "returns 5 when byte `[rcx+8]` is non-zero or `t` = qword `[rcx]` is null; returns `r` = `0060DD70(t, edx, r8d, r9, 0)` when it is non-zero; otherwise clears bit `0x2` of dword `[t+0x18]`, stores the fifth argument's low byte to byte `[t+9]`, calls `00610990(t)`, stores the sixth argument's low byte to byte `[rcx+9]` and returns 0",
+   "anchors": [
+    [
+     "0065049A",
+     "cmp"
+    ],
+    [
+     "006504B6",
+     "call"
+    ],
+    [
+     "006504C7",
+     "and"
+    ],
+    [
+     "006504CE",
+     "call"
+    ],
+    [
+     "006504D8",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00650500",
+   "text": "returns 1 when `rcx` is null, byte `[rcx+8]` is non-zero or `t` = qword `[rcx]` is null; returns 0 when dword `[t+0x28]` equals `edx` and dword `[t+0x2C]` equals `r8d`; otherwise, when `00625F00(t)` returns non-zero `al`, returns `r` = `0062BCB0(t)` if it is non-zero; then returns `0060DD70(t, edx, r8d, qword [t], 0)`",
+   "anchors": [
+    [
+     "00650512",
+     "jne"
+    ],
+    [
+     "00650535",
+     "cmp"
+    ],
+    [
+     "00650542",
+     "call"
+    ],
+    [
+     "0065054E",
+     "call"
+    ],
+    [
+     "0065056A",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00652940",
+   "text": "with context `x` = `rdx`: when `d` = qword `[rcx+0x68]` is non-null, returns `r` = `001B81B0(qword [qword [rcx+0x50]+8], d, &b)` (stack block `b` = qword 0x42, `02D35140`, `r8`) if non-zero; builds a stack object `o` by `005DC190(&o, qword [rcx+0xD0], 0)`, then in turn takes `r` = `0060D4F0(x, &o, 0)`, `0060DB50(x, 0)` and `005FEFD0(x, 0)`, stopping at the first non-zero; when all are 0 it calls `0060CD70(x, 0, 6, 7)`, stores `02D36DA0` to qword `[x+0x80]` and takes `r` = `0060B980(x, qword 02D34710, &p, 0, dword [x+0x220], 0)` with the stack pair `p` = (`008C6C98`, `rcx+0x30`) and, when that is 0, `r` = `00600A60(x, 0)`; on every path after `o` is built it calls `0016D6A0(&o)` and returns `r` (0 when all succeeded)",
+   "anchors": [
+    [
+     "0065298A",
+     "call"
+    ],
+    [
+     "006529A6",
+     "call"
+    ],
+    [
+     "006529F7",
+     "call"
+    ],
+    [
+     "00652A3F",
+     "call"
+    ],
+    [
+     "00652A5F",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00653B10",
+   "text": "returns qword `[qword [rcx+0x10]]`, or 0 when qword `[rcx+0x10]` is null",
+   "anchors": [
+    [
+     "00653B14",
+     "test"
+    ],
+    [
+     "00653B17",
+     "je"
+    ],
+    [
+     "00653B19",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00653B30",
+   "text": "returns 0 when `edx` is not below dword `[rcx]` AND 0x7FFFFFFF; otherwise, with `p` = qword `edx` of qword `[rcx+8]`, returns `p`+8, or 0 when `p` is null",
+   "anchors": [
+    [
+     "00653B39",
+     "cmp"
+    ],
+    [
+     "00653B3B",
+     "jb"
+    ],
+    [
+     "00653B48",
+     "mov"
+    ],
+    [
+     "00653B51",
+     "lea"
+    ],
+    [
+     "00653B55",
+     "cmove"
+    ]
+   ]
+  },
+  {
+   "fn": "00653B60",
+   "text": "returns 0 when `edx` is not below dword `[rcx]` AND 0x7FFFFFFF or `p` = qword `edx` of qword `[rcx+8]` is null; otherwise returns qword `[p+8]`",
+   "anchors": [
+    [
+     "00653B69",
+     "cmp"
+    ],
+    [
+     "00653B76",
+     "mov"
+    ],
+    [
+     "00653B7D",
+     "je"
+    ],
+    [
+     "00653B7F",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00653BB0",
+   "text": "returns 0 when `edx` is not below dword `[rcx]` AND 0x7FFFFFFF; otherwise, with `p` = qword `edx` of qword `[rcx+8]`, returns `p`+8, or 0 when `p` is null",
+   "anchors": [
+    [
+     "00653BB9",
+     "cmp"
+    ],
+    [
+     "00653BBB",
+     "jb"
+    ],
+    [
+     "00653BC6",
+     "mov"
+    ],
+    [
+     "00653BCF",
+     "lea"
+    ],
+    [
+     "00653BD3",
+     "cmove"
+    ]
+   ]
+  },
+  {
+   "fn": "00653BE0",
+   "text": "with `p` = qword `r8d` of qword `[rcx+8]`, stores to qword `[rdx]` `p`+8 (0 when `p` is null; `p` is read even when `r8d` is out of range) and to qword `[rdx+8]` qword `[p+8]` when `r8d` is below dword `[rcx]` AND 0x7FFFFFFF and `p` is non-null, else 0; returns `rdx`",
+   "anchors": [
+    [
+     "00653BF3",
+     "cmp"
+    ],
+    [
+     "00653C0D",
+     "mov"
+    ],
+    [
+     "00653C18",
+     "mov"
+    ],
+    [
+     "00653C2C",
+     "mov"
+    ],
+    [
+     "00653C32",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00653CE0",
+   "text": "with context `x` = `rdx` and `t` = qword `[qword [rcx+0x58]+8]` (read when used): returns 0 when byte `[rcx+0x60]` is 0 and `r` = `0065CD60(rcx)` when that is non-zero; when `a` = qword `[rcx+0x190]` is non-null it fills a stack block `b` = (qword 0x4E, `02D34718`, qword `[rcx+0x138]`), returns 5 when byte `[a+2]` is not 0x4E and, with `n` = word `[a+0x12]` AND 0x1FFF and `o` = word `[a+0x10]`, returns 3 when `o` + `n` exceeds dword `[t]` or `o` is below 4, else copies `n` bytes of `b` to `t` + `o` (`00861EBA`); then for the pairs (qword `[rcx+0x1D0]`, qword `[rcx+0x150]`) and (qword `[rcx+0x1E0]`, qword `[rcx+0x158]`) whose first is non-null it returns `r` = `0065CC90(t, first, &b)` with `b` = (0x43, `02D34718`, second) when non-zero; finally stores `02D36EA0` to qword `[x+0x80]` and returns `006007B0(x, qword [qword [rcx+0x58]], t, dword [rcx+0x74]/4, dword [rcx+0x78]/4, dword [rcx+0x7C]/4)`",
+   "anchors": [
+    [
+     "00653CFF",
+     "call"
+    ],
+    [
+     "00653D23",
+     "cmp"
+    ],
+    [
+     "00653DA1",
+     "call"
+    ],
+    [
+     "00653DE3",
+     "call"
+    ],
+    [
+     "00653E60",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "006491B0": "too large for one precise sentence (1250 B, 241 instructions)",
+  "006497E0": "too large for one precise sentence (1076 B, 303 instructions)",
+  "0064A500": "too large for one precise sentence (1310 B, 349 instructions)",
+  "0064AA20": "too large for one precise sentence (818 B, 158 instructions)",
+  "006508C0": "too large for one precise sentence (1151 B, 273 instructions)",
+  "006515C0": "too large for one precise sentence (4129 B, 870 instructions)",
+  "006525F0": "too large for one precise sentence (846 B, 212 instructions)",
+  "00652A90": "too large for one precise sentence (3773 B, 702 instructions)",
+  "00653E80": "too large for one precise sentence (725 B, 205 instructions)",
+  "00654170": "too large for one precise sentence (763 B, 203 instructions)",
+  "00654470": "too large for one precise sentence (401 B, 114 instructions)"
+ },
+ "missing": [],
+ "corrections": [],
+ "mode": "member",
+ "family": "Phyre PPostProcessing module",
+ "method": "The page declares the family `Phyre PPostProcessing module` (a classification family: ordinary functions grouped by module, not template copies). engine_explained did not credit these members. Another local Claude session (repos-91, session local-ee-drafter) drafted one sentence and 1-5 interior anchors per body from OPUS's pack (`mem_pack.py`, filtered against engine_explained's own set); OPUS checked every row mechanically with `interior_ingest.py` (member mode). A second local agent, not the drafter, then read every one of the 295 rows of this batch against the disassembly: 286 stood, 9 rows were corrected in 14 clauses (signed compares worded above/below, two missing pass-through arguments, one wrong value on a path, one overgeneralised compare direction, one 16-bit edge). OPUS confirmed corrections at the bytes on a sample; they are listed below. Neither agent is an independent reviewer: the non-author check is SWE2-AUDIT-SPEC's."
+}

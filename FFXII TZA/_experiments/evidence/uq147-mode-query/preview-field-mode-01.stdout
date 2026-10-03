@@ -1,0 +1,23 @@
+00377C20  sub      rsp, 0x28
+00377C24  call     0x3148f0
+00377C29  mov      r8, qword ptr [rip + 0x27654d0]  ; -> 02ADD100
+00377C30  test     r8, r8
+00377C33  je       0x377c5f
+00377C35  cmp      eax, dword ptr [r8 + 4]
+00377C39  jae      0x377c5f
+00377C3B  movsxd   rcx, eax
+00377C3E  lea      rax, [r8 + rcx*2]
+00377C42  movzx    edx, byte ptr [rcx + rax + 9]
+00377C47  lea      rax, [r8 + rcx*2]
+00377C4B  movzx    ecx, byte ptr [rcx + rax + 8]
+00377C50  shl      edx, 8
+00377C53  add      edx, ecx
+00377C55  shr      edx, 0xf
+00377C58  mov      eax, edx
+00377C5A  add      rsp, 0x28
+00377C5E  ret      
+00377C5F  mov      edx, 0xfff
+00377C64  shr      edx, 0xf
+00377C67  mov      eax, edx
+00377C69  add      rsp, 0x28
+00377C6D  ret      

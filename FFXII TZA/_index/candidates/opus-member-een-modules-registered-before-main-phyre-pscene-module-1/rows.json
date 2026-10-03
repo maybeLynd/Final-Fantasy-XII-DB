@@ -1,0 +1,215 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-fifteen-modules-registered-before-main-phyre-pscene-module-1.json",
+ "rows": [
+  {
+   "fn": "006B3E40",
+   "text": "with the name `s` = qword `[rcx]`, visits the node `rdx` and then the nodes below it in pre-order (first child qword `+0x10`, next sibling qword `+0`, parent qword `+8`, never leaving `rdx`), and for each whose name at qword `+0x60` minus its bit `0x1` is non-zero and equals `s` byte for byte up to the terminator (with `s` non-null) stores that node to qword `[rcx+8]` (a later match overwrites an earlier one); returns 0",
+   "anchors": [
+    [
+     "006B3E73",
+     "movzx"
+    ],
+    [
+     "006B3E87",
+     "mov"
+    ],
+    [
+     "006B3EC4",
+     "movzx"
+    ],
+    [
+     "006B3EDA",
+     "mov"
+    ],
+    [
+     "006B3F00",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006B4000",
+   "text": "when `p` = qword `[rcx+8]` is non-null, unlinks `rcx` from the list headed by qword `[p+0x10]` (next at qword `+0`) (its predecessor's link takes its qword `+0`, which becomes 0) and stores 0 to qword `[rcx+8]`; then for each node `c` of the list headed by qword `[rcx+0x10]` (next read first) stores 0 to qword `[c+8]` and unlinks `c` from that list the same way; finally calls `00584730(qword [rcx+0x60])` when that qword is non-null with bit `0x1` clear",
+   "anchors": [
+    [
+     "006B4028",
+     "cmp"
+    ],
+    [
+     "006B4042",
+     "mov"
+    ],
+    [
+     "006B4063",
+     "mov"
+    ],
+    [
+     "006B408E",
+     "mov"
+    ],
+    [
+     "006B40AD",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006B40C0",
+   "text": "copies qwords `+0`..`+0x18` and dwords `+0x20`..`+0x5C` from `rdx` to `rcx`, and when `rcx+0x60` is not `rdx+0x60` calls `001EAD40(rcx+0x60, qword [rdx+0x60] minus its bit `0x1`)`; returns `rcx`",
+   "anchors": [
+    [
+     "006B40CC",
+     "mov"
+    ],
+    [
+     "006B40E3",
+     "mov"
+    ],
+    [
+     "006B40EA",
+     "mov"
+    ],
+    [
+     "006B4148",
+     "mov"
+    ],
+    [
+     "006B4160",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006B56D0",
+   "text": "returns 0 when `rdx` is null or points to an empty string; otherwise calls `006B3E40(&b, rcx)` with the stack pair `b` = (qword `rdx`, qword 0) and returns the pair's second qword",
+   "anchors": [
+    [
+     "006B56D7",
+     "je"
+    ],
+    [
+     "006B56DC",
+     "je"
+    ],
+    [
+     "006B56EB",
+     "mov"
+    ],
+    [
+     "006B56F4",
+     "call"
+    ],
+    [
+     "006B56F9",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006B5CB0",
+   "text": "when qword `[rdx+8]` equals `rcx`, unlinks `rdx` from the list headed by qword `[rcx+0x10]` (next at qword `+0`) (its predecessor's link takes its qword `+0`, which becomes 0) and stores 0 to qword `[rdx+8]`",
+   "anchors": [
+    [
+     "006B5CB4",
+     "jne"
+    ],
+    [
+     "006B5CC6",
+     "cmp"
+    ],
+    [
+     "006B5CE3",
+     "mov"
+    ],
+    [
+     "006B5CE9",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006B5CF0",
+   "text": "copies the sixteen dwords at `rdx` to dwords `[rcx+0x20]`..`[rcx+0x5C]`",
+   "anchors": [
+    [
+     "006B5CF2",
+     "mov"
+    ],
+    [
+     "006B5D16",
+     "mov"
+    ],
+    [
+     "006B5D34",
+     "mov"
+    ],
+    [
+     "006B5D4C",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006B6050",
+   "text": "takes `p` = `001C26B0(rdx)`; when `rdx` is null or `p` is non-null, calls `00584730` on qword `[rcx+0x60]` when it is non-null with bit `0x1` clear and stores `p` there; when `rdx` is non-null and `p` is null it writes nothing",
+   "anchors": [
+    [
+     "006B6068",
+     "call"
+    ],
+    [
+     "006B6073",
+     "je"
+    ],
+    [
+     "006B6078",
+     "je"
+    ],
+    [
+     "006B608D",
+     "call"
+    ],
+    [
+     "006B6092",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006B60B0",
+   "text": "when `b` = qword `[rcx+0x18]` is non-null, takes the 4x4 float matrix at `006A0E10(rcx, &t)` (rows `r0`..`r3` at `+0`, `+0x10`, `+0x20`, `+0x30`) and stores to the twelve floats `b+0`..`b+0x2C` `r1.x`, `r1.y`, `r1.z`, `r0.x`, `r2.x`, `r2.y`, `r2.z`, `r0.y`, `r3.x`, `r3.y`, `r3.z`, `r0.z` (final values; `r1.w` and `r2.w` are written first to `+0xC` and `+0x1C`)",
+   "anchors": [
+    [
+     "006B60C8",
+     "call"
+    ],
+    [
+     "006B60DB",
+     "movss"
+    ],
+    [
+     "006B610C",
+     "movss"
+    ],
+    [
+     "006B6136",
+     "movss"
+    ],
+    [
+     "006B6159",
+     "movss"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "member",
+ "family": "Phyre PScene module",
+ "method": "The page declares the family `Phyre PScene module` (a classification family: ordinary functions grouped by module, not template copies). engine_explained did not credit these members. Another local Claude session (repos-91, session local-ee-drafter) drafted one sentence and 1-5 interior anchors per body from OPUS's pack (`mem_pack.py`, filtered against engine_explained's own set); OPUS checked every row mechanically with `interior_ingest.py` (member mode). A second local agent, not the drafter, then read every one of the 154 rows of this batch against the disassembly: 150 stood, 4 rows were corrected in 4 clauses (three signed compares worded above/below, one operand grouping). OPUS confirmed corrections at the bytes on a sample; they are listed below. Neither agent is an independent reviewer: the non-author check is SWE2-AUDIT-SPEC's."
+}

@@ -1,0 +1,851 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-fifteen-modules-registered-before-main-phyre-phyrecore-module-4.json",
+ "rows": [
+  {
+   "fn": "002116B0",
+   "text": "constructs `rcx` and returns it: qwords `+0`/`+8`/`+0x10` = 0 and `001EDF00(rcx+0x18, 'EASTL vector')`; two sets at `rcx+0x20` and `rcx+0x58`, each with allocator `001EDF00(set+0x30, 001EDF00(stack, 'EASTL set'))`, qword `set+8` and qword `set+0x10` = `set+8`, qword `set+0x18` = 0, byte `set+0x20` = 0, dword `set+0x28` = 0 (qword `set+0x20` zeroed first); `005CC8A0(rcx+0x90)`; byte `+0xB8` = `r8b`; `002123E0(rcx, edx)`; then for each `i` below `edx` calls `00199DB0(rcx+0x20, &out, &(qword [rcx] + 0x128*i), b)` with `b` the byte at its own `r8` home slot (`rsp+0x90`, never written here); finally `005CD0A0(rcx+0x90)` when byte `+0xB8` is non-zero",
+   "anchors": [
+    [
+     "002116F7",
+     "call"
+    ],
+    [
+     "0021173A",
+     "call"
+    ],
+    [
+     "002117A9",
+     "call"
+    ],
+    [
+     "002117BB",
+     "call"
+    ],
+    [
+     "002117F2",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00211840",
+   "text": "constructs `rcx` and returns it: `005CC900(rcx+8)`, byte `+0x20` = 0, qword `+0` = `00906C80`, `005CC8A0(rcx+0x30)`; a list at `rcx+0x58` (qwords `+0x58`/`+0x60` zeroed, `001EDF00(rcx+0x68, 'EASTL list')`, then both = `rcx+0x58`); `002116B0(rcx+0x70, 0x400, 0)`; `005CC8A0(rcx+0x130)`; then `00212130(rcx)`",
+   "anchors": [
+    [
+     "0021185F",
+     "call"
+    ],
+    [
+     "0021186F",
+     "mov"
+    ],
+    [
+     "00211898",
+     "call"
+    ],
+    [
+     "002118B0",
+     "call"
+    ],
+    [
+     "002118C5",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "002118E0",
+   "text": "calls `005CD6D0(rcx+0x90)` when byte `[rcx+0xB8]` is non-zero, then `002119D0(rcx+0x58)` and `002119D0(rcx+0x20)`; when qword `[rcx]` is non-null it calls vtable slot `+0x18` of the object at `rcx+0x18` with (`rcx+0x18`, qword `[rcx]`, ((qword `[rcx+0x10]` - qword `[rcx]`) / 0x128, signed) * 0x128)",
+   "anchors": [
+    [
+     "002118F2",
+     "cmp"
+    ],
+    [
+     "00211902",
+     "call"
+    ],
+    [
+     "0021190C",
+     "call"
+    ],
+    [
+     "0021193C",
+     "imul"
+    ],
+    [
+     "00211957",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00211AC0",
+   "text": "stores `00906C80` to qword `[rcx]` and 0 to byte `+0x28`; calls `005CD330(rcx+8, &local)`, `005CD6D0(rcx+0x30)`, `005CD6D0(rcx+0x130)`, `002218D0(rcx+0x58)` and `002118E0(rcx+0x70)`; then for each node of the two-way list whose sentinel is `rcx+0x58` (next at qword `+0`, read before the call) calls vtable slot `+0x18` of the object at `rcx+0x68` with (`rcx+0x68`, node, 0x18)",
+   "anchors": [
+    [
+     "00211AE3",
+     "mov"
+    ],
+    [
+     "00211AF3",
+     "call"
+    ],
+    [
+     "00211B17",
+     "call"
+    ],
+    [
+     "00211B21",
+     "call"
+    ],
+    [
+     "00211B44",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00212130",
+   "text": "calls `002218D0(rcx+0x58)`, `005CD0A0(rcx+0x30)` and `005CD0A0(rcx+0x130)`; fills a stack block `p` with `005CC8C0(&p, 002125F0)`, then dword `p+0x18` = 0, dword `p+8` = 0x10000 and qword `p+0x20` = 'AudioFileLoadManager'; calls `0016D6A0(&p, 0x7C)`, stores `rcx` to qword `p+0x10` and 1 to byte `[rcx+0x28]`, calls `005CD1E0(rcx+8, &p)` and sets byte `[rcx+0x20]` = 1",
+   "anchors": [
+    [
+     "0021213D",
+     "call"
+    ],
+    [
+     "00212163",
+     "call"
+    ],
+    [
+     "0021218E",
+     "call"
+    ],
+    [
+     "002121A5",
+     "call"
+    ],
+    [
+     "002121AA",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "002123E0",
+   "text": "resizes the 0x128-byte-element range (begin qword `[rcx]`, end `[rcx+8]`) to `edx` elements: when `edx` exceeds the count ((end - begin) / 0x128, signed) it calls `00211BC0(rcx, end, edx - count, &t)` with a stack value `t` of which only dword `+0` is zeroed; otherwise it calls `00211480(end, end, begin + edx*0x128)` (an empty copy) and moves qword `[rcx+8]` back to begin + `edx`*0x128",
+   "anchors": [
+    [
+     "0021240A",
+     "imul"
+    ],
+    [
+     "0021241B",
+     "cmp"
+    ],
+    [
+     "00212439",
+     "call"
+    ],
+    [
+     "0021246A",
+     "call"
+    ],
+    [
+     "0021249C",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "002133D0",
+   "text": "with `n` = dword `[rcx+0x28]` and `d` = 0, while `n` is non-zero: `k` = min(`n`, 0x1E0) (signed), `p` = vtable slot `+0` of `rdx` called with (`rdx`, `k`), copies `k`*0x30 bytes from `r8` + `d`*0x30 to `p` (`00861EBA`), then calls `rdx`'s slots `+8`(rdx) giving `q`, `+0x138`(rdx, 0) and `+0x20`(rdx, 2, q, k), and adds `k` to `d` and subtracts it from `n`",
+   "anchors": [
+    [
+     "0021341B",
+     "cmovg"
+    ],
+    [
+     "00213421",
+     "call"
+    ],
+    [
+     "0021343F",
+     "call"
+    ],
+    [
+     "00213458",
+     "call"
+    ],
+    [
+     "00213470",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00215D60",
+   "text": "for `edx` = 2 (with `r8d` and `r9d` taken plus 1, floats `[rcx+0x1D8]`/`[rcx+0x1DC]` = 1.0) or `edx` = 3 (with the fifth and sixth arguments taken plus 1, those floats = 2.0) stores as floats fifth / seventh to `+0x1C8`, `r8d` / seventh to `+0x1CC`, sixth / eighth to `+0x1D0` and `r9d` / eighth to `+0x1D4` (integer arguments converted); for any other `edx` it zeroes qword `[rcx+0x1D8]`",
+   "anchors": [
+    [
+     "00215D73",
+     "mov"
+    ],
+    [
+     "00215D9E",
+     "mov"
+    ],
+    [
+     "00215DD3",
+     "divss"
+    ],
+    [
+     "00215DF2",
+     "movss"
+    ],
+    [
+     "00215E15",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "002165B0",
+   "text": "with escape byte `[rcx]`, in-string byte `[rcx+1]` and character `c` = `r8b`: for `c` = 0x22 it sets the in-string byte to 0 when it was set with the escape byte clear, else to 1; for another `c` inside a string with the escape byte clear and `c` = 0x2F it writes the bytes at qword `01FD4058` (count dword `01FD4060` minus that qword's low dword) with `sputn` (IAT slot `008C2668`) on `rdx` and suppresses `c`; it then sets the escape byte to 1 when inside a string with the escape byte clear and `c` = 0x5C, else 0; it returns `sputc(rdx, c)` (IAT slot `008C2660`) unless `c` was suppressed, else 0",
+   "anchors": [
+    [
+     "002165D4",
+     "cmp"
+    ],
+    [
+     "002165EE",
+     "mov"
+    ],
+    [
+     "00216618",
+     "call"
+    ],
+    [
+     "00216633",
+     "mov"
+    ],
+    [
+     "00216641",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00217E10",
+   "text": "constructs `rcx` and returns it: qwords `+0`/`+8`/`+0x10` = 0 and `001EDF00(rcx+0x18, 'EASTL vector')`; two sets at `rcx+0x20` and `rcx+0x58`, each with allocator `001EDF00(set+0x30, 001EDF00(stack, 'EASTL set'))`, qword `set+8` and qword `set+0x10` = `set+8`, qword `set+0x18` = 0, byte `set+0x20` = 0, dword `set+0x28` = 0 (qword `set+0x20` zeroed first); byte `+0x90` = 0; then `00218990(rcx, edx)`",
+   "anchors": [
+    [
+     "00217E45",
+     "call"
+    ],
+    [
+     "00217E84",
+     "call"
+    ],
+    [
+     "00217ED4",
+     "call"
+    ],
+    [
+     "00217EEB",
+     "mov"
+    ],
+    [
+     "00217EF7",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00218100",
+   "text": "for each 0x58-byte element from qword `[rcx]` below qword `[rcx+8]` it calls the element's vtable slot `+0x38` with (element, 0); then, when qword `[rcx]` is non-null, calls vtable slot `+0x18` of the object at `rcx+0x18` with (`rcx+0x18`, qword `[rcx]`, ((qword `[rcx+0x10]` - qword `[rcx]`) / 0x58, signed) * 0x58)",
+   "anchors": [
+    [
+     "00218123",
+     "cmp"
+    ],
+    [
+     "00218138",
+     "call"
+    ],
+    [
+     "0021813C",
+     "add"
+    ],
+    [
+     "0021815B",
+     "movabs"
+    ],
+    [
+     "0021817D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "002187D0",
+   "text": "returns 0 when dword `[rcx+0x48]` is 0; otherwise, with `b` = qword `[rcx+0x30]` and `v` = qword `[b+0x20]`, decrements that dword, calls `0016D6D0(b)` and `0016DA60(b, rcx+0x28)`, calls vtable slot `+0x18` of the object at `rcx+0x50` with (`rcx+0x50`, `b`, 0x28) and `00199DB0(rcx+0x58, &out, &v, low byte of v)`, and returns `002226A0(v)` when `v` is non-null, else 0",
+   "anchors": [
+    [
+     "002187EC",
+     "cmp"
+    ],
+    [
+     "002187FF",
+     "dec"
+    ],
+    [
+     "00218811",
+     "call"
+    ],
+    [
+     "0021883D",
+     "call"
+    ],
+    [
+     "0021884F",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00218F40",
+   "text": "assigns the 0x68-byte elements of [`rcx`, `rdx`) backward (last first) to the elements ending at `r8`, each source `s` to destination `d` by `002181A0(d+8, s+8)`, then qword `+0x20`, dword `+0x28`, byte `+0x2C`, dwords `+0x30`, `+0x34`, `+0x38`, `+0x3C` and `+0x40`, byte `+0x44`, dword `+0x45`, byte `+0x49`, qword `+0x50`, dword `+0x58` and qword `+0x60`; returns the start of the destination range",
+   "anchors": [
+    [
+     "00218F50",
+     "cmp"
+    ],
+    [
+     "00218F80",
+     "call"
+    ],
+    [
+     "00218F88",
+     "mov"
+    ],
+    [
+     "00218FC1",
+     "mov"
+    ],
+    [
+     "00218FEF",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00219000",
+   "text": "assigns the 0x68-byte elements of [`rcx`, `rdx`) forward to those from `r8`, each source `s` to destination `d` by `002181A0(d+8, s+8)`, then qword `+0x20`, dword `+0x28`, byte `+0x2C`, dwords `+0x30`, `+0x34`, `+0x38`, `+0x3C` and `+0x40`, byte `+0x44`, dword `+0x45`, byte `+0x49`, qword `+0x50`, dword `+0x58` and qword `+0x60`; returns the end of the destination range",
+   "anchors": [
+    [
+     "00219010",
+     "cmp"
+    ],
+    [
+     "0021902A",
+     "call"
+    ],
+    [
+     "00219036",
+     "mov"
+    ],
+    [
+     "0021906F",
+     "mov"
+    ],
+    [
+     "002190A1",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "002190B0",
+   "text": "assigns the single 0x68-byte element `s` at `r8` to every element `d` of [`rcx`, `rdx`) by `002181A0(d+8, s+8)`, then qword `+0x20`, dword `+0x28`, byte `+0x2C`, dwords `+0x30`, `+0x34`, `+0x38`, `+0x3C` and `+0x40`, byte `+0x44`, dword `+0x45`, byte `+0x49`, qword `+0x50`, dword `+0x58` and qword `+0x60`",
+   "anchors": [
+    [
+     "002190B3",
+     "je"
+    ],
+    [
+     "002190E8",
+     "call"
+    ],
+    [
+     "002190F1",
+     "mov"
+    ],
+    [
+     "0021912D",
+     "mov"
+    ],
+    [
+     "00219151",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00219170",
+   "text": "stores `r9` to qword `[rcx]`; for each 0x68-byte source `s` of [`rdx`, `r8`) it constructs at `d` = qword `[rcx]` (when non-null) by `00217F10(d, s)`, qword `[d]` = `00907B48`, then dwords `+0x38`, `+0x3C` and `+0x40`, byte `+0x44`, dword `+0x45`, byte `+0x49`, qword `+0x50`, dword `+0x58` and qword `+0x60` copied from `s`, and advances qword `[rcx]` by 0x68 either way; returns `rcx`",
+   "anchors": [
+    [
+     "00219195",
+     "mov"
+    ],
+    [
+     "002191C8",
+     "call"
+    ],
+    [
+     "002191CD",
+     "mov"
+    ],
+    [
+     "002191EC",
+     "mov"
+    ],
+    [
+     "0021921F",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "00219240",
+   "text": "for `edx` 0x68-byte slots `d` from `rcx`, each non-null one is constructed from `s` = `r8` by `00217F10(d, s)`, qword `[d]` = `00907B48`, then dwords `+0x38`, `+0x3C` and `+0x40`, byte `+0x44`, dword `+0x45`, byte `+0x49`, qword `+0x50`, dword `+0x58` and qword `+0x60` copied from `s`",
+   "anchors": [
+    [
+     "00219242",
+     "je"
+    ],
+    [
+     "00219299",
+     "call"
+    ],
+    [
+     "0021929E",
+     "mov"
+    ],
+    [
+     "002192BC",
+     "mov"
+    ],
+    [
+     "002192E0",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "00219300",
+   "text": "constructs `rcx` and returns it: qwords `+0`/`+8`/`+0x10` = 0 and `001EDF00(rcx+0x18, 'EASTL vector')`; two sets at `rcx+0x20` and `rcx+0x58`, each with allocator `001EDF00(set+0x30, 001EDF00(stack, 'EASTL set'))`, qword `set+8` and qword `set+0x10` = `set+8`, qword `set+0x18` = 0, byte `set+0x20` = 0, dword `set+0x28` = 0 (qword `set+0x20` zeroed first); byte `+0x90` = 0; then `00219B20(rcx, edx)`",
+   "anchors": [
+    [
+     "00219335",
+     "call"
+    ],
+    [
+     "00219374",
+     "call"
+    ],
+    [
+     "002193C4",
+     "call"
+    ],
+    [
+     "002193DB",
+     "mov"
+    ],
+    [
+     "002193E7",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "002199C0",
+   "text": "returns 0 when dword `[rcx+0x48]` is 0; otherwise, with `b` = qword `[rcx+0x30]` and `v` = qword `[b+0x20]`, decrements that dword, calls `0016D6D0(b)` and `0016DA60(b, rcx+0x28)`, calls vtable slot `+0x18` of the object at `rcx+0x50` with (`rcx+0x50`, `b`, 0x28) and `00199DB0(rcx+0x58, &out, &v, low byte of v)`, and returns `00222CB0(v)` when `v` is non-null, else 0",
+   "anchors": [
+    [
+     "002199DC",
+     "cmp"
+    ],
+    [
+     "002199EF",
+     "dec"
+    ],
+    [
+     "00219A01",
+     "call"
+    ],
+    [
+     "00219A2D",
+     "call"
+    ],
+    [
+     "00219A3F",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00219A70",
+   "text": "erases [`rdx`, `r8`) from the 0x68-byte-element range (begin qword `[rcx]`, end `[rcx+8]`): `e` = `00219000(r8, end, rdx)`, then each element from `e` below the old end gets its vtable slot `+0x38` called with (element, 0), and qword `[rcx+8]` moves back by `r8` - `rdx` (whole elements); returns `rdx`",
+   "anchors": [
+    [
+     "00219A9D",
+     "call"
+    ],
+    [
+     "00219AA9",
+     "cmp"
+    ],
+    [
+     "00219AB8",
+     "call"
+    ],
+    [
+     "00219AD1",
+     "movabs"
+    ],
+    [
+     "00219AF5",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "00219B20",
+   "text": "does nothing when byte `[rcx+0x90]` is non-zero or `edx` is 0; otherwise calls `00219CA0(rcx, edx)`, then for each `i` below `edx` calls `00199DB0(rcx+0x20, &out, &(qword [rcx] + 0x68*i), b)` with `b` the byte read first from its own `rcx` home slot (`rsp+0x50`, not written before that read), and finally sets byte `[rcx+0x90]` to 1 if it then reads 0, else to 0",
+   "anchors": [
+    [
+     "00219B27",
+     "cmp"
+    ],
+    [
+     "00219B3B",
+     "call"
+    ],
+    [
+     "00219B4B",
+     "movzx"
+    ],
+    [
+     "00219B7D",
+     "call"
+    ],
+    [
+     "00219BA5",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00219CA0",
+   "text": "resizes the 0x68-byte-element range (begin qword `[rcx]`, end `[rcx+8]`) to `edx` elements: when `edx` exceeds the count it builds a stack object with `00222CB0(&t)`, calls `002196A0(rcx, end, edx - count, result)` and `00222CF0(&t)`; otherwise it calls `00219A70(rcx, begin + edx*0x68, end)`; stack cookie `01F44830`, checked by `00808C40`",
+   "anchors": [
+    [
+     "00219CEA",
+     "mov"
+    ],
+    [
+     "00219D07",
+     "call"
+    ],
+    [
+     "00219D36",
+     "call"
+    ],
+    [
+     "00219D41",
+     "call"
+    ],
+    [
+     "00219D52",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0021A340",
+   "text": "assigns the 0xA0-byte elements of [`rcx`, `rdx`) backward (last first) to those ending at `r8`, returning the destination start; per element `s` to `d`: `002181A0(d+8, s+8)`, qword `+0x20`, dword `+0x28`, byte `+0x2C`, dwords `+0x30`..`+0x3C`, the 16 bytes at `+0x40`, qword `+0x50`; unless `d+0x58` is `s+0x58` it empties the tree at `d+0x58` (from root qword `d+0x70`: `001AF2B0(d+0x58, qword [node])`, next at node `+8`, node freed by slot `+0x18` of the object at `d+0x88` with (`d+0x88`, node, 0x30)), resets qwords `d+0x60`/`d+0x68` to `d+0x60`, qword `d+0x70`, byte `d+0x78` and dword `d+0x80` to 0, and, when qword `s+0x70` is non-null, stores root = `001AE6B0(d+0x58, qword [s+0x70], d+0x60)` to qword `d+0x70`, its leftmost (via `+0`) and rightmost (via `+8`) nodes to qwords `d+0x60`/`d+0x68`, and dword `s+0x80` to `d+0x80`; then dword `+0x90` and qword `+0x98`",
+   "anchors": [
+    [
+     "0021A39D",
+     "call"
+    ],
+    [
+     "0021A3EE",
+     "cmp"
+    ],
+    [
+     "0021A406",
+     "call"
+    ],
+    [
+     "0021A44C",
+     "call"
+    ],
+    [
+     "0021A4A2",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0021A4E0",
+   "text": "assigns the 0xA0-byte elements of [`rcx`, `rdx`) forward to those from `r8`, each source `s` to destination `d` by `002181A0(d+8, s+8)`, qword `+0x20`, dword `+0x28`, byte `+0x2C`, dwords `+0x30`..`+0x3C`, the 16 bytes at `+0x40`, qword `+0x50`, `001AE4B0(d+0x58, s+0x58)`, dword `+0x90` and qword `+0x98`; returns the end of the destination range",
+   "anchors": [
+    [
+     "0021A4F0",
+     "cmp"
+    ],
+    [
+     "0021A50A",
+     "call"
+    ],
+    [
+     "0021A547",
+     "movups"
+    ],
+    [
+     "0021A553",
+     "call"
+    ],
+    [
+     "0021A56C",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0021A5A0",
+   "text": "assigns the single 0xA0-byte element `s` at `r8` to every element `d` of [`rcx`, `rdx`) by `002181A0(d+8, s+8)`, qword `+0x20`, dword `+0x28`, byte `+0x2C`, dwords `+0x30`..`+0x3C`, the 16 bytes at `+0x40`, qword `+0x50`, `001AE4B0(d+0x58, s+0x58)`, dword `+0x90` and qword `+0x98`",
+   "anchors": [
+    [
+     "0021A5A3",
+     "je"
+    ],
+    [
+     "0021A5D8",
+     "call"
+    ],
+    [
+     "0021A615",
+     "movups"
+    ],
+    [
+     "0021A621",
+     "call"
+    ],
+    [
+     "0021A63D",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0021A670",
+   "text": "stores `r9` to qword `[rcx]`; for each 0xA0-byte source `s` of [`rdx`, `r8`) it constructs at `d` = qword `[rcx]` (when non-null) by `00217F10(d, s)`, qword `[d]` = `00907D80`, dwords `+0x38` and `+0x3C`, the 16 bytes at `+0x40` and qword `+0x50` copied from `s`, `0021A920(d+0x58, s+0x58)`, then dword `+0x90` and qword `+0x98`, and advances qword `[rcx]` by 0xA0 either way; returns `rcx`",
+   "anchors": [
+    [
+     "0021A695",
+     "mov"
+    ],
+    [
+     "0021A6C8",
+     "call"
+    ],
+    [
+     "0021A6CE",
+     "mov"
+    ],
+    [
+     "0021A6FA",
+     "call"
+    ],
+    [
+     "0021A72F",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "0021A750",
+   "text": "for `edx` 0xA0-byte slots `d` from `rcx`, each non-null one is constructed from `s` = `r8` by `00217F10(d, s)`, qword `[d]` = `00907D80`, dwords `+0x38` and `+0x3C`, the 16 bytes at `+0x40` and qword `+0x50` copied from `s`, `0021A920(d+0x58, s+0x58)`, then dword `+0x90` and qword `+0x98`",
+   "anchors": [
+    [
+     "0021A752",
+     "je"
+    ],
+    [
+     "0021A7A9",
+     "call"
+    ],
+    [
+     "0021A7AF",
+     "mov"
+    ],
+    [
+     "0021A7D5",
+     "call"
+    ],
+    [
+     "0021A7F5",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "0021A820",
+   "text": "constructs `rcx` and returns it: qwords `+0`/`+8`/`+0x10` = 0 and `001EDF00(rcx+0x18, 'EASTL vector')`; two sets at `rcx+0x20` and `rcx+0x58`, each with allocator `001EDF00(set+0x30, 001EDF00(stack, 'EASTL set'))`, qword `set+8` and qword `set+0x10` = `set+8`, qword `set+0x18` = 0, byte `set+0x20` = 0, dword `set+0x28` = 0 (qword `set+0x20` zeroed first); byte `+0x90` = 0; then `0021B160(rcx, edx)`",
+   "anchors": [
+    [
+     "0021A855",
+     "call"
+    ],
+    [
+     "0021A894",
+     "call"
+    ],
+    [
+     "0021A8E4",
+     "call"
+    ],
+    [
+     "0021A8FB",
+     "mov"
+    ],
+    [
+     "0021A907",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0021AF80",
+   "text": "returns 0 when dword `[rcx+0x48]` is 0; otherwise, with `b` = qword `[rcx+0x30]` and `v` = qword `[b+0x20]`, decrements that dword, calls `0016D6D0(b)` and `0016DA60(b, rcx+0x28)`, calls vtable slot `+0x18` of the object at `rcx+0x50` with (`rcx+0x50`, `b`, 0x28) and `00199DB0(rcx+0x58, &out, &v, low byte of v)`, and returns `002235F0(v)` when `v` is non-null, else 0",
+   "anchors": [
+    [
+     "0021AF9C",
+     "cmp"
+    ],
+    [
+     "0021AFAF",
+     "dec"
+    ],
+    [
+     "0021AFC1",
+     "call"
+    ],
+    [
+     "0021AFED",
+     "call"
+    ],
+    [
+     "0021AFFF",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "002125A0",
+   "why": [
+    "not an entry-only frontier function of the page"
+   ]
+  },
+  {
+   "fn": "00212710",
+   "why": [
+    "not an entry-only frontier function of the page"
+   ]
+  },
+  {
+   "fn": "00212760",
+   "why": [
+    "not an entry-only frontier function of the page"
+   ]
+  },
+  {
+   "fn": "002164D0",
+   "why": [
+    "not an entry-only frontier function of the page"
+   ]
+  },
+  {
+   "fn": "00216540",
+   "why": [
+    "not an entry-only frontier function of the page"
+   ]
+  },
+  {
+   "fn": "00217FD0",
+   "why": [
+    "not an entry-only frontier function of the page"
+   ]
+  },
+  {
+   "fn": "00219400",
+   "why": [
+    "not an entry-only frontier function of the page"
+   ]
+  },
+  {
+   "fn": "0021A9F0",
+   "why": [
+    "not an entry-only frontier function of the page"
+   ]
+  }
+ ],
+ "skipped": {
+  "00211BC0": "too large for one precise sentence (1167 B, 287 instructions)",
+  "002196A0": "too large for one precise sentence (708 B, 205 instructions)",
+  "0021AC90": "too large for one precise sentence (749 B, 207 instructions)"
+ },
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "002118E0",
+   "why": "byte verifier, re-read by OPUS: the `this` passed is the inline allocator object `rcx+0x18` itself and its vtable is qword `[rcx+0x18]`; 'slot of qword `[rcx+0x18]`' names one dereference too many (rows 7.23-7.26 use the same phrase for the object held in the qword)"
+  },
+  {
+   "fn": "00211AC0",
+   "why": "byte verifier, re-read by OPUS: the `this` passed is the inline allocator object `rcx+0x68` itself and its vtable is qword `[rcx+0x68]`; 'slot of qword `[rcx+0x68]`' names one dereference too many (rows 7.23-7.26 use the same phrase for the object held in the qword)"
+  },
+  {
+   "fn": "00218100",
+   "why": "byte verifier, re-read by OPUS: the `this` passed is the inline allocator object `rcx+0x18` itself and its vtable is qword `[rcx+0x18]`; 'slot of qword `[rcx+0x18]`' names one dereference too many (rows 7.23-7.26 use the same phrase for the object held in the qword)"
+  },
+  {
+   "fn": "002187D0",
+   "why": "byte verifier, re-read by OPUS: the `this` passed is the inline allocator object `rcx+0x50` itself and its vtable is qword `[rcx+0x50]`; 'slot of qword `[rcx+0x50]`' names one dereference too many (rows 7.23-7.26 use the same phrase for the object held in the qword)"
+  },
+  {
+   "fn": "002199C0",
+   "why": "byte verifier, re-read by OPUS: the `this` passed is the inline allocator object `rcx+0x50` itself and its vtable is qword `[rcx+0x50]`; 'slot of qword `[rcx+0x50]`' names one dereference too many (rows 7.23-7.26 use the same phrase for the object held in the qword)"
+  },
+  {
+   "fn": "0021A340",
+   "why": "byte verifier, re-read by OPUS: the `this` passed is the inline allocator object `d+0x88` itself and its vtable is qword `[d+0x88]`; 'slot of qword `[d+0x88]`' names one dereference too many (rows 7.23-7.26 use the same phrase for the object held in the qword)"
+  },
+  {
+   "fn": "0021AF80",
+   "why": "byte verifier, re-read by OPUS: the `this` passed is the inline allocator object `rcx+0x50` itself and its vtable is qword `[rcx+0x50]`; 'slot of qword `[rcx+0x50]`' names one dereference too many (rows 7.23-7.26 use the same phrase for the object held in the qword)"
+  }
+ ],
+ "mode": "member",
+ "family": "Phyre PhyreCore module",
+ "method": "The page declares the family `Phyre PhyreCore module` (a classification family: ordinary functions grouped by module, not template copies). engine_explained did not credit these members. Another local Claude session (repos-91, session local-ee-drafter) drafted one sentence and 1-5 interior anchors per body from OPUS's pack (`mem_pack.py`, filtered against engine_explained's own set); OPUS checked every row mechanically with `interior_ingest.py` (member mode). A second local agent, not the drafter, then read every one of the 294 rows of this batch against the disassembly: 260 stood, 34 rows were corrected in 40 clauses (18 inline sub-objects written as the qword they hold, 6 signed compares written as above/below, 6 wrong arguments or offsets, 2 missed paths). OPUS confirmed corrections at the bytes on a sample; they are listed below. Neither agent is an independent reviewer: the non-author check is SWE2-AUDIT-SPEC's."
+}

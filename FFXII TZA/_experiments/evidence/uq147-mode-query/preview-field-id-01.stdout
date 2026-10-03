@@ -1,0 +1,8 @@
+003148F0  sub      rsp, 0x28
+003148F4  call     0x2ef2b0
+003148F9  xor      ecx, ecx
+003148FB  mov      eax, dword ptr [rax + 0x1044]
+00314901  test     eax, eax
+00314903  cmovs    eax, ecx
+00314906  add      rsp, 0x28
+0031490A  ret      

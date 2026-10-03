@@ -1,0 +1,451 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-fifteen-modules-registered-before-main-phyre-phyrecore-module-10.json",
+ "rows": [
+  {
+   "fn": "007A3A60",
+   "text": "calls `0079F9D0(00796E20())` and stores 1 to byte `[rcx+0xC]`",
+   "anchors": [
+    [
+     "007A3A69",
+     "call"
+    ],
+    [
+     "007A3A71",
+     "call"
+    ],
+    [
+     "007A3A76",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007A3A80",
+   "text": "stores 1 to byte `[rcx+0xC]`",
+   "anchors": [
+    [
+     "007A3A84",
+     "ret"
+    ]
+   ]
+  },
+  {
+   "fn": "007A3A90",
+   "text": "stores 1 to dword `[rcx+8]`",
+   "anchors": [
+    [
+     "007A3A97",
+     "ret"
+    ]
+   ]
+  },
+  {
+   "fn": "007A3AA0",
+   "text": "calls `0079F9D0(00796E20())`, stores the low byte of `0079E640(00796E20())` to byte `[rcx+0x18]`, 1 to byte `[rcx+0xC]`, dword `+0x2C` of qword `01F82D20` to dword `[rcx+0x10]`, and 0x101 to word `[rcx+0x19]`",
+   "anchors": [
+    [
+     "007A3AB1",
+     "call"
+    ],
+    [
+     "007A3ABE",
+     "call"
+    ],
+    [
+     "007A3AC6",
+     "mov"
+    ],
+    [
+     "007A3AD4",
+     "mov"
+    ],
+    [
+     "007A3AD7",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007A3AF0",
+   "text": "with `e` = dword `[rdx]` and `v` = dword `[rdx+4]`: for `e` = 1 it stores 1 to byte `[rcx+0xC]`; for `e` = 4 it stores 1 to byte `[rcx+0x18]` when `v` is 3, 0 when `v` is neither 1, 2 nor 3, and nothing for `v` = 1 or 2; other `e` do nothing",
+   "anchors": [
+    [
+     "007A3AF3",
+     "sub"
+    ],
+    [
+     "007A3AFF",
+     "mov"
+    ],
+    [
+     "007A3B07",
+     "mov"
+    ],
+    [
+     "007A3B0E",
+     "cmp"
+    ],
+    [
+     "007A3B18",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007A3B20",
+   "text": "with `e` = dword `[rdx]`: 1 stores 1 to byte `[rcx+0xC]`; 3 stores 3 to dword `[rcx+8]`; 4 stores -1 to that dword when dword `[rdx+4]` is non-zero, else stores 3 and tail-jumps to `0017D4B0` when `00228480()` returns a zero `al`; 5 stores 4 to dword `[rcx+8]`; 6 stores 1 to byte `[rcx+0x18]`; other `e` do nothing",
+   "anchors": [
+    [
+     "007A3B2B",
+     "je"
+    ],
+    [
+     "007A3B45",
+     "mov"
+    ],
+    [
+     "007A3B60",
+     "mov"
+    ],
+    [
+     "007A3B67",
+     "call"
+    ],
+    [
+     "007A3B79",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007A3BA0",
+   "text": "with `e` = dword `[rdx]`: 2 stores 1 to dword `[rcx+8]`; 4 stores 1 there when dword `[rdx+4]` is 1 or 2, else -1; other `e` do nothing",
+   "anchors": [
+    [
+     "007A3BA2",
+     "cmp"
+    ],
+    [
+     "007A3BB8",
+     "dec"
+    ],
+    [
+     "007A3BBC",
+     "cmova"
+    ],
+    [
+     "007A3BC0",
+     "mov"
+    ],
+    [
+     "007A3BC9",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007A3BF0",
+   "text": "when dword `[rdx]` is 4 it stores 3 to dword `[rcx+8]` if dword `[rdx+4]` is 0, else 1",
+   "anchors": [
+    [
+     "007A3BF5",
+     "cmp"
+    ],
+    [
+     "007A3C04",
+     "cmove"
+    ],
+    [
+     "007A3C08",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007A3C10",
+   "text": "with `e` = dword `[rdx]` and `v` = dword `[rdx+4]`: 0 stores 1 to byte `[rcx+0xC]` and `w` to dword `[rcx+0x10]`, `w` being `v` when byte `[rcx+0x19]` is 0, else dword `+0x2C` of qword `01F82D20`, and tail-jumps to `00182F70(w >> 16, w AND 0xFFFF)`; 1 stores 1 to byte `+0xC`, that `+0x2C` dword to dword `+0x10` and 1 to byte `+0x19`, then tail-jumps to `0079F9D0(00796E20())`; 2 stores 1 and 3 stores 0 to byte `[rcx+0x18]`; 4 stores 1 there when `v` is 3, 0 when `v` is neither 1, 2 nor 3; other `e` do nothing",
+   "anchors": [
+    [
+     "007A3C19",
+     "test"
+    ],
+    [
+     "007A3C43",
+     "mov"
+    ],
+    [
+     "007A3C4D",
+     "mov"
+    ],
+    [
+     "007A3C6A",
+     "mov"
+    ],
+    [
+     "007A3C9F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "007A3CE0",
+   "text": "tail-jumps to `00796310(0)`",
+   "anchors": [
+    [
+     "007A3CE2",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "007A3CF0",
+   "text": "tail-calls vtable slot `+0x60` of `o` = `00796E20()` with (`o`, 0)",
+   "anchors": [
+    [
+     "007A3CF4",
+     "call"
+    ],
+    [
+     "007A3CFE",
+     "mov"
+    ],
+    [
+     "007A3D05",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "007A3D10",
+   "text": "tail-calls vtable slot `+0x68` of `o` = `00796E20()` with (`o`, 1)",
+   "anchors": [
+    [
+     "007A3D14",
+     "call"
+    ],
+    [
+     "007A3D1E",
+     "mov"
+    ],
+    [
+     "007A3D25",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "007A3D30",
+   "text": "calls `007A0FA0(0)` and tail-jumps to `00796310(1)`",
+   "anchors": [
+    [
+     "007A3D36",
+     "call"
+    ],
+    [
+     "007A3D3B",
+     "mov"
+    ],
+    [
+     "007A3D41",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "007A3DC0",
+   "text": "calls `0079F740(00796E20(), 1, 1)` and stores 0 to byte `[rcx+0xC]`",
+   "anchors": [
+    [
+     "007A3DC9",
+     "call"
+    ],
+    [
+     "007A3DD9",
+     "call"
+    ],
+    [
+     "007A3DDE",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007A3DF0",
+   "text": "tail-calls `rcx`'s vtable slot `+0x40` with `rcx` when byte `[rcx+0xC]` is non-zero; otherwise returns",
+   "anchors": [
+    [
+     "007A3DF4",
+     "je"
+    ],
+    [
+     "007A3DF9",
+     "jmp"
+    ],
+    [
+     "007A3DFD",
+     "ret"
+    ]
+   ]
+  },
+  {
+   "fn": "007A3E00",
+   "text": "stores 0 (for `edx` = 0) or 4 (for `edx` = 1) to dword `[rcx+8]`; calls `0079B0B0()` and `0079E640(00796E20())`, after which the selected flag is byte `[rcx+0x18]` either way; when byte `[rcx+0xC]` is non-zero, with `r` = `0017E220()` it takes width and height from `GetSystemMetrics(0)` and `(1)` (IAT slot `008C29B0`), or from dwords `r+8` - `r+0` and `r+0xC` - `r+4` when `r` is non-null, stores (width << 16) OR height to dword `[rcx+0x10]`, calls `00182F70` with that dword's high and low halves and then `0079F9D0(00796E20())`; it calls `rcx`'s vtable slot `+0x48` with (`rcx`, flag) and, when byte `+0xC` is non-zero, tail-calls slot `+0x40` with `rcx`",
+   "anchors": [
+    [
+     "007A3E27",
+     "call"
+    ],
+    [
+     "007A3E42",
+     "cmovne"
+    ],
+    [
+     "007A3E5F",
+     "call"
+    ],
+    [
+     "007A3E87",
+     "mov"
+    ],
+    [
+     "007A3EB8",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007A3EE0",
+   "text": "stores 5 to dword `[rcx+8]` for `edx` = 0 or 2; when byte `[rcx+0xC]` is non-zero it calls `005CDAA0(2, 01CB4190)` and `0079EC80()` if `0079B0B0()` returns a zero `al`, then `0017DB40()`, vtable slot `+0x60` of `o` = `00796E20()` with (`o`, 1), and zeroes that byte; when byte `[rcx+0x18]` is non-zero it calls `005CDAA0(2, 01CB41B8)` and slot `+0x98` of `00796E20()` with it, and zeroes that byte; then tail-calls `rcx`'s slot `+0x48` with (`rcx`, 1)",
+   "anchors": [
+    [
+     "007A3EF2",
+     "mov"
+    ],
+    [
+     "007A3EFF",
+     "call"
+    ],
+    [
+     "007A3F14",
+     "call"
+    ],
+    [
+     "007A3F30",
+     "call"
+    ],
+    [
+     "007A3F5A",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007A3F80",
+   "text": "calls `rcx`'s vtable slot `+0x48` with (`rcx`, 0); when byte `[rcx+0xC]` is non-zero it calls slot `+0x68` of `o` = `00796E20()` with (`o`, 0) and zeroes that byte",
+   "anchors": [
+    [
+     "007A3F8E",
+     "call"
+    ],
+    [
+     "007A3F91",
+     "cmp"
+    ],
+    [
+     "007A3FA4",
+     "call"
+    ],
+    [
+     "007A3FA8",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007A4050",
+   "text": "for `edx` = 0 calls `00796310(0)` and stores 0 to dword `[rcx+8]`; for 1 calls `00795DC0()` and stores 3; for 2 calls `00796310(0)` and stores 2; other `edx` do nothing",
+   "anchors": [
+    [
+     "007A405B",
+     "je"
+    ],
+    [
+     "007A4069",
+     "call"
+    ],
+    [
+     "007A406E",
+     "mov"
+    ],
+    [
+     "007A407B",
+     "call"
+    ],
+    [
+     "007A408F",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007A40B0",
+   "text": "stores 4 (for `edx` = 1) or 2 (for `edx` = 2) to dword `[rcx+8]`; calls `0079E640(00796E20())` and zeroes byte `[rcx+0x18]` when `0079B0B0()` returns a zero `al`, the selected flag being byte `+0x18` either way; when byte `[rcx+0x1A]` is non-zero it calls `007A0FA0(1)` and zeroes it; calls `rcx`'s vtable slot `+0x48` with (`rcx`, flag), zeroes byte `[rcx+0x19]`, and calls slot `+0x40` with `rcx` when byte `[rcx+0xC]` is non-zero",
+   "anchors": [
+    [
+     "007A40CC",
+     "mov"
+    ],
+    [
+     "007A40EC",
+     "call"
+    ],
+    [
+     "007A40F5",
+     "mov"
+    ],
+    [
+     "007A410E",
+     "call"
+    ],
+    [
+     "007A4121",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "007A3D50",
+   "why": [
+    "not an entry-only frontier function of the page"
+   ]
+  },
+  {
+   "fn": "007A4150",
+   "why": [
+    "not an entry-only frontier function of the page"
+   ]
+  },
+  {
+   "fn": "008478A0",
+   "why": [
+    "not an entry-only frontier function of the page"
+   ]
+  }
+ ],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "007A3C10",
+   "why": "byte verifier, re-read by OPUS: the `00182F70` tail-jumps pass `ecx` = `w` >> 16 and `edx` = `w` AND 0xFFFF (007A3C91/007A3C94 and 007A3CB2/007A3CB5); the arguments are reversed in the row"
+  }
+ ],
+ "mode": "member",
+ "family": "Phyre PhyreCore module",
+ "method": "The page declares the family `Phyre PhyreCore module` (a classification family: ordinary functions grouped by module, not template copies). engine_explained did not credit these members. Another local Claude session (repos-91, session local-ee-drafter) drafted one sentence and 1-5 interior anchors per body from OPUS's pack (`mem_pack.py`, filtered against engine_explained's own set); OPUS checked every row mechanically with `interior_ingest.py` (member mode). A second local agent, not the drafter, then read every one of the 294 rows of this batch against the disassembly: 260 stood, 34 rows were corrected in 40 clauses (18 inline sub-objects written as the qword they hold, 6 signed compares written as above/below, 6 wrong arguments or offsets, 2 missed paths). OPUS confirmed corrections at the bytes on a sample; they are listed below. Neither agent is an independent reviewer: the non-author check is SWE2-AUDIT-SPEC's."
+}

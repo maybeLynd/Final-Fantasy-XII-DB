@@ -1,0 +1,601 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-fifteen-modules-registered-before-main-phyre-ppostprocessing-module-3.json",
+ "rows": [
+  {
+   "fn": "00655A10",
+   "text": "takes `w` = `edx`, or when that is 0 dword `+0x18` of `s` = `005FD050()` + 0x520 (0x500 when `s` is null), and `h` = `r8d`, or dword `[s+0x1C]` (0x2D0 when `s` is null); then, with a second `s` from `005FD050()` + 0x520, replaces a still-zero `w` by dword `[s+0x18]` and a still-zero `h` by dword `[s+0x1C]` (0x500 for `w` and 0x2D0 for `h` when `s` is null); stores `w` to dword `[rcx+0x44]`, `h` to dword `[rcx+0x48]` and 1 to byte `[rcx+0x40]`; returns 0",
+   "anchors": [
+    [
+     "00655A32",
+     "call"
+    ],
+    [
+     "00655A4B",
+     "mov"
+    ],
+    [
+     "00655A67",
+     "call"
+    ],
+    [
+     "00655A9E",
+     "mov"
+    ],
+    [
+     "00655AB0",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00655AC0",
+   "text": "with `s` = `005FD050()` + 0x520, `w` = `edx`, or when that is 0 dword `[s+0x18]` (0x500 when `s` is null), and `h` = `r8d`, or dword `[s+0x1C]` (0x2D0 when `s` is null), returns `r` = `00655690(rcx, 02D35600, w, h, 0)` when it is non-zero; otherwise, with a second `s` from `005FD050()` + 0x520, stores dword `[s+0x18]` (0x500 when `s` is null) to dword `[rcx+0x44]`, dword `[s+0x1C]` (0x2D0 when null) to dword `[rcx+0x48]` and 1 to byte `[rcx+0x40]`, and returns 0",
+   "anchors": [
+    [
+     "00655AE2",
+     "call"
+    ],
+    [
+     "00655B31",
+     "call"
+    ],
+    [
+     "00655B3A",
+     "call"
+    ],
+    [
+     "00655B53",
+     "mov"
+    ],
+    [
+     "00655B5C",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00655B80",
+   "text": "with `s` = `005FD050()` + 0x520, `w` = `edx`, or when that is 0 dword `[s+0x18]` (0x500 when `s` is null), and `h` = `r8d`, or when that is 0 dword `[s+0x1C]` (0x2D0 when `s` is null), returns `r` = `00653E80(rcx, 02D35600, w, h)` when it is non-zero, else returns `00655DC0(rcx, edx, r8d)`",
+   "anchors": [
+    [
+     "00655B97",
+     "call"
+    ],
+    [
+     "00655BAB",
+     "mov"
+    ],
+    [
+     "00655BC5",
+     "mov"
+    ],
+    [
+     "00655BE0",
+     "call"
+    ],
+    [
+     "00655BF1",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00655C10",
+   "text": "with `s` = `005FD050()` + 0x520, `w` = `edx`, or when that is 0 dword `[s+0x18]` (0x500 when `s` is null), and `h` = `r8d`, or when that is 0 dword `[s+0x1C]` (0x2D0 when `s` is null), returns `r` = `006560E0(rcx, 02D35600, w, h)` when it is non-zero, else returns `00655DC0(rcx, edx, r8d)`",
+   "anchors": [
+    [
+     "00655C27",
+     "call"
+    ],
+    [
+     "00655C3B",
+     "mov"
+    ],
+    [
+     "00655C55",
+     "mov"
+    ],
+    [
+     "00655C70",
+     "call"
+    ],
+    [
+     "00655C81",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00655CA0",
+   "text": "with `s` = `005FD050()` + 0x520, `w` = `edx`, or when that is 0 dword `[s+0x18]` (0x500 when `s` is null), and `h` = `r8d`, or when that is 0 dword `[s+0x1C]` (0x2D0 when `s` is null), returns `r` = `00654170(rcx, 02D35600, w, h)` when it is non-zero, else returns `00655DC0(rcx, edx, r8d)`",
+   "anchors": [
+    [
+     "00655CB7",
+     "call"
+    ],
+    [
+     "00655CCB",
+     "mov"
+    ],
+    [
+     "00655CE5",
+     "mov"
+    ],
+    [
+     "00655D00",
+     "call"
+    ],
+    [
+     "00655D11",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00655D30",
+   "text": "with `s` = `005FD050()` + 0x520, `w` = `edx`, or when that is 0 dword `[s+0x18]` (0x500 when `s` is null), and `h` = `r8d`, or when that is 0 dword `[s+0x1C]` (0x2D0 when `s` is null), returns `r` = `00654470(rcx, 02D35600, w, h)` when it is non-zero, else returns `00655DC0(rcx, edx, r8d)`",
+   "anchors": [
+    [
+     "00655D47",
+     "call"
+    ],
+    [
+     "00655D5B",
+     "mov"
+    ],
+    [
+     "00655D75",
+     "mov"
+    ],
+    [
+     "00655D90",
+     "call"
+    ],
+    [
+     "00655DA1",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00655E30",
+   "text": "with `s` = `005FD050()` + 0x520, `w` = `edx`, or when that is 0 dword `[s+0x18]` (0x500 when `s` is null), and `h` = `r8d`, or when that is 0 dword `[s+0x1C]` (0x2D0 when `s` is null), returns `r` = `00654610(rcx, 02D35600, w, h)` when it is non-zero, else returns `00655DC0(rcx, edx, r8d)`",
+   "anchors": [
+    [
+     "00655E47",
+     "call"
+    ],
+    [
+     "00655E5B",
+     "mov"
+    ],
+    [
+     "00655E75",
+     "mov"
+    ],
+    [
+     "00655E90",
+     "call"
+    ],
+    [
+     "00655EA1",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00655EC0",
+   "text": "stores `0064A500(rdx, 8)` to qword `[rcx+0x4120]` and `006497E0(rdx, 0x10)` to qword `[rcx+0x4128]`; returns 0",
+   "anchors": [
+    [
+     "00655ED8",
+     "call"
+    ],
+    [
+     "00655EE2",
+     "mov"
+    ],
+    [
+     "00655EEC",
+     "call"
+    ],
+    [
+     "00655EF6",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00656DA0",
+   "text": "stores `0018D240(rdx, name)` to qword `[rcx+0x58]` for 'ColorBuffer' and to qword `[rcx+0x60]` for 'DepthBuffer'; when dword `[rcx+0x30]` AND 0x7FFFFFFF is non-zero stores qword `[rcx+0x10]` to the first element (qword `[rcx+0x38]` when that count is above 1, else `rcx+0x38` itself); then for the lookups of 'PointClampSampler' and 'LinearClampSampler' (each skipped when null), with `t` = qword `+8` of qword `[rcx+0x10]`, `n` = word `+0x12` AND 0x1FFF and `o` = word `+0x10` of the entry, returns 3 when `o` + `n` exceeds dword `[t]` or `o` is below 4, else copies `n` bytes of a stack block (qword 0x47, `02D34718` or `02D35140` respectively, qword 0) to `t` + `o` (`00861EBA`); returns 0",
+   "anchors": [
+    [
+     "00656DCA",
+     "call"
+    ],
+    [
+     "00656E0C",
+     "mov"
+    ],
+    [
+     "00656E73",
+     "cmp"
+    ],
+    [
+     "00656E95",
+     "call"
+    ],
+    [
+     "00656EEE",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006571E0",
+   "text": "when `p` = qword `[rcx+0x10]` and qword `[p]` are non-null, returns `r` = `006561D0(rcx, 02D35600, 00653B10(rcx))` when it is non-zero; then stores qword `[rcx+0x10]` to qword `[rcx+0x18]`, `q` = its qword `+8` (0 when it is null) to qword `[rcx+0x20]` and qword `[q+0x18]` (0 when `q` is null) to qword `[rcx+0x28]`, and returns 0",
+   "anchors": [
+    [
+     "006571F8",
+     "call"
+    ],
+    [
+     "0065720A",
+     "call"
+    ],
+    [
+     "00657219",
+     "mov"
+    ],
+    [
+     "0065722B",
+     "mov"
+    ],
+    [
+     "00657238",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00657250",
+   "text": "when `p` = qword `[rcx+0x10]` and qword `[p]` are non-null, returns `r` = `006566D0(rcx, 02D35600, 00653B10(rcx))` when it is non-zero; then stores qword `[rcx+0x10]` to qword `[rcx+0x18]`, `q` = its qword `+8` (0 when it is null) to qword `[rcx+0x20]` and qword `[q+0x18]` (0 when `q` is null) to qword `[rcx+0x28]`, and returns 0",
+   "anchors": [
+    [
+     "00657268",
+     "call"
+    ],
+    [
+     "0065727A",
+     "call"
+    ],
+    [
+     "00657289",
+     "mov"
+    ],
+    [
+     "0065729B",
+     "mov"
+    ],
+    [
+     "006572A8",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006572C0",
+   "text": "when `p` = qword `[rcx+0x10]` and qword `[p]` are non-null, returns `r` = `006568D0(rcx, 02D35600, 00653B10(rcx))` when it is non-zero; then stores qword `[rcx+0x10]` to qword `[rcx+0x18]`, `q` = its qword `+8` (0 when it is null) to qword `[rcx+0x20]` and qword `[q+0x18]` (0 when `q` is null) to qword `[rcx+0x28]`, and returns 0",
+   "anchors": [
+    [
+     "006572D8",
+     "call"
+    ],
+    [
+     "006572EA",
+     "call"
+    ],
+    [
+     "006572F9",
+     "mov"
+    ],
+    [
+     "0065730B",
+     "mov"
+    ],
+    [
+     "00657318",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00657330",
+   "text": "when `p` = qword `[rcx+0x10]` and qword `[p]` are non-null, with `d` = `00653B10(rcx)`, returns `r` = `00654E20(rcx, 02D35600, d)` when it is non-zero, and otherwise stores `0018D240(d, name)` to qwords `+0xA0`, `+0xA8`, `+0xB0`, `+0xB8`, `+0xC0` and `+0xC8` of `rcx` for 'ColorInput', 'DepthBuffer', 'NearProcessed', 'DoFCompositeNearInput', 'DoFCompositeBlurInput' and 'DoFCompositeColorInput'; then stores qword `[rcx+0x10]` to qword `[rcx+0x18]`, `q` = its qword `+8` (0 when it is null) to qword `[rcx+0x20]` and qword `[q+0x18]` (0 when `q` is null) to qword `[rcx+0x28]`, and returns 0",
+   "anchors": [
+    [
+     "00657354",
+     "call"
+    ],
+    [
+     "00657369",
+     "call"
+    ],
+    [
+     "00657380",
+     "call"
+    ],
+    [
+     "006573F3",
+     "mov"
+    ],
+    [
+     "00657412",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006574A0",
+   "text": "when `p` = qword `[rcx+0x10]` and qword `[p]` are non-null, returns `r` = `00656B20(rcx, 02D35600, 00653B10(rcx))` when it is non-zero; then stores qword `[rcx+0x10]` to qword `[rcx+0x18]`, `q` = its qword `+8` (0 when it is null) to qword `[rcx+0x20]` and qword `[q+0x18]` (0 when `q` is null) to qword `[rcx+0x28]`, and returns 0",
+   "anchors": [
+    [
+     "006574B8",
+     "call"
+    ],
+    [
+     "006574CA",
+     "call"
+    ],
+    [
+     "006574D9",
+     "mov"
+    ],
+    [
+     "006574EB",
+     "mov"
+    ],
+    [
+     "006574F8",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00657510",
+   "text": "when `p` = qword `[rcx+0x10]` and qword `[p]` are non-null, returns `r` = `00656DA0(rcx, 00653B10(rcx))` when it is non-zero; then stores qword `[rcx+0x10]` to qword `[rcx+0x18]`, `q` = its qword `+8` (0 when it is null) to qword `[rcx+0x20]` and qword `[q+0x18]` (0 when `q` is null) to qword `[rcx+0x28]`, and returns 0",
+   "anchors": [
+    [
+     "00657528",
+     "call"
+    ],
+    [
+     "00657533",
+     "call"
+    ],
+    [
+     "00657542",
+     "mov"
+    ],
+    [
+     "00657554",
+     "mov"
+    ],
+    [
+     "00657561",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00657570",
+   "text": "when `p` = qword `[rcx+0x10]` and qword `[p]` are non-null, returns `r` = `00655180(rcx, 02D35600, 00653B10(rcx))` when it is non-zero; then stores qword `[rcx+0x10]` to qword `[rcx+0x18]`, `q` = its qword `+8` (0 when it is null) to qword `[rcx+0x20]` and qword `[q+0x18]` (0 when `q` is null) to qword `[rcx+0x28]`, and returns 0",
+   "anchors": [
+    [
+     "00657588",
+     "call"
+    ],
+    [
+     "0065759A",
+     "call"
+    ],
+    [
+     "006575A9",
+     "mov"
+    ],
+    [
+     "006575BB",
+     "mov"
+    ],
+    [
+     "006575C8",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00657610",
+   "text": "when `p` = qword `[rcx+0x10]` and qword `[p]` are non-null, returns `r` = `00656F20(rcx, 02D35600, 00653B10(rcx))` when it is non-zero; then stores qword `[rcx+0x10]` to qword `[rcx+0x18]`, `q` = its qword `+8` (0 when it is null) to qword `[rcx+0x20]` and qword `[q+0x18]` (0 when `q` is null) to qword `[rcx+0x28]`, and returns 0",
+   "anchors": [
+    [
+     "00657628",
+     "call"
+    ],
+    [
+     "0065763A",
+     "call"
+    ],
+    [
+     "00657649",
+     "mov"
+    ],
+    [
+     "0065765B",
+     "mov"
+    ],
+    [
+     "00657668",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00657690",
+   "text": "when byte `[rcx+0x40]` is non-zero, returns `r` = `0065C330(rcx, edx, r8d)` if it is non-zero; otherwise stores `edx` to dword `[rcx+0x44]` and `r8d` to dword `[rcx+0x48]` and returns 0",
+   "anchors": [
+    [
+     "0065769F",
+     "cmp"
+    ],
+    [
+     "006576AD",
+     "call"
+    ],
+    [
+     "006576B4",
+     "jne"
+    ],
+    [
+     "006576B6",
+     "mov"
+    ],
+    [
+     "006576BB",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006576D0",
+   "text": "when byte `[rcx+0x40]` is non-zero, returns `r` = `0065C4D0(rcx, edx, r8d)` if it is non-zero; otherwise stores `edx` to dword `[rcx+0x44]` and `r8d` to dword `[rcx+0x48]` and returns 0",
+   "anchors": [
+    [
+     "006576DF",
+     "cmp"
+    ],
+    [
+     "006576ED",
+     "call"
+    ],
+    [
+     "006576F4",
+     "jne"
+    ],
+    [
+     "006576F6",
+     "mov"
+    ],
+    [
+     "006576FB",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00657710",
+   "text": "when byte `[rcx+0x40]` is non-zero: returns 1 when `m` = qword `[rcx+0x50]` is null, byte `[m+8]` is non-zero or `t` = qword `[m]` is null; when dword `[t+0x28]` is not `edx` or dword `[t+0x2C]` is not `r8d`, it returns `r` = `0062BCB0(t)` when `00625F00(t)` returns non-zero `al` and `r` is non-zero, and then `r` = `0060DD70(t, edx, r8d, qword [t], 0)` when non-zero; otherwise stores `edx` to dword `[rcx+0x44]` and `r8d` to dword `[rcx+0x48]` and returns 0",
+   "anchors": [
+    [
+     "00657724",
+     "cmp"
+    ],
+    [
+     "00657749",
+     "cmp"
+    ],
+    [
+     "00657763",
+     "call"
+    ],
+    [
+     "0065777F",
+     "call"
+    ],
+    [
+     "00657793",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006577B0",
+   "text": "when byte `[rcx+0x40]` is non-zero, returns `r` = `0065C760(rcx, edx, r8d)` if it is non-zero; otherwise stores `edx` to dword `[rcx+0x44]` and `r8d` to dword `[rcx+0x48]` and returns 0",
+   "anchors": [
+    [
+     "006577BF",
+     "cmp"
+    ],
+    [
+     "006577CD",
+     "call"
+    ],
+    [
+     "006577D4",
+     "jne"
+    ],
+    [
+     "006577D6",
+     "mov"
+    ],
+    [
+     "006577DB",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006577F0",
+   "text": "when byte `[rcx+0x40]` is non-zero, returns `r` = `0065C910(rcx, edx, r8d)` if it is non-zero; otherwise stores `edx` to dword `[rcx+0x44]` and `r8d` to dword `[rcx+0x48]` and returns 0",
+   "anchors": [
+    [
+     "006577FF",
+     "cmp"
+    ],
+    [
+     "0065780D",
+     "call"
+    ],
+    [
+     "00657814",
+     "jne"
+    ],
+    [
+     "00657816",
+     "mov"
+    ],
+    [
+     "0065781B",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "00654610": "too large for one precise sentence (536 B, 153 instructions)",
+  "00654830": "too large for one precise sentence (706 B, 122 instructions)",
+  "00654B00": "too large for one precise sentence (787 B, 180 instructions)",
+  "00654E20": "too large for one precise sentence (446 B, 110 instructions)",
+  "00655180": "too large for one precise sentence (579 B, 130 instructions)",
+  "006553D0": "too large for one precise sentence (694 B, 187 instructions)",
+  "00655690": "too large for one precise sentence (649 B, 147 instructions)",
+  "00655F10": "too large for one precise sentence (450 B, 115 instructions)",
+  "006566D0": "too large for one precise sentence (506 B, 115 instructions)",
+  "006568D0": "too large for one precise sentence (562 B, 110 instructions)",
+  "00656B20": "too large for one precise sentence (635 B, 149 instructions)",
+  "00656F20": "too large for one precise sentence (542 B, 126 instructions)"
+ },
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "00655A10",
+   "why": "byte verifier, re-read by OPUS: second stage: when w (or h) is still 0 and the second s is null the stored value is the preloaded 0x500 in ebp (or 0x2D0 in ebx, 00655A3D/00655A52), not the kept zero"
+  }
+ ],
+ "mode": "member",
+ "family": "Phyre PPostProcessing module",
+ "method": "The page declares the family `Phyre PPostProcessing module` (a classification family: ordinary functions grouped by module, not template copies). engine_explained did not credit these members. Another local Claude session (repos-91, session local-ee-drafter) drafted one sentence and 1-5 interior anchors per body from OPUS's pack (`mem_pack.py`, filtered against engine_explained's own set); OPUS checked every row mechanically with `interior_ingest.py` (member mode). A second local agent, not the drafter, then read every one of the 295 rows of this batch against the disassembly: 286 stood, 9 rows were corrected in 14 clauses (signed compares worded above/below, two missing pass-through arguments, one wrong value on a path, one overgeneralised compare direction, one 16-bit edge). OPUS confirmed corrections at the bytes on a sample; they are listed below. Neither agent is an independent reviewer: the non-author check is SWE2-AUDIT-SPEC's."
+}

@@ -1,0 +1,747 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-fifteen-modules-registered-before-main-phyre-prendering-module-3.json",
+ "rows": [
+  {
+   "fn": "005E8790",
+   "text": "calls `006388C0(02CB9100)`; under its thread-safe guard dword (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routine by `00808B90`) it registers `m_offset` by `00632960(02CE82E0, 02CB9100, 006300A0(), name, 0, 0, 0, 0)`; then tail-jumps to `00639450(02CB9100)`",
+   "anchors": [
+    [
+     "005E87A4",
+     "call"
+    ],
+    [
+     "005E87C4",
+     "cmp"
+    ],
+    [
+     "005E87E1",
+     "call"
+    ],
+    [
+     "005E8811",
+     "call"
+    ],
+    [
+     "005E883A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005E8840",
+   "text": "calls `006388C0(02CB9200)`; under its thread-safe guard dword (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routine by `00808B90`) it registers `m_size` by `00632960(02CE8340, 02CB9200, 006300A0(), name, 2, 0, 0, 0)`; then tail-jumps to `00639450(02CB9200)`",
+   "anchors": [
+    [
+     "005E8854",
+     "call"
+    ],
+    [
+     "005E8874",
+     "cmp"
+    ],
+    [
+     "005E8891",
+     "call"
+    ],
+    [
+     "005E88C5",
+     "call"
+    ],
+    [
+     "005E88EE",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005E8900",
+   "text": "calls `006388C0(02CB9300)`; under its thread-safe guard dword (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routine by `00808B90`) it registers `m_type` by `00632960(02CE83A0, 02CB9300, 0062FFC0(), name, 2, 0, 0, 0)`; then tail-jumps to `00639450(02CB9300)`",
+   "anchors": [
+    [
+     "005E8914",
+     "call"
+    ],
+    [
+     "005E8934",
+     "cmp"
+    ],
+    [
+     "005E8951",
+     "call"
+    ],
+    [
+     "005E8985",
+     "call"
+    ],
+    [
+     "005E89AE",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005E89C0",
+   "text": "calls `006388C0(02CB9400)`; each once under its own thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before and `0080929C` after the one-time body, which registers an exit routine with `00808B90`), registers with `00632960(record, 02CB9400, type, name, n, 0, 0, 0)` `m_constantBufferLocation` (`02CE8400`, `00630180()`, 4), `m_size` (`02CE8460`, `00630180()`, 8) and `m_type` (`02CE84C0`, `0062FFC0()`, 0xC); then tail-jumps to `00639450(02CB9400)`",
+   "anchors": [
+    [
+     "005E89DB",
+     "call"
+    ],
+    [
+     "005E8A4E",
+     "call"
+    ],
+    [
+     "005E8ABD",
+     "call"
+    ],
+    [
+     "005E8B2C",
+     "call"
+    ],
+    [
+     "005E8B5B",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005E8B60",
+   "text": "calls `006388C0(02CBA600)` and sets bit `0x20` of dword `02CBA6FC`; each once under its own thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before and `0080929C` after the one-time body, which registers an exit routine with `00808B90`), registers with `00632960(record, 02CBA600, type, name, n, 0x12, 0, 0)` `m_rwStructuredBuffer` (`02CE90B0`, `02CBB600`, 0x10), `m_rwDataBlock` (`02CE9110`, `02D39E40`, 0x18) and `m_rwIndirectArgsBuffer` (`02CE9170`, `02CB6980`, 0x20); then tail-jumps to `00639450(02CBA600)`",
+   "anchors": [
+    [
+     "005E8B7B",
+     "call"
+    ],
+    [
+     "005E8B80",
+     "or"
+    ],
+    [
+     "005E8BF8",
+     "call"
+    ],
+    [
+     "005E8C6A",
+     "call"
+    ],
+    [
+     "005E8CDC",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005E8D10",
+   "text": "calls `006388C0(02CBA400)` and sets bit `0x20` of dword `02CBA4FC`; each once under its own thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before and `0080929C` after the one-time body, which registers an exit routine with `00808B90`), registers `m_rwStructuredBuffer` by `00632960(02CE8F30, 02CBA400, 02CBB600, name, 0x10, 0x12, 0, 0)` and `m_rwDataBlock` by `00632960(02CE8F90, 02CBA400, 02D39E40, name, 0x18, 0x12, 0, 0)`; then tail-jumps to `00639450(02CBA400)`",
+   "anchors": [
+    [
+     "005E8D2B",
+     "call"
+    ],
+    [
+     "005E8D30",
+     "or"
+    ],
+    [
+     "005E8DA8",
+     "call"
+    ],
+    [
+     "005E8E1A",
+     "call"
+    ],
+    [
+     "005E8E49",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005E8E50",
+   "text": "calls `006388C0(02CBA900)` and sets bit `0x20` of dword `02CBA9FC`; under its thread-safe guard dword (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routine by `00808B90`) it registers `m_texture` by `00632960(02CE9290, 02CBA900, 02CBB900, name, 0x10, 0x12, 0, 0)`; then tail-jumps to `00639450(02CBA900)`",
+   "anchors": [
+    [
+     "005E8E64",
+     "call"
+    ],
+    [
+     "005E8E69",
+     "or"
+    ],
+    [
+     "005E8EDF",
+     "call"
+    ],
+    [
+     "005E8F08",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005E8F10",
+   "text": "calls `006388C0(02CBAA00)` and sets bit `0x20` of dword `02CBAAFC`; under its thread-safe guard dword (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routine by `00808B90`) it registers `m_texture` by `00632960(02CE92F0, 02CBAA00, 02CBBB00, name, 0x10, 0x12, 0, 0)`; then tail-jumps to `00639450(02CBAA00)`",
+   "anchors": [
+    [
+     "005E8F24",
+     "call"
+    ],
+    [
+     "005E8F29",
+     "or"
+    ],
+    [
+     "005E8F9F",
+     "call"
+    ],
+    [
+     "005E8FC8",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005E8FD0",
+   "text": "calls `006388C0(02CBA200)` and sets bit `0x20` of dword `02CBA2FC`; under its thread-safe guard dword (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routine by `00808B90`) it registers `m_unusedPointer` by `00632960(02CE8E10, 02CBA200, 02CBB700, name, 0x10, 0x12, 0, 0)`; then tail-jumps to `00639450(02CBA200)`",
+   "anchors": [
+    [
+     "005E8FE4",
+     "call"
+    ],
+    [
+     "005E8FE9",
+     "or"
+    ],
+    [
+     "005E905F",
+     "call"
+    ],
+    [
+     "005E9088",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005E9090",
+   "text": "calls `006388C0(02CBA300)` and sets bit `0x20` of dword `02CBA3FC`; each once under its own thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before and `0080929C` after the one-time body, which registers an exit routine with `00808B90`), registers `m_structuredBuffer` by `00632960(02CE8E70, 02CBA300, 02CBB600, name, 0x10, 0x12, 0, 0)` and `m_dataBlock` by `00632960(02CE8ED0, 02CBA300, 02D39E40, name, 0x18, 0x12, 0, 0)`; then tail-jumps to `00639450(02CBA300)`",
+   "anchors": [
+    [
+     "005E90AB",
+     "call"
+    ],
+    [
+     "005E90B0",
+     "or"
+    ],
+    [
+     "005E9128",
+     "call"
+    ],
+    [
+     "005E919A",
+     "call"
+    ],
+    [
+     "005E91C9",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005E91D0",
+   "text": "calls `006388C0(02CB9F00)` and sets bit `0x20` of dword `02CB9FFC`; under its thread-safe guard dword (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routine by `00808B90`) it registers `m_texture` by `00632960(02CE8CF0, 02CB9F00, 02CBB900, name, 0x10, 0x12, 0, 0)`; then tail-jumps to `00639450(02CB9F00)`",
+   "anchors": [
+    [
+     "005E91E4",
+     "call"
+    ],
+    [
+     "005E91E9",
+     "or"
+    ],
+    [
+     "005E925F",
+     "call"
+    ],
+    [
+     "005E9288",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005E9290",
+   "text": "calls `006388C0(02CBA000)` and sets bit `0x20` of dword `02CBA0FC`; under its thread-safe guard dword (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routine by `00808B90`) it registers `m_texture` by `00632960(02CE8D50, 02CBA000, 02CBBB00, name, 0x10, 0x12, 0, 0)`; then tail-jumps to `00639450(02CBA000)`",
+   "anchors": [
+    [
+     "005E92A4",
+     "call"
+    ],
+    [
+     "005E92A9",
+     "or"
+    ],
+    [
+     "005E931F",
+     "call"
+    ],
+    [
+     "005E9348",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005E9350",
+   "text": "calls `006388C0(02CB9D00)` and sets bit `0x20` of dword `02CB9DFC`; each once under its own thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before and `0080929C` after the one-time body, which registers an exit routine with `00808B90`), registers with `00632960(record, 02CB9D00, type, name, n, f, 0, 0)` `m_parameterType` (`02CE8B70`, `00630180()`, 0, 0x10), `m_samplerState` (`02CE8BD0`, `02CB78A0`, 8, 0x12) and `m_textureBufferIndex` (`02CE8C30`, `00630180()`, 4, 0x10); then tail-jumps to `00639450(02CB9D00)`",
+   "anchors": [
+    [
+     "005E936B",
+     "call"
+    ],
+    [
+     "005E9370",
+     "or"
+    ],
+    [
+     "005E93E5",
+     "call"
+    ],
+    [
+     "005E9457",
+     "call"
+    ],
+    [
+     "005E94CA",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005E9500",
+   "text": "calls `006388C0(02CBA100)` and sets bit `0x20` of dword `02CBA1FC`; under its thread-safe guard dword (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routine by `00808B90`) it registers `m_texture` by `00632960(02CE8DB0, 02CBA100, 02CBBD00, name, 0x10, 0x12, 0, 0)`; then tail-jumps to `00639450(02CBA100)`",
+   "anchors": [
+    [
+     "005E9514",
+     "call"
+    ],
+    [
+     "005E9519",
+     "or"
+    ],
+    [
+     "005E958F",
+     "call"
+    ],
+    [
+     "005E95B8",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005E95C0",
+   "text": "calls `006388C0(02CB9E00)` and sets bit `0x20` of dword `02CB9EFC`; under its thread-safe guard dword (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routine by `00808B90`) it registers `m_constantBuffer` by `00632960(02CE8C90, 02CB9E00, 02CB6480, name, 0x10, 0x12, 0, 0)`; then tail-jumps to `00639450(02CB9E00)`",
+   "anchors": [
+    [
+     "005E95D4",
+     "call"
+    ],
+    [
+     "005E95D9",
+     "or"
+    ],
+    [
+     "005E964F",
+     "call"
+    ],
+    [
+     "005E9678",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005E9FF0",
+   "text": "calls `006388C0(02CB9700)` and an unguarded `005EE4C0(qword 01F2DE58)`; under its thread-safe guard dword (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routine by `00808B90`) it registers `m_parameterLocations` by `00632A10(02CE8840, 02CB9700, 005EE4C0(0), name, 0x10, 0, 3, 2)` with qword `02CE8840` = `00D4AF48`; then sets bit `0x10` of dword `02CE8868` unguarded and tail-jumps to `00639450(02CB9700)`",
+   "anchors": [
+    [
+     "005EA004",
+     "call"
+    ],
+    [
+     "005EA010",
+     "call"
+    ],
+    [
+     "005EA090",
+     "call"
+    ],
+    [
+     "005EA09C",
+     "mov"
+    ],
+    [
+     "005EA0BC",
+     "or"
+    ]
+   ]
+  },
+  {
+   "fn": "005EA220",
+   "text": "calls `006388C0(02CB9800)` and an unguarded `005EE7F0(qword 01F2DE60)`; under its thread-safe guard dword (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routine by `00808B90`) it registers `m_parameterLocations` by `00632A10(02CE88B0, 02CB9800, 005EE7F0(0), name, 0x10, 0, 3, 4)` with qword `02CE88B0` = `00D4B008`; then sets bit `0x10` of dword `02CE88D8` unguarded and tail-jumps to `00639450(02CB9800)`",
+   "anchors": [
+    [
+     "005EA234",
+     "call"
+    ],
+    [
+     "005EA240",
+     "call"
+    ],
+    [
+     "005EA2C0",
+     "call"
+    ],
+    [
+     "005EA2CC",
+     "mov"
+    ],
+    [
+     "005EA2EC",
+     "or"
+    ]
+   ]
+  },
+  {
+   "fn": "005EA310",
+   "text": "calls `006388C0(02CB9B00)`; under the thread-safe guard dword `02CE8B68` (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routine `00808B90(008AD6A0)`) it registers `m_importantState` by `00632960(02CE8B10, 02CB9B00, 00630180(), name, 0, 0x10, 0, 0)`; then tail-jumps to `00639450(02CB9B00)`",
+   "anchors": [
+    [
+     "005EA324",
+     "call"
+    ],
+    [
+     "005EA344",
+     "cmp"
+    ],
+    [
+     "005EA361",
+     "call"
+    ],
+    [
+     "005EA395",
+     "call"
+    ],
+    [
+     "005EA3BE",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005EA3D0",
+   "text": "calls `006388C0(02CBAC00)`; each once under its own thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before and `0080929C` after the one-time body, which registers an exit routine with `00808B90`), after an unguarded `005EF4B0(qword 01F2DE78)` it registers `m_streamDefinitions` by `00632A10(02CE94E0, 02CBAC00, 005EF4B0(0), name, 0, 0, 3, 8)` with qword `02CE94E0` = `00D4ADA0`, then sets bit `0x10` of dword `02CE9508` unguarded; after an unguarded `005EEB20(qword 01F2DE80)` it registers `m_parameterDefinitions` by `00632A10(02CE9550, 02CBAC00, 005EEB20(0), name, 0x10, 0, 3, 8)` with qword `02CE9550` = `00D49EA0`, then sets bit `0x10` of dword `02CE9578` unguarded; then tail-jumps to `00639450(02CBAC00)`",
+   "anchors": [
+    [
+     "005EA3F2",
+     "call"
+    ],
+    [
+     "005EA474",
+     "call"
+    ],
+    [
+     "005EA4AE",
+     "call"
+    ],
+    [
+     "005EA515",
+     "call"
+    ],
+    [
+     "005EA541",
+     "or"
+    ]
+   ]
+  },
+  {
+   "fn": "005EA560",
+   "text": "calls `006388C0(02CBAB00)`; each once under its own thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before and `0080929C` after the one-time body, which registers an exit routine with `00808B90`), registers `m_code` by `00632960(02CE9350, 02CBAB00, 02E4D630, name, 0, 0x12, 0, 0)` and `m_entry` by `00632960(02CE93B0, 02CBAB00, 02E4D630, name, 8, 0x10, 0, 0)`; after an unguarded `005EF7E0(qword 01F2DE70)`, `m_compileOptions` by `00632A10(02CE9410, 02CBAB00, 005EF7E0(0), name, 0x10, 0, 3, 8)` with qword `02CE9410` = `00D4AAF8`, then sets bit `0x10` of dword `02CE9438` unguarded; and `m_profile` by `00632960(02CE9480, 02CBAB00, 00630180(), name, 0x20, 0x10, 0, 0)`; then tail-jumps to `00639450(02CBAB00)`",
+   "anchors": [
+    [
+     "005EA5ED",
+     "call"
+    ],
+    [
+     "005EA65F",
+     "call"
+    ],
+    [
+     "005EA6E3",
+     "call"
+    ],
+    [
+     "005EA70F",
+     "or"
+    ],
+    [
+     "005EA76B",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005EAAA0",
+   "text": "calls `006388C0(02CBB500)`; each once under its own thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before and `0080929C` after the one-time body, which registers an exit routine with `00808B90`), registers with `00632960(record, 02CBB500, 00630180(), name, n, 0x10, 0, 0)` `m_elementCount` (`02CE9800`, 0), `m_elementSize` (`02CE9860`, 4) and `m_flags` (`02CE98C0`, 8); then tail-jumps to `00639450(02CBB500)`",
+   "anchors": [
+    [
+     "005EAABB",
+     "call"
+    ],
+    [
+     "005EAB2E",
+     "call"
+    ],
+    [
+     "005EABA1",
+     "call"
+    ],
+    [
+     "005EAC14",
+     "call"
+    ],
+    [
+     "005EAC43",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005EAC50",
+   "text": "calls `006388C0(02CBB800)`; each once under its own thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before and `0080929C` after the one-time body, which registers an exit routine with `00808B90`), registers with `00632960(record, 02CBB800, 00630180(), name, n, 0x10, 0, 0)` `m_width` (`02CE9B60`, 0x28) and `m_height` (`02CE9BC0`, 0x2C); then tail-jumps to `00639450(02CBB800)`",
+   "anchors": [
+    [
+     "005EAC6B",
+     "call"
+    ],
+    [
+     "005EACAC",
+     "call"
+    ],
+    [
+     "005EACE2",
+     "call"
+    ],
+    [
+     "005EAD55",
+     "call"
+    ],
+    [
+     "005EAD84",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005EAD90",
+   "text": "calls `006388C0(02CBBA00)`; each once under its own thread-safe guard dword (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; `008092FC` before and `0080929C` after the one-time body, which registers an exit routine with `00808B90`), registers with `00632960(record, 02CBBA00, 00630180(), name, n, 0x10, 0, 0)` `m_width` (`02CE9C20`, 0x28), `m_height` (`02CE9C80`, 0x2C) and `m_depth` (`02CE9CE0`, 0x30); then tail-jumps to `00639450(02CBBA00)`",
+   "anchors": [
+    [
+     "005EADAB",
+     "call"
+    ],
+    [
+     "005EAE22",
+     "call"
+    ],
+    [
+     "005EAE95",
+     "call"
+    ],
+    [
+     "005EAF08",
+     "call"
+    ],
+    [
+     "005EAF37",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005EB2B0",
+   "text": "calls `006388C0(02CBBC00)`; under its thread-safe guard dword (TLS epoch at index dword `02EAED3C`; `008092FC`/`0080929C`, exit routine by `00808B90`) it registers `m_size` by `00632960(02CE9D40, 02CBBC00, 00630180(), name, 0x28, 0x10, 0, 0)`; then tail-jumps to `00639450(02CBBC00)`",
+   "anchors": [
+    [
+     "005EB2C4",
+     "call"
+    ],
+    [
+     "005EB2E4",
+     "cmp"
+    ],
+    [
+     "005EB301",
+     "call"
+    ],
+    [
+     "005EB339",
+     "call"
+    ],
+    [
+     "005EB362",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005F0220",
+   "text": "returns at once when `rcx` is null; otherwise for each of `edx` 0x10-byte elements calls `00584730` on qword `+8` and then qword `+0`, each when non-null with bit `0x1` clear, and finally `00584730(rcx)`",
+   "anchors": [
+    [
+     "005F0223",
+     "je"
+    ],
+    [
+     "005F0250",
+     "mov"
+    ],
+    [
+     "005F0261",
+     "call"
+    ],
+    [
+     "005F0277",
+     "call"
+    ],
+    [
+     "005F028A",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005F02A0",
+   "text": "returns at once when `rcx` is null; otherwise for each of `edx` 0x10-byte elements calls `00584730(qword +8)` when bit `0x80000000` of dword `+0` is clear, that dword AND 0x7FFFFFFF is above 1 and the qword is non-null, zeroing both, and finally `00584730(rcx)`",
+   "anchors": [
+    [
+     "005F02A3",
+     "je"
+    ],
+    [
+     "005F02DB",
+     "je"
+    ],
+    [
+     "005F02EF",
+     "call"
+    ],
+    [
+     "005F02F4",
+     "mov"
+    ],
+    [
+     "005F0307",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005F0410",
+   "text": "returns at once when `rcx` is null; otherwise calls `00616980` on each of `edx` 0x2C0-byte elements and then `00584730(rcx)`",
+   "anchors": [
+    [
+     "005F0413",
+     "je"
+    ],
+    [
+     "005F0443",
+     "call"
+    ],
+    [
+     "005F0448",
+     "add"
+    ],
+    [
+     "005F0458",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005F05F0",
+   "text": "returns 0 when `rcx` is null; returns the first entry of the list from qword `02CBF998` (next at qword `+8`) whose qword `+0` string matches `rcx` by `_stricmp` (IAT slot `008C3000`); otherwise it calls `005CDAA0(1, 00D4E5C0, rcx)`, pops `e` from the free list at qword `02CC0388` and `s` from the one at qword `02CC03B0` (each refilled first by `00680150(list, dword 02CC03A4` or `02CC03CC)` when empty; the head becomes qword `[entry]`), and, when both are non-null, copies the string with its terminator into `s` (`00861EBA`), sets qword `e+0` = `s`, qword `e+8` = 0, byte `e+0x10` = 1 and dword `e+0x18` = 0xFFFFFFFF and calls `005FDCB0(e)`; it returns `e`",
+   "anchors": [
+    [
+     "005F0616",
+     "call"
+    ],
+    [
+     "005F064F",
+     "call"
+    ],
+    [
+     "005F066D",
+     "call"
+    ],
+    [
+     "005F06E3",
+     "call"
+    ],
+    [
+     "005F0701",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005F0720",
+   "text": "sets byte `02CB6358` = 1; with `n` = dword `02CB635C` and the dword `[rcx+0x70]` records `r` from qword `[rcx+0x58]` (stride dword `+0x38` of qword `[rcx+0x50]`): when `n` is non-zero it returns 7 if `b` = qword `[rcx+0x68]` is null, else for each record calls `0060EDB0(r+0x28, b, n)`, zeroes the next `n` qwords at `b` (advancing `b`, `n` re-read), and for each of dword `r+0x18` AND 0x7FFFFFFF 0x50-byte entries at qword `r+0x20` whose object (qword `+0`) has dword `+0x18` = `k` other than -1 stores the entry's address to qword `k` of qword `r+0x30`; when `n` is 0 it frees qword `r+0x30` by `00584730` (when non-null with bit `0x80000000` of dword `r+0x28` clear) and stores 0 there and 0x80000000 to dword `r+0x28`; returns 0",
+   "anchors": [
+    [
+     "005F073A",
+     "mov"
+    ],
+    [
+     "005F0762",
+     "lea"
+    ],
+    [
+     "005F078A",
+     "call"
+    ],
+    [
+     "005F07E6",
+     "mov"
+    ],
+    [
+     "005F0835",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "005E9680": "too large for one precise sentence (743 B, 147 instructions)",
+  "005E9970": "too large for one precise sentence (688 B, 129 instructions)",
+  "005EA7A0": "too large for one precise sentence (767 B, 147 instructions)",
+  "005EAF40": "too large for one precise sentence (866 B, 167 instructions)",
+  "005EB7C0": "too large for one precise sentence (818 B, 158 instructions)",
+  "005EBE40": "too large for one precise sentence (818 B, 158 instructions)",
+  "005EC180": "too large for one precise sentence (819 B, 159 instructions)",
+  "005EC4C0": "too large for one precise sentence (819 B, 159 instructions)",
+  "005EC800": "too large for one precise sentence (819 B, 159 instructions)"
+ },
+ "missing": [],
+ "corrections": [],
+ "mode": "member",
+ "family": "Phyre PRendering module",
+ "method": "The page declares the family `Phyre PRendering module` (a classification family: ordinary functions grouped by module, not template copies). engine_explained did not credit these members. Another local Claude session (repos-91, session local-ee-drafter) drafted one sentence and 1-5 interior anchors per body from OPUS's pack (`mem_pack.py`, filtered against engine_explained's own set); OPUS checked every row mechanically with `interior_ingest.py` (member mode). A second local agent, not the drafter, then read every one of the 203 rows of this batch against the disassembly: 199 stood, 4 rows were corrected in 6 clauses (signed compares written as above/below). OPUS confirmed corrections at the bytes on a sample; they are listed below. Neither agent is an independent reviewer: the non-author check is SWE2-AUDIT-SPEC's."
+}
