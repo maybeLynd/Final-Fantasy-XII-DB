@@ -1,0 +1,11 @@
+{
+ "page": "99-Unresolved-Residual/Glyph-Run-Rendering/the-font-painters-public-api.md",
+ "session": "session_01VNt9U2NfNQBph7nwiLwJy4",
+ "rows": [
+  {"fn": "00213090", "entered_from": "`001E9380` + 0x19",
+   "text": "stores byte 1 at `rcx+0x20` and the dword 0x3F800000 (the f32 bit pattern of 1.0) at `rcx+0x30`, `rcx+0x2C`, `rcx+0x28` and `rcx+0x24`, in that order, then returns",
+   "anchors": [["00213094", "mov"], ["0021309B", "mov"], ["002130A2", "mov"], ["002130A9", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "00213090: the byte store at +0x20 is the entry instruction and has no anchor; the four float stores are interior, so the function is rowed rather than skipped as entry-only."
+}
