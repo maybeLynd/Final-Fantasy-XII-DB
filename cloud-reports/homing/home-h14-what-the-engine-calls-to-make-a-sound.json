@@ -1,0 +1,11 @@
+{
+ "page": "18-Audio/Audio-Boundary/what-the-engine-calls-to-make-a-sound.md",
+ "session": "session_01Ft9DsjYbzydEyFv6u1R8to",
+ "rows": [
+  {"fn": "00379E60", "entered_from": "`00379E30` + 0x8",
+   "text": "when `ecx` is non-zero returns 1 if the dword at `02ADD198` + (`ecx` AND 0xF)*0x70 equals `ecx`, else 0; when `ecx` is 0 returns 1 if qword `02ADD870` is non-zero, else 0",
+   "anchors": [["00379E6D", "and"], ["00379E76", "cmp"], ["00379E7A", "sete"], ["00379E80", "cmp"], ["00379E87", "setne"]]}
+ ],
+ "skipped": [],
+ "notes": ""
+}
