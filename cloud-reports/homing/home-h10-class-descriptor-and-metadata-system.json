@@ -1,0 +1,11 @@
+{
+ "page": "22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/class-descriptor-and-metadata-system.md",
+ "session": "session_0141duvveFVGsG54cn7rpP77",
+ "rows": [
+  {"fn": "006B6820", "entered_from": "`00661A70` + 0x7A",
+   "text": "stores `rcx+8` at qwords `rcx+8`, `+0x10` and `+0x18`, zeroes dword `+0x20` and qword `+0x28`, stores `rdx` at qword `+0x30`, `r8d` and `r9d` at dwords `+0x38` and `+0x3C`, the fifth and sixth (stack) arguments at qwords `+0x40` and `+0x48` and the pointer `00D80970` at qword `[rcx]`; then links `N` = `rcx+0x50` in front of the list headed by qword `01F2EBB8` (qword `N` = the old head, qword `N+8` = `01F2EBB8`, qword `01F2EBB8` = `N`, qword `+8` of the old head = `N`) and returns `rcx`",
+   "anchors": [["006B6827", "mov"], ["006B6844", "mov"], ["006B6872", "mov"], ["006B6883", "mov"], ["006B688A", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": ""
+}
