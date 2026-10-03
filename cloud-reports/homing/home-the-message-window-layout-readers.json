@@ -1,0 +1,17 @@
+{
+ "page": "16-UI/Message-Windows/the-message-window-layout-readers.md",
+ "session": "session_01DtsGzxAwuV39oMMCAfQd2j",
+ "rows": [
+  {"fn": "002A2BB0", "entered_from": "`0035E070` + 0x62",
+   "text": "returns 0 when `rcx` is null or when the dword at `0209C4D0` + 8 * (sign-extended byte `+0x3B8` of `rcx`) differs from the low 32 bits of `rcx`; otherwise returns 1 when qword `+0` of `rcx` is non-null or the low four bits (AND `0xF`) of byte `+0x7C` are non-zero, else 0",
+   "anchors": [["002A2BB5", "movsx"], ["002A2BCA", "cmp"], ["002A2BD5", "cmp"], ["002A2BDA", "test"], ["002A2BE0", "mov"]]},
+  {"fn": "002A7D30", "entered_from": "`002A36A0` + 0x50",
+   "text": "tests three bits of dword `+8` of `rcx` in turn, clearing each one it finds set: bit `0x4` stores the zero-extended byte `+0x2F` to word `+0x16` and calls `002A7D30` + 0x19; bit `0x10` stores float `+0x4C` + `+0x48` to `+0x24` and `+0x54` + `+0x50` to `+0x28`; bit `0x8` stores to each byte `+0x20` to `+0x23` the truncated float sum of the signed word at `+0x38`, `+0x3A`, `+0x3C`, `+0x3E` and the unsigned byte at `+0x34`, `+0x35`, `+0x36`, `+0x37` respectively; a clear bit skips its step",
+   "anchors": [["002A7D3E", "mov"], ["002A7D49", "call"], ["002A7D65", "movss"], ["002A7DA9", "mov"], ["002A7E0F", "mov"]]},
+  {"fn": "002A84B0", "entered_from": "`002A7F70` + 0x51",
+   "text": "returns at once when `rcx` is null; otherwise rewrites dword `+0x7C` of `rcx` as (its value AND `0x3FF`) OR `0x19064C00`, then calls `002A84B0` + 0x24 with (`rcx`, `00916490`) and `002A84B0` + 0x2C with `rcx`",
+   "anchors": [["002A84C4", "and"], ["002A84CC", "or"], ["002A84D1", "mov"], ["002A84D4", "call"], ["002A84DC", "call"]]}
+ ],
+ "skipped": [],
+ "notes": "002A2BB0: the table compare is a dword compare of the table qword's low half against ecx, so only the low 32 bits of the pointer are matched. 002A7D30: after the call at + 0x19 the body keeps using rcx without reloading it (it relies on the callee leaving rcx unchanged). 002A84B0: second entered-from site `002A7F70` + 0xE6; r8/r9 for the + 0x24 call are not set here; 00916490 is not decoded."
+}
