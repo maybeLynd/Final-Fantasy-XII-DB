@@ -1,0 +1,56 @@
+{
+ "page": "07-Combat-Action/CONTRACT-the-moment-an-action-is-committed.md",
+ "session": "session_01Rk789qY4qsCmkfLpxsx7MQ",
+ "rows": [
+  {
+   "fn": "003AEF30",
+   "text": "stores dword 0 at `[rcx]`, then follows the chain from qword `+0x18` through each node's qword `+0x48` until null, storing byte 0 at the first byte of every node",
+   "anchors": [
+    [
+     "003AEF34",
+     "mov"
+    ],
+    [
+     "003AEF3D",
+     "je"
+    ],
+    [
+     "003AEF40",
+     "mov"
+    ],
+    [
+     "003AEF43",
+     "mov"
+    ],
+    [
+     "003AEF4A",
+     "jne"
+    ]
+   ]
+  },
+  {
+   "fn": "003E69A0",
+   "text": "when dword `+0x448` of `rcx` is non-zero calls the callee at `003E69A0` + 0x13 with it in `ecx`; then, when dword `+0x44C` is non-zero, tail-jumps the same callee (`003E69A0` + 0x27) with it in `ecx`, else returns",
+   "anchors": [
+    [
+     "003E69A9",
+     "mov"
+    ],
+    [
+     "003E69B3",
+     "call"
+    ],
+    [
+     "003E69B8",
+     "mov"
+    ],
+    [
+     "003E69C7",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": ""
+}
