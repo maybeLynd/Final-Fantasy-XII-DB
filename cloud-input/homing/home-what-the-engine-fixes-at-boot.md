@@ -1,0 +1,80 @@
+# Homing pack: `00-Engine-Core-Runtime/what-the-engine-fixes-at-boot.md`
+
+Generated 2026-10-03 03:37 by FABLE (homing_pack.py, OPUS's listing code) from the certified executable (sha256 73461D08...21F8). Brief: `docs/cloud-briefs/homing.md`. Write your result to `cloud-reports/homing/home-what-the-engine-fixes-at-boot.json`.
+
+Bodies: 2. No page cites any of them yet. Each is called from a function this page already cites; the host page is fixed (do not choose another).
+
+## 003AA1F0 (77 B, extent 003AA1F0-003AA23D)
+
+Entered from (direct sites whose caller this page cites): `00501750` + 0x93 (call; `00501750` is cited on this page)
+Other direct sites: none
+
+Host context: " under '00259DF0'/'00379E90') — boot primes the resource pipeline as well as the heap. And upstream, '0036A100' — one of the alloc triple primed here — is later called from 25 Presentation builders ('00501750', '00503CD0', '003EDAD0'…), so the boot-primed allocator serves the render path at run time, not only startup.  The other directions are smaller but real: '007980A0' calls **platform**/online init ('007A0C60', '008655E0', '0020CD80"
+
+```
+003AA1F0  mov      qword ptr [rsp + 8], rbx
+003AA1F5  push     rdi
+003AA1F6  sub      rsp, 0x20
+003AA1FA  mov      rax, qword ptr [rip + 0x2b14d6f]  ; -> 02EBEF70
+003AA201  mov      ebx, edx
+003AA203  mov      edi, ecx
+003AA205  mov      rax, qword ptr [rax]
+003AA208  test     rax, rax
+003AA20B  je       0x3aa230  ; -> 003AA230
+003AA20D  nop      dword ptr [rax]
+003AA210  movsx    r8d, word ptr [rax + 0xc]
+003AA215  cmp      r8d, edi
+003AA218  jne      0x3aa224  ; -> 003AA224
+003AA21A  movsx    r8d, byte ptr [rax + 0xe]
+003AA21F  cmp      r8d, ebx
+003AA222  je       0x3aa232  ; -> 003AA232
+003AA224  mov      ecx, dword ptr [rax]
+003AA226  call     0x20e600  ; -> 0020E600 fn
+003AA22B  test     rax, rax
+003AA22E  jne      0x3aa210  ; -> 003AA210
+003AA230  xor      eax, eax
+003AA232  mov      rbx, qword ptr [rsp + 0x30]
+003AA237  add      rsp, 0x20
+003AA23B  pop      rdi
+003AA23C  ret      
+```
+
+## 008632E0 (106 B, extent 008632E0-0086334A)
+
+Entered from (direct sites whose caller this page cites): `00863540` + 0x28 (call; `00863540` is cited on this page)
+Other direct sites: none
+
+Host context: "'008631D0' pair + '002F0280') | the in-scope *callers* of the excluded VU1 install band — the boot sequence's DMA/program upload arms | | '00368xxx' init family | '0035E820' (382 B — '005C5230' ×3 + '00863540'/'008636E0'/'00863610', '022CA62C'/'30'/'022CAE40', tables '0035EA40'/'0035EC90'/'00D10C78'), '00368C80', '00368DD0', '00368ED0', '00368F70', '00369070', '003692C0' | a '00863540'/'008636E0'/'00863610' + '00D10Cxx' table shape over"
+
+```
+008632E0  mov      qword ptr [rsp + 0x10], rbx
+008632E5  mov      qword ptr [rsp + 0x18], rbp
+008632EA  mov      qword ptr [rsp + 0x20], rsi
+008632EF  push     rdi
+008632F0  sub      rsp, 0x20
+008632F4  mov      rbx, rcx
+008632F7  mov      esi, r8d
+008632FA  mov      ecx, 8
+008632FF  mov      ebp, edx
+00863301  call     0x210ec0  ; -> 00210EC0 fn
+00863306  mov      qword ptr [rsp + 0x30], rax
+0086330B  mov      rdi, rax
+0086330E  test     rax, rax
+00863311  je       0x86332b  ; -> 0086332B
+00863313  xor      r9d, r9d
+00863316  mov      r8d, esi
+00863319  mov      edx, ebp
+0086331B  xor      ecx, ecx
+0086331D  call     qword ptr [rip + 0x5eddd]  ; -> 008C2100 [u64 0x0000000001CCC184]
+00863323  mov      qword ptr [rdi], rax
+00863326  mov      qword ptr [rbx], rdi
+00863329  jmp      0x863332  ; -> 00863332
+0086332B  mov      qword ptr [rbx], 0
+00863332  mov      rbp, qword ptr [rsp + 0x40]
+00863337  mov      rax, rbx
+0086333A  mov      rbx, qword ptr [rsp + 0x38]
+0086333F  mov      rsi, qword ptr [rsp + 0x48]
+00863344  add      rsp, 0x20
+00863348  pop      rdi
+00863349  ret      
+```
