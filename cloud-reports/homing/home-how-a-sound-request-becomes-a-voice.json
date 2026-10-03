@@ -1,0 +1,281 @@
+{
+ "page": "18-Audio/Audio-Boundary/how-a-sound-request-becomes-a-voice.md",
+ "session": "session_01Dq1LGzf21EuvVAMphWnGMn",
+ "rows": [
+  {
+   "fn": "002033C0",
+   "entered_from": "`00203CB0` + 0x89",
+   "text": "zeroes the qwords `[rcx]`, `[rcx+8]` and `[rcx+0x10]`; when `r8 - rdx` is nonzero it passes that length in `rdx` (with `rcx` unchanged) to the call at `002033C0` + 0x41, stores the result to `[rcx]` and `[rcx+8]` and the result plus the length to `[rcx+0x10]`, calls the import slot at `002033C0` + 0x64 with (the result, the incoming `rdx`, the length), and sets `[rcx+8]` to the result plus the length, returning that sum; when the length is zero it returns 0 with the three qwords left zero",
+   "anchors": [
+    [
+     "002033EE",
+     "mov"
+    ],
+    [
+     "00203401",
+     "call"
+    ],
+    [
+     "00203414",
+     "mov"
+    ],
+    [
+     "00203424",
+     "call"
+    ],
+    [
+     "0020342E",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00203520",
+   "entered_from": "`00206F60` + 0x64",
+   "text": "walks the node chain from `r8` through qword `+0x18` until null; for each node whose dword `+0xC` is nonzero it steps an offset from 0 by dword `+0x00` while the offset is below dword `+0xC` (unsigned), and at each offset compares bytes from `rcx` against bytes at qword `+0x10` plus the offset until a mismatch or dword `+0x00` bytes; as soon as the read pointer after a compare (one past the last byte read) equals `rdx` it returns `rdx`; when none does, including a null `r8`, it returns `rcx`",
+   "anchors": [
+    [
+     "00203568",
+     "cmp"
+    ],
+    [
+     "00203576",
+     "cmp"
+    ],
+    [
+     "0020357E",
+     "cmp"
+    ],
+    [
+     "00203583",
+     "mov"
+    ],
+    [
+     "002035A4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00205C70",
+   "entered_from": "`00206E90` + 0x16",
+   "text": "allocates 0x28 bytes through `00210EC0` and, when non-null, stores 0xB at dword `+8` if `dl` is nonzero (0xA otherwise), zero at dword `+0xC` and qwords `+0x10`, `+0x18`, `+0x20`, and `009058F0` at `+0`; allocates 0x20 bytes and, when non-null, stores `009058C0` at `+0`, 1 at qword `+8` and zero at `+0x10` and `+0x18`; then, with no null check on either object, sets first `+0x18` to qword `rcx+8`, and when qword `+0x10` of that is non-null sets first `+0x10` to it and its `+0x18` to first; sets that `+0x10` to first, first `+0x20` to second, second `+0x18` to first and qword `rcx+8` to second, returning the first object",
+   "anchors": [
+    [
+     "00205CAC",
+     "setne"
+    ],
+    [
+     "00205CC7",
+     "mov"
+    ],
+    [
+     "00205CF1",
+     "mov"
+    ],
+    [
+     "00205D32",
+     "mov"
+    ],
+    [
+     "00205D3E",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "002072C0",
+   "entered_from": "`00206640` + 0x86",
+   "text": "maps `dl` to a dword stored at `rcx+0x74` and returns 1: 0x66 stores 0xC, 0x6E stores 0xA, 0x72 stores 0xD, 0x74 stores 9 and 0x76 stores 0xB; any other `dl` returns 0 without a store",
+   "anchors": [
+    [
+     "002072C5",
+     "mov"
+    ],
+    [
+     "002072D4",
+     "mov"
+    ],
+    [
+     "002072E3",
+     "mov"
+    ],
+    [
+     "002072F2",
+     "mov"
+    ],
+    [
+     "0020730B",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "00207F50",
+   "entered_from": "`00205890` + 0x18B",
+   "text": "when dword `rcx+0x7C` differs from `edx` it calls `008C2430` with `r8d` and stops at `int3`; otherwise, when qword `[rcx]` differs from qword `rcx+0x10`, it checks the byte at `[rcx]` for 0x5C and, when the next byte lies before `rcx+0x10` and either bit 8 of dword `rcx+0x80` is clear and that byte is 0x28 or 0x29, or bit 0x10 is clear and it is 0x7B or 0x7D, stores the next byte's address to `[rcx]`; it then increments qword `[rcx]` (on every path where it differed from `rcx+0x10`) and tail-jumps to `00209530` with `rcx` unchanged",
+   "anchors": [
+    [
+     "00207F5C",
+     "call"
+    ],
+    [
+     "00207F6F",
+     "cmp"
+    ],
+    [
+     "00207FA1",
+     "mov"
+    ],
+    [
+     "00207FA4",
+     "inc"
+    ],
+    [
+     "00207FAB",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002081A0",
+   "entered_from": "`00206430` + 0x207",
+   "text": "returns 0 when the call at `002081A0` + 0x9 on `rcx` returns zero `al`; otherwise stores the sign-extended byte `rcx+0x78` to dword `rcx+0x74`, then, when qword `[rcx]` differs from qword `rcx+0x10`, checks the byte at `[rcx]` for 0x5C and, when the next byte lies before `rcx+0x10` and either bit 8 of dword `rcx+0x80` is clear and that byte is 0x28 or 0x29, or bit 0x10 is clear and it is 0x7B or 0x7D, stores the next byte's address to `[rcx]`, and increments qword `[rcx]`; it then calls `00209530(rcx)` and returns 1",
+   "anchors": [
+    [
+     "002081A9",
+     "call"
+    ],
+    [
+     "002081B9",
+     "mov"
+    ],
+    [
+     "002081F4",
+     "mov"
+    ],
+    [
+     "002081FD",
+     "call"
+    ],
+    [
+     "00208202",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "002109F0",
+   "entered_from": "`001DBAC0` + 0x35",
+   "text": "when dword `rcx+0x30` differs from `r8d`, `edx` is not negative and `r9d` is nonzero, it calls the site `002109F0` + 0x22 with qword `[rcx]` in `rcx` and `edx`, `r8d`, `r9d` passed through; on every path it then stores `r8d` to dword `rcx+0x30`",
+   "anchors": [
+    [
+     "00210A00",
+     "cmp"
+    ],
+    [
+     "00210A08",
+     "js"
+    ],
+    [
+     "00210A12",
+     "call"
+    ],
+    [
+     "00210A17",
+     "mov"
+    ],
+    [
+     "00210A25",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00210A90",
+   "entered_from": "`001DBCE0` + 0x17",
+   "text": "calls the site `00210A90` + 0x13 with qword `rcx+0x10` and `edx`; when that returns zero `al` it calls the site `00210A90` + 0x26 with qword `rcx+8` and `edx`; returns 1 when either call returned nonzero `al`, else 0",
+   "anchors": [
+    [
+     "00210AA3",
+     "call"
+    ],
+    [
+     "00210AAE",
+     "jne"
+    ],
+    [
+     "00210AB6",
+     "call"
+    ],
+    [
+     "00210AC9",
+     "setne"
+    ]
+   ]
+  },
+  {
+   "fn": "00211220",
+   "entered_from": "`001DC240` + 0x35",
+   "text": "replaces `rcx` with qword `rcx+0x18`, zero-extends `r9b` into `r9d`, and tail-jumps at `00211220` + 0x8 with `edx` and `r8` passed through",
+   "anchors": [
+    [
+     "00211224",
+     "movzx"
+    ],
+    [
+     "00211228",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00217A60",
+   "entered_from": "`0020B680` + 0x191",
+   "text": "stores `r8d` to dword `rcx+8`, `r9d` to dword `rcx+0xC` and `rdx` to qword `[rcx]`, and returns `rcx`",
+   "anchors": [
+    [
+     "00217A64",
+     "mov"
+    ],
+    [
+     "00217A67",
+     "mov"
+    ],
+    [
+     "00217A6B",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00218E20",
+   "entered_from": "`00210A40` + 0x3",
+   "text": "walks the circular list whose head sits at `rcx+8`, following qword `+0x00` of each node until it is back at `rcx+8`; at the first node whose qword `+0x10` object has dword `+0x50` equal to `edx`, or at the first node at all when `edx` is -1, it tail-jumps at `00218E20` + 0x27 with that object in `rcx` and `edx` unchanged; returns with no call when the list is empty or no node matches",
+   "anchors": [
+    [
+     "00218E28",
+     "cmp"
+    ],
+    [
+     "00218E30",
+     "mov"
+    ],
+    [
+     "00218E39",
+     "cmp"
+    ],
+    [
+     "00218E3E",
+     "mov"
+    ],
+    [
+     "00218E47",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Callees the host excerpts do not name are cited by call site: 001DF990 and the 008C2A40 import (002033C0), 002085B0 (002081A0), 00218DC0 (002109F0), 0021B2F0 (00210A90), 0021D640 (00211220), 00222B20 (00218E20). 00210EC0, 00209530, 009058C0 and 008C2430 are named because the host page excerpts name them. Doubts: (1) 00207F50 and 002081A0: the escape test after 0x5C is 'sub al,0x7B; test al,0xFD', which accepts 0x7B and 0x7D only, not 0x7C; the host page's '0x7B-0x7D exempt' wording for 00208CF0 may need the same check. (2) 00203520: when dword +0x00 of a node is 0 and dword +0xC is nonzero the offset never advances (the listing has no guard); the sentence does not state that case. (3) 002033C0: the zero-length return value 0 comes from the 'xor eax,eax' at 002033EC surviving to the ret; FABLE may prefer to drop that clause. 00217A60 is entered from both 0020B680 + 0x191 and 0020C300 + 0x11B; 00207F50 from 00205890 + 0x18B and + 0x1B9; the first site is given."
+}
