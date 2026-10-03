@@ -217,6 +217,7 @@ Also still missing:
 
 Nothing in the frame order or the assignment path has been observed live (G-L1, G-L4).
 
-None of these is structural: each names one body, one field or one observation. Twelve of the 41 open or narrowed
-items, and eight of the twelve new ones, are text that a page could carry today: DOC classes, or answers that already
-sit on another system's page without a pointer. The other STATIC items are desk reads.
+None of these is structural: each names one body, one field or one observation. Some of the work is text a page
+could carry today. That covers the eight DOC new gaps and the three DOC pass-1 items (G-C8x, G-C9x, G-D2). It also
+covers the pass-1 items whose answer now sits on another system's page without a pointer from 15-Input: G-L6, G-L12,
+G-A3, G-A4, G-A5, G-B5, G-B6, G-E1. The remaining STATIC items are desk reads.
