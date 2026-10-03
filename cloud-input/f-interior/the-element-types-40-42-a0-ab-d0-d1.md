@@ -1,8 +1,8 @@
 # F-interior pack: `17-Presentation-Rendering/Effect-File-Formats/the-element-types-40-42-a0-ab-d0-d1.md`
 
-Generated 2026-10-01 15:28 by OPUS (f_pack.py) from the certified executable (sha256 73461D08...21F8). Brief: `docs/cloud-briefs/f-interior.md`. Write your result to `cloud-reports/f-interior/the-element-types-40-42-a0-ab-d0-d1.json`.
+Generated 2026-10-02 12:46 by OPUS (f_pack.py) from the certified executable (sha256 73461D08...21F8). Brief: `docs/cloud-briefs/f-interior.md`. Write your result to `cloud-reports/f-interior/the-element-types-40-42-a0-ab-d0-d1.json`.
 
-Functions: 23. Each is cited on the page only at its entry and is still in the F frontier.
+Functions: 17. Each is cited on the page only at its entry and is still in the F frontier.
 
 Scope guard: WARN (peer commits 24-72h: 65f4854dd	SWE2-STRUCT pass-22 debt + OV31 narrowing: 77 crossing bullets across 21 docs (5 lane folders now re; c97af7156	SWE2-FRONTIER: owner re-status - the 13 GI pages move PARTIAL -> DOCUMENTED (GI-1..GI-13 answered an; inbox mentions: SWE2-EC7.md). OPUS read these before packing.
 
@@ -30,108 +30,6 @@ Page context: "lls '00398F90' (point transform) + '0039AF70' + '003A2D80'/'003A3
 0018286F  ret      
 ```
 
-## 00309FB0 (318 B, extent 00309FB0-0030A0EE)
-
-Page context: "ls 'FieldData_GetActiveFieldRecordBit15' ('00377C20'). - **Items_Equipment_Shops_License - MECHANICAL (2 edges).** both edges are item bodies ('Inventory_QueryOwnedCountIncludingReservedActionItems' '00309FB0', 'Equipment_UnequipEncodedItemFromActiveRoster' '0030FD10') calling 'FieldData_GetActiveFieldRecordBit15' ('00377C20') - accessor fan-in. - **Spawn_Encounter_Lifecycle - SERVICE (1 edge).** '00234590' reaches 'SpawnGroup_DispatchP"
-
-```
-00309FB0  push     rbx
-00309FB2  push     r12
-00309FB4  push     r13
-00309FB6  push     r14
-00309FB8  sub      rsp, 0x28
-00309FBC  mov      qword ptr [rsp + 0x50], rbp
-00309FC1  mov      eax, 0xffff
-00309FC6  mov      qword ptr [rsp + 0x58], rsi
-00309FCB  xor      r14d, r14d
-00309FCE  mov      qword ptr [rsp + 0x60], rdi
-00309FD3  movzx    r12d, cx
-00309FD7  mov      qword ptr [rsp + 0x20], r15
-00309FDC  cmp      cx, ax
-00309FDF  jne      0x309fe6  ; -> 00309FE6
-00309FE1  or       ebx, 0xffffffff
-00309FE4  jmp      0x30a042  ; -> 0030A042
-00309FE6  mov      ecx, 0xf000
-00309FEB  movzx    eax, r12w
-00309FEF  and      ax, cx
-00309FF2  mov      ecx, 0xe000
-00309FF7  cmp      ax, cx
-00309FFA  jbe      0x30a001  ; -> 0030A001
-00309FFC  or       ebx, 0xffffffff
-00309FFF  jmp      0x30a042  ; -> 0030A042
-0030A001  movzx    eax, r12w
-0030A005  shr      rax, 0xc
-0030A009  imul     rdx, rax, 0x58
-0030A00D  lea      rax, [rip + 0x1be1cac]  ; -> 01EEBCC0
-0030A014  movzx    ecx, r12w
-0030A018  add      rdx, rax
-0030A01B  and      ecx, 0xfff
-0030A021  mov      eax, dword ptr [rdx + 0x3c]
-0030A024  dec      eax
-0030A026  cmp      ecx, eax
-0030A028  jg       0x30a03f  ; -> 0030A03F
-0030A02A  mov      rax, qword ptr [rdx + 0x50]
-0030A02E  test     rax, rax
-0030A031  je       0x30a03f  ; -> 0030A03F
-0030A033  xor      edx, edx
-0030A035  movzx    ecx, r12w
-0030A039  call     rax
-0030A03B  mov      ebx, eax
-0030A03D  jmp      0x30a042  ; -> 0030A042
-0030A03F  mov      ebx, r14d
-0030A042  mov      r15d, r14d
-0030A045  lea      r13, [rip + 0x1fb773c]  ; -> 022C1788
-0030A04C  mov      esi, r14d
-0030A04F  mov      rdi, r14
-0030A052  mov      ecx, esi
-0030A054  call     0x31b810  ; -> 0031B810 fn
-0030A059  mov      rbp, rax
-0030A05C  test     rax, rax
-0030A05F  je       0x30a094  ; -> 0030A094
-0030A061  mov      rcx, qword ptr [rax + 0x698]
-0030A068  test     rcx, rcx
-0030A06B  je       0x30a094  ; -> 0030A094
-0030A06D  mov      eax, dword ptr [rcx + 0x64]
-0030A070  or       eax, dword ptr [rcx + 0x3c]
-0030A073  test     eax, 0x80000003
-0030A078  je       0x30a083  ; -> 0030A083
-0030A07A  call     0x377c20  ; -> 00377C20 fn
-0030A07F  test     eax, eax
-0030A081  je       0x30a094  ; -> 0030A094
-0030A083  cmp      rdi, 4
-0030A087  jge      0x30a08e  ; -> 0030A08E
-0030A089  mov      qword ptr [r13 + rdi*8], rbp
-0030A08E  inc      r15d
-0030A091  inc      rdi
-0030A094  inc      esi
-0030A096  cmp      esi, 4
-0030A099  jl       0x30a052  ; -> 0030A052
-0030A09B  mov      rdi, qword ptr [rsp + 0x60]
-0030A0A0  mov      rsi, qword ptr [rsp + 0x58]
-0030A0A5  mov      rbp, qword ptr [rsp + 0x50]
-0030A0AA  movsxd   rax, r15d
-0030A0AD  mov      r15, qword ptr [rsp + 0x20]
-0030A0B2  test     rax, rax
-0030A0B5  jle      0x30a0e0  ; -> 0030A0E0
-0030A0B7  nop      word ptr [rax + rax]
-0030A0C0  mov      rcx, qword ptr [r13 + r14*8]
-0030A0C5  inc      r14
-0030A0C8  movzx    edx, word ptr [rcx + 0xdc8]
-0030A0CF  lea      ecx, [rbx + 1]
-0030A0D2  cmp      dx, r12w
-0030A0D6  cmovne   ecx, ebx
-0030A0D9  mov      ebx, ecx
-0030A0DB  cmp      r14, rax
-0030A0DE  jl       0x30a0c0  ; -> 0030A0C0
-0030A0E0  mov      eax, ebx
-0030A0E2  add      rsp, 0x28
-0030A0E6  pop      r14
-0030A0E8  pop      r13
-0030A0EA  pop      r12
-0030A0EC  pop      rbx
-0030A0ED  ret      
-```
-
 ## 00327270 (36 B, extent 00327270-00327294)
 
 Page context: "mmand_SetSecondaryFocusActorFromActorIndex', 'PartyFocus_SelectAndRequestDefaultActor', 'PartyRoster_AssignActorAndCommitFocusWhenEligible' share '003589B0'; 'PartyFocus_IsCurrentPackedActorHandle', '00327270', 'BattleUnit_GetPartyLeader', '003272F0', 'PartyRoster_GetActorBySlotOrCurrentFocus' share '003590D0'; '00465120' calls 'PartyFocus_GetCurrentPackedActorHandle'. Shared accessor fan-in.  **Audio — MECHANICAL (SWE2-CONTRACT 2026-09"
@@ -147,30 +45,6 @@ Page context: "mmand_SetSecondaryFocusActorFromActorIndex', 'PartyFocus_SelectAn
 0032728D  xor      eax, eax
 0032728F  add      rsp, 0x28
 00327293  ret      
-```
-
-## 0033F7F0 (58 B, extent 0033F7F0-0033F82A)
-
-Page context: "e 58 distinct callers are the interpreter 'WorldActorScriptVM_InterpretBytecode' ('0025E4C0'), 'VMNativeCommand_ExecuteLifecycle' ('002621D0') and 56 other script-layer bodies, mostly verb handlers ('0033F7F0' to '0050E060'), each resolving the actor the script acts on. They are shared accessors: no script state reaches an effect element through them.  **World — MECHANICAL (4 edges).** '0025E400' and '002623A0' call '00358940' and '0035"
-
-```
-0033F7F0  mov      qword ptr [rsp + 8], rbx
-0033F7F5  push     rdi
-0033F7F6  sub      rsp, 0x20
-0033F7FA  mov      rdi, rcx
-0033F7FD  xor      ecx, ecx
-0033F7FF  call     0x263ff0  ; -> 00263FF0 fn
-0033F804  mov      rbx, rax
-0033F807  call     0x3148b0  ; -> 003148B0 fn
-0033F80C  mov      edx, eax
-0033F80E  mov      rcx, rbx
-0033F811  call     0x264ce0  ; -> 00264CE0 fn
-0033F816  mov      edx, eax
-0033F818  mov      rcx, rdi
-0033F81B  mov      rbx, qword ptr [rsp + 0x30]
-0033F820  add      rsp, 0x20
-0033F824  pop      rdi
-0033F825  jmp      0x26b4e0  ; -> 0026B4E0 fn
 ```
 
 ## 00345430 (233 B, extent 00345430-00345519)
@@ -406,44 +280,6 @@ Page context: ", '3G@+0x80'-family); sub-update '0047BDA0' (128 B — **not** th
 003D8393  ret      
 ```
 
-## 003D9040 (119 B, extent 003D9040-003D90B7)
-
-Page context: "isters. The per-frame   payload is '00465690', called by the registry walker '00377230' from the main loop ([what these types are](#what-these-seven-types-are-gi-9-2026-09-29-fable)). - '0xD1': step '003D9040' (119 B; '002EA8B0' + '003A3E20' + tail '003D92C0';   touches '+0x2D0'/'+0x330'/'+0x338'/'+0x37A' and globals '02BBE2B2'/'02BBE2C4'),   update base+tail '003D9000', **walk is the '0016D6A0' no-op**, seventh   '003D90C0' (134 B) cal"
-
-```
-003D9040  push     rbx
-003D9042  sub      rsp, 0x20
-003D9046  xor      eax, eax
-003D9048  mov      rbx, rcx
-003D904B  mov      qword ptr [rcx + 0x330], rax
-003D9052  mov      dword ptr [rcx + 0x338], eax
-003D9058  call     0x2f2d60  ; -> 002F2D60 fn
-003D905D  test     eax, eax
-003D905F  jne      0x3d9067  ; -> 003D9067
-003D9061  add      rsp, 0x20
-003D9065  pop      rbx
-003D9066  ret      
-003D9067  lea      rcx, [rbx + 0x2d0]
-003D906E  xor      edx, edx
-003D9070  call     0x3a3e20  ; -> 003A3E20 fn
-003D9075  mov      rcx, rbx
-003D9078  call     0x3d92c0  ; -> 003D92C0 fn
-003D907D  mov      rcx, qword ptr [rip + 0x2bbe2c4]  ; -> 02F97348
-003D9084  cmp      byte ptr [rcx], 1
-003D9087  jne      0x3d90ac  ; -> 003D90AC
-003D9089  inc      byte ptr [rcx + 0x37a]
-003D908F  mov      rcx, qword ptr [rip + 0x2bbe2b2]  ; -> 02F97348
-003D9096  cmp      byte ptr [rcx + 0x37a], 1
-003D909D  jne      0x3d90ac  ; -> 003D90AC
-003D909F  mov      edx, 1
-003D90A4  lea      ecx, [rdx + 2]
-003D90A7  call     0x2ea8b0  ; -> 002EA8B0 fn
-003D90AC  mov      eax, 1
-003D90B1  add      rsp, 0x20
-003D90B5  pop      rbx
-003D90B6  ret      
-```
-
 ## 003E4E70 (32 B, extent 003E4E70-003E4E90)
 
 Page context: "ocabulary ('00464D41'–'00464E52'). '003B4A50' collects the records whose scope matches a character, and '003B4310' - called for 'CharacterRenderRecord_UpdateViewDependentPresentationFactors' through '003E4E70' - returns the one with the **lowest luminance '0.299 R + 0.587 G + 0.114 B' × strength** as that character's RGBA multiplier, '1,1,1,1' when none ('003B434A'–'003B435F', '003B4666'–'003B46C8'). Where several overlap, the darkest w"
@@ -541,34 +377,6 @@ Page context: "3010' | | '0xA1' | step '00461090' (441 B heavy), walk '00461270'
 0046125D  mov      ecx, dword ptr [rcx + 0x294]
 00461263  jmp      0x376990  ; -> 00376990 fn
 00461268  ret      
-```
-
-## 00463FF0 (81 B, extent 00463FF0-00464041)
-
-Page context: "0-0a.md) §2 and [the-element-types-60-74](the-element-types-60-74.md). **NATIVE/STATIC**; authority EXE '73461D08…21F8'.  ## '0x40' / '0x41' — minimal main-range types with a seventh  - '0x40': step '00463FF0' (81 B; base + '00377190' + tail '004649A0'), update the   56 B base+tail, walk '00464090' (8 B — *read 2026-09-18 (FABLE): not a walk at all; the whole body is 'or byte ptr [rcx+0x248], 2; ret', a setter of bit 1 in the element's "
-
-```
-00463FF0  push     rbx
-00463FF2  sub      rsp, 0x20
-00463FF6  mov      rbx, rcx
-00463FF9  call     0x2f2d60  ; -> 002F2D60 fn
-00463FFE  test     eax, eax
-00464000  jne      0x464008  ; -> 00464008
-00464002  add      rsp, 0x20
-00464006  pop      rbx
-00464007  ret      
-00464008  and      byte ptr [rbx + 0x248], 0xfe
-0046400F  mov      rcx, rbx
-00464012  mov      dword ptr [rbx + 0x244], 0
-0046401C  call     0x4649a0  ; -> 004649A0 fn
-00464021  mov      rcx, rbx
-00464024  call     0x377190  ; -> 00377190 fn
-00464029  or       byte ptr [rbx + 0x248], 2
-00464030  mov      dword ptr [rbx + 0x24c], eax
-00464036  mov      eax, 1
-0046403B  add      rsp, 0x20
-0046403F  pop      rbx
-00464040  ret      
 ```
 
 ## 00464050 (50 B, extent 00464050-00464082)
@@ -713,16 +521,6 @@ Page context: "C' by   tail-jumping '00377360' ([what these types are](#what-the
 ```
 00464BC0  or       byte ptr [rcx + 0x23c], 1
 00464BC7  ret      
-```
-
-## 00465680 (13 B, extent 00465680-0046568D)
-
-Page context: "r's 'ja' limit) and behave unlike every other type:  - '0xD0': step '00464F20' (501 B — iterates a byte array at '+0x140'–'+0x146'   and the '+0x230' family); update is the 5 B '00464F10' stub; walk '00465680'   is 13 B; ~~**the payload is the seventh method**~~ the seventh method '00465120' (963 B) — calls   '00263C30', '00263FF0', '002E9B80', '00358940', '003589B0', '003590D0',   '003A3FD0', '003A4220', '003A6BA0', tail '00465510'. ~~"
-
-```
-00465680  mov      eax, 0x80
-00465685  or       word ptr [rcx + 0x232], ax
-0046568C  ret      
 ```
 
 ## 0047BF70 (36 B, extent 0047BF70-0047BF94)
@@ -1803,69 +1601,6 @@ Page context: "E9D50' with its A+D data preset to '0x42' / '0x1001' / '0x45' at 
 004D0877  pop      rsi
 004D0878  pop      rbp
 004D0879  ret      
-```
-
-## 0050E060 (232 B, extent 0050E060-0050E148)
-
-Page context: "callers are the interpreter 'WorldActorScriptVM_InterpretBytecode' ('0025E4C0'), 'VMNativeCommand_ExecuteLifecycle' ('002621D0') and 56 other script-layer bodies, mostly verb handlers ('0033F7F0' to '0050E060'), each resolving the actor the script acts on. They are shared accessors: no script state reaches an effect element through them.  **World — MECHANICAL (4 edges).** '0025E400' and '002623A0' call '00358940' and '003590D0', the sam"
-
-```
-0050E060  mov      qword ptr [rsp + 8], rbx
-0050E065  mov      qword ptr [rsp + 0x10], rbp
-0050E06A  mov      qword ptr [rsp + 0x18], rsi
-0050E06F  mov      qword ptr [rsp + 0x20], rdi
-0050E074  push     r14
-0050E076  sub      rsp, 0x30
-0050E07A  mov      rsi, r9
-0050E07D  mov      rbp, rcx
-0050E080  call     0x2640c0  ; -> 002640C0 fn
-0050E085  mov      r14, rax
-0050E088  mov      dword ptr [rsp + 0x20], 0
-0050E090  mov      dword ptr [rsp + 0x24], 0
-0050E098  mov      dword ptr [rsp + 0x28], 0
-0050E0A0  call     0x3590d0  ; -> 003590D0 fn
-0050E0A5  test     eax, eax
-0050E0A7  je       0x50e0c7  ; -> 0050E0C7
-0050E0A9  mov      ecx, eax
-0050E0AB  call     0x3588b0  ; -> 003588B0 fn
-0050E0B0  lea      r9, [rsp + 0x28]
-0050E0B5  mov      rcx, rax
-0050E0B8  lea      r8, [rsp + 0x24]
-0050E0BD  lea      rdx, [rsp + 0x20]
-0050E0C2  call     0x265020  ; -> 00265020 fn
-0050E0C7  mov      rcx, rsi
-0050E0CA  call     0x267e10  ; -> 00267E10 fn
-0050E0CF  mov      r8d, eax
-0050E0D2  mov      rdx, rbp
-0050E0D5  mov      rcx, r14
-0050E0D8  call     0x2650b0  ; -> 002650B0 fn
-0050E0DD  mov      rcx, rsi
-0050E0E0  mov      rdi, rax
-0050E0E3  call     0x267e10  ; -> 00267E10 fn
-0050E0E8  mov      r8d, eax
-0050E0EB  mov      rdx, rbp
-0050E0EE  mov      rcx, r14
-0050E0F1  call     0x2650b0  ; -> 002650B0 fn
-0050E0F6  mov      rcx, rsi
-0050E0F9  mov      rbx, rax
-0050E0FC  call     0x267e10  ; -> 00267E10 fn
-0050E101  mov      r8d, eax
-0050E104  mov      rdx, rbp
-0050E107  mov      rcx, r14
-0050E10A  call     0x2650b0  ; -> 002650B0 fn
-0050E10F  movss    xmm0, dword ptr [rsp + 0x20]
-0050E115  mov      rbp, qword ptr [rsp + 0x48]
-0050E11A  mov      rsi, qword ptr [rsp + 0x50]
-0050E11F  movss    dword ptr [rax], xmm0
-0050E123  movss    xmm1, dword ptr [rsp + 0x24]
-0050E129  movss    dword ptr [rbx], xmm1
-0050E12D  movss    xmm0, dword ptr [rsp + 0x28]
-0050E133  mov      rbx, qword ptr [rsp + 0x40]
-0050E138  movss    dword ptr [rdi], xmm0
-0050E13C  mov      rdi, qword ptr [rsp + 0x58]
-0050E141  add      rsp, 0x30
-0050E145  pop      r14
-0050E147  ret      
 ```
 
 ## 00524A10 (55 B, extent 00524A10-00524A47)
