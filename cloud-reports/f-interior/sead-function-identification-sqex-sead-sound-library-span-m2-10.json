@@ -1,0 +1,423 @@
+{
+ "page": "18-Audio/sead-function-identification.md",
+ "mode": "member",
+ "family": "SQEX SEAD sound library span",
+ "session": "session_01Fn6uXi8PnFbHAbRA7pzAfY",
+ "rows": [
+  {
+   "fn": "007BCE00",
+   "text": "fills the object at `rcx` with pointer constants: first `01CB5A30`, `01CB5B98`, `01CB5BA8` into qwords `+0`, `+8`, `+0x10`; then `01CB4470` into the twelve qwords from `+0x3c8` down to `+0x1b8` at stride 0x30 (three loops of 5, 4 and 3 stores) and into `+0x188`; then a 4-pass loop stepping down by 0x40 stores `01CB4880` at `+0x178`, `+0x138`, `+0xf8`, `+0xb8` and `01CB4470` at `+0x148`, `+0x108`, `+0xc8`, `+0x88`; finally stores `01CB43D0` to `+0x28` and overwrites `+0x10` with `01CB4EB8`, `+0` with `01CB58C8` and `+8` with `01CB4470`",
+   "anchors": [
+    [
+     "007BCE0C",
+     "mov"
+    ],
+    [
+     "007BCE40",
+     "mov"
+    ],
+    [
+     "007BCEC0",
+     "mov"
+    ],
+    [
+     "007BCED8",
+     "mov"
+    ],
+    [
+     "007BCEEE",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007BCEF8",
+   "text": "subtracts 8 from `rcx` and tail-jumps to `007BD020` (same pack) with `edx` unchanged",
+   "anchors": [
+    [
+     "007BCEFC",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "007BCF04",
+   "text": "subtracts 0x10 from `rcx` and tail-jumps to `007BD020` (same pack) with `edx` unchanged",
+   "anchors": [
+    [
+     "007BCF08",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "007BCF10",
+   "text": "stores `01CB5A10` into qword `+0` of `rcx`; when bit 0 of `dl` is set, calls the call at `007BCF10` + 0x1D with (`rcx`, 0x10); returns `rcx` on both paths",
+   "anchors": [
+    [
+     "007BCF20",
+     "mov"
+    ],
+    [
+     "007BCF23",
+     "test"
+    ],
+    [
+     "007BCF2D",
+     "call"
+    ],
+    [
+     "007BCF32",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007BCF40",
+   "text": "stores `01CB5A00` into qword `+0` of `rcx`; when bit 0 of `dl` is set, calls the call at `007BCF40` + 0x1D with (`rcx`, 0x10); returns `rcx` on both paths",
+   "anchors": [
+    [
+     "007BCF50",
+     "mov"
+    ],
+    [
+     "007BCF53",
+     "test"
+    ],
+    [
+     "007BCF5D",
+     "call"
+    ],
+    [
+     "007BCF62",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007BCF70",
+   "text": "stores `01CB59F0` into qword `+0` of `rcx`; when bit 0 of `dl` is set, calls the call at `007BCF70` + 0x1D with (`rcx`, 0x10); returns `rcx` on both paths",
+   "anchors": [
+    [
+     "007BCF80",
+     "mov"
+    ],
+    [
+     "007BCF83",
+     "test"
+    ],
+    [
+     "007BCF8D",
+     "call"
+    ],
+    [
+     "007BCF92",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007BCFF0",
+   "text": "stores `01CB58C8` into qword `+0` of `rcx`; when bit 0 of `dl` is set, calls the call at `007BCFF0` + 0x1D with (`rcx`, 8); returns `rcx` on both paths",
+   "anchors": [
+    [
+     "007BD000",
+     "mov"
+    ],
+    [
+     "007BD003",
+     "test"
+    ],
+    [
+     "007BD00D",
+     "call"
+    ],
+    [
+     "007BD012",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007BCFA0",
+   "text": "stores `01CB4880` into qword `+0x30` and `01CB4470` into qword `+0` of `rcx`; when bit 0 of `dl` is set, calls the call at `007BCFA0` + 0x28 with `rcx` if bit 2 of `dl` is clear, or the call at `007BCFA0` + 0x3B with (`rcx`, 0x40) if it is set; returns `rcx` on every path",
+   "anchors": [
+    [
+     "007BCFB0",
+     "mov"
+    ],
+    [
+     "007BCFBB",
+     "mov"
+    ],
+    [
+     "007BCFC3",
+     "test"
+    ],
+    [
+     "007BCFC8",
+     "call"
+    ],
+    [
+     "007BCFDB",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007BD020",
+   "text": "calls `007BCE00` (same pack) with `rcx`; then when bit 0 of `edx` is set, calls the call at `007BD020` + 0x23 with `rcx` if bit 2 of `edx` is clear, or the call at `007BD020` + 0x3B with (`rcx`, 0x538) if it is set; returns `rcx` on every path",
+   "anchors": [
+    [
+     "007BD02F",
+     "call"
+    ],
+    [
+     "007BD034",
+     "test"
+    ],
+    [
+     "007BD03D",
+     "test"
+    ],
+    [
+     "007BD043",
+     "call"
+    ],
+    [
+     "007BD05B",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007BD070",
+   "text": "calls the call at `007BD070` + 0x8 with `rcx` minus 0x10 and returns its 32-bit result modulo 0x101 (unsigned, by multiply with 0xff00ff01, shift right 8 of the high half, times 0x101, subtract)",
+   "anchors": [
+    [
+     "007BD074",
+     "add"
+    ],
+    [
+     "007BD078",
+     "call"
+    ],
+    [
+     "007BD085",
+     "mul"
+    ],
+    [
+     "007BD091",
+     "sub"
+    ]
+   ]
+  },
+  {
+   "fn": "007BD570",
+   "text": "returns byte `+6` of the pointer held in qword `+0x30` of `rcx`, zero-extended",
+   "anchors": [
+    [
+     "007BD574",
+     "movzx"
+    ]
+   ]
+  },
+  {
+   "fn": "007BD5B0",
+   "text": "scans bytes from `+0x3f8` of `rcx` with an index bound of 1 (so only byte `+0x3f8`): returns 1 in `al` when that byte is non-zero, else 0",
+   "anchors": [
+    [
+     "007BD5B2",
+     "cmp"
+    ],
+    [
+     "007BD5BF",
+     "cmp"
+    ],
+    [
+     "007BD5C5",
+     "xor"
+    ],
+    [
+     "007BD5C8",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007BD5D0",
+   "text": "copies qword `+0x18` of `rcx` into the qword at `rdx` and returns `rdx`",
+   "anchors": [
+    [
+     "007BD5D4",
+     "mov"
+    ],
+    [
+     "007BD5D7",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007BD680",
+   "text": "when float `+0x2bc` of `rcx` equals 0.0 (or is unordered) returns float `+0x2b4`; otherwise calls the call at `007BD680` + 0x39 with `xmm0` = float `+0x2b8` divided by float `+0x2bc` and `edx` = dword `+0x2c4`, and returns float `+0x2b0` plus the result times (float `+0x2b4` minus float `+0x2b0`)",
+   "anchors": [
+    [
+     "007BD691",
+     "ucomiss"
+    ],
+    [
+     "007BD699",
+     "movss"
+    ],
+    [
+     "007BD6B5",
+     "divss"
+    ],
+    [
+     "007BD6B9",
+     "call"
+    ],
+    [
+     "007BD6CE",
+     "mulss"
+    ]
+   ]
+  },
+  {
+   "fn": "007BD6E0",
+   "text": "returns bit 0 of dword `+0x518` of `rcx` (dword AND 1)",
+   "anchors": [
+    [
+     "007BD6E6",
+     "and"
+    ]
+   ]
+  },
+  {
+   "fn": "007BD980",
+   "text": "returns byte `+7` of the pointer held in qword `+0x30` of `rcx`, zero-extended",
+   "anchors": [
+    [
+     "007BD984",
+     "movzx"
+    ]
+   ]
+  },
+  {
+   "fn": "007BD9A0",
+   "text": "reads dword `+0x54` of `rcx`: returns 3 when it is 7; otherwise returns 4 when dword `+0x58` is 2; otherwise returns 1 when dword `+0x54` is 1, else 2 when it is non-zero and 0 when it is zero",
+   "anchors": [
+    [
+     "007BD9A3",
+     "cmp"
+    ],
+    [
+     "007BD9AE",
+     "cmp"
+    ],
+    [
+     "007BD9BA",
+     "cmp"
+    ],
+    [
+     "007BD9C0",
+     "neg"
+    ],
+    [
+     "007BD9C4",
+     "and"
+    ]
+   ]
+  },
+  {
+   "fn": "007BDAC0",
+   "text": "with r = float `+0x10` divided by float `+0x14` of `rcx`: when float `+0x14` equals 0.0 (or is unordered) returns float `+0xc`; otherwise, when qword `+0x38` is null, calls the call at `007BDAC0` + 0xCB with (r, dword `+0x1c`) and returns `+8` plus the result times (`+0xc` minus `+8`); when qword `+0x38` is non-null and float `+8` is above float `+0xc`, calls the call at `007BDAC0` + 0x53 with (`rcx` + 0x30, `xmm1` = 1.0 minus r) and returns `+0xc` plus the result times (`+8` minus `+0xc`); else calls the call at `007BDAC0` + 0x84 with (`rcx` + 0x30, `xmm1` = r) and returns `+8` plus the result times (`+0xc` minus `+8`)",
+   "anchors": [
+    [
+     "007BDAC6",
+     "cmp"
+    ],
+    [
+     "007BDAEF",
+     "comiss"
+    ],
+    [
+     "007BDB13",
+     "call"
+    ],
+    [
+     "007BDB44",
+     "call"
+    ],
+    [
+     "007BDB8B",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007BDD10",
+   "text": "returns bit 1 of dword `+0x518` of `rcx` (shift right 1, AND 1)",
+   "anchors": [
+    [
+     "007BDD16",
+     "shr"
+    ],
+    [
+     "007BDD18",
+     "and"
+    ]
+   ]
+  },
+  {
+   "fn": "007BDD20",
+   "text": "indexes a 0x30-byte record by `edx` (sign-extended) from `rcx` + 0x250: when its float `+0xc` (`+0x25c`) equals 0.0 (or is unordered) returns float `+0x254`; otherwise calls the call at `007BDD20` + 0x50 with `xmm0` = float `+0x258` divided by float `+0x25c` and `edx` = dword `+0x264`, and returns float `+0x250` plus the result times (float `+0x254` minus float `+0x250`), all at that record",
+   "anchors": [
+    [
+     "007BDD33",
+     "lea"
+    ],
+    [
+     "007BDD43",
+     "ucomiss"
+    ],
+    [
+     "007BDD6C",
+     "divss"
+    ],
+    [
+     "007BDD70",
+     "call"
+    ],
+    [
+     "007BDD87",
+     "mulss"
+    ]
+   ]
+  }
+ ],
+ "skipped": [
+  {
+   "fn": "007BD560",
+   "why": "its whole work is the entry instruction (loads float `+0x50c` before `ret`)"
+  },
+  {
+   "fn": "007BD580",
+   "why": "its whole work is the entry instruction (loads float `+0x510` before `ret`)"
+  },
+  {
+   "fn": "007BD5A0",
+   "why": "its whole work is the entry instruction (loads float `+0x508` before `ret`)"
+  },
+  {
+   "fn": "007BD8F0",
+   "why": "its whole work is the entry instruction (loads qword `+0x20` before `ret`)"
+  },
+  {
+   "fn": "007BD970",
+   "why": "its whole work is the entry instruction (loads dword `+0x48` before `ret`)"
+  }
+ ],
+ "notes": ""
+}
