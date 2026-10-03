@@ -1,0 +1,11 @@
+{
+ "page": "15-Input/Binding-Profiles/keymap-ini-file-format-and-default-controls.md",
+ "session": "session_01B5SV9waPUkdPQzR9MzNgSH",
+ "rows": [
+  {"fn": "003B6C70", "entered_from": "`00314820` + 0xD",
+   "text": "calls the site `003B6C70` + 0x13 and, only when it returns non-zero, fills a stack block with qword 0x80 at `rsp+0x20`, dword 0xFF at `rsp+0x28` and byte 0 at `rsp+0x2F` and calls the site `003B6C70` + 0x37 with its address; on both paths it ends with the stack-cookie check (cookie from `01F44830` XORed with `rsp`) through the site `003B6C70` + 0x44",
+   "anchors": [["003B6C83", "call"], ["003B6C8A", "je"], ["003B6C91", "mov"], ["003B6CA7", "call"], ["003B6CB4", "call"]]}
+ ],
+ "skipped": [],
+ "notes": ""
+}
