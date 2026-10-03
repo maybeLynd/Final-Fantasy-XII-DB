@@ -1,0 +1,12 @@
+{
+ "mode": "homing",
+ "page": "05-Spawn-Encounter-Lifecycle/spawn-placement-height-and-authored-tunables.md",
+ "session": "session_012a8rbQTfxKzPeUw5FnjutN",
+ "rows": [
+  {"fn": "00235DD0",
+   "text": "calls `003272A0` when `ecx` is negative (signed), else `00235DD0`+0x2E, with the incoming registers unchanged, and returns -1.0 (`01CEBC9C`) when that returns null; otherwise stores the vector (`xmm1`, 0.0, `xmm2`) on the stack, calls `00235DD0`+0x6E with (result `+0xE0`, that vector, float result `+0x160` in `xmm2`), then calls `0031A930` with that call's `xmm0` result and float `+0x160` in `xmm1`, and returns its result multiplied by 360.0 (`00902438`) and divided by 6.283185 (`01CEBC78`)",
+   "anchors": [["00235DF5", "jns"], ["00235E08", "movss"], ["00235E3E", "call"], ["00235E46", "call"], ["00235E53", "divss"]]}
+ ],
+ "skipped": [],
+ "notes": "1 body, 1 row. 0031B810 and 0031AC90 are not cited by the page, so they are written as call sites (+0x2E, +0x6E). The 0031A930 call's rcx/rdx are whatever 0031AC90 left; only xmm0/xmm1 are claimed."
+}
