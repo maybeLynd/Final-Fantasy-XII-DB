@@ -1,0 +1,17 @@
+{
+ "page": "22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/member-registration-and-the-recovered-field-schema.md",
+ "session": "session_019FUgqVeNcfdAVa4Yc3dLqG",
+ "rows": [
+  {"fn": "005A5B40", "entered_from": "`005C8BF0` + 0x57",
+   "text": "copies `r8d` dwords from `rdx` to `rcx`: when `r8d` is at least 4 (unsigned) it first copies `r8d` divided by 4 groups of four dwords (destination stride 0x10), then copies the remaining dwords one at a time; each store is skipped, without advancing the source, when its destination address is null",
+   "anchors": [["005A5B46", "cmp"], ["005A5B6B", "mov"], ["005A5BA7", "sub"], ["005A5BAD", "cmp"], ["005A5BC3", "mov"]]},
+  {"fn": "0063D930", "entered_from": "`00639290` + 0x74",
+   "text": "calls the function at `0063D930` + 0x10 with `rcx`, clears bit 31 of dword `rcx+0xFC`, and calls the functions at `0063D930` + 0x25 and `0063D930` + 0x30 with `rcx` and `rdx`; then, only when `rdx` is null, qword `rcx+0xC0` is non-null, `02E4E720` is reached from `rcx` along the qword `+0x78` chain and dword `rcx+0x38` is at least 0x18 (unsigned), stores `rcx` at qword `+0x10` past the sign-extended dword `rcx+0xF8` offset into that `+0xC0` block; otherwise returns without that store",
+   "anchors": [["0063D945", "and"], ["0063D965", "test"], ["0063D980", "cmp"], ["0063D999", "cmp"], ["0063D9A6", "mov"]]},
+  {"fn": "006C7450", "entered_from": "`006C7A40` + 0x50",
+   "text": "returns 0 when `edx` is 0; otherwise takes `rcx+8` as the buffer when `edx` is 1, or, when `edx` is above 1 (unsigned), the result of the call at `006C7450` + 0x42 with `edx` times 8 and 8, returning null when that is null; it then copies `r9d` qwords from `r8` into the buffer (a store skipped, without advancing the source, when its destination is null), zero-fills the remaining `edx` minus `r9d` qwords, and returns the buffer",
+   "anchors": [["006C746D", "jne"], ["006C7492", "call"], ["006C74C3", "mov"], ["006C74CC", "sub"], ["006C74E5", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "005A5B40 and 006C7450: the per-store null test is on the destination pointer (placement-construction pattern); it can only fire for the first slot in practice. 0063D930 and 006C7450: callees cited by site because the host excerpt does not name them. 006C7450: the zero-fill is a rep stosq at 006C74D8, not used as an anchor because of its two-word mnemonic."
+}
