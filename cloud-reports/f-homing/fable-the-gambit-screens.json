@@ -1,0 +1,10 @@
+{
+ "page": "16-UI/Gambit-Screens/the-gambit-screens.md",
+ "session": "session_01CZh28JMQoyNT8qWV5qwsPp",
+ "mode": "homing",
+ "rows": [],
+ "skipped": [
+  {"fn": "002CABF0", "why": "999-byte dispatcher on dword [rdx] with four handled values plus a tail-jump default; the value-2 arm alone (two saturating word decrements, flag bits of 0209AC30 +0xde9, a float interpolation through a call and two position writes) and the value-3 arm (four compare-and-store objects) cannot be stated with every path in under 1,200 characters"}
+ ],
+ "notes": "Homing pack (callee-host). The only body was skipped for length."
+}
