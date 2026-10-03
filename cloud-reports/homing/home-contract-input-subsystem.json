@@ -1,0 +1,14 @@
+{
+ "page": "15-Input/CONTRACT-input-subsystem.md",
+ "session": "session_01Mh9D4U6XdnAn8vURhKVJHy",
+ "rows": [
+  {"fn": "00361480", "entered_from": "`00342770` + 0x83",
+   "text": "walks four 24-byte entries starting at `022CB9F0` and returns the index of the first entry whose byte `+0x0` is non-zero and whose byte `+0x1` (zero-extended) equals `ecx`; when none matches, returns the bitwise NOT of the index of the first entry whose byte `+0x0` is zero, or -5 when every entry's byte `+0x0` is non-zero",
+   "anchors": [["00361490", "cmp"], ["0036149B", "cmp"], ["0036149F", "mov"], ["003614AB", "not"], ["003614B4", "cmp"]]},
+  {"fn": "003DD980", "entered_from": "`00347B00` + 0x95",
+   "text": "reads the dword at `02B581A4` plus 0x1C times (16 times the sign-extended `edx` plus the sign-extended `r8d`) and returns without further work unless it equals 4; when it does, calls `003DD980` + 0x3E with `rcx`, passes that float result as `xmm1` to + 0x49 with `rcx`, calls + 0x53 with (`rcx`, 0), and calls + 0x79 with (0, `rcx`, ((`edx` shifted left 4, OR `r8d`) shifted left 16) OR `r9d`, 0) and the incoming float fifth (stack) argument as its fifth argument",
+   "anchors": [["003DD9B5", "cmp"], ["003DD9BE", "call"], ["003DD9C9", "call"], ["003DD9F4", "or"], ["003DD9F9", "call"]]}
+ ],
+ "skipped": [{"fn": "0025D5D0", "why": "its whole work is the entry instruction (an AND of byte 02098E27 with 0x7F, then ret)"}],
+ "notes": "003DD980: on the guard path eax holds the imul result, so no return value is stated. The final call's packed third argument uses the low 32 bits of edx and r8d. All four callees are cited by site because the host excerpt names none of them. 00361480: once a free entry has set the fallback, later entries are still scanned for a match, and a match always wins."
+}
