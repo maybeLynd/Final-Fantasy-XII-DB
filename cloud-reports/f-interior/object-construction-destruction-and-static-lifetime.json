@@ -1,0 +1,61 @@
+{
+ "page": "24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/object-construction-destruction-and-static-lifetime.md",
+ "session": "session_01Rk789qY4qsCmkfLpxsx7MQ",
+ "rows": [
+  {
+   "fn": "00199320",
+   "text": "loads the word pointer at qword `[qword +0x38]` of `rcx` and, when it is non-null and below itself plus twice the sign-extended dword at `[qword +0x50]` (unsigned `jae`), returns the zero-extended word it points at; otherwise calls vtable slot `+0x38` of `rcx` and, when its word result is not 0xFFFF, calls vtable slot `+0x20` with that word as `edx` and returns the word, else returns 0xFFFF",
+   "anchors": [
+    [
+     "00199343",
+     "jae"
+    ],
+    [
+     "00199345",
+     "movzx"
+    ],
+    [
+     "00199359",
+     "call"
+    ],
+    [
+     "00199364",
+     "cmp"
+    ],
+    [
+     "00199372",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "001E0F40",
+   "text": "calls the callee at `001E0F40` + 0x4 and returns when it returns null; otherwise calls the same callee again (`001E0F40` + 0xE) and tail-jumps `001993B0` with that second result as `rcx`",
+   "anchors": [
+    [
+     "001E0F44",
+     "call"
+    ],
+    [
+     "001E0F4C",
+     "je"
+    ],
+    [
+     "001E0F4E",
+     "call"
+    ],
+    [
+     "001E0F5A",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [
+  {
+   "fn": "00660570",
+   "why": "its whole work is the entry instruction (`or eax, 0xffffffff`, returning -1) followed by `ret`"
+  }
+ ],
+ "notes": ""
+}
