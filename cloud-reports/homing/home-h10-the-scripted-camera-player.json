@@ -1,0 +1,11 @@
+{
+ "page": "17-Presentation-Rendering/Scripted-Camera/the-scripted-camera-player.md",
+ "session": "session_019FUgqVeNcfdAVa4Yc3dLqG",
+ "rows": [
+  {"fn": "004092A0", "entered_from": "`00373640` + 0x83",
+   "text": "takes as base the 32-bit sum of dword `rcx+0x34` and `ecx` when dword `rcx+4` is 2, otherwise 0; reads dword `rdx+4` as flags and forms a pointer at `rdx+8`, advanced by 2 when flag bit 30 is set and by 2 more when bit 31 is set; returns 0.0 in `xmm0` when bit 22 is clear, otherwise reads the word at that pointer, or at pointer+0x20 when both bits of mask 0x200100 are set, and returns the float at base plus that word times 4",
+   "anchors": [["004092AF", "add"], ["004092C1", "cmovae"], ["004092CB", "cmovns"], ["004092DB", "jae"], ["004092EE", "movss"]]}
+ ],
+ "skipped": [],
+ "notes": "004092A0: the base is formed in r8d (add r8d, ecx), so it is zero-extended to 64 bits before the float load; stated as a 32-bit sum."
+}
