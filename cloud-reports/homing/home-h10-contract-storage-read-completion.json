@@ -1,0 +1,20 @@
+{
+ "page": "19-Save-Load-Settings/CONTRACT-storage-read-completion.md",
+ "session": "session_019FUgqVeNcfdAVa4Yc3dLqG",
+ "rows": [
+  {"fn": "003688A0", "entered_from": "`002D3BA0` + 0x6AB",
+   "text": "returns at once when bit 0x10 of byte `022CBE32` is clear; otherwise stores word 0x406 at `022CBE41`, byte 0x1E at `022CBE43`, byte 1 at `022CBE3D`, `cl` at byte `022CBE40` (with `ecx` replaced by 2 when it is -1) and word 0 at `022CBE3E`",
+   "anchors": [["003688A7", "je"], ["003688AC", "mov"], ["003688C1", "cmove"], ["003688CD", "mov"], ["003688D3", "mov"]]},
+  {"fn": "003BB2F0", "entered_from": "`00582040` + 0x1B8",
+   "text": "stores dword 7 at `02B40E1C`, dword 0 at `02B40EC0`, `02B40E18` and `02B40FE4` and qword 1 at `02B40E10`, then tail-jumps at `003BB2F0` + 0x2B with `ecx` = 0",
+   "anchors": [["003BB2F2", "mov"], ["003BB2FC", "xor"], ["003BB30A", "mov"], ["003BB310", "mov"], ["003BB31B", "jmp"]]},
+  {"fn": "003BB380", "entered_from": "`00582040` + 0x1C2",
+   "text": "stores dword 3 at `02B40E1C`, dword 0 at `02B40EC0` and `02B40FE4`, qword 0 at `02B40E14` and dword 0 at `02B40E10`, and returns 0",
+   "anchors": [["003BB382", "mov"], ["003BB38C", "mov"], ["003BB392", "mov"], ["003BB398", "mov"], ["003BB39F", "mov"]]},
+  {"fn": "003BB3B0", "entered_from": "`00582040` + 0xC9",
+   "text": "stores dword 4 at `02B40E1C`, dword 0 at `02B40EC0` and `02B40FE4`, qword 0 at `02B40E14` and dword 0 at `02B40E10`, and returns 0",
+   "anchors": [["003BB3B2", "mov"], ["003BB3BC", "mov"], ["003BB3C2", "mov"], ["003BB3C8", "mov"], ["003BB3CF", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "003BB2F0: callee cited by site because the host excerpt does not name it. 003BB380/003BB3B0: the qword store at 02B40E14 overlaps the dword at 02B40E18 that 003BB2F0 writes separately; stated as listed."
+}
