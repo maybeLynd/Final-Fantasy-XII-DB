@@ -1,0 +1,34 @@
+{
+ "page": "07-Combat-Action/Command-And-Action-Seam/native-command-seam.md",
+ "session": "session_0182wopbAGkg4Gtt5QPc4Pw1",
+ "rows": [
+  {
+   "fn": "00359250",
+   "text": "sets (when `edx` is nonzero, via `bts`) or clears (when `edx` is zero, via `btr`) bit `ecx` of byte `022C8004` and stores the low byte back; then, when bit 0 of that new byte OR bytes `022C8005`, `022C8006` and `022C8007` is set, passes dword `022C7FE0` to the call at `00359250`+0x4C and tail-jumps `0026D6D0` with its result when that result is non-null, otherwise (bit clear or null result) returns",
+   "anchors": [
+    [
+     "0035925F",
+     "bts"
+    ],
+    [
+     "00359271",
+     "btr"
+    ],
+    [
+     "00359292",
+     "test"
+    ],
+    [
+     "0035929C",
+     "call"
+    ],
+    [
+     "003592AD",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "00359250: bts/btr operate on the zero-extended byte in a 32-bit register, so the bit index is ecx modulo 32 and indexes above 7 leave the stored byte unchanged."
+}
