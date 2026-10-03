@@ -1,0 +1,32 @@
+{
+ "page": "17-Presentation-Rendering/Graphics-Thread-Handshake/the-shared-command-state-word.md",
+ "session": "session_01B5JAqPgewUFviUD5ZfpMqA",
+ "rows": [
+  {"fn": "001823E0", "entered_from": "`001B2530` + 0x3A",
+   "text": "stores 0 into dword `01F7F538`, calls `001823E0` + 0x12 and tail-jumps (`001823E0` + 0x21) with its result in `rcx` and the incoming `ecx` in `edx`",
+   "anchors": [["001823E8", "mov"], ["001823F2", "call"], ["00182401", "jmp"]]},
+  {"fn": "0018D5F0", "entered_from": "`00214C30` + 0x36",
+   "text": "copies byte `+0x110` of `rcx` to byte `[rdx]` and dwords `+0x114`, `+0x118`, `+0x11C` and `+0x120` to dwords `rdx+4`, `+8`, `+0xC` and `+0x10`, and returns `rdx`",
+   "anchors": [["0018D5F7", "mov"], ["0018D5FF", "mov"], ["0018D61A", "mov"], ["0018D61D", "mov"]]},
+  {"fn": "001C53B0", "entered_from": "`00214C30` + 0x20",
+   "text": "returns `al` 1 when byte `01F81280` is non-zero and byte `01F81281` is zero, else 0",
+   "anchors": [["001C53B7", "je"], ["001C53B9", "cmp"], ["001C53C2", "mov"], ["001C53C5", "xor"]]},
+  {"fn": "001C53D0", "entered_from": "`00214C30` + 0x6A",
+   "text": "returns `al` 1 when byte `01F81281` is non-zero and byte `01F81280` is zero, else 0",
+   "anchors": [["001C53D7", "je"], ["001C53D9", "cmp"], ["001C53E2", "mov"], ["001C53E5", "xor"]]},
+  {"fn": "001EBF90", "entered_from": "`00181E30` + 0x10",
+   "text": "returns when qword `+0` of `rcx` is zero; otherwise sets qword `+0` to qword `[p]` of p = qword `+0x270` when byte `p+8` is zero, else to 0; then, when byte `+0x26E` is zero, increments dword `+8` and, when it is below dword `+0x10` (signed), adds float `+0x18` to float `+0x14` and tail-jumps (`001EBF90` + 0x47), else sets a negative float `+0x14` to 0, stores -1 in dword `+0x10` and zeroes qword `+0`; those last paths and a non-zero byte `+0x26E` tail-jump (`001EBF90` + 0x66); both jumps pass `rcx` in `rcx` and `rdx`",
+   "anchors": [["001EBFAE", "mov"], ["001EBFC0", "cmp"], ["001EBFD2", "movss"], ["001EBFE9", "mov"], ["001EBFF6", "jmp"]]},
+  {"fn": "002EF1B0", "entered_from": "`001EC060` + 0x3CF",
+   "text": "returns without further work when the call at `002EF1B0` + 0x13 (given the sign-extended `cx`) returns null, when `cx` is -1, when qword `022C6F28` plus `cx` times 0x740 is zero, or when dword `+0x284` of that 0x740-byte record is zero; otherwise calls `002EF1B0` + 0x43 with the record in `rcx` and the incoming `xmm1`",
+   "anchors": [["002EF1CB", "je"], ["002EF1CD", "cmp"], ["002EF1D7", "imul"], ["002EF1E7", "cmp"], ["002EF1F3", "call"]]},
+  {"fn": "0036CAD0", "entered_from": "`00251E00` + 0x5D",
+   "text": "calls `0036CAD0` + 0x1C with dword `022D89BC` in `ecx`, the incoming `rcx` in `rdx`, the incoming `edx` in `r8d`, 0 in `r9d` and 0 as the fifth (stack) argument, and returns its result",
+   "anchors": [["0036CAD7", "mov"], ["0036CAE6", "mov"], ["0036CAEC", "call"]]},
+  {"fn": "00375F20", "entered_from": "`0022B000` + 0x64",
+   "text": "walks the 0x70-byte records from `02EBF9F0` while below `02EC07F0` (four per pass, 0x1C0 per step, at most 32 records): returns at the first record whose dword `+0x58` is zero, and otherwise ORs 1 into its dword `+0`",
+   "anchors": [["00375F30", "cmp"], ["00375F36", "or"], ["00375F42", "or"], ["00375F66", "add"], ["00375F6F", "jl"]]}
+ ],
+ "skipped": [],
+ "notes": "001823E0: the callee at +0x12 is 0018CA40, which the host excerpt names; it is still cited by site for consistency. 002EF1B0: the 'is zero' test of the 0x740 record follows the add's zero flag (je after add). 00375F20: the loop bound comparison is a signed jl on pointers."
+}
