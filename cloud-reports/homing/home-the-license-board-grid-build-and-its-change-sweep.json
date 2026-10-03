@@ -1,0 +1,11 @@
+{
+ "page": "16-UI/License-Board-View/the-license-board-grid-build-and-its-change-sweep.md",
+ "session": "session_01QmPH3UsJG62wVZQjKE9DWs",
+ "rows": [
+  {"fn": "002286B0", "entered_from": "`002470D0` + 0x2F",
+   "text": "returns without work when qword `01FD4948` is null; otherwise, when `rcx` and its qword `+0` are both non-null, calls that code pointer with (`rcx`, the address `00908B60`), and then stores `rcx` (null included) at qword `+0xC8` of qword `01FD4948`",
+   "anchors": [["002286C3", "je"], ["002286CD", "test"], ["002286D2", "lea"], ["002286D9", "call"], ["002286E3", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": ""
+}
