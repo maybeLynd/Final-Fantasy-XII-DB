@@ -1,0 +1,451 @@
+{
+ "type": "AppBootStatic01F7F480",
+ "system_impact": [
+  "S-37 (16-UI text-control/DynGeo, +0x40)",
+  "S-38 (render record pool, +0xB8; character transform publish, +0x118)",
+  "S-39 (render command list, +0x114)",
+  "S-43 (save-image buffers, +0x110)"
+ ],
+ "headline": "the first 0x10 bytes are not this static: they are GameApplication's derived tail (+0x1130..+0x113F); the object at 01F7E350 is 0x1140 bytes by its own deleting destructor, while the store declares only the 0x1130 PApplication base there",
+ "gameapplication_tail": {
+  "option_A": {
+   "what": "declare GameApplication (0x1140, STATIC 0x01F7E350, PApplication embedded at +0x0) carrying these five rows, and re-base the remainder as AppBootStatic01F7F490 (0x114): every other row's offset drops by 0x10",
+   "types_row_hint": "GameApplication\t0x1140\t00-Engine-Core-Runtime\tsingle static instance at 0x01F7E350 (constructor 0015BC40)\t...\tSTATIC 0x01F7E350",
+   "rows": [
+    "GameApplication\t0x1130\t8\tslot2ArgQword\tuint64\tthe qword argument slot 2 (0017CEB0, the archive mount) stores; slot 8's 0017D000 hands it with +0x1138 to the init burst 0017D4C0; the getter 0017D240 returns both (its one caller is the FF12CONFIG loader 00408C30). Meaning not claimed (CONTRACT-boot-fixups: nothing depends on it)\tTYPE RESOLVED\tPROVEN\t0017CEC2 mov qword ptr [rcx+0x1130], rdx; 0017D012 mov rdx, qword ptr [rcx+0x1130]; 0017D240 mov rax, qword ptr [01F7F480]; the only GameApplication instance is the static 01F7E350: its vtable 008C5760 has three references, the static constructor 0015BC40 (0015BC4D lea rcx,[01F7E350] / 0015BC61 mov [01F7E350],rax), the scalar deleting destructor 0017CC70 and the atexit thunk 008A6970; slot 0 states the size, 0017CCB0 mov edx,0x1140 / 0017CCB8 call 0016D6A0; 01F7E350 + 0x1130 = 01F7F480 and + 0x1140 = 01F7F490; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool; was AppBootStatic01F7F480 0x0000",
+    "GameApplication\t0x1138\t4\tslot2ArgDword\tuint32\tthe dword argument slot 2 stores beside +0x1130; read with it by 0017D000 and 0017D240. Meaning not claimed\tTYPE RESOLVED\tPROVEN\t0017CEC9 mov dword ptr [rcx+0x1138], r8d; 0017D019 mov ecx, dword ptr [rcx+0x1138]; 0017D24A mov eax, dword ptr [01F7F488]; the only GameApplication instance is the static 01F7E350: its vtable 008C5760 has three references, the static constructor 0015BC40 (0015BC4D lea rcx,[01F7E350] / 0015BC61 mov [01F7E350],rax), the scalar deleting destructor 0017CC70 and the atexit thunk 008A6970; slot 0 states the size, 0017CCB0 mov edx,0x1140 / 0017CCB8 call 0016D6A0; 01F7E350 + 0x1130 = 01F7F480 and + 0x1140 = 01F7F490; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool; was AppBootStatic01F7F480 0x0008",
+    "GameApplication\t0x113C\t1\tstartupLatch\tuint8\tone-way initialised latch: 0017D000 sets it to 1 after the init burst and the per-frame singleton Ensure, and slots 4, 7 and 8 test it at entry; nothing clears it after construction\tSEMANTICALLY IDENTIFIED\tPROVEN\t0017D074 mov byte ptr [rbx+0x113c], 1; 0017CCD6 / 0017CE77 / 0017D094 cmp byte ptr [reg+0x113c], 0; cleared with +0x113D by the constructor's word store 0015BC68 mov word ptr [01F7F48C], 0; game-application.md section 2 and CONTRACT-boot-fixups; the only GameApplication instance is the static 01F7E350: its vtable 008C5760 has three references, the static constructor 0015BC40 (0015BC4D lea rcx,[01F7E350] / 0015BC61 mov [01F7E350],rax), the scalar deleting destructor 0017CC70 and the atexit thunk 008A6970; slot 0 states the size, 0017CCB0 mov edx,0x1140 / 0017CCB8 call 0016D6A0; 01F7E350 + 0x1130 = 01F7F480 and + 0x1140 = 01F7F490; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool; was AppBootStatic01F7F480 0x000C",
+    "GameApplication\t0x113D\t1\tslot4RunOnceGuard\tuint8\trun-once guard local to slot 4 (the frame tick 0017CCD0): read then set 1 nineteen bytes apart inside that method; no other access; it is not the latch beside it\tSEMANTICALLY IDENTIFIED\tPROVEN\t0017CD1E cmp byte ptr [rbx+0x113d], 0; 0017CD31 mov byte ptr [rbx+0x113d], 1; cleared by the word store 0015BC68; game-application.md section 2; the only GameApplication instance is the static 01F7E350: its vtable 008C5760 has three references, the static constructor 0015BC40 (0015BC4D lea rcx,[01F7E350] / 0015BC61 mov [01F7E350],rax), the scalar deleting destructor 0017CC70 and the atexit thunk 008A6970; slot 0 states the size, 0017CCB0 mov edx,0x1140 / 0017CCB8 call 0016D6A0; 01F7E350 + 0x1130 = 01F7F480 and + 0x1140 = 01F7F490; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool; was AppBootStatic01F7F480 0x000D",
+    "GameApplication\t0x113E\t2\tunobservedSpan113E\tu8[2]\tpadding to the 0x1140 size slot 0 states; no access\tDISCOVERED\tHIGH\tno access at 01F7F48E/01F7F48F or [this+0x113E]; the only GameApplication instance is the static 01F7E350: its vtable 008C5760 has three references, the static constructor 0015BC40 (0015BC4D lea rcx,[01F7E350] / 0015BC61 mov [01F7E350],rax), the scalar deleting destructor 0017CC70 and the atexit thunk 008A6970; slot 0 states the size, 0017CCB0 mov edx,0x1140 / 0017CCB8 call 0016D6A0; 01F7E350 + 0x1130 = 01F7F480 and + 0x1140 = 01F7F490; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool; was AppBootStatic01F7F480 0x000E"
+   ],
+   "rebase": [
+    {
+     "old": "AppBootStatic01F7F480 +0x0010",
+     "new": "AppBootStatic01F7F490 +0x0000"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x0020",
+     "new": "AppBootStatic01F7F490 +0x0010"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x0030",
+     "new": "AppBootStatic01F7F490 +0x0020"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x0038",
+     "new": "AppBootStatic01F7F490 +0x0028"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x003C",
+     "new": "AppBootStatic01F7F490 +0x002C"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x0040",
+     "new": "AppBootStatic01F7F490 +0x0030"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x0048",
+     "new": "AppBootStatic01F7F490 +0x0038"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x0050",
+     "new": "AppBootStatic01F7F490 +0x0040"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x0058",
+     "new": "AppBootStatic01F7F490 +0x0048"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x0060",
+     "new": "AppBootStatic01F7F490 +0x0050"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x0068",
+     "new": "AppBootStatic01F7F490 +0x0058"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x0069",
+     "new": "AppBootStatic01F7F490 +0x0059"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x006A",
+     "new": "AppBootStatic01F7F490 +0x005A"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x0070",
+     "new": "AppBootStatic01F7F490 +0x0060"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x0074",
+     "new": "AppBootStatic01F7F490 +0x0064"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x0078",
+     "new": "AppBootStatic01F7F490 +0x0068"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x007C",
+     "new": "AppBootStatic01F7F490 +0x006C"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x0080",
+     "new": "AppBootStatic01F7F490 +0x0070"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x0084",
+     "new": "AppBootStatic01F7F490 +0x0074"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x0088",
+     "new": "AppBootStatic01F7F490 +0x0078"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x008C",
+     "new": "AppBootStatic01F7F490 +0x007C"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x008D",
+     "new": "AppBootStatic01F7F490 +0x007D"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x008E",
+     "new": "AppBootStatic01F7F490 +0x007E"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x008F",
+     "new": "AppBootStatic01F7F490 +0x007F"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x0090",
+     "new": "AppBootStatic01F7F490 +0x0080"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x0091",
+     "new": "AppBootStatic01F7F490 +0x0081"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x00B8",
+     "new": "AppBootStatic01F7F490 +0x00A8"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x00BC",
+     "new": "AppBootStatic01F7F490 +0x00AC"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x00C0",
+     "new": "AppBootStatic01F7F490 +0x00B0"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x00C4",
+     "new": "AppBootStatic01F7F490 +0x00B4"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x00D0",
+     "new": "AppBootStatic01F7F490 +0x00C0"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x00D4",
+     "new": "AppBootStatic01F7F490 +0x00C4"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x00D8",
+     "new": "AppBootStatic01F7F490 +0x00C8"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x00DC",
+     "new": "AppBootStatic01F7F490 +0x00CC"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x00E0",
+     "new": "AppBootStatic01F7F490 +0x00D0"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x00E4",
+     "new": "AppBootStatic01F7F490 +0x00D4"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x00E8",
+     "new": "AppBootStatic01F7F490 +0x00D8"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x00EC",
+     "new": "AppBootStatic01F7F490 +0x00DC"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x00F0",
+     "new": "AppBootStatic01F7F490 +0x00E0"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x00F4",
+     "new": "AppBootStatic01F7F490 +0x00E4"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x00F8",
+     "new": "AppBootStatic01F7F490 +0x00E8"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x00FC",
+     "new": "AppBootStatic01F7F490 +0x00EC"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x0100",
+     "new": "AppBootStatic01F7F490 +0x00F0"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x0104",
+     "new": "AppBootStatic01F7F490 +0x00F4"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x0108",
+     "new": "AppBootStatic01F7F490 +0x00F8"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x010C",
+     "new": "AppBootStatic01F7F490 +0x00FC"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x0110",
+     "new": "AppBootStatic01F7F490 +0x0100"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x0114",
+     "new": "AppBootStatic01F7F490 +0x0104"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x0115",
+     "new": "AppBootStatic01F7F490 +0x0105"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x0118",
+     "new": "AppBootStatic01F7F490 +0x0108"
+    },
+    {
+     "old": "AppBootStatic01F7F480 +0x0120",
+     "new": "AppBootStatic01F7F490 +0x0110"
+    }
+   ]
+  },
+  "option_B": {
+   "what": "keep the type and extent; re-cut the first 0x10 bytes in place with the GameApplication attribution in each row (two types then cover 01F7F480..01F7F48F, so the store's overlap check must accept or flag it)",
+   "old": [
+    "AppBootStatic01F7F480\t0x0000\t8\tqword0000\tvoid*\treached at the image address 01F7F480: 1 access(es), 0 written, widths 8. First cited at 0017D240 in 0017D240 (`mov rax, qword ptr [rip + 0x1e02239]`). MEANING NOT CLAIMED.\tTYPE RESOLVED\tPROVEN\tDECLARED 2026-09-22 (OPUS) by censusing an address range NOBODY HAD CLAIMED. Found while checking a boundary signal on PApplication - the static census reported accesses past its declared end - and the two are NOT one object: PApplication is touched by exactly ONE direct rip-relative access across its whole 0x1130, while this range is touched by 131 bodies at 46 displacements. A neighbour addressed absolutely a hundred times over, beside a parent addressed once, is a second object and not a short extent. THE EXTENT IS THE TIGHTEST THE EVIDENCE SUPPORTS - the last access plus its own width - and the bytes from there to the next known object at 01F7F600 are NOT CLAIMED. NOTHING TAKES THE OBJECT'S BASE ADDRESS: the 8 `lea`s into this range all land on INTERIOR offsets, so there is no constructor call on it and no size argument anywhere to read an extent from, which is exactly why the extent is stated as a floor rather than a measurement. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "AppBootStatic01F7F480\t0x0008\t4\tdword0008\tuint32\treached at the image address 01F7F488: 1 access(es), 0 written, widths 4. First cited at 0017D24A in 0017D240 (`mov eax, dword ptr [rip + 0x1e02238]`). MEANING NOT CLAIMED.\tTYPE RESOLVED\tPROVEN\tDECLARED 2026-09-22 (OPUS) by censusing an address range NOBODY HAD CLAIMED. Found while checking a boundary signal on PApplication - the static census reported accesses past its declared end - and the two are NOT one object: PApplication is touched by exactly ONE direct rip-relative access across its whole 0x1130, while this range is touched by 131 bodies at 46 displacements. A neighbour addressed absolutely a hundred times over, beside a parent addressed once, is a second object and not a short extent. THE EXTENT IS THE TIGHTEST THE EVIDENCE SUPPORTS - the last access plus its own width - and the bytes from there to the next known object at 01F7F600 are NOT CLAIMED. NOTHING TAKES THE OBJECT'S BASE ADDRESS: the 8 `lea`s into this range all land on INTERIOR offsets, so there is no constructor call on it and no size argument anywhere to read an extent from, which is exactly why the extent is stated as a floor rather than a measurement. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "AppBootStatic01F7F480\t0x000C\t2\tword000C\tuint16\treached at the image address 01F7F48C: 1 access(es), 1 written, widths 2. First cited at 0015BC68 in 0015BC40 (`mov word ptr [rip + 0x1e2381b], 0`). MEANING NOT CLAIMED.\tTYPE RESOLVED\tPROVEN\tDECLARED 2026-09-22 (OPUS) by censusing an address range NOBODY HAD CLAIMED. Found while checking a boundary signal on PApplication - the static census reported accesses past its declared end - and the two are NOT one object: PApplication is touched by exactly ONE direct rip-relative access across its whole 0x1130, while this range is touched by 131 bodies at 46 displacements. A neighbour addressed absolutely a hundred times over, beside a parent addressed once, is a second object and not a short extent. THE EXTENT IS THE TIGHTEST THE EVIDENCE SUPPORTS - the last access plus its own width - and the bytes from there to the next known object at 01F7F600 are NOT CLAIMED. NOTHING TAKES THE OBJECT'S BASE ADDRESS: the 8 `lea`s into this range all land on INTERIOR offsets, so there is no constructor call on it and no size argument anywhere to read an extent from, which is exactly why the extent is stated as a floor rather than a measurement. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "AppBootStatic01F7F480\t0x000E\t2\tunobservedSpan000E\tu8[2]\tno direct reference\tDISCOVERED\tUNKNOWN\tbyte-granular direct-reference census (width = operand size, direction = capstone access), 2026-09-25 (OPUS, block 255); the gap-row audit found direct references inside this row's previous 'unobserved' span"
+   ],
+   "note": "the old word000C uint16 (the constructor's word store) splits into the latch +0x0C and the slot-4 guard +0x0D, which the code reads apart",
+   "rows": [
+    "AppBootStatic01F7F480\t0x0000\t8\tslot2ArgQword\tuint64\tGameApplication +0x1130: the qword argument slot 2 (0017CEB0, the archive mount) stores; slot 8's 0017D000 hands it with +0x1138 to the init burst 0017D4C0; the getter 0017D240 returns both (its one caller is the FF12CONFIG loader 00408C30). Meaning not claimed (CONTRACT-boot-fixups: nothing depends on it)\tTYPE RESOLVED\tPROVEN\t0017CEC2 mov qword ptr [rcx+0x1130], rdx; 0017D012 mov rdx, qword ptr [rcx+0x1130]; 0017D240 mov rax, qword ptr [01F7F480]; the only GameApplication instance is the static 01F7E350: its vtable 008C5760 has three references, the static constructor 0015BC40 (0015BC4D lea rcx,[01F7E350] / 0015BC61 mov [01F7E350],rax), the scalar deleting destructor 0017CC70 and the atexit thunk 008A6970; slot 0 states the size, 0017CCB0 mov edx,0x1140 / 0017CCB8 call 0016D6A0; 01F7E350 + 0x1130 = 01F7F480 and + 0x1140 = 01F7F490; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool",
+    "AppBootStatic01F7F480\t0x0008\t4\tslot2ArgDword\tuint32\tGameApplication +0x1138: the dword argument slot 2 stores beside +0x1130; read with it by 0017D000 and 0017D240. Meaning not claimed\tTYPE RESOLVED\tPROVEN\t0017CEC9 mov dword ptr [rcx+0x1138], r8d; 0017D019 mov ecx, dword ptr [rcx+0x1138]; 0017D24A mov eax, dword ptr [01F7F488]; the only GameApplication instance is the static 01F7E350: its vtable 008C5760 has three references, the static constructor 0015BC40 (0015BC4D lea rcx,[01F7E350] / 0015BC61 mov [01F7E350],rax), the scalar deleting destructor 0017CC70 and the atexit thunk 008A6970; slot 0 states the size, 0017CCB0 mov edx,0x1140 / 0017CCB8 call 0016D6A0; 01F7E350 + 0x1130 = 01F7F480 and + 0x1140 = 01F7F490; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool",
+    "AppBootStatic01F7F480\t0x000C\t1\tstartupLatch\tuint8\tGameApplication +0x113C: one-way initialised latch: 0017D000 sets it to 1 after the init burst and the per-frame singleton Ensure, and slots 4, 7 and 8 test it at entry; nothing clears it after construction\tSEMANTICALLY IDENTIFIED\tPROVEN\t0017D074 mov byte ptr [rbx+0x113c], 1; 0017CCD6 / 0017CE77 / 0017D094 cmp byte ptr [reg+0x113c], 0; cleared with +0x113D by the constructor's word store 0015BC68 mov word ptr [01F7F48C], 0; game-application.md section 2 and CONTRACT-boot-fixups; the only GameApplication instance is the static 01F7E350: its vtable 008C5760 has three references, the static constructor 0015BC40 (0015BC4D lea rcx,[01F7E350] / 0015BC61 mov [01F7E350],rax), the scalar deleting destructor 0017CC70 and the atexit thunk 008A6970; slot 0 states the size, 0017CCB0 mov edx,0x1140 / 0017CCB8 call 0016D6A0; 01F7E350 + 0x1130 = 01F7F480 and + 0x1140 = 01F7F490; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool",
+    "AppBootStatic01F7F480\t0x000D\t1\tslot4RunOnceGuard\tuint8\tGameApplication +0x113D: run-once guard local to slot 4 (the frame tick 0017CCD0): read then set 1 nineteen bytes apart inside that method; no other access; it is not the latch beside it\tSEMANTICALLY IDENTIFIED\tPROVEN\t0017CD1E cmp byte ptr [rbx+0x113d], 0; 0017CD31 mov byte ptr [rbx+0x113d], 1; cleared by the word store 0015BC68; game-application.md section 2; the only GameApplication instance is the static 01F7E350: its vtable 008C5760 has three references, the static constructor 0015BC40 (0015BC4D lea rcx,[01F7E350] / 0015BC61 mov [01F7E350],rax), the scalar deleting destructor 0017CC70 and the atexit thunk 008A6970; slot 0 states the size, 0017CCB0 mov edx,0x1140 / 0017CCB8 call 0016D6A0; 01F7E350 + 0x1130 = 01F7F480 and + 0x1140 = 01F7F490; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool",
+    "AppBootStatic01F7F480\t0x000E\t2\tunobservedSpan113E\tu8[2]\tGameApplication +0x113E: padding to the 0x1140 size slot 0 states; no access\tDISCOVERED\tHIGH\tno access at 01F7F48E/01F7F48F or [this+0x113E]; the only GameApplication instance is the static 01F7E350: its vtable 008C5760 has three references, the static constructor 0015BC40 (0015BC4D lea rcx,[01F7E350] / 0015BC61 mov [01F7E350],rax), the scalar deleting destructor 0017CC70 and the atexit thunk 008A6970; slot 0 states the size, 0017CCB0 mov edx,0x1140 / 0017CCB8 call 0016D6A0; 01F7E350 + 0x1130 = 01F7F480 and + 0x1140 = 01F7F490; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool"
+   ]
+  }
+ },
+ "proposals": [
+  {
+   "old": [
+    "AppBootStatic01F7F480\t0x0030\t8\tqword0030\tvoid*\treached at the image address 01F7F4B0: 2 access(es), 1 written, widths 8. First cited at 0017D270 in 0017D270 (`movsd xmm0, qword ptr [rip + 0x1e02238]`). MEANING NOT CLAIMED.\tTYPE RESOLVED\tPROVEN\tDECLARED 2026-09-22 (OPUS) by censusing an address range NOBODY HAD CLAIMED. Found while checking a boundary signal on PApplication - the static census reported accesses past its declared end - and the two are NOT one object: PApplication is touched by exactly ONE direct rip-relative access across its whole 0x1130, while this range is touched by 131 bodies at 46 displacements. A neighbour addressed absolutely a hundred times over, beside a parent addressed once, is a second object and not a short extent. THE EXTENT IS THE TIGHTEST THE EVIDENCE SUPPORTS - the last access plus its own width - and the bytes from there to the next known object at 01F7F600 are NOT CLAIMED. NOTHING TAKES THE OBJECT'S BASE ADDRESS: the 8 `lea`s into this range all land on INTERIOR offsets, so there is no constructor call on it and no size argument anywhere to read an extent from, which is exactly why the extent is stated as a floor rather than a measurement. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+   ],
+   "new": [
+    "AppBootStatic01F7F480\t0x0030\t8\tframeDelta\tdouble\tthe per-frame pump's double argument: 0017D6E0 keeps its xmm0 in xmm7 and stores it here every frame; slot 4 passes this+0x48 (GameApplication) as that argument; the getter 0017D270 returns it\tSEMANTICALLY IDENTIFIED\tPROVEN\t0017D703 movaps xmm7, xmm0 / 0017D74F movsd qword ptr [01F7F4B0], xmm7; 0017CD65 and 0017CD93 movsd xmm0, qword ptr [rbx+0x48] then call 0017D6E0; 0017D270 movsd xmm0, qword ptr [01F7F4B0]; the manual-save reader converts it, 003BB097 call 0017D270 / 003BB0A7 cvtsd2ss; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool; was qword0030 void* (every access is movsd)"
+   ],
+   "why": "ctype: every access is movsd, so void* is wrong; meaning from the pump",
+   "contract": null
+  },
+  {
+   "old": [
+    "AppBootStatic01F7F480\t0x0038\t4\tdword0038\tuint32\treached at the image address 01F7F4B8: 3 access(es), 2 written, widths 4. First cited at 0017D706 in 0017D6E0 (`mov dword ptr [rip + 0x1e01dac], ebx`). MEANING NOT CLAIMED.\tTYPE RESOLVED\tPROVEN\tDECLARED 2026-09-22 (OPUS) by censusing an address range NOBODY HAD CLAIMED. Found while checking a boundary signal on PApplication - the static census reported accesses past its declared end - and the two are NOT one object: PApplication is touched by exactly ONE direct rip-relative access across its whole 0x1130, while this range is touched by 131 bodies at 46 displacements. A neighbour addressed absolutely a hundred times over, beside a parent addressed once, is a second object and not a short extent. THE EXTENT IS THE TIGHTEST THE EVIDENCE SUPPORTS - the last access plus its own width - and the bytes from there to the next known object at 01F7F600 are NOT CLAIMED. NOTHING TAKES THE OBJECT'S BASE ADDRESS: the 8 `lea`s into this range all land on INTERIOR offsets, so there is no constructor call on it and no size argument anywhere to read an extent from, which is exactly why the extent is stated as a floor rather than a measurement. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+   ],
+   "new": [
+    "AppBootStatic01F7F480\t0x0038\t4\tframeResetFlag\tuint32\t0 at pump entry; 1 when the pump finds 001E05E0() non-zero and runs the reset 001E0590 (the same path zeroes the delta it carries); returned by the getter 0017D980\tSEMANTICALLY IDENTIFIED\tPROVEN\t0017D6EF xor ebx, ebx / 0017D706 mov dword ptr [01F7F4B8], ebx; 0017D836 call 001E05E0 / 0017D83F call 001E0590 / 0017D846 mov dword ptr [01F7F4B8], 1 / 0017D850 xorps xmm7, xmm7; 0017D980 mov eax, dword ptr [01F7F4B8] (caller 001BDAC0); OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool; was dword0038"
+   ],
+   "why": "meaning from the pump body",
+   "contract": null
+  },
+  {
+   "old": [
+    "AppBootStatic01F7F480\t0x0040\t8\tqword0040\tvoid*\treached at the image address 01F7F4C0: 76 access(es), 1 written, widths 8. First cited at 0017D501 in 0017D4C0 (`mov qword ptr [rip + 0x1e01fb8], rax`). MEANING NOT CLAIMED.\tTYPE RESOLVED\tPROVEN\tDECLARED 2026-09-22 (OPUS) by censusing an address range NOBODY HAD CLAIMED. Found while checking a boundary signal on PApplication - the static census reported accesses past its declared end - and the two are NOT one object: PApplication is touched by exactly ONE direct rip-relative access across its whole 0x1130, while this range is touched by 131 bodies at 46 displacements. A neighbour addressed absolutely a hundred times over, beside a parent addressed once, is a second object and not a short extent. THE EXTENT IS THE TIGHTEST THE EVIDENCE SUPPORTS - the last access plus its own width - and the bytes from there to the next known object at 01F7F600 are NOT CLAIMED. NOTHING TAKES THE OBJECT'S BASE ADDRESS: the 8 `lea`s into this range all land on INTERIOR offsets, so there is no constructor call on it and no size argument anywhere to read an extent from, which is exactly why the extent is stated as a floor rather than a measurement. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+   ],
+   "new": [
+    "AppBootStatic01F7F480\t0x0040\t8\tringAllocator\tvoid*\tthe engine's wrap-around bump allocator, a 0x20-byte object the init burst builds: base +0x0, cursor +0x8, end +0x10 over 0x2000000 bytes; 001A1470(this, n) returns the cursor and advances it by (n AND 0xFFFFFFF0) + 0x10, restarting at the base when the block would reach the end\tSEMANTICALLY IDENTIFIED\tPROVEN\t0017D4DE mov ecx, 0x20 / 0017D4E3 call 00210EC0 / 0017D4F2 call 001A14E0 / 0017D501 mov qword ptr [01F7F4C0], rax; 001A14E6 mov edx, 0x2000000 / 001A1436 call 0017D260 (size, 0x10) / 001A143B-001A144A base, cursor, end; 001A147E and edx, 0xfffffff0 / 001A1489 lea edi, [rdx+0x10] / 001A149F cmp rcx, qword ptr [rbx+0x10] / 001A14A5 restart at [rbx]; users: the DynGeo flush 001E8580 (CONTRACT-text-control-codes-and-dyngeo-draw allocated row) and PostProcessFrameParams' route 001A1470([01F7F4C0], 0xF0); OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool; was qword0040, 76 accesses"
+   ],
+   "why": "contract S-37 names it the heap singleton the DynGeo instances come from",
+   "contract": "16-UI/CONTRACT-text-control-codes-and-dyngeo-draw.md"
+  },
+  {
+   "old": [
+    "AppBootStatic01F7F480\t0x0060\t8\tqword0060\tvoid*\treached at the image address 01F7F4E0: 47 access(es), 1 written, widths 8. First cited at 0017D607 in 0017D4C0 (`mov qword ptr [rip + 0x1e01ed2], rbx`). MEANING NOT CLAIMED.\tTYPE RESOLVED\tPROVEN\tDECLARED 2026-09-22 (OPUS) by censusing an address range NOBODY HAD CLAIMED. Found while checking a boundary signal on PApplication - the static census reported accesses past its declared end - and the two are NOT one object: PApplication is touched by exactly ONE direct rip-relative access across its whole 0x1130, while this range is touched by 131 bodies at 46 displacements. A neighbour addressed absolutely a hundred times over, beside a parent addressed once, is a second object and not a short extent. THE EXTENT IS THE TIGHTEST THE EVIDENCE SUPPORTS - the last access plus its own width - and the bytes from there to the next known object at 01F7F600 are NOT CLAIMED. NOTHING TAKES THE OBJECT'S BASE ADDRESS: the 8 `lea`s into this range all land on INTERIOR offsets, so there is no constructor call on it and no size argument anywhere to read an extent from, which is exactly why the extent is stated as a floor rather than a measurement. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+   ],
+   "new": [
+    "AppBootStatic01F7F480\t0x0060\t8\tdebugScopeObject\tvoid*\ta 0x10-byte object the init burst builds (qword +0x0, word +0x8 cleared by 001D5600); its byte +0x8 is the enable that gates the render passes' debug-scope names\tSEMANTICALLY IDENTIFIED\tHIGH\t0017D5ED mov ecx, 0x10 / 0017D5FF call 001D5600 / 0017D607 mov qword ptr [01F7F4E0], rbx; 001D5600 mov qword ptr [rcx], 0 / 001D560A mov word ptr [rcx+8], 0; 001EB167 mov rax, qword ptr [01F7F4E0] / 001EB173 cmp byte ptr [rax+8], 0; what-happens-between-two-frames.md; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool; was qword0060, 47 accesses"
+   ],
+   "why": "page meaning verified at one gate; HIGH, not PROVEN, until the 47 readers are each attributed",
+   "contract": null
+  },
+  {
+   "old": [
+    "AppBootStatic01F7F480\t0x0068\t1\tbyte0068\tu8\treached at the image address 01F7F4E8: 1 access(es), 0 written, widths 1. First cited at 0017E4A0 in 0017E490 (`movzx eax, byte ptr [rip + 0x1e01041]`). MEANING NOT CLAIMED.\tTYPE RESOLVED\tPROVEN\tDECLARED 2026-09-22 (OPUS) by censusing an address range NOBODY HAD CLAIMED. Found while checking a boundary signal on PApplication - the static census reported accesses past its declared end - and the two are NOT one object: PApplication is touched by exactly ONE direct rip-relative access across its whole 0x1130, while this range is touched by 131 bodies at 46 displacements. A neighbour addressed absolutely a hundred times over, beside a parent addressed once, is a second object and not a short extent. THE EXTENT IS THE TIGHTEST THE EVIDENCE SUPPORTS - the last access plus its own width - and the bytes from there to the next known object at 01F7F600 are NOT CLAIMED. NOTHING TAKES THE OBJECT'S BASE ADDRESS: the 8 `lea`s into this range all land on INTERIOR offsets, so there is no constructor call on it and no size argument anywhere to read an extent from, which is exactly why the extent is stated as a floor rather than a measurement. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+   ],
+   "new": [
+    "AppBootStatic01F7F480\t0x0068\t1\tqueryDefault68\tuint8\tthe answer 0017E490 gives when dword 01DF0010 is neither 1 (answers 1) nor 2 (answers 0); no .text writer, so the image value\tSEMANTICALLY IDENTIFIED\tPROVEN\t0017E490 mov ecx, dword ptr [01DF0010] / 0017E496 sub ecx, 1 / 0017E499 je (answer 1) / 0017E49E je (answer 0) / 0017E4A0 movzx eax, byte ptr [01F7F4E8]; arm-catalogue-slice-G; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool; was byte0068"
+   ],
+   "why": "page meaning verified",
+   "contract": null
+  },
+  {
+   "old": [
+    "AppBootStatic01F7F480\t0x0069\t1\tbyte0069\tu8\treached at the image address 01F7F4E9: 7 access(es), 4 written, widths 1. First cited at 0017DED8 in 0017DEA0 (`movzx ecx, byte ptr [rip + 0x1e0160a]`). MEANING NOT CLAIMED.\tTYPE RESOLVED\tPROVEN\tDECLARED 2026-09-22 (OPUS) by censusing an address range NOBODY HAD CLAIMED. Found while checking a boundary signal on PApplication - the static census reported accesses past its declared end - and the two are NOT one object: PApplication is touched by exactly ONE direct rip-relative access across its whole 0x1130, while this range is touched by 131 bodies at 46 displacements. A neighbour addressed absolutely a hundred times over, beside a parent addressed once, is a second object and not a short extent. THE EXTENT IS THE TIGHTEST THE EVIDENCE SUPPORTS - the last access plus its own width - and the bytes from there to the next known object at 01F7F600 are NOT CLAIMED. NOTHING TAKES THE OBJECT'S BASE ADDRESS: the 8 `lea`s into this range all land on INTERIOR offsets, so there is no constructor call on it and no size argument anywhere to read an extent from, which is exactly why the extent is stated as a floor rather than a measurement. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+   ],
+   "new": [
+    "AppBootStatic01F7F480\t0x0069\t1\tspeedKeyEdgeLatch\tuint8\tedge latch of the Speed1/2/3 keys in 0017DEA0: each key path tests it, sets it to 1 before calling the speed-mode setter, and the no-key path clears it, so a held key does not retrigger\tSEMANTICALLY IDENTIFIED\tPROVEN\t0017DED8 / 0017DF28 / 0017DF78 movzx byte ptr [01F7F4E9]; 0017DEEB / 0017DF3A / 0017DF8E mov byte ptr [01F7F4E9], 1; 0017DFA5 mov byte ptr [01F7F4E9], 0; keymap-ini-file-format-and-default-controls.md; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool; was byte0069"
+   ],
+   "why": "page meaning verified",
+   "contract": null
+  },
+  {
+   "old": [
+    "AppBootStatic01F7F480\t0x0070\t4\tdword0070\tuint32\treached at the image address 01F7F4F0: 3 access(es), 1 written, widths 4. First cited at 0017F681 in 0017F670 (`cmp dword ptr [rip + 0x1dffe68], 0`). MEANING NOT CLAIMED.\tTYPE RESOLVED\tPROVEN\tDECLARED 2026-09-22 (OPUS) by censusing an address range NOBODY HAD CLAIMED. Found while checking a boundary signal on PApplication - the static census reported accesses past its declared end - and the two are NOT one object: PApplication is touched by exactly ONE direct rip-relative access across its whole 0x1130, while this range is touched by 131 bodies at 46 displacements. A neighbour addressed absolutely a hundred times over, beside a parent addressed once, is a second object and not a short extent. THE EXTENT IS THE TIGHTEST THE EVIDENCE SUPPORTS - the last access plus its own width - and the bytes from there to the next known object at 01F7F600 are NOT CLAIMED. NOTHING TAKES THE OBJECT'S BASE ADDRESS: the 8 `lea`s into this range all land on INTERIOR offsets, so there is no constructor call on it and no size argument anywhere to read an extent from, which is exactly why the extent is stated as a floor rather than a measurement. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+   ],
+   "new": [
+    "AppBootStatic01F7F480\t0x0070\t4\tpokeGate70\tuint32\tone of the four words 0017F6B0 tests: with dword 01DF08EC clear, any of +0x70/+0x74/+0x78/+0x80 non-zero sends the mode-3 poke 0018C450(0018CA40(), 3) without the 001B7D20 probe; with dword 01DF08E8 it also gates 0017F670's caller-mode poke (0017F676 / 0017F681)\tSEMANTICALLY IDENTIFIED\tPROVEN\t0017F6BD / 0017F6C6 / 0017F6CF / 0017F6D8 cmp dword ptr [01F7F4F0 / 4F4 / 4F8 / 500], 0 then 0017F704 mov edx, 3 / 0017F70D jmp 0018C450; setter 001830B0; the-shared-command-state-word.md; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool; was dword0070"
+   ],
+   "why": "page meaning verified; the four are a gate set",
+   "contract": null
+  },
+  {
+   "old": [
+    "AppBootStatic01F7F480\t0x0074\t4\tdword0074\tuint32\treached at the image address 01F7F4F4: 2 access(es), 1 written, widths 4. First cited at 0017F6C6 in 0017F6B0 (`cmp dword ptr [rip + 0x1dffe27], 0`). MEANING NOT CLAIMED.\tTYPE RESOLVED\tPROVEN\tDECLARED 2026-09-22 (OPUS) by censusing an address range NOBODY HAD CLAIMED. Found while checking a boundary signal on PApplication - the static census reported accesses past its declared end - and the two are NOT one object: PApplication is touched by exactly ONE direct rip-relative access across its whole 0x1130, while this range is touched by 131 bodies at 46 displacements. A neighbour addressed absolutely a hundred times over, beside a parent addressed once, is a second object and not a short extent. THE EXTENT IS THE TIGHTEST THE EVIDENCE SUPPORTS - the last access plus its own width - and the bytes from there to the next known object at 01F7F600 are NOT CLAIMED. NOTHING TAKES THE OBJECT'S BASE ADDRESS: the 8 `lea`s into this range all land on INTERIOR offsets, so there is no constructor call on it and no size argument anywhere to read an extent from, which is exactly why the extent is stated as a floor rather than a measurement. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+   ],
+   "new": [
+    "AppBootStatic01F7F480\t0x0074\t4\tmanagerSlotMatch74\tuint32\tone of the four words 0017F6B0 tests: with dword 01DF08EC clear, any of +0x70/+0x74/+0x78/+0x80 non-zero sends the mode-3 poke 0018C450(0018CA40(), 3) without the 001B7D20 probe; 00229FA0 publishes through 001831D0 whether the manager slot still matches the expected index (the-actor-manager-record-field-map.md)\tSEMANTICALLY IDENTIFIED\tPROVEN\t0017F6BD / 0017F6C6 / 0017F6CF / 0017F6D8 cmp dword ptr [01F7F4F0 / 4F4 / 4F8 / 500], 0 then 0017F704 mov edx, 3 / 0017F70D jmp 0018C450; setter 001831D0; the-shared-command-state-word.md; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool; was dword0074"
+   ],
+   "why": "page meaning verified; the four are a gate set",
+   "contract": null
+  },
+  {
+   "old": [
+    "AppBootStatic01F7F480\t0x0078\t4\tdword0078\tuint32\treached at the image address 01F7F4F8: 2 access(es), 1 written, widths 4. First cited at 0017F6CF in 0017F6B0 (`cmp dword ptr [rip + 0x1dffe22], 0`). MEANING NOT CLAIMED.\tTYPE RESOLVED\tPROVEN\tDECLARED 2026-09-22 (OPUS) by censusing an address range NOBODY HAD CLAIMED. Found while checking a boundary signal on PApplication - the static census reported accesses past its declared end - and the two are NOT one object: PApplication is touched by exactly ONE direct rip-relative access across its whole 0x1130, while this range is touched by 131 bodies at 46 displacements. A neighbour addressed absolutely a hundred times over, beside a parent addressed once, is a second object and not a short extent. THE EXTENT IS THE TIGHTEST THE EVIDENCE SUPPORTS - the last access plus its own width - and the bytes from there to the next known object at 01F7F600 are NOT CLAIMED. NOTHING TAKES THE OBJECT'S BASE ADDRESS: the 8 `lea`s into this range all land on INTERIOR offsets, so there is no constructor call on it and no size argument anywhere to read an extent from, which is exactly why the extent is stated as a floor rather than a measurement. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+   ],
+   "new": [
+    "AppBootStatic01F7F480\t0x0078\t4\tpokeGate78\tuint32\tone of the four words 0017F6B0 tests: with dword 01DF08EC clear, any of +0x70/+0x74/+0x78/+0x80 non-zero sends the mode-3 poke 0018C450(0018CA40(), 3) without the 001B7D20 probe\tSEMANTICALLY IDENTIFIED\tPROVEN\t0017F6BD / 0017F6C6 / 0017F6CF / 0017F6D8 cmp dword ptr [01F7F4F0 / 4F4 / 4F8 / 500], 0 then 0017F704 mov edx, 3 / 0017F70D jmp 0018C450; setter 00183090; the-shared-command-state-word.md; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool; was dword0078"
+   ],
+   "why": "page meaning verified; the four are a gate set",
+   "contract": null
+  },
+  {
+   "old": [
+    "AppBootStatic01F7F480\t0x0080\t4\tdword0080\tuint32\treached at the image address 01F7F500: 3 access(es), 2 written, widths 4. First cited at 0017F6D8 in 0017F6B0 (`cmp dword ptr [rip + 0x1dffe21], 0`). MEANING NOT CLAIMED.\tTYPE RESOLVED\tPROVEN\tDECLARED 2026-09-22 (OPUS) by censusing an address range NOBODY HAD CLAIMED. Found while checking a boundary signal on PApplication - the static census reported accesses past its declared end - and the two are NOT one object: PApplication is touched by exactly ONE direct rip-relative access across its whole 0x1130, while this range is touched by 131 bodies at 46 displacements. A neighbour addressed absolutely a hundred times over, beside a parent addressed once, is a second object and not a short extent. THE EXTENT IS THE TIGHTEST THE EVIDENCE SUPPORTS - the last access plus its own width - and the bytes from there to the next known object at 01F7F600 are NOT CLAIMED. NOTHING TAKES THE OBJECT'S BASE ADDRESS: the 8 `lea`s into this range all land on INTERIOR offsets, so there is no constructor call on it and no size argument anywhere to read an extent from, which is exactly why the extent is stated as a floor rather than a measurement. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+   ],
+   "new": [
+    "AppBootStatic01F7F480\t0x0080\t4\tpokeGate80\tuint32\tone of the four words 0017F6B0 tests: with dword 01DF08EC clear, any of +0x70/+0x74/+0x78/+0x80 non-zero sends the mode-3 poke 0018C450(0018CA40(), 3) without the 001B7D20 probe; 00184740 sets it to 1 once (with +0xC0) when its 0024DE30 locals read 1 and 0x17A, else clears it (0018478B, 0018479B)\tSEMANTICALLY IDENTIFIED\tPROVEN\t0017F6BD / 0017F6C6 / 0017F6CF / 0017F6D8 cmp dword ptr [01F7F4F0 / 4F4 / 4F8 / 500], 0 then 0017F704 mov edx, 3 / 0017F70D jmp 0018C450; setter 00184740; the-shared-command-state-word.md; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool; was dword0080"
+   ],
+   "why": "page meaning verified; the four are a gate set",
+   "contract": null
+  },
+  {
+   "old": [
+    "AppBootStatic01F7F480\t0x007C\t4\tdword007C\tuint32\treached at the image address 01F7F4FC: 2 access(es), 1 written, widths 4. First cited at 0017FFA0 in 0017FFA0 (`mov eax, dword ptr [rip + 0x1dff556]`). MEANING NOT CLAIMED.\tTYPE RESOLVED\tPROVEN\tDECLARED 2026-09-22 (OPUS) by censusing an address range NOBODY HAD CLAIMED. Found while checking a boundary signal on PApplication - the static census reported accesses past its declared end - and the two are NOT one object: PApplication is touched by exactly ONE direct rip-relative access across its whole 0x1130, while this range is touched by 131 bodies at 46 displacements. A neighbour addressed absolutely a hundred times over, beside a parent addressed once, is a second object and not a short extent. THE EXTENT IS THE TIGHTEST THE EVIDENCE SUPPORTS - the last access plus its own width - and the bytes from there to the next known object at 01F7F600 are NOT CLAIMED. NOTHING TAKES THE OBJECT'S BASE ADDRESS: the 8 `lea`s into this range all land on INTERIOR offsets, so there is no constructor call on it and no size argument anywhere to read an extent from, which is exactly why the extent is stated as a floor rather than a measurement. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+   ],
+   "new": [
+    "AppBootStatic01F7F480\t0x007C\t4\treadyFlag7C\tuint32\tthe flag 00229FA0 reads first through the getter 0017FFA0: non-zero publishes 1 into +0x74 without the manager-slot check; set by 001831F0\tSEMANTICALLY IDENTIFIED\tPROVEN\t0017FFA0 mov eax, dword ptr [01F7F4FC]; 001831F0 mov dword ptr [01F7F4FC], ecx; 00229FAD-00229FB6; the-actor-manager-record-field-map.md; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool; was dword007C"
+   ],
+   "why": "page meaning verified",
+   "contract": null
+  },
+  {
+   "old": [
+    "AppBootStatic01F7F480\t0x0090\t1\tbyte0090\tu8\treached at the image address 01F7F510: 1 access(es), 0 written, widths 1. First cited at 0017ED24 in 0017ED20 (`cmp byte ptr [rip + 0x1e007e5], 0`). MEANING NOT CLAIMED.\tTYPE RESOLVED\tPROVEN\tDECLARED 2026-09-22 (OPUS) by censusing an address range NOBODY HAD CLAIMED. Found while checking a boundary signal on PApplication - the static census reported accesses past its declared end - and the two are NOT one object: PApplication is touched by exactly ONE direct rip-relative access across its whole 0x1130, while this range is touched by 131 bodies at 46 displacements. A neighbour addressed absolutely a hundred times over, beside a parent addressed once, is a second object and not a short extent. THE EXTENT IS THE TIGHTEST THE EVIDENCE SUPPORTS - the last access plus its own width - and the bytes from there to the next known object at 01F7F600 are NOT CLAIMED. NOTHING TAKES THE OBJECT'S BASE ADDRESS: the 8 `lea`s into this range all land on INTERIOR offsets, so there is no constructor call on it and no size argument anywhere to read an extent from, which is exactly why the extent is stated as a floor rather than a measurement. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+    "AppBootStatic01F7F480\t0x0091\t39\tunobservedSpan0091\t\tno access at these image addresses.\tDISCOVERED\tPROBABLE\tDECLARED 2026-09-22 (OPUS) by censusing an address range NOBODY HAD CLAIMED. Found while checking a boundary signal on PApplication - the static census reported accesses past its declared end - and the two are NOT one object: PApplication is touched by exactly ONE direct rip-relative access across its whole 0x1130, while this range is touched by 131 bodies at 46 displacements. A neighbour addressed absolutely a hundred times over, beside a parent addressed once, is a second object and not a short extent. THE EXTENT IS THE TIGHTEST THE EVIDENCE SUPPORTS - the last access plus its own width - and the bytes from there to the next known object at 01F7F600 are NOT CLAIMED. NOTHING TAKES THE OBJECT'S BASE ADDRESS: the 8 `lea`s into this range all land on INTERIOR offsets, so there is no constructor call on it and no size argument anywhere to read an extent from, which is exactly why the extent is stated as a floor rather than a measurement. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8 || LIFETIME: IMAGE STORAGE, not engine-cleared - birth bytes are the image's (or .bss zero); no clear on the four routes. 2026-09-23 (SWE2-STRUCT), check_clear_exhaustion adjudicated."
+   ],
+   "new": [
+    "AppBootStatic01F7F480\t0x0090\t40\tplatformLock\tu8[40]\tan embedded 0x28-byte recursive lock (init byte +0x0, event handle +0x8, byte +0x10, waiter count +0x18, owner thread +0x20, recursion depth +0x24): 0015BCD0 constructs it with 005CC8A0 and registers the teardown 008A6990; 0017ED20 creates its event on first use (005CD0A0 -> CreateEventA) and locks it (005CD370 -> 005CD380); 0017F760 unlocks it (005CD7D0)\tSEMANTICALLY IDENTIFIED\tPROVEN\t0015BCD4 lea rcx, [01F7F510] / 0015BCDB call 005CC8A0; 0017ED24 cmp byte ptr [01F7F510], 0 / 0017ED34 call 005CD0A0 / 0017ED44 jmp 005CD370; 0017F760 lea rcx, [01F7F510] / 0017F767 jmp 005CD7D0; 005CC8A0 clears +0x0, +0x8, +0x10, +0x18, +0x20, +0x24; 005CD395 lock xadd [rcx+0x18]; 005CD39A call [008C21D8 GetCurrentThreadId]; 005CD3D5 call [008C20E0 WaitForSingleObject] on [rdi+8]; 005CD7EE add dword ptr [rbx+0x24], -1 / 005CD7FA lock cmpxchg [rbx+0x20]; 0x90 + 0x28 = 0xB8, the next field; the-game-is-a-phyre-application.md slot 16; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool; was byte0090 u8 (1 B, the init byte only) + unobservedSpan0091 (39 B): the census saw the cmp and not the five lea"
+   ],
+   "why": "the store cut the first byte of an embedded lock and left the rest as an unobserved span: five lea pass the whole object",
+   "contract": null
+  },
+  {
+   "old": [
+    "AppBootStatic01F7F480\t0x00B8\t4\tdword00B8\tuint32\treached at the image address 01F7F538: 5 access(es), 4 written, widths 4. First cited at 0018223D in 00182220 (`mov dword ptr [rip + 0x1dfd2f1], 1`). MEANING NOT CLAIMED.\tTYPE RESOLVED\tPROVEN\tDECLARED 2026-09-22 (OPUS) by censusing an address range NOBODY HAD CLAIMED. Found while checking a boundary signal on PApplication - the static census reported accesses past its declared end - and the two are NOT one object: PApplication is touched by exactly ONE direct rip-relative access across its whole 0x1130, while this range is touched by 131 bodies at 46 displacements. A neighbour addressed absolutely a hundred times over, beside a parent addressed once, is a second object and not a short extent. THE EXTENT IS THE TIGHTEST THE EVIDENCE SUPPORTS - the last access plus its own width - and the bytes from there to the next known object at 01F7F600 are NOT CLAIMED. NOTHING TAKES THE OBJECT'S BASE ADDRESS: the 8 `lea`s into this range all land on INTERIOR offsets, so there is no constructor call on it and no size argument anywhere to read an extent from, which is exactly why the extent is stated as a floor rather than a measurement. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+   ],
+   "new": [
+    "AppBootStatic01F7F480\t0x00B8\t4\tpokeStatusB8\tuint32\t1 after either arm that calls 0018B5D0(obj, 0) (00182250) or 0018B670(obj, 0) when the object is live (00182220), written whether or not the object exists; 0 at the start of the forwards 001823B0 / 001823E0; returned by the getter 00182560 (callers 001B2530, 001FBD80)\tSEMANTICALLY IDENTIFIED\tPROVEN\t0018223D / 00182263 mov dword ptr [01F7F538], 1; 001823BE / 001823E8 mov dword ptr [01F7F538], 0; 00182560 mov eax, dword ptr [01F7F538]; CONTRACT-render-record-pool-lifecycle.md calls it the error slot; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool; was dword00B8"
+   ],
+   "why": "contract S-38 names it; the row states only what the writers and reader do",
+   "contract": "17-Presentation-Rendering/CONTRACT-render-record-pool-lifecycle.md"
+  },
+  {
+   "old": [
+    "AppBootStatic01F7F480\t0x00BC\t4\tdword00BC\tuint32\treached at the image address 01F7F53C: 2 access(es), 1 written, widths 4. First cited at 001846C6 in 001846B0 (`movss xmm0, dword ptr [rip + 0x1dfae6e]`). MEANING NOT CLAIMED.\tTYPE RESOLVED\tPROVEN\tDECLARED 2026-09-22 (OPUS) by censusing an address range NOBODY HAD CLAIMED. Found while checking a boundary signal on PApplication - the static census reported accesses past its declared end - and the two are NOT one object: PApplication is touched by exactly ONE direct rip-relative access across its whole 0x1130, while this range is touched by 131 bodies at 46 displacements. A neighbour addressed absolutely a hundred times over, beside a parent addressed once, is a second object and not a short extent. THE EXTENT IS THE TIGHTEST THE EVIDENCE SUPPORTS - the last access plus its own width - and the bytes from there to the next known object at 01F7F600 are NOT CLAIMED. NOTHING TAKES THE OBJECT'S BASE ADDRESS: the 8 `lea`s into this range all land on INTERIOR offsets, so there is no constructor call on it and no size argument anywhere to read an extent from, which is exactly why the extent is stated as a floor rather than a measurement. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+   ],
+   "new": [
+    "AppBootStatic01F7F480\t0x00BC\t4\tfloat00BC\tfloat\ta float the console pair swaps with 02CB8138: 001846B0 copies it out and tail-calls 0018CCF0(0018CA40(), 1); 001846F0 copies 02CB8138 back, zeroes 02CB8138 and calls 0018CCF0(..., 0). Meaning not claimed\tTYPE RESOLVED\tPROVEN\t001846C6 movss xmm0, dword ptr [01F7F53C]; 00184708 movss dword ptr [01F7F53C], xmm0; what-the-console-tunes.md; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool; was dword00BC uint32 (every access is movss)"
+   ],
+   "why": "ctype only: every access is movss",
+   "contract": null
+  },
+  {
+   "old": [
+    "AppBootStatic01F7F480\t0x00C0\t4\tdword00C0\tuint32\treached at the image address 01F7F540: 3 access(es), 2 written, widths 4. First cited at 00182D30 in 00182D30 (`mov dword ptr [rip + 0x1dfc806], 0`). MEANING NOT CLAIMED.\tTYPE RESOLVED\tPROVEN\tDECLARED 2026-09-22 (OPUS) by censusing an address range NOBODY HAD CLAIMED. Found while checking a boundary signal on PApplication - the static census reported accesses past its declared end - and the two are NOT one object: PApplication is touched by exactly ONE direct rip-relative access across its whole 0x1130, while this range is touched by 131 bodies at 46 displacements. A neighbour addressed absolutely a hundred times over, beside a parent addressed once, is a second object and not a short extent. THE EXTENT IS THE TIGHTEST THE EVIDENCE SUPPORTS - the last access plus its own width - and the bytes from there to the next known object at 01F7F600 are NOT CLAIMED. NOTHING TAKES THE OBJECT'S BASE ADDRESS: the 8 `lea`s into this range all land on INTERIOR offsets, so there is no constructor call on it and no size argument anywhere to read an extent from, which is exactly why the extent is stated as a floor rather than a measurement. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+   ],
+   "new": [
+    "AppBootStatic01F7F480\t0x00C0\t4\tpokeGate80Once\tuint32\tonce-flag for arming +0x80: 00184740 arms +0x80 only while this is 0 and sets it to 1 in the same step; 00182D30 clears it\tSEMANTICALLY IDENTIFIED\tPROVEN\t00184779 cmp dword ptr [01F7F540], ebx / 00184781 mov dword ptr [01F7F540], 1 / 0018478B mov dword ptr [01F7F500], 1; 00182D30 mov dword ptr [01F7F540], 0; the-world-tick-and-the-field-frame.md; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool; was dword00C0"
+   ],
+   "why": "page meaning verified",
+   "contract": null
+  },
+  {
+   "old": [
+    "AppBootStatic01F7F480\t0x0110\t4\tdword0110\tuint32\treached at the image address 01F7F590: 15 access(es), 2 written, widths 4. First cited at 00185A54 in 00185A50 (`mov r8d, dword ptr [rip + 0x1df9b35]`). MEANING NOT CLAIMED.\tTYPE RESOLVED\tPROVEN\tDECLARED 2026-09-22 (OPUS) by censusing an address range NOBODY HAD CLAIMED. Found while checking a boundary signal on PApplication - the static census reported accesses past its declared end - and the two are NOT one object: PApplication is touched by exactly ONE direct rip-relative access across its whole 0x1130, while this range is touched by 131 bodies at 46 displacements. A neighbour addressed absolutely a hundred times over, beside a parent addressed once, is a second object and not a short extent. THE EXTENT IS THE TIGHTEST THE EVIDENCE SUPPORTS - the last access plus its own width - and the bytes from there to the next known object at 01F7F600 are NOT CLAIMED. NOTHING TAKES THE OBJECT'S BASE ADDRESS: the 8 `lea`s into this range all land on INTERIOR offsets, so there is no constructor call on it and no size argument anywhere to read an extent from, which is exactly why the extent is stated as a floor rather than a measurement. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+   ],
+   "new": [
+    "AppBootStatic01F7F480\t0x0110\t4\tblockBankIndex\tuint32\ta bank index in 0..3: 00185A50 and the render pass 00187950 pass it as r8d and then store (index + 1) AND 3; the render-block and save-image Platform bodies pass the current value as their bank argument (r8d)\tSEMANTICALLY IDENTIFIED\tPROVEN\t00185A54 mov r8d, dword ptr [01F7F590] / 00185A6D inc eax / 00185A6F and eax, 3 / 00185A72 mov dword ptr [01F7F590], eax; the same at 001879EB-00187A0D; readers 0062BD67, 0062C1C7, 0062C4B9, 0062C952, 0062CC66, 006742E4, 006744D4, 0067479E, 00674837 mov r8d, dword ptr [01F7F590]; CONTRACT-save-image-buffers.md (the bank current at release time); OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool; was dword0110"
+   ],
+   "why": "contract S-43 names it",
+   "contract": "19-Save-Load-Settings/CONTRACT-save-image-buffers.md"
+  },
+  {
+   "old": [
+    "AppBootStatic01F7F480\t0x0114\t1\tbyte0114\tu8\treached at the image address 01F7F594: 3 access(es), 2 written, widths 1. First cited at 00188113 in 00187950 (`mov byte ptr [rip + 0x1df747a], 0`). MEANING NOT CLAIMED.\tTYPE RESOLVED\tPROVEN\tDECLARED 2026-09-22 (OPUS) by censusing an address range NOBODY HAD CLAIMED. Found while checking a boundary signal on PApplication - the static census reported accesses past its declared end - and the two are NOT one object: PApplication is touched by exactly ONE direct rip-relative access across its whole 0x1130, while this range is touched by 131 bodies at 46 displacements. A neighbour addressed absolutely a hundred times over, beside a parent addressed once, is a second object and not a short extent. THE EXTENT IS THE TIGHTEST THE EVIDENCE SUPPORTS - the last access plus its own width - and the bytes from there to the next known object at 01F7F600 are NOT CLAIMED. NOTHING TAKES THE OBJECT'S BASE ADDRESS: the 8 `lea`s into this range all land on INTERIOR offsets, so there is no constructor call on it and no size argument anywhere to read an extent from, which is exactly why the extent is stated as a floor rather than a measurement. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+   ],
+   "new": [
+    "AppBootStatic01F7F480\t0x0114\t1\taoRanLatch\tuint8\tset to 1 by AmbientOcclusionObj::Execute 001F28B0 only on the path where AO ran; zeroed by the render pass 00187950 before the part-0 walk when render params +0x199 is set; while 01DF08FC is 0 and this is non-zero, the forward walk 0018B100 exits at the next entry that passes the mask (I-7)\tSEMANTICALLY IDENTIFIED\tPROVEN\t001F29A3 mov byte ptr [01F7F594], 1; 00188113 mov byte ptr [01F7F594], 0; 0018B175 cmp byte ptr [01F7F594], 0; CONTRACT-render-command-list-and-graphics-handshake.md I-7 and its state table; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool; was byte0114"
+   ],
+   "why": "contract S-39 states it",
+   "contract": "17-Presentation-Rendering/CONTRACT-render-command-list-and-graphics-handshake.md"
+  },
+  {
+   "old": [
+    "AppBootStatic01F7F480\t0x0118\t8\tqword0118\tvoid*\treached at the image address 01F7F598: 6 access(es), 1 written, widths 8. First cited at 001862E0 in 001862B0 (`mov rax, qword ptr [rip + 0x1df92b1]`). MEANING NOT CLAIMED.\tTYPE RESOLVED\tPROVEN\tDECLARED 2026-09-22 (OPUS) by censusing an address range NOBODY HAD CLAIMED. Found while checking a boundary signal on PApplication - the static census reported accesses past its declared end - and the two are NOT one object: PApplication is touched by exactly ONE direct rip-relative access across its whole 0x1130, while this range is touched by 131 bodies at 46 displacements. A neighbour addressed absolutely a hundred times over, beside a parent addressed once, is a second object and not a short extent. THE EXTENT IS THE TIGHTEST THE EVIDENCE SUPPORTS - the last access plus its own width - and the bytes from there to the next known object at 01F7F600 are NOT CLAIMED. NOTHING TAKES THE OBJECT'S BASE ADDRESS: the 8 `lea`s into this range all land on INTERIOR offsets, so there is no constructor call on it and no size argument anywhere to read an extent from, which is exactly why the extent is stated as a floor rather than a measurement. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+   ],
+   "new": [
+    "AppBootStatic01F7F480\t0x0118\t8\tperFrameSingletonCell\tBootSingleton01F7F598*\tthe pointer cell of the 0xDD8 per-frame singleton (BootSingleton01F7F598): Ensure 00189000 allocates and constructs it (00184F20) when the cell is null and stores it; 00189120 is the getter; the camera publish's bank parity is that object's +0x1C\tSEMANTICALLY IDENTIFIED\tPROVEN\t0018902A cmp qword ptr [01F7F598], 0 / 00189034 mov ecx, 0xdd8 / 00189061 call 00184F20 / 00189067 mov qword ptr [01F7F598], rax; 00189120 mov rax, qword ptr [01F7F598]; CONTRACT-character-transform-publish.md (parity at *(char**)0x01F7F598 + 0x1C); OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool; was qword0118 void*, and the store already routes BootSingleton01F7F598 as PTR 0x01F7F598"
+   ],
+   "why": "contract S-38 states it; this row and BootSingleton01F7F598's PTR route describe the same cell",
+   "contract": "17-Presentation-Rendering/CONTRACT-character-transform-publish.md"
+  },
+  {
+   "old": [
+    "AppBootStatic01F7F480\t0x0120\t4\tdword0120\tuint32\treached at the image address 01F7F5A0: 21 access(es), 1 written, widths 4. First cited at 0017EB77 in 0017E8E0 (`mov eax, dword ptr [rip + 0x1e00a23]`). MEANING NOT CLAIMED. || ALIGNMENT NOTE 2026-09-23 (SWE2-STRUCT): the 0x124 extent ends on a dword because this is the last measured access - a single static instance has no array stride, so there is no tail padding to declare.\tTYPE RESOLVED\tPROVEN\tDECLARED 2026-09-22 (OPUS) by censusing an address range NOBODY HAD CLAIMED. Found while checking a boundary signal on PApplication - the static census reported accesses past its declared end - and the two are NOT one object: PApplication is touched by exactly ONE direct rip-relative access across its whole 0x1130, while this range is touched by 131 bodies at 46 displacements. A neighbour addressed absolutely a hundred times over, beside a parent addressed once, is a second object and not a short extent. THE EXTENT IS THE TIGHTEST THE EVIDENCE SUPPORTS - the last access plus its own width - and the bytes from there to the next known object at 01F7F600 are NOT CLAIMED. NOTHING TAKES THE OBJECT'S BASE ADDRESS: the 8 `lea`s into this range all land on INTERIOR offsets, so there is no constructor call on it and no size argument anywhere to read an extent from, which is exactly why the extent is stated as a floor rather than a measurement. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+   ],
+   "new": [
+    "AppBootStatic01F7F480\t0x0120\t4\trenderPassCounter\tuint32\tincremented once at the end of each render pass 00187950; its readers take it modulo a count to pick a slot (0017E8E0 divides it by r15d and uses the remainder)\tSEMANTICALLY IDENTIFIED\tHIGH\t00188614 inc dword ptr [01F7F5A0] (its only writer); 0017EB77 mov eax, dword ptr [01F7F5A0] / 0017EB7D div r15d / 0017EB80 mov edi, edx; 20 readers; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool; was dword0120. HIGH: one reader's use read, not all 20"
+   ],
+   "why": "only writer is the render pass; one reader's modulo use verified",
+   "contract": null
+  }
+ ],
+ "not_proposed": [
+  "+0x48 / +0x50 / +0x58: owner pointers to the init burst's 0xC0 (001A16E0), 0x10 (001A17D0) and 0xA0 (001B24D0) objects; no contract names a meaning",
+  "+0x88 (01F7F508): ten writers across script paths 002E28E0 / 002E3110 / 002EE290 / 002EE430 / 003EB250, one reader 00420636; not read here",
+  "+0x8C / +0x8D: once-bytes guarding 0017F070 and 001809A0 (pages describe them); +0x8E: setne store by 00183060, getter 0017FE50; meanings are a sentence each but no contract names them",
+  "+0xD0..+0x10C: sixteen dwords written once by 0017ED50; not read here",
+  "+0x84: console global set by 00182FE0, read by 0017FE20"
+ ],
+ "counts": {
+  "proposals": 19,
+  "rows_out": 20,
+  "rows_in": 19
+ }
+}

@@ -32,7 +32,7 @@
   },
   {
    "fn": "007BA7E0",
-   "text": "On the stream state at `rcx` (data pointer `+0`, dword `+8`, fill `+0xC`, consumed `+0x10`, header and body counts `+0x18`/`+0x1C`) it returns 0 when bit `0x80000000` of `+8` is set; with no cached header it returns 0 if fewer than 27 bytes remain (signed), resyncs if the dword at the read position differs from `01CB5780`, returns 0 if fewer than 27 plus byte `+0x1A` bytes remain, else sums the segment-table bytes into `+0x1C` and caches that header length in `+0x18`; it returns 0 while header plus body exceed the remaining bytes, then zeroes the dword at read position `+0x16`, recomputes it with `007B9F80` and on mismatch restores it and resyncs: clears `+0x18`/`+0x1C`, finds byte 0x4F after the read position through the import at `008C2A18` (end of data when absent), sets `+0x10` there and returns minus the skipped count; on a match it fills the record at `rdx` (when non-null) with header pointer, header length, body pointer and body length, adds the page size to `+0x10`, clears `+0x14`, `+0x18` and `+0x1C` and returns the page size.",
+   "text": "On the stream state at `rcx` (data pointer `+0`, dword `+8`, fill `+0xC`, consumed `+0x10`, header and body counts `+0x18`/`+0x1C`) it returns 0 when bit `0x80000000` of `+8` is set; with no cached header it returns 0 if fewer than 27 bytes remain (signed), resyncs if the dword at the read position differs from the constant dword stored at `01CB5780` (`.rdata`, bytes `4F 67 67 53`), returns 0 if fewer than 27 plus byte `+0x1A` bytes remain, else adds the byte `+0x1A` segment-table bytes from read position `+0x1B` onto dword `+0x1C` and caches that header length in `+0x18`; it returns 0 while header plus body exceed the remaining bytes, then zeroes the dword at read position `+0x16`, recomputes it with `007B9F80` and on mismatch restores it and resyncs: clears `+0x18`/`+0x1C`, finds byte 0x4F after the read position through the import at `008C2A18` (end of data when absent), sets `+0x10` there and returns minus the skipped count; on a match it fills the record at `rdx` (when non-null) with header pointer, header length, body pointer and body length, adds the page size to `+0x10`, clears `+0x14`, `+0x18` and `+0x1C` and returns the page size.",
    "anchors": [
     [
      "007BA80B",
@@ -94,6 +94,11 @@
   {
    "fn": "0087AF40",
    "why": "byte re-read by a non-drafting agent: 'returns that result' after `0087C6C0` reads as the `0087C6C0` result; the function returns the saved `0087BD60` result (`esi`, `0087B00D cmp esi, 1` / `cmove esi, r15d`) with 1 mapped to 0, ignoring `0087C6C0`'s return.; The input pointer `r8` and output pointer `rcx` are stored into the record AFTER `0087C9F0` returns (`0087AF9D`, `0087AFB0`); only the qwords `+0x30`/`+0x38`/`+0x40` are set before that call."
+  },
+  {
+   "fn": "007BA7E0",
+   "why": "narrowed 2026-10-03 (OPUS) on the non-author review auditspec-review-opus-save-image-buffers-header-and-payload-ee-1003: 'resyncs if the dword at the read position differs from `01CB5780`, returns 0 if fewer than 27 plus byte `+0x1A` bytes remain, else sums the segment-table bytes ' -> 'resyncs if the dword at the read position differs from the constant dword stored at `01CB5780` (`.rdata`, bytes `4F 67 67 53`), returns 0 if fewer than 27 plus '",
+   "by": "reviewer"
   }
  ],
  "mode": "ee",

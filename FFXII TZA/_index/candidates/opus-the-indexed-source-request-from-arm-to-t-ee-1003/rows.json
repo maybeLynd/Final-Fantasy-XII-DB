@@ -1,0 +1,40 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/the-indexed-source-request-from-arm-to-terminal-pump.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-indexed-source-request-from-arm-to-terminal-pump-r8.json",
+ "rows": [
+  {
+   "fn": "003DF440",
+   "text": "with `a` = `ecx`, `b` = `edx` and `c` = `r8d` (`a` and `c` sign-extended): takes `n` = `0032F2F0(a, c)` and calls `0036C1D0(5, 5)`; for `n` <= 0 (signed) it tail-jumps to `0036C140`; otherwise `k` = `0032F2C0(a, c)`, `0032F170(a, b, &w1, &w2)` for two stack words, and the block `p` = `0036A100(n)`, or when that is null `0036C1D0(6, 5)`, `p` = `0036A190(n)` and `0036C140()`; with the record `r` = `02B59360` + (`c` + 8`a`)*0x38 for `c` <= 7 (unsigned), else 0, it stores word `w1` to `+0x2C`, `p` to qword `+0x18`, word `w2` + 2 to `+0x2E`, 0 to qword `+0x20`, `b` to word `+0x28`, `n` to dword `+0x30` and `k` to dword `+0x34`; then sets byte `[r+0x10]` = 1 when `00267310(a)` is non-zero, else calls `003DF550(r)`; finally tail-jumps to `0036C140`",
+   "anchors": [
+    [
+     "003DF45A",
+     "call"
+    ],
+    [
+     "003DF468",
+     "call"
+    ],
+    [
+     "003DF49A",
+     "call"
+    ],
+    [
+     "003DF4D1",
+     "imul"
+    ],
+    [
+     "003DF52F",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

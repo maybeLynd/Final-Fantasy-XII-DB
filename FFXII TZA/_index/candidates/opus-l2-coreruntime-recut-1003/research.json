@@ -1,0 +1,148 @@
+{
+ "type": "CoreRuntimeStatic02064AA0",
+ "survey": "static types, MEANING NOT CLAIMED rows joined to page and contract citations by absolute address",
+ "proposals": [
+  {
+   "old": [
+    "CoreRuntimeStatic02064AA0\t0x0000\t4\tdword0000\tuint32\treached at the image address 02064AA0: 10 access(es), 3 written, widths 4. First cited at 0022A494 in 0022A490 (`mov dword ptr [rip + 0x1e3a606], edx`). MEANING NOT CLAIMED.\tTYPE RESOLVED\tPROVEN\tDECLARED 2026-09-22 (OPUS) by censusing an address range NOBODY HAD CLAIMED, found by the sweep for writable static state: every rip-relative operand in the image that is WRITTEN at least once - a store is what separates state from string literals, float constants, jump tables and function pointers, none of which are ever written - minus every address range the store already declares through a STATIC, PTR, SLOTPTR or ARRAY route cell, clustered by proximity. This range is touched by 71 bodies at 22 displacements. THE EXTENT IS THE TIGHTEST THE EVIDENCE SUPPORTS - the last access plus its own width - and nothing beyond it is claimed. NOTHING TAKES THE OBJECT'S BASE ADDRESS: the 0 `lea`s into this range all land on INTERIOR offsets, so there is no constructor call on it and no size argument anywhere to read an extent from, which is exactly why the extent is stated as a floor rather than a measurement. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+   ],
+   "new": [
+    "CoreRuntimeStatic02064AA0\t0x0000\t4\tframeArgument\tuint32\tthe frame driver's argument: 0022A490 stores its edx here before running the frame (0022A580) and bumps +0x30 when that returns non-zero; the field frame 0022A770 consumes it: when non-zero it re-seeds +0x20 (1.0 when dword 01FD4A8C is 1, which it then clears, else 0) and zeroes this; 002506D0 adds 00184950() to 0208F570 only while it is 0\tSEMANTICALLY IDENTIFIED\tPROVEN\t0022A494 mov dword ptr [02064AA0], edx / 0022A49A call 0022A580 / 0022A4A3 inc byte ptr [02064AD0]; 0022AAE9 cmp dword ptr [02064AA0], r12d (r12d = 0, 0022A78B) / 0022AB0A mov dword ptr [02064AC0], 0x3f800000 / 0022AB1D mov dword ptr [02064AC0], r12d / 0022AB24 mov dword ptr [02064AA0], r12d; 002506D4 cmp dword ptr [02064AA0], 0; what-happens-between-two-frames.md (frame-argument global); was dword0000 uint32; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool"
+   ],
+   "contract": null,
+   "why": "page meaning verified; the consumer is read here"
+  },
+  {
+   "old": [
+    "CoreRuntimeStatic02064AA0\t0x0008\t4\tdword0008\tuint32\treached at the image address 02064AA8: 3 access(es), 2 written, widths 4. First cited at 0022A030 in 0022A030 (`mov eax, dword ptr [rip + 0x1e3aa72]`). MEANING NOT CLAIMED.\tTYPE RESOLVED\tPROVEN\tDECLARED 2026-09-22 (OPUS) by censusing an address range NOBODY HAD CLAIMED, found by the sweep for writable static state: every rip-relative operand in the image that is WRITTEN at least once - a store is what separates state from string literals, float constants, jump tables and function pointers, none of which are ever written - minus every address range the store already declares through a STATIC, PTR, SLOTPTR or ARRAY route cell, clustered by proximity. This range is touched by 71 bodies at 22 displacements. THE EXTENT IS THE TIGHTEST THE EVIDENCE SUPPORTS - the last access plus its own width - and nothing beyond it is claimed. NOTHING TAKES THE OBJECT'S BASE ADDRESS: the 0 `lea`s into this range all land on INTERIOR offsets, so there is no constructor call on it and no size argument anywhere to read an extent from, which is exactly why the extent is stated as a floor rather than a measurement. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+   ],
+   "new": [
+    "CoreRuntimeStatic02064AA0\t0x0008\t4\tstepsThisFrame\tuint32\tthe number of simulation steps the field frame has run in the current frame: incremented once per step pass, zeroed when the step loop exits; returned by 0022A030, which the 60 fps half-rate predicate 001EDE80 adds to +0x38\tSEMANTICALLY IDENTIFIED\tPROVEN\t0022AD60 inc dword ptr [02064AA8] (inside the step loop, before 0022AD66 comiss xmm0, xmm6 / 0022AD69 jae 0022ABA0); 0022AD77 mov dword ptr [02064AA8], r12d; 0022A030 mov eax, dword ptr [02064AA8]; the field frame 0022A770 runs one simulation step per loop pass while +0x20 >= 1.0 (0022AB90 comiss xmm0, xmm6 with xmm6 = [01CEBBA8] = 1.0), subtracts 1.0 per pass (0022AC87 addss xmm0, xmm8 with xmm8 = [01CEBC9C] = -1.0) and clamps below 0 to 0 (0022AC99); CONTRACT-per-frame-update-gate.md and CONTRACT-boot-fixups.md (001EDE80's sum); was dword0008 uint32; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool"
+   ],
+   "contract": "00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md",
+   "why": "contracts S-02 name it a frame counter; the bytes make it the per-frame step count"
+  },
+  {
+   "old": [
+    "CoreRuntimeStatic02064AA0\t0x0010\t16\tvector0010\tu8[16]\treached at the image address 02064AB0: 8 access(es), 0 written, widths 16. First cited at 002F36BC in 002F35C0 (`movaps xmm0, xmmword ptr [rip + 0x1d713ed]`). MEANING NOT CLAIMED.\tTYPE RESOLVED\tPROVEN\tDECLARED 2026-09-22 (OPUS) by censusing an address range NOBODY HAD CLAIMED, found by the sweep for writable static state: every rip-relative operand in the image that is WRITTEN at least once - a store is what separates state from string literals, float constants, jump tables and function pointers, none of which are ever written - minus every address range the store already declares through a STATIC, PTR, SLOTPTR or ARRAY route cell, clustered by proximity. This range is touched by 71 bodies at 22 displacements. THE EXTENT IS THE TIGHTEST THE EVIDENCE SUPPORTS - the last access plus its own width - and nothing beyond it is claimed. NOTHING TAKES THE OBJECT'S BASE ADDRESS: the 0 `lea`s into this range all land on INTERIOR offsets, so there is no constructor call on it and no size argument anywhere to read an extent from, which is exactly why the extent is stated as a floor rather than a measurement. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+   ],
+   "new": [
+    "CoreRuntimeStatic02064AA0\t0x0010\t16\tzeroVector\tfloat[4]\ta 16-byte quad no code writes and that lies past the file-backed part of .data, so it is all zero at load; eight bodies load it with movaps as a zero vector to start from (the effect element sets its second lane to 1.0 to make an up vector)\tSEMANTICALLY IDENTIFIED\tPROVEN\treaders only: 002F36BC, 003C51DE, 003F53B0, 003F5977, 003F67E0, 003F6B50, 004217DB, 004FEA3E movaps xmm0, xmmword ptr [02064AB0]; no write in the image-wide reference list; pefile returns no raw bytes at 02064AB0 (beyond the section's raw data); an-effect-element-frame-by-frame.md; was vector0010 u8[16]; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool"
+   ],
+   "contract": null,
+   "why": "read-only and zero-filled: a constant, not state"
+  },
+  {
+   "old": [
+    "CoreRuntimeStatic02064AA0\t0x0020\t4\tdword0020\tuint32\treached at the image address 02064AC0: 16 access(es), 9 written, widths 4. First cited at 0022A1B4 in 0022A0B0 (`mov dword ptr [rip + 0x1e3a902], 0x3f800000`). MEANING NOT CLAIMED.\tTYPE RESOLVED\tPROVEN\tDECLARED 2026-09-22 (OPUS) by censusing an address range NOBODY HAD CLAIMED, found by the sweep for writable static state: every rip-relative operand in the image that is WRITTEN at least once - a store is what separates state from string literals, float constants, jump tables and function pointers, none of which are ever written - minus every address range the store already declares through a STATIC, PTR, SLOTPTR or ARRAY route cell, clustered by proximity. This range is touched by 71 bodies at 22 displacements. THE EXTENT IS THE TIGHTEST THE EVIDENCE SUPPORTS - the last access plus its own width - and nothing beyond it is claimed. NOTHING TAKES THE OBJECT'S BASE ADDRESS: the 0 `lea`s into this range all land on INTERIOR offsets, so there is no constructor call on it and no size argument anywhere to read an extent from, which is exactly why the extent is stated as a floor rather than a measurement. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+   ],
+   "new": [
+    "CoreRuntimeStatic02064AA0\t0x0020\t4\tstepAccumulator\tfloat\tthe field frame's step accumulator: after the step loop it adds +0x28 * +0x24, so the game advances +0x28 * +0x24 steps per frame on average; reset to 1.0 at boot and re-seeded by +0x00; copied to float 01E02820 at the top of each frame\tSEMANTICALLY IDENTIFIED\tPROVEN\tthe field frame 0022A770 runs one simulation step per loop pass while +0x20 >= 1.0 (0022AB90 comiss xmm0, xmm6 with xmm6 = [01CEBBA8] = 1.0), subtracts 1.0 per pass (0022AC87 addss xmm0, xmm8 with xmm8 = [01CEBC9C] = -1.0) and clamps below 0 to 0 (0022AC99); 0022AE18 movss xmm1, [02064AC0] / 0022AE20 movss xmm0, [02064AC8] / 0022AE28 mulss xmm0, [02064AC4] / 0022AE30 addss / 0022AE34 movss [02064AC0], xmm1; 0022AAF0 movss xmm0, [02064AC0] / 0022AAF8 movss [01E02820], xmm0; 0022A1B4 mov dword ptr [02064AC0], 0x3f800000; CONTRACT-input-subsystem.md (the accumulator at 0022AB79); starting-a-widget-animation-and-the-millisecond-that-becomes-frames.md; every access is movss or a 0x3f800000 store, so float; was dword0020 uint32; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool"
+   ],
+   "contract": "15-Input/CONTRACT-input-subsystem.md",
+   "why": "ctype uint32 -> float, meaning from the loop"
+  },
+  {
+   "old": [
+    "CoreRuntimeStatic02064AA0\t0x0024\t4\tdword0024\tuint32\treached at the image address 02064AC4: 6 access(es), 5 written, widths 4. First cited at 00229EF0 in 00229EF0 (`movss dword ptr [rip + 0x1e3abcc], xmm0`). MEANING NOT CLAIMED.\tTYPE RESOLVED\tPROVEN\tDECLARED 2026-09-22 (OPUS) by censusing an address range NOBODY HAD CLAIMED, found by the sweep for writable static state: every rip-relative operand in the image that is WRITTEN at least once - a store is what separates state from string literals, float constants, jump tables and function pointers, none of which are ever written - minus every address range the store already declares through a STATIC, PTR, SLOTPTR or ARRAY route cell, clustered by proximity. This range is touched by 71 bodies at 22 displacements. THE EXTENT IS THE TIGHTEST THE EVIDENCE SUPPORTS - the last access plus its own width - and nothing beyond it is claimed. NOTHING TAKES THE OBJECT'S BASE ADDRESS: the 0 `lea`s into this range all land on INTERIOR offsets, so there is no constructor call on it and no size argument anywhere to read an extent from, which is exactly why the extent is stated as a floor rather than a measurement. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+   ],
+   "new": [
+    "CoreRuntimeStatic02064AA0\t0x0024\t4\tgameSpeedScalar\tfloat\tthe game-speed multiplier on the step increment: when +0x32 is set, the entry of a float table (base r13) at index dword 01FD4A98 (the speed mode); else 1.0; forced to 1.0 when 003603C0() is non-zero; setter 00229EF0\tSEMANTICALLY IDENTIFIED\tPROVEN\t0022AAA6 cmp byte ptr [02064AD2], r12b / 0022AAAF movsxd rax, dword ptr [01FD4A98] / 0022AAB6 movss xmm0, [r13+rax*4] / 0022AABD movss [02064AC4], xmm0 / 0022AAC7 and 0022AADA mov dword ptr [02064AC4], 0x3f800000; 0022AE28 mulss; 00229EF0 movss [02064AC4], xmm0; keymap-ini-file-format-and-default-controls.md (published game-speed scalar); every access is movss or a 1.0 store; was dword0024 uint32; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool"
+   ],
+   "contract": null,
+   "why": "ctype uint32 -> float; page meaning verified"
+  },
+  {
+   "old": [
+    "CoreRuntimeStatic02064AA0\t0x0028\t4\tdword0028\tuint32\treached at the image address 02064AC8: 3 access(es), 2 written, widths 4. First cited at 00229EE0 in 00229EE0 (`movss dword ptr [rip + 0x1e3abe0], xmm0`). MEANING NOT CLAIMED.\tTYPE RESOLVED\tPROVEN\tDECLARED 2026-09-22 (OPUS) by censusing an address range NOBODY HAD CLAIMED, found by the sweep for writable static state: every rip-relative operand in the image that is WRITTEN at least once - a store is what separates state from string literals, float constants, jump tables and function pointers, none of which are ever written - minus every address range the store already declares through a STATIC, PTR, SLOTPTR or ARRAY route cell, clustered by proximity. This range is touched by 71 bodies at 22 displacements. THE EXTENT IS THE TIGHTEST THE EVIDENCE SUPPORTS - the last access plus its own width - and nothing beyond it is claimed. NOTHING TAKES THE OBJECT'S BASE ADDRESS: the 0 `lea`s into this range all land on INTERIOR offsets, so there is no constructor call on it and no size argument anywhere to read an extent from, which is exactly why the extent is stated as a floor rather than a measurement. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+   ],
+   "new": [
+    "CoreRuntimeStatic02064AA0\t0x0028\t4\tstepIncrement\tfloat\tthe per-frame step increment multiplied by +0x24 and added to +0x20 after the step loop; 1.0 at boot; setter 00229EE0\tSEMANTICALLY IDENTIFIED\tPROVEN\t0022AE20 movss xmm0, dword ptr [02064AC8]; 0022A1C8 mov dword ptr [02064AC8], 0x3f800000; 00229EE0 movss dword ptr [02064AC8], xmm0; was dword0028 uint32; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool"
+   ],
+   "contract": null,
+   "why": "ctype uint32 -> float"
+  },
+  {
+   "old": [
+    "CoreRuntimeStatic02064AA0\t0x002C\t4\tdword002C\tuint32\treached at the image address 02064ACC: 3 access(es), 2 written, widths 4. First cited at 00229F10 in 00229F10 (`mov dword ptr [rip + 0x1e3abb6], ecx`). MEANING NOT CLAIMED.\tTYPE RESOLVED\tPROVEN\tDECLARED 2026-09-22 (OPUS) by censusing an address range NOBODY HAD CLAIMED, found by the sweep for writable static state: every rip-relative operand in the image that is WRITTEN at least once - a store is what separates state from string literals, float constants, jump tables and function pointers, none of which are ever written - minus every address range the store already declares through a STATIC, PTR, SLOTPTR or ARRAY route cell, clustered by proximity. This range is touched by 71 bodies at 22 displacements. THE EXTENT IS THE TIGHTEST THE EVIDENCE SUPPORTS - the last access plus its own width - and nothing beyond it is claimed. NOTHING TAKES THE OBJECT'S BASE ADDRESS: the 0 `lea`s into this range all land on INTERIOR offsets, so there is no constructor call on it and no size argument anywhere to read an extent from, which is exactly why the extent is stated as a floor rather than a measurement. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+   ],
+   "new": [
+    "CoreRuntimeStatic02064AA0\t0x002C\t4\tframeBaseConstant\tuint32\t2 / FrameLimit (integer): 2 at 30 fps, 1 at 60; computed at boot, recomputed by the area transition through the setter 00229F10 and settable by the script verb mainloopallsyncv; the field frame passes it as the first argument of 0035EC80 every frame\tSEMANTICALLY IDENTIFIED\tPROVEN\t0022A18B mov eax, 2 / 0022A19A div dword ptr [01DFE0B4] / 0022A1A7 mov dword ptr [02064ACC], eax; 00229F10 mov dword ptr [02064ACC], ecx; 0022AE8F mov ecx, dword ptr [02064ACC] / 0022AE97 call 0035EC80; CONTRACT-boot-fixups.md I3; was dword002C uint32; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool"
+   ],
+   "contract": "00-Engine-Core-Runtime/CONTRACT-boot-fixups.md",
+   "why": "contract I3 states it"
+  },
+  {
+   "old": [
+    "CoreRuntimeStatic02064AA0\t0x0030\t1\tbyte0030\tu8\treached at the image address 02064AD0: 3 access(es), 2 written, widths 1. First cited at 00229EB0 in 00229EB0 (`movzx eax, byte ptr [rip + 0x1e3ac19]`). MEANING NOT CLAIMED.\tTYPE RESOLVED\tPROVEN\tDECLARED 2026-09-22 (OPUS) by censusing an address range NOBODY HAD CLAIMED, found by the sweep for writable static state: every rip-relative operand in the image that is WRITTEN at least once - a store is what separates state from string literals, float constants, jump tables and function pointers, none of which are ever written - minus every address range the store already declares through a STATIC, PTR, SLOTPTR or ARRAY route cell, clustered by proximity. This range is touched by 71 bodies at 22 displacements. THE EXTENT IS THE TIGHTEST THE EVIDENCE SUPPORTS - the last access plus its own width - and nothing beyond it is claimed. NOTHING TAKES THE OBJECT'S BASE ADDRESS: the 0 `lea`s into this range all land on INTERIOR offsets, so there is no constructor call on it and no size argument anywhere to read an extent from, which is exactly why the extent is stated as a floor rather than a measurement. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+   ],
+   "new": [
+    "CoreRuntimeStatic02064AA0\t0x0030\t1\tcompletedFrameCounter\tuint8\tincremented when the frame body 0022A580 returns non-zero (a wrapping byte); zeroed at the end of boot; returned by 00229EB0\tSEMANTICALLY IDENTIFIED\tPROVEN\t0022A4A3 inc byte ptr [02064AD0]; 0022A475 mov byte ptr [02064AD0], 0; 00229EB0 movzx eax, byte ptr [02064AD0]; what-happens-between-two-frames.md; was byte0030 u8; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool"
+   ],
+   "contract": null,
+   "why": "page meaning verified"
+  },
+  {
+   "old": [
+    "CoreRuntimeStatic02064AA0\t0x0031\t1\tbyte0031\tu8\treached at the image address 02064AD1: 5 access(es), 2 written, widths 1. First cited at 00229D20 in 00229D20 (`movzx ecx, byte ptr [rip + 0x1e3adaa]`). MEANING NOT CLAIMED.\tTYPE RESOLVED\tPROVEN\tDECLARED 2026-09-22 (OPUS) by censusing an address range NOBODY HAD CLAIMED, found by the sweep for writable static state: every rip-relative operand in the image that is WRITTEN at least once - a store is what separates state from string literals, float constants, jump tables and function pointers, none of which are ever written - minus every address range the store already declares through a STATIC, PTR, SLOTPTR or ARRAY route cell, clustered by proximity. This range is touched by 71 bodies at 22 displacements. THE EXTENT IS THE TIGHTEST THE EVIDENCE SUPPORTS - the last access plus its own width - and nothing beyond it is claimed. NOTHING TAKES THE OBJECT'S BASE ADDRESS: the 0 `lea`s into this range all land on INTERIOR offsets, so there is no constructor call on it and no size argument anywhere to read an extent from, which is exactly why the extent is stated as a floor rather than a measurement. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+   ],
+   "new": [
+    "CoreRuntimeStatic02064AA0\t0x0031\t1\taspectModeByte\tuint8\tselects the projection aspect: 00229D20 answers 1.3333 unless the byte is 1, 2, 3 or 5, when it tail-calls 00182EE0; set by 00229EC0, read by 00229D50 / 00229D60, cleared at boot\tSEMANTICALLY IDENTIFIED\tPROVEN\t00229D20 movzx ecx, byte ptr [02064AD1] / 00229D27 lea eax, [rcx-1] / 00229D2A cmp al, 2 / 00229D2E cmp cl, 5 / 00229D33 movss xmm0, [00908D54] (1.3333) / 00229D3C jmp 00182EE0; 00229EC0 mov byte ptr [02064AD1], cl; 0022A1AD mov byte ptr [02064AD1], 0; how-a-camera-reaches-the-renderer.md (CON-184 correction); was byte0031 u8; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool"
+   ],
+   "contract": null,
+   "why": "page meaning verified"
+  },
+  {
+   "old": [
+    "CoreRuntimeStatic02064AA0\t0x0032\t1\tbyte0032\tu8\treached at the image address 02064AD2: 5 access(es), 2 written, widths 1. First cited at 00229DF0 in 00229DF0 (`movzx eax, byte ptr [rip + 0x1e3acdb]`). MEANING NOT CLAIMED.\tTYPE RESOLVED\tPROVEN\tDECLARED 2026-09-22 (OPUS) by censusing an address range NOBODY HAD CLAIMED, found by the sweep for writable static state: every rip-relative operand in the image that is WRITTEN at least once - a store is what separates state from string literals, float constants, jump tables and function pointers, none of which are ever written - minus every address range the store already declares through a STATIC, PTR, SLOTPTR or ARRAY route cell, clustered by proximity. This range is touched by 71 bodies at 22 displacements. THE EXTENT IS THE TIGHTEST THE EVIDENCE SUPPORTS - the last access plus its own width - and nothing beyond it is claimed. NOTHING TAKES THE OBJECT'S BASE ADDRESS: the 0 `lea`s into this range all land on INTERIOR offsets, so there is no constructor call on it and no size argument anywhere to read an extent from, which is exactly why the extent is stated as a floor rather than a measurement. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+   ],
+   "new": [
+    "CoreRuntimeStatic02064AA0\t0x0032\t1\tfastModeEnabled\tuint8\t1 while the speed-up mode applies: rewritten every step from 00358550(); when set, +0x24 takes the speed table's entry; the widget timescale uses 1.0 / [01E02820] when it is set; returned by 00229DF0\tSEMANTICALLY IDENTIFIED\tPROVEN\t0022AD02 call 00358550 / 0022AD07 mov byte ptr [02064AD2], al; 0022AAA6 cmp byte ptr [02064AD2], r12b; 0022A184 mov byte ptr [02064AD2], 0; 00229DF0 movzx eax, byte ptr [02064AD2]; CONTRACT-widget-object.md (timescale +0xB8); keymap-ini-file-format-and-default-controls.md; was byte0032 u8; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool"
+   ],
+   "contract": "16-UI/Widget-Object-Model/CONTRACT-widget-object.md",
+   "why": "contract S-36 names it"
+  },
+  {
+   "old": [
+    "CoreRuntimeStatic02064AA0\t0x0038\t4\tdword0038\tuint32\treached at the image address 02064AD8: 3 access(es), 1 written, widths 4. First cited at 0022A080 in 0022A080 (`mov eax, dword ptr [rip + 0x1e3aa52]`). MEANING NOT CLAIMED.\tTYPE RESOLVED\tPROVEN\tDECLARED 2026-09-22 (OPUS) by censusing an address range NOBODY HAD CLAIMED, found by the sweep for writable static state: every rip-relative operand in the image that is WRITTEN at least once - a store is what separates state from string literals, float constants, jump tables and function pointers, none of which are ever written - minus every address range the store already declares through a STATIC, PTR, SLOTPTR or ARRAY route cell, clustered by proximity. This range is touched by 71 bodies at 22 displacements. THE EXTENT IS THE TIGHTEST THE EVIDENCE SUPPORTS - the last access plus its own width - and nothing beyond it is claimed. NOTHING TAKES THE OBJECT'S BASE ADDRESS: the 0 `lea`s into this range all land on INTERIOR offsets, so there is no constructor call on it and no size argument anywhere to read an extent from, which is exactly why the extent is stated as a floor rather than a measurement. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+   ],
+   "new": [
+    "CoreRuntimeStatic02064AA0\t0x0038\t4\tframeParity\tuint32\talternates 0/1: the frame body 0022A580 stores (value == 0) back on the path through 0022A644; returned by 0022A080, which the 60 fps half-rate predicate 001EDE80 adds to +0x08\tSEMANTICALLY IDENTIFIED\tPROVEN\t0022A644 xor eax, eax / 0022A646 cmp dword ptr [02064AD8], eax / 0022A64C sete al / 0022A64F mov dword ptr [02064AD8], eax; 0022A080 mov eax, dword ptr [02064AD8]; CONTRACT-boot-fixups.md (001EDE80's sum d[02064AD8] + d[02064AA8]) and CONTRACT-per-frame-update-gate.md; was dword0038 uint32; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool"
+   ],
+   "contract": "00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md",
+   "why": "contracts S-02 name it a frame counter; the bytes make it a parity toggle"
+  },
+  {
+   "old": [
+    "CoreRuntimeStatic02064AA0\t0x003C\t4\tdword003C\tuint32\treached at the image address 02064ADC: 6 access(es), 3 written, widths 4. First cited at 0022B12E in 0022B0B0 (`mov dword ptr [rip + 0x1e399a8], edi`). MEANING NOT CLAIMED.\tTYPE RESOLVED\tPROVEN\tDECLARED 2026-09-22 (OPUS) by censusing an address range NOBODY HAD CLAIMED, found by the sweep for writable static state: every rip-relative operand in the image that is WRITTEN at least once - a store is what separates state from string literals, float constants, jump tables and function pointers, none of which are ever written - minus every address range the store already declares through a STATIC, PTR, SLOTPTR or ARRAY route cell, clustered by proximity. This range is touched by 71 bodies at 22 displacements. THE EXTENT IS THE TIGHTEST THE EVIDENCE SUPPORTS - the last access plus its own width - and nothing beyond it is claimed. NOTHING TAKES THE OBJECT'S BASE ADDRESS: the 0 `lea`s into this range all land on INTERIOR offsets, so there is no constructor call on it and no size argument anywhere to read an extent from, which is exactly why the extent is stated as a floor rather than a measurement. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+   ],
+   "new": [
+    "CoreRuntimeStatic02064AA0\t0x003C\t4\tpostFxEligible\tuint32\tpost-processing eligible for this draw: 0022B0B0 clears it (with +0x40) at the start of the draw and sets it to 1 after 00182A10 when dword 01FD49E8 is set; the post-processing call runs only while this is non-zero and +0x40 is 0; returned by 0022BE90\tSEMANTICALLY IDENTIFIED\tPROVEN\t0022B12E / 0022B152 mov dword ptr [02064ADC], edi; 0022B4A1 call 00182A10 / 0022B4A6 mov dword ptr [02064ADC], 1; 0022B4BB and 0022B52A cmp dword ptr [02064ADC], edi; 0022BE90 mov eax, dword ptr [02064ADC]; what-happens-between-two-frames.md (post-processing latches); was dword003C uint32; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool"
+   ],
+   "contract": null,
+   "why": "page meaning verified"
+  },
+  {
+   "old": [
+    "CoreRuntimeStatic02064AA0\t0x0040\t4\tdword0040\tuint32\treached at the image address 02064AE0: 8 access(es), 5 written, widths 4. First cited at 0022B134 in 0022B0B0 (`mov dword ptr [rip + 0x1e399a6], edi`). MEANING NOT CLAIMED.\tTYPE RESOLVED\tPROVEN\tDECLARED 2026-09-22 (OPUS) by censusing an address range NOBODY HAD CLAIMED, found by the sweep for writable static state: every rip-relative operand in the image that is WRITTEN at least once - a store is what separates state from string literals, float constants, jump tables and function pointers, none of which are ever written - minus every address range the store already declares through a STATIC, PTR, SLOTPTR or ARRAY route cell, clustered by proximity. This range is touched by 71 bodies at 22 displacements. THE EXTENT IS THE TIGHTEST THE EVIDENCE SUPPORTS - the last access plus its own width - and nothing beyond it is claimed. NOTHING TAKES THE OBJECT'S BASE ADDRESS: the 0 `lea`s into this range all land on INTERIOR offsets, so there is no constructor call on it and no size argument anywhere to read an extent from, which is exactly why the extent is stated as a floor rather than a measurement. exe 73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8"
+   ],
+   "new": [
+    "CoreRuntimeStatic02064AA0\t0x0040\t4\tpostFxRanThisDraw\tuint32\tset to 1 right after the post-processing call (00182970) so it runs once per draw; cleared with +0x3C at the start of the draw; setter 0022BFA0, getter 0022BEA0\tSEMANTICALLY IDENTIFIED\tPROVEN\t0022B4C3 / 0022B532 cmp dword ptr [02064AE0], edi; 0022B4F7 call 00182970 / 0022B501 mov dword ptr [02064AE0], 1; 0022B563 call 00182970 / 0022B56D mov dword ptr [02064AE0], 1; 0022B134 / 0022B158 mov dword ptr [02064AE0], edi; 0022BFA0 mov dword ptr [02064AE0], ecx; 0022BEA0; what-happens-between-two-frames.md; was dword0040 uint32; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool"
+   ],
+   "contract": null,
+   "why": "page meaning verified"
+  }
+ ],
+ "not_proposed": [
+  "+0x04 (02064AA4): one write at boot (0022A0C0, from 005C5230()), no reader in .text",
+  "+0x34 (02064AD4): one write (1.0 at boot, 0022A190); authored-data-table-registry.md says it mirrors +0x33 and is set to 2 - no such write is in the rip-relative reference list; the page statement needs re-reading, routed as a finding, not a row",
+  "+0x44 / +0x48 / +0x4C: one-shot flags in 0022A770 / 0022B0B0 / 0022B8C0 / 0022A580; meanings not read",
+  "+0x54..+0x5C: VU-side state of the effect element types (146 accesses at +0x5C); not read here"
+ ],
+ "finding": "authored-data-table-registry.md lines 302-303 state 02064AD4 mirrors the byte at 02064AD3 and is set to 2 on the state-4 exit; the image's rip-relative references to 02064AD4 are one store (0022A190, 1.0 at boot); a register-based access is not excluded by that list",
+ "counts": {
+  "proposals": 13,
+  "rows_out": 13,
+  "rows_in": 13
+ }
+}

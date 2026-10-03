@@ -38,6 +38,36 @@ as_json = "--json" in args
 pages = [a for a in args if not a.startswith("--")]
 open_tasks = [t for t in cl.tasks() if str(t.get("status", "")).upper() in cl.OPEN]
 dirty = cl.dirty_paths()
+
+
+def own_dirty(rel):
+    """2026-10-03: True when every changed line of a dirty page sits under a heading naming OPUS, in the worktree
+    (added lines) and at HEAD (removed lines) - i.e. the uncommitted edits are OPUS's own interior blocks (a second
+    OPUS record on the same page). A peer's edit anywhere else keeps the page BLOCKed."""
+    import re as _re, subprocess as _sp
+    path = "FFXII TZA/" + rel
+    d = _sp.run(["git", "-C", cl.DB, "diff", "-U0", "--", path], capture_output=True, text=True,
+                encoding="utf-8", errors="replace").stdout
+    if not d.strip():
+        return False
+    new = io.open(os.path.join(cl.DB, rel), encoding="utf-8", errors="replace").read().split("\n")
+    old = _sp.run(["git", "-C", cl.DB, "show", "HEAD:" + path.replace("\\", "/")], capture_output=True, text=True,
+                  encoding="utf-8", errors="replace").stdout.split("\n")
+
+    def opus_at(lines, n):
+        for i in range(min(n, len(lines)) - 1, -1, -1):
+            if _re.match(r"^#{1,3} ", lines[i]):
+                return "OPUS" in lines[i]
+        return False
+    for m in _re.finditer(r"^@@ -(\d+)(?:,(\d+))? \+(\d+)(?:,(\d+))? @@", d, _re.M):
+        o0, oc, n0, nc = int(m.group(1)), int(m.group(2) or 1), int(m.group(3)), int(m.group(4) or 1)
+        for k in range(oc):
+            if not opus_at(old, o0 + k):
+                return False
+        for k in range(nc):
+            if not opus_at(new, n0 + k):
+                return False
+    return True
 census = cl.carriers()
 res, bad = [], 0
 for p in pages:
@@ -62,7 +92,10 @@ for p in pages:
         if hit:
             reasons.append("board %s %s (%s) names %s" % (t.get("id"), t.get("status"), cl.owner(t), ",".join(hit[:4])))
     if ("FFXII TZA/" + rel) in dirty:
-        reasons.append("dirty in the working tree")
+        if own_dirty(rel):
+            warns.append("dirty, but only with OPUS's own uncommitted blocks")
+        else:
+            reasons.append("dirty in the working tree")
     if base in census:
         reasons.append("overlay carrier (census)")
     peers = cl.recent_peer_commits("FFXII TZA/" + rel, 24)

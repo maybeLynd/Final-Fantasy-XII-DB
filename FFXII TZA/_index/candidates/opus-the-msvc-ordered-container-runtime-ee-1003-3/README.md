@@ -10,7 +10,7 @@ The page named 8 F-frontier functions only at their entry. A local drafting agen
 
 **Verification.** [`interior_applier.py`](interior_applier.py) reads [`rows.json`](rows.json) and re-decodes every function first. Every anchor is an instruction boundary inside its extent with the recorded mnemonic ([`.out`](interior_applier.out): FAILS 0; idempotent).
 
-**Effect and gates.** All 7 rowed functions now measure A. On the page: `check_links` 0, `check_self_contradiction --db` 0, `check_consistency` 0 disagreements naming this page (tree total 2), `verify_doc_addresses --all` 0 REVIEW on this page (tree total 2).
+**Effect and gates.** All 7 rowed functions now measure A under the base rule. Five of them (`00712F60`, `00714DC0`, `0071E500`, `0071F590`, `0079BA10`) are members of the family `MSVC ordered-container (std::_Tree) runtime` that this page declares; they credit only because that family has no committed family checker (`fam_rows.py` + `spec.json` + `rows.tsv`) on this page and so is outside the family-declaring-page rule's scope. `interior_applier.py` is not such a checker: if the family is brought into scope, these five rows credit nothing until each member has a checker row. On the page: `check_links` 0, `check_self_contradiction --db` 0, `check_consistency` 0 disagreements naming this page (tree total 2), `verify_doc_addresses --all` 0 REVIEW on this page (tree total 2).
 
 **Limits.** Body statements, not meanings. A cloud draft is a pointer, not evidence: what stands here is OPUS's re-read. The session's agreement with OPUS is not independent review.
 

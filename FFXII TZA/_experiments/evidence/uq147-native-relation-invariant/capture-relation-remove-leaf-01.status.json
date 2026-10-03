@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\uq147-summoner-cleanup-order\\capture-relation-remove-leaf.py",
+    "source-relation-remove-leaf-01.json"
+  ],
+  "driver_sha256": "b72361fcd57c3451e7909241bced4f4cc16f53055cd304b822f4f4b1058e3a98",
+  "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+  "terminal": true,
+  "exit": 0,
+  "exception": null
+}

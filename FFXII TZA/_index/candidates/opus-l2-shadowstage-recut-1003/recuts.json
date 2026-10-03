@@ -1,0 +1,79 @@
+{
+ "proposed": [
+  {
+   "old": "ShadowSettings01F82EA8\t0x0F0\t4\tfield0F0\tfloat\tread as float at 1 site(s), e.g. 001F14D1. Width and type from the read side; what it holds is not claimed.\tTYPE RESOLVED\tPROVEN\tFLOW RE-CUT 2026-09-27 (OPUS, _index/candidates/type-flow-census/recut_check.py ShadowSettings01F82EA8 CELLS=01F82EA8,01F812C8 GETTERS=001F0850 TYPE_SIZE=0xB08): ShadowSettings01F82EA8 re-cut - the flow-aware census (type-flow-census/type_flow_census.py, seeds CELLS 01F82EA8,01F812C8, GETTERS 001F0850, TYPE_SIZE 0xB08) resolves this span's reads into non-overlapping fields. || WAS SPAN 0xF0 8 span00F0 u8[8] - an unnamed stretch: 2 censused displacements, 7 accesses (2 reads, 5 writes); first +0xF0, last +0xF4 || census_receiver_fixpoint.py SEED=call 001F0850 + SEED=ctor 001EF2D0 + SEED=cell 01F82EA8 + SEED=cell 01F812C8, extent 0xB08, unioned by site (OPUS, 2026-09-26); key names from the cutscene loader 001C3D50 (lea key -> getter -> store, keystore_trace.py)",
+   "new": null,
+   "type": "ShadowSettings01F82EA8"
+  },
+  {
+   "old": null,
+   "new": "ShadowSettings01F82EA8\t0x0F0\t4\tshadowValueG\tfloat\tscene-JSON key ShadowValueG: both loaders store it here beside ShadowValueR at +0xEC; 001F0AD0 stages the three as one float3\tSEMANTICALLY IDENTIFIED\tPROVEN\tlea rdx, [008FA918] 'ShadowValueG' then 001C51D0 / 00200B50; 001C4851 movaps xmm6, xmm0 / 001C487A movss dword ptr [rax+0xf0], xmm6 (rax = [01F812C8]); in 001C7940 the G node is kept in rsi (001C97E6) and its value in xmm6 (001C9821 / 001C9829), stored at 001C984A; the cell 01F812C8 holds the ShadowSettings pointer (0015CC00 re-caches it); was field0F0 float TYPE RESOLVED; OPUS L2 meaning-not-claimed survey 2026-10-03, re-read with retool",
+   "type": "ShadowSettings01F82EA8"
+  },
+  {
+   "old": "ShadowSettings01F82EA8\t0x0F4\t4\tfield0F4\tfloat\tread as float at 1 site(s), e.g. 001F14E1. Width and type from the read side; what it holds is not claimed.\tTYPE RESOLVED\tPROVEN\tFLOW RE-CUT 2026-09-27 (OPUS, _index/candidates/type-flow-census/recut_check.py ShadowSettings01F82EA8 CELLS=01F82EA8,01F812C8 GETTERS=001F0850 TYPE_SIZE=0xB08): ShadowSettings01F82EA8 re-cut - the flow-aware census (type-flow-census/type_flow_census.py, seeds CELLS 01F82EA8,01F812C8, GETTERS 001F0850, TYPE_SIZE 0xB08) resolves this span's reads into non-overlapping fields. || WAS SPAN 0xF0 8 span00F0 u8[8] - an unnamed stretch: 2 censused displacements, 7 accesses (2 reads, 5 writes); first +0xF0, last +0xF4 || census_receiver_fixpoint.py SEED=call 001F0850 + SEED=ctor 001EF2D0 + SEED=cell 01F82EA8 + SEED=cell 01F812C8, extent 0xB08, unioned by site (OPUS, 2026-09-26); key names from the cutscene loader 001C3D50 (lea key -> getter -> store, keystore_trace.py)",
+   "new": null,
+   "type": "ShadowSettings01F82EA8"
+  },
+  {
+   "old": null,
+   "new": "ShadowSettings01F82EA8\t0x0F4\t4\tshadowValueB\tfloat\tscene-JSON key ShadowValueB: both loaders store it here beside ShadowValueR at +0xEC; 001F0AD0 stages the three as one float3\tSEMANTICALLY IDENTIFIED\tPROVEN\tlea rdx, [008FA928] 'ShadowValueB' then 001C51D0 / 00200B50; 001C4837 movaps xmm7, xmm0 / 001C4882 movss dword ptr [rax+0xf4], xmm7; in 001C7940 the B node is kept in rbp (001C97B2) and its value in xmm7 (001C9816 / 001C981E), stored at 001C9852; the cell 01F812C8 holds the ShadowSettings pointer (0015CC00 re-caches it); was field0F4 float TYPE RESOLVED; OPUS L2 meaning-not-claimed survey 2026-10-03, re-read with retool",
+   "type": "ShadowSettings01F82EA8"
+  },
+  {
+   "old": "PostProcessParamContext\t0x170\t8\tparamVecXY170\tf32[2]\tXY lanes of a float triple - lea'd as out-params by 0018F8F0 (0018FA22/85), movss-written by 001C7940 || ctor-zeroed qword; the +0x170/+0x174/+0x178 region takes three float writes || ctor 0; three float writes +0x170/+0x174/+0x178 region\tSEMANTICALLY IDENTIFIED\tPROVEN\t0018CE30 qword=0; 001C7C76/001C7CC2/001C7D0E movss; lea 0018FA22/0018FA85/0018FAD4.",
+   "new": null,
+   "type": "PostProcessParamContext"
+  },
+  {
+   "old": "PostProcessParamContext\t0x178\t4\tparamVecZ178\tf32\tZ lane of the +0x170 float triple - lea'd by 0018F8F0, movss-written by 001C7940 || float dword in the +0x170 region || ctor qword+0x170 covers to +0x177; dword 0 at +0x178; float writes\tSEMANTICALLY IDENTIFIED\tPROVEN\t0018CE37 dword=0; 001C436F/001C7D5A movss; lea 0018FB2F.",
+   "new": null,
+   "type": "PostProcessParamContext"
+  },
+  {
+   "old": null,
+   "new": "PostProcessParamContext\t0x170\t4\tcolorR\tfloat\tthe scene setting mColorR minus 0.5 (the cutscene loader subtracts 0.5 before storing); written through the cell 01F81300; 0018F8F0 takes its address as an out-parameter\tSEMANTICALLY IDENTIFIED\tPROVEN\tlea rdx, [008FA4E0] 'mColorR' (001C7C20) / 00200B50 / 001C7C67 movss xmm6, [01CEBB70] = 0.5 / 001C7C72 subss xmm0, xmm6 / 001C7C76 movss [rax+0x170], xmm0 (rax = [01F81300]); lea 0018FA22; ctor zero 0018CE30; was paramVecXY170 f32[2] (8 B); OPUS L2 meaning-not-claimed survey 2026-10-03, re-read with retool",
+   "type": "PostProcessParamContext"
+  },
+  {
+   "old": null,
+   "new": "PostProcessParamContext\t0x174\t4\tcolorG\tfloat\tthe scene setting mColorG minus 0.5\tSEMANTICALLY IDENTIFIED\tPROVEN\tlea rdx, [008FA4E8] 'mColorG' (001C7C60) / 00200B50 / 001C7CB4 subss xmm0, xmm6 / 001C7CC2 movss [rax+0x174], xmm0; lea 0018FA85; split from paramVecXY170; OPUS L2 meaning-not-claimed survey 2026-10-03, re-read with retool",
+   "type": "PostProcessParamContext"
+  },
+  {
+   "old": null,
+   "new": "PostProcessParamContext\t0x178\t4\tcolorB\tfloat\tthe scene setting mColorB minus 0.5\tSEMANTICALLY IDENTIFIED\tPROVEN\tlea rdx, [008FA4F0] 'mColorB' (001C7CB8) / 00200B50 / 001C7D00 subss xmm0, xmm6 / 001C7D0E movss [rax+0x178], xmm0; lea 0018FAD4; was paramVecZ178, whose evidence cited 001C436F / 001C7D5A - those store +0x17C (mContrastR), not +0x178; OPUS L2 meaning-not-claimed survey 2026-10-03, re-read with retool",
+   "type": "PostProcessParamContext"
+  },
+  {
+   "old": "PostProcessParamContext\t0x334\t4\tquarterFloat334\tfloat\tfloat set to 0.25f by the ctor || ctor 0.25f\tTYPE RESOLVED\tPROVEN\t0018CF98 mov dword 0x3e800000; writes 001C4995/001C996D movss.",
+   "new": null,
+   "type": "PostProcessParamContext"
+  },
+  {
+   "old": null,
+   "new": "PostProcessParamContext\t0x334\t4\tnearRatio\tfloat\tthe scene setting mNearRatio, written by both loaders through the cell 01F81300; the constructor's default stays until a scene sets it\tSEMANTICALLY IDENTIFIED\tPROVEN\tlea rdx, [008FABB0] 'mNearRatio' / 001FF740 / 00200B50 / 001C996D movss [rax+0x334], xmm0 (rax = [01F81300]); also 001C4995 in 001C3D50; was quarterFloat334 float; OPUS L2 meaning-not-claimed survey 2026-10-03, re-read with retool",
+   "type": "PostProcessParamContext"
+  },
+  {
+   "old": "PostProcessParamContext\t0x338\t4\tunitFloat338\tfloat\tfloat set to 1.0f by the ctor || ctor 1.0f\tTYPE RESOLVED\tPROVEN\t0018CFA2 mov dword 0x3f800000; writes 001C49BB/001C99B5 movss.",
+   "new": null,
+   "type": "PostProcessParamContext"
+  },
+  {
+   "old": null,
+   "new": "PostProcessParamContext\t0x338\t4\tfarRatio\tfloat\tthe scene setting mFarRatio, written by both loaders through the cell 01F81300; the constructor's default stays until a scene sets it\tSEMANTICALLY IDENTIFIED\tPROVEN\tlea rdx, [008FABC0] 'mFarRatio' / 001FF740 / 00200B50 / 001C99B5 movss [rax+0x338], xmm0 (rax = [01F81300]); also 001C49BB in 001C3D50; was unitFloat338 float; OPUS L2 meaning-not-claimed survey 2026-10-03, re-read with retool",
+   "type": "PostProcessParamContext"
+  },
+  {
+   "old": "PostProcessParamContext\t0x33C\t4\tquarterFloat33C\tfloat\tfloat set to 0.25f by the ctor || ctor 0.25f\tTYPE RESOLVED\tPROVEN\t0018CFAC mov dword 0x3e800000; writes 001C49E1/001C99FD movss.",
+   "new": null,
+   "type": "PostProcessParamContext"
+  },
+  {
+   "old": null,
+   "new": "PostProcessParamContext\t0x33C\t4\tblurFactor\tfloat\tthe scene setting mBlurFactor, written by both loaders through the cell 01F81300; the constructor's default stays until a scene sets it\tSEMANTICALLY IDENTIFIED\tPROVEN\tlea rdx, [008FABD0] 'mBlurFactor' / 001FF740 / 00200B50 / 001C99FD movss [rax+0x33C], xmm0 (rax = [01F81300]); also 001C49E1 in 001C3D50; was quarterFloat33C float; OPUS L2 meaning-not-claimed survey 2026-10-03, re-read with retool",
+   "type": "PostProcessParamContext"
+  }
+ ]
+}

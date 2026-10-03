@@ -1,0 +1,75 @@
+{
+ "type": "MirrorBlockBytes02099DA0",
+ "proposals": [
+  {
+   "old": [
+    "MirrorBlockBytes02099DA0\t0x000\t1\tbyteA0\tuint8\tcmp 0025AFFB, 00261FDA, 00262D63; written 0025B02F (0), 00262D4B, 00262D8F (002628B0). MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tbyte-stride xref scan"
+   ],
+   "new": [
+    "MirrorBlockBytes02099DA0\t0x000\t1\tlockCharMotionOnce\tuint8\tset to 1 by script verb 0x011C lock_charmotion_once (handler 0034D350 -> 0026AF70 with cl = 1); while it is set the actor-resource load arm 0025AFC0 skips 002E4000(0, 1) and 002E3E20(0, 1), and that arm then clears it, so the lock lasts one load; the area transition 002628B0 and the area reset 00266D10 also write it\tSEMANTICALLY IDENTIFIED\tPROVEN\t0026AF70 mov byte ptr [02099DA0], cl; 0025AFFB cmp byte ptr [02099DA0], 0 / 0025B002 jne 0025B01C (skips 0025B00B call 002E4000 and 0025B017 call 002E3E20) / 0025B02F mov byte ptr [02099DA0], 0; 00262D4B / 00262D8F (002628B0), 00266DF7 (00266D10); also compared at 00261FDA; OPUS L2 meaning-not-claimed survey 2026-10-03, re-read with retool; verb names from scriptvm-verb-adapter-callbacks.tsv; was byteA0"
+   ],
+   "why": "the verb that sets it names it; the consumer verified"
+  },
+  {
+   "old": [
+    "MirrorBlockBytes02099DA0\t0x001\t1\tbyteA1\tuint8\twritten 00262EAD (002628B0), 0026706D (00266D10), 0026A304, 0026CD1F; compared 002671E1. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tbyte-stride xref scan"
+   ],
+   "new": [
+    "MirrorBlockBytes02099DA0\t0x001\t1\tprimaryBattleSimVeto\tuint8\ta veto on the primary battle simulation: ActorSystem_IsPrimaryBattleSimulationReady 002671C0 answers 1 only while this byte is 0 (with slot 0's state bits); four writers recompute it from slot 0's state byte 02098E20 and bit 0x8 of byte 02099847 (the area transition 002628B0, the area reset 00266D10, 0026A2A0 and the definition bind 0026C8C0). What the inputs mean is not claimed\tSEMANTICALLY IDENTIFIED\tHIGH\t002671DF xor eax, eax / 002671E1 cmp byte ptr [02099DA1], al / 002671E7 sete al; writers 00262EAD, 0026706D, 0026A304, 0026CD1F, each after test byte ptr [02099847], 8 and a cmovne; the-field-runtime-pass.md (002671C0); OPUS L2 meaning-not-claimed survey 2026-10-03, re-read with retool; verb names from scriptvm-verb-adapter-callbacks.tsv; was byteA1"
+   ],
+   "why": "role proven at the reader; HIGH because the writers' inputs are not named"
+  },
+  {
+   "old": [
+    "MirrorBlockBytes02099DA0\t0x003\t1\tbyteA3\tuint8\tset 1 / read / written by 0025D950 (0025D958-0025D9AD); read sign-extended by 00263FB0. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tbyte-stride xref scan"
+   ],
+   "new": [
+    "MirrorBlockBytes02099DA0\t0x003\t1\tcharNearFadeActive\tuint8\tthe character near-fade decision 0025D950 publishes before tail-calling 002E8700: 1 when the map flags qword *00226B10(0) has bit `0x400000000` set and 002E15F0() is 0, replaced by +0x05 while +0x04 forces it; read sign-extended by the getter 00263FB0, whose one caller 002E6330 (002E6363) goes on to 00264EA0 only when it reads 1\tSEMANTICALLY IDENTIFIED\tPROVEN\t0025D958 mov byte ptr [02099DA3], 1 / 0025D95F call 00226B10 / 0025D964 movabs rcx, 0x400000000 / 0025D973 test / 0025D97D cmove (0) / 0025D986 call 002E15F0 / 0025D99B cmovne (0) / 0025D99E cmp byte ptr [02099DA4], bl / 0025D9A7 cmovne edx, eax (+0x05) / 0025D9AD mov byte ptr [02099DA3], dl; 00263FB0 movsx eax, byte ptr [02099DA3]; the name follows the verbs that force it (0552 / 0553); OPUS L2 meaning-not-claimed survey 2026-10-03, re-read with retool; verb names from scriptvm-verb-adapter-callbacks.tsv; was byteA3"
+   ],
+   "why": "mechanism read in full; named after the verbs that override it"
+  },
+  {
+   "old": [
+    "MirrorBlockBytes02099DA0\t0x004\t1\tbyteA4\tuint8\tcompared 0025D99E; written 00262A24, 00266D47 (0), 0026AB50. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tbyte-stride xref scan"
+   ],
+   "new": [
+    "MirrorBlockBytes02099DA0\t0x004\t1\tforceCharNearFade\tuint8\t1 while script verb 0x0552 set_force_char_nearfade is in effect, 0 after 0x0553 clear_force_char_nearfade (both through 0026AB50: cl to here, dl to +0x05); while set, 0025D950 publishes +0x05 as the near-fade decision\tSEMANTICALLY IDENTIFIED\tPROVEN\t0026AB50 mov byte ptr [02099DA4], cl / 0026AB56 mov byte ptr [02099DA5], dl; verb 0552 handler 00356030 passes rcx = 1, rdx = the popped int; verb 0553 handler 003563C0 passes rcx = 0, rdx = 0; 0025D99E cmp; cleared by the area reset 00266D47 and written by 002628B0 at 00262A24; OPUS L2 meaning-not-claimed survey 2026-10-03, re-read with retool; verb names from scriptvm-verb-adapter-callbacks.tsv; was byteA4"
+   ],
+   "why": "verb names from the verb table"
+  },
+  {
+   "old": [
+    "MirrorBlockBytes02099DA0\t0x005\t1\tbyteA5\tuint8\tread 0025D994; written 00262A2B, 00266D4E (0), 0026AB56. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tbyte-stride xref scan"
+   ],
+   "new": [
+    "MirrorBlockBytes02099DA0\t0x005\t1\tforcedCharNearFadeValue\tuint8\tthe value script verb 0x0552 set_force_char_nearfade forces (its popped integer, low byte); 0 after 0x0553\tSEMANTICALLY IDENTIFIED\tPROVEN\t0026AB56 mov byte ptr [02099DA5], dl; 0025D994 movzx eax, byte ptr [02099DA5]; cleared by 00266D4E, written by 00262A2B; OPUS L2 meaning-not-claimed survey 2026-10-03, re-read with retool; verb names from scriptvm-verb-adapter-callbacks.tsv; was byteA5"
+   ],
+   "why": "verb names from the verb table"
+  },
+  {
+   "old": [
+    "MirrorBlockBytes02099DA0\t0x006\t1\tbyteA6\tuint8\twritten 0025B036 (0), 00266D9C, 00267D5B, 0026CF28; read/compared by 00267D40. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tbyte-stride xref scan"
+   ],
+   "new": [
+    "MirrorBlockBytes02099DA0\t0x006\t1\tbonePhysicsDenyMask\tuint8\trequester bitmask: 00267D40(bit, on) sets or clears one bit; when the mask goes from 0 to non-zero it saves the wind state and sets calm (002E4150(1, 1), 002EAB40), when it returns to 0 it restores the wind (002EAA60), and it always ends with 002EA870(mask != 0). Script verbs denybonephysicalall (0x3D5, bit `0x1`) and denybonephysicalall_3ea (0x3EA) drive it; 0035A6F0 and 002E06B0 clear bits 2 and 1\tSEMANTICALLY IDENTIFIED\tPROVEN\t00267D44 movzx r8d, byte ptr [02099DA6] / 00267D53 bts eax, ecx / 00267D58 btr eax, ecx / 00267D5B mov byte ptr [02099DA6], al / 00267D6A call 002EAA60 / 00267D7C call 002E4150 / 00267D81 call 002EAB40 / 00267D98 or 00267DA3 jmp 002EA870; cleared by 0025B036 and 00266D9C, written by 0026CF28; the-per-model-oscillator-subsystem.md (while any requester denies bone physics, the wind is calm); OPUS L2 meaning-not-claimed survey 2026-10-03, re-read with retool; verb names from scriptvm-verb-adapter-callbacks.tsv; was byteA6"
+   ],
+   "why": "page meaning verified at the bytes"
+  },
+  {
+   "old": [
+    "MirrorBlockBytes02099DA0\t0x007\t1\tbyteA7\tuint8\tcompared and cleared by 0025D580 and 0025D9E0; written 00266D70; compared 002678CE and 3 more. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tbyte-stride xref scan"
+   ],
+   "new": [
+    "MirrorBlockBytes02099DA0\t0x007\t1\tenter2509A0Armed\tuint8\ta balance flag for the paired calls 002509A0(0, 0) and 00250960(0, 0): 002678C0 and the once-only gate 0026E0D0 call 002509A0 and set it when it is clear; 0025D580 and 0025D9E0 call 00250960 and clear it when it is set; the area reset 00266D10 writes it. What the pair does (002509A0 runs 0035C880(0xC, 1) then 0028E5F0) is not claimed\tTYPE RESOLVED\tPROVEN\t002678CE cmp byte ptr [02099DA7], 0 / 002678DB call 002509A0 / 002678E0 mov byte ptr [02099DA7], 1; 0026E0D4 cmp / 0026E0E2 mov 1; 0025D58B cmp / 0025D598 call 00250960 / 0025D59D mov 0; 0025DE49 cmp / 0025DE56 call 00250960 / 0025DE5B mov 0; 00266D70; OPUS L2 meaning-not-claimed survey 2026-10-03, re-read with retool; verb names from scriptvm-verb-adapter-callbacks.tsv; was byteA7"
+   ],
+   "why": "mechanism only; meaning stays open"
+  }
+ ],
+ "not_proposed": [
+  "+0x002: written once by the area reset 00266D10 (00267166), no reader"
+ ],
+ "finding": "06-Movement-And-Navigation/heading-speed-to-position-delta.md cites the getter 00263FB0 as the '0209BDA3 flag-byte getter'; the bytes read 02099DA3 (00263FB0 movsx eax, byte ptr [rip+...] -> 02099DA3)",
+ "counts": {
+  "proposals": 7
+ }
+}

@@ -1,0 +1,68 @@
+{
+ "page": "22-Middleware-PhyreEngine/Shader-Variant-Selection/the-context-switch-axes-and-the-variant-key.md",
+ "date": "2026-10-03",
+ "session": "opus-self",
+ "report": "the-context-switch-axes-and-the-variant-key-r6o.json",
+ "rows": [
+  {
+   "fn": "006B8D20",
+   "text": "returns 0x11 when qword `+8` of `rcx` is null; otherwise it walks the list from qword `02E522D0` through each node's qword `+0x10`, comparing the node's C string at qword `+8` with that of `rcx` byte by byte, and returns 0x12 on an equal string; when no node matches it stores the old head at qword `+0x10` of `rcx`, makes `rcx` the head (qword `02E522D0`) and returns 0",
+   "anchors": [
+    [
+     "006B8D2B",
+     "test"
+    ],
+    [
+     "006B8D60",
+     "movzx"
+    ],
+    [
+     "006B8D77",
+     "mov"
+    ],
+    [
+     "006B8D80",
+     "mov"
+    ],
+    [
+     "006B8D96",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006B8F70",
+   "text": "counts the list from qword `02E522D0` through each node's qword `+0x10`; when the count equals dword `[rdx]` it only copies; otherwise, for a non-zero count it allocates count*8 bytes with `0017D260`(count*8, 8), returns 0xD when that is null and zeroes the buffer (`rep stosq`) when it is not; it frees the old qword `[rdx+8]` with `00584730` when that differs from the new buffer, is non-null and dword `[rdx]` has `0x80000000` clear, then stores the new buffer (null for a zero count) at qword `+8` and the count at dword `[rdx]`; it finally writes each node pointer, in list order, to consecutive qwords from qword `[rdx+8]` and returns 0",
+   "anchors": [
+    [
+     "006B8F95",
+     "mov"
+    ],
+    [
+     "006B8FA5",
+     "cmp"
+    ],
+    [
+     "006B8FBC",
+     "call"
+    ],
+    [
+     "006B9005",
+     "call"
+    ],
+    [
+     "006B9020",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [
+  "006B9630"
+ ],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

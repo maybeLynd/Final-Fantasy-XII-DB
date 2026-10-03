@@ -1,0 +1,74 @@
+{
+ "page": "17-Presentation-Rendering/CONTRACT-render-record-pool-lifecycle.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "contract-render-record-pool-lifecycle-r5.json",
+ "rows": [
+  {
+   "fn": "0018BE70",
+   "text": "allocates 0x18 bytes with `0085E730(0x18, 0, -1)` and, when that is non-null, constructs `o` = `001F19E0(it)` (else `o` = 0); appends `o` to the pointer vector `v` = `rcx`: when end qword `[v+8]` is below capacity qword `[v+0x10]` it advances the end by 8 and stores `o` at the old end (unless that end is null), otherwise calls `001AB570(v, end, &o)` and re-reads `o`; then tail-jumps to `0018AFF0(0018B4E0(), o)`",
+   "anchors": [
+    [
+     "0018BE90",
+     "call"
+    ],
+    [
+     "0018BEA7",
+     "call"
+    ],
+    [
+     "0018BEC6",
+     "mov"
+    ],
+    [
+     "0018BEDC",
+     "call"
+    ],
+    [
+     "0018BEFB",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0065CD60",
+   "text": "copies values of `o` = `rcx` into the buffer `B` = qword `[qword [o+0x58]+8]` (re-read per item) through descriptor qwords `+0x210`..`+0x278`, skipping null ones; a copy goes to `B` + word `[d+0x10]`, (word `[d+0x12]` AND 0x1FFF) bytes by `memcpy` `00861EBA`, and returns 3 when offset + length exceeds dword `[B]` (unsigned) or the offset is below 4; with `f` = float `[o+0x84]` and `a` = (1.0 - float `+0x88`) * `f`, the sources are: `+0x210` `a`, `+0x218` `a`*`a`, `+0x220` `f`, `+0x228` `f`*`f`, `+0x230`/`+0x238`/`+0x240`/`+0x248`/`+0x250` the bytes at `o`+0x8C/+0x90/+0xA0/+0xB0/+0xC0 (1 returned if that address is null), and `+0x270` the four floats (`[o+0xDC]`, `[o+0xE0]`, `[o+0xE0]` - `[o+0xDC]`, 1.0 / that difference); for `+0x258`, `+0x260`, `+0x268` and `+0x278` it returns `0060E7A0(B, d, o+0xC4 / +0xC8 / +0xCC / +0xE4)` when non-zero; returns 0 after the last",
+   "anchors": [
+    [
+     "0065CDD6",
+     "cmp"
+    ],
+    [
+     "0065CDF8",
+     "call"
+    ],
+    [
+     "0065CF1E",
+     "mov"
+    ],
+    [
+     "0065D0DC",
+     "call"
+    ],
+    [
+     "0065D180",
+     "divss"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "006515C0": "too large to state exactly in 1200 characters even at block level (4129 B)",
+  "00659EC0": "too large to state exactly in 1200 characters even at block level (1889 B): a gated run of a dozen descriptor binds through 001B81B0 followed by per-parameter constant uploads, each with its own source and early return"
+ },
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "0065CD60",
+   "why": "byte re-read by a non-drafting agent: the third float of the +0x270 block is float [o+0xE0] minus float [o+0xDC] (subss xmm1, xmm0 at 0065D16C with xmm1 = +0xE0); 'their difference' leaves the sign open; 'uploads parameters' is a purpose the bytes do not show; the code copies values with memcpy into the buffer"
+  }
+ ],
+ "mode": "ee",
+ "family": ""
+}

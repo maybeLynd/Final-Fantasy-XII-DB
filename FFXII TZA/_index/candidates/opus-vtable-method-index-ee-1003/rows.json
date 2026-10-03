@@ -1,0 +1,1178 @@
+{
+ "page": "00-Engine-Core-Runtime/Object-Model/vtable-method-index.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "vtable-method-index-r8a.json",
+ "rows": [
+  {
+   "fn": "005C3C10",
+   "text": "returns the address of the 0x18-byte static at `02CB5D60`, filling it once under the thread-safe static guard dword `02CB5D78` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02CB5D60` = `02CAD140` OR 1, qword `02CB5D68` = the return of `00630180`, qword `02CB5D70` = 0",
+   "anchors": [
+    [
+     "005C3C4C",
+     "cmp"
+    ],
+    [
+     "005C3C47",
+     "call"
+    ],
+    [
+     "005C3C60",
+     "mov"
+    ],
+    [
+     "005C3C85",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C3DB0",
+   "text": "returns the address of the 0x18-byte static at `02CB5AE0`, filling it once under the thread-safe static guard dword `02CB5AF8` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02CB5AE0` = `02CAD140` OR 1, qword `02CB5AE8` = the return of `00630180`, qword `02CB5AF0` = 0",
+   "anchors": [
+    [
+     "005C3DEC",
+     "cmp"
+    ],
+    [
+     "005C3DE7",
+     "call"
+    ],
+    [
+     "005C3E00",
+     "mov"
+    ],
+    [
+     "005C3E25",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C4020",
+   "text": "returns the address of the 0x18-byte static at `02CB5B60`, filling it once under the thread-safe static guard dword `02CB5B78` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02CB5B60` = `02CAD140` OR 1, qword `02CB5B68` = `02CAD840` OR 1, qword `02CB5B70` = 0",
+   "anchors": [
+    [
+     "005C405F",
+     "cmp"
+    ],
+    [
+     "005C405A",
+     "call"
+    ],
+    [
+     "005C4085",
+     "mov"
+    ],
+    [
+     "005C409E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C40B0",
+   "text": "returns the address of the 0x18-byte static at `02CB5B80`, filling it once under the thread-safe static guard dword `02CB5B98` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02CB5B80` = `02CAD140` OR 1, qword `02CB5B88` = `02CAE660` OR 1, qword `02CB5B90` = 0",
+   "anchors": [
+    [
+     "005C40EF",
+     "cmp"
+    ],
+    [
+     "005C40EA",
+     "call"
+    ],
+    [
+     "005C4115",
+     "mov"
+    ],
+    [
+     "005C412E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C4250",
+   "text": "returns the address of the 0x18-byte static at `02CB5BA0`, filling it once under the thread-safe static guard dword `02CB5BB8` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02CB5BA0` = `02CAD140` OR 1, qword `02CB5BA8` = the return of `006301F0`, qword `02CB5BB0` = 0",
+   "anchors": [
+    [
+     "005C428C",
+     "cmp"
+    ],
+    [
+     "005C4287",
+     "call"
+    ],
+    [
+     "005C42A0",
+     "mov"
+    ],
+    [
+     "005C42C5",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C4360",
+   "text": "returns the address of the 0x18-byte static at `02CB5D08`, filling it once under the thread-safe static guard dword `02CB5D20` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02CB5D08` = `02CAD140` OR 1, qword `02CB5D10` = the return of `00630180`, qword `02CB5D18` = 0",
+   "anchors": [
+    [
+     "005C439C",
+     "cmp"
+    ],
+    [
+     "005C4397",
+     "call"
+    ],
+    [
+     "005C43B0",
+     "mov"
+    ],
+    [
+     "005C43D5",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C4770",
+   "text": "returns the address of the 0x18-byte static at `02CB5DE8`, filling it once under the thread-safe static guard dword `02CB5E00` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02CB5DE8` = `02CAD840` OR 1, qword `02CB5DF0` = the return of `00630180`, qword `02CB5DF8` = 0",
+   "anchors": [
+    [
+     "005C47AC",
+     "cmp"
+    ],
+    [
+     "005C47A7",
+     "call"
+    ],
+    [
+     "005C47C0",
+     "mov"
+    ],
+    [
+     "005C47E5",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C4800",
+   "text": "returns the address of the 0x18-byte static at `02CB5DC8`, filling it once under the thread-safe static guard dword `02CB5DE0` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02CB5DC8` = `02CAD840` OR 1, qword `02CB5DD0` = the return of `00630180`, qword `02CB5DD8` = 0",
+   "anchors": [
+    [
+     "005C483C",
+     "cmp"
+    ],
+    [
+     "005C4837",
+     "call"
+    ],
+    [
+     "005C4850",
+     "mov"
+    ],
+    [
+     "005C4875",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C4890",
+   "text": "returns the address of the 0x18-byte static at `02CB5A30`, filling it once under the thread-safe static guard dword `02CB5A48` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02CB5A30` = `02CAD840` OR 1, qword `02CB5A38` = the return of `00630180`, qword `02CB5A40` = 0",
+   "anchors": [
+    [
+     "005C48CC",
+     "cmp"
+    ],
+    [
+     "005C48C7",
+     "call"
+    ],
+    [
+     "005C48E0",
+     "mov"
+    ],
+    [
+     "005C4905",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C4920",
+   "text": "returns the address of the 0x18-byte static at `02CB5A50`, filling it once under the thread-safe static guard dword `02CB5A68` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02CB5A50` = `02CAD840` OR 1, qword `02CB5A58` = `02CF8780` OR 1, qword `02CB5A60` = 0",
+   "anchors": [
+    [
+     "005C495F",
+     "cmp"
+    ],
+    [
+     "005C495A",
+     "call"
+    ],
+    [
+     "005C4985",
+     "mov"
+    ],
+    [
+     "005C499E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C4A40",
+   "text": "returns the address of the 0x18-byte static at `02CB5C40`, filling it once under the thread-safe static guard dword `02CB5C58` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02CB5C40` = `02CAE660` OR 1, qword `02CB5C48` = the return of `00630180`, qword `02CB5C50` = 0",
+   "anchors": [
+    [
+     "005C4A7C",
+     "cmp"
+    ],
+    [
+     "005C4A77",
+     "call"
+    ],
+    [
+     "005C4A90",
+     "mov"
+    ],
+    [
+     "005C4AB5",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C4AD0",
+   "text": "returns the address of the 0x18-byte static at `02CB59F0`, filling it once under the thread-safe static guard dword `02CB5A08` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02CB59F0` = `02CAE660` OR 1, qword `02CB59F8` = `02CF8780` OR 1, qword `02CB5A00` = 0",
+   "anchors": [
+    [
+     "005C4B0F",
+     "cmp"
+    ],
+    [
+     "005C4B0A",
+     "call"
+    ],
+    [
+     "005C4B35",
+     "mov"
+    ],
+    [
+     "005C4B4E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C4B60",
+   "text": "returns the address of the 0x18-byte static at `02CB5A10`, filling it once under the thread-safe static guard dword `02CB5A28` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02CB5A10` = `02CAE660` OR 1, qword `02CB5A18` = `02CAD840` OR 1, qword `02CB5A20` = 0",
+   "anchors": [
+    [
+     "005C4B9F",
+     "cmp"
+    ],
+    [
+     "005C4B9A",
+     "call"
+    ],
+    [
+     "005C4BC5",
+     "mov"
+    ],
+    [
+     "005C4BDE",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00603DB0",
+   "text": "returns the address of the 0x18-byte static at `02CED310`, filling it once under the thread-safe static guard dword `02CED328` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02CED310` = `02CB6E80` OR 1, qword `02CED318` = the return of `00630180`, qword `02CED320` = 0",
+   "anchors": [
+    [
+     "00603DEC",
+     "cmp"
+    ],
+    [
+     "00603DE7",
+     "call"
+    ],
+    [
+     "00603E00",
+     "mov"
+    ],
+    [
+     "00603E25",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00603FE0",
+   "text": "returns the address of the 0x18-byte static at `02CED0E8`, filling it once under the thread-safe static guard dword `02CED100` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02CED0E8` = `02CB6E80` OR 1, qword `02CED0F0` = `02CB7080` OR 1, qword `02CED0F8` = 0",
+   "anchors": [
+    [
+     "0060401F",
+     "cmp"
+    ],
+    [
+     "0060401A",
+     "call"
+    ],
+    [
+     "00604045",
+     "mov"
+    ],
+    [
+     "0060405E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00604100",
+   "text": "returns the address of the 0x18-byte static at `02CED040`, filling it once under the thread-safe static guard dword `02CED058` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02CED040` = `02CB77A0` OR 1, qword `02CED048` = the return of `00630180`, qword `02CED050` = 0",
+   "anchors": [
+    [
+     "0060413C",
+     "cmp"
+    ],
+    [
+     "00604137",
+     "call"
+    ],
+    [
+     "00604150",
+     "mov"
+    ],
+    [
+     "00604175",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00604190",
+   "text": "returns the address of the 0x18-byte static at `02CED060`, filling it once under the thread-safe static guard dword `02CED078` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02CED060` = `02CB77A0` OR 1, qword `02CED068` = the return of `006301F0`, qword `02CED070` = 0",
+   "anchors": [
+    [
+     "006041CC",
+     "cmp"
+    ],
+    [
+     "006041C7",
+     "call"
+    ],
+    [
+     "006041E0",
+     "mov"
+    ],
+    [
+     "00604205",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0063B660",
+   "text": "returns the address of the 0x18-byte static at `02CF97C0`, filling it once under the thread-safe static guard dword `02CF97D8` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02CF97C0` = `02CF8780` OR 1, qword `02CF97C8` = `02CF8470` OR 1, qword `02CF97D0` = 0",
+   "anchors": [
+    [
+     "0063B69F",
+     "cmp"
+    ],
+    [
+     "0063B69A",
+     "call"
+    ],
+    [
+     "0063B6C5",
+     "mov"
+    ],
+    [
+     "0063B6DE",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0063B6F0",
+   "text": "returns the address of the 0x18-byte static at `02CF97A0`, filling it once under the thread-safe static guard dword `02CF97B8` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02CF97A0` = `02CF8780` OR 1, qword `02CF97A8` = `02CF8270` OR 1, qword `02CF97B0` = 0",
+   "anchors": [
+    [
+     "0063B72F",
+     "cmp"
+    ],
+    [
+     "0063B72A",
+     "call"
+    ],
+    [
+     "0063B755",
+     "mov"
+    ],
+    [
+     "0063B76E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0063B800",
+   "text": "returns the address of the 0x18-byte static at `02CF9780`, filling it once under the thread-safe static guard dword `02CF9798` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02CF9780` = `02CF8780` OR 1, qword `02CF9788` = `02CF8470` OR 1, qword `02CF9790` = 0",
+   "anchors": [
+    [
+     "0063B83F",
+     "cmp"
+    ],
+    [
+     "0063B83A",
+     "call"
+    ],
+    [
+     "0063B865",
+     "mov"
+    ],
+    [
+     "0063B87E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006AC860",
+   "text": "returns the address of the 0x18-byte static at `02E4EFD0`, filling it once under the thread-safe static guard dword `02E4EFE8` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02E4EFD0` = `02E4EAF0` OR 1, qword `02E4EFD8` = `02CF8470` OR 1, qword `02E4EFE0` = 0",
+   "anchors": [
+    [
+     "006AC89F",
+     "cmp"
+    ],
+    [
+     "006AC89A",
+     "call"
+    ],
+    [
+     "006AC8C5",
+     "mov"
+    ],
+    [
+     "006AC8DE",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006AC8F0",
+   "text": "returns the address of the 0x18-byte static at `02E4EF48`, filling it once under the thread-safe static guard dword `02E4EF60` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02E4EF48` = `02E4EAF0` OR 1, qword `02E4EF50` = `02E4E720` OR 1, qword `02E4EF58` = 0",
+   "anchors": [
+    [
+     "006AC92F",
+     "cmp"
+    ],
+    [
+     "006AC92A",
+     "call"
+    ],
+    [
+     "006AC955",
+     "mov"
+    ],
+    [
+     "006AC96E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006AC980",
+   "text": "returns the address of the 0x18-byte static at `02E4EF68`, filling it once under the thread-safe static guard dword `02E4EF80` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02E4EF68` = `02E4EAF0` OR 1, qword `02E4EF70` = `02E404B0` OR 1, qword `02E4EF78` = 0",
+   "anchors": [
+    [
+     "006AC9BF",
+     "cmp"
+    ],
+    [
+     "006AC9BA",
+     "call"
+    ],
+    [
+     "006AC9E5",
+     "mov"
+    ],
+    [
+     "006AC9FE",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006AF450",
+   "text": "returns the address of the 0x18-byte static at `02E4FE28`, filling it once under the thread-safe static guard dword `02E4FE40` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02E4FE28` = `02E4F900` OR 1, qword `02E4FE30` = `02CF8470` OR 1, qword `02E4FE38` = 0",
+   "anchors": [
+    [
+     "006AF48F",
+     "cmp"
+    ],
+    [
+     "006AF48A",
+     "call"
+    ],
+    [
+     "006AF4B5",
+     "mov"
+    ],
+    [
+     "006AF4CE",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006B2680",
+   "text": "returns the address of the 0x18-byte static at `02E51510`, filling it once under the thread-safe static guard dword `02E51528` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02E51510` = the return of `006B0B20` OR 1, qword `02E51518` = the return of `006301F0`, qword `02E51520` = 0",
+   "anchors": [
+    [
+     "006B26BC",
+     "cmp"
+    ],
+    [
+     "006B26B7",
+     "call"
+    ],
+    [
+     "006B26CE",
+     "mov"
+    ],
+    [
+     "006B26F3",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006B2710",
+   "text": "returns the address of the 0x18-byte static at `02E514D0`, filling it once under the thread-safe static guard dword `02E514E8` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02E514D0` = the return of `006B0EC0` OR 1, qword `02E514D8` = the return of `006301F0`, qword `02E514E0` = 0",
+   "anchors": [
+    [
+     "006B274C",
+     "cmp"
+    ],
+    [
+     "006B2747",
+     "call"
+    ],
+    [
+     "006B275E",
+     "mov"
+    ],
+    [
+     "006B2783",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006B27A0",
+   "text": "returns the address of the 0x18-byte static at `02E51550`, filling it once under the thread-safe static guard dword `02E51568` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02E51550` = the return of `006B1320` OR 1, qword `02E51558` = the return of `006301F0`, qword `02E51560` = 0",
+   "anchors": [
+    [
+     "006B27DC",
+     "cmp"
+    ],
+    [
+     "006B27D7",
+     "call"
+    ],
+    [
+     "006B27EE",
+     "mov"
+    ],
+    [
+     "006B2813",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006B2830",
+   "text": "returns the address of the 0x18-byte static at `02E51530`, filling it once under the thread-safe static guard dword `02E51548` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02E51530` = the return of `006B1600` OR 1, qword `02E51538` = the return of `006301F0`, qword `02E51540` = 0",
+   "anchors": [
+    [
+     "006B286C",
+     "cmp"
+    ],
+    [
+     "006B2867",
+     "call"
+    ],
+    [
+     "006B287E",
+     "mov"
+    ],
+    [
+     "006B28A3",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006B28C0",
+   "text": "returns the address of the 0x18-byte static at `02E514F0`, filling it once under the thread-safe static guard dword `02E51508` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02E514F0` = the return of `006B19A0` OR 1, qword `02E514F8` = the return of `006301F0`, qword `02E51500` = 0",
+   "anchors": [
+    [
+     "006B28FC",
+     "cmp"
+    ],
+    [
+     "006B28F7",
+     "call"
+    ],
+    [
+     "006B290E",
+     "mov"
+    ],
+    [
+     "006B2933",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006B5B30",
+   "text": "returns the address of the 0x18-byte static at `02E521C8`, filling it once under the thread-safe static guard dword `02E521E0` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02E521C8` = `02E518D0` OR 1, qword `02E521D0` = `02E404B0` OR 1, qword `02E521D8` = 0",
+   "anchors": [
+    [
+     "006B5B6F",
+     "cmp"
+    ],
+    [
+     "006B5B6A",
+     "call"
+    ],
+    [
+     "006B5B95",
+     "mov"
+    ],
+    [
+     "006B5BAE",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006C03A0",
+   "text": "returns the address of the 0x18-byte static at `02E59698`, filling it once under the thread-safe static guard dword `02E596B0` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02E59698` = `02E58DB0` OR 1, qword `02E596A0` = `02E404B0` OR 1, qword `02E596A8` = 0",
+   "anchors": [
+    [
+     "006C03DF",
+     "cmp"
+    ],
+    [
+     "006C03DA",
+     "call"
+    ],
+    [
+     "006C0405",
+     "mov"
+    ],
+    [
+     "006C041E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0077E020",
+   "text": "calls `00727440(rcx)` and returns its result when negative; calls `0076BE10(qword [rcx+0x238], rcx+0xCC)` and returns 0x80004005 when that is negative; then walks the signed dword `[rcx+0xDC]` entries of the 0x108-stride array that starts at qword `[rcx+0x4B8]` + 0xA0 and returns 0x80004005 at the first entry whose pointed-to object has dword `+0x44` equal to 0; otherwise returns 0",
+   "anchors": [
+    [
+     "0077E029",
+     "call"
+    ],
+    [
+     "0077E040",
+     "call"
+    ],
+    [
+     "0077E073",
+     "cmp"
+    ],
+    [
+     "0077E095",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00780BB0",
+   "text": "calls vtable slot `+8` of the object at qword `[rcx+0x38]`, zeroes qword `[rcx+0x90]`, then for each of the four qwords `[rcx+0x48]`..`[rcx+0x60]` and for qword `[rcx+0x98]` that is non-null calls that object's vtable slot `+8` and nulls the qword; finally tail-jumps to `00727410(rcx)`",
+   "anchors": [
+    [
+     "00780BCE",
+     "call"
+    ],
+    [
+     "00780BD7",
+     "mov"
+    ],
+    [
+     "00780BEC",
+     "call"
+    ],
+    [
+     "00780C0B",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00786110",
+   "text": "returns 0 at once when qword `[rcx+0xF0]` is null; otherwise calls the object's own vtable slot `+0x50` with `edx` = 0..9 (ten calls), keeping the last negative result, then, when qword `[rcx+0xF0]` is still non-null, calls `006DA8A0(qword [01F3BA68], that pointer - 8)` and zeroes the qword; returns the kept result (0 when no call was negative)",
+   "anchors": [
+    [
+     "00786116",
+     "cmp"
+    ],
+    [
+     "00786148",
+     "call"
+    ],
+    [
+     "0078614D",
+     "cmovs"
+    ],
+    [
+     "00786173",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0079CB60",
+   "text": "returns the address of the 0x18-byte static at `02EACD98`, filling it once under the thread-safe static guard dword `02EACDB0` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02EACD98` = `02EA5660` OR 1, qword `02EACDA0` = `02D3F310` OR 1, qword `02EACDA8` = 0",
+   "anchors": [
+    [
+     "0079CB9F",
+     "cmp"
+    ],
+    [
+     "0079CB9A",
+     "call"
+    ],
+    [
+     "0079CBC5",
+     "mov"
+    ],
+    [
+     "0079CBDE",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007DA970",
+   "text": "adds the float in `xmm1` to two float cells: when byte `[rcx+0x38]` is nonzero it stores float `[rcx+0x28]` + `xmm1` to float `[rcx+0x28]` and, when that sum is not below float `[rcx+0x2C]` (comiss), stores float `[rcx+0x2C]` there and stores 0 to the byte, otherwise stores 1 to the byte, then calls the object's vtable slot `+0x40`; the same for byte `[rcx+0x68]` with floats `[rcx+0x58]` / `[rcx+0x5C]` and a second `+0x40` call; returns 0",
+   "anchors": [
+    [
+     "007DA98F",
+     "addss"
+    ],
+    [
+     "007DA99E",
+     "movss"
+    ],
+    [
+     "007DA9B9",
+     "addss"
+    ],
+    [
+     "007DA9E2",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007DFA70",
+   "text": "under the critical section at `rcx+8` (`EnterCriticalSection` / `LeaveCriticalSection` through `008C20B8` / `008C20C0`) sets byte `[rcx+0x70]` to 1 and copies dword i of the array at qword `[rcx+0x68]` to dword i at `rdx` for i below `007AECE0()` (re-read every step); returns 0",
+   "anchors": [
+    [
+     "007DFA95",
+     "mov"
+    ],
+    [
+     "007DFA9B",
+     "call"
+    ],
+    [
+     "007DFABE",
+     "mov"
+    ],
+    [
+     "007DFAD5",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00848880",
+   "text": "walks the dword `[rcx+0xC]` 0x20-byte entries of the array at qword `[rcx+0x18]`; for each it asks the predicate object `rdx` through its vtable slot `+8` (argument: the entry); on true it calls `rcx`'s vtable slot `+0x10` with the entry's qwords `+0` and `+8` and `r8`, decrements dword `02EAF39C` and re-tests the same index without advancing; on false it moves to the next entry",
+   "anchors": [
+    [
+     "008488C0",
+     "call"
+    ],
+    [
+     "008488D7",
+     "call"
+    ],
+    [
+     "008488DA",
+     "dec"
+    ],
+    [
+     "008488E4",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "0084A6B0",
+   "text": "when dword `[rcx+0x5C]` plus dword `[rcx+0x1C]` is 0, calls `00841010` on `rcx+8` and on `rcx+0x48`, then resets the object: word `+0xDD` = 0x100, dword `+0xAC` = 0, qwords `+0xC4` / `+0xCC` / `+0xD4` = 0, qwords `+0xBC` and `+0xB0` = 1, dword `+0xB8` = 0xA and qwords `+0x88` / `+0x90` / `+0x98` = 0; otherwise does nothing",
+   "anchors": [
+    [
+     "0084A6C5",
+     "call"
+    ],
+    [
+     "0084A6CE",
+     "call"
+    ],
+    [
+     "0084A6D5",
+     "mov"
+    ],
+    [
+     "0084A70F",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00858560",
+   "text": "copies the 16 bytes at `rdx` to `rcx+0x140`, then for each of the dword `[rcx+0x124]` object pointers in the array at qword `[rcx+0x130]` calls `00854110(object, rdx)` unless the object's dword `+0xF4` is 2 or 5 or bit `0x1` of its byte `+0x230` is set",
+   "anchors": [
+    [
+     "0085857A",
+     "movdqa"
+    ],
+    [
+     "0085859C",
+     "mov"
+    ],
+    [
+     "008585AC",
+     "test"
+    ],
+    [
+     "008585B8",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [
+  "005C1E70",
+  "005C1F20",
+  "005C2100",
+  "005C38B0",
+  "005C4140",
+  "005C49B0",
+  "005CA460",
+  "005DC0E0",
+  "005DF890",
+  "006007B0",
+  "00603770",
+  "00603850",
+  "006038F0",
+  "00603990",
+  "00603A30",
+  "00603AD0",
+  "00603B70",
+  "00603C10",
+  "00604070",
+  "00604320",
+  "00608A40",
+  "00627750",
+  "0062DBD0",
+  "0062E1C0",
+  "0062E5A0",
+  "00637650",
+  "00653950",
+  "006539E0",
+  "00653A70",
+  "00654830",
+  "00655F10",
+  "0066FC50",
+  "006709D0",
+  "00670B30",
+  "00670C60",
+  "00679070",
+  "0067F140",
+  "0067F1D0",
+  "00684860",
+  "0068C260",
+  "0068CBE0",
+  "0068D370",
+  "0068DD80",
+  "0068E940",
+  "00692080",
+  "006A2DD0",
+  "006A3060",
+  "006A30F0",
+  "006A8FA0",
+  "006A90B0",
+  "006AD4F0",
+  "006AF340",
+  "006B3120",
+  "006B31B0",
+  "006B3240",
+  "006B32D0",
+  "006B3360",
+  "006B5810",
+  "006B5AA0",
+  "006B5BC0",
+  "006B8F70",
+  "006B9630",
+  "006BAB40",
+  "006C0060",
+  "006C01C0",
+  "006C0430",
+  "006C24C0",
+  "006C76D0",
+  "006CD5B0",
+  "006D6FF0",
+  "006D9780",
+  "006D9B70",
+  "007157A0",
+  "00719460",
+  "0071A380",
+  "007214A0",
+  "00722060",
+  "00724940",
+  "00724C10",
+  "00724CD0",
+  "00724DB0",
+  "007252A0",
+  "00725340",
+  "007255E0",
+  "00725760",
+  "00725830",
+  "007258C0",
+  "007259D0",
+  "00725AA0",
+  "00725C80",
+  "00725E40",
+  "00725FF0",
+  "007261B0",
+  "00726360",
+  "00726550",
+  "00726700",
+  "007268C0",
+  "00726A70",
+  "00726C30",
+  "00726D00",
+  "00726E30",
+  "0072F7D0",
+  "0073BB50",
+  "0075CAD0",
+  "0075CC50",
+  "0075E690",
+  "0075E7C0",
+  "0075EC00",
+  "00769470",
+  "0077DED0",
+  "00780C70",
+  "007819F0",
+  "00781B70",
+  "00783A10",
+  "00785C90",
+  "00785EE0",
+  "00785FD0",
+  "007861A0",
+  "00786410",
+  "00786D00",
+  "00786DD0",
+  "00787080",
+  "00787930",
+  "007895F0",
+  "00789C00",
+  "0078F9F0",
+  "00790160",
+  "0079C8C0",
+  "0079C9D0",
+  "007A1790",
+  "007A1A50",
+  "007A2140",
+  "007A9820",
+  "007A98E0",
+  "007AB080",
+  "007AB120",
+  "007AE600",
+  "007AE6A0",
+  "007AE740",
+  "007B1420",
+  "007B1520",
+  "007B2B30",
+  "007B4D60",
+  "007B54B0",
+  "007B5C50",
+  "007B61C0",
+  "007B7110",
+  "007B7F30",
+  "007B93E0",
+  "007B9770",
+  "007BA990",
+  "007BAA30",
+  "007BB8B0",
+  "007BBE50",
+  "007C1290",
+  "007C1530",
+  "007C61F0",
+  "007C6370",
+  "007C6C70",
+  "007CA370",
+  "007D1430",
+  "007D1840",
+  "007D1970",
+  "007D1A10",
+  "007D1C80",
+  "007D5BD0",
+  "007D5F50",
+  "007D8180",
+  "007D8A70",
+  "007D8E40",
+  "007D8F70",
+  "007D9070",
+  "007D9200",
+  "007D9690",
+  "007D98F0",
+  "007D9B70",
+  "007D9DF0",
+  "007D9EA0",
+  "007DA1C0",
+  "007DAA00",
+  "007DB7A0",
+  "007DC0E0",
+  "007DC1F0",
+  "007DC340",
+  "007DC4A0",
+  "007DC8B0",
+  "007DC970",
+  "007DD040",
+  "007DD510",
+  "007DE120",
+  "007DEEF0",
+  "007DF1F0",
+  "007DF9B0",
+  "007E0070",
+  "007E0880",
+  "007E25A0",
+  "007E2AD0",
+  "007E32E0",
+  "007E8890",
+  "007E96A0",
+  "007F10F0",
+  "007F1220",
+  "007F1850",
+  "007F1DD0",
+  "007F1EC0",
+  "007F24F0",
+  "00808240",
+  "00832810",
+  "00832930",
+  "00832CD0",
+  "00832DD0",
+  "00832E90",
+  "008330A0",
+  "00833830",
+  "00833A60",
+  "00833CD0",
+  "00833FB0",
+  "00834970",
+  "00834C70",
+  "00834D50",
+  "00835000",
+  "008355B0",
+  "00835CE0",
+  "00837120",
+  "008373D0",
+  "00837E20",
+  "00837F00",
+  "0083A070",
+  "0083DE00",
+  "0083F7B0",
+  "00841D30",
+  "00842040",
+  "00846C20",
+  "00846F70",
+  "008473A0",
+  "00847980",
+  "00847C00",
+  "00847D00",
+  "00848270",
+  "00848960",
+  "00848C30",
+  "0084A0C0",
+  "0084A220",
+  "0084A5D0",
+  "0084A740",
+  "0084C6B0",
+  "0084CA50",
+  "008521C0",
+  "00853C90",
+  "008553F0",
+  "00855520",
+  "00855660",
+  "008557F0",
+  "00855A50",
+  "00857820",
+  "00857970",
+  "00857C10",
+  "00857CD0",
+  "00857E70",
+  "008581E0",
+  "008585E0",
+  "008588A0",
+  "00858A00",
+  "0085C3E0",
+  "0085CDC0",
+  "0085DCE0",
+  "00873AD0",
+  "00873B60",
+  "008761A0",
+  "00876590",
+  "008769A0",
+  "00877160",
+  "0087FC00",
+  "0087FCF0"
+ ],
+ "corrections": [
+  {
+   "fn": "00786110",
+   "why": "byte re-read by a non-drafting agent: All access claims hold (cmp [rcx+0xF0],0 -> return 0; ten vtable +0x50 calls with edx 0..9 and cmovs keep; re-test of [rdi+0xF0]; rcx = qword [01F3BA68] (rip target of 00786168), rdx = ptr-8; zero store; return ebx). But \"frees\" states the callee purpose, which this body does not show: 006DA8A0 is a 13-byte thunk that decrements dword 02EA0B3C and tail-jumps through vtable slot +0x10 of its rcx object. Reworded to the call itself."
+  },
+  {
+   "fn": "007DA970",
+   "why": "byte re-read by a non-drafting agent: Bytes hold the shape, but \"while byte is set\" reads as a loop (it is a single cmp/je per byte), \"else keeps the byte 1\" is wrong in kind (the body stores 1 at 007DA9A9 / 007DA9D8 whatever nonzero value it held), the sum is stored to the float before the comparison, and \"float ramps\" is an interpretation. comiss/jb: the clamp path runs when the sum is not below the limit; jb (also taken on unordered) stores 1. Each +0x40 call sits inside its byte branch."
+  }
+ ],
+ "mode": "ee",
+ "family": ""
+}

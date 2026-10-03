@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\uq147-summoner-cleanup-order\prove-native-relation-invariant.py", line 160, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\uq147-summoner-cleanup-order\prove-native-relation-invariant.py", line 137, in main
+    st=json.loads(override.read_text());need(st.get('terminal') is True and st.get('exit')==0 and st.get('exception') is None,'successful upstream qualification required')
+                                        ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\uq147-summoner-cleanup-order\prove-native-relation-invariant.py", line 14, in need
+    if not c:raise ValueError(m)
+             ^^^^^^^^^^^^^^^^^^^
+ValueError: successful upstream qualification required

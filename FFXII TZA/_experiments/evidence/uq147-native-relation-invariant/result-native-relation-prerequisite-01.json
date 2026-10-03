@@ -1,0 +1,11 @@
+{
+  "producer_complete": true,
+  "driver_sha256": "82876fb44b7dfc20d7f8494f2cac5e76216956239e5a22a23a6222874e94a95a",
+  "tested_producer_sha256": "769766d329f7f472f1d5eeba91ef29c6434b68ff7acab2a725cc63d61d147930",
+  "control": "Actual current CLI rejects labelled failed upstream; terminal exit1/exceptionnull/specific marker/no result; matching positive retained",
+  "positive_status_sha256": "ce2a4f5d028b0295cc81da4b6626fbfba1495f582b07937bef02af98d66a9e7d",
+  "positive_result_sha256": "c5987dd516a9638055a1aae39b38e1960b8d483b4a84997de7a2d79cb82e7904",
+  "failure_status_sha256": "d1b7622ce6cc5515bb9d5a4688632ece498c6896172e615e2bd5cb08b5be9973",
+  "failed_input_sha256": "51cfcceda7fa78189750a64c3d4dc29039841be532d1bc6ba604f72d8dba3243",
+  "limits": "Synthetic qualification defect; actual producer refusal. Not native execution, independent review or gameplay."
+}

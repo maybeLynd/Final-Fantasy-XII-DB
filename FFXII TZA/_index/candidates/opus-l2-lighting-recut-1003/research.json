@@ -1,0 +1,115 @@
+{
+ "types": [
+  "MapLightingTuning02CB7FD0",
+  "SceneLightingParams01F82ED0"
+ ],
+ "proposals": [
+  {
+   "type": "MapLightingTuning02CB7FD0",
+   "old": [
+    "MapLightingTuning02CB7FD0\t0x098\t4\tfield098\tuint32\tr0 w1 in 001C7940. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\t006084B0 copy units (00608885-0060898B) + byte-granular direct-reference census, 2026-09-25 (OPUS, block 271); names: console-command-names.md"
+   ],
+   "new": [
+    "MapLightingTuning02CB7FD0\t0x098\t4\twaterBias\tfloat\tthe scene setting mWaterBias, written by the loader 001C7940 from that key; no direct reader (the block is copied whole by 006084B0)\tSEMANTICALLY IDENTIFIED\tPROVEN\t001CA43B lea rdx, [008FAF78] 'mWaterBias' / 001CA450 call 001FF740 / 001CA458 call 00200B50 / 001CA464 movss dword ptr [02CB8068], xmm0; the scene-settings loaders look a key up in the scene document (00200BE0 has-key; else the default document 01F813C8) through 001FF740 / 001C51D0 and read it with 00200B50 (number as float: a double converted with cvtpd2ps) or 00200B80 (number as int32); the key string is the lea rdx before the lookup; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool; was field098 uint32 TYPE RESOLVED"
+   ],
+   "why": "key bound at the bytes; ctype uint32 -> float (movss)"
+  },
+  {
+   "type": "MapLightingTuning02CB7FD0",
+   "old": [
+    "MapLightingTuning02CB7FD0\t0x0A0\t4\tfield0A0\tuint32\tr0 w1 in 001C7940. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\t006084B0 copy units (00608885-0060898B) + byte-granular direct-reference census, 2026-09-25 (OPUS, block 271); names: console-command-names.md"
+   ],
+   "new": [
+    "MapLightingTuning02CB7FD0\t0x0A0\t4\tmapAmbientColorR\tfloat\tthe R channel of the scene setting mMapAmbientColor (key mMapAmbientColorR), written by the loader 001C7940; no direct reader (the block is copied whole by 006084B0)\tSEMANTICALLY IDENTIFIED\tPROVEN\t001C9258 lea rdx, [008FA750] 'mMapAmbientColorR' then 001FF740 / 00200B50; 001C9317 movss dword ptr [02CB8070], xmm7 (xmm7 from 001C92A1 movaps xmm7, xmm0); the scene-settings loaders look a key up in the scene document (00200BE0 has-key; else the default document 01F813C8) through 001FF740 / 001C51D0 and read it with 00200B50 (number as float: a double converted with cvtpd2ps) or 00200B80 (number as int32); the key string is the lea rdx before the lookup; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool; was field0A0 uint32 TYPE RESOLVED"
+   ],
+   "why": "key bound at the bytes; ctype uint32 -> float (movss)"
+  },
+  {
+   "type": "MapLightingTuning02CB7FD0",
+   "old": [
+    "MapLightingTuning02CB7FD0\t0x0A4\t4\tfield0A4\tuint32\tr0 w1 in 001C7940. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\t006084B0 copy units (00608885-0060898B) + byte-granular direct-reference census, 2026-09-25 (OPUS, block 271); names: console-command-names.md"
+   ],
+   "new": [
+    "MapLightingTuning02CB7FD0\t0x0A4\t4\tmapAmbientColorG\tfloat\tthe G channel of the scene setting mMapAmbientColor (key mMapAmbientColorG), written by the loader 001C7940; no direct reader (the block is copied whole by 006084B0)\tSEMANTICALLY IDENTIFIED\tPROVEN\t001C9297 lea rdx, [008FA768] 'mMapAmbientColorG' then 001FF740 / 00200B50; 001C931F movss dword ptr [02CB8074], xmm6 (xmm6 from 001C92DD movaps xmm6, xmm0); the scene-settings loaders look a key up in the scene document (00200BE0 has-key; else the default document 01F813C8) through 001FF740 / 001C51D0 and read it with 00200B50 (number as float: a double converted with cvtpd2ps) or 00200B80 (number as int32); the key string is the lea rdx before the lookup; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool; was field0A4 uint32 TYPE RESOLVED"
+   ],
+   "why": "key bound at the bytes; ctype uint32 -> float (movss)"
+  },
+  {
+   "type": "MapLightingTuning02CB7FD0",
+   "old": [
+    "MapLightingTuning02CB7FD0\t0x0A8\t4\tfield0A8\tuint32\tr0 w1 in 001C7940. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\t006084B0 copy units (00608885-0060898B) + byte-granular direct-reference census, 2026-09-25 (OPUS, block 271); names: console-command-names.md"
+   ],
+   "new": [
+    "MapLightingTuning02CB7FD0\t0x0A8\t4\tmapAmbientColorB\tfloat\tthe B channel of the scene setting mMapAmbientColor (key mMapAmbientColorB), written by the loader 001C7940; no direct reader (the block is copied whole by 006084B0)\tSEMANTICALLY IDENTIFIED\tPROVEN\t001C92D3 lea rdx, [008FA780] 'mMapAmbientColorB' then 001FF740 / 00200B50; 001C930F movss dword ptr [02CB8078], xmm0; the scene-settings loaders look a key up in the scene document (00200BE0 has-key; else the default document 01F813C8) through 001FF740 / 001C51D0 and read it with 00200B50 (number as float: a double converted with cvtpd2ps) or 00200B80 (number as int32); the key string is the lea rdx before the lookup; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool; was field0A8 uint32 TYPE RESOLVED"
+   ],
+   "why": "key bound at the bytes; ctype uint32 -> float (movss)"
+  },
+  {
+   "type": "MapLightingTuning02CB7FD0",
+   "old": [
+    "MapLightingTuning02CB7FD0\t0x0B0\t4\tfield0B0\tuint32\tr1 w3 in 001C7940, 001D1660. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\t006084B0 copy units (00608885-0060898B) + byte-granular direct-reference census, 2026-09-25 (OPUS, block 271); names: console-command-names.md"
+   ],
+   "new": [
+    "MapLightingTuning02CB7FD0\t0x0B0\t4\tmapAmbientColorCutPercent\tfloat\tthe scene setting mMapAmbientColorCutPercent (loader 001C7940); the console body 001D1660 reads it and writes it back (001D1A00 / 001D1A48 / 001D1B04)\tSEMANTICALLY IDENTIFIED\tPROVEN\t001C9448 movss dword ptr [02CB8080], xmm0 after lea rdx, [008FA798] 'mMapAmbientColorCutPercent' / 001FF740 / 00200B50; 001D1A00 movss xmm0, [02CB8080]; what-the-console-tunes.md (console arm yes); the scene-settings loaders look a key up in the scene document (00200BE0 has-key; else the default document 01F813C8) through 001FF740 / 001C51D0 and read it with 00200B50 (number as float: a double converted with cvtpd2ps) or 00200B80 (number as int32); the key string is the lea rdx before the lookup; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool; was field0B0 uint32 TYPE RESOLVED"
+   ],
+   "why": "key bound at the bytes; ctype uint32 -> float (movss)"
+  },
+  {
+   "type": "SceneLightingParams01F82ED0",
+   "old": [
+    "SceneLightingParams01F82ED0\t0x024\t4\tfloat024\tfloat\tscene-loader written, renderer read; r1 w2 in 001C3D50, 001C7940, 001F5D70. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tdirect-reference census 01F82E60..01F82F9F, 2026-09-25 (OPUS, block 272); names: console-command-names.md (ids 112, 170), OPEN-QUESTIONS 958 (answered)"
+   ],
+   "new": [
+    "SceneLightingParams01F82ED0\t0x024\t4\tchrShadowSlopeOffset\tfloat\tthe scene setting mChrShadowSlopeOffset, written by both loaders 001C3D50 and 001C7940; the renderer 001F5D70 reads it beside +0x38 when it sets the character shadow bias pair\tSEMANTICALLY IDENTIFIED\tPROVEN\t001C4902 and 001C90C0 movss dword ptr [01F82EF4], xmm0, each after lea rdx, [008FB088] 'mChrShadowSlopeOffset' / 00200B50; 001F5E8E movss xmm3, dword ptr [01F82EF4]; the scene-settings loaders look a key up in the scene document (00200BE0 has-key; else the default document 01F813C8) through 001FF740 / 001C51D0 and read it with 00200B50 (number as float: a double converted with cvtpd2ps) or 00200B80 (number as int32); the key string is the lea rdx before the lookup; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool; was float024 float TYPE RESOLVED"
+   ],
+   "why": "key bound at the bytes"
+  },
+  {
+   "type": "SceneLightingParams01F82ED0",
+   "old": [
+    "SceneLightingParams01F82ED0\t0x028\t4\tmapChrDirLightColorIntensityR\tfloat\tRENAMED 2026-09-26 (OPUS, owner, on FABLE-REQ-OPUS-RENAME-POSTPROCESSPARAMCONTEXT-FROM-SCENE-JSON / FABLE-REQ-OPUS-NAME-SCENE-LIGHTING-AND-SHADOW-FIELDS-FROM-JSON-KEYS; key -> getter -> store re-read from the bytes): scene-JSON key mMapChrDirLightColorIntensityR, stored at 001C4B57 (01F82EF8) || previous name float028; previous meaning: scene-loader written, renderer read; r1 w2 in 001C3D50, 001C7940, 001F9B20. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tdirect-reference census 01F82E60..01F82F9F, 2026-09-25 (OPUS, block 272); names: console-command-names.md (ids 112, 170), OPEN-QUESTIONS 958 (answered)"
+   ],
+   "new": [
+    "SceneLightingParams01F82ED0\t0x028\t4\tmapChrDirLightColorIntensityR\tfloat\tthe R channel of the scene setting mMapChrDirLightColorIntensity, written by both loaders; scales each character light's colour (character-render-object.md)\tSEMANTICALLY IDENTIFIED\tPROVEN\t001C4B57 / 001C9D08 movss dword ptr [01F82EF8], xmm0, each after lea rdx, [008FACD8] 'mMapChrDirLightColorIntensityR' / 00200B50; the scene-settings loaders look a key up in the scene document (00200BE0 has-key; else the default document 01F813C8) through 001FF740 / 001C51D0 and read it with 00200B50 (number as float: a double converted with cvtpd2ps) or 00200B80 (number as int32); the key string is the lea rdx before the lookup; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool; was mapChrDirLightColorIntensityR float TYPE RESOLVED"
+   ],
+   "why": "already named; the key binding makes it SEMANTICALLY IDENTIFIED"
+  },
+  {
+   "type": "SceneLightingParams01F82ED0",
+   "old": [
+    "SceneLightingParams01F82ED0\t0x02C\t4\tmapChrDirLightColorIntensityG\tfloat\tRENAMED 2026-09-26 (OPUS, owner, on FABLE-REQ-OPUS-RENAME-POSTPROCESSPARAMCONTEXT-FROM-SCENE-JSON / FABLE-REQ-OPUS-NAME-SCENE-LIGHTING-AND-SHADOW-FIELDS-FROM-JSON-KEYS; key -> getter -> store re-read from the bytes): scene-JSON key mMapChrDirLightColorIntensityG, stored at 001C4B76 (01F82EFC) || previous name float02C; previous meaning: scene-loader written, renderer read; r1 w2 in 001C3D50, 001C7940, 001F9B20. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tdirect-reference census 01F82E60..01F82F9F, 2026-09-25 (OPUS, block 272); names: console-command-names.md (ids 112, 170), OPEN-QUESTIONS 958 (answered)"
+   ],
+   "new": [
+    "SceneLightingParams01F82ED0\t0x02C\t4\tmapChrDirLightColorIntensityG\tfloat\tthe G channel of the scene setting mMapChrDirLightColorIntensity, written by both loaders; scales each character light's colour (character-render-object.md)\tSEMANTICALLY IDENTIFIED\tPROVEN\t001C4B76 / 001C9D49 movss dword ptr [01F82EFC], xmm0, each after lea rdx, [008FACF8] 'mMapChrDirLightColorIntensityG' / 00200B50; the scene-settings loaders look a key up in the scene document (00200BE0 has-key; else the default document 01F813C8) through 001FF740 / 001C51D0 and read it with 00200B50 (number as float: a double converted with cvtpd2ps) or 00200B80 (number as int32); the key string is the lea rdx before the lookup; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool; was mapChrDirLightColorIntensityG float TYPE RESOLVED"
+   ],
+   "why": "already named; the key binding makes it SEMANTICALLY IDENTIFIED"
+  },
+  {
+   "type": "SceneLightingParams01F82ED0",
+   "old": [
+    "SceneLightingParams01F82ED0\t0x030\t4\tmapChrDirLightColorIntensityB\tfloat\tRENAMED 2026-09-26 (OPUS, owner, on FABLE-REQ-OPUS-RENAME-POSTPROCESSPARAMCONTEXT-FROM-SCENE-JSON / FABLE-REQ-OPUS-NAME-SCENE-LIGHTING-AND-SHADOW-FIELDS-FROM-JSON-KEYS; key -> getter -> store re-read from the bytes): scene-JSON key mMapChrDirLightColorIntensityB, stored at 001C4B95 (01F82F00) || previous name float030; previous meaning: scene-loader written, renderer read; r1 w2 in 001C3D50, 001C7940, 001F9B20. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tdirect-reference census 01F82E60..01F82F9F, 2026-09-25 (OPUS, block 272); names: console-command-names.md (ids 112, 170), OPEN-QUESTIONS 958 (answered)"
+   ],
+   "new": [
+    "SceneLightingParams01F82ED0\t0x030\t4\tmapChrDirLightColorIntensityB\tfloat\tthe B channel of the scene setting mMapChrDirLightColorIntensity, written by both loaders; scales each character light's colour (character-render-object.md)\tSEMANTICALLY IDENTIFIED\tPROVEN\t001C4B95 / 001C9D8A movss dword ptr [01F82F00], xmm0, each after lea rdx, [008FAD18] 'mMapChrDirLightColorIntensityB' / 00200B50; the scene-settings loaders look a key up in the scene document (00200BE0 has-key; else the default document 01F813C8) through 001FF740 / 001C51D0 and read it with 00200B50 (number as float: a double converted with cvtpd2ps) or 00200B80 (number as int32); the key string is the lea rdx before the lookup; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool; was mapChrDirLightColorIntensityB float TYPE RESOLVED"
+   ],
+   "why": "already named; the key binding makes it SEMANTICALLY IDENTIFIED"
+  },
+  {
+   "type": "SceneLightingParams01F82ED0",
+   "old": [
+    "SceneLightingParams01F82ED0\t0x038\t4\tfloat038\tfloat\tscene-loader written, renderer read; r1 w2 in 001C3D50, 001C7940, 001F5D70. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tdirect-reference census 01F82E60..01F82F9F, 2026-09-25 (OPUS, block 272); names: console-command-names.md (ids 112, 170), OPEN-QUESTIONS 958 (answered)"
+   ],
+   "new": [
+    "SceneLightingParams01F82ED0\t0x038\t4\tchrShadowDepthBias\tint32\tthe scene setting mChrShadowDepthBias, read as an integer by both loaders; the renderer 001F5D70 converts it to float (cvtdq2ps) and passes it with +0x24 as the character shadow depth-bias / slope pair\tSEMANTICALLY IDENTIFIED\tPROVEN\t001C48BE call 00200B80 / 001C48C3 mov dword ptr [01F82F08], eax and 001C9081 mov dword ptr [01F82F08], eax, each after lea rdx, [008FB070] 'mChrShadowDepthBias'; 00200B80 returns dword [rax] for a kind-1 (int) node; 001F5E83 movd xmm2, dword ptr [01F82F08] / 001F5E8B cvtdq2ps xmm2, xmm2; vtable-method-index.md (0060E810 submit by cvtdq2ps([01F82F08])); the scene-settings loaders look a key up in the scene document (00200BE0 has-key; else the default document 01F813C8) through 001FF740 / 001C51D0 and read it with 00200B50 (number as float: a double converted with cvtpd2ps) or 00200B80 (number as int32); the key string is the lea rdx before the lookup; OPUS L2 meaning-not-claimed re-cut 2026-10-03, re-read with retool; was float038 float TYPE RESOLVED"
+   ],
+   "why": "key bound at the bytes; ctype float -> int32: written from eax by the int getter and converted with cvtdq2ps on read"
+  }
+ ],
+ "not_proposed": [
+  "MapLightingTuning02CB7FD0 +0x94 (byte, writers 001A2130 / 001A5B00, no key), +0xAC / +0xBC (default writes 1.0 / 0.1 at 005DC6DC / 005DC6A0), +0xB4 (render-path MSAA copy per the page; 10 readers not read here), +0xB8 / +0xC0 / +0xC4 (001A97F0 publishes)",
+  "SceneLightingParams01F82ED0 +0x04 (lea only)"
+ ],
+ "counts": {
+  "proposals": 10
+ }
+}

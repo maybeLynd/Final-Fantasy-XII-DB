@@ -1700,7 +1700,7 @@ shipped bytes:
 - **`00308270`(obj)** — `bt q[obj],0x16` gate: `d[+0x28]`=0 →
   `30C970(b[obj+0x695])` → `b[+0x695]`=0xFF → `w[+0xDC8]`/`d[+0xE58]`
   from `0x22C1DB0` row `b[obj+0xEA9]` → `30EDA0` snapshot copy
-  `q[obj+0xB88]`→`obj+0x730` (0x480) → `q[obj] &=
+  `q[obj+0xB88]`→~~`obj+0x730` (0x480)~~ `obj+0x6B0` (0x4F0: `0030EDA7 add rcx,0x6b0`, 9×0x80 then a 0x70-byte tail; *corrected 2026-10-03, OPUS, on ASTRA's SPEC-accepted `uq147-ko-release-partition` - record `opus-ko-13an-copy-1003`*) → `q[obj] &=
   ~0x0000400000400000` (bits 46,22) → `d[+0x690]`=0. Bit22 survives
   only in `u0fc0-def` at read time — the body ran once real
   (`l30eda0` ×1); its mask explains `u0fc0-def`'s qmask

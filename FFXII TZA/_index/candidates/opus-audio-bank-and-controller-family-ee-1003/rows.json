@@ -136,7 +136,7 @@
   },
   {
    "fn": "007C8370",
-   "text": "Returns -1 unless the dword at `rcx+0xC8` is 1; otherwise it clears the qword at `rcx+0x1C8`, calls `007CA560` on the sub-object at `rcx+0x190` with the incoming `edx` and `r8`, `r9`=0, `xmm1`=1.0 (from `01CEBBA8`), `xmm2` = the incoming `xmm3` and a zero byte argument, stores the fifth (double) argument to `+0xD8`, `edx` to `+0x638`, `r8d` to `+0x700` and `+0x704` and zero to `+0xD4` and `+0x708`, then calls `007C2280` and, when that returns `al`=0, sets `+0xC8` to 2 and returns 0, else tail-jumps to `007C36C0` with `xmm1`=0.",
+   "text": "Returns -1 unless the dword at `rcx+0xC8` is 1; otherwise it clears the qword at `rcx+0x1C8`, calls `007CA560` on the sub-object at `rcx+0x190` with `r9`=0, `xmm1`=1.0 (from `01CEBBA8`), `xmm2` = the incoming `xmm3` and a zero byte fifth argument (`007CA560` reads neither `rdx` nor `r8`), stores the fifth (double) argument to `+0xD8`, `edx` to `+0x638`, `r8d` to `+0x700` and `+0x704` and zero to `+0xD4` and `+0x708`, then calls `007C2280` and, when that returns `al`=0, sets `+0xC8` to 2 and returns 0, else tail-jumps to `007C36C0` with `xmm1`=0.",
    "anchors": [
     [
      "007C83BD",
@@ -164,7 +164,13 @@
  "rejected": [],
  "skipped": {},
  "missing": [],
- "corrections": [],
+ "corrections": [
+  {
+   "fn": "007C8370",
+   "why": "narrowed 2026-10-03 (OPUS) on the non-author review auditspec-review-opus-audio-bank-and-controller-family-ee-1003: 'calls `007CA560` on the sub-object at `rcx+0x190` with the incoming `edx` and `r8`, `r9`=0, `xmm1`=1.0 (from `01CEBBA8`), `xmm2` = the incoming `xmm3` and a zer' -> 'calls `007CA560` on the sub-object at `rcx+0x190` with `r9`=0, `xmm1`=1.0 (from `01CEBBA8`), `xmm2` = the incoming `xmm3` and a zero byte fifth argument (`007CA'",
+   "by": "reviewer"
+  }
+ ],
  "mode": "ee",
  "family": ""
 }

@@ -107,7 +107,7 @@
   },
   {
    "fn": "007E0A40",
-   "why": "byte re-read (non-drafting agent, OPUS spot-checked): The divisibility test is an unsigned 64-bit div of r8 by the sign-extended 32-bit signed product (movsxd rcx, eax / div rcx); 'not a multiple of' misstates a negative product, and the path where the product is 0 (div faults) is not covered.; Everything else checks out: the 0xFFFFFFFB test, n >= 2 signed, cvtdq2pd store to +0x98 only when n is 0, EnterCriticalSection/LeaveCriticalSection IAT slots 008C20B8/008C20C0 (confirmed from the import table), slot k = signed remainder of ([+0xB4] + re-read [+0xB0]) by 2 at rcx+0xC0+0x20k with rdx/r8/fifth dword/r9 at +0/+8/+0x10/+0x18, inc inside the loc"
+   "why": "byte re-read (non-drafting agent, OPUS spot-checked): The divisibility test is an unsigned 64-bit div of r8 by the sign-extended 32-bit signed product (movsxd rcx, eax / div rcx); 'not a multiple of' misstates a negative product, and the path where the product is 0 (div faults) is not covered.; Everything else checks out: the 0xFFFFFFFB test, n >= 2 signed, cvtdq2pd store to +0x98 only when n is 0, EnterCriticalSection/LeaveCriticalSection IAT slots 008C20B8/008C20C0 (confirmed from the import table), slot k = signed remainder of ([+0xB4] + re-read [+0xB0]) by 2 at rcx+0xC0+0x20k with rdx/r8/fifth dword/r9 at +0/+8/+0x10/+0x18, inc of dword +0xB0 inside the lock (before LeaveCriticalSection at 007E0B2C)."
   }
  ],
  "mode": "ee",

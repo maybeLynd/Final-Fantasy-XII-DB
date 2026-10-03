@@ -1,0 +1,49 @@
+{
+ "type": "AudioPlaybackStateBlock",
+ "proposals": [
+  {
+   "old": [
+    "AudioPlaybackStateBlock\t0x000\t4\tflags\tuint32\tbits or-ed by 003601B0 (003601B7), cleared by 003601C0 (003601C9), tested by 00360120 (00360129), read by 00360360, zeroed by 00360100. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tbyte-stride xref scan"
+   ],
+   "new": [
+    "AudioPlaybackStateBlock\t0x000\t4\tresetHoldBits\tuint32\ta bitmask of holds on the pending reset: 003601B0(n) sets bit n, 003601C0(n) clears it, 00360360(n) tests it; the per-frame check 00360120 runs a pending reset request (+0x0A or +0x0B) only while the whole word is 0; bit `0x8000` (index 15) is the skip-family flag bit; cleared by 00360100. Verbs 0x014C partystdmotionrecover and 0x03EB / 0x046F partyallread(2) clear bits through 003601C0\tSEMANTICALLY IDENTIFIED\tPROVEN\t003601B0 mov eax, 1 / shl eax, cl / 003601B7 or dword ptr [022CB720], eax; 003601C9 and dword ptr [022CB720], eax; 00360360 bt edx, ecx / setb al; 00360129 cmp dword ptr [022CB720], 0 / 00360143 jne 003601A1 (skip the request check); 00360100 mov dword ptr [022CB720], 0; the-screen-fade-layers-and-the-movie-fade-schedule.md (bit `0x8000`, the skip flag bit); OPUS L2 meaning-not-claimed survey 2026-10-03, re-read with retool; verb names from scriptvm-verb-adapter-callbacks.tsv; was flags"
+   ],
+   "why": "mechanism read in full; the verbs that clear bits named"
+  },
+  {
+   "old": [
+    "AudioPlaybackStateBlock\t0x008\t2\tword008\tuint16\tw 00360370 (0036037E); returned by the getter 003603B0. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tbyte-stride xref scan"
+   ],
+   "new": [
+    "AudioPlaybackStateBlock\t0x008\t2\tdeadPredicate008\tuint16\ta predicate word nothing sets in this build: its only writer is the boot zeroing in 00360370 and its one reader 003603B0 returns it, so that predicate always answers 0\tSEMANTICALLY IDENTIFIED\tPROVEN\t0036037E mov word ptr [022CB728], ax (boot); 003603B0 movzx eax, word ptr [022CB728]; r2-force-fight-toggle.md UQ-150 (ANSWERED 2026-09-17, FABLE); OPUS L2 meaning-not-claimed survey 2026-10-03, re-read with retool; verb names from scriptvm-verb-adapter-callbacks.tsv; was word008"
+   ],
+   "why": "FABLE's answer adopted"
+  },
+  {
+   "old": [
+    "AudioPlaybackStateBlock\t0x00A\t1\tflag00A\tuint8\tset 1 by 003603D0, tested by 00360120 (00360145), w 003601D0/00360370. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tbyte-stride xref scan"
+   ],
+   "new": [
+    "AudioPlaybackStateBlock\t0x00A\t1\tsoftwareResetRequest\tuint8\tset to 1 by script verb 0x03E2 softwarereset (handler 0034EB20 -> 003603D0); the per-frame check 00360120 runs the skip-family reset 003601D0 when it is set and +0x00 is 0, and the reset clears it\tSEMANTICALLY IDENTIFIED\tPROVEN\t003603D0 mov byte ptr [022CB72A], 1 (one caller 0034EB20, the softwarereset handler); 00360145 cmp byte ptr [022CB72A], 0 / 00360157 call 003601D0; 003602B1 mov byte ptr [022CB72A], bl (bl = 0, 00360213); boot 0036038B; OPUS L2 meaning-not-claimed survey 2026-10-03, re-read with retool; verb names from scriptvm-verb-adapter-callbacks.tsv; was flag00A"
+   ],
+   "why": "the verb that sets it names it"
+  },
+  {
+   "old": [
+    "AudioPlaybackStateBlock\t0x00B\t1\tflag00B\tuint8\tset 1 by 003603E0, tested by 00360120 (0036014E), w 003601D0/00360370. MEANING NOT CLAIMED\tTYPE RESOLVED\tPROVEN\tbyte-stride xref scan"
+   ],
+   "new": [
+    "AudioPlaybackStateBlock\t0x00B\t1\tuiResetRequest\tuint8\tthe native-side twin of +0x0A: set to 1 by 003603E0, whose callers are the UI request router's destination 0xC route (00228130), 00280140 and 00354EF0; the same per-frame check runs the reset for it and the reset clears it\tSEMANTICALLY IDENTIFIED\tPROVEN\t003603E0 mov byte ptr [022CB72B], 1 (callers 002281D9, 0028025B, 00354F11); 0036014E cmp byte ptr [022CB72B], 0; 003602B7 mov byte ptr [022CB72B], bl; r2-force-fight-toggle.md (request bytes); OPUS L2 meaning-not-claimed survey 2026-10-03, re-read with retool; verb names from scriptvm-verb-adapter-callbacks.tsv; was flag00B"
+   ],
+   "why": "page meaning verified"
+  }
+ ],
+ "not_proposed": [
+  "+0x04: set to 0x5A by the per-frame check and at boot, no rip-relative reader",
+  "+0x07: zeroed by the per-frame check and by the reset, no reader"
+ ],
+ "observation": "the type name says audio playback, but the block is the pending-reset request block: its reset 003601D0 stops sound and also resets the time scales (00229EF0(1.0), 00229EE0(1.0) - CoreRuntimeStatic02064AA0 +0x24 / +0x28) and the actor-manager flags; a rename is the owner's call",
+ "counts": {
+  "proposals": 4
+ }
+}

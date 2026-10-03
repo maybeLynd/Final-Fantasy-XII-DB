@@ -1,0 +1,40 @@
+{
+ "page": "08-Combat-Formula/Current-HP/the-hp-write-and-the-lethal-transition.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-hp-write-and-the-lethal-transition-r8.json",
+ "rows": [
+  {
+   "fn": "00345C20",
+   "text": "reads six floats `f1`..`f6` in turn with `00267DB0(r9)`; stores `f1`, `f2`, `f3` to stack floats `+0x28`, `+0x24`, `+0x20` (block `B` at `+0x20`) and `f4`, `f5`, `f6` to `+0x38`, `+0x34`, `+0x30` (block `A` at `+0x30`), the fourth float of each block left unwritten; calls `003A1920(&A, &B)` and passes its float result as `xmm1` to `0026B4C0(rcx, ..)`; returns with `rax` as that call left it; stack cookie `01F44830`, checked by `00808C40`",
+   "anchors": [
+    [
+     "00345C42",
+     "call"
+    ],
+    [
+     "00345C4A",
+     "movss"
+    ],
+    [
+     "00345C74",
+     "movss"
+    ],
+    [
+     "00345C9D",
+     "call"
+    ],
+    [
+     "00345CA8",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

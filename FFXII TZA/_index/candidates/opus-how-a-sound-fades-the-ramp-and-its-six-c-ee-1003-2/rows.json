@@ -1,0 +1,42 @@
+{
+ "page": "18-Audio/Audio-Boundary/how-a-sound-fades-the-ramp-and-its-six-curves.md",
+ "date": "2026-10-03",
+ "session": "opus-self",
+ "report": "how-a-sound-fades-the-ramp-and-its-six-curves-r6o.json",
+ "rows": [
+  {
+   "fn": "007BDBB0",
+   "text": "`v` = 0 when the virtual `[[rcx]+0x130]`(`rcx`) returns non-zero in `al`, else float `+0xC` of qword `[rcx+0x30]`; then over four 0x40-byte records from `rcx+0x90` (floats a `+0`, b `+4`, c `+8`, d `+0xC`, dword `+0x14`, qword `+0x30`; `rbx` = record + 0x28) it multiplies `v` by: b when d equals 0 or is unordered (`ucomiss`); otherwise, when qword `+0x30` is non-null, `007AE260`(`rbx`, 1.0 - c/d) * (a - b) + b if a > b (ordered `comiss`), else `007AE260`(`rbx`, c/d) * (b - a) + a; and when that qword is null, `007A9E50`(c/d, dword `+0x14`) * (b - a) + a; it returns `v` multiplied by float `+0x64` of `rcx`",
+   "anchors": [
+    [
+     "007BDBD6",
+     "call"
+    ],
+    [
+     "007BDC10",
+     "cmp"
+    ],
+    [
+     "007BDC34",
+     "comiss"
+    ],
+    [
+     "007BDCAB",
+     "call"
+    ],
+    [
+     "007BDCD8",
+     "mulss"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [
+  "007A7010"
+ ],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

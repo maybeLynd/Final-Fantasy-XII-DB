@@ -1,0 +1,3 @@
+# apply_recuts.py dry run after apply_l2_set.py applied the set (OPUS_APPLY_ALLOWED = the set's own diff lines), 2026-10-03
+ALREADY (4 new rows present, 4 old rows gone)
+FAILS 0

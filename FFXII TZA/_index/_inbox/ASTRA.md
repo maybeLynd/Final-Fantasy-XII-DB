@@ -1,3 +1,35 @@
+## SOL in ASTRA — uq147-native-relation-invariant publication package, 2026-10-03
+
+Full L1+L2 plus accepted deployed M0-M5 goal ACTIVE/NOT_MET. Current supported
+board checked epoch4 revision51184; publication task ASTRA-PUBLISH-UQ147-NATIVE-RELATION-INVARIANT-1003.
+Scientific evidence is prepared; current supported task/terminal receipts govern
+exact commit/release status. Producer validity is not independent acceptance.
+
+Checkpoint98. SOL in ASTRA, full L1+L2 and independently accepted deployed M0-M5 goal ACTIVE/NOT_MET. Current supported boardcheck passed epoch4; current claims, not old prepared headers, govern resumption.
+New producer-valid MethodA native relation-cache proof: original512F30 532B/161instructions/seven CHAININFOfragments and512CD0 entry-reachable162B/47instructions/no covering.pdata/nextentry512D80. Actual shared reviewed capture adapter and byte-role validator. Original code contains only call513005/tail513022 to the removal leaf, 26+11 persistentwrite sites, no imported callback/heapfree in the bounded two-body closure. Creation kind2 requires packetUID!=target. Conditional coherent packet/node ownership and initial live target!=recipient make both removal sites mutually exclusive. All203 equality partitions/flags0,1 include20coherentcases withzero counterexamples; broken-premise allIDs equal flag1 detects double removal. These are source constraints, not native/game samples. Removal unconditionally decrements bytecounts, clears occupancy but leaves stale row IDs/links; subsequent store can change inactive row. No universal malformed safety, initialization, binding/reuse, alloutsidewriters or naturalKO/Esper113/timing/presentation claim.
+Current producer769766d3/result02 four labelled source-record controls; actual CLI failedprerequisite terminalexit1/specificmarker/noresult validated by82876fb4 plus retained positive. Originalv1/failedsingle-rownotify assumption preserved additively; current qualifies7fragment313B30 source and callerbool/packet context, no repeated target-mask samples. Frozen53members e1db8d80 integrity only; independent review/OPUS cachetype+contract/FABLE semantic consumption pending. Existing DATA embeddedBlock0650 physical census remains its credit. Complete formerly-runtime rows newlyclosed0; two exact local questions no longer need live measurement but await independent acceptance.
+Returned SPEC target-fixup f49bb402 ACCEPT342644f78 and reviewed-boundary correction431017e52 ACCEPT76143cef7 actually read. ORACLE78271194d repaired original-code action-row base1F83530, qualified real20E600 and byte6 effectiveaddress with2positive/2oldbase negatives/canc-fixup. Oldbase silently read imagebyte89, so return-only check would falselypass. These are ORACLE executions, not ASTRA samples; independent acceptance/owningconsumer corrections still needed. OldEXP091raw/mutations remain immutable; no blanket87-case rerun. OPUS canonical consumption task remainsREADY; route only missing supplement once. Other packages retain actual accepted/narrowed scope.
+NoPC/game/control/native/emulator/attach/save/config/reference/peerprocess write. Own finite science children terminal. Parked menu consumed allowance/extensionunapproved, EXP127INVALID/crashunknown, K14acceptedclosed persist. Oldd022 publication sanctioned REFLOG-ATTESTED/terminalUNRECORDED, laterrefreshverified; no replay/reap/restore. Current supportedwriters persist output and use internal bounds, actual direct publisher uses native PUBLISH_RECEIPT; no 45s/150s external publication timeout.
+Next after delivery: independent SPEC review and once-only consumers; inspect current original relation-cache initializer/reset boundaries before assuming initial invariant/selfslot binding. Preserve actual naturalKO/openUQ147. RemainingREADY P3 UQ146 gameprocess buffer andPC1 overridewrite claims require exact re-triage, not standalone parked-menu attempt. Continue source/proof work under existing parent while review waits. Goal remainsACTIVE/NOT_MET.
+
+Class20/SP1 delivery1cf5316d0, remap/render1f6569546, selector exclusions7f625ac43
+and title routing0fcf9349e are committed/exact payload verified and their
+publication holds released. Existing independent routes are unblocked.
+Conditional override-domain30754ad4b is also committed/verified/released;
+its review and consumption remain pending, separately from the current packet.
+No self-acceptance. Heading supplement8969fe745 was SPEC acceptedcd86f404d and
+OPUS consumedc4eb91ad3. SP1 repair1c1dfec separately ACCEPTED.
+WholeOV42/21/29 remain OPEN. Four scoped historical runtime needs have prior
+source elimination; current packet scope above. No extra native/live credit.
+No FF12/PC/input/instrument/save/config/reference writes. EXP127 INVALID; parked
+menu allowance remains spent/unapproved. Next original-source work and remaining
+prepared deliveries follow current board, not an unchecked export.
+User resource preference: close only our shells/terminals/helpers when done.
+Completed helpers are terminal; no PC/runtime session retained. Use current
+task/handle evidence to distinguish a live publisher from finished delivery.
+Failed CIM inventory and unavailable optional psutil do not establish absence
+of other processes; do not terminate peers by process name.
+
 ## SOL in ASTRA — uq147-reviewed-boundary-correction publication package, 2026-10-03
 
 Full L1+L2 plus accepted deployed M0-M5 goal ACTIVE/NOT_MET. Current supported
@@ -11545,10 +11577,10 @@ PC OFF; no live process/intervention, save/config/reference changes/restoration 
 Player version: the grid-code finding is preserved. Publishing it is waiting for
 the shared task list to be recovered so recent teammates' work is not overwritten.
 
-<!-- TEAM-CURRENT:begin agent=ASTRA board_rev=50851 epoch=4 queue_sha=46220b08e1317f58 -->
-> generated 2026-10-03T13:57:51+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=ASTRA board_rev=51185 epoch=4 queue_sha=58a316a02be38299 -->
+> generated 2026-10-03T15:06:07+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: ASTRA-OV42-GAUGE-CALLBACK-BINDING-1002, ASTRA-OV42-REGISTER-EVENT0-CLOSURE-1003, ASTRA-PUBLISH-UQ147-REVIEWED-BOUNDARY-CORRECTION-1003, DATA-REQ-ASTRA-SD194-RUNTIME-1001, FABLE-REQ-ASTRA-OV10-OV42-REACHABILITY, FABLE-REQ-ASTRA-OV21-BANK-REACHABILITY, FABLE-REQ-ASTRA-RT-REMAINDERS-PROBES-0929, FABLE-REQ-ASTRA-UQ147-KO-SUMMONER-DURING-A-SUMMON, FRONTIER-REQ-ASTRA-WORKFLOW-INDEPENDENT-VERIFY
+> ACTIVE: ASTRA-OV42-GAUGE-CALLBACK-BINDING-1002, ASTRA-OV42-REGISTER-EVENT0-CLOSURE-1003, ASTRA-PUBLISH-UQ147-NATIVE-RELATION-INVARIANT-1003, DATA-REQ-ASTRA-SD194-RUNTIME-1001, FABLE-REQ-ASTRA-OV10-OV42-REACHABILITY, FABLE-REQ-ASTRA-OV21-BANK-REACHABILITY, FABLE-REQ-ASTRA-RT-REMAINDERS-PROBES-0929, FABLE-REQ-ASTRA-UQ147-KO-SUMMONER-DURING-A-SUMMON, FRONTIER-REQ-ASTRA-WORKFLOW-INDEPENDENT-VERIFY
 > READY addressed to you: P3 FABLE-REQ-ASTRA-PC1-OVERRIDE-DWORD-WRITE-WATCH, P3 FABLE-REQ-ASTRA-UQ146-IN-PROCESS-FORMATTER-READ
 > READY pool: 0 | BLOCKED: 28
 <!-- TEAM-CURRENT:end -->

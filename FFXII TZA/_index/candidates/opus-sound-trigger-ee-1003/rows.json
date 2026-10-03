@@ -136,7 +136,7 @@
   },
   {
    "fn": "007BE3F0",
-   "text": "When the float `xmm1` is below 0 or unordered (`comiss`/`jb`) or above 1.0 (`01CEBBA8`), it formats `01CB5CD8` with it as a double through `0019C5D0` into a 256-byte stack buffer with a newline (calling `00809728` if the terminator index reaches 0x100), passes the buffer to the import at `008C2120` and to `007A5570` with 1 and returns -1; otherwise it calls `007CA560` on `rcx+0x2A8` with the incoming `rdx`, `r8` and `xmm1`, `r9`=0 and a zero byte argument and returns its result, both returns checking the stack cookie through `00808C40`.",
+   "text": "When the float `xmm1` is below 0 or unordered (`comiss`/`jb`) or above 1.0 (`01CEBBA8`), it formats `01CB5CD8` with it as a double through `0019C5D0` into a 256-byte stack buffer with a newline (calling `00809728` if the terminator index reaches 0x100), passes the buffer to the import at `008C2120` and to `007A5570` with 1 and returns -1; otherwise it calls `007CA560` on `rcx+0x2A8` with the incoming floats `xmm1` and `xmm2` left in place (`007CA560` reads neither `rdx` nor `r8`), `r9`=0 and a zero byte fifth argument and returns its result, both returns checking the stack cookie through `00808C40`.",
    "anchors": [
     [
      "007BE40C",
@@ -250,6 +250,11 @@
   {
    "fn": "007BC8D0",
    "why": "byte re-read by a non-drafting agent: The 'most then given dword `+8` = 0, float `+0xC` = 1.0 ...' clause is attributed only to the 0x30-byte slots, but the same writes also go to three of the four 0x40-byte slots (`+0x88` via `007BCB95`, `+0x108`, `+0x148`), while the slot at `+0xC8` and the 0x30-byte slots at `+0x1B8`, `+0x218`, `+0x248`, `+0x278` and `+0x3C8` only get their five fields cleared (again for all but `+0x3C8`); 'most' does not say which.; The 0x40-byte slots' cleared fields (qwords `+8`/`+0x10`, dwords `+0x1C`/`+0x24`, byte `+0x20`, qword `+0x38`) are not stated."
+  },
+  {
+   "fn": "007BE3F0",
+   "why": "narrowed 2026-10-03 (OPUS) on the non-author review auditspec-review-opus-sound-trigger-ee-1003: 'with the incoming `rdx`, `r8` and `xmm1`, `r9`=0 and a zero byte argument' -> 'with the incoming floats `xmm1` and `xmm2` left in place (`007CA560` reads neither `rdx` nor `r8`), `r9`=0 and a zero byte fifth argument'",
+   "by": "reviewer"
   }
  ],
  "mode": "ee",

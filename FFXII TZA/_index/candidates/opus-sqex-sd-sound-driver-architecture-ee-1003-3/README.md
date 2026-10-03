@@ -1,6 +1,6 @@
 # Interior citations, cloud-drafted: sqex-sd-sound-driver-architecture.md's entry-cited functions (OPUS, 2026-10-03)
 
-The page named 3 F-frontier functions only at their entry. A local drafting agent (local-ee-drafter, no cloud credit) drafted one sentence and 1-5 interior anchors per function from OPUS's annotated disassembly pack (`cloud-input/f-interior/` in the private snapshot repo). OPUS checked every row mechanically with `interior_ingest.py`. A second local agent, not the drafter, then read every one of the 3 rows against the disassembly, including the rotation helpers' directions and every named import: all 3 stood. Neither agent is an independent reviewer: the non-author check is SWE2-AUDIT-SPEC's.
+The page named 3 F-frontier functions only at their entry. A local drafting agent (local-ee-drafter, no cloud credit) drafted one sentence and 1-5 interior anchors per function from OPUS's annotated disassembly pack (`cloud-input/f-interior/` in the private snapshot repo). OPUS checked every row mechanically with `interior_ingest.py`. A second local agent, not the drafter, then read every one of the 3 rows against the disassembly, including every named import (`OutputDebugStringA`, `EnterCriticalSection`, `LeaveCriticalSection`, `memset`) and every virtual-call slot: all 3 stood. Neither agent is an independent reviewer: the non-author check is SWE2-AUDIT-SPEC's.
 
 **Rows.** 3 applied with 15 anchors. Rejected by the mechanical check: 0. Skipped by the session: 0. Missing: 0.
 

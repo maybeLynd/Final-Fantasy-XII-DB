@@ -540,3 +540,10 @@ Interior anchor `00416B0B` (function `00416AD0`).
 
 Interior anchor `00518D85` (function `00518D50`).
 
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-the-per-model-oscillator-subsystem-ee-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0040ABF0` | 241 B | clears `0x8` of byte `+0x3F` of `rcx`, stores `dl` at byte `+0x3E` and ORs bit `0x1` of byte argument 5, shifted to `0x8`, into `+0x3F`; when `edx` is 0 it returns there; otherwise it copies 16 bytes from `[r8]` to `+0x40`, calls `00202E10`(a stack vector (0.0, 1.0, 0.00001), the same vector, `rcx+0x40`) and stores the three resulting floats at `+0x50`, `+0x54` and `+0x58`, calls `00380800`(`rcx+0x50`, `rcx+0x50`), sets `0x2` of byte `+0x3F`, stores `0020E620`(`01EFFA30` + 32*(`edx` - 1)) at dword `+0x2C` and `r9w` at word `+0x3C`; all under the stack cookie (qword `01F44830`, checked by `00808C40`) | `0040AC0E`, `0040AC28`, `0040AC72`, `0040ACB4`, `0040ACC0` |

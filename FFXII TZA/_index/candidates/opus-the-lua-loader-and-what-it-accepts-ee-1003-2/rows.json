@@ -84,7 +84,7 @@
   },
   {
    "fn": "0081DC10",
-   "text": "With the frame record at `rcx+0x20`: when byte `rcx+0x48` has bit `0x2` or `0x4` set it first, for bit `0x2` only, calls `0081DA20` with 1 and -1 (keeping the `rdx` source position relative to the stack base `rcx+0x38`), then copies the previous frame's (`+0x10`) qword `+0x38` to `rcx+0x28`; it makes the previous frame current at `rcx+0x20`, copies 16-byte values from `rdx` to the frame's function slot (`[frame]`) onward while the signed word count at frame `+0x20` is not exhausted and the source is below the top `rcx+0x10` (unsigned), sets the type dword of the remaining wanted slots to 0 while the count stays positive, stores the end position to `rcx+0x10`, and returns the word count plus 1.",
+   "text": "With the frame record at `rcx+0x20`: when byte `rcx+0x48` has bit `0x2` or `0x4` set it first, for bit `0x2` only, calls `0081DA20` with 1 and -1 (keeping the `rdx` source position relative to the stack base `rcx+0x38`), then copies the previous frame's (`+0x10`) qword `+0x38` to `rcx+0x28`; it makes the previous frame current at `rcx+0x20`, copies the value qword and type dword (the first 12 bytes) of each 16-byte slot from `rdx` to the frame's function slot (`[frame]`) onward while the signed word count at frame `+0x20` is not exhausted and the source is below the top `rcx+0x10` (unsigned), sets the type dword of the remaining wanted slots to 0 while the count stays positive, stores the end position to `rcx+0x10`, and returns the word count plus 1.",
    "anchors": [
     [
      "0081DC2D",
@@ -214,7 +214,7 @@
   },
   {
    "fn": "0082CB10",
-   "text": "With the function record at `rcx+0x30`: when the token dword `rcx+0x10` minus 0x104 is at most 0x1A (unsigned) and its bit is set in mask 0x4020007, or the token is 0x3B, it passes first 0 and count 0; otherwise it parses an expression into a stack record with `0082D470` and, while the token is 0x2C, calls `00824260`, `0082F860` and `0082D470` again, counting expressions; when the record's kind dword is 12 or 13 it calls `00830350` with -1 and, for kind 12 with a single expression, rewrites the code dword the record indexes (array at `+0x18` of the function record's first qword) by clearing bits `0x21` and setting `0x1E`, passing byte `+0x42` as first and -1 as count; for other kinds one expression passes the `0082F780` result as first and several pass byte `+0x42` after `0082F860`, with the expression count; it then calls `00830120` with first and count, calls `00824260` when the token is 0x3B, and returns after the stack-cookie check through `00808C40`.",
+   "text": "With the function record at `rcx+0x30`: when the token dword `rcx+0x10` minus 0x104 is at most 0x1A (unsigned) and its bit is set in mask 0x4020007, or the token is 0x3B, it passes first 0 and count 0; otherwise it parses an expression into a stack record with `0082D470` and, while the token is 0x2C, calls `00824260`, `0082F860` and `0082D470` again, counting expressions; when the record's kind dword is 12 or 13 it calls `00830350` with -1, for kind 12 with a single expression rewrites the code dword the record indexes (array at `+0x18` of the function record's first qword) by clearing bits `0x21` and setting `0x1E`, and for both kinds passes byte `+0x42` as first and -1 as count; for other kinds one expression passes the `0082F780` result as first and several pass byte `+0x42` after `0082F860`, with the expression count; it then calls `00830120` with first and count, calls `00824260` when the token is 0x3B, and returns after the stack-cookie check through `00808C40`.",
    "anchors": [
     [
      "0082CB48",
@@ -266,7 +266,7 @@
   },
   {
    "fn": "00830540",
-   "text": "Returns at once when `edx` is -1; otherwise walks the jump chain through the code array at `+0x18` of the record `[rcx]`: for each index it derives the next one from the instruction's field above `0x3FFF` (field minus 0x1FFFF, with -1 ending the chain), takes the preceding instruction as the control when the index is at least 1 and the byte table at `01CCCCD0` has a negative entry for that instruction's opcode (`0x3F` field), and when the control's opcode is 0x1C either sets its `0x3FC0` field to `r9d` (when `r9d` is neither 0xFF nor equal to the control's field above `0x7FFFFF`) or rewrites it to opcode 0x1B with that top field moved into `0x3FC0` and the `0x7FC000` field kept, then points the jump at `r8d`; for other control opcodes it points the jump at the fifth argument; the jump field is set to target minus index minus 1 plus 0x1FFFF, and a distance whose absolute value exceeds 0x1FFFF (signed `jg`) calls `00824330` with `01CCD308`, where the range ends.",
+   "text": "Returns at once when `edx` is -1; otherwise walks the jump chain through the code array at `+0x18` of the record `[rcx]`: for each index it derives the next one from the instruction's field above `0x3FFF` (field minus 0x1FFFF, with -1 ending the chain), takes the preceding instruction as the control when the index is at least 1 and the byte table at `01CCCCD0` has a negative entry for that instruction's opcode (`0x3F` field), and when the control's opcode is 0x1C either sets its `0x3FC0` field to `r9d` (when `r9d` is neither 0xFF nor equal to the control's field above `0x7FFFFF`) or rewrites it to opcode 0x1B with that top field shifted down by 17 (its low eight bits forming the `0x3FC0` field, its top bit ORed into bit 14) and the `0x7FC000` field kept, then points the jump at `r8d`; for other control opcodes it points the jump at the fifth argument; the jump field is set to target minus index minus 1 plus 0x1FFFF, and a distance whose absolute value exceeds 0x1FFFF (signed `jg`) calls `00824330` with `01CCD308`, where the range ends.",
    "anchors": [
     [
      "00830598",
@@ -306,6 +306,21 @@
   {
    "fn": "0082C6E0",
    "why": "byte re-read by a non-drafting agent: 'the record's line dword' is not on the function record: it is dword `+0x68` of the function record's first-qword object (`0082C72A mov rax, qword ptr [rsi]`, `0082C72D mov r8d, dword ptr [rax + 0x68]`)."
+  },
+  {
+   "fn": "0081DC10",
+   "why": "narrowed 2026-10-03 (OPUS) on the non-author review auditspec-review-opus-the-lua-loader-and-what-it-accepts-ee-1003-2: 'copies 16-byte values from `rdx` to the frame's function slot (`[frame]`) onward' -> 'copies the value qword and type dword (the first 12 bytes) of each 16-byte slot from `rdx` to the frame's function slot (`[frame]`) onward'",
+   "by": "reviewer"
+  },
+  {
+   "fn": "0082CB10",
+   "why": "narrowed 2026-10-03 (OPUS) on the non-author review auditspec-review-opus-the-lua-loader-and-what-it-accepts-ee-1003-2: 'when the record's kind dword is 12 or 13 it calls `00830350` with -1 and, for kind 12 with a single expression, rewrites the code dword the record indexes (arra' -> 'when the record's kind dword is 12 or 13 it calls `00830350` with -1, for kind 12 with a single expression rewrites the code dword the record indexes (array at '",
+   "by": "reviewer"
+  },
+  {
+   "fn": "00830540",
+   "why": "narrowed 2026-10-03 (OPUS) on the non-author review auditspec-review-opus-the-lua-loader-and-what-it-accepts-ee-1003-2: 'or rewrites it to opcode 0x1B with that top field moved into `0x3FC0` and the `0x7FC000` field kept' -> 'or rewrites it to opcode 0x1B with that top field shifted down by 17 (its low eight bits forming the `0x3FC0` field, its top bit ORed into bit 14) and the `0x7F'",
+   "by": "reviewer"
   }
  ],
  "mode": "ee",

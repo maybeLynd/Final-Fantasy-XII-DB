@@ -1,0 +1,40 @@
+{
+ "page": "17-Presentation-Rendering/Model-And-Motion-Formats/the-per-model-oscillator-subsystem.md",
+ "date": "2026-10-03",
+ "session": "opus-self",
+ "report": "the-per-model-oscillator-subsystem-r6o.json",
+ "rows": [
+  {
+   "fn": "0040ABF0",
+   "text": "clears `0x8` of byte `+0x3F` of `rcx`, stores `dl` at byte `+0x3E` and ORs bit `0x1` of byte argument 5, shifted to `0x8`, into `+0x3F`; when `edx` is 0 it returns there; otherwise it copies 16 bytes from `[r8]` to `+0x40`, calls `00202E10`(a stack vector (0.0, 1.0, 0.00001), the same vector, `rcx+0x40`) and stores the three resulting floats at `+0x50`, `+0x54` and `+0x58`, calls `00380800`(`rcx+0x50`, `rcx+0x50`), sets `0x2` of byte `+0x3F`, stores `0020E620`(`01EFFA30` + 32*(`edx` - 1)) at dword `+0x2C` and `r9w` at word `+0x3C`; all under the stack cookie (qword `01F44830`, checked by `00808C40`)",
+   "anchors": [
+    [
+     "0040AC0E",
+     "and"
+    ],
+    [
+     "0040AC28",
+     "or"
+    ],
+    [
+     "0040AC72",
+     "call"
+    ],
+    [
+     "0040ACB4",
+     "call"
+    ],
+    [
+     "0040ACC0",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

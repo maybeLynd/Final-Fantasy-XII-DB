@@ -6,7 +6,7 @@
  "rows": [
   {
    "fn": "006E04F0",
-   "text": "Logs `00D8FCB0`/`00D8FCE0` via `006DF480` when dwords `01F3BA80` and `02EA0B40` are both non-zero, returns 0x80070057 when `rdx` is null, else takes the slot `006E0370` returns for `rcx`: if it holds an object it logs `00D8FD18`/`00D8FD60` (gated by `01F3BA80` and `01F3BA90`) when the first byte of the `rdx` slot's object is non-zero, releases the held object with `006E1130` and clears the slot; it allocates 0x120 bytes via `006DA880` on `[01F3BA68]` (tags `00D8FE18`, 0xAA, `00D8FE00`), constructs it with `00720FB0` when non-null, stores it in the slot and `rdx` to `rcx+0x18`, returns 0x80070057 when the `rdx` slot object's qword `+0x20` is null, calls `0071BA60` (seventh and eighth arguments, two stack outputs), calls `00721030` with a stack descriptor (0, `r8d`, `r9d`, the sixth and fifth arguments, both outputs, the ninth argument), clears byte `01F3CB3C` and calls the object's vtable slot `+0` with that `+0x20` qword; a negative result of either call is logged (`00D8FE38`/`00D8FE80` or `00D8FED8`/`00D8FF20`, with `0071B3C0`) and returned, the second after calling `rcx`'s vtable slot `+0x30`; on success it calls `007224B0` with 0, logs `00D8FF80`/`00D8FFB0` and returns 0.",
+   "text": "Logs `00D8FCB0`/`00D8FCE0` via `006DF480` when dwords `01F3BA80` and `02EA0B40` are both non-zero, returns 0x80070057 when `rdx` is null, else takes the slot `006E0370` returns for `rcx`: if it holds an object it logs `00D8FD18`/`00D8FD60` (gated by `01F3BA80` and `01F3BA90`) when the first byte of the `rdx` slot's object is non-zero, releases the held object with `006E1130` and clears the slot; it allocates 0x120 bytes via `006DA880` on `[01F3BA68]` (tags `00D8FE18`, 0xAA, `00D8FE00`), constructs it with `00720FB0` when non-null, stores it in the slot and `rdx` to `rcx+0x18`, returns 0x80070057 when the `rdx` slot object's qword `+0x20` is null, calls `0071BA60` (seventh and eighth arguments, two stack outputs), calls `00721030` with a stack descriptor (0, `r8d`, `r9d`, the sixth and fifth arguments, both outputs, the ninth argument), clears byte `01F3CB3C` and calls the object's vtable slot `+0` with that `+0x20` qword; a negative result of either call is logged when the dwords `01F3BA80` and `01F3BA90` are both non-zero (`00D8FE38`/`00D8FE80` or `00D8FED8`/`00D8FF20`, with `0071B3C0`) and returned, the second after calling `rcx`'s vtable slot `+0x30`; on success it calls `007224B0` with the slot's object and 0, logs `00D8FF80`/`00D8FFB0` when the dwords `01F3BA80` and `02EA0B40` are both non-zero, and returns 0.",
    "anchors": [
     [
      "006E0550",
@@ -116,6 +116,11 @@
   {
    "fn": "006E04F0",
    "why": "byte re-read by a non-drafting agent: The allocator's first argument is the qword AT `01F3BA68` (`006E05DB mov rcx, qword ptr [rip+...]`), not the address `01F3BA68`."
+  },
+  {
+   "fn": "006E04F0",
+   "why": "narrowed 2026-10-03 (OPUS) on the non-author review auditspec-review-opus-ppfx-function-identification-ee-1003-2: 'a negative result of either call is logged (`00D8FE38`/`00D8FE80` or `00D8FED8`/`00D8FF20`, with `0071B3C0`) and returned, the second after calling `rcx`'s vtab' -> 'a negative result of either call is logged when the dwords `01F3BA80` and `01F3BA90` are both non-zero (`00D8FE38`/`00D8FE80` or `00D8FED8`/`00D8FF20`, with `00'",
+   "by": "reviewer"
   }
  ],
  "mode": "ee",

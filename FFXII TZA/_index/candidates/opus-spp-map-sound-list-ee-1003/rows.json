@@ -6,7 +6,7 @@
  "rows": [
   {
    "fn": "003DF2C0",
-   "text": "Uses the sign-extended `ecx` as a record pointer, calls `0036B970` with the record's qword `+0x18`, a 16-byte stack out-buffer and 2, and returns when that yields zero; otherwise it stores the two returned qwords to `+0x18` and `+0x20` (returning also if the record pointer is null), and when the new `+0x18` pointer is non-null with a non-zero word `+0x10` calls `0032F3A0` with the record's signed byte `+0x11` and the signed remainder of that pointer's signed word `+0x12` divided by 10, then calls `003DF360` with the signed bytes `+0x11` and `+0x12` and the qwords `+0x18` and `+0x20`, clears `+0x18`, sets byte `+0x10` to 4 and returns.",
+   "text": "Uses the sign-extended `ecx` as a record pointer, calls `0036B970` with the record's qword `+0x18`, a 16-byte stack out-buffer and 2, and returns when that yields zero; otherwise it stores the two returned qwords to `+0x18` and `+0x20` (returning also if the record pointer is null), and when the new `+0x18` pointer is non-null with a non-zero word `+0x10` calls `0032F3A0` with the record's signed byte `+0x11` and the signed remainder of that pointer's signed word `+0x12` divided by 10; whichever way that test goes, it then calls `003DF360` with the signed bytes `+0x11` and `+0x12` and the qwords `+0x18` and `+0x20`, clears `+0x18`, sets byte `+0x10` to 4 and returns.",
    "anchors": [
     [
      "003DF2D8",
@@ -60,7 +60,13 @@
  "rejected": [],
  "skipped": {},
  "missing": [],
- "corrections": [],
+ "corrections": [
+  {
+   "fn": "003DF2C0",
+   "why": "narrowed 2026-10-03 (OPUS) on the non-author review auditspec-review-opus-spp-map-sound-list-ee-1003: 'calls `0032F3A0` with the record's signed byte `+0x11` and the signed remainder of that pointer's signed word `+0x12` divided by 10, then calls `003DF360` with' -> 'calls `0032F3A0` with the record's signed byte `+0x11` and the signed remainder of that pointer's signed word `+0x12` divided by 10; whichever way that test goe'",
+   "by": "reviewer"
+  }
+ ],
  "mode": "ee",
  "family": ""
 }

@@ -1,0 +1,121 @@
+{
+ "page": "99-Unresolved-Residual/Unlisted-Code/the-code-the-function-list-does-not-contain.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-code-the-function-list-does-not-contain-r5.json",
+ "rows": [
+  {
+   "fn": "00123F80",
+   "text": "calls `00123250(rcx)` and `001234A0(rcx)`; returns 0 at once for a null `rdx` = `p`; otherwise, for `i` from 0 below the sign-extended dword `[rcx+4]`, takes `q` = qword `[rcx+0x58+8i]`, stops when qword `[q+0x508]` is null, and when qword `[p+8i]` is non-null calls `001243D0(qword [q+0x508], q, qword [p+8i])`; returns 0",
+   "anchors": [
+    [
+     "00123F90",
+     "call"
+    ],
+    [
+     "00123F98",
+     "call"
+    ],
+    [
+     "00123FC4",
+     "mov"
+    ],
+    [
+     "00123FD0",
+     "mov"
+    ],
+    [
+     "00123FD8",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0014C221",
+   "text": "the libvpx two-block dequantise, inverse-DCT and add shape (an `rbp` frame saving `xmm6`/`xmm7`): loads the 64 bytes at `[rcx]` as four 8-word rows and zeroes them, multiplies the rows at `+0` and `+0x20` by the words at `[rdx]` and those at `+0x10` and `+0x30` by `[rdx+0x10]` (`pmullw`), and runs two transposed butterfly passes whose odd terms are `x` + `pmulhw`(`x`, 0x8A8C) and `x` + `pmulhw`(`x`, 0x4E7B) (word tables `03001FD0`, `03001FE0`), the second pass adding 4 (`03001FC0`) and shifting each word right by 3 (arithmetic); then adds the rows to the four 8-byte rows at `r8` + `k` * the sign-extended `r9d` (`k` = 0..3), saturates them to unsigned bytes and stores them back; returns nothing",
+   "anchors": [
+    [
+     "0014C269",
+     "movdqa"
+    ],
+    [
+     "0014C27C",
+     "pmullw"
+    ],
+    [
+     "0014C2CE",
+     "pmulhw"
+    ],
+    [
+     "0014C406",
+     "psraw"
+    ],
+    [
+     "0014C4BD",
+     "movq"
+    ]
+   ]
+  },
+  {
+   "fn": "00172580",
+   "text": "builds CPU feature flags `f` with `cpuid`: 0 when the maximum leaf is 0; else from leaf 1, `f` gains `0x1` for edx `0x800000`, `0x2` for edx `0x2000000`, `0x4` for edx `0x4000000`, `0x8` for ecx `0x1`, `0x10` for ecx `0x200` and `0x20` for ecx `0x80000`; when ecx has both of `0x18000000` and `xgetbv(0)` has both of `0x6` it gains `0x40`, and then, when the maximum leaf is at least 7 and leaf 7's ebx has `0x20`, `0x80`; finally stores to qword `02F974F8` `00133B40` when `f` has `0x10`, else `00179920`, and to qword `02F974F0` `00179360` when `f` has `0x80`, else `00179320`; returns nothing",
+   "anchors": [
+    [
+     "0017258A",
+     "cpuid"
+    ],
+    [
+     "001725A3",
+     "cpuid"
+    ],
+    [
+     "00172613",
+     "xgetbv"
+    ],
+    [
+     "00172634",
+     "cpuid"
+    ],
+    [
+     "0017265A",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00349E40",
+   "text": "reads three floats `a`, `b`, `c` in turn with `00267DB0(r9)`, calls `0026AD40(rdx, 1)`, then `0026A420(rdx, c, b, a, 1.0)` with `c`, `b`, `a` in `xmm1`, `xmm2`, `xmm3` and 1.0 as the stack argument; returns with `rax` as that call left it",
+   "anchors": [
+    [
+     "00349E63",
+     "call"
+    ],
+    [
+     "00349E6F",
+     "call"
+    ],
+    [
+     "00349E7A",
+     "call"
+    ],
+    [
+     "00349E8A",
+     "call"
+    ],
+    [
+     "00349EAA",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "0017B960": "too large to state exactly in 1200 characters even at block level (2139 B)",
+  "00729920": "not statable within its extent: the 189 B body ends inside its own jump-table dispatch (table 00729A60, default 00729A58), so its case bodies lie outside the listed extent"
+ },
+ "missing": [],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

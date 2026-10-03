@@ -983,3 +983,12 @@ slots, the registrar's returns, and each evaluator's constants. Script:
 its words in the budget". The bytes add a third loss: the word count at `+0x20` is 0 in the image and is written only
 on that same zero branch, so such a switch would also carry 0 at `+0x20`. The teardown subtracts that field. No
 shipped switch takes the branch, since all eight names are distinct. Tier 1 (static).
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-the-context-switch-axes-and-the-variant--ee-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `006B8D20` | 132 B | returns 0x11 when qword `+8` of `rcx` is null; otherwise it walks the list from qword `02E522D0` through each node's qword `+0x10`, comparing the node's C string at qword `+8` with that of `rcx` byte by byte, and returns 0x12 on an equal string; when no node matches it stores the old head at qword `+0x10` of `rcx`, makes `rcx` the head (qword `02E522D0`) and returns 0 | `006B8D2B`, `006B8D60`, `006B8D77`, `006B8D80`, `006B8D96` |
+| `006B8F70` | 222 B | counts the list from qword `02E522D0` through each node's qword `+0x10`; when the count equals dword `[rdx]` it only copies; otherwise, for a non-zero count it allocates count*8 bytes with `0017D260`(count*8, 8), returns 0xD when that is null and zeroes the buffer (`rep stosq`) when it is not; it frees the old qword `[rdx+8]` with `00584730` when that differs from the new buffer, is non-null and dword `[rdx]` has `0x80000000` clear, then stores the new buffer (null for a zero count) at qword `+8` and the count at dword `[rdx]`; it finally writes each node pointer, in list order, to consecutive qwords from qword `[rdx+8]` and returns 0 | `006B8F95`, `006B8FA5`, `006B8FBC`, `006B9005`, `006B9020` |

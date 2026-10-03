@@ -1,0 +1,269 @@
+{
+ "page": "17-Presentation-Rendering/Post-Processing/CONTRACT-ppfx-effect-creation.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "contract-ppfx-effect-creation-r6.json",
+ "rows": [
+  {
+   "fn": "007157A0",
+   "text": "builds the string `s` = `rcx` from the C string `rdx`: dword `[s]` = its length `n` (0 for a null `rdx`); for `n` = 0 stores qword 0 at `[s]` and the shared empty buffer `02EA1720` at qword `[s+8]`; otherwise the capacity `c` = 0x40 below 0x20, 0x80 below 0x40, else (`n`+0x400001 when 2`n`+2 > 0x400000 (signed), else 2`n`+0x11) AND 0xFFFFFFF0, stored to dword `[s+4]`; allocates `c`+8 bytes with `006DA880(qword [01F3BA68], c+8, '..\\src\\GPU\\TinyEffect\\TFXString.cpp', 0x61, 0)`, writes `c` to its first qword and uses the rest as the buffer (0 when the allocation is null), stores the buffer to qword `[s+8]`, copies `n` bytes into it with `memcpy` `00861EBA` and, when dword `[s+4]` is non-zero, terminates it at `n`; returns `s`",
+   "anchors": [
+    [
+     "007157C3",
+     "cmp"
+    ],
+    [
+     "0071582E",
+     "and"
+    ],
+    [
+     "00715854",
+     "call"
+    ],
+    [
+     "00715872",
+     "call"
+    ],
+    [
+     "00715889",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0071A380",
+   "text": "writes the decimal text of `v` = `edx` through a stack string `t` (empty buffer `02EA1720`): a negative `v` first appends '-' (`00718400`) and is negated; then for divisors `d` from 1000000000 down by signed /10 while above 1, once any `d` <= `v` (signed) has been seen it grows `t` by one (`007153B0(&t, len+1, 1)`) and appends '0' + `v`/`d` (then `v` = `v` mod `d`), or '0' for a later `d` > `v`; leading zeros are skipped; finally calls `00719560(&t, rcx, '0' + v)` for the last digit, frees `t`'s buffer through `006DA8A0(qword [01F3BA68], buffer - 8)` unless it is null or `02EA1720`, and returns `rcx`",
+   "anchors": [
+    [
+     "0071A3CD",
+     "call"
+    ],
+    [
+     "0071A3E3",
+     "cmp"
+    ],
+    [
+     "0071A439",
+     "idiv"
+    ],
+    [
+     "0071A47C",
+     "call"
+    ],
+    [
+     "0071A49E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0072DAC0",
+   "text": "when byte `01F3CD60` is non-zero it clears it and fills the 22 qwords `02EA2250`..`02EA22F8` with the suffixes '' (`00D9F05B`), '_REINHARDRGB_RGB', '_REINHARDRGB_RGBFAST', '_RGB_REINHARDRGB', '_REINHARDRGBLUM_RGB', '_REINHARDRGBLUM_RGBFAST', '_RGB_REINHARDRGBLUM', '_LOGRGB_RGB', '_LOGRGB_RGBFAST', '_RGB_LOGRGB', '_LOGRGBLUM_RGB', '_LOGRGBLUM_RGBFAST', '_RGB_LOGRGBLUM', '_RGBALUM_RGB', '_RGBALUM_RGBFAST', '_RGB_RGBALUM', '_REINHARDRGB_REINHARDRGB', '_REINHARDRGBLUM_REINHARDRGBLUM', '_LOGRGB_LOGRGB', '_LOGRGBLUM_LOGRGBLUM', '_RGBALUM_RGBALUM' and '_ALPHA_RGB'; with `S` = the C string `r8` made into a string (`007157A0`), for each suffix `j` it cuts `S` back to its original length (`00715CC0`), appends the suffix (`007198A0`), stores to dword `[rdx+4j]` the result `v` of vtable slot `+0x60` of qword `[rcx]` called with (that object, `S`'s text), and records 0x80004005 when `v` is 0, otherwise stores 0 there when that object's vtable slot `+0xC8` called with (it, `v`) returns a negative value; frees `S` (`00715C70`) and returns 0x80004005 if any `v` was 0, else 0",
+   "anchors": [
+    [
+     "0072DAFA",
+     "mov"
+    ],
+    [
+     "0072DC75",
+     "call"
+    ],
+    [
+     "0072DC85",
+     "call"
+    ],
+    [
+     "0072DC9D",
+     "call"
+    ],
+    [
+     "0072DCA7",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0072DCF0",
+   "text": "with `N` = the C string `r8` made into a string (`007157A0`) cut to its length - 1 (`00715CC0`): for each `i` from 1 to `r9d` (none when it is not positive) it formats '%s%d' with `N` and `i` (`0017D2E0`); when byte `01F3CD60` is non-zero it clears it and fills the 22 qwords `02EA2250`..`02EA22F8` with constant suffix strings, '' (`00D9F05B`), '_REINHARDRGB_RGB', '_REINHARDRGB_RGBFAST', '_RGB_REINHARDRGB' and 18 more through '_ALPHA_RGB'; makes `S` from the formatted text and, for each suffix `j`, cuts `S` back to that length, appends the suffix (`007198A0`), stores the result `v` of vtable slot `+0x60` of qword `[rcx]` called with (that object, `S`'s text) to the next dword at `rdx` (22 per `i`), and records 0x80004005 when `v` is 0, otherwise stores 0 there when that object's vtable slot `+0xC8` called with (it, `v`) returns a negative value; frees the strings (`00715C70`) and returns 0x80004005 if any `v` was 0, else 0; stack cookie `01F44830`, checked by `00808C40`",
+   "anchors": [
+    [
+     "0072DD94",
+     "call"
+    ],
+    [
+     "0072DDAD",
+     "mov"
+    ],
+    [
+     "0072DF15",
+     "call"
+    ],
+    [
+     "0072DF2D",
+     "call"
+    ],
+    [
+     "0072DF57",
+     "cmovs"
+    ]
+   ]
+  },
+  {
+   "fn": "0072DFD0",
+   "text": "with `N` = the C string `r8` made into a string (`007157A0`) cut to its length - 3 (`00715CC0`): for `a` from 0 to 7 and, inside, `b` from 0 to 7 it formats '%s%d_%d' with `N`, `a` and `b` (`0017D2E0`); when byte `01F3CD60` is non-zero it clears it and fills the 22 qwords `02EA2250`.. with constant suffix strings, '' (`00D9F05B`), '_REINHARDRGB_RGB', '_REINHARDRGB_RGBFAST' and 19 more; makes `S` from the formatted text and, for each suffix, cuts `S` back to that length, appends the suffix (`007198A0`), stores the result `v` of vtable slot `+0x60` of qword `[rcx]` called with (that object, `S`'s text) to the next dword at `rdx` (22 per pair, 64 pairs), and for a non-zero `v` stores 0 there when that object's vtable slot `+0xC8` called with (it, `v`) returns a negative value; frees the strings (`00715C70`) and returns 0; stack cookie `01F44830`, checked by `00808C40`",
+   "anchors": [
+    [
+     "0072E06F",
+     "call"
+    ],
+    [
+     "0072E081",
+     "mov"
+    ],
+    [
+     "0072E1F5",
+     "call"
+    ],
+    [
+     "0072E206",
+     "call"
+    ],
+    [
+     "0072E211",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0072E5B0",
+   "text": "with the name `N` = the C string `r8` made into a string (`007157A0`) and cut to its length - 1 (`00715CC0`): for `i` from 1 to `r9d` (none when it is not positive) formats '%s%d' with `N` and `i` into a stack buffer (`0017D2E0`); when byte `01F3CD63` is non-zero it clears it and fills qwords `02EA23B8`/`02EA23C0` with '' (`00D9F10F`) and '_USNORM'; for each of those two suffixes it forms the buffer + suffix (`00719460`), calls `e` = `0072E2B0(rcx, p, its text)` with `p` = `rdx` advanced by 0x268 per call, and frees the temporaries (`00715C70`); returns the last negative `e` seen (0 when none); stack cookie `01F44830`, checked by `00808C40`",
+   "anchors": [
+    [
+     "0072E5F7",
+     "call"
+    ],
+    [
+     "0072E647",
+     "call"
+    ],
+    [
+     "0072E655",
+     "mov"
+    ],
+    [
+     "0072E69D",
+     "call"
+    ],
+    [
+     "0072E6AE",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0072E940",
+   "text": "when byte `01F3CD64` is non-zero it clears it and fills the seven qwords `02EA23C8`..`02EA23F8` with '_PreMatrix', '_Dither', '_Vignette', '_VignetteSim', '_Exposure', '_Matrix' and '_Gamma'; makes `S` from the C string `r8` (`007157A0`) and a copy `B` (`00715A00`); for each `c` from 0 to 0x7F it cuts `B` back to `S`'s length (`00715CC0`), appends the suffix `j` for each `j` with `c` AND (1 shl `j`) non-zero (`007198A0`), and calls `e` = `0072E740(rcx, rdx + 0x40*c, B's text)`, keeping the last negative `e`; then for each `c` with (`c` AND 0xC) = 8 copies every non-zero dword `k` of the 0x40-byte entry `c` at `rdx` to dword `k` of entry `c` OR 4; frees `B` and `S` (`00715C70`) and returns that last negative `e` (0 when none)",
+   "anchors": [
+    [
+     "0072E974",
+     "mov"
+    ],
+    [
+     "0072EA18",
+     "call"
+    ],
+    [
+     "0072EA3C",
+     "call"
+    ],
+    [
+     "0072EA58",
+     "call"
+    ],
+    [
+     "0072EAB8",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0072EC00",
+   "text": "with `S` = the C string `r9` made into a string (`007157A0`) and `k` = `00717650(&S, '[]', 0, -1)`, builds empty strings `A` and `B` (`00715360`) and, for `k` > 0, sets `A` = `S` cut to `k` (`007182F0`, `00715CC0`) and `B` = the string at `S`'s text + `k` (`00718350`); for each `i` from 0 below `r8d` it formats '%d' with `i` (`0017D2E0`) into a string `I`, forms the name `A` + `I` + `B` when `k` > 0, else `S` + `I` (`00719380` concatenations), stores the result of vtable slot `+0x48` of qword `[rcx]` called with (that object, 0, the name's text) to dword `[rdx+4i]`, and records 0x80004005 when that result is 0; frees every temporary (`00715C70`) and returns 0x80004005 if any result was 0, else 0; stack cookie `01F44830`, checked by `00808C40`",
+   "anchors": [
+    [
+     "0072EC67",
+     "call"
+    ],
+    [
+     "0072ECB5",
+     "call"
+    ],
+    [
+     "0072ED10",
+     "call"
+    ],
+    [
+     "0072ED75",
+     "call"
+    ],
+    [
+     "0072ED81",
+     "cmove"
+    ]
+   ]
+  },
+  {
+   "fn": "0078A120",
+   "text": "returns 0x80070057 for a null fifth argument `pp`; else stores 0 to `*pp`, takes `s` = `007906C0(rdx, qword [rcx+0x30], byte seventh argument)` and returns 0x80004005 when it is null; allocates 0xE8 bytes with `006DA880(qword [01F3BA68], 0xE8, '..\\src\\GPU\\GPUInterfaceEffect.cpp', 0x55C, 0)`, constructs `e` = `00789900(block, rcx)` (0 when the block is null), stores `e` to `*pp`, takes `r` = `007897D0(e, s)` and releases `s` (`0078A4F0`); returns 0 for a non-negative `r`, otherwise, when dwords `01F3BA80` and `01F3BA90` are both at least 1 (unsigned), logs the 'PPFX ERROR' header (`006DF480(00DAEEC0, 0x563)`) and 'IGPUEffect::CreateEffect(): (*ppEffect)->RegisterTinyEffect() failed (0x%x: %s)' with `r` and `0071B3C0(r)` (`006DF480(00DAEF10, ..)`), and returns `r`",
+   "anchors": [
+    [
+     "0078A14E",
+     "mov"
+    ],
+    [
+     "0078A16D",
+     "call"
+    ],
+    [
+     "0078A1A2",
+     "call"
+    ],
+    [
+     "0078A1C8",
+     "call"
+    ],
+    [
+     "0078A211",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "0072DAC0",
+   "why": "byte re-read by a non-drafting agent: per the bytes the block runs only while that byte is non-zero and clears it; 'once (byte ... cleared)' can be read as the guard being a cleared byte, the opposite condition (0072DAED cmp/je, 0072DAFA store 0)"
+  },
+  {
+   "fn": "0072DCF0",
+   "why": "byte re-read by a non-drafting agent: per the bytes the block runs only while that byte is non-zero and clears it; 'once (byte ... cleared)' can be read as the guard being a cleared byte, the opposite condition (0072DD99 cmp/je, 0072DDA6 store 0)"
+  },
+  {
+   "fn": "0072DFD0",
+   "why": "byte re-read by a non-drafting agent: per the bytes the block runs only while that byte is non-zero and clears it; 'once (byte ... cleared)' can be read as the guard being a cleared byte, the opposite condition (0072E074 cmp/je, 0072E081 store 0)"
+  },
+  {
+   "fn": "0072E5B0",
+   "why": "byte re-read by a non-drafting agent: per the bytes the block runs only while that byte is non-zero and clears it; 'once (byte ... cleared)' can be read as the guard being a cleared byte, the opposite condition (0072E64C cmp/je, 0072E655 store 0)"
+  },
+  {
+   "fn": "0072E940",
+   "why": "byte re-read by a non-drafting agent: per the bytes the block runs only while that byte is non-zero and clears it; 'once (byte ... cleared)' can be read as the guard being a cleared byte, the opposite condition (0072E96B cmp/je, 0072E974 store 0)"
+  }
+ ],
+ "mode": "ee",
+ "family": ""
+}

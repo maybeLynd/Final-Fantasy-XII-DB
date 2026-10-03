@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\uq147-summoner-cleanup-order\qualify-ko-notify-retained.py", line 47, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\uq147-summoner-cleanup-order\qualify-ko-notify-retained.py", line 35, in main
+    need(len(rows)==1 and (BASE+rows[0][0],BASE+rows[0][1])==(0x313b30,0x313cca),'physical function extent differs; revise preparation')
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\uq147-summoner-cleanup-order\qualify-ko-notify-retained.py", line 10, in need
+    if not x:raise ValueError(m)
+             ^^^^^^^^^^^^^^^^^^^
+ValueError: physical function extent differs; revise preparation

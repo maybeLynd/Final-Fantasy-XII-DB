@@ -1,0 +1,228 @@
+{
+ "page": "23-Third-Party-Libraries/LibVPX-VP8-Decoder/the-vp8-codec-interface-and-its-control-map.md",
+ "date": "2026-10-03",
+ "session": "opus-self",
+ "report": "the-vp8-codec-interface-and-its-control-map-r6o.json",
+ "rows": [
+  {
+   "fn": "00172CE0",
+   "text": "under the stack cookie (qword `01F44830` xor `rsp`, checked by `00808C40`), with no branch: calls `00148420`(`rcx` - 2*`edx`, `rsp+0x40`, `edx`, 1, 9, 8, `03001AD0` + 96*`r8d`) and then `001484DB`(`rsp+0x50`, argument 5, argument 6, 8, 4, 4, 4, `03001AD0` + 96*`r9d`), and returns",
+   "anchors": [
+    [
+     "00172D21",
+     "lea"
+    ],
+    [
+     "00172D38",
+     "sub"
+    ],
+    [
+     "00172D53",
+     "call"
+    ],
+    [
+     "00172D96",
+     "call"
+    ],
+    [
+     "00172DA6",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00172DC0",
+   "text": "under the stack cookie (qword `01F44830` xor `rsp`, checked by `00808C40`), with x = `03001AD0` + 96*`r8d` and y = `03001AD0` + 96*`r9d`: when `r8d` is 0 it calls `0012608C`(`rcx` - 2*`edx`, `rsp+0x40`, `edx`, 0x15, 0x20); when `r8d` and `r9d` are both non-zero it calls `0012595A`(`rcx` - 2*`edx`, `rsp+0x40`, `edx`, 1, 0x15, 0x20, x); after either it calls `00125BD1`(`rsp+0x80`, argument 5, argument 6, 0x20, 0x10, 0x10, argument 6, y); when `r8d` is non-zero and `r9d` is 0 it calls only `00125E07`(`rcx`, `edx`, argument 5, argument 6, 0x10, x); then it returns",
+   "anchors": [
+    [
+     "00172DEE",
+     "test"
+    ],
+    [
+     "00172E3D",
+     "call"
+    ],
+    [
+     "00172E5F",
+     "call"
+    ],
+    [
+     "00172E88",
+     "call"
+    ],
+    [
+     "00172ED2",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00172F00",
+   "text": "under the stack cookie (qword `01F44830` xor `rsp`, checked by `00808C40`), with x = `03001AD0` + 96*`r8d` and y = `03001AD0` + 96*`r9d`: when `r8d` and `r9d` are both non-zero it calls `00125850`(`rcx` - 2*`edx`, `rsp+0x40`, `edx`, 1, 0xD, 0x10, x) and then `00125B02`(`rsp+0x60`, argument 5, argument 6, 0x10, 8, 8, argument 6, y); when only `r8d` is non-zero it calls `00125D01`(`rcx`, `edx`, argument 5, argument 6, 8, x); when `r8d` is 0 it calls `00125FA7`(`rcx` - 2*`edx`, `edx`, argument 5, argument 6, 8, y) whatever `r9d` is; then it returns",
+   "anchors": [
+    [
+     "00172F35",
+     "test"
+    ],
+    [
+     "00172F81",
+     "call"
+    ],
+    [
+     "00172FC1",
+     "call"
+    ],
+    [
+     "00172FE3",
+     "call"
+    ],
+    [
+     "0017301D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00173040",
+   "text": "under the stack cookie (qword `01F44830` xor `rsp`, checked by `00808C40`), with x = `03001AD0` + 96*`r8d` and y = `03001AD0` + 96*`r9d`: when `r8d` and `r9d` are both non-zero it calls `00125850`(`rcx` - 2*`edx`, `rsp+0x40`, `edx`, 1, 9, 0x10, x) and then `00125B02`(`rsp+0x60`, argument 5, argument 6, 0x10, 8, 4, argument 6, y); when only `r8d` is non-zero it calls `00125D01`(`rcx`, `edx`, argument 5, argument 6, 4, x); when `r8d` is 0 it calls `00125FA7`(`rcx` - 2*`edx`, `edx`, argument 5, argument 6, 4, y) whatever `r9d` is; then it returns",
+   "anchors": [
+    [
+     "00173075",
+     "test"
+    ],
+    [
+     "001730C1",
+     "call"
+    ],
+    [
+     "00173101",
+     "call"
+    ],
+    [
+     "00173123",
+     "call"
+    ],
+    [
+     "0017315D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00173180",
+   "text": "under the stack cookie (qword `01F44830` xor `rsp`, checked by `00808C40`): when `r8d` and `r9d` are both non-zero it calls `001266C9`(`rcx` - 2*`edx`, `edx`, `rsp+0x30`, 0x10, 0x15, `r8d`) and then `0012696A`(`rsp+0x30`, 0x10, argument 5, argument 6, 0x10, `r9d`); when only `r8d` is non-zero it calls `001266C9`(`rcx`, `edx`, argument 5, argument 6, 0x10, `r8d`); when only `r9d` is non-zero it calls `0012696A`(`rcx` - 2*`edx`, `edx`, argument 5, argument 6, 0x10, `r9d`); when both are 0 it calls `001488D0`(`rcx`, `edx`, argument 5, argument 6); then it returns",
+   "anchors": [
+    [
+     "001731AA",
+     "test"
+    ],
+    [
+     "001731D7",
+     "call"
+    ],
+    [
+     "001731FD",
+     "call"
+    ],
+    [
+     "00173245",
+     "call"
+    ],
+    [
+     "0017324C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00173270",
+   "text": "under the stack cookie (qword `01F44830` xor `rsp`, checked by `00808C40`): when `r8d` and `r9d` are both non-zero it calls `00126550`(`rcx` - 2*`edx`, `edx`, `rsp+0x30`, 8, 0xD, `r8d`) and then `00126B8B`(`rsp+0x30`, 8, argument 5, argument 6, 8, `r9d`); when only `r8d` is non-zero it calls `00126550`(`rcx`, `edx`, argument 5, argument 6, 8, `r8d`); when only `r9d` is non-zero it calls `00126B8B`(`rcx` - 2*`edx`, `edx`, argument 5, argument 6, 8, `r9d`); when both are 0 it calls `001481D0`(`rcx`, `edx`, argument 5, argument 6); then it returns",
+   "anchors": [
+    [
+     "0017329A",
+     "test"
+    ],
+    [
+     "001732C7",
+     "call"
+    ],
+    [
+     "001732ED",
+     "call"
+    ],
+    [
+     "00173335",
+     "call"
+    ],
+    [
+     "0017333C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00173360",
+   "text": "under the stack cookie (qword `01F44830` xor `rsp`, checked by `00808C40`): when `r8d` and `r9d` are both non-zero it calls `00126550`(`rcx` - 2*`edx`, `edx`, `rsp+0x30`, 8, 9, `r8d`) and then `00126B8B`(`rsp+0x30`, 8, argument 5, argument 6, 4, `r9d`); when only `r8d` is non-zero it calls `00126550`(`rcx`, `edx`, argument 5, argument 6, 4, `r8d`); when only `r9d` is non-zero it calls `00126B8B`(`rcx` - 2*`edx`, `edx`, argument 5, argument 6, 4, `r9d`); when both are 0 it calls `0014824F`(`rcx`, `edx`, argument 5, argument 6); then it returns",
+   "anchors": [
+    [
+     "0017338A",
+     "test"
+    ],
+    [
+     "001733B7",
+     "call"
+    ],
+    [
+     "001733DD",
+     "call"
+    ],
+    [
+     "00173425",
+     "call"
+    ],
+    [
+     "0017342C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00173450",
+   "text": "under the stack cookie (qword `01F44830` xor `rsp`, checked by `00808C40`), with `edx` and argument 6 sign-extended: when `r8d` and `r9d` are both non-zero it calls `001267FA`(`rcx` - 2*`edx`, `edx`, `rsp+0x30`, 4, 9, `r8d`) and then `00126CF9`(`rsp+0x30`, 4, argument 5, argument 6, 4, `r9d`); when only `r8d` is non-zero it calls `001267FA`(`rcx`, `edx`, argument 5, argument 6, 4, `r8d`); when only `r9d` is non-zero it calls `00126CF9`(`rcx` - 2*`edx`, `edx`, argument 5, argument 6, 4, `r9d`); when both are 0 it copies 4 rows of 4 bytes inline from `rcx` (rows `edx` apart) to argument 5 (rows argument 6 apart); then it returns",
+   "anchors": [
+    [
+     "00173480",
+     "test"
+    ],
+    [
+     "001734B2",
+     "call"
+    ],
+    [
+     "001734D3",
+     "call"
+    ],
+    [
+     "0017351B",
+     "call"
+    ],
+    [
+     "0017352B",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [
+  "001260E7",
+  "001263AD",
+  "00126E10",
+  "00127104",
+  "0017B010"
+ ],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

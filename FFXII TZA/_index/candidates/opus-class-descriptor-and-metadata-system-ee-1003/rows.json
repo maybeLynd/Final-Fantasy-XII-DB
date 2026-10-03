@@ -6,7 +6,7 @@
  "rows": [
   {
    "fn": "00631A60",
-   "text": "Constructs the object at `rcx` and returns it: on first use (the guard dword `02CF94EC` greater than the thread's epoch read through `gs:[0x58]` and the index at `02EAED3C`) it calls `008092FC` on the guard and, when the guard then reads -1, self-links the static record at `01F2E330` (qwords `01F2E330`/`01F2E338`, `01F2E340`/`01F2E348`, `01F2E358`/`01F2E360`, dword `01F2E350` zero), registers `008AF490` through `00808B90` and calls `0080929C` on the guard; it then self-links the list heads at `+8` (three qwords), `+0x50`, `+0x60`, `+0x80`, `+0x90`, `+0xA0` and `+0xB0`, zeroes `+0x20`, `+0x28`, `+0x40`, `+0x48` and `+0xC0` to `+0xE0`, stores `00D569B8` to `+0x30`, 0x60 and 8 to dwords `+0x38`/`+0x3C`, `01F2E330` and `rdx` to `+0x70`/`+0x78`, the counter at `02CF8260` to `+0xE8` (then increments it), `r8d` to `+0xF0`, -1 to `+0xEC`, zeroes `+0xF4` to `+0xFF`, and leaves the vtable pointer at `+0` as `00D56A38` (written over `00D581C0`).",
+   "text": "Constructs the object at `rcx` and returns it: on first use (the guard dword `02CF94EC` greater than the thread's epoch read through `gs:[0x58]` and the index at `02EAED3C`) it calls `008092FC` on the guard and, when the guard then reads -1, self-links the static record at `01F2E330` (qwords `01F2E330`/`01F2E338`, `01F2E340`/`01F2E348`, `01F2E358`/`01F2E360`, dword `01F2E350` zero), registers `008AF490` through `00808B90` and calls `0080929C` on the guard; it then self-links the list heads at `+8` (three qwords), `+0x50`, `+0x60`, `+0x80`, `+0x90`, `+0xA0` and `+0xB0`, zeroes the dword `+0x20` (bytes `+0x24`..`+0x27` are not written) and the qwords `+0x28`, `+0x40`, `+0x48` and `+0xC0` to `+0xE0`, stores `00D569B8` to `+0x30`, 0x60 and 8 to dwords `+0x38`/`+0x3C`, `01F2E330` and `rdx` to `+0x70`/`+0x78`, the counter at `02CF8260` to `+0xE8` (then increments it), `r8d` to `+0xF0`, -1 to `+0xEC`, zeroes `+0xF4` to `+0xFF`, and leaves the vtable pointer at `+0` as `00D56A38` (written over `00D581C0`).",
    "anchors": [
     [
      "00631AA9",
@@ -64,6 +64,11 @@
   {
    "fn": "006458A0",
    "why": "byte re-read by a non-drafting agent: The `+0x40D0`..`+0x410C` block summary ('0.2 three times, then 1.0, 100.0 and 20.0 values') is not exact: 1.0 is written at `+0x40DC`, `+0x40EC`, `+0x40FC`, `+0x4104`, `+0x4108` and `+0x410C` (some after the 100.0 at `+0x40F0` and 20.0 at `+0x40F4`), and zero dwords are interleaved (`+0x40E0`..`+0x40E8`, `+0x40F8`, `+0x4100`)."
+  },
+  {
+   "fn": "00631A60",
+   "why": "narrowed 2026-10-03 (OPUS) on the non-author review auditspec-review-opus-class-descriptor-and-metadata-system-ee-1003: 'zeroes `+0x20`, `+0x28`, `+0x40`, `+0x48` and `+0xC0` to `+0xE0`' -> 'zeroes the dword `+0x20` (bytes `+0x24`..`+0x27` are not written) and the qwords `+0x28`, `+0x40`, `+0x48` and `+0xC0` to `+0xE0`'",
+   "by": "reviewer"
   }
  ],
  "mode": "ee",

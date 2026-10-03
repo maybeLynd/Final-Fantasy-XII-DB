@@ -1,0 +1,7 @@
+PASS  1 0030EDA7 add rcx,0x6b0: the copy starts at +0x6B0
+PASS  1 0030EDB1 mov edx,9: nine 0x80-byte iterations
+PASS  1 tail: 7 x 0x10 stores after the loop -> 0x4F0 in all, ending at +0xBA0 (got 7)
+PASS  1C control: the old '+0x730' model predicts add rcx,0x730; the bytes disagree
+PASS  2 contract 13an: '+0x730 (0x480)' struck once, '+0x6B0 (0x4F0)' stated, the old line gone
+PASS  2C control: the same test rejects the contract with the old 13an line restored
+FAILS 0

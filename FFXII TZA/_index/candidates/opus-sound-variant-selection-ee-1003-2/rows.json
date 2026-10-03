@@ -32,7 +32,7 @@
   },
   {
    "fn": "007CFD00",
-   "text": "Reads the curve header whose pointer is the qword at `rcx+8` and returns 0.0 when its word `+4` (point count) is zero; when its type byte `+0` is at least 1 it normalises `xmm1` to (`xmm1` - float `+8`) / (float `+0xC` - float `+8`), returning 0.0 unless that range is above zero, then clamps the input to 0 when below 0 or unordered and to at most 1.0 (`01CEBBA8`); it locates the 16-byte points at the header plus word `+2` (plus byte `+1` plus 0x10 masked with 0xF0 when the type is above 3), binary-searches their float keys with signed bounds (stopping early on an equal or unordered key), steps one point back when the input is below the found key (or unordered) and the index is positive (otherwise capping the index at the last point), and returns the found point's float `+4` when it is the last point, else that value plus the next point's value minus it times `007A9E50` of the fraction between the two keys and the point's byte `+8`.",
+   "text": "Reads the curve header whose pointer is the qword at `rcx+8` and returns 0.0 when its word `+4` (point count) is zero; when its type byte `+0` is at least 1 it normalises `xmm1` to (`xmm1` - float `+8`) / (float `+0xC` - float `+8`), returning 0.0 unless that range is above zero; for every type it then clamps the input (normalised or not) to 0 when below 0 or unordered and to at most 1.0 (`01CEBBA8`); it locates the 16-byte points at the header plus word `+2` (plus byte `+1` plus 0x10 masked with 0xF0 when the type is above 3), binary-searches their float keys with signed bounds (stopping early on an equal or unordered key), steps one point back when the input is below the found key (or unordered) and the index is positive (otherwise capping the index at the last point), and returns the found point's float `+4` when it is the last point, else that value plus the next point's value minus it times `007A9E50` of the fraction between the two keys and the point's byte `+8`.",
    "anchors": [
     [
      "007CFD34",
@@ -68,6 +68,11 @@
   {
    "fn": "007CFD00",
    "why": "byte re-read by a non-drafting agent: The curve header is not at `rcx+8`: `007CFD04 mov rdx, qword ptr [rcx + 8]` loads its pointer from the qword at `rcx+8`."
+  },
+  {
+   "fn": "007CFD00",
+   "why": "narrowed 2026-10-03 (OPUS) on the non-author review auditspec-review-opus-sound-variant-selection-ee-1003-2: 'when its type byte `+0` is at least 1 it normalises `xmm1` to (`xmm1` - float `+8`) / (float `+0xC` - float `+8`), returning 0.0 unless that range is above zero' -> 'when its type byte `+0` is at least 1 it normalises `xmm1` to (`xmm1` - float `+8`) / (float `+0xC` - float `+8`), returning 0.0 unless that range is above zero'",
+   "by": "reviewer"
   }
  ],
  "mode": "ee",

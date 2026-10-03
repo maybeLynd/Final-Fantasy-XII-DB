@@ -1,0 +1,270 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "capture-native-event-boundary-01.status.json",
+      "bytes": 611,
+      "sha256": "2acdc0b2e3dcf1f3447f21315fb0f586477c27270f1cd32deeabfd19a45bab81"
+    },
+    {
+      "path": "capture-native-event-boundary-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "capture-native-event-boundary-01.stdout",
+      "bytes": 178,
+      "sha256": "f03aceff8d1642ecd48e4eb2bc6cd46318f17f0a22bba1f0e70ddd026e2d1789"
+    },
+    {
+      "path": "capture-native-event-boundary.py",
+      "bytes": 3504,
+      "sha256": "d2873e0fb19cf087cab3b6a299cf99f65cea1db116e6eea18a12e8ab926ff97c"
+    },
+    {
+      "path": "capture-relation-remove-leaf-01.status.json",
+      "bytes": 609,
+      "sha256": "8270a6a1a23395159f1a72bc4e8a56daeb4c3aaf0785f2c7e00fd79c1c39c240"
+    },
+    {
+      "path": "capture-relation-remove-leaf-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "capture-relation-remove-leaf-01.stdout",
+      "bytes": 209,
+      "sha256": "b43003048985b6478de4f52c2574fecde2aadcc58b00133ef64a3b82d15809a5"
+    },
+    {
+      "path": "capture-relation-remove-leaf.py",
+      "bytes": 4550,
+      "sha256": "b72361fcd57c3451e7909241bced4f4cc16f53055cd304b822f4f4b1058e3a98"
+    },
+    {
+      "path": "check-native-relation-prerequisite-01.status.json",
+      "bytes": 623,
+      "sha256": "acdfd77d22d49f656a916cf0488730583d38a784555235924ead23e29ef9e289"
+    },
+    {
+      "path": "check-native-relation-prerequisite-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "check-native-relation-prerequisite-01.stdout",
+      "bytes": 92,
+      "sha256": "a46a263151a4499ade98020b0159b9d321c9d2d8ba15345130180da901c2d839"
+    },
+    {
+      "path": "check-native-relation-prerequisite.py",
+      "bytes": 2657,
+      "sha256": "82876fb44b7dfc20d7f8494f2cac5e76216956239e5a22a23a6222874e94a95a"
+    },
+    {
+      "path": "dependencies/capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "dependencies/identities.json",
+      "bytes": 1471,
+      "sha256": "749e2bb5ec946129a0f52c303da87be5d76a330c1f768383a2c1ee0b257bb325"
+    },
+    {
+      "path": "dependencies/locate-retained-span.py",
+      "bytes": 3462,
+      "sha256": "3ee7b1d08a9857dba896f77a3ba3bd238e850d6a4fb5bfe556cfcb78b37008dd"
+    },
+    {
+      "path": "dependencies/reg_tracking.py",
+      "bytes": 8120,
+      "sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38"
+    },
+    {
+      "path": "dependencies/run.py",
+      "bytes": 1124,
+      "sha256": "ead6c845c4b3cbf34a41b0ec2be68e1dc410f05056e12bdf3e73ff86f92932c3"
+    },
+    {
+      "path": "dependencies/validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    },
+    {
+      "path": "existing-consumer-context.json",
+      "bytes": 599,
+      "sha256": "7ceb233512477e08b518c9b54ee4cd7da249091e05ce7fe1461cac7cb9e00879"
+    },
+    {
+      "path": "freeze-native-relation-1003.py",
+      "bytes": 4483,
+      "sha256": "31e54d69b560e1a22632ac7aefdc9a471f403e9b63883eb20ccefa40c8ea016c"
+    },
+    {
+      "path": "KO-NOTIFY-NEXT-QUESTION.md",
+      "bytes": 3125,
+      "sha256": "d2abbb802004807220e70ccad7935cc44d9676b932fa7690a4e66bab0e25591e"
+    },
+    {
+      "path": "lookup-native-event-preparation-01.json",
+      "bytes": 696,
+      "sha256": "fef4dfe93d8ffc5710f081076c93414768c03920a08fe236919c43ef7377aa4a"
+    },
+    {
+      "path": "lookup-notify-preparation-01.json",
+      "bytes": 696,
+      "sha256": "ef0c5c6f51caefee1abf54e44a7c14a708c6c8385f456ffa1e8fcb065a2e08b4"
+    },
+    {
+      "path": "NATIVE-RELATION-INVARIANT-QUESTION.md",
+      "bytes": 2708,
+      "sha256": "13caa06393a4c6820478544eb91a5596cf7d149f9cd58f346f0273aefb83a4b8"
+    },
+    {
+      "path": "notify-physical-preparation-01.json",
+      "bytes": 1258,
+      "sha256": "e9a83280ee8d61644bfad0c2ee3e935a1d9a111227e47ef2c621c960e55cf028"
+    },
+    {
+      "path": "prove-native-relation-invariant-01.status.json",
+      "bytes": 617,
+      "sha256": "8660e08023fd9b1299a8ee97d53aa50c606fcfabf1b80066181ab379b21630c7"
+    },
+    {
+      "path": "prove-native-relation-invariant-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "prove-native-relation-invariant-01.stdout",
+      "bytes": 129,
+      "sha256": "1cf64e59cb3d04dfee6e10ec0f3166ecfc13b773bd039fba3e75c8155cd9f276"
+    },
+    {
+      "path": "prove-native-relation-invariant-02.status.json",
+      "bytes": 617,
+      "sha256": "ce2a4f5d028b0295cc81da4b6626fbfba1495f582b07937bef02af98d66a9e7d"
+    },
+    {
+      "path": "prove-native-relation-invariant-02.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "prove-native-relation-invariant-02.stdout",
+      "bytes": 129,
+      "sha256": "1cf64e59cb3d04dfee6e10ec0f3166ecfc13b773bd039fba3e75c8155cd9f276"
+    },
+    {
+      "path": "prove-native-relation-invariant.py",
+      "bytes": 13943,
+      "sha256": "769766d329f7f472f1d5eeba91ef29c6434b68ff7acab2a725cc63d61d147930"
+    },
+    {
+      "path": "prove-native-relation-invariant.v1.preimage.py",
+      "bytes": 12800,
+      "sha256": "5046f296ab412288968f20978bd9689de6f708cca711237e50274d1c423e3fff"
+    },
+    {
+      "path": "prove-native-relation-refusal-01.status.json",
+      "bytes": 671,
+      "sha256": "d1b7622ce6cc5515bb9d5a4688632ece498c6896172e615e2bd5cb08b5be9973"
+    },
+    {
+      "path": "prove-native-relation-refusal-01.stderr",
+      "bytes": 1157,
+      "sha256": "9899374e27449d5c45531be7c8841f4f4e75efa2310d932ec13b43e6d03d7c4a"
+    },
+    {
+      "path": "prove-native-relation-refusal-01.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "qualify-ko-notify-retained-01.status.json",
+      "bytes": 596,
+      "sha256": "69b62f863339d5ae508121192f4c47afca67851e7a000648d0ef9c64edfd2709"
+    },
+    {
+      "path": "qualify-ko-notify-retained-01.stderr",
+      "bytes": 1080,
+      "sha256": "b76ca5e40e8a8caae72fbcc0da4561fdb92a6167b2760eb067a652ce5fe4acca"
+    },
+    {
+      "path": "qualify-ko-notify-retained-01.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "qualify-ko-notify-retained-02.status.json",
+      "bytes": 596,
+      "sha256": "f3439449dbdfcfc0f1a11eba02a4dc11750062628fa77a780d793626e0b21d01"
+    },
+    {
+      "path": "qualify-ko-notify-retained-02.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "qualify-ko-notify-retained-02.stdout",
+      "bytes": 201,
+      "sha256": "e3eae4d9aba38d07398a8d781069b09b82d342eed5d721c27387799e3270f04c"
+    },
+    {
+      "path": "qualify-ko-notify-retained.py",
+      "bytes": 4433,
+      "sha256": "94090887a72f01fc921b52643e9fcafd6a9b7bbbd78ae3b2ec1db9b7b994d192"
+    },
+    {
+      "path": "qualify-ko-notify-retained.v1.preimage.py",
+      "bytes": 3879,
+      "sha256": "b4f938190618ff9e84dec82ff2bba80a57f8871af71d711cbf2c8cae32a4e442"
+    },
+    {
+      "path": "README.md",
+      "bytes": 9954,
+      "sha256": "7d2c25981cb01a6041cf46895864dba067fbac0ec82ad6ca48a406e2a116f8ca"
+    },
+    {
+      "path": "result-native-relation-invariant-01.json",
+      "bytes": 21610,
+      "sha256": "72d378a4e396c13616e7069cdb190b965c404bff93ea5cc5591964560cc6a77d"
+    },
+    {
+      "path": "result-native-relation-invariant-02.json",
+      "bytes": 21814,
+      "sha256": "c5987dd516a9638055a1aae39b38e1960b8d483b4a84997de7a2d79cb82e7904"
+    },
+    {
+      "path": "result-native-relation-prerequisite-01.json",
+      "bytes": 884,
+      "sha256": "355e3ce66eaa436c172d13e890c5f32f6115128b83e1157d5c2c8d78e8eb00c9"
+    },
+    {
+      "path": "reviewed-boundaries-failed-prerequisite-01.json",
+      "bytes": 99,
+      "sha256": "51cfcceda7fa78189750a64c3d4dc29039841be532d1bc6ba604f72d8dba3243"
+    },
+    {
+      "path": "source-ko-notify-01.json",
+      "bytes": 34145,
+      "sha256": "b7090a6d65f0e1881dbee739cfdfa740a445d42d88d3304ef596f8fd65997817"
+    },
+    {
+      "path": "source-native-event-boundary-01.json",
+      "bytes": 49882,
+      "sha256": "e954c611838d373bafde92d6b4118fb22695ee0b26a6fbf3d6476907f5a04215"
+    },
+    {
+      "path": "source-relation-remove-leaf-01.json",
+      "bytes": 17686,
+      "sha256": "974aec9544ed4837a248d4c4f669435c6bbd24e232beb4906cef3037d64f911a"
+    }
+  ],
+  "limits": "Integrity only. Current proof/result02 and prerequisite control are producer-valid; independent review and canonical incorporation pending. Preserved failed/v1 history is not final credit."
+}

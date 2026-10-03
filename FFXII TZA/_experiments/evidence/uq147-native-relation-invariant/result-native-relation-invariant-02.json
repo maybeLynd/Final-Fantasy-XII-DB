@@ -1,0 +1,922 @@
+{
+  "producer_complete": true,
+  "driver_sha256": "769766d329f7f472f1d5eeba91ef29c6434b68ff7acab2a725cc63d61d147930",
+  "method": "A verified original-byte CFG/effect boundaries + exhaustive equality-pattern constraints",
+  "sources": [
+    {
+      "path": "source-native-event-boundary-01.json",
+      "sha256": "e954c611838d373bafde92d6b4118fb22695ee0b26a6fbf3d6476907f5a04215"
+    },
+    {
+      "path": "source-relation-remove-leaf-01.json",
+      "sha256": "974aec9544ed4837a248d4c4f669435c6bbd24e232beb4906cef3037d64f911a"
+    }
+  ],
+  "annotation_checks": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 161,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 47,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "facts": {
+    "graphs": [
+      {
+        "entry": "0x512f30",
+        "instructions": 161,
+        "returns": [
+          "0x512ff0",
+          "0x513034",
+          "0x5130ca",
+          "0x5130fc",
+          "0x51311a",
+          "0x513143"
+        ]
+      },
+      {
+        "entry": "0x512cd0",
+        "instructions": 47,
+        "returns": [
+          "0x512d71"
+        ]
+      }
+    ],
+    "nonstack_writes": [
+      {
+        "body": "0x512f30",
+        "pc": "0x512fc6",
+        "memory": {
+          "base": "rip",
+          "index": null,
+          "scale": 1,
+          "displacement": 41505827,
+          "size": 1,
+          "role": "w",
+          "rip_target": "0x2ca83f0"
+        }
+      },
+      {
+        "body": "0x512f30",
+        "pc": "0x513027",
+        "memory": {
+          "base": "rbx",
+          "index": null,
+          "scale": 1,
+          "displacement": 8,
+          "size": 4,
+          "role": "w",
+          "rip_target": null
+        }
+      },
+      {
+        "body": "0x512f30",
+        "pc": "0x513035",
+        "memory": {
+          "base": "rip",
+          "index": null,
+          "scale": 1,
+          "displacement": 43676742,
+          "size": 1,
+          "role": "rw",
+          "rip_target": "0x2eba481"
+        }
+      },
+      {
+        "body": "0x512f30",
+        "pc": "0x51303d",
+        "memory": {
+          "base": "r11",
+          "index": null,
+          "scale": 1,
+          "displacement": 14,
+          "size": 1,
+          "role": "rw",
+          "rip_target": null
+        }
+      },
+      {
+        "body": "0x512f30",
+        "pc": "0x513049",
+        "memory": {
+          "base": "rip",
+          "index": null,
+          "scale": 1,
+          "displacement": 41505697,
+          "size": 1,
+          "role": "w",
+          "rip_target": "0x2ca83f0"
+        }
+      },
+      {
+        "body": "0x512f30",
+        "pc": "0x513060",
+        "memory": {
+          "base": "rip",
+          "index": null,
+          "scale": 1,
+          "displacement": 43676697,
+          "size": 1,
+          "role": "w",
+          "rip_target": "0x2eba480"
+        }
+      },
+      {
+        "body": "0x512f30",
+        "pc": "0x51306a",
+        "memory": {
+          "base": "rax",
+          "index": null,
+          "scale": 1,
+          "displacement": 0,
+          "size": 4,
+          "role": "w",
+          "rip_target": null
+        }
+      },
+      {
+        "body": "0x512f30",
+        "pc": "0x51306f",
+        "memory": {
+          "base": "rax",
+          "index": null,
+          "scale": 1,
+          "displacement": 4,
+          "size": 4,
+          "role": "w",
+          "rip_target": null
+        }
+      },
+      {
+        "body": "0x512f30",
+        "pc": "0x513075",
+        "memory": {
+          "base": "rax",
+          "index": null,
+          "scale": 1,
+          "displacement": 8,
+          "size": 4,
+          "role": "w",
+          "rip_target": null
+        }
+      },
+      {
+        "body": "0x512f30",
+        "pc": "0x513081",
+        "memory": {
+          "base": "rax",
+          "index": null,
+          "scale": 1,
+          "displacement": 14,
+          "size": 1,
+          "role": "w",
+          "rip_target": null
+        }
+      },
+      {
+        "body": "0x512f30",
+        "pc": "0x513085",
+        "memory": {
+          "base": "rax",
+          "index": null,
+          "scale": 1,
+          "displacement": 15,
+          "size": 1,
+          "role": "rw",
+          "rip_target": null
+        }
+      },
+      {
+        "body": "0x512f30",
+        "pc": "0x51308d",
+        "memory": {
+          "base": "rax",
+          "index": null,
+          "scale": 1,
+          "displacement": 13,
+          "size": 1,
+          "role": "w",
+          "rip_target": null
+        }
+      },
+      {
+        "body": "0x512f30",
+        "pc": "0x51309b",
+        "memory": {
+          "base": "r11",
+          "index": null,
+          "scale": 1,
+          "displacement": 12,
+          "size": 1,
+          "role": "w",
+          "rip_target": null
+        }
+      },
+      {
+        "body": "0x512f30",
+        "pc": "0x5130b3",
+        "memory": {
+          "base": "r10",
+          "index": "rdx",
+          "scale": 8,
+          "displacement": 14,
+          "size": 1,
+          "role": "w",
+          "rip_target": null
+        }
+      },
+      {
+        "body": "0x512f30",
+        "pc": "0x5130c1",
+        "memory": {
+          "base": "r11",
+          "index": null,
+          "scale": 1,
+          "displacement": 13,
+          "size": 1,
+          "role": "w",
+          "rip_target": null
+        }
+      },
+      {
+        "body": "0x512f30",
+        "pc": "0x5130dc",
+        "memory": {
+          "base": "r11",
+          "index": null,
+          "scale": 1,
+          "displacement": 0,
+          "size": 4,
+          "role": "w",
+          "rip_target": null
+        }
+      },
+      {
+        "body": "0x512f30",
+        "pc": "0x5130e2",
+        "memory": {
+          "base": "r11",
+          "index": null,
+          "scale": 1,
+          "displacement": 4,
+          "size": 4,
+          "role": "w",
+          "rip_target": null
+        }
+      },
+      {
+        "body": "0x512f30",
+        "pc": "0x5130e9",
+        "memory": {
+          "base": "r11",
+          "index": null,
+          "scale": 1,
+          "displacement": 15,
+          "size": 1,
+          "role": "rw",
+          "rip_target": null
+        }
+      },
+      {
+        "body": "0x512f30",
+        "pc": "0x5130ee",
+        "memory": {
+          "base": "r11",
+          "index": null,
+          "scale": 1,
+          "displacement": 15,
+          "size": 1,
+          "role": "rw",
+          "rip_target": null
+        }
+      },
+      {
+        "body": "0x512f30",
+        "pc": "0x5130f3",
+        "memory": {
+          "base": "r11",
+          "index": null,
+          "scale": 1,
+          "displacement": 8,
+          "size": 4,
+          "role": "w",
+          "rip_target": null
+        }
+      },
+      {
+        "body": "0x512f30",
+        "pc": "0x513110",
+        "memory": {
+          "base": "r11",
+          "index": null,
+          "scale": 1,
+          "displacement": 15,
+          "size": 1,
+          "role": "rw",
+          "rip_target": null
+        }
+      },
+      {
+        "body": "0x512f30",
+        "pc": "0x513123",
+        "memory": {
+          "base": "r11",
+          "index": null,
+          "scale": 1,
+          "displacement": 0,
+          "size": 4,
+          "role": "w",
+          "rip_target": null
+        }
+      },
+      {
+        "body": "0x512f30",
+        "pc": "0x513129",
+        "memory": {
+          "base": "r11",
+          "index": null,
+          "scale": 1,
+          "displacement": 4,
+          "size": 4,
+          "role": "w",
+          "rip_target": null
+        }
+      },
+      {
+        "body": "0x512f30",
+        "pc": "0x513130",
+        "memory": {
+          "base": "r11",
+          "index": null,
+          "scale": 1,
+          "displacement": 15,
+          "size": 1,
+          "role": "rw",
+          "rip_target": null
+        }
+      },
+      {
+        "body": "0x512f30",
+        "pc": "0x513135",
+        "memory": {
+          "base": "r11",
+          "index": null,
+          "scale": 1,
+          "displacement": 15,
+          "size": 1,
+          "role": "rw",
+          "rip_target": null
+        }
+      },
+      {
+        "body": "0x512f30",
+        "pc": "0x51313a",
+        "memory": {
+          "base": "r11",
+          "index": null,
+          "scale": 1,
+          "displacement": 8,
+          "size": 4,
+          "role": "w",
+          "rip_target": null
+        }
+      },
+      {
+        "body": "0x512cd0",
+        "pc": "0x512cf5",
+        "memory": {
+          "base": "rax",
+          "index": null,
+          "scale": 1,
+          "displacement": 13,
+          "size": 1,
+          "role": "w",
+          "rip_target": null
+        }
+      },
+      {
+        "body": "0x512cd0",
+        "pc": "0x512cfd",
+        "memory": {
+          "base": "rcx",
+          "index": null,
+          "scale": 1,
+          "displacement": 12,
+          "size": 1,
+          "role": "w",
+          "rip_target": null
+        }
+      },
+      {
+        "body": "0x512cd0",
+        "pc": "0x512d02",
+        "memory": {
+          "base": "rcx",
+          "index": null,
+          "scale": 1,
+          "displacement": 12,
+          "size": 1,
+          "role": "w",
+          "rip_target": null
+        }
+      },
+      {
+        "body": "0x512cd0",
+        "pc": "0x512d1e",
+        "memory": {
+          "base": "rax",
+          "index": null,
+          "scale": 1,
+          "displacement": 14,
+          "size": 1,
+          "role": "w",
+          "rip_target": null
+        }
+      },
+      {
+        "body": "0x512cd0",
+        "pc": "0x512d26",
+        "memory": {
+          "base": "rcx",
+          "index": null,
+          "scale": 1,
+          "displacement": 13,
+          "size": 1,
+          "role": "w",
+          "rip_target": null
+        }
+      },
+      {
+        "body": "0x512cd0",
+        "pc": "0x512d2b",
+        "memory": {
+          "base": "rcx",
+          "index": null,
+          "scale": 1,
+          "displacement": 13,
+          "size": 1,
+          "role": "w",
+          "rip_target": null
+        }
+      },
+      {
+        "body": "0x512cd0",
+        "pc": "0x512d52",
+        "memory": {
+          "base": "r10",
+          "index": "rdx",
+          "scale": 8,
+          "displacement": 14,
+          "size": 1,
+          "role": "w",
+          "rip_target": null
+        }
+      },
+      {
+        "body": "0x512cd0",
+        "pc": "0x512d5d",
+        "memory": {
+          "base": "r10",
+          "index": "rcx",
+          "scale": 8,
+          "displacement": 13,
+          "size": 1,
+          "role": "w",
+          "rip_target": null
+        }
+      },
+      {
+        "body": "0x512cd0",
+        "pc": "0x512d62",
+        "memory": {
+          "base": "r8",
+          "index": null,
+          "scale": 1,
+          "displacement": 15,
+          "size": 1,
+          "role": "rw",
+          "rip_target": null
+        }
+      },
+      {
+        "body": "0x512cd0",
+        "pc": "0x512d67",
+        "memory": {
+          "base": "r9",
+          "index": null,
+          "scale": 1,
+          "displacement": 14,
+          "size": 1,
+          "role": "rw",
+          "rip_target": null
+        }
+      },
+      {
+        "body": "0x512cd0",
+        "pc": "0x512d6b",
+        "memory": {
+          "base": "rip",
+          "index": null,
+          "scale": 1,
+          "displacement": 43677456,
+          "size": 1,
+          "role": "rw",
+          "rip_target": "0x2eba481"
+        }
+      }
+    ],
+    "equality_domain": {
+      "variables": [
+        "packet_uid",
+        "packet_actor",
+        "packet_target",
+        "node_uid",
+        "node_actor",
+        "node_target"
+      ],
+      "partitions": 203,
+      "flag_domain": [
+        0,
+        1
+      ],
+      "coherent_cases": 20,
+      "counterexamples": [],
+      "creation_counterexamples": []
+    },
+    "coherent_transitions": [
+      {
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "flag": 0,
+        "remove_call": false,
+        "remove_tail": true,
+        "remove_count": 1,
+        "final_live": false,
+        "new_target": 1
+      },
+      {
+        "values": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        "flag": 1,
+        "remove_call": false,
+        "remove_tail": true,
+        "remove_count": 1,
+        "final_live": false,
+        "new_target": 1
+      },
+      {
+        "values": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          1
+        ],
+        "flag": 0,
+        "remove_call": false,
+        "remove_tail": false,
+        "remove_count": 0,
+        "final_live": true,
+        "new_target": 1
+      },
+      {
+        "values": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          1
+        ],
+        "flag": 1,
+        "remove_call": true,
+        "remove_tail": false,
+        "remove_count": 1,
+        "final_live": false,
+        "new_target": 1
+      },
+      {
+        "values": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          2
+        ],
+        "flag": 0,
+        "remove_call": false,
+        "remove_tail": false,
+        "remove_count": 0,
+        "final_live": true,
+        "new_target": 1
+      },
+      {
+        "values": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          2
+        ],
+        "flag": 1,
+        "remove_call": false,
+        "remove_tail": false,
+        "remove_count": 0,
+        "final_live": true,
+        "new_target": 1
+      },
+      {
+        "values": [
+          0,
+          1,
+          0,
+          0,
+          1,
+          1
+        ],
+        "flag": 0,
+        "remove_call": false,
+        "remove_tail": true,
+        "remove_count": 1,
+        "final_live": false,
+        "new_target": 1
+      },
+      {
+        "values": [
+          0,
+          1,
+          0,
+          0,
+          1,
+          1
+        ],
+        "flag": 1,
+        "remove_call": false,
+        "remove_tail": true,
+        "remove_count": 1,
+        "final_live": false,
+        "new_target": 1
+      },
+      {
+        "values": [
+          0,
+          1,
+          0,
+          0,
+          1,
+          2
+        ],
+        "flag": 0,
+        "remove_call": false,
+        "remove_tail": true,
+        "remove_count": 1,
+        "final_live": false,
+        "new_target": 2
+      },
+      {
+        "values": [
+          0,
+          1,
+          0,
+          0,
+          1,
+          2
+        ],
+        "flag": 1,
+        "remove_call": false,
+        "remove_tail": true,
+        "remove_count": 1,
+        "final_live": false,
+        "new_target": 2
+      },
+      {
+        "values": [
+          0,
+          1,
+          1,
+          0,
+          1,
+          1
+        ],
+        "flag": 0,
+        "remove_call": false,
+        "remove_tail": false,
+        "remove_count": 0,
+        "final_live": true,
+        "new_target": 1
+      },
+      {
+        "values": [
+          0,
+          1,
+          1,
+          0,
+          1,
+          1
+        ],
+        "flag": 1,
+        "remove_call": true,
+        "remove_tail": false,
+        "remove_count": 1,
+        "final_live": false,
+        "new_target": 1
+      },
+      {
+        "values": [
+          0,
+          1,
+          1,
+          0,
+          1,
+          2
+        ],
+        "flag": 0,
+        "remove_call": false,
+        "remove_tail": false,
+        "remove_count": 0,
+        "final_live": true,
+        "new_target": 1
+      },
+      {
+        "values": [
+          0,
+          1,
+          1,
+          0,
+          1,
+          2
+        ],
+        "flag": 1,
+        "remove_call": false,
+        "remove_tail": false,
+        "remove_count": 0,
+        "final_live": true,
+        "new_target": 1
+      },
+      {
+        "values": [
+          0,
+          1,
+          2,
+          0,
+          1,
+          1
+        ],
+        "flag": 0,
+        "remove_call": false,
+        "remove_tail": false,
+        "remove_count": 0,
+        "final_live": true,
+        "new_target": 2
+      },
+      {
+        "values": [
+          0,
+          1,
+          2,
+          0,
+          1,
+          1
+        ],
+        "flag": 1,
+        "remove_call": false,
+        "remove_tail": false,
+        "remove_count": 0,
+        "final_live": true,
+        "new_target": 2
+      },
+      {
+        "values": [
+          0,
+          1,
+          2,
+          0,
+          1,
+          2
+        ],
+        "flag": 0,
+        "remove_call": false,
+        "remove_tail": false,
+        "remove_count": 0,
+        "final_live": true,
+        "new_target": 2
+      },
+      {
+        "values": [
+          0,
+          1,
+          2,
+          0,
+          1,
+          2
+        ],
+        "flag": 1,
+        "remove_call": true,
+        "remove_tail": false,
+        "remove_count": 1,
+        "final_live": false,
+        "new_target": 2
+      },
+      {
+        "values": [
+          0,
+          1,
+          2,
+          0,
+          1,
+          3
+        ],
+        "flag": 0,
+        "remove_call": false,
+        "remove_tail": false,
+        "remove_count": 0,
+        "final_live": true,
+        "new_target": 2
+      },
+      {
+        "values": [
+          0,
+          1,
+          2,
+          0,
+          1,
+          3
+        ],
+        "flag": 1,
+        "remove_call": false,
+        "remove_tail": false,
+        "remove_count": 0,
+        "final_live": true,
+        "new_target": 2
+      }
+    ],
+    "positive_broken_premise_witness": {
+      "values": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "flag": 1,
+      "remove_call": true,
+      "remove_tail": true,
+      "remove_count": 2,
+      "final_live": false,
+      "new_target": 0
+    },
+    "fact": "Kind2 creation requires packetUid!=packetTarget; coherent live rows preserve target!=recipient. Under packet/node UID coherence the matching-target removal and UID==target tail removal cannot both execute. A broken live-row target==recipient premise can execute both; the leaf unconditionally decrements counts on each call.",
+    "effect": "Closed two-body native cache handler/remover. Flags/free-row and owner-head/tail/count effects remain; released row IDs/links are not cleared. Updates after a remove can touch an inactive row. No unknown native callee, imported callback or heap free in these two bodies.",
+    "premises": "Valid disjoint16B receiver/node/packet identities, fixed pool2CA81F0 with32 slots, index fields consistent0..31/FF, coherent list ownership, packetUid=nodeUid for matching owner, initial live target!=recipient, normal ABI/private stack/normal returns/no interference. Initial/global/row defaults and actual live binding/reuse are not established.",
+    "limits": "Source/equality constraint proof, not game/harness execution or all malformed-state safety. Does not close other KO helpers or naturalKO/Esper113, scheduling/presentation, lifetime, fullUQ147 or wholeOV rows."
+  },
+  "controls": [
+    {
+      "id": "reverse-match-target",
+      "refused": "coherent live-row double-remove/preservation counterexample [{'values': (0, 0, 0, 0, 0, 1), 'flag': 1, 'remove_call': True, 'remove_tail': True, 'remove_count': 2, 'final_live': False, 'new_target': 1}]",
+      "limits": "Labelled source-record semantic control, not native byte mutation"
+    },
+    {
+      "id": "ignore-creation-inequality",
+      "refused": "creation target-recipient invariant refuted",
+      "limits": "Labelled source-record semantic control, not native byte mutation"
+    },
+    {
+      "id": "remover-writes-target",
+      "refused": "remover footprint/value-preservation premise changed",
+      "limits": "Labelled source-record semantic control, not native byte mutation"
+    },
+    {
+      "id": "native-write-outside-cache",
+      "refused": "event persistent-write envelope changed",
+      "limits": "Labelled source-record semantic control, not native byte mutation"
+    }
+  ],
+  "acceptance": "Producer-valid only; independent review/canonical incorporation required. No native/game sample or whole runtime-row credit."
+}

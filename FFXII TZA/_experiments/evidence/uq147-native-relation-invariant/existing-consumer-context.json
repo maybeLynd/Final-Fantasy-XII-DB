@@ -1,0 +1,10 @@
+{
+  "path": "Database\\FFXII TZA\\_index\\candidates\\type-flow-census\\README.md",
+  "sha256": "106f4306d6fc1f4a3e78fc1931b17da1968be0c2678bf43ab4be48891bdd025f",
+  "first_line": 125,
+  "lines": [
+    "- `embeddedBlock0650` gains three dword stores in `00512F30`, reached with `rec + 0x650` through the stub `003E6B50` and",
+    "  from `003E6C8A`. Reads cover only its `+8`, so it stays DISCOVERED with the stores cited."
+  ],
+  "limits": "Prior DATA physical-access/layout credit only. No semantic recensus, exact current canonical type update, or independent acceptance is claimed."
+}

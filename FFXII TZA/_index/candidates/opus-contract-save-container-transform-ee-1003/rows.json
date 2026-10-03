@@ -1,0 +1,125 @@
+{
+ "page": "19-Save-Load-Settings/CONTRACT-save-container-transform.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "contract-save-container-transform-r5.json",
+ "rows": [
+  {
+   "fn": "0087AF40",
+   "text": "the zlib compress2 shape: with `D` = dword `[rdx]` it zeroes `[rdx]` and qwords `+0x30`..`+0x40` of a stack stream `z`, calls `0087C9F0(&z, the fifth argument, '1.2.11', 0x58)` and returns its value when non-zero; else sets next_in = `r8`, next_out = `rcx`, and loops: when avail_out (`z+0x18`) is 0 it moves all of `D` into it, when avail_in (`z+8`) is 0 all of `r9d` (each capped at 0xFFFFFFFF, so whole), and calls `e` = `0087BD60(&z, 0 while input remains, else 4)`, repeating while `e` is 0; then stores total_out (dword `z+0x1C`) to `[rdx]`, calls `0087C6C0(&z)` and returns 0 for `e` = 1, else `e`",
+   "anchors": [
+    [
+     "0087AF91",
+     "call"
+    ],
+    [
+     "0087AFBD",
+     "cmova"
+    ],
+    [
+     "0087AFE7",
+     "call"
+    ],
+    [
+     "0087B005",
+     "mov"
+    ],
+    [
+     "0087B008",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0087C6C0",
+   "text": "the zlib deflateEnd shape: returns -2 when `0087CB10(rcx)` is non-zero; else with `s` = qword `[rcx+0x28]` and its dword `+8` read first, calls the free hook qword `[rcx+0x38]` (with qword `[rcx+0x40]`) on each non-null of qwords `[s+0x10]`, `[s+0x68]`, `[s+0x60]` and `[s+0x50]` (re-reading `s` each time), then on `s` itself, stores 0 to qword `[rcx+0x28]` and returns -3 when that dword was 0x71, else 0",
+   "anchors": [
+    [
+     "0087C6C9",
+     "call"
+    ],
+    [
+     "0087C6EA",
+     "mov"
+    ],
+    [
+     "0087C6F6",
+     "call"
+    ],
+    [
+     "0087C73D",
+     "call"
+    ],
+    [
+     "0087C753",
+     "cmove"
+    ]
+   ]
+  },
+  {
+   "fn": "0087C760",
+   "text": "zlib deflateInit2_ shape, stream `z` = `rcx`: -6 unless argument 7 is non-null starting 0x31 and argument 8 is 0x58; -2 for null `z`; clears qword `[z+0x20]`; installs alloc `0080E920` (opaque qword `+0x40` = 0) / free `0080E930` where qwords `+0x30` / `+0x38` are 0; level `l` = `edx` (-1 gives 6); window `w` = `r9d` (negative: wrap 0, `w` = -`w`; above 15: wrap 2, `w` -= 16; else wrap 1); -2 unless memLevel `m` (argument 5) is 1..9, `r8d` is 8, `w` 8..15, `l` 0..9, argument 6 0..4 (unsigned), with `w` = 8 raised to 9 under wrap 1 (-2 otherwise); state `s` = alloc(opaque, 1, 0x1720) (-4 if null) to `+0x28`: `[s]` = `z`, dwords `+8` = 0x2A, `+0x2C` = wrap, `+0x48` = `w`, `+0x44` = 1<<`w`, `+0x4C` = that - 1, `+0x78` = `m`+7, `+0x74` = 1<<(`m`+7), `+0x7C` = that - 1, `+0x80` = (`m`+9)/3, `+0x1718` = 0, `+0x16F0` = 1<<(`m`+6), `+0x18` = 4 times that, qword `+0x30` = 0, and allocated arrays at qwords `+0x50`, `+0x60`, `+0x68`, `+0x10`; any null: dword `+8` = 0x29A, qword `[z+0x20]` = qword `[01CC9EA0]`, `0087C6C0(z)`, returns -4; else dwords `+0xAC` = `l`, `+0xB0` = argument 6, byte `+0x3C` = 8, qwords `+0x16F8` / `+0x16E8` into the `+0x10` array, and returns `0087CA30(z)`",
+   "anchors": [
+    [
+     "0087C78E",
+     "cmp"
+    ],
+    [
+     "0087C7F2",
+     "cmove"
+    ],
+    [
+     "0087C879",
+     "call"
+    ],
+    [
+     "0087C9B6",
+     "mov"
+    ],
+    [
+     "0087C996",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0087F180",
+   "text": "sorts in place, recursively, the qword pointers of the array at qword `[rcx+0x10]` (re-read after each swap) from index `lo` = `r8d` to `hi` = `r9d`, by the key k(e) = dword `[qword [e+0x490]+0xEC]`, or dword `[qword [e+0x498]+0xEC]` when that is negative: with pivot `p` = the element at (`lo` + `hi`) / 2 (signed, truncated), it raises `i` from `lo` while k(a[i]) < k(`p`) and lowers `j` from `hi` while k(`p`) < k(a[j]) (signed), swaps a[i] and a[j] and steps both when `i` <= `j`, and repeats while `i` <= `j`; then recurses with (`rcx`, `dl`, `lo`, `j`) when `lo` < `j` and with (`rcx`, `dl`, `i`, `hi`) when `i` < `hi`; returns nothing",
+   "anchors": [
+    [
+     "0087F1BA",
+     "mov"
+    ],
+    [
+     "0087F218",
+     "cmp"
+    ],
+    [
+     "0087F26A",
+     "cmp"
+    ],
+    [
+     "0087F28C",
+     "mov"
+    ],
+    [
+     "0087F2C9",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "0087BD60": "too large to state exactly in 1200 characters even at block level (2395 B): the zlib 1.2.11 deflate body, with its header/flush/status state machine and per-strategy dispatch"
+ },
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "0087C760",
+   "why": "byte re-read by a non-drafting agent: the level check at 0087C840 is `cmp ebp, 9; ja` (unsigned), so any negative `l` other than the -1 already turned into 6 also gives -2; '`l` <= 9' with the '(unsigned)' attached only to argument 6 reads as a signed bound that would accept negatives"
+  }
+ ],
+ "mode": "ee",
+ "family": ""
+}

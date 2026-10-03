@@ -110,7 +110,7 @@
   },
   {
    "fn": "0071EA80",
-   "text": "with head `h` = qword `[rcx]`, key string `k` = `r9` and `C(a, b)` = `memcmp` (thunk `00861ED2`, 0 for length 0) of the strings' data over the shorter length, else -1 when `a` is shorter and 1 when longer (data inline at `+0` when qword `+0x18` is below 0x10, else at qword `+0`; length qword `+0x10`): from root qword `[h+8]` (nil byte `+0x19`) it goes left (qword `+0`) when `C(node+0x20, k)` is not negative (`r8b` non-zero) or `C(k, node+0x20)` is negative (`r8b` zero), else right (qword `+0x10`), keeping the last node `p`; when it last went left and `p` is qword `[h]` it inserts at once; otherwise, with `q` = `p`'s in-order predecessor after a left step (qword `[h+0x10]` when `p` is `h`) or `p` after a right step, it inserts when `0071F430(q+0x20, k)` is negative; inserting calls `0071E500(rcx, &t, direction, p, k, argument 5)` and stores the qword at the address it returns and byte 1 to `[rdx]` and `[rdx+8]`; otherwise it calls `0071EE70(argument 5 + 0x20)` and `00210EB0(argument 5)` and stores `q` and byte 0 there; returns `rdx`",
+   "text": "with head `h` = qword `[rcx]`, key string `k` = `r9` and `C(a, b)` = `memcmp` (thunk `00861ED2`, 0 for length 0) of the strings' data over the shorter length, else -1 when `a` is shorter and 1 when longer (data inline at `+0` when qword `+0x18` is below 0x10, else at qword `+0`; length qword `+0x10`): from root qword `[h+8]` (nil byte `+0x19`) it goes left (qword `+0`) when `C(node+0x20, k)` is not negative (`r8b` non-zero) or `C(k, node+0x20)` is negative (`r8b` zero), else right (qword `+0x10`), keeping the last node `p` (`p` = `h`, counted as left, when the root is nil); when it last went left and `p` is qword `[h]` it inserts at once; otherwise, with `q` = `p`'s in-order predecessor after a left step (qword `[h+0x10]` when `p` is `h`) or `p` after a right step, it inserts when `0071F430(q+0x20, k)` is negative; inserting calls `0071E500(rcx, &t, direction, p, k, argument 5)` and stores the qword at the address it returns and byte 1 to `[rdx]` and `[rdx+8]`; otherwise it calls `0071EE70(argument 5 + 0x20)` and `00210EB0(argument 5)` and stores `q` and byte 0 there; returns `rdx`",
    "anchors": [
     [
      "0071EB1A",
@@ -192,7 +192,13 @@
   "00705520": "too large to state exactly in 1200 characters even at block level (4375 B)"
  },
  "missing": [],
- "corrections": [],
+ "corrections": [
+  {
+   "fn": "0071EA80",
+   "why": "narrowed 2026-10-03 (OPUS) on the non-author review auditspec-review-opus-the-msvc-ordered-container-runtime-ee-1003-3: 'else right (qword `+0x10`), keeping the last node `p`; when it last went left' -> 'else right (qword `+0x10`), keeping the last node `p` (`p` = `h`, counted as left, when the root is nil); when it last went left'",
+   "by": "reviewer"
+  }
+ ],
  "mode": "ee",
  "family": ""
 }

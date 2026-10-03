@@ -275,3 +275,11 @@ re-run. Script: `Tools/analysis-kit/gfz-scripts/falsify_indexed_source_request.p
 **World — CLIENT (2 edges).** `00378540` files a request through `0032E620`, and the world body `00266D10` calls the full owner-record reset `003DD7E0`. It is a client of the requester and the reset.
 
 **WorldAreaField — CLIENT (4 edges).** `World_UpdateSimulationTick` (`00314020`) reads the skip mask through `00267310`. `MapRef_BeginLoadResources` (`00268750`), `00378030` and `AreaArd_LoadOrUnloadFieldResource` (`003EA820`) file their field resources through `0032E620`. These are field loads going through this page's requester.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-the-indexed-source-request-from-arm-to-t-ee-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `003DF440` | 262 B | with `a` = `ecx`, `b` = `edx` and `c` = `r8d` (`a` and `c` sign-extended): takes `n` = `0032F2F0(a, c)` and calls `0036C1D0(5, 5)`; for `n` <= 0 (signed) it tail-jumps to `0036C140`; otherwise `k` = `0032F2C0(a, c)`, `0032F170(a, b, &w1, &w2)` for two stack words, and the block `p` = `0036A100(n)`, or when that is null `0036C1D0(6, 5)`, `p` = `0036A190(n)` and `0036C140()`; with the record `r` = `02B59360` + (`c` + 8`a`)*0x38 for `c` <= 7 (unsigned), else 0, it stores word `w1` to `+0x2C`, `p` to qword `+0x18`, word `w2` + 2 to `+0x2E`, 0 to qword `+0x20`, `b` to word `+0x28`, `n` to dword `+0x30` and `k` to dword `+0x34`; then sets byte `[r+0x10]` = 1 when `00267310(a)` is non-zero, else calls `003DF550(r)`; finally tail-jumps to `0036C140` | `003DF45A`, `003DF468`, `003DF49A`, `003DF4D1`, `003DF52F` |
