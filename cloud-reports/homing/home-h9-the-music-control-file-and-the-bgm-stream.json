@@ -1,0 +1,11 @@
+{
+ "page": "18-Audio/the-music-control-file-and-the-bgm-stream.md",
+ "session": "session_01D1qcH91DQC7cqg95y9syrn",
+ "rows": [
+  {"fn": "003EACA0", "entered_from": "`003557C0` + 0x17",
+   "text": "computes `ecx + 0xFFFF`, rounds it toward zero to a multiple of 0x10000 (`cdq`, adds the low word of the sign, `and 0xFFFF0000`) and raises it to 0x30000 when it is below that (signed `cmovl`); calls `0036C1D0(2, 5)`, then `0036A190(size)`, then `0036C660(that pointer, \"BGMSTR\" (`00D11814`), size)`, then makes the call at `003EACA0` + 0x4F, and returns the pointer `0036A190` returned",
+   "anchors": [["003EACC0", "and"], ["003EACCB", "cmovl"], ["003EACCE", "call"], ["003EACEA", "call"], ["003EACEF", "call"]]}
+ ],
+ "skipped": [],
+ "notes": "Doubt (host page, not this row): the host excerpt says the tag is 'the empty string at 00D51814', but this listing resolves the lea at 003EACDD to 00D11814 = \"BGMSTR\". FABLE should check the host page's address and string. The call at + 0x4F goes to 0036C140, which the host excerpt does not name, so it is cited by site. 0036C1D0, 0036A190 and 0036C660 are named in the host excerpt."
+}
