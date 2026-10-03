@@ -1,0 +1,12 @@
+{
+ "page": "16-UI/the-selection-the-menu-publishes.md",
+ "session": "session_01CZh28JMQoyNT8qWV5qwsPp",
+ "mode": "homing",
+ "rows": [
+  {"fn": "0028C9F0",
+   "text": "multiplies float `rdx+0x20` by 1.570796 (`008C5F70`), passes the product in `xmm0` to `00861F0E`, and tail-jumps to `00275490(rcx, rdx, rdx+0x10)` with that result as the fourth (`xmm3`) argument",
+   "anchors": [["0028CA02", "mulss"], ["0028CA0D", "call"], ["0028CA12", "movaps"], ["0028CA15", "lea"], ["0028CA29", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "Homing pack (callee-host). 00861F0E is named on the page, so it is cited by address. No doubts."
+}
