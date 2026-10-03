@@ -1,0 +1,61 @@
+{
+ "page": "17-Presentation-Rendering/Effect-File-Formats/the-element-types-40-42-a0-ab-d0-d1.md",
+ "session": "session_01SRPAB4nYztytvoFuWnwY9e",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "003DE8A0",
+   "text": "with record r = `02B58C50` + `ecx` (sign-extended) * 0x70, stores at float `r+0x60` the result of the call at `003DE8A0+0x2E` with a = max(0, `xmm1`) and at float `r+0x64` the result of the call at `003DE8A0+0x3F` with max(a, `xmm2`); then, only when qword `r+8` is non-null and dword `r+0` is non-zero, makes the call at `003DE8A0+0x56` with dword `r+0`, copies dwords `r+0x60` and `r+0x64` to `+0x40` and `+0x44` of the returned object and calls `003AC920` on it",
+   "anchors": [
+    [
+     "003DE8BA",
+     "maxss"
+    ],
+    [
+     "003DE8D3",
+     "movss"
+    ],
+    [
+     "003DE8E4",
+     "movss"
+    ],
+    [
+     "003DE8FE",
+     "mov"
+    ],
+    [
+     "003DE90A",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "003DEAC0",
+   "text": "with record r = `02B58C50` + `ecx` (sign-extended) * 0x70, returns at once when byte `r+0x20` is 0; otherwise, when `xmm1` is below 0.0 sets bit 0 of byte `r+0x25` and replaces the value with 1.0 (`01CEBBA8`), else clears that bit, and stores the value at float `r+0x2c`; then, only when qword `r+8` is non-null and dword `r+0` is non-zero, makes the call at `003DEAC0+0x49` with dword `r+0`, copies dword `r+0x2c` to `+0xc` of the returned object and tail-jumps to `003AC920` with it",
+   "anchors": [
+    [
+     "003DEAD7",
+     "cmp"
+    ],
+    [
+     "003DEAE5",
+     "or"
+    ],
+    [
+     "003DEAF3",
+     "and"
+    ],
+    [
+     "003DEAF7",
+     "movss"
+    ],
+    [
+     "003DEB1C",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Calls to 00861F08 and 003ABD00 are cited by site (not named on this page). maxss keeps its second operand on NaN, so a NaN xmm1 in 003DE8A0 passes through; a NaN xmm1 in 003DEAC0 takes the clear-bit path."
+}
