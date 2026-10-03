@@ -1,0 +1,23 @@
+{
+ "page": "22-Middleware-PhyreEngine/Post-Process-Chain/the-post-process-passes-and-their-shader-constants.md",
+ "session": "session_01Xkefj8Gz4bCEiqGqVRB1MS",
+ "rows": [
+  {"fn": "0017D900", "entered_from": "`00191130` + 0x1DA",
+   "text": "calls `0017D900` + 0x4 and returns its null result when it is null; otherwise calls `0017D900` + 0xE and returns the zero-extended byte `+0x10E0` of that result",
+   "anchors": [["0017D904", "call"], ["0017D909", "test"], ["0017D90E", "call"], ["0017D913", "movzx"]]},
+  {"fn": "001EBB70", "entered_from": "`001C6320` + 0x62D",
+   "text": "copies 0xD0 bytes from `[rdx]` to `rcx+0x144` as thirteen unaligned 16-byte `movups` moves (source offsets 0x0 to 0xC0)",
+   "anchors": [["001EBB73", "add"], ["001EBB7A", "movups"], ["001EBBAD", "sub"], ["001EBBC0", "movups"], ["001EBBEB", "movups"]]},
+  {"fn": "001EBC20", "entered_from": "`001C6320` + 0x145",
+   "text": "stores byte 1 at `rcx+0x140` and stores `edx` modulo 80 (signed, by the multiply-by-`0x66666667` and shift-by-5 division) at dword `rcx+0x224`",
+   "anchors": [["001EBC23", "mov"], ["001EBC2F", "imul"], ["001EBC31", "sar"], ["001EBC41", "sub"], ["001EBC44", "mov"]]},
+  {"fn": "002F1690", "entered_from": "`001C6320` + 0x27B",
+   "text": "subtracts 1000 (`008C5F78`) from `xmm0` and stores the result to float `022BDEBC`",
+   "anchors": [["002F1698", "movss"]]},
+  {"fn": "006560E0", "entered_from": "`00655C10` + 0x60",
+   "text": "calls `006560E0` + 0x34 with (`rdx`, 1, `02CBB900`, 0) and, when that is non-null, `006560E0` + 0x4E with (`rdx`, that result); when the second result is non-null, its byte `+0x8` is 0 and its qword `[+0x0]` is non-null, calls `006560E0` + 0x83 with (that qword, `r8d`, `r9d`, `02CF7480`, a fifth stack argument 0), and when that returns 0 clears bit 1 of the qword's dword `+0x18` and its byte `+0x9`, calls `006560E0` + 0x96 on it, clears byte `+0x9` of the second result, stores the second result at qword `rcx+0x50` and returns 0; on every other path it stores 0 at `rcx+0x50` and returns 0xD, first passing the second and then the first result (each with `rcx` = the incoming `rdx`) to the calls at `006560E0` + 0xA6 and + 0xB1 when the second result was non-null",
+   "anchors": [["00656114", "call"], ["00656163", "call"], ["0065616C", "and"], ["006561AB", "mov"], ["006561AF", "cmove"]]}
+ ],
+ "skipped": [],
+ "notes": "002F1690: the subtraction is the entry instruction, so the only anchor is the store. 001EBC20: the remainder takes the sign of edx (C-style truncating division). 006560E0: 02CBB900 and 02CF7480 are data addresses loaded by lea, not code; the release calls at +0xA6/+0xB1 run only on the paths where the second call's result was non-null but its byte +0x8 was non-zero, its qword [+0x0] was null, or the +0x83 call returned non-zero. 006560E0 is also reached by jmp from 00654160 + 0x0."
+}
