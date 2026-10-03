@@ -1,0 +1,35 @@
+{
+ "page": "17-Presentation-Rendering/Model-And-Motion-Formats/the-per-model-oscillator-subsystem.md",
+ "session": "session_01HFDWqiFGBo93D32pyB6Lkx",
+ "rows": [
+  {
+   "fn": "002E4150",
+   "entered_from": "`00267D40` + 0x3C",
+   "text": "for n = 0 to 2 takes the object returned by the call at `002E4150` + 0x2A (with n) and, when bit 0 of its byte `+0x10` is set, walks the indices from its word `+0x1DE` up to, not including, that plus its word `+0x1D6`, taking each entry from the call at + 0x75 or + 0x115; when `ecx` is 0, for each non-null entry whose qword `+0xC0` points to a dword other than -1, it calls the site + 0x13E with that block's word `+0` if `edx` is non-zero and its byte `+0x11` is at least `0x80`, then clears bit 7 of byte `+0x11`; when `ecx` is 1 and `edx` is non-zero, for each entry (when n is 0, only those whose byte `+3 AND 0x1F` is not 6) whose byte `+0x18` is not 1 and whose qword `+0xC0` points to a dword other than -1, it passes to the call at + 0xF9 either the result of the call at + 0xF1 on the `0x740`-byte record indexed by that block's signed word `+0` in the array at qword `022C6F28`, or 0 when that word is -1, the record address is zero or the record's dword `+0x284` is 0; any other `ecx` does nothing",
+   "anchors": [
+    [
+     "002E417A",
+     "call"
+    ],
+    [
+     "002E41DC",
+     "cmp"
+    ],
+    [
+     "002E4249",
+     "call"
+    ],
+    [
+     "002E428E",
+     "call"
+    ],
+    [
+     "002E4293",
+     "and"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "002E4150 (doubt): long row. All five callees are unnamed in the host excerpt; every site is relative to 002E4150. On the ecx = 1 path the entry returned by + 0x75 is not null-checked before byte +3 / +0x18 are read (002E41D2, 002E41F8). The 'record address is zero' clause is the jne after the add at 002E4227 (flags from the add). The initial bound check uses an unsigned jae (002E41B1, 002E425C) and the loop back-edges a signed jl. When edx is 0 the ecx = 1 path calls nothing (002E41F0 cmovne leaves eax 0)."
+}
