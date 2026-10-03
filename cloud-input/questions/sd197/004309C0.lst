@@ -1,0 +1,47 @@
+004309C0  mov      qword ptr [rsp + 8], rbx
+004309C5  push     rdi
+004309C6  sub      rsp, 0x30
+004309CA  movzx    eax, byte ptr [rcx + 0xc]
+004309CE  mov      edi, edx
+004309D0  movaps   xmmword ptr [rsp + 0x20], xmm6
+004309D5  mov      rbx, rcx
+004309D8  test     eax, eax
+004309DA  jne      0x4309e1  ; -> 004309E1
+004309DC  xorps    xmm6, xmm6
+004309DF  jmp      0x4309ff  ; -> 004309FF
+004309E1  cmp      eax, 1
+004309E4  jne      0x4309f4  ; -> 004309F4
+004309E6  mov      ecx, dword ptr [rcx]
+004309E8  call     0x20e600  ; -> 0020E600 fn
+004309ED  movss    xmm6, dword ptr [rax + 4]
+004309F2  jmp      0x4309ff  ; -> 004309FF
+004309F4  xor      r8d, r8d
+004309F7  call     0x430540  ; -> 00430540 fn
+004309FC  movaps   xmm6, xmm0
+004309FF  movzx    eax, byte ptr [rbx + 0xd]
+00430A03  test     eax, eax
+00430A05  jne      0x430a1a  ; -> 00430A1A
+00430A07  movaps   xmm0, xmm6
+00430A0A  mov      rbx, qword ptr [rsp + 0x40]
+00430A0F  movaps   xmm6, xmmword ptr [rsp + 0x20]
+00430A14  add      rsp, 0x30
+00430A18  pop      rdi
+00430A19  ret      
+00430A1A  cmp      eax, 1
+00430A1D  jne      0x430a2e  ; -> 00430A2E
+00430A1F  mov      ecx, dword ptr [rbx + 4]
+00430A22  call     0x20e600  ; -> 0020E600 fn
+00430A27  movss    xmm0, dword ptr [rax + 4]
+00430A2C  jmp      0x430a3e  ; -> 00430A3E
+00430A2E  mov      r8d, 1
+00430A34  mov      edx, edi
+00430A36  mov      rcx, rbx
+00430A39  call     0x430540  ; -> 00430540 fn
+00430A3E  movaps   xmm2, xmm0
+00430A41  movaps   xmm1, xmm6
+00430A44  mov      rcx, rbx
+00430A47  mov      rbx, qword ptr [rsp + 0x40]
+00430A4C  movaps   xmm6, xmmword ptr [rsp + 0x20]
+00430A51  add      rsp, 0x30
+00430A55  pop      rdi
+00430A56  jmp      0x4307c0  ; -> 004307C0 fn

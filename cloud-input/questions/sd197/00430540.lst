@@ -1,0 +1,174 @@
+00430540  push     rbp
+00430542  push     rbx
+00430543  push     rsi
+00430544  push     rdi
+00430545  lea      rbp, [rsp - 0x3f]
+0043054A  sub      rsp, 0x98
+00430551  mov      rax, qword ptr [rip + 0x1b142d8]  ; -> 01F44830 [u64 0x00002B992DDFA232]
+00430558  xor      rax, rsp
+0043055B  mov      qword ptr [rbp + 0x17], rax
+0043055F  movsxd   rsi, r8d
+00430562  mov      ebx, edx
+00430564  mov      rdi, rcx
+00430567  test     r8d, r8d
+0043056A  jne      0x430579  ; -> 00430579
+0043056C  mov      ecx, dword ptr [rcx]
+0043056E  call     0x20e600  ; -> 0020E600 fn
+00430573  movzx    ecx, word ptr [rdi + 0xe]
+00430577  jmp      0x430588  ; -> 00430588
+00430579  mov      ecx, dword ptr [rcx + 4]
+0043057C  call     0x20e600  ; -> 0020E600 fn
+00430581  movzx    ecx, word ptr [rdi + 0xe]
+00430585  shr      ecx, 2
+00430588  mov      r8, rax
+0043058B  and      ecx, 3
+0043058E  movzx    eax, word ptr [rdi + rsi*2 + 8]
+00430593  mov      r11, rsi
+00430596  test     ax, ax
+00430599  je       0x4305ac  ; -> 004305AC
+0043059B  movzx    r9d, ax
+0043059F  cmp      ebx, r9d
+004305A2  jle      0x4305ac  ; -> 004305AC
+004305A4  mov      eax, ebx
+004305A6  cdq      
+004305A7  idiv     r9d
+004305AA  mov      ebx, edx
+004305AC  mov      qword ptr [rsp + 0x90], r14
+004305B4  test     ecx, ecx
+004305B6  je       0x43073b  ; -> 0043073B
+004305BC  cmp      ecx, 1
+004305BF  je       0x4305c9  ; -> 004305C9
+004305C1  xorps    xmm0, xmm0
+004305C4  jmp      0x43079a  ; -> 0043079A
+004305C9  movzx    eax, byte ptr [rsi + rdi + 0xc]
+004305CE  cmp      al, 2
+004305D0  jbe      0x43073b  ; -> 0043073B
+004305D6  xor      r9d, r9d
+004305D9  movzx    esi, al
+004305DC  xorps    xmm2, xmm2
+004305DF  test     al, al
+004305E1  je       0x430797  ; -> 00430797
+004305E7  movss    xmm1, dword ptr [rbp - 0x21]
+004305EC  movss    xmm3, dword ptr [rbp - 0x25]
+004305F1  mov      r14d, dword ptr [rbp - 0x21]
+004305F5  mov      r10d, dword ptr [rbp - 0x25]
+004305F9  nop      dword ptr [rax]
+00430600  mov      ecx, dword ptr [r8]
+00430603  movss    xmm2, dword ptr [r8 + 4]
+00430609  add      r8, 8
+0043060D  cmp      ecx, ebx
+0043060F  jge      0x43062a  ; -> 0043062A
+00430611  inc      r9d
+00430614  mov      r14d, r10d
+00430617  movaps   xmm1, xmm3
+0043061A  mov      r10d, ecx
+0043061D  movaps   xmm3, xmm2
+00430620  cmp      r9d, esi
+00430623  jl       0x430600  ; -> 00430600
+00430625  jmp      0x430797  ; -> 00430797
+0043062A  test     r9d, r9d
+0043062D  je       0x430797  ; -> 00430797
+00430633  mov      eax, ecx
+00430635  sub      eax, r10d
+00430638  cdq      
+00430639  sub      eax, edx
+0043063B  sar      eax, 1
+0043063D  add      eax, r10d
+00430640  cmp      r9d, 1
+00430644  jne      0x43064f  ; -> 0043064F
+00430646  cmp      ebx, eax
+00430648  jg       0x430696  ; -> 00430696
+0043064A  jmp      0x430762  ; -> 00430762
+0043064F  cmp      ebx, eax
+00430651  jg       0x43068a  ; -> 0043068A
+00430653  movss    dword ptr [rbp - 0x15], xmm1
+00430658  movd     xmm0, r14d
+0043065D  cvtdq2ps xmm0, xmm0
+00430660  movd     xmm1, r10d
+00430665  movss    dword ptr [rbp - 0x19], xmm0
+0043066A  movd     xmm0, ecx
+0043066E  cvtdq2ps xmm0, xmm0
+00430671  cvtdq2ps xmm1, xmm1
+00430674  movss    dword ptr [rbp + 7], xmm0
+00430679  movss    dword ptr [rbp - 9], xmm1
+0043067E  movss    dword ptr [rbp - 5], xmm3
+00430683  movss    dword ptr [rbp + 0xb], xmm2
+00430688  jmp      0x4306d1  ; -> 004306D1
+0043068A  lea      eax, [rsi - 1]
+0043068D  cmp      r9d, eax
+00430690  je       0x430762  ; -> 00430762
+00430696  movss    dword ptr [rbp - 0x15], xmm3
+0043069B  movss    dword ptr [rbp - 5], xmm2
+004306A0  movd     xmm0, r10d
+004306A5  cvtdq2ps xmm0, xmm0
+004306A8  movd     xmm1, ecx
+004306AC  movss    dword ptr [rbp - 0x19], xmm0
+004306B1  cvtdq2ps xmm1, xmm1
+004306B4  movss    dword ptr [rbp - 9], xmm1
+004306B9  movd     xmm0, dword ptr [r8]
+004306BE  cvtdq2ps xmm0, xmm0
+004306C1  movss    dword ptr [rbp + 7], xmm0
+004306C6  movss    xmm1, dword ptr [r8 + 4]
+004306CC  movss    dword ptr [rbp + 0xb], xmm1
+004306D1  movaps   xmmword ptr [rsp + 0x80], xmm6
+004306D9  lea      r8, [rbp - 0x39]
+004306DD  movd     xmm6, ebx
+004306E1  lea      rdx, [rbp - 0x19]
+004306E5  cvtdq2ps xmm6, xmm6
+004306E8  movaps   xmm0, xmm6
+004306EB  call     0x39b6e0  ; -> 0039B6E0 fn
+004306F0  movss    xmm0, dword ptr [rbp - 0x39]
+004306F5  ucomiss  xmm0, dword ptr [rip + 0x18bb50c]  ; -> 01CEBC08 [f32 2]
+004306FC  jp       0x43071f  ; -> 0043071F
+004306FE  jne      0x43071f  ; -> 0043071F
+00430700  movss    xmm1, dword ptr [rbp + 7]
+00430705  addss    xmm6, xmm6
+00430709  subss    xmm1, dword ptr [rbp - 0x19]
+0043070E  subss    xmm6, dword ptr [rbp - 0x19]
+00430713  subss    xmm6, dword ptr [rbp - 9]
+00430718  divss    xmm6, xmm1
+0043071C  movaps   xmm0, xmm6
+0043071F  lea      r8, [rbp - 0x29]
+00430723  lea      rdx, [rbp - 0x19]
+00430727  call     0x39b630  ; -> 0039B630 fn
+0043072C  movss    xmm2, dword ptr [rbp - 0x25]
+00430731  movaps   xmm6, xmmword ptr [rsp + 0x80]
+00430739  jmp      0x430797  ; -> 00430797
+0043073B  movss    xmm3, dword ptr [rbp - 0x25]
+00430740  xorps    xmm2, xmm2
+00430743  mov      r10d, dword ptr [rbp - 0x25]
+00430747  xor      r9d, r9d
+0043074A  movzx    eax, byte ptr [r11 + rdi + 0xc]
+00430750  cmp      r9d, eax
+00430753  jge      0x430797  ; -> 00430797
+00430755  mov      ecx, dword ptr [r8]
+00430758  movss    xmm2, dword ptr [r8 + 4]
+0043075E  add      r8, 8
+00430762  cmp      ecx, ebx
+00430764  je       0x430797  ; -> 00430797
+00430766  jg       0x430773  ; -> 00430773
+00430768  mov      r10d, ecx
+0043076B  movaps   xmm3, xmm2
+0043076E  inc      r9d
+00430771  jmp      0x43074a  ; -> 0043074A
+00430773  subss    xmm2, xmm3
+00430777  sub      ebx, r10d
+0043077A  sub      ecx, r10d
+0043077D  movd     xmm1, ebx
+00430781  cvtdq2ps xmm1, xmm1
+00430784  mulss    xmm2, xmm1
+00430788  movd     xmm1, ecx
+0043078C  cvtdq2ps xmm1, xmm1
+0043078F  divss    xmm2, xmm1
+00430793  addss    xmm2, xmm3
+00430797  movaps   xmm0, xmm2
+0043079A  mov      r14, qword ptr [rsp + 0x90]
+004307A2  mov      rcx, qword ptr [rbp + 0x17]
+004307A6  xor      rcx, rsp
+004307A9  call     0x808c40  ; -> 00808C40 fn
+004307AE  add      rsp, 0x98
+004307B5  pop      rdi
+004307B6  pop      rsi
+004307B7  pop      rbx
+004307B8  pop      rbp
+004307B9  ret      

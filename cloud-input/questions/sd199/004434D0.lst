@@ -1,0 +1,786 @@
+004434D0  mov      r11, rsp
+004434D3  push     rbp
+004434D4  push     rbx
+004434D5  push     r14
+004434D7  push     r15
+004434D9  lea      rbp, [r11 - 0x128]
+004434E0  sub      rsp, 0x208
+004434E7  mov      rax, qword ptr [rip + 0x1b01342]  ; -> 01F44830 [u64 0x00002B992DDFA232]
+004434EE  xor      rax, rsp
+004434F1  mov      qword ptr [rbp + 0xb0], rax
+004434F8  mov      r15, qword ptr [rip + 0x26ab859]  ; -> 02AEED58
+004434FF  xor      ebx, ebx
+00443501  mov      r14, rcx
+00443504  mov      qword ptr [rsp + 0x50], rcx
+00443509  mov      dword ptr [rsp + 0x40], ebx
+0044350D  cmp      byte ptr [rcx + 0x1f0], bl
+00443513  jbe      0x444314  ; -> 00444314
+00443519  mov      edx, dword ptr [rip + 0x26ab891]  ; -> 02AEEDB0
+0044351F  mov      qword ptr [r11 + 0x10], rsi
+00443523  mov      qword ptr [r11 + 0x18], rdi
+00443527  mov      qword ptr [r11 + 0x20], r12
+0044352B  mov      qword ptr [r11 - 0x28], r13
+0044352F  xor      r13d, r13d
+00443532  movaps   xmmword ptr [r11 - 0x38], xmm6
+00443537  movss    xmm6, dword ptr [rip + 0x4afbad]  ; -> 008F30EC [f32 0.0625]
+0044353F  movaps   xmmword ptr [r11 - 0x48], xmm7
+00443544  movss    xmm7, dword ptr [rip + 0x4825e4]  ; -> 008C5B30 [f32 0.001953125]
+0044354C  movaps   xmmword ptr [r11 - 0x58], xmm8
+00443551  movss    xmm8, dword ptr [rip + 0x8cde8a]  ; -> 00D113E4 [f32 3.5625]
+0044355A  movaps   xmmword ptr [r11 - 0x68], xmm9
+0044355F  movss    xmm9, dword ptr [rip + 0x8cde78]  ; -> 00D113E0 [f32 3.5]
+00443568  mov      qword ptr [rsp + 0x58], r13
+0044356D  nop      dword ptr [rax]
+00443570  mov      rcx, qword ptr [r14 + r13*8 + 0x1b8]
+00443578  movzx    eax, byte ptr [r14 + r13 + 0x134]
+00443581  mov      dword ptr [rip + 0x26ab379], eax  ; -> 02AEE900
+00443587  mov      qword ptr [rip + 0x26ab37a], rcx  ; -> 02AEE908
+0044358E  cmp      byte ptr [r14 + r13 + 0x1a4], 0
+00443597  je       0x443787  ; -> 00443787
+0044359D  movaps   xmm0, xmmword ptr [rip + 0x26ab64c]  ; -> 02AEEBF0
+004435A4  lea      rdx, [rbp - 0x40]
+004435A8  movaps   xmm1, xmmword ptr [rip + 0x26ab651]  ; -> 02AEEC00
+004435AF  lea      rcx, [rbp - 0x40]
+004435B3  movups   xmmword ptr [rbp - 0x40], xmm0
+004435B7  movaps   xmm0, xmmword ptr [rip + 0x26ab652]  ; -> 02AEEC10
+004435BE  movups   xmmword ptr [rbp - 0x30], xmm1
+004435C2  movaps   xmm1, xmmword ptr [rip + 0x26ab657]  ; -> 02AEEC20
+004435C9  movups   xmmword ptr [rbp - 0x20], xmm0
+004435CD  movups   xmmword ptr [rbp - 0x10], xmm1
+004435D1  call     0x39b960  ; -> 0039B960 fn
+004435D6  lea      rdx, [rbp - 0x30]
+004435DA  lea      rcx, [rbp - 0x30]
+004435DE  call     0x39b960  ; -> 0039B960 fn
+004435E3  lea      rdx, [rbp - 0x20]
+004435E7  lea      rcx, [rbp - 0x20]
+004435EB  call     0x39b960  ; -> 0039B960 fn
+004435F0  lea      rcx, [rbp - 0x40]
+004435F4  call     0x39af70  ; -> 0039AF70 fn
+004435F9  cmp      byte ptr [r14 + r13 + 0x1a0], 1
+00443602  movzx    eax, byte ptr [r14 + r13 + 0x1a4]
+0044360B  mov      r8d, dword ptr [rip + 0x26ab786]  ; -> 02AEED98
+00443612  mov      rdx, qword ptr [rip + 0x26ab74f]  ; -> 02AEED68
+00443619  mov      rcx, qword ptr [rip + 0x26ab740]  ; -> 02AEED60
+00443620  jne      0x443647  ; -> 00443647
+00443622  test     al, al
+00443624  jns      0x443639  ; -> 00443639
+00443626  movsx    eax, al
+00443629  mov      r9d, 1
+0044362F  sub      r9d, eax
+00443632  call     0x3952d0  ; -> 003952D0 fn
+00443637  jmp      0x44367a  ; -> 0044367A
+00443639  movsx    r9d, al
+0044363D  dec      r9d
+00443640  call     0x394e50  ; -> 00394E50 fn
+00443645  jmp      0x44367a  ; -> 0044367A
+00443647  movss    xmm0, dword ptr [r14 + r13*4 + 0x190]
+00443651  movss    dword ptr [rsp + 0x20], xmm0
+00443657  test     al, al
+00443659  jns      0x44366e  ; -> 0044366E
+0044365B  movsx    eax, al
+0044365E  mov      r9d, 1
+00443664  sub      r9d, eax
+00443667  call     0x3954e0  ; -> 003954E0 fn
+0044366C  jmp      0x44367a  ; -> 0044367A
+0044366E  movsx    r9d, al
+00443672  dec      r9d
+00443675  call     0x395050  ; -> 00395050 fn
+0044367A  cmp      byte ptr [r14 + r13 + 0x1a8], 0
+00443683  je       0x44371c  ; -> 0044371C
+00443689  cmp      dword ptr [r14 + r13*4 + 0x138], 0x80808080
+00443695  je       0x4436bd  ; -> 004436BD
+00443697  mov      r8, qword ptr [rip + 0x26ab6da]  ; -> 02AEED78
+0044369E  mov      r9d, 1
+004436A4  mov      rcx, qword ptr [rip + 0x26ab6c5]  ; -> 02AEED70
+004436AB  movsxd   rax, ebx
+004436AE  add      rax, 0x4e
+004436B2  lea      rdx, [r14 + rax*4]
+004436B6  call     0x432300  ; -> 00432300 fn
+004436BB  jmp      0x4436ca  ; -> 004436CA
+004436BD  mov      rax, qword ptr [rip + 0x26ab6b4]  ; -> 02AEED78
+004436C4  mov      dword ptr [rax], 0x80808080
+004436CA  mov      r9d, dword ptr [rip + 0x26ab6cb]  ; -> 02AEED9C
+004436D1  mov      r8d, 1
+004436D7  cmp      r9d, r8d
+004436DA  jle      0x443710  ; -> 00443710
+004436DC  mov      edx, 4
+004436E1  nop      dword ptr [rax]
+004436E5  nop      word ptr [rax + rax]
+004436F0  mov      rcx, qword ptr [rip + 0x26ab681]  ; -> 02AEED78
+004436F7  lea      rdx, [rdx + 4]
+004436FB  inc      r8d
+004436FE  mov      eax, dword ptr [rcx]
+00443700  mov      dword ptr [rdx + rcx - 4], eax
+00443704  mov      r9d, dword ptr [rip + 0x26ab691]  ; -> 02AEED9C
+0044370B  cmp      r8d, r9d
+0044370E  jl       0x4436f0  ; -> 004436F0
+00443710  mov      rcx, qword ptr [rip + 0x26ab661]  ; -> 02AEED78
+00443717  mov      rdx, rcx
+0044371A  jmp      0x443769  ; -> 00443769
+0044371C  cmp      dword ptr [r14 + r13*4 + 0x138], 0x80808080
+00443728  mov      r9d, dword ptr [rip + 0x26ab66d]  ; -> 02AEED9C
+0044372F  mov      rcx, qword ptr [rip + 0x26ab63a]  ; -> 02AEED70
+00443736  je       0x443762  ; -> 00443762
+00443738  mov      r8, qword ptr [rip + 0x26ab639]  ; -> 02AEED78
+0044373F  movsxd   rax, ebx
+00443742  add      rax, 0x4e
+00443746  lea      rdx, [r14 + rax*4]
+0044374A  call     0x432300  ; -> 00432300 fn
+0044374F  mov      rcx, qword ptr [rip + 0x26ab622]  ; -> 02AEED78
+00443756  mov      r9d, dword ptr [rip + 0x26ab63f]  ; -> 02AEED9C
+0044375D  mov      rdx, rcx
+00443760  jmp      0x443769  ; -> 00443769
+00443762  mov      rdx, qword ptr [rip + 0x26ab60f]  ; -> 02AEED78
+00443769  mov      r8, qword ptr [rip + 0x26ab5f8]  ; -> 02AEED68
+00443770  call     0x4332b0  ; -> 004332B0 fn
+00443775  mov      edx, dword ptr [rip + 0x26ab635]  ; -> 02AEEDB0
+0044377B  mov      rdi, qword ptr [rip + 0x26ab5f6]  ; -> 02AEED78
+00443782  jmp      0x443865  ; -> 00443865
+00443787  cmp      byte ptr [r14 + r13 + 0x1a8], 0
+00443790  je       0x44381c  ; -> 0044381C
+00443796  cmp      dword ptr [r14 + r13*4 + 0x138], 0x80808080
+004437A2  je       0x4437ca  ; -> 004437CA
+004437A4  mov      r8, qword ptr [rip + 0x26ab5cd]  ; -> 02AEED78
+004437AB  mov      r9d, 1
+004437B1  mov      rcx, qword ptr [rip + 0x26ab5b8]  ; -> 02AEED70
+004437B8  movsxd   rax, ebx
+004437BB  add      rax, 0x4e
+004437BF  lea      rdx, [r14 + rax*4]
+004437C3  call     0x432300  ; -> 00432300 fn
+004437C8  jmp      0x4437d7  ; -> 004437D7
+004437CA  mov      rax, qword ptr [rip + 0x26ab5a7]  ; -> 02AEED78
+004437D1  mov      dword ptr [rax], 0x80808080
+004437D7  mov      r8d, 1
+004437DD  cmp      dword ptr [rip + 0x26ab5b8], r8d  ; -> 02AEED9C
+004437E4  jle      0x44380d  ; -> 0044380D
+004437E6  mov      edx, 4
+004437EB  nop      dword ptr [rax + rax]
+004437F0  mov      rcx, qword ptr [rip + 0x26ab581]  ; -> 02AEED78
+004437F7  lea      rdx, [rdx + 4]
+004437FB  inc      r8d
+004437FE  mov      eax, dword ptr [rcx]
+00443800  mov      dword ptr [rdx + rcx - 4], eax
+00443804  cmp      r8d, dword ptr [rip + 0x26ab591]  ; -> 02AEED9C
+0044380B  jl       0x4437f0  ; -> 004437F0
+0044380D  mov      rdi, qword ptr [rip + 0x26ab564]  ; -> 02AEED78
+00443814  mov      edx, dword ptr [rip + 0x26ab596]  ; -> 02AEEDB0
+0044381A  jmp      0x443865  ; -> 00443865
+0044381C  cmp      dword ptr [r14 + r13*4 + 0x138], 0x80808080
+00443828  je       0x44385e  ; -> 0044385E
+0044382A  mov      r9d, dword ptr [rip + 0x26ab56b]  ; -> 02AEED9C
+00443831  mov      r8, qword ptr [rip + 0x26ab540]  ; -> 02AEED78
+00443838  mov      rcx, qword ptr [rip + 0x26ab531]  ; -> 02AEED70
+0044383F  movsxd   rax, ebx
+00443842  add      rax, 0x4e
+00443846  lea      rdx, [r14 + rax*4]
+0044384A  call     0x432300  ; -> 00432300 fn
+0044384F  mov      edx, dword ptr [rip + 0x26ab55b]  ; -> 02AEEDB0
+00443855  mov      rdi, qword ptr [rip + 0x26ab51c]  ; -> 02AEED78
+0044385C  jmp      0x443865  ; -> 00443865
+0044385E  mov      rdi, qword ptr [rip + 0x26ab50b]  ; -> 02AEED70
+00443865  movzx    ecx, byte ptr [r14 + r13 + 0x1b0]
+0044386E  sub      ecx, 1
+00443871  je       0x443ace  ; -> 00443ACE
+00443877  sub      ecx, 1
+0044387A  je       0x443976  ; -> 00443976
+00443880  sub      ecx, 1
+00443883  je       0x4438ff  ; -> 004438FF
+00443885  cmp      ecx, 1
+00443888  je       0x44389b  ; -> 0044389B
+0044388A  mov      rsi, qword ptr [rip + 0x26ab4ef]  ; -> 02AEED80
+00443891  mov      qword ptr [rsp + 0x38], rsi
+00443896  jmp      0x443bba  ; -> 00443BBA
+0044389B  movaps   xmm0, xmmword ptr [rip + 0x26ab34e]  ; -> 02AEEBF0
+004438A2  lea      rdx, [rsp + 0x70]
+004438A7  movaps   xmm1, xmmword ptr [rip + 0x26ab352]  ; -> 02AEEC00
+004438AE  lea      rcx, [rsp + 0x70]
+004438B3  mov      rsi, qword ptr [rip + 0x26ab4ce]  ; -> 02AEED88
+004438BA  movups   xmmword ptr [rsp + 0x70], xmm0
+004438BF  mov      qword ptr [rsp + 0x38], rsi
+004438C4  movaps   xmm0, xmmword ptr [rip + 0x26ab345]  ; -> 02AEEC10
+004438CB  movups   xmmword ptr [rbp - 0x80], xmm1
+004438CF  movaps   xmm1, xmmword ptr [rip + 0x26ab34a]  ; -> 02AEEC20
+004438D6  movups   xmmword ptr [rbp - 0x70], xmm0
+004438DA  movups   xmmword ptr [rbp - 0x60], xmm1
+004438DE  call     0x39b960  ; -> 0039B960 fn
+004438E3  lea      rdx, [rbp - 0x80]
+004438E7  lea      rcx, [rbp - 0x80]
+004438EB  call     0x39b960  ; -> 0039B960 fn
+004438F0  lea      rdx, [rbp - 0x70]
+004438F4  lea      rcx, [rbp - 0x70]
+004438F8  call     0x39b960  ; -> 0039B960 fn
+004438FD  jmp      0x443938  ; -> 00443938
+004438FF  movaps   xmm0, xmmword ptr [rip + 0x26ab11a]  ; -> 02AEEA20
+00443906  movaps   xmm1, xmmword ptr [rip + 0x26ab123]  ; -> 02AEEA30
+0044390D  mov      rsi, qword ptr [rip + 0x26ab474]  ; -> 02AEED88
+00443914  movups   xmmword ptr [rsp + 0x70], xmm0
+00443919  mov      qword ptr [rsp + 0x38], rsi
+0044391E  movaps   xmm0, xmmword ptr [rip + 0x26ab11b]  ; -> 02AEEA40
+00443925  movups   xmmword ptr [rbp - 0x80], xmm1
+00443929  movaps   xmm1, xmmword ptr [rip + 0x26ab120]  ; -> 02AEEA50
+00443930  movups   xmmword ptr [rbp - 0x70], xmm0
+00443934  movups   xmmword ptr [rbp - 0x60], xmm1
+00443938  lea      rcx, [rsp + 0x70]
+0044393D  call     0x39af70  ; -> 0039AF70 fn
+00443942  cmp      byte ptr [r14 + r13 + 0x1b4], 0
+0044394B  mov      r8d, dword ptr [rip + 0x26ab446]  ; -> 02AEED98
+00443952  mov      rdx, qword ptr [rip + 0x26ab40f]  ; -> 02AEED68
+00443959  mov      rcx, qword ptr [rip + 0x26ab400]  ; -> 02AEED60
+00443960  jne      0x44396c  ; -> 0044396C
+00443962  call     0x396a30  ; -> 00396A30 fn
+00443967  jmp      0x443b89  ; -> 00443B89
+0044396C  call     0x396560  ; -> 00396560 fn
+00443971  jmp      0x443b89  ; -> 00443B89
+00443976  mov      rsi, qword ptr [rip + 0x26ab40b]  ; -> 02AEED88
+0044397D  lea      rcx, [rip + 0x26ab26c]  ; -> 02AEEBF0
+00443984  mov      qword ptr [rsp + 0x38], rsi
+00443989  call     0x39af70  ; -> 0039AF70 fn
+0044398E  mov      r9d, dword ptr [rip + 0x26ab403]  ; -> 02AEED98
+00443995  mov      rdx, qword ptr [rip + 0x26ab3cc]  ; -> 02AEED68
+0044399C  mov      rcx, qword ptr [rip + 0x26ab3bd]  ; -> 02AEED60
+004439A3  movsxd   rax, ebx
+004439A6  add      rax, 0x76
+004439AA  lea      r8, [r14 + rax*4]
+004439AE  call     0x3962f0  ; -> 003962F0 fn
+004439B3  mov      eax, dword ptr [rip + 0x26ab3f7]  ; -> 02AEEDB0
+004439B9  mov      r9d, dword ptr [rip + 0x26ab3e8]  ; -> 02AEEDA8
+004439C0  mov      r8d, dword ptr [rip + 0x26ab3e5]  ; -> 02AEEDAC
+004439C7  mov      rdx, qword ptr [rip + 0x26ab3ba]  ; -> 02AEED88
+004439CE  mov      rcx, qword ptr [rip + 0x26ab393]  ; -> 02AEED68
+004439D5  mov      dword ptr [rsp + 0x20], eax
+004439D9  call     0x396fd0  ; -> 00396FD0 fn
+004439DE  mov      edx, dword ptr [rip + 0x26ab3cc]  ; -> 02AEEDB0
+004439E4  xor      r8d, r8d
+004439E7  xor      r11d, r11d
+004439EA  xor      r14d, r14d
+004439ED  cmp      dword ptr [rip + 0x26ab3b4], r8d  ; -> 02AEEDA8
+004439F4  jl       0x443ac4  ; -> 00443AC4
+004439FA  nop      word ptr [rax + rax]
+00443A00  xor      ebx, ebx
+00443A02  cmp      dword ptr [rip + 0x26ab3a4], ebx  ; -> 02AEEDAC
+00443A08  jle      0x443aa3  ; -> 00443AA3
+00443A0E  nop      
+00443A10  xor      r10d, r10d
+00443A13  test     edx, edx
+00443A15  js       0x443a92  ; -> 00443A92
+00443A17  mov      r9, r11
+00443A1A  shl      r9, 4
+00443A1E  add      r9, r15
+00443A21  movzx    eax, word ptr [r9 + 2]
+00443A26  inc      r10d
+00443A29  mov      rcx, qword ptr [rip + 0x26ab358]  ; -> 02AEED88
+00443A30  inc      r11
+00443A33  movd     xmm1, eax
+00443A37  movzx    eax, word ptr [r9]
+00443A3B  add      r9, 0x10
+00443A3F  cvtdq2ps xmm1, xmm1
+00443A42  movd     xmm0, eax
+00443A46  cvtdq2ps xmm0, xmm0
+00443A49  mulss    xmm1, xmm6
+00443A4D  mulss    xmm0, xmm6
+00443A51  mulss    xmm1, xmm7
+00443A55  mulss    xmm0, xmm7
+00443A59  subss    xmm1, xmm8
+00443A5E  subss    xmm0, xmm9
+00443A63  addss    xmm0, dword ptr [rcx + r8*8]
+00443A69  movss    dword ptr [rcx + r8*8], xmm0
+00443A6F  mov      rax, qword ptr [rip + 0x26ab312]  ; -> 02AEED88
+00443A76  addss    xmm1, dword ptr [rax + r8*8 + 4]
+00443A7D  movss    dword ptr [rax + r8*8 + 4], xmm1
+00443A84  inc      r8
+00443A87  mov      edx, dword ptr [rip + 0x26ab323]  ; -> 02AEEDB0
+00443A8D  cmp      r10d, edx
+00443A90  jle      0x443a21  ; -> 00443A21
+00443A92  dec      r11
+00443A95  inc      ebx
+00443A97  cmp      ebx, dword ptr [rip + 0x26ab30f]  ; -> 02AEEDAC
+00443A9D  jl       0x443a10  ; -> 00443A10
+00443AA3  inc      r11
+00443AA6  inc      r14d
+00443AA9  cmp      r14d, dword ptr [rip + 0x26ab2f8]  ; -> 02AEEDA8
+00443AB0  jle      0x443a00  ; -> 00443A00
+00443AB6  mov      r14, qword ptr [rsp + 0x50]
+00443ABB  mov      ebx, dword ptr [rsp + 0x40]
+00443ABF  jmp      0x443bba  ; -> 00443BBA
+00443AC4  mov      r14, qword ptr [rsp + 0x50]
+00443AC9  jmp      0x443bba  ; -> 00443BBA
+00443ACE  movaps   xmm0, xmmword ptr [rip + 0x26aaf4b]  ; -> 02AEEA20
+00443AD5  lea      rdx, [rsp + 0x70]
+00443ADA  movaps   xmm1, xmmword ptr [rip + 0x26aaf4f]  ; -> 02AEEA30
+00443AE1  lea      rcx, [rsp + 0x70]
+00443AE6  mov      rsi, qword ptr [rip + 0x26ab29b]  ; -> 02AEED88
+00443AED  movups   xmmword ptr [rsp + 0x70], xmm0
+00443AF2  mov      qword ptr [rsp + 0x38], rsi
+00443AF7  movaps   xmm0, xmmword ptr [rip + 0x26aaf42]  ; -> 02AEEA40
+00443AFE  movups   xmmword ptr [rbp - 0x80], xmm1
+00443B02  movaps   xmm1, xmmword ptr [rip + 0x26aaf47]  ; -> 02AEEA50
+00443B09  movups   xmmword ptr [rbp - 0x70], xmm0
+00443B0D  movups   xmmword ptr [rbp - 0x60], xmm1
+00443B11  call     0x39b960  ; -> 0039B960 fn
+00443B16  lea      rdx, [rbp - 0x80]
+00443B1A  lea      rcx, [rbp - 0x80]
+00443B1E  call     0x39b960  ; -> 0039B960 fn
+00443B23  lea      rdx, [rbp - 0x70]
+00443B27  lea      rcx, [rbp - 0x70]
+00443B2B  call     0x39b960  ; -> 0039B960 fn
+00443B30  movaps   xmm0, xmmword ptr [rip + 0x482479]  ; -> 008C5FB0 [f32x4 0, 0, 1, 0]
+00443B37  lea      r8, [rbp - 0x50]
+00443B3B  lea      rdx, [rbp]
+00443B3F  movaps   xmmword ptr [rbp], xmm0
+00443B43  lea      rcx, [rip + 0x26aaf56]  ; -> 02AEEAA0
+00443B4A  call     0x394da0  ; -> 00394DA0 fn
+00443B4F  lea      rcx, [rsp + 0x70]
+00443B54  call     0x39af70  ; -> 0039AF70 fn
+00443B59  cmp      byte ptr [r14 + r13 + 0x1b4], 0
+00443B62  lea      r8, [rbp - 0x50]
+00443B66  mov      r9d, dword ptr [rip + 0x26ab22b]  ; -> 02AEED98
+00443B6D  mov      rdx, qword ptr [rip + 0x26ab1f4]  ; -> 02AEED68
+00443B74  mov      rcx, qword ptr [rip + 0x26ab1e5]  ; -> 02AEED60
+00443B7B  jne      0x443b84  ; -> 00443B84
+00443B7D  call     0x395cf0  ; -> 00395CF0 fn
+00443B82  jmp      0x443b89  ; -> 00443B89
+00443B84  call     0x395780  ; -> 00395780 fn
+00443B89  mov      eax, dword ptr [rip + 0x26ab221]  ; -> 02AEEDB0
+00443B8F  mov      r9d, dword ptr [rip + 0x26ab212]  ; -> 02AEEDA8
+00443B96  mov      r8d, dword ptr [rip + 0x26ab20f]  ; -> 02AEEDAC
+00443B9D  mov      rdx, qword ptr [rip + 0x26ab1e4]  ; -> 02AEED88
+00443BA4  mov      rcx, qword ptr [rip + 0x26ab1bd]  ; -> 02AEED68
+00443BAB  mov      dword ptr [rsp + 0x20], eax
+00443BAF  call     0x396fd0  ; -> 00396FD0 fn
+00443BB4  mov      edx, dword ptr [rip + 0x26ab1f6]  ; -> 02AEEDB0
+00443BBA  movzx    ecx, byte ptr [r14 + r13 + 0x1ac]
+00443BC3  sub      ecx, 1
+00443BC6  je       0x443c30  ; -> 00443C30
+00443BC8  sub      ecx, 1
+00443BCB  je       0x443bf8  ; -> 00443BF8
+00443BCD  cmp      ecx, 1
+00443BD0  jne      0x443c48  ; -> 00443C48
+00443BD2  mov      r9d, dword ptr [rip + 0x26ab1c7]  ; -> 02AEEDA0
+00443BD9  mov      rcx, rsi
+00443BDC  mov      rdx, qword ptr [rip + 0x26ab1a5]  ; -> 02AEED88
+00443BE3  movsxd   r8, ebx
+00443BE6  add      r8, 0x15
+00443BEA  shl      r8, 4
+00443BEE  add      r8, r14
+00443BF1  call     0x434760  ; -> 00434760 fn
+00443BF6  jmp      0x443c1c  ; -> 00443C1C
+00443BF8  mov      r9d, dword ptr [rip + 0x26ab1a1]  ; -> 02AEEDA0
+00443BFF  mov      rcx, rsi
+00443C02  mov      rdx, qword ptr [rip + 0x26ab17f]  ; -> 02AEED88
+00443C09  movsxd   r8, ebx
+00443C0C  add      r8, 0x15
+00443C10  shl      r8, 4
+00443C14  add      r8, r14
+00443C17  call     0x434630  ; -> 00434630 fn
+00443C1C  mov      r10, qword ptr [rip + 0x26ab165]  ; -> 02AEED88
+00443C23  mov      edx, dword ptr [rip + 0x26ab187]  ; -> 02AEEDB0
+00443C29  mov      qword ptr [rsp + 0x38], r10
+00443C2E  jmp      0x443c4d  ; -> 00443C4D
+00443C30  mov      r8d, dword ptr [rip + 0x26ab169]  ; -> 02AEEDA0
+00443C37  mov      rcx, rsi
+00443C3A  mov      rdx, qword ptr [rip + 0x26ab147]  ; -> 02AEED88
+00443C41  call     0x43e7b0  ; -> 0043E7B0 fn
+00443C46  jmp      0x443c1c  ; -> 00443C1C
+00443C48  mov      r10, qword ptr [rsp + 0x38]
+00443C4D  xor      ebx, ebx
+00443C4F  xor      eax, eax
+00443C51  cmp      byte ptr [r14 + r13 + 0x130], 5
+00443C5A  jne      0x443e72  ; -> 00443E72
+00443C60  xor      esi, esi
+00443C62  mov      dword ptr [rsp + 0x30], eax
+00443C66  cmp      dword ptr [rip + 0x26aac94], ebx  ; -> 02AEE900
+00443C6C  je       0x443d72  ; -> 00443D72
+00443C72  cmp      dword ptr [rip + 0x26ab130], eax  ; -> 02AEEDA8
+00443C78  jle      0x4442b0  ; -> 004442B0
+00443C7E  nop      
+00443C80  xor      r13d, r13d
+00443C83  cmp      dword ptr [rip + 0x26ab122], r13d  ; -> 02AEEDAC
+00443C8A  jle      0x443d51  ; -> 00443D51
+00443C90  xor      r12d, r12d
+00443C93  test     edx, edx
+00443C95  jle      0x443d3d  ; -> 00443D3D
+00443C9B  mov      r14, rbx
+00443C9E  shl      r14, 4
+00443CA2  add      r14, r15
+00443CA5  nop      word ptr [rax + rax]
+00443CB0  movaps   xmm0, xmmword ptr [r14]
+00443CB4  mov      ecx, dword ptr [rip + 0x26ab0ea]  ; -> 02AEEDA4
+00443CBA  movdqa   xmmword ptr [rbp + 0x50], xmm0
+00443CBF  lea      eax, [rcx + 1]
+00443CC2  add      eax, esi
+00443CC4  movsxd   rdx, eax
+00443CC7  mov      rax, rdx
+00443CCA  add      rax, rax
+00443CCD  movaps   xmm0, xmmword ptr [r15 + rax*8]
+00443CD2  lea      eax, [rcx + 2]
+00443CD5  add      eax, esi
+00443CD7  movdqa   xmmword ptr [rbp + 0x60], xmm0
+00443CDC  movaps   xmm1, xmmword ptr [r14 + 0x10]
+00443CE1  movsxd   rcx, eax
+00443CE4  movdqa   xmmword ptr [rbp + 0x70], xmm1
+00443CE9  mov      rax, rcx
+00443CEC  add      rax, rax
+00443CEF  movaps   xmm0, xmmword ptr [r15 + rax*8]
+00443CF4  movdqa   xmmword ptr [rbp + 0x80], xmm0
+00443CFC  mov      eax, dword ptr [rdi + rbx*4]
+00443CFF  mov      dword ptr [rbp + 0x10], eax
+00443D02  mov      eax, dword ptr [rdi + rdx*4]
+00443D05  lea      rdx, [rbp + 0x10]
+00443D09  mov      dword ptr [rbp + 0x14], eax
+00443D0C  mov      eax, dword ptr [rdi + rbx*4 + 4]
+00443D10  mov      dword ptr [rbp + 0x18], eax
+00443D13  mov      eax, dword ptr [rdi + rcx*4]
+00443D16  lea      rcx, [rbp + 0x50]
+00443D1A  mov      dword ptr [rbp + 0x1c], eax
+00443D1D  call     0x39ec30  ; -> 0039EC30 fn
+00443D22  mov      edx, dword ptr [rip + 0x26ab088]  ; -> 02AEEDB0
+00443D28  lea      r14, [r14 + 0x10]
+00443D2C  inc      esi
+00443D2E  inc      rbx
+00443D31  inc      r12d
+00443D34  cmp      r12d, edx
+00443D37  jl       0x443cb0  ; -> 00443CB0
+00443D3D  inc      r13d
+00443D40  cmp      r13d, dword ptr [rip + 0x26ab065]  ; -> 02AEEDAC
+00443D47  jl       0x443c90  ; -> 00443C90
+00443D4D  mov      eax, dword ptr [rsp + 0x30]
+00443D51  inc      eax
+00443D53  inc      esi
+00443D55  inc      rbx
+00443D58  mov      dword ptr [rsp + 0x30], eax
+00443D5C  cmp      eax, dword ptr [rip + 0x26ab046]  ; -> 02AEEDA8
+00443D62  jl       0x443c80  ; -> 00443C80
+00443D68  mov      r14, qword ptr [rsp + 0x50]
+00443D6D  jmp      0x4442ab  ; -> 004442AB
+00443D72  cmp      dword ptr [rip + 0x26ab030], eax  ; -> 02AEEDA8
+00443D78  jle      0x4442b0  ; -> 004442B0
+00443D7E  nop      
+00443D80  xor      r13d, r13d
+00443D83  cmp      dword ptr [rip + 0x26ab022], r13d  ; -> 02AEEDAC
+00443D8A  jle      0x443e51  ; -> 00443E51
+00443D90  xor      r12d, r12d
+00443D93  test     edx, edx
+00443D95  jle      0x443e3d  ; -> 00443E3D
+00443D9B  mov      r14, rbx
+00443D9E  shl      r14, 4
+00443DA2  add      r14, r15
+00443DA5  nop      word ptr [rax + rax]
+00443DB0  movaps   xmm0, xmmword ptr [r14]
+00443DB4  mov      ecx, dword ptr [rip + 0x26aafea]  ; -> 02AEEDA4
+00443DBA  movdqa   xmmword ptr [rbp + 0x50], xmm0
+00443DBF  lea      eax, [rcx + 1]
+00443DC2  add      eax, esi
+00443DC4  movsxd   rdx, eax
+00443DC7  mov      rax, rdx
+00443DCA  add      rax, rax
+00443DCD  movaps   xmm0, xmmword ptr [r15 + rax*8]
+00443DD2  lea      eax, [rcx + 2]
+00443DD5  add      eax, esi
+00443DD7  movdqa   xmmword ptr [rbp + 0x60], xmm0
+00443DDC  movaps   xmm1, xmmword ptr [r14 + 0x10]
+00443DE1  movsxd   rcx, eax
+00443DE4  movdqa   xmmword ptr [rbp + 0x70], xmm1
+00443DE9  mov      rax, rcx
+00443DEC  add      rax, rax
+00443DEF  movaps   xmm0, xmmword ptr [r15 + rax*8]
+00443DF4  movdqa   xmmword ptr [rbp + 0x80], xmm0
+00443DFC  mov      eax, dword ptr [rdi + rbx*4]
+00443DFF  mov      dword ptr [rbp + 0x10], eax
+00443E02  mov      eax, dword ptr [rdi + rdx*4]
+00443E05  lea      rdx, [rbp + 0x10]
+00443E09  mov      dword ptr [rbp + 0x14], eax
+00443E0C  mov      eax, dword ptr [rdi + rbx*4 + 4]
+00443E10  mov      dword ptr [rbp + 0x18], eax
+00443E13  mov      eax, dword ptr [rdi + rcx*4]
+00443E16  lea      rcx, [rbp + 0x50]
+00443E1A  mov      dword ptr [rbp + 0x1c], eax
+00443E1D  call     0x39ea70  ; -> 0039EA70 fn
+00443E22  mov      edx, dword ptr [rip + 0x26aaf88]  ; -> 02AEEDB0
+00443E28  lea      r14, [r14 + 0x10]
+00443E2C  inc      esi
+00443E2E  inc      rbx
+00443E31  inc      r12d
+00443E34  cmp      r12d, edx
+00443E37  jl       0x443db0  ; -> 00443DB0
+00443E3D  inc      r13d
+00443E40  cmp      r13d, dword ptr [rip + 0x26aaf65]  ; -> 02AEEDAC
+00443E47  jl       0x443d90  ; -> 00443D90
+00443E4D  mov      eax, dword ptr [rsp + 0x30]
+00443E51  inc      eax
+00443E53  inc      esi
+00443E55  inc      rbx
+00443E58  mov      dword ptr [rsp + 0x30], eax
+00443E5C  cmp      eax, dword ptr [rip + 0x26aaf46]  ; -> 02AEEDA8
+00443E62  jl       0x443d80  ; -> 00443D80
+00443E68  mov      r14, qword ptr [rsp + 0x50]
+00443E6D  jmp      0x4442ab  ; -> 004442AB
+00443E72  xor      ecx, ecx
+00443E74  xor      esi, esi
+00443E76  xor      r12d, r12d
+00443E79  mov      dword ptr [rsp + 0x30], ecx
+00443E7D  cmp      dword ptr [rip + 0x26aaa7d], ecx  ; -> 02AEE900
+00443E83  je       0x4440a0  ; -> 004440A0
+00443E89  cmp      dword ptr [rip + 0x26aaf19], eax  ; -> 02AEEDA8
+00443E8F  mov      dword ptr [rsp + 0x4c], eax
+00443E93  jle      0x4442b0  ; -> 004442B0
+00443E99  nop      dword ptr [rax]
+00443EA0  xor      r13d, r13d
+00443EA3  cmp      dword ptr [rip + 0x26aaf02], r13d  ; -> 02AEEDAC
+00443EAA  mov      dword ptr [rsp + 0x48], r13d
+00443EAF  jle      0x44407b  ; -> 0044407B
+00443EB5  nop      word ptr [rax + rax]
+00443EC0  mov      dword ptr [rsp + 0x44], 0
+00443EC8  test     edx, edx
+00443ECA  jle      0x444057  ; -> 00444057
+00443ED0  movsxd   rax, dword ptr [rsp + 0x40]
+00443ED5  lea      r13, [r10 + rbx*8]
+00443ED9  lea      r11, [rax + 0xa]
+00443EDD  add      rax, 7
+00443EE1  lea      r11, [r14 + r11*8]
+00443EE5  shl      rax, 4
+00443EE9  add      rax, r14
+00443EEC  mov      qword ptr [rsp + 0x68], r11
+00443EF1  mov      r14, rsi
+00443EF4  mov      qword ptr [rsp + 0x60], rax
+00443EF9  shl      r14, 4
+00443EFD  add      r14, r15
+00443F00  movaps   xmm0, xmmword ptr [r14]
+00443F04  mov      edx, dword ptr [rip + 0x26aae9a]  ; -> 02AEEDA4
+00443F0A  movdqa   xmmword ptr [rbp + 0x50], xmm0
+00443F0F  lea      eax, [rdx + 1]
+00443F12  add      eax, ecx
+00443F14  movsxd   r9, eax
+00443F17  mov      rax, r9
+00443F1A  add      rax, rax
+00443F1D  movaps   xmm0, xmmword ptr [r15 + rax*8]
+00443F22  lea      eax, [rdx + 2]
+00443F25  add      edx, dword ptr [rip + 0x26aae81]  ; -> 02AEEDAC
+00443F2B  add      eax, ecx
+00443F2D  movdqa   xmmword ptr [rbp + 0x60], xmm0
+00443F32  add      edx, r12d
+00443F35  movaps   xmm1, xmmword ptr [r14 + 0x10]
+00443F3A  movdqa   xmmword ptr [rbp + 0x70], xmm1
+00443F3F  movsxd   r8, eax
+00443F42  mov      rax, r8
+00443F45  add      rax, rax
+00443F48  movaps   xmm0, xmmword ptr [r15 + rax*8]
+00443F4D  mov      rax, qword ptr [rip + 0x26aae3c]  ; -> 02AEED90
+00443F54  movdqa   xmmword ptr [rbp + 0x80], xmm0
+00443F5C  movss    xmm0, dword ptr [rax + rsi*4]
+00443F61  movss    dword ptr [rbp + 0x20], xmm0
+00443F66  movss    xmm1, dword ptr [rax + r9*4]
+00443F6C  movss    dword ptr [rbp + 0x24], xmm1
+00443F71  movss    xmm0, dword ptr [rax + rsi*4 + 4]
+00443F77  movss    dword ptr [rbp + 0x28], xmm0
+00443F7C  movss    xmm1, dword ptr [rax + r8*4]
+00443F82  movss    dword ptr [rbp + 0x2c], xmm1
+00443F87  movsd    xmm0, qword ptr [r13]
+00443F8D  movsd    qword ptr [rbp + 0x30], xmm0
+00443F92  movsxd   rax, edx
+00443F95  movsd    xmm0, qword ptr [r10 + rax*8]
+00443F9B  lea      eax, [rdx + 1]
+00443F9E  movsxd   rcx, eax
+00443FA1  lea      rdx, [rbp + 0x90]
+00443FA8  movsd    qword ptr [rbp + 0x38], xmm0
+00443FAD  movsd    xmm1, qword ptr [r13 + 8]
+00443FB3  movsd    qword ptr [rbp + 0x40], xmm1
+00443FB8  movsd    xmm0, qword ptr [r10 + rcx*8]
+00443FBE  lea      rcx, [rbp + 0x30]
+00443FC2  movsd    qword ptr [rbp + 0x48], xmm0
+00443FC7  mov      eax, dword ptr [rdi + rsi*4]
+00443FCA  mov      dword ptr [rbp + 0x10], eax
+00443FCD  mov      eax, dword ptr [rdi + r9*4]
+00443FD1  mov      r9, r11
+00443FD4  mov      dword ptr [rbp + 0x14], eax
+00443FD7  mov      eax, dword ptr [rdi + rsi*4 + 4]
+00443FDB  mov      dword ptr [rbp + 0x18], eax
+00443FDE  mov      eax, dword ptr [rdi + r8*4]
+00443FE2  lea      r8, [rbp + 0x20]
+00443FE6  mov      dword ptr [rbp + 0x1c], eax
+00443FE9  call     0x39b860  ; -> 0039B860 fn
+00443FEE  mov      r9, qword ptr [rsp + 0x60]
+00443FF3  lea      rax, [rbp + 0x10]
+00443FF7  lea      r8, [rbp + 0x20]
+00443FFB  mov      qword ptr [rsp + 0x20], rax
+00444000  lea      rdx, [rbp + 0x90]
+00444007  lea      rcx, [rbp + 0x50]
+0044400B  call     0x39f9f0  ; -> 0039F9F0 fn
+00444010  mov      ecx, dword ptr [rsp + 0x30]
+00444014  lea      r14, [r14 + 0x10]
+00444018  mov      eax, dword ptr [rsp + 0x44]
+0044401C  lea      r13, [r13 + 8]
+00444020  mov      edx, dword ptr [rip + 0x26aad8a]  ; -> 02AEEDB0
+00444026  inc      ecx
+00444028  mov      r10, qword ptr [rsp + 0x38]
+0044402D  inc      eax
+0044402F  mov      r11, qword ptr [rsp + 0x68]
+00444034  inc      rsi
+00444037  inc      r12d
+0044403A  mov      dword ptr [rsp + 0x30], ecx
+0044403E  inc      rbx
+00444041  mov      dword ptr [rsp + 0x44], eax
+00444045  cmp      eax, edx
+00444047  jl       0x443f00  ; -> 00443F00
+0044404D  mov      r13d, dword ptr [rsp + 0x48]
+00444052  mov      r14, qword ptr [rsp + 0x50]
+00444057  mov      r10, qword ptr [rsp + 0x38]
+0044405C  inc      r13d
+0044405F  inc      r12d
+00444062  mov      dword ptr [rsp + 0x48], r13d
+00444067  inc      rbx
+0044406A  cmp      r13d, dword ptr [rip + 0x26aad3b]  ; -> 02AEEDAC
+00444071  jl       0x443ec0  ; -> 00443EC0
+00444077  mov      eax, dword ptr [rsp + 0x4c]
+0044407B  mov      r10, qword ptr [rsp + 0x38]
+00444080  inc      ecx
+00444082  inc      eax
+00444084  mov      dword ptr [rsp + 0x30], ecx
+00444088  inc      rsi
+0044408B  mov      dword ptr [rsp + 0x4c], eax
+0044408F  cmp      eax, dword ptr [rip + 0x26aad13]  ; -> 02AEEDA8
+00444095  jl       0x443ea0  ; -> 00443EA0
+0044409B  jmp      0x4442ab  ; -> 004442AB
+004440A0  cmp      dword ptr [rip + 0x26aad02], eax  ; -> 02AEEDA8
+004440A6  mov      dword ptr [rsp + 0x44], eax
+004440AA  jle      0x4442b0  ; -> 004442B0
+004440B0  xor      r13d, r13d
+004440B3  cmp      dword ptr [rip + 0x26aacf2], r13d  ; -> 02AEEDAC
+004440BA  mov      dword ptr [rsp + 0x48], r13d
+004440BF  jle      0x44428b  ; -> 0044428B
+004440C5  nop      word ptr [rax + rax]
+004440D0  mov      dword ptr [rsp + 0x4c], 0
+004440D8  test     edx, edx
+004440DA  jle      0x444267  ; -> 00444267
+004440E0  movsxd   rax, dword ptr [rsp + 0x40]
+004440E5  lea      r13, [r10 + rbx*8]
+004440E9  lea      r11, [rax + 0xa]
+004440ED  add      rax, 7
+004440F1  lea      r11, [r14 + r11*8]
+004440F5  shl      rax, 4
+004440F9  add      rax, r14
+004440FC  mov      qword ptr [rsp + 0x60], r11
+00444101  mov      r14, rsi
+00444104  mov      qword ptr [rsp + 0x68], rax
+00444109  shl      r14, 4
+0044410D  add      r14, r15
+00444110  movaps   xmm0, xmmword ptr [r14]
+00444114  mov      edx, dword ptr [rip + 0x26aac8a]  ; -> 02AEEDA4
+0044411A  movdqa   xmmword ptr [rbp + 0x50], xmm0
+0044411F  lea      eax, [rdx + 1]
+00444122  add      eax, ecx
+00444124  movsxd   r9, eax
+00444127  mov      rax, r9
+0044412A  add      rax, rax
+0044412D  movaps   xmm0, xmmword ptr [r15 + rax*8]
+00444132  lea      eax, [rdx + 2]
+00444135  add      edx, dword ptr [rip + 0x26aac71]  ; -> 02AEEDAC
+0044413B  add      eax, ecx
+0044413D  movdqa   xmmword ptr [rbp + 0x60], xmm0
+00444142  add      edx, r12d
+00444145  movaps   xmm1, xmmword ptr [r14 + 0x10]
+0044414A  movdqa   xmmword ptr [rbp + 0x70], xmm1
+0044414F  movsxd   r8, eax
+00444152  mov      rax, r8
+00444155  add      rax, rax
+00444158  movaps   xmm0, xmmword ptr [r15 + rax*8]
+0044415D  mov      rax, qword ptr [rip + 0x26aac2c]  ; -> 02AEED90
+00444164  movdqa   xmmword ptr [rbp + 0x80], xmm0
+0044416C  movss    xmm0, dword ptr [rax + rsi*4]
+00444171  movss    dword ptr [rbp + 0x20], xmm0
+00444176  movss    xmm1, dword ptr [rax + r9*4]
+0044417C  movss    dword ptr [rbp + 0x24], xmm1
+00444181  movss    xmm0, dword ptr [rax + rsi*4 + 4]
+00444187  movss    dword ptr [rbp + 0x28], xmm0
+0044418C  movss    xmm1, dword ptr [rax + r8*4]
+00444192  movss    dword ptr [rbp + 0x2c], xmm1
+00444197  movsd    xmm0, qword ptr [r13]
+0044419D  movsd    qword ptr [rbp + 0x30], xmm0
+004441A2  movsxd   rax, edx
+004441A5  movsd    xmm0, qword ptr [r10 + rax*8]
+004441AB  lea      eax, [rdx + 1]
+004441AE  movsxd   rcx, eax
+004441B1  lea      rdx, [rbp + 0x90]
+004441B8  movsd    qword ptr [rbp + 0x38], xmm0
+004441BD  movsd    xmm1, qword ptr [r13 + 8]
+004441C3  movsd    qword ptr [rbp + 0x40], xmm1
+004441C8  movsd    xmm0, qword ptr [r10 + rcx*8]
+004441CE  lea      rcx, [rbp + 0x30]
+004441D2  movsd    qword ptr [rbp + 0x48], xmm0
+004441D7  mov      eax, dword ptr [rdi + rsi*4]
+004441DA  mov      dword ptr [rbp + 0x10], eax
+004441DD  mov      eax, dword ptr [rdi + r9*4]
+004441E1  mov      r9, r11
+004441E4  mov      dword ptr [rbp + 0x14], eax
+004441E7  mov      eax, dword ptr [rdi + rsi*4 + 4]
+004441EB  mov      dword ptr [rbp + 0x18], eax
+004441EE  mov      eax, dword ptr [rdi + r8*4]
+004441F2  lea      r8, [rbp + 0x20]
+004441F6  mov      dword ptr [rbp + 0x1c], eax
+004441F9  call     0x39b860  ; -> 0039B860 fn
+004441FE  mov      r9, qword ptr [rsp + 0x68]
+00444203  lea      rax, [rbp + 0x10]
+00444207  lea      r8, [rbp + 0x20]
+0044420B  mov      qword ptr [rsp + 0x20], rax
+00444210  lea      rdx, [rbp + 0x90]
+00444217  lea      rcx, [rbp + 0x50]
+0044421B  call     0x39f780  ; -> 0039F780 fn
+00444220  mov      ecx, dword ptr [rsp + 0x30]
+00444224  lea      r14, [r14 + 0x10]
+00444228  mov      eax, dword ptr [rsp + 0x4c]
+0044422C  lea      r13, [r13 + 8]
+00444230  mov      edx, dword ptr [rip + 0x26aab7a]  ; -> 02AEEDB0
+00444236  inc      ecx
+00444238  mov      r10, qword ptr [rsp + 0x38]
+0044423D  inc      eax
+0044423F  mov      r11, qword ptr [rsp + 0x60]
+00444244  inc      rsi
+00444247  inc      r12d
+0044424A  mov      dword ptr [rsp + 0x30], ecx
+0044424E  inc      rbx
+00444251  mov      dword ptr [rsp + 0x4c], eax
+00444255  cmp      eax, edx
+00444257  jl       0x444110  ; -> 00444110
+0044425D  mov      r13d, dword ptr [rsp + 0x48]
+00444262  mov      r14, qword ptr [rsp + 0x50]
+00444267  mov      r10, qword ptr [rsp + 0x38]
+0044426C  inc      r13d
+0044426F  inc      r12d
+00444272  mov      dword ptr [rsp + 0x48], r13d
+00444277  inc      rbx
+0044427A  cmp      r13d, dword ptr [rip + 0x26aab2b]  ; -> 02AEEDAC
+00444281  jl       0x4440d0  ; -> 004440D0
+00444287  mov      eax, dword ptr [rsp + 0x44]
+0044428B  mov      r10, qword ptr [rsp + 0x38]
+00444290  inc      ecx
+00444292  inc      eax
+00444294  mov      dword ptr [rsp + 0x30], ecx
+00444298  inc      rsi
+0044429B  mov      dword ptr [rsp + 0x44], eax
+0044429F  cmp      eax, dword ptr [rip + 0x26aab03]  ; -> 02AEEDA8
+004442A5  jl       0x4440b0  ; -> 004440B0
+004442AB  mov      r13, qword ptr [rsp + 0x58]
+004442B0  mov      ebx, dword ptr [rsp + 0x40]
+004442B4  inc      r13
+004442B7  movzx    eax, byte ptr [r14 + 0x1f0]
+004442BF  inc      ebx
+004442C1  mov      dword ptr [rsp + 0x40], ebx
+004442C5  mov      qword ptr [rsp + 0x58], r13
+004442CA  cmp      ebx, eax
+004442CC  jl       0x443570  ; -> 00443570
+004442D2  movaps   xmm9, xmmword ptr [rsp + 0x1c0]
+004442DB  movaps   xmm8, xmmword ptr [rsp + 0x1d0]
+004442E4  movaps   xmm7, xmmword ptr [rsp + 0x1e0]
+004442EC  movaps   xmm6, xmmword ptr [rsp + 0x1f0]
+004442F4  mov      r13, qword ptr [rsp + 0x200]
+004442FC  mov      r12, qword ptr [rsp + 0x248]
+00444304  mov      rdi, qword ptr [rsp + 0x240]
+0044430C  mov      rsi, qword ptr [rsp + 0x238]
+00444314  mov      rcx, qword ptr [rbp + 0xb0]
+0044431B  xor      rcx, rsp
+0044431E  call     0x808c40  ; -> 00808C40 fn
+00444323  add      rsp, 0x208
+0044432A  pop      r15
+0044432C  pop      r14
+0044432E  pop      rbx
+0044432F  pop      rbp
+00444330  ret      

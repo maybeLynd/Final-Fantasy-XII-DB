@@ -1,0 +1,67 @@
+004307C0  sub      rsp, 0x48
+004307C4  movaps   xmmword ptr [rsp + 0x30], xmm6
+004307C9  xorps    xmm0, xmm0
+004307CC  movaps   xmmword ptr [rsp + 0x20], xmm7
+004307D1  movaps   xmm6, xmm1
+004307D4  movaps   xmm7, xmm2
+004307D7  ucomiss  xmm7, xmm0
+004307DA  jp       0x43080f  ; -> 0043080F
+004307DC  jne      0x43080f  ; -> 0043080F
+004307DE  movzx    ecx, word ptr [rcx + 0xe]
+004307E2  shr      ecx, 4
+004307E5  and      ecx, 0xf
+004307E8  sub      ecx, 4
+004307EB  je       0x4307fd  ; -> 004307FD
+004307ED  cmp      ecx, 1
+004307F0  jne      0x4307fd  ; -> 004307FD
+004307F2  subss    xmm7, xmm6
+004307F6  ucomiss  xmm7, xmm0
+004307F9  jp       0x430833  ; -> 00430833
+004307FB  jne      0x430833  ; -> 00430833
+004307FD  movaps   xmm0, xmm6
+00430800  movaps   xmm6, xmmword ptr [rsp + 0x30]
+00430805  movaps   xmm7, xmmword ptr [rsp + 0x20]
+0043080A  add      rsp, 0x48
+0043080E  ret      
+0043080F  movzx    eax, word ptr [rcx + 0xe]
+00430813  shr      eax, 4
+00430816  and      eax, 0xf
+00430819  cmp      eax, 5
+0043081C  ja       0x4307fd  ; -> 004307FD
+0043081E  lea      rdx, [rip - 0x310825]  ; -> 00120000 (image base)
+00430825  cdqe     
+00430827  mov      ecx, dword ptr [rdx + rax*4 + 0x3108b0]  ; image base + 0x3108b0 = 004308B0
+0043082E  add      rcx, rdx
+00430831  jmp      rcx
+00430833  movaps   xmm0, xmm7
+00430836  call     0x3d8e50  ; -> 003D8E50 fn
+0043083B  addss    xmm0, xmm6
+0043083F  movaps   xmm6, xmmword ptr [rsp + 0x30]
+00430844  movaps   xmm7, xmmword ptr [rsp + 0x20]
+00430849  add      rsp, 0x48
+0043084D  ret      
+0043084E  movaps   xmm0, xmm7
+00430851  call     0x3d8e50  ; -> 003D8E50 fn
+00430856  subss    xmm6, xmm0
+0043085A  movaps   xmm0, xmm6
+0043085D  movaps   xmm6, xmmword ptr [rsp + 0x30]
+00430862  movaps   xmm7, xmmword ptr [rsp + 0x20]
+00430867  add      rsp, 0x48
+0043086B  ret      
+0043086C  movaps   xmm0, xmm7
+0043086F  addss    xmm0, xmm7
+00430873  call     0x3d8e50  ; -> 003D8E50 fn
+00430878  addss    xmm0, xmm6
+0043087C  subss    xmm0, xmm7
+00430880  movaps   xmm6, xmmword ptr [rsp + 0x30]
+00430885  movaps   xmm7, xmmword ptr [rsp + 0x20]
+0043088A  add      rsp, 0x48
+0043088E  ret      
+0043088F  movaps   xmm0, xmm7
+00430892  call     0x3d8e50  ; -> 003D8E50 fn
+00430897  movaps   xmm7, xmmword ptr [rsp + 0x20]
+0043089C  mulss    xmm0, xmm6
+004308A0  addss    xmm0, xmm6
+004308A4  movaps   xmm6, xmmword ptr [rsp + 0x30]
+004308A9  add      rsp, 0x48
+004308AD  ret      
