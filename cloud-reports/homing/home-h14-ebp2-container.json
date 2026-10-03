@@ -1,0 +1,14 @@
+{
+ "page": "25-EBP-Script-Container/Container/ebp2-container.md",
+ "session": "session_01PfF5HpG9wWe4vsreQxCTLf",
+ "rows": [
+  {"fn": "0029B440", "entered_from": "`00297640` + 0x63",
+   "text": "makes the calls at `0029B440` + 0xF with (2, `ecx`), `0029B440` + 0x16 with 0, `0029B440` + 0x22 with (4, `ecx`), `0029B440` + 0x29 with `ecx` and `0029B440` + 0x2E with no arguments; when that last call returns non-zero `eax` it tail-jumps at `0029B440` + 0x3E with `ecx`, otherwise it returns",
+   "anchors": [["0029B44F", "call"], ["0029B462", "call"], ["0029B46E", "call"], ["0029B475", "je"], ["0029B47E", "jmp"]]},
+  {"fn": "0035BC30", "entered_from": "`00297640` + 0x8E",
+   "text": "returns bit 2 of dword `022C8060` (shifted right by 2 and ANDed with 1)",
+   "anchors": [["0035BC36", "shr"], ["0035BC39", "and"]]}
+ ],
+ "skipped": [],
+ "notes": "0035BC30: the dword load is the entry instruction; the anchors are the shift and mask that follow it."
+}
