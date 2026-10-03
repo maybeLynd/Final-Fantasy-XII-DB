@@ -1,0 +1,7 @@
+{
+ "page": "04-Actor-Entity/Battle-Unit/the-battle-unit-field-map.md",
+ "session": "session_01Cj7Fn364nPXZ9Bw71KUr9i",
+ "rows": [],
+ "skipped": [{"fn": "0025D5D0", "why": "its whole work is the entry instruction (AND of byte 02098E27 with 0x7F) followed by ret; no interior instruction does the work"}],
+ "notes": ""
+}
