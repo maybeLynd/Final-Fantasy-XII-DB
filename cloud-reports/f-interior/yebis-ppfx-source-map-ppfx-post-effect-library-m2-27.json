@@ -1,0 +1,644 @@
+{
+ "page": "23-Third-Party-Libraries/PostEffects-Yebis-PPFX/yebis-ppfx-source-map.md",
+ "mode": "member",
+ "family": "PPFX post-effect library",
+ "session": "session_01Fn6uXi8PnFbHAbRA7pzAfY",
+ "rows": [
+  {
+   "fn": "00717240",
+   "text": "with separator s = `r8b` (0x5c when `r8b` is 0) and source string `rcx` (dword `+0` length, qword `+8` bytes): sets the string at `rdx` to length 0 and data `02EA1720`, then scans `rcx`'s bytes from index n-2 down to 0 (n = its length) for s; when n is at most 1 or s is not found, calls the call at `00717240` + 0xED with (`rdx`, `rcx`'s bytes); otherwise takes a temporary from the call at + 0x85 with (`rcx`, n minus the 1-based position of s) and, when it is not `rdx` itself, sizes `rdx` through the call at + 0x9A, copies the temporary's length and bytes into it (call at + 0xAE) and writes a 0 terminator when dword `+4` of `rdx` is non-zero, then frees the temporary's buffer (minus 8, through the call at + 0xDE with qword `01F3BA68`) unless it is null or `02EA1720`; returns `rdx`",
+   "anchors": [
+    [
+     "00717275",
+     "cmove"
+    ],
+    [
+     "007172A5",
+     "cmp"
+    ],
+    [
+     "007172C5",
+     "call"
+    ],
+    [
+     "007172EE",
+     "call"
+    ],
+    [
+     "0071732D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00717350",
+   "text": "copies the string `rcx` into the string at `rdx` (dword `+0` length, qword `+8` bytes) through the call at `00717350` + 0x38, then scans its bytes from the last towards the first: at a 0x2e byte at 1-based position p it calls the call at + 0xB4 with (`rdx`, p, n - p + 1) where n is the length; when it meets the separator (`r8b`, or 0x5c when `r8b` is 0) first or finds no 0x2e byte, it frees the buffer (minus 8, through the call at + 0xDB with qword `01F3BA68`) unless it is null or `02EA1720` and resets `rdx` to length 0 and data `02EA1720`; returns `rdx`",
+   "anchors": [
+    [
+     "0071737F",
+     "cmove"
+    ],
+    [
+     "00717388",
+     "call"
+    ],
+    [
+     "007173BE",
+     "cmp"
+    ],
+    [
+     "007173D2",
+     "cmp"
+    ],
+    [
+     "00717404",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00717450",
+   "text": "copies the string `rcx` into the string at `rdx` (dword `+0` length, qword `+8` bytes) through the call at `00717450` + 0x38, then scans its bytes from the last towards the first: at a 0x2e byte at 1-based position p it calls the call at + 0xA5 with (`rdx`, 1, p - 1); when it meets the separator (`r8b`, or 0x5c when `r8b` is 0) first or finds no 0x2e byte, it leaves the copy unchanged; returns `rdx`",
+   "anchors": [
+    [
+     "0071747F",
+     "cmove"
+    ],
+    [
+     "00717488",
+     "call"
+    ],
+    [
+     "007174BC",
+     "cmp"
+    ],
+    [
+     "007174D0",
+     "cmp"
+    ],
+    [
+     "007174F5",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00717510",
+   "text": "searches the string `rcx` (dword `+0` length, qword `+8` bytes) forwards for the byte string at `rdx` of length `r9d` (up to its 0 terminator when `r9d` is negative), testing 0-based indices from max(`r8d` - 1, 0) up to below n - length + 1: returns the 1-based position of the first full match, or 0 when `rdx` is null or starts with 0, the length is 0, n is below the start index, or nothing matches",
+   "anchors": [
+    [
+     "00717536",
+     "cmovs"
+    ],
+    [
+     "00717546",
+     "cmp"
+    ],
+    [
+     "00717590",
+     "cmp"
+    ],
+    [
+     "007175C3",
+     "cmp"
+    ],
+    [
+     "00717600",
+     "lea"
+    ]
+   ]
+  },
+  {
+   "fn": "00717620",
+   "text": "returns the first 1-based position p from `r8d` up to the length (dword `+0` of `rcx`) whose byte (index p-1 of qword `+8` of `rcx`) equals `dl`, or 0 when `r8d` exceeds the length or no byte matches",
+   "anchors": [
+    [
+     "00717623",
+     "cmp"
+    ],
+    [
+     "00717630",
+     "cmp"
+    ],
+    [
+     "0071763C",
+     "cmp"
+    ],
+    [
+     "00717641",
+     "xor"
+    ],
+    [
+     "00717644",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00717650",
+   "text": "searches the string `rcx` (dword `+0` length, qword `+8` bytes) backwards for the byte string at `rdx` of length L = `r9d` (up to its 0 terminator when `r9d` is negative): with s = `r8d` (n when `r8d` is not positive) minus L, returns 0 when `rdx` is null or starts with 0 or s is below L; otherwise tests 0-based indices from s down to 0 and returns the 1-based position of the first full match, or 0",
+   "anchors": [
+    [
+     "00717681",
+     "jg"
+    ],
+    [
+     "00717689",
+     "cmp"
+    ],
+    [
+     "007176B6",
+     "cmp"
+    ],
+    [
+     "007176E3",
+     "cmp"
+    ],
+    [
+     "0071771D",
+     "lea"
+    ]
+   ]
+  },
+  {
+   "fn": "007180C0",
+   "text": "counts the 0-based positions k from 0 up to below n - m + 1 at which the bytes of the string `rdx` (length m, dword `+0`; bytes at qword `+8`) occur in full in the string `rcx` (length n), stepping by 1 so overlapping matches count; returns 0 when m or n is 0",
+   "anchors": [
+    [
+     "007180DA",
+     "sub"
+    ],
+    [
+     "00718120",
+     "cmp"
+    ],
+    [
+     "00718153",
+     "cmp"
+    ],
+    [
+     "0071816B",
+     "inc"
+    ],
+    [
+     "00718171",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "007181B0",
+   "text": "builds a local string from `rdx` through the call at `007181B0` + 0x17, counts its occurrences in the string `rcx` with `007180C0` (same pack), frees the local buffer (minus 8, through the call at + 0x4C with qword `01F3BA68`) unless it is null or `02EA1720`, and returns the count",
+   "anchors": [
+    [
+     "007181C7",
+     "call"
+    ],
+    [
+     "007181D4",
+     "call"
+    ],
+    [
+     "007181E7",
+     "cmp"
+    ],
+    [
+     "007181FC",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00718210",
+   "text": "counts the occurrences of a probe string holding `dl` (empty, data `02EA1720`, when `dl` is 0; otherwise `dl` and a 0 terminator at `+8` of a 0x48-byte buffer from the call at `00718210` + 0x68 with (qword `01F3BA68`, 0x48, \"..\\src\\GPU\\TinyEffect\\TFXString.cpp\" (`00D999E0`), 0xc8, 0) whose first qword is set to 0x40), with length 1 and capacity 0x40, in the string `rcx` through `007180C0` (same pack), frees the probe buffer (minus 8, through the call at + 0xAD with qword `01F3BA68`) unless it is null or `02EA1720`, and returns the count",
+   "anchors": [
+    [
+     "0071824B",
+     "mov"
+    ],
+    [
+     "00718278",
+     "call"
+    ],
+    [
+     "0071828D",
+     "mov"
+    ],
+    [
+     "007182A1",
+     "call"
+    ],
+    [
+     "007182BD",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007184D0",
+   "text": "returns 0 when the length (dword `+0`) of the string `rcx` exceeds that of the string `rdx` or is below `r8d` (taken as `rdx`'s length when `r8d` is not positive); otherwise copies `rdx` into a local string (call at `007184D0` + 0x37), brings it to `rcx`'s length (when longer, through the call at + 0x57 with a 0 terminator when its dword `+4` is non-zero; when shorter, through the call at + 0x71 and padding with 0x20 bytes through the call at + 0x8E), compares `rcx`'s bytes with it up to the first difference or 0 terminator, frees the local buffer (minus 8, through the call at + 0xDB with qword `01F3BA68`) unless it is null or `02EA1720`, and returns 1 when they are equal, else 0",
+   "anchors": [
+    [
+     "007184F1",
+     "cmp"
+    ],
+    [
+     "007184F9",
+     "cmp"
+    ],
+    [
+     "00718527",
+     "call"
+    ],
+    [
+     "0071855E",
+     "call"
+    ],
+    [
+     "0071858B",
+     "sete"
+    ]
+   ]
+  },
+  {
+   "fn": "007185D0",
+   "text": "when `r8d` is negative, compares the bytes at qword `+8` of `rcx` with the bytes at `rdx` up to the first difference or a 0 terminator and returns 0 when equal, -1 when the first differing byte of `rcx` is lower (unsigned), else 1; otherwise tail-jumps through the pointer at `008C2FF8` with (qword `+8` of `rcx`, `rdx`, `r8d` sign-extended)",
+   "anchors": [
+    [
+     "007185D3",
+     "jns"
+    ],
+    [
+     "007185E3",
+     "cmp"
+    ],
+    [
+     "007185F2",
+     "sbb"
+    ],
+    [
+     "007185FF",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00718610",
+   "text": "copies the string `rcx` into local A (call at `00718610` + 0x31) and builds local B from `rdx` (call at + 0x3F); in each, replaces every byte for which the pointer at `008C2F90` returns non-zero by what the pointer at `008C2FF0` returns for it; then, when `r8d` is negative, compares A and B bytewise up to a difference or 0 terminator (0 when equal, -1 when A's byte is lower unsigned, else 1), otherwise takes the result of the pointer at `008C2FF8` with (A's bytes, B's bytes, `r8d`); frees both buffers (calls at + 0x104 and + 0x11F) unless null or `02EA1720`, and returns the result",
+   "anchors": [
+    [
+     "0071866A",
+     "call"
+    ],
+    [
+     "00718677",
+     "call"
+    ],
+    [
+     "007186B0",
+     "call"
+    ],
+    [
+     "007186E3",
+     "sbb"
+    ],
+    [
+     "007186F0",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00718B80",
+   "text": "compares the bytes at qword `+8` of `rcx`, up to the first difference or 0 terminator, with a probe string holding `dl` (empty, data `02EA1720`, when `dl` is 0; otherwise `dl` and a 0 terminator at `+8` of a 0x48-byte buffer from the call at `00718B80` + 0x53 with (qword `01F3BA68`, 0x48, \"..\\src\\GPU\\TinyEffect\\TFXString.cpp\" (`00D999E0`), 0xc8, 0) whose first qword is set to 0x40); frees the probe buffer (minus 8, through the call at + 0xAD with qword `01F3BA68`) unless it is null or `02EA1720`; returns 1 when the first differing byte of `rcx` minus the probe's byte (both zero-extended) is positive, else 0",
+   "anchors": [
+    [
+     "00718BAD",
+     "test"
+    ],
+    [
+     "00718BE2",
+     "mov"
+    ],
+    [
+     "00718BED",
+     "mov"
+    ],
+    [
+     "00718C08",
+     "sub"
+    ],
+    [
+     "00718C15",
+     "setg"
+    ]
+   ]
+  },
+  {
+   "fn": "00718C50",
+   "text": "compares the bytes at qword `+8` of `rcx`, up to the first difference or 0 terminator, with a probe string holding `dl` (empty, data `02EA1720`, when `dl` is 0; otherwise `dl` and a 0 terminator at `+8` of a 0x48-byte buffer from the call at `00718C50` + 0x53 with (qword `01F3BA68`, 0x48, \"..\\src\\GPU\\TinyEffect\\TFXString.cpp\" (`00D999E0`), 0xc8, 0) whose first qword is set to 0x40); frees the probe buffer (minus 8, through the call at + 0xAD with qword `01F3BA68`) unless it is null or `02EA1720`; returns 1 when the first differing byte of `rcx` minus the probe's byte (both zero-extended) is negative, else 0",
+   "anchors": [
+    [
+     "00718C7D",
+     "test"
+    ],
+    [
+     "00718CB2",
+     "mov"
+    ],
+    [
+     "00718CBD",
+     "mov"
+    ],
+    [
+     "00718CD8",
+     "sub"
+    ],
+    [
+     "00718CE5",
+     "sets"
+    ]
+   ]
+  },
+  {
+   "fn": "00718D20",
+   "text": "compares the bytes at qword `+8` of `rcx`, up to the first difference or 0 terminator, with a probe string holding `dl` (empty, data `02EA1720`, when `dl` is 0; otherwise `dl` and a 0 terminator at `+8` of a 0x48-byte buffer from the call at `00718D20` + 0x53 with (qword `01F3BA68`, 0x48, \"..\\src\\GPU\\TinyEffect\\TFXString.cpp\" (`00D999E0`), 0xc8, 0) whose first qword is set to 0x40); frees the probe buffer (minus 8, through the call at + 0xAD with qword `01F3BA68`) unless it is null or `02EA1720`; returns 1 when the first differing byte of `rcx` minus the probe's byte (both zero-extended) is non-negative, else 0",
+   "anchors": [
+    [
+     "00718D4D",
+     "test"
+    ],
+    [
+     "00718D82",
+     "mov"
+    ],
+    [
+     "00718D8D",
+     "mov"
+    ],
+    [
+     "00718DA8",
+     "sub"
+    ],
+    [
+     "00718DB5",
+     "setns"
+    ]
+   ]
+  },
+  {
+   "fn": "00718DF0",
+   "text": "compares the bytes at qword `+8` of `rcx`, up to the first difference or 0 terminator, with a probe string holding `dl` (empty, data `02EA1720`, when `dl` is 0; otherwise `dl` and a 0 terminator at `+8` of a 0x48-byte buffer from the call at `00718DF0` + 0x53 with (qword `01F3BA68`, 0x48, \"..\\src\\GPU\\TinyEffect\\TFXString.cpp\" (`00D999E0`), 0xc8, 0) whose first qword is set to 0x40); frees the probe buffer (minus 8, through the call at + 0xAD with qword `01F3BA68`) unless it is null or `02EA1720`; returns 1 when the first differing byte of `rcx` minus the probe's byte (both zero-extended) is zero or negative, else 0",
+   "anchors": [
+    [
+     "00718E1D",
+     "test"
+    ],
+    [
+     "00718E52",
+     "mov"
+    ],
+    [
+     "00718E5D",
+     "mov"
+    ],
+    [
+     "00718E78",
+     "sub"
+    ],
+    [
+     "00718E85",
+     "setle"
+    ]
+   ]
+  },
+  {
+   "fn": "00718FC0",
+   "text": "compares a probe string holding `cl` (empty, data `02EA1720`, when `cl` is 0; otherwise `cl` and a 0 terminator at `+8` of a 0x48-byte buffer from the call at `00718FC0` + 0x53 with (qword `01F3BA68`, 0x48, \"..\\src\\GPU\\TinyEffect\\TFXString.cpp\" (`00D999E0`), 0xc8, 0) whose first qword is set to 0x40) with the bytes at qword `+8` of `rdx`, up to the first difference or 0 terminator; frees the probe buffer (minus 8, through the call at + 0xAD with qword `01F3BA68`) unless it is null or `02EA1720`; returns 1 when the probe's first differing byte minus that of `rdx` (both zero-extended) is positive, else 0",
+   "anchors": [
+    [
+     "00718FED",
+     "test"
+    ],
+    [
+     "00719022",
+     "mov"
+    ],
+    [
+     "0071902D",
+     "mov"
+    ],
+    [
+     "00719048",
+     "sub"
+    ],
+    [
+     "00719055",
+     "setg"
+    ]
+   ]
+  },
+  {
+   "fn": "00719090",
+   "text": "compares a probe string holding `cl` (empty, data `02EA1720`, when `cl` is 0; otherwise `cl` and a 0 terminator at `+8` of a 0x48-byte buffer from the call at `00719090` + 0x53 with (qword `01F3BA68`, 0x48, \"..\\src\\GPU\\TinyEffect\\TFXString.cpp\" (`00D999E0`), 0xc8, 0) whose first qword is set to 0x40) with the bytes at qword `+8` of `rdx`, up to the first difference or 0 terminator; frees the probe buffer (minus 8, through the call at + 0xAD with qword `01F3BA68`) unless it is null or `02EA1720`; returns 1 when the probe's first differing byte minus that of `rdx` (both zero-extended) is negative, else 0",
+   "anchors": [
+    [
+     "007190BD",
+     "test"
+    ],
+    [
+     "007190F2",
+     "mov"
+    ],
+    [
+     "007190FD",
+     "mov"
+    ],
+    [
+     "00719118",
+     "sub"
+    ],
+    [
+     "00719125",
+     "sets"
+    ]
+   ]
+  },
+  {
+   "fn": "00719160",
+   "text": "compares a probe string holding `cl` (empty, data `02EA1720`, when `cl` is 0; otherwise `cl` and a 0 terminator at `+8` of a 0x48-byte buffer from the call at `00719160` + 0x53 with (qword `01F3BA68`, 0x48, \"..\\src\\GPU\\TinyEffect\\TFXString.cpp\" (`00D999E0`), 0xc8, 0) whose first qword is set to 0x40) with the bytes at qword `+8` of `rdx`, up to the first difference or 0 terminator; frees the probe buffer (minus 8, through the call at + 0xAD with qword `01F3BA68`) unless it is null or `02EA1720`; returns 1 when the probe's first differing byte minus that of `rdx` (both zero-extended) is non-negative, else 0",
+   "anchors": [
+    [
+     "0071918D",
+     "test"
+    ],
+    [
+     "007191C2",
+     "mov"
+    ],
+    [
+     "007191CD",
+     "mov"
+    ],
+    [
+     "007191E8",
+     "sub"
+    ],
+    [
+     "007191F5",
+     "setns"
+    ]
+   ]
+  },
+  {
+   "fn": "00719230",
+   "text": "compares a probe string holding `cl` (empty, data `02EA1720`, when `cl` is 0; otherwise `cl` and a 0 terminator at `+8` of a 0x48-byte buffer from the call at `00719230` + 0x53 with (qword `01F3BA68`, 0x48, \"..\\src\\GPU\\TinyEffect\\TFXString.cpp\" (`00D999E0`), 0xc8, 0) whose first qword is set to 0x40) with the bytes at qword `+8` of `rdx`, up to the first difference or 0 terminator; frees the probe buffer (minus 8, through the call at + 0xAD with qword `01F3BA68`) unless it is null or `02EA1720`; returns 1 when the probe's first differing byte minus that of `rdx` (both zero-extended) is zero or negative, else 0",
+   "anchors": [
+    [
+     "0071925D",
+     "test"
+    ],
+    [
+     "00719292",
+     "mov"
+    ],
+    [
+     "0071929D",
+     "mov"
+    ],
+    [
+     "007192B8",
+     "sub"
+    ],
+    [
+     "007192C5",
+     "setle"
+    ]
+   ]
+  },
+  {
+   "fn": "00719300",
+   "text": "when `rcx` and `rdx` differ, sizes the string `rcx` through the call at `00719300` + 0x1A with (`rcx`, dword `+0` of `rdx`, 0), copies `rdx`'s length to dword `+0` and its bytes (qword `+8`) through the call at + 0x2E, and writes a 0 terminator after them when dword `+4` of `rcx` is non-zero; returns `rcx`",
+   "anchors": [
+    [
+     "00719310",
+     "cmp"
+    ],
+    [
+     "0071931A",
+     "call"
+    ],
+    [
+     "00719325",
+     "mov"
+    ],
+    [
+     "0071932E",
+     "call"
+    ],
+    [
+     "00719340",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00719560",
+   "text": "builds the string at `rdx` through the call at `00719560` + 0x2A with (`rdx`, the bytes of the string `rcx`, its length + 1, -1, 0), then stores `r8b` into its last byte (index length - 1); returns `rdx`",
+   "anchors": [
+    [
+     "00719580",
+     "inc"
+    ],
+    [
+     "0071958A",
+     "call"
+    ],
+    [
+     "00719596",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007195B0",
+   "text": "sets the string at `rcx` to a copy of the string `r8` (call at `007195B0` + 0x34 or + 0x53) when the byte string `rdx` is null or empty; otherwise builds a local string through the call at + 0x6D with (`rdx`, its length L + `r8`'s length, -1), copies `r8`'s bytes into it from index L, copies it into `rcx` (call at + 0xAE), frees the local buffer (minus 8, through the call at + 0xD7 with qword `01F3BA68`) unless it is null or `02EA1720`; returns `rcx`",
+   "anchors": [
+    [
+     "007195F6",
+     "cmp"
+    ],
+    [
+     "0071961D",
+     "call"
+    ],
+    [
+     "00719648",
+     "mov"
+    ],
+    [
+     "0071965E",
+     "call"
+    ],
+    [
+     "00719687",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007196B0",
+   "text": "builds the string at `rcx` through the call at `007196B0` + 0xAA from a probe string holding `dl` (empty, data `02EA1720`, when `dl` is 0; otherwise `dl` and a 0 terminator at `+8` of a 0x48-byte buffer from the call at `007196B0` + 0x77 with (qword `01F3BA68`, 0x48, \"..\\src\\GPU\\TinyEffect\\TFXString.cpp\" (`00D999E0`), 0xc8, 0) whose first qword is set to 0x40) with size `r8`'s length + 1, copies the bytes of the string `r8` into it from index 1, frees the probe buffer (minus 8, through the call at + 0xF0 with qword `01F3BA68`) unless it is null or `02EA1720`; returns `rcx`",
+   "anchors": [
+    [
+     "007196E9",
+     "test"
+    ],
+    [
+     "00719727",
+     "call"
+    ],
+    [
+     "0071975A",
+     "call"
+    ],
+    [
+     "0071977C",
+     "mov"
+    ],
+    [
+     "007197A0",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007197D0",
+   "text": "appends the string `rdx` (dword `+0` length, qword `+8` bytes) to the string `rcx`: does nothing when `rdx`'s length is 0; when `rcx`'s length is 0 and the two differ, sizes `rcx` (call at `007197D0` + 0x31), copies the length and bytes (call at + 0x45) and writes a 0 terminator when dword `+4` of `rcx` is non-zero; when both are non-empty and are the same object, calls itself (`007197D0`) with the same arguments; otherwise sizes `rcx` to the summed length (call at + 0x90 with 1), copies `rdx`'s bytes plus one more after `rcx`'s old end (call at + 0xA7) and adds `rdx`'s length to dword `+0`; returns `rcx`",
+   "anchors": [
+    [
+     "007197E2",
+     "test"
+    ],
+    [
+     "00719801",
+     "call"
+    ],
+    [
+     "00719841",
+     "call"
+    ],
+    [
+     "00719860",
+     "call"
+    ],
+    [
+     "0071987E",
+     "add"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Strings here are records with dword `+0` length, dword `+4` (tested before writing a terminator) and qword `+8` byte pointer; `02EA1720` is the shared empty buffer the frees skip. The allocation call in the probe-building bodies passes the line constant 0xc8 and the file string at `00D999E0`; when it returns null the code writes the probe byte through a null pointer (left out of the rows). Calls through import slots are named by the slot address (`008C2F90`, `008C2FF0`, `008C2FF8`), not the callee. 007197D0: the self-call at + 0x71 passes `rcx` and the untouched `rdx`, so for a non-empty string appended to itself the listing shows unbounded recursion; FABLE may want to confirm."
+}
