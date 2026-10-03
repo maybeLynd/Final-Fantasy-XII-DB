@@ -1,0 +1,20 @@
+{
+ "page": "17-Presentation-Rendering/Character-Render-Records/the-staged-look-command.md",
+ "session": "session_013d18gLR7WCyczJCeHPeArU",
+ "rows": [
+  {"fn": "00263B90", "entered_from": "`002E64E0` + 0x65",
+   "text": "when the top three bits of byte `+3` of `rcx` (`AND 0xE0`) equal `0x60`, returns qword `+0xB8` plus `0x120` plus `edx` (sign-extended) times `0x80`; otherwise returns 0",
+   "anchors": [["00263B94", "and"], ["00263B96", "cmp"], ["00263BA4", "add"], ["00263BAA", "shl"], ["00263BB2", "xor"]]},
+  {"fn": "00263BC0", "entered_from": "`002E64E0` + 0x4C",
+   "text": "when byte `+3` of `rcx` `AND 0xE0` equals `0x60`, returns the sign-extended byte `+0xDC` of qword `+0xB8`; otherwise returns 0",
+   "anchors": [["00263BC4", "and"], ["00263BC6", "cmp"], ["00263BD1", "movsx"], ["00263BD9", "xor"]]},
+  {"fn": "00269E60", "entered_from": "`002E28E0` + 0x677",
+   "text": "switches on byte `+3` of `rcx` shifted right by 5: for 1 it stores `xmm1` to the float `+0x68` of qword `+0xB8` and stores to its byte `+0x5C` 1 when `xmm1` is below 0.0 (else 0); for 3 it stores `xmm1` to that object's floats `+0xC0` and `+0xC8` and the same below-zero flag to its byte `+0xDD`; every path, including other values, then tail-jumps with `rcx` (at `00269E60` + 0x3A for 3, at `00269E60` + 0x5A otherwise)",
+   "anchors": [["00269E67", "shr"], ["00269E89", "movss"], ["00269E94", "mov"], ["00269EAC", "movss"], ["00269EB4", "mov"]]},
+  {"fn": "0026A370", "entered_from": "`002E28E0` + 0x6C5",
+   "text": "when byte `+3` of `rcx` `AND 0xE0` equals `0x60`, stores `dl`, `r8b` and `r9b` to bytes `+0x104`, `+0x105` and `+0x106` of qword `+0xB8` and tail-jumps at `0026A370` + 0x25 with `rcx`; otherwise returns without writing",
+   "anchors": [["0026A376", "cmp"], ["0026A381", "mov"], ["0026A38E", "mov"], ["0026A395", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "00269E60: the two tail jumps at +0x3A and +0x5A reach the same target. The below-zero flag is seta after comiss 0.0, xmm1, so an unordered (NaN) xmm1 stores 0."
+}
