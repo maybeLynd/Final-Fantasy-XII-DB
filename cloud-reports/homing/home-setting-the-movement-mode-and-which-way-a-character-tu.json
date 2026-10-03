@@ -1,0 +1,14 @@
+{
+ "page": "06-Movement-And-Navigation/Movement-Mode-Selection/setting-the-movement-mode-and-which-way-a-character-turns.md",
+ "session": "session_01RYbqU7tsSU3HnpGNjV9Ghv",
+ "rows": [
+  {"fn": "002E5B90", "entered_from": "`0026AC70` + 0x5C",
+   "text": "returns without a write when `rcx` is null or qword `rcx+0xC0` is 0; otherwise stores the float `xmm1` at `+0x58` of the qword `+0xF0` of qword `rcx+0xB8`",
+   "anchors": [["002E5B93", "je"], ["002E5B95", "cmp"], ["002E5BA6", "mov"], ["002E5BAD", "movss"]]},
+  {"fn": "003E6AF0", "entered_from": "`002EA780` + 0x45",
+   "text": "returns 0 when dword `rcx+0x18` is -1; otherwise makes the call at `003E6AF0` + 0x11 with dword `rcx+0x10`, passes qword `+0xD98` of its result and dword `rcx+0x18` to the call at `003E6AF0` + 0x24, passes a non-null result of that to the call at `003E6AF0` + 0x31, and tail-jumps through the jump at `003E6AF0` + 0x43 with a non-null result of that; a null result at either step returns 0",
+   "anchors": [["003E6AF9", "cmp"], ["003E6B01", "call"], ["003E6B14", "call"], ["003E6B21", "call"], ["003E6B33", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "003E6AF0: the second -1 test of dword `rcx+0x18` at `003E6B06` repeats the first and cannot take its branch."
+}
