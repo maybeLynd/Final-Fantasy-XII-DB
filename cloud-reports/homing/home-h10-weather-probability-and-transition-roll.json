@@ -1,0 +1,11 @@
+{
+ "page": "03-World-Area-Field/Weather/weather-probability-and-transition-roll.md",
+ "session": "session_0141duvveFVGsG54cn7rpP77",
+ "rows": [
+  {"fn": "00250960", "entered_from": "`0025D9E0` + 0x476",
+   "text": "calls `00250960` + 0x13 with (1, 0) and then `00250960` + 0x18 (no arguments loaded); when bit `0x2` of the returned `al` is set it calls `00250960` + 0x28 with (0, 4), otherwise skips it; then tail-jumps through `00250960` + 0x3B with the incoming `ecx` and `edx`",
+   "anchors": [["00250973", "call"], ["00250978", "call"], ["0025097D", "test"], ["00250988", "call"], ["0025099B", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": ""
+}
