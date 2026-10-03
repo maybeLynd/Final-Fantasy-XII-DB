@@ -1,0 +1,17 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/mrp-menu-resource-packages.md",
+ "session": "session_013d18gLR7WCyczJCeHPeArU",
+ "rows": [
+  {"fn": "002E1630", "entered_from": "`002628B0` + 0x391",
+   "text": "maps the result of the call at `002E1630` + 0x4: 0 returns -1, 1 returns 0, 2 returns 1 (the decremented value), and any other value returns 0",
+   "anchors": [["002E1639", "test"], ["002E163D", "sub"], ["002E1642", "cmp"], ["002E164C", "xor"], ["002E1653", "or"]]},
+  {"fn": "002E2300", "entered_from": "`002628B0` + 0x105",
+   "text": "tail-jumps at `002E2300` + 0x4 with (0, `ecx`)",
+   "anchors": [["002E2302", "xor"], ["002E2304", "jmp"]]},
+  {"fn": "003F4690", "entered_from": "`003F4840` + 0x196",
+   "text": "switches on byte `+0xC0` of `rcx` under a stack cookie from `01F44830`: in state 0 with bit 0 of byte `+0xD0` set or word `+0xD8` non-zero, it issues the call at `003F4690` + 0x114 with (`0x128`, `003F4330`, a stack block holding qword `+0xC8`, `rcx+0xD0`, `rcx+0xF8`, `rcx` and qword `+0x128`), stores the result to qword `+0x110`, passes (`rcx`, result) to the call at `003F4690` + 0x126, sets byte `+0xC0` to 1 and returns 1; otherwise in state 0 or 1 with word `+0xDA` non-zero it issues the call at `003F4690` + 0xA0 with (`0xF0`, `003F4060`, a stack block holding `rcx+0xD0`, `rcx+0xF8` and `rcx`), stores the result to qword `+0x118`, passes (`rcx`, result) to the call at `003F4690` + 0xB2, sets byte `+0xC0` to 2 and returns 1; every other case returns 0",
+   "anchors": [["003F46D4", "test"], ["003F46E3", "cmp"], ["003F4738", "mov"], ["003F4747", "mov"], ["003F47BB", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "003F4690: 003F4060 and 003F4330 are rip-relative lea targets passed as the second argument (callback code addresses), not called by this body; drop them in favour of 'a code address' if they should not be named. The 'stack block' is the third argument r8 = rsp+0x48, whose +8 points to the rsp+0x20 block listed; condensed in the sentence. 002E1630: the value-2 arm returns eax after 'sub eax, 1', so 1."
+}
