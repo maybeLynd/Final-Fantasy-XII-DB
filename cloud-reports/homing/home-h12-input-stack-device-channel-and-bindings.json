@@ -1,0 +1,11 @@
+{
+ "page": "15-Input/Input-Stack/input-stack-device-channel-and-bindings.md",
+ "session": "session_016ZjFjnefAbEBqR8eRqGh2C",
+ "rows": [
+  {"fn": "007A1080", "entered_from": "`00198E80` + 0x3A",
+   "text": "stores `dl` to byte `rcx+0x98` and `r8b` to byte `rcx+0x99`, then sets byte `rcx+0x9A` to 1",
+   "anchors": [["007A1086", "mov"], ["007A108D", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "007A1080: the +0x98 store is the entry instruction itself, so it has no anchor; the +0x99 and +0x9A stores carry the row."
+}
