@@ -1,0 +1,32 @@
+{
+ "page": "16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md",
+ "session": "session_01G1D6BV8reSc8hRtefJLZec",
+ "rows": [
+  {"fn": "002476E0", "entered_from": "`002A70B0` + 0x103",
+   "text": "when `rcx` is non-null and dword `rcx+0x40` has bit 7 set and bit 8 clear, adds bytes `rdx+0`, `rdx+2`, `rdx+4` and `rdx+6` to bytes `+0xA4`, `+0xA5`, `+0xA6` and `+0xA7`; otherwise returns without a write",
+   "anchors": [["002476EA", "jns"], ["002476EC", "bt"], ["002476F5", "add"], ["00247713", "add"]]},
+  {"fn": "0028F750", "entered_from": "`002A70B0` + 0x129",
+   "text": "with `o` = qword `+0x10F80` of qword `0209BE80`, returns 0 when `o` is null, when byte `o+0x1D39` has bit 0 clear, or when `0028F750` + 0x33(dword `o+0x1D40`) differs from `rcx`; otherwise returns the zero-extended byte `+0x1D38` of that object",
+   "anchors": [["0028F767", "test"], ["0028F774", "test"], ["0028F783", "call"], ["0028F788", "cmp"], ["0028F79B", "movzx"]]},
+  {"fn": "002A4030", "entered_from": "`002A70B0` + 0x4A4",
+   "text": "returns without a write when `edx` is 0; otherwise, for `a` = qword `+0x18` of qword `+8` of qword `rcx+0x60`, adds `dx` to word `+0x10` of qword `[qword a+0x60]` and to word `a+0x9C`, and for `b` = qword `+0x18` of qword `[qword rcx+0x60]`, adds `dx` to word `+0x10` of qword `[qword b+0x60]`, to word `+0xC` of qword `+8` of qword `b+0x60`, and to word `b+0x9C`",
+   "anchors": [["002A4032", "je"], ["002A405E", "add"], ["002A4062", "add"], ["002A40A1", "add"], ["002A40A6", "add"]]},
+  {"fn": "002A5520", "entered_from": "`002A70B0` + 0x40D",
+   "text": "takes `v` = `002A5520` + 0x12(`rcx`), replaced by 0x1C0 (`01E0C1DC`) when negative, and calls `002A5520` + 0x25 with bit 11 of dword `rcx+0x114`; returns the truncated integer of float(`v` minus 5 times the truncated float from `002A5520` + 0x33) minus 38.0 (`00902708`) times the float from `002A5520` + 0x48",
+   "anchors": [["002A5532", "call"], ["002A554C", "cmovs"], ["002A555F", "sub"], ["002A5572", "mulss"], ["002A557E", "cvttss2si"]]},
+  {"fn": "004052A0", "entered_from": "`003EC810` + 0xD",
+   "text": "tail-jumps to `004052A0` + 0x9 with qword `02B62D88` in `rcx` and 0 in `edx`",
+   "anchors": [["004052A7", "xor"], ["004052A9", "jmp"]]},
+  {"fn": "004052B0", "entered_from": "`003EC830` + 0xD",
+   "text": "tail-jumps to `004052B0` + 0xC with qword `02B62D88` in `rcx` and 1 in `edx`",
+   "anchors": [["004052B7", "mov"], ["004052BC", "jmp"]]},
+  {"fn": "00574770", "entered_from": "`005742D0` + 0x10D",
+   "text": "takes `r` = `00574770` + 0x1C(`rcx`, a stack block `s`) and, with `d` = qword `rcx+0xD0`, `x` = word `d+0x48` (word `s+0` when that is 0x8000), `y` = word `d+0x4A` (word `s+2` when 0x8000), word `+0x114` = word `d+0x4C` (word `s+4` when 0xFFFF) and `h` = word `r+0xA` times byte `d+0x4E` (byte `s+6` when 0xFF); when qword `+0xE0` is non-null stores `x`, `y`, word `+0x114` plus byte `s+7`, and `h` to its words `+0x98`, `+0x9A`, `+0x9C`, `+0x9E`, and that sum also goes to word `+0x9C` of qword `+0xC0` of `+0xE0` when non-null; when byte `+0x8060` is 5, with `dx` = word `d+0x48` minus word `s+0` and `dy` = word `d+0x4A` minus word `s+2` (each 0 when the `d` word is 0x8000), sets words `+0xC` and `+0xE` of the objects at qwords `+8` and `+0x10` of qword `+0x60` to words `+4` plus `dx` and `+6` plus `dy` of each object's first qword, and word `+0x10` of the `+0x10` object to that qword's word `+8` minus `dx`",
+   "anchors": [["0057478C", "call"], ["005747E5", "cmovne"], ["00574810", "imul"], ["00574830", "mov"], ["005748DD", "mov"]]},
+  {"fn": "005766B0", "entered_from": "`00573BE0` + 0x110",
+   "text": "with `o` = qword `+0x110` of qword `02CA9738`, returns qword `o+0xF8` when qword `02CA9738` and `o` are non-null and byte `o+0xC9` is 1, and 0 otherwise",
+   "anchors": [["005766B7", "test"], ["005766BC", "mov"], ["005766CB", "cmp"], ["005766D4", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "002A4030 (doubt): each pointer chain has a null branch (rcx null, or the +0x18 qword null) that substitutes 0 and then still dereferences it (e.g. add [0+0x10]); the row states only the non-null arithmetic. 00574770 (doubt, long row, 915 chars): the read of qword +0xC0 of qword +0xE0 is not guarded by the +0xE0 null test; s is the 8-byte block at the caller's rsp+0x30 filled by the +0x1C call (words s+0, s+2, s+4, bytes s+6, s+7); the +0x114 sum is movsx word +0x114 plus zero-extended byte s+7, stored as a word. The two 004052A0/004052B0 rows are two-instruction thunks; FABLE may prefer to skip them as trivial."
+}
