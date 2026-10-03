@@ -1,0 +1,35 @@
+{
+ "page": "16-UI/Message-Windows/the-message-window-layout-readers.md",
+ "session": "session_019yEjih72UCRaxGuuSzfAJF",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "002E22A0",
+   "text": "clamps `ecx` to 0..7 (negative to 0, above 7 to 7) and indexes the `0x68`-byte records at `0215F200`; when the record's qword `+0` is non-null and its byte `+0x3c` is not `0xff`, tail-jumps to `002A30B0`(that qword, `edx`), otherwise returns without a call",
+   "anchors": [
+    [
+     "002E22B0",
+     "cmovg"
+    ],
+    [
+     "002E22B6",
+     "imul"
+    ],
+    [
+     "002E22C5",
+     "test"
+    ],
+    [
+     "002E22CA",
+     "cmp"
+    ],
+    [
+     "002E22D4",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "The clamp is written two ways in the listing (negative path and non-negative path); both give 0..7. Doubts: 0."
+}
