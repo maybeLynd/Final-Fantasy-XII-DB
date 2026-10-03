@@ -1,0 +1,19 @@
+{
+ "page": "17-Presentation-Rendering/Character-Render-Records/how-a-character-fades-the-ten-channels.md",
+ "session": "session_011Dcenz5EPZBdrLRrFP8ia6",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "0042E540",
+   "text": "tail-jumps to `00420E70(rcx, dword rdx+0x74)` with the incoming `rcx`",
+   "anchors": [
+    [
+     "0042E543",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "0042E540: the load of dword rdx+0x74 is the entry instruction; the only interior anchor is the tail jump."
+}
