@@ -1,0 +1,12 @@
+{
+ "page": "00-Engine-Core-Runtime/Developer-Tuning-Console/what-the-console-tunes.md",
+ "session": "session_01GN6iTDBmJu6H6spinV3LPm",
+ "mode": "homing",
+ "rows": [
+  {"fn": "001F2F70",
+   "text": "makes the call at `001F2F70+0x09` with `rcx` still holding the incoming pointer, then tail-jumps to `00186410` with that call's result as `rcx` and the zero-extended byte `+0x18` of the incoming `rcx` as `edx`",
+   "anchors": [["001F2F79", "call"], ["001F2F7E", "movzx"], ["001F2F82", "mov"], ["001F2F8A", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "One body. The call at +0x09 is not named by the page, so it is cited by site."
+}
