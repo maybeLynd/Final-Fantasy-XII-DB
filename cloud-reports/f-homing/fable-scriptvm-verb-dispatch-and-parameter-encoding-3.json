@@ -1,0 +1,501 @@
+{
+ "page": "01-Script-VM-Native-Bridge/Verb-Dispatch/scriptvm-verb-dispatch-and-parameter-encoding.md",
+ "session": "session_01KH3C4ef9JMeuUJwhyMv4yo",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "00352040",
+   "text": "pops one float `f` through `00267DB0(r9)`, calls the function at `00352040` + 0x1F with `rcx` = the incoming `rdx` and `xmm1` = `f`, then tail-jumps to the function at `00352040` + 0x34 with the same `rcx` and `xmm1`",
+   "anchors": [
+    [
+     "00352051",
+     "call"
+    ],
+    [
+     "0035205F",
+     "call"
+    ],
+    [
+     "00352064",
+     "movaps"
+    ],
+    [
+     "00352074",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00352130",
+   "text": "pops `a` then `b` through `00267E10(r9)`, calls `002640C0()` (no `rcx` loaded after the pops) and tail-jumps to the function at `00352130` + 0x38 with (dword `+0x28` of that result, `b`, `a`)",
+   "anchors": [
+    [
+     "00352140",
+     "call"
+    ],
+    [
+     "0035214A",
+     "call"
+    ],
+    [
+     "00352151",
+     "call"
+    ],
+    [
+     "0035215B",
+     "mov"
+    ],
+    [
+     "00352168",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00352810",
+   "text": "pops four floats `a`, `b`, `c`, `d` in that order through `00267DB0(r9)`, calls the function at `00352810` + 0x53 with `rcx` = the incoming `rdx`, `xmm1` = `d`, `xmm2` = `c`, then tail-jumps to the function at `00352810` + 0x7C with the same `rcx`, `xmm1` = `b`, `xmm2` = `a`",
+   "anchors": [
+    [
+     "00352833",
+     "call"
+    ],
+    [
+     "00352855",
+     "call"
+    ],
+    [
+     "00352863",
+     "call"
+    ],
+    [
+     "00352868",
+     "movaps"
+    ],
+    [
+     "0035288C",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00352980",
+   "text": "pops `n` through `00267E10(r9)`, calls `003DB420(rdx, n, 4)` and tail-jumps to `003DB6E0(rdx)` (incoming `rdx`)",
+   "anchors": [
+    [
+     "0035298C",
+     "call"
+    ],
+    [
+     "00352991",
+     "mov"
+    ],
+    [
+     "0035299C",
+     "call"
+    ],
+    [
+     "003529A9",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00352C00",
+   "text": "pops floats `a`, `b` through `00267DB0(r9)` and calls the function at `00352C00` + 0x36 with `rcx` = the incoming `rdx`, `xmm1` = `b`, `xmm2` = `a`; then pops `c`, `d`, `e` the same way and tail-jumps to `0026B0C0(rdx)` with `xmm1` = `e`, `xmm2` = `d`, `xmm3` = `c`",
+   "anchors": [
+    [
+     "00352C1D",
+     "call"
+    ],
+    [
+     "00352C36",
+     "call"
+    ],
+    [
+     "00352C54",
+     "call"
+    ],
+    [
+     "00352C59",
+     "movaps"
+    ],
+    [
+     "00352C79",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003531E0",
+   "text": "pops one float `f` through `00267DB0(r9)`, calls `0026B620(rdx)` with `xmm1` = `f`, then tail-jumps to the function at `003531E0` + 0x53 with the incoming `rcx`, `rdx`, `r8`, `r9` restored",
+   "anchors": [
+    [
+     "00353203",
+     "call"
+    ],
+    [
+     "00353208",
+     "movaps"
+    ],
+    [
+     "0035320E",
+     "call"
+    ],
+    [
+     "00353233",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00353490",
+   "text": "calls `002640C0(rcx)` and discards its result, pops `n` through `00267E10(r9)`, calls `00377AB0(n, buf)` on a 16-byte stack buffer and passes the buffer's float `+0xc` in `xmm1` to `0026B4C0(rcx)` (incoming `rcx`); the frame carries the `01F44830` stack cookie checked by `00808C40`",
+   "anchors": [
+    [
+     "003534AF",
+     "call"
+    ],
+    [
+     "003534B7",
+     "call"
+    ],
+    [
+     "003534C3",
+     "call"
+    ],
+    [
+     "003534C8",
+     "movss"
+    ],
+    [
+     "003534D1",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00353660",
+   "text": "pops `a` then `b` through `00267E10(r9)`, takes `p` = the result of the call at `00353660` + 0x21 with `ecx` = `b`, calls `003DB420(p, a + 1, 4)` and tail-jumps to `003DB6E0(p)`",
+   "anchors": [
+    [
+     "00353670",
+     "call"
+    ],
+    [
+     "0035367A",
+     "call"
+    ],
+    [
+     "00353681",
+     "call"
+    ],
+    [
+     "0035368C",
+     "lea"
+    ],
+    [
+     "00353695",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00353BF0",
+   "text": "calls `002640C0(rcx)`, then the function at `00353BF0` + 0x14 with (dword `+0x28` of that result, zero-extended word `[rdx]`), and tail-jumps to `0016D6A0`",
+   "anchors": [
+    [
+     "00353BF9",
+     "call"
+    ],
+    [
+     "00353BFE",
+     "movzx"
+    ],
+    [
+     "00353C01",
+     "mov"
+    ],
+    [
+     "00353C04",
+     "call"
+    ],
+    [
+     "00353C0E",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00353ED0",
+   "text": "takes `o` = `002640C0(rcx)` and resolves four references `p1`..`p4` in order, each `002650B0(o, rcx, 00267E10(r9))` with the incoming `rcx`; pops `n` the same way, calls `00377900(n, buf)` on a 16-byte stack buffer and stores the buffer's floats `+0`, `+4`, `+8`, `+0xc` at `p4`, `p3`, `p2`, `p1` respectively; the frame carries the `01F44830` stack cookie checked by `00808C40`",
+   "anchors": [
+    [
+     "00353EF5",
+     "call"
+    ],
+    [
+     "00353F0E",
+     "call"
+    ],
+    [
+     "00353F70",
+     "call"
+    ],
+    [
+     "00353F7B",
+     "movss"
+    ],
+    [
+     "00353F99",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "003540B0",
+   "text": "calls `002650B0(002640C0(rcx), rdx, 00267E10(r9))` with the incoming `rcx` and `rdx` and discards the result, calls `002640C0()` again (no `rcx` loaded), then the function at `003540B0` + 0x3E with (dword `+0x28` of that second result, zero-extended word `[rdx]`), and tail-jumps to `0016D6A0`",
+   "anchors": [
+    [
+     "003540C5",
+     "call"
+    ],
+    [
+     "003540D0",
+     "call"
+    ],
+    [
+     "003540DE",
+     "call"
+    ],
+    [
+     "003540EE",
+     "call"
+    ],
+    [
+     "00354102",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003546C0",
+   "text": "calls `002640C0(rcx)` and tail-jumps to the function at `003546C0` + 0x1D with `ecx` = 3 when dword `+0x28` of the result is non-zero, else 2, and `edx` = 1",
+   "anchors": [
+    [
+     "003546C4",
+     "call"
+    ],
+    [
+     "003546D0",
+     "cmp"
+    ],
+    [
+     "003546D3",
+     "setne"
+    ],
+    [
+     "003546DD",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00354B00",
+   "text": "calls `002640C0(rcx)` and tail-jumps to the function at `00354B00` + 0x1A with `ecx` = 3 when dword `+0x28` of the result is non-zero, else 2, and `edx` = 0",
+   "anchors": [
+    [
+     "00354B04",
+     "call"
+    ],
+    [
+     "00354B0B",
+     "cmp"
+    ],
+    [
+     "00354B0E",
+     "setne"
+    ],
+    [
+     "00354B11",
+     "xor"
+    ],
+    [
+     "00354B1A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00355D90",
+   "text": "pops `a` then `b` through `00267E10(r9)`, calls `002E1C40(b, a)` and tail-jumps to `002E1C70(1, a)`",
+   "anchors": [
+    [
+     "00355DA0",
+     "call"
+    ],
+    [
+     "00355DAA",
+     "call"
+    ],
+    [
+     "00355DB3",
+     "call"
+    ],
+    [
+     "00355DBA",
+     "mov"
+    ],
+    [
+     "00355DC9",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00356080",
+   "text": "pops `a` through `00267E10(r9)`, calls `002E1C40(a, 0)` and tail-jumps to `002E1C70(1, 0)`",
+   "anchors": [
+    [
+     "00356087",
+     "call"
+    ],
+    [
+     "00356090",
+     "call"
+    ],
+    [
+     "00356097",
+     "lea"
+    ],
+    [
+     "0035609E",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003562B0",
+   "text": "pops floats `a`, `b` through `00267DB0(r9)`, calls the function at `003562B0` + 0x42 with `rcx` = the incoming `rdx` and pointers to stack floats `u`, `v`, `w` (as `rdx`, `r8`, `r9`), then calls `0026AF80(rdx)` with `xmm1` = `u` minus `a`/60, `xmm2` = `v`, `xmm3` = `w` minus `b`/60, dividing by 60 (`008F6D54`)",
+   "anchors": [
+    [
+     "003562CD",
+     "call"
+    ],
+    [
+     "003562F2",
+     "call"
+    ],
+    [
+     "00356306",
+     "divss"
+    ],
+    [
+     "0035631C",
+     "subss"
+    ],
+    [
+     "00356330",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "003563D0",
+   "text": "tests `00267310(byte +0x15 of rdx)` and on both paths pops `a` then `b` through `00267E10(r9)`; when the test is non-zero it calls `002E1C40(b, a)` and tail-jumps to `002E1C70(1, a)`, when it is zero it tail-jumps to `002E1C40(b, a)`",
+   "anchors": [
+    [
+     "003563E1",
+     "call"
+    ],
+    [
+     "003563EB",
+     "je"
+    ],
+    [
+     "00356400",
+     "call"
+    ],
+    [
+     "00356416",
+     "jmp"
+    ],
+    [
+     "00356438",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003567D0",
+   "text": "calls `00357A20` with the incoming registers unchanged, then tail-jumps to `0026C120(rdx, 2)` with the incoming `rdx`",
+   "anchors": [
+    [
+     "003567D9",
+     "call"
+    ],
+    [
+     "003567DE",
+     "mov"
+    ],
+    [
+     "003567EB",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00356990",
+   "text": "tests `00267310(byte +0x15 of rdx)` and on both paths pops `a` through `00267E10(r9)`; when the test is non-zero it calls `002E1C40(a, 0)` and tail-jumps to `002E1C70(1, 0)`, when it is zero it tail-jumps to `002E1C40(a, 0)`",
+   "anchors": [
+    [
+     "0035699D",
+     "call"
+    ],
+    [
+     "003569A7",
+     "je"
+    ],
+    [
+     "003569B2",
+     "call"
+    ],
+    [
+     "003569C1",
+     "jmp"
+    ],
+    [
+     "003569D4",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00377560",
+   "text": "returns at once when `ecx` is negative, when the call at `00377560` + 0x8 (with `ecx` unchanged) returns a negative value `i`, or when `003587C0(0, i)` returns null; otherwise tail-jumps to `0026AF80` with `rcx` = that pointer, `xmm2` = 0.0 and `xmm1`/`xmm3` = floats `+0x28`/`+0x2c` of the object at qword `[qword 0209A678]` when dword `02ADD0D8` is non-zero, qword `0209A670` is non-null and that object pointer is non-null, else both 0.0",
+   "anchors": [
+    [
+     "00377566",
+     "js"
+    ],
+    [
+     "00377575",
+     "call"
+    ],
+    [
+     "0037757F",
+     "cmp"
+    ],
+    [
+     "003775AA",
+     "movss"
+    ],
+    [
+     "003775BB",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Doubts per function. Pop wording follows the page's own table (00267DB0 pops a float, 00267E10 pops an int32). Callees the page does not name are cited by site: 0026D6A0/0026A640 (00352040), 003DE9A0 (00352130), 0026BFF0/0026BD50 (00352810), 0026BFF0 (00352C00), 00352C00 (003531E0, a pack body but unnamed on the page), 00264010 (00353660), 00263A30 (00353BF0, 003540B0), 003DF7B0 (003546C0, 00354B00), 00265020 (003562B0), 002637B0 (00377560). 00352130 and 003540B0: the 002640C0 calls that follow a pop get no explicitly loaded rcx (volatile after the pop), stated as 002640C0(); in 00353490/00353BF0/00353ED0/003540B0's first call/003546C0/00354B00 rcx is untouched since entry, stated as 002640C0(rcx). 00353490 and 00353ED0: the 002640C0 result is discarded in 00353490 but used as the resolver base in 00353ED0. 003562B0: the adjusted u and w are also stored back to their stack slots before the 0026AF80 call (not stated); the body returns whatever 0026AF80 leaves in rax. 00377560: the negative tests are js (signed); the three float registers are zeroed before the global guards, so any failed guard passes 0.0 in xmm1 and xmm3; the 00377560 + 0x8 callee is 002637B0. 003567D0: 00357A20's own use of rcx/rdx/r8/r9 is not shown."
+}
