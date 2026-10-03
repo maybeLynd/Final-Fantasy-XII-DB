@@ -1,0 +1,35 @@
+{
+ "page": "03-World-Area-Field/Field-Record-Table/field-record-table-navimapdata.md",
+ "session": "session_011Dcenz5EPZBdrLRrFP8ia6",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "0031BD80",
+   "text": "returns `0xffff` when `rcx` is null, when the call at `0031BD80+0xd` (with `rcx`) returns null, or when qword `+0x698` of that result is null; otherwise tail-jumps to `0031BDC0(that qword + 0x50, edx)` with the incoming `edx`",
+   "anchors": [
+    [
+     "0031BD8D",
+     "call"
+    ],
+    [
+     "0031BD97",
+     "mov"
+    ],
+    [
+     "0031BDA3",
+     "add"
+    ],
+    [
+     "0031BDAE",
+     "jmp"
+    ],
+    [
+     "0031BDB3",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "00263E30 is not named by this page and is cited by site."
+}
