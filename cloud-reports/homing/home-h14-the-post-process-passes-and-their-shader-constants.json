@@ -1,0 +1,14 @@
+{
+ "page": "22-Middleware-PhyreEngine/Post-Process-Chain/the-post-process-passes-and-their-shader-constants.md",
+ "session": "session_019ww1AYv6HUCASSLr6wdSTQ",
+ "rows": [
+  {"fn": "0017D900", "entered_from": "`00191130` + 0x1DA",
+   "text": "calls (at `0017D900` + 0x4) and returns its null result as 0; when it is non-null it calls again (at `0017D900` + 0xE) and returns byte `+0x10E0` of that result zero-extended",
+   "anchors": [["0017D904", "call"], ["0017D90C", "je"], ["0017D90E", "call"], ["0017D913", "movzx"]]},
+  {"fn": "0020B9A0", "entered_from": "`001D6AA0` + 0x1C",
+   "text": "returns 0 when `r8` is null; otherwise it calls (at `0020B9A0` + 0x29) with `rcx+0x58`, searches the tree whose root is qword `rcx+0x38` (header `rcx+0x28`; a node descends through qword +0 when its dword `+0x20` is below `edx`, otherwise through qword +8) for a node keyed exactly `edx`, and when one is found decrements the non-zero byte `+0x10` of that node's qword `+0x28`; it then calls (at + 0x82) with `rcx+0x58`, (at + 0x8A) with `r8` and (at + 0x97) with `r8` and 0x10, and returns 1",
+   "anchors": [["0020B9BA", "je"], ["0020B9E0", "cmp"], ["0020BA1B", "mov"], ["0020BA22", "call"], ["0020BA37", "call"]]}
+ ],
+ "skipped": [],
+ "notes": "0020B9A0: the shortened call-site forms '(at + 0xNN)' are relative to 0020B9A0; the key compares are unsigned (jb/jae)."
+}
