@@ -1,0 +1,208 @@
+{
+ "page": "16-UI/Request-Router/ui-request-router.md",
+ "session": "session_01CPG8vBh9WnKBjpfgH3KcMb",
+ "rows": [
+  {
+   "fn": "001986E0",
+   "text": "reads byte `rcx+0x3A` and, when its bit 2 (0x4) is set, stores 1 to byte `rcx+0x3B` and writes `+0x3A` back with that bit cleared (AND 0xFB); when the bit is clear it returns without a write",
+   "anchors": [
+    [
+     "001986E9",
+     "test"
+    ],
+    [
+     "001986EB",
+     "je"
+    ],
+    [
+     "001986F0",
+     "mov"
+    ],
+    [
+     "001986F4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0020E5C0",
+   "text": "calls the function at `0020E5C0`+0x18 with the incoming registers unchanged, then tail-jumps at `0020E5C0`+0x38 with that call's `rax` result as the first argument and the incoming `rcx`, `rdx`, `r8` moved to the second, third and fourth",
+   "anchors": [
+    [
+     "0020E5D8",
+     "call"
+    ],
+    [
+     "0020E5DD",
+     "mov"
+    ],
+    [
+     "0020E5E0",
+     "mov"
+    ],
+    [
+     "0020E5E6",
+     "mov"
+    ],
+    [
+     "0020E5F8",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0024AB30",
+   "text": "returns without a call when dword `02091094` is 0; otherwise calls the function at `0024AB30`+0xD and, unless its `eax` result equals 4 (then it returns), tail-jumps at `0024AB30`+0x20 with `ecx` = 0x80000",
+   "anchors": [
+    [
+     "0024AB34",
+     "cmp"
+    ],
+    [
+     "0024AB3D",
+     "call"
+    ],
+    [
+     "0024AB42",
+     "cmp"
+    ],
+    [
+     "0024AB47",
+     "mov"
+    ],
+    [
+     "0024AB50",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00290780",
+   "text": "for `ecx` 0 or 1 reads qword `[0209BE80]+0x10FB0`: when `ecx` is 0 and that qword is non-null, tail-jumps at `00290780`+0x57 with it in `rcx`; when `ecx` is 1 and it is non-null, calls the function at `00290780`+0x20 with it, stores 0 to that qword and tail-jumps at `00290780`+0x3B; any other `ecx`, or a null qword, returns without a call",
+   "anchors": [
+    [
+     "00290786",
+     "je"
+    ],
+    [
+     "0029078B",
+     "jne"
+    ],
+    [
+     "002907A0",
+     "call"
+    ],
+    [
+     "002907AC",
+     "mov"
+    ],
+    [
+     "002907D7",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002E0E30",
+   "text": "calls the function at `002E0E30`+0x4 and returns 0 when its `eax` result is above 0x13 (unsigned); otherwise dispatches 0 to 0x13 through a 20-entry offset table to arms returning 1 to 0x13 or the shared 0 return (which value reaches which arm is in the table, not in the listing)",
+   "anchors": [
+    [
+     "002E0E34",
+     "call"
+    ],
+    [
+     "002E0E3C",
+     "ja"
+    ],
+    [
+     "002E0E55",
+     "jmp"
+    ],
+    [
+     "002E0E57",
+     "mov"
+    ],
+    [
+     "002E0F15",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "0035BAA0",
+   "text": "returns without a call when `ecx` equals dword `022C8070`; otherwise calls the function at `0035BAA0`+0x10 with the incoming `rcx` unchanged, then the function at `0035BAA0`+0x18 with the zero-extended low byte of `ecx`, and tail-jumps at `0035BAA0`+0x24 with `ecx` = 0",
+   "anchors": [
+    [
+     "0035BAA6",
+     "cmp"
+    ],
+    [
+     "0035BAB0",
+     "call"
+    ],
+    [
+     "0035BAB5",
+     "movzx"
+    ],
+    [
+     "0035BAB8",
+     "call"
+    ],
+    [
+     "0035BAC4",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00428F30",
+   "text": "takes the base qword `022C6F28` and walks a chain of 0x740-byte records starting at index dword `base+0x48800` until an index of -1: for each index it reads the next index as the sign-extended word `+4` of record `base + index*0x740`, then calls the function at `00428F30`+0x38 with that record's address + 0x5F0; returns at once when the start index is -1",
+   "anchors": [
+    [
+     "00428F41",
+     "mov"
+    ],
+    [
+     "00428F53",
+     "imul"
+    ],
+    [
+     "00428F5D",
+     "movsx"
+    ],
+    [
+     "00428F68",
+     "call"
+    ],
+    [
+     "00428F70",
+     "jne"
+    ]
+   ]
+  },
+  {
+   "fn": "0046D0A0",
+   "text": "when byte `[rcx]` is 1, byte `rcx+7` is 0, word `rcx+0x1C` is 6 and dword `rcx+0x18` is greater than 0 (signed), tail-jumps at `0046D0A0`+0x17 with `ecx` = that dword; if any test fails it returns without a call",
+   "anchors": [
+    [
+     "0046D0A5",
+     "cmp"
+    ],
+    [
+     "0046D0AB",
+     "cmp"
+    ],
+    [
+     "0046D0B2",
+     "mov"
+    ],
+    [
+     "0046D0B7",
+     "jg"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "All 8 listings read in full. Callees are cited only by call site (entry + offset), since none of them is named in the function's own page-context excerpt. Doubts: 002E0E30 - the 20-entry offset table after the code is not decoded in the pack, so the row does not say which mode maps to which return value (the page context's 'mode 14 maps back to request 14' cannot be checked from the listing); the table could also send in-range values to the shared 0 return at 002E0F15. 0020E5C0 - the first call receives whatever rcx/rdx/r8 the caller passed (no setup); the row says only that the registers are unchanged, not that the callee uses them. 0035BAA0 - likewise for the first call's rcx. 001986E0 - eax is left holding the shifted byte on both paths; no return value is claimed."
+}
