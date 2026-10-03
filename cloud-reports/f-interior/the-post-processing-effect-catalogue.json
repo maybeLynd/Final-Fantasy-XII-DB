@@ -1,0 +1,34 @@
+{
+ "page": "17-Presentation-Rendering/Post-Processing/the-post-processing-effect-catalogue.md",
+ "session": "session_01M9DqRDfozfMhVgDdX8oP4v",
+ "rows": [
+  {
+   "fn": "006CC2F0",
+   "text": "when qword `+0` of `rcx` is non-null, calls virtual slot 1 (vtable `+8`) on it and stores 0 to qword `+0`; then, when qword `+8` of `rcx` is non-null, calls virtual slot 0 (vtable `+0`) on it with `edx` = 1 and stores 0 to qword `+8`",
+   "anchors": [
+    [
+     "006CC2FC",
+     "test"
+    ],
+    [
+     "006CC304",
+     "call"
+    ],
+    [
+     "006CC307",
+     "mov"
+    ],
+    [
+     "006CC31F",
+     "call"
+    ],
+    [
+     "006CC321",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "FABLE w5-3 draft. Calls to callees the page context does not name are cited by call site (`<entry> + 0xNN`)."
+}
