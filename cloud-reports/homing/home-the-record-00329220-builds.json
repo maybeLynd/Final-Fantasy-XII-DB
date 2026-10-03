@@ -1,0 +1,29 @@
+{
+ "page": "04-Actor-Entity/Unit-Display-Record/the-record-00329220-builds.md",
+ "session": "session_01RYbqU7tsSU3HnpGNjV9Ghv",
+ "rows": [
+  {"fn": "002C03A0", "entered_from": "`002BFD20` + 0xA3",
+   "text": "runs its loop once, with the index 12 held in a stack local: takes the qword at index 12 (`+0x60`) of the qword array pointed to by `rcx+0x60` (or a null pointer when `rcx` is null, which is then dereferenced) and passes that object's qword `+0x18` and 0 to the call at `002C03A0` + 0x3B",
+   "anchors": [["002C03B2", "mov"], ["002C03C4", "jne"], ["002C03D1", "mov"], ["002C03D5", "mov"], ["002C03DB", "call"]]},
+  {"fn": "002C8A20", "entered_from": "`002C6F70` + 0x15D",
+   "text": "returns `rdx` when `rcx` is null; otherwise follows qword `+0x18` from `rcx` to the last node (the one whose `+0x18` is null), stores `rdx` in that node's qword `+0x18` and the node in qword `rdx+0x20`, and returns `rcx`",
+   "anchors": [["002C8A26", "jne"], ["002C8A43", "mov"], ["002C8A4C", "mov"], ["002C8A50", "mov"], ["002C8A53", "mov"]]},
+  {"fn": "002D76C0", "entered_from": "`003C6B70` + 0x4BA",
+   "text": "returns -1 when qword `+0xF0` of qword `0209AC30` is null; otherwise scans its 8 `0x18`-byte entries at `+0xD0` and returns the index of the first whose sign-extended word `+0` equals `ecx` and word `+2` equals `edx`, or -1 when none matches",
+   "anchors": [["002D76C7", "mov"], ["002D76E5", "cmp"], ["002D76ED", "cmp"], ["002D76FE", "or"], ["002D7702", "mov"]]},
+  {"fn": "002D7900", "entered_from": "`003C6B70` + 0x722",
+   "text": "returns when qword `+0xF0` of qword `0209AC30` is null or `ecx` is above 7 (unsigned); otherwise, in its `0x18`-byte entry at `+0xC0 + ecx*0x18`, stores `dx` in word `+0`, `r8w` in word `+2`, `r9w` in word `+4` and the low word of the fifth (stack) argument in word `+6`, and replaces bit `0x10` of dword `+0x14` with bit 0 of the sixth (stack) argument",
+   "anchors": [["002D7913", "cmp"], ["002D7923", "and"], ["002D7932", "mov"], ["002D793D", "mov"], ["002D7943", "or"]]},
+  {"fn": "0031FBD0", "entered_from": "`002734F0` + 0x8B",
+   "text": "returns -1 when `rcx` is null, when the call at `0031FBD0` + 0x9 on it returns null, or when that result's qword `+0x698` is null; otherwise returns the zero-extended byte `+0x1C2` of that qword",
+   "anchors": [["0031FBD4", "test"], ["0031FBD9", "call"], ["0031FBE3", "mov"], ["0031FBEF", "movzx"], ["0031FBFB", "or"]]},
+  {"fn": "003E4EA0", "entered_from": "`002ED0B0` + 0x61",
+   "text": "forms `p` as the sign-extended 32-bit sum of the low half of qword `rcx+0x400` and its word `+2` (0 when the qword is null); when byte `p+0x134` AND 7 is 1, stores 1 in dword `[rdx]` and 0 in dword `[r8]` and returns; otherwise stores 2 in `[rdx]` and sets `[r8]` to `0x3F000000` when that value is 2 and dword `rcx+0x73C` is non-zero, to dword `p+0x138` when it is 2 and `rcx+0x73C` is 0, and to the `maxss` of floats `p+0x110` and `p+0x10C` for any other value, then multiplies `[r8]` by floats `rcx+0x260`, `rcx+0x160` and `rcx+0x26C` (product formed in that order) and stores it",
+   "anchors": [["003E4EB8", "add"], ["003E4EC8", "sub"], ["003E4ECD", "mov"], ["003E4EE1", "maxss"], ["003E4F2E", "movss"]]},
+  {"fn": "003F2600", "entered_from": "`002915C0` + 0x13F",
+   "text": "makes the call at `003F2600` + 0x21 with `rcx`, `rcx+0x3C0`, 6 and 0x20, stores `0x3F800000` in dword `+0x998`, and makes the calls at `003F2600` + 0x3A and `003F2600` + 0x49 with `rcx+0x780` and `rcx+0x870`, each with `rdx`; then copies dword `[rdx]` to `+0x970` and dword `rdx+8` to `+0x978`, stores `v*0.5 - v/10` at float `+0x974` and `(v*0.5 + float rdx+0xC) + v/10` at float `+0x97C`, where `v` is float `rdx+4` (0.5 `01CEBB70`, 10 `008F8180`), and stores `0x3E570A3D` in dword `+0x924`, `0x3E4CCCCD` in dword `+0x92C`, and `0x42FE0000` in dwords `+0x930`, `+0x934` and qword `+0x938`",
+   "anchors": [["003F2621", "call"], ["003F263A", "call"], ["003F2672", "movss"], ["003F26A5", "mov"], ["003F26DC", "movss"]]}
+ ],
+ "skipped": [],
+ "notes": "002C03A0: the loop bound is 1, so the body runs once on the stack constant 0xC; on a null `rcx` it reads `[0 + 0x18]`, stated as a null dereference. 003E4EA0: `p` is built with a 32-bit add and `movsxd`, so the pointer is truncated to its low 32 bits; worth checking against the executable. 003F2600: the raw immediates (`0x3F800000`, `0x3E570A3D`, `0x3E4CCCCD`, `0x42FE0000`, `0x3F000000` in 003E4EA0) are not decoded by the listing and are given as hex; the qword store at `+0x938` writes `0x42FE0000` to its low dword and 0 to its high dword."
+}
