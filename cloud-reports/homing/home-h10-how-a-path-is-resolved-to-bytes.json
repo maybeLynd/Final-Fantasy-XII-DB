@@ -1,0 +1,14 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/how-a-path-is-resolved-to-bytes.md",
+ "session": "session_01Cj7Fn364nPXZ9Bw71KUr9i",
+ "rows": [
+  {"fn": "001D6BB0", "entered_from": "`0059A9B0` + 0x1F",
+   "text": "calls `001D6BB0` + 0xF with `rcx` unchanged, then tail-jumps at `001D6BB0` + 0x27 with `rcx` = that call's result, `edx` = the incoming `ecx` and `r8d` = the incoming low byte of `edx`, zero-extended",
+   "anchors": [["001D6BBA", "movzx"], ["001D6BBF", "call"], ["001D6BC7", "movzx"], ["001D6BD7", "jmp"]]},
+  {"fn": "00217A60", "entered_from": "`0020B680` + 0x191",
+   "text": "stores `r8d` to dword `+0x8`, `r9d` to dword `+0xC` and `rdx` to qword `+0x0` of `rcx`, and returns `rcx`",
+   "anchors": [["00217A64", "mov"], ["00217A67", "mov"], ["00217A6B", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "001D6BB0: neither callee (0020C700, 0020BFA0) is named in the host excerpt; both are cited by site. 00217A60: its first store (`r8d` to `+0x8`) is the entry instruction; the anchors cover the return value and the other two stores."
+}
