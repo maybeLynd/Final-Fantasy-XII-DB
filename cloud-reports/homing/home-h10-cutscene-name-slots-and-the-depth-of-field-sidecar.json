@@ -1,0 +1,20 @@
+{
+ "page": "99-Unresolved-Residual/Cutscene-Asset-Slots/cutscene-name-slots-and-the-depth-of-field-sidecar.md",
+ "session": "session_01Cj7Fn364nPXZ9Bw71KUr9i",
+ "rows": [
+  {"fn": "002E4150", "entered_from": "`0034E6D0` + 0x35",
+   "text": "for each index i from 0 to 2 calls `002E4150` + 0x2A(i) and, when bit 0 of the result's byte `+0x10` is set, walks indices from its word `+0x1DE` up to that word plus word `+0x1D6`, fetching each entry by the call at `002E4150` + 0x75 or `002E4150` + 0x115; when `ecx` is 0, for each non-null entry whose qword `+0xC0` is non-null and whose dword there is not -1, it calls `002E4150` + 0x13E(that low word) when `edx` is non-zero and byte `+0x11` of it is at least `0x80`, then ANDs that byte with `0x7F`; when `ecx` is 1 and `edx` is non-zero, for each entry whose byte `+0x18` is not 1 (for i 0 also requiring byte `+0x3` AND `0x1F` not equal to 6) and whose qword `+0xC0` is non-null with dword not -1, it passes to the call at `002E4150` + 0xF9 either 0 (low word -1, a null `0x740`-byte record from qword `022C6F28`, or that record's dword `+0x284` zero) or the result of `002E4150` + 0xF1 on that record; any other `ecx` writes nothing",
+   "anchors": [["002E4182", "test"], ["002E41DC", "cmp"], ["002E4249", "call"], ["002E428E", "call"], ["002E4293", "and"]]},
+  {"fn": "002EC960", "entered_from": "`003417F0` + 0x3A",
+   "text": "when `rcx` is non-null and dword `[rcx]` is not -1, stores the low word of `edx` to word `+0x2A` of `rcx`; otherwise returns without writing",
+   "anchors": [["002EC965", "cmp"], ["002EC96A", "mov"]]},
+  {"fn": "002ED3A0", "entered_from": "`0034CCF0` + 0x3E",
+   "text": "when `rcx` is non-null, dword `[rcx]` is not -1 and its low word is not -1, indexes the `0x740`-byte record array at qword `022C6F28` by that sign-extended word and, when the record address is non-null and its dword `+0x284` is non-zero, clears bit `0x2` of its dword `+0x304`, sets it again when `edx` is non-zero, and ORs `0x10` into its dword `+0x290`; every failed test returns without writing",
+   "anchors": [["002ED3B7", "imul"], ["002ED3C7", "cmp"], ["002ED3D0", "and"], ["002ED3DE", "or"], ["002ED3E4", "or"]]},
+  {"fn": "003DD980", "entered_from": "`00347B00` + 0x95",
+   "text": "reads the dword at `02B581A4` + (`edx` * 16 + `r8d`) * `0x1C` (both sign-extended) and returns at once unless it is 4; when it is 4, passes the float result of `003DD980` + 0x3E(`rcx`) as `xmm1` to `003DD980` + 0x49(`rcx`), calls `003DD980` + 0x53(`rcx`, 0), and calls `003DD980` + 0x79(0, `rcx`, ((`edx` shifted left 4 OR `r8d`) shifted left 16) OR `r9d`, 0) with the float fifth (stack) argument passed on as its fifth argument",
+   "anchors": [["003DD9B1", "imul"], ["003DD9B5", "cmp"], ["003DD9C9", "call"], ["003DD9F4", "or"], ["003DD9F9", "call"]]}
+ ],
+ "skipped": [],
+ "notes": "No callee of these four bodies is named in the host excerpt, so every call is cited by its site. 002E4150: the empty-range test before each loop is unsigned (`jae`) but the loop-back test is signed (`jl`); the `ecx` 1 path does not null-check the fetched entry before reading byte `+0x3`/`+0x18`; for i 1 and 2 the byte `+0x3` test is skipped (flag forced to 1). The call at + 0xF1 receives the record address in `rcx`. Long row (about 1,000 characters) because both `ecx` paths need stating. 003DD980: the fifth stack argument is read at `[rsp+0x60]` after a 0x38-byte frame, i.e. the caller's fifth argument slot."
+}
