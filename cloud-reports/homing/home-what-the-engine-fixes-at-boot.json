@@ -1,0 +1,14 @@
+{
+ "page": "00-Engine-Core-Runtime/what-the-engine-fixes-at-boot.md",
+ "session": "session_01RTHsxVMB4gEbgZ4DBoNz7W",
+ "rows": [
+  {"fn": "003AA1F0", "entered_from": "`00501750` + 0x93",
+   "text": "starts from the qword pointed to by `02EBEF70` and returns the first entry whose sign-extended word `+0xC` equals `ecx` and whose sign-extended byte `+0xE` equals `edx`, stepping to the next entry with the call at `003AA1F0` + 0x36 on the entry's dword `+0`; returns 0 when the start or a next entry is null",
+   "anchors": [["003AA205", "mov"], ["003AA215", "cmp"], ["003AA21F", "cmp"], ["003AA226", "call"], ["003AA230", "xor"]]},
+  {"fn": "008632E0", "entered_from": "`00863540` + 0x28",
+   "text": "calls (`008632E0` + 0x21) with 8 and, when that returns null, stores 0 at qword `[rcx]`; otherwise calls through the pointer at `008C2100` with 0, `edx`, `r8d` and 0, stores that result at qword `+0` of the returned block and the block at qword `[rcx]`; returns `rcx` on both paths",
+   "anchors": [["00863301", "call"], ["00863311", "je"], ["0086331D", "call"], ["00863323", "mov"], ["0086332B", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "008632E0: 008C2100 is the pointer slot the indirect call reads (decoded value 0x1CCC184), named as the listing resolves it."
+}
