@@ -203,3 +203,66 @@ The presence table is ten `0x20` entries at `022BE7F0`: byte `+0` present, posit
 | 03-World-Area-Field | field bit 15 (`00377C20`) for recipients and the chain-bonus gather | `DR:323`; `LD:727` |
 | 19-Save-Load-Settings / 00-Engine-Core-Runtime | New Game Minus flag; `FrameLimit` → frame scalar; locale id (chain cap 999 / 998) | `ED:233`–`258`; `PK:154`–`199`; `LD:287`–`293` |
 | 01-Script-VM | `questresultwindow` → bundle applier; `btladjustsystem` → chain reset; `0050FAF0` → add gil | `GS:181`; `LD:775`–`781`; `GP:439` |
+
+## 2. Gaps
+
+Class key, per the R2 brief:
+- **STATIC**: answerable from the executable or data by a desk read.
+- **RUNTIME**: needs a live observation.
+- **DATA**: needs a census of shipped game data.
+- **DOC**: the answer exists on another page, or the register and a page disagree; only a pointer or a correction is missing.
+
+### 2.1 Gaps the pages state themselves (still open)
+
+| id | gap | class | evidence | register |
+|---|---|---|---|---|
+| S-1 | Whether the `.ard` buffer can be placed at or above 4 GB (the high relocation base). If so, the 32-bit row construction truncates the reward-row pointers. | RUNTIME | `XA:264`; `AW:225`–`227`; `XA:121`–`126` | **GR-18 PARTIAL** |
+| S-2 | Whether any caller can reach `0030C650` with the growth table `[02EBF130]` unresolved (the LU-5 fault after HP / MP are written) | STATIC | `LA:285`; `LA:148`–`154` | none |
+| S-3 | What object the loot `+0xE64` slot override reads (`0017D340`), and whether it is a developer facility. The developer console's arm catalogue has row 245, "Enable 100% successful drop", on `rdi+0xE64`, cycling `−1,0,1,2,3` (`00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-H-ids-236-267.md:83`). That row was found by search, and no page states that `0017D340`'s object is the console's `rdi`. | DOC (+ a one-line STATIC check that `0017D340`'s object is the console's) | `LR:240`; `LR:145`–`150` | none |
+| S-4 | What writes the pickup visual's `[obj+0x260]` (the state 1 → 2 test `== 2`), and what other values it takes. **Narrowed by the pages:** create sets `+0x260 = 1` (`PK:316`); the visual's local update "can" move phase 1 to phase 2 (`PK:335`). The condition for 1 → 2 is not stated. | STATIC | `WP:312`–`321` | none |
+| S-5 | The subscribers of gil event `0x26` register at runtime, so the set is not statically enumerable. | RUNTIME | `DR:238`–`240` | none |
+| S-6 | "Who consumes event 4 is not traced here" (the level-up post inside the defeat loop). The level-up page already names the consumer: the post-result message row `0x04`, "… is now level {level}" (`LU:294`–`300`, pointing to `07-Combat-Action/Post-Result-Events/the-post-result-events-and-the-battle-message-table.md`). | DOC | `DR:95` | none |
+| S-7 | What the per-unit one-shot flag in the manager `+0x7FB0` table makes happen. It is queued by the level-up's first forwarding call; the consumer's effect is "NOT CLAIMED". | STATIC | `LA:138`–`139`; `LA:110`–`137` | none |
+| S-8 | What `00329210` does. It is the last call of the level-up presentation block (`mov edx, eax / mov ecx, 1 / call 00329210`, with the voice handle from `002DF220`). | STATIC | `LU:482`–`486` | none |
+| S-9 | The drop-gate residue: what `LQUERY` (`00391410`) and the point query `0032A6A0` test; how the defeated unit's own body is kept out of the gather; and the gather's filter word `0x1C` and the leader's `+0x1F4` mask (all "not named" / "not read") | STATIC | `ED:230` | GR-19 ANSWERED (the gate's question); this is the placement test's residue |
+| S-10 | What the quest-result window's bundle keys select. They come from `00267E10(r9)` and `00473C90`; "what they select is not read here". | STATIC | `GS:183`–`184`; `GP:308`–`311` | none |
+| S-11 | What flag bits 1 and 2 of the HUD chain record `+0x7C7C` mean on screen | STATIC | `CH:114`–`115` | none |
+| S-12 | What effect group `0x71` (`c_all.efx` at `0x29A60`) looks like on screen. This needs the `0x610` / `0x620` element fields read through the renderer. | STATIC | `LU:360`–`361` | UQ-136 ANSWERED (residue only) |
+| S-13 | When an evicted or expired pickup's visual record is actually released in play: natural visual-slot exhaustion, real cadence, and "any zero handle". "No fixed window of 48 to 51 updates in play is proven." | RUNTIME | `PK:338`; `WP:140`–`148` | none |
+
+### 2.2 Gaps found while mapping (a port needs these, and no page in this folder states them)
+
+| id | gap | class | evidence | register |
+|---|---|---|---|---|
+| N-1 | **The defeat contract omits step 0 and the step-1–6 gate.** DR-1's order begins "Build the recipient list" (`DR:89`–`90`), and §7 likewise (`DR:169`). The page puts the chain update `00317ED0` and `003171C0` (counter 4, species tally) **before any reward**. It also runs steps 1–6 only for an enemy-kind record whose unit byte `+0xE9A` lacks bit 3, killed by the party or by party-applied Poison / Petrify (`ED:79`–`87`). A port built from the contract alone would skip the chain and pay every kill. | DOC | `DR:88`–`95`; `ED:79`–`87` | none |
+| N-2 | **The register row AE-7 still reads "ANSWERED - not in the functions read … none in any `Loot_*`"** (`_index/OPEN-QUESTIONS.md:675`). The page reverses it: "**Yes** … `Loot_RollDropEntries` (`003180F0`) takes the chance profile from the chain rank `022C3158` (`00318116`)" (`LD:285`–`286`, `LD:413`–`446`). | DOC | `_index/OPEN-QUESTIONS.md:675`; `LD:285`–`286` | **AE-7 ANSWERED (stale wording)** |
+| N-3 | **Stale labels on the loot and chain pages.** `LD:146` (and the §2 listing, `LD:111`, `LD:121`) calls `022C3174` the "per-rank penalty factor". It is the pickups-collected counter (`LD:275`–`278`; `WP:108`). `LD:133`–`136` mark `003185D0`, `003186F0`, `00318820` and `003183D0` "read (partial)", while `LD:462` and `LD:563`–`564` say they were read complete. `CH:32` still names the caller `BattleUnit_ProcessDefeatRewardsAndRetire`, which `ED:44`–`47` withdrew. | DOC | as cited | none |
+| N-4 | `README:21` lists the experience note as "**REOPENED**". Its front matter says `PARTIAL` after an owner re-status "from REOPENED" on 2026-10-02 (`HX:4`). | DOC | `README:21`; `HX:4` | none |
+| N-5 | `XA` §14's first two bullets still list the reward-header / row bytes and the binding lifetime as unresolved (`XA:259`–`262`). The award page closes both: the row bytes are decoded statically on the unit-definition page, and the lifetime is GR-17, ANSWERED (`AW:222`–`231`). | DOC | `XA:259`–`262`; `AW:222`–`231` | GR-17 ANSWERED |
+| N-6 | **The profile-selection weights are not given.** `00318820` reads "per-profile selection weight" at row `+0x22` (`LD:691`). The shipped four-row table lists chances, `+0x05` and slot-0 weights only (`LD:432`–`437`). Bytes `+0x1A`–`+0x21` are "unaccounted" (`LD:695`–`696`). This draw runs on every kill that breaks a live chain (`LR:241`–`242`), so drops after a break cannot be reproduced without the four `+0x22` values. | DATA | `LD:691`–`696`; `LD:432`–`437` | none |
+| N-7 | **`Loot_SelectChanceProfileByWeight`'s walk is not stated in full.** Not stated: the bound (whether the walk uses `00318960`'s count, `LD:764`); which row index it returns; and what it returns when the draw exceeds the sum of the weights. `00319530` states its fallback (`out == 7 → 0`, `LD:619`) and this one does not. `LD:135` marks it "read (partial)", and `LD:95`–`97` gives only "performs a weighted selection". | STATIC | `LD:95`–`97`, `LD:571`, `LD:758`–`764` | none |
+| N-8 | **The conditions of the chain's own LCG draws are not stated as such.** LC-4 says "The chain's own two draws are separately conditional" (`LR:131`) and stops there. The coin draw is "on every continued link" (`CH:41`–`42`). The rank-advance draw is implied only on the non-forced path below rank 3 (`LD:263`–`272`; the draw site `00318496` is in `21-RNG-And-Determinism/rng-streams.md:450`). Not stated: whether `003183D0` draws at rank 3, or when progress exceeds the threshold. Because the loot stream is one stream (LC-2), each condition changes every later drop. | STATIC | `LR:131`; `LD:263`–`272`; `CH:41`–`51` | none |
+| N-9 | **The break and first-kill paths of `EnemyChain_UpdateOnDefeat` are not listed.** The §8b listing elides them (`...`, `LD:371`). `CH:92`–`94` says a break "zeroes the chain and two other globals" without naming them. Also not stated: what happens when `022C3168 < 0` (no chain yet; the store at `003180D0` is the only hint, `LD:745`); whether the coin bit `022C3178` is cleared on a break (it is on the teardown `003183A0`, `LD:770`–`773`); and what `022C3160` / `022C316C` do on a break. | STATIC | `LD:352`–`375`; `CH:83`–`94` | AE-4 ANSWERED (rule only) |
+| N-10 | **How `003180F0` gets its spawn row is not stated.** The row's offsets are given (`LD:306`–`308`, `LD:442`–`445`), but not which argument `00312280` passes, or which unit field leads from the defeated unit to its spawn row. | STATIC | `LR:193`–`195`; `ED:97`, `ED:358` | none |
+| N-11 | **The pickup tick's caller is not named in this folder.** `WP:46` marks "once per field frame" as **[page]**, and `PK:93` says the same. The field-frame orchestrator `00234590` calls it at `00234708`, step 14 (`00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md:225`, `:351`). | DOC | `WP:46`; `PK:93` | none |
+| N-12 | **What advances the field clock `0208D45C` is not stated here.** Only "BSS, so `0` at image load" is (`WP:105`). It is `0032A100`, `0208D45C++` when the timer changed (`00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md:371`, `:434`). Whether it is reset across area loads, which would matter to live pickup stamps, is not stated on either page. | DOC | `WP:105`; `PK:100` | CM-1 ANSWERED (unit only) |
+| N-13 | **The collect argument is named two ways.** One section reads "`collector_field_id`" / "the collecting character's field id" (`PK:203`, `PK:213`, `PK:318`). Another reads "Both get `ecx` = the slot and `edx` = the unit's handle" (`PK:297`–`298`, from the caller read). The contract says only "a value forwarded" (`WP:46`). Which value `003FA820` stores at `+0x290` matters to the visual's release path (`PK:334`). | DOC | as cited | none |
+| N-14 | **The zero-handle pickup is not described.** `003FA160` returns 0 when none of its 13 visual records is free (`PK:316`), and create stores the result at `+0x58` (`WP:63`, `LR`/`WP` §2). Not stated: what the tick does with a state-1 node whose handle is 0 (`0028EFE0(0)`), and whether such a node can ever leave state 1 except by eviction or timer (state 1 has no timer, `PK:103`–`105`). `WP:63` also uses handle `0` to mean "free". | STATIC | `PK:316`; `WP:63`; `PK:338` | none |
+| N-15 | **The HP / MP growth helpers' edges.** `002F9A60(level, value, 0)` and `002F9B20(level, value, 0)` (`LU:89`–`90`): the meaning of the third argument is not stated, nor is any upper clamp on the returned HP (i32) or MP (i16 at `+0x0C`). The formula is given for `b / 5 ≥ 0.01` and otherwise (`LU:271`–`273`). | STATIC | `LU:89`–`90`, `LU:267`–`275` | UQ-134 ANSWERED (names only) |
+| N-16 | **Authored tables given only as samples.** The HP / MP curve `02EBF108` (99 rows `{u8 hp, u8 mp}`) is quoted at six levels (`LU:274`–`275`). The growth bytes of `chr_data` are quoted for the six main characters, plus the Esper / base-`0xFF` notes (`LU:169`–`180`). The tables are shipped data, and the page does not tabulate them. | DATA | `LU:269`–`275`; `LU:169`–`180` | none |
+| N-17 | `00469E30` runs on the collecting unit's stats record before collect or remove (`00311114`–`0031111B`), and it is not described. | STATIC | `PK:293`–`294` | none |
+| N-18 | **The recipient walk's index sequence is not stated.** "Up to nine, each fetched by index" (`ED:88`–`89`), the anchors `00312360`–`003123A1` (`ED:406`), and "`00320AB0` to walk the battle slots" (`DR:303`) are given. The indices and the second argument are not (the chain-bonus gather states "`(i, 1)`, slots 0–8", `LD:660`). The order fixes the order of counter-11 posts and level-up events. | STATIC | `ED:88`–`89`; `DR:303` | none |
+| N-19 | What unit byte `+0xE9A` bit 3 means in the step-1–6 gate is not stated here. `ED:86`–`87` points to the status-write page ("the reading and FA-4"). | DOC | `ED:84`–`87` | FA-4 (on the status-write page; state not checked here) |
+| N-20 | **The pool init has two call sites** (`WP:360`, "init has 2 call sites"), but only `002341C0` is named (`WP:401`). The other is not named in this folder. The field-frame page lists `002341C0` (`the-world-tick-and-the-field-frame.md:351`, `:711`), and `16-UI/Widget-Object-Model/starting-a-widget-animation-and-the-millisecond-that-becomes-frames.md:395` says `002342F0` / `00234590` "reach" it. | DOC | `WP:360`, `WP:401` | none |
+
+**Counts.** 33 gaps: 13 self-stated (S-1 – S-13) and 20 found while mapping (N-1 – N-20).
+
+| class | S | N | total |
+|---|---:|---:|---:|
+| STATIC | 8 | 8 | **16** |
+| DOC | 2 | 10 | **12** |
+| DATA | 0 | 2 | **2** |
+| RUNTIME | 3 | 0 | **3** |
+
+Register rows involved: one is still open (**GR-18 PARTIAL**, S-1). One is stale in wording (**AE-7**, N-2). Several
+answered rows are cited only for context (GR-17, GR-19, UQ-134, UQ-136, CM-1, AE-4).
