@@ -1,0 +1,20 @@
+{
+ "page": "04-Actor-Entity/Unit-Display-Record/the-record-00329220-builds.md",
+ "session": "session_016ZjFjnefAbEBqR8eRqGh2C",
+ "rows": [
+  {"fn": "002D76C0", "entered_from": "`003C6B70` + 0x4BA",
+   "text": "loads qword `+0xF0` of the object whose pointer is stored at `0209AC30`; when it is null returns -1, otherwise scans 8 entries of stride 0x18 starting at `+0xD0` and returns the index (0-7) of the first entry whose sign-extended word `+0xD0` equals `ecx` and whose sign-extended word `+0xD2` equals `edx`, or -1 when no entry matches",
+   "anchors": [["002D76C7", "mov"], ["002D76E5", "cmp"], ["002D76ED", "cmp"], ["002D76F8", "cmp"], ["002D76FE", "or"]]},
+  {"fn": "002D7900", "entered_from": "`003C6B70` + 0x722",
+   "text": "when qword `+0xF0` of the object whose pointer is stored at `0209AC30` is non-null and `ecx` is at most 7 (unsigned compare), addresses the 0x18-byte entry at `+0xC0 + ecx*0x18` of that block and stores `dx` to word `+0`, `r8w` to word `+2`, `r9w` to word `+4` and the low word of the fifth (stack) argument to word `+6`, and replaces bit 4 (0x10) of dword `+0x14` with bit 0 of the sixth (stack) argument; otherwise it returns without writing",
+   "anchors": [["002D7916", "ja"], ["002D7923", "and"], ["002D7932", "mov"], ["002D793D", "mov"], ["002D7943", "or"]]},
+  {"fn": "0031FBD0", "entered_from": "`002734F0` + 0x8B",
+   "text": "returns -1 when `rcx` is null; otherwise calls (`0031FBD0` + 0x9) with `rcx` and returns -1 when that returns null or when qword `+0x698` of the returned object is null, else returns the zero-extended byte `+0x1C2` of the `+0x698` object",
+   "anchors": [["0031FBD4", "test"], ["0031FBD9", "call"], ["0031FBE3", "mov"], ["0031FBEF", "movzx"], ["0031FBFB", "or"]]},
+  {"fn": "003E4EA0", "entered_from": "`002ED0B0` + 0x61",
+   "text": "forms a block address as the sign-extended 32-bit sum of the low dword of qword `rcx+0x400` and that object's word `+2` (0 when the qword is null) and reads byte `+0x134` of the block AND 7; when that is 1 it stores 1 to dword `[rdx]` and 0 to dword `[r8]`; otherwise it stores 2 to `[rdx]` and to float `[r8]` either, for value 2, `0x3F000000` (0.5) when dword `rcx+0x73C` is non-zero or else dword `+0x138` of the block, or, for any other value, the larger of floats `+0x110` and `+0x10C` of the block, then multiplies `[r8]` by floats `rcx+0x260`, `rcx+0x160` and `rcx+0x26C` and stores the product back",
+   "anchors": [["003E4EC5", "and"], ["003E4F34", "mov"], ["003E4EE1", "maxss"], ["003E4EFB", "mov"], ["003E4F2E", "movss"]]}
+ ],
+ "skipped": [],
+ "notes": "003E4EA0: the block address is computed from the low 32 bits of the +0x400 pointer plus its word +2, then sign-extended (movzx/add eax,ecx/movsxd), exactly as written; when +0x400 is null the block address is 0 and byte +0x134 is still read. 0.5 is my decoding of the immediate 0x3F000000 (the listing does not decode it). 0031FBD0: the callee at +0x9 is cited by site because the host excerpt does not name it."
+}
