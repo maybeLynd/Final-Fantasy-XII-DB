@@ -1,0 +1,17 @@
+{
+ "page": "00-Engine-Core-Runtime/Application-Root/game-application.md",
+ "session": "session_01Ft9DsjYbzydEyFv6u1R8to",
+ "rows": [
+  {"fn": "001FB830", "entered_from": "`001F16C0` + 0x6E",
+   "text": "tail-jumps to the function at `001FB830` + 0xA with `rcx` = qword `01F7F4D0` and `rdx` = the qword at `[rcx]`",
+   "anchors": [["001FB833", "mov"], ["001FB83A", "jmp"]]},
+  {"fn": "005E3040", "entered_from": "`0060C3F0` + 0x2D",
+   "text": "returns 0 when `ecx` is 0; otherwise calls the function at `005E3040` + 0x26 with `rcx` = `ecx`*8 and `edx` = 8 and returns its result, which when non-null first receives `r8d` qwords copied from `rdx` (each destination slot written only when non-null) with the remaining `ecx` minus `r8d` qwords zeroed",
+   "anchors": [["005E3059", "je"], ["005E3066", "call"], ["005E3094", "mov"], ["005E309D", "sub"], ["005E30B1", "mov"]]},
+  {"fn": "00616210", "entered_from": "`00163760` + 0x43",
+   "text": "calls the function at `00616210` + 0x9 with the incoming `rcx` (other register arguments passed through unchanged), then stores the fifth, sixth, seventh, eighth and ninth (stack) arguments as dwords to `+0x20`, `+0x24`, `+0x28`, `+0x2C` and `+0x30` of `rcx`, and returns `rcx`",
+   "anchors": [["00616219", "call"], ["00616222", "mov"], ["0061622C", "mov"], ["0061623E", "mov"], ["00616241", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "005E3040: the copy loop's per-slot null test is on the destination pointer (always non-null in practice); the zero-fill count is the 32-bit difference ecx - r8d, skipped when it is 0; rep stosq not used as an anchor to avoid a prefix/mnemonic ambiguity. 00616210: stack arguments read at [rsp+0x50..0x70] after push rbx and sub rsp,0x20 (fifth through ninth); the call's own return value is discarded."
+}
