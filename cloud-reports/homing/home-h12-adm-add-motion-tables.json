@@ -1,0 +1,11 @@
+{
+ "page": "17-Presentation-Rendering/Model-And-Motion-Formats/adm-add-motion-tables.md",
+ "session": "session_016ZjFjnefAbEBqR8eRqGh2C",
+ "rows": [
+  {"fn": "002ECCF0", "entered_from": "`00262F50` + 0x20",
+   "text": "when `rcx` is non-null, qword `rcx+0xC0` is non-null and that object's dword `+0` is not -1, replaces bit 7 of its byte `+0x11` with bit 0 of `dl`; on any other path it returns without writing",
+   "anchors": [["002ECCF5", "mov"], ["002ECD01", "cmp"], ["002ECD06", "and"], ["002ECD0A", "shl"], ["002ECD0D", "or"]]}
+ ],
+ "skipped": [],
+ "notes": ""
+}
