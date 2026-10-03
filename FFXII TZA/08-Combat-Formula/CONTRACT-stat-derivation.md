@@ -2,7 +2,6 @@
 contract: Derive a unit's effective stats — two sources, one writeback, one clamp block
 category: 08-Combat-Formula
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: where-a-stat-number-comes-from.md

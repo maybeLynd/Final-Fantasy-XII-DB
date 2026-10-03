@@ -1,0 +1,10 @@
+{
+  "action": "claim",
+  "task": "DATA-REQ-ASTRA-SD194-RUNTIME-1001",
+  "resources": [
+    {
+      "key": "request:astra/sd194-retained-copier-limit-1003"
+    }
+  ],
+  "note": "Method A prerequisite for SD194: original 002DF880 signed-limit/termination behavior, using the already SPEC-accepted retained full body. Exact question: does caller R9D=0x103 guarantee a NUL within 260 bytes, and on which branches? Competing capacity-vs-character-limit and null-slot initialization hypotheses. Prove loop/write bounds and test boundary/empty/zero-negative-limit controls; do not recapture the settled builder/census. DATA/OPUS consume the bound and its null-slot exception. Actual inherited stack and natural field entry remain OPEN; no runtime claim or game setup. Existing parent owns work files; no peer edits."
+}

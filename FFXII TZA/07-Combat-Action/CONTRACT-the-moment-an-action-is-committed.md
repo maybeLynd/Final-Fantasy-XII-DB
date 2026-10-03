@@ -2,7 +2,6 @@
 contract: Commit an action onto a unit through two disjoint id ranges, and shadow the command block as it is written
 category: 07-Combat-Action
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: 07-Combat-Action/the-moment-an-action-is-committed.md

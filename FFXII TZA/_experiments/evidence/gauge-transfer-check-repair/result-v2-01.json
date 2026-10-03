@@ -1,0 +1,270 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY original byte/dataflow/local footprint analysis",
+  "driver_sha256": "09f4779ae272e157017938e6b024696fda99add25d6fedc2b2a49c94a098b121",
+  "predecessor_driver_sha256": "91033a449df208020e106e9fe64629736075f4afa6c643e4414f5c674fd4435a",
+  "review_commit": "95d495604a3994a0fe0078e4b0620a168c9137b7",
+  "input_manifest_sha256": "03ce4f39f2222feb7b1d3671b13fd03c86cdca9df1f79daf1f8cc07aa7116d0e",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "2f827754a911df0d3566870f3b447e83d70a6ffbbccaba3446c91f0f579737df"
+    },
+    {
+      "path": "target-source-01.json",
+      "sha256": "e25432db31a70339d8213aebfaf409cd9b0c19ae7a6bf07c06b6c2a27f610d9b"
+    }
+  ],
+  "capture_prerequisites": [
+    {
+      "status": "VERIFIED_ACTUAL_CAPTURE_PREREQUISITES",
+      "metadata": "extents-01.json",
+      "metadata_sha256": "b4fecbfea10883f84f7cd216bd264bb09db4b79efe54ddd4a7dd5a04779fa24b",
+      "source": "source-01.json",
+      "source_sha256": "2f827754a911df0d3566870f3b447e83d70a6ffbbccaba3446c91f0f579737df",
+      "checker_sha256": "2550a7723eb689e2878ae0b5a35fffb81c4675432f1d272de3f2699d7dc6e4b5"
+    },
+    {
+      "status": "VERIFIED_ACTUAL_CAPTURE_PREREQUISITES",
+      "metadata": "target-extents-01.json",
+      "metadata_sha256": "ee8cc558f8b5391b6c7bb174fe178170e0f1ff5ac7fe1e2f63b437bf3626f764",
+      "source": "target-source-01.json",
+      "source_sha256": "e25432db31a70339d8213aebfaf409cd9b0c19ae7a6bf07c06b6c2a27f610d9b",
+      "checker_sha256": "2550a7723eb689e2878ae0b5a35fffb81c4675432f1d272de3f2699d7dc6e4b5"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 145,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 71,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "facts": {
+    "callback_sources": [
+      {
+        "lea": "0x2963c1",
+        "handler": "0x29b7d0"
+      },
+      {
+        "lea": "0x2963e7",
+        "handler": "0x29b810"
+      },
+      {
+        "lea": "0x297c7e",
+        "handler": "0x29b7d0"
+      },
+      {
+        "lea": "0x297c9f",
+        "handler": "0x29b810"
+      }
+    ],
+    "constructor": "3F89C0 reads fifth argument from its currentSP+50h (callerSP+20h), writes QWORDview+38, DWORD+40 and QWORDcontext+48; nonNULL callback is called synchronously with (view,event0,incomingEDX). Normal ABI/private disjoint storage and canonical memory-fill semantics are premises, not natural initialization proof.",
+    "default": "296360 registration leg prescribes29B7D0 at0209C240 and29B810 at0209C298 with the incoming object as context. Entry guards/unregistration occur before that leg; registration is conditional.",
+    "slot": "297C10 free-entry initialization prescribes the same two handlers at row androw+58. Existing matching row jumps to297CE2, writes context+48/+A0 and id+B0 only, and does not call initializer or write callback+38/+90. Thus this call cannot universally re-establish handler identity; prior state remains a premise.",
+    "consumer": "Complete2973E0 has only four direct calls to271960/272730/2726C0/2727C0, no indirect call and no direct handler call. Its own writes are WORDview+14, DWORDview+50 and RMW WORDview+26. The canonical callback table already states handlers call2973E0; the opposite claimed direct edge is not supported by this body.",
+    "synchronous_limit": "A caller reaching3F8980(event1) with a valid nonNULL installed handler can synchronously reach2973E0 and its view updates/helpers before resource code continues. Existing EXP243 zero dispatcher hits do not test this initialized boundary. Opaque animation helper effects, transitive callbacks, actual handler field state and resource-binding preservation remain open.",
+    "direct_calls": [
+      [
+        "0x297414",
+        "0x271960"
+      ],
+      [
+        "0x297430",
+        "0x272730"
+      ],
+      [
+        "0x297450",
+        "0x2726c0"
+      ],
+      [
+        "0x297498",
+        "0x2727c0"
+      ]
+    ],
+    "local_transfer_checks": {
+      "consumer": [
+        {
+          "pc": "0x2973fb",
+          "mnemonic": "je",
+          "target": "0x2974c5"
+        },
+        {
+          "pc": "0x297404",
+          "mnemonic": "je",
+          "target": "0x2974c5"
+        },
+        {
+          "pc": "0x29740e",
+          "mnemonic": "jne",
+          "target": "0x297437"
+        },
+        {
+          "pc": "0x297414",
+          "mnemonic": "call",
+          "target": "0x271960"
+        },
+        {
+          "pc": "0x297430",
+          "mnemonic": "call",
+          "target": "0x272730"
+        },
+        {
+          "pc": "0x297435",
+          "mnemonic": "jmp",
+          "target": "0x297455"
+        },
+        {
+          "pc": "0x297450",
+          "mnemonic": "call",
+          "target": "0x2726c0"
+        },
+        {
+          "pc": "0x29746a",
+          "mnemonic": "jl",
+          "target": "0x2974c0"
+        },
+        {
+          "pc": "0x297479",
+          "mnemonic": "jg",
+          "target": "0x297482"
+        },
+        {
+          "pc": "0x297480",
+          "mnemonic": "jmp",
+          "target": "0x297493"
+        },
+        {
+          "pc": "0x297486",
+          "mnemonic": "jl",
+          "target": "0x29748f"
+        },
+        {
+          "pc": "0x29748d",
+          "mnemonic": "jmp",
+          "target": "0x297493"
+        },
+        {
+          "pc": "0x297491",
+          "mnemonic": "je",
+          "target": "0x2974c0"
+        },
+        {
+          "pc": "0x297498",
+          "mnemonic": "call",
+          "target": "0x2727c0"
+        }
+      ],
+      "matched_tail": []
+    },
+    "own_consumer_writes": [
+      {
+        "pc": "0x29749f",
+        "memory": {
+          "base": "rbx",
+          "index": null,
+          "scale": 1,
+          "displacement": 20,
+          "size": 2,
+          "role": "w",
+          "rip_target": null
+        }
+      },
+      {
+        "pc": "0x2974a8",
+        "memory": {
+          "base": "rbx",
+          "index": null,
+          "scale": 1,
+          "displacement": 80,
+          "size": 4,
+          "role": "w",
+          "rip_target": null
+        }
+      },
+      {
+        "pc": "0x2974c0",
+        "memory": {
+          "base": "rbx",
+          "index": null,
+          "scale": 1,
+          "displacement": 38,
+          "size": 2,
+          "role": "rw",
+          "rip_target": null
+        }
+      }
+    ],
+    "remaining": "No native execution, actual initialization, scheduling, lifetime, full resource-window invariance or presentation result. Do not interpret direct call-set completeness as transitive no-callback/no-global-write proof."
+  },
+  "source_controls": [
+    {
+      "id": "secondary-handler-memory-identity",
+      "pc": "0x2963e7",
+      "mutation": {
+        "kind": "memory",
+        "key": "rip_target",
+        "value": "0x29b7d0"
+      },
+      "refused": "actual LEA callback identity changed 0x2963e7",
+      "method": "Synthetic source-record mutation, not original execution"
+    },
+    {
+      "id": "callback-store-memory-offset",
+      "pc": "0x3f89f4",
+      "mutation": {
+        "kind": "memory",
+        "key": "displacement",
+        "value": 64
+      },
+      "refused": "actual callback store role/layout changed",
+      "method": "Synthetic source-record mutation, not original execution"
+    },
+    {
+      "id": "consumer-tail-to-handler",
+      "pc": "0x297435",
+      "mutation": {
+        "kind": "row",
+        "key": "args",
+        "value": "0x29b7d0"
+      },
+      "refused": "unproved branch exit or target 0x297435",
+      "method": "Synthetic source-record mutation, not original execution"
+    },
+    {
+      "id": "consumer-indirect-jump",
+      "pc": "0x297435",
+      "mutation": {
+        "kind": "row",
+        "key": "args",
+        "value": "rax"
+      },
+      "refused": "unproved indirect transfer 0x297435",
+      "method": "Synthetic source-record mutation, not original execution"
+    },
+    {
+      "id": "matched-tail-to-initializer",
+      "pc": "0x297cfe",
+      "mutation": {
+        "kind": "jump",
+        "key": "args",
+        "value": "0x3f89c0"
+      },
+      "refused": "unproved branch exit or target 0x297cfe",
+      "method": "Synthetic source-record mutation, not original execution"
+    }
+  ],
+  "acceptance": "Producer validity only; project independent review and consumer incorporation pending."
+}

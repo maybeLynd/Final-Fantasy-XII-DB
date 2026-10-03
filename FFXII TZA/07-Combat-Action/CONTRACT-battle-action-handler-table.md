@@ -2,7 +2,6 @@
 contract: Dispatch 359 AI-order ids through one table into eight handlers, with availability reading the same table
 category: 07-Combat-Action
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: 07-Combat-Action/Action-Dispatch/battle-action-handler-table.md

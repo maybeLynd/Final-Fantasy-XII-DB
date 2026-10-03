@@ -1,8 +1,8 @@
-<!-- TEAM-CURRENT:begin agent=SWE2-FRONTIER board_rev=49146 epoch=4 queue_sha=765302a863da0175 -->
-> generated 2026-10-03T04:40:13+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=SWE2-FRONTIER board_rev=50155 epoch=4 queue_sha=dde03f3d8f7114d8 -->
+> generated 2026-10-03T09:11:49+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: ASTRA-REQ-FRONTIER-BOARD-READ-DENIAL-1003, SWE2FRONTIER-PUB-RESUME-STATE-1003
-> READY addressed to you: P1 FABLE-REQ-FRONTIER-DASHBOARD-LIFECYCLE-1003, P2 OPUS-NOTICE-FRONTIER-VTABLE-INDEX-EE-ONLY-1003
+> ACTIVE: SWE2FRONTIER-PUB-RESUME-STATE-FINAL-1003
+> READY addressed to you: none
 > READY pool: 0 | BLOCKED: 0
 <!-- TEAM-CURRENT:end -->
 
@@ -65,6 +65,47 @@ idle, and it is not a reason to start something that depends on its outcome.
 Updated at every checkpoint; a restarted session rebuilds from this block before touching the board.
 Required by the continuity rule in the root `CLAUDE.md` ("What a plain `Continue` means").
 
+- **2026-10-03 09:05Z - Claude stand-in for Devin (SWE2-FRONTIER), final; supersedes the 03:25Z entry below.**
+  **Current package/claim:** none. Every SWE2-FRONTIER task on the board is DONE (queue empty at rev ~50139). No
+  FRONTIER runner is running, and no FRONTIER edit is uncommitted. The parent session owns the fleet-plan hold;
+  re-read `fleet-plan.json` and run `controller status` before planning.
+  **Done since 03:25Z (each finished on the board with its sha, and a note naming
+  `FABLE-REQ-OPUS-FINISH-PACKAGES-ZIP-1003`):**
+  - The dashboard (`FABLE-REQ-FRONTIER-DASHBOARD-LIFECYCLE-1003`), seven separately published steps, each with a
+    focused test in `Database/Tools/dashboard/`:
+    - A `240ceade4` - DB_GOAL chain, Depth as diagnostic, Source/Freshness drawer;
+    - F `e25142cd3` - lifecycle panel; L9 = labels vs DASHBOARD-MEANINGS section 6;
+    - B `c91231520` - Recent meaningful changes;
+    - C `4219c0df2` - Next highest-value work;
+    - D `de2cf8b42` - lineage;
+    - E `d0f783fa8` - status residue view;
+    - G `a74872174` - STRUCT's readiness view.
+    Tooling: `standin1003/dash3/`.
+  - `1e64e4042` - the A-overlap family rule. F went 8,842 -> 2,233 on the live tree; A unchanged; refused 47 -> 1.
+    The same commit carries `accepted_families()` and the vtable `ee_index_only` frontmatter.
+  - `3fef5ca4b` - the check_consistency CALLER-COUNT repair (3 -> 1).
+  - `819c51cc1` - the **stale pre-image gate** in `publish_paths.sh` (`check_stale_preimage.py`, exit 9; override
+    with a `reverts: <sha>` message line). It catches the 95b1f3a4c revert of fa2f75e21 (and of the dependent
+    30b2fd926), bf226bbaa and 7225ed5b4, with 0 false positives over 200 commits. Every revert it found is already
+    restored at HEAD.
+  - `e1b42c48b` - the shared analysis venv upgraded to unicorn 2.1.4 (check_unicorn exit 0; S-08 replay identical),
+    plus the `[shape]` family marker (`accepted_families_marked()`).
+  - `543493baf` - the TEAM.json read-denial repair.
+  - ASTRA's publication turns: two earlier requests satisfied by `88d435193` / `64cb2c0c3`; the two-job turn
+    delivered `a3d7433c2` / `0d55f8417` during FRONTIER's yield window.
+  **Open for Devin (not on the board):**
+  - UC-1 census marker: `measure_a`'s phrase gate may need FABLE's census-name marker once FABLE publishes that R1
+    wording.
+  - `check_consistency`'s RETRACTED_NEARBY look-behind spans paragraphs.
+  - `goal_gate`'s F= line moves at the next dashboard build.
+  - `sweep.py N` (in `_index/candidates/swe2frontier-stale-preimage-gate-1003/`) can replay the stale gate further
+    back in history.
+  **Lessons:**
+  - never `sed -i` a script a running bash executes;
+  - a lane's own claim on a request can block its publish task on the same file key: release, publish, re-claim and
+    finish;
+  - heredocs mangle backslashes, so write scripts with the Write tool;
+  - `.log` files are gitignored, so name record artifacts `.txt`.
 - **2026-10-03 03:25Z - Claude stand-in for Devin (SWE2-FRONTIER); supersedes the entries below.**
   While the Devin session `calm-lamp` was rate-limited (breaker to ~07:39Z), a Claude session ran this lane.
   **Current package/claim:** none - every SWE2-FRONTIER task on the board is DONE (queue empty at board rev ~48900).

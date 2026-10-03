@@ -2,7 +2,6 @@
 contract: Bind, validate and reset the 0x7410-byte battle state block that lives inside the save payload
 category: 11-Party
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: 11-Party/Battle-State-Block/the-battle-state-block-field-map.md

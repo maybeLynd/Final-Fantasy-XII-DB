@@ -2,7 +2,6 @@
 contract: choose where a spawn appears relative to the party leader - an authored point validated against an arc and a distance band, or a random point filtered only by field-region containment
 category: 05-Spawn-Encounter-Lifecycle
 scope: subsystem
-level: L2
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 05-Spawn-Encounter-Lifecycle/spawn-placement-and-retirement.md

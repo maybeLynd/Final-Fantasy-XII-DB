@@ -2,7 +2,6 @@
 contract: Read and byte-order the packed namespace every .phyre file carries
 category: 22-Middleware-PhyreEngine
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: the-packed-namespace-and-the-file-side-schema.md

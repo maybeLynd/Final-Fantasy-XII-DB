@@ -1,0 +1,56 @@
+{
+ "page": "99-Unresolved-Residual/the-second-icon-drawer-and-what-it-adds.md",
+ "session": "opus-self",
+ "rows": [
+  {
+   "fn": "00181800",
+   "text": "calls `001B2410` on the result of the core runtime object fetch `001B1C00()`, as `001B2410(that, ecx, edx, r8, 0, r9d, 0, 1, 1, 0)` with the incoming `ecx`, `edx`, `r8` and `r9d`, the fifth to tenth as stack arguments",
+   "anchors": [
+    [
+     "0018181E",
+     "call"
+    ],
+    [
+     "00181834",
+     "mov"
+    ],
+    [
+     "00181848",
+     "mov"
+    ],
+    [
+     "00181850",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00272310",
+   "text": "calls `00246480(rcx, &t)` and stores qword `t` at `[rdx]`; then, when `rcx` is non-null, for each node of the chain qword `+0x10` (from `rcx`'s) it calls `00246480(node, &t)` and adds words `t+0`/`t+2` to words `[rdx]`/`[rdx+2]`; the frame carries the stack cookie (`01F44830`, checked by `00808C40`)",
+   "anchors": [
+    [
+     "00272334",
+     "call"
+    ],
+    [
+     "0027233E",
+     "mov"
+    ],
+    [
+     "00272358",
+     "call"
+    ],
+    [
+     "00272362",
+     "add"
+    ],
+    [
+     "0027236A",
+     "add"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "drafted by OPUS itself"
+}

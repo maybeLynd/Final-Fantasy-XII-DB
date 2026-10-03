@@ -4,7 +4,6 @@ category: 17-Presentation-Rendering
 status: AUDITED — static; all 76 call sites use the node's output as a modulate (section 13, 2026-09-19: 68 by colour multiply, 8 by alpha / 128); the live readings of sections 5-7 are title-screen only and were not re-made; lane 1 is Y, the up axis (cross-reference 2026-09-18), so mode 2 measures ground-plane distance
 owner_layer: Presentation — from the ledger's own tag, not inferred from callers
 evidence_tier: 1
-level: L1
 readiness: SIGNATURE RESOLVED
 confidence: HIGH
 verified_against:

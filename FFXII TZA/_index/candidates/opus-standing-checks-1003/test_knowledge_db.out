@@ -1,0 +1,48 @@
+test_01_build_then_current (test_knowledge_db.Fixture.test_01_build_then_current) ... [32mok[0m
+test_02_same_row_count_edit_is_stale (test_knowledge_db.Fixture.test_02_same_row_count_edit_is_stale) ... [32mok[0m
+test_03_added_and_deleted_files_are_stale (test_knowledge_db.Fixture.test_03_added_and_deleted_files_are_stale) ... [32mok[0m
+test_04_generator_change_stales_everything (test_knowledge_db.Fixture.test_04_generator_change_stales_everything) ... [32mok[0m
+test_05_mixed_table_freshness_scopes (test_knowledge_db.Fixture.test_05_mixed_table_freshness_scopes) ... [32mok[0m
+test_06_mid_build_edit_discards_staging_and_keeps_prior (test_knowledge_db.Fixture.test_06_mid_build_edit_discards_staging_and_keeps_prior) ... inputs changed mid-build; staged build discarded, the last usable index is kept. Moved: file:db/_types/types.tsv
+[32mok[0m
+test_07_stale_query_refuses_and_snapshot_labels (test_knowledge_db.Fixture.test_07_stale_query_refuses_and_snapshot_labels) ... [32mok[0m
+test_08_writers_of_field_includes_w_and_rw (test_knowledge_db.Fixture.test_08_writers_of_field_includes_w_and_rw) ... [32mok[0m
+test_09_hex_and_variable_field_sizes (test_knowledge_db.Fixture.test_09_hex_and_variable_field_sizes) ... [32mok[0m
+test_10_no_index_and_old_schema (test_knowledge_db.Fixture.test_10_no_index_and_old_schema) ... [32mok[0m
+test_11_stale_refuse_snapshot_refresh_current (test_knowledge_db.Fixture.test_11_stale_refuse_snapshot_refresh_current)
+The user's directive item 3 regression, end to end (OPUS, 2026-10-03): a canonical dependency change makes ... [32mok[0m
+
+----------------------------------------------------------------------
+Ran 11 tests in 1.921s
+
+[32mOK[0m
+index built 2026-10-03T09:36:00+00:00, pin=worktree, generator=7e6f26a30ba0
+  STALE fields: file:db/_types/fields.tsv changed since the build
+index is not current - refusing to return apparently-fresh rows.
+  `query --refresh` rebuilds through the staging guard; `--snapshot` runs a labeled as-of read.
+index built 2026-10-03T09:36:00+00:00, pin=worktree, generator=7e6f26a30ba0
+  STALE fields: file:db/_types/fields.tsv changed since the build
+index is not current - refusing to return apparently-fresh rows.
+  `query --refresh` rebuilds through the staging guard; `--snapshot` runs a labeled as-of read.
+SNAPSHOT - index built 2026-10-03T09:36:00+00:00, pin=worktree, generator=7e6f26a30ba0
+  STALE fields: file:db/_types/fields.tsv changed since the build
+0 row(s)
+building C:\Users\Kristian\AppData\Local\Temp\tmpt5wrqbih\out\k.sqlite
+  documents               1
+  doc_fields              6
+  citations               1
+  doc_names               0
+  contract_sections        0
+  contract_claims         0
+  functions               2
+  edges                   1
+  global_refs             1
+  field_access            3
+  types                   1
+  fields                  3
+  questions               1
+  reconstructions         1
+  script_verbs            1
+  contradictions          0
+ok
+0 row(s)

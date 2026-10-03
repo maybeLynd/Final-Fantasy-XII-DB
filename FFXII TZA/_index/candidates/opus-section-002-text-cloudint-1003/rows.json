@@ -1,0 +1,63 @@
+{
+ "page": "25-EBP-Script-Container/Sections/section-002-text.md",
+ "date": "2026-10-03",
+ "session": "opus-self",
+ "report": "section-002-text.json",
+ "rows": [
+  {
+   "fn": "002E1D50",
+   "text": "clamps `ecx` to 0..7 (signed) and, in the 0x68-byte entry `i` of the table at `0215F200`, stores byte 1 at `+0x3b`, `edx` at dword `+0x24`, `r8d` at dword `+0x28` and `r9b` at byte `+0x39`",
+   "anchors": [
+    [
+     "002E1D52",
+     "jns"
+    ],
+    [
+     "002E1D5F",
+     "cmovg"
+    ],
+    [
+     "002E1D70",
+     "mov"
+    ],
+    [
+     "002E1D75",
+     "mov"
+    ],
+    [
+     "002E1D7E",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "002E1FD0",
+   "text": "clamps `ecx` to 0..7 (signed) and stores `dl` at byte `0215F242` + `i`*0x68, on both of its paths",
+   "anchors": [
+    [
+     "002E1FDD",
+     "cmovg"
+    ],
+    [
+     "002E1FEE",
+     "mov"
+    ],
+    [
+     "002E1FF4",
+     "cmovg"
+    ],
+    [
+     "002E200B",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "interior",
+ "family": "",
+ "method": "OPUS drafted these rows itself from its F-interior pack (`f_pack.py`: each function the page cites only at its entry, with its annotated listing) and checked every row mechanically with `interior_ingest.py` (every anchor an instruction boundary inside the extent with the recorded mnemonic; every address a listing token). No second agent drafted or verified them, so the non-author check is SWE2-AUDIT-SPEC's."
+}

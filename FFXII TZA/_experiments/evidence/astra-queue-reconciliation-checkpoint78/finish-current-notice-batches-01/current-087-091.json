@@ -1,0 +1,22 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ready-queue-reconciliation-1002\\apply-current-bounded.py",
+    "87",
+    "91",
+    "current-087-091"
+  ],
+  "driver_sha256": "870adc0718126940088ff71737e57edfc015c0e8a03c8ca06b09b25be04008df",
+  "exit": 0,
+  "stdout": "{\"serial\": 87, \"task\": \"ASTRA-SKELETAL-RESET-LIVE\", \"action\": \"claim\"}\n{\"serial\": 88, \"task\": \"ASTRA-SKELETAL-RESET-LIVE\", \"action\": \"block\"}\n{\"serial\": 89, \"task\": \"AUTO-UNBLOCK-ASTRA-SKELETAL-RESET-LIVE\", \"action\": \"claim\"}\n{\"serial\": 90, \"task\": \"AUTO-UNBLOCK-ASTRA-SKELETAL-RESET-LIVE\", \"action\": \"finish\"}\n{\"serial\": 91, \"task\": \"AUTO-UNBLOCK-OPUS-REQ-ASTRA-S33-LOOT-POOL-ISOLATED-RUN\", \"action\": \"claim\"}\n",
+  "stderr": "",
+  "terminal": {
+    "status": "CURRENT_BOUNDED_BATCH_COMPLETE",
+    "start": 87,
+    "last": 91,
+    "next": 92,
+    "total": 118
+  },
+  "status": "CHECKED_CHILD_TERMINAL"
+}

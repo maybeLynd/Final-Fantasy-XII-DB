@@ -1,0 +1,205 @@
+{
+ "page": "18-Audio/the-music-control-file-and-the-bgm-stream.md",
+ "date": "2026-10-03",
+ "session": "opus-self",
+ "report": "the-music-control-file-and-the-bgm-stream.json",
+ "rows": [
+  {
+   "fn": "00220D40",
+   "text": "calls `005CD4F0(rcx+0x350)`, then `00220600(rcx+0x1d0)`, then `005CD820(rcx+0x350)`, and returns the result of `00220600`",
+   "anchors": [
+    [
+     "00220D57",
+     "lea"
+    ],
+    [
+     "00220D66",
+     "call"
+    ],
+    [
+     "00220D73",
+     "call"
+    ],
+    [
+     "00220D7E",
+     "call"
+    ],
+    [
+     "00220D84",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "002255B0",
+   "text": "stores `rdx` to qword `+0x20` and `r8` to qword `+0x28` of `rcx`",
+   "anchors": [
+    [
+     "002255B4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00225CC0",
+   "text": "stores `rdx` to qword `+8` and `r8d` to dword `+0x10` of `rcx`",
+   "anchors": [
+    [
+     "00225CC4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0032E780",
+   "text": "returns -1 when `edx` is negative (signed); otherwise returns `0032E870(rcx, edx, r8, r9, the fifth (stack) argument, 0)`",
+   "anchors": [
+    [
+     "0032E786",
+     "jns"
+    ],
+    [
+     "0032E788",
+     "or"
+    ],
+    [
+     "0032E790",
+     "mov"
+    ],
+    [
+     "0032E795",
+     "mov"
+    ],
+    [
+     "0032E7A2",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00354690",
+   "text": "calls `003EB100(00267E10(r9))` and tail-jumps to `00314D40(1)`",
+   "anchors": [
+    [
+     "00354694",
+     "mov"
+    ],
+    [
+     "00354697",
+     "call"
+    ],
+    [
+     "0035469E",
+     "call"
+    ],
+    [
+     "003546AC",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003557C0",
+   "text": "with `n` = `00267E10(r9)` it calls `003EB010()`, then tail-jumps to `003EB180(003EACA0(n), n)`",
+   "anchors": [
+    [
+     "003557C9",
+     "call"
+    ],
+    [
+     "003557D0",
+     "call"
+    ],
+    [
+     "003557D7",
+     "call"
+    ],
+    [
+     "003557E6",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003EB010",
+   "text": "returns at once when qword `02B5E0E8` is null; otherwise calls `003EAD10(02B5E0E0)` and `003697F0(qword 02B5E0E8)`, then zeroes qword `02B5E0E8` and dword `02B5E0F0`",
+   "anchors": [
+    [
+     "003EB01C",
+     "je"
+    ],
+    [
+     "003EB025",
+     "call"
+    ],
+    [
+     "003EB031",
+     "call"
+    ],
+    [
+     "003EB038",
+     "mov"
+    ],
+    [
+     "003EB03F",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "003EB0A0",
+   "text": "returns 1 when byte `02B5E111` is non-zero and byte `02B5E110` is neither 0 nor 5, else 0",
+   "anchors": [
+    [
+     "003EB0A7",
+     "je"
+    ],
+    [
+     "003EB0A9",
+     "movzx"
+    ],
+    [
+     "003EB0B4",
+     "cmp"
+    ],
+    [
+     "003EB0B9",
+     "mov"
+    ],
+    [
+     "003EB0BF",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "003EB150",
+   "text": "does nothing when byte `02B5E111` is 0; otherwise stores 6 to byte `02B5E110` when it holds 5, and stores its own value back otherwise",
+   "anchors": [
+    [
+     "003EB157",
+     "je"
+    ],
+    [
+     "003EB165",
+     "cmp"
+    ],
+    [
+     "003EB169",
+     "cmove"
+    ],
+    [
+     "003EB16C",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "interior",
+ "family": "",
+ "method": "OPUS drafted these rows itself from its F-interior pack (`f_pack.py`: each function the page cites only at its entry, with its annotated listing) and checked every row mechanically with `interior_ingest.py` (every anchor an instruction boundary inside the extent with the recorded mnemonic; every address a listing token). No second agent drafted or verified them, so the non-author check is SWE2-AUDIT-SPEC's."
+}

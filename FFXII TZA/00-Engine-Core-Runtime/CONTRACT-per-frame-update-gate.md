@@ -2,7 +2,6 @@
 contract: run the frame's sixteen gated subsystem updates, in the order the pump emits them
 category: 00-Engine-Core-Runtime
 scope: family
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 00-Engine-Core-Runtime/Per-Frame-Update-Gate/one-word-decides-which-fifteen-subsystems-tick.md
@@ -1838,3 +1837,11 @@ Interior anchor `0028E262` (function `0028E240`).
 `003F5CB0` (1099 B) is one of the gated subsystems' scalar-field updater `003F6100` calls: it reads the object's `+0x820`/`+0x828`/`+0x830` timer triple, accumulates through `003F6370`, compares against 1.0, scales `01DFE0B4` by `0xF` iterations and the `008C5F6C`/`008F30F8`/`009002BC`/`009159F8`/`00901988` constants, clamps via `0028E9F0`, and finishes through `003F62D0` - the parameterized fade/speed curve one gate arm advances each tick.
 
 Interior anchor `003F5F45` (function `003F5CB0`).
+
+## Homed bodies re-homed here for host fit (FABLE, 2026-10-03; AUDIT-SPEC batch 4)
+
+*Each body below was homed on another page by FABLE's homing stream (cloud-drafted, FABLE-verified). SWE2-AUDIT-SPEC reviewed its sentence, site and anchors exact, and rejected only the host: that page cites the caller as a foreign or boundary mention (commit `95d495604`). The row is moved here because this page cites the caller in its own text. The sentence is unchanged. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Verified by [`move_rows.py`](../_index/candidates/fable-home-host-moves-b4-1003/move_rows.py): every site transfers to its function, this page cites the caller outside this section, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors | moved from |
+|---|---|---|---|---|---|
+| `0035D070` | 12 B | `003C6000` + 0x13 | loads the address `022C8060` into `rcx` and tail-jumps (site `0035D070` + 0x7) with the other incoming registers unchanged; it has no other work | Interior anchor `0035D077` | [CONTRACT-boot-fixups](../00-Engine-Core-Runtime/CONTRACT-boot-fixups.md) |

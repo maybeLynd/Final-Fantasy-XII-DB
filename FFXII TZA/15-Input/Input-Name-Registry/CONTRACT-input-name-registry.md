@@ -2,7 +2,6 @@
 contract: register one input name into its string-keyed startup list
 category: 15-Input
 scope: operation
-level: L2
 readiness: RUNTIME VALIDATED and DIFFERENTIAL TESTED
 confidence: PROVEN
 implements: 15-Input/Input-Name-Registry/the-input-name-registry-and-channel-aliases.md

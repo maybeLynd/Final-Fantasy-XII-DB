@@ -2,7 +2,6 @@
 contract: unlock a bazaar good from loot sold, sell it once, and decide whether it ever comes back
 category: 12-Items-Equipment-Shops-License
 scope: family
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 12-Items-Equipment-Shops-License/the-bazaar-recipe-unlock-and-purchase.md

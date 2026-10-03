@@ -2,7 +2,6 @@
 contract: walk one subgroup's gambit lines in order and commit the first that both matches and succeeds
 category: 09-Combat-AI-And-Gambits
 scope: operation
-level: L1
 readiness: DIFFERENTIAL TESTED   # the WALK; its three callees executed 2026-09-18 (EXP-095, §13a) — see §13
 confidence: PROVEN
 implements: 09-Combat-AI-And-Gambits/gambit-evaluation-and-enmity.md

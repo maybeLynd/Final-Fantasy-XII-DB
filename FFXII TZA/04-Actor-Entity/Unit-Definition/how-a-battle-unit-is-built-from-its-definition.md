@@ -4,7 +4,6 @@ category: 04-Actor-Entity
 status: DOCUMENTED
 owner_layer: PrimaryOwner:ActorEntity (the installer) — the stats-record initialiser is CombatFormula
 evidence_tier: 1
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 verified_against:

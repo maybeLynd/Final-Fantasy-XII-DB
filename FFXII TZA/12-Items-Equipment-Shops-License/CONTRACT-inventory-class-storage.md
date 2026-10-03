@@ -2,7 +2,6 @@
 contract: read and change how many of an item the party holds, through the item id's class
 category: 12-Items-Equipment-Shops-License
 scope: family
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 12-Items-Equipment-Shops-License/item-id-encoding-and-equipment-compatibility.md

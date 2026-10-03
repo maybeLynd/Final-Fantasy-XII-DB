@@ -51,7 +51,32 @@ def unstruck(s):
     return re.sub(r"~~.*?~~", "", s)
 
 
-def classify(word, line, reg):
+# OPUS, 2026-10-03 (the user's root-cause directive, item 5): three ways hidden debt still passed.
+#  1. A status word the census did not know was simply not examined: only PARTIAL/REOPENED/STUB were. FINAL is now the
+#     explicit allow-list and EVERY other word is non-final (fail closed) - a new "DRAFT" or "PROVISIONAL" is examined.
+#  2. PROCESS-ONLY accepted waiting WORDING ("review pending") with no identifier, so a page could wait forever on a
+#     review nobody holds. A waiting state now needs an exact identifier that resolves: an open board task id, or an
+#     existing _index/candidates/ record. Wording without one is UNMAPPED.
+#  3. A page whose named rows are all closed and that names no waiting state is STALE-STATUS (re-status it), reported
+#     apart from UNMAPPED (nothing named at all). Both fail.
+FINAL = {"AUDITED", "DOCUMENTED"}
+TASK_ID = re.compile(r"\b([A-Z][A-Z0-9]+(?:-[A-Z0-9]+){2,})\b")
+RECORD = re.compile(r"_index/candidates/([A-Za-z0-9._-]+)")
+
+
+def waiting_ids(line, tasks, db):
+    """Exact identifiers of a waiting state named on the line that resolve now: open board tasks, existing records."""
+    out = []
+    for t in TASK_ID.findall(line):
+        if tasks.get(t) in ("READY", "ACTIVE", "BLOCKED"):
+            out.append(t)
+    for r in RECORD.findall(line):
+        if db and os.path.isdir(os.path.join(db, "_index", "candidates", r)):
+            out.append("_index/candidates/" + r)
+    return out
+
+
+def classify(word, line, reg, tasks=None, db=None):
     live_part = re.split(r"\(was\b", unstruck(line))[0]   # the "(was ...)" tail is history
     ids = sorted(set(RID.findall(live_part)))
     states = {i: reg.get(i, "UNREGISTERED") for i in ids}
@@ -59,11 +84,15 @@ def classify(word, line, reg):
     if live:
         return "LIVE-ROW", states
     if PROCESS.search(live_part):
-        return "PROCESS-ONLY", states
+        if waiting_ids(live_part, tasks or {}, db):
+            return "WAITING-ID", states
+        return "UNMAPPED", dict(states, _why="waiting wording with no open task id or record")
+    if ids:
+        return "STALE-STATUS", states
     return "UNMAPPED", states
 
 
-def census(db, reg):
+def census(db, reg, tasks=None):
     pages, counts = [], {}
     for dp, dn, fns in os.walk(db):
         rel = os.path.relpath(dp, db).replace(os.sep, "/")
@@ -78,9 +107,9 @@ def census(db, reg):
                 continue
             word, line = status_of(fm)
             counts[word] = counts.get(word, 0) + 1
-            if word in ("PARTIAL", "REOPENED", "STUB"):
-                cls, states = classify(word, line, reg)
-                if word == "REOPENED" and cls != "LIVE-ROW" and not PROCESS.search(line):
+            if word not in FINAL:
+                cls, states = classify(word, line, reg, tasks, db)
+                if word == "REOPENED" and cls not in ("LIVE-ROW", "WAITING-ID"):
                     cls = "UNMAPPED"
                 pages.append({"page": os.path.relpath(p, db).replace(os.sep, "/"), "status": word, "class": cls,
                               "rows": states, "line": line[:400]})
@@ -89,17 +118,23 @@ def census(db, reg):
 
 def self_test():
     reg = {"OV-10": "PARTIAL", "RC-12": "ANSWERED", "SD-1": "ANSWERED", "OV-5": "PARTIAL"}
+    tasks = {"FABLE-REQ-X-REVIEW-1": "ACTIVE", "FABLE-REQ-X-DONE-2": "DONE"}
     cases = [
         ("PARTIAL", "PARTIAL — OV-10 stays open (runtime)", "LIVE-ROW"),
-        ("PARTIAL", "PARTIAL — SD-1 answered; peer acceptance is a process item", "PROCESS-ONLY"),
+        ("PARTIAL", "PARTIAL — SD-1 answered; peer acceptance is a process item", "UNMAPPED"),
+        ("PARTIAL", "PARTIAL — SD-1 answered; review pending FABLE-REQ-X-REVIEW-1 (peer acceptance)", "WAITING-ID"),
+        ("PARTIAL", "PARTIAL — SD-1 answered; review pending FABLE-REQ-X-DONE-2", "UNMAPPED"),
+        ("PARTIAL", "PARTIAL — SD-1 answered", "STALE-STATUS"),
+        ("DRAFT", "DRAFT — open: the scalars", "UNMAPPED"),
         ("PARTIAL", "PARTIAL — open: what the matrices hold at draw time", "UNMAPPED"),
-        ("PARTIAL", "PARTIAL — SD-1 answered; open: the scalars (was — OV-10 open)", "UNMAPPED"),
-        ("REOPENED", "REOPENED — RC-12 answered, FABLE adjudication pending", "PROCESS-ONLY"),
-        ("PARTIAL", "PARTIAL — ~~OV-10 open~~ SD-1 answered", "UNMAPPED"),
+        ("PARTIAL", "PARTIAL — SD-1 answered; open: the scalars (was — OV-10 open)", "STALE-STATUS"),
+        ("REOPENED", "REOPENED — RC-12 answered, FABLE adjudication pending", "UNMAPPED"),
+        ("REOPENED", "REOPENED — RC-12 answered, FABLE adjudication pending FABLE-REQ-X-REVIEW-1", "WAITING-ID"),
+        ("PARTIAL", "PARTIAL — ~~OV-10 open~~ SD-1 answered", "STALE-STATUS"),
     ]
     ok = True
     for word, line, want in cases:
-        got = classify(word, line, reg)[0]
+        got = classify(word, line, reg, tasks)[0]
         print("  %-12s <- %-60s %s" % (got, line[:60], "ok" if got == want else "WRONG (want %s)" % want))
         ok = ok and got == want
     return ok
@@ -116,20 +151,26 @@ def main():
         print("SELF-TEST %s" % ("PASS" if ok else "FAIL")); print("FAILS %d" % (0 if ok else 1))
         return 0 if ok else 1
     reg, _ = cq.read_table(a.db)
-    counts, pages = census(a.db, reg)
+    tasks = {}
+    try:
+        b = json.load(io.open(os.path.join(a.db, "_index", "_inbox", "TEAM.json"), encoding="utf-8"))
+        tasks = {t.get("id"): str(t.get("status", "")).upper() for t in b.get("tasks", [])}
+    except Exception:
+        pass
+    counts, pages = census(a.db, reg, tasks)
     print("production system pages: " + ", ".join("%s %d" % kv for kv in sorted(counts.items())) +
           " (total %d)" % sum(counts.values()))
     by = {}
     for p in pages:
         by.setdefault(p["class"], []).append(p)
-    for cls in ("LIVE-ROW", "PROCESS-ONLY", "UNMAPPED"):
+    for cls in ("LIVE-ROW", "WAITING-ID", "STALE-STATUS", "UNMAPPED"):
         print("%s: %d" % (cls, len(by.get(cls, []))))
         for p in by.get(cls, []):
             rows = ", ".join("%s=%s" % kv for kv in sorted(p["rows"].items())) or "no row named"
             print("  %-8s %s  [%s]" % (p["status"], p["page"], rows))
     if a.json:
         json.dump({"db": a.db, "counts": counts, "pages": pages}, open(a.json, "w", encoding="utf-8"), indent=1)
-    n = len(by.get("UNMAPPED", []))
+    n = len(by.get("UNMAPPED", [])) + len(by.get("STALE-STATUS", []))
     print("FAILS %d" % n)
     return 1 if n else 0
 

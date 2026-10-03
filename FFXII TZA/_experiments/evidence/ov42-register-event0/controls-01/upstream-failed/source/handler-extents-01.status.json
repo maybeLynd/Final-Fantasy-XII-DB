@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-gauge-callback-binding\\prepare-handler-extents.py",
+    "handler-extents-01.json"
+  ],
+  "driver_sha256": "b54cf063af4e29b4ab6463c8fbd76e3b7b4ddbd40065b6a064c9d828f96c6003",
+  "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+  "terminal": true,
+  "exit": 1,
+  "exception": null
+}

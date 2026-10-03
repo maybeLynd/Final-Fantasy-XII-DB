@@ -2,7 +2,6 @@
 contract: Pay out a kill — local sequencing and mode-dependent presentation inputs
 category: 13-Rewards-Progression-Economy
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: 13-Rewards-Progression-Economy/what-happens-when-an-enemy-dies.md

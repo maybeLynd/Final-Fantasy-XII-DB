@@ -2,7 +2,6 @@
 contract: The script-to-native bridge — pop arguments, call the native function, write a result
 category: 01-Script-VM-Native-Bridge
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: Spawn-Verbs/the-script-to-native-calling-convention.md

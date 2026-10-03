@@ -1,0 +1,9 @@
+0031B8C0  sub      rsp, 0x28
+0031B8C4  call     0x263750
+0031B8C9  test     rax, rax
+0031B8CC  jne      0x31b8d3
+0031B8CE  add      rsp, 0x28
+0031B8D2  ret      
+0031B8D3  mov      rcx, rax
+0031B8D6  add      rsp, 0x28
+0031B8DA  jmp      0x263e30

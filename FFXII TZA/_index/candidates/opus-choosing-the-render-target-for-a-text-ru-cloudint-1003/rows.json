@@ -1,0 +1,41 @@
+{
+ "page": "99-Unresolved-Residual/Glyph-Run-Rendering/choosing-the-render-target-for-a-text-run.md",
+ "date": "2026-10-03",
+ "session": "opus-self",
+ "report": "choosing-the-render-target-for-a-text-run.json",
+ "rows": [
+  {
+   "fn": "003655F0",
+   "text": "with `t` = qword slot `ecx` (signed) at `+0x10` of qword `022CBE00`, scans the dword `t+4` (signed count) 0xC-byte entries from `t+0x10` for word `+0` equal to 0x30 and returns 0 when none matches; for the match it calls `0017FD00(ecx+0xb)` and, with `f` = `0017F8C0(that word)`, returns `0017F9C0(dword f+0x1c)` truncated to an integer when `f` is non-null, else the entry's byte `+4`",
+   "anchors": [
+    [
+     "00365613",
+     "cmp"
+    ],
+    [
+     "0036562E",
+     "call"
+    ],
+    [
+     "00365636",
+     "call"
+    ],
+    [
+     "00365648",
+     "cvttss2si"
+    ],
+    [
+     "00365652",
+     "movzx"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "interior",
+ "family": "",
+ "method": "OPUS drafted these rows itself from its F-interior pack (`f_pack.py`: each function the page cites only at its entry, with its annotated listing) and checked every row mechanically with `interior_ingest.py` (every anchor an instruction boundary inside the extent with the recorded mnemonic; every address a listing token). No second agent drafted or verified them, so the non-author check is SWE2-AUDIT-SPEC's."
+}

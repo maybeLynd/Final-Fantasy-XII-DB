@@ -2,7 +2,6 @@
 contract: Move one save image from live state to a file and back — four buffers, two copies, one size
 category: 19-Save-Load-Settings
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: Save-Image-Layout-And-Pipeline/save-image-buffers-header-and-payload.md, Save-Image-Layout-And-Pipeline/version-stamps-and-what-loading-normalises.md, Save-Image-Layout-And-Pipeline/the-save-payload-field-map.md

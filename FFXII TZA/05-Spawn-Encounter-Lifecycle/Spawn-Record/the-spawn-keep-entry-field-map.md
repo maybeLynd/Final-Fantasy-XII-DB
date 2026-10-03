@@ -4,7 +4,6 @@ category: 05-Spawn-Encounter-Lifecycle
 status: AUDITED
 owner_layer: PrimaryOwner:Spawn_Encounter_Lifecycle — the stats page at +0x80 is CombatFormula's
 evidence_tier: 1
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 verified_against:

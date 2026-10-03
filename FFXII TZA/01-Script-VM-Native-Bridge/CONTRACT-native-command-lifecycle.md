@@ -2,7 +2,6 @@
 contract: Run a script's native command — id split, family table, begin/poll/result in one call
 category: 01-Script-VM-Native-Bridge
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: Native-Command-Lifecycle/native-command-lifecycle.md

@@ -1,0 +1,23 @@
+# SWE2-AUDIT-SPEC review: OPUS member-mode rows, Phyre PInputs module part 1 (opus-member-en-modules-registered-before-main-phyre-pinputs-module-1)
+
+Reviewer: SWE2-AUDIT-SPEC (Claude stand-in for the rate-limited Devin session; not OPUS, not the drafting or checking local agents) · 2026-10-03 · Task: `OPUS-REQ-AUDITSPEC-OPUS-MEMBER-EN-MODULES-REGISTERED-BEFORE-MAIN-PH` (task dir given as SEE-REQUEST-QUESTION; the board `target` is `_index/candidates/opus-member-en-modules-registered-before-main-phyre-pinputs-module-1/` and the ask is "40 F dispositions", matching this record's 40 rows) · Page: `22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md` (commit 399ce7caf)
+
+Note on identity: the truncated task id `...-EN-MODULES-REGISTERED-BEFORE-MAIN-PH` is shared by the records for PInputs parts 1, 2 and 3. The board keeps one entry, whose target names part 1, so this record reviews part 1 only. Parts 2 and 3 are covered by the superseding request `OPUS-REQ-AUDITSPEC-PHYRE-MEMBERS-399CE7CAF`.
+
+## SWE2-AUDIT-SPEC verdict: ACCEPT
+
+## SWE2-AUDIT-SPEC checks
+
+- `interior_applier.py` re-run fresh without `--apply` -> `VERIFY 40 functions, 200 anchors`, `ALREADY`, `FAILS 0`.
+- `rows.json`: 40 rows, mode `member`, family `Phyre PInputs module`; rejected 0, skipped 0, missing 0, corrections none.
+- Semantic pass: **all 40 rows**. I read 15 clause by clause against `disr.py` output of the certified image, with names resolved from `.rdata`. I checked the other 25 against one of those hand-read rows with a script (below). All 40 exact:
+  - Constructors `0086C460`, `0086C4C0`, `0086C590`, `0086C5F0`: stores `+8`, `+0x10`, `+0x18`, `+0x1C`, `+0x20`=0x3F800000, vtable `+0`, `+0x30/+0x38`=0, then `00873FE0` / `00874080` / `00874170` / `00874170`. `0086C520`: `+0x30` = address 01F462E8, and `+0x28` = eax from `call [rax+8]` with `rcx` = 01F462E8.
+  - `0086C830`: the loop bound is re-read and masked on each pass (unsigned `jb`). `cmove rdx,rsi` gives 0 for a null entry. The first release is gated by `test eax,eax; je`, the second runs unconditionally. The final free of `[rcx+8]` is skipped when bit 0 is set (`not al; test al,1; je`).
+  - `0086C910` (same two-release shape). `0086C990`: the same-object test compares `rcx+8` with `rdx+8`; `qword - (byte & 1)` clears bit 0; `006BC4C0(n, q)`; the free gate; the stores `+0x18`, `+0x10`, `+0x20`.
+  - `0086CDF0`, `0086CE50`: `test dl,1; je` means a release only with bit 0 set, and `test dl,4; jne` selects `0016D6A0(rcx, 0x28)` over `00584730(rcx)`.
+  - `0086D670`: names `m_name`, `m_inputSources`, `getInputAt`, `getInputType`. Arguments of `00632960(02EB7430, 02EB6CF0, 02E4D630, name, 8, 0, 0, 0)` and `00632A10(02EB7490, 02EB6CF0, 0086E7B0(0), name, 0x10, 0, 3, 8)`; qword 02EB7490 = 01CD66C8. The method records use `00632FB0(record, 02EB6CF0, name, 0)`, zero `+0x28`, and tail-link gated on `+0x18` and `005A7A40`. Unguarded stores to 02EB7530/02EB7538 and 02EB7590/02EB7598, with `+0x28` pointed at `+0x30`. Tail `jmp 00639450`.
+  - `0086D990` (`00632A10(02EB75C0, 02EB6DF0, 0086E470(0), name, 0, 0, 3, 8)`, store 01CD6770); `0086DA70` (four fields; types, `n` and `f` = 2/0/0/0 as stated); `0086DC90`; `0086DD50` (`n` 0x30/0x38, `f` = 2).
+  - Mechanical check of the 26 `01CD6268` release bodies (`0086CE50` read by hand, plus `0086CEA0` through `0086D620`). For each body, a script confirmed: a single rip-relative `lea` to 01CD6268; a single `mov edx, <size>` equal to the size in the row (0x28 / 0x38 / 0x40 as written, all 26 match); the branch shape `test dl,1; je`, `test dl,4; jne`; calls `00584730` then `0016D6A0`; body under 0x50 bytes. 26/26 OK.
+- Advisory, not a defect: in `0086D670`, `{00873C10, 0}` is written by a 16-byte `movups` from `[rsp+0x48]` (0086D873/0086D878, and again at 0086D94B/0086D950). Only the qword `[rsp+0x48]` and the dword `[rsp+0x50]` are stored first, so the last dword of 02EB7538..02EB7547 (and of 02EB7598..02EB75A7) is whatever is on the stack. The row's two named values are right. A later pass could say "16 bytes whose first qword is `00873C10` and next dword 0".
+- Limits hold: body statements only, static evidence. The drafting agent, the second local reader and OPUS's re-read are not independent review; this record is.
+- Batch-wide sentence, not this record's rows: the README's "262 stood, 10 clauses in 8 functions were corrected" (shared by all 11 records of 399ce7caf) does not match the `rows.json` corrections, which total 12 entries in 10 functions across the 11 records. The narrowing is recorded once, in `auditspec-review-opus-phyre-members-399ce7caf`.

@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\freeze-uq147-local-boundaries.py", line 23, in <module>
+    if json.loads((P/n).read_text()).get('producer_complete') is not True:raise ValueError('Incomplete result '+n)
+                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Incomplete result result-request-tail-boundary-02.json

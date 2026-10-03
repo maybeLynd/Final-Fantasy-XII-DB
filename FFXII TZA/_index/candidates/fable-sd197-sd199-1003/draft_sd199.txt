@@ -1,0 +1,226 @@
+> **UNVERIFIED CLOUD DRAFT** (copied unchanged below from C:/t/sd199.md, 2026-10-03). It is not evidence. What FABLE re-derived from the image, and what failed, is in README.md and check_sd199.out.
+
+**Verdict:** apart from choosing the path, `+0x1F1` bit 3 changes two things. (1) Both bit-3-set paths (`00437130` and `00444340`) drop any primitive that has a corner whose first vertex qword is zero; the bit-clear paths always emit it. (2) For meshes only, the bit-clear inline path can scale the pass pair `param+0x50+8p` by 1/1.15 and ×1.15, and `00437130` never does. Every other input, kernel, lighting mode, UV operator, emitter and argument is the same.
+
+# SD-199: what `+0x1F1` bit 3 changes in drawing, beyond selecting the path (cloud draft, FABLE question lane, 2026-10-03)
+
+Source: the four listings in `cloud-input/questions/sd199/` (`004355D0.lst`, `00437130.lst`, `004434D0.lst`,
+`00444340.lst`). Addresses are VAs with the image base included. Callees are cited as "`CALLER` + 0xNN", meaning the
+call instruction's offset from the calling function's entry. This is a text-only draft, so every line needs FABLE's
+re-read against the executable.
+
+Notation used below:
+- `param` is the draw-parameter block (`r15` in `004355D0`, `r13` in `00437130`, `r14` in `004434D0`, `rdi` in
+  `00444340`). `rsi` is the record in both mesh paths.
+- `p` is the pass index, the counter of the loop bounded by `param+0x1F0`.
+- `nXX` is the record's word at `+0xXX`.
+- `I` is the inline path of `004355D0`, and `F` is `00437130`.
+
+---
+
+## A. `00437130` against the inline path of `004355D0`
+
+### A.0 Where the inline path starts and ends
+
+- The dispatcher's shared part runs from `004355D0` to `0043566D`: the prologue, the `0024E410` / `00180100` gate,
+  the `+0x18C` tests, and the prep through `00434CD0` (`004355D0`+0x66) or `00435050` (`004355D0`+0x96). It then
+  selects at `0043566F`–`00435697`: `0x80` or above calls `00438860` (`004355D0`+0xB1); otherwise bit 3 calls
+  `00437130` (`004355D0`+0xC2). Both calls return through the shared epilogue at `00435641`.
+- **The inline path starts at `00435699`**, the fall-through target of `je 0x435699` at `0043568A`.
+- **The inline path ends at `00436CFB`** (`jmp 0x435641`), after its pass loop (`00435760`–`00436CBA`) and the
+  register restores (`00436CC0`–`00436CF3`). It shares the epilogue `00435641`–`0043565B` with the two calls.
+- No other instruction in the listing branches into `00435699`–`00436CFB` from outside that range.
+
+`F` is a whole function: `00437130`–`00438859`, with its pass loop at `00437200`–`00438811`.
+
+### A.1 Section-by-section alignment
+
+| # | section | `I` (`004355D0` inline) | `F` (`00437130`) | difference |
+|---|---|---|---|---|
+| 1 | scratch layout from `[02AEED50]` | `00435699`–`00435708` | `00437160`–`004371BD` | none in values. Both build the same seven pointers: base `B`; `B+16·n16`; `r14 = B+32·n16` (the vertex table); `C0 = r14+16·n14`; `C1 = C0+4·n18`; `UV0 = C0+8·n18`; `UV1 = UV0+8·n18`; and the per-position float array `UV1+8·n18`. Only the stack slots differ: `I` uses `[rsp+0x68]/[rsp+0x58]/[rbp-0x68]/[rbp-0x60]/[rsp+0x78]/[rsp+0x50]/[rsp+0x38]`, and `F` uses `[rsp+0x68]/[rsp+0x40]/[rbp-0x58]/[rbp-0x68]/[rbp-0x80]/[rsp+0x60]/[rsp+0x38]`. BOOKKEEPING |
+| 2 | zero-pass guard and return value | `0043570D`/`00435714` → `00436CE8`, `eax = r8d = 1` (`004356B5`, `00436C86`, `00436CF0`) | `004371C2`/`004371C9` → `00438837`, `eax = 1` | none: both return 1, with or without passes. BOOKKEEPING |
+| 3 | constants held in registers | `xmm6 = 1.15` (`0043573D`, from `00D1247C`) and `xmm7 = 0.5` (`0043574D`) | `xmm6 = 0.5` (`004371F2`) only | `I` loads 1.15, which `F` never uses. It feeds difference **A-2**, so it counts there and is not a separate item |
+| 4 | pass-loop head: the globals and per-pass pointers | `00435760`–`0043579F`. `[02AEE900] = param[0x134+p]`, `[02AEE908] = param[0x1B8+8p]`, `r12 = param+0x50+8p`, `[rsp+0x60] = param+0x70+16p`, `[rsp+0x48] = 16p` | `00437200`–`00437242`. Same writes; `[rsp+0x58] = param+0x50+8p`, `[rbp-0x70] = param+0x70+16p`, `r12 = 16p` | none. BOOKKEEPING (only the registers and slots differ) |
+| 5 | `+0x1A4` light prep: `00397910` with `02AEEBF0`, `0039B960` ×3, `0039AF70`, then `+0x1A0`/`+0x1A4` choosing `003952D0`/`00394E50`/`003954E0`/`00395050` (the last two with the float `param+0x190+4p`) | `004357A6`–`0043586E` | `00437249`–`00437311` | none. Same callees, same argument sources (`B`, `B+16·n16`, `n16`) |
+| 6 | colour per pass: `+0x1A8` flat broadcast (`00432300` with `param+0x40`, `param+0x138+4p`, count 1, then the copy loop over `n18`); per-corner modulate by `param+0x138+4p` unless it equals `0x80808080`; `00432CC0` alpha only when `+0x1A4` is set | `00435873`–`0043592F` (`+0x1A4` set), `0043594D`–`004359E2` (clear) | `00437316`–`004373DC` (set), `004373F4`–`00437481` (clear) | none. On the identity-and-`+0x1A4`-clear arm, `I` re-points its colour register `r13` at `C0` (`004359E2`) and `F` stores `C0` in `[rsp+0x48]` (`00437481`); both select the same array. `I` restores `r13 = C1` at the loop end (`00436C9E`); `F` re-selects each pass. BOOKKEEPING |
+| 7 | per-pass mode switch `param+0x1B0+p` | `004359E5`–`00435BF4` | `00437486`–`004376C7` | none. Each mode reaches the same routine with the same arguments. Mode 0 / 5+ uses `UV0`. Modes 3/4: `02AEEA20` / `02AEEBF0`, `00396A30`/`00396560` by `+0x1B4`. Mode 2: `02AEEBF0`, then `003962F0` with `param+0x1D8+4p`, then `00396F20` into `UV1`, then `00394B70` with `r14`, `UV1` and `n1A` (`004355D0`+0x567 / `00437130`+0x4D0). Mode 1: `02AEEA20`, `02AEEAA0`, the constant `(0,0,1,0)` from `008C5FB0`, and `00395CF0`/`00395780`. Every arm ends in `00396F20` into `UV1` |
+| 8 | UV operator `param+0x1AC+p` (1: `0043E7B0`, 2: `00434630`, 3: `00434760`, with `param+0x150+16p` and `n1A`) | `00435BF9`–`00435C88` | `004376CC`–`0043775A` | none. `I` holds the current UV source in `rdi` and `F` holds it in `r13` (mirrored in `[rsp+0x50]`). BOOKKEEPING |
+| 9 | `param+0x1F2` bit 0: `0043E840` with the pass pair `param+0x50+8p`, then the pair is reset to (0.5, 0.5) | `00435C8D`–`00435CD6` | `0043775F`–`004377AE` | none |
+| 10 | `param+0x1F2` bit 1: `0043E840` with `(param+0x1EC, param+0x1EC)`, then 0.5 is added to each lane of the pass pair | `00435CDB`–`00435D6F`, store at `00435D9B`/`00435DA2` | `004377B0`–`0043780C` | **difference A-2** (1.15, inserted before the +0.5) |
+| 11 | neither `+0x1F2` bit | `00435D71`–`00435DA2` | `004377B2` (`je 0x437811`, nothing done) | **difference A-2** |
+| 12 | emit selector `param+0x130+p` (5 / 1 / other) | `00435DA8`, `0043608C` | `00437811`, `00437B47` | none in the selection |
+| 13 | emit, value 5 (`[02AEE900]` set: `0039E820` tri / `0039EC30` quad; clear: `0039E6B0` / `0039EA70`; positions and colours only) | `00435DB9`–`00436087` | `00437822`–`00437B42` | **difference A-1** (null-corner skip) |
+| 14 | emit, value 1 (per-primitive byte stream from `0020E600(rsi+0x188)`; builder `0039B840`/`0039B860` with UV, per-position floats and `r9 = param+0x50+8p`; then `0039F4B0`/`0039F9F0` (set) or `0039F2B0`/`0039F780` (clear) with `r9 = param+0xB0+16·byte` and the colour pointer at `[rsp+0x20]`) | `00436094`–`004366DF` | `00437B4F`–`004381D7` | **difference A-1**. In `F` the byte is read and its pointer advanced before the skip test (`00437B90`/`00437B95`, `00437D00`/`00437D05`, `00437EC0`/`00437EC5`, `00438030`/`00438035`), so the stream stays aligned |
+| 15 | emit, any other value (same builders; second callee gets `r9 = param+0x70+16p`) | `004366E4`–`00436C7F` | `004381DC`–`004387DB` | **difference A-1** |
+| 16 | counters per primitive (positions: index +3 per triangle and +8 bytes per quad; colours +3 / +4; UV +6 / +8 dwords) | `004361EB`–`004361F6`, `004363AB`–`004363B4`, etc. | `00437CD5`–`00437CDC`, `00437E93`–`00437E9A`, etc. | none. In `F` the counters advance on the skip path as well (each skip jumps to the counter block) |
+| 17 | pass-loop tail and epilogue | `00436C83`–`00436CBA`; restores `xmm6`/`xmm7`; returns through `00435641` | `004387E1`–`00438811`; restores `xmm6`; own epilogue `00438837`–`00438859` | frame size (`0x210` against `0x1F0`), pushes, and the shared versus own epilogue. BOOKKEEPING |
+
+Both paths read the same record fields (`+0x10`, `+0x12`, `+0x14`, `+0x16`, `+0x18`, `+0x1A`, `+0x170`, `+0x174`,
+`+0x188`). They read the same parameter-block fields (`+0x40`, `+0x50+8p`, `+0x70+16p`, `+0xB0+16·byte`, `+0x130+p`,
+`+0x134+p`, `+0x138+4p`, `+0x150+16p`, `+0x190+4p`, `+0x1A0`–`+0x1B4`, `+0x1B8+8p`, `+0x1D8+4p`, `+0x1EC`, `+0x1F0`,
+`+0x1F2`) and the same globals (`02AEED50`, `02AEE900`, `02AEE908`, `02AEEA20`, `02AEEAA0`, `02AEEBF0`). Apart from
+A-1 and A-2, they call the same callees with the same argument sources.
+
+### A.2 The differences
+
+**A-1: `F` skips any primitive that has a corner whose first vertex qword is zero. DRAWN, conditional (see "needs
+local check" 3).**
+- **What `F` does.** In every one of its 12 emit loops, `F` copies the 16-byte vertex-table entries
+  (`r14 + 16·index`) of the primitive's corners to `[rbp+0x60]`, `[rbp+0x70]`, `[rbp+0x80]` and, for quads,
+  `[rbp+0x90]`. It then compares each one's first qword with 0, and any zero jumps past the emitter calls to the
+  counter block. Where the skip happens:
+  - value 5: `00437894`–`004378BF` (tri, `[02AEE900]` set), `0043796C`–`00437999` (quad), `00437A1E`–`00437A41`
+    (tri, clear), `00437AEC`–`00437B19` (quad);
+  - value 1: `00437BE8`–`00437C13`, `00437D79`–`00437DB2`, `00437F18`–`00437F43`, `004380A9`–`004380E2`;
+  - other: `0043824F`–`0043827A`, `004383CC`–`00438405`, `0043854C`–`00438577`, `004386C0`–`004386F9`.
+- **What `I` does.** `I` performs the same copies and calls the emitters unconditionally. The `I` call sites that
+  correspond to the skipped calls are:
+  - `0039E820` at `004355D0`+0x87B, `0039EC30` at +0x93B, `0039E6B0` at +0x9DB, `0039EA70` at +0xA9B;
+  - `0039B840` / `0039F4B0` at +0xBCD / +0xC12, `0039B860` / `0039F9F0` at +0xD93 / +0xDD6, `0039B840` /
+    `0039F2B0` at +0xEDC / +0xF21, `0039B860` / `0039F780` at +0x10A3 / +0x10E6;
+  - `0039B840` / `0039F4B0` at +0x1210 / +0x123C, `0039B860` / `0039F9F0` at +0x139B / +0x13C7, `0039B840` /
+    `0039F2B0` at +0x14CE / +0x14FA, `0039B860` / `0039F780` at +0x165B / +0x1687.
+- **The skippable calls in `F`.** They are:
+  - `0039E820` at `00437130`+0x79C, `0039EC30` at +0x876, `0039E6B0` at +0x91E, `0039EA70` at +0x9F6;
+  - `0039B840` / `0039F4B0` at +0xB61 / +0xB99, `0039B860` / `0039F9F0` at +0xD1F / +0xD57, `0039B840` /
+    `0039F2B0` at +0xE91 / +0xEC9, `0039B860` / `0039F780` at +0x104F / +0x1087;
+  - `0039B840` / `0039F4B0` at +0x11CA / +0x11F3, `0039B860` / `0039F9F0` at +0x1374 / +0x139D, `0039B840` /
+    `0039F2B0` at +0x14C7 / +0x14F0, `0039B860` / `0039F780` at +0x1668 / +0x1691.
+- **What is tested.** The tested qword is bytes 0–7 of the entry. It is zero only when all 8 bytes are zero (a
+  bit-pattern test, not a float compare).
+- **What a skip changes.** A skipped primitive emits nothing in `F`, but the same primitive is emitted in `I`. Vertex
+  counts, packing and the arguments of an emitted primitive are otherwise identical. The skip does not shift any
+  stream:
+  - the position, colour and UV counters advance on the skip path;
+  - the value-1 per-primitive byte is consumed before the test.
+- **Why it counts as DRAWN.** It is DRAWN whenever some entry has a zero first qword: a primitive appears under
+  bit 3 clear and is missing under bit 3 set. If no such entry ever reaches a draw, or the bit-clear emitters reject
+  it themselves, the difference shows nothing; the listings cannot settle that.
+
+**A-2: `I` can scale the pass pair `param+0x50+8p` by (1/1.15, ×1.15); `F` never does. DRAWN, provisional (see
+"needs local check" 1–2).**
+- **Where `I` does it.** `I` does it in both arms reached when `param+0x1F2` bit 0 is clear:
+  - **`+0x1F2` bit 1 set** (after the `0043E840` call at `004355D0`+0x73C or +0x74E). `00435D23`: if
+    `param[0x130+p] == 4`, `I` calls `0053DD10` at `004355D0`+0x75E. If that returns 1 (`00435D33`):
+    - `[r12]` becomes `[r12] / 1.15` (`divss` `00435D45`);
+    - `[r12+4]` becomes `[r12+4] × 1.15` (`mulss` `00435D49`);
+    - the stores are at `00435D4D`/`00435D53`.
+
+    Both lanes then get the same +0.5 as in `F` (`00435D5A`–`00435D6B`, stored at `00435D9B`/`00435DA2`).
+  - **Neither `+0x1F2` bit** (`00435D71`): the same test on `param[0x130+p] == 4` is followed by `0053DD10` at
+    `004355D0`+0x7AC. If that returns 1, the same divide and multiply follow (`00435D93`/`00435D97`), stored at
+    `00435D9B`/`00435DA2`.
+- **What `F` does in the same arms.** `F` goes straight to the +0.5 in the bit-1 arm (`004377F2`–`0043780C`). With
+  neither bit it does nothing at all (`004377B2`). `F` never calls `0053DD10` and never loads 1.15.
+- **Where the pair goes next.** The pair is the `r9` argument of the builders `0039B840` / `0039B860`. The value-4
+  case falls to the "other" emit branch, so the modified pair reaches those builders in exactly the case it is
+  modified:
+  - `I`: `004355D0`+0x1210, +0x139B, +0x14CE, +0x165B, with `r9 = r12`;
+  - `F`: `00437130`+0x11CA, +0x1374, +0x14C7, +0x1668, with `r9 = [rsp+0x58]`.
+- **Side effect.** The pair is written back into the parameter block in place (`[r12]` is `param+0x50+8p`), so it
+  persists past this call.
+- **Why it is provisional.** It is DRAWN if the builders turn `r9` into emitted UV or STQ data, and if
+  `0053DD10` returns 1 at run time. Neither callee is in the listings.
+
+**Everything else is BOOKKEEPING:** register and stack-slot allocation, frame size, the separate versus shared
+epilogue, and when the per-position floats are loaded (`F` loads them only after a primitive passes the test). None
+of these changes a value that reaches an emitter.
+
+---
+## B. `00444340` against `004434D0`
+
+`G0` is `004434D0` (bit clear) and `G1` is `00444340` (bit set). Both are whole functions: `G0` runs from `004434D0`
+to `00444330` with its pass loop at `00443570`–`004442CC`; `G1` runs from `00444340` to `004452CA` with its pass loop
+at `004443F0`–`00445268`. The vertex grid is `[02AEED58]` (`r15` in `G0`, `rbx` in `G1`). The colour array is `rdi`
+in `G0` and `r14` in `G1`, and the current UV source is `rsi` / `[rsp+0x38]` in `G0` and `r15` / `[rsp+0x40]` in
+`G1`.
+
+### B.1 Section-by-section alignment
+
+| # | section | `G0` (`004434D0`) | `G1` (`00444340`) | difference |
+|---|---|---|---|---|
+| 1 | prologue, grid base, zero-pass guard | `004434D0`–`00443513` (pushes `rbp, rbx, r14, r15`) | `00444340`–`00444387` (pushes `rbp, rbx, rsi, rdi`) | register choice only; same frame `0x208`. BOOKKEEPING |
+| 2 | constants | `0.0625` (`008F30EC`), `0.001953125` (`008C5B30`), `3.5625` (`00D113E4`), `3.5` (`00D113E0`) in `xmm6`–`xmm9` (`00443537`–`0044355F`) | the same four, same registers (`004443B9`–`004443E1`) | none |
+| 3 | pass-loop head: `[02AEE900] = param[0x134+p]`, `[02AEE908] = param[0x1B8+8p]` | `00443570`–`00443587` | `004443F0`–`00444407` | none |
+| 4 | `+0x1A4` light prep: copy 64 bytes from `02AEEBF0`–`02AEEC2F` to the stack, `0039B960` ×3, `0039AF70`, then the `+0x1A0`/`+0x1A4` choice of `003952D0`/`00394E50`/`003954E0`/`00395050`, with `[02AEED60]`, `[02AEED68]`, `[02AEED98]` and `param+0x190+4p` | `0044358E`–`00443675` | `0044440E`–`004444F5` | none |
+| 5 | colour per pass: `+0x1A8` flat (identity stores `0x80808080` directly, otherwise `00432300` with `[02AEED70]`, `param+0x138+4p`, `[02AEED78]`, count 1; then the broadcast over `[02AEED9C]`); per-corner `00432300` unless `0x80808080`; `004332B0` (with `[02AEED68]` and `[02AEED9C]`) only when `+0x1A4` is set | `0044367A`–`0044385E`; `004332B0` at `004434D0`+0x2A0 | `004444FA`–`0044470A`; `004332B0` at `00444340`+0x2B0 | none. `G1` also re-caches `[02AEEDA4]`/`[02AEEDAC]` in `r9d`/`r8d` (`004445FB`, `004446AA`, `004446F3`). BOOKKEEPING |
+| 6 | mode switch `param+0x1B0+p`: 0 / 5+ use `[02AEED80]`; 4 copies `02AEEBF0` and runs `0039B960` ×3; 3 copies `02AEEA20` without `0039B960`; both then run `0039AF70` and `00396A30`/`00396560` by `+0x1B4`; 1 is `02AEEA20` + `0039B960` ×3 + `02AEEAA0` / `008C5FB0` + `00394DA0` + `00395CF0`/`00395780`; every lit arm ends in `00396FD0` into `[02AEED88]` | `00443865`–`00443BB4` | `00444711`–`00444A7C` | none |
+| 7 | mode 2: `0039AF70(02AEEBF0)`, `003962F0` with `param+0x1D8+4p`, `00396FD0`, then the screen-position loop. That loop reads the grid entry's u16 at `+2` and `+0`, converts with `cvtdq2ps`, multiplies by 0.0625 and then 0.001953125, subtracts 3.5625 (lane 1) or 3.5 (lane 0), and adds the result into `[02AEED88]+8k`. Rows run 0..`[02AEEDA8]` inclusive, columns 0..`[02AEEDAC]`−1, and the inner index 0..`[02AEEDB0]` inclusive | `00443976`–`00443AC9` (arithmetic `00443A21`–`00443A7D`; `00396FD0` at `004434D0`+0x509) | `0044482C`–`00444985` (arithmetic `004448E0`–`0044493C`; `00396FD0` at `00444340`+0x54F) | none in values or loop shape. `G0` compares the column bound against memory (`00443A97`), and `G1` uses `r8d` reloaded from `[02AEEDAC]` (`00444951`). BOOKKEEPING |
+| 8 | UV operator `param+0x1AC+p` (1: `0043E7B0`, 2: `00434630`, 3: `00434760`, with `param+0x150+16p` and `[02AEEDA0]`); the source becomes `[02AEED88]` | `00443BBA`–`00443C48` | `00444A89`–`00444B25` | none |
+| 9 | (no `+0x1F2` handling and no `0043E840` in either) | — | — | none |
+| 10 | emit selector `param+0x130+p == 5` (there is no value-1 branch in either) | `00443C51` | `00444B2A` | none |
+| 11 | emit, value 5: one quad per cell. The corners are grid `[k]`, `[[02AEEDA4]+k'+1]`, `[k+1]`, `[[02AEEDA4]+k'+2]`, with colours at the same four indices. The callee is `0039EC30` (`[02AEE900]` set) or `0039EA70` (clear) | `00443C60`–`00443E6D`; `0039EC30` at `004434D0`+0x84D, `0039EA70` at +0x94D | `00444B39`–`00444D89`; `0039EC30` at `00444340`+0x8D4, `0039EA70` at +0x9F4 | **difference B-1** |
+| 12 | emit, other values: the same four corners; per-corner floats from `[02AEED90]` at the same indices; the four UV pairs gathered from the UV source at `[k2]`, `[[02AEEDA4]+[02AEEDAC]+k3]`, `[k2+1]`, `[[02AEEDA4]+[02AEEDAC]+k3+1]`; `0039B860` with `r9 = param+0x50+8p`; then `0039F9F0` (set) or `0039F780` (clear) with `r9 = param+0x70+16p` and the colour quad at `[rsp+0x20]` | `00443E72`–`0044409B` and `004440A0`–`004442A5`; calls at `004434D0`+0xB19 / +0xB3B and +0xD29 / +0xD4B | `00444D8E`–`00444FE7` and `00444FEC`–`00445237`; calls at `00444340`+0xBF1 / +0xC1B and +0xE41 / +0xE6B | **difference B-1** |
+| 13 | counters | `esi`/`ecx` and `rbx` advance per cell and per row; the UV counters `rbx`/`r12d` advance per cell and per column (`00444010`–`00444067`, etc.) | the same schemes in `esi`/`rdi` and `r12d`/`r13` (`00444F7C`–`00444FD2`, etc.) | none. `G1` advances its counters on the skip path too, so no stream shifts |
+| 14 | pass-loop tail and epilogue | `004442AB`–`00444330` | `0044523E`–`004452CA` | register restores only. Neither function writes `eax` before `ret`. BOOKKEEPING |
+
+The inputs are identical. Both functions read the same parameter-block fields (`+0x130`–`+0x1B8` per pass, `+0x1D8+4p`,
+`+0x150+16p`, `+0x50+8p`, `+0x70+16p`, `+0x1F0`). They read the same staging globals (`02AEED58`–`02AEEDB0`,
+`02AEE900`/`908`, `02AEEA20`–`02AEEA50`, `02AEEAA0`, `02AEEBF0`–`02AEEC20`) and the same constants.
+
+### B.2 The differences
+
+**B-1: `G1` skips any grid quad that has a corner whose first vertex qword is zero. DRAWN, conditional (see "needs
+local check" 3).**
+- **The test.** After copying the four 16-byte corner entries, `G1` tests the first qword of each one: corner 0 from
+  `xmm2` through `movq rax, xmm2` / `test rax, rax`, the others with `cmp qword ptr [...], 0`. Any zero jumps past
+  the emitter calls to the counter block. Where:
+  - value 5: `00444BCB`–`00444BED` (set) and `00444CEB`–`00444D0D` (clear);
+  - other values: `00444E40`–`00444E6E` (set) and `00445090`–`004450BE` (clear).
+- **`G0` has no such test.** It loads the same corners (`00443CB0`–`00443CF4`, `00443DB0`–`00443DF4`,
+  `00443F00`–`00443F54`, `00444110`–`00444164`) and always calls `0039EC30` (`004434D0`+0x84D), `0039EA70` (+0x94D),
+  `0039B860` / `0039F9F0` (+0xB19 / +0xB3B), and `0039B860` / `0039F780` (+0xD29 / +0xD4B).
+- **The skippable calls in `G1`.** They are `00444340`+0x8D4, +0x9F4, +0xBF1 / +0xC1B and +0xE41 / +0xE6B.
+- **What a skip changes.** A skipped quad emits nothing in `G1`, but the same quad is emitted in `G0`. Otherwise
+  the vertex count (4 per quad), the packing and every argument are the same.
+- **What the tested bytes hold.** The first 4 bytes of a grid entry are the two u16 fields that the mode-2 loop reads
+  as the screen-position term's X and Y (`00443A21`/`00443A37`, `004448E0`/`004448F6`). So the tested qword is X, Y
+  and the 4 bytes after them, all zero.
+
+**Everything else is BOOKKEEPING:** register allocation (`G1` caches `[02AEEDA4]`, `[02AEEDAC]` and `[02AEEDB0]` in
+registers and reloads them after every call, while `G0` re-reads memory), the stack offsets of the corner and UV
+staging areas (`[rbp+0x50]` / `[rbp+0x30]` in `G0` against `[rbp+0x30]` / `[rbp+0x70]` in `G1`), and the pushed
+registers.
+
+---
+
+## Answer to SD-199
+
+The bit's main effect is the path it picks. Beyond that, `+0x1F1` bit 3 changes very little in how a kind-`0x54`
+mesh is drawn.
+- **What stays the same.** `00437130` and the inline path of `004355D0` (`00435699`–`00436CFB`) read the same record
+  and parameter-block fields and the same globals. They run the same colour kernels (`00432300`, `00432CC0`), the same
+  per-pass lighting switch and matrices, the same UV operators (`0043E7B0` / `00434630` / `00434760` / `0043E840`) and
+  the same emit branches. They hand the same arguments to the same emitters, with the same vertex counts and counter
+  strides.
+- **First difference (A-1).** With bit 3 set, `00437130` silently drops every triangle or quad that has a corner
+  whose 16-byte vertex-table entry starts with a zero qword. The inline path draws it.
+- **Second difference (A-2).** With bit 3 clear, the inline path can rescale the pass pair at `param+0x50+8p` by
+  1/1.15 on lane 0 and ×1.15 on lane 1, writing the result back into the parameter block. This happens when the
+  pass's `+0x130` byte is 4, `+0x1F2` bit 0 is clear, and `0053DD10` returns 1. The pair then reaches the
+  `0039B840`/`0039B860` builders.
+- **The grid draws.** These are not kind-`0x54` draws, but the same bit selects between them. `00444340` and
+  `004434D0` differ only in the same zero-qword skip (B-1).
+
+So the bit's one cross-cutting drawing effect is the zero-corner skip. The 1.15 rescale applies to the mesh's
+bit-clear path only. Whether either ever changes a pixel depends on two run-time facts the listings cannot settle:
+- whether zero-qword entries ever reach these loops;
+- what `0053DD10` returns and what the builders do with `r9`.
+
+## Needs local check
+
+1. **`0053DD10`.** What it returns and when (called at `004355D0`+0x75E and +0x7AC with no argument registers set
+   in the listing), and whether it has side effects. The 1.15 rescale (A-2) happens only when it returns 1.
+2. **`0039B840` / `0039B860` use of `r9`.** Whether they turn the pass pair (`r9 = param+0x50+8p`) into emitted UV
+   or STQ data, which would make A-2 change the image. Also whether `00449AB0` rewrites `param+0x50+8p` every frame.
+   If it does not, the in-place ÷1.15 / ×1.15 (and the +0.5 of the `+0x1F2` bit-1 arm, common to both paths) would
+   accumulate across frames.
+3. **Zero first qwords.**
+   - Which producer can write an entry whose first qword is zero, into either the mesh vertex table
+     (`[02AEED50]+32·n16`, indexed through `+0x170`) or the grid `[02AEED58]`. The listings do not show the producers.
+   - Whether shipped draws ever produce one.
+   - Whether the bit-clear emitters (`0039E820`, `0039EC30`, `0039E6B0`, `0039EA70`, `0039B840`/`0039B860` with
+     `0039F2B0`/`0039F4B0`/`0039F780`/`0039F9F0`) already reject such a corner themselves. If they do, A-1 and B-1
+     change nothing on screen.
+4. **Population.** Whether any element that takes the inline path has a pass with `+0x130` byte equal to 4 and
+   `+0x1F2` bit 0 clear. That is the only case where A-2 can occur.

@@ -2,7 +2,6 @@
 contract: Twelve audio classes in two layouts that share no slot meaning — six uniform banks and six controllers that are not
 category: 18-Audio
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: 18-Audio/Audio-Bank-And-Controller-Family/audio-bank-and-controller-family.md

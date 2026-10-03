@@ -4,7 +4,6 @@ category: 01-Script-VM-Native-Bridge
 status: AUDITED
 owner_layer: PrimaryOwner:Script_VM_Native_Bridge
 evidence_tier: 1
-level: L1
 readiness: CLASSIFIED
 confidence: PROVEN
 verified_against:

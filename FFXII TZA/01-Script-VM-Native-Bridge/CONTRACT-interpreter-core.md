@@ -2,7 +2,6 @@
 contract: Interpret zone-script bytecode — one body, 100 opcodes, a stack of int32 and float32
 category: 01-Script-VM-Native-Bridge
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: Interpreter-Core/worldactor-scriptvm-interpreter.md

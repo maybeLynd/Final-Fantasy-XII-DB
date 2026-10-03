@@ -2,7 +2,6 @@
 contract: Roll what a dead enemy drops — one shared stream, seven inlined draws, a variable number of them
 category: 13-Rewards-Progression-Economy
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: 13-Rewards-Progression-Economy/loot-drops-and-enemy-chain.md

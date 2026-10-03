@@ -1,0 +1,60 @@
+{
+ "page": "18-Audio/sqex-sd-sound-driver-architecture.md",
+ "session": "opus-self",
+ "rows": [
+  {
+   "fn": "001DBA60",
+   "text": "calls `00210B30` with the incoming `rcx` and `rdx`, then tail-jumps to `00210ED0` with its result in `rcx`, the incoming float `xmm0` in `xmm1` and the incoming `edx` in `r8d`",
+   "anchors": [
+    [
+     "001DBA6B",
+     "mov"
+    ],
+    [
+     "001DBA70",
+     "call"
+    ],
+    [
+     "001DBA78",
+     "mov"
+    ],
+    [
+     "001DBA7B",
+     "movaps"
+    ],
+    [
+     "001DBA88",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003456E0",
+   "text": "with `n` = `00267E10(r9)` and `m` = `00473B90(n)`, calls `002E1CD0(0, 3)`, replaces `m` by `00473B90(0)` when `m` is negative, calls `003601B0(0xd)` and tail-jumps to `0017E7D0(n, m)`",
+   "anchors": [
+    [
+     "003456ED",
+     "call"
+    ],
+    [
+     "003456F6",
+     "call"
+    ],
+    [
+     "00345704",
+     "call"
+    ],
+    [
+     "0034570B",
+     "jns"
+    ],
+    [
+     "0034572E",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "drafted by OPUS itself"
+}

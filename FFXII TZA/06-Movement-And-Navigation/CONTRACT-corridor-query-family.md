@@ -2,7 +2,6 @@
 contract: Corridor query — ask whether an agent may move along a proposed segment, and answer with a small integer
 category: 06-Movement-And-Navigation
 scope: family
-level: L2
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: >

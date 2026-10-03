@@ -2,7 +2,6 @@
 contract: read one authored field's permission bits, with a save flag able to replace two of them outright
 category: 03-World-Area-Field
 scope: family
-level: L1
 readiness: DIFFERENTIAL TESTED   # the ALGORITHM, over a PLANTED table; the authored data is unread — see §13
 confidence: PROVEN
 implements: 03-World-Area-Field/Field-Record-Table/field-record-table-navimapdata.md

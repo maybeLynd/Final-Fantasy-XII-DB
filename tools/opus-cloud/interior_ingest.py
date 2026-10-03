@@ -169,10 +169,24 @@ UC1_PHRASE = "UC-1 body admitted to frontier 2026-09-28, explained by interior c
 EB_JSON = os.path.normpath(os.path.join(cl.HERE, "..", "family", "entry_big.json"))
 
 
-def member_targets(page):
-    """Unexplained members of every family the page declares (mem_pack.py), measured now."""
+_EE_FRESH = []
+
+
+def ee_fresh():
+    """engine_explained's set re-measured once per process: an apply run measures after its page edits (ee_set.py
+    caches for 30 minutes, which would report rows just applied as still unexplained)."""
+    import ee_set
+    if not _EE_FRESH:
+        ee_set.measure()
+        _EE_FRESH.append(1)
+    return ee_set.load()
+
+
+def member_targets(page, fresh=False):
+    """Unexplained members of every family the page declares (mem_pack.py); fresh=True re-measures once."""
     import mem_pack
-    return {f for fs in mem_pack.unexplained_members(page).values() for f in fs}
+    exp = ee_fresh() if fresh else None
+    return {f for fs in mem_pack.unexplained_members(page, exp=exp).values() for f in fs}
 
 
 def ee_targets(page, fresh=False):
@@ -206,14 +220,16 @@ def uc1_targets():
 HOMING_TSV = os.path.join(cl.DB, "_index", "candidates", "fable-homing-stream-1003", "callee-host-bodies.tsv")
 
 
-def homing_targets():
+def homing_targets(fresh=False):
     """OPUS's callee-host class minus every body already explained (A/B/C) now."""
     sys.path.insert(0, cl.KIT)
     import check_dispositions as CD
     fs = {int(l.split("\t")[0], 16) for l in io.open(HOMING_TSV, encoding="utf-8")
           if l[:1] not in "#\n" and "\t" in l}
-    sizes = CD.load_functions()
-    return fs - set(CD.evaluate(cl.DB, sizes)["explained_set"])
+    # 2026-10-03: minus engine_explained's own set (ee_set.py). Since FRONTIER's A-overlap family rule the disposition
+    # explained_set also holds accepted family members, which engine_explained still needs a row to credit.
+    import ee_set
+    return fs - (ee_fresh() if fresh else ee_set.load())
 
 
 def verdict_ok():
@@ -305,9 +321,9 @@ def apply(rec, allow):
     import f_pack
     # uc1 (2026-10-03): SWE2-FRONTIER's gate change a46d39253 credits a UC-1 body cited inside its extent by a row
     # carrying the break phrase, so every applied uc1 row must now measure A like any other.
-    still = (member_targets(page) if cfg.get("mode") == "member" else
+    still = (member_targets(page, fresh=True) if cfg.get("mode") == "member" else
              ee_targets(page, fresh=True) if cfg.get("mode") == "ee" else
-             uc1_targets() if cfg.get("mode") == "uc1" else homing_targets() if cfg.get("mode") == "homing"
+             uc1_targets() if cfg.get("mode") == "uc1" else homing_targets(fresh=True) if cfg.get("mode") == "homing"
              else f_pack.entry_only_pages().get(page, set()))
     left = sorted("%08X" % int(r["fn"], 16) for r in cfg["rows"] if int(r["fn"], 16) in still)
     clean = gates["check_links"] == 0 and gates["self_contradiction"] == 0 and gates["consistency"] == 0 \

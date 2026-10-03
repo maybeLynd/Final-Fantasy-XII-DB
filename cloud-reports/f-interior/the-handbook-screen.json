@@ -1,0 +1,56 @@
+{
+ "page": "16-UI/Handbook/the-handbook-screen.md",
+ "session": "opus-self",
+ "rows": [
+  {
+   "fn": "001B1F80",
+   "text": "stores the fifth (stack) argument at dword `+0x3a58` and `edx`, `r8d` and `r9d` at dwords `+0x3a4c`, `+0x3a50` and `+0x3a54` of `rcx`",
+   "anchors": [
+    [
+     "001B1F84",
+     "mov"
+    ],
+    [
+     "001B1F8A",
+     "mov"
+    ],
+    [
+     "001B1F90",
+     "mov"
+    ],
+    [
+     "001B1F97",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "003A7E80",
+   "text": "with `p` = `rcx`+4, stores byte `[rcx+2]` at byte `p+0xc2` and byte `[rcx]` as word `p+0xc0`, stores `p` in the qword slot byte `[rcx]` of the array at qword `[qword 02EBEFA0]`, calls `004FF270(p, dword 02EBB738 + the low dword of p)` and returns `p` + `edx` (sign-extended)",
+   "anchors": [
+    [
+     "003A7E9F",
+     "mov"
+    ],
+    [
+     "003A7EA5",
+     "mov"
+    ],
+    [
+     "003A7EB7",
+     "mov"
+    ],
+    [
+     "003A7EC3",
+     "call"
+    ],
+    [
+     "003A7ECC",
+     "add"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "drafted by OPUS itself"
+}

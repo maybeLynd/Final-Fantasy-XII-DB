@@ -437,3 +437,12 @@ writers on the same clamped `0x68`-stride slot (`0215F23E` base +
 index): `002E1E70` writes bit 1 (`(b & 0xFD) | ((dl & 1) << 1)`),
 `002E1E40` writes bit 0 (`(b & 0xFE) | (dl & 1)`).
 Interior anchors `002E1E95` / `002E1E63` (the mask arms).
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-section-002-text-cloudint-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `002E1D50` | 52 B | clamps `ecx` to 0..7 (signed) and, in the 0x68-byte entry `i` of the table at `0215F200`, stores byte 1 at `+0x3b`, `edx` at dword `+0x24`, `r8d` at dword `+0x28` and `r9b` at byte `+0x39` | `002E1D52`, `002E1D5F`, `002E1D70`, `002E1D75`, `002E1D7E` |
+| `002E1FD0` | 63 B | clamps `ecx` to 0..7 (signed) and stores `dl` at byte `0215F242` + `i`*0x68, on both of its paths | `002E1FDD`, `002E1FEE`, `002E1FF4`, `002E200B` |

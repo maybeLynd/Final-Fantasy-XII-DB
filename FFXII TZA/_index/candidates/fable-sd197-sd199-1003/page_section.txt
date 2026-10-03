@@ -1,0 +1,55 @@
+## The planar-scalar tracks and what `+0x1F1` bit 3 changes (FABLE, 2026-10-03; SD-197 and SD-199 answered)
+
+*Cloud drafts verified at the bytes by FABLE: [`fable-sd197-sd199-1003`](../../_index/candidates/fable-sd197-sd199-1003/README.md)
+(`check_sd197.py`, `check_sd199.py` and the remainder's `check_sd199b.py`, FAILS 0, with the original code executed under Unicorn). Static and executed;
+nothing was run against the game.*
+
+**SD-197: the planar scalar's track (answered).**
+- `004309C0`, `00430540` and `004307C0` are three layers of **one evaluator** for one 16-byte record. They are not
+  three track kinds.
+- The record sits 0x10 bytes before the pass slot. It holds two key handles (`+0x0` and `+0x4`, resolved by
+  `0020E600`), two loop periods (`+0x8 + 2c`), two key counts (`+0xC + c`) and a selector word (`+0xE`). Bits 0-3 of
+  the selector word choose each channel's interpolation, and bits 4-7 choose the combine mode.
+- **Per channel:**
+  - a count of 0 gives 0.0;
+  - a count of 1 gives the key's value;
+  - otherwise `00430540` evaluates `{int32 frame, float32 value}` keys, wrapping the time when t > P;
+  - selector 0 interpolates linearly between keys;
+  - selector 1 with three or more keys is a uniform quadratic B-spline, whose curve passes through the midpoints
+    between keys;
+  - selectors 2 and 3 return 0.0.
+- **The combiner `004307C0`** forms a, a+F(b), a−F(b), F(2b)+a−b, F(b)·a+a, or a value between a and b, for modes 0
+  to 5. F is the render-local random draw `003D8E50`.
+- **Executed:** the stack matches a float32 model bit-exactly on 6,000 random records.
+- **Shipped:** all 152 type-`0x05` mode-2 slots resolve.
+  - 21 are the constant 0.0, 102 a single constant, 10 a combination of two constants, and 19 keyed curves.
+  - No slot loops.
+  - Over time the values stay within −2.875 to 2.4.
+  - Every curve starts at frame 0, so the stack-residue read before the first key cannot occur at times of 0 or more.
+- **Outside the row:** the time unit (instance `+0x44`), and the concrete random draws of the 12 channel-1 slots,
+  which are bounded but not fixed.
+
+**SD-199: what bit 3 changes (answered).** Beyond choosing the path, the bit makes four differences.
+- **The vertex transform.** In both mesh preps and all three grid walks, `0039A150` runs when the bit is set and
+  `00399B80` when it is clear. With the bit clear, one vertex that fails the per-vertex test below rejects the whole
+  element.
+- **The zero-corner drop.** `00437130` and `00444340` drop any primitive whose corner has a zero first qword. The inline path
+  `00435699`–`00436CFB` never does.
+- **The pass-pair rescale.** The inline path rescales the pass pair `param + 0x50 + 8p` by 1/1.15 and ×1.15. The gate it
+  calls is a shared stub that is `mov eax, 1` / `ret` (address in the record), so for pass byte 4 the rescale always applies. Executing `0039B860` shows the pair is an
+  additive texture-coordinate offset, so the rescale **changes the drawn image**. 57 shipped inline slots are
+  affected; `00437130` elements author none.
+- **The per-vertex test (SD-199 answered; [`fable-sd199-remainder-1003`](../../_index/candidates/fable-sd199-remainder-1003/README.md), `check_sd199b.py` FAILS 0, executed under Unicorn).**
+  Both transforms project each vertex (matrix rows 1-4, divide by w), truncate it to integers (X and Y scaled by
+  16) and clamp it. The compare at `0039A0C6` / `0039A6C8` tests the clamp-changed mask against the emulated PS2
+  `$zero` register `022D8F10`. A vertex fails when X or Y is outside [0, 0xFFF0] or Z is outside [0xFF, 0xFFFFFF],
+  NaN and overflow included. It is a window and depth range test, not a frustum test.
+  - **Bit clear:** `00399B80` returns 1 at the first failing vertex, and the whole element is not drawn.
+  - **Bit set:** `0039A150` stores a zero entry for a failing vertex (`0039A6CD`, the fall-through arm). The
+    passing arm (`0039A712`) packs `X | Y<<16 | Z<<32 | 0xFF<<56` and is never zero. So the zero-corner drop fires
+    on exactly the failing vertices, and only the primitives that use one as a corner are dropped.
+  - The `0024E410` block, on the bit-set arm only, can overwrite the first 4 or 6 entries and keep them drawn.
+  - How often shipped effects put a vertex out of range is a live-data matter outside the row.
+
+The authored-number page's §6 names `00430540` as `004309C0`'s combiner tail. It is `004307C0`. That fix is routed to
+the page's owner.

@@ -1607,14 +1607,6 @@ cites them only for which stop slot sets or clears each input-mode bit. Nothing 
 - **World - CLIENT (1 edge).** `00225CD0` is also called by bodies filed to world: `00266D10` - shared machinery across the layer boundary, no shared ownership.
 - **WorldAreaField - SERVICE (4 edges).** `0022A770`, `0022B8C0`, `0022BC20` reach bodies filed to world area: `00314020`, `00377C20` - shared machinery across the layer boundary, no shared ownership.
 
-## Homed frontier bodies called from this page's functions (FABLE, 2026-10-02, cloud-drafted)
-
-*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../../_index/candidates/fable-home-keymap-ini-file-format-and-default-cont-1002/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
-
-| function | size | entered from | what the body does | interior anchors |
-|---|---|---|---|---|
-| `00314820` | 18 B | `0022A770` + 0x1D8 | calls `00314820` + 0x4 with the incoming registers unchanged, then tail-jumps (+ 0xD) without setting up any argument or reading the call's result | Interior anchor `00314824`; Interior anchor `0031482D` |
-
 ## Interior citations for the entry-cited functions (FABLE, 2026-10-02, cloud-drafted)
 
 *Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's disassembly pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-keymap-ini-file-format-and-default-contr-cloudint-1002/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*

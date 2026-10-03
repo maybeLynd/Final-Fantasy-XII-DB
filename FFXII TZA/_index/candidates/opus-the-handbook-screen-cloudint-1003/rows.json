@@ -1,0 +1,63 @@
+{
+ "page": "16-UI/Handbook/the-handbook-screen.md",
+ "date": "2026-10-03",
+ "session": "opus-self",
+ "report": "the-handbook-screen.json",
+ "rows": [
+  {
+   "fn": "001B1F80",
+   "text": "stores the fifth (stack) argument at dword `+0x3a58` and `edx`, `r8d` and `r9d` at dwords `+0x3a4c`, `+0x3a50` and `+0x3a54` of `rcx`",
+   "anchors": [
+    [
+     "001B1F84",
+     "mov"
+    ],
+    [
+     "001B1F8A",
+     "mov"
+    ],
+    [
+     "001B1F90",
+     "mov"
+    ],
+    [
+     "001B1F97",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "003A7E80",
+   "text": "with `p` = `rcx`+4, stores byte `[rcx+2]` at byte `p+0xc2` and byte `[rcx]` as word `p+0xc0`, stores `p` in the qword slot byte `[rcx]` of the array at qword `[qword 02EBEFA0]`, calls `004FF270(p, dword 02EBB738 + the low dword of p)` and returns `p` + `edx` (sign-extended)",
+   "anchors": [
+    [
+     "003A7E9F",
+     "mov"
+    ],
+    [
+     "003A7EA5",
+     "mov"
+    ],
+    [
+     "003A7EB7",
+     "mov"
+    ],
+    [
+     "003A7EC3",
+     "call"
+    ],
+    [
+     "003A7ECC",
+     "add"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "interior",
+ "family": "",
+ "method": "OPUS drafted these rows itself from its F-interior pack (`f_pack.py`: each function the page cites only at its entry, with its annotated listing) and checked every row mechanically with `interior_ingest.py` (every anchor an instruction boundary inside the extent with the recorded mnemonic; every address a listing token). No second agent drafted or verified them, so the non-author check is SWE2-AUDIT-SPEC's."
+}

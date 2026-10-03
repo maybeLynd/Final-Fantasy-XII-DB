@@ -1,0 +1,6 @@
+Database/FFXII TZA/PROGRESS.md
+Database/FFXII TZA/_index/progress/GENERATION-BINDING.json
+Database/FFXII TZA/_index/progress/crosswalk.md
+Database/FFXII TZA/_index/progress/metrics.md
+Database/FFXII TZA/_index/progress/snapshot.json
+Database/FFXII TZA/_index/progress/snapshot.md

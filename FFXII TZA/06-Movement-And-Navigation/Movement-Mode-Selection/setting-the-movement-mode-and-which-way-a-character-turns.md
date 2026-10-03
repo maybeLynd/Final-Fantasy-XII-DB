@@ -4,7 +4,6 @@ category: 06-Movement-And-Navigation
 status: AUDITED — SD-190 and SD-193 are ANSWERED and DP-2 is SUPERSEDED (owner re-status 2026-09-30, OPUS) — DP-2 SUPERSEDED 2026-09-26 (FABLE, runtime rule: the mode-4 mechanism is tier-1 static; whether the difference is visible in play is a live observation, not queued); DP-1 answered on the page 2026-09-12 (+0x5C is a dead store); residue registered as SD-190 (when the per-frame pass takes the integrator's direct-delta path) and SD-193 (the mode-3 curve 003EC040), both since answered (§6); status line current 2026-09-30, SWE2-DATA
 owner_layer: PrimaryOwner:Movement
 evidence_tier: 1
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: HIGH
 verified_against:

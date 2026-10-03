@@ -3,23 +3,7 @@
  "date": "2026-10-02",
  "session": "https://claude.ai/code/session_01Mh9D4U6XdnAn8vURhKVJHy",
  "report": "home-keymap-ini-file-format-and-default-controls.json",
- "rows": [
-  {
-   "fn": "00314820",
-   "entered_from": "`0022A770` + 0x1D8",
-   "text": "calls `00314820` + 0x4 with the incoming registers unchanged, then tail-jumps (+ 0xD) without setting up any argument or reading the call's result",
-   "anchors": [
-    [
-     "00314824",
-     "call"
-    ],
-    [
-     "0031482D",
-     "jmp"
-    ]
-   ]
-  }
- ],
+ "rows": [],
  "rejected": [],
  "skipped": {},
  "missing": [],
@@ -112,6 +96,26 @@
     ]
    ],
    "moved_to": "99-Unresolved-Residual/Glyph-Run-Rendering/the-shared-drawing-context.md",
+   "moved_by": "FABLE",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/fable-home-host-moves-b4-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-keymap-ini-file-format-and-default-cont-1002/REVIEW.md"
+  },
+  {
+   "fn": "00314820",
+   "entered_from": "`0022A770` + 0x1D8",
+   "text": "calls `00314820` + 0x4 with the incoming registers unchanged, then tail-jumps (+ 0xD) without setting up any argument or reading the call's result",
+   "anchors": [
+    [
+     "00314824",
+     "call"
+    ],
+    [
+     "0031482D",
+     "jmp"
+    ]
+   ],
+   "moved_to": "00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md",
    "moved_by": "FABLE",
    "moved_on": "2026-10-03",
    "moved_record": "_index/candidates/fable-home-host-moves-b4-1003",

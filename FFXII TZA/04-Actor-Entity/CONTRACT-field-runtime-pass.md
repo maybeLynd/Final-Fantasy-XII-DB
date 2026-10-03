@@ -2,7 +2,6 @@
 contract: Drive one manager slot's field actors for one frame
 category: 04-Actor-Entity
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: the-field-runtime-pass.md

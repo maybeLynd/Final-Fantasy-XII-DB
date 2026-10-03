@@ -1,0 +1,60 @@
+{
+ "page": "23-Third-Party-Libraries/Lua-Core/the-lua-loader-and-what-it-accepts.md",
+ "session": "opus-self",
+ "rows": [
+  {
+   "fn": "005928F0",
+   "text": "with `c` = byte `r8+0xc`, `a` = dword `+8` of qword `[r9+8]` and `b` = dword `+0x48` of qword `[r9+0x10]`, it starts the source at `rcx` + (`a` when `c` is non-zero, else `b`) and the destination at `rdx` + (`b` when `c` is non-zero, else `a`), then for dword `[r8]` elements stores each source byte, sign-extended, as a word, stepping the source by dword `r8+4` and the destination by dword `r8+8`",
+   "anchors": [
+    [
+     "00592920",
+     "cmovne"
+    ],
+    [
+     "0059292A",
+     "cmovne"
+    ],
+    [
+     "00592940",
+     "movsx"
+    ],
+    [
+     "00592946",
+     "mov"
+    ],
+    [
+     "00592950",
+     "jne"
+    ]
+   ]
+  },
+  {
+   "fn": "00595C00",
+   "text": "with `c` = byte `r8+0xc`, `a` = dword `+8` of qword `[r9+8]` and `b` = dword `+0x48` of qword `[r9+0x10]`, it starts the source at `rcx` + (`a` when `c` is non-zero, else `b`) and the destination at `rdx` + (`b` when `c` is non-zero, else `a`), then for dword `[r8]` elements copies each source byte to a destination byte, stepping the source by dword `r8+4` and the destination by dword `r8+8`",
+   "anchors": [
+    [
+     "00595C30",
+     "cmovne"
+    ],
+    [
+     "00595C3A",
+     "cmovne"
+    ],
+    [
+     "00595C50",
+     "movzx"
+    ],
+    [
+     "00595C56",
+     "mov"
+    ],
+    [
+     "00595C5F",
+     "jne"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "drafted by OPUS itself"
+}

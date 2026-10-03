@@ -1,0 +1,153 @@
+file	source	chunk_off	path	slot	pass	count0	count1	sel0	sel1	combine_m	period0	period1	flags_hi	keys0(frame:value)	keys1	min_over_t	max_over_t	residue_reachable
+ps2data/effect_finish/in/magic/m0182.efx	std	0x24390	inline	1	1	1	1	0	0	5	0	0	0x00	0:1	0:0.98	0.98	1	0
+ps2data/effect_finish/jp/chara/h0018.efx	std	0xB310	00438860	0	0	1	1	0	0	5	0	0	0x00	0:0.03	0:-0.03	-0.03	0.03	0
+ps2data/effect_finish/jp/chara/h0021.efx	std	0xB1F0	00438860	0	0	1	1	0	0	5	0	0	0x00	0:0.03	0:0.02	0.02	0.03	0
+ps2data/effect_finish/jp/event/e0024.efx	std	0xC270	inline	0	0	3	0	1	0	1	0	0	0x00	0:0.03;30:0.1;60:0		0	0.0794	0
+ps2data/effect_finish/jp/event/e0026.efx	std	0x19F10	inline	0	0	1	0	0	0	1	0	0	0x00	0:0.02		0.02	0.02	0
+ps2data/effect_finish/jp/event/e0037.efx	std	0x6B6C0	00438860	0	0	1	0	0	0	1	0	0	0x00	0:-0.2		-0.2	-0.2	0
+ps2data/effect_finish/jp/event/e0041.efx	std	0x8BDA0	inline	0	0	1	0	0	0	1	0	0	0x00	0:0.08		0.08	0.08	0
+ps2data/effect_finish/jp/event/e0042.efx	std	0x86960	inline	0	0	1	0	0	0	1	0	0	0x00	0:0.05		0.05	0.05	0
+ps2data/effect_finish/jp/event/e0047.efx	std	0x66670	00438860	0	0	1	0	0	0	1	0	0	0x00	0:0.2		0.2	0.2	0
+ps2data/effect_finish/jp/event/e0048.efx	std	0x66820	00438860	0	0	1	0	0	0	1	0	0	0x00	0:0.2		0.2	0.2	0
+ps2data/effect_finish/jp/event/e0051.efx	std	0x78B50	00437130	1	0	1	0	0	0	1	0	0	0x00	0:0.1		0.1	0.1	0
+ps2data/effect_finish/jp/event/e0051.efx	std	0x78B50	00437130	2	1	1	0	0	0	1	0	0	0x00	0:0.09		0.09	0.09	0
+ps2data/effect_finish/jp/event/e0051.efx	std	0x78B50	00437130	3	2	4	0	1	0	1	0	0	0x00	0:-1;18:-0.949;62:0.5;100:0.6		-1	0.6	0
+ps2data/effect_finish/jp/event/e0051.efx	std	0x827D0	00437130	0	0	1	0	0	0	1	0	0	0x00	0:0.3		0.3	0.3	0
+ps2data/effect_finish/jp/event/e0051.efx	std	0x827D0	00437130	1	1	1	0	0	0	1	0	0	0x00	0:-0.4		-0.4	-0.4	0
+ps2data/effect_finish/jp/event/e0051.efx	std	0x82EF0	00437130	0	0	1	0	0	0	1	0	0	0x00	0:0.3		0.3	0.3	0
+ps2data/effect_finish/jp/event/e0051.efx	std	0x82EF0	00437130	1	1	1	0	0	0	1	0	0	0x00	0:-0.4		-0.4	-0.4	0
+ps2data/effect_finish/jp/event/e0051.efx	std	0x82EF0	00437130	3	2	4	0	1	0	1	0	0	0x00	0:0;8:-0.096;26:-0.888;36:-1		-1	0	0
+ps2data/effect_finish/jp/event/e0062.efx	std	0x43E40	00438860	2	2	0	0	0	0	1	0	0	0x00			0	0	0
+ps2data/effect_finish/jp/event/e0070.efx	std	0x4B810	00438860	2	2	1	0	1	0	1	0	0	0x00	0:0.8		0.8	0.8	0
+ps2data/effect_finish/jp/event/e0080.efx	std	0xCEA00	00438860	1	1	1	0	0	0	1	0	0	0x00	0:0.2		0.2	0.2	0
+ps2data/effect_finish/jp/event/e0080.efx	std	0xD2440	00438860	1	1	1	0	0	0	1	0	0	0x00	0:0.2		0.2	0.2	0
+ps2data/effect_finish/jp/event/e0080.efx	std	0xD56D0	00438860	1	1	1	0	0	0	1	0	0	0x00	0:0.2		0.2	0.2	0
+ps2data/effect_finish/jp/event/e0081.efx	std	0xE0CB0	00438860	1	1	1	0	0	0	1	0	0	0x00	0:0.2		0.2	0.2	0
+ps2data/effect_finish/jp/event/e0081.efx	std	0xE28A0	00438860	0	0	1	0	0	0	1	0	0	0x00	0:1		1	1	0
+ps2data/effect_finish/jp/event/e0081.efx	std	0xE28A0	00438860	1	1	1	0	0	0	1	0	0	0x00	0:2.4		2.4	2.4	0
+ps2data/effect_finish/jp/event/e0081.efx	std	0xE28A0	00438860	2	2	1	0	0	0	1	0	0	0x00	0:0.8		0.8	0.8	0
+ps2data/effect_finish/jp/event/e0081.efx	std	0xE45E0	00438860	0	0	1	0	0	0	1	0	0	0x00	0:2		2	2	0
+ps2data/effect_finish/jp/event/e0081.efx	std	0xE45E0	00438860	1	1	1	0	0	0	1	0	0	0x00	0:1.8		1.8	1.8	0
+ps2data/effect_finish/jp/event/e0081.efx	std	0xE45E0	00438860	2	2	1	0	0	0	1	0	0	0x00	0:0.8		0.8	0.8	0
+ps2data/effect_finish/jp/event/e0081.efx	std	0xE6400	00438860	0	0	1	0	0	0	1	0	0	0x00	0:-0.2		-0.2	-0.2	0
+ps2data/effect_finish/jp/event/e0081.efx	std	0xE6400	00438860	1	1	2	0	1	0	1	0	0	0x00	0:0;272:0.2		0	0.2	0
+ps2data/effect_finish/jp/event/e0085.efx	std	0xE01E0	inline	0	0	1	0	0	0	1	0	0	0x00	0:0.02		0.02	0.02	0
+ps2data/effect_finish/jp/event/e0085.efx	std	0xE8C40	00438860	0	0	3	5	1	1	5	0	0	0x00	0:-0.02;40:-0.02;50:0	0:0.06;10:0.06;22:0.037;40:0.025;50:0	-0.02	0.06	0
+ps2data/effect_finish/jp/event/e0087.efx	std	0xF5140	inline	0	0	1	1	1	0	5	0	0	0x00	0:-0.02	0:0.02	-0.02	0.02	0
+ps2data/effect_finish/jp/event/e0088.efx	std	0x668F0	inline	0	0	1	0	0	0	1	0	0	0x00	0:-0.001		-0.001	-0.001	0
+ps2data/effect_finish/jp/event/e0088.efx	std	0x66FB0	inline	0	0	4	3	0	1	5	0	0	0x00	0:-0.001;12:-0.002;28:0.002;40:0	0:0.02;30:0.02;40:0	-0.002	0.02	0
+ps2data/effect_finish/jp/event/e0088.efx	std	0x676D0	inline	0	0	1	1	0	0	3	0	0	0x00	0:-0.001	0:-0.01	-0.011	0.009	0
+ps2data/effect_finish/jp/event/e0095.efx	std	0x66670	00438860	0	0	1	0	0	0	1	0	0	0x00	0:0.2		0.2	0.2	0
+ps2data/effect_finish/jp/event/e0096.efx	std	0x66670	00438860	0	0	1	0	0	0	1	0	0	0x00	0:0.2		0.2	0.2	0
+ps2data/effect_finish/jp/event/e0097.efx	std	0x66BB0	00438860	0	0	1	0	0	0	1	0	0	0x00	0:0.2		0.2	0.2	0
+ps2data/effect_finish/jp/event/e0098.efx	std	0x666A0	00438860	0	0	1	0	0	0	1	0	0	0x00	0:0.2		0.2	0.2	0
+ps2data/effect_finish/jp/event/e0111.efx	std	0x4D1D0	inline	0	0	1	0	0	0	1	0	0	0x00	0:0.01		0.01	0.01	0
+ps2data/effect_finish/jp/event/e0114.efx	std	0x49F90	inline	0	0	1	0	0	0	1	0	0	0x00	0:0.01		0.01	0.01	0
+ps2data/effect_finish/jp/event/e0116.efx	std	0x72B40	00438860	2	2	1	0	0	0	1	0	0	0x00	0:-0.2		-0.2	-0.2	0
+ps2data/effect_finish/jp/event/e0116.efx	std	0x73210	00438860	2	2	1	0	0	0	1	0	0	0x00	0:0.1		0.1	0.1	0
+ps2data/effect_finish/jp/event/e0118.efx	std	0x5EB20	inline	0	0	1	0	0	0	1	0	0	0x00	0:0.01		0.01	0.01	0
+ps2data/effect_finish/jp/event/e0120.efx	std	0x6BD30	inline	0	0	1	0	0	0	1	0	0	0x00	0:0.01		0.01	0.01	0
+ps2data/effect_finish/jp/event/e0125.efx	std	0x50F10	inline	0	0	1	0	0	0	1	0	0	0x00	0:0.01		0.01	0.01	0
+ps2data/effect_finish/jp/event/e0127.efx	std	0x5C880	inline	0	0	1	0	0	0	1	0	0	0x00	0:0.01		0.01	0.01	0
+ps2data/effect_finish/jp/event/e0129.efx	std	0x56BA0	inline	0	0	1	0	0	0	1	0	0	0x00	0:0.01		0.01	0.01	0
+ps2data/effect_finish/jp/event/e0135.efx	std	0x8C890	inline	0	0	1	0	0	0	1	0	0	0x00	0:0.01		0.01	0.01	0
+ps2data/effect_finish/jp/event/e0136.efx	std	0x4FE00	inline	0	0	1	0	0	0	1	0	0	0x00	0:0.01		0.01	0.01	0
+ps2data/effect_finish/jp/event/e0138.efx	std	0x67A70	inline	0	0	1	0	0	0	1	0	0	0x00	0:0.01		0.01	0.01	0
+ps2data/effect_finish/jp/event/e0140.efx	std	0x5A6E0	inline	0	0	1	0	0	0	1	0	0	0x00	0:0.01		0.01	0.01	0
+ps2data/effect_finish/jp/event/e0142.efx	std	0x49980	inline	0	0	1	0	0	0	1	0	0	0x00	0:0.01		0.01	0.01	0
+ps2data/effect_finish/jp/event/e0195.efx	std	0x6F770	00438860	3	3	4	0	1	0	1	0	0	0x00	0:-1;160:-3.5;320:-1;450:-1.5		-2.875	-1	0
+ps2data/effect_finish/jp/event/e0207.efx	std	0x7F520	00438860	0	0	1	0	0	0	1	0	0	0x00	0:0.2		0.2	0.2	0
+ps2data/effect_finish/jp/event/e0209.efx	std	0xBE9D0	00438860	0	0	1	0	0	0	1	0	0	0x00	0:0.1		0.1	0.1	0
+ps2data/effect_finish/jp/event/e0209.efx	std	0xBE9D0	00438860	1	1	1	0	0	0	1	0	0	0x00	0:0.08		0.08	0.08	0
+ps2data/effect_finish/jp/event/e0209.efx	std	0xC8B10	00438860	0	0	1	0	0	0	1	0	0	0x00	0:0.1		0.1	0.1	0
+ps2data/effect_finish/jp/event/e0217.efx	std	0x384E0	inline	0	0	0	0	0	0	1	0	0	0x00			0	0	0
+ps2data/effect_finish/jp/event/e0217.efx	std	0x39D60	inline	0	0	0	0	0	0	1	0	0	0x00			0	0	0
+ps2data/effect_finish/jp/event/e0223.efx	std	0x423D0	inline	0	0	1	0	0	0	1	0	0	0x00	0:0.01		0.01	0.01	0
+ps2data/effect_finish/jp/magic/m0021.efx	std	0x24380	inline	1	1	1	1	0	0	5	0	0	0x00	0:1	0:0.98	0.98	1	0
+ps2data/effect_finish/jp/magic/m0030.efx	std	0x158A0	00438860	0	0	1	1	0	0	5	0	0	0x00	0:0.006	0:0.008	0.006	0.008	0
+ps2data/effect_finish/jp/magic/m0034.efx	std	0x696E0	inline	0	0	1	0	1	1	3	0	0	0x00	0:0.02		0.02	0.02	0
+ps2data/effect_finish/jp/magic/m0051.efx	std	0x40920	inline	0	0	13	0	1	0	1	0	0	0x00	0:0;6:0.05;12:-0.000308414;22:-0.04;32:0;42:0.025;54:-0.02;62:0.00963522;70:-0.00767296;78:0.00319497;88:-0.00324528;100:0;120:0		-0.0300386	0.0374614	0
+ps2data/effect_finish/jp/magic/m0120.efx	std	0x4C040	00438860	2	2	5	0	1	0	1	0	0	0x00	0:1.2;296:1.2;300:1.2;320:0.436;412:-0.0752002		-0.0752002	1.2	0
+ps2data/effect_finish/jp/magic/m0121.efx	std	0x970C0	00438860	2	2	1	0	0	0	1	0	0	0x00	0:1		1	1	0
+ps2data/effect_finish/jp/magic/m0122.efx	std	0xAA5B0	00438860	2	2	1	0	0	0	1	0	0	0x00	0:1		1	1	0
+ps2data/effect_finish/jp/magic/m0123.efx	std	0x895E0	00438860	2	2	1	0	1	0	1	0	0	0x00	0:0.8		0.8	0.8	0
+ps2data/effect_finish/jp/magic/m0123.efx	std	0x8FB40	inline	0	0	1	0	1	1	3	0	0	0x00	0:0.02		0.02	0.02	0
+ps2data/effect_finish/jp/magic/m0124.efx	std	0x803E0	00438860	2	2	1	0	1	0	1	0	0	0x00	0:0.8		0.8	0.8	0
+ps2data/effect_finish/jp/magic/m0124.efx	std	0x827E0	inline	0	0	1	0	1	1	3	0	0	0x00	0:0.02		0.02	0.02	0
+ps2data/effect_finish/jp/magic/m0128.efx	std	0xCECB0	inline	0	0	0	0	0	0	1	0	0	0x00			0	0	0
+ps2data/effect_finish/jp/magic/m0128.efx	std	0xCF380	inline	0	0	0	0	0	0	1	0	0	0x00			0	0	0
+ps2data/effect_finish/jp/magic/m0128.efx	std	0xCFA50	inline	0	0	0	0	0	0	1	0	0	0x00			0	0	0
+ps2data/effect_finish/jp/magic/m0128.efx	std	0xD0320	inline	0	0	0	0	0	0	1	0	0	0x00			0	0	0
+ps2data/effect_finish/jp/magic/m0128.efx	std	0xD33D0	00438860	2	2	1	0	0	0	1	0	0	0x00	0:1		1	1	0
+ps2data/effect_finish/jp/magic/m0128.efx	std	0xD33D0	00438860	3	3	1	0	0	0	1	0	0	0x00	0:1.2		1.2	1.2	0
+ps2data/effect_finish/jp/magic/m0128.efx	std	0xD3CC0	00438860	2	2	1	0	0	0	1	0	0	0x00	0:1		1	1	0
+ps2data/effect_finish/jp/magic/m0128.efx	std	0xD3CC0	00438860	3	3	1	0	0	0	1	0	0	0x00	0:1.2		1.2	1.2	0
+ps2data/effect_finish/jp/magic/m0129.efx	std	0x6ED10	00438860	3	3	4	0	1	0	1	0	0	0x00	0:-1;160:-3.5;320:-1;450:-1.5		-2.875	-1	0
+ps2data/effect_finish/jp/magic/m0130.efx	std	0xA8B30	00438860	3	3	4	0	1	0	1	0	0	0x00	0:-1;160:-3.5;320:-1;450:-1.5		-2.875	-1	0
+ps2data/effect_finish/jp/magic/m0131.efx	std	0xA9D80	00438860	2	2	1	0	0	0	1	0	0	0x00	0:1		1	1	0
+ps2data/effect_finish/jp/magic/m0134.efx	std	0xB8610	inline	0	0	1	0	0	0	1	0	0	0x00	0:0.01		0.01	0.01	0
+ps2data/effect_finish/jp/magic/m0134.efx	std	0xBCD50	inline	0	0	1	0	0	0	1	0	0	0x00	0:0.01		0.01	0.01	0
+ps2data/effect_finish/jp/magic/m0134.efx	std	0xC1D30	inline	0	0	1	0	0	0	1	0	0	0x00	0:0.05		0.05	0.05	0
+ps2data/effect_finish/jp/magic/m0135.efx	std	0x8E3C0	00438860	2	2	4	0	1	0	1	0	0	0x00	0:0.2;90:0.2;102:0.167;140:-0.2		-0.2	0.2	0
+ps2data/effect_finish/jp/magic/m0135.efx	std	0x94930	00438860	2	2	2	0	0	0	1	0	0	0x00	0:2;76:0		0	2	0
+ps2data/effect_finish/jp/magic/m0136.efx	std	0x5C2C0	00438860	1	1	1	0	0	0	1	0	0	0x00	0:0.6		0.6	0.6	0
+ps2data/effect_finish/jp/magic/m0136.efx	std	0x5C2C0	00438860	2	2	0	0	0	0	1	0	0	0x00			0	0	0
+ps2data/effect_finish/jp/magic/m0136.efx	std	0x6E910	00438860	1	1	1	0	0	0	1	0	0	0x00	0:0.6		0.6	0.6	0
+ps2data/effect_finish/jp/magic/m0136.efx	std	0x6E910	00438860	2	2	0	0	0	0	1	0	0	0x00			0	0	0
+ps2data/effect_finish/jp/magic/m0137.efx	std	0x86420	00438860	0	0	0	0	0	0	1	0	0	0x00			0	0	0
+ps2data/effect_finish/jp/magic/m0137.efx	std	0x86420	00438860	1	1	1	0	0	0	1	0	0	0x00	0:0.6		0.6	0.6	0
+ps2data/effect_finish/jp/magic/m0137.efx	std	0x86420	00438860	2	2	0	0	0	0	1	0	0	0x00			0	0	0
+ps2data/effect_finish/jp/magic/m0138.efx	std	0x7A950	00438860	2	2	1	0	0	0	1	0	0	0x00	0:1		1	1	0
+ps2data/effect_finish/jp/magic/m0139.efx	std	0x75A20	00438860	2	2	1	0	0	0	1	0	0	0x00	0:1		1	1	0
+ps2data/effect_finish/jp/magic/m0140.efx	std	0x78020	00438860	2	2	1	0	0	0	1	0	0	0x00	0:1		1	1	0
+ps2data/effect_finish/jp/magic/m0141.efx	std	0x9AE70	00438860	2	2	1	0	0	0	1	0	0	0x00	0:1		1	1	0
+ps2data/effect_finish/jp/magic/m0143.efx	std	0x80D00	00438860	2	2	1	0	0	0	1	0	0	0x00	0:1		1	1	0
+ps2data/effect_finish/jp/magic/m0146.efx	std	0x8E2C0	00438860	2	2	1	0	0	0	1	0	0	0x00	0:1		1	1	0
+ps2data/effect_finish/jp/magic/m0149.efx	std	0x7E8C0	00438860	2	2	1	0	0	0	1	0	0	0x00	0:1		1	1	0
+ps2data/effect_finish/jp/magic/m0153.efx	std	0x9DE20	00438860	2	2	1	0	0	0	1	0	0	0x00	0:1		1	1	0
+ps2data/effect_finish/jp/magic/m0182.efx	std	0x24390	inline	1	1	1	1	0	0	5	0	0	0x00	0:1	0:0.98	0.98	1	0
+ps2data/effect_finish/jp/magic/m0334.efx	std	0x3E6C0	inline	0	0	1	0	1	1	3	0	0	0x00	0:0.03		0.03	0.03	0
+ps2data/effect_finish/jp/magic/m0335.efx	std	0x47F20	inline	0	0	1	0	1	1	3	0	0	0x00	0:0.03		0.03	0.03	0
+ps2data/effect_finish/jp/magic/m0386.efx	std	0xB7CE0	00438860	1	1	0	0	0	0	1	0	0	0x00			0	0	0
+ps2data/effect_finish/uk/magic/m0138.efx	std	0x79BD0	00438860	2	2	1	0	0	0	1	0	0	0x00	0:1		1	1	0
+ps2data/effect_finish/uk/magic/m0139.efx	std	0x74CA0	00438860	2	2	1	0	0	0	1	0	0	0x00	0:1		1	1	0
+ps2data/effect_finish/uk/magic/m0140.efx	std	0x772A0	00438860	2	2	1	0	0	0	1	0	0	0x00	0:1		1	1	0
+ps2data/effect_finish/uk/magic/m0141.efx	std	0x9A0F0	00438860	2	2	1	0	0	0	1	0	0	0x00	0:1		1	1	0
+ps2data/effect_finish/uk/magic/m0143.efx	std	0x7FF80	00438860	2	2	1	0	0	0	1	0	0	0x00	0:1		1	1	0
+ps2data/effect_finish/uk/magic/m0146.efx	std	0x8D540	00438860	2	2	1	0	0	0	1	0	0	0x00	0:1		1	1	0
+ps2data/effect_finish/uk/magic/m0149.efx	std	0x7DB40	00438860	2	2	1	0	0	0	1	0	0	0x00	0:1		1	1	0
+ps2data/effect_finish/uk/magic/m0153.efx	std	0x9D0A0	00438860	2	2	1	0	0	0	1	0	0	0x00	0:1		1	1	0
+ps2data/effect_finish/us/event/e0195.efx	std	0x6CA70	00438860	3	3	4	0	1	0	1	0	0	0x00	0:-1;160:-3.5;320:-1;450:-1.5		-2.875	-1	0
+ps2data/effect_finish/us/magic/m0120.efx	std	0x46940	00438860	2	2	5	0	1	0	1	0	0	0x00	0:1.2;296:1.2;300:1.2;320:0.436;412:-0.0752002		-0.0752002	1.2	0
+ps2data/effect_finish/us/magic/m0121.efx	std	0x94DC0	00438860	2	2	1	0	0	0	1	0	0	0x00	0:1		1	1	0
+ps2data/effect_finish/us/magic/m0122.efx	std	0xA93B0	00438860	2	2	1	0	0	0	1	0	0	0x00	0:1		1	1	0
+ps2data/effect_finish/us/magic/m0123.efx	std	0x849E0	00438860	2	2	1	0	1	0	1	0	0	0x00	0:0.8		0.8	0.8	0
+ps2data/effect_finish/us/magic/m0123.efx	std	0x8AF40	inline	0	0	1	0	1	1	3	0	0	0x00	0:0.02		0.02	0.02	0
+ps2data/effect_finish/us/magic/m0124.efx	std	0x70DE0	00438860	2	2	1	0	1	0	1	0	0	0x00	0:0.8		0.8	0.8	0
+ps2data/effect_finish/us/magic/m0124.efx	std	0x731E0	inline	0	0	1	0	1	1	3	0	0	0x00	0:0.02		0.02	0.02	0
+ps2data/effect_finish/us/magic/m0128.efx	std	0xCE3B0	inline	0	0	0	0	0	0	1	0	0	0x00			0	0	0
+ps2data/effect_finish/us/magic/m0128.efx	std	0xCEA80	inline	0	0	0	0	0	0	1	0	0	0x00			0	0	0
+ps2data/effect_finish/us/magic/m0128.efx	std	0xCF150	inline	0	0	0	0	0	0	1	0	0	0x00			0	0	0
+ps2data/effect_finish/us/magic/m0128.efx	std	0xCFA20	inline	0	0	0	0	0	0	1	0	0	0x00			0	0	0
+ps2data/effect_finish/us/magic/m0128.efx	std	0xD2AD0	00438860	2	2	1	0	0	0	1	0	0	0x00	0:1		1	1	0
+ps2data/effect_finish/us/magic/m0128.efx	std	0xD2AD0	00438860	3	3	1	0	0	0	1	0	0	0x00	0:1.2		1.2	1.2	0
+ps2data/effect_finish/us/magic/m0128.efx	std	0xD33C0	00438860	2	2	1	0	0	0	1	0	0	0x00	0:1		1	1	0
+ps2data/effect_finish/us/magic/m0128.efx	std	0xD33C0	00438860	3	3	1	0	0	0	1	0	0	0x00	0:1.2		1.2	1.2	0
+ps2data/effect_finish/us/magic/m0129.efx	std	0x6C010	00438860	3	3	4	0	1	0	1	0	0	0x00	0:-1;160:-3.5;320:-1;450:-1.5		-2.875	-1	0
+ps2data/effect_finish/us/magic/m0130.efx	std	0xA8C30	00438860	3	3	4	0	1	0	1	0	0	0x00	0:-1;160:-3.5;320:-1;450:-1.5		-2.875	-1	0
+ps2data/effect_finish/us/magic/m0131.efx	std	0x92C80	00438860	2	2	1	0	0	0	1	0	0	0x00	0:1		1	1	0
+ps2data/effect_finish/us/magic/m0134.efx	std	0xAFD10	inline	0	0	1	0	0	0	1	0	0	0x00	0:0.01		0.01	0.01	0
+ps2data/effect_finish/us/magic/m0134.efx	std	0xB4450	inline	0	0	1	0	0	0	1	0	0	0x00	0:0.01		0.01	0.01	0
+ps2data/effect_finish/us/magic/m0134.efx	std	0xB9430	inline	0	0	1	0	0	0	1	0	0	0x00	0:0.05		0.05	0.05	0
+ps2data/effect_finish/us/magic/m0135.efx	std	0x8DDC0	00438860	2	2	4	0	1	0	1	0	0	0x00	0:0.2;90:0.2;102:0.167;140:-0.2		-0.2	0.2	0
+ps2data/effect_finish/us/magic/m0135.efx	std	0x94330	00438860	2	2	2	0	0	0	1	0	0	0x00	0:2;76:0		0	2	0
+ps2data/effect_finish/us/magic/m0136.efx	std	0x5B1C0	00438860	1	1	1	0	0	0	1	0	0	0x00	0:0.6		0.6	0.6	0
+ps2data/effect_finish/us/magic/m0136.efx	std	0x5B1C0	00438860	2	2	0	0	0	0	1	0	0	0x00			0	0	0
+ps2data/effect_finish/us/magic/m0136.efx	std	0x6D810	00438860	1	1	1	0	0	0	1	0	0	0x00	0:0.6		0.6	0.6	0
+ps2data/effect_finish/us/magic/m0136.efx	std	0x6D810	00438860	2	2	0	0	0	0	1	0	0	0x00			0	0	0
+ps2data/effect_finish/us/magic/m0137.efx	std	0x84D20	00438860	0	0	0	0	0	0	1	0	0	0x00			0	0	0
+ps2data/effect_finish/us/magic/m0137.efx	std	0x84D20	00438860	1	1	1	0	0	0	1	0	0	0x00	0:0.6		0.6	0.6	0
+ps2data/effect_finish/us/magic/m0137.efx	std	0x84D20	00438860	2	2	0	0	0	0	1	0	0	0x00			0	0	0
+ps2data/effect_finish/us/magic/m0386.efx	std	0xB38E0	00438860	1	1	0	0	0	0	1	0	0	0x00			0	0	0
+ps2data/obj_finish/in/monster/m11/m1166/m1166.cm	emb	0xD1C0	00438860	0	0	1	1	0	0	5	0	0	0x00	0:0.03	0:-0.03	-0.03	0.03	0
+ps2data/obj_finish/in/monster/m11/m1169/m1169.cm	emb	0xD0A0	00438860	0	0	1	1	0	0	5	0	0	0x00	0:0.03	0:0.02	0.02	0.03	0

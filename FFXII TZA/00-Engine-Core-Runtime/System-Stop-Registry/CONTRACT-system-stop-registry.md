@@ -2,7 +2,6 @@
 contract: Stop parts of the world for a while — twenty-eight requests intersected into one permission mask, applied once per dirty frame
 category: 00-Engine-Core-Runtime
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: 00-Engine-Core-Runtime/System-Stop-Registry/the-time-stop-and-system-stop-registry.md
@@ -64,7 +63,9 @@ that means together.
 
 01FD46D4  u32   the active-request bitset  -- NOT read by the apply step (SS-1)
 01FD46D0  u8    the dirty byte             -- the only start-to-apply coupling (SS-6)
-01FD46A0..01FD46C8   the combined masks and fade the last apply computed
+01FD46A0..01FD46C8   the combined masks the last apply computed (+0x00 of each 0x18 record); +0x08 and +0x10
+                     are copied from apply stack slots the apply never writes, and nothing reads them
+                     (FABLE 2026-10-03, section 14)
 ```
 
 ## 4. Preconditions · postconditions · invariants
@@ -110,8 +111,11 @@ The type block's "-1 = none" is the steady state, not the start state.
 - **What the first apply does with that.** It finds 28 non-negative slots. It takes the minimum, **0**, as the
   frame's fade, and resets every slot to `-1` (`00226301`). From then on a slot is `-1` until a start writes a
   request's length into it (`00226C4B`).
-- **The combined fade is different.** Its last-computed value (`01FD46B0` / `01FD46C8`) is set to `-1` by the
-  initialiser itself (`00226B6D`).
+- **The combined fade is different.** ~~Its last-computed value~~ (`01FD46B0` / `01FD46C8`) is set to `-1` by the
+  initialiser itself (`00226B6D`). *(corrected 2026-10-03, FABLE: these two cells hold no computed fade. Each apply
+  copies them from its stack slots `[rsp+0x48]` / `[rsp+0x30]` (`002265E5` / `0022661E`), which it never writes,
+  and no instruction reads them. The frame's fade is the minimum in `ecx`, used in registers; section 14,
+  [`fable-systemstop-08-1003`](../../_index/candidates/fable-systemstop-08-1003/README.md).)*
 
 *Not read here:* whether a 0-length fade behaves differently from none for the consumer of the combined value.
 Static; the initialiser's body was read in full.
@@ -240,8 +244,24 @@ evidence, separate.)
   **PARTIAL 2026-09-23 (SWE2-CONTRACT):** observed fields beyond `+0x00` are **`+0x10` dword —
   the fade duration** (written at start `00226C4B` from the wrapper's stack arg, reset to `-1`,
   read-and-consumed by the apply at `002262EE`) and **`+0x14` byte — ~~zeroed~~ the start's flag argument** in record B (`00227680+0x30` `mov [r8+0x14], r9b`, called from `00226BE0+0x92`), ~~at start/reset in~~ zeroed at cancel and reset in
-  both records (`00225E30`/`00226003`/`00226008`) *(corrected 2026-10-02, OPUS: the start stores the flag)*. The remaining bytes — `+0x08` qword and
+  both records (`00225E30`/`00226003`/`00226008`) *(corrected 2026-10-02, OPUS: the start stores the flag)*. The remaining bytes — ~~`+0x08` qword and~~
   `+0x15`–`+0x17` — are still unobserved.
+  **`+0x08` (FABLE, 2026-10-03, on OPUS-REQ-FABLE-SYSTEMSTOP-14-1003; record [`fable-systemstop-08-1003`](../../_index/candidates/fable-systemstop-08-1003/README.md), `check.py` FAILS 0):**
+  - **Written by the builder.** `00227680` stores the qword in both records of the id it builds: 0 on entry
+    (`00227698` / `002276A2`) and all-ones in five arms (`002277A1`, `0022793E`, `00227C0E`, `00227C46`,
+    `00227C82`, each followed by the same store to record B).
+  - **Read by nothing found.** The census covered every rip-relative reference into `01FD4160`–`01FD46D0`, from
+    a raw rel32 sweep of every `.text` offset, which reaches seven functions plus the builder. It also covered every
+    operand through a record pointer in those functions, and the two callers of the record accessor `00226B10`.
+    It finds the builder's 12 stores at `+0x08` and no reader. The same classifier finds the apply's known
+    readers of `+0x00` and `+0x10`.
+  - **The combined records do not carry it.** The apply ANDs only the first qwords. The high half of its
+    16-byte copies (`00226603` / `00226624`) comes from the stack slots `[rsp+0x40]` / `[rsp+0x28]`, which
+    the apply never writes. So the per-id `+0x08` never reaches the combined records, and nothing reads
+    their `+0x08` either.
+  - **For a port:** writing or omitting the field changes nothing the census can see. It is not
+    reconstruction-critical unless a reader exists outside the census forms (a computed pointer from
+    outside these functions).
 
 ## 15. Evidence
 

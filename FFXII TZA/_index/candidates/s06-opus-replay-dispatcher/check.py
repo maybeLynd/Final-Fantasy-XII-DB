@@ -273,3 +273,10 @@ summary = {"pass": sum(1 for v in results.values() if v["pass"]), "total": len(r
            "epi_ids": epi_ids, "stepper_ids": [s[0] for s in steppers], "results": results}
 json.dump(summary, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "result.json"), "w"), indent=1, default=str)
 print("%d/%d pass" % (summary["pass"], summary["total"]))
+
+
+# EXIT STATUS FOLLOWS THE RECORDED VERDICT (OPUS, 2026-10-03, the user's root-cause directive item 4): this package
+# recorded "ok" in result.json but always exited 0, so no automated re-run could see it fail.
+import json as _ej, os as _eo, sys as _es
+_es.exit(0 if _ej.load(open(_eo.path.join(_eo.path.dirname(_eo.path.abspath(__file__)), "result.json"),
+                            encoding="utf-8")).get("ok") is True else 1)

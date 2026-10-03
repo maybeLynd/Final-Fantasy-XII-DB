@@ -2,7 +2,6 @@
 contract: decide whether a unit is licensed for an action - three exits before any board is read, a bitmask overlap for ordinary actions, and a counted gate for Quickenings
 category: 12-Items-Equipment-Shops-License
 scope: subsystem
-level: L2
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 12-Items-Equipment-Shops-License/license-check-what-the-board-actually-tests.md

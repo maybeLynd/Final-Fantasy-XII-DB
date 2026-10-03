@@ -2,7 +2,6 @@
 contract: Choose a field's environment variant and publish it — a once-consumed latch and a banded preset
 category: 03-World-Area-Field
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: choosing-the-field-environment-variant.md

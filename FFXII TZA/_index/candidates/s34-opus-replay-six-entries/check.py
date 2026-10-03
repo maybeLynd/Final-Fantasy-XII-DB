@@ -310,3 +310,10 @@ json.dump({"pass": sum(1 for k, v in results.items() if v.get("pass_")), "total"
            "ok": allok, "files": {k: {"path": p, "sha256": hashlib.sha256(blob[k]).hexdigest(), "bytes": len(blob[k])} for k, p in FILES.items()},
            "results": results}, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "result.json"), "w"), indent=1)
 print("%d/%d pass" % (sum(1 for v in results.values() if v.get("pass_")), sum(1 for v in results.values() if "pass_" in v)))
+
+
+# EXIT STATUS FOLLOWS THE RECORDED VERDICT (OPUS, 2026-10-03, the user's root-cause directive item 4): this package
+# recorded "ok" in result.json but always exited 0, so no automated re-run could see it fail.
+import json as _ej, os as _eo, sys as _es
+_es.exit(0 if _ej.load(open(_eo.path.join(_eo.path.dirname(_eo.path.abspath(__file__)), "result.json"),
+                            encoding="utf-8")).get("ok") is True else 1)

@@ -2,7 +2,6 @@
 contract: "Queue resource reads in a 64-slot pool; service and recycle requests while preserving request identity and callback semantics"
 category: 02-Resource-And-Asset-Pipeline
 scope: subsystem
-level: L2
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 02-Resource-And-Asset-Pipeline/the-resource-request-queue.md

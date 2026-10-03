@@ -1,8 +1,8 @@
-<!-- TEAM-CURRENT:begin agent=SWE2-AUDIT-SEM board_rev=49559 epoch=4 queue_sha=1e2cabc4d91633da -->
-> generated 2026-10-03T06:33:39+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=SWE2-AUDIT-SEM board_rev=50160 epoch=4 queue_sha=7b4c8087fee07ee1 -->
+> generated 2026-10-03T09:12:45+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: AUDITSEM-PUB-STANDIN2-1003
-> READY addressed to you: P2 OPUS-REQ-AUDITSEM-L1-VERDICT-ITEMS-1003
+> ACTIVE: AUDITSEM-PUB-STANDIN3-1003
+> READY addressed to you: none
 > READY pool: 0 | BLOCKED: 0
 <!-- TEAM-CURRENT:end -->
 
@@ -56,6 +56,21 @@ Updated at every checkpoint; a restarted session rebuilds from this block before
 Required by the continuity rule in the root `CLAUDE.md` ("What a plain `Continue` means").
 
 - **Identity:** SWE2-AUDIT-SEM
+- **CHECKPOINT 2026-10-03 09:15Z (Claude stand-in for Devin): four more items DONE. Supersedes the "next action" below.**
+  - `2f1259752`: `OPUS-REQ-AUDITSEM-S49-REREVIEW-1003`, ACCEPT-WITH-NARROWING. D1 is repaired: `02CF8260` is declared, and a raw
+    `.text` scan finds its 29 references. One narrowing: contract §8's code snippet (line 234) still says "CFG path". 15 more
+    undeclared S-49 addresses were routed to the L2 expansion census.
+  - `c858f27ff`: `OPUS-REQ-AUDITSEM-L1-VERDICT-ITEMS-1003`, ACCEPT. S-45's registry row now lists the steam contract.
+    S-25 p2, S-29 p1 and S-38 p2 are SCOPE-SHORT. This lane authored those cells, so the wordings were routed to the
+    expansion re-score, and AUDIT-SPEC (non-author) concurred in `78595090d`.
+  - `b7a084d4a` + `ab6665a77`: `AUDITSPEC-REQ-SWE2-AUDIT-SEM-L2EXP-REPAIRS-1003`. This repairs the lane's own cells after
+    AUDIT-SPEC's independent census (`78595090d`). Types cells MET→PARTIAL (L2→NOT MET) for S-09, S-10, S-14, S-16, S-17,
+    S-22, S-25, S-31, S-36, S-39 and S-45, with S-28 also re-scored PARTIAL for `02097D20`. Each returns to MET when OPUS's
+    declarations land (`AUDITSPEC-REQ-OPUS-L2EXP-REPAIRS-1003`). **Note:** `b7a084d4a` also carried 11 of SWE2-DATA's
+    runtime-row edits from the shared worktree (record `4207b4a16`); `ab6665a77` documents it. goal_gate reads 16/52 NOT MET.
+  - **Current package/claim:** none. **Next action:** re-score the 11 types cells to MET as OPUS's declarations land
+    (check with `types_census2.py` in `auditspec-l2-expansion-1003/`). Always diff `L2-VERDICTS.md` before publishing
+    it, because other lanes edit it too.
 - **CHECKPOINT 2026-10-03 06:45Z (Claude stand-in for Devin): L2-MET risk sample DONE, published `bcbf43096`.**
   This supersedes the "nothing done" line below. User task (audit follow-up package §6): a stand-in audited six MET
   systems. Verdicts: S-02, S-13, S-28, S-43 ACCEPT-WITH-NARROWING; S-36 and S-49 REJECT. Record:

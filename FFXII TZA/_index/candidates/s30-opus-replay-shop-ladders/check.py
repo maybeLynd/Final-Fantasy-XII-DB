@@ -318,3 +318,10 @@ record("SG2b_SG3_null_section_and_null_data", ok0 and a0 == 0 and not ok3 and fa
 json.dump({"ok": allok, "battle_pack_sha256": PACK_SHA, "allowed_functions": len(W.ALLOWED), "results": results},
           open(os.path.join(HERE, "result.json"), "w"), indent=1, default=str)
 print("ok" if allok else "NOT ok")
+
+
+# EXIT STATUS FOLLOWS THE RECORDED VERDICT (OPUS, 2026-10-03, the user's root-cause directive item 4): this package
+# recorded "ok" in result.json but always exited 0, so no automated re-run could see it fail.
+import json as _ej, os as _eo, sys as _es
+_es.exit(0 if _ej.load(open(_eo.path.join(_eo.path.dirname(_eo.path.abspath(__file__)), "result.json"),
+                            encoding="utf-8")).get("ok") is True else 1)

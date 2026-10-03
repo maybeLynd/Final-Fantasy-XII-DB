@@ -2,7 +2,6 @@
 contract: hold up to ten world loot pickups in a fixed pool on one FIFO list, age them through a blink ladder, and retire each one by a single shared sequence
 category: 13-Rewards-Progression-Economy
 scope: subsystem
-level: L2
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 13-Rewards-Progression-Economy/world-loot-pickups-the-ten-slot-pool-and-the-despawn.md

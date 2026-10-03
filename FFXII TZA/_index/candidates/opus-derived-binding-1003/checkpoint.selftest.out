@@ -1,0 +1,5 @@
+ok   summary table parsed: [('contract', {'MET': 47, 'SCOPE-SHORT': 3}, 1)]
+ok   PROGRESS headline parsed
+ok   CURRENT claim detected
+ok   STALE label is not a CURRENT claim
+self-test: 0 failure(s)

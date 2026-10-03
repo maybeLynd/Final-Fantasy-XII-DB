@@ -2416,3 +2416,39 @@ evidence verbatim.
 | `00672F30` | 243 B | returns 5 when `r8d` is negative (signed); otherwise takes the old storage of `rcx` (qword `+8` when dword `+0` with bit 31 cleared is above 1 unsigned, the address `rcx + 8` when it is 1, null when 0); when `r8d` is 1 it copies the `0x48` bytes at `rdx` field by field to `rcx + 8` except that `+0x28` receives the address `00D68DD0` (copy skipped if `rcx + 8` is null), making `rcx + 8` the new storage and 1 the new count, else the new storage is `rdx` and the new count `r8d` with bit 31 set; calls `00584730` on the old storage when it differs from the new storage and from `rcx + 8`, is non-null and bit 31 of dword `+0` is clear; stores the new storage at qword `+8` unless it is `rcx + 8`, stores the new count at dword `+0` and returns 0 | `00672F43`, `00672F6A`, `00672FBD`, `00672FFD`, `00673011` |
 | `006B66F0` | 15 B | stores `rdx` at qword `+0` of `rcx`, zeroes qword `+8` and returns `rcx` | `006B66F3`, `006B66F6` |
 | `006C7A40` | 176 B | returns 0 at once when `edx` equals the whole dword `+0` of `rcx`; otherwise takes the old storage (qword `+8` when dword `+0` with bit 31 cleared is above 1 unsigned, the address `rcx + 8` when it is 1, null when 0) and calls `006C7450(rcx, edx, old storage, the unsigned minimum of edx and that count)`; when the result is null and `edx` is non-zero it returns 0xD, else it calls `00584730` on the old storage when that differs from the result and from `rcx + 8`, is non-null and bit 31 of dword `+0` is clear, stores the result at qword `+8` unless it is `rcx + 8`, stores `edx` at dword `+0` and returns 0 | `006C7A67`, `006C7A8C`, `006C7A90`, `006C7AC4`, `006C7AD1` |
+
+`0063E010` (33 B, no direct call; slot 0 of the `PTypeDefault<short>` singleton) byte-swaps the 16-bit value at the second argument in place - low byte to high, the arithmetic high byte masked to `0xFF` into the low - and returns 1: the endian fix-up a `short` primitive field gets.
+
+Interior anchor `0063E02D` (function `0063E010`).
+
+`0063E040` (13 B, no direct call; slot 0 of `PTypeDefault<unsigned short>`) byte-swaps the 16-bit value in place with `rol ax, 8` and returns 1.
+
+Interior anchor `0063E047` (function `0063E040`).
+
+`0063E090` (61 B, no direct call; slot 0 of `PTypeDefault<float>`) reverses the four bytes of the 32-bit float at the second argument in place (`AABBCCDD` becomes `DDCCBBAA` through two masked shift pairs) and returns 1 - the same endian fix-up for `float` fields.
+
+Interior anchor `0063E0C6` (function `0063E090`).
+
+`0063CB50` (9 B, no direct call; slot 10 of `PClassDataMemberArray` and its dynamic-array derivatives) returns bit 1 of the member's flag dword `+0x28`.
+
+Interior anchor `0063CB53` (function `0063CB50`).
+
+`0063C4D0` (102 B, no direct call; slot 2 of `PClassDataMemberArray` and its derivatives) asks the member itself for three things through its own vtable - slot 4 (`+0x20`, a 32-bit result, with the object argument), slot 6 (`+0x30`, a pointer, with the same argument) and slot 9 (`+0x48`) - and tail-jumps to `00683A40` with the second argument, the slot-4 value, the pointer and the slot-9 result.
+
+Interior anchor `0063C501` (function `0063C4D0`).
+
+`0063D330` (140 B, no direct call; slot 3 of the same family) is the sibling with a choice: it takes the slot-4 value and a pointer from slot 7 (`+0x38`), then calls slot 10 (`+0x50`, which `0063CB50` answers from flag bit 1) and passes those and the slot-9 result to `006841F0` when that bit is set or to `00683FF0` when it is clear.
+
+Interior anchor `0063D377` (function `0063D330`).
+
+`006065D0` (16 B, no direct call; slot 4 of every `PClassDataMemberArrayDynamic<...>` specialisation - `PArray` of pointers, floats, ints and unsigned values, `PSharray` and `PString`) tail-calls the function pointer stored at the member's `+0x60` with the object argument, and returns nothing when that pointer is NULL.
+
+Interior anchor `006065D9` (function `006065D0`).
+
+`00604580` (36 B, no direct call; slots 6 and 7 of the same specialisations) tail-calls the function pointer at `+0x68` when one is installed; otherwise it returns the qword at the object plus the member's offset (`+0x48`) less the owning class's base offset (`[+0x18]` then `+0xF4`).
+
+Interior anchor `00604596` (function `00604580`).
+
+`0060F3D0` (33 B, no direct call; slot 8 of the same specialisations) forwards to the function pointer at `+0x70` with the object and the next two arguments when one is installed, and otherwise returns `0x15`.
+
+Interior anchor `0060F3EB` (function `0060F3D0`).

@@ -2,7 +2,6 @@
 contract: bind, clear and re-publish the four-entry tables an actor manager slot keeps for each of two definition sources
 category: 04-Actor-Entity
 scope: family
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 04-Actor-Entity/Actor-Manager-Record/the-actor-manager-record-field-map.md

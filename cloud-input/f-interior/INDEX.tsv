@@ -203,3 +203,15 @@ what-the-engine-calls-to-make-a-sound	18-Audio/Audio-Boundary/what-the-engine-ca
 battle-text-banks	02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/battle-text-banks.md	4	1705	2026-10-03 02:40	PACKED
 drawing-one-coloured-rectangle	99-Unresolved-Residual/drawing-one-coloured-rectangle.md	4	3272	2026-10-03 02:40	PACKED
 force-fight-mode	00-Engine-Core-Runtime/Force-Fight-Mode/force-fight-mode.md	3	182	2026-10-03 02:40	PACKED
+the-handbook-screen	16-UI/Handbook/the-handbook-screen.md	2	121	2026-10-03 02:49	PACKED
+sqex-sd-sound-driver-architecture	18-Audio/sqex-sd-sound-driver-architecture.md	2	128	2026-10-03 02:49	PACKED
+spp-map-sound-list	18-Audio/Sound-Bank-And-Voice-Formats/spp-map-sound-list.md	2	195	2026-10-03 02:49	PACKED
+section-002-text	25-EBP-Script-Container/Sections/section-002-text.md	2	115	2026-10-03 02:49	PACKED
+section-019	25-EBP-Script-Container/Sections/section-019.md	2	188	2026-10-03 02:49	PACKED
+the-second-icon-drawer-and-what-it-adds	99-Unresolved-Residual/the-second-icon-drawer-and-what-it-adds.md	2	233	2026-10-03 02:49	PACKED
+the-fifteen-modules-registered-before-main	22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md	11	1028	2026-10-03 03:15	PACKED
+the-lua-loader-and-what-it-accepts	23-Third-Party-Libraries/Lua-Core/the-lua-loader-and-what-it-accepts.md	2	217	2026-10-03 03:15	PACKED
+how-the-ard-loader-binds-area-battle-data	02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/how-the-ard-loader-binds-area-battle-data.md	1	57	2026-10-03 03:15	PACKED
+texture-mip-local-memory-budget	17-Presentation-Rendering/Legacy-PS2-GS/texture-mip-local-memory-budget.md	1	71	2026-10-03 03:15	PACKED
+the-camera-state-snapshot	22-Middleware-PhyreEngine/the-camera-state-snapshot.md	1	2200	2026-10-03 03:15	PACKED
+choosing-the-render-target-for-a-text-run	99-Unresolved-Residual/Glyph-Run-Rendering/choosing-the-render-target-for-a-text-run.md	1	108	2026-10-03 03:15	PACKED

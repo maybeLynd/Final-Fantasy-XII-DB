@@ -2,7 +2,6 @@
 contract: Choose how far up a shop's stock ladder the player has climbed — once, by pointer, with the last line as the floor
 category: 12-Items-Equipment-Shops-License
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: 12-Items-Equipment-Shops-License/the-shop-table-and-its-stock-gates.md

@@ -1,0 +1,593 @@
+{
+  "producer_complete": true,
+  "method": "A STATIC_ONLY: complete original source and signed-counter invariant; no machine-code or game execution",
+  "driver_sha256": "62d34593906b99d651d4908b2e3f6be909294db49d0caa44c64f45c97c9f5169",
+  "source_sha256": "2c66378a2f9fb4125671f1f5f5ee4211a7397abf52e904137ba474a07e5a9fa8",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "upstream_status_sha256": "bd86e7a17cd3d9817f5b768d47ef94625801efdce2b39cfc2037e1e7bfa91196",
+  "annotation_prerequisite": {
+    "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+    "instruction_records": 175,
+    "capstone": "5.0.7",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+  },
+  "body": "f71f6f4a0633fa327a47b23f16231e23be086270b133f30357e49520d74f9800",
+  "operation_pins": 29,
+  "limit_partition": [
+    {
+      "limits": [
+        -2147483648,
+        1
+      ],
+      "iterations": "1",
+      "maximum_written_offset": "1"
+    },
+    {
+      "limits": [
+        2,
+        2147483647
+      ],
+      "iterations": "1..C",
+      "maximum_written_offset": "C"
+    }
+  ],
+  "calculation_controls": [
+    {
+      "limit": -2147483648,
+      "next_zero_offset": 1,
+      "count": 1,
+      "copied_offsets": [
+        0,
+        0
+      ],
+      "appended_zero_offset": 1
+    },
+    {
+      "limit": -2147483648,
+      "next_zero_offset": 2,
+      "count": 1,
+      "copied_offsets": [
+        0,
+        0
+      ],
+      "appended_zero_offset": 1
+    },
+    {
+      "limit": -2147483648,
+      "next_zero_offset": 258,
+      "count": 1,
+      "copied_offsets": [
+        0,
+        0
+      ],
+      "appended_zero_offset": 1
+    },
+    {
+      "limit": -2147483648,
+      "next_zero_offset": 259,
+      "count": 1,
+      "copied_offsets": [
+        0,
+        0
+      ],
+      "appended_zero_offset": 1
+    },
+    {
+      "limit": -2147483648,
+      "next_zero_offset": 260,
+      "count": 1,
+      "copied_offsets": [
+        0,
+        0
+      ],
+      "appended_zero_offset": 1
+    },
+    {
+      "limit": -2147483648,
+      "next_zero_offset": null,
+      "count": 1,
+      "copied_offsets": [
+        0,
+        0
+      ],
+      "appended_zero_offset": 1
+    },
+    {
+      "limit": -1,
+      "next_zero_offset": 1,
+      "count": 1,
+      "copied_offsets": [
+        0,
+        0
+      ],
+      "appended_zero_offset": 1
+    },
+    {
+      "limit": -1,
+      "next_zero_offset": 2,
+      "count": 1,
+      "copied_offsets": [
+        0,
+        0
+      ],
+      "appended_zero_offset": 1
+    },
+    {
+      "limit": -1,
+      "next_zero_offset": 258,
+      "count": 1,
+      "copied_offsets": [
+        0,
+        0
+      ],
+      "appended_zero_offset": 1
+    },
+    {
+      "limit": -1,
+      "next_zero_offset": 259,
+      "count": 1,
+      "copied_offsets": [
+        0,
+        0
+      ],
+      "appended_zero_offset": 1
+    },
+    {
+      "limit": -1,
+      "next_zero_offset": 260,
+      "count": 1,
+      "copied_offsets": [
+        0,
+        0
+      ],
+      "appended_zero_offset": 1
+    },
+    {
+      "limit": -1,
+      "next_zero_offset": null,
+      "count": 1,
+      "copied_offsets": [
+        0,
+        0
+      ],
+      "appended_zero_offset": 1
+    },
+    {
+      "limit": 0,
+      "next_zero_offset": 1,
+      "count": 1,
+      "copied_offsets": [
+        0,
+        0
+      ],
+      "appended_zero_offset": 1
+    },
+    {
+      "limit": 0,
+      "next_zero_offset": 2,
+      "count": 1,
+      "copied_offsets": [
+        0,
+        0
+      ],
+      "appended_zero_offset": 1
+    },
+    {
+      "limit": 0,
+      "next_zero_offset": 258,
+      "count": 1,
+      "copied_offsets": [
+        0,
+        0
+      ],
+      "appended_zero_offset": 1
+    },
+    {
+      "limit": 0,
+      "next_zero_offset": 259,
+      "count": 1,
+      "copied_offsets": [
+        0,
+        0
+      ],
+      "appended_zero_offset": 1
+    },
+    {
+      "limit": 0,
+      "next_zero_offset": 260,
+      "count": 1,
+      "copied_offsets": [
+        0,
+        0
+      ],
+      "appended_zero_offset": 1
+    },
+    {
+      "limit": 0,
+      "next_zero_offset": null,
+      "count": 1,
+      "copied_offsets": [
+        0,
+        0
+      ],
+      "appended_zero_offset": 1
+    },
+    {
+      "limit": 1,
+      "next_zero_offset": 1,
+      "count": 1,
+      "copied_offsets": [
+        0,
+        0
+      ],
+      "appended_zero_offset": 1
+    },
+    {
+      "limit": 1,
+      "next_zero_offset": 2,
+      "count": 1,
+      "copied_offsets": [
+        0,
+        0
+      ],
+      "appended_zero_offset": 1
+    },
+    {
+      "limit": 1,
+      "next_zero_offset": 258,
+      "count": 1,
+      "copied_offsets": [
+        0,
+        0
+      ],
+      "appended_zero_offset": 1
+    },
+    {
+      "limit": 1,
+      "next_zero_offset": 259,
+      "count": 1,
+      "copied_offsets": [
+        0,
+        0
+      ],
+      "appended_zero_offset": 1
+    },
+    {
+      "limit": 1,
+      "next_zero_offset": 260,
+      "count": 1,
+      "copied_offsets": [
+        0,
+        0
+      ],
+      "appended_zero_offset": 1
+    },
+    {
+      "limit": 1,
+      "next_zero_offset": null,
+      "count": 1,
+      "copied_offsets": [
+        0,
+        0
+      ],
+      "appended_zero_offset": 1
+    },
+    {
+      "limit": 2,
+      "next_zero_offset": 1,
+      "count": 1,
+      "copied_offsets": [
+        0,
+        0
+      ],
+      "appended_zero_offset": 1
+    },
+    {
+      "limit": 2,
+      "next_zero_offset": 2,
+      "count": 2,
+      "copied_offsets": [
+        0,
+        1
+      ],
+      "appended_zero_offset": 2
+    },
+    {
+      "limit": 2,
+      "next_zero_offset": 258,
+      "count": 2,
+      "copied_offsets": [
+        0,
+        1
+      ],
+      "appended_zero_offset": 2
+    },
+    {
+      "limit": 2,
+      "next_zero_offset": 259,
+      "count": 2,
+      "copied_offsets": [
+        0,
+        1
+      ],
+      "appended_zero_offset": 2
+    },
+    {
+      "limit": 2,
+      "next_zero_offset": 260,
+      "count": 2,
+      "copied_offsets": [
+        0,
+        1
+      ],
+      "appended_zero_offset": 2
+    },
+    {
+      "limit": 2,
+      "next_zero_offset": null,
+      "count": 2,
+      "copied_offsets": [
+        0,
+        1
+      ],
+      "appended_zero_offset": 2
+    },
+    {
+      "limit": 258,
+      "next_zero_offset": 1,
+      "count": 1,
+      "copied_offsets": [
+        0,
+        0
+      ],
+      "appended_zero_offset": 1
+    },
+    {
+      "limit": 258,
+      "next_zero_offset": 2,
+      "count": 2,
+      "copied_offsets": [
+        0,
+        1
+      ],
+      "appended_zero_offset": 2
+    },
+    {
+      "limit": 258,
+      "next_zero_offset": 258,
+      "count": 258,
+      "copied_offsets": [
+        0,
+        257
+      ],
+      "appended_zero_offset": 258
+    },
+    {
+      "limit": 258,
+      "next_zero_offset": 259,
+      "count": 258,
+      "copied_offsets": [
+        0,
+        257
+      ],
+      "appended_zero_offset": 258
+    },
+    {
+      "limit": 258,
+      "next_zero_offset": 260,
+      "count": 258,
+      "copied_offsets": [
+        0,
+        257
+      ],
+      "appended_zero_offset": 258
+    },
+    {
+      "limit": 258,
+      "next_zero_offset": null,
+      "count": 258,
+      "copied_offsets": [
+        0,
+        257
+      ],
+      "appended_zero_offset": 258
+    },
+    {
+      "limit": 259,
+      "next_zero_offset": 1,
+      "count": 1,
+      "copied_offsets": [
+        0,
+        0
+      ],
+      "appended_zero_offset": 1
+    },
+    {
+      "limit": 259,
+      "next_zero_offset": 2,
+      "count": 2,
+      "copied_offsets": [
+        0,
+        1
+      ],
+      "appended_zero_offset": 2
+    },
+    {
+      "limit": 259,
+      "next_zero_offset": 258,
+      "count": 258,
+      "copied_offsets": [
+        0,
+        257
+      ],
+      "appended_zero_offset": 258
+    },
+    {
+      "limit": 259,
+      "next_zero_offset": 259,
+      "count": 259,
+      "copied_offsets": [
+        0,
+        258
+      ],
+      "appended_zero_offset": 259
+    },
+    {
+      "limit": 259,
+      "next_zero_offset": 260,
+      "count": 259,
+      "copied_offsets": [
+        0,
+        258
+      ],
+      "appended_zero_offset": 259
+    },
+    {
+      "limit": 259,
+      "next_zero_offset": null,
+      "count": 259,
+      "copied_offsets": [
+        0,
+        258
+      ],
+      "appended_zero_offset": 259
+    },
+    {
+      "limit": 260,
+      "next_zero_offset": 1,
+      "count": 1,
+      "copied_offsets": [
+        0,
+        0
+      ],
+      "appended_zero_offset": 1
+    },
+    {
+      "limit": 260,
+      "next_zero_offset": 2,
+      "count": 2,
+      "copied_offsets": [
+        0,
+        1
+      ],
+      "appended_zero_offset": 2
+    },
+    {
+      "limit": 260,
+      "next_zero_offset": 258,
+      "count": 258,
+      "copied_offsets": [
+        0,
+        257
+      ],
+      "appended_zero_offset": 258
+    },
+    {
+      "limit": 260,
+      "next_zero_offset": 259,
+      "count": 259,
+      "copied_offsets": [
+        0,
+        258
+      ],
+      "appended_zero_offset": 259
+    },
+    {
+      "limit": 260,
+      "next_zero_offset": 260,
+      "count": 260,
+      "copied_offsets": [
+        0,
+        259
+      ],
+      "appended_zero_offset": 260
+    },
+    {
+      "limit": 260,
+      "next_zero_offset": null,
+      "count": 260,
+      "copied_offsets": [
+        0,
+        259
+      ],
+      "appended_zero_offset": 260
+    },
+    {
+      "limit": 2147483647,
+      "next_zero_offset": 1,
+      "count": 1,
+      "copied_offsets": [
+        0,
+        0
+      ],
+      "appended_zero_offset": 1
+    },
+    {
+      "limit": 2147483647,
+      "next_zero_offset": 2,
+      "count": 2,
+      "copied_offsets": [
+        0,
+        1
+      ],
+      "appended_zero_offset": 2
+    },
+    {
+      "limit": 2147483647,
+      "next_zero_offset": 258,
+      "count": 258,
+      "copied_offsets": [
+        0,
+        257
+      ],
+      "appended_zero_offset": 258
+    },
+    {
+      "limit": 2147483647,
+      "next_zero_offset": 259,
+      "count": 259,
+      "copied_offsets": [
+        0,
+        258
+      ],
+      "appended_zero_offset": 259
+    },
+    {
+      "limit": 2147483647,
+      "next_zero_offset": 260,
+      "count": 260,
+      "copied_offsets": [
+        0,
+        259
+      ],
+      "appended_zero_offset": 260
+    },
+    {
+      "limit": 2147483647,
+      "next_zero_offset": null,
+      "count": 2147483647,
+      "copied_offsets": [
+        0,
+        2147483646
+      ],
+      "appended_zero_offset": 2147483647
+    }
+  ],
+  "invariant": "At iteration i: RAX=S+i, R10D=i, RDX=D-S, R8=-S. Post-copy t=i+1. Back edge iff signed t<C and current byte[S+t]!=0. Final destination terminator D+t.",
+  "null_branch": "valid resolved null name slot: EAX=-1, no destination read/write, no limit-derived initialization guarantee",
+  "nonnull_branch": "EAX=0, unconditional first byte copied, max(1,signed32(R9D)) copied bytes followed by NUL; limit is not capacity",
+  "stable_disjoint_source": "For source and destination disjoint/noninterfering, t=min(max(1,C), first NUL offset at least1); source NUL at offset0 does not stop the loop itself.",
+  "caller_259": "nonnull successful lookup: writes only destination offsets0..259, guarantees a NUL by259; requires260 writable bytes. Null lookup does not guarantee a NUL or a bounded inherited string.",
+  "affected_claims": [
+    "SD194 successful lookup vs null-slot buffer-bound preconditions",
+    "Namespace copier signed character-limit contract"
+  ],
+  "limitations": [
+    "Valid table/index resolution and all accessed memory; normal ABI; no concurrent changes. No capacity or pointer validation is implemented.",
+    "Counter bound survives sequential aliasing; unchanged-source next-NUL formula needs disjoint/noninterfering source and destination.",
+    "No actual inherited null-slot bytes, natural field reachability, request acceptance, imported memcpy behavior or game consequences.",
+    "Boundary calculations and prerequisite refusal tests are producer controls; independent acceptance pending."
+  ]
+}

@@ -2,7 +2,6 @@
 contract: decode a 16-bit encoded id into its class and row, validate it against that class's registry descriptor, and fill a query record with the row's name, description and per-class copies
 category: 00-Engine-Core-Runtime
 scope: subsystem
-level: L2
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md

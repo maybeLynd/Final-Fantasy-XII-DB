@@ -2,7 +2,6 @@
 contract: The persistent flag banks — query, set, and the authored gate that chooses between a flag and a schedule
 category: 14-Story-Event-Quest-Hunt
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: persistent-flag-banks.md

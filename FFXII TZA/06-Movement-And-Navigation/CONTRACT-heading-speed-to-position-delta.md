@@ -2,7 +2,6 @@
 contract: Turn a heading, a pitch and a speed into a position delta, behind an actor-class gate that refuses in silence
 category: 06-Movement-And-Navigation
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: 06-Movement-And-Navigation/heading-speed-to-position-delta.md

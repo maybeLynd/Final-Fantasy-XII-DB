@@ -1,0 +1,219 @@
+{
+  "method": "A STATIC_ONLY disassembly + branch/interval proof; no original/native/game execution",
+  "producer_complete": true,
+  "driver_sha256": "f32a163d55cfe32983d74f0efbef42bd420b621378aa33dc82a52543b6e4813a",
+  "source_pins": [
+    {
+      "path": "source-01.json",
+      "sha256": "2c66378a2f9fb4125671f1f5f5ee4211a7397abf52e904137ba474a07e5a9fa8"
+    }
+  ],
+  "upstream_status_sha256": "bd86e7a17cd3d9817f5b768d47ef94625801efdce2b39cfc2037e1e7bfa91196",
+  "annotation_prerequisite": {
+    "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+    "instruction_records": 175,
+    "capstone": "5.0.7",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+  },
+  "body_pins": [
+    [
+      "0x377dc0",
+      "0x37802a",
+      "4ed6ee23865ccd80ca5907d4678998ea8d5ee1b8664bad0bfca8d911400d8c51"
+    ],
+    [
+      "0x2df880",
+      "0x2df8d9",
+      "f71f6f4a0633fa327a47b23f16231e23be086270b133f30357e49520d74f9800"
+    ],
+    [
+      "0x861eba",
+      "0x861ec0",
+      "6965fae1bfbb53fa3e4494d863d249e4891b57d30473263173fea2f844ab6b03"
+    ]
+  ],
+  "operation_assertions": 69,
+  "graphs": [
+    {
+      "entry": "0x377dc0",
+      "visited": 145,
+      "returns": [
+        "0x378029"
+      ]
+    },
+    {
+      "entry": "0x2df880",
+      "visited": 29,
+      "returns": [
+        "0x2df8a3",
+        "0x2df8d8"
+      ]
+    },
+    {
+      "entry": "0x2df880",
+      "visited": 11,
+      "returns": [
+        "0x2df8a3"
+      ]
+    },
+    {
+      "entry": "0x377dc0",
+      "visited": 114,
+      "returns": [
+        "0x378029"
+      ]
+    },
+    {
+      "entry": "0x377dc0",
+      "visited": 113,
+      "returns": [
+        "0x378029"
+      ]
+    }
+  ],
+  "premise": "First NUL at n0..259; valid stack and normal ABI/noninterference; no claim failed lookup initializes that state.",
+  "frame": {
+    "input_relative_entry_rsp": -328,
+    "output_relative_entry_rsp": -600,
+    "input_minus_output": 272
+  },
+  "finite_classification": {
+    "n": [
+      0,
+      259
+    ],
+    "last_separator": [
+      -1,
+      "n-1"
+    ],
+    "classes": {
+      "no_separator_empty": 260,
+      "negative_terminator_raw_copy": 1030,
+      "zero_terminator_empty": 255,
+      "positive_copy_boundary": 32385
+    },
+    "negative_offsets": {
+      "-4": 259,
+      "-3": 258,
+      "-2": 257,
+      "-1": 256
+    },
+    "partitions": 33930,
+    "digest_sha256": "ce898171dafc20f025a8dd6facc6e0c94f1aa1f1bf609e369e45e42b18012f81",
+    "no_separator": "EDI remains0, output[0]=NUL",
+    "short_basename": "k=n-j-5; k<0 terminator at output+k, copied C string retained; k0 output cleared",
+    "positive_stem": "Declared memcpy RCX=output+12,RDX=input+j+1,R8=k+12; normal ABI suffix at output+k+12..15 and NUL+k+16"
+  },
+  "hypothetical_copy_overlap_states": [
+    {
+      "n": 255,
+      "last_separator": 0,
+      "stem_length": 250,
+      "destination_relative_output": 12,
+      "source_relative_output": 273,
+      "count": 262,
+      "last_source_relative_input": 262,
+      "last_destination_relative_output": 273
+    },
+    {
+      "n": 256,
+      "last_separator": 0,
+      "stem_length": 251,
+      "destination_relative_output": 12,
+      "source_relative_output": 273,
+      "count": 263,
+      "last_source_relative_input": 263,
+      "last_destination_relative_output": 274
+    },
+    {
+      "n": 257,
+      "last_separator": 0,
+      "stem_length": 252,
+      "destination_relative_output": 12,
+      "source_relative_output": 273,
+      "count": 264,
+      "last_source_relative_input": 264,
+      "last_destination_relative_output": 275
+    },
+    {
+      "n": 257,
+      "last_separator": 1,
+      "stem_length": 251,
+      "destination_relative_output": 12,
+      "source_relative_output": 274,
+      "count": 263,
+      "last_source_relative_input": 264,
+      "last_destination_relative_output": 274
+    },
+    {
+      "n": 258,
+      "last_separator": 0,
+      "stem_length": 253,
+      "destination_relative_output": 12,
+      "source_relative_output": 273,
+      "count": 265,
+      "last_source_relative_input": 265,
+      "last_destination_relative_output": 276
+    },
+    {
+      "n": 258,
+      "last_separator": 1,
+      "stem_length": 252,
+      "destination_relative_output": 12,
+      "source_relative_output": 274,
+      "count": 264,
+      "last_source_relative_input": 265,
+      "last_destination_relative_output": 275
+    },
+    {
+      "n": 259,
+      "last_separator": 0,
+      "stem_length": 254,
+      "destination_relative_output": 12,
+      "source_relative_output": 273,
+      "count": 266,
+      "last_source_relative_input": 266,
+      "last_destination_relative_output": 277
+    },
+    {
+      "n": 259,
+      "last_separator": 1,
+      "stem_length": 253,
+      "destination_relative_output": 12,
+      "source_relative_output": 274,
+      "count": 265,
+      "last_source_relative_input": 266,
+      "last_destination_relative_output": 276
+    },
+    {
+      "n": 259,
+      "last_separator": 2,
+      "stem_length": 252,
+      "destination_relative_output": 12,
+      "source_relative_output": 275,
+      "count": 264,
+      "last_source_relative_input": 266,
+      "last_destination_relative_output": 275
+    }
+  ],
+  "static_copy_import": {
+    "iat_va": "0x8c2a68",
+    "dll": "VCRUNTIME140.dll",
+    "name": "memcpy",
+    "lookup_raw": "42ebcc0100000000"
+  },
+  "affected_claims": [
+    "SD194 stack-dependent request wording",
+    "FieldEffects source-name builder short/absent separator preconditions",
+    "OPUS stack/ABI/copy count and negative store offsets"
+  ],
+  "limitations": [
+    "No actual inherited stack contents or natural missing-name field reachability.",
+    "No loaded memcpy implementation, copy effects, allocation/scheduling/request acceptance or game consequence observed.",
+    "Nine long/early-separator overlap states are arithmetic countermodels, not shipped names or evidence of native overlap behavior.",
+    "Negative offset is outside copied output but inside allocated frame; no crash/stack-frame corruption claim.",
+    "No-NUL, length>259, invalid pointers/ABI/interference/Unicode semantics outside admitted proof."
+  ]
+}

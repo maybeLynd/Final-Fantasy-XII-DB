@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sd194-stale-name-slice\\capture.py"
+  ],
+  "driver_sha256": "005b4e6643972d9296495595f7ae0a79d910fee871fb13c33e9ea3224b0a65dc",
+  "deadline_seconds": 45,
+  "exit": 0,
+  "terminal": true,
+  "exception": null
+}

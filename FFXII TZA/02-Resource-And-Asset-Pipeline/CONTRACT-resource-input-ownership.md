@@ -2,7 +2,6 @@
 contract: "Resource-entry ownership, borrowed payloads, and indexed external-source lifetime"
 category: 02-Resource-And-Asset-Pipeline
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: HIGH
 implements: 02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md

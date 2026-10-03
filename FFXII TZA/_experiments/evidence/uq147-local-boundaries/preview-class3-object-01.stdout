@@ -1,0 +1,8 @@
+00263750  cmp      ecx, 3
+00263753  ja       0x263764
+00263755  movsxd   rax, ecx
+00263758  lea      rcx, [rip + 0x1e36a91]  ; -> 0209A1F0
+0026375F  mov      rax, qword ptr [rcx + rax*8]
+00263763  ret      
+00263764  xor      eax, eax
+00263766  ret      

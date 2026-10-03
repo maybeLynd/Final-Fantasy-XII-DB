@@ -2,7 +2,6 @@
 contract: borrow the shared transform workbench and give back exactly what you promised to
 category: 00-Engine-Core-Runtime
 scope: family
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 00-Engine-Core-Runtime/Shared-Transform-Workbench/the-workbench-has-a-save-and-restore-and-nine-functions-use-it.md

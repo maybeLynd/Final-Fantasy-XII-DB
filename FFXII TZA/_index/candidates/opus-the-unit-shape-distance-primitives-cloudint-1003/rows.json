@@ -1,0 +1,122 @@
+{
+ "page": "06-Movement-And-Navigation/the-unit-shape-distance-primitives.md",
+ "date": "2026-10-03",
+ "session": "opus-self",
+ "report": "the-unit-shape-distance-primitives.json",
+ "rows": [
+  {
+   "fn": "0022CF50",
+   "text": "with `f` = qword `[rcx+0x10]` + signed word `dx`*0x20 and vertices of 0x10 bytes at qword `[rcx+8]` indexed by signed words, for each of the three corner words at `f+0x10` (the next corner picked through the dword table `00908DE8`, loop bound `00908DF4`) it calls `00202E10(&o, &e, &d)` with `e` = next vertex minus this vertex and `d` = the point at `r8` minus this vertex (x, y, z; the fourth dword copied from the minuend), and returns 0 as soon as the dot product of `o` with floats `f+0`/`+4`/`+8` is below 0.0; returns 1 when no corner gives a negative product; the frame carries the stack cookie (`01F44830`, checked by `00808C40`)",
+   "anchors": [
+    [
+     "0022CFB0",
+     "movsxd"
+    ],
+    [
+     "0022CFD6",
+     "subss"
+    ],
+    [
+     "0022D055",
+     "call"
+    ],
+    [
+     "0022D082",
+     "comiss"
+    ],
+    [
+     "0022D098",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0022E6D0",
+   "text": "with `n` = qword `[r8]` and `p` = qword `[r8+8]`, returns in `xmm0` the float `00861F14(dot(rdx, rdx))` times -(dot(`rcx` - `p`, `n`) / dot(`rdx`, `n`)), each dot product over the floats `+0`/`+4`/`+8`, the sign flipped by `xorps` with `01CEBDA0`",
+   "anchors": [
+    [
+     "0022E6F6",
+     "subss"
+    ],
+    [
+     "0022E753",
+     "call"
+    ],
+    [
+     "0022E7A2",
+     "divss"
+    ],
+    [
+     "0022E7AD",
+     "xorps"
+    ],
+    [
+     "0022E7B5",
+     "mulss"
+    ]
+   ]
+  },
+  {
+   "fn": "0022EAC0",
+   "text": "with `f` = qword `[rcx+0x10]` + signed word `dx`*0x20 and `N` = its floats `+0`/`+4`/`+8`, sets the vector at `r9` to (0, 0, 0, 1.0); for each corner `i` of the three words at `f+0x10` (next corner (`i`+1) mod 3, vertices of 0x10 bytes at qword `[rcx+8]`) it calls `00202E10(&o, &e, &d)` with `e` = next vertex minus vertex `i` and `d` = the point at `r8` minus vertex `i`, and returns 1 when `dot(N, o)` is never below 0.0; at the first corner where it is, it returns 0 when bit `0x400` of dword `f+0x1c` is set and `i` is 2; otherwise, with `len` = `00861F14(dot(e, e))` and `t` = `dot(e, d)` / `len`, it takes `d` minus `e`*`t`/`len` (minus nothing when `t` is not above 0, minus `e` when `t` is not below `len`), adds the floats of face `s` = signed word `f+0x16+i*2` to `N` when `s` is not negative, and stores `N` scaled by `00861F14` of the difference's squared length times 1.0 (`01CEBBA8`) / `00861F14(dot(N, N))` at `r9` `+0`/`+4`/`+8`, with float `f+0xc` at `+0xc`, returning 1; the frame carries the stack cookie (`01F44830`, checked by `00808C40`)",
+   "anchors": [
+    [
+     "0022EB19",
+     "mov"
+    ],
+    [
+     "0022EC43",
+     "call"
+    ],
+    [
+     "0022EC6E",
+     "comiss"
+    ],
+    [
+     "0022ECA2",
+     "test"
+    ],
+    [
+     "0022EEB4",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "0046BF60",
+   "text": "returns in `xmm0` the dot product of (`rcx` - `r8`) with `rdx` over the floats `+0`/`+4`/`+8`",
+   "anchors": [
+    [
+     "0046BF69",
+     "subss"
+    ],
+    [
+     "0046BF6F",
+     "subss"
+    ],
+    [
+     "0046BF7F",
+     "mulss"
+    ],
+    [
+     "0046BF84",
+     "mulss"
+    ],
+    [
+     "0046BF91",
+     "addss"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "00381630": "long branching geometry body; deferred to a slower read",
+  "00381AC0": "long branching geometry body; deferred to a slower read"
+ },
+ "missing": [],
+ "corrections": [],
+ "mode": "interior",
+ "family": "",
+ "method": "OPUS drafted these rows itself from its F-interior pack (`f_pack.py`: each function the page cites only at its entry, with its annotated listing) and checked every row mechanically with `interior_ingest.py` (every anchor an instruction boundary inside the extent with the recorded mnemonic; every address a listing token). No second agent drafted or verified them, so the non-author check is SWE2-AUDIT-SPEC's."
+}

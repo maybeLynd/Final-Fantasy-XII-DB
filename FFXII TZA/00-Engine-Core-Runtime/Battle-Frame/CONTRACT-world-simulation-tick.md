@@ -2,7 +2,6 @@
 contract: Tick the world once — five slots, sixteen sub-steps, and a mode argument consulted five times rather than branched on once
 category: 00-Engine-Core-Runtime
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: 00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md

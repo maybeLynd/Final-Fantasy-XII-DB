@@ -1,0 +1,23 @@
+production system pages: AUDITED 233, DOCUMENTED 119, PARTIAL 17 (total 369)
+LIVE-ROW: 17
+  PARTIAL  00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md  [OV-5=PARTIAL]
+  PARTIAL  00-Engine-Core-Runtime/the-query-record-from-initialization-to-reuse.md  [OV-8=PARTIAL]
+  PARTIAL  01-Script-VM-Native-Bridge/Interpreter-Core/how-a-script-binds-to-an-actor-and-how-requests-are-scheduled.md  [OV-10=PARTIAL, OV-14=ANSWERED, RC-12=ANSWERED, RC-13=ANSWERED, RC-14=ANSWERED]
+  PARTIAL  01-Script-VM-Native-Bridge/Interpreter-Core/the-actor-request-from-arming-through-start-and-return.md  [OV-10=PARTIAL]
+  PARTIAL  01-Script-VM-Native-Bridge/Interpreter-Core/the-script-from-bytecode-through-wait-and-resume.md  [OV-16=OPEN, OV-2=WITHDRAWN]
+  PARTIAL  02-Resource-And-Asset-Pipeline/the-external-source-owner-and-borrowed-view-lifetime.md  [OV-19=PARTIAL, OV-21=OPEN]
+  PARTIAL  02-Resource-And-Asset-Pipeline/the-indexed-source-request-from-arm-to-terminal-pump.md  [OV-21=OPEN, OV-33=PARTIAL, OV-42=PARTIAL]
+  PARTIAL  02-Resource-And-Asset-Pipeline/the-nonempty-prf-registration-and-specialized-relocation.md  [OV-42=PARTIAL]
+  PARTIAL  02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md  [OV-42=PARTIAL]
+  PARTIAL  02-Resource-And-Asset-Pipeline/the-resource-request-queue.md  [EO-3=WITHDRAWN, OV-19=PARTIAL, OV-33=PARTIAL, OV-36=ANSWERED]
+  PARTIAL  13-Rewards-Progression-Economy/experience-and-license-point-award.md  [GR-16=ANSWERED, GR-17=ANSWERED, GR-18=PARTIAL]
+  PARTIAL  13-Rewards-Progression-Economy/how-experience-is-computed-and-divided.md  [GR-16=ANSWERED, GR-18=PARTIAL]
+  PARTIAL  16-UI/Widget-Object-Model/the-title-asset-singleton-and-its-distinct-consumer.md  [OV-29=OPEN]
+  PARTIAL  17-Presentation-Rendering/Effect-File-Formats/effect-mesh-records-kind-54.md  [SD-140=ANSWERED, SD-196=OPEN, SD-197=ANSWERED, SD-198=OPEN, SD-199=ANSWERED]
+  PARTIAL  17-Presentation-Rendering/Effect-File-Formats/efx-and-efb-effect-containers.md  [GI-8=ANSWERED, SD-194=OPEN]
+  PARTIAL  17-Presentation-Rendering/Visual-Tuning-Parameters/reflected-render-parameters-and-shader-assets.md  [OV-42=PARTIAL, SD-141=ANSWERED, W-1=ANSWERED, W-2=ANSWERED, W-3=ANSWERED, W-5=ANSWERED, W-6=ANSWERED, W-7=WITHDRAWN, W-8=ANSWERED, W-9=ANSWERED]
+  PARTIAL  24-Compiler-And-CRT-Runtime/Memory-And-Allocation/where-the-games-memory-comes-from.md  [GR-18=PARTIAL]
+WAITING-ID: 0
+STALE-STATUS: 0
+UNMAPPED: 0
+FAILS 0

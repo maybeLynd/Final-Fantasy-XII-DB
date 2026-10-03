@@ -1,0 +1,23 @@
+ok   00227686 xor eax, eax
+ok   00227698 mov qword ptr [rdx + 8], rax
+ok   0022769C mov rbx, r8
+ok   002276A2 mov qword ptr [r8 + 8], rax
+ok   002276B0 mov byte ptr [r8 + 0x14], r9b
+ok   002277A1 mov qword ptr [rdx + 8], 0xffffffffffffffff
+ok   0022793E mov qword ptr [rdx + 8], 0xffffffffffffffff
+ok   00227C0E mov qword ptr [rdx + 8], 0xffffffffffffffff
+ok   00227C46 mov qword ptr [rdx + 8], 0xffffffffffffffff
+ok   00227C82 mov qword ptr [rdx + 8], 0xffffffffffffffff
+ok   002277B0 mov qword ptr [rbx + 8], 0xffffffffffffffff
+ok   0022794D mov qword ptr [rbx + 8], 0xffffffffffffffff
+ok   00227C1D mov qword ptr [rbx + 8], 0xffffffffffffffff
+ok   00227C55 mov qword ptr [rbx + 8], 0xffffffffffffffff
+ok   00227C91 mov qword ptr [rbx + 8], 0xffffffffffffffff
+ok   00226C20 lea rax, [rip + 0x1dad539]
+ok   00226C27 lea r12, [rax + 0x2a0]
+ok   00226C37 lea r15, [rax + r10*8]
+ok   00226C50 mov r8, r12
+ok   00226C5A mov rdx, r15
+ok   00226C72 call 0x227680
+ok   rbx written once before the epilogue pops (['0x22769c'])
+FAILS 0

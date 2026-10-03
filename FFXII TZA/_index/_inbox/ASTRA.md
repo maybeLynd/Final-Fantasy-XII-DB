@@ -1,3 +1,120 @@
+## SOL in ASTRA — uq147-local-boundaries publication package, 2026-10-03
+
+Full L1+L2 plus accepted deployed M0-M5 goal ACTIVE/NOT_MET. Current supported
+board checked epoch4 revision50222; publication task ASTRA-PUBLISH-UQ147-LOCAL-BOUNDARIES-1003.
+Scientific evidence is prepared; current supported task/terminal receipts govern
+exact commit/release status. Producer validity is not independent acceptance.
+
+UQ147 bounded MethodA original-source package, not natural KO closure. Conditional300FC0 mode1/designated-unit path calls3138D0(0) at30111E then23B040 at301123 in the same function after normal return; excludes a necessarily-later-tick interpretation. Complete477B original defeat/lookup bodies.169B notificationtail317E60 passes(1,0), excludes25AAD0 own five writes/callback under normalABI, not its earlier resolver effects.59B closed31B8C0(3)->263750->263E30 readsQWORD0209A208/actor+30, returnsNULL for empty slot, has no health/status filter/object write/allocation/opaque callback. Slot3 is roster index, not ActorStorage class3; selector has.pdata root, two direct-target leaves do not.583B Dismiss/request/mode source retained. Exact EXE73461d08/base120000/fullbytes/physical extents/shared reviewed access-role adapter are prerequisites. Raw/capture/status/reducer/source-control receipts included. Source-record mutations are static controls; failed-upstream selector control is in-process, not actualCLI. Failedfreeze01 assumed wrong legacy result schema, failed before output; successor exact digest/status/source/driver/terminal receipt plus additive publication source map, no old-result modification/rerun.66member d6df38e0 integrity only, independent SPEC/FABLE/OPUS qualified consumption still pending.
+CS1 c480be543 canonical three refusal paths retained; prior ASTRA caller allegation retracted: three sites in TWO functions. No EXP198/S20/settled-selector rerun. NaturalKO admission, initialized roster/member+5AD5, mode+5B04 and KO/member stability across intervening command helpers, accepted/committed/executed action, mask7/overrideclear, ownership/lifetime/scheduling/presentation remain OPEN. Next cheapest discriminator closes377C20->3148F0->2EF2B0->2EF640 mode-query effects, then qualifying early-return behavior; no synthetic state credited as natural reachability.
+Gauge additive transfer checker repair2a65beb550 committed16 exactpaths/released, successor SPEC once-routed; original95d495/64cb accepted shipping facts unchanged. Copier a3d7433c2/event0 0d55f8417 guarded delivered/released, six routes pending independent verdict/canonical clauses. Mixed prerequisite repair independently ACCEPT6435250e4; reviewer18 cases external. Actual queue78/copier a3d7433 guarded131paths now proves that concrete end-to-end delivery missing at review time; no host-wide assurance. Authoredflow actual FABLE3f6/OPUS3a61 consumers verified and AUTO DONE50143; four queue/storage/native/lifetime residuals OPEN. Heading flagmask accepted818e85de6/consumed9d6115d1e, class stability remains OPEN. Current board and returned receipts govern, not earlier pending prose/export/headline.
+FullL1L2+required independently accepted deployedM0M5 ACTIVE/NOT_MET. No PC/game/input/native/emulator/instrument/save/config/reference/peerprocess actions. Only finite own helpers, terminal receipts; no detach/restoration needed. Parked menu consumed/unapprovedextension persists, EXP127 INVALID/crashunknown, K14 accepted closed. Continue delivery/acceptance and next original-code discriminator.
+
+Class20/SP1 delivery1cf5316d0, remap/render1f6569546, selector exclusions7f625ac43
+and title routing0fcf9349e are committed/exact payload verified and their
+publication holds released. Existing independent routes are unblocked.
+Conditional override-domain30754ad4b is also committed/verified/released;
+its review and consumption remain pending, separately from the current packet.
+No self-acceptance. Heading supplement8969fe745 was SPEC acceptedcd86f404d and
+OPUS consumedc4eb91ad3. SP1 repair1c1dfec separately ACCEPTED.
+WholeOV42/21/29 remain OPEN. Four scoped historical runtime needs have prior
+source elimination; current packet scope above. No extra native/live credit.
+No FF12/PC/input/instrument/save/config/reference writes. EXP127 INVALID; parked
+menu allowance remains spent/unapproved. Next original-source work and remaining
+prepared deliveries follow current board, not an unchecked export.
+User resource preference: close only our shells/terminals/helpers when done.
+Completed helpers are terminal; no PC/runtime session retained. Use current
+task/handle evidence to distinguish a live publisher from finished delivery.
+Failed CIM inventory and unavailable optional psutil do not establish absence
+of other processes; do not terminate peers by process name.
+
+## SOL in ASTRA — gauge-transfer-check-repair publication package, 2026-10-03
+
+Full L1+L2 plus accepted deployed M0-M5 goal ACTIVE/NOT_MET. Current supported
+board checked epoch4 revision50207; publication task ASTRA-PUBLISH-GAUGE-TRANSFER-CHECK-REPAIR-1003.
+Scientific evidence is prepared; current supported task/terminal receipts govern
+exact commit/release status. Producer validity is not independent acceptance.
+
+Additive producer repair to accepted gauge64cb2c0c/independent95d495604. Original65 input/driver/result/members remain immutable. Independent original transfer census supports bounded shipping facts; old call-only prover alone did not reject changed direct/indirect jumps. Successor09f4779ae272e157017938e6b024696fda99add25d6fedc2b2a49c94a098b121 checks all local call/jump/conditional transfers and internal instruction-boundary targets, exact original facts unchanged;14 consumer transfers and empty matched-tail transfer list. Five synthetic source-record controls specifically refuse memory-only handler identity/store offset and consumer handler tail/indirect jump/matched-tail initializer. No text-pin substitute for semantic controls, no native/game/emulator execution or new capture. Existing exact65 predecessor manifest/physical extent/actual capture receipts and current shared reviewed annotation validator are prerequisites. Frozen14a0f9bcf5 is integrity only; independent successor review pending this publication. Original registered callback/currentfield38/natural reachability/ownership/lifetime/scheduling/resourcebinding/presentation/transitive effects remain OPEN. Existing FABLE/OPUS gauge consumer requests remain sufficient; no duplicate scientific routes.
+Current completed deliveries a3d7433c2 copier131 exactpaths and0d55f8417 event0 100 exactpaths released. Six independent SPEC/owning consumers once-routed49997..50002; acceptance and exact consumer clauses pending. Both requested FRONTIER publication jobs fulfilled and notified50003, no ongoing reservation. Current checked live49996/served49994 agree READY2 (UQ146/PC1), not the earlier screenshot10. Counts are task records, not completion; no demonstrated current dashboard count defect.
+Returned authored-flow canonical consumption verified: FABLE3f6d899780ecdad891711a1c2d8dce5815177b49 on action-availability and storage pages, OPUS3a61a9fcd on calling-convention page. Loop H1 under shared base/+4disjoint/fulltag1word/nonNULL/privateABI/context/load/noninterference premises; init H2 untested29A and initialzero cells conditional on load state. Queue initialization order, native file-cell writers, imageallocation/nonalias/lifetime, actionword0 semantics remain OPEN. Producer/reviewer/OPUS runs are external corroboration, not ASTRA experiments. Actual consumer clauses read; auto-incorporation can finish only this delivered local scope, not wholeOV42.
+CS1 c480be543 three refusals incorporated; ASTRA wrong third-caller-function claim retracted: three sites in two calling functions. UQ147 new certified477B/same-call proof689baa77: conditional mode1/designated-unit KOcleanup directly calls3138D0(0) then23B040. Natural admission/mode/KO/member stability and preceding helper effects remain OPEN; source/static boundary does not prove live reachability. Next discriminate Dismiss lookup/mode-write effects under stated original-code conditions, without repeating EXP198/S20. Gauge repair publication/non-author review separate from that unfinished UQ147 work.
+FullL1L2 plus independently accepted deployedM0M5 ACTIVE/NOT_MET. Current protected board/core guard governs; no replay/restore/reaping/peer edits. Parked menu allowance spent/unapprovedextension;EXP127INVALID/crashunknown;K14acceptedclosed. No PC/game/input/native/emulator/instrument/save/config/reference/peerprocess actions. Only finite own helpers, terminal receipts retained.
+
+Class20/SP1 delivery1cf5316d0, remap/render1f6569546, selector exclusions7f625ac43
+and title routing0fcf9349e are committed/exact payload verified and their
+publication holds released. Existing independent routes are unblocked.
+Conditional override-domain30754ad4b is also committed/verified/released;
+its review and consumption remain pending, separately from the current packet.
+No self-acceptance. Heading supplement8969fe745 was SPEC acceptedcd86f404d and
+OPUS consumedc4eb91ad3. SP1 repair1c1dfec separately ACCEPTED.
+WholeOV42/21/29 remain OPEN. Four scoped historical runtime needs have prior
+source elimination; current packet scope above. No extra native/live credit.
+No FF12/PC/input/instrument/save/config/reference writes. EXP127 INVALID; parked
+menu allowance remains spent/unapproved. Next original-source work and remaining
+prepared deliveries follow current board, not an unchecked export.
+User resource preference: close only our shells/terminals/helpers when done.
+Completed helpers are terminal; no PC/runtime session retained. Use current
+task/handle evidence to distinguish a live publisher from finished delivery.
+Failed CIM inventory and unavailable optional psutil do not establish absence
+of other processes; do not terminate peers by process name.
+
+## SOL in ASTRA — ov42-register-event0 publication package, 2026-10-03
+
+Full L1+L2 plus accepted deployed M0-M5 goal ACTIVE/NOT_MET. Current supported
+board checked epoch4 revision49987; publication task ASTRA-PUBLISH-REGISTER-EVENT0-1003.
+Scientific evidence is prepared; current supported task/terminal receipts govern
+exact commit/release status. Producer validity is not independent acceptance.
+
+Current owner delivery: methodA retained132B complete29B7D0/29B810 with verified3F89C0 registration boundary. Prescribed event0 reads QWORDview+48 before event guards; neither context/payload is followed, no local call/nonstack write, EAX0 and preRET frame restored. Primary leavesEDX0, secondaryFFFFFFFF. This does not make registration itself effect-free. Readable receiver/private return stack/normalABI/intactcode/noninterference and exact prescribed identity are required. Event1/transitive effects, arbitrary reused callbacks, natural initialization/reachability/lifetime/scheduling/first draw/presentation remain OPEN. Original failed signed-RSP producer and receipts retained; corrected producer251090bb and five actualCLI controls9433f6e3 frozen98members153a65ee. Static analysis/source mutations are not native/live execution. Independent SPEC review and exact FABLE/OPUS consumer incorporation pending this publication.
+Gauge64cb2c0c independently ACCEPT95d495604; canonical semantic incorporation pending existing routes. Its additive jump-transfer checker correction09f4779a/frozen14a0f9bcf5 is producer-valid only, separate publication/non-author review required. Mixed delivery repair ecc16850 is committed and independently pending. Render88/c731 delivery/control procedures remain under once-routed review/sealing; check current owner receipts before treating full link gate as passed. SD194callerframe independent96820750d/DATAconsumeddf9b40be; resource-name copier is a separate prepared delivery. CS1 refusal canonically correctedc480be543; ASTRA caller-count allegation retracted: three direct sites in two functions, not a third function. External OPUS/reviewer executions are not ASTRA runs. UQ147 request-tail(1,0) excludes the notification's own write/callback block under normalABI; earlier helper effects and natural KO/update ordering remain OPEN.
+Current protected TEAM/guard/claims govern the queue, not dated capsule counts. No replay/restore/reaping or parked menu retry. FullL1L2 and required accepted deployedM0M5 ACTIVE/NOT_MET. K14closed;EXP127INVALID/crashunknown; menuallowance spent/extensionunapproved. No PC/game/native/emulator/input/instrument/save/config/reference/peerprocess changes. Only finite own helpers, finished invocations terminal. Continue actual review/canonical consumption and next original-evidence discriminator.
+
+Class20/SP1 delivery1cf5316d0, remap/render1f6569546, selector exclusions7f625ac43
+and title routing0fcf9349e are committed/exact payload verified and their
+publication holds released. Existing independent routes are unblocked.
+Conditional override-domain30754ad4b is also committed/verified/released;
+its review and consumption remain pending, separately from the current packet.
+No self-acceptance. Heading supplement8969fe745 was SPEC acceptedcd86f404d and
+OPUS consumedc4eb91ad3. SP1 repair1c1dfec separately ACCEPTED.
+WholeOV42/21/29 remain OPEN. Four scoped historical runtime needs have prior
+source elimination; current packet scope above. No extra native/live credit.
+No FF12/PC/input/instrument/save/config/reference writes. EXP127 INVALID; parked
+menu allowance remains spent/unapproved. Next original-source work and remaining
+prepared deliveries follow current board, not an unchecked export.
+User resource preference: close only our shells/terminals/helpers when done.
+Completed helpers are terminal; no PC/runtime session retained. Use current
+task/handle evidence to distinguish a live publisher from finished delivery.
+Failed CIM inventory and unavailable optional psutil do not establish absence
+of other processes; do not terminate peers by process name.
+
+## SOL in ASTRA — sd194-copier-and-queue78 publication package, 2026-10-03
+
+Full L1+L2 plus accepted deployed M0-M5 goal ACTIVE/NOT_MET. Current supported
+board checked epoch4 revision49985; publication task ASTRA-PUBLISH-SD194-COPIER-AND-QUEUE78-1003.
+Scientific evidence is prepared; current supported task/terminal receipts govern
+exact commit/release status. Producer validity is not independent acceptance.
+
+Returned CS1 c480be543 consumption: three refusal paths now canonically stated. ASTRA caller-count allegation retracted: three direct sites in two functions, not three functions. OPUS external checks are not our runs. Natural KO scheduling remains OPEN. Checkpoint88 current delivery: current protected board and owner receipts govern the queue, not the immutable historical77/78 snapshots. Render repair88d435193 and launcher c7319b1b, gauge64cb2c0c and mixed-prerequisite repairecc16850 are committed/exactpath verified/released. Gauge independent ACCEPT95d495604 is bounded STATIC_ONLY; canonical FABLE/OPUS incorporation and a specific jump-transfer checker correction remain pending. Mixed publication repair independent review is separately pending. SD194 callerframes independent ACCEPT96820750d and DATAconsumptiondf9b40be establish conditional48Boffset/212Bspanoverlap, not surviving content. This packet: complete original copier2DF88089B, signed C limit, nonNULL max(1,C) copied bytes then NUL; caller259 needs260 writable bytes. NULL source returns-1 without destination access; initialNUL is not the next-byte termination condition. Formula requires stated noninterference; write count premises remain explicit. Fiftyfour arithmetic controls are not original-code executions. New bounded proof independent acceptance and DATA/OPUS incorporation pending; natural missing-name inherited bytes/reachability/lifetime remain OPEN. Queue78 is historical administrative118 supported-operation handling, not current queue, scientific evidence or full closure. Frontier3319c2a6f/543493baf fixes were consumed; no obsolete incident pause, operation replay or guard bypass. UQ147 active retained/static typed-mode-writer/KOcleanup-order investigation; existing S20 Dismiss refusal and incomplete CS1 caller exclusivity once-routed, no repeated test. No PC/game/native/emulator/save/config/reference/peer-process changes. All finished own finite helpers terminal. K14 accepted closed; EXP127 INVALID; parked menu spent and extension unapproved. FullL1L2 plus required accepted deployedM0M5 ACTIVE/NOT_MET. Continue real review/consumer agreement and next discriminator.
+
+Class20/SP1 delivery1cf5316d0, remap/render1f6569546, selector exclusions7f625ac43
+and title routing0fcf9349e are committed/exact payload verified and their
+publication holds released. Existing independent routes are unblocked.
+Conditional override-domain30754ad4b is also committed/verified/released;
+its review and consumption remain pending, separately from the current packet.
+No self-acceptance. Heading supplement8969fe745 was SPEC acceptedcd86f404d and
+OPUS consumedc4eb91ad3. SP1 repair1c1dfec separately ACCEPTED.
+WholeOV42/21/29 remain OPEN. Four scoped historical runtime needs have prior
+source elimination; current packet scope above. No extra native/live credit.
+No FF12/PC/input/instrument/save/config/reference writes. EXP127 INVALID; parked
+menu allowance remains spent/unapproved. Next original-source work and remaining
+prepared deliveries follow current board, not an unchecked export.
+User resource preference: close only our shells/terminals/helpers when done.
+Completed helpers are terminal; no PC/runtime session retained. Use current
+task/handle evidence to distinguish a live publisher from finished delivery.
+Failed CIM inventory and unavailable optional psutil do not establish absence
+of other processes; do not terminate peers by process name.
+
 ## SOL in ASTRA — mixed-publication-prerequisite-fix publication package, 2026-10-03
 
 Full L1+L2 plus accepted deployed M0-M5 goal ACTIVE/NOT_MET. Current supported
@@ -11219,12 +11336,12 @@ PC OFF; no live process/intervention, save/config/reference changes/restoration 
 Player version: the grid-code finding is preserved. Publishing it is waiting for
 the shared task list to be recovered so recent teammates' work is not overwritten.
 
-<!-- TEAM-CURRENT:begin agent=ASTRA board_rev=49578 epoch=4 queue_sha=c7301eb95182d71a -->
-> generated 2026-10-03T06:36:19+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=ASTRA board_rev=50222 epoch=4 queue_sha=71f83f05a37c34cb -->
+> generated 2026-10-03T09:50:49+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: ASTRA-HEADING-CLASS-EFFECTS-SLICE, ASTRA-OV42-GAUGE-CALLBACK-BINDING-1002, ASTRA-OV42-REGISTER-EVENT0-CLOSURE-1003, ASTRA-PUBLISH-MIXED-PREREQUISITE-FIX-1003, AUTO-INCORP-SWE2DATA-REQ-AUDITSPEC-OV42-AUTHORED-FLOW-1003, DATA-REQ-ASTRA-SD194-RUNTIME-1001, FABLE-REQ-ASTRA-OV10-OV42-REACHABILITY, FABLE-REQ-ASTRA-OV21-BANK-REACHABILITY, FABLE-REQ-ASTRA-RT-REMAINDERS-PROBES-0929, FABLE-REQ-ASTRA-UQ147-KO-SUMMONER-DURING-A-SUMMON, FRONTIER-REQ-ASTRA-WORKFLOW-INDEPENDENT-VERIFY
+> ACTIVE: ASTRA-HEADING-CLASS-EFFECTS-SLICE, ASTRA-OV42-GAUGE-CALLBACK-BINDING-1002, ASTRA-OV42-REGISTER-EVENT0-CLOSURE-1003, ASTRA-PUBLISH-UQ147-LOCAL-BOUNDARIES-1003, DATA-REQ-ASTRA-SD194-RUNTIME-1001, FABLE-REQ-ASTRA-OV10-OV42-REACHABILITY, FABLE-REQ-ASTRA-OV21-BANK-REACHABILITY, FABLE-REQ-ASTRA-RT-REMAINDERS-PROBES-0929, FABLE-REQ-ASTRA-UQ147-KO-SUMMONER-DURING-A-SUMMON, FRONTIER-REQ-ASTRA-WORKFLOW-INDEPENDENT-VERIFY
 > READY addressed to you: P3 FABLE-REQ-ASTRA-PC1-OVERRIDE-DWORD-WRITE-WATCH, P3 FABLE-REQ-ASTRA-UQ146-IN-PROCESS-FORMATTER-READ
-> READY pool: 0 | BLOCKED: 28
+> READY pool: 1 | BLOCKED: 28
 <!-- TEAM-CURRENT:end -->
 
 > ## TEAM ROLLBACK RECOVERED (SWE2-FRONTIER, 2026-09-26 02:30Z)

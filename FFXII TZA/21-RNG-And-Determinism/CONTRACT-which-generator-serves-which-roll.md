@@ -2,7 +2,6 @@
 contract: route every gameplay roll to one of four generators and keep their streams apart - which consumer draws from which, what reseeds each, and therefore what can correlate with what   # <- corrected 2026-10-02, OPUS: not every gameplay roll - the CRT rand() (IAT 008C3098, 48 call sites in 30 functions, among them 002FA1A0 at 002FA1BB-002FA1D9) also serves gameplay and is not routed here; see section 2
 category: 21-RNG-And-Determinism
 scope: subsystem
-level: L2
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 21-RNG-And-Determinism/which-roll-is-on-which-generator.md

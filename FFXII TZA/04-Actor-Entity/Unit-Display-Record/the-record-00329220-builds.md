@@ -4,7 +4,6 @@ category: 04-Actor-Entity
 status: AUDITED
 owner_layer: PrimaryOwner:ActorEntity — consumed by UI, Input and Presentation
 evidence_tier: 1
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 verified_against:

@@ -1,0 +1,275 @@
+> **UNVERIFIED CLOUD DRAFT** (copied unchanged below from C:/t/sd197.md, 2026-10-03). It is not evidence. What FABLE re-derived from the image, and what failed, is in README.md and check_sd197.out.
+
+**Verdict:** the three functions are one evaluator stack, not three separate track kinds. `004309C0` evaluates a 0x10-byte record holding two keyed float channels. `00430540` evaluates one channel: `{int32 frame, float32 value}` keys, an optional loop period, and a 2-bit interpolation selector (0 linear, 1 three-key curve, 2 and 3 return 0.0). `004307C0` combines the two channel values by a 4-bit mode. Its switch table (`004308B0`) and its callee `003D8E50` are outside the listings and need a local check.
+
+# SD-197: the planar-scalar track evaluators 004309C0, 00430540, 004307C0 (cloud draft for FABLE, 2026-10-03)
+
+Source: `cloud-input/questions/sd197/*.lst`. Addresses are VAs with the image base `0x00120000` included. This is a
+static reading of the listings only. Nothing here was executed. Call sites are written as "`FUNCTION`+0xNN".
+
+## Record layout as read by the three functions
+
+Every field below is read through the record pointer that `004309C0` receives in `rcx`. No offset at or above `0x10` is
+read, so the record these functions see is at most 16 bytes. Channel index `c` is 0 or 1.
+
+| offset | width | read at | use |
+|---|---|---|---|
+| `+0x0` | dword | `004309E6`, `0043056C` | channel 0 key handle: passed in `ecx` to `0020E600` |
+| `+0x4` | dword | `00430A1F`, `00430579` | channel 1 key handle: same use |
+| `+0x8 + 2c` | u16 (`movzx`) | `0043058E` | channel `c` loop period (0 = no looping) |
+| `+0xC + c` | u8 (`movzx`) | `004309CA`, `004309FF`, `004305C9`, `0043074A` | channel `c` key count |
+| `+0xE` | u16 (`movzx`) | `00430573` / `00430581`, `004307DE`, `0043080F` | flags: bits 0-1 = channel 0 interpolation, bits 2-3 = channel 1 interpolation, bits 4-7 = combine mode |
+
+Bits 8-15 of `+0xE` are not read by any of the three functions.
+
+## 1. `004309C0`: the two-channel record evaluator
+
+**Arguments as used.**
+- `rcx` is the record. It is copied to `rbx` at `004309D5`.
+- `edx` is the time input. It is copied to `edi` at `004309CE` and used as a 32-bit integer (see `00430540`).
+- There is no output pointer. The result is returned in `xmm0`.
+- `xmm6` is preserved: saved at `004309D0`, restored at `00430A0F` / `00430A4C`.
+
+**Channel 0** is selected by the count byte `+0xC` (`004309CA`, zero-extended u8):
+- 0: the value is `0.0` (`004309DC`).
+- 1: `ecx` = dword `+0x0` (`004309E6`), then `004309C0`+0x28 calls `0020E600`. The value is the float at
+  `[rax + 4]` (`004309ED`). The time input is not used.
+- 2 or more: `004309C0`+0x37 calls `00430540` with `rcx` = record (unchanged on this path), `edx` = time (unchanged
+  since entry) and `r8d` = 0 (`004309F4`). The value is the returned `xmm0` (`004309FC`).
+- The value is held in `xmm6`.
+
+**Channel 1** is selected by the count byte `+0xD` (`004309FF`):
+- 0: **early return.** `xmm0` = channel-0 value (`00430A07`), then `ret` at `00430A19`. `004307C0` is not reached, so
+  the combine-mode bits are not consulted.
+- 1: `ecx` = dword `+0x4` (`00430A1F`), then `004309C0`+0x62 calls `0020E600`. The value is the float at `[rax + 4]`
+  (`00430A27`).
+- 2 or more: `004309C0`+0x79 calls `00430540` with `rcx` = record, `edx` = time (`edi`) and `r8d` = 1
+  (`00430A2E`–`00430A39`).
+
+**Combine (tail call).** Unless channel 1's count is 0, the function sets `xmm1` = channel-0 value and `xmm2` = channel-1
+value (`00430A3E` / `00430A41`), sets `rcx` = record (`00430A44`), restores `rbx` / `xmm6`, unwinds its frame and jumps
+to `004307C0` at `004309C0`+0x96 (`00430A56`, a `jmp`, not a `call`). `004307C0`'s `xmm0` becomes this function's return
+value.
+
+**Returns.** `xmm0` on both exits: the channel-0 value alone (`00430A19`), or `004307C0(record, v0, v1)` (`00430A56`).
+
+**Count 1 and `00430540`.** The count-1 shortcut reads `[ptr + 4]` from the same `0020E600` result that `00430540`
+walks as 8-byte `{int32, float32}` keys (section 2). On that layout, `[ptr + 4]` is key 0's value. That rests on the
+two functions sharing the handle field and the callee; what `0020E600` returns is not in the listings.
+
+## 2. `00430540`: one keyed channel
+
+**Arguments as used.**
+- `rcx` is the record (`rdi`, `00430564`).
+- `edx` is the time (`ebx`, `00430562`). It is a 32-bit integer and every comparison against it is signed.
+- `r8d` is the channel index. It is sign-extended into `rsi` at `0043055F` and copied to `r11` at `00430593`.
+- There is no output pointer. The result is returned in `xmm0`.
+
+**Frame.**
+- A stack cookie is set from `01F44830` (`00430551`–`0043055B`) and checked on the single exit path by
+  `00430540`+0x269 calling `00808C40` (`004307A2`–`004307A9`).
+- `r14` is saved at `004305AC` and restored at `0043079A`.
+- `xmm6` is saved and restored only around the curve path (`004306D1` / `00430731`).
+
+**Key source and interpolation selector.**
+- `r8d` = 0 (`0043056A`): `ecx` = dword `+0x0`, then `00430540`+0x2E calls `0020E600`. The selector is
+  `word +0xE & 3` (`00430573`, `0043058B`).
+- `r8d` ≠ 0: `ecx` = dword `+0x4`, then `00430540`+0x3C calls `0020E600`. The selector is `(word +0xE >> 2) & 3`
+  (`00430581`–`0043058B`). Any non-zero index takes this arm.
+- The returned `rax` becomes the key cursor `r8` (`00430588`).
+- Keys are read as 8-byte entries: a dword at `[r8]` compared as a signed integer and converted with `cvtdq2ps`, so a
+  signed int32 frame; and a float at `[r8 + 4]`, the value. The cursor advances by 8 (`00430600`–`00430609`,
+  `00430755`–`0043075E`).
+
+**Looping.**
+- `eax` = u16 `[rdi + rsi*2 + 8]`, the channel's period (`0043058E`).
+- If the period is non-zero **and** time > period (signed compare, `0043059F` / `004305A2` `jle`), then time = time mod
+  period (signed `idiv`, remainder in `edx`, `004305A4`–`004305AA`).
+- So a time exactly equal to the period is **not** wrapped, a time above it lands in `0 … period−1`, and a negative time
+  is never wrapped.
+- A zero period means no looping. There is no clamping step separate from the key search below.
+
+**Dispatch on the selector** (`004305B4`–`004305C4`):
+- 0: linear search, at `0043073B`.
+- 1: curve path, at `004305C9`.
+- 2 or 3: `xmm0` = `0.0` (`004305C1`), then straight to the exit (`0043079A`). Neither the time nor the keys are used.
+
+### Selector 0, and selector 1 with 2 or fewer keys: linear (`0043073B`–`00430797`)
+
+1. It sets `r9d` = 0 and `xmm2` = 0. It loads the "previous key" registers `r10d` / `xmm3` from `[rbp−0x25]`
+   (`0043073B`–`00430747`). That stack slot has not been written on this path in this call.
+2. **Loop.** If `r9d` ≥ count byte `[r11 + rdi + 0xC]` (`0043074A`–`00430753`), it returns `xmm2`. Otherwise it reads
+   key `r9d` (frame `ecx`, value `xmm2`) and compares the frame with the time (`00430762`):
+   - frame == time: it returns that key's value (`00430764`);
+   - frame < time: the key becomes "previous" (`r10d`, `xmm3`), `r9d` += 1, and the loop repeats (`00430768`–`00430771`);
+   - frame > time: it interpolates (`00430773`–`00430793`):
+     `v = v_prev + (v − v_prev) · float(time − f_prev) / float(f − f_prev)`, with the two differences taken in integer
+     arithmetic before conversion. It returns `v`.
+3. **Every path ends** at `00430797` (`xmm0` = `xmm2`):
+   - **count 0:** returns `0.0`.
+   - **time after the last key:** returns the last key's value. This is clamping at the end.
+   - **exact frame match:** returns that key's value.
+   - **between two keys:** returns the linear interpolation.
+   - **time before the first key** (first frame > time, so `r9d` = 0 at `00430766`): the interpolation uses
+     `r10d` / `xmm3` from the unwritten slot `[rbp−0x25]`. The result depends on stack residue. Whether shipped data ever
+     reaches this (a first key frame greater than the time the caller passes) needs a local check.
+   - **time equal to a key frame:** always takes the exact-match arm, so the division only runs with
+     `f_prev < time < f`. It cannot divide by zero, except in the residue case above.
+
+### Selector 1 with 3 or more keys: three-key curve (`004305C9`–`00430739`)
+
+**Entry.** The count byte `[rsi + rdi + 0xC]` is compared unsigned with 2 (`004305C9`–`004305D0`). A count of 2 or fewer
+goes to the linear path above. With a count of 3 or more, the `test al, al / je` at `004305DF` cannot be taken.
+
+**Search** (`00430600`–`00430625`):
+- It walks the keys, keeping the two keys before the current one: `r10d` / `xmm3` = key i−1, `r14d` / `xmm1` = key i−2
+  (shifts at `00430614`–`0043061D`).
+- It stops at the first key i whose frame ≥ time (`0043060D` `jge`).
+- The four registers start from the unwritten slots `[rbp−0x21]` / `[rbp−0x25]` (`004305E7`–`004305F5`), but the
+  branches below read key i−1 only when i ≥ 1 and key i−2 only when i ≥ 2. So that residue is never consumed on this
+  path.
+
+**Ends.**
+- Every key frame < time: returns the last key's value (`00430625` → `00430797`).
+- i = 0, meaning time ≤ the first frame: returns key 0's value (`0043062A` / `0043062D`).
+- So this path clamps at both ends.
+
+**Choosing the three keys.**
+- It computes `mid = f(i−1) + (f(i) − f(i−1)) / 2`, a signed divide by 2 that truncates toward zero
+  (`00430633`–`0043063D`).
+- It then picks a window centred on the key nearest to the time:
+
+| case | branch | window |
+|---|---|---|
+| i = 1, time ≤ mid | `00430646` → `00430762` | none: linear between keys 0 and 1 (the linear tail above) |
+| i = 1, time > mid | `00430648` | keys 0, 1, 2 |
+| i ≥ 2, time ≤ mid | `0043064F` falls through to `00430653` | keys i−2, i−1, i |
+| i ≥ 2, time > mid, i = count−1 | `0043068A`–`00430690` → `00430762` | none: linear between keys i−1 and i |
+| i ≥ 2, time > mid, i < count−1 | `00430696` | keys i−1, i, i+1, with key i+1 read through the advanced cursor `[r8]` / `[r8+4]` at `004306B9` / `004306C6` |
+
+In both linear rows `ecx` ≥ time, so the tail returns the exact value or the interpolation.
+
+**The three points.**
+- The window is written as three 16-byte points at `rbp−0x19`, `rbp−0x09` and `rbp+0x07`.
+- Each point gets lane 0 = `float(frame)` and lane 1 = `value`. Lanes 2 and 3 are not written (`00430653`–`00430683`,
+  `00430696`–`004306CC`).
+- The frames are in ascending window order: P0.x at `rbp−0x19`, P1.x at `rbp−0x09`, P2.x at `rbp+0x07`.
+
+**Evaluation** (`004306D1`–`00430739`):
+1. `xmm0` = `xmm6` = `float(time)` (`004306DD`–`004306E8`), `rdx` = the points, `r8` = an output at `rbp−0x39`. Then
+   `00430540`+0x1AB calls `0039B6E0`.
+2. `u` = float `[rbp−0x39]` (`004306F0`).
+3. If `u` == 2.0 exactly (the constant `01CEBC08`, compared with `ucomiss`; a NaN does not match), `u` is replaced by
+   `(2·time − P0.x − P1.x) / (P2.x − P0.x)` (`004306F5`–`0043071C`).
+4. `xmm0` = `u`, `rdx` = the points, `r8` = an output at `rbp−0x29`. Then `00430540`+0x1E7 calls `0039B630`.
+5. The result is the float at `[rbp−0x25]`, lane 1 of that output (`0043072C`), returned through `00430797`.
+
+What `0039B6E0` and `0039B630` compute (the curve family, and what the 2.0 return means) is not in these listings.
+
+**Returns.** `xmm0` on every path, through the single exit `0043079A`–`004307B9`.
+
+## 3. `004307C0`: the two-value combiner
+
+**Arguments as used.**
+- `rcx` is the record. Only u16 `+0xE` is read, at `004307DE` and `0043080F`.
+- `xmm1` = `a`, copied to `xmm6` at `004307D1`. From `004309C0` this is the channel-0 value.
+- `xmm2` = `b`, copied to `xmm7` at `004307D4`. From `004309C0` this is the channel-1 value.
+- The result is returned in `xmm0`.
+- `xmm6` and `xmm7` are saved at `004307C4` / `004307CC` and restored on every exit.
+
+**Mode.** `m = (word +0xE >> 4) & 0xF` (`004307E2`–`004307E5`, `00430813`–`00430816`).
+
+The function calls one other function, `003D8E50`, with its argument in `xmm0`, and uses the returned `xmm0` as a
+float. Below, that call is written `F(x)`. What `F` computes is not in the listings.
+
+**`b` == 0.0** (`004307D7`–`004307DC`: `ucomiss b, 0` with `jp` / `jne` out; so +0.0 and −0.0 take this branch, and a
+NaN does not):
+- `m` = 4: returns `a` (`004307E8` `je` → `004307FD`).
+- `m` = 5: `xmm7` = `b − a` (`004307F2`).
+  - If that is 0.0 (and not a NaN), it returns `a` (`004307F6`–`004307FB` fall through to `004307FD`).
+  - Otherwise it goes to `00430833` and returns `F(b − a) + a`.
+- Any other `m`: returns `a` (`004307F0` → `004307FD`).
+
+**`b` ≠ 0.0, or `b` NaN** (`0043080F`):
+- `m` > 5: returns `a` (`0043081C` `ja` → `004307FD`).
+- `m` = 0…5: an indirect jump through a table of six dword RVAs at `004308B0`, with the image base added
+  (`0043081E`–`00430831`).
+- **The table's contents are not in the listing.**
+
+The five arms in the function body are below. Which `m` reaches which arm is not established here.
+
+| arm | reached by | computes | callee |
+|---|---|---|---|
+| `004307FD` | the `b == 0` arms; `m` > 5 | `a` | none |
+| `00430833` | `004307F9` / `004307FB` (`m` = 5, `b` = 0); possibly the table | `F(xmm7) + a`. `xmm7` is `b − a` when coming from `004307FB`, or `b` when reached directly from the table. | `004307C0`+0x76 |
+| `0043084E` | no direct reference in the listing: only the table | `a − F(b)` | `004307C0`+0x91 |
+| `0043086C` | only the table | `F(b + b) + a − b` | `004307C0`+0xB3 |
+| `0043088F` | only the table | `F(b) · a + a` | `004307C0`+0xD2 |
+
+The instruction at `004307F2` (`subss xmm7, xmm6`) also begins a sequence that ends in `00430833` or `004307FD`.
+Whether any table entry points at it (or at `004307FD`) is part of the same local check.
+
+**Returns.** `xmm0` on every path: `a` at `004307FD`, or the arm results at `0043083B`, `0043085A`, `00430878`–`0043087C`
+and `0043089C`–`004308A0`.
+
+**Note on the early return in `004309C0`.** When channel 1's count is 0, `004309C0` returns `a` without calling this
+function (`00430A05` → `00430A19`). Called directly with `b` = 0, this function would also return `a`, except when
+`m` = 5 and `a` ≠ 0.
+
+## Summary: what the authored data must be
+
+The three addresses are layers of one evaluator, not three alternative track kinds.
+
+**The record** that `004309C0` evaluates is at most 16 bytes, per the record-layout table above: two channel handles, two u16 loop
+periods, two u8 key counts and a u16 flags word. That size fits the context's "float track 0x10 bytes before the pass's
+slot", but that link is a caller-side fact still to be checked.
+
+**Each channel** must be a keyed float curve. Its handle, resolved by `0020E600`, must lead to an array of 8-byte
+`{int32 frame, float32 value}` keys sorted by ascending frame, because both searches stop at the first key whose frame is
+≥ the time. Its interpolation is set by two flag bits:
+- 0: piecewise linear, clamped after the last key;
+- 1: a three-key curve through the key nearest the time and its two neighbours, evaluated by `0039B6E0` / `0039B630`. It
+  falls back to linear with 2 keys or fewer and in the first and last half-segments, and clamps at both ends;
+- 2 and 3: a constant 0.0.
+
+A channel can also loop over its u16 period. Its key count can short-cut the evaluation: 0 gives 0.0, and 1 gives the
+float at `+4` of the resolved key data, without using the time.
+
+**The planar scalar** is channel 0 alone when channel 1 has no keys. Otherwise it is `004307C0(a, b)`, with the 4-bit
+mode selecting one of the forms `a`, `a + F(b)`, `a − F(b)`, `a + F(2b) − b`, `a + a·F(b)`, and, at `b` = 0 with mode 5,
+`a + F(−a)`. Until `F` and the table are read, the code only establishes that channel 1 modifies channel 0's value
+through `F`.
+
+## Needs local check
+
+1. **The jump table at `004308B0`.** Its six dword RVAs, for `m` = 0…5, would show which combine form each mode is.
+2. **`003D8E50` (`F`).** What it computes from its `xmm0` argument, and whether it has state or side effects.
+   - *Unverified hypothesis, offered only as something to test:* if `F(x)` returns a value drawn uniformly from 0 to x,
+     the arms read as `a + rand·b`, `a − rand·b`, `a ± b`, `a·(1 + rand·b)` and, for mode 5 with b = 0, a value between
+     `a` and 0. In that reading channel 1 is a random spread around the base value of channel 0.
+   - Under that hypothesis, the `b − a` computed at `004307F2` (the b = 0, m = 5 arm) suggests that mode 5 is "random
+     between a and b", reached from the table through `004307F2`. Only the table can confirm this.
+3. **`0039B6E0` and `0039B630`.**
+   - Their signatures: the listing shows `xmm0`, `rdx` and `r8` set. `r9d` holds the key index i, and whether it is read
+     is unknown.
+   - Whether they read lanes 2 and 3 of the three points, which this function leaves unwritten.
+   - The curve family.
+   - Why an output of exactly 2.0 triggers the `(2t − x0 − x1)/(x2 − x0)` replacement.
+4. **`0020E600`.**
+   - What the dword handle is (an index or an offset) and what the returned pointer addresses.
+   - Whether the count-1 shortcut's `[ptr + 4]` is really key 0's value.
+   - Its full argument set: only `ecx` is visibly set before each call.
+5. **`00808C40`.** It is presumably the stack-cookie check, from the cookie pattern at `00430551` / `004307A2`. Confirm.
+6. **The callers** of `004309C0` (in particular `00449AB0`+0x543), and any other callers of `00430540` and `004307C0`:
+   - what time value is passed, and in which unit (frames or another counter);
+   - whether `00430540` is ever reached with a count of 2 or fewer under selector 1, with a count of 1 or fewer under
+     selector 0, or with a channel index other than 0 or 1;
+   - whether the record really is the 0x10 bytes before the pass slot.
+7. **The authored track bytes.** Several things depend on the shipped data:
+   - which selector values (0-3) and combine modes (0-15) ship;
+   - whether key frames are strictly ascending;
+   - whether any channel's first key frame exceeds the smallest time passed. That case reaches the residue read at
+     `0043073B` / `00430773`;
+   - whether periods are used, and how they relate to the last key frame;
+   - whether `P2.x − P0.x` can be 0 in the curve fallback;
+   - flag bits 8-15, which these functions never read.

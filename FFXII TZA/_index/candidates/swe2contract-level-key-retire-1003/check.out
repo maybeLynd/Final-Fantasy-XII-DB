@@ -1,0 +1,6 @@
+PASS R1 no contract declares level:: 107 contracts scanned, 0 declare level: []
+PASS R2 template: level key absent, FABLE's line present, caution gone
+PASS R3 knowledge_db queries: contracts/reconstruction-ready select no level; level-census excludes contracts
+PASS R4 field-music parity target in §16: carried as prose
+PASS S1 sensitivity: synthetic contract with level flagged; without passes; non-contract page not judged
+FAILS 0

@@ -1,0 +1,58 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/battle-text-banks.md",
+ "date": "2026-10-03",
+ "session": "opus-self",
+ "report": "battle-text-banks.json",
+ "rows": [
+  {
+   "fn": "00197A40",
+   "text": "returns 1 when bit `edx` (taken mod 32 by `bt`) of the sign-extended byte `rcx+0x3a` is set and 0 when it is clear; bits above 7 repeat bit 7 of the byte",
+   "anchors": [
+    [
+     "00197A44",
+     "bt"
+    ],
+    [
+     "00197A47",
+     "setb"
+    ]
+   ]
+  },
+  {
+   "fn": "002902D0",
+   "text": "returns `002D4FB0(rcx, rdx, 1, 0x40, 0x28, 0x30)`, the last two as the fifth and sixth (stack) arguments",
+   "anchors": [
+    [
+     "002902D4",
+     "mov"
+    ],
+    [
+     "002902DA",
+     "mov"
+    ],
+    [
+     "002902E2",
+     "mov"
+    ],
+    [
+     "002902EA",
+     "lea"
+    ],
+    [
+     "002902EE",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "002B5390": "long branching body; deferred to a slower read",
+  "0055FB20": "long body with a jump table; deferred to a slower read"
+ },
+ "missing": [],
+ "corrections": [],
+ "mode": "interior",
+ "family": "",
+ "method": "OPUS drafted these rows itself from its F-interior pack (`f_pack.py`: each function the page cites only at its entry, with its annotated listing) and checked every row mechanically with `interior_ingest.py` (every anchor an instruction boundary inside the extent with the recorded mnemonic; every address a listing token). No second agent drafted or verified them, so the non-author check is SWE2-AUDIT-SPEC's."
+}

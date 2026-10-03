@@ -3,7 +3,6 @@ system: The workbench's two primitives — transforming a point, and composing t
 category: 00-Engine-Core-Runtime
 owner_layer: unowned in the ledger — filed here for what these compute, not for who calls them
 evidence_tier: 1
-level: L2
 status: AUDITED
 readiness: BEHAVIORALLY UNDERSTOOD   # §5a adds live observation of the STATE, not of the functions running
 confidence: PROVEN
@@ -569,7 +568,10 @@ from `byte[rdx+0x1F1] & 7`, `003977B0` composes the workbench matrix, and the
 gates the remaining channels: bit 3 stamps packed u16 constants
 (`0x7233`/`0x8DCC` default, `0x80FF`/`0x7813`/`0x7FCC` for `00229E40` in
 1..6, `0x7ED0`/`0x75E3`/`0x7D9C` otherwise, `00434E1B`–`00434ED7`) gated by
-`0039A150`/`0024E410`, or — bit 3 clear — `00399B80` may return 0 early after
+`0039A150`/`0024E410`, or — bit 3 clear — ~~`00399B80` may return 0 early~~ `00399B80` returns 1 on the first
+vertex that fails its range test (`0039A0C9` `jne` to the exit that returns `022D8F30`, set to 1 at `00399E37`) and
+0 when every vertex passes, and the caller rejects the whole element on 1 *(corrected 2026-10-03, SWE2-EC7: FABLE's
+SD-199 execution; ec7_corr_b_check.py)*, after
 restoring the matrix rows (`00434ED9`–`00434F04`). Bits 4–6 each pick
 blend-or-copy with the same polarity — **clear selects the blend, set
 selects the copy/direct call** (re-read against the shipping bytes for
@@ -598,8 +600,8 @@ Shared callees deliberately outside the census: `00434C50`, `003977B0`,
 `0020E600`, `00861EBA`. Two of the shared pair are now interior-read
 2026-09-17 (SWE2-FRONTIER): `0039A150` (1,558 B) and `00399B80` (1,482 B)
 are both call-free SIMD leaves — `mulss` ×18 apiece over `movups`/`movaps`
-lane traffic (19 and 23 wide loads), the scalar-blend members of this
-family ([`0039A163`](../../_index/ADDRESS-INDEX.md) / [`00399B94`](../../_index/ADDRESS-INDEX.md) prologues).
+lane traffic (19 and 23 wide loads), ~~the scalar-blend members of this
+family~~ the project / range-test / pack transforms of this family: float4 vertices times matrix rows 1-4, divided by `w`, truncated to integers (X and Y scaled by 16), clamped to X, Y in [0, 0xFFF0] and Z in [0xFF, 0xFFFFFF], with the clamp-changed mask compared against the emulated PS2 `$zero` register `022D8F10` (`0039A0C6` / `0039A6C8`); `0039A150` packs a passing vertex as X | Y<<16 | Z<<32 | 0xFF<<56 (`0039A712`) and stores a zero entry for a failing one (`0039A6CD`) *(corrected 2026-10-03, SWE2-EC7: FABLE's SD-199 execution under Unicorn; ec7_corr_b_check.py)* ([`0039A163`](../../_index/ADDRESS-INDEX.md) / [`00399B94`](../../_index/ADDRESS-INDEX.md) prologues).
 
 `00432300` (2,486 B) re-read 2026-10-01 against SD-140
 ([`_index/candidates/sd140-vertex-prep-kernel-0930`](../../_index/candidates/sd140-vertex-prep-kernel-0930/README.md),

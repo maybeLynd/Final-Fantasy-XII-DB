@@ -2,7 +2,6 @@
 contract: Post-processing subsystem — one lazy initialisation with fixed feature flags, one configured run per post-processed frame, and a licensed library behind a fixed boundary
 category: 17-Presentation-Rendering
 scope: subsystem
-level: L2
 readiness: CONTRACT READY   # the ordering, the flags and the boundary are STATIC; nothing here was observed live
 confidence: PROVEN
 implements:

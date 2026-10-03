@@ -1,0 +1,54 @@
+{
+  "status": "PREPARED_QUEUE_DISPOSITIONS_COMPLETE_UNKNOWNS_PRESERVED",
+  "revision": 48679,
+  "epoch": 4,
+  "ready_snapshot": 3,
+  "ready_tasks": [
+    "FABLE-REQ-ASTRA-PC1-OVERRIDE-DWORD-WRITE-WATCH",
+    "FABLE-REQ-ASTRA-UQ146-IN-PROCESS-FORMATTER-READ",
+    "FABLE-REQ-ASTRA-UQ147-KO-SUMMONER-DURING-A-SUMMON"
+  ],
+  "initial_ready": 30,
+  "initial_automatic": 23,
+  "initial_information": 2,
+  "initial_optional": 1,
+  "initial_substantive": 4,
+  "notices_handled": 26,
+  "finished_scoped_original_deliveries": [
+    "ASTRA-HWBP-LOADED-DEADLINE",
+    "ASTRA-HANDLE-SEMANTIC-CLOSURE",
+    "FABLE-REQ-ASTRA-OLD-SAVE-LOAD",
+    "ASTRA-SHAKE-OPTION-BOUNDARY"
+  ],
+  "unresolved_original_requests": [
+    "FABLE-REQ-ASTRA-LEDGER",
+    "FABLE-REQ-ASTRA-STATE-ROUNDTRIP",
+    "FABLE-REQ-ASTRA-REGFILE-REUSE",
+    "OPUS-REQ-ASTRA-AUDIO-GATE-LIVE",
+    "FABLE-REQ-ASTRA-KIND-INDEX-TRACE",
+    "OPUS-REQ-ASTRA-CML1-COLUMN-STABILITY",
+    "OPUS-REQ-ASTRA-MGRMARK-RELOAD",
+    "FABLE-REQ-ASTRA-EO3-PATH-POINTER",
+    "OPUS-REQ-ASTRA-TWO-PARITY-CLAIMS-ARE-LIVE-ONLY",
+    "FABLE-REQ-ASTRA-REAR-HALF-VOICE-PAN-LISTENING-TEST",
+    "FABLE-REQ-ASTRA-MT-CURSOR-ACROSS-A-CAMERA-SHAKE",
+    "OPUS-REQ-ASTRA-PHYRE-HIERARCHY-AT-RUNTIME",
+    "OPUS-REQ-ASTRA-SHAKE-DRIVER-OCCUPANCY-PER-FRAME",
+    "OPUS-REQ-ASTRA-ARENA-BASE-AT-RUNTIME",
+    "ASTRA-SKELETAL-RESET-LIVE",
+    "FABLE-REQ-ASTRA-LEADER-STATS-NULL",
+    "OPUS-REQ-ASTRA-BJ1-GUARD-SNAPSHOT",
+    "SWE2STRUCT-REQ-ASTRA-OV58D-ESPER-ORDER-0930"
+  ],
+  "accepted_prefix": "1..118",
+  "supported_current_cli_resumption": "after valid current guard and three positive documented CLI writes; not an automatic retry of old failure",
+  "frontier_cause_question": "ASTRA-REQ-FRONTIER-ATOMIC-BOARD-WRITE-DENIAL-1003 remains routed once; intermittent WinError5 cause unknown",
+  "limits": [
+    "26 handled notices/optional dispositions are not 26 new game answers.",
+    "Four older bounded deliveries completed; eighteen game requests remain open with exact revised prerequisites.",
+    "The original audit launch driver hash was not pinned; do not fabricate it. Current-batch drivers and raw receipts are pinned.",
+    "The partial checkpoint77 capsule remains immutable. This is its additive successor, not a relabeling.",
+    "Current ready count excludes resources held by peers; it may change when publication frees or new requests arrive. SD194 is ACTIVE on a new static prerequisite.",
+    "EXP127 invalid/crash unknown, K14 accepted closed, parked menu budget spent/unapproved; goal ACTIVE/NOT_MET."
+  ]
+}

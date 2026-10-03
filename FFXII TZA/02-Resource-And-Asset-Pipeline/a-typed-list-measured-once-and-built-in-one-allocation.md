@@ -4,7 +4,6 @@ category: 02-Resource-And-Asset-Pipeline
 status: DOCUMENTED — every register row is closed (owner re-status 2026-09-30, OPUS, on SWE2-CONTRACT's reconciliation): residue reconciled 2026-09-30 (SWE2-CONTRACT, DD batch 6) - slot flag bit 7, the sub-image record's fields, the load menu's resources 111 and 127 and the image-creation calls answered from the image and existing records; EW-6 part (b) disposed SUPERSEDED by FABLE 2026-09-26; no open item is left on the page and the owner read is done; ~~why ids 3 and 6 are both empty (the open half of UQ-76) has no static reader and waits on an authored census~~ (UQ-76 answered 2026-09-22 by the authored census, closed 2026-09-25); UQ-75, UQ-77, UQ-78 answered 2026-09-17
 owner_layer: none — the decoder carries no ledger owner, and a caller is not evidence of one
 evidence_tier: 1
-level: L1
 readiness: SEMANTICALLY IDENTIFIED
 confidence: PROVEN
 verified_against:

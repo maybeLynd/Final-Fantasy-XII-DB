@@ -2,7 +2,6 @@
 contract: decide, commit and materialise which of a field's three weather slots is in force - the retention roll, the one-shot latch that runs it, the restore gate that can discard the result, and the split publication into gameplay and presentation
 category: 03-World-Area-Field
 scope: subsystem
-level: L2
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 03-World-Area-Field/Weather/weather-slot-state-model.md, 03-World-Area-Field/Weather/weather-probability-and-transition-roll.md, 03-World-Area-Field/Weather/weather-apply-and-environment-materialization.md, 03-World-Area-Field/Weather/mweather-resource-format.md, 03-World-Area-Field/choosing-the-field-environment-variant.md

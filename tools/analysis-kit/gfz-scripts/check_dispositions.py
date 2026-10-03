@@ -381,6 +381,33 @@ def uc1_span_row(letter, members, uc1f, note):
     return None
 
 
+# A SHAPE family marks itself with the literal token `[shape]` at the start of its note (fifth) field. A sixth field
+# would break every five-field parser, and prose such as "PROVED BY FORM" is not a contract. OPUS's scope ruling: the
+# family-declaring-page rule covers shape families only, never classification families such as the Phyre module spans.
+# The token is stripped before every note-based check (OPUS-REQ-FRONTIER-SHAPE-MARKER-PARSE-1003, SWE2-FRONTIER).
+SHAPE_TOKEN = "[shape]"
+
+
+def split_shape(note):
+    """(is_shape, note without the token). Only a token at the very start of the (stripped) note counts."""
+    s = (note or "").strip()
+    if s.startswith(SHAPE_TOKEN):
+        return True, s[len(SHAPE_TOKEN):].strip()
+    return False, note
+
+
+def accepted_families_marked(db, sizes, paths=None, uc1=None):
+    """accepted_families() plus the shape marker: [(doc, name, letter, frozenset(members), is_shape)]."""
+    return evaluate(db, sizes, paths, uc1)["accepted_families_marked"]
+
+
+def accepted_families(db, sizes, paths=None, uc1=None):
+    """[(declaring_doc_path, family_name, letter, frozenset(members))] for every family evaluate() ACCEPTS, by the same
+    acceptance logic (one definition; SWE2DATA-REQ-FRONTIER-ACCEPTED-FAMILIES-API-1003, SWE2-FRONTIER 2026-10-03). The doc
+    path is the declaring page's full path, not the basename evaluate() keys its `accepted` labels by."""
+    return evaluate(db, sizes, paths, uc1)["accepted_families"]
+
+
 def evaluate(db, sizes, paths=None, uc1=None):
     uc1_all = (uc1_band.frontier_starts() if uc1 is None else set(uc1)) & set(sizes)
     uc1_credited = set()
@@ -388,6 +415,9 @@ def evaluate(db, sizes, paths=None, uc1=None):
     rows = parse_families(db, paths)
 
     accepted, refused = [], []
+    warned = []                      # (who, why): accepted families whose members file is stale (A-overlap only)
+    fams = []                        # (declaring doc path, family name, letter, frozenset(members)) - see accepted_families()
+    marked = []                      # the same plus is_shape - see accepted_families_marked()
     owner = {}                       # function -> (family name, doc) for the collision test
     for doc, parts in rows:
         name = parts[0] if parts else "(unnamed)"
@@ -400,6 +430,7 @@ def evaluate(db, sizes, paths=None, uc1=None):
             reject("needs five fields: name | letter | members | count | note")
             continue
         _, letter, rel, count, note = parts[0], parts[1], parts[2], parts[3], "|".join(parts[4:])
+        is_shape, note = split_shape(note)
         if letter not in LETTERS:
             reject("letter %r is not B, C or D (A is measured, never declared)" % letter)
             continue
@@ -455,22 +486,22 @@ def evaluate(db, sizes, paths=None, uc1=None):
                    % (len(clash), owner[clash[0]][0], clash[0]))
             continue
         overlap_a = [m for m in members if m in a_set]
+        # "A beats a declaration" (FABLE ruling, FABLE-REQ-FRONTIER-A-OVERLAP-FAMILY-RULE-1003, 2026-10-03): an A member
+        # COUNTS AS A; it no longer refuses the family. A family whose only defect is A-overlap is accepted for its
+        # non-A members and the gate WARNS that the members file is stale. Every other defect above still refuses
+        # (each has already `continue`d by this point). Before this rule, 14 families covering ~6,600 bodies were
+        # refused over a handful of members each, and every one of their other members fell back to the frontier.
         if overlap_a:
-            # This refusal is almost always STALENESS, not a bad family: someone cited a member
-            # well enough to measure it as A, and the members file has not been regenerated since.
-            # It happened twice on 2026-09-13 (Lua, then PPFX) and each time cost a manual
-            # diagnosis and a misleading headline, so the message names the cure. A generated
-            # family declares its selector in its own note; re-running it re-excludes the new A.
             sel = re.search(r"\(([\w/.-]*select_[\w-]+\.py)\)", note or "")
-            cure = ("  -- re-run %s, which excludes A-measured entries by design" % sel.group(1)
-                    if sel else
-                    "  -- if this family is generated, re-run its selector; A beats a declaration")
-            reject("%d member(s) are already measured as A, e.g. %08X%s"
-                   % (len(overlap_a), overlap_a[0], cure))
-            continue
-        for m in members:
+            warned.append((who, "%d member(s) already measured as A, e.g. %08X - accepted for its %d non-A member(s); "
+                                "the members file is stale%s" % (len(overlap_a), overlap_a[0], len(members) - len(overlap_a),
+                                "  -- re-run %s" % sel.group(1) if sel else "")))
+        nona = [m for m in members if m not in a_set]      # an A member stays A: the family claims only the rest
+        for m in nona:
             owner[m] = (who, doc)
-        accepted.append((who, letter, members, note))
+        accepted.append((who, letter, nona, note))
+        fams.append((doc, name, letter, frozenset(members)))
+        marked.append((doc, name, letter, frozenset(members), is_shape))
 
     buckets = collections.OrderedDict((k, set()) for k in ("A", "B", "C", "D"))
     buckets["A"] = set(a_set)
@@ -499,8 +530,10 @@ def evaluate(db, sizes, paths=None, uc1=None):
         "entry_only_declared": sum(1 for f in entry_only if f in owner),
         "any_interior": len(any_interior), "documented_any": len(documented_any),
         "families_accepted": len(accepted), "families_refused": len(refused),
+        "families_warned": len(warned), "warnings": warned,
         "refusals": refused,
         "accepted": [(w, l, len(m)) for w, l, m, _n in accepted],
+        "accepted_families": fams, "accepted_families_marked": marked,
         # THE SETS THEMSELVES, so no second reader has to rebuild them. check_frontier_shape did
         # rebuild them - it walked the members files directly, under a comment saying its
         # definition was "EXACTLY check_dispositions'". It was not: reading the members files
@@ -508,7 +541,7 @@ def evaluate(db, sizes, paths=None, uc1=None):
         # families refused for overlapping A still claimed their 300 members over there. The two
         # readers reported frontiers 296 apart and check_frontier_shape failed its own control,
         # taking check_untouched_runs down with it. One definition, exported, consumed.
-        "frontier_set": frontier, "explained_set": explained,
+        "frontier_set": frontier, "explained_set": explained, "a_set": set(buckets["A"]),
         "claimed_set": buckets["B"] | buckets["C"] | buckets["D"],
     }
 
@@ -569,6 +602,8 @@ def report(r, quiet=False):
         print("      %-6s %-60s %5d" % (letter, who[:60], n))
     for who, why in r["refusals"]:
         print("      REFUSED %-52s %s" % (who[:52], why))
+    for who, why in r.get("warnings", []):
+        print("      WARN    %-52s %s" % (who[:52], why))
     if not r["families_accepted"] and not r["families_refused"]:
         print("      No document declares `function_families:` yet. The surface exists and is")
         print("      empty; that is an honest zero, and populating it is evidence work, not a")
@@ -659,11 +694,30 @@ def self_test(tmp):
     r = run([p1, p2])
     assert r["families_accepted"] == 1 and "already declared" in r["refusals"][0][1], r
     ok += 1
-    # 8. declared AND measured as A -- interior citation wins, declaration is refused
-    p = doc("clash", ["f | B | clash.tsv | 1 | a note"], [0x120010],
+    # 8. declared AND measured as A (FABLE ruling 2026-10-03, A-overlap family rule): the A member counts as A, the
+    #    family is ACCEPTED for its non-A members with a staleness warning, and nothing is counted twice.
+    p = doc("clash", ["f | B | clash.tsv | 2 | a note"], [0x120010, 0x120020],
             body="the body at `00120014` is interior to it")
     r = run([p])
-    assert r["A"] == 1 and "already measured as A" in r["refusals"][0][1], r
+    assert r["families_refused"] == 0 and r["families_accepted"] == 1, r
+    assert r["A"] == 1 and r["B"] == 1 and r["explained"] == 2 and 0x120010 in r["a_set"] and 0x120010 not in r["claimed_set"], r
+    assert r["families_warned"] == 1 and "members file is stale" in r["warnings"][0][1], r
+    assert accepted_families(tmp, sizes, [p]) == [(p, "f", "B", frozenset({0x120010, 0x120020}))]
+    ok += 1
+    # 8b. A-overlap PLUS another defect stays refused: the count is wrong (declares 3, file holds 2)
+    p = doc("clash2", ["f | B | clash2.tsv | 3 | a note"], [0x120010, 0x120020],
+            body="the body at `00120014` is interior to it")
+    r = run([p])
+    assert r["families_accepted"] == 0 and r["families_refused"] == 1 and "declared 3" in r["refusals"][0][1], r
+    assert r["A"] == 1 and r["B"] == 0 and r["families_warned"] == 0, r
+    ok += 1
+    # 8c. A-overlap PLUS a cross-family collision stays refused for the colliding family
+    p1 = doc("first", ["f1 | C | first.tsv | 1 | a note"], [0x120020])
+    p2 = doc("second", ["f2 | B | second.tsv | 2 | a note"], [0x120010, 0x120020],
+             body="the body at `00120014` is interior to it")
+    r = run([p1, p2])
+    assert r["families_accepted"] == 1 and "already declared" in r["refusals"][0][1], r
+    assert r["A"] == 1 and r["C"] == 1 and r["B"] == 0, r
     ok += 1
     # 9. an ENTRY-only citation is NOT A, and D is never explained
     p = doc("entryonly", None, None, body="see `00120010` for the entry")
@@ -728,6 +782,26 @@ def self_test(tmp):
     r = run([p], U)
     assert r["A"] == 0, r
     ok += 1
+    # 13. accepted_families(): one entry per ACCEPTED family, with its declaring page's full path and members; a refused
+    #     row in the same run is absent (SWE2DATA-REQ-FRONTIER-ACCEPTED-FAMILIES-API-1003).
+    pa = doc("apiok", ["fam ok | B | apiok.tsv | 2 | ignorance of this family cannot block reproduction"], [0x120010, 0x120020])
+    pz = doc("apibad", ["fam bad | B | apibad.tsv | 0 | a note"], [])
+    af = accepted_families(tmp, sizes, [pa, pz])
+    assert af == [(pa, "fam ok", "B", frozenset({0x120010, 0x120020}))], af
+    assert [w for w, _l, _n in evaluate(tmp, sizes, [pa, pz])["accepted"]] == ["apiok.md :: fam ok"]
+    ok += 1
+    # 14. the [shape] marker: marked, unmarked, and the token NOT at the start (= unmarked); the token is stripped
+    #     before note checks, so "[shape]" alone is a note-less row and is refused (OPUS-REQ-FRONTIER-SHAPE-MARKER-PARSE-1003)
+    pm = doc("shm", ["shape fam | B | shm.tsv | 1 | [shape] destructors by one form"], [0x120010])
+    pu = doc("shu", ["plain fam | C | shu.tsv | 1 | classification by module span"], [0x120020])
+    pl = doc("shl", ["late fam | C | shl.tsv | 1 | a note mentioning [shape] later"], [0x120000])
+    got = {n: s for _d, n, _l, _m, s in accepted_families_marked(tmp, sizes, [pm, pu, pl])}
+    assert got == {"shape fam": True, "plain fam": False, "late fam": False}, got
+    assert [len(x) for x in accepted_families(tmp, sizes, [pm, pu, pl])] == [4, 4, 4]
+    pe = doc("she", ["empty fam | B | she.tsv | 1 | [shape]"], [0x120010])
+    r = run([pe])
+    assert r["families_accepted"] == 0 and "without a note" in r["refusals"][0][1], r
+    ok += 1
     print("self-test: %d case(s) passed, including every refusal reason" % ok)
     return 0
 
@@ -747,7 +821,7 @@ def main(argv=None):
     sizes = load_functions(a.functions)
     r = evaluate(db, sizes)
     if a.json:
-        print(json.dumps({k: v for k, v in r.items() if k not in ("refusals", "accepted") and not k.endswith("_set")}))
+        print(json.dumps({k: v for k, v in r.items() if k not in ("refusals", "accepted", "accepted_families", "accepted_families_marked") and not k.endswith("_set")}))
     else:
         report(r, a.quiet)
     return 1 if r["families_refused"] else 0

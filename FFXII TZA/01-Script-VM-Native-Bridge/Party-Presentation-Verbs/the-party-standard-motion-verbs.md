@@ -4,7 +4,6 @@ category: 01-Script-VM-Native-Bridge
 status: DOCUMENTED — every register row is closed (owner re-status 2026-09-30, OPUS) — the push/pop pairing and where the -1.0f goes answered 2026-09-30 (it is the standard-motion blend; in the plain verbs a negative blend takes the 004272E0 arm, in the without-same verbs it is not consulted); the two arms answered (RC-19: a negative blend is a hard cut, a positive one a cross-fade) and the Movement float pushers answered (RC-20: seven movement verbs' begin callbacks) (SWE2-CONTRACT); 00233F50 and 002ED020 read 2026-09-18 (the per-actor prologue: reset action control, despawn a terminal-status actor the field does not keep, notify the render record)
 owner_layer: Script_VM_Native_Bridge — from the ledger, not inferred from callers
 evidence_tier: 1
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 verified_against:

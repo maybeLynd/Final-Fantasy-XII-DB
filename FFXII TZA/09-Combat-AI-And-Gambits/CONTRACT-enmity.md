@@ -2,7 +2,6 @@
 contract: Hold, generate, spread and decay a foe's threat toward the party
 category: 09-Combat-AI-And-Gambits
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: gambit-evaluation-and-enmity.md

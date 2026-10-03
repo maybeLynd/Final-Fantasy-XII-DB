@@ -2,7 +2,6 @@
 contract: Load the music-control table (one writer; how often it is bound is not established, MC-1) and rebase it in place, and run the one script BGM stream
 category: 18-Audio
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: 18-Audio/the-music-control-file-and-the-bgm-stream.md

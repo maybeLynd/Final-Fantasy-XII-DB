@@ -1,0 +1,2 @@
+CAPTURED bounded original spans; controls=3; no live/game state or function-extent claim
+{"ranges": [{"start": "0x377dc0", "end": "0x37802a", "sha256": "4ed6ee23865ccd80ca5907d4678998ea8d5ee1b8664bad0bfca8d911400d8c51"}, {"start": "0x2df880", "end": "0x2df8d9", "sha256": "f71f6f4a0633fa327a47b23f16231e23be086270b133f30357e49520d74f9800"}, {"start": "0x861eba", "end": "0x861ec0", "sha256": "6965fae1bfbb53fa3e4494d863d249e4891b57d30473263173fea2f844ab6b03"}], "declared_copy": {"iat_va": "0x8c2a68", "dll": "VCRUNTIME140.dll", "name": "memcpy", "lookup_raw": "42ebcc0100000000"}}

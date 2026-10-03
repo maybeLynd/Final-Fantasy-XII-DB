@@ -2,7 +2,6 @@
 contract: put an actor in one of the four active party slots, displace whoever was there, and keep the record's own back-reference in step
 category: 11-Party
 scope: family
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 11-Party/party-roster-and-control-suppression.md

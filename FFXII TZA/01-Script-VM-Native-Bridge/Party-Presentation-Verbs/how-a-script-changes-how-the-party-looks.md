@@ -4,7 +4,6 @@ category: 01-Script-VM-Native-Bridge
 status: DOCUMENTED — every register row is closed (owner re-status 2026-09-30, OPUS) — the visible-membership question answered 2026-09-30 (RC-18: map 1 is the engine's own follower source) (SWE2-CONTRACT); 002E5C90 (the position re-place through the transform node) and 002E8CE0 (the LOD refresh) read 2026-09-18
 owner_layer: Script_VM_Native_Bridge — from the ledger, not inferred from callers
 evidence_tier: 1
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 verified_against:

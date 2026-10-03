@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-register-event0\\prove.py",
+    "C:/Users/Kristian/source/repos/XIIOnline/Database/Tools/work/ASTRA/runtime-residue-method-retriage/ov42-register-event0/result-03.json"
+  ],
+  "driver_sha256": "251090bba6867a1c99ee7ce84204f9c1c1079ed15c3d0c6b422313787f61d38d",
+  "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+  "terminal": true,
+  "exit": 0,
+  "exception": null
+}

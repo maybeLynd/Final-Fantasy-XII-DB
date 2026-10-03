@@ -4,7 +4,6 @@ category: 04-Actor-Entity
 status: AUDITED
 owner_layer: PrimaryOwner:ActorEntity — a companion to the record page, which owns the semantics
 evidence_tier: 1
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 verified_against:

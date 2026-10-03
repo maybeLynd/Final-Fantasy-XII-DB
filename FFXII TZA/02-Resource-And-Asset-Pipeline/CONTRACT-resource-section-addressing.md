@@ -2,7 +2,6 @@
 contract: Find a resource section by tag and name, and turn its offset into a pointer
 category: 02-Resource-And-Asset-Pipeline
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: resource-section-addressing.md

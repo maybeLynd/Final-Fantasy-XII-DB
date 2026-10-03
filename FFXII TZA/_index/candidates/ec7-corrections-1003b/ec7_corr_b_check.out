@@ -1,0 +1,21 @@
+ok   W 00297C1A lea 0209BFBE 0x209bfbe
+ok   W 00297C27 bound 0209C2BE 0x209c2be
+ok   W four rows 0x4
+ok   W 00297C45 je -> tail 00297CE2 0x297ce2
+ok   W 00297C9A free path calls 003F89C0 0x3f89c0
+ok   W 00297CB7 second half calls 003F89C0 0x3f89c0
+ok   W tail 00297CE2 above both init calls 0x1
+ok   R 00430A56 jmp 004307C0 0x4307c0
+ok   R 00430A56 is jmp (E9) 0xe9
+ok   R 004309F7 call 00430540 0x430540
+ok   R 00430A39 call 00430540 0x430540
+ok   T 00399E37 or r10, 1 b'I\x83\xca\x01'
+ok   T 00399E45 stores 022D8F30 0x22d8f30
+ok   T 0039A0C9 jne -> 0039A122 0x39a122
+ok   T 0039A122 reads 022D8F30 0x22d8f30
+ok   T 0039A0F9 reads $zero 022D8F10 0x22d8f10
+ok   P 0039A6CB je 0039A6F0 (pass arm) 0x39a6f0
+ok   P 0039A6CD mov [r11], rcx b'I\x89\x0b'
+ok   P 0039A712 mov [r11], rcx b'I\x89\x0b'
+ok   P 0039A51A loads $zero 022D8F10 0x22d8f10
+FAILS 0

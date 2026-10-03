@@ -1,0 +1,50 @@
+[
+  {
+    "path": "handler-extents-01.json",
+    "bytes": 2126,
+    "sha256": "517088bb07049ba318304ab8c4ef4dc406f21a919013ea78e11f85e797cd9ab6",
+    "origin": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-gauge-callback-binding\\handler-extents-01.json"
+  },
+  {
+    "path": "handler-extents-01.status.json",
+    "bytes": 591,
+    "sha256": "7e42a593a2c9825033739d17f0973797e24100121f399b797611b53090892fa5",
+    "origin": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-gauge-callback-binding\\handler-extents-01.status.json"
+  },
+  {
+    "path": "handler-extents-01.stdout",
+    "bytes": 112,
+    "sha256": "866a1ea6d867a4b75836b31acd904ed3f25412de59889f527c6046017ae523de",
+    "origin": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-gauge-callback-binding\\handler-extents-01.stdout"
+  },
+  {
+    "path": "handler-extents-01.stderr",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "origin": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-gauge-callback-binding\\handler-extents-01.stderr"
+  },
+  {
+    "path": "prepare-handler-extents.py",
+    "bytes": 4103,
+    "sha256": "b54cf063af4e29b4ab6463c8fbd76e3b7b4ddbd40065b6a064c9d828f96c6003",
+    "origin": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-gauge-callback-binding\\prepare-handler-extents.py"
+  },
+  {
+    "path": "lookup-primary-handler-01.json",
+    "bytes": 696,
+    "sha256": "1e56c692af70133aa8fa7e93fb2475cc3b1b414a0be28cf231529254ed615e75",
+    "origin": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-gauge-callback-binding\\lookup-primary-handler-01.json"
+  },
+  {
+    "path": "lookup-secondary-handler-01.json",
+    "bytes": 696,
+    "sha256": "807cfc542b66f73560a1a770a847029c8c811c94b7b224908740e14445df43c4",
+    "origin": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-gauge-callback-binding\\lookup-secondary-handler-01.json"
+  },
+  {
+    "path": "source-01.json",
+    "bytes": 41085,
+    "sha256": "2f827754a911df0d3566870f3b447e83d70a6ffbbccaba3446c91f0f579737df",
+    "origin": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-gauge-callback-binding\\source-01.json"
+  }
+]

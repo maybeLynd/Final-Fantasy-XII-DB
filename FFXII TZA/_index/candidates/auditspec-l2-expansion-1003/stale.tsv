@@ -1,0 +1,69 @@
+system	contract	invariant	commit	date	change	subject
+S-01	CONTRACT-boot-fixups.md	I3	5b49942c3	2026-09-29	AMENDED	OPUS: falsification pass 1 on the boot-fixups contract - the frame base is re-evaluated an
+S-07	CONTRACT-native-command-lifecycle.md	N-5	51ab1ce85	2026-09-26	AMENDED/SAME-DAY	SECTION-11 overlay (interpreter core / script-to-native bridge) - all reviews ACCEPT
+S-07	CONTRACT-interpreter-core.md	I1	baa39c696	2026-09-26	ADDED/SAME-DAY	SECTION-12 overlay (actor request waits) + shared interpreter-core file - all reviews ACCE
+S-07	CONTRACT-interpreter-core.md	I2	baa39c696	2026-09-26	ADDED/SAME-DAY	SECTION-12 overlay (actor request waits) + shared interpreter-core file - all reviews ACCE
+S-07	CONTRACT-interpreter-core.md	I3	baa39c696	2026-09-26	ADDED/SAME-DAY	SECTION-12 overlay (actor request waits) + shared interpreter-core file - all reviews ACCE
+S-07	CONTRACT-interpreter-core.md	I4	baa39c696	2026-09-26	ADDED/SAME-DAY	SECTION-12 overlay (actor request waits) + shared interpreter-core file - all reviews ACCE
+S-07	CONTRACT-interpreter-core.md	I5	baa39c696	2026-09-26	ADDED/SAME-DAY	SECTION-12 overlay (actor request waits) + shared interpreter-core file - all reviews ACCE
+S-07	CONTRACT-interpreter-core.md	I6	baa39c696	2026-09-26	ADDED/SAME-DAY	SECTION-12 overlay (actor request waits) + shared interpreter-core file - all reviews ACCE
+S-07	CONTRACT-interpreter-core.md	I7	baa39c696	2026-09-26	ADDED/SAME-DAY	SECTION-12 overlay (actor request waits) + shared interpreter-core file - all reviews ACCE
+S-07	CONTRACT-interpreter-core.md	I8	baa39c696	2026-09-26	ADDED/SAME-DAY	SECTION-12 overlay (actor request waits) + shared interpreter-core file - all reviews ACCE
+S-07	CONTRACT-interpreter-core.md	V-1	baa39c696	2026-09-26	REMOVED/SAME-DAY	SECTION-12 overlay (actor request waits) + shared interpreter-core file - all reviews ACCE
+S-07	CONTRACT-interpreter-core.md	V-2	baa39c696	2026-09-26	REMOVED/SAME-DAY	SECTION-12 overlay (actor request waits) + shared interpreter-core file - all reviews ACCE
+S-07	CONTRACT-interpreter-core.md	V-3	baa39c696	2026-09-26	REMOVED/SAME-DAY	SECTION-12 overlay (actor request waits) + shared interpreter-core file - all reviews ACCE
+S-07	CONTRACT-interpreter-core.md	V-4	baa39c696	2026-09-26	REMOVED/SAME-DAY	SECTION-12 overlay (actor request waits) + shared interpreter-core file - all reviews ACCE
+S-07	CONTRACT-interpreter-core.md	V-5	baa39c696	2026-09-26	REMOVED/SAME-DAY	SECTION-12 overlay (actor request waits) + shared interpreter-core file - all reviews ACCE
+S-07	CONTRACT-interpreter-core.md	V-6	baa39c696	2026-09-26	REMOVED/SAME-DAY	SECTION-12 overlay (actor request waits) + shared interpreter-core file - all reviews ACCE
+S-07	CONTRACT-interpreter-core.md	V-7	baa39c696	2026-09-26	REMOVED/SAME-DAY	SECTION-12 overlay (actor request waits) + shared interpreter-core file - all reviews ACCE
+S-07	CONTRACT-interpreter-core.md	V-8	baa39c696	2026-09-26	REMOVED/SAME-DAY	SECTION-12 overlay (actor request waits) + shared interpreter-core file - all reviews ACCE
+S-09	CONTRACT-ard-area-binder.md	AB-7	8beb13aff	2026-09-25	AMENDED/SAME-DAY	FABLE: AB-7 corrected - the .ard categories have one setter and three clearers (15 calls, 
+S-11	CONTRACT-field-environment-variant.md	V0	e31d421b6	2026-09-29	ADDED	OPUS: falsification pass 1 on the system-stop registry and the field environment variant (
+S-11	CONTRACT-field-environment-variant.md	V1	e31d421b6	2026-09-29	ADDED	OPUS: falsification pass 1 on the system-stop registry and the field environment variant (
+S-11	CONTRACT-field-environment-variant.md	V2	e31d421b6	2026-09-29	ADDED	OPUS: falsification pass 1 on the system-stop registry and the field environment variant (
+S-11	CONTRACT-field-environment-variant.md	V3	e31d421b6	2026-09-29	ADDED	OPUS: falsification pass 1 on the system-stop registry and the field environment variant (
+S-11	CONTRACT-field-environment-variant.md	V4	e31d421b6	2026-09-29	ADDED	OPUS: falsification pass 1 on the system-stop registry and the field environment variant (
+S-11	CONTRACT-field-environment-variant.md	V5	e31d421b6	2026-09-29	ADDED	OPUS: falsification pass 1 on the system-stop registry and the field environment variant (
+S-11	CONTRACT-field-environment-variant.md	EV-3	dae5bb6d9	2026-10-02	AMENDED/COSMETIC-SUBJECT	FABLE: OPUS's readiness edits applied on FABLE's pages - eight batches (21-RNG, 09-Combat-
+S-18	CONTRACT-heading-speed-to-position-delta.md	LD-5a	9ca3df0ac	2026-09-29	ADDED	FABLE: heading CONTRACT - LD-5a pass-through alias precondition; the caller's registers ac
+S-18	CONTRACT-battle-locomotion-turn-limiter.md	BL-6	dae5bb6d9	2026-10-02	AMENDED/COSMETIC-SUBJECT	FABLE: OPUS's readiness edits applied on FABLE's pages - eight batches (21-RNG, 09-Combat-
+S-21	CONTRACT-apply-result-to-target.md	I1	a3707ab82	2026-09-26	AMENDED/SAME-DAY	SECTION-01 merge tail: publish owner-merged carrier state + FABLE I8 hunk
+S-21	CONTRACT-apply-result-to-target.md	I2	a3707ab82	2026-09-26	AMENDED/SAME-DAY	SECTION-01 merge tail: publish owner-merged carrier state + FABLE I8 hunk
+S-21	CONTRACT-apply-result-to-target.md	I3	a3707ab82	2026-09-26	AMENDED/SAME-DAY	SECTION-01 merge tail: publish owner-merged carrier state + FABLE I8 hunk
+S-21	CONTRACT-apply-result-to-target.md	I4	a3707ab82	2026-09-26	AMENDED/SAME-DAY	SECTION-01 merge tail: publish owner-merged carrier state + FABLE I8 hunk
+S-21	CONTRACT-apply-result-to-target.md	I5	a3707ab82	2026-09-26	AMENDED/SAME-DAY	SECTION-01 merge tail: publish owner-merged carrier state + FABLE I8 hunk
+S-21	CONTRACT-apply-result-to-target.md	I6	a3707ab82	2026-09-26	AMENDED/SAME-DAY	SECTION-01 merge tail: publish owner-merged carrier state + FABLE I8 hunk
+S-21	CONTRACT-apply-result-to-target.md	I7	a3707ab82	2026-09-26	AMENDED/SAME-DAY	SECTION-01 merge tail: publish owner-merged carrier state + FABLE I8 hunk
+S-21	CONTRACT-apply-result-to-target.md	I8	a3707ab82	2026-09-26	AMENDED/SAME-DAY	SECTION-01 merge tail: publish owner-merged carrier state + FABLE I8 hunk
+S-22	CONTRACT-environmental-element-scaling.md	WE-2	56d353a3a	2026-10-01	AMENDED	OPUS: 08-Combat-Formula contradictions from a local reconstruction-readiness pass settled 
+S-26	CONTRACT-effect-layers.md	L-1	075e2c653	2026-09-29	AMENDED	OPUS: falsification pass 1 - effect layers (CON-176)
+S-26	CONTRACT-effect-layers.md	V0	075e2c653	2026-09-29	ADDED	OPUS: falsification pass 1 - effect layers (CON-176)
+S-26	CONTRACT-effect-layers.md	V1	075e2c653	2026-09-29	ADDED	OPUS: falsification pass 1 - effect layers (CON-176)
+S-26	CONTRACT-effect-layers.md	V2	075e2c653	2026-09-29	ADDED	OPUS: falsification pass 1 - effect layers (CON-176)
+S-26	CONTRACT-effect-layers.md	V3	075e2c653	2026-09-29	ADDED	OPUS: falsification pass 1 - effect layers (CON-176)
+S-26	CONTRACT-effect-layers.md	V4	075e2c653	2026-09-29	ADDED	OPUS: falsification pass 1 - effect layers (CON-176)
+S-26	CONTRACT-effect-layers.md	V5	075e2c653	2026-09-29	ADDED	OPUS: falsification pass 1 - effect layers (CON-176)
+S-26	CONTRACT-effect-layers.md	V6	075e2c653	2026-09-29	ADDED	OPUS: falsification pass 1 - effect layers (CON-176)
+S-26	CONTRACT-effect-layers.md	V7	075e2c653	2026-09-29	ADDED	OPUS: falsification pass 1 - effect layers (CON-176)
+S-31	CONTRACT-license-check.md	I1	9d6d954a3	2026-09-29	AMENDED	OPUS: falsification pass 1 on CONTRACT-license-check - two clauses refuted (CON-159, CON-1
+S-32	CONTRACT-defeat-rewards-sequence.md	DR-5	1305be85a	2026-10-01	AMENDED	OPUS: 13-Rewards contradictions from a local reconstruction-readiness pass settled on fift
+S-32	CONTRACT-level-advance-and-growth.md	V1	01fec71fb	2026-09-29	ADDED	OPUS: level advance contract falsification pass 1 - all eight invariants survive at their 
+S-32	CONTRACT-level-advance-and-growth.md	V10	01fec71fb	2026-09-29	ADDED	OPUS: level advance contract falsification pass 1 - all eight invariants survive at their 
+S-32	CONTRACT-level-advance-and-growth.md	V2	01fec71fb	2026-09-29	ADDED	OPUS: level advance contract falsification pass 1 - all eight invariants survive at their 
+S-32	CONTRACT-level-advance-and-growth.md	V3	01fec71fb	2026-09-29	ADDED	OPUS: level advance contract falsification pass 1 - all eight invariants survive at their 
+S-32	CONTRACT-level-advance-and-growth.md	V4	01fec71fb	2026-09-29	ADDED	OPUS: level advance contract falsification pass 1 - all eight invariants survive at their 
+S-32	CONTRACT-level-advance-and-growth.md	V5	01fec71fb	2026-09-29	ADDED	OPUS: level advance contract falsification pass 1 - all eight invariants survive at their 
+S-32	CONTRACT-level-advance-and-growth.md	V6	01fec71fb	2026-09-29	ADDED	OPUS: level advance contract falsification pass 1 - all eight invariants survive at their 
+S-32	CONTRACT-level-advance-and-growth.md	V7	01fec71fb	2026-09-29	ADDED	OPUS: level advance contract falsification pass 1 - all eight invariants survive at their 
+S-32	CONTRACT-level-advance-and-growth.md	V8	01fec71fb	2026-09-29	ADDED	OPUS: level advance contract falsification pass 1 - all eight invariants survive at their 
+S-32	CONTRACT-level-advance-and-growth.md	V9	01fec71fb	2026-09-29	ADDED	OPUS: level advance contract falsification pass 1 - all eight invariants survive at their 
+S-37	CONTRACT-text-control-codes-and-dyngeo-draw.md	I-10	405b26be6	2026-09-26	AMENDED/SAME-DAY	S-37: the DynGeo variants, slot-11 thunks, destructors and the painter global executed; I-
+S-37	CONTRACT-text-control-codes-and-dyngeo-draw.md	I-1	d9595b0e8	2026-09-28	AMENDED	OPUS: falsification pass 1 on CONTRACT-text-control-codes-and-dyngeo-draw
+S-39	CONTRACT-render-command-list-and-graphics-handshake.md	I-6	9ad755589	2026-09-28	AMENDED	OPUS: falsification pass 1 on CONTRACT-render-command-list-and-graphics-handshake
+S-39	CONTRACT-render-command-list-and-graphics-handshake.md	I-1	c7667382f	2026-10-02	AMENDED/COSMETIC-SUBJECT	OPUS: held readiness edits released on 12 pages now that the work they waited on has publi
+S-41	CONTRACT-audio-bank-and-controller-family.md	AC-6	fbe583be5	2026-09-26	AMENDED/SAME-DAY	FABLE: S-41 AC-6/AC-7 restated from the executed dispatch - slot 10 acts on a per-class su
+S-41	CONTRACT-audio-bank-and-controller-family.md	AC-7	fbe583be5	2026-09-26	AMENDED/SAME-DAY	FABLE: S-41 AC-6/AC-7 restated from the executed dispatch - slot 10 acts on a per-class su
+S-41	CONTRACT-audio-bank-and-controller-family.md	AC-3	af392a926	2026-10-01	AMENDED	OPUS: 18-Audio contradictions from the reconstruction-readiness map settled on 22 pages - 
+S-41	CONTRACT-audio-bank-and-controller-family.md	AC-6	af392a926	2026-10-01	AMENDED	OPUS: 18-Audio contradictions from the reconstruction-readiness map settled on 22 pages - 
+S-42	CONTRACT-music-control-file-and-bgm-stream.md	MC-1	b63aae1d4	2026-09-26	AMENDED/SAME-DAY	OPUS: MC-1 - the music-control table has one writer and an unguarded binder; "once per pro
+S-46	CONTRACT-which-generator-serves-which-roll.md	I5	67b19a522	2026-09-29	AMENDED	OPUS: falsification pass 1 on the which-generator contract - the graphics MT's index cells

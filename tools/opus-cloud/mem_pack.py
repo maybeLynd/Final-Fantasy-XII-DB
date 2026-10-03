@@ -36,10 +36,13 @@ def members(path):
 
 
 def explained():
+    # 2026-10-03: engine_explained's own set (ee_set.py), not check_dispositions' explained_set - since FRONTIER's
+    # A-overlap family rule (1e64e4042) the latter holds every accepted family member, which engine_explained does not
+    # credit without a member row, so member targets came back empty
     sys.path.insert(0, cl.KIT)
     import check_dispositions as CD
-    sizes = CD.load_functions()
-    return set(CD.evaluate(os.path.join(cl.DB), sizes)["explained_set"]), sizes
+    import ee_set
+    return ee_set.load(), CD.load_functions()
 
 
 def unexplained_members(page, sub=None, exp=None):

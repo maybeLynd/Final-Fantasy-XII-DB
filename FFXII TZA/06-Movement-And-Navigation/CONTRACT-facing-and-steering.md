@@ -2,7 +2,6 @@
 contract: Facing and steering — wrap a heading, dispatch on the actor kind, set a mode, push and pop a steering slot
 category: 06-Movement-And-Navigation
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: Facing-And-Steering/how-a-character-turns.md

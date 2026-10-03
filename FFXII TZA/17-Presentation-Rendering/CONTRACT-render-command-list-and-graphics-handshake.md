@@ -2,7 +2,6 @@
 contract: build a frame's render jobs as a list of heap objects, run them in two masked parts, apply the deferred settings commands, destroy them, and kick the command stream through the one shared word the graphics handshake is made of
 category: 17-Presentation-Rendering
 scope: subsystem
-level: L2
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 17-Presentation-Rendering/Render-Command-List/the-ordered-render-command-list.md, 17-Presentation-Rendering/Graphics-Thread-Handshake/the-shared-command-state-word.md

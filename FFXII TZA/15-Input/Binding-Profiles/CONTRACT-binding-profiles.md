@@ -2,7 +2,6 @@
 contract: Binding profiles — assign, publish, and translate to a per-frame control frame
 category: 15-Input
 scope: subsystem
-level: L2
 readiness: CONTRACT READY   # the READ path is RUNTIME VALIDATED (EXP-005, EXP-006); assignment is not
 confidence: PROVEN
 implements: binding-profiles-remapping-and-control-state.md

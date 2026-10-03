@@ -1,0 +1,41 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/how-the-ard-loader-binds-area-battle-data.md",
+ "date": "2026-10-03",
+ "session": "opus-self",
+ "report": "how-the-ard-loader-binds-area-battle-data.json",
+ "rows": [
+  {
+   "fn": "003414A0",
+   "text": "with `n` = `00267E10(r9)` and `id` = `002E9A60(n)`, stores `id` at dword `[r8]`, `002E9810(002E99C0(id))` at dword `r8+4` and 0 at dword `r8+8`",
+   "anchors": [
+    [
+     "003414AC",
+     "call"
+    ],
+    [
+     "003414B3",
+     "call"
+    ],
+    [
+     "003414BA",
+     "mov"
+    ],
+    [
+     "003414C9",
+     "mov"
+    ],
+    [
+     "003414CC",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "interior",
+ "family": "",
+ "method": "OPUS drafted these rows itself from its F-interior pack (`f_pack.py`: each function the page cites only at its entry, with its annotated listing) and checked every row mechanically with `interior_ingest.py` (every anchor an instruction boundary inside the extent with the recorded mnemonic; every address a listing token). No second agent drafted or verified them, so the non-author check is SWE2-AUDIT-SPEC's."
+}

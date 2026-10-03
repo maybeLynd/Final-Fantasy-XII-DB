@@ -285,6 +285,27 @@ def _self_test_row_credits():
     if missing != ["Appendix: method index"]:
         bad.append("missing declared heading not reported: %s" % missing)
     cases = cases + idx_cases + [("missing heading reported", "", None, None)]
+    # Family-declaring-page rule (OPUS-REQ-DATA-EE-FAMILY-DECLARING-PAGE-1003). Members of a family declared on this
+    # page: G (0x100 B, checker anchor 00120230), SM (0x40 B, no checker row), BIG (0x200 B, checker anchor = its entry,
+    # "the entry instruction when that is where members differ"). N is not a member.
+    SM, BIG, N = 0x120400, 0x120600, 0x120800
+    f_entries = [U, G, SM, BIG, N]
+    f_sizes = {U: 0x100, G: 0x100, SM: 0x40, BIG: 0x200, N: 0x40}
+    f_mem, f_anc = {G, SM, BIG}, {G: {0x120230}, BIG: {BIG}}
+    fam_cases = [
+        ("family: bare member list on the declaring page", DOC + "| `00120400` | `00120200` |\n", True, set()),
+        ("family: checker-backed anchor credits", DOC + "anchor `00120230`\n", True, {G}),
+        ("family: hand-typed interior row without a checker", DOC + "reads `00120240`\n", True, set()),
+        ("family: entry anchor credits whatever the size", DOC + "entry `00120600`\n", True, {BIG}),
+        ("family: another page's small entry cite keeps the base rule", DOC + "| `00120400` |\n", False, {SM}),
+        ("family: a non-member on the declaring page keeps the base rule", DOC + "entry `00120800`\n", True, {N}),
+    ]
+    for name, text, declaring, want in fam_cases:
+        _u, got_t, got_p = doc_credits(text, f_entries, f_sizes, set(),
+                                       f_mem if declaring else None, f_anc if declaring else None)
+        if (got_t | got_p) != want:
+            bad.append("%s: credited=%s want=%s" % (name, sorted(got_t | got_p), sorted(want)))
+    cases = cases + fam_cases
     if bad:
         print("SELF-TEST FAILED (row credits): " + "; ".join(bad))
         return 1
@@ -354,11 +375,102 @@ def strip_index_only(text):
     return "".join(out), [h for h in want if h not in found]
 
 
-def doc_credits(text, entries, sizes, uc1f):
+def cite_credits(e, v, sizes, fam_members=None, fam_anchors=None):
+    """Whether one citation `v` of function `e` on an evidence-bearing page credits engine_explained.
+
+    Base rule (SWE2-AUDIT-SPEC, 9efc6221): a strictly interior cite, or an entry cite of a body under 128 bytes.
+    Family-declaring-page rule (OPUS-REQ-DATA-EE-FAMILY-DECLARING-PAGE-1003; the family sentence OPUS adopted
+    2026-10-03 on AUDITSPEC-REQ-OPUS-EE-FAMILY-SENTENCE-1003, record opus-ee-rulings-1003): on the page that DECLARES
+    an accepted family (`fam_members`, from check_dispositions.accepted_families), a member's citation credits only
+    when it is the anchor of that member's row in a committed checker's rows.tsv (`fam_anchors`): the instruction
+    that distinguishes the member, which may be the entry itself when that is where members differ. Body size does
+    not matter for such an anchor, and nothing else on that page credits the member - a bare member list, a row
+    restating the shared form, or a hand-typed row with no checker. Citations on other pages keep the base rule."""
+    if fam_members is not None and e in fam_members:
+        return v in (fam_anchors or {}).get(e, ())
+    return v != e or sizes[e] < 128
+
+
+def _pkey(path):
+    return os.path.normcase(os.path.abspath(path))
+
+
+def family_rule_inputs(db, sizes):
+    """(in-scope families, accepted families, {declaring page: in-scope members}, {page: {member entry: anchors}}).
+
+    The families come from check_dispositions.accepted_families - imported, never reimplemented, so the F gate and
+    engine_explained cannot disagree about which families are accepted. The anchors come from every committed
+    _index/candidates/*/ checker record, in either of the two shapes that exist:
+      - fam_rows.py + spec.json + rows.tsv (OPUS): spec.json `page`, rows.tsv `entry` / `anchor`;
+      - desc_check.py + applier.py + accessor_desc.json (FABLE's accessor descriptors): the applier's target page,
+        `result: verified` entries with their `lea` anchor.
+    (The ruling: 'a committed checker derives every row of the family from the image and refuses a swapped value'.)
+    A record with any required file untracked contributes nothing; with no usable git checkout, none does.
+
+    SCOPE. The adopted sentence covers 'a function family whose shared shape is explained once on the bearing page
+    that declares it'. No field marks such a family, so the rule applies where that is decidable: a family is in
+    scope when its declaring page carries a committed checker whose rows cover at least one of its members (a family
+    that ships per-member rows has declared its members differ by a distinguishing instruction). Inside an in-scope
+    family a member with no row earns nothing on that page. Families with no checker rows - library and module
+    dispositions, and shape families that ship no rows - stay on the base rule until their declaration marks them;
+    the count is printed (SWE2DATA-REQ-OPUS-FRONTIER-FAMILY-SHAPE-MARKER-1003)."""
+    import csv, glob, json
+    import check_dispositions as CD
+    fams = CD.accepted_families(db, sizes)
+    try:
+        out = subprocess.run(["git", "-C", db, "ls-files", "-z", "--", os.path.join("_index", "candidates")],
+                             capture_output=True, timeout=120)
+        tracked = ({_pkey(os.path.join(db, q)) for q in out.stdout.decode("utf-8", "replace").split("\0") if q}
+                   if out.returncode == 0 else set())
+    except (OSError, subprocess.SubprocessError):
+        tracked = set()
+    anchors = collections.defaultdict(dict)
+    for spec in sorted(glob.glob(os.path.join(db, "_index", "candidates", "*", "spec.json"))):
+        d = os.path.dirname(spec)
+        need = [os.path.join(d, f) for f in ("fam_rows.py", "spec.json", "rows.tsv")]
+        if not all(os.path.isfile(f) and _pkey(f) in tracked for f in need):
+            continue
+        page = json.load(io.open(spec, encoding="utf-8")).get("page")
+        if not page:
+            continue
+        rows = (ln for ln in io.open(need[2], encoding="utf-8") if not ln.startswith("#"))
+        for r in csv.DictReader(rows, delimiter="\t"):
+            try:
+                anchors[_pkey(os.path.join(db, page))].setdefault(int(r["entry"], 16), set()).add(
+                    int(r["anchor"], 16))
+            except (KeyError, TypeError, ValueError):
+                continue
+    for jsn in sorted(glob.glob(os.path.join(db, "_index", "candidates", "*", "accessor_desc.json"))):
+        d = os.path.dirname(jsn)
+        need = [os.path.join(d, f) for f in ("desc_check.py", "applier.py", "accessor_desc.json")]
+        if not all(os.path.isfile(f) and _pkey(f) in tracked for f in need):
+            continue
+        m = re.search(r'P\s*=\s*os\.path\.join\(DB,\s*((?:"[^"]+"\s*,?\s*)+)\)',
+                      io.open(need[1], encoding="utf-8").read())
+        if not m:
+            continue
+        page = os.path.join(db, *re.findall(r'"([^"]+)"', m.group(1)))
+        for ent, rec in json.load(io.open(jsn, encoding="utf-8")).items():
+            try:
+                if rec.get("result") == "verified" and rec.get("lea"):
+                    anchors[_pkey(page)].setdefault(int(ent, 16), set()).add(int(rec["lea"], 16))
+            except (AttributeError, TypeError, ValueError):
+                continue
+    members = collections.defaultdict(set)
+    in_scope = 0
+    for doc, _name, _letter, mem in fams:
+        rows_here = anchors.get(_pkey(doc), {})
+        if any(x in rows_here for x in mem):
+            members[_pkey(doc)] |= set(mem)
+            in_scope += 1
+    return in_scope, len(fams), dict(members), dict(anchors)
+
+
+def doc_credits(text, entries, sizes, uc1f, fam_members=None, fam_anchors=None):
     """For one page: (UC-1 bodies credited by the break phrase, explaining credits from template-member rows,
-    explaining credits from every other row). Empty unless the page is evidence-bearing. A credit follows the
-    engine_explained rule (interior cite, or an entry cite of a body under 128 bytes); the UC-1 credit needs a strictly
-    interior cite in the phrase's own row, as check_dispositions.measure_a does."""
+    explaining credits from every other row). Empty unless the page is evidence-bearing. A credit follows
+    cite_credits (the base rule, and the family-declaring-page rule when the page declares families); the UC-1
+    credit needs a strictly interior cite in the phrase's own row, as check_dispositions.measure_a does."""
     import check_dispositions as CD
     uc1_ok, tmpl, plain = set(), set(), set()
     if not evidence_bearing(text):
@@ -376,7 +488,7 @@ def doc_credits(text, entries, sizes, uc1f):
             e = entries[i]
             if not (e <= v < e + sizes[e]):
                 continue
-            if v != e or sizes[e] < 128:
+            if cite_credits(e, v, sizes, fam_members, fam_anchors):
                 (tmpl if tm else plain).add(e)
             if ub and e in uc1f and v > e:
                 uc1_ok.add(e)
@@ -814,6 +926,14 @@ def main(argv=None):
     explained = set()
     uc1_phrase_credit, template_credit, plain_credit = set(), set(), set()
     explained_with_index = set()           # the same rule before ee_index_only sections are removed
+    explained_nofam, fam_row_credit = set(), set()
+    # OPUS-REQ-DATA-EE-FAMILY-DECLARING-PAGE-1003. FAIL CLOSED: if the accepted families cannot be read, the
+    # dimension is BROKEN rather than silently scored without the rule.
+    try:
+        n_scope, n_fams, fam_members, fam_anchors = family_rule_inputs(a.db, sizes)
+    except Exception as exc:
+        BROKEN.append(("engine_explained", "family-declaring-page rule inputs unavailable: %s" % exc))
+        n_scope, n_fams, fam_members, fam_anchors = 0, 0, {}, {}
     index_only_pages = 0
     _depth_heads = []
     _doc_paths = []
@@ -858,6 +978,8 @@ def main(argv=None):
         for _hd in _missing:
             warn.append("%s declares ee_index_only heading %r, which the page does not carry - nothing was "
                         "excluded for it" % (os.path.relpath(p, a.db), _hd))
+        _fm = fam_members.get(_pkey(p))            # members of the families this page DECLARES, or None
+        _fa = fam_anchors.get(_pkey(p), {})
         for h in re.findall(r"`(?:0x)?(0[0-9A-Fa-f]{7})`", t):
             v = int(h, 16)
             i = bisect.bisect_right(entries, v) - 1
@@ -870,7 +992,8 @@ def main(argv=None):
                 #   strictly INTERIOR or an ENTRY cite of a body under 128 bytes.
                 # The size cut is the leaf-helper boundary - `0020E600` is ten bytes and completely
                 # explained by naming it, while an entry-only cite of a 512-byte body is a mention.
-                if bearing and (v != e or sizes[e] < 128):
+                # The family-declaring-page rule narrows it on a family's declaring page (cite_credits).
+                if bearing and cite_credits(e, v, sizes, _fm, _fa):
                     explained_with_index.add(e)
         for h in re.findall(r"`(?:0x)?(0[0-9A-Fa-f]{7})`", t_ee):
             v = int(h, 16)
@@ -878,9 +1001,13 @@ def main(argv=None):
             if i >= 0 and entries[i] <= v < entries[i] + sizes[entries[i]]:
                 e = entries[i]
                 if bearing and (v != e or sizes[e] < 128):
+                    explained_nofam.add(e)         # the same scan without the family rule, for its spread
+                if bearing and cite_credits(e, v, sizes, _fm, _fa):
                     explained.add(e)
+                    if _fm is not None and e in _fm:
+                        fam_row_credit.add(e)
         if bearing:
-            _u, _t, _p = doc_credits(t_ee, entries, sizes, uc1_frontier)
+            _u, _t, _p = doc_credits(t_ee, entries, sizes, uc1_frontier, _fm, _fa)
             uc1_phrase_credit |= _u
             template_credit |= _t
             plain_credit |= _p
@@ -1111,6 +1238,13 @@ def main(argv=None):
           % (len(template_only), TEMPLATE_MEMBER_MARKER))
     # OPUS-REQ-DATA-EE-INDEX-ONLY-1003: what the ee_index_only sections would have credited.
     idx_lost = explained_with_index - explained - (uc1_frontier - uc1_credited)
+    # OPUS-REQ-DATA-EE-FAMILY-DECLARING-PAGE-1003: what the family-declaring-page rule moved.
+    fam_lost = (explained_nofam - (uc1_frontier - uc1_credited)) - explained
+    print("  family-declaring-page rule: %d of %d accepted families in scope (their declaring page carries a committed"
+          " checker's rows), on %d page(s); %d function(s) credited there by a row anchor; %d function(s) lose credit"
+          " (cited on their declaring page without one, and credited nowhere else). The other %d families stay on the"
+          " base rule until their declaration marks them as shape families."
+          % (n_scope, n_fams, len(fam_members), len(fam_row_credit & explained), len(fam_lost), n_fams - n_scope))
     print("  index-only spread: %d page(s) declare ee_index_only sections; %d function(s) are excluded because"
           " their only credit sat inside one" % (index_only_pages, len(idx_lost)))
     if not row_split_agrees:

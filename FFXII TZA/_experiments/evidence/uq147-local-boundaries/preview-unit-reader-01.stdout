@@ -1,0 +1,2 @@
+00263E30  mov      rax, qword ptr [rcx + 0x30]
+00263E34  ret      

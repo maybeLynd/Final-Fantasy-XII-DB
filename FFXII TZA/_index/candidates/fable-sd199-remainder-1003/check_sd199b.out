@@ -1,0 +1,154 @@
+== S: structure of 00399B80 and 0039A150
+PASS  S0 00399B80 decodes exactly over 1,482 bytes and is one .pdata function (00399B80..0039A14A)
+PASS  S0 0039A150 decodes exactly over 1,558 bytes and is one .pdata function (0039A150..0039A766)
+PASS  S0 00399B80 is call-free with one ret
+PASS  S0 0039A150 is call-free with one ret
+PASS  S0 constants: [01CEBC84] = 16.0f (the X,Y scale), [01EF93FC] = 1.0f (vf00.w)
+NOTE  -- 00399B80 (bit 3 clear): inputs rcx = float4 vertices (stride 16), rdx = entries (stride 16), r8 = float Q out (stride 4), r9d = count
+PASS  00399B9C is `movups xmm0, xmmword ptr [rcx]`
+PASS  00399C60 is `movss  ->022D9304`
+PASS  00399C68 is `add edi, 0x10`
+PASS  00399DA3 is `divss xmm1, xmm0`
+PASS  00399DCB is `mulss xmm7, xmm8`
+PASS  00399DFB is `cvttss2si eax, xmm7`
+PASS  00399E09 is `cvttss2si eax, xmm6`
+PASS  00399E17 is `cvttss2si eax, xmm3`
+PASS  00399EAD is `movd dword ptr [rbx], xmm2`
+PASS  00399EB1 is `add rbx, 4`
+PASS  00399ECE is `cmp edx, ecx`
+PASS  00399ED0 is `jle 0x399edb`
+PASS  00399EF7 is `cmp`
+PASS  00399EFE is `jl 0x399f07`
+PASS  00399F1A is `movups  ->022D8F10`
+PASS  00399FA0 is `cmp  ->022D8F90`
+PASS  00399FAE is `setne cl`
+PASS  00399FB6 is `dec ecx`
+PASS  0039A04A is `mov  ->022D8F90`
+PASS  0039A051 is `or  ->022D8FE0`
+PASS  0039A087 is `inc rcx`
+PASS  0039A0AC is `movq rax, xmm4`
+PASS  0039A0C6 is `cmp rcx, rax`
+PASS  0039A0C9 is `jne 0x39a122`
+PASS  0039A0CB is `mov  ->022D9000`
+PASS  0039A0D6 is `mov  ->022D8FA0`
+PASS  0039A0DD is `or  ->022D8FC0`
+PASS  0039A0E4 is `or rcx, rax`
+PASS  0039A0F6 is `mov qword ptr [r11], rcx`
+PASS  0039A0D2 is `add r8d, 0x10`
+PASS  0039A0EC is `movsxd rax, r9d`
+PASS  0039A0F9 is `mov  ->022D8F10`
+PASS  0039A107 is `cmp rax, r10`
+PASS  0039A10A is `je 0x39a116`
+PASS  0039A111 is `jmp 0x399c60`
+PASS  0039A116 is `mov  ->022D8F30`
+PASS  0039A11D is `mov eax, r10d`
+PASS  0039A122 is `mov  ->022D8F30`
+PASS  S1 rsi is the image base in both bodies (`lea rsi` -> 00120000 at 00399BA6 and 0039A16F), so [rsi + rax + 0x21B8Fxx] are bank registers (022D8Fxx)
+PASS  S1 00399B80's only stores through a pointer are the entry qword `mov qword ptr [r11], rcx` (0039A0F6) and the Q dword (00399EAD); everything else goes to the bank or the frame (77)  | [(3776173, 'movd', 'dword ptr [rbx], xmm2', 4), (3776758, 'mov', 'qword ptr [r11], rcx', 8)]
+PASS  S1 00399B80 decrements the count once per vertex (`dec r9d` 00399E3B) and the vertex loop's only back edge is 0039A111 -> 00399C60
+NOTE  -- 0039A150 (bit 3 set): same inputs; rcx/rdx are advanced through their home slots [rsp+0x70]/[rsp+0x78]
+PASS  0039A184 is `mov r11, rdx`
+PASS  0039A1AA is `mov r10d, edx`
+PASS  0039A1C9 is `add edi, 0x10`
+PASS  0039A1E4 is `movups xmm6, xmmword ptr [rax]`
+PASS  0039A1EA is `mov  ->022D8FC0`
+PASS  0039A34B is `divss xmm3, xmm0`
+PASS  0039A3C3 is `mov  ->022D8FC0`
+PASS  0039A3CE is `mov  ->022D8FE0`
+PASS  0039A3E1 is `mov  ->022D8F30`
+PASS  0039A3A9 is `or r8, 1`
+PASS  0039A4A7 is `movd dword ptr [rbx], xmm2`
+PASS  0039A4CE is `cmp edx, ecx`
+PASS  0039A4D0 is `jle 0x39a4db`
+PASS  0039A4FE is `jl 0x39a507`
+PASS  0039A51A is `movups  ->022D8F10`
+PASS  0039A680 is `mov  ->022D8F90`
+PASS  0039A687 is `or  ->022D8FE0`
+PASS  0039A68E is `inc rax`
+PASS  0039A6A5 is `add r10d, 0x10`
+PASS  0039A6B1 is `movq rcx, xmm4`
+PASS  0039A6C8 is `cmp rax, rcx`
+PASS  0039A6CB is `je 0x39a6f0`
+PASS  0039A6CD is `mov qword ptr [r11], rcx`
+PASS  0039A6F0 is `mov  ->022D8FB0`
+PASS  0039A6F7 is `mov  ->022D8FA0`
+PASS  0039A6FE is `or  ->022D8FC0`
+PASS  0039A705 is `or rcx, rax`
+PASS  0039A712 is `mov qword ptr [r11], rcx`
+PASS  0039A6EB is `jmp 0x39a1c0`
+PASS  0039A72D is `jmp 0x39a1c0`
+PASS  0039A732 is `mov  ->022D8F30`
+PASS  S2 constants: rbp = 0xFF00000000000000 (0039A18C) and r14 = 0xFFFF000000000000 (0039A19B); [t3] = 0xFFFFFF at 0039A1EA
+PASS  S2 0039A150's only stores through a pointer are two entry qwords `mov qword ptr [r11], rcx` (0039A6CD unequal arm, 0039A712 equal arm) and the Q dword (0039A4A7); everything else goes to the bank, the frame or the prologue's home slots (80)  | [(3777703, 'movd', 'dword ptr [rbx], xmm2', 4), (3778253, 'mov', 'qword ptr [r11], rcx', 8), (3778322, 'mov', 'qword ptr [r11], rcx', 8)]
+PASS  S3 the unequal arm stores $zero's low qword: xmm4 <- [022D8F10] at 0039A51A, rcx <- xmm4 at 0039A6B1, store at 0039A6CD; straight-line code with no write to xmm4 / rcx and no branch or branch target between
+PASS  S3 the equal arm ORs t3, whose only writers are 0039A1EA (0xFFFFFF, loop top, consumed by the t2 bound build) and 0039A3C3 (0xFF00000000000000, after it): the stored qword's top byte is 0xFF, never 0  | ['0039A1EA', '0039A3C3']
+PASS  S3 0039A150 returns v0 = $zero | 1 (`or r8, 1` 0039A3A9, `mov [v0], r8` 0039A3E1, `mov eax, [v0]` 0039A732) whatever the compares gave; its callers ignore it
+PASS  S4 the loop test is a separate compare in both bodies: `movsxd rax, r9d` against $zero (00399B80: 0039A107 `cmp rax, r10`, r10 <- [022D8F10] at 0039A0F9; 0039A150: 0039A6E1 / 0039A723 `cmp rax, r8`, r8 <- [022D8F10] at 0039A6D0 / 0039A715)
+== Z: $zero (022D8F10) is zero
+PASS  Z1 image-wide raw sweep (rip-relative, absolute and image-base-relative disp32 into 022D8F10..1F, confirmed at instruction boundaries): 0 writers  | []
+NOTE     readers 431, address-takers (lea) 11
+PASS  Z1 the sweep is live: it reports the reads this record relies on (0039A51A, 0039A0F9) among its read sites  | 431 reads
+PASS  Z2 all 11 address-takers of 022D8F10 load it into rdx for the next call, 003CCA70, and 003CCA70 (61 instructions to its ret) stores only through rcx, which it never modifies  | bad [] dst {'rcx'}
+PASS  Z3 022D8F10 lies in .data's zero-filled tail (raw data ends at 01F7E400, virtual end 02F97530): zero at load
+NOTE     not covered by Z1: a store through a computed pointer whose base is not 022D8F10.  The nearest such family is the heap counter array 022D8E10 (`sub/add [base + id*4]`, 0036C60C, 0036D0FE), which reaches 022D8F10 only at index 64, while a separately addressed global sits at 022D8E50 (index 16)
+== B: the entries 0039A150 writes are the corners the drawers test
+PASS  00435073 is `movzx edi, word ptr [rcx + 0x16]`
+PASS  00435082 is `mov  ->02AEED50`
+PASS  00435090 is `shl rdi, 5`
+PASS  00435097 is `add rdi, r12`
+PASS  0043511F is `mov rdx, rdi`
+PASS  00435122 is `call 0x39a150`
+PASS  00434CF1 is `movzx esi, word ptr [rcx + 0x16]`
+PASS  00434D32 is `mov  ->02AEED50`
+PASS  00434D57 is `shl rsi, 5`
+PASS  00434D5B is `add rsi, rax`
+PASS  00434E01 is `mov rdx, rsi`
+PASS  00434E04 is `mov rcx, rsi`
+PASS  00434E0D is `call 0x39a150`
+PASS  00437160 is `mov  ->02AEED50`
+PASS  00437175 is `movzx eax, word ptr [rsi + 0x16]`
+PASS  0043717E is `shl rax, 4`
+PASS  00437182 is `add rcx, rax`
+PASS  00437191 is `lea r14, [rax + rcx]`
+PASS  0043785F is `add rcx, rcx`
+PASS  00437862 is `movaps xmm0, xmmword ptr [r14 + rcx*8]`
+PASS  0043786D is `movdqa xmmword ptr [rbp + 0x60], xmm0`
+PASS  0043789C is `cmp qword ptr [rbp + 0x60], 0`
+PASS  004355FC is `mov rsi, rcx`
+PASS  00435633 is `mov rcx, rsi`
+PASS  00435663 is `mov rcx, rsi`
+PASS  0043568F is `mov rcx, rsi`
+PASS  00435692 is `call 0x437130`
+PASS  B1 mesh: both preps write entries at [02AEED50] + 32*word[+0x16] (16-byte stride), and 00437130 reads corner idx at [02AEED50] + 16*w + 16*w + 16*idx = the same base and stride, for the same element (004355D0 passes rsi to the prep and to 00437130): all 27 anchors above
+PASS  B1 on every path from 004355FF to the 00437130 call (not through the shared epilogue 00435641 or the inline path 00435699) nothing writes rsi; the path reaches 00435692  | []
+PASS  00444366 is `mov  ->02AEED58`
+PASS  00444377 is `mov qword ptr [rsp + 0x58], rbx`
+PASS  00444B5B is `mov r15, qword ptr [rsp + 0x58]`
+PASS  00444B82 is `add rsi, r15`
+PASS  00444B90 is `movaps xmm2, xmmword ptr [rsi]`
+PASS  00444BD5 is `test rax, rax`
+PASS  B2 grid: each walk calls 0039A150 in place on rcx = rdx = [02AEED58], and 00444340 reads its corners from [02AEED58] (+16*index); anchors above  | 0044578A:True 00447463:True 00448426:True
+PASS  B3 the scratch pointers' only writers: 02AEED50 at 0039CD6B; 02AEED58 at 00434D62 (prep 00434CD0) and at 004454FD / 004471BF / 00448073 (the three walks, before their transform call); none in 00437130 or 00444340  | [('0039CD6B', '02AEED50'), ('00434D62', '02AEED58'), ('004454FD', '02AEED58'), ('004471BF', '02AEED58'), ('00448073', '02AEED58')]
+== E: the original bytes executed (Unicorn); inputs: vertices (x, y, z, 1.0) at 0x10000000, entries prefilled 0xA5 at 0x10010000, Q prefilled 0x5A at 0x10020000, count = number of vertices; rows 1-4 (022D91B0) written directly; $zero left at its load value 0
+NOTE     in (100,200,1000)              model: in range FF0003E80C800640
+NOTE     X < 0 (x = -1)                 model: OUT of range
+NOTE     X truncates to 0 (x = -0.03)   model: in range FF0003E80C800000
+NOTE     X = 0xFFF0, Y = 0, Z = 0xFF    model: in range FF0000FF0000FFF0
+NOTE     X = 0xFFF1                     model: OUT of range
+NOTE     Z = 0xFE                       model: OUT of range
+NOTE     Z = 0xFFFFFF                   model: in range FFFFFFFF00100010
+NOTE     Z = 0x1000000                  model: OUT of range
+NOTE     X = NaN                        model: OUT of range
+NOTE     Y = 80000                      model: OUT of range
+PASS  E1 0039A150 executed on 10 edge vertices (identity rows, w = 1): each in-range vertex's entry is X | Y<<16 | Z<<32 | 0xFF<<56, each out-of-range vertex's entry first qword is 0; the second qword is never written; Q = 1.0 stored for every vertex; eax = 1  | in (100,200,1000): in  FF0003E80C800640; X < 0 (x = -1): OUT 0000000000000000; X truncates to 0 (x = -0.03): in  FF0003E80C800000; X = 0xFFF0, Y = 0, Z = 0xFF: in  FF0000FF0000FFF0; X = 0xFFF1: OUT 0000000000000000; Z = 0xFE: OUT 0000000000000000; Z = 0xFFFFFF: in  FFFFFFFF00100010; Z = 0x1000000: OUT 0000000000000000; X = NaN: OUT 0000000000000000; Y = 80000: OUT 0000000000000000
+PASS  E2 00399B80 on the same 10: returns 1 at vertex 1 (the first out-of-range one); entry 0 = the model qword; entries 1-9 untouched; Q written for vertices 0 and 1 only (the Q store precedes the compare)  | eax 1 entry0 FF0003E80C800640
+PASS  E3 on the 4 in-range edge vertices alone 00399B80 returns 0 and writes every entry, bit-identical to 0039A150's and to the model
+PASS  E4 with the out-of-range vertex moved last, 00399B80 still returns 1, after writing all 4 earlier entries (the reject is per vertex, at whichever vertex fails)
+PASS  E5 2,000 random vertices through 0039A150 (40 calls x 50): every entry equals the model (in range: packed XYZF with F = 0xFF; out of range: 0), bit-exact; 782 in range, 1218 out  | 0 mismatches
+PASS  E6 400 of them one at a time through 00399B80: it returns 1 exactly when the model says out of range, and otherwise writes the same qword  | 0 mismatches
+NOTE     405 of the in-range vertices have w < 0 (here z < 0): the test is a range test on the projected integers, not a frustum test
+== C: controls
+PASS  C1 control: on a patched image whose unequal arm stores rax (the non-zero compare value) instead of $zero, E1 FAILS
+PASS  C2 control: a model with X,Y max 0xFFFF and Z min 0 disagrees with the executed bytes on X = 0xFFF8 and Z = 0x80, which the stated bounds predict (entries ['0000000000000000', '0000000000000000'])
+PASS  C3 control: on a patched image where 0039A0F9 stores r10 to 022D8F10, the Z1 sweep reports that writer  | [(3776761, 'mov', 'qword ptr [rip + 0x1f3ee10], r10', 'rip', 8)]
+FAILS 0

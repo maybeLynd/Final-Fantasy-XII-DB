@@ -4,7 +4,6 @@ category: 02-Resource-And-Asset-Pipeline
 status: AUDITED — the expression record, its operator, the random draw and every operand kind read; kinds >= 2 (00431080: a piecewise curve over (x, y) pairs, linear or quadratic B-spline, with a period) read 2026-09-18
 owner_layer: unowned in the ledger — filed here for what it does, not for who calls it
 evidence_tier: 1
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 verified_against:
@@ -399,7 +398,7 @@ values 1 and 2, which reach `0042FE85`, are unread.
 | `004005E0` | 1-step sibling returning `[0,1)` | 108 B | same globals; `as_float(state) − 1.0`, sample → `022D92E0` and a 16-byte copy → `022D8F90` even when disabled (EXP-070) |
 | `022D91A0`, `022D92E0`, `022D92E8`, `022D92F0` | **shared scratch, not owned here** | — | 67 / 106 writers; see the shared-scratch page |
 | `01CEBBA8` | `1.0f` | 4 B | `.rdata` |
-| `004309C0` | the **float** twin of `004314E0` | 155 B | 89 callers; interior verified 2026-09-17 (SWE2-EC7): same tag-pair dispatch at [`004309CA`](../../_index/ADDRESS-INDEX.md), operands resolved as `movss` floats, combiner tail `00430540` |
+| `004309C0` | the **float** twin of `004314E0` | 155 B | 89 callers; interior verified 2026-09-17 (SWE2-EC7): same tag-pair dispatch at [`004309CA`](../../_index/ADDRESS-INDEX.md), operands resolved as `movss` floats, combiner tail ~~`00430540`~~ `004307C0`, tail-jumped at `00430A56` when channel 1's count is non-zero; `00430540` is the per-channel keyed evaluator it calls (`004309F7`, `00430A39`) *(corrected 2026-10-03, SWE2-EC7: FABLE's SD-197 reading; ec7_corr_b_check.py)* |
 | `00430B90` | uncited neighbour | 1,199 B | 78 callers; **not read** |
 | `004304F0` | two-field image-pointer rebase (not an evaluator) | 68 B | 64 callers; interior verified 2026-09-17 (SWE2-EC7): resolve `[rdi]`/`[+0x04]` via `0020E600`, add delta, re-encode via `0020E620`, store back — first resolve at [`00430501`](../../_index/ADDRESS-INDEX.md); returns `rdi+0x10` |
 

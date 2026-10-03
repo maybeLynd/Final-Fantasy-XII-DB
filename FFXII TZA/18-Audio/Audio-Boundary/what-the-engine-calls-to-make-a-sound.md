@@ -723,3 +723,15 @@ Interior anchor `00379E41` (the `0032E040` call).
 | function | size | what the body does | interior anchors |
 |---|---|---|---|
 | `00347470` | 49 B | calls `002640C0` with the incoming registers and `00267E10(r9)`, then tail-jumps to `003DEC90` with dword `+0x28` of the first result as `ecx` and the second as `edx` | `0034747D`, `00347488`, `0034748D`, `0034749C` |
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-what-the-engine-calls-to-make-a-sound-cloudint-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00212A90` | 68 B | walks the list whose head is `rcx+8` (first node qword `[rcx+8]`, next node qword `+0` of each, stopping back at `rcx+8`) and for each node calls virtual slot `+0x20` of the object at its qword `+0x10` with `edx` passed through | `00212A9F`, `00212AA9`, `00212AB0`, `00212AB9`, `00212ABC` |
+| `00212AE0` | 68 B | walks the list whose head is `rcx+8` (first node qword `[rcx+8]`, next node qword `+0` of each, stopping back at `rcx+8`) and for each node calls virtual slot `+0x18` of the object at its qword `+0x10` with `edx` passed through | `00212AEF`, `00212AF9`, `00212B00`, `00212B09`, `00212B0C` |
+| `00212B30` | 68 B | walks the list whose head is `rcx+8` (first node qword `[rcx+8]`, next node qword `+0` of each, stopping back at `rcx+8`) and for each node calls virtual slot `+0x28` of the object at its qword `+0x10` with `edx` passed through | `00212B3F`, `00212B49`, `00212B50`, `00212B59`, `00212B5C` |
+| `00212BD0` | 67 B | walks the list whose head is `rcx+8` (first node qword `[rcx+8]`, next node qword `+0` of each, stopping back at `rcx+8`) and for each node calls virtual slot `+0` of the object at its qword `+0x10` with `edx` passed through | `00212BDF`, `00212BE9`, `00212BF0`, `00212BF9`, `00212BFB` |
+| `0035D030` | 28 B | calls `0028E940(1)` and tail-jumps to `00249C60(4)` | `0035D034`, `0035D039`, `0035D03E`, `0035D047` |

@@ -2,7 +2,6 @@
 contract: Place a sound in the world — five classes, one slot-34 postcondition, a radius that decides audibility
 category: 18-Audio
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: 18-Audio/the-spatial-audio-object-model.md

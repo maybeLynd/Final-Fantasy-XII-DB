@@ -2,7 +2,6 @@
 contract: rebuild a character's derived auto-status set from three sources and apply only what changed
 category: 10-Status-Periodic-Terminal
 scope: family
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 12-Items-Equipment-Shops-License/equipment-slots-and-the-single-stat-rebuild.md

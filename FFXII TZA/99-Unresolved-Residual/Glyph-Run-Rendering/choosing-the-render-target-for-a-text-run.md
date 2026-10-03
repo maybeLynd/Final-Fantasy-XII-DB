@@ -496,3 +496,11 @@ This page describes unowned code in the residual folder, and it cites the bodies
 **UI — MECHANICAL, 35 edges.** `00254A10` is called by `00273E30`, `00295D90`, `00298250`, `002A4430` and 8 more; `002AC2F0` is called by `002AE610`, `002AF340`, `002B2150`; `0017FD30` is called by `002AC5F0`, `002AF960`; `002A9F00` is called by `002AC5F0`, `002AE610`; `002AAE40` calls `002AC5F0`, `002B2150`; `002AC5F0` calls `002AE610`, `002B2150`; `002AC5F0` is called by `002AF340`, `002B2150`; `002AF960` is called by `002A4430`, `002A4830`; `002B0280` calls `002AE610`, `002B2150`; `002B0280` is called by `00243860`, `002A86A0`; `001A1470` is called by `0018EEE0`; `002A9F00` calls `002AC5F0`; `002AE450` is called by `002AC5F0`; `002AF960` calls `002B2150`.
 
 *Tier 2: ledger names and `edges.tsv`; no body read for this note (OPUS, 2026-09-29, pass-22 slice OPUS-P22-SLICE-24-99).*
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-choosing-the-render-target-for-a-text-ru-cloudint-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `003655F0` | 108 B | with `t` = qword slot `ecx` (signed) at `+0x10` of qword `022CBE00`, scans the dword `t+4` (signed count) 0xC-byte entries from `t+0x10` for word `+0` equal to 0x30 and returns 0 when none matches; for the match it calls `0017FD00(ecx+0xb)` and, with `f` = `0017F8C0(that word)`, returns `0017F9C0(dword f+0x1c)` truncated to an integer when `f` is non-null, else the entry's byte `+4` | `00365613`, `0036562E`, `00365636`, `00365648`, `00365652` |

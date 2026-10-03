@@ -4,7 +4,6 @@ category: 01-Script-VM-Native-Bridge
 status: AUDITED — the last open box, what a record holds once a map is loaded (UQ-58), answered 2026-09-17: the declared fields, a holder mask at +0x20, a 16-bit stamp, three untouched offsets
 owner_layer: Script_VM_Native_Bridge — from the ledger, not inferred from callers
 evidence_tier: 1
-level: L1
 readiness: SEMANTICALLY IDENTIFIED
 confidence: PROVEN
 verified_against:

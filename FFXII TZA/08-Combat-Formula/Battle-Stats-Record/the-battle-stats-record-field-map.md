@@ -4,7 +4,6 @@ category: 08-Combat-Formula
 status: AUDITED
 owner_layer: PrimaryOwner:CombatFormula — the fields belong to the pages that read their writers
 evidence_tier: 1
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 verified_against:

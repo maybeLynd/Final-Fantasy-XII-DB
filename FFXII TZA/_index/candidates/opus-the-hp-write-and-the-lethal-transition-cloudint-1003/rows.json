@@ -1,0 +1,171 @@
+{
+ "page": "08-Combat-Formula/Current-HP/the-hp-write-and-the-lethal-transition.md",
+ "date": "2026-10-03",
+ "session": "opus-self",
+ "report": "the-hp-write-and-the-lethal-transition.json",
+ "rows": [
+  {
+   "fn": "00340CB0",
+   "text": "with `o` = `00263F10(rdx)`, reads `a` = `00267E10(r9)` and then `b` = `00267E10(r9)`, and tail-jumps to `00473980(o, b, a)`",
+   "anchors": [
+    [
+     "00340CC5",
+     "call"
+    ],
+    [
+     "00340CD0",
+     "call"
+    ],
+    [
+     "00340CDA",
+     "call"
+    ],
+    [
+     "00340CDF",
+     "mov"
+    ],
+    [
+     "00340CF6",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003421D0",
+   "text": "calls `00267F90(r9, 2)`; then, with `o` = `00263F10(rdx)`, reads `a` = `00267E10(r9)` and then `b` = `00267E10(r9)`, and tail-jumps to `00473980(o, b, a)`",
+   "anchors": [
+    [
+     "003421ED",
+     "call"
+    ],
+    [
+     "003421F5",
+     "call"
+    ],
+    [
+     "00342200",
+     "call"
+    ],
+    [
+     "0034220A",
+     "call"
+    ],
+    [
+     "00342226",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00343D10",
+   "text": "reads `a` = `00267E10(r9)` and then `b` = `00267E10(r9)`, calls `003A1920(00265060(00264010(a)), 00265060(00264010(b)))` and tail-jumps to `0026B4C0` with the incoming `rcx` and that call's float result in `xmm1`",
+   "anchors": [
+    [
+     "00343D2D",
+     "call"
+    ],
+    [
+     "00343D40",
+     "call"
+    ],
+    [
+     "00343D52",
+     "call"
+    ],
+    [
+     "00343D68",
+     "call"
+    ],
+    [
+     "00343D87",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00344F80",
+   "text": "reads three floats with `00267DB0(r9)` into a stack vector (the first at `+8`, the second at `+4`, the third at `+0`), then calls `003A1920(00265060(00264010(00267E10(r9))), &vector)` and `0026B4C0` with the incoming `rcx` and that call's float result in `xmm1`; the frame carries the stack cookie (`01F44830`, checked by `00808C40`)",
+   "anchors": [
+    [
+     "00344FA2",
+     "call"
+    ],
+    [
+     "00344FAA",
+     "movss"
+    ],
+    [
+     "00344FC6",
+     "movss"
+    ],
+    [
+     "00344FE8",
+     "call"
+    ],
+    [
+     "00344FF3",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0034A110",
+   "text": "calls `00267F90(r9, 2)`, reads `a`, `b` and `c` with three `00267E10(r9)` calls, and tail-jumps to `004738D0(00263F10(00264010(c)), b, a)`",
+   "anchors": [
+    [
+     "0034A12A",
+     "call"
+    ],
+    [
+     "0034A132",
+     "call"
+    ],
+    [
+     "0034A14D",
+     "call"
+    ],
+    [
+     "0034A155",
+     "call"
+    ],
+    [
+     "0034A171",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00473980",
+   "text": "builds a mask from `r8d` (bit `0x1` gives `0x10000000`, bit `0x2` gives `0x20000000`, bit `0x4` gives `0x40000000`); returns -1 when `rcx` is null, otherwise tail-jumps to `00329B70(003589B0(rcx), 0, edx, mask)`",
+   "anchors": [
+    [
+     "0047399C",
+     "shl"
+    ],
+    [
+     "004739A5",
+     "bts"
+    ],
+    [
+     "004739B5",
+     "je"
+    ],
+    [
+     "004739C2",
+     "bts"
+    ],
+    [
+     "004739E0",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "interior",
+ "family": "",
+ "method": "OPUS drafted these rows itself from its F-interior pack (`f_pack.py`: each function the page cites only at its entry, with its annotated listing) and checked every row mechanically with `interior_ingest.py` (every anchor an instruction boundary inside the extent with the recorded mnemonic; every address a listing token). No second agent drafted or verified them, so the non-author check is SWE2-AUDIT-SPEC's."
+}

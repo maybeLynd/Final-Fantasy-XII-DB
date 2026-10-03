@@ -2,7 +2,6 @@
 contract: publish a character's transform and motion scalars into the inactive half of a double buffer
 category: 17-Presentation-Rendering
 scope: operation
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 17-Presentation-Rendering/Character-Rendering/character-render-object.md

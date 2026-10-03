@@ -234,3 +234,10 @@ json.dump(out, open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "re
 for k2_, v in cases.items():
     print("%-58s %s" % (k2_, "PASS" if v else "FAIL"))
 print("ALL PASS" if out["ok"] else "FAILED", "predicates executed:", preds_run)
+
+
+# EXIT STATUS FOLLOWS THE RECORDED VERDICT (OPUS, 2026-10-03, the user's root-cause directive item 4): this package
+# recorded "ok" in result.json but always exited 0, so no automated re-run could see it fail.
+import json as _ej, os as _eo, sys as _es
+_es.exit(0 if _ej.load(open(_eo.path.join(_eo.path.dirname(_eo.path.abspath(__file__)), "result.json"),
+                            encoding="utf-8")).get("ok") is True else 1)

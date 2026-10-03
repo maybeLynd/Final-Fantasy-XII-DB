@@ -2,7 +2,6 @@
 contract: allocate, promote, retire and release the 160 character render records through one image-lifetime pool
 category: 17-Presentation-Rendering
 scope: family
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 17-Presentation-Rendering/Character-Render-Records/the-character-render-record-array.md

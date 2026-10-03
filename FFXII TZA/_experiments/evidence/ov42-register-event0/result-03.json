@@ -1,0 +1,218 @@
+{
+  "producer_complete": true,
+  "question": "Can the prescribed registration event0 invoke animation/write object state?",
+  "method": "A bounded constant-path proof on retained132B original bytes",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "driver_sha256": "251090bba6867a1c99ee7ce84204f9c1c1079ed15c3d0c6b422313787f61d38d",
+  "inputs": [
+    {
+      "path": "retained/handler-extents-01.json",
+      "sha256": "517088bb07049ba318304ab8c4ef4dc406f21a919013ea78e11f85e797cd9ab6"
+    },
+    {
+      "path": "retained/handler-extents-01.status.json",
+      "sha256": "7e42a593a2c9825033739d17f0973797e24100121f399b797611b53090892fa5"
+    },
+    {
+      "path": "retained/handler-extents-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retained/handler-extents-01.stdout",
+      "sha256": "866a1ea6d867a4b75836b31acd904ed3f25412de59889f527c6046017ae523de"
+    },
+    {
+      "path": "retained/inputs.json",
+      "sha256": "f396baf0ac7bd2a98b5e22dee60ccc76ac182c19fcc9a014905d126774429525"
+    },
+    {
+      "path": "retained/lookup-primary-handler-01.json",
+      "sha256": "1e56c692af70133aa8fa7e93fb2475cc3b1b414a0be28cf231529254ed615e75"
+    },
+    {
+      "path": "retained/lookup-secondary-handler-01.json",
+      "sha256": "807cfc542b66f73560a1a770a847029c8c811c94b7b224908740e14445df43c4"
+    },
+    {
+      "path": "retained/prepare-handler-extents.py",
+      "sha256": "b54cf063af4e29b4ab6463c8fbd76e3b7b4ddbd40065b6a064c9d828f96c6003"
+    },
+    {
+      "path": "retained/source-01.json",
+      "sha256": "2f827754a911df0d3566870f3b447e83d70a6ffbbccaba3446c91f0f579737df"
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "normalized-result-03.json",
+      "sha256": "c157f7ff2da419af18b93b932642f3c63a48acb4f5b8b7b830ea2ff0ae08c456"
+    },
+    {
+      "path": "retained/source-01.json",
+      "sha256": "2f827754a911df0d3566870f3b447e83d70a6ffbbccaba3446c91f0f579737df"
+    }
+  ],
+  "annotation_prerequisite": {
+    "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+    "instruction_records": 145,
+    "capstone": "5.0.7",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+  },
+  "normalized_annotation_check": {
+    "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+    "instruction_records": 43,
+    "capstone": "5.0.7",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+  },
+  "paths": [
+    {
+      "entry": "0x29b7d0",
+      "event": 0,
+      "boundary": "RETURN",
+      "eax": 0,
+      "pre_ret_rsp_delta": 0,
+      "rdx": 0,
+      "path": [
+        "0x29b7d0",
+        "0x29b7d4",
+        "0x29b7d7",
+        "0x29b7db",
+        "0x29b7de",
+        "0x29b7fb",
+        "0x29b7fd",
+        "0x29b801"
+      ],
+      "memory": [
+        {
+          "pc": "0x29b7d7",
+          "base": "rcx",
+          "displacement": 72,
+          "size": 8,
+          "role": "r"
+        }
+      ]
+    },
+    {
+      "entry": "0x29b810",
+      "event": 0,
+      "boundary": "RETURN",
+      "eax": 0,
+      "pre_ret_rsp_delta": 0,
+      "rdx": 4294967295,
+      "path": [
+        "0x29b810",
+        "0x29b814",
+        "0x29b818",
+        "0x29b81b",
+        "0x29b81e",
+        "0x29b820",
+        "0x29b823",
+        "0x29b82f",
+        "0x29b831",
+        "0x29b835"
+      ],
+      "memory": [
+        {
+          "pc": "0x29b814",
+          "base": "rcx",
+          "displacement": 72,
+          "size": 8,
+          "role": "r"
+        }
+      ]
+    }
+  ],
+  "positive_controls": {
+    "event1_call": {
+      "boundary": "CALL",
+      "pc": "0x29b7ea",
+      "target": "0x2973e0",
+      "path": [
+        "0x29b7d0",
+        "0x29b7d4",
+        "0x29b7d7",
+        "0x29b7db",
+        "0x29b7de",
+        "0x29b7e0",
+        "0x29b7e4",
+        "0x29b7e8",
+        "0x29b7ea"
+      ],
+      "memory": [
+        {
+          "pc": "0x29b7d7",
+          "base": "rcx",
+          "displacement": 72,
+          "size": 8,
+          "role": "r"
+        },
+        {
+          "pc": "0x29b7e0",
+          "base": "rax",
+          "displacement": 4,
+          "size": 4,
+          "role": "r"
+        },
+        {
+          "pc": "0x29b7e4",
+          "base": "r8",
+          "displacement": 36,
+          "size": 4,
+          "role": "r"
+        },
+        {
+          "pc": "0x29b7e8",
+          "base": "rax",
+          "displacement": 0,
+          "size": 4,
+          "role": "r"
+        }
+      ]
+    },
+    "event2_store": {
+      "boundary": "OBJECT_WRITE",
+      "pc": "0x29b82c",
+      "path": [
+        "0x29b810",
+        "0x29b814",
+        "0x29b818",
+        "0x29b81b",
+        "0x29b81e",
+        "0x29b820",
+        "0x29b823",
+        "0x29b825",
+        "0x29b829",
+        "0x29b82c"
+      ],
+      "memory": [
+        {
+          "pc": "0x29b814",
+          "base": "rcx",
+          "displacement": 72,
+          "size": 8,
+          "role": "r"
+        },
+        {
+          "pc": "0x29b825",
+          "base": "r9",
+          "displacement": 44,
+          "size": 4,
+          "role": "r"
+        },
+        {
+          "pc": "0x29b82c",
+          "base": "rcx",
+          "displacement": 4,
+          "size": 4,
+          "role": "w"
+        }
+      ]
+    }
+  },
+  "conclusion": "Both prescribed event0 paths explicitly read QWORD view+48, do not dereference that context or payload, make no call or explicit nonstack write, and return EAX0 with pre-RET frame restored. Secondary handler leaves EDX=FFFFFFFF; primary leaves event0EDX0.",
+  "limitations": "Valid code/body/entryABI, readableview+48/private40Bstack/returnaddress and noninterference required. Static interpretation, no original execution, no observed register/memory values. Implicit RET stack access is not omitted from validity premises. Only3F89C0 conditional prescribed-handler event0 composition; existing-row callback identity, event1 cost updates/transitive effects/nativefill/lifetime/scheduling/actualreach/presentation remain OPEN."
+}

@@ -2,7 +2,6 @@
 contract: Walk a character up to a target level — growth every level, derived state once, the fanfare only if something owns the record
 category: 13-Rewards-Progression-Economy
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: 13-Rewards-Progression-Economy/what-happens-when-a-character-levels-up.md

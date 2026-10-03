@@ -457,3 +457,15 @@ verbs share (-1 on any miss). Interior anchor `0032F38E` (the `+0xC` read).
 `003EA330` (176 B) is the per-slot pending-entry reset `003E98B0` runs on the `02B5D0B0` 64-stride slot table: `002DEBB0` first, then when `byte[rsi+4] == 3` and a child list sits at `[rsi + rax*8 + 0x20]` the loop walks its `dword[+4]`-counted `0x10`-byte entries, `003EA3E0` gets `(+0x10, +0x14)` per entry, and each entry clears the `+8` sign bit and zeroes `+0x10`
 
 Interior anchor `003EA3B0` (function `003EA330`).
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-the-voice-pack-slots-and-the-voice-verbs-cloudint-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0034E8B0` | 114 B | with `s` = dword `+0x28` of `002640C0()`, reads `a` = `00267E10(r9)` and then `b` = `00267E10(r9)`; when `00267310(byte rdx+0x15)` returns 0 and `003EA0D0(s, b, a)` returns non-zero it calls `00314D40(1)`, otherwise it calls nothing further | `0034E8CA`, `0034E8D2`, `0034E8EA`, `0034E8FA`, `0034E908` |
+| `0034EE40` | 124 B | calls `00267F90(r9, 0)`; then, with `s` = dword `+0x28` of `002640C0()`, reads `a` = `00267E10(r9)` and then `b` = `00267E10(r9)`; when `00267310(byte rdx+0x15)` returns 0 and `003EA0D0(s, b, a)` returns non-zero it calls `00314D40(1)`, otherwise it calls nothing further | `0034EE5F`, `0034EE64`, `0034EE84`, `0034EE94`, `0034EEA2` |
+| `003522C0` | 91 B | with `a` = dword `[r8]` and `b` = dword `[r8+4]`, does nothing when `00264170()` returns 0, when `001C3370()` returns 1 or when `a` is negative; otherwise, with `n` = `a`+1 held between 1 and 3 (signed), calls `0032FC30(n, b)` and `0032ED70(n)` | `003522D1`, `003522DF`, `003522E6`, `003522FD`, `00352304` |
+| `00352DB0` | 35 B | with `n` = `00267E10(r9)`, calls `003EA330(n)` and tail-jumps to `003E98B0(n)` | `00352DB9`, `00352DC2`, `00352DCE` |
+| `00353080` | 107 B | calls `00314D40(1)` first; then, with `a` = dword `[r8]` and `b` = dword `[r8+4]`, does nothing more when `00264170()` returns 0, when `001C3370()` returns 1 or when `a` is negative; otherwise, with `n` = `a`+1 held between 1 and 3 (signed), calls `0032FC30(n, b)` and `0032ED70(n)` | `00353099`, `003530A3`, `003530B7`, `003530C8`, `003530CF` |

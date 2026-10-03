@@ -1,0 +1,9 @@
+PASS  T0  raw callers of 002E09A0: [('0031427D', 'E8')]
+PASS  T1  guard keeps +0x3E bits [0] (claim: bit 0); 002E0C8D movzx eax, byte ptr [rdx + r15 + 0x3e] / shl al, 7 / sar al, 7 / or al, byte ptr [rdx + r15 + 0x38] / jne 0x2e0d57
+PASS  T2  the guard defers: guard arm 002E0D57 `mov ecx, esi` -> jmp 002E0CAD -> 002E0CC0 `or eax, ecx` / jne 0x2e0d3e -> 002E0D3E mov byte ptr [rip + 0x1e7e45c], bpl; router call 002E0D0B; pending stores between: none
+PASS  T3  slot-0 not ready -> discarded (claim: discarded); slot-0 call 002E0B8B, arm 002E0B94..002E0BAA; ebp==0 True; stores {'0215F1A1': 'w1=0 @002E0BA3', '0215F1A4': 'w4=0 @002E0B97', '0215F1A8': 'w4=0 @002E0B9D'}; jmp 002E0BAA -> 002E0C65 mov byte ptr [rip + 0x1e7e534], r8b with r8b=0; dispatch test 002E0CC4 je 0x2e0d3e skips router 002E0D0B: True; clobbers between none
+PASS  S1  mutated reading 'bit 7' FAILS as required against the computed set [0]
+PASS  S2  mutated reading 'deferred' FAILS as required against the computed outcome 'discarded'
+PASS  S3  image with 002E0C93 patched to `shl al, 6`: kept bits [1], claim 'bit 0' FAILS as required
+PASS  S4  image with 002E0B94 `xor r8b, r8b` patched to NOPs: outcome None, claim 'discarded' FAILS as required
+FAILS 0

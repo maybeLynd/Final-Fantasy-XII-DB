@@ -341,8 +341,14 @@ def main(argv=None):
                 if column_says_not_a_name(prose, m.start(1), m.start(2)):
                     continue
                 names[m.group(1).upper()].add((nm, rel))
+        # A struck span is not a live claim: "`003A1DB0` (~~16 callers~~ 47 direct call sites ...)" kept matching "16
+        # callers" because the strike sits INSIDE the match, where RETRACTED_NEARBY's look-behind cannot see it.
+        # Blank struck spans (same length, so offsets hold) for the count extraction only
+        # (FABLE-REQ-FRONTIER-CHECK-CONSISTENCY-COUNT-FP-1003 item 1; SWE2-FRONTIER, 2026-10-03).
+        cprose = re.sub(r"~~[^~\n]+~~", lambda s: " " * len(s.group(0)), prose)
         for pat in COUNT_PATTERNS:
-            for m in pat.finditer(prose):
+            for m in pat.finditer(cprose):
+                prose_ = cprose
                 # skip counts sitting inside a retraction -- see RETRACTED_NEARBY
                 if RETRACTED_NEARBY.search(prose[max(0, m.start() - 240):m.start()]):
                     continue
@@ -356,11 +362,31 @@ def main(argv=None):
                 # Same rule check_answered_not_established.py needed: judge ambiguity over every
                 # candidate in the window, not just the one the pattern happened to match.
                 if pat is COUNT_PATTERNS[1]:
-                    before = prose[max(0, m.start() - 120):m.start()]
+                    before = prose_[max(0, m.start() - 120):m.start()]
                     if re.search(r"`" + ADDR + r"`", before):
                         continue
+                # The forward pattern's gap may step OVER nearer quoted addresses to the number:
+                #   "**00194290** (...) `005CDAA0` call + `+0x1F0` store [`001942C0`](...) - 4 callers"
+                # claimed 005CDAA0 = 4, but the 4 belongs to the bullet's subject, the address that LEADS the line.
+                # When another quoted address sits between the matched one and the number, the count goes to the
+                # line's leading address (bold or quoted, optionally after a list marker), else to the nearest quoted
+                # address before the number - never to the farther one the pattern happened to start at
+                # (FABLE-REQ-FRONTIER-CHECK-CONSISTENCY-COUNT-FP-1003 item 2; SWE2-FRONTIER, 2026-10-03).
+                owner_addr = m.group("addr")
+                if pat is COUNT_PATTERNS[0]:
+                    between = list(re.finditer(r"`(" + ADDR + r")`", prose_[m.end("addr") + 1:m.start("n")]))
+                    if between:
+                        ls = prose_.rfind("\n", 0, m.start()) + 1
+                        lead = re.match(r"\s*(?:[-*+]\s+|\d+\.\s+)?(?:\*\*`?|`)(" + ADDR + r")\b", prose_[ls:m.start("n")])
+                        owner_addr = lead.group(1) if lead else between[-1].group(1)
                 q = (m.group("q") or "").lower()
-                key = m.group("addr").upper() + ("  [%s]" % q if q else "")
+                # "whose other 53 callers" / "53 more callers" exclude the caller in view: a scoped count, compared only
+                # with its own kind, never with a total (SWE2-FRONTIER, 2026-10-03; surfaced once item 2 attributed the
+                # count to its true owner 00379CD0 on CONTRACT-weather.md).
+                if not q and (re.search(r"\b(?:other|another|further)\s+$", prose_[max(0, m.start("n") - 12):m.start("n")])
+                              or re.match(r"\s*more\b", prose_[m.end("n"):m.end("n") + 8])):
+                    q = "other"
+                key = owner_addr.upper() + ("  [%s]" % q if q else "")
                 v = num(m.group("n"))
                 if v is not None:
                     counts[key].add((v, rel))

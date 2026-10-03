@@ -2,7 +2,6 @@
 contract: <semantic operation name — what it does, not what it is called>
 category: <NN-Category>
 scope: operation | family | subsystem | transition
-level: L1 | L2 | L3
 readiness: DISCOVERED | CLASSIFIED | SEMANTICALLY IDENTIFIED | SIGNATURE RESOLVED | TYPE RESOLVED | DEPENDENCIES RESOLVED | BEHAVIORALLY UNDERSTOOD | RUNTIME VALIDATED | CONTRACT READY | RECONSTRUCTION READY | IMPLEMENTED | DIFFERENTIAL TESTED | PARITY CERTIFIED
 confidence: PROVEN | VERY HIGH | HIGH | PROBABLE | HYPOTHESIS | UNKNOWN | CONTRADICTED | SUPERSEDED
 implements: <document(s) this contract formalises>
@@ -17,6 +16,9 @@ audit:
   crossref_clean: false        # audit_crossrefs.py reports nothing for this document
   reopened_count: 0
 ---
+
+> **Maturity is measured, never declared in front matter (FABLE ruling 2026-10-03): see `readiness:`,
+> `confidence:`, `audit.passes`, section 13 and `L2-VERDICTS`.**
 
 > **`audit:` is not optional and was missing from this template until 2026-09-12.** A contract
 > without it cannot record a falsification pass, and `progress.py` counts a pass only when

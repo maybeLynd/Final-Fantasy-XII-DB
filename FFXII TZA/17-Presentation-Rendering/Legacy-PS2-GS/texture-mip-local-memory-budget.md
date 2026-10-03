@@ -441,3 +441,11 @@ Interior anchor `008620BA`
 | `008641B0` | 92 B | takes the low 14 bits of dword `+0x50` of `rcx` as an id (0xE00 becomes 0xDFF when dword `02EC3ECC` is 0 and stays 0xE00 otherwise), stores the first qword of what `002D7FA0(id)` returns at qword `+0x20`, then calls `002D7EE0(qword +0x50)` twice, storing the first qword of the first result at qword `+0x28` and dword `+8` of the second at dword `+0x30` | `008641BC`, `008641CA`, `008641DB`, `008641EB`, `00864203` |
 | `00864750` | 110 B | takes the low 14 bits of dword `+0xC8` of `rcx` as an id (0xE00 becomes 0xDFF when dword `02EC3ECC` is 0 and stays 0xE00 otherwise), stores the first qword of what `002D7FA0(id)` returns at qword `+0xA0`, then calls `002D7EE0(qword +0xC8)` twice, storing the first qword of the first result at qword `+0xA8` and dword `+8` of the second at dword `+0xB0` | `0086475F`, `0086476D`, `0086477E`, `00864794`, `008647B2` |
 | `00864CA0` | 110 B | takes the low 14 bits of dword `+0xF8` of `rcx` as an id (0xE00 becomes 0xDFF when dword `02EC3ECC` is 0 and stays 0xE00 otherwise), stores the first qword of what `002D7FA0(id)` returns at qword `+0xD0`, then calls `002D7EE0(qword +0xF8)` twice, storing the first qword of the first result at qword `+0xD8` and dword `+8` of the second at dword `+0xE0` | `00864CAF`, `00864CBD`, `00864CCE`, `00864CE4`, `00864D02` |
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-texture-mip-local-memory-budget-cloudint-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00342910` | 71 B | for `i` from 0 to 3 stores at byte `r8+4+i` 0 when `00263750(i)` returns non-null and `0xff` when it returns null | `00342929`, `0034293A`, `0034293F`, `00342945` |

@@ -2,7 +2,6 @@
 contract: install a class-selected definition onto a reset battle unit while preserving native guard and rekey ordering
 category: 04-Actor-Entity
 scope: subsystem
-level: L2
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 04-Actor-Entity/Unit-Definition/how-a-battle-unit-is-built-from-its-definition.md

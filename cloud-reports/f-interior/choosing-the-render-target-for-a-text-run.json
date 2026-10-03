@@ -1,0 +1,34 @@
+{
+ "page": "99-Unresolved-Residual/Glyph-Run-Rendering/choosing-the-render-target-for-a-text-run.md",
+ "session": "opus-self",
+ "rows": [
+  {
+   "fn": "003655F0",
+   "text": "with `t` = qword slot `ecx` (signed) at `+0x10` of qword `022CBE00`, scans the dword `t+4` (signed count) 0xC-byte entries from `t+0x10` for word `+0` equal to 0x30 and returns 0 when none matches; for the match it calls `0017FD00(ecx+0xb)` and, with `f` = `0017F8C0(that word)`, returns `0017F9C0(dword f+0x1c)` truncated to an integer when `f` is non-null, else the entry's byte `+4`",
+   "anchors": [
+    [
+     "00365613",
+     "cmp"
+    ],
+    [
+     "0036562E",
+     "call"
+    ],
+    [
+     "00365636",
+     "call"
+    ],
+    [
+     "00365648",
+     "cvttss2si"
+    ],
+    [
+     "00365652",
+     "movzx"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "drafted by OPUS itself"
+}

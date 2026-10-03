@@ -1,0 +1,60 @@
+{
+ "page": "25-EBP-Script-Container/Sections/section-019.md",
+ "session": "opus-self",
+ "rows": [
+  {
+   "fn": "0020D270",
+   "text": "copies 0xC-byte entries (qword `+0` and dword `+8`) from `rcx` up to `rdx` to `r8`, skipping the copy of an entry while the destination pointer is null but still advancing it, and returns the destination end",
+   "anchors": [
+    [
+     "0020D27D",
+     "cmp"
+    ],
+    [
+     "0020D285",
+     "je"
+    ],
+    [
+     "0020D28B",
+     "movsd"
+    ],
+    [
+     "0020D293",
+     "mov"
+    ],
+    [
+     "0020D2A4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0020D970",
+   "text": "returns 0 when `rdx` is 0 and calls the import at `008C2608` (no return) when it is above 0x1555555555555555; with `n` = `rdx`*0xC it returns `00210EC0(n)` when `n` is below 0x1000; otherwise it allocates `00210EC0(n+0x27)` (calling `008C2608` when that sum overflows) and returns the result + 0x27 rounded down to 0x20 with the raw pointer stored at qword `-8`; a null allocation calls the import at `008C2DA8` (no return)",
+   "anchors": [
+    [
+     "0020D98A",
+     "cmp"
+    ],
+    [
+     "0020D99E",
+     "cmp"
+    ],
+    [
+     "0020D9BA",
+     "call"
+    ],
+    [
+     "0020D9D2",
+     "and"
+    ],
+    [
+     "0020D9D6",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "drafted by OPUS itself"
+}

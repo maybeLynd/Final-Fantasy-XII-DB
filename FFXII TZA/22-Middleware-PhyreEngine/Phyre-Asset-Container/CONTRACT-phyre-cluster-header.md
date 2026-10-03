@@ -2,7 +2,6 @@
 contract: Accept or refuse a .phyre cluster header
 category: 22-Middleware-PhyreEngine
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: the-cluster-header-and-what-the-loader-rejects.md

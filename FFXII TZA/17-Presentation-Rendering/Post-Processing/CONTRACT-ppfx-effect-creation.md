@@ -2,7 +2,6 @@
 contract: load the PPFX shader-set effect from its compiled file and bind every technique and uniform it exposes to a handle slot, so that a failure here takes the whole post-processing layer down at once rather than per effect
 category: 17-Presentation-Rendering
 scope: operation
-level: L2
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 17-Presentation-Rendering/Post-Processing/the-post-processing-effect-catalogue.md

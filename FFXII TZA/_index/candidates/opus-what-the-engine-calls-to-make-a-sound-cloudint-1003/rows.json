@@ -1,0 +1,141 @@
+{
+ "page": "18-Audio/Audio-Boundary/what-the-engine-calls-to-make-a-sound.md",
+ "date": "2026-10-03",
+ "session": "opus-self",
+ "report": "what-the-engine-calls-to-make-a-sound.json",
+ "rows": [
+  {
+   "fn": "00212A90",
+   "text": "walks the list whose head is `rcx+8` (first node qword `[rcx+8]`, next node qword `+0` of each, stopping back at `rcx+8`) and for each node calls virtual slot `+0x20` of the object at its qword `+0x10` with `edx` passed through",
+   "anchors": [
+    [
+     "00212A9F",
+     "mov"
+    ],
+    [
+     "00212AA9",
+     "cmp"
+    ],
+    [
+     "00212AB0",
+     "mov"
+    ],
+    [
+     "00212AB9",
+     "call"
+    ],
+    [
+     "00212ABC",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00212AE0",
+   "text": "walks the list whose head is `rcx+8` (first node qword `[rcx+8]`, next node qword `+0` of each, stopping back at `rcx+8`) and for each node calls virtual slot `+0x18` of the object at its qword `+0x10` with `edx` passed through",
+   "anchors": [
+    [
+     "00212AEF",
+     "mov"
+    ],
+    [
+     "00212AF9",
+     "cmp"
+    ],
+    [
+     "00212B00",
+     "mov"
+    ],
+    [
+     "00212B09",
+     "call"
+    ],
+    [
+     "00212B0C",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00212B30",
+   "text": "walks the list whose head is `rcx+8` (first node qword `[rcx+8]`, next node qword `+0` of each, stopping back at `rcx+8`) and for each node calls virtual slot `+0x28` of the object at its qword `+0x10` with `edx` passed through",
+   "anchors": [
+    [
+     "00212B3F",
+     "mov"
+    ],
+    [
+     "00212B49",
+     "cmp"
+    ],
+    [
+     "00212B50",
+     "mov"
+    ],
+    [
+     "00212B59",
+     "call"
+    ],
+    [
+     "00212B5C",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00212BD0",
+   "text": "walks the list whose head is `rcx+8` (first node qword `[rcx+8]`, next node qword `+0` of each, stopping back at `rcx+8`) and for each node calls virtual slot `+0` of the object at its qword `+0x10` with `edx` passed through",
+   "anchors": [
+    [
+     "00212BDF",
+     "mov"
+    ],
+    [
+     "00212BE9",
+     "cmp"
+    ],
+    [
+     "00212BF0",
+     "mov"
+    ],
+    [
+     "00212BF9",
+     "call"
+    ],
+    [
+     "00212BFB",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0035D030",
+   "text": "calls `0028E940(1)` and tail-jumps to `00249C60(4)`",
+   "anchors": [
+    [
+     "0035D034",
+     "mov"
+    ],
+    [
+     "0035D039",
+     "call"
+    ],
+    [
+     "0035D03E",
+     "mov"
+    ],
+    [
+     "0035D047",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "interior",
+ "family": "",
+ "method": "OPUS drafted these rows itself from its F-interior pack (`f_pack.py`: each function the page cites only at its entry, with its annotated listing) and checked every row mechanically with `interior_ingest.py` (every anchor an instruction boundary inside the extent with the recorded mnemonic; every address a listing token). No second agent drafted or verified them, so the non-author check is SWE2-AUDIT-SPEC's."
+}

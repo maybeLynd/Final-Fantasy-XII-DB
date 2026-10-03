@@ -4,7 +4,6 @@ category: 04-Actor-Entity
 status: AUDITED — the secondary context's entryId (FS-2, the render record index the binder 002E3110 assigns) and the movement context's +0x10C..+0x21F (UQ-91, two steering sub-records behind the +0xF0 pointer) answered 2026-09-17
 owner_layer: PrimaryOwner:ActorEntity — the censuses; the layouts are the store's to declare
 evidence_tier: 1
-level: L1
 readiness: PARTIALLY UNDERSTOOD
 confidence: PROVEN
 verified_against:

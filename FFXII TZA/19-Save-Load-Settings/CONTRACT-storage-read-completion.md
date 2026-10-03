@@ -2,7 +2,6 @@
 contract: what a save-storage read result and a recovery restore actually did, versus what they report
 category: 19-Save-Load-Settings
 scope: family
-level: L1
 readiness: DIFFERENTIAL TESTED # diff_storage_read.py, 77 commands / 100 compared lines / 0 mismatches, 4 mutants killed (SWE2-CONTRACT, 2026-09-14, eab67079)
 confidence: PROVEN
 implements: 19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/save-image-buffers-header-and-payload.md
@@ -656,6 +655,13 @@ OPEN QUESTION row in §15, which no fixture can answer. A caller census would no
 1. **Whether any shipped caller mishandles the `0` result** — the contract's own frontier and the
    §15 OPEN QUESTION row. *Resolved by:* a caller census that executes a real short read, not by
    this fixture.
+   ***Registered 2026-10-03 as `SRC-1` (SWE2-CONTRACT) and narrowed statically.*** The wrapper `00862590` has two
+   direct callers in the call graph. `003BA990` compares the result with the requested size
+   (`003BABC2` `cmp ebx, [02B40EF8]`) and takes its mismatch path at `003BABF9`, so a short read's `0` is treated
+   as a failure there. `003BA7B0` does not test it at either site (`003BA882`, `003BA8AE`): it sets the state word
+   `02B40E14` to 8 unconditionally, and its one listed caller `003BB790` overwrites `eax` at `003BB815`. What is
+   left is whether that state-8 continuation notices a partial buffer by another route. An indirect entry to
+   either caller is not excluded by a call-graph census.
 2. **`[parent + 0x588]`'s lifetime** — **answered.** `00582860` outer arm 1
    allocates it via `002497E0(2, 0xE240)` at controller init (immediately
    before the first `00583CB0`), and outer arm 18 frees it via `003697F0`

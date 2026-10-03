@@ -1,0 +1,151 @@
+== k54_residue.py (FABLE 2026-10-03); image sha256 checked by rvlib: C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\exe\FFXII_TZA.exe
+
+== A1 what selects each draw path (static anchors)
+PASS  0043566F is `movzx eax, byte ptr [r15 + 0x1f1]`
+PASS  00435677 is `cmp al, 0x80`
+PASS  00435679 is `jb 0x435688`
+PASS  00435681 is `call 0x438860`
+PASS  00435688 is `test al, 8`
+PASS  0043568A is `je 0x435699`
+PASS  00435692 is `call 0x437130`
+PASS  00445AEC is `test byte ptr [rcx + 0x672], 1`
+PASS  00445AF6 is `je 0x445aff`
+PASS  00445AF8 is `call 0x444340`
+PASS  00445AFF is `call 0x4434d0`
+PASS  004477CD is `test byte ptr [rcx + 0x6d2], 1`
+PASS  004477D7 is `je 0x4477e0`
+PASS  004477D9 is `call 0x444340`
+PASS  004477E0 is `call 0x4434d0`
+PASS  00448797 is `test byte ptr [r13 + 0x6d2], 1`
+PASS  0044879F is `je 0x4487a8`
+PASS  004487A1 is `call 0x444340`
+PASS  004487A8 is `call 0x4434d0`
+
+== A2 executed: the walks compose the selector bytes
+PASS  A2 00449AB0, all 256 values of definition +0x590: +0x1F1 = (+0x4A >> 2 & 7) | (bit 0 OR bit 5) << 3 | bit 1 << 4 | bit 2 << 5 | bit 3 << 6 | bit 5 << 7, and +0x1F2 = +0x590 >> 6 (from a zeroed block)  | []
+NOTE  so 004355D0 takes 00438860 when +0x590 bit 5 is set, else 00437130 when bit 0 is set, else its inline path (of the 256 values: {'00437130': 64, '00438860': 128, 'inline': 64})
+PASS  A2 004453D0: definition +0x672 bit 0 = 0 draws through 004434D0, = 1 through 00444340, and the same bit lands in +0x1F1 bit 3 (other bits of that byte 0xFE)  | {0: (True, [('004434D0', 5)], None), 1: (True, [('00444340', 13)], None)}
+PASS  A2 00447020: definition +0x6D2 bit 0 = 0 draws through 004434D0, = 1 through 00444340, and the same bit lands in +0x1F1 bit 3 (other bits of that byte 0xFE)  | {0: (True, [('004434D0', 5)], None), 1: (True, [('00444340', 13)], None)}
+PASS  A2 00447ED0: definition +0x6D2 bit 0 = 0 draws through 004434D0, = 1 through 00444340, and the same bit lands in +0x1F1 bit 3 (other bits of that byte 0xFE)  | {0: (True, [('004434D0', 5)], None), 1: (True, [('00444340', 13)], None)}
+
+== A3 the pass-mode switch of each draw path (mode 0..6 and 255 x axis 0/1 -> lighting routine)
+PASS  A3 004355D0: modes 1/2/3/4 reach 395CF0|395780 / 3962F0 / 396A30|396560 / 396A30|396560 by +0x1B4 (0 and 0 -> y, else z), modes 0, 5, 6, 255 none - the same switch as 004355D0
+PASS  A3 004355D0: the planar call 00435AF1 is on the mode-2 arm only  | ['00435AF1']
+NOTE  004355D0 mode 1 arm at 00435B41 calls: 00397910 0039B960 0039B960 0039B960 00394DA0 0039AF70 00395CF0 00395780 0020E600 00396F20; matrix globals read before its lighting call: 02AEEA20 02AEEAA0
+NOTE  004355D0 mode 2 arm at 00435A94 calls: 00397910 0039B960 0039B960 0039B960 0039AF70 003962F0 0020E600 00396F20 0020E600 00394B70; matrix globals read before its lighting call: 02AEEBF0
+NOTE  004355D0 mode 3 arm at 00435A1B calls: 00397910 0039B960 0039B960 0039B960 0039AF70 00396A30 00396560 0020E600 00396F20; matrix globals read before its lighting call: 02AEEA20
+NOTE  004355D0 mode 4 arm at 00435A12 calls: 00397910 0039B960 0039B960 0039B960 0039AF70 00396A30 00396560 0020E600 00396F20; matrix globals read before its lighting call: 02AEEBF0
+PASS  A3 00437130: modes 1/2/3/4 reach 395CF0|395780 / 3962F0 / 396A30|396560 / 396A30|396560 by +0x1B4 (0 and 0 -> y, else z), modes 0, 5, 6, 255 none - the same switch as 004355D0
+PASS  A3 00437130: the planar call 004375BE is on the mode-2 arm only  | ['004375BE']
+NOTE  00437130 mode 1 arm at 0043760F calls: 00397910 0039B960 0039B960 0039B960 00394DA0 0039AF70 00395CF0 00395780 0020E600 00396F20; matrix globals read before its lighting call: 02AEEA20 02AEEAA0
+NOTE  00437130 mode 2 arm at 00437557 calls: 00397910 0039B960 0039B960 0039B960 0039AF70 003962F0 0020E600 00396F20 0020E600 00394B70; matrix globals read before its lighting call: 02AEEBF0
+NOTE  00437130 mode 3 arm at 004374C6 calls: 00397910 0039B960 0039B960 0039B960 0039AF70 00396A30 00396560 0020E600 00396F20; matrix globals read before its lighting call: 02AEEA20
+NOTE  00437130 mode 4 arm at 004374BD calls: 00397910 0039B960 0039B960 0039B960 0039AF70 00396A30 00396560 0020E600 00396F20; matrix globals read before its lighting call: 02AEEBF0
+PASS  A3 00438860: modes 1/2/3/4 reach 395CF0|395780 / 3962F0 / 396A30|396560 / 396A30|396560 by +0x1B4 (0 and 0 -> y, else z), modes 0, 5, 6, 255 none - the same switch as 004355D0
+PASS  A3 00438860: the planar call 00438D98 is on the mode-2 arm only  | ['00438D98']
+NOTE  00438860 mode 1 arm at 00438DEB calls: 00397910 0039B960 0039B960 0039B960 00394DA0 0039AF70 00395CF0 00395780 0020E600 00396F20; matrix globals read before its lighting call: 02AEEA20 02AEEAA0
+NOTE  00438860 mode 2 arm at 00438D38 calls: 00397910 0039B960 0039B960 0039B960 0039AF70 003962F0 0020E600 00396F20 0020E600 00394B70; matrix globals read before its lighting call: 02AEEBF0
+NOTE  00438860 mode 3 arm at 00438CAE calls: 00397910 0039B960 0039B960 0039B960 0039AF70 00396A30 00396560 0020E600 00396F20; matrix globals read before its lighting call: 02AEEA20
+NOTE  00438860 mode 4 arm at 00438CA5 calls: 00397910 0039B960 0039B960 0039B960 0039AF70 00396A30 00396560 0020E600 00396F20; matrix globals read before its lighting call: 02AEEBF0
+PASS  A3 004434D0: modes 1/2/3/4 reach 395CF0|395780 / 3962F0 / 396A30|396560 / 396A30|396560 by +0x1B4 (0 and 0 -> y, else z), modes 0, 5, 6, 255 none - the same switch as 004355D0
+PASS  A3 004434D0: the planar call 004439AE is on the mode-2 arm only  | ['004439AE']
+NOTE  004434D0 mode 1 arm at 00443ACE calls: 0039B960 0039B960 0039B960 00394DA0 0039AF70 00395CF0 00395780 00396FD0; matrix globals read before its lighting call: 02AEEA20 02AEEA30 02AEEA40 02AEEA50 02AEEAA0
+NOTE  004434D0 mode 2 arm at 00443976 calls: 0039AF70 003962F0 00396FD0; matrix globals read before its lighting call: 02AEEBF0
+NOTE  004434D0 mode 3 arm at 004438FF calls: 0039AF70 00396A30 00396560 00396FD0; matrix globals read before its lighting call: 02AEEA20 02AEEA30 02AEEA40 02AEEA50
+NOTE  004434D0 mode 4 arm at 0044389B calls: 0039B960 0039B960 0039B960 0039AF70 00396A30 00396560 00396FD0; matrix globals read before its lighting call: 02AEEBF0 02AEEC00 02AEEC10 02AEEC20
+PASS  A3 00444340: modes 1/2/3/4 reach 395CF0|395780 / 3962F0 / 396A30|396560 / 396A30|396560 by +0x1B4 (0 and 0 -> y, else z), modes 0, 5, 6, 255 none - the same switch as 004355D0
+PASS  A3 00444340: the planar call 00444864 is on the mode-2 arm only  | ['00444864']
+NOTE  00444340 mode 1 arm at 0044498A calls: 0039B960 0039B960 0039B960 00394DA0 0039AF70 00395CF0 00395780 00396FD0; matrix globals read before its lighting call: 02AEEA20 02AEEA30 02AEEA40 02AEEA50 02AEEAA0
+NOTE  00444340 mode 2 arm at 0044482C calls: 0039AF70 003962F0 00396FD0; matrix globals read before its lighting call: 02AEEBF0
+NOTE  00444340 mode 3 arm at 004447B0 calls: 0039AF70 00396A30 00396560 00396FD0; matrix globals read before its lighting call: 02AEEA20 02AEEA30 02AEEA40 02AEEA50
+NOTE  00444340 mode 4 arm at 0044474C calls: 0039B960 0039B960 0039B960 0039AF70 00396A30 00396560 00396FD0; matrix globals read before its lighting call: 02AEEBF0 02AEEC00 02AEEC10 02AEEC20
+
+== B the planar index k against the pass index p (inductive affine proof over each pass loop)
+PASS  004355D0: one pass-loop back edge (after a +0x1F0 read) encloses the mode read  | ['00435760']
+PASS  004355D0: header 00435760 dominates the mode read, both axis reads and the planar call
+PASS  004355D0: inductive proof reaches a fixpoint  | stable after 2 iterations, 1 back edges
+NOTE  004355D0 pass counters equal to p at the header (start 0, +1 per pass): SP0-0x1a8, SP0-0x1b8, rcx, rdi
+PASS  004355D0: mode read 004359E5 `movzx ecx, byte ptr [r15 + rdi + 0x1b0]` addresses param + p + 0x1B0  | ('PARAM', 1, 432)
+PASS  004355D0: axis read 00435A75 addresses param + p + 0x1B4  | ('PARAM', 1, 436)
+PASS  004355D0: axis read 00435BBE addresses param + p + 0x1B4  | ('PARAM', 1, 436)
+PASS  004355D0: planar call 00435AF1 passes r8 = param + 4p + 0x1D8 (k = p)  | ('PARAM', 4, 472)
+PASS  00437130: one pass-loop back edge (after a +0x1F0 read) encloses the mode read  | ['00437200']
+PASS  00437130: header 00437200 dominates the mode read, both axis reads and the planar call
+PASS  00437130: inductive proof reaches a fixpoint  | stable after 2 iterations, 1 back edges
+NOTE  00437130 pass counters equal to p at the header (start 0, +1 per pass): SP0-0x190, SP0-0x1a8, rdi, rdx
+PASS  00437130: mode read 00437486 `movzx ecx, byte ptr [rdi + r13 + 0x1b0]` addresses param + p + 0x1B0  | ('PARAM', 1, 432)
+PASS  00437130: axis read 00437527 addresses param + p + 0x1B4  | ('PARAM', 1, 436)
+PASS  00437130: axis read 00437693 addresses param + p + 0x1B4  | ('PARAM', 1, 436)
+PASS  00437130: planar call 004375BE passes r8 = param + 4p + 0x1D8 (k = p)  | ('PARAM', 4, 472)
+PASS  00438860: one pass-loop back edge (after a +0x1F0 read) encloses the mode read  | ['004389F0']
+PASS  00438860: header 004389F0 dominates the mode read, both axis reads and the planar call
+PASS  00438860: inductive proof reaches a fixpoint  | stable after 2 iterations, 1 back edges
+NOTE  00438860 pass counters equal to p at the header (start 0, +1 per pass): SP0-0x10f8, SP0-0x1118, rax, rdx
+PASS  00438860: mode read 00438C70 `movzx ecx, byte ptr [rax + rbx + 0x1b0]` addresses param + p + 0x1B0  | ('PARAM', 1, 432)
+PASS  00438860: axis read 00438D0A addresses param + p + 0x1B4  | ('PARAM', 1, 436)
+PASS  00438860: axis read 00438E70 addresses param + p + 0x1B4  | ('PARAM', 1, 436)
+PASS  00438860: planar call 00438D98 passes r8 = param + 4p + 0x1D8 (k = p)  | ('PARAM', 4, 472)
+PASS  004434D0: one pass-loop back edge (after a +0x1F0 read) encloses the mode read  | ['00443570']
+PASS  004434D0: header 00443570 dominates the mode read, both axis reads and the planar call
+PASS  004434D0: inductive proof reaches a fixpoint  | stable after 2 iterations, 1 back edges
+NOTE  004434D0 pass counters equal to p at the header (start 0, +1 per pass): SP0-0x1d0, SP0-0x1e8, r13, rbx
+PASS  004434D0: mode read 00443865 `movzx ecx, byte ptr [r14 + r13 + 0x1b0]` addresses param + p + 0x1B0  | ('PARAM', 1, 432)
+PASS  004434D0: axis read 00443942 addresses param + p + 0x1B4  | ('PARAM', 1, 436)
+PASS  004434D0: axis read 00443B59 addresses param + p + 0x1B4  | ('PARAM', 1, 436)
+PASS  004434D0: planar call 004439AE passes r8 = param + 4p + 0x1D8 (k = p)  | ('PARAM', 4, 472)
+PASS  00444340: one pass-loop back edge (after a +0x1F0 read) encloses the mode read  | ['004443F0']
+PASS  00444340: header 004443F0 dominates the mode read, both axis reads and the planar call
+PASS  00444340: inductive proof reaches a fixpoint  | stable after 2 iterations, 1 back edges
+NOTE  00444340 pass counters equal to p at the header (start 0, +1 per pass): SP0-0x1e0, SP0-0x1f8, r15, rsi
+PASS  00444340: mode read 00444711 `movzx ecx, byte ptr [rdi + r15 + 0x1b0]` addresses param + p + 0x1B0  | ('PARAM', 1, 432)
+PASS  00444340: axis read 0044480D addresses param + p + 0x1B4  | ('PARAM', 1, 436)
+PASS  00444340: axis read 00444A33 addresses param + p + 0x1B4  | ('PARAM', 1, 436)
+PASS  00444340: planar call 00444864 passes r8 = param + 4p + 0x1D8 (k = p)  | ('PARAM', 4, 472)
+
+== C1 who reaches the draw paths, who writes byte param + 0x1B0
+PASS  C1 004355D0: raw E8/E9/0F8x references are exactly 0044A15B  | E8@0044A15B
+PASS  C1 004355D0: no 8-byte VA of the entry anywhere in the file, and each of its 2 4-byte RVA occurrences is a (begin, end, unwind) RUNTIME_FUNCTION triple (.pdata or a chained-unwind copy), not a pointer  | va8 0 rva [True, True]
+PASS  C1 00437130: raw E8/E9/0F8x references are exactly 00435692  | E8@00435692
+PASS  C1 00437130: no 8-byte VA of the entry anywhere in the file, and each of its 3 4-byte RVA occurrences is a (begin, end, unwind) RUNTIME_FUNCTION triple (.pdata or a chained-unwind copy), not a pointer  | va8 0 rva [True, True, True]
+PASS  C1 00438860: raw E8/E9/0F8x references are exactly 00435681  | E8@00435681
+PASS  C1 00438860: no 8-byte VA of the entry anywhere in the file, and each of its 3 4-byte RVA occurrences is a (begin, end, unwind) RUNTIME_FUNCTION triple (.pdata or a chained-unwind copy), not a pointer  | va8 0 rva [True, True, True]
+PASS  C1 004434D0: raw E8/E9/0F8x references are exactly 00445AFF 004477E0 004487A8  | E8@00445AFF E8@004477E0 E8@004487A8
+PASS  C1 004434D0: no 8-byte VA of the entry anywhere in the file, and each of its 3 4-byte RVA occurrences is a (begin, end, unwind) RUNTIME_FUNCTION triple (.pdata or a chained-unwind copy), not a pointer  | va8 0 rva [True, True, True]
+PASS  C1 00444340: raw E8/E9/0F8x references are exactly 00445AF8 004477D9 004487A1  | E8@00445AF8 E8@004477D9 E8@004487A1
+PASS  C1 00444340: no 8-byte VA of the entry anywhere in the file, and each of its 3 4-byte RVA occurrences is a (begin, end, unwind) RUNTIME_FUNCTION triple (.pdata or a chained-unwind copy), not a pointer  | va8 0 rva [True, True, True]
+NOTE  rip-relative references to 01FD4A78: 25, in 14 functions (.pdata roots, all chained fragments decoded): 0022A0B0 003A3670 003A3A50 003ABD50 003AC110 003B4310 003B4750 004453D0 00447020 00447ED0 004490D0 00449AB0 0044BAC0 004FE420
+PASS  C1 among those functions, the byte stores at displacement 0x1B0 are the four walks' slot copies only  | 004453D0@004458FB 00447020@004475E9 00447ED0@004485BB 00449AB0@00449D08
+
+== C2 executed: the four walks fill the pass bytes from the definition's slots
+PASS  00449AB0: over 2592 runs (slot byte +0 in [0, 1, 2, 3, 4, 5] x4, texture lookup present / absent) the block holds, for the p-th kept slot j: +0x1B0+p = slot j byte +7, +0x1B4+p = byte +0xB bit 0, +0x1D8+4p = slot j's +0x90 track, +0x1F0 = kept count  | bad 0 faults 0 first None
+NOTE  00449AB0: runs with no kept slot that still called the draw (with +0x1F0 = 0): 0
+PASS  004453D0: over 2592 runs (slot byte +0 in [0, 1, 2, 3, 4, 5] x4, texture lookup present / absent) the block holds, for the p-th kept slot j: +0x1B0+p = slot j byte +7, +0x1B4+p = byte +0xB bit 0, +0x1D8+4p = slot j's +0x90 track, +0x1F0 = kept count  | bad 0 faults 0 first None
+NOTE  004453D0: runs with no kept slot that still called the draw (with +0x1F0 = 0): 0
+PASS  00447020: over 2592 runs (slot byte +0 in [0, 1, 2, 3, 4, 5] x4, texture lookup present / absent) the block holds, for the p-th kept slot j: +0x1B0+p = slot j byte +7, +0x1B4+p = byte +0xB bit 0, +0x1D8+4p = slot j's +0x90 track, +0x1F0 = kept count  | bad 0 faults 0 first None
+NOTE  00447020: runs with no kept slot that still called the draw (with +0x1F0 = 0): 626
+PASS  00447ED0: over 2592 runs (slot byte +0 in [0, 1, 2, 3, 4, 5] x4, texture lookup present / absent) the block holds, for the p-th kept slot j: +0x1B0+p = slot j byte +7, +0x1B4+p = byte +0xB bit 0, +0x1D8+4p = slot j's +0x90 track, +0x1F0 = kept count  | bad 0 faults 0 first None
+NOTE  00447ED0: runs with no kept slot that still called the draw (with +0x1F0 = 0): 626
+NOTE  stubbed callees (a disclosed return each: 004309C0 -> its own definition offset as a float, 0042FDB0 -> a marker, 00431830 -> a texture or 0, 0020E600 -> a record, every other call rax 0 / xmm0 0.5; the draw callees capture the block)
+
+== C3 executed: the element setups leave each slot's byte +0, +7 and +0xB as loaded
+PASS  C3 00538DB0 (type 0x05 setup), 48 random definitions: slot bytes +0 / +7 / +0xB at definition +0x250 + 0xF0j unchanged (0 of 576 differ), while the setup rewrote 27870 other bytes (it does run)  | changed 0 faults 0
+PASS  C3 00538C80 (type 0x04 setup), 48 random definitions: slot bytes +0 / +7 / +0xB at definition +0x350 + 0xF0j unchanged (0 of 576 differ), while the setup rewrote 27080 other bytes (it does run)  | changed 0 faults 0
+PASS  C3 00538EB0 (type 0x06/0x07 setup), 48 random definitions: slot bytes +0 / +7 / +0xB at definition +0x3B0 + 0xF0j unchanged (0 of 576 differ), while the setup rewrote 29355 other bytes (it does run)  | changed 0 faults 0
+
+== K controls on patched copies (each check must now FAIL)
+PASS  K precondition 00436C91 holds ffc1  | ffc1
+PASS  K 004355D0 `inc ecx` at 00436C91 -> `dec ecx` (k counts down while p counts up) -> the check fails  | planar call 00435AF1 passes r8 = param + 4p + 0x1D8 (k = p)
+PASS  K precondition 004387F0 holds 48ffc7  | 48ffc7
+PASS  K 00437130 `inc rdi` at 004387F0 -> `dec rdi` (the mode index stops being p) -> the check fails  | mode read 00437486 `movzx ecx, byte ptr [rdi + r13 + 0x1b0]` addresses; axis read 00437527 addresses param + p + 0x1B4; axis read 00437693 addresses param + p + 0x1B4
+PASS  K precondition 004439A6 holds 4883c076  | 4883c076
+PASS  K 004434D0 `add rax, 0x76` at 004439A6 -> `add rax, 0x77` (planar slot one dword off) -> the check fails  | planar call 004439AE passes r8 = param + 4p + 0x1D8 (k = p)
+PASS  K precondition 00435A7E holds 75  | 75
+PASS  K 004355D0 `jne` at 00435A7E -> `je` (axis sense of modes 3/4 swapped) -> the check fails  | map
+PASS  K precondition 00449D03 holds 410fb64507  | 410fb64507
+PASS  K 00449AB0 `movzx eax, byte ptr [r13 + 7]` at 00449D03 -> `[r13 + 8]` -> the check fails  | +0x1B0+p = slot j byte +7, +0x1B4+p = byte +0xB bit 0, +0x1D8+4p = slo
+PASS  K precondition 00445A54 holds 49ffc7  | 49ffc7
+PASS  K 004453D0 `inc r15` at 00445A54 -> `nop` x3 (p no longer advances) -> the check fails  | +0x1B0+p = slot j byte +7, +0x1B4+p = byte +0xB bit 0, +0x1D8+4p = slo
+PASS  K precondition 00431800 holds c687a900000000  | c687a900000000
+PASS  K 00431770 `mov byte ptr [rdi + 0xa9], 0` at 00431800 -> `[rdi + 0xa7]` (the setup now clears the mode byte when +0xAA & 0x30 is 0) -> the check fails  | slot bytes +0 / +7 / +0xB at definition +0x250 + 0xF0j unchanged (0 of
+
+FAILS 0

@@ -2,7 +2,6 @@
 contract: decide whether a party member is owed experience or licence points for a kill, and how much
 category: 13-Rewards-Progression-Economy
 scope: family
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 13-Rewards-Progression-Economy/how-experience-is-computed-and-divided.md

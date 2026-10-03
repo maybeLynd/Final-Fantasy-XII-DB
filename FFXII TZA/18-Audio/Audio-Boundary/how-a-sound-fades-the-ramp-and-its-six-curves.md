@@ -4,7 +4,6 @@ category: 18-Audio
 status: AUDITED
 owner_layer: PrimaryOwner:Audio
 evidence_tier: 1
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 verified_against:

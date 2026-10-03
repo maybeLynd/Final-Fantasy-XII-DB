@@ -2,7 +2,6 @@
 contract: Continue a combo — roll once, memoise the count, re-commit the same action until it is spent
 category: 07-Combat-Action
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: how-a-combo-continues-and-what-it-blocks.md

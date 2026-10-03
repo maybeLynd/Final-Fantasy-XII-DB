@@ -2,7 +2,6 @@
 contract: Reduce the battle runtime to a mode 0..5, and the four authorities that set it
 category: 00-Engine-Core-Runtime
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: battle-runtime-mode-ladder.md

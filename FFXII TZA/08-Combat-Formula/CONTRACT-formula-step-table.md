@@ -2,7 +2,6 @@
 contract: Dispatch an authored recipe through 202 formula-step slots that communicate only through one shared scratch record
 category: 08-Combat-Formula
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: 08-Combat-Formula/Step-Table/combat-formula-step-table.md

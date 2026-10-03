@@ -1,0 +1,28 @@
+FABLE, 2026-10-03 - D3 replacement text for SWE2-AUDIT-SEM's S-36 finding D3 ("R-4's arbiter half discharged, device-gated").
+
+Where the claim is stated, by grep at HEAD 015712a7a, re-confirmed at be84252cb ("device-gated", "discharged", "arbiter half", "00253FE3"):
+- Database/FFXII TZA/_index/L2-VERDICTS.md line 255, the S-36 row: the runtime cell (OLD 1) and the verdict cell (OLD 2).
+- Database/FFXII TZA/16-UI/CONTRACT-ui-request-router.md does NOT state it. Its only `00253FE3` is R-4's static census
+  (line 171). Section 8 says "Anything live. No refusal here has been observed in a running process." No contract edit.
+
+The bytes behind the new text (read 2026-10-03):
+- 00253D0D call 00265680; 00253D17 test eax, eax; 00253D19 je 00254166 - the arbiter leaves before its latch test when
+  00265680 returns 0.
+- 00265680: byte 02098E20 (slot 0 +0x10) bit 0 clear -> 0 (0026568B/0026568D); (byte 02098E21 & 1) | (+0x10 >> 7)
+  non-zero -> 0 (0026568F-002656A1); over the five 0x288-byte slots, any live slot whose +0x17 & 3 != 3 -> 0
+  (002656C0-002656E6); 002E0540() non-zero -> 0 (002656F2-002656F9); else 00265720() (002656FB).
+- 00253FE3 cmp dword [02092734], ebx (ebx = 1 at 00253D14); 00253FF0 je 0025404B - the latch test, reached only past
+  00253D19.
+- 0079C1F1 call qword ptr [rax + 0x48]; 0079C1F6 jne 0079C69E - the frame gate the replay stops at.
+
+The markers below are parsed by apply.py. Each block is one line, and the old text must occur exactly once on line 255.
+
+=== OLD 1 ===
+R-4's arbiter half is device-gated (the named residual discharged): the app frame's first-frame initialiser `007A05D0` (vtable `+0x48` call at `0079C1F1` byte-verified) returns `0x15` on the renderer's back-buffer resize, so `0079C140` leaves at `0079C1F6`, `0079D010` is never entered (sole caller `0079C260` verified), the per-code words stay 0, and the arbiter is never reached — past that it would also exit at `00253D19` (manager slots not ready, disclosed).
+=== NEW 1 ===
+R-4's arbiter half rests STATICALLY, on the census, and is not discharged at runtime *(FABLE, 2026-10-03, on SWE2-AUDIT-SEM's S-36 D3)*: `02092734` is read by exactly three functions (the router at `00254B71`, the arbiter `00253C70` at `00253FE3`, and the mirror `003F4E70`) and written only at `00252B46`, `00252DCB` and `00252E05`, byte-exact. This replay does not execute `00253FE3`. The app frame's first-frame initialiser `007A05D0` (vtable `+0x48` call at `0079C1F1`) returns `0x15` on the renderer's back-buffer resize, so `0079C140` leaves at `0079C1F6`, `0079D010` is never entered (sole caller `0079C260`), the per-code words stay 0, and the arbiter is never reached. Past that gate the arbiter would leave earlier still, at `00253D19`: `00265680` returns 0 unless manager slot 0 (`02098E10`) is live with `+0x10` bit 7 and `+0x11` bit 0 clear, every live slot of the five has `+0x17 & 3 == 3`, and `002E0540` returns 0. That is a loaded-field condition, not a device gate. Non-reach demonstrates no outcome (2026-09-25 ruling), so the arbiter half's live residual is `00253FE3` executed with a field loaded.
+=== OLD 2 ===
+the runtime cell's last named residual (R-4's arbiter half) is discharged — the input path is executed shipped code to the point where only the render layer's resize gates it (409 ruling), and past the gate the arbiter exits on the disclosed manager-readiness test.
+=== NEW 2 ===
+the runtime cell's last named residual (R-4's arbiter half) is not discharged at runtime and rests statically on the `02092734` census *(FABLE, 2026-10-03, on S-36 D3)*. The input path is executed shipped code up to the render layer's resize gate (409 ruling); past that gate the arbiter would leave at `00253D19` on the manager-readiness test `00265680`, which needs a loaded field.
+=== END ===

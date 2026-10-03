@@ -42,3 +42,10 @@ res["ok"] = (res["returned"] and res["zeroed_57C8_59C7"] and res["masked_59C8_5A
              and res["descriptor2_plus20"] == "57C8")
 json.dump(res, open(os.path.join(HERE, "result.json"), "w"), indent=1)
 print("ok" if res["ok"] else "NOT ok", res)
+
+
+# EXIT STATUS FOLLOWS THE RECORDED VERDICT (OPUS, 2026-10-03, the user's root-cause directive item 4): this package
+# recorded "ok" in result.json but always exited 0, so no automated re-run could see it fail.
+import json as _ej, os as _eo, sys as _es
+_es.exit(0 if _ej.load(open(_eo.path.join(_eo.path.dirname(_eo.path.abspath(__file__)), "result.json"),
+                            encoding="utf-8")).get("ok") is True else 1)

@@ -5,44 +5,6 @@
  "report": "home-contract-boot-fixups.json",
  "rows": [
   {
-   "fn": "0035D070",
-   "entered_from": "`003C6000` + 0x13",
-   "text": "loads the address `022C8060` into `rcx` and tail-jumps (site `0035D070` + 0x7) with the other incoming registers unchanged; it has no other work",
-   "anchors": [
-    [
-     "0035D077",
-     "jmp"
-    ]
-   ]
-  },
-  {
-   "fn": "004CF230",
-   "entered_from": "`004C8320` + 0x396A",
-   "text": "writes to the four floats at `rcx`, `rcx+4`, `rcx+8` and `rcx+0xC` the smaller of the matching float at `rdx` (same offsets) and the third argument `xmm2`: the first through `minss`, the other three through `comiss` branches that store the source float when `xmm2` is above it and `xmm2` otherwise (an unordered compare stores `xmm2`); it returns nothing",
-   "anchors": [
-    [
-     "004CF234",
-     "minss"
-    ],
-    [
-     "004CF238",
-     "movss"
-    ],
-    [
-     "004CF241",
-     "comiss"
-    ],
-    [
-     "004CF246",
-     "movss"
-    ],
-    [
-     "004CF24D",
-     "movss"
-    ]
-   ]
-  },
-  {
    "fn": "004E7980",
    "entered_from": "`0037E0F0` + 0x9B",
    "text": "calls `004E7980` + 0x13 with (`rcx`, the address `004E7D90`, 0), then stores 0x3000000 into dword `rcx+8` and 0x2000000 into dword `rcx+0xC` (original `rcx`) and tail-jumps (site `004E7980` + 0x2F) with `rcx+0x10` as `rcx`",
@@ -481,6 +443,54 @@
     ]
    ],
    "moved_to": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "moved_by": "FABLE",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/fable-home-host-moves-b4-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-boot-fixups-1002/REVIEW.md"
+  },
+  {
+   "fn": "0035D070",
+   "entered_from": "`003C6000` + 0x13",
+   "text": "loads the address `022C8060` into `rcx` and tail-jumps (site `0035D070` + 0x7) with the other incoming registers unchanged; it has no other work",
+   "anchors": [
+    [
+     "0035D077",
+     "jmp"
+    ]
+   ],
+   "moved_to": "00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md",
+   "moved_by": "FABLE",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/fable-home-host-moves-b4-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-boot-fixups-1002/REVIEW.md"
+  },
+  {
+   "fn": "004CF230",
+   "entered_from": "`004C8320` + 0x396A",
+   "text": "writes to the four floats at `rcx`, `rcx+4`, `rcx+8` and `rcx+0xC` the smaller of the matching float at `rdx` (same offsets) and the third argument `xmm2`: the first through `minss`, the other three through `comiss` branches that store the source float when `xmm2` is above it and `xmm2` otherwise (an unordered compare stores `xmm2`); it returns nothing",
+   "anchors": [
+    [
+     "004CF234",
+     "minss"
+    ],
+    [
+     "004CF238",
+     "movss"
+    ],
+    [
+     "004CF241",
+     "comiss"
+    ],
+    [
+     "004CF246",
+     "movss"
+    ],
+    [
+     "004CF24D",
+     "movss"
+    ]
+   ],
+   "moved_to": "17-Presentation-Rendering/Legacy-PS2-GS/the-vif1-vu1-layer.md",
    "moved_by": "FABLE",
    "moved_on": "2026-10-03",
    "moved_record": "_index/candidates/fable-home-host-moves-b4-1003",

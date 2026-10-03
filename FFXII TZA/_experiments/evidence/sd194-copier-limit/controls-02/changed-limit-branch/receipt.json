@@ -1,0 +1,20 @@
+{
+  "case": "changed-limit-branch",
+  "expected": "retained source identity changed",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sd194-copier-limit\\prove.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sd194-copier-limit\\controls-02\\changed-limit-branch\\result.json",
+    "--source",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sd194-copier-limit\\controls-02\\changed-limit-branch\\source"
+  ],
+  "driver_sha256": "e8265fe733fac1945747f8dc84379de317f3aae712453f16bcf7e4caaaed5a9c",
+  "exit": 1,
+  "terminal": true,
+  "exception": null,
+  "output_exists": false,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "1c6fdbb75df5014728d0e70c54d67d61be6d2d35276eb378fdf75309dbadc059",
+  "expected_refusal": true
+}

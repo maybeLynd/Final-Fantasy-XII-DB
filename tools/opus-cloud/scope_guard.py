@@ -36,6 +36,9 @@ for p in pages:
         reasons.append("no such page")
     for t in open_tasks:
         s = json.dumps(t, ensure_ascii=False)
+        # 2026-10-03: OPUS's own review requests (a reviewer reads rows, it does not edit the page) do not block OPUS
+        if str(t.get("requester", "")).upper() == "OPUS" and t.get("scope") == "review":
+            continue
         if stem in s and "OPUS" not in cl.owner(t).upper():
             reasons.append("board %s %s (%s)" % (t.get("id"), t.get("status"), cl.owner(t)))
     for t in open_tasks:

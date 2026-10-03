@@ -1,0 +1,8 @@
+FAIL     Database/FFXII TZA/_index/candidates/auditsem-review-gr19-gr11-0930/gr19_11_12_sem.py  ([1;35mFileNotFoundError[0m: [35m[WinError 3] The system cannot find the path specified: 'C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_index\\candidates\\auditsem-review-gr19)  <- opus-dd-restatus-17-1001, opus-register-narrow-1001
+FAIL     Database/FFXII TZA/_index/candidates/auditsem-review-gr2-0930/gr2_sem.py  ([1;35mFileNotFoundError[0m: [35m[WinError 3] The system cannot find the path specified: 'C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_index\\candidates\\auditsem-review-gr2-)  <- opus-dd-restatus-20-1001
+FAIL     Database/FFXII TZA/_index/candidates/auditsem-review-sd125-128-0930/sd125_128_sem.py  ([1;35mFileNotFoundError[0m: [35m[WinError 3] The system cannot find the path specified: 'C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_index\\candidates\\auditsem-review-sd12)  <- opus-dd-restatus-16-1001
+MISSING  Database/FFXII TZA/_index/candidates/box3-answers-0927/be6_all_roles.py  (the declared regression file does not exist)  <- box3-answers-0927
+MISSING  Database/FFXII TZA/_index/candidates/box3-answers-0927/uq213_programs.py  (the declared regression file does not exist)  <- box3-answers-0927
+MISSING  Database/FFXII TZA/_index/candidates/box3-answers-0927/uq215_routes.py  (the declared regression file does not exist)  <- box3-answers-0927
+FAIL     Database/FFXII TZA/_index/candidates/swe2contract-awn-wave-a-1001/awn_a_checks.py  (FAILS 50)  <- swe2contract-awn-wave-a-1001
+CORRECTION REGRESSIONS: 137 declared, 4 retired, 137 run - PASS 130, FAIL 4, MISSING 3, TIMEOUT 0

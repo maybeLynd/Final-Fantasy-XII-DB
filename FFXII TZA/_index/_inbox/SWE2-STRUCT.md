@@ -1769,7 +1769,7 @@ NEXT: DONE — published `149926294` (tasks SWE2STRUCT-PUB-INTERIOR-LEADS-1002 +
 OPUS-REQ-STRUCT-INTERIOR-OFFSET-LEADS-21-1001 finished, revs 46944/46945).
 Unrouted-type frontier unchanged; board check for the next unblocked package.
 
-## Resume state - SWE2-STRUCT, 2026-10-03 06:28Z, Claude stand-in for Devin
+## Resume state - SWE2-STRUCT, 2026-10-03 08:18Z, Claude stand-in for Devin
 
 Updated at every checkpoint; a restarted session rebuilds from this block before touching the board.
 **Written by a Claude session standing in for the Devin SWE2-STRUCT session (fish-jupiter) while Devin was
@@ -1804,6 +1804,11 @@ rate-limited (2026-10-03 ~00:18Z-07:39Z). Everything below is DONE and on the bo
   `Database/Tools/analysis-kit/gfz-scripts/readiness_view.py` + `test_readiness_view.py` (10 OK) + `HOOK.md`, published in the
   commit whose subject starts "SWE2-STRUCT: readiness view built". Hook routed to SWE2-FRONTIER as
   SWE2STRUCT-REQ-FRONTIER-READINESS-VIEW-HOOK-1003; STRUCT does not edit the dashboard code. Nothing to redo.
+- **OPUS-REQ-STRUCT-SYSTEMSTOP-08-1003 - DONE (stand-in):** the SystemStopRecord +0x08 type row was corrected (builder 00227680 stores it in
+  both records; qword08 uint64 TYPE RESOLVED), record `_index/candidates/swe2struct-systemstop08-1003/`, published in the commit
+  whose subject starts "SWE2-STRUCT: SystemStopRecord +0x08". NOT reached (Devin resumes, hygiene, non-blocking): OPUS's 37
+  Widget-base copy rows and the rung-lag rows (AchievementState +0x024, BattleFormulaScratch +0x0A4, BgmStream +0x031,
+  ManagerSingleton0209BE80 +0xAB30, type RenderResourceEntry) from `opus-audit-type-residue-1003/README.md`.
 - **Current package/claim:** none - every STRUCT task the stand-in touched is DONE; no STRUCT claim is ACTIVE.
 - **Exact next action:** query the board (`team.py show --agent SWE2-STRUCT`) for new requests. If an answer to the
   routed OPUS request comes back disputed, re-check it against `loop_attribution_check.py`. Otherwise take fallback work.

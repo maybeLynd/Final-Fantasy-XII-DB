@@ -2,7 +2,6 @@
 contract: One intent seam and one commit funnel, and two identical rings that carry different transactions
 category: 07-Combat-Action
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: 07-Combat-Action/Command-And-Action-Seam/native-command-seam.md

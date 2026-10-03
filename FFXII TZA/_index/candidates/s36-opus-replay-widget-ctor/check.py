@@ -178,3 +178,10 @@ rec("small-size-measurement", clean(L), L, {"memset": L["memset"], "writes_beyon
 json.dump({"pass": sum(1 for v in results.values() if v["pass"]), "total": len(results), "ok": allok, "results": results},
           open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "result.json"), "w"), indent=1)
 print("%d/%d pass" % (sum(1 for v in results.values() if v["pass"]), len(results)))
+
+
+# EXIT STATUS FOLLOWS THE RECORDED VERDICT (OPUS, 2026-10-03, the user's root-cause directive item 4): this package
+# recorded "ok" in result.json but always exited 0, so no automated re-run could see it fail.
+import json as _ej, os as _eo, sys as _es
+_es.exit(0 if _ej.load(open(_eo.path.join(_eo.path.dirname(_eo.path.abspath(__file__)), "result.json"),
+                            encoding="utf-8")).get("ok") is True else 1)

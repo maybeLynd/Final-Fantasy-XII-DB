@@ -1,0 +1,128 @@
+{
+  "producer_complete": true,
+  "method": "A original complete local selector/leaf CFG and access composition",
+  "driver_sha256": "1da38dc8831fe3193492fba54dc38e9350eb7b26bd8126ae726364ae62430663",
+  "source_pins": [
+    {
+      "path": "source-selector-01.json",
+      "sha256": "d788aa2956d6c8c47e9d630e0e9321861d61541b3c6648fdd81c16ecbbf8d9ba"
+    },
+    {
+      "path": "source-boundary-01.json",
+      "sha256": "7ff80975a29c048ec08a1915669cf1d62ffd1eb5d6878503e0330a059e0f2b25"
+    }
+  ],
+  "capture_driver_sha256": "4dde5e091a8c95718fc21f2003718552bc7c241faf7e2dcabd61205b7ae70737",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 19,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 146,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "physical_bodies": [
+    {
+      "entry": "0x31b8c0",
+      "end_exclusive": "0x31b8df",
+      "bytes": 31,
+      "sha256": "6d9d2bd026f75533782c6d7b1d3fb12c1f4eaa9305b2367f15423d95de7e3e99",
+      "physical_bytes": "4883ec28e8877ef4ff4885c075054883c428c3488bc84883c428e95185f4ff",
+      "records": [
+        {
+          "begin": "0x31b8c0",
+          "end_exclusive": "0x31b8df",
+          "chain": [
+            {
+              "record_bytes": "c0b81f00dfb81f00c82bc301",
+              "header_address": "0x1d52bc8",
+              "header_bytes": "01040100"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry": "0x263750",
+      "end_exclusive": "0x263767",
+      "bytes": 23,
+      "sha256": "ff091c1ef3b977d1b3cab6c534cbc0cc1dc4b133dea71619e029404ee8486b9e",
+      "physical_bytes": "83f903770f4863c1488d0d916ae301488b04c1c333c0c3",
+      "records": [],
+      "identity_kind": "Direct original target, declared closed leaf span; no .pdata root"
+    },
+    {
+      "entry": "0x263e30",
+      "end_exclusive": "0x263e35",
+      "bytes": 5,
+      "sha256": "efbd103662ccda4c0f468ab461257f1b371879ef59acc4189da3ceb1394859cc",
+      "physical_bytes": "488b4130c3",
+      "records": [],
+      "identity_kind": "Direct original target, declared closed leaf span; no .pdata root"
+    }
+  ],
+  "facts": {
+    "selection": "3138D0 mode-query result1 -> ECX=1+2 ->31B8C0(3). This is roster slot index3, not ActorStorage class3.",
+    "function": "Unsigned32 index>3 returnsNULL without table read. Accepted0..3 readsQWORD0209A1F0+8*index.31B8C0 returnsNULL if that actor pointer isNULL; otherwise returnsQWORDactor+30 through closed tail263E30.",
+    "dismiss": "Under the actual slot3 caller: readsQWORD0209A208; if nonNULL, readsQWORDactor+30. No local health/status read, object write, allocation or opaque callback in this complete composed selector.",
+    "stack": "Selector subtracts40bytes/restores40 before both ownRET and tail; leaf spans leaveRSP unchanged except ordinaryRET. Implicit CALL/RET private stack accesses remain validity/ABI premises.",
+    "transfers": [
+      {
+        "pc": "0x31b8c4",
+        "mnemonic": "call",
+        "args": "0x263750"
+      },
+      {
+        "pc": "0x31b8cc",
+        "mnemonic": "jne",
+        "args": "0x31b8d3"
+      },
+      {
+        "pc": "0x31b8da",
+        "mnemonic": "jmp",
+        "args": "0x263e30"
+      },
+      {
+        "pc": "0x263753",
+        "mnemonic": "ja",
+        "args": "0x263764"
+      }
+    ],
+    "interpretation": "A status/KO filter or cleanup is not implemented by this selector. It cannot itself clear the mode/member or make a KO unit disappear; prior/later roster writers and command processing remain separate.",
+    "limits": "Intactcode/readabletable/nonNULLactor+30/private valid return-stack/normal ABI/noninterference. No naturally populated roster, unitKO/aliveness/status persistence, pointer lifetime, mode preservation through the later command helper, scheduling or fullUQ147 reachability."
+  },
+  "controls": [
+    {
+      "id": "roster-base-field-changed",
+      "diagnostic": "roster base identity changed",
+      "method": "Synthetic source-record control, not machine-code execution"
+    },
+    {
+      "id": "actor-unit-offset-changed",
+      "diagnostic": "actor unit-pointer identity changed",
+      "method": "Synthetic source-record control, not machine-code execution"
+    },
+    {
+      "id": "selector-tail-changed",
+      "diagnostic": "selector instruction/transfer changed 0x31b8da",
+      "method": "Synthetic source-record control, not machine-code execution"
+    },
+    {
+      "id": "failed-upstream-status",
+      "diagnostic": "actual upstream capture incomplete/failed",
+      "method": "In-process status-guard control; not actual CLI refusal"
+    }
+  ],
+  "acceptance": "Producer-valid only. Independent review/canonical consumption pending; fullUQ147 and formerly-runtime residue remain open."
+}

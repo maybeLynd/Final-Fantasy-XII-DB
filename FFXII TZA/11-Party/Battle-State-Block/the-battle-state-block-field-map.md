@@ -4,7 +4,6 @@ category: 11-Party
 status: AUDITED
 owner_layer: PrimaryOwner:Party (the configuration, slot map and leader) — the mode words are CoreRuntime, the result echoes CombatFormula, the gambit banks CombatAI, the inventory snapshot Items
 evidence_tier: 1
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 verified_against:

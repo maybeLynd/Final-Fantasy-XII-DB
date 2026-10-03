@@ -149,6 +149,20 @@ MET_MD = OUT_DIR / "metrics.md"
 HIST = OUT_DIR / "history.jsonl"
 PROGRESS = DB / "PROGRESS.md"
 DIRTY = OUT_DIR / ".dirty"
+# ONE BOARD SNAPSHOT PER BUILD (OPUS, 2026-10-03). The board is rewritten every few seconds while the fleet works; the
+# build read it three times (parse_board, the batch-K carrier owners, transfer_audit) and compared a fingerprint that
+# included its revision before and after a ~15 s build, so with the fleet active every generation aborted INCOMPLETE
+# (measured: 3 of 3 attempts at 08:45Z, the only input moving in 15 s was TEAM.json) and the published PROGRESS.md
+# froze at its last success. build() now copies the board once; every reader and the fingerprint use that copy, the
+# generation store binds those exact bytes (volatile), and the coherence check therefore compares only inputs that are
+# not the board. `check` (no snapshot set) still fingerprints the live board, so a moved board still reads STALE live.
+_BOARD_SNAPSHOT = None
+BOARD_SNAP = WORK / "progress-board-snapshot.json"
+
+
+def board_file(db):
+    return _BOARD_SNAPSHOT if _BOARD_SNAPSHOT is not None else db / "_index/_inbox/TEAM.json"
+
 CONFIG = OUT_DIR / "progress.config.json"
 
 
@@ -293,8 +307,20 @@ VERDICT_WORD = re.compile(
     r"PENDING|BLOCKED)\b")
 
 
+CELL_STRUCK = re.compile(r"^\s*(?:\*\*)?~~.*?~~(?:\*\*)?\s*", re.S)
+
+
 def _cell_verdict(cell):
-    m = VERDICT_WORD.match(cell.strip())
+    """The cell's CURRENT verdict word. Leading struck text is history and is skipped (OPUS, 2026-10-03): the
+    correction policy strikes the old verdict and writes the new one after it (`~~MET~~ **SCOPE-SHORT - ...**`), and
+    VERDICT_WORD's leading `[~]*` used to match the struck word, so a corrected cell read as its superseded verdict."""
+    c = cell.strip()
+    while True:
+        n = CELL_STRUCK.sub("", c, count=1)
+        if n == c:
+            break
+        c = n
+    m = VERDICT_WORD.match(c)
     return m.group(1) if m else "UNSCORED"
 
 
@@ -485,8 +511,7 @@ def _transfer_rows(db):
         return rows
     carrier_owner = {}
     try:
-        b = json.loads((db / "_index/_inbox/TEAM.json")
-                       .read_text(encoding="utf-8"))
+        b = json.loads(board_file(db).read_text(encoding="utf-8"))
         for t in b.get("tasks", []):
             carrier_owner[t.get("id")] = (
                 t.get("assigned_to") or t.get("agent") or "UNASSIGNED")
@@ -564,7 +589,7 @@ def parse_transfers(db):
                                  / "gfz-scripts"))
         import transfer_audit
         problems, checked = transfer_audit.audit(str(db),
-                                                 str(db / "_index/_inbox/TEAM.json"))
+                                                 str(board_file(db)))
         return {"engine": "transfer_audit.audit", "obligations": len(checked),
                 "untracked": len(problems), "problems": problems[:20],
                 "checked_ids": list(checked), "rows": _transfer_rows(db)}
@@ -888,7 +913,8 @@ def fingerprint(db):
     h.update((_sha(HERE / "progress_report.py") or "-").encode())
     for rel in INPUTS:
         h.update(rel.encode())
-        h.update((_sha(db / rel) or "MISSING").encode())
+        src = board_file(db) if rel == "_index/_inbox/TEAM.json" else db / rel
+        h.update((_sha(src) or "MISSING").encode())
     h.update(b"docs:")
     h.update(_doc_signature(db).encode())
     for name in ("check_questions.py", "transfer_audit.py", "generation.py"):
@@ -903,8 +929,7 @@ def fingerprint(db):
             h.update(f.name.encode())
             h.update((_sha(f) or "MISSING").encode())
     try:
-        j = json.loads((db / "_index/_inbox/TEAM.json")
-                       .read_text(encoding="utf-8"))
+        j = json.loads(board_file(db).read_text(encoding="utf-8"))
         h.update(str(j.get("revision")).encode())
         h.update(str(j.get("epoch", j.get("recovery_epoch"))).encode())
     except Exception:
@@ -1064,6 +1089,16 @@ def build(db):
                  if missing else []) +
                 (["required input(s) invalid: " + ", ".join(invalid)]
                  if invalid else [])))
+    global _BOARD_SNAPSHOT
+    _BOARD_SNAPSHOT = None
+    # one file per process: the controller's `auto` and a manual `generate` can build at the same moment, and a shared
+    # snapshot name made one of them fail on Windows' replace lock (seen 2026-10-03)
+    snap_path = BOARD_SNAP.with_name("%s-%d.json" % (BOARD_SNAP.stem, os.getpid()))
+    snap_path.parent.mkdir(parents=True, exist_ok=True)
+    _atomic_write_bytes(snap_path, (db / "_index/_inbox/TEAM.json").read_bytes())
+    import atexit
+    atexit.register(lambda p=snap_path: p.exists() and p.unlink())
+    _BOARD_SNAPSHOT = snap_path
     fp0 = fingerprint(db)
 
     classify, engine = _classifier()
@@ -1081,7 +1116,7 @@ def build(db):
                                if v[d] == "LIVE" and not dim_satisfied(v, d))
                         for d in dims}
     l2_counts = Counter(v["l2"] for v in verdicts)
-    board = parse_board(db / "_index/_inbox/TEAM.json")
+    board = parse_board(board_file(db))
     transfers = parse_transfers(db)
     page_boxes = parse_page_boxes(db)
     contra = parse_contradictions(db / "_index/CONTRADICTIONS.tsv")
@@ -1381,6 +1416,7 @@ def _gen_inputs(db):
         ins["in:%s" % rel] = {"path": str(db / rel),
                               "required": rel in REQUIRED_INPUTS}
     ins["in:_index/_inbox/TEAM.json"]["volatile"] = True
+    ins["in:_index/_inbox/TEAM.json"]["path"] = str(board_file(db))
     gfz = ROOT / "Database" / "Tools" / "analysis-kit" / "gfz-scripts"
     for name in ("check_questions.py", "transfer_audit.py", "generation.py"):
         ins["instrument:%s" % name] = {"path": str(gfz / name),
@@ -1407,6 +1443,95 @@ def _prune_generations(store, keep=8):
                               ignore_errors=True)
     except OSError:
         pass
+
+
+BINDING = OUT_DIR / "GENERATION-BINDING.json"
+
+
+def _write_binding(man, dest):
+    """Bind the committed copies to the committed bytes they were computed from (derived_binding.py, OPUS 2026-10-03).
+    The 2026-10-03 defect: PROGRESS.md was committed as `CURRENT` 52/52, L2-VERDICTS.md then moved to 48 MET in its own
+    commit, and every later commit carried the old CURRENT. With this binding, publish_paths.sh's derived gate
+    regenerates and includes these outputs in any commit that moves a bound input, or commits them labelled STALE -
+    never CURRENT over moved inputs. The board (volatile) and the document-tree preimage are recorded as-of, not bound:
+    the live `check` mode keeps the full fingerprint for the worktree."""
+    try:
+        import derived_binding as DB_
+    except Exception as e:
+        raise ProgressError("derived_binding unavailable: %s" % e)
+    rel = lambda p: os.path.relpath(str(p), str(ROOT)).replace(os.sep, "/")
+    # The binding sits beside the outputs it describes. Outputs outside the repository (the test suite renders into a
+    # temp dir) are not a committed surface and get no binding - writing the live one from a test run pointed the
+    # repository's binding at deleted temp files (found by the dry gate run, 2026-10-03).
+    bdir = Path(str(dest["snapshot.json"])).parent
+    if any(rel(p).startswith("..") for p in dest.values()):
+        return
+    outs = {rel(p): str(p) for p in dest.values()}
+    fresh = r"\*\*freshness:\*\*"
+    labels = [{"path": rel(dest[n]), "kind": "text", "line_regex": fresh, "find": "`CURRENT`",
+               "replace": "`STALE` (bound inputs moved since generation {generation}: {moved}; regenerate with "
+                          "progress_report.py generate)"}
+              for n in ("PROGRESS.md", "snapshot.md", "crosswalk.md", "metrics.md")]
+    labels.append({"path": rel(dest["snapshot.json"]), "kind": "json", "key": ["freshness", "state"],
+                   "value": "STALE"})
+    DB_.write_binding(str(bdir / BINDING.name), str(ROOT), "progress", man, outs,
+                      ["python", "-B", rel(HERE / "progress_report.py"), "generate"], labels,
+                      as_of_names={"preimage:doc-signature.txt"})
+
+
+BUILD_LOCK = WORK / "progress-build.lock"
+
+
+def _pid_alive(pid):
+    try:
+        if os.name == "nt":
+            import ctypes
+            h = ctypes.windll.kernel32.OpenProcess(0x1000, False, int(pid))   # PROCESS_QUERY_LIMITED_INFORMATION
+            if not h:
+                return False
+            code = ctypes.c_ulong()
+            ctypes.windll.kernel32.GetExitCodeProcess(h, ctypes.byref(code))
+            ctypes.windll.kernel32.CloseHandle(h)
+            return code.value == 259                                         # STILL_ACTIVE
+        os.kill(int(pid), 0)
+        return True
+    except Exception:
+        return False
+
+
+def _build_lock(wait_s=300):
+    """One build at a time (OPUS, 2026-10-03). The store commit is atomic, but the copy-out to the live files is not:
+    two concurrent builds (the controller's `auto` and a publish-time `generate`) made one fail mid-copy with
+    'publication copy failed - the live set may be mixed'. A holder that died, or held longer than 15 minutes, is
+    reaped and reported, never obeyed forever. Released at process exit."""
+    import atexit
+    import time
+    BUILD_LOCK.parent.mkdir(parents=True, exist_ok=True)
+    t0 = time.time()
+    while True:
+        try:
+            fd = os.open(str(BUILD_LOCK), os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+            os.write(fd, ("%d %f\n" % (os.getpid(), time.time())).encode())
+            os.close(fd)
+            atexit.register(lambda: BUILD_LOCK.exists() and BUILD_LOCK.read_text().split()[:1] == [str(os.getpid())]
+                            and BUILD_LOCK.unlink())
+            return
+        except FileExistsError:
+            try:
+                pid, since = BUILD_LOCK.read_text().split()[:2]
+            except Exception:
+                pid, since = "0", "0"
+            if not _pid_alive(pid) or time.time() - float(since) > 900:
+                print("progress_report: reaping a stale build lock (pid %s)" % pid, file=sys.stderr)
+                try:
+                    BUILD_LOCK.unlink()
+                except OSError:
+                    pass
+                continue
+            if time.time() - t0 > wait_s:
+                raise SystemExit("progress_report: another build (pid %s) holds %s for over %ds" % (pid, BUILD_LOCK,
+                                                                                                   wait_s))
+            time.sleep(1)
 
 
 def write_all(snap, counters, db):
@@ -1502,6 +1627,7 @@ def write_all(snap, counters, db):
     if problems:
         raise ProgressError("output set incomplete after commit: "
                             + "; ".join(problems))
+    _write_binding(man, dest)
     history_append(counters, snap["freshness"]["fingerprint"])
     _prune_generations(store)
     gen = snap["generated_at_utc"]
@@ -2261,6 +2387,8 @@ def main():
                  l2["verdict_column"].get("MET", 0), l2["systems_scored"],
                  len(snap["packages"]), snap["freshness"]["fingerprint"][:12]))
         return
+    if a.mode in ("auto", "generate"):
+        _build_lock()
     if a.mode == "auto":
         sys.exit(auto(db))
     # generate

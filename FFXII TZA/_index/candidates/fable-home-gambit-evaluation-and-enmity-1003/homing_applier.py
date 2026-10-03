@@ -74,7 +74,11 @@ if not fails:
     s = body.encode("utf-8")
     if crlf:
         s = s.replace(b"\n", b"\r\n")
-    if HEAD.splitlines()[0].encode("utf-8") in b:
+    if not ROWS:
+        # 2026-10-03 (FABLE, on SWE2-AUDIT-SPEC batch 5): a package whose rows were all held or rejected must not
+        # append an empty section (this package did, at 60f3e63b3; removed by fable-empty-homed-section-1003).
+        print("NOTHING TO HOME (0 rows) - page untouched")
+    elif HEAD.splitlines()[0].encode("utf-8") in b:
         print("ALREADY")
     elif "--apply" not in sys.argv:
         print("DRY (verified; --apply writes)")

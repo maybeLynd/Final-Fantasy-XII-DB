@@ -58,6 +58,16 @@
   "expect_yaw": "0xd6217d13",
   "faults": []
  },
+ "i5": {
+  "C": true,
+  "P": true,
+  "S": true
+ },
+ "i5_control": {
+  "C": false,
+  "P": false,
+  "S": false
+ },
  "ok": true,
  "results": {
   "gfxmt-draw": {

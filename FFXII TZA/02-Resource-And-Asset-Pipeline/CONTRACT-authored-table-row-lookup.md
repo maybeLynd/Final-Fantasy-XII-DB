@@ -2,7 +2,6 @@
 contract: address a row in an authored data table through its registry header
 category: 02-Resource-And-Asset-Pipeline
 scope: family
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 02-Resource-And-Asset-Pipeline/authored-data-table-registry.md

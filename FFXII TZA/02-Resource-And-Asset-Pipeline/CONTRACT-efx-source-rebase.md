@@ -2,7 +2,6 @@
 contract: republish an EFX source base and repair its selected lookup and instance references
 category: 02-Resource-And-Asset-Pipeline
 scope: family
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md

@@ -372,6 +372,9 @@ def src_lines_stream(path):
     return (io.StringIO("\n".join(lines or [])) if lines is not None else None, origin)
 
 
+WIN_DEVICES = {"CON", "PRN", "AUX", "NUL"} | {"COM%d" % i for i in range(1, 10)} | {"LPT%d" % i for i in range(1, 10)}
+
+
 def tree_files(subdir_abs, suffix=None):
     """Committed files under a tree (pinned) or worktree files (unpinned). Reapository-root
     relative, forward slashes, sorted."""
@@ -385,6 +388,11 @@ def tree_files(subdir_abs, suffix=None):
         files = []
         for root, dirs, names in os.walk(subdir_abs):
             for fn in names:
+                # A file named like a Windows device (NUL, CON, AUX, PRN, COM1-9, LPT1-9) - left by a `> NUL` redirect in
+                # a POSIX shell - resolves to the device, not the file, and made every unpinned build fail
+                # ("path is on mount '\\.\NUL'", 2026-10-03). It is never a source; skip it.
+                if fn.split(".")[0].upper() in WIN_DEVICES:
+                    continue
                 files.append(_git_rel(os.path.join(root, fn)))
     return sorted(f for f in files if suffix is None or f.endswith(suffix))
 
@@ -858,10 +866,10 @@ QUERIES = {
          WHERE c.path LIKE :arg || '%' AND c.resolved_entry IS NOT NULL
          ORDER BY f.body_bytes DESC"""),
     "contracts": (True, """
-        SELECT path, system, scope, readiness, level, confidence FROM documents
+        SELECT path, system, scope, readiness, confidence FROM documents
          WHERE is_contract = 1 AND is_template = 0 ORDER BY path"""),
     "reconstruction-ready": (True, """
-        SELECT path, system, readiness, level FROM documents
+        SELECT path, system, scope, readiness FROM documents
          WHERE is_template = 0
            AND readiness IN ('RECONSTRUCTION READY','IMPLEMENTED','DIFFERENTIAL TESTED')
          ORDER BY path"""),
@@ -881,9 +889,11 @@ QUERIES = {
          ORDER BY d.runtime_markers DESC, d.path"""),
     "questions-by-state": (True, """
         SELECT state, COUNT(*) FROM questions GROUP BY state ORDER BY COUNT(*) DESC"""),
+    # Contracts no longer carry `level:` (FABLE ruling 2026-10-03: maturity is measured, never declared in
+    # front matter; grain is `scope:`). This census covers the non-contract pages that still state one.
     "level-census": (True, """
         SELECT COALESCE(level,'(unstated)') AS lvl, COUNT(*) FROM documents
-         WHERE is_template = 0 GROUP BY lvl ORDER BY COUNT(*) DESC"""),
+         WHERE is_template = 0 AND is_contract = 0 GROUP BY lvl ORDER BY COUNT(*) DESC"""),
     "readiness-census": (True, """
         SELECT COALESCE(readiness,'(unstated)') AS r, COUNT(*) FROM documents
          WHERE is_template = 0 GROUP BY r ORDER BY COUNT(*) DESC"""),

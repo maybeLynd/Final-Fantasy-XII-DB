@@ -1,0 +1,42 @@
+system	package	site	pattern	case
+S-01	EXP-041-config-pointer-closure	runtime-probe-after.py	PRINT_ONLY	observed
+S-01	EXP-041-config-pointer-closure	runtime-probe-before.py	PRINT_ONLY	observed
+S-35	-	-	NO_PACKAGE_NAMED	runtime cell names no package directory
+S-44	EXP-041-config-pointer-closure	runtime-probe-after.py	PRINT_ONLY	observed
+S-44	EXP-041-config-pointer-closure	runtime-probe-before.py	PRINT_ONLY	observed
+S-17	receipts	render_link_receipts.py	PRINT_ONLY	diagnostic_observed
+S-17	receipts	clear-callee-footprints__rv_clear.py:255	SELF_COMPARE	if m == "or" and isinstance(b, int) and b & MASK[w] == MASK[w]:
+S-17	receipts	control.py	PRINT_ONLY	diagnostic_observed
+S-03	s03-opus-replay-mode-setters	check.py:125	NO_COMPARE	S_capture_layout_5AE0_at_rec8_5AD0_at_rec18_flags_at_rec28
+S-07	receipts	render_link_receipts.py	PRINT_ONLY	diagnostic_observed
+S-07	receipts	clear-callee-footprints__rv_clear.py:255	SELF_COMPARE	if m == "or" and isinstance(b, int) and b & MASK[w] == MASK[w]:
+S-07	receipts	control.py	PRINT_ONLY	diagnostic_observed
+S-34	s34-opus-replay-six-entries	check.py	PRINT_ONLY	schedule_negative_index_observed
+S-34	s34-opus-replay-six-entries	check.py	PRINT_ONLY	observed
+S-41	s41-opus-replay-sound-request-stub-free	check.py:105	NO_COMPARE	no_fence_no_fault_in_any_run
+S-09	receipts	render_link_receipts.py	PRINT_ONLY	diagnostic_observed
+S-09	receipts	clear-callee-footprints__rv_clear.py:255	SELF_COMPARE	if m == "or" and isinstance(b, int) and b & MASK[w] == MASK[w]:
+S-09	receipts	control.py	PRINT_ONLY	diagnostic_observed
+S-22	s22-opus-replay-recipe-resolver	check.py:242	LITERAL_PASS	record("loop_early_exit_observed", True, cases_with_flag_set={str(k): {"called": v["slots_called"], "flags": v["flag_after_each"],
+S-22	s22-opus-replay-recipe-resolver	check.py	PRINT_ONLY	loop_early_exit_observed
+S-22	s22-opus-replay-steps-and-element-scaling	check.py	PRINT_ONLY	finalize_arms_observed
+S-27	s27-opus-replay-periodic-builder	poison.py	PRINT_ONLY	observed
+S-29	s29-opus-replay-inventory-storage	check.py:97	NO_COMPARE	P3_image_pointers_null_for_all_15_classes
+S-32	s32-opus-replay-defeat-rewards	world.py	SINGLE_THREAD	cell cites thread/handshake; one emulator
+S-32	s32-opus-replay-gil-storage	check.py	PRINT_ONLY	meter_counters_observed
+S-32	s32-opus-replay-gil-storage	world.py	SINGLE_THREAD	cell cites thread/handshake; one emulator
+S-32	s32-opus-replay-level-advance	world.py	SINGLE_THREAD	cell cites thread/handshake; one emulator
+S-32	s32-opus-replay-loot-rolls	world.py	SINGLE_THREAD	cell cites thread/handshake; one emulator
+S-38	s38-opus-replay-render-object	check.py:107	SELF_COMPARE	"bank_A_untouched": a == b"\x11" * 0xC0, "bank_B_untouched": b == b"\x11" * 0xC0,
+S-38	s38-opus-replay-render-object	r4.py:123	NO_COMPARE	C_census_17_reads_16_functions_2_writes
+S-06	s06-opus-replay-console-arms	check.py:216	SELF_COMPARE	if f == f and 0 < abs(f) <= 10.0 and (v & 0xFFFFFFFF) > 0x00800000:
+S-06	s06-opus-replay-console-arms	check.py:248	LITERAL_PASS	record("postcondition_observed", True, completed_non_noop=len(done), writes_only_settings_object=len(only_set),
+S-06	s06-opus-replay-console-arms	check.py:263	LITERAL_PASS	record("I4_float_steps_observed", True, float_writes_by_value=sorted(steps.items(), key=lambda kv: -kv[1])[:20],
+S-06	s06-opus-replay-console-arms	check.py	PRINT_ONLY	postcondition_observed
+S-06	s06-opus-replay-console-arms	check.py	PRINT_ONLY	I4_float_steps_observed
+S-06	s06-opus-replay-dispatcher	check.py:250	SELF_COMPARE	if "delta" in w and w["delta"] == w["delta"] and abs(w["delta"]) < 1e6 and w["delta"] != 0:
+S-37	s27-opus-replay-periodic-builder	poison.py	PRINT_ONLY	observed
+S-37	s37-opus-replay-text-interpreter	check.py	PRINT_ONLY	C_lead_tokens_observed
+S-37	s37-opus-replay-text-interpreter	i5_i9_i13.py:212	NO_COMPARE	I11_thunks_shift_into_slot35_differ_only_in_third
+S-47	s47-opus-crt-memcpy-overlap	overlap_complete.py	PRINT_ONLY	overlap_copy_boundary_observed_once
+S-52	continuation-section02-resource-queue	run_review.py	PRINT_ONLY	constructor_clobber_unobserved

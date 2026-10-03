@@ -2,7 +2,6 @@
 contract: dispatch a developer console command id to one of 282 arms, keep three per-id tables aligned on one id space, and let an arm nudge the render-settings block the frame is about to read - while the same menu draws rows the dispatcher cannot reach
 category: 00-Engine-Core-Runtime
 scope: subsystem
-level: L2
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 00-Engine-Core-Runtime/Developer-Tuning-Console/the-282-command-parameter-console.md, 00-Engine-Core-Runtime/Developer-Tuning-Console/console-command-names.md, 00-Engine-Core-Runtime/Developer-Tuning-Console/the-second-console-table.md, 00-Engine-Core-Runtime/Developer-Tuning-Console/what-the-console-tunes.md

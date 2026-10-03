@@ -2,7 +2,6 @@
 contract: Turn a small sound number into a playing voice
 category: 18-Audio
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: how-a-sound-request-becomes-a-voice.md

@@ -670,11 +670,3 @@ plus one publish. Edge count from `edges.tsv`. Read from the shipping bytes 2026
 | function | size | what the body does | interior anchors |
 |---|---|---|---|
 | `00352560` | 31 B | passes `r9` (the fourth argument) to the call at `00352560`+0x7, passes its `eax` result to the call at `00352560`+0xE, and tail-jumps `0026C3B0` with that call's returned pointer in `rcx` | `00352564`, `00352567`, `0035256E`, `00352573`, `0035257A` |
-
-## Homed frontier bodies called from this page's functions (FABLE, 2026-10-02, cloud-drafted)
-
-*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../_index/candidates/fable-home-active-party-reserve-and-the-moment-the-1002/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
-
-| function | size | entered from | what the body does | interior anchors |
-|---|---|---|---|---|
-| `0036F510` | 18 B | `0022A770` + 0x12F | calls the site `0036F510` + 0x4 with the incoming registers, then tail-jumps at `0036F510` + 0xD with no argument set up between the two, returning what that target returns | Interior anchor `0036F514`; Interior anchor `0036F51D` |

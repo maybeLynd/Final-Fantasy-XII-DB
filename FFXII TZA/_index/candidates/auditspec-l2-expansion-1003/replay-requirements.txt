@@ -1,0 +1,7 @@
+# Replay-harness dependency pin (SWE2-AUDIT-SPEC, 2026-10-03, OPUS-REQ-AUDITSPEC-L2-EXPANSION-1003 item 5).
+# The L2 runtime cells' NATIVE-REPLAY packages under _index/candidates/ and _experiments/ were recorded under
+# unicorn 2.1.4 (C:\Python314). The lane venv Collaboration/Tools/analysis/venv carries 2.1.0, under which the shared
+# replay world.py crashes at uc.ctl_flush_tb() (S-02, S-08, S-13, S-22, S-23 packages; 59 .py files call it).
+# Reproduce with:  <python> -m pip install -r replay-requirements.txt   then  <python> check_unicorn.py
+unicorn==2.1.4
+capstone>=5.0

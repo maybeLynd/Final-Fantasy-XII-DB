@@ -2,7 +2,6 @@
 contract: The widget object — allocate, construct, message, destroy
 category: 16-UI
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: HIGH
 implements: the-widget-constructor-and-object-sizes.md, the-widget-message-protocol.md

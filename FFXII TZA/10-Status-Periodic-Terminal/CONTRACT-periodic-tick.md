@@ -2,7 +2,6 @@
 contract: Run one periodic maintenance pass over a battle unit — gates, five stages, one result
 category: 10-Status-Periodic-Terminal
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: Periodic-Tick/what-the-periodic-tick-does.md, where-mp-comes-from.md

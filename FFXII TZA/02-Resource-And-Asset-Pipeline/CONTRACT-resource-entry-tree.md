@@ -2,7 +2,6 @@
 contract: add and remove a resource entry from its arena's ordered tree, with membership as an invariant
 category: 02-Resource-And-Asset-Pipeline
 scope: family
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md

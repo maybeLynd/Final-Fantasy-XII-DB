@@ -1,9 +1,9 @@
-<!-- TEAM-CURRENT:begin agent=SWE2-CONTRACT board_rev=49531 epoch=4 queue_sha=b7fef448aa6d1704 -->
-> generated 2026-10-03T06:29:00+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=SWE2-CONTRACT board_rev=50108 epoch=4 queue_sha=65e06285f57c2436 -->
+> generated 2026-10-03T08:52:07+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: SWE2CONTRACT-DESIGN-RECON-DEPGRAPH-1003, SWE2CONTRACT-PUB-RECON-DEPGRAPH-GEN-1003
-> READY addressed to you: P2 OPUS-REQ-CONTRACT-L1-PROPOSED-EDITS-1003
-> READY pool: 1 | BLOCKED: 0
+> ACTIVE: SWE2CONTRACT-PUB-LEVEL-READERS-CORR-1003
+> READY addressed to you: none
+> READY pool: 0 | BLOCKED: 0
 <!-- TEAM-CURRENT:end -->
 
 > ## TEAM ROLLBACK RECOVERED (SWE2-FRONTIER, 2026-09-26 02:30Z)
@@ -82,11 +82,52 @@ Updated at every checkpoint; a restarted session rebuilds from this block before
 Required by the continuity rule in the root `CLAUDE.md` ("What a plain `Continue` means").
 
 - **Identity:** SWE2-CONTRACT (fixed; not renamed).
-- **Claude stand-in for Devin, 2026-10-03 01:43Z-06:30Z** (right-ocean rate-limited until ~07:39Z; a Claude Opus
+- **Claude stand-in for Devin, 2026-10-03 01:43Z-08:50Z** (right-ocean rate-limited until ~07:39Z; a Claude Opus
   subagent ran this lane under board identity SWE2-CONTRACT, session `claude-standin-contract`). Devin: rebuild from
   this bullet; do not redo what it lists.
-  - **Current package/claim:** none. The lane is parked; DD-RESIDUE and the design task SWE2CONTRACT-DESIGN-RECON-DEPGRAPH-1003
-    (user task relayed by FABLE 2026-10-03 ~04:50Z) are both finished on their shas.
+  - **Current package/claim:** none. The lane is parked. DD-RESIDUE, the design task SWE2CONTRACT-DESIGN-RECON-DEPGRAPH-1003,
+    the S-36 regression repair (`18ebb00d9`), OPUS-REQ-CONTRACT-L1-PROPOSED-EDITS-1003 (`2a4a3a3d5`) and the `level:`
+    retirement are all finished on their shas.
+  - **Stand-in, 2026-10-03 07:50Z, FABLE's ruling on `level:` applied (board note rev 49820).** The contract
+    front-matter key `level:` is retired from `_templates/CONTRACT.md` and all 107 contracts (maturity is measured,
+    never declared; grain is `scope:`). `knowledge_db.py`'s named queries were repointed first (`contracts`,
+    `reconstruction-ready` use `scope`; `level-census` counts non-contract pages only), and test_knowledge_db ran
+    10/10 before and after. The field-music parity target moved to its §16. Record
+    `_index/candidates/swe2contract-level-key-retire-1003/` (check.py FAILS 0, with a sensitivity case). Sha: the board
+    finish of `SWE2CONTRACT-PUB-LEVEL-KEY-RETIRE-1003`. 46 non-contract pages still state `level:`; that is outside
+    the ruling and reported to FABLE. **Do not re-add `level:` to a contract.**
+  - **Stand-in, 2026-10-03 08:20Z, the same ruling on the non-contract pages (FABLE, coordinator relay).** `level:`
+    removed from all 47 non-contract pages that still declared it (41 L1, 6 L2, all bare grades, so no intent moved
+    to prose; the world-tick page's peer hunk was spliced). Record `_index/candidates/swe2contract-level-key-retire-pages-1003/`
+    names all 47 (check.py: no page declares `level:`). The same publish appends the one-line correction to the
+    contract-retirement README's "spliced" slip, under an audited correction-gate override because that record's
+    affected: lines re-arm. Sha: the board finish of `SWE2CONTRACT-PUB-LEVEL-KEY-PAGES-1003`. **No page declares
+    `level:` any more; do not re-add it.** Published `41b782ffe`.
+  - **Stand-in, 2026-10-03 08:45Z, reader-census correction (SWE2-AUDIT-SPEC finding).** The retirement's reader
+    search had been kit-only. A whole-repo search found OPUS's two audit census scripts reading the retired key; they
+    now report silent zeros (exit 0) and reproduce only at `c49f03691`. OPUS's files are not edited; request
+    `SWE2CONTRACT-REQ-OPUS-LEVEL-READER-CENSUS-PIN-1003` (rev 50022) asks for a pin or a loud failure. A dated
+    correction section on the retirement record, and a splice correction on the page record (the spliced pages were
+    three others, not the world-tick page). Sha: the board finish of `SWE2CONTRACT-PUB-LEVEL-READERS-CORR-1003`.
+  - **Stand-in, 2026-10-03 06:35Z-07:45Z, S-36 regression repair (the lane's own; coordinator priority).** SWE2-CONTRACT's
+    2026-09-26 batch `95b1f3a4c` had overwritten FABLE's R-5 drain-guard correction `fa2f75e21` and its world-tick prose
+    `30b2fd926` from a stale preimage (SWE2-AUDIT-SEM, S-36 D1). Both are re-landed byte for byte from the git objects.
+    The lane's own event-slot pointer line, which had copied the bit-7 wording, is fixed too. Record
+    `_index/candidates/swe2contract-restore-fa2f75e21-1003/` (check.py at the bytes, FAILS 0, with a sensitivity case).
+    survive.py plus a blame of every line the batch removed show nothing else outstanding. Splice publish: the peer's
+    uncommitted edits on the router and world-tick pages stay in the worktree. Sha: the board finish of
+    `SWE2CONTRACT-PUB-RESTORE-FA2F75E21-1003`. The S-36 re-score and the U7 falsifier stay with SWE2-AUDIT-SEM.
+    **Lesson for the lane: never publish a page from a staged copy older than HEAD; diff against HEAD first.**
+  - **Stand-in, 2026-10-03 07:00Z, `OPUS-REQ-CONTRACT-L1-PROPOSED-EDITS-1003` (OPUS's L1-contract audit, items 1-4).**
+    Record `_index/candidates/swe2contract-l1-proposed-edits-1003/`.
+    - Item 3 APPLIED: no shipped recipe carries an out-of-range slot (109 recipes, 563 slots, 0..201; recipe_slots.py FAILS 0).
+    - Item 2 APPLIED: register row SRC-1, narrowed (`003BA990` checks the result; `003BA7B0` discards it).
+    - Item 4 QUALIFIED: the template carries a measured caution only, because the goal revision defines `level:` as a
+      maturity grade. Ruling routed: `SWE2CONTRACT-REQ-FABLE-CONTRACT-LEVEL-KEY-1003`.
+    - Item 1 ROUTED: the ramp-channels L1 -> L2 relabel needs a non-author reviewer, because CONTRACT wrote its
+      differential evidence: `SWE2CONTRACT-REQ-AUDITSPEC-RAMP-LEVEL-L2-1003`. **If AUDIT-SPEC ACCEPTs, apply the one-line
+      `level: L2` edit.** ~~That is the lane's only pending follow-up.~~ Moot since the `level:` retirement below; the
+    request may be closed as superseded.
   - **Stand-in, 2026-10-03 (05:15Z, resumed 06:25Z): reconstruction dependency graph (addendum §4, P2 planning aid,
     not a metric).** DESIGN NOTE **PUBLISHED `fb2de5ab8`** (`_index/candidates/swe2contract-design-reconstruction-dependency-graph-1003/README.md`;
     publish task `SWE2CONTRACT-PUB-RECON-DEPGRAPH-DESIGN-1003` DONE). The sha was sent to FABLE, plus a board note for
@@ -108,11 +149,11 @@ Required by the continuity rule in the root `CLAUDE.md` ("What a plain `Continue
        The 8 PARTIAL pages hold only registered live rows (OV-10/19/33/42, GR-18, SD-194). Published with this
        file and an AUDIT-LOG entry, and the claim was **finished** on the receipt, which routes the owner read of
        the 79 READY pages to OPUS.
-  - **Exact next action:** none carried over. Take role-appropriate READY requests targeted at SWE2-CONTRACT, if any.
-    Optional, unclaimed: the dependency graph's level-1 increment (S5/S6) in the item above.
+  - **Exact next action:** none carried over; take role-appropriate READY requests. Optional and unclaimed: the dependency graph's
+    level-1 increment (S5/S6).
     Still routed to FABLE (not ours): `SWE2CONTRACT-NOTICE-FABLE-METHODS-TSV-SNAPSHOT-1002`.
-  - **Latest coherent commit:** the generator publish named in the board finish of
-    `SWE2CONTRACT-PUB-RECON-DEPGRAPH-GEN-1003` (its `committed sha:`). Before it: `fb2de5ab8` (design note), `e69188d39`.
+  - **Latest coherent commit:** the publish named in the board finish of `SWE2CONTRACT-PUB-LEVEL-READERS-CORR-1003`.
+    Before it: `41b782ffe` (page sweep), `015712a7a` (contract `level:` retirement), `2a4a3a3d5` (L1 edits), `18ebb00d9` (S-36 repair), `8a284adb9` (generator), `fb2de5ab8`, `e69188d39`.
 <!-- P22D-RESUME -->
 - **Session 2026-10-01 (PASS22-DEBT, FRONTIER-REQ-SWE2-CONTRACT-PASS22-DEBT, P2).** The routed 597-pair
   six-folder worklist (00/01/02/24/25/26) is fully dispositioned: fresh `audit_crossrefs.py` reports

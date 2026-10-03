@@ -1,0 +1,179 @@
+{
+  "producer_complete": true,
+  "method": "A complete shipping bytes/local dataflow, conditional normal-return boundary",
+  "driver_sha256": "689baa77842cc738fb20837cbe407b086bba837afe2b8ef09797092aa7e570e4",
+  "source_pins": [
+    {
+      "path": "source-defeat-boundary-01.json",
+      "sha256": "a4febab7a65d9eb7e3b27524ca69f6906b80715e6291c946a03fd39ab27afb95"
+    }
+  ],
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "capture_driver_sha256": "e318100b6f9582028bbdd4206d4c8643f351b270841b3a8a924d070b824be784",
+  "annotation_prerequisites": {
+    "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+    "instruction_records": 126,
+    "capstone": "5.0.7",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+  },
+  "physical_bodies": [
+    {
+      "entry": "0x300fc0",
+      "end_exclusive": "0x301133",
+      "bytes": 371,
+      "sha256": "e165dbdd897cdc66f769e42f4cafe369b8593a61e14f415cf01a82d5370a7bca",
+      "physical_bytes": "48895c2408574883ec208bfa488bd985d27537488b89980600004885c9742b0fb6410585c075230fb641042c1b3c0c7719488bcbe8d7f5000033c9488b5c24304883c4205fe9c6280100488bcbe86ef700008b4b08e866c1feff836304fb48b8fdffe7fffdfffffff30f100d6cac9e01488b4b10482103e884caf6ff488b4b100f57c9e8e892f6ff488b839806000041b9010000004533c033d20fb64804e86d090200e87862f3ff85c07428810dca82d80100040000e855f1ffffb90b000000e81bb80500488b5c24304883c4205fe9ac9ff3ffe8c761f3ff85c07428810d9982d80100020000e824f1ffffb918000000e8eab70500488b5c24304883c4205fe97b9ff3ffe8f662f3ff85c0740a810d6882d80100080000e8036202003b43087514810d5482d80100010000b917000000e8aab7050085ff752ee8a1c8000083f8017524488b0585e0bb020fb688d55a0000e859a60100483bd8750c33c9e8ad270100e8189ff3ff488b5c24304883c4205fc3",
+      "records": [
+        {
+          "begin": "0x300fc0",
+          "end_exclusive": "0x301133",
+          "chain": [
+            {
+              "record_bytes": "c00f1e0033111e00c8b7c401",
+              "header_address": "0x1d6b7c8",
+              "header_bytes": "010a0400"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry": "0x31b770",
+      "end_exclusive": "0x31b7da",
+      "bytes": 106,
+      "sha256": "8aff8fdcf6cc12a7874e666facfa0400127e30feb5567b4a4ade9a3f7732da53",
+      "physical_bytes": "40574883ec2080f9277757488b3d0e3aba020fb6c14883c7084869c8c80100004803f9743d48895c243033dbe8afb0f1ff85c07e208bcbe874b0f1ff4885c074094839b898060000740dffc3e88fb0f1ff3bd87ce033c0488b5c24304883c4205fc333c04883c4205fc3",
+      "records": [
+        {
+          "begin": "0x31b770",
+          "end_exclusive": "0x31b795",
+          "chain": [
+            {
+              "record_bytes": "70b71f0095b71f00642ac301",
+              "header_address": "0x1d52a64",
+              "header_bytes": "01060200"
+            }
+          ]
+        },
+        {
+          "begin": "0x31b795",
+          "end_exclusive": "0x31b7d2",
+          "chain": [
+            {
+              "record_bytes": "95b71f00d2b71f00806ac501",
+              "header_address": "0x1d76a80",
+              "header_bytes": "21050200",
+              "chain_footer": "0x1d76a88",
+              "chain_bytes": "70b71f0095b71f00642ac301"
+            },
+            {
+              "record_bytes": "70b71f0095b71f00642ac301",
+              "header_address": "0x1d52a64",
+              "header_bytes": "01060200"
+            }
+          ]
+        },
+        {
+          "begin": "0x31b7d2",
+          "end_exclusive": "0x31b7da",
+          "chain": [
+            {
+              "record_bytes": "d2b71f00dab71f00946ac501",
+              "header_address": "0x1d76a94",
+              "header_bytes": "21000000",
+              "chain_footer": "0x1d76a98",
+              "chain_bytes": "70b71f0095b71f00642ac301"
+            },
+            {
+              "record_bytes": "70b71f0095b71f00642ac301",
+              "header_address": "0x1d52a64",
+              "header_bytes": "01060200"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "facts": {
+    "gates": "Only after reaching003010F6: flag==0, queried mode==1, and designated-member lookup equals the defeat receiver. Prior teardown/party-condition branches are separate.",
+    "boundary": "The original straight-line0030111C..00301128 sets ECX0, calls003138D0, then calls0023B040 immediately after normal return, with no intervening dispatcher/world-tick instruction. Dismiss refusal/success does not alter this local call sequence.",
+    "lookup": "0031B770 locally compares QWORDunit+698 with stateBase+8+u8CID*1C8, bounds CID<=27h and iterates through236850/236820. No local nonstack writes or direct health/status check; helper filters, pointer validity, lifetime and natural admission are not proved here.",
+    "lookup_transfers": [
+      {
+        "pc": "0x31b779",
+        "mnemonic": "ja",
+        "args": "0x31b7d2"
+      },
+      {
+        "pc": "0x31b793",
+        "mnemonic": "je",
+        "args": "0x31b7d2"
+      },
+      {
+        "pc": "0x31b79c",
+        "mnemonic": "call",
+        "args": "0x236850"
+      },
+      {
+        "pc": "0x31b7a3",
+        "mnemonic": "jle",
+        "args": "0x31b7c5"
+      },
+      {
+        "pc": "0x31b7a7",
+        "mnemonic": "call",
+        "args": "0x236820"
+      },
+      {
+        "pc": "0x31b7af",
+        "mnemonic": "je",
+        "args": "0x31b7ba"
+      },
+      {
+        "pc": "0x31b7b8",
+        "mnemonic": "je",
+        "args": "0x31b7c7"
+      },
+      {
+        "pc": "0x31b7bc",
+        "mnemonic": "call",
+        "args": "0x236850"
+      },
+      {
+        "pc": "0x31b7c3",
+        "mnemonic": "jl",
+        "args": "0x31b7a5"
+      }
+    ],
+    "remaining": "Mode/state/status preservation across Dismiss and earlier helpers, actual KO admission and mask7 remain OPEN. No original-code/native/live execution; existing scripted recompute fixture is not proof of the real recompute or natural scheduling."
+  },
+  "source_controls": [
+    {
+      "id": "recompute-redirected",
+      "pc": "0x301123",
+      "field": "args",
+      "value": "0x3138d0",
+      "refused": "conditional same-call boundary changed 0x301123",
+      "method": "Synthetic source-record control, not original instruction execution"
+    },
+    {
+      "id": "designated-member-byte-changed",
+      "pc": "0x30110b",
+      "field": "memory",
+      "value": 23252,
+      "refused": "designated member identity changed",
+      "method": "Synthetic source-record control, not original instruction execution"
+    },
+    {
+      "id": "lookup-pointer-field-changed",
+      "pc": "0x31b7b1",
+      "field": "memory",
+      "value": 1696,
+      "refused": "lookup comparison identity changed",
+      "method": "Synthetic source-record control, not original instruction execution"
+    }
+  ],
+  "acceptance": "Producer-valid only; independent review/canonical consumption pending. No full UQ147 or formerly-runtime closure."
+}

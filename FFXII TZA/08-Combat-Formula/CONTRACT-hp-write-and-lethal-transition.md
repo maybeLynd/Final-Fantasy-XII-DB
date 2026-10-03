@@ -2,7 +2,6 @@
 contract: apply a change to a combatant's current HP and, when it reaches the floor, carry out the death transition
 category: 08-Combat-Formula
 scope: transition
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 08-Combat-Formula/Current-HP/the-hp-write-and-the-lethal-transition.md

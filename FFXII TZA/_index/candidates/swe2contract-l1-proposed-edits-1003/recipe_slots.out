@@ -1,0 +1,7 @@
+PASS K1 table end marker: 000000B4FFFFFFFF
+PASS K2 recipe 25 decodes as RW-2: [[5, 6, 22, 33, 34, 35, 42], [29, 66, 96, 97, 98, 99, 125, 165, 171, 176, 182]]
+PASS K3 range check flags 202 and -2: [202, -2]
+recipes 109; pointer sections [('.data', True)]; slots per list: first 0..10, second 0..12; smallest slot 0, largest 201
+slot values in both lists, all recipes: 563
+PASS R1 every shipped slot indexes the 202-entry step table: no out-of-range slot
+FAILS 0

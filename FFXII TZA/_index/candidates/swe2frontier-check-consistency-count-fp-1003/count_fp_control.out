@@ -1,0 +1,5 @@
+PASS  C1 struck count (003A1DB0 not reported)
+PASS  C2 bullet subject (005CDAA0 not reported)
+PASS  C3 scoped other-count (00379CD0 not reported)
+PASS  P1 real disagreement (00AAAA00 reported)
+FAILS 0

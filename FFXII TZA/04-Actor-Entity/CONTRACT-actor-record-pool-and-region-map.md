@@ -2,7 +2,6 @@
 contract: allocate actor records of four different sizes in one block and carve each one's interior by its sequence
 category: 04-Actor-Entity
 scope: family
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 04-Actor-Entity/battleunit-slot-pool-and-actor-class.md

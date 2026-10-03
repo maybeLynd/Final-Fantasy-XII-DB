@@ -521,3 +521,12 @@ directory does not, which is a more informative failure than a total mismatch wo
 `0020D7C0` (217 B) is the `0xC`-element vector reassign `0020D8A0` runs on `rcx`'s `{begin, end, cap}` triple: `0020D970` allocates `r14 * 0xC`, `0020D270` elementwise-copies the source range in, the old buffer's `(cap - begin) / 0xC` count is computed through the `0x2AAAAAAAAAAAAAAB` multiply-shift and `001CD050` frees it, then `begin = new`, `end = new + count*0xC`, `cap = new + r14*0xC`
 
 Interior anchor `0020D833` (function `0020D7C0`).
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-section-019-cloudint-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0020D270` | 60 B | copies 0xC-byte entries (qword `+0` and dword `+8`) from `rcx` up to `rdx` to `r8`, skipping the copy of an entry while the destination pointer is null but still advancing it, and returns the destination end | `0020D27D`, `0020D285`, `0020D28B`, `0020D293`, `0020D2A4` |
+| `0020D970` | 128 B | returns 0 when `rdx` is 0 and calls the import at `008C2608` (no return) when it is above 0x1555555555555555; with `n` = `rdx`*0xC it returns `00210EC0(n)` when `n` is below 0x1000; otherwise it allocates `00210EC0(n+0x27)` (calling `008C2608` when that sum overflows) and returns the result + 0x27 rounded down to 0x20 with the raw pointer stored at qword `-8`; a null allocation calls the import at `008C2DA8` (no return) | `0020D98A`, `0020D99E`, `0020D9BA`, `0020D9D2`, `0020D9D6` |

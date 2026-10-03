@@ -2,7 +2,6 @@
 contract: calculator slots 60-79 - what a preparation step reads, what it writes, and what it leaves alone
 category: 08-Combat-Formula
 scope: family
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 08-Combat-Formula/Attack-Vs-Defense/attack-defense-preparation-and-stat-scaling.md
@@ -365,7 +364,14 @@ selects, which the differential alone could not show because it exercises one ar
   reads are the **attacker's**, and the slot stores an immediate `0` to `02AEE05C` at `0038A573`
   instead of measuring anything against the defender. The question was asked of a row that the same
   section had already corrected.
-- Whether any recipe list reachable in play carries an out-of-range slot (§4).
+- ~~Whether any recipe list reachable in play carries an out-of-range slot (§4).~~ **Answered 2026-10-03
+  (SWE2-CONTRACT), static: no shipped recipe does.** All 109 recipes of the table `01EF96C0`
+  ([CONTRACT-weapon-recipes.md](CONTRACT-weapon-recipes.md) RW-1) were decoded from the image, both `-1`-terminated
+  lists of each: 563 slot values, smallest 0, largest 201, so every one indexes the 202-entry step table. The table
+  has no rip-relative reference and only two `.text` operands at its displacement, the dispatchers' reads at
+  `003859BD` and `0038635D`, so play runs the shipped lists. §4's precondition stays a **modding** hazard: an edited
+  list with a slot of 202 or more still calls through the bytes after the table. Record:
+  [`swe2contract-l1-proposed-edits-1003`](../_index/candidates/swe2contract-l1-proposed-edits-1003/README.md) (`recipe_slots.py`, FAILS 0).
 
 ## 15. Evidence
 

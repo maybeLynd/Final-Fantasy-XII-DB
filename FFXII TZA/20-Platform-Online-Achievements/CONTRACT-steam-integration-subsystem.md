@@ -2,7 +2,6 @@
 contract: Steam integration — one start-up handshake, one per-frame callback pump, and an award path that only reaches Steam after Steam has answered
 category: 20-Platform-Online-Achievements
 scope: subsystem
-level: L2
 readiness: CONTRACT READY   # the lifecycle, the award path and the failure behaviour are STATIC; nothing here was observed live
 confidence: PROVEN
 implements:

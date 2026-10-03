@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sd194-copier-limit\\control.py",
+    "controls-02",
+    "result-03.json",
+    "proof-03.status.json"
+  ],
+  "driver_sha256": "baf3ecc051e5a247dc5f97e33a425d46c5c305295ecb4155d6832cc0781bb648",
+  "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+  "terminal": true,
+  "exit": 0,
+  "exception": null
+}

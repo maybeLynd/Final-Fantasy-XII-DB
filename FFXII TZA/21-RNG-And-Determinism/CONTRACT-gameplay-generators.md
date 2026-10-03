@@ -2,7 +2,6 @@
 contract: draw from the two gameplay-affecting generators, exactly, including the parts that look wrong and are not
 category: 21-RNG-And-Determinism
 scope: family
-level: L1
 readiness: DIFFERENTIAL TESTED   # the ALGORITHM only; the streams the game actually sees are not — see §13
 confidence: PROVEN
 implements: 21-RNG-And-Determinism/rng-streams.md

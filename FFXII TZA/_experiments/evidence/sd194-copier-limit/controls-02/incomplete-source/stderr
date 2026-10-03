@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\sd194-copier-limit\prove.py", line 119, in <module>
+    args = parser.parse_args(); main(args.output, args.source)
+                                ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\sd194-copier-limit\prove.py", line 55, in main
+    require(sha(source / 'source-01.json') == PINS['source-01.json'] and sha(source / 'capture.py') == PINS['capture.py'],
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            'retained source identity changed')
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\sd194-copier-limit\prove.py", line 42, in require
+    if not condition: raise ValueError(text)
+                      ^^^^^^^^^^^^^^^^^^^^^^
+ValueError: retained source identity changed

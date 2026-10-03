@@ -2,7 +2,6 @@
 contract: The two effect layers — mutate one, rebuild the other, merge both for a formula
 category: 10-Status-Periodic-Terminal
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: Status-And-Augment-Layers/two-layer-effect-model.md

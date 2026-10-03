@@ -2,7 +2,6 @@
 contract: apply a result record to target and source stats using field-specific presence gates and an explicit outer recompute-dirty flag
 category: 07-Combat-Action
 scope: subsystem
-level: L2
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 07-Combat-Action/applying-a-result-to-a-target.md

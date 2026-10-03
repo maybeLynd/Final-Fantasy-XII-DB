@@ -2,7 +2,6 @@
 contract: Move gil — one setter that clamps, meters and stores, and thirteen paths that inherit all three
 category: 13-Rewards-Progression-Economy
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: 13-Rewards-Progression-Economy/gil-storage-clamp-and-every-path-that-moves-it.md

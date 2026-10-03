@@ -1,0 +1,202 @@
+{
+  "producer_complete": true,
+  "question": "Can the prescribed registration event0 invoke animation/write object state?",
+  "method": "A bounded constant-path proof on retained132B original bytes",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "driver_sha256": "bb871aeeece369d3eb7d21c2334bdd5b52a35589abee852a8c59151042abaf76",
+  "inputs": [
+    {
+      "path": "retained/handler-extents-01.json",
+      "sha256": "517088bb07049ba318304ab8c4ef4dc406f21a919013ea78e11f85e797cd9ab6"
+    },
+    {
+      "path": "retained/handler-extents-01.status.json",
+      "sha256": "7e42a593a2c9825033739d17f0973797e24100121f399b797611b53090892fa5"
+    },
+    {
+      "path": "retained/handler-extents-01.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "retained/handler-extents-01.stdout",
+      "sha256": "866a1ea6d867a4b75836b31acd904ed3f25412de59889f527c6046017ae523de"
+    },
+    {
+      "path": "retained/inputs.json",
+      "sha256": "f396baf0ac7bd2a98b5e22dee60ccc76ac182c19fcc9a014905d126774429525"
+    },
+    {
+      "path": "retained/lookup-primary-handler-01.json",
+      "sha256": "1e56c692af70133aa8fa7e93fb2475cc3b1b414a0be28cf231529254ed615e75"
+    },
+    {
+      "path": "retained/lookup-secondary-handler-01.json",
+      "sha256": "807cfc542b66f73560a1a770a847029c8c811c94b7b224908740e14445df43c4"
+    },
+    {
+      "path": "retained/prepare-handler-extents.py",
+      "sha256": "b54cf063af4e29b4ab6463c8fbd76e3b7b4ddbd40065b6a064c9d828f96c6003"
+    },
+    {
+      "path": "retained/source-01.json",
+      "sha256": "2f827754a911df0d3566870f3b447e83d70a6ffbbccaba3446c91f0f579737df"
+    }
+  ],
+  "source_pins": [
+    {
+      "path": "normalized-result-02.json",
+      "sha256": "2f9878171978ab3db8964e793a8e5acf09c9583ad385207fa81ba276124ab7a1"
+    },
+    {
+      "path": "retained/source-01.json",
+      "sha256": "2f827754a911df0d3566870f3b447e83d70a6ffbbccaba3446c91f0f579737df"
+    }
+  ],
+  "paths": [
+    {
+      "entry": "0x29b7d0",
+      "event": 0,
+      "boundary": "RETURN",
+      "eax": 0,
+      "pre_ret_rsp_delta": 0,
+      "rdx": 0,
+      "path": [
+        "0x29b7d0",
+        "0x29b7d4",
+        "0x29b7d7",
+        "0x29b7db",
+        "0x29b7de",
+        "0x29b7fb",
+        "0x29b7fd",
+        "0x29b801"
+      ],
+      "memory": [
+        {
+          "pc": "0x29b7d7",
+          "base": "rcx",
+          "displacement": 72,
+          "size": 8,
+          "role": "r"
+        }
+      ]
+    },
+    {
+      "entry": "0x29b810",
+      "event": 0,
+      "boundary": "RETURN",
+      "eax": 0,
+      "pre_ret_rsp_delta": 0,
+      "rdx": 4294967295,
+      "path": [
+        "0x29b810",
+        "0x29b814",
+        "0x29b818",
+        "0x29b81b",
+        "0x29b81e",
+        "0x29b820",
+        "0x29b823",
+        "0x29b82f",
+        "0x29b831",
+        "0x29b835"
+      ],
+      "memory": [
+        {
+          "pc": "0x29b814",
+          "base": "rcx",
+          "displacement": 72,
+          "size": 8,
+          "role": "r"
+        }
+      ]
+    }
+  ],
+  "positive_controls": {
+    "event1_call": {
+      "boundary": "CALL",
+      "pc": "0x29b7ea",
+      "target": "0x2973e0",
+      "path": [
+        "0x29b7d0",
+        "0x29b7d4",
+        "0x29b7d7",
+        "0x29b7db",
+        "0x29b7de",
+        "0x29b7e0",
+        "0x29b7e4",
+        "0x29b7e8",
+        "0x29b7ea"
+      ],
+      "memory": [
+        {
+          "pc": "0x29b7d7",
+          "base": "rcx",
+          "displacement": 72,
+          "size": 8,
+          "role": "r"
+        },
+        {
+          "pc": "0x29b7e0",
+          "base": "rax",
+          "displacement": 4,
+          "size": 4,
+          "role": "r"
+        },
+        {
+          "pc": "0x29b7e4",
+          "base": "r8",
+          "displacement": 36,
+          "size": 4,
+          "role": "r"
+        },
+        {
+          "pc": "0x29b7e8",
+          "base": "rax",
+          "displacement": 0,
+          "size": 4,
+          "role": "r"
+        }
+      ]
+    },
+    "event2_store": {
+      "boundary": "OBJECT_WRITE",
+      "pc": "0x29b82c",
+      "path": [
+        "0x29b810",
+        "0x29b814",
+        "0x29b818",
+        "0x29b81b",
+        "0x29b81e",
+        "0x29b820",
+        "0x29b823",
+        "0x29b825",
+        "0x29b829",
+        "0x29b82c"
+      ],
+      "memory": [
+        {
+          "pc": "0x29b814",
+          "base": "rcx",
+          "displacement": 72,
+          "size": 8,
+          "role": "r"
+        },
+        {
+          "pc": "0x29b825",
+          "base": "r9",
+          "displacement": 44,
+          "size": 4,
+          "role": "r"
+        },
+        {
+          "pc": "0x29b82c",
+          "base": "rcx",
+          "displacement": 4,
+          "size": 4,
+          "role": "w"
+        }
+      ]
+    }
+  },
+  "conclusion": "Both prescribed event0 paths explicitly read QWORD view+48, do not dereference that context or payload, make no call or explicit nonstack write, and return EAX0 with pre-RET frame restored. Secondary handler leaves EDX=FFFFFFFF; primary leaves event0EDX0.",
+  "limitations": "Valid code/body/entryABI, readableview+48/private40Bstack/returnaddress and noninterference required. Static interpretation, no original execution, no observed register/memory values. Implicit RET stack access is not omitted from validity premises. Only3F89C0 conditional prescribed-handler event0 composition; existing-row callback identity, event1 cost updates/transitive effects/nativefill/lifetime/scheduling/actualreach/presentation remain OPEN."
+}

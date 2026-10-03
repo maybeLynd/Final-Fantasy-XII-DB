@@ -4,7 +4,6 @@ category: 10-Status-Periodic-Terminal
 status: AUDITED
 owner_layer: PrimaryOwner:Status_Periodic_Terminal
 evidence_tier: 1
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 verified_against:

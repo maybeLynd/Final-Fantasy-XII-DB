@@ -1,0 +1,20 @@
+== 95b1f3a4c SWE2CONTRACT-PUB-CONTRA-01F68168: 38 staged packages - glyph chain, contract clo | 43 files | 2 flagged
+   the-world-tick-and-the-field-frame.md <- 30b2fd926 (FABLE: world tick - the +0x3E test keeps bit ) gone 4/4 restored 3
+   CONTRACT-ui-request-router.md <- fa2f75e21 (FABLE: UI request router R-5 corrected - the ) gone 11/11 restored 3
+== bf226bbaa SWE2-AUDIT-SPEC: promotion sweep - three pages DOCUMENTED -> AUDITED | 21 files | 13 flagged
+   the-ctrl-module-debug-companions.md <- b47a560bd (SWE2-DATA: request-queue sweep - verb-page ty) gone 11/11 restored 3
+   input-stack-device-channel-and-bindings.md <- b47a560bd (SWE2-DATA: request-queue sweep - verb-page ty) gone 13/13 restored 9
+   PROGRESS.md <- b47a560bd (SWE2-DATA: request-queue sweep - verb-page ty) gone 7/7 restored 7
+   AUDIT-LOG.md <- b47a560bd (SWE2-DATA: request-queue sweep - verb-page ty) gone 33/33 restored 0
+   OPEN-QUESTIONS.md <- b47a560bd (SWE2-DATA: request-queue sweep - verb-page ty) gone 7/8 restored 6
+   SWE2-DATA.md <- b47a560bd (SWE2-DATA: request-queue sweep - verb-page ty) gone 26/26 restored 10
+   crosswalk.md <- b47a560bd (SWE2-DATA: request-queue sweep - verb-page ty) gone 354/354 restored 120
+   metrics.md <- b47a560bd (SWE2-DATA: request-queue sweep - verb-page ty) gone 20/20 restored 20
+   progress_report.py <- b47a560bd (SWE2-DATA: request-queue sweep - verb-page ty) gone 8/8 restored 2
+   snapshot.md <- b47a560bd (SWE2-DATA: request-queue sweep - verb-page ty) gone 8/8 restored 8
+   check_denominators.py <- b47a560bd (SWE2-DATA: request-queue sweep - verb-page ty) gone 7/7 restored 4
+   test_uc1_band_readers.py <- b47a560bd (SWE2-DATA: request-queue sweep - verb-page ty) gone 4/4 restored 3
+   uc1_band.py <- b47a560bd (SWE2-DATA: request-queue sweep - verb-page ty) gone 12/12 restored 7
+== 7225ed5b4 SWE2-CONTRACT: RC-13 claims-row qualifiers + DDRES checker repairs (B7 R1 -> ANS | 6 files | 2 flagged
+   font-data-kerning-and-expansion.md <- 7f773f19f (SWE2-EC7: batch 171 (SHARED-HUB-IDENTIFICATIO) gone 4/4 restored 0
+   SWE2-EC7.md <- 93e7bd189 (SWE2-EC7: batch 171 (SHARED-HUB-IDENTIFICATIO) gone 18/18 restored 0

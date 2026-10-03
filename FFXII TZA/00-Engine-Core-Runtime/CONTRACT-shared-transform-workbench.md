@@ -2,7 +2,6 @@
 contract: A shared matrix parameter area with no owner — write your operands, call, read the result
 category: 00-Engine-Core-Runtime
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: Shared-Transform-Workbench/the-shared-transform-workbench.md

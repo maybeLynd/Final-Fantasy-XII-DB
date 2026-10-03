@@ -4,7 +4,6 @@ category: 07-Combat-Action
 status: AUDITED
 owner_layer: PrimaryOwner:CombatAction (the record's life is resolve → apply → dispatch) — its writers are CombatFormula
 evidence_tier: 1
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 verified_against:

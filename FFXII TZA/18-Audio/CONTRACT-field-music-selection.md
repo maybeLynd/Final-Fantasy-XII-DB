@@ -2,7 +2,6 @@
 contract: Field music selection — which track plays in an area, given story progress
 category: 18-Audio
 scope: operation
-level: L2   # calculation parity only; INTEGRATION untested, so not L3
 readiness: DIFFERENTIAL TESTED
 confidence: PROVEN
 implements: how-the-music-changes-when-you-change-area.md
@@ -399,6 +398,9 @@ would triple a function the engine has once.
 lifetime after binding stays `UNKNOWN / NOT EXERCISED`.
 
 ## 16. Parity plan
+
+*Parity target (moved here 2026-10-03 from the retired front-matter `level:` comment, FABLE ruling; SWE2-CONTRACT):*
+calculation parity only. Integration is untested, so the contract does not claim parity certification.
 
 **Testable today, without the game — and this is the first contract for which that is true:**
 

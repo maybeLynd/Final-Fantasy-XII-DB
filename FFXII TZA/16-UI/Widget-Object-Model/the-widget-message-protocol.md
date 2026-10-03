@@ -4,7 +4,6 @@ category: 16-UI
 status: DOCUMENTED — no handler unread, every id of the 56-id recount named or dispositioned (section 10) and no residue sentence left without an answer, a pointer or a request id (owner re-status 2026-10-01, OPUS, on SWE2-CONTRACT's DD batch 10 and SWE2-STRUCT's DD batch 17, swe2struct-ddres-b17-0930) — the residue this line named is answered in place (SWE2-CONTRACT DD batch 10) - the handler table now holds 264 exact rows, no upper bound and 3 unparsed rows, all three read (a no-op, a thunk to it, and a thunk to 003EE420, which answers 1, 2 and 4); every id of the 56-id recount is named or dispositioned (section 10) (was — 24 handlers UNPARSED and several ids UNRESOLVED in the census)
 owner_layer: PrimaryOwner:UI
 evidence_tier: 1
-level: L2
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: HIGH
 verified_against:
@@ -2357,7 +2356,7 @@ Interior anchor `00297D62` (function `00297D10`).
 
 Interior anchor `00271FCD` (function `00271FB0`).
 
-`00297C10` (244 B) is the `0209BFBE`-bank lookup `0029A0A0` runs: rows stride `0xC0` from `0209BFBE` to `0209C2BE`, a row qualifies when its `-0x58`/`+0` flags carry bit `2` and `dword[+0x32] == [rsi+4]`; the hit path pairs `003F89C0` with `0028F590`, then `003F8A50` with `0028F590`, and commits `[rdi+0x48] = rsi`, `[rdi+0xA0] = rsi`, `[rdi+0xB0] = ecx` - the static-table widget resolve.
+`00297C10` (244 B) is ~~the `0209BFBE`-bank lookup `0029A0A0` runs: rows stride `0xC0` from `0209BFBE` to `0209C2BE`, a row qualifies when its `-0x58`/`+0` flags carry bit `2` and `dword[+0x32] == [rsi+4]`; the hit path pairs `003F89C0` with `0028F590`, then `003F8A50` with `0028F590`, and commits `[rdi+0x48] = rsi`, `[rdi+0xA0] = rsi`, `[rdi+0xB0] = ecx`~~ the `0209BFBE`-bank lookup `0029A0A0` runs over four rows of stride `0xC0` (`rdi` = `0209BF40` + n*`0xC0`, scan bound `0209C2BE`): a row with bit `0x2` of byte `+0x26` set in either half (`[rdi+0x26]` or `[rdi+0x7E]`) and dword `+0xB0` equal to `[rsi+4]` is a match, and only the tail runs (`00297C45` `je` `00297CE2`) - `[rdi+0x48] = rsi`, `[rdi+0xA0] = rsi`, `[rdi+0xB0] = [rsi+4]`, with no initializer call, so the callbacks at `+0x38`/`+0x90` keep what they held; failing a match, the first row with bit `0x2` clear in both halves gets `003F89C0(row, 0, 0, rsi, 0029B7D0)` and `003F89C0(row+0x58, 0, 0, rsi, 0029B810)`, each half appended with `003F8A50(0028F590(), half)`, then the same tail; with no such row it returns 0 having written nothing, otherwise the row - the static-table widget resolve *(corrected 2026-10-03, SWE2-EC7: the matched row never reaches `003F89C0`; OPUS's reading, accepted by SWE2-AUDIT-SPEC in the OV-42 gauge-binding review; ec7_corr_b_check.py)*.
 
 Interior anchor `00297C9A` (function `00297C10`).
 

@@ -2,7 +2,6 @@
 contract: The character render object — one construction, a one-way ready latch, a double-buffered publish
 category: 17-Presentation-Rendering
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: Character-Rendering/character-render-object.md

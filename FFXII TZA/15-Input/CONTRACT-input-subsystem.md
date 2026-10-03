@@ -2,7 +2,6 @@
 contract: Input subsystem — the published frame snapshot, the arbitration point, and the capability gate
 category: 15-Input
 scope: subsystem
-level: L2
 readiness: CONTRACT READY   # the ordering and the shared object are STATIC; no live capture of the frame order
 confidence: PROVEN
 implements:

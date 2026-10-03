@@ -2,7 +2,6 @@
 contract: hold an ordered set of up to 32 actor references for one action or one AI evaluation
 category: 07-Combat-Action
 scope: family
-level: L1
 readiness: DIFFERENTIAL TESTED   # the three operations; no consumer runs and `memset` is supplied — see §13
 confidence: PROVEN
 implements: 04-Actor-Entity/Battle-Unit/the-battle-unit-field-map.md

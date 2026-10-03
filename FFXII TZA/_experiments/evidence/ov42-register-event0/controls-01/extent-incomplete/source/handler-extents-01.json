@@ -1,0 +1,60 @@
+{
+  "complete": false,
+  "method": "A STATIC_ONLY original physical metadata",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "driver_sha256": "b54cf063af4e29b4ab6463c8fbd76e3b7b4ddbd40065b6a064c9d828f96c6003",
+  "directory_bytes": "0080e7020c8a0600",
+  "lookups": [
+    {
+      "path": "lookup-primary-handler-01.json",
+      "sha256": "1e56c692af70133aa8fa7e93fb2475cc3b1b414a0be28cf231529254ed615e75"
+    },
+    {
+      "path": "lookup-secondary-handler-01.json",
+      "sha256": "807cfc542b66f73560a1a770a847029c8c811c94b7b224908740e14445df43c4"
+    }
+  ],
+  "bodies": [
+    {
+      "entry": "0x29b7d0",
+      "end_exclusive": "0x29b802",
+      "bytes": 50,
+      "sha256": "f8768931c40b9c4bebb13f0927b6684c82bc93bfe30cbc02d03e2b26de38af1b",
+      "physical_bytes": "4883ec28498bc04c8b414883fa01751b448b4804458b40248b10e8f1bbffff85c0750883c8ff4883c428c333c04883c428c3",
+      "records": [
+        {
+          "begin": "0x29b7d0",
+          "end_exclusive": "0x29b802",
+          "chain": [
+            {
+              "record_bytes": "d0b7170002b81700c82bc301",
+              "header_address": "0x1d52bc8",
+              "header_bytes": "01040100"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry": "0x29b810",
+      "end_exclusive": "0x29b862",
+      "bytes": 82,
+      "sha256": "8ab5f6318f42bbd53381b192b700a1c6f9d026b0549e90991248b0f11e16603c",
+      "physical_bytes": "4883ec284c8b49484d8bd083ea01741683fa01750a418b412cc1e00489410433c04883c428c3410fb68187000000458b413085c07404440fafc0458b4a04418b12e88abbffff85c075d583c8ff4883c428c3",
+      "records": [
+        {
+          "begin": "0x29b810",
+          "end_exclusive": "0x29b862",
+          "chain": [
+            {
+              "record_bytes": "10b8170062b81700c82bc301",
+              "header_address": "0x1d52bc8",
+              "header_bytes": "01040100"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "limits": "Physical extents only. Code/data distinction, helper effects and natural reachability not established by metadata."
+}

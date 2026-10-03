@@ -1,0 +1,3 @@
+PASS P1 no page declares level:: 532 pages scanned, 0 declare level: []
+PASS S1 sensitivity: front-matter key flagged; body line ignored
+FAILS 0

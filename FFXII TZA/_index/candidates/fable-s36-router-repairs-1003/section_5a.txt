@@ -1,0 +1,41 @@
+## 5a. State (FABLE, 2026-10-03; declared on SWE2-AUDIT-SEM's S-36 D2)
+
+§5 names the mailbox. This section declares every cell the router's own code keeps, with each cell's writers and readers.
+The census is [`census_router_state.py`](../_index/candidates/fable-s36-router-repairs-1003/census_router_state.py)
+(its output is beside it; FAILS 0). It covers five forms:
+
+- RIP-relative operands in every `.pdata` body, plus the 13,800 catalogue functions that have no `.pdata` entry. Four of
+  the mailbox's own accessors are such leaves.
+- A raw rel32 sweep of `.text`: 167 windows, 43 confirmed instructions, none outside a decoded body.
+- Image-base-relative `[reg+RVA]` forms, VA displacements, and RVA/VA constants: none.
+- Addresses formed by `lea` near a cell, followed through their register.
+
+Counts below are functions; sites are instructions. Nothing here is executed.
+
+| address | width | name | meaning | writers (sites) | readers (sites) |
+|---|---|---|---|---|---|
+| `0215F1A0` | u8 | pending | 1 = a request waits in the slot | **5.** Set to 1 by the post `002E1B10` (`002E1B35`), the script post `002E1A60` (`002E1ABD`) and the request-12 path `002E1AE0` (`002E1AE9`). The drain `002E09A0` clears it at dispatch (`002E0D10`) and on the request-2 cancel (`002E0BEC`), and re-stores it, unchanged or 0, at `002E0C65`, which is the not-ready discard's store. The reset `002E15D0` clears it (`002E15D2`). | **2.** The drain (`002E0BAF`, `002E0BD2`, `002E0C56`) and the getter `002E12D0`. The getter's callers are the arbiter at `00253CBA`, which returns 0 while a request is pending, and `0035C72A` and `0035C7E6`. |
+| `0215F1A1` | u8 | blocked | non-zero = every post refuses | **3.** Set to 1 by `002E1690` (`002E1690`). Cleared by the drain at the end of every drain (`002E0D3E`), and on the not-ready discard (`002E0BA3`). Cleared by the reset `002E15D0` (`002E15E5`). | **4.** The three posts: `002E1B10` (`002E1B1A`), `002E1A60` (`002E1AA6`) and `002E1AE0` (`002E1AE0`). The can-post test `002E25B0` (`002E25B4`). |
+| `0215F1A4` | u32 | id | the posted request id, stored unmasked (`002E1A60` stores the translated selector, bit 15 kept) | **5.** `002E1B10` (`002E1B41`), `002E1A60` (`002E1AC4`) and `002E1AE0` (`002E1AF0`, constant `0xC`). Zeroed by the drain on the not-ready discard (`002E0B97`) and by the reset (`002E15D9`). | **1, the drain:** `002E0BC0` (the request-2 test), `002E0CD0` (the transition-exempt set), `002E0D05` (the router's `ecx`), `002E0D1B` (`00253BC0`'s `ecx`). |
+| `0215F1A8` | u32 | parameter | the request's parameter, the router's `edx` | **5.** `002E1B10` (`002E1B47`), `002E1A60` (`002E1ACA`) and `002E1AE0` (`002E1AFA`, 0). Zeroed by the drain (`002E0B9D`) and by the reset (`002E15DF`). | **1, the drain:** `002E0CFC`. |
+| `020927D8` | u32 | request-id copy | the masked id of the last `00252B40` call | **1.** `00252B40` (`00252B4C`), with the same value it stores to `02092730`. Neither the release `00252D90` nor the reset `00252DE0` clears it; both zero only `02092730` and `02092734`. So the copy outlives the request. | **1.** `00254710` (`00254714`), which returns `0028F740()` (word `+0x10FAC` of the manager at `0209BE80`) when the copy is 17 or 18, and 0 otherwise. It has one caller, `00346DA0` (`00346DA9`). |
+| `01E0C2C0` | u32[22], 88 B, initialised data | inhibit table | entry *i* is the mask of request ids that capability-aggregate bit *i* forbids. It is indexed by the bit number of `002E0FA0`'s result and walked two entries per pass for 11 passes. | **0.** No store, no pointer constant and no image-base-relative form anywhere in the image. | **3**, each through `lea` of `01E0C2C4` and then `[reg-4]` / `[reg]`: the router `00254B50` (`00254B88`, `00254BA5`, `00254BB1`); the arbiter `00253C70` (`00253FFC`, `00254014`, `0025401D`, for request 5's inlined test, §3a); and `00254500` (`0025450C`, `00254526`, `00254530`), which returns the mask itself and has six raw call sites. |
+
+**The table's contents** are as follows. Read from the image; the union is `0x20402E`, and there are nine non-zero entries, as U2 measured.
+
+| entry (aggregate bit) | 0 | 1 | 2 | 3 | 5 | 6 | 8 | 9 | 10 |
+|---|---|---|---|---|---|---|---|---|---|
+| mask | `0x4` | `0x2A` | `0x8` | `0x4` | `0x20` | `0x4000` | `0x200002` | `0x4020` | `0x8` |
+| request ids | 2 | 1, 3, 5 | 3 | 2 | 5 | 14 | 1, 21 | 5, 14 | 3 |
+
+**Notes the table does not carry:**
+- **The record's bytes +2 and +3 are not mailbox state.** Each has one writer and one getter in other code (census
+  rows), and nothing in §5 or §6 reads them. The fields proposal declares them so that the record's extent is honest.
+- **The blocked byte lasts one drain.** The drain clears it on every path (`002E0D3E`). The script begin handlers
+  `003462D0` and `003470D0` call `002E1690` right after their fullscreen post, so the block holds from that post to the
+  next drain. No producer can replace the script's request in between. This narrows R-1 for the script path only.
+- **The capability rows directly above the mailbox are indexed with an upper bound only.** The row writers `002E1C20`,
+  `002E1CA0` and `002E1CD0` test `cmp ..., 0x10; jge`, and the reader `002E1020` has no bound at all. A row index of -6
+  or less would land on the parameter or below it. Every caller the census traced passes 0 to 15: constants, a loop
+  counter 0..15, or `0` or `3`. Not every constant-relative `lea` base was traced to its constant (dispositions in the
+  census output). So "no caller reaches the mailbox" rests on reading, not on a bound in the code.

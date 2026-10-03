@@ -2,7 +2,6 @@
 contract: move an achievement's counter or fire it, under a layout an authored table dictates
 category: 20-Platform-Online-Achievements
 scope: family
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 20-Platform-Online-Achievements/steam-integration-and-achievement-catalogue.md

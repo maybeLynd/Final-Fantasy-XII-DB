@@ -290,6 +290,8 @@ This page describes unowned code in the residual folder, and it cites the bodies
 
 **CombatAction — MECHANICAL, 2 edges.** `WorldTransition_GetActiveOrPendingFieldId` (`003148F0`) is called by `BattleUnit_TryTriggerNearbyAuthoredFieldAction` (`002F8060`), `002FA740`.
 
+**CoreRuntimeScheduling — MECHANICAL, 1 edge.** The core runtime object fetch `001B1C00`, whose result `00181800` hands to `001B2410` (interior row below), is also called by `0017D4C0`. *(added 2026-10-03, OPUS, with the interior citations)*
+
 **Gameplay — MECHANICAL, 1 edge.** `00203170` is called by `BattleAction_FindApproachGeometryAroundTarget` (`00339630`).
 
 **Input — MECHANICAL, 1 edge.** `002E0FA0` is called by `InputGameplay_ArbitrateDigitalInputAndModalState` (`00253C70`).
@@ -303,3 +305,12 @@ This page describes unowned code in the residual folder, and it cites the bodies
 **Spawn_Encounter_Lifecycle — MECHANICAL, 1 edge.** `WorldTransition_GetActiveOrPendingFieldId` (`003148F0`) is called by `SpawnKeep_RotatePersistenceBanksForAreaTransition` (`00233780`).
 
 *Tier 2: ledger names and `edges.tsv`; no body read for this note (OPUS, 2026-09-29, pass-22 slice OPUS-P22-SLICE-24-99).*
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-the-second-icon-drawer-and-what-it-adds-cloudint-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00181800` | 106 B | calls `001B2410` on the result of the core runtime object fetch `001B1C00()`, as `001B2410(that, ecx, edx, r8, 0, r9d, 0, 1, 1, 0)` with the incoming `ecx`, `edx`, `r8` and `r9d`, the fifth to tenth as stack arguments | `0018181E`, `00181834`, `00181848`, `00181850` |
+| `00272310` | 127 B | calls `00246480(rcx, &t)` and stores qword `t` at `[rdx]`; then, when `rcx` is non-null, for each node of the chain qword `+0x10` (from `rcx`'s) it calls `00246480(node, &t)` and adds words `t+0`/`t+2` to words `[rdx]`/`[rdx+2]`; the frame carries the stack cookie (`01F44830`, checked by `00808C40`) | `00272334`, `0027233E`, `00272358`, `00272362`, `0027236A` |

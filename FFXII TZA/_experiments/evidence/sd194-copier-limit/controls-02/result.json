@@ -1,0 +1,69 @@
+{
+  "producer_complete": true,
+  "status": "THREE_ACTUAL_PREREQUISITE_REFUSALS",
+  "driver_sha256": "baf3ecc051e5a247dc5f97e33a425d46c5c305295ecb4155d6832cc0781bb648",
+  "positive_result_sha256": "25fa0252f3a2f9d02966a170a08d3949c3627715f4e3378a242acb8f9c27062b",
+  "positive_receipt_sha256": "4ee3e583ead568b298787a168e0a05c36cf2781487151330580e2b1d188ec610",
+  "controls": [
+    {
+      "case": "upstream-failed",
+      "expected": "upstream capture failed/incomplete",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sd194-copier-limit\\prove.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sd194-copier-limit\\controls-02\\upstream-failed\\result.json",
+        "--source",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sd194-copier-limit\\controls-02\\upstream-failed\\source"
+      ],
+      "driver_sha256": "e8265fe733fac1945747f8dc84379de317f3aae712453f16bcf7e4caaaed5a9c",
+      "exit": 1,
+      "terminal": true,
+      "exception": null,
+      "output_exists": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "6f2e05358681f0bd061c6d707a24c9a77d4ef904b1339e155631b8118069b66a",
+      "expected_refusal": true
+    },
+    {
+      "case": "incomplete-source",
+      "expected": "retained source identity changed",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sd194-copier-limit\\prove.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sd194-copier-limit\\controls-02\\incomplete-source\\result.json",
+        "--source",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sd194-copier-limit\\controls-02\\incomplete-source\\source"
+      ],
+      "driver_sha256": "e8265fe733fac1945747f8dc84379de317f3aae712453f16bcf7e4caaaed5a9c",
+      "exit": 1,
+      "terminal": true,
+      "exception": null,
+      "output_exists": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "1c6fdbb75df5014728d0e70c54d67d61be6d2d35276eb378fdf75309dbadc059",
+      "expected_refusal": true
+    },
+    {
+      "case": "changed-limit-branch",
+      "expected": "retained source identity changed",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sd194-copier-limit\\prove.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sd194-copier-limit\\controls-02\\changed-limit-branch\\result.json",
+        "--source",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sd194-copier-limit\\controls-02\\changed-limit-branch\\source"
+      ],
+      "driver_sha256": "e8265fe733fac1945747f8dc84379de317f3aae712453f16bcf7e4caaaed5a9c",
+      "exit": 1,
+      "terminal": true,
+      "exception": null,
+      "output_exists": false,
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "1c6fdbb75df5014728d0e70c54d67d61be6d2d35276eb378fdf75309dbadc059",
+      "expected_refusal": true
+    }
+  ]
+}

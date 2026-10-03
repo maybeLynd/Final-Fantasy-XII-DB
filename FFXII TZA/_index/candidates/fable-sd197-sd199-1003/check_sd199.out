@@ -1,0 +1,173 @@
+PASS  00437130 decodes exactly over 5,930 bytes (00437130..00438859) and its .pdata tiles it
+NOTE  -- A0: where the inline path starts and ends
+PASS  0043566F is `movzx eax, byte ptr [r15 + 0x1f1]`
+PASS  00435677 is `cmp al, 0x80`
+PASS  00435681 is `call 0x438860`
+PASS  00435686 is `jmp 0x435641`
+PASS  00435688 is `test al, 8`
+PASS  0043568A is `je 0x435699`
+PASS  00435692 is `call 0x437130`
+PASS  00435697 is `jmp 0x435641`
+PASS  00436CFB is `jmp 0x435641`
+PASS  00435641 is `mov rcx, qword ptr [rbp + 0xc0]`
+PASS  0043565B is `ret`
+PASS  A0a 004355D0 decodes exactly over 5,936 bytes
+PASS  A0b everything reachable from 00435699 (stopping at the shared epilogue 00435641) lies in [00435699, 00436CFB]  | 435699..436CFB
+PASS  A0c the only branch into the range from outside it is 0043568A `je 0x435699`  | [(4413066, 4413081)]
+PASS  A0d without passing 00435699 no inline instruction is reachable (the range is entered only there)
+PASS  A0e the range has no other exit than the jmp to the shared epilogue (no ret, no other out-branch)
+NOTE  -- A1: the zero-first-qword corner skip
+PASS  A1a 00437130 has 42 corner tests (`cmp qword ptr [rbp+0x60/0x70/0x80(/0x90)], 0`, each `je`) in 12 groups (6 triangle loops x 3 corners, 6 quad loops x 4)  | 42 tests 12 groups
+PASS  A1b the inline path has no such test (0 in 00435699..00436CFB)  | []
+PASS  A1c every group's je target lies past that primitive's emitter call(s) and before the loop's back edge, with no emitter between the target and the back edge (the skip lands on the counter block)  | 43789C:3->4378D1 emit 39E820; 43796C:4->4379AB emit 39EC30; 437A1E:3->437A53 emit 39E6B0; 437AEC:4->437B2B emit 39EA70; 437BE8:3->437CCE emit 39B840,39F4B0; 437D79:4->437E8C emit 39B860,39F9F0; 437F18:3->437FFE emit 39B840,39F2B0; 4380A9:4->4381BC emit 39B860,39F780; 43824F:3->438328 emit 39B840,39F4B0; 4383CC:4->4384D2 emit 39B860,39F9F0; 43854C:3->438625 emit 39B840,39F2B0; 4386C0:4->4387C6 emit 39B860,39F780
+PASS  A1d the draft's 20 skippable F call sites are calls to the named emitters/builders, each inside a skipped span  | []
+PASS  A1e the draft's 20 corresponding inline call sites are calls to the same callees, and they are all of the inline path's emitter/builder calls  | []; inline emitter calls 20
+PASS  A1f value-1 stream: byte read at 00437B90 before the first test of its loop (movzx eax, byte ptr [r13])
+PASS  A1f value-1 stream: byte read at 00437B95 before the first test of its loop (inc r13)
+PASS  A1g the four value-1 loops each consume their per-primitive byte (`movzx eax, byte ptr [r13]`, then `inc r13`) before their corner tests: 00437B90, 00437D00, 00437EC0, 00438030
+NOTE  -- A2: the 1.15 rescale of the pass pair, inline only
+PASS  0043573D is `movss xmm6, dword ptr [rip + 0x8dcd37]`
+PASS  0043574D is `movss xmm7, dword ptr [rip + 0x18b641b]`
+PASS  00435763 is `lea r12, [rdi + 0xa]`
+PASS  0043576F is `lea r12, [r15 + r12*8]`
+PASS  00435C8D is `movzx eax, byte ptr [r15 + 0x1f2]`
+PASS  00435C95 is `test al, 1`
+PASS  00435CC5 is `mov dword ptr [r12], 0x3f000000`
+PASS  00435CDB is `test al, 2`
+PASS  00435CDD is `je 0x435d71`
+PASS  00435D23 is `cmp byte ptr [r15 + rbx + 0x130], 4`
+PASS  00435D2C is `jne 0x435d5a`
+PASS  00435D2E is `call 0x53dd10`
+PASS  00435D33 is `cmp eax, 1`
+PASS  00435D36 is `jne 0x435d5a`
+PASS  00435D45 is `divss xmm0, xmm6`
+PASS  00435D49 is `mulss xmm1, xmm6`
+PASS  00435D4D is `movss dword ptr [r12], xmm0`
+PASS  00435D53 is `movss dword ptr [r12 + 4], xmm1`
+PASS  00435D67 is `addss xmm0, xmm7`
+PASS  00435D6B is `addss xmm1, xmm7`
+PASS  00435D71 is `cmp byte ptr [r15 + rbx + 0x130], 4`
+PASS  00435D7C is `call 0x53dd10`
+PASS  00435D81 is `cmp eax, 1`
+PASS  00435D93 is `divss xmm0, xmm6`
+PASS  00435D97 is `mulss xmm1, xmm6`
+PASS  00435D9B is `movss dword ptr [r12 + 4], xmm1`
+PASS  00435DA2 is `movss dword ptr [r12], xmm0`
+PASS  A2a xmm6 = [00D1247C] = 1.15f (0x3F933333), xmm7 = [01CEBB70] = 0.5
+PASS  A2b xmm6 is not rewritten inside the pass loop (00435745..00436CC0)  | []
+PASS  A2c 0053DD10 is `mov eax, 1` / `ret` (6 bytes, read whole)
+PASS  0053DD15 is `ret`
+NOTE     => the `cmp eax, 1` / `jne` after each call never skips: whenever the pass's +0x130 byte is 4 and +0x1F2 bit 0 is clear, the pair is divided by 1.15 (lane 0) and multiplied by 1.15 (lane 1)
+PASS  A2d 00437130 never calls 0053DD10 and never reads 00D1247C
+PASS  004377B0 is `test al, 2`
+PASS  004377B2 is `je 0x437811`
+PASS  00437800 is `addss xmm0, xmm6`
+PASS  00437804 is `addss xmm1, xmm6`
+PASS  00437808 is `movss dword ptr [rcx], xmm0`
+PASS  004371F2 is `movss xmm6, dword ptr [rip + 0x18b4976]`
+PASS  A2e F's xmm6 is 0.5 ([01CEBB70]); its bit-1 arm adds 0.5 with no rescale; with neither bit it does nothing (004377B2 -> 00437811)
+PASS  A2f every builder call (0039B840/0039B860) gets r9 = the pass pair: `mov r9, r12` inline, `mov r9, qword ptr [rsp + 0x58]` in F  | ['mov r9, r12', 'mov r9, r12', 'mov r9, r12', 'mov r9, r12', 'mov r9, r12', 'mov r9, r12', 'mov r9, r12', 'mov r9, r12'] | ['mov r9, qword ptr [rsp + 0x58]', 'mov r9, qword ptr [rsp + 0x58]', 'mov r9, qword ptr [rsp + 0x58]', 'mov r9, qword ptr [rsp + 0x58]', 'mov r9, qword ptr [rsp + 0x58]', 'mov r9, qword ptr [rsp + 0x58]', 'mov r9, qword ptr [rsp + 0x58]', 'mov r9, qword ptr [rsp + 0x58]']
+PASS  00435DA8 is `movzx eax, byte ptr [r15 + rbx + 0x130]`
+PASS  00435DB1 is `cmp al, 5`
+PASS  00435DB3 is `jne 0x43608c`
+PASS  0039B844 is `mov qword ptr [rsp + 0x20], r9`
+PASS  0039B864 is `mov qword ptr [rsp + 0x20], r9`
+PASS  0039B869 is `mov r9d, 4`
+PASS  0039B849 is `mov r9d, 3`
+PASS  A2g 0039B860 executed: emitted (S, T) = ((u + pair.x) * q, (v + pair.y) * q) per corner, bit exact; changing the pair changes every corner  | pair (0,0): [(0.25, 0.75), (0.75, -0.25)]; pair (0.5,0.5): [(0.75, 1.25), (1.0, 0.0)]
+PASS  00449C99 is `lea rbx, [rdi + 0x50]`
+PASS  00449FA0 is `movss dword ptr [rbx], xmm0`
+PASS  00449FB6 is `movss dword ptr [rbx + 4], xmm0`
+PASS  00449FC4 is `movss dword ptr [rbx], xmm1`
+PASS  00449FCC is `movss dword ptr [rbx + 4], xmm0`
+PASS  0044A029 is `add rbx, 8`
+PASS  0044A15B is `call 0x4355d0`
+PASS  00449CE9 is `mov byte ptr [r12 + rdi + 0x130], al`
+PASS  00449D30 is `cmp ecx, 1`
+NOTE     => the walk 00449AB0 rewrites param+0x50+8p from the slot's two tracks before its one draw call 0044A15B, so the in-place rescale does not accumulate across frames; +0x130+p is slot byte +0 (00449CE9), and byte 4 takes the same texture-lookup arm as byte 2 (00449D30)
+NOTE  -- A3: is everything else the same? (whole-range censuses)
+PASS  A3a callee multisets differ only in 0053DD10 (inline x2), 00808C40 (F's own cookie check) and the count of pure 0020E600 calls (76 vs 77)  | {'0020E600': (76, 77), '0053DD10': (2, 0), '00808C40': (0, 1)}
+PASS  A3b 0020E600 is pure: `mov eax, ecx` / `add rax, [01F83530]` / `ret` (no store)
+PASS  A3c rip-relative globals: the same set except 00D1247C (1.15, inline) and 01F44830 (F's cookie)  | {'01F44830': (0, 1), '00D1247C': (1, 0)}
+PASS  A3d non-stack memory operands: identical (displacement, scale, width) sets in I and F  | [] | []
+PASS  A3e frame: inline shares 004355D0's 0x210 frame and epilogue; F has its own 0x1F0 frame; both return 1
+NOTE  -- B: the grid pair 004434D0 (G0, bit clear) / 00444340 (G1, bit set)
+PASS  Ba both decode exactly over their extents
+PASS  Bb G1 has 16 corner tests in 4 quad groups (corner 0 by `movq rax, xmm2` / `test rax, rax`, corners 1-3 by `cmp qword ptr [rbp+0x40/0x50/0x60], 0`); G0 has none  | 16 / 0
+PASS  Bc the draft's six G1 call sites are skippable emitter/builder calls; its six G0 sites are the same callees and all of G0's emitter calls  | [] []
+PASS  Bd callee multisets identical  | {}
+PASS  Be rip-relative global sets identical  | set()
+PASS  Bf non-stack memory operand (displacement, scale, width) sets identical  | [] | []
+PASS  Bg the four grid constants: 0.0625, 0.001953125, 3.5625, 3.5  | [0.0625, 0.001953125, 3.5625, 3.5]
+PASS  00443A21 is `movzx eax, word ptr [r9 + 2]`
+PASS  00443A37 is `movzx eax, word ptr [r9]`
+PASS  004448E0 is `movzx eax, word ptr [r8 + 2]`
+PASS  004448F6 is `movzx eax, word ptr [r8]`
+PASS  004434D5 is `push r14`
+PASS  004434E0 is `sub rsp, 0x208`
+PASS  00444345 is `push rsi`
+PASS  0044434E is `sub rsp, 0x208`
+PASS  0044431E is `call 0x808c40`
+PASS  00444330 is `ret`
+PASS  004452BA is `call 0x808c40`
+PASS  004452CA is `ret`
+NOTE     => bookkeeping: same 0x208 frame, different pushed registers; neither sets eax after the cookie call
+NOTE     => a grid entry's first 4 bytes are the two u16 the mode-2 screen term reads (X at +0, Y at +2); G1's test is on the entry's first 8 bytes
+NOTE  -- T (not in the draft): the same bit picks the vertex transform before every one of these draws
+PASS  004350FC is `test byte ptr [r15 + 0x1f1], 8`
+PASS  0043510B is `je 0x43525d`
+PASS  00435122 is `call 0x39a150`
+PASS  00435127 is `call 0x24e410`
+PASS  0043514C is `mov dword ptr [rdi], 0x81b78d03`
+PASS  0043526E is `call 0x399b80`
+PASS  00435273 is `test eax, eax`
+PASS  00435275 is `je 0x435167`
+PASS  00435280 is `xor eax, eax`
+PASS  004352AD is `jmp 0x4351f6`
+PASS  004351F1 is `mov eax, 1`
+PASS  004351B0 is `call 0x432300`
+PASS  00434DF1 is `test byte ptr [r14 + 0x1f1], 8`
+PASS  00434E07 is `je 0x434ed9`
+PASS  00434E0D is `call 0x39a150`
+PASS  00434E12 is `call 0x24e410`
+PASS  00434E25 is `mov word ptr [rsi], cx`
+PASS  00434ED9 is `call 0x399b80`
+PASS  00434EDE is `test eax, eax`
+PASS  00434EE0 is `je 0x434e77`
+PASS  00434EEA is `xor eax, eax`
+PASS  00434F04 is `jmp 0x435017`
+PASS  00435636 is `call 0x434cd0`
+PASS  0043563B is `test eax, eax`
+PASS  0043563D is `jne 0x43566f`
+PASS  00435666 is `call 0x435050`
+PASS  0043566B is `test eax, eax`
+PASS  0043566D is `je 0x43563f`
+PASS  0043563F is `xor eax, eax`
+PASS  T1 mesh: with +0x1F1 bit 3 set both preps call 0039A150 and ignore its result; clear, they call 00399B80 and a non-zero result makes the prep return 0, and 004355D0 then returns 0 before its path ladder: nothing of the element is drawn (00435273 / 00434EDE -> 0043563F); all anchors above
+PASS  T2 grid: walks 004453D0 / 00447020 / 00447ED0 test the same definition bit that picks 00444340, call 0039A150 when set and 00399B80 when clear, and a non-zero 00399B80 result jumps past both draw calls
+PASS  0039A0C6 is `cmp rcx, rax`
+PASS  0039A0C9 is `jne 0x39a122`
+PASS  0039A122 is `mov eax, dword ptr [rip + 0x1f3ee08]`
+PASS  0039A0F6 is `mov qword ptr [r11], rcx`
+PASS  0039A6C8 is `cmp rax, rcx`
+PASS  0039A6CB is `je 0x39a6f0`
+PASS  0039A6CD is `mov qword ptr [r11], rcx`
+PASS  0039A712 is `mov qword ptr [r11], rcx`
+PASS  T3 shape: 00399B80 leaves its vertex loop at the first vertex whose per-vertex compare is unequal (0039A0C9 -> 0039A122, returning the dword at 022D8F30); 0039A150 writes an entry on both outcomes of the same compare and continues (0039A6CD / 0039A712); both are call-free with one ret
+NOTE     NOT established here: what the compare tests (it reads clip-flag style globals of a VU-style emulation) and whether 0039A150 ever writes a first qword of zero - the condition that fires A-1 / B-1
+== P: shipped population
+NOTE     active slots with slot byte +0 = 4 (param +0x130+p = 4), by (type, path): [(('0x04', '004434D0'), 16), (('0x05', '00438860'), 33), (('0x05', 'inline'), 57)]
+PASS  P1 shipped: 57 inline type-0x05 slots have +0x130 byte 4 (the rescale applies to them); 00437130 elements author none (so no shipped bit-3 element would show A-2)
+== C: controls
+PASS  C control: the fabricated difference '00437130 calls 0053DD10' is rejected
+PASS  C control: the fabricated difference 'the inline path tests a corner's first qword for zero' is rejected
+PASS  C control: the fabricated difference '00444340 reads a global 004434D0 does not (e.g. 00D1247C)' is rejected
+PASS  C control: the fabricated difference '004434D0 skips null corners too' is rejected
+PASS  C control: on a patched image where 0053DD10 returns 0 the A2c anchor fails (the check reads the body)
+== classification
+CLASS  A-1 zero-first-qword corner skip (F only)                                   DRAWN when it fires: the primitive is not emitted; whether any entry has a zero first qword is not established
+CLASS  A-2 1/1.15, x1.15 pass-pair rescale (inline only)                           DRAWN: the pair is the additive UV offset of the emitted S,T (A2g); always applied when +0x130 = 4 and +0x1F2 bit 0 is clear (0053DD10 returns 1)
+CLASS  B-1 zero-first-qword quad skip (G1 only)                                    DRAWN when it fires; same open condition as A-1
+CLASS  T transform choice 0039A150 / 00399B80 (both preps, three grid walks)       DRAWN: bit clear can reject the whole element; bit set never rejects it
+CLASS  register/stack allocation, frame size, own vs shared epilogue, 0020E600 call count BOOKKEEPING
+FAILS 0

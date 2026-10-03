@@ -1,0 +1,253 @@
+{
+  "producer_complete": true,
+  "driver_sha256": "9433f6e3747a3ffb3502c4906d524754c3d078de3b4d1f26be07a3695bebf630",
+  "producer_sha256": "251090bba6867a1c99ee7ce84204f9c1c1079ed15c3d0c6b422313787f61d38d",
+  "positive_result_sha256": "eff5d1504ca5106850066adec59a78a0efec397cb5c061d785d3a71148577d84",
+  "method": "Actual CLI prerequisite tests and static source-interpretation controls; no native/live execution",
+  "cli_refusals": [
+    {
+      "name": "upstream-failed",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-register-event0\\prove.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-register-event0\\controls-01\\upstream-failed\\result.json",
+        "--src",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-register-event0\\controls-01\\upstream-failed\\source"
+      ],
+      "driver_sha256": "251090bba6867a1c99ee7ce84204f9c1c1079ed15c3d0c6b422313787f61d38d",
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "expected_diagnostic": "required physical producer failed or incomplete",
+      "expected_refusal": true
+    },
+    {
+      "name": "extent-incomplete",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-register-event0\\prove.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-register-event0\\controls-01\\extent-incomplete\\result.json",
+        "--src",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-register-event0\\controls-01\\extent-incomplete\\source"
+      ],
+      "driver_sha256": "251090bba6867a1c99ee7ce84204f9c1c1079ed15c3d0c6b422313787f61d38d",
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "expected_diagnostic": "physical extent prerequisite incomplete",
+      "expected_refusal": true
+    },
+    {
+      "name": "unwind-header-changed",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-register-event0\\prove.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-register-event0\\controls-01\\unwind-header-changed\\result.json",
+        "--src",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-register-event0\\controls-01\\unwind-header-changed\\source"
+      ],
+      "driver_sha256": "251090bba6867a1c99ee7ce84204f9c1c1079ed15c3d0c6b422313787f61d38d",
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "expected_diagnostic": "unsupported or altered physical unwind identity",
+      "expected_refusal": true
+    },
+    {
+      "name": "registration-incomplete",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-register-event0\\prove.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-register-event0\\controls-01\\registration-incomplete\\result.json",
+        "--src",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-register-event0\\controls-01\\registration-incomplete\\source"
+      ],
+      "driver_sha256": "251090bba6867a1c99ee7ce84204f9c1c1079ed15c3d0c6b422313787f61d38d",
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "expected_diagnostic": "retained registration source prerequisite incomplete",
+      "expected_refusal": true
+    },
+    {
+      "name": "coherent-guard-change",
+      "argv": [
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+        "-B",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-register-event0\\prove.py",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-register-event0\\controls-01\\coherent-guard-change\\result.json",
+        "--src",
+        "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-register-event0\\controls-01\\coherent-guard-change\\source"
+      ],
+      "driver_sha256": "251090bba6867a1c99ee7ce84204f9c1c1079ed15c3d0c6b422313787f61d38d",
+      "terminal": true,
+      "exit": 1,
+      "exception": null,
+      "expected_diagnostic": "retained original body differs",
+      "expected_refusal": true
+    }
+  ],
+  "path_controls": [
+    {
+      "name": "signed-relative-stack-regression",
+      "old_driver_sha256": "8e20298138843098430010f9c07c488cc72576d549675e177738df24c702adcc",
+      "old": {
+        "boundary": "RETURN",
+        "eax": 0,
+        "pre_ret_rsp_delta": 18446744073709551616,
+        "rdx": 0,
+        "path": [
+          "0x29b7d0",
+          "0x29b7d4",
+          "0x29b7d7",
+          "0x29b7db",
+          "0x29b7de",
+          "0x29b7fb",
+          "0x29b7fd",
+          "0x29b801"
+        ],
+        "memory": [
+          {
+            "pc": "0x29b7d7",
+            "base": "rcx",
+            "displacement": 72,
+            "size": 8,
+            "role": "r"
+          }
+        ]
+      },
+      "corrected": {
+        "boundary": "RETURN",
+        "eax": 0,
+        "pre_ret_rsp_delta": 0,
+        "rdx": 0,
+        "path": [
+          "0x29b7d0",
+          "0x29b7d4",
+          "0x29b7d7",
+          "0x29b7db",
+          "0x29b7de",
+          "0x29b7fb",
+          "0x29b7fd",
+          "0x29b801"
+        ],
+        "memory": [
+          {
+            "pc": "0x29b7d7",
+            "base": "rcx",
+            "displacement": 72,
+            "size": 8,
+            "role": "r"
+          }
+        ]
+      }
+    },
+    {
+      "name": "primary-event0-call-discriminator",
+      "entry": "0x29b7d0",
+      "original_sha256": "f8768931c40b9c4bebb13f0927b6684c82bc93bfe30cbc02d03e2b26de38af1b",
+      "mutated_bytes": "4883ec28498bc04c8b414883fa00751b448b4804458b40248b10e8f1bbffff85c0750883c8ff4883c428c333c04883c428c3",
+      "observation": {
+        "boundary": "CALL",
+        "pc": "0x29b7ea",
+        "target": "0x2973e0",
+        "path": [
+          "0x29b7d0",
+          "0x29b7d4",
+          "0x29b7d7",
+          "0x29b7db",
+          "0x29b7de",
+          "0x29b7e0",
+          "0x29b7e4",
+          "0x29b7e8",
+          "0x29b7ea"
+        ],
+        "memory": [
+          {
+            "pc": "0x29b7d7",
+            "base": "rcx",
+            "displacement": 72,
+            "size": 8,
+            "role": "r"
+          },
+          {
+            "pc": "0x29b7e0",
+            "base": "rax",
+            "displacement": 4,
+            "size": 4,
+            "role": "r"
+          },
+          {
+            "pc": "0x29b7e4",
+            "base": "r8",
+            "displacement": 36,
+            "size": 4,
+            "role": "r"
+          },
+          {
+            "pc": "0x29b7e8",
+            "base": "rax",
+            "displacement": 0,
+            "size": 4,
+            "role": "r"
+          }
+        ]
+      }
+    },
+    {
+      "name": "secondary-event0-write-discriminator",
+      "entry": "0x29b810",
+      "original_sha256": "8ab5f6318f42bbd53381b192b700a1c6f9d026b0549e90991248b0f11e16603c",
+      "mutated_bytes": "4883ec284c8b49484d8bd083c201741683fa01750a418b412cc1e00489410433c04883c428c3410fb68187000000458b413085c07404440fafc0458b4a04418b12e88abbffff85c075d583c8ff4883c428c3",
+      "observation": {
+        "boundary": "OBJECT_WRITE",
+        "pc": "0x29b82c",
+        "path": [
+          "0x29b810",
+          "0x29b814",
+          "0x29b818",
+          "0x29b81b",
+          "0x29b81e",
+          "0x29b820",
+          "0x29b823",
+          "0x29b825",
+          "0x29b829",
+          "0x29b82c"
+        ],
+        "memory": [
+          {
+            "pc": "0x29b814",
+            "base": "rcx",
+            "displacement": 72,
+            "size": 8,
+            "role": "r"
+          },
+          {
+            "pc": "0x29b825",
+            "base": "r9",
+            "displacement": 44,
+            "size": 4,
+            "role": "r"
+          },
+          {
+            "pc": "0x29b82c",
+            "base": "rcx",
+            "displacement": 4,
+            "size": 4,
+            "role": "w"
+          }
+        ]
+      }
+    },
+    {
+      "name": "unresolved-predicate-no-claim",
+      "mutated_bytes": "4883ec28498bc04c8b414883f801751b448b4804458b40248b10e8f1bbffff85c0750883c8ff4883c428c333c04883c428c3",
+      "refusal": "unknown predicate: no path claim"
+    }
+  ],
+  "limitations": "Disposable mutation controls test producer discrimination, not shipping behavior, original execution or independent acceptance"
+}

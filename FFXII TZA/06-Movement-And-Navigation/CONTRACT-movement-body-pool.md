@@ -2,7 +2,6 @@
 contract: take a collision body from a fixed pool of 128, or quietly do without one
 category: 06-Movement-And-Navigation
 scope: family
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 06-Movement-And-Navigation/the-movement-body-pool-and-the-separation-pass.md

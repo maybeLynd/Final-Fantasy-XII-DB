@@ -2,7 +2,6 @@
 contract: The GameSetting.ini configuration object — construct, load, parse, apply, serialize
 category: 19-Save-Load-Settings
 scope: subsystem
-level: L2
 readiness: RUNTIME VALIDATED   # EXP-001, controlled A/B, 2026-09-08; layout/initialisation corrected 2026-09-10
 confidence: PROVEN
 implements: game-settings-ini-and-runtime-config.md

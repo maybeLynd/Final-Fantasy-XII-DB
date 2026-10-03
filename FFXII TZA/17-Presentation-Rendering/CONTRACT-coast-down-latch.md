@@ -2,7 +2,6 @@
 contract: glide a stopped character to a halt by replaying a cached heading and a decaying speed
 category: 17-Presentation-Rendering
 scope: transition
-level: L1
 readiness: DIFFERENTIAL TESTED   # the latch; its tail's two callees are supplied as oracles — see §13
 confidence: PROVEN
 implements: 17-Presentation-Rendering/Character-Render-Records/the-character-render-record-array.md

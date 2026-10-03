@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\sd194-copier-limit\prove.py", line 118, in <module>
+    args = parser.parse_args(); main(args.output, args.source)
+                                ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\sd194-copier-limit\prove.py", line 51, in main
+    require(receipt.get('terminal') is True and receipt.get('exit') == 0 and receipt.get('exception') is None
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            and receipt.get('driver_sha256') == sha(source / 'capture.py')
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            and (source / 'capture-01.stdout').read_bytes() and not (source / 'capture-01.stderr').read_bytes(),
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            'upstream capture failed/incomplete')
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\sd194-copier-limit\prove.py", line 42, in require
+    if not condition: raise ValueError(text)
+                      ^^^^^^^^^^^^^^^^^^^^^^
+ValueError: upstream capture failed/incomplete

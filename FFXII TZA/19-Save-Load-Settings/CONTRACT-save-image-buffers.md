@@ -2,7 +2,6 @@
 contract: hold the save image in four fixed buffers and move it between them
 category: 19-Save-Load-Settings
 scope: family
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/save-image-buffers-header-and-payload.md

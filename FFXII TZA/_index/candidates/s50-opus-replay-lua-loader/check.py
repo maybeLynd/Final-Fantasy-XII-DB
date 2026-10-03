@@ -147,3 +147,10 @@ record("I3_header_18_compared_17_read", i3, shipped_header_accepted=good, per_by
                                       "message recorded); 16 bytes is 'truncated': 17 are read after the dispatcher's 0x1B")
 json.dump({"ok": allok, "results": results}, open(os.path.join(HERE, "result.json"), "w"), indent=1, default=str)
 print("ok" if allok else "NOT ok")
+
+
+# EXIT STATUS FOLLOWS THE RECORDED VERDICT (OPUS, 2026-10-03, the user's root-cause directive item 4): this package
+# recorded "ok" in result.json but always exited 0, so no automated re-run could see it fail.
+import json as _ej, os as _eo, sys as _es
+_es.exit(0 if _ej.load(open(_eo.path.join(_eo.path.dirname(_eo.path.abspath(__file__)), "result.json"),
+                            encoding="utf-8")).get("ok") is True else 1)

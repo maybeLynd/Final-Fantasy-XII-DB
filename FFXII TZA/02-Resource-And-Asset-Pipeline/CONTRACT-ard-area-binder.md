@@ -2,7 +2,6 @@
 contract: Fetch an area's `.ard` by namespace and index, and bind its sections into the battle registry
 category: 02-Resource-And-Asset-Pipeline
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: VBF-Archive-And-Authored-Tables/St2e-Carriers/how-the-ard-loader-binds-area-battle-data.md

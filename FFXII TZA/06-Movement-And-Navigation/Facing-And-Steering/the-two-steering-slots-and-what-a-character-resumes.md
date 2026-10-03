@@ -4,7 +4,6 @@ category: 06-Movement-And-Navigation
 status: AUDITED
 owner_layer: PrimaryOwner:Movement
 evidence_tier: 1
-level: L2
 readiness: TYPE RESOLVED
 confidence: PROVEN
 verified_against:

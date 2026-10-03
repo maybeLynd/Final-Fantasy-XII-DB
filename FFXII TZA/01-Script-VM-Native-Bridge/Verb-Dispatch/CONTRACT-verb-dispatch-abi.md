@@ -2,7 +2,6 @@
 contract: Call a native verb from an authored script
 category: 01-Script-VM-Native-Bridge
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: scriptvm-verb-dispatch-and-parameter-encoding.md

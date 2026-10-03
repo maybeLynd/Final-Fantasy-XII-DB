@@ -455,3 +455,12 @@ op on it — the `00247510`-family handler dispatch, table-driven.
 **SaveLoad — CLIENT (7 edges).** `00582790` claims a request batch record (`00249580`), loads (`00249210`), closes the batch with `00249410` and requests kind-7 resources (`003933F0`, `00393460`). `00280140` calls `00245020` and `002EFD20`, which clamps its index to 0..6 and returns the byte at `022BDD64 + idx × 0x30` (corrected 2026-10-01, AUDIT-SEM review C1, N2). It shares the helpers and nothing else.
 
 **CombatAI — CLIENT (1 edge).** `AiOrder_EvaluateTargetSelector` (`00301AD0`) calls `BattleEncodedId_DispatchQueryMode0Value` (`00309EC0`), an encoded-id query this page also cites. It is the same query, with no handbook role.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-the-handbook-screen-cloudint-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `001B1F80` | 31 B | stores the fifth (stack) argument at dword `+0x3a58` and `edx`, `r8d` and `r9d` at dwords `+0x3a4c`, `+0x3a50` and `+0x3a54` of `rcx` | `001B1F84`, `001B1F8A`, `001B1F90`, `001B1F97` |
+| `003A7E80` | 90 B | with `p` = `rcx`+4, stores byte `[rcx+2]` at byte `p+0xc2` and byte `[rcx]` as word `p+0xc0`, stores `p` in the qword slot byte `[rcx]` of the array at qword `[qword 02EBEFA0]`, calls `004FF270(p, dword 02EBB738 + the low dword of p)` and returns `p` + `edx` (sign-extended) | `003A7E9F`, `003A7EA5`, `003A7EB7`, `003A7EC3`, `003A7ECC` |

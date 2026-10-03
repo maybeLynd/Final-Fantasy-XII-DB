@@ -2,7 +2,6 @@
 contract: Resolve an action's recipe id into two sentinel-separated calculator lists, and run the second
 category: 08-Combat-Formula
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: 08-Combat-Formula/Recipe-System/ranged-weapon-recipes.md

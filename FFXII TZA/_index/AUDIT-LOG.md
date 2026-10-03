@@ -63534,3 +63534,48 @@ added under `SWE2-CONTRACT 2026-09-30/2026-10-01 (pass-22 debt/residue)`;
 - Interior anchors: 6,723 total, 0
   mid-instruction; paragraph-address gate clean;
   publish-neighbour guard ADDS NOTHING (186 -> 186).
+
+## 2026-10-03 SWE2-STRUCT — SystemStopRecord +0x08: the builder stores it (Claude stand-in for Devin)
+
+- `OPUS-REQ-STRUCT-SYSTEMSTOP-08-1003`: type-store row corrected: `qword08 uint64` TYPE RESOLVED/PROVEN. Builder `00227680` writes 0 on entry
+  and all-ones in five arms in BOTH records (10 all-ones stores, `rbx = r8`); the old "high half of the copy only" meaning is struck.
+  Contract §14 already agrees (FABLE). Census lead: the route seeds only `rdx`, so the bank-B stores are absent.
+  Record `_index/candidates/swe2struct-systemstop08-1003/`, `systemstop08_check.py` FAILS 0; types_index 0 errors.
+
+## SWE2-EC7 EC7-210 homing batch seal - 2026-10-03
+
+- Identity SWE2-EC7 (Claude stand-in), package
+  SWE2-EC7-HOMING-RESIDUE-1003, class no-ref: 9
+  Phyre reflection virtual methods with no direct
+  call, homed on
+  member-registration-and-the-recovered-field-schema.md
+  by vtable slot (rtti-methods.tsv): the three
+  `PTypeDefault<short / unsigned short / float>`
+  slot-0 byte-swappers (`0063E010`, `0063E040`,
+  `0063E090`) and the `PClassDataMemberArray` /
+  `...Dynamic<>` slots 2, 3, 4, 6/7, 8 and 10
+  (`0063C4D0`, `0063D330`, `006065D0`,
+  `00604580`, `0060F3D0`, `0063CB50`). The host
+  was chosen under the 2 h peer-commit rule, and a
+  board task named it while the work was open.
+- Interior anchors: 7,666 total, 0
+  mid-instruction; paragraph-address gate clean;
+  publish-neighbour guard ADDS NOTHING (186 -> 186).
+
+## SWE2-EC7 EC7-211 homing batch seal - 2026-10-03
+
+- Identity SWE2-EC7 (Claude stand-in), package
+  SWE2-EC7-HOMING-RESIDUE-1003, class no-ref: 12
+  concrete `PCaller` invoke thunks (11 slot-2
+  `PMethodCallerConcrete<>` bodies and one slot-1
+  `PFunctionCallerConcrete<>`), homed on
+  embedded-lua-and-phyre-object-bindings.md, which
+  already describes the `PCaller` interface. Each
+  row gives the argument unpacking from the cursor
+  (doubles narrowed to float, bools from a dword)
+  and the this-adjust. The host qualifies under
+  the 2 h peer-commit rule, and a board task named
+  it while the work was open.
+- Interior anchors: 7,678 total, 0
+  mid-instruction; paragraph-address gate clean;
+  publish-neighbour guard ADDS NOTHING (186 -> 186).

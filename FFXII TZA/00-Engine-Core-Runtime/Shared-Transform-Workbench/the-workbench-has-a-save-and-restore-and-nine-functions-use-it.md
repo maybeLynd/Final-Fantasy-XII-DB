@@ -3,7 +3,6 @@ system: The workbench has a save and restore — and nine functions use it
 category: 00-Engine-Core-Runtime
 owner_layer: none — the pair carries no ledger owner, and a caller is not evidence of one
 evidence_tier: 1
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 status: AUDITED — the nine users placed (UQ-41), the lanes' signed ceiling (UQ-42) and the computation's meaning (UQ-43) all answered 2026-09-17

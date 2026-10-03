@@ -2,7 +2,6 @@
 contract: Limit a battle actor's turn through one hysteresis loop whose three angles are a single mechanism
 category: 06-Movement-And-Navigation
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: 06-Movement-And-Navigation/Battle-Locomotion/battle-locomotion-steering-and-recovery.md

@@ -1,9 +1,9 @@
-<!-- TEAM-CURRENT:begin agent=SWE2-DATA board_rev=49783 epoch=4 queue_sha=5b343d46e60153d4 -->
-> generated 2026-10-03T07:27:28+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=SWE2-DATA board_rev=50118 epoch=4 queue_sha=e4f2b8aa58fcf658 -->
+> generated 2026-10-03T08:55:16+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: OPUS-REQ-DATA-L2-RUNTIME-RESCORE-1003, SWE2-DATA-PUB-L2-RUNTIME-RESCORE-1003
+> ACTIVE: AUDITSPEC-REQ-SWE2-DATA-L2EXP-REPAIRS-1003, SWE2-DATA-PUB-L2EXP-REPAIRS-1003
 > READY addressed to you: none
-> READY pool: 0 | BLOCKED: 1
+> READY pool: 0 | BLOCKED: 0
 <!-- TEAM-CURRENT:end -->
 
 > ## TEAM ROLLBACK RECOVERED (SWE2-FRONTIER, 2026-09-26 02:30Z)
@@ -2680,15 +2680,14 @@ Self-check and record exact source/driver/input/result identities and limits. Us
 
 **PRIORITY DISPATCH (SWE2-FRONTIER, 2026-09-29, user-directed).** Please take `OPUS-REQ-DATA-BUCKET-MEMBER-FORMATS` at your next checkpoint — the user asked for it directly. The UNMEASURED figure stays UNMEASURED until `Database/Tools/work/formats/bucket-members.tsv` declares the member formats of the bucketed `.bin`/`.dat` extensions (FABLE ruling mp1-meanings-review C4: a bucketed extension is not an accepted disposition — the members are the requirements). Your UQ-218 claim stays yours; checkpoint it if you context-switch, per the checkpoint-or-narrow request already in your queue.
 
-## Resume state - SWE2-DATA, 2026-10-03 07:30Z, Claude stand-in for Devin (supersedes the blocks above)
+## Resume state - SWE2-DATA, 2026-10-03 09:00Z, Claude stand-in for Devin (supersedes the blocks above)
 
 - **Identity:** SWE2-DATA, operated by a Claude (Opus) subagent while the Devin session (holy-rock) was
   rate-limited (breaker to about 07:39Z). The parent Claude session held every SWE2 lane in `fleet-plan.json`
   `held_by_subagent` for that window. **Devin: read this block first. Everything it lists is DONE on the board and
   in git; do not redo it.**
-- **Current package/claim:** none ACTIVE after this commit. `OPUS-REQ-DATA-L2-RUNTIME-RESCORE-1003` is finished with this
-  commit's sha right after it lands. `OPUS-REQ-DATA-EE-FAMILY-DECLARING-PAGE-1003` stays BLOCKED on
-  `SWE2DATA-REQ-FRONTIER-ACCEPTED-FAMILIES-API-1003`.
+- **Current package/claim:** none ACTIVE after this commit. `AUDITSPEC-REQ-SWE2-DATA-L2EXP-REPAIRS-1003` is finished with
+  this commit's sha and `b7a084d4a` right after it lands.
 - **Done by the stand-in, 2026-10-03 (commits are SWE2-DATA's):**
   - **`2eefd4ff7`, round-3 readiness publish** (19 paths). All seven controls were re-run on the tree at
     `c2fc944fe`, FAILS 0. `OPEN-QUESTIONS.md` went out as HEAD + the SD-7 row only. The two peer hunks still in the
@@ -2769,61 +2768,37 @@ Self-check and record exact source/driver/input/result identities and limits. Us
       - Positive control, in memory, declaring `vtable-method-index.md`'s "Appendix — the 4,275 unambiguously-owned
         vtable methods": 16,462, i.e. 3,005 excluded (FABLE estimated 2,983, SPEC 3,089).
       - The page declaration is FRONTIER's (page lead); a request is filed to SWE2-FRONTIER.
-  - **`OPUS-REQ-DATA-EE-FAMILY-DECLARING-PAGE-1003`: BLOCKED, design ready.**
-    - Why blocked: progress.py needs the families `check_dispositions.evaluate()` ACCEPTS, with their declaring
-      doc paths. Those are internal today (keyed by basename), and reimplementing FRONTIER's acceptance rules would
-      drift, which is the UC-1 import principle. Requested: `SWE2DATA-REQ-FRONTIER-ACCEPTED-FAMILIES-API-1003`.
-    - When it lands:
-      - Build the checker-backed rows from every committed `_index/candidates/*/` folder holding `fam_rows.py`,
-        `spec.json` and `rows.tsv`, keyed by (`spec.page`, `rows.entry`), with the row's `anchor`.
-      - On a family's declaring page, a member cite credits only if it is that row's anchor. An entry cite there no
-        longer credits by size alone; a bare member list never credits. Other pages keep the base rule.
-      - Print the with/without spread.
-      - Self-tests: a bare list does not credit, a checker row does, another page's small entry cite does, and a
-        hand-typed row without a checker does not.
-      - Stage offline and run with live paths through `run_live_paths.py`.
-      - FABLE's eeloss bounds the loss at 278 or fewer.
-  - **`33b51c821`, the classifier review** (`FABLE-REQ-DATA-REVIEW-CLASSIFIER-1003`, FABLE's `recent_changes.py` at
-    `a065b24fa`): **ACCEPT-WITH-NARROWING**, record `_index/candidates/swe2data-review-fable-classifier-1003/REVIEW.md`.
-    - What passes: self-test FAILS 0; size is never read; the write is atomic; 5 of 7 rule mutations are caught
-      (`mutate_rules.py`/`.out` in the record).
-    - N1: rule (f) credits NEW FF12 KNOWLEDGE only when the section incorporates an independently accepted result.
-      In the last 24 h it produced 253 of 255 knowledge events, 171 of them author-verified interior-citation
-      batches.
-    - N2: at most one rule-(f) event per commit.
-    - N3: fixtures that kill the surviving mutations M5 and M7.
-    - FABLE's three departures ruled: the strike requirement and workflow docs are agreed; CONTRADICTIONS.tsv has a
-      non-blocking rule.
-    - **Devin: when FABLE posts the repair, re-run `mutate_rules.py` (M5 and M7 must now be caught) and confirm N1 on
-      a 24 h run. That is DATA's follow-up.**
-  - **`765ec764d`, the progress-report INCOMPLETE stub** (coordinator-routed; FRONTIER's dashboard read PARTIAL with
-    KeyError 'levels'):
-    - The cause was a defect, not a reader problem. `write_incomplete` replaced the live `snapshot.json` with a
-      447-byte stub on every aborted run, which is frequent under heavy publishing. That broke the coherent last-good
-      set `write_all` promises.
-    - The fix: a failed run now writes ONLY `Database/Tools/work/progress-generations/LAST-FAILURE.json` (ignored
-      store). The live outputs stay the prior generation, byte-identical, and `check` prints the failure beside them.
-    - Tests: T12/T31/T40 updated, and new T12c (snapshot byte-identical; check reports the failure). Re-adding the
-      stub write fails 3 tests. The live suite runs FAILS 0. Regenerated CURRENT.
-  - **This commit, the L2 runtime re-score** (`OPUS-REQ-DATA-L2-RUNTIME-RESCORE-1003`; record
-    `_index/candidates/swe2data-l2-runtime-rescore-1003/`). DATA is an independent hand: AUDIT-SEM scored 43 of the 52
-    runtime cells.
-    - 11 sampled rows were checked against the ruled criterion, with every audit finding verified in the contract text
-      and the harness code.
-    - **S-02, S-28, S-43 and S-49 move runtime MET → MIXED and L2 MET → NOT MET.** `goal_gate` now reads 4/52 NOT MET.
-      - S-02: WT-4's consume ran only under EXP-191 intercepts, and `0032FC30` reaches the stager `003145E0`.
-      - S-28: SM-5's CON-169 mode arms were never driven.
-      - S-43: SV-5's tail never ran, and only one of four contracts is mapped.
-      - S-49: descriptor I2 `005847E0` was never driven, with no static tag.
-    - S-22, S-39, S-08, S-23, S-36, S-13 and S-07 keep MET, with narrowings routed. The record lists what restores each
-      row, and who owns it.
-    - **Devin, the follow-up:** when SPEC's 52-row expansion (`OPUS-REQ-AUDITSPEC-L2-EXPANSION-1003`) and ORACLE's
-      cross-check report, re-score what they name the same way. The 15 denominator-ruled cells outside this sample are
-      listed in the record as not yet independently passed.
+  - **`be84252cb`, the family-declaring-page rule** (`OPUS-REQ-DATA-EE-FAMILY-DECLARING-PAGE-1003`, unblocked by
+    FRONTIER's `check_dispositions.accepted_families()` at `1e64e4042`):
+    - progress.py `cite_credits`: on an in-scope family's declaring page, a member credits only from a committed
+      checker's row anchor. The anchor may be the entry, and then size does not matter. A bare list or a hand-typed
+      row earns nothing; other pages keep the base rule.
+    - Inputs: the accepted families come from `accepted_families` (imported, not reimplemented). The anchors come
+      from committed checker records in both shapes that exist: OPUS's `fam_rows.py` + `spec.json` + `rows.tsv`, and
+      FABLE's `desc_check.py` + `applier.py` + `accessor_desc.json`.
+    - **Scope:** a family is in scope when its declaring page carries checker rows covering one of its members: 19 of
+      334 families, on 5 pages. Applied to all 334, the rule would strip 345 individually cited functions from
+      C-letter module dispositions (the-fifteen-modules page), which are not "shared shape explained once". No field
+      marks a shape family, so `SWE2DATA-REQ-OPUS-FRONTIER-FAMILY-SHAPE-MARKER-1003` asks OPUS and FRONTIER for one.
+      When it lands, extend the scope to marked families, including ones with no rows (DF-1 then earns nothing).
+    - Live: engine_explained 20,195 / 35,065. 9 functions lose credit (no checker row, credited nowhere else), inside
+      FABLE's bound of 278 or fewer. 4,499 are credited by row anchors; FABLE's 590 template rows still credit.
+    - Self-test: 18 cases (6 new family cases); 2 mutations are caught (family branch removed, size rule on
+      anchors). check_dispositions --self-test and test_progress_fail_closed pass.
+  - **The L2 expansion runtime repairs** (`AUDITSPEC-REQ-SWE2-DATA-L2EXP-REPAIRS-1003`, from SPEC's `78595090d`; record
+    `_index/candidates/swe2data-l2exp-repairs-1003/`, in this commit). Every named finding was verified in the
+    contract and the harness.
+    - **S-46: runtime MIXED, L2 NOT MET.** The corrected I5 cursor/count clause is unrecorded, and the I5 bound check
+      cannot fail.
+    - Re-worded, still MET: S-22, S-26, S-06, S-11, S-30, S-34, S-32, S-31, S-18, S-08 (details in the record).
+    - **Provenance: the cell edits are at HEAD inside SWE2-AUDIT-SEM's `b7a084d4a`.** It published the verdict file as
+      a whole while DATA's edits were uncommitted in the worktree. The content is DATA's intended edit, unchanged, so
+      nothing was reverted. The record documents it, and SWE2-AUDIT-SEM was told.
+    - `goal_gate` at HEAD reads 16/52 NOT MET: five runtime (S-02, S-28, S-43, S-46, S-49) and AUDIT-SEM's eleven types.
 - **Pending on others:** SPEC's verdict on the OV-42 record. A REJECT files `AUTO-REPAIR-...` to SWE2-DATA, which
   is the lane's to answer.
 - **Housekeeping note:** `c77a50981`'s index refresh was deferred by a stale `.git/index.lock`. The coordinator
   removed the lock and refreshed the shared index at about 02:46Z; nothing of DATA's stays staged.
 - **Exact next action:** re-query `team.py show --agent SWE2-DATA` and READY for newly routed work. Fallback
   eligible work is in the earlier blocks (SN-1 page accepts, RC static residue).
-- **Latest coherent commit:** `765ec764d` (before this one).
+- **Latest coherent commit:** `b7a084d4a` (before this one).

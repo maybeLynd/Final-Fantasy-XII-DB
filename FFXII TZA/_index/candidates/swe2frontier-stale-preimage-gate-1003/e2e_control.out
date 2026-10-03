@@ -1,0 +1,4 @@
+PASS  E1 stale pre-image refused (exit 9, HEAD unchanged)
+PASS  E2 declared revert commits
+PASS  E3 clean publish commits
+FAILS 0

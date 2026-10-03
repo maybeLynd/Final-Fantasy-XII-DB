@@ -2,7 +2,6 @@
 contract: commit a chosen action and target onto a battle unit, or refuse
 category: 07-Combat-Action
 scope: operation
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 04-Actor-Entity/Battle-Unit/the-battle-unit-field-map.md

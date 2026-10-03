@@ -1,0 +1,12 @@
+PASS  C1 builder stores +0x08: 2 zero stores on entry, 10 all-ones stores in five arms  | zero 00227698 002276A2; ones 002277A1 002277B0 0022793E 0022794D 00227C0E 00227C1D 00227C46 00227C55 00227C82 00227C91
+PASS  C1 the zero is xor eax,eax at 00227686
+PASS  C2 the start wrapper passes table 01FD4160 + idx*8 as rdx to 00227680
+PASS  C3 every rip reference into 01FD4160..01FD46D0 lies in the seven known functions  | 14 references; outside: none
+PASS  C3 no absolute qword or 32-bit image-relative value in any other section points into the range  | 0
+PASS  C4 operands at +0x08 are only the builder's 12 stores  | offsets seen: +0x00 x167, +0x08 x12, +0x10 x5, +0x14 x9
+PASS  C4 no reader of +0x08 in any table function
+PASS  CONTROL the classifier finds the apply's +0x00 readers 002262E0/002262E4 and +0x10 reader 002262EE  | +0x00 readers 130, +0x10 readers 1
+PASS  C5 no reader of the combined records' +0x08 or +0x10 (01FD46A8/B0, 01FD46C0/C8)  | 00226299 lea A+0x10 w0; 00226604 W A+0x00 w4; 00226618 W A+0x10 w4; 00226625 W B+0x00 w4; 0022662D W B+0x10 w4; 00226B18 lea A+0x00 w0; 00226B49 lea A+0x14 w0; 00226BA1 R B+0x00 w4; 00226BAA R A+0x00 w4
+PASS  C5 the record accessor 00226B10's two callers read +0x00 only (0022AB2D, 0025D95F)
+PASS  C6 the apply never writes [rsp+0x28/0x30/0x40/0x48], takes no stack address, and no jump leaves it  | writes 0, lea rsp 0, jumps out 0
+FAILS 0

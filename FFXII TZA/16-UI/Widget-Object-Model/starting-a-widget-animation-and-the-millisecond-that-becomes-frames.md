@@ -4,7 +4,6 @@ category: 16-UI
 status: AUDITED — the state nibble's alphabet 0..4 (UQ-183) and the +0x48 record as two transition halves (UQ-184) answered 2026-09-17
 owner_layer: none — the operation carries no ledger owner
 evidence_tier: 1
-level: L1
 readiness: SEMANTICALLY IDENTIFIED
 confidence: PROVEN
 verified_against:

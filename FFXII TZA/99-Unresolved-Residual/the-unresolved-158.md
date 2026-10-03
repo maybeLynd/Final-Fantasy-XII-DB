@@ -4,7 +4,6 @@ category: 99-Unresolved-Residual
 status: DOCUMENTED
 owner_layer: none — this document exists to describe what has no owner
 evidence_tier: 3
-level: L1
 readiness: CLASSIFIED
 confidence: HIGH
 verified_against:

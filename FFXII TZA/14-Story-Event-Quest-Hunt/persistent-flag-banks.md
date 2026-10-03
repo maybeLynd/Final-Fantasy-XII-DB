@@ -4,7 +4,6 @@ category: 14-Story-Event-Quest-Hunt
 status: AUDITED
 owner_layer: PrimaryOwner:Story_Event_Quest_Hunt
 evidence_tier: 1
-level: L2
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 verified_against:

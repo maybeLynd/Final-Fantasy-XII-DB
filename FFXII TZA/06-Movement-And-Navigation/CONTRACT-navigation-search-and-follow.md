@@ -2,7 +2,6 @@
 contract: Find a route across the navigation mesh and walk it — two caches, one shared clearance rule, and a factor that is not root two
 category: 06-Movement-And-Navigation
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: 06-Movement-And-Navigation/how-a-unit-finds-its-way-across-the-navigation-mesh.md

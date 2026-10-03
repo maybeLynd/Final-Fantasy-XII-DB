@@ -1,0 +1,17 @@
+{
+  "name": "coherent-guard-change",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-register-event0\\prove.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-register-event0\\controls-01\\coherent-guard-change\\result.json",
+    "--src",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-register-event0\\controls-01\\coherent-guard-change\\source"
+  ],
+  "driver_sha256": "251090bba6867a1c99ee7ce84204f9c1c1079ed15c3d0c6b422313787f61d38d",
+  "terminal": true,
+  "exit": 1,
+  "exception": null,
+  "expected_diagnostic": "retained original body differs",
+  "expected_refusal": true
+}

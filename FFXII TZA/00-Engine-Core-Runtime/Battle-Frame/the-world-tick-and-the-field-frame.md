@@ -4,7 +4,6 @@ category: 00-Engine-Core-Runtime
 status: AUDITED
 owner_layer: PrimaryOwner:WorldAreaField (the tick and the field frame) — the per-unit frame is ActorEntity, its callees are owned elsewhere
 evidence_tier: 1
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 verified_against:
@@ -2828,3 +2827,20 @@ Interior anchor `00332FDB` (function `00332FA0`).
 | `003DF810` | 208 B | scans the dwords from `02B59CDC` down to `02B59CC0` (indices 7 to 0) for the first non-zero value `v` at index `i`; when one is found calls `0029CAB0(dword 02B59CE0[i], v, qword 02B59C40[i], qword 02B59C80[i])` and stores those values in `02B59D14`, `02B59D10`, `02B59D00` and `02B59D08`; when none is found calls `0029CAB0(0, 0, 0, 0)` and zeroes qwords `02B59D00`, `02B59D08` and dwords `02B59D10`, `02B59D14` | `003DF832`, `003DF84B`, `003DF88D`, `003DF8AC`, `003DF8D4` |
 | `003EB470` | 129 B | returns without work when `rcx` is null; otherwise calls `002ED470(dword +0x10)`, `002EB870(qword +0x18)` and `00265F90(rcx+0x10)`, unlinks `rcx` from its neighbours through qwords `+0` and `+8` (each side patched only when non-null) and zeroes both, then pushes it at the head of the list whose head qword is `02B5EB70` (`+0` = old head, `+8` = `02B5EB70`, the old head's `+8` = `rcx` when non-null) and clears byte `+0x40` | `003EB485`, `003EB497`, `003EB4AD`, `003EB4C9`, `003EB4E7` |
 | `003EF750` | 20 B | tail-jumps to `00244F50(0x108, 003EF830, 0)` | `003EF753`, `003EF75A`, `003EF75F` |
+
+## Homed bodies re-homed here for host fit (FABLE, 2026-10-03; move drafted by OPUS)
+
+*Each body below was homed on another page by FABLE's homing stream (cloud-drafted, FABLE-verified). SWE2-AUDIT-SPEC reviewed its sentence, site and anchors exact, and rejected only the host: that page cites the caller as a foreign or boundary mention (commit `4522aeff6`). The row is moved here because this page cites the caller in its own text. The sentence is unchanged except where `moves.json` records a bits-as-values edit. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Verified by [`move_rows.py`](../../_index/candidates/opus-fable-home-host-moves-1003/move_rows.py): every site transfers to its function, this page cites the caller outside this section, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors | moved from |
+|---|---|---|---|---|---|
+| `003EBD70` | 78 B | `002628B0` + 0x1CD | stores 0 in qword `02B5EC60`; when qword `02B5EC68` is non-null, makes the call at `003EBD70` + 0x1B with it and stores 0 there; then stores 0 in qwords `02B5EC70`, `02B5EC78`, `02B5EC80` and `02B5EC88` and returns 0 | Interior anchor `003EBD7B`; Interior anchor `003EBD8B`; Interior anchor `003EBD90`; Interior anchor `003EBD9D`; Interior anchor `003EBDB2` | [CONTRACT-ui-request-router](../../16-UI/CONTRACT-ui-request-router.md) |
+
+## Homed bodies re-homed here for host fit (FABLE, 2026-10-03; AUDIT-SPEC batch 4)
+
+*Each body below was homed on another page by FABLE's homing stream (cloud-drafted, FABLE-verified). SWE2-AUDIT-SPEC reviewed its sentence, site and anchors exact, and rejected only the host: that page cites the caller as a foreign or boundary mention (commit `95d495604`). The row is moved here because this page cites the caller in its own text. The sentence is unchanged. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Verified by [`move_rows.py`](../../_index/candidates/fable-home-host-moves-b4-1003/move_rows.py): every site transfers to its function, this page cites the caller outside this section, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors | moved from |
+|---|---|---|---|---|---|
+| `0036F510` | 18 B | `0022A770` + 0x12F | calls the site `0036F510` + 0x4 with the incoming registers, then tail-jumps at `0036F510` + 0xD with no argument set up between the two, returning what that target returns | Interior anchor `0036F514`; Interior anchor `0036F51D` | [active-party-reserve-and-the-moment-the-leader-changes](../../11-Party/active-party-reserve-and-the-moment-the-leader-changes.md) |
+| `00314820` | 18 B | `0022A770` + 0x1D8 | calls `00314820` + 0x4 with the incoming registers unchanged, then tail-jumps (+ 0xD) without setting up any argument or reading the call's result | Interior anchor `00314824`; Interior anchor `0031482D` | [keymap-ini-file-format-and-default-controls](../../15-Input/Binding-Profiles/keymap-ini-file-format-and-default-controls.md) |

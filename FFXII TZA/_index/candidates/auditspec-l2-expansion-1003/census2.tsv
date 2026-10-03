@@ -1,0 +1,497 @@
+systems	contract	section	form	token	class	type	where	flag
+S-02	00-Engine-Core-Runtime/Battle-Frame/CONTRACT-world-simulation-tick.md	3. Types	ABS	022C2548	FIELD	WorldTickActiveFlag	+0x0 inWorldTick (SEMANTICALLY IDENTIFIED)	
+S-02	00-Engine-Core-Runtime/Battle-Frame/CONTRACT-world-simulation-tick.md	3. Types	ABS	01EED060	FIELD	WorldTickLatchedRequest	+0x0 latchedRequest (TYPE RESOLVED)	
+S-02	00-Engine-Core-Runtime/Battle-Frame/CONTRACT-world-simulation-tick.md	3. Types	ABS	01EED064	FIELD	WorldTickDeferredModeRequest	+0x0 deferredModeRequest (SEMANTICALLY IDENTIFIED)	
+S-02	00-Engine-Core-Runtime/Battle-Frame/CONTRACT-world-simulation-tick.md	3. Types	ABS	02098E10	FIELD	ActorManagerSlot	+0x0 boundDefinitionPayload (TYPE RESOLVED)	
+S-03	00-Engine-Core-Runtime/Battle-Runtime-Mode/CONTRACT-battle-runtime-mode.md	3. Types and state	ABS	02EBF190	FIELD	AuthoredTableRegistrySlot	+0x0 table (SEMANTICALLY IDENTIFIED)	NEW-ONLY
+S-03	00-Engine-Core-Runtime/Battle-Runtime-Mode/CONTRACT-battle-runtime-mode.md	3. Types and state	ABS	02ADD100	PTR-CELL	FieldRecordTable	+0x0	NEW-ONLY
+S-04	00-Engine-Core-Runtime/CONTRACT-encoded-id-space-and-class-registry.md	3. Types and representations	ABS	01EEBCC0	FIELD	ItemClassDescriptor	+0x0 rebaseOffsetA (TYPE RESOLVED)	
+S-04	00-Engine-Core-Runtime/CONTRACT-encoded-id-space-and-class-registry.md	5. State	ABS	022CA520	FIELD	EncodedIdQueryRecord	+0x0 classId (TYPE RESOLVED)	
+S-04	00-Engine-Core-Runtime/CONTRACT-encoded-id-space-and-class-registry.md	5. State	ABS	022CA480	FIELD	EncodedIdQueryRecord	+0x0 classId (TYPE RESOLVED)	
+S-04	00-Engine-Core-Runtime/CONTRACT-encoded-id-space-and-class-registry.md	5. State	ABS	02EBF170	FIELD	AuthoredTableRegistrySlot	+0x0 table (SEMANTICALLY IDENTIFIED)	
+S-04	00-Engine-Core-Runtime/CONTRACT-encoded-id-space-and-class-registry.md	5. State	ABS	01F83530	FIELD	ImageRelativeReferenceBase	+0x0 base (SEMANTICALLY IDENTIFIED)	
+S-04	00-Engine-Core-Runtime/CONTRACT-encoded-id-space-and-class-registry.md	5. State	ABS	02EC3D80	FIELD	EncodedIdDescriptionReady	+0x0 bucketReady (SEMANTICALLY IDENTIFIED)	
+S-04	00-Engine-Core-Runtime/CONTRACT-encoded-id-space-and-class-registry.md	5. State	ABS	02F973C0	FIELD	EncodedIdDescriptionRoots	+0x0 bucketRoots (SEMANTICALLY IDENTIFIED)	
+S-02	00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md	Interface (state row)	ABS	01E0C464	FIELD	FrameUpdateGateEnableWord	+0x0 enableBits (SEMANTICALLY IDENTIFIED)	
+S-02	00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md	5. State	ABS	0209BE80	PTR-CELL	ManagerSingleton0209BE80	+0x0	
+S-02	00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md	The group handlers' argument is a named 	REC	Widget0720At0209BE80_AB30 +0x710	FIELD	Widget0720At0209BE80_AB30	+0x710 dword0710 (TYPE RESOLVED)	
+S-02	00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md	The group handlers' argument is a named 	UNATTRIBUTED	| `+0x08` | 8 | 1 / 1 | [`002483CA`](../_index/ADDRESS-INDEX	UNATTRIBUTED			
+S-02	00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md	The group handlers' argument is a named 	UNATTRIBUTED	| `+0x10` | 8 | 1 / 1 | [`00248308`](../_index/ADDRESS-INDEX	UNATTRIBUTED			
+S-02	00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md	The group handlers' argument is a named 	UNATTRIBUTED	| `+0x18` | 8 | 3 / 3 | [`002448E0`](../_index/ADDRESS-INDEX	UNATTRIBUTED			
+S-02	00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md	The group handlers' argument is a named 	UNATTRIBUTED	| `+0x20` | 8 | 1 / 1 | [`00248315`](../_index/ADDRESS-INDEX	UNATTRIBUTED			
+S-02	00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md	The group handlers' argument is a named 	UNATTRIBUTED	| `+0x28` | 8 | 1 / 1 | [`00248311`](../_index/ADDRESS-INDEX	UNATTRIBUTED			
+S-02	00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md	The group handlers' argument is a named 	UNATTRIBUTED	| `+0x40` | 4 | 4 / 2 | [`00244865`](../_index/ADDRESS-INDEX	UNATTRIBUTED			
+S-02	00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md	The group handlers' argument is a named 	UNATTRIBUTED	| `+0x50` | 4 | 3 / 1 | [`00248334`](../_index/ADDRESS-INDEX	UNATTRIBUTED			
+S-02	00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md	The group handlers' argument is a named 	UNATTRIBUTED	| `+0x60` | 8 | 4 / 1 | [`0024833E`](../_index/ADDRESS-INDEX	UNATTRIBUTED			
+S-02	00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md	The group handlers' argument is a named 	UNATTRIBUTED	| `+0x7C` | 4 | 1 / 1 | [`002483BE`](../_index/ADDRESS-INDEX	UNATTRIBUTED			
+S-02	00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md	The group handlers' argument is a named 	REC	ManagerSub0209BE80_AB30 +0x61CC	FIELD	ManagerSub0209BE80_AB30	+0x61CC flags61CC (TYPE RESOLVED)	
+S-02	00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md	The group handlers' argument is a named 	REC	BattleUnit +0x298	FIELD	BattleUnit	+0x298 navigationPathState -> +0x98 nodePositionXZ (SEMANTICALLY IDENTIFIED)	
+S-02	00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md	The group handlers' argument is a named 	UNATTRIBUTED	| `+0x0000` | 8 | 1 | [`00273A22`](../_index/ADDRESS-INDEX.m	UNATTRIBUTED			
+S-02	00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md	The group handlers' argument is a named 	UNATTRIBUTED	| `+0x0060` | 8 | 2 | [`003FA11C`](../_index/ADDRESS-INDEX.m	UNATTRIBUTED			
+S-02	00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md	The group handlers' argument is a named 	UNATTRIBUTED	| `+0x00C4` | **1 and 4** | 6 | [`003F9E8E`](../_index/ADDRE	UNATTRIBUTED			
+S-02	00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md	The group handlers' argument is a named 	UNATTRIBUTED	| `+0x00C8` | 4 | 1 | [`003FA12C`](../_index/ADDRESS-INDEX.m	UNATTRIBUTED			
+S-02	00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md	The group handlers' argument is a named 	UNATTRIBUTED	| `+0x2490` | 8 | 4 | `003FA4E0` `mov r8, qword ptr [rcx+0x2	UNATTRIBUTED			
+S-02	00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md	The group handlers' argument is a named 	UNATTRIBUTED	| `+0x2498` | 2 | 2 | [`003FA004`](../_index/ADDRESS-INDEX.m	UNATTRIBUTED			
+S-02	00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md	The group handlers' argument is a named 	UNATTRIBUTED	| `+0x249A` | 2 | 2 | [`003FA010`](../_index/ADDRESS-INDEX.m	UNATTRIBUTED			
+S-02	00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md	The group handlers' argument is a named 	UNATTRIBUTED	| `+0x249C` | **1 and 4** | 8 | [`003F9F51`](../_index/ADDRE	UNATTRIBUTED			
+S-02	00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md	The group handlers' argument is a named 	UNATTRIBUTED	| `+0x24A0` | 2 | 3 | [`003F9F5D`](../_index/ADDRESS-INDEX.m	UNATTRIBUTED			
+S-02	00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md	The group handlers' argument is a named 	UNATTRIBUTED	| `+0x24A2` | 2 | 1 | [`003FA0AD`](../_index/ADDRESS-INDEX.m	UNATTRIBUTED			
+S-02	00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md	The group handlers' argument is a named 	ABS	0208EA28	FIELD	UiRootTable	+0x8 uiRoot1 (SEMANTICALLY IDENTIFIED)	NEW-ONLY
+S-02	00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md	SWE2-EC7-88 update (2026-09-20) - `003CA	ABS	02B47758	PTR-CELL	WidgetSingleton02B47758	+0x0	
+S-05	00-Engine-Core-Runtime/CONTRACT-shared-transform-workbench.md	3. Types	ABS	022D8F00	RANGE-START		start of a range >=90% declared (old census rule)	
+S-05	00-Engine-Core-Runtime/CONTRACT-shared-transform-workbench.md	3. Types	ABS	022D9500	FIELD	PageRecord022D94B0	+0x8 byte008 (TYPE RESOLVED)	
+S-05	00-Engine-Core-Runtime/CONTRACT-shared-transform-workbench.md	3. Types	ABS	022D91B0	FIELD	EeVu0RegisterBank	+0x2A0 vf01 (TYPE RESOLVED)	
+S-05	00-Engine-Core-Runtime/CONTRACT-shared-transform-workbench.md	3. Types	ABS	022D91EF	FIELD	EeVu0RegisterBank	+0x2DF vf04 (TYPE RESOLVED)	
+S-05	00-Engine-Core-Runtime/CONTRACT-shared-transform-workbench.md	3. Types	ABS	022D94B0	FIELD	PageRecord022D94B0	+0x0 id (TYPE RESOLVED)	
+S-05	00-Engine-Core-Runtime/CONTRACT-shared-transform-workbench.md	3. Types	ABS	022D94B4	FIELD	PageRecord022D94B0	+0x4 state (TYPE RESOLVED)	
+S-05	00-Engine-Core-Runtime/CONTRACT-transform-primitives.md	5. State — the deposits are not a side e	ABS	022D9300	FIELD	EeVu0RegisterBank	+0x3F0 vf22 (TYPE RESOLVED)	
+S-05	00-Engine-Core-Runtime/CONTRACT-transform-primitives.md	5. State — the deposits are not a side e	ABS	022D91A0	FIELD	EeVu0RegisterBank	+0x290 vuAcc (TYPE RESOLVED)	
+S-05	00-Engine-Core-Runtime/CONTRACT-transform-primitives.md	5. State — the deposits are not a side e	ABS	022D9310	FIELD	EeVu0RegisterBank	+0x400 vf23 (TYPE RESOLVED)	
+S-05	00-Engine-Core-Runtime/CONTRACT-transform-primitives.md	5. State — the deposits are not a side e	ABS	022D8F90	FIELD	EeVu0RegisterBank	+0x80 gpr_t0 (TYPE RESOLVED)	
+S-05	00-Engine-Core-Runtime/CONTRACT-transform-workbench-save-restore.md	3. Types	ABS	02EC0A00	FIELD	TransformWorkbenchSavedPointer	+0x0 target (SEMANTICALLY IDENTIFIED)	
+S-05	00-Engine-Core-Runtime/CONTRACT-transform-workbench-save-restore.md	3. Types	ABS	02EC0800	FIELD	TransformWorkbenchSavedValue	+0x0 savedBytes (TYPE RESOLVED)	
+S-05	00-Engine-Core-Runtime/CONTRACT-transform-workbench-save-restore.md	3. Types	ABS	022D8F08	FIELD	TransformWorkbenchSaveDepth	+0x0 depth (SEMANTICALLY IDENTIFIED)	
+S-06	00-Engine-Core-Runtime/Developer-Tuning-Console/CONTRACT-developer-tuning-console.md	3. Types	ABS	01DF6E68	FIELD	DeveloperTuningCodeEntry	+0x0 codePtr (SEMANTICALLY IDENTIFIED)	
+S-06	00-Engine-Core-Runtime/Developer-Tuning-Console/CONTRACT-developer-tuning-console.md	3. Types	ABS	01DFC088	RANGE-END			
+S-06	00-Engine-Core-Runtime/Developer-Tuning-Console/CONTRACT-developer-tuning-console.md	3. Types	ABS	01F7F5F0	PTR-CELL	PostProcessParamContext	+0x0	
+S-06	00-Engine-Core-Runtime/Developer-Tuning-Console/CONTRACT-developer-tuning-console.md	5. State	ABS	02EBF190	FIELD	AuthoredTableRegistrySlot	+0x0 table (SEMANTICALLY IDENTIFIED)	
+S-02	00-Engine-Core-Runtime/System-Stop-Registry/CONTRACT-system-stop-registry.md	3. Types	ABS	01FD4410	FIELD	SystemStopRegistry	+0x2B0 records -> +0x10 dword10 (TYPE RESOLVED)	
+S-02	00-Engine-Core-Runtime/System-Stop-Registry/CONTRACT-system-stop-registry.md	3. Types	ABS	01FD46B0	FIELD	SystemStopRegistry	+0x550 combined -> +0x10 dword10 (TYPE RESOLVED)	
+S-02	00-Engine-Core-Runtime/System-Stop-Registry/CONTRACT-system-stop-registry.md	3. Types	ABS	01FD4160	FIELD	SystemStopRegistry	+0x0 records -> +0x0 permissionMask (SEMANTICALLY IDENTIFIED)	
+S-02	00-Engine-Core-Runtime/System-Stop-Registry/CONTRACT-system-stop-registry.md	3. Types	ABS	01FD4400	FIELD	SystemStopRegistry	+0x2A0 records -> +0x0 permissionMask (SEMANTICALLY IDENTIFIED)	
+S-02	00-Engine-Core-Runtime/System-Stop-Registry/CONTRACT-system-stop-registry.md	3. Types	ABS	01FD46D4	FIELD	SystemStopRegistry	+0x574 activeRequestBits (SEMANTICALLY IDENTIFIED)	
+S-02	00-Engine-Core-Runtime/System-Stop-Registry/CONTRACT-system-stop-registry.md	3. Types	ABS	01FD46D0	FIELD	SystemStopRegistry	+0x570 dirty (SEMANTICALLY IDENTIFIED)	
+S-02	00-Engine-Core-Runtime/System-Stop-Registry/CONTRACT-system-stop-registry.md	3. Types	ABS	01FD46A0	FIELD	SystemStopRegistry	+0x540 combined -> +0x0 permissionMask (SEMANTICALLY IDENTIFIED)	
+S-02	00-Engine-Core-Runtime/System-Stop-Registry/CONTRACT-system-stop-registry.md	3. Types	ABS	01FD46C8	FIELD	SystemStopRegistry	+0x568 combined -> +0x10 dword10 (TYPE RESOLVED)	
+S-07	01-Script-VM-Native-Bridge/CONTRACT-interpreter-core.md	3. Types	ABS	02099AC0	FIELD	VmValueStack	+0x0 depth (TYPE RESOLVED)	
+S-07	01-Script-VM-Native-Bridge/CONTRACT-native-command-lifecycle.md	3. Types	ABS	02B57EF0	FIELD	NativeCommandFamilyTables	+0x0 tables (SEMANTICALLY IDENTIFIED)	
+S-07	01-Script-VM-Native-Bridge/CONTRACT-native-command-lifecycle.md	3. Types	ABS	01EED700	FIELD	NativeCommandTableHeader	+0x0 count (SEMANTICALLY IDENTIFIED)	
+S-07	01-Script-VM-Native-Bridge/CONTRACT-native-command-lifecycle.md	3. Types	ABS	01F281B0	FIELD	NativeCommandTableHeader	+0x0 count (SEMANTICALLY IDENTIFIED)	
+S-07	01-Script-VM-Native-Bridge/CONTRACT-native-command-lifecycle.md	3. Types	ABS	01F29418	FIELD	NativeCommandTableHeader	+0x0 count (SEMANTICALLY IDENTIFIED)	
+S-07	01-Script-VM-Native-Bridge/CONTRACT-native-command-lifecycle.md	3. Types	ABS	01F29440	FIELD	NativeCommandTableHeader	+0x0 count (SEMANTICALLY IDENTIFIED)	
+S-07	01-Script-VM-Native-Bridge/CONTRACT-native-command-lifecycle.md	3. Types	ABS	01F26720	FIELD	NativeCommandTableHeader	+0x0 count (SEMANTICALLY IDENTIFIED)	
+S-07	01-Script-VM-Native-Bridge/CONTRACT-script-to-native-bridge.md	3. Types	ABS	02099AC0	FIELD	VmValueStack	+0x0 depth (TYPE RESOLVED)	
+S-07	01-Script-VM-Native-Bridge/CONTRACT-script-to-native-bridge.md	5. State	REC	ActorStorageRecord +0x11	FIELD	ActorStorageRecord	+0x11 currentWaitSlot (SEMANTICALLY IDENTIFIED)	
+S-07	01-Script-VM-Native-Bridge/Verb-Dispatch/CONTRACT-verb-dispatch-abi.md	3. Types	ABS	02B57EF0	FIELD	NativeCommandFamilyTables	+0x0 tables (SEMANTICALLY IDENTIFIED)	
+S-10	02-Resource-And-Asset-Pipeline/Authored-Expressions/CONTRACT-authored-expression-evaluation.md	5. State	ABS	01EF93E8	FIELD	PresentationBitFeedbackPrngState	+0x0 state (SEMANTICALLY IDENTIFIED)	
+S-10	02-Resource-And-Asset-Pipeline/Authored-Expressions/CONTRACT-authored-expression-evaluation.md	5. State	ABS	022D9138	FIELD	EeVu0RegisterBank	+0x228 sharedPrngModeWord (SEMANTICALLY IDENTIFIED)	
+S-10	02-Resource-And-Asset-Pipeline/Authored-Expressions/CONTRACT-authored-expression-evaluation.md	5. State	ABS	022D91A0	FIELD	EeVu0RegisterBank	+0x290 vuAcc (TYPE RESOLVED)	
+S-10	02-Resource-And-Asset-Pipeline/Authored-Expressions/CONTRACT-authored-expression-evaluation.md	5. State	ABS	022D92E0	FIELD	EeVu0RegisterBank	+0x3D0 vf20 (TYPE RESOLVED)	
+S-10	02-Resource-And-Asset-Pipeline/Authored-Expressions/CONTRACT-authored-expression-evaluation.md	5. State	ABS	022D92F0	FIELD	EeVu0RegisterBank	+0x3E0 vf21 (TYPE RESOLVED)	
+S-10	02-Resource-And-Asset-Pipeline/Authored-Expressions/CONTRACT-authored-expression-evaluation.md	5. State	ABS	022D92EF	FIELD	EeVu0RegisterBank	+0x3DF vf20 (TYPE RESOLVED)	
+S-10	02-Resource-And-Asset-Pipeline/Authored-Expressions/CONTRACT-authored-expression-evaluation.md	5. State	ABS	01EF93FC	UNDECLARED			
+S-09	02-Resource-And-Asset-Pipeline/CONTRACT-ard-area-binder.md	3. Types	REC	Ff12Ar03Header +0x00	FIELD	Ff12Ar03Header	+0x0 magic (SEMANTICALLY IDENTIFIED)	
+S-09	02-Resource-And-Asset-Pipeline/CONTRACT-ard-area-binder.md	3. Types	REC	Ff12Ar03Header +0x0C	FIELD	Ff12Ar03Header	+0xC trailerOffset (SEMANTICALLY IDENTIFIED)	
+S-09	02-Resource-And-Asset-Pipeline/CONTRACT-ard-area-binder.md	3. Types	REC	Ff12Ar03Header +0x10	FIELD	Ff12Ar03Header	+0x10 slotDirectory (SEMANTICALLY IDENTIFIED)	
+S-09	02-Resource-And-Asset-Pipeline/CONTRACT-ard-area-binder.md	3. Types	ABS	0215F000	FIELD	ResourcePathNamespaceSlot	+0x0 paths (SEMANTICALLY IDENTIFIED)	
+S-09	02-Resource-And-Asset-Pipeline/CONTRACT-ard-area-binder.md	3. Types	ABS	0215F0A8	FIELD	ResourcePathNamespaceSlot	+0x0 paths (SEMANTICALLY IDENTIFIED)	
+S-09	02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md	Interface (state row)	ABS	01F83530	FIELD	ImageRelativeReferenceBase	+0x0 base (SEMANTICALLY IDENTIFIED)	NEW-ONLY
+S-09	02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md	3. Types	ABS	02EBF160	FIELD	AuthoredTableRegistrySlot	+0x0 table (SEMANTICALLY IDENTIFIED)	
+S-09	02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md	3. Types	ABS	02EBF168	FIELD	AuthoredTableRegistrySlot	+0x0 table (SEMANTICALLY IDENTIFIED)	
+S-09	02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md	3. Types	ABS	02EBF170	FIELD	AuthoredTableRegistrySlot	+0x0 table (SEMANTICALLY IDENTIFIED)	
+S-09	02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md	3. Types	UNATTRIBUTED	| `+0x00` | 2 | `slotCount` | `uint16` | **the index bound o	UNATTRIBUTED			
+S-09	02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md	3. Types	UNATTRIBUTED	| `+0x02` | 2 | — | `uint16` | **reserved — no verified band	UNATTRIBUTED			
+S-09	02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md	3. Types	UNATTRIBUTED	| `+0x04` | 4 | `rowCount` | `uint32` | **the row count, on 	UNATTRIBUTED			
+S-09	02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md	3. Types	UNATTRIBUTED	| `+0x08` | 2 | `recordStride` | `uint16` | the distance bet	UNATTRIBUTED			
+S-09	02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md	3. Types	UNATTRIBUTED	| `+0x0C` | 4 | `recordArrayRef` | `uint32` | a reference to	UNATTRIBUTED			
+S-09	02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md	3. Types	UNATTRIBUTED	| `+0x10` | 4 | — | `uint32` | a second reference, rebased t	UNATTRIBUTED			
+S-09	02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md	3. Types	UNATTRIBUTED	| `+0x14` | 4 | — | `uint32` | a reference to a **counted** 	UNATTRIBUTED			
+S-09	02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md	3. Types	UNATTRIBUTED	| `+0x18` | 4 | — | `uint32` | a third reference | `00384625	UNATTRIBUTED			
+S-09	02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md	3. Types	UNATTRIBUTED	| `+0x1C` | 4 | — | `uint32` | a fourth reference, the highe	UNATTRIBUTED			
+S-09	02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md	3. Types	ABS	02EBEF70	FIELD	EfxPublishedPointers02EBEF70	+0x0 ctxEmbedded18 (SEMANTICALLY IDENTIFIED)	NEW-ONLY
+S-09	02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md	3. Types	ABS	02EBF3FC	FIELD	PartyReadMachineRecord	+0xC subStateByte (SEMANTICALLY IDENTIFIED)	NEW-ONLY
+S-09	02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md	3. Types	ABS	02EBF008	FIELD	AuthoredTableRegistrySlot	+0x0 table (SEMANTICALLY IDENTIFIED)	
+S-09	02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md	3. Types	ABS	02EBF200	FIELD	AuthoredTableRegistrySlot	+0x0 table (SEMANTICALLY IDENTIFIED)	
+S-09	02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md	3. Types	ABS	02EBF000	UNDECLARED			
+S-09	02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md	3. Types	ABS	02EBEF78	FIELD	EfxPublishedPointers02EBEF70	+0x8 ctxBuffer850 (SEMANTICALLY IDENTIFIED)	
+S-09	02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md	3. Types	ABS	02EBF190	FIELD	AuthoredTableRegistrySlot	+0x0 table (SEMANTICALLY IDENTIFIED)	
+S-47	02-Resource-And-Asset-Pipeline/CONTRACT-resource-input-ownership.md	3. Types	ABS	02B581A0	FIELD	IndexedExternalSourceRequest	+0x0 sourceHandle (SEMANTICALLY IDENTIFIED)	NEW-ONLY
+S-08	02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md	3. Types	ABS	022C31C0	FIELD	ResourceRequestSlot	+0x0 counterAccum (TYPE RESOLVED)	
+S-08	02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md	3. Types	UNATTRIBUTED	| `+0x24` | 32-bit index storage; the path route sign-extend	UNATTRIBUTED			
+S-08	02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md	3. Types	UNATTRIBUTED	| `+0x50` | Part callback slot. **The requester clears it; i	UNATTRIBUTED			
+S-08	02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md	5. State	ABS	022C51C0	FIELD	ResourceRequestQueue	+0x0 pendingHead (TYPE RESOLVED)	
+S-08	02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md	5. State	ABS	022C51C8	FIELD	ResourceRequestQueue	+0x8 pendingTail (SIGNATURE RESOLVED)	
+S-08	02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md	5. State	ABS	022C51D0	FIELD	ResourceRequestQueue	+0x10 freeHead (TYPE RESOLVED)	
+S-08	02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md	5. State	ABS	01EED498	FIELD	ResourceQueueGeneration	+0x0 generation (SEMANTICALLY IDENTIFIED)	
+S-08	02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md	5. State	ABS	022C51D8	FIELD	ResourceRequestQueue	+0x18 requestArg18 (TYPE RESOLVED)	
+S-08	02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md	5. State	ABS	022C51DC	FIELD	ResourceRequestQueue	+0x1C requestArg1C (TYPE RESOLVED)	
+S-08	02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md	5. State	ABS	0215EFF4	FIELD	ResourceReadStatus	+0x0 status (SEMANTICALLY IDENTIFIED)	
+S-08	02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md	5. State	ABS	022CA5E0	FIELD	InputFrameCounter	+0x0 frames (SEMANTICALLY IDENTIFIED)	
+S-08	02-Resource-And-Asset-Pipeline/CONTRACT-resource-request-queue.md	5. State	ABS	022C51F0	FIELD	ResourceKindOverrideTable	+0x0 perKind (SEMANTICALLY IDENTIFIED)	
+S-09	02-Resource-And-Asset-Pipeline/CONTRACT-resource-section-addressing.md	3. Types	REC	ResourceSectionHeader +0x00	UNTYPED		no declared type or alias named ResourceSectionHeader	
+S-09	02-Resource-And-Asset-Pipeline/CONTRACT-resource-section-addressing.md	3. Types	REC	ResourceSectionHeader +0x10	UNTYPED		no declared type or alias named ResourceSectionHeader	
+S-09	02-Resource-And-Asset-Pipeline/CONTRACT-resource-section-addressing.md	3. Types	REC	ResourceEntry +0x04	FIELD	RenderResourceEntry	+0x4 kind (SIGNATURE RESOLVED)	
+S-09	02-Resource-And-Asset-Pipeline/CONTRACT-resource-section-addressing.md	3. Types	REC	ResourceEntry +0x10	FIELD	RenderResourceEntry	+0x10 bufferDescriptor -> +0x0 sourceKind (SEMANTICALLY IDENTIFIED)	
+S-09	02-Resource-And-Asset-Pipeline/CONTRACT-resource-section-addressing.md	3. Types	REC	ResourceEntry +0x30	FIELD	RenderResourceEntry	+0x30 reference (SIGNATURE RESOLVED)	
+S-09	02-Resource-And-Asset-Pipeline/CONTRACT-resource-section-addressing.md	3. Types	REC	ResourceEntry +0x38	FIELD	RenderResourceEntry	+0x38 resolvedCache (SIGNATURE RESOLVED)	
+S-09	02-Resource-And-Asset-Pipeline/CONTRACT-resource-section-addressing.md	3. Types	ABS	02B62E10	FIELD	ResourceReResolveFlag	+0x0 reResolve (SEMANTICALLY IDENTIFIED)	
+S-09	02-Resource-And-Asset-Pipeline/CONTRACT-resource-section-addressing.md	5. State	ABS	02B62E20	FIELD	ResourceSectionNameScratch	+0x0 name (SEMANTICALLY IDENTIFIED)	
+S-11	03-World-Area-Field/CONTRACT-authored-trigger-points.md	5. State	ABS	02EC3EA0	FIELD	AuthoredTriggerLiveSet	+0x0 entries -> +0x0 fieldId (SEMANTICALLY IDENTIFIED)	
+S-11	03-World-Area-Field/CONTRACT-field-environment-variant.md	5. State	ABS	02099D88	FIELD	MapRefImageSlot	+0x0 imageRoot (SEMANTICALLY IDENTIFIED)	
+S-11	03-World-Area-Field/CONTRACT-field-environment-variant.md	5. State	ABS	02099D90	FIELD	MapRefImageSlot	+0x8 loadedGuard (SEMANTICALLY IDENTIFIED)	
+S-11	03-World-Area-Field/CONTRACT-field-record-accessors.md	3. Types	ABS	02ADD100	PTR-CELL	FieldRecordTable	+0x0	NEW-ONLY
+S-12	03-World-Area-Field/CONTRACT-weather.md	3. Types	ABS	02099DA8	FIELD	WeatherEnvironmentClass	+0x0 environmentClass (SEMANTICALLY IDENTIFIED)	
+S-12	03-World-Area-Field/CONTRACT-weather.md	3. Types	ABS	02099DAC	FIELD	WeatherWindClass	+0x0 windClass (SEMANTICALLY IDENTIFIED)	
+S-12	03-World-Area-Field/CONTRACT-weather.md	3. Types	ABS	02099DB0	FIELD	WeatherLaneByte2Mirror	+0x0 laneByte2 (TYPE RESOLVED)	
+S-12	03-World-Area-Field/CONTRACT-weather.md	3. Types	ABS	02099DBC	FIELD	WeatherEnvironmentFlag	+0x0 environmentFlag (SEMANTICALLY IDENTIFIED)	
+S-12	03-World-Area-Field/CONTRACT-weather.md	3. Types	ABS	02099D88	FIELD	MapRefImageSlot	+0x0 imageRoot (SEMANTICALLY IDENTIFIED)	
+S-12	03-World-Area-Field/CONTRACT-weather.md	3. Types	ABS	02099D90	FIELD	MapRefImageSlot	+0x8 loadedGuard (SEMANTICALLY IDENTIFIED)	
+S-12	03-World-Area-Field/CONTRACT-weather.md	3. Types	UNATTRIBUTED	| `+0x00` | magic `MRF` + version byte `02` | — |	UNATTRIBUTED			
+S-12	03-World-Area-Field/CONTRACT-weather.md	3. Types	UNATTRIBUTED	| `+0x04` | field-row array, stride 8 | `0x30`, **1,315 rows	UNATTRIBUTED			
+S-12	03-World-Area-Field/CONTRACT-weather.md	3. Types	UNATTRIBUTED	| `+0x08` | 16-byte block array | `0x2948`, **93 blocks** |	UNATTRIBUTED			
+S-12	03-World-Area-Field/CONTRACT-weather.md	3. Types	UNATTRIBUTED	| `+0x10` | dword count, then `u32[]` — the environment-clas	UNATTRIBUTED			
+S-12	03-World-Area-Field/CONTRACT-weather.md	3. Types	UNATTRIBUTED	| `+0x14` | dword count, then `u32[]` — not read by this sub	UNATTRIBUTED			
+S-12	03-World-Area-Field/CONTRACT-weather.md	3. Types	UNATTRIBUTED	| `+0x18` | dword count, then `u8[]` — the boolean table | `	UNATTRIBUTED			
+S-12	03-World-Area-Field/CONTRACT-weather.md	3. Types	ABS	02ADD0B0	PTR-CELL	MWeatherTableImage	+0x0	
+S-12	03-World-Area-Field/CONTRACT-weather.md	5. State	ABS	02EB3870	FIELD	Mt19937State	+0x0 mt (TYPE RESOLVED)	
+S-12	03-World-Area-Field/CONTRACT-weather.md	5. State	ABS	02EB4230	FIELD	Mt19937State	+0x9C0 index (SEMANTICALLY IDENTIFIED)	
+S-12	03-World-Area-Field/CONTRACT-weather.md	5. State	ABS	02EB4234	FIELD	GeneratorInitLatch	+0x0 generatorInitLatch (TYPE RESOLVED)	
+S-12	03-World-Area-Field/CONTRACT-weather.md	5. State	ABS	02099DB4	FIELD	MirrorBlockDword02099DB4	+0x0 value (TYPE RESOLVED)	
+S-12	03-World-Area-Field/CONTRACT-weather.md	5. State	ABS	02099DB8	FIELD	MirrorBlockDword02099DB8	+0x0 value (TYPE RESOLVED)	
+S-12	03-World-Area-Field/CONTRACT-weather.md	5. State	ABS	02099DBB	FIELD	MirrorBlockDword02099DB8	+0x3 value (TYPE RESOLVED)	NEW-ONLY
+S-12	03-World-Area-Field/CONTRACT-weather.md	5. State	ABS	02099DA0	FIELD	MirrorBlockBytes02099DA0	+0x0 byteA0 (TYPE RESOLVED)	
+S-12	03-World-Area-Field/CONTRACT-weather.md	5. State	ABS	02099DBF	FIELD	WeatherEnvironmentFlag	+0x3 environmentFlag (SEMANTICALLY IDENTIFIED)	
+S-12	03-World-Area-Field/CONTRACT-weather.md	5. State	ABS	02099DE8	FIELD	BitTable02099DE8	+0x0 bits (TYPE RESOLVED)	
+S-12	03-World-Area-Field/CONTRACT-weather.md	5. State	ABS	02099DF0	FIELD	FieldScratchBank	+0x0 bytes (TYPE RESOLVED)	
+S-12	03-World-Area-Field/CONTRACT-weather.md	5. State	ABS	02099FF0	FIELD	GroupPersistentBank	+0x0 bytes (TYPE RESOLVED)	
+S-13	04-Actor-Entity/CONTRACT-actor-record-pool-and-region-map.md	3. Types	ABS	01E0C328	FIELD	ActorSequenceDescriptor	+0x0 kind (TYPE RESOLVED)	
+S-15	04-Actor-Entity/CONTRACT-field-runtime-pass.md	3. State	ABS	02098E10	FIELD	ActorManagerSlot	+0x0 boundDefinitionPayload (TYPE RESOLVED)	NEW-ONLY
+S-15	04-Actor-Entity/CONTRACT-field-runtime-pass.md	3. State	UNATTRIBUTED	| `+0x10` | 1 | slot status. **Bit 0 gates the whole pass** 	UNATTRIBUTED			
+S-15	04-Actor-Entity/CONTRACT-field-runtime-pass.md	3. State	UNATTRIBUTED	| `+0x12` | 1 | ~~written `r12b` **only on the settled exit*	UNATTRIBUTED			
+S-15	04-Actor-Entity/CONTRACT-field-runtime-pass.md	3. State	UNATTRIBUTED	| `+0x13` | 1 | tested at `0025DA1A` |	UNATTRIBUTED			
+S-15	04-Actor-Entity/CONTRACT-field-runtime-pass.md	3. State	UNATTRIBUTED	| `+0x17` | 1 | tested against `0x80` and for bit 2 |	UNATTRIBUTED			
+S-15	04-Actor-Entity/CONTRACT-field-runtime-pass.md	3. State	UNATTRIBUTED	| `+0x20` | 4 | the slot's **actor count**, the bound of bot	UNATTRIBUTED			
+S-15	04-Actor-Entity/CONTRACT-field-runtime-pass.md	3. State	ABS	02099D70	FIELD	FieldRuntimePassPublication	+0x0 slotBlock (SEMANTICALLY IDENTIFIED)	
+S-15	04-Actor-Entity/CONTRACT-field-runtime-pass.md	3. State	ABS	02099D78	FIELD	FieldRuntimePassPublication	+0x8 focusRegistryEntry (SEMANTICALLY IDENTIFIED)	
+S-15	04-Actor-Entity/CONTRACT-field-runtime-pass.md	3. State	ABS	0209A1F0	FIELD	PartyRosterSlots	+0x0 slots (TYPE RESOLVED)	
+S-15	04-Actor-Entity/CONTRACT-field-runtime-pass.md	3. State	ABS	02CA99E8	FIELD	SaveWriteBusyFlag	+0x0 busy (SEMANTICALLY IDENTIFIED)	
+S-52	04-Actor-Entity/CONTRACT-manager-slot-entry-tables.md	3. Types	UNATTRIBUTED	| `+0x00` | 4 | `definitionValue` | copied from the definiti	UNATTRIBUTED			
+S-52	04-Actor-Entity/CONTRACT-manager-slot-entry-tables.md	3. Types	UNATTRIBUTED	| `+0x04` | 4 | `lookupIndex` | a caller argument clamped no	UNATTRIBUTED			
+S-52	04-Actor-Entity/CONTRACT-manager-slot-entry-tables.md	3. Types	UNATTRIBUTED	| `+0x08` | 2 | — | set to 1 on bind, to 0 by reset and by t	UNATTRIBUTED			
+S-52	04-Actor-Entity/CONTRACT-manager-slot-entry-tables.md	3. Types	UNATTRIBUTED	| `+0x0A` | 2 | `recordIndex` | the validated definition row	UNATTRIBUTED			
+S-52	04-Actor-Entity/CONTRACT-manager-slot-entry-tables.md	3. Types	UNATTRIBUTED	| `+0x0C` | 4 | `clock` | the channel's playback clock; the 	UNATTRIBUTED			
+S-52	04-Actor-Entity/CONTRACT-manager-slot-entry-tables.md	3. Types	UNATTRIBUTED	| `+0x10` | 4 | `rate` | playback speed multiplier on the cl	UNATTRIBUTED			
+S-52	04-Actor-Entity/CONTRACT-manager-slot-entry-tables.md	3. Types	UNATTRIBUTED	| `+0x14` | 1 | `clockRunning` | cleared on the A side only;	UNATTRIBUTED			
+S-52	04-Actor-Entity/CONTRACT-manager-slot-entry-tables.md	3. Types	UNATTRIBUTED	| `+0x15` | 3 | — | **unknown span**, not declared padding |	UNATTRIBUTED			
+S-14	04-Actor-Entity/Unit-Definition/CONTRACT-battle-unit-construction.md	3. Types	ABS	02EBF190	FIELD	AuthoredTableRegistrySlot	+0x0 table (SEMANTICALLY IDENTIFIED)	
+S-14	04-Actor-Entity/Unit-Definition/CONTRACT-battle-unit-construction.md	5. State	ABS	02EBF120	FIELD	AuthoredTableRegistrySlot	+0x0 table (SEMANTICALLY IDENTIFIED)	
+S-14	04-Actor-Entity/Unit-Definition/CONTRACT-battle-unit-construction.md	5. State	ABS	02EBF130	FIELD	AuthoredTableRegistrySlot	+0x0 table (SEMANTICALLY IDENTIFIED)	
+S-14	04-Actor-Entity/Unit-Definition/CONTRACT-battle-unit-construction.md	5. State	ABS	02EBF150	FIELD	AuthoredTableRegistrySlot	+0x0 table (SEMANTICALLY IDENTIFIED)	NEW-ONLY
+S-14	04-Actor-Entity/Unit-Definition/CONTRACT-battle-unit-construction.md	5. State	ABS	02EBF170	FIELD	AuthoredTableRegistrySlot	+0x0 table (SEMANTICALLY IDENTIFIED)	
+S-14	04-Actor-Entity/Unit-Definition/CONTRACT-battle-unit-construction.md	5. State	ABS	02089300	FIELD	RngReseedGate	+0x0 rngReseedGate (TYPE RESOLVED)	
+S-14	04-Actor-Entity/Unit-Definition/CONTRACT-battle-unit-construction.md	5. State	ABS	02089340+0x4014	UNDECLARED			
+S-14	04-Actor-Entity/Unit-Definition/CONTRACT-battle-unit-construction.md	5. State	ABS	02EC1380	FIELD	TrackedUnitCodeEntry	+0x0 slot (SEMANTICALLY IDENTIFIED)	
+S-17	05-Spawn-Encounter-Lifecycle/CONTRACT-group-completion-and-respawn.md	3. Types	ABS	0208E690	PTR-CELL	SpawnRecord	+0x0	
+S-17	05-Spawn-Encounter-Lifecycle/CONTRACT-group-completion-and-respawn.md	3. Types	ABS	02EC13C0	FIELD	SpawnGroupLedger	+0x0 member_mask (TYPE RESOLVED)	
+S-17	05-Spawn-Encounter-Lifecycle/CONTRACT-group-completion-and-respawn.md	3. Types	ABS	02EBF190	FIELD	AuthoredTableRegistrySlot	+0x0 table (SEMANTICALLY IDENTIFIED)	
+S-17	05-Spawn-Encounter-Lifecycle/CONTRACT-group-completion-and-respawn.md	3. Types	ABS	02EC19C0	UNDECLARED			NEW-ONLY
+S-17	05-Spawn-Encounter-Lifecycle/CONTRACT-group-completion-and-respawn.md	5. State	ABS	0208D45C	FIELD	FieldClockTicks	+0x0 ticks (SEMANTICALLY IDENTIFIED)	
+S-17	05-Spawn-Encounter-Lifecycle/CONTRACT-group-completion-and-respawn.md	5. State	ABS	01DFE0B8	FIELD	FrameCountScale01DFE0B8	+0x0 scale (SEMANTICALLY IDENTIFIED)	
+S-17	05-Spawn-Encounter-Lifecycle/CONTRACT-group-completion-and-respawn.md	5. State	ABS	02089340	FIELD	RuntimeFlags02089340	+0x0 runtimeFlags02089340 (TYPE RESOLVED)	
+S-17	05-Spawn-Encounter-Lifecycle/CONTRACT-group-completion-and-respawn.md	5. State	ABS	01FD46D4	FIELD	SystemStopRegistry	+0x574 activeRequestBits (SEMANTICALLY IDENTIFIED)	
+S-17	05-Spawn-Encounter-Lifecycle/CONTRACT-group-completion-and-respawn.md	5. State	ABS	02098E20	FIELD	ActorManagerSlot	+0x10 slotFlags (SEMANTICALLY IDENTIFIED)	
+S-17	05-Spawn-Encounter-Lifecycle/CONTRACT-group-completion-and-respawn.md	5. State	ABS	02098E68	FIELD	ActorManagerSlot	+0x58 fieldScratchBank (SEMANTICALLY IDENTIFIED)	
+S-17	05-Spawn-Encounter-Lifecycle/CONTRACT-group-completion-and-respawn.md	5. State	ABS	0208E688	PTR-CELL	BattleUnit	+0x0	
+S-17	05-Spawn-Encounter-Lifecycle/CONTRACT-group-completion-and-respawn.md	5. State	ABS	0208E6A0	FIELD	BattleUnitSlotCount	+0x0 slotCount (SEMANTICALLY IDENTIFIED)	
+S-17	05-Spawn-Encounter-Lifecycle/CONTRACT-group-completion-and-respawn.md	5. State	ABS	0215F1C0+0x30	UNDECLARED			NEW-ONLY
+S-17	05-Spawn-Encounter-Lifecycle/CONTRACT-group-completion-and-respawn.md	5. State	ABS	0209A2C4	UNDECLARED			NEW-ONLY
+S-16	05-Spawn-Encounter-Lifecycle/CONTRACT-spawn-placement.md	5. State	ABS	01F004E0	FIELD	SineTable01F004E0	+0x0 samples (SEMANTICALLY IDENTIFIED)	
+S-16	05-Spawn-Encounter-Lifecycle/CONTRACT-spawn-placement.md	5. State	ABS	02089358	UNDECLARED			
+S-51	06-Movement-And-Navigation/CONTRACT-corridor-query-family.md	3. Types	REC	BattleUnit + 0x80	FIELD	BattleUnit	+0x80 embeddedBlock0080 (DISCOVERED)	MEANING-OPEN
+S-51	06-Movement-And-Navigation/CONTRACT-corridor-query-family.md	3. Types	REC	BattleUnit` +0xE0	FIELD	BattleUnit	+0xE0 releaseWorldPos (SEMANTICALLY IDENTIFIED)	
+S-51	06-Movement-And-Navigation/CONTRACT-corridor-query-family.md	3. Types	ABS	02098E10	FIELD	ActorManagerSlot	+0x0 boundDefinitionPayload (TYPE RESOLVED)	NEW-ONLY
+S-51	06-Movement-And-Navigation/CONTRACT-corridor-query-family.md	3. Types	ABS	02AEDFB0	PTR-CELL	NavRunStateBlock	+0x0	NEW-ONLY
+S-51	06-Movement-And-Navigation/CONTRACT-corridor-query-family.md	3. Types	ABS	02AEE060	FIELD	NavGridParams	+0x0 gridWidth (SEMANTICALLY IDENTIFIED)	
+S-51	06-Movement-And-Navigation/CONTRACT-corridor-query-family.md	5. State	ABS	02AEE0B0	FIELD	NavGridParams	+0x50 workingCandidateMask (SEMANTICALLY IDENTIFIED)	
+S-51	06-Movement-And-Navigation/CONTRACT-corridor-query-family.md	5. State	REC	NavGridParams +0x50	FIELD	NavGridParams	+0x50 workingCandidateMask (SEMANTICALLY IDENTIFIED)	
+S-18	06-Movement-And-Navigation/CONTRACT-facing-and-steering.md	5. State	ABS	01DFE0B4	FIELD	FrameLimitSetting	+0x0 frameLimitSetting (TYPE RESOLVED)	
+S-18	06-Movement-And-Navigation/CONTRACT-heading-speed-to-position-delta.md	3. Types	REC	WorldActor +0x03	FIELD	ActorStorageRecord	+0x3 packedKindAndSequence (SEMANTICALLY IDENTIFIED)	
+S-18	06-Movement-And-Navigation/CONTRACT-heading-speed-to-position-delta.md	3. Types	REC	WorldActor +0xB8	FIELD	ActorStorageRecord	+0xB8 contextPtr (SEMANTICALLY IDENTIFIED)	
+S-19	06-Movement-And-Navigation/CONTRACT-movement-body-pool.md	3. Types	ABS	02B4E4C0	FIELD	MovementBody	+0x0 prevIndex (SEMANTICALLY IDENTIFIED)	
+S-19	06-Movement-And-Navigation/CONTRACT-movement-body-pool.md	3. Types	ABS	02B57CC4	FIELD	MovementBodyPoolControl	+0x4 freeHead (SEMANTICALLY IDENTIFIED)	
+S-19	06-Movement-And-Navigation/CONTRACT-movement-body-pool.md	3. Types	ABS	02B57CC0	FIELD	MovementBodyPoolControl	+0x0 word0000 (TYPE RESOLVED)	NEW-ONLY
+S-19	06-Movement-And-Navigation/CONTRACT-separation-pass.md	3. Types	REC	CollisionBody +0x06	FIELD	MovementBody	+0x6 field006 (TYPE RESOLVED)	MEANING-OPEN
+S-19	06-Movement-And-Navigation/CONTRACT-separation-pass.md	3. Types	REC	CollisionBody +0x07	FIELD	MovementBody	+0x7 field007 (TYPE RESOLVED)	MEANING-OPEN
+S-19	06-Movement-And-Navigation/CONTRACT-separation-pass.md	3. Types	REC	CollisionBody +0x08	FIELD	MovementBody	+0x8 field008 (TYPE RESOLVED)	MEANING-OPEN
+S-19	06-Movement-And-Navigation/CONTRACT-separation-pass.md	3. Types	REC	CollisionBody +0x18	FIELD	MovementBody	+0x18 field018 (TYPE RESOLVED)	MEANING-OPEN
+S-19	06-Movement-And-Navigation/CONTRACT-separation-pass.md	3. Types	REC	CollisionBody +0xE8	FIELD	MovementBody	+0xE8 field0E8 (TYPE RESOLVED)	MEANING-OPEN
+S-19	06-Movement-And-Navigation/CONTRACT-separation-pass.md	3. Types	REC	CollisionBody +0xEC	FIELD	MovementBody	+0xEC field0E8 (TYPE RESOLVED)	
+S-19	06-Movement-And-Navigation/CONTRACT-separation-pass.md	3. Types	REC	CollisionBody +0xED	FIELD	MovementBody	+0xED field0E8 (TYPE RESOLVED)	
+S-19	06-Movement-And-Navigation/CONTRACT-separation-pass.md	3. Types	REC	CollisionBody +0xEE	FIELD	MovementBody	+0xEE field0E8 (TYPE RESOLVED)	
+S-19	06-Movement-And-Navigation/CONTRACT-separation-pass.md	3. Types	REC	CollisionBody +0xF0	FIELD	MovementBody	+0xF0 field0F0 (TYPE RESOLVED)	MEANING-OPEN
+S-19	06-Movement-And-Navigation/CONTRACT-separation-pass.md	3. Types	REC	CollisionBody +0xFC	FIELD	MovementBody	+0xFC field0FC (TYPE RESOLVED)	MEANING-OPEN
+S-19	06-Movement-And-Navigation/CONTRACT-separation-pass.md	3. Types	REC	CollisionBody +0x100	FIELD	MovementBody	+0x100 field100 (TYPE RESOLVED)	MEANING-OPEN
+S-19	06-Movement-And-Navigation/CONTRACT-separation-pass.md	3. Types	REC	CollisionBody +0x110	FIELD	MovementBody	+0x110 field110 (TYPE RESOLVED)	MEANING-OPEN
+S-19	06-Movement-And-Navigation/CONTRACT-separation-pass.md	3. Types	REC	CollisionBody +0x119	FIELD	MovementBody	+0x119 field118 (TYPE RESOLVED)	
+S-19	06-Movement-And-Navigation/CONTRACT-separation-pass.md	3. Types	REC	CollisionBody +0x120	FIELD	MovementBody	+0x120 field120 (TYPE RESOLVED)	MEANING-OPEN
+S-19	06-Movement-And-Navigation/CONTRACT-separation-pass.md	3. Types	ABS	02B57CE0	FIELD	SeparationCellMasks	+0x0 cells (SEMANTICALLY IDENTIFIED)	
+S-19	06-Movement-And-Navigation/CONTRACT-separation-pass.md	3. Types	ABS	02B57EE0	FIELD	SeparationCandidateScratch	+0x0 candidates (SEMANTICALLY IDENTIFIED)	
+S-20	07-Combat-Action/CONTRACT-battle-target-buffer.md	3. Types	UNATTRIBUTED	| `+0x00` | 1 | `flags` | `uint8` | bit 0 survives a reset; 	UNATTRIBUTED			
+S-20	07-Combat-Action/CONTRACT-battle-target-buffer.md	3. Types	UNATTRIBUTED	| `+0x01` | 1 | `keyType` | `uint8` | candidate-buffer selec	UNATTRIBUTED			
+S-20	07-Combat-Action/CONTRACT-battle-target-buffer.md	3. Types	UNATTRIBUTED	| `+0x02` | 1 | `pickRule` | `uint8` | candidate-buffer sele	UNATTRIBUTED			
+S-20	07-Combat-Action/CONTRACT-battle-target-buffer.md	3. Types	UNATTRIBUTED	| `+0x03` | 1 | — | — | never separately written; the `0x100	UNATTRIBUTED			
+S-20	07-Combat-Action/CONTRACT-battle-target-buffer.md	3. Types	UNATTRIBUTED	| `+0x04` | 4 | `count` | `int32` | entries in use; **signed	UNATTRIBUTED			
+S-20	07-Combat-Action/CONTRACT-battle-target-buffer.md	3. Types	UNATTRIBUTED	| `+0x08` | 512 | `entries` | `BattleTargetEntry[32]` | 32 ×	UNATTRIBUTED			
+S-20	07-Combat-Action/CONTRACT-battle-target-buffer.md	3. Types	UNATTRIBUTED	| `+0x00` | 8 | `actorWork` | `void*` | the stored actor ref	UNATTRIBUTED			
+S-20	07-Combat-Action/CONTRACT-battle-target-buffer.md	3. Types	UNATTRIBUTED	| `+0x08` | 4 | `entryFlags` | `uint32` | **bit 8 selects th	UNATTRIBUTED			
+S-20	07-Combat-Action/CONTRACT-battle-target-buffer.md	3. Types	UNATTRIBUTED	| `+0x0C` | 4 | — | — | **unknown span**, not declared paddi	UNATTRIBUTED			
+S-20	07-Combat-Action/CONTRACT-combo-continuation.md	3. Types	REC	BattleUnit +0x6B4	FIELD	BattleUnit	+0x6B4 actionPhaseLiterals (SEMANTICALLY IDENTIFIED)	
+S-20	07-Combat-Action/CONTRACT-combo-continuation.md	3. Types	REC	BattleUnit +0x6B7	FIELD	BattleUnit	+0x6B7 comboCountByte (SEMANTICALLY IDENTIFIED)	MEANING-OPEN
+S-20	07-Combat-Action/CONTRACT-combo-continuation.md	3. Types	REC	BattleUnit +0x6B8	FIELD	BattleUnit	+0x6B8 savedAndRestoredAcross (SEMANTICALLY IDENTIFIED)	
+S-20	07-Combat-Action/CONTRACT-combo-continuation.md	3. Types	REC	BattleUnit +0x708	FIELD	BattleUnit	+0x708 actionContextPtr (SEMANTICALLY IDENTIFIED)	
+S-20	07-Combat-Action/CONTRACT-combo-continuation.md	3. Types	REC	BattleUnit +0x710	FIELD	BattleUnit	+0x710 targetFocusHandle (SEMANTICALLY IDENTIFIED)	
+S-20	07-Combat-Action/CONTRACT-combo-continuation.md	3. Types	REC	BattleUnit +0x714	FIELD	BattleUnit	+0x714 actionId (SEMANTICALLY IDENTIFIED)	
+S-20	07-Combat-Action/CONTRACT-combo-continuation.md	3. Types	ABS	0208D480	FIELD	BattleRuntimeUnitRecord	+0x0 dword0000 (TYPE RESOLVED)	
+S-20	07-Combat-Action/CONTRACT-combo-continuation.md	3. Types	ABS	0208DE80	FIELD	BattleRuntimeUnitRecord	+0x0 dword0000 (TYPE RESOLVED)	
+S-22	08-Combat-Formula/CONTRACT-environmental-element-scaling.md	3. Types	REC	ActionDefinition +0x13	UNTYPED		no declared type or alias named ActionDefinition	
+S-22	08-Combat-Formula/CONTRACT-environmental-element-scaling.md	3. Types	ABS	02099DA8	FIELD	WeatherEnvironmentClass	+0x0 environmentClass (SEMANTICALLY IDENTIFIED)	
+S-22	08-Combat-Formula/CONTRACT-environmental-element-scaling.md	3. Types	ABS	02099DAC	FIELD	WeatherWindClass	+0x0 windClass (SEMANTICALLY IDENTIFIED)	
+S-22	08-Combat-Formula/CONTRACT-environmental-element-scaling.md	3. Types	ABS	02AEE054	FIELD	BattleFormulaScratch	+0x9C multiplier (SEMANTICALLY IDENTIFIED)	
+S-22	08-Combat-Formula/CONTRACT-formula-step-table.md	3. Types	ABS	02AEE054	FIELD	BattleFormulaScratch	+0x9C multiplier (SEMANTICALLY IDENTIFIED)	
+S-22	08-Combat-Formula/CONTRACT-formula-step-table.md	3. Types	ABS	02AEE058	FIELD	BattleFormulaScratch	+0xA0 attackVariance (SEMANTICALLY IDENTIFIED)	
+S-22	08-Combat-Formula/CONTRACT-formula-step-table.md	3. Types	ABS	02AEE05C	FIELD	BattleFormulaScratch	+0xA4 targetDefense (CLASSIFIED)	
+S-22	08-Combat-Formula/CONTRACT-preparation-step-family.md	3. Types	ABS	01EFA5C0	FIELD	PreparationStepCalculatorTable	+0x0 calculators (SEMANTICALLY IDENTIFIED)	
+S-22	08-Combat-Formula/CONTRACT-preparation-step-family.md	3. Types	ABS	01EFAC08	FIELD	PreparationStepCalculatorTable	+0x648 calculators (SEMANTICALLY IDENTIFIED)	
+S-22	08-Combat-Formula/CONTRACT-preparation-step-family.md	3. Types	ABS	02AEE054	FIELD	BattleFormulaScratch	+0x9C multiplier (SEMANTICALLY IDENTIFIED)	
+S-22	08-Combat-Formula/CONTRACT-preparation-step-family.md	3. Types	ABS	02AEE058	FIELD	BattleFormulaScratch	+0xA0 attackVariance (SEMANTICALLY IDENTIFIED)	
+S-22	08-Combat-Formula/CONTRACT-preparation-step-family.md	3. Types	ABS	02AEE05C	FIELD	BattleFormulaScratch	+0xA4 targetDefense (CLASSIFIED)	
+S-22	08-Combat-Formula/CONTRACT-preparation-step-family.md	3. Types	ABS	01EFAC10	FIELD	WidgetStateFlag01EFAC10	+0x0 state (SEMANTICALLY IDENTIFIED)	
+S-22	08-Combat-Formula/CONTRACT-preparation-step-family.md	3. Types	ABS	01EFA808	FIELD	PreparationStepCalculatorTable	+0x248 calculators (SEMANTICALLY IDENTIFIED)	
+S-22	08-Combat-Formula/CONTRACT-preparation-step-family.md	3. Types	ABS	01EF96C0	FIELD	WeaponRecipeRef	+0x0 recipe (SEMANTICALLY IDENTIFIED)	
+S-24	08-Combat-Formula/CONTRACT-stat-derivation.md	3. Types	ABS	02EBF130	FIELD	AuthoredTableRegistrySlot	+0x0 table (SEMANTICALLY IDENTIFIED)	
+S-22	08-Combat-Formula/CONTRACT-weapon-recipes.md	3. Types	ABS	01EF96C0	FIELD	WeaponRecipeRef	+0x0 recipe (SEMANTICALLY IDENTIFIED)	
+S-22	08-Combat-Formula/CONTRACT-weapon-recipes.md	3. Types	ABS	01EFA5C0	FIELD	PreparationStepCalculatorTable	+0x0 calculators (SEMANTICALLY IDENTIFIED)	
+S-25	09-Combat-AI-And-Gambits/CONTRACT-gambit-walk.md	3. Types	ABS	02089378	UNDECLARED			NEW-ONLY
+S-24	10-Status-Periodic-Terminal/CONTRACT-auto-status-rebuild.md	3. Types	REC	BattleStatsRecord +0x78	FIELD	BattleStatsRecord	+0x78 statusLayerDerived (SEMANTICALLY IDENTIFIED)	
+S-24	10-Status-Periodic-Terminal/CONTRACT-auto-status-rebuild.md	3. Types	REC	BattleStatsRecord +0x50	FIELD	BattleStatsRecord	+0x50 equipmentSlots (SEMANTICALLY IDENTIFIED)	
+S-24	10-Status-Periodic-Terminal/CONTRACT-auto-status-rebuild.md	3. Types	REC	BattleStatsRecord +0x194	FIELD	BattleStatsRecord	+0x194 licenceOwnedBits (SEMANTICALLY IDENTIFIED)	
+S-24	10-Status-Periodic-Terminal/CONTRACT-auto-status-rebuild.md	3. Types	REC	EquipmentDefinitionRecord +0x1A	FIELD	EquipmentDefinitionRecord	+0x1A autoStatusId (SEMANTICALLY IDENTIFIED)	
+S-26	10-Status-Periodic-Terminal/CONTRACT-effect-layers.md	3. Types	REC	BattleStatsRecord +0x68	FIELD	BattleStatsRecord	+0x68 statusLayerMutable (SEMANTICALLY IDENTIFIED)	
+S-26	10-Status-Periodic-Terminal/CONTRACT-effect-layers.md	3. Types	REC	BattleStatsRecord +0x78	FIELD	BattleStatsRecord	+0x78 statusLayerDerived (SEMANTICALLY IDENTIFIED)	
+S-26	10-Status-Periodic-Terminal/CONTRACT-effect-layers.md	3. Types	REC	FormulaEvaluationContext +0x08	FIELD	EvaluationContext	+0x8 evaluationFlags (SEMANTICALLY IDENTIFIED)	
+S-26	10-Status-Periodic-Terminal/CONTRACT-effect-layers.md	3. Types	ABS	02EBF188	FIELD	AuthoredTableRegistrySlot	+0x0 table (SEMANTICALLY IDENTIFIED)	
+S-26	10-Status-Periodic-Terminal/CONTRACT-effect-layers.md	3. Types	REC	FormulaEvaluationContext +0x18	FIELD	EvaluationContext	+0x18 targetDefinitionType (CLASSIFIED)	
+S-26	10-Status-Periodic-Terminal/CONTRACT-effect-layers.md	3. Types	REC	FormulaEvaluationContext +0x1A	FIELD	EvaluationContext	+0x1A sourceLayerMask (CLASSIFIED)	
+S-27	10-Status-Periodic-Terminal/CONTRACT-periodic-tick.md	3. Types	UNATTRIBUTED	| `+0x24` | the **HP delta accumulator** | stages **2** (11 	UNATTRIBUTED			
+S-27	10-Status-Periodic-Terminal/CONTRACT-periodic-tick.md	3. Types	UNATTRIBUTED	| `+0x2A` | the per-interval MP drain delta | stage **4** on	UNATTRIBUTED			
+S-27	10-Status-Periodic-Terminal/CONTRACT-periodic-tick.md	3. Types	UNATTRIBUTED	| `+0x2C` | flag word | stages 1, 2, 4, 5 |	UNATTRIBUTED			
+S-27	10-Status-Periodic-Terminal/CONTRACT-periodic-tick.md	3. Types	UNATTRIBUTED	| `+0x3E` | the **list of status ids that expired this tick*	UNATTRIBUTED			
+S-27	10-Status-Periodic-Terminal/CONTRACT-periodic-tick.md	3. Types	UNATTRIBUTED	| `+0x140` | second flag word | stage **2** only |	UNATTRIBUTED			
+S-27	10-Status-Periodic-Terminal/CONTRACT-periodic-tick.md	5. State	ABS	0208D494	FIELD	BattleRuntimeUnitRecord	+0x14 periodicTickCounter (SEMANTICALLY IDENTIFIED)	
+S-27	10-Status-Periodic-Terminal/CONTRACT-periodic-tick.md	5. State	ABS	0208DE94	FIELD	BattleRuntimeUnitRecord	+0x14 periodicTickCounter (SEMANTICALLY IDENTIFIED)	
+S-26	10-Status-Periodic-Terminal/CONTRACT-status-write.md	3. Types	ABS	02EBF118	FIELD	AuthoredTableRegistrySlot	+0x0 table (SEMANTICALLY IDENTIFIED)	
+S-26	10-Status-Periodic-Terminal/CONTRACT-status-write.md	3. Types	ABS	01F83530	FIELD	ImageRelativeReferenceBase	+0x0 base (SEMANTICALLY IDENTIFIED)	
+S-26	10-Status-Periodic-Terminal/CONTRACT-status-write.md	5. State	ABS	01DFE0B4	FIELD	FrameLimitSetting	+0x0 frameLimitSetting (TYPE RESOLVED)	NEW-ONLY
+S-26	10-Status-Periodic-Terminal/CONTRACT-status-write.md	5. State	ABS	02089340	FIELD	RuntimeFlags02089340	+0x0 runtimeFlags02089340 (TYPE RESOLVED)	
+S-28	11-Party/Battle-State-Block/CONTRACT-battle-state-block.md	3. Types	ABS	02EBF190	FIELD	AuthoredTableRegistrySlot	+0x0 table (SEMANTICALLY IDENTIFIED)	
+S-28	11-Party/CONTRACT-party-focus-and-control-suppression.md	3. Types	ABS	022C7FE0	FIELD	PartyFocusHandles	+0x0 current (SEMANTICALLY IDENTIFIED)	
+S-28	11-Party/CONTRACT-party-focus-and-control-suppression.md	3. Types	ABS	022C7FE4	FIELD	PartyFocusHandles	+0x4 pending (SEMANTICALLY IDENTIFIED)	
+S-28	11-Party/CONTRACT-party-focus-and-control-suppression.md	3. Types	ABS	022C7FE8	FIELD	PartyFocusHandles	+0x8 secondary (SEMANTICALLY IDENTIFIED)	
+S-28	11-Party/CONTRACT-party-focus-and-control-suppression.md	3. Types	ABS	022C7FF8	FIELD	PartyFocusRequestKind	+0x0 kind (SEMANTICALLY IDENTIFIED)	
+S-28	11-Party/CONTRACT-party-focus-and-control-suppression.md	3. Types	ABS	02089340	FIELD	RuntimeFlags02089340	+0x0 runtimeFlags02089340 (TYPE RESOLVED)	
+S-28	11-Party/CONTRACT-party-focus-and-control-suppression.md	5. State	ABS	02097D20	UNDECLARED			NEW-ONLY
+S-28	11-Party/CONTRACT-party-slot-assignment.md	3. Types	ABS	0209A1F0	FIELD	PartyRosterSlots	+0x0 slots (TYPE RESOLVED)	
+S-28	11-Party/CONTRACT-party-slot-assignment.md	3. Types	UNATTRIBUTED	| `+0x0F` | `uint8` | `2` while the record holds a slot `0..	UNATTRIBUTED			
+S-28	11-Party/CONTRACT-the-five-parallel-slot-maps.md	3. Types	ABS	02EBF190	FIELD	AuthoredTableRegistrySlot	+0x0 table (SEMANTICALLY IDENTIFIED)	
+S-30	12-Items-Equipment-Shops-License/CONTRACT-bazaar-unlock-and-purchase.md	3. Types	ABS	02EBF058	FIELD	AuthoredTableRegistrySlot	+0x0 table (SEMANTICALLY IDENTIFIED)	
+S-30	12-Items-Equipment-Shops-License/CONTRACT-bazaar-unlock-and-purchase.md	3. Types	REC	BattleSystemState + 0x59C8	FIELD	BattleSystemState	+0x59C8 inventoryPackedFlags (SEMANTICALLY IDENTIFIED)	
+S-29	12-Items-Equipment-Shops-License/CONTRACT-equipment-compatibility.md	3. Types	ABS	02EBF190	FIELD	AuthoredTableRegistrySlot	+0x0 table (SEMANTICALLY IDENTIFIED)	
+S-29	12-Items-Equipment-Shops-License/CONTRACT-equipment-compatibility.md	3. Types	ABS	02EBF130	FIELD	AuthoredTableRegistrySlot	+0x0 table (SEMANTICALLY IDENTIFIED)	
+S-29	12-Items-Equipment-Shops-License/CONTRACT-equipment-compatibility.md	3. Types	REC	BattleStatsRecord +0x04	FIELD	BattleStatsRecord	+0x4 definitionRowIndex (SEMANTICALLY IDENTIFIED)	
+S-29	12-Items-Equipment-Shops-License/CONTRACT-equipment-compatibility.md	3. Types	REC	BattleStatsRecord +0x05	FIELD	BattleStatsRecord	+0x5 kindByte (SEMANTICALLY IDENTIFIED)	
+S-29	12-Items-Equipment-Shops-License/CONTRACT-equipment-compatibility.md	5. State	ABS	02EBF0F8	FIELD	AuthoredTableRegistrySlot	+0x0 table (SEMANTICALLY IDENTIFIED)	
+S-29	12-Items-Equipment-Shops-License/CONTRACT-inventory-class-storage.md	3. Types	UNATTRIBUTED	| `+0x08` | the word-addressed array. Packed classes: one `u	UNATTRIBUTED			
+S-29	12-Items-Equipment-Shops-License/CONTRACT-inventory-class-storage.md	3. Types	UNATTRIBUTED	| `+0x10` | how many `uint16` **elements** `+0x08` holds — *	UNATTRIBUTED			
+S-29	12-Items-Equipment-Shops-License/CONTRACT-inventory-class-storage.md	3. Types	UNATTRIBUTED	| `+0x20` | packed classes: the per-item **count byte**. Bit	UNATTRIBUTED			
+S-29	12-Items-Equipment-Shops-License/CONTRACT-inventory-class-storage.md	3. Types	UNATTRIBUTED	| `+0x30` | a second byte-addressed bit array, bitset kind 4	UNATTRIBUTED			
+S-29	12-Items-Equipment-Shops-License/CONTRACT-inventory-class-storage.md	3. Types	UNATTRIBUTED	| `+0x38` | the registry class id — exactly `nibble + 5` for	UNATTRIBUTED			
+S-29	12-Items-Equipment-Shops-License/CONTRACT-inventory-class-storage.md	3. Types	UNATTRIBUTED	| `+0x3C` | how many item ids the class defines |	UNATTRIBUTED			
+S-29	12-Items-Equipment-Shops-License/CONTRACT-inventory-class-storage.md	3. Types	UNATTRIBUTED	| `+0x50` | ~~the handler, or **NULL**~~ the query handler, 	UNATTRIBUTED			
+S-29	12-Items-Equipment-Shops-License/CONTRACT-inventory-class-storage.md	3. Types	ABS	01EEBCC0	FIELD	ItemClassDescriptor	+0x0 rebaseOffsetA (TYPE RESOLVED)	
+S-29	12-Items-Equipment-Shops-License/CONTRACT-inventory-class-storage.md	3. Types	ABS	01EEBCD0	FIELD	ItemClassDescriptor	+0x10 storageElements (SEMANTICALLY IDENTIFIED)	
+S-29	12-Items-Equipment-Shops-License/CONTRACT-inventory-class-storage.md	3. Types	ABS	01EEBCF8	FIELD	ItemClassDescriptor	+0x38 registryClassId (SEMANTICALLY IDENTIFIED)	NEW-ONLY
+S-29	12-Items-Equipment-Shops-License/CONTRACT-inventory-class-storage.md	3. Types	UNATTRIBUTED	| `+0x00` | `0x4748` | `0x47C8` | `0x4B10` | `0x4F10` | `0x4	UNATTRIBUTED			
+S-31	12-Items-Equipment-Shops-License/CONTRACT-license-check.md	3. Types	ABS	02EBF038	FIELD	AuthoredTableRegistrySlot	+0x0 table (SEMANTICALLY IDENTIFIED)	
+S-31	12-Items-Equipment-Shops-License/CONTRACT-license-check.md	3. Types	ABS	0208E680	UNDECLARED			
+S-31	12-Items-Equipment-Shops-License/CONTRACT-license-check.md	5. State	ABS	02EBF138	FIELD	AuthoredTableRegistrySlot	+0x0 table (SEMANTICALLY IDENTIFIED)	
+S-31	12-Items-Equipment-Shops-License/CONTRACT-license-check.md	5. State	ABS	02EBF130	FIELD	AuthoredTableRegistrySlot	+0x0 table (SEMANTICALLY IDENTIFIED)	
+S-30	12-Items-Equipment-Shops-License/CONTRACT-shop-stock-ladders.md	3. Types	ABS	02EBF158	FIELD	AuthoredTableRegistrySlot	+0x0 table (SEMANTICALLY IDENTIFIED)	
+S-32	13-Rewards-Progression-Economy/CONTRACT-defeat-rewards-sequence.md	3. Types	ABS	02EBF148	FIELD	AuthoredTableRegistrySlot	+0x0 table (SEMANTICALLY IDENTIFIED)	
+S-32	13-Rewards-Progression-Economy/CONTRACT-defeat-rewards-sequence.md	3. Types	ABS	02EBF140	FIELD	AuthoredTableRegistrySlot	+0x0 table (SEMANTICALLY IDENTIFIED)	
+S-32	13-Rewards-Progression-Economy/CONTRACT-experience-and-licence-award.md	3. Types	ABS	02EBF148	FIELD	AuthoredTableRegistrySlot	+0x0 table (SEMANTICALLY IDENTIFIED)	
+S-32	13-Rewards-Progression-Economy/CONTRACT-experience-and-licence-award.md	3. Types	ABS	02EBF140	FIELD	AuthoredTableRegistrySlot	+0x0 table (SEMANTICALLY IDENTIFIED)	
+S-32	13-Rewards-Progression-Economy/CONTRACT-gil-storage-and-movement.md	3. Types	ABS	02092758	PTR-CELL	SaveImage	+0x0	
+S-32	13-Rewards-Progression-Economy/CONTRACT-level-advance-and-growth.md	3. Types	ABS	02EBF108	FIELD	AuthoredTableRegistrySlot	+0x0 table (SEMANTICALLY IDENTIFIED)	
+S-32	13-Rewards-Progression-Economy/CONTRACT-level-advance-and-growth.md	3. Types	ABS	02EBF130	FIELD	AuthoredTableRegistrySlot	+0x0 table (SEMANTICALLY IDENTIFIED)	
+S-32	13-Rewards-Progression-Economy/CONTRACT-loot-rolls-and-the-chain.md	3. Types	ABS	022C256C	FIELD	SharedGameplayLcgState	+0x0 state (TYPE RESOLVED)	
+S-32	13-Rewards-Progression-Economy/CONTRACT-loot-rolls-and-the-chain.md	3. Types	ABS	022C3158	FIELD	LootChainRank	+0x0 rank (SEMANTICALLY IDENTIFIED)	
+S-32	13-Rewards-Progression-Economy/CONTRACT-loot-rolls-and-the-chain.md	3. Types	ABS	022C3160	FIELD	LootChainSameModelKillCount	+0x0 count (SEMANTICALLY IDENTIFIED)	
+S-32	13-Rewards-Progression-Economy/CONTRACT-loot-rolls-and-the-chain.md	3. Types	ABS	022C3164	FIELD	LootChainProfileDrawCount	+0x0 count (SEMANTICALLY IDENTIFIED)	
+S-33	13-Rewards-Progression-Economy/CONTRACT-world-loot-pickup-pool.md	3. Types	ABS	02EC0FA0	FIELD	WorldLootPickupNode	+0x0 slotIndex (TYPE RESOLVED)	
+S-33	13-Rewards-Progression-Economy/CONTRACT-world-loot-pickup-pool.md	3. Types	UNATTRIBUTED	| `+0x00` | 4 | `slotIndex` | 0–9, written once at init, **n	UNATTRIBUTED			
+S-33	13-Rewards-Progression-Economy/CONTRACT-world-loot-pickup-pool.md	3. Types	UNATTRIBUTED	| `+0x04` | 4 | `state` | `0` = free; `1`…`7` = the ladder |	UNATTRIBUTED			
+S-33	13-Rewards-Progression-Economy/CONTRACT-world-loot-pickup-pool.md	3. Types	UNATTRIBUTED	| `+0x08` | 4 | `materialiseStamp` | the field clock when th	UNATTRIBUTED			
+S-33	13-Rewards-Progression-Economy/CONTRACT-world-loot-pickup-pool.md	3. Types	UNATTRIBUTED	| `+0x0C` | 4 | — | **alignment padding**, see §4 |	UNATTRIBUTED			
+S-33	13-Rewards-Progression-Economy/CONTRACT-world-loot-pickup-pool.md	3. Types	UNATTRIBUTED	| `+0x10` | 8 | `prev` | `WorldLootPickupNode*`, null at lis	UNATTRIBUTED			
+S-33	13-Rewards-Progression-Economy/CONTRACT-world-loot-pickup-pool.md	3. Types	UNATTRIBUTED	| `+0x18` | 8 | `next` | `WorldLootPickupNode*`, null at lis	UNATTRIBUTED			
+S-33	13-Rewards-Progression-Economy/CONTRACT-world-loot-pickup-pool.md	3. Types	UNATTRIBUTED	| `+0x20` | 56 | `dropEntries[7]` | `{u16 itemId; u32 quanti	UNATTRIBUTED			
+S-33	13-Rewards-Progression-Economy/CONTRACT-world-loot-pickup-pool.md	3. Types	UNATTRIBUTED	| `+0x58` | 4 | `objectHandle` | the world object; `0` when 	UNATTRIBUTED			
+S-33	13-Rewards-Progression-Economy/CONTRACT-world-loot-pickup-pool.md	3. Types	UNATTRIBUTED	| `+0x5C` | 4 | — | **tail padding**, see §4 |	UNATTRIBUTED			
+S-33	13-Rewards-Progression-Economy/CONTRACT-world-loot-pickup-pool.md	5. State	ABS	02EC135F	RANGE-END	WorldLootPickupNode	+0x5F unobservedTail005C (DISCOVERED)	
+S-33	13-Rewards-Progression-Economy/CONTRACT-world-loot-pickup-pool.md	5. State	ABS	02EC1360	FIELD	WorldLootPickupList	+0x0 head (SEMANTICALLY IDENTIFIED)	
+S-33	13-Rewards-Progression-Economy/CONTRACT-world-loot-pickup-pool.md	5. State	ABS	02EC1368	FIELD	WorldLootPickupList	+0x8 tail (SEMANTICALLY IDENTIFIED)	
+S-33	13-Rewards-Progression-Economy/CONTRACT-world-loot-pickup-pool.md	5. State	ABS	0208D45C	FIELD	FieldClockTicks	+0x0 ticks (SEMANTICALLY IDENTIFIED)	
+S-33	13-Rewards-Progression-Economy/CONTRACT-world-loot-pickup-pool.md	5. State	ABS	01DFE0B8	FIELD	FrameCountScale01DFE0B8	+0x0 scale (SEMANTICALLY IDENTIFIED)	
+S-33	13-Rewards-Progression-Economy/CONTRACT-world-loot-pickup-pool.md	5. State	ABS	022C3174	FIELD	WorldPickupsCollectedCount	+0x0 collected (SEMANTICALLY IDENTIFIED)	
+S-34	14-Story-Event-Quest-Hunt/CONTRACT-persistent-flag-banks.md	3. Types	ABS	02164280	FIELD	SaveImage	+0x0 header -> +0x0 imageChecksumComplement (TYPE RESOLVED)	
+S-34	14-Story-Event-Quest-Hunt/CONTRACT-persistent-flag-banks.md	5. State	ABS	02ADD0D0	PTR-CELL	AuthoredIdListImage	+0x0	
+S-34	14-Story-Event-Quest-Hunt/CONTRACT-persistent-flag-banks.md	5. State	ABS	02ADD0A8	PTR-CELL	AuthoredIdListImage	+0x0	
+S-34	14-Story-Event-Quest-Hunt/CONTRACT-persistent-flag-banks.md	5. State	ABS	02164280+0x200	FIELD	SaveImage	+0x200 payload -> +0x0 persistentFlagPayloadRegion -> +0x0 operandBankKind3 (TYPE RESOLVED)	
+S-35	15-Input/Binding-Profiles/CONTRACT-binding-profiles.md	3. Types	REC	BindingRecord +0x000	FIELD	InputBindingRecord	+0x0 digitalCodes (TYPE RESOLVED)	
+S-35	15-Input/Binding-Profiles/CONTRACT-binding-profiles.md	3. Types	REC	BindingRecord +0x040	FIELD	InputBindingRecord	+0x40 axisEntries (SEMANTICALLY IDENTIFIED)	
+S-35	15-Input/Binding-Profiles/CONTRACT-binding-profiles.md	3. Types	REC	BindingRecord +0x04	FIELD	InputBindingRecord	+0x4 digitalCodes (TYPE RESOLVED)	
+S-35	15-Input/Binding-Profiles/CONTRACT-binding-profiles.md	3. Types	REC	BindingRecord +0x08	FIELD	InputBindingRecord	+0x8 digitalCodes (TYPE RESOLVED)	
+S-35	15-Input/Binding-Profiles/CONTRACT-binding-profiles.md	3. Types	REC	BindingRecord +0x0C	FIELD	InputBindingRecord	+0xC digitalCodes (TYPE RESOLVED)	
+S-35	15-Input/Binding-Profiles/CONTRACT-binding-profiles.md	3. Types	ABS	01DF1738	FIELD	InputBindingRecord	+0x0 digitalCodes (TYPE RESOLVED)	
+S-35	15-Input/Binding-Profiles/CONTRACT-binding-profiles.md	3. Types	ABS	01DF1480	FIELD	InputBindingRecord	+0x0 digitalCodes (TYPE RESOLVED)	
+S-35	15-Input/Binding-Profiles/CONTRACT-binding-profiles.md	3. Types	UNATTRIBUTED	| `+0x00` | 2 | digital mask, sixteen bits, **active-LOW** |	UNATTRIBUTED			
+S-35	15-Input/Binding-Profiles/CONTRACT-binding-profiles.md	3. Types	UNATTRIBUTED	| `+0x02` | 16 | sixteen axis bytes |	UNATTRIBUTED			
+S-35	15-Input/Binding-Profiles/CONTRACT-binding-profiles.md	5. State	ABS	01F80F90	FIELD	InputBindingProfile	+0x0 group0 (TYPE RESOLVED)	
+S-35	15-Input/Binding-Profiles/CONTRACT-binding-profiles.md	5. State	ABS	01DF13E0	FIELD	InputReservedBindingIds	+0x0 ids (SEMANTICALLY IDENTIFIED)	
+S-35	15-Input/Binding-Profiles/CONTRACT-binding-profiles.md	5. State	ABS	01F80550	FIELD	InputBindingRecord	+0x0 digitalCodes (TYPE RESOLVED)	
+S-35	15-Input/Binding-Profiles/CONTRACT-binding-profiles.md	5. State	ABS	01F80970	FIELD	InputBindingRecord	+0x0 digitalCodes (TYPE RESOLVED)	
+S-35	15-Input/Binding-Profiles/CONTRACT-binding-profiles.md	5. State	ABS	01F7FFE0	FIELD	InputManagerPointer	+0x0 manager (SEMANTICALLY IDENTIFIED)	
+S-35	15-Input/Binding-Profiles/CONTRACT-binding-profiles.md	5. State	ABS	01F80130	FIELD	InputBindingRecord	+0x0 digitalCodes (TYPE RESOLVED)	
+S-35	15-Input/Binding-Profiles/CONTRACT-binding-profiles.md	5. State	ABS	01F7FFE0+0x38	AMBIGUOUS-DEREF	InputManagerPointer	ADDR+0x38 where ADDR is a declared pointer cell (InputManagerPointer): likely the pointee's +0x38 - hand read	
+S-35	15-Input/Binding-Profiles/CONTRACT-binding-profiles.md	5. State	ABS	01F80544	RANGE-END			
+S-35	15-Input/Input-Name-Registry/CONTRACT-input-name-registry.md	5. State	ABS	02EB9D80	FIELD	InputNameRegistryHeadCell	+0x0 head (SEMANTICALLY IDENTIFIED)	
+S-35	15-Input/Input-Name-Registry/CONTRACT-input-name-registry.md	5. State	ABS	02EB83B8	FIELD	InputNameRegistryHeadCell	+0x0 head (SEMANTICALLY IDENTIFIED)	
+S-37	16-UI/CONTRACT-text-control-codes-and-dyngeo-draw.md	3. Types	ABS	0209CC40	FIELD	TextPainterPointer	+0x0 painter (SEMANTICALLY IDENTIFIED)	
+S-37	16-UI/CONTRACT-text-control-codes-and-dyngeo-draw.md	3. Types	ABS	0209CC60	FIELD	TextRunAdvance	+0x0 pairA_x (TYPE RESOLVED)	
+S-37	16-UI/CONTRACT-text-control-codes-and-dyngeo-draw.md	3. Types	ABS	0209CC68	FIELD	TextRunAdvance	+0x8 pairB_x (SEMANTICALLY IDENTIFIED)	
+S-37	16-UI/CONTRACT-text-control-codes-and-dyngeo-draw.md	5. State	ABS	01F44830	FIELD	SecurityCookie01F44830	+0x0 securityCookie01F44830 (SEMANTICALLY IDENTIFIED)	
+S-37	16-UI/CONTRACT-text-control-codes-and-dyngeo-draw.md	5. State	ABS	01F7F4C0	FIELD	AppBootStatic01F7F480	+0x40 qword0040 (TYPE RESOLVED)	
+S-36	16-UI/Widget-Object-Model/CONTRACT-widget-object.md	3. Types	UNATTRIBUTED	| `+0x00` | the handler, or `005C5230` | `00246641` |	UNATTRIBUTED			
+S-36	16-UI/Widget-Object-Model/CONTRACT-widget-object.md	3. Types	ABS	0208ED5C	FIELD	WidgetGenerationParity	+0x0 parity (SEMANTICALLY IDENTIFIED)	
+S-36	16-UI/Widget-Object-Model/CONTRACT-widget-object.md	3. Types	UNATTRIBUTED	| `+0x40` | flags: `or 0x80A`, bit `0x20000` from the global	UNATTRIBUTED			
+S-36	16-UI/Widget-Object-Model/CONTRACT-widget-object.md	3. Types	UNATTRIBUTED	| `+0x44` | low word `0x64` = **100**; bits `0x70000` cleare	UNATTRIBUTED			
+S-36	16-UI/Widget-Object-Model/CONTRACT-widget-object.md	3. Types	UNATTRIBUTED	| `+0x48` | `00915198` — the **default** transition descript	UNATTRIBUTED			
+S-36	16-UI/Widget-Object-Model/CONTRACT-widget-object.md	3. Types	UNATTRIBUTED	| `+0x98` | `0` | `00246711` |	UNATTRIBUTED			
+S-36	16-UI/Widget-Object-Model/CONTRACT-widget-object.md	3. Types	UNATTRIBUTED	| `+0x9C` | `0x800080` | `00246717` |	UNATTRIBUTED			
+S-36	16-UI/Widget-Object-Model/CONTRACT-widget-object.md	3. Types	UNATTRIBUTED	| `+0xA0` | `0x80` | `0024670A` |	UNATTRIBUTED			
+S-36	16-UI/Widget-Object-Model/CONTRACT-widget-object.md	3. Types	UNATTRIBUTED	| `+0xA1` | `0xFF80` | `002466E6` |	UNATTRIBUTED			
+S-36	16-UI/Widget-Object-Model/CONTRACT-widget-object.md	3. Types	UNATTRIBUTED	| `+0xB4` | `1`, but only inside `World_UpdateSimulationTick	UNATTRIBUTED			
+S-36	16-UI/Widget-Object-Model/CONTRACT-widget-object.md	3. Types	UNATTRIBUTED	| `+0xB8` | `0x3F800000` — **1.0f** | `00246700` |	UNATTRIBUTED			
+S-36	16-UI/Widget-Object-Model/CONTRACT-widget-object.md	3. Types	ABS	01F82E38	FIELD	FrameRate60Gate	+0x0 runningAt60 (SEMANTICALLY IDENTIFIED)	
+S-36	16-UI/Widget-Object-Model/CONTRACT-widget-object.md	3. Types	ABS	01DFE0C0	FIELD	HalfRateSuppressToggle	+0x0 suppressHalfRate (SEMANTICALLY IDENTIFIED)	
+S-36	16-UI/Widget-Object-Model/CONTRACT-widget-object.md	3. Types	ABS	022C2548	FIELD	WorldTickActiveFlag	+0x0 inWorldTick (SEMANTICALLY IDENTIFIED)	
+S-36	16-UI/Widget-Object-Model/CONTRACT-widget-object.md	3. Types	ABS	0208EA58	PTR-CELL	Widget	+0x0	
+S-36	16-UI/Widget-Object-Model/CONTRACT-widget-object.md	3. Types	ABS	02AEE4C8	PTR-CELL	WidgetConsumer02AEE4C8	+0x0	
+S-36	16-UI/Widget-Object-Model/CONTRACT-widget-object.md	3. Types	ABS	02AEE4C0	PTR-CELL	WidgetSingleton02AEE4C0	+0x0	
+S-36	16-UI/Widget-Object-Model/CONTRACT-widget-object.md	5. State	ABS	0208EA28	FIELD	UiRootTable	+0x8 uiRoot1 (SEMANTICALLY IDENTIFIED)	
+S-36	16-UI/Widget-Object-Model/CONTRACT-widget-object.md	5. State	ABS	0208EAC0	FIELD	WidgetFocusStack	+0x0 entries (SEMANTICALLY IDENTIFIED)	
+S-36	16-UI/Widget-Object-Model/CONTRACT-widget-object.md	5. State	ABS	0208EBC0	FIELD	WidgetFocusStack	+0x100 focusedWidget (SEMANTICALLY IDENTIFIED)	
+S-36	16-UI/Widget-Object-Model/CONTRACT-widget-object.md	5. State	ABS	0208EBC8	FIELD	WidgetFocusStack	+0x108 count (SEMANTICALLY IDENTIFIED)	
+S-36	16-UI/Widget-Object-Model/CONTRACT-widget-object.md	5. State	ABS	0208EA20	FIELD	UiRootTable	+0x0 uiRoot0 (SEMANTICALLY IDENTIFIED)	
+S-36	16-UI/Widget-Object-Model/CONTRACT-widget-object.md	5. State	ABS	0208EA30	FIELD	UiRootTable	+0x10 uiRoot2 (SEMANTICALLY IDENTIFIED)	
+S-36	16-UI/Widget-Object-Model/CONTRACT-widget-object.md	SWE2-EC7-26 update (2026-09-18) — `00246	ABS	0208F570	UNDECLARED			NEW-ONLY
+S-38	17-Presentation-Rendering/CONTRACT-character-transform-publish.md	3. Types	ABS	01F7F598	FIELD	AppBootStatic01F7F480	+0x118 qword0118 (TYPE RESOLVED)	NEW-ONLY
+S-38	17-Presentation-Rendering/CONTRACT-character-transform-publish.md	5. State	ABS	01F7F598+0x1C	FIELD	AppBootStatic01F7F480	DEREF pointee +0x1C (pointee type needs a hand read); cell: +0x118 qword0118 (TYPE RESOLVED)	NEW-ONLY
+S-38	17-Presentation-Rendering/CONTRACT-coast-down-latch.md	3. Types	ABS	022C6F28	PTR-CELL	CharacterRenderRecord	+0x0	NEW-ONLY
+S-38	17-Presentation-Rendering/CONTRACT-coast-down-latch.md	3. Types	UNATTRIBUTED	| `+0x610` | `+0x620` | heading | `float` |	UNATTRIBUTED			
+S-38	17-Presentation-Rendering/CONTRACT-coast-down-latch.md	3. Types	UNATTRIBUTED	| `+0x614` | `+0x624` | speed | `float`; the cached one deca	UNATTRIBUTED			
+S-38	17-Presentation-Rendering/CONTRACT-coast-down-latch.md	3. Types	UNATTRIBUTED	| `+0x618` | `+0x628` | speed scale | `float` |	UNATTRIBUTED			
+S-38	17-Presentation-Rendering/CONTRACT-coast-down-latch.md	3. Types	UNATTRIBUTED	| `+0x61C` | `+0x62C` | flags | `uint16`; **bit 0 is the lat	UNATTRIBUTED			
+S-38	17-Presentation-Rendering/CONTRACT-coast-down-latch.md	5. State	ABS	01DFE0B4	FIELD	FrameLimitSetting	+0x0 frameLimitSetting (TYPE RESOLVED)	
+S-39	17-Presentation-Rendering/CONTRACT-render-command-list-and-graphics-handshake.md	3. Types	ABS	01F7F5E0	PTR-CELL	OrderedCommandList	+0x0	
+S-39	17-Presentation-Rendering/CONTRACT-render-command-list-and-graphics-handshake.md	3. Types	ABS	01F7F5E8	PTR-CELL	RenderCommandOwnerList	+0x0	
+S-39	17-Presentation-Rendering/CONTRACT-render-command-list-and-graphics-handshake.md	5. State	ABS	01DF08FC	FIELD	RenderListSkipFlag01DF08FC	+0x0 flag (SEMANTICALLY IDENTIFIED)	
+S-39	17-Presentation-Rendering/CONTRACT-render-command-list-and-graphics-handshake.md	5. State	ABS	01F7F594	FIELD	AppBootStatic01F7F480	+0x114 byte0114 (TYPE RESOLVED)	
+S-39	17-Presentation-Rendering/CONTRACT-render-command-list-and-graphics-handshake.md	5. State	ABS	01FD4A88	FIELD	OnceFlag01FD4A88	+0x0 onceFlag01FD4A88 (TYPE RESOLVED)	NEW-ONLY
+S-39	17-Presentation-Rendering/CONTRACT-render-command-list-and-graphics-handshake.md	5. State	ABS	02EBA3F8	UNDECLARED			NEW-ONLY
+S-38	17-Presentation-Rendering/CONTRACT-render-record-pool-lifecycle.md	3. Types	ABS	022C6F28+0x48800	PTR-CELL	CharacterRenderRecord	DEREF pointee +0x48800 (pointee type needs a hand read); cell: +0x0	NEW-ONLY
+S-40	17-Presentation-Rendering/Post-Processing/CONTRACT-ppfx-effect-creation.md	3. Types	ABS	01F7F5F0	PTR-CELL	PostProcessParamContext	+0x0	
+S-40	17-Presentation-Rendering/Post-Processing/CONTRACT-ppfx-effect-creation.md	5. State	ABS	01F3BA80	FIELD	PpfxLogMasterGate	+0x0 gate (SEMANTICALLY IDENTIFIED)	
+S-40	17-Presentation-Rendering/Post-Processing/CONTRACT-ppfx-effect-creation.md	5. State	ABS	02EA0B40	FIELD	PpfxLogVerboseGate	+0x0 gate (SEMANTICALLY IDENTIFIED)	
+S-40	17-Presentation-Rendering/Post-Processing/CONTRACT-ppfx-effect-creation.md	5. State	ABS	01F3BA90	FIELD	PpfxLogErrorGate	+0x0 gate (SEMANTICALLY IDENTIFIED)	
+S-41	18-Audio/Audio-Boundary/CONTRACT-sound-request.md	3. Types and state	ABS	02091098	FIELD	AudioRequestGate	+0x0 gate (SEMANTICALLY IDENTIFIED)	
+S-41	18-Audio/Audio-Boundary/CONTRACT-sound-request.md	3. Types and state	ABS	022CB726	FIELD	AudioPlaybackStateBlock	+0x6 playGate (SEMANTICALLY IDENTIFIED)	
+S-41	18-Audio/Audio-Boundary/CONTRACT-sound-request.md	3. Types and state	ABS	02AEF3FC	FIELD	AudioBankHandleArray	+0x0 handleA (SEMANTICALLY IDENTIFIED)	
+S-41	18-Audio/Audio-Boundary/CONTRACT-sound-request.md	3. Types and state	ABS	02AEF400	FIELD	AudioBankHandleArray	+0x4 handleB (SEMANTICALLY IDENTIFIED)	
+S-41	18-Audio/Audio-Boundary/CONTRACT-sound-request.md	3. Types and state	ABS	02AEF404	FIELD	AudioBankHandleArray	+0x8 handleC (SEMANTICALLY IDENTIFIED)	
+S-41	18-Audio/Audio-Boundary/CONTRACT-sound-request.md	3. Types and state	ABS	02AEEDC0	FIELD	AudioBankSlot	+0x0 nextSlotLink (SEMANTICALLY IDENTIFIED)	
+S-41	18-Audio/Audio-Boundary/CONTRACT-sound-request.md	3. Types and state	ABS	02AEF3C0	FIELD	AudioBankSlotListHead	+0x0 headSlotIndex (SEMANTICALLY IDENTIFIED)	
+S-41	18-Audio/Audio-Boundary/CONTRACT-sound-request.md	3. Types and state	ABS	02098E20	FIELD	ActorManagerSlot	+0x10 slotFlags (SEMANTICALLY IDENTIFIED)	
+S-41	18-Audio/Audio-Boundary/CONTRACT-sound-request.md	3. Types and state	ABS	02AEEDC4	FIELD	AudioBankSlot	+0x4 matchId (SEMANTICALLY IDENTIFIED)	
+S-42	18-Audio/CONTRACT-field-music-selection.md	3. Types	ABS	02B5E0D0	PTR-CELL	MusicTable	+0x0	
+S-42	18-Audio/CONTRACT-music-control-file-and-bgm-stream.md	3. Types	ABS	02B5E0D0	PTR-CELL	MusicTable	+0x0	
+S-42	18-Audio/CONTRACT-music-control-file-and-bgm-stream.md	3. Types	ABS	02B5E0E0	FIELD	BgmStream	+0x0 requestId (SEMANTICALLY IDENTIFIED)	
+S-43	19-Save-Load-Settings/CONTRACT-save-container-transform.md	5. State	ABS	02EB3868	FIELD	SaveContainerRotation	+0x0 rotation (SEMANTICALLY IDENTIFIED)	
+S-43	19-Save-Load-Settings/CONTRACT-save-image-buffers.md	7. State	ABS	021BA940	FIELD	SaveImage	+0x0 header -> +0x0 imageChecksumComplement (TYPE RESOLVED)	
+S-43	19-Save-Load-Settings/CONTRACT-save-image-buffers.md	7. State	ABS	02164280	FIELD	SaveImage	+0x0 header -> +0x0 imageChecksumComplement (TYPE RESOLVED)	
+S-43	19-Save-Load-Settings/CONTRACT-save-image-buffers.md	7. State	ABS	02211000	FIELD	SaveImage	+0x0 header -> +0x0 imageChecksumComplement (TYPE RESOLVED)	
+S-43	19-Save-Load-Settings/CONTRACT-save-image-pipeline.md	3. Types	ABS	02164280	FIELD	SaveImage	+0x0 header -> +0x0 imageChecksumComplement (TYPE RESOLVED)	
+S-43	19-Save-Load-Settings/CONTRACT-save-image-pipeline.md	3. Types	ABS	021BA940	FIELD	SaveImage	+0x0 header -> +0x0 imageChecksumComplement (TYPE RESOLVED)	
+S-43	19-Save-Load-Settings/CONTRACT-save-image-pipeline.md	3. Types	ABS	02211000	FIELD	SaveImage	+0x0 header -> +0x0 imageChecksumComplement (TYPE RESOLVED)	
+S-43	19-Save-Load-Settings/CONTRACT-save-image-pipeline.md	3. Types	ABS	022676C0	FIELD	SaveImage	+0x0 header -> +0x0 imageChecksumComplement (TYPE RESOLVED)	
+S-44	19-Save-Load-Settings/Game-Settings-Config/CONTRACT-game-setting-config.md	3. Types	ABS	01DFDA10	FIELD	GameSettingValueTableSource	+0x0 values (TYPE RESOLVED)	
+S-44	19-Save-Load-Settings/Game-Settings-Config/CONTRACT-game-setting-config.md	3. Types	UNATTRIBUTED	| `+0x07C` | 324 | `valueTableA` | 81 dwords from `01DFDA10`	UNATTRIBUTED			
+S-44	19-Save-Load-Settings/Game-Settings-Config/CONTRACT-game-setting-config.md	3. Types	ABS	01DFDB60	FIELD	GameSettingValueTableSource	+0x0 values (TYPE RESOLVED)	
+S-44	19-Save-Load-Settings/Game-Settings-Config/CONTRACT-game-setting-config.md	3. Types	UNATTRIBUTED	| `+0x1C0` | 324 | `valueTableB` | 81 dwords from `01DFDB60`	UNATTRIBUTED			
+S-44	19-Save-Load-Settings/Game-Settings-Config/CONTRACT-game-setting-config.md	3. Types	ABS	01DFDCB0	FIELD	GameSettingValueTableSource	+0x0 values (TYPE RESOLVED)	
+S-44	19-Save-Load-Settings/Game-Settings-Config/CONTRACT-game-setting-config.md	3. Types	UNATTRIBUTED	| `+0x304` | 324 | `valueTableC` | 81 dwords from `01DFDCB0`	UNATTRIBUTED			
+S-44	19-Save-Load-Settings/Game-Settings-Config/CONTRACT-game-setting-config.md	3. Types	UNATTRIBUTED	| `+0x448` | 4 | `valueTableCount` | `81` **after `001DF240`	UNATTRIBUTED			
+S-44	19-Save-Load-Settings/Game-Settings-Config/CONTRACT-game-setting-config.md	3. Types	UNATTRIBUTED	| `+0x44C` | 4 | ~~UNRESOLVED~~ **`msaaModeSupportMask`** *(	UNATTRIBUTED			
+S-44	19-Save-Load-Settings/Game-Settings-Config/CONTRACT-game-setting-config.md	3. Types	UNATTRIBUTED	| `+0x450` | **520** | `iniPath` | **`wchar_t[0x104]`**, `+0	UNATTRIBUTED			
+S-44	19-Save-Load-Settings/Game-Settings-Config/CONTRACT-game-setting-config.md	3. Types	UNATTRIBUTED	| `+0x658` | 2 | UNRESOLVED | `0x0101` at construction, `0` 	UNATTRIBUTED			
+S-44	19-Save-Load-Settings/Game-Settings-Config/CONTRACT-game-setting-config.md	3. Types	UNATTRIBUTED	| `+0x65A` | 1 | UNRESOLVED | `1` at construction, `0` after	UNATTRIBUTED			
+S-44	19-Save-Load-Settings/Game-Settings-Config/CONTRACT-game-setting-config.md	3. Types	ABS	01DFD050	FIELD	GameSettingKeyName	+0x0 name (SEMANTICALLY IDENTIFIED)	
+S-44	19-Save-Load-Settings/Game-Settings-Config/CONTRACT-game-setting-config.md	3. Types	ABS	01DFD150	FIELD	GameSettingValueNameRow	+0x0 valueNames (SEMANTICALLY IDENTIFIED)	
+S-44	19-Save-Load-Settings/Game-Settings-Config/CONTRACT-game-setting-config.md	5. State	ABS	01F82D20	PTR-CELL	GameSettingConfig	+0x0	
+S-44	19-Save-Load-Settings/Game-Settings-Config/CONTRACT-game-setting-config.md	5. State	ABS	01DFE0B4	FIELD	FrameLimitSetting	+0x0 frameLimitSetting (TYPE RESOLVED)	NEW-ONLY
+S-44	19-Save-Load-Settings/Game-Settings-Config/CONTRACT-game-setting-config.md	5. State	ABS	01F82E38	FIELD	FrameRate60Gate	+0x0 runningAt60 (SEMANTICALLY IDENTIFIED)	NEW-ONLY
+S-45	20-Platform-Online-Achievements/CONTRACT-steam-integration-subsystem.md	2. The objects (FABLE)	ABS	01DFE0D0	FIELD	SteamApiContextInitHeader	+0x0 initCallback (SEMANTICALLY IDENTIFIED)	
+S-45	20-Platform-Online-Achievements/CONTRACT-steam-integration-subsystem.md	2. The objects (FABLE)	ABS	01F83450	UNDECLARED			NEW-ONLY
+S-45	20-Platform-Online-Achievements/CONTRACT-steam-integration-subsystem.md	2. The objects (FABLE)	ABS	01DFE410	FIELD	SteamAchievementRecord	+0x0 counterId (SEMANTICALLY IDENTIFIED)	
+S-46	21-RNG-And-Determinism/CONTRACT-gameplay-generators.md	3. Types	ABS	022C256C	FIELD	SharedGameplayLcgState	+0x0 state (TYPE RESOLVED)	
+S-46	21-RNG-And-Determinism/CONTRACT-gameplay-generators.md	3. Types	ABS	02EB3870	FIELD	Mt19937State	+0x0 mt (TYPE RESOLVED)	
+S-46	21-RNG-And-Determinism/CONTRACT-gameplay-generators.md	3. Types	ABS	02EB4230	FIELD	Mt19937State	+0x9C0 index (SEMANTICALLY IDENTIFIED)	
+S-46	21-RNG-And-Determinism/CONTRACT-gameplay-generators.md	3. Types	ABS	02EB4234	FIELD	GeneratorInitLatch	+0x0 generatorInitLatch (TYPE RESOLVED)	
+S-46	21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md	3. Types	ABS	0208E6B0	FIELD	AreaEntryCounter	+0x0 areaEntryCounter (TYPE RESOLVED)	
+S-46	21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md	3. Types	ABS	02089300	FIELD	RngReseedGate	+0x0 rngReseedGate (TYPE RESOLVED)	
+S-46	21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md	3. Types	ABS	01FD4A80	FIELD	TickCounter01FD4A80	+0x0 tickCounter01FD4A80 (TYPE RESOLVED)	
+S-46	21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md	3. Types	ABS	02EB3870	FIELD	Mt19937State	+0x0 mt (TYPE RESOLVED)	
+S-46	21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md	3. Types	ABS	02EB4230	FIELD	Mt19937State	+0x9C0 index (SEMANTICALLY IDENTIFIED)	
+S-46	21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md	3. Types	ABS	02EB4234	FIELD	GeneratorInitLatch	+0x0 generatorInitLatch (TYPE RESOLVED)	
+S-46	21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md	5. State	ABS	022C256C	FIELD	SharedGameplayLcgState	+0x0 state (TYPE RESOLVED)	
+S-46	21-RNG-And-Determinism/CONTRACT-which-generator-serves-which-roll.md	5. State	ABS	01EF93E8	FIELD	PresentationBitFeedbackPrngState	+0x0 state (SEMANTICALLY IDENTIFIED)	
+S-49	22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md	3. Types and state	ABS	01F2E5A0	FIELD	PTypeDefaultUInt	+0x0 vptr (SEMANTICALLY IDENTIFIED)	
+S-49	22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md	3. Types and state	UNATTRIBUTED	| `+0x00` | `m_phyreMarker` | `0x50485952` — the bytes `R Y 	UNATTRIBUTED			
+S-49	22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md	3. Types and state	UNATTRIBUTED	| `+0x04` | `m_size` | **84** in all 169 sampled files |	UNATTRIBUTED			
+S-49	22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md	3. Types and state	UNATTRIBUTED	| `+0x08` | `m_packedNamespaceSize` | bytes of class-name na	UNATTRIBUTED			
+S-49	22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md	3. Types and state	UNATTRIBUTED	| `+0x0C` | `m_platformID` | `0x44583131` — `1 1 X D` |	UNATTRIBUTED			
+S-49	22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md	3. Types and state	UNATTRIBUTED	| `+0x44` | `m_physicsEngineID` | `0x424C4C54` (`T L L B`, B	UNATTRIBUTED			
+S-49	22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md	3. Types and state	UNATTRIBUTED	| `+0x00` | 4 | the capacity **word**. `0059A479` compares i	UNATTRIBUTED			
+S-49	22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md	3. Types and state	UNATTRIBUTED	| `+0x08` | 8 | the data pointer |	UNATTRIBUTED			
+S-49	22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md	3. Types and state — the byte layout	UNATTRIBUTED	| `+0x00` | 8 | vftable. The destructor overwrites it with ~	UNATTRIBUTED			
+S-49	22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md	3. Types and state — the byte layout	UNATTRIBUTED	| `+0x30` | 8 | **the type name, a plain `char *`.** `006388	UNATTRIBUTED			
+S-49	22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md	3. Types and state — the byte layout	UNATTRIBUTED	| `+0x50` | 16 | **intrusive list 1** — head at `+0x50`, tai	UNATTRIBUTED			
+S-49	22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md	3. Types and state — the byte layout	UNATTRIBUTED	| `+0x60` | 16 | **intrusive list 2** |	UNATTRIBUTED			
+S-49	22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md	3. Types and state — the byte layout	UNATTRIBUTED	| `+0x70` | 8 | a sub-object, destroyed **first** by `0063D6	UNATTRIBUTED			
+S-49	22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md	3. Types and state — the byte layout	UNATTRIBUTED	| `+0x78` | 8 | **the parent descriptor**, or null |	UNATTRIBUTED			
+S-49	22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md	3. Types and state — the byte layout	UNATTRIBUTED	| `+0x80` | 16 | **intrusive list 3** |	UNATTRIBUTED			
+S-49	22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md	3. Types and state — the byte layout	UNATTRIBUTED	| `+0x90` | 16 | **intrusive list 4** — the first one the de	UNATTRIBUTED			
+S-49	22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md	3. Types and state — the byte layout	UNATTRIBUTED	| `+0xA0` | 16 | **intrusive list 5** |	UNATTRIBUTED			
+S-49	22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md	3. Types and state — the byte layout	UNATTRIBUTED	| `+0xB0` | 16 | **intrusive list 6** |	UNATTRIBUTED			
+S-49	22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md	3. Types and state — the byte layout	UNATTRIBUTED	| `+0xC0` | 8 | **the default instance** — the object every 	UNATTRIBUTED			
+S-49	22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md	3. Types and state — the byte layout	UNATTRIBUTED	| `+0xC8` | 8 | ~~**a second full-size instance**~~ **an ins	UNATTRIBUTED			
+S-49	22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md	3. Types and state — the byte layout	UNATTRIBUTED	| `+0xD0` | 8 | ~~**a third full-size instance**~~ **an inst	UNATTRIBUTED			
+S-49	22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md	3. Types and state — the byte layout	UNATTRIBUTED	| `+0xE8` | 4 | a **registration counter** (§7) |	UNATTRIBUTED			
+S-49	22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md	3. Types and state — the byte layout	UNATTRIBUTED	| `+0xF0` | 4 | the parent's `+0x38`, **negated** |	UNATTRIBUTED			
+S-49	22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md	3. Types and state — the byte layout	UNATTRIBUTED	| `+0x100` | 4 | a two-word guard (`+0x100` and `+0x102` com	UNATTRIBUTED			
+S-49	22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md	3. Types and state — the byte layout	UNATTRIBUTED	| `+0x104` | 4 | a copy of the parent's `+0x38` |	UNATTRIBUTED			
+S-49	22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md	3. Types and state — the byte layout	UNATTRIBUTED	| `+0x138` | 8 | **a tagged pointer**: `+0x30` is this value	UNATTRIBUTED			
+S-49	22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md	3. Types and state — the byte layout	UNATTRIBUTED	| `+0x00` | 8 | **next** |	UNATTRIBUTED			
+S-49	22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md	3. Types and state — the byte layout	UNATTRIBUTED	| `+0x08` | 8 | **prev** |	UNATTRIBUTED			
+S-49	22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md	3. Types and state — the byte layout	UNATTRIBUTED	| `+0x18` | 8 | an owned pointer, released with `_aligned_fr	UNATTRIBUTED			
+S-49	22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/CONTRACT-phyre-class-descriptor.md	3. Types and state — the byte layout	UNATTRIBUTED	| `+0x20` | 1 | a flag; **bit 0 means the node is OWNED** |	UNATTRIBUTED			

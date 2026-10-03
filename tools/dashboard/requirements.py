@@ -277,6 +277,8 @@ def collect(db, residual_path=None, functions_path=None, board_path=None):
             if who not in accepted or len(parts) < 5:
                 continue
             for m in CD.read_members(doc, parts[2]):
+                if m in r.get("a_set", ()):             # an A member of an accepted family stays A (A-overlap rule, 2026-10-03)
+                    continue
                 letter[m] = parts[1]; pages.setdefault(m, set()).add(os.path.relpath(doc, db).replace("\\", "/"))
         resid = set()
         rp = residual_path

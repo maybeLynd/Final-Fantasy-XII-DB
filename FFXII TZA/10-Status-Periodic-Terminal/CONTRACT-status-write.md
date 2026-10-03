@@ -2,7 +2,6 @@
 contract: Change a status on a battle unit and process its side effects
 category: 10-Status-Periodic-Terminal
 scope: operation
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: Status-Write/the-status-write-and-its-side-effects.md, the-thirty-two-statuses.md, Periodic-Tick/what-the-periodic-tick-does.md

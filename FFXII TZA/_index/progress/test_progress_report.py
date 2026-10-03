@@ -67,6 +67,15 @@ except ImportError:
     check("T2 vendored classifier == live instrument", bool(vq),
           "instrument unavailable; vendored parse produced %d rows" % len(vq))
 
+# T3s a struck verdict is history: the CURRENT verdict is the first word after the struck text (OPUS, 2026-10-03 -
+# `~~MET~~ **SCOPE-SHORT - ...**` used to read MET, so every strike-and-correct of a verdict silently kept the old one)
+_t3s = {"~~MET~~ **SCOPE-SHORT — re-scored**": "SCOPE-SHORT", "~~**MET — old**~~ **NOT MET — new**": "NOT MET",
+        "**~~N/A stated~~** **MET (linked)**": "MET", "**MET — kept**": "MET", "~~MET~~ ~~PARTIAL~~ MIXED": "MIXED",
+        "N/A stated": "N/A"}
+_t3s_got = {k: pr._cell_verdict(k) for k in _t3s}
+check("T3s a struck verdict never counts; the word after it does", _t3s_got == _t3s,
+      "%s" % {k: v for k, v in _t3s_got.items() if v != _t3s[k]})
+
 # T3 L2 table parse: all cells from the verdict vocabulary
 v = pr.parse_verdicts(DB / "_index/L2-VERDICTS.md")
 allowed = {"N/A", "NOT MET", "SCOPE-SHORT", "PARTIAL", "MIXED", "MET", "LIVE",
@@ -78,7 +87,11 @@ unk = [r["system"] for r in v
 check("T3 L2 verdict table parsed", len(v) >= 45 and not unk,
       "%d systems, unscored-cells %s" % (len(v), unk[:5]))
 
-# T4 fingerprint moves when an input changes
+# T4 fingerprint moves when an input changes. The board is pinned to one snapshot (board_file): the live board moves
+# every few seconds while the fleet works, which made T4 fail on unrelated board writes (OPUS, 2026-10-03).
+_bpin = pr.WORK / "progress-board-snapshot-T4.json"
+_bpin.write_bytes((DB / "_index/_inbox/TEAM.json").read_bytes())
+pr._BOARD_SNAPSHOT = _bpin
 f0 = pr.fingerprint(DB)
 oqp = DB / "_index/OPEN-QUESTIONS.md"
 raw = oqp.read_bytes()
@@ -88,6 +101,28 @@ oqp.write_bytes(raw)
 f2 = pr.fingerprint(DB)
 check("T4 fingerprint tracks inputs", f0 == f2 and f0 != f1,
       "base=%s edited=%s restored=%s" % (f0[:8], f1[:8], f2[:8]))
+pr._BOARD_SNAPSHOT = None
+_bpin.unlink()
+
+# T4b one board snapshot per build: a board write during a build no longer aborts it, and every board reader sees the
+# same bytes (OPUS, 2026-10-03: 3 of 3 generations aborted INCOMPLETE on board writes alone)
+_board_a = (DB / "_index/_inbox/TEAM.json").read_bytes()
+_jb = json.loads(_board_a.decode("utf-8"))
+_jb["revision"] = (_jb.get("revision") or 0) + 1                 # a board write, made on the PINNED copy only
+_board_b = json.dumps(_jb).encode("utf-8")
+pr._BOARD_SNAPSHOT = _bpin
+_bpin.write_bytes(_board_a)
+ga = pr.fingerprint(DB)
+_bpin.write_bytes(_board_b)
+gb = pr.fingerprint(DB)
+_bpin.write_bytes(_board_a)
+ga2 = pr.fingerprint(DB)
+check("T4b the fingerprint reads the board from the build's one snapshot (not the live file)",
+      ga != gb and ga == ga2 and pr.board_file(DB) == _bpin, "a=%s b=%s a2=%s" % (ga[:8], gb[:8], ga2[:8]))
+pr._BOARD_SNAPSHOT = None
+_bpin.unlink()
+check("T4c with no build snapshot the live board is read (live `check` keeps the strict board rule)",
+      pr.board_file(DB) == DB / "_index/_inbox/TEAM.json")
 
 # T5 generated artifacts parse and carry the required keys
 sj = HERE / "snapshot.json"

@@ -1,0 +1,20 @@
+{
+  "case": "upstream-failed",
+  "expected": "upstream capture failed/incomplete",
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sd194-copier-limit\\prove.py",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sd194-copier-limit\\controls-01\\upstream-failed\\result.json",
+    "--source",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\sd194-copier-limit\\controls-01\\upstream-failed\\source"
+  ],
+  "driver_sha256": "afd6b2e25b540b32066658d5866758adc55ee0d38f2c25996d3ec8aed41ed2fc",
+  "exit": 1,
+  "terminal": true,
+  "exception": null,
+  "output_exists": false,
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "64cf4634eb92a89945c08e22c3ae2ee078642a014d8f7105fa73395b9716c76b",
+  "expected_refusal": true
+}

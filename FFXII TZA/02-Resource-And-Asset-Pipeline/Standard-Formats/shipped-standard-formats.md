@@ -4,7 +4,6 @@ category: 02-Resource-And-Asset-Pipeline
 status: AUDITED
 owner_layer: PrimaryOwner:Resource
 evidence_tier: 1
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 verified_against:

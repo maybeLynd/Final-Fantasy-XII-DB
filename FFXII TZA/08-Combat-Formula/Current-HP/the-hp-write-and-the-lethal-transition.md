@@ -4,7 +4,6 @@ category: 08-Combat-Formula
 status: AUDITED
 owner_layer: PrimaryOwner:CombatFormula
 evidence_tier: 1
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 verified_against:
@@ -647,3 +646,15 @@ compare). The scan reads the same record band `002962D0` sweeps for the
 
 `002962D0` (130 B) is the record-band sweep - `002732E0`/`0028F590`/`003F8A30` plus `0209BFBE`/`0209C2BE`. Interior anchor `00296302` (a `002732E0` call).
 
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-the-hp-write-and-the-lethal-transition-cloudint-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00340CB0` | 75 B | with `o` = `00263F10(rdx)`, reads `a` = `00267E10(r9)` and then `b` = `00267E10(r9)`, and tail-jumps to `00473980(o, b, a)` | `00340CC5`, `00340CD0`, `00340CDA`, `00340CDF`, `00340CF6` |
+| `003421D0` | 91 B | calls `00267F90(r9, 2)`; then, with `o` = `00263F10(rdx)`, reads `a` = `00267E10(r9)` and then `b` = `00267E10(r9)`, and tail-jumps to `00473980(o, b, a)` | `003421ED`, `003421F5`, `00342200`, `0034220A`, `00342226` |
+| `00343D10` | 124 B | reads `a` = `00267E10(r9)` and then `b` = `00267E10(r9)`, calls `003A1920(00265060(00264010(a)), 00265060(00264010(b)))` and tail-jumps to `0026B4C0` with the incoming `rcx` and that call's float result in `xmm1` | `00343D2D`, `00343D40`, `00343D52`, `00343D68`, `00343D87` |
+| `00344F80` | 144 B | reads three floats with `00267DB0(r9)` into a stack vector (the first at `+8`, the second at `+4`, the third at `+0`), then calls `003A1920(00265060(00264010(00267E10(r9))), &vector)` and `0026B4C0` with the incoming `rcx` and that call's float result in `xmm1`; the frame carries the stack cookie (`01F44830`, checked by `00808C40`) | `00344FA2`, `00344FAA`, `00344FC6`, `00344FE8`, `00344FF3` |
+| `0034A110` | 102 B | calls `00267F90(r9, 2)`, reads `a`, `b` and `c` with three `00267E10(r9)` calls, and tail-jumps to `004738D0(00263F10(00264010(c)), b, a)` | `0034A12A`, `0034A132`, `0034A14D`, `0034A155`, `0034A171` |
+| `00473980` | 120 B | builds a mask from `r8d` (bit `0x1` gives `0x10000000`, bit `0x2` gives `0x20000000`, bit `0x4` gives `0x40000000`); returns -1 when `rcx` is null, otherwise tail-jumps to `00329B70(003589B0(rcx), 0, edx, mask)` | `0047399C`, `004739A5`, `004739B5`, `004739C2`, `004739E0` |

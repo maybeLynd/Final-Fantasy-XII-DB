@@ -1,0 +1,105 @@
+PASS  T1 all inputs exist, none under Tools/Temp missing-required=[] optional-absent=[] bad=[]
+PASS  T2 vendored classifier == live instrument 1826 rows, diffs []
+PASS  T3 L2 verdict table parsed 52 systems, unscored-cells []
+PASS  T4 fingerprint tracks inputs base=74167bb9 edited=97868c1e restored=74167bb9
+PASS  T4b the fingerprint reads the board from the build's one snapshot (not the live file) a=74167bb9 b=7d90cbba a2=74167bb9
+PASS  T4c with no build snapshot the live board is read (live `check` keeps the strict board rule) 
+PASS  T5 snapshot.json shape levels=['L1_modding_grade', 'L2_reconstruction_grade', 'L3', 'parity', 'residual_required_knowledge', 'terminal_certification']
+PASS  T6 no blended %, no ETA claim PROGRESS.md present
+PASS  T7 no stray temp files []
+PASS  T8 package rows carry discriminator fields 90 packages
+PASS  T8b every crosswalk link resolves from _index/progress/ 12 relative links, 0 broken []
+PASS  T8c lifecycle line beside L3, charter link resolves l3=2710 lifecycle=2911 links=['../../RECONSTRUCTION-CHARTER.md']
+PASS  T9 config edit moves fingerprint 6b5d4f8d vs e23a0e54
+PASS  T10 same-count edit moves fingerprint 
+PASS  T11 new/deleted document moves fingerprint 
+wrote PROGRESS.md + _index/progress/{snapshot.json,snapshot.md,crosswalk.md,metrics.md} @ 2026-10-03T08:53:40+00:00 head=b990e40bb board={'revision': 1, 'epoch': None, 'phase': None} fp=6b5d4f8db6 gen=g20261003T085340Z-9aac02
+INCOMPLETE - required input(s) missing: _index/L2-VERDICTS.md
+PASS  T12 missing source -> INCOMPLETE, last-good retained rc=1 state=INCOMPLETE missing=['_index/L2-VERDICTS.md']
+PASS  T12c failed run leaves snapshot.json byte-identical; check reports it rc=2 out=INCOMPLETE: required input(s) missing: _index/L2-VERDICTS.md
+
+PASS  T12b INCOMPLETE records no history row 1 rows
+PASS  T13 mid-build source move aborts INCOMPLETE - an input moved during generation; aborted, prior generation retaine
+wrote PROGRESS.md + _index/progress/{snapshot.json,snapshot.md,crosswalk.md,metrics.md} @ 2026-10-03T08:53:41+00:00 head=b990e40bb board={'revision': 1, 'epoch': None, 'phase': None} fp=6b5d4f8db6 gen=g20261003T085341Z-880661
+INCOMPLETE: output set not coherent - snapshot.md content does not match the committed generation; snapshot.md does not carry commit e82a381189f4d9fd
+PASS  T14 mid-commit failure detected, not silently current rc=raised
+PASS  T14b staged temps cleaned on failure []
+wrote PROGRESS.md + _index/progress/{snapshot.json,snapshot.md,crosswalk.md,metrics.md} @ 2026-10-03T08:53:41+00:00 head=b7a084d4a board={'revision': 1, 'epoch': None, 'phase': None} fp=6b5d4f8db6 gen=g20261003T085341Z-cdf4e3
+INCOMPLETE: output set not coherent - PROGRESS.md missing or empty
+wrote PROGRESS.md + _index/progress/{snapshot.json,snapshot.md,crosswalk.md,metrics.md} @ 2026-10-03T08:53:42+00:00 head=b7a084d4a board={'revision': 1, 'epoch': None, 'phase': None} fp=6b5d4f8db6 gen=g20261003T085342Z-9aa732
+CURRENT: generated 2026-10-03T08:53:42+00:00, fp 6b5d4f8db60e, all 5 outputs coherent
+PASS  T15 deleted output detected and regenerated check=2 auto=0
+wrote PROGRESS.md + _index/progress/{snapshot.json,snapshot.md,crosswalk.md,metrics.md} @ 2026-10-03T08:53:42+00:00 head=b7a084d4a board={'revision': 1, 'epoch': None, 'phase': None} fp=6b5d4f8db6 gen=g20261003T085342Z-25cb05
+INCOMPLETE: output set not coherent - crosswalk.md content does not match the committed generation
+wrote PROGRESS.md + _index/progress/{snapshot.json,snapshot.md,crosswalk.md,metrics.md} @ 2026-10-03T08:53:42+00:00 head=b7a084d4a board={'revision': 1, 'epoch': None, 'phase': None} fp=6b5d4f8db6 gen=g20261003T085342Z-f19635
+CURRENT: generated 2026-10-03T08:53:42+00:00, fp 6b5d4f8db60e, all 5 outputs coherent
+PASS  T16 edited output detected and regenerated check=2 auto=0
+wrote PROGRESS.md + _index/progress/{snapshot.json,snapshot.md,crosswalk.md,metrics.md} @ 2026-10-03T08:53:43+00:00 head=b7a084d4a board={'revision': 1, 'epoch': None, 'phase': None} fp=6b5d4f8db6 gen=g20261003T085343Z-127035
+wrote PROGRESS.md + _index/progress/{snapshot.json,snapshot.md,crosswalk.md,metrics.md} @ 2026-10-03T08:53:43+00:00 head=b7a084d4a board={'revision': 1, 'epoch': None, 'phase': None} fp=6b5d4f8db6 gen=g20261003T085343Z-87447f
+INCOMPLETE - required input(s) missing: _index/COVERAGE.md
+PASS  T17 dirty forces regen; failure keeps the mark rc=0 gone=True rc2=1 kept=True
+wrote PROGRESS.md + _index/progress/{snapshot.json,snapshot.md,crosswalk.md,metrics.md} @ 2026-10-03T08:53:44+00:00 head=b7a084d4a board={'revision': 1, 'epoch': None, 'phase': None} fp=6b5d4f8db6 gen=g20261003T085344Z-d622ea
+wrote PROGRESS.md + _index/progress/{snapshot.json,snapshot.md,crosswalk.md,metrics.md} @ 2026-10-03T08:53:44+00:00 head=b7a084d4a board={'revision': 1, 'epoch': None, 'phase': None} fp=6b5d4f8db6 gen=g20261003T085344Z-f6de86
+UNCHANGED (fp 6b5d4f8db60e); checked_at stamped
+PASS  T18 history records one row per fingerprint 1 rows
+wrote PROGRESS.md + _index/progress/{snapshot.json,snapshot.md,crosswalk.md,metrics.md} @ 2026-10-03T08:53:44+00:00 head=b7a084d4a board={'revision': 1, 'epoch': None, 'phase': None} fp=6b5d4f8db6 gen=g20261003T085344Z-0a8d61
+PASS  T19 transferred required work stays a completion obligation crosswalk 2669 bytes
+wrote PROGRESS.md + _index/progress/{snapshot.json,snapshot.md,crosswalk.md,metrics.md} @ 2026-10-03T08:53:45+00:00 head=b7a084d4a board={'revision': 1, 'epoch': None, 'phase': None} fp=7b53f51671 gen=g20261003T085345Z-54baf3
+PASS  T20 unavailable parity is UNMEASURED UNMEASURED
+PASS  T21 LIVE counts only where the cell cites its ruling satisfied=2 unruled=1
+PASS  T22 reviewer is UNKNOWN without an assignment, never the requester {'FX-REQ-ONE': 'UNKNOWN', 'FX-REQ-TRANSFER': 'UNKNOWN', 'FX-REQ-TWO': 'FX-REVIEWER', 'FX-PUB-CHORE-1002': 'UNKNOWN'}
+wrote PROGRESS.md + _index/progress/{snapshot.json,snapshot.md,crosswalk.md,metrics.md} @ 2026-10-03T08:53:45+00:00 head=b7a084d4a board={'revision': 1, 'epoch': None, 'phase': None} fp=6b5d4f8db6 gen=g20261003T085345Z-cc0b95
+PASS  T23 withdrawn is a separate bucket, not folded into answered 
+PASS  T27a vendored OEB classifies ANSWERED (live parity) ANSWERED
+PASS  T27b unescaped pipe inside a code span still reads the status ANSWERED
+PASS  T27c shared question+status cell reads the bold span ANSWERED
+PASS  T27d NAS/OEB split out of accepted answers {'accepted_answers': 1, 'no_admissible_source': 1, 'out_of_evidence_boundary': 1, 'withdrawn_by_lead': {'DISSOLVED': 1, 'NOT A QUESTION': 1, 'SUPERSEDED': 1}, 'note': 'ANSWERED merges learned answers with approved dispositions; NAS and OEB are closed for the gate but unanswered in fact. WITHDRAWN merges superseded / not-a-question / dissolved / other - the lead column keeps them apart.'}
+PASS  T27e WITHDRAWN sub-splits keep superseded/not-a-question/dissolved apart {'DISSOLVED': 1, 'NOT A QUESTION': 1, 'SUPERSEDED': 1}
+PASS  T27f superseded residue stays listed with its carrier text [{'id': 'HA-3', 'owner': 'doc', 'status_text': '**SUPERSEDED by HA-9 (the carrier)**'}]
+PASS  T27g route-links record consumed, hazard rows counted not dropped silently {'source': '_index/candidates/fable-route-links-0927/', 'tsv': 'fable-register-transitions.tsv', 'dated_record': True, 'transitions': 2, 'to_counts': {'SUPERSEDED': 1, 'NO ADMISSIBLE SOURCE': 1}, 'moved': [{'row': 'HA-3', 'commit': 'aaaa', 'from': 'PARTIAL', 'to': 'SUPERSEDED', 'record': '_index/candidates/x/'}, {'row': 'HA-1', 'commit': 'bbbb', 'from': 'OPEN', 'to': 'NO ADMISSIBLE SOURCE', 'record': '_index/candidates/y/'}], 'dropped': 1, 'state': 'CURRENT'}
+PASS  T24 AUDIT-PASS* are artefacts, never passes; declared counter used declared=0 artefacts=2
+wrote PROGRESS.md + _index/progress/{snapshot.json,snapshot.md,crosswalk.md,metrics.md} @ 2026-10-03T08:53:46+00:00 head=b7a084d4a board={'revision': 1, 'epoch': None, 'phase': None} fp=6b5d4f8db6 gen=g20261003T085346Z-e21542
+CURRENT: generated 2026-10-03T08:53:46+00:00, fp 6b5d4f8db60e, all 5 outputs coherent
+STALE: generated 2026-10-03T08:53:46+00:00, fp 6b5d4f8db60e vs current 15991412e9bd
+PASS  T25 dated snapshot reports STALE, not CURRENT rc=1
+PASS  T26 watchdog tick/skip/failure + dirty contract calls=3 events=[{'event': 'progress_report', 'rc': 0, 'dirty': False, 'dirty_consumed': False, 'out': 'receipt'}, {'event': 'progress_report', 'rc': 0, 'dirty': True, 'dirty_consumed': True, 'out': 'receipt'}, {'event': 'progress_report', 'rc': 1, 'dirty': True, 'dirty_consumed': False, 'out': 'receipt'}]
+PASS  T28 AUDIT-LOG + root AUDIT-PASS* fingerprinted (C2) fp moved: True/True; missing: ['_index/AUDIT-LOG.md']
+wrote PROGRESS.md + _index/progress/{snapshot.json,snapshot.md,crosswalk.md,metrics.md} @ 2026-10-03T08:53:46+00:00 head=b7a084d4a board={'revision': 1, 'epoch': None, 'phase': None} fp=6b5d4f8db6 gen=g20261003T085346Z-474eb8
+PASS  T29a generation records semantics_sha256 
+INCOMPLETE: output set not coherent - snapshot.json semantic contents altered (semantics_sha256 mismatch)
+PASS  T29b wiped levels/packages -> not CURRENT (C1) rc=2
+wrote PROGRESS.md + _index/progress/{snapshot.json,snapshot.md,crosswalk.md,metrics.md} @ 2026-10-03T08:53:47+00:00 head=b7a084d4a board={'revision': 1, 'epoch': None, 'phase': None} fp=6b5d4f8db6 gen=g20261003T085347Z-8b45ad
+INCOMPLETE: output set not coherent - snapshot.json semantic contents altered (semantics_sha256 mismatch); metrics.md content does not match the committed generation
+PASS  T30 outputs-map tamper -> not CURRENT (C1) rc=2
+wrote PROGRESS.md + _index/progress/{snapshot.json,snapshot.md,crosswalk.md,metrics.md} @ 2026-10-03T08:53:47+00:00 head=b7a084d4a board={'revision': 1, 'epoch': None, 'phase': None} fp=6b5d4f8db6 gen=g20261003T085347Z-08655e
+INCOMPLETE - required input(s) invalid: _index/OPEN-QUESTIONS.md (empty file)
+PASS  T31 empty required input -> INCOMPLETE, not CURRENT (C3) rc=1 invalid=['_index/OPEN-QUESTIONS.md (empty file)']
+wrote PROGRESS.md + _index/progress/{snapshot.json,snapshot.md,crosswalk.md,metrics.md} @ 2026-10-03T08:53:48+00:00 head=b7a084d4a board={'revision': 1, 'epoch': None, 'phase': None} fp=b333308ba7 gen=g20261003T085348Z-edb32f
+CURRENT: generated 2026-10-03T08:53:48+00:00, fp b333308ba7fc, all 5 outputs coherent
+PASS  T32 cleared register is valid -> CURRENT (C3) rc=0 invalid=[] contra=0
+MISSING: no snapshot
+PASS  T33 truncated TEAM.json -> INCOMPLETE (C3) rc=2 invalid=['_index/_inbox/TEAM.json (unreadable or unparseable)']
+PASS  T34 fixture page_boxes splits the unticked surface {'engine': 'check_questions.read_boxes', 'no_id': 1, 'no_id_untracked': None, 'closed_id': 1, 'open_id': 1, 'obligations': [{'file': '01-Fixture-Category/fixture-doc.md', 'anchor': '01-Fixture-Category/fixture-doc.md#L3', 'locator': 'page:01-Fixture-Category/fixture-doc.md#L3', 'requirement': '- [ ] a page-local obligation with no register id', 'owner': 'UNKNOWN', 'reviewer': 'UNKNOWN', 'class': 'page-local', 'named_ids': [], 'dedup': ['none'], 'discriminator': 'no register row - page-local'}, {'file': '01-Fixture-Category/fixture-doc.md', 'anchor': '01-Fixture-Category/fixture-doc.md#L4', 'locator': 'register:TQ-2', 'requirement': '- [ ] **TQ-2.** residue of an answered row', 'owner': 'UNKNOWN', 'reviewer': 'UNKNOWN', 'class': 'mis-marked-closed', 'named_ids': ['TQ-2'], 'dedup': ['register:TQ-2'], 'discriminator': 'names TQ-2 (mis-marked-closed)'}, {'file': '01-Fixture-Category/fixture-doc.md', 'anchor': '01-Fixture-Category/fixture-doc.md#L5', 'locator': 'register:TQ-1', 'requirement': '- [ ] **TQ-1.** residue of an open row', 'owner': 'UNKNOWN', 'reviewer': 'UNKNOWN', 'class': 'live-row-residue', 'named_ids': ['TQ-1'], 'dedup': ['register:TQ-1'], 'discriminator': 'names TQ-1 (live-row-residue)'}]}
+PASS  T34b live page_boxes: closed-row zero, counters present {'engine': 'check_questions.read_boxes', 'no_id': 0, 'no_id_untracked': 0, 'closed_id': 0, 'open_id': 9, 'obligations': [{'file': '00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md', 'anchor': '00-Engine-Core-Runtime/the-encoded-id-space-and-the-query-record.md#L608', 'locator': 'register:OV-5', 'requirement': '- [ ] **OV-5.** SECTION-05: shipped-state reachability of unusua', 'owner': 'both', 'reviewer': 'UNKNOWN', 'class': 'live-row-residue', 'named_ids': ['OV-5'], 'dedup': ['register:OV-5'], 'discriminator': 'names OV-5 (live-row-residue)'}, {'file': '00-Engine-Core-Runtime/the-query-record-from-initialization-to-reuse.md', 'anchor': '00-Engine-Core-Runtime/the-query-record-from-initialization-to-reuse.md#L196', 'locator': 'register:OV-8', 'requirement': '- [ ] **OV-8.** Actual game reachability of the deliberately abn', 'owner': 'native', 'reviewer': 'UNKNOWN', 'class': 'live-row-residue', 'named_ids': ['OV-8'], 'dedup': ['register:OV-8'], 'discriminator': 'names OV-8 (live-row-residue)'}, {'file': '01-Script-VM-Native-Bridge/Interpreter-Core/the-actor-request-from-arming-through-start-and-return.md', 'anchor': '01-Script-VM-Native-Bridge/Interpreter-Core/the-actor-request-from-arming-through-start-and-return.md#L223', 'locator': 'register:OV-10', 'requirement': '- [ ] **OV-10.** Real authored input bounds and higher recovery/', 'owner': 'Actor request scheduling and ScriptVM execution', 'reviewer': 'UNKNOWN', 'class': 'live-row-residue', 'named_ids': ['OV-10'], 'dedup': ['register:OV-10'], 'discriminator': 'names OV-10 (live-row-residue)'}, {'file': '01-Script-VM-Native-Bridge/Interpreter-Core/the-script-from-bytecode-through-wait-and-resume.md', 'anchor': '01-Script-VM-Native-Bridge/Interpreter-Core/the-script-from-bytecode-through-wait-and-resume.md#L140', 'locator': 'register:OV-16', 'requirement': '- [ ] **OV-16.** Establish live scheduling, synchronization, ree', 'owner': 'PrimaryOwner:Script_VM_Native_Bridge', 'reviewer': 'UNKNOWN', 'class': 'live-row-residue', 'named_ids': ['OV-16'], 'dedup': ['register:OV-16'], 'discriminator': 'names OV-16 (live-row-residue)'}, {'file': '02-Resource-And-Asset-Pipeline/the-external-source-owner-and-borrowed-view-lifetime.md', 'anchor': '02-Resource-And-Asset-Pipeline/the-external-source-owner-and-borrowed-view-lifetime.md#L190', 'locator': 'register:OV-19', 'requirement': '- [ ] **OV-19.** Establish actual IO issuance/completion, outer ', 'owner': 'UNKNOWN', 'reviewer': 'UNKNOWN', 'class': 'live-row-residue', 'named_ids': ['OV-19'], 'dedup': ['register:OV-19'], 'discriminator': 'names OV-19 (live-row-residue)'}, {'file': '02-Resource-And-Asset-Pipeline/the-external-source-owner-and-borrowed-view-lifetime.md', 'anchor': '02-Resource-And-Asset-Pipeline/the-external-source-owner-and-borrowed-view-lifetime.md#L192', 'locator': 'register:OV-21', 'requirement': '- [ ] **OV-21.** Determine the relevant loaded-state reachabilit', 'owner': 'UNKNOWN', 'reviewer': 'UNKNOWN', 'class': 'live-row-residue', 'named_ids': ['OV-21'], 'dedup': ['register:OV-21'], 'discriminator': 'names OV-21 (live-row-residue)'}, {'file': '02-Resource-And-Asset-Pipeline/the-indexed-source-request-from-arm-to-terminal-pump.md', 'anchor': '02-Resource-And-Asset-Pipeline/the-indexed-source-request-from-arm-to-terminal-pump.md#L233', 'locator': 'register:OV-33', 'requirement': '- [ ] **OV-33.** Actual service issuance/status production, load', 'owner': 'UNKNOWN', 'reviewer': 'UNKNOWN', 'class': 'live-row-residue', 'named_ids': ['OV-33'], 'dedup': ['register:OV-33'], 'discriminator': 'names OV-33 (live-row-residue)'}, {'file': '13-Rewards-Progression-Economy/experience-and-license-point-award.md', 'anchor': '13-Rewards-Progression-Economy/experience-and-license-point-award.md#L225', 'locator': 'register:GR-18', 'requirement': '- [ ] **Reachability of the synthetic edge states** (**GR-18.**)', 'owner': 'PrimaryOwner:Rewards_Progression_Economy', 'reviewer': 'UNKNOWN', 'class': 'live-row-residue', 'named_ids': ['GR-18'], 'dedup': ['register:GR-18'], 'discriminator': 'names GR-18 (live-row-residue)'}, {'file': '16-UI/Widget-Object-Model/the-title-asset-singleton-and-its-distinct-consumer.md', 'anchor': '16-UI/Widget-Object-Model/the-title-asset-singleton-and-its-distinct-consumer.md#L232', 'locator': 'register:OV-29', 'requirement': '- [ ] **OV-29.** Validate actual asset IO/callback timing and ca', 'owner': 'UI widget object model', 'reviewer': 'UNKNOWN', 'class': 'live-row-residue', 'named_ids': ['OV-29'], 'dedup': ['register:OV-29'], 'discriminator': 'names OV-29 (live-row-residue)'}]}
+PASS  T35 struck-id row with an unreadable lead is WITHDRAWN/STRUCK; unstruck control stays UNKNOWN; live UNKNOWN = 0 {'id': 'TQ-8', 'status': 'WITHDRAWN', 'lead': 'STRUCK', 'owner': '-', 'question': '~~q~~', 'status_text': '**STRUCK 2026-09-07 - FILED IN ERROR, not answered.** x'} | UNKNOWN | live UNKNOWN []
+PASS  T36 deep-body edit past byte 4000 moves the fingerprint e1f38c29 vs f36d8159
+PASS  T37 obligation rows carry the full contract, classes distinct [{'file': '01-Fixture-Category/fixture-doc.md', 'anchor': '01-Fixture-Category/fixture-doc.md#L4', 'locator': 'page:01-Fixture-Category/fixture-doc.md#L4', 'requirement': '- [ ] page-local work naming no register id', 'owner': 'PrimaryOwner:Fixture', 'reviewer': 'UNKNOWN', 'class': 'page-local', 'named_ids': [], 'dedup': ['none'], 'discriminator': 'no register row - page-local'}]
+PASS  T38 empty and invalid are distinct states, both blocking invalid=['_index/CONTRADICTIONS.tsv (empty file)', '_index/_inbox/TEAM.json (unreadable or unparseable)']
+wrote PROGRESS.md + _index/progress/{snapshot.json,snapshot.md,crosswalk.md,metrics.md} @ 2026-10-03T08:53:50+00:00 head=b7a084d4a board={'revision': 1, 'epoch': None, 'phase': None} fp=6b5d4f8db6 gen=g20261003T085350Z-6b9788
+PASS  T39 committed generation is CURRENT; live set is its verified copy probs=[] gen=g20261003T085350Z-6b9788
+wrote PROGRESS.md + _index/progress/{snapshot.json,snapshot.md,crosswalk.md,metrics.md} @ 2026-10-03T08:53:50+00:00 head=b7a084d4a board={'revision': 1, 'epoch': None, 'phase': None} fp=6b5d4f8db6 gen=g20261003T085350Z-1d9748
+INCOMPLETE - required input(s) missing: _index/L2-VERDICTS.md
+PASS  T40 failed run keeps the last COMPLETE generation rc=1 cur=g20261003T085350Z-1d9748 probs=[]
+PASS  T40b source move during build still aborts the generation raised
+wrote PROGRESS.md + _index/progress/{snapshot.json,snapshot.md,crosswalk.md,metrics.md} @ 2026-10-03T08:53:51+00:00 head=b7a084d4a board={'revision': 1, 'epoch': None, 'phase': None} fp=6b5d4f8db6 gen=g20261003T085351Z-6be3ad
+PASS  T41a export is VERIFIED, pinned to the CURRENT generation VERIFIED {'generation': 'g20261003T085351Z-6be3ad', 'members': 24}
+wrote PROGRESS.md + _index/progress/{snapshot.json,snapshot.md,crosswalk.md,metrics.md} @ 2026-10-03T08:53:51+00:00 head=b7a084d4a board={'revision': 1, 'epoch': None, 'phase': None} fp=15991412e9 gen=g20261003T085351Z-f6716a
+PASS  T41b a later commit does not retro-edit an exported ZIP VERIFIED {'generation': 'g20261003T085351Z-6be3ad', 'members': 24}
+PASS  T41c a generation-mixed ZIP is UNVERIFIED, never CURRENT {'reason': 'members do not match the manifest', 'generation': 'g20261003T085351Z-6be3ad', 'extra': ['inputs/generator%3Aprogress_report.py', 'inputs/in%3A_index%2FAUDIT-LOG.md', 'inputs/in%3A_index%2FCONTRADICTIONS.tsv', 'inputs/in%3A_index%2FCOVERAGE-DIMENSIONS.md', 'inputs/in%3A_index%2FCOVERAGE.md'], 'missing': ['inputs/generator:progress_report.py', 'inputs/in:_index/AUDIT-LOG.md', 'inputs/in:_index/CONTRADICTIONS.tsv', 'inputs/in:_index/COVERAGE-DIMENSIONS.md', 'inputs/in:_index/COVERAGE.md'], 'hash_mismatch': ['outputs/PROGRESS.md', 'outputs/crosswalk.md', 'outputs/metrics.md', 'outputs/snapshot.json', 'outputs/snapshot.md']}
+PASS  T41d mid-export failure keeps CURRENT, leaves no ZIP raised
+wrote PROGRESS.md + _index/progress/{snapshot.json,snapshot.md,crosswalk.md,metrics.md} @ 2026-10-03T08:53:52+00:00 head=b7a084d4a board={'revision': 1, 'epoch': None, 'phase': None} fp=6b5d4f8db6 gen=g20261003T085352Z-10d3c6
+PASS  T42a reviewer joins from the assigned review task, not requester {'FX-REQ-ONE': 'UNKNOWN', 'FX-REQ-TRANSFER': 'UNKNOWN', 'FX-REQ-TWO': 'FX-REVIEWER', 'FX-PUB-CHORE-1002': 'UNKNOWN'}
+PASS  T42b chores leave the deduplicated route but stay visible disc=chore:coordination
+PASS  T42c every transferred obligation is a listed row ['TQ-7', 'TQ-8', 'TQ-9']
+PASS  T42d PROGRESS.md separates outcomes, tasks and package stages 
+FAILS 0

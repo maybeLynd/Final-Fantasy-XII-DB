@@ -1356,3 +1356,51 @@ Interior anchor `006828B7`
 | `00827B60` | 255 B | uses `o` = 1 and `L` = `00811800(rcx, 1)` when `008119F0(rcx, 1)` is 8, and `o` = 0 and `L` = `rcx` otherwise; it calls `0081D6C0(L, 00812470(rcx, o+1), rsp+0x20)` and, when that returns 0, returns the result of `008122D0(rcx, o+1, 'level out of range')`; otherwise it calls `00812430(rcx, o+3)`, `00811130(rcx, o+3)` and `00811D30(rcx, L, 1)`, then `00810660(rcx, 0081D740(L, rsp+0x20, 00812470(rcx, o+2)))`, and returns 1; the stack cookie is checked through `00808C40` | `00827B96`, `00827BCA`, `00827BE0`, `00827C06`, `00827C2C` |
 | `00827DA0` | 170 B | takes `a` = `008283F0(rcx, 1, 2)` and `b` = `008283F0(rcx, 3, 4)`, calls `008122D0(rcx, 1, 'Lua function expected')` when `0080FF90(rcx, 1)` is non-zero and `008122D0(rcx, 3, 'Lua function expected')` when `0080FF90(rcx, 3)` is non-zero, then calls `00811BD0(rcx, 1, a, 3)` with `b` as the fifth argument and returns 0 | `00827DBB`, `00827DCE`, `00827DDD`, `00827E02`, `00827E33` |
 | `00828330` | 189 B | uses `o` = 1 and `L` = `00811800(rcx, 1)` when `008119F0(rcx, 1)` is 8, and `o` = 0 and `L` = `rcx` otherwise; it takes `s` = `00811530(rcx, o+1, 0)` and, when `s` is null and `008119F0(rcx, o+1)` is positive, calls `00810730(rcx, o+1)`; otherwise it calls `008138A0(rcx, L, s, 00813330(rcx, o+2, 1 when L is rcx and 0 otherwise))`; it returns 1 | `00828358`, `00828380`, `008283A2`, `008283B9`, `008283CA` |
+
+The concrete `PCaller` thunks below share one shape at their slot 2: the caller object holds the bound pointer at `+8`, the target object arrives in `rdx` (nothing is called when it is NULL), and each argument is taken from the cursor passed as the fifth argument, which advances by 8 per argument; the thunk returns 0. `005CC180` (34 B; slot 2 of `PMethodCallerConcrete<PAnimatableComponent, void>`) takes no argument and adjusts `this` by the caller's dword `+0x10` from `rdx - 8` before the call.
+
+Interior anchor `005CC197` (function `005CC180`).
+
+`005CC1B0` (55 B; slot 2 of `PMethodCallerConcrete<PAnimatableComponent, void, float>`) takes one argument as a double and narrows it to float (`cvtpd2ps`) into `xmm1`, with the same `+0x10` this-adjust.
+
+Interior anchor `005CC1D5` (function `005CC1B0`).
+
+`006C0610` (47 B; slot 2 of `PMethodCallerConcrete<PLight, void, float>`) is the same one-float call with no this-adjust (`rcx` = the target).
+
+Interior anchor `006C0630` (function `006C0610`).
+
+`006A6950` (25 B; slot 2 of `PMethodCallerConcrete<PDebugUtils, void>`) calls the bound pointer on the target with no argument and no adjust.
+
+Interior anchor `006A695F` (function `006A6950`).
+
+`006109D0` (56 B; slot 2 of `PMethodCallerConcrete<PMaterial, void, const char *, int>`) takes a pointer argument into `rdx` and a 32-bit one into `r8d` from successive cursor slots.
+
+Interior anchor `006109F9` (function `006109D0`).
+
+`00610A10` (61 B; slot 2 of `PMethodCallerConcrete<PMaterial, void, const char *, float>`) takes the pointer into `rdx` and narrows the next slot's double into `xmm2`.
+
+Interior anchor `00610A3E` (function `00610A10`).
+
+`0063E690` (49 B; slot 2 of `PMethodCallerConcrete<PCluster, void, const PClassDescriptor &>`) passes one pointer-sized argument, with `this` = the target plus the caller's dword `+0x10` (no `-8` base).
+
+Interior anchor `0063E6B2` (function `0063E690`).
+
+`006B63D0` (53 B; slot 2 of `PMethodCallerConcrete<PCameraOrthographic, void, const Vector4 *>`) passes one pointer with the `rdx - 8` plus `+0x10` adjust.
+
+Interior anchor `006B63F6` (function `006B63D0`).
+
+`007A3600` (46 B; slot 2 of `PMethodCallerConcrete<PApplication, void, PCameraProjection &>`) passes one pointer with a fixed `rdx - 8` this.
+
+Interior anchor `007A361F` (function `007A3600`).
+
+`0067F550` (45 B; slot 2 of `PMethodCallerConcrete<PAnimationClip, void, const char *>`) passes one pointer with no adjust.
+
+Interior anchor `0067F56E` (function `0067F550`).
+
+`006C8000` (48 B; slot 2 of `PMethodCallerConcrete<PTrigger, void, bool>`) turns the slot's dword into a bool (`cmp` with 0, `setne dl`) before the call.
+
+Interior anchor `006C8022` (function `006C8000`).
+
+`00684AB0` (34 B; slot 1 of `PFunctionCallerConcrete<const PScript *>`) calls the bound function with no argument, hands its result and the second argument to `00683EE0`, and returns 1 - a one-result call rather than slot 2's zero.
+
+Interior anchor `00684AC2` (function `00684AB0`).

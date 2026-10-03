@@ -2,7 +2,6 @@
 contract: Decide whether a piece of equipment may go in a slot — the partner byte, the forbidden mask, the licence
 category: 12-Items-Equipment-Shops-License
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: 12-Items-Equipment-Shops-License/item-id-encoding-and-equipment-compatibility.md

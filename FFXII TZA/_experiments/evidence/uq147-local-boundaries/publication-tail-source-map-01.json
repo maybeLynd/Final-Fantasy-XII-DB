@@ -1,0 +1,19 @@
+{
+  "producer_complete": true,
+  "method": "Exact source qualification adapter for completed legacy tail-result schema; not a new scientific result",
+  "source_pins": [
+    {
+      "path": "source-request-tail-01.json",
+      "sha256": "7536b76bfaabfee9319268822c1463df39550d0516f17f22c580ea14e4889454"
+    }
+  ],
+  "result": {
+    "path": "result-request-tail-boundary-02.json",
+    "sha256": "ebcd389e88a1d96c25715b13b8af238d716e5ced5c0952bdd89c76d8f129168f"
+  },
+  "actual_completed_status": {
+    "path": "reduce-request-tail-02.status.json",
+    "sha256": "eb786672faa775704e231b81aa865206e9cec0b4f0e32b8a1b1492b393dc76d2"
+  },
+  "limits": "The legacy bounded semantic result and limits remain unchanged; publication annotation map only. Independent review/wholeUQ147 acceptance remain pending."
+}

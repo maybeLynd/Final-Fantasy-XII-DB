@@ -2,7 +2,6 @@
 contract: Push overlapping bodies apart once per world tick — registration, pairing, resolution, consumption
 category: 06-Movement-And-Navigation
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: the-movement-body-pool-and-the-separation-pass.md

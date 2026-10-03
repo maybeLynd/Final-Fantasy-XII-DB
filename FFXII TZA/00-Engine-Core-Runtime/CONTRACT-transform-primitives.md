@@ -2,7 +2,6 @@
 contract: put a point through the workbench matrix, or compose two transforms, and leave in the four shared workbench slots exactly what the engine's other readers expect to find there
 category: 00-Engine-Core-Runtime
 scope: family            # two leaf primitives of ONE workbench, reimplemented together because they share its matrix convention and its deposit slots (sections 4-5); not `operation` (they are two), not `subsystem` (no ordering across them, section 7). The sibling CONTRACT-transform-workbench-save-restore.md carries the same value for the same pair-of-primitives reason. Chosen 2026-09-17 (FABLE) on OPUS-REQ-FABLE-CONTRACT-TRANSFORM-PRIMITIVES-FRONTMATTER; keys renamed to the template's vocabulary (title/subsystem/formalises/status -> contract/category/implements/readiness), content untouched.
-level: L1                # L2 needs runtime evidence (RECONSTRUCTION-READINESS-GATE section 1); section 13 records none - the differential test runs the ISOLATED original code under Unicorn
 readiness: DIFFERENTIAL TESTED   # reconstruction axis: diff_transform.py re-run 2026-09-13 (FABLE), 123 point + 123 compose cases, 0 mismatches; original axis: NOT runtime validated (section 13) - KNOWLEDGE-SCHEMA 5a rule 1
 confidence: PROVEN       # rates the two laws: exact over 123 + 123 differential cases and 350 predictions, 0 mismatches. What the matrix IS and who reads the deposits stay UNRESOLVED (section 14) and are not what this key rates
 implements: Shared-Transform-Workbench/the-two-transform-primitives.md

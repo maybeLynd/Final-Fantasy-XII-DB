@@ -2,7 +2,6 @@
 contract: Scale an action's element by environment, weather and terrain — unless either side is weatherproof
 category: 08-Combat-Formula
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: Weather-Terrain-Element-Scaling/weather-terrain-element-scaling.md

@@ -1,0 +1,137 @@
+{
+ "page": "18-Audio/the-voice-pack-slots-and-the-voice-verbs.md",
+ "date": "2026-10-03",
+ "session": "opus-self",
+ "report": "the-voice-pack-slots-and-the-voice-verbs.json",
+ "rows": [
+  {
+   "fn": "0034E8B0",
+   "text": "with `s` = dword `+0x28` of `002640C0()`, reads `a` = `00267E10(r9)` and then `b` = `00267E10(r9)`; when `00267310(byte rdx+0x15)` returns 0 and `003EA0D0(s, b, a)` returns non-zero it calls `00314D40(1)`, otherwise it calls nothing further",
+   "anchors": [
+    [
+     "0034E8CA",
+     "call"
+    ],
+    [
+     "0034E8D2",
+     "mov"
+    ],
+    [
+     "0034E8EA",
+     "call"
+    ],
+    [
+     "0034E8FA",
+     "call"
+    ],
+    [
+     "0034E908",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0034EE40",
+   "text": "calls `00267F90(r9, 0)`; then, with `s` = dword `+0x28` of `002640C0()`, reads `a` = `00267E10(r9)` and then `b` = `00267E10(r9)`; when `00267310(byte rdx+0x15)` returns 0 and `003EA0D0(s, b, a)` returns non-zero it calls `00314D40(1)`, otherwise it calls nothing further",
+   "anchors": [
+    [
+     "0034EE5F",
+     "call"
+    ],
+    [
+     "0034EE64",
+     "call"
+    ],
+    [
+     "0034EE84",
+     "call"
+    ],
+    [
+     "0034EE94",
+     "call"
+    ],
+    [
+     "0034EEA2",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "003522C0",
+   "text": "with `a` = dword `[r8]` and `b` = dword `[r8+4]`, does nothing when `00264170()` returns 0, when `001C3370()` returns 1 or when `a` is negative; otherwise, with `n` = `a`+1 held between 1 and 3 (signed), calls `0032FC30(n, b)` and `0032ED70(n)`",
+   "anchors": [
+    [
+     "003522D1",
+     "call"
+    ],
+    [
+     "003522DF",
+     "cmp"
+    ],
+    [
+     "003522E6",
+     "js"
+    ],
+    [
+     "003522FD",
+     "cmovg"
+    ],
+    [
+     "00352304",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00352DB0",
+   "text": "with `n` = `00267E10(r9)`, calls `003EA330(n)` and tail-jumps to `003E98B0(n)`",
+   "anchors": [
+    [
+     "00352DB9",
+     "call"
+    ],
+    [
+     "00352DC2",
+     "call"
+    ],
+    [
+     "00352DCE",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00353080",
+   "text": "calls `00314D40(1)` first; then, with `a` = dword `[r8]` and `b` = dword `[r8+4]`, does nothing more when `00264170()` returns 0, when `001C3370()` returns 1 or when `a` is negative; otherwise, with `n` = `a`+1 held between 1 and 3 (signed), calls `0032FC30(n, b)` and `0032ED70(n)`",
+   "anchors": [
+    [
+     "00353099",
+     "call"
+    ],
+    [
+     "003530A3",
+     "call"
+    ],
+    [
+     "003530B7",
+     "js"
+    ],
+    [
+     "003530C8",
+     "cmovg"
+    ],
+    [
+     "003530CF",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "interior",
+ "family": "",
+ "method": "OPUS drafted these rows itself from its F-interior pack (`f_pack.py`: each function the page cites only at its entry, with its annotated listing) and checked every row mechanically with `interior_ingest.py` (every anchor an instruction boundary inside the extent with the recorded mnemonic; every address a listing token). No second agent drafted or verified them, so the non-author check is SWE2-AUDIT-SPEC's."
+}

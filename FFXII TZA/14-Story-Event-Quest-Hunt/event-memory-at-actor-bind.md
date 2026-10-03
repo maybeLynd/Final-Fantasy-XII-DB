@@ -4,7 +4,6 @@ category: 14-Story-Event-Quest-Hunt
 status: AUDITED — DS-1 resolved 2026-09-16 (the eight list ids decoded); this page has no open item of its own — AA-2 and the +0x1394 gap are persistent-flag-banks.md's (status re-derived 2026-09-18, FABLE)
 owner_layer: PrimaryOwner:Story_Event_Quest_Hunt
 evidence_tier: 1
-level: L2
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: HIGH
 verified_against:

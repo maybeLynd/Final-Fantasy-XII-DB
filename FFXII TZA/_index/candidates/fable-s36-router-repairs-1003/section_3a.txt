@@ -1,0 +1,80 @@
+## 3a. Pre-emption of the open UI, and the request-2 cancel (FABLE, 2026-10-03)
+
+*Added on SWE2-AUDIT-SEM's S-36 point 3. Static; every body below was read from the certified image, and the callers
+come from a raw `.text` index (E8/E9 rel32, 0F 8x rel32, EB/7x rel8).*
+
+### Pre-emption: the router closes what is open before it knows whether it will serve the new request (FABLE)
+
+R-a (`00254B71`) and R-b (`00254BC1` / `00254BC5`) pass first. Then, before the id is range-checked at `00254BD9`, the
+router makes three calls **unconditionally**:
+
+1. **`0017E7D0` (`00254BC7`)** is `jmp 0016D6A0`, and `0016D6A0` is `ret 0`. It does nothing on this build.
+2. **`0035DA80` (`00254BCC`)** closes the object at `+0x10F78` of the manager at `0209BE80`, when there is one.
+   - `002904B0` tests that qword (`002904B9`). When it is null, `0035DA80` returns at `0035DAB8`.
+   - Otherwise it calls `00290450(1)` and stores 0 to `022C8380` (`0035DA99`).
+   - It calls `00290500(0)`, which tail-jumps to `00296BE0` on that object.
+   - It releases the request word through `00252D90` (`0035DAA8`).
+   - It tail-jumps to `00254980(0)` (`0035DAB3`). With a zero argument, `00254980` keeps `002E1CA0`: the `cmovne` at
+     `0025499B` picks `002E1C20` only for a non-zero argument. So it **clears** capability row 8 bits 1, 8, 0, 11, 9,
+     6 and 20 (`002549A2`–`002549E2`).
+3. **`003C8990` (`00254BD1`)** closes request 5's widget when it is open and flagged.
+   - It returns at `003C8A0F` unless qword `02B47730` is non-null (`003C899B`) and that widget's byte `+0x40` has bit 4
+     (`003C89A0`, `test byte ptr [rax + 0x40], 0x10`).
+   - Otherwise it calls `00249C60(3)`, `0035D060(1)` and `002470C0(widget)`, stores 3 at the widget's `+0xD0`
+     (`003C89CD`), calls `0035C080()`, and stores 0 at `+0xC8` (`003C89E8`).
+   - It calls `0028FFE0(1, 0)` and releases through `00252D90` (`003C89FC`).
+   - It tail-jumps to `002E1CA0(8, 0)` (`003C8A0A`), which clears row 8 bit 0.
+
+**What a caller and a reimplementation must take from this:**
+- **The open UI is torn down before the route runs.** That includes a request that R-c then refuses inside
+  `00280A00`, and an id outside `1..24`, which reaches the generic arm. A 0 from R-c does not mean "nothing happened"
+  (§4).
+- **Both closers end in `00252D90`**, which zeroes `02092730` and `02092734`. When either closer runs, the word reads 0
+  from that point until the route's own `00252B40`, and a refused route leaves it at 0.
+- **Pre-emption never runs while the latch is 1**, because R-a refuses first. It runs only while nothing is open, or
+  while the open request was posted with flag 0. Request 5's route is one such request: it posts
+  `00252B40(id, 0)` at `003C88D4`.
+- **The same three calls run at two other sites.**
+  - The arbiter `00253C70` inlines R-a and R-b **for request 5 only**. It tests the latch at `00253FE3`, builds the
+    same mask from `01E0C2C4` (`00253FFC`–`00254029`) and tests id 5's bit (`0025402B`, `test cl, 0x20`). Then it makes
+    the three calls (`00254030`, `00254035`, `0025403A`) and calls request 5's route `003C87B0(5)` directly
+    (`00254044`). The router is not involved.
+  - `00254FC0` is the bare triple (`00254FC4`, `00254FC9`, tail-jump `00254FD2`). Its one caller is `0026C4EC`.
+  - `0035DA80` alone is also called at `0029C020`, and `003C8990` alone at `00251FE8`, `00254ADC` and `00255348`.
+    These callers are not followed here.
+
+*Falsified by:* a path from R-b's pass to a route that skips `0035DA80` or `003C8990`; or a range test or dispatch of
+the id before `00254BCC`.
+
+### The request-2 cancel: the drain drops request 2 when the policy forbids it (FABLE)
+
+The drain checks manager slot 0 first (R-5, `002E0B8B`). When the slot is ready, the drain reads the pending byte
+(`002E0BAF`). It runs the cancel only when the pending byte is set and the id is 2 (`002E0BC0`,
+`cmp dword ptr [0215F1A4], 2`). There are two arms, and `ebp` is 0 throughout the body (`002E09B6`):
+
+1. **The mode term.** The drain calls `0037B330` (`002E0BCD`). `0037B330` returns byte `02ADD930`, or 4 while byte
+   `02ADD931` is non-zero. A non-zero return clears the pending byte: `cmovne ecx, ebp` (`002E0BE5`), stored at
+   `002E0BEC`.
+2. **The policy term.** The drain recomputes the capability aggregate inline (`002E0BDE`–`002E0C52`). This is the OR of
+   the sixteen dwords from `0215F1C0` to `0215F1FF`, the same code as `002E0FA0`, including `btr ebx, 0x13` when
+   `00360360(0x10)` is set. The drain then re-reads the pending byte (`002E0C56`). It clears the byte when the aggregate
+   has bit 0 or bit 3: `test bl, 9` (`002E0C5E`), then `cmovne r8d, ebp` (`002E0C61`). The store is `002E0C65`.
+
+**What is stored.** Only the pending byte changes. The id and the parameter stay in their cells. The blocked byte is
+cleared at `002E0D3E`, as on every drain. The router is never called: `test r8b, r8b` / `je` (`002E0CC4`) jumps over the
+router call at `002E0D0B`. So the request is **dropped, not deferred**. The effect is that of the not-ready discard,
+except that the id and parameter are not zeroed.
+
+**Why bits 0 and 3.** In the inhibit table (§5a), the entries for aggregate bits 0 and 3 are both `0x4`, request 2, and
+no other entry has bit 2 set. So `test bl, 9` is exactly the condition under which R-b would refuse request 2. The drain
+drops the request rather than passing it to the router to be refused. The `btr` of bit 19 cannot change `test bl, 9`,
+which reads bits 0–7 only. The `0037B330` term has no counterpart in the router.
+
+**The ordering this creates.**
+- The cancel runs **before** the record guard (`002E0C6C`–`002E0CA9`). If the policy forbids request 2 at this drain,
+  the request is dropped even though the guard would only have deferred it. The guard never sees it.
+- The post already refuses request 2 while aggregate bit 0 is set (R-2, `002E1B27`–`002E1B33`). The cancel adds bit 3
+  and the mode term, and catches either condition when it arises after the post.
+
+*Falsified by:* a store to `0215F1A4` or `0215F1A8` on the cancel path; a router call reached with the pending byte
+cleared; or a cancel test for an id other than 2.

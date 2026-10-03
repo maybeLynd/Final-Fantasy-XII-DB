@@ -2,7 +2,6 @@
 contract: The Lua chunk loader — accept a buffer, fork on its first byte, produce a callable chunk
 category: 23-Third-Party-Libraries
 scope: subsystem
-level: L2
 readiness: CONTRACT READY   # §13 carries no live observation; isolated original-code only
 confidence: PROVEN
 implements: the-lua-loader-and-what-it-accepts.md

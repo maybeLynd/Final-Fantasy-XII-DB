@@ -1,0 +1,5 @@
+PASS  C1  no bindings in this tree
+FAIL  C2  claims CURRENT with no binding: Database/FFXII TZA/PROGRESS.md, Database/FFXII TZA/_index/progress/crosswalk.md, Database/FFXII TZA/_index/progress/metrics.md, Database/FFXII TZA/_index/progress/snapshot.md
+FAIL  C3  PROGRESS.md says 52 MET of 52, the rows say 36 of 52 while labelled CURRENT
+FAIL  C4  L2-VERDICTS.md line 51 'contract column' summary disagrees with its rows: MET says 47, rows 52, SCOPE-SHORT says 3, rows 0
+CHECKPOINT HEAD: PASS 1, STALE 0, FAIL 3

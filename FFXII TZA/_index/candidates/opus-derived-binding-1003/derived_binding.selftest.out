@@ -1,0 +1,18 @@
+CURRENT      out/GENERATION-BINDING.json (t, generation gd58f8a)
+ok   1 a valid generation committed with its inputs is CURRENT
+ok   2 the old generation is no longer CURRENT once its verdict input moved (FALSE-CURRENT, names reg/L2.md)
+FALSE-CURRENT out/GENERATION-BINDING.json (t, generation gd58f8a); bound inputs moved: reg/L2.md
+ok   2b the checkpoint check fails on it
+ok   3 the gate accepts the publish
+ok   4 the regenerated, included output reflects the changed verdict
+CURRENT      out/GENERATION-BINDING.json (t, generation gce86aa)
+ok   5 the gated commit is CURRENT
+ok   6 the gate still lets a source edit publish (never blocked on a derived surface)
+ok   7 the committed text says STALE and names the moved input
+ok   8 the committed JSON says STALE
+STALE        out/GENERATION-BINDING.json (t, generation gce86aa); bound inputs moved: reg/L2.md
+ok   9 an honestly STALE surface passes the checkpoint check (explicit stale is legal)
+INCOHERENT   out/GENERATION-BINDING.json (t, generation gce86aa); bound inputs moved: reg/L2.md; outputs differ: out/P.md
+ok   10 a hand-edited output is INCOHERENT and fails the check
+ok   11 the volatile board is recorded as-of, never bound
+self-test: 0 failure(s)

@@ -908,3 +908,11 @@ record, same base-image fixup discipline as the `0020E600`/`0020E620` family.
 `0020ED30` (1300 B) is the two-bank state machine `0020EC80` and `002104E0` drive: the `01FC35B8`/`01FC35F8` block pointer and the `01FC3600`/`01FC3603`/`01FC3607` state bytes gate each pass, `0018AA30` decodes a packed qword and `0018AA10` runs on the `01F7E340` handle, `0x100000`/`0xE00` size gates bracket three virtual dispatches (`[rdi+0x40]`, `[rax+0x138]`, `[r9+0x48]`) with `0020FF10` between them, and the `0x80` stamp plus `01FC3603`=0 clears sequence the second bank - the dispatch-and-recycle half of the layer's stream submit.
 
 Interior anchor `0020F031` (function `0020ED30`).
+
+## Homed bodies re-homed here for host fit (FABLE, 2026-10-03; AUDIT-SPEC batch 4)
+
+*Each body below was homed on another page by FABLE's homing stream (cloud-drafted, FABLE-verified). SWE2-AUDIT-SPEC reviewed its sentence, site and anchors exact, and rejected only the host: that page cites the caller as a foreign or boundary mention (commit `95d495604`). The row is moved here because this page cites the caller in its own text. The sentence is unchanged. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Verified by [`move_rows.py`](../../_index/candidates/fable-home-host-moves-b4-1003/move_rows.py): every site transfers to its function, this page cites the caller outside this section, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors | moved from |
+|---|---|---|---|---|---|
+| `004CF230` | 78 B | `004C8320` + 0x396A | writes to the four floats at `rcx`, `rcx+4`, `rcx+8` and `rcx+0xC` the smaller of the matching float at `rdx` (same offsets) and the third argument `xmm2`: the first through `minss`, the other three through `comiss` branches that store the source float when `xmm2` is above it and `xmm2` otherwise (an unordered compare stores `xmm2`); it returns nothing | Interior anchor `004CF234`; Interior anchor `004CF238`; Interior anchor `004CF241`; Interior anchor `004CF246`; Interior anchor `004CF24D` | [CONTRACT-boot-fixups](../../00-Engine-Core-Runtime/CONTRACT-boot-fixups.md) |

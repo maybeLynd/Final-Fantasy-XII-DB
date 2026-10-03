@@ -2,7 +2,6 @@
 contract: The UI request router — the mailbox, the three refusals, and the request word that latches them
 category: 16-UI
 scope: subsystem
-level: L2
 readiness: CONTRACT READY   # the interface and the refusals are STATIC; no live capture of a refused request
 confidence: PROVEN
 implements:
@@ -90,6 +89,87 @@ it. **Both sides measured** *(2026-09-25, FABLE, Claude Opus 5.5, on OPUS block 
 writes the masked `7` to `02092730` and `020927D8`. So the request word holds the masked id and the payload
 holds the raw one.
 
+## 3a. Pre-emption of the open UI, and the request-2 cancel (FABLE, 2026-10-03)
+
+*Added on SWE2-AUDIT-SEM's S-36 point 3. Static; every body below was read from the certified image, and the callers
+come from a raw `.text` index (E8/E9 rel32, 0F 8x rel32, EB/7x rel8).*
+
+### Pre-emption: the router closes what is open before it knows whether it will serve the new request (FABLE)
+
+R-a (`00254B71`) and R-b (`00254BC1` / `00254BC5`) pass first. Then, before the id is range-checked at `00254BD9`, the
+router makes three calls **unconditionally**:
+
+1. **`0017E7D0` (`00254BC7`)** is `jmp 0016D6A0`, and `0016D6A0` is `ret 0`. It does nothing on this build.
+2. **`0035DA80` (`00254BCC`)** closes the object at `+0x10F78` of the manager at `0209BE80`, when there is one.
+   - `002904B0` tests that qword (`002904B9`). When it is null, `0035DA80` returns at `0035DAB8`.
+   - Otherwise it calls `00290450(1)` and stores 0 to `022C8380` (`0035DA99`).
+   - It calls `00290500(0)`, which tail-jumps to `00296BE0` on that object.
+   - It releases the request word through `00252D90` (`0035DAA8`).
+   - It tail-jumps to `00254980(0)` (`0035DAB3`). With a zero argument, `00254980` keeps `002E1CA0`: the `cmovne` at
+     `0025499B` picks `002E1C20` only for a non-zero argument. So it **clears** capability row 8 bits 1, 8, 0, 11, 9,
+     6 and 20 (`002549A2`–`002549E2`).
+3. **`003C8990` (`00254BD1`)** closes request 5's widget when it is open and flagged.
+   - It returns at `003C8A0F` unless qword `02B47730` is non-null (`003C899B`) and that widget's byte `+0x40` has bit 4
+     (`003C89A0`, `test byte ptr [rax + 0x40], 0x10`).
+   - Otherwise it calls `00249C60(3)`, `0035D060(1)` and `002470C0(widget)`, stores 3 at the widget's `+0xD0`
+     (`003C89CD`), calls `0035C080()`, and stores 0 at `+0xC8` (`003C89E8`).
+   - It calls `0028FFE0(1, 0)` and releases through `00252D90` (`003C89FC`).
+   - It tail-jumps to `002E1CA0(8, 0)` (`003C8A0A`), which clears row 8 bit 0.
+
+**What a caller and a reimplementation must take from this:**
+- **The open UI is torn down before the route runs.** That includes a request that R-c then refuses inside
+  `00280A00`, and an id outside `1..24`, which reaches the generic arm. A 0 from R-c does not mean "nothing happened"
+  (§4).
+- **Both closers end in `00252D90`**, which zeroes `02092730` and `02092734`. When either closer runs, the word reads 0
+  from that point until the route's own `00252B40`, and a refused route leaves it at 0.
+- **Pre-emption never runs while the latch is 1**, because R-a refuses first. It runs only while nothing is open, or
+  while the open request was posted with flag 0. Request 5's route is one such request: it posts
+  `00252B40(id, 0)` at `003C88D4`.
+- **The same three calls run at two other sites.**
+  - The arbiter `00253C70` inlines R-a and R-b **for request 5 only**. It tests the latch at `00253FE3`, builds the
+    same mask from `01E0C2C4` (`00253FFC`–`00254029`) and tests id 5's bit (`0025402B`, `test cl, 0x20`). Then it makes
+    the three calls (`00254030`, `00254035`, `0025403A`) and calls request 5's route `003C87B0(5)` directly
+    (`00254044`). The router is not involved.
+  - `00254FC0` is the bare triple (`00254FC4`, `00254FC9`, tail-jump `00254FD2`). Its one caller is `0026C4EC`.
+  - `0035DA80` alone is also called at `0029C020`, and `003C8990` alone at `00251FE8`, `00254ADC` and `00255348`.
+    These callers are not followed here.
+
+*Falsified by:* a path from R-b's pass to a route that skips `0035DA80` or `003C8990`; or a range test or dispatch of
+the id before `00254BCC`.
+
+### The request-2 cancel: the drain drops request 2 when the policy forbids it (FABLE)
+
+The drain checks manager slot 0 first (R-5, `002E0B8B`). When the slot is ready, the drain reads the pending byte
+(`002E0BAF`). It runs the cancel only when the pending byte is set and the id is 2 (`002E0BC0`,
+`cmp dword ptr [0215F1A4], 2`). There are two arms, and `ebp` is 0 throughout the body (`002E09B6`):
+
+1. **The mode term.** The drain calls `0037B330` (`002E0BCD`). `0037B330` returns byte `02ADD930`, or 4 while byte
+   `02ADD931` is non-zero. A non-zero return clears the pending byte: `cmovne ecx, ebp` (`002E0BE5`), stored at
+   `002E0BEC`.
+2. **The policy term.** The drain recomputes the capability aggregate inline (`002E0BDE`–`002E0C52`). This is the OR of
+   the sixteen dwords from `0215F1C0` to `0215F1FF`, the same code as `002E0FA0`, including `btr ebx, 0x13` when
+   `00360360(0x10)` is set. The drain then re-reads the pending byte (`002E0C56`). It clears the byte when the aggregate
+   has bit 0 or bit 3: `test bl, 9` (`002E0C5E`), then `cmovne r8d, ebp` (`002E0C61`). The store is `002E0C65`.
+
+**What is stored.** Only the pending byte changes. The id and the parameter stay in their cells. The blocked byte is
+cleared at `002E0D3E`, as on every drain. The router is never called: `test r8b, r8b` / `je` (`002E0CC4`) jumps over the
+router call at `002E0D0B`. So the request is **dropped, not deferred**. The effect is that of the not-ready discard,
+except that the id and parameter are not zeroed.
+
+**Why bits 0 and 3.** In the inhibit table (§5a), the entries for aggregate bits 0 and 3 are both `0x4`, request 2, and
+no other entry has bit 2 set. So `test bl, 9` is exactly the condition under which R-b would refuse request 2. The drain
+drops the request rather than passing it to the router to be refused. The `btr` of bit 19 cannot change `test bl, 9`,
+which reads bits 0–7 only. The `0037B330` term has no counterpart in the router.
+
+**The ordering this creates.**
+- The cancel runs **before** the record guard (`002E0C6C`–`002E0CA9`). If the policy forbids request 2 at this drain,
+  the request is dropped even though the guard would only have deferred it. The guard never sees it.
+- The post already refuses request 2 while aggregate bit 0 is set (R-2, `002E1B27`–`002E1B33`). The cancel adds bit 3
+  and the mode term, and catches either condition when it arises after the post.
+
+*Falsified by:* a store to `0215F1A4` or `0215F1A8` on the cancel path; a router call reached with the pending byte
+cleared; or a cancel test for an id other than 2.
+
 ## 4. The three refusals, and why a caller cannot tell them apart
 
 All three return **0**. They are three different states of the subsystem.
@@ -141,6 +221,48 @@ posts plus `002E25B0`.
 queue, no count and no failure code for the overwrite. Seven producer call sites share the one slot:
 `00253D78`, `00253EE6`, `00253F44` and `00253F53` in the input arbiter, plus `0035C81E` (request 11),
 `0035D750` and the developer hook's tail-jump at `0050DAC4`.
+
+## 5a. State (FABLE, 2026-10-03; declared on SWE2-AUDIT-SEM's S-36 D2)
+
+§5 names the mailbox. This section declares every cell the router's own code keeps, with each cell's writers and readers.
+The census is [`census_router_state.py`](../_index/candidates/fable-s36-router-repairs-1003/census_router_state.py)
+(its output is beside it; FAILS 0). It covers five forms:
+
+- RIP-relative operands in every `.pdata` body, plus the 13,800 catalogue functions that have no `.pdata` entry. Four of
+  the mailbox's own accessors are such leaves.
+- A raw rel32 sweep of `.text`: 167 windows, 43 confirmed instructions, none outside a decoded body.
+- Image-base-relative `[reg+RVA]` forms, VA displacements, and RVA/VA constants: none.
+- Addresses formed by `lea` near a cell, followed through their register.
+
+Counts below are functions; sites are instructions. Nothing here is executed.
+
+| address | width | name | meaning | writers (sites) | readers (sites) |
+|---|---|---|---|---|---|
+| `0215F1A0` | u8 | pending | 1 = a request waits in the slot | **5.** Set to 1 by the post `002E1B10` (`002E1B35`), the script post `002E1A60` (`002E1ABD`) and the request-12 path `002E1AE0` (`002E1AE9`). The drain `002E09A0` clears it at dispatch (`002E0D10`) and on the request-2 cancel (`002E0BEC`), and re-stores it, unchanged or 0, at `002E0C65`, which is the not-ready discard's store. The reset `002E15D0` clears it (`002E15D2`). | **2.** The drain (`002E0BAF`, `002E0BD2`, `002E0C56`) and the getter `002E12D0`. The getter's callers are the arbiter at `00253CBA`, which returns 0 while a request is pending, and `0035C72A` and `0035C7E6`. |
+| `0215F1A1` | u8 | blocked | non-zero = every post refuses | **3.** Set to 1 by `002E1690` (`002E1690`). Cleared by the drain at the end of every drain (`002E0D3E`), and on the not-ready discard (`002E0BA3`). Cleared by the reset `002E15D0` (`002E15E5`). | **4.** The three posts: `002E1B10` (`002E1B1A`), `002E1A60` (`002E1AA6`) and `002E1AE0` (`002E1AE0`). The can-post test `002E25B0` (`002E25B4`). |
+| `0215F1A4` | u32 | id | the posted request id, stored unmasked (`002E1A60` stores the translated selector, bit 15 kept) | **5.** `002E1B10` (`002E1B41`), `002E1A60` (`002E1AC4`) and `002E1AE0` (`002E1AF0`, constant `0xC`). Zeroed by the drain on the not-ready discard (`002E0B97`) and by the reset (`002E15D9`). | **1, the drain:** `002E0BC0` (the request-2 test), `002E0CD0` (the transition-exempt set), `002E0D05` (the router's `ecx`), `002E0D1B` (`00253BC0`'s `ecx`). |
+| `0215F1A8` | u32 | parameter | the request's parameter, the router's `edx` | **5.** `002E1B10` (`002E1B47`), `002E1A60` (`002E1ACA`) and `002E1AE0` (`002E1AFA`, 0). Zeroed by the drain (`002E0B9D`) and by the reset (`002E15DF`). | **1, the drain:** `002E0CFC`. |
+| `020927D8` | u32 | request-id copy | the masked id of the last `00252B40` call | **1.** `00252B40` (`00252B4C`), with the same value it stores to `02092730`. Neither the release `00252D90` nor the reset `00252DE0` clears it; both zero only `02092730` and `02092734`. So the copy outlives the request. | **1.** `00254710` (`00254714`), which returns `0028F740()` (word `+0x10FAC` of the manager at `0209BE80`) when the copy is 17 or 18, and 0 otherwise. It has one caller, `00346DA0` (`00346DA9`). |
+| `01E0C2C0` | u32[22], 88 B, initialised data | inhibit table | entry *i* is the mask of request ids that capability-aggregate bit *i* forbids. It is indexed by the bit number of `002E0FA0`'s result and walked two entries per pass for 11 passes. | **0.** No store, no pointer constant and no image-base-relative form anywhere in the image. | **3**, each through `lea` of `01E0C2C4` and then `[reg-4]` / `[reg]`: the router `00254B50` (`00254B88`, `00254BA5`, `00254BB1`); the arbiter `00253C70` (`00253FFC`, `00254014`, `0025401D`, for request 5's inlined test, §3a); and `00254500` (`0025450C`, `00254526`, `00254530`), which returns the mask itself and has six raw call sites. |
+
+**The table's contents** are as follows. Read from the image; the union is `0x20402E`, and there are nine non-zero entries, as U2 measured.
+
+| entry (aggregate bit) | 0 | 1 | 2 | 3 | 5 | 6 | 8 | 9 | 10 |
+|---|---|---|---|---|---|---|---|---|---|
+| mask | `0x4` | `0x2A` | `0x8` | `0x4` | `0x20` | `0x4000` | `0x200002` | `0x4020` | `0x8` |
+| request ids | 2 | 1, 3, 5 | 3 | 2 | 5 | 14 | 1, 21 | 5, 14 | 3 |
+
+**Notes the table does not carry:**
+- **The record's bytes +2 and +3 are not mailbox state.** Each has one writer and one getter in other code (census
+  rows), and nothing in §5 or §6 reads them. The fields proposal declares them so that the record's extent is honest.
+- **The blocked byte lasts one drain.** The drain clears it on every path (`002E0D3E`). The script begin handlers
+  `003462D0` and `003470D0` call `002E1690` right after their fullscreen post, so the block holds from that post to the
+  next drain. No producer can replace the script's request in between. This narrows R-1 for the script path only.
+- **The capability rows directly above the mailbox are indexed with an upper bound only.** The row writers `002E1C20`,
+  `002E1CA0` and `002E1CD0` test `cmp ..., 0x10; jge`, and the reader `002E1020` has no bound at all. A row index of -6
+  or less would land on the parameter or below it. Every caller the census traced passes 0 to 15: constants, a loop
+  counter 0..15, or `0` or `3`. Not every constant-relative `lea` base was traced to its constant (dispositions in the
+  census output). So "no caller reaches the mailbox" rests on reading, not on a bound in the code.
 
 ## 6. The invariants
 
@@ -393,4 +515,3 @@ No correction.
 |---|---|---|---|---|
 | `0037E8A0` | 47 B | `003F4E70` + 0xB1 | returns the address `01CEB638` when qword `+0xC8` of qword `02AED490` is null or when `ecx` is not below (signed) its zero-extended word `+0xA`; otherwise loads `ecx` from its dword `+0xC + ecx*8` and tail-jumps through the jump at `0037E8A0` + 0x2A | Interior anchor `0037E8A7`; Interior anchor `0037E8B3`; Interior anchor `0037E8BF`; Interior anchor `0037E8C6`; Interior anchor `0037E8CA` |
 | `0037F3B0` | 134 B | `003F4E70` + 0x1A4 | returns 0 when qword `02AED490` is non-null; otherwise builds on the stack a pair (dword `0x10000`, `rcx`) and a block (dword 0, a pointer to that pair, qword 0), makes the call at `0037F3B0` + 0x56 with 0x5F0, the code address loaded at `0037F3EE` and the block, and returns 1; both paths check the stack cookie seeded from `01F44830` | Interior anchor `0037F3C3`; Interior anchor `0037F3D2`; Interior anchor `0037F3EE`; Interior anchor `0037F406`; Interior anchor `0037F40B` |
-| `003EBD70` | 78 B | `002628B0` + 0x1CD | stores 0 in qword `02B5EC60`; when qword `02B5EC68` is non-null, makes the call at `003EBD70` + 0x1B with it and stores 0 there; then stores 0 in qwords `02B5EC70`, `02B5EC78`, `02B5EC80` and `02B5EC88` and returns 0 | Interior anchor `003EBD7B`; Interior anchor `003EBD8B`; Interior anchor `003EBD90`; Interior anchor `003EBD9D`; Interior anchor `003EBDB2` |

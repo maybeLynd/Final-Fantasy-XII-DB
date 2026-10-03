@@ -2,7 +2,6 @@
 contract: set and advance the five per-slot linear ramps an authored presentation command drives
 category: 17-Presentation-Rendering
 scope: subsystem
-level: L1
 readiness: DIFFERENTIAL TESTED # diff_ramp_channels.py, 483 commands / 129 compared lines / 0 mismatches, mutants killed (SWE2-CONTRACT, 2026-09-13, a27b5cc5)
 confidence: PROVEN
 implements: 17-Presentation-Rendering/README.md

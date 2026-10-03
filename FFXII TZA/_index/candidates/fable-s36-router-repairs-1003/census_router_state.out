@@ -1,0 +1,106 @@
+image 73461d08 (sha256 checked by rvlib); bodies: 35713 .pdata entries + 13800 catalogue leaves without .pdata
+
+P1  RIP-relative operands overlapping a cell
+  01E0C2C0 inhibitTable[22]   fn 00253C70 (pdata)  site 00253FFC  A  w8  lea rdx, [rip + 0x1bb82c1]  -> 01E0C2C4
+  01E0C2C0 inhibitTable[22]   fn 00254500 (pdata)  site 0025450C  A  w8  lea rdx, [rip + 0x1bb7db1]  -> 01E0C2C4
+  01E0C2C0 inhibitTable[22]   fn 00254B50 (pdata)  site 00254B88  A  w8  lea rcx, [rip + 0x1bb7735]  -> 01E0C2C4
+  020927D8 requestIdCopy      fn 00252B40 (catalogue)  site 00252B4C  W  w4  mov dword ptr [rip + 0x1e3fc86], ecx  -> 020927D8
+  020927D8 requestIdCopy      fn 00254710 (pdata)  site 00254714  R  w4  mov eax, dword ptr [rip + 0x1e3e0be]  -> 020927D8
+  0215F1A0 mailbox.pending    fn 002E09A0 (pdata)  site 002E0BAF  R  w1  movzx r8d, byte ptr [rip + 0x1e7e5e9]  -> 0215F1A0
+  0215F1A0 mailbox.pending    fn 002E09A0 (pdata)  site 002E0BD2  R  w1  movzx ecx, byte ptr [rip + 0x1e7e5c7]  -> 0215F1A0
+  0215F1A0 mailbox.pending    fn 002E09A0 (pdata)  site 002E0BEC  W  w1  mov byte ptr [rip + 0x1e7e5ae], cl  -> 0215F1A0
+  0215F1A0 mailbox.pending    fn 002E09A0 (pdata)  site 002E0C56  R  w1  movzx r8d, byte ptr [rip + 0x1e7e542]  -> 0215F1A0
+  0215F1A0 mailbox.pending    fn 002E09A0 (pdata)  site 002E0C65  W  w1  mov byte ptr [rip + 0x1e7e534], r8b  -> 0215F1A0
+  0215F1A0 mailbox.pending    fn 002E09A0 (pdata)  site 002E0D10  W  w1  mov byte ptr [rip + 0x1e7e489], bpl  -> 0215F1A0
+  0215F1A0 mailbox.pending    fn 002E12D0 (catalogue)  site 002E12D0  R  w1  movzx eax, byte ptr [rip + 0x1e7dec9]  -> 0215F1A0
+  0215F1A0 mailbox.pending    fn 002E15D0 (catalogue)  site 002E15D2  W  w1  mov byte ptr [rip + 0x1e7dbc7], 0  -> 0215F1A0
+  0215F1A0 mailbox.pending    fn 002E1A60 (pdata)  site 002E1ABD  W  w1  mov byte ptr [rip + 0x1e7d6dc], 1  -> 0215F1A0
+  0215F1A0 mailbox.pending    fn 002E1AE0 (catalogue)  site 002E1AE9  W  w1  mov byte ptr [rip + 0x1e7d6b0], 1  -> 0215F1A0
+  0215F1A0 mailbox.pending    fn 002E1B10 (pdata)  site 002E1B35  W  w1  mov byte ptr [rip + 0x1e7d664], 1  -> 0215F1A0
+  0215F1A1 mailbox.blocked    fn 002E09A0 (pdata)  site 002E0BA3  W  w1  mov byte ptr [rip + 0x1e7e5f7], bpl  -> 0215F1A1
+  0215F1A1 mailbox.blocked    fn 002E09A0 (pdata)  site 002E0D3E  W  w1  mov byte ptr [rip + 0x1e7e45c], bpl  -> 0215F1A1
+  0215F1A1 mailbox.blocked    fn 002E15D0 (catalogue)  site 002E15E5  W  w1  mov byte ptr [rip + 0x1e7dbb6], al  -> 0215F1A1
+  0215F1A1 mailbox.blocked    fn 002E1690 (catalogue)  site 002E1690  W  w1  mov byte ptr [rip + 0x1e7db0a], 1  -> 0215F1A1
+  0215F1A1 mailbox.blocked    fn 002E1A60 (pdata)  site 002E1AA6  R  w1  cmp byte ptr [rip + 0x1e7d6f4], 0  -> 0215F1A1
+  0215F1A1 mailbox.blocked    fn 002E1AE0 (catalogue)  site 002E1AE0  R  w1  cmp byte ptr [rip + 0x1e7d6ba], 0  -> 0215F1A1
+  0215F1A1 mailbox.blocked    fn 002E1B10 (pdata)  site 002E1B1A  R  w1  cmp byte ptr [rip + 0x1e7d680], 0  -> 0215F1A1
+  0215F1A1 mailbox.blocked    fn 002E25B0 (pdata)  site 002E25B4  R  w1  cmp byte ptr [rip + 0x1e7cbe6], 0  -> 0215F1A1
+  0215F1A2 byte 0215F1A2      fn 002E0940 (pdata)  site 002E096D  W  w1  mov byte ptr [rip + 0x1e7e82f], al  -> 0215F1A2
+  0215F1A2 byte 0215F1A2      fn 002E1030 (catalogue)  site 002E1030  R  w1  movsx eax, byte ptr [rip + 0x1e7e16b]  -> 0215F1A2
+  0215F1A3 byte 0215F1A3      fn 002E1450 (pdata)  site 002E155D  W  w1  mov byte ptr [rip + 0x1e7dc3f], r9b  -> 0215F1A3
+  0215F1A3 byte 0215F1A3      fn 002E1600 (catalogue)  site 002E1600  R  w1  movsx eax, byte ptr [rip + 0x1e7db9c]  -> 0215F1A3
+  0215F1A4 mailbox.id         fn 002E09A0 (pdata)  site 002E0B97  W  w4  mov dword ptr [rip + 0x1e7e607], ebp  -> 0215F1A4
+  0215F1A4 mailbox.id         fn 002E09A0 (pdata)  site 002E0BC0  R  w4  cmp dword ptr [rip + 0x1e7e5dd], 2  -> 0215F1A4
+  0215F1A4 mailbox.id         fn 002E09A0 (pdata)  site 002E0CD0  R  w4  mov eax, dword ptr [rip + 0x1e7e4ce]  -> 0215F1A4
+  0215F1A4 mailbox.id         fn 002E09A0 (pdata)  site 002E0D05  R  w4  mov ecx, dword ptr [rip + 0x1e7e499]  -> 0215F1A4
+  0215F1A4 mailbox.id         fn 002E09A0 (pdata)  site 002E0D1B  R  w4  mov ecx, dword ptr [rip + 0x1e7e483]  -> 0215F1A4
+  0215F1A4 mailbox.id         fn 002E15D0 (catalogue)  site 002E15D9  W  w4  mov dword ptr [rip + 0x1e7dbc5], eax  -> 0215F1A4
+  0215F1A4 mailbox.id         fn 002E1A60 (pdata)  site 002E1AC4  W  w4  mov dword ptr [rip + 0x1e7d6da], edi  -> 0215F1A4
+  0215F1A4 mailbox.id         fn 002E1AE0 (catalogue)  site 002E1AF0  W  w4  mov dword ptr [rip + 0x1e7d6aa], 0xc  -> 0215F1A4
+  0215F1A4 mailbox.id         fn 002E1B10 (pdata)  site 002E1B41  W  w4  mov dword ptr [rip + 0x1e7d65d], ebx  -> 0215F1A4
+  0215F1A8 mailbox.parameter  fn 002E09A0 (pdata)  site 002E0B9D  W  w4  mov dword ptr [rip + 0x1e7e605], ebp  -> 0215F1A8
+  0215F1A8 mailbox.parameter  fn 002E09A0 (pdata)  site 002E0CFC  R  w4  mov edx, dword ptr [rip + 0x1e7e4a6]  -> 0215F1A8
+  0215F1A8 mailbox.parameter  fn 002E15D0 (catalogue)  site 002E15DF  W  w4  mov dword ptr [rip + 0x1e7dbc3], eax  -> 0215F1A8
+  0215F1A8 mailbox.parameter  fn 002E1A60 (pdata)  site 002E1ACA  W  w4  mov dword ptr [rip + 0x1e7d6d8], ebx  -> 0215F1A8
+  0215F1A8 mailbox.parameter  fn 002E1AE0 (catalogue)  site 002E1AFA  W  w4  mov dword ptr [rip + 0x1e7d6a4], 0  -> 0215F1A8
+  0215F1A8 mailbox.parameter  fn 002E1B10 (pdata)  site 002E1B47  W  w4  mov dword ptr [rip + 0x1e7d65b], edi  -> 0215F1A8
+
+P2  image-base-relative / VA-displacement forms: 0
+
+P5  displaced anchors (LEA within 0x100 of a cell, followed to the register's next write)
+  DISPLACED fn 00253C70  anchor 00253FFC -> 01E0C2C4  use 00254014 -> 01E0C2C0  R  or ecx, dword ptr [rdx - 4]  (cell 01E0C2C0 inhibitTable[22])
+  DISPLACED fn 00253C70  anchor 00253FFC -> 01E0C2C4  use 0025401D -> 01E0C2C4  R  or ecx, dword ptr [rdx]  (cell 01E0C2C0 inhibitTable[22])
+  DISPLACED fn 00254500  anchor 0025450C -> 01E0C2C4  use 00254526 -> 01E0C2C0  R  or eax, dword ptr [rdx - 4]  (cell 01E0C2C0 inhibitTable[22])
+  DISPLACED fn 00254500  anchor 0025450C -> 01E0C2C4  use 00254530 -> 01E0C2C4  R  or eax, dword ptr [rdx]  (cell 01E0C2C0 inhibitTable[22])
+  DISPLACED fn 00254B50  anchor 00254B88 -> 01E0C2C4  use 00254BA5 -> 01E0C2C0  R  or r10d, dword ptr [rcx - 4]  (cell 01E0C2C0 inhibitTable[22])
+  DISPLACED fn 00254B50  anchor 00254B88 -> 01E0C2C4  use 00254BB1 -> 01E0C2C4  R  or r10d, dword ptr [rcx]  (cell 01E0C2C0 inhibitTable[22])
+  INDEXED   fn 00250270  anchor 002503D2 -> 02092764  use 002503E3  base 02092764  mov ecx, dword ptr [rcx + r10*8]
+            disposition: 02092764 + r10*8 dword: lands on 020927D4 or 020927DC, never on 020927D8 (8-byte stride, +4 phase)
+  INDEXED   fn 00252E60  anchor 00252E8F -> 02092760  use 00252E96  base 02092760  lea rbp, [rcx + rax*8]
+            disposition: 02092760 + rax*8: index forced to 0 unless ecx <= 0xB unsigned (00252E7C jbe); last element 020927B8
+  INDEXED   fn 00252F40  anchor 00252F58 -> 02092760  use 00252F5F  base 02092760  lea rax, [rcx + rax*8]
+            disposition: 02092760 + rax*8: 00252F44 cmp ecx, 0xB; jbe, else 0; last element 020927B8
+  INDEXED   fn 00252FF0  anchor 0025306E -> 02092764  use 00253075  base 02092764  mov ecx, dword ptr [rcx + rax*8]
+            disposition: 02092764 + rax*8 dword: same phase argument as 00250270; never overlaps 020927D8
+  INDEXED   fn 002530E0  anchor 0025311F -> 02092760  use 00253126  base 02092760  lea r13, [rdx + rax*8]
+            disposition: 02092760 + rax*8: 0025310C cmp ecx, 0xB; jbe, else esi, which is 0 (002530FE xor esi, esi)
+  INDEXED   fn 002534C0  anchor 002534EC -> 02092760  use 002534F3  base 02092760  lea r15, [rdx + rax*8]
+            disposition: 02092760 + rax*8: 002534D9 cmp ecx, 0xB; jbe, else 0
+  INDEXED   fn 002535D0  anchor 00253605 -> 02092760  use 0025360C  base 02092760  lea rbp, [rdx + rax*8]
+            disposition: 02092760 + rax*8: 002535F2 cmp ecx, 0xB; jbe, else 0
+  INDEXED   fn 00286D60  anchor 00286F0E -> 01E0C3F0  use 00286F1A  base 01E0C3F0  nop word ptr [rax + rax]
+            disposition: anchor 01E0C3F0 is above the table; the tracked use is a loop-alignment nop, not an access
+  INDEXED   fn 002E0FA0  anchor 002E0FA9 -> 0215F1D0  use 002E0FBB  base 0215F1D0  nop dword ptr [rax + rax]
+            disposition: 0215F1D0 anchor: the aggregate's 16-byte reads span 0215F1C0..0215F20F, above the mailbox (0215F1AC end)
+  INDEXED   fn 002E1020  anchor 002E1023 -> 0215F1C0  use 002E102A  base 0215F1C0  mov eax, dword ptr [rcx + rax*4]
+            disposition: 0215F1C0 + rax*4 with NO bound; callers 002283E2 (ebx = 1 at 00228396), 00228972 (ebx 0..15, 00228982), 00229B12 (ecx = 1): no negative row reaches the mailbox
+  INDEXED   fn 002E1C20  anchor 002E1C28 -> 0215F1C0  use 002E1C2F  base 0215F1C0  lea r8, [rcx + rax*4]
+            disposition: 0215F1C0 + rax*4, upper bound only (cmp ecx, 0x10; jge). A row must be <= -6 to reach the mailbox (0215F1C0 - 6*4 = 0215F1A8). The 38 raw call sites set ecx by a constant, xor, 00229510's loop counter esi 0..15 (00229576), or lea ecx, [reg +- k]; the lea bases were not all traced to constants (0022974E rsi, 0035D6B0 rax/rdi): bounded by reading for the constant forms only
+  INDEXED   fn 002E1CA0  anchor 002E1CA8 -> 0215F1C0  use 002E1CAF  base 0215F1C0  lea r8, [rcx + rax*4]
+            disposition: same shape and same caveat as 002E1C20 over its 39 raw call sites
+  INDEXED   fn 002E1CD0  anchor 002E1CDC -> 0215F1C0  use 002E1CE3  base 0215F1C0  and dword ptr [rcx + rax*4], 0xffec6dfc
+            disposition: 0215F1C0 + rax*4 indexed by edx, upper bound only. The 19 raw call sites pass edx = 0, 3, 6 or 0xD; the three 'or edx, -1' hits of a linear trace are the other arm of a je whose target re-enters with edx = 6 (002636A7, 0026C552, 0026C7FD), and 0025D41A passes r15d = sbb/and 3, so 0 or 3 (0025D271, 0025D274)
+  INDEXED   fn 002E1CD0  anchor 002E1CF3 -> 0215F1C0  use 002E1CFA  base 0215F1C0  or dword ptr [rcx + rax*4], 0x139203
+            disposition: 0215F1C0 + rax*4 indexed by edx, upper bound only. The 19 raw call sites pass edx = 0, 3, 6 or 0xD; the three 'or edx, -1' hits of a linear trace are the other arm of a je whose target re-enters with edx = 6 (002636A7, 0026C552, 0026C7FD), and 0025D41A passes r15d = sbb/and 3, so 0 or 3 (0025D271, 0025D274)
+
+P3  raw rel32 windows 167; confirmed instructions 43; at no decoded boundary (UNLISTED) 0
+  P1 sites the raw sweep did not re-find: 0 []
+
+P4  raw RVA/VA constants equal to a cell: 0
+
+SUMMARY (functions per cell; R includes reads through a displaced anchor)
+  0215F1A0 w1  mailbox.pending    writers 5 ['002E09A0', '002E15D0', '002E1A60', '002E1AE0', '002E1B10'] | readers 2 ['002E09A0', '002E12D0'] | address-formed 0 []
+  0215F1A1 w1  mailbox.blocked    writers 3 ['002E09A0', '002E15D0', '002E1690'] | readers 4 ['002E1A60', '002E1AE0', '002E1B10', '002E25B0'] | address-formed 0 []
+  0215F1A2 w1  byte 0215F1A2      writers 1 ['002E0940'] | readers 1 ['002E1030'] | address-formed 0 []
+  0215F1A3 w1  byte 0215F1A3      writers 1 ['002E1450'] | readers 1 ['002E1600'] | address-formed 0 []
+  0215F1A4 w4  mailbox.id         writers 5 ['002E09A0', '002E15D0', '002E1A60', '002E1AE0', '002E1B10'] | readers 1 ['002E09A0'] | address-formed 0 []
+  0215F1A8 w4  mailbox.parameter  writers 5 ['002E09A0', '002E15D0', '002E1A60', '002E1AE0', '002E1B10'] | readers 1 ['002E09A0'] | address-formed 0 []
+  020927D8 w4  requestIdCopy      writers 1 ['00252B40'] | readers 1 ['00254710'] | address-formed 0 []
+  01E0C2C0 w88 inhibitTable[22]   writers 0 [] | readers 3 ['00253C70', '00254500', '00254B50'] | address-formed 3 ['00253C70', '00254500', '00254B50']
+
+PASS  C1  the leaf writer 00252B4C of 020927D8 is found through the catalogue
+PASS  C2  the drain reader 002E0D05 of 0215F1A4 is found
+PASS  C3  the raw sweep re-finds every P1 site and finds no unlisted code
+PASS  C4  the router's anchor 00254B88 reaches the table at 00254BA5 ([rcx-4]) as DISPLACED
+PASS  C5  every INDEXED anchor has a disposition read at the bytes
+FAILS 0

@@ -192,6 +192,35 @@ class Fixture(unittest.TestCase):
             sys.argv = argv
         self.assertEqual(rc, 2)   # refused - no apparently-fresh rows
 
+    def _main(self, *args):
+        argv = sys.argv
+        sys.argv = ["knowledge_db.py"] + list(args) + ["--out", self.db]
+        try:
+            return kd.main()
+        finally:
+            sys.argv = argv
+
+    def test_11_stale_refuse_snapshot_refresh_current(self):
+        """The user's directive item 3 regression, end to end (OPUS, 2026-10-03): a canonical dependency change makes
+        the mirror STALE; a normal current query is refused; an explicit snapshot query runs, labelled as-of; the
+        supported refresh makes it CURRENT with a new source identity."""
+        import time
+        self.build()
+        st0, _s, meta0 = self.fresh()
+        self.assertEqual(st0, "current")
+        time.sleep(1.1)                                        # built_at has second resolution
+        _write(os.path.join(kd.DB_DIR, "_types", "fields.tsv"), FIELDS_TSV + "X\t0\t4\tn\tt\tm\t\t\n")
+        st1, stale1, _m = self.fresh()
+        self.assertEqual(st1, "stale")
+        self.assertTrue(any("fields" in s for s in stale1), stale1)
+        self.assertEqual(self._main("query", "unresolved-fields"), 2)                  # refused, fail-closed
+        self.assertNotEqual(self._main("query", "unresolved-fields", "--snapshot"), 2)  # as-of read allowed
+        self.assertEqual(self.fresh()[0], "stale")             # a snapshot read never refreshes silently
+        self.assertEqual(self._main("query", "unresolved-fields", "--refresh"), 0)
+        st2, stale2, meta2 = self.fresh()
+        self.assertEqual(st2, "current", stale2)
+        self.assertNotEqual(meta2["built_at"], meta0["built_at"])                     # new source identity
+
     def test_08_writers_of_field_includes_w_and_rw(self):
         self.build()
         conn = sqlite3.connect(self.db)

@@ -146,3 +146,10 @@ res = {"ok": allok, "quiet_request_ids": list(QUIET), "cases": results,
        "boundary": "sound engine singleton [01FD36A0] not built; requests 0-3, 5, 8-15, 22, 27 reach it via 002DF370 -> 001DBA90 -> 00210FF0 and are not used"}
 json.dump(res, open(os.path.join(HERE, "result.json"), "w"), indent=1, sort_keys=True)
 print("ALL PASS" if allok else "NOT ALL PASS")
+
+
+# EXIT STATUS FOLLOWS THE RECORDED VERDICT (OPUS, 2026-10-03, the user's root-cause directive item 4): this package
+# recorded "ok" in result.json but always exited 0, so no automated re-run could see it fail.
+import json as _ej, os as _eo, sys as _es
+_es.exit(0 if _ej.load(open(_eo.path.join(_eo.path.dirname(_eo.path.abspath(__file__)), "result.json"),
+                            encoding="utf-8")).get("ok") is True else 1)

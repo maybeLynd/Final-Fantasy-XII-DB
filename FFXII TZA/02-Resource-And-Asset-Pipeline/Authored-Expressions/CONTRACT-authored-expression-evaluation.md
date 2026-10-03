@@ -2,7 +2,6 @@
 contract: evaluate an authored two-operand expression into one integer, drawing from the procedural generator exactly as many times as the operator requires
 category: 02-Resource-And-Asset-Pipeline
 scope: subsystem
-level: L2
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 02-Resource-And-Asset-Pipeline/Authored-Expressions/how-an-authored-number-gets-its-randomness.md

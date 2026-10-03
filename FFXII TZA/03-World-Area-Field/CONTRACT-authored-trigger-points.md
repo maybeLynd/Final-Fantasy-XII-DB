@@ -2,7 +2,6 @@
 contract: Fire at most one authored field trigger per call — proximity, a fixed roll, a once-ever flag
 category: 03-World-Area-Field
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: walking-into-an-authored-trigger-point.md

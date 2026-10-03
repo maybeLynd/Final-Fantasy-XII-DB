@@ -2,7 +2,6 @@
 contract: interpret the control codes embedded in game text - one interpreter for both measuring and drawing, with the cursor advanced by the parser's own return - and draw the result through the dynamic-geometry instance family, whose shadow and screen-space variants are a prefix plus a tail call into one shared body
 category: 16-UI
 scope: subsystem
-level: L2
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 16-UI/Text-And-Number-Rendering/the-text-control-code-language.md, 16-UI/Dynamic-Geometry-Instances/dyngeo-instance-family.md

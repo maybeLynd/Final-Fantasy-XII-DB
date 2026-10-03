@@ -4,7 +4,6 @@ category: 04-Actor-Entity
 status: AUDITED
 owner_layer: PrimaryOwner:ActorEntity
 evidence_tier: 1
-level: L1
 readiness: SIGNATURE RESOLVED
 confidence: PROVEN
 verified_against:

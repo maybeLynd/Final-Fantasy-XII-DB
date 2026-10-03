@@ -4,7 +4,6 @@ category: 15-Input
 status: AUDITED
 owner_layer: PrimaryOwner:Input
 evidence_tier: 1
-level: L2
 readiness: DIFFERENTIAL TESTED
 confidence: PROVEN
 verified_against:

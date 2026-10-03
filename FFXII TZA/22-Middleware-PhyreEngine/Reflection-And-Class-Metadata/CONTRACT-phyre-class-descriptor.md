@@ -2,7 +2,6 @@
 contract: The PClassDescriptor - what reflected class metadata is, in bytes
 category: 22-Middleware-PhyreEngine
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: class-descriptor-and-metadata-system.md

@@ -1,0 +1,1268 @@
+{
+ "results": [
+  {
+   "regression": "Database/FFXII TZA/_experiments/evidence/status-row-key-qualification/qualify.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "PASS 7 controls;32 name keys; direct original u16 name/u8 effect accesses; NO LIVE",
+   "records": [
+    "status-name-key"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/a0d0-record-recut-opus/a0d0_record.py",
+   "state": "PASS",
+   "seconds": 0.3,
+   "tail": "FAILS 0",
+   "records": [
+    "a0d0-record-recut-opus"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/aa8-payload-tail/payload_tail.py",
+   "state": "PASS",
+   "seconds": 45.9,
+   "tail": "FAILS 0",
+   "records": [
+    "aa8-payload-tail"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/absence-recut-opus/absence_recut.py",
+   "state": "PASS",
+   "seconds": 0.3,
+   "tail": "FAILS 0",
+   "records": [
+    "absence-recut-opus"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/ag2-slot-identity/ag2_slot_identity.py",
+   "state": "PASS",
+   "seconds": 2.0,
+   "tail": "FAILS 0",
+   "records": [
+    "ag2-slot-identity"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/astra-returns-s33-fable-1002/s33_check.py",
+   "state": "PASS",
+   "seconds": 1.2,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-s33-retirement-consume-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/auditsem-review-gr19-gr11-0930/gr19_11_12_sem.py",
+   "state": "FAIL",
+   "seconds": 0.3,
+   "tail": "\u001b[1;35mFileNotFoundError\u001b[0m: \u001b[35m[WinError 3] The system cannot find the path specified: 'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\FFXII TZA\\\\_index\\\\candidates\\\\auditsem-review-gr19",
+   "records": [
+    "opus-dd-restatus-17-1001",
+    "opus-register-narrow-1001"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/auditsem-review-gr2-0930/gr2_sem.py",
+   "state": "FAIL",
+   "seconds": 0.2,
+   "tail": "\u001b[1;35mFileNotFoundError\u001b[0m: \u001b[35m[WinError 3] The system cannot find the path specified: 'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\FFXII TZA\\\\_index\\\\candidates\\\\auditsem-review-gr2-",
+   "records": [
+    "opus-dd-restatus-20-1001"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/auditsem-review-sd125-128-0930/sd125_128_sem.py",
+   "state": "FAIL",
+   "seconds": 0.3,
+   "tail": "\u001b[1;35mFileNotFoundError\u001b[0m: \u001b[35m[WinError 3] The system cannot find the path specified: 'C:\\\\Users\\\\Kristian\\\\source\\\\repos\\\\XIIOnline\\\\Database\\\\FFXII TZA\\\\_index\\\\candidates\\\\auditsem-review-sd12",
+   "records": [
+    "opus-dd-restatus-16-1001"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/auditspec-review-sd141-0930/sd141_handon.py",
+   "state": "PASS",
+   "seconds": 0.5,
+   "tail": "FAILS 0",
+   "records": [
+    "sd141-flying-fade-readers-0930"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/bb4-render-object-per-model/bb4_render_object_per_model.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "bb4-render-object-per-model"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/box3-answers-0927/be6_all_roles.py",
+   "state": "MISSING",
+   "seconds": 0.0,
+   "tail": "the declared regression file does not exist",
+   "records": [
+    "box3-answers-0927"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/box3-answers-0927/uq213_programs.py",
+   "state": "MISSING",
+   "seconds": 0.0,
+   "tail": "the declared regression file does not exist",
+   "records": [
+    "box3-answers-0927"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/box3-answers-0927/uq215_routes.py",
+   "state": "MISSING",
+   "seconds": 0.0,
+   "tail": "the declared regression file does not exist",
+   "records": [
+    "box3-answers-0927"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/cc5-ard-trailer/cc5_trailer.py",
+   "state": "PASS",
+   "seconds": 3.6,
+   "tail": "PASS",
+   "records": [
+    "ard-trailer-prose"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/contract-open-drift/contract_drift.py",
+   "state": "PASS",
+   "seconds": 1.0,
+   "tail": "F-3      ANSWERED 2 d-Party-Libraries\\Lua-Core\\CONTRACT-lua-chunk-loader.md:360  need a breakpoint or a trace, which `F-3` lists as not built. **That is why `DA-1` is still open, and",
+   "records": [
+    "contract-open-drift"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/descriptor-membership-provenance/descriptor_drains.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "descriptor-membership-provenance"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/eo3-callee-width/eo3_callee_width.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "eo3-callee-width"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/fe6-kind-gates/kind_gates.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "fe6-kind-gates"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/fg1-typed-store/typed_store.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "fg1-typed-store"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/font-kern-writer-nested-1001/kern_nested_check.py",
+   "state": "PASS",
+   "seconds": 0.4,
+   "tail": "FAILS 0",
+   "records": [
+    "font-kern-writer-nested-1001"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/fr3-tga-origin/tga_origin.py",
+   "state": "PASS",
+   "seconds": 0.8,
+   "tail": "FAILS 0",
+   "records": [
+    "fr3-tga-origin"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/ga1-status-order-keys/ga1_status_order_keys.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "ga1-status-order-keys"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/gb2-env-class-4/gb2_env_class.py",
+   "state": "PASS",
+   "seconds": 141.9,
+   "tail": "FAILS 0",
+   "records": [
+    "gb2-env-class-4"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/gf4-no-instance/gf4_name_refs.py",
+   "state": "PASS",
+   "seconds": 0.5,
+   "tail": "FAILS 0",
+   "records": [
+    "gf4-no-instance"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/gr18-reward-edge-reachability-fable-0930/gr18_fable_census.py",
+   "state": "PASS",
+   "seconds": 78.6,
+   "tail": "FAILS 0",
+   "records": [
+    "gr18-reward-edge-reachability-0930"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/license-clear-owner/license_clear_order.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "license-clear-owner"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/mgrslot-stub-005C5230/stub_value.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "mgrslot-stub-005C5230"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/musicctrl-owner-qualifications/musicctrl_quals.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "musicctrl-owner-qualifications"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/nav-mask-reset-opus/nav_mask_reset.py",
+   "state": "PASS",
+   "seconds": 0.4,
+   "tail": "FAILS 0",
+   "records": [
+    "nav-mask-reset-opus"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/navgrid-unit-definition/navgrid_unitdef.py",
+   "state": "PASS",
+   "seconds": 1.4,
+   "tail": "FAILS 0",
+   "records": [
+    "navgrid-unit-definition"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/ns4-bom-reader/bom_reader.py",
+   "state": "PASS",
+   "seconds": 0.5,
+   "tail": "FAILS 0",
+   "records": [
+    "ns4-bom-reader"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-accounting-qualify-1002/accounting_check.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-accounting-qualify-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-action-readiness-fixes-1002/action_check.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-action-readiness-fixes-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-actor-readiness-fixes-1002/actor_check.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-actor-readiness-fixes-1002",
+    "opus-held-readiness-release-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-ai-readiness-fixes-1002/ai_check.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-ai-readiness-fixes-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-astra-returns-consume-1002/astra3_check.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-astra-returns-consume-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-audio-items-16-18-1002/items_check.py",
+   "state": "PASS",
+   "seconds": 1.4,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-audio-items-16-18-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-audio-readiness-fixes-1001/audio_fixes_check.py",
+   "state": "PASS",
+   "seconds": 0.3,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-audio-readiness-fixes-1001"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-c1-workspace-1001/c1_workspace_check.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-c1-workspace-1001"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-crt-readiness-fixes-1002/crt_check.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-crt-readiness-fixes-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-cs1-refusal-1003/cs1_refusal_check.py",
+   "state": "PASS",
+   "seconds": 0.5,
+   "tail": "checks 6 bytes + call sites + text  FAILS 0",
+   "records": [
+    "opus-cs1-refusal-1003"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-dd-eastl-0930/eastl_dd_check.py",
+   "state": "PASS",
+   "seconds": 0.6,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-dd-eastl-0930"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-ebp-readiness-fixes-1002/ebp_check.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-ebp-readiness-fixes-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-engine-a-readiness-fixes-1002/engine_a_check.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-engine-a-readiness-fixes-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-engine-b-readiness-fixes-1002/engine_b_check.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-engine-b-readiness-fixes-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-fable-home-host-moves-1003/move_rows.py",
+   "state": "PASS",
+   "seconds": 0.3,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-fable-home-host-moves-1003"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-formula-readiness-fixes-1002/formula_check.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-formula-readiness-fixes-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-frame-drain-1001/frame_drain.py",
+   "state": "PASS",
+   "seconds": 0.3,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-frame-drain-1001"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-gi-static-rows-1001/gi_static_check.py",
+   "state": "PASS",
+   "seconds": 0.3,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-gi-static-rows-1001"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-gi14-blend-1001/gi14_check.py",
+   "state": "PASS",
+   "seconds": 0.3,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-gi14-blend-1001"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-gi15-helpers-1001/gi15_check.py",
+   "state": "PASS",
+   "seconds": 0.3,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-gi15-helpers-1001"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-gi19-sway-layout-1001/gi19_check.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-gi19-sway-layout-1001"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-growth-formula-1002/growth_check.py",
+   "state": "PASS",
+   "seconds": 0.3,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-growth-formula-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-hit-pipeline-odds-1002/hit_odds_check.py",
+   "state": "PASS",
+   "seconds": 0.3,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-hit-pipeline-odds-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-input-readiness-fixes-1001/input_fixes_check.py",
+   "state": "PASS",
+   "seconds": 0.3,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-input-readiness-fixes-1001"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-items-readiness-fixes-1002/items_check.py",
+   "state": "PASS",
+   "seconds": 0.3,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-items-readiness-fixes-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-licence-buy-gil-cost-1002/lbg_check.py",
+   "state": "PASS",
+   "seconds": 0.5,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-licence-buy-gil-cost-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-movement-readiness-fixes-1002/movement_check.py",
+   "state": "PASS",
+   "seconds": 0.3,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-movement-readiness-fixes-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-ov-routed-consumption-1002/ov_check.py",
+   "state": "PASS",
+   "seconds": 2.6,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-ov-routed-consumption-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-ov21-page-count-1001/ov21_page_count_check.py",
+   "state": "PASS",
+   "seconds": 0.3,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-ov21-page-count-1001"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-ov42-batch6-routes-1002/batch6_check.py",
+   "state": "PASS",
+   "seconds": 0.5,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-ov42-batch6-routes-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-ov42-typestore-1002/ov42_check.py",
+   "state": "PASS",
+   "seconds": 1.8,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-ov42-typestore-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-party-readiness-fixes-1002/party_check.py",
+   "state": "PASS",
+   "seconds": 0.3,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-held-readiness-release-1002",
+    "opus-party-readiness-fixes-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-periodic-tick-tail-1002/tick_tail_check.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-periodic-tick-tail-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-phyre-readiness-fixes-1002/phyre_check.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-phyre-readiness-fixes-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-pkfl-readiness-fixes-1002/pkfl_check.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-pkfl-readiness-fixes-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-platform-readiness-fixes-1002/platform_check.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-platform-readiness-fixes-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-referenced-code-the-list-never-had-uc1-1002/uc1_entry_check.py",
+   "state": "PASS",
+   "seconds": 22.5,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-referenced-code-the-list-never-had-uc1-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-reject-repairs-1003/reject_rows_check.py",
+   "state": "PASS",
+   "seconds": 0.4,
+   "tail": "rows 2  FAILS 0",
+   "records": [
+    "opus-contract-widget-object-homing-1002",
+    "opus-sab-sound-bank-container-cloudint-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-render-a-readiness-fixes-1002/render_a_check.py",
+   "state": "PASS",
+   "seconds": 0.3,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-render-a-readiness-fixes-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-render-b-readiness-fixes-1002/render_b_check.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-render-b-readiness-fixes-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-render-c-readiness-fixes-1002/render_c_check.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-render-c-readiness-fixes-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-render-slot-consume-1002/render_slot_check.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-render-slot-consume-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-residual-readiness-fixes-1002/residual_check.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-residual-readiness-fixes-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-resource-a-readiness-fixes-1002/resource_a_check.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-resource-a-readiness-fixes-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-resource-b-readiness-fixes-1002/resource_b_check.py",
+   "state": "PASS",
+   "seconds": 0.3,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-resource-b-readiness-fixes-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-rewards-readiness-fixes-1002/rewards_check.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-rewards-readiness-fixes-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-rng-readiness-fixes-1002/rng_check.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-rng-readiness-fixes-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-router-restatus-1001/apply_router.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-router-restatus-1001"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-s49-repairs-1003/s49_repairs_check.py",
+   "state": "PASS",
+   "seconds": 0.7,
+   "tail": "checks D1 4+1, P2 5+2, P3 1+2  FAILS 0",
+   "records": [
+    "opus-s49-repairs-1003"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-sab-param-census-1001/sab_param_census.py",
+   "state": "PASS",
+   "seconds": 3.4,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-sab-param-census-1001"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-save-readiness-fixes-1002/save_check.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-save-readiness-fixes-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-scriptvm-readiness-fixes-1002/scriptvm_check.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-gate-fixes-1002",
+    "opus-scriptvm-readiness-fixes-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-spawn-readiness-fixes-1002/spawn_check.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-spawn-readiness-fixes-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-status-readiness-fixes-1002/status_check.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-status-readiness-fixes-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-story-readiness-fixes-1002/story_check.py",
+   "state": "PASS",
+   "seconds": 0.3,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-story-readiness-fixes-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-suspend-copy-origin-1001/copy_range_check.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-suspend-copy-origin-1001"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-texture-incorp-1001/tex_check.py",
+   "state": "PASS",
+   "seconds": 0.3,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-texture-incorp-1001"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-thirdparty-readiness-fixes-1002/thirdparty_check.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-thirdparty-readiness-fixes-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-title-r3-r4-1002/apply_title_r3_r4.py",
+   "state": "PASS",
+   "seconds": 0.1,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-title-r3-r4-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-ui-readiness-fixes-1002/ui_check.py",
+   "state": "PASS",
+   "seconds": 0.3,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-ui-readiness-fixes-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-world-readiness-fixes-1002/world_check.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-world-readiness-fixes-1002"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-worldtick-interior-1001/worldtick_corrections.py",
+   "state": "PASS",
+   "seconds": 0.3,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-worldtick-interior-1001"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/opus-worldtick-interior-1001/worldtick_interior.py",
+   "state": "PASS",
+   "seconds": 0.3,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-worldtick-interior-1001"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/ov58d-pointer-flow-0930/ov58d_mirror.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "  00583D60  8 stores",
+   "records": [
+    "opus-record-narrowings-0930"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/pa5-inherited-slots/inherited_slots.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "pa5-inherited-slots"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/page-open-drift/page_open_drift.py",
+   "state": "PASS",
+   "seconds": 2.5,
+   "tail": "DL-1     ANSWERED 2 \\widget-transition-duration-domain\\retained\\contract.md:737  > DL-1 to take 285/287/289 off the open count as a family \u2192 and `CON-133`'s second property, the",
+   "records": [
+    "page-open-drift"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/phyre-virtual-destroy-slot/virtual_slot.py",
+   "state": "PASS",
+   "seconds": 0.3,
+   "tail": "FAILS 0",
+   "records": [
+    "phyre-virtual-destroy-slot"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/rc12-footer-channels-runstate-0930/rc12_slots.py",
+   "state": "PASS",
+   "seconds": 38.8,
+   "tail": "CONTROL C every Part A site is found by the image-wide census: PASS (43 sites, 19 functions)",
+   "records": [
+    "opus-rc12-propagation-0930"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/rc15-regfile-skipmask-0930/rc17_skip_chain.py",
+   "state": "PASS",
+   "seconds": 87.8,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-dd-restatus-23-1001"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/rs1-j4-stride/j4_stride_path.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "rs1-j4-stride"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/s08-bgm-machine-drain-0930/s08_bgm_drain.py",
+   "state": "PASS",
+   "seconds": 2.2,
+   "tail": "checks 16 FAILS 0",
+   "records": [
+    "opus-s08-bgm-incorp-1001"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/sd161-counter11-writers-0930/sd161_check.py",
+   "state": "PASS",
+   "seconds": 0.3,
+   "tail": "FAILS 0",
+   "records": [
+    "sd161-counter11-writers-0930"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/sd165-alloc-null-tests-0930/sd165_nulltests_v2.py",
+   "state": "PASS",
+   "seconds": 0.6,
+   "tail": "FAILS 0",
+   "records": [
+    "sd165-alloc-null-tests-0930"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/sd3-bit21-pause-0930/sd3_pause.py",
+   "state": "PASS",
+   "seconds": 0.9,
+   "tail": "FAILS 0",
+   "records": [
+    "sd3-bit21-pause-0930"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/sd62-registry-list-links-0930/sd62_registry_lists.py",
+   "state": "PASS",
+   "seconds": 53.5,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-sd62-f3-adjudication-0930"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/sq1-dword0-consumer/sq1_dword0.py",
+   "state": "PASS",
+   "seconds": 8.8,
+   "tail": "FAILS 0",
+   "records": [
+    "sq1-dword0-consumer"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/swe2contract-awn-wave-a-1001/awn_a_checks.py",
+   "state": "FAIL",
+   "seconds": 1.9,
+   "tail": "FAILS 50",
+   "records": [
+    "swe2contract-awn-wave-a-1001"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/swe2contract-ddres-b10-0930/b10_checks.py",
+   "state": "PASS",
+   "seconds": 45.9,
+   "tail": "FAILS 0",
+   "records": [
+    "swe2contract-ddres-b10-0930"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/swe2contract-ddres-b13-0930/b13_checks.py",
+   "state": "PASS",
+   "seconds": 76.0,
+   "tail": "FAILS 0",
+   "records": [
+    "swe2contract-ddres-b13-0930"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/swe2contract-ddres-b14-0930/b14_checks.py",
+   "state": "PASS",
+   "seconds": 12.2,
+   "tail": "FAILS 0",
+   "records": [
+    "swe2contract-ddres-b14-0930"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/swe2contract-ddres-b15-0930/b15_checks.py",
+   "state": "PASS",
+   "seconds": 7.7,
+   "tail": "FAILS 0",
+   "records": [
+    "swe2contract-ddres-b15-0930"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/swe2contract-ddres-b16-0930/b16_checks.py",
+   "state": "PASS",
+   "seconds": 18.4,
+   "tail": "FAILS 0",
+   "records": [
+    "swe2contract-ddres-b16-0930"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/swe2contract-ddres-b18-0930/b18_checks.py",
+   "state": "PASS",
+   "seconds": 35.2,
+   "tail": "PASSES 99 FAILS 0",
+   "records": [
+    "swe2contract-ddres-b18-0930"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/swe2contract-ddres-b20-1001/b20_checks.py",
+   "state": "PASS",
+   "seconds": 38.0,
+   "tail": "FAILS 1",
+   "records": [
+    "swe2contract-ddres-b20-1001",
+    "swe2ec7-blinking-icon-eq0-1001"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/swe2contract-ddres-b9-0930/b9_vbf_nmb.py",
+   "state": "PASS",
+   "seconds": 1.9,
+   "tail": "FAILS 0",
+   "records": [
+    "swe2contract-ddres-b9-0930"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/swe2contract-reopened2-0930/falsify_wait_polarity.py",
+   "state": "PASS",
+   "seconds": 0.4,
+   "tail": "FAILS 0",
+   "records": [
+    "swe2contract-reopened2-0930"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/swe2struct-awn-wave-b-1001/awn_b_checks.py",
+   "state": "PASS",
+   "seconds": 1.5,
+   "tail": "FAILS 5",
+   "records": [
+    "opus-awn-followups-1001",
+    "swe2struct-awn-wave-b-1001"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/swe2struct-capability-0930/cap_policy.py",
+   "state": "PASS",
+   "seconds": 44.4,
+   "tail": "FAILS 0",
+   "records": [
+    "swe2struct-capability-0930"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/swe2struct-census-embed-fold-1003/census_bankb_check.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "swe2struct-census-embed-fold-1003"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/swe2struct-ddres-b11-0930/b11_struct.py",
+   "state": "PASS",
+   "seconds": 0.7,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-steam-counter14-0930"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/swe2struct-ddres-b12-0930/b12_struct.py",
+   "state": "PASS",
+   "seconds": 224.8,
+   "tail": "FAILS 0",
+   "records": [
+    "swe2struct-ddres-b12-0930"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/swe2struct-ddres-b17-0930/b17_checks.py",
+   "state": "PASS",
+   "seconds": 47.2,
+   "tail": "FAILS 0",
+   "records": [
+    "swe2struct-ddres-b17-0930"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/swe2struct-reopened3-0930/p1_vbf_st2e.py",
+   "state": "PASS",
+   "seconds": 8.8,
+   "tail": "FAILS 0",
+   "records": [
+    "swe2struct-reopened3-0930"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/swe2struct-residue3-0930/residue3_check.py",
+   "state": "PASS",
+   "seconds": 123.8,
+   "tail": "FAILS 0",
+   "records": [
+    "swe2struct-residue3-0930"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/swe2struct-suspcopy-census-1003/loop_attribution_check.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "opus-fieldmap-suspcopy-sites-1003"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/swe2struct-suspcopy-census-1003/loop_attribution_check.py --check",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "swe2struct-suspcopy-census-1003"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/swe2struct-systemstop08-1003/systemstop08_check.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "swe2struct-systemstop08-1003"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/uq156-arm-readings/uq156_arms.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "uq156-arm-readings"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/uq158-segment-filter/segment_filter.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "uq158-segment-filter"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/uq333-high-detail-letters/uq333_letters.py",
+   "state": "PASS",
+   "seconds": 0.2,
+   "tail": "FAILS 0",
+   "records": [
+    "uq333-high-detail-letters"
+   ]
+  },
+  {
+   "regression": "Database/FFXII TZA/_index/candidates/widget-singleton-nested-opus/widget_singleton_nested.py",
+   "state": "PASS",
+   "seconds": 0.3,
+   "tail": "FAILS 0",
+   "records": [
+    "widget-singleton-nested-opus"
+   ]
+  },
+  {
+   "regression": "Database/Tools/analysis-kit/gfz-scripts/check_page_neighbours.py",
+   "state": "PASS",
+   "seconds": 0.3,
+   "tail": "NO NEW HITS 0",
+   "records": [
+    "opus-held-release-1002b"
+   ]
+  },
+  {
+   "regression": "Database/Tools/analysis-kit/gfz-scripts/check_questions.py --db C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA",
+   "state": "PASS",
+   "seconds": 42.7,
+   "tail": "questions consistent: the table and the document checklists agree",
+   "records": [
+    "opus-gr16-propagation-1001",
+    "opus-gr18-astra-incorp-1001",
+    "opus-namebinding-incorp-1001",
+    "opus-title-root-incorp-1001",
+    "opus-vif-stale-1001",
+    "ov15-ms-apply-0929"
+   ]
+  },
+  {
+   "regression": "Database/Tools/dashboard/test_live.py",
+   "state": "PASS",
+   "seconds": 4.1,
+   "tail": "FAILS 0",
+   "records": [
+    "dashboard-meanings-4d-fable-0929"
+   ]
+  },
+  {
+   "regression": "Database/Tools/work/DATA/rs1/census_rowstride.py",
+   "state": "PASS",
+   "seconds": 0.5,
+   "tail": "OK: 3 call sites verified; rowMask = (1<<bankShift)-1 derived in 0051F9F0",
+   "records": [
+    "rs1-j4-stride"
+   ]
+  }
+ ],
+ "retired": {
+  "Database/FFXII TZA/_index/candidates/opus-gi-static-rows-1001/gi_register.py": [
+   "opus-gi19-sway-layout-1001",
+   "applier, not a regression: it narrowed GI-14/GI-19 to OPEN on 2026-10-01; GI-19 was then ANSWERED by opus-gi19-sway-layout-1001 (ce70d7fe1) and GI-14 ANSWERED in the same pass (row last changed by de783570d, opus-sab-param-census-1001), so its OPEN anchors are superseded by accepted answers"
+  ],
+  "Database/FFXII TZA/_index/candidates/opus-items-readiness-fixes-1002/apply_12items.py": [
+   "opus-licence-buy-gil-cost-1002",
+   "applier, not a regression: its licence-node sentence on CONTRACT-license-check.md was struck and corrected again by 5258d2c88 (node 360 is grantable, read from battle_pack.bin); the later correction supersedes it"
+  ],
+  "Database/FFXII TZA/_index/candidates/opus-status-readiness-fixes-1002/apply_10status.py": [
+   "opus-status-readiness-fixes-1002",
+   "applier, not a regression: CONTRACT-periodic-tick.md line 311 was last changed by this record's own commit 9e2b8ef7e (git blame), so the correction is intact; the applier's NEW pattern does not match the text it published"
+  ],
+  "Database/FFXII TZA/_index/candidates/opus-rewards-readiness-fixes-1002/apply_13rewards.py": [
+   "opus-rewards-readiness-fixes-1002",
+   "applier, not a regression: gil-storage-clamp-and-every-path-that-moves-it.md line 368 was last changed by this record's own commit 1305be85a (git blame), so the correction is intact; the applier's NEW pattern does not match the text it published"
+  ]
+ },
+ "problems": []
+}

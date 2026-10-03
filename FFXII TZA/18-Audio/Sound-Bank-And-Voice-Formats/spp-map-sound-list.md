@@ -417,3 +417,12 @@ families were authored by the same record template.
 the payload-consumption trace; static: `00222DC0`, `0021A040`, `002DF070`, `001DBE60`,
 `007EE01D`, `003638B0`, `003631B0`, `00223190`, `002230D0`–`002234D7`, ~~`00213140`/`007EFC40`~~ (see the
 correction above).*
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-spp-map-sound-list-cloudint-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00363410` | 113 B | with `c` = `ecx`: when `c` is non-zero it calls `00363840()` unless byte `022CBB2D` already equals `c`, and stores `c` there; when `c` is 0 it calls `002DF190(dword 022CBA7C, edx)` when dword `022CBA70` is non-zero and `edx` is greater than 0 (signed), otherwise `002DF0F0(0, dword 022CBA7C)` (skipped when both `022CBA70` and `022CBA7C` are 0), then zeroes dword `022CBA70` and stores 0 at byte `022CBB2D` | `00363423`, `00363427`, `0036344B`, `00363466`, `0036346B` |
+| `003DF550` | 82 B | calls `0032E620(signed word +0x2c, signed word +0x2e, qword +0x18, dword +0x30, &s)` with a stack record `s` holding dword `+0x34` at `+0`, the low dword of `rcx` at `+8`, `003DF2C0` at qword `+0x10` and 0 at qword `+0x18`, then stores byte 3 at `+0x10` | `003DF564`, `003DF577`, `003DF58F`, `003DF593`, `003DF598` |

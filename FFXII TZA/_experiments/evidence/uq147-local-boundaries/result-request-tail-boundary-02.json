@@ -1,0 +1,287 @@
+{
+  "status": "BOUNDED_NOTIFICATION_WRITE_BRANCH_EXCLUDED_NATURAL_KO_STILL_OPEN",
+  "method": "A complete shipping bytes and normal-ABI constant-argument dataflow; no execution",
+  "driver_sha256": "b4a8732fab891ecece0117f9e3bda681416528abec532730d2d3b4d527f75f2a",
+  "source_sha256": "7536b76bfaabfee9319268822c1463df39550d0516f17f22c580ea14e4889454",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "capture_driver_sha256": "89796185513456c9faffc1bea6cfe1f6aaaf492eab7215fd9c7114d4a9f497e1",
+  "annotation_agreement": {
+    "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+    "instruction_records": 43,
+    "capstone": "5.0.7",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+  },
+  "physical_bodies": [
+    {
+      "entry": "0x317e60",
+      "end_exclusive": "0x317eb7",
+      "bytes": 87,
+      "sha256": "95be9d5ea66a3b2b00426a1170cff75f5102e83d9e36ef25f21244816fbab327",
+      "physical_bytes": "4883ec28e867120400f605d014d7011074378bc8e8370a04004885c0742b488bc8e8aabff4ff4885c0741ef60008741948b90000000001000000480908488d8880000000e8074b020033d28d4a014883c428e9192cf4ff",
+      "records": [
+        {
+          "begin": "0x317e60",
+          "end_exclusive": "0x317eb7",
+          "chain": [
+            {
+              "record_bytes": "607e1f00b77e1f00c82bc301",
+              "header_address": "0x1d52bc8",
+              "header_bytes": "01040100"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "entry": "0x25aad0",
+      "end_exclusive": "0x25ab22",
+      "bytes": 82,
+      "sha256": "131d3c428bfe50a032b95ca1c46ecb196918a9d6fb29cd05e662f2e388dd2191",
+      "physical_bytes": "40534883ec208bd98bcae8d1dd0f0085db75394885c074340fb648150f57c00fb7008905c0f7e301f30f1105b0f7e301890daef7e301c705acf7e30102000000e8fb6b0900c605a8f7e301014883c4205bc3",
+      "records": [
+        {
+          "begin": "0x25aad0",
+          "end_exclusive": "0x25ab22",
+          "chain": [
+            {
+              "record_bytes": "d0aa130022ab1300d029c301",
+              "header_address": "0x1d529d0",
+              "header_bytes": "01060200"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "argument_branch_instructions": [
+    {
+      "pc": "0x317ea9",
+      "bytes": "33d2",
+      "mnemonic": "xor",
+      "args": "edx, edx",
+      "memory": []
+    },
+    {
+      "pc": "0x317eab",
+      "bytes": "8d4a01",
+      "mnemonic": "lea",
+      "args": "ecx, [rdx + 1]",
+      "memory": [
+        {
+          "base": "rdx",
+          "index": null,
+          "scale": 1,
+          "displacement": 1,
+          "size": 4,
+          "role": "addr",
+          "rip_target": null
+        }
+      ]
+    },
+    {
+      "pc": "0x317eb2",
+      "bytes": "e9192cf4ff",
+      "mnemonic": "jmp",
+      "args": "0x25aad0",
+      "memory": []
+    },
+    {
+      "pc": "0x25aad6",
+      "bytes": "8bd9",
+      "mnemonic": "mov",
+      "args": "ebx, ecx",
+      "memory": []
+    },
+    {
+      "pc": "0x25aad8",
+      "bytes": "8bca",
+      "mnemonic": "mov",
+      "args": "ecx, edx",
+      "memory": []
+    },
+    {
+      "pc": "0x25aada",
+      "bytes": "e8d1dd0f00",
+      "mnemonic": "call",
+      "args": "0x3588b0",
+      "memory": []
+    },
+    {
+      "pc": "0x25aadf",
+      "bytes": "85db",
+      "mnemonic": "test",
+      "args": "ebx, ebx",
+      "memory": []
+    },
+    {
+      "pc": "0x25aae1",
+      "bytes": "7539",
+      "mnemonic": "jne",
+      "args": "0x25ab1c",
+      "memory": []
+    },
+    {
+      "pc": "0x25ab1c",
+      "bytes": "4883c420",
+      "mnemonic": "add",
+      "args": "rsp, 0x20",
+      "memory": []
+    },
+    {
+      "pc": "0x25ab20",
+      "bytes": "5b",
+      "mnemonic": "pop",
+      "args": "rbx",
+      "memory": []
+    },
+    {
+      "pc": "0x25ab21",
+      "bytes": "c3",
+      "mnemonic": "ret",
+      "args": "",
+      "memory": []
+    }
+  ],
+  "all_local_transfers": [
+    {
+      "pc": "0x317e64",
+      "mnemonic": "call",
+      "args": "0x3590d0"
+    },
+    {
+      "pc": "0x317e70",
+      "mnemonic": "je",
+      "args": "0x317ea9"
+    },
+    {
+      "pc": "0x317e74",
+      "mnemonic": "call",
+      "args": "0x3588b0"
+    },
+    {
+      "pc": "0x317e7c",
+      "mnemonic": "je",
+      "args": "0x317ea9"
+    },
+    {
+      "pc": "0x317e81",
+      "mnemonic": "call",
+      "args": "0x263e30"
+    },
+    {
+      "pc": "0x317e89",
+      "mnemonic": "je",
+      "args": "0x317ea9"
+    },
+    {
+      "pc": "0x317e8e",
+      "mnemonic": "je",
+      "args": "0x317ea9"
+    },
+    {
+      "pc": "0x317ea4",
+      "mnemonic": "call",
+      "args": "0x33c9b0"
+    },
+    {
+      "pc": "0x317eb2",
+      "mnemonic": "jmp",
+      "args": "0x25aad0"
+    },
+    {
+      "pc": "0x25aada",
+      "mnemonic": "call",
+      "args": "0x3588b0"
+    },
+    {
+      "pc": "0x25aae1",
+      "mnemonic": "jne",
+      "args": "0x25ab1c"
+    },
+    {
+      "pc": "0x25aae6",
+      "mnemonic": "je",
+      "args": "0x25ab1c"
+    },
+    {
+      "pc": "0x25ab10",
+      "mnemonic": "call",
+      "args": "0x2f1710"
+    }
+  ],
+  "unreached_own_writes": [
+    {
+      "pc": "0x25aaf2",
+      "memory": {
+        "base": "rip",
+        "index": null,
+        "scale": 1,
+        "displacement": 31717312,
+        "size": 4,
+        "role": "w",
+        "rip_target": "0x209a2b8"
+      }
+    },
+    {
+      "pc": "0x25aaf8",
+      "memory": {
+        "base": "rip",
+        "index": null,
+        "scale": 1,
+        "displacement": 31717296,
+        "size": 4,
+        "role": "w",
+        "rip_target": "0x209a2b0"
+      }
+    },
+    {
+      "pc": "0x25ab00",
+      "memory": {
+        "base": "rip",
+        "index": null,
+        "scale": 1,
+        "displacement": 31717294,
+        "size": 4,
+        "role": "w",
+        "rip_target": "0x209a2b4"
+      }
+    },
+    {
+      "pc": "0x25ab06",
+      "memory": {
+        "base": "rip",
+        "index": null,
+        "scale": 1,
+        "displacement": 31717292,
+        "size": 4,
+        "role": "w",
+        "rip_target": "0x209a2bc"
+      }
+    },
+    {
+      "pc": "0x25ab15",
+      "memory": {
+        "base": "rip",
+        "index": null,
+        "scale": 1,
+        "displacement": 31717288,
+        "size": 1,
+        "role": "w",
+        "rip_target": "0x209a2c4"
+      }
+    }
+  ],
+  "established": [
+    "Every normal tail of00317E60 sets EDX0 and ECX1, restores its stack, then jumps to0025AAD0.",
+    "0025AAD0 saves incomingECX in EBX. Under normal x64 ABI the preceding003588B0 call preserves EBX1, so test/jne at0025AADF/E1 takes0025AB1C. The five own publication writes and002F1710 call at0025AB10 are unreachable on this exact argument leg. The resolver still executes before the branch."
+  ],
+  "implication": "Exclude the0025AAD0 publication block and002F1710 from synchronous cleanup dependencies for this leg; do not exclude preceding resolver/conditional path-reset helpers or other callers.",
+  "unresolved": [
+    "Effects/identity/noninterference of003590D0,003588B0,00263E30 and conditional0033C9B0.",
+    "Actual action acceptance/commit/execution and KO-to-capability scheduling; direct and aliased mode-word writers and special-sequence cleanup.",
+    "Natural mode1 KOcounterpart reachability and mask7 observation, lifetime and presentation."
+  ],
+  "limits": "Producer static reduction, not independent acceptance. Original169B capture is new source availability, not169B of new game behavior or native execution. No whole UQ147 or formerly-runtime question closure. Normal ABI, intact code, normal returns and valid memory are explicit premises; cannot infer mode preservation across opaque calls."
+}

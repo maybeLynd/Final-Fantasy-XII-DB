@@ -27,6 +27,9 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 EXP = os.path.normpath(os.path.join(HERE, "..", "..", "..", "_experiments", "evidence", "s46-generator-routing"))
 sys.path.insert(0, EXP)
+sys.path.insert(0, os.path.normpath(os.path.join(HERE, "..", "auditspec-l2-expansion-1003")))
+import check_unicorn                                       # the replay pin, enforced before anything maps the image
+check_unicorn.require_pinned_unicorn()                     # (AUDITSPEC-REQ-OPUS-L2EXP-REPAIRS-1003 (d), 2026-10-03)
 import check as E                                          # EXP-144, unchanged; its __main__ guard keeps it from running
 from unicorn.x86_const import UC_X86_REG_RAX, UC_X86_REG_RIP, UC_X86_REG_RSP
 
@@ -145,13 +148,41 @@ wrote = lambda r, tag: any(a[0] == tag and a[1] == "w" for a in r["accesses"])
 i1 = {n: {"mt": wrote(r, "mt"), "gfx": wrote(r, "gfx")} for n, r in results.items()}
 expect("I1", not any(v["mt"] and v["gfx"] for v in i1.values()) and i1["gfxmt-seed"]["gfx"] and not i1["gfxmt-seed"]["mt"]
        and i1["mt-roll-20000"]["mt"] and not i1["mt-roll-20000"]["gfx"], "MT states not disjoint: %s" % (i1,))
-gfx_writes = sorted({int(a[2], 16) for a in results["gfxmt-seed"]["accesses"] if a[0] == "gfx" and a[1] == "w"})
-expect("I5", gfx_writes and min(gfx_writes) >= E.GFX_STATE and max(gfx_writes) < E.GFX_STATE + 0x9C4, "graphics state writes elsewhere")
+# ---- I5, STRICT (OPUS, 2026-10-03, on AUDITSPEC-REQ-OPUS-L2EXP-REPAIRS-1003 (d)) ----
+# The earlier I5 asserted only that "gfx"-tagged writes lie inside [GFX_STATE, +0x9C4): true by construction, because the
+# tracer tags "gfx" ONLY inside that interval (SWE2-AUDIT-SPEC, auditspec-l2-expansion-1003 item 4 #14), and the corrected
+# I5 (2026-09-29: the index is a pointer and a count, reset by the twist) was never examined. I5 now asserts what the
+# corrected invariant says the seed does, each part able to fail:
+#   S  every one of the 624 state dwords [01F7F600, 01F7FFC0) is written (4-byte writes);
+#   P  the cursor qword at 01F7FFC0 is written with 01F7F600 (the walk pointer reset to the state start);
+#   C  the count dword at 01F7FFC8 is written with 0x270 (624 draws remain).
+# The cursor lies inside the old "gfx" watch window, so the old span check counted it as state; P reads it by address.
+def i5_parts(acc):
+    w = [(int(a[2], 16), a[3], int(a[4], 16)) for a in acc if a[1] == "w" and len(a) > 4]
+    state = {ad for ad, sz, _v in w if E.GFX_STATE <= ad < E.GFX_STATE + 0x9C0 and sz == 4}
+    cursor = [v for ad, sz, v in w if ad == E.GFX_CURSOR and sz == 8]
+    count = [v for ad, sz, v in w if ad == E.GFX_COUNT and sz == 4]
+    return {"S": len(state) == 624 and all((ad - E.GFX_STATE) % 4 == 0 for ad in state),
+            "P": bool(cursor) and cursor[-1] == E.GFX_STATE,
+            "C": bool(count) and count[-1] == 0x270}
+
+
+_seed = results["gfxmt-seed"]["accesses"]
+i5 = i5_parts(_seed)
+expect("I5", all(i5.values()), "graphics MT seed parts: %s" % (i5,))
+# CONTROL: each part must be able to fail. Remove the one write it reads and it must report False; a part that still
+# passes cannot fail and fails the package (the shape SWE2-AUDIT-SPEC's cantfail_scan looks for).
+i5_control = {"S": i5_parts([a for a in _seed if int(a[2], 16) != E.GFX_STATE])["S"],
+              "P": i5_parts([a for a in _seed if int(a[2], 16) != E.GFX_CURSOR])["P"],
+              "C": i5_parts([a for a in _seed if int(a[2], 16) != E.GFX_COUNT])["C"]}
+expect("I5-control", not any(i5_control.values()), "a part passed with its evidence removed: %s" % (i5_control,))
+gfx_writes = sorted({int(a[2], 16) for a in _seed if a[0] == "gfx" and a[1] == "w"})
 imports_seen = sorted({c[0] for r in results.values() for c in r["calls"] if c[0].startswith("iat:")})
 
 out = {"ok": not fails, "failures": fails, "cases": len(results) + 3, "bridged_imports_reached": imports_seen, "bridges": BRIDGES,
-       "tails": ["%08X" % t for t in sorted(TAILS)], "i3": i3, "i1": i1,
+       "tails": ["%08X" % t for t in sorted(TAILS)], "i3": i3, "i1": i1, "i5": i5, "i5_control": i5_control,
        "gfx_write_span": ["%X" % gfx_writes[0], "%X" % gfx_writes[-1]] if gfx_writes else None,
        "results": {n: {"delta": r["delta"], "faults": r["faults"], "calls": r["calls"][:12]} for n, r in results.items()}}
 json.dump(out, open(os.path.join(HERE, "result.json"), "w"), indent=1, sort_keys=True, default=str)
 print(json.dumps({"ok": out["ok"], "failures": fails, "imports": imports_seen}, indent=1))
+sys.exit(0 if out["ok"] else 1)

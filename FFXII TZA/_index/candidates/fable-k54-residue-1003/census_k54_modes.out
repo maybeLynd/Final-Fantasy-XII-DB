@@ -1,0 +1,34 @@
+N1 element chunks by type {'0x04': 173, '0x05': 5204, '0x06': 25, '0x07': 0}, type_census.tsv {'0x04': 173, '0x05': 5204, '0x06': 25, '0x07': 0}: PASS
+N2 definitions too short for their slots: 0 PASS
+N3 page TSV (5164 type-0x05 rows) path census through this script's rule: {'00437130': 1791, '00438860': 514, 'inline': 2859}
+N3 reproduces the page's s5 'VU0 514, alternative 1,791, inline 2,859': PASS
+
+SUMMARY active pass slots (byte +0 != 0) by type: {'0x04': 173, '0x05': 9622, '0x06': 51}
+type 0x05: 9622 active slots in 5204 elements
+   byte +0 (texture mode) histogram: [(1, 65), (2, 8293), (3, 774), (4, 90), (5, 400)]
+   mode byte +7 histogram:           [(0, 9294), (1, 54), (2, 152), (3, 21), (4, 101)]
+     mode 0: 9294 slots, 5116 elements, 1080 files, 288 distinct assets; axis (+0xB bit 0) [(0, 5649), (1, 3645)]; by path [('00437130', 5304), ('00438860', 823), ('inline', 3167)]; by pass index [(0, 5069), (1, 2332), (2, 1843), (3, 50)]
+     mode 1: 54 slots, 48 elements, 40 files, 37 distinct assets; axis (+0xB bit 0) [(0, 28), (1, 26)]; by path [('00438860', 24), ('inline', 30)]; by pass index [(0, 21), (1, 16), (2, 17)]
+     mode 2: 152 slots, 129 elements, 94 files, 70 distinct assets; axis (+0xB bit 0) [(0, 113), (1, 39)]; by path [('00437130', 8), ('00438860', 95), ('inline', 49)]; by pass index [(0, 70), (1, 22), (2, 50), (3, 10)]
+       mode 2 planar-scalar track (slot - 0x10, read by 004309C0) kind bytes (+0xC, +0xD): [((0, 0), 21), ((1, 0), 102), ((1, 1), 10), ((2, 0), 3), ((3, 0), 1), ((3, 5), 1), ((4, 0), 10), ((4, 3), 1), ((5, 0), 2), ((13, 0), 1)]
+     mode 3: 21 slots, 20 elements, 10 files, 9 distinct assets; axis (+0xB bit 0) [(0, 7), (1, 14)]; by path [('00438860', 17), ('inline', 4)]; by pass index [(0, 1), (1, 10), (2, 10)]
+     mode 4: 101 slots, 58 elements, 38 files, 33 distinct assets; axis (+0xB bit 0) [(0, 44), (1, 57)]; by path [('00438860', 36), ('inline', 65)]; by pass index [(0, 43), (1, 31), (2, 21), (3, 6)]
+type 0x04: 173 active slots in 173 elements
+   byte +0 (texture mode) histogram: [(2, 74), (4, 16), (5, 83)]
+   mode byte +7 histogram:           [(0, 157), (2, 16)]
+     mode 0: 157 slots, 157 elements, 77 files, 77 distinct assets; axis (+0xB bit 0) [(0, 157)]; by path [('004434D0', 153), ('00444340', 4)]; by pass index [(0, 157)]
+     mode 2: 16 slots, 16 elements, 14 files, 14 distinct assets; axis (+0xB bit 0) [(0, 14), (1, 2)]; by path [('004434D0', 16)]; by pass index [(0, 16)]
+       mode 2 planar-scalar track (slot - 0x10, read by 004309C0) kind bytes (+0xC, +0xD): [((1, 0), 12), ((3, 0), 4)]
+type 0x06: 51 active slots in 25 elements
+   byte +0 (texture mode) histogram: [(2, 51)]
+   mode byte +7 histogram:           [(0, 47), (1, 3), (3, 1)]
+     mode 0: 47 slots, 24 elements, 9 files, 7 distinct assets; axis (+0xB bit 0) [(0, 32), (1, 15)]; by path [('004434D0', 6), ('00444340', 41)]; by pass index [(0, 21), (1, 15), (2, 11)]
+     mode 1: 3 slots, 3 elements, 1 files, 1 distinct assets; axis (+0xB bit 0) [(0, 3)]; by path [('00444340', 3)]; by pass index [(0, 3)]
+     mode 3: 1 slots, 1 elements, 1 files, 1 distinct assets; axis (+0xB bit 0) [(0, 1)]; by path [('004434D0', 1)]; by pass index [(0, 1)]
+type 0x07: no active slots
+elements with an active slot, by (type, draw path): [(('0x04', '004434D0'), 169), (('0x04', '00444340'), 4), (('0x05', '00437130'), 1800), (('0x05', '00438860'), 522), (('0x05', 'inline'), 2882), (('0x06', '004434D0'), 3), (('0x06', '00444340'), 22)]
+elements with a slot of mode 1..255, by (type, draw path): [(('0x04', '004434D0'), 16), (('0x05', '00437130'), 3), (('0x05', '00438860'), 121), (('0x05', 'inline'), 101), (('0x06', '004434D0'), 1), (('0x06', '00444340'), 3)]
+TOTALS active slots 9846; slots with mode != 0: 348; modes above 4: 0; modes 1/3 (matrix of modes 1 and 3): 79; modes 2/4: 269
+type 0x05 mode-2 slots 152: scalar track kinds 0/0 (constant 0.0) 21, 1/0 102, other 29
+(type, mode, slot byte +0) for modes != 0: [(('0x04', 2, 4), 16), (('0x05', 1, 2), 42), (('0x05', 1, 4), 12), (('0x05', 2, 2), 99), (('0x05', 2, 4), 52), (('0x05', 2, 5), 1), (('0x05', 3, 2), 21), (('0x05', 4, 2), 80), (('0x05', 4, 4), 14), (('0x05', 4, 5), 7), (('0x06', 1, 2), 3), (('0x06', 3, 2), 1)]
+FAILS 0

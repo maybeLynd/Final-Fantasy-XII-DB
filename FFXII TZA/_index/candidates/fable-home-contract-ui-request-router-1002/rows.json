@@ -57,7 +57,13 @@
      "mov"
     ]
    ]
-  },
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "moved": [
   {
    "fn": "003EBD70",
    "entered_from": "`002628B0` + 0x1CD",
@@ -83,11 +89,12 @@
      "003EBDB2",
      "mov"
     ]
-   ]
+   ],
+   "moved_to": "00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md",
+   "moved_by": "OPUS",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/opus-fable-home-host-moves-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-ui-request-router-1002/REVIEW.md"
   }
- ],
- "rejected": [],
- "skipped": {},
- "missing": [],
- "corrections": []
+ ]
 }

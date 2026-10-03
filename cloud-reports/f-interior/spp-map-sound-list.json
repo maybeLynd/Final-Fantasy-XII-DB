@@ -1,0 +1,60 @@
+{
+ "page": "18-Audio/Sound-Bank-And-Voice-Formats/spp-map-sound-list.md",
+ "session": "opus-self",
+ "rows": [
+  {
+   "fn": "00363410",
+   "text": "with `c` = `ecx`: when `c` is non-zero it calls `00363840()` unless byte `022CBB2D` already equals `c`, and stores `c` there; when `c` is 0 it calls `002DF190(dword 022CBA7C, edx)` when dword `022CBA70` is non-zero and `edx` is greater than 0 (signed), otherwise `002DF0F0(0, dword 022CBA7C)` (skipped when both `022CBA70` and `022CBA7C` are 0), then zeroes dword `022CBA70` and stores 0 at byte `022CBB2D`",
+   "anchors": [
+    [
+     "00363423",
+     "cmp"
+    ],
+    [
+     "00363427",
+     "call"
+    ],
+    [
+     "0036344B",
+     "call"
+    ],
+    [
+     "00363466",
+     "call"
+    ],
+    [
+     "0036346B",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "003DF550",
+   "text": "calls `0032E620(signed word +0x2c, signed word +0x2e, qword +0x18, dword +0x30, &s)` with a stack record `s` holding dword `+0x34` at `+0`, the low dword of `rcx` at `+8`, `003DF2C0` at qword `+0x10` and 0 at qword `+0x18`, then stores byte 3 at `+0x10`",
+   "anchors": [
+    [
+     "003DF564",
+     "mov"
+    ],
+    [
+     "003DF577",
+     "mov"
+    ],
+    [
+     "003DF58F",
+     "mov"
+    ],
+    [
+     "003DF593",
+     "call"
+    ],
+    [
+     "003DF598",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "drafted by OPUS itself"
+}

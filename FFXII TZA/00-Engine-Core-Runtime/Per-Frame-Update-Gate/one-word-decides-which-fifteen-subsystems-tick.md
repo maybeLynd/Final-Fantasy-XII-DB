@@ -4,7 +4,6 @@ category: 00-Engine-Core-Runtime
 status: AUDITED — the other fourteen groups (UQ-28, ten by mechanism and four by call shape) and the node type (UQ-25, the target-line object) answered 2026-09-17; UQ-27 and UQ-29 closed earlier
 owner_layer: PrimaryOwner:CoreRuntimeScheduling (the pump) — the fifteen callees are owned elsewhere
 evidence_tier: 1
-level: L1
 readiness: SEMANTICALLY IDENTIFIED
 confidence: PROVEN
 verified_against:

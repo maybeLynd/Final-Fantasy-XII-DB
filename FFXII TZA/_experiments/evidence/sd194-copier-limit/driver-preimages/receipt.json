@@ -1,0 +1,18 @@
+{
+  "status": "EXACT_HASH_VERIFIED_RECOVERED_DRIVER_PREIMAGES",
+  "members": [
+    {
+      "path": "prove-01.py",
+      "sha256": "62d34593906b99d651d4908b2e3f6be909294db49d0caa44c64f45c97c9f5169"
+    },
+    {
+      "path": "prove-02.py",
+      "sha256": "afd6b2e25b540b32066658d5866758adc55ee0d38f2c25996d3ec8aed41ed2fc"
+    },
+    {
+      "path": "control-01.py",
+      "sha256": "4ddc66dc2bb54ed85d85bdb84bdf4c91655a24929ec15bd375d0b5b767643cb9"
+    }
+  ],
+  "limits": "Recovery from known local edits checked against original actual launch hashes. No evidence of an additional launch."
+}

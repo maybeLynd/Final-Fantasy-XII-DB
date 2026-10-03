@@ -1,0 +1,288 @@
+== S: static
+PASS  S0 004309C0 decodes exactly over its 155-byte extent
+PASS  S0 00430540 decodes exactly over its 634-byte extent
+PASS  S0 004307C0 decodes exactly over its 238-byte extent
+PASS  S0 0020E600 decodes exactly over its 10-byte extent
+PASS  S0 0039B6E0 decodes exactly over its 147-byte extent
+PASS  S0 0039B630 decodes exactly over its 170-byte extent
+PASS  S0 003D8E50 decodes exactly over its 418-byte extent
+NOTE  -- record fields read by 004309C0 (rcx = record, edx = time)
+PASS  004309CA is `movzx eax, byte ptr [rcx + 0xc]`
+PASS  004309CE is `mov edi, edx`
+PASS  004309D5 is `mov rbx, rcx`
+PASS  004309DC is `xorps xmm6, xmm6`
+PASS  004309E1 is `cmp eax, 1`
+PASS  004309E6 is `mov ecx, dword ptr [rcx]`
+PASS  004309E8 is `call 0x20e600`
+PASS  004309ED is `movss xmm6, dword ptr [rax + 4]`
+PASS  004309F4 is `xor r8d, r8d`
+PASS  004309F7 is `call 0x430540`
+PASS  004309FF is `movzx eax, byte ptr [rbx + 0xd]`
+PASS  00430A05 is `jne 0x430a1a`
+PASS  00430A07 is `movaps xmm0, xmm6`
+PASS  00430A19 is `ret`
+PASS  00430A1F is `mov ecx, dword ptr [rbx + 4]`
+PASS  00430A27 is `movss xmm0, dword ptr [rax + 4]`
+PASS  00430A2E is `mov r8d, 1`
+PASS  00430A34 is `mov edx, edi`
+PASS  00430A3E is `movaps xmm2, xmm0`
+PASS  00430A41 is `movaps xmm1, xmm6`
+PASS  00430A44 is `mov rcx, rbx`
+PASS  00430A56 is `jmp 0x4307c0`
+PASS  S1 004309C0 has exactly one ret (00430A19) and one tail jump (00430A56 -> 004307C0)  | [4393497] [(4393558, 4392896)] []
+NOTE  -- 00430540 (rcx = record, edx = time, r8d = channel)
+PASS  0043055F is `movsxd rsi, r8d`
+PASS  00430562 is `mov ebx, edx`
+PASS  00430564 is `mov rdi, rcx`
+PASS  00430567 is `test r8d, r8d`
+PASS  0043056A is `jne 0x430579`
+PASS  0043056C is `mov ecx, dword ptr [rcx]`
+PASS  0043056E is `call 0x20e600`
+PASS  00430573 is `movzx ecx, word ptr [rdi + 0xe]`
+PASS  00430579 is `mov ecx, dword ptr [rcx + 4]`
+PASS  0043057C is `call 0x20e600`
+PASS  00430581 is `movzx ecx, word ptr [rdi + 0xe]`
+PASS  00430585 is `shr ecx, 2`
+PASS  00430588 is `mov r8, rax`
+PASS  0043058B is `and ecx, 3`
+PASS  0043058E is `movzx eax, word ptr [rdi + rsi*2 + 8]`
+PASS  00430596 is `test ax, ax`
+PASS  00430599 is `je 0x4305ac`
+PASS  0043059F is `cmp ebx, r9d`
+PASS  004305A2 is `jle 0x4305ac`
+PASS  004305A6 is `cdq`
+PASS  004305A7 is `idiv r9d`
+PASS  004305AA is `mov ebx, edx`
+PASS  004305B4 is `test ecx, ecx`
+PASS  004305B6 is `je 0x43073b`
+PASS  004305BC is `cmp ecx, 1`
+PASS  004305BF is `je 0x4305c9`
+PASS  004305C1 is `xorps xmm0, xmm0`
+PASS  004305C4 is `jmp 0x43079a`
+PASS  004305C9 is `movzx eax, byte ptr [rsi + rdi + 0xc]`
+PASS  004305CE is `cmp al, 2`
+PASS  004305D0 is `jbe 0x43073b`
+PASS  004305E7 is `movss xmm1, dword ptr [rbp - 0x21]`
+PASS  004305EC is `movss xmm3, dword ptr [rbp - 0x25]`
+PASS  00430600 is `mov ecx, dword ptr [r8]`
+PASS  00430603 is `movss xmm2, dword ptr [r8 + 4]`
+PASS  00430609 is `add r8, 8`
+PASS  0043060D is `cmp ecx, ebx`
+PASS  0043060F is `jge 0x43062a`
+PASS  00430625 is `jmp 0x430797`
+PASS  0043062A is `test r9d, r9d`
+PASS  0043062D is `je 0x430797`
+PASS  00430633 is `mov eax, ecx`
+PASS  00430635 is `sub eax, r10d`
+PASS  00430638 is `cdq`
+PASS  00430639 is `sub eax, edx`
+PASS  0043063B is `sar eax, 1`
+PASS  0043063D is `add eax, r10d`
+PASS  00430640 is `cmp r9d, 1`
+PASS  00430644 is `jne 0x43064f`
+PASS  00430646 is `cmp ebx, eax`
+PASS  00430648 is `jg 0x430696`
+PASS  0043064A is `jmp 0x430762`
+PASS  0043064F is `cmp ebx, eax`
+PASS  00430651 is `jg 0x43068a`
+PASS  0043068A is `lea eax, [rsi - 1]`
+PASS  0043068D is `cmp r9d, eax`
+PASS  00430690 is `je 0x430762`
+PASS  004306B9 is `movd xmm0, dword ptr [r8]`
+PASS  004306C6 is `movss xmm1, dword ptr [r8 + 4]`
+PASS  004306E5 is `cvtdq2ps xmm6, xmm6`
+PASS  004306EB is `call 0x39b6e0`
+PASS  004306F0 is `movss xmm0, dword ptr [rbp - 0x39]`
+PASS  004306F5 is `ucomiss xmm0, dword ptr [rip + 0x18bb50c]`
+PASS  00430727 is `call 0x39b630`
+PASS  0043072C is `movss xmm2, dword ptr [rbp - 0x25]`
+PASS  0043073B is `movss xmm3, dword ptr [rbp - 0x25]`
+PASS  00430740 is `xorps xmm2, xmm2`
+PASS  00430743 is `mov r10d, dword ptr [rbp - 0x25]`
+PASS  0043074A is `movzx eax, byte ptr [r11 + rdi + 0xc]`
+PASS  00430750 is `cmp r9d, eax`
+PASS  00430753 is `jge 0x430797`
+PASS  00430762 is `cmp ecx, ebx`
+PASS  00430764 is `je 0x430797`
+PASS  00430766 is `jg 0x430773`
+PASS  00430773 is `subss xmm2, xmm3`
+PASS  00430777 is `sub ebx, r10d`
+PASS  0043077A is `sub ecx, r10d`
+PASS  0043078F is `divss xmm2, xmm1`
+PASS  00430793 is `addss xmm2, xmm3`
+PASS  00430797 is `movaps xmm0, xmm2`
+PASS  004307A9 is `call 0x808c40`
+PASS  004307B9 is `ret`
+PASS  S2 the curve's degenerate sentinel 01CEBC08 is the float 2.0 (the ucomiss at 004306F5 reads it)
+NOTE  -- 0039B6E0 (solve x(t) = v) and 0039B630 (the quadratic B-spline), read whole
+PASS  0039B6E6 is `movss xmm2, dword ptr [rdx + 0x10]`
+PASS  0039B6EF is `movss xmm3, dword ptr [rdx]`
+PASS  0039B720 is `addss xmm6, dword ptr [rdx + 0x20]`
+PASS  0039B72C is `mov dword ptr [r8], 0x40000000`
+PASS  0039B752 is `call 0x861f14`
+PASS  0039B769 is `movss dword ptr [rbx], xmm0`
+PASS  0039B665 is `mulss xmm0, dword ptr [rdx]`
+PASS  0039B697 is `mulss xmm3, dword ptr [rdx + 0x14]`
+PASS  0039B69C is `mulss xmm0, dword ptr [rdx + 4]`
+PASS  0039B6A1 is `mulss xmm1, dword ptr [rdx + 0x24]`
+PASS  0039B6AE is `movss dword ptr [r8 + 4], xmm3`
+PASS  S3 0039B6E0 reads only lane 0 of the three points (rdx + 0x0 / 0x10 / 0x20)  | ['0x0', '0x10', '0x20']
+PASS  S3b 0039B630 reads lanes 0-2 of each point, never lane 3 (rdx + 0xC / 0x1C / 0x2C)  | ['0x0', '0x4', '0x8', '0x10', '0x14', '0x18', '0x20', '0x24', '0x28']
+PASS  S3c 0039B630 constants: [01CEBBA8] = 1.0, [01CEBB70] = 0.5
+PASS  S3d 00861F14 is an import thunk to sqrtf (the one stub on the curve path)  | sqrtf
+NOTE  -- 004307C0 (rcx = record, xmm1 = a, xmm2 = b)
+PASS  004307D1 is `movaps xmm6, xmm1`
+PASS  004307D4 is `movaps xmm7, xmm2`
+PASS  004307D7 is `ucomiss xmm7, xmm0`
+PASS  004307DA is `jp 0x43080f`
+PASS  004307DC is `jne 0x43080f`
+PASS  004307DE is `movzx ecx, word ptr [rcx + 0xe]`
+PASS  004307E2 is `shr ecx, 4`
+PASS  004307E5 is `and ecx, 0xf`
+PASS  004307E8 is `sub ecx, 4`
+PASS  004307EB is `je 0x4307fd`
+PASS  004307ED is `cmp ecx, 1`
+PASS  004307F0 is `jne 0x4307fd`
+PASS  004307F2 is `subss xmm7, xmm6`
+PASS  004307F9 is `jp 0x430833`
+PASS  004307FB is `jne 0x430833`
+PASS  004307FD is `movaps xmm0, xmm6`
+PASS  0043080F is `movzx eax, word ptr [rcx + 0xe]`
+PASS  00430813 is `shr eax, 4`
+PASS  00430816 is `and eax, 0xf`
+PASS  00430819 is `cmp eax, 5`
+PASS  0043081C is `ja 0x4307fd`
+PASS  0043081E is `lea rdx, [rip - 0x310825]`
+PASS  00430827 is `mov ecx, dword ptr [rdx + rax*4 + 0x3108b0]`
+PASS  0043082E is `add rcx, rdx`
+PASS  00430831 is `jmp rcx`
+PASS  00430833 is `movaps xmm0, xmm7`
+PASS  00430836 is `call 0x3d8e50`
+PASS  0043083B is `addss xmm0, xmm6`
+PASS  0043084E is `movaps xmm0, xmm7`
+PASS  00430851 is `call 0x3d8e50`
+PASS  00430856 is `subss xmm6, xmm0`
+PASS  0043086C is `movaps xmm0, xmm7`
+PASS  0043086F is `addss xmm0, xmm7`
+PASS  00430873 is `call 0x3d8e50`
+PASS  00430878 is `addss xmm0, xmm6`
+PASS  0043087C is `subss xmm0, xmm7`
+PASS  0043088F is `movaps xmm0, xmm7`
+PASS  00430892 is `call 0x3d8e50`
+PASS  0043089C is `mulss xmm0, xmm6`
+PASS  004308A0 is `addss xmm0, xmm6`
+PASS  S4 004307C0's table base: lea at 0043081E forms 00120000 (the image base), table at 004308B0
+PASS  S5 jump table 004308B0, m = 0..5 -> 004307FD (a), 00430833 (a+F(b)), 0043084E (a-F(b)), 0043086C (F(2b)+a-b), 0043088F (F(b)*a+a), 004307F2 (b-a == 0 ? a : F(b-a)+a)  | ['004307FD', '00430833', '0043084E', '0043086C', '0043088F', '004307F2']
+NOTE  -- 0020E600 (the handle resolver), read whole
+PASS  0020E600 is `mov eax, ecx`
+PASS  0020E602 is `add rax, qword ptr [rip + 0x1d74f27]`
+PASS  0020E609 is `ret`
+PASS  S6 0020E600 adds the qword at 01F83530 to the zero-extended ecx
+NOTE  -- caller context: the planar scalar of pass p (00449AB0, the type-0x05 walk)
+PASS  00449FE8 is `mov edx, dword ptr [r15 + 0x44]`
+PASS  00449FEC is `lea rcx, [rsi + 0x90]`
+PASS  00449FF3 is `call 0x4309c0`
+PASS  0044A017 is `movss dword ptr [rcx + 0xa0], xmm0`
+PASS  00538E22 is `lea rbx, [rbp + 0x1b0]`
+PASS  00538E35 is `call 0x431770`
+PASS  00538E3A is `add rbx, 0xf0`
+PASS  0043178F is `mov ecx, dword ptr [rdi + 0x90]`
+PASS  0043179A is `lea rcx, [rbx + rax]`
+PASS  0043179E is `call 0x20e620`
+PASS  004317A9 is `mov dword ptr [rdi + 0x90], eax`
+PASS  004317A3 is `mov ecx, dword ptr [rdi + 0x94]`
+PASS  004317BD is `mov dword ptr [rdi + 0x94], eax`
+PASS  003A9A81 is `add rcx, 4`
+PASS  003A9AA5 is `mov edx, dword ptr [rip + 0x2b11c8d]`
+PASS  003A9AAB is `add edx, ecx`
+PASS  003A9AAD is `call 0x5004c0`
+PASS  S7 the setup's rebase delta is low32(record) + [02EBB738] (the chunk's +0x08 i32, stored by the loader)
+== E: execution (original bytes under Unicorn vs the float32 reference)
+PASS  E1 6000 seeded random records: 004309C0 executed on the original bytes equals the float32 reference bit for bit (no fault)  | mismatch 0 fault 0 first []
+PASS  E1b the scaler 003D8E50 is called with exactly the reference's arguments, in order (b, 2b, b-a, -a)  | 0 cases differ
+NOTE     path covered    595  channel 1 count 0 -> return a (no combine)
+NOTE     path covered    107  combine b=0 m=4 -> a
+NOTE     path covered     64  combine b=0 m=5 -> F(-a)+a
+NOTE     path covered     38  combine b=0 m=5, a=0 -> a
+NOTE     path covered   1298  combine b=0 m=other -> a
+NOTE     path covered   2727  combine m=0/>5 -> a
+NOTE     path covered    234  combine m=1
+NOTE     path covered    250  combine m=2
+NOTE     path covered    217  combine m=3
+NOTE     path covered    221  combine m=4
+NOTE     path covered    249  combine m=5
+NOTE     path covered     94  curve->linear tail: exact
+NOTE     path covered    177  curve->linear tail: interpolate
+NOTE     path covered   1032  curve: after the last key -> last value
+NOTE     path covered    801  curve: at/before the first key -> key 0 value
+NOTE     path covered    197  curve: window i-1,i,i+1
+NOTE     path covered     74  curve: window i-1,i,i+1 (2.0 sentinel -> linear parameter)
+NOTE     path covered    149  curve: window i-2,i-1,i
+NOTE     path covered     56  curve: window i-2,i-1,i (2.0 sentinel -> linear parameter)
+NOTE     path covered    139  curve: window keys 0,1,2
+NOTE     path covered     47  curve: window keys 0,1,2 (2.0 sentinel -> linear parameter)
+NOTE     path covered   1472  linear: after the last key -> last value
+NOTE     path covered    546  linear: exact key frame
+NOTE     path covered    643  linear: interpolate
+NOTE     path covered    918  linear: interpolate (BEFORE the first key: stack residue)
+NOTE     path covered   2001  period wrap
+NOTE     path covered   1033  selector 2 -> 0.0
+NOTE     path covered   1025  selector 3 -> 0.0
+PASS  E1c every decoded path was exercised at least once (incl. the 2.0 sentinel: 177)  | []
+PASS  E1d 00430540's own count-0 exit (0043074A..00430753 -> 0.0) is never reached from 004309C0: counts 0 and 1 are taken by 004309C0 before the call
+PASS  E2 flag bits 8-15 (+0xF) change nothing (800 records, high byte flipped)  | 0 differ
+PASS  E3 no read at or above record +0x10: all 6000 runs had the record's last byte on the page end, 0 faults
+PASS  E4 linear path, time before the first key: the result follows the stack slot [rbp-0x25] (860 cases; 502 change under a filled stack; the model with that slot as (frame, value) matches 860)
+PASS  E4b curve path (selector 1, >= 3 keys): result independent of stack residue, incl. the unwritten lanes 2-3 of the three points (2146 cases)  | 2146 of 2146 same
+PASS  E5 0020E600(ecx = 80000010) with [01F83530] = 1_00000000 returns 1_80000010 (zero-extended, not signed)  | 0x180000010
+PASS  E6 count 1: value = float at handle+4 (3.25) for every time  | {1078984704}
+PASS  E7 keys (0,0),(20,20), period 10: t=10 -> 10 (not wrapped), 11 -> 1, 15 -> 5, 21 -> 1; t=-3 (not wrapped, before the first key) uses the residue  | {10: 10.0, 11: 1.0, 15: 5.0, 21: 1.0, -3: nan}
+PASS  E8 real 003D8E50, 200 draws each, a = 10, b = 5: m=1 in [10, 15), m=3 in [5, 15), m=5 in (5, 10]  | m1 10.000..14.997 m3 5.058..14.979 m5 5.009..9.986
+PASS  E8b b = 0.0, m = 1: returns a (10.0) and draws nothing (state 01EF93E8 unchanged)
+== C: controls (each must reject a wrong reading)
+PASS  C1 control: the WRONG reading 'channel c's period is the u16 at +0xA + 2c' is rejected by execution (446 mismatches)
+PASS  C2 control: the WRONG reading 'a time equal to the period wraps' is rejected (65 mismatches)
+PASS  C3 control: the WRONG reading 'm=1 is a-F(b), m=2 is a+F(b)' is rejected (192 mismatches)
+PASS  C4 control: on a patched image (table slot 1 -> 0043084E) the S5 table check would fail
+PASS  C5 control: with only 14 record bytes mapped the run faults (the E3 instrument can see a read past the record)  | ('unmapped', 19, '0x11001000', '0x430573')
+== D: shipped data (all EFX streams of D:/FFXII_TZA_extract)
+PASS  D0 type-0x05 element chunks walked = 5,204 (the census population)  | 5204
+PASS  D1 every authored handle of a used channel, rebased as stored + low32(record) + bias with [01F83530] = 0, lands inside its own chunk with room for its keys  | []
+PASS  D2 type-0x05 mode-2 slots = 152 (the census)  | 152
+NOTE     (count+0xC, count+0xD) over the 152 slots: [((0, 0), 21), ((1, 0), 102), ((1, 1), 10), ((2, 0), 3), ((3, 0), 1), ((3, 5), 1), ((4, 0), 10), ((4, 3), 1), ((5, 0), 2), ((13, 0), 1)]
+PASS  D3 every shipped key array has strictly ascending frames
+NOTE     slots: constant 0.0 (0,0) 21; one resource float (1,0) 102; keyed curve on a channel (count >= 2) 19; channel 1 present (combine runs) 12
+NOTE     (1,0) constant values: [(-0.4000000059604645, 2), (-0.20000000298023224, 3), (-0.0010000000474974513, 1), (0.010000000707805157, 17), (0.020000001415610313, 7), (0.030000001192092896, 2), (0.05000000074505806, 3), (0.08000000566244125, 2), (0.09000000357627869, 1), (0.10000000149011612, 4), (0.20000000298023224, 11), (0.30000001192092896, 2), (0.6000000238418579, 6), (0.800000011920929, 7), (1.0, 27), (1.2000000476837158, 4), (1.8000000715255737, 1), (2.0, 1), (2.4000000953674316, 1)]
+NOTE     keyed-curve slots: 19; channel-0 selector [(0, 3), (1, 16)]; channel-1 selector (when count1 >= 2) [(1, 2)]; combine modes (count1 >= 1) [(3, 1), (5, 11)]; periods used [((0, 0), 19)]
+NOTE     flags high byte (+0xF) over the 152: [('0x00', 152)]
+NOTE     ps2data/effect_finish/jp/magic/m0051.efx 0x40920 inline p0 k=(13,0) sel=(1,0) m=1 per=(0,0) keys0=[0:0;6:0.05;12:-0.000308414;22:-0.04;32:0;42:0.025;54:-0.02;62:0.00963522;70:-0.00767296;78:0.00319497;88:-0.00324528;100:0;120:0] keys1=[] -> [-0.0300386, 0.0374614]
+NOTE     ps2data/effect_finish/jp/event/e0085.efx 0xE8C40 00438860 p0 k=(3,5) sel=(1,1) m=5 per=(0,0) keys0=[0:-0.02;40:-0.02;50:0] keys1=[0:0.06;10:0.06;22:0.037;40:0.025;50:0] -> [-0.02, 0.06]
+NOTE     ps2data/effect_finish/jp/event/e0088.efx 0x66FB0 inline p0 k=(4,3) sel=(0,1) m=5 per=(0,0) keys0=[0:-0.001;12:-0.002;28:0.002;40:0] keys1=[0:0.02;30:0.02;40:0] -> [-0.002, 0.02]
+NOTE     ps2data/effect_finish/jp/magic/m0120.efx 0x4C040 00438860 p2 k=(5,0) sel=(1,0) m=1 per=(0,0) keys0=[0:1.2;296:1.2;300:1.2;320:0.436;412:-0.0752002] keys1=[] -> [-0.0752002, 1.2]
+NOTE     ps2data/effect_finish/us/magic/m0120.efx 0x46940 00438860 p2 k=(5,0) sel=(1,0) m=1 per=(0,0) keys0=[0:1.2;296:1.2;300:1.2;320:0.436;412:-0.0752002] keys1=[] -> [-0.0752002, 1.2]
+NOTE     ps2data/effect_finish/jp/event/e0051.efx 0x78B50 00437130 p2 k=(4,0) sel=(1,0) m=1 per=(0,0) keys0=[0:-1;18:-0.949;62:0.5;100:0.6] keys1=[] -> [-1, 0.6]
+NOTE     ps2data/effect_finish/jp/event/e0051.efx 0x82EF0 00437130 p2 k=(4,0) sel=(1,0) m=1 per=(0,0) keys0=[0:0;8:-0.096;26:-0.888;36:-1] keys1=[] -> [-1, 0]
+NOTE     ps2data/effect_finish/jp/event/e0195.efx 0x6F770 00438860 p3 k=(4,0) sel=(1,0) m=1 per=(0,0) keys0=[0:-1;160:-3.5;320:-1;450:-1.5] keys1=[] -> [-2.875, -1]
+NOTE     ps2data/effect_finish/jp/magic/m0129.efx 0x6ED10 00438860 p3 k=(4,0) sel=(1,0) m=1 per=(0,0) keys0=[0:-1;160:-3.5;320:-1;450:-1.5] keys1=[] -> [-2.875, -1]
+NOTE     ps2data/effect_finish/jp/magic/m0130.efx 0xA8B30 00438860 p3 k=(4,0) sel=(1,0) m=1 per=(0,0) keys0=[0:-1;160:-3.5;320:-1;450:-1.5] keys1=[] -> [-2.875, -1]
+NOTE     ps2data/effect_finish/jp/magic/m0135.efx 0x8E3C0 00438860 p2 k=(4,0) sel=(1,0) m=1 per=(0,0) keys0=[0:0.2;90:0.2;102:0.167;140:-0.2] keys1=[] -> [-0.2, 0.2]
+NOTE     ps2data/effect_finish/us/event/e0195.efx 0x6CA70 00438860 p3 k=(4,0) sel=(1,0) m=1 per=(0,0) keys0=[0:-1;160:-3.5;320:-1;450:-1.5] keys1=[] -> [-2.875, -1]
+NOTE     ps2data/effect_finish/us/magic/m0129.efx 0x6C010 00438860 p3 k=(4,0) sel=(1,0) m=1 per=(0,0) keys0=[0:-1;160:-3.5;320:-1;450:-1.5] keys1=[] -> [-2.875, -1]
+NOTE     ps2data/effect_finish/us/magic/m0130.efx 0xA8C30 00438860 p3 k=(4,0) sel=(1,0) m=1 per=(0,0) keys0=[0:-1;160:-3.5;320:-1;450:-1.5] keys1=[] -> [-2.875, -1]
+NOTE     ps2data/effect_finish/us/magic/m0135.efx 0x8DDC0 00438860 p2 k=(4,0) sel=(1,0) m=1 per=(0,0) keys0=[0:0.2;90:0.2;102:0.167;140:-0.2] keys1=[] -> [-0.2, 0.2]
+NOTE     ps2data/effect_finish/jp/event/e0024.efx 0xC270 inline p0 k=(3,0) sel=(1,0) m=1 per=(0,0) keys0=[0:0.03;30:0.1;60:0] keys1=[] -> [0, 0.0794]
+NOTE     ps2data/effect_finish/in/magic/m0182.efx 0x24390 inline p1 k=(1,1) sel=(0,0) m=5 per=(0,0) keys0=[0:1] keys1=[0:0.98] -> [0.98, 1]
+NOTE     ps2data/effect_finish/jp/chara/h0018.efx 0xB310 00438860 p0 k=(1,1) sel=(0,0) m=5 per=(0,0) keys0=[0:0.03] keys1=[0:-0.03] -> [-0.03, 0.03]
+NOTE     ps2data/effect_finish/jp/chara/h0021.efx 0xB1F0 00438860 p0 k=(1,1) sel=(0,0) m=5 per=(0,0) keys0=[0:0.03] keys1=[0:0.02] -> [0.02, 0.03]
+NOTE     ps2data/effect_finish/jp/event/e0081.efx 0xE6400 00438860 p1 k=(2,0) sel=(1,0) m=1 per=(0,0) keys0=[0:0;272:0.2] keys1=[] -> [0, 0.2]
+NOTE     ps2data/effect_finish/jp/event/e0087.efx 0xF5140 inline p0 k=(1,1) sel=(1,0) m=5 per=(0,0) keys0=[0:-0.02] keys1=[0:0.02] -> [-0.02, 0.02]
+NOTE     ps2data/effect_finish/jp/event/e0088.efx 0x676D0 inline p0 k=(1,1) sel=(0,0) m=3 per=(0,0) keys0=[0:-0.001] keys1=[0:-0.01] -> [-0.011, 0.009]
+NOTE     ps2data/effect_finish/jp/magic/m0021.efx 0x24380 inline p1 k=(1,1) sel=(0,0) m=5 per=(0,0) keys0=[0:1] keys1=[0:0.98] -> [0.98, 1]
+NOTE     ps2data/effect_finish/jp/magic/m0030.efx 0x158A0 00438860 p0 k=(1,1) sel=(0,0) m=5 per=(0,0) keys0=[0:0.006] keys1=[0:0.008] -> [0.006, 0.008]
+NOTE     ps2data/effect_finish/jp/magic/m0135.efx 0x94930 00438860 p2 k=(2,0) sel=(0,0) m=1 per=(0,0) keys0=[0:2;76:0] keys1=[] -> [0, 2]
+NOTE     ps2data/effect_finish/jp/magic/m0182.efx 0x24390 inline p1 k=(1,1) sel=(0,0) m=5 per=(0,0) keys0=[0:1] keys1=[0:0.98] -> [0.98, 1]
+NOTE     ps2data/effect_finish/us/magic/m0135.efx 0x94330 00438860 p2 k=(2,0) sel=(0,0) m=1 per=(0,0) keys0=[0:2;76:0] keys1=[] -> [0, 2]
+NOTE     ps2data/obj_finish/in/monster/m11/m1166/m1166.cm 0xD1C0 00438860 p0 k=(1,1) sel=(0,0) m=5 per=(0,0) keys0=[0:0.03] keys1=[0:-0.03] -> [-0.03, 0.03]
+NOTE     ps2data/obj_finish/in/monster/m11/m1169/m1169.cm 0xD0A0 00438860 p0 k=(1,1) sel=(0,0) m=5 per=(0,0) keys0=[0:0.03] keys1=[0:0.02] -> [0.02, 0.03]
+NOTE     slots whose linear channel's first key frame is > 0 (time 0..first-1 would read the residue): 0
+FAILS 0

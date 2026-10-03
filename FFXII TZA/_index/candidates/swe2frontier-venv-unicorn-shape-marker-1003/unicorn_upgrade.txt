@@ -1,0 +1,25 @@
+== BEFORE 2026-10-03T08:43:56Z
+unicorn 2.1.0 capstone 5.0.7
+interpreter: C:\Users\Kristian\source\repos\XIIOnline\Collaboration\Tools\analysis\venv\Scripts\python.exe
+unicorn: 2.1.0 pinned: 2.1.4
+flush probe: RAISED AssertionError('nargs must not exceed value of 15 (got 0)')
+unicorn 2.1.0 at C:\Users\Kristian\source\repos\XIIOnline\Collaboration\Tools\analysis\venv\Scripts\python.exe; replay packages are pinned to 2.1.4 (replay-requirements.txt)
+check_unicorn exit 1
+== pip install -r replay-requirements.txt
+    Uninstalling unicorn-2.1.1:
+      Successfully uninstalled unicorn-2.1.1
+Successfully installed unicorn-2.1.4
+== AFTER
+unicorn 2.1.4 capstone 5.0.7
+interpreter: C:\Users\Kristian\source\repos\XIIOnline\Collaboration\Tools\analysis\venv\Scripts\python.exe
+unicorn: 2.1.4 pinned: 2.1.4
+flush probe: PASS
+OK
+check_unicorn exit 0
+== venv gates after the upgrade 2026-10-03T08:44:24Z
+team.py validate: PASS: 11 identities (ASTRA, FABLE, OPUS, SWE2-AUDIT-SEM, SWE2-AUDIT-SPEC, SWE2-CONTRACT, SWE2-DATA, SWE2-EC7, SWE2-FRONT
+check_dispositions self-test: self-test: 26 case(s) passed, including every refusal reason
+check_stale_preimage self-test: self-test: 7 case(s) passed
+test_publish_correction_gate: OK
+test_watchdog_scheduler: ]
+capstone import: 5.0.7

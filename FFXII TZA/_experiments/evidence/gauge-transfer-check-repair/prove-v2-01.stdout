@@ -1,0 +1,1 @@
+PROVED retained local facts with all call/jump/conditional transfer checks; five targeted synthetic counterexamples refused; no new native/live observations

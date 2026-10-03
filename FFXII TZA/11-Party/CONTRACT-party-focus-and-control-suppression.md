@@ -2,7 +2,6 @@
 contract: Change who the player is — a deferred handle swap, and what the new leader's own state suppresses
 category: 11-Party
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: 11-Party/active-party-reserve-and-the-moment-the-leader-changes.md

@@ -4,7 +4,6 @@ category: 16-UI
 status: AUDITED — the registrar, the latch, the kind-1 and kind-18 arms and the reachability read; the last box (UQ-182, the DT-1 residual count) closed by citation 2026-09-17, tracked on DT-1's row
 owner_layer: none — neither the registrar nor the handler carries a ledger owner
 evidence_tier: 1
-level: L1
 readiness: SEMANTICALLY IDENTIFIED
 confidence: PROVEN
 verified_against:

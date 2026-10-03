@@ -1,0 +1,117 @@
+{
+  "package": "astra-queue-reconciliation-checkpoint78",
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "DISPOSITIONS.md",
+      "bytes": 24083,
+      "sha256": "6aa997f416f0bd8a06f53a3cc180dc18c1a2f33b1ed8b5c6795813669513403a"
+    },
+    {
+      "path": "README-additive-02.md",
+      "bytes": 682,
+      "sha256": "1e148da3da52e009c58daedc7ca0152825c1f155077ad2d2e6caf5b47ffd33b8"
+    },
+    {
+      "path": "apply-current-bounded.py",
+      "bytes": 6109,
+      "sha256": "870adc0718126940088ff71737e57edfc015c0e8a03c8ca06b09b25be04008df"
+    },
+    {
+      "path": "boardcheck-final-02.json",
+      "bytes": 65,
+      "sha256": "7f8ba78c6ed2795e87d1a84e7c04f5a635f5bd6581a819c2f29f0f4527e2a0c0"
+    },
+    {
+      "path": "dispositions-01.json",
+      "bytes": 301609,
+      "sha256": "82a29af972f54394a5b028160dfb4773d2b58a23793e50b8263f9ad2a613cc07"
+    },
+    {
+      "path": "finish-current-notice-batches-01/current-077-081.json",
+      "bytes": 1221,
+      "sha256": "0e70c30d17d8ee0ec2d7e5f57c1dcdd2cab46fc51c504dbcae4782fd917392cb"
+    },
+    {
+      "path": "finish-current-notice-batches-01/current-082-086.json",
+      "bytes": 1166,
+      "sha256": "c4875b46b8fb37bea35be56da0f29457dd7f6763071b925d0bf34714c25b773c"
+    },
+    {
+      "path": "finish-current-notice-batches-01/current-087-091.json",
+      "bytes": 1150,
+      "sha256": "6648e66a8532f87a6172779a5122a2a7dbdb07e48200b708bce88e41d54a21f9"
+    },
+    {
+      "path": "finish-current-notice-batches-01/current-092-096.json",
+      "bytes": 1170,
+      "sha256": "ccbc2756c9a3b4b9b9a278184765162d00fb812cda0de274e7b5f4673fd6c753"
+    },
+    {
+      "path": "finish-current-notice-batches-01/current-097-101.json",
+      "bytes": 1144,
+      "sha256": "52e90956500f1bc2aa0a653b6f7b3be376bce95440d67ee1d9d84430c200836f"
+    },
+    {
+      "path": "finish-current-notice-batches-01/current-102-106.json",
+      "bytes": 1166,
+      "sha256": "2b3056b62a8d01f452f22fb3262c31a1133b75ad6d5584b7169cad6745c64121"
+    },
+    {
+      "path": "finish-current-notice-batches-01/current-107-111.json",
+      "bytes": 1212,
+      "sha256": "731963cd72b8d1b5c1809aa8a85224cf419c024a15c27c80b804035d339c5d4a"
+    },
+    {
+      "path": "finish-current-notice-batches-01/current-112-116.json",
+      "bytes": 1218,
+      "sha256": "1a7aa7ddff0ad4a4b97b36a817ffa961a6215ef5ca12b3021ba997fe5660bee3"
+    },
+    {
+      "path": "finish-current-notice-batches-01/current-117-118.json",
+      "bytes": 886,
+      "sha256": "29de4e52f06df023d5dc1e5bd395df284b8fb73c07d87a394cd088f2166ef0a3"
+    },
+    {
+      "path": "finish-current-notice-batches-01/terminal.json",
+      "bytes": 81,
+      "sha256": "12f1d35adff3e6c687b7899f133ae38eb5bc0a4591cd6a5caba7c5599babe4b4"
+    },
+    {
+      "path": "finish-current-notice-batches.py",
+      "bytes": 2034,
+      "sha256": "4fc5ee63db5561cf49ebb6edc4619a45b657e767d6365dbf7a28c8d3a062f5cf"
+    },
+    {
+      "path": "freeze-copier-and-queue78.py",
+      "bytes": 10252,
+      "sha256": "6860f20527ea1fa9bfd9583ebe8f61b2ad6da0fa391617677779d730f45fd34c"
+    },
+    {
+      "path": "input-snapshot-01.json",
+      "bytes": 273926,
+      "sha256": "9566b2f3c124b6530b7f2e67bf9384b24d9398861748e5bfa469f76d83e9d535"
+    },
+    {
+      "path": "operation-receipts-02.json",
+      "bytes": 489770,
+      "sha256": "b74b934fa4745998ad796d1479f4aa584de7c1f6520e7f1286515864aa914e89"
+    },
+    {
+      "path": "result-complete-dispositions-02.json",
+      "bytes": 2601,
+      "sha256": "ffa1fa0a0eb7b25c5fa9ea87037bf05d11b2f0dd20e3d00440701d5b4d46c3a1"
+    },
+    {
+      "path": "write-denial-additive-current-receipt-01.json",
+      "bytes": 1023,
+      "sha256": "3b77cd4faec84c1372021887233b85a228222047f9d7bbbcad238415011279e9"
+    }
+  ],
+  "limits": "Owner transitions and explicit unresolved residues, not new experiments.",
+  "acceptance": "Producer/owner evidence; independent acceptance not awarded"
+}

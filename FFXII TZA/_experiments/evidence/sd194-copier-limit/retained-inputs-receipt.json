@@ -1,0 +1,52 @@
+{
+  "source": "Database\\FFXII TZA\\_experiments\\evidence\\sd194-stale-name-slice",
+  "status": "BYTE_IDENTICAL_RETAINED_INPUTS",
+  "files": [
+    {
+      "path": "source-01.json",
+      "bytes": 49572,
+      "sha256": "2c66378a2f9fb4125671f1f5f5ee4211a7397abf52e904137ba474a07e5a9fa8"
+    },
+    {
+      "path": "capture.py",
+      "bytes": 2823,
+      "sha256": "005b4e6643972d9296495595f7ae0a79d910fee871fb13c33e9ea3224b0a65dc"
+    },
+    {
+      "path": "capture-01.status.json",
+      "bytes": 472,
+      "sha256": "bd86e7a17cd3d9817f5b768d47ef94625801efdce2b39cfc2037e1e7bfa91196"
+    },
+    {
+      "path": "capture-01.stdout",
+      "bytes": 584,
+      "sha256": "be751450a1aaa539879a4cc8f03da49424dc90ff152896eee9d4335cc526f435"
+    },
+    {
+      "path": "capture-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "result-01.json",
+      "bytes": 6586,
+      "sha256": "b937596bd7ccb436aae708a0144b32ac917a77b9e3494aac7f850e6840ce8ba3"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 10349,
+      "sha256": "b9f212c1d22eb7398d16d5c2d184ce7c0bca4b6900e2cc0f94af5662605b82c1"
+    },
+    {
+      "path": "dependencies/validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    },
+    {
+      "path": "dependencies/prove_owner_reload_order.py",
+      "bytes": 14292,
+      "sha256": "43263d8faec92292904c9508ef9148cbc3a33248e7fc96b489b08e9b3615e864"
+    }
+  ],
+  "limits": "Existing ASTRA capture and external SPEC acceptance, not new captures or audit runs."
+}

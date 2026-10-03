@@ -417,3 +417,13 @@ Interior anchor `00582FCE` (function `00582FC0`).
 `005819A0` (80 B) is the `02CA99C8`-record flag latch `00582860` calls: when the global exists and `+0xCC` bit 0 is still clear, it stores `00249C60(0x42)` into `+0xE8` unless the mode byte is `1`, then sets `+0xCC |= 1`; the mode byte is always written to `+0xD0` — a once-only initialization latch keyed on the `+0xCC` flag.
 
 Interior anchor `005819D7` (function `005819A0`).
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-force-fight-mode-cloudint-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `002734B0` | 60 B | for `i` from 0 while `i` is below `0035BB60()` (re-read each step, signed), tail-jumps to `0035BB20(i)` for the first `i` whose `0035BB20(i)` record has bit `0x4` of its first byte set; returns 0 when none has (or the count is not above 0) | `002734BF`, `002734C3`, `002734C8`, `002734D6`, `002734E7` |
+| `0050EEA0` | 61 B | with `n` = `003BB420` of the incoming `rcx`, calls `00254CB0(0)` and `0017D280(00D22AD8, n)`, then tail-jumps to `0026B4E0(rcx, n)` | `0050EEAD`, `0050EEB6`, `0050EEC4`, `0050EED8` |
+| `0050F0A0` | 61 B | with `n` = `003BB420` of the incoming `rcx`, calls `0017D280(00D22860, n)` and `0026B4E0(rcx, n)`, then tail-jumps to `00254CB0(0)` | `0050F0AD`, `0050F0BD`, `0050F0C7`, `0050F0D8` |

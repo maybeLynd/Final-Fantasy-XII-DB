@@ -3,7 +3,12 @@
  "date": "2026-10-02",
  "session": "https://claude.ai/code/session_01Dq1LGzf21EuvVAMphWnGMn",
  "report": "home-active-party-reserve-and-the-moment-the-leader-changes.json",
- "rows": [
+ "rows": [],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "moved": [
   {
    "fn": "0036F510",
    "entered_from": "`0022A770` + 0x12F",
@@ -17,11 +22,12 @@
      "0036F51D",
      "jmp"
     ]
-   ]
+   ],
+   "moved_to": "00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md",
+   "moved_by": "FABLE",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/fable-home-host-moves-b4-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-active-party-reserve-and-the-moment-the-1002/REVIEW.md"
   }
- ],
- "rejected": [],
- "skipped": {},
- "missing": [],
- "corrections": []
+ ]
 }

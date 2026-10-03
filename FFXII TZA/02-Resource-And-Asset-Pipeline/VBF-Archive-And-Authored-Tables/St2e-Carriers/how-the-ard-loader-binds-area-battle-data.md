@@ -958,3 +958,11 @@ That is the growth-versus-base reading, now read rather than proposed.
 |---|---|---|---|
 | `00340450` | 48 B | zeroes dword `[r8]`, calls `002E3E20(byte rdx+0x15, 0)` and `002E4000(byte rdx+0x15, 0)`, then tail-jumps to `002EC500` | `00340456`, `00340466`, `00340471`, `0034047B` |
 | `00340EC0` | 45 B | zeroes dword `[r8]`, calls `002E3E20(byte rdx+0x15, -1)` and tail-jumps to `002E4000(byte rdx+0x15, -1)` | `00340EC6`, `00340ED7`, `00340EE0`, `00340EE8` |
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../../_index/candidates/opus-how-the-ard-loader-binds-area-battle-dat-cloudint-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `003414A0` | 57 B | with `n` = `00267E10(r9)` and `id` = `002E9A60(n)`, stores `id` at dword `[r8]`, `002E9810(002E99C0(id))` at dword `r8+4` and 0 at dword `r8+8` | `003414AC`, `003414B3`, `003414BA`, `003414C9`, `003414CC` |

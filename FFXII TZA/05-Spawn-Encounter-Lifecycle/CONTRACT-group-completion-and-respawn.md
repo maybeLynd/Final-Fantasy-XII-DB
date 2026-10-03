@@ -2,7 +2,6 @@
 contract: Group completion and respawn — the dead-member checklist and the cooldown clock
 category: 05-Spawn-Encounter-Lifecycle
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: Group-Completion-And-Respawn/when-a-group-is-wiped-and-when-it-comes-back.md

@@ -2,7 +2,6 @@
 contract: Initialise one actor storage record over memory that is already zero, reading a kind byte the carve loop wrote
 category: 04-Actor-Entity
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: 04-Actor-Entity/Actor-Storage-Record/the-record-behind-every-actor.md

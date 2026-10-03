@@ -1,0 +1,13 @@
+  LIVE-ROW     <- PARTIAL — OV-10 stays open (runtime)                         ok
+  UNMAPPED     <- PARTIAL — SD-1 answered; peer acceptance is a process item   ok
+  WAITING-ID   <- PARTIAL — SD-1 answered; review pending FABLE-REQ-X-REVIEW-1 ok
+  UNMAPPED     <- PARTIAL — SD-1 answered; review pending FABLE-REQ-X-DONE-2   ok
+  STALE-STATUS <- PARTIAL — SD-1 answered                                      ok
+  UNMAPPED     <- DRAFT — open: the scalars                                    ok
+  UNMAPPED     <- PARTIAL — open: what the matrices hold at draw time          ok
+  STALE-STATUS <- PARTIAL — SD-1 answered; open: the scalars (was — OV-10 open ok
+  UNMAPPED     <- REOPENED — RC-12 answered, FABLE adjudication pending        ok
+  WAITING-ID   <- REOPENED — RC-12 answered, FABLE adjudication pending FABLE- ok
+  STALE-STATUS <- PARTIAL — ~~OV-10 open~~ SD-1 answered                       ok
+SELF-TEST PASS
+FAILS 0

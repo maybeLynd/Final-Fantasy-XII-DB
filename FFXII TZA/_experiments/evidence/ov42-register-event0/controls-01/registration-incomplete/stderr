@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-register-event0\prove.py", line 176, in <module>
+    p=argparse.ArgumentParser();p.add_argument('out',type=Path);p.add_argument('--src',type=Path,default=P/'retained');a=p.parse_args();main(a.src.resolve(),a.out.resolve())
+                                                                                                                                        ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\ov42-register-event0\prove.py", line 148, in main
+    raise ValueError('retained registration source prerequisite incomplete')
+ValueError: retained registration source prerequisite incomplete

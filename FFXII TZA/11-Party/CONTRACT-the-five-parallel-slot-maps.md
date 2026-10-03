@@ -2,7 +2,6 @@
 contract: Resolve a battle slot through one of five parallel nine-entry maps that are born identical and are not peers afterwards
 category: 11-Party
 scope: subsystem
-level: L2
 readiness: CONTRACT READY
 confidence: PROVEN
 implements: 11-Party/the-five-parallel-slot-maps.md

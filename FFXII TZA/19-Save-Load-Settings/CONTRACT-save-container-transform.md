@@ -2,7 +2,6 @@
 contract: wrap and unwrap a save file - compress, then derive a key from the rotated game title and encrypt
 category: 19-Save-Load-Settings
 scope: family
-level: L1
 readiness: BEHAVIORALLY UNDERSTOOD
 confidence: PROVEN
 implements: 19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/save-image-buffers-header-and-payload.md
