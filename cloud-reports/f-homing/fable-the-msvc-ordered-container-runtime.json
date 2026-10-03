@@ -1,0 +1,12 @@
+{
+ "page": "24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/the-msvc-ordered-container-runtime.md",
+ "session": "session_01CZh28JMQoyNT8qWV5qwsPp",
+ "mode": "homing",
+ "rows": [
+  {"fn": "008A8DA0",
+   "text": "stores the address `00D27BB8` into qword `02CACCB0` and tail-jumps to `00633390` with `rcx` = `02CACCB0`",
+   "anchors": [["008A8DA7", "lea"], ["008A8DAE", "mov"], ["008A8DB5", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "Homing pack (callee-host). No doubts."
+}
