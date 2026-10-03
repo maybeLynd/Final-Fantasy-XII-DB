@@ -1,0 +1,11 @@
+{
+ "page": "06-Movement-And-Navigation/CONTRACT-corridor-query-family.md",
+ "session": "session_016ZjFjnefAbEBqR8eRqGh2C",
+ "rows": [
+  {"fn": "00264CE0", "entered_from": "`0033F7F0` + 0x21",
+   "text": "when `rcx` or its first qword is null, returns `edx` if non-negative, else 0; otherwise, reading through that qword, replaces `edx` in sequence: -1 by sign-extended word `+0x52`, then -2 by sign-extended word `+0x78`, then -3 by sign-extended word `+0x7A` (each test applied to the value left by the previous step), then any value still negative by sign-extended word `+0x52`, and returns the result if non-negative, else 0",
+   "anchors": [["00264CF2", "movsx"], ["00264CFB", "movsx"], ["00264D04", "movsx"], ["00264D0C", "movsx"], ["00264D14", "cmovns"]]}
+ ],
+ "skipped": [],
+ "notes": "00264CE0: the -1/-2/-3 tests are cascaded, not exclusive arms (a +0x52 value of -2 is replaced again by +0x78). The final cmovns clamps a negative result to 0 on every path, including the null path."
+}
