@@ -1,0 +1,640 @@
+{
+ "page": "23-Third-Party-Libraries/third-party-middleware-inventory.md",
+ "mode": "member",
+ "family": "Bullet physics library",
+ "session": "session_016AduKBeymFT4Ug3TxqT399",
+ "rows": [
+  {
+   "fn": "0085E270",
+   "text": "overwrites the four floats `a0..a3` at `rcx` with their product with the four floats `b0..b3` at `rdx`: `+0xC` = a3 b3 - a0 b0 - a1 b1 - a2 b2, `+8` = a3 b2 + a2 b3 + a0 b1 - a1 b0, `+4` = a3 b1 + a1 b3 + a2 b0 - a0 b2, `+0` = a3 b0 + a0 b3 + a1 b2 - a2 b1",
+   "anchors": [
+    [
+     "0085E2D8",
+     "mulss"
+    ],
+    [
+     "0085E31B",
+     "movss"
+    ],
+    [
+     "0085E356",
+     "movss"
+    ],
+    [
+     "0085E390",
+     "movss"
+    ],
+    [
+     "0085E39F",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "0085E3B0",
+   "text": "takes `c` and `s` from the calls at `0085E3B0` + 0x4C and + 0x58 on `xmm2`, and `L` = float `rcx+0x1F0`, which, when abs(`c`) as a double is above the double whose dwords at `01CCF878` are 0 and 0x3E800000, is replaced by the float result of the call at + 0xD0 on (1 + `t`) / (1/`F`^2 + `t`/`L`^2), `t` = `s`^2/`c`^2, `F` = float `rcx+0x1F4`; with `h` = 0.5 (`01CEBB70`) * `L`, `k` = (call at + 0xF8 on `h`) / (call at + 0x11D on `c`^2 + `s`^2) and `w` = call at + 0x141 on `h`, it builds on the stack `A` = (`w P`, -`s k P`, -`c k P`, -(0`k`)`P`) (`P` = `xmm3`, plus terms multiplied by 0.0) and `B` = (-(0`k`), -`c k`, `s k`, `w`), calls `0085E270(A, B)`, stores the first three floats of `A` and 0 to `rdx`..`rdx+0xC` and returns `rdx`",
+   "anchors": [
+    [
+     "0085E429",
+     "comisd"
+    ],
+    [
+     "0085E480",
+     "call"
+    ],
+    [
+     "0085E48E",
+     "mulss"
+    ],
+    [
+     "0085E5A8",
+     "call"
+    ],
+    [
+     "0085E60A",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0085E620",
+   "text": "returns float `rcx+0x520+4*edx` (`edx` sign-extended)",
+   "anchors": [
+    [
+     "0085E623",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "0085E740",
+   "text": "returns the index `i` < `edx` (signed) whose dword `i` in the array at qword `r9+0x10` is non-zero and whose 16-byte entry `rcx+16i` has the largest dot product of its first three floats with the three floats at `r8`, a later index replacing the kept one only when strictly greater (unordered compares keep it), or -1 when no flag is non-zero; it scans four entries per pass while `i` < `edx` - 3, then one at a time",
+   "anchors": [
+    [
+     "0085E7C0",
+     "cmp"
+    ],
+    [
+     "0085E814",
+     "comiss"
+    ],
+    [
+     "0085E819",
+     "mov"
+    ],
+    [
+     "0085EA0B",
+     "comiss"
+    ],
+    [
+     "0085EA2D",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0085EDC0",
+   "text": "when qword `rcx+0x28` is non-null passes it to the call at `0085EDC0` + 0x28 only if byte `rcx+0x30` is non-zero; on every path then stores 1 to byte `rcx+0x30` and zeroes qwords `rcx+0x28` and `rcx+0x1C`",
+   "anchors": [
+    [
+     "0085EDE2",
+     "cmp"
+    ],
+    [
+     "0085EDE8",
+     "call"
+    ],
+    [
+     "0085EDF2",
+     "mov"
+    ],
+    [
+     "0085EDF6",
+     "mov"
+    ],
+    [
+     "0085EDFA",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0085EE10",
+   "text": "copies the `n` = dword `rcx+0x24` dwords at qword `rcx+0x30` into a buffer `A` from the call at `0085EE10` + 0x58 (4`n`, 0x10) (none when `n` <= 0) and makes a buffer `B` of `r8d` dwords from the call at + 0xDB (4`r8d`, 0x10), zeroed again by the call at + 0x10E (`B`, 0, 4`r8d`); zeroes the dword `c` at the fifth (stack) argument and, for each of the seventh-argument many dwords `p` at the sixth (stack) argument, with `i` = `p`: when `B[i]` is non-zero stores `B[i]` - 1 to `p`; otherwise stores `c` to `p`, copies the three dwords at `rdx+16i` to `r9+16c`, writes `c` to each dword `j` of qword `rcx+0x30` whose `A[j]` equals `i`, increments `c` and stores the new `c` to `B[i]`; finally passes `B` and `A` (when non-null) to the calls at + 0x1DC and + 0x1EA",
+   "anchors": [
+    [
+     "0085EEB7",
+     "mov"
+    ],
+    [
+     "0085EF5F",
+     "mov"
+    ],
+    [
+     "0085EF7A",
+     "mov"
+    ],
+    [
+     "0085EFBD",
+     "mov"
+    ],
+    [
+     "0085EFD3",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0085F020",
+   "text": "returns 0 when `edx` is 0; otherwise sets dword `rcx+0x24` to 0 (after inline buffer code when negative), zeroes the dword `n` at the fifth (stack) argument, stores 1.0 to the three floats at the eighth (stack) argument `S` when non-null, and takes min, max, extent and centre of the `edx` float triples at `r8` (stride `r9d`); when an extent is below the float bits 0x358637BD (`00908E10`) or `edx` < 3 it sets each extent below that to 0.05 (`008F30E8`) times the smallest extent above it (all three to 0.01, `008F30E4`, when none is) and writes the eight points centre +/- extent to the 16-byte array `V` at the sixth (stack) argument, `n` = 8; otherwise it stores the extents to `S` (when non-null) and, for each input triple `p` (scaled by 1/extent when `S` is non-null), finds the first `V[j]`, `j` < `n`, within the seventh (stack) float argument on all three axes, overwriting it with `p` when `p` is farther from the centre, else appends `V[n++]` = `p`, and appends `j` to the dword array at qword `rcx+0x30` (capacity `rcx+0x28`; grown via the calls at + 0x460, + 0x4AA); it then redoes the bounds test on `V[0..n)` and, when it fails, writes the same box with `n` reset to 0; returns 1",
+   "anchors": [
+    [
+     "0085F252",
+     "ja"
+    ],
+    [
+     "0085F422",
+     "movss"
+    ],
+    [
+     "0085F43B",
+     "movss"
+    ],
+    [
+     "0085F4FC",
+     "mov"
+    ],
+    [
+     "0085F69E",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "0085F980",
+   "text": "with `D` = `rdx` and `R` = `r8`: allocates a buffer `B` of max(dword `D+4`, 8) (unsigned) 16-byte entries via the call at `0085F980` + 0x87; calls `0085F020(rcx, dword D+4, qword D+8, dword D+0x10, &n, B, float D+0x14, &s)` and returns 1 when it yields 0; multiplies `B[0..n)` componentwise by the floats `s`; calls `00860B70(rcx, B, n, &h, &f, dword D+0x18)` and returns 1 when it yields 0; otherwise calls `0085EE10(rcx, B, n, B2, &n, I, 3f)` with `B2` an `n`-entry buffer from the call at + 0x1BF and `I` = qword `h+0x10`; when bit 0 of byte `[D]` is set it stores 0 to byte `[R]`, `n` to dword `R+4`, `f` and 3`f` to dwords `R+0x28`, `R+0x2C`, resizes the 16-byte array at `R+0xC` (buffer qword `R+0x18`) to `n` and the dword array at `R+0x34` (buffer qword `R+0x40`) to 3`f`, and copies `B2` and the triples of `I` into them, each triple reversed when bit 1 is set; when bit 0 is clear it stores 1, `n`, `f` and 4`f` and writes per face a dword 3 then its triple (reversed under bit 1); it frees its buffers (calls from + 0x663 on) and returns 0",
+   "anchors": [
+    [
+     "0085FA71",
+     "call"
+    ],
+    [
+     "0085FAF4",
+     "call"
+    ],
+    [
+     "0085FB9E",
+     "call"
+    ],
+    [
+     "0085FBAE",
+     "test"
+    ],
+    [
+     "0085FF90",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00860070",
+   "text": "with `V[i]` the 16-byte entries at `r8` and each search a call taking (`r8`, `r9d`, a direction, the fifth (stack) argument): takes `a`, `b` from the searches at `00860070` + 0x7E and + 0xA0 with (0.01, 0.02, 1) (`01CCF950`) and (-0.01, -0.02, -1) (`01CCF960`) and stores -1 to dwords `rdx+0..+0xC` when `a` = `b` or `e` = `V[a]` - `V[b]` is zero; else normalizes (calls at + 0x23B, + 0x260) the longer of (1, 0.02, 0) x `e` and (-0.02, 1, 0) x `e` (the second on ties), searches with it at + 0x2D8 for `c` and with its negation at + 0x332 when `c` is `a` or `b`, storing the -1s when it still is; with `n` = (`V[c]` - `V[a]`) x `e` normalized (call at + 0x3F7) it searches at + 0x44E for `d`, at + 0x49B with -`n` when `d` is `a`, `b` or `c`, and stores the -1s when it still is; otherwise stores `a`, `b`, `c`, `d` to dwords `rdx+0..+0xC`, swapping `c` and `d` when (`V[d]` - `V[a]`) . ((`V[b]` - `V[a]`) x (`V[c]` - `V[a]`)) is below 0; all paths return `rdx` via the stack-cookie call at + 0x5D0",
+   "anchors": [
+    [
+     "008600EE",
+     "call"
+    ],
+    [
+     "00860181",
+     "je"
+    ],
+    [
+     "008602D8",
+     "comiss"
+    ],
+    [
+     "008605F2",
+     "comiss"
+    ],
+    [
+     "008605FE",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "008606A0",
+   "text": "when dword `rdx+0xC` is non-zero, zeroes dword `rdx+4`, passes non-null qword `rdx+0x18` to the call at `008606A0` + 0x26 only if byte `rdx+0x20` is non-zero, stores 1 to byte `rdx+0x20` and zeroes qwords `rdx+0x18` and `rdx+0xC`; when dword `rdx+0x34` is non-zero, does the same with dword `rdx+0x2C`, qword `rdx+0x40`, byte `rdx+0x48`, the call at + 0x52 and qword `rdx+0x34`; returns 0",
+   "anchors": [
+    [
+     "008606B4",
+     "mov"
+    ],
+    [
+     "008606C6",
+     "call"
+    ],
+    [
+     "008606D7",
+     "mov"
+    ],
+    [
+     "008606F2",
+     "call"
+    ],
+    [
+     "00860707",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "00860720",
+   "text": "stores to `rcx` the cross product (`r8` - `rdx`) x (`r9` - `r8`) of the first three floats times 1.0 (`01CEBBA8`) / the result of the call at `00860720` + 0xA4 on its squared length, with 0 in dword `rcx+0xC`; when that result equals 0.0 it stores (1.0, 0, 0, 0) instead; returns `rcx`",
+   "anchors": [
+    [
+     "00860789",
+     "subss"
+    ],
+    [
+     "008607C4",
+     "call"
+    ],
+    [
+     "008607D5",
+     "mov"
+    ],
+    [
+     "008607EC",
+     "divss"
+    ],
+    [
+     "00860806",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "00860830",
+   "text": "takes a block `t` from the call at `00860830` + 0x26 (0x24, 0x10) and, when it is non-null, stores `edx`, `r8d`, `r9d` to its dwords `+0`, `+4`, `+8`, -1 to dwords `+0xC`, `+0x10`, `+0x14`, `+0x1C` and 0 to dword `+0x20`; stores dword `rcx+4` to dword `t+0x18` (`t` = 0 when the allocation failed); appends `t` to the qword buffer at qword `rcx+0x10` at index dword `rcx+4` and increments that dword, first, when the count equals dword `rcx+8`, growing to twice the count (1 when 0) via the call at + 0x96, copying the old qwords, passing the old buffer to the call at + 0xE0 when byte `rcx+0x18` is non-zero and storing 1 to that byte; returns `t`",
+   "anchors": [
+    [
+     "00860856",
+     "call"
+    ],
+    [
+     "00860868",
+     "mov"
+    ],
+    [
+     "00860895",
+     "mov"
+    ],
+    [
+     "008608C6",
+     "call"
+    ],
+    [
+     "0086093C",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00860960",
+   "text": "with `T` = qword `rcx+0x10` (qwords) and, for `i` = 0..2, (`e1`, `e2`) = (dword `rdx+4((i+1) mod 3)`, dword `rdx+4((i+2) mod 3)`), and `S(t)` the address `t+0xC+4((j+2) mod 3)` for the first `j` in 0..2 at which dwords `t+4j`, `t+4((j+1) mod 3)` are `e1`, `e2` in either order (`01F44D04` when none, computed inline): stores dword `[S(r8)]` to the dword returned by `00861C80(T[dword S(rdx)], e2, e1)`, then the dword at `00861C80(rdx, e1, e2)` to the dword returned by `00861C80(T[dword at 00861C80(r8, e2, e1)], e1, e2)`",
+   "anchors": [
+    [
+     "008609C2",
+     "mov"
+    ],
+    [
+     "00860A23",
+     "cmp"
+    ],
+    [
+     "00860AD6",
+     "call"
+    ],
+    [
+     "00860AE2",
+     "mov"
+    ],
+    [
+     "00860B1D",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00860B70",
+   "text": "calls `00860E90(rcx, rdx, r8d, sixth (stack) argument)` and returns 0 when it yields 0; otherwise, for each non-null qword `p` of the buffer at qword `rcx+0x10` (count dword `rcx+4`), appends the dwords `p+0`, `+4`, `+8` to a local dword list (grown by doubling via the call at `00860B70` + 0xAE), zeroes qword `rcx+0x10`[dword `p+0x18`] and passes `p` to the call at + 0x13F; stores the list length / 3 (signed) to the dword at the fifth (stack) argument, resizes the dword array at `r9` (count `+4`, capacity `+8`, buffer qword `+0x10`, flag byte `+0x18`) to that length and copies the list into it, stores 0 to dword `rcx+4` (after inline buffer code when it was negative), passes the list to the call at + 0x2F5 and returns 1",
+   "anchors": [
+    [
+     "00860BA6",
+     "call"
+    ],
+    [
+     "00860C85",
+     "mov"
+    ],
+    [
+     "00860CA7",
+     "mov"
+    ],
+    [
+     "00860CE9",
+     "mov"
+    ],
+    [
+     "00860DB8",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00860E90",
+   "text": "returns 0 when `r8d` < 4; otherwise, with `V` the 16-byte entries at `rdx`, `L` = `r9d` (0x3B9ACA00 when 0) and `T` = qword `rcx+0x10`: builds `r8d`-dword lists `X` (0s) and `A` (1s), takes the four-float bounds of `V`, sets `e` = 0.001 (`008C5B2C`) * the call at `00860E90` + 0x36B on the squared xyz extent, gets `p` from `00860070(rcx, &p, rdx, r8d, &A)` and returns 0 when `p0` is -1; creates `00860830(rcx, p2, p3, p1)`, `(p3, p2, p0)`, `(p0, p1, p3)`, `(p1, p0, p2)` with dwords `+0xC..+0x14` (2, 3, 1), (3, 2, 0), (0, 1, 3), (1, 0, 2), marks `p0..p3` in `X` and gives each triangle dword `+0x1C` = the search at + 0x5B1 and float `+0x20` = its `00860720` normal . (`V[+0x1C]` - `V[t0]`); then for up to `L` - 4 rounds while `00861900(rcx, e)` gives `t`, marks `v` = dword `t+0x1C` in `X`, calls `00861A10(rcx, u, v)` for triangles `u` facing `V[v]` by more than 0.01`e`, scans back over triangles containing `v` calling `00861A10(rcx, T[dword u+0xC], v)` for those facing the vertex mean by more than 0.01`e` or with edge-cross length below 0.1`e`^2, and refreshes `+0x1C`/`+0x20` (search at + 0x96C; -1 when marked) of trailing triangles with negative `+0x1C`; frees both lists and returns 1",
+   "anchors": [
+    [
+     "00861224",
+     "call"
+    ],
+    [
+     "008612E5",
+     "call"
+    ],
+    [
+     "008614EC",
+     "call"
+    ],
+    [
+     "008615E0",
+     "call"
+    ],
+    [
+     "0086177F",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00861900",
+   "text": "scans the signed dword `rcx+4` qwords of the buffer at qword `rcx+0x10` (four per pass, then the rest), keeping `t` = the first non-null element and replacing it by a later non-null one whose float `+0x20` is strictly greater; returns `t` when float `t+0x20` is above `xmm1` (`t` is read without a null check), otherwise 0",
+   "anchors": [
+    [
+     "00861953",
+     "comiss"
+    ],
+    [
+     "00861959",
+     "mov"
+    ],
+    [
+     "008619DE",
+     "comiss"
+    ],
+    [
+     "008619FB",
+     "comiss"
+    ],
+    [
+     "008619FE",
+     "cmova"
+    ]
+   ]
+  },
+  {
+   "fn": "00861A10",
+   "text": "with `T` = qword `rcx+0x10`, `n` = dword `rcx+4` and (`a`, `b`, `c`) = dwords `rdx+0..+8`: creates `P` = `00860830(rcx, r8d, b, c)`, `Q` = `00860830(rcx, r8d, c, a)` and `U` = `00860830(rcx, r8d, a, b)` with dwords `+0xC..+0x14` = (dword `rdx+0xC`, `n`+1, `n`+2), (dword `rdx+0x10`, `n`+2, `n`) and (dword `rdx+0x14`, `n`, `n`+1), after each storing `n`, `n`+1, `n`+2 to the dword returned by `00861C80(T[dword rdx+0xC], b, c)`, `00861C80(T[dword rdx+0x10], c, a)` and `00861C80(T[dword rdx+0x14], a, b)`; then for each of `P`, `Q`, `U` whose neighbour `N` = `T[dword +0xC]` has `r8d` among its first three dwords, calls `00860960(rcx, X, N)` and for `X` then `N` zeroes `T[dword +0x18]` and passes it to the call at `00861A10` + 0x17D/+ 0x191, + 0x1D8/+ 0x1EC or + 0x22B/+ 0x23F; finally zeroes `T[dword rdx+0x18]` and tail-jumps at + 0x26A with `rdx`",
+   "anchors": [
+    [
+     "00861A52",
+     "call"
+    ],
+    [
+     "00861AAB",
+     "mov"
+    ],
+    [
+     "00861B79",
+     "call"
+    ],
+    [
+     "00861B89",
+     "mov"
+    ],
+    [
+     "00861C7A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00861C80",
+   "text": "returns the address `rcx+0xC+4((j+2) mod 3)` for the first `j` from 0 to 2 at which dwords `rcx+4j` and `rcx+4((j+1) mod 3)` equal `edx` and `r8d` in either order, or `01F44D04` when there is none",
+   "anchors": [
+    [
+     "00861CD3",
+     "cmp"
+    ],
+    [
+     "00861CDA",
+     "cmp"
+    ],
+    [
+     "00861CE8",
+     "cmp"
+    ],
+    [
+     "00861CFD",
+     "lea"
+    ],
+    [
+     "00861D20",
+     "lea"
+    ]
+   ]
+  },
+  {
+   "fn": "0087F300",
+   "text": "stores `01CDAE38` to qword `[rcx]`, calls `0087FE70(rcx+8)`, stores 1 to bytes `rcx+0x40`, `rcx+0x60` and `rcx+0x68`, zeroes qwords `rcx+0x38`, `rcx+0x2C`, `rcx+0x58` and `rcx+0x4C`, and returns `rcx`",
+   "anchors": [
+    [
+     "0087F310",
+     "mov"
+    ],
+    [
+     "0087F317",
+     "call"
+    ],
+    [
+     "0087F31E",
+     "mov"
+    ],
+    [
+     "0087F32A",
+     "mov"
+    ],
+    [
+     "0087F339",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0087F350",
+   "text": "stores `01CDAE38` to qword `[rcx]`; passes non-null qword `rcx+0x58` to the call at `0087F350` + 0x32 only if byte `rcx+0x60` is non-zero, then stores 1 to that byte and zeroes qwords `rcx+0x58` and `rcx+0x4C`; does the same with qword `rcx+0x38`, byte `rcx+0x40`, the call at + 0x57 and qword `rcx+0x2C`; then tail-jumps to `0087FE90(rcx+8)`",
+   "anchors": [
+    [
+     "0087F36E",
+     "mov"
+    ],
+    [
+     "0087F382",
+     "call"
+    ],
+    [
+     "0087F394",
+     "mov"
+    ],
+    [
+     "0087F3A7",
+     "call"
+    ],
+    [
+     "0087F3CB",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0087F410",
+   "text": "calls the site at `0087F410` + 0x20 with (`rcx`, `rdx`, `r8`); when byte `rcx+0x68` is 0 calls vtable `+8` of `r9` with (qword `r8+0x18`, dword `r8+0xC`, the result of `rdx`'s vtable `+0x50`, the result of its vtable `+0x40`, -1) and returns; otherwise, when dword `rcx+0x2C` > 1, calls the site at + 0x90 with (`rcx+0x28`, the low byte of `r8` from its home slot, 0, that dword - 1); then walks the 8-byte records at qword `rcx+0x18` (count dword `rcx+0xC`) in runs of equal dword `+0`: per run it appends qword `r8+0x18`[dword `+4`] of each record to the qword list at `rcx+0x4C` (capacity `+0x50`, buffer `+0x58`, grown via the call at + 0x16A), flagging the run when such a qword's dword `+0xF4` is 2 or 5; counts the next qwords `m` of qword `rcx+0x38` (count `rcx+0x2C`) whose dword `+0xEC` of qword `m+0x490` (of `m+0x498` when negative) equals the run's id; unless flagged calls vtable `+8` of `r9` with (list buffer, list count, address of the first such qword or 0, their count, the id); skips past them and resets the list count to 0",
+   "anchors": [
+    [
+     "0087F430",
+     "call"
+    ],
+    [
+     "0087F471",
+     "call"
+    ],
+    [
+     "0087F4A0",
+     "call"
+    ],
+    [
+     "0087F5F7",
+     "mov"
+    ],
+    [
+     "0087F70C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0087FB60",
+   "text": "with `P` = the result of vtable `+0x48` of qword `r8+0x78`, takes `n` from `P`'s vtable `+0x40` and an array of 32-byte entries from its vtable `+0x28`; for each of the `n` entries (none when `n` <= 0, signed), with `x` = qword `[qword +0]` and `y` = qword `[qword +8]` of the entry, when both are non-null and both have bits 0-2 of byte `+0xE8` clear, calls the site at `0087FB60` + 0x7B with (`rcx+8`, dword `x+0xEC`, dword `y+0xEC`)",
+   "anchors": [
+    [
+     "0087FB79",
+     "call"
+    ],
+    [
+     "0087FB85",
+     "call"
+    ],
+    [
+     "0087FB91",
+     "call"
+    ],
+    [
+     "0087FBB2",
+     "test"
+    ],
+    [
+     "0087FBDB",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0087FD80",
+   "text": "sorts the 8-byte records `r8d` to `r9d` of the buffer at qword `rcx+0x10` by signed dword `+0`: with `x` the key of record (`r8d` + `r9d`) / 2 (signed), it moves `i` up from `r8d` past keys below `x` and `j` down from `r9d` past keys above `x`, swaps the two qwords and steps both while `i` <= `j`, then calls `0087FD80(rcx, dl, r8d, j)` when `r8d` < `j` and `0087FD80(rcx, dl, i, r9d)` when `i` < `r9d`",
+   "anchors": [
+    [
+     "0087FDC4",
+     "cmp"
+    ],
+    [
+     "0087FDDD",
+     "cmp"
+    ],
+    [
+     "0087FE10",
+     "mov"
+    ],
+    [
+     "0087FE37",
+     "call"
+    ],
+    [
+     "0087FE4E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0087FE70",
+   "text": "stores 1 to byte `rcx+0x18`, zeroes qwords `rcx+0x10` and `rcx+4`, and returns `rcx`",
+   "anchors": [
+    [
+     "0087FE72",
+     "mov"
+    ],
+    [
+     "0087FE76",
+     "mov"
+    ],
+    [
+     "0087FE7A",
+     "mov"
+    ],
+    [
+     "0087FE7E",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0087FE90",
+   "text": "when qword `rcx+0x10` is non-null passes it to the call at `0087FE90` + 0x28 only if byte `rcx+0x18` is non-zero; on every path then stores 1 to byte `rcx+0x18` and zeroes qwords `rcx+0x10` and `rcx+4`",
+   "anchors": [
+    [
+     "0087FEB2",
+     "cmp"
+    ],
+    [
+     "0087FEB8",
+     "call"
+    ],
+    [
+     "0087FEC2",
+     "mov"
+    ],
+    [
+     "0087FEC6",
+     "mov"
+    ],
+    [
+     "0087FECA",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Callees cited by address are members of this pack (0085E270, 0085EE10, 0085F020, 00860070, 00860720, 00860830, 00860960, 00860B70, 00860E90, 00861900, 00861A10, 00861C80, 0087FD80, 0087FE70, 0087FE90); everything else (including 0085EA40, which is not 0085E740) is cited by call site. Long bodies stated at structure level per rule 5: 0085F020, 0085F980, 00860070, 00860E90, 0087F410 - these are the doubts most worth a second read. Specific doubts: 0085E3B0 - the stack vector A is the 0085E270-style product of (0, ck, -sk, w) with (P, 0, 0, 0); the listing omits the w*0 term in the fourth component and computes the 'zero' components as k*0.0, so the stated components are exact only for finite values. 0085F980 - [rbp+0x6F] is the entry rdx home slot (D) and [rbp+0x7F] the fourth home slot used as the local n; the fill value for the 16-byte buffers is a stack slot whose upper half is never written in this body, so it is not described. 0087F410 - the byte passed to the sort call at +0x90 is the low byte of r8's home slot ([rsp+0xB0] after the prologue), and the same slot is later read as a qword (r8 itself) for the body array. 00880020 (pack m1-15) has the same pattern. 00860B70 - the fifth/sixth stack arguments are [rsp+0xA0]/[rsp+0xA8] after a 0x78-byte prologue. 00860E90 - 'facing V[v] by more than 0.01e' means normal(00860720) . (V[v] - V[t0]) > 0.01*e, 'vertex mean' is 0.25 times the sum of V[p0..p3]; the backward scan stops at the first non-null triangle not containing v and restarts from the end after each extrude call."
+}
