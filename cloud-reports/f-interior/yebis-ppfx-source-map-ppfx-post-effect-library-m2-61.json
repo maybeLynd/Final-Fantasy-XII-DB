@@ -1,0 +1,584 @@
+{
+ "mode": "member",
+ "family": "PPFX post-effect library",
+ "page": "23-Third-Party-Libraries/PostEffects-Yebis-PPFX/yebis-ppfx-source-map.md",
+ "session": "session_01Q9HcspskDwbbxEBnx8EL9L",
+ "rows": [
+  {
+   "fn": "00766C40",
+   "text": "uses `rdx` (or qword `rcx+0x2b0` when `rdx` is null) and entry `r8d` of the 0x60-byte array at qword `rcx+0x1c8`; after the calls at `00766C40`+0x86 and +0x92 it makes the call at +0x14D with qword `rcx+0x2a0` and the entry's floats `+0x10`, `+0x14`, `+0x18`, `+0x20`, `+0x5c`, keeping its result as the status only when negative (else 0); picks 0.001 (`008C5B2C`) or 0.003921569 (`00D11104`) from the call at +0x174 on dword `+0x44` of qword `rcx+0x2a0`, the call at +0x17E on its result and bit masks 0x0F80007800007800 / 0x1800003E01E0001F, calls `00768260(rcx, 1.0)`, and derives a pass count capped at 8 and a tap count capped at 4; for each pass (leaving the loop once the tap count is below 4) it fills up to 4 taps in an inner loop, alternates between two surfaces read from qword `rcx+0x248` (the last pass uses the first target when entry float `+0x24` is 0.0), and makes the call at +0x762, a negative result replacing the status; when entry float `+0x24` is non-zero it ends with the call at +0x8B7, whose negative result also replaces the status; returns the status",
+   "anchors": [
+    [
+     "00766CBB",
+     "mov"
+    ],
+    [
+     "00766D8D",
+     "call"
+    ],
+    [
+     "00766E98",
+     "cmovl"
+    ],
+    [
+     "007673A2",
+     "call"
+    ],
+    [
+     "007674F7",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00767540",
+   "text": "with n = dword `rcx+0x1c0`, returns 0 at once when n <= 0; otherwise calls `00766C40(rcx, s, i)` for i = 0..n-1, where s is null when n < 2 and otherwise qword `+0x48[i]` of the object at qword `rcx+0x2a8` (null when i is not below its dword `+0x3c`); when n >= 2 it also zeroes a 0x80-byte local array (call at `00767540`+0xA8) and fills its first n slots the same way, takes the object at `02EA1590` (allocating 0x22360 bytes with the \"GPUClassUtil.h\" path, line 0x49, by the calls at +0x11D and +0x131 when the counter dword `02EA1598` is not positive), increments the counter, and when it is then at most 1 releases the object through its vtable `+0x20` and the call at +0x17B and zeroes `02EA1590` and the counter, else decrements the counter; it then makes the call at +0x1CD with that object pointer, qword `rcx+0x2b0`, n, the array and two 1.0 floats; returns 0",
+   "anchors": [
+    [
+     "007675C7",
+     "call"
+    ],
+    [
+     "0076765D",
+     "call"
+    ],
+    [
+     "00767693",
+     "mov"
+    ],
+    [
+     "007676B2",
+     "call"
+    ],
+    [
+     "0076770D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00767750",
+   "text": "reads dword `rcx+0xc8` and returns 1.6 (`00D231B8`) when the call at `00767750`+0xE on it returns non-zero, or when it is non-zero and the call at +0x1D returns a value <= 0x3B whose bit is set in 0x0F80007800007800; otherwise returns 1.2 (`008FCC90`)",
+   "anchors": [
+    [
+     "0076775E",
+     "call"
+    ],
+    [
+     "0076776D",
+     "call"
+    ],
+    [
+     "00767781",
+     "bt"
+    ],
+    [
+     "00767787",
+     "movss"
+    ],
+    [
+     "00767795",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "007677B0",
+   "text": "after the calls at `007677B0`+0x59, +0x65, +0xE8 and +0xF1 (the last two with float extents of the surfaces `rcx+0x238`, `+0x280`), a flag is set when dword `rcx+0xc8` is non-zero and the call at +0x105, minus 0x1C, has its bit set in 0x1800003E01E0001F; with byte `+0x2f0` the flag adds the calls at +0x13F and +0x5C5; it lists up to five surfaces (`+0x238`; `+0x250`, `+0x258` only when `+0x248` is non-null; the first of `+0x260`; entry dword `+0x20c` of `+0x270`; `+0x2b0` when dword `+0x1c0` > 0), the optional ones gated on positive floats such as `+0x118`, colours 1.0 except `+0x258`'s doubled vec4 `+0x184`; it switches each one's `+0xa8` object through vtable slots `+0x70`, `+0x78`, `+0x80`, makes the call at +0x50A (after +0x4AE when dword `+0x128` is non-zero), prints the \"GPURenderGlare.cpp\" error line on a negative result when dwords `01F3BA80` and `01F3BA90` are at least 1, and restores the slots; then byte `+0x1d0` (call +0x6C4, output `+0x288`), byte `+0xb8` (call +0x705, output `+0x290`) and float `+0x2fc` > 0 (call +0x7A3, output `+0x298`) chain on the previous output; stores the last output (initially `+0x280`) to qword `+0x308`, calls +0x7D7, returns 0",
+   "anchors": [
+    [
+     "00767A89",
+     "mov"
+    ],
+    [
+     "00767CBA",
+     "call"
+    ],
+    [
+     "00767CE3",
+     "call"
+    ],
+    [
+     "00767F6A",
+     "mov"
+    ],
+    [
+     "00767F87",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00768020",
+   "text": "when byte `rcx+0x160` is zero, zeroes the 16 bytes at `rdx`; otherwise takes r from the call at `00768020`+0x72 (floats `+0x108`, `+0x10c` and a flag set when byte `+0x16c` is non-zero and float `+0x178` >= 0) and s = 1.0 when byte `+0x16c` is non-zero, else ((float `+0x138` - c) * float `+0x168` + c) * float `+0x164` with c the result of the call at +0xB2 on 0.3926991; with a = s*r it writes the four floats (-a - a*`+0x13c`, -s - s*`+0x140`, a - a*`+0x13c`, s - s*`+0x140`) to `rdx`; returns `rdx`",
+   "anchors": [
+    [
+     "0076803B",
+     "mov"
+    ],
+    [
+     "00768092",
+     "call"
+    ],
+    [
+     "007680D2",
+     "call"
+    ],
+    [
+     "00768103",
+     "mulss"
+    ],
+    [
+     "00768199",
+     "movups"
+    ]
+   ]
+  },
+  {
+   "fn": "007681C0",
+   "text": "computes x = 1.0 / (float `rcx+0x138` * 2.0); when `xmm1` is not 1.0 it returns the call at `007681C0`+0x3B on (the call at +0x32 on x) * `xmm1`, otherwise returns x",
+   "anchors": [
+    [
+     "007681D7",
+     "mulss"
+    ],
+    [
+     "007681EA",
+     "divss"
+    ],
+    [
+     "007681F2",
+     "call"
+    ],
+    [
+     "007681FB",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00768210",
+   "text": "computes x = dword `rcx+0xb0` (converted as unsigned) * 0.003125; when `xmm1` is not 1.0 it returns the call at `00768210`+0x36 on (the call at +0x2D on x) * `xmm1`, otherwise returns x",
+   "anchors": [
+    [
+     "0076822C",
+     "cvtsi2ss"
+    ],
+    [
+     "00768231",
+     "mulss"
+    ],
+    [
+     "0076823D",
+     "call"
+    ],
+    [
+     "00768246",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00768260",
+   "text": "takes p = `xmm1`, replaced by float `rcx+0x1b4` when `xmm1` equals the bit pattern 0xFF7FFFFF; computes x = 1.0 / (float `rcx+0x138` * 2.0) and, when p is not 1.0, replaces x by the call at `00768260`+0x69 on (the call at +0x60 on x) * p; returns x * (dword `rcx+0xb0` as unsigned * 0.003125)",
+   "anchors": [
+    [
+     "0076827C",
+     "movss"
+    ],
+    [
+     "007682B0",
+     "divss"
+    ],
+    [
+     "007682C0",
+     "call"
+    ],
+    [
+     "007682C9",
+     "call"
+    ],
+    [
+     "007682D3",
+     "mulss"
+    ]
+   ]
+  },
+  {
+   "fn": "00768330",
+   "text": "converts `edx` to float n and returns the product of the call at `00768330`+0x25 on (float `rcx+0x1b0`, n) and the call at +0x38 on (float `rcx+0x2dc`, n)",
+   "anchors": [
+    [
+     "0076834A",
+     "cvtdq2ps"
+    ],
+    [
+     "00768355",
+     "call"
+    ],
+    [
+     "00768368",
+     "call"
+    ],
+    [
+     "00768372",
+     "mulss"
+    ]
+   ]
+  },
+  {
+   "fn": "00768390",
+   "text": "computes v = float `rcx+0x114` * 0.035 * float `[rcx+0x150]+0x8` * float `rcx+0x118` * float `[rcx+0x150]+0xc`; when p = float `rcx+0x1b0` is not 1.0, it takes n = max(1, dword `rcx+0x2b8` - 2) (signed) as a float and multiplies v by n / (the call at `00768390`+0x8A on (p, 0.5*n) + n - the call at +0xA3 on (p, 0.5)); returns v",
+   "anchors": [
+    [
+     "007683D9",
+     "mulss"
+    ],
+    [
+     "00768402",
+     "cmovg"
+    ],
+    [
+     "0076841A",
+     "call"
+    ],
+    [
+     "00768433",
+     "call"
+    ],
+    [
+     "00768446",
+     "mulss"
+    ]
+   ]
+  },
+  {
+   "fn": "007684C0",
+   "text": "takes k = 0.05 (`008F30E8`) when byte `rcx+0xee` is non-zero, else 0.02 (`009002BC`), and returns `00768600(rcx)` * k * (float `rcx+0x114` * 0.035 * float `[rcx+0x150]+0x8` * float `rcx+0x118`)",
+   "anchors": [
+    [
+     "007684D7",
+     "movss"
+    ],
+    [
+     "007684E1",
+     "movss"
+    ],
+    [
+     "007684E9",
+     "call"
+    ],
+    [
+     "0076851B",
+     "mulss"
+    ]
+   ]
+  },
+  {
+   "fn": "00768600",
+   "text": "takes the largest of the floats `rcx+0x184`, `+0x188`, `+0x18c`, `+0x190` and multiplies it by float `rcx+0x180`; when byte `rcx+0x17c` is non-zero it returns the larger of that product and the constant with bit pattern 0x33800000 (`00D5003C`), otherwise the product",
+   "anchors": [
+    [
+     "00768620",
+     "comiss"
+    ],
+    [
+     "00768630",
+     "comiss"
+    ],
+    [
+     "00768648",
+     "mulss"
+    ],
+    [
+     "00768660",
+     "comiss"
+    ]
+   ]
+  },
+  {
+   "fn": "00768680",
+   "text": "takes the largest of the floats `rcx+0x198`, `+0x19c`, `+0x1a0`, `+0x1a4` and multiplies it by float `rcx+0x194`; when byte `rcx+0x17c` is non-zero it returns the larger of that product and the constant with bit pattern 0x33800000 (`00D5003C`), otherwise the product",
+   "anchors": [
+    [
+     "007686A0",
+     "comiss"
+    ],
+    [
+     "007686B0",
+     "comiss"
+    ],
+    [
+     "007686C8",
+     "mulss"
+    ],
+    [
+     "007686E0",
+     "comiss"
+    ]
+   ]
+  },
+  {
+   "fn": "00768700",
+   "text": "calls `00768600(rcx)` and, when the result m is greater than 0, writes the vec4 at `rcx+0x184` times 1.0/m to `rdx`, otherwise zeroes the 16 bytes at `rdx`; returns `rdx`",
+   "anchors": [
+    [
+     "00768710",
+     "call"
+    ],
+    [
+     "0076871B",
+     "jbe"
+    ],
+    [
+     "0076873A",
+     "mulps"
+    ],
+    [
+     "0076873D",
+     "movups"
+    ],
+    [
+     "0076874D",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00768770",
+   "text": "calls `00768680(rcx)` and, when the result m is greater than 0, writes the vec4 at `rcx+0x198` times 1.0/m to `rdx`, otherwise zeroes the 16 bytes at `rdx`; returns `rdx`",
+   "anchors": [
+    [
+     "00768780",
+     "call"
+    ],
+    [
+     "0076878B",
+     "jbe"
+    ],
+    [
+     "007687AA",
+     "mulps"
+    ],
+    [
+     "007687AD",
+     "movups"
+    ],
+    [
+     "007687BD",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007687E0",
+   "text": "makes the call at `007687E0`+0x22 with (`rcx`, 0), stores `00DA8420` to qword `[rcx]`, zeroes the fields from `+0x38` to `+0x110` except word `+0x80` = 0x101, dwords `+0x84` = 1, `+0x8c` = 2, `+0x94` = 1, word `+0xec` = 0x101, dwords `+0xf0` = 1, `+0xf8` = 2, `+0x100` = 1; allocates through the call at +0x150 (size 1, the \"GPURenderGlare.cpp\" path, line 0x118) and, when that is non-null, makes the calls at +0x162 and +0x167; stores the allocation (or null) to qword `02EA3D50`, makes the call at +0x17E with (`rcx`, `rdx`) and returns `rcx`",
+   "anchors": [
+    [
+     "0076880F",
+     "mov"
+    ],
+    [
+     "0076883B",
+     "mov"
+    ],
+    [
+     "00768930",
+     "call"
+    ],
+    [
+     "00768951",
+     "mov"
+    ],
+    [
+     "0076895E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00768980",
+   "text": "rejects the descriptor at `rdx` when dword `+0xc` or `+0x10` is below 0x10 (unsigned), dword `+0x2c` is above 0x10 (unsigned), dword `+0x40` is above 0x10 (signed), or byte `+0x50` is non-zero while dword `+0x4` or `+0x8` is zero: then, when dwords `01F3BA80` and `01F3BA90` are at least 1, it prints the \"GPURenderGlare.cpp\" error line 0x526 with 0x80070057, and returns 0x80070057; otherwise it makes the call at `00768980`+0x5B, copies the 0x6C bytes at `rdx` to both `rcx+0xa4` and `rcx+0x38`, makes the call at +0x102 with `rcx` and, when that result is non-negative, the call at +0x111 with (`rcx`, qword `rcx+0x28` read before the copy); returns the last call's result",
+   "anchors": [
+    [
+     "0076898A",
+     "cmp"
+    ],
+    [
+     "007689E6",
+     "movups"
+    ],
+    [
+     "00768A3D",
+     "movups"
+    ],
+    [
+     "00768A82",
+     "call"
+    ],
+    [
+     "00768AE7",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00768B00",
+   "text": "passes object pointers from `rcx` with `rdx` to two calls: qwords `+0x250`, `+0x2a0`, `+0x2b0` (when non-null), `+0x238` and `+0x280` (always), `+0x288`, `+0x290`, `+0x298` (when non-null) and the dword `+0x228` entries of array `+0x220` go to the call shape at `00768B00`+0x34 (also sites +0x8D, +0xA4, +0xD3, +0x14A, +0x15E, +0x172, +0x186, +0x1DE); qwords `+0x248`, `+0x260`, `+0x2a8` (when non-null), `+0x210` (always), the non-null entries among the dword `+0xf0` entries of array `+0x270` (skipped when the array is null) and the dword `+0xd0` entries of array `+0x230` go, with 1.0 and 0, to the call at +0x59 (also sites +0x76, +0xC1, +0x119, +0x13B, +0x1B4); returns the last `+0x220` call's result when that loop ran, otherwise the last result kept from the `+0x250`, `+0x248`, `+0x260`, `+0x2a0`, `+0x2b0`, `+0x2a8`, `+0x270` and `+0x230` calls (0 when none ran)",
+   "anchors": [
+    [
+     "00768B34",
+     "call"
+    ],
+    [
+     "00768B59",
+     "call"
+    ],
+    [
+     "00768C19",
+     "call"
+    ],
+    [
+     "00768CDE",
+     "call"
+    ],
+    [
+     "00768CF3",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00768D30",
+   "text": "when `edx` is 0x7FFFFFFF, for i from 0 while i is below dword `rcx+0xf0` (unsigned) it makes the call at `00768D30`+0x4F with (entry i of qword array `rcx+0x270`, `r8`, 0x7FFFFFFF, -1) whenever that array is non-null, and returns 0 or the last negative result; otherwise it takes index `edx` (dword `rcx+0x20c` when `edx` is -1) and, when the array is non-null, tail-jumps at +0xB3 to the same routine with (that entry, `r8`, 0x7FFFFFFF, -1), else returns 0",
+   "anchors": [
+    [
+     "00768D7F",
+     "call"
+    ],
+    [
+     "00768D86",
+     "cmovs"
+    ],
+    [
+     "00768DAF",
+     "mov"
+    ],
+    [
+     "00768DE3",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00768E00",
+   "text": "stores `xmm1` to float `rcx+0x2bc` when 0.0 compares below it (comiss branch), otherwise stores 64.0 (`00916318`); `eax` is zeroed",
+   "anchors": [
+    [
+     "00768E05",
+     "comiss"
+    ],
+    [
+     "00768E12",
+     "movss"
+    ],
+    [
+     "00768E1B",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "00768E30",
+   "text": "stores `xmm1` to float `rcx+0x2c0` when 0.0 compares below it (comiss branch), otherwise stores 2048.0 (`00900384`); `eax` is zeroed",
+   "anchors": [
+    [
+     "00768E35",
+     "comiss"
+    ],
+    [
+     "00768E42",
+     "movss"
+    ],
+    [
+     "00768E4B",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "00768E60",
+   "text": "stores `xmm1` to float `rcx+0x2c4` when 0.0 compares below it (comiss branch), otherwise stores 128.0 (`008F3A2C`); `eax` is zeroed",
+   "anchors": [
+    [
+     "00768E65",
+     "comiss"
+    ],
+    [
+     "00768E72",
+     "movss"
+    ],
+    [
+     "00768E7B",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "00768E90",
+   "text": "stores `xmm1` to float `rcx+0x2c8` when 0.0 compares below it (comiss branch), otherwise stores 64.0 (`00916318`); `eax` is zeroed",
+   "anchors": [
+    [
+     "00768E95",
+     "comiss"
+    ],
+    [
+     "00768EA2",
+     "movss"
+    ],
+    [
+     "00768EAB",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "00768EC0",
+   "text": "stores `xmm1` to float `rcx+0x2cc` when 0.0 compares below it (comiss branch), otherwise stores 1.0 (`01CEBBA8`); `eax` is zeroed",
+   "anchors": [
+    [
+     "00768EC5",
+     "comiss"
+    ],
+    [
+     "00768ED2",
+     "movss"
+    ],
+    [
+     "00768EDB",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "00768EF0",
+   "text": "stores `xmm1` to float `rcx+0x2d0` when 0.0 compares below it (comiss branch), otherwise stores 1.0 (`01CEBBA8`); `eax` is zeroed",
+   "anchors": [
+    [
+     "00768EF5",
+     "comiss"
+    ],
+    [
+     "00768F02",
+     "movss"
+    ],
+    [
+     "00768F0B",
+     "movss"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Member mode; calls to callees outside this pack are cited by site (entry + offset of the call instruction). Doubts: 00766C40 is stated as top-level structure only (the per-tap offset/weight arithmetic of the inner loop is not spelled out); the 'first target' it names for the last pass is the `rdx`/`rcx+0x2b0` surface held at [rbp-0x50]. 00767540: the listing releases the 02EA1590 object (counter <= 1 after the increment) before passing the same pointer to the call at +0x1CD; stated as the listing shows it. 007677B0: the optional-surface gates are summarised ('positive floats such as +0x118 and [+0x150]+0x8'); the full gate lists are +0x250: +0x118, [+0x150]+0x58/+0x8/+0x28 > 0, dword [+0x150]+0x50 > 0, dword +0xe4 > 0; +0x258: byte +0x17c, +0x118, [+0x150]+0x8 > 0; +0x260: +0x118, [+0x150]+0x8/+0x18 > 0; +0x270: +0x118, [+0x150]+0x8/+0x38/+0x3c > 0. 007687E0: the calls at +0x162/+0x167 receive whatever rcx holds after the allocation call (not shown to be the new block)."
+}
