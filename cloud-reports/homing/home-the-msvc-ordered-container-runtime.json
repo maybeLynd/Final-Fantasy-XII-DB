@@ -1,0 +1,36 @@
+{
+ "page": "24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/the-msvc-ordered-container-runtime.md",
+ "session": "session_015VFSZr38WAiiWF7vDja8Ar",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "00799B20",
+   "entered_from": "`00169270` + 0x27",
+   "text": "makes the call at `00799B20` + 0x17 with `ecx` = 0x28 and, when it returns null, makes the indirect call at + 0x26; then stores the returned block's own address in its qwords `+0`, `+8` and `+0x10` (the last two each behind a non-null test of the slot address), stores word 0x101 at `+0x18`, and returns the block",
+   "anchors": [
+    [
+     "00799B37",
+     "call"
+    ],
+    [
+     "00799B44",
+     "jne"
+    ],
+    [
+     "00799B4D",
+     "mov"
+    ],
+    [
+     "00799B65",
+     "mov"
+    ],
+    [
+     "00799B68",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "00799B20: the indirect call at + 0x26 goes through a pointer slot outside the body (not named, cited by site). The listing has no code after it that handles a return from it: execution would fall through to the stores with rax as that call left it."
+}
