@@ -1,0 +1,11 @@
+{
+ "page": "19-Save-Load-Settings/Game-Settings-Config/CONTRACT-game-setting-config.md",
+ "session": "session_016ZjFjnefAbEBqR8eRqGh2C",
+ "rows": [
+  {"fn": "001DD050", "entered_from": "`0017E070` + 0x4D",
+   "text": "returns dword `rcx+0x38` when dword `rcx+0x18` is zero, otherwise dword `rcx+0x24`",
+   "anchors": [["001DD054", "jne"], ["001DD056", "mov"], ["001DD05A", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": ""
+}
