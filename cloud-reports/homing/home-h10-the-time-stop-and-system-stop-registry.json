@@ -1,0 +1,20 @@
+{
+ "page": "00-Engine-Core-Runtime/System-Stop-Registry/the-time-stop-and-system-stop-registry.md",
+ "session": "session_01Cj7Fn364nPXZ9Bw71KUr9i",
+ "rows": [
+  {"fn": "00182610", "entered_from": "`002F18D0` + 0x74",
+   "text": "calls `00182610` + 0x8 and, when it returns non-null, calls the same function again at `00182610` + 0x17 and stores `ecx` != 0 (as 0 or 1) to byte `+0xD18` of that result; when the first call returns null it returns without writing",
+   "anchors": [["00182618", "call"], ["00182620", "je"], ["00182624", "setne"], ["0018262C", "mov"]]},
+  {"fn": "0029D210", "entered_from": "`002E06B0` + 0x9",
+   "text": "clears bit `0x10` of `ecx`; then, for qword `0209C380` and next qword `0209C318`, each only when non-null, calls `0029D210` + 0x27 (first) or `0029D210` + 0x54 (second) with that qword and `rdx` = 0 when the masked `ecx` is 1 or `00916330` otherwise, then passes the qword to `0029D210` + 0x33 (first) or tail-jumps with it at `0029D210` + 0x65 (second); when `0209C318` is null it returns after the first pair",
+   "anchors": [["0029D21F", "and"], ["0029D227", "cmp"], ["0029D237", "call"], ["0029D243", "call"], ["0029D275", "jmp"]]},
+  {"fn": "003B3080", "entered_from": "`0042D830` + 0x62",
+   "text": "selects the `0x38`-byte entry (`ecx` AND `0x3F`) of the table at `02EBD480` and, when that entry's dword `+0x0` equals `ecx`, ORs 1 into its byte `+0x30`; otherwise returns without writing",
+   "anchors": [["003B3085", "imul"], ["003B3090", "cmp"], ["003B3095", "or"]]},
+  {"fn": "003B3AA0", "entered_from": "`0042D830` + 0x57",
+   "text": "selects the `0x38`-byte entry (`ecx` AND `0x3F`) of the table at `02EBD480` and, when that entry's dword `+0x0` equals `ecx` and its qword `+0x10` is non-null, writes to that object: when its word `+0x368` has bit `0x4000` set it stores the dword `0x3F800000` to `+0x320`, `+0x324`, `+0x328` and `+0x32C`; otherwise it copies 16 bytes from `[rdx]` to `+0x320` and then stores `0x3F800000` to `+0x32C`; a failed match or null qword returns without writing",
+   "anchors": [["003B3AB0", "cmp"], ["003B3AC5", "test"], ["003B3ACE", "mov"], ["003B3AFA", "movdqa"], ["003B3B02", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "No callee of 00182610 or 0029D210 is named in the host excerpt; calls are cited by site. 00182610 does not null-check the second call's result. 0029D210: `00916330` is a `lea` operand the listing does not decode; it is named as an address only. 003B3AA0: `0x3F800000` is written as the raw immediate (the IEEE bits of 1.0); the listing does not decode it."
+}
