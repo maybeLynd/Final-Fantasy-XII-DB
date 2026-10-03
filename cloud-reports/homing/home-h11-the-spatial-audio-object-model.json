@@ -1,0 +1,31 @@
+{
+ "page": "18-Audio/the-spatial-audio-object-model.md",
+ "session": "session_01AFJLw2DoBajZE8phUsPUJB",
+ "rows": [
+  {
+   "fn": "001DBFA0",
+   "entered_from": "`002DF1A0` + 0x2E",
+   "text": "calls `001DBFA0` + 0x1E with no arguments, then calls `001DBFA0` + 0x3A with that result in `rcx`, the incoming `ecx` in `edx`, the incoming `edx` in `r8d`, the incoming `r8d` in `r9d`, the incoming `r9d` as its fifth (stack) argument and this function's fifth (stack) argument as its sixth; it leaves that second call's return value in `rax`",
+   "anchors": [
+    [
+     "001DBFBE",
+     "call"
+    ],
+    [
+     "001DBFC9",
+     "mov"
+    ],
+    [
+     "001DBFD6",
+     "mov"
+    ],
+    [
+     "001DBFDA",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": ""
+}
