@@ -1,0 +1,50 @@
+{
+ "page": "17-Presentation-Rendering/CONTRACT-render-record-pool-lifecycle.md",
+ "session": "cloud FABLE h5-1",
+ "rows": [
+  {
+   "fn": "00370890",
+   "entered_from": "`0046E300` + 0x39",
+   "text": "when `rdx` is non-null and dword `rdx+0x10` equals dword `rcx+4`, sets it to -1 and, for each of the signed word `rdx+0x8a` word indices `j` at `B` + signed word `rdx+0x88`*0x290, `B` = `0020E600(dword rdx+0x84)`, when `0020E600` of dword `+0x278` of record `B` + `j`*0x290 is non-null stores `00370890` + 0x9F(0) there and -1 at word `+0x27c`; then stores -1 at dword `rcx+8` and word `+0x14`, calls `00370890` + 0xE5(`P`+0x1f0), `P` = `0020E600(dword rcx+0x84)`, and returns if `C` = `0020E600(dword rcx+0xa0)` is null; else for each index read likewise from `rcx`, clears bits `0x2` and `0x8` of word `+0x280` of record `R` = `P` + index*0x290 and, when that call is again non-null, with `E` = `C` + 0x30 + signed word `R+0x27e`*0x4c, copies word `E+0x20` to `R+0x270`, stores -1 at word `+0x276`, calls `00370890` + 0x1A4(`R`+0x1f0) and, while bit `0x2` of word `R+0x280` is clear, writes along the chain `R`, `0020E600(dword +0x278)`, ... floats `E+0x34..+0x3c` to `+0x190..+0x198`, `E+0x28..+0x30` to `+0x1b0..+0x1b8` and `E+0x40` to `+0x1d0`, with `0x3f800000` at `+0x19c`, `+0x1bc` and `+0x1d4..+0x1dc`; then, if it is still non-null, calls `00370890` + 0x2CA, + 0x2DE and + 0x2E6 with `rcx`",
+   "anchors": [
+    [
+     "003708D4",
+     "mov"
+    ],
+    [
+     "00370934",
+     "mov"
+    ],
+    [
+     "003709EE",
+     "and"
+    ],
+    [
+     "00370A55",
+     "movss"
+    ],
+    [
+     "00370B5A",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00370BA0",
+   "entered_from": "`0046E370` + 0x39",
+   "text": "tail-jumps to `00370BA0` + 0x7 with `rcx` unchanged when dword `rcx+0x9c` is 2, and returns without other work otherwise",
+   "anchors": [
+    [
+     "00370BA7",
+     "je"
+    ],
+    [
+     "00370BAD",
+     "ret"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "00370890: E's base (the 0020E600(dword rcx+0xa0) block plus 0x30) is taken once before the second loop; the in-loop 0020E600(dword rcx+0xa0) call at 0037097A/003709FD is only a null check. The three chain writes each test bit 0x2 of word R+0x280 once (after the +0x1A4 call, which follows the clear of bits 0x2/0x8), then follow dword +0x278 through 0020E600 until null. 0x3f800000 is not decoded by the listing (it would be 1.0 as f32). Callees other than 0020E600 (named in the host excerpt) are cited by site. 00370BA0: the conditional tail jump at 00370BA7 targets a function the host excerpt does not name, so it is cited by its site + 0x7."
+}
