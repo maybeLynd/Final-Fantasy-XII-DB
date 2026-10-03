@@ -1,0 +1,20 @@
+{
+ "page": "99-Unresolved-Residual/Glyph-Run-Rendering/the-text-element-dispatch-table.md",
+ "session": "session_0141duvveFVGsG54cn7rpP77",
+ "rows": [
+  {"fn": "0028F830", "entered_from": "`00299090` + 0x67",
+   "text": "returns 0 when qword `0209BE80` is null; otherwise returns qword `0209BE80` + `ecx` (sign-extended) * 0x20",
+   "anchors": [["0028F837", "test"], ["0028F83C", "xor"], ["0028F842", "shl"], ["0028F846", "add"]]},
+  {"fn": "00297290", "entered_from": "`00299090` + 0x389",
+   "text": "takes `T` = qword `+0x10` of qword `[rdx+0x60]` (null when `rdx` is null); when bit 0 of byte `[rcx+2]` is clear it clears bit 0 of dword `T+8` and returns; otherwise it sets that bit and steps word `[rcx]`: with bit `0x2` of byte `[rcx+2]` set it adds 0x10 and, once the word is 0x100 or more (signed), stores 0x100, clears bit `0x2`, sets bit `0x4` and zeroes byte `[rcx+3]`; else with bit `0x4` set it subtracts 0x10 and zeroes dword `[rcx]` once the word is not above 0 (signed); else it increments byte `[rcx+3]` and, once that is above 0x40, zeroes it and sets bit `0x4`; then it calls `00297290` + 0x10B with (a local result, a local table of three 12-byte entries on the bit-`0x2` path or of two otherwise, that count, word `[rcx]` sign-extended) and stores the dword whose bytes 0 to 2 are the low byte of the result's word `+6` and whose byte 3 is the result's byte `+4` at `T+0x28`, `+0x2C`, `+0x30` and `+0x34`",
+   "anchors": [["002972C9", "and"], ["00297304", "or"], ["0029734E", "add"], ["0029739B", "call"], ["002973B7", "mov"]]},
+  {"fn": "002974E0", "entered_from": "`0029C770` + 0x4E",
+   "text": "calls `002974E0` + 0x18 for a count and returns without writing when it is not above 0 (signed); otherwise scans the 0x160-byte records from `rcx+0x240` (re-reading the count through `002974E0` + 0x43 at each step) for the first whose byte `+0xDE` is 1, returning without writing when none is; for that record, with `P` = qword `+0xD0` of its qword `+0x60`, `Q` = qword `+0x58` of qword `rcx+0xB38` and `b` = byte `rcx+0xB42`, it writes the words `[rdx]` = word `P+0xC`, `[rdx+2]` = word `Q+6` minus (`b`-1)*word `Q+0xC` plus word `P+0xE`, `[rdx+4]` = word `P+0x10` and `[rdx+6]` = word `+0xC` of the record's qword `+0x58` times `b` minus word `P+0x12`",
+   "anchors": [["00297511", "cmp"], ["0029753E", "mov"], ["0029756F", "mov"], ["00297579", "mov"], ["00297595", "mov"]]},
+  {"fn": "002975B0", "entered_from": "`0029B870` + 0x23C",
+   "text": "returns `edx` when `r8d` and `r9d` are both 0 or when byte `rcx+0xB42` (`n`) is 0; otherwise steps an index starting at `edx` up to `n` times: when `r8d` is non-zero it adds `r8d`, replaces a negative result with `n`-1 and one at or above `n` (signed) with 0; when `r8d` is 0 it adds `r9d`, raises a negative result to 0 and lowers one at or above `n` to `n`-1; it returns the first index for which bit 0 of byte `rcx+0x318`+index*0x160 is set, or `edx` when none is",
+   "anchors": [["002975D0", "movzx"], ["002975F6", "cmovl"], ["00297604", "cmovns"], ["0029761A", "test"], ["0029762C", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "00297290: the stack-cookie check (01F44830 XOR rsp passed to the call at +0x13A) is left out of the sentence; the two local tables are filled with constants (0x28000, 0x100, 0x800000, 0x1FFFF, 0x1000000, 0x28080 for the three-entry one; 0x8000, 0x100, 0x1000000, 0x8080 for the two-entry one) not described. 00297290 when rdx is null still writes through T = 0 (no guard)."
+}
