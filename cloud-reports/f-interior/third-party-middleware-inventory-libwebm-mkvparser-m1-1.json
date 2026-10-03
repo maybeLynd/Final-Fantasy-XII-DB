@@ -1,0 +1,640 @@
+{
+ "page": "23-Third-Party-Libraries/third-party-middleware-inventory.md",
+ "session": "session_01KtQZhtQA1irJtgt5Sjzg2C",
+ "mode": "member",
+ "family": "libwebm mkvparser",
+ "rows": [
+  {
+   "fn": "007FFC40",
+   "text": "stores `rdx`, `r8` and `r9` at qwords `rcx+8`, `+0x10` and `+0x18`, zeroes the ten qwords `+0x28` to `+0x70` and byte `+0x78`, stores the pointer `01CC6AC8` at qword `+0x90`, 0 at `+0x98`, `0x80000000` at dword `+0xA0`, the pointer `01CC6B08` at qword `+0`, zero at qwords `+0xA8`, `+0xB0`, `+0xF0` and `+0xF8`, and returns `rcx`",
+   "anchors": [
+    [
+     "007FFC4D",
+     "mov"
+    ],
+    [
+     "007FFC7D",
+     "mov"
+    ],
+    [
+     "007FFC80",
+     "mov"
+    ],
+    [
+     "007FFC95",
+     "mov"
+    ],
+    [
+     "007FFC9F",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007FFDD0",
+   "text": "while dword `rcx+0x34` is positive it decrements it and, for the 16-byte entry at qword `+0x28` + index*16, decrements the entry's dword `+0xC` while positive, calling `00800900` on each `0x30`-byte element at qword entry`+0` + index*`0x30`; then, when that element array is non-null, passes (array-8, `0x30`, the count at array-8, `001243B0`) to the call at `007FFDD0`+0x89 and (array-8, count*`0x30`+8) to the call at `007FFDD0`+0xA1, and zeroes entry qword `+0` and dword `+8`; finally, when qword `+0x28` is non-null, it passes (it-8, `0x10`, its count, `001243B0`) to the call at `007FFDD0`+0xD3 and (it-8, count*16+8) to the call at `007FFDD0`+0xE7",
+   "anchors": [
+    [
+     "007FFE00",
+     "dec"
+    ],
+    [
+     "007FFE32",
+     "call"
+    ],
+    [
+     "007FFE59",
+     "call"
+    ],
+    [
+     "007FFE77",
+     "mov"
+    ],
+    [
+     "007FFEB7",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007FFEE0",
+   "text": "when dword `rcx+0x3C` is not positive, tail-jumps at `007FFEE0`+0x1A with qword `+0x30`; otherwise, for each of the `+0x3C` qwords of the array at qword `+0x30` that is non-null, calls the first slot of its virtual table with (pointer, 1), then tail-jumps at `007FFEE0`+0x6E with qword `+0x30`",
+   "anchors": [
+    [
+     "007FFEFA",
+     "jmp"
+    ],
+    [
+     "007FFF20",
+     "mov"
+    ],
+    [
+     "007FFF34",
+     "call"
+    ],
+    [
+     "007FFF4E",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "007FFF60",
+   "text": "when qword `rcx+0x68` is non-null, passes each non-null qword `+0`, `+8`, `+0x10` and `+0x18` of it with 8 to the calls at `007FFF60`+0x23, `007FFF60`+0x36, `007FFF60`+0x49 and `007FFF60`+0x5C (in that order) and the pointer itself with `0x28` to the call at `007FFF60`+0x69; on both paths it zeroes qword `rcx+0x68`",
+   "anchors": [
+    [
+     "007FFF83",
+     "call"
+    ],
+    [
+     "007FFFBC",
+     "call"
+    ],
+    [
+     "007FFFC9",
+     "call"
+    ],
+    [
+     "007FFFCE",
+     "mov"
+    ],
+    [
+     "007FFFE1",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00800420",
+   "text": "stores the pointer `01CC6AE8` at qword `rcx+0`, passes qwords `+0x48`, `+0x50`, `+0x58`, `+0x68` and `+0x60` to the calls at `00800420`+0x26, `00800420`+0x36, `00800420`+0x43, `00800420`+0x50 and `00800420`+0x61, zeroing each (and `+0x70` with `+0x68`); for each non-null qword from qword `+0xA8` up to qword `+0xB0` it passes it to the call at `00800420`+0x91 and passes (it, `0x38`) to the call at `00800420`+0x9E; then passes qword `+0xA8` to the call at `00800420`+0xB4, stores the pointer `01CC6A68` at qword `+0x90` and repeats the five calls and zeroings on `+0x48` to `+0x70` (calls at `00800420`+0xCB, `00800420`+0xD8, `00800420`+0xE5, `00800420`+0xF2 and `00800420`+0x103)",
+   "anchors": [
+    [
+     "0080043F",
+     "mov"
+    ],
+    [
+     "008004B1",
+     "call"
+    ],
+    [
+     "008004D4",
+     "call"
+    ],
+    [
+     "008004E0",
+     "mov"
+    ],
+    [
+     "00800523",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00800550",
+   "text": "stores the pointer `01CC6B08` at qword `rcx+0`; when qword `+0xF0` is non-null calls `007FFF60` on it and passes (it, `0x70`) to the call at `00800550`+0x33; when qword `+0xF8` is non-null passes its qword `+8` to the call at `00800550`+0x48 and (it, `0x28`) to the call at `00800550`+0x55; then tail-jumps to `00800420(rcx)`",
+   "anchors": [
+    [
+     "00800568",
+     "mov"
+    ],
+    [
+     "00800576",
+     "call"
+    ],
+    [
+     "00800598",
+     "call"
+    ],
+    [
+     "008005A5",
+     "call"
+    ],
+    [
+     "008005B7",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00800600",
+   "text": "passes qword `rcx+0x38` to the call at `00800600`+0x13, stores the pointer `01CC6A68` at qword `rcx+0`, and when bit 0 of `edx` is set passes (`rcx`, `0x68`) to the call at `00800600`+0x2F; returns `rcx`",
+   "anchors": [
+    [
+     "00800613",
+     "call"
+    ],
+    [
+     "0080061F",
+     "mov"
+    ],
+    [
+     "00800622",
+     "test"
+    ],
+    [
+     "0080062F",
+     "call"
+    ],
+    [
+     "00800634",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00800650",
+   "text": "stores the pointer `01CC6A68` at qword `rcx+0`, and when bit 0 of `edx` is set passes (`rcx`, `0x18`) to the call at `00800650`+0x1D; returns `rcx`",
+   "anchors": [
+    [
+     "00800660",
+     "mov"
+    ],
+    [
+     "00800663",
+     "test"
+    ],
+    [
+     "0080066D",
+     "call"
+    ],
+    [
+     "00800672",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00800680",
+   "text": "passes qword `rcx+0x38` to the call at `00800680`+0x13, stores the pointer `01CC6A68` at qword `rcx+0`, and when bit 0 of `edx` is set passes (`rcx`, `0x50`) to the call at `00800680`+0x2F; returns `rcx`",
+   "anchors": [
+    [
+     "00800693",
+     "call"
+    ],
+    [
+     "0080069F",
+     "mov"
+    ],
+    [
+     "008006A2",
+     "test"
+    ],
+    [
+     "008006AF",
+     "call"
+    ],
+    [
+     "008006B4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00800750",
+   "text": "returns 0 when `rdx` is null, its dword `+0x10` (the index) is negative, dword `rcx+0xB0` is below the sum of dwords `+0xA8` and `+0xAC` (signed), or the index differs from `+0xA8`; when the sum reaches `+0xB0` it gets an array of twice `+0xB0` qwords (`0x800` when not positive) from the call at `00800750`+0x8E (returning 0 on null), copies the sum's count of qwords from qword `+0xA0`, passes the old array to the call at `00800750`+0xED and stores the new array and capacity at `+0xA0` and `+0xB0`; when `+0xAC` is positive it returns 0 unless the entry at the index is non-null with a negative dword `+0x10` and the slot after the `+0xAC` entries is inside the capacity, then moves those entries up one slot from the last down, returning 0 at the first whose dword `+0x10` is not negative; finally it stores `rdx` at the index, increments `+0xA8` and returns 1",
+   "anchors": [
+    [
+     "00800791",
+     "jl"
+    ],
+    [
+     "008007DE",
+     "call"
+    ],
+    [
+     "00800842",
+     "mov"
+    ],
+    [
+     "008008A0",
+     "mov"
+    ],
+    [
+     "008008D9",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00800900",
+   "text": "passes qword `rcx+0` to the call at `00800900`+0x1F and zeroes it; while dword `+0x2C` is positive it decrements it and, for the `0x18`-byte entry at qword `+0x20` + index*`0x18`, passes qwords `+0`, `+8` and `+0x10` to the calls at `00800900`+0x46, `00800900`+0x52 and `00800900`+0x5F, zeroing each; then, when qword `+0x20` is non-null, passes (it-8, `0x18`, its count, `001243B0`) to the call at `00800900`+0x89 and (it-8, count*`0x18`+8) to the call at `00800900`+0xA0; it finally zeroes dword `+0x28` and qword `+0x20`",
+   "anchors": [
+    [
+     "0080091F",
+     "call"
+    ],
+    [
+     "00800930",
+     "dec"
+    ],
+    [
+     "00800946",
+     "call"
+    ],
+    [
+     "00800989",
+     "call"
+    ],
+    [
+     "008009A9",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "008009C0",
+   "text": "while dword `rcx+0xC` is positive it decrements it and, for the 16-byte entry at qword `+0` + index*16, passes qwords `+0` and `+8` to the calls at `008009C0`+0x41 and `008009C0`+0x4D, zeroing each; then, when qword `+0` is non-null, passes (it-8, `0x10`, its count, `001243B0`) to the call at `008009C0`+0x76 and (it-8, count*16+8) to the call at `008009C0`+0x89; it finally zeroes dword `+8` and qword `+0`",
+   "anchors": [
+    [
+     "008009F0",
+     "dec"
+    ],
+    [
+     "00800A01",
+     "call"
+    ],
+    [
+     "00800A0D",
+     "call"
+    ],
+    [
+     "00800A36",
+     "call"
+    ],
+    [
+     "00800A52",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00800A70",
+   "text": "returns 0 at once when `rdx` equals `rcx`; otherwise copies dwords `+0` and `+4`, qwords `+0x10`, `+0x18`, `+0x20` and `+8`, byte `+0x58` and the 16 bytes at `+0x60` from `rcx` to `rdx`, then calls `00800BA0(rcx, off, rdx)` for `off` = `0x28`, `0x30`, `0x38` and `0x40`, returning the first non-zero result; it returns 0 when qword `rcx+0x50` is 0, and -1 when qword `rcx+0x48` is 0 or qword `rdx+0x48` or `rdx+0x50` is non-zero; otherwise it stores at `rdx+0x48` the buffer the call at `00800A70`+0xEF returns for the `rcx+0x50` size (0 without the call when the size exceeds `0x80000000`), returns -1 when that is 0, passes (buffer, qword `rcx+0x48`, size) to the call at `00800A70`+0x108, copies `+0x50` and returns 0",
+   "anchors": [
+    [
+     "00800A8E",
+     "mov"
+    ],
+    [
+     "00800ACA",
+     "call"
+    ],
+    [
+     "00800B25",
+     "or"
+    ],
+    [
+     "00800B64",
+     "mov"
+    ],
+    [
+     "00800B81",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00800BA0",
+   "text": "returns -1 when `edx` is -1 or the qword at `r8+edx` is non-zero, and 0 when the qword at `rcx+edx` is null; otherwise takes that byte string's length plus 1, and when that exceeds `0x80000000` zeroes the qword at `r8+edx` and returns -1; else stores at `r8+edx` the buffer the call at `00800BA0`+0x80 returns for (that size, `02EAECF1`), returns -1 when it is null, and copies the string with its 0 terminator into it, returning 0",
+   "anchors": [
+    [
+     "00800BAE",
+     "or"
+    ],
+    [
+     "00800BBE",
+     "cmp"
+    ],
+    [
+     "00800BE8",
+     "cmp"
+    ],
+    [
+     "00800C25",
+     "mov"
+    ],
+    [
+     "00800C53",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00800C70",
+   "text": "returns 0 when `rcx` is null or `r8` is negative; otherwise gets `0x40` bytes from the call at `00800C70`+0x35 (with `02EAECF1`) and, when that is non-null, stores qword `rcx+0x10` + `r8` at its qwords `+8` and `+0x18`, `rcx` at `+0`, `edx` at dword `+0x10`, -1 at qwords `+0x20` and `+0x28`, 0 at qword `+0x30` and dword `+0x38`, and -1 at dword `+0x3C`; it returns the allocation (null included)",
+   "anchors": [
+    [
+     "00800CA5",
+     "call"
+    ],
+    [
+     "00800CB4",
+     "mov"
+    ],
+    [
+     "00800CC1",
+     "mov"
+    ],
+    [
+     "00800CC4",
+     "mov"
+    ],
+    [
+     "00800CE6",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00800D20",
+   "text": "returns -1 when the qword the fifth (stack) argument points to is non-zero or when the `0xB8`-byte allocation from the call at `00800D20`+0x43 is null; otherwise stores `rcx`, `r8` and `r9` at qwords `+8`, `+0x10` and `+0x18` of the object and the pointer `01CC6AE8` at `+0`, zeroes qwords `+0x28` to `+0x70`, byte `+0x78` and qwords `+0x98`, `+0xA8` and `+0xB0`, stores the pointer `01CC6AC8` at `+0x90` and `0x80000000` at dword `+0xA0`, then calls `00800A70(rdx, object+0x20)`: a non-zero result calls the object's first virtual slot with (object, 1) and is returned, while 0 stores the object through the fifth argument and returns 0",
+   "anchors": [
+    [
+     "00800D44",
+     "cmp"
+    ],
+    [
+     "00800D63",
+     "call"
+    ],
+    [
+     "00800DF0",
+     "call"
+    ],
+    [
+     "00800E06",
+     "call"
+    ],
+    [
+     "00800E0D",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00800E30",
+   "text": "returns -1 unless `rdx` is `0xA0` or `0xA3`; when dword `rcx+0x3C` is negative it stores `0x400` at dword `+0x38`, gets `0x2000` bytes from the call at `00800E30`+0x6F into qword `+0x30` (returning -1 when null) and zeroes `+0x3C`; when `+0x3C` is at least `+0x38` (signed) it gets an array of twice `+0x38` qwords from the call at `00800E30`+0xB6 (returning -1 when null), copies `+0x3C` qwords from `+0x30`, passes the old array to the call at `00800E30`+0x10C and stores the new array and capacity; it then returns `00800F90(rcx, r8, r9, fifth argument)` for `0xA0` or `00801480(rcx, r8, r9)` for `0xA3`",
+   "anchors": [
+    [
+     "00800E4E",
+     "cmp"
+    ],
+    [
+     "00800E87",
+     "mov"
+    ],
+    [
+     "00800EBC",
+     "jl"
+    ],
+    [
+     "00800F60",
+     "call"
+    ],
+    [
+     "00800F67",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00800F90",
+   "text": "walks elements from `rdx` to `rdx+r8` with the reader at qword [qword `rcx`]: the call at `00800F90`+0x6E gives the id and the call at `00800F90`+0xA1 the size, a negative id, an overrun or no `0xA1` element returns -2; it keeps the first `0xA1` payload position and size, for `0x9B` (size at most 8) the value of the call at `00800F90`+0xF2 (negative returns -2), and for `0xFB` (size 1 to 8) the value read by the call at `00800F90`+0x1E6 (non-zero result returns -1), split into positive and non-positive; it then stores a `0x68`-byte object from the call at `00800F90`+0x149 at qword `rcx+0x30` + dword `rcx+0x3C`*8 (null stores 0 and returns -1) holding `01CC6AA8` at `+0`, `rcx`, the index, the `0xA1` position and size at `+8` to `+0x20`, -1 at word `+0x30` and dword `+0x40`, 0 at `+0x28`, byte `+0x32` and `+0x38`, `r9` at `+0x48`, the non-positive `0xFB` value (default 1) at `+0x50`, the positive one (default 0) at `+0x58` and the `0x9B` value (default -1) at `+0x60`; a 0 from the call at `00800F90`+0x235 with it increments `rcx+0x3C` and returns 0, else the object's first virtual slot gets (object, 1), the array slot is zeroed and that result returned",
+   "anchors": [
+    [
+     "00800FFE",
+     "call"
+    ],
+    [
+     "00801082",
+     "call"
+    ],
+    [
+     "008010D9",
+     "call"
+    ],
+    [
+     "008011B6",
+     "mov"
+    ],
+    [
+     "008011D0",
+     "inc"
+    ]
+   ]
+  },
+  {
+   "fn": "00801480",
+   "text": "gets `0x50` bytes from the call at `00801480`+0x33 and stores the pointer at qword `rcx+0x30` + dword `rcx+0x3C`*8, returning -1 when it is null; otherwise the object holds the index at dword `+0x10`, the pointer `01CC6A88` at `+0`, `rcx` at `+8`, `rdx` and `r8` at `+0x18` and `+0x20`, 0 at `+0x28`, byte `+0x32`, `+0x38` and `+0x48`, and -1 at word `+0x30` and dword `+0x40`; it then passes (object+`0x18`, `rcx`) to the call at `00801480`+0x90: 0 increments dword `rcx+0x3C` and returns 0, otherwise the object's first virtual slot is called with (object, 1), the array slot is zeroed and that result is returned",
+   "anchors": [
+    [
+     "008014B3",
+     "call"
+    ],
+    [
+     "008014CF",
+     "mov"
+    ],
+    [
+     "008014FC",
+     "mov"
+    ],
+    [
+     "00801510",
+     "call"
+    ],
+    [
+     "0080151B",
+     "inc"
+    ]
+   ]
+  },
+  {
+   "fn": "00801A20",
+   "text": "returns 1 when qword `[rcx]` is 0 and 0 otherwise",
+   "anchors": [
+    [
+     "00801A22",
+     "cmp"
+    ],
+    [
+     "00801A25",
+     "sete"
+    ]
+   ]
+  },
+  {
+   "fn": "00801A30",
+   "text": "returns 1 at once when dword `rcx+8` exceeds dword `+0xC` (signed); otherwise asks the call at `00801A30`+0x65 for twice `+8` (1 when it is 0) entries of `0x30` bytes plus an 8-byte header (the size saturating at -1 on overflow), returns 0 when that is null, stores the entry count in the header and passes (header+8, `0x30`, count, `007A5660`, `001243B0`) to the call at `00801A30`+0x99; it copies the `+0xC` entries (five qwords and the dwords at `+0x28` and `+0x2C` each) from the array at qword `+0`, and when that old array is non-null passes (old-8, `0x30`, the old header count, `001243B0`) to the call at `00801A30`+0x12D and (old-8, that count*`0x30`+8) to the call at `00801A30`+0x144; it then stores header+8 at qword `+0` and the new capacity at dword `+8` and returns 1",
+   "anchors": [
+    [
+     "00801A5B",
+     "jg"
+    ],
+    [
+     "00801A95",
+     "call"
+    ],
+    [
+     "00801B0A",
+     "mov"
+    ],
+    [
+     "00801B7A",
+     "mov"
+    ],
+    [
+     "00801B7D",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00801BA0",
+   "text": "returns 1 at once when dword `rcx+0x28` exceeds dword `+0x2C` (signed); otherwise asks the call at `00801BA0`+0x65 for twice `+0x28` (1 when it is 0) entries of `0x18` bytes plus an 8-byte header (the size saturating at -1 on overflow), returns 0 when that is null, stores the entry count in the header and passes (header+8, `0x18`, count, `007A5660`, `001243B0`) to the call at `00801BA0`+0x99; it copies the `+0x2C` entries (three qwords each) from the array at qword `+0x20`, and when that old array is non-null passes (old-8, `0x18`, the old header count, `001243B0`) to the call at `00801BA0`+0x113 and (old-8, that count*`0x18`+8) to the call at `00801BA0`+0x12A; it then stores header+8 at qword `+0x20` and the new capacity at dword `+0x28` and returns 1",
+   "anchors": [
+    [
+     "00801BCB",
+     "jg"
+    ],
+    [
+     "00801C05",
+     "call"
+    ],
+    [
+     "00801C7B",
+     "mov"
+    ],
+    [
+     "00801CD0",
+     "mov"
+    ],
+    [
+     "00801CD4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00801D00",
+   "text": "returns 1 at once when dword `rcx+0x30` exceeds dword `+0x34` (signed); otherwise asks the call at `00801D00`+0x65 for twice `+0x30` (1 when it is 0) entries of `0x10` bytes plus an 8-byte header (the size saturating at -1 on overflow), returns 0 when that is null, stores the entry count in the header and passes (header+8, `0x10`, count, `007A5660`, `001243B0`) to the call at `00801D00`+0x99; it copies the `+0x34` entries (a qword and the dwords at `+8` and `+0xC` each) from the array at qword `+0x28`, and when that old array is non-null passes (old-8, `0x10`, the old header count, `001243B0`) to the call at `00801D00`+0x103 and (old-8, that count*`0x10`+8) to the call at `00801D00`+0x116; it then stores header+8 at qword `+0x28` and the new capacity at dword `+0x30` and returns 1",
+   "anchors": [
+    [
+     "00801D2B",
+     "jg"
+    ],
+    [
+     "00801D65",
+     "call"
+    ],
+    [
+     "00801DCB",
+     "mov"
+    ],
+    [
+     "00801E1C",
+     "mov"
+    ],
+    [
+     "00801E20",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00801E40",
+   "text": "returns 1 at once when dword `rcx+8` exceeds dword `+0xC` (signed); otherwise asks the call at `00801E40`+0x65 for twice `+8` (1 when it is 0) entries of `0x10` bytes plus an 8-byte header (the size saturating at -1 on overflow), returns 0 when that is null, stores the entry count in the header and passes (header+8, `0x10`, count, `007A5660`, `001243B0`) to the call at `00801E40`+0x99; it copies the `+0xC` entries (two qwords each) from the array at qword `+0`, and when that old array is non-null passes (old-8, `0x10`, the old header count, `001243B0`) to the call at `00801E40`+0xF7 and (old-8, that count*`0x10`+8) to the call at `00801E40`+0x10A; it then stores header+8 at qword `+0` and the new capacity at dword `+8` and returns 1",
+   "anchors": [
+    [
+     "00801E6B",
+     "jg"
+    ],
+    [
+     "00801EA5",
+     "call"
+    ],
+    [
+     "00801F0A",
+     "mov"
+    ],
+    [
+     "00801F50",
+     "mov"
+    ],
+    [
+     "00801F53",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00801F80",
+   "text": "returns 1 at once when dword `rcx+0x30` exceeds dword `+0x34` (signed); otherwise asks the call at `00801F80`+0x65 for twice `+0x30` (1 when it is 0) entries of `0x10` bytes plus an 8-byte header (the size saturating at -1 on overflow), returns 0 when that is null, stores the entry count in the header and passes (header+8, `0x10`, count, `007A5660`, `001243B0`) to the call at `00801F80`+0x99; it copies the `+0x34` entries (a qword and the dwords at `+8` and `+0xC` each) from the array at qword `+0x28`, and when that old array is non-null passes (old-8, `0x10`, the old header count, `001243B0`) to the call at `00801F80`+0x103 and (old-8, that count*`0x10`+8) to the call at `00801F80`+0x116; it then stores header+8 at qword `+0x28` and the new capacity at dword `+0x30` and returns 1",
+   "anchors": [
+    [
+     "00801FAB",
+     "jg"
+    ],
+    [
+     "00801FE5",
+     "call"
+    ],
+    [
+     "0080204B",
+     "mov"
+    ],
+    [
+     "0080209C",
+     "mov"
+    ],
+    [
+     "008020A0",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Calls to functions outside this pack are cited by call site (entry + offset); 001243B0, 007A5660 and 02EAECF1 appear only as lea-loaded arguments and are named as such. Pointers like 01CC6AC8 are lea-loaded addresses stored at +0 or +0x90 (virtual-table-shaped, not decoded further). 00800F90: the element ids 0xA1, 0x9B and 0xFB with sizes capped at 8 are consistent with libwebm mkvparser's BlockGroup parse (Block, BlockDuration, ReferenceBlock) in Cluster::CreateBlockGroup, and 00800E30 with Cluster::CreateBlock (ids 0xA0 BlockGroup and 0xA3 SimpleBlock); 00800A70/00800BA0 match TrackInfo::Copy/CopyStr in shape (string copies at 0x28-0x40, codec-private buffer at 0x48/0x50). These are not stated as fact in the rows. 00800D20: the 00800A70 call receives object+0x20 (rdx is set to rbx+0x20 at 00800D83 and not changed before the call). 00800F90 is the longest row (top-level structure stated in clauses); its +0x50 field holds the 0xFB value only when that value is not positive (the default 1 stays otherwise). Doubts: 00800420 re-reads +0x48 to +0x70 after zeroing them (as the listing shows, the second pass passes zeros)."
+}
