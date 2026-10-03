@@ -1,0 +1,11 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/the-external-source-owner-and-borrowed-view-lifetime.md",
+ "session": "session_01DtsGzxAwuV39oMMCAfQd2j",
+ "rows": [
+  {"fn": "003AED50", "entered_from": "`0041FCF0` + 0x210",
+   "text": "stores 1 to dword `+0` of `rcx`, 0 to qwords `+0x18` and `+0x20` and to dword `+0x28`, and `edx` to dword `+4`",
+   "anchors": [["003AED52", "mov"], ["003AED58", "mov"], ["003AED60", "mov"], ["003AED63", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": ""
+}
