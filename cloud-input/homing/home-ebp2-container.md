@@ -1,52 +1,41 @@
 # Homing pack: `25-EBP-Script-Container/Container/ebp2-container.md`
 
-Generated 2026-10-03 03:37 by FABLE (homing_pack.py, OPUS's listing code) from the certified executable (sha256 73461D08...21F8). Brief: `docs/cloud-briefs/homing.md`. Write your result to `cloud-reports/homing/home-ebp2-container.json`.
+Generated 2026-10-03 08:08 by FABLE (homing_pack.py, OPUS's listing code) from the certified executable (sha256 73461D08...21F8). Brief: `docs/cloud-briefs/homing.md`. Write your result to `cloud-reports/homing/home-ebp2-container.json`.
 
-Bodies: 2. No page cites any of them yet. Each is called from a function this page already cites; the host page is fixed (do not choose another).
+Bodies: 1. No page cites any of them yet. Each is called from a function this page already cites; the host page is fixed (do not choose another).
 
-## 0029B440 (73 B, extent 0029B440-0029B489)
+## 00474070 (140 B, extent 00474070-004740FC)
 
-Entered from (direct sites whose caller this page cites): `00297640` + 0x63 (call; `00297640` is cited on this page)
-Other direct sites: `0029BE50` + 0x256 (call)
-
-Host context: "he shipping bytes 2026-09-14 (OPUS).  **UI — CLIENT (SWE2-EC7 batch-150).** The '0029AEF0' flag sweep runs on the shared '0035BB60'/'0035BB00' record accessors the UI layer calls heavily ('002737B0'/'00297640'/'002734F0'/'002964D0' among them), and '00297170' itself sits inside that layer's call neighbourhood ('002904D0'/'00273A20'/'0029AE50') - shared accessor fan-in over container records, not UI ownership of the container.  **Gamepla"
-
-```
-0029B440  push     rbx
-0029B442  sub      rsp, 0x20
-0029B446  mov      ebx, ecx
-0029B448  mov      edx, ecx
-0029B44A  mov      ecx, 2
-0029B44F  call     0x2be080  ; -> 002BE080 fn
-0029B454  xor      ecx, ecx
-0029B456  call     0x290ca0  ; -> 00290CA0 fn
-0029B45B  mov      edx, ebx
-0029B45D  mov      ecx, 4
-0029B462  call     0x35c150  ; -> 0035C150 fn
-0029B467  mov      ecx, ebx
-0029B469  call     0x3c93e0  ; -> 003C93E0 fn
-0029B46E  call     0x2906d0  ; -> 002906D0 fn
-0029B473  test     eax, eax
-0029B475  je       0x29b483  ; -> 0029B483
-0029B477  mov      ecx, ebx
-0029B479  add      rsp, 0x20
-0029B47D  pop      rbx
-0029B47E  jmp      0x290680  ; -> 00290680 fn
-0029B483  add      rsp, 0x20
-0029B487  pop      rbx
-0029B488  ret      
-```
-
-## 0035BC30 (13 B, extent 0035BC30-0035BC3D)
-
-Entered from (direct sites whose caller this page cites): `00297640` + 0x8E (call; `00297640` is cited on this page)
+Entered from (direct sites whose caller this page cites): `003545B0` + 0x94 (call; `003545B0` is cited on this page)
 Other direct sites: none
 
-Host context: "he shipping bytes 2026-09-14 (OPUS).  **UI — CLIENT (SWE2-EC7 batch-150).** The '0029AEF0' flag sweep runs on the shared '0035BB60'/'0035BB00' record accessors the UI layer calls heavily ('002737B0'/'00297640'/'002734F0'/'002964D0' among them), and '00297170' itself sits inside that layer's call neighbourhood ('002904D0'/'00273A20'/'0029AE50') - shared accessor fan-in over container records, not UI ownership of the container.  **Gamepla"
+Host context: "erior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*  | function | size | what the body does | interior anchors | |---|---|---|---| | '003545B0' | 184 B | calls '002640C0' with the incoming registers (result p), then reads five values a, b, c, d, e by the calls at '003545B0+0x2C', '+0x36', '+0x40', '+0x4B', '+0x56' (each with 'r9'); calls '00264D60(p, e)' and '002673A0(p, "
 
 ```
-0035BC30  mov      eax, dword ptr [rip + 0x1f6c42a]  ; -> 022C8060
-0035BC36  shr      eax, 2
-0035BC39  and      eax, 1
-0035BC3C  ret      
+00474070  sub      rsp, 0x58
+00474074  mov      rax, qword ptr [rip + 0x1ad07b5]  ; -> 01F44830 [u64 0x00002B992DDFA232]
+0047407B  xor      rax, rsp
+0047407E  mov      qword ptr [rsp + 0x48], rax
+00474083  mov      eax, dword ptr [rsp + 0x80]
+0047408A  mov      dword ptr [rsp + 0x44], eax
+0047408E  lea      rax, [rsp + 0x38]
+00474093  mov      qword ptr [rsp + 0x30], rax
+00474098  mov      rax, qword ptr [rsp + 0x88]
+004740A0  mov      dword ptr [rsp + 0x38], edx
+004740A4  lea      rdx, [rip + 0x55]  ; -> 00474100
+004740AB  mov      dword ptr [rsp + 0x3c], r8d
+004740B0  lea      r8, [rsp + 0x20]
+004740B5  mov      qword ptr [rsp + 0x28], rcx
+004740BA  mov      ecx, 0x1d8
+004740BF  mov      qword ptr [rip + 0x2832bb2], rax  ; -> 02CA6C78
+004740C6  mov      dword ptr [rsp + 0x40], r9d
+004740CB  mov      dword ptr [rsp + 0x20], 0
+004740D3  call     0x244f50  ; -> 00244F50 fn
+004740D8  mov      qword ptr [rip + 0x2832ba1], rax  ; -> 02CA6C80
+004740DF  mov      qword ptr [rip + 0x2832b8e], 0  ; -> 02CA6C78
+004740EA  mov      rcx, qword ptr [rsp + 0x48]
+004740EF  xor      rcx, rsp
+004740F2  call     0x808c40  ; -> 00808C40 fn
+004740F7  add      rsp, 0x58
+004740FB  ret      
 ```

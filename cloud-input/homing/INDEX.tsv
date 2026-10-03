@@ -176,3 +176,12 @@ home-the-fifteen-modules-registered-before-main	22-Middleware-PhyreEngine/Subsys
 home-vbf-archive-and-st2e-tables	02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/vbf-archive-and-st2e-tables.md	2	148	2026-10-03 07:51	PACKED-FABLE-HOMING
 home-arm-catalogue-slice-c-ids-76-107	00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-C-ids-76-107.md	2	228	2026-10-03 07:51	PACKED-FABLE-HOMING
 home-the-unlabelled-procedures	16-UI/Unlabelled-Panes/the-unlabelled-procedures.md	1	187	2026-10-03 07:51	PACKED-FABLE-HOMING
+home-cross-subsystem-accessor-hubs	00-Engine-Core-Runtime/Shared-State-Accessors/cross-subsystem-accessor-hubs.md	10	465	2026-10-03 08:08	PACKED-FABLE-HOMING
+home-the-spatial-audio-object-model	18-Audio/the-spatial-audio-object-model.md	1	35	2026-10-03 08:08	PACKED-FABLE-HOMING
+home-battle-runtime-mode-ladder	00-Engine-Core-Runtime/Battle-Runtime-Mode/battle-runtime-mode-ladder.md	1	11	2026-10-03 08:08	PACKED-FABLE-HOMING
+home-ebp2-container	25-EBP-Script-Container/Container/ebp2-container.md	1	140	2026-10-03 08:08	PACKED-FABLE-HOMING
+home-how-the-ard-loader-binds-area-battle-data	02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/how-the-ard-loader-binds-area-battle-data.md	1	358	2026-10-03 08:08	PACKED-FABLE-HOMING
+home-cutscene-name-slots-and-the-depth-of-field-sidecar	99-Unresolved-Residual/Cutscene-Asset-Slots/cutscene-name-slots-and-the-depth-of-field-sidecar.md	8	455	2026-10-03 08:08	PACKED-FABLE-HOMING
+home-game-settings-ini-and-runtime-config	19-Save-Load-Settings/Game-Settings-Config/game-settings-ini-and-runtime-config.md	3	339	2026-10-03 08:08	PACKED-FABLE-HOMING
+home-item-id-encoding-and-equipment-compatibility	12-Items-Equipment-Shops-License/item-id-encoding-and-equipment-compatibility.md	1	58	2026-10-03 08:08	PACKED-FABLE-HOMING
+home-the-font-painters-public-api	99-Unresolved-Residual/Glyph-Run-Rendering/the-font-painters-public-api.md	1	33	2026-10-03 08:08	PACKED-FABLE-HOMING

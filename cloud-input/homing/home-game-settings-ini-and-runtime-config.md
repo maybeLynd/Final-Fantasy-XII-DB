@@ -1,134 +1,130 @@
 # Homing pack: `19-Save-Load-Settings/Game-Settings-Config/game-settings-ini-and-runtime-config.md`
 
-Generated 2026-10-02 21:20 by FABLE (homing_pack.py, OPUS's listing code) from the certified executable (sha256 73461D08...21F8). Brief: `docs/cloud-briefs/homing.md`. Write your result to `cloud-reports/homing/home-game-settings-ini-and-runtime-config.json`.
+Generated 2026-10-03 08:08 by FABLE (homing_pack.py, OPUS's listing code) from the certified executable (sha256 73461D08...21F8). Brief: `docs/cloud-briefs/homing.md`. Write your result to `cloud-reports/homing/home-game-settings-ini-and-runtime-config.json`.
 
-Bodies: 4. No page cites any of them yet. Each is called from a function this page already cites; the host page is fixed (do not choose another).
+Bodies: 3. No page cites any of them yet. Each is called from a function this page already cites; the host page is fixed (do not choose another).
 
-## 00158F60 (124 B, extent 00158F60-00158FDC)
+## 001E0B00 (144 B, extent 001E0B00-001E0B90)
 
-Entered from (direct sites whose caller this page cites): `00159340` + 0x66 (call; `00159340` is cited on this page)
-Other direct sites: `00158FE0` + 0x1A (call); `001590B0` + 0x1A (call); `00159180` + 0x2B (call); `00159270` + 0x21 (call)
-
-Host context: "ed  '006253D0' (1,106 B) is the display-adapter enumeration the settings callers drive: the '01F44830' config flag gates the early arm; '008C2A90'/'008C29A0' (CRT entries) and '0065E5D0'/'0065E580'/ '00159340' run the setup; '005CDAA0' formats against the '00D553A0' 'NvAPI_*'/'00D553C8'/'00D553F8' strings with '0080F2CE'/'0080F2C2' environment reads; the record's '+0x38'/'+0x10' virtuals enumerate adapters, '02CF2544'/'02CF2540'/'02CED8"
-
-```
-00158F60  mov      qword ptr [rsp + 8], rbx
-00158F65  mov      qword ptr [rsp + 0x10], rbp
-00158F6A  mov      qword ptr [rsp + 0x18], rsi
-00158F6F  push     rdi
-00158F70  sub      rsp, 0x20
-00158F74  lea      rbp, [rip - 0x38f7b]  ; -> 00120000 (image base)
-00158F7B  movsxd   rsi, ecx
-00158F7E  xor      ebx, ebx
-00158F80  cmp      byte ptr [rsi + rbp + 0x2d8e120], bl
-00158F87  je       0x158fac  ; -> 00158FAC
-00158F89  nop      dword ptr [rax]
-00158F90  mov      ecx, 0x64
-00158F95  call     qword ptr [rip + 0x769215]  ; -> 008C21B0 [u64 0x0000000001CCC316]
-00158F9B  inc      ebx
-00158F9D  cmp      ebx, 0xa
-00158FA0  jae      0x158fc0  ; -> 00158FC0
-00158FA2  cmp      byte ptr [rsi + rbp + 0x2d8e120], 0
-00158FAA  jne      0x158f90  ; -> 00158F90
-00158FAC  cmp      qword ptr [rbp + rsi*8 + 0x2d8e100], 0  ; image base + 0x2d8e100 = 02EAE100
-00158FB5  jne      0x158fc5  ; -> 00158FC5
-00158FB7  mov      ecx, esi
-00158FB9  call     0x158ec0  ; -> 00158EC0 fn
-00158FBE  jmp      0x158fc7  ; -> 00158FC7
-00158FC0  or       eax, 0xffffffff
-00158FC3  jmp      0x158fc7  ; -> 00158FC7
-00158FC5  xor      eax, eax
-00158FC7  mov      rbx, qword ptr [rsp + 0x30]
-00158FCC  mov      rbp, qword ptr [rsp + 0x38]
-00158FD1  mov      rsi, qword ptr [rsp + 0x40]
-00158FD6  add      rsp, 0x20
-00158FDA  pop      rdi
-00158FDB  ret      
-```
-
-## 002287A0 (41 B, extent 002287A0-002287C9)
-
-Entered from (direct sites whose caller this page cites): `002507C0` + 0x2F (call; `002507C0` is cited on this page)
-Other direct sites: `00210930` + 0xA (call)
-
-Host context: "ore a     script 'fadein' ([the fade page](../../17-Presentation-Rendering/Screen-Fade/the-screen-fade-layers-and-the-movie-fade-schedule.md)).     The constructor writes it once ('001D947B').    So '002507C0' presents at interval 2 unless a map jump is under way.   Census: every write to '+0x88' in '001D9000'–'001DB200' plus the getter's call sites and the   methods they pass it to. - [x] ~~**UQ-268.** **Whether a shipped installation'"
-
-```
-002287A0  sub      rsp, 0x28
-002287A4  call     0x229ea0  ; -> 00229EA0 fn
-002287A9  cmp      eax, 6
-002287AC  je       0x2287bf  ; -> 002287BF
-002287AE  call     0x229ea0  ; -> 00229EA0 fn
-002287B3  cmp      eax, 5
-002287B6  je       0x2287bf  ; -> 002287BF
-002287B8  xor      eax, eax
-002287BA  add      rsp, 0x28
-002287BE  ret      
-002287BF  mov      eax, 1
-002287C4  add      rsp, 0x28
-002287C8  ret      
-```
-
-## 0029FAD0 (115 B, extent 0029FAD0-0029FB43)
-
-Entered from (direct sites whose caller this page cites): `0023B6F0` + 0x312 (call; `0023B6F0` is cited on this page)
-Other direct sites: `0023CAF0` + 0x177 (call)
-
-Host context: "X-6.** - [x] ~~*When* the graphics-apply callback runs.~~ **ANSWERED** — when the player pushes left or right       on a row of the in-game Config screen, and nowhere else in the image. '0023B330' / '0023B6F0' are       the **procs of two row objects**, not registered callbacks; 'FUN_0023BD40' is the screen's own proc.       [the Config screen](../../16-UI/Config-Screen/the-config-screen-and-what-a-setting-change-runs.md). **AX-6a.** - "
-
-```
-0029FAD0  mov      qword ptr [rsp + 0x18], rbx
-0029FAD5  push     rdi
-0029FAD6  sub      rsp, 0x30
-0029FADA  mov      ebx, dword ptr [rcx + 8]
-0029FADD  xor      eax, eax
-0029FADF  mov      rdi, rcx
-0029FAE2  shl      ebx, 0x10
-0029FAE5  mov      ecx, dword ptr [rcx + 0x20]
-0029FAE8  sar      ebx, 0x16
-0029FAEB  mov      word ptr [rsp + 0x40], ax
-0029FAF0  mov      word ptr [rsp + 0x48], ax
-0029FAF5  call     0x20e600  ; -> 0020E600 fn
-0029FAFA  mov      r8, qword ptr [rdi + 0x18]
-0029FAFE  lea      rdx, [rsp + 0x48]
-0029FB03  mov      r9, rax
-0029FB06  mov      dword ptr [rsp + 0x20], ebx
-0029FB0A  lea      rcx, [rsp + 0x40]
-0029FB0F  call     0x2d8b00  ; -> 002D8B00 fn
-0029FB14  movsx    eax, word ptr [rsp + 0x40]
-0029FB19  mov      rbx, qword ptr [rsp + 0x50]
-0029FB1E  movd     xmm0, eax
-0029FB22  cvtdq2ps xmm0, xmm0
-0029FB25  mulss    xmm0, dword ptr [rdi + 0x28]
-0029FB2A  cvttss2si eax, xmm0
-0029FB2E  mov      word ptr [rdi + 0xa], ax
-0029FB32  and      dword ptr [rdi + 8], 0xffff003f
-0029FB39  or       byte ptr [rdi + 0x2d], 4
-0029FB3D  add      rsp, 0x30
-0029FB41  pop      rdi
-0029FB42  ret      
-```
-
-## 00441EE0 (40 B, extent 00441EE0-00441F08)
-
-Entered from (direct sites whose caller this page cites): `002F2530` + 0x6EF (call; `002F2530` is cited on this page)
+Entered from (direct sites whose caller this page cites): `0023CAF0` + 0x3F (call; `0023CAF0` is cited on this page)
 Other direct sites: none
 
-Host context: "float thresholds '81.5', '95.5', '301.0' … | per-case frame adjustments | '0' | | '001EDAD0()' | '003D9150' | 'sum_j0001' loaded, state 7, odd slot counter '01F832C4' | '1' | '0' | | '001EDBB0(…)' | '002F2530' (effect frame advance — **interior read 2026-09-17, SWE2-FRONTIER**: '001EDDA0' ×2 over '02EBEF88', '003A8950'/'002F31C0' arms at ['002F25CD'](../../_index/ADDRESS-INDEX.md), then a π/2- and −0.5-scaled SSE stage writing the '022D"
+Host context: "jumps at '001F3A00+0x44' with (the incoming 'rdx', 3) | Interior anchor '001F3A09'; Interior anchor '001F3A1B'; Interior anchor '001F3A28'; Interior anchor '001F3A32'; Interior anchor '001F3A44' | | '0023CAF0' | 412 B | with P0..P4 the qwords at '+0', '+8', '+0x10', '+0x18', '+0x20' of qword 'rdx+0x10', i the sign-extended 'r9d', set/clear meaning OR 1/AND 0xfffffffe on a Pk's dword '+8', and S(x) storing the result of the function call"
 
 ```
-00441EE0  test     rcx, rcx
-00441EE3  je       0x441eff  ; -> 00441EFF
-00441EE5  mov      rax, qword ptr [rcx + 0x118]
-00441EEC  test     rax, rax
-00441EEF  je       0x441eff  ; -> 00441EFF
-00441EF1  cmp      rax, rdx
-00441EF4  je       0x441f02  ; -> 00441F02
-00441EF6  mov      rax, qword ptr [rax + 0x30]
-00441EFA  test     rax, rax
-00441EFD  jne      0x441ef1  ; -> 00441EF1
-00441EFF  xor      eax, eax
-00441F01  ret      
-00441F02  mov      eax, 1
-00441F07  ret      
+001E0B00  mov      qword ptr [rsp + 8], rbx
+001E0B05  mov      qword ptr [rsp + 0x10], rsi
+001E0B0A  push     rdi
+001E0B0B  sub      rsp, 0x20
+001E0B0F  mov      edi, ecx
+001E0B11  mov      esi, 0x46e1
+001E0B16  xor      ecx, ecx
+001E0B18  xor      ebx, ebx
+001E0B1A  call     qword ptr [rip + 0x6e1e98]  ; -> 008C29B8 [u64 0x0000000001CCC826]
+001E0B20  and      eax, 0xfff
+001E0B25  cmp      eax, 0x40c
+001E0B2A  jne      0x1e0b33  ; -> 001E0B33
+001E0B2C  mov      ebx, 1
+001E0B31  jmp      0x1e0b40  ; -> 001E0B40
+001E0B33  cmp      eax, 0x407
+001E0B38  mov      ecx, 2
+001E0B3D  cmove    ebx, ecx
+001E0B40  sub      ebx, 1
+001E0B43  je       0x1e0b51  ; -> 001E0B51
+001E0B45  cmp      ebx, 1
+001E0B48  jne      0x1e0b56  ; -> 001E0B56
+001E0B4A  mov      esi, 0x47b1
+001E0B4F  jmp      0x1e0b56  ; -> 001E0B56
+001E0B51  mov      esi, 0x4749
+001E0B56  cmp      edi, 0x1c
+001E0B59  jl       0x1e0b70  ; -> 001E0B70
+001E0B5B  lea      eax, [rdi - 0x1c]
+001E0B5E  add      eax, esi
+001E0B60  mov      rbx, qword ptr [rsp + 0x30]
+001E0B65  mov      rsi, qword ptr [rsp + 0x38]
+001E0B6A  add      rsp, 0x20
+001E0B6E  pop      rdi
+001E0B6F  ret      
+001E0B70  lea      eax, [rdi + 0x46dd]
+001E0B76  cmp      edi, 1
+001E0B79  jge      0x1e0b80  ; -> 001E0B80
+001E0B7B  mov      eax, 0x46dc
+001E0B80  mov      rbx, qword ptr [rsp + 0x30]
+001E0B85  mov      rsi, qword ptr [rsp + 0x38]
+001E0B8A  add      rsp, 0x20
+001E0B8E  pop      rdi
+001E0B8F  ret      
+```
+
+## 003B7A30 (117 B, extent 003B7A30-003B7AA5)
+
+Entered from (direct sites whose caller this page cites): `00348DA0` + 0x15 (jmp; `00348DA0` is cited on this page)
+Other direct sites: none
+
+Host context: " | | '00348A70' | 26 B | tail-jumps at '00348A70+0x15' with 'rcx' = '00263FF0(3)' | Interior anchor '00348A74'; Interior anchor '00348A79'; Interior anchor '00348A7E'; Interior anchor '00348A85' | | '00348DA0' | 26 B | tail-jumps at '00348DA0+0x15' with 'rcx' = '00263FF0(3)' | Interior anchor '00348DA4'; Interior anchor '00348DA9'; Interior anchor '00348DAE'; Interior anchor '00348DB5' | | '00357170' | 36 B | calls '00263FF0(0)', then t"
+
+```
+003B7A30  push     rbx
+003B7A32  sub      rsp, 0x20
+003B7A36  mov      rcx, qword ptr [rip + 0x2b0522b]  ; -> 02EBCC68
+003B7A3D  test     rcx, rcx
+003B7A40  je       0x3b7a54  ; -> 003B7A54
+003B7A42  call     0x263f40  ; -> 00263F40 fn
+003B7A47  mov      edx, 1
+003B7A4C  mov      rcx, rax
+003B7A4F  call     0x2693d0  ; -> 002693D0 fn
+003B7A54  mov      eax, dword ptr [rip + 0x2b05166]  ; -> 02EBCBC0
+003B7A5A  xor      ebx, ebx
+003B7A5C  test     eax, eax
+003B7A5E  jle      0x3b7a9f  ; -> 003B7A9F
+003B7A60  mov      qword ptr [rsp + 0x30], rdi
+003B7A65  lea      rdi, [rip + 0x2b05054]  ; -> 02EBCAC0
+003B7A6C  nop      dword ptr [rax]
+003B7A70  mov      rcx, qword ptr [rdi]
+003B7A73  test     rcx, rcx
+003B7A76  je       0x3b7a90  ; -> 003B7A90
+003B7A78  call     0x263f40  ; -> 00263F40 fn
+003B7A7D  mov      edx, 1
+003B7A82  mov      rcx, rax
+003B7A85  call     0x2693d0  ; -> 002693D0 fn
+003B7A8A  mov      eax, dword ptr [rip + 0x2b05130]  ; -> 02EBCBC0
+003B7A90  inc      ebx
+003B7A92  add      rdi, 8
+003B7A96  cmp      ebx, eax
+003B7A98  jl       0x3b7a70  ; -> 003B7A70
+003B7A9A  mov      rdi, qword ptr [rsp + 0x30]
+003B7A9F  add      rsp, 0x20
+003B7AA3  pop      rbx
+003B7AA4  ret      
+```
+
+## 003B7AB0 (78 B, extent 003B7AB0-003B7AFE)
+
+Entered from (direct sites whose caller this page cites): `003484A0` + 0x15 (jmp; `003484A0` is cited on this page)
+Other direct sites: none
+
+Host context: "mps at '002D5590+0x1D' with 'rcx' and 'rdx' unchanged | Interior anchor '002D55AD'; Interior anchor '002D55B8'; Interior anchor '002D55D5'; Interior anchor '002D55F3'; Interior anchor '002D564D' | | '003484A0' | 26 B | tail-jumps at '003484A0+0x15' with 'rcx' = '00263FF0(3)' | Interior anchor '003484A4'; Interior anchor '003484A9'; Interior anchor '003484AE'; Interior anchor '003484B5' | | '00348A70' | 26 B | tail-jumps at '00348A70+0x1"
+
+```
+003B7AB0  push     rbx
+003B7AB2  sub      rsp, 0x20
+003B7AB6  xor      ebx, ebx
+003B7AB8  cmp      dword ptr [rip + 0x2b04fe2], ebx  ; -> 02EBCAA0
+003B7ABE  jle      0x3b7af8  ; -> 003B7AF8
+003B7AC0  mov      qword ptr [rsp + 0x30], rdi
+003B7AC5  lea      rdi, [rip + 0x2b04fb4]  ; -> 02EBCA80
+003B7ACC  nop      dword ptr [rax]
+003B7AD0  mov      rcx, qword ptr [rdi]
+003B7AD3  call     0x263f40  ; -> 00263F40 fn
+003B7AD8  mov      edx, 1
+003B7ADD  mov      rcx, rax
+003B7AE0  call     0x2693d0  ; -> 002693D0 fn
+003B7AE5  inc      ebx
+003B7AE7  lea      rdi, [rdi + 8]
+003B7AEB  cmp      ebx, dword ptr [rip + 0x2b04faf]  ; -> 02EBCAA0
+003B7AF1  jl       0x3b7ad0  ; -> 003B7AD0
+003B7AF3  mov      rdi, qword ptr [rsp + 0x30]
+003B7AF8  add      rsp, 0x20
+003B7AFC  pop      rbx
+003B7AFD  ret      
 ```
