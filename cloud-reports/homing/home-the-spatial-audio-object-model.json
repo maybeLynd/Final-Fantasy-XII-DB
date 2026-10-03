@@ -1,0 +1,54 @@
+{
+ "page": "18-Audio/the-spatial-audio-object-model.md",
+ "session": "session_01VnuySB6H7e8WAWRL1qnmZN",
+ "rows": [
+  {
+   "fn": "00210BE0",
+   "entered_from": "`001DBE00` + 0x35",
+   "text": "moves the arguments down one place (`edx` = `r8d`, `r8` = `r9`) and, when the incoming `edx` is zero, tail-jumps (`00210BE0` + 0x10) with `rcx` = qword `rcx+8`, otherwise tail-jumps (`00210BE0` + 0x19) with `rcx` = qword `rcx+0x10`",
+   "anchors": [
+    [
+     "00210BE3",
+     "test"
+    ],
+    [
+     "00210BE7",
+     "mov"
+    ],
+    [
+     "00210BF0",
+     "jmp"
+    ],
+    [
+     "00210BF9",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002DF280",
+   "entered_from": "`003A0E50` + 0x25",
+   "text": "returns 0 when `ecx` is -1; otherwise sets bit 31 of `ecx` (`bts`) and tail-jumps (`002DF280` + 0xC) with the other arguments unchanged",
+   "anchors": [
+    [
+     "002DF283",
+     "jne"
+    ],
+    [
+     "002DF285",
+     "xor"
+    ],
+    [
+     "002DF288",
+     "bts"
+    ],
+    [
+     "002DF28C",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Both bodies read whole; tail jumps cited by site. 002DF280's tail target is 002DEFA0, which the host page already cites elsewhere (it appears in 00210BE0's excerpt), so FABLE may name it instead of the site. No doubts."
+}
