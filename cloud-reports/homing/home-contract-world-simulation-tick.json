@@ -1,0 +1,14 @@
+{
+ "page": "00-Engine-Core-Runtime/Battle-Frame/CONTRACT-world-simulation-tick.md",
+ "session": "session_01B5JAqPgewUFviUD5ZfpMqA",
+ "rows": [
+  {"fn": "002DEF20", "entered_from": "`00332C40` + 0x320",
+   "text": "tail-jumps (`002DEF20` + 0xC) with 1 in `ecx`, the incoming `ecx` in `edx`, 0 in `r8d` and the incoming `edx` in `r9d`",
+   "anchors": [["002DEF23", "mov"], ["002DEF28", "lea"], ["002DEF2C", "jmp"]]},
+  {"fn": "002DF1A0", "entered_from": "`003B99D0` + 0x2EE",
+   "text": "when `edx` is zero, tail-jumps (`002DF1A0` + 0x18) with 1 in `ecx`, the incoming `ecx` in `edx`, 0 in `r8d` and the incoming `r8d` in `r9d`; otherwise calls `002DF1A0` + 0x2E with 1 in `ecx`, the incoming `ecx` in `edx`, 0 in `r8d`, the incoming `edx` in `r9d` and the incoming `r8d` as the fifth (stack) argument, and returns its result",
+   "anchors": [["002DF1A6", "jne"], ["002DF1B8", "jmp"], ["002DF1BD", "mov"], ["002DF1CE", "call"]]}
+ ],
+ "skipped": [],
+ "notes": "002DEF20 and 002DF1A0 are argument-reshuffling wrappers; their callees are cited by site only."
+}
