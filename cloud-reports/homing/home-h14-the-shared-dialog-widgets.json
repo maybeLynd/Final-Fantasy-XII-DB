@@ -1,0 +1,20 @@
+{
+ "page": "16-UI/Shared-Dialogs/the-shared-dialog-widgets.md",
+ "session": "session_01Ff3pgr29V1M59kxPqNgYBZ",
+ "rows": [
+  {"fn": "00240680", "entered_from": "`00281ED0` + 0x2AD",
+   "text": "builds a stack block of dword 0 followed by the 16 bytes at `00914D70` (2, 0, 0xFF, 0) when the word returned by the call at `00240680` + 0x13 is at most 0x19 (signed), otherwise those at `00914D60` (0, 0, 0xFF, 0); only when qword `0208E6D8` is 0 it passes (0x4D8, `0023FBE0`, the block) to the call at `00240680` + 0x59, discarding the result; the frame carries the `01F44830` stack cookie",
+   "anchors": [["00240693", "call"], ["002406A0", "cmp"], ["002406B8", "cmp"], ["002406D9", "call"]]},
+  {"fn": "00240D60", "entered_from": "`00281ED0` + 0x2E8",
+   "text": "does nothing when qword `0208E6C8` is non-zero; otherwise it passes (0xC8, `00240AD0`, a stack block of dword 0 followed by 16 zero bytes) to the call at `00240D60` + 0x3F, stores the result in qword `0208E6C8`, passes (that result, `00914C70`) to the call at `00240D60` + 0x55 and (qword `0208EA28`, qword `0208E6C8`) to the call at `00240D60` + 0x68; the frame carries the `01F44830` stack cookie",
+   "anchors": [["00240D73", "cmp"], ["00240D9F", "call"], ["00240DAB", "mov"], ["00240DB5", "call"], ["00240DC8", "call"]]},
+  {"fn": "0027EBC0", "entered_from": "`00281ED0` + 0x2C6",
+   "text": "does nothing when qword `0209AC20` is non-zero; otherwise it passes (0xC0, `0027EA70`, a stack block of dword 0 followed by 16 zero bytes) to the call at `0027EBC0` + 0x3F, stores the result in qword `0209AC20`, passes (that result, `00915C88`) to the call at `0027EBC0` + 0x55 and qword `0209AC20` to the call at `0027EBC0` + 0x61; the frame carries the `01F44830` stack cookie",
+   "anchors": [["0027EBD3", "cmp"], ["0027EBFF", "call"], ["0027EC0B", "mov"], ["0027EC15", "call"], ["0027EC21", "call"]]},
+  {"fn": "00292090", "entered_from": "`00281ED0` + 0x496",
+   "text": "reads qword `+0x300` of qword `0209AC30` and returns 0 when it is null, otherwise its word `+0x16A` AND 0xF",
+   "anchors": [["00292097", "mov"], ["0029209E", "test"], ["002920A3", "movzx"], ["002920AA", "and"], ["002920AE", "xor"]]}
+ ],
+ "skipped": [],
+ "notes": "The stack block in 00240680/00240D60/0027EBC0 is dword [rsp+0x20] plus 16 bytes at [rsp+0x28] (4 bytes of padding between them are not written). 00240680 compares ax after the call, so the signed test is on the low word."
+}
