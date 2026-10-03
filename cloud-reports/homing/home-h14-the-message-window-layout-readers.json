@@ -1,0 +1,11 @@
+{
+ "page": "16-UI/Message-Windows/the-message-window-layout-readers.md",
+ "session": "session_01Ft9DsjYbzydEyFv6u1R8to",
+ "rows": [
+  {"fn": "002A84F0", "entered_from": "`002A6190` + 0x7A2",
+   "text": "when bit 0x1000 of dword `rcx+0x3E8` is set, for each of the three qwords from `0209CC18` up to (not including) `0209CC30` calls the function at `002A84F0` + 0x33 with `rcx` = that qword and then stores 0 to it; when the bit is clear it returns without work",
+   "anchors": [["002A84F4", "test"], ["002A8523", "call"], ["002A8528", "mov"], ["002A852F", "cmp"]]}
+ ],
+ "skipped": [],
+ "notes": "002A84F0: the loop bound is a pointer compare (jl) of an 8-byte stride from 0209CC18 against 0209CC30, i.e. three qwords; the callee is called even for a null qword."
+}
