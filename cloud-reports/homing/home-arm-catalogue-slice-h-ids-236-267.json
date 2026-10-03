@@ -1,0 +1,11 @@
+{
+ "page": "00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-H-ids-236-267.md",
+ "session": "session_01Xkefj8Gz4bCEiqGqVRB1MS",
+ "rows": [
+  {"fn": "00183260", "entered_from": "`0079C140` + 0x37D",
+   "text": "calls `00183260` + 0x4 and, only when the result is non-null, calls `00183260` + 0xE again and stores byte 1 at `+0x2` of that second result; returns nothing",
+   "anchors": [["00183264", "call"], ["00183269", "test"], ["0018326E", "call"], ["00183273", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "Both calls go to the same callee; it is cited by its two sites."
+}
