@@ -1,0 +1,14 @@
+{
+ "page": "00-Engine-Core-Runtime/Developer-Tuning-Console/what-the-console-tunes.md",
+ "session": "session_01B5SV9waPUkdPQzR9MzNgSH",
+ "rows": [
+  {"fn": "001C36F0", "entered_from": "`002001F0` + 0xA7",
+   "text": "calls the site `001C36F0` + 0x2B on each 0x10-byte element from qword `[rcx]` up to (not including) qword `rcx+8`; then, when qword `[rcx]` is non-null, calls slot `+0x18` of the vtable of the object at `rcx+0x18` with that object, qword `[rcx]` and `(qword rcx+0x10 - qword [rcx])` rounded down to a multiple of 0x10; when it is null it returns without that call",
+   "anchors": [["001C3713", "cmp"], ["001C371B", "call"], ["001C3721", "add"], ["001C3740", "and"], ["001C3744", "call"]]},
+  {"fn": "001EF540", "entered_from": "`001AC7C0` + 0x38",
+   "text": "when `dl` is non-zero XORs 2 into dword `rcx+0x130`; when `dl` is 0 copies dword `rcx+0x134` into dword `rcx+0x130`",
+   "anchors": [["001EF542", "je"], ["001EF544", "xor"], ["001EF54C", "mov"], ["001EF552", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "001C36F0: the size mask is a 64-bit AND that clears the low four bits, stated in words."
+}
