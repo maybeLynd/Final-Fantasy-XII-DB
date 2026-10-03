@@ -1,0 +1,14 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/how-a-path-is-resolved-to-bytes.md",
+ "session": "session_019ww1AYv6HUCASSLr6wdSTQ",
+ "rows": [
+  {"fn": "001D6BB0", "entered_from": "`0059A9B0` + 0x1F",
+   "text": "calls (at `001D6BB0` + 0xF) with the incoming registers and tail-jumps (at `001D6BB0` + 0x27) with `rcx` = that result, `edx` = the incoming `ecx` and `r8d` = the incoming `dl` zero-extended",
+   "anchors": [["001D6BBA", "movzx"], ["001D6BBF", "call"], ["001D6BC7", "movzx"], ["001D6BD7", "jmp"]]},
+  {"fn": "00217A60", "entered_from": "`0020B680` + 0x191",
+   "text": "stores `rdx` at qword `[rcx]`, `r8d` at dword `rcx+8` and `r9d` at dword `rcx+0xC`, and returns `rcx`",
+   "anchors": [["00217A64", "mov"], ["00217A67", "mov"], ["00217A6B", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "00217A60 is also entered from `0020C300` + 0x11B; its entry instruction is the r8d store, the other two stores and the return value are interior."
+}
