@@ -1,0 +1,11 @@
+{
+ "page": "05-Spawn-Encounter-Lifecycle/Group-Completion-And-Respawn/when-a-group-is-wiped-and-when-it-comes-back.md",
+ "session": "session_0141duvveFVGsG54cn7rpP77",
+ "rows": [
+  {"fn": "003DCB90", "entered_from": "`00427320` + 0x32F",
+   "text": "returns 3 when `ecx` is negative and 0 when it is 0; otherwise takes the 20-byte entry `02B57F70` + (`ecx` AND 0xF)*20 and returns its byte `+6` (zero-extended) when its dword `+8` equals `ecx`, else 0",
+   "anchors": [["003DCB92", "jns"], ["003DCB9A", "je"], ["003DCBA5", "and"], ["003DCBAC", "cmp"], ["003DCBB2", "movzx"]]}
+ ],
+ "skipped": [],
+ "notes": ""
+}
