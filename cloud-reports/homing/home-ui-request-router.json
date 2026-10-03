@@ -1,0 +1,35 @@
+{
+ "page": "16-UI/Request-Router/ui-request-router.md",
+ "session": "cloud FABLE h5-1",
+ "rows": [
+  {
+   "fn": "002899A0",
+   "entered_from": "`002D5060` + 0x2A",
+   "text": "builds a local record of dword 0 at `+0`, sign-extended `ecx` at qword `+8` and sign-extended `edx` at qword `+0x10`, calls `002899A0` + 0x41(`0xd0`, the address `0028B860`, address of that record), then copies bit 0 of `r8d` into bit `0x2` of dword `+0xc4` of the returned object (AND with `0xfffffffd`, then OR of (`r8d` AND 1)*2); the frame carries a stack cookie from qword `01F44830` checked through `002899A0` + 0x60",
+   "anchors": [
+    [
+     "002899BB",
+     "mov"
+    ],
+    [
+     "002899D9",
+     "mov"
+    ],
+    [
+     "002899E1",
+     "call"
+    ],
+    [
+     "002899EB",
+     "and"
+    ],
+    [
+     "002899F2",
+     "or"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "002899A0: 0028B860 is passed as a code-address argument (lea), not called here; it is named because the listing resolves it, and FABLE may prefer to describe it without the address if that imports a callee into the host. r9d is not read."
+}
