@@ -1,0 +1,20 @@
+{
+ "page": "17-Presentation-Rendering/Render-Command-List/the-ordered-render-command-list.md",
+ "session": "session_01Ff3pgr29V1M59kxPqNgYBZ",
+ "rows": [
+  {"fn": "002E8C10", "entered_from": "`00347D90` + 0x1C",
+   "text": "returns without writing when `rcx` is null, qword `[rcx+0xC0]` is null, the dword it points at is -1, its word is 0xFFFF, the record at qword `022C6F28` + sign-extended word * 0x740 computes to null, or that record's dword `+0x284` is 0; otherwise it clears bit 0x8 of the record's dword `+0x304`, sets it again when `edx` is non-zero, and ORs 0x40 into dword `+0x290`",
+   "anchors": [["002E8C33", "imul"], ["002E8C43", "cmp"], ["002E8C4C", "and"], ["002E8C5A", "or"], ["002E8C60", "or"]]},
+  {"fn": "002ED200", "entered_from": "`00347D90` + 0x30",
+   "text": "returns without writing when `rcx` is null, qword `[rcx+0xC0]` is null, the dword it points at is -1, its word is 0xFFFF, the record at qword `022C6F28` + sign-extended word * 0x740 computes to null, or that record's dword `+0x284` is 0; otherwise it clears bit 0x10 of the record's byte `+0xD2` and sets it again when `edx` is non-zero",
+   "anchors": [["002ED223", "imul"], ["002ED233", "cmp"], ["002ED23C", "and"], ["002ED249", "or"]]},
+  {"fn": "0036E160", "entered_from": "`00342010` + 0x28",
+   "text": "clamps `ecx` (signed) to 0..0x3F and stores dword 0 at `022D97B0` + 4 * the clamped index",
+   "anchors": [["0036E167", "jns"], ["0036E169", "xor"], ["0036E184", "cmovg"], ["0036E17A", "mov"]]},
+  {"fn": "0036E1A0", "entered_from": "`00342010` + 0x1E",
+   "text": "clamps `ecx` (signed) to 0..0x3F and stores dword 0 at `022D99B0` + 4 * the clamped index",
+   "anchors": [["0036E1A7", "jns"], ["0036E1A9", "xor"], ["0036E1C4", "cmovg"], ["0036E1BA", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "0036E160/0036E1A0: the tail at +0x2B..+0x3E (second store) is not reachable after the cmovg leaves ecx non-negative; the anchored store is the shared one at +0x1A."
+}
