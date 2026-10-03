@@ -11,7 +11,17 @@
 
 ## Summary
 
-*(Written last; see §3 and §4.)*
+| | |
+|---|---|
+| Pass-1 gaps | none: pass 1 did not map this system. CLOSED 0 · NARROWED 0 · OPEN 0 · WRONG-IN-PASS-1 0 |
+| NEW gaps | **25**: STATIC 15 · RUNTIME 4 · DATA 0 · DOC 6 (§2.6) |
+| Register | 6 of the 25 touch a register row, all of them ANSWERED rows whose remainder or pointer is the gap; 19 have no row |
+| Rating | **MOSTLY** (new). Old rating: none, because pass 1 did not map this system |
+
+The two gameplay generators (the shared LCG and the gameplay MT19937) and their seeding and routing could be written
+from the pages alone, and the algorithm has been differentially tested. What keeps the system from READY is the CRT
+`rand()`, which decides gameplay and has no algorithm, consumer list or thread map on the pages, and the unread Bullet
+solver LCG. Draw order in play is a live question.
 
 Citation form: `ABBREV:line`. Line numbers are those of the snapshot file.
 
@@ -193,8 +203,8 @@ disagree). The register (`OQ`) was searched for every gap by address and by subj
 | DOC | 6 | N-06, N-21, N-22, N-23, N-24, N-25 |
 | **total** | **25** | |
 
-Gaps the folder's register rows track: 5 (N-03 `SD-25`, N-15 `UQ-276`, N-19 `AD-3`, N-21 `K-8`/`Z-11`, N-24 `AD-2`;
-N-06 also cites `SD-25`). All of those rows read ANSWERED; each gap is the remainder that row leaves, or a pointer the
+Gaps a register row touches: 6 (N-03 and N-06 `SD-25`, N-15 `UQ-276`, N-19 `AD-3`, N-21 `K-8`/`Z-11`, N-24
+`AD-2`). All of those rows read ANSWERED; each gap is the remainder that row leaves, or a pointer the
 page lacks. The other 19 have no register row.
 
 **Closed in the pages, so not gaps** (checked, listed so a later pass does not reopen them): the MT float draw and
@@ -204,3 +214,29 @@ pass `CW:244-273`); the twist's prefix-plus-remainder shape (`CG:298-308`); the 
 `OQ` AD-2); the G4 consumer census (`RS:193-210`, `OQ` UQ-276); the weighted-id walk and the chain-bonus roll
 (`RS:345-360`, `RS:455`, `OQ` AD-1, AD-6, AE-3, CQ-1); stream 5's pointer holder and stream 4's seed arguments
 (`RS:882-890`); the PPFX xorshift128 (`RS:722-758`, `OQ` CQ-6); the camera-shake channel table (`OQ:1578` CA-2).
+
+---
+
+## 3. Rating
+
+**MOSTLY.** (Old rating: none; pass 1 did not map this system.)
+
+| generator | rating | what decides it |
+|---|---|---|
+| G1 gameplay MT19937 | READY | contract with interface, types, state, transitions, seeding paths, reproduction formula; 15,682 comparisons, 0 mismatches (`CG:463`); every reseed path censused (`CG:555-566`). Live position (N-09, N-10) affects replay, not implementation |
+| G3 shared LCG | READY | exact three-step draw and assembly (`CG:154-173`), every inline copy equals it plus `% 100` (`RS:851`), complete census (`WR:115-132`), single seed path; first-area seed (N-12, N-13) is a small static read |
+| G4 presentation PRNG | READY for the algorithm, MOSTLY for phase | recurrence, both helpers, seed and mode word exact (`RS:87-143`); per-consumer step counts missing (N-15), and the page recommends local regeneration |
+| G2 graphics-noise MT | READY | algorithm and seeding chain stated (`RS:885-890`, `CW:96-129`); texture size not stated (N-16) |
+| G6 counter hash · G7 xorshift128 | READY for the algorithm | bodies given exactly (`RS:869-876`, `RS:728-751`); consumers (N-17) and owner effect (N-18) not |
+| G5 CRT `rand()` | **NOT YET** | reaches gameplay (charge-limit ticks, locomotion, party formation, Lua `math.random`; `RS:520-525`), yet no recurrence (N-02), no consumer list (N-05), one reduction of thirty (N-04), and no thread map (N-03) |
+| G8 Bullet solver LCG | **NOT YET** | tier-3 name only (N-01) |
+
+**What decides the overall rating.** A re-implementer can build every generator whose body the pages give, and the two
+that matter most for gameplay are specified to the bit and tested against the shipped code. The routing contract says
+which consumer draws from which of the four main generators. It has been executed (`EXP-144`, `CW:204-213`). The system
+is not NOT YET because none of its contracts has a structural hole. It is not READY because a fifth generator that
+decides gameplay outcomes (`rand()`, `CW:44`) is outside every contract: its algorithm lives in a system DLL the pages
+never describe, its 30 consumers are not listed, and whether they share one per-thread state is not established. Closing
+N-02 to N-05 (all STATIC) and N-01 would make the system READY at the algorithm and routing level. N-08 to N-11
+(RUNTIME) stand between it and an outcome-level replay, not a re-implementation. The six DOC items are pointer and
+consistency fixes on pages that are otherwise current.
