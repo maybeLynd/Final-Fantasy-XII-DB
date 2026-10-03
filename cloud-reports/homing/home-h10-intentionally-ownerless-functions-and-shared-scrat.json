@@ -1,0 +1,37 @@
+{
+ "page": "00-Engine-Core-Runtime/Ownership-Boundary/intentionally-ownerless-functions-and-shared-scratch.md",
+ "session": "session_019FUgqVeNcfdAVa4Yc3dLqG",
+ "rows": [
+  {"fn": "001B6B50", "entered_from": "`00188B10` + 0x1CD",
+   "text": "returns at once when qword `[rcx]` equals qword `[rcx+8]`; otherwise walks the qword slots from `[rcx]` while the cursor differs from qword `[rcx+8]`, calling the function at `001B6B50` + 0x23 with each slot's qword: when it returns non-zero (`al`) and the next slot is below qword `[rcx+8]` (unsigned) it makes the indirect call at `001B6B50` + 0x3E with the current slot, the next slot and the byte count from the next slot to `[rcx+8]`, then subtracts 8 from qword `[rcx+8]` without advancing the cursor; when it returns 0 the cursor advances 8",
+   "anchors": [["001B6B60", "cmp"], ["001B6B73", "call"], ["001B6B8E", "call"], ["001B6B94", "add"], ["001B6B9B", "add"]]},
+  {"fn": "002DF170", "entered_from": "`003B3EA0` + 0xE",
+   "text": "tail-jumps at `002DF170` + 0xC with `ecx` = 1, `edx` = the incoming `ecx`, `r8d` = 0 and `r9d` = the incoming `edx`",
+   "anchors": [["002DF173", "mov"], ["002DF176", "mov"], ["002DF178", "lea"], ["002DF17C", "jmp"]]},
+  {"fn": "003339C0", "entered_from": "`003B8670` + 0x4B2",
+   "text": "returns at once when `rcx` is null; otherwise walks 16 qword slots of `rcx` (index below 0x10, signed) and for each non-null slot whose byte `+0x11` equals `dl` calls the functions at `003339C0` + 0x42 and `003339C0` + 0x4A with that slot's pointer and stores 0 in the slot; after the loop calls the function at `003339C0` + 0x60 with `dl` zero-extended",
+   "anchors": [["003339F9", "cmp"], ["00333A02", "call"], ["00333A0F", "mov"], ["00333A16", "cmp"], ["00333A20", "call"]]},
+  {"fn": "003A9590", "entered_from": "`003A96A0` + 0x6D",
+   "text": "walks the node list starting at qword `+8` of qword `02EBEF88` (next link qword `+8`), doing nothing when it is null; in each node it replaces qword `+0x100` and qword `+0x108` with `rdx` where they equal `rcx`, then walks the chain from qword `+0x118` (next link qword `+0x30`), replacing qword `+0x18` with `rdx` when it equals `rcx`, or else qword `+0x20` when that equals `rcx`",
+   "anchors": [["003A95A4", "cmp"], ["003A95BD", "mov"], ["003A95D6", "mov"], ["003A95E2", "mov"], ["003A95E6", "mov"]]},
+  {"fn": "00424040", "entered_from": "`003B8670` + 0x7AD",
+   "text": "returns at once when dword `rcx+0xC4` is -1; otherwise calls the function at `00424040` + 0x15 with dword `rcx+0x10`, then the function at `00424040` + 0x27 with qword `+0xDA8` of that result and dword `rcx+0xC4`, and when that returns non-null ORs 0x40 into its dword `+0xC`",
+   "anchors": [["00424046", "cmp"], ["00424055", "call"], ["00424067", "call"], ["00424071", "or"]]},
+  {"fn": "00471310", "entered_from": "`003E1610` + 0x1E7",
+   "text": "stores word 0 at `rcx+0xC`, word 1 at `rcx+2` and byte 1 at `[rcx]`",
+   "anchors": [["00471315", "mov"], ["0047131B", "mov"], ["0047131F", "mov"]]},
+  {"fn": "004715D0", "entered_from": "`003E1610` + 0x129",
+   "text": "returns at once when byte `[rcx]` is non-zero; otherwise copies dword `rcx+0x10` to `+0x18` and dword `+0x14` to `+0x1C`, stores dword 0x101 at `[rcx]` and dword `0x3f800000` at `+0xC`",
+   "anchors": [["004715D3", "jne"], ["004715D8", "mov"], ["004715DE", "mov"], ["004715E1", "mov"], ["004715E7", "mov"]]},
+  {"fn": "00472550", "entered_from": "`003E1610` + 0x209",
+   "text": "clears bit 0x20 and sets bit 0x10 of byte `rcx+9`; then, only when that byte is below 0x40 (unsigned) and byte `+8` is 0, stores qword 8 at `+0x10`, word 1 at `+0xA` and byte 1 at `+8`",
+   "anchors": [["00472554", "or"], ["00472558", "cmp"], ["0047255E", "cmp"], ["00472569", "mov"], ["00472575", "mov"]]},
+  {"fn": "0051B950", "entered_from": "`003E1610` + 0x24D",
+   "text": "reads byte `rcx+0x34`; when its bit 0 is already set returns with that byte in `eax`, otherwise sets bit 0, stores word 0 at `+0x30` and returns 0",
+   "anchors": [["0051B954", "test"], ["0051B956", "jne"], ["0051B95A", "mov"], ["0051B95F", "mov"]]}
+ ],
+ "skipped": [
+  {"fn": "0042FCB0", "why": "its whole work is the entry instruction (an increment of a global dword followed by ret)"}
+ ],
+ "notes": "001B6B50: the indirect call goes through an import slot whose target the listing does not decode, so its effect (presumably a block move) is stated only by its arguments. 002DF170: callee cited by site because the host excerpt does not name it. 003339C0, 00424040: callees cited by site for the same reason."
+}
