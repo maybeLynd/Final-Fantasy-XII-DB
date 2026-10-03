@@ -1,0 +1,517 @@
+{
+ "page": "00-Engine-Core-Runtime/Application-Root/game-application.md",
+ "session": "session_019yEjih72UCRaxGuuSzfAJF",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "00616520",
+   "text": "calls `0016D6A0`(`rcx+0xc8`), then `00809054`(`rcx+8`, 0x18, 8, `0016D6A0`), passing the address `0016D6A0` as the fourth argument",
+   "anchors": [
+    [
+     "00616533",
+     "lea"
+    ],
+    [
+     "0061653A",
+     "call"
+    ],
+    [
+     "00616540",
+     "lea"
+    ],
+    [
+     "00616553",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00616740",
+   "text": "when qword `rcx+0x28` or qword `rcx+0x18` is non-zero calls `0062B890`(`rcx`), otherwise skips it; then tail-jumps to `005DDB00`(`rcx`)",
+   "anchors": [
+    [
+     "00616752",
+     "cmp"
+    ],
+    [
+     "00616759",
+     "cmp"
+    ],
+    [
+     "00616760",
+     "call"
+    ],
+    [
+     "0061676E",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00616780",
+   "text": "calls `0016D6A0`(`rcx+0xc0`), then `00809054`(`rcx`, 0x18, 8, `0016D6A0`), passing the address `0016D6A0` as the fourth argument",
+   "anchors": [
+    [
+     "00616792",
+     "add"
+    ],
+    [
+     "00616799",
+     "call"
+    ],
+    [
+     "0061679F",
+     "lea"
+    ],
+    [
+     "006167B2",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00619070",
+   "text": "returns at once when `rcx` is null; otherwise, for `edx` elements of stride `0x20` from `rcx`, calls `00584730` on each element's qword `+0` when it is non-null and its bit 0 is clear, then calls `00584730`(`rcx`)",
+   "anchors": [
+    [
+     "00619073",
+     "je"
+    ],
+    [
+     "006190AE",
+     "je"
+    ],
+    [
+     "006190B0",
+     "call"
+    ],
+    [
+     "006190B6",
+     "add"
+    ],
+    [
+     "006190C3",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0061CF20",
+   "text": "returns 0 when `edx` is 0; otherwise takes `rcx+8` when `edx` is 1 and `0017D260`(`edx`*0x28, 8) when it is greater (unsigned), and when that pointer is non-null zeroes `edx` elements of stride `0x28` (qwords `+0`, `+8`, `+0x10`, `+0x18`, dword `+0x20`); returns the pointer",
+   "anchors": [
+    [
+     "0061CF2E",
+     "jne"
+    ],
+    [
+     "0061CF3B",
+     "jbe"
+    ],
+    [
+     "0061CF4A",
+     "call"
+    ],
+    [
+     "0061CF6E",
+     "mov"
+    ],
+    [
+     "0061CF7C",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0061D030",
+   "text": "returns 0 when `edx` is 0; otherwise takes `rcx+8` when `edx` is 1 and `0017D260`(`edx`*0x10, 8) when it is greater (unsigned), and when that pointer is non-null copies `r9d` 16-byte elements from `r8` (qword `+0`, dwords `+8`, `+0xc`) into it and zeroes the remaining `edx` minus `r9d` elements the same way; returns the pointer",
+   "anchors": [
+    [
+     "0061D064",
+     "jbe"
+    ],
+    [
+     "0061D072",
+     "call"
+    ],
+    [
+     "0061D0A0",
+     "mov"
+    ],
+    [
+     "0061D0B1",
+     "mov"
+    ],
+    [
+     "0061D0D5",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00627CF0",
+   "text": "returns 0 when `edx` equals the whole dword `[rcx]`; otherwise, with n = that dword with bit 31 cleared and old = qword `rcx+8` (n above 1), `rcx+8` (n = 1) or 0, calls `00627CF0`+0x48(`rcx`, `edx`, old, the smaller of `edx` and n); returns 13 when that gives null and `edx` is non-zero; else calls `00584730`(old) when old is non-null, differs from the result and from `rcx+8` and bit 31 of `[rcx]` is clear, stores the result at qword `rcx+8` unless it is `rcx+8`, stores `edx` at dword `[rcx]` and returns 0",
+   "anchors": [
+    [
+     "00627D13",
+     "je"
+    ],
+    [
+     "00627D34",
+     "cmovb"
+    ],
+    [
+     "00627D49",
+     "lea"
+    ],
+    [
+     "00627D74",
+     "call"
+    ],
+    [
+     "00627D86",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006339A0",
+   "text": "stores the address `00D58098` at qword `[rcx]` and 0 at qword `+0x50` of qword `rcx+8`; when bit 0 of `dl` is set calls `00809950`(`rcx`, 0x20); returns `rcx`",
+   "anchors": [
+    [
+     "006339B0",
+     "mov"
+    ],
+    [
+     "006339B7",
+     "mov"
+    ],
+    [
+     "006339BF",
+     "test"
+    ],
+    [
+     "006339C9",
+     "call"
+    ],
+    [
+     "006339CE",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00664F10",
+   "text": "returns 0 when `ecx` is 0; otherwise calls `0017D260`(`ecx`, 4), returns 0 when that is null, and else copies `ecx` bytes from `rdx` into it and returns it",
+   "anchors": [
+    [
+     "00664F21",
+     "je"
+    ],
+    [
+     "00664F31",
+     "call"
+    ],
+    [
+     "00664F3C",
+     "je"
+    ],
+    [
+     "00664F56",
+     "mov"
+    ],
+    [
+     "00664F5E",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00665550",
+   "text": "returns 0 when `ecx` is 0; otherwise calls `0017D260`(`ecx`*0x18, 8), returns 0 when that is null, and else copies `r8d` elements of stride `0x18` from `rdx` (dword `+0`, qword `+8`, bytes `+0x10`, `+0x11`), fills the remaining `ecx` minus `r8d` elements with dword 0 at `+0`, qword 0 at `+8` and word `0xff34` at `+0x10`, and returns the pointer",
+   "anchors": [
+    [
+     "00665570",
+     "je"
+    ],
+    [
+     "00665581",
+     "call"
+    ],
+    [
+     "006655AF",
+     "mov"
+    ],
+    [
+     "006655C7",
+     "mov"
+    ],
+    [
+     "006655F1",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0066F5F0",
+   "text": "returns 0 when `edx` is 0; otherwise takes `rcx+8` when `edx` is 1 and `0017D260`(`edx`*0x48, 8) when it is greater (unsigned), and when that pointer is non-null initialises `edx` elements of stride `0x48` with qwords `+0`, `+8`, `+0x10`, `+0x18` and dword `+0x20` zeroed and the address `00D68DD0` at qword `+0x28`; returns the pointer",
+   "anchors": [
+    [
+     "0066F5FE",
+     "jne"
+    ],
+    [
+     "0066F60B",
+     "jbe"
+    ],
+    [
+     "0066F61A",
+     "call"
+    ],
+    [
+     "0066F649",
+     "mov"
+    ],
+    [
+     "0066F65B",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0066F680",
+   "text": "returns 0 when `edx` is 0; otherwise takes `rcx+8` when `edx` is 1 and `0017D260`(`edx`*0x48, 8) when it is greater (unsigned), and when that pointer is non-null initialises `edx` elements of stride `0x48` with qwords `+0`, `+8`, `+0x10`, `+0x18` and dword `+0x20` zeroed and the address `00D68DE0` at qword `+0x28`; returns the pointer",
+   "anchors": [
+    [
+     "0066F68E",
+     "jne"
+    ],
+    [
+     "0066F69B",
+     "jbe"
+    ],
+    [
+     "0066F6AA",
+     "call"
+    ],
+    [
+     "0066F6D9",
+     "mov"
+    ],
+    [
+     "0066F6EB",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00671E80",
+   "text": "stores 0 at qword `[r9]` and dword `[fifth (stack) arg]`; with n = dword `[eighth]` AND `0x7fffffff` and A = qword `eighth+8` (stride `0x88`), when n is non-zero calls `00671E80`+0x68(`rdx`, 0, A, n, ninth) and returns its result if non-zero; else reserves n*8 stack bytes (16-rounded) through `00808F10`, lists each element E of A as E when dword `E+0x78` is non-zero and 0 otherwise, keeping the first listed E (index i) for which byte `+0x10` of qword `[qword rcx+0x18 + (dword [qword rcx+0x28 + sixth*16] + i)*0x18 + 8]` is non-zero; stores the qword `[rcx]`+0x28 virtual's result (`rcx`, sixth, seventh, list, ninth) at `[r9]`, copies the kept E's dword `+4` to `[fifth]` if any, returns 0; the cookie is checked by `00808C40`",
+   "anchors": [
+    [
+     "00671EE8",
+     "call"
+    ],
+    [
+     "00671F15",
+     "call"
+    ],
+    [
+     "00671F63",
+     "cmp"
+    ],
+    [
+     "00671F9C",
+     "call"
+    ],
+    [
+     "00671FAB",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00673030",
+   "text": "returns 5 when `r8d` is negative (signed); otherwise, with old = qword `rcx+8` (count, dword `[rcx]` without bit 31, above 1), `rcx+8` (count 1) or 0: when `r8d` is 1 copies the `0x48`-byte element at `rdx` into `rcx+8` except qword `+0x28`, which gets the address `00D68DE0`, and stores count 1, otherwise uses `rdx` with count `r8d` OR `0x80000000`; calls `00584730`(old) when old is non-null, differs from the new pointer and `rcx+8` and bit 31 was clear; stores the pointer at qword `rcx+8` unless it is `rcx+8`, the count at dword `[rcx]`, and returns 0",
+   "anchors": [
+    [
+     "00673043",
+     "jns"
+    ],
+    [
+     "0067307F",
+     "bts"
+    ],
+    [
+     "006730BD",
+     "mov"
+    ],
+    [
+     "006730FD",
+     "call"
+    ],
+    [
+     "00673111",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00675700",
+   "text": "stores the address `00D6C378` at qword `[rcx]`, calls `00675700`+0x19(`rcx`), and when bit 0 of `edx` is set calls `00809950`(`rcx`, 0x20); returns `rcx`",
+   "anchors": [
+    [
+     "00675713",
+     "mov"
+    ],
+    [
+     "00675719",
+     "call"
+    ],
+    [
+     "0067571E",
+     "test"
+    ],
+    [
+     "0067572B",
+     "call"
+    ],
+    [
+     "00675730",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0067B470",
+   "text": "calls `0067B470`+0x16(`rcx+0x40`) and +0x20(`rcx+0x30`); when bit 31 of dword `rcx+8` is clear and qword `rcx+0x10` is non-null calls `00584730`(that qword); on every path stores 0 to qword `rcx+0x10` and dword `rcx+8`",
+   "anchors": [
+    [
+     "0067B486",
+     "call"
+    ],
+    [
+     "0067B490",
+     "call"
+    ],
+    [
+     "0067B4A0",
+     "je"
+    ],
+    [
+     "0067B4AB",
+     "call"
+    ],
+    [
+     "0067B4B3",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00687F30",
+   "text": "calls `00687F30`+0x15(`rdx`); when qword `rdx+0x118` is non-null and its bit 0 is clear calls `00584730`(that qword); returns 1 in `al`",
+   "anchors": [
+    [
+     "00687F45",
+     "call"
+    ],
+    [
+     "00687F4B",
+     "mov"
+    ],
+    [
+     "00687F5D",
+     "je"
+    ],
+    [
+     "00687F5F",
+     "call"
+    ],
+    [
+     "00687F65",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006890D0",
+   "text": "when qword `rdx+0xd8` is non-null calls `006890D0`+0x1E(it); calls +0x27(`rdx`); when qword `rdx+0x118` is non-null and its bit 0 is clear calls `00584730`(that qword); returns 1 in `al`",
+   "anchors": [
+    [
+     "006890EC",
+     "je"
+    ],
+    [
+     "006890EE",
+     "call"
+    ],
+    [
+     "006890F7",
+     "call"
+    ],
+    [
+     "00689111",
+     "call"
+    ],
+    [
+     "00689117",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00691A60",
+   "text": "when bit 31 of dword `[rcx]` is clear, the dword's low 31 bits are above 1 (unsigned) and qword `rcx+8` is non-null, calls `00584730`(that qword); on every path stores 0 to dword `[rcx]` and qword `rcx+8`",
+   "anchors": [
+    [
+     "00691A7D",
+     "je"
+    ],
+    [
+     "00691A86",
+     "jbe"
+    ],
+    [
+     "00691A91",
+     "call"
+    ],
+    [
+     "00691A99",
+     "mov"
+    ],
+    [
+     "00691A9B",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00693C40",
+   "text": "returns 0 when `ecx` is 0; otherwise calls `0017D260`(`ecx`*0x30, 8), returns 0 when that is null, and else copies `ecx` 0x30-byte elements from `rdx` into it (three 16-byte moves each) and returns it",
+   "anchors": [
+    [
+     "00693C51",
+     "je"
+    ],
+    [
+     "00693C67",
+     "call"
+    ],
+    [
+     "00693C72",
+     "je"
+    ],
+    [
+     "00693C8F",
+     "movups"
+    ],
+    [
+     "00693CA2",
+     "movups"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Calls to 0061C920, 0061D030, 00633770, 00663170, 001B6EF0, 006A27C0 and 006A4670 are cited by site because the page does not name them. Addresses 00D58098, 00D6C378, 00D68DD0 and 00D68DE0 are lea targets in .rdata (stored as pointers), not data after the function code. 00671E80 stack arguments are counted Win64-style from the frame (rbp+0x60 = fifth). Doubts: 1 (00671E80, dense)."
+}
