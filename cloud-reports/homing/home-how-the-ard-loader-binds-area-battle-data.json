@@ -1,0 +1,11 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/how-the-ard-loader-binds-area-battle-data.md",
+ "session": "session_019FhK6qDUyvajmAsnJawqmj",
+ "rows": [
+  {"fn": "003E09B0", "entered_from": "`002EA870` + 0x9",
+   "text": "stores `ecx` as dword `02B59D64` and returns when qword `022C6F28` is null or its dword `+0x48800` is -1; otherwise walks the `0x740`-stride records of `022C6F28` from that index, taking the next index from each record's signed word `+4` until -1 (re-reading `022C6F28` each step), and for each non-null result p of the call at `003E09B0` + 0x6D on the record: when `0020E600(dword p+0)` is non-null, calls `003E09B0` + 0xA3 with it and 4 when dword `02B59D64` is non-zero, else 2 when `ecx` was non-zero, else 1, and on a non-zero result writes word 0x1E to `p+0x60`; then, only when dword `02B59D64` is zero, passes a non-null `0020E600(dword p+4)` to the call at `003E09B0` + 0xD2 and, if a fresh lookup is still non-null, to `003E09B0` + 0xEF, and likewise a non-null `0020E600(dword p+0x38)` to `003E09B0` + 0x10C and then `003E09B0` + 0x129",
+   "anchors": [["003E09BB", "mov"], ["003E0A1D", "call"], ["003E0A5C", "mov"], ["003E0A82", "call"], ["003E0AE5", "movsx"]]}
+ ],
+ "skipped": [],
+ "notes": "003E09B0: 0020E600 is cited by address because the host page already names it; the other callees are cited by site. Each 0020E600 result is re-fetched before use (the body calls 0020E600 again for the argument after each null test), which the sentence compresses to 'a non-null 0020E600(...)'. The 0x6D call's argument is the record address (qword 022C6F28 plus index times 0x740). The 0x1E stored at p+0x60 is r14w = 4 + 0x1A. The p+4 and p+0x38 calls are skipped for every record whenever dword 02B59D64 is non-zero (the jne at 003E0A68), even though the p+0 arm still runs. Five anchors cannot cover every call; the 0xEF, 0x10C and 0x129 calls are at 003E0A9F, 003E0ABC and 003E0AD9 if FABLE wants to swap one in."
+}
