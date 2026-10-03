@@ -1,0 +1,14 @@
+{
+ "page": "16-UI/Shop-Screens/the-shop-screens.md",
+ "session": "session_01Ff3pgr29V1M59kxPqNgYBZ",
+ "rows": [
+  {"fn": "00243580", "entered_from": "`003FCFE0` + 0x4D",
+   "text": "for each index below `(dword [rcx] >> 2) AND 0xFFFF` (no iteration when bits 2 to 17 of that dword are all clear), loads the qword at `qword [rcx+0x10] + 8 * index` and clears bit 0 of that object's dword `+8`; `edx` is zeroed at entry and used as the counter, so the second argument is not read",
+   "anchors": [["00243585", "test"], ["0024359A", "mov"], ["0024359F", "and"], ["002435A6", "shr"], ["002435AC", "cmp"]]},
+  {"fn": "0057A960", "entered_from": "`0056DD00` + 0x9",
+   "text": "returns 0 when qword `02CA9790` is 0; otherwise returns 1 when qword `02CA97A0` is non-zero and 0 when it is 0",
+   "anchors": [["0057A962", "cmp"], ["0057A969", "je"], ["0057A96B", "cmp"], ["0057A972", "setne"]]}
+ ],
+ "skipped": [],
+ "notes": "00243580: the callers named in the excerpt pass (rdx, 0, byte rcx+0x180); the body reads only rcx (r8 is overwritten as the offset register)."
+}
