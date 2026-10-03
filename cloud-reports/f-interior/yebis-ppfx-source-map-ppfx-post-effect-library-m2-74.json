@@ -1,0 +1,632 @@
+{
+ "page": "23-Third-Party-Libraries/PostEffects-Yebis-PPFX/yebis-ppfx-source-map.md",
+ "mode": "member",
+ "family": "PPFX post-effect library",
+ "session": "session_011x7Z2kBBj6np96XsxMDLH5",
+ "rows": [
+  {
+   "fn": "00784C50",
+   "text": "calls `rdx`'s vtable slot `+0x38` with a stack out-slot, the returned object's slot `+0x10`, then the routine at `00784C50` + 0x41 with `rcx` and that object, returning its result when negative; then calls `rdx`'s slot `+0x40` with a stack buffer and the routine at `00784C50` + 0x65 with `rcx+0x30` and that buffer, returning its result when negative; otherwise adds `r8d` to dword `+0x58` and `r9d` to dword `+0x50`, stores dwords `+4`, `+8`, `+0xC`, each shifted right by the new dword `+0x58` (in `cl`) and raised to at least 1 (unsigned), into dwords `+0x60`, `+0x64`, `+0x68`, and returns the second routine's result",
+   "anchors": [
+    [
+     "00784C91",
+     "call"
+    ],
+    [
+     "00784CB5",
+     "call"
+    ],
+    [
+     "00784CC5",
+     "add"
+    ],
+    [
+     "00784CE7",
+     "cmovbe"
+    ],
+    [
+     "00784D40",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00784D70",
+   "text": "calls `rdx`'s vtable slot `+0x38` with a stack out-slot, the returned object's slot `+0x10`, then the routine at `00784D70` + 0x31 with `rcx` and that object; when that result is negative returns it; otherwise, when bit 0x20 of dword `+0x18` is set returns the result of the call at `00784D70` + 0x48 (`rcx`, `rdx`), else when bit 0x40 is set returns that of the call at + 0x63 (`rcx`, `rdx`), else returns the first routine's result",
+   "anchors": [
+    [
+     "00784DA1",
+     "call"
+    ],
+    [
+     "00784DAD",
+     "test"
+    ],
+    [
+     "00784DB8",
+     "call"
+    ],
+    [
+     "00784DC8",
+     "test"
+    ],
+    [
+     "00784DD3",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00784DF0",
+   "text": "returns a mask built from the object: 0x80 when dword `+0x28` has bit 0x10000000, OR 0x40 when it has bit 8, OR 0x10 when dword `+0x24` has bit 0, OR 0x20 when it has bit 1, OR 4 when dword `+0x10` is 3 or 4 (`+0x10` minus 3 at most 1, unsigned)",
+   "anchors": [
+    [
+     "00784E0A",
+     "cmovne"
+    ],
+    [
+     "00784E0E",
+     "bt"
+    ],
+    [
+     "00784E32",
+     "or"
+    ],
+    [
+     "00784E3B",
+     "or"
+    ],
+    [
+     "00784E43",
+     "or"
+    ]
+   ]
+  },
+  {
+   "fn": "00784E60",
+   "text": "returns dword `+0x90` times dword `+0x50` plus dword `+0x98`",
+   "anchors": [
+    [
+     "00784E66",
+     "imul"
+    ],
+    [
+     "00784E6A",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "00784E80",
+   "text": "calls the routine at `00784E80` + 0x1B with `rcx`, stores `00DAC958` to qword `[rcx]`, 0 to dword `+0x10`, -1 to dword `+0x14`, `rdx` to qword `+0x18`, 0 to byte `+0x20` and qwords `+0x24`, `+0x30`, `+0x38`, calls + 0x54 with (`rcx+0x40`, 0, 0x6C), sets dwords `+0x48`, `+0x4C` and byte `+0xAC` to 1 and calls `00785360(qword +0x18 + 0x10, a stack slot holding rcx)`; then, with n = dword `02EA1970` raised to at least 1, calls + 0xC7 with (qword `01F3BA68`, n + 8, `[str \"..\\src\\GPU\\GPUInterfaceResource.cpp\"]`, 0x4E5, 0), stores n in the returned block's first qword and the block + 8 (or 0 when null) to qword `+0x30`, zeroes n bytes from it (re-reading `02EA1970` each pass) and returns `rcx`",
+   "anchors": [
+    [
+     "00784EA8",
+     "mov"
+    ],
+    [
+     "00784ED4",
+     "call"
+    ],
+    [
+     "00784F00",
+     "call"
+    ],
+    [
+     "00784F47",
+     "call"
+    ],
+    [
+     "00784F96",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00784FD0",
+   "text": "stores `00DAC958` to qword `[rcx]`; when qword `+0x38` is non-null calls its vtable slot `+0x10` and zeroes it; when qword `+0x30` is non-null calls `00784FD0` + 0x4B with (qword `01F3BA68`, that pointer minus 8) and zeroes it; scans the 8-byte array from qword `+0x10` to qword `+0x18` of the object at qword `+0x18` for the entry equal to `rcx` and, when found, calls through `008C2A40` at + 0x87 with (that entry, the next entry, the remaining byte count AND NOT 7) and subtracts 8 from that object's qword `+0x18`; finally tail-jumps at + 0xA0 with `rcx`",
+   "anchors": [
+    [
+     "00784FEE",
+     "mov"
+    ],
+    [
+     "00784FFF",
+     "call"
+    ],
+    [
+     "0078501B",
+     "call"
+    ],
+    [
+     "00785057",
+     "call"
+    ],
+    [
+     "00785070",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00785080",
+   "text": "returns 0 when `rdx` is null; otherwise stores qword `+0x18` to `[rdx]` and returns 0x8000FFFF when it is null, else calls that object's vtable slot `+0` and returns 0",
+   "anchors": [
+    [
+     "00785087",
+     "je"
+    ],
+    [
+     "0078508D",
+     "mov"
+    ],
+    [
+     "00785095",
+     "mov"
+    ],
+    [
+     "007850A2",
+     "call"
+    ],
+    [
+     "007850A4",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "007850C0",
+   "text": "when `r8d` is negative replaces it with dword `+0x28` of the object at qword `+0x18` modulo dword `02EA1970` raised to at least 1 (unsigned `div`); then stores `dl` to the byte at qword `+0x30` + `r8d` (sign-extended)",
+   "anchors": [
+    [
+     "007850CA",
+     "jns"
+    ],
+    [
+     "007850E7",
+     "cmovbe"
+    ],
+    [
+     "007850F8",
+     "div"
+    ],
+    [
+     "00785105",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00785230",
+   "text": "calls `00785230` + 0x21 with `rcx` and `rdx` for a new buffer, copies the (qword `+8` minus qword `+0`) bytes from qword `+0` into it through `008C2A40` at + 0x47; when qword `+0` is non-null calls + 0x6C with (qword `+0`, (qword `+0x10` minus qword `+0`) / 8); then stores buffer + `rdx`*8 to qword `+0x10`, buffer + the old element count*8 to qword `+8` and the buffer to qword `+0`",
+   "anchors": [
+    [
+     "00785251",
+     "call"
+    ],
+    [
+     "00785277",
+     "call"
+    ],
+    [
+     "0078529C",
+     "call"
+    ],
+    [
+     "007852A5",
+     "mov"
+    ],
+    [
+     "007852B1",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007852D0",
+   "text": "returns at once when (qword `+0x10` minus qword `+8`) / 8 is at least `rdx` (unsigned); otherwise, when 0x1FFFFFFFFFFFFFFF minus the element count (qword `+8` minus qword `+0`, / 8) is below `rdx`, calls through `008C2618` at `007852D0` + 0x41 with `[str \"vector<T> too long\"]` (`008F6820`) and stops at `int3`; else takes the capacity plus half of it (0 when that would exceed 0x1FFFFFFFFFFFFFFF), raises it to at least count + `rdx` and tail-jumps to `00785230(rcx, that)`; consistent with the MSVC STL vector growth path (the `vector<T> too long` string)",
+   "anchors": [
+    [
+     "007852EC",
+     "jae"
+    ],
+    [
+     "00785308",
+     "jae"
+    ],
+    [
+     "00785311",
+     "call"
+    ],
+    [
+     "0078533D",
+     "cmovb"
+    ],
+    [
+     "00785348",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00785360",
+   "text": "appends a qword to the 8-byte array at `rcx` (qwords `+0`, `+8`, `+0x10`): when qword `+8` equals qword `+0x10` it first calls `007852D0(rcx, 1)`; when `rdx` lies in [qword `+0`, qword `+8`) the value is re-read by its index from the (possibly new) qword `+0`, otherwise from `[rdx]`; it is stored at qword `+8` unless that is null, and qword `+8` advances by 8 on every path",
+   "anchors": [
+    [
+     "00785374",
+     "cmp"
+    ],
+    [
+     "00785396",
+     "call"
+    ],
+    [
+     "007853A7",
+     "mov"
+    ],
+    [
+     "007853DD",
+     "mov"
+    ],
+    [
+     "007853E0",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "007853F0",
+   "text": "calls `007853F0` + 0x2B with (qword `01F3BA68`, 0x58, `[str \"..\\src\\GPU\\GPUInterfaceSurface.cpp\"]`, 0x184, 0); when the result is non-null stores 0xA in its first qword and keeps the result + 8, else 0; stores that to qword `+0xF0`, then, without a null check, zeroes its ten qwords `+0` to `+0x48`, and returns 0",
+   "anchors": [
+    [
+     "0078541B",
+     "call"
+    ],
+    [
+     "00785429",
+     "mov"
+    ],
+    [
+     "00785434",
+     "mov"
+    ],
+    [
+     "0078543B",
+     "mov"
+    ],
+    [
+     "007854A2",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007854D0",
+   "text": "with node = qword `[rdx]` and its owner = qword node `+0x18`: when dword node `+0x10` is 0-7 (unsigned) calls vtable slot `+0x10` on the owner's qword `+0x130` + 8*index and zeroes it, else does so on the owner's qword `+0x170`; sets dword `rcx+0x128` to 1 + the highest k in 0-7 whose qword `rcx+0x130` + 8k is non-null (0 when none); unlinks the node (node `+0` into the qword at node `+8`'s target, node `+8` into node `+0`'s `+8`), decrements qword `rcx+0x108`, calls `007854D0` + 0x132 with the node and writes the old node `+0` to `[rdx]`; then calls `rcx`'s vtable slot `+8` when `rcx` is not the owner, else stores -1 to dword `rcx+0xF8`; returns 0",
+   "anchors": [
+    [
+     "00785509",
+     "call"
+    ],
+    [
+     "0078550E",
+     "mov"
+    ],
+    [
+     "007855DD",
+     "mov"
+    ],
+    [
+     "00785602",
+     "call"
+    ],
+    [
+     "0078561A",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00785650",
+   "text": "returns 0x80070057 when `r8` is null; for `edx` 0-7 (unsigned) takes qword `r8+0x118`, for `edx` 8 qword `r8+0x120`, returning 0x80070057 when it is null, else storing it to qword `rcx+0x130` + 8*`edx` (or `rcx+0x170`) and calling its vtable slot `+8`; other `edx` values store nothing; then sets dword `+0x128` to 1 + the highest k in 0-7 whose qword `+0x130` + 8k is non-null (0 when none) and returns 0",
+   "anchors": [
+    [
+     "0078565E",
+     "mov"
+    ],
+    [
+     "0078567D",
+     "mov"
+    ],
+    [
+     "00785698",
+     "mov"
+    ],
+    [
+     "007856A2",
+     "call"
+    ],
+    [
+     "0078575F",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00785780",
+   "text": "when `edx` is 3 calls `007857D0(rcx, r8, 1, 0)` with a zero fifth (qword) and sixth (byte) argument, stores 3 to dword `+0x14` of the returned pointer without a null check and returns it; otherwise returns 0",
+   "anchors": [
+    [
+     "0078578A",
+     "jne"
+    ],
+    [
+     "0078578C",
+     "lea"
+    ],
+    [
+     "007857A4",
+     "call"
+    ],
+    [
+     "007857A9",
+     "mov"
+    ],
+    [
+     "007857B5",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "007857D0",
+   "text": "calls `007857D0` + 0x4F with (qword `01F3BA68`, 0x178, `[str \"..\\src\\GPU\\GPUInterfaceSurface.cpp\"]`, 0xE2F, 0) and, when the block is non-null, `00785A60(block, rcx)`; then, with no null check, calls the object's vtable slot `+0x38` with (`rdx`, `r8d`, the fifth argument, the sixth argument's byte, `r9d`) and returns the object when that is non-negative, else calls its slot `+8` and returns 0",
+   "anchors": [
+    [
+     "0078581F",
+     "call"
+    ],
+    [
+     "00785834",
+     "call"
+    ],
+    [
+     "0078585A",
+     "call"
+    ],
+    [
+     "00785868",
+     "call"
+    ],
+    [
+     "0078586F",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007858A0",
+   "text": "calls `007858A0` + 0x4B with (qword `01F3BA68`, 0x178, `[str \"..\\src\\GPU\\GPUInterfaceSurface.cpp\"]`, 0xE7A, 0) and builds it with `00785A60(block, rcx)` (object 0 when null); calls + 0xA6 with (a zeroed stack out-slot, qword `+0x40` of qword `rdx+0x18` or 0 when that is null, qword `rdx+0xE0`, 0, `r8d`, `r9d`, 1); when that returns 0 calls the object's slot `+0x40` (`rdx+0xE0` qword, `r8d`, `r9d`); otherwise returns 0 when the slot stayed null, else calls slot `+0x38` (slot, 0, 0, a byte set when dword `rdx+0xB0` is 0x1D, 0x48, 0x4B, 0x4E, 0x5B, 0x5D or 0x63, dword `rdx+0x28`); on both called paths releases a non-null slot (slot `+0x10`), stores 5 to dword `+0x14`, `rdx` to qword `+0xD8`, `r8d` to dword `+0xE8`, `r9d` to dword `+0xEC` and returns the object",
+   "anchors": [
+    [
+     "007858EB",
+     "call"
+    ],
+    [
+     "00785946",
+     "call"
+    ],
+    [
+     "0078595E",
+     "call"
+    ],
+    [
+     "007859B5",
+     "call"
+    ],
+    [
+     "007859C8",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00785A10",
+   "text": "sets a byte to 1 when the fifth (stack) argument is 0x1D, 0x48, 0x4B, 0x4E, 0x5B, 0x5D or 0x63 (bit test of 0x8280049 on the value minus 0x48), else 0 (also for 0), writes it as the sixth argument, zeroes the fifth (qword) and `r8d`, `r9d`, and tail-jumps to `007857D0` with `rcx`, `rdx`",
+   "anchors": [
+    [
+     "00785A18",
+     "cmp"
+    ],
+    [
+     "00785A2B",
+     "bt"
+    ],
+    [
+     "00785A37",
+     "mov"
+    ],
+    [
+     "00785A41",
+     "mov"
+    ],
+    [
+     "00785A4A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00785A60",
+   "text": "calls `00785A60` + 0x20 with `rcx`, stores `00DAD3A8` to qword `[rcx]`, 0 to qword `+0xE0` and -1 to qword `+0xE8`, zeroes qwords `+0x100`, `+0x108` and stores the result of + 0x5F (`rcx+0x100`, 0, 0) to qword `+0x100`, zeroes qwords `+0x110`, `+0x118`, `+0x120`, calls + 0x89 with (`rcx+0x128`, 0, 0x50), stores 6 to dword `+0x10`, 0 to qword `+0xF0` and -1 to dword `+0xF8`, and returns `rcx`",
+   "anchors": [
+    [
+     "00785A8D",
+     "mov"
+    ],
+    [
+     "00785ABF",
+     "call"
+    ],
+    [
+     "00785AC4",
+     "mov"
+    ],
+    [
+     "00785AE9",
+     "call"
+    ],
+    [
+     "00785AEE",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00785B20",
+   "text": "stores `00DAD3A8` to qword `[rcx]`; calls slot `+8` of a non-null qword `+0xE0` and zeroes it; keeps dword `+0x14` and calls `00785B20` + 0x4D with `rcx`; calls slot `+0x10` of each non-null qword `+0x110`, `+0x118`, `+0x120` and zeroes it; when the kept dword is 1 or 2 and byte `+0x20` is non-zero, clears the byte and calls + 0xF8 with (qword `+0x18`, the + 0xDC result on dword `+0xB0` times dwords `+0xBC`, `+0xB8` and the + 0xC0 result on dword `+0xC0` raised to at least 1); then points the head at qword `+0x100` back at itself, zeroes qword `+0x108`, calls + 0x129 on every former node and + 0x142 on the head, and tail-jumps at + 0x15F with `rcx`",
+   "anchors": [
+    [
+     "00785B6D",
+     "call"
+    ],
+    [
+     "00785BD6",
+     "mov"
+    ],
+    [
+     "00785C18",
+     "call"
+    ],
+    [
+     "00785C49",
+     "call"
+    ],
+    [
+     "00785C7F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00785FA0",
+   "text": "calls `00785FA0` + 0x0D with the incoming register arguments and the fifth (stack) argument's byte as fifth argument, and returns that result when negative, else 0",
+   "anchors": [
+    [
+     "00785FA9",
+     "mov"
+    ],
+    [
+     "00785FAD",
+     "call"
+    ],
+    [
+     "00785FB6",
+     "cmovs"
+    ]
+   ]
+  },
+  {
+   "fn": "00786060",
+   "text": "calls `rcx`'s vtable slot `+0x50` with the incoming arguments; when `r8` is null returns that call's `eax`; otherwise calls `r8`'s slot `+0x60` with (`rcx`, `edx`) and returns its result when negative, else 0",
+   "anchors": [
+    [
+     "0078607A",
+     "call"
+    ],
+    [
+     "00786080",
+     "je"
+    ],
+    [
+     "0078608E",
+     "call"
+    ],
+    [
+     "00786095",
+     "cmovs"
+    ]
+   ]
+  },
+  {
+   "fn": "007860B0",
+   "text": "returns 0 when qword `+0xF0` is null; returns 0x80070057 when `edx` is -1; otherwise reads the qword at index `edx` of the `+0xF0` array, returns 0 when it is null, else calls its vtable slot `+0x68` with (`rcx`, `edx`) and returns that result when negative, else 0",
+   "anchors": [
+    [
+     "007860C1",
+     "jne"
+    ],
+    [
+     "007860CF",
+     "mov"
+    ],
+    [
+     "007860DC",
+     "mov"
+    ],
+    [
+     "007860EE",
+     "call"
+    ],
+    [
+     "007860F5",
+     "cmovs"
+    ]
+   ]
+  },
+  {
+   "fn": "00786500",
+   "text": "with `rbx` = qword `rcx+0x40`, fills a stack descriptor with `edx`, `r8d`, 1, 1, the + 0x72 result on `r9d`, the + 0x7D result on the sixth argument, the seventh argument and flags (0x20, 0x40 for bits 0, 1 of the fifth argument; 8 when the + 0x7D result is 1 and `rbx`'s slot `+0xE8` reports bit 0x200); when the fifth argument's low two bits are 0 it clears the 8, puts `r9d` in place of the + 0x72 result and sets a mode (3 for eighth-argument bit 0, then 0 for eighth-argument bits 1, 2, 2 for fifth-argument bit 0x200, 1 for 0x800, later ones winning; 0x20000 beside mode 3); calls `rbx`'s slot `+0x28`; on a negative result, or when the fifth argument has bit 0 or 1 set and the call at + 0x1BC leaves its out-slot null, it makes two calls (+ 0x183/+ 0x18F, or + 0x1F2/+ 0x1FE followed by releasing a non-null slot-`+0x28` output) only when dwords `01F3BA80` and `01F3BA90` are non-zero, and returns 0; otherwise calls `007857D0`, sets byte `+0x20` of its result to 1, releases both temporaries, calls + 0x2B9 with `rcx` and a size product, and returns that result (all offsets from `00786500`)",
+   "anchors": [
+    [
+     "007865C8",
+     "call"
+    ],
+    [
+     "0078665E",
+     "call"
+    ],
+    [
+     "007866BC",
+     "call"
+    ],
+    [
+     "00786754",
+     "call"
+    ],
+    [
+     "007867B9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007867F0",
+   "text": "calls `007867F0` + 0x18 on dword `rcx+0x40` and + 0x26 on dword `rdx+0x40`; returns dword `rcx+0xB0` when it equals dword `rdx+0xB0`, is non-zero and bit 0x40000 of dword `rcx+0xCC` is set; else dword `rcx+0x40` when the first call's `al` was 0; else dword `rdx+0x40` when the second's was; else dword `rcx+0xB0` when bit 0x40000 of `rcx+0xCC` is set; else dword `rdx+0xB0` when that bit of `rdx+0xCC` is set; else, when dword `rdx+0x14` is 5 and qword `rdx+0xD8` is non-null with that bit in its dword `+0xCC`, its dword `+0xB0`; otherwise 0",
+   "anchors": [
+    [
+     "00786808",
+     "call"
+    ],
+    [
+     "00786834",
+     "test"
+    ],
+    [
+     "0078684F",
+     "mov"
+    ],
+    [
+     "007868AB",
+     "cmp"
+    ],
+    [
+     "007868CA",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Calls to routines outside this pack are cited by site (entry + offset); 00785230, 00785360, 007852D0, 007857D0 and 00785A60 are same-pack and cited by address. 00786500: the size product at +0x2B9 is (+0x2A4 result on r9d) * r8d * edx * max(1, +0x291 result on the sixth argument), and the 007857D0 call passes (rcx, the +0x1BC out-object, fifth argument, eighth argument, the slot-+0x28 output, a byte set for r9d in {0x1D,0x48,0x4B,0x4E,0x5B,0x5D,0x63}); the routine ends with a stack-cookie check (01F44830 xor rsp, call at +0x2C8). 00784E80/00785A60: the (ptr, 0, size) calls are memset-shaped but no string supports naming them. Doubts: 00786500 is stated at top level only; 007857D0/007853F0 dereference a possibly null allocation exactly as listed."
+}
