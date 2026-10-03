@@ -1,0 +1,23 @@
+{
+ "page": "17-Presentation-Rendering/Model-And-Motion-Formats/fte-fct-texture-colour-tables.md",
+ "session": "session_019FUgqVeNcfdAVa4Yc3dLqG",
+ "rows": [
+  {"fn": "0017F0B0", "entered_from": "`0053AB50` + 0x2CA",
+   "text": "returns at once when `rcx` is null; otherwise tail-jumps through qword `+8` of the table at qword `[rcx]` with `edx` = 0",
+   "anchors": [["0017F0B3", "je"], ["0017F0B5", "mov"], ["0017F0B8", "xor"], ["0017F0BA", "jmp"]]},
+  {"fn": "0017F200", "entered_from": "`0053AB50` + 0x4A1",
+   "text": "returns at once when `rcx` is null; otherwise tail-jumps through qword `+0xC0` of the table at qword `[rcx]` with the incoming registers unchanged",
+   "anchors": [["0017F203", "je"], ["0017F205", "mov"], ["0017F208", "jmp"]]},
+  {"fn": "0017F210", "entered_from": "`0053AB50` + 0x242D",
+   "text": "returns at once when `rcx` is null; otherwise tail-jumps through qword `+0x80` of the table at qword `[rcx]` with the incoming registers unchanged",
+   "anchors": [["0017F213", "je"], ["0017F215", "mov"], ["0017F218", "jmp"]]},
+  {"fn": "0017F220", "entered_from": "`0053AB50` + 0x41D",
+   "text": "returns at once when `rcx` is null; otherwise sets `dl` to 1 when `edx` is non-zero and 0 when it is zero, and tail-jumps through qword `+0xA8` of the table at qword `[rcx]`",
+   "anchors": [["0017F223", "je"], ["0017F225", "mov"], ["0017F22A", "setne"], ["0017F22D", "jmp"]]},
+  {"fn": "003E41F0", "entered_from": "`0053AB50` + 0x427",
+   "text": "follows a chain through the 0x740-byte records of the array at qword `022C6F28`, starting at index `cx` (sign-extended): it stops and returns the current index zero-extended when that index is `0xFFFF`, when the indexed record's dword `+0x284` is 0, or when the record's word `+6` is `0xFFFF`; otherwise it moves on to the index in word `+6`",
+   "anchors": [["003E4200", "cmp"], ["003E420A", "imul"], ["003E4214", "cmp"], ["003E4228", "cmp"], ["003E4231", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "The four 0017F2xx thunks are null-guarded virtual tail-calls; the slot offsets are stated, the vtable targets are not resolvable from the listing."
+}

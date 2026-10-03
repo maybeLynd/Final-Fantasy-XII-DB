@@ -1,0 +1,20 @@
+{
+ "page": "16-UI/Config-Screen/the-config-screen-and-what-a-setting-change-runs.md",
+ "session": "session_019FUgqVeNcfdAVa4Yc3dLqG",
+ "rows": [
+  {"fn": "00292010", "entered_from": "`00281ED0` + 0x1FC",
+   "text": "reads qword `+0x300` of qword `0209AC30` and returns at once when it is null; otherwise ANDs its dword `+0x168` with `0xfff5ffff` and ORs in `0x50000`, then re-reads the same pointer and ANDs that dword with `0xff0fffff`",
+   "anchors": [["0029201E", "test"], ["00292023", "and"], ["0029202D", "or"], ["00292045", "and"]]},
+  {"fn": "003B0190", "entered_from": "`0024C600` + 0x1F",
+   "text": "walks a cursor from `02EBEC08` in steps of 0x18 while it is below `02EBEF68`, skipping an entry when the dword at cursor-8 is 0, the byte at cursor+9 is 1 or the qword at the cursor is null; in each remaining entry's record it replaces dword `+8` with `edx` where it equals `ecx`, and for each index below the record's byte `+0x372` does the same for the dwords at `+0x10` and `+0x90` (stride 4)",
+   "anchors": [["003B01B0", "cmp"], ["003B01B7", "cmp"], ["003B01CC", "mov"], ["003B01E8", "mov"], ["003B01F1", "mov"]]},
+  {"fn": "003B14F0", "entered_from": "`0024C600` + 0x28",
+   "text": "walks the record list from qword `02091128` (next link qword `+0x348`), doing nothing when it is null; in each record it replaces dword `+8` with `edx` where it equals `ecx`, and for each index below the record's byte `+0x372` does the same for the dwords at `+0x10` and `+0x90` (stride 4)",
+   "anchors": [["003B1502", "cmp"], ["003B1508", "mov"], ["003B1526", "mov"], ["003B152F", "mov"], ["003B1544", "mov"]]},
+  {"fn": "003F5260", "entered_from": "`003FBA80` + 0x342",
+   "text": "calls the function at `003F5260` + 0x14 with `rcx+0x10` and `02AEDDB0`, then tail-jumps at `003F5260` + 0x29 with `rcx+0x50` and `02AED5F0`",
+   "anchors": [["003F5269", "lea"], ["003F5274", "call"], ["003F527D", "lea"], ["003F5289", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "003B0190: the cursor comparison against 02EBEF68 is a signed jl on pointers; stated as 'below'. 003F5260: both callees cited by site because the host excerpt does not name them."
+}
