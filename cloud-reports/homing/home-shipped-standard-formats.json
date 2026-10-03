@@ -1,0 +1,11 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/Standard-Formats/shipped-standard-formats.md",
+ "session": "session_01QmPH3UsJG62wVZQjKE9DWs",
+ "rows": [
+  {"fn": "00597A20", "entered_from": "`00225C40` + 0x47",
+   "text": "initialises the object at `rcx` and returns `rcx`: qword `+0` = the address `00D26C90`, dword `+8` = 0xB, qwords `+0x10` and `+0x30` = 0, dwords `+0x18`, `+0x20` and `+0x48` = 0, dword `+0x1C` = `0xFFFFFFFF`, qwords `+0x28` and `+0x40` = -1, byte `+0x38` = 1",
+   "anchors": [["00597A22", "mov"], ["00597A3C", "mov"], ["00597A40", "mov"], ["00597A55", "mov"], ["00597A5B", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "00597A20: 00D26C90 is loaded with lea and stored at +0; it is probably a vtable, which the row does not claim."
+}
