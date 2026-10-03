@@ -1,0 +1,11 @@
+{
+ "page": "22-Middleware-PhyreEngine/Script-Object-Accessors/phyre-script-object-accessors.md",
+ "session": "session_01B5SV9waPUkdPQzR9MzNgSH",
+ "rows": [
+  {"fn": "005AA3C0", "entered_from": "`005A2770` + 0x33",
+   "text": "takes the count `n` = dword `[rdx]` AND 0x7FFFFFFF; when `n` is non-zero it calls the site `005AA3C0` + 0x33 with `n*4` and 4 and, when that returns non-null, calls the site `005AA3C0` + 0x49 with the new block, qword `rdx+8` and `n` (the new pointer is 0 when `n` is 0 or that call returns null); when the old qword `rcx+8` differs from the new pointer, is non-null and bit 31 of dword `[rcx]` is clear, it calls the site `005AA3C0` + 0x67 on the old pointer; it then stores `n` to dword `[rcx]` and the new pointer to qword `rcx+8` and returns `rcx`",
+   "anchors": [["005AA3E2", "and"], ["005AA3F3", "call"], ["005AA409", "call"], ["005AA427", "call"], ["005AA43B", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "005AA3C0: bit 31 of dword [rcx] is tested through shr 0x1f / not al / test al,1, so the release call runs only when that bit is clear; the stored count never carries bit 31."
+}
