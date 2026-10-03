@@ -1,0 +1,35 @@
+{
+ "page": "06-Movement-And-Navigation/Facing-And-Steering/how-a-character-turns.md",
+ "session": "session_01AFJLw2DoBajZE8phUsPUJB",
+ "rows": [
+  {
+   "fn": "003E6AF0",
+   "entered_from": "`002EA780` + 0x45",
+   "text": "returns 0 when dword `rcx+0x18` is -1; otherwise passes dword `rcx+0x10` to the call at `003E6AF0` + 0x11, passes qword `+0xD98` of that result (not null-tested) with dword `rcx+0x18` in `edx` to the call at `003E6AF0` + 0x24, passes a non-null result to the call at `003E6AF0` + 0x31, and tail-jumps (`003E6AF0` + 0x43) with a non-null result of that in `rcx`; returns 0 when either of the last two calls returns null",
+   "anchors": [
+    [
+     "003E6AF9",
+     "cmp"
+    ],
+    [
+     "003E6B01",
+     "call"
+    ],
+    [
+     "003E6B14",
+     "call"
+    ],
+    [
+     "003E6B21",
+     "call"
+    ],
+    [
+     "003E6B33",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": ""
+}
