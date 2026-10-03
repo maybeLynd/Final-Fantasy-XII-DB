@@ -1,0 +1,11 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/five-small-bin-tables.md",
+ "session": "session_01DtsGzxAwuV39oMMCAfQd2j",
+ "rows": [
+  {"fn": "0029D4D0", "entered_from": "`0029E110` + 0x203",
+   "text": "calls `0029D4D0` + 0x21 with (qword `0209C498` + `0x160`, `0x148`, the address loaded by the `lea` at `0029D4DB`, 0) and the same callee at `0029D4D0` + 0x43 with (qword `0209C498` + `0x2A8`, `0x148`, the same address, 0); then calls `0029D4D0` + 0x56 with (qword `0209C498`, that pointer + `0x160`) and tail-jumps to the same callee at `0029D4D0` + 0x6D with (qword `0209C498`, that pointer + `0x2A8`), re-reading `0209C498` before each call",
+   "anchors": [["0029D4E2", "add"], ["0029D4F1", "call"], ["0029D513", "call"], ["0029D526", "call"], ["0029D53D", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "0029D4D0: the third argument of the + 0x21 / + 0x43 calls is a lea target that sits just after this function's code, so under the brief's rule it is cited only through the lea instructions (0029D4DB, 0029D4FD), not by its own address."
+}
