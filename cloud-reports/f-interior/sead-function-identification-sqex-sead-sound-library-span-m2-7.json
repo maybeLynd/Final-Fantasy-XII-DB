@@ -1,0 +1,596 @@
+{
+ "mode": "member",
+ "family": "SQEX SEAD sound library span",
+ "page": "18-Audio/sead-function-identification.md",
+ "session": "session_01Q9HcspskDwbbxEBnx8EL9L",
+ "rows": [
+  {
+   "fn": "007B2600",
+   "text": "with n = `edx` (sign-extended), releases the array at qword `rcx+0x10` when it is non-null (through the first element's vtable slot `+0x0` with 3 when the count qword before the array is non-zero, else the call at `007B2600`+0x35 on the block), zeroes qwords `rcx+0x10` to `+0x28` and dword `+0xc`, and returns -1 when n is 0; otherwise stores n to dword `rcx+0x8`, allocates n*0x28+8 bytes (saturated to all-ones on overflow) through the call at +0x91, and when that is non-null stores n in the block's first qword and initialises n 0x28-byte elements after it (qword `+0x0` = `01CB4C80`, `+0x8`, `+0x10`, `+0x20` = 0, dword `+0x18` = -1, dword `+0x1c` = 0); stores the element pointer (or null) to qword `rcx+0x10` and returns the result of the call at +0xDC with `rcx`",
+   "anchors": [
+    [
+     "007B262D",
+     "call"
+    ],
+    [
+     "007B2658",
+     "or"
+    ],
+    [
+     "007B2691",
+     "call"
+    ],
+    [
+     "007B26B1",
+     "mov"
+    ],
+    [
+     "007B26DC",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007B2920",
+   "text": "advances the ring index dword `02EAD408` to (index+1) mod dword `02EAD404` (unsigned) and, between paired calls on `02EAD418` (sites `007B2920`+0x4C and +0x5D, and likewise around each later shared access), reads the list head qword `+0x20` of the 0x30-byte slot at qword `02EAD410` + index*0x30; returns 0 when it is null; otherwise walks the nodes (next = qword `+0x10` while byte `+0x1c` bit 0 is set): for a node whose object qword `+0x20` is non-null it calls the object's vtable `+0x50` with `xmm0` and vtable `+0x10`; when that returns true it makes the call at +0xF2 on `02EAD490` for the entry of the list at `02EAD4B0` holding the object (only when vtable `+0x8` returns 2), the call at +0x101 with (slot, dword node `+0x18`), whose non-negative result moves to the next node, and the call at +0x11E on `01F40440`, then the object's vtable `+0x48` and `+0x0` (with 0) and the call at +0x15A on `02EAD440`, the walk then continuing while the node is non-null; otherwise, when vtable `+0x8` returns 2, the dword returned through the `+0x8` sub-object's vtable `+0x10` is negative and vtable `+0x20` returns true, it makes the call at +0x1BA on `01F40440`; returns 0",
+   "anchors": [
+    [
+     "007B294A",
+     "div"
+    ],
+    [
+     "007B2972",
+     "mov"
+    ],
+    [
+     "007B29B6",
+     "call"
+    ],
+    [
+     "007B2A21",
+     "call"
+    ],
+    [
+     "007B2ADA",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007B4540",
+   "text": "splits `ecx` into its low word, its high word and a bucket `ecx` mod 0x101 (multiply by 0xFF00FF01), and walks the chain from qword `01F40C50`+8+bucket*8 (each next node is qword `+0x10` of what the node's vtable `+0x10` returns); for each node it takes the object at node-0x10 and, when the object's vtable `+0x120` returns the low word, the result of the call at `007B4540`+0x7F; when that result's vtable `+0x20` returns true and word `+0xa` of qword `+0x8` of the record its vtable `+0x38` fills (a local released by the call at +0xC7) equals the high word, it makes the call at +0x105 with (`01F40C50`, bucket, node) and returns the object; returns 0 when the chain ends",
+   "anchors": [
+    [
+     "007B4564",
+     "mul"
+    ],
+    [
+     "007B458E",
+     "mov"
+    ],
+    [
+     "007B45B1",
+     "call"
+    ],
+    [
+     "007B45EA",
+     "cmp"
+    ],
+    [
+     "007B4645",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007B4670",
+   "text": "with n = `edx` (sign-extended), releases the array at qword `rcx+0x10` when it is non-null (through the first element's vtable slot `+0x0` with 3 when the count qword before the array is non-zero, else the call at `007B4670`+0x35 on the block), zeroes qwords `rcx+0x10` to `+0x28` and dword `+0xc`, and returns -1 when n is 0; otherwise stores n to dword `rcx+0x8`, allocates n*0x28+8 bytes (saturated to all-ones on overflow) through the call at +0x91, and when that is non-null stores n in the block's first qword and initialises n 0x28-byte elements after it (qword `+0x0` = `01CB4D20`, `+0x8`, `+0x10`, `+0x20` = 0, dword `+0x18` = -1, dword `+0x1c` = 0); stores the element pointer (or null) to qword `rcx+0x10` and returns the result of the call at +0xDC with `rcx`",
+   "anchors": [
+    [
+     "007B469D",
+     "call"
+    ],
+    [
+     "007B46C8",
+     "or"
+    ],
+    [
+     "007B4701",
+     "call"
+    ],
+    [
+     "007B4721",
+     "mov"
+    ],
+    [
+     "007B474C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007B4770",
+   "text": "returns the result of the call at `007B4770`+0x9 when it is negative; otherwise stores dword `[rcx]` (count) to `02EAD4C0` and returns -1 when it is 0; then makes the call at +0x41 with (`02EAD4F0`, 0x540, count, 0, 8), `007B4670(02EAD540, count)` and `007B4670(02EAD570, count)`, returning the first negative result; finally makes the call at +0x7D on `01F40C50` and returns 0",
+   "anchors": [
+    [
+     "007B4779",
+     "call"
+    ],
+    [
+     "007B4785",
+     "mov"
+    ],
+    [
+     "007B47B1",
+     "call"
+    ],
+    [
+     "007B47C7",
+     "call"
+    ],
+    [
+     "007B47ED",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007B4E00",
+   "text": "when `dl` AND 2 is set, takes the count qword at `rcx-8`, stores `01CB4470` to the first qword of each 0x28-byte element from the last to the first, and when `dl` AND 1 is set frees the block at `rcx-8` through the call at `007B4E00`+0x4C (`dl` AND 4 clear) or the call at +0x74 with size count*0x28+8 (`dl` AND 4 set), returning `rcx-8`; otherwise stores `01CB4470` to qword `[rcx]` and when `dl` AND 1 is set frees `rcx` through the call at +0x9C (`dl` AND 4 clear) or the call at +0xAF with size 0x28, returning `rcx`",
+   "anchors": [
+    [
+     "007B4E30",
+     "mov"
+    ],
+    [
+     "007B4E4C",
+     "call"
+    ],
+    [
+     "007B4E74",
+     "call"
+    ],
+    [
+     "007B4E8F",
+     "mov"
+    ],
+    [
+     "007B4EAF",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007B4EC0",
+   "text": "stores `01CB4D48` to qword `[rcx]` and, when `dl` AND 1 is set, makes the call at `007B4EC0`+0x1D with (`rcx`, 0x10); returns `rcx`",
+   "anchors": [
+    [
+     "007B4ED0",
+     "mov"
+    ],
+    [
+     "007B4EDD",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007B4FC0",
+   "text": "formats into a 0x100-byte local, through the call at `007B4FC0`+0x48, the string \"[sead][info]it:0x%p prev:0x%p next:0x%p obj:0x%p\" (`01CB4DA0`) with the qword p = `[rcx]` and p's qwords `+0x8`, `+0x10`, `+0x20`; writes a newline at the returned length (length-2 when it is at least 0xFF) and a NUL after it (the call at +0xA1 when that index reaches 0x100), then passes the buffer to the call at +0x77 and, with 0, to the call at +0x84",
+   "anchors": [
+    [
+     "007B4FDC",
+     "lea"
+    ],
+    [
+     "007B5008",
+     "call"
+    ],
+    [
+     "007B501C",
+     "mov"
+    ],
+    [
+     "007B5037",
+     "call"
+    ],
+    [
+     "007B5044",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007B50F0",
+   "text": "with n = `edx` (sign-extended), releases the array at qword `rcx+0x10` when it is non-null (through the first element's vtable slot `+0x0` with 3 when the count qword before the array is non-zero, else the call at `007B50F0`+0x35 on the block), zeroes qwords `rcx+0x10` to `+0x28` and dword `+0xc`, and returns -1 when n is 0; otherwise stores n to dword `rcx+0x8`, allocates n*0x28+8 bytes (saturated to all-ones on overflow) through the call at +0x91, and when that is non-null stores n in the block's first qword and initialises n 0x28-byte elements after it (qword `+0x0` = `01CB4D98`, `+0x8`, `+0x10`, `+0x20` = 0, dword `+0x18` = -1, dword `+0x1c` = 0); stores the element pointer (or null) to qword `rcx+0x10` and returns the result of the call at +0xDC with `rcx`",
+   "anchors": [
+    [
+     "007B511D",
+     "call"
+    ],
+    [
+     "007B5148",
+     "or"
+    ],
+    [
+     "007B5181",
+     "call"
+    ],
+    [
+     "007B51A1",
+     "mov"
+    ],
+    [
+     "007B51CC",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007B51F0",
+   "text": "releases the array at qword `02EAD610` when it is non-null (first element's vtable `+0x0` with 3 when the count before it is non-zero, else the call at `007B51F0`+0x30 on the block), zeroes the 16 bytes at `02EAD610` and at `02EAD620` and dword `02EAD60C`, makes the call at +0x5A on `02EAD5B0`, stores dword `[rcx]` (count) to `02EAD5A0` and returns -1 when it is 0; otherwise makes the call at +0x93 with (`02EAD5B0`, 0xC8, count, 0, 8), returning its result when negative, then returns the result of `007B50F0(02EAD600, count)` when negative, else 0",
+   "anchors": [
+    [
+     "007B5218",
+     "call"
+    ],
+    [
+     "007B5234",
+     "movdqu"
+    ],
+    [
+     "007B5252",
+     "mov"
+    ],
+    [
+     "007B5283",
+     "call"
+    ],
+    [
+     "007B52A0",
+     "cmovs"
+    ]
+   ]
+  },
+  {
+   "fn": "007B5550",
+   "text": "stores `01CB4DF0` to qword `[rcx]` and, when `dl` AND 1 is set, makes the call at `007B5550`+0x1D with (`rcx`, 0x10); returns `rcx`",
+   "anchors": [
+    [
+     "007B5560",
+     "mov"
+    ],
+    [
+     "007B556D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007B5690",
+   "text": "zeroes qword `[rcx]`; when the record at qword `r8+0x8` is non-null with byte `+0x1` = 1 and dword `02EAD63C` >= dword `02EAD634` (unsigned), it formats \"[sead][!warn!]voice overflow\" with a newline (call at `007B5690`+0x67), passes it to the calls at +0x9A and +0xAA (with 1) and returns 5; otherwise it takes an entry from the call at +0xC8 on `02EAD640` and, when that is null, formats \"[sead][!!error!!]track exhausted!!\" (calls +0xE6, +0x119, +0x129 with 2) and returns -1; with an entry it makes the call at +0x14A on `02EAD690` for a word id, increments dword `02EAD638` and writes byte 4, the id (word `+0x2`) and the counter (dword `+0x4`) to `rcx`, builds a local record (`01CB4E00`, that qword, qword `[rdx]`, qword `r8+0x8`, `xmm3`) and dispatches on byte `+0x1`: 1 increments dword `02EAD63C` and returns the vtable `+0x10` call (with the record) on the result of the call at +0x1AC on the entry, 2 does the same through the call at +0x1C8, anything else (or a null record) makes the call at +0x1E4 on `02EAD690` with the id and returns -1; every path stores `01CB4DF0` to qword `[r8]`",
+   "anchors": [
+    [
+     "007B56DE",
+     "cmp"
+    ],
+    [
+     "007B573F",
+     "mov"
+    ],
+    [
+     "007B57DA",
+     "call"
+    ],
+    [
+     "007B5833",
+     "inc"
+    ],
+    [
+     "007B588B",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007B5900",
+   "text": "with n = `edx` (sign-extended), releases the array at qword `rcx+0x10` when it is non-null (through the first element's vtable slot `+0x0` with 3 when the count qword before the array is non-zero, else the call at `007B5900`+0x35 on the block), zeroes qwords `rcx+0x10` to `+0x28` and dword `+0xc`, and returns -1 when n is 0; otherwise stores n to dword `rcx+0x8`, allocates n*0x28+8 bytes (saturated to all-ones on overflow) through the call at +0x91, and when that is non-null stores n in the block's first qword and initialises n 0x28-byte elements after it (qword `+0x0` = `01CB4E58`, `+0x8`, `+0x10`, `+0x20` = 0, dword `+0x18` = -1, dword `+0x1c` = 0); stores the element pointer (or null) to qword `rcx+0x10` and returns the result of the call at +0xDC with `rcx`",
+   "anchors": [
+    [
+     "007B592D",
+     "call"
+    ],
+    [
+     "007B5958",
+     "or"
+    ],
+    [
+     "007B5991",
+     "call"
+    ],
+    [
+     "007B59B1",
+     "mov"
+    ],
+    [
+     "007B59DC",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007B5A00",
+   "text": "releases the array at qword `02EAD6A0` when it is non-null (first element's vtable `+0x0` with 3 when the count before it is non-zero, else the call at `007B5A00`+0x30 on the block), zeroes the 16 bytes at `02EAD6A0` and at `02EAD6B0` and dword `02EAD69C`, makes the call at +0x5A on `02EAD640`, stores dword `[rcx]` (count) to `02EAD630` and returns -1 when it is 0; otherwise stores dword `rcx+0x4` to `02EAD634`, makes the call at +0x9C with (`02EAD640`, 0x3D0, count, 0, 8), returning its result when negative, then returns the result of `007B5900(02EAD690, count)` when negative, else 0",
+   "anchors": [
+    [
+     "007B5A28",
+     "call"
+    ],
+    [
+     "007B5A44",
+     "movdqu"
+    ],
+    [
+     "007B5A89",
+     "mov"
+    ],
+    [
+     "007B5A9C",
+     "call"
+    ],
+    [
+     "007B5AB9",
+     "cmovs"
+    ]
+   ]
+  },
+  {
+   "fn": "007B5CF0",
+   "text": "stores `01CB4E78` to qword `[rcx]` and, when `dl` AND 1 is set, makes the call at `007B5CF0`+0x1D with (`rcx`, 0x10); returns `rcx`",
+   "anchors": [
+    [
+     "007B5D00",
+     "mov"
+    ],
+    [
+     "007B5D0D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007B5D20",
+   "text": "returns -1 when qword `r9+0x8` is 0; otherwise zeroes qword `[rcx]`, takes an entry from the call at `007B5D20`+0x52 on `02EAD6D0` (returning -1 when it is null), makes the call at +0x7E on `02EAD720` with the entry, increments dword `02EAD6C4`, and writes byte 5, the low word of the call at +0x93 on (`02EAD6D0`, entry) at `+0x2` and the counter at dword `+0x4` to `rcx`; it then returns the result of the call at +0x100 on the object from the call at +0xAB on the entry, with a local record (that qword, qword `[rdx]`, qword `[r8]`, `01CB4E88`, qword `r9+0x8`, the fifth (stack) argument as a float and the sixth's low byte); every path stores `01CB4E78` to qword `[r9]`",
+   "anchors": [
+    [
+     "007B5D57",
+     "mov"
+    ],
+    [
+     "007B5D72",
+     "call"
+    ],
+    [
+     "007B5DC4",
+     "mov"
+    ],
+    [
+     "007B5E20",
+     "call"
+    ],
+    [
+     "007B5E31",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007B5E90",
+   "text": "with n = `edx` (sign-extended), releases the array at qword `rcx+0x10` when it is non-null (through the first element's vtable slot `+0x0` with 3 when the count qword before the array is non-zero, else the call at `007B5E90`+0x35 on the block), zeroes qwords `rcx+0x10` to `+0x28` and dword `+0xc`, and returns -1 when n is 0; otherwise stores n to dword `rcx+0x8`, allocates n*0x28+8 bytes (saturated to all-ones on overflow) through the call at +0x91, and when that is non-null stores n in the block's first qword and initialises n 0x28-byte elements after it (qword `+0x0` = `01CB4E98`, `+0x8`, `+0x10`, `+0x20` = 0, dword `+0x18` = -1, dword `+0x1c` = 0); stores the element pointer (or null) to qword `rcx+0x10` and returns the result of the call at +0xDC with `rcx`",
+   "anchors": [
+    [
+     "007B5EBD",
+     "call"
+    ],
+    [
+     "007B5EE8",
+     "or"
+    ],
+    [
+     "007B5F21",
+     "call"
+    ],
+    [
+     "007B5F41",
+     "mov"
+    ],
+    [
+     "007B5F6C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007B5F90",
+   "text": "releases the array at qword `02EAD730` when it is non-null (first element's vtable `+0x0` with 3 when the count before it is non-zero, else the call at `007B5F90`+0x30 on the block), zeroes the 16 bytes at `02EAD730` and at `02EAD740` and dword `02EAD72C`, makes the call at +0x5A on `02EAD6D0`, stores dword `[rcx]` (count) to `02EAD6C0` and returns -1 when it is 0; otherwise makes the call at +0x93 with (`02EAD6D0`, 0x470, count, 0, 0x10), returning its result when negative, then returns the result of `007B5E90(02EAD720, count)` when negative, else 0",
+   "anchors": [
+    [
+     "007B5FB8",
+     "call"
+    ],
+    [
+     "007B5FD4",
+     "movdqu"
+    ],
+    [
+     "007B5FF2",
+     "mov"
+    ],
+    [
+     "007B6023",
+     "call"
+    ],
+    [
+     "007B6040",
+     "cmovs"
+    ]
+   ]
+  },
+  {
+   "fn": "007B6258",
+   "text": "moves `rcx` back by 8 and tail-jumps to `007B6270` with it",
+   "anchors": [
+    [
+     "007B625C",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "007B6270",
+   "text": "stores `01CB4910` to qword `rcx+0x10`, `01CB4EB8` to qword `rcx+0x8` and `01CB4470` to qword `[rcx]`; when `dl` AND 1 is set it frees `rcx` through the call at `007B6270`+0x33 (`dl` AND 4 clear) or the call at +0x46 with size 0x38 (`dl` AND 4 set); returns `rcx`",
+   "anchors": [
+    [
+     "007B6280",
+     "mov"
+    ],
+    [
+     "007B628B",
+     "mov"
+    ],
+    [
+     "007B6296",
+     "mov"
+    ],
+    [
+     "007B62A3",
+     "call"
+    ],
+    [
+     "007B62B6",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007B62D0",
+   "text": "stores `01CB4EB8` to qword `[rcx]` and, when `dl` AND 1 is set, makes the call at `007B62D0`+0x1D with (`rcx`, 8); returns `rcx`",
+   "anchors": [
+    [
+     "007B62E0",
+     "mov"
+    ],
+    [
+     "007B62ED",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007B6300",
+   "text": "takes the NUL-terminated string at qword `rcx+0x10` plus that record's word `+0x2`, folds its bytes as h = h*0x8A + byte from h = 0, and returns h mod 0x101 (multiply by 0xFF00FF01)",
+   "anchors": [
+    [
+     "007B6314",
+     "cmp"
+    ],
+    [
+     "007B6327",
+     "imul"
+    ],
+    [
+     "007B632D",
+     "add"
+    ],
+    [
+     "007B633A",
+     "mul"
+    ],
+    [
+     "007B6345",
+     "sub"
+    ]
+   ]
+  },
+  {
+   "fn": "007B6350",
+   "text": "hashes the string at `rcx` (h = h*0x8A + byte, mod 0x101) and walks the chain at qword `01F41460`+8+bucket*8 (next: qword `+0x10` of its vtable `+0x10` result) comparing it with the string at qword `+0x18` (plus its word `+0x2`) of node-8; with no match, or a null qword `+0x18`, it formats \"[sead][info]Can't find event name : %s\" (call at `007B6350`+0xF4) and returns -1; on a match it makes the call at +0x178 with (`01F41460`, bucket, node) and, between paired calls on `02EAD768`, takes an entry from the call at +0x19E on `02EAD790`; if null it formats \"[sead][!!error!!]EventManager alloc failed.\" (+0x1C9) and returns -1; else it gets an id from the call at +0x23D on `02EAD7E0`, increments dword `02EAD758`, and passes a handle (byte 2, word id, the counter), `01CB4920` and the qword `+0x18` to the call at +0x29E on the object from +0x273; a negative result makes the calls at +0x2BD, +0x2CC and returns -1; when the object's dword `+0x8` is 2 it calls its vtable `+0x0` with 0 and the calls at +0x309, +0x318; otherwise, for 0 <= id < dword `02EAD7E8` with byte `+0x1c` bit 0 set in 0x28-byte entry id of qword `02EAD7F0`, stores the object to its qword `+0x20`; both return 0",
+   "anchors": [
+    [
+     "007B6397",
+     "imul"
+    ],
+    [
+     "007B6418",
+     "je"
+    ],
+    [
+     "007B64C8",
+     "call"
+    ],
+    [
+     "007B65EE",
+     "call"
+    ],
+    [
+     "007B66AC",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007B66E0",
+   "text": "with n = `edx` (sign-extended), releases the array at qword `rcx+0x10` when it is non-null (through the first element's vtable slot `+0x0` with 3 when the count qword before the array is non-zero, else the call at `007B66E0`+0x35 on the block), zeroes qwords `rcx+0x10` to `+0x28` and dword `+0xc`, and returns -1 when n is 0; otherwise stores n to dword `rcx+0x8`, allocates n*0x28+8 bytes (saturated to all-ones on overflow) through the call at +0x91, and when that is non-null stores n in the block's first qword and initialises n 0x28-byte elements after it (qword `+0x0` = `01CB4F60`, `+0x8`, `+0x10`, `+0x20` = 0, dword `+0x18` = -1, dword `+0x1c` = 0); stores the element pointer (or null) to qword `rcx+0x10` and returns the result of the call at +0xDC with `rcx`",
+   "anchors": [
+    [
+     "007B670D",
+     "call"
+    ],
+    [
+     "007B6738",
+     "or"
+    ],
+    [
+     "007B6771",
+     "call"
+    ],
+    [
+     "007B6791",
+     "mov"
+    ],
+    [
+     "007B67BC",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007B67E0",
+   "text": "returns the result of the call at `007B67E0`+0x9 when it is negative; stores dword `[rcx]` (count) to `02EAD750` and returns -1 when it is not positive, and 0 when qword `rcx+0x10` is null; otherwise makes the call at +0x55 with (`02EAD790`, 0x38, count, 0, 8), returning its result when negative, and the call at +0x76 on `01F41460`; it stores n = word `+0x4` of qword `rcx+0x10` to dword `02EAD754`, allocates n*8 bytes (call at +0x8F) into qword `02EAD760`, and for i = 0..n-1 allocates a 0x38-byte object (call at +0xEA) that, when non-null, is zeroed and filled with `01CB4ED8`, `01CB4EE8`, `01CB4920`, qword `+0x8` of the result of the call at +0x120 on (`rcx+0x8`, a local, i), dword -1 and two zero qwords (that result's first qword set to `01CB4910`); it stores the object (or null) to slot i and makes the call at +0x17E on `01F41460` with the object+8; returns the result of `007B66E0(02EAD7E0, count)` when negative, else 0",
+   "anchors": [
+    [
+     "007B67F9",
+     "mov"
+    ],
+    [
+     "007B6876",
+     "mov"
+    ],
+    [
+     "007B6905",
+     "mov"
+    ],
+    [
+     "007B695A",
+     "mov"
+    ],
+    [
+     "007B699E",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Member mode; calls to callees outside this pack are cited by site (entry + offset of the call instruction); the paired calls on 02EAD418/02EAD768 go through import pointers and are described only as paired calls. Six bodies (007B2600, 007B4670, 007B50F0, 007B5900, 007B5E90, 007B66E0) share one listing shape and differ only in the element vtable. 007B2600-family: the `rbx == 0` branch to the call at +0x70 is unreachable after the `ebx` test and is not stated. 007B2920: the gating of the first branch's inner list search is summarised; the 'paired calls' are the import calls through 008C20B8/008C20C0. 007B5D20: the handle's word +0x2 comes from the call at +0x93, not from the id the call at +0x7E writes (that id is unused here). 007B6350: the 'undo' calls at +0x2BD/+0x309 take (02EAD7E0, id) and +0x2CC/+0x318 take (02EAD790, object). 007B67E0: the 01CB4910 store writes through the pointer returned by the call at +0x120, not the new object."
+}
