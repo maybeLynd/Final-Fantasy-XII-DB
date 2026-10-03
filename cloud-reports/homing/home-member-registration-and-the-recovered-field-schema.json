@@ -1,0 +1,17 @@
+{
+ "page": "22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/member-registration-and-the-recovered-field-schema.md",
+ "session": "session_01RTHsxVMB4gEbgZ4DBoNz7W",
+ "rows": [
+  {"fn": "005A5B40", "entered_from": "`005C8BF0` + 0x57",
+   "text": "copies `r8d` dwords from `rdx` to `rcx`, four per pass in an unrolled loop while at least four remain and then one per pass for the remainder, skipping both the store and the source advance for any destination address that is null; returns at once when `r8d` is 0",
+   "anchors": [["005A5B4A", "jb"], ["005A5B6B", "mov"], ["005A5BAB", "jne"], ["005A5BB0", "jae"], ["005A5BC3", "mov"]]},
+  {"fn": "0063D930", "entered_from": "`00639290` + 0x74",
+   "text": "calls (`0063D930` + 0x10) with `rcx` and `rdx`, clears bit 31 of dword `rcx+0xFC`, then calls (`0063D930` + 0x25) and (`0063D930` + 0x30) with the same two arguments; when `rdx` is null and qword `rcx+0xC0` is non-null it walks from `rcx` along qword `+0x78` and, if the walk reaches `02E4E720` before a null link and dword `rcx+0x38` is at least 0x18 (unsigned), stores `rcx` at qword `+0x10` + sign-extended dword `rcx+0xF8` of the `+0xC0` block; every other path returns without that store",
+   "anchors": [["0063D945", "and"], ["0063D960", "call"], ["0063D980", "cmp"], ["0063D99D", "jb"], ["0063D9A6", "mov"]]},
+  {"fn": "006C7450", "entered_from": "`006C7A40` + 0x50",
+   "text": "returns 0 when `edx` is 0; otherwise the destination is `rcx+8` when `edx` is 1 and, when `edx` is above 1 (unsigned), the result of the call at `006C7450` + 0x42 with `edx` * 8 and 8, a null result being returned as is; copies `r9d` qwords from `r8` to the destination (skipping null destination addresses), zero-fills the next `edx` - `r9d` qwords when that difference is non-zero, and returns the destination",
+   "anchors": [["006C746D", "jne"], ["006C7484", "jbe"], ["006C7492", "call"], ["006C74C3", "mov"], ["006C74CC", "sub"]]}
+ ],
+ "skipped": [],
+ "notes": "006C7450: the zero fill is the rep stosq at 006C74D8, not anchored because its mnemonic prints with the rep prefix; the anchor 006C74CC is the count subtraction that feeds it. The null-destination test inside the copy loop can only fire on the first element in practice; stated as written. 005A5B40: the null tests are per destination address, as in the listing."
+}
