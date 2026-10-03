@@ -1,0 +1,62 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/vbf-archive-and-st2e-tables.md",
+ "session": "session_01BHLzhjKPBLPLYeBc5581cg",
+ "rows": [
+  {
+   "fn": "003C9840",
+   "entered_from": "`003C9A30` + 0x13D",
+   "text": "returns when qword `[rcx+0xC8]` is 0; otherwise makes the call at `003C9840` + 0x13 with `rcx`, then takes `r` = the result of the call at `003C9840` + 0x29 with (`rcx`, 2 when the first call returned non-zero, else 1) and, when qword `[rcx+0xC8]` (re-read) is non-null, copies word `[r+0xC]` to word `+0x98` and word `[r+0xE]` to word `+0x9A` of that qword; returns no value",
+   "anchors": [
+    [
+     "003C9851",
+     "je"
+    ],
+    [
+     "003C9862",
+     "jne"
+    ],
+    [
+     "003C9869",
+     "call"
+    ],
+    [
+     "003C9882",
+     "mov"
+    ],
+    [
+     "003C9889",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "003C98A0",
+   "entered_from": "`003C9A30` + 0x178",
+   "text": "returns when qword `[rcx+0xC8]` is null; otherwise sets dword `+0x7C` of that qword to (its value AND 0x3FF7FF) OR 0x4B000800, makes the call at `003C98A0` + 0x2C with qword `[rcx+0xC8]` and clears bit 1 of dword `[rcx+0xC4]` (AND 0xFFFFFFFD)",
+   "anchors": [
+    [
+     "003C98B3",
+     "je"
+    ],
+    [
+     "003C98B8",
+     "and"
+    ],
+    [
+     "003C98BD",
+     "or"
+    ],
+    [
+     "003C98CC",
+     "call"
+    ],
+    [
+     "003C98D1",
+     "and"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Both callers sit in 003C9A30. 003C9840: word [r+0xE] is loaded (sign-extended) before the null re-check of qword [rcx+0xC8], so r is dereferenced even when that store is skipped; the stores are 16-bit."
+}
