@@ -1,0 +1,157 @@
+{
+ "page": "23-Third-Party-Libraries/LibVPX-VP8-Decoder/the-vp8-codec-interface-and-its-control-map.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-vp8-codec-interface-and-its-control-map-r2.json",
+ "rows": [
+  {
+   "fn": "0016EA80",
+   "text": "returns 0 when qword `[rdx]` is non-zero, `d` = qword `[rcx+0x1B0]` is null, dword `[d+0x4440]` is 1 or dword `[d+0x1E68]` is 0; otherwise stores 1 to dword `[d+0x4440]`, builds a zeroed stack block `f` (dwords `+0`..`+8` = dwords `[rcx+0xFC]`, `[rcx+0x100]`, `[rcx+0x104]` when bit `0x10000` of dword `[rcx+8]` is set), calls `r` = `00177A70(d+0x12C0, &s, &f)` and `00125740()`, and returns 0 when `r` is non-zero; else it fills `m` = `rcx+0x118` from the stack result `s`: dword `+0` = 0x102, `+0xC`, `+0x50` and `+0x5C` = `s+0x10`, `+0x10` = (`s+4` + 0x4F) AND 0xFFFFFFF0, `+0x14` = 8, `+0x18` and `+0x20` = `s+0`, `+0x1C` and `+0x24` = `s+4`, `+0x28` and `+0x2C` = 1, `+0x54` and `+0x58` = `s+0x24`, `+0x60` = 0xC, qwords `+0x30`, `+0x38`, `+0x40` = `s+0x38`, `s+0x40`, `s+0x48`, `+0x48` and `+0x78` = 0, `+0x68` = qword `[rcx+0x2B0]` and `+0x70` = `s+0x58`; stores `m` to qword `[rdx]` and returns `m`",
+   "anchors": [
+    [
+     "0016EAAE",
+     "test"
+    ],
+    [
+     "0016EB02",
+     "mov"
+    ],
+    [
+     "0016EB25",
+     "call"
+    ],
+    [
+     "0016EB5F",
+     "mov"
+    ],
+    [
+     "0016EBF8",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0016ECE0",
+   "text": "returns 8 when `f` = qword `[rdx]` is null or dword `[rcx+0x1A8]` is non-zero; otherwise, with `b` = qword `[rcx+0x1B0]` + 0x12C0, `w` = dword `[f+0x20]`, `h` = dword `[f+0x24]`, `w2` = (`w`+1)/2 and `h2` = (`h`+1)/2, it builds a stack descriptor (dwords `w`, `h`, `w`, `h`, dword `[f+0x58]`, `w2`, `h2`, `w2`, `h2`, dword `[f+0x5C]`, qwords `[f+0x38]`..`[f+0x48]`, and (dword `[f+0x58]` - `w`)/2) and picks the index dword `[b+0x9D4]`, `[b+0x9D8]` or `[b+0x9DC]` for dword `[f]` = 1, 2 or 4; for another value it calls `0016DE20(b, 1, 'Invalid reference frame')`; with `e` = `b` + 0x780 + 0x90*index it calls `00173FA0(e, &descriptor)` when dwords `[e]`, `[e+4]`, `[e+0x14]` and `[e+0x18]` equal `w`, `h`, `w2` and `h2`, else `0016DE20(b, 1, 'Incorrect buffer dimensions')`; it returns dword `[b]`",
+   "anchors": [
+    [
+     "0016ECF9",
+     "cmp"
+    ],
+    [
+     "0016ED8F",
+     "cmp"
+    ],
+    [
+     "0016EDBD",
+     "cmp"
+    ],
+    [
+     "0016EDF2",
+     "call"
+    ],
+    [
+     "0016EE11",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0016F080",
+   "text": "runs `cpuid` leaf 0 and, when its maximum leaf is at least 1, leaf 1 (plus `xgetbv` and, when the maximum leaf is at least 7, leaf 7 on the feature paths; these only set bits `0x40` and `0x80` of the feature word, which the final AND with 0x10 clears), and keeps only one test: when leaf 1 was run and its `ecx` has bit `0x200` set, it stores `00126E10`, `00127104`, `00173180`, `00173450`, `00173360` and `00173270` to qwords `02F97528`, `02F97510`, `02F97500`, `02F97520`, `02F97508` and `02F97518`, otherwise `001260E7`, `001263AD`, `00172DC0`, `00172CE0`, `00173040` and `00172F00`",
+   "anchors": [
+    [
+     "0016F08A",
+     "cpuid"
+    ],
+    [
+     "0016F0A3",
+     "cpuid"
+    ],
+    [
+     "0016F0E6",
+     "and"
+    ],
+    [
+     "0016F140",
+     "and"
+    ],
+    [
+     "0016F1D6",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0016F2A0",
+   "text": "takes `p` = `malloc(0x44A7)` (IAT slot `008C2B40`) and returns 0 when it is null; with `a` = (`p` + 0x27) AND ~0x1F and qword `[a-8]` = `p`, zeroes 0x4480 bytes at `a` (`memset` thunk `00861EC0`) and calls the setjmp thunk `00861EF6(a+0x1320, ..)`; on a non-zero return it stores 0 to dword `[a+0x1318]`, calls `00172750(a+0x12C0)` and `free(qword [a-8])` (IAT slot `008C2B48`) and returns 0; otherwise it stores 1 to dword `+0x1318`, calls `00172C30(a+0x12C0)`, stores 0 to dword `+0x34DC` and 1 to dword `+0x4440`, calls `00174540(a)`, `00173640(a+0x1ED0, dword [a+0x2BE8])`, copies that dword to dword `+0x2BE4`, calls `001735C0(a+0x1ED0)`, fills the 16-byte blocks at `a+0x2AD0` + 0x10`i` with byte `i` for `i` = 0..3, stores 0 to dword `+0x1318` and qwords `+0x4448` and `+0x4450`, calls `0016FA40(a)`, then, when dword `02EBA2EC` changes from 0 to 1 (`lock cmpxchg`), calls `0016F1F0()` and atomically adds 1 to it, else reads it with `lock cmpxchg` (2 for 2) and, while it does not read 2, calls `Sleep(0)` (IAT slot `008C21B0`) and reads again; returns `a`",
+   "anchors": [
+    [
+     "0016F2C8",
+     "call"
+    ],
+    [
+     "0016F30D",
+     "call"
+    ],
+    [
+     "0016F331",
+     "call"
+    ],
+    [
+     "0016F36C",
+     "call"
+    ],
+    [
+     "0016F3E9",
+     "lock cmpxchg"
+    ]
+   ]
+  },
+  {
+   "fn": "0017A320",
+   "text": "with reader `r` = `rcx+0x42C0` and stride `s` = dword `[rcx+0x1E7C]` (sign-extended), stores 0 to byte `[rdx+2]` and `m` = `0017A180(r)` to byte `[rdx]`; when `m` is 4 it stores 1 to byte `[rdx+3]` and for each `i` 0..15 stores to dword `[rdx+0xC+4i]` the result of `00179FE0(r, 01CDBCB0 + 9*(10*a + l))`, where `a` is result `i`-4 of this record (for `i` of 4 and above) or, for the top row, a value from the record at `rdx` - 0x4C*`s` and `l` is result `i`-1 (when `i` is not a multiple of 4) or a value from the record at `rdx` - 0x4C; such a neighbour value is 0, 2, 3 or 1 for its byte `+0` of 0, 1, 2 or 3, its result `i`+12 (above) or `i`+3 (left) for byte 4, and 0 otherwise; on every path it stores `0017A250(r, 01CDB9C8)` to byte `[rdx+1]`",
+   "anchors": [
+    [
+     "0017A340",
+     "call"
+    ],
+    [
+     "0017A381",
+     "mov"
+    ],
+    [
+     "0017A3C6",
+     "mov"
+    ],
+    [
+     "0017A44B",
+     "call"
+    ],
+    [
+     "0017A485",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "0017AC50": "too large for one precise sentence (953 B)",
+  "0017B010": "too large for one precise sentence (1380 B)",
+  "0017B580": "too large for one precise sentence (799 B: three inlined boolean-decoder reads per macroblock plus a per-macroblock dispatch)"
+ },
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "0016F080",
+   "why": "byte re-read (non-drafting agent, OPUS spot-checked): 'whose results end only in a discarded register' is inaccurate: xgetbv (XCR0 AND 6 = 6) and leaf 7 (bit 0x20 of its ebx, run only when the maximum leaf is at least 7) set bits 0x40 and 0x80 of the feature word r8d, which is not discarded but masked by and r8d, 0x10 at 0016F140. Callee lists, globals, the ecx bit 0x200 test and anchors check out."
+  },
+  {
+   "fn": "0016F2A0",
+   "why": "byte re-read (non-drafting agent, OPUS spot-checked): The wait path is a check-first loop: with eax = ebx = 2 it does lock cmpxchg before any Sleep and skips Sleep entirely when the dword already reads 2 (0016F409/0016F411); 'calls Sleep(0) until it reads 2' implies at least one Sleep. IAT names (malloc 008C2B40, free 008C2B48, Sleep 008C21B0) and the thunks (00861EC0 -> memset, 00861EF6 -> __intrinsic_setjmp) are confirmed from the import table; all offsets, values and anchors check out."
+  }
+ ],
+ "mode": "ee",
+ "family": ""
+}

@@ -1,0 +1,19 @@
+{
+  "producer_complete": true,
+  "source_pins": [
+    {
+      "path": "retained/ov42-sequence-queue-source/source-02.json",
+      "sha256": "c7177768e00b6b98a33d464a4714837af414a9df1a8ed3bce72e5992b70a2db1"
+    },
+    {
+      "path": "retained/ov42-kind-row-coherence/retained-prefix-01.json",
+      "sha256": "33276301865c4c6aca31720248a0afe6c6832924b97bd40e754abdc2b45c307a"
+    },
+    {
+      "path": "retained/ov42-kind-row-coherence/source-01.json",
+      "sha256": "75e86a31138d7e4242101e5315741837b8f8c7eabf95f52de19e050ec0b1cf59"
+    }
+  ],
+  "semantic_result_sha256": "74d8486f8ed4f3a13bc6ba734ae6f48af2c75cf84fbcdd5e0cceefdf4a0e409d",
+  "limits": "Publication adapter binds the actual reused code sources, not a new semantic run or code capture"
+}

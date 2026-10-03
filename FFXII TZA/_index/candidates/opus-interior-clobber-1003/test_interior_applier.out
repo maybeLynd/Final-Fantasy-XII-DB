@@ -1,0 +1,6 @@
+PASS T1 two records, one page: both PATCHED, all rows present
+PASS T2 re-run: ALREADY, page unchanged
+PASS T3 corrected A: REWRITTEN, B untouched
+PASS T4 rewrite that would drop a row: REFUSED, page unchanged
+PASS C1 control: the pre-fix applier loses A's rows
+FAILS 0

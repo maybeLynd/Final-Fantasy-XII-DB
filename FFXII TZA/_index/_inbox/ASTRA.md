@@ -1,3 +1,35 @@
+## SOL in ASTRA — uq147-dismiss-stage publication package, 2026-10-03
+
+Full L1+L2 plus accepted deployed M0-M5 goal ACTIVE/NOT_MET. Current supported
+board checked epoch4 revision50286; publication task ASTRA-PUBLISH-UQ147-DISMISS-STAGE-1003.
+Scientific evidence is prepared; current supported task/terminal receipts govern
+exact commit/release status. Producer validity is not independent acceptance.
+
+Checkpoint94 / Resume state: SOL in ASTRA, DATABASE full L1+L2 plus independently accepted deployed M0-M5 ACTIVE/NOT_MET. Current package/claim remains FABLE-REQ-ASTRA-RT-REMAINDERS-PROBES-0929; UQ147 notice FABLE-REQ-ASTRA-UQ147-KO-SUMMONER-DURING-A-SUMMON, parent owns working files. This bounded publication uses supported current claims and exact reviewed paths; its actual commit/finish/release receipts govern delivery, no self-acceptance.
+Method A retained original code/table proof f3929d1a, actual prove-dismiss-stage-retained-01 terminal0. No new code capture/native/game execution. Reuses original sequence0c421573 and kind-rowd8328725/independent74b96c7cd; matching identity not automatic new semantic acceptance. Full unsigned quotient275 selects classifier byte127/entry5 -> kind2; separately kind2 sequence table entry1 ->306A3D. Prior/current row-kind-owner coherence remains a premise. Kind1 set is a distinct control. Conditional modebit0 set leads direct DWORD clear at306A81; clear skips store. Both normal local branches go through common bounded roster traversal/332130(3), then this routine's direct022C2160=5 at306ADF. Thus conditional local clear precedes that localstate5 write; no finishingstate6/7 guard surrounds it. Qualify mode-ladder 'when sequence ends' prose; actual visible dismissal timing unobserved. Opaque earlier/later helpers can change globals: not first-everstate5/lastingclear/nativehelper effects/naturalKO-Dismiss coexistence/initialization/lifetime/scheduling/presentation/fullUQ147. Readable valid state/private separated stack/normalABI/returning calls/finite valid roster/nointerference explicit.
+Three retained code sources are verified through actual reviewed role/byte validator7c4ea9f6; two complete physical data bodies checked against authorized EXE73461d08/base120000. Four labelled source/table-record semantic controls are not original-code executions or coherent whole-EXE mutations.42member8138136d integrity only; publication source map binds actual result/dependencies, no ORACLE pre-execution seal. SPEC independent review and FABLE mode-ladder/UQ147 plus OPUS contracts required, route only missing new ordering question once. Accepted summon-kind-row-carrierc40b2434/49d0564f2 already proves row carrier; no repeat.
+Preparation guard refused capture01 BEFORE OUTPUT because retained covering map exists; no recapture/retry/bypass. Inspect semantic lookup decision, not exit alone. Initializer also retained as split code plus tables; mixed physical bodies must not be decoded entirely as code. Failed driver/raw/status preserved. Checkpoint93 +34 native-dispatch proposal corrected: ActionDefinition+34 is text name word. Original plan kept; no capture/test/consumer used erroneous join. Reusable lessons retained in working helper/runbook.
+Prior gauge2a65beb550, local-boundaries6d74079f and mode-queryecbfeb641 committed/verified/released; their once-routed reviews still READY on checked50284, no resend. Heading bounded producer DONE after actual review/CON172 incorporation, full class/lifetime OPEN. Next exact action: consume returned scoped review and canonical ownership; investigate natural pending/committed Dismiss admissibility or preceding KO helper effects from existing sources before any process observation. Whole formerly-runtime rows newly closed by this package0; four historical accepted scoped needs unchanged.
+No PC/game/input/attach/emulator/native/save/config/reference/peerprocess action. Own finite helpers terminal; no detach/restoration needed. Parked menu allowance spent, extension unapproved; no reset/retry/unchanged approval question. EXP127 INVALID/crashunknown, K14 independentlyacceptedclosed. Continue useful evidence work and required consumer agreement, never declare goal met from queue or package counts.
+
+Class20/SP1 delivery1cf5316d0, remap/render1f6569546, selector exclusions7f625ac43
+and title routing0fcf9349e are committed/exact payload verified and their
+publication holds released. Existing independent routes are unblocked.
+Conditional override-domain30754ad4b is also committed/verified/released;
+its review and consumption remain pending, separately from the current packet.
+No self-acceptance. Heading supplement8969fe745 was SPEC acceptedcd86f404d and
+OPUS consumedc4eb91ad3. SP1 repair1c1dfec separately ACCEPTED.
+WholeOV42/21/29 remain OPEN. Four scoped historical runtime needs have prior
+source elimination; current packet scope above. No extra native/live credit.
+No FF12/PC/input/instrument/save/config/reference writes. EXP127 INVALID; parked
+menu allowance remains spent/unapproved. Next original-source work and remaining
+prepared deliveries follow current board, not an unchecked export.
+User resource preference: close only our shells/terminals/helpers when done.
+Completed helpers are terminal; no PC/runtime session retained. Use current
+task/handle evidence to distinguish a live publisher from finished delivery.
+Failed CIM inventory and unavailable optional psutil do not establish absence
+of other processes; do not terminate peers by process name.
+
 ## SOL in ASTRA — uq147-mode-query publication package, 2026-10-03
 
 Full L1+L2 plus accepted deployed M0-M5 goal ACTIVE/NOT_MET. Current supported
@@ -11366,10 +11398,10 @@ PC OFF; no live process/intervention, save/config/reference changes/restoration 
 Player version: the grid-code finding is preserved. Publishing it is waiting for
 the shared task list to be recovered so recent teammates' work is not overwritten.
 
-<!-- TEAM-CURRENT:begin agent=ASTRA board_rev=50234 epoch=4 queue_sha=1d700051b8b3cc45 -->
-> generated 2026-10-03T10:08:03+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=ASTRA board_rev=50286 epoch=4 queue_sha=cbf4bfd233d6cd81 -->
+> generated 2026-10-03T10:51:33+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: ASTRA-HEADING-CLASS-EFFECTS-SLICE, ASTRA-OV42-GAUGE-CALLBACK-BINDING-1002, ASTRA-OV42-REGISTER-EVENT0-CLOSURE-1003, ASTRA-PUBLISH-UQ147-MODE-QUERY-1003, DATA-REQ-ASTRA-SD194-RUNTIME-1001, FABLE-REQ-ASTRA-OV10-OV42-REACHABILITY, FABLE-REQ-ASTRA-OV21-BANK-REACHABILITY, FABLE-REQ-ASTRA-RT-REMAINDERS-PROBES-0929, FABLE-REQ-ASTRA-UQ147-KO-SUMMONER-DURING-A-SUMMON, FRONTIER-REQ-ASTRA-WORKFLOW-INDEPENDENT-VERIFY
+> ACTIVE: ASTRA-OV42-GAUGE-CALLBACK-BINDING-1002, ASTRA-OV42-REGISTER-EVENT0-CLOSURE-1003, ASTRA-PUBLISH-UQ147-DISMISS-STAGE-1003, DATA-REQ-ASTRA-SD194-RUNTIME-1001, FABLE-REQ-ASTRA-OV10-OV42-REACHABILITY, FABLE-REQ-ASTRA-OV21-BANK-REACHABILITY, FABLE-REQ-ASTRA-RT-REMAINDERS-PROBES-0929, FABLE-REQ-ASTRA-UQ147-KO-SUMMONER-DURING-A-SUMMON, FRONTIER-REQ-ASTRA-WORKFLOW-INDEPENDENT-VERIFY
 > READY addressed to you: P3 FABLE-REQ-ASTRA-PC1-OVERRIDE-DWORD-WRITE-WATCH, P3 FABLE-REQ-ASTRA-UQ146-IN-PROCESS-FORMATTER-READ
 > READY pool: 1 | BLOCKED: 28
 <!-- TEAM-CURRENT:end -->

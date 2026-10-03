@@ -100,3 +100,9 @@ out = {"ok": not res["failures"] and not record["outside"] and not record["unbri
        "allowed_functions": len(ALLOWED), "tails": ["%08X" % t for t in sorted(TAILS)]}
 json.dump(out, open(os.path.join(HERE, "strict.json"), "w"), indent=1, sort_keys=True)
 print(json.dumps(out, indent=1))
+
+
+# EXIT STATUS FOLLOWS THE RECORDED VERDICT (OPUS, 2026-10-03, the user's root-cause directive item 4): this package
+# recorded "ok" in strict.json but always exited 0, so no automated re-run could see it fail.
+import sys as _es
+_es.exit(0 if out["ok"] is True else 1)

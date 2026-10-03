@@ -1,0 +1,11 @@
+# Next UQ147 discriminator after checkpoint93
+
+Current publications6d74079f/ecbfeb641 are producer-valid only, independently routed; no repeat of same-call, selector, mode-query or early-return controls. Natural summonerKO reachability remains open.
+
+Exact next proposition: does a naturally admitted Esper with pending/committed action113 coexist with mode1 until the summonerKO recomputation, or does the native Dismiss completion path always clear/reassign the mode/member first? Need the shipping command113 -> ActionDefinition+34 -> native-handler/script mapping, then relative committed-action/mode-member writes and original KO-caller order. Reuse canonical authored-data/native-handler identities before making any capture. Current action-dispatch page establishes Dismiss naming and definition-to-handler join, but naming alone is not completion/lifetime evidence. Current status-write page distinguishes KOreceiver cancel/release from later Dismiss selected roster index3; do not treat them as one actor automatically.
+
+Method ladder: consume original current data/handler/command-seam sources; static guard/write/order proof; bounded verified original execution only for a named remaining composable effect. No call-count/absence sampling proves natural scheduling. Actual initialization/scheduling may ultimately require a separately prepared collector/state, subject to the persistent parked menu limit. Do not reopen game or request unchanged menu allowance.
+
+The status-write summary says the summoner fall ends the summon. Existing newly routed FABLE/OPUS consumption must qualify the same-call invocation versus actual completion where needed; conditional early returns do not by themselves refute eventual natural gameplay behavior. No additional duplicate consumer request. Keep existing CON172 class/lifetime residue explicit after bounded heading producer-task completion.
+
+Initial bounded search used a nonexistent Battle-Commands directory and returned an error; it is not absence evidence. Correct existing path is07-Combat-Action/Action-Dispatch, inspected afterward. No process/control/reference/save/config changes or active native instrument; finite own helpers terminal. FullL1L2+requiredaccepteddeployedM0M5 remains ACTIVE/NOT_MET.

@@ -1,0 +1,70 @@
+{
+  "complete": true,
+  "driver_sha256": "3ee7b1d08a9857dba896f77a3ba3bd238e850d6a4fb5bfe556cfcb78b37008dd",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "requested": [
+    "0x306760",
+    "0x306aef"
+  ],
+  "requested_sha256": "746cfb653e9935d85e831f7b08603b6956f55252f715886357056f4c63c027a1",
+  "maps_examined": 1341,
+  "matches": [
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\ov42-caller-quotient-bound\\queue-source-01.json",
+      "file_sha256": "c7177768e00b6b98a33d464a4714837af414a9df1a8ed3bce72e5992b70a2db1",
+      "range": [
+        "0x306760",
+        "0x306aef"
+      ],
+      "range_sha256": "746cfb653e9935d85e831f7b08603b6956f55252f715886357056f4c63c027a1"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\ov42-kind-row-coherence\\retained\\queue-source-02.json",
+      "file_sha256": "c7177768e00b6b98a33d464a4714837af414a9df1a8ed3bce72e5992b70a2db1",
+      "range": [
+        "0x306760",
+        "0x306aef"
+      ],
+      "range_sha256": "746cfb653e9935d85e831f7b08603b6956f55252f715886357056f4c63c027a1"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\FFXII TZA\\_experiments\\evidence\\ov42-sequence-queue-source\\source-02.json",
+      "file_sha256": "c7177768e00b6b98a33d464a4714837af414a9df1a8ed3bce72e5992b70a2db1",
+      "range": [
+        "0x306760",
+        "0x306aef"
+      ],
+      "range_sha256": "746cfb653e9935d85e831f7b08603b6956f55252f715886357056f4c63c027a1"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-caller-quotient-bound\\queue-source-01.json",
+      "file_sha256": "c7177768e00b6b98a33d464a4714837af414a9df1a8ed3bce72e5992b70a2db1",
+      "range": [
+        "0x306760",
+        "0x306aef"
+      ],
+      "range_sha256": "746cfb653e9935d85e831f7b08603b6956f55252f715886357056f4c63c027a1"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-kind-row-coherence\\retained\\queue-source-02.json",
+      "file_sha256": "c7177768e00b6b98a33d464a4714837af414a9df1a8ed3bce72e5992b70a2db1",
+      "range": [
+        "0x306760",
+        "0x306aef"
+      ],
+      "range_sha256": "746cfb653e9935d85e831f7b08603b6956f55252f715886357056f4c63c027a1"
+    },
+    {
+      "path": "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\ov42-sequence-queue-source\\source-02.json",
+      "file_sha256": "c7177768e00b6b98a33d464a4714837af414a9df1a8ed3bce72e5992b70a2db1",
+      "range": [
+        "0x306760",
+        "0x306aef"
+      ],
+      "range_sha256": "746cfb653e9935d85e831f7b08603b6956f55252f715886357056f4c63c027a1"
+    }
+  ],
+  "malformed_candidates": [],
+  "decision": "REUSE_VERIFIED_RETAINED_BYTES",
+  "limits": "Bounded physical byte coverage in named source-map corpus, not global absence, provenance acceptance, source semantics or live initialization. Retain/check original lineage and receipts before semantic use."
+}

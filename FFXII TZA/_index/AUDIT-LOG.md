@@ -63579,3 +63579,14 @@ added under `SWE2-CONTRACT 2026-09-30/2026-10-01 (pass-22 debt/residue)`;
 - Interior anchors: 7,678 total, 0
   mid-instruction; paragraph-address gate clean;
   publish-neighbour guard ADDS NOTHING (186 -> 186).
+
+## 2026-10-03 SWE2-STRUCT — type-store hygiene (Widget-base copies, rung lags) and the EMBED element-fold census fix (Claude stand-in for Devin)
+
+- OPUS's non-blocking items from `opus-audit-type-residue-1003`: 48 Widget-base copy rows (39 point at and take the base row's rung,
+  9 pair rows split to the base's granularity with WIDTH DELIBERATE; `_8FA0` `+0x9C`/`+0xB8` misread immediates corrected at the
+  bytes, 0x800080 / 0x3F800000), 11 AchievementState counters lifted after descriptor checks, BattleFormulaScratch +0xA4,
+  BgmStream +0x31, ManagerSingleton +0xAB30, type RenderResourceEntry. Record `_index/candidates/swe2struct-type-hygiene-1003/`.
+- `gen_route_seeded_census.py`: EMBED interior arrays now fold element k onto element 0 (count was never read); SystemStopRecord
+  census regenerated +105 / -0 (82 builder bank-B sites, all matching the decoded control; 23 caller r12 accesses).
+  Record `_index/candidates/swe2struct-census-embed-fold-1003/`, `census_bankb_check.py` FAILS 0 (82 on the old census).
+- types_index 0 errors; check_census_widths back to its 1 baseline row.

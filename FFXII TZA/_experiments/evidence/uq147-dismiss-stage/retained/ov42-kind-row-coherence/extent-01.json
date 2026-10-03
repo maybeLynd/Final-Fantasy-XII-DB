@@ -1,0 +1,84 @@
+{
+  "complete": true,
+  "method": "A original chained PE metadata; not execution or semantic reachability",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "driver_sha256": "da84dd626f2c2bba40fd37af1eb5ac893dddfb84fbeb293e6e7cdf7b7301e607",
+  "directory_bytes": "0080e7020c8a0600",
+  "entry": "0x306bd0",
+  "end_exclusive": "0x306d88",
+  "bytes": 440,
+  "body_sha256": "27683107a3bb35457bcfc28186ff6cfb9ca0346a51ce42030473c281c42e8f97",
+  "records": [
+    {
+      "begin": "0x306bd0",
+      "end_exclusive": "0x306c05",
+      "record_bytes": "d06b1e00056c1e00ac1dc601",
+      "chain": [
+        {
+          "record": [
+            "0x306bd0",
+            "0x306c05",
+            "0x1d81dac"
+          ],
+          "header_bytes": "010a0400",
+          "flags": 0
+        }
+      ]
+    },
+    {
+      "begin": "0x306c05",
+      "end_exclusive": "0x306c3d",
+      "record_bytes": "056c1e003d6c1e00a44fc501",
+      "chain": [
+        {
+          "record": [
+            "0x306c05",
+            "0x306c3d",
+            "0x1d74fa4"
+          ],
+          "header_bytes": "21050200",
+          "flags": 4,
+          "chain_footer_va": "0x1d74fac",
+          "chain_footer_bytes": "d06b1e00056c1e00ac1dc601"
+        },
+        {
+          "record": [
+            "0x306bd0",
+            "0x306c05",
+            "0x1d81dac"
+          ],
+          "header_bytes": "010a0400",
+          "flags": 0
+        }
+      ]
+    },
+    {
+      "begin": "0x306c3d",
+      "end_exclusive": "0x306d88",
+      "record_bytes": "3d6c1e00886d1e00b84fc501",
+      "chain": [
+        {
+          "record": [
+            "0x306c3d",
+            "0x306d88",
+            "0x1d74fb8"
+          ],
+          "header_bytes": "21000200",
+          "flags": 4,
+          "chain_footer_va": "0x1d74fc0",
+          "chain_footer_bytes": "d06b1e00056c1e00ac1dc601"
+        },
+        {
+          "record": [
+            "0x306bd0",
+            "0x306c05",
+            "0x1d81dac"
+          ],
+          "header_bytes": "010a0400",
+          "flags": 0
+        }
+      ]
+    }
+  ],
+  "limits": "Physical chained extent only; decoded CFG, indirect targets and source dataflow require separate verification."
+}

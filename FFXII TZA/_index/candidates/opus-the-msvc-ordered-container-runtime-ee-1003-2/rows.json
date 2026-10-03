@@ -1,0 +1,204 @@
+{
+ "page": "24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/the-msvc-ordered-container-runtime.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-msvc-ordered-container-runtime-r2.json",
+ "rows": [
+  {
+   "fn": "006DAFB0",
+   "text": "does log(`02EA0B44`: `00D8E70C`, `00D8E718`) and log(`02EA0B40`: `00D8E748` with line 0x43D, `00D8E768`) (writing log(`g`: `x`, `y`) for: when dword `01F3BA80` and dword `g` are at least 1 (unsigned), call `006DF480(x)` and then `006DF480(y)`); when `c` = qword `02EA0B70` is non-null it calls vtable slot `+8` of qwords `02EA0B78` and `02EA0B80` (each when non-null) and stores 0 to them, takes `r` = `00705520(c, 0)`, does log(`01F3BA90`: `00D8E888` with 0x468, `00D8EA40` with `r` and `0071B3C0(r)`) for negative `r` and returns `r`, else does log(`02EA0B40`: `00D8E948` with 0x46C, `00D8EAA0`), calls `006FF840(d)` and `006DA8A0(qword 01F3BA68, d)` for `d` = qword `02EA0B70` when non-null and stores 0 there, and stores 0 to the qword at the pointer `006E0370(rcx)` returns; then does log(`02EA0B40`: `00D8E9C8` with 0x47A, `00D8E7C8`) and log(`02EA0B44`: `00D8E85C`, `00D8E8B8`) and returns 0",
+   "anchors": [
+    [
+     "006DAFD2",
+     "call"
+    ],
+    [
+     "006DB03B",
+     "call"
+    ],
+    [
+     "006DB067",
+     "call"
+    ],
+    [
+     "006DB129",
+     "call"
+    ],
+    [
+     "006DB154",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006DEB40",
+   "text": "does log(`02EA0B40`: `00D8EE30` with line 0x1C56, `00D8EE50`) (writing log(`g`: `x`, `y`) for: when dword `01F3BA80` and dword `g` are at least 1 (unsigned), call `006DF480(x)` and then `006DF480(y)`); when `c` = qword `02EA0B70` is null it does log(`01F3BA8C`: `00D8EE70` with 0x1C5A, `00D8EEA8`) and returns `al` = 1; otherwise `r` = `00705520(c, 0)`, then for negative `r` log(`01F3BA90`: `00D8EED8` with 0x1C62, `00D8EF10` with `r` and `0071B3C0(r)`), else log(`02EA0B40`: `00D8EF60` with 0x1C66, `00D8EF80`); when qword `02EA0B70` is non-null it calls `006FF840` on it and `006DA8A0(qword 01F3BA68, it)`; it then stores 0 to qword `02EA0B70` on both paths and returns `al` = 0 for negative `r`, else does log(`02EA0B40`: `00D8EFC8` with 0x1C71, `00D8EFE8`) and returns `al` = 1",
+   "anchors": [
+    [
+     "006DEB64",
+     "call"
+    ],
+    [
+     "006DEBD2",
+     "call"
+    ],
+    [
+     "006DEC02",
+     "call"
+    ],
+    [
+     "006DEC6A",
+     "call"
+    ],
+    [
+     "006DEC80",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0070E600",
+   "text": "when byte `[rcx]` is non-zero it calls `006DF480(00D965F8, 0x72DC)` and `006DF480(00D96640)` when dwords `01F3BA80` and `01F3BA90` are at least 1 (unsigned) and returns 0x80004005; otherwise it returns 0x80070057 when there is no node of the tree whose head is qword `[rcx+0xB8]` (root at the head's qword `+8`, nil flag byte `+0x19`, key qword `+0x20`, left `+0`, right `+0x10`) whose key equals `rdx`; else, with `v` = that node's qword `+0x28`, `m` = the equal-key node of the tree at qword `[rcx+0xC8]` and `w` = `m`'s qword `+0x28` (0 when absent), it calls `00714DC0(rcx+0xB8, &t, node)`, `00714DC0(rcx+0xC8, &t, m)` when `w` is non-null, vtable slot `+8` of `v` when non-null and `006E1130(w)` when non-null, and returns 0",
+   "anchors": [
+    [
+     "0070E62A",
+     "call"
+    ],
+    [
+     "0070E660",
+     "cmp"
+    ],
+    [
+     "0070E701",
+     "call"
+    ],
+    [
+     "0070E730",
+     "call"
+    ],
+    [
+     "0070E740",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00713210",
+   "text": "with head `h` = qword `[rcx]` (root qword `[h+8]`, nil flag byte `+0x19`, key qword `+0x20`, left `+0`, right `+0x10`) and key `k` = qword `[r9]`, descends from the root going left when (`r8b` non-zero: node key at least `k`; else: `k` below node key) and right otherwise, keeping the last node `p` (`p` = `h`, counted as left, when the root is nil); when it last went left and `p` is the leftmost node (qword `[h]`) it inserts at once; otherwise, with `q` = the in-order predecessor of `p` when it last went left (qword `[h+0x10]` when `p` is the head) and `q` = `p` when it went right, it inserts when `q`'s key is below `k`; inserting calls `00712F60(rcx, &t, direction, p, r9, fifth argument)` and stores the qword at the pointer it returns and byte 1 to `[rdx]` and `[rdx+8]`; otherwise it calls `00210EB0(fifth argument)` and stores `q` and byte 0 there; returns `rdx`",
+   "anchors": [
+    [
+     "00713258",
+     "cmp"
+    ],
+    [
+     "007132A6",
+     "call"
+    ],
+    [
+     "00713337",
+     "call"
+    ],
+    [
+     "0071334B",
+     "mov"
+    ],
+    [
+     "00713350",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00713370",
+   "text": "with head `h` = qword `[rcx]` (root qword `[h+8]`, nil flag byte `+0x19`, key qword `+0x20`, left `+0`, right `+0x10`) and key `k` = qword `[r9]`, descends from the root going left when (`r8b` non-zero: node key at least `k`; else: `k` below node key) and right otherwise, keeping the last node `p` (`p` = `h`, counted as left, when the root is nil); when it last went left and `p` is the leftmost node (qword `[h]`) it inserts at once; otherwise, with `q` = the in-order predecessor of `p` when it last went left (qword `[h+0x10]` when `p` is the head) and `q` = `p` when it went right, it inserts when `q`'s key is below `k`; inserting calls `00712F60(rcx, &t, direction, p, r9, fifth argument)` and stores the qword at the pointer it returns and byte 1 to `[rdx]` and `[rdx+8]`; otherwise it calls `00210EB0(fifth argument)` and stores `q` and byte 0 there; returns `rdx`",
+   "anchors": [
+    [
+     "007133B8",
+     "cmp"
+    ],
+    [
+     "00713406",
+     "call"
+    ],
+    [
+     "00713497",
+     "call"
+    ],
+    [
+     "007134AB",
+     "mov"
+    ],
+    [
+     "007134B0",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007134D0",
+   "text": "with head `h` = qword `[rcx]` (root qword `[h+8]`, nil flag byte `+0x19`, key qword `+0x20`, left `+0`, right `+0x10`) and key `k` = qword `[r9]`, descends from the root going left when (`r8b` non-zero: node key at least `k`; else: `k` below node key) and right otherwise, keeping the last node `p` (`p` = `h`, counted as left, when the root is nil); when it last went left and `p` is the leftmost node (qword `[h]`) it inserts at once; otherwise, with `q` = the in-order predecessor of `p` when it last went left (qword `[h+0x10]` when `p` is the head) and `q` = `p` when it went right, it inserts when `q`'s key is below `k`; inserting calls `00712F60(rcx, &t, direction, p, r9, fifth argument)` and stores the qword at the pointer it returns and byte 1 to `[rdx]` and `[rdx+8]`; otherwise it calls `00210EB0(fifth argument)` and stores `q` and byte 0 there; returns `rdx`",
+   "anchors": [
+    [
+     "00713518",
+     "cmp"
+    ],
+    [
+     "00713566",
+     "call"
+    ],
+    [
+     "007135F7",
+     "call"
+    ],
+    [
+     "0071360B",
+     "mov"
+    ],
+    [
+     "00713610",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "00705520": "too large for one precise sentence (4375 B)",
+  "00712F60": "too large for one precise sentence (679 B: insertion with the red-black fix-up and its rotations inlined)",
+  "00714DC0": "too large for one precise sentence (840 B: erase with the red-black fix-up inlined)",
+  "0071E500": "too large for one precise sentence (680 B)",
+  "0071E7B0": "too large for one precise sentence (710 B)",
+  "0071EA80": "too large for one precise sentence (627 B)",
+  "0071F590": "too large for one precise sentence (978 B: erase with the red-black fix-up inlined)",
+  "0079BA10": "too large for one precise sentence (978 B)"
+ },
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "006DAFB0",
+   "why": "byte re-read (non-drafting agent, OPUS spot-checked): 'stores 0 to the qword returned by 006E0370(rcx)' reads as the return value itself; the bytes (006DB133 mov qword ptr [rax], rbp) store 0 to the qword AT the pointer 006E0370 returns. All other values, gates, callees, line numbers, the negative-r early return (returns r) and the five anchors check out."
+  },
+  {
+   "fn": "006DEB40",
+   "why": "byte re-read (non-drafting agent, OPUS spot-checked): The store of 0 to qword 02EA0B70 (006DEC80) is unconditional after the 006FF840/006DA8A0 block (it follows the join at 006DEC6F); the sentence places it inside 'when qword 02EA0B70 is non-null'.; Returns are byte returns (006DEBBA/006DECC3 mov al, 1; 006DEC8D xor al, al), the upper bits of eax are left as they were; per the database convention write 'returns `al` = 1' / '`al` = 0'."
+  },
+  {
+   "fn": "0070E600",
+   "why": "byte re-read (non-drafting agent, OPUS spot-checked): Wording error 'there is no the node of the tree' (should read 'there is no node of the tree'). Every value, offset, comparison (lower-bound descent at 0070E660 then the rdx >= key check = equal key), callee, argument and the three return values check out; anchors correct."
+  },
+  {
+   "fn": "00713210",
+   "why": "byte re-read (non-drafting agent, OPUS spot-checked): Empty-tree path not covered: r8b starts at 1 (mov r8b, 1) and the descent is skipped when the root is nil, so p = h is treated as 'went left' and compared with qword [h]; the sentence only says 'when it last went left'.; 'stores the qword it returns' is wrong: after each 00712F60 call the code does mov rax, qword ptr [rax] then stores that, i.e. the qword AT the pointer 00712F60 returns, not the return value.; 00713370 and 007134D0 confirmed identical to this body instruction for instruction (99 instructions each; only rel32 call displacements and jump targets differ, callees are the same 0071"
+  },
+  {
+   "fn": "00713370",
+   "why": "byte re-read (non-drafting agent, OPUS spot-checked): Empty-tree path not covered: r8b starts at 1 (mov r8b, 1) and the descent is skipped when the root is nil, so p = h is treated as 'went left' and compared with qword [h]; the sentence only says 'when it last went left'.; 'stores the qword it returns' is wrong: after each 00712F60 call the code does mov rax, qword ptr [rax] then stores that, i.e. the qword AT the pointer 00712F60 returns, not the return value.; Confirmed identical to 00713210 instruction for instruction (99 instructions, same sizes/mnemonics/operands, same callees 00712F60 and 00210EB0; only rel32 call bytes and jump targets di"
+  },
+  {
+   "fn": "007134D0",
+   "why": "byte re-read (non-drafting agent, OPUS spot-checked): Empty-tree path not covered: r8b starts at 1 (mov r8b, 1) and the descent is skipped when the root is nil, so p = h is treated as 'went left' and compared with qword [h]; the sentence only says 'when it last went left'.; 'stores the qword it returns' is wrong: after each 00712F60 call the code does mov rax, qword ptr [rax] then stores that, i.e. the qword AT the pointer 00712F60 returns, not the return value.; Confirmed identical to 00713210 instruction for instruction (99 instructions, same sizes/mnemonics/operands, same callees 00712F60 and 00210EB0; only rel32 call bytes and jump targets di"
+  }
+ ],
+ "mode": "ee",
+ "family": ""
+}

@@ -126,7 +126,9 @@ def check(report, session):
             r = {"fn": fn, "text": t, "anchors": [list(x) for x in anchors]}
         (bad if why else ok).append((r, why))
     rowed = {r["fn"] for r, _w in ok + bad}
-    skipped = {s.get("fn", "").upper(): s.get("why", "") for s in rep.get("skipped", [])}
+    sk = rep.get("skipped", [])
+    skipped = ({k.upper(): v for k, v in sk.items()} if isinstance(sk, dict)
+               else {s.get("fn", "").upper(): s.get("why", "") for s in sk})
     # member mode (2026-10-03): a pack covers part of the page's families, so 'missing' is not measured against them all
     missing = [] if (homing or member) else sorted("%08X" % f for f in targets if "%08X" % f not in rowed and "%08X" % f not in skipped)
     rec = "opus-%s-%s-%s" % (slug[:40], "ee" if ee else "uc1" if uc1 else "homing" if homing else "cloudint", time.strftime("%m%d"))
@@ -134,7 +136,22 @@ def check(report, session):
         # one record per pack part: the report name carries the family slug and part number
         part = os.path.splitext(os.path.basename(report))[0]
         rec = "opus-%s-%s" % ("member" if member else "ee" if ee else "", part[-56:].strip("-"))
-    rdir = os.path.join(cl.DB, "_index", "candidates", rec)
+    # 2026-10-03 (OPUS): a second report for the same page and day used to get the SAME folder name and overwrite the
+    # first record's rows.json - a published record included (same class as opus-interior-clobber-1003). A folder
+    # belongs to the report it was made from; another report takes the next free suffix.
+    base, k = rec, 1
+    while True:
+        rdir = os.path.join(cl.DB, "_index", "candidates", rec)
+        rj = os.path.join(rdir, "rows.json")
+        if not os.path.exists(rj):
+            break
+        try:
+            if json.load(io.open(rj, encoding="utf-8")).get("report") == os.path.basename(report):
+                break
+        except (OSError, ValueError):
+            pass
+        k += 1
+        rec = "%s-%d" % (base, k)
     os.makedirs(rdir, exist_ok=True)
     shutil.copyfile(os.path.join(cl.HERE, "interior_applier.py"), os.path.join(rdir, "interior_applier.py"))
     cfg = {"page": page, "date": time.strftime("%Y-%m-%d"), "session": session or rep.get("session", ""),

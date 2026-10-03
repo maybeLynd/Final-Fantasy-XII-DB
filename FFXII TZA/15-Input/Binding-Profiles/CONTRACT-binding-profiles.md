@@ -164,8 +164,8 @@ quantities (two sticks); the rest are not.
 
 | | detail |
 |---|---|
-| **read** | `01F80F90` (authored), `01DF13E0` (reserved list), `01DF1480` / `01F80550` / `01F80970` (record banks), `01F7FFE0+8/+9` (axis invert), `008F3A2C` `01CEBBA8` `008C5B40` `01CEBC9C` (constants) |
-| **written** | `01F80F90` (assigner), `01F80130` (publisher), `01F7FFE0+0x38` (stick-touched flag), `mgr[+0x3B]` cleared each poll, the caller's 18-byte frame |
+| **read** | `01F80F90` (authored), `01DF13E0` (reserved list), `01DF1480` / `01F80550` / `01F80970` (record banks), ~~`01F7FFE0+8/+9` (axis invert)~~ `[01F7FFE0]+0x08` / `[01F7FFE0]+0x09` (axis invert: `InputManager +0x08` / `+0x09`, reached through the 8-byte pointer cell `01F7FFE0`; reads `0019740F`, `0019751A`, `0019752E`, `001975CB`, `001975DF`, each after a qword load of the cell) *(corrected 2026-10-03, FABLE, on SWE2-AUDIT-SPEC's L2 expansion)*, `008F3A2C` `01CEBBA8` `008C5B40` `01CEBC9C` (constants) |
+| **written** | `01F80F90` (assigner), `01F80130` (publisher), ~~`01F7FFE0+0x38` (stick-touched flag)~~ `[01F7FFE0]+0x38` (stick-touched flag, `InputManager +0x38`: `00197444` loads the pointer cell, `0019744B` stores 1 through it; no `.text` instruction references the static cell `01F80018`) *(corrected 2026-10-03, FABLE, on SWE2-AUDIT-SPEC's L2 expansion)*, `mgr[+0x3B]` cleared each poll, the caller's 18-byte frame |
 | **allocated** | none on these paths — every structure is static |
 
 **Bank A is written by `00195DF0` through an image-base register** (§7a) — invisible to the

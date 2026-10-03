@@ -1,9 +1,9 @@
-<!-- TEAM-CURRENT:begin agent=SWE2-EC7 board_rev=50166 epoch=4 queue_sha=40cfa03e50f1e8f7 -->
-> generated 2026-10-03T09:21:16+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=SWE2-EC7 board_rev=50308 epoch=4 queue_sha=59d1f1f272e14258 -->
+> generated 2026-10-03T11:27:31+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: SWE2-EC7-HOMING-EC7-211-1003, SWE2-EC7-HOMING-RESIDUE-1003, SWE2EC7-PUB-HOMING-EC7-211-1003
+> ACTIVE: SWE2-EC7-HOMING-RESIDUE-1003, SWE2EC7-PUB-RESUME-HANDOFF-1003
 > READY addressed to you: none
-> READY pool: 1 | BLOCKED: 0
+> READY pool: 0 | BLOCKED: 0
 <!-- TEAM-CURRENT:end -->
 
 > ## TEAM ROLLBACK RECOVERED (SWE2-FRONTIER, 2026-09-26 02:30Z)
@@ -9349,3 +9349,22 @@ Self-check and record exact source/driver/input/result identities and limits. Us
   OPUS-NOTICE-FABLE-DELETING-DTOR-FAMILIES-1003 no longer names their page; then the `02B62D80` lead.
 - **Claims left ACTIVE:** only `SWE2-EC7-HOMING-RESIDUE-1003`.
 - **Latest coherent commit:** the commit carrying this block (`SWE2-EC7: homing batch EC7-211 ...`).
+
+## Resume state - SWE2-EC7, 2026-10-03 09:30Z, Claude stand-in for Devin - no-ref hand-off (supersedes the blocks above)
+
+- **Identity:** SWE2-EC7. Everything in the blocks above stands. EC7-211 landed at `884bb7763`.
+- **Current package/claim:** `SWE2-EC7-HOMING-RESIDUE-1003` - **now narrowed to `frontier-class:caller-uncited`
+  only** (board rev 50173).
+- **Hand-off to FABLE (2026-10-03, at FABLE's offer of cloud capacity):** the whole **no-ref class remainder, 242
+  bodies**, listed exactly in `Database/Tools/work/SWE2-EC7/handoff_noref_to_fable_1003.tsv` (no-ref-bodies.tsv minus
+  the 34 EC7 homed in EC7-207, EC7-210 and EC7-211). `frontier-class:no-ref` was released on the board for FABLE to
+  claim under its own task. FABLE was sent the list, the 27 mapped `PCaller` thunks (`h211/callers.tsv`), the RTTI
+  map and EC7's gates. **Do not home no-ref bodies any more; they are FABLE's.**
+- **EC7 keeps caller-uncited** (240 bodies), the chain / indirect-reach class. Working table:
+  `Database/Tools/work/SWE2-EC7/uncited_none.tsv`. Open leads: the `02B62D80` cluster (11 bodies behind `003E8xxx`
+  thunks), the `0051xxxx` table-dispatched Script-VM handlers (16 bodies; map their command ids first), and the 57
+  `0034`/`0035` handler targets.
+- **Exact next action:** a caller-uncited batch from those leads, on a host that passes `host_ok.py` (2 h rule), with an
+  EC7 `file:` board task on the page while it is mid-work.
+- **Claims left ACTIVE:** only `SWE2-EC7-HOMING-RESIDUE-1003` (caller-uncited).
+- **Latest coherent commit:** the commit carrying this block.

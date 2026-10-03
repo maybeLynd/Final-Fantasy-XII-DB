@@ -37,6 +37,16 @@ if CFG.get("mode") == "homing":
             "instruction boundary inside its function and decodes to the recorded mnemonic.*\n\n"
             % (os.path.basename(__file__), DEPTH, REC, os.path.basename(__file__))
             + "| function | size | what the body does | interior anchors |\n|---|---|---|---|\n")
+if CFG.get("mode") == "member":
+    # family members (OPUS, 2026-10-03): one block per family part; the heading names the family and the record
+    HEAD = ("## Family members explained one by one: %s (OPUS, %s, %s)\n\n" % (CFG.get("family", ""), CFG["date"], REC)
+            + "*Members of the family `%s`, which this page declares, that no page explained. Each sentence states what "
+            "the body does (access and representation, not purpose), and the anchors are instructions inside it that do "
+            "it. Drafted locally from OPUS's pack and re-read by OPUS against the certified image; verified by "
+            "[`%s`](%s_index/candidates/%s/%s): every anchor is an instruction boundary inside its function and decodes "
+            "to the recorded mnemonic.*\n\n" % (CFG.get("family", ""), os.path.basename(__file__), DEPTH, REC,
+                                                  os.path.basename(__file__))
+            + "| function | size | what the body does | interior anchors |\n|---|---|---|---|\n")
 if CFG.get("mode") == "uc1":
     # UC-1 game-code bodies (OPUS, 2026-10-03; FABLE's route ruling fable-uc1-gamecode-route-ruling-1003, test 3: the
     # count of such rows is stated once in the heading; each row carries the series-break phrase).
@@ -74,28 +84,72 @@ if not fails:
                           for fn, text, anchors in ROWS)
     b = open(P, "rb").read()
     crlf = b"\r\n" in b[:4000]
+    # 2026-10-03 (OPUS): a block belongs to the record its lead links (`_index/candidates/<REC>/`), not to whoever
+    # matches its heading. Two records of one mode and date render the same heading; the second record used to take the
+    # first record's block and re-render it with its own rows (890844135, 33eb7192f, e63502b10: 55 published rows
+    # deleted). Now: re-render only a block this record owns, never drop a row that is not this record's, and when
+    # another record holds the heading append a block whose heading names this record.
+    OWN = ("/_index/candidates/%s/" % REC).encode("utf-8")
+    h0 = HEAD.splitlines()[0]
+    ALT_H0 = h0[:-1] + ", " + REC + ")" if h0.endswith(")") and REC not in h0 else h0
+    # the uc1 heading carries the row count, so find the block by its count-free tail (2026-10-03)
+    keys = []
+    for k0 in (h0, ALT_H0):
+        kk = (k0.split(" ", 2)[2] if CFG.get("mode") == "uc1" else k0).encode("utf-8")
+        if kk not in keys:
+            keys.append(kk)
+
+    def blocks(buf):
+        """(start, end line index, lines) of every block whose heading matches a key."""
+        out, pos = [], 0
+        while True:
+            hits = [(buf.find(kk, pos), kk) for kk in keys]
+            hits = [h for h in hits if h[0] >= 0]
+            if not hits:
+                return out
+            j, kk = min(hits)
+            i = buf.rfind(b"\n", 0, j) + 1
+            lines = buf[i:].split(b"\n")
+            k, seen = 0, False
+            for k, l in enumerate(lines):
+                if l.startswith(b"| `"):
+                    seen = True
+                elif seen and not l.startswith(b"|"):
+                    break
+            else:
+                k = len(lines)
+            out.append((i, k, lines))
+            pos = j + len(kk)
+
+    found = blocks(b)
+    owned = [x for x in found if OWN in b"\n".join(x[2][:x[1]])]
+    # keep the heading form the owned block already has; a new block takes the shared heading only when it is free
+    if owned:
+        alt = ALT_H0 != h0 and REC.encode("utf-8") in owned[0][2][0]
+    else:
+        alt = bool(found)
+    head_text = HEAD.replace(h0, ALT_H0, 1) if alt else HEAD
+    body = head_text + "".join("| `%s` | %d B | %s | %s |\n" % (fn, sizes[int(fn, 16)], text, ", ".join("`%s`" % a for a, _m in anchors))
+                               for fn, text, anchors in ROWS)
     s = body.encode("utf-8")
     if crlf:
         s = s.replace(b"\n", b"\r\n")
-    # the uc1 heading carries the row count, so find the block by its count-free tail (2026-10-03)
-    BLOCK_KEY = (HEAD.splitlines()[0].split(" ", 2)[2] if CFG.get("mode") == "uc1" else HEAD.splitlines()[0]).encode("utf-8")
-    if BLOCK_KEY in b:
+    if len(owned) > 1:
+        print("REFUSED: %d blocks on the page link this record; resolve by hand" % len(owned)); fails += 1
+    elif owned:
         # 2026-10-02 (OPUS): a rows.json corrected after a first apply used to stay ALREADY with the stale rows on the
         # page. Re-render the block (heading through its last table row) when it differs.
-        i = b.rfind(b"\n", 0, b.index(BLOCK_KEY)) + 1
-        lines = b[i:].split(b"\n")
-        k, seen = 0, False
-        for k, l in enumerate(lines):
-            if l.startswith(b"| `"):
-                seen = True
-            elif seen and not l.startswith(b"|"):
-                break
-        else:
-            k = len(lines)
+        i, k, lines = owned[0]
         old = b"\n".join(lines[:k])
         new = s.rstrip(b"\r\n")
+        import re as _re
+        mine = {fn.upper() for fn, _t, _a in ROWS}
+        lost = sorted({m.decode().upper() for m in _re.findall(rb"^\| ~*`([0-9A-Fa-f]{8})`", old, _re.M)} - mine)
         if old.rstrip(b"\r") == new.rstrip(b"\r"):
             print("ALREADY")
+        elif lost:
+            print("REFUSED: re-rendering would drop %d row(s) not in this record's rows.json: %s" % (len(lost), ", ".join(lost)))
+            fails += 1
         elif "--apply" not in sys.argv:
             print("DRY (block differs from rows.json; --apply rewrites it)")
         else:
@@ -103,11 +157,11 @@ if not fails:
                                 b"\n".join([b""] + lines[k:]) if k < len(lines) else b[:i] + new + (b"\r\n" if crlf else b"\n"))
             print("REWRITTEN")
     elif "--apply" not in sys.argv:
-        print("DRY (verified; --apply writes)")
+        print("DRY (verified; --apply writes%s)" % (" a block headed for this record: another record holds the heading" if found else ""))
     else:
         nl = b"\r\n" if crlf else b"\n"
         b = b.rstrip(b"\r\n") + nl + nl + s
         open(P, "wb").write(b)
-        print("PATCHED")
+        print("PATCHED" + (" (own heading: another record holds the shared one)" if found else ""))
 print("FAILS", fails)
 sys.exit(1 if fails else 0)

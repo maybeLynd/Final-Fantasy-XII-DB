@@ -1,0 +1,89 @@
+{
+  "producer_complete": true,
+  "method": "A retained original bytes/branch tables and conditional order proof; no new code capture or native execution",
+  "driver_sha256": "f3929d1a1ffca77e23fcb8f41482e31e2de3aabd8b169fc5790e2e6fbb3a1097",
+  "exe_sha256": "73461d0896204b1c259c52f61aef4efbc95a2ffc388cadb36493d5d1d89721f8",
+  "canonical_dependencies": [
+    {
+      "slug": "ov42-sequence-queue-source",
+      "path": "source-02.json",
+      "sha256": "c7177768e00b6b98a33d464a4714837af414a9df1a8ed3bce72e5992b70a2db1"
+    },
+    {
+      "slug": "ov42-kind-row-coherence",
+      "path": "retained-prefix-01.json",
+      "sha256": "33276301865c4c6aca31720248a0afe6c6832924b97bd40e754abdc2b45c307a"
+    },
+    {
+      "slug": "ov42-kind-row-coherence",
+      "path": "source-01.json",
+      "sha256": "75e86a31138d7e4242101e5315741837b8f8c7eabf95f52de19e050ec0b1cf59"
+    },
+    {
+      "slug": "ov42-sequence-queue-source",
+      "path": "data-01.json",
+      "sha256": "19e148fb2cd82900f6a23f91282c34ffeca83bf7bdddb533a0effc4c02b407eb"
+    },
+    {
+      "slug": "ov42-kind-row-coherence",
+      "path": "data-01.json",
+      "sha256": "d2ee2256cfda1d4f77c4ebf944b054d0e4b228b9e63eacaf4bc16d54358eea2c"
+    }
+  ],
+  "annotation_prerequisites": [
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 204,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 167,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    },
+    {
+      "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+      "instruction_records": 37,
+      "capstone": "5.0.7",
+      "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+      "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+      "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+    }
+  ],
+  "facts": {
+    "classifier": "Under full unsigned row/base/positive-stride quotient275, original selector byte127 and jump entry5 reach306CB0 EBX2 ->022C215C. Quotient275 is a premise, not a naturally observed action.",
+    "dispatch": "306760 reads currentkind separately. Kind2 uses original six-entry table element1 ->306A3D. Kind1 element0 ->306931 ORs modebit1, a distinct positive arm. Same-kind/owner/current-row persistence is not established here.",
+    "order": "On normal kind2 path, optional35DAE0 and306D90 run first. It then re-reads battle pointer/mode; if bit0set, AND~1 and directDWORDstore at306A81 precede35C620, common rosterflag loop,332130(3) and this routine's direct022C2160=5 at306ADF. If bit0alreadyclear, localmode store is skipped and common state5 path remains. The literal state5 write belongs to this common preparation path; no finishing-state6/7 guard surrounds this localclear.",
+    "implication": "The canonical phrase \"clears bit0 when the sequence ends\" needs qualification against this local preparation ordering. This is not proof of actual onscreen timing or eventual cleanup, and not proof of naturally initialized summonerKO reachability.",
+    "limits": "Exact original code/tables/readable objects, Win64 ABI/valid private stack, normal returning opaque helpers, bounded valid roster traversal and no interference. Helpers can change objects or global state; no lastingmodeclear, firsteverstate5, resource success, atomic snapshot, lifetime/reuse/natural scheduling or wholeUQ147 closure."
+  },
+  "controls": [
+    {
+      "id": "dismiss-selector-byte-changed",
+      "diagnostic": "full quotient275 no longer publishes kind2",
+      "method": "Labelled synthetic source/table-record semantic control, not an EXE patch or machine-code execution"
+    },
+    {
+      "id": "kind2-table-target-changed",
+      "diagnostic": "kind2 dispatch is not the Dismiss arm",
+      "method": "Labelled synthetic source/table-record semantic control, not an EXE patch or machine-code execution"
+    },
+    {
+      "id": "mode-store-offset-changed",
+      "diagnostic": "selected memory identity changed 0x306a81",
+      "method": "Labelled synthetic source/table-record semantic control, not an EXE patch or machine-code execution"
+    },
+    {
+      "id": "state5-target-changed",
+      "diagnostic": "selected memory identity changed 0x306adf",
+      "method": "Labelled synthetic source/table-record semantic control, not an EXE patch or machine-code execution"
+    }
+  ],
+  "acceptance": "Producer-valid only; independent review/canonical consumption pending. WholeUQ147 remains open."
+}

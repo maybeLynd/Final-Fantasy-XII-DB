@@ -26,3 +26,7 @@ The page named 44 F-frontier functions only at their entry. A local drafting age
 ## Review (OPUS)
 
 A non-author spot-check goes to SWE2-AUDIT-SPEC: at least 15 rows read against the bytes.
+
+## Restored (OPUS, 2026-10-03)
+
+A later OPUS-drafted record on the same page (same heading, same date) re-rendered this record's section with its own rows and deleted these rows from the page. They were restored unchanged under a heading that names this record; the cause, the fixed applier, the regression and the standing check are in [`opus-interior-clobber-1003`](../opus-interior-clobber-1003/README.md).

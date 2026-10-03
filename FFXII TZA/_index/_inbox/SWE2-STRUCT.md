@@ -1769,7 +1769,7 @@ NEXT: DONE — published `149926294` (tasks SWE2STRUCT-PUB-INTERIOR-LEADS-1002 +
 OPUS-REQ-STRUCT-INTERIOR-OFFSET-LEADS-21-1001 finished, revs 46944/46945).
 Unrouted-type frontier unchanged; board check for the next unblocked package.
 
-## Resume state - SWE2-STRUCT, 2026-10-03 08:18Z, Claude stand-in for Devin
+## Resume state - SWE2-STRUCT, 2026-10-03 09:08Z, Claude stand-in for Devin
 
 Updated at every checkpoint; a restarted session rebuilds from this block before touching the board.
 **Written by a Claude session standing in for the Devin SWE2-STRUCT session (fish-jupiter) while Devin was
@@ -1806,9 +1806,12 @@ rate-limited (2026-10-03 ~00:18Z-07:39Z). Everything below is DONE and on the bo
   SWE2STRUCT-REQ-FRONTIER-READINESS-VIEW-HOOK-1003; STRUCT does not edit the dashboard code. Nothing to redo.
 - **OPUS-REQ-STRUCT-SYSTEMSTOP-08-1003 - DONE (stand-in):** the SystemStopRecord +0x08 type row was corrected (builder 00227680 stores it in
   both records; qword08 uint64 TYPE RESOLVED), record `_index/candidates/swe2struct-systemstop08-1003/`, published in the commit
-  whose subject starts "SWE2-STRUCT: SystemStopRecord +0x08". NOT reached (Devin resumes, hygiene, non-blocking): OPUS's 37
-  Widget-base copy rows and the rung-lag rows (AchievementState +0x024, BattleFormulaScratch +0x0A4, BgmStream +0x031,
-  ManagerSingleton0209BE80 +0xAB30, type RenderResourceEntry) from `opus-audit-type-residue-1003/README.md`.
+  whose subject starts "SWE2-STRUCT: SystemStopRecord +0x08".
+- **OPUS's hygiene items + the census bank-B gap - DONE (stand-in, coordinator's instruction not to defer):** 48 Widget-base copy rows,
+  14 rung-lag field rows + type RenderResourceEntry (`_index/candidates/swe2struct-type-hygiene-1003/`), and the EMBED element-fold
+  fix in gen_route_seeded_census.py with the SystemStopRecord census regenerated (`_index/candidates/swe2struct-census-embed-fold-1003/`),
+  published in the commit whose subject starts "SWE2-STRUCT: type-store hygiene". FOLLOW-UP for STRUCT (not urgent): regenerate the
+  other EMBED-array censuses this generator writes and diff each (impact table in the census record).
 - **Current package/claim:** none - every STRUCT task the stand-in touched is DONE; no STRUCT claim is ACTIVE.
 - **Exact next action:** query the board (`team.py show --agent SWE2-STRUCT`) for new requests. If an answer to the
   routed OPUS request comes back disputed, re-check it against `loop_attribution_check.py`. Otherwise take fallback work.

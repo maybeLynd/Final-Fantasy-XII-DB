@@ -1,0 +1,16 @@
+ok   00246641 mov qword ptr [rdi], rbx
+ok   002466E6 mov word ptr [rdi + 0xa1], 0xff80
+ok   00246700 mov dword ptr [rdi + 0xb8], 0x3f800000
+ok   00246711 mov dword ptr [rdi + 0x98], eax
+ok   00246717 mov dword ptr [rdi + 0x9c], 0x800080
+ok   00316705 lea edx, [rax + 0x384c]
+ok   00316735 movzx eax, byte ptr [rcx + 1]
+ok   00316739 add eax, edx
+ok   003EAD16 cmp byte ptr [rcx + 0x31], 0
+ok   003EAD46 mov byte ptr [rbx + 0x31], 0
+ok   003EAD8D mov byte ptr [rbx + 0x31], 0
+ok   003EB0E0 cmp byte ptr [rax], 0
+ok   002766D8 mov edx, 0x61f0
+A: 39 exact rows lifted, 9 pair rows split; B: 14 rung rows lifted; C: 9 split rows marked
+types.tsv RenderResourceEntry rows changed: 1
+FAILS 0 []

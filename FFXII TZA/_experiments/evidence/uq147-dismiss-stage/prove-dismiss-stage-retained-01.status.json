@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Collaboration\\Tools\\analysis\\venv\\Scripts\\python.exe",
+    "-B",
+    "C:\\Users\\Kristian\\source\\repos\\XIIOnline\\Database\\Tools\\work\\ASTRA\\runtime-residue-method-retriage\\uq147-summoner-cleanup-order\\prove-dismiss-stage-retained.py",
+    "result-dismiss-stage-retained-01.json"
+  ],
+  "driver_sha256": "f3929d1a1ffca77e23fcb8f41482e31e2de3aabd8b169fc5790e2e6fbb3a1097",
+  "interpreter_sha256": "199ce15a9f0d4f9522edba59338e4879d28cf61f88e377b8164bcb716275ed22",
+  "terminal": true,
+  "exit": 0,
+  "exception": null
+}

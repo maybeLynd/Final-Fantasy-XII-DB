@@ -1,0 +1,6 @@
+page Database/FFXII TZA/15-Input/Binding-Profiles/CONTRACT-binding-profiles.md  source working tree (clean)  HEAD 1e18553b0  mode dry-run
+line endings LF
+PASS E1 section 5 read row: axis-invert bytes are in the pointee: anchored once, would replace (+310 chars)
+PASS E2 section 5 written row: the stick-touched flag is in the pointee: anchored once, would replace (+261 chars)
+edits 2, to change 2
+FAILS 0

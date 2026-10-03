@@ -1,0 +1,8 @@
+[
+  ["E1 section 5 read row: axis-invert bytes are in the pointee",
+   "`01F7FFE0+8/+9` (axis invert)",
+   "`[01F7FFE0]+0x08` / `[01F7FFE0]+0x09` (axis invert: `InputManager +0x08` / `+0x09`, reached through the 8-byte pointer cell `01F7FFE0`; reads `0019740F`, `0019751A`, `0019752E`, `001975CB`, `001975DF`, each after a qword load of the cell)"],
+  ["E2 section 5 written row: the stick-touched flag is in the pointee",
+   "`01F7FFE0+0x38` (stick-touched flag)",
+   "`[01F7FFE0]+0x38` (stick-touched flag, `InputManager +0x38`: `00197444` loads the pointer cell, `0019744B` stores 1 through it; no `.text` instruction references the static cell `01F80018`)"]
+]

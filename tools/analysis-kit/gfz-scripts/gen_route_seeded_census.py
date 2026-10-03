@@ -367,6 +367,22 @@ def _level_kind(kind, fields, parent, off):
     return None
 
 
+def _fold_element(dv, d, breg):
+    """EMBED interior arrays: an access through element k > 0 folds onto element 0 (SWE2-STRUCT, 2026-10-03).
+
+    A derived EMBED run's emit window is ONE element (`span` = the stride), so a register standing at element k's base
+    (root offset rebase + k*stride) had every access dropped. SystemStopRecord lost all 82 bank-B accesses of its builder
+    00227680 that way: the caller passes r8 = registry + 0x2A0 + i*0x18 (element 28 + i). When the route declares
+    `count=N`, a displacement inside rebase .. rebase + span*N is element-relative: both d and the register's base move
+    back by the same k*span, so the base-depth checks are unchanged. Without a declared count nothing changes."""
+    cnt = dv.get("count") or 1
+    rb, sp = dv["rebase"], dv["span"]
+    if cnt > 1 and sp and rb + sp <= d < rb + sp * cnt:
+        k = (d - rb) // sp
+        return d - k * sp, breg - k * sp
+    return d, breg
+
+
 def derive_specs(types, fields, routes, child, alt, seen=None):
     """Resolve one CHAIN/RELOFF/EMBED/PSLOT alternative `(kind, parent, off, stride)` to
     concrete census specs. Returns (specs, failures): each spec is
@@ -419,6 +435,12 @@ def derive_specs(types, fields, routes, child, alt, seen=None):
               "rels": set(spec["rels"]), "decodes": dict(spec["decodes"]),
               "last": spec["last"],
               "span": stride if (lvl == "embed" and stride) else child_size}
+        if lvl == "embed" and stride:
+            # the declared element count of THIS alternative, read from the child's own route text (the alt tuple
+            # carries no count); _fold_element uses it to fold element k > 0 onto element 0
+            mc = re.search(r"EMBED\s+%s\s*\+\s*0x0*%X\s+stride=0x0*%X\s+count=(\d+)" % (re.escape(str(parent)), off, stride),
+                           str(routes.get(child, "")), re.I)
+            d2["count"] = int(mc.group(1)) if mc else 1
         for j, e in enumerate([off] + extras):
             d2["rebase"] += e
             lk = lvl if j == 0 else "ptr"
@@ -706,6 +728,7 @@ class Census(object):
                             # fetch handled below, not a field access.
                             d = off[bn] + mm.disp
                             breg = off[bn]
+                            d, breg = _fold_element(dv, d, breg)
                             if not (dv["rebase"] <= d < dv["rebase"] + dv["span"]
                                     and breg >= dv["last"]
                                     and ((breg not in dv["ptables"]
@@ -722,6 +745,7 @@ class Census(object):
                         else:
                             continue
                         if dv:
+                            d, _ = _fold_element(dv, d, d)
                             if not (dv["rebase"] <= d < dv["rebase"] + dv["span"]
                                     and dv["last"] == 0):
                                 continue
@@ -740,6 +764,7 @@ class Census(object):
                     breg = off[W.norm(mm.base)]
                     d = breg + mm.disp
                     if dv:
+                        d, breg = _fold_element(dv, d, breg)
                         # DERIVED RUN: emit only the child's window, and only when the
                         # register the access came through stood at the deepest deref or
                         # below - `base >= last` is what keeps the pointer fetch itself

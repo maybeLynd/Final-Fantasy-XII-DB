@@ -1,0 +1,16 @@
+check_s35.py  HEAD 1e18553b0  image sha256 73461d08... (asserted by rvlib)
+PASS T1 store: InputManagerPointer is 0x8 at 01F7FFE0: InputManagerPointer	0x8	15-Input	single static instance at 0x01F7FFE0	IMAGE 0x01F7FFE0 - B
+PASS T2 store: pointee rows InputManager +0x08/+0x09/+0x38 declared: 0x08 cameraXInverted, 0x09 cameraYInverted, 0x38 analogueAxisMoved
+PASS B write 0019744B: 00197444 mov rax, qword ptr [rip + 0x1de8b95] ; 0019744B mov byte ptr [rax + 0x38], 1  -> [01F7FFE0]+0x38 (pointee)
+PASS B read 0019740F: 001973FF mov rax, qword ptr [rip + 0x1de8bda] ; 0019740F cmp byte ptr [rax + 8], r13b  -> [01F7FFE0]+0x08 (pointee)
+PASS B read 0019751A: 00197513 mov rax, qword ptr [rip + 0x1de8ac6] ; 0019751A cmp byte ptr [rax + 8], r13b  -> [01F7FFE0]+0x08 (pointee)
+PASS B read 0019752E: 00197527 mov rax, qword ptr [rip + 0x1de8ab2] ; 0019752E cmp byte ptr [rax + 9], r13b  -> [01F7FFE0]+0x09 (pointee)
+PASS B read 001975CB: 001975C4 mov rax, qword ptr [rip + 0x1de8a15] ; 001975CB cmp byte ptr [rax + 8], r13b  -> [01F7FFE0]+0x08 (pointee)
+PASS B read 001975DF: 001975D8 mov rax, qword ptr [rip + 0x1de8a01] ; 001975DF cmp byte ptr [rax + 9], r13b  -> [01F7FFE0]+0x09 (pointee)
+PASS R literal 01F7FFE8 (= 01F7FFE0+0x8) has no .text reference: 0 hits []
+PASS R literal 01F7FFE9 (= 01F7FFE0+0x9) has no .text reference: 0 hits []
+PASS R literal 01F80018 (= 01F7FFE0+0x38) has no .text reference: 0 hits []
+PASS C3 positive: raw index finds 01F7FFE0 itself: 12 .text references, 9 in the poll body 00197293..001976DE
+PASS C1 sensitivity: a planted literal store at 00197444 is found: 1 hits ['00197444 mov byte ptr [rip + 0x1de8bcd], 1']
+PASS C2 old reading 'static cell 01F80018 is written' is FALSE on the real image: old reading fails, as it must
+FAILS 0
