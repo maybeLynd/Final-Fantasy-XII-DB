@@ -1,0 +1,11 @@
+{
+ "page": "22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/member-registration-and-the-recovered-field-schema.md",
+ "session": "session_019ww1AYv6HUCASSLr6wdSTQ",
+ "rows": [
+  {"fn": "006C7450", "entered_from": "`006C7A40` + 0x50",
+   "text": "returns 0 when `edx` is 0; otherwise the buffer is `rcx+8` when `edx` is 1, or the result of the call at `006C7450` + 0x42 with `edx`*8 and 8 when `edx` is above 1 (a null result is returned as is); into a non-null buffer it copies `r9d` qwords from `r8` and zero-fills the remaining `edx` minus `r9d` qwords with `rep stosq`, and returns the buffer",
+   "anchors": [["006C746D", "jne"], ["006C7484", "jbe"], ["006C7492", "call"], ["006C74C3", "mov"], ["006C74D8", "rep stosq"]]}
+ ],
+ "skipped": [],
+ "notes": "006C7450: the copy loop tests each destination slot pointer for null (placement-new idiom) and advances the source only when it writes; no check guards r9d above edx (the zero-fill count would then underflow)."
+}
