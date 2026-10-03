@@ -134,3 +134,81 @@ Each row gives:
 | F9 | action row `+0x0B`, `+0x21`, `+0x0C` bits 15 / 18 / 20 | WRONG-IN-PASS-1 | not gaps at pass 1: "`+0x21` and `+0x0B` are read by nothing (AY-2, GR-5)" (`Action-Definition-Row/the-action-definition-row.md:28`); GR-5: "On rows 182-207 it repeats the matching summon row's `+0x0A` (the MP cost) … editing `+0x0B` changes nothing in play"; UQ-107: "Bits 15, 18 and 20 are authored on 24, 1 and 81 rows and read by nothing" | — |
 | F10 | message row `+6` / `+7` zero on all 102 rows | NARROWED | §8a lists the row bytes the poster, filter and realiser read: `+0`–`+2` and `+5` (kinds), `+3` (filter threshold and category), `+4` bit 0 (rate limit) (`CONTRACT-apply-result-to-target.md:268`, `:273`, `:305-306`, `:327`). None of them reads `+6` / `+7` | whether anything else reads `+6` / `+7` (STATIC) |
 | F11 | candidate pick: `02F973B8` outside the file image | OPEN | as §2.1-17 (`CONTRACT-battle-target-buffer.md:491`, `:500`) | the runtime value (RUNTIME) |
+
+### 2.4 Contradictions (pass-1 §2.4)
+
+All 17 Group A contradictions are CLOSED by dated corrections that OPUS made on 2026-10-02. In every case the page now
+agrees with the side pass 1 favoured. A2, A9 and A13 were undecided in pass 1; they are now decided on the page.
+
+**A. Value-changing**
+
+| id | contradiction (pass 1) | verdict | evidence now |
+|---|---|---|---|
+| A1 | the commit's reproduction formula against its own ordering | CLOSED | the formula's lines are annotated: "`resetTargetBuffer(actor)  /* 00316CF0 */   # <- corrected 2026-10-02, OPUS - band one only (id <= 0x21E)…`"; "`+0x770` is the re-commit latch, not the stats kind byte … Missing here - the `+0x6B0` bit-1 copy … the `+0x750` clear … and the band-one propagation walk"; "`updateAttackerMask` … band one with a resolved target only" (`CONTRACT-commit-action.md:221-224`) |
+| A2 | does a band-two commit update the attacker mask? | CLOSED (was undecided) | "8. **band one, with a resolved target, only:** update the target's attacker mask …" (`CONTRACT-commit-action.md:176`); "re-picks the `+0x6B0` bit-1 slot and returns 1 **without** the mask" (`:184`); "this ja accepts, it does not refuse; `0030F97A` is mov eax, 1 (committed). It skips the propagation walk and the attacker mask for ids above 0x21E" (`the-moment-an-action-is-committed.md:67`) |
+| A3 | the `+0x770` re-commit latch | CLOSED | "for a unit whose stats kind byte `[+0x698]+5` is 0, a re-issued action that matches what was just cancelled keeps a non-zero `+0x770`; a kind-1 unit keeps it whatever it commits, and any other combination clears it" (`the-moment-an-action-is-committed.md:140`; also `:47`) |
+| A4 | which table holds the memoised combo count | CLOSED | "`0208D480 + stats[+4] × 0x40` when the stats kind byte `+5` is 0, else `0208DE80 + unit[+0xEA9] × 0x40`" (`how-a-combo-continues-and-what-it-blocks.md:127`; also `:215`, `:314`, `:337`); `CONTRACT-combo-continuation.md:60`, `:121` |
+| A5 | how many generator draws a first combo hit makes | CLOSED | "~~TWICE.~~ once or twelve times.** *(corrected 2026-10-02, OPUS: one draw at `003886FD`; a failed gate `0038871D jbe 0038887E` stops there, a passed one runs the 11-pass loop …)*" (`CONTRACT-combo-continuation.md:98`); also `:147`, `:157`, `:177`, `:268` |
+| A6 | capacity of the pending action-selection ring | CLOSED | "a different ~~8-entry queue~~ 64-entry ring drained up to 8 entries per call" (`Command-And-Action-Seam/native-command-seam.md:226`); `README.md:60` |
+| A7 | whether the two ring drains behave alike | CLOSED | "advance~~, same resolve-then-act loop~~ *(corrected 2026-10-02, OPUS: the drains differ - `00313CD0` pops eight entries whatever they resolve to …, `00313DB0` stops at the first entry that does not resolve …)*" (`Command-And-Action-Seam/native-command-seam.md:81`) |
+| A8 | is the target buffer's `+0x01` read? | CLOSED | "**`+0x01` has a reader, on a stack instance** *(corrected 2026-10-02, OPUS: `00308813 movzx edx, byte ptr [rsi + 1]` in `003087E0` …)*" (`CONTRACT-battle-target-buffer.md:282`); "~~**The field stays UNRESOLVED on purpose.**~~ *(answered: resolved, the candidate buffer's selection recipe …)*" (`:294`) |
+| A9 | where the target buffer type lives | CLOSED (was undecided) | "inline twice inside `BattleUnit` (`+0x778`, `+0xBC0`) and also as stack locals" (`CONTRACT-battle-target-buffer.md:53`); the inference built on it is struck (`:285`) |
+| A10 | length of the result record's parameter arrays | CLOSED | "**Two 32-bit masks and two parameter arrays of ~~33~~ 32**" (`Result-Record/the-result-record-field-map.md:192`); `README.md:38` |
+| A11 | layout of result `+0x3C`–`+0x41` | CLOSED | "six bytes, not statuses; `+0x3C`-`+0x3D` two layer effects to add (mode 2 …) and `+0x3E`-`+0x41` four to clear (mode 0 …)" (`Result-Record/the-result-record-field-map.md:173`; also `:151`) |
+| A12 | width of the item field at result `+0x38` | CLOSED | "record `+0x38` (~~`u16`, `-1` = none~~ `i32`, absent when the dword is `-1`; the low word is the id)" (`applying-a-result-to-a-target.md:171`) |
+| A13 | type of result `+0x11C` | CLOSED (was undecided) | "`+0x11C` \| ~~2~~ 1 \| ~~u16~~ s8 \| … *(corrected 2026-10-02, OPUS: the applier reads one byte and sign-extends it …)*" (`Result-Record/the-result-record-field-map.md:102`; also `:165`) |
+| A14 | who clears the steal-availability bit | CLOSED | "the matching bit … is already clear, because `BattleFormula_ApplyResultMetadata` cleared it for every non-zero slot byte, on any target, before this loop" (`applying-a-result-to-a-target.md:124-126`); "re-cleared, a no-op" (`:170`) |
+| A15 | the approach-pacing stand window | CLOSED | "the first ~~30 steps~~ `30 × [01DFE0B4]` steps of the charge, 30 at the 30 fps setting and 60 at the 60 fps one" (`how-close-a-unit-must-stand-to-act.md:115`) |
+| A16 | which events `004697C0` posts | CLOSED | "\| `004697C0` \| ~~`0x06`~~ `0x05` / `0x06` / `0x07` \|" (`Post-Result-Events/the-post-result-events-and-the-battle-message-table.md:339`); `Action-Dispatch/battle-action-handler-table.md:671` |
+| A17 | what the `022C1DB8` byte is | CLOSED | "The ~~posture byte~~ parked slot byte `+0x6B9` … *(corrected 2026-10-02, OPUS: not a posture …)*" (`CONTRACT-commit-action.md:294-295`; also `:350`, `:414`); `the-moment-an-action-is-committed.md:321` |
+
+**B. Counts, sizes and caller sets**
+
+| id | contradiction (pass 1) | verdict | evidence now / still missing (class) |
+|---|---|---|---|
+| B1 | size of `0030CA80` | CLOSED | "(`BattleAction_CheckPresentationSlotReady`, 352 B *(corrected 2026-10-02, OPUS: `0030CA80`–`0030CBDF ret`, 104 instructions …)*)" (`Command-And-Action-Seam/native-command-seam.md:580`) |
+| B2 | size of `003083B0` | CLOSED | "(~~307 B~~ 596 B *(corrected 2026-10-02, OPUS: `003083B0`–`00308603 ret` …)*)" (`Action-Dispatch/battle-action-handler-table.md:727`) |
+| B3 | size of `002FE910` | CLOSED | "~~(~55 B)~~ (52 B *(corrected 2026-10-02 …)*)" (`Action-Dispatch/battle-action-handler-table.md:744`) |
+| B4 | writers of `+0x714` | CLOSED | the pages agree on three battle-unit writers plus eight other bodies. "~~Four~~ Nine other `[reg+0x714]` writes, in eight bodies" (`Action-Dispatch/battle-action-handler-table.md:458-459`); "**at least eleven bodies** … the other ~~five~~ eight" (`CONTRACT-native-command-seam.md:121-122`) |
+| B5 | sites at `+0x6B8` | CLOSED | "`+0x6B8` has ~~65~~ 64 sites image-wide" (`how-a-combo-continues-and-what-it-blocks.md:460`) |
+| B6 | functions addressing the slot array: seven, eight or nine | OPEN | unchanged: "the seven functions that address the array" (`Command-And-Action-Seam/native-command-seam.md:513`); "The eight functions that reference the slot array" (`:515`); "in any of the nine functions" (`:523`). Which count is right (STATIC) |
+| B7 | result-record census header: 52 offsets against 53 rows | OPEN | unchanged: "245 accesses in 39 functions over 52 offsets" (`Result-Record/the-result-record-field-map.md:14`), "52 offsets with a …" (`:31`), "reads 30 of the 52 offsets" (`:49`). The header figures do not include the `+0x010` row added 2026-09-27 (DOC) |
+| B8 | the `+0x0C` bit-reader file: 23, 25 or 60 | NARROWED | the file's first comment now reads "# SUPERSEDED as a census 2026-09-27 (FABLE …): these are 23 of the 60 provenance-verified reads" (`Action-Definition-Row/members/action-row-0x0C-bit-readers.tsv:1`). Still missing: the file has 25 data rows against "23", and `Action-Definition-Row/the-action-definition-row.md:198` still opens on "23 provenance-verified reads" (DOC) |
+| B9 | callers of `IssueCommand` | OPEN | sharpened since pass 1. The contract now gives "two callers only … (three call sites: `00311B20` at `00311C7B` and `00311CA6`, `003138D0` at `0031395D`)" (`CONTRACT-native-command-seam.md:66`). The post-result page still says "The issuer's other caller, `00311CD0` (five call sites), always passes slot 0" (`Post-Result-Events/…:475`). Still missing: how `00311CD0` (26 B, `Command-And-Action-Seam/native-command-seam.md:47`) reaches `00311CF0` (STATIC) |
+
+**C. Stale "not read / open" claims**
+
+| id | claim (pass 1) | verdict | evidence now |
+|---|---|---|---|
+| C1 | the README's "Not yet documented" list | CLOSED | each entry is struck with a pointer (`README.md:57-61`) |
+| C2 | the availability scope note | CLOSED | "*(answered: the table was completed the same day - nineteen codes from every leg, section 10, AI-4; 2026-10-02, OPUS)*" (`Action-Availability/battle-command-availability-and-reason-codes.md:398`) |
+| C3 | "AI-1 remains fully open" | CLOSED | "*(answered: AI-1, 2026-09-02 - the codes never reach a screen, §7 and §11; 2026-10-02, OPUS)*" (`Action-Availability/…:521`) |
+| C4 | the per-unit pool | CLOSED | "~~with a per-unit fallback~~ checked together with the gil cost already reserved for the action in progress at `unit[0xE58]`" (`Action-Availability/…:502`; also `:505`) |
+| C5 | a dated section that predates the program | CLOSED | "## SWE2-EC7-19 update (~~2026-05-15~~ 2026-09-18 …)" (`Action-Availability/…:639`) |
+| C6 | when targets are gathered | CLOSED | "*(answered: after the charge - phase 4 … runs the charge progress step and phase 9 runs `Battle_BuildActionTargetSet` …)*" (`how-an-action-gathers-its-targets.md:145`) |
+| C7 | is the commit executed? | CLOSED | "~~, which is unexecuted~~ *(answered: the commit is executed as shipped bytes under Unicorn, 1309 commands, 704 compared lines, 0 mismatches …)*" (`CONTRACT-the-moment-an-action-is-committed.md:159`) |
+| C8 | the second shadow's readers | CLOSED | "its reader is the next commit, `0030F84E cmp di, word ptr [rbx + 0x744]` and `0030F857 cmp ebp, dword ptr [rbx + 0x740]`" (`CONTRACT-the-moment-an-action-is-committed.md:178`) |
+| C9 | does the commit raise an event? | CLOSED | "does not read a script … or touch a resource; it does notify *(corrected 2026-10-02, OPUS: on a mask change `0030F975 call 00313B30` …)*" (`CONTRACT-commit-action.md:191`) |
+| C10 | the commit page's "not claimed" list | CLOSED | all three are annotated as answered (`the-moment-an-action-is-committed.md:313`, `:317`, `:321`) |
+| C11 | what carries the command into the funnel | CLOSED | "*(answered: `BattleUnit_SelectAndCommitNextAction` commits the issued command, `+0xBA0` id and `+0xBB8` handle, at `00305AE4`–`00305B2F` …)*" (`CONTRACT-native-command-seam.md:75`) |
+| C12 | does the seam call the commit? | CLOSED | "the seam does not reach the commit; 00311CF0 records +0xBA0 / +0xBB8 only" (`Command-And-Action-Seam/native-command-seam.md:154`) |
+| C13 | slot bytes `+0x1E`–`+0x1F` | CLOSED | annotated as padding at `Command-And-Action-Seam/native-command-seam.md:523` and `:540` |
+| C14 | the handler-table contract's open items | CLOSED | "~~Why 18 slots are empty …~~ *(answered: AT-2, closed 2026-09-12 …)*" and "answered in part" (`CONTRACT-battle-action-handler-table.md:163-165`) |
+| C15 | naming the action ids (AT-5, AT-9) | CLOSED | "*(answered: each id is named through its row's `+0x34` into bank 0 of the battle text …)*" (`Action-Dispatch/battle-action-handler-table.md:559`); "*(answered: AT-9 ANSWERED 2026-09-11 …)*" (`:563`) |
+| C16 | the handler page's "not claimed" list | CLOSED | `Action-Dispatch/battle-action-handler-table.md:668`, `:671`, `:673` |
+| C17 | the combo contract's stale items | CLOSED | `CONTRACT-combo-continuation.md:30`, `:142`, `:153` ("~~authored data~~ runtime state the roll writes"), `:192-194` |
+| C18 | the action row's layout block | CLOSED | `+0x1E`, `+0x22` and `+0x28` are annotated (`Action-Definition-Row/the-action-definition-row.md:136-139`); "26 ~~Esper attacks~~ Quickening-family rows" (`:267`) |
+| C19 | the result record's stale lines | CLOSED | "exactly 0x148 B, a stack local at every call site" (`Result-Record/the-result-record-field-map.md:158`; `:196`); `+0x08` is the gil amount (`:162`); `+0x38` is the poach reward item (`:172`); "*(answered for `0038F6F0`: step slot 163 …)*" (`:203`) |
+| C20 | the status-layer modes | CLOSED | "*(answered: mode 2 sets and mode 0 clears the mutable layer `+0x68`, step 14 above …)*" (`applying-a-result-to-a-target.md:196`) |
+| C21 | the target-buffer contract's stale items | CLOSED | `CONTRACT-battle-target-buffer.md:281` (the bit-8 writer), `:142` (the script verb), `:415` (bit 9 counter, bit 11 ranged critical) |
+| C22 | FL-2's checkbox | CLOSED | the checkbox now reads SUPERSEDED (`Post-Result-Events/…:431`), and "~~**The row stays open**~~ *(answered: the register row closed SUPERSEDED 2026-09-26, the live read carried by ASTRA-QUEUE AQ-16 …)*" (`:437`). The two "still owed" lines (`:316`, `:541`) now name the live half only, which matches SUPERSEDED |
+
+**D. Status banners**
+
+| id | item (pass 1) | verdict | evidence now / still missing (class) |
+|---|---|---|---|
+| D1 | the README's statuses disagree with the pages | CLOSED | `README.md:19`, `:23`, `:30`, `:36`, each "*(corrected 2026-10-02, OPUS: the page's front matter says …)*" |
+| D2 | the README lists six of eleven pages and no contracts | CLOSED | "*(2026-10-02, OPUS: the twelve pages below were missing from this list …)*" (`README.md:40`), followed by the list at `:42-53` |
+| D3 | the availability banner and body disagree | CLOSED | "~~**PARTIAL.**~~ **AUDITED.** *(corrected 2026-10-02, OPUS …)*" (`Action-Availability/…:32`) |
+| D4 | "Pending first review" after the review | OPEN | unchanged: "… action state machine does around the call. Pending first review" (`how-an-action-gathers-its-targets.md:23`); "… pending first review  promoted: 2026-10-01 DOCUMENTED -> AUDITED" (`how-close-a-unit-must-stand-to-act.md:24`) (DOC) |
+| D5 | review flags | OPEN | `crossref_clean: false` remains on six contracts and the combo page (`CONTRACT-commit-action.md:21`, `CONTRACT-the-moment-an-action-is-committed.md:23`, `CONTRACT-native-command-seam.md:23`, `CONTRACT-battle-action-handler-table.md:23`, `CONTRACT-combo-continuation.md:23`, `CONTRACT-battle-target-buffer.md:21`, `how-a-combo-continues-and-what-it-blocks.md:25`). Peer review is still pending on the applier pair (`applying-a-result-to-a-target.md:26`; `CONTRACT-apply-result-to-target.md:13`) (DOC) |
