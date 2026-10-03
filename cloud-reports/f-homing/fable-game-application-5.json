@@ -1,0 +1,489 @@
+{
+ "page": "00-Engine-Core-Runtime/Application-Root/game-application.md",
+ "session": "session_01Jt7JVDWnpXmUBxAYuwnHXL",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "002D79D0",
+   "text": "keeps `ecx`; takes the qword pointer at `0209AC30` and uses its qword `+0xd8`, or its qword `+0x100` when that is null, and when the chosen object is non-null stores its dwords `+0xcc` = 2, `+0xc4` = 4 and `+0xc8` = `ecx`; calls `002D79D0+0x52` with `ecx` = 0; when the kept `ecx` is non-zero it re-selects the object the same way and, when the object and its qword `+0` are non-null, calls that qword with the object and a stack record of dword 0x120 followed at `+8` by the 16 bytes of `00917210` (dwords 1, 0, 2, 0); every path ends by passing the frame cookie (qword `01F44830` XOR `rsp`) to `00808C40`",
+   "anchors": [
+    [
+     "002D7A06",
+     "mov"
+    ],
+    [
+     "002D7A22",
+     "call"
+    ],
+    [
+     "002D7A29",
+     "je"
+    ],
+    [
+     "002D7A6D",
+     "call"
+    ],
+    [
+     "002D7A77",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "002D7BF0",
+   "text": "keeps `r8d`; takes the qword pointer at `0209AC30` and uses its qword `+0xd8`, or its qword `+0x100` when that is null, and when the chosen object is non-null stores its dwords `+0xcc` = 3, `+0xc4` = 8 and `+0xc8` = `r8d`; calls `002D7BF0+0x57` with the incoming `ecx`; when the kept `r8d` is non-zero it re-selects the object the same way and, when the object and its qword `+0` are non-null, calls that qword with the object and a stack record of dword 0x120 followed at `+8` by the 16 bytes of `00917220` (dwords 1, 0, 3, 0); every path ends by passing the frame cookie (qword `01F44830` XOR `rsp`) to `00808C40`",
+   "anchors": [
+    [
+     "002D7C2A",
+     "mov"
+    ],
+    [
+     "002D7C47",
+     "call"
+    ],
+    [
+     "002D7C4E",
+     "je"
+    ],
+    [
+     "002D7C92",
+     "call"
+    ],
+    [
+     "002D7C9C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "002E2310",
+   "text": "tail-jumps to `0016D6A0` with `ecx` = 1 and `edx` = the incoming `ecx`",
+   "anchors": [
+    [
+     "002E2312",
+     "mov"
+    ],
+    [
+     "002E2317",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00342D80",
+   "text": "calls `00267E10(r9)` and then `005C5230(byte [rdx+0x15], that result)`; when `005C5230` returns non-zero calls `0016D6A0` (no arguments loaded), otherwise skips it; then tail-jumps through `00342D80+0x41` with (byte `[rdx+0x15]`, the `00267E10` result, 1)",
+   "anchors": [
+    [
+     "00342D90",
+     "call"
+    ],
+    [
+     "00342D9D",
+     "call"
+    ],
+    [
+     "00342DA4",
+     "je"
+    ],
+    [
+     "00342DA6",
+     "call"
+    ],
+    [
+     "00342DC1",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00379D60",
+   "text": "zeroes qwords `02ADD878` and `02ADD870`; for 16 records of 0x70 bytes from `02ADD170` calls `00861EC0(record, 0, 0x70)` and stores the record's dword `+0x28` = index + 0x10; then for records 0 to 13 stores qword `+0` = the address of the next record and qword `+8` = the address 0x70 below the record; finally stores qword `02ADD170` = `02ADD1E0`, qword `02ADD178` = 0, qword `02ADD800` = 0, qword `02ADD808` = `02ADD790`, qword `02ADD880` = `02ADD170` and qword `02ADD888` = 0",
+   "anchors": [
+    [
+     "00379D99",
+     "call"
+    ],
+    [
+     "00379DA3",
+     "mov"
+    ],
+    [
+     "00379DC7",
+     "mov"
+    ],
+    [
+     "00379DCB",
+     "mov"
+    ],
+    [
+     "00379E01",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "003B6C70",
+   "text": "calls `003B6C70+0x13` (no arguments loaded); when it returns non-zero, fills a stack record with qword `+0` = 0x80, dword `+8` = 0xff and byte `+0xf` = 0 and calls `003B6C70+0x37` with its address, otherwise skips that; both paths end by passing the frame cookie (qword `01F44830` XOR `rsp`) to `00808C40`",
+   "anchors": [
+    [
+     "003B6C83",
+     "call"
+    ],
+    [
+     "003B6C8A",
+     "je"
+    ],
+    [
+     "003B6C91",
+     "mov"
+    ],
+    [
+     "003B6CA7",
+     "call"
+    ],
+    [
+     "003B6CB4",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "003BBB30",
+   "text": "calls `003BBB30+0x4` (no arguments loaded), stores qword `02B457D0` = `02B443D0`, then tail-jumps to `00861EC0(02B443D0, 0, 0x1400)`",
+   "anchors": [
+    [
+     "003BBB34",
+     "call"
+    ],
+    [
+     "003BBB48",
+     "mov"
+    ],
+    [
+     "003BBB53",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003C5030",
+   "text": "calls `00861EC0(02B45850, 0, 0x120)`, then tail-jumps to `00861EC0(02B46280, 0, 0x1430)`",
+   "anchors": [
+    [
+     "003C5043",
+     "call"
+    ],
+    [
+     "003C5051",
+     "mov"
+    ],
+    [
+     "003C505B",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003CB320",
+   "text": "calls `003CB320+0x1F` with `ecx` = 0 and a stack buffer; for i = 0 to 2 takes the qword at index (signed dword `00D11758` + 4*i) of the array at qword `[rcx+0x60]` (0 when `rcx` is null), stores it at qword `rcx+0x100+0x58*i`, sets bit 0 of dword `rcx+0x108+0x58*i` when the buffer's dword `+0x14` is greater than i (signed) and clears it otherwise, and copies that bit into bit 0 of the taken object's dword `+8`; then stores dword `rcx+0x1d0` = the buffer's dword `+0x14` capped at 3 (unsigned); ends by passing the frame cookie (qword `01F44830` XOR `rsp`) to `00808C40`",
+   "anchors": [
+    [
+     "003CB33F",
+     "call"
+    ],
+    [
+     "003CB36E",
+     "mov"
+    ],
+    [
+     "003CB377",
+     "jge"
+    ],
+    [
+     "003CB3A6",
+     "cmovae"
+    ],
+    [
+     "003CB3B7",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "003DE480",
+   "text": "stores byte `02B58C20` = `cl` and calls `0016D6A0(02B58C20)`; then stores qword `02B58C20` = 0, byte `02B58C27` = 0x80, qword `02B58C28` = 0 and qword `02B58C30` = 0",
+   "anchors": [
+    [
+     "003DE484",
+     "mov"
+    ],
+    [
+     "003DE491",
+     "call"
+    ],
+    [
+     "003DE498",
+     "mov"
+    ],
+    [
+     "003DE49F",
+     "mov"
+    ],
+    [
+     "003DE4AD",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "003DE7E0",
+   "text": "takes the 0x70-byte record at `02B58C50` + 0x70*`ecx` (signed) and calls `00861EC0(record+0x20, 0, 0x50)`; then ORs byte `+0x25` with 1 and stores byte `+0x20` = `dl`, dword `+0x21` = 0x10100c0, dword `+0x2c` = 0x41200000, byte `+0x26` = 0, dwords `+0x30` and `+0x34` = 0x3f800000, qword `+0x38` = 0x3f800000, qword `+0x40` = 0, dword `+0x48` = 0 and dwords `+0x4c` to `+0x5c` = 0x3f800000; only when `edx` is 4 also stores float `+0x60` = `00861F08(0.3926991)` and float `+0x64` = `00861F08(0.7853982)` (`00915610`, `00915614`)",
+   "anchors": [
+    [
+     "003DE807",
+     "call"
+    ],
+    [
+     "003DE815",
+     "mov"
+    ],
+    [
+     "003DE867",
+     "cmp"
+    ],
+    [
+     "003DE874",
+     "call"
+    ],
+    [
+     "003DE88B",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "00407300",
+   "text": "returns when `rcx` is null; when byte `+0xc0` is 1 multiplies `edx`, `r8d` and `r9d` by 0x3c; then by byte `+0xdc`: for 1 or 3 stores `edx`, `r8d`, `r9d` as words `+0xea`, `+0xec`, `+0xee`, for 2 or 4 stores `r9d`, `r8d`, `edx` there instead, each store skipped when its (possibly multiplied) value is -1, and for any other value stores nothing; finally tail-jumps to `0016D6A0` with qword `+0xd0` and the (possibly multiplied) `edx`, `r8d`, `r9d` when that qword is non-null, and returns otherwise",
+   "anchors": [
+    [
+     "0040730C",
+     "cmp"
+    ],
+    [
+     "00407315",
+     "imul"
+    ],
+    [
+     "00407346",
+     "mov"
+    ],
+    [
+     "0040736F",
+     "mov"
+    ],
+    [
+     "004073A1",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0046E050",
+   "text": "returns when `ecx` is 2 or more (signed); otherwise takes the 0xa0-byte record at `02CA6070` + 0xa0*`ecx`, calls `00861EC0(record, 0, 0xa0)`, stores dword `+4` = the result of `0046E050+0x4F(edx, r8d)`, qword `+0x10` = `r9`, byte `+0x98` = 0 and dword `+0` = `edx`",
+   "anchors": [
+    [
+     "0046E053",
+     "jge"
+    ],
+    [
+     "0046E095",
+     "call"
+    ],
+    [
+     "0046E09F",
+     "call"
+    ],
+    [
+     "0046E0A4",
+     "mov"
+    ],
+    [
+     "0046E0C1",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0050CC50",
+   "text": "calls `00267E10(r9)` and clamps the result to 0x1b..0x27 (signed); calls `0016D6A0` with the clamped value, then tail-jumps to `0017D280(00D22918, clamped value)`",
+   "anchors": [
+    [
+     "0050CC59",
+     "call"
+    ],
+    [
+     "0050CC63",
+     "jge"
+    ],
+    [
+     "0050CC73",
+     "cmovg"
+    ],
+    [
+     "0050CC78",
+     "call"
+    ],
+    [
+     "0050CC8B",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0050D570",
+   "text": "calls `002640C0` with the incoming registers and then `00267E10(r9)`, replacing a negative result with word `[rdx]` (zero-extended); calls `0050D570+0x31` with (dword `+0x28` of the `002640C0` result, that value) and tail-jumps to `0017D280(008F4438, its result)`",
+   "anchors": [
+    [
+     "0050D585",
+     "call"
+    ],
+    [
+     "0050D590",
+     "call"
+    ],
+    [
+     "0050D597",
+     "jns"
+    ],
+    [
+     "0050D5A1",
+     "call"
+    ],
+    [
+     "0050D5BF",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0050F070",
+   "text": "calls `0016D6A0(7)`, `0016D6A0(0xc)` and `0016D6A0(0xb)` in that order, then tail-jumps through `0050F070+0x26` (no arguments loaded)",
+   "anchors": [
+    [
+     "0050F079",
+     "call"
+    ],
+    [
+     "0050F083",
+     "call"
+    ],
+    [
+     "0050F08D",
+     "call"
+    ],
+    [
+     "0050F096",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0053EDB0",
+   "text": "returns when qword `02CA8A80` is null; otherwise, on that object, calls `003697F0` on qword `+0xc0` and zeroes it when it is non-null, calls `00861EC0(object+0xc0, 0, 0x13d8)`, stores qword `+0xc0` = `00249810(2, 0x10000)` and calls `00861EC0(that pointer, 0, 0x10000)`; then stores bytes `+0xfc` = 0, `+0x100` = 0, `+0x102` = 1, dword `+0xf0` = dword `01E0C1DC`, word `+0x1494` = 0x80, byte `+0xff` = 1, words `+0xce`, `+0xd6`, `+0xde` = 0x202 and dwords `+0xd0`, `+0xd8`, `+0xe0` = 0x3f800000",
+   "anchors": [
+    [
+     "0053EDC0",
+     "je"
+    ],
+    [
+     "0053EDD7",
+     "call"
+    ],
+    [
+     "0053EE05",
+     "call"
+    ],
+    [
+     "0053EE1C",
+     "call"
+    ],
+    [
+     "0053EE41",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00598140",
+   "text": "stores qword `[rcx]` = `00D26C60`; when qword `[rcx+0x10]` is non-null with bit 0 clear calls `00584730` on it, otherwise skips the call",
+   "anchors": [
+    [
+     "00598154",
+     "mov"
+    ],
+    [
+     "0059815B",
+     "test"
+    ],
+    [
+     "00598164",
+     "test"
+    ],
+    [
+     "0059816B",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005994A0",
+   "text": "returns 0 when `rcx` is null; otherwise calls `0017D260(edx, 2)` and, when that is non-null, calls `00861EBA(result, rcx, edx)`; returns the `0017D260` result (0 when it was null)",
+   "anchors": [
+    [
+     "005994A9",
+     "test"
+    ],
+    [
+     "005994C1",
+     "call"
+    ],
+    [
+     "005994C9",
+     "test"
+    ],
+    [
+     "005994D7",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005A1C20",
+   "text": "stores qword `[rdx+0x38]` = 0; when qword `[rdx+0x28]` is non-null with bit 0 clear calls `00584730` on it, otherwise skips the call; returns 1 in `al`",
+   "anchors": [
+    [
+     "005A1C2D",
+     "mov"
+    ],
+    [
+     "005A1C39",
+     "test"
+    ],
+    [
+     "005A1C42",
+     "test"
+    ],
+    [
+     "005A1C46",
+     "call"
+    ],
+    [
+     "005A1C4C",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Calls to functions the page does not name are cited by site (entry+0xNN). 00342D80 and 0050F070/003B6C70/003BBB30: where a call receives no freshly loaded arguments the sentence says so. 00379D60: records 0-13 get forward/back links in the loop and record 15 afterwards; record 14 (02ADD790) gets no link stores in this body (worth a second look on the executable). 003CB320: the loop dereferences the taken object's dword +8 even on the rcx-null path (as listed). 0053EDB0: the global 01E0C1DC is decoded as u32 0x1C0 in the listing but is read at run time, so the row names the global."
+}
