@@ -1,0 +1,11 @@
+{
+ "page": "19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/the-save-payload-field-map.md",
+ "session": "session_01A1Qvgw5xe7BnV34LPHQcLH",
+ "rows": [
+  {"fn": "001B00E0", "entered_from": "`00180E50` + 0x10",
+   "text": "zeroes qwords `rcx+0x2108` and `rcx+0x2110` and returns 0",
+   "anchors": [["001B00E2", "mov"], ["001B00E9", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "001B00E0: entered by the host's tail jump; the zero comes from the entry `xor eax, eax`, the stores are interior."
+}
