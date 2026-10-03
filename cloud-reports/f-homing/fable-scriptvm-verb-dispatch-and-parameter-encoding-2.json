@@ -1,0 +1,535 @@
+{
+ "page": "01-Script-VM-Native-Bridge/Verb-Dispatch/scriptvm-verb-dispatch-and-parameter-encoding.md",
+ "session": "session_01GN6iTDBmJu6H6spinV3LPm",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "00510100",
+   "text": "calls `00267E10(r9)`; when it returns 0 makes the call at `00510100+0x40`, when it returns 1 the call at `00510100+0x2C` (neither with arguments set up), and in both cases tail-jumps to `0026B4E0(rcx, that call's result)`; for any other value tail-jumps to `0026B4E0(rcx, -1)`",
+   "anchors": [
+    [
+     "0051010C",
+     "call"
+    ],
+    [
+     "00510113",
+     "je"
+    ],
+    [
+     "0051011A",
+     "or"
+    ],
+    [
+     "0051012C",
+     "call"
+    ],
+    [
+     "00510140",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00510AA0",
+   "text": "returns 0 when `00280120()` returns non-zero; otherwise makes the call at `00510AA0+0x21` with (dword `[r8]`, 1) and returns 1 when it returns 0 and 0 when it returns non-zero",
+   "anchors": [
+    [
+     "00510AA9",
+     "call"
+    ],
+    [
+     "00510AB0",
+     "je"
+    ],
+    [
+     "00510ABA",
+     "mov"
+    ],
+    [
+     "00510AC1",
+     "call"
+    ],
+    [
+     "00510ACA",
+     "sete"
+    ]
+   ]
+  },
+  {
+   "fn": "00510B40",
+   "text": "returns 0 when `00280120()` returns non-zero; otherwise makes the call at `00510B40+0x1E` with (dword `[r8]`, 0) and returns 1 when it returns 0 and 0 when it returns non-zero",
+   "anchors": [
+    [
+     "00510B49",
+     "call"
+    ],
+    [
+     "00510B50",
+     "je"
+    ],
+    [
+     "00510B5A",
+     "mov"
+    ],
+    [
+     "00510B5E",
+     "call"
+    ],
+    [
+     "00510B67",
+     "sete"
+    ]
+   ]
+  },
+  {
+   "fn": "00510F30",
+   "text": "returns at once, with `eax` still holding that value, when `00280120()` returns non-zero; otherwise calls `002640C0` (no argument set up after the guard) and four times resolves `002650B0(that result, incoming rcx, 00267E10(r9))`, then pops a fifth value through `00267E10(r9)` and stores dword `0x20` through each of the four resolved pointers; the fifth pop's result is left in `eax`",
+   "anchors": [
+    [
+     "00510F45",
+     "jne"
+    ],
+    [
+     "00510F5F",
+     "call"
+    ],
+    [
+     "00510F78",
+     "call"
+    ],
+    [
+     "00510FCE",
+     "call"
+    ],
+    [
+     "00510FD3",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00511010",
+   "text": "returns at once, with `eax` still holding that value, when `00280120()` returns non-zero; otherwise calls `002640C0` (no argument set up after the guard) and four times resolves `002650B0(that result, incoming rcx, 00267E10(r9))`, pops a fifth value v through `00267E10(r9)` and makes the call at `00511010+0xAA` with (v, a four-word stack buffer); it then stores the buffer's words, sign-extended to dwords, through the resolved pointers in reverse order (word 0 to the fourth pointer, word 3 to the first)",
+   "anchors": [
+    [
+     "00511025",
+     "jne"
+    ],
+    [
+     "00511058",
+     "call"
+    ],
+    [
+     "005110BA",
+     "call"
+    ],
+    [
+     "005110BF",
+     "movsx"
+    ],
+    [
+     "005110E8",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00511200",
+   "text": "returns at once, with `eax` still holding that value, when `00280120()` returns non-zero; otherwise pops a, b, c in that order through `00267E10(r9)` and makes the call at `00511200+0x3F` with (c, b, a), leaving its result in `eax`",
+   "anchors": [
+    [
+     "00511210",
+     "jne"
+    ],
+    [
+     "0051121F",
+     "call"
+    ],
+    [
+     "00511233",
+     "call"
+    ],
+    [
+     "00511238",
+     "mov"
+    ],
+    [
+     "0051123F",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00511360",
+   "text": "returns at once, with `eax` still holding that value, when `00280120()` returns non-zero; otherwise pops a then b through `00267E10(r9)` and makes the call at `00511360+0x2D` with (b, a), leaving its result in `eax`",
+   "anchors": [
+    [
+     "00511370",
+     "jne"
+    ],
+    [
+     "0051137A",
+     "call"
+    ],
+    [
+     "00511384",
+     "call"
+    ],
+    [
+     "0051138D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00511400",
+   "text": "returns at once, with `eax` still holding that value, when `00280120()` returns non-zero; otherwise makes the call at `00511400+0x14` with 0 and tail-jumps to `0026B4E0(rcx, that result)` with the incoming `rcx`",
+   "anchors": [
+    [
+     "00511410",
+     "jne"
+    ],
+    [
+     "00511412",
+     "xor"
+    ],
+    [
+     "00511414",
+     "call"
+    ],
+    [
+     "00511423",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00511460",
+   "text": "returns 0 when `00280120()` returns non-zero; otherwise makes the call at `00511460+0x1C` with 0 and returns 1 when dword `[r8]` differs from its result and 0 when they are equal",
+   "anchors": [
+    [
+     "00511470",
+     "je"
+    ],
+    [
+     "0051147C",
+     "call"
+    ],
+    [
+     "00511483",
+     "cmp"
+    ],
+    [
+     "00511485",
+     "setne"
+    ]
+   ]
+  },
+  {
+   "fn": "00511490",
+   "text": "returns at once, with `eax` still holding that value, when `00280120()` returns non-zero; otherwise makes the call at `00511490+0x12` (no argument set up) and tail-jumps to `0026B4E0(rcx, that result)` with the incoming `rcx`",
+   "anchors": [
+    [
+     "005114A0",
+     "jne"
+    ],
+    [
+     "005114A2",
+     "call"
+    ],
+    [
+     "005114A7",
+     "mov"
+    ],
+    [
+     "005114B1",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005114C0",
+   "text": "returns 0 when `00280120()` returns non-zero; otherwise makes the call at `005114C0+0x1A` (no argument set up) and returns 1 when dword `[r8]` differs from its result and 0 when they are equal",
+   "anchors": [
+    [
+     "005114D0",
+     "je"
+    ],
+    [
+     "005114DA",
+     "call"
+    ],
+    [
+     "005114E1",
+     "cmp"
+    ],
+    [
+     "005114E3",
+     "setne"
+    ]
+   ]
+  },
+  {
+   "fn": "005115B0",
+   "text": "returns at once, with `eax` still holding that value, when `00280120()` returns non-zero; otherwise tail-jumps through `005115B0+0x14` with `ecx` = -1",
+   "anchors": [
+    [
+     "005115BB",
+     "jne"
+    ],
+    [
+     "005115BD",
+     "or"
+    ],
+    [
+     "005115C4",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005118D0",
+   "text": "returns 0 when `00280120()` returns non-zero; otherwise makes the call at `005118D0+0x16` with 0 and returns 1 when it returns 0 and 0 when it returns non-zero",
+   "anchors": [
+    [
+     "005118DB",
+     "je"
+    ],
+    [
+     "005118E4",
+     "xor"
+    ],
+    [
+     "005118E6",
+     "call"
+    ],
+    [
+     "005118EF",
+     "sete"
+    ]
+   ]
+  },
+  {
+   "fn": "005119C0",
+   "text": "returns 0 when `00280120()` returns non-zero; otherwise makes the call at `005119C0+0x19` with 1 and returns 1 when it returns 0 and 0 when it returns non-zero",
+   "anchors": [
+    [
+     "005119CB",
+     "je"
+    ],
+    [
+     "005119D4",
+     "mov"
+    ],
+    [
+     "005119D9",
+     "call"
+    ],
+    [
+     "005119E2",
+     "sete"
+    ]
+   ]
+  },
+  {
+   "fn": "00511AA0",
+   "text": "returns at once, with `eax` still holding that value, when `00280120()` returns non-zero; otherwise tail-jumps through `00511AA0+0x14` with `ecx` = 1",
+   "anchors": [
+    [
+     "00511AAB",
+     "jne"
+    ],
+    [
+     "00511AAD",
+     "lea"
+    ],
+    [
+     "00511AB4",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00511B00",
+   "text": "returns at once, with `eax` still holding that value, when `00280120()` returns non-zero; otherwise pops one value through `00267E10(r9)` and tail-jumps through `00511B00+0x24` with `ecx` = that value XOR 1",
+   "anchors": [
+    [
+     "00511B10",
+     "jne"
+    ],
+    [
+     "00511B15",
+     "call"
+    ],
+    [
+     "00511B1A",
+     "xor"
+    ],
+    [
+     "00511B24",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00511B70",
+   "text": "returns at once, with `eax` still holding that value, when `00280120()` returns non-zero; otherwise pops a, b, c in that order through `00267E10(r9)` and makes the call at `00511B70+0x3F` with (c, b, a), leaving its result in `eax`",
+   "anchors": [
+    [
+     "00511B80",
+     "jne"
+    ],
+    [
+     "00511B8F",
+     "call"
+    ],
+    [
+     "00511BA3",
+     "call"
+    ],
+    [
+     "00511BA8",
+     "mov"
+    ],
+    [
+     "00511BAF",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00511D60",
+   "text": "returns at once, with `eax` still holding that value, when `00280120()` returns non-zero; otherwise pops one value v through `00267E10(r9)` and tail-jumps through `00511D60+0x26` with (0, 0, v)",
+   "anchors": [
+    [
+     "00511D70",
+     "jne"
+    ],
+    [
+     "00511D75",
+     "call"
+    ],
+    [
+     "00511D7D",
+     "xor"
+    ],
+    [
+     "00511D7F",
+     "xor"
+    ],
+    [
+     "00511D86",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00511DA0",
+   "text": "returns at once, with `eax` still holding that value, when `00280120()` returns non-zero; otherwise pops one value v through `00267E10(r9)` and tail-jumps through `00511DA0+0x27` with (1, 0, v)",
+   "anchors": [
+    [
+     "00511DB0",
+     "jne"
+    ],
+    [
+     "00511DB5",
+     "call"
+    ],
+    [
+     "00511DBA",
+     "xor"
+    ],
+    [
+     "00511DBF",
+     "lea"
+    ],
+    [
+     "00511DC7",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00511E60",
+   "text": "returns at once, with `eax` still holding that value, when `00280120()` returns non-zero; otherwise pops one value v through `00267E10(r9)` and tail-jumps through `00511E60+0x29` with (0, 1, v)",
+   "anchors": [
+    [
+     "00511E70",
+     "jne"
+    ],
+    [
+     "00511E75",
+     "call"
+    ],
+    [
+     "00511E7D",
+     "mov"
+    ],
+    [
+     "00511E82",
+     "xor"
+    ],
+    [
+     "00511E89",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00511EE0",
+   "text": "returns at once, with `eax` still holding that value, when `00280120()` returns non-zero; otherwise pops one value v through `00267E10(r9)` and tail-jumps through `00511EE0+0x29` with (1, 1, v)",
+   "anchors": [
+    [
+     "00511EF0",
+     "jne"
+    ],
+    [
+     "00511EF5",
+     "call"
+    ],
+    [
+     "00511EFA",
+     "mov"
+    ],
+    [
+     "00511F02",
+     "mov"
+    ],
+    [
+     "00511F09",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005120C0",
+   "text": "returns at once, with `eax` still holding that value, when `00280120()` returns non-zero; otherwise tail-jumps through `005120C0+0x11` without setting up any argument after the guard",
+   "anchors": [
+    [
+     "005120CB",
+     "jne"
+    ],
+    [
+     "005120D1",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00512180",
+   "text": "returns at once, with `eax` still holding that value, when `00280120()` returns non-zero; otherwise tail-jumps through `00512180+0x11` without setting up any argument after the guard",
+   "anchors": [
+    [
+     "0051218B",
+     "jne"
+    ],
+    [
+     "00512191",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "The page names 00267E10, 0026B4E0, 00280120, 002650B0 and 002640C0; every other callee is cited by site (a tail jump by the jmp's offset). 00280120 takes no argument (it reads 0209AC30's object, per the page), so after it rdx, r8 and r9 are still the incoming registers; where a body sets no argument for its next call I say so instead of guessing. On the guard's non-zero path the void-style bodies return with 00280120's result still in eax. 00510F30 and 00511010 save rbx/rsi/rdi/r14 only on the work path. Doubts: none on reading; 00511010's stored order (word 0 to the fourth resolved pointer) is the point to check."
+}
