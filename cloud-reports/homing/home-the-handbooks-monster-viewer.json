@@ -1,0 +1,15 @@
+{
+ "page": "16-UI/Handbook/the-handbooks-monster-viewer.md",
+ "session": "session_015VFSZr38WAiiWF7vDja8Ar",
+ "mode": "homing",
+ "rows": [
+  {"fn": "003A2C80", "entered_from": "`004781A0` + 0x31",
+   "text": "computes n = (`r8d` + 15) / 16 (signed) and, when `r8d` is non-zero and qword `02F8F2D0` + n times 16 is at or above qword `02F8F2D8` (unsigned), returns without writing; otherwise takes 0x28-byte record (word `02F8F2C6`) of the array at qword `02F8F2F8`, increments that word, and stores in the record qword `02F8F2D0` at `+0`, the fifth (stack) argument at dword `+8`, `r9b` at byte `+0xB`, `r8d` at dword `+0xC`, `rcx` at qword `+0x10` and, at dword `+0x20`, (dword `02AEF41C` times 2, OR 1 when the call at `003A2C80` + 0x8E returns non-zero or dword `02AEF418` is non-zero) times 2; when `r8d` is non-zero it then makes the call at + 0xD2 with qword `02F8F2D0`, `rdx` and n times 16, and adds n times 16 to qword `02F8F2D0`",
+   "anchors": [["003A2CAF", "sar"], ["003A2CC4", "cmp"], ["003A2CF1", "mov"], ["003A2D34", "mov"], ["003A2D5E", "add"]]},
+  {"fn": "00504700", "entered_from": "`00477F20` + 0xE6",
+   "text": "when bit 4 (0x10) of byte `rcx+0x244` is set, makes the call at `00504700` + 0x1A with (`rcx`, 1, 1); in both cases then tail-jumps at + 0x2E to the same callee with (`rcx`, 1, 0)",
+   "anchors": [["00504706", "test"], ["00504710", "je"], ["0050471A", "call"], ["0050471F", "xor"], ["0050472E", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "003A2C80: no return value is stated; rax is not set deliberately on any path. The 0x28-byte record is indexed by the word's value before the increment. The bounds check is skipped when r8d is 0, and then no copy or advance happens either."
+}
