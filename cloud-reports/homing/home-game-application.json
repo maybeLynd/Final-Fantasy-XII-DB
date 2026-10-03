@@ -1,0 +1,379 @@
+{
+ "page": "00-Engine-Core-Runtime/Application-Root/game-application.md",
+ "session": "session_01FFgsi7DcuyVgymuET5UYvk",
+ "rows": [
+  {
+   "fn": "0019D050",
+   "entered_from": "`0019ED80` + 0x88",
+   "text": "when `rcx` differs from `rdx`, copies consecutive 0x118-byte blocks from `rcx` up to `rdx` to `r8` onward (per block two passes of eight 16-byte moves, then 16 bytes and a qword); returns `r8` advanced by 0x118 per block copied (`r8` itself when `rcx` equals `rdx`)",
+   "anchors": [
+    [
+     "0019D056",
+     "cmp"
+    ],
+    [
+     "0019D081",
+     "movups"
+    ],
+    [
+     "0019D0E4",
+     "mov"
+    ],
+    [
+     "0019D0E8",
+     "cmp"
+    ],
+    [
+     "0019D0F1",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0019E010",
+   "entered_from": "`0019EC40` + 0xD1",
+   "text": "inserts `r8d` copies of the 0x130-byte element at `r9` before `rdx` into the array whose qwords `[rcx]`, `[rcx+8]`, `[rcx+0x10]` are `B`, `E`, `C`: returns when `r8d` is 0; when `r8d` is at most (`C`-`E`)/0x130 (unsigned, 32-bit) it copies `r9` to a stack local with the call at `0019E010` + 0x7C, then calls `0019E010` + 0xCC and `0019E010` + 0xDE when `r8d` is below (`E`-`rdx`)/0x130, else `0019E010` + 0x100 and `0019E010` + 0x128, advancing `E` by `r8d` elements, fills from the local with `0019E010` + 0x145, and when the local's qword `+0x100` is non-null releases it through vtable slot `+0x18` of the object at local `+0x118` (`0019E010` + 0x177); otherwise it requests max(2*size (1 when size is 0), size+`r8d`) elements times 0x130 bytes through vtable slot `+0x10` of the object at `rcx+0x18` (`0019E010` + 0x1C3), fills the block with the calls at `0019E010` + 0x1E5, + 0x1FB (`r8d` copies of `r9`) and + 0x221, calls `0019E010` + 0x230 (`rcx`, `B`, `E`), frees `B` through slot `+0x18` (`0019E010` + 0x26B) when non-null and stores the new `B`, `E` and `C`; the stack cookie from `01F44830` is checked on every path",
+   "anchors": [
+    [
+     "0019E075",
+     "ja"
+    ],
+    [
+     "0019E08C",
+     "call"
+    ],
+    [
+     "0019E155",
+     "call"
+    ],
+    [
+     "0019E1D3",
+     "call"
+    ],
+    [
+     "0019E27F",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0019E2C0",
+   "entered_from": "`0019ED80` + 0x6E",
+   "text": "inserts `r8d` copies of the 0x118-byte block at `r9` before `rdx` into the array whose qwords `[rcx]`, `[rcx+8]`, `[rcx+0x10]` are `B`, `E`, `C`: returns when `r8d` is 0; when `r8d` is at most (`C`-`E`)/0x118 (unsigned, 32-bit) it copies the block to a stack local and either, when `r8d` is below (`E`-`rdx`)/0x118, calls `0019E2C0` + 0x121 (`E`-`r8d`*0x118, `E`, `E`) and `0019E2C0` + 0x133 (`rdx`, `E`-`r8d`*0x118, `E`), advances `E` by `r8d` blocks and copies the local over the `r8d` blocks from `rdx`, or copies the local into each excess block from `E` (skipping a null address), calls `0019E2C0` + 0x29D (`rdx`, old `E`, advanced `E`), advances `E` again and copies the local over the blocks from `rdx` to the old `E`; otherwise it requests max(2*size (1 when size is 0), size+`r8d`) blocks times 0x118 bytes through vtable slot `+0x10` of the object at `rcx+0x18` (`0019E2C0` + 0x386), fills them with the calls at `0019E2C0` + 0x3AE, + 0x3CA (`r8d` copies of `r9`) and + 0x3F9, frees `B` through slot `+0x18` (`0019E2C0` + 0x434) when non-null and stores the new `B`, `E` and `C`",
+   "anchors": [
+    [
+     "0019E311",
+     "ja"
+    ],
+    [
+     "0019E3E1",
+     "call"
+    ],
+    [
+     "0019E481",
+     "movups"
+    ],
+    [
+     "0019E646",
+     "call"
+    ],
+    [
+     "0019E70D",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0019EA20",
+   "entered_from": "`0019EC40` + 0x116",
+   "text": "calls the function at `0019EA20` + 0x22 with (`r8`, qword `rcx+8`, `rdx`) and the one at `0019EA20` + 0x31 with (`rcx`, that result, qword `rcx+8`), then lowers qword `rcx+8` by (`r8`-`rdx`)/0x130 (signed) times 0x130 and returns `rdx`",
+   "anchors": [
+    [
+     "0019EA42",
+     "call"
+    ],
+    [
+     "0019EA51",
+     "call"
+    ],
+    [
+     "0019EA63",
+     "imul"
+    ],
+    [
+     "0019EA80",
+     "add"
+    ],
+    [
+     "0019EA84",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "001AAE70",
+   "entered_from": "`001AD490` + 0x1E",
+   "text": "calls the function at `001AAE70` + 0x19 with (`rcx`, qword `[rcx]`, qword `[rcx+8]`); then, when qword `[rcx]` is non-null, calls vtable slot `+0x18` of the object at `rcx+0x18` with (that qword, (qword `[rcx+0x10]` minus it) / 0x30 (signed) times 0x30); returns on both paths",
+   "anchors": [
+    [
+     "001AAE89",
+     "call"
+    ],
+    [
+     "001AAE95",
+     "je"
+    ],
+    [
+     "001AAEAF",
+     "imul"
+    ],
+    [
+     "001AAECB",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "001ABD40",
+   "entered_from": "`001AD490` + 0x16",
+   "text": "for k from 0 while k is below (qword `[rcx+8]` minus qword `[rcx]`) / 0x30 (recomputed each pass, unsigned 32-bit compare) copies qword `+8` to qword `+0x10` of the 0x30-byte element k when its byte `+0x28` is non-zero; then for each element from `[rcx]` up to `[rcx+8]` whose qword `+8` (`p`) is non-null calls vtable slot `+0x18` of the object at element `+0x20` with (`p`, (qword `+0x18` minus `p`) AND ~7); finally stores qword `[rcx]` into qword `[rcx+8]`",
+   "anchors": [
+    [
+     "001ABD9B",
+     "cmp"
+    ],
+    [
+     "001ABDA5",
+     "mov"
+    ],
+    [
+     "001ABDCA",
+     "jb"
+    ],
+    [
+     "001ABDFB",
+     "call"
+    ],
+    [
+     "001ABE0B",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "001AD0C0",
+   "entered_from": "`001AA840` + 0x9A",
+   "text": "when qword `rcx+8` (`E`) is below qword `rcx+0x10` (unsigned) it advances qword `rcx+8` by 0x30 and, when `E` is non-null, copies dword `[rdx]` and word `rdx+4` to `E`, calls the function at `001AD0C0` + 0x4C with (`E+8`, `rdx+8`) and copies byte `rdx+0x28` to `E+0x28`; otherwise calls the function at `001AD0C0` + 0x60 with (`rcx`, `E`, `rdx`)",
+   "anchors": [
+    [
+     "001AD0DB",
+     "cmp"
+    ],
+    [
+     "001AD0EA",
+     "mov"
+    ],
+    [
+     "001AD10C",
+     "call"
+    ],
+    [
+     "001AD115",
+     "mov"
+    ],
+    [
+     "001AD120",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "001B1A20",
+   "entered_from": "`001AE010` + 0x4A",
+   "text": "returns when `edx` is at most (qword `[rcx+0x10]` minus qword `[rcx]`) / 0x30 (unsigned 32-bit compare); otherwise calls the function at `001B1A20` + 0x4F with (`rcx`, `edx`, qword `[rcx]`, qword `[rcx+8]`) for `P`, frees the old `[rcx]` when it is non-null through vtable slot `+0x18` of the object at `rcx+0x18` (with the old `[rcx]` and the old capacity count times 0x30), and stores `P`, `P` plus the old (qword `[rcx+8]` minus qword `[rcx]`) / 0x30 times 0x30, and `P` + `edx`*0x30 at qwords `[rcx]`, `[rcx+8]` and `[rcx+0x10]`",
+   "anchors": [
+    [
+     "001B1A5E",
+     "jbe"
+    ],
+    [
+     "001B1A6F",
+     "call"
+    ],
+    [
+     "001B1AAF",
+     "call"
+    ],
+    [
+     "001B1AC4",
+     "mov"
+    ],
+    [
+     "001B1AF0",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "001D6250",
+   "entered_from": "`001D5FD0` + 0x29",
+   "text": "returns when dword `rcx+0x20` (`d`) is 0x80 or more (signed); otherwise reads qword `P` from the table `01F81880` at index dword `01F81834` * 0x80 + `d` and, when `P` is non-null, calls vtable slot `+0xE0` of qword `01F81840` with `rdx` = `P` and stores 1 at dword `01F81850`[dword `01F81834`] when it is 0; in both cases increments dword `rcx+0x20`",
+   "anchors": [
+    [
+     "001D625D",
+     "cmp"
+    ],
+    [
+     "001D627E",
+     "mov"
+    ],
+    [
+     "001D6295",
+     "call"
+    ],
+    [
+     "001D62AC",
+     "mov"
+    ],
+    [
+     "001D62B7",
+     "inc"
+    ]
+   ]
+  },
+  {
+   "fn": "0026B790",
+   "entered_from": "`00342D80` + 0x41",
+   "text": "clamps `edx` to 0 when negative and to 0x1FF when above it (signed) for a bit index `b`, then in the 0x288-byte record at `02098E10` + `ecx`*0x288 (`ecx` sign-extended) sets bit `b` AND 31 of dword `+0x244` + (`b` >> 5)*4 when `r8d` is non-zero, else clears it",
+   "anchors": [
+    [
+     "0026B7B6",
+     "cmovg"
+    ],
+    [
+     "0026B7C9",
+     "sar"
+    ],
+    [
+     "0026B7D4",
+     "shl"
+    ],
+    [
+     "0026B7DE",
+     "or"
+    ],
+    [
+     "0026B7E9",
+     "and"
+    ]
+   ]
+  },
+  {
+   "fn": "0046DE80",
+   "entered_from": "`0046E050` + 0x4F",
+   "text": "returns 0 when qword `02EBA508` (`H`) is null, when `ecx` is above byte `H+4` (signed), or when `edx` is not below the word at `H+0x18+10*ecx` (signed); otherwise, with `g` = `edx`/16 (signed) and `O1`, `O2` the dwords at `H+0x10+10*ecx` and `H+0x14+10*ecx` (assembled byte by byte), starts from the 24-bit little-endian value at `H+O1+3*g` shifted right 2 and, for each of the `edx`-16*`g` dwords `w` from `H+O2+64*g`, adds (`w`>>1) AND 0x1FFF when bit 0 of `w` is clear, else ((`w`>>2, taken as 0 when it is 0x3FFFFFFF) + 0x7FF) >> 11; returns dword `02EBA500` plus that sum",
+   "anchors": [
+    [
+     "0046DEB7",
+     "cmp"
+    ],
+    [
+     "0046DED3",
+     "cmp"
+    ],
+    [
+     "0046DF4A",
+     "shr"
+    ],
+    [
+     "0046DFA8",
+     "cmove"
+    ],
+    [
+     "0046DFCB",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "00561280",
+   "entered_from": "`002D7BF0` + 0x57",
+   "text": "with `P` = qword `+0x320` of qword `0209AC30`: when `P` is non-null, `ecx` is 0 and bit `0x2` of dword `P+0x570` is clear, calls the function at `00561280` + 0x29 with `rcx` = `P`, sets that bit and returns; when `P` is non-null, `ecx` is non-zero and the bit is set, calls the one at `00561280` + 0x47 with `rcx` = `P`, clears the bit and returns; in every other case calls the function at `00561280` + 0x61 with (1, 3) and tail-jumps (at `00561280` + 0x72) with (0, 3)",
+   "anchors": [
+    [
+     "0056129D",
+     "test"
+    ],
+    [
+     "005612AE",
+     "or"
+    ],
+    [
+     "005612CC",
+     "and"
+    ],
+    [
+     "005612E1",
+     "call"
+    ],
+    [
+     "005612F2",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00633770",
+   "entered_from": "`00675700` + 0x19",
+   "text": "stores the address `00D58098` at qword `[rcx]` and qword 0 at `+0x50` of qword `rcx+8`",
+   "anchors": [
+    [
+     "00633777",
+     "mov"
+    ],
+    [
+     "0063377A",
+     "mov"
+    ],
+    [
+     "0063377E",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00662A50",
+   "entered_from": "`00169450` + 0x16",
+   "text": "stores the address `00D68DF0` at qword `[rcx]`, zeroes qwords `+8`, `+0x18`, `+0x28` and dwords `+0x10`, `+0x20`, `+0x30`, and returns `rcx`",
+   "anchors": [
+    [
+     "00662A57",
+     "mov"
+    ],
+    [
+     "00662A5C",
+     "mov"
+    ],
+    [
+     "00662A60",
+     "mov"
+    ],
+    [
+     "00662A6E",
+     "mov"
+    ],
+    [
+     "00662A71",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [
+  {
+   "fn": "0061C920",
+   "why": "1,292-byte body with two mode arms, each writing up to eleven fields per entry plus a separate fifth-argument record; every path cannot be stated within the 1,200-character limit without compressing conditions (a draft came to 1,270 characters); the reading is in notes"
+  }
+ ],
+ "notes": "0061C920 skipped: drafted at 1,270 characters and still compressing paths (the X arm's conditions differ between edx 1 and not 1), so it cannot be stated under the 1,200-character limit without loss. Reading for FABLE (not a row): R = rcx + (edx==0 ? 0x708 : 0x760); t = dword rcx+0x6F0; S = sum of round16(dword A[k]+0x78) over r9d entries of 0x88 bytes at r8 (8-wide SIMD, then pairs, then one); F = X ? round16(dword X+0x70) : 0 with X the fifth stack arg; returns 0xD when (u = dword R+0x20+4t) + S > dword R+0x30 or (v = dword R+0x28+4t) + F > dword R+0x34 (unsigned). Slot base T(e) = qword e+0x28 if (dword e+0x20 & 0x7FFFFFFF) > 1, e+0x28 if == 1, null if 0. edx != 1: per non-empty entry stores qword R+8t at T+0x48*dword e+0x18, ORs 1 into e+0x74 when non-null, e+0x70 = u, e+0x80 = qword rcx+0x740+8t + u, byte e+0x1C = (that sum != 0 ? 0 : 4) (flags from `add rax, r12` reach the cmovne at 0061CC18), u += round16(size); then if F != 0 the same on X at +0x10/+0x18/+0x20, +0x6C, +0x68 = v, +0x70 = F, +0x78 = qword rcx+0x750+8t + v, byte +0xE, with qword R+0x10+8t, and v += F. edx == 1: per non-empty entry the same stores but qword +0x80 = 1 and byte +0x1C = 0, then for every entry (empty too) stores qword rcx+0x798+8t (0 for empty) at T+0x48*idx+0x10 and ORs 1 into +0x74; X (when non-null): if F != 0 main stores with +0x78 = 1, byte +0xE = 0, v += F; then always qword rcx+0x7A8+8t (0 when F == 0) at T+0x48*idx+0x10 and OR 1 into +0x6C. Ends storing u and v back and returning 0. 0019E010, 0019E2C0: long sentences (about 1,100 characters) because every insert path is stated; the 0x130 and 0x118 divisions are multiply-high magics (0x6BCA1AF286BCA1B sar 3, 0xEA0EA0EA0EA0EA1 sar 4). A byte from an uninitialised stack slot is passed as the fifth argument to the +0xCC/+0x128/+0x1E5/+0x221 (resp. +0x121/+0x29D/+0x3AE/+0x3F9) calls; not stated. 0019EA20: the multiply by 0xF9435E50D79435E5 is the negated /0x130 magic, so qword rcx+8 is lowered (checked numerically). 001D6250: the tables are listed as image base + offset (01F81880, 01F81850); only the resolved addresses are written. 0046DE80: 'g' is a signed division (cdq, AND 0xF, add, sar 4); a negative edx passes the signed bound check. Doubts: 0019E010 and 0019E2C0 (low, length and compression of the two in-place arms)."
+}
