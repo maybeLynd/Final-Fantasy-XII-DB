@@ -1,0 +1,14 @@
+{
+ "page": "03-World-Area-Field/CONTRACT-authored-trigger-points.md",
+ "session": "session_01Xkefj8Gz4bCEiqGqVRB1MS",
+ "rows": [
+  {"fn": "0035E500", "entered_from": "`0050FAF0` + 0x7A",
+   "text": "returns when `rcx` is null or when word `rcx+0x4` (n) is 3 or more (signed); otherwise, in the 8-byte slot at `rcx + n*8 + 0xC`: when `edx` is 0 stores dword 0 at the slot, `r8w` at its `+0x4` and `r9w` at its `+0x6`; when `edx` is 1 stores dword 1 at the slot and `r8d` at its `+0x4`; for any other `edx` stores nothing; on all three paths it then increments word `rcx+0x4`",
+   "anchors": [["0035E50A", "cmp"], ["0035E51E", "mov"], ["0035E530", "mov"], ["0035E53E", "mov"], ["0035E544", "inc"]]},
+  {"fn": "0035E560", "entered_from": "`0050FAF0` + 0x40",
+   "text": "does nothing when `rcx` is null; otherwise clears bits 0 and 1 of dword `rcx+0x8`, stores word 0 at `+0x4` and zeroes the three qwords at `+0xC`, `+0x14` and `+0x1C`",
+   "anchors": [["0035E563", "je"], ["0035E567", "and"], ["0035E56B", "mov"], ["0035E56F", "mov"], ["0035E577", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "0035E500: the slot index is the sign-extended word +0x4 read before the increment; for edx = 1 the slot's first dword receives edx itself. 0035E500 is also entered from 0050FAF0 + 0x9E and five sites in 002A59C0; 0035E560 also from 002A59C0 + 0x2E."
+}
