@@ -1,0 +1,31 @@
+{
+ "page": "04-Actor-Entity/Unit-Display-Record/the-record-00329220-builds.md",
+ "session": "session_01HfPRM3vgupD1jscEXG8z9Y",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "0035D5C0",
+   "text": "when bit 0x200 of dword `022C83E8` is clear, calls `00273BA0(022C8B08)` and then sets that bit; does nothing when the bit is already set",
+   "anchors": [
+    [
+     "0035D5C4",
+     "test"
+    ],
+    [
+     "0035D5CE",
+     "jne"
+    ],
+    [
+     "0035D5D7",
+     "call"
+    ],
+    [
+     "0035D5DC",
+     "or"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": ""
+}
