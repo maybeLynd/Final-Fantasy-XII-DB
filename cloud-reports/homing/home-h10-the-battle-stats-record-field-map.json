@@ -1,0 +1,11 @@
+{
+ "page": "08-Combat-Formula/Battle-Stats-Record/the-battle-stats-record-field-map.md",
+ "session": "session_01Cj7Fn364nPXZ9Bw71KUr9i",
+ "rows": [
+  {"fn": "0031A910", "entered_from": "`002FDDA0` + 0x343",
+   "text": "calls `0031A910` + 0xD(`ecx`, 1), then ORs the incoming `ecx` into dword `022C314C`",
+   "anchors": [["0031A91D", "call"], ["0031A922", "or"]]}
+ ],
+ "skipped": [],
+ "notes": "0031A910: the callee (00469C00) is not named in the host excerpt and is cited by site."
+}
