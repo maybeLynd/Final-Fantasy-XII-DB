@@ -32,8 +32,9 @@ for contradictions below rest on one of them. This pass reads those corrections 
 | `C-S01`–`C-S30` stale claims, banners, names, counts | 22 | 3 | 5 | 0 | 30 |
 | **all pass-1 gaps** | **63** | **27** | **27** | **0** | **117** |
 
-**New gaps** (§3): **51**, of which **STATIC 37**, **DOC 12**, **DATA 1**, **RUNTIME 1**. Six of them have a related
-register row, and none of those rows tracks the gap itself.
+**New gaps** (§3): **51**, of which **STATIC 37**, **DOC 12**, **DATA 1**, **RUNTIME 1**. 14 of them have a related
+register row: DP-2, UQ-101, OV-15, SD-190, DW-2, K-14, DE-3, AM-10, AM-7, GR-19, SD-183, UQ-103 and O-1. Each of those
+rows is ANSWERED or SUPERSEDED, and none tracks the residue named here. The other 37 have no row.
 
 **Rating:** **NOT YET** (pass 1: **NOT YET**). It is now closer. The contradiction list is almost fully settled, but the field-cell
 solver (`G-03`) and the avoidance and recovery bodies (`G-06`) are still structural gaps (§4).
