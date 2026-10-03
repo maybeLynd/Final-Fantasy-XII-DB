@@ -1,0 +1,17 @@
+{
+ "page": "99-Unresolved-Residual/Cutscene-Asset-Slots/cutscene-name-slots-and-the-depth-of-field-sidecar.md",
+ "session": "session_01Ft9DsjYbzydEyFv6u1R8to",
+ "rows": [
+  {"fn": "002E4150", "entered_from": "`0034E6D0` + 0x35",
+   "text": "for k = 0, 1, 2 calls the function at `002E4150` + 0x2A with `ecx` = k and, when bit 1 of byte `+0x10` of its result R is set, walks i from word `+0x1DE` of R to below word `+0x1DE` plus word `+0x1D6`, taking entry E from the call at `002E4150` + 0x75 (or + 0x115) with (R, i); when `ecx` is 1, `edx` is non-zero, k is non-zero or byte `+0x3` of E AND 0x1F is not 6, byte `+0x18` of E is not 1, and p = qword `+0xC0` of E is non-null with dword `[p]` not -1, it calls `002E4150` + 0xF9 with 0 when signed word `[p]` is -1 or the 0x740-byte record at that index from qword `022C6F28` is null or has dword `+0x284` 0, else with the result of `002E4150` + 0xF1 on that record; when `ecx` is 0, for each non-null E whose p is non-null with dword `[p]` not -1 it calls `002E4150` + 0x13E with `ecx` = word `[p]` when `edx` is non-zero and byte `+0x11` of p is 0x80 or above (unsigned), then clears bit 0x80 of that byte; any other `ecx` does nothing",
+   "anchors": [["002E417A", "call"], ["002E4182", "test"], ["002E41DC", "cmp"], ["002E4249", "call"], ["002E4293", "and"]]},
+  {"fn": "002EC960", "entered_from": "`003417F0` + 0x3A",
+   "text": "when `rcx` is non-null and its dword `+0x0` is not -1, stores `dx` to word `+0x2A` of `rcx`; otherwise it stores nothing",
+   "anchors": [["002EC963", "je"], ["002EC965", "cmp"], ["002EC96A", "mov"]]},
+  {"fn": "003DD980", "entered_from": "`00347B00` + 0x95",
+   "text": "returns without work unless the dword at `02B581A4` + (`edx`*16 + `r8d`)*0x1C (both sign-extended) is 4; then calls the functions at `003DD980` + 0x3E (`rcx`), + 0x49 (`rcx`, with the + 0x3E call's float result in `xmm1`) and + 0x53 (`rcx`, 0), and finally the one at `003DD980` + 0x79 with `ecx` = 0, `rdx` = `rcx`, `r8d` = ((`edx` shifted left 4 OR `r8d`) shifted left 16) OR `r9d`, `r9d` = 0 and the incoming fifth (stack) float as its fifth argument",
+   "anchors": [["003DD9B1", "imul"], ["003DD9B5", "cmp"], ["003DD9C3", "movaps"], ["003DD9EF", "shl"], ["003DD9F9", "call"]]}
+ ],
+ "skipped": [],
+ "notes": "002E4150: in the ecx = 1 walk E is not null-checked before byte +0x3 / +0x18 are read; byte +0x3 of E is read only on the k = 0 pass (k non-zero forces the condition true); the walk's first bound check is unsigned (jae) and the loop test signed (jl); the dword [p] != -1 test covers the whole dword while the -1 test that yields 0 is on the signed word [p]; the 0x740 record pointer is word*0x740 plus qword 022C6F28 and is tested for zero via the add's flags. 003DD980: fifth stack argument read at [rsp+0x60] after push rdi and sub rsp,0x30."
+}
