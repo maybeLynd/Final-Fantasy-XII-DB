@@ -1,0 +1,14 @@
+{
+ "page": "24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/object-construction-destruction-and-static-lifetime.md",
+ "session": "session_01RYbqU7tsSU3HnpGNjV9Ghv",
+ "rows": [
+  {"fn": "0019B400", "entered_from": "`0019B500` + 0xF",
+   "text": "stores `008F3EC8` in qword `[rcx]`; when qword `rcx+0x80` is non-zero and the qword pointed to by qword `rcx+0x18` equals `rcx+0x70`, writes qword `rcx+0x88` there and into the qword pointed to by qword `rcx+0x38`, and writes the low 32 bits of qword `rcx+0x90` minus that value into the dword pointed to by qword `rcx+0x50`; when byte `rcx+0x7C` is non-zero makes the call at `0019B400` + 0x5E with `rcx`; finally tail-jumps through the imported pointer at `0019B400` + 0x6C with `rcx`",
+   "anchors": [["0019B419", "mov"], ["0019B42E", "cmp"], ["0019B452", "mov"], ["0019B45E", "call"], ["0019B46C", "jmp"]]},
+  {"fn": "0020B9A0", "entered_from": "`001D6AA0` + 0x1C",
+   "text": "returns 0 in `al` when `r8` is null; otherwise makes the call at `0020B9A0` + 0x29 with `rcx+0x58`, searches the tree headed at `rcx+0x28` (root qword `rcx+0x38`; from a node whose dword `+0x20` is not below `edx` (unsigned) it descends through qword `+8`, otherwise through qword `+0`) for the node whose dword `+0x20` equals `edx` and, when found, decrements byte `+0x10` of that node's qword `+0x28` unless it is 0; then makes the calls at `0020B9A0` + 0x82 with `rcx+0x58`, at `0020B9A0` + 0x8A with `r8` and at `0020B9A0` + 0x97 with `r8` and 0x10, and returns 1",
+   "anchors": [["0020B9C9", "call"], ["0020B9E0", "cmp"], ["0020B9FC", "cmp"], ["0020BA1B", "mov"], ["0020BA37", "call"]]}
+ ],
+ "skipped": [],
+ "notes": "0019B400: `008F3EC8` is stored into `[rcx]` (a table-pointer store); the tail jump at +0x6C goes through an import slot and is cited by site. 0020B9A0: the search is a lower-bound walk followed by an equality test (`jae` at `0020B9FF`)."
+}
