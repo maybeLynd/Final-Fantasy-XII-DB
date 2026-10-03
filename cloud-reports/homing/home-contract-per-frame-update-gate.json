@@ -1,0 +1,89 @@
+{
+ "page": "00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md",
+ "session": "cloud FABLE h5-1",
+ "rows": [
+  {
+   "fn": "001BC010",
+   "entered_from": "`0017F040` + 0x21",
+   "text": "finds the node whose dword `+0x20` equals `edx` (lower-bound walk from qword `rcx+0xc8`, header `rcx+0xb8`, following qword `+8` when the node's key is not below `edx` and qword `+0` otherwise, signed); when found it decrements dword `+0x48` of the node's qword `+0x28` and, when that reaches 0, calls slot `+0x10` of the vtable of the object at `rcx+0x1b8` with (`rcx+0x1b8`, `0x18`, 0), writes dwords `edx` and 4 at the returned block's `+0x10`/`+0x14` and links the block in last on the list headed at `rcx+0x1a8` (block `+0` = `rcx+0x1a8`, block `+8` = qword `rcx+0x1b0`, then that node's qword `+0` and qword `rcx+0x1b0` = the block); when `edx` is not negative it then does the same for the key `-2 - edx`",
+   "anchors": [
+    [
+     "001BC044",
+     "jl"
+    ],
+    [
+     "001BC074",
+     "sub"
+    ],
+    [
+     "001BC0A1",
+     "call"
+    ],
+    [
+     "001BC0C7",
+     "mov"
+    ],
+    [
+     "001BC0EE",
+     "sub"
+    ]
+   ]
+  },
+  {
+   "fn": "003F65C0",
+   "entered_from": "`003F62D0` + 0x1A",
+   "text": "stores dword `0x10000000` at `rcx+0`, `+4` and `+8` and ((`edx`+5) << 0x10) OR `0x6c008000` at `+0xc`; qwords `0x1000000000000002`, `0xe`, `0x5b`, 0, `0x5c`, 0 at `+0x10` through `+0x38`, (`edx`*4+2, 32-bit) OR `0x3000000000008000` at `+0x40` and `0x412` at `+0x48`; the dword bit pattern `0x42fe0000` at `+0x50`, `+0x54` and `+0x58` and `edx` at `+0x5c`; then dwords `0x10000000`, `0x17000000`, `0x10000000`, `0x10000000` at `rcx` + (`edx`+6)*0x10, and returns (`edx`+7)*0x10",
+   "anchors": [
+    [
+     "003F660C",
+     "or"
+    ],
+    [
+     "003F6619",
+     "or"
+    ],
+    [
+     "003F6651",
+     "mov"
+    ],
+    [
+     "003F6668",
+     "mov"
+    ],
+    [
+     "003F6680",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "003F6A10",
+   "entered_from": "`003F62D0` + 0x88",
+   "text": "with `n` = dword `rcx+0x5c` and `d` the fifth (stack) argument (float), takes `s0` = trunc((1.0 (`01CEBBA8`) - `xmm1`) * `n`), `s1` = trunc(`n` * `xmm2`), `s2` = trunc(`n` * `d`) and `v` = `xmm3` * 100.0 (`008F3134`) * `d`, and stores `xmm3` * 127.0 (`00906A44`) at floats `+0x50`, `+0x54` and `+0x58`; for each `i` below `n` it writes the float at `rcx` + `i`*0x10 + `0x6c`: 0 when `i` <= `s0`, else `v` when `i` <= `s1`, else `v` * (`D` - (`i` - `s1`)) / `D` with `D` = `s2` - `s1` when `i` <= `s2`, else 0 (all compares unsigned); then zeroes the dword at `rcx` + (`n`-1)*0x10 + `0x6c`, calls `003F6A10` + 0x109(the sixth (stack) argument, `rcx` + (`s0`+6)*0x10) and stores the bit pattern `0x3f800000` at dword `+0xc` of the sixth argument",
+   "anchors": [
+    [
+     "003F6A71",
+     "movss"
+    ],
+    [
+     "003F6AA6",
+     "movss"
+    ],
+    [
+     "003F6AD5",
+     "movss"
+    ],
+    [
+     "003F6B19",
+     "call"
+    ],
+    [
+     "003F6B1E",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "001BC010: the walk is an exact-key lookup (lower bound, then rejected when edx is below the found key); the 0x18-byte allocation goes through the vtable of the object at rcx+0x1a8+0x10; the null test on block+0x10 cannot fail and is not stated. 003F65C0: 0x42fe0000 is not decoded by the listing, so it is given as a bit pattern (it would be 127.0 as f32). 003F6A10: n is converted to float as signed (cvtdq2ps) but compared unsigned in the loop; D is the 32-bit difference s2 - s1 converted from a zero-extended 64-bit value; the rbx used for the final call and store is reloaded from [rsp+0x58], which is the sixth stack argument slot at entry. The final zeroing at index n-1 runs also when n is 0."
+}
