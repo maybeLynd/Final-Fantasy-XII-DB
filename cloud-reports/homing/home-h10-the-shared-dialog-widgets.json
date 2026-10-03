@@ -1,0 +1,20 @@
+{
+ "page": "16-UI/Shared-Dialogs/the-shared-dialog-widgets.md",
+ "session": "session_01Cj7Fn364nPXZ9Bw71KUr9i",
+ "rows": [
+  {"fn": "00240680", "entered_from": "`00281ED0` + 0x2AD",
+   "text": "calls `00240680` + 0x13 and fills a local block of a zero dword followed by 16 bytes copied from `00914D70` (dwords 2, 0, `0xFF`, 0) when the returned word is at most `0x19` (signed) or from `00914D60` (dwords 0, 0, `0xFF`, 0) otherwise; when qword `0208E6D8` is 0 it calls `00240680` + 0x59(`0x4D8`, `0023FBE0`, address of that block), else skips the call; the result is not stored, and the body ends with the stack-cookie check against `01F44830` at `00240680` + 0x66",
+   "anchors": [["00240693", "call"], ["002406A0", "cmp"], ["002406B8", "cmp"], ["002406D9", "call"]]},
+  {"fn": "00240D60", "entered_from": "`00281ED0` + 0x2E8",
+   "text": "when qword `0208E6C8` is 0, calls `00240D60` + 0x3F(`0xC8`, `00240AD0`, address of a zeroed local block), stores the result to `0208E6C8`, calls `00240D60` + 0x55(that result, `00914C70`) and `00240D60` + 0x68(qword `0208EA28`, qword `0208E6C8`); when the qword is already non-zero it makes none of these calls; the body ends with the stack-cookie check against `01F44830`",
+   "anchors": [["00240D73", "cmp"], ["00240D9F", "call"], ["00240DAB", "mov"], ["00240DB5", "call"], ["00240DC8", "call"]]},
+  {"fn": "0027EBC0", "entered_from": "`00281ED0` + 0x2C6",
+   "text": "when qword `0209AC20` is 0, calls `0027EBC0` + 0x3F(`0xC0`, `0027EA70`, address of a zeroed local block), stores the result to `0209AC20`, calls `0027EBC0` + 0x55(that result, `00915C88`) and `0027EBC0` + 0x61(qword `0209AC20`); when the qword is already non-zero it makes none of these calls; the body ends with the stack-cookie check against `01F44830`",
+   "anchors": [["0027EBD3", "cmp"], ["0027EBFF", "call"], ["0027EC0B", "mov"], ["0027EC15", "call"], ["0027EC21", "call"]]},
+  {"fn": "00292090", "entered_from": "`00281ED0` + 0x496",
+   "text": "loads qword `+0x300` of the object at qword `0209AC30` (not null-checked) and returns its word `+0x16A` AND `0xF`, or 0 when that qword is null",
+   "anchors": [["00292097", "mov"], ["002920A3", "movzx"], ["002920AA", "and"], ["002920AE", "xor"]]}
+ ],
+ "skipped": [],
+ "notes": "None of the callees (00265270, 00244F50, 00247570, 00246AD0, 00246AC0, 00808C40) is named in the host excerpt, so calls are cited by site only. `0023FBE0`, `00240AD0` and `0027EA70` are `lea` code addresses passed as the second argument, not called here; `00914C70` and `00915C88` are undecoded `lea` operands, named as addresses only. 00240680, unlike its two siblings, does not store the call result to `0208E6D8`."
+}
