@@ -1,0 +1,62 @@
+{
+ "page": "18-Audio/Sound-Bank-And-Voice-Formats/spp-map-sound-list.md",
+ "session": "cloud FABLE h5-1",
+ "rows": [
+  {
+   "fn": "00210D90",
+   "entered_from": "`001DBF50` + 0x32",
+   "text": "with `k` = `r9d` when `edx` is non-zero, else `r9d` OR `0x80000000`, and `m` = the fifth (stack) argument when it is non-zero, else 1, calls `00210D90` + 0x43(qword `rcx+8`, `r8d`, `k`, `m`) and, only when the low byte of its result is 0, `00210D90` + 0x58(qword `rcx+0x10`, `r8d`, `k`, `m`); returns with the last call's result in `eax`",
+   "anchors": [
+    [
+     "00210DAB",
+     "or"
+    ],
+    [
+     "00210DC2",
+     "cmovne"
+    ],
+    [
+     "00210DCD",
+     "cmovne"
+    ],
+    [
+     "00210DD3",
+     "call"
+    ],
+    [
+     "00210DE8",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "003DF360",
+   "entered_from": "`003DF2C0` + 0x83",
+   "text": "returns at once when `edx` is above 7 (unsigned) or `r8` is null; otherwise, with `s` = `02B59360` + (signed `ecx`*8 + signed `edx`)*0x38, stores `r8` at qword `s+8`, takes `q` = `r9`, or `r8` + dword `[r8+0xc]` when `r9` is null, calls `003DF360` + 0x4C(-1), stores `003DF360` + 0x57(`q`, dword `[r8+8]`) at dword `[s]`, calls `003DF360` + 0x61(-1) and stores byte 4 at `s+0x10`",
+   "anchors": [
+    [
+     "003DF363",
+     "ja"
+    ],
+    [
+     "003DF384",
+     "imul"
+    ],
+    [
+     "003DF399",
+     "mov"
+    ],
+    [
+     "003DF3BF",
+     "mov"
+    ],
+    [
+     "003DF3C6",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "00210D90: the second call's arguments are reloaded from the saved k/m registers, identical to the first. 003DF360: the je at 003DF392 tests the zero flag of the add that forms s (a null slot address), which cannot occur for this table; it is not stated. 02B59360 is the lea target of the 0x38-byte slot table."
+}
