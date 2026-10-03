@@ -1,0 +1,11 @@
+{
+ "page": "03-World-Area-Field/CONTRACT-field-environment-variant.md",
+ "session": "session_01Xkefj8Gz4bCEiqGqVRB1MS",
+ "rows": [
+  {"fn": "003B7130", "entered_from": "`0025D9E0` + 0x3E8",
+   "text": "when `edx` is 0 tail-jumps (`003B7130` + 0x45) with `ecx` unchanged; otherwise calls `003B7130` + 0x1D with `ecx` = 1 when `ecx` is 1, or `003B7130` + 0x11 with the incoming arguments when it is not, passes the returned `eax` to the call at `003B7130` + 0x24, and tail-jumps (`003B7130` + 0x3B) with `rcx` = that call's result and `edx` = the incoming `ecx`, or `edx` = -1 when that result is null",
+   "anchors": [["003B7138", "test"], ["003B7154", "call"], ["003B715E", "or"], ["003B716B", "jmp"], ["003B7175", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "003B7130: on the ecx != 1 path the call at +0x11 receives ecx and edx exactly as they arrived (edx non-zero). 003B7130 is also reached by jmp from 00349C50 + 0x2D."
+}
