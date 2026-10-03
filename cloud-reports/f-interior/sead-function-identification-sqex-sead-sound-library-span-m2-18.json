@@ -1,0 +1,580 @@
+{
+ "page": "18-Audio/sead-function-identification.md",
+ "mode": "member",
+ "family": "SQEX SEAD sound library span",
+ "session": "session_011x7Z2kBBj6np96XsxMDLH5",
+ "rows": [
+  {
+   "fn": "007CF810",
+   "text": "loads the base pointer qword `rcx+8`, stores `01CB6E60` to qword `[rdx]` and the base plus its zero-extended word `+2` to qword `[rdx+8]`, and returns `rdx`",
+   "anchors": [
+    [
+     "007CF814",
+     "movzx"
+    ],
+    [
+     "007CF81B",
+     "lea"
+    ],
+    [
+     "007CF822",
+     "mov"
+    ],
+    [
+     "007CF828",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007CF860",
+   "text": "when `r8d` is non-negative and below the base's word `+4` (base = qword `rcx+8`), stores `01CB4E88` to qword `[rdx]` and the base plus the dword at index `r8d` of the 4-byte array at base + word `+2` to qword `[rdx+8]`; otherwise stores `01CB4E88` and 0; returns `rdx`",
+   "anchors": [
+    [
+     "007CF863",
+     "js"
+    ],
+    [
+     "007CF871",
+     "jle"
+    ],
+    [
+     "007CF87E",
+     "mov"
+    ],
+    [
+     "007CF88F",
+     "mov"
+    ],
+    [
+     "007CF89E",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007CF8B0",
+   "text": "takes base = qword `rcx+8` and a 16-byte entry table at base + word `+6` (plus `(byte +9 + 0x10) AND 0xF0` when byte `+4` is 2 or more, unsigned), scans the byte `+8` entries for one whose first dword equals the dword at `01CB6EF0` (`[str \"mtrl\"]`), and stores the base plus that entry's dword `+8` to qword `[rdx+8]` and `01CB6E00` to qword `[rdx]`, returning `rdx`; when no entry matches (or the count is 0) the entry pointer is zeroed and the dword is read from that null pointer `+8`",
+   "anchors": [
+    [
+     "007CF8BB",
+     "cmp"
+    ],
+    [
+     "007CF90A",
+     "cmp"
+    ],
+    [
+     "007CF915",
+     "xor"
+    ],
+    [
+     "007CF917",
+     "mov"
+    ],
+    [
+     "007CF921",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007CF940",
+   "text": "returns the dword at index `edx` (sign-extended) of the 4-byte array at base + zero-extended word `+2`, base = qword `rcx+8`",
+   "anchors": [
+    [
+     "007CF947",
+     "movzx"
+    ],
+    [
+     "007CF94E",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007CF960",
+   "text": "returns the zero-extended word `+4` of the base qword `rcx+8` times 4, rounded up to a multiple of 16 (when the low 4 bits are non-zero they are subtracted and 16 added)",
+   "anchors": [
+    [
+     "007CF964",
+     "movzx"
+    ],
+    [
+     "007CF968",
+     "shl"
+    ],
+    [
+     "007CF96D",
+     "and"
+    ],
+    [
+     "007CF974",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "007CFB00",
+   "text": "stores `01CB43E0` to qword `[rdx]` and, with base = qword `rcx+8`, the base plus the dword at index `r8d` (sign-extended, unchecked) of the 4-byte array at base + word `+2` to qword `[rdx+8]`; returns `rdx`",
+   "anchors": [
+    [
+     "007CFB07",
+     "movzx"
+    ],
+    [
+     "007CFB0F",
+     "mov"
+    ],
+    [
+     "007CFB13",
+     "lea"
+    ],
+    [
+     "007CFB20",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007CFB30",
+   "text": "takes base = qword `rcx+8` and a 16-byte entry table at base + word `+6` (plus `(byte +9 + 0x10) AND 0xF0` when byte `+4` is 2 or more, unsigned), scans the byte `+8` entries for one whose first dword equals the dword at `01CB6ED8` (`[str \"snd \"]`), and stores the base plus that entry's dword `+8` to qword `[rdx+8]` and `01CB6E90` to qword `[rdx]`, returning `rdx`; when no entry matches (or the count is 0) the entry pointer is zeroed and the dword is read from that null pointer `+8`",
+   "anchors": [
+    [
+     "007CFB3B",
+     "cmp"
+    ],
+    [
+     "007CFB8A",
+     "cmp"
+    ],
+    [
+     "007CFB95",
+     "xor"
+    ],
+    [
+     "007CFB97",
+     "mov"
+    ],
+    [
+     "007CFBA1",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007CFC20",
+   "text": "when `r8d` is non-negative and below the base's word `+4` (base = qword `rcx+8`), stores `01CB4E00` to qword `[rdx]` and the base plus the dword at index `r8d` of the 4-byte array at base + word `+2` to qword `[rdx+8]`; otherwise stores `01CB4E00` and 0; returns `rdx`",
+   "anchors": [
+    [
+     "007CFC23",
+     "js"
+    ],
+    [
+     "007CFC31",
+     "jle"
+    ],
+    [
+     "007CFC3E",
+     "mov"
+    ],
+    [
+     "007CFC4F",
+     "mov"
+    ],
+    [
+     "007CFC5E",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007CFFB0",
+   "text": "calls the routine at `007CFFB0` + 0x09 with `rcx`, then stores `01CB6FB0` to qword `[rcx]` and returns `rcx`",
+   "anchors": [
+    [
+     "007CFFB9",
+     "call"
+    ],
+    [
+     "007CFFC5",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007CFFE0",
+   "text": "stores `01CB6FB0` to qword `[rcx]` and tail-jumps at `007CFFE0` + 0x0A with `rcx` unchanged",
+   "anchors": [
+    [
+     "007CFFE7",
+     "mov"
+    ],
+    [
+     "007CFFEA",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "007D0030",
+   "text": "stores `01CB5D48` to qword `[rcx]`; when bit 0 of `dl` is set, calls the routine at `007D0030` + 0x1D with `rcx` and `edx` = 0x10; returns `rcx`",
+   "anchors": [
+    [
+     "007D0040",
+     "mov"
+    ],
+    [
+     "007D0043",
+     "test"
+    ],
+    [
+     "007D0048",
+     "mov"
+    ],
+    [
+     "007D004D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007D0060",
+   "text": "stores `01CB4460` to qword `[rcx]`; when bit 0 of `dl` is set, calls the routine at `007D0060` + 0x1D with `rcx` and `edx` = 0x10; returns `rcx`",
+   "anchors": [
+    [
+     "007D0070",
+     "mov"
+    ],
+    [
+     "007D0073",
+     "test"
+    ],
+    [
+     "007D0078",
+     "mov"
+    ],
+    [
+     "007D007D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007D0090",
+   "text": "stores `01CB5DB8` to qword `[rcx]`; when bit 0 of `dl` is set, calls the routine at `007D0090` + 0x1D with `rcx` and `edx` = 0x10; returns `rcx`",
+   "anchors": [
+    [
+     "007D00A0",
+     "mov"
+    ],
+    [
+     "007D00A3",
+     "test"
+    ],
+    [
+     "007D00A8",
+     "mov"
+    ],
+    [
+     "007D00AD",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007D00C0",
+   "text": "stores `01CB4F80` to qword `[rcx]`; when bit 0 of `dl` is set, calls the routine at `007D00C0` + 0x1D with `rcx` and `edx` = 0x10; returns `rcx`",
+   "anchors": [
+    [
+     "007D00D0",
+     "mov"
+    ],
+    [
+     "007D00D3",
+     "test"
+    ],
+    [
+     "007D00D8",
+     "mov"
+    ],
+    [
+     "007D00DD",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007D00F0",
+   "text": "stores `01CB5D98` to qword `[rcx]`; when bit 0 of `dl` is set, calls the routine at `007D00F0` + 0x1D with `rcx` and `edx` = 0x10; returns `rcx`",
+   "anchors": [
+    [
+     "007D0100",
+     "mov"
+    ],
+    [
+     "007D0103",
+     "test"
+    ],
+    [
+     "007D0108",
+     "mov"
+    ],
+    [
+     "007D010D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007D0120",
+   "text": "with base = qword `rcx+8`, takes an extra offset `(byte +4 + 0x10) AND 0xF0` when byte `+0` is 8 or more (unsigned), else 0, and an index word `+0x18` + `r8d` + byte `+5`; stores the base plus the dword at base + word `+2` + index*4 + extra offset to qword `[rdx+8]` and `01CB6F10` to qword `[rdx]`, returning `rdx`",
+   "anchors": [
+    [
+     "007D0127",
+     "cmp"
+    ],
+    [
+     "007D0142",
+     "movzx"
+    ],
+    [
+     "007D0160",
+     "mov"
+    ],
+    [
+     "007D016E",
+     "mov"
+    ],
+    [
+     "007D0171",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007D0180",
+   "text": "with base = qword `rcx+8`, takes an extra offset `(byte +0x48 + 0x10) AND 0xF0` when byte `+0` is 9 or more (unsigned), else 0, and an index byte `+5` + `r8d` + byte `+4`; stores the base plus the dword at base + word `+2` + index*4 + extra offset to qword `[rdx+8]` and `01CB6F70` to qword `[rdx]`, returning `rdx`",
+   "anchors": [
+    [
+     "007D0187",
+     "cmp"
+    ],
+    [
+     "007D018D",
+     "movzx"
+    ],
+    [
+     "007D01C0",
+     "mov"
+    ],
+    [
+     "007D01CE",
+     "mov"
+    ],
+    [
+     "007D01D1",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007D0260",
+   "text": "with base = qword `rcx+8` and a 32-byte entry array at base + word `+2`, picks an index by byte `+4`: 4 gives `r8d`; 3 walks the byte `+5` entries summing each entry's byte `+1` and takes the first whose running sum is at least `r8d` (signed); 1 calls through `008C3098` at `007D0260` + 0x91, reduces the result modulo 100 plus 1 (multiply by 0x51EB851F) and takes the first entry whose running sum is at least that (unsigned); 0, other values and a walk with no hit give 0; stores the array address plus index*32 to qword `[rdx+8]` and `01CB5DF8` to qword `[rdx]`, returning `rdx`",
+   "anchors": [
+    [
+     "007D029D",
+     "je"
+    ],
+    [
+     "007D02DE",
+     "cmp"
+    ],
+    [
+     "007D02F1",
+     "call"
+    ],
+    [
+     "007D02FD",
+     "mov"
+    ],
+    [
+     "007D0355",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007D0380",
+   "text": "stores `01CB5DF8` to qword `[rdx]` and, with base = qword `rcx+8`, base + word `+2` + `r8d`*32 to qword `[rdx+8]`; returns `rdx`",
+   "anchors": [
+    [
+     "007D0387",
+     "shl"
+    ],
+    [
+     "007D038B",
+     "movzx"
+    ],
+    [
+     "007D039D",
+     "mov"
+    ],
+    [
+     "007D03A3",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007D03B0",
+   "text": "with base = qword `rcx+8`, takes an extra offset `(byte +4 + 0x10) AND 0xF0` when byte `+0` is 8 or more (unsigned), else 0; stores the base plus the dword at base + word `+2` + `r8d`*4 + extra offset to qword `[rdx+8]` and `01CB6F20` to qword `[rdx]`, returning `rdx`",
+   "anchors": [
+    [
+     "007D03B4",
+     "cmp"
+    ],
+    [
+     "007D03BA",
+     "movzx"
+    ],
+    [
+     "007D03DE",
+     "mov"
+    ],
+    [
+     "007D03E5",
+     "mov"
+    ],
+    [
+     "007D03F0",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007D0460",
+   "text": "with base = qword `rcx+8`, takes an extra offset `(byte +0x48 + 0x10) AND 0xF0` when byte `+0` is 9 or more (unsigned), else 0, and an index byte `+4` + `r8d`; stores the base plus the dword at base + word `+2` + index*4 + extra offset to qword `[rdx+8]` and `01CB6F60` to qword `[rdx]`, returning `rdx`",
+   "anchors": [
+    [
+     "007D0467",
+     "cmp"
+    ],
+    [
+     "007D046D",
+     "movzx"
+    ],
+    [
+     "007D0499",
+     "mov"
+    ],
+    [
+     "007D04A7",
+     "mov"
+    ],
+    [
+     "007D04AA",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007D0510",
+   "text": "with base = qword `rcx+8`, decrements `r8d` by 1 when it is at or above the base's word `+4` (signed `cmovge`), then stores base + `r8d`*32 + dword `+8` to qword `[rdx+8]` and `01CB6F50` to qword `[rdx]`, returning `rdx`",
+   "anchors": [
+    [
+     "007D051D",
+     "cmp"
+    ],
+    [
+     "007D0520",
+     "mov"
+    ],
+    [
+     "007D0524",
+     "cmovge"
+    ],
+    [
+     "007D0532",
+     "add"
+    ],
+    [
+     "007D0542",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007D0550",
+   "text": "stores `01CB4400` to qword `[rdx]` and, with base = qword `rcx+8`, the base plus the dword at index `r8d` (sign-extended, unchecked) of the 4-byte array at base + word `+2` to qword `[rdx+8]`; returns `rdx`",
+   "anchors": [
+    [
+     "007D0557",
+     "movzx"
+    ],
+    [
+     "007D055F",
+     "mov"
+    ],
+    [
+     "007D0563",
+     "lea"
+    ],
+    [
+     "007D0570",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007D05D0",
+   "text": "stores `01CB5D68` to qword `[rdx]` and, with base = qword `rcx+8`, base + word `+2` + `r8d`*16 to qword `[rdx+8]`; returns `rdx`",
+   "anchors": [
+    [
+     "007D05D7",
+     "shl"
+    ],
+    [
+     "007D05DB",
+     "movzx"
+    ],
+    [
+     "007D05ED",
+     "mov"
+    ],
+    [
+     "007D05F3",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007D0650",
+   "text": "with base = qword `rcx+8`, takes an extra offset `(byte +0x48 + 0x10) AND 0xF0` when byte `+0` is 9 or more (unsigned), else 0, and an index byte `+5` + `r8d` + byte `+0x41` + byte `+4`; stores the base plus the dword at base + word `+2` + index*4 + extra offset to qword `[rdx+8]` and `01CB6F80` to qword `[rdx]`, returning `rdx`",
+   "anchors": [
+    [
+     "007D0657",
+     "cmp"
+    ],
+    [
+     "007D0677",
+     "movzx"
+    ],
+    [
+     "007D0697",
+     "mov"
+    ],
+    [
+     "007D06A5",
+     "mov"
+    ],
+    [
+     "007D06A8",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "All offsets are relative to the base pointer read from qword rcx+8. 007CF8B0/007CFB30: on a failed scan the listing zeroes edx and then reads dword [rdx+8], i.e. a null-pointer read; stated as shown. 007D0260: the import pointer at 008C3098 is called with no visible arguments; the callee is not named. 007D0030-007D00F0: the 0x10 passed in edx to the called routine is stated as a value only. Doubts: none."
+}
