@@ -1,0 +1,35 @@
+{
+ "page": "06-Movement-And-Navigation/CONTRACT-corridor-query-family.md",
+ "session": "session_01AFJLw2DoBajZE8phUsPUJB",
+ "rows": [
+  {
+   "fn": "00264CE0",
+   "entered_from": "`0033F7F0` + 0x21",
+   "text": "when `rcx` and its qword `+0x0` are both non-null, rewrites `edx` in sequence from that qword's sign-extended words: -1 becomes word `+0x52`, then a value of -2 becomes word `+0x78`, then a value of -3 becomes word `+0x7A` (each test sees the value the previous step left), then any value still negative becomes word `+0x52`; on every path (a null `rcx` or qword leaves `edx` as given) returns `edx` when it is non-negative and 0 otherwise",
+   "anchors": [
+    [
+     "00264CF2",
+     "movsx"
+    ],
+    [
+     "00264CFB",
+     "movsx"
+    ],
+    [
+     "00264D04",
+     "movsx"
+    ],
+    [
+     "00264D0C",
+     "movsx"
+    ],
+    [
+     "00264D14",
+     "cmovns"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": ""
+}
