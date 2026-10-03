@@ -1,0 +1,14 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/Prefetch-And-Json-Data/ta-texture-animation-lists.md",
+ "session": "session_019ww1AYv6HUCASSLr6wdSTQ",
+ "rows": [
+  {"fn": "0019DDD0", "entered_from": "`001AA4F0` + 0x59",
+   "text": "copies the 8-byte element range from qword `[rdx]` to qword `[rdx+8]` into the vector at `rcx` (begin `+0`, end `+8`, capacity end `+0x10`, allocator object `+0x18`) and returns `rcx`, doing nothing when `rdx` equals `rcx`; when the count exceeds the capacity (32-bit unsigned compare) it allocates count*8 bytes through slot +0x10 of the allocator's vtable, copies into it (at `0019DDD0` + 0x78), releases a non-null old buffer through slot +0x18 with its capacity in bytes and sets begin and capacity end; when the count exceeds only the size it copies the first size elements over begin (at + 0xCD) and the rest to the old end (at + 0xF7); otherwise it copies count elements to begin (at + 0xF7); every copy goes through qword `008C2A40`, and end is then set to begin + count*8",
+   "anchors": [["0019DE1A", "jbe"], ["0019DE31", "call"], ["0019DE6F", "call"], ["0019DE93", "jbe"], ["0019DEE5", "mov"]]},
+  {"fn": "001AC810", "entered_from": "`001ABC80` + 0x1D",
+   "text": "when `edx` is not below the element count of the 8-byte pointer vector at `rcx+0xF0` (begin, end, capacity end), it appends `edx` minus count plus 1 entries: each calls (at `001AC810` + 0x75) with 0x48 and passes a non-null result, the current count, 80.0 (`008F6D58`), 2.0 (`01CEBC08`) and the stack arguments 60.0 (`008F6D54`), 1, 0.0 and 6 to the call at `001AC810` + 0xB9, then appends that result (or null) in place when end is below capacity end, else through the call at `001AC810` + 0xF4; it then stores `edx` at dword `+0x38` of element `edx` and returns that element",
+   "anchors": [["001AC855", "js"], ["001AC885", "call"], ["001AC8C9", "call"], ["001AC8F4", "mov"], ["001AC919", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "0019DDD0: 008C2A40 is the qword slot the three indirect copy calls go through (the listing decodes it as u64 0x01CCEB62, plausibly memmove); the sentence cites the slot, not its target. It is also entered from `0019CE30` + 0x85, `0019CEF0` + 0x5C and `0019D100` + 0x7F. 001AC810 is also entered from `001ABCE0` + 0x1D; r8/r9 are not set before the call at + 0xB9 (arguments 3 and 4 are the floats in xmm2/xmm3)."
+}
