@@ -1,0 +1,20 @@
+{
+ "page": "17-Presentation-Rendering/Character-Render-Records/how-a-character-fades-the-ten-channels.md",
+ "session": "session_017yNt9L5rrbK5hdpiNRA3BS",
+ "rows": [
+  {"fn": "003F2580", "entered_from": "`002915C0` + 0x15A",
+   "text": "returns `rdx` when `rcx` is null; otherwise follows qword `+0x9B0` from `rcx` to the last node whose qword `+0x9B0` is null, stores `rdx` into that node's qword `+0x9B0` and the node into qword `rdx+0x9B8`, and returns `rcx`",
+   "anchors": [["003F2588", "mov"], ["003F25A3", "mov"], ["003F25AF", "mov"], ["003F25B6", "mov"], ["003F25B9", "mov"]]},
+  {"fn": "003F2600", "entered_from": "`002915C0` + 0x13F",
+   "text": "calls `003F2A70` with `rcx`, `rcx+0x3C0`, 6 and `0x20`, stores `0x3F800000` to dword `rcx+0x998`, and calls `003F2600` + 0x3A with `rcx+0x780` and `rdx` and `003F2600` + 0x49 with `rcx+0x870` and `rdx`; it then copies dwords `rdx+0` and `rdx+8` to dwords `rcx+0x970` and `rcx+0x978`, stores float `[rdx+4]` times 0.5 (`01CEBB70`) minus `[rdx+4]` divided by 10 (`008F8180`) to dword `rcx+0x974` and `[rdx+4]` times 0.5 plus float `[rdx+0xC]` plus `[rdx+4]` divided by 10 to dword `rcx+0x97C`, and stores the constants `0x3E570A3D` to dword `+0x924`, `0x3E4CCCCD` to dword `+0x92C`, `0x42FE0000` to dwords `+0x930` and `+0x934`, and qword `0x42FE0000` to `+0x938`",
+   "anchors": [["003F2621", "call"], ["003F262D", "mov"], ["003F2672", "movss"], ["003F26D1", "mov"], ["003F26DC", "movss"]]},
+  {"fn": "00422F30", "entered_from": "`0041FBF0` + 0x6B",
+   "text": "when dword `rcx+0xC4` is not -1, calls `00422F30` + 0x15 with dword `rcx+0x10`, then `00422F30` + 0x27 with that result's qword `+0xDA8` and dword `rcx+0xC4`, and when this returns non-null clears bit `0x2` of its dword `+0xC` and stores 0 to its word `+0x24`; otherwise it writes nothing",
+   "anchors": [["00422F36", "cmp"], ["00422F45", "call"], ["00422F57", "call"], ["00422F61", "and"], ["00422F67", "mov"]]},
+  {"fn": "00422F80", "entered_from": "`0041FBF0` + 0x52",
+   "text": "when dword `rcx+0xC4` is not -1, calls `00422F80` + 0x15 with dword `rcx+0x10`, then `00422F80` + 0x27 with that result's qword `+0xDA8` and dword `rcx+0xC4`, and when this returns non-null sets bit `0x2` of its dword `+0xC` and stores 1 to its word `+0x24`; otherwise it writes nothing",
+   "anchors": [["00422F86", "cmp"], ["00422F95", "call"], ["00422FA7", "call"], ["00422FB1", "or"], ["00422FBA", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "003F2600: `003F2A70` is cited by address because the host excerpt names it (as the identity-matrix store); here it receives four arguments (rcx, rcx+0x3C0, r8d = 0x20 - 0x1A = 6, r9d = 0x20), which FABLE may want to reconcile with that description. The float constants stored at +0x924..+0x938 are given as raw hex because the listing does not decode them; the qword store at +0x938 writes 0x42FE0000 to the low dword and 0 to dword +0x93C. Evaluation order for +0x97C is ((f*0.5) + [rdx+0xC]) + f/10."
+}
