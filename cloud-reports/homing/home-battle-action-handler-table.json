@@ -1,0 +1,11 @@
+{
+ "page": "07-Combat-Action/Action-Dispatch/battle-action-handler-table.md",
+ "session": "session_01G1D6BV8reSc8hRtefJLZec",
+ "rows": [
+  {"fn": "0031A8C0", "entered_from": "`002FDDA0` + 0x36F",
+   "text": "calls `0031A8C0` + 0xA(`ecx`, 0), then clears in dword `022C314C` every bit that is set in `ecx` (AND with NOT `ecx`)",
+   "anchors": [["0031A8CA", "call"], ["0031A8CF", "not"], ["0031A8D1", "and"]]}
+ ],
+ "skipped": [],
+ "notes": ""
+}
