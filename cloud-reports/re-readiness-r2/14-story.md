@@ -177,7 +177,7 @@ and the stale side only needs striking or a pointer).
 | part | pass 1 | pass 2 | what decides it now |
 |---|---|---|---|
 | Flag banks: eleven accessors, bit arithmetic, range guards, gate decode, new-game `memset` + 52-id initial set | READY (static) | **READY (static)** | the value items pass 1 asked a re-implementer to settle (C-V1 to C-V6, C-V11 to C-V13) are decided at the bytes and written into the pages (`byte-verdicts:2-15`; §2.3). What is left is verification, not information: no live observation (S-1, RUNTIME) and six entry points without differential tests (S-2). |
-| Authored threshold schedule | MOSTLY | **MOSTLY** | the format and walk are complete (`pfb:169-217`); the variable it compares against is still pseudo-C over two unlocated globals (G-1). |
+| Authored threshold schedule | MOSTLY | **MOSTLY** | the format and walk are complete (`pfb:164-220`); the variable it compares against is still pseudo-C over two unlocated globals (G-1). |
 | Event memory at actor bind | MOSTLY | **MOSTLY** | the predicate and shipped list are complete; the "event-memory bodies" gap of pass 1 dissolves (they are handbook UI, G-10), but a new value-level disagreement appears: whether `0025A990` / `0025AA30` reallocate or skip when the buffer is held (N-1). |
 | Traps (`002FA740`, `002F8060`) | MOSTLY | **MOSTLY** | record, arming, trigger body, gather and formulas are stated; the tag-3 table base is now stated (G-7) and the marker helpers are partly homed (G-6). Still missing: the trigger's caller edge and cadence, `002FB560` / `003EB720`, and the ring entry's second dword (N-6). |
 | Treasure (`002FAFD0`) | NOT YET | **NOT YET**, closer | the draw is settled (C-V8, C-V9) and the mask inserter is described on the 00 page (G-3). Two things keep it NOT YET: which `Bank512` half a chest's flag is set and tested in (G-4 with N-11: the native writer sets Low, the only used script check reads High), and the record bytes and table argument still unstated (G-3); plus the unplaced Low-half reader `002FAED0` (N-7). |
@@ -186,7 +186,8 @@ and the stale side only needs striking or a pointer).
 
 **What decides it.** Pass 1's MOSTLY rested on two things: eighteen value contradictions with no favoured side, and a
 set of structural gaps. The first is mostly gone: OPUS decided thirteen of the eighteen at the shipping image, FABLE and
-OPUS wrote twelve of them into the pages on 2026-10-02, and only three value items (C-V16 publishers, C-V17 corpus count,
+OPUS wrote all thirteen into the pages on 2026-10-02 (twelve close fully; C-V14's setter count was not re-derived),
+C-V15 turns out to be answered by the verb table, and only three value items (C-V16 publishers, C-V17 corpus count,
 C-V18 owned-function count) are still open, none of which changes what a port computes. The second is mostly unchanged:
 of 36 structural and self-stated gaps none closed outright, four narrowed, and eight turn out to be answered on sibling
 pages that pass 1 did not audit (DOC pointers). The flag-bank core could be written today. The system as a whole could
