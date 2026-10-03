@@ -112,3 +112,14 @@ fable-weather-probability-and-transition-roll	03-World-Area-Field/Weather/weathe
 fable-field-record-table-navimapdata	03-World-Area-Field/Field-Record-Table/field-record-table-navimapdata.md	0031BD80	62	2026-10-03 04:18	PACKED-FABLE
 fable-how-the-engine-chooses-3d-or-flat-movement	06-Movement-And-Navigation/Movement-Mode-Selection/how-the-engine-chooses-3d-or-flat-movement.md	003DD8D0	162	2026-10-03 04:18	PACKED-FABLE
 fable-how-a-character-fades-the-ten-channels	17-Presentation-Rendering/Character-Render-Records/how-a-character-fades-the-ten-channels.md	0042E540	8	2026-10-03 04:18	PACKED-FABLE
+fable-contract-phyre-cluster-header-c3	22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md	001C1A60,001C2230,006305A0,006306E0,00630BE0,00630D20	890	2026-10-03 06:31	PACKED-FABLE
+fable-the-world-tick-and-the-field-frame-c3	00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md	002DF1E0,002EC630,003EB190,00473490,004734C0	328	2026-10-03 06:31	PACKED-FABLE
+fable-the-battle-unit-field-map-c3	04-Actor-Entity/Battle-Unit/the-battle-unit-field-map.md	00239370,0026BE00	160	2026-10-03 06:31	PACKED-FABLE
+fable-contract-per-frame-update-gate-c3	00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md	0028E070,0028E0C0	157	2026-10-03 06:31	PACKED-FABLE
+fable-the-actor-manager-record-field-map-c3	04-Actor-Entity/Actor-Manager-Record/the-actor-manager-record-field-map.md	003E9480,003E94D0	165	2026-10-03 06:31	PACKED-FABLE
+fable-member-registration-and-the-recovered-field-schema-c3	22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/member-registration-and-the-recovered-field-schema.md	0063BBC0,006ABEC0	250	2026-10-03 06:31	PACKED-FABLE
+fable-contract-authored-table-row-lookup-c3	02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md	0019CD40	155	2026-10-03 06:31	PACKED-FABLE
+fable-contract-input-subsystem-c3	15-Input/CONTRACT-input-subsystem.md	00344410	36	2026-10-03 06:31	PACKED-FABLE
+fable-the-record-00329220-builds-c3	04-Actor-Entity/Unit-Display-Record/the-record-00329220-builds.md	0035D5C0	43	2026-10-03 06:31	PACKED-FABLE
+fable-contract-authored-command-ramp-channels-c3	17-Presentation-Rendering/CONTRACT-authored-command-ramp-channels.md	0042DFC0	83	2026-10-03 06:31	PACKED-FABLE
+fable-the-return-value-adapter-family-c3	24-Compiler-And-CRT-Runtime/Generated-Adapters/the-return-value-adapter-family.md	006B2A60	120	2026-10-03 06:31	PACKED-FABLE
