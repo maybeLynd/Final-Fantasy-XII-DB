@@ -1,0 +1,434 @@
+{
+ "page": "23-Third-Party-Libraries/third-party-middleware-inventory.md",
+ "session": "session_01Qb35WU9jkfZsMnRhLhis8N",
+ "mode": "member",
+ "family": "CRI HCA decoder",
+ "rows": [
+  {
+   "fn": "00123870",
+   "text": "returns 1 when the fifth (stack) argument is null; otherwise zeroes the qword there and returns 5 unless dword `02EAE0C8` is positive, 2 unless `ecx` (n) is 1-16, and 7 when `r8` is null or `r9` is below the size S = 0x630*n (only when `edx` is 0) + 0x528*n + 0x200*n + 0x180; it clears S bytes at `r8` (call at `00123870`+0xCD) and lays out a 16-aligned block b: for each i below n a 16-aligned 0x518-byte record stored at qword b`+0x58`+8i, followed when `edx` is 0 by a 0x630-byte area whose result from the call at `00123870`+0x10F goes to the record's qword `+0x508` (a null result makes the call at `00123870`+0x17D on b and returns 7); returns 8 when the layout overruns S and 7 when the remaining bytes are below 0x200*n + 0x60, else stores the free pointer at qword b`+0xe8`, the remaining count at qword b`+0xf0` and n at dword b`+0`, makes the call at `00123870`+0x1B6 on b, stores b at the fifth argument and returns 0",
+   "anchors": [
+    [
+     "001238AA",
+     "cmp"
+    ],
+    [
+     "00123922",
+     "cmp"
+    ],
+    [
+     "0012398E",
+     "mov"
+    ],
+    [
+     "00123A0C",
+     "cmp"
+    ],
+    [
+     "00123A2B",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00123A50",
+   "text": "zeroes the qword at the sixth (stack) argument (a stack slot when null); returns 1 when `rcx` is null, `rdx` is null with `r8` nonzero, or `r9` is null with the fifth (stack) argument nonzero; when `rdx` is null it uses `r9` and the fifth argument as the only source; returns 9 when that length is 0; when the first byte AND 0x7F is not 0x48 it stores `001248F0(src+1, len-1)` + 1 at the qword and returns 0xA; otherwise it clips the two lengths to qword `rcx+0xf0` and calls `00124C20(src, len, header)`; on 1 it copies both sources into the buffer at qword `rcx+0xe8` (calls at `00123A50`+0x117 and `+0x136`, the second only for a non-null `r9`), calls `00124C20` again on the buffer and returns 9 when it is 1 again; any other nonzero result stores `001248F0(src+1, len-1)` + 1 and returns 0xA; a zero result makes the call at `00123A50`+0x1A4 (`rcx`, header), returns its nonzero result, or else stores the header's dword `+0` at the qword and at dword `rcx+0x28` and returns 0",
+   "anchors": [
+    [
+     "00123A87",
+     "mov"
+    ],
+    [
+     "00123ADC",
+     "and"
+    ],
+    [
+     "00123B38",
+     "call"
+    ],
+    [
+     "00123BF4",
+     "call"
+    ],
+    [
+     "00123C06",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00123C20",
+   "text": "zeroes the qword at the sixth (stack) argument (a stack slot when null); returns 1 when `rcx` is null, `rdx` is null with `r8` nonzero, or `r9` is null with the fifth (stack) argument nonzero, and 6 when dword `rcx+0x28` is not positive; when `rdx` is null it uses `r9` and the fifth argument as the only source; returns 9 when that length is 0; when the first source byte is not 0xFF it stores at the qword the index of the next 0xFF byte (the length when there is none) and returns 0xA; otherwise it makes the call at `00123C20`+0xC3 (`rcx`, both sources and lengths, the qword pointer) and returns 9 on 9, 0 on 0, and any other result after storing that same next-0xFF index at the qword",
+   "anchors": [
+    [
+     "00123C4D",
+     "mov"
+    ],
+    [
+     "00123C7B",
+     "cmp"
+    ],
+    [
+     "00123CA7",
+     "cmp"
+    ],
+    [
+     "00123CE3",
+     "call"
+    ],
+    [
+     "00123D13",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00123D40",
+   "text": "reads from the byte buffer at qword `rcx+0xe8`, at bit dword `rcx+0xe4` + 16, a 9-bit big-endian field into dword `rcx+0xd8` and the next 7 bits into dword `rcx+0xdc` (masks from dword `01CBA2E0`[bit AND 7]); for each of the dword `rcx+4` records (qword `rcx+0x58`+8i) it makes the call at `00123D40`+0x103 (buffer, bit, dword `+0x514`, record `+0x400`, &bit) and then, when dword `+0x510` is 2, the call at `00123D40`+0x128 (buffer, bit, record `+0x500`, &bit), else reads dword `rcx+0x40` 6-bit fields into bytes `+0x400`+b onward with b = dword `rcx+0x38` + dword `rcx+0x3c`; it then makes the call at `00123D40`+0x141 on `rcx`, calls `001250C0(record+0x400, record+0x480, dword +0x514, record+0x200)` for each record, stores the bit position at dword `rcx+0xe4` only when it does not exceed dword `rcx+0x30`, increments dword `rcx+0xe0` and returns 0",
+   "anchors": [
+    [
+     "00123DCD",
+     "mov"
+    ],
+    [
+     "00123E0C",
+     "mov"
+    ],
+    [
+     "00123E43",
+     "call"
+    ],
+    [
+     "00123F56",
+     "mov"
+    ],
+    [
+     "00123EC1",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00124010",
+   "text": "when dword `rcx+0xe0` is 1 calls `00123D40(rcx)` first; then makes the call at `00124010`+0x25 on `rcx` and the call at `00124010`+0x34 (`rcx`, `rdx`), returning the first nonzero result of the three; when all succeed it changes dword `rcx+0xe0` from 0xA to 0xB and returns 0",
+   "anchors": [
+    [
+     "0012401A",
+     "cmp"
+    ],
+    [
+     "00124029",
+     "call"
+    ],
+    [
+     "00124035",
+     "call"
+    ],
+    [
+     "00124044",
+     "call"
+    ],
+    [
+     "00124056",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00124070",
+   "text": "zeroes the dword at `r8` (a stack slot when null); returns 6 when dword `rcx+0x28` is not positive and 0 when the state dword `rcx+0xe0` is outside 1-10; with skip = qword `rcx+0xf8` and left = qword `rcx+0x100`: when skip is not positive and left is at least 0x80 it calls `00124010(rcx, rdx)`, subtracts 0x80 from left and stores 0x80 at `r8`; else when left is not positive it sets the state to 0xB; else when skip exceeds 0x480 it raises state 1 to 2, increments the state (0xA becomes 0xB) and subtracts 0x80 from skip; else when skip exceeds 0x100 it calls `00124010(rcx, 0)` and subtracts 0x80 from skip; else it calls `00124010(rcx, rdx)` and subtracts 0x80 from skip when skip is at least 0x80, otherwise takes n = min(0x80, left + skip), and when skip is positive and `rdx` non-null lowers n by skip, moves n dwords of each of the dword `rcx+4` arrays at `rdx` down by skip and zeroes skip, then subtracts n from left and stores n at `r8`; a nonzero `00124010` result is returned at once, a left of 0 or below after a subtraction sets the state to 0xB, and the other paths return 0",
+   "anchors": [
+    [
+     "001240E7",
+     "cmp"
+    ],
+    [
+     "001240F5",
+     "add"
+    ],
+    [
+     "00124140",
+     "cmp"
+    ],
+    [
+     "00124158",
+     "inc"
+    ],
+    [
+     "00124287",
+     "sub"
+    ]
+   ]
+  },
+  {
+   "fn": "001242C0",
+   "text": "zeroes the dword at `rdx` (a stack slot when null); returns 1 when `rcx` is null, else the result of `00124070(rcx, 0, that dword pointer)`",
+   "anchors": [
+    [
+     "001242D0",
+     "mov"
+    ],
+    [
+     "001242DC",
+     "lea"
+    ],
+    [
+     "001242E4",
+     "xor"
+    ],
+    [
+     "001242E6",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "001243C0",
+   "text": "tail-jumps (at `001243C0`+0x8) with `rcx` unchanged, 0 in `edx` and 0x600 in `r8d`",
+   "anchors": [
+    [
+     "001243C2",
+     "mov"
+    ],
+    [
+     "001243C8",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "001243D0",
+   "text": "calls `00125710(rdx, rcx+0x200, rcx+0x400)`, then with T1 = the floats at `01CBA8D0` and T2 = the floats at `01CBA9D0`, for each j below 64 (eight unrolled passes of 8): stores T1[j]*float `rcx+0x500+4j` + float `rcx+4j` at float `r8+4j`; stores T2[j]*float `rcx+0x5FC-4j` - float `rcx+0x100+4j` at float `r8+0x100+4j`; then stores T2[63-j]*float `rcx+0x4FC-4j` at float `rcx+4j`; and finally stores T1[63-j]*float `rcx+0x400+4j` at float `rcx+0x100+4j`",
+   "anchors": [
+    [
+     "00124428",
+     "call"
+    ],
+    [
+     "0012449E",
+     "mulss"
+    ],
+    [
+     "00124625",
+     "subss"
+    ],
+    [
+     "00124756",
+     "movss"
+    ],
+    [
+     "00124804",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "001248F0",
+   "text": "returns the index of the first of the `rdx` bytes at `rcx` whose value AND 0x7F is 0x48, or `rdx` when none is (0 when `rdx` is 0)",
+   "anchors": [
+    [
+     "00124900",
+     "movzx"
+    ],
+    [
+     "00124905",
+     "and"
+    ],
+    [
+     "00124909",
+     "cmp"
+    ],
+    [
+     "00124912",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00124920",
+   "text": "checks dwords of the record at `rcx` in this order and returns 2 unless `+0x18` is 1-16 and `+0x34` does not exceed it, 3 unless `+4` is 1-0x7FFFFF, 7 unless `+0x14` is 8-0xFFFF, 9 when `+0x20` is negative, `+0x1c` exceeds 0x1F or `+0x1c` is below `+0x20`, 4 when `+8` is negative, 5 when `+0x3c` or `+0x44` is negative, `+0x3c` exceeds `+0x44`, or `+8` is positive and `+0x44` is not below it, 6 unless `+0x4c` is 0, 1 or 0x38, and otherwise 0",
+   "anchors": [
+    [
+     "0012492B",
+     "cmp"
+    ],
+    [
+     "00124944",
+     "cmp"
+    ],
+    [
+     "00124953",
+     "cmp"
+    ],
+    [
+     "00124993",
+     "cmp"
+    ],
+    [
+     "001249A3",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "001249D0",
+   "text": "with q = `ecx` / `edx` (signed), when `r9d` is 0 or q is 1 it tail-jumps (at `001249D0`+0x226) to clear 4*`ecx` bytes at the fifth (stack) argument when `ecx` is positive, else returns; otherwise, for each of `edx` groups, it writes q dwords at that array by a switch on q: 2 gives 1,2; 3 gives 1,2,0; 4 gives 1,2,1,2 when `r8d` is 0, else 1,2,0,0; 5 gives 1,2,0,1,2 when `r8d` is at most 2, else 1,2,0,0,0; 6 gives 1,2,0,0,1,2; 7 gives 1,2,0,0,1,2,0; 8 gives 1,2,0,0,1,2,1,2; any other q clears q dwords (call at `001249D0`+0x1AF, skipped when q is not positive); it then clears the `ecx` - q*`edx` dwords after them (call at `001249D0`+0x1F5) when that count is positive",
+   "anchors": [
+    [
+     "001249E7",
+     "idiv"
+    ],
+    [
+     "00124A49",
+     "jmp"
+    ],
+    [
+     "00124AC3",
+     "cmp"
+    ],
+    [
+     "00124BC5",
+     "call"
+    ],
+    [
+     "00124BF6",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00124C20",
+   "text": "clears 0x60 bytes at `r8` (call at `00124C20`+0x21) and sets its dword `+0x48` to 0x400; then, checking in this order, returns 1 when `rdx` is below 8, 2 unless the bytes at `rcx` masked with 0x7F read 0x48434100, 3 unless the big-endian word at `rcx+4` is 0x102-0x200, 1 when `rdx` is below the big-endian word at `rcx+6` (stored at dword `r8+0`), and 2 when the 16-bit result of the call at `00124C20`+0xFB (0, `rcx`, that word) is nonzero or the block at `+8` is not 0x666D7400; it stores big-endian fields of that block in `r8` (byte to `+0x18`, 24 bits to `+4`, 32 bits to `+8`, two words to `+0xc` and `+0x10`), requires a 0x636F6D70 block (a word and eight bytes) or a 0x64656300 block (a word, two bytes and counts derived from four bytes) else returns 2, raises dword `+0x34` to at least 1, reads optional 0x61746800 (skipped), 0x6C6F6F70 (`+0x3c`, `+0x44`, `+0x40`, `+0x48`), 0x63697068 (`+0x4c`), 0x72766100 (float bits to `+0x50`, else 0x3F800000) and 0x636F6D6D (its address + 5 to qword `+0x58`) blocks, and returns 2 when `00124920(r8)` is nonzero, else 0",
+   "anchors": [
+    [
+     "00124C46",
+     "mov"
+    ],
+    [
+     "00124C96",
+     "cmp"
+    ],
+    [
+     "00124D1B",
+     "call"
+    ],
+    [
+     "00124DE9",
+     "cmp"
+    ],
+    [
+     "00125085",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "001250C0",
+   "text": "when `r8d` is positive, for each k below `r8d` rounded up to a multiple of 8, stores float `01CBAE80`[byte `rcx[k]`] times float `01CBAF80`[byte `rdx[k]`] at float `r9[k]`; otherwise returns without writing",
+   "anchors": [
+    [
+     "001250CD",
+     "test"
+    ],
+    [
+     "00125116",
+     "movss"
+    ],
+    [
+     "00125126",
+     "mulss"
+    ],
+    [
+     "00125203",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "00125250",
+   "text": "increments dword `02EAE0D0` and returns its new value, re-read at `00125250`+6",
+   "anchors": [
+    [
+     "00125256",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00125260",
+   "text": "runs 7 passes over 128-float buffers, alternating source and destination between `rcx` and `rdx` (first pass `rcx` to `rdx`); pass p (0-6) has 2^p blocks of 2h floats with h = 0x40 shr p, and for each i below h it writes source[2i] + source[2i+1] at destination[i] and source[2i] - source[2i+1] at destination[h+i] of the block; it then stores `rdx` at the qword `r8` and `rcx` at the qword `r9`",
+   "anchors": [
+    [
+     "001252EE",
+     "addss"
+    ],
+    [
+     "0012530E",
+     "subss"
+    ],
+    [
+     "001253D9",
+     "add"
+    ],
+    [
+     "001253DB",
+     "sar"
+    ],
+    [
+     "001253FC",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00125420",
+   "text": "runs 7 passes alternating source and destination between `rcx` and `rdx` (first pass `rcx` to `rdx`); pass s (0-6) has 0x40 shr s blocks of 2m floats with m = 1 shl s, and for each j below m of a block, with a = source[j], b = source[m+j] and the next floats u and v of the tables at image base + 0x1B9BCC0 - 0x100*s and image base + 0x1B9B5C0 - 0x100*s (advancing across the pass's blocks), it writes a*u - b*v at destination[j] and a*v + b*u at destination[2m-1-j]; it then copies the 0x80 dwords at `rdx` to `r8`",
+   "anchors": [
+    [
+     "001254F4",
+     "mulss"
+    ],
+    [
+     "00125500",
+     "subss"
+    ],
+    [
+     "00125525",
+     "movss"
+    ],
+    [
+     "0012567E",
+     "mov"
+    ],
+    [
+     "001256CB",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00125710",
+   "text": "calls `00125260(rcx, rdx, &a, &b)` and tail-jumps to `00125420(a, b, r8)`",
+   "anchors": [
+    [
+     "00125719",
+     "lea"
+    ],
+    [
+     "00125723",
+     "call"
+    ],
+    [
+     "00125728",
+     "mov"
+    ],
+    [
+     "0012573A",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Callees outside this pack (including those in the sibling pack m1-1) are cited by call site. Doubts: 00124070 (many nested paths; the order of the clauses follows the listing's branch order); 00124C20 (the block tags are given as the hex constants the listing compares, after masking each byte with 0x7F; field-to-offset mapping of the 0x64656300 block summarised, not listed); 00125420 (the two coefficient tables are not resolved by the listing, so they are given as image-base offsets; their base moves back 0x100 bytes per pass as the listing shows); 001250C0 (the loop count is ((r8d-1) shr 3)+1 groups of 8, so it writes past r8d up to the next multiple of 8)."
+}
