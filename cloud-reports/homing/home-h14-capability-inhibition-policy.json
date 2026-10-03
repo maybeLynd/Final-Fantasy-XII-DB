@@ -1,0 +1,11 @@
+{
+ "page": "15-Input/Gameplay-Capability-Policy/capability-inhibition-policy.md",
+ "session": "session_01PfF5HpG9wWe4vsreQxCTLf",
+ "rows": [
+  {"fn": "002E2300", "entered_from": "`002628B0` + 0x105",
+   "text": "tail-jumps at `002E2300` + 0x4 with (0, `ecx`), moving `ecx` into `edx` and zeroing `ecx`",
+   "anchors": [["002E2302", "xor"], ["002E2304", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "002E2300: the entry instruction is mov edx, ecx; the anchors are the xor and the tail jump."
+}
