@@ -1,0 +1,15 @@
+{
+ "page": "00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md",
+ "session": "session_01HfPRM3vgupD1jscEXG8z9Y",
+ "mode": "homing",
+ "rows": [
+  {"fn": "0028E070",
+   "text": "returns at once when qword `0209BE80` is null; otherwise ORs 0x40 into its dword `+0x10f68`, calls `002BDB60(qword 0209BE80 + 0x8fa0)`, reloads the qword and, when it is still non-null, tail-jumps to `002BDCA0(qword 0209BE80 + 0x8fa0, 0)`, else returns",
+   "anchors": [["0028E07E", "je"], ["0028E080", "or"], ["0028E095", "call"], ["0028E0A4", "je"], ["0028E0B3", "jmp"]]},
+  {"fn": "0028E0C0",
+   "text": "returns at once when qword `0209BE80` is null; otherwise ANDs its dword `+0x10f68` with `0xffffffbf` (clearing bit 0x40), calls `002BDC00(qword 0209BE80 + 0x8fa0)`, reloads the qword and, when it is still non-null, tail-jumps to `002BDCA0(qword 0209BE80 + 0x8fa0, 1)`, else returns",
+   "anchors": [["0028E0CE", "je"], ["0028E0D0", "and"], ["0028E0E5", "call"], ["0028E0F4", "je"], ["0028E106", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": ""
+}
