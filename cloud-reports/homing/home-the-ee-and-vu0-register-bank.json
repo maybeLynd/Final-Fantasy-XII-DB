@@ -1,0 +1,17 @@
+{
+ "page": "00-Engine-Core-Runtime/Shared-Transform-Workbench/the-ee-and-vu0-register-bank.md",
+ "session": "session_01DtsGzxAwuV39oMMCAfQd2j",
+ "rows": [
+  {"fn": "003AC870", "entered_from": "`00376470` + 0x82",
+   "text": "stores 1.0 (`01CEBBA8`) to dword `02B3F51C` and byte 0 to `02B3F503`",
+   "anchors": [["003AC878", "movss"], ["003AC880", "mov"]]},
+  {"fn": "006AA200", "entered_from": "`006BA940` + 0x5E",
+   "text": "stores the address `00D7C860` to qword `+0` of `rcx`, then calls `006AA200` + 0x17 with the same `rcx`",
+   "anchors": [["006AA20D", "lea"], ["006AA214", "mov"], ["006AA217", "call"]]},
+  {"fn": "006AA600", "entered_from": "`006AA230` + 0x23",
+   "text": "when qword `+8` of `rcx` is non-null, for each index below dword `+0x10` (unsigned) takes the `0x38`-byte element at qword `+8` + 0x38*i, calls `006AA600` + 0x47 with (element+0x10, pointer to a zeroed dword) and `006AA600` + 0x50 with element+0x10, and stores byte 0 to element `+0x28`; then, when qword `+8` is non-null, calls `006AA600` + 0x7C with (that array, `0x38`, the qword 8 bytes before it, `0016D6A0`) and `006AA600` + 0x85 with the address 8 bytes before the array; then passes qwords `+0x28` and `+0x18` to the same callee (`006AA600` + 0x8F, + 0x98) and zeroes qwords `+8`, `+0x28` and `+0x18`",
+   "anchors": [["006AA632", "imul"], ["006AA655", "mov"], ["006AA67C", "call"], ["006AA698", "call"], ["006AA69D", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "006AA200: other entered-from sites `006BAA40` + 0x60 and `006CE570` + 0x19; the stored 00D7C860 is a lea target the listing does not decode (it reads like a vtable address, not stated). 006AA600: callees at + 0x85, + 0x8F and + 0x98 are the same function; 0016D6A0 is passed as the fourth argument of + 0x7C and is not decoded."
+}
