@@ -1,0 +1,620 @@
+{
+ "page": "23-Third-Party-Libraries/PostEffects-Yebis-PPFX/yebis-ppfx-source-map.md",
+ "mode": "member",
+ "family": "PPFX post-effect library",
+ "session": "session_017DsdqG4U4kGfYmsNf7ryWB",
+ "rows": [
+  {
+   "fn": "007112F0",
+   "text": "when byte `rcx+0` is zero stores 0 at byte `rcx+0xA` and returns 0; otherwise, when dwords `01F3BA80` and `01F3BA90` are both at least 1 (unsigned), passes the string `00D91C78` (\"..\\src\\GPU\\GPUPostEffect.cpp(%d) : Feb 18 2016 PPFX ERROR: \") with line 0x7F84 to the call at `007112F0` + 0x27 and `00D91CC0` to the call at + 0x33, and returns 0x80004005",
+   "anchors": [
+    [
+     "007112F7",
+     "je"
+    ],
+    [
+     "0071130B",
+     "mov"
+    ],
+    [
+     "00711317",
+     "call"
+    ],
+    [
+     "00711328",
+     "mov"
+    ],
+    [
+     "00711332",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00711350",
+   "text": "returns 0 when byte `rcx+0x130` is zero and 1 when byte `+0x139` of qword `rcx+0x118` is nonzero; otherwise calls `00711410` with `rcx`, `edx`: on true it passes `edx` to the call at `00711350` + 0x43 and stores its result, or the dword at (qword `rcx+0x118`)+0xD8 when the result is 0x10000000, at (qword `rcx+0x118`)+0x160 and returns 0; on false, when dwords `01F3BA80` and `01F3BA90` are both at least 1 (unsigned), it passes `00D91610` (the GPUPostEffect.cpp PPFX ERROR format) with line 0x7F37 and then `00D91670` to the calls at + 0x8D and + 0x99, and returns 0x80070057",
+   "anchors": [
+    [
+     "0071136F",
+     "cmp"
+    ],
+    [
+     "00711388",
+     "call"
+    ],
+    [
+     "007113A6",
+     "mov"
+    ],
+    [
+     "007113AC",
+     "mov"
+    ],
+    [
+     "007113EE",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00711410",
+   "text": "returns 0 when byte `rcx+0x130` is zero and 1 when `edx` is -1; otherwise passes `edx` to the call at `00711410` + 0x21 and, with r = qword `rcx+0x118`, returns 1 when byte `r+0x139` is nonzero and the result is 0x10000000, 6 or 0xE, or when that byte is zero and the result is 0x10000000 or all its bits are set in dword `r+0xD8`; else returns 0",
+   "anchors": [
+    [
+     "00711425",
+     "jne"
+    ],
+    [
+     "00711431",
+     "call"
+    ],
+    [
+     "00711450",
+     "cmp"
+    ],
+    [
+     "00711468",
+     "and"
+    ],
+    [
+     "0071146E",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "00711480",
+   "text": "returns -2 when byte `rcx+0x130` is zero; otherwise passes qword `rcx+0x118` to the call at `00711480` + 0x1B and maps its result 0 to 1, 2 to 2, 6 to 3 and anything else to -2",
+   "anchors": [
+    [
+     "0071149B",
+     "call"
+    ],
+    [
+     "007114A4",
+     "cmp"
+    ],
+    [
+     "007114AE",
+     "mov"
+    ],
+    [
+     "007114BB",
+     "mov"
+    ],
+    [
+     "007114C8",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007114F0",
+   "text": "stores 1 at byte `rcx+0x6FD`; with p = (`r8` or `r9` non-null) and f = dword `r8+0x44` (`r9+0xB0` when `r8` is null), it turns `edx` 9 into 0 when p and f <= 0x37 with bit f of `0x80210000100000` set, 3 when p otherwise, 8 when not p and byte `rcx+0x440` is nonzero, else 3; m = the fifth (stack) dword, except that 5 becomes 0 or 2 by the same bit test when p, and 0 (mode 8) or 2 when not p; when p and byte `rcx+0x464` is nonzero, when dwords `01F3BA80` and `01F3BA90` are both at least 1 (unsigned), it logs `00D92198` (GPUPostEffect.cpp PPFX ERROR format) with line 0x8001 and `00D921E0` through the calls at `007114F0` + 0x181 and + 0x18D and returns 0x80004001; otherwise it stores m at `+0x474` and the mode at `+0x470`, stores `r8` at `+0x468` and `r9` at `+0x58` with a, b = the sixth and seventh (stack) floats when p and the mode is not 8, else zeroes both with a = 1.0 (`01CEBBA8`), b = 0; writes (a, b, 0, 0) at `+0x478`, 1.0/a at `+0x480` and -(b/a) at `+0x484`, and returns 0",
+   "anchors": [
+    [
+     "00711551",
+     "bt"
+    ],
+    [
+     "0071164A",
+     "cmp"
+    ],
+    [
+     "007115B7",
+     "movups"
+    ],
+    [
+     "007115DD",
+     "movss"
+    ],
+    [
+     "00711682",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007116A0",
+   "text": "stores 1 at byte `rcx+0x6FD` and looks `r8` up in the tree headed at qword `rcx+0xC8` (left `+0`, right `+0x10`, leaf byte `+0x19`, key qword `+0x20`, value qword `+0x28`), taking the value of the first node whose key is not below `r8` when that key equals it, else null; when null and the same lookup in the tree at qword `rcx+0xB8` finds no node or a zero value, it makes the call at `007116A0` + 0xEA with `rcx`, `r8`, `r9d`, the fifth and sixth (stack) dwords and an out pointer, returning its result if negative and otherwise using the out value; it then calls `007114F0` with `rcx`, `edx`, that value (null when the second tree held a nonzero value), 0 and its seventh (stack) dword and eighth and ninth (stack) floats, returning that result",
+   "anchors": [
+    [
+     "007116CC",
+     "cmp"
+    ],
+    [
+     "00711702",
+     "mov"
+    ],
+    [
+     "00711753",
+     "cmp"
+    ],
+    [
+     "0071178A",
+     "call"
+    ],
+    [
+     "007117C9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00711820",
+   "text": "returns 1 when byte `rcx+0x130` is zero; otherwise stores the float `xmm1` at (qword `rcx+0x118`)+0x184 and `r8d` at (qword `rcx+0x118`)+0x188 and returns 0",
+   "anchors": [
+    [
+     "00711827",
+     "jne"
+    ],
+    [
+     "00711829",
+     "mov"
+    ],
+    [
+     "00711836",
+     "movss"
+    ],
+    [
+     "00711845",
+     "mov"
+    ],
+    [
+     "0071184C",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "00711890",
+   "text": "returns 1 when byte `rcx+0x130` is zero; otherwise passes qword `rcx+0x118` to the call at `00711890` + 0x1E and returns 0",
+   "anchors": [
+    [
+     "0071189B",
+     "jne"
+    ],
+    [
+     "0071189D",
+     "mov"
+    ],
+    [
+     "007118AE",
+     "call"
+    ],
+    [
+     "007118B3",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "00711B50",
+   "text": "makes the call at `00711B50` + 0x32 with `ecx` = 0x1F, `edx`, `r8d`, `r9d` = 0 and stack arguments 0 (fifth), 1.0 (`01CEBBA8`, sixth), 0 (seventh dword), 0 and 0 (eighth and ninth qwords), and returns 0",
+   "anchors": [
+    [
+     "00711B74",
+     "movss"
+    ],
+    [
+     "00711B7A",
+     "lea"
+    ],
+    [
+     "00711B82",
+     "call"
+    ],
+    [
+     "00711B87",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "00711C10",
+   "text": "takes i = dword `rcx+0x4C8`, or dword `+0xA0` of q = qword `rcx+0x108` when that is -1; when i is below dword `q+0x3C` (signed) and the i-th qword of the array at qword `q+0x48` is non-null returns the dword at that entry+0x44, else returns dword `rcx+0x588`",
+   "anchors": [
+    [
+     "00711C23",
+     "jne"
+    ],
+    [
+     "00711C2C",
+     "cmp"
+    ],
+    [
+     "00711C39",
+     "mov"
+    ],
+    [
+     "00711C42",
+     "mov"
+    ],
+    [
+     "00711C47",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00711F50",
+   "text": "keeps the zero-extended `dl`, makes the calls at `00711F50` + 0xD and + 0x15, and tail-jumps at + 0x2B with the first call's result as `rcx` and that byte as `edx`",
+   "anchors": [
+    [
+     "00711F5D",
+     "call"
+    ],
+    [
+     "00711F65",
+     "call"
+    ],
+    [
+     "00711F6A",
+     "movzx"
+    ],
+    [
+     "00711F7B",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00711F90",
+   "text": "keeps the zero-extended `dl`, makes the calls at `00711F90` + 0xD and + 0x15, and tail-jumps at + 0x2B with the first call's result as `rcx` and that byte as `edx`",
+   "anchors": [
+    [
+     "00711F9D",
+     "call"
+    ],
+    [
+     "00711FA5",
+     "call"
+    ],
+    [
+     "00711FAA",
+     "movzx"
+    ],
+    [
+     "00711FBB",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00711FD0",
+   "text": "keeps the zero-extended `dl`, makes the calls at `00711FD0` + 0xD and + 0x15, and tail-jumps at + 0x2B with the first call's result as `rcx` and that byte as `edx`",
+   "anchors": [
+    [
+     "00711FDD",
+     "call"
+    ],
+    [
+     "00711FE5",
+     "call"
+    ],
+    [
+     "00711FEA",
+     "movzx"
+    ],
+    [
+     "00711FFB",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00712010",
+   "text": "keeps the zero-extended `dl`, makes the calls at `00712010` + 0xD and + 0x15, and tail-jumps at + 0x2B with the first call's result as `rcx` and that byte as `edx`",
+   "anchors": [
+    [
+     "0071201D",
+     "call"
+    ],
+    [
+     "00712025",
+     "call"
+    ],
+    [
+     "0071202A",
+     "movzx"
+    ],
+    [
+     "0071203B",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00712050",
+   "text": "keeps the zero-extended `dl`, makes the calls at `00712050` + 0xD and + 0x15, and tail-jumps at + 0x2B with the first call's result as `rcx` and that byte as `edx`",
+   "anchors": [
+    [
+     "0071205D",
+     "call"
+    ],
+    [
+     "00712065",
+     "call"
+    ],
+    [
+     "0071206A",
+     "movzx"
+    ],
+    [
+     "0071207B",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00712090",
+   "text": "keeps the zero-extended `dl`, makes the calls at `00712090` + 0xD and + 0x15, and tail-jumps at + 0x2B with the first call's result as `rcx` and that byte as `edx`",
+   "anchors": [
+    [
+     "0071209D",
+     "call"
+    ],
+    [
+     "007120A5",
+     "call"
+    ],
+    [
+     "007120AA",
+     "movzx"
+    ],
+    [
+     "007120BB",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00712380",
+   "text": "clamps the float at `rdx` to 2000.0 (`00D10FA8`) .. 25000.0 (`00D99814`) and widens it to a double T; x = 1.208 (`00D997B8`) minus 0.012 (`00D99798`) times the square of the call at `00712380` + 0x3E on T when T < 4000.0 (`00D997E0`), x = 2967800/T^2 - 4607000000/T^3 + 99.11/T + 0.244063 when T <= 7000.0 (`00D997E8`), else x = 1901800/T^2 - 2006400000/T^3 + 247.48/T + 0.23704; stores float x at `rcx+0` and float (2.87x - 3x^2 - 0.275) at `rcx+4`, returning `rcx`",
+   "anchors": [
+    [
+     "00712398",
+     "ja"
+    ],
+    [
+     "007123BE",
+     "call"
+    ],
+    [
+     "00712420",
+     "subsd"
+    ],
+    [
+     "0071247C",
+     "movss"
+    ],
+    [
+     "00712498",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "007124B0",
+   "text": "returns 1 in `al` when the sixteen floats at `rcx` are exactly 1.0 (`01CEBBA8`) at `+0`, `+0x14`, `+0x28`, `+0x3C` and 0.0 at every other offset; any other or unordered value returns 0",
+   "anchors": [
+    [
+     "007124BC",
+     "ucomiss"
+    ],
+    [
+     "00712523",
+     "ucomiss"
+    ],
+    [
+     "0071255F",
+     "ucomiss"
+    ],
+    [
+     "007125A2",
+     "mov"
+    ],
+    [
+     "007125A5",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "007125B0",
+   "text": "when the float at `rdx` equals 6500.0 (`00D99810`) stores the absolute value of the float at `r9` (1.0 when it is 0.0) at `rcx+0`, `+4`, `+8` and the dword at the fifth (stack) pointer at `+0xC`; otherwise, after guarded one-time calls on `02EA1700` and `02EA1714`, while byte `01F3CA50` is nonzero it clears it, fills `02EA16C0` by the call at `007125B0` + 0x126, applies `00712380` to `0x45CB2000`, transforms (x, y, 1-x-y) times (float at `r8`)/y by the call at + 0x183 and stores the reciprocals of the three results at `02EA1708`, `02EA170C`, `02EA1710`; it then does the same for `00712380` on `rdx` (call at + 0x208), multiplies the three results by those floats, takes their reciprocals when the sixth (stack) byte is nonzero, passes them with `r9` and the seventh (stack) byte to `00712910`, and when that byte is zero clamps each to 0..1.0 and replaces positive ones by the call at + 0x2E5 with 0.4545455 (`00D9976C`); stores the three plus the dword at the fifth pointer at `rcx`, returning `rcx`",
+   "anchors": [
+    [
+     "007125CB",
+     "ucomiss"
+    ],
+    [
+     "007126CF",
+     "mov"
+    ],
+    [
+     "00712748",
+     "movss"
+    ],
+    [
+     "00712830",
+     "call"
+    ],
+    [
+     "007128F5",
+     "movups"
+    ]
+   ]
+  },
+  {
+   "fn": "00712910",
+   "text": "copies the three floats at `rdx` to `rcx`, writing 0 for any not above 0.0; with s = float at `r8`: if s > 0 it computes L = 0.2126, 0.7152, 0.0722 (`008F6D48`, `008F6D4C`, `008F6D44`) times the three when `r9b` is nonzero, else 0.29891, 0.58661, 0.11448 (`00D9049C`, `00D904B4`, `00D90474`), and unless L is 0.0 scales the three by s/L; if s < 0 it finds the largest component m and its index, starting from the float `02EA1718` (index -1), which a guarded one-time init at `00712910` + 0x14C/+0x188 sets to the lesser of the sign-flipped dword `01F3C514` and dword `01F3C510`, and unless m is 0.0 scales the three by -s/m and stores -s at that index; returns `rcx`",
+   "anchors": [
+    [
+     "00712948",
+     "cmova"
+    ],
+    [
+     "007129A6",
+     "mulss"
+    ],
+    [
+     "007129F3",
+     "divss"
+    ],
+    [
+     "00712AEB",
+     "mulss"
+    ],
+    [
+     "00712B1D",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "00712B40",
+   "text": "for each of the sixteen floats i at `rdx` and `r8`, stores `rdx[i]` + t*(`r8[i]` - `rdx[i]`) at `rcx` (t = the float at `r9`), the products built on the stack first and the sums in a two-pass loop of eight; returns `rcx`",
+   "anchors": [
+    [
+     "00712B93",
+     "subss"
+    ],
+    [
+     "00712BF8",
+     "mulss"
+    ],
+    [
+     "00712D86",
+     "addss"
+    ],
+    [
+     "00712D96",
+     "movss"
+    ],
+    [
+     "00712E0A",
+     "jne"
+    ]
+   ]
+  },
+  {
+   "fn": "00712EA0",
+   "text": "makes the call at `00712EA0` + 0x12 with `rcx` and `rdx`, stores word 0 at result+0x18 and copies the two qwords at `rdx` to result+0x20 and +0x28 (skipped only if result+0x20 is null), returning the result",
+   "anchors": [
+    [
+     "00712EB2",
+     "call"
+    ],
+    [
+     "00712EBC",
+     "mov"
+    ],
+    [
+     "00712ECE",
+     "mov"
+    ],
+    [
+     "00712ED5",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00712EE0",
+   "text": "makes the call at `00712EE0` + 0x12 with `rcx` and `rdx`, stores word 0 at result+0x18 and copies the two qwords at `rdx` to result+0x20 and +0x28 (skipped only if result+0x20 is null), returning the result",
+   "anchors": [
+    [
+     "00712EF2",
+     "call"
+    ],
+    [
+     "00712EFC",
+     "mov"
+    ],
+    [
+     "00712F0E",
+     "mov"
+    ],
+    [
+     "00712F15",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00713630",
+   "text": "fills the seven qwords at `rcx+0x20`..`+0x50` with -1 in a loop, stores -1 at dwords `+0x1C` and `+0x58`, zeroes `+0`..`+0x18`, words `+0x64`, `+0x6C` and dwords `+0x78`, `+0x88`, and stores 0xA0 at `+0x5C`, `0x3E000000` at `+0x60`, 2 at dword `+0x68` and qword `+0x70`, `0x3F400000` at `+0x7C` and `+0x80`, byte 1 at `+0x84` and `0x3F800000` at `+0x8C` and `+0x90`; returns `rcx`",
+   "anchors": [
+    [
+     "00713640",
+     "mov"
+    ],
+    [
+     "0071364F",
+     "jne"
+    ],
+    [
+     "00713683",
+     "mov"
+    ],
+    [
+     "007136B1",
+     "mov"
+    ],
+    [
+     "007136C2",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00713900",
+   "text": "builds on the stack the identity matrix and diag(`xmm1`, `xmm2`, `xmm3`, `0x3F800000`), interpolates them with `00712B40` using a pointer to the sixth (stack) float as t, makes the call at `00713900` + 0xFE with a stack output, the fifth (stack) float in `xmm1`, `xmm2`, `xmm3` and the seventh (stack) byte as fifth argument, passes a stack output, that output and the interpolated matrix to the call at + 0x110, and copies the 64-byte result to `rcx`, returning `rcx`",
+   "anchors": [
+    [
+     "00713927",
+     "movss"
+    ],
+    [
+     "007139C3",
+     "call"
+    ],
+    [
+     "007139FE",
+     "call"
+    ],
+    [
+     "00713A10",
+     "call"
+    ],
+    [
+     "00713A34",
+     "movups"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Six wrappers 00711F50/00711F90/00711FD0/00712010/00712050/00712090 differ only in their tail-jump target (0075A3B0, 0075A3C0, 0075A3D0, 0075A3E0, 0075A3F0, 0075A400); per rule 1 the rows cite the jump by site, so their sentences are identical. 007114F0: the error path is taken whenever a pointer is given and byte +0x464 is nonzero, whatever the mode. 007116A0: when the second tree holds a nonzero value, 007114F0 is still called with r8 = null (the first lookup's result); worth a second look. 00712910: if no component exceeds the initial maximum the final store goes to index -1 (rcx-4); with non-negative components and a -FLT_MAX-like start this should not occur. 00713900: stack-argument mapping assumes rbp = entry rsp - 0x47 (fifth = [rbp+0x6f], sixth = [rbp+0x77], seventh = [rbp+0x7f]); same for 007125B0."
+}
