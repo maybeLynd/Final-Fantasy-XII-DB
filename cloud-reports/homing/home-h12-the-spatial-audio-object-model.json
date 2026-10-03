@@ -1,0 +1,11 @@
+{
+ "page": "18-Audio/the-spatial-audio-object-model.md",
+ "session": "session_016ZjFjnefAbEBqR8eRqGh2C",
+ "rows": [
+  {"fn": "001DBFA0", "entered_from": "`002DF1A0` + 0x2E",
+   "text": "calls (`001DBFA0` + 0x1E) and passes its returned `rax` as `rcx` to the call at (`001DBFA0` + 0x3A), with the incoming arguments shifted one place: incoming `ecx` in `edx`, `edx` in `r8d`, `r8d` in `r9d`, `r9d` as the fifth argument and the incoming fifth (stack) argument as the sixth; it returns that second call's `rax` unchanged",
+   "anchors": [["001DBFBE", "call"], ["001DBFC3", "mov"], ["001DBFD0", "mov"], ["001DBFD6", "mov"], ["001DBFDA", "call"]]}
+ ],
+ "skipped": [],
+ "notes": "001DBFA0: both callees are cited by call site because the host excerpt names neither. The first call receives whatever is in rcx/edx/r8d/r9d at entry (the registers are not changed before it)."
+}
