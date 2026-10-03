@@ -24,7 +24,29 @@ missing pointer). Where an item splits, the verdict names the main part and the 
 
 ## 1. Summary
 
-*(written last; see the end of this commit series)*
+**Pass-1 items, verdicts against the current pages:**
+
+| pass-1 list | items | CLOSED | NARROWED | OPEN | WRONG-IN-PASS-1 |
+|---|---:|---:|---:|---:|---:|
+| §2.1 self-stated gaps S-1..S-20 | 20 | 0 | 0 | 18 | 2 |
+| §2.2 structural gaps G-1..G-16 | 16 | 0 | 4 | 6 | 6 |
+| **pass-1 gaps (§2), total** | **36** | **0** | **4** | **24** | **8** |
+| §3.1 value contradictions C-V1..C-V18 | 18 | 12 | 2 | 3 | 1 |
+| §3.2 stale / banner items C-S1..C-S22 | 22 | 0 | 1 | 21 | 0 |
+| **all pass-1 items** | **76** | **12** | **7** | **48** | **9** |
+
+**OPEN pass-1 items by class (48):** STATIC 15 · RUNTIME 4 · DATA 5 · DOC 24 (all 21 open C-S items are DOC).
+
+**New gaps (11):** STATIC 4 · DOC 6 · DATA 1 · RUNTIME 0.
+
+**Rating: MOSTLY (pass 1: MOSTLY).** The flag-bank core stays READY statically and its value contradictions are now
+settled on the pages; the authored mechanisms keep named structural gaps (G-1, G-2, G-4) and gain one value-level
+disagreement (N-1); treasure stays NOT YET.
+
+**Register.** Every register row tied to this folder is closed: AA-2, AA-3, AA-5, AA-6, AA-7, AA-8, AF-1..AF-6, DS-1,
+DX-1, UQ-138, UQ-139 are ANSWERED or CLOSED (`_index/OPEN-QUESTIONS.md:441`, `:447`, `:609-615`, `:689-694`,
+`:2852-2853`). None of the 48 OPEN items or 11 new gaps is tracked by an open row; AF-4's status cell is itself stale
+(N-3).
 
 ## 2. Pass-1 gaps
 
@@ -136,10 +158,10 @@ and the stale side only needs striking or a pointer).
 |---|---|---|---|---|
 | N-1 | **Two pages disagree on what the bind-time allocators do.** `evmem` says the twin routines `0025A990` / `0025AA30` always reallocate: "Each frees the existing buffer if one is held, then allocates a fresh one from pool 5." The 04 field map says they do nothing when the buffer exists: "twin stubs: skip if `02099DD0`/`02099DD8` is already set, else `00369760` on kinds `0xD`/`0xE`, then the `0036Cxxx` name/alloc sequence and `0036C660`". A port that frees and reallocates on every absent id behaves differently from one that skips when the buffer is held. | STATIC | `evmem:91`; `04-Actor-Entity/Actor-Manager-Record/the-actor-manager-record-field-map.md:273` | none |
 | N-2 | **`00576300` and `00570080` are labelled "event-memory" bodies** ("event-memory record body (caller `00570080`)", "an event-memory sibling", "an event-memory body"), while the pages that read them place them in the Clan Primer / handbook UI: `00576300` is "the **record line builder**" of the handbook index and calls the per-slot gate `00576E30`, and `00570080` is the parent of the "**handbook content page**" `005742D0`. A re-implementer following `evmem` would look for event logic in a UI path. | DOC | `evmem:337`, `:388`, `:392`; `02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/hchk-hctg-hdat-handbook-indexes.md:353-358`; `16-UI/Unlabelled-Panes/the-unlabelled-procedures.md:51-52` | none |
-| N-3 | **The C-V8 / C-V9 / C-V10 corrections left unstruck residue.** Still stated: "a permanent, save-recorded flag is set from an MT19937 draw" (`pfb:799`) and "Two clients that disagree on this roll disagree permanently" (`pfb:802-803`); "reconciling those two call sites covers the entire path by which a random draw becomes irreversible save state" (`pfb:903-905`); the sketch's three-way branch "`< 0x32` … outcome A / `< 0x5F` … outcome B / else … outcome C" (`pfb:840-844`, annotated but not struck). The register row still reads "`002F8060` (record[2], hardcoded 75/25) and `002FAFD0` (record[9], authored threshold, 50/45/5)". All contradict "in neither does the flag depend on the draw" (`pfb:982-984`). | DOC | `pfb:799`, `:802-803`, `:840-844`, `:903-905`; `_index/OPEN-QUESTIONS.md:694` | AF-4 (ANSWERED; status cell stale) |
+| N-3 | **The C-V8 / C-V9 / C-V10 corrections left unstruck residue.** Still stated: "a permanent, save-recorded flag is set from an MT19937 draw" (`pfb:799`) and "Two clients that disagree on this roll disagree permanently" (`pfb:802-803`); "reconciling those two call sites covers the entire path by which a random draw becomes irreversible save state" (`pfb:903-904`); the sketch's three-way branch "`< 0x32` … outcome A / `< 0x5F` … outcome B / else … outcome C" (`pfb:840-844`, annotated but not struck). The register row still reads "`002F8060` (record[2], hardcoded 75/25) and `002FAFD0` (record[9], authored threshold, 50/45/5)". All contradict "in neither does the flag depend on the draw" (`pfb:982-984`). | DOC | `pfb:799`, `:802-803`, `:840-844`, `:903-904`; `_index/OPEN-QUESTIONS.md:694` | AF-4 (ANSWERED; status cell stale) |
 | N-4 | **The counter's kind count disagrees.** `evmem` says "a statistics counter (`00316A50`) with about twenty kinds"; the counter's contract bounds the id at thirty: "`00316A50  cmp cl, 0x1e / jae     update    accepts id < 0x1E   (0..29)`". | DOC | `evmem:182`; `20-Platform-Online-Achievements/CONTRACT-achievement-counters.md:154` | none |
-| N-5 | **"Payload" means two things.** The flag pages say "**The persistent payload is exactly `0x1538` = 5,432 bytes**" and "441 of 5,432 bytes are declared". The 19 field map uses the same base (`002EF2B0`) for a payload that runs far past `0x1538`: it lists an "`unobservedSpan1538` \| `+0x1538`–`+0x2000`" and maps `+0xB404`, which `evmem` itself calls "save payload `+0xB404`". So `0x1538` is the length the reset `memset` clears, not the payload's length; no 14 page says so, and pass 1 built G-13 and C-V7 on the ambiguity. What initialises the bytes past `+0x1537` on a new game (for example the bestiary block) is therefore also not stated on a 14 page; `pfb:1097` says only that `002EF650` clears "the whole save image". | DOC | `pfb:1123`; `contract:99`; `evmem:198`; `19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/the-save-payload-field-map.md:223`, `:1028` | none |
-| N-6 | **The trap mask ring's entry is only partly laid out.** `pfb` gives "a ring of three 12-byte `{fieldId, mask}` entries at `02EC3EA0` (count `02EC3EC8`, write index `02EC3EC4`, rotated `% 3`)": two named fields for twelve bytes. The 00 hub page describes the inserter `002FB430` as writing a `0xC`-stride ring with a count at `+0x28`, a write slot at `+0x24`, a bit set in `+8` and a value merged into `+4`; `02EC3EC4` and `02EC3EC8` are exactly `02EC3EA0 + 0x24` and `+ 0x28` (arithmetic). No page says whether the trap ring is a `002FB430` ring, or which dword the trigger's `bt r15d, i` tests (`pfb:705-706`). | STATIC | `pfb:752-753`, `:705-706`; `00-Engine-Core-Runtime/Shared-State-Accessors/cross-subsystem-accessor-hubs.md:795-801` | none |
+| N-5 | **"Payload" means two things.** The flag pages say "**The persistent payload is exactly `0x1538` = 5,432 bytes**" and "441 of 5,432 bytes are declared". The 19 field map uses the same base (`002EF2B0`) for a payload that runs far past `0x1538`: it lists an "`unobservedSpan1538` \| `+0x1538`–`+0x2000`" and maps `+0xB404`, which `evmem` itself calls "save payload `+0xB404`". So `0x1538` is the length the reset `memset` clears, not the payload's length; no 14 page says so, and pass 1 built G-13 and C-V7 on the ambiguity. What initialises the bytes past `+0x1537` on a new game (for example the bestiary block) is therefore also not stated on a 14 page; `pfb:1097` says only that `002EF650` clears "the whole save image" (`pfb:1101`). | DOC | `pfb:1123`; `contract:99`; `evmem:198`; `19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/the-save-payload-field-map.md:223`, `:1028` | none |
+| N-6 | **The trap mask ring's entry is only partly laid out.** `pfb` gives "a ring of three 12-byte `{fieldId, mask}` entries at `02EC3EA0` (count `02EC3EC8`, write index `02EC3EC4`, rotated `% 3`)": two named fields for twelve bytes. The 00 hub page describes the inserter `002FB430` as writing a `0xC`-stride ring with a count at `+0x28`, a write slot at `+0x24`, a bit set in `+8` and a value merged into `+4`; `02EC3EC4` and `02EC3EC8` are exactly `02EC3EA0 + 0x24` and `+ 0x28` (arithmetic). No page says whether the trap ring is a `002FB430` ring, or which dword the trigger's `bt r15d, i` tests (`pfb:706`). | STATIC | `pfb:752-753`, `:706`; `00-Engine-Core-Runtime/Shared-State-Accessors/cross-subsystem-accessor-hubs.md:795-801` | none |
 | N-7 | **An unlisted `Bank512Low` reader that also draws MT19937.** "`002FAED0` (129 B) is an accessor-hub body - `003148F0`/`0032AA60`/`00379CD0`/`002FB430` x2 plus `02EC3E60`." `0032AA60` is `PersistentFlag_QueryBank512Low` and `00379CD0` the MT19937 thunk, but no 14 page names `002FAED0`; pass 1's caller list for `0032AA60` (trap arming, the `istreasurebattleflag` handler) and the 14 page's §8d intersection (which counts setters only) both miss it. What it does with the flag and the draw is not stated. | STATIC | `00-Engine-Core-Runtime/Shared-State-Accessors/cross-subsystem-accessor-hubs.md:667`; `pfb:749-750` | none |
 | N-8 | **A second "persistent-flag gate" is named outside the folder.** The map-screens page says `00402250` "passes the record to `003DFB50(record, kind, arg5)`, the persistent-flag gate". No 14 page mentions `003DFB50`, so its relation to `0032A8A0` (wrapper, caller, or a separate test) is not stated. | STATIC | `16-UI/Map-Screens/the-map-screens-and-their-shared-map-data.md:1152`; `_index/OPEN-QUESTIONS.md:2872` | UQ-158 (ANSWERED; names the gate, does not place it) |
 | N-9 | **The `Bank512` row of the one-table summary under-reports its writers and readers.** "set by the nearby-field-action trigger in combat, queried by a combat-action function (section 8b)" and, in §8b, non-VM consumers "**CombatAction**" only. The same page documents a second native writer (the chest, `002FAFD0`, `pfb:822`) and a native reader in trap arming (`002FA740` skips a record "whose flag is already set (`PersistentFlag_QueryBank512Low`)", `pfb:749-750`). | DOC | `pfb:370`, `:613`; `pfb:749-750`, `:822` | none |
@@ -147,3 +169,30 @@ and the stale side only needs striking or a pointer).
 | N-11 | **The High half of `Bank512` has script setters with no stated use.** The verb table maps `settreasureflag` → `00352EA0` and `releasetreasureflag` → `00353390`; `pfb` gives the shipped use of `istreasureflag` (26) and `istreasurebattleflag` (none) but not of these two, nor of the `battle` setters, so who sets the High-half bits that 26 script checks read is not stated. This is what G-4 needs. | DATA | `01-Script-VM-Native-Bridge/Verb-Dispatch/scriptvm-verb-table.tsv:1011-1014`; `pfb:370` | none |
 
 **New gaps by class:** STATIC 4 (N-1, N-6, N-7, N-8) · DOC 6 (N-2, N-3, N-4, N-5, N-9, N-10) · DATA 1 (N-11) · RUNTIME 0.
+
+## 4. Rating
+
+**New rating: MOSTLY. Old rating (pass 1): MOSTLY.** Unchanged overall, but the reasons have changed.
+
+| part | pass 1 | pass 2 | what decides it now |
+|---|---|---|---|
+| Flag banks: eleven accessors, bit arithmetic, range guards, gate decode, new-game `memset` + 52-id initial set | READY (static) | **READY (static)** | the value items pass 1 asked a re-implementer to settle (C-V1 to C-V6, C-V11 to C-V13) are decided at the bytes and written into the pages (`byte-verdicts:2-15`; §2.3). What is left is verification, not information: no live observation (S-1, RUNTIME) and six entry points without differential tests (S-2). |
+| Authored threshold schedule | MOSTLY | **MOSTLY** | the format and walk are complete (`pfb:169-217`); the variable it compares against is still pseudo-C over two unlocated globals (G-1). |
+| Event memory at actor bind | MOSTLY | **MOSTLY** | the predicate and shipped list are complete; the "event-memory bodies" gap of pass 1 dissolves (they are handbook UI, G-10), but a new value-level disagreement appears: whether `0025A990` / `0025AA30` reallocate or skip when the buffer is held (N-1). |
+| Traps (`002FA740`, `002F8060`) | MOSTLY | **MOSTLY** | record, arming, trigger body, gather and formulas are stated; the tag-3 table base is now stated (G-7) and the marker helpers are partly homed (G-6). Still missing: the trigger's caller edge and cadence, `002FB560` / `003EB720`, and the ring entry's second dword (N-6). |
+| Treasure (`002FAFD0`) | NOT YET | **NOT YET**, closer | the draw is settled (C-V8, C-V9) and the mask inserter is described on the 00 page (G-3). Two things keep it NOT YET: which `Bank512` half a chest's flag is set and tested in (G-4 with N-11: the native writer sets Low, the only used script check reads High), and the record bytes and table argument still unstated (G-3); plus the unplaced Low-half reader `002FAED0` (N-7). |
+| Bestiary block | MOSTLY | **MOSTLY**, DOC only | base, exclusion list and walk are all stated on 19 / 16 pages (G-12, G-13, S-17, WRONG-IN-PASS-1); `evmem` lacks the pointers, and no 14 page states the block's new-game value (N-5). |
+| Hunts | n/a natively | **n/a natively** | unchanged: authored conventions unread (G-15, DATA). |
+
+**What decides it.** Pass 1's MOSTLY rested on two things: eighteen value contradictions with no favoured side, and a
+set of structural gaps. The first is mostly gone: OPUS decided thirteen of the eighteen at the shipping image, FABLE and
+OPUS wrote twelve of them into the pages on 2026-10-02, and only three value items (C-V16 publishers, C-V17 corpus count,
+C-V18 owned-function count) are still open, none of which changes what a port computes. The second is mostly unchanged:
+of 36 structural and self-stated gaps none closed outright, four narrowed, and eight turn out to be answered on sibling
+pages that pass 1 did not audit (DOC pointers). The flag-bank core could be written today. The system as a whole could
+not, because the schedule's input variable (G-1), the publish-before-reset guarantee (G-2) and the treasure flag half
+(G-4) are structural to the authored mechanisms, and the actor-bind allocator now has two incompatible descriptions
+(N-1). Closing G-1, G-2, G-4 and N-1, all STATIC except G-4's usage census (DATA), would move the system to READY
+for everything except treasure's record residue and the runtime confirmations. Most of the remaining work is DOC: 24 of
+the 48 OPEN items and 6 of the 11 new gaps are stale text or missing pointers that the page owner can close without
+reading the executable.
