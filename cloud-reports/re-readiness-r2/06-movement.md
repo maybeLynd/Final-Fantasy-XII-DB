@@ -24,7 +24,31 @@ for contradictions below rest on one of them. This pass reads those corrections 
 
 ## 1. Summary
 
-*(written last; see the end of the file's history)*
+| | CLOSED | NARROWED | OPEN | WRONG-IN-PASS-1 | total |
+|---|---:|---:|---:|---:|---:|
+| `O-01`–`O-25` page-listed open items | 1 | 7 | 17 | 0 | 25 |
+| `G-01`–`G-19` structural gaps | 1 | 13 | 5 | 0 | 19 |
+| `C-V01`–`C-V43` value-changing contradictions | 39 | 4 | 0 | 0 | 43 |
+| `C-S01`–`C-S30` stale claims, banners, names, counts | 22 | 3 | 5 | 0 | 30 |
+| **all pass-1 gaps** | **63** | **27** | **27** | **0** | **117** |
+
+**New gaps** (§3): **51**, of which **STATIC 37**, **DOC 12**, **DATA 1**, **RUNTIME 1**. Six of them have a related
+register row, and none of those rows tracks the gap itself.
+
+**Rating:** **NOT YET** (pass 1: **NOT YET**). It is now closer. The contradiction list is almost fully settled, but the field-cell
+solver (`G-03`) and the avoidance and recovery bodies (`G-06`) are still structural gaps (§4).
+
+What moved, in one line each:
+- **Contradictions.** 61 of 73 are CLOSED, nearly all by the 2026-10-02 in-place correction sweep. The 4 NARROWED value
+  items (`C-V01`, `C-V13`, `C-V14`, `C-V21`) each keep one stale or unscoped sentence. The open `C-S` items are stale
+  sentences (DOC), except `C-S26`, the start of the workbench block, which is STATIC.
+- **Structural gaps.** Most NARROWED ones are now answered on **another system's page** that this folder does not link (DOC).
+  Examples: the `@FCP` writers of the locomotion rates (`G-08`); `0026DAC0` as the body-weight writer (`G-09`); the
+  coast-down latch contract (`G-12`); the `QWALK` / `PRED` / `AGENTQ` bodies on 00 pages (`G-15`); the world-tick sequence
+  (`G-02`); three of the four weather-bank anchors on 03 pages (`G-01`).
+- **Still open with no new text:** `G-03` (field-cell solver), `G-05` (SD-183's §6 amendments are still unapplied), `G-07`
+  (what the stall counter's cap triggers), `G-14` (`002E5180` as one function), `G-18` (the nav trailer layout), and 17 of
+  the page-listed items, of which `O-01`, `O-05` and `O-16` are RUNTIME.
 
 ## 2. Pass-1 gaps
 
@@ -297,3 +321,42 @@ the sections added since 2026-10-02. Ids `N-01`–`N-25` come from the field, fa
 - N-36: the GR-19 answer lives in the register and in `_index/candidates/gr19-gr11-placement-fable-0930/README.md`. The 13-Rewards page may carry it too; I did not check. LOCO has no pointer to it.
 - N-55: no dated correction settles it. The formula line comes from the EXP-138 model and the interior row from a 2026-10-03 byte read, so I classed it STATIC, not DOC.
 - I did not report the homed-body rows (`LOCO:943`, `POOL:633-646`) that name callees only as `function+offset`. They are access-level notes, and I judged them not to be port-blocking.
+
+## 4. Rating
+
+**NOT YET** (pass 1: NOT YET).
+
+The decisive gaps are the two this pass finds unchanged in substance:
+- **`G-03`, the field-cell solver.** It is the collision path every walking actor on the map takes: `002E54A0` →
+  `003DB140` → `00380C40` → `002327D0` / `0022F9B0`. No page in the tree gives a collision-against-terrain formula or the
+  per-cell bodies (`HSD:516-522`, `:1494`; `SHAPE:205-214`). The new gap `N-12` adds a second, undescribed writer of the
+  placement position (`003DB150`, `3DF:725`) beside "the position is written by one function" (`POOL:95-96`).
+- **`G-06`, avoidance and recovery.** Every body is still listed by role and size only (`LOCO:125-134`, `:158-171`,
+  `:187-191`). `G-07` (the stall cap's effect) is still open, and `N-32`, `N-34`, `N-35` and `N-37` add unstated inputs to
+  the step curve, the mode countdown, the `0x4022` stop distance and the limiter's latch.
+
+`G-01` is no longer structural for **this** folder. Three of its four anchors have bodies on 03 pages
+(`03-World-Area-Field/Weather/weather-probability-and-transition-roll.md:326-327`,
+`03-World-Area-Field/Map-Pack/the-map-ctrl-pack.md:1823`), so what remains is a README pointer plus `0026E8D0`'s own body.
+`G-05` is now a DOC task: the formulas are in `_index/candidates/sd183-steering-modes-0930/README.md:48-125`, but they are
+not on `LOCO` §6.
+
+By part (pass 1's §3 table, re-rated):
+
+| part | pass 1 | now | what decides it |
+|---|---|---|---|
+| Field step (heading/speed → delta) | MOSTLY | **MOSTLY** | The wrap range is settled except the stale `HSD:586` row (`C-V01`), and the time base is settled (`C-V34`). Still open: `+0xF8`'s initial value and how the sentinel is armed (`G-10`), and the pass-through flag's source (`N-11`) |
+| Field collision (world-context path) | NOT YET | **NOT YET** | `G-03` OPEN; `G-04` only narrowed (the `00233050` formula is on a 05 page); `N-12` |
+| Facing, steering modes, slots, integrator | MOSTLY | **MOSTLY** | `C-V04`–`C-V12` and `C-V15` are CLOSED. Still open: the mode-4 counter's decrement and compare (`N-03`, `N-04`), dispatch modes 0 and 3–7 (`N-08`), mode 5's predicates (`N-09`), the initial values of the steering record (`N-17`), and `003A1AD0`'s range (`N-15`) |
+| 3-D / flat selection | MOSTLY | **READY except pointers** | `C-V35`, `C-V36` and `C-V43` are CLOSED. What remains is `N-18`'s gate fields and the register wording of SD-192 (`C-V36` checker note) |
+| Battle locomotion | NOT YET | **NOT YET** | `G-06` and `G-07` are open and `G-05` is unapplied. The rates and speeds (`G-08`) are now sourced on the `@FCP` page, unlinked |
+| Navigation search, follow, portal rule | MOSTLY | **MOSTLY** | `C-V30`, `C-V31` and `C-V33` are CLOSED. New: the tie-break (`N-43`), the goal-hop cost (`N-44`), the `NavPath` initial values (`N-45`); `G-18` is open |
+| Corridor query family | MOSTLY | **MOSTLY** | The leaf bodies exist on 00 pages (`G-15`), but `QWALK`'s polarity is still not stated. `PVAL` and `LQUERY` have no body (`N-39`, `N-40`) |
+| Body pool and separation | MOSTLY | **MOSTLY** | `C-V23`–`C-V29` are all CLOSED. Still open: the extent formula (`G-17`), the cell-bit formula (`N-49`), the push direction (`N-50`), return code 2 (`N-46`) |
+| Animation move and turn | MOSTLY | **MOSTLY** | `C-V37` is CLOSED. Still open: `O-15`, and the curve scale (`N-52`) |
+| Clamps and shape primitives | MOSTLY | **MOSTLY** | `C-V32` is CLOSED. Still open: the ellipse formula (`N-54`), the outcode bits (`N-53`), `CF50`'s edge rule (`N-55`), `O-22` |
+| Weather-indexed field-resource banks | NOT YET | **DOC + one STATIC body** | See `G-01` above |
+
+**What would move the whole system to MOSTLY:** a formula-level page for the field-cell solver and cell lookup (`G-03`,
+`G-04`), and the avoidance, recovery and stall bodies read onto `LOCO` (`G-06`, `G-07`). With those, the rest is a
+pointer-and-strike pass: the 12 DOC new gaps, `G-05`, `G-08`, `G-09`, `G-12`, `G-15`, `G-16`, and the open `C-S` items.
