@@ -1,0 +1,71 @@
+{
+ "page": "23-Third-Party-Libraries/PostEffects-Yebis-PPFX/yebis-ppfx-source-map.md",
+ "mode": "member",
+ "family": "PPFX post-effect library",
+ "session": "session_017DsdqG4U4kGfYmsNf7ryWB",
+ "rows": [
+  {
+   "fn": "00777330",
+   "text": "returns 0 in `al` when the byte `00D9F05E` is zero or the byte at `rcx+0x400` is zero; otherwise returns 1 when the float at `rcx+0x404` times 2.0 (`01CEBC08`) is not equal to 0.0 (unordered counts as not equal) and 0 when it is",
+   "anchors": [
+    [
+     "00777337",
+     "jne"
+    ],
+    [
+     "00777343",
+     "je"
+    ],
+    [
+     "00777350",
+     "mulss"
+    ],
+    [
+     "0077735D",
+     "jne"
+    ],
+    [
+     "00777364",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00777380",
+   "text": "makes the calls at `00777380` + 0x2D, + 0x35 and + 0x3E, takes r14 = qword at (first result)+0x38 and the third result as an output buffer, and calls r14's vtable slot +0x88 with dword (first result)+0xE8 and `rcx+0x1EC`; stores h = float `rcx+0x1E8` times 0.5 (`01CEBB70`) at buffer+0; with `dl` nonzero x = (the call at +0x83 on `rcx`, `dl`) / 0.7853982 (`00915614`) times the float at qword `rcx+0x2F0` + 4*dword `rcx+0x2BC` times 0.8789062 (`00DABDC8`), else x = float `rcx+0x288`, and stores 1.0/x divided by 2.0 (when `dl` is nonzero) or 1.570796 (`008C5F70`) at buffer+4; stores the two floats the call at +0xEE writes to the stack at buffer+8 and +0xC; stores (h, h, a, b) at buffer+0x10, where a and b are 0 unless `r8b` is nonzero, then (byte `rcx+0x400` nonzero ? float `rcx+0x404` times 2.0 : 0) times -0.002 (`00DABE14`) and 0.002 (`009002B0`); when byte `rcx+0x139` is nonzero, with p = float at qword `rcx+0x430` + 0x78 times 0.5 and q = p times 1.5 (`00901B3C`), stores 1.0/(p - q) at buffer+0x28 and minus that times q at +0x2C; finally tail-jumps to r14's vtable slot +0x98 with dword (first result)+0x10C, the buffer and 4",
+   "anchors": [
+    [
+     "007773D9",
+     "call"
+    ],
+    [
+     "007773F2",
+     "movss"
+    ],
+    [
+     "00777469",
+     "movss"
+    ],
+    [
+     "00777502",
+     "movups"
+    ],
+    [
+     "00777583",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [
+  {
+   "fn": "007764C0",
+   "why": "3679-byte body with two table-filling loop families over 15 slots (0x108-byte stride entries at qword +0x4B8), several guarded call paths, three variant dispatch arms and per-slot vtable calls; its paths cannot be stated reliably within 1,200 characters"
+  },
+  {
+   "fn": "00777590",
+   "why": "2023-byte body with two per-element loops (one with a guarded global-state update and clamping branches), several matrix-building calls and a final vtable call; its paths cannot be stated reliably within 1,200 characters"
+  }
+ ],
+ "notes": "00777380: the first-result register (rbp) and r14 come from the calls at +0x2D/+0x3E; the call at +0x35 result is unused. The 1.0/x at buffer+4 is divided by 2.0 only on the dl-nonzero path. 007764C0 and 00777590 were skipped for length and branch density (precision over coverage)."
+}
