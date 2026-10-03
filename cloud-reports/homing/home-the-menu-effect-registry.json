@@ -1,0 +1,29 @@
+{
+ "page": "17-Presentation-Rendering/Effect-File-Formats/the-menu-effect-registry.md",
+ "session": "session_01G1D6BV8reSc8hRtefJLZec",
+ "rows": [
+  {"fn": "002C9F80", "entered_from": "`00565E00` + 0x6DA",
+   "text": "when `rcx` is non-null, searches the signed word `[rcx]` count of 0x20-byte entries at qword `rcx+8` for the first whose dword `+0` equals `edx`, and stores `r8d` to dword `+0xE4` of that entry's qword `+8` when it is non-null; a null `rcx`, a count of 0 or less, or no match returns without a write",
+   "anchors": [["002C9F93", "jle"], ["002C9F95", "cmp"], ["002C9F9C", "add"], ["002C9FAF", "mov"], ["002C9FB9", "mov"]]},
+  {"fn": "002C9FD0", "entered_from": "`00565E00` + 0x69D",
+   "text": "for each of the signed word `[rcx]` count of 0x20-byte entries at qword `rcx+8` (none when the count is 0 or less), stores `edx` to dword `+0xE4` of the entry's qword `+8` when that is non-null",
+   "anchors": [["002C9FD5", "cmp"], ["002C9FE4", "mov"], ["002C9FEE", "mov"], ["002C9FFE", "cmp"]]},
+  {"fn": "00424320", "entered_from": "`003B8260` + 0x227",
+   "text": "returns at once when dword `rcx+0x18` is -1; otherwise calls `00424320` + 0x11(dword `rcx+0x10`) and `00424320` + 0x24(qword `+0xD98` of that result, dword `rcx+0x18`), and tail-jumps to `00424320` + 0x36 with the second result when it is non-null, else returns",
+   "anchors": [["00424329", "cmp"], ["00424331", "call"], ["0042433B", "mov"], ["00424344", "call"], ["00424356", "jmp"]]},
+  {"fn": "00563FC0", "entered_from": "`00565E00` + 0x4F6",
+   "text": "searches the 0x21 four-byte entries at `00D233A0` for the first whose word `+0` equals `ecx` and takes its word `+2` as `k` (0 when none matches); when qword `+0x170+k*8` of qword `0209AC30` is non-null and its byte `+0x7C` has bit 5 (0x20) clear, tail-jumps with it in `rcx` through the conditional jump at `00563FC0` + 0x46; otherwise returns",
+   "anchors": [["00563FD4", "cmp"], ["00563FE8", "movzx"], ["00563FF5", "mov"], ["00564002", "test"], ["00564006", "je"]]},
+  {"fn": "00564A60", "entered_from": "`00565E00` + 0x5A1",
+   "text": "searches the 0x21 four-byte entries at `00D233A0` for the first whose word `+0` equals `ecx` and takes its word `+2` as `k` (0 when none matches); returns 0 when qword `+0x170+k*8` of qword `0209AC30` is null, and otherwise 1 when that object's qword `+0xE0` is non-zero and 0 when it is zero",
+   "anchors": [["00564A74", "cmp"], ["00564A8B", "movzx"], ["00564A9A", "mov"], ["00564AA7", "cmp"], ["00564AAE", "setne"]]},
+  {"fn": "00565190", "entered_from": "`00565E00` + 0x480",
+   "text": "searches the 0x21 four-byte entries at `00D233A0` for the first whose word `+0` equals `ecx` and takes its word `+2` as `k` (0 when none matches); when qword `+0x170+k*8` of qword `0209AC30` is non-null, tail-jumps to `00565190` + 0x47 with it in `rcx` and 1 in `edx`, otherwise returns 0",
+   "anchors": [["005651A4", "cmp"], ["005651B8", "movzx"], ["005651C5", "mov"], ["005651D2", "mov"], ["005651D7", "jmp"]]},
+  {"fn": "005659B0", "entered_from": "`00565E00` + 0x56A",
+   "text": "searches the 0x21 four-byte entries at `00D233A0` for the first whose word `+0` equals `ecx` and takes its word `+2` as `k` (0 when none matches); when qword `+0x170+k*8` of qword `0209AC30` is non-null, tail-jumps with it in `rcx` through the conditional jump at `005659B0` + 0x40, otherwise returns",
+   "anchors": [["005659C4", "cmp"], ["005659D8", "movzx"], ["005659E5", "mov"], ["005659F0", "jne"]]}
+ ],
+ "skipped": [],
+ "notes": "00563FC0 and 005659B0 tail-call through a conditional jump (je / jne straight to the callee entry), so the cited site is a jcc, not a call or jmp. 00D233A0 is a 0x21-entry word-pair lookup table referenced by lea, far from these bodies (not trailing data); FABLE should confirm it is acceptable to name it. 002C9F80: the no-match path returns eax = the count, the null/empty paths 0; the row does not state a return value since the callers' use is not shown. 00424320: the second `cmp ebx, -1` after the first call is redundant (ebx is preserved) and is folded into the first guard."
+}
