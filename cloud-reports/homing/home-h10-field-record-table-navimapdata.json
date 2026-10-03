@@ -1,0 +1,11 @@
+{
+ "page": "03-World-Area-Field/Field-Record-Table/field-record-table-navimapdata.md",
+ "session": "session_017yNt9L5rrbK5hdpiNRA3BS",
+ "rows": [
+  {"fn": "003C9900", "entered_from": "`00255330` + 0x41",
+   "text": "returns without action when qword `02B47740` is null; otherwise calls `002544B0`, then, when qword `02B47740` (re-read) is non-null, sets bit `0x10000` of its dword `+0x40` to whether that call returned 1 (clearing it first), and in both cases tail-jumps (`003C9900` + 0x38)",
+   "anchors": [["003C990E", "call"], ["003C991F", "sete"], ["003C9927", "and"], ["003C9931", "or"], ["003C9938", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "003C9900: `002544B0` is cited by address because the host excerpt names it (`002544B0()`); the tail-jump callee is not named in this excerpt, so it is cited by site."
+}
