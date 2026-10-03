@@ -1,0 +1,20 @@
+{
+ "page": "17-Presentation-Rendering/Graphics-Thread-Handshake/the-shared-command-state-word.md",
+ "session": "session_01PfF5HpG9wWe4vsreQxCTLf",
+ "rows": [
+  {"fn": "0018D5F0", "entered_from": "`00214C30` + 0x36",
+   "text": "copies byte `[rcx+0x110]` to byte `[rdx]` and dwords `[rcx+0x114]`, `[rcx+0x118]`, `[rcx+0x11C]` and `[rcx+0x120]` to dwords `[rdx+4]`, `[rdx+8]`, `[rdx+0xC]` and `[rdx+0x10]`, and returns `rdx`",
+   "anchors": [["0018D5F7", "mov"], ["0018D5FF", "mov"], ["0018D611", "mov"], ["0018D61A", "mov"], ["0018D61D", "mov"]]},
+  {"fn": "001C53B0", "entered_from": "`00214C30` + 0x20",
+   "text": "returns 1 in `al` when byte `01F81280` is non-zero and byte `01F81281` is zero, and 0 otherwise",
+   "anchors": [["001C53B7", "je"], ["001C53B9", "cmp"], ["001C53C2", "mov"], ["001C53C5", "xor"]]},
+  {"fn": "001C53D0", "entered_from": "`00214C30` + 0x6A",
+   "text": "returns 1 in `al` when byte `01F81281` is non-zero and byte `01F81280` is zero, and 0 otherwise",
+   "anchors": [["001C53D7", "je"], ["001C53D9", "cmp"], ["001C53E2", "mov"], ["001C53E5", "xor"]]},
+  {"fn": "0036CAD0", "entered_from": "`00251E00` + 0x5D",
+   "text": "returns the result of the call at `0036CAD0` + 0x1C with (dword `022D89BC`, `rcx`, `edx`, 0, and 0 as the fifth (stack) argument)",
+   "anchors": [["0036CAD7", "mov"], ["0036CAE6", "mov"], ["0036CAEC", "call"]]}
+ ],
+ "skipped": [],
+ "notes": ""
+}
