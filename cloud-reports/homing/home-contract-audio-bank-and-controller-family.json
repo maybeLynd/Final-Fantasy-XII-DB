@@ -1,0 +1,11 @@
+{
+ "page": "18-Audio/Audio-Bank-And-Controller-Family/CONTRACT-audio-bank-and-controller-family.md",
+ "session": "session_01A1Qvgw5xe7BnV34LPHQcLH",
+ "rows": [
+  {"fn": "00221870", "entered_from": "`00218260` + 0xF",
+   "text": "stores `009078B0` at qword `[rcx]`; then walks the node chain from qword `rcx+8` through each node's qword `+0` until it returns to the address `rcx+8`, reading each node's successor before calling vtable slot `+0x18` of the object at `rcx+0x18` with (that object, the node, `0x18`)",
+   "anchors": [["00221889", "lea"], ["00221890", "mov"], ["0022189A", "cmp"], ["002218A3", "mov"], ["002218B4", "call"]]}
+ ],
+ "skipped": [],
+ "notes": "00221870: `009078B0` is the AudioBank vtable the host table names. Also entered by jmp from `00222700` + 0x2F, `00222CF0` + 0x3B, `00223730` + 0x4E, `00224C30` + 0xA and `002251A0` + 0xA. Return value not stated (rax is the last vtable call's or the stored vtable address)."
+}
