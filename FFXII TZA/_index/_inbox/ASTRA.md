@@ -1,3 +1,33 @@
+## SOL in ASTRA — uq147-relation-reset-effects publication package, 2026-10-03
+
+Full L1+L2 plus accepted deployed M0-M5 goal ACTIVE/NOT_MET. Current supported
+board checked epoch4 revision51214; publication task ASTRA-PUBLISH-UQ147-RELATION-RESET-EFFECTS-1003.
+Scientific evidence is prepared; current supported task/terminal receipts govern
+exact commit/release status. Producer validity is not independent acceptance.
+
+Checkpoint99 SOL in ASTRA. FullL1+L2 and independentlyaccepted deployedM0-M5 goalACTIVE/NOT_MET. Native relation-invariant86cdcde102503c7988c8b95202a629c36021275a verified55exactpaths/nativepublisherCOMPLETE/released; SPEC51188/OPUS51189/FABLE51191 routedonce. Acceptancepending; no naturalKO/lifetime/wholeUQ147closure.
+Next MethodA reset-vs-linkedrelease producer5b616396/currentresult01, sourceccf583cf/qualifierd1718ca9 original78B512C80+15B512EE0/no covering.pdata entries. Actualsharedreviewedcaptureadapter5fcc6484/validator7c4ea9f6; three source-recordcontrols plusactualCLI failedprerequisite exit1/specificmarker/noresult withmatchingpositive verifiedinfreeze. Inline reset512EE0 onlyflags/headtail/count; no pool/globalcount release. Linkedclear512C80 traverseshead/next fixed32pool, clearslowoccupancy, decrementscachedDL oncepernode, storesglobalcountonceatendthenresetsowner. EmptyheadFF skipscounterread/write. Neither clearsDWORD IDs/node links; highflags preserved. Validfiniteacyclic/disjoint/consistentindices/nointerference; cachedwriteordering isnotatomic. Resetcannotreplace releaseforliveownedrows; no naturalfaultycaller/init/reuse inference. Frozen24members982c3630 integrityonly; independentreview/canonicalconsumptionpending, no native/gameexecution. Whole formerly-runtime rowsnewlyclosed0; exactlocal questions nowanswerablewithoutlive.
+Returned target-fixupACCEPT342644f78 andcaller-boundarycorrectionACCEPT76143cef7 read. ORACLE78271194d trueactionrowbase1F83530/original20E600/EAbeforevalue controls vsoldimagebyte89 falsePASS areexternalMethodB evidence, notASTRAsamples orindependentacceptance. ExistingOPUScanonicalcoverage corrections supplemented51171; independentSPECrepair51172 pending. Oldrawcases/mutations preserved, no broadnativecampaignrerun.
+Next afterresetdelivery: once-onlySPEC review and existingcacheconsumer supplement; inspect actualreset/releasecallers andinitialization/order fromretainedcode before assumingnaturallifetime. RemainingP3READY UQ146 processformatterbuffer andPC1overridewritewatch remainexplicit, not forcedMethodC bylabel. No unchangedmenuattempt; spentbudget/extensionunapproved,EXP127INVALID/crashunknown,K14acceptedclosed. Existingparent ownswork; peerpages/processes untouched. Allownfinitescience/publishers completewhenreceipted, noPC/game/attach/native/emulator/save/config/referencewrites. Currentguardepoch4healthy; currentboard/printedSHA/terminalreceipts govern, nooldoperationreplay/restore/reap. GoalACTIVE/NOT_MET.
+
+Class20/SP1 delivery1cf5316d0, remap/render1f6569546, selector exclusions7f625ac43
+and title routing0fcf9349e are committed/exact payload verified and their
+publication holds released. Existing independent routes are unblocked.
+Conditional override-domain30754ad4b is also committed/verified/released;
+its review and consumption remain pending, separately from the current packet.
+No self-acceptance. Heading supplement8969fe745 was SPEC acceptedcd86f404d and
+OPUS consumedc4eb91ad3. SP1 repair1c1dfec separately ACCEPTED.
+WholeOV42/21/29 remain OPEN. Four scoped historical runtime needs have prior
+source elimination; current packet scope above. No extra native/live credit.
+No FF12/PC/input/instrument/save/config/reference writes. EXP127 INVALID; parked
+menu allowance remains spent/unapproved. Next original-source work and remaining
+prepared deliveries follow current board, not an unchecked export.
+User resource preference: close only our shells/terminals/helpers when done.
+Completed helpers are terminal; no PC/runtime session retained. Use current
+task/handle evidence to distinguish a live publisher from finished delivery.
+Failed CIM inventory and unavailable optional psutil do not establish absence
+of other processes; do not terminate peers by process name.
+
 ## SOL in ASTRA — uq147-native-relation-invariant publication package, 2026-10-03
 
 Full L1+L2 plus accepted deployed M0-M5 goal ACTIVE/NOT_MET. Current supported
@@ -11577,10 +11607,10 @@ PC OFF; no live process/intervention, save/config/reference changes/restoration 
 Player version: the grid-code finding is preserved. Publishing it is waiting for
 the shared task list to be recovered so recent teammates' work is not overwritten.
 
-<!-- TEAM-CURRENT:begin agent=ASTRA board_rev=51185 epoch=4 queue_sha=58a316a02be38299 -->
-> generated 2026-10-03T15:06:07+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=ASTRA board_rev=51215 epoch=4 queue_sha=e36550f50f72a00d -->
+> generated 2026-10-03T15:13:59+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: ASTRA-OV42-GAUGE-CALLBACK-BINDING-1002, ASTRA-OV42-REGISTER-EVENT0-CLOSURE-1003, ASTRA-PUBLISH-UQ147-NATIVE-RELATION-INVARIANT-1003, DATA-REQ-ASTRA-SD194-RUNTIME-1001, FABLE-REQ-ASTRA-OV10-OV42-REACHABILITY, FABLE-REQ-ASTRA-OV21-BANK-REACHABILITY, FABLE-REQ-ASTRA-RT-REMAINDERS-PROBES-0929, FABLE-REQ-ASTRA-UQ147-KO-SUMMONER-DURING-A-SUMMON, FRONTIER-REQ-ASTRA-WORKFLOW-INDEPENDENT-VERIFY
+> ACTIVE: ASTRA-OV42-GAUGE-CALLBACK-BINDING-1002, ASTRA-OV42-REGISTER-EVENT0-CLOSURE-1003, ASTRA-PUBLISH-UQ147-RELATION-RESET-EFFECTS-1003, DATA-REQ-ASTRA-SD194-RUNTIME-1001, FABLE-REQ-ASTRA-OV10-OV42-REACHABILITY, FABLE-REQ-ASTRA-OV21-BANK-REACHABILITY, FABLE-REQ-ASTRA-RT-REMAINDERS-PROBES-0929, FABLE-REQ-ASTRA-UQ147-KO-SUMMONER-DURING-A-SUMMON, FRONTIER-REQ-ASTRA-WORKFLOW-INDEPENDENT-VERIFY
 > READY addressed to you: P3 FABLE-REQ-ASTRA-PC1-OVERRIDE-DWORD-WRITE-WATCH, P3 FABLE-REQ-ASTRA-UQ146-IN-PROCESS-FORMATTER-READ
 > READY pool: 0 | BLOCKED: 28
 <!-- TEAM-CURRENT:end -->

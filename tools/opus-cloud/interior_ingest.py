@@ -24,6 +24,27 @@ QUEUE = os.path.normpath(os.path.join(cl.HERE, "..", "queue"))
 ADDR = re.compile(r"\b([0-9A-F]{8})\b")
 
 
+def own_vda(vda, page, rows):
+    """REVIEW entries of verify_doc_addresses --all for `page` whose flagged addresses appear in this record's rows."""
+    named = set()
+    for r in rows:
+        named.add("%08X" % int(r["fn"], 16))
+        named |= set(ADDR.findall(r["text"]))
+    lines = vda.splitlines()
+    n = 0
+    for i, l in enumerate(lines):
+        if not (l.startswith("REVIEW") and page.replace("/", "\\") in l):
+            continue
+        flagged = set()
+        for x in lines[i + 1:i + 6]:
+            if x.startswith("REVIEW") or not x.startswith(" "):
+                break
+            flagged |= set(ADDR.findall(x))
+        if not flagged or flagged & named:
+            n += 1
+    return n
+
+
 def own_disagreements(cons, page, rows):
     """check_consistency lines naming `page` under an address the rows name (fn or any address in the text)."""
     named = set()
@@ -329,7 +350,9 @@ def apply(rec, allow):
         # Narrowed again (2026-10-02, OPUS): only disagreements over an address this record's rows name - a stale
         # count in another lane's line on the same page (FABLE's 003A1DB0 "16 callers") is not this record's.
         "consistency": own_disagreements(cons, page, cfg["rows"]),
-        "verify_doc_addresses": sum(1 for l in vda.splitlines() if l.startswith("REVIEW") and page.replace("/", "\\") in l),
+        # Narrowed (2026-10-03, OPUS): only a REVIEW whose flagged .text addresses this record's rows name. A page's
+        # existing, legitimate jump-table citation (phyre-to-bullet's 006A3DC0, line 662) blocked every new record.
+        "verify_doc_addresses": own_vda(vda, page, cfg["rows"]),
         # Pass-22 neighbours preview (FABLE's condition 3, 2026-10-02): new UNACCOUNTED NEIGHBOUR hits this page gains
         # against HEAD. The full check_publish_neighbours.py still runs once per batch before publishing.
         "neighbours_new": sum(1 for l in run([sys.executable, "-B", os.path.join(cl.HERE, "..", "nb_page.py"), page],

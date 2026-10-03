@@ -1,0 +1,27 @@
+{
+ "page": "19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/the-save-payload-field-map.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01A1Qvgw5xe7BnV34LPHQcLH",
+ "report": "home-the-save-payload-field-map.json",
+ "rows": [
+  {
+   "fn": "001B00E0",
+   "entered_from": "`00180E50` + 0x10",
+   "text": "zeroes qwords `rcx+0x2108` and `rcx+0x2110` and returns 0",
+   "anchors": [
+    [
+     "001B00E2",
+     "mov"
+    ],
+    [
+     "001B00E9",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

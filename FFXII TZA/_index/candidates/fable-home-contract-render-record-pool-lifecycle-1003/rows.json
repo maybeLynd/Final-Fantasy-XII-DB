@@ -1,0 +1,61 @@
+{
+ "page": "17-Presentation-Rendering/CONTRACT-render-record-pool-lifecycle.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01CVpm9YipL29BZcSs2yiXLK",
+ "report": "home-contract-render-record-pool-lifecycle.json",
+ "rows": [
+  {
+   "fn": "00370890",
+   "entered_from": "`0046E300` + 0x39",
+   "text": "when `rdx` is non-null and dword `rdx+0x10` equals dword `rcx+4`, sets it to -1 and, for each of the signed word `rdx+0x8a` word indices `j` at `B` + signed word `rdx+0x88`*0x290, `B` = `0020E600(dword rdx+0x84)`, when `0020E600` of dword `+0x278` of record `B` + `j`*0x290 is non-null stores `00370890` + 0x9F(0) there and -1 at word `+0x27c`; then stores -1 at dword `rcx+8` and word `+0x14`, calls `00370890` + 0xE5(`P`+0x1f0), `P` = `0020E600(dword rcx+0x84)`, and returns if `C` = `0020E600(dword rcx+0xa0)` is null; else for each index read likewise from `rcx`, clears bits `0x2` and `0x8` of word `+0x280` of record `R` = `P` + index*0x290 and, when that call is again non-null, with `E` = `C` + 0x30 + signed word `R+0x27e`*0x4c, copies word `E+0x20` to `R+0x270`, -1 to word `+0x276`, calls `00370890` + 0x1A4(`R`+0x1f0) and, in three walks each begun with bit `0x2` of word `R+0x280` clear, writes along the chain `R`, `0020E600(dword +0x278)`, ... floats `E+0x34..+0x3c` to `+0x190..+0x198`, `E+0x28..+0x30` to `+0x1b0..+0x1b8` and `E+0x40` to `+0x1d0`, with 1.0 at `+0x19c`, `+0x1bc` and `+0x1d4..+0x1dc`; then, if still non-null, calls `00370890` + 0x2CA, + 0x2DE and + 0x2E6 with `rcx`",
+   "anchors": [
+    [
+     "003708D4",
+     "mov"
+    ],
+    [
+     "00370934",
+     "mov"
+    ],
+    [
+     "003709EE",
+     "and"
+    ],
+    [
+     "00370A55",
+     "movss"
+    ],
+    [
+     "00370B5A",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00370BA0",
+   "entered_from": "`0046E370` + 0x39",
+   "text": "tail-jumps to `00370BA0` + 0x7 with `rcx` unchanged when dword `rcx+0x9c` is 2, and returns without other work otherwise",
+   "anchors": [
+    [
+     "00370BA7",
+     "je"
+    ],
+    [
+     "00370BAD",
+     "ret"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "00370890",
+   "was": "when `rdx` is non-null and dword `rdx+0x10` equals dword `rcx+4`, sets it to -1 and, for each of the signed word `rdx+0x8a` word indices `j` at `B` + signed word `rdx+0x88`*0x290, `B` = `0020E600(dword rdx+0x84)`, when `0020E600` of dword `+0x278` of record `B` + `j`*0x290 is non-null stores `00370890` + 0x9F(0) there and -1 at word `+0x27c`; then stores -1 at dword `rcx+8` and word `+0x14`, calls `00370890` + 0xE5(`P`+0x1f0), `P` = `0020E600(dword rcx+0x84)`, and returns if `C` = `0020E600(dword rcx+0xa0)` is null; else for each index read likewise from `rcx`, clears bits `0x2` and `0x8` of word `+0x280` of record `R` = `P` + index*0x290 and, when that call is again non-null, with `E` = `C` + 0x30 + signed word `R+0x27e`*0x4c, copies word `E+0x20` to `R+0x270`, stores -1 at word `+0x276`, calls `00370890` + 0x1A4(`R`+0x1f0) and, while bit `0x2` of word `R+0x280` is clear, writes along the chain `R`, `0020E600(dword +0x278)`, ... floats `E+0x34..+0x3c` to `+0x190..+0x198`, `E+0x28..+0x30` to `+0x1b0..+0x1b8` and `E+0x40` to `+0x1d0`, with `0x3f800000` at `+0x19c`, `+0x1bc` and `+0x1d4..+0x1dc`; then, if it is still non-null, calls `00370890` + 0x2CA, + 0x2DE and + 0x2E6 with `rcx`",
+   "now": "when `rdx` is non-null and dword `rdx+0x10` equals dword `rcx+4`, sets it to -1 and, for each of the signed word `rdx+0x8a` word indices `j` at `B` + signed word `rdx+0x88`*0x290, `B` = `0020E600(dword rdx+0x84)`, when `0020E600` of dword `+0x278` of record `B` + `j`*0x290 is non-null stores `00370890` + 0x9F(0) there and -1 at word `+0x27c`; then stores -1 at dword `rcx+8` and word `+0x14`, calls `00370890` + 0xE5(`P`+0x1f0), `P` = `0020E600(dword rcx+0x84)`, and returns if `C` = `0020E600(dword rcx+0xa0)` is null; else for each index read likewise from `rcx`, clears bits `0x2` and `0x8` of word `+0x280` of record `R` = `P` + index*0x290 and, when that call is again non-null, with `E` = `C` + 0x30 + signed word `R+0x27e`*0x4c, copies word `E+0x20` to `R+0x270`, -1 to word `+0x276`, calls `00370890` + 0x1A4(`R`+0x1f0) and, in three walks each begun with bit `0x2` of word `R+0x280` clear, writes along the chain `R`, `0020E600(dword +0x278)`, ... floats `E+0x34..+0x3c` to `+0x190..+0x198`, `E+0x28..+0x30` to `+0x1b0..+0x1b8` and `E+0x40` to `+0x1d0`, with 1.0 at `+0x19c`, `+0x1bc` and `+0x1d4..+0x1dc`; then, if still non-null, calls `00370890` + 0x2CA, + 0x2DE and + 0x2E6 with `rcx`",
+   "why": "`00370890` + 0x1A9, + 0x1F8 and + 0x247: `test byte [rbx+0x280], 2` (rbx = R) is a guard before each of the three chain walks; each walk loops on the returned pointer and never re-tests the bit, so it is not a loop condition"
+  }
+ ]
+}

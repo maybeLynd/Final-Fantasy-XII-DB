@@ -447,7 +447,7 @@ boundary crossings).
 | cell recompute | `0046AD20` (638 B) | the position→cell worker: caches the last position in the `02CA60xx` state block, `003A1D30` + `00861F02` float helpers, hysteresis compare, refreshes the cell mask | `0046AD3E` |
 | deferred register | `002E6330` (117 B) | the driver's tail: same class gates plus `+9` bit 6, `002E9FE0`, flag byte `00263FB0` == 1 → context `+0x151` bit 7 via `00264EA0`, then `+0x138` non-null + `+0x14E` set → tail-appends the record to the ~~`02AC7CC8`/`02AC7CD0`~~ `02B57CC8`/`02B57CD0` list via `003DB0D0` *(corrected 2026-10-02, OPUS: the `02AC7Cxx` pair has no reference; `02B57CC8` / `02B57CD0` are used by `003DAA20`, `003DAE30`, `003DB0D0`)* | `002E635A` |
 | list append | `003DB0D0` (73 B) | intrusive single-link append — node `rcx+0x30`, link at `+0xA0`, head ~~`02AC7CC8`~~ `02B57CC8` / tail ~~`02AC7CD0`~~ `02B57CD0` *(corrected 2026-10-02, OPUS: the same references as the row above)* | `003DB106` |
-| flag probes | `00263FB0` (8 B), `00264EA0` (24 B) | the `0209BDA3` flag-byte getter, and context `+0x151` bit-7 extractor | `00263FB0` / `00264EB3` |
+| flag probes | `00263FB0` (8 B), `00264EA0` (24 B) | the ~~`0209BDA3`~~ `02099DA3` flag-byte getter *(corrected 2026-10-03, SWE2-EC7, record `swe2ec7-corr-02099da3-typo-1003`: `00263FB0 movsx eax, byte ptr [rip+0x1E35DEC]` reads `0x263FB7 + 0x1E35DEC` = `02099DA3`, MirrorBlockBytes02099DA0 +0x03)*, and context `+0x151` bit-7 extractor | `00263FB0` / `00264EB3` |
 
 `002E45E0`/`002E4380`/`002E5610`/`002EA7F0`/`002E9FE0`/`003B7730`/`003A1D30`/`00861F02`/`00808C40`
 are shared callees already bound in §3–§5 — deliberately not census members.

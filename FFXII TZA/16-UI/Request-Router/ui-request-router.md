@@ -999,3 +999,20 @@ Shared callees outside the census: none.
 |---|---|---|---|---|
 | `002D5060` | 67 B | `00290740` + 0x1A | calls `002D5060` + 0x2A with dword `01E0C1D8` (0x200 in the image) halved in `ecx`, dword `01E0C1DC` (0x1C0 in the image) halved in both `edx` and `r9d`, and 1 in `r8d`, each halving a signed division by 2 that rounds toward zero (`cdq`, `sub`, `sar`); then calls `002D5060` + 0x35 with that result in `rcx` and returns the same result in `rax` | Interior anchor `002D5075`; Interior anchor `002D5086`; Interior anchor `002D508A`; Interior anchor `002D5095`; Interior anchor `002D509A` |
 | `002F8B90` | 25 B | `00309E40` + 0x18 | returns in `xmm0` the smaller of 4.0 (`01CEBC70`) and `xmm0` plus `xmm1` times 0.5 (`01CEBB70`), computed by `minss` with 4.0 as the first operand and the sum as the second, so a NaN sum is returned as is | Interior anchor `002F8B98`; Interior anchor `002F8B9C`; Interior anchor `002F8BA4` |
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-03, wave h5, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../../_index/candidates/fable-home-ui-request-router-h5-1003/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `002899A0` | 107 B | `002D5060` + 0x2A | builds a local record of dword 0 at `+0`, sign-extended `ecx` at qword `+8` and sign-extended `edx` at qword `+0x10`, calls `002899A0` + 0x41(`0xd0`, the address `0028B860`, address of that record), then copies bit 0 of `r8d` into bit `0x2` of dword `+0xc4` of the returned object (AND with `0xfffffffd`, then OR of (`r8d` AND 1)*2); the frame carries a stack cookie from qword `01F44830` checked through `002899A0` + 0x60 | Interior anchor `002899BB`; Interior anchor `002899D9`; Interior anchor `002899E1`; Interior anchor `002899EB`; Interior anchor `002899F2` |
+
+## Homed bodies: functions reached only indirectly whose callees this page cites (FABLE, 2026-10-03, F homing)
+
+*No page cited these functions and none of their callers is documented: they are reached by table or pointer dispatch or through undocumented callers. Each one calls something this page documents, which the sentence names. Each sentence states what the body does (access and representation, not purpose); the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's F homing pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-ui-request-router-homing-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `002E1660` | 33 B | calls `0028F7C0()` and returns 1 when its result minus 1 is at most 1 (unsigned), that is when it returns 1 or 2, and 0 otherwise | Interior anchor `002E1668`; Interior anchor `002E166D`; Interior anchor `002E1676` |
+| `002E2320` | 20 B | calls `0028F5F0()` and tail-jumps to `002E0E30` with that result in `ecx` | Interior anchor `002E2324`; Interior anchor `002E2329`; Interior anchor `002E232F` |

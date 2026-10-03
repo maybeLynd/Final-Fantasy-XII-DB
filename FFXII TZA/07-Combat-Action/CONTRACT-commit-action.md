@@ -319,9 +319,7 @@ this contract should not have to find them from the experiment side only.
 
 §13 states its own boundary: *"**What did not run:** anything inside those nine, and no caller."*
 [`EXP-091`](../_experiments/EXP-091-commit-callees-exec.md) (SWE2-ORACLE, 2026-09-17, method B)
-ran exactly those insides — every scripted callee plus its bounded transitive closure, ~54 shipped
-bodies, then `0030F760` re-driven end to end with the real callees wired in. **85/85 cases, 10/10
-byte-level mutants detected, stable across two processes.** §13's boundary sentence is superseded
+ran those insides — every scripted callee and 47 of the 54 bodies `bodies.json` lists for their bounded transitive closure — then `0030F760` re-driven end to end with the real callees wired in. The retained 87 cases and 10 mutants execute no instruction of `0020E600`, `0025AAD0`, `002F1710`, `00316A50`, `00317E50`, `003BBC80` or `003DC780`, and run `0030C0E0` only to `0030C179` (`canc-fixup`). That is a coverage gap of the retained fixtures. It invalidates no retained case (bit 22, copy, cancel, commit, mutants), and it does not show that the game never runs those bodies. `0020E600` and `0030C0E0`'s action-row arm `0030C187..0030C1CA` are executed by [`exp091-resolver-base-repair-1003`](../_experiments/evidence/exp091-resolver-base-repair-1003/README.md) (`tv-row6-set`/`tv-row6-zero`, resolver base planted at `01F83530`, method B; returns 1 iff action-row byte 6 != 0). **87/87 cases (85/85 before `f7bbac4ef` added the two copy-origin cases), 10/10 byte-level mutants detected, stable across two processes.** §13's boundary sentence is superseded
 for the callees; it still holds for the **caller**, which nothing has executed.
 
 **Evidence class is unchanged: isolated original-code under Unicorn. No live capture, and
@@ -369,8 +367,7 @@ is not established. Two host helpers (`memset`, ~~`tick`~~ **`rand`**) are IAT. 
 EXP-091's "bit1 / 208 B" for the target-buffer reset should read: `00316CF0` keeps **bit 0** of byte 0 (`00316D05 and
 ebx, 1`) and clears **`0x208`** bytes (`00316CFF`), i.e. 520.* Fixture content supplies the unit
 array, stats records, the `0x2EBF190` tables, the link and posture tables and the cookie. The
-`bodies.json` spans are a linear scan with forward-branch reachability and are **approximate on
-jump-table dispatchers**, though every listed VA was genuinely executed. **So these are measurements
+`bodies.json` spans are a linear scan with forward-branch reachability and are **approximate on jump-table dispatchers**. The list is not an execution record: under the retained 87 cases and 10 mutants, 47 of its 54 VAs execute and the seven named in §13a do not (instruction-level span census, `_index/candidates/auditspec-review-oracle-exp091-resolver-repair-1003/REVIEW.md`). **So these are measurements
 of the shipped bytes under a supplied world, not observations of the game.**
 
 ## 14. Unresolved

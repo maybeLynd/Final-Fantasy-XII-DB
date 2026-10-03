@@ -1,0 +1,17 @@
+FABLE S-25 set-selector and switch-order section, dry run (no file is written)
+HEAD 890844135
+PASS  G1  Database/FFXII TZA/09-Combat-AI-And-Gambits/CONTRACT-gambit-walk.md is clean
+      line endings kept: LF
+PASS  S0  section.txt starts with its heading
+PASS  S1  every heading in the section carries FABLE (2 heading(s))
+PASS  A1  anchor '## 8. Composition' occurs 1 time(s) at line 234
+PASS  A2  anchor '## 9. Determinism' occurs 1 time(s) at line 243
+PASS  A3  anchors are in order 8 < 9
+PASS  A4  no other '## 8a.' heading exists []
+PASS  E1  8a inserted before line 243 (## 9. Determinism)
+PASS  L1  5 relative link(s) in the section resolve from the contract's folder []
+PASS  T1  each of the 2 tables keeps one cell-separator count per row [[5], [4]]
+PASS  C1  the census does not read 8a as a state section (state sections: ['3. Types'])
+PASS  O1  staged order 8 < 8a < 9: [234, 243, 405]
+      dry run: contract +162 lines
+FAILS 0

@@ -1,0 +1,46 @@
+{
+ "page": "22-Middleware-PhyreEngine/Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01CVpm9YipL29BZcSs2yiXLK",
+ "report": "home-animation-channel-binding-and-transform-composition.json",
+ "rows": [
+  {
+   "fn": "0059FC20",
+   "entered_from": "`005C0820` + 0x11F",
+   "text": "returns 1 when `rdx` or `r8` is null and 5 when `r8` is below `rdx` (unsigned); otherwise, with `len` = `r8d` - `edx` (32-bit), calls `0059FC20` + 0x3A(`rdx`, `len`+1) and returns `0xd` when that returns null; else it writes byte 0 at offset `len` of the returned buffer, calls `0059FC20` + 0x5C(`rcx`, buffer) and returns 0",
+   "anchors": [
+    [
+     "0059FC36",
+     "je"
+    ],
+    [
+     "0059FC40",
+     "jae"
+    ],
+    [
+     "0059FC5A",
+     "call"
+    ],
+    [
+     "0059FC78",
+     "mov"
+    ],
+    [
+     "0059FC7C",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "005E3040",
+   "why": [
+    "already cited by 22-Middleware-PhyreEngine\\Animation-Channel-Binding\\animation-channel-binding-and-transform-composition.md"
+   ]
+  }
+ ],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

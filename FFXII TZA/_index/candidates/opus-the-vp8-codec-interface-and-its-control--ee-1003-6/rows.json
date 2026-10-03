@@ -1,0 +1,53 @@
+{
+ "page": "23-Third-Party-Libraries/LibVPX-VP8-Decoder/the-vp8-codec-interface-and-its-control-map.md",
+ "date": "2026-10-03",
+ "session": "opus-self",
+ "report": "the-vp8-codec-interface-and-its-control-map-r6r.json",
+ "rows": [
+  {
+   "fn": "001260E7",
+   "text": "with word filters H = the 32 bytes at `01CDC060` + 32*argument 3 and V = those at `01CDC060` + 32*argument 4 (every rounding adds 64 from `03001000` and shifts right 7, arithmetic, and results are packed to bytes with unsigned saturation), it writes 16 rows of 16 bytes with aligned stores to argument 5, rows dword argument 6 apart, reading argument 1 with rows dword argument 2 apart (both sign-extended): when argument 3 is 0, each output row is (r*V0 + r_next*V1 + 64) >> 7 over two consecutive source rows; else when argument 4 is 0, each is (s[j]*H0 + s[j+1]*H1 + 64) >> 7 along one source row; otherwise each source row from the first is filtered horizontally to bytes h, and each output row is (h_previous*V0 + h*V1 + 64) >> 7; it saves and restores `xmm6`/`xmm7`",
+   "anchors": [
+    [
+     "00126117",
+     "cmp"
+    ],
+    [
+     "00126141",
+     "cmp"
+    ],
+    [
+     "001261BD",
+     "packuswb"
+    ],
+    [
+     "00126267",
+     "movdqa"
+    ],
+    [
+     "00126388",
+     "movdqa"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [
+  "001263AD",
+  "00126E10",
+  "00127104",
+  "00172CE0",
+  "00172DC0",
+  "00172F00",
+  "00173040",
+  "00173180",
+  "00173270",
+  "00173360",
+  "00173450",
+  "0017B010"
+ ],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

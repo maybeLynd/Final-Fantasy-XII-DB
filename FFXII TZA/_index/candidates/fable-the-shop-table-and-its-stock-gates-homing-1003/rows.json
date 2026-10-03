@@ -1,0 +1,42 @@
+{
+ "page": "12-Items-Equipment-Shops-License/the-shop-table-and-its-stock-gates.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01N8PUkJsja9yJNF2AzvWKKK",
+ "report": [
+  "fable-the-shop-table-and-its-stock-gates.json"
+ ],
+ "rows": [
+  {
+   "fn": "0027F030",
+   "text": "starts a result at 0; when `r9d` is 0 and the fifth (stack) argument is not 1 and `002CCA10(r8d)` is non-zero, it calls `0027F030`+0x51(`edx`) and sets the result to 4 when `0027F030`+0x5F(that value, word `+0xd68` of qword `0209AC30`) returns 0; when `r9d` is 1 and `0027F030`+0x87(`r8d`) is non-zero, with b = byte `+0xd6b` of qword `0209AC30` it sets 4 unless `r8d` equals b when `0027F030`+0x92(b) is non-zero, and otherwise sets 4 when `0027F030`+0xAB(b) is non-zero, or else unless t = `0027F030`+0xC2(word `+0xd48`) passes `0027F030`+0xCB(t) and equals `r8d` (it keeps 0 when +0x87 returns 0); any other `r9d` keeps 0; on every path it calls `0027F030`+0xF2(byte `ecx`, word `edx`, `r9d`, the fifth argument), ORs 1 into the result when that returns 0, and returns the result",
+   "anchors": [
+    [
+     "0027F06A",
+     "call"
+    ],
+    [
+     "0027F098",
+     "lea"
+    ],
+    [
+     "0027F0D2",
+     "cmove"
+    ],
+    [
+     "0027F122",
+     "call"
+    ],
+    [
+     "0027F13F",
+     "or"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing",
+ "family": ""
+}

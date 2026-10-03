@@ -383,3 +383,15 @@ Interior anchor `003E5728` (the first `movss [rdx]` store).
 `0030AA00` (179 B) is the four-slot readiness poll `003B7180` runs ~~for the wait verbs~~ for those two result callbacks *(corrected 2026-10-02, OPUS: `003B718D` is its only call site)*: slots `0..3` probe `02EBF190 + 0x5A48 + i*2` for a `0xFFFF` vacancy, `0031B8C0(i)` resolves the slot record, and a live `[+0x698]` block sets bit `i` when `+0x64 | +0x3C` stays clear of `0x80000003` - or when `00377C20` still approves the flagged record; a passed `r14` additionally receives `00320890([02EBF190 + 0x5AD5])`, and the four-bit mask is the result
 
 Interior anchor `0030AA39` (function `0030AA00`).
+
+## Homed bodies re-homed here for host fit (FABLE, 2026-10-03; AUDIT-SPEC batch 5)
+
+*FABLE's homing stream (cloud-drafted, FABLE-verified) homed these bodies on other pages. SWE2-AUDIT-SPEC reviewed each sentence, site and anchor set exact and rejected only the host, because that page named the caller only as a foreign or boundary mention. A body newly homed here is marked so, with the review that gives its sentence. The sentences are unchanged. Each states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Why each row is here:*
+
+- `00314D60`: this page states `005C5230`, which the body calls directly. Its caller `0050C8A0` is named on no other page except in a cross-subsystem neighbours line.
+
+*Verified by [`move_rows.py`](../_index/candidates/fable-home-host-moves-b5-1003/move_rows.py): every site transfers to its function, the caller or callee named above is cited on this page outside this section (or homed in it), and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors | moved from |
+|---|---|---|---|---|---|
+| `00314D60` | 32 B | `0050C8A0` + 0x24 | calls `00314D60` + 0x8 with the incoming registers and stores to dword `022C2540` the incoming `ecx` when that call returns non-zero, or 0 when it returns zero; that callee is an `xor eax, eax` / `ret` stub, so the stored value is always 0 | Interior anchor `00314D68`; Interior anchor `00314D6F`; Interior anchor `00314D71`; Interior anchor `00314D74` | [ff12config-and-debglobal](../19-Save-Load-Settings/Game-Settings-Config/ff12config-and-debglobal.md) |

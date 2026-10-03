@@ -1,0 +1,42 @@
+{
+ "page": "13-Rewards-Progression-Economy/world-loot-pickups-the-ten-slot-pool-and-the-despawn.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_019yEjih72UCRaxGuuSzfAJF",
+ "report": [
+  "fable-world-loot-pickups-the-ten-slot-pool-and-the-despawn.json"
+ ],
+ "rows": [
+  {
+   "fn": "003B7440",
+   "text": "calls `003B73B0`(qword `02EBCC68`); then, while the index is below dword `02EBCC60` (signed; nothing when it is 0 or less), walks the qwords at `02EBCAC0` at stride 8, skipping null entries: for entry E it calls `003B7440`+0x41(E) and, when that returns non-null P, calls `00265020`(E, P, P+4, P+8) and +0x70(E, P+0x10, P+0x14, P+0x18), stores the byte result of +0x78(E) at `P+0x64`, the float result of +0x83(E) at `P+0x34`, that of +0x90(E) at `P+0x24`, and that of +0x9D(E) (the same callee as +0x83) at `P+0x34` again",
+   "anchors": [
+    [
+     "003B744D",
+     "call"
+    ],
+    [
+     "003B745A",
+     "jle"
+    ],
+    [
+     "003B749C",
+     "call"
+    ],
+    [
+     "003B74C0",
+     "mov"
+    ],
+    [
+     "003B74F3",
+     "jl"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing",
+ "family": ""
+}

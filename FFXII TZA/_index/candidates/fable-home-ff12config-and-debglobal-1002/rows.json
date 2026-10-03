@@ -45,5 +45,35 @@
    "now": "calls `00314D60` + 0x8 with the incoming registers and stores to dword `022C2540` the incoming `ecx` when that call returns non-zero, or 0 when it returns zero; that callee is an `xor eax, eax` / `ret` stub, so the stored value is always 0",
    "why": "the callee at +0x8 is the folded constant stub `xor eax, eax; ret`, so the `cmovne` never takes `ecx` and the row's non-zero arm is dead"
   }
+ ],
+ "moved": [
+  {
+   "fn": "00314D60",
+   "entered_from": "`0050C8A0` + 0x24",
+   "text": "calls `00314D60` + 0x8 with the incoming registers and stores to dword `022C2540` the incoming `ecx` when that call returns non-zero, or 0 when it returns zero; that callee is an `xor eax, eax` / `ret` stub, so the stored value is always 0",
+   "anchors": [
+    [
+     "00314D68",
+     "call"
+    ],
+    [
+     "00314D6F",
+     "test"
+    ],
+    [
+     "00314D71",
+     "cmovne"
+    ],
+    [
+     "00314D74",
+     "mov"
+    ]
+   ],
+   "moved_to": "01-Script-VM-Native-Bridge/verbs-that-only-wait-and-verbs-that-do-nothing.md",
+   "moved_by": "FABLE",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/fable-home-host-moves-b5-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-ff12config-and-debglobal-1002/REVIEW.md"
+  }
  ]
 }

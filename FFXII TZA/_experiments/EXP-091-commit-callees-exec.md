@@ -11,7 +11,7 @@ tool: evidence/commit-callees-exec/check.py
 **Date:** 2026-09-17 · **Worker:** SWE2-ORACLE · **Method:** B (isolated original-code execution, Unicorn)
 **Subject:** every callee `diff_commit_action.py` supplies as a scripted oracle — `003105D0`,
 `00310780`, `0031B7E0`, `003588B0`, `00316CF0`, `00316CD0`, `0030AB40`, `0030C970`, `00313B30` —
-plus their bounded transitive closure (~54 shipped bodies), then `0030F760` re-driven end-to-end
+plus their bounded transitive closure (`bodies.json` lists 54 bodies; the retained fixtures execute 47 — see `evidence/exp091-resolver-base-repair-1003/`), then `0030F760` re-driven end-to-end
 with the real callees wired in.
 **Contract:** `Database/FFXII TZA/07-Combat-Action/CONTRACT-commit-action.md`
 **Board task:** `SWE2-ORACLE-COMMIT-CALLEES-EXEC`
@@ -131,10 +131,11 @@ with the real callees wired in.
 - **Four stubbed entries** (entry byte patched to `ret`, calls logged): `0x512F30` SINK (deep
   render/event sink), `0x33C9B0` MRESET, `0x2FC9D0`/`0x2FCBA0` FAMH0/FAMH3 (family-table handlers
   invoked with the raw id — signature not established). Two host helpers: IAT `memset`/`tick`.
+  *(2026-10-03, OPUS: this record did not execute `0x512F30`. Its local effects are now established separately by Method A - ASTRA's `uq147-native-relation-invariant`, ACCEPTED by SWE2-AUDIT-SPEC (`b9502c733`): 26 + 11 persistent write sites, the only transfers `00513005`/`00513022` to `00512CD0`, no import or heap call; see the relation types consumed in `_index/candidates/opus-native-relation-cache-1003/`. That static result is not one of this record's Method B samples, and no case here changes.)*
 - Fixture content only: unit array, stats records, `0x2EBF190` struct tables, idxt lists, link
   table, posture table `0x22C1DB0`, render table `0x22C6F28` gate words, `0x22BEFC0`/`0x22BEFB0`,
   cookie `0x1F44830`, fam3 `+8` bitset pointer (runtime-initialized, 0 in the shipped image).
 - The `003008A0` 5th argument is read from the caller's stack slot; `ir2-*` cases leave it 0.
 - `bodies.json` spans are computed by linear scan with forward-branch reachability — approximate
-  on jump-table dispatchers (e.g. `0x322C50` arm tails); every listed VA was genuinely executed.
+  on jump-table dispatchers (e.g. `0x322C50` arm tails); 47 of the 54 listed VAs execute under the retained 87 cases and 10 mutants. `0020E600`, `0025AAD0`, `002F1710`, `00316A50`, `00317E50`, `003BBC80` and `003DC780` do not. This is a coverage gap of these fixtures, not a reachability result. The harness planted the resolver base at `0x1F85D30`, not the `0x1F83530` that `0020E602` reads. No retained case reaches `0020E600` or reads either cell, so no retained result changes. The repair and the action-row control are in `evidence/exp091-resolver-base-repair-1003/`.
 - Isolated original-code evidence under Unicorn; no NATIVE-REPLAY or live claims.

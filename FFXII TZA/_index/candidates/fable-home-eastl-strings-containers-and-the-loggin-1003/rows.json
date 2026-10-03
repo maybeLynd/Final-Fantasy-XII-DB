@@ -1,0 +1,93 @@
+{
+ "page": "23-Third-Party-Libraries/EASTL/eastl-strings-containers-and-the-logging-allocator.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01CVpm9YipL29BZcSs2yiXLK",
+ "report": "home-eastl-strings-containers-and-the-logging-allocator.json",
+ "rows": [
+  {
+   "fn": "001A3F10",
+   "entered_from": "`001A6A20` + 0xF8",
+   "text": "with the key the byte range from qword `[r8]` to qword `[r8+8]`, descends from qword `rcx+0x18`, comparing the key with each node's range at qwords `+0x20`/`+0x28` through `001A3F10` + 0x68 (over the shorter length, a tie decided by length) and following qword `+8` when the key is smaller, else qword `+0`; with `n` the last node visited (`rcx+8`, counted as smaller, when the root is null): when the last step was smaller and `n` equals qword `rcx+0x10` it inserts at once; otherwise it compares `p` (`001A3F10` + 0xAF(`n`) after a smaller step, else `n`) with the key through `001A3F10` + 0xD8 and, unless `p` is smaller, stores `p` at qword `[rdx]` and 0 at byte `rdx+8`; to insert it calls `001A3F10` + 0x107 (`001A3F10` + 0x13B on the other path)(`rcx`, `r8`, `n+0x20`) unless `n` is `rcx+8`, sets a flag when that returns 0, calls `001A3F10` + 0x163(`001A3F10` + 0x11B (`001A3F10` + 0x14F)(`rcx`, `r8`), `n`, `rcx+8`, flag), increments dword `rcx+0x28` and stores that result at `[rdx]` and 1 at byte `rdx+8`; returns `rdx`",
+   "anchors": [
+    [
+     "001A3F78",
+     "call"
+    ],
+    [
+     "001A3F9D",
+     "mov"
+    ],
+    [
+     "001A3FBA",
+     "je"
+    ],
+    [
+     "001A4002",
+     "mov"
+    ],
+    [
+     "001A4078",
+     "inc"
+    ]
+   ]
+  },
+  {
+   "fn": "001BC950",
+   "entered_from": "`001BD1B0` + 0xA0",
+   "text": "copies qword `[rdx]` to `[rcx]`; zeroes qwords `rcx+8` and `rcx+0x10`, calls `001EDF00(rcx+0x18, rdx+0x18)`, points qwords `rcx+8` and `rcx+0x10` at `rcx+8`, and calls `001BC8C0(rcx+8, rcx+8, qword [rdx+8], rdx+8)` with the low byte of `rcx+8` as the fifth (stack) argument; returns `rcx`",
+   "anchors": [
+    [
+     "001BC973",
+     "mov"
+    ],
+    [
+     "001BC985",
+     "mov"
+    ],
+    [
+     "001BC994",
+     "call"
+    ],
+    [
+     "001BC999",
+     "mov"
+    ],
+    [
+     "001BC9B5",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "001BD340",
+   "entered_from": "`001BD1B0` + 0xD0",
+   "text": "sets a flag to 1 when the low byte of the fifth (stack) argument is 0, `r8` is not `rcx+8` and qword `[r9]` is not below qword `[r8+0x20]` (unsigned), else 0; calls slot `+0x10` of the vtable of the object at `rcx+0x30` with (`rcx+0x30`, `0x40`, 0) for `n`, calls `001BD340` + 0x75(`n+0x20`, `r9`) when `n+0x20` is non-null, then `001BD340` + 0x88(`n`, `r8`, `rcx+8`, flag); increments dword `rcx+0x28`, stores `n` at qword `[rdx]` and returns `rdx`",
+   "anchors": [
+    [
+     "001BD366",
+     "cmp"
+    ],
+    [
+     "001BD380",
+     "jb"
+    ],
+    [
+     "001BD399",
+     "call"
+    ],
+    [
+     "001BD3B5",
+     "call"
+    ],
+    [
+     "001BD3C8",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

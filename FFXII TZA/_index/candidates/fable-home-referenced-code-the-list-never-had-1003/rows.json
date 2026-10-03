@@ -1,0 +1,46 @@
+{
+ "page": "99-Unresolved-Residual/Unlisted-Code/referenced-code-the-list-never-had.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01A1Qvgw5xe7BnV34LPHQcLH",
+ "report": "home-referenced-code-the-list-never-had.json",
+ "rows": [
+  {
+   "fn": "0037A960",
+   "entered_from": "`003DEA10` + 0x8",
+   "text": "forms `r8` = `02EBF420` + sign-extended `ecx` times `0x50` and returns when qword `r8+0x18` is null or dword `+4` of its target is 0; otherwise, for each index below that dword (unsigned, with the qword and the dword re-read every pass), stores byte 0 at `+0x12` of the 8-byte element at that index from the qword's target",
+   "anchors": [
+    [
+     "0037A963",
+     "lea"
+    ],
+    [
+     "0037A96B",
+     "lea"
+    ],
+    [
+     "0037A980",
+     "cmp"
+    ],
+    [
+     "0037A990",
+     "mov"
+    ],
+    [
+     "0037A9A2",
+     "jb"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "003B1560",
+   "why": [
+    "already cited by 99-Unresolved-Residual\\Unlisted-Code\\referenced-code-the-list-never-had.md"
+   ]
+  }
+ ],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

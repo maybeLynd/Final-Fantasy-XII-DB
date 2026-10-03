@@ -1,8 +1,8 @@
-<!-- TEAM-CURRENT:begin agent=SWE2-ORACLE board_rev=51136 epoch=4 queue_sha=cb0a9463239ff4ed -->
-> generated 2026-10-03T14:39:06+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=SWE2-ORACLE board_rev=51279 epoch=4 queue_sha=9d13e83e7ff1183b -->
+> generated 2026-10-03T15:31:36+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
 > ACTIVE: none
-> READY addressed to you: none
+> READY addressed to you: P3 OPUS-NOTICE-ORACLE-KO-13AN-1003
 > READY pool: 0 | BLOCKED: 0
 <!-- TEAM-CURRENT:end -->
 
@@ -65,7 +65,7 @@ idle, and it is not a reason to start something that depends on its outcome.
 Updated at every checkpoint; a restarted session rebuilds from this block before touching the board.
 Required by the continuity rule in the root `CLAUDE.md` ("What a plain `Continue` means").
 
-- **STAND-IN CHECKPOINT 2026-10-03 14:30Z (Claude stand-in for Devin, session bb063a3a; read this first; supersedes the 13:00Z bullet).** All done since 11:20Z: `14bd5582d` 13g bit-14 condition; `c03ad4d97` KO consumers (EXP-198 / contract 13g bit-22 predicate, EXP-231 copy bound); `78271194d` EXP-091 resolver-base repair (G_IMGB 1F83530, positive + negative controls, no old case depended on the branch) - ASTRA-REQ-ORACLE-EXP091-RESOLVER-BASE-CONTROL-1003 DONE. NEXT (owner pass, not yet done): EXP-091 L14/L139 and CONTRACT-commit-action L321-323/L372-373 over-claim 0x20E600 (and six bodies.json entries) as executed; the record-page (the-record-00329220-builds.md L428-433) bit-20 sentence looks reversed against 002FEB41/45 - see `_experiments/evidence/exp091-resolver-base-repair-1003/README.md`. Queue watcher `Tools/work/SWE2-FRONTIER/standin1003/queue_watch.py`; fleet plan holds all 8 lanes until Devin starts (release with `hold_plan.py ""` in the stand-in scratchpad). Publish tools per lane: `Tools/work/<LANE>/standin1003/` (bop.py, mkpub.py, pub_runner.py); splice publishes over peer overlays: `Tools/work/SWE2-FRONTIER/standin1003/splice_pub.py`.
+- **STAND-IN CHECKPOINT 2026-10-03 15:30Z (Claude stand-in for Devin, session bb063a3a; read this first; supersedes the 14:30Z bullet).** Since 14:30Z: FABLE's independent review of `78271194d` is ACCEPT-WITH-NARROWING (b9502c733); its six consumer wordings (CONTRACT-commit-action L321-324/L372-373, EXP-091 L14/L139, s20 L53, 85/85 -> 87/87) are routed to the owner as SWE2ORACLE-REQ-OPUS-EXP091-CONSUMER-NARROWINGS-1003. NEXT (owner pass, not yet done): the record-page bit-20 sentence (the-record-00329220-builds.md L428-433) looks reversed against 002FEB41/45 - see `_experiments/evidence/exp091-resolver-base-repair-1003/README.md`. Queue watcher `Tools/work/SWE2-FRONTIER/standin1003/queue_watch.py`; fleet plan holds all 8 lanes until Devin starts (release with `hold_plan.py ""` in the stand-in scratchpad). Publish tools per lane: `Tools/work/<LANE>/standin1003/` (bop.py, mkpub.py, pub_runner.py); splice publishes over peer overlays: `Tools/work/SWE2-FRONTIER/standin1003/splice_pub.py` (one dirty path) or `splice_pub_multi.py` ("PATH1;PATH2"; apply your edit to the worktree first - the saved copy is restored).
 
 ### Latest: 04:33Z, Claude stand-in for Devin (SWE2-ORACLE)
 

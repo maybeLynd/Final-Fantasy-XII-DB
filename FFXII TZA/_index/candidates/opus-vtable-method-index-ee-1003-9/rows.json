@@ -1,0 +1,371 @@
+{
+ "page": "00-Engine-Core-Runtime/Object-Model/vtable-method-index.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "vtable-method-index-r8i.json",
+ "rows": [
+  {
+   "fn": "005DF890",
+   "text": "calls `005DF810(rcx, rdx)`; copies the 0x190 bytes at `rdx+0x30` to `rcx+0x30` and, for k from 0 to 7, the 16 bytes at `+0x1C0+0x20k`; with `c` = dword `[rdx+0x1D0+0x20k]` AND 0x7FFFFFFF takes `n` = `005E2FB0(c, qword [rdx+0x1D8+0x20k])`, calls `00584730` on the old qword `[rcx+0x1D8+0x20k]` when it differs from `n`, bit `0x80000000` of dword `[rcx+0x1D0+0x20k]` is clear and it is non-null, then stores `c` at that dword and `n` at that qword; returns `rcx`",
+   "anchors": [
+    [
+     "005DF8AA",
+     "call"
+    ],
+    [
+     "005DF8D2",
+     "movups"
+    ],
+    [
+     "005DF943",
+     "call"
+    ],
+    [
+     "005DF96C",
+     "call"
+    ],
+    [
+     "005DFBC7",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00608A40",
+   "text": "while byte `01F2CDF0` is zero (re-read before each) calls vtable slot `+8` of the statics `01F2E9B8`, `01F2EE60` and `01F2EE80` in turn; then makes 57 further calls that set up no argument registers (their order is not stated here; the first is `005E6E70`, the last `005E67C0`), interleaved with `006388C0(f())` for f = `005D8BE0`, `006B6B60`, `0062CC80`, `006C0C90`, `006BEAC0`, and with `006388C0(X)` then `00639450(X)` for the 17 statics X = `02CB6480`, `02CB7CA0`, `02CB9A00`, `02CBB900`, `02CBBB00`, `02CBBD00`, `02CB78A0`, `02CB9C00`, `02CBAD00`, `02CBAF00`, `02CBB000`, `02CBB100`, `02CBB200`, `02CB76A0`, `02CBB600`, `02CB6880`, `02CB6980` in that order (between the two calls for `02CB7CA0` and for `02CB9C00` it ORs 0x20 into dwords `02CB7D9C` and `02CB9CFC`); returns when `0062D0D0()`, then `005FD2A0(0x40)`, then `005CD0A0(005FCF20())` is non-zero, else tail-jumps to `005FD560`",
+   "anchors": [
+    [
+     "00608A5B",
+     "call"
+    ],
+    [
+     "00608AA8",
+     "call"
+    ],
+    [
+     "00608AC5",
+     "or"
+    ],
+    [
+     "00608D96",
+     "call"
+    ],
+    [
+     "00608DC0",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0062E1C0",
+   "text": "with `a`/`b`/`c` = `xmm1`/`xmm2`/`xmm3`, sets the 4x4 at `rcx+0x38` to rows (1,0,0,0), (0,-1,0,0), (0,0,-1,0), (floats `[rcx+0x28]`, `+0x2C`, `+0x30`, 1.0); with the stack vector (0, -1.0, 0) as `x`: calls `00188E60(&R, a, &x)` on a stack matrix `R` and copies the 64 bytes `00185100(rcx+0x38, &R, &a stack copy of R)` returns into `rcx+0x38`; does that again with the stack matrix rows (1,0,0,0), (0,C,S,0), (0,-S,C,0), (0,0,0,1), S = `sinf` (`00861F0E`)(`b`), C = `cosf` (`00861F08`)(`b`), in place of the copy of `R`; then again with `R` from `00188E60(&R, c, &x)`; finally writes the 3x4 at `rcx+8` as rows (M1.xyz, M0.x), (M2.xyz, M0.y), (M3.xyz, M0.z), Mk being row k of the 4x4",
+   "anchors": [
+    [
+     "0062E290",
+     "call"
+    ],
+    [
+     "0062E2C8",
+     "call"
+    ],
+    [
+     "0062E333",
+     "call"
+    ],
+    [
+     "0062E3A7",
+     "call"
+    ],
+    [
+     "0062E576",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "0062E5A0",
+   "text": "sets the 4x4 `M` at `rcx+0x38` from the 3x4 at `rcx+8`: rows (`+0x14`, `+0x24`, `+0x34`, 0), (`+8`, `+0xC`, `+0x10`, 0), (`+0x18`, `+0x1C`, `+0x20`, 0), (`+0x28`, `+0x2C`, `+0x30`, 1.0); with `f` = row 2 times 1/`sqrtf` (`00861F14`) of its squared length, `p` = `asinf` (`00861EFC`)(`f`.y) - `xmm2` and `y` = `atan2f` (`00861F02`)(`f`.x, `f`.z) + `xmm1`, each moved into [0, 2 pi] by adding `01CEBC78` (2 pi) while below 0 and `00915624` (-2 pi) while above 2 pi (NaN skips both loops; an infinity, or any value of magnitude above 2^27 where adding 2 pi rounds back to the same float, never leaves them); sets row 0 = (-cos y, 0, sin y, 0), row 2 = (sin y cos p, sin p, cos y cos p, 0) and row 1 = (sin p sin y, -cos y (cos y cos p) - (sin y cos p) sin y, cos y sin p) times 1/`sqrtf` of its squared length, fourth float 0, keeping row 3 with fourth float 1.0 (`sinf`/`cosf` = `00861F0E`/`00861F08`); then writes the 3x4 at `rcx+8` as rows (M1.xyz, M0.x), (M2.xyz, M0.y), (M3.xyz, M0.z)",
+   "anchors": [
+    [
+     "0062E62F",
+     "movss"
+    ],
+    [
+     "0062E6B8",
+     "call"
+    ],
+    [
+     "0062E6D9",
+     "call"
+    ],
+    [
+     "0062E710",
+     "addss"
+    ],
+    [
+     "0062E828",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007D5F50",
+   "text": "returns -1 when `rdx` is null; otherwise calls its own vtable slot `+0x10` 32 times with (k, value, `xmm3` unchanged) for k = 0 to 0x1F, the values being floats `[rdx]`, `+8`, `+0xC`, dword `+0x78` as float, floats `+0x1C`, `+4`, `+0x24`, `+0x20`, `+0x10`, `+0x14`, `+0x18`, `+0x7C`, dword `+0x28` as float, floats `+0x2C`, `+0x30`, `+0x34`, dword `+0x38` as float, floats `+0x3C`, `+0x40`, `+0x44`, dword `+0x48` as float, floats `+0x4C`, `+0x50`, `+0x54`, dword `+0x58` as float, floats `+0x5C`, `+0x60`, `+0x64`, dword `+0x58` as float again for k = 0x1C (`+0x68` is not read), floats `+0x6C`, `+0x70`, `+0x74`; then calls its own slot `+0x40` and `007D6CD0(rcx)` and returns 0",
+   "anchors": [
+    [
+     "007D5F89",
+     "call"
+    ],
+    [
+     "007D5FC8",
+     "cvtdq2ps"
+    ],
+    [
+     "007D61FD",
+     "cvtdq2ps"
+    ],
+    [
+     "007D624E",
+     "call"
+    ],
+    [
+     "007D6254",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007D9200",
+   "text": "evaluates ramps at `rcx+0x20+0x30k` (each: end `+4` when duration `+0xC` is 0.0 or NaN, else start `+0` + `007A9E50(elapsed +8 / duration, curve dword +0x14)` times (end - start)): stores ramps k = 0 to 3 at floats `[rcx+0x148]`, `+0x14C`, `+0x150`, `+0x154`; when ramp 4 is above 0 (NaN is not) stores `expf` (`00861FAA`) of `008F3148` (-2.0) / (ramp 4, evaluated again, times float `[rcx+0x138]`) at float `+0x158`, else 0; when ramp 5 is above 0 stores `expf` of `01CEBC9C` (-1.0) / (ramp 5, evaluated again, times float `[rcx+0x138]`) at float `+0x15C`, else 0; takes `p` = `007AC3E0(qword [02EAD0A8], dword [rcx+0x13C], dword [rcx+0x140])` and stores `p` at qword `+0x168` when it is non-null and its vtable slot `+8` returns 4, else 0",
+   "anchors": [
+    [
+     "007D9237",
+     "call"
+    ],
+    [
+     "007D9394",
+     "ja"
+    ],
+    [
+     "007D93FC",
+     "call"
+    ],
+    [
+     "007D94BC",
+     "call"
+    ],
+    [
+     "007D94FD",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00832930",
+   "text": "with `c` = 0.5 times (floats `[rcx+0x50]`/`+0x54`/`+0x58` plus `[rcx+0x40]`/`+0x44`/`+0x48`) and `e` = 0.5 times their differences (both zero when dword `[rcx+0x1C]` is 0), adds the results of three calls to its own vtable slot `+0x50` to the z, y and x of `e` in call order; with the transform at `rdx` (rows `+0`, `+0x10`, `+0x20`, origin `+0x30`), takes `w` = for each row i the row's three floats dotted with `c` plus origin component i, and `x` = for each row the absolute values of its three floats dotted with `e`; writes (`w` - `x`, 0) to `[r8]` and (`w` + `x`, 0) to `[r9]`",
+   "anchors": [
+    [
+     "00832941",
+     "cmp"
+    ],
+    [
+     "00832A28",
+     "call"
+    ],
+    [
+     "00832A79",
+     "andps"
+    ],
+    [
+     "00832B39",
+     "addss"
+    ],
+    [
+     "00832C89",
+     "movdqa"
+    ]
+   ]
+  },
+  {
+   "fn": "008355B0",
+   "text": "for each j below `r9d` (signed), with `v` = the 16-byte direction at `rdx+16j`, `r` = float `[rcx+0x30]` and `h` = float `[rcx+0x34]` (both re-read each time), takes `s` = `sqrtf` (`00861F14`)(`v`.x^2 + `v`.z^2) and writes to `r8+16j` the 16 bytes (x, y, z, w): y = `h`, negated when `v`.y is below 0 (not for NaN); when `s` equals 0.0 (ordered), x = `r` and z = 0, otherwise x = `v`.x times `r`/`s` and z = `v`.z times `r`/`s`; w is a stack dword the body never writes",
+   "anchors": [
+    [
+     "0083566C",
+     "call"
+    ],
+    [
+     "00835677",
+     "jne"
+    ],
+    [
+     "00835685",
+     "xorps"
+    ],
+    [
+     "00835697",
+     "divss"
+    ],
+    [
+     "008356C0",
+     "movdqa"
+    ]
+   ]
+  },
+  {
+   "fn": "00846C20",
+   "text": "computes over the three 16-byte points at `rdx` the per-float minimum (starting at `01CCD870`: 1e18 three times, then 0) and maximum (starting at `01CCD880`: -1e18 three times, then 0) of all four floats, a NaN changing neither; appends a 64-byte node to the array at qword `[rcx+8]` (count dword `+4`, capacity `+8`, data qword `+0x10`, owner byte `+0x18`; when the count equals the capacity and twice the count (1 for 0) is larger (signed), `0085E680(64 times that, 0x10)` gets the entries, the old data goes to `0085E710` when non-null and owned, the owner byte becomes 1 and the capacity dword becomes that; a store at a null slot is skipped): the minimum at `+0`, the maximum at `+0x10`, dwords `+0x20` = -1, `+0x24` = `r8d`, `+0x28` = `r9d`, and stack bytes the body never writes at `+0x2C` to `+0x3F`; increments the count",
+   "anchors": [
+    [
+     "00846C5D",
+     "comiss"
+    ],
+    [
+     "00846D33",
+     "comiss"
+    ],
+    [
+     "00846E5B",
+     "mov"
+    ],
+    [
+     "00846E98",
+     "call"
+    ],
+    [
+     "00846F3B",
+     "movaps"
+    ]
+   ]
+  },
+  {
+   "fn": "00846F70",
+   "text": "computes over the three 16-byte points at `rdx` the x/y/z minimum (each starting at `01CCE8AC`, 1e18) and maximum (each starting at `01CCD4E4`, -1e18), a NaN coordinate changing neither; on each axis where max - min is below `009002B0` (0.002) adds `009002EC` (-0.001) to the min and `008C5B2C` (0.001) to the max; with `q` = qword `[rcx+0x10]`, builds a 16-byte node: words `+0`, `+2`, `+4` = truncate((min - float `[q+0x10+4j]`) times float `[q+0x30+4j]`) AND 0xFFFE, words `+6`, `+8`, `+0xA` = truncate((max - float `[q+0x10+4j]`) times float `[q+0x30+4j]` + 1.0) OR 1, dword `+0xC` = (`r8d` << 21) OR `r9d`; appends it to the array at qword `[rcx+8]` (count dword `+4`, capacity `+8`, data qword `+0x10`, owner byte `+0x18`; when the count equals the capacity and twice the count (1 for 0) is larger (signed), `0085E680(16 times that, 0x10)` gets the entries, the old data goes to `0085E710` when non-null and owned, the owner byte becomes 1 and the capacity dword becomes that; a store at a null slot is skipped) and increments the count",
+   "anchors": [
+    [
+     "00846F95",
+     "comiss"
+    ],
+    [
+     "008470A2",
+     "comiss"
+    ],
+    [
+     "0084712C",
+     "shl"
+    ],
+    [
+     "008471EB",
+     "call"
+    ],
+    [
+     "00847278",
+     "movdqa"
+    ]
+   ]
+  },
+  {
+   "fn": "008473A0",
+   "text": "for each j below `r9d` (signed), with `v` = the x/y/z floats of the 16-byte direction at `rdx+16j`, dots `v` with the rows at `rcx+0x50`, `+0x60` and `+0x70` (floats `+0`/`+4`/`+8` of each) giving `d0`, `d1`, `d2`, picks row 1 when `d1` > `d0` (then row 2 if `d2` > `d1`), else row 2 when `d2` > `d0`, else row 0 (ties and NaN keep the earlier row), and copies that 16-byte row to `r8+16j`",
+   "anchors": [
+    [
+     "008473F0",
+     "movss"
+    ],
+    [
+     "00847458",
+     "comiss"
+    ],
+    [
+     "00847474",
+     "movaps"
+    ],
+    [
+     "0084747A",
+     "movdqa"
+    ],
+    [
+     "008476DD",
+     "movdqa"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "006B9630",
+   "why": [
+    "not an entry-only frontier function of the page"
+   ]
+  }
+ ],
+ "skipped": {
+  "005CA460": "1486-byte dependency sort (005C9CF0 / 005C99A0 / 005C62C0 graph, two 00808F10-probed stack buffers, entry rewrite loop) does not fit one exact row under 1200 characters; needs a block-split row set rather than a summary"
+ },
+ "missing": [
+  "006007B0",
+  "00654830",
+  "00655F10",
+  "00692080",
+  "006BAB40",
+  "00724830",
+  "00725AA0",
+  "00726360",
+  "0073BB50",
+  "00785C90",
+  "007861A0",
+  "00790160",
+  "007A1790",
+  "007A1A50",
+  "007A2140",
+  "007BDAC0",
+  "007D1A10",
+  "007D1C80",
+  "007D5BD0",
+  "007D9EA0",
+  "007DC4A0",
+  "007DD040",
+  "007DE120",
+  "007E2BC0",
+  "007E96A0",
+  "00832E90",
+  "008330A0",
+  "00833830",
+  "00833CD0",
+  "00833FB0",
+  "00834970",
+  "00834D50",
+  "00835000",
+  "00837120",
+  "0083A070",
+  "0083DE00",
+  "00847980",
+  "00848960",
+  "00848C30",
+  "008497D0",
+  "0084A740",
+  "008521C0",
+  "00853C90",
+  "00857970",
+  "008585E0",
+  "00858C80",
+  "0085A900",
+  "0085DDE0"
+ ],
+ "corrections": [
+  {
+   "fn": "0062E5A0",
+   "why": "byte re-read by a non-drafting agent: The wrap loops are described as leaving for every finite value ('an infinity never leaves them'), but the loop exit needs the add to change the value: in float32, adding 2 pi (01CEBC78) or -2 pi (00915624) to any value of magnitude above 2^27 (134217728; verified with numpy float32) rounds back to the same value, so those finite values never leave the loops either, like the infinities. The loop shapes themselves check out (comiss 0,p / ja back-edge; comiss p,2pi / ja back-edge; unordered skips both). Everything else checked: initial M rows from the 3x4, f normalised with sqrtf (stub 00861F14), p = asinf(f.y) - xmm2, y = atan2f(f.x, f.z) + xmm1 (stubs 008"
+  },
+  {
+   "fn": "00846C20",
+   "why": "byte re-read by a non-drafting agent: The growth path also stores the new capacity (00846F1A mov dword [rbx+8], edi), which the row leaves out while listing the other growth writes; added. Everything else checked: min/max start vectors 01CCD870/01CCD880 (the point-0 compares use the scalar 1e18/-1e18 constants and 0 for w, the same values); comiss + jbe skips unordered, so a NaN changes neither; node = min, max, -1, r8d, r9d at +0..+0x28, and the 20 bytes +0x2C..+0x3F are copied from rbp+3..rbp+0x16, which this body never writes; growth test count == capacity and capacity < (2*count or 1) signed; 0085E680(64n, 0x10), copy loop with null-address skip, 0085E710 on owned non-null old data, owne"
+  },
+  {
+   "fn": "00846F70",
+   "why": "byte re-read by a non-drafting agent: The growth path also stores the new capacity (0084725A mov dword [rbx+8], edi), which the row leaves out while listing the other growth writes; added. Everything else checked: min/max start at 01CCE8AC (1e18) / 01CCD4E4 (-1e18), comiss + jbe skips NaN; the widening applies when 009002B0 (0.002) > max - min (NaN skips) with 009002EC (-0.001) / 008C5B2C (0.001); q = qword [rcx+0x10]; words = cvttss2si of (v - [q+0x10+4j]) * [q+0x30+4j] AND 0xFFFE for min, + 1.0 then OR 1 for max; dword +0xC = (r8d << 21) OR r9d; growth test, 0085E680(16n, 0x10), copy with null skip, 0085E710, owner byte 1, null-address store skip, count increment."
+  }
+ ],
+ "mode": "ee",
+ "family": ""
+}

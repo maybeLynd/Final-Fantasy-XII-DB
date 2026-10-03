@@ -32,7 +32,7 @@
   },
   {
    "fn": "0017B580",
-   "text": "with cursor `m` = qword `[rcx+0x1EB0]`, decoder `d` = `rcx+0x42C0` and `B(p)` a VP8 boolean read on `d` (qword `+0x10`, dword `+0x18` refilled by `00179ED0(d)` when negative, dword `+0x1C`, shift table `01CDC180`): calls `0017A850(rcx)`, stores 0 to dword `+0xF8C` and dword `[rcx+0x1E74]`*0x80 - 0x80 to dword `+0xF90`; for each of dword `[rcx+0x1E74]` rows (signed) stores 0 to dword `+0xF84` and dword `[rcx+0x1E78]`*0x80 - 0x80 (read at entry) to dword `+0xF88`, and for each of dword `[rcx+0x1E78]` columns: when bytes `+0xF61` and `+0xF60` are non-zero stores to byte `[m+0xB]` 2 + `B(byte +0xF66)` if `B(byte +0xF64)` else `B(byte +0xF65)`, and when byte `+0xF61` is 0 and dword `+0x1E64` is 0 stores 0 there; stores to byte `[m+9]` `B(byte +0x4447)` when dword `+0x1E80` is non-zero, else 0; stores 0 to byte `[m+3]`; calls `0017A320(rcx, m)` when dword `+0x1E64` is 0, else `0017B010(rcx, m, m)`; subtracts 0x80 from dwords `+0xF84` and `+0xF88` and advances `m` by 0x4C; after each row subtracts 0x80 from dwords `+0xF8C` and `+0xF90` and advances `m` by 0x4C",
+   "text": "with cursor `m` = qword `[rcx+0x1EB0]`, decoder `d` = `rcx+0x42C0` and `B(p)` a VP8 boolean read on `d` (qword `+0x10`, dword `+0x18` refilled by `00179ED0(d)` when negative, dword `+0x1C`, shift table `01CDC180`): calls `0017A850(rcx)`, stores 0 to dword `+0xF8C` and dword `[rcx+0x1E74]`*0x80 - 0x80 to dword `+0xF90`; for each of dword `[rcx+0x1E74]` rows (signed) stores 0 to dword `+0xF84` and dword `[rcx+0x1E78]`*0x80 - 0x80 (read once, after the `0017A850` call, before the row loop) to dword `+0xF88`, and for each of dword `[rcx+0x1E78]` columns: when bytes `+0xF61` and `+0xF60` are non-zero stores to byte `[m+0xB]` 2 + `B(byte +0xF66)` if `B(byte +0xF64)` else `B(byte +0xF65)`, and when byte `+0xF61` is 0 and dword `+0x1E64` is 0 stores 0 there; stores to byte `[m+9]` `B(byte +0x4447)` when dword `+0x1E80` is non-zero, else 0; stores 0 to byte `[m+3]`; calls `0017A320(rcx, m)` when dword `+0x1E64` is 0, else `0017B010(rcx, m, m)`; subtracts 0x80 from dwords `+0xF84` and `+0xF88` and advances `m` by 0x4C; after each row subtracts 0x80 from dwords `+0xF8C` and `+0xF90` and advances `m` by 0x4C",
    "anchors": [
     [
      "0017B593",
@@ -75,7 +75,13 @@
   "00173360",
   "00173450"
  ],
- "corrections": [],
+ "corrections": [
+  {
+   "fn": "0017B580",
+   "why": "narrowed 2026-10-03 (OPUS) on the non-author review auditspec-review-opus-the-vp8-codec-interface-and-its-control--ee-1003-3: 'dword `[rcx+0x1E78]`*0x80 - 0x80 (read at entry) to dword `+0xF88`' -> 'dword `[rcx+0x1E78]`*0x80 - 0x80 (read once, after the `0017A850` call, before the row loop) to dword `+0xF88`'",
+   "by": "reviewer"
+  }
+ ],
  "mode": "ee",
  "family": ""
 }

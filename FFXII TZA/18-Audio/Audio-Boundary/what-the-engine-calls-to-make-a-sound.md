@@ -735,3 +735,11 @@ Interior anchor `00379E41` (the `0032E040` call).
 | `00212B30` | 68 B | walks the list whose head is `rcx+8` (first node qword `[rcx+8]`, next node qword `+0` of each, stopping back at `rcx+8`) and for each node calls virtual slot `+0x28` of the object at its qword `+0x10` with `edx` passed through | `00212B3F`, `00212B49`, `00212B50`, `00212B59`, `00212B5C` |
 | `00212BD0` | 67 B | walks the list whose head is `rcx+8` (first node qword `[rcx+8]`, next node qword `+0` of each, stopping back at `rcx+8`) and for each node calls virtual slot `+0` of the object at its qword `+0x10` with `edx` passed through | `00212BDF`, `00212BE9`, `00212BF0`, `00212BF9`, `00212BFB` |
 | `0035D030` | 28 B | calls `0028E940(1)` and tail-jumps to `00249C60(4)` | `0035D034`, `0035D039`, `0035D03E`, `0035D047` |
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-03, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../../_index/candidates/fable-home-what-the-engine-calls-to-make-a-sound-1003/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `003DEFC0` | 112 B | `003DEC90` + 0x160 | when qword `rcx+8` is non-null passes it to the call at `003DEFC0` + 0x21 and zeroes it, and when qword `rcx+0x18` is non-null passes it to the call at + 0x37 and zeroes it (each skipped when null); then stores byte 0 at `rcx+0x10` and clears bit `r8d` (shift count `cl`, so modulo 32) of the dword at `02B59C20` + sign-extended `edx` times 4 | Interior anchor `003DEFE1`; Interior anchor `003DEFF7`; Interior anchor `003DF00B`; Interior anchor `003DF024`; Interior anchor `003DF028` |

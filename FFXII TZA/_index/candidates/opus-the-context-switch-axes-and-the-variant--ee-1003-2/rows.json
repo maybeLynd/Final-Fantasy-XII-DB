@@ -1,0 +1,48 @@
+{
+ "page": "22-Middleware-PhyreEngine/Shader-Variant-Selection/the-context-switch-axes-and-the-variant-key.md",
+ "date": "2026-10-03",
+ "session": "opus-self",
+ "report": "the-context-switch-axes-and-the-variant-key-r6q.json",
+ "rows": [
+  {
+   "fn": "006B9630",
+   "text": "`n` = `006B8DE0`(two 8-dword stack lists L and S, `rdx`, `r8d`). With m = 2n+1, when dword `[r9]` differs from m it allocates m zeroed qwords (`0017D260`(m*8, 8); returns 0xD when null), frees the old array's entries whose bit `0x1` is clear and then the old array (`00584730`; only when it differs, is non-null and dword `[r9]` has `0x80000000` clear), and stores the new array at qword `[r9+8]` and m at dword `[r9]`. It fills slot 0 with a heap copy (`0017D260`, `00861EBA` memcpy; null for an empty string) of '-D' + the string at qword `[rcx+8]` + '=' + n, then for each i below n adds '-DLIGHTTYPE_' + i + '=' + the string at qword `+8` of `006BFC40`(L[i]) (the prefix alone when that returns null) and, when S[i] is non-zero, '-DSHADOWTYPE_' + i + '=' + the string at qword `+8` of `006C2300`(S[i]) (the prefix alone when that returns null), freeing each slot's old string (bit `0x1` clear) first. It ends with `006BA590`(`r9`, the number of slots filled) and returns 0, or returns 0xD when a copy allocation fails; under the stack cookie (`01F44830`, checked by `00808C40`)",
+   "anchors": [
+    [
+     "006B9678",
+     "call"
+    ],
+    [
+     "006B96A5",
+     "call"
+    ],
+    [
+     "006B9718",
+     "call"
+    ],
+    [
+     "006B9805",
+     "call"
+    ],
+    [
+     "006B99E6",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [
+  "006B8D20",
+  "006B8F70"
+ ],
+ "corrections": [
+  {
+   "fn": "006B9630",
+   "why": "byte re-read by a non-drafting agent: The '-DSHADOWTYPE_' slot has the same null case as the LIGHTTYPE slot: when 006C2300(S[i]) returns null (006B98F3 test rdi / je 006B9921) the i, '=' and string appends are skipped and the slot gets the prefix alone. The sentence states this only for 006BFC40 and implies the shadow suffix is always appended. The suffix is also the string at qword +8 of the returned object (006B9913 mov rdx, [rdi+8]), not the return value itself."
+  }
+ ],
+ "mode": "ee",
+ "family": ""
+}

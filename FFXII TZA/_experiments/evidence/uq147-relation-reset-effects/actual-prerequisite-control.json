@@ -1,0 +1,13 @@
+{
+  "status": "VERIFIED",
+  "tested_producer_sha256": "5b616396914a61f0bcc0a226e476f451867291dfc8e35586126e9cfc70421ef0",
+  "positive_status_sha256": "b8a8bb2478490414f196cb5b1608e3dfe6dc0984d59c3754ea5353f72b3ede62",
+  "positive_result_sha256": "e492dd3ad0a33b345e64c6c883f49371c182455181bc2c1f14fbfe899eaae4c6",
+  "failure_status_sha256": "573071c8ba7383835b80980935c7ac40481efdafbd3dc4abdcc4bae6b07e8737",
+  "failed_input_sha256": "51cfcceda7fa78189750a64c3d4dc29039841be532d1bc6ba604f72d8dba3243",
+  "actual_child_exit": 1,
+  "exception": null,
+  "required_marker": true,
+  "result_absent": true,
+  "limits": "Synthetic prerequisite, actual producer invocation/status. Not independent review/native/game evidence."
+}

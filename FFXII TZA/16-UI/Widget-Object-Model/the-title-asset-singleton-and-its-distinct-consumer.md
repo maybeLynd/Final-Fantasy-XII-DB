@@ -362,3 +362,15 @@ widgets apart, that matters.
 `00394350` (33 B; the result handler of script verb `fsttl_closecommand` `0x7059`, reached through a `jmp` thunk) reads the consumer published at `02AEE4C8` and, when it is non-null and bit 2 of its dword `+0xC4` is clear, sets that bit (`or ecx, 4`, read-modify-write); otherwise it writes nothing. The bit is read in the consumer's own handler `003939B0`: the arm that clears `02AEE4C8` (`00393E0E`) stores 6 into byte `01EFAC12` when bit 2 is set and keeps the byte's value otherwise (`00393DF1`, `cmovne`). The message-1 arm stored 2 there (`00393A0A`) and zeroed the whole dword (`003939FD`), and the consumer factory `00394530` clears bit 2 on one path (`003945BB`).
 
 Interior anchor `0039436A` (function `00394350`).
+
+## Homed bodies re-homed here for host fit (FABLE, 2026-10-03; AUDIT-SPEC batch 5)
+
+*FABLE's homing stream (cloud-drafted, FABLE-verified) homed these bodies on other pages. SWE2-AUDIT-SPEC reviewed each sentence, site and anchor set exact and rejected only the host, because that page named the caller only as a foreign or boundary mention. A body newly homed here is marked so, with the review that gives its sentence. The sentences are unchanged. Each states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Why each row is here:*
+
+- `00394380`: this page cites its caller `003939B0` in its own text.
+
+*Verified by [`move_rows.py`](../../_index/candidates/fable-home-host-moves-b5-1003/move_rows.py): every site transfers to its function, the caller or callee named above is cited on this page outside this section (or homed in it), and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors | moved from |
+|---|---|---|---|---|---|
+| `00394380` | 123 B | `003939B0` + 0x3E4 | calls `00394380` + 0xE with `ecx` = 1, zeroes a 0x30-byte stack block and fills it with the qword returned by `00394380` + 0x38 (`ecx` = 0x890) at `+0`, qword 0 at `+8`, qword `0208EA28` at `+0x10`, the incoming `rcx` at `+0x18`, dword 0 at `+0x20`, byte 2 at `+0x28` and dword 0x1002 at `+0x2C`, then calls `00394380` + 0x70 with `ecx` = 0 and the block's address in `rdx` and returns with that call's `rax` | Interior anchor `0039438E`; Interior anchor `003943B8`; Interior anchor `003943C4`; Interior anchor `003943E3`; Interior anchor `003943F0` | [the-steal-roll](../../08-Combat-Formula/Steal/the-steal-roll.md) |

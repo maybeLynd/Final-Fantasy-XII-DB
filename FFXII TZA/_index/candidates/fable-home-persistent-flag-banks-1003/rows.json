@@ -1,0 +1,77 @@
+{
+ "page": "14-Story-Event-Quest-Hunt/persistent-flag-banks.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01A1Qvgw5xe7BnV34LPHQcLH",
+ "report": "home-persistent-flag-banks.json",
+ "rows": [
+  {
+   "fn": "003EB200",
+   "entered_from": "`003EC5B0` + 0x2D",
+   "text": "makes the call at `003EB200` + 0x1D with `ecx` = the incoming `edx` and `edx` = 0, and returns 0 when it returns null; otherwise makes the call at `003EB200` + 0x3A with `ecx` = the incoming `ecx`, `rdx` = that pointer, `r8d` and `r9d` unchanged and the incoming fifth (stack) argument as its fifth argument, and returns that call's value",
+   "anchors": [
+    [
+     "003EB21D",
+     "call"
+    ],
+    [
+     "003EB225",
+     "je"
+    ],
+    [
+     "003EB22E",
+     "mov"
+    ],
+    [
+     "003EB235",
+     "mov"
+    ],
+    [
+     "003EB23A",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "003EB910",
+   "entered_from": "`003EC770` + 0x44",
+   "text": "returns without a call when `rcx` is null or dword `rcx+0x10` is negative (signed); otherwise makes the call at `003EB910` + 0x1B with `ecx` = word `rcx+0x10` zero-extended, `rdx`, `r8` and `r9` unchanged and 1 as the fifth (stack) argument, and returns its value",
+   "anchors": [
+    [
+     "003EB914",
+     "test"
+    ],
+    [
+     "003EB91D",
+     "jl"
+    ],
+    [
+     "003EB91F",
+     "movzx"
+    ],
+    [
+     "003EB923",
+     "mov"
+    ],
+    [
+     "003EB92B",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "003EB700",
+   "why": [
+    "already cited by 24-Compiler-And-CRT-Runtime\\Generated-Families\\generated-function-families.md"
+   ]
+  }
+ ],
+ "skipped": {},
+ "missing": [
+  "002E11B0",
+  "002ED3A0",
+  "00363730"
+ ],
+ "corrections": []
+}

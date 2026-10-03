@@ -1,0 +1,53 @@
+{
+ "page": "23-Third-Party-Libraries/LibVPX-VP8-Decoder/the-vp8-codec-interface-and-its-control-map.md",
+ "date": "2026-10-03",
+ "session": "opus-self",
+ "report": "the-vp8-codec-interface-and-its-control-map-r6s.json",
+ "rows": [
+  {
+   "fn": "00126E10",
+   "text": "a 16x16 two-pass byte filter: with H = the 16 bytes at `030011F0` + 16*argument 3 and V = those at `030011F0` + 16*argument 4, each result byte is (x0*f0 + x1*f1 + 64) >> 7, computed by `pmaddubsw` over interleaved byte pairs (unsigned data times signed filter bytes, pairs summed with signed saturation), the 64s from `03001060`, an arithmetic shift and packing with unsigned saturation. It writes 16 rows of 16 bytes with aligned stores to argument 5, rows dword argument 6 apart, from argument 1 with rows dword argument 2 apart (both sign-extended): when argument 3 is 0, vertically with V over consecutive source rows (two output rows per iteration); else when argument 4 is 0, horizontally with H over each source row and the same row one byte on (two rows per iteration); otherwise each source row from the first is filtered horizontally to bytes h and each output row is the pair (h_previous, h) filtered with V; it saves and restores `xmm6`/`xmm7`",
+   "anchors": [
+    [
+     "00126E40",
+     "cmp"
+    ],
+    [
+     "00126E66",
+     "cmp"
+    ],
+    [
+     "00126EA7",
+     "pmaddubsw"
+    ],
+    [
+     "00126F56",
+     "movdqa"
+    ],
+    [
+     "001270B3",
+     "movdqa"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [
+  "001260E7",
+  "001263AD",
+  "00127104",
+  "00172CE0",
+  "00172DC0",
+  "00172F00",
+  "00173040",
+  "00173180",
+  "00173270",
+  "00173360",
+  "00173450",
+  "0017B010"
+ ],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

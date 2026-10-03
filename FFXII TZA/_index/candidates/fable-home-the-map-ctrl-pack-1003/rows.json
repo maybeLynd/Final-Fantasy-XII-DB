@@ -1,0 +1,73 @@
+{
+ "page": "03-World-Area-Field/Map-Pack/the-map-ctrl-pack.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01A1Qvgw5xe7BnV34LPHQcLH",
+ "report": "home-the-map-ctrl-pack.json",
+ "rows": [
+  {
+   "fn": "001A5980",
+   "entered_from": "`00180280` + 0x1A",
+   "text": "walks the nodes from qword `rcx+0x278` until it reaches the address `rcx+0x270`, for each node making the calls at `001A5980` + 0x34 with qword node`+0x28` and + 0x3D with qword node`+0x30`, then taking the next node from the call at + 0x45 with the node; then walks the chain from qword `rcx+0x280` through qword node`+8` until null, for each node making the call at + 0x76 with (`rcx+0x268`, qword node`+0`) and calling vtable slot `+0x18` of the object at `rcx+0x298` with (that object, node, `0x38`); then stores the address `rcx+0x270` at qwords `rcx+0x278` and `rcx+0x270`, zeroes qword `+0x280`, byte `+0x288` and dword `+0x290`, subtracts from qword `+0x2A8` its distance from qword `+0x2A0` rounded down to a multiple of `0x20` (arithmetic shift), and returns 0",
+   "anchors": [
+    [
+     "001A59C5",
+     "call"
+    ],
+    [
+     "001A59F6",
+     "call"
+    ],
+    [
+     "001A5A10",
+     "call"
+    ],
+    [
+     "001A5A2E",
+     "mov"
+    ],
+    [
+     "001A5A62",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "001E6400",
+   "entered_from": "`00180890` + 0x0",
+   "text": "reads dword `+0x60` of the record at qword `[qword rcx+0x18]`, stores dword 0 at `rcx+0x1F4` and 1.0 (`0x3f800000`) at `rcx+0x1F8`; when that dword is 0 stores at `rcx+0x1F0` the float of `xmm1` times 0.5 (`01CEBBD8`) divided by (`xmm3` minus `xmm2`), otherwise the float of the negated dword times 0.5 (`01CEBBD8`) divided by (`xmm3` minus `xmm2`), both computed in double precision",
+   "anchors": [
+    [
+     "001E6411",
+     "neg"
+    ],
+    [
+     "001E641D",
+     "mov"
+    ],
+    [
+     "001E6427",
+     "jne"
+    ],
+    [
+     "001E644B",
+     "movss"
+    ],
+    [
+     "001E6477",
+     "movss"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "0060EC30",
+   "why": [
+    "already cited by 03-World-Area-Field\\Map-Pack\\the-map-ctrl-pack.md"
+   ]
+  }
+ ],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

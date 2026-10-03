@@ -736,3 +736,11 @@ test).
 | function | size | entered from | what the body does | interior anchors | moved from |
 |---|---|---|---|---|---|
 | `002FB250` | 71 B | `00319B10` + 0x17E | stores 0 into the ten bytes every 0x20 bytes from `022BE7F0` through `022BE910` and returns | Interior anchor `002FB257`; Interior anchor `002FB273`; Interior anchor `002FB28F` | [when-a-group-is-wiped-and-when-it-comes-back](../05-Spawn-Encounter-Lifecycle/Group-Completion-And-Respawn/when-a-group-is-wiped-and-when-it-comes-back.md) |
+
+## Homed bodies: functions reached only indirectly whose callees this page cites (FABLE, 2026-10-03, F homing)
+
+*No page cited these functions and none of their callers is documented: they are reached by table or pointer dispatch or through undocumented callers. Each one calls something this page documents, which the sentence names. Each sentence states what the body does (access and representation, not purpose); the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's F homing pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../_index/candidates/fable-world-loot-pickups-the-ten-slot-pool-and-homing-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `003B7440` | 202 B | calls `003B73B0`(qword `02EBCC68`); then, while the index is below dword `02EBCC60` (signed; nothing when it is 0 or less), walks the qwords at `02EBCAC0` at stride 8, skipping null entries: for entry E it calls `003B7440`+0x41(E) and, when that returns non-null P, calls `00265020`(E, P, P+4, P+8) and +0x70(E, P+0x10, P+0x14, P+0x18), stores the byte result of +0x78(E) at `P+0x64`, the float result of +0x83(E) at `P+0x34`, that of +0x90(E) at `P+0x24`, and that of +0x9D(E) (the same callee as +0x83) at `P+0x34` again | Interior anchor `003B744D`; Interior anchor `003B745A`; Interior anchor `003B749C`; Interior anchor `003B74C0`; Interior anchor `003B74F3` |

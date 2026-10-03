@@ -1,0 +1,42 @@
+{
+ "page": "17-Presentation-Rendering/Legacy-PS2-GS/the-vif1-vu1-layer.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01HPphrAiHTMT5Nr1N4ZnQXK",
+ "report": [
+  "fable-the-vif1-vu1-layer.json"
+ ],
+ "rows": [
+  {
+   "fn": "001EC000",
+   "text": "returns at once when qword `rcx+0x20` is 0; otherwise, with `rdx` = `rcx+0x20`, tail-jumps to `001EB800` directly when byte `+0x26e` is non-zero; else increments dword `+0x28` and, when it is still below dword `+0x30` (signed), adds float `+0x38` to float `+0x34` and tail-jumps to `001EB800`; when it is not below, stores 0 into float `+0x34` if that float is negative, sets dword `+0x30` to -1, zeroes qword `+0x20` and tail-jumps to `001EB800`",
+   "anchors": [
+    [
+     "001EC00B",
+     "cmp"
+    ],
+    [
+     "001EC01D",
+     "jge"
+    ],
+    [
+     "001EC029",
+     "movss"
+    ],
+    [
+     "001EC03E",
+     "mov"
+    ],
+    [
+     "001EC048",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing",
+ "family": ""
+}

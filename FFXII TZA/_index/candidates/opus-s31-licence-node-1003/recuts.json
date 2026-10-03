@@ -1,0 +1,39 @@
+{
+ "proposed": [
+  {
+   "old": "LicenseNodeRecord\t0x000\t24\tunobservedSpan000\tu8[24]\tTHE WHOLE RECORD, AND IT IS HONESTLY EMPTY. The extent is proven - 32 + 360 * 24 = 8672 closes against the measured file size - and nothing in the store describes what the 24 bytes hold. 12-Items-Equipment-Shops-License/license-board-grid-format.md declares it out of its own scope in as many words: 'What a node record contains. That is license_data.bin's 24-byte record, not this file.' THIS ROW EXISTS SO THE TYPE CAN BE ALLOCATED, which is the store's stated reason for preferring a known size with declared gaps over UNRESOLVED. It is not evidence that the bytes were looked at.\tDISCOVERED\tPROVEN\t12-Items-Equipment-Shops-License/license-board-grid-format.md section 2.3; file size 8672 measured || LIFETIME: AUTHORED - the record's birth bytes come from the pack/image, not an engine clear. 2026-09-23 (SWE2-STRUCT), check_clear_exhaustion adjudicated.",
+   "new": null,
+   "type": "LicenseNodeRecord"
+  },
+  {
+   "old": null,
+   "new": "LicenseNodeRecord\t0x000\t4\tunobservedSpan000\tu8[4]\tno read of +0x00..+0x03 at the sites censused for this re-cut (the class-0x20 query copy starts at +4); semantics open. 2026-10-03 (OPUS, AUDITSPEC-REQ-OPUS-S31-SECTION8A-DENOMINATOR-RULE-1003; the fields CONTRACT-license-check.md 8a.2 (FABLE) names, read at the bytes by OPUS; record opus-s31-licence-node-1003)\tDISCOVERED\tPROVEN\textent: 32 + 360 * 24 closes against license_data.bin (the earlier whole-record row); 0031E093 is the first read of the copy",
+   "type": "LicenseNodeRecord"
+  },
+  {
+   "old": null,
+   "new": "LicenseNodeRecord\t0x004\t1\tlpCost\tuint8\tthe node's LP cost: the purchase path subtracts it from the character record's LP +0x190 (003239C3 movzx ecx,byte [rcx+4] / 003239CD neg / 003239CF add); the class-0x20 query copies it to buffer +0x20 (0031E093/0031E097). 2026-10-03 (OPUS, AUDITSPEC-REQ-OPUS-S31-SECTION8A-DENOMINATOR-RULE-1003; the fields CONTRACT-license-check.md 8a.2 (FABLE) names, read at the bytes by OPUS; record opus-s31-licence-node-1003)\tSEMANTICALLY IDENTIFIED\tPROVEN\t003239C3 movzx ecx, byte ptr [rcx+4] in 00323910; 0031E093 in 0031C5D0",
+   "type": "LicenseNodeRecord"
+  },
+  {
+   "old": null,
+   "new": "LicenseNodeRecord\t0x005\t1\tcategory\tuint8\tthe node's category byte (FABLE's 8a.2 name): copied to query buffer +0x21 (0031E09A/0031E09E) and passed as ecx to 00323890, whose result the query stores at buffer +0x23 (0031E0DD/0031E0E1/0031E0E6). 2026-10-03 (OPUS, AUDITSPEC-REQ-OPUS-S31-SECTION8A-DENOMINATOR-RULE-1003; the fields CONTRACT-license-check.md 8a.2 (FABLE) names, read at the bytes by OPUS; record opus-s31-licence-node-1003)\tTYPE RESOLVED\tPROVEN\t0031E09A movzx eax, byte ptr [rdi+5]; 0031E0DD movzx ecx, byte ptr [rdi+5]",
+   "type": "LicenseNodeRecord"
+  },
+  {
+   "old": null,
+   "new": "LicenseNodeRecord\t0x006\t1\tsquareKind\tuint8\tthe square kind (FABLE's 8a.2 name): copied to query buffer +0x22 (0031E0A1/0031E0A5); kind 3 alone runs a further 0030B0E0 check when the query's dword +4 is in 0x12..0x1E (0031E0A8 cmp byte [rdi+6], 3 / 0031E0B1..0031E0C3), setting bit 0x1 of buffer +0x24 when it answers non-zero. 2026-10-03 (OPUS, AUDITSPEC-REQ-OPUS-S31-SECTION8A-DENOMINATOR-RULE-1003; the fields CONTRACT-license-check.md 8a.2 (FABLE) names, read at the bytes by OPUS; record opus-s31-licence-node-1003)\tTYPE RESOLVED\tPROVEN\t0031E0A1 movzx eax, byte ptr [rdi+6]; 0031E0A8 cmp byte ptr [rdi+6], 3",
+   "type": "LicenseNodeRecord"
+  },
+  {
+   "old": null,
+   "new": "LicenseNodeRecord\t0x007\t1\tstartMask\tuint8\tthe start mask, one bit per party slot: tested as 1 << slot (0023AE61..0023AE68 and 00239D3A..00239D41, test byte [r8+7], dl); copied to query buffer +0x36 (0031E0E9/0031E0ED), which the reset reads (00328A5B). 2026-10-03 (OPUS, AUDITSPEC-REQ-OPUS-S31-SECTION8A-DENOMINATOR-RULE-1003; the fields CONTRACT-license-check.md 8a.2 (FABLE) names, read at the bytes by OPUS; record opus-s31-licence-node-1003)\tSEMANTICALLY IDENTIFIED\tPROVEN\t0023AE68 test byte ptr [r8+7], dl in 0023AC80; 00239D41 in 00239960; 0031E0E9 movzx eax, byte ptr [rdi+7]",
+   "type": "LicenseNodeRecord"
+  },
+  {
+   "old": null,
+   "new": "LicenseNodeRecord\t0x008\t16\tids\tu16[8]\teight 16-bit ids (FABLE's 8a.2 'the ids'): the class-0x20 query copies all eight, word by word, to buffer +0x26..+0x35 (0031E0F0..0031E12C); what each id names is not claimed here. 2026-10-03 (OPUS, AUDITSPEC-REQ-OPUS-S31-SECTION8A-DENOMINATOR-RULE-1003; the fields CONTRACT-license-check.md 8a.2 (FABLE) names, read at the bytes by OPUS; record opus-s31-licence-node-1003)\tTYPE RESOLVED\tPROVEN\t0031E0F0 movzx eax, word ptr [rdi+8] ... 0031E128 movzx eax, word ptr [rdi+0x16]",
+   "type": "LicenseNodeRecord"
+  }
+ ]
+}

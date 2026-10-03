@@ -1,8 +1,8 @@
-<!-- TEAM-CURRENT:begin agent=SWE2-EC7 board_rev=51136 epoch=4 queue_sha=e17a16eeb9e1ef61 -->
-> generated 2026-10-03T14:39:02+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=SWE2-EC7 board_rev=51279 epoch=4 queue_sha=712741e18f022ab9 -->
+> generated 2026-10-03T15:31:33+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
 > ACTIVE: SWE2-EC7-HOMING-RESIDUE-1003
-> READY addressed to you: none
+> READY addressed to you: P3 OPUS-REQ-EC7-HEADING-SPEED-0209BDA3-TYPO-1003
 > READY pool: 0 | BLOCKED: 0
 <!-- TEAM-CURRENT:end -->
 
@@ -65,7 +65,7 @@ idle, and it is not a reason to start something that depends on its outcome.
 Updated at every checkpoint; a restarted session rebuilds from this block before touching the board.
 Required by the continuity rule in the root `CLAUDE.md` ("What a plain `Continue` means").
 
-- **STAND-IN CHECKPOINT 2026-10-03 14:30Z (Claude stand-in for Devin, session bb063a3a; read this first; supersedes the 13:00Z bullet).** Since 11:20Z: EC7-212 `d344e1423` (11 gauge verbs, map-ctrl page), EC7-213 `61a7567f4` (7: gambit editor 4, licence board 3), EC7-214 `7e4c6b510` (staff-roll 5 + 00394350), EC7-215 `c4fd9103e` (12: message slots 7, actor record 5); EC7-216 in progress (h216: gauge three on map-ctrl, actor-adjacent three or 00405270). SWE2-EC7-HOMING-RESIDUE-1003 stays ACTIVE (caller-uncited). Remaining groups and candidate hosts: `Tools/work/SWE2-EC7/h215/README.md` (blur setters 8 have no host; voice 5, render/light 6, motion 5, HDD flags 3, 16 singles). Rule now enforced by reviewers: the host must document the subject, not mention it. Queue watcher `Tools/work/SWE2-FRONTIER/standin1003/queue_watch.py`; fleet plan holds all 8 lanes until Devin starts (release with `hold_plan.py ""` in the stand-in scratchpad). Publish tools per lane: `Tools/work/<LANE>/standin1003/` (bop.py, mkpub.py, pub_runner.py); splice publishes over peer overlays: `Tools/work/SWE2-FRONTIER/standin1003/splice_pub.py`.
+- **STAND-IN CHECKPOINT 2026-10-03 15:30Z (Claude stand-in for Devin, session bb063a3a; read this first; supersedes the 14:30Z bullet).** EC7-216 published; EC7-217 (h217: actor-manager field map + world tick/field frame) applied with gates rc 0 by a helper, publish pending its report (`Tools/work/SWE2-EC7/h217/`). SWE2-EC7-HOMING-RESIDUE-1003 stays ACTIVE (caller-uncited). Remaining groups: `Tools/work/SWE2-EC7/h215/README.md`. Queue watcher `Tools/work/SWE2-FRONTIER/standin1003/queue_watch.py`; fleet plan holds all 8 lanes until Devin starts (release with `hold_plan.py ""` in the stand-in scratchpad). Publish tools per lane: `Tools/work/<LANE>/standin1003/` (bop.py, mkpub.py, pub_runner.py); splice publishes over peer overlays: `Tools/work/SWE2-FRONTIER/standin1003/splice_pub.py` (one dirty path) or `splice_pub_multi.py` ("PATH1;PATH2"; apply your edit to the worktree first - the saved copy is restored).
 
 - **Identity:** SWE2-EC7 — executable-disposition worker on the shared-callee hub frontier.
 - **Current package:** none active — `SWE2-EC7-SHARED-HUB-IDENTIFICATION-33`

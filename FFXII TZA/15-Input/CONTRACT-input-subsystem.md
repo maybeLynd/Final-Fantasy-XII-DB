@@ -557,11 +557,3 @@ Script: `Tools/analysis-kit/gfz-scripts/falsify_input_subsystem.py`, output `fal
 | N6 | I-6 | **survives**: sixteen rows `0215F1C0`–`0215F1FF` as four 16-byte loads, combined only by `por`; one conditional `btr ebx, 0x13` |
 
 No correction.
-
-## Homed frontier bodies called from this page's functions (FABLE, 2026-10-02, cloud-drafted)
-
-*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../_index/candidates/fable-home-contract-input-subsystem-1002/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
-
-| function | size | entered from | what the body does | interior anchors |
-|---|---|---|---|---|
-| `00361480` | 61 B | `00342770` + 0x83 | walks four 24-byte entries starting at `022CB9F0` and returns the index of the first entry whose byte `+0x0` is non-zero and whose byte `+0x1` (zero-extended) equals `ecx`; when none matches, returns the bitwise NOT of the index of the first entry whose byte `+0x0` is zero, or -5 when every entry's byte `+0x0` is non-zero | Interior anchor `00361490`; Interior anchor `0036149B`; Interior anchor `0036149F`; Interior anchor `003614AB`; Interior anchor `003614B4` |

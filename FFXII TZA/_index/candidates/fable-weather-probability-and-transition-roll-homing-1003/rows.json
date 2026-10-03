@@ -1,0 +1,68 @@
+{
+ "page": "03-World-Area-Field/Weather/weather-probability-and-transition-roll.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_011Dcenz5EPZBdrLRrFP8ia6",
+ "report": [
+  "fable-weather-probability-and-transition-roll.json"
+ ],
+ "rows": [
+  {
+   "fn": "003597B0",
+   "text": "calls `00234D40` with the incoming registers unchanged and returns 1 when it returns 2, otherwise 0 (including when it returns 1)",
+   "anchors": [
+    [
+     "003597B4",
+     "call"
+    ],
+    [
+     "003597B9",
+     "sub"
+    ],
+    [
+     "003597BC",
+     "je"
+    ],
+    [
+     "003597C1",
+     "jne"
+    ],
+    [
+     "003597C8",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "003597D0",
+   "text": "calls `00234D40` with the incoming registers unchanged and returns 1 when it returns 1, 2 when it returns 2, otherwise 0",
+   "anchors": [
+    [
+     "003597D4",
+     "call"
+    ],
+    [
+     "003597DC",
+     "je"
+    ],
+    [
+     "003597E1",
+     "je"
+    ],
+    [
+     "003597EA",
+     "mov"
+    ],
+    [
+     "003597F4",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing",
+ "family": ""
+}

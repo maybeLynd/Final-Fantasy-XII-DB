@@ -1,0 +1,80 @@
+{
+ "page": "16-UI/Widget-Object-Model/the-widget-message-protocol.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01A1Qvgw5xe7BnV34LPHQcLH",
+ "report": "home-the-widget-message-protocol.json",
+ "rows": [
+  {
+   "fn": "00297E10",
+   "entered_from": "`0029A0A0` + 0x4C5",
+   "text": "returns 0 when `edx` equals dword `rcx+0xE0` and `r8d` equals dword `rcx+0xE8`; otherwise takes the object at qword `+0x30` of qword `rcx+0x60`, makes the call at `00297E10` + 0x39 with that object and the signed larger of `edx` and `r8d`, then the call at + 0x43 with that object and the incoming `edx`, and returns 1",
+   "anchors": [
+    [
+     "00297E18",
+     "cmp"
+    ],
+    [
+     "00297E20",
+     "cmp"
+    ],
+    [
+     "00297E44",
+     "jle"
+    ],
+    [
+     "00297E49",
+     "call"
+    ],
+    [
+     "00297E53",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00297F60",
+   "entered_from": "`0029A0A0` + 0x529",
+   "text": "returns without a store when dword `rcx+0xEC` equals `edx`; otherwise makes the call at `00297F60` + 0x21 with `ecx` = `edx`, keeps its result or, when that is null, the incoming `r8`, and stores it at qword `R+0x18`, where X is qword `+0xE0` of qword `rcx+0x60`, A is qword `X+0x18` and R is the qword at the address held in qword `A+0x60` (R = 0 when A is null); then stores the result of the call at + 0x55 (`ecx` = 0) at dword `R+0x20` and `edx` at dword `rcx+0xEC`",
+   "anchors": [
+    [
+     "00297F77",
+     "cmp"
+    ],
+    [
+     "00297F90",
+     "cmove"
+    ],
+    [
+     "00297FB1",
+     "mov"
+    ],
+    [
+     "00297FBA",
+     "mov"
+    ],
+    [
+     "00297FBD",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "003FCDE0",
+   "why": [
+    "already cited by 16-UI\\Widget-Object-Model\\the-widget-message-protocol.md"
+   ]
+  }
+ ],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "00297F60",
+   "was": "returns without a store when dword `rcx+0xEC` equals `edx`; otherwise makes the call at `00297F60` + 0x21 with `ecx` = `edx`, keeps its result or, when that is null, the incoming `r8`, and stores it at qword `R+0x18`, where X is qword `+0xE0` of qword `rcx+0x60` and R is the qword at `[qword X+0x18]+0x60` dereferenced (R = 0 when qword `X+0x18` is null); then stores the result of the call at + 0x55 (`ecx` = 0) at that record's dword `+0x20` and `edx` at dword `rcx+0xEC`",
+   "now": "returns without a store when dword `rcx+0xEC` equals `edx`; otherwise makes the call at `00297F60` + 0x21 with `ecx` = `edx`, keeps its result or, when that is null, the incoming `r8`, and stores it at qword `R+0x18`, where X is qword `+0xE0` of qword `rcx+0x60`, A is qword `X+0x18` and R is the qword at the address held in qword `A+0x60` (R = 0 when A is null); then stores the result of the call at + 0x55 (`ecx` = 0) at dword `R+0x20` and `edx` at dword `rcx+0xEC`",
+   "why": "`00297F60` + 0x3B, + 0x48 and + 0x4C: A = [X+0x18], then [A+0x60], then [that] = R, three loads from X; the bracketed `[qword X+0x18]+0x60` dereferenced read as four"
+  }
+ ]
+}

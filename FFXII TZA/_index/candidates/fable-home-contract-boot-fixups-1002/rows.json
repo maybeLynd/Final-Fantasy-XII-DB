@@ -495,6 +495,38 @@
    "moved_on": "2026-10-03",
    "moved_record": "_index/candidates/fable-home-host-moves-b4-1003",
    "review": "_index/candidates/auditspec-review-fable-home-contract-boot-fixups-1002/REVIEW.md"
+  },
+  {
+   "fn": "004EB910",
+   "entered_from": "`004EBE80` + 0x74A",
+   "text": "increments word `02064DB8`; replaces each float pair (a,b) = (`02064BF0`,`02064BF4`) and (`02064C00`,`02064C04`) by (`02064D00`*a + `02064D10`*b, `02064D04`*a + `02064D14`*b), adds the new pairs to the first two floats of two copies of the 16-byte entry at index word `02064B0C` + 2 of the 0x10-stride table `02064E30` and stores the copies times 16 as truncated int32 vectors at `02064C60` and `02064C70`; when word `02064DBC` differs from word `02064B0C` it first subtracts `02064CF0`/`02064CF4` times `02064C80` from both float pairs; then adds `02064CF0`/`02064CF4` times `02064B60` (first pair) or `02064B64` (second) and subtracts `02064B30`/`02064B34`; every pair update (to `02064C10`/`02064C14` or `02064C20`/`02064C24`) is followed by a call when either float is 0, one when either is negative and one always (`004EB910` + 0x231/0x252/0x257, 0x29A/0x2B9/0x2BE, 0x38F/0x3B0/0x3B5, 0x3F8/0x417/0x41C); finally maps x to x*`02064BA0` + `02064B90` and y to y*`02064BA4` + `02064B94` in both pairs, sets floats `02064C18`, `02064C28` to 1.0 (`01E0283C`), copies `02064C10`, `02064B70`, `02064C60`, `02064C20`, `02064B80`, `02064C70` to six entries from index word `02064DB4` and adds 6 to it",
+   "anchors": [
+    [
+     "004EB94A",
+     "inc"
+    ],
+    [
+     "004EBAE2",
+     "je"
+    ],
+    [
+     "004EBB41",
+     "call"
+    ],
+    [
+     "004EBDF5",
+     "movups"
+    ],
+    [
+     "004EBE69",
+     "mov"
+    ]
+   ],
+   "moved_to": "17-Presentation-Rendering/Legacy-PS2-GS/the-vif1-vu1-layer.md",
+   "moved_by": "FABLE",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/fable-home-host-moves-b5-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-boot-fixups-1002/REVIEW.md"
   }
  ]
 }

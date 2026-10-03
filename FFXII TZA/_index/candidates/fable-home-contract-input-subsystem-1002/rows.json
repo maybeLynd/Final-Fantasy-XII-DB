@@ -44,5 +44,73 @@
   "0025D5D0": "its whole work is the entry instruction (an AND of byte 02098E27 with 0x7F, then ret)"
  },
  "missing": [],
- "corrections": []
+ "corrections": [],
+ "moved": [
+  {
+   "fn": "00361480",
+   "entered_from": "`00342770` + 0x83",
+   "text": "walks four 24-byte entries starting at `022CB9F0` and returns the index of the first entry whose byte `+0x0` is non-zero and whose byte `+0x1` (zero-extended) equals `ecx`; when none matches, returns the bitwise NOT of the index of the first entry whose byte `+0x0` is zero, or -5 when every entry's byte `+0x0` is non-zero",
+   "anchors": [
+    [
+     "00361490",
+     "cmp"
+    ],
+    [
+     "0036149B",
+     "cmp"
+    ],
+    [
+     "0036149F",
+     "mov"
+    ],
+    [
+     "003614AB",
+     "not"
+    ],
+    [
+     "003614B4",
+     "cmp"
+    ]
+   ],
+   "dropped_by": "FABLE",
+   "dropped_on": "2026-10-03",
+   "dropped_record": "_index/candidates/fable-home-host-moves-b5-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-input-subsystem-1002/REVIEW.md",
+   "unbound": "returned to the frontier: no host cites a caller or callee"
+  }
+ ],
+ "dropped": [
+  {
+   "fn": "00361480",
+   "entered_from": "`00342770` + 0x83",
+   "text": "walks four 24-byte entries starting at `022CB9F0` and returns the index of the first entry whose byte `+0x0` is non-zero and whose byte `+0x1` (zero-extended) equals `ecx`; when none matches, returns the bitwise NOT of the index of the first entry whose byte `+0x0` is zero, or -5 when every entry's byte `+0x0` is non-zero",
+   "anchors": [
+    [
+     "00361490",
+     "cmp"
+    ],
+    [
+     "0036149B",
+     "cmp"
+    ],
+    [
+     "0036149F",
+     "mov"
+    ],
+    [
+     "003614AB",
+     "not"
+    ],
+    [
+     "003614B4",
+     "cmp"
+    ]
+   ],
+   "dropped_by": "FABLE",
+   "dropped_on": "2026-10-03",
+   "dropped_record": "_index/candidates/fable-home-host-moves-b5-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-input-subsystem-1002/REVIEW.md",
+   "unbound": "returned to the frontier: no host cites a caller or callee"
+  }
+ ]
 }

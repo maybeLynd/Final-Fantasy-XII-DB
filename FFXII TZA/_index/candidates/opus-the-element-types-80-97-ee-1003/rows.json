@@ -1,0 +1,177 @@
+{
+ "page": "17-Presentation-Rendering/Effect-File-Formats/the-element-types-80-97.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-element-types-80-97-r8a.json",
+ "rows": [
+  {
+   "fn": "0039B960",
+   "text": "writes to `[rdx]`, `[rdx+4]`, `[rdx+8]` the x/y/z floats at `rcx` times `k`, where `k` = 0 when their squared length equals 0.0 (ordered), else 1 / `sqrtf` (`00861F14`) of it (a NaN length takes the second path)",
+   "anchors": [
+    [
+     "0039B9AA",
+     "ucomiss"
+    ],
+    [
+     "0039B9B4",
+     "call"
+    ],
+    [
+     "0039B9C1",
+     "divss"
+    ],
+    [
+     "0039B9E8",
+     "movss"
+    ],
+    [
+     "0039B9F1",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "004504C0",
+   "text": "returns 0 when `002F2D60(rcx)` returns 0; otherwise calls `00450CE0(rcx)`, stores the result of `0044B960()` (no argument set up) at dword `[rcx+0x290]` and, with `w` = word `[qword [rcx+0x20] + 0x25C]`, stores at dword `+0x294` `003A6E60(2)` << 7 when `w` AND 0x180 is 0x100, else ((`w` >> 7) AND 3) << 7; returns 1",
+   "anchors": [
+    [
+     "004504C9",
+     "call"
+    ],
+    [
+     "004504DB",
+     "call"
+    ],
+    [
+     "004504E5",
+     "mov"
+    ],
+    [
+     "00450510",
+     "call"
+    ],
+    [
+     "00450537",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00452020",
+   "text": "d = qword [rcx+0x20], k = dword [rcx+0x44], V(o) = 16 bytes at `00430B90(&stack, d+o, k)`: +0x110 = V(0xC0), plus [rcx+0xE0] if byte [d+0x49] has bit 0x8; +0x120 = V(0x100), times [rcx+0x100] per float if byte [[rcx+0x20]+0x49] (re-read) has 0x4; P = +0x230 = V(0x80) (sums/products via statics `022D92E0`/`022D92F0`); calls `00398480(rcx+0x110, rcx+0x250, byte [d+0x48])`; P += [rcx+0x60]; if qword [rcx+0x10] is non-null: `0039AF70(it)`, `00398F90(P, P)` and, if byte [d+0x4A] AND 0x1C is 0, `00397ED0([rcx+0x10]+0x40, rcx+0x250)`; +0x80 = old +0x70, +0x70 = P; if byte [d+0x4A] AND 0x1C is 0xC, `00397910(&M, rcx+0x250, rcx+0x250)` with M = the 64 bytes at `002F3570(&stack, rcx)`, dwords +0xC/+0x1C/+0x2C zeroed; `003970F0` (bit 0x2 of byte [d+0x4B]) or `0039ADE0` with (`rcx+0x250`, `rcx+0x120`); +0x280 = P, float +0x28C = 1.0; dwords +0x240/+0x244 = `0042FDB0(d+0x180/d+0x1D0, k)`, each then `0026EE00(&it, &it, rcx+0x1F0)` unless dword +0x1F0 is 0x80808080; if byte [d+0x49] >= 0x20 and q = `004314E0(d+0x30, k)` != 100, bytes +0x243/+0x247 = byte * q / 100 (signed, to zero); dword +0x1F4 = dword +0x240; `002F31C0(rcx, qword [rcx+8])` if `005002E0(d, P)` returns 0, else `003A8950(2, rcx)`",
+   "anchors": [
+    [
+     "00452064",
+     "call"
+    ],
+    [
+     "0045207E",
+     "movups"
+    ],
+    [
+     "004521E5",
+     "call"
+    ],
+    [
+     "00452312",
+     "call"
+    ],
+    [
+     "0045243D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00452C70",
+   "text": "d = qword [rcx+0x20], k = dword [rcx+0x44], V(o) = 16 bytes at `00430B90(&stack, d+o, k)`: +0x110 = V(0xC0), plus [rcx+0xE0] if byte [d+0x49] has bit 0x8; +0x120 = V(0x100), times [rcx+0x100] per float if byte [[rcx+0x20]+0x49] (re-read) has 0x4; P = +0x230 = V(0x80) (sums/products via statics `022D92E0`/`022D92F0`); calls `00398480(rcx+0x110, rcx+0x250, byte [d+0x48])`; P += [rcx+0x60]; if qword [rcx+0x10] is non-null: `0039AF70(it)`, `00398F90(P, P)` and, if byte [d+0x4A] AND 0x1C is 0, `00397ED0([rcx+0x10]+0x40, rcx+0x250)`; +0x80 = old +0x70, +0x70 = P; if byte [d+0x4A] AND 0x1C is 0xC, `00397910(&M, rcx+0x250, rcx+0x250)` with M = the 64 bytes at `002F3570(&stack, rcx)`, dwords +0xC/+0x1C/+0x2C zeroed; `003970F0` (bit 0x2 of byte [d+0x4B]) or `0039ADE0` with (`rcx+0x250`, `rcx+0x120`); +0x280 = P, float +0x28C = 1.0; dwords +0x240/+0x244 = `0042FDB0(d+0x1D0/d+0x220, k)`, each then `0026EE00(&it, &it, rcx+0x1F0)` unless dword +0x1F0 is 0x80808080; if byte [d+0x49] >= 0x20 and q = `004314E0(d+0x30, k)` != 100, bytes +0x243/+0x247 = byte * q / 100 (signed, to zero); dword +0x1F4 = dword +0x240; `002F31C0(rcx, qword [rcx+8])` if `005002E0(d, P)` returns 0, else `003A8950(2, rcx)`",
+   "anchors": [
+    [
+     "00452CB4",
+     "call"
+    ],
+    [
+     "00452CCE",
+     "movups"
+    ],
+    [
+     "00452E35",
+     "call"
+    ],
+    [
+     "00452F62",
+     "call"
+    ],
+    [
+     "0045308D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00453810",
+   "text": "d = qword [rcx+0x20], k = dword [rcx+0x44], V(o) = 16 bytes at `00430B90(&stack, d+o, k)`: +0x110 = V(0x80), plus [rcx+0xE0] if byte [d+0x49] has bit 0x8; +0x120 = V(0xC0), times [rcx+0x100] per float if byte [[rcx+0x20]+0x49] (re-read) has 0x4; P = +0x230 = V(0x100) (sums/products via statics `022D92E0`/`022D92F0`); calls `00398480(rcx+0x110, rcx+0x250, byte [d+0x48])`; P += [rcx+0x60]; if qword [rcx+0x10] is non-null: `0039AF70(it)`, `00398F90(P, P)` and, if byte [d+0x4A] AND 0x1C is 0, `00397ED0([rcx+0x10]+0x40, rcx+0x250)`; +0x80 = old +0x70, +0x70 = P; if byte [d+0x4A] AND 0x1C is 0xC, `00397910(&M, rcx+0x250, rcx+0x250)` with M = the 64 bytes at `002F3570(&stack, rcx)`, dwords +0xC/+0x1C/+0x2C zeroed; `003970F0` (bit 0x2 of byte [d+0x4B]) or `0039ADE0` with (`rcx+0x250`, `rcx+0x120`); +0x280 = P, float +0x28C = 1.0; dwords +0x240/+0x244 = `0042FDB0(d+0x1A0/d+0x1F0, k)`, each then `0026EE00(&it, &it, rcx+0x1F0)` unless dword +0x1F0 is 0x80808080; if byte [d+0x49] >= 0x20 and q = `004314E0(d+0x30, k)` != 100, bytes +0x243/+0x247 = byte * q / 100 (signed, to zero); dword +0x1F4 = dword +0x240; `002F31C0(rcx, qword [rcx+8])` if `005002E0(d, P)` returns 0, else `003A8950(2, rcx)`",
+   "anchors": [
+    [
+     "00453854",
+     "call"
+    ],
+    [
+     "0045386E",
+     "movups"
+    ],
+    [
+     "004539D5",
+     "call"
+    ],
+    [
+     "00453B02",
+     "call"
+    ],
+    [
+     "00453C2D",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "00458010": "too large for one exact row",
+  "004584E0": "too large for one exact row",
+  "00458CA0": "too large for one exact row",
+  "004B0230": "too large for one exact row"
+ },
+ "missing": [
+  "0047C360",
+  "00482860",
+  "00485790",
+  "00488340",
+  "0048AF70",
+  "0048D4B0",
+  "0048F8C0",
+  "004930A0",
+  "004958A0",
+  "00497AC0",
+  "00499A20",
+  "0049B9E0",
+  "0049D540",
+  "004A0090",
+  "004A1E30",
+  "004A33B0",
+  "004A4410",
+  "004A6C20",
+  "004A8B00",
+  "004AAFC0",
+  "004ADD10",
+  "004BF500",
+  "004C2160",
+  "004C37C0",
+  "004C4D20",
+  "004C5DF0",
+  "004C6DE0"
+ ],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

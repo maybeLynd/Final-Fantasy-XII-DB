@@ -1,0 +1,39 @@
+{
+ "page": "01-Script-VM-Native-Bridge/Spawn-Verbs/the-script-to-native-calling-convention.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01A1Qvgw5xe7BnV34LPHQcLH",
+ "report": "home-the-script-to-native-calling-convention.json",
+ "rows": [
+  {
+   "fn": "003BB320",
+   "entered_from": "`00393EA0` + 0xBA",
+   "text": "copies the zero-terminated byte string at `rcx`, terminator included, to `02B4055C`; then stores dword 9 at `02B40E1C`, dword 0 at `02B40FE4`, `02B40554` and `02B40EC0`, dword 1 at `02B40E10` and qword 1 at `02B40E14`, and returns 0",
+   "anchors": [
+    [
+     "003BB333",
+     "mov"
+    ],
+    [
+     "003BB33C",
+     "jne"
+    ],
+    [
+     "003BB340",
+     "mov"
+    ],
+    [
+     "003BB35C",
+     "mov"
+    ],
+    [
+     "003BB366",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

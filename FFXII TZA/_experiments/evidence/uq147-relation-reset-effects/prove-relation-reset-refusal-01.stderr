@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\uq147-summoner-cleanup-order\prove-relation-reset-effects.py", line 68, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\uq147-summoner-cleanup-order\prove-relation-reset-effects.py", line 51, in main
+    need(st.get('terminal') is True and st.get('exit')==0 and st.get('exception') is None,'successful upstream qualification required')
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Kristian\source\repos\XIIOnline\Database\Tools\work\ASTRA\runtime-residue-method-retriage\uq147-summoner-cleanup-order\prove-relation-reset-effects.py", line 8, in need
+    if not c:raise ValueError(m)
+             ^^^^^^^^^^^^^^^^^^^
+ValueError: successful upstream qualification required

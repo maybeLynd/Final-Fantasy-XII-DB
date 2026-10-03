@@ -1,0 +1,53 @@
+{
+ "page": "23-Third-Party-Libraries/LibVPX-VP8-Decoder/the-vp8-codec-interface-and-its-control-map.md",
+ "date": "2026-10-03",
+ "session": "opus-self",
+ "report": "the-vp8-codec-interface-and-its-control-map-r6t.json",
+ "rows": [
+  {
+   "fn": "00127104",
+   "text": "an 8x8 two-pass byte filter: it first copies 9 rows of 16 bytes from argument 1 (rows dword argument 2 apart, sign-extended) into an aligned stack block; with H = the 16 bytes at `030011F0` + 16*argument 3 and V = those at `030011F0` + 16*argument 4, each result byte is (x0*f0 + x1*f1 + 64) >> 7, computed by `pmaddubsw` over interleaved byte pairs, the 64s from `03001060`, an arithmetic shift and packing with unsigned saturation. It writes 8 rows of 8 bytes to argument 5, rows dword argument 6 apart (sign-extended): when argument 3 is 0, vertically with V over consecutive stack rows (unrolled); else when argument 4 is 0, horizontally with H over each stack row and the same row one byte on (four rows per iteration); otherwise each stack row from the first is filtered horizontally to bytes h and each output row is the pair (h_previous, h) filtered with V; it saves and restores `xmm6`/`xmm7` and the realigned stack",
+   "anchors": [
+    [
+     "0012714C",
+     "movdqu"
+    ],
+    [
+     "001271BC",
+     "cmp"
+    ],
+    [
+     "001271DD",
+     "cmp"
+    ],
+    [
+     "0012720E",
+     "pmaddubsw"
+    ],
+    [
+     "0012726F",
+     "movq"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [
+  "001260E7",
+  "001263AD",
+  "00126E10",
+  "00172CE0",
+  "00172DC0",
+  "00172F00",
+  "00173040",
+  "00173180",
+  "00173270",
+  "00173360",
+  "00173450",
+  "0017B010"
+ ],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

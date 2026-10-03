@@ -44,14 +44,14 @@ def own_dirty(rel):
     """2026-10-03: True when every changed line of a dirty page sits under a heading naming OPUS, in the worktree
     (added lines) and at HEAD (removed lines) - i.e. the uncommitted edits are OPUS's own interior blocks (a second
     OPUS record on the same page). A peer's edit anywhere else keeps the page BLOCKed."""
-    import re as _re, subprocess as _sp
-    path = "FFXII TZA/" + rel
+    import io, re as _re, subprocess as _sp
+    path = rel   # cl.DB is the "FFXII TZA" folder itself
     d = _sp.run(["git", "-C", cl.DB, "diff", "-U0", "--", path], capture_output=True, text=True,
                 encoding="utf-8", errors="replace").stdout
     if not d.strip():
         return False
     new = io.open(os.path.join(cl.DB, rel), encoding="utf-8", errors="replace").read().split("\n")
-    old = _sp.run(["git", "-C", cl.DB, "show", "HEAD:" + path.replace("\\", "/")], capture_output=True, text=True,
+    old = _sp.run(["git", "-C", cl.DB, "show", "HEAD:./" + path.replace("\\", "/")], capture_output=True, text=True,
                   encoding="utf-8", errors="replace").stdout.split("\n")
 
     def opus_at(lines, n):
@@ -62,10 +62,10 @@ def own_dirty(rel):
     for m in _re.finditer(r"^@@ -(\d+)(?:,(\d+))? \+(\d+)(?:,(\d+))? @@", d, _re.M):
         o0, oc, n0, nc = int(m.group(1)), int(m.group(2) or 1), int(m.group(3)), int(m.group(4) or 1)
         for k in range(oc):
-            if not opus_at(old, o0 + k):
+            if old[min(o0 + k, len(old)) - 1].strip() and not opus_at(old, o0 + k):
                 return False
         for k in range(nc):
-            if not opus_at(new, n0 + k):
+            if new[min(n0 + k, len(new)) - 1].strip() and not opus_at(new, n0 + k):
                 return False
     return True
 census = cl.carriers()

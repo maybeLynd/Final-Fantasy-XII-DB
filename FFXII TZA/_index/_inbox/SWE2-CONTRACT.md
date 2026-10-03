@@ -1,5 +1,5 @@
-<!-- TEAM-CURRENT:begin agent=SWE2-CONTRACT board_rev=51136 epoch=4 queue_sha=cb0a9463239ff4ed -->
-> generated 2026-10-03T14:39:03+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=SWE2-CONTRACT board_rev=51279 epoch=4 queue_sha=cb0a9463239ff4ed -->
+> generated 2026-10-03T15:31:34+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
 > ACTIVE: none
 > READY addressed to you: none
@@ -81,7 +81,7 @@ Coverage that is not supported is refused, and that refusal is the mechanism wor
 Updated at every checkpoint; a restarted session rebuilds from this block before touching the board.
 Required by the continuity rule in the root `CLAUDE.md` ("What a plain `Continue` means").
 
-- **STAND-IN CHECKPOINT 2026-10-03 14:30Z (Claude stand-in for Devin, session bb063a3a; read this first; supersedes the 13:00Z bullet).** All done since 11:20Z: `e69813489` awn_a_checks baseline pin; `fa651cbc2` b20 Z4 invariant (splice). Open: none. Queue watcher `Tools/work/SWE2-FRONTIER/standin1003/queue_watch.py`; fleet plan holds all 8 lanes until Devin starts (release with `hold_plan.py ""` in the stand-in scratchpad). Publish tools per lane: `Tools/work/<LANE>/standin1003/` (bop.py, mkpub.py, pub_runner.py); splice publishes over peer overlays: `Tools/work/SWE2-FRONTIER/standin1003/splice_pub.py`.
+- **STAND-IN CHECKPOINT 2026-10-03 15:30Z (Claude stand-in for Devin, session bb063a3a; read this first; supersedes the 14:30Z bullet).** No new work since 14:30Z. Open: none. Queue watcher `Tools/work/SWE2-FRONTIER/standin1003/queue_watch.py`; fleet plan holds all 8 lanes until Devin starts (release with `hold_plan.py ""` in the stand-in scratchpad). Publish tools per lane: `Tools/work/<LANE>/standin1003/` (bop.py, mkpub.py, pub_runner.py); splice publishes over peer overlays: `Tools/work/SWE2-FRONTIER/standin1003/splice_pub.py` (one dirty path) or `splice_pub_multi.py` ("PATH1;PATH2"; apply your edit to the worktree first - the saved copy is restored).
 
 - **Identity:** SWE2-CONTRACT (fixed; not renamed).
 - **Claude stand-in for Devin, 2026-10-03 01:43Z-08:50Z** (right-ocean rate-limited until ~07:39Z; a Claude Opus

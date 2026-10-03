@@ -1,0 +1,52 @@
+{
+ "page": "16-UI/Request-Router/ui-request-router.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_019yEjih72UCRaxGuuSzfAJF",
+ "report": [
+  "fable-ui-request-router.json"
+ ],
+ "rows": [
+  {
+   "fn": "002E1660",
+   "text": "calls `0028F7C0()` and returns 1 when its result minus 1 is at most 1 (unsigned), that is when it returns 1 or 2, and 0 otherwise",
+   "anchors": [
+    [
+     "002E1668",
+     "call"
+    ],
+    [
+     "002E166D",
+     "dec"
+    ],
+    [
+     "002E1676",
+     "cmovbe"
+    ]
+   ]
+  },
+  {
+   "fn": "002E2320",
+   "text": "calls `0028F5F0()` and tail-jumps to `002E0E30` with that result in `ecx`",
+   "anchors": [
+    [
+     "002E2324",
+     "call"
+    ],
+    [
+     "002E2329",
+     "mov"
+    ],
+    [
+     "002E232F",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing",
+ "family": ""
+}

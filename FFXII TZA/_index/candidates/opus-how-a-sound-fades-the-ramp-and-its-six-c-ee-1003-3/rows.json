@@ -1,0 +1,42 @@
+{
+ "page": "18-Audio/Audio-Boundary/how-a-sound-fades-the-ramp-and-its-six-curves.md",
+ "date": "2026-10-03",
+ "session": "opus-self",
+ "report": "how-a-sound-fades-the-ramp-and-its-six-curves-r6p.json",
+ "rows": [
+  {
+   "fn": "007A7010",
+   "text": "with q = qword `[rcx]`: returns 0 at once when q is 0; otherwise it branches on q's low byte k. For k = 7 it takes the object `007BC2A0`() returns as a critical section (`008C20B8` EnterCriticalSection), calls `007BC2B0`(&q) and, when that is non-null, its virtual `+0x10`; it leaves the section (`008C20C0`) on every path and returns 0 when the lookup is null or the virtual returns 0, 1 or 3 when it returns those, else 2. For k = 2, 8 or 9 it does the same with `007B44B0`/`007B44C0`, `007B7950`/`007B77E0` or `007B8050`/`007B7FD0` and the virtual `+0xA8`, and returns 0 for a null lookup or a 0 result, 1 for 1, 3 for 4, else 2. Any other k returns 0",
+   "anchors": [
+    [
+     "007A7032",
+     "cmp"
+    ],
+    [
+     "007A7059",
+     "call"
+    ],
+    [
+     "007A707C",
+     "call"
+    ],
+    [
+     "007A71A8",
+     "call"
+    ],
+    [
+     "007A71C9",
+     "sete"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [
+  "007BDBB0"
+ ],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

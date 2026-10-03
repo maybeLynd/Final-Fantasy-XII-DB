@@ -1,0 +1,67 @@
+{
+  "producer_complete": true,
+  "driver_sha256": "5b616396914a61f0bcc0a226e476f451867291dfc8e35586126e9cfc70421ef0",
+  "method": "A original-byte CFG/write/dataflow proof",
+  "source_sha256": "ccf583cf77a01c2d9e043994e2d0d623c13c33515f7255c032ef4b3cec266f10",
+  "annotation_check": {
+    "status": "VERIFIED_BYTE_ANNOTATION_AGREEMENT",
+    "instruction_records": 23,
+    "capstone": "5.0.7",
+    "adapter_sha256": "5fcc64842c96d99c3ef9df4f7e3adc528dfad0dfd44b2f6bb5bf43beda092a38",
+    "validator_sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13",
+    "limits": "Retained bytes/annotation consistency only; not native effects, initialization, natural reachability or semantic acceptance"
+  },
+  "facts": {
+    "graphs": [
+      {
+        "entry": "0x512c80",
+        "instructions": 19,
+        "returns": [
+          "0x512ccd"
+        ]
+      },
+      {
+        "entry": "0x512ee0",
+        "instructions": 4,
+        "returns": [
+          "0x512eee"
+        ]
+      }
+    ],
+    "linked_write_sites": [
+      "0x512cad",
+      "0x512cb9",
+      "0x512cbf",
+      "0x512cc3",
+      "0x512cc9"
+    ],
+    "reset_write_sites": [
+      "0x512ee0",
+      "0x512ee4",
+      "0x512eea"
+    ],
+    "result": "00512EE0 resets inline flags low nibble/headFF/tailFF/count0 only. It does not release pool slots or update global count. 00512C80 walks the original head/next chain, clears each visited occupancy low nibble and writes cached global count minus visited length (mod256) once at the end, then performs the same inline reset. Empty headFF skips global-counter read/write.",
+    "preservation": "Neither body clears DWORD IDs. Linked clear does not clear node links or self-slot indices, reset high flags preserved. No native callback/heapfree; no allocation cursor/high-count update by either body.",
+    "ownership": "Inline reset cannot substitute for linked release when active owned nodes must be reclaimed. Calling reset on a nonempty owner discards its owner links without clearing those nodes. This is a local effect under a forced premise, not evidence of an actual faulty caller.",
+    "premises": "Valid disjoint16B owner and fixed32x16B pool, consistent indices0..31/FF, finite acyclic owned list, bytecounter initial state, no concurrent interference/normal returns. Under those premises n<=32 and final globalcount=(old-n)&FF; ownercount reset does not validate actual list length.",
+    "limits": "MethodA verified source/dataflow only. Cached global-counter update is not atomic with individual slot clears. No live initialization, caller order, ownership uniqueness across owners, reuse, naturalKO/Esper113, malformed-list termination or wholeUQ147 claim."
+  },
+  "controls": [
+    {
+      "id": "drop-pool-release",
+      "refused": "linked-release pool/count footprint changed",
+      "limits": "Synthetic source-record defect, not native mutation"
+    },
+    {
+      "id": "reset-pool-write",
+      "refused": "inline reset unexpectedly touches pool or count",
+      "limits": "Synthetic source-record defect, not native mutation"
+    },
+    {
+      "id": "wrong-global-counter",
+      "refused": "linked-release pool/count footprint changed",
+      "limits": "Synthetic source-record defect, not native mutation"
+    }
+  ],
+  "acceptance": "Producer-valid; independent review/canonical consumption pending. No native/game execution."
+}

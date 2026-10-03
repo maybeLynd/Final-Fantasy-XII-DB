@@ -429,9 +429,16 @@ calls).
 `00310780` call: the `[rcx+0x698]` record passes the `+0x64 |
 +0x3C` vs `0x80000003` gate with the `00377C20` re-check, then
 `0030C0E0` decides the fast path - nonzero sets bit 20 of
-`[rbx+4]` directly; zero walks the `+0xEA4` mask for the bit
+`[rbx+4]` directly; ~~zero walks the `+0xEA4` mask for the bit
 whose index matches `byte[+0xEA9]` while `cl != byte[+0x6B6]`,
-and only that match sets bit 20 (all misses clear it).
+and only that match sets bit 20 (all misses clear it).~~
+**Corrected 2026-10-03 (SWE2-EC7, record `swe2ec7-corr-002fead0-bit20-1003`; the polarity was reversed):** zero walks
+the set bits of the `+0xEA4` mask, indices 0-31 (`cl` stays 0 throughout).
+- A set bit whose index differs from `byte[+0xEA9]` sets bit 20 at once (`002FEB41 cmp edx, eax` / `002FEB43 jne`).
+- The bit whose index equals `byte[+0xEA9]` sets it only when `byte[+0x6B6]` is 0 (`002FEB45` / `002FEB4B je`).
+- An empty mask, or a walk that finds neither case, clears bit 20 (`002FEB69`, `002FEB54`).
+- A null `+0x698` record or a failed `00377C20` re-check also clears it (`002FEB67`).
+- Only bit 20 of `[rbx+4]` changes.
 Interior anchor `002FEB03` (the `0030C0E0` call).
 
 ## SWE2-EC7-103 update (2026-09-20) - `00273A00` measured

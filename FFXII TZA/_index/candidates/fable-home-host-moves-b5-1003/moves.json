@@ -1,0 +1,289 @@
+{
+ "date": "2026-10-03",
+ "by": "FABLE",
+ "target_heading": "## Homed bodies re-homed here for host fit (FABLE, 2026-10-03; AUDIT-SPEC batch 5)",
+ "review_commits": {
+  "steal-roll": "6435250e4",
+  "batch-4 deferred": "95d495604"
+ },
+ "moves": [
+  {
+   "fn": "00394380",
+   "source_page": "08-Combat-Formula/Steal/the-steal-roll.md",
+   "source_record": "_index/candidates/fable-home-the-steal-roll-1003",
+   "source_section_date": "2026-10-03",
+   "review": "_index/candidates/auditspec-review-fable-home-the-steal-roll-1003/REVIEW.md",
+   "target_page": "16-UI/Widget-Object-Model/the-title-asset-singleton-and-its-distinct-consumer.md",
+   "entered_from": "`003939B0` + 0x3E4",
+   "source_text": "calls `00394380` + 0xE with `ecx` = 1, zeroes a 0x30-byte stack block and fills it with the qword returned by `00394380` + 0x38 (`ecx` = 0x890) at `+0`, qword 0 at `+8`, qword `0208EA28` at `+0x10`, the incoming `rcx` at `+0x18`, dword 0 at `+0x20`, byte 2 at `+0x28` and dword 0x1002 at `+0x2C`, then calls `00394380` + 0x70 with `ecx` = 0 and the block's address in `rdx` and returns with that call's `rax`",
+   "text": "calls `00394380` + 0xE with `ecx` = 1, zeroes a 0x30-byte stack block and fills it with the qword returned by `00394380` + 0x38 (`ecx` = 0x890) at `+0`, qword 0 at `+8`, qword `0208EA28` at `+0x10`, the incoming `rcx` at `+0x18`, dword 0 at `+0x20`, byte 2 at `+0x28` and dword 0x1002 at `+0x2C`, then calls `00394380` + 0x70 with `ecx` = 0 and the block's address in `rdx` and returns with that call's `rax`",
+   "text_edit": null,
+   "anchors": [
+    [
+     "0039438E",
+     "call"
+    ],
+    [
+     "003943B8",
+     "call"
+    ],
+    [
+     "003943C4",
+     "mov"
+    ],
+    [
+     "003943E3",
+     "mov"
+    ],
+    [
+     "003943F0",
+     "call"
+    ]
+   ],
+   "host": {
+    "by": "caller"
+   },
+   "evidence": [
+    {
+     "line": 42,
+     "quote": "| Selected handler | `00394070` at `00394498` | `003939B0` at `00394571` |"
+    },
+    {
+     "line": 44,
+     "quote": "RSI in `003939B0`"
+    }
+   ]
+  },
+  {
+   "fn": "001DD0B0",
+   "source_page": "08-Combat-Formula/Steal/the-steal-roll.md",
+   "source_record": "_index/candidates/fable-home-the-steal-roll-1003",
+   "source_section_date": "2026-10-03",
+   "review": "_index/candidates/auditspec-review-fable-home-the-steal-roll-1003/REVIEW.md",
+   "target_page": "00-Engine-Core-Runtime/Developer-Tuning-Console/the-282-command-parameter-console.md",
+   "entered_from": "`0017FF20` + 0x1A",
+   "source_text": "loads qword `01F82D20` and branches on its dword `+8`: when it is 1 and dword `rcx+0x24` is below dword `rcx+0x20` (unsigned), returns dword `+0` of entry `+0x24` of the 0x1C-stride array at qword `rcx+0x28` shifted left 16 and OR'd with that entry's dword `+4`; when it is 0 and dword `rcx+0x38` is below dword `rcx+0x34` plus 1 (unsigned 32-bit), returns the same combination from entry `+0x38` of the 0x1C-stride array at qword `rcx+0x40`; every other case returns dword `+4` of the object at qword `01F82D20`",
+   "text": "loads qword `01F82D20` and branches on its dword `+8`: when it is 1 and dword `rcx+0x24` is below dword `rcx+0x20` (unsigned), returns dword `+0` of entry `+0x24` of the 0x1C-stride array at qword `rcx+0x28` shifted left 16 and OR'd with that entry's dword `+4`; when it is 0 and dword `rcx+0x38` is below dword `rcx+0x34` plus 1 (unsigned 32-bit), returns the same combination from entry `+0x38` of the 0x1C-stride array at qword `rcx+0x40`; every other case returns dword `+4` of the object at qword `01F82D20`",
+   "text_edit": null,
+   "anchors": [
+    [
+     "001DD0BD",
+     "cmp"
+    ],
+    [
+     "001DD0DA",
+     "or"
+    ],
+    [
+     "001DD0EF",
+     "cmp"
+    ],
+    [
+     "001DD105",
+     "or"
+    ],
+    [
+     "001DD108",
+     "mov"
+    ]
+   ],
+   "host": {
+    "by": "row-caller"
+   },
+   "evidence": [
+    {
+     "line": 599,
+     "quote": "| `001DC920` (31 B) | paired field setter"
+    }
+   ]
+  },
+  {
+   "fn": "004EB910",
+   "source_page": "00-Engine-Core-Runtime/CONTRACT-boot-fixups.md",
+   "source_record": "_index/candidates/fable-home-contract-boot-fixups-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-boot-fixups-1002/REVIEW.md",
+   "target_page": "17-Presentation-Rendering/Legacy-PS2-GS/the-vif1-vu1-layer.md",
+   "entered_from": "`004EBE80` + 0x74A",
+   "source_text": "increments word `02064DB8`; replaces each float pair (a,b) = (`02064BF0`,`02064BF4`) and (`02064C00`,`02064C04`) by (`02064D00`*a + `02064D10`*b, `02064D04`*a + `02064D14`*b), adds the new pairs to the first two floats of two copies of the 16-byte entry at index word `02064B0C` + 2 of the 0x10-stride table `02064E30` and stores the copies times 16 as truncated int32 vectors at `02064C60` and `02064C70`; when word `02064DBC` differs from word `02064B0C` it first subtracts `02064CF0`/`02064CF4` times `02064C80` from both float pairs; then adds `02064CF0`/`02064CF4` times `02064B60` (first pair) or `02064B64` (second) and subtracts `02064B30`/`02064B34`; every pair update (to `02064C10`/`02064C14` or `02064C20`/`02064C24`) is followed by a call when either float is 0, one when either is negative and one always (`004EB910` + 0x231/0x252/0x257, 0x29A/0x2B9/0x2BE, 0x38F/0x3B0/0x3B5, 0x3F8/0x417/0x41C); finally maps x to x*`02064BA0` + `02064B90` and y to y*`02064BA4` + `02064B94` in both pairs, sets floats `02064C18`, `02064C28` to ~~1.0 (`01E0283C`)~~ the sum of the `.data` floats `01E02838` + `01E0283C` (file values 0.0 and 1.0) *(corrected 2026-10-03, FABLE, on SWE2-AUDIT-SPEC's review: `004EBD39` / `004EBD44` load and add the two cells, `004EBDD6` / `004EBDDE` store the sum)*, copies `02064C10`, `02064B70`, `02064C60`, `02064C20`, `02064B80`, `02064C70` to six entries from index word `02064DB4` and adds 6 to it",
+   "text": "increments word `02064DB8`; replaces each float pair (a,b) = (`02064BF0`,`02064BF4`) and (`02064C00`,`02064C04`) by (`02064D00`*a + `02064D10`*b, `02064D04`*a + `02064D14`*b), adds the new pairs to the first two floats of two copies of the 16-byte entry at index word `02064B0C` + 2 of the 0x10-stride table `02064E30` and stores the copies times 16 as truncated int32 vectors at `02064C60` and `02064C70`; when word `02064DBC` differs from word `02064B0C` it first subtracts `02064CF0`/`02064CF4` times `02064C80` from both float pairs; then adds `02064CF0`/`02064CF4` times `02064B60` (first pair) or `02064B64` (second) and subtracts `02064B30`/`02064B34`; every pair update (to `02064C10`/`02064C14` or `02064C20`/`02064C24`) is followed by a call when either float is 0, one when either is negative and one always (`004EB910` + 0x231/0x252/0x257, 0x29A/0x2B9/0x2BE, 0x38F/0x3B0/0x3B5, 0x3F8/0x417/0x41C); finally maps x to x*`02064BA0` + `02064B90` and y to y*`02064BA4` + `02064B94` in both pairs, sets floats `02064C18`, `02064C28` to the sum of the `.data` floats `01E02838` + `01E0283C` (file values 0.0 and 1.0), copies `02064C10`, `02064B70`, `02064C60`, `02064C20`, `02064B80`, `02064C70` to six entries from index word `02064DB4` and adds 6 to it",
+   "text_edit": {
+    "why": "the target page never said the struck clause; publish_correction_gate refuses a strike of text a page never said, so the row moves in its corrected form without the strike and note (the correction stays recorded in fable-corr-004eb910-1003 and the source record)",
+    "removed": "to ~~1.0 (`01E0283C`)~~ the sum of the `.data` floats `01E02838` + `01E0283C` (file values 0.0 and 1.0) *(corrected 2026-10-03, FABLE, on SWE2-AUDIT-SPEC's review: `004EBD39` / `004EBD44` load and add the two cells, `004EBDD6` / `004EBDDE` store the sum)*,",
+    "kept": "to the sum of the `.data` floats `01E02838` + `01E0283C` (file values 0.0 and 1.0),"
+   },
+   "anchors": [
+    [
+     "004EB94A",
+     "inc"
+    ],
+    [
+     "004EBAE2",
+     "je"
+    ],
+    [
+     "004EBB41",
+     "call"
+    ],
+    [
+     "004EBDF5",
+     "movups"
+    ],
+    [
+     "004EBE69",
+     "mov"
+    ]
+   ],
+   "host": {
+    "by": "callee",
+    "callees": [
+     "0022CC40",
+     "0022CC30"
+    ],
+    "why": "Its caller `004EBE80` is named on no other page except as a program pointer the boot fixups register."
+   },
+   "evidence": [
+    {
+     "line": 383,
+     "quote": "status flags, set **only** by `0022CC40` (`|= 0x40`) and `0022CC30` (`|= 0x80`)"
+    },
+    {
+     "line": 387,
+     "quote": "calls `0022CC40` when it is"
+    },
+    {
+     "line": 389,
+     "quote": "Forty functions call them"
+    },
+    {
+     "line": 724,
+     "quote": "| `0022CC40` / `0022CC30` | VU sticky Z / sticky S |"
+    }
+   ]
+  },
+  {
+   "fn": "00314D60",
+   "source_page": "19-Save-Load-Settings/Game-Settings-Config/ff12config-and-debglobal.md",
+   "source_record": "_index/candidates/fable-home-ff12config-and-debglobal-1002",
+   "source_section_date": "2026-10-02",
+   "review": "_index/candidates/auditspec-review-fable-home-ff12config-and-debglobal-1002/REVIEW.md",
+   "target_page": "01-Script-VM-Native-Bridge/verbs-that-only-wait-and-verbs-that-do-nothing.md",
+   "entered_from": "`0050C8A0` + 0x24",
+   "source_text": "calls `00314D60` + 0x8 with the incoming registers and stores to dword `022C2540` the incoming `ecx` when that call returns non-zero, or 0 when it returns zero; that callee is an `xor eax, eax` / `ret` stub, so the stored value is always 0",
+   "text": "calls `00314D60` + 0x8 with the incoming registers and stores to dword `022C2540` the incoming `ecx` when that call returns non-zero, or 0 when it returns zero; that callee is an `xor eax, eax` / `ret` stub, so the stored value is always 0",
+   "text_edit": null,
+   "anchors": [
+    [
+     "00314D68",
+     "call"
+    ],
+    [
+     "00314D6F",
+     "test"
+    ],
+    [
+     "00314D71",
+     "cmovne"
+    ],
+    [
+     "00314D74",
+     "mov"
+    ]
+   ],
+   "host": {
+    "by": "callee",
+    "callees": [
+     "005C5230"
+    ],
+    "why": "Its caller `0050C8A0` is named on no other page except in a cross-subsystem neighbours line."
+   },
+   "evidence": [
+    {
+     "line": 201,
+     "quote": "| `005C5230` | `xor eax, eax; ret` — the stub `poll`, reports \"done\" immediately |"
+    },
+    {
+     "line": 247,
+     "quote": "`0034FB20` (`disposesummon`) calls `00314D40(1)` and tail-jumps"
+    }
+   ]
+  }
+ ],
+ "adds": [
+  {
+   "fn": "0017FF20",
+   "target_page": "00-Engine-Core-Runtime/Developer-Tuning-Console/the-282-command-parameter-console.md",
+   "review": "_index/candidates/auditspec-review-fable-home-the-steal-roll-1003/REVIEW.md",
+   "entered_from": "`0023B530` + 0xC5",
+   "text": "calls `001DDAB0`; when it returns null returns that null, otherwise calls `001DDAB0` again and tail-jumps to `001DD0B0` with the result in `rcx`",
+   "anchors": [
+    [
+     "0017FF24",
+     "call"
+    ],
+    [
+     "0017FF2C",
+     "je"
+    ],
+    [
+     "0017FF2E",
+     "call"
+    ],
+    [
+     "0017FF33",
+     "mov"
+    ],
+    [
+     "0017FF3A",
+     "jmp"
+    ]
+   ],
+   "host": {
+    "by": "callee",
+    "callees": [
+     "001DDAB0"
+    ],
+    "why": "Its caller `0023B530` is read on the steal-roll page; SWE2-AUDIT-SPEC's review homes it here, beside `001DD0B0`, the body it tail-jumps to."
+   },
+   "evidence": [
+    {
+     "line": 120,
+     "quote": "| `001DDAB0` | 8 B | ~~10 arms~~ 10 call sites (2 arms) | `return *(void **)0x01F82D18` |"
+    },
+    {
+     "line": 258,
+     "quote": "`01F82D18` is the `0x180`-byte display object `001DDAB0` returns"
+    }
+   ]
+  }
+ ],
+ "drops": [
+  {
+   "fn": "00361480",
+   "source_page": "15-Input/CONTRACT-input-subsystem.md",
+   "source_section_date": "2026-10-02",
+   "source_record": "_index/candidates/fable-home-contract-input-subsystem-1002",
+   "review": "_index/candidates/auditspec-review-fable-home-contract-input-subsystem-1002/REVIEW.md",
+   "unbound": {
+    "reason": "returned to the frontier: no host cites a caller or callee",
+    "callers": {
+     "00342770": [
+      "003427F3"
+     ],
+     "00341C80": [
+      "00341C96"
+     ]
+    },
+    "callees": [],
+    "cites": [
+     {
+      "addr": "00342770",
+      "page": "15-Input/CONTRACT-input-subsystem.md",
+      "quote": "56 script-verb bodies, among them `0033F330`, `00342770`"
+     }
+    ]
+   },
+   "source_text": "walks four 24-byte entries starting at `022CB9F0` and returns the index of the first entry whose byte `+0x0` is non-zero and whose byte `+0x1` (zero-extended) equals `ecx`; when none matches, returns the bitwise NOT of the index of the first entry whose byte `+0x0` is zero, or -5 when every entry's byte `+0x0` is non-zero"
+  }
+ ]
+}

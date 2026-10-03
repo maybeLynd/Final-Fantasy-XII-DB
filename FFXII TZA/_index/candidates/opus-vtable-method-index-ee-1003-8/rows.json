@@ -1,0 +1,417 @@
+{
+ "page": "00-Engine-Core-Runtime/Object-Model/vtable-method-index.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "vtable-method-index-r8h.json",
+ "rows": [
+  {
+   "fn": "006007B0",
+   "text": "returns 0x16 if bit `0x1` of byte `[rcx+8]` is set, 0x15 if `k` = qword `[rcx+0x80]` is null; counts are dwords AND 0x7FFFFFFF; `e` = qword `[qword [rdx+0x30] + 8 dword [k+0x18]]` if that index < (unsigned) count `[rdx+0x28]`, else or if null the 0x50-byte entry of the count `[rdx+0x18]` at qword `[rdx+0x20]` whose qword `+0` is `k`; returns 7 if `e` is null or count `[e+8]` is 0; `c` = qword `[e+0x10]`; if qword `02CB6360` and `00606C60([02CB6360], e, c)` are non-null, atomically increments its dword; calls `0060F830(rcx, rdx, c, r8, &A, &L)` (zeroed stack, `A` 4 qwords); for each of the `n` = count `[c+8]` 0x2C0-byte entries at qword `[c+0x10]` with qword `+0x18` non-zero, takes a 0x80-byte ring slot (cursor `[rcx+0x60]`, end `+0x58`, wrap `+0x50`, null if still over; first kept at `+0x88`, slot+0x80 at `+0x90`) and, untested, writes 3, `rdx`, the entry, `A`, `L`, `r9d`, 5th, 6th args at `+0`, `+8`, `+0x10`, `+0x18`, `+0x38`, `+0x40`, `+0x44`, `+0x48`; then from `L+8` writes `A[0]`+4 if `A[0]` is non-null, advances the end to `005F08E0(A[1], A[1]+0x10, end)` if `A[1]` is non-null, sets dword `[L]` to the count and atomically adds `n` to each written pointer's dword; returns 0",
+   "anchors": [
+    [
+     "006007CF",
+     "mov"
+    ],
+    [
+     "0060087D",
+     "call"
+    ],
+    [
+     "006008C7",
+     "call"
+    ],
+    [
+     "0060098A",
+     "mov"
+    ],
+    [
+     "00600A29",
+     "lock xadd"
+    ]
+   ]
+  },
+  {
+   "fn": "00654830",
+   "text": "when byte `01F2CDF0` is zero calls vtable slot `+8` of the static object `01F2D680`; calls `00649070`, `006488A0` and `00648C70`; then, for each static X below in order, calls `006388C0(X)` followed by `00639450(X)`: `02D35EA0`, then calls `00648E10`; `02D356A0`, then `00648FB0`; `02D35300`, then `006496A0`, `00648620`, `00648100` and `006491B0`; then `02D35BA0`, `02D34A40`, `02D34D40`, `02D360A0`, `02D35DA0`, `02D358A0`, `02D35040`, `02D35500`, `02D366A0`, `02D363A0`, `02D369A0`, `02D34940`, `02D34C40`, `02D35FA0`, `02D35CA0`, `02D357A0`, `02D34F40`, `02D35400`, `02D365A0`, `02D362A0`, `02D368A0`, `02D36AA0` and `02D36BA0`; returns 0",
+   "anchors": [
+    [
+     "0065484B",
+     "call"
+    ],
+    [
+     "00654864",
+     "call"
+    ],
+    [
+     "00654870",
+     "call"
+    ],
+    [
+     "006548B9",
+     "call"
+    ],
+    [
+     "00654AE6",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006BAB40",
+   "text": "returns 7 when `n` = dword `[rcx+0x10]` or dword `[rcx+0x24]` is 0; takes `p` = `00210EC0(8n + 8)` (the size saturates to -1 on overflow) and, when `p` is non-null, stores `n` in its first qword and calls `00808FE4(p+8, 8, n, 006BA870, 005DDAF0)`, storing `p+8` (null when `p` is null) at qword `[rcx+0x30]`; for each i below `n` (unsigned) calls `0019C5D0(a 0x100-byte stack buffer, 0x100, 00D81240, i)` and returns the first non-zero of `005C5230(e, buffer, 0x2000)` and `005C5230(01F2ED08, e)` with `e` = qword `[rcx+0x30]` + 8i; stores `a` = `0017D260(48n, 8)` at qword `[rcx+0x98]` (returning 0xD when null) and `a` + 24n at `+0xA0`, calls `00861EC0(a, 0, 48n)` and stores `e` at qwords `[a+24i]` and `[a+24n+24i]`; calls `005CD160(rcx+k, 0, n)` and sets byte `[rcx+k+8]` = 1 for k = 0x58, 0x68, 0x38, 0x48 in that order; stores `0017D260(8 times dword [rcx+0x24], 8)` at qword `+0x80` (returning 0xD when null) and zeroes its qwords; sets word `+0x90` = 0x101 and returns `006AA3A0(rcx, dword 01F2EB34, dword 01F2EB38)` (stack cookie `01F44830` checked by `00808C40`)",
+   "anchors": [
+    [
+     "006BAB65",
+     "mov"
+    ],
+    [
+     "006BABAE",
+     "call"
+    ],
+    [
+     "006BABDD",
+     "call"
+    ],
+    [
+     "006BAC35",
+     "call"
+    ],
+    [
+     "006BADAD",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007A1790",
+   "text": "with `o` = qword `[rcx+0x28]` (returns when null) and a zeroed 20-byte stack record `S`: when slot `+0x48` of qword `[o+8]` with (0x14, &`S`) is negative, calls its slot `+0x38` until that stops returning 0x8007001E and returns; when byte `[rcx+0x1E6]` is 1: with `h` = qword `02EA5248`, skips to the end step unless `GetCursorPos` (`008C28B0`)(&`P`), `GetWindowRect` (`008C28D0`)(`h`, &stack) and `GetClientRect` (`008C29A0`)(`h`, &`R`) all return non-zero; calls `GetWindowInfo` (`008C2828`)(`h`, &stack) and `ScreenToClient` (`008C2898`)(`h`, &`P`); stores each of `P`.x, `P`.y, dword `S+8` times 0xFF (32-bit) at dwords `+0x1E8`, `+0x1EC`, `+0x1F0`; when 0 <= `P`.x < `R`.right - `R`.left and 0 <= `P`.y < `R`.bottom - `R`.top (signed) and byte `[o]` is 1, stores bit `0x80` of bytes `S+0xC`, `S+0xE`, `S+0xD` as 0/1 bytes `+0x1F4`, `+0x1F5`, `+0x1F6`; otherwise updates only those of the three that are non-zero; sets byte `[o]` to 1 inside, 0 outside; when byte `+0x1E6` is not 1 stores each of dwords `S+0`, `S+4`, `S+8` times 0xFF and the three bits directly; end step: zeroes bytes `+0x1F4` to `+0x1F6` when byte `02EA523D` is non-zero and calls `007A15A0(rcx)`",
+   "anchors": [
+    [
+     "007A17E2",
+     "call"
+    ],
+    [
+     "007A182F",
+     "call"
+    ],
+    [
+     "007A188F",
+     "imul"
+    ],
+    [
+     "007A18E8",
+     "mov"
+    ],
+    [
+     "007A1A21",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007A2140",
+   "text": "`GetVersionExA` (`008C2288`) on a 0x94-byte stack record: if dwords `+0x10`, `+4`, `+8` are 2, 6, 1, calls `00799A80()` if byte `02EA5379` is non-zero, returns if byte `01F3DA04` is zero; with `u` = dword `[rcx+0x458]` and a zeroed 16-byte stack `S`, `r` = `XInputGetState` (`00861EA2`)(`u`, &`S`); calls `XInputSetState` (`00861EA8`)(`u`, &words (byte `[rcx+0x98]`/255 times 65535, 65535 if byte `[rcx+0x99]` is non-zero else 0)); if `GetForegroundWindow` (`008C2800`) is not qword `02EA5248` clears byte `02EA5213` and returns, else sets it to 1; if dword `S+0` differs from dword `[rcx+0x45C]`: `r` non-zero, byte `[rcx+0xA9]` set: calls `005CDAA0(2, 01CB3890, 0079CEC0(rcx), u)` and clears it; `r` = 0 with it clear calls that with `01CB3858` and sets it, and `r` = 0 stores signed words `S+8`, `+0xA`, `+0xC`, `+0xE` / 128 (to zero) at `+0x414`, `+0x420` (negated), `+0x418`, `+0x424` (negated), bits `0x4000`, `0x1000`, `0x2000`, `0x8000`, `0x100`, `0x200` of word `S+4` at bytes `+0x43C`..`+0x441`, bytes `S+6`/`S+7` non-zero at `+0x442`/`+0x443`, bits `0x20`, `0x10`, `0x40`, `0x80`, `0x1`, `0x8`, `0x2`, `0x4` at `+0x444`..`+0x44B`; then copies `S` to `rcx+0x45C` and calls `007A15A0(rcx)`",
+   "anchors": [
+    [
+     "007A216B",
+     "call"
+    ],
+    [
+     "007A21C0",
+     "call"
+    ],
+    [
+     "007A2229",
+     "call"
+    ],
+    [
+     "007A2280",
+     "call"
+    ],
+    [
+     "007A2409",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007D5BD0",
+   "text": "a float setter keyed by `edx` 0 to 0x34 (unsigned) through the jump table at image base + `0x6B5E70`, with value `xmm2` and time `xmm3`; most keys call `007CA560(record, value, time, 0, a stack byte 0)`: keys 0, 1, 2 on `rcx+0x18`, `+0x48`, `+0x78`; 4 on `+0x168`; 5 on `+0x198` with max(value, 1.0); 6 on `+0x1C8` with `007AED00()` as float times the value times `008C5B2C` (0.001), replaced by `01CB75A8` (23999) when not below `01CB75AC` (24000; NaN is kept); 7 on `+0x1F8`; 8 on `+0xA8` with max(value, `008F8180` 10.0); 9 on `+0xD8` with min(value, `008F3110` 0.99) (for max and min a NaN value gives the bound); 10 and 11 on `+0x108` and `+0x138`; keys 13 to 31 except 16, 20, 24, 28, then 34 to 52 except 37, 41, 45, 49, in that order, on the 30 records `rcx+0x228+0x30j`; key 3 stores the 32-bit truncated value at dword `+0x7C8` and key 32 the low dword of its 64-bit truncation at dword `+0x7CC`; keys 12, 16, 20, 24, 28, 33, 37, 41, 45, 49 and keys above 0x34 do nothing",
+   "anchors": [
+    [
+     "007D5BFB",
+     "mov"
+    ],
+    [
+     "007D5C19",
+     "call"
+    ],
+    [
+     "007D5CBB",
+     "mulss"
+    ],
+    [
+     "007D5C32",
+     "mov"
+    ],
+    [
+     "007D5E59",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007E96A0",
+   "text": "returns `007E8890(rcx, rdx)` if negative; `a` = `007BD8D0(007E71C0(007E8720(rcx)))`, `f` = qword `[rcx+0x20]`, `w` = word `[f+6]` read now; calls `a`'s slot `+0x28` with &stack `S` and `007CF580(&S)`; if word `+0xA` of qword `[result+8]` differs from `w`, `a` = `007B2200(word [f+6])` (re-read); if `a`'s slot `+8` returns 2, `x` = `007E3040(a, word [f+4])`: a null `x` runs `0019C5D0(0x100-byte stack B,0x100, 01CB9150, word [f+4], byte [a+0x94], dword [a+0x80], dword [a+0x48])`, writes 0xA unchecked at B[k] (k = its result, minus 2 when >= 0xFF, signed), then 0 at B[k+1], or calls `00809728` when k+1 >= 0x100; then `OutputDebugStringA` (`008C2120`)(B), `007A5570(2, B)`, `007E8B40(rcx)`, the same format/newline/output for `01CB91B0` (no arguments), returns -1; else `h` = qword `[007E3150(x, &S) + 8]`; for other results `h` = qword `[007CF860(007CF8B0(a's slot +0x28 result for &stack T, &stack U), &S, word [f+4]) + 8]`, `S`/`U` get vtables `01CB4E78`/`01CB5D28`, `007CF580(&T)` runs; then `S` gets vtable `01CB4E88` and `h` at `+8`, `r` = `007B5D20(rcx+0x3C8, &copy of qword [rcx+8], &copy of qword [a+0x10], &S, float [rdx+0x20], 1)`; a negative `r` calls `007E8B40(rcx)`; returns `r`",
+   "anchors": [
+    [
+     "007E96C9",
+     "call"
+    ],
+    [
+     "007E9725",
+     "call"
+    ],
+    [
+     "007E976F",
+     "call"
+    ],
+    [
+     "007E980C",
+     "call"
+    ],
+    [
+     "007E9910",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00833CD0",
+   "text": "zeroes the 16 bytes at `rdx`; for each of the dword `[rcx+0x84]` 16-byte points at qword `[rcx+0x90]`, with `s` = (x times float `[rcx+0x20]`, y times `[rcx+0x24]`, z times `[rcx+0x28]`, 0), stores `s` at `[rdx]` and keeps its product as the best when the x/y/z dot product of `s` with the floats at `r8` is above the best so far (starting at `01CCD4E4`, -1e18 as a float; a NaN product changes nothing); returns `rdx`",
+   "anchors": [
+    [
+     "00833D04",
+     "mov"
+    ],
+    [
+     "00833DB8",
+     "comiss"
+    ],
+    [
+     "00833DC4",
+     "movdqa"
+    ],
+    [
+     "00833F6E",
+     "comiss"
+    ],
+    [
+     "00833F7A",
+     "movdqa"
+    ]
+   ]
+  },
+  {
+   "fn": "00834970",
+   "text": "with `r` = float `[rcx+0x30+4q]`, `q` = (a+2) % 3 as a signed 32-bit remainder (division truncating toward zero, negative when a+2 < 0), for axis `a` = dword `[rcx+0x50]` read once at entry: for each j below `r9d` (signed), with `v` = the x/y/z floats of the 16-byte direction at `rdx+16j`, and for `s` = `h` and then -`h` (`h` = float `[rcx+0x30+4a]` with `a` re-read each time), takes `m` = its own vtable slot `+0x50` result and the point `c` whose component k is `v`.k times float `[rcx+0x20+4k]` times `r`, plus `s` on axis `a`, minus `v`.k times `m` (fourth float 0), and stores `c` at `r8+16j` when `c`.`v` is above the best for that j (starting at `01CCD4E4`, -1e18 as a float; a NaN value changes nothing)",
+   "anchors": [
+    [
+     "008349BC",
+     "movss"
+    ],
+    [
+     "00834A56",
+     "call"
+    ],
+    [
+     "00834AFE",
+     "comiss"
+    ],
+    [
+     "00834B3C",
+     "call"
+    ],
+    [
+     "00834BEC",
+     "movdqa"
+    ]
+   ]
+  },
+  {
+   "fn": "00837120",
+   "text": "with mesh `m` = qword `[rcx+8]`, part `edx` and triangle `r8d`: calls `m`'s vtable slot `+0x18` with (&`vb`, &an unread slot, &`t`, &`st`, &`ib`, &`is`, &an unread slot, &`it`, `edx`) on stack slots; with `m` re-read, at the index record `ib` + `is` times `r8d` (32-bit product) takes three indices, words `+4`, `+2`, `+0` when `it` is 3, else dwords `+8`, `+4`, `+0`, and for each the vertex at `vb` + index times `st` (32-bit product): three floats when `t` is 0, else three doubles converted to float, times floats `[m+0x10]`, `[m+0x14]`, `[m+0x18]`, fourth float 0, stored at `rcx+0x40`, `rcx+0x30` and `rcx+0x20` in that order; then calls slot `+8` of the object at qword `[rcx+0x10]` with (`rcx+0x20`, `edx`, `r8d`) and slot `+0x28` of qword `[rcx+8]` (re-read) with `edx`",
+   "anchors": [
+    [
+     "00837181",
+     "call"
+    ],
+    [
+     "0083719C",
+     "movzx"
+    ],
+    [
+     "008371C5",
+     "mulss"
+    ],
+    [
+     "00837209",
+     "cvtpd2ps"
+    ],
+    [
+     "008373A8",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0083A070",
+   "text": "with `s` = `r8`: copies dwords `[rcx+0x10]` to `[rcx+0xBC]` into `[rdx+0x20]` to `[rdx+0xCC]`, dword `[rcx+0xC0]` into `[rdx+0xEC]` and `[rcx+0xC4]` into `[rdx+0xD0]`; zeroes qwords `[rdx]` and `[rdx+0x10]` and stores `s`'s slot `+0x30` result for qword `[rcx+0xD0]` at `[rdx+8]`; copies dwords `[rcx+0xE8]` to `[rcx+0xF4]` into `[rdx+0xF0]` to `[rdx+0xFC]` (`+0xF4` twice), `[rcx+0xF8]` / `+0xFC` / `+0x100` into `[rdx+0xD4]` / `+0xD8` / `+0xDC` and `[rcx+0x104]` into `[rdx+0x100]`; with `q` = `s`'s slot `+0x48` result for `rcx`, stores `s`'s slot `+0x30` result for `q` at qword `[rdx+0x18]` and, when that is non-null, calls `s`'s slot `+0x58` with `q`; copies dwords `[rcx+0x110]` / `+0x114` / `+0x118` (twice) / `+0x11C` into `[rdx+0xE0]` / `+0xE4` / `+0xE8` / `+0x104`; returns `01CCE3D8` (\"btCollisionObjectFloatData\")",
+   "anchors": [
+    [
+     "0083A08A",
+     "mov"
+    ],
+    [
+     "0083A209",
+     "mov"
+    ],
+    [
+     "0083A22B",
+     "call"
+    ],
+    [
+     "0083A2AB",
+     "call"
+    ],
+    [
+     "0083A2D0",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00853C90",
+   "text": "calls `0083A070(rcx, rdx, r8)`; then copies dwords `[rcx+0x120]` to `[rcx+0x16C]` into `[rdx+0x108]` to `[rdx+0x154]`, `[rcx+0x170]` into `[rdx+0x1C8]`, `[rcx+0x260]` to `[rcx+0x26C]` into `[rdx+0x158]` to `[rdx+0x164]`, `[rcx+0x180]` to `[rcx+0x1DC]` into `[rdx+0x168]` to `[rdx+0x1C4]`, `[rcx+0x1E0]` / `+0x1E4` into `[rdx+0x1CC]` / `+0x1D0`, byte `[rcx+0x1E8]` zero-extended into dword `[rdx+0x1EC]`, and `[rcx+0x1EC]` to `[rcx+0x200]` into `[rdx+0x1D4]` to `[rdx+0x1E8]`; returns `01CCF378` (\"btRigidBodyFloatData\")",
+   "anchors": [
+    [
+     "00853CA0",
+     "call"
+    ],
+    [
+     "00853D9B",
+     "mov"
+    ],
+    [
+     "00853DA7",
+     "mov"
+    ],
+    [
+     "00853F10",
+     "mov"
+    ],
+    [
+     "00853F5D",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "008585E0",
+   "text": "with `n` = dword `[rcx+0x104]`, makes a stack pointer array `C` (count, capacity, data, owner byte 1) holding `n` null entries when `n` is positive (data from `0085E680(8n, 0x10)`; a store at a null address is skipped), its count set to `n` even when negative; for each i below its own vtable slot `+0xB8` result (re-called each step) copies qword i of the array at qword `[rcx+0x110]` into it, with no bound against `n`; when the count is greater than 1 (signed) calls `00854830(&C's header, its unwritten rcx home-slot byte, 0, count - 1)`; builds a stack object `K` (vtable `01CCF750`, `rdx`, qword `[rcx+0xF0]`, `C`'s data or null when slot `+0xB8` now returns 0, the count, qwords `[rcx+0x80]`, `[rcx+0x70]`, `[rcx+0x28]`, three empty owned arrays); calls slot `+8` of the object at qword `[rcx+0xF0]` with (dword `[rcx+0xC]`, the slot `+0x40` result of qword `[rcx+0x28]`), `0087F410(qword [rcx+0xF8], qword [rcx+0x28], rcx, &K)`, `00857F10(&K)` and slot `+0x18` of qword `[rcx+0xF0]` (re-read) with (`rdx`, qword `[rcx+0x80]`, qword `[rcx+0x70]`); then passes each of `K`'s three array datas and `C`'s data to `0085E710` when non-null and owned, storing vtable `01CCF738` in `K` before `C`'s",
+   "anchors": [
+    [
+     "0085863D",
+     "call"
+    ],
+    [
+     "008586FF",
+     "call"
+    ],
+    [
+     "00858723",
+     "call"
+    ],
+    [
+     "008587BD",
+     "call"
+    ],
+    [
+     "008587F8",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [
+  "005CA460",
+  "005DF890",
+  "00608A40",
+  "0062E1C0",
+  "0062E5A0",
+  "00655F10",
+  "00692080",
+  "00724830",
+  "00725AA0",
+  "00726360",
+  "0073BB50",
+  "00785C90",
+  "007861A0",
+  "00790160",
+  "007A1A50",
+  "007BDAC0",
+  "007D1A10",
+  "007D1C80",
+  "007D5F50",
+  "007D9200",
+  "007D9EA0",
+  "007DC4A0",
+  "007DD040",
+  "007DE120",
+  "007E2BC0",
+  "00832930",
+  "00832E90",
+  "008330A0",
+  "00833830",
+  "00833FB0",
+  "00834D50",
+  "00835000",
+  "008355B0",
+  "0083DE00",
+  "00846C20",
+  "00846F70",
+  "008473A0",
+  "00847980",
+  "00848960",
+  "00848C30",
+  "008497D0",
+  "0084A740",
+  "008521C0",
+  "00857970",
+  "00858C80",
+  "0085A900",
+  "0085DDE0"
+ ],
+ "corrections": [
+  {
+   "fn": "007A1790",
+   "why": "byte re-read by a non-drafting agent: The body multiplies all three stored values by 0xFF in both branches (imul ecx, eax, 0xff / imul ecx, edx, 0xff / imul [S+8], 0xff, and imul of S+0/S+4/S+8), but 'stores P.x, P.y and dword S+8 times 0xFF' reads as if only S+8 is scaled; reworded to 'each of ... times 0xFF' (32-bit products). Everything else checked: IAT slots resolve to USER32 GetCursorPos/GetWindowRect/GetClientRect/GetWindowInfo/ScreenToClient; signed bounds (js/jge); bit 0x80 of S+0xC/S+0xE/S+0xD; non-zero-only update; [o] = 1 inside / 0 outside; slot +0x38 retry loop on 0x8007001E; end step. The stack-cookie clause was dropped to stay within the length limit."
+  },
+  {
+   "fn": "007E96A0",
+   "why": "byte re-read by a non-drafting agent: Two precision defects. (1) Read order: word [f+6] is read into edi BEFORE a's slot +0x28 call (007E9720) and that pre-call value is compared; only the 007B2200 argument re-reads it. (2) 'newlines/terminators added' hides an unchecked store: after each 0019C5D0 the body writes 0xA at index k = result (minus 2 when result >= 0xFF, signed jl) with no bound check, then checks k+1 < 0x100 (unsigned) before the 0 terminator and calls 00809728 otherwise, so a negative or large result writes the newline outside the 0x100-byte buffer. The second message (01CB91B0) takes no format arguments and does not call 007E8B40 again. Rest checked: 7-argument format order ma"
+  },
+  {
+   "fn": "00834970",
+   "why": "byte re-read by a non-drafting agent: '(a+2) mod 3' hides the signed arithmetic: the index is computed with imul 0x55555556, shr 31, add (signed division truncating toward zero) and a subtraction, i.e. the C remainder (a+2) % 3 on a 32-bit signed value, negative when a+2 < 0. Everything else checked: a re-read for h on each pass; h negated with the xorps sign mask 01CEBDA0; slot +0x50 called on rcx twice per j; c = v.k*[rcx+0x20+4k]*r + offset - v.k*m with fourth float 0; dot against the best (reset to -1e18 per j, second pass compares against the updated best); jbe skips NaN; store at r8+16j; signed j loop (jle)."
+  },
+  {
+   "fn": "008585E0",
+   "why": "byte re-read by a non-drafting agent: Ruled on the CORRECTED text from vtable-method-index-r8h-fix.json. Its new clause holds: the copy loop (008586E0..00858707) stores qword i into C's data for i below the re-called slot +0xB8 result (signed jl) with no compare against n (and C's data is null when n <= 0). One defect remains: the byte passed as 00854830's second argument is movzx edx, byte [rbp+0x67] = entry rsp+8, the incoming rcx home slot, which this body never writes (only +0x10/+0x18/+0x20 are saved there); 'a stack byte' hides that it is an unwritten caller-area byte. Everything else checked: n movsxd dword +0x104, js/jle paths (count = n even when negative), 0085E680(8n, 0x10), null-"
+  }
+ ],
+ "mode": "ee",
+ "family": ""
+}

@@ -1,0 +1,289 @@
+{
+ "page": "23-Third-Party-Libraries/Lua-Core/the-lua-loader-and-what-it-accepts.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-lua-loader-r8.json",
+ "rows": [
+  {
+   "fn": "00810470",
+   "text": "with `n` = `r8d`: when `n` is 0 stores `rdx` with dword tag 0x16 in the slot at qword [rcx+0x10] and advances that qword by 0x10; otherwise calls `0081A8A0` (`rcx` unchanged) when qword [qword [rcx+0x18] + 0x18] is greater than 0 (signed), takes `c` = `0081ECA0(rcx, n)`, stores `rdx` at qword [c+0x18], lowers qword [rcx+0x10] by 16`n` (sign-extended) and copies slot k from there to `c`+0x20+16k (qword +0 and dword +8) for k = `n`-1 down to 0, the pass count being the 32-bit `n` counted down to 0 (a negative `n` runs 2^32 + `n` passes), then stores `c` with tag 0x66 in the slot at qword [rcx+0x10] and advances it by 0x10",
+   "anchors": [
+    [
+     "00810491",
+     "mov"
+    ],
+    [
+     "008104BB",
+     "call"
+    ],
+    [
+     "008104C5",
+     "call"
+    ],
+    [
+     "0081050F",
+     "mov"
+    ],
+    [
+     "00810529",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00810730",
+   "text": "picks a 16-byte value slot `o` for index `i` = `edx`, with `c` = qword [rcx+0x20] and top = qword [rcx+0x10]: `i` > 0 gives qword [c] + 16`i`, or the static `01CCB510` when that is not below top (unsigned); 0xFFF0B9D8 < `i` <= 0 (signed) gives top + 16`i`; `i` = 0xFFF0B9D8 gives qword [rcx+0x18] + 0x40; a smaller `i`, with `v` = the slot at qword [c] and `k` = 0xFFF0B9D8 - `i`, gives `01CCB510` when dword [v+8] is 0x16 or `k` is greater (signed) than byte [qword [v] + 0xA], else qword [v] + 0x20 + 16(`k`-1); copies qword +0 and dword +8 of `o` into the slot at top and advances qword [rcx+0x10] by 0x10",
+   "anchors": [
+    [
+     "0081074C",
+     "cmp"
+    ],
+    [
+     "00810766",
+     "add"
+    ],
+    [
+     "0081076E",
+     "mov"
+    ],
+    [
+     "0081077D",
+     "cmp"
+    ],
+    [
+     "008107B1",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00810D20",
+   "text": "picks a 16-byte value slot `p` for index `i` = `edx`, with `c` = qword [rcx+0x20] and top = qword [rcx+0x10]: `i` > 0 gives qword [c] + 16`i`, or the static `01CCB510` when that is not below top (unsigned); 0xFFF0B9D8 < `i` <= 0 (signed) gives top + 16`i`; `i` = 0xFFF0B9D8 gives qword [rcx+0x18] + 0x40; a smaller `i`, with `v` = the slot at qword [c] and `k` = 0xFFF0B9D8 - `i`, gives `01CCB510` when dword [v+8] is 0x16 or `k` is greater (signed) than byte [qword [v] + 0xA], else qword [v] + 0x20 + 16(`k`-1); then, for each slot after `p` that is below qword [rcx+0x10] (unsigned, re-read), copies its qword +0 and dword +8 one slot down, and subtracts 0x10 from qword [rcx+0x10]",
+   "anchors": [
+    [
+     "00810D3C",
+     "cmp"
+    ],
+    [
+     "00810D56",
+     "add"
+    ],
+    [
+     "00810D5E",
+     "mov"
+    ],
+    [
+     "00810D6D",
+     "cmp"
+    ],
+    [
+     "00810DA4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00812890",
+   "text": "takes `v` = `00811D10(rcx)`; when it differs from `00811D10(0)` calls `00812960(rcx, 01CCA320 \"multiple Lua VMs detected\")`, otherwise when float [v] is not equal to `xmm1` (NaN counts as not equal) calls `00812960(rcx, 01CCA340 \"version mismatch: app. needs %f, Lua core provides %f\", xmm1 as double, float [v] as double)`; then calls `00810640(rcx)` with float `01CCA3C8` (-4660.0) in `xmm1`, and calls `00812960(rcx, 01CCA380)` when `00811470(rcx, -1, 0)` is not -0x1234 or else `00811890(rcx, -1, 0)` is not 0xFFFFEDCC; tail-jumps to `00811130(rcx, -2)`",
+   "anchors": [
+    [
+     "008128A5",
+     "call"
+    ],
+    [
+     "008128C3",
+     "call"
+    ],
+    [
+     "008128F3",
+     "call"
+    ],
+    [
+     "00812911",
+     "call"
+    ],
+    [
+     "00812959",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0081DA20",
+   "text": "with `h` = qword [rcx+0x58]: returns when `h` is null or byte [rcx+0x49] is zero; with `c` = qword [rcx+0x20], keeps the offsets of qword [rcx+0x10] and qword [c+8] from qword [rcx+0x38]; fills a stack record with dword +0 = `edx`, dword +0x28 = `r8d` and qword +0x78 = `c`; when (qword [rcx+0x30] - qword [rcx+0x10]) AND ~0xF is at most 0x140 (signed) calls `0081D9A0(rcx, 0x14)`; sets qword [c+8] = qword [rcx+0x10] (re-read) + 0x140, byte [rcx+0x49] = 0 and bit `0x2` of byte [c+0x22]; calls `h(rcx, &record)`; then sets qword [c+8] and qword [rcx+0x10] to qword [rcx+0x38] (re-read) plus the kept offsets, byte [rcx+0x49] = 1, and clears bit `0x2` of byte [c+0x22] (stack cookie `01F44830` checked by `00808C40`)",
+   "anchors": [
+    [
+     "0081DA4E",
+     "cmp"
+    ],
+    [
+     "0081DA9E",
+     "call"
+    ],
+    [
+     "0081DABD",
+     "or"
+    ],
+    [
+     "0081DAC1",
+     "call"
+    ],
+    [
+     "0081DAED",
+     "and"
+    ]
+   ]
+  },
+  {
+   "fn": "0081EFB0",
+   "text": "when `r8` is at most 0x28 (unsigned) tail-jumps to `0081EDC0(rcx, rdx, r8)`; when `r8` + 1 is above 0xFFFFFFFFFFFFFFDD (unsigned) calls `00823710` (the body ends there); otherwise loads `h` = dword [qword [rcx+0x18] + 0x50], then takes `s` = `0081A620(rcx, 0x14, r8 + 0x21, 0, 0)`, stores `r8` at qword [s+0x10], `h` (read before that call) at dword [s+0xC] and 0 at byte [s+0xA], copies `r8` bytes from `rdx` to `s`+0x20 with `00861EBA` (memcpy), stores a zero byte after them and returns `s`",
+   "anchors": [
+    [
+     "0081EFC0",
+     "cmp"
+    ],
+    [
+     "0081EFD9",
+     "cmp"
+    ],
+    [
+     "0081F003",
+     "call"
+    ],
+    [
+     "0081F020",
+     "call"
+    ],
+    [
+     "0081F032",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0082A7C0",
+   "text": "with `g` = `rdx`, `d` = qword [rcx+0x50] and `f` = qword [rcx+0x30], scans `i` from word [qword [f+0x20] + 0xA] (signed) while below dword [d+0x18] (re-read) over the 24-byte entries `e` of the array at qword [d+0x10]: when `0081EEF0(qword [e], qword [g])` is non-zero, then with `e` re-read through qword [rcx+0x50] and `f` re-read from qword [rcx+0x30]: if byte [e+0x10] is below byte [g+0x10] (unsigned), calls `0081BFF0(qword [rcx+0x38], 01CCD078 \"<goto %s> at line %d jumps into the scope of local '%s'\", qword [e]+0x20, dword [e+0xC], qword [qword [qword [f]+0x30] + 16w] + 0x20 with w = the signed word (byte [e+0x10] + dword [f+0x3C]) of the array at qword [qword [qword [f+0x18] + 0x50]])`, zeroes dword [rcx+0x10] and calls `00824330(rcx, message)` (the body ends there); else calls `0082FDE0(f, dword [e+8], dword [g+8])`, moves the later entries down by one, decrements the count and re-examines the same `i`; without a match moves to `i` + 1",
+   "anchors": [
+    [
+     "0082A7E5",
+     "cmp"
+    ],
+    [
+     "0082A81B",
+     "call"
+    ],
+    [
+     "0082A838",
+     "cmp"
+    ],
+    [
+     "0082A849",
+     "call"
+    ],
+    [
+     "0082A8FF",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0082C0B0",
+   "text": "with `l` = the list at qword [qword [rcx+0x18] + 0x50] + 0x10 (array qword +0, count dword +8, both re-read) and `b` = `rdx`, for `i` from word [b+0xA] (signed) while below the count, with `g` = 24-byte entry `i`: when byte [g+0x10] is above byte [b+0xC], calls `0082FD80(rcx, dword [g+8], byte [b+0xC])` if byte [b+0xD] is non-zero and stores byte [b+0xC] at [g+0x10]; then with `s` = qword [rcx+0x18], `d` = qword [s+0x50] and `k` = qword [qword [s+0x30] + 0x20], scans the 24-byte entries `e` of the array at qword [d+0x20] from word [k+8] (signed) while below dword [d+0x28] for one where `0081EEF0(qword [e], qword [g])` is non-zero; on a match calls `0082FD80(qword [s+0x30], dword [g+8], byte [e+0x10])` when byte [g+0x10] is above byte [e+0x10] and (byte [k+0xD] is non-zero or dword [d+0x28] is greater than word [k+8], signed), then `0082A170(s, i, e)`, and re-examines the same `i`; without a match moves to `i` + 1",
+   "anchors": [
+    [
+     "0082C0E0",
+     "cmp"
+    ],
+    [
+     "0082C130",
+     "call"
+    ],
+    [
+     "0082C17E",
+     "call"
+    ],
+    [
+     "0082C208",
+     "call"
+    ],
+    [
+     "0082C215",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0082C310",
+   "text": "with the list at `rdx` (array qword +0, count dword +8, capacity dword +0xC) and `n` = its count: when `n` + 1 is greater (signed) than the capacity, stores `008235B0(qword [rcx+0x38], array, rdx+0xC, 0x18, 0x7FFF, 01CCD0B0 \"labels/gotos\")` as the array; fills the 24-byte entry `n`: qword +0 = `r8`, dword +0xC = `r9d`, byte +0x10 = byte [qword [rcx+0x30] + 0x42], dword +8 = the fifth-argument dword; increments the count and returns `n`",
+   "anchors": [
+    [
+     "0082C341",
+     "cmp"
+    ],
+    [
+     "0082C367",
+     "call"
+    ],
+    [
+     "0082C385",
+     "mov"
+    ],
+    [
+     "0082C3A6",
+     "mov"
+    ],
+    [
+     "0082C3B7",
+     "inc"
+    ]
+   ]
+  },
+  {
+   "fn": "0082FB30",
+   "text": "takes `j` = dword [rcx+0x30], sets it to -1 and takes `r` = `0082F360(rcx, 0x7FFF8017)`; returns `r` when `j` is -1 and `j` when `r` is -1; otherwise, in the dword array at qword [qword [rcx] + 0x18], walks from index `i` = `r` to `i` + 1 + ((dword [i] >> 14) - 0x1FFFF), stopping when that offset is -1 or the next index is -1; when abs(`j` - `i` - 1) is greater (signed) than 0x1FFFF calls `00824330(qword [rcx+0x18], 01CCD308 \"control structure too long\")` (the body ends there), else sets dword [i] to (dword [i] AND 0x3FFF) OR ((`j` - `i` + 0x1FFFE) << 14); returns `r`",
+   "anchors": [
+    [
+     "0082FB42",
+     "mov"
+    ],
+    [
+     "0082FB4C",
+     "call"
+    ],
+    [
+     "0082FB87",
+     "shr"
+    ],
+    [
+     "0082FBB3",
+     "cmp"
+    ],
+    [
+     "0082FBCA",
+     "or"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "00829B10": "too dense for one exact row (606 B, FuncState set-up with a dozen stack and object field writes, parameter list, two error tails)"
+ },
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "00810470",
+   "why": "byte re-read by a non-drafting agent: Unbounded/edge loop: the copy loop counts edi (the 32-bit n) down with sub/jne at 00810518, and the start index uses the sign-extended n, so the draft's 'for k = n-1 down to 0' holds only for positive n; a negative n raises qword [rcx+0x10] by 16 times its magnitude and runs 2^32 + n passes. Everything else verified: n = 0 path stores rdx/tag 0x16 and advances; 0081A8A0 gated by jle on qword [qword [rcx+0x18]+0x18] (signed); 0081ECA0(rcx, n); qword [c+0x18] = rdx; slot k (top re-read) copied to c+0x20+16k; final tag 0x66."
+  },
+  {
+   "fn": "0081EFB0",
+   "why": "byte re-read by a non-drafting agent: Read-once vs re-read: the dword [qword [rcx+0x18] + 0x50] stored at dword [s+0xC] is loaded into ebx at 0081EFFC, before the 0081A620 call that receives rcx; the draft orders it after that call. Rest verified: ja 0x28 tail-jump to 0081EDC0 with registers unchanged, cmp r8+1 with -0x23 (= 0xFFFFFFFFFFFFFFDD) ja to the final call 00823710, 0081A620(rcx, 0x14, r8 + 0x21, 0, 5th dword 0), 00861EBA = IAT memcpy, zero byte at s+0x20+r8."
+  },
+  {
+   "fn": "0082A7C0",
+   "why": "byte re-read by a non-drafting agent: Re-read wording: after a 0081EEF0 match the body re-reads both qword [rcx+0x50] (rbx at 0082A824) and qword [rcx+0x30] (r10 at 0082A82D); the draft marks only e as re-read, so the f used in the message and as 0082FDE0's first argument reads as the value cached on entry. Also the local-index word is read with movsx (signed). Rest verified: i = movsx word [qword [f+0x20]+0xA], jge/jl signed against dword [d+0x18] re-read (d itself cached in r14), jb unsigned byte compare, message argument chain, dword [rcx+0x10] = 0 then 00824330 as the last instruction, entry shift loop and count decrement, the removal path jumps back to the compare without inc esi (same "
+  }
+ ],
+ "mode": "ee",
+ "family": ""
+}

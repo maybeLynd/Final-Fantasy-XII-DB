@@ -1,0 +1,18 @@
+UNBOUND 00361480 raw callers 00341C80 (00341C96), 00342770 (003427F3); direct targets none; bearing pages naming them 1 (all listed non-host)
+VERIFY 5 functions, 24 anchors, 4 target pages, 1 adds, 1 drops
+DRY target 0017FF20 00-Engine-Core-Runtime/Developer-Tuning-Console/the-282-command-parameter-console.md
+DRY source 00394380 08-Combat-Formula/Steal/the-steal-roll.md
+DRY record 00394380 _index/candidates/fable-home-the-steal-roll-1003
+DRY target 00394380 16-UI/Widget-Object-Model/the-title-asset-singleton-and-its-distinct-consumer.md
+DRY source 001DD0B0 08-Combat-Formula/Steal/the-steal-roll.md
+DRY record 001DD0B0 _index/candidates/fable-home-the-steal-roll-1003
+DRY target 001DD0B0 00-Engine-Core-Runtime/Developer-Tuning-Console/the-282-command-parameter-console.md
+DRY source 004EB910 00-Engine-Core-Runtime/CONTRACT-boot-fixups.md
+DRY record 004EB910 _index/candidates/fable-home-contract-boot-fixups-1002
+DRY target 004EB910 17-Presentation-Rendering/Legacy-PS2-GS/the-vif1-vu1-layer.md
+DRY source 00314D60 19-Save-Load-Settings/Game-Settings-Config/ff12config-and-debglobal.md (section withdrawn)
+DRY record 00314D60 _index/candidates/fable-home-ff12config-and-debglobal-1002
+DRY target 00314D60 01-Script-VM-Native-Bridge/verbs-that-only-wait-and-verbs-that-do-nothing.md
+DRY source 00361480 15-Input/CONTRACT-input-subsystem.md (section withdrawn)
+DRY record 00361480 _index/candidates/fable-home-contract-input-subsystem-1002
+FAILS 0

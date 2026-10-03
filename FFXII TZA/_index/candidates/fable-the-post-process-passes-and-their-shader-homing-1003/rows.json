@@ -1,0 +1,170 @@
+{
+ "page": "22-Middleware-PhyreEngine/Post-Process-Chain/the-post-process-passes-and-their-shader-constants.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_012a8rbQTfxKzPeUw5FnjutN",
+ "report": [
+  "fable-the-post-process-passes-and-their-shader-constants.json"
+ ],
+ "rows": [
+  {
+   "fn": "001653B0",
+   "text": "calls `00662A80(01F2E860)` and tail-jumps to `00808B90(008B0690)`",
+   "anchors": [
+    [
+     "001653BD",
+     "lea"
+    ],
+    [
+     "001653C4",
+     "call"
+    ],
+    [
+     "001653CA",
+     "lea"
+    ],
+    [
+     "001653D5",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "001694E0",
+   "text": "calls `005DBF60(02EA5838, 02EA5850)` and tail-jumps to `00808B90(008B7B80)`",
+   "anchors": [
+    [
+     "001694E4",
+     "lea"
+    ],
+    [
+     "001694EB",
+     "lea"
+    ],
+    [
+     "001694F2",
+     "call"
+    ],
+    [
+     "001694F7",
+     "lea"
+    ],
+    [
+     "00169502",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "001EEC50",
+   "text": "returns at once when `rcx` is null; otherwise tail-jumps to `0063ABF0` with (qword `01F82E50`, qword `[rcx]`) when byte `rcx+8` is 0, or with (qword `01F82E50`, 0) when it is non-zero",
+   "anchors": [
+    [
+     "001EEC53",
+     "je"
+    ],
+    [
+     "001EEC55",
+     "cmp"
+    ],
+    [
+     "001EEC65",
+     "jmp"
+    ],
+    [
+     "001EEC71",
+     "xor"
+    ],
+    [
+     "001EEC73",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0063AAD0",
+   "text": "walks the list at `rcx+0x38` (next at node `+0`, the head read as the end, next taken before each visit) and, for each node `n` whose qword `+0x50` equals `rdx`, unlinks `n` (prev at `+8`) and points both its links at itself; when qword `rcx+0x78` (`t`) is non-null, follows the chain from qword `n+0x50` through qword `+0x78` and, for each element whose dword `+0xEC` is below dword `t+0x10` with bit 31 cleared (unsigned) and whose entry address `qword [t+0x18] + index*32` is non-zero, subtracts dword `n+0x70` from the entry's dword `+0x10` and decrements its dword `+0x14`, first unlinking and self-linking the link pair at `n+0x38` once; then calls `0063B3E0(n)`, `0063AAD0`+0xEC with `n+0x10` and `0063AAD0`+0xF9 with (`rcx+0x50`, `n`)",
+   "anchors": [
+    [
+     "0063AB27",
+     "cmp"
+    ],
+    [
+     "0063AB3F",
+     "mov"
+    ],
+    [
+     "0063AB71",
+     "jae"
+    ],
+    [
+     "0063ABA1",
+     "sub"
+    ],
+    [
+     "0063ABB3",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00793640",
+   "text": "calls `0016D6A0(rcx+0x200)`, then calls `00793640`+0x3B with (`rcx+0x140`, 0x18, 8, `0016D6A0`), and tail-jumps to `005DDBA0(rcx)`",
+   "anchors": [
+    [
+     "00793657",
+     "add"
+    ],
+    [
+     "0079365E",
+     "call"
+    ],
+    [
+     "00793664",
+     "lea"
+    ],
+    [
+     "0079367B",
+     "call"
+    ],
+    [
+     "0079368E",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00877790",
+   "text": "calls `0063BC00` with `rcx` = `02CB7080` (`rdx` unchanged) and returns its null result when it returns null; otherwise, when `rdx` is non-null, zeroes qwords `rdx+0` and `+0x30`, stores the result at qword `+0x18` and `rdx` itself at qwords `+0x20` and `+0x28`, and calls `00877790`+0x3D with `rdx`; on that path returns with `al` = 1 whether or not `rdx` was null",
+   "anchors": [
+    [
+     "008777A0",
+     "call"
+    ],
+    [
+     "008777A8",
+     "jne"
+    ],
+    [
+     "008777BA",
+     "mov"
+    ],
+    [
+     "008777CD",
+     "call"
+    ],
+    [
+     "008777D2",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "004C0EA0": "4,501-byte body: every path cannot be stated in under 1,200 characters"
+ },
+ "missing": [],
+ "corrections": [],
+ "mode": "homing",
+ "family": ""
+}

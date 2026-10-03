@@ -564,3 +564,25 @@ Shared callees outside the census: `0026AF30`.
 | `002E9C60` | `movsx word[+0x1E]` < 0 → out; else `×9` index (`002E9C65`/`002E9C6E`) | [`002E9C65`](../../_index/ADDRESS-INDEX.md) |
 
 Shared callees outside the census: none.
+
+## SWE2-EC7-218 update (2026-10-03) - five motion verbs that write or test secondary-context element 0
+
+`002EBC40` (36 B; verb `ignorebattlemovectrl` `0x04E7`, whose handler passes the actor record in `rcx` and the popped integer in `edx`) writes bit 6 of the `+0x011` byte of the section 2.4 table. When the record's kind byte `+0x03` masked with `0xE0` equals `0x60` (kind 3) and the nullable `+0xC0` pointer is non-null, it clears bit 6 (`and 0xBF`) and ORs in `(dl & 1) << 6`, and returns no value. It does not test the context's dword `+0x000` against -1. The section 2.4 census lists three writers of `+0x011`, and this body is not one of them.
+
+Interior anchor `002EBC60` (function `002EBC40`).
+
+`002EC860` (38 B; verb `motionloop` `0x003B`, whose handler passes the actor record in `rcx` and the popped integer in `edx`) writes bit 3 of the same `+0x011` byte. When the record and its `+0xC0` context are non-null and the context's dword `+0x000` is not -1, it clears bit 3 (`and 0xF7`) and ORs in `(edx != 0) << 3`, and returns no value. It is not among the three `+0x011` writers that the section 2.4 census lists either.
+
+Interior anchor `002EC882` (function `002EC860`).
+
+`002EC940` (27 B; verb `motionlooppreset` `0x04B4`, whose handler passes the actor record in `rcx` and the low 16 bits of the popped integer, zero-extended, in `edx`) stores `dx` to the word `+0x02A` under the same three guards (record non-null, `+0xC0` non-null, dword `+0x000` not -1), and returns no value. The section 2.4 census lists `002EB0D0` as the only writer of `+0x02A`; this body is a second one.
+
+Interior anchor `002EC956` (function `002EC940`).
+
+`002ECFD0` (80 B) is the begin function of verb `stdmotioneventsync` `0x0473`, whose handler passes the actor record in `rcx`. When the record and its `+0xC0` context are non-null and the context's dword `+0x000` is not -1, it calls `0042F210` twice, with the low word of `+0x000` (the character-render record index of the `+0x000` row) in `cx` and `edx` = 0, then 1. `0042F210` (57 B) returns without a write when `cx` is -1, when the record address (`[022C6F28]` plus the sign-extended `cx` times `0x740`) is zero, when the record's dword `+0x284` is 0, or when `edx` is 2 or more (signed); otherwise it clears bit `edx` of the record's byte `+0x419` (`btr`). So the begin clears bits 0 and 1 of render-record byte `+0x419`.
+
+Interior anchor `002ED005` (function `002ECFD0`).
+
+`002ECF60` (98 B) is the poll of the same verb. Its handler calls it with the actor record in `rcx`, and returns 1 when the body returns 0 and 0 otherwise. The body returns 0 when the record or its `+0xC0` context is null or the context's dword `+0x000` is -1. Otherwise it calls `0042F1C0` with the low word of `+0x000` in `cx` and `edx` = 0, then 1; it returns 1 at the first non-zero result, and 0 when both are 0. `0042F1C0` (72 B) returns 0 under the same four conditions as `0042F210`, and otherwise returns 1 when bit `edx` of the record's byte `+0x419` is set (0 when it is clear). So the body returns 1 while bit 0 or bit 1 of render-record byte `+0x419` is set. The authored presentation-command page states that action-timeline event subtypes 10 and 11 set bits 1 and 0 of that byte.
+
+Interior anchor `002ECF9A` (function `002ECF60`).

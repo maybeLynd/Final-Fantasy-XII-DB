@@ -1350,3 +1350,11 @@ Interior anchor `003DF5B2` (function `003DF5B0`).
 | `003F6FD0` | 41 B | leaves word `+0x2f0` unchanged when no bit other than `0x4` is set in it (`test` with `0xfffb`); otherwise stores 4 there when it equals 1 and 3 when it does not | `003F6FDC`, `003F6FE1`, `003F6FEC`, `003F6FF1` |
 | `00473B90` | 29 B | with `t` = qword `02CA6C60`, returns dword `ecx` of the array at `t+8` AND 0x1FFF when `ecx` is less than dword `t+4` (signed), else -1 | `00473B97`, `00473B9A`, `00473B9F`, `00473BA3`, `00473BA9` |
 | `00862930` | 71 B | multiplies each of the four floats at `rdx` `+0`/`+4`/`+8`/`+0xc` by 16.0 (`01CEBC84`) and stores each truncated to an integer as the dword at the same offset of `rcx` | `0086293C`, `00862940`, `00862953`, `00862963`, `00862973` |
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-03, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../../_index/candidates/fable-home-the-save-payload-field-map-1003/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `001B00E0` | 17 B | `00180E50` + 0x10 | zeroes qwords `rcx+0x2108` and `rcx+0x2110` and returns 0 | Interior anchor `001B00E2`; Interior anchor `001B00E9` |

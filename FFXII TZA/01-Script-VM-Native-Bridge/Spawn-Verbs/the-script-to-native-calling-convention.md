@@ -888,3 +888,11 @@ SWE2-DATA's `prove_spattack_flow.py` and the reviewer's own decode, and is not r
 | function | size | what the body does | interior anchors |
 |---|---|---|---|
 | `00348330` | 165 B | takes `b` = `002640C0()`, then `x` = `002650B0(b, rcx, 00267E10(r9))` and `y` = `002650B0(b, rcx, 00267E10(r9))` (two reads through the same `r9`), and `r` = `00309C00(y, x)`; moves dword `01EF920C` to `01EF9208` and dword `01EF9214` to `01EF9210`, stores dword `[y]` to `01EF920C` and dword `[x]` to `01EF9214`, and tail-jumps to `0026B4E0(rcx, r)` | `00348355`, `00348363`, `0034838A`, `00348397`, `003483B3` |
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-03, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../../_index/candidates/fable-home-the-script-to-native-calling-convention-1003/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `003BB320` | 82 B | `00393EA0` + 0xBA | copies the zero-terminated byte string at `rcx`, terminator included, to `02B4055C`; then stores dword 9 at `02B40E1C`, dword 0 at `02B40FE4`, `02B40554` and `02B40EC0`, dword 1 at `02B40E10` and qword 1 at `02B40E14`, and returns 0 | Interior anchor `003BB333`; Interior anchor `003BB33C`; Interior anchor `003BB340`; Interior anchor `003BB35C`; Interior anchor `003BB366` |

@@ -1,0 +1,3 @@
+# apply_recuts.py dry run after --apply (OPUS_APPLY_ALLOWED = the store's uncommitted lines), 2026-10-03
+ALREADY (7 new rows present, 5 old rows gone)
+FAILS 0

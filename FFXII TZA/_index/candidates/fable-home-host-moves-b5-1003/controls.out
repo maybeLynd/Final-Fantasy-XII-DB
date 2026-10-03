@@ -1,0 +1,8 @@
+control caller-host-004EB910     exit 1, 1 VERIFY FAIL: 004EB910: the target page does not cite the caller 004EBE80 outside the FABLE batch-5 section -> refused
+control uncited-callee           exit 1, 1 VERIFY FAIL: 004EB910: the target page does not cite the callee 0022CC20 outside the FABLE batch-5 section -> refused
+control not-a-callee             exit 1, 1 VERIFY FAIL: 00314D60: the body does not call 00314D40 directly -> refused
+control row-caller-missing       exit 1, 1 VERIFY FAIL: 001DD0B0: row-caller 0017FF20 is not homed by this record on the target -> refused
+control unbound-caller-missing   exit 1, 1 VERIFY FAIL: 00361480: raw callers {'00341C80': ['00341C96'], '00342770': ['003427F3']}, recorded {'00342770':  -> refused
+control unbound-cite-unlisted    exit 1, 1 VERIFY FAIL: 00361480: bearing page 15-Input/CONTRACT-input-subsystem.md names 00342770 and is not listed as a  -> refused
+control anchor-shift             exit 1, 1 VERIFY FAIL: 0017FF20: 0017FF25 decodes to None, recorded 'call' -> refused
+CONTROLS 7, NOT REFUSED 0

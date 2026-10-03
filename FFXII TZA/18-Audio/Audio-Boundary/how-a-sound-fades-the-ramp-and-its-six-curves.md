@@ -307,3 +307,11 @@ Nothing was executed and no sound was heard.
 | function | size | what the body does | interior anchors |
 |---|---|---|---|
 | `007BDBB0` | 342 B | `v` = 0 when the virtual `[[rcx]+0x130]`(`rcx`) returns non-zero in `al`, else float `+0xC` of qword `[rcx+0x30]`; then over four 0x40-byte records from `rcx+0x90` (floats a `+0`, b `+4`, c `+8`, d `+0xC`, dword `+0x14`, qword `+0x30`; `rbx` = record + 0x28) it multiplies `v` by: b when d equals 0 or is unordered (`ucomiss`); otherwise, when qword `+0x30` is non-null, `007AE260`(`rbx`, 1.0 - c/d) * (a - b) + b if a > b (ordered `comiss`), else `007AE260`(`rbx`, c/d) * (b - a) + a; and when that qword is null, `007A9E50`(c/d, dword `+0x14`) * (b - a) + a; it returns `v` multiplied by float `+0x64` of `rcx` | `007BDBD6`, `007BDC10`, `007BDC34`, `007BDCAB`, `007BDCD8` |
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted, opus-how-a-sound-fades-the-ramp-and-its-six-c-ee-1003-3)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-how-a-sound-fades-the-ramp-and-its-six-c-ee-1003-3/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `007A7010` | 474 B | with q = qword `[rcx]`: returns 0 at once when q is 0; otherwise it branches on q's low byte k. For k = 7 it takes the object `007BC2A0`() returns as a critical section (`008C20B8` EnterCriticalSection), calls `007BC2B0`(&q) and, when that is non-null, its virtual `+0x10`; it leaves the section (`008C20C0`) on every path and returns 0 when the lookup is null or the virtual returns 0, 1 or 3 when it returns those, else 2. For k = 2, 8 or 9 it does the same with `007B44B0`/`007B44C0`, `007B7950`/`007B77E0` or `007B8050`/`007B7FD0` and the virtual `+0xA8`, and returns 0 for a null lookup or a 0 result, 1 for 1, 3 for 4, else 2. Any other k returns 0 | `007A7032`, `007A7059`, `007A707C`, `007A71A8`, `007A71C9` |

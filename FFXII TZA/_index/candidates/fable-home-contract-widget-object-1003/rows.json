@@ -1,0 +1,46 @@
+{
+ "page": "16-UI/Widget-Object-Model/CONTRACT-widget-object.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01A1Qvgw5xe7BnV34LPHQcLH",
+ "report": "home-contract-widget-object.json",
+ "rows": [
+  {
+   "fn": "00299890",
+   "entered_from": "`0029A0A0` + 0x3B1",
+   "text": "does nothing when bit 4 (`0x10`) of word `rcx+0xD8` is clear; otherwise adds `0x10` to word `rcx+0x110` and, when the sum is `0x100` or more (signed), zeroes word `+0x110` and clears bit 4 of word `+0xD8` (AND `0xffef`)",
+   "anchors": [
+    [
+     "00299897",
+     "test"
+    ],
+    [
+     "0029989B",
+     "add"
+    ],
+    [
+     "002998A8",
+     "cmp"
+    ],
+    [
+     "002998B3",
+     "mov"
+    ],
+    [
+     "002998C2",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "fn": "0027B770",
+   "why": [
+    "already cited by 16-UI\\Widget-Object-Model\\the-widget-message-protocol.md"
+   ]
+  }
+ ],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

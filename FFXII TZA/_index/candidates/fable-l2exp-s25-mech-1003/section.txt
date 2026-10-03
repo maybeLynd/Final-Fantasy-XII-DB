@@ -1,0 +1,161 @@
+## 8a. Where the walk's set and subgroup come from: the set selector and the switch orders (FABLE, 2026-10-03)
+
+*Added for SWE2-AUDIT-SPEC's SCOPE-SHORT on S-25 ([`auditspec-l2-expansion-1003`](../_index/candidates/auditspec-l2-expansion-1003/README.md) item 3, adopting AUDIT-SEM's proposal): the registry
+subject is "gambit evaluation, set selection and enmity", and this contract named the selector `00305AB0` only in §14
+item 1, as the shape of the walk's `r8d`. Static and isolated original-code; every fact below is checked by
+[`check_s25.py`](../_index/candidates/fable-l2exp-s25-mech-1003/check_s25.py) (FAILS 0). The four sets' roles and their installers are
+[the set page](which-gambit-set-fires-and-how-a-command-switches-it.md) §2 and its UQ-122 box; how an order id reaches
+`002FDDA0` is [the handler-table contract](../07-Combat-Action/CONTRACT-battle-action-handler-table.md) HT-2 and HT-3.
+This section states what neither does: the order in which the sets are offered, what decides between them, and what the
+switch orders write. The contract's claims carry no ids (the S-25 exposure note cites them as G-§n), so the invariants
+here are **G-§8a.1–G-§8a.7**.*
+
+**Interface.** Two entries and one script route:
+
+| entry | reached from | arguments | return |
+|---|---|---|---|
+| `BattleUnit_SelectAndCommitNextAction` `00305AB0` (517 B) | `0030874C` in the combat frame `00308610` (resume mode 1, `00308744`) and `00313D89` in the queue drain `00313CD0` (mode 0, `00313D84`); no pointer constant | `rcx` the unit; `edx` the resume mode, kept in `edi` and passed to every walk as `r9d` | the first non-zero walk; else the fallback commit's return; else 0 |
+| `BattleUnit_ExecuteDirectStateCommandOrder` `002FDDA0` (1937 B) | no `E8`/`E9` caller; 249 slots of the order table `01EEC460`, every id `0x4112`–`0x4121` among them, tail-called with only `rcx` (HT-3) | `rcx` the unit; the id re-read from `+0x714` (`002FDDB0`) | 1 for a handled id (`+0x6B4` = 2); `-1` unhandled (`+0x6B4` untouched) |
+| verb `3060` `btlAtelSetDefaultLogic` `00510580` → `00239040` | the tail jump `0051059B` | the actor; `k` popped by `00267E10` | none read |
+
+**The cascade.** One call of `00305AB0` offers sets to the walk (§4–§7) in this order, and the first walk that returns
+non-zero jumps to the epilogue `00305CA0`:
+
+0. **Unit flag bit 22** set: `00308270` runs first (`00305AC1`–`00305AC8`). Its call `003082C6` to `0030EDA0` copies
+   the suspension snapshot at `[+0xB88]` back over `+0x6B0`–`+0xB9F`, which holds all four set pointers, the subgroup
+   byte and `+0x748`. It then clears bits 22 and 46 (`003082CB`–`003082DF`). So the sets this call reads are the ones
+   the unit had when it was suspended (executed E15).
+1. **The issued command.** With unit flag `0x4000` set (`00305ADF`) the flag is cleared (`00305AEB`, `00305AF0`) and the
+   word `+0xBA0` is committed with target `+0xBB8` and cancel-first 1 (`00305B12`–`00305B2F`). An id in `0x4000`–`0x4166`
+   skips the availability check (`00305AF3`–`00305B01`); any other needs `002FFCF0` to return 0 (`00305B09`–`00305B10`).
+   A commit ends the call; a refusal falls through to the sets (the gambit page's section 8h).
+2. **Field bit 15** (`00377C20`) with a party-kind stats record (`[+0x698]+5` = 0): no set at all, straight to step 9
+   (`00305B3C`–`00305B57`).
+3. **The forced set for Confuse and a kind-1 Berserk.** With field bit 15 clear, status bit 5 (Confuse) in the stats
+   masks `+0x64` or `+0x3C` (`00305B66`–`00305B76`), or bit 27 (Berserk) on a kind-1 record (`00305B7D`–`00305B87`),
+   sends the unit to the static set `01EEC320` at subgroup 0 through the fourth call site (`00305B89` → `00305C68`), and
+   from there to step 9. No other set is offered.
+4. **A**, `+0x6E8`, subgroup 0 (`00305B95`–`00305BA5`).
+5. **The party Berserk set.** With field bit 15 clear, a party-kind record with bit 27 sends the unit to the static set
+   `01EEC370` at subgroup 0 through the third call site (`00305BB2`–`00305BE5` → `00305C52`), then to step 8.
+6. **C**, when the stats pointer is null, the record is not party-kind, or the record's flag bit 2 is set
+   (`00305BE7`–`00305C03`): `+0x6F8` and `+0x748` are cleared (`00305C45`, `00305C4C`) and C = `+0x6E0` is walked with
+   **the subgroup byte `+0x6B5`** (`00305C34`–`00305C58`).
+7. **B** otherwise, `+0x6F8` at subgroup 0 (`00305C05`–`00305C1A`). A null B goes to step 8 (`00305C0F`); a B that fails
+   is cleared with `+0x748` (`00305C25`, `00305C2C`) and also goes to step 8 (`00305C32`). **C is not offered.**
+8. **D**, `+0x6F0`, subgroup 0 (`00305C61`–`00305C71`).
+9. **The fallback.** In resume mode the call returns (`00305C7A`, `00305C7C`). Otherwise it commits the static record
+   `01EEC298`, `{0x4021, flags 0x2000}`, with target 0 and cancel-first 1 (`00305C7E`–`00305C9B`): the wait order with
+   `n` = 0, which never completes (the set page, UQ-125).
+
+The two forced sets decode as `01EEC320` = {`0x0096` with one target entry of relation 1, then `0x4125`} and
+`01EEC370` = {`0x0096` with relation 1}. Besides `00305AB0`, the only code that names either is the membership test
+`0030BF20`, which compares a record pointer against each set's records and has one caller, `00307DC2` in `00307D10`, on
+the unit's current order `+0x708`.
+
+**The switch orders.** `002FDDA0` returns 1 at once, writing nothing, when `+0x6B4` is already non-zero
+(`002FDDB7`–`002FDDCE`). Otherwise:
+- **`0x4116 + k`, k = 0…11, selects a subgroup.** `+0x6B5` = `(id & 0xFF) - 0x16` (`002FE0B8`, `002FE0BB`), with no
+  test of the unit's kind.
+- **`0x4112 + k`, k = 0…3, selects a variant set.** It needs a stats record of kind 1 (`002FE025`–`002FE042`); any
+  other unit returns 1 with only `+0x6B4` written (`002FE50C`). The row word `[+0xE60] + 0x50 + 2k` indexes the directory
+  at `[02EBF168]`, bounded by its `u16` count (`002FE05B`–`002FE077`). Out of range, or a null directory, returns `-1`
+  (`002FE523`). In range, `+0x6E0` = `0020E600(entry)` = the stored offset + `[01F83530]` (`002FE082`–`002FE08E`) and
+  **`+0x6B5` = 0** (`002FE09F`).
+- **Verb `3060` selects a variant without the arm's checks.** `00239040` takes `k` unsigned up to 3 (`00239049`), finds
+  the unit through `0031B760`, and stores `+0x6E0` from the same row word and directory (`00239060`–`00239081`), or 0 when
+  the directory slot is null (`00239093`). It tests no kind and no count, and **it does not touch `+0x6B5`**.
+
+**Reads and writes.**
+
+| unit field | read by the selector | written |
+|---|---|---|
+| `+0x6E8` A | `00305B95` | the six re-plan installers on the set page (UQ-122); 0 at reset `00236BBD` |
+| `+0x6F8` B, `+0x748` | `00305C05` | 0 by the selector at `00305C25`/`00305C2C` (B failed) and `00305C45`/`00305C4C` (C entered); `BattleUnit_IssueCommand` `00311DE1`/`00311DDB`; the clearers on the set page |
+| `+0x6E0` C | `00305C3E` | the kind-1 bind `0023A95E` (variant 0, its count bound at `0023A71E`–`0023A726`); the party bind `0023AB9F` (`02089378 + i * 0x170`, §3); the switch `002FE08E`; the verb `00239081` / `00239093`; 0 at reset `00236BC4` |
+| `+0x6B5` subgroup | `00305C34`, the only read | `00236BA3` (reset, 0), `002FE09F` (0), `002FE0BB` (0…11), which is the whole exact-displacement census; and the block pair in the next row |
+| `+0x6F0` D | `00305C61` | `0023ABB5` (`01E09350` = {`0x4124`, flags `0x2000`}) on the party arm of `0023A570` only; 0 at reset `00236BB6`; and the block pair |
+| the block `+0x6B0`–`+0xB9F` (all of the above) | — | the suspension `0030EFF0` (one caller, `0031307B` in `00312FA0`) copies it to a pool buffer (`0030F04A`–`0030F0E1`), zeroes it (`0030F0E5`–`0030F0EC`, `0x4F0` bytes) and keeps the buffer at `+0xB88` (`0030F0F1`); the restore `0030EDA0` copies it back. Pointer-loop copies, which no displacement census sees |
+| `+0x00` flags | bits 14 and 22 (`00305ADF`, `00305AC1`) | bit 14 cleared at `00305AF0` |
+| `+0x6B4` | — | `002FDDA0`: 2 on every handled id |
+
+**Invariants.**
+- **G-§8a.1 — One set at a time, in a fixed order, and the first commit ends the decision.** Steps 1–9 above; the walk's
+  own order inside a set is §5. Executed E1–E13: each trace offers the sets in that order and stops at the first set
+  whose walk returns 1.
+- **G-§8a.2 — B and C are exclusive, chosen by the stats record before either is walked.** The three tests of step 6
+  route a unit to C or to B. B's failure goes to D (`00305C32`), never to C. A unit routed to C loses any pending B set
+  first. Executed E1–E4.
+- **G-§8a.3 — Status replaces or splices the cascade, and field bit 15 overrides status.** Confuse, or Berserk on kind
+  1, replaces A–D with `01EEC320`. Berserk on a party unit inserts `01EEC370` after A and before D, and keeps `+0x6F8`.
+  With field bit 15 set no forced set is used, and a party-kind unit walks no set at all. Executed E5–E9.
+- **G-§8a.4 — Only C reads the subgroup.** `00305C34` is the one read of `+0x6B5`; the other three call sites and the
+  forced-set entry pass `r8d` = 0 (`00305B9F`, `00305C14`, `00305C6B`, `00305BDB`).
+- **G-§8a.5 — Three routes change C or its subgroup, and only the order arm keeps them consistent.** `0x4116 + k` sets
+  the subgroup for any unit. `0x4112 + k` installs a variant for a kind-1 unit and restarts it at subgroup 0. Verb `3060`
+  installs a variant and **keeps the old subgroup**, so the next C walk indexes the new set with the subgroup the old set
+  last selected. Executed W1–W2 and V1 (subgroup 5 before, 5 after, for k = 0…3).
+- **G-§8a.6 — Outside resume mode, every decision commits something.** When no set commits, the fallback commits the
+  never-ending wait `0x4021`. In resume mode the same exhaustion returns 0 with nothing committed. Executed E1 and E12.
+  (`0x4021` lies in the commit's second band, [the commit contract](../07-Combat-Action/CONTRACT-commit-action.md) §3; the
+  commit itself is supplied in E.)
+- **G-§8a.7 — A kind-1 unit has no D floor from its definition.** In `0023A570` the definition-kind split is at
+  `0023A626`–`0023A62E`. The kind-1 arm jumps from `0023AA2A` / `0023AA44` to `0023ABCA`, past the `+0x6F0` store at
+  `0023ABB5`, and `0023ABA6` is the only reference to `01E09350`. The kind-1 unit's `+0x6F0` therefore keeps the reset's
+  0 (`00236BB6`, `rsi` zeroed at `00236A93`), D walks nothing (§10 item 1), and a kind-1 unit whose A and C produce
+  nothing waits (`0x4021`) rather than following its leader (`0x4124`). Image-wide there are twelve qword stores at
+  `+0x6F0`. The other ten are in the developer console `001D0390`, a stack frame (`0035E100`), a render-object pair that
+  stores 0 (`0041F730`, `004200A0`), post-processing (`006FF5D0`, `006FF900`, `00705520`) and the `007Cxxxx` library
+  (stores `007C091D`, `007C0B23` and `007CE47D`). The suspension pair moves the unit's own block out and back, so it carries no `01E09350`
+  to a unit that never had it.
+
+**Failure paths.**
+- **A null stats record faults in the selector unless field bit 15 is set.** `00305B6D` reads `[stats + 0x64]` before
+  the null test at `00305B78`.
+- **`002FDDA0` reads `[+0x708] + 2` before its guard** (`002FDDA6`, `002FDDBE`). A null context pointer faults even for
+  an id it would not handle.
+- **A variant order on a unit that is not kind 1 reports success and does nothing** (1, `+0x6B4` = 2). An index past the
+  directory's count, or a null directory, returns `-1` with `+0x6B4` untouched, which is HT-5's ambiguous `-1`.
+- **Verb `3060` has no bound.** A row word at or past the directory's count reads past its end (executed V2: entry 9 of
+  a one-entry directory). A null directory installs 0, so C then walks nothing.
+- **A suspended unit has no sets until its restore.** Between `0030EFF0` and the restore, every set pointer and the
+  subgroup read 0. A selection on such a unit without bit 22 walks four null sets and commits the wait (executed E16).
+  Whether the game ever selects for a suspended unit without bit 22 is not traced.
+- **After a verb switch, `+0x6B5` can name a subgroup the new set leaves empty** (C walks nothing, §4), or a populated
+  subgroup that the new set never switches into (G-§8a.5).
+- **A reimplementation that tries C after B fails**, applies Confuse or Berserk after A instead of before it, gives every
+  unit the `0x4124` floor, or resets the subgroup on every variant change, diverges on E2, E5–E7, G-§8a.7 and V1.
+
+**Evidence class.** Static: K1–K9 of `check_s25.py`. The raw reference index covers `E8`/`E9`, `0F 8x`, `EB`/`7x`,
+rip-relative, image-base-relative and pointer constants; the census is an exact-displacement census of `+0x6B5` and
+`+0x6F0`, plus the two block copies read whole; reachability is direct control flow inside `0023A570`. Isolated
+original-code, under Unicorn 2.1.4:
+- the selector `00305AB0` whole in fourteen cases (E1–E14), with its five callees supplied by hooks (the walk, the
+  commit, `00377C20`, `002FFCF0`, `00308270`);
+- the suspension `0030EFF0` and then the selector, with `00308270` and the restore `0030EDA0` as shipped (E15–E16; the
+  allocator `0030DFA0` and `0030C970` supplied, the memset import bridged);
+- `002FDDA0` whole for every id `0x4112`–`0x4121` and four edge cases (W1–W6), with `0020E600` as shipped;
+- the verb body `00239040` (V1–V2), with `0031B760` answered by a hook.
+
+Seven sensitivity controls each turn a check to FAIL: B's failure jumping to C, the field-bit skip removed, the variant
+arm storing 5, its bound removed, the kind-1 arm routed through the `+0x6F0` store, the restore call removed, and the
+claim "every variant switch restarts at subgroup 0". **Live: none.** **Not traced:**
+- which units carry stats flag bit 2 in a loaded game (the set page's UQ-123 reads the authored bit from
+  `battle_pack.bin` and does not re-check the loaded copy);
+- what field bit 15 means for a given area;
+- what `00308270` does besides the restore (the `+0x695` slot release `0030C970`, the `+0xDC8` / `+0xE58` refresh);
+- who sets unit flag bit 22, and whether a selection can run on a suspended unit without it;
+- whether any shipped script calls verb `3060` on a unit whose subgroup is non-zero.
+
+### Crossings into other layers (FABLE, 2026-10-03)
+
+*The edges this section's citations add, each with what crosses it.*
+
+- **Items_Equipment_Shops_License and Rewards_Progression_Economy — SERVICE (3 edges).** The selector's field test
+  `00377C20` (`FieldData_GetActiveFieldRecordBit15`) takes the active field id from `003148F0` (`00377C24`) and returns
+  bit 15 of that field's 16-bit table word (`00377C42`–`00377C55`), or 0 when the table is null or the id is out of
+  range (`00377C33`, `00377C39`, `00377C5F`). The inventory count query `00309FB0` (`0030A07A`), the unequip
+  `0030FD10` (`0030FD5F`) and the defeat-rewards pass `00312280` (`00312382`) call the same getter.
+
+  The selector reads a field bit that item and reward code also read. It is a shared getter, not shared ownership,
+  and §8a states nothing about what those callers do with the bit.

@@ -421,12 +421,3 @@ answer is the total emitted width
 in `ebp`.
 Interior anchor `002B5B08` (the
 `word[r10 + rcx*2]` table read).
-
-## Homed frontier bodies called from this page's functions (FABLE, 2026-10-03, cloud-drafted)
-
-*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../../_index/candidates/fable-home-the-steal-roll-1003/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
-
-| function | size | entered from | what the body does | interior anchors |
-|---|---|---|---|---|
-| `001DD0B0` | 92 B | `0017FF20` + 0x1A | loads qword `01F82D20` and branches on its dword `+8`: when it is 1 and dword `rcx+0x24` is below dword `rcx+0x20` (unsigned), returns dword `+0` of entry `+0x24` of the 0x1C-stride array at qword `rcx+0x28` shifted left 16 and OR'd with that entry's dword `+4`; when it is 0 and dword `rcx+0x38` is below dword `rcx+0x34` plus 1 (unsigned 32-bit), returns the same combination from entry `+0x38` of the 0x1C-stride array at qword `rcx+0x40`; every other case returns dword `+4` of the object at qword `01F82D20` | Interior anchor `001DD0BD`; Interior anchor `001DD0DA`; Interior anchor `001DD0EF`; Interior anchor `001DD105`; Interior anchor `001DD108` |
-| `00394380` | 123 B | `003939B0` + 0x3E4 | calls `00394380` + 0xE with `ecx` = 1, zeroes a 0x30-byte stack block and fills it with the qword returned by `00394380` + 0x38 (`ecx` = 0x890) at `+0`, qword 0 at `+8`, qword `0208EA28` at `+0x10`, the incoming `rcx` at `+0x18`, dword 0 at `+0x20`, byte 2 at `+0x28` and dword 0x1002 at `+0x2C`, then calls `00394380` + 0x70 with `ecx` = 0 and the block's address in `rdx` and returns with that call's `rax` | Interior anchor `0039438E`; Interior anchor `003943B8`; Interior anchor `003943C4`; Interior anchor `003943E3`; Interior anchor `003943F0` |

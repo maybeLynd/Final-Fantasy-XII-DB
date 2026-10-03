@@ -1,0 +1,125 @@
+{
+  "members": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "actual-prerequisite-control.json",
+      "bytes": 734,
+      "sha256": "0181a07fcc1e4825245ff228775af61912900272d01ddede3462d4cdb8b6c2a9"
+    },
+    {
+      "path": "capture-relation-reset-leaves-01.status.json",
+      "bytes": 611,
+      "sha256": "46e9dbba2f46f7e87eec09cce989eb77d8182bfa800b1c184b85a62fad175b41"
+    },
+    {
+      "path": "capture-relation-reset-leaves-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "capture-relation-reset-leaves-01.stdout",
+      "bytes": 177,
+      "sha256": "fd47521de910aefca288565405f20afcd2be6002c7456683ef6f179a02af94ad"
+    },
+    {
+      "path": "capture-relation-reset-leaves.py",
+      "bytes": 4374,
+      "sha256": "d1718ca9f3a337b68d57c541957b46ed281df337379bd3adc2cfbddc8fb09240"
+    },
+    {
+      "path": "dependencies/capture-index-path.py",
+      "bytes": 4338,
+      "sha256": "cbfb9b4386d2e6db7618c36238362c3e0d9fce3d312c65c6f45b4957728ca497"
+    },
+    {
+      "path": "dependencies/identities.json",
+      "bytes": 918,
+      "sha256": "36a2132489b502754719372247ff5a3783443bf1a133716de2d520d508d4012b"
+    },
+    {
+      "path": "dependencies/run.py",
+      "bytes": 1124,
+      "sha256": "ead6c845c4b3cbf34a41b0ec2be68e1dc410f05056e12bdf3e73ff86f92932c3"
+    },
+    {
+      "path": "dependencies/validate-title-source-annotations.py",
+      "bytes": 3767,
+      "sha256": "7c4ea9f6e3a937ea65a2863c92fe4abfd1b2bf08ad1e481c0cd1393c5b7a5f13"
+    },
+    {
+      "path": "freeze-relation-reset-1003.py",
+      "bytes": 3870,
+      "sha256": "33174ab6d6a1d3902dac0c40737419cfdd88c15aa35df40b42e695fd427de0e6"
+    },
+    {
+      "path": "prove-relation-reset-effects-01.status.json",
+      "bytes": 611,
+      "sha256": "b8a8bb2478490414f196cb5b1608e3dfe6dc0984d59c3754ea5353f72b3ede62"
+    },
+    {
+      "path": "prove-relation-reset-effects-01.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "prove-relation-reset-effects-01.stdout",
+      "bytes": 98,
+      "sha256": "771e571497691783f0990596f948402f4cfebe123af9ef9de2fdc73dfe605301"
+    },
+    {
+      "path": "prove-relation-reset-effects.py",
+      "bytes": 7537,
+      "sha256": "5b616396914a61f0bcc0a226e476f451867291dfc8e35586126e9cfc70421ef0"
+    },
+    {
+      "path": "prove-relation-reset-refusal-01.status.json",
+      "bytes": 667,
+      "sha256": "573071c8ba7383835b80980935c7ac40481efdafbd3dc4abdcc4bae6b07e8737"
+    },
+    {
+      "path": "prove-relation-reset-refusal-01.stderr",
+      "bytes": 1073,
+      "sha256": "7690457548171dd566020fd918717f68398e98af8b575e509d23afd6937490a6"
+    },
+    {
+      "path": "prove-relation-reset-refusal-01.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4942,
+      "sha256": "595b5844bbf477b361f7a5c09bf86c7d5c98fbcf591df8ae60d76ba27f8c0020"
+    },
+    {
+      "path": "RELATION-RESET-NEXT-QUESTION.md",
+      "bytes": 1776,
+      "sha256": "9ede0f8b7b428b5c41df0cde54313ae2837c32a65f5566f4dd898d7256a590ae"
+    },
+    {
+      "path": "result-relation-reset-effects-01.json",
+      "bytes": 3452,
+      "sha256": "e492dd3ad0a33b345e64c6c883f49371c182455181bc2c1f14fbfe899eaae4c6"
+    },
+    {
+      "path": "reviewed-boundaries-failed-prerequisite-01.json",
+      "bytes": 99,
+      "sha256": "51cfcceda7fa78189750a64c3d4dc29039841be532d1bc6ba604f72d8dba3243"
+    },
+    {
+      "path": "source-relation-remove-leaf-01.json",
+      "bytes": 17686,
+      "sha256": "974aec9544ed4837a248d4c4f669435c6bbd24e232beb4906cef3037d64f911a"
+    },
+    {
+      "path": "source-relation-reset-leaves-01.json",
+      "bytes": 10523,
+      "sha256": "ccf583cf77a01c2d9e043994e2d0d623c13c33515f7255c032ef4b3cec266f10"
+    }
+  ],
+  "limits": "Integrity/current producer controls only; independent scientific acceptance/canonical consumption pending."
+}

@@ -1,0 +1,2198 @@
+{
+ "page": "00-Engine-Core-Runtime/Object-Model/vtable-method-index.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "vtable-method-index-r8b.json",
+ "rows": [
+  {
+   "fn": "005C4140",
+   "text": "returns the address of the 0x18-byte static at `02CB5B40`, filling it once under the thread-safe static guard dword `02CB5B58` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02CB5B40` = `02CAD140` OR 1, qword `02CB5B48` = the return of `0062FF50` OR 1, qword `02CB5B50` = 0",
+   "anchors": [
+    [
+     "005C4177",
+     "call"
+    ],
+    [
+     "005C417C",
+     "cmp"
+    ],
+    [
+     "005C4190",
+     "mov"
+    ],
+    [
+     "005C41B9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C49B0",
+   "text": "returns the address of the 0x18-byte static at `02CB5A70`, filling it once under the thread-safe static guard dword `02CB5A88` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02CB5A70` = `02CAD840` OR 1, qword `02CB5A78` = the return of `0062FF50` OR 1, qword `02CB5A80` = 0",
+   "anchors": [
+    [
+     "005C49E7",
+     "call"
+    ],
+    [
+     "005C49EC",
+     "cmp"
+    ],
+    [
+     "005C4A00",
+     "mov"
+    ],
+    [
+     "005C4A29",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00603850",
+   "text": "returns the address of the 0x20-byte static at `02CED1F0`, filling it once under the thread-safe static guard dword `02CED210` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02CED1F0` = `02CB6B80` OR 1, qword `02CED1F8` = the return of `0062FF50` OR 1, qword `02CED200` = the return of `00630110`, qword `02CED208` = 0",
+   "anchors": [
+    [
+     "00603887",
+     "call"
+    ],
+    [
+     "0060388C",
+     "cmp"
+    ],
+    [
+     "006038A0",
+     "mov"
+    ],
+    [
+     "006038B7",
+     "call"
+    ],
+    [
+     "006038D5",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006038F0",
+   "text": "returns the address of the 0x20-byte static at `02CED1C8`, filling it once under the thread-safe static guard dword `02CED1E8` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02CED1C8` = `02CB6B80` OR 1, qword `02CED1D0` = the return of `0062FF50` OR 1, qword `02CED1D8` = the return of `00630180`, qword `02CED1E0` = 0",
+   "anchors": [
+    [
+     "00603927",
+     "call"
+    ],
+    [
+     "0060392C",
+     "cmp"
+    ],
+    [
+     "00603940",
+     "mov"
+    ],
+    [
+     "00603957",
+     "call"
+    ],
+    [
+     "00603975",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00603990",
+   "text": "returns the address of the 0x20-byte static at `02CED218`, filling it once under the thread-safe static guard dword `02CED238` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02CED218` = `02CB6B80` OR 1, qword `02CED220` = the return of `0062FF50` OR 1, qword `02CED228` = the return of `006301F0`, qword `02CED230` = 0",
+   "anchors": [
+    [
+     "006039C7",
+     "call"
+    ],
+    [
+     "006039CC",
+     "cmp"
+    ],
+    [
+     "006039E0",
+     "mov"
+    ],
+    [
+     "006039F7",
+     "call"
+    ],
+    [
+     "00603A15",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00603A30",
+   "text": "returns the address of the 0x20-byte static at `02CED128`, filling it once under the thread-safe static guard dword `02CED148` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02CED128` = `02CB6B80` OR 1, qword `02CED130` = the return of `0062FF50` OR 1, qword `02CED138` = the return of `006B08A0`, qword `02CED140` = 0",
+   "anchors": [
+    [
+     "00603A67",
+     "call"
+    ],
+    [
+     "00603A6C",
+     "cmp"
+    ],
+    [
+     "00603A80",
+     "mov"
+    ],
+    [
+     "00603A97",
+     "call"
+    ],
+    [
+     "00603AB5",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00603AD0",
+   "text": "returns the address of the 0x20-byte static at `02CED1A0`, filling it once under the thread-safe static guard dword `02CED1C0` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02CED1A0` = `02CB6B80` OR 1, qword `02CED1A8` = the return of `0062FF50` OR 1, qword `02CED1B0` = the return of `006B0B20`, qword `02CED1B8` = 0",
+   "anchors": [
+    [
+     "00603B07",
+     "call"
+    ],
+    [
+     "00603B0C",
+     "cmp"
+    ],
+    [
+     "00603B20",
+     "mov"
+    ],
+    [
+     "00603B37",
+     "call"
+    ],
+    [
+     "00603B55",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00603B70",
+   "text": "returns the address of the 0x20-byte static at `02CED178`, filling it once under the thread-safe static guard dword `02CED198` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02CED178` = `02CB6B80` OR 1, qword `02CED180` = the return of `0062FF50` OR 1, qword `02CED188` = the return of `006B1600`, qword `02CED190` = 0",
+   "anchors": [
+    [
+     "00603BA7",
+     "call"
+    ],
+    [
+     "00603BAC",
+     "cmp"
+    ],
+    [
+     "00603BC0",
+     "mov"
+    ],
+    [
+     "00603BD7",
+     "call"
+    ],
+    [
+     "00603BF5",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00603C10",
+   "text": "returns the address of the 0x20-byte static at `02CED150`, filling it once under the thread-safe static guard dword `02CED170` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02CED150` = `02CB6B80` OR 1, qword `02CED158` = the return of `0062FF50` OR 1, qword `02CED160` = the return of `006B19A0`, qword `02CED168` = 0",
+   "anchors": [
+    [
+     "00603C47",
+     "call"
+    ],
+    [
+     "00603C4C",
+     "cmp"
+    ],
+    [
+     "00603C60",
+     "mov"
+    ],
+    [
+     "00603C77",
+     "call"
+    ],
+    [
+     "00603C95",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00604070",
+   "text": "returns the address of the 0x18-byte static at `02CED108`, filling it once under the thread-safe static guard dword `02CED120` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02CED108` = `02CB6E80` OR 1, qword `02CED110` = the return of `006B19A0` OR 1, qword `02CED118` = 0",
+   "anchors": [
+    [
+     "006040A7",
+     "call"
+    ],
+    [
+     "006040AC",
+     "cmp"
+    ],
+    [
+     "006040C0",
+     "mov"
+    ],
+    [
+     "006040E9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00604320",
+   "text": "returns the address of the 0x18-byte static at `02CED020`, filling it once under the thread-safe static guard dword `02CED038` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02CED020` = `02CB77A0` OR 1, qword `02CED028` = the return of `00630490`, qword `02CED030` = 0",
+   "anchors": [
+    [
+     "0060435C",
+     "cmp"
+    ],
+    [
+     "00604357",
+     "call"
+    ],
+    [
+     "00604370",
+     "mov"
+    ],
+    [
+     "00604395",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00653950",
+   "text": "returns the address of the 0x18-byte static at `02D384A0`, filling it once under the thread-safe static guard dword `02D384B8` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02D384A0` = `02D36CA0` OR 1, qword `02D384A8` = the return of `00630180`, qword `02D384B0` = 0",
+   "anchors": [
+    [
+     "0065398C",
+     "cmp"
+    ],
+    [
+     "00653987",
+     "call"
+    ],
+    [
+     "006539A0",
+     "mov"
+    ],
+    [
+     "006539C5",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006539E0",
+   "text": "returns the address of the 0x18-byte static at `02D384C8`, filling it once under the thread-safe static guard dword `02D384E0` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02D384C8` = `02D36CA0` OR 1, qword `02D384D0` = the return of `00630180`, qword `02D384D8` = 0",
+   "anchors": [
+    [
+     "00653A1C",
+     "cmp"
+    ],
+    [
+     "00653A17",
+     "call"
+    ],
+    [
+     "00653A30",
+     "mov"
+    ],
+    [
+     "00653A55",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00653A70",
+   "text": "returns the address of the 0x18-byte static at `02D384E8`, filling it once under the thread-safe static guard dword `02D38500` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02D384E8` = `02D36CA0` OR 1, qword `02D384F0` = the return of `00630180`, qword `02D384F8` = 0",
+   "anchors": [
+    [
+     "00653AAC",
+     "cmp"
+    ],
+    [
+     "00653AA7",
+     "call"
+    ],
+    [
+     "00653AC0",
+     "mov"
+    ],
+    [
+     "00653AE5",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00670B30",
+   "text": "returns the address of the 0x18-byte static at `02D3E178`, filling it once under the thread-safe static guard dword `02D3E190` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02D3E178` = `02D3A440` OR 1, qword `02D3E180` = the return of `00630180`, qword `02D3E188` = 0",
+   "anchors": [
+    [
+     "00670B6C",
+     "cmp"
+    ],
+    [
+     "00670B67",
+     "call"
+    ],
+    [
+     "00670B80",
+     "mov"
+    ],
+    [
+     "00670BA5",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00670C60",
+   "text": "returns the address of the 0x18-byte static at `02D3E140`, filling it once under the thread-safe static guard dword `02D3E158` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02D3E140` = `02D3A640` OR 1, qword `02D3E148` = the return of `0062FF50` OR 1, qword `02D3E150` = 0",
+   "anchors": [
+    [
+     "00670C97",
+     "call"
+    ],
+    [
+     "00670C9C",
+     "cmp"
+    ],
+    [
+     "00670CB0",
+     "mov"
+    ],
+    [
+     "00670CD9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00679070",
+   "text": "returns the address of the 0x18-byte static at `02D3F7C8`, filling it once under the thread-safe static guard dword `02D3F7E0` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02D3F7C8` = `02D3F310` OR 1, qword `02D3F7D0` = the return of `006301F0`, qword `02D3F7D8` = 0",
+   "anchors": [
+    [
+     "006790AC",
+     "cmp"
+    ],
+    [
+     "006790A7",
+     "call"
+    ],
+    [
+     "006790C0",
+     "mov"
+    ],
+    [
+     "006790E5",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0067F140",
+   "text": "returns the address of the 0x18-byte static at `02E407C8`, filling it once under the thread-safe static guard dword `02E407E0` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02E407C8` = `02E404B0` OR 1, qword `02E407D0` = the return of `006B09E0` OR 1, qword `02E407D8` = 0",
+   "anchors": [
+    [
+     "0067F177",
+     "call"
+    ],
+    [
+     "0067F17C",
+     "cmp"
+    ],
+    [
+     "0067F190",
+     "mov"
+    ],
+    [
+     "0067F1B9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0067F1D0",
+   "text": "returns the address of the 0x18-byte static at `02E407A8`, filling it once under the thread-safe static guard dword `02E407C0` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02E407A8` = `02E404B0` OR 1, qword `02E407B0` = the return of `006B33F0` OR 1, qword `02E407B8` = 0",
+   "anchors": [
+    [
+     "0067F207",
+     "call"
+    ],
+    [
+     "0067F20C",
+     "cmp"
+    ],
+    [
+     "0067F220",
+     "mov"
+    ],
+    [
+     "0067F249",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006A2DD0",
+   "text": "returns the address of the 0x18-byte static at `02E4D458`, filling it once under the thread-safe static guard dword `02E4D470` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02E4D458` = `02E48BD0` OR 1, qword `02E4D460` = the return of `006B1600` OR 1, qword `02E4D468` = 0",
+   "anchors": [
+    [
+     "006A2E07",
+     "call"
+    ],
+    [
+     "006A2E0C",
+     "cmp"
+    ],
+    [
+     "006A2E20",
+     "mov"
+    ],
+    [
+     "006A2E49",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006A3060",
+   "text": "returns the address of the 0x18-byte static at `02E4D490`, filling it once under the thread-safe static guard dword `02E4D4A8` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02E4D490` = `02E489D0` OR 1, qword `02E4D498` = the return of `006B0EC0` OR 1, qword `02E4D4A0` = 0",
+   "anchors": [
+    [
+     "006A3097",
+     "call"
+    ],
+    [
+     "006A309C",
+     "cmp"
+    ],
+    [
+     "006A30B0",
+     "mov"
+    ],
+    [
+     "006A30D9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006A30F0",
+   "text": "returns the address of the 0x18-byte static at `02E4D4B0`, filling it once under the thread-safe static guard dword `02E4D4C8` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02E4D4B0` = `02E489D0` OR 1, qword `02E4D4B8` = the return of `006B1600` OR 1, qword `02E4D4C0` = 0",
+   "anchors": [
+    [
+     "006A3127",
+     "call"
+    ],
+    [
+     "006A312C",
+     "cmp"
+    ],
+    [
+     "006A3140",
+     "mov"
+    ],
+    [
+     "006A3169",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006A8FA0",
+   "text": "returns the address of the 0x18-byte static at `02E4DFE0`, filling it once under the thread-safe static guard dword `02E4DFF8` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02E4DFE0` = `02E4D940` OR 1, qword `02E4DFE8` = the return of `00630490`, qword `02E4DFF0` = 0",
+   "anchors": [
+    [
+     "006A8FDC",
+     "cmp"
+    ],
+    [
+     "006A8FD7",
+     "call"
+    ],
+    [
+     "006A8FF0",
+     "mov"
+    ],
+    [
+     "006A9015",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006A90B0",
+   "text": "returns the address of the 0x18-byte static at `02E4E000`, filling it once under the thread-safe static guard dword `02E4E018` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02E4E000` = `02E4D940` OR 1, qword `02E4E008` = the return of `0062FF50` OR 1, qword `02E4E010` = 0",
+   "anchors": [
+    [
+     "006A90E7",
+     "call"
+    ],
+    [
+     "006A90EC",
+     "cmp"
+    ],
+    [
+     "006A9100",
+     "mov"
+    ],
+    [
+     "006A9129",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006AD4F0",
+   "text": "returns the address of the 0x18-byte static at `02E4F448`, filling it once under the thread-safe static guard dword `02E4F460` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02E4F448` = `02E4F290` OR 1, qword `02E4F450` = the return of `006B19A0` OR 1, qword `02E4F458` = 0",
+   "anchors": [
+    [
+     "006AD527",
+     "call"
+    ],
+    [
+     "006AD52C",
+     "cmp"
+    ],
+    [
+     "006AD540",
+     "mov"
+    ],
+    [
+     "006AD569",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006AF340",
+   "text": "returns the address of the 0x18-byte static at `02E4FE60`, filling it once under the thread-safe static guard dword `02E4FE78` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02E4FE60` = `02E4F900` OR 1, qword `02E4FE68` = the return of `00630180`, qword `02E4FE70` = 0",
+   "anchors": [
+    [
+     "006AF37C",
+     "cmp"
+    ],
+    [
+     "006AF377",
+     "call"
+    ],
+    [
+     "006AF390",
+     "mov"
+    ],
+    [
+     "006AF3B5",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006B3120",
+   "text": "with `rcx` a callback table: returns 0 when `rdx` is null; otherwise adds 8 to the qword cursor its fifth argument points at, converts the double at the new cursor - 8 to float and calls the table's slot `+8` with (`rdx`, that float); when `r9` is non-null and `r8` equals `006B0B20()` OR 1 it stores the result to qword `[r9+8]`, zeroes qword `[r9]` and returns 1, else returns 0",
+   "anchors": [
+    [
+     "006B3145",
+     "add"
+    ],
+    [
+     "006B3155",
+     "call"
+    ],
+    [
+     "006B3161",
+     "call"
+    ],
+    [
+     "006B316F",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006B31B0",
+   "text": "with `rcx` a callback table: returns 0 when `rdx` is null; otherwise adds 8 to the qword cursor its fifth argument points at, converts the double at the new cursor - 8 to float and calls the table's slot `+8` with (`rdx`, that float); when `r9` is non-null and `r8` equals `006B0EC0()` OR 1 it stores the result to qword `[r9+8]`, zeroes qword `[r9]` and returns 1, else returns 0",
+   "anchors": [
+    [
+     "006B31D5",
+     "add"
+    ],
+    [
+     "006B31E5",
+     "call"
+    ],
+    [
+     "006B31F1",
+     "call"
+    ],
+    [
+     "006B31FF",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006B3240",
+   "text": "with `rcx` a callback table: returns 0 when `rdx` is null; otherwise adds 8 to the qword cursor its fifth argument points at, converts the double at the new cursor - 8 to float and calls the table's slot `+8` with (`rdx`, that float); when `r9` is non-null and `r8` equals `006B1320()` OR 1 it stores the result to qword `[r9+8]`, zeroes qword `[r9]` and returns 1, else returns 0",
+   "anchors": [
+    [
+     "006B3265",
+     "add"
+    ],
+    [
+     "006B3275",
+     "call"
+    ],
+    [
+     "006B3281",
+     "call"
+    ],
+    [
+     "006B328F",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006B32D0",
+   "text": "with `rcx` a callback table: returns 0 when `rdx` is null; otherwise adds 8 to the qword cursor its fifth argument points at, converts the double at the new cursor - 8 to float and calls the table's slot `+8` with (`rdx`, that float); when `r9` is non-null and `r8` equals `006B1600()` OR 1 it stores the result to qword `[r9+8]`, zeroes qword `[r9]` and returns 1, else returns 0",
+   "anchors": [
+    [
+     "006B32F5",
+     "add"
+    ],
+    [
+     "006B3305",
+     "call"
+    ],
+    [
+     "006B3311",
+     "call"
+    ],
+    [
+     "006B331F",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006B3360",
+   "text": "with `rcx` a callback table: returns 0 when `rdx` is null; otherwise adds 8 to the qword cursor its fifth argument points at, converts the double at the new cursor - 8 to float and calls the table's slot `+8` with (`rdx`, that float); when `r9` is non-null and `r8` equals `006B19A0()` OR 1 it stores the result to qword `[r9+8]`, zeroes qword `[r9]` and returns 1, else returns 0",
+   "anchors": [
+    [
+     "006B3385",
+     "add"
+    ],
+    [
+     "006B3395",
+     "call"
+    ],
+    [
+     "006B33A1",
+     "call"
+    ],
+    [
+     "006B33AF",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006B5810",
+   "text": "returns the address of the 0x18-byte static at `02E521E8`, filling it once under the thread-safe static guard dword `02E52200` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02E521E8` = `02E518D0` OR 1, qword `02E521F0` = the return of `0062FF50` OR 1, qword `02E521F8` = 0",
+   "anchors": [
+    [
+     "006B5847",
+     "call"
+    ],
+    [
+     "006B584C",
+     "cmp"
+    ],
+    [
+     "006B5860",
+     "mov"
+    ],
+    [
+     "006B5889",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006B5AA0",
+   "text": "returns the address of the 0x18-byte static at `02E521A8`, filling it once under the thread-safe static guard dword `02E521C0` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02E521A8` = `02E518D0` OR 1, qword `02E521B0` = the return of `006B09E0` OR 1, qword `02E521B8` = 0",
+   "anchors": [
+    [
+     "006B5AD7",
+     "call"
+    ],
+    [
+     "006B5ADC",
+     "cmp"
+    ],
+    [
+     "006B5AF0",
+     "mov"
+    ],
+    [
+     "006B5B19",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006B5BC0",
+   "text": "returns the address of the 0x18-byte static at `02E52188`, filling it once under the thread-safe static guard dword `02E521A0` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02E52188` = `02E518D0` OR 1, qword `02E52190` = the return of `0062FF50` OR 1, qword `02E52198` = 0",
+   "anchors": [
+    [
+     "006B5BF7",
+     "call"
+    ],
+    [
+     "006B5BFC",
+     "cmp"
+    ],
+    [
+     "006B5C10",
+     "mov"
+    ],
+    [
+     "006B5C39",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006C01C0",
+   "text": "returns the address of the 0x18-byte static at `02E59700`, filling it once under the thread-safe static guard dword `02E59718` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02E59700` = `02E58DB0` OR 1, qword `02E59708` = the return of `006301F0`, qword `02E59710` = 0",
+   "anchors": [
+    [
+     "006C01FC",
+     "cmp"
+    ],
+    [
+     "006C01F7",
+     "call"
+    ],
+    [
+     "006C0210",
+     "mov"
+    ],
+    [
+     "006C0235",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006C0430",
+   "text": "returns the address of the 0x18-byte static at `02E596B8`, filling it once under the thread-safe static guard dword `02E596D0` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02E596B8` = `02E58DB0` OR 1, qword `02E596C0` = the return of `006B19A0` OR 1, qword `02E596C8` = 0",
+   "anchors": [
+    [
+     "006C0467",
+     "call"
+    ],
+    [
+     "006C046C",
+     "cmp"
+    ],
+    [
+     "006C0480",
+     "mov"
+    ],
+    [
+     "006C04A9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006C76D0",
+   "text": "returns the address of the 0x18-byte static at `02E5BAD0`, filling it once under the thread-safe static guard dword `02E5BAE8` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02E5BAD0` = `02E5AE00` OR 1, qword `02E5BAD8` = the return of `00630490`, qword `02E5BAE0` = 0",
+   "anchors": [
+    [
+     "006C770C",
+     "cmp"
+    ],
+    [
+     "006C7707",
+     "call"
+    ],
+    [
+     "006C7720",
+     "mov"
+    ],
+    [
+     "006C7745",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00724940",
+   "text": "when `rdx` is non-null copies its first 0x28 bytes to `02EA1960` (two 16-byte moves to `02EA1960` / `02EA1970` and a qword to `02EA1980`); calls `00724830` with the incoming arguments; then, when `rdx` is non-null and its qword `+0x18` is non-null and differs from qword `[rcx+0x30]`, calls vtable slot `+0x10` of the object at qword `[rcx+0x30]` and nulls that qword when it is non-null, stores the qword `+0x18` of `rdx` at `[rcx+0x30]` and calls that object's vtable slot `+8`; finally calls `00723440(rcx)` and returns its result when negative, else 0",
+   "anchors": [
+    [
+     "0072495D",
+     "movups"
+    ],
+    [
+     "0072497C",
+     "call"
+    ],
+    [
+     "007249A2",
+     "call"
+    ],
+    [
+     "007249B4",
+     "call"
+    ],
+    [
+     "007249BA",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00724DB0",
+   "text": "when `rdx` is non-null turns the dword rectangle there (x, y, width, height) into (x, y, x + width, y + height) on the stack and calls vtable slot `+0x168` of the object at qword `[rcx+0x30]` with (that object, 1, the rectangle); when `rdx` is null calls its own vtable slots `+0x80` and then `+0x90` with a stack buffer; returns 0 (stack cookie `01F44830` checked by `00808C40`)",
+   "anchors": [
+    [
+     "00724DD7",
+     "add"
+    ],
+    [
+     "00724DFE",
+     "call"
+    ],
+    [
+     "00724E0E",
+     "call"
+    ],
+    [
+     "00724E1F",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007252A0",
+   "text": "returns 0x80070057 when `edx` is 0x14 or more; for `edx` 0..0x13 sets dword `[rcx+0xA1C+edx*4]` to -1; for a negative `edx` sets all twenty dwords `+0xA1C` to `+0xA68` to -1 (ten qword stores); returns 0 in both cases",
+   "anchors": [
+    [
+     "007252A5",
+     "mov"
+    ],
+    [
+     "007252B2",
+     "mov"
+    ],
+    [
+     "007252C0",
+     "mov"
+    ],
+    [
+     "00725325",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00725830",
+   "text": "unpacks the packed colour in `r8d` into four floats scaled by the constant `00D11104` (1/255): byte 2, byte 1, byte 0 and byte 3 in that order, on the stack; then calls the object's vtable slot `+0x1A0` with `rcx`, `rdx`, the address of the four floats, `r9` loaded with the vtable pointer, and its own fifth argument",
+   "anchors": [
+    [
+     "00725842",
+     "shr"
+    ],
+    [
+     "00725858",
+     "mulss"
+    ],
+    [
+     "0072588F",
+     "lea"
+    ],
+    [
+     "007258AB",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0072F7D0",
+   "text": "calls vtable slot `+0` of the object at qword `[rcx+0x22248]` with qword `[rcx+0x28]`; when the result is negative and dwords `01F3BA80` and `01F3BA90` are both at least 1 (unsigned), calls `006DF480(00DA5A88, 0x13E5)` (format \"GPUTextureUtil.cpp(%d) : ... PPFX ERROR: \") and then `006DF480(00DA5AD0, result, 0071B3C0(result))`; when it is not negative and dwords `01F3BA80` and `02EA0B40` are both at least 1 (unsigned), calls `006DF480(00D9F030, 0x13E9)` and then `006DF480(00D9F060)`; returns the result",
+   "anchors": [
+    [
+     "0072F7E4",
+     "call"
+    ],
+    [
+     "0072F80A",
+     "call"
+    ],
+    [
+     "0072F811",
+     "call"
+    ],
+    [
+     "0072F84D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00783A10",
+   "text": "deleting destructor: stores vtable `00DAC8A8`; when qword `[rcx+8]` is non-null calls `007823E0(qword [rcx+8], qword [rcx+0x10], rcx+8, r9b)` with `r9b` read from the caller's `rdx` home slot (entry `rsp+0x10`, never written by this body) and `00783E90(rcx+8, qword [rcx+8], (qword [rcx+0x18] - qword [rcx+8]) >> 5)` (arithmetic shift), then zeroes the three qwords `+8` / `+0x10` / `+0x18`; when bit `0x1` of `edx` is set calls `00809950(rcx, 0x20)`; returns `rcx`",
+   "anchors": [
+    [
+     "00783A29",
+     "mov"
+    ],
+    [
+     "00783A45",
+     "call"
+    ],
+    [
+     "00783A5D",
+     "call"
+    ],
+    [
+     "00783A7E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00785FD0",
+   "text": "calls its own vtable slot `+0x20` with the incoming arguments (and its fifth-argument byte) and returns the result when negative; otherwise takes `n` = `00784E60(rcx)` and `b` = `0071A4F0(dword [rcx+0xB0])`, and calls vtable slot `+0x180` of the object at qword `[qword [rcx+0x18] + 0x30]` (the null itself when `+0x18` is null) with qword `[rcx+0x38]`, `n`, 0, the incoming `rdx`, `b` times dword `[rcx+0xB8]` and 0; returns 0",
+   "anchors": [
+    [
+     "00785FEC",
+     "call"
+    ],
+    [
+     "00785FFC",
+     "call"
+    ],
+    [
+     "00786009",
+     "call"
+    ],
+    [
+     "00786042",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007895F0",
+   "text": "with state dword `[rcx+0x28]`: below 2 returns 0x8000FFFF; at 5 stores dword `[rcx+0x30]` to `[rdx]` when `rdx` is non-null and returns 0; otherwise calls its own vtable slot `+0x50` with the byte `r8b` until it stops returning 1, returns a negative result as is, else calls vtable slot `+0x28` with 0, stores dword `[rcx+0x30]` to `[rdx]` when `rdx` is non-null and returns 0",
+   "anchors": [
+    [
+     "0078960C",
+     "cmp"
+    ],
+    [
+     "00789630",
+     "mov"
+    ],
+    [
+     "0078965A",
+     "call"
+    ],
+    [
+     "0078966E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0079C8C0",
+   "text": "returns the address of the 0x18-byte static at `02EACEA8`, filling it once under the thread-safe static guard dword `02EACEC0` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02EACEA8` = `02EA5660` OR 1, qword `02EACEB0` = the return of `0062FF50` OR 1, qword `02EACEB8` = 0",
+   "anchors": [
+    [
+     "0079C8F7",
+     "call"
+    ],
+    [
+     "0079C8FC",
+     "cmp"
+    ],
+    [
+     "0079C910",
+     "mov"
+    ],
+    [
+     "0079C939",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0079C9D0",
+   "text": "returns the address of the 0x18-byte static at `02EACDB8`, filling it once under the thread-safe static guard dword `02EACDD0` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02EACDB8` = `02EA5660` OR 1, qword `02EACDC0` = the return of `00630180`, qword `02EACDC8` = 0",
+   "anchors": [
+    [
+     "0079CA0C",
+     "cmp"
+    ],
+    [
+     "0079CA07",
+     "call"
+    ],
+    [
+     "0079CA20",
+     "mov"
+    ],
+    [
+     "0079CA45",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007A98E0",
+   "text": "deleting destructor: stores vtable `01CB4480`; when qword `[rcx+0x10]` is non-null, calls that object's vtable slot `+0` with 3 when the qword just before it is non-zero, else calls `00210EB0` with that pointer - 8; zeroes qwords `+0x10` to `+0x28` and dword `+0xC`; stores the base vtable `01CB4470`; when bit `0x1` of `edx` is set calls `007AD450(rcx)`, or `0016D6A0(rcx, 0x30)` when bit `0x4` is also set; returns `rcx`",
+   "anchors": [
+    [
+     "007A98F4",
+     "mov"
+    ],
+    [
+     "007A9902",
+     "cmp"
+    ],
+    [
+     "007A9919",
+     "call"
+    ],
+    [
+     "007A993A",
+     "mov"
+    ],
+    [
+     "007A994C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007AB080",
+   "text": "deleting destructor: stores vtable `01CB45A0`; when qword `[rcx+8]` is non-null, calls that object's vtable slot `+0` with 3 when the qword just before it is non-zero, else calls `00210EB0` with that pointer - 8; zeroes qwords `+8` to `+0x20` and dword `+0x2C`; stores the base vtable `01CB4470`; when bit `0x1` of `edx` is set calls `007AD450(rcx)`, or `0016D6A0(rcx, 0x30)` when bit `0x4` is also set; returns `rcx`",
+   "anchors": [
+    [
+     "007AB094",
+     "mov"
+    ],
+    [
+     "007AB0A2",
+     "cmp"
+    ],
+    [
+     "007AB0B9",
+     "call"
+    ],
+    [
+     "007AB0DA",
+     "mov"
+    ],
+    [
+     "007AB0EC",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007AE600",
+   "text": "deleting destructor: stores vtable `01CB49C8`; when qword `[rcx+0x10]` is non-null, calls that object's vtable slot `+0` with 3 when the qword just before it is non-zero, else calls `00210EB0` with that pointer - 8; zeroes qwords `+0x10` to `+0x28` and dword `+0xC`; stores the base vtable `01CB49F8`; when bit `0x1` of `edx` is set calls `007AD450(rcx)`, or `0016D6A0(rcx, 0x30)` when bit `0x4` is also set; returns `rcx`",
+   "anchors": [
+    [
+     "007AE614",
+     "mov"
+    ],
+    [
+     "007AE622",
+     "cmp"
+    ],
+    [
+     "007AE639",
+     "call"
+    ],
+    [
+     "007AE65A",
+     "mov"
+    ],
+    [
+     "007AE66C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007AE6A0",
+   "text": "deleting destructor: stores vtable `01CB49D8`; when qword `[rcx+0x10]` is non-null, calls that object's vtable slot `+0` with 3 when the qword just before it is non-zero, else calls `00210EB0` with that pointer - 8; zeroes qwords `+0x10` to `+0x28` and dword `+0xC`; stores the base vtable `01CB49F8`; when bit `0x1` of `edx` is set calls `007AD450(rcx)`, or `0016D6A0(rcx, 0x30)` when bit `0x4` is also set; returns `rcx`",
+   "anchors": [
+    [
+     "007AE6B4",
+     "mov"
+    ],
+    [
+     "007AE6C2",
+     "cmp"
+    ],
+    [
+     "007AE6D9",
+     "call"
+    ],
+    [
+     "007AE6FA",
+     "mov"
+    ],
+    [
+     "007AE70C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007B1420",
+   "text": "deleting destructor: stores vtable `01CB4AF8`; when qword `[rcx+0x10]` is non-null, calls that object's vtable slot `+0` with 3 when the qword just before it is non-zero, else calls `00210EB0` with that pointer - 8; zeroes qwords `+0x10` to `+0x28` and dword `+0xC`; stores the base vtable `01CB4470`; when bit `0x1` of `edx` is set calls `007AD450(rcx)`, or `0016D6A0(rcx, 0x30)` when bit `0x4` is also set; returns `rcx`",
+   "anchors": [
+    [
+     "007B1434",
+     "mov"
+    ],
+    [
+     "007B1442",
+     "cmp"
+    ],
+    [
+     "007B1459",
+     "call"
+    ],
+    [
+     "007B147A",
+     "mov"
+    ],
+    [
+     "007B148C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007B2B30",
+   "text": "deleting destructor: stores vtable `01CB4C90`; when qword `[rcx+0x10]` is non-null, calls that object's vtable slot `+0` with 3 when the qword just before it is non-zero, else calls `00210EB0` with that pointer - 8; zeroes qwords `+0x10` to `+0x28` and dword `+0xC`; stores the base vtable `01CB4470`; when bit `0x1` of `edx` is set calls `007AD450(rcx)`, or `0016D6A0(rcx, 0x30)` when bit `0x4` is also set; returns `rcx`",
+   "anchors": [
+    [
+     "007B2B44",
+     "mov"
+    ],
+    [
+     "007B2B52",
+     "cmp"
+    ],
+    [
+     "007B2B69",
+     "call"
+    ],
+    [
+     "007B2B8A",
+     "mov"
+    ],
+    [
+     "007B2B9C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007B4D60",
+   "text": "deleting destructor: stores vtable `01CB4D38`; when qword `[rcx+0x10]` is non-null, calls that object's vtable slot `+0` with 3 when the qword just before it is non-zero, else calls `00210EB0` with that pointer - 8; zeroes qwords `+0x10` to `+0x28` and dword `+0xC`; stores the base vtable `01CB4470`; when bit `0x1` of `edx` is set calls `007AD450(rcx)`, or `0016D6A0(rcx, 0x30)` when bit `0x4` is also set; returns `rcx`",
+   "anchors": [
+    [
+     "007B4D74",
+     "mov"
+    ],
+    [
+     "007B4D82",
+     "cmp"
+    ],
+    [
+     "007B4D99",
+     "call"
+    ],
+    [
+     "007B4DBA",
+     "mov"
+    ],
+    [
+     "007B4DCC",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007B54B0",
+   "text": "deleting destructor: stores vtable `01CB4DE0`; when qword `[rcx+0x10]` is non-null, calls that object's vtable slot `+0` with 3 when the qword just before it is non-zero, else calls `00210EB0` with that pointer - 8; zeroes qwords `+0x10` to `+0x28` and dword `+0xC`; stores the base vtable `01CB4470`; when bit `0x1` of `edx` is set calls `007AD450(rcx)`, or `0016D6A0(rcx, 0x30)` when bit `0x4` is also set; returns `rcx`",
+   "anchors": [
+    [
+     "007B54C4",
+     "mov"
+    ],
+    [
+     "007B54D2",
+     "cmp"
+    ],
+    [
+     "007B54E9",
+     "call"
+    ],
+    [
+     "007B550A",
+     "mov"
+    ],
+    [
+     "007B551C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007B5C50",
+   "text": "deleting destructor: stores vtable `01CB4E68`; when qword `[rcx+0x10]` is non-null, calls that object's vtable slot `+0` with 3 when the qword just before it is non-zero, else calls `00210EB0` with that pointer - 8; zeroes qwords `+0x10` to `+0x28` and dword `+0xC`; stores the base vtable `01CB4470`; when bit `0x1` of `edx` is set calls `007AD450(rcx)`, or `0016D6A0(rcx, 0x30)` when bit `0x4` is also set; returns `rcx`",
+   "anchors": [
+    [
+     "007B5C64",
+     "mov"
+    ],
+    [
+     "007B5C72",
+     "cmp"
+    ],
+    [
+     "007B5C89",
+     "call"
+    ],
+    [
+     "007B5CAA",
+     "mov"
+    ],
+    [
+     "007B5CBC",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007B61C0",
+   "text": "deleting destructor: stores vtable `01CB4EA8`; when qword `[rcx+0x10]` is non-null, calls that object's vtable slot `+0` with 3 when the qword just before it is non-zero, else calls `00210EB0` with that pointer - 8; zeroes qwords `+0x10` to `+0x28` and dword `+0xC`; stores the base vtable `01CB4470`; when bit `0x1` of `edx` is set calls `007AD450(rcx)`, or `0016D6A0(rcx, 0x30)` when bit `0x4` is also set; returns `rcx`",
+   "anchors": [
+    [
+     "007B61D4",
+     "mov"
+    ],
+    [
+     "007B61E2",
+     "cmp"
+    ],
+    [
+     "007B61F9",
+     "call"
+    ],
+    [
+     "007B621A",
+     "mov"
+    ],
+    [
+     "007B622C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007B7110",
+   "text": "deleting destructor: stores vtable `01CB4F70`; when qword `[rcx+0x10]` is non-null, calls that object's vtable slot `+0` with 3 when the qword just before it is non-zero, else calls `00210EB0` with that pointer - 8; zeroes qwords `+0x10` to `+0x28` and dword `+0xC`; stores the base vtable `01CB4F90`; when bit `0x1` of `edx` is set calls `007AD450(rcx)`, or `0016D6A0(rcx, 0x30)` when bit `0x4` is also set; returns `rcx`",
+   "anchors": [
+    [
+     "007B7124",
+     "mov"
+    ],
+    [
+     "007B7132",
+     "cmp"
+    ],
+    [
+     "007B7149",
+     "call"
+    ],
+    [
+     "007B716A",
+     "mov"
+    ],
+    [
+     "007B717C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007B7F30",
+   "text": "deleting destructor: stores vtable `01CB5080`; when qword `[rcx+0x10]` is non-null, calls that object's vtable slot `+0` with 3 when the qword just before it is non-zero, else calls `00210EB0` with that pointer - 8; zeroes qwords `+0x10` to `+0x28` and dword `+0xC`; stores the base vtable `01CB4F90`; when bit `0x1` of `edx` is set calls `007AD450(rcx)`, or `0016D6A0(rcx, 0x30)` when bit `0x4` is also set; returns `rcx`",
+   "anchors": [
+    [
+     "007B7F44",
+     "mov"
+    ],
+    [
+     "007B7F52",
+     "cmp"
+    ],
+    [
+     "007B7F69",
+     "call"
+    ],
+    [
+     "007B7F8A",
+     "mov"
+    ],
+    [
+     "007B7F9C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007BA990",
+   "text": "deleting destructor: stores vtable `01CB5790`; when qword `[rcx+8]` is non-null, calls that object's vtable slot `+0` with 3 when the qword just before it is non-zero, else calls `00210EB0` with that pointer - 8; zeroes qwords `+8` to `+0x20` and dword `+0x2C`; stores the base vtable `01CB57A0`; when bit `0x1` of `edx` is set calls `007AD450(rcx)`, or `0016D6A0(rcx, 0x30)` when bit `0x4` is also set; returns `rcx`",
+   "anchors": [
+    [
+     "007BA9A4",
+     "mov"
+    ],
+    [
+     "007BA9B2",
+     "cmp"
+    ],
+    [
+     "007BA9C9",
+     "call"
+    ],
+    [
+     "007BA9EA",
+     "mov"
+    ],
+    [
+     "007BA9FC",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007BB8B0",
+   "text": "deleting destructor: stores vtable `01CB57E8`; when qword `[rcx+0x10]` is non-null, calls that object's vtable slot `+0` with 3 when the qword just before it is non-zero, else calls `00210EB0` with that pointer - 8; zeroes qwords `+0x10` to `+0x28` and dword `+0xC`; stores the base vtable `01CB57A0`; when bit `0x1` of `edx` is set calls `007AD450(rcx)`, or `0016D6A0(rcx, 0x30)` when bit `0x4` is also set; returns `rcx`",
+   "anchors": [
+    [
+     "007BB8C4",
+     "mov"
+    ],
+    [
+     "007BB8D2",
+     "cmp"
+    ],
+    [
+     "007BB8E9",
+     "call"
+    ],
+    [
+     "007BB90A",
+     "mov"
+    ],
+    [
+     "007BB91C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007BBE50",
+   "text": "deleting destructor: stores vtable `01CB5818`; when qword `[rcx+0x10]` is non-null, calls that object's vtable slot `+0` with 3 when the qword just before it is non-zero, else calls `00210EB0` with that pointer - 8; zeroes qwords `+0x10` to `+0x28` and dword `+0xC`; stores the base vtable `01CB57A0`; when bit `0x1` of `edx` is set calls `007AD450(rcx)`, or `0016D6A0(rcx, 0x30)` when bit `0x4` is also set; returns `rcx`",
+   "anchors": [
+    [
+     "007BBE64",
+     "mov"
+    ],
+    [
+     "007BBE72",
+     "cmp"
+    ],
+    [
+     "007BBE89",
+     "call"
+    ],
+    [
+     "007BBEAA",
+     "mov"
+    ],
+    [
+     "007BBEBC",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007C1530",
+   "text": "deleting destructor: stores vtable `01CB5E28`; when qword `[rcx+0x10]` is non-null, calls that object's vtable slot `+0` with 3 when the qword just before it is non-zero, else calls `00210EB0` with that pointer - 8; zeroes qwords `+0x10` to `+0x28` and dword `+0xC`; stores the base vtable `01CB4F90`; when bit `0x1` of `edx` is set calls `007AD450(rcx)`, or `0016D6A0(rcx, 0x30)` when bit `0x4` is also set; returns `rcx`",
+   "anchors": [
+    [
+     "007C1544",
+     "mov"
+    ],
+    [
+     "007C1552",
+     "cmp"
+    ],
+    [
+     "007C1569",
+     "call"
+    ],
+    [
+     "007C158A",
+     "mov"
+    ],
+    [
+     "007C159C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007C6C70",
+   "text": "returns a float product: starts from 0.0 when qword `[rcx+0x18]` is null, from 1.0 when the byte it points at is below 3, else from the float at its `+0x28`; multiplies by `007BDAC0` of each of the three 0x40-stride records at `rcx+0x150`, then by floats `[rcx+0x5B0]`, `[rcx+0x5B4]` and `[rcx+0x5B8]`",
+   "anchors": [
+    [
+     "007C6C95",
+     "cmp"
+    ],
+    [
+     "007C6C9A",
+     "movss"
+    ],
+    [
+     "007C6CB8",
+     "call"
+    ],
+    [
+     "007C6CCB",
+     "mulss"
+    ]
+   ]
+  },
+  {
+   "fn": "007D1430",
+   "text": "a float getter keyed by `r8d`, writing to `[rdx]` and returning 0: 0x200 gives `007A9E00(rcx+0x38)`, 0x201 gives 1.0 divided by `007A9E00(rcx+0x68)`, 0x202 gives `007A9E00(rcx+0x98)`, 0x203 gives dword `[rcx+0x18]` converted to float; any other key returns -1",
+   "anchors": [
+    [
+     "007D1446",
+     "je"
+    ],
+    [
+     "007D145D",
+     "movd"
+    ],
+    [
+     "007D1478",
+     "call"
+    ],
+    [
+     "007D149C",
+     "divss"
+    ]
+   ]
+  },
+  {
+   "fn": "007D8180",
+   "text": "deleting destructor of a two-vtable object: stores vtables `01CB7698` at `+0` and `01CB76E8` at `+8`, calls `007AD450(qword [rcx+0x48])` (no null test), then stores the base vtables `01CB7058` at `+0x18`, `01CB4658` at `+8` and `01CB4680` at `+0`; when bit `0x1` of `edx` is set calls `007AD450(rcx)`, or `0016D6A0(rcx, 0x60)` when bit `0x4` is also set; returns `rcx`",
+   "anchors": [
+    [
+     "007D8194",
+     "mov"
+    ],
+    [
+     "007D81A8",
+     "call"
+    ],
+    [
+     "007D81B4",
+     "mov"
+    ],
+    [
+     "007D81CA",
+     "mov"
+    ],
+    [
+     "007D81DC",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007D9690",
+   "text": "a float getter keyed by `r8d`: for 0x400 writes to `[rdx]` float `[rcx+0x24]` when float `[rcx+0x2C]` compares equal to 0.0 (ucomiss, also taken when unordered), else `[rcx+0x20]` + `007A9E50(float [rcx+0x28] / float [rcx+0x2C], dword [rcx+0x34])` times (`[rcx+0x24]` - `[rcx+0x20]`), and returns 0; for 0x401 writes dword `[rcx+0x48]` converted to float but returns -1; any other key returns -1",
+   "anchors": [
+    [
+     "007D96AF",
+     "movd"
+    ],
+    [
+     "007D96D1",
+     "ucomiss"
+    ],
+    [
+     "007D96F8",
+     "call"
+    ],
+    [
+     "007D9709",
+     "mulss"
+    ]
+   ]
+  },
+  {
+   "fn": "007DD510",
+   "text": "deleting destructor: stores vtable `01CB80F8`; calls `SetEvent` (import `008C2198`) on qword `[rcx+0x18]` unless it is -1; unless qword `[rcx+0x10]` is -1, calls `ResumeThread` (import `008C2330`) on it until it returns 0 and then `WaitForSingleObject` (import `008C20E0`) on it with timeout -1 (INFINITE); stores the base vtable `01CB49F8`; when bit `0x1` of `edx` is set calls `007AD450(rcx)`, or `0016D6A0(rcx, 0x48)` when bit `0x4` is also set; returns `rcx`",
+   "anchors": [
+    [
+     "007DD533",
+     "call"
+    ],
+    [
+     "007DD544",
+     "call"
+    ],
+    [
+     "007DD555",
+     "call"
+    ],
+    [
+     "007DD562",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007DF9B0",
+   "text": "deleting destructor: stores vtable `01CB8290`; calls `007AD450` on each of qwords `[rcx+0x60]` and `[rcx+0x68]` that is non-null (without nulling them); calls `DeleteCriticalSection` (import `008C20D0`) on `rcx+8`; stores the base vtable `01CB8280`; when bit `0x1` of `edx` is set calls `007AD450(rcx)`, or `0016D6A0(rcx, 0x78)` when bit `0x4` is also set; returns `rcx`",
+   "anchors": [
+    [
+     "007DF9CD",
+     "mov"
+    ],
+    [
+     "007DF9E8",
+     "call"
+    ],
+    [
+     "007DF9FB",
+     "call"
+    ],
+    [
+     "007DFA08",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007E0070",
+   "text": "under the critical section at `rcx+8` (`EnterCriticalSection` / `LeaveCriticalSection` through `008C20B8` / `008C20C0`) sets byte `[rcx+0xC8]` to 1 and copies dword i of the array at qword `[rcx+0xC0]` to dword i at `rdx` for i below `007AECE0()` (re-read every step); returns 0",
+   "anchors": [
+    [
+     "007E0095",
+     "mov"
+    ],
+    [
+     "007E009E",
+     "call"
+    ],
+    [
+     "007E00C1",
+     "mov"
+    ],
+    [
+     "007E00D8",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007E0880",
+   "text": "returns -1 when dword `[rcx+0x80]` has no bit set other than `0x4`; otherwise, for each column i below dword `[rcx+0xAC]` and each row j below `007AECE0()` (re-read every step), copies dword `[rcx+0x10C + 4*(j*cols + i)]` to the same index of the dword array at `rdx`, and returns 0",
+   "anchors": [
+    [
+     "007E088B",
+     "test"
+    ],
+    [
+     "007E08B3",
+     "call"
+    ],
+    [
+     "007E08D0",
+     "mov"
+    ],
+    [
+     "007E08D7",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007E25A0",
+   "text": "returns -1 when dword `[rcx+0x80]` has no bit set other than `0x4`; otherwise, for each column i below dword `[rcx+0xAC]` and each row j below `007AECE0()` (re-read every step), copies dword `[rdx + 4*(j*cols + i)]` into dword `[rcx+0x10C + 4*(j*cols + i)]`, and returns 0",
+   "anchors": [
+    [
+     "007E25AB",
+     "test"
+    ],
+    [
+     "007E25D3",
+     "call"
+    ],
+    [
+     "007E25F0",
+     "mov"
+    ],
+    [
+     "007E25F4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0083F7B0",
+   "text": "returns 0 in `al` when float `+8` of the object at qword `[rcx+0xC8]` equals 0.0 (ucomiss, ordered); otherwise, with `o` = qword `[rdx]`, calls vtable slot `+8` of the object at qword `[rcx+0xC8]` with qword `[o+0xC8]` and, when the returned byte is nonzero, calls `0083E7E0(qword [rcx+0xD8], rcx+0x30, rcx+0x70, o, qword [o+0xD0], o+0x10, qword [rcx+0xC8], float [rcx+0xD0])`; returns 1 in `al`",
+   "anchors": [
+    [
+     "0083F7C8",
+     "ucomiss"
+    ],
+    [
+     "0083F7E9",
+     "call"
+    ],
+    [
+     "0083F7FB",
+     "movss"
+    ],
+    [
+     "0083F831",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0084A220",
+   "text": "removes node `rdx` from its list: calls `00841530` on `rcx+0x48` when the node's dword `+0x58` is 2, else on `rcx+8`, with the node's qword `+0x40`; unlinks it (prev qword `+0x48`, next qword `+0x50`; a null prev makes next the head at `rcx+0x88+8*dword [node+0x58]`); calls vtable slot `+0x18` of the object at qword `[rcx+0xA0]` with (node, `r8`), then `0085E710(node)`; sets byte `[rcx+0xDE]` to 1",
+   "anchors": [
+    [
+     "0084A24C",
+     "call"
+    ],
+    [
+     "0084A266",
+     "mov"
+    ],
+    [
+     "0084A26C",
+     "mov"
+    ],
+    [
+     "0084A294",
+     "call"
+    ],
+    [
+     "0084A2A9",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0084CA50",
+   "text": "constructor: vtable `01CCF218`; dword `+0x10` = 0, float `+0x14` = 1.0 with dword `+0x18` = 0, dword `+0x1C` = 0; qword `+0x20` = its fifth argument, `+0x28` = `r9`, `+0x30` = `rdx`, `+0x38` = `r8`; dwords `+0x40` / `+0x44` = dword `+8` of `rdx` / `r8`; floats `+0x48` / `+0x4C` = what vtable slot `+0x50` of `rdx` / `r8` returns; byte `+0x50` = 0, dword `+0x58` = -1, dword `+0x64` = 1; returns `rcx`",
+   "anchors": [
+    [
+     "0084CA75",
+     "mov"
+    ],
+    [
+     "0084CA9D",
+     "mov"
+    ],
+    [
+     "0084CAB0",
+     "call"
+    ],
+    [
+     "0084CABE",
+     "call"
+    ],
+    [
+     "0084CACA",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00857E70",
+   "text": "for each of the dword `[rcx+0x124]` object pointers in the array at qword `[rcx+0x130]` whose byte `+0xE8` has neither bit `0x1` nor `0x2` set, calls `008537B0(object, xmm1)`, `008531F0(object, xmm1)` and `00853AE0(object, xmm1, object+0x50)` with the incoming float in `xmm1`",
+   "anchors": [
+    [
+     "00857EAB",
+     "test"
+    ],
+    [
+     "00857EBA",
+     "call"
+    ],
+    [
+     "00857EC5",
+     "call"
+    ],
+    [
+     "00857ED4",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008581E0",
+   "text": "searches the dword `[rcx+0x104]` qwords at qword `[rcx+0x110]` for `rdx`; when found swaps it with the last entry and decrements the count; then calls `00853B20(qword [rdx+0x20], rdx)` and tail-jumps to `00853B20(qword [rdx+0x28], rdx)`",
+   "anchors": [
+    [
+     "00858204",
+     "cmp"
+    ],
+    [
+     "00858236",
+     "mov"
+    ],
+    [
+     "00858248",
+     "dec"
+    ],
+    [
+     "00858256",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00873AD0",
+   "text": "returns the address of the 0x18-byte static at `02EB7AB0`, filling it once under the thread-safe static guard dword `02EB7AC8` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02EB7AB0` = `02EB6CF0` OR 1, qword `02EB7AB8` = the return of `00630180`, qword `02EB7AC0` = 0",
+   "anchors": [
+    [
+     "00873B0C",
+     "cmp"
+    ],
+    [
+     "00873B07",
+     "call"
+    ],
+    [
+     "00873B20",
+     "mov"
+    ],
+    [
+     "00873B45",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00873B60",
+   "text": "returns the address of the 0x18-byte static at `02EB7A90`, filling it once under the thread-safe static guard dword `02EB7AA8` (compared with the epoch dword `+4` of this thread's TLS block at index dword `02EAED3C`; the one-time body runs between `008092FC` and `0080929C` when the guard reads -1): qword `02EB7A90` = `02EB6CF0` OR 1, qword `02EB7A98` = the return of `00630180`, qword `02EB7AA0` = 0",
+   "anchors": [
+    [
+     "00873B9C",
+     "cmp"
+    ],
+    [
+     "00873B97",
+     "call"
+    ],
+    [
+     "00873BB0",
+     "mov"
+    ],
+    [
+     "00873BD5",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0087FCF0",
+   "text": "for each of the dword `[rdx+0xC]` object pointers in the array at qword `[rdx+0x18]`: numbers the objects whose byte `+0xE8` has neither bit `0x1` nor `0x2` set into dword `+0xEC` (0, 1, 2 ...), and sets dword `+0xF0` = -1 and float `+0x110` = 1.0 on all; then calls `0087FFD0(rcx+8)` and tail-jumps to `0087FB60(rcx, r8, rdx)`",
+   "anchors": [
+    [
+     "0087FD28",
+     "test"
+    ],
+    [
+     "0087FD31",
+     "mov"
+    ],
+    [
+     "0087FD3C",
+     "mov"
+    ],
+    [
+     "0087FD5E",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [
+  "005C1E70",
+  "005C1F20",
+  "005C2100",
+  "005C38B0",
+  "005CA460",
+  "005DC0E0",
+  "005DF890",
+  "006007B0",
+  "00603770",
+  "00608A40",
+  "00627750",
+  "0062DBD0",
+  "0062E1C0",
+  "0062E5A0",
+  "00637650",
+  "00654830",
+  "00655F10",
+  "0066FC50",
+  "006709D0",
+  "00684860",
+  "0068C260",
+  "0068CBE0",
+  "0068D370",
+  "0068DD80",
+  "0068E940",
+  "00692080",
+  "006BAB40",
+  "006C0060",
+  "006C24C0",
+  "006CD5B0",
+  "006D6FF0",
+  "006D9780",
+  "006D9B70",
+  "00719460",
+  "007214A0",
+  "00722060",
+  "00724C10",
+  "00724CD0",
+  "00725340",
+  "007255E0",
+  "00725760",
+  "007258C0",
+  "007259D0",
+  "00725AA0",
+  "00725C80",
+  "00725E40",
+  "00725FF0",
+  "007261B0",
+  "00726360",
+  "00726550",
+  "00726700",
+  "007268C0",
+  "00726A70",
+  "00726C30",
+  "00726D00",
+  "00726E30",
+  "0073BB50",
+  "0075CAD0",
+  "0075CC50",
+  "0075E690",
+  "0075E7C0",
+  "0075EC00",
+  "00769470",
+  "0077DED0",
+  "00780C70",
+  "007819F0",
+  "00781B70",
+  "00785C90",
+  "00785EE0",
+  "007861A0",
+  "00786410",
+  "00786D00",
+  "00786DD0",
+  "00787080",
+  "00787930",
+  "00789C00",
+  "0078F9F0",
+  "00790160",
+  "007A1790",
+  "007A1A50",
+  "007A2140",
+  "007A9820",
+  "007AB120",
+  "007AE740",
+  "007B1520",
+  "007B93E0",
+  "007B9770",
+  "007BAA30",
+  "007C1290",
+  "007C61F0",
+  "007C6370",
+  "007CA370",
+  "007D1840",
+  "007D1970",
+  "007D1A10",
+  "007D1C80",
+  "007D5BD0",
+  "007D5F50",
+  "007D8A70",
+  "007D8E40",
+  "007D8F70",
+  "007D9070",
+  "007D9200",
+  "007D98F0",
+  "007D9B70",
+  "007D9DF0",
+  "007D9EA0",
+  "007DA1C0",
+  "007DAA00",
+  "007DB7A0",
+  "007DC0E0",
+  "007DC1F0",
+  "007DC340",
+  "007DC4A0",
+  "007DC8B0",
+  "007DC970",
+  "007DD040",
+  "007DE120",
+  "007DEEF0",
+  "007DF1F0",
+  "007E2AD0",
+  "007E32E0",
+  "007E8890",
+  "007E96A0",
+  "007F10F0",
+  "007F1220",
+  "007F1850",
+  "007F1DD0",
+  "007F1EC0",
+  "007F24F0",
+  "00808240",
+  "00832810",
+  "00832930",
+  "00832CD0",
+  "00832DD0",
+  "00832E90",
+  "008330A0",
+  "00833830",
+  "00833A60",
+  "00833CD0",
+  "00833FB0",
+  "00834970",
+  "00834C70",
+  "00834D50",
+  "00835000",
+  "008355B0",
+  "00835CE0",
+  "00837120",
+  "008373D0",
+  "00837E20",
+  "00837F00",
+  "0083A070",
+  "0083DE00",
+  "00841010",
+  "00841D30",
+  "00842040",
+  "00846C20",
+  "00846F70",
+  "008473A0",
+  "00847980",
+  "00847C00",
+  "00847D00",
+  "00848270",
+  "00848960",
+  "00848C30",
+  "0084A0C0",
+  "0084A5D0",
+  "0084A740",
+  "008521C0",
+  "00853C90",
+  "008553F0",
+  "00855520",
+  "00855660",
+  "008557F0",
+  "00855A50",
+  "00857820",
+  "00857970",
+  "00857C10",
+  "00857CD0",
+  "008585E0",
+  "008588A0",
+  "00858A00",
+  "0085C3E0",
+  "0085CDC0",
+  "0085DCE0",
+  "008761A0",
+  "00876590",
+  "008769A0",
+  "00877160",
+  "0087FC00"
+ ],
+ "corrections": [
+  {
+   "fn": "006B3120",
+   "why": "byte re-read by a non-drafting agent: All five bodies are the same shape; the compared callee is each body's own (006B0B20, 006B0EC0, 006B1320, 006B1600, 006B19A0), [rsp+0x50] after push+sub 0x20 is the fifth argument, call [rcx+8] with rcx=rdx, xmm1=cvtpd2ps, r9 null test, OR 1 compare with r8, stores and return values as stated. Defect: \"advances the cursor by 8, converts the double there\" places the read at the advanced cursor; the body reads qword [new cursor - 8], i.e. the slot the cursor pointed at before the add."
+  },
+  {
+   "fn": "006B31B0",
+   "why": "byte re-read by a non-drafting agent: All five bodies are the same shape; the compared callee is each body's own (006B0B20, 006B0EC0, 006B1320, 006B1600, 006B19A0), [rsp+0x50] after push+sub 0x20 is the fifth argument, call [rcx+8] with rcx=rdx, xmm1=cvtpd2ps, r9 null test, OR 1 compare with r8, stores and return values as stated. Defect: \"advances the cursor by 8, converts the double there\" places the read at the advanced cursor; the body reads qword [new cursor - 8], i.e. the slot the cursor pointed at before the add."
+  },
+  {
+   "fn": "006B3240",
+   "why": "byte re-read by a non-drafting agent: All five bodies are the same shape; the compared callee is each body's own (006B0B20, 006B0EC0, 006B1320, 006B1600, 006B19A0), [rsp+0x50] after push+sub 0x20 is the fifth argument, call [rcx+8] with rcx=rdx, xmm1=cvtpd2ps, r9 null test, OR 1 compare with r8, stores and return values as stated. Defect: \"advances the cursor by 8, converts the double there\" places the read at the advanced cursor; the body reads qword [new cursor - 8], i.e. the slot the cursor pointed at before the add."
+  },
+  {
+   "fn": "006B32D0",
+   "why": "byte re-read by a non-drafting agent: All five bodies are the same shape; the compared callee is each body's own (006B0B20, 006B0EC0, 006B1320, 006B1600, 006B19A0), [rsp+0x50] after push+sub 0x20 is the fifth argument, call [rcx+8] with rcx=rdx, xmm1=cvtpd2ps, r9 null test, OR 1 compare with r8, stores and return values as stated. Defect: \"advances the cursor by 8, converts the double there\" places the read at the advanced cursor; the body reads qword [new cursor - 8], i.e. the slot the cursor pointed at before the add."
+  },
+  {
+   "fn": "006B3360",
+   "why": "byte re-read by a non-drafting agent: All five bodies are the same shape; the compared callee is each body's own (006B0B20, 006B0EC0, 006B1320, 006B1600, 006B19A0), [rsp+0x50] after push+sub 0x20 is the fifth argument, call [rcx+8] with rcx=rdx, xmm1=cvtpd2ps, r9 null test, OR 1 compare with r8, stores and return values as stated. Defect: \"advances the cursor by 8, converts the double there\" places the read at the advanced cursor; the body reads qword [new cursor - 8], i.e. the slot the cursor pointed at before the add."
+  },
+  {
+   "fn": "00724940",
+   "why": "byte re-read by a non-drafting agent: Bytes hold everything except: the old-object call is guarded by its own null test (0072499A test rcx / je skips the +0x10 call and the nulling), which the sentence omits, and \"releases\" names the slot's purpose. Reworded to the calls."
+  },
+  {
+   "fn": "0072F7D0",
+   "why": "byte re-read by a non-drafting agent: Every operand holds (01F3BA80/01F3BA90/02EA0B40 rip targets, jb against 1, lines 0x13E5/0x13E9, strings 00DA5A88 \"..\\src\\GPU\\GPUTextureUtil.cpp(%d) : Feb 18 2016 PPFX ERROR: \", 00DA5AD0, 00D9F030, 00D9F060, r8 = 0071B3C0(result)). But \"logs ... through 006DF480\" names the callee's purpose; this body only passes the format strings to it. Reworded to the calls."
+  },
+  {
+   "fn": "00783A10",
+   "why": "byte re-read by a non-drafting agent: Wrong argument: r9b for 007823E0 is loaded from [rsp+0x38] after push rdi + sub 0x20, i.e. entry rsp+0x10, the rdx home slot, which this body never writes; the fifth argument would be entry rsp+0x28. Also \"frees the object with 00809950\" names the callee's purpose. Everything else holds (vtable 00DAC8A8, null test on [rcx+8], 007823E0(begin, [rcx+0x10], rcx+8, ...), 00783E90(rcx+8, [rcx+8] re-read, sar 5 of [rcx+0x18]-begin), three zero stores, bit 0x1 -> 00809950(rcx, 0x20), returns rcx)."
+  },
+  {
+   "fn": "007A98E0",
+   "why": "byte re-read by a non-drafting agent: Per-body check: all 16 bodies share one normalized instruction shape (two variants: buffer +0x10 / dword +0xC, and buffer +8 / dword +0x2C), and this body's own vtable, base vtable, buffer offset, zero range, callees 00210EB0 / 007AD450 / 0016D6A0 and size 0x30 match its sentence. Anchors decode as recorded. Two defects in the stamped sentence: (1) it never states the null test on the buffer qword (test rcx / je skips both release paths), so it reads as an unconditional release; (2) \"freeing ... with\" / \"frees the object with\" name what the callees are for, which this body does not show; reworded to the calls themselves."
+  },
+  {
+   "fn": "007AB080",
+   "why": "byte re-read by a non-drafting agent: Per-body check: all 16 bodies share one normalized instruction shape (two variants: buffer +0x10 / dword +0xC, and buffer +8 / dword +0x2C), and this body's own vtable, base vtable, buffer offset, zero range, callees 00210EB0 / 007AD450 / 0016D6A0 and size 0x30 match its sentence. Anchors decode as recorded. Two defects in the stamped sentence: (1) it never states the null test on the buffer qword (test rcx / je skips both release paths), so it reads as an unconditional release; (2) \"freeing ... with\" / \"frees the object with\" name what the callees are for, which this body does not show; reworded to the calls themselves."
+  },
+  {
+   "fn": "007AE600",
+   "why": "byte re-read by a non-drafting agent: Per-body check: all 16 bodies share one normalized instruction shape (two variants: buffer +0x10 / dword +0xC, and buffer +8 / dword +0x2C), and this body's own vtable, base vtable, buffer offset, zero range, callees 00210EB0 / 007AD450 / 0016D6A0 and size 0x30 match its sentence. Anchors decode as recorded. Two defects in the stamped sentence: (1) it never states the null test on the buffer qword (test rcx / je skips both release paths), so it reads as an unconditional release; (2) \"freeing ... with\" / \"frees the object with\" name what the callees are for, which this body does not show; reworded to the calls themselves."
+  },
+  {
+   "fn": "007AE6A0",
+   "why": "byte re-read by a non-drafting agent: Per-body check: all 16 bodies share one normalized instruction shape (two variants: buffer +0x10 / dword +0xC, and buffer +8 / dword +0x2C), and this body's own vtable, base vtable, buffer offset, zero range, callees 00210EB0 / 007AD450 / 0016D6A0 and size 0x30 match its sentence. Anchors decode as recorded. Two defects in the stamped sentence: (1) it never states the null test on the buffer qword (test rcx / je skips both release paths), so it reads as an unconditional release; (2) \"freeing ... with\" / \"frees the object with\" name what the callees are for, which this body does not show; reworded to the calls themselves."
+  },
+  {
+   "fn": "007B1420",
+   "why": "byte re-read by a non-drafting agent: Per-body check: all 16 bodies share one normalized instruction shape (two variants: buffer +0x10 / dword +0xC, and buffer +8 / dword +0x2C), and this body's own vtable, base vtable, buffer offset, zero range, callees 00210EB0 / 007AD450 / 0016D6A0 and size 0x30 match its sentence. Anchors decode as recorded. Two defects in the stamped sentence: (1) it never states the null test on the buffer qword (test rcx / je skips both release paths), so it reads as an unconditional release; (2) \"freeing ... with\" / \"frees the object with\" name what the callees are for, which this body does not show; reworded to the calls themselves."
+  },
+  {
+   "fn": "007B2B30",
+   "why": "byte re-read by a non-drafting agent: Per-body check: all 16 bodies share one normalized instruction shape (two variants: buffer +0x10 / dword +0xC, and buffer +8 / dword +0x2C), and this body's own vtable, base vtable, buffer offset, zero range, callees 00210EB0 / 007AD450 / 0016D6A0 and size 0x30 match its sentence. Anchors decode as recorded. Two defects in the stamped sentence: (1) it never states the null test on the buffer qword (test rcx / je skips both release paths), so it reads as an unconditional release; (2) \"freeing ... with\" / \"frees the object with\" name what the callees are for, which this body does not show; reworded to the calls themselves."
+  },
+  {
+   "fn": "007B4D60",
+   "why": "byte re-read by a non-drafting agent: Per-body check: all 16 bodies share one normalized instruction shape (two variants: buffer +0x10 / dword +0xC, and buffer +8 / dword +0x2C), and this body's own vtable, base vtable, buffer offset, zero range, callees 00210EB0 / 007AD450 / 0016D6A0 and size 0x30 match its sentence. Anchors decode as recorded. Two defects in the stamped sentence: (1) it never states the null test on the buffer qword (test rcx / je skips both release paths), so it reads as an unconditional release; (2) \"freeing ... with\" / \"frees the object with\" name what the callees are for, which this body does not show; reworded to the calls themselves."
+  },
+  {
+   "fn": "007B54B0",
+   "why": "byte re-read by a non-drafting agent: Per-body check: all 16 bodies share one normalized instruction shape (two variants: buffer +0x10 / dword +0xC, and buffer +8 / dword +0x2C), and this body's own vtable, base vtable, buffer offset, zero range, callees 00210EB0 / 007AD450 / 0016D6A0 and size 0x30 match its sentence. Anchors decode as recorded. Two defects in the stamped sentence: (1) it never states the null test on the buffer qword (test rcx / je skips both release paths), so it reads as an unconditional release; (2) \"freeing ... with\" / \"frees the object with\" name what the callees are for, which this body does not show; reworded to the calls themselves."
+  },
+  {
+   "fn": "007B5C50",
+   "why": "byte re-read by a non-drafting agent: Per-body check: all 16 bodies share one normalized instruction shape (two variants: buffer +0x10 / dword +0xC, and buffer +8 / dword +0x2C), and this body's own vtable, base vtable, buffer offset, zero range, callees 00210EB0 / 007AD450 / 0016D6A0 and size 0x30 match its sentence. Anchors decode as recorded. Two defects in the stamped sentence: (1) it never states the null test on the buffer qword (test rcx / je skips both release paths), so it reads as an unconditional release; (2) \"freeing ... with\" / \"frees the object with\" name what the callees are for, which this body does not show; reworded to the calls themselves."
+  },
+  {
+   "fn": "007B61C0",
+   "why": "byte re-read by a non-drafting agent: Per-body check: all 16 bodies share one normalized instruction shape (two variants: buffer +0x10 / dword +0xC, and buffer +8 / dword +0x2C), and this body's own vtable, base vtable, buffer offset, zero range, callees 00210EB0 / 007AD450 / 0016D6A0 and size 0x30 match its sentence. Anchors decode as recorded. Two defects in the stamped sentence: (1) it never states the null test on the buffer qword (test rcx / je skips both release paths), so it reads as an unconditional release; (2) \"freeing ... with\" / \"frees the object with\" name what the callees are for, which this body does not show; reworded to the calls themselves."
+  },
+  {
+   "fn": "007B7110",
+   "why": "byte re-read by a non-drafting agent: Per-body check: all 16 bodies share one normalized instruction shape (two variants: buffer +0x10 / dword +0xC, and buffer +8 / dword +0x2C), and this body's own vtable, base vtable, buffer offset, zero range, callees 00210EB0 / 007AD450 / 0016D6A0 and size 0x30 match its sentence. Anchors decode as recorded. Two defects in the stamped sentence: (1) it never states the null test on the buffer qword (test rcx / je skips both release paths), so it reads as an unconditional release; (2) \"freeing ... with\" / \"frees the object with\" name what the callees are for, which this body does not show; reworded to the calls themselves."
+  },
+  {
+   "fn": "007B7F30",
+   "why": "byte re-read by a non-drafting agent: Per-body check: all 16 bodies share one normalized instruction shape (two variants: buffer +0x10 / dword +0xC, and buffer +8 / dword +0x2C), and this body's own vtable, base vtable, buffer offset, zero range, callees 00210EB0 / 007AD450 / 0016D6A0 and size 0x30 match its sentence. Anchors decode as recorded. Two defects in the stamped sentence: (1) it never states the null test on the buffer qword (test rcx / je skips both release paths), so it reads as an unconditional release; (2) \"freeing ... with\" / \"frees the object with\" name what the callees are for, which this body does not show; reworded to the calls themselves."
+  },
+  {
+   "fn": "007BA990",
+   "why": "byte re-read by a non-drafting agent: Per-body check: all 16 bodies share one normalized instruction shape (two variants: buffer +0x10 / dword +0xC, and buffer +8 / dword +0x2C), and this body's own vtable, base vtable, buffer offset, zero range, callees 00210EB0 / 007AD450 / 0016D6A0 and size 0x30 match its sentence. Anchors decode as recorded. Two defects in the stamped sentence: (1) it never states the null test on the buffer qword (test rcx / je skips both release paths), so it reads as an unconditional release; (2) \"freeing ... with\" / \"frees the object with\" name what the callees are for, which this body does not show; reworded to the calls themselves."
+  },
+  {
+   "fn": "007BB8B0",
+   "why": "byte re-read by a non-drafting agent: Per-body check: all 16 bodies share one normalized instruction shape (two variants: buffer +0x10 / dword +0xC, and buffer +8 / dword +0x2C), and this body's own vtable, base vtable, buffer offset, zero range, callees 00210EB0 / 007AD450 / 0016D6A0 and size 0x30 match its sentence. Anchors decode as recorded. Two defects in the stamped sentence: (1) it never states the null test on the buffer qword (test rcx / je skips both release paths), so it reads as an unconditional release; (2) \"freeing ... with\" / \"frees the object with\" name what the callees are for, which this body does not show; reworded to the calls themselves."
+  },
+  {
+   "fn": "007BBE50",
+   "why": "byte re-read by a non-drafting agent: Per-body check: all 16 bodies share one normalized instruction shape (two variants: buffer +0x10 / dword +0xC, and buffer +8 / dword +0x2C), and this body's own vtable, base vtable, buffer offset, zero range, callees 00210EB0 / 007AD450 / 0016D6A0 and size 0x30 match its sentence. Anchors decode as recorded. Two defects in the stamped sentence: (1) it never states the null test on the buffer qword (test rcx / je skips both release paths), so it reads as an unconditional release; (2) \"freeing ... with\" / \"frees the object with\" name what the callees are for, which this body does not show; reworded to the calls themselves."
+  },
+  {
+   "fn": "007C1530",
+   "why": "byte re-read by a non-drafting agent: Per-body check: all 16 bodies share one normalized instruction shape (two variants: buffer +0x10 / dword +0xC, and buffer +8 / dword +0x2C), and this body's own vtable, base vtable, buffer offset, zero range, callees 00210EB0 / 007AD450 / 0016D6A0 and size 0x30 match its sentence. Anchors decode as recorded. Two defects in the stamped sentence: (1) it never states the null test on the buffer qword (test rcx / je skips both release paths), so it reads as an unconditional release; (2) \"freeing ... with\" / \"frees the object with\" name what the callees are for, which this body does not show; reworded to the calls themselves."
+  },
+  {
+   "fn": "007D8180",
+   "why": "byte re-read by a non-drafting agent: All stores and values hold (01CB7698 at +0, 01CB76E8 at +8, base 01CB7058 at +0x18, 01CB4658 at +8, 01CB4680 at +0, size 0x60). But \"frees ... through 007AD450\" / \"frees the object with\" name the callee's purpose, and qword [rcx+0x48] is passed with no null test. Reworded to the calls."
+  },
+  {
+   "fn": "007D9690",
+   "why": "byte re-read by a non-drafting agent: Arithmetic and keys hold (0x400: [rcx+0x20] + 007A9E50([rcx+0x28]/[rcx+0x2C], edx=dword [rcx+0x34]) * ([rcx+0x24]-[rcx+0x20]); 0x401 writes cvtdq2ps [rcx+0x48] then or eax,-1). Precision fix: ucomiss / jne also takes the [rcx+0x24] path when float [rcx+0x2C] is unordered (NaN), so \"is 0.0\" is stated as the compare."
+  },
+  {
+   "fn": "007DD510",
+   "why": "byte re-read by a non-drafting agent: Imports resolved from the PE import table: 008C2198 = KERNEL32!SetEvent, 008C2330 = KERNEL32!ResumeThread, 008C20E0 = KERNEL32!WaitForSingleObject; vtables 01CB80F8 / 01CB49F8, -1 tests, ResumeThread loop while nonzero, edx = -1, size 0x48 all hold. Only defect: \"frees the object with\" names the callees' purpose. Reworded to the calls."
+  },
+  {
+   "fn": "007DF9B0",
+   "why": "byte re-read by a non-drafting agent: Import 008C20D0 resolves to KERNEL32!DeleteCriticalSection; loop of 2 over rcx+0x60/+0x68 with null skip, vtables 01CB8290 / 01CB8280, size 0x78, returns rcx all hold. Only defect: \"frees\" names the callee's purpose (and the qwords are not nulled). Reworded to the calls."
+  },
+  {
+   "fn": "007E25A0",
+   "why": "byte re-read by a non-drafting agent: Bytes hold (mirror of 007E0880: [r14+idx*4] -> [rsi+idx*4+0x10C]). Defect: \"the reverse of that copy\" points at another row's sentence, so this row does not stand on its own; the destination indexing is now spelled out."
+  },
+  {
+   "fn": "0083F7B0",
+   "why": "byte re-read by a non-drafting agent: Wrong object: the vtable +8 call is made on the object at qword [rcx+0xC8] (rcx reloaded at 0083F7BC, rax=[rcx] at 0083F7D7), with rdx = qword [o+0xC8]; the draft's \"asks that object\" points at o. Also jp sends an unordered float to the non-zero path, and the return is a byte (al). The 0083E7E0 argument list holds exactly."
+  },
+  {
+   "fn": "0087FCF0",
+   "why": "byte re-read by a non-drafting agent: Bytes hold (counter edx into dword +0xEC only when test byte +0xE8,3 is zero; dword +0xF0=-1 and float +0x110=0x3F800000 on all; 0087FFD0(rcx+8); jmp 0087FB60 with rcx, rdx=old r8, r8=old rdx). Representation fix: the array holds qword object pointers (rcx = qword [r10 + [rdx+0x18]]), not inline objects."
+  }
+ ],
+ "mode": "ee",
+ "family": ""
+}
