@@ -1,7 +1,7 @@
 ---
 system: The encoded-id space — the fifteen inventory class descriptors behind id >> 12, and the class-normalised query record
 category: 00-Engine-Core-Runtime
-status: "REOPENED — SECTION-05 corrects producer semantics; historical audit retained, independent acceptance pending (the open row is OV-5)"
+status: "PARTIAL — owner re-status 2026-10-03 (FABLE) from REOPENED: SECTION-05's producer-semantics correction was independently ACCEPTED 2026-10-01 (SWE2-AUDIT-SPEC, auditspec-review-section05-1001), so the reopening cause is resolved; historical audit retained; open: OV-5 (c) a state base at or above 4 GiB and (d) over-reservation, both runtime, carried by FABLE-REQ-ASTRA-RT-REMAINDERS-0929 (status line current 2026-10-03, FABLE) (was — REOPENED: independent acceptance of SECTION-05 pending, the open row OV-5)"
 owner_layer: both
 evidence_tier: 1
 verified_against:

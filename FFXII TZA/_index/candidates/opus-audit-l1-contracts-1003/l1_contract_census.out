@@ -1,0 +1,152 @@
+# production contracts: 107
+#   level L1     29
+#   level L2     78
+#   readiness BEHAVIORALLY UNDERSTOOD    37
+#   readiness CONTRACT READY             59
+#   readiness DIFFERENTIAL TESTED        9
+#   readiness RUNTIME VALIDATED          2
+# registered systems: 52   verdict rows: 52   MET: 52
+# not MET: none
+# unresolved implements tokens: 0 []
+#
+# what the level key tracks - level x section-13 class (check_gate26.runtime_class):
+#   L1  ISOLATED  27
+#   L1  LIVE      2
+#   L2  ISOLATED  30
+#   L2  LIVE      5
+#   L2  NONE      43
+# level x scope:
+#   L1  family         23
+#   L1  operation      3
+#   L1  subsystem      1
+#   L1  transition     2
+#   L2  family         1
+#   L2  operation      4
+#   L2  subsystem      73
+# level x date first added (git):
+#   L1  first 2026-09-11  last 2026-09-13  added on/after 2026-09-21: 0 of 29
+#   L2  first 2026-09-08  last 2026-09-25  added on/after 2026-09-21: 49 of 78
+#
+# L1 contracts: 29
+# COMP = a `scope: subsystem` L2 contract registered on, or credited in the cell of, the same system names this contract's file
+# columns: n  contract  readiness  scope  s13  added  mech_load_bearing  links(S-id[*=MET]:kinds)  co-implementers(level)
+ 1	00-Engine-Core-Runtime/CONTRACT-per-frame-update-gate.md	BEHAVIORALLY UNDERSTOOD	family	ISOLATED	2026-09-11	S-02	S-02*:COMP+IMPL+REG+SOLE	-
+ 2	00-Engine-Core-Runtime/CONTRACT-transform-primitives.md	DIFFERENTIAL TESTED	family	ISOLATED	2026-09-12	-	S-05*:COMP+REG	-
+ 3	00-Engine-Core-Runtime/CONTRACT-transform-workbench-save-restore.md	BEHAVIORALLY UNDERSTOOD	family	ISOLATED	2026-09-11	-	S-05*:COMP+REG	-
+ 4	02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md	BEHAVIORALLY UNDERSTOOD	family	LIVE	2026-09-11	S-09	S-09*:COMP+IMPL+REG+SOLE	-
+ 5	02-Resource-And-Asset-Pipeline/CONTRACT-efx-source-rebase.md	BEHAVIORALLY UNDERSTOOD	family	ISOLATED	2026-09-13	-	S-47*:COMP+IMPL+REG	CONTRACT-resource-entry-tree.md(L1) CONTRACT-resource-input-ownership.md(L2)
+ 6	02-Resource-And-Asset-Pipeline/CONTRACT-resource-entry-tree.md	BEHAVIORALLY UNDERSTOOD	family	ISOLATED	2026-09-13	-	S-47*:COMP+IMPL+REG	CONTRACT-efx-source-rebase.md(L1) CONTRACT-resource-input-ownership.md(L2)
+ 7	03-World-Area-Field/CONTRACT-field-record-accessors.md	DIFFERENTIAL TESTED	family	ISOLATED	2026-09-11	S-11	S-11*:COMP+IMPL+REG+SOLE	-
+ 8	04-Actor-Entity/CONTRACT-actor-record-pool-and-region-map.md	BEHAVIORALLY UNDERSTOOD	family	LIVE	2026-09-11	S-13	S-13*:COMP+IMPL+REG+SOLE	-
+ 9	04-Actor-Entity/CONTRACT-manager-slot-entry-tables.md	BEHAVIORALLY UNDERSTOOD	family	ISOLATED	2026-09-11	S-13,S-52	S-13*:COMP+IMPL+SOLE S-52*:CELL+IMPL+REG+SOLE	-
+10	06-Movement-And-Navigation/CONTRACT-movement-body-pool.md	BEHAVIORALLY UNDERSTOOD	family	ISOLATED	2026-09-11	-	S-19*:COMP+IMPL+REG	CONTRACT-separation-pass.md(L2)
+11	07-Combat-Action/CONTRACT-battle-target-buffer.md	DIFFERENTIAL TESTED	family	ISOLATED	2026-09-11	-	S-14*:IMPL S-20*:COMP+REG	CONTRACT-commit-action.md(L1)
+12	07-Combat-Action/CONTRACT-commit-action.md	BEHAVIORALLY UNDERSTOOD	operation	ISOLATED	2026-09-11	-	S-14*:IMPL S-20*:COMP+REG	CONTRACT-battle-target-buffer.md(L1)
+13	08-Combat-Formula/CONTRACT-hp-write-and-lethal-transition.md	BEHAVIORALLY UNDERSTOOD	transition	ISOLATED	2026-09-11	S-23	S-23*:IMPL+REG+ROW+SOLE	-
+14	08-Combat-Formula/CONTRACT-preparation-step-family.md	BEHAVIORALLY UNDERSTOOD	family	ISOLATED	2026-09-11	S-22	S-22*:COMP+IMPL+REG+SOLE	-
+15	09-Combat-AI-And-Gambits/CONTRACT-gambit-walk.md	DIFFERENTIAL TESTED	operation	ISOLATED	2026-09-11	-	S-25*:COMP+IMPL+REG	CONTRACT-enmity.md(L2)
+16	10-Status-Periodic-Terminal/CONTRACT-auto-status-rebuild.md	BEHAVIORALLY UNDERSTOOD	family	ISOLATED	2026-09-11	S-24	S-24*:COMP+IMPL+REG+SOLE	-
+17	11-Party/CONTRACT-party-slot-assignment.md	BEHAVIORALLY UNDERSTOOD	family	ISOLATED	2026-09-11	S-28	S-28*:COMP+IMPL+REG+SOLE	-
+18	12-Items-Equipment-Shops-License/CONTRACT-bazaar-unlock-and-purchase.md	BEHAVIORALLY UNDERSTOOD	family	ISOLATED	2026-09-11	S-30	S-30*:COMP+IMPL+REG+SOLE	-
+19	12-Items-Equipment-Shops-License/CONTRACT-inventory-class-storage.md	BEHAVIORALLY UNDERSTOOD	family	ISOLATED	2026-09-11	-	S-29*:COMP+IMPL+REG	CONTRACT-equipment-compatibility.md(L2)
+20	13-Rewards-Progression-Economy/CONTRACT-experience-and-licence-award.md	BEHAVIORALLY UNDERSTOOD	family	ISOLATED	2026-09-11	S-32	S-32*:COMP+IMPL+REG+SOLE	-
+21	17-Presentation-Rendering/CONTRACT-authored-command-ramp-channels.md	DIFFERENTIAL TESTED	subsystem	ISOLATED	2026-09-13	S-48	S-48*:IMPL+REG+SOLE	-
+22	17-Presentation-Rendering/CONTRACT-character-transform-publish.md	BEHAVIORALLY UNDERSTOOD	operation	ISOLATED	2026-09-11	-	S-38*:COMP+IMPL+REG	CONTRACT-character-render-object.md(L2)
+23	17-Presentation-Rendering/CONTRACT-coast-down-latch.md	DIFFERENTIAL TESTED	transition	ISOLATED	2026-09-11	-	S-38*:IMPL+REG	CONTRACT-render-record-pool-lifecycle.md(L1)
+24	17-Presentation-Rendering/CONTRACT-render-record-pool-lifecycle.md	BEHAVIORALLY UNDERSTOOD	family	ISOLATED	2026-09-11	-	S-38*:IMPL+REG	CONTRACT-coast-down-latch.md(L1)
+25	19-Save-Load-Settings/CONTRACT-save-container-transform.md	BEHAVIORALLY UNDERSTOOD	family	ISOLATED	2026-09-13	-	S-43*:COMP+IMPL+REG	CONTRACT-save-image-buffers.md(L1) CONTRACT-save-image-pipeline.md(L2) CONTRACT-storage-read-completion.md(L1)
+26	19-Save-Load-Settings/CONTRACT-save-image-buffers.md	BEHAVIORALLY UNDERSTOOD	family	ISOLATED	2026-09-11	-	S-43*:COMP+IMPL+REG	CONTRACT-save-container-transform.md(L1) CONTRACT-save-image-pipeline.md(L2) CONTRACT-storage-read-completion.md(L1)
+27	19-Save-Load-Settings/CONTRACT-storage-read-completion.md	DIFFERENTIAL TESTED	family	ISOLATED	2026-09-13	-	S-43*:COMP+IMPL+REG	CONTRACT-save-container-transform.md(L1) CONTRACT-save-image-buffers.md(L1) CONTRACT-save-image-pipeline.md(L2)
+28	20-Platform-Online-Achievements/CONTRACT-achievement-counters.md	BEHAVIORALLY UNDERSTOOD	family	ISOLATED	2026-09-11	-	S-45*:IMPL+REG	CONTRACT-steam-integration-subsystem.md(L2)
+29	21-RNG-And-Determinism/CONTRACT-gameplay-generators.md	DIFFERENTIAL TESTED	family	ISOLATED	2026-09-11	S-46	S-46*:COMP+IMPL+REG+SOLE	-
+#
+# mech load-bearing (CELL or SOLE): 13
+# no CELL/SOLE link - read the cell: 16
+#
+# composing L2 subsystem contracts (COMP), per L1 contract:
+#   CONTRACT-per-frame-update-gate.md                S-02<-CONTRACT-system-stop-registry.md S-02<-CONTRACT-world-simulation-tick.md
+#   CONTRACT-transform-primitives.md                 S-05<-CONTRACT-shared-transform-workbench.md
+#   CONTRACT-transform-workbench-save-restore.md     S-05<-CONTRACT-shared-transform-workbench.md
+#   CONTRACT-authored-table-row-lookup.md            S-09<-CONTRACT-ard-area-binder.md S-09<-CONTRACT-resource-section-addressing.md
+#   CONTRACT-efx-source-rebase.md                    S-47<-CONTRACT-resource-input-ownership.md
+#   CONTRACT-resource-entry-tree.md                  S-47<-CONTRACT-resource-input-ownership.md
+#   CONTRACT-field-record-accessors.md               S-11<-CONTRACT-authored-trigger-points.md S-11<-CONTRACT-field-environment-variant.md
+#   CONTRACT-actor-record-pool-and-region-map.md     S-13<-CONTRACT-actor-storage-record-initialisation.md
+#   CONTRACT-manager-slot-entry-tables.md            S-13<-CONTRACT-actor-storage-record-initialisation.md
+#   CONTRACT-movement-body-pool.md                   S-19<-CONTRACT-separation-pass.md
+#   CONTRACT-battle-target-buffer.md                 S-20<-CONTRACT-combo-continuation.md S-20<-CONTRACT-the-moment-an-action-is-committed.md
+#   CONTRACT-commit-action.md                        S-20<-CONTRACT-combo-continuation.md S-20<-CONTRACT-the-moment-an-action-is-committed.md
+#   CONTRACT-hp-write-and-lethal-transition.md       NONE
+#   CONTRACT-preparation-step-family.md              S-22<-CONTRACT-environmental-element-scaling.md S-22<-CONTRACT-formula-step-table.md S-22<-CONTRACT-weapon-recipes.md
+#   CONTRACT-gambit-walk.md                          S-25<-CONTRACT-enmity.md
+#   CONTRACT-auto-status-rebuild.md                  S-24<-CONTRACT-stat-derivation.md
+#   CONTRACT-party-slot-assignment.md                S-28<-CONTRACT-battle-state-block.md S-28<-CONTRACT-party-focus-and-control-suppression.md S-28<-CONTRACT-the-five-parallel-slot-maps.md
+#   CONTRACT-bazaar-unlock-and-purchase.md           S-30<-CONTRACT-shop-stock-ladders.md
+#   CONTRACT-inventory-class-storage.md              S-29<-CONTRACT-equipment-compatibility.md
+#   CONTRACT-experience-and-licence-award.md         S-32<-CONTRACT-defeat-rewards-sequence.md S-32<-CONTRACT-gil-storage-and-movement.md S-32<-CONTRACT-level-advance-and-growth.md S-32<-CONTRACT-loot-rolls-and-the-chain.md
+#   CONTRACT-authored-command-ramp-channels.md       NONE
+#   CONTRACT-character-transform-publish.md          S-38<-CONTRACT-character-render-object.md
+#   CONTRACT-coast-down-latch.md                     NONE
+#   CONTRACT-render-record-pool-lifecycle.md         NONE
+#   CONTRACT-save-container-transform.md             S-43<-CONTRACT-save-image-pipeline.md
+#   CONTRACT-save-image-buffers.md                   S-43<-CONTRACT-save-image-pipeline.md
+#   CONTRACT-storage-read-completion.md              S-43<-CONTRACT-save-image-pipeline.md
+#   CONTRACT-achievement-counters.md                 NONE
+#   CONTRACT-gameplay-generators.md                  S-46<-CONTRACT-which-generator-serves-which-roll.md
+# L1 contracts with no composing L2 subsystem contract: 5 CONTRACT-hp-write-and-lethal-transition.md CONTRACT-authored-command-ramp-channels.md CONTRACT-coast-down-latch.md CONTRACT-render-record-pool-lifecycle.md CONTRACT-achievement-counters.md
+#
+# primary pages of the MET systems these L1 contracts touch, and every contract implementing each:
+S-02*	00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md	CONTRACT-world-simulation-tick.md(L2)
+S-02*	00-Engine-Core-Runtime/Per-Frame-Update-Gate/one-word-decides-which-fifteen-subsystems-tick.md	CONTRACT-per-frame-update-gate.md(L1)
+S-02*	00-Engine-Core-Runtime/System-Stop-Registry/the-time-stop-and-system-stop-registry.md	CONTRACT-system-stop-registry.md(L2)
+S-05*	00-Engine-Core-Runtime/Shared-Transform-Workbench/the-shared-transform-workbench.md	CONTRACT-shared-transform-workbench.md(L2)
+S-09*	02-Resource-And-Asset-Pipeline/authored-data-table-registry.md	CONTRACT-authored-table-row-lookup.md(L1)
+S-09*	02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/how-the-ard-loader-binds-area-battle-data.md	CONTRACT-ard-area-binder.md(L2)
+S-09*	02-Resource-And-Asset-Pipeline/resource-section-addressing.md	CONTRACT-resource-section-addressing.md(L2)
+S-11*	03-World-Area-Field/Field-Record-Table/field-record-table-navimapdata.md	CONTRACT-field-record-accessors.md(L1)
+S-11*	03-World-Area-Field/walking-into-an-authored-trigger-point.md	CONTRACT-authored-trigger-points.md(L2)
+S-11*	03-World-Area-Field/choosing-the-field-environment-variant.md	CONTRACT-field-environment-variant.md(L2) CONTRACT-weather.md(L2)
+S-13*	04-Actor-Entity/Actor-Storage-Record/the-record-behind-every-actor.md	CONTRACT-actor-storage-record-initialisation.md(L2)
+S-13*	04-Actor-Entity/Actor-Manager-Record/the-actor-manager-record-field-map.md	CONTRACT-manager-slot-entry-tables.md(L1)
+S-13*	04-Actor-Entity/battleunit-slot-pool-and-actor-class.md	CONTRACT-actor-record-pool-and-region-map.md(L1)
+S-14*	04-Actor-Entity/Unit-Definition/how-a-battle-unit-is-built-from-its-definition.md	CONTRACT-battle-unit-construction.md(L2)
+S-14*	04-Actor-Entity/Battle-Unit/the-battle-unit-field-map.md	CONTRACT-battle-target-buffer.md(L1) CONTRACT-commit-action.md(L1)
+S-19*	06-Movement-And-Navigation/the-movement-body-pool-and-the-separation-pass.md	CONTRACT-movement-body-pool.md(L1) CONTRACT-separation-pass.md(L2)
+S-20*	07-Combat-Action/the-moment-an-action-is-committed.md	CONTRACT-the-moment-an-action-is-committed.md(L2)
+S-20*	07-Combat-Action/Command-And-Action-Seam/native-command-seam.md	CONTRACT-native-command-seam.md(L2)
+S-20*	07-Combat-Action/Action-Dispatch/battle-action-handler-table.md	CONTRACT-battle-action-handler-table.md(L2)
+S-20*	07-Combat-Action/how-a-combo-continues-and-what-it-blocks.md	CONTRACT-combo-continuation.md(L2)
+S-22*	08-Combat-Formula/Step-Table/combat-formula-step-table.md	CONTRACT-formula-step-table.md(L2)
+S-22*	08-Combat-Formula/Attack-Vs-Defense/attack-defense-preparation-and-stat-scaling.md	CONTRACT-preparation-step-family.md(L1)
+S-22*	08-Combat-Formula/Recipe-System/ranged-weapon-recipes.md	CONTRACT-weapon-recipes.md(L2)
+S-22*	08-Combat-Formula/Weather-Terrain-Element-Scaling/weather-terrain-element-scaling.md	CONTRACT-environmental-element-scaling.md(L2)
+S-23*	08-Combat-Formula/Current-HP/the-hp-write-and-the-lethal-transition.md	CONTRACT-hp-write-and-lethal-transition.md(L1)
+S-24*	08-Combat-Formula/where-a-stat-number-comes-from.md	CONTRACT-stat-derivation.md(L2)
+S-24*	08-Combat-Formula/the-auto-status-rebuild.md	NONE
+S-24*	12-Items-Equipment-Shops-License/equipment-slots-and-the-single-stat-rebuild.md	CONTRACT-auto-status-rebuild.md(L1)
+S-25*	09-Combat-AI-And-Gambits/gambit-evaluation-and-enmity.md	CONTRACT-enmity.md(L2) CONTRACT-gambit-walk.md(L1)
+S-25*	09-Combat-AI-And-Gambits/which-gambit-set-fires-and-how-a-command-switches-it.md	NONE
+S-28*	11-Party/party-roster-and-control-suppression.md	CONTRACT-party-slot-assignment.md(L1)
+S-28*	11-Party/active-party-reserve-and-the-moment-the-leader-changes.md	CONTRACT-party-focus-and-control-suppression.md(L2)
+S-28*	11-Party/the-five-parallel-slot-maps.md	CONTRACT-the-five-parallel-slot-maps.md(L2)
+S-28*	11-Party/Battle-State-Block/the-battle-state-block-field-map.md	CONTRACT-battle-state-block.md(L2)
+S-29*	12-Items-Equipment-Shops-License/using-an-item-is-an-action-that-costs-an-item.md	NONE
+S-29*	12-Items-Equipment-Shops-License/item-id-encoding-and-equipment-compatibility.md	CONTRACT-equipment-compatibility.md(L2) CONTRACT-inventory-class-storage.md(L1)
+S-30*	12-Items-Equipment-Shops-License/the-shop-table-and-its-stock-gates.md	CONTRACT-shop-stock-ladders.md(L2)
+S-30*	12-Items-Equipment-Shops-License/the-bazaar-recipe-unlock-and-purchase.md	CONTRACT-bazaar-unlock-and-purchase.md(L1)
+S-32*	13-Rewards-Progression-Economy/what-happens-when-an-enemy-dies.md	CONTRACT-defeat-rewards-sequence.md(L2)
+S-32*	13-Rewards-Progression-Economy/how-experience-is-computed-and-divided.md	CONTRACT-experience-and-licence-award.md(L1)
+S-32*	13-Rewards-Progression-Economy/loot-drops-and-enemy-chain.md	CONTRACT-loot-rolls-and-the-chain.md(L2)
+S-32*	13-Rewards-Progression-Economy/gil-storage-clamp-and-every-path-that-moves-it.md	CONTRACT-gil-storage-and-movement.md(L2)
+S-32*	13-Rewards-Progression-Economy/what-happens-when-a-character-levels-up.md	CONTRACT-level-advance-and-growth.md(L2)
+S-38*	17-Presentation-Rendering/Character-Rendering/character-render-object.md	CONTRACT-character-render-object.md(L2) CONTRACT-character-transform-publish.md(L1)
+S-38*	17-Presentation-Rendering/Character-Render-Records/the-character-render-record-array.md	CONTRACT-coast-down-latch.md(L1) CONTRACT-render-record-pool-lifecycle.md(L1)
+S-43*	19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/save-image-buffers-header-and-payload.md	CONTRACT-save-container-transform.md(L1) CONTRACT-save-image-buffers.md(L1) CONTRACT-save-image-pipeline.md(L2) CONTRACT-storage-read-completion.md(L1)
+S-43*	19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/version-stamps-and-what-loading-normalises.md	CONTRACT-save-image-pipeline.md(L2)
+S-43*	19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/the-save-payload-field-map.md	CONTRACT-save-image-pipeline.md(L2)
+S-45*	20-Platform-Online-Achievements/steam-integration-and-achievement-catalogue.md	CONTRACT-achievement-counters.md(L1) CONTRACT-steam-integration-subsystem.md(L2)
+S-46*	21-RNG-And-Determinism/rng-streams.md	CONTRACT-gameplay-generators.md(L1)
+S-46*	21-RNG-And-Determinism/which-roll-is-on-which-generator.md	CONTRACT-which-generator-serves-which-roll.md(L2)
+S-47*	02-Resource-And-Asset-Pipeline/authored-reference-lifetime-evidence.md	CONTRACT-efx-source-rebase.md(L1) CONTRACT-resource-entry-tree.md(L1) CONTRACT-resource-input-ownership.md(L2)
+S-48*	17-Presentation-Rendering/README.md	CONTRACT-authored-command-ramp-channels.md(L1)
+S-52*	04-Actor-Entity/Actor-Manager-Record/the-actor-manager-record-field-map.md	CONTRACT-manager-slot-entry-tables.md(L1)

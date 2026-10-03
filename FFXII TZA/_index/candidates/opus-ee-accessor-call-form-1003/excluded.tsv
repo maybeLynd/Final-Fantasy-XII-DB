@@ -1,0 +1,10 @@
+# members the image refuses for this family's per-member form - no row; check verifies each is still refused
+entry	reason
+005D8CA0	3 distinct member-specific call targets
+005D8D70	3 distinct member-specific call targets
+00676700	value 006372A0 shared with 1 other member(s): no member-specific instruction
+00683040	value 006372A0 shared with 1 other member(s): no member-specific instruction
+0068F0F0	3 distinct member-specific call targets
+00810810	template form not decided (no form call)
+00811470	template form not decided (no form call)
+00811640	template form not decided (no form call)

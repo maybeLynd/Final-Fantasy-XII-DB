@@ -1,7 +1,7 @@
 ---
 system: How a script binds to an actor, and how an actor's requests are scheduled — the record's four image pointers and the channel walk
 category: 01-Script-VM-Native-Bridge
-status: "REOPENED — SECTION-12 trigger resolved (SECTION-12 accepted by a non-author review 2026-09-29) and the page returns through the owner read; the wait kinds answered (OV-14); the footer slots answered on ORACLE's record with a premise correction, FABLE adjudication pending (RC-12); the run-state promoters answered (RC-14); RC-13 answered for the question as asked (the shipped scripts' dominant use of each channel; an author's intent is a stated limit); whether shipped play exhausts the notification pool stays on OV-10 (status line current 2026-09-30, SWE2-CONTRACT)"
+status: "PARTIAL — owner re-status 2026-10-03 (FABLE) from REOPENED: the SECTION-12 trigger is resolved (SECTION-12 accepted by a non-author review 2026-09-29); the wait kinds answered (OV-14); the footer slots answered on ORACLE's record with a premise correction (RC-12: the footer is 0-based; FABLE accepted it and corrected its own slot table at a8aed6ca9, auditsem-corrections-fable-0930); the run-state promoters answered (RC-14); RC-13 answered for the question as asked (the shipped scripts' dominant use of each channel; an author's intent is a stated limit); open: whether shipped play exhausts the notification pool (OV-10, runtime) (status line current 2026-10-03, FABLE) (was — REOPENED with the RC-12 adjudication shown as pending; that adjudication was made 2026-09-30 and never reached this line)"
 owner_layer: PrimaryOwner:ActorEntity — the record initialiser and the entry lists; execution by Script_VM_Native_Bridge
 evidence_tier: 1
 verified_against:

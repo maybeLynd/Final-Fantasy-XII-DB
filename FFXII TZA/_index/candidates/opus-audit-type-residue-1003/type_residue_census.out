@@ -1,0 +1,96 @@
+# store: 827 types, 9146 field rows
+# store-wide flagged field rows: 4073 of 9146   by flag: {'CONF': 943, 'CTYPE': 180, 'GAP': 1210, 'NAME': 2504, 'RUNG': 1690}
+# MET systems: 52   load-bearing contracts: 105 (L2 76, L1 29)
+#
+# L2 load-bearing contracts: cited field rows (distinct type+offset)
+#   tier A  cited   358   flagged    76
+#   tier S  cited   138   flagged    11
+#   tier R  cited    88   flagged     8
+#   any    cited   545   flagged    95
+#   flagged by flag (a row can carry several): {'CONF': 4, 'GAP': 4, 'NAME': 52, 'RUNG': 61}
+#   flagged by readiness: {'CLASSIFIED': 41, 'TYPE RESOLVED': 34, 'DISCOVERED': 20}
+#
+# L1 load-bearing contracts: cited field rows (distinct type+offset)
+#   tier A  cited   144   flagged    39
+#   tier S  cited    29   flagged     3
+#   tier R  cited   100   flagged    17
+#   any    cited   253   flagged    58
+#   flagged by flag (a row can carry several): {'CONF': 3, 'CTYPE': 2, 'GAP': 4, 'NAME': 42, 'RUNG': 15}
+#   flagged by readiness: {'TYPE RESOLVED': 41, 'CLASSIFIED': 8, 'DISCOVERED': 7, 'SEMANTICALLY IDENTIFIED': 2}
+#
+# CORE WORKLIST - L2 load-bearing, tier A or S, flagged RUNG or CONF, not a gap row: 54 field rows
+#   over 8 types: EncodedIdQueryRecord=13, ManagerSub0209BE80_8FA0=13, ManagerSub0209BE80_57E0=12, ManagerSub0209BE80_57E0PairRecord=12, BattleFormulaScratch=1, AchievementState=1, ManagerSingleton0209BE80=1, PhyreClassDescriptor=1
+# columns: type  offset  size  name  ctype  readiness  confidence  flags  tiers  systems  contracts
+AchievementState	0x024	4	counterId17	uint32	CLASSIFIED	HIGH	RUNG	A	S-30	CONTRACT-shop-stock-ladders.md
+BattleFormulaScratch	0x0A4	4	targetDefense	float	CLASSIFIED	HIGH	RUNG	S	S-22	CONTRACT-formula-step-table.md
+EncodedIdQueryRecord	0x34	4	classTail0034	u8[4]	DISCOVERED	PROVEN	RUNG	A	S-04	CONTRACT-encoded-id-space-and-class-registry.md
+EncodedIdQueryRecord	0x3C	1	equipByte003C	uint8	DISCOVERED	PROVEN	RUNG	A	S-04	CONTRACT-encoded-id-space-and-class-registry.md
+EncodedIdQueryRecord	0x3D	1	equipByte003D	uint8	DISCOVERED	PROVEN	RUNG	A	S-04	CONTRACT-encoded-id-space-and-class-registry.md
+EncodedIdQueryRecord	0x3E	1	equipByte003E	uint8	DISCOVERED	PROVEN	RUNG	A	S-04	CONTRACT-encoded-id-space-and-class-registry.md
+EncodedIdQueryRecord	0x3F	1	equipByte003F	uint8	DISCOVERED	PROVEN	RUNG	A	S-04	CONTRACT-encoded-id-space-and-class-registry.md
+EncodedIdQueryRecord	0x40	1	equipByte0040	uint8	DISCOVERED	PROVEN	RUNG	A	S-04	CONTRACT-encoded-id-space-and-class-registry.md
+EncodedIdQueryRecord	0x41	3	classTail0041	u8[3]	DISCOVERED	PROVEN	RUNG	A	S-04	CONTRACT-encoded-id-space-and-class-registry.md
+EncodedIdQueryRecord	0x44	4	equipDword0044	uint32	DISCOVERED	PROVEN	RUNG	A	S-04	CONTRACT-encoded-id-space-and-class-registry.md
+EncodedIdQueryRecord	0x48	4	equipDword0048	uint32	DISCOVERED	PROVEN	RUNG	A	S-04	CONTRACT-encoded-id-space-and-class-registry.md
+EncodedIdQueryRecord	0x54	1	classByte0054	uint8	DISCOVERED	PROVEN	RUNG	A	S-04	CONTRACT-encoded-id-space-and-class-registry.md
+EncodedIdQueryRecord	0x58	4	equipDword0058	uint32	DISCOVERED	PROVEN	RUNG	A	S-04	CONTRACT-encoded-id-space-and-class-registry.md
+EncodedIdQueryRecord	0x5C	4	equipDword005C	uint32	DISCOVERED	PROVEN	RUNG	A	S-04	CONTRACT-encoded-id-space-and-class-registry.md
+EncodedIdQueryRecord	0x60	4	equipDword0060	uint32	DISCOVERED	PROVEN	RUNG	A	S-04	CONTRACT-encoded-id-space-and-class-registry.md
+ManagerSingleton0209BE80	0xAB30	25072	embeddedAB30	ManagerSub0209BE80_AB30	DISCOVERED	PROBABLE	RUNG	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_57E0	0x018	8	firstChild	Widget*	CLASSIFIED	PROVEN	RUNG	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_57E0	0x044	4	field44	uint32	CLASSIFIED	PROVEN	RUNG+NAME	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_57E0	0x048	8	table	void*	CLASSIFIED	PROVEN	RUNG	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_57E0	0x07C	4	field7C	uint32	CLASSIFIED	PROVEN	RUNG+NAME	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_57E0	0x098	4	field98pair	int16[2]	CLASSIFIED	PROVEN	RUNG	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_57E0	0x09C	4	field9Cpair	int16[2]	CLASSIFIED	PROVEN	RUNG	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_57E0	0x0A0	1	fieldA0	uint8	CLASSIFIED	PROVEN	RUNG+NAME	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_57E0	0x0A1	2	fieldA1pair	uint8[2]	CLASSIFIED	PROVEN	RUNG	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_57E0	0x0AC	1	fieldAC	uint8	CLASSIFIED	PROVEN	RUNG+NAME	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_57E0	0x0AD	1	fieldAD	uint8	CLASSIFIED	PROVEN	RUNG+NAME	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_57E0	0x0B4	4	halfRatePhase	uint32	CLASSIFIED	PROVEN	RUNG	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_57E0	0x0B8	4	fieldB8	f32	CLASSIFIED	PROVEN	RUNG+NAME	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_57E0PairRecord	0x018	8	firstChild	Widget*	CLASSIFIED	PROVEN	RUNG	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_57E0PairRecord	0x044	4	field44	uint32	CLASSIFIED	PROVEN	RUNG+NAME	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_57E0PairRecord	0x048	8	table	void*	CLASSIFIED	PROVEN	RUNG	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_57E0PairRecord	0x07C	4	field7C	uint32	CLASSIFIED	PROVEN	RUNG+NAME	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_57E0PairRecord	0x098	4	field98pair	int16[2]	CLASSIFIED	PROVEN	RUNG	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_57E0PairRecord	0x09C	4	field9Cpair	int16[2]	CLASSIFIED	PROVEN	RUNG	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_57E0PairRecord	0x0A0	1	fieldA0	uint8	CLASSIFIED	PROVEN	RUNG+NAME	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_57E0PairRecord	0x0A1	2	fieldA1pair	uint8[2]	CLASSIFIED	PROVEN	RUNG	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_57E0PairRecord	0x0AC	1	fieldAC	uint8	CLASSIFIED	PROVEN	RUNG+NAME	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_57E0PairRecord	0x0AD	1	fieldAD	uint8	CLASSIFIED	PROVEN	RUNG+NAME	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_57E0PairRecord	0x0B4	4	halfRatePhase	uint32	CLASSIFIED	PROVEN	RUNG	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_57E0PairRecord	0x0B8	4	fieldB8	f32	CLASSIFIED	PROVEN	RUNG+NAME	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_8FA0	0x000	8	proc	void*	CLASSIFIED	PROVEN	RUNG	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_8FA0	0x040	4	flags	uint32	CLASSIFIED	PROBABLE	RUNG	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_8FA0	0x044	4	field44	uint32	CLASSIFIED	PROBABLE	RUNG+NAME	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_8FA0	0x048	8	table	void*	CLASSIFIED	PROBABLE	RUNG	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_8FA0	0x07C	4	field7C	uint32	CLASSIFIED	PROBABLE	RUNG+NAME	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_8FA0	0x098	4	field98pair	uint32	CLASSIFIED	PROBABLE	RUNG	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_8FA0	0x09C	4	field9Cpair	uint32	CLASSIFIED	PROBABLE	RUNG	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_8FA0	0x0A0	1	fieldA0	uint8	CLASSIFIED	PROBABLE	RUNG+NAME	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_8FA0	0x0A1	2	fieldA1pair	uint16	CLASSIFIED	PROBABLE	RUNG	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_8FA0	0x0AC	1	fieldAC	uint8	CLASSIFIED	PROBABLE	RUNG+NAME	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_8FA0	0x0AD	1	fieldAD	uint8	CLASSIFIED	PROBABLE	RUNG+NAME	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_8FA0	0x0B4	4	halfRatePhase	uint32	CLASSIFIED	PROBABLE	RUNG	A	S-36	CONTRACT-widget-object.md
+ManagerSub0209BE80_8FA0	0x0B8	4	fieldB8	uint32	CLASSIFIED	PROBABLE	RUNG+NAME	A	S-36	CONTRACT-widget-object.md
+PhyreClassDescriptor	0x00B0	16	unidentifiedListB0	void*[2]	DISCOVERED	PROVEN	RUNG	A	S-49	CONTRACT-phyre-class-descriptor.md
+#
+# GAP rows touched by a load-bearing contract's own entry functions (tier A), with the touching accesses:
+# columns: level  type  offset  size  name  readiness  confidence  contract  accesses(kind@site)
+L2	SystemStopRecord	0x08	8	unobserved08	DISCOVERED	UNKNOWN	CONTRACT-system-stop-registry.md	w@00227698 w@002277A1 w@0022793E w@00227C0E w@00227C46 w@00227C82
+L1	MovementContext	0x00E8	4	unobservedSpan00E8	DISCOVERED	UNKNOWN	CONTRACT-actor-record-pool-and-region-map.md	addr@00266B26
+# GAP rows touched by entry functions: L2 1, L1 1
+#
+# cited TYPES at the lowest rungs (types.tsv readiness), named by L2 load-bearing contracts:
+BattleMenuChildWidget1620	0x1620	CLASSIFIED	CONTRACT-widget-object.md
+DynGeoFontTextSpecialFinalInstance	0x170	CLASSIFIED	CONTRACT-text-control-codes-and-dyngeo-draw.md
+DynGeoFontTextSpecialInstance	0x160	CLASSIFIED	CONTRACT-text-control-codes-and-dyngeo-draw.md
+DynGeoFontTextSpecialShadowInstance	0x168	CLASSIFIED	CONTRACT-text-control-codes-and-dyngeo-draw.md
+NavGridParams	0x60	CLASSIFIED	CONTRACT-corridor-query-family.md
+NavRunStateBlock	0x30	CLASSIFIED	CONTRACT-corridor-query-family.md
+PArray	0x10	CLASSIFIED	CONTRACT-phyre-packed-namespace.md
+PSharray	VARIABLE 8 + max(8, sizeof T) per instantiation, TEN instantiations - 0x10 for the six pointer elements, uint and PString (a by-value 8-byte element), 0x50 for the two 0x48-byte D3D11 buffer elements (corrected 2026-09-28: the ninth-count missed PSharray<PString>; _index/candidates/psharray-inline-extent/psharray_review.py)	CLASSIFIED	CONTRACT-phyre-packed-namespace.md
+PhyreNamespaceBuffer	0x10	CLASSIFIED	CONTRACT-phyre-cluster-header.md
+RenderResourceEntry	0x50	DISCOVERED	CONTRACT-resource-input-ownership.md
+# 10 types

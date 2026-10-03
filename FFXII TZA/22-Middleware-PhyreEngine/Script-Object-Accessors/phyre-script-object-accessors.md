@@ -2233,3 +2233,170 @@ The family `script-VM nullable object push adapters` (frontmatter: 295 members; 
 | `00879000` | `PHierarchy::POctreeWorld *` | requires class descriptor `02EB9270` (`POctreeWorld`); template member: distinguishing operand | Interior anchor `00879042` (`lea`, entry + 0x42) |
 | `0087A310` | `PGame::PGameConfig &` | requires class descriptor `02EB9E60` (`PGameConfig`); template member: distinguishing operand | Interior anchor `0087A349` (`lea`, entry + 0x39) |
 | `0087A550` | `PGame::PGameConfig *` | requires class descriptor `02EB9E60` (`PGameConfig`); template member: distinguishing operand | Interior anchor `0087A592` (`lea`, entry + 0x42) |
+
+## Per-member rows: the descriptor function each call-form accessor calls (OPUS, 2026-10-03)
+
+The 153 rows below cover the `PObjectAccessor<T>::Get` bodies that the compare-form rows above leave entry-only: their required descriptor is not loaded by a `lea` but returned by a call. The shared shape, stated once: the body fetches the argument object (`00682980`) and pops the stack (`00811130`), calls the member's descriptor function G and walks the object's base chain (`[descriptor + 0x78]`) comparing against G's result; a class that never matches reports a diagnostic through `00812960`. Two templates exist and the image tells them apart: the reference form also calls `0063BC00` (a default object when the argument is null), the pointer form also calls `008119F0`. What differs from member to member is G: inside each template no two members call the same one (the pointer and reference Get of one class share it). Each row anchors the member's first call to G, its distinguishing instruction, and states G, the template, and the class when G constructs a named descriptor (empty otherwise). [`fam_rows.py`](../../_index/candidates/opus-ee-accessor-call-form-1003/fam_rows.py) re-derives every row and compares it with the committed [`rows.tsv`](../../_index/candidates/opus-ee-accessor-call-form-1003/rows.tsv). Three controls are refused: a swapped value, a moved anchor, and a row moved to the other template. Members that do not derive are listed in [`excluded.tsv`](../../_index/candidates/opus-ee-accessor-call-form-1003/excluded.tsv).
+
+### The reference form (`T &`): 76 members (OPUS)
+
+| member | distinguishing instruction | descriptor function G called | class whose descriptor G constructs |
+|---|---|---|---|
+| 005A05D0 | `005A060A` `call` | 005A02D0 | PTimer |
+| 005B82A0 | `005B82DC` `call` | 005B4E00 |  |
+| 005B84C0 | `005B84FC` `call` | 005B5460 |  |
+| 005B85D0 | `005B860C` `call` | 005B57A0 |  |
+| 005B86E0 | `005B871C` `call` | 005B5AE0 |  |
+| 005B87F0 | `005B882C` `call` | 005B5E10 |  |
+| 005B8900 | `005B893C` `call` | 005B6140 |  |
+| 005B8A10 | `005B8A4C` `call` | 005B6470 |  |
+| 005B8B20 | `005B8B5C` `call` | 005B67A0 |  |
+| 005B8C30 | `005B8C6C` `call` | 005B6AD0 |  |
+| 005B8D40 | `005B8D7C` `call` | 005B6E00 |  |
+| 005B8E50 | `005B8E8C` `call` | 005B7130 |  |
+| 005B8F60 | `005B8F9C` `call` | 005B7460 |  |
+| 005B9070 | `005B90AC` `call` | 005B7790 |  |
+| 005B9180 | `005B91BC` `call` | 005B7AC0 |  |
+| 005F0C70 | `005F0CAC` `call` | 005EB7C0 |  |
+| 005F0D80 | `005F0DBC` `call` | 005EBB00 |  |
+| 005F0E90 | `005F0ECC` `call` | 005EBE40 |  |
+| 005F0FA0 | `005F0FDC` `call` | 005EC180 |  |
+| 005F10B0 | `005F10EC` `call` | 005EC4C0 |  |
+| 005F11C0 | `005F11FC` `call` | 005EC800 |  |
+| 005F12D0 | `005F130C` `call` | 005ECB40 |  |
+| 005F13E0 | `005F141C` `call` | 005ECE70 |  |
+| 005F14F0 | `005F152C` `call` | 005ED1A0 |  |
+| 005F1600 | `005F163C` `call` | 005ED4D0 |  |
+| 005F1710 | `005F174C` `call` | 005ED800 |  |
+| 005F1820 | `005F185C` `call` | 005EDB30 |  |
+| 005F1930 | `005F196C` `call` | 005EDE60 |  |
+| 005F1A40 | `005F1A7C` `call` | 005EE190 |  |
+| 005F1B50 | `005F1B8C` `call` | 005EE4C0 |  |
+| 005F1C60 | `005F1C9C` `call` | 005EE7F0 |  |
+| 005F1D70 | `005F1DAC` `call` | 005EEB20 |  |
+| 005F1E80 | `005F1EBC` `call` | 005EEE50 |  |
+| 005F1F90 | `005F1FCC` `call` | 005EF180 |  |
+| 005F20A0 | `005F20DC` `call` | 005EF4B0 |  |
+| 005F21B0 | `005F21EC` `call` | 005EF7E0 |  |
+| 005F22C0 | `005F22FC` `call` | 005EFB10 |  |
+| 005F23D0 | `005F240C` `call` | 005EFE60 |  |
+| 006190E0 | `0061911C` `call` | 00618970 |  |
+| 006191F0 | `0061922C` `call` | 00618CA0 |  |
+| 00619D00 | `00619D3A` `call` | 00613800 | CD3D11_BLEND_DESC |
+| 00619E10 | `00619E4A` `call` | 00613A30 | CD3D11_DEPTH_STENCIL_DESC |
+| 00619F20 | `00619F5A` `call` | 00613E80 | CD3D11_RASTERIZER_DESC |
+| 0061A030 | `0061A06A` `call` | 006143B0 | D3D11_DEPTH_STENCILOP_DESC |
+| 0061A140 | `0061A17A` `call` | 00614640 | D3D11_RENDER_TARGET_BLEND_DESC |
+| 006364B0 | `006364EC` `call` | 00635DC0 |  |
+| 0064AF20 | `0064AF5C` `call` | 0064AA20 |  |
+| 0066AE50 | `0066AE8C` `call` | 00668AE0 |  |
+| 0066AF60 | `0066AF9C` `call` | 00668E10 |  |
+| 0066B070 | `0066B0AC` `call` | 00669140 |  |
+| 0066B180 | `0066B1BC` `call` | 00669470 |  |
+| 0066B290 | `0066B2CC` `call` | 006697A0 |  |
+| 0066B3A0 | `0066B3DC` `call` | 00669AD0 |  |
+| 0066B4B0 | `0066B4EC` `call` | 00669E00 |  |
+| 0066B5C0 | `0066B5FC` `call` | 0066A130 |  |
+| 0066B6D0 | `0066B70C` `call` | 0066A460 |  |
+| 0066B7E0 | `0066B81C` `call` | 0066A7B0 |  |
+| 0066B8F0 | `0066B92C` `call` | 0066AB00 |  |
+| 0067DB40 | `0067DB7C` `call` | 0067D810 |  |
+| 0067EBC0 | `0067EBFA` `call` | 006B33F0 | PMatrix4x3 |
+| 00698D00 | `00698D3C` `call` | 00698930 |  |
+| 006A8810 | `006A884C` `call` | 006A84C0 |  |
+| 006AEAB0 | `006AEAEC` `call` | 006AE780 |  |
+| 006BD5E0 | `006BD61C` `call` | 006BCC40 |  |
+| 006BD6F0 | `006BD72C` `call` | 006BCF80 |  |
+| 006BD800 | `006BD83C` `call` | 006BD2B0 |  |
+| 006C1C50 | `006C1C8C` `call` | 006C1920 |  |
+| 006C3B40 | `006C3B7C` `call` | 006C3800 |  |
+| 006C6A40 | `006C6A7C` `call` | 006C6230 |  |
+| 006C6B50 | `006C6B8C` `call` | 006C6560 |  |
+| 006D3350 | `006D338C` `call` | 006D2390 |  |
+| 006D3460 | `006D349C` `call` | 006D26C0 |  |
+| 006D3570 | `006D35AC` `call` | 006D29F0 |  |
+| 0086EAF0 | `0086EB2C` `call` | 0086E470 |  |
+| 0086EC00 | `0086EC3C` `call` | 0086E7B0 |  |
+| 0087A200 | `0087A23C` `call` | 00879EC0 |  |
+
+### The pointer form (`T *`): 77 members (OPUS)
+
+| member | distinguishing instruction | descriptor function G called | class whose descriptor G constructs |
+|---|---|---|---|
+| 005A06E0 | `005A0723` `call` | 005A02D0 | PTimer |
+| 005BB210 | `005BB255` `call` | 005B4E00 |  |
+| 005BB350 | `005BB395` `call` | 005B5130 |  |
+| 005BB490 | `005BB4D5` `call` | 005B5460 |  |
+| 005BB5D0 | `005BB615` `call` | 005B57A0 |  |
+| 005BB710 | `005BB755` `call` | 005B5AE0 |  |
+| 005BB850 | `005BB895` `call` | 005B5E10 |  |
+| 005BB990 | `005BB9D5` `call` | 005B6140 |  |
+| 005BBAD0 | `005BBB15` `call` | 005B6470 |  |
+| 005BBC10 | `005BBC55` `call` | 005B67A0 |  |
+| 005BBD50 | `005BBD95` `call` | 005B6AD0 |  |
+| 005BBE90 | `005BBED5` `call` | 005B6E00 |  |
+| 005BBFD0 | `005BC015` `call` | 005B7130 |  |
+| 005BC110 | `005BC155` `call` | 005B7460 |  |
+| 005BC250 | `005BC295` `call` | 005B7790 |  |
+| 005BC390 | `005BC3D5` `call` | 005B7AC0 |  |
+| 005F5CE0 | `005F5D25` `call` | 005EB7C0 |  |
+| 005F5E20 | `005F5E65` `call` | 005EBB00 |  |
+| 005F5F60 | `005F5FA5` `call` | 005EBE40 |  |
+| 005F60A0 | `005F60E5` `call` | 005EC180 |  |
+| 005F61E0 | `005F6225` `call` | 005EC4C0 |  |
+| 005F6320 | `005F6365` `call` | 005EC800 |  |
+| 005F6460 | `005F64A5` `call` | 005ECB40 |  |
+| 005F65A0 | `005F65E5` `call` | 005ECE70 |  |
+| 005F66E0 | `005F6725` `call` | 005ED1A0 |  |
+| 005F6820 | `005F6865` `call` | 005ED4D0 |  |
+| 005F6960 | `005F69A5` `call` | 005ED800 |  |
+| 005F6AA0 | `005F6AE5` `call` | 005EDB30 |  |
+| 005F6BE0 | `005F6C25` `call` | 005EDE60 |  |
+| 005F6D20 | `005F6D65` `call` | 005EE190 |  |
+| 005F6E60 | `005F6EA5` `call` | 005EE4C0 |  |
+| 005F6FA0 | `005F6FE5` `call` | 005EE7F0 |  |
+| 005F70E0 | `005F7125` `call` | 005EEB20 |  |
+| 005F7220 | `005F7265` `call` | 005EEE50 |  |
+| 005F7360 | `005F73A5` `call` | 005EF180 |  |
+| 005F74A0 | `005F74E5` `call` | 005EF4B0 |  |
+| 005F75E0 | `005F7625` `call` | 005EF7E0 |  |
+| 005F7720 | `005F7765` `call` | 005EFB10 |  |
+| 005F7860 | `005F78A5` `call` | 005EFE60 |  |
+| 0061A250 | `0061A293` `call` | 00613800 | CD3D11_BLEND_DESC |
+| 0061A390 | `0061A3D3` `call` | 00613A30 | CD3D11_DEPTH_STENCIL_DESC |
+| 0061A4D0 | `0061A513` `call` | 00613E80 | CD3D11_RASTERIZER_DESC |
+| 0061A610 | `0061A653` `call` | 006143B0 | D3D11_DEPTH_STENCILOP_DESC |
+| 0061A750 | `0061A793` `call` | 00614640 | D3D11_RENDER_TARGET_BLEND_DESC |
+| 0061A890 | `0061A8D5` `call` | 00618970 |  |
+| 0061A9D0 | `0061AA15` `call` | 00618CA0 |  |
+| 006367E0 | `00636825` `call` | 00635DC0 |  |
+| 0064D890 | `0064D8D5` `call` | 0064AA20 |  |
+| 0066CD00 | `0066CD45` `call` | 00668AE0 |  |
+| 0066CE40 | `0066CE85` `call` | 00668E10 |  |
+| 0066CF80 | `0066CFC5` `call` | 00669140 |  |
+| 0066D0C0 | `0066D105` `call` | 00669470 |  |
+| 0066D200 | `0066D245` `call` | 006697A0 |  |
+| 0066D340 | `0066D385` `call` | 00669AD0 |  |
+| 0066D480 | `0066D4C5` `call` | 00669E00 |  |
+| 0066D5C0 | `0066D605` `call` | 0066A130 |  |
+| 0066D700 | `0066D745` `call` | 0066A460 |  |
+| 0066D840 | `0066D885` `call` | 0066A7B0 |  |
+| 0066D980 | `0066D9C5` `call` | 0066AB00 |  |
+| 0067DD50 | `0067DD95` `call` | 0067D810 |  |
+| 0069B630 | `0069B675` `call` | 00698930 |  |
+| 006A8A20 | `006A8A65` `call` | 006A84C0 |  |
+| 006AECC0 | `006AED05` `call` | 006AE780 |  |
+| 006B3780 | `006B37C3` `call` | 006B33F0 | PMatrix4x3 |
+| 006BDB30 | `006BDB75` `call` | 006BCC40 |  |
+| 006BDC70 | `006BDCB5` `call` | 006BCF80 |  |
+| 006BDDB0 | `006BDDF5` `call` | 006BD2B0 |  |
+| 006C1F60 | `006C1FA5` `call` | 006C1920 |  |
+| 006C3F50 | `006C3F95` `call` | 006C3800 |  |
+| 006C6E60 | `006C6EA5` `call` | 006C6230 |  |
+| 006C6FA0 | `006C6FE5` `call` | 006C6560 |  |
+| 006D3E80 | `006D3EC5` `call` | 006D2390 |  |
+| 006D3FC0 | `006D4005` `call` | 006D26C0 |  |
+| 006D4100 | `006D4145` `call` | 006D29F0 |  |
+| 00870B50 | `00870B95` `call` | 0086E470 |  |
+| 00870C90 | `00870CD5` `call` | 0086E7B0 |  |
+| 0087A410 | `0087A455` `call` | 00879EC0 |  |

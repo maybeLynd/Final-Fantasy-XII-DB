@@ -58,7 +58,7 @@
   },
   {
    "fn": "00568BB0",
-   "text": "fills a widget group on the array at qword `[rdx+0x10]` from the 32-byte entry at `rcx` + 0x160 + 32 * `r9d`: for `r9d` 0 it calls `00243580(rdx, 0)` and shows elements `+0x40`, `+0x38` and `+0x48` with the entry's byte `+0x14` and first qword, coloured with byte `+0x343` as the top byte (element `+0x48`: dword `+0x354` when byte `+0x353` is 0); for other `r9d` it colours elements `+0`, `+8` and `+0x10` with `002DD7E0(entry byte +0x15 + 0x77)` (`0x79` when byte `+0x14` is 0) and fills elements `+0x18`, `+0x20` and `+0x28` from the entry's byte `+0x14` and qwords `+0` / `+8`; in each of these colourings, when the record at qword `02CA96E0`[dword `+0x35C`] has bit `0x1` of byte `+0x340` clear, byte `+0x33E` equal to 0, 1 or 2 and the slot index of qword `+0xD8` equals `r9d`, the colour's top byte becomes `002CC8D0(0x60 or 0x80, 0x20, dword +0x344, 4)`; returns 1",
+   "text": "fills a widget group on the array at qword `[rdx+0x10]` from the 32-byte entry at `rcx` + 0x160 + 32 * `r9d`: for `r9d` 0 it calls `00243580(rdx, 0)` and shows elements `+0x40`, `+0x38` and `+0x48` with the entry's byte `+0x14` and first qword, coloured with byte `+0x343` as the top byte (element `+0x48`: dword `+0x354` when byte `+0x353` is 0; otherwise its colour with top byte `+0x343` when word `+0x350` is non-zero, or byte `+0x350` (0) when it is zero); for other `r9d` it colours elements `+0`, `+8` and `+0x10` with `002DD7E0(entry byte +0x15 + 0x77)` (`0x79` when byte `+0x14` is 0) and fills elements `+0x18`, `+0x20` and `+0x28` from the entry's byte `+0x14` and qwords `+0` / `+8`; the colour stored at `+0x24` of elements `+0x20` and `+0x28` starts as dword `+0xC` of the element's first qword, or `002DD7E0(2)` when entry byte `+0x14` is 0 or byte `+0x15` is 2; when the record at qword `02CA96E0`[dword `+0x35C`] has bit `0x1` of byte `+0x340` clear and the slot index of qword `+0xD8` equals `r9d`, the colour's top byte becomes `002CC8D0(0x60, 0x20, dword +0x344, 4)` for elements `+0`, `+8` and `+0x10` when byte `+0x33E` is 0, and `002CC8D0(0x80, 0x20, dword +0x344, 4)` for element `+0x20` when it is 1 and for element `+0x28` when it is 2; the colour of element `+0x20` is then replaced outright by `002DD7E0(6)` when entry byte `+0x17` is 1, and that of element `+0x28` when it is 2; returns 1",
    "anchors": [
     [
      "00568BDE",
@@ -86,6 +86,11 @@
  "rejected": [],
  "skipped": {},
  "missing": [],
- "corrections": [],
+ "corrections": [
+  {
+   "fn": "00568BB0",
+   "why": "SWE2-AUDIT-SPEC REJECT (auditspec-review-opus-contract-widget-object-homing-1002): element +0x48's top byte depends on word +0x350; elements +0x20/+0x28 have a base colour rule and a 002DD7E0(6) replacement on entry byte +0x17; each 002CC8D0 gate pairs with its own +0x33E value; row rewritten per SPEC's repair, re-read at the bytes; reject_rows_check.py is the regression"
+  }
+ ],
  "mode": "homing"
 }

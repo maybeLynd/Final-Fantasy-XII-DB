@@ -1,0 +1,28 @@
+{
+ "page": "22-Middleware-PhyreEngine/Script-Object-Accessors/phyre-script-object-accessors.md",
+ "members": "_index/candidates/opus-ee-accessor-call-form-1003/members.tsv",
+ "kind": "accessor_call",
+ "group": "all",
+ "skip_calls": [
+  "00682980",
+  "00811130",
+  "00812960"
+ ],
+ "form_calls": {
+  "0063BC00": "reference form",
+  "008119F0": "pointer form"
+ },
+ "unique_within": "callee",
+ "title": "the call-form PObjectAccessor<T>::Get bodies, one row per member",
+ "heading": "## Per-member rows: the descriptor function each call-form accessor calls (OPUS, 2026-10-03)",
+ "lead": "The {N} rows below cover the `PObjectAccessor<T>::Get` bodies that the compare-form rows above leave entry-only: their required descriptor is not loaded by a `lea` but returned by a call. The shared shape, stated once: the body fetches the argument object (`00682980`) and pops the stack (`00811130`), calls the member's descriptor function G and walks the object's base chain (`[descriptor + 0x78]`) comparing against G's result; a class that never matches reports a diagnostic through `00812960`. Two templates exist and the image tells them apart: the reference form also calls `0063BC00` (a default object when the argument is null), the pointer form also calls `008119F0`. What differs from member to member is G: inside each template no two members call the same one (the pointer and reference Get of one class share it). Each row anchors the member's first call to G, its distinguishing instruction, and states G, the template, and the class when G constructs a named descriptor (empty otherwise). {CHECK} re-derives every row and compares it with the committed {ROWS}. Three controls are refused: a swapped value, a moved anchor, and a row moved to the other template. Members that do not derive are listed in [`excluded.tsv`](../../_index/candidates/opus-ee-accessor-call-form-1003/excluded.tsv).",
+ "group_heading": "### The {GROUP}: {N} members (OPUS)",
+ "groups": {
+  "pointer form": "pointer form (`T *`)",
+  "reference form": "reference form (`T &`)"
+ },
+ "value_col": "descriptor function G called",
+ "value_fmt": "{V}",
+ "name_col": "class whose descriptor G constructs",
+ "name_fmt": "{NAME}"
+}

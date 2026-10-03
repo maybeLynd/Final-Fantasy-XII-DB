@@ -1848,3 +1848,11 @@ Interior anchor `0046810E` (function `004680D0`).
 | `00536060` | 27 B | returns 0 when word `+0xE` is 0, else `rcx` + word `+0xC` + dword `+8` | `0053606A`, `0053606D`, `00536077` |
 | `005360C0` | 84 B | allocates dword `+0x10` + 0x10 bytes through `003EC8D0(6, ...)`, stores `rcx` at the block's `+0`, links the block through `+8` (the block takes `[rcx+8]`'s old value, that node points at it, `[rcx+8]` becomes it), copies dword `+0x10` bytes from `rdx` to the block's `+0x10` through `00861EBA`, and increments dword `+0x14` | `005360DB`, `005360E3`, `005360F9`, `00536101`, `00536106` |
 | `00291D90` | 625 B | dispatches on the message `[rdx]`: 1 stores itself at `*(0209AC30) + 0x300`, resets `+0x168` with 1 in its bits 16-19, clears the ten 16-byte slots at `+0xC8` and calls `00247950`; `0x12` clears `*(0209AC30) + 0x300`; 2 steps a state machine kept in bits 16-19 of `+0x168` whose steps copy the ten slots from `0209BEA0`, request `0024A440(qword +0xD0, *01E0C210, 2)` into `+0xC0`, test each slot with `0032E4D0`, release `+0xC0` through `0024A680`, and in one state call `00244F00` on itself; any other message goes to `005C5230`, whose result it returns; messages 1, 2 and `0x12` return 0 | `00291DB7`, `00291F96`, `00291F2D`, `00291E4A` |
+
+`00379010` (92 B; reached only from four Script-VM handlers, all tail-jumping here: `00347C90` pops a mode and then a bit index off the VM value stack through `00267E10`, and `00347FD0` / `003482F0` / `00348680` pop only the bit and pass the fixed mode 1 / 0 / 2) is the per-bit override of the masks `0026E5F0` folds: mode 0 forces the bit on (sets it in `0209A6C8`, clears it in `0209A6C0`), mode 1 forces it off (sets it in `0209A6C0`, clears it in `0209A6C8`), mode 2 clears it in both so the fold falls back to the base mask, and any other mode does nothing.
+
+Interior anchor `00379040` (function `00379010`).
+
+`00378FB0` (92 B; from four handlers of the same shape: `003455B0` pops a mode and a bit, and `00345AC0`, `003460A0` and `00346600` pop the bit with a fixed mode) is the identical tri-state setter on the next pair of the `0209A6xx` block: mode 0 sets the bit in `0209A6D8` and clears it in `0209A6D0`, mode 1 the reverse, mode 2 clears both. The reader of `0209A6D0`/`0209A6D8` is not read here.
+
+Interior anchor `00378FE0` (function `00378FB0`).

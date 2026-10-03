@@ -1,0 +1,11 @@
+001FB770 opus-sab-sound-bank-container-cloudint-1002: FAIL
+   001FB770 row: the repaired clause is missing
+   001FB770 row: still carries the rejected fifth-argument clause
+00568BB0 opus-contract-widget-object-homing-1002: FAIL
+   00568BB0 row: missing 'when word `+0x350` is non-zero, or byte `+0x350` (0) when it is zero'
+   00568BB0 row: missing 'or `002DD7E0(2)` when entry byte `+0x14` is 0 or byte `+0x15` is 2'
+   00568BB0 row: missing 'replaced outright by `002DD7E0(6)` when entry byte `+0x17` is 1'
+   00568BB0 row: missing '`002CC8D0(0x60, 0x20, dword +0x344, 4)` for elements `+0`, `+8` and `+0x10` when byte `+0x33E` is 0'
+   00568BB0 row: missing 'for element `+0x20` when it is 1 and for element `+0x28` when it is 2'
+   00568BB0 row: still carries the rejected unpaired +0x33E gate
+rows 2  FAILS 8  (rejected texts: both rows must fail)

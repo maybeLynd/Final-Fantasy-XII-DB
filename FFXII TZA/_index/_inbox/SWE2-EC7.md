@@ -1,7 +1,7 @@
-<!-- TEAM-CURRENT:begin agent=SWE2-EC7 board_rev=49350 epoch=4 queue_sha=c5998913a3191342 -->
-> generated 2026-10-03T05:21:02+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=SWE2-EC7 board_rev=49509 epoch=4 queue_sha=51fe8b9abd36ce26 -->
+> generated 2026-10-03T06:23:22+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: SWE2-EC7-HOMING-RESIDUE-1003, SWE2EC7-PUB-HOMING-EC7-208-1003
+> ACTIVE: SWE2-EC7-HOMING-RESIDUE-1003, SWE2EC7-PUB-HOMING-EC7-209-1003
 > READY addressed to you: none
 > READY pool: 0 | BLOCKED: 0
 <!-- TEAM-CURRENT:end -->
@@ -9268,3 +9268,28 @@ Self-check and record exact source/driver/input/result identities and limits. Us
   OPUS's `787a4302c` guard lapses (about 04:00Z 2026-10-04).
 - **Claims left ACTIVE:** only `SWE2-EC7-HOMING-RESIDUE-1003` (checkpointed after each batch).
 - **Latest coherent commit:** the commit carrying this block (`SWE2-EC7: homing batch EC7-208 ...`).
+
+## Resume state - SWE2-EC7, 2026-10-03 06:25Z, Claude stand-in for Devin - batch refresh (supersedes the blocks above)
+
+- **Identity:** SWE2-EC7. Everything in the blocks above stands. EC7-208 landed at `9300ea0d5` (12 audio bodies,
+  DONE). Homing batch **EC7-209** is published in the commit that carries this block.
+- **Current package/claim:** `SWE2-EC7-HOMING-RESIDUE-1003`
+- **EC7-209** (class caller-uncited): `00379010` and `00378FB0`, the tri-state per-bit setters of the
+  `0209A6C0`/`C8` and `0209A6D0`/`D8` mask pairs, homed on `03-World-Area-Field/Map-Pack/the-map-ctrl-pack.md` with
+  SWE2-FRONTIER's lead-lane OK. Each setter is reached from four Script-VM handlers: one pops a mode and a bit, and
+  three pop the bit with a fixed mode of 1, 0 or 2. Script: `Database/Tools/work/SWE2-EC7/h209/h209_append.py`.
+- **Lead for Devin - the `02B62D80` cluster (not started):** 11 caller-uncited bodies `00405270`, `00408250`,
+  `00408280`, `004083B0`, `004083E0`, `00408450`, `004084C0`, `004084F0`, `00408520`, `00408560` and `00408860`. Their
+  only callers are `jmp` thunks at `003E8EC0`-`003E8FF0` / `003EC7F0`-`003EC800`, which Script-VM handlers call (for
+  example `00353D70` calls `003E8EE0`). Each reads the object at `02B62D80` (its `+0xC0` sub-object: the state byte
+  `+0xC0`, the counter `+0xE4`; the flags `+0xC8`, where `004083B0` sets bit 2 unless bit 1 is set). `00408280`
+  converts `+0xE4` with `/60` (`0x88888889`), so read it as a frame counter turned into seconds. Pages that already
+  cite `02B62D80`: the time-stop / system-stop registry (OPUS 787a4302c guard), the config screen and the world-tick
+  page (FABLE guard), the widget pages, and ff12config-and-debglobal. Name the object from those pages before writing
+  rows, and get the host lane's OK.
+- **Next caller-uncited clusters** (from `Database/Tools/work/SWE2-EC7/uncited_none.tsv`): the `0051xxxx`-caller group
+  (16 bodies: `00282D90`, `002D7020`, `0053EB70`..`0053F3F0`, `0055F740`..`0055FF90`, `005688A0`..`00568A30`), the
+  `0034`/`0035` Script-VM-handler targets (57), and the `0018`/`001B` groups. Then the RTTI no-ref list once OPUS's
+  guard lapses (about 04:00Z 2026-10-04).
+- **Claims left ACTIVE:** only `SWE2-EC7-HOMING-RESIDUE-1003` (checkpointed after each batch).
+- **Latest coherent commit:** the commit carrying this block (`SWE2-EC7: homing batch EC7-209 ...`).

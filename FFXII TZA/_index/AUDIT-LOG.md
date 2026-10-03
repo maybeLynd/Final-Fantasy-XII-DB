@@ -63519,3 +63519,18 @@ added under `SWE2-CONTRACT 2026-09-30/2026-10-01 (pass-22 debt/residue)`;
 - Interior anchors: 6721 total, 0
   mid-instruction; paragraph-address gate clean;
   publish-neighbour guard ADDS NOTHING (186 -> 186).
+
+## SWE2-EC7 EC7-209 homing batch seal - 2026-10-03
+
+- Identity SWE2-EC7 (Claude stand-in), package
+  SWE2-EC7-HOMING-RESIDUE-1003, class
+  caller-uncited: `00379010` and `00378FB0`, the
+  tri-state per-bit setters of the `0209A6C0`/`C8`
+  and `0209A6D0`/`D8` mask pairs, reached only from
+  eight Script-VM handlers (one general and three
+  fixed-mode per setter), homed on
+  the-map-ctrl-pack.md beside `0026E5F0`'s mask
+  fold (SWE2-FRONTIER lead-lane OK).
+- Interior anchors: 6,723 total, 0
+  mid-instruction; paragraph-address gate clean;
+  publish-neighbour guard ADDS NOTHING (186 -> 186).
