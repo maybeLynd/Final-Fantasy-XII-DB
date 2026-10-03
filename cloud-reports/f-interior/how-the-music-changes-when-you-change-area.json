@@ -1,0 +1,100 @@
+{
+ "page": "18-Audio/how-the-music-changes-when-you-change-area.md",
+ "session": "session_01M9DqRDfozfMhVgDdX8oP4v",
+ "rows": [
+  {
+   "fn": "00218E50",
+   "text": "walks the circular list whose sentinel is at `rcx + 8` (first node qword `+8`, next link qword `+0` of each node) and, at the first node whose qword `+0x10` object has dword `+0x50` equal to `edx` (or at the first node at all when `edx` is -1), tail-jumps to `00222B70` with that object in `rcx` and `edx`, `r8`, `r9` unchanged; returns without a call when the list is empty or no node matches",
+   "anchors": [
+    [
+     "00218E58",
+     "cmp"
+    ],
+    [
+     "00218E64",
+     "cmp"
+    ],
+    [
+     "00218E69",
+     "cmp"
+    ],
+    [
+     "00218E6E",
+     "mov"
+    ],
+    [
+     "00218E77",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003473A0",
+   "text": "calls `003473A0 + 0x4` with the incoming registers unchanged, then `0037C910(0)`, then tail-jumps to `003473A0 + 0x19` with `ecx` = 1",
+   "anchors": [
+    [
+     "003473A4",
+     "call"
+    ],
+    [
+     "003473AB",
+     "call"
+    ],
+    [
+     "003473B0",
+     "mov"
+    ],
+    [
+     "003473B9",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003614C0",
+   "text": "calls `003614C0 + 0x12` with `rcx`, `edx` and `r8` unchanged, `r9d` = 0x7F and a fifth (stack) argument of 0, and returns its result",
+   "anchors": [
+    [
+     "003614C4",
+     "mov"
+    ],
+    [
+     "003614CA",
+     "mov"
+    ],
+    [
+     "003614D2",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "003EB0D0",
+   "text": "returns 1 when byte `02B5E111` is non-zero and 0 otherwise (a loop over 0x38-byte records bounded at one record)",
+   "anchors": [
+    [
+     "003EB0D2",
+     "lea"
+    ],
+    [
+     "003EB0E0",
+     "cmp"
+    ],
+    [
+     "003EB0EB",
+     "cmp"
+    ],
+    [
+     "003EB0F0",
+     "xor"
+    ],
+    [
+     "003EB0F3",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "FABLE w5-3 draft. Calls to callees the page context does not name are cited by call site (`<entry> + 0xNN`)."
+}
