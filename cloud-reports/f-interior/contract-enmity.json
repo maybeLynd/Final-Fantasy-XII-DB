@@ -1,0 +1,34 @@
+{
+ "page": "09-Combat-AI-And-Gambits/CONTRACT-enmity.md",
+ "session": "session_01Rk789qY4qsCmkfLpxsx7MQ",
+ "rows": [
+  {
+   "fn": "0030B510",
+   "text": "returns 0 unless `cx` AND 0xF000 equals 0xD000 and `00322C50(1, cx, 1)` (`edx` zero-extended) returns non-zero; otherwise returns bit 1 of the byte at `+0x59C8 + (cx AND 0xFFF)` of the pointer in qword `02EBF190`",
+   "anchors": [
+    [
+     "0030B529",
+     "cmp"
+    ],
+    [
+     "0030B541",
+     "call"
+    ],
+    [
+     "0030B548",
+     "je"
+    ],
+    [
+     "0030B55A",
+     "movzx"
+    ],
+    [
+     "0030B562",
+     "shr"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": ""
+}
