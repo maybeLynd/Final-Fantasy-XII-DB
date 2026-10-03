@@ -1,0 +1,19 @@
+{
+ "page": "23-Third-Party-Libraries/third-party-middleware-inventory.md",
+ "mode": "member",
+ "family": "Lua 5.2.1 library",
+ "session": "session_016AduKBeymFT4Ug3TxqT399",
+ "rows": [
+  {"fn": "00830250",
+   "text": "computes `c` = (`r8d` - 1) / 50 + 1 (signed division by the multiply with 0x51EB851F) and `b` = `r9d` with -1 replaced by 0; when `c` <= 0x1FF (signed) calls the site at `00830250` + 0x82 with (`rcx`, ((`b` << 9 OR `c`) << 8 OR `edx`) << 6 OR 0x24); when `c` <= 0x3FFFFFF calls the site at `00830250` + 0x72 with (`rcx`, (`b` << 17 OR `edx`) << 6 OR 0x24) and then the site at `00830250` + 0x82 with (`rcx`, `c` << 6 OR 0x27); both paths then store byte `edx` + 1 to `rcx+0x44`; a larger `c` passes qword `rcx+0x18` and \"constructor too long\" (`01CCD368`) to the call at `00830250` + 0xA7, after which the body has no code; consistent with luaK_setlist in Lua 5.2 (the string and the 50-per-flush division)",
+   "anchors": [["0083026C", "imul"], ["00830281", "cmove"], ["008302D2", "call"], ["008302D9", "mov"], ["008302F7", "call"]]},
+  {"fn": "00830300",
+   "text": "when dword `[rdx]` is 0xC, stores 6 to it and replaces dword `rdx+4` (an index `k`) by bits 6-13 of dword `k` of the array at qword `+0x18` of qword `[rcx]`; when it is 0xD, rewrites that array's dword `k` (`k` = dword `rdx+4`) as its low 23 bits with bit 24 set and stores 0xB to dword `[rdx]`; any other value returns with nothing written",
+   "anchors": [["0083030E", "mov"], ["00830325", "mov"], ["0083033C", "and"], ["00830345", "mov"], ["00830348", "mov"]]},
+  {"fn": "008306C0",
+   "text": "returns at once when `edx` is -1; otherwise walks indices `i` from `edx` over the dword array at qword `+0x18` of qword `[rcx]`: it takes element `i` - 1 when `i` >= 1 and the byte of the table `01CCCCD0` indexed by that element's low 6 bits is negative (signed), else element `i`, and when the taken element `w` has low 6 bits 0x1C rewrites it as ((`w` AND 0xFFB7FFFF) OR 0x360000) >> 17 OR (`w` AND 0x7FC000); it then reads `d` = (element `i` >> 14) - 0x1FFFF, returns when `d` is -1, else continues with `i` + 1 + `d` until that is -1",
+   "anchors": [["00830705", "cmp"], ["00830718", "cmp"], ["00830736", "mov"], ["00830746", "sub"], ["00830757", "jne"]]}
+ ],
+ "skipped": [],
+ "notes": "00830250: the call targets at +0x72/+0x82 are the same callee and the one at +0xA7 another; neither is in this pack, so they are cited by site. The 'consistent with' clause rests on the string 01CCD368 and the /50 division. 00830300 and 008306C0 carry no string, so no library routine is named."
+}
