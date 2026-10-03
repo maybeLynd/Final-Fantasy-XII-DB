@@ -1,0 +1,35 @@
+{
+ "page": "16-UI/Unlabelled-Panes/the-unlabelled-procedures.md",
+ "session": "session_01BHLzhjKPBLPLYeBc5581cg",
+ "rows": [
+  {
+   "fn": "00182BE0",
+   "entered_from": "`00181D50` + 0x11",
+   "text": "returns 0 when the call at `00182BE0` + 0x14 or the call at `00182BE0` + 0x22 returns null; otherwise builds a 16-byte local from the dword trunc(float(unsigned dword result of the call at `00182BE0` + 0x34 on the result of the call at `00182BE0` + 0x2C) * `xmm0`), the dword trunc(float(unsigned dword result of the call at `00182BE0` + 0x57 on the result of the call at `00182BE0` + 0x4F) * `xmm1`) and the qword `02CF7480`, and returns the result of the call at `00182BE0` + 0x96 with (the result of the call at `00182BE0` + 0x89, the local's address)",
+   "anchors": [
+    [
+     "00182BFC",
+     "je"
+    ],
+    [
+     "00182C0A",
+     "je"
+    ],
+    [
+     "00182C23",
+     "mulss"
+    ],
+    [
+     "00182C46",
+     "mulss"
+    ],
+    [
+     "00182C76",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "00182BE0: the calls at +0x14, +0x22, +0x2C, +0x4F and +0x89 are made with no argument register set in the body (rcx is whatever the caller left, then the previous result where shown); the products are truncated toward zero by cvttss2si; the local is copied through xmm0 (movaps/movdqa) before the final call without change."
+}
