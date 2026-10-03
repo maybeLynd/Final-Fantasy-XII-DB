@@ -1,0 +1,14 @@
+{
+ "page": "17-Presentation-Rendering/Character-Render-Records/how-a-character-fades-the-ten-channels.md",
+ "session": "session_01PfF5HpG9wWe4vsreQxCTLf",
+ "rows": [
+  {"fn": "00422F30", "entered_from": "`0041FBF0` + 0x6B",
+   "text": "does nothing when dword `[rcx+0xC4]` is -1; otherwise takes `e` from the call at `00422F30` + 0x15 with dword `[rcx+0x10]` and `r` from the call at `00422F30` + 0x27 with (qword `[e+0xDA8]`, dword `[rcx+0xC4]`), and when `r` is non-null clears bit 0x2 of dword `[r+0xC]` and stores 0 to word `[r+0x24]`",
+   "anchors": [["00422F40", "je"], ["00422F45", "call"], ["00422F57", "call"], ["00422F61", "and"], ["00422F67", "mov"]]},
+  {"fn": "00422F80", "entered_from": "`0041FBF0` + 0x52",
+   "text": "does nothing when dword `[rcx+0xC4]` is -1; otherwise takes `e` from the call at `00422F80` + 0x15 with dword `[rcx+0x10]` and `r` from the call at `00422F80` + 0x27 with (qword `[e+0xDA8]`, dword `[rcx+0xC4]`), and when `r` is non-null sets bit 0x2 of dword `[r+0xC]` and stores 1 to word `[r+0x24]`",
+   "anchors": [["00422F90", "je"], ["00422F95", "call"], ["00422FA7", "call"], ["00422FB1", "or"], ["00422FBA", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": ""
+}
