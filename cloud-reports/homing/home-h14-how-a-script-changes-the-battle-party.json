@@ -1,0 +1,11 @@
+{
+ "page": "01-Script-VM-Native-Bridge/Party-Presentation-Verbs/how-a-script-changes-the-battle-party.md",
+ "session": "session_01Ff3pgr29V1M59kxPqNgYBZ",
+ "rows": [
+  {"fn": "0035A050", "entered_from": "`0034D4E0` + 0xA4",
+   "text": "returns `ecx` AND 0x7F",
+   "anchors": [["0035A053", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "0035A050: doubt on eligibility only. The AND is the entry instruction; the one interior instruction is the mov that returns the masked value. If FABLE treats this as entry-only work, move it to skipped."
+}
