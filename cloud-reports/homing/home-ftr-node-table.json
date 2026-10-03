@@ -1,0 +1,31 @@
+{
+ "page": "17-Presentation-Rendering/Model-And-Motion-Formats/ftr-node-table.md",
+ "session": "session_01HFDWqiFGBo93D32pyB6Lkx",
+ "rows": [
+  {
+   "fn": "004775E0",
+   "entered_from": "`004213E0` + 0xF1",
+   "text": "takes the 64-byte record indexed by the zero-extended `cl` in the array at `02CA6CA0` and, only when its dword `+4` equals the full `ecx`, stores `dx` to its word `+2`; otherwise it writes nothing",
+   "anchors": [
+    [
+     "004775EB",
+     "shl"
+    ],
+    [
+     "004775F4",
+     "cmp"
+    ],
+    [
+     "004775F8",
+     "cmovne"
+    ],
+    [
+     "00477601",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": ""
+}
