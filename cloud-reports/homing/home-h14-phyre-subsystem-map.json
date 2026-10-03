@@ -1,0 +1,11 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/phyre-subsystem-map.md",
+ "session": "session_01PfF5HpG9wWe4vsreQxCTLf",
+ "rows": [
+  {"fn": "00793410", "entered_from": "`007933C0` + 0x40",
+   "text": "stores `01CB2498` to qword `[rcx]`; when dword `[rcx+8]` is non-zero it makes the call at `00793410` + 0x3C with qword `[rcx+0x10]` if that qword is non-null and bit 31 of the dword is clear, then stores 0 to qword `[rcx+0x10]` and dword `[rcx+8]`; it then repeats the test on the current dword `[rcx+8]` and qword `[rcx+0x10]` (bit 31 clear and qword non-null) for the call at `00793410` + 0x5E, and on every path ends by storing 0 to qword `[rcx+0x10]` and dword `[rcx+8]`",
+   "anchors": [["0079342E", "mov"], ["00793443", "shr"], ["0079344C", "call"], ["0079346E", "call"], ["00793474", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "00793410: the second test can only lead to the + 0x5E call when dword [rcx+8] was 0 on entry, since the first block zeroes both fields otherwise."
+}
