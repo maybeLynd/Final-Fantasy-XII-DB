@@ -1,0 +1,14 @@
+{
+ "page": "18-Audio/Audio-Boundary/how-a-sound-request-becomes-a-voice.md",
+ "session": "session_01Cj7Fn364nPXZ9Bw71KUr9i",
+ "rows": [
+  {"fn": "00205C70", "entered_from": "`00206E90` + 0x16",
+   "text": "allocates `0x28` bytes through `00205C70` + 0x23 and, when non-null, sets qword `+0x0` to `009058F0`, dword `+0x8` to `0xA` (`0xB` when `dl` is non-zero) and zeroes dword `+0xC` and qwords `+0x10`, `+0x18`, `+0x20`; allocates `0x20` bytes through `00205C70` + 0x6D and, when non-null, sets qword `+0x0` to `009058C0`, `+0x8` to 1 and zeroes `+0x10` and `+0x18`; then, with T = qword `rcx+0x8`, stores T to the first block's `+0x18`, and when T's qword `+0x10` is non-null stores it to the first block's `+0x10` and the first block to its `+0x18`; stores the first block to T's `+0x10`, the second block to the first's `+0x20`, the first to the second's `+0x18`, and the second to `rcx+0x8`; returns the first block",
+   "anchors": [["00205C93", "call"], ["00205CAC", "setne"], ["00205CDD", "call"], ["00205D2A", "mov"], ["00205D3E", "mov"]]},
+  {"fn": "00212970", "entered_from": "`002129F0` + 0x9",
+   "text": "increments dword `01FD36B0`, ANDs it with `0x7FFFFFFF` (a zero result becomes 1), stores it back and to dword `[rcx]`; then scans 8-byte slots from the cursor qword `01E027D0` through `01FD36C0` to `01FD3AC0`, wrapping to `01FD36C0`, for a slot whose dword `+0x0` is 0: it writes that value to the slot's dword `+0x0` and `edx` to its dword `+0x4`, advances the cursor to the next slot (wrapping) and returns the slot index (offset from `01FD36C0` shifted right by 3); when the scan returns to the cursor without a free slot it returns -1",
+   "anchors": [["00212986", "and"], ["00212993", "cmove"], ["002129A8", "test"], ["002129D3", "mov"], ["002129C6", "or"]]}
+ ],
+ "skipped": [],
+ "notes": "00205C70: the allocator (00210EC0) is not named in the host excerpt and is cited by site; the linking stores after both allocations do not check either block for null. 00212970: `01E027D0` is decoded as the static value `0x01FD36C0` (the table start); the row treats it as a cursor because the body rewrites it at 002129E7. The index uses an arithmetic shift (`sar`)."
+}
