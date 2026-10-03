@@ -1,0 +1,23 @@
+{
+ "page": "17-Presentation-Rendering/Character-Render-Records/how-a-character-fades-the-ten-channels.md",
+ "session": "session_01B5SV9waPUkdPQzR9MzNgSH",
+ "rows": [
+  {"fn": "003B3080", "entered_from": "`0042D830` + 0x62",
+   "text": "selects the 0x38-byte slot `(ecx AND 0x3F)` of the table at `02EBD480` and, when that slot's dword `+0` equals `ecx`, ORs 1 into its byte `+0x30`; otherwise returns without a write",
+   "anchors": [["003B3082", "and"], ["003B3089", "lea"], ["003B3090", "cmp"], ["003B3095", "or"]]},
+  {"fn": "003B3AA0", "entered_from": "`0042D830` + 0x57",
+   "text": "selects the 0x38-byte slot `(ecx AND 0x3F)` of the table at `02EBD480` and returns without a write unless that slot's dword `+0` equals `ecx` and its qword `+0x10` is non-null; then, when word `+0x368` of that object has bit 0x4000 set, it stores `0x3f800000` into each of its dwords `+0x320`, `+0x324`, `+0x328` and `+0x32C`, and otherwise copies 16 bytes from `[rdx]` to `+0x320` and stores `0x3f800000` into `+0x32C`",
+   "anchors": [["003B3AB0", "cmp"], ["003B3ABE", "je"], ["003B3AC5", "test"], ["003B3ACE", "mov"], ["003B3AFA", "movdqa"]]},
+  {"fn": "00422F30", "entered_from": "`0041FBF0` + 0x6B",
+   "text": "does nothing when dword `rcx+0xC4` is -1; otherwise passes dword `rcx+0x10` to the site `00422F30` + 0x15, then calls the site `00422F30` + 0x27 with qword `+0xDA8` of that result and dword `rcx+0xC4`, and when this returns non-null clears bit 1 of its dword `+0xC` and stores word 0 at its `+0x24`",
+   "anchors": [["00422F36", "cmp"], ["00422F45", "call"], ["00422F57", "call"], ["00422F61", "and"], ["00422F67", "mov"]]},
+  {"fn": "00422F80", "entered_from": "`0041FBF0` + 0x52",
+   "text": "does nothing when dword `rcx+0xC4` is -1; otherwise passes dword `rcx+0x10` to the site `00422F80` + 0x15, then calls the site `00422F80` + 0x27 with qword `+0xDA8` of that result and dword `rcx+0xC4`, and when this returns non-null ORs 2 into its dword `+0xC` and stores word 1 at its `+0x24`",
+   "anchors": [["00422F86", "cmp"], ["00422F95", "call"], ["00422FA7", "call"], ["00422FB1", "or"], ["00422FBA", "mov"]]},
+  {"fn": "005213B0", "entered_from": "`0041EC00` + 0x128",
+   "text": "subtracts the three floats at `rcx`, `rcx+4`, `rcx+8` from those at `rdx`, `rdx+4`, `rdx+8`, sums the three squared differences into `xmm0` and tail-jumps at the site `005213B0` + 0x30 with that sum",
+   "anchors": [["005213BE", "subss"], ["005213CC", "mulss"], ["005213DC", "addss"], ["005213E0", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "003B3AA0: `0x3f800000` is written as the raw immediate because the listing does not decode it; it is the bit pattern of float 1.0. 005213B0: the tail-jump target is not in the host excerpt, so it is cited by site; the sentence does not say what that target computes."
+}
