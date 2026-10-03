@@ -1,0 +1,11 @@
+{
+ "page": "00-Engine-Core-Runtime/Developer-Tuning-Console/console-command-names.md",
+ "session": "session_01B5JAqPgewUFviUD5ZfpMqA",
+ "rows": [
+  {"fn": "001C0400", "entered_from": "`001CD0E0` + 0x8B8",
+   "text": "divides qword `rcx+0x60` minus qword `rcx+0x58` by 40 (signed, as a multiply-high and shift); returns 1 when the low 32 bits of that quotient are zero or qword `+0x10` is zero, otherwise returns dword `+0x38` of the object at qword `+0x18`",
+   "anchors": [["001C0412", "imul"], ["001C0423", "test"], ["001C0427", "cmp"], ["001C0432", "mov"], ["001C0436", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "001C0400: the divisor 40 is derived from the magic multiplier 0x6666666666666667 with sar 4 (the sign-correction shr 0x3F follows); the 16-digit constant is left out of the sentence."
+}
