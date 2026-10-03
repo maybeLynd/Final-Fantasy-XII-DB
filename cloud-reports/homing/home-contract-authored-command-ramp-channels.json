@@ -1,0 +1,32 @@
+{
+ "page": "17-Presentation-Rendering/CONTRACT-authored-command-ramp-channels.md",
+ "session": "session_013d18gLR7WCyczJCeHPeArU",
+ "rows": [
+  {"fn": "00185D80", "entered_from": "`001E0590` + 0xC",
+   "text": "copies dword `+0xDBC` of `rcx` to dword `+0xDC0` and then stores 0 to dword `+0xDBC`",
+   "anchors": [["00185D86", "mov"], ["00185D8C", "mov"]]},
+  {"fn": "002DF170", "entered_from": "`003B3EA0` + 0xE",
+   "text": "reorders its two arguments and tail-jumps at `002DF170` + 0xC with (1, `ecx`, 0, `edx`)",
+   "anchors": [["002DF173", "mov"], ["002DF176", "mov"], ["002DF178", "lea"], ["002DF17C", "jmp"]]},
+  {"fn": "002ED530", "entered_from": "`004256E0` + 0x49D",
+   "text": "returns 0 for a null `rcx`; otherwise issues the call at `002ED530` + 0xE on `rcx` and, when it returns non-zero, tail-jumps at `002ED530` + 0x1F with `rcx`, else tail-jumps at `002ED530` + 0x2B with (`rcx`, 0)",
+   "anchors": [["002ED539", "test"], ["002ED53E", "call"], ["002ED54F", "jmp"], ["002ED55B", "jmp"]]},
+  {"fn": "0041C200", "entered_from": "`00418880` + 0x1B5F",
+   "text": "returns without writing when `r8` is null, the fifth (stack) argument is null, or bit `0x20` of byte `+0x96` of `rdx` is clear; otherwise, for each index below word `+0x2BC` of `rcx` (signed), reads the word at fifth-argument `+0x100` plus index times `0x108` and clears bit `0x10` of the word at `r9` plus that word (sign-extended) times `0x290` plus `0x280`",
+   "anchors": [["0041C212", "test"], ["0041C21D", "cmp"], ["0041C230", "movsx"], ["0041C244", "and"], ["0041C256", "cmp"]]},
+  {"fn": "0041C6C0", "entered_from": "`0041DA90` + 0x1BF",
+   "text": "when word `+0x31C` of `rcx` equals `0x2008`, bit `0x200000` of its dword `+0xC` is clear, the function pointer at qword `02CA4430` is non-null and qword `+0x2C0` is non-null, calls that pointer with (qword `+0x2C0`, a stack buffer whose byte `+2` is 2) and then ORs `0x200000` into dword `+0xC`; any failed check returns without calling",
+   "anchors": [["0041C6CE", "cmp"], ["0041C6D7", "test"], ["0041C6E0", "mov"], ["0041C702", "call"], ["0041C704", "or"]]},
+  {"fn": "0041C720", "entered_from": "`004256E0` + 0x5BD",
+   "text": "walks the word `+0x28` (signed) entries of stride `0xA0` starting at `rcx+0x30` for the first whose dword `+0x80` equals word `+0x26` (sign-extended), and returns 1 when that entry's byte `+0x95` is 1 and 0 otherwise; with no match, or a count of zero or less, it returns 0",
+   "anchors": [["0041C732", "jle"], ["0041C738", "cmp"], ["0041C742", "add"], ["0041C750", "cmp"], ["0041C757", "sete"]]},
+  {"fn": "00422D90", "entered_from": "`004256E0` + 0x401",
+   "text": "takes an object from the call at `00422D90` + 0x6 and returns 0 when it is null; otherwise issues the call at `00422D90` + 0x26 with (object, `0x4D524640`, 0), returns 0 when that yields -1, and else returns the sign-extended result of the call at `00422D90` + 0x35 with (object, that index) plus `0x30`",
+   "anchors": [["00422D96", "call"], ["00422DB6", "call"], ["00422DBB", "cmp"], ["00422DC5", "call"], ["00422DCC", "add"]]},
+  {"fn": "00512EC0", "entered_from": "`004256E0` + 0x271",
+   "text": "when the low nibble of byte `+0xF` of `rcx` is 1, tail-jumps at `00512EC0` + 0xD with dword `+8` of `rcx`; otherwise returns -1",
+   "anchors": [["00512EC4", "and"], ["00512EC6", "cmp"], ["00512ECD", "jmp"], ["00512ED2", "or"]]}
+ ],
+ "skipped": [],
+ "notes": "00422D90: the constant 0x4D524640 is the byte string '@FRM' in little-endian order; left undecoded in the sentence because the listing does not decode it."
+}
