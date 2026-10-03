@@ -1,0 +1,14 @@
+{
+ "page": "00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md",
+ "session": "session_01Ft9DsjYbzydEyFv6u1R8to",
+ "rows": [
+  {"fn": "00250960", "entered_from": "`0025D580` + 0x18",
+   "text": "calls the function at `00250960` + 0x13 with (`ecx` = 1, `edx` = 0), then the one at `00250960` + 0x18, and when bit 0x2 of the latter's `al` result is set calls `00250960` + 0x28 with (`ecx` = 0, `edx` = 4); finally tail-jumps (`00250960` + 0x3B) with the incoming `ecx` and `edx`",
+   "anchors": [["00250973", "call"], ["00250978", "call"], ["0025097D", "test"], ["00250988", "call"], ["0025099B", "jmp"]]},
+  {"fn": "002E1630", "entered_from": "`002628B0` + 0x391",
+   "text": "calls the function at `002E1630` + 0x4 and maps its `eax` result: 0 returns -1, 1 returns 0, 2 returns 1, and any other value returns 0",
+   "anchors": [["002E1634", "call"], ["002E163B", "je"], ["002E1642", "cmp"], ["002E164C", "xor"], ["002E1653", "or"]]}
+ ],
+ "skipped": [],
+ "notes": "002E1630: for a result of 2, sub eax,1 leaves 1 and the function returns that eax unchanged (ret at 002E164B)."
+}
