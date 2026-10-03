@@ -1,0 +1,27 @@
+{
+ "page": "08-Combat-Formula/Weather-Terrain-Element-Scaling/weather-terrain-element-scaling.md",
+ "session": "session_014Lqi23L8goQ9zhmHGJGtzN",
+ "rows": [
+  {
+   "fn": "00259B10",
+   "entered_from": "`00336E40` + 0x241",
+   "text": "returns `02097320` plus the sign-extended `ecx` times 0x110, the address of entry `ecx` of a 0x110-byte-stride table at `02097320`, with no bounds check",
+   "anchors": [
+    [
+     "00259B13",
+     "lea"
+    ],
+    [
+     "00259B1A",
+     "imul"
+    ],
+    [
+     "00259B21",
+     "add"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "00259B10: 02097320 is a RIP-relative global far from the code, not data trailing the function. Doubt: none."
+}
