@@ -1,0 +1,35 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/cl2-menu-colour-tables.md",
+ "session": "session_01HFDWqiFGBo93D32pyB6Lkx",
+ "rows": [
+  {
+   "fn": "00616210",
+   "entered_from": "`00163D00` + 0x46",
+   "text": "calls the site `00616210` + 0x9 with `rcx` (and `rdx`, `r8`, `r9` passed through unchanged), then stores the fifth to ninth (stack) arguments as dwords to `rcx+0x20`, `+0x24`, `+0x28`, `+0x2C` and `+0x30` and returns `rcx`",
+   "anchors": [
+    [
+     "00616219",
+     "call"
+    ],
+    [
+     "00616222",
+     "mov"
+    ],
+    [
+     "00616230",
+     "mov"
+    ],
+    [
+     "0061623E",
+     "mov"
+    ],
+    [
+     "00616241",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "00616210: stack-argument numbering assumes the standard x64 frame (push rbx + sub 0x20, so [rsp+0x50] is the fifth argument). Whether the callee at + 0x9 uses rdx/r8/r9 is not visible here; the sentence only says they are left in place."
+}
