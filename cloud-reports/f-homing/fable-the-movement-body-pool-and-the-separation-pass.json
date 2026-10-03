@@ -1,0 +1,217 @@
+{
+ "page": "06-Movement-And-Navigation/the-movement-body-pool-and-the-separation-pass.md",
+ "session": "session_0113mD5fGL648y6vQqrtN2Rj",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "0023B2A0",
+   "text": "calls `0026BBC0(rcx)` with `xmm1` set to the incoming `xmm2` (and `xmm2` unchanged), then tail-jumps to `0026BF60` with the incoming `rcx` and with both `xmm1` and `xmm2` set to the incoming `xmm1`",
+   "anchors": [
+    [
+     "0023B2B1",
+     "movaps"
+    ],
+    [
+     "0023B2B4",
+     "call"
+    ],
+    [
+     "0023B2B9",
+     "movaps"
+    ],
+    [
+     "0023B2BC",
+     "movaps"
+    ],
+    [
+     "0023B2CC",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00347D20",
+   "text": "calls the function at `00347D20+0x10` with `rcx` = `r9` and keeps its `eax`, calls the same function again at `00347D20+0x1A` with `r9` and passes that second `eax` as `ecx` to the call at `00347D20+0x21`; when that returns non-null it calls `002EBC70(result, first eax)` and returns its value, otherwise it returns the null",
+   "anchors": [
+    [
+     "00347D2A",
+     "mov"
+    ],
+    [
+     "00347D38",
+     "mov"
+    ],
+    [
+     "00347D41",
+     "call"
+    ],
+    [
+     "00347D49",
+     "je"
+    ],
+    [
+     "00347D50",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0034A340",
+   "text": "calls `002E3580(rdx)`, then the function at `0034A340+0x14` with `rcx` = the incoming `rdx`, and tail-jumps at `0034A340+0x24` with `rcx` = the incoming `rdx` and `xmm1` = the float that second call returned in `xmm0`",
+   "anchors": [
+    [
+     "0034A346",
+     "mov"
+    ],
+    [
+     "0034A34C",
+     "call"
+    ],
+    [
+     "0034A354",
+     "call"
+    ],
+    [
+     "0034A359",
+     "movaps"
+    ],
+    [
+     "0034A364",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0034F210",
+   "text": "calls the function at `0034F210+0x1D`, `+0x28` and `+0x33` with `rcx` = `r9` each time, keeping the three floats A, B, C it returns in `xmm0`; calls `0034F210+0x44` with `rcx` = the incoming `rdx`, `xmm1` = C, `xmm2` = B, `xmm3` = A; calls `0025D540(rdx)`; then tail-jumps at `0034F210+0x6A` with `rcx` = the incoming `rdx` and `edx` = 0",
+   "anchors": [
+    [
+     "0034F235",
+     "movaps"
+    ],
+    [
+     "0034F248",
+     "movaps"
+    ],
+    [
+     "0034F254",
+     "call"
+    ],
+    [
+     "0034F25C",
+     "call"
+    ],
+    [
+     "0034F27A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00350C30",
+   "text": "calls the function at `00350C30+0x23`, `+0x2F`, `+0x3A` and `+0x45` with `rcx` = `r9` each time, keeping the four floats A, B, C, D it returns in `xmm0`; calls `00350C30+0x56` with `rcx` = the incoming `rdx`, `xmm1` = D, `xmm2` = C, `xmm3` = B, then `00350C30+0x62` with `rcx` = the incoming `rdx` and `xmm1` = A; calls `0025D540(rdx)`; then tail-jumps at `00350C30+0x8E` with `rcx` = the incoming `rdx` and `edx` = 0",
+   "anchors": [
+    [
+     "00350C5B",
+     "movaps"
+    ],
+    [
+     "00350C86",
+     "call"
+    ],
+    [
+     "00350C92",
+     "call"
+    ],
+    [
+     "00350C9A",
+     "call"
+    ],
+    [
+     "00350CBE",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00379240",
+   "text": "adds 0x40 to `ecx`; when `edx` is negative (signed) it tail-jumps `0026E850(ecx + 0x40, 0x12, 5)` (with `r9` unchanged); otherwise it tail-jumps `0026E880(ecx + 0x40, edx, 0x12, 5)`",
+   "anchors": [
+    [
+     "00379243",
+     "test"
+    ],
+    [
+     "00379245",
+     "js"
+    ],
+    [
+     "0037924D",
+     "lea"
+    ],
+    [
+     "00379251",
+     "jmp"
+    ],
+    [
+     "0037925F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00379270",
+   "text": "when `ecx` is negative (signed) it tail-jumps `0026E150(0x20, 0x20)`; otherwise it tail-jumps `0026E130(ecx + 0x20)`",
+   "anchors": [
+    [
+     "00379272",
+     "jns"
+    ],
+    [
+     "00379274",
+     "mov"
+    ],
+    [
+     "0037927B",
+     "jmp"
+    ],
+    [
+     "00379280",
+     "add"
+    ],
+    [
+     "00379283",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003DE4C0",
+   "text": "calls `0025AB30(rdx)`; with E = `02B58C50` + sign-extended `ecx` * 0x70, stores byte 2 at `E+0x20` when `r8d` is 1, 4 when it is 2, else 1; when dword `E+0` is non-zero passes it to the call at `003DE4C0+0x62`; zeroes dword `E+0`, qwords `E+8` and `E+0x10` and byte `E+5`, then stores the `eax` of the call at `003DE4C0+0x84` (`rcx` = `E+0x20`) at dword `E+0` and byte `rdx+0x15` at `E+4`; calls `003DE4C0+0xA0` with (`E+0x20`, 0, 0x50), then ORs 1 into byte `E+0x25` and writes dword 0x100c002 at `E+0x20`, byte 1 at `E+0x24`, byte 0 at `E+0x26`, dword 0x41200000 at `E+0x2C`, 0x3f800000 at `E+0x30`, `E+0x34`, `E+0x38` (a qword store, upper dword 0) and each dword `E+0x4C` through `E+0x5C`, qword 0 at `E+0x40` and dword 0 at `E+0x48`; finally stores `rdx` at qword `E+8`, the low byte of `ecx` at byte `rdx+5` and 2 at byte `rdx+4`",
+   "anchors": [
+    [
+     "003DE4EF",
+     "call"
+    ],
+    [
+     "003DE511",
+     "mov"
+    ],
+    [
+     "003DE556",
+     "mov"
+    ],
+    [
+     "003DE569",
+     "mov"
+    ],
+    [
+     "003DE5D3",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Doubts per function. 0023B2A0: xmm2 at the 0026BBC0 call is the untouched incoming xmm2, stated as passed though the listing does not show 0026BBC0 reading it. 00347D20: the two calls at +0x10/+0x1A target the same function; the return value on the non-null path is whatever 002EBC70 leaves in rax (not shown). 0034A340: rdx is not reloaded after the calls, so only rcx is stated for the tail jump. 0034F210/00350C30: the first float kept is the one returned first; argument order verified against the movaps sequence. 003DE4C0 (about 1,000 characters): the byte stored at E+0x20 from r8d is later overwritten by the dword 0x100c002 after the +0xA0 call (rcx = E+0x20, edx = 0, r8d = 0x50), but the +0x84 call sees it first; 0x41200000 and 0x3f800000 are raw immediates (not decoded by the listing); the low byte of the sign-extended ecx is bpl. No return value stated for 003DE4C0 (rax is left by the +0xA0 call). Calls to functions this page does not name are cited by site."
+}
