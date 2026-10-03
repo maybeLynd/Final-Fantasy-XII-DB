@@ -1,0 +1,35 @@
+{
+ "page": "17-Presentation-Rendering/CONTRACT-authored-command-ramp-channels.md",
+ "session": "session_01HfPRM3vgupD1jscEXG8z9Y",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "0042DFC0",
+   "text": "calls `00422EB0` with the incoming registers when word `rcx+6` is `0xffff`, word `rcx+0x2f2` is 1, word `rcx+0x2f8` is not `0xffff`, or bit `0x8000000` of dword `rcx+0x284` is set, and otherwise skips it with `eax` = 0; then, when word `rcx+6` (re-read) is `0xffff`, stores `eax` (the call's result, or 0) at dword `rdx+0x58`; returns `eax` on every path",
+   "anchors": [
+    [
+     "0042DFCF",
+     "cmp"
+    ],
+    [
+     "0042DFD9",
+     "cmp"
+    ],
+    [
+     "0042DFED",
+     "test"
+    ],
+    [
+     "0042DFF9",
+     "call"
+    ],
+    [
+     "0042E005",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": ""
+}
