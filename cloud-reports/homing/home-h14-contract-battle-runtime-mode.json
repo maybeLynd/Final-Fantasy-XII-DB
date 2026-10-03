@@ -1,0 +1,14 @@
+{
+ "page": "00-Engine-Core-Runtime/Battle-Runtime-Mode/CONTRACT-battle-runtime-mode.md",
+ "session": "session_01Ft9DsjYbzydEyFv6u1R8to",
+ "rows": [
+  {"fn": "00254480", "entered_from": "`00280140` + 0x95",
+   "text": "stores `ecx` to dword `02092744` and `edx` with bit 7 cleared to dword `020927EC`, and rewrites dword `01E0C320` as 0 when bit 0x80 of `dl` is set, otherwise with its own value unchanged",
+   "anchors": [["00254486", "test"], ["0025448F", "mov"], ["00254495", "cmovne"], ["00254499", "btr"], ["002544A3", "mov"]]},
+  {"fn": "00265950", "entered_from": "`0037B4D0` + 0xB81",
+   "text": "returns in `xmm0` the float dword `+0x148` of qword `rcx+0xC0` when that qword is non-null, else 0.0",
+   "anchors": [["00265957", "test"], ["0026595C", "movss"], ["00265965", "xorps"]]}
+ ],
+ "skipped": [],
+ "notes": "00254480: the listing's [u32 0x00000040] for 01E0C320 is the image's initial value, not stated as a runtime value."
+}
