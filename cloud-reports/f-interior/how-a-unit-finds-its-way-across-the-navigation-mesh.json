@@ -1,0 +1,34 @@
+{
+ "page": "06-Movement-And-Navigation/how-a-unit-finds-its-way-across-the-navigation-mesh.md",
+ "session": "session_01Rk789qY4qsCmkfLpxsx7MQ",
+ "rows": [
+  {
+   "fn": "0026E300",
+   "text": "reads dword `v` at `00915760 + dx*4` (`dx` sign-extended) and returns -1 when it is negative; otherwise, with `m` = 1 shifted left by `v` (`shl` by `cl`), returns 0 when the dword at `0209A3E0 + ecx*8` (`ecx` sign-extended) has no bit in common with `m`, else 2 when the dword 4 bytes after it does and 1 when not",
+   "anchors": [
+    [
+     "0026E30E",
+     "mov"
+    ],
+    [
+     "0026E317",
+     "js"
+    ],
+    [
+     "0026E330",
+     "test"
+    ],
+    [
+     "0026E335",
+     "test"
+    ],
+    [
+     "0026E33E",
+     "cmovne"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": ""
+}
