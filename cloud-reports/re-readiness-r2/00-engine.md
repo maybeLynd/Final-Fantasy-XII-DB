@@ -560,3 +560,49 @@ Gaps pass 1 did not list, found by re-reading each group's pages (with weight on
 | N-10.6 | Callees not named for ids 175 and 176, which pass 1 did not list (its S-100 covers 177-182 and 263). The dispatch targets of id 175 (Yebis enable) and id 176's call are not stated. | STATIC | "then dispatches on the result" (ARM-F:108); "0/1; then one call" (ARM-F:109) | — |
 | N-10.7 | The id 52 setter chain is described only in part. `00248410(bl)` is named but not described. `0024B100` copies into words `01E0C1D4`/`01E0C1D6`, and no reader or meaning is stated for them. | STATIC | "`00248410(bl)` take the byte" (ARM-B:413); "copies word `01E0C1D8` to word `01E0C1D4`" (ARM-B:449) | — |
 | N-10.8 | Stale register. UQ-17 still gives the census as 89 dwords and that the clusters are individually addressed. ARM-D corrected the count to 88 on 2026-10-02 and now says `006084B0` walks the block from a register base. | DOC | "Whole-image census over all 89 dwords" (REG:2722); "**`006084B0` walks it from a register base**" (ARM-D:388) | UQ-17 ANSWERED (stale) |
+
+## 4. Rating
+
+**Pass 1: NOT YET. Pass 2: NOT YET (unchanged).**
+
+Since 2026-10-02 the folder's pages have changed mostly through dated corrections and new "homed body" tables. Those
+settle several of pass 1's contradictions (C-V17, C-V18, C-V27, C-V33, C-V35, C-V42, C-V122; see the rows that cite
+them), but they close few of its gaps: 5 of 278. A further 20 were never gaps (WRONG-IN-PASS-1, mostly answers
+that sat in a register row or on another page). The structural blockers pass 1 named are still there:
+- **The `0209BE80` gate singleton** has no end of life (S-28 OPEN) and no reproduction formula with the gate's own
+  writes and inner tests (S-26 NARROWED, S-27 OPEN). Its children are measured in extent only: G-44, G-45 and G-46
+  are NARROWED (the `_57E0` record is now `0x2A0`), and `_8FA0 +0x0..+0xABF` is still unread.
+- **The 267 workbench member routines** are still a census (S-58 and S-64 OPEN).
+- **The object model** now has sized body sentences for about 466 of the 4,275 appendix methods (S-67 NARROWED).
+  Per-class sizes (S-68) and cross-class slot meaning (S-69) are OPEN.
+- **The action-timeline interpreter** still has no per-opcode operand layout (S-78 OPEN). Its context is now a
+  stated shared singleton, but with no allocation, size or lifetime (S-77 NARROWED).
+- **The mode-reset body `00313840`** is described only for its bit-0 clear (S-36 NARROWED).
+
+Pass 1's §3 contradictions that rated parts NOT YET were outside this pass and stand as pass 1 left them: the
+skip / fast-forward arrays (C-V19–C-V21), the mode-dispatcher columns (C-V52–C-V55), the text-resolver table
+(C-V75, C-V76) and the basis offsets (C-V80, C-V81).
+
+What decides the rating is that the gaps left in the frame skeleton and the services are now mostly
+small and named, while each of the five structural items above blocks a port of its part. The per-part ratings in
+pass 1's §4 hold. No part moves up, because none of its blocking items closed.
+
+**Cheapest progress.** Of the 253 pass-1 gaps still OPEN or NARROWED, 59 are DOC, and so are 33 of the 74 new gaps.
+These 92 items need only a pointer or a strike-through on a 00 page: the answer already exists elsewhere.
+Groups 4 (mode ladder) and 8 (accessors and ownership) carry the most, with 10 and 15 DOC rows respectively. The 168
+STATIC pass-1 items and 41 STATIC new items are desk reads. Only 20 items need a live run (RUNTIME, several of them
+evidence-only) and 6 need a data census.
+
+| group | CLOSED | NARROWED | OPEN | WRONG | still open by class (STATIC / RUNTIME / DATA / DOC) | new (STATIC / DOC) |
+|---|---:|---:|---:|---:|---|---|
+| 2.1 Boot, startup data, application root | 0 | 11 | 19 | 3 | 20 / 4 / 0 / 6 | 6 / 5 |
+| 2.2 World tick, field frame, force-fight | 1 | 4 | 22 | 6 | 19 / 1 / 1 / 5 | 3 / 5 |
+| 2.3 Update gate, stop registry | 1 | 15 | 12 | 1 | 22 / 3 / 0 / 2 | 4 / 2 |
+| 2.4 Mode ladder, log, duplicate names, all-ones | 1 | 2 | 27 | 0 | 15 / 3 / 1 / 10 | 2 / 4 |
+| 2.5 Encoded ids, class registry, query record, basis, ABI | 0 | 1 | 19 | 1 | 12 / 2 / 1 / 5 | 6 / 6 |
+| 2.6 Transform workbench | 0 | 4 | 25 | 1 | 24 / 2 / 0 / 3 | 4 / 1 |
+| 2.7 Object model | 0 | 2 | 19 | 1 | 16 / 1 / 0 / 4 | 2 / 6 |
+| 2.8 Accessors, ownership boundary | 0 | 3 | 20 | 1 | 5 / 2 / 1 / 15 | 5 / 1 |
+| 2.9 Console frame | 1 | 1 | 19 | 5 | 14 / 2 / 2 / 2 | 4 / 0 |
+| 2.10 Console arm catalogue | 1 | 6 | 22 | 1 | 21 / 0 / 0 / 7 | 5 / 3 |
+| **total** | **5** | **49** | **204** | **20** | **168 / 20 / 6 / 59** | **41 / 33** |
