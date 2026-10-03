@@ -1,0 +1,17 @@
+{
+ "page": "17-Presentation-Rendering/Character-Render-Records/the-rig-of-seventeen-controllers.md",
+ "session": "session_019ww1AYv6HUCASSLr6wdSTQ",
+ "rows": [
+  {"fn": "003E1C10", "entered_from": "`00372710` + 0x40",
+   "text": "calls `0020E600(dword [rcx])` and, when that is non-null, calls `0020E600(dword [rcx])` again and stores `dx` at word `rcx+0x60` when byte `+0x6` of the second result is non-zero; a null first result or a zero byte returns without writing",
+   "anchors": [["003E1C21", "call"], ["003E1C29", "je"], ["003E1C32", "cmp"], ["003E1C38", "mov"]]},
+  {"fn": "0040DB00", "entered_from": "`003E0E70` + 0x5B",
+   "text": "calls `0020E600(dword [rcx])` and scans byte `rcx+4` entries of 0x30 bytes starting at the result plus 0x2A, returning the index of the first entry whose word shifted right by 4 equals `edx`, or 0xFFF when none matches or the count is 0",
+   "anchors": [["0040DB18", "call"], ["0040DB33", "shr"], ["0040DB36", "cmp"], ["0040DB3F", "add"], ["0040DB48", "mov"]]},
+  {"fn": "00471B20", "entered_from": "`003E12A0` + 0x3E",
+   "text": "clears bits 6 and 7 of byte `rcx+9`; when `edx` is 0 it then sets bit 0x40 of that byte and zeroes byte `+0x8`; otherwise, when byte `+0x9` has any of bits 0x30 set, it clears bit 0x20 and sets bit 0x10, and when the result is below 0x40 and byte `+0x8` is 0 it stores qword 8 at `+0x10`, word 1 at `+0xA` and byte 1 at `+0x8`; the other paths return without further writes",
+   "anchors": [["00471B2C", "test"], ["00471B34", "mov"], ["00471B3B", "cmp"], ["00471B46", "mov"], ["00471B56", "or"]]}
+ ],
+ "skipped": [],
+ "notes": "0040DB00 is also entered from `003E1210` + 0x5B; it does not test the 0020E600 result for null. 00471B20: the 'below 0x40' test at 00471B37 always passes because the entry instruction cleared bits 6 and 7; the sentence states the instruction as written."
+}
