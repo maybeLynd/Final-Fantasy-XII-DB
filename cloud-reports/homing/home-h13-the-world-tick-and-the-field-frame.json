@@ -1,0 +1,26 @@
+{
+ "page": "00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md",
+ "session": "session_016GtCXT5XBGf5Aqww1giQQs",
+ "rows": [
+  {"fn": "00287850", "entered_from": "`002878E0` + 0x11D",
+   "text": "takes qword `+0x50` of qword `+0x60` of `rcx` (0 when `rcx` is null) and reads its qword `+0x18`; the target is qword `+0x10` of qword `+0x60` of that value when it is non-null, else 0; stores the qword returned by the call at `00287850` + 0x2F (`ecx` = 0xD3E) at target qword `+0x18` and the dword returned by the call at `00287850` + 0x3A (`ecx` = 0) at target dword `+0x20`",
+   "anchors": [["00287865", "mov"], ["00287876", "mov"], ["0028787F", "call"], ["00287886", "mov"], ["0028788F", "mov"]]},
+  {"fn": "002EDD70", "entered_from": "`002E4A40` + 0x104",
+   "text": "returns without work when `cx` is -1, when the record address `022C6F28` + 0x740 times the sign-extended `cx` is zero, or when that record's dword `+0x284` is 0; otherwise ORs 8 into its dword `+0x290` and stores `xmm1`, `xmm2` and `xmm3` as floats at `+0x380`, `+0x384` and `+0x388`",
+   "anchors": [["002EDD81", "add"], ["002EDD8A", "cmp"], ["002EDD93", "or"], ["002EDD9A", "movss"], ["002EDDAA", "movss"]]},
+  {"fn": "003EB250", "entered_from": "`003EB190` + 0x52",
+   "text": "returns qword `02B5EB70` without other work when `rcx` or that qword is null; otherwise unlinks that node (prev/next qwords `+0`/`+8`) and pushes it at the head of the list at `02B5EB20`, stores `dl` at byte `+0x41`, 1 at byte `+0x40` and `rcx` at qword `+0x18`, increments word `rcx+0x1C`, clears bit 0x4 of byte `rcx+0x18`, and stores at dword `+0x10` the result of the call at `003EB250` + 0x97 (dword `rcx+0x10`, `r8d`, `r9d`) while dword `01F7F508` holds dword `rcx+0x14` (reset to 0 after); then, for the record `022C6F28` + 0x740 times the signed word `+0x10` (each step only when that word is not -1, the address is non-zero and its dword `+0x284` is non-zero), clears its qword `+0x108`, makes the call at `003EB250` + 0x100 (record, 0) and clears its byte `+0x413`, takes a float from the call at `003EB250` + 0x17D (30.0 from `008F8D80` when the record is unusable), makes unconditionally the calls at `003EB250` + 0x18B (node `+0x10` address, 0) and `003EB250` + 0x1A2 (word `+0x10`, 1.0, 1.0, 1.0), then the calls at `003EB250` + 0x1D1 (record, that float) and `003EB250` + 0x207 (record); returns the node",
+   "anchors": [["003EB2A4", "mov"], ["003EB2E7", "call"], ["003EB31B", "mov"], ["003EB392", "movss"], ["003EB3F2", "call"]]},
+  {"fn": "003ED7F0", "entered_from": "`0036F530` + 0x14",
+   "text": "does nothing when dword `02EBB7D0` is negative (signed); otherwise copies the 16 bytes at `02EBB7D0` to `02EBB7E0` and rewrites dword `02EBB7D0` as -1 when `ecx` is non-zero, or with its own value when `ecx` is 0",
+   "anchors": [["003ED7F8", "js"], ["003ED806", "movups"], ["003ED80D", "cmovne"], ["003ED810", "mov"]]},
+  {"fn": "00466C80", "entered_from": "`00473490` + 0x17",
+   "text": "returns 0.0 in `xmm0` when `ecx` is negative or not below dword `02EBB6E0` (signed), or when qword `+8` of the 0x50-byte entry `ecx` of the array at qword `02EBB6F0` is null; otherwise returns that entry's float `+0x44`",
+   "anchors": [["00466C84", "cmp"], ["00466C93", "shl"], ["00466C9E", "cmp"], ["00466CA5", "movss"], ["00466CAB", "xorps"]]},
+  {"fn": "00467620", "entered_from": "`00473500` + 0xCA",
+   "text": "does nothing when `ecx` is negative or not below dword `02EBB6E0` (signed), or when qword `+8` of the 0x50-byte entry `ecx` of the array at qword `02EBB6F0` is null; otherwise sets both bit 0 and bit 4 of that entry's dword `+0x4C` to bit 0 of `edx`, leaving its other bits unchanged",
+   "anchors": [["00467624", "cmp"], ["0046763E", "cmp"], ["00467645", "and"], ["00467654", "and"], ["00467659", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "00287850: on the null-rcx path the listing uses 0 as the base pointer and still reads qword +0x18 from it (no guard), and when that qword is null the target is 0 and the two stores still happen; the sentence states this literally. 003EB250: long body, sentence is near 1,100 characters; the five record-guarded steps each re-read word +0x10 and re-test the guard separately, which the sentence folds into one parenthesis; the null-rcx path returns the qword 02B5EB70 value (possibly non-null) rather than 0. 003ED7F0: the 16-byte copy runs before the store, so 02EBB7E0 receives the old dword 02EBB7D0 value."
+}
