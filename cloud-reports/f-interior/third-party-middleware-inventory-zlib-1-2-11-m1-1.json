@@ -1,0 +1,644 @@
+{
+ "page": "23-Third-Party-Libraries/third-party-middleware-inventory.md",
+ "mode": "member",
+ "family": "zlib 1.2.11",
+ "session": "session_013rwnEBVBjHYrPM3ikBMija",
+ "rows": [
+  {
+   "fn": "0080C720",
+   "text": "stores the address `01CC73B0` at qword `rcx+0x60` and 9 at dword `+0x70`, the address `01CC7BB0` at qword `+0x68` and 5 at dword `+0x74`, and returns",
+   "anchors": [
+    [
+     "0080C727",
+     "mov"
+    ],
+    [
+     "0080C72E",
+     "mov"
+    ],
+    [
+     "0080C739",
+     "mov"
+    ],
+    [
+     "0080C73D",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0080DF50",
+   "text": "returns -6 (`0xfffffffa`) unless `r8` is non-null, its first byte is 0x31 and `r9d` is 0x58; then returns -2 when `rcx` is null; otherwise zeroes qword `rcx+0x20`, fills a zero qword `+0x30` with `0080E920` (zeroing qword `+0x40`) and a zero qword `+0x38` with `0080E930`, calls `[rcx+0x30]`(qword `+0x40`, 1, 0x1BF0) at `0080DF50`+0x84 and returns -4 when that is null; else stores the block at qword `+0x28`, writes `rcx` to its qword `+0`, 0 to its qword `+0x40` and 0x3F34 to its dword `+8`, and returns `0080E080(rcx, edx)`, first freeing the block through `[rcx+0x38]`(qword `+0x40`, block) at `0080DF50`+0xD0 and zeroing qword `+0x28` when that result is non-zero; consistent with inflateInit2_ in zlib (version byte 0x31 '1', stream size 0x58 and the -6/-2/-4 returns)",
+   "anchors": [
+    [
+     "0080DF68",
+     "cmp"
+    ],
+    [
+     "0080E02B",
+     "mov"
+    ],
+    [
+     "0080DFD4",
+     "call"
+    ],
+    [
+     "0080E007",
+     "mov"
+    ],
+    [
+     "0080E00E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0080E050",
+   "text": "returns -2 (`0xfffffffe`) when the check called at `0080E050`+0x4 is non-zero; otherwise zeroes qword `+0x34` and dword `+0x3c` of the block at qword `rcx+0x28` and tail-jumps to `0080E130`",
+   "anchors": [
+    [
+     "0080E054",
+     "call"
+    ],
+    [
+     "0080E05D",
+     "mov"
+    ],
+    [
+     "0080E06D",
+     "mov"
+    ],
+    [
+     "0080E071",
+     "mov"
+    ],
+    [
+     "0080E078",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0080E080",
+   "text": "returns -2 when the check called at `0080E080`+0xF is non-zero; otherwise derives a flag and a bit count from `edx` (negative: flag 0, count `-edx`; else flag `(edx sar 4)+5` and count `edx`, masked to its low 4 bits when `edx` is below 0x30, signed), returns -2 when the count is non-zero and outside 8-15, else, on the block at qword `rcx+0x28`, frees a non-null qword `+0x40` through `[rcx+0x38]`(qword `rcx+0x40`, it) at `0080E080`+0x75 and zeroes it when dword `+0x30` differs from the count, stores the flag at dword `+0x10` and the count at dword `+0x30`, and returns `0080E050(rcx)`",
+   "anchors": [
+    [
+     "0080E0C2",
+     "sar"
+    ],
+    [
+     "0080E0D7",
+     "cmp"
+    ],
+    [
+     "0080E0F5",
+     "call"
+    ],
+    [
+     "0080E106",
+     "mov"
+    ],
+    [
+     "0080E109",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0080E130",
+   "text": "returns -2 when the check called at `0080E130`+0x7 is non-zero; otherwise zeroes dword `+0x24` of the block at qword `rcx+0x28` and dwords `rcx+0x1c`, `+0xc` and qword `+0x20`, sets dword `rcx+0x4c` to the block's dword `+0x10` AND 1 when that is non-zero, then on the block stores 0x3F34 as qword `+8`, `block+0x550` at qwords `+0x88`, `+0x68` and `+0x60`, 0 at dword `+0x14` and qwords `+0x28`/`+0x48`, 0x8000 at dword `+0x1c`, 1 at dword `+0x1be0` and -1 at dword `+0x1be4`, and returns 0",
+   "anchors": [
+    [
+     "0080E137",
+     "call"
+    ],
+    [
+     "0080E168",
+     "and"
+    ],
+    [
+     "0080E175",
+     "mov"
+    ],
+    [
+     "0080E17D",
+     "mov"
+    ],
+    [
+     "0080E1AB",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0080E200",
+   "text": "with the block at qword `rcx+0x28`: when its qword `+0x40` is null allocates it through `[rcx+0x30]`(qword `rcx+0x40`, `1 shl` dword `+0x30`, 1) at `0080E200`+0x3B and returns 1 if that is null; when dword `+0x34` is 0 sets it to `1 shl` dword `+0x30` and zeroes dwords `+0x38`/`+0x3c`; then with S = dword `+0x34`: if `r8d` is at least S, copies S bytes from `rdx`-S to the buffer (call at +0x7C), sets `+0x38` to S and `+0x3c` to 0; else copies m = min(S - `+0x3c`, `r8d`) bytes from `rdx`-`r8d` to buffer+`+0x3c` (call at +0xA2) and, if bytes remain, copies them from `rdx` minus that rest to the buffer start (call at +0xB8), setting `+0x3c` to that rest and `+0x38` to S, otherwise adds m to `+0x3c` (0 once it equals S) and to `+0x38` while that is below S; returns 0",
+   "anchors": [
+    [
+     "0080E23B",
+     "call"
+    ],
+    [
+     "0080E261",
+     "mov"
+    ],
+    [
+     "0080E27C",
+     "call"
+    ],
+    [
+     "0080E2A2",
+     "call"
+    ],
+    [
+     "0080E2CE",
+     "cmove"
+    ]
+   ]
+  },
+  {
+   "fn": "0080E300",
+   "text": "zero-extends `r8d` and jumps to `0080E310`, which splits `ecx` into a low 16-bit sum A and a high sum B and, for each byte at `rdx` (`r8` bytes), adds the byte to A and A to B: a length of 1 subtracts 0xFFF1 from A and from B when they reach it and combines them as `(B shl 16) OR A`; a null `rdx` returns 1; below 16 bytes it runs a byte loop, reduces A once and B modulo 0xFFF1 (multiply by `0x80078071`, shift 15) and returns `(B shl 16) OR A`; longer inputs run blocks of 0x15B0 bytes as 0x15B unrolled 16-byte steps with both sums reduced modulo 0xFFF1 after each block, then 16-byte steps and a byte loop over any rest with a final reduction, before the shared exit at `0080E5DB` (not shown in the listing); consistent with adler32 in zlib (modulus 0xFFF1 = 65521 and block 0x15B0 = 5552)",
+   "anchors": [
+    [
+     "0080E303",
+     "jmp"
+    ],
+    [
+     "0080E35D",
+     "lea"
+    ],
+    [
+     "0080E3A8",
+     "cmp"
+    ],
+    [
+     "0080E3E0",
+     "mov"
+    ],
+    [
+     "0080E5BA",
+     "mul"
+    ]
+   ]
+  },
+  {
+   "fn": "0080E940",
+   "text": "builds a table of 4-byte entries (byte op, byte bits, word value) from `r8d` 16-bit code lengths at `rdx`: counts them per length into a 16-word stack array, clamps the root size (dword at the fifth argument) to the largest non-zero length, and when all are zero writes the dword 0x140 twice through qword `[r9]` (advancing it by 8), sets the root to 1 and returns 0; raises the root to the smallest non-zero length, returns -1 when the counts over-subscribe or leave codes unused (unless `ecx` is non-zero and the largest length is 1), sorts symbol indices by length into the sixth-argument word array, and picks base/extra tables by `ecx` (0: that array, limit 0x14; 1: `01CC9F80`/`01CC9FC0`, limit 0x101; else `01CCA000`/`01CCA040`, limit 0); the main loop replicates each entry across its stride and opens sub-tables with link entries in the root table, returning 1 once the entries used exceed 0x354 for `ecx` 1 or 0x250 for `ecx` 2; finally writes a 0x40-op entry at a remaining index, advances qword `[r9]` by the entries used, stores the root and returns 0",
+   "anchors": [
+    [
+     "0080E997",
+     "inc"
+    ],
+    [
+     "0080EA2D",
+     "mov"
+    ],
+    [
+     "0080EAB2",
+     "or"
+    ],
+    [
+     "0080EC47",
+     "mov"
+    ],
+    [
+     "0080EDC0",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0080EDE0",
+   "text": "with the block at qword `rcx+0x28`, decodes while the input pointer (qword `rcx+0`) is below its end minus 5 and the output pointer (qword `+0x10`) below its end minus 0x101: refills a bit buffer 16 bits at a time, indexes the table at qword `+0x60` (mask from dword `+0x70`), following sub-table links; a literal entry stores one byte, a length entry (bit 0x10) adds extra bits and decodes a distance through qword `+0x68` (mask from dword `+0x74`), then copies the match from earlier output or, when it reaches past the output start, from the window at qword `+0x40` (size `+0x34`, fill `+0x38`, position `+0x3c`); an end entry (bit 0x20) sets dword `+8` to 0x3F3F, and an invalid length or distance code, or a distance beyond the fill while dword `+0x1be0` is non-zero, stores `01CC7DE0` \"invalid literal/length code\", `01CC7E00` \"invalid distance code\" or `01CC7E18` \"invalid distance too far back\" at qword `rcx+0x20` and sets dword `+8` to 0x3F51; on exit returns unused whole bytes, rewrites qwords `+0`/`+0x10` and dwords `+8`/`+0x18`, and stores the bit buffer and count at the block's dwords `+0x48`/`+0x4c`; consistent with inflate_fast in zlib (its error strings)",
+   "anchors": [
+    [
+     "0080EEBF",
+     "mov"
+    ],
+    [
+     "0080EF1E",
+     "mov"
+    ],
+    [
+     "0080F037",
+     "cmp"
+    ],
+    [
+     "0080F22B",
+     "mov"
+    ],
+    [
+     "0080F28D",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0087B040",
+   "text": "with the stream at qword `rcx+0`, loops: stops when the stream's dword `+0x18` is below `(dword +0x1714 + 0x2A) sar 3`; takes n = min(0xFFFF, that room less the header, dword `+0x94` - dword `+0x84` plus the stream's dword `+8`) and stops when n is below min(dword `rcx+0x18` - 5, dword `+0x44`) unless n covers all of that, `edx` is non-zero and n is non-zero or `edx` is 4; calls `0087DA80(rcx, 0, 0, last)` (last 1 when `edx` is 4 and n covers all), writes n and its complement into the four bytes before dword `+0x28` of the buffer at qword `+0x10`, makes the call at `0087B040`+0x11B, and copies window bytes (call at +0x140) then input (`0087D5B0`) to the stream output, updating its qword `+0x10` and dwords `+0x18`/`+0x1c`; afterwards moves the consumed input into the window at qword `+0x50`, raises dword `+0x1718`, returns 3 after a last block, 1 when `edx` is neither 0 nor 4 with no input left and `+0x94` equal to `+0x84`, else refills the window with `0087D5B0`, emits one more block through `0087DA80` and the call at +0x3EB when the same size rules allow, and returns 2 when that block was last, otherwise 0",
+   "anchors": [
+    [
+     "0087B10D",
+     "call"
+    ],
+    [
+     "0087B15B",
+     "call"
+    ],
+    [
+     "0087B1AE",
+     "call"
+    ],
+    [
+     "0087B2C4",
+     "mov"
+    ],
+    [
+     "0087B41D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0087B450",
+   "text": "loops: when dword `rcx+0x9c` is below 0x106 calls `0087D090(rcx)`, returning 0 if it stays below with `edx` 0 and finishing when it is 0; with at least 3 bytes updates the hash at dword `+0x70` from the byte at window (qword `+0x50`) + dword `+0x94` + 2 and links the word chains at qwords `+0x60`/`+0x68`, storing `0087D3D0(rcx)` at dword `+0x88` when the chained position is non-zero and within dword `+0x44` - 0x106; a length of 3 or more is recorded (distance and length-3 in the arrays at qwords `+0x16f8`/`+0x16e8`, counts in the word tables at `+0x4c0`/`+0x9b0` via byte tables at image base + 0x1BBA350/0x1BBA450/0x1BBA550) and skipped, re-inserting each position when it is at most dword `+0xa8`, otherwise the byte is recorded as a literal (count at `+0xbc`); when dword `+0x16f4` reaches dword `+0x16f0` - 1 it emits a block with `0087D7E0`(rcx, ..., 0) and the call at `0087B450`+0x313, returning 0 when the stream's dword `+0x18` is 0; at the end sets dword `+0x170c` to min(`+0x94`, 2) and, for `edx` 4, emits a last block (call at +0x391) and returns 3, or 2 with no room; otherwise emits any pending block (call at +0x3DF) and returns 1, or 0 with no room",
+   "anchors": [
+    [
+     "0087B492",
+     "call"
+    ],
+    [
+     "0087B542",
+     "call"
+    ],
+    [
+     "0087B5AB",
+     "inc"
+    ],
+    [
+     "0087B74F",
+     "call"
+    ],
+    [
+     "0087B7CD",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0087B850",
+   "text": "loops: refills through `0087D090(rcx)` while dword `+0x9c` is below 0x106 (returning 0 if it stays below with `edx` 0, finishing at 0), updates the hash at dword `+0x70` and the chains at qwords `+0x60`/`+0x68`, copies dword `+0x88` to `+0xa0` and `+0x98` to `+0x8c`, sets `+0x88` to 2 and, when the chained position is non-zero, `+0xa0` is below dword `+0xa8` and the distance is within dword `+0x44` - 0x106, stores `0087D3D0(rcx, position)` there, reset to 2 when it is at most 5 and dword `+0xb0` is 1, or it is 3 at a distance above 0x1000; when `+0xa0` is at least 3 and not below `+0x88` it records that earlier match (counts at `+0x4c0`/`+0x9b0`), re-inserts the positions it covers, clears dword `+0x90`, otherwise records the previous byte as a literal when `+0x90` is set, or sets `+0x90` to 1; full buffers emit blocks with `0087D7E0` (calls at `0087B850`+0x30C and +0x3D0), returning 0 when the stream's dword `+0x18` is 0; at the end records a pending literal, sets dword `+0x170c` to min(`+0x94`, 2) and, for `edx` 4, emits a last block (+0x49C) and returns 3, or 2 with no room; otherwise emits any pending block (+0x4ED) and returns 1, or 0 with no room",
+   "anchors": [
+    [
+     "0087B8A0",
+     "call"
+    ],
+    [
+     "0087B97A",
+     "call"
+    ],
+    [
+     "0087B9A4",
+     "cmp"
+    ],
+    [
+     "0087BA60",
+     "inc"
+    ],
+    [
+     "0087BCD8",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0087CA30",
+   "text": "returns `0087CA60(rcx)`, first calling `0087D320`(qword `rcx+0x28`) when that result is 0",
+   "anchors": [
+    [
+     "0087CA3D",
+     "call"
+    ],
+    [
+     "0087CA46",
+     "jne"
+    ],
+    [
+     "0087CA4C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0087CA60",
+   "text": "returns -2 when the check called at `0087CA60`+0x9 is non-zero; otherwise sets dword `rcx+0x48` to 2, zeroes dwords `+0x1c`/`+0xc` and qword `+0x20`, and on the block at qword `+0x28` copies qword `+0x10` to `+0x20`, zeroes dword `+0x28`, negates a negative dword `+0x2c`, sets dword `+8` to 0x39 when `+0x2c` is 2, 0x2A when it is otherwise non-zero and 0x71 when it is 0; stores at dword `rcx+0x4c` the result of the call at +0x80 (0, 0, 0) for 2 or of `0080E300(0, 0, 0)` otherwise, zeroes the block's dword `+0x40`, calls `0087DA10`(block) and returns 0",
+   "anchors": [
+    [
+     "0087CA72",
+     "mov"
+    ],
+    [
+     "0087CA7D",
+     "mov"
+    ],
+    [
+     "0087CACE",
+     "cmovne"
+    ],
+    [
+     "0087CAE9",
+     "call"
+    ],
+    [
+     "0087CAF7",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0087CB70",
+   "text": "loops while bytes remain (calling `0087D090(rcx)` when dword `+0x9c` is 0, and returning 0 when it stays 0 with `edx` 0): zeroes dword `+0x88`, records the byte at window (qword `+0x50`) + dword `+0x94` as a literal (word 0 into the array at qword `+0x16f8` and the byte into qword `+0x16e8` at index dword `+0x16f4`, which is incremented, and the word count at `+0xbc` + 4 x byte incremented), advances `+0x94` and decrements `+0x9c`; when `+0x16f4` reaches dword `+0x16f0` - 1 emits a block with `0087D7E0`(rcx, window + dword `+0x84` or null when that is negative, length, 0) and the call at `0087CB70`+0xCE, returning 0 when the stream's dword `+0x18` is 0; at the end zeroes dword `+0x170c` and, for `edx` 4, emits a last block (+0x13C) and returns 3, or 2 with no room; otherwise emits any pending block (+0x19D) and returns 1, or 0 with no room",
+   "anchors": [
+    [
+     "0087CB91",
+     "call"
+    ],
+    [
+     "0087CBDD",
+     "inc"
+    ],
+    [
+     "0087CC2A",
+     "call"
+    ],
+    [
+     "0087CC65",
+     "mov"
+    ],
+    [
+     "0087CC98",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0087CD40",
+   "text": "loops: when dword `rcx+0x9c` is at most 0x102 calls `0087D090(rcx)`, returning 0 if it stays so with `edx` 0 and finishing when it is 0; zeroes dword `+0x88` and, with at least 3 bytes and dword `+0x94` non-zero, stores at `+0x88` how far the byte before window (qword `+0x50`) + `+0x94` repeats (at least 3, capped at 0x102 and at `+0x9c`); a run of 3 or more is recorded as distance 1 and length-3 (word counts at `+0x4c0` via the byte table `01CDA350` and at `+0x9b0` via the byte at `01CDA450`) and skipped, otherwise the byte is recorded as a literal (count at `+0xbc`) and skipped; when dword `+0x16f4` reaches dword `+0x16f0` - 1 it emits a block with `0087D7E0` and the call at `0087CD40`+0x266, returning 0 when the stream's dword `+0x18` is 0; at the end zeroes dword `+0x170c` and, for `edx` 4, emits a last block (+0x2D8) and returns 3, or 2 with no room; otherwise emits any pending block (+0x32B) and returns 1, or 0 with no room",
+   "anchors": [
+    [
+     "0087CD83",
+     "call"
+    ],
+    [
+     "0087CE7D",
+     "mov"
+    ],
+    [
+     "0087CEA3",
+     "mov"
+    ],
+    [
+     "0087CF40",
+     "inc"
+    ],
+    [
+     "0087D004",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0087D090",
+   "text": "loops while dword `rcx+0x9c` is below 0x106 and the stream's (qword `rcx+0`) dword `+8` is non-zero: when dword `+0x94` is at least 2 x dword `+0x44` - 0x106 it moves the upper part of the window at qword `+0x50` down by `+0x44` (call at `0087D090`+0x4E), subtracts `+0x44` from dwords `+0x98`, `+0x94` and `+0x84` and calls `0087D650(rcx)`; then, if input remains, adds `0087D5B0`(stream, window + `+0x94` + `+0x9c`, free space) to `+0x9c` and, when `+0x9c` plus dword `+0x170c` is at least 3, re-seeds the hash at dword `+0x70` and inserts up to `+0x170c` pending positions into the chains at qwords `+0x60`/`+0x68`, decrementing it; at the end, when dword `+0x1718` is below dword `+0x58`, zero-fills up to 0x102 bytes from window + `+0x94` + `+0x9c` or from `+0x1718` (calls at +0x1A8 and +0x1E9 with 0) and raises `+0x1718` to cover them",
+   "anchors": [
+    [
+     "0087D0DE",
+     "call"
+    ],
+    [
+     "0087D0F8",
+     "call"
+    ],
+    [
+     "0087D122",
+     "call"
+    ],
+    [
+     "0087D1C6",
+     "mov"
+    ],
+    [
+     "0087D238",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0087D320",
+   "text": "sets dword `rcx+0x58` to twice dword `+0x44`, zeroes the last word of the array at qword `+0x68` (dword `+0x74` words) and the words before it (call at `0087D320`+0x34 with 0 and `2 x (+0x74 - 1)` bytes), loads the four words of the 16-byte row of `01CDA2B0` indexed by dword `+0xac` into dwords `+0xb4`, `+0xa8`, `+0xb8` and `+0xa4` (in word order), zeroes qword `+0x90` and dwords `+0x84`, `+0x9c`, `+0x170c` and `+0x70`, and sets dwords `+0xa0` and `+0x88` to 2",
+   "anchors": [
+    [
+     "0087D335",
+     "mov"
+    ],
+    [
+     "0087D340",
+     "mov"
+    ],
+    [
+     "0087D354",
+     "call"
+    ],
+    [
+     "0087D36F",
+     "mov"
+    ],
+    [
+     "0087D3AE",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0087D3D0",
+   "text": "starting at position `edx` in the window at qword `rcx+0x50`, follows the word chain at qword `+0x60` (index masked by dword `+0x4c`) for at most dword `+0xa4` steps (a quarter of that when dword `+0xa0` is at least dword `+0xb4`) while the position stays above dword `+0x94` - dword `+0x44` + 0x106 (or 0 when `+0x94` is not beyond `+0x44` - 0x106); each candidate whose bytes at the current best length (and one before) and first two bytes match is compared with the bytes at `+0x94` up to 0x102 bytes, and a longer match stores the position at dword `+0x98` and ends the walk once it reaches min(dword `+0xb8`, dword `+0x9c`); returns the best length (starting from `+0xa0`) capped at dword `+0x9c`",
+   "anchors": [
+    [
+     "0087D450",
+     "shr"
+    ],
+    [
+     "0087D46A",
+     "cmp"
+    ],
+    [
+     "0087D518",
+     "mov"
+    ],
+    [
+     "0087D537",
+     "movzx"
+    ],
+    [
+     "0087D561",
+     "cmovbe"
+    ]
+   ]
+  },
+  {
+   "fn": "0087D5B0",
+   "text": "takes n = min(dword `rcx+8`, `r8d`) and returns 0 when it is 0; otherwise subtracts n from dword `+8`, copies n bytes from qword `rcx+0` to `rdx` (call at `0087D5B0`+0x4C), replaces dword `+0x4c` with `0080E300`(dword `+0x4c`, `rdx`, n) when dword `+0x2c` of the block at qword `+0x28` is 1, or with the call at +0x7B (same arguments) when it is 2, adds n to qword `+0` and dword `+0xc` and returns n",
+   "anchors": [
+    [
+     "0087D5CD",
+     "cmova"
+    ],
+    [
+     "0087D5FC",
+     "call"
+    ],
+    [
+     "0087D616",
+     "call"
+    ],
+    [
+     "0087D62B",
+     "call"
+    ],
+    [
+     "0087D638",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "0087D650",
+   "text": "walks the dword `rcx+0x74` words of the array at qword `+0x68` and then the dword `+0x44` words of the array at qword `+0x60`, both from the end, replacing each word with the word minus `+0x44` when it is at least `+0x44` and with 0 otherwise",
+   "anchors": [
+    [
+     "0087D669",
+     "cmp"
+    ],
+    [
+     "0087D675",
+     "mov"
+    ],
+    [
+     "0087D698",
+     "cmp"
+    ],
+    [
+     "0087D6A4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0087D6B0",
+   "text": "appends the 3-bit value 2 and then the 7-bit value 0 to the bit buffer (word `rcx+0x1710`, count dword `+0x1714`): when the count exceeds 0xd (for the second value 9) it ORs the value in at the count, writes the buffer's two bytes into qword `+0x10` at dword `+0x28` (incremented twice), keeps the value's high bits and subtracts 0xd (9), otherwise ORs it in and adds 3 (7); then tail-jumps with `rcx` from `0087D6B0`+0xF9 or +0x117 to one routine",
+   "anchors": [
+    [
+     "0087D6D2",
+     "or"
+    ],
+    [
+     "0087D6E6",
+     "mov"
+    ],
+    [
+     "0087D712",
+     "add"
+    ],
+    [
+     "0087D7A9",
+     "jmp"
+    ],
+    [
+     "0087D7C7",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0087D7E0",
+   "text": "when dword `rcx+0xac` is positive: sets the stream's (qword `rcx+0`) dword `+0x48` from the call at `0087D7E0`+0x36 if it was 2, makes the calls at +0x49 and +0x58 with `rcx+0xb40` and `rcx+0xb58`, keeps the call at +0x60's result, and takes opt = min((dword `+0x1700`+10) shr 3, s = (dword `+0x1704`+10) shr 3); with `+0xac` at most 0 both are `r8d`+5; when `r8d`+4 is at most opt and `rdx` is non-null calls `0087DA80(rcx, rdx, r8d, r9d)`; else when dword `+0xb0` is 4 or s equals opt appends the 3-bit value `r9d`+2 to the bit buffer (word `+0x1710`, dword `+0x1714`) and calls +0x1FA with `01CDA7A0`/`01CDAC20`, otherwise appends `r9d`+4, calls +0x156 with dwords `+0xb48`+1, `+0xb60`+1 and that result+1, and calls +0x1FA with `rcx+0xbc`/`rcx+0x9b0`; finally makes the call at +0x202 and, when `r9d` is non-zero, the one at +0x20B",
+   "anchors": [
+    [
+     "0087D85A",
+     "shr"
+    ],
+    [
+     "0087D884",
+     "call"
+    ],
+    [
+     "0087D936",
+     "call"
+    ],
+    [
+     "0087D9DA",
+     "call"
+    ],
+    [
+     "0087D9EB",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0087DA10",
+   "text": "stores `rcx+0xbc` at qword `+0xb40` and `01CDAC98` at `+0xb50`, `rcx+0x9b0` at `+0xb58` and `01CDACB8` at `+0xb68`, `rcx+0xaa4` at `+0xb70` and `01CDACD8` at `+0xb80`, zeroes word `+0x1710` and dword `+0x1714`, and tail-jumps with `rcx` from `0087DA10`+0x63",
+   "anchors": [
+    [
+     "0087DA17",
+     "mov"
+    ],
+    [
+     "0087DA25",
+     "mov"
+    ],
+    [
+     "0087DA66",
+     "mov"
+    ],
+    [
+     "0087DA6D",
+     "mov"
+    ],
+    [
+     "0087DA73",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0087DA80",
+   "text": "appends the 3-bit value `r9w` to the bit buffer (word `rcx+0x1710`, count dword `+0x1714`, writing its two bytes into qword `+0x10` at dword `+0x28` when the count exceeds 0xd), makes the call at `0087DA80`+0x8C with `rcx`, then writes the low and high bytes of `r8d` and of its complement into the buffer at qword `+0x10` from dword `+0x28`, copies `r8d` bytes from `rdx` after them (call at +0xEA) and adds `r8d` to `+0x28`",
+   "anchors": [
+    [
+     "0087DAA8",
+     "or"
+    ],
+    [
+     "0087DB0C",
+     "call"
+    ],
+    [
+     "0087DB1B",
+     "mov"
+    ],
+    [
+     "0087DB43",
+     "mov"
+    ],
+    [
+     "0087DB6A",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Calls to functions outside this pack are cited by site (entry + offset). 0080E300: the listing stops at 0080E5D8 although the extent runs to 0080E5DE, so the shared exit at 0080E5DB (which combines the sums as shown on the length-1 path) is not shown; the row names it only as a branch target. Long bodies (0080E940, 0080EDE0, 0087B040, 0087B450, 0087B850, 0087CB70, 0087CD40, 0087D090, 0087D3D0, 0087D7E0) are stated as top-level structure under rule 5; doubts: 0087B040 (the size-rule clause compresses three branches) and 0080E940 (main-loop clause is a summary, not every path). The 'consistent with' clauses are given only for 0080DF50 (version byte 0x31 and size 0x58), 0080E300 (65521 and 5552) and 0080EDE0 (its three error strings)."
+}
