@@ -1,0 +1,31 @@
+{
+ "page": "01-Script-VM-Native-Bridge/Party-Presentation-Verbs/the-party-read-in-state-machine.md",
+ "session": "session_01AFJLw2DoBajZE8phUsPUJB",
+ "rows": [
+  {
+   "fn": "003B5470",
+   "entered_from": "`00359B10` + 0x5F",
+   "text": "when byte `02B40512` is non-zero, calls `003B5470` + 0x1C with 1 in `ecx` and then the call at `003B5470` + 0x25 with the incoming `edx` in `ecx` and that result in `edx`; then, independently, when byte `02B4050A` is non-zero, calls `003B5470` + 0x35 with 0 in `ecx` and then the call at `003B5470` + 0x3E with the incoming `ecx` in `ecx` and that result in `edx`; a zero byte skips only its own pair of calls",
+   "anchors": [
+    [
+     "003B547A",
+     "cmp"
+    ],
+    [
+     "003B5495",
+     "call"
+    ],
+    [
+     "003B549A",
+     "cmp"
+    ],
+    [
+     "003B54AE",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": ""
+}
