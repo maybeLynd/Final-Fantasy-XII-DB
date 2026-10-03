@@ -1,0 +1,525 @@
+{
+ "page": "00-Engine-Core-Runtime/Application-Root/game-application.md",
+ "session": "cloud session_01U9MRHY1rprnFC3Ptyv2Mfo",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "0019EC40",
+   "text": "computes `n` = (qword `[rcx+8]` minus qword `[rcx]`) / 0x130 (signed); when `edx` is at most `n` (unsigned, 32-bit) calls `0019EC40`+0x116(`rcx`, qword `[rcx]` + `edx`*0x130); otherwise zeroes a 0x130-byte local with `00861EC0(local, 0, 0x130)`, zeroes its qwords `+0x100`..`+0x110` again and calls `001EDF00(local+0x118, \"EASTL vector\" 008C5F58)`, calls `0019EC40`+0xD1(`rcx`, qword `[rcx+8]`, `edx` minus `n`, local), then, when qword `local+0x100` is non-null, calls the function at qword `+0x18` of `[local+0x118]` with (`local+0x118`, that qword, (qword `local+0x110` minus it) AND ~7); the stack cookie from qword `01F44830` is checked by `00808C40`",
+   "anchors": [
+    [
+     "0019ECA0",
+     "jbe"
+    ],
+    [
+     "0019ECB3",
+     "call"
+    ],
+    [
+     "0019ED11",
+     "call"
+    ],
+    [
+     "0019ED43",
+     "call"
+    ],
+    [
+     "0019ED56",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0019ED80",
+   "text": "computes `n` = (qword `[rcx+8]` minus qword `[rcx]`) / 0x118 (signed); when `edx` is above `n` (unsigned, 32-bit) zeroes a 0x118-byte local with `00861EC0(local, 0, 0x118)` and calls `0019ED80`+0x6E(`rcx`, old qword `[rcx+8]`, `edx` minus `n`, local); otherwise, with `p` = qword `[rcx]` + `edx`*0x118, calls `0019ED80`+0x88(old end, old end, `p`) and moves qword `[rcx+8]` back by the whole 0x118-byte elements between `p` and the old end",
+   "anchors": [
+    [
+     "0019EDCA",
+     "jbe"
+    ],
+    [
+     "0019EDD9",
+     "call"
+    ],
+    [
+     "0019EDEE",
+     "call"
+    ],
+    [
+     "0019EE08",
+     "call"
+    ],
+    [
+     "0019EE32",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "0019F9F0",
+   "text": "calls `0019F9F0`+0x19 with `rcx`; then, only when bit 0 of `edx` is set, calls `0016D6A0(rcx, 0x140228)` when bit 2 of `edx` is also set, else `00584730(rcx)`; returns `rcx` on every path",
+   "anchors": [
+    [
+     "0019FA09",
+     "call"
+    ],
+    [
+     "0019FA0F",
+     "test"
+    ],
+    [
+     "0019FA15",
+     "test"
+    ],
+    [
+     "0019FA1E",
+     "call"
+    ],
+    [
+     "0019FA2E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "001A3190",
+   "text": "calls the function at qword `+0x10` of `[rcx+0x30]` with (`rcx+0x30`, 0x40, 0) to get `p`; when `p+0x20` is non-null it zeroes qwords `p+0x20`/`+0x28`/`+0x30`, calls `001EDF00(p+0x38, rdx+0x18)` and `001A4BF0(p+0x20, qword [rdx], qword [rdx+8])`; returns `p` on both paths",
+   "anchors": [
+    [
+     "001A31BA",
+     "call"
+    ],
+    [
+     "001A31D5",
+     "mov"
+    ],
+    [
+     "001A31E8",
+     "call"
+    ],
+    [
+     "001A31F7",
+     "call"
+    ],
+    [
+     "001A31FD",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "001A6CC0",
+   "text": "walks the nodes from qword `[rcx+0x4f8]` until the node equals `rcx+0x4f0`, for each calling the function at qword `+8` of the vtable of qword `[node+0x28]` with (that object, 0) and taking the next node from `0016D6D0(node)`; then, for each node of the chain starting at qword `[rcx+0x500]` and linked by qword `+8`, calls `001AF2B0(rcx+0x4e8, qword [node])` and the function at qword `+0x18` of `[rcx+0x518]` with (`rcx+0x518`, node, 0x30); finally stores the address `rcx+0x4f0` at qwords `+0x4f0` and `+0x4f8` and zeroes qword `+0x500`, byte `+0x508` and dword `+0x510`",
+   "anchors": [
+    [
+     "001A6CF9",
+     "call"
+    ],
+    [
+     "001A6CFF",
+     "call"
+    ],
+    [
+     "001A6D27",
+     "call"
+    ],
+    [
+     "001A6D41",
+     "call"
+    ],
+    [
+     "001A6D5F",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "001AA840",
+   "text": "zeroes qwords `rcx+0`/`+8`/`+0x10`, calls `001EDF00(rcx+0x18, \"EASTL vector\" 008C5F58)` and stores qword 0 at `+0x28`, qword 1 at `+0x30`, dword 0 at `+0x38`, dword 1 at `+0x3c`, byte 1 at `+0x40`, dword 0 at `+0x44` and qword 0 at `+0x20`; fills a local with `001AA840`+0x8E, calls `001AA840`+0x9A(`rcx`, local) and, when the local's qword `+8` is non-null, frees it through the function at qword `+0x18` of the local's `[+0x20]` with size (qword `+0x18` minus it) AND ~7; stores `edx` at dword `+0x38`; appends six zero qwords to the vector at `+8` of the last 0x30-byte element of qword `[rcx]`..`[rcx+8]` (in place while its end is below its capacity, else via `001AB570(vector, end, pointer to 0)`) and sets that element's byte `+0x28` to 1; then stores float `xmm2` at `+0x20`, float `xmm3` at `+0x24`, the fifth (stack) argument float at `+0x28`, the sixth dword at `+0x30` and the seventh float at `+0x2c`; returns `rcx`",
+   "anchors": [
+    [
+     "001AA89E",
+     "call"
+    ],
+    [
+     "001AA8DA",
+     "call"
+    ],
+    [
+     "001AA904",
+     "mov"
+    ],
+    [
+     "001AA96A",
+     "call"
+    ],
+    [
+     "001AA975",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "001AAC50",
+   "text": "zeroes qwords `rcx+8`/`+0x10`/`+0x18`, calls `001EDF00(rcx+0x20, \"EASTL vector\" 008C5F58)`, stores byte 0 at `+0x28`, dword 0 at `+0` and word 0 at `+4`, then appends six zero qwords to the vector at `rcx+8` (in place while qword `+0x10` is below qword `+0x18`, else via `001AB570(rcx+8, end, pointer to 0)`); returns `rcx`",
+   "anchors": [
+    [
+     "001AAC8E",
+     "call"
+    ],
+    [
+     "001AAC9A",
+     "mov"
+    ],
+    [
+     "001AACB9",
+     "cmp"
+    ],
+    [
+     "001AACD9",
+     "call"
+    ],
+    [
+     "001AACE2",
+     "jne"
+    ]
+   ]
+  },
+  {
+   "fn": "001AD490",
+   "text": "returns at once when `rcx` is null; otherwise calls `001AD490`+0x16 and `001AD490`+0x1E with `rcx`, then `00809950(rcx, 0x48)`",
+   "anchors": [
+    [
+     "001AD493",
+     "je"
+    ],
+    [
+     "001AD4A6",
+     "call"
+    ],
+    [
+     "001AD4AE",
+     "call"
+    ],
+    [
+     "001AD4BC",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "001AE010",
+   "text": "zeroes qwords `rcx+0x38`/`+0x40`/`+0x48`, calls `001EDF00(rcx+0x50, \"EASTL vector\" 008C5F58)` and `001AE010`+0x4A(`rcx+0x38`, 0x400); returns `rcx`",
+   "anchors": [
+    [
+     "001AE036",
+     "mov"
+    ],
+    [
+     "001AE04C",
+     "call"
+    ],
+    [
+     "001AE052",
+     "mov"
+    ],
+    [
+     "001AE05A",
+     "call"
+    ],
+    [
+     "001AE060",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "001AE3E0",
+   "text": "calls `001FB460(p)` for `p` = qword `[rcx]` stepping by 0x40 while `p` is below qword `[rcx+8]` (unsigned); then, when qword `[rcx]` is non-null, calls the function at qword `+0x18` of `[rcx+0x18]` with (`rcx+0x18`, qword `[rcx]`, (qword `[rcx+0x10]` minus it) AND ~0x3f)",
+   "anchors": [
+    [
+     "001AE406",
+     "jae"
+    ],
+    [
+     "001AE40B",
+     "call"
+    ],
+    [
+     "001AE411",
+     "add"
+    ],
+    [
+     "001AE420",
+     "je"
+    ],
+    [
+     "001AE434",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "001B2630",
+   "text": "calls `005CC8A0(rcx+0x218)`, zeroes 0x1c0 bytes at `rcx+4` with `00861EC0(rcx+4, 0, 0x1c0)`, zeroes qword `+0x1c8` and dword `+0`, calls `005CD0A0(rcx+0x218)` and returns `rcx`",
+   "anchors": [
+    [
+     "001B2644",
+     "call"
+    ],
+    [
+     "001B2655",
+     "call"
+    ],
+    [
+     "001B2663",
+     "mov"
+    ],
+    [
+     "001B266A",
+     "mov"
+    ],
+    [
+     "001B266C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "001B3AF0",
+   "text": "calls `005CD6D0(rcx+0x90)` only when byte `[rcx+0xb8]` is non-zero; then calls `001B3AF0`+0x2C(`rcx+0x58`) and `001B3AF0`+0x36(`rcx+0x20`); finally, when qword `[rcx]` is non-null, calls the function at qword `+0x18` of `[rcx+0x18]` with (`rcx+0x18`, qword `[rcx]`, (qword `[rcx+0x10]` minus it) AND ~0x1f)",
+   "anchors": [
+    [
+     "001B3B02",
+     "cmp"
+    ],
+    [
+     "001B3B12",
+     "call"
+    ],
+    [
+     "001B3B1C",
+     "call"
+    ],
+    [
+     "001B3B26",
+     "call"
+    ],
+    [
+     "001B3B46",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "001B60D0",
+   "text": "calls `0016D6A0(1 when qword 01F81200 is non-null, else 0)`; then, when qword `01F81200` is non-null, calls `0016D6A0(1)` and tail-jumps to `001B60D0`+0x34 with `rcx` = qword `01F81200`; otherwise returns",
+   "anchors": [
+    [
+     "001B60DD",
+     "setne"
+    ],
+    [
+     "001B60E0",
+     "call"
+    ],
+    [
+     "001B60ED",
+     "je"
+    ],
+    [
+     "001B60F4",
+     "call"
+    ],
+    [
+     "001B6104",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "001B9910",
+   "text": "stores `008F9150` at qword `[rcx]`, zeroes the eight qwords `+0x58`..`+0x90`, calls `001BA910(rcx+0x10)` and tail-jumps to `001B9910`+0x59 with `rcx+0x10`",
+   "anchors": [
+    [
+     "001B9926",
+     "mov"
+    ],
+    [
+     "001B992B",
+     "mov"
+    ],
+    [
+     "001B9946",
+     "mov"
+    ],
+    [
+     "001B995B",
+     "call"
+    ],
+    [
+     "001B9969",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "001BE520",
+   "text": "returns `r8` unchanged when `rdx` equals `rcx`; otherwise walks back one 0x28-byte element at a time from `rdx` (source) and `r8` (destination) until the source reaches `rcx`, for each calling `001A5760(dest, qword [src], qword [src+8])` unless the two pointers are equal and copying qword `src+0x20` to `dest+0x20`; returns the final destination pointer",
+   "anchors": [
+    [
+     "001BE53B",
+     "je"
+    ],
+    [
+     "001BE558",
+     "cmp"
+    ],
+    [
+     "001BE567",
+     "call"
+    ],
+    [
+     "001BE570",
+     "mov"
+    ],
+    [
+     "001BE578",
+     "jne"
+    ]
+   ]
+  },
+  {
+   "fn": "001BE5A0",
+   "text": "stores `r9` at qword `[rcx]`; for each 0x28-byte element `s` from `rdx` up to `r8`, with `d` = qword `[rcx]`: when `d` is non-null it zeroes qwords `d`/`d+8`/`d+0x10`, calls `001EDF00(d+0x18, s+0x18)`, swaps qwords `+0`, `+8` and `+0x10` between `d` and `s` and copies qword `s+0x20` to `d+0x20`; on both paths it adds 0x28 to qword `[rcx]`; returns `rcx`",
+   "anchors": [
+    [
+     "001BE5C5",
+     "mov"
+    ],
+    [
+     "001BE5F5",
+     "call"
+    ],
+    [
+     "001BE603",
+     "mov"
+    ],
+    [
+     "001BE62A",
+     "mov"
+    ],
+    [
+     "001BE641",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "001BEA90",
+   "text": "calls the function at qword `+0x10` of `[rcx+0x30]` with (`rcx+0x30`, 0x48, 0) to get `p`; when `p+0x20` is non-null it zeroes qwords `p+0x20`/`+0x28`/`+0x30`, calls `001EDF00(p+0x38, rdx+0x18)` and `001A4BF0(p+0x20, qword [rdx], qword [rdx+8])` and copies dword `[rdx+0x20]` to `p+0x40`; returns `p` on both paths",
+   "anchors": [
+    [
+     "001BEABA",
+     "call"
+    ],
+    [
+     "001BEAD5",
+     "mov"
+    ],
+    [
+     "001BEAE8",
+     "call"
+    ],
+    [
+     "001BEAF7",
+     "call"
+    ],
+    [
+     "001BEAFF",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "001C0EB0",
+   "text": "stores `008F9B80` at qword `[rcx]`; when qword `[rcx+0x50]` is non-null calls the function at qword `+0x18` of `[rcx+0x68]` with (`rcx+0x68`, that qword, (qword `[rcx+0x60]` minus it) AND ~0xf); when bit 0 of `edx` is set calls `00809950(rcx, 0xa78)`; returns `rcx`",
+   "anchors": [
+    [
+     "001C0ED0",
+     "mov"
+    ],
+    [
+     "001C0EDA",
+     "je"
+    ],
+    [
+     "001C0EEE",
+     "call"
+    ],
+    [
+     "001C0EF2",
+     "test"
+    ],
+    [
+     "001C0F00",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "001C5530",
+   "text": "calls `001FF740` with the incoming `rcx` and `rdx` unchanged, passes its result to `00200BE0`, and tail-jumps to `001FF740` with `rdx` = the incoming `rdx` and `rcx` = `01F813C8` when `00200BE0` returned a non-zero `al`, else the incoming `rcx`",
+   "anchors": [
+    [
+     "001C5540",
+     "call"
+    ],
+    [
+     "001C5548",
+     "call"
+    ],
+    [
+     "001C5557",
+     "test"
+    ],
+    [
+     "001C555B",
+     "mov"
+    ],
+    [
+     "001C5568",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "001D5FD0",
+   "text": "calls `0016D6A0(1 when qword 01F82C80 is non-null, else 0)`, then tail-jumps to `001D5FD0`+0x29 with `rcx` = qword `01F82C80` and `rdx` = the incoming `rcx`",
+   "anchors": [
+    [
+     "001D5FE2",
+     "setne"
+    ],
+    [
+     "001D5FE5",
+     "call"
+    ],
+    [
+     "001D5FEA",
+     "mov"
+    ],
+    [
+     "001D5FF1",
+     "mov"
+    ],
+    [
+     "001D5FF9",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Divisors from the magic multiplies: 0x6bca1af286bca1b>>3 = /0x130, 0xea0ea0ea0ea0ea1>>4 = /0x118, 0x2aaaaaaaaaaaaaab>>3 = /0x30; 0019ED80's shrink path multiplies (old end - p) by 0xf15f15f15f15f15f (>>4, i.e. /-0x118) and adds quotient*0x118 to the end pointer, which moves it back to p when the distance is a whole number of elements (stated as 'by the whole elements'). 0019EC40: the 0x130-byte local spans rsp+0x30..rsp+0x160 and its +0x100..+0x118 is the vector re-zeroed by xmm/qword stores; no return value is loaded on either path (rax is the callee's). 001AA840: the local filled by +0x8E is 001AAC50 (in this pack), so the local's vector sits at local+8 with allocator at local+0x20 (rsp+0x40/0x50/0x58 with local at rsp+0x38); the stack-cookie check (01F44830 / 00808C40) is not stated for length. The 'last element' index is (n-1) computed in 32 bits. 001A3190/001BEA90: the null test is on p+0x20, which is null only for p = -0x20; on that path rax still holds p. 001BE520: the copy of qword +0x20 uses [rsi+rbx+0x20] with rsi = r8 - rdx, which is dest+0x20. 001C5530: the first 001FF740 call and the tail jump carry no explicit loads beyond those stated."
+}
