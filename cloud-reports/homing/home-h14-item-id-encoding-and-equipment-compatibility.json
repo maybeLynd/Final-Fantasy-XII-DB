@@ -1,0 +1,17 @@
+{
+ "page": "12-Items-Equipment-Shops-License/item-id-encoding-and-equipment-compatibility.md",
+ "session": "session_019ww1AYv6HUCASSLr6wdSTQ",
+ "rows": [
+  {"fn": "00292F60", "entered_from": "`003FF920` + 0x3A",
+   "text": "maps `ecx` 0 to 1, 1 to 3, 2 and 3 to 4, 4 to 5, and every other value to 0, returning the result in `eax`",
+   "anchors": [["00292F67", "je"], ["00292F6C", "je"], ["00292F76", "je"], ["00292F78", "xor"], ["00292F81", "mov"]]},
+  {"fn": "003FEDC0", "entered_from": "`003FDA20` + 0x79",
+   "text": "when qword `+0x148` of qword `0209AC30` is null it calls (at `003FEDC0` + 0x48) with 0xC0, the code address formed by the `lea` at `003FEDFC` and a stack block of dword 0, sign-extended `ecx` as a qword and qword 0, stores the result at that `+0x148` and calls (at `003FEDC0` + 0x65) with qword `0208EA28` and the result; when the qword is already non-null it returns without calling",
+   "anchors": [["003FEDE2", "jne"], ["003FEDFC", "lea"], ["003FEE08", "call"], ["003FEE17", "mov"], ["003FEE25", "call"]]},
+  {"fn": "003FFA20", "entered_from": "`003FF040` + 0xBC",
+   "text": "calls (at `003FFA20` + 0x1C) with the signed word `+0xDE0` of qword `0209AC30`, then (at `003FFA20` + 0x2F) with that result, `ecx`, zero-extended `dx` and 1; then calls (at + 0x36) with 0, (at + 0x3B) with no arguments and (at + 0x42) with 0; when qword `+0x130` of qword `0209AC30` is non-null it calls (at + 0x63) with that object's qword `+0xC0` and 0; it calls (at + 0x6C) with 0 and 0 and tail-jumps (at `003FFA20` + 0x80) with `ecx` = 1",
+   "anchors": [["003FFA3C", "call"], ["003FFA4F", "call"], ["003FFA78", "je"], ["003FFA8C", "call"], ["003FFAA0", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "003FEDC0: the lea at 003FEDFC targets the address 4 bytes past this function's extent (003FEE3C); it is very likely the entry of the next function (a callback), but under the rule against naming data right after a function's code the sentence cites the lea instead of the target. 003FFA20 is also entered from `003FDFE0` + 0x1EB; the shortened call-site forms '(at + 0xNN)' are all relative to 003FFA20."
+}
