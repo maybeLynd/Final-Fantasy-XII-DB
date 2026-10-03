@@ -1,0 +1,35 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/lst-menuquest-list.md",
+ "session": "session_01AFJLw2DoBajZE8phUsPUJB",
+ "rows": [
+  {
+   "fn": "0037FA00",
+   "entered_from": "`0037F4D0` + 0x47",
+   "text": "when qword `rcx+0xC8` is non-null, passes it to the call at `0037FA00` + 0x1B and then zeroes `+0xC8`; then, when byte `+0xEE` is non-zero, walks 0x18-byte records starting at `+0xF0`, for each passing the record's qword `+0x10` to the call at `0037FA00` + 0x44 and storing 0 in the record's first byte, looping while the index is below the re-read byte `+0xEE` (signed compare), and finally stores 0 in byte `+0xEE`; when `+0xEE` is zero the loop and that final store are skipped",
+   "anchors": [
+    [
+     "0037FA1B",
+     "call"
+    ],
+    [
+     "0037FA20",
+     "mov"
+    ],
+    [
+     "0037FA44",
+     "call"
+    ],
+    [
+     "0037FA49",
+     "mov"
+    ],
+    [
+     "0037FA62",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": ""
+}
