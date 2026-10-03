@@ -1,0 +1,19 @@
+{
+ "page": "23-Third-Party-Libraries/third-party-middleware-inventory.md",
+ "mode": "member",
+ "family": "Bullet physics library",
+ "session": "session_016AduKBeymFT4Ug3TxqT399",
+ "rows": [
+  {"fn": "0087FEE0",
+   "text": "with `n` = signed dword `rcx+4` and `m` = `edx`: when `m` < `n` only stores `m` to dword `rcx+4`; otherwise, when `m` > `n` and dword `rcx+8` < `m`, takes a buffer `p` from the call at `0087FEE0` + 0x45 with (`m` * 8, 0x10) (`p` = 0 when `m` is 0), copies `n` qwords from the buffer at qword `rcx+0x10` to `p`, passes the old buffer (when non-null) to the call at `0087FEE0` + 0x8E only if byte `rcx+0x18` is non-zero, and stores `p` to qword `rcx+0x10`, 1 to byte `rcx+0x18` and `m` to dword `rcx+8`; it then zeroes qwords `n` to `m` - 1 of the buffer and stores `m` to dword `rcx+4`",
+   "anchors": [["0087FF25", "call"], ["0087FF53", "mov"], ["0087FF6E", "call"], ["0087FF9D", "mov"], ["0087FFAD", "mov"]]},
+  {"fn": "0087FFD0",
+   "text": "calls `0087FEE0(rcx, edx)`, then for `i` from 0 to `edx` - 1 (none when `edx` <= 0, signed) stores `i` to dword `+8*i` and 1 to dword `+8*i+4` of the buffer at qword `rcx+0x10`",
+   "anchors": [["0087FFDF", "call"], ["0087FFF8", "mov"], ["00880003", "mov"], ["0088000E", "jl"]]},
+  {"fn": "00880020",
+   "text": "for each index `i` below signed dword `rcx+4`, follows the dword `+0` links of the 8-byte records at qword `rcx+0x10` from record `i` to a record whose dword `+0` equals its own index, on each step overwriting the visited record's link with its target's link, and stores that index to record `i`'s dword `+0`; then, when dword `rcx+4` is above 1 (signed), tail-jumps at `00880020` + 0x92 with (`rcx`, the byte in the caller's `rsp+8` slot, 0, dword `rcx+4` - 1), otherwise returns",
+   "anchors": [["00880047", "cmp"], ["0088006F", "mov"], ["00880081", "cmp"], ["0088008D", "mov"], ["008800B2", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "00880020: the second argument of the tail jump is movzx of byte [rsp+0x10] after one push, i.e. the first shadow-space slot at entry, which this body never writes (likely an empty by-value object); stated as read, not interpreted. 0087FEE0: on the grow path the old-buffer free is skipped when byte +0x18 is zero, but qword +0x10 is overwritten either way."
+}
