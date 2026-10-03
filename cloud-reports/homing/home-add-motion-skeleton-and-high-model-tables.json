@@ -1,0 +1,11 @@
+{
+ "page": "17-Presentation-Rendering/Model-And-Motion-Formats/add-motion-skeleton-and-high-model-tables.md",
+ "session": "session_01B5SV9waPUkdPQzR9MzNgSH",
+ "rows": [
+  {"fn": "0051B120", "entered_from": "`003E1C50` + 0x818",
+   "text": "passes dword `rcx+0x10` to the site `0051B120` + 0x12, then passes `edx` plus that result (32-bit) to the site `0051B120` + 0x1A and stores that call's dword result back to `rcx+0x10`",
+   "anchors": [["0051B12F", "mov"], ["0051B132", "call"], ["0051B137", "lea"], ["0051B13A", "call"], ["0051B144", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": ""
+}
