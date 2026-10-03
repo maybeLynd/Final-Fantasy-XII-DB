@@ -1,0 +1,11 @@
+{
+ "page": "01-Script-VM-Native-Bridge/Spawn-Verbs/the-script-to-native-calling-convention.md",
+ "session": "session_016ZjFjnefAbEBqR8eRqGh2C",
+ "rows": [
+  {"fn": "0025D460", "entered_from": "`003DBDC0` + 0x3D",
+   "text": "zeroes bytes `+0x00` to `+0x16` of the object at `rcx` (qwords `+0` and `+8`, dword `+0x10`, word `+0x14` and byte `+0x16`) and returns 0 in `eax`",
+   "anchors": [["0025D462", "mov"], ["0025D465", "mov"], ["0025D469", "mov"], ["0025D46C", "mov"], ["0025D470", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "0025D460: the word store at +0x14 clears both bytes +0x14 and +0x15 (the host page's tag byte +0x15 and the +0x14 flag)."
+}
