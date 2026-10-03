@@ -123,3 +123,84 @@ on demand    : every listed consumer draws when its caller runs
 - **Save load**: `00584210` (`CG:144-150`, `CG:201-216`).
 - **Authored expressions**: the G4 bounded helper and its contract `CONTRACT-authored-expression-evaluation.md` (S-10) (`RS:130-132`, `CW:150-153`).
 - **CRT**: `__isa_available` `01F44858` gates the vectorised twist prefix (`CG:310-314`); `_time64`/`clock` imports (`RS:889-890`).
+
+---
+
+## 2. Gaps
+
+Pass 1 did not map this system, so every gap below is **NEW** (part B). Each is classed per the R2 brief:
+**STATIC** (a desk read of the executable or data answers it), **RUNTIME** (needs a live observation), **DATA**
+(needs a census of shipped data) or **DOC** (the answer is on another page; this page lacks the pointer, or two pages
+disagree). The register (`OQ`) was searched for every gap by address and by subject; "—" means no row was found.
+
+### 2.1 Generators the folder names but does not specify
+
+| id | gap | class | evidence | register |
+|---|---|---|---|---|
+| N-01 | **Family 6, the Bullet solver LCG, is unread.** Its recurrence, constants, draw count per solve and the claim that it is "reset to zero per solve" rest on GFZ naming only. `RS:332` draws a determinism conclusion ("physics is not a divergence source through RNG") from that tier-3 row. | STATIC | `RS:297` ("per-solver seed at `+0xC8`, reset to zero"), `RS:299` ("Family 6 alone is still recorded from GFZ annotation and function naming (tier 3)"), `RS:166` ("only family 6 … stays unread"), `CG:536` | — |
+| N-02 | **The CRT `rand()` algorithm and the state an un-`srand`-ed thread starts from are not stated.** The pages give the import, the per-thread state and the two `srand` callers, but no recurrence, output width or default seed. The generator sits in `api-ms-win-crt-utility-l1-1-0.dll`, not in the executable, so the desk read is of that DLL. | STATIC | `RS:498-499`, `RS:539-542` ("any other thread's `rand` is never `srand`-ed outside Lua"); no page in the database contains the UCRT constants (searched `214013`, `0x343FD`) | — |
+| N-03 | **Which thread each gameplay `rand` consumer runs on is not established**, so whether a movement draw and a charge-limit draw share one `rand` state is not stated. The register answers this for the Sound selects only. | STATIC | `RS:540-542` ("whether the audio, movement and combat consumers here share a thread is **not established**") | `SD-25` ANSWERED 2026-09-30, audio thread only |
+| N-04 | **No `rand` consumer's reduction is stated except one.** `002FA1A0`'s `rand() % (900·tb) + 1200·tb` is the only formula. How `LuaMath_Random` maps `rand()` onto Lua's `math.random(m, n)` is not stated on this folder or on the Lua page, which lists only the `randomseed` address. | STATIC | `CW:44`; `RS:509-525`; `22-Middleware-PhyreEngine/Embedded-Lua-And-Object-Bindings/embedded-lua-and-phyre-object-bindings.md:710` | — |
+| N-05 | **The 30 `rand` consumer functions are not listed.** The census gives counts by subsystem and names about ten; "Combat Formula 1", "UI 1" and "unowned 7" are unnamed. Unlike the LCG and the G4 stream, there is no member `.tsv`. | STATIC | `RS:509-518` | — |
+| N-06 | **Two counts of `rand` callers disagree.** The RNG page says 30 functions; the register's SD-25 row says "of the 31 `rand` callers". The thunk `00861F38`'s one caller `00149610` may account for the difference, but neither text says so. | DOC | `RS:505` ("48 call sites across 30 functions"), `RS:531-532`; `OQ:3574` (SD-25: "of the 31 `rand` callers, 4 are inside the sound thread's direct-call closure") | `SD-25` |
+| N-07 | **The 66 MT `u32` consumer functions are not listed on any page in the folder.** About fifteen are named (`RS:383-390`, `CG:114`, `CG:129-143`). The census is cited from `edges.tsv` (`WR:417`), which is not part of the folder. A re-implementer cannot enumerate the gameplay MT's consumers from the pages. | STATIC | `RS:371`, `RS:383-390`, `CG:114`, `WR:417-419` | — |
+
+### 2.2 Order, position and live validation
+
+| id | gap | class | evidence | register |
+|---|---|---|---|---|
+| N-08 | **The order of draws within a frame or a combat turn is not stated for any generator.** On these fixed streams "draw ordering is the entire source of variation" (`WR:256`), so an outcome-level parity test cannot be written. | RUNTIME | `WR:354-355` ("How many draws precede a given roll … is not traced here"), `CW:226-227`, `CG:511-513` | — |
+| N-09 | **The gameplay MT's position at the first gameplay draw after a fresh boot is not established.** Boot frame modes 0 and 1 each draw and discard once per dispatch, and the dispatch counts wait on load conditions. | RUNTIME | `CG:129-139` ("whether they vary is a runtime question this contract does not answer"), `CG:351`, `WR:186-195` | — |
+| N-10 | **How many camera-shake drivers are non-zero per frame is not measured**, and the bound (4 drivers × 16 floats = 64 draws per frame) makes shake the dominant consumer of the MT cursor by volume. Finished drivers (state 2) still draw. | RUNTIME | `CG:744-761` ("Routed to ASTRA as a live question") | — (routed to ASTRA in text, no row) |
+| N-11 | **Two seeding facts are read but not run**: that two loads of the same save produce different MT states, and that `0208E6B0` increments rather than resets across two entries to the same area. The runtime value of `01FD4A80` at any save is inherently live. | RUNTIME | `CG:495`, `CG:503-510`, `CW:217-224` | — |
+
+### 2.3 Seeding and initial state
+
+| id | gap | class | evidence | register |
+|---|---|---|---|---|
+| N-12 | **The LCG seed used by the first gameplay area after boot is not stated.** The broad bootstrap `00266D10` also calls `002342F0` and "also advances the counter" (`WR:291`), but the reseed only runs when the gate `02089300` is 1, and the gate is set in boot frame mode 0 (`0022B77C`). Whether the bootstrap call runs before or after that set, and so whether the first gameplay seed is 0 or 1 (or more), is not stated. The counter's load-time value is also not stated outright: `CW:94` gives "seeded 0, 1, 2, 3 …" but no page says `0208E6B0` is in `.bss` or zero in the file image, as `CG:98` does for the other four statics. | STATIC | `WR:143-146`, `WR:291`, `CW:94`, `CW:181`, `CG:98-102` | — |
+| N-13 | **Where the reseed falls inside `002342F0` relative to that function's other LCG-reaching calls is not stated.** The page says only that "Around the LCG reseed it calls `SpawnKeep_RotatePersistenceBanksForAreaTransition` … and `SpawnGroup_ResetLifecycleLedger`"; whether any spawn or keep draw in area init happens before the reseed (and so on the old stream) is not given. | STATIC | `WR:290-295` | — |
+| N-14 | **The second writer of the G4 mode word `022D9138` is unnamed.** "Every rip-relative store to `022D9138` writes 1: the startup seed `00259220`, and two more stores in one other function." Since mode 0 freezes the stream (`RS:123-125`), what clears or sets it matters for phase, even though every store found writes 1. | STATIC | `RS:125-126` | — |
+
+### 2.4 Per-consumer accounting
+
+| id | gap | class | evidence | register |
+|---|---|---|---|---|
+| N-15 | **The G4 stream's per-consumer step counts are not stated.** The census lists 114 functions and their route (`procedural-stream-consumers.tsv`: `function / name / route`), but the steps per call are given only for `003D8E50` (7) and `004005E0` (1). The seven inline steppers, two of them shared helpers with 36 callers each, have no step count. The page itself recommends regenerating render randomness locally rather than replaying the phase (`RS:208-210`), which bounds how much this matters. | STATIC | `RS:198-204`; `procedural-stream-consumers.tsv` header | `UQ-276` ANSWERED (census only) |
+| N-16 | **G2's draws per noise texture, and the texture's size, are not stated.** The draw window `00194831`–`001948D0` is cited, but neither the count nor the dimensions are. The stream is presentation-only. | STATIC | `RS:306-307` | — |
+| N-17 | **Who calls G6 through its pointer is not stated.** The page answers who *stores* `006B05E0` at `02E502A8` (`006B04B0`), not who loads and calls it, so G6's consumers and draw rate are unknown. | STATIC | `RS:882-883` | — |
+| N-18 | **Which PPFX effect owns G7's kernel path is not established**, so when G7 rebuilds (and advances its counter) is not tied to any effect. | STATIC | `RS:759-763` ("Which effect owns `006F61F0` remains unestablished") | — |
+| N-19 | **No texture-readback census was run**, so "gameplay could only depend on [G2] by reading that texture back, which nothing here was found to do" is an absence without a complete census. | STATIC | `RS:309-311` | `AD-3` ANSWERED with this caveat (`OQ:657`) |
+| N-20 | **Whether the gameplay MT or the shared LCG is ever stepped from a thread other than the main one is not stated.** | STATIC | `WR:356` | — |
+
+### 2.5 Answers on other pages, and pages that disagree
+
+| id | gap | class | evidence | register |
+|---|---|---|---|---|
+| N-21 | **`01DFE0BC` is called "an unresolved scalar" in the camera-shake sampler, but the register has answered it.** K-8 and Z-11: it is the reciprocal of the frame-rate triple at `01DFE0B4`–`01DFE0BC`, `1.0` by default and `0.5` at 60 fps, written only at startup by `001EDDC0`. The contract lacks the pointer. | DOC | `CG:738-740` ("It is named here as an unresolved scalar, not consumed as a no-op."); `OQ:298` (K-8 ANSWERED 2026-09-02), `OQ:591` (Z-11 ANSWERED) | `K-8`, `Z-11` ANSWERED |
+| N-22 | **The address of `vf00.w` is not given where the G4 scaled draw depends on it.** `RS:103-105` cites "`mulss` by `vf00.w`" and says both writers set it to 1.0, without an address. The register-bank page says `01EF93F0` is vf00 = (0, 0, 0, 1), so `vf00.w` is `01EF93FC`, which `RS:190` lists only as "constant 1.0". | DOC | `RS:103-105`, `RS:190`; `00-Engine-Core-Runtime/Shared-Transform-Workbench/the-ee-and-vu0-register-bank.md:35` | — |
+| N-23 | **`00319A00` is called "not read" beside the chain-bonus roll, but other pages describe it.** It is `Loot_CollectWorldPickupByIndex`, a 26-byte index adapter: `idx × 0x60` into the pickup table `02EC0FA0`, tail to `00319920`. | DOC | `WR:486` ("`00319A00`, called immediately before it, was not read"); `13-Rewards-Progression-Economy/world-loot-pickups-the-ten-slot-pool-and-the-despawn.md:297`, `:374`; `10-Status-Periodic-Terminal/Periodic-Tick/what-the-periodic-tick-does.md:246` | — |
+| N-24 | **`which-roll-is-on-which-generator.md` still states the LCG's consumers as the eight writers in three places**, after its own §3 note and the contract widened them to 8 writers + 15 callers: §2's generator 3 "drives loot, the enemy chain, weighted action selection" (no spawn, AI order or stance timer, unlike `CW:50`); "Loot rolls, enemy-chain rolls and the weighted action selector … All eight read the same state" (the weighted selector `00308EC0` is a caller, not one of the eight); and §6 "One state, eight draw sites". | DOC | `WR:48`, `WR:90-92`, `WR:234-235`; against `WR:84-88`, `WR:117-119`, `CW:50` | `AD-2` ANSWERED (`OQ:656`) |
+| N-25 | **`CONTRACT-which-generator-serves-which-roll.md` §13 opens "None for the routing" and leaves it unstruck**, two paragraphs above its own note that `EXP-144` executed the routing on 2026-09-22. The front-matter correction (`CW:34`) struck the matching line in the header, but not this one. | DOC | `CW:198-202` against `CW:204-213`, `CW:34` | — |
+
+### 2.6 Counts
+
+| class | count | ids |
+|---|---:|---|
+| STATIC | 15 | N-01, N-02, N-03, N-04, N-05, N-07, N-12, N-13, N-14, N-15, N-16, N-17, N-18, N-19, N-20 |
+| RUNTIME | 4 | N-08, N-09, N-10, N-11 |
+| DATA | 0 | — |
+| DOC | 6 | N-06, N-21, N-22, N-23, N-24, N-25 |
+| **total** | **25** | |
+
+Gaps the folder's register rows track: 5 (N-03 `SD-25`, N-15 `UQ-276`, N-19 `AD-3`, N-21 `K-8`/`Z-11`, N-24 `AD-2`;
+N-06 also cites `SD-25`). All of those rows read ANSWERED; each gap is the remainder that row leaves, or a pointer the
+page lacks. The other 19 have no register row.
+
+**Closed in the pages, so not gaps** (checked, listed so a later pass does not reopen them): the MT float draw and
+its scale (`CG:51`, `CG:436-442`); the save-load seed formula and `01FD4A80`'s role (`WR:303-312`, `CG:544-554`);
+the reseed gate's lifetime (`CW:181`); the graphics MT's state address and index cells (`CW:96-129`, falsification
+pass `CW:244-273`); the twist's prefix-plus-remainder shape (`CG:298-308`); the LCG census's completeness (`WR:115-132`,
+`OQ` AD-2); the G4 consumer census (`RS:193-210`, `OQ` UQ-276); the weighted-id walk and the chain-bonus roll
+(`RS:345-360`, `RS:455`, `OQ` AD-1, AD-6, AE-3, CQ-1); stream 5's pointer holder and stream 4's seed arguments
+(`RS:882-890`); the PPFX xorshift128 (`RS:722-758`, `OQ` CQ-6); the camera-shake channel table (`OQ:1578` CA-2).
