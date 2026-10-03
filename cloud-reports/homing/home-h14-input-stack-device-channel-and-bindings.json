@@ -1,0 +1,7 @@
+{
+ "page": "15-Input/Input-Stack/input-stack-device-channel-and-bindings.md",
+ "session": "session_01Ft9DsjYbzydEyFv6u1R8to",
+ "rows": [],
+ "skipped": [{"fn": "0025D5D0", "why": "its whole work is the entry instruction (and byte 02098E27, 0x7F) followed by ret"}],
+ "notes": "0025D5D0 (8 B): one AND of byte 02098E27 with 0x7F at the entry, then ret; no interior instruction carries the work."
+}
