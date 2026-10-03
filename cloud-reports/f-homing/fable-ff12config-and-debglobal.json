@@ -1,0 +1,35 @@
+{
+ "page": "19-Save-Load-Settings/Game-Settings-Config/ff12config-and-debglobal.md",
+ "session": "session_01SRPAB4nYztytvoFuWnwY9e",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "003E9B80",
+   "text": "with record r = `02B5D0B0` + `ecx` (sign-extended) * 0x40, calls `002DEBB0` with the incoming registers unchanged, loads p = qword `[r + 0x20 + result*8]` (result sign-extended) and always stores it at qword `r+0x30`; returns 0 when byte `r+4` is not 3, p is null, or dword `p+4` is not above `edx` (unsigned); otherwise returns 1 when dword `[p + 8 + edx*16 + 0xc]` is non-zero, else 0",
+   "anchors": [
+    [
+     "003E9B9E",
+     "call"
+    ],
+    [
+     "003E9BAF",
+     "mov"
+    ],
+    [
+     "003E9BA3",
+     "cmp"
+    ],
+    [
+     "003E9BBA",
+     "cmp"
+    ],
+    [
+     "003E9BD5",
+     "setne"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "003E9B80 also tests the computed entry address p + 8 + edx*16 for zero (je at 003E9BCE), which cannot be taken for a non-null p short of wraparound; omitted from the sentence."
+}
