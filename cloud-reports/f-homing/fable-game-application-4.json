@@ -1,0 +1,497 @@
+{
+ "page": "00-Engine-Core-Runtime/Application-Root/game-application.md",
+ "session": "session_01SRPAB4nYztytvoFuWnwY9e",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "001D99C0",
+   "text": "when the list head at `rcx+0x60` is non-empty (qword `[rcx+0x60]` differs from `rcx+0x60`), walks its nodes (next at qword `+0`) calling `00210EB0(node qword +0x10)` for each, walks them again releasing each node through virtual slot `+0x18` of the object at `rcx+0x70` with size 0x18, points both head qwords back at `rcx+0x60` and stores byte 1 at `rcx+0x78`; an empty list returns with nothing changed",
+   "anchors": [
+    [
+     "001D99D1",
+     "cmp"
+    ],
+    [
+     "001D99E7",
+     "call"
+    ],
+    [
+     "001D9A15",
+     "call"
+    ],
+    [
+     "001D9A27",
+     "mov"
+    ],
+    [
+     "001D9A2E",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "001D9DA0",
+   "text": "calls `005CD4F0(rcx+0xf0)` and `005CDAA0(0, 00900758, edx)`, clears a 0x100-byte stack buffer with `00861EC0`, formats into it with `0017D2E0` and \"%s%s%s%d%s\" (`00900798`) the values \"/PrefetchData/\", `rcx+0x1b8`, \"/Events/\", `edx`, \".txt\" and passes the buffer to the call at `001D9DA0+0x9E` (with `rcx`), then formats again with \"/add-on/\" (`009007A8`) in place of `rcx+0x1b8` and passes it to the call at `001D9DA0+0xD8`; finally calls `005CD820(rcx+0xf0)` and returns through the stack-cookie check `00808C40`",
+   "anchors": [
+    [
+     "001D9DD3",
+     "call"
+    ],
+    [
+     "001D9E31",
+     "call"
+    ],
+    [
+     "001D9E3E",
+     "call"
+    ],
+    [
+     "001D9E78",
+     "call"
+    ],
+    [
+     "001D9E84",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "001D9FD0",
+   "text": "calls `0016D6A0(rdx == 0)` and returns when qword `rcx+0x30` is 0; otherwise calls `005CD4F0(rcx+0x38)`, and when the list head at `rcx+0x60` is non-empty calls `005CDAA0(0, 009006C0)` and the call at `001D9FD0+0x4E` (with `rcx`); then makes the call at `001D9FD0+0x5D` with (`rcx`, qword `+0x30`, `rcx+0x60`) and, when it returns non-zero, calls `005CDAA0(0, 009006C0)` if the list is now empty or stores byte 0 at `+0x78` if not; on both outcomes it then calls `005CD820(rcx+0x38)` and `00210EB0(qword +0x30)` and zeroes qword `+0x30`",
+   "anchors": [
+    [
+     "001D9FE6",
+     "cmp"
+    ],
+    [
+     "001D9FFF",
+     "call"
+    ],
+    [
+     "001DA02D",
+     "call"
+    ],
+    [
+     "001DA04B",
+     "mov"
+    ],
+    [
+     "001DA06B",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "001DCEB0",
+   "text": "makes the indirect call at `001DCEB0+0x4B` with (a zeroed 16-byte local, 0xcf0000, 0), takes dwords `+0x74` and `+0x78` of the object at qword `01F82D20` as a point (x, y), and walks dword `rcx+0x50` entries of stride 0x140 from qword `rcx+0x78`, each holding dword `+0x130` records of stride 0x60 at qword `+0x138`: it returns `record+0x40` for the first record whose signed rectangle (dwords `+0x40` left, `+0x44` top, `+0x48` right, `+0x4c` bottom) contains the point (left and top inclusive, right and bottom exclusive); otherwise it returns the `record+0x40` whose rectangle centre (halved sums) has the smallest squared float distance to the point (the earlier record kept on a tie), or 0 when there are no records; it returns through the stack-cookie check `00808C40`",
+   "anchors": [
+    [
+     "001DCF11",
+     "mov"
+    ],
+    [
+     "001DCF65",
+     "jl"
+    ],
+    [
+     "001DCFDB",
+     "comiss"
+    ],
+    [
+     "001DCFE0",
+     "lea"
+    ],
+    [
+     "001DD018",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "001E74F0",
+   "text": "when byte `rcx+0xb8` is non-zero calls `005CD6D0(rcx+0x90)`; then makes the calls at `001E74F0+0x2C` (with `rcx+0x58`) and `001E74F0+0x36` (with `rcx+0x20`), and when qword `[rcx]` is non-null releases it through virtual slot `+0x18` of the object at `rcx+0x18` with size (qword `+0x10` minus qword `+0`) AND NOT 0xF",
+   "anchors": [
+    [
+     "001E7502",
+     "cmp"
+    ],
+    [
+     "001E7512",
+     "call"
+    ],
+    [
+     "001E751C",
+     "call"
+    ],
+    [
+     "001E7526",
+     "call"
+    ],
+    [
+     "001E7546",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "001EA130",
+   "text": "when bit 31 of dword `[rcx]` is clear, that dword is above 1 (unsigned) and qword `rcx+8` is non-null, calls `00584730(qword +8)`; on every path it then zeroes qword `+8` and dword `+0`",
+   "anchors": [
+    [
+     "001EA146",
+     "shr"
+    ],
+    [
+     "001EA153",
+     "cmp"
+    ],
+    [
+     "001EA15C",
+     "test"
+    ],
+    [
+     "001EA161",
+     "call"
+    ],
+    [
+     "001EA169",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "001EBAE0",
+   "text": "returns at once when `rdx` is null; otherwise copies the four floats 255.0 from `00902450` to a 16-byte stack local, calls virtual slot `+0x48` of `rdx` with (`rdx`, that local) and returns through the stack-cookie check `00808C40`",
+   "anchors": [
+    [
+     "001EBAE3",
+     "je"
+    ],
+    [
+     "001EBAFE",
+     "movaps"
+    ],
+    [
+     "001EBB12",
+     "call"
+    ],
+    [
+     "001EBB1D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "001FD9A0",
+   "text": "returns at once when `rdx` is null; otherwise, for `rdx` and then each node reached through its qword `+8`, recurses into itself (`001FD9A0`) with `rcx` and the node's qword `+0`, walks the chain from the node's qword `+0x40` (next at `+8`) calling `00220390(node+0x28, link qword +0)` and releasing each link through virtual slot `+0x18` of the object at `node+0x58` with size 0x28, then releases the node through virtual slot `+0x18` of the object at `rcx+0x30` with size 0x60",
+   "anchors": [
+    [
+     "001FD9D4",
+     "call"
+    ],
+    [
+     "001FD9F7",
+     "call"
+    ],
+    [
+     "001FDA11",
+     "call"
+    ],
+    [
+     "001FDA3B",
+     "call"
+    ],
+    [
+     "001FDA4E",
+     "jne"
+    ]
+   ]
+  },
+  {
+   "fn": "00204B30",
+   "text": "makes the indirect call at `00204B30+0x13` with qword `rcx+0x28`, stores `009058C0` at qword `[rcx]`, calls `00809950(rcx, 0x30)` only when bit 0 of `edx` is set, and returns `rcx`",
+   "anchors": [
+    [
+     "00204B43",
+     "call"
+    ],
+    [
+     "00204B50",
+     "mov"
+    ],
+    [
+     "00204B53",
+     "test"
+    ],
+    [
+     "00204B60",
+     "call"
+    ],
+    [
+     "00204B65",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00204B80",
+   "text": "stores `00905888` at qword `[rcx]`, makes the indirect calls at `00204B80+0x1D` (with qword `rcx+0x18`) and `00204B80+0x26` (with `rcx`), calls `00809950(rcx, 0x20)` only when bit 0 of `edx` is set, and returns `rcx`",
+   "anchors": [
+    [
+     "00204B94",
+     "mov"
+    ],
+    [
+     "00204B9D",
+     "call"
+    ],
+    [
+     "00204BA6",
+     "call"
+    ],
+    [
+     "00204BAF",
+     "je"
+    ],
+    [
+     "00204BB9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "002093D0",
+   "text": "returns with nothing changed when qword `[rcx]` is null; otherwise, when qword `+0x10` minus that pointer is 0x1000 or more (unsigned), it first replaces the pointer with qword `[pointer-8]`, reaching the indirect calls at `002093D0+0x25`, `002093D0+0x35`, `002093D0+0x45` or `002093D0+0x52` (each followed by `int3`) when the pointer has any of its low 5 bits set, when that stored qword is not below the pointer, or when their difference is below 8 or above 0x27; it then calls `00210EB0` on the pointer and zeroes qwords `+0`, `+8` and `+0x10`",
+   "anchors": [
+    [
+     "002093E8",
+     "cmp"
+    ],
+    [
+     "002093FC",
+     "mov"
+    ],
+    [
+     "0020941C",
+     "cmp"
+    ],
+    [
+     "0020942C",
+     "call"
+    ],
+    [
+     "00209433",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0020B3E0",
+   "text": "when byte `rcx+0xb8` is non-zero calls `005CD6D0(rcx+0x90)`; then makes the calls at `0020B3E0+0x2C` (with `rcx+0x58`) and `0020B3E0+0x36` (with `rcx+0x20`), and when qword `[rcx]` is non-null releases it through virtual slot `+0x18` of the object at `rcx+0x18` with size ((qword `+0x10` minus qword `+0`) / 0x18, signed) * 0x18",
+   "anchors": [
+    [
+     "0020B3F2",
+     "cmp"
+    ],
+    [
+     "0020B402",
+     "call"
+    ],
+    [
+     "0020B40C",
+     "call"
+    ],
+    [
+     "0020B432",
+     "movabs"
+    ],
+    [
+     "0020B458",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00220DA0",
+   "text": "calls `0016D6A0(edx <= 0xff, unsigned)` and returns the float dword at `rcx + edx*4 + 0x3d8` (index sign-extended)",
+   "anchors": [
+    [
+     "00220DB2",
+     "cmp"
+    ],
+    [
+     "00220DBB",
+     "call"
+    ],
+    [
+     "00220DC0",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "00221100",
+   "text": "calls `0016D6A0(edx <= 0xff, unsigned)` and returns the zero-extended byte at `rcx + edx + 0x7d8` (index sign-extended)",
+   "anchors": [
+    [
+     "00221112",
+     "cmp"
+    ],
+    [
+     "0022111B",
+     "call"
+    ],
+    [
+     "00221120",
+     "movzx"
+    ]
+   ]
+  },
+  {
+   "fn": "00221280",
+   "text": "when `edx` is negative (signed) zeroes the 0x100 dwords from `rcx+0x3d8` and the 0x100 bytes from `rcx+0x7d8` without calling anything; otherwise calls `0016D6A0(edx < 0x100, signed)` and zeroes dword `rcx + edx*4 + 0x3d8` and byte `rcx + edx + 0x7d8`",
+   "anchors": [
+    [
+     "00221299",
+     "jns"
+    ],
+    [
+     "002212B0",
+     "mov"
+    ],
+    [
+     "002212B6",
+     "mov"
+    ],
+    [
+     "002212E3",
+     "call"
+    ],
+    [
+     "002212E8",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00225B20",
+   "text": "returns 0 when dword `rcx+0x10` is not greater than 0 (signed), when qword `rcx+8` is null, or when float(dword `rdx+0x10`) / float(dword `rdx+0x14`) is greater than 0.5 (`01CEBB70`); otherwise takes the count dword `rdx+8` and offset dword `rdx+0xc`, lowers the count to dword `rcx+0x10` minus the offset when count plus offset is not below dword `rcx+0x10` (signed), calls `00861EBA(qword [rdx], qword rcx+8 + offset, count)` and returns the count",
+   "anchors": [
+    [
+     "00225B2E",
+     "jle"
+    ],
+    [
+     "00225B4D",
+     "comiss"
+    ],
+    [
+     "00225B68",
+     "cmp"
+    ],
+    [
+     "00225B7D",
+     "call"
+    ],
+    [
+     "00225B82",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00240A00",
+   "text": "when qword `0208E6C0` is non-null and that object's qword `+0` is non-null, calls that qword with (the object, a stack record of dword 0xd at `+0` and the dwords 0x2CA6, 0, 5, 0 from `00914D50` at `+8`); on every path returns through the stack-cookie check `00808C40`",
+   "anchors": [
+    [
+     "00240A13",
+     "mov"
+    ],
+    [
+     "00240A1F",
+     "movdqa"
+    ],
+    [
+     "00240A2D",
+     "mov"
+    ],
+    [
+     "00240A42",
+     "call"
+    ],
+    [
+     "00240A4C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0028E190",
+   "text": "makes the call at `0028E190+0x12` with qword `0209BE80` + 0x8fa0, then calls `0016D6A0` with qword `0209BE80` + 0x8fa0 reloaded, and ends with the tail jump at `0028E190+0x2E`",
+   "anchors": [
+    [
+     "0028E1A2",
+     "call"
+    ],
+    [
+     "0028E1A7",
+     "mov"
+    ],
+    [
+     "0028E1B5",
+     "call"
+    ],
+    [
+     "0028E1BE",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002A7EA0",
+   "text": "calls `0016D6A0(0x1000)` and returns 0",
+   "anchors": [
+    [
+     "002A7EA4",
+     "mov"
+    ],
+    [
+     "002A7EA9",
+     "call"
+    ],
+    [
+     "002A7EAE",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "002D5500",
+   "text": "takes `r9` = qword `+0x18` of qword `+0x10` of qword `rcx+0x60` (a null `rcx` makes it read address 0x18), and for i = 0, 1, 2 takes the object at qword `[qword [r9+0x60] + i*8]` (address 0 when `r9` is null) and sets bit 0 of its dword `+8` to 1 when i is less than `edx` (signed) and to 0 otherwise; returns through the stack-cookie check `00808C40`",
+   "anchors": [
+    [
+     "002D5524",
+     "mov"
+    ],
+    [
+     "002D5528",
+     "mov"
+    ],
+    [
+     "002D5560",
+     "mov"
+    ],
+    [
+     "002D5564",
+     "and"
+    ],
+    [
+     "002D5572",
+     "or"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Indirect calls through import slots and calls to functions this page does not name are cited by site. Doubts: 0028E190 passes a pointer (qword 0209BE80 + 0x8fa0) as the argument of 0016D6A0, stated as listed; 002D5500 has no null guard on the r9 chain when rcx is null (dereferences 0x18), stated as listed; 001D9DA0's format argument order (\"/PrefetchData/\" first, then rcx+0x1b8) is as the registers show."
+}
