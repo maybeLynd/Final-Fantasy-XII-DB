@@ -1,0 +1,14 @@
+{
+ "page": "17-Presentation-Rendering/Character-Render-Records/how-a-status-shows-on-a-character.md",
+ "session": "session_01DtsGzxAwuV39oMMCAfQd2j",
+ "rows": [
+  {"fn": "004700C0", "entered_from": "`003E7500` + 0x7B",
+   "text": "stores `0xFFFF` to dword `+4` of `rcx`, 0 to dword `+0` and to qwords `+8` and `+0x18`, and `edx` to dword `+0x10`",
+   "anchors": [["004700C2", "mov"], ["004700C9", "mov"], ["004700CF", "mov"], ["004700D3", "mov"]]},
+  {"fn": "0051E140", "entered_from": "`003E7500` + 0x90",
+   "text": "stores `edx` to dword `+0` of `rcx`; 0 to dword `+0x10`, qwords `+0x28` and `+0x40` and byte `+0x33`; word `0x00FF` to `+0x19` and `+0x31`; and byte `0xFF` to `+0x18` and `+0x30`",
+   "anchors": [["0051E142", "mov"], ["0051E14F", "mov"], ["0051E152", "mov"], ["0051E158", "mov"], ["0051E15C", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "0051E140: the word stores of 0xFF at +0x19 and +0x31 leave +0x1A and +0x32 zero."
+}
