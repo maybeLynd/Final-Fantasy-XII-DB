@@ -1,0 +1,91 @@
+{
+ "page": "23-Third-Party-Libraries/third-party-middleware-inventory.md",
+ "session": "session_01Rk789qY4qsCmkfLpxsx7MQ",
+ "rows": [
+  {
+   "fn": "001EA380",
+   "text": "clears bit 31 of dword `+0x28` of `rcx` and, when `edx` is below the result (unsigned `jae`), calls the callee at `001EA380` + 0x21 with `rcx` = the address of qword `edx` (stride 8) of the array at qword `+0x30` and `rdx` = `r8`, then stores byte 1 at `+0xE8`; otherwise tail-jumps the callee at `001EA380` + 0x3B with the incoming `rcx` and `rdx` = `r8`",
+   "anchors": [
+    [
+     "001EA38C",
+     "btr"
+    ],
+    [
+     "001EA392",
+     "jae"
+    ],
+    [
+     "001EA3A1",
+     "call"
+    ],
+    [
+     "001EA3A6",
+     "mov"
+    ],
+    [
+     "001EA3BB",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002B3950",
+   "text": "clears bit 19 of dword `+0xB0` of `rcx` (AND 0xFFF7FFFF), zeroes word `+0x88` and byte `+0xB0`, copies word `+0x8C` to `+0x8E`, stores word `+0x8C` plus 1 at `+0x8C` and `+0x90`, and stores byte 1 at `+0x9B` and `+0x9D`",
+   "anchors": [
+    [
+     "002B395C",
+     "mov"
+    ],
+    [
+     "002B3963",
+     "mov"
+    ],
+    [
+     "002B3970",
+     "mov"
+    ],
+    [
+     "002B3977",
+     "inc"
+    ],
+    [
+     "002B398F",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00887630",
+   "text": "takes `i` = the truncation of `((double)(xmm2 + the seventh (stack) float) - 30.0 (`01CEBC48`)) * 0.1000000015 (`01CEBBB0`)`, clamped to 0..7, and `p` = qword `rdx[i]`; with `s` the sixth (stack) argument it sets `pos` = trunc(`(float [p] - 16.0 (`01CEBC84`)) * s + (float)r9d - (float)(s >> 1)`) and, for each `k` from trunc(float `[p]`) up to but not including trunc(float `[p+4]`) (none when the start is not below the end), stores `xmm2` + float `[p + 8 + k*4]` into float `rcx[pos]` when `pos` is positive and the sum is greater (`comiss`), then adds `s` to `pos` and stops once `pos` is at least the fifth (stack) argument (signed); the first `pos` is not checked against that bound",
+   "anchors": [
+    [
+     "00887671",
+     "mulsd"
+    ],
+    [
+     "00887693",
+     "cmovl"
+    ],
+    [
+     "00887699",
+     "mov"
+    ],
+    [
+     "008876D3",
+     "cvttss2si"
+    ],
+    [
+     "00887718",
+     "movss"
+    ]
+   ]
+  }
+ ],
+ "skipped": [
+  {
+   "fn": "00660570",
+   "why": "its whole work is the entry instruction (`or eax, 0xffffffff`, returning -1) followed by `ret`"
+  }
+ ],
+ "notes": "00887630: long unrolled loop (four elements per pass, then a one-at-a-time tail at 008877AE); the sentence states the combined effect. The stack-argument numbering assumes no pushes before the loads (none in the listing): `[rsp+0x28]` fifth, `[rsp+0x30]` sixth, `[rsp+0x38]` seventh. Worth a second look on the workstation."
+}
