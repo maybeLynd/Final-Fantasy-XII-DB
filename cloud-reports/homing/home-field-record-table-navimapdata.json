@@ -1,0 +1,26 @@
+{
+ "page": "03-World-Area-Field/Field-Record-Table/field-record-table-navimapdata.md",
+ "session": "session_01Xkefj8Gz4bCEiqGqVRB1MS",
+ "rows": [
+  {"fn": "002B61B0", "entered_from": "`00251F40` + 0x38",
+   "text": "returns when qword `0209E5C0` is null; otherwise takes bit 2 of its word `+0x179D2` as a bank index, forms `record + index * 0xBC10`, calls `002B61B0` + 0x34 with `rcx` = that base `+ 0x1B0`, and when the call returns non-zero tail-jumps (`002B61B0` + 0x52) with the same `rcx` and `edx` = 1, returning otherwise",
+   "anchors": [["002B61C0", "movzx"], ["002B61D3", "imul"], ["002B61E4", "call"], ["002B61E9", "test"], ["002B6202", "jmp"]]},
+  {"fn": "0035D550", "entered_from": "`00251F40` + 0x6F",
+   "text": "tail-jumps (`0035D550` + 0x4) with `ecx` = 0 and `edx` = 0",
+   "anchors": [["0035D552", "xor"], ["0035D554", "jmp"]]},
+  {"fn": "0035D560", "entered_from": "`00251F40` + 0x68",
+   "text": "tail-jumps (`0035D560` + 0x7) with `ecx` = 0 and `edx` = 1",
+   "anchors": [["0035D565", "xor"], ["0035D567", "jmp"]]},
+  {"fn": "003C5E00", "entered_from": "`00251F40` + 0x2E",
+   "text": "clears bit 1 and sets bit 2 of dword `02B45A00`, then calls `003C5E00` + 0x16 and returns when it is non-zero; otherwise calls `003C5E00` + 0x1F and returns when that is 0, else ORs 2 into dword `02B45A00` and tail-jumps (`003C5E00` + 0x33)",
+   "anchors": [["003C5E0A", "and"], ["003C5E10", "mov"], ["003C5E16", "call"], ["003C5E28", "or"], ["003C5E33", "jmp"]]},
+  {"fn": "003C9900", "entered_from": "`00251F40` + 0xD1",
+   "text": "returns when qword `02B47740` is null; otherwise calls `002544B0`, reloads `02B47740` and, when it is non-null, replaces bit 16 of its dword `+0x40` with (the return equals 1), then tail-jumps (`003C9900` + 0x38) with `rcx` = the reloaded qword whether or not it was null",
+   "anchors": [["003C9904", "cmp"], ["003C990E", "call"], ["003C991F", "sete"], ["003C9931", "or"], ["003C9938", "jmp"]]},
+  {"fn": "003C9F80", "entered_from": "`00251F40` + 0x8D",
+   "text": "when qword `02B47740` is null tail-jumps (`003C9F80` + 0x41) with no argument set; otherwise calls `002544B0`, reloads `02B47740` and, when it is non-null, replaces bit 15 of its dword `+0x40` with (the return equals 1), then tail-jumps (`003C9F80` + 0x38) with `rcx` = the reloaded qword whether or not it was null",
+   "anchors": [["003C9F84", "cmp"], ["003C9F8E", "call"], ["003C9F9F", "sete"], ["003C9FB1", "or"], ["003C9FB8", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "002544B0 is named by address in 003C9900/003C9F80 because the host excerpt names it ('002544B0()'); every other callee is cited by its site. 003C9900/003C9F80: when the reloaded 02B47740 is null, edx reaches the tail jump unshifted (0 or 1); when it is non-null edx holds the shifted bit; the sentence does not state edx for the tail call. 003C9900 is also entered from 00254AC0 + 0x45 and 00255330 + 0x41. 003C5E00 is also reached by jmp from 00352390 + 0xF and 00352AD0 + 0x12."
+}
