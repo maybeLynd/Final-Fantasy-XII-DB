@@ -1,0 +1,660 @@
+{
+ "page": "23-Third-Party-Libraries/third-party-middleware-inventory.md",
+ "mode": "member",
+ "family": "Lua 5.2.1 library",
+ "session": "session_01S3Hnscp1e3ynbqT4LWzgMV",
+ "rows": [
+  {
+   "fn": "008283F0",
+   "text": "keeps the int result of `008283F0+0x2C`(`rcx`, `r8d`), calls `008283F0+0x3F`(`rcx`, `edx`, 6), `008283F0+0x49`(`rcx`, `edx`) and `008283F0+0x5D`(`rcx`, `01CCC65C`, a stack record); when the kept result is below 1 or (signed) above byte `+0x34` of that stack record it calls `008283F0+0x7C`(`rcx`, `r8d`, \"invalid upvalue index\" `01CCC660`); it returns the kept result",
+   "anchors": [
+    [
+     "0082841C",
+     "call"
+    ],
+    [
+     "0082844D",
+     "call"
+    ],
+    [
+     "00828455",
+     "jl"
+    ],
+    [
+     "0082845E",
+     "jle"
+    ],
+    [
+     "0082846C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008284A0",
+   "text": "calls `008284A0+0x1C`(`rcx`, 0xFFF0B9D8, \"_HKEY\" `01CCC7DC`), `008284A0+0x24`(`rcx`) and `008284A0+0x31`(`rcx`, -2), and returns when `008284A0+0x3C`(`rcx`, -1) is not 6; otherwise it calls `008284A0+0x57`(`rcx`, qword table `01CCC690`[dword `[rdx]`]), then `008284A0+0x6A`(`rcx`, dword `[rdx+0x28]`) when that dword is non-negative or `008284A0+0x71`(`rcx`) when it is negative, and finally `008284A0+0x8C`(`rcx`, 2, 0, 0, 0)",
+   "anchors": [
+    [
+     "008284BC",
+     "call"
+    ],
+    [
+     "008284E4",
+     "jne"
+    ],
+    [
+     "008284F3",
+     "mov"
+    ],
+    [
+     "00828505",
+     "js"
+    ],
+    [
+     "0082852C",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00828580",
+   "text": "passes the results of `00828580+0x14`(`rcx`, 1, 0) and `00828580+0x26`(`rcx`, 2, 0) to `00828B80`(`rcx`, first, second); when that returns 0 it returns 1, otherwise it calls `00828580+0x50`(`rcx`), `00828580+0x5D`(`rcx`, -2) and `00828580+0x7A`(`rcx`, \"open\" `01CCA2B4` when the result was 1, else \"init\" `01CCC8DC`) and returns 3",
+   "anchors": [
+    [
+     "008285B4",
+     "call"
+    ],
+    [
+     "008285BD",
+     "jne"
+    ],
+    [
+     "008285F6",
+     "cmove"
+    ],
+    [
+     "008285FA",
+     "call"
+    ],
+    [
+     "00828604",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00828610",
+   "text": "calls `00829460`(`rcx`, `00828610+0x62`(`rcx`, 1, 0), `00828610+0x50`(`rcx`, 2, 0), `00828610+0x3E`(`rcx`, 3, `008F9A58`, 0), `00828610+0x25`(`rcx`, 4, `008FB2B0`, 0)); when that returns non-null it returns 1, otherwise it calls `00828610+0x8C`(`rcx`) and `00828610+0x99`(`rcx`, -2) and returns 2",
+   "anchors": [
+    [
+     "00828635",
+     "call"
+    ],
+    [
+     "0082864E",
+     "call"
+    ],
+    [
+     "00828688",
+     "call"
+    ],
+    [
+     "00828690",
+     "je"
+    ],
+    [
+     "008286AE",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "008286D0",
+   "text": "with s = `008286D0+0x14`(`rcx`, 1, 0) it calls `008286D0+0x24`(`rcx`, 1), `008286D0+0x38`(`rcx`, 0xFFF0B9D8, \"_LOADED\" `00D70198`) and `008286D0+0x48`(`rcx`, 2, s), and returns 1 at once when `008286D0+0x53`(`rcx`, -1) is non-zero; otherwise it calls `008286D0+0x66`(`rcx`, -2), `00828920`(`rcx`, s), `008286D0+0x7C`(`rcx`, s), `008286D0+0x89`(`rcx`, -2) and `008286D0+0xA5`(`rcx`, 2, 1, 0, 0), calls `008286D0+0xC4`(`rcx`, 2, s) when `008286D0+0xB0`(`rcx`, -1) is non-zero, then calls `008286D0+0xD4`(`rcx`, 2, s) and, when `008286D0+0xDF`(`rcx`, -1) is 0, `008286D0+0xEE`(`rcx`, 1), `008286D0+0xF9`(`rcx`, -1) and `008286D0+0x109`(`rcx`, 2, s); it returns 1",
+   "anchors": [
+    [
+     "0082872A",
+     "jne"
+    ],
+    [
+     "00828741",
+     "call"
+    ],
+    [
+     "00828775",
+     "call"
+    ],
+    [
+     "008287B6",
+     "jne"
+    ],
+    [
+     "008287D9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008287F0",
+   "text": "when `edx` is non-zero it calls `008287F0+0x17`(`rcx`, `r8`) and returns 2; otherwise it returns `008287F0+0x63`(`rcx`, `01CCCA48`, `008287F0+0x49`(`rcx`, 1, 0), `r8`, `008287F0+0x37`(`rcx`, -1, 0))",
+   "anchors": [
+    [
+     "00828802",
+     "je"
+    ],
+    [
+     "00828807",
+     "call"
+    ],
+    [
+     "0082880C",
+     "mov"
+    ],
+    [
+     "00828827",
+     "call"
+    ],
+    [
+     "00828853",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00828870",
+   "text": "calls `00828870+0x10`(`rcx`, 4, 0), tests the constant address `008293F0` (never null, so the loop always runs), then for index i from 0, continuing while qword `01CCC990`[i+1] is non-null, calls `00828870+0x58`(`rcx`, -2), `00828870+0x69`(`rcx`, qword `01CCC990`[i], 1) and `00828870+0x79`(`rcx`, -2, i+1)",
+   "anchors": [
+    [
+     "00828880",
+     "call"
+    ],
+    [
+     "008288D9",
+     "call"
+    ],
+    [
+     "008288E9",
+     "call"
+    ],
+    [
+     "008288F4",
+     "cmp"
+    ],
+    [
+     "008288FD",
+     "jne"
+    ]
+   ]
+  },
+  {
+   "fn": "00828920",
+   "text": "with `rdx` the name and a stack buffer set up by `00828920+0x2C`(`rcx`, buffer), it calls `00828920+0x40`(`rcx`, 0xFFF0B9D7, \"searchers\" `01CCC8E8`) and, when `00828920+0x4D`(`rcx`, 3) is not 5, `00828920+0x61`(`rcx`, \"'package.searchers' must be a table\" `01CCC8F8`); then for i = 1, 2, ... it calls `00828920+0x7B`(`rcx`, 3, i), and when `00828920+0x86`(`rcx`, -1) is 0 it calls `00828920+0x95`(`rcx`, -2), `00828920+0x9F`(buffer) and `00828920+0xC2`(`rcx`, \"module '%s' not found:%s\" `01CCC920`, `rdx`, `00828920+0xAD`(`rcx`, -1, 0)); it calls `00828920+0xCD`(`rcx`, `rdx`) and `00828920+0xE5`(`rcx`, 1, 2, 0, 0) and returns when `00828920+0xF2`(`rcx`, -2) is 6, else calls `00828920+0x115`(`rcx`, -2) and `00828920+0x11F`(buffer) when `00828920+0x104`(`rcx`, -2) is non-zero or `00828920+0x130`(`rcx`, -3) when it is 0, and loops with i+1",
+   "anchors": [
+    [
+     "00828975",
+     "je"
+    ],
+    [
+     "0082899B",
+     "call"
+    ],
+    [
+     "008289E2",
+     "call"
+    ],
+    [
+     "00828A1A",
+     "je"
+    ],
+    [
+     "00828A44",
+     "inc"
+    ]
+   ]
+  },
+  {
+   "fn": "00828AF0",
+   "text": "calls `00828AF0+0x24`(`rcx`, 0xFFF0B9D8, \"_CLIBS\" `01CCCA0C`), `00828AF0+0x2F`(`rcx`, `r8`), `00828AF0+0x3A`(`rcx`, -1), `00828AF0+0x4A`(`rcx`, -3, `rdx`), then `00828AF0+0x68`(`rcx`, -2, `00828AF0+0x57`(`rcx`, -2) + 1), and tail-jumps at `00828AF0+0x84` with (`rcx`, -2)",
+   "anchors": [
+    [
+     "00828B14",
+     "call"
+    ],
+    [
+     "00828B3A",
+     "call"
+    ],
+    [
+     "00828B54",
+     "lea"
+    ],
+    [
+     "00828B58",
+     "call"
+    ],
+    [
+     "00828B74",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00828B80",
+   "text": "calls `00828B80+0x29`(`rcx`, 0xFFF0B9D8, \"_CLIBS\" `01CCCA0C`), `00828B80+0x37`(`rcx`, -1, `rdx`), keeps h = `00828B80+0x42`(`rcx`, -1) and calls `00828B80+0x52`(`rcx`, -3); when h is null it sets h to the import called at `00828B80+0x64`(`rdx`, 0, 0) and, if that is null, calls `00829030`(`rcx`) and returns 1, else calls `00828AF0`(`rcx`, `rdx`, h); then when byte `[r8]` is 0x2A it calls `00828B80+0x9F`(`rcx`, 1) and returns 0, otherwise it passes (h, `r8`) to the import called at `00828B80+0xAC` and returns 2 after `00829030`(`rcx`) when that is null, or 0 after `00828B80+0xCC`(`rcx`, result, 0)",
+   "anchors": [
+    [
+     "00828BE4",
+     "call"
+    ],
+    [
+     "00828C0D",
+     "call"
+    ],
+    [
+     "00828C12",
+     "cmp"
+    ],
+    [
+     "00828C2C",
+     "call"
+    ],
+    [
+     "00828C3F",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00828C70",
+   "text": "sets s = `00828C70+0x2E`(`rcx`, `r8`, `008F9A58`, `008F9554`) and passes (s, 0x2D) to the import called at `00828C70+0x3E`; when that returns a pointer p it calls `00828B80`(`rcx`, `rdx`, `00828C70+0x6A`(`rcx`, \"luaopen_%s\" `01CCCA80`, `00828C70+0x58`(`rcx`, s, p-s))) and returns its result unless it is 2, in which case s becomes p+1; on that path and when p is null it returns `00828B80`(`rcx`, `rdx`, `00828C70+0x93`(`rcx`, \"luaopen_%s\", s))",
+   "anchors": [
+    [
+     "00828CAE",
+     "call"
+    ],
+    [
+     "00828CBA",
+     "je"
+    ],
+    [
+     "00828CF0",
+     "jne"
+    ],
+    [
+     "00828CF2",
+     "lea"
+    ],
+    [
+     "00828D11",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00829030",
+   "text": "takes the int returned by the import called at `00829030+0x22` and passes (0x1200, 0, that int, 0, a stack buffer, 0x80, 0) to the import called at `00829030+0x52`; when that returns non-zero it calls `00829030+0x64`(`rcx`, buffer), otherwise `00829030+0x75`(`rcx`, `01CCC9F8`, the int)",
+   "anchors": [
+    [
+     "00829052",
+     "call"
+    ],
+    [
+     "0082907D",
+     "mov"
+    ],
+    [
+     "00829082",
+     "call"
+    ],
+    [
+     "00829094",
+     "call"
+    ],
+    [
+     "008290A5",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008290D0",
+   "text": "with n = `008290D0+0x19`(`rcx`, 1, 0) it calls `008290D0+0x30`(`rcx`, 0xFFF0B9D7, \"cpath\" `01CCCA8C`) and, when p = `008290D0+0x3E`(`rcx`, -1, 0) is null, `008290D0+0x5C`(`rcx`, \"'package.%s' must be a string\" `01CCCA28`, \"cpath\"); f = `00829460`(`rcx`, n, p, `008F9A58`, `008FB2B0`); when f is null it returns 1, otherwise it tail-jumps at `008290D0+0xC7` to `008287F0`(`rcx`, 1 when `00828C70`(`rcx`, f, n) is 0 else 0, f)",
+   "anchors": [
+    [
+     "00829119",
+     "jne"
+    ],
+    [
+     "0082914D",
+     "call"
+    ],
+    [
+     "00829176",
+     "call"
+    ],
+    [
+     "00829185",
+     "sete"
+    ],
+    [
+     "00829197",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "008291A0",
+   "text": "with n = `008291A0+0x14`(`rcx`, 1, 0), returns 0 when the import called at `008291A0+0x24`(n, 0x2E) is null; otherwise it calls `008291A0+0x50`(`rcx`, n, found-n), keeps r = `008291A0+0x5E`(`rcx`, -1, 0), calls `008291A0+0x75`(`rcx`, 0xFFF0B9D7, \"cpath\" `01CCCA8C`) and, when p = `008291A0+0x83`(`rcx`, -1, 0) is null, `008291A0+0xA1`(`rcx`, \"'package.%s' must be a string\" `01CCCA28`, \"cpath\"); f = `00829460`(`rcx`, r, p, `008F9A58`, `008FB2B0`) and it returns 1 when f is null; else by k = `00828C70`(`rcx`, f, n): 0 calls `008291A0+0x15F`(`rcx`, f) and returns 2, 2 calls `008291A0+0x142`(`rcx`, `01CCCA98`, n, f) and returns 1, any other value returns `008291A0+0x120`(`rcx`, `01CCCA48`, `008291A0+0x106`(`rcx`, 1, 0), f, `008291A0+0xF4`(`rcx`, -1, 0))",
+   "anchors": [
+    [
+     "008291C4",
+     "call"
+    ],
+    [
+     "00829262",
+     "call"
+    ],
+    [
+     "00829287",
+     "je"
+    ],
+    [
+     "0082928C",
+     "je"
+    ],
+    [
+     "008292C0",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00829460",
+   "text": "with a stack buffer set by `00829460+0x39`(`rcx`, buffer), replaces `rdx` by `00829460+0x4F`(`rcx`, `rdx`, `r9`, fifth argument) when byte `[r9]` is non-zero; then over the string `r8` it skips 0x3B bytes, returns 0 after `00829460+0x13F`(buffer) at the terminating 0, else ends the piece at the 0x3B found by the import called at `00829460+0x79` (or at the string end), calls `00829460+0xA8`(`rcx`, piece, length), sets f = `00829460+0xD4`(`rcx`, `00829460+0xBF`(`rcx`, -1, 0), `01CCA108`, `rdx`) and `00829460+0xE4`(`rcx`, -2), and passes (f, `008C5880`) to the import called at `00829460+0xF3`: non-null makes it pass that to the import at `00829460+0x12F` and return f, null makes it call `00829460+0x10B`(`rcx`, `01CCCA18`, f), `00829460+0x118`(`rcx`, -2), `00829460+0x122`(buffer) and continue after the piece",
+   "anchors": [
+    [
+     "008294B7",
+     "cmp"
+    ],
+    [
+     "008294D9",
+     "call"
+    ],
+    [
+     "00829534",
+     "call"
+    ],
+    [
+     "0082955C",
+     "jne"
+    ],
+    [
+     "00829587",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "008295D0",
+   "text": "passes (0, a 0x105-byte stack buffer, 0x105) to the import called at `008295D0+0x2B` and, when that returns 0 or 0x105, or the import called at `008295D0+0x46`(buffer, 0x5C) returns null, calls `008295D0+0x92`(`rcx`, \"unable to get ModuleFileName\" `01CCC9D0`); otherwise it stores 0 at the returned byte, calls `008295D0+0x74`(`rcx`, `008295D0+0x5D`(`rcx`, -1, 0), `01CCC9F0`, buffer) and `008295D0+0x81`(`rcx`, -2)",
+   "anchors": [
+    [
+     "00829605",
+     "cmp"
+    ],
+    [
+     "00829616",
+     "call"
+    ],
+    [
+     "00829624",
+     "mov"
+    ],
+    [
+     "00829644",
+     "call"
+    ],
+    [
+     "00829662",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00829680",
+   "text": "with f = qword `[rcx+0x30]` and p = qword `[f]`, when dword `f+0x38` is at least (signed) dword `p+0x60` it stores in qword `p+0x20` the result of `00829680+0x5C`(qword `[rcx+0x38]`, qword `p+0x20`, address of dword `p+0x60`, 8, 0x3FFFF, \"functions\" `01CCD118`) and zeroes the qword slots from the old dword `p+0x60` up to the new one; it then stores x = `00829680+0x97`(qword `[rcx+0x38]`) at qword `[p+0x20]`[dword `f+0x38`], increments dword `f+0x38`, calls `00829680+0xC4`(qword `[rcx+0x38]`, p, x) when byte `x+0x9` AND 3 and byte `p+0x9` AND 4 are both non-zero, and returns x",
+   "anchors": [
+    [
+     "008296AF",
+     "jl"
+    ],
+    [
+     "008296DC",
+     "call"
+    ],
+    [
+     "0082970A",
+     "mov"
+    ],
+    [
+     "00829727",
+     "mov"
+    ],
+    [
+     "00829744",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00829770",
+   "text": "with f = qword `[rcx+0x30]` and n = `edx` - `r8d`: when dword `[r9]` is 12 or 13 it sets k = n+1 (0 when negative), calls `00829770+0x73`(f, `r9`, k) and, when k is above 1, `00829770+0x83`(f, k-1); otherwise it calls `00829770+0x2D`(f, `r9`) when dword `[r9]` is non-zero, and when n is positive calls `00829770+0x3F`(f, n) and tail-jumps at `00829770+0x5B` with (f, byte `f+0x44` read before that call, n)",
+   "anchors": [
+    [
+     "00829791",
+     "jbe"
+    ],
+    [
+     "008297DD",
+     "cmovns"
+    ],
+    [
+     "008297E3",
+     "call"
+    ],
+    [
+     "008297A6",
+     "movzx"
+    ],
+    [
+     "008297CB",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00829AE0",
+   "text": "reads dword `[rcx+0x10]` and returns 1 when it is 0x104 to 0x106 or 0x11E, `edx` when it is 0x115, and 0 otherwise (signed compares)",
+   "anchors": [
+    [
+     "00829AE3",
+     "cmp"
+    ],
+    [
+     "00829AEF",
+     "jle"
+    ],
+    [
+     "00829AF6",
+     "je"
+    ],
+    [
+     "00829B02",
+     "mov"
+    ],
+    [
+     "00829B05",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00829D70",
+   "text": "when dword `[rcx+0x10]` equals `edx` it tail-jumps at `00829D70+0x2B` with `rcx`; else when `r9d` equals dword `[rcx+0x4]` it calls `00829D70+0x53`(`rcx`, `00829D70+0x48`(qword `[rcx+0x38]`, \"%s expected\" `01CCCFC8`, `00829D70+0x35`(`rcx`, `edx`))) and does not return (int3 follows); otherwise it calls `00829D70+0x88`(qword `[rcx+0x38]`, \"%s expected (to close %s at line %d)\" `01CCD020`, `00829D70+0x6E`(`rcx`, `edx`), `00829D70+0x61`(`rcx`, `r8d`), `r9d`) and loads (`rcx`, that result) as arguments where the listing ends",
+   "anchors": [
+    [
+     "00829D8A",
+     "jne"
+    ],
+    [
+     "00829D9B",
+     "jmp"
+    ],
+    [
+     "00829DA3",
+     "jne"
+    ],
+    [
+     "00829DC3",
+     "call"
+    ],
+    [
+     "00829DF8",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00829E90",
+   "text": "for i from the signed word at qword `[rcx+0x20]`+0x8 while i is below dword `[rdx+0x8]`, calls `00829E90+0x4A`(`r8`, qword at qword `[rdx]` + i*0x18); it returns when none is non-zero, else calls `00829E90+0x9B`(qword `[qword [rcx+0x18]+0x38]`, \"label '%s' already defined on line %d\" `01CCD1E0`, `r8`+0x20, dword at entry +0xC), stores 0 in dword `[qword [rcx+0x18]+0x10]` and calls `00829E90+0xAE`(qword `[rcx+0x18]`, that result)",
+   "anchors": [
+    [
+     "00829EB2",
+     "movsx"
+    ],
+    [
+     "00829EDA",
+     "call"
+    ],
+    [
+     "00829EEC",
+     "jl"
+    ],
+    [
+     "00829F37",
+     "mov"
+    ],
+    [
+     "00829F3E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00829F50",
+   "text": "with f = qword `[rcx+0x30]`, L = qword `[rcx+0x38]` and p = qword `[f]`, calls `00829F50+0x30`(f, 0, 0) and `00829F50+0x38`(f); then six times stores in a qword of p the result of a call (L, that qword, old count times size, new count times size) and copies the new count into p: `+0x18` with dword `p+0x58` to dword `f+0x28`, size 4 (`00829F50+0x70`); `+0x28` with `p+0x5C` to `f+0x28`, size 4 (`00829F50+0xA8`); `+0x10` with `p+0x54` to `f+0x34`, size 16 (`00829F50+0xEA`); `+0x20` with `p+0x60` to `f+0x38`, size 8 (`00829F50+0x12C`); `+0x30` with `p+0x64` to word `f+0x40`, size 16 (`00829F50+0x165`); `+0x38` with `p+0x50` to byte `f+0x43`, size 16 (`00829F50+0x18D`); the first five are guarded (new count+1 above 0x3FFFFFFFFFFFFFFF, 0x3FFFFFFFFFFFFFFF, 0x0FFFFFFFFFFFFFFF, 0x1FFFFFFFFFFFFFFF, 0x0FFFFFFFFFFFFFFF), the first guard's failure calling `00829F50+0x1FC`(L); it then stores qword `f+0x10` in qword `[rcx+0x30]`, calls `00829F50+0x1C1`(`rcx`, qword `[rcx+0x18]`+0x20, qword `[qword [rcx+0x18]+0x10]`) when dword `[rcx+0x10]` is 0x120 or 0x121, subtracts 0x10 from qword `L+0x10` and calls `00829F50+0x1D9`(L) when qword `[qword [L+0x18]+0x18]` is positive",
+   "anchors": [
+    [
+     "00829FC0",
+     "call"
+    ],
+    [
+     "0082A0DD",
+     "call"
+    ],
+    [
+     "0082A0F1",
+     "mov"
+    ],
+    [
+     "0082A111",
+     "call"
+    ],
+    [
+     "0082A11A",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "0082A170",
+   "text": "with t = qword `[rcx+0x50]` and e = qword `[t+0x10]` + `edx`*0x18: when byte `e+0x10` is below (unsigned) byte `r8+0x10` it calls `0082A170+0xE9`(qword `[rcx+0x38]`, \"<goto %s> at line %d jumps into the scope of local '%s'\" `01CCD078`, qword `[e]`+0x20, dword `e+0xC`, a name pointer + 0x20 looked up through qword `[rcx+0x30]` by its dword `+0x3C` plus byte `e+0x10`), stores 0 in dword `[rcx+0x10]` and calls `0082A170+0xFB`(`rcx`, result); otherwise it calls `0082A170+0x4C`(qword `[rcx+0x30]`, dword `e+0x8`, dword `r8+0x8`), moves each later 0x18-byte entry of qword `[t+0x10]` down one slot up to dword `t+0x18`, and decrements dword `t+0x18`",
+   "anchors": [
+    [
+     "0082A1AF",
+     "jb"
+    ],
+    [
+     "0082A1BC",
+     "call"
+    ],
+    [
+     "0082A1DE",
+     "movups"
+    ],
+    [
+     "0082A1F8",
+     "dec"
+    ],
+    [
+     "0082A259",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0082A700",
+   "text": "with f = qword `[rcx+0x30]` it calls `0082A700+0x24`(f) and `0082A700+0x2C`(`rcx`); when dword `[rcx+0x10]` is not 0x120 it calls `0082A700+0xB9`(`rcx`, `0082A700+0xAE`(qword `[rcx+0x38]`, \"%s expected\" `01CCCFC8`, `0082A700+0x9B`(`rcx`, 0x120))); otherwise it saves qword `[rcx+0x18]`, calls `0082A700+0x46`(`rcx`), and calls `0082A700+0x77`(f, `rdx`, a stack record of dword 4, dword `0082A700+0x52`(qword `[rcx+0x30]`, saved qword), qword -1)",
+   "anchors": [
+    [
+     "0082A731",
+     "cmp"
+    ],
+    [
+     "0082A752",
+     "call"
+    ],
+    [
+     "0082A768",
+     "mov"
+    ],
+    [
+     "0082A777",
+     "call"
+    ],
+    [
+     "0082A7AE",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0082A920",
+   "text": "with b = qword `[qword [rcx+0x30]+0x20]`, t = qword `[rcx+0x50]` and e = qword `[t+0x10]` + `edx`*0x18, for i from the signed word `b+0x8` while i is below dword `t+0x28` it calls `0082A920+0x6E`(qword at qword `[t+0x20]` + i*0x18, qword `[e]`) and returns 0 when none is non-zero; at a match l it calls `0082A920+0xCE`(qword `[rcx+0x30]`, dword `e+0x8`, byte `l+0x10`) when byte `e+0x10` is above (unsigned) byte `l+0x10` and either byte `b+0xD` is non-zero or dword `t+0x28` is above the word `b+0x8`; then when byte `e+0x10` is below byte `l+0x10` it reports through `0082A920+0x18E` with \"<goto %s> at line %d jumps into the scope of local '%s'\" `01CCD078`, stores 0 in dword `[rcx+0x10]` and calls `0082A920+0x1A1`, else it calls `0082A920+0xF9`(qword `[rcx+0x30]`, dword `e+0x8`, dword `l+0x8`), moves each later 0x18-byte entry down one slot, decrements dword `t+0x18` and returns 1",
+   "anchors": [
+    [
+     "0082A98E",
+     "call"
+    ],
+    [
+     "0082A9CB",
+     "jbe"
+    ],
+    [
+     "0082A9EE",
+     "call"
+    ],
+    [
+     "0082AA19",
+     "call"
+    ],
+    [
+     "0082AA58",
+     "dec"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Calls through import slots are cited by site only (the slot addresses are in the listing but are not named in the text). 00828870: the lea of 008293F0 followed by test/je is a never-taken guard. 00829D70: the listing stops at 00829E00 after loading rdx/rcx for a call that is not shown (extent ends 00829E07). 00829F50: guard failures 2-4 call the same callee at +0x202/+0x208/+0x20E; the fifth guard branches to 0082A164, which the listing does not decode (extent ends there). 0082A170: the fifth argument of the error formatter is read as qword [[ [rcx+0x30] ]+0x30][ word table qword [[ [[rcx+0x30]+0x18] +0x50]] [dword [rcx+0x30]+0x3C + byte e+0x10] * 2 ]+0x20 - I compressed it. 0082A920 has the same tail as 0082A170 (re-reads t from qword [rcx+0x50])."
+}
