@@ -1,0 +1,23 @@
+{
+ "page": "18-Audio/how-an-animation-makes-a-sound.md",
+ "session": "session_01RYbqU7tsSU3HnpGNjV9Ghv",
+ "rows": [
+  {"fn": "00360670", "entered_from": "`002E9D90` + 0x28",
+   "text": "scans the dwords from `022CB9DC` through `022CB9E4` inclusive (three dwords, 4-byte step) and returns 1 at the first non-zero one, or 0 when all are 0",
+   "anchors": [["00360677", "lea"], ["00360680", "cmp"], ["00360689", "cmp"], ["0036068E", "xor"], ["00360691", "mov"]]},
+  {"fn": "0036EC50", "entered_from": "`002E9D90` + 0x200",
+   "text": "when `ecx` is -1, reads the bytes at absolute addresses 1 and 2 (a null base) and returns the sign-extended byte 1, plus 2 when byte 2 is non-zero; otherwise takes the `0x18`-byte entry `ecx AND 0xF` of the table at `022D9AE0` when `cl AND 0xF0` is non-zero, or of the table at `022D9AB0` when it is 0, and returns its sign-extended byte `+1`, plus 2 when its byte `+2` is non-zero",
+   "anchors": [["0036EC57", "movsx"], ["0036EC6A", "test"], ["0036EC88", "cmp"], ["0036EC91", "movsx"], ["0036EC98", "cmove"]]},
+  {"fn": "003A0E80", "entered_from": "`0046CC70` + 0x1AF",
+   "text": "when `ecx` is 0 tail-jumps through the jump at `003A0E80` + 0x19 with `edx` as the first argument; when `ecx` is 1 tail-jumps through the jump at `003A0E80` + 0x11 with `edx` and 0; any other `ecx` returns without a call",
+   "anchors": [["003A0E85", "je"], ["003A0E87", "cmp"], ["003A0E8C", "xor"], ["003A0E91", "jmp"], ["003A0E99", "jmp"]]},
+  {"fn": "003A10F0", "entered_from": "`0046CC70` + 0x3E5",
+   "text": "returns bit 30 of `ecx` inverted: 1 when the bit is clear, 0 when it is set",
+   "anchors": [["003A10F3", "not"], ["003A10F5", "and"], ["003A10F8", "mov"]]},
+  {"fn": "003E7CD0", "entered_from": "`0046CC70` + 0x11B",
+   "text": "returns 0 when byte `02B59D71` is non-zero; otherwise scans the 32 `0x150`-byte entries at `02B59D80` and, at the first whose word `+0` is non-zero and dword `+4` equals `ecx`, returns its dword `+0xC0 + edx*4` (`edx` zero-extended); returns 0 when none matches",
+   "anchors": [["003E7CD5", "cmp"], ["003E7CE4", "cmp"], ["003E7CEA", "cmp"], ["003E7CF9", "cmp"], ["003E7D03", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "0036EC50: the `ecx == -1` path sets `rdx` to 0 and reads `[rdx+1]`/`[rdx+2]`, so as listed it dereferences a null base; stated literally. 00360670: the loop bound uses `jle` (signed) on pointers; with these addresses it covers exactly three dwords. 003A0E80: on the fall-through path `eax` is not set by the body."
+}
