@@ -1,0 +1,23 @@
+{
+ "page": "17-Presentation-Rendering/Render-Command-List/the-ordered-render-command-list.md",
+ "session": "session_013d18gLR7WCyczJCeHPeArU",
+ "rows": [
+  {"fn": "001EBA90", "entered_from": "`001C6320` + 0x22C",
+   "text": "stores `xmm1` to the floats at `rcx+0x250` and `rcx+0x110` (`+0xD0` of the embedded object at `rcx+0x40`), calls that object's virtual slot `+8` on it, then stores the dword `0x3F93CD3A` to `rcx+0x114` (the object's `+0xD4`) and tail-jumps to the same virtual slot `+8` on it",
+   "anchors": [["001EBA9A", "movss"], ["001EBAA8", "movss"], ["001EBAB0", "call"], ["001EBAB9", "mov"], ["001EBAC8", "jmp"]]},
+  {"fn": "001EBBF0", "entered_from": "`001C6320` + 0xE2",
+   "text": "stores 0 to dword `+0x12C` of `rcx`; when `r8d` is non-zero it then stores `r8d` to the dword at `rcx+0x124` plus `edx` (sign-extended) times 4 and stores `edx + 1` to dword `+0x12C`",
+   "anchors": [["001EBBFA", "test"], ["001EBC02", "mov"], ["001EBC0D", "mov"]]},
+  {"fn": "00271E50", "entered_from": "`002986E0` + 0x414",
+   "text": "reads an array of 8-byte entries at `rcx` with `edx` entries, splitting `r8d` into an index `r8d >> 8` (arithmetic) and a fraction byte `r8b`: when the index is at least `edx - 1` (signed) it returns the dword of entry `edx - 1`, when `r8d` is zero or negative the dword of entry 0, and otherwise a dword whose four bytes are each `a + (((b - a) * fraction) >> 8)` (8-bit result) for the matching bytes `a` of entry index and `b` of entry index + 1",
+   "anchors": [["00271E5C", "cmp"], ["00271E68", "test"], ["00271E8F", "sub"], ["00271E91", "imul"], ["00271EE6", "mov"]]},
+  {"fn": "00274870", "entered_from": "`002986E0` + 0x3F2",
+   "text": "splits `r8d` into an index `r8d >> 8` (arithmetic) and a fraction byte `r8b` and steps it by the dword at `+4` of the 8-byte entry index at `rcx`: when `r9d` is non-zero it returns `(edx - 1) << 8` if the index is at least `edx - 1` (signed), else adds the step to the fraction and returns `(index + 1) << 8` when the sum reaches `0x100` and `(index << 8) + sum` otherwise; when `r9d` is zero it returns 0 if the index is 0 or less, else subtracts the step from the fraction and returns `(index - 1) << 8` when the result is negative and `(index << 8) + result` otherwise",
+   "anchors": [["00274882", "cmp"], ["00274891", "test"], ["002748A5", "add"], ["002748C0", "sub"], ["002748CC", "shl"]]},
+  {"fn": "00360C00", "entered_from": "`00341F90` + 0x1D",
+   "text": "returns -1 for negative `ecx`; otherwise returns the byte at `022CB9F0` plus `ecx * 0x18`, zero-extended",
+   "anchors": [["00360C02", "js"], ["00360C07", "lea"], ["00360C12", "movzx"], ["00360C17", "or"]]}
+ ],
+ "skipped": [],
+ "notes": "001EBA90: the dword 0x3F93CD3A is not decoded by the listing (as an f32 it is about 1.1547); left as hex. 00271E50: when edx is 0 the first compare is against -1, so any index of -1 or more returns entry -1; the sentence states the signed compare without singling this out."
+}
