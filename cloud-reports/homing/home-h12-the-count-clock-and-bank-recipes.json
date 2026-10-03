@@ -1,0 +1,11 @@
+{
+ "page": "08-Combat-Formula/Recipe-System/the-count-clock-and-bank-recipes.md",
+ "session": "session_016ZjFjnefAbEBqR8eRqGh2C",
+ "rows": [
+  {"fn": "002286B0", "entered_from": "`002470D0` + 0x2F",
+   "text": "returns without writing when the qword at `01FD4948` is null; otherwise, when `rcx` is non-null and its first qword is non-null, calls that qword as a function with `rcx` and `00908B60` in `rdx` and re-reads `01FD4948`, and in every non-null case stores `rcx` (null included) to qword `+0xC8` of the object at `01FD4948`",
+   "anchors": [["002286C3", "je"], ["002286CA", "mov"], ["002286D9", "call"], ["002286DC", "mov"], ["002286E3", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "002286B0: the indirect call is `call r8` with r8 = qword [rcx] (the object's first qword itself, not a vtable slot). 00908B60 is a lea target the listing does not decode."
+}
