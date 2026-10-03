@@ -1,0 +1,29 @@
+{
+ "page": "00-Engine-Core-Runtime/System-Stop-Registry/the-time-stop-and-system-stop-registry.md",
+ "session": "session_01DtsGzxAwuV39oMMCAfQd2j",
+ "rows": [
+  {"fn": "00182610", "entered_from": "`002F18D0` + 0x74",
+   "text": "keeps `ecx`, calls the function at `00182610` + 0x8 and, when that returns non-null, calls it again (`00182610` + 0x17) and stores 1 if `ecx` is non-zero, else 0 (`setne`), to byte `+0xD18` of the returned pointer; when the first call returns null nothing is stored",
+   "anchors": [["00182618", "call"], ["00182620", "je"], ["00182624", "setne"], ["0018262C", "mov"]]},
+  {"fn": "001986B0", "entered_from": "`00182CF0` + 0x10",
+   "text": "reads byte `+0x3A` of `rcx`; when its bit 0 is clear, stores 1 to byte `+0x3B` and writes byte `+0x3A` back with bit 0 set (OR 1); when bit 0 is already set it changes nothing",
+   "anchors": [["001986B4", "test"], ["001986B8", "or"], ["001986BA", "mov"], ["001986BE", "mov"]]},
+  {"fn": "0029D210", "entered_from": "`002E06B0` + 0x9",
+   "text": "clears bit `0x10` of `ecx` (AND `0xFFFFFFEF`); then for qword `0209C380` and afterwards qword `0209C318`, each only when non-null, calls `0029D210` + 0x27 (for `0209C318`: + 0x54) with that pointer in `rcx` and `rdx` = null when the masked value equals 1, else `rdx` = `00916330`, then reloads the pointer and passes it to `0029D210` + 0x33 (for `0209C318`: the tail jump at + 0x65); a null pointer skips its pair, and a null `0209C318` returns directly",
+   "anchors": [["0029D21F", "and"], ["0029D230", "lea"], ["0029D237", "call"], ["0029D243", "call"], ["0029D275", "jmp"]]},
+  {"fn": "002FD060", "entered_from": "`0024BFD0` + 0x67",
+   "text": "walks the list headed by qword `02EC3D60` through qword `+0x28` of each node until a null link (returning at once when the head is null), and for every node whose qword `+0x10` is non-null clears bit `0x4` of word `+0x368` of that object (AND `0xFFFB`)",
+   "anchors": [["002FD067", "test"], ["002FD071", "mov"], ["002FD07A", "and"], ["002FD081", "mov"], ["002FD088", "jne"]]},
+  {"fn": "003B1000", "entered_from": "`0024BFD0` + 0x6C",
+   "text": "walks up to 36 (`0x24`) records of stride `0x18` whose qword field starts at `02EBEC08`, stopping at the first record whose dword 8 bytes before that qword is 0; for each record whose qword is non-null and whose pointee's word `+0x368` has bit `0x4` set, writes that word back with the bit cleared (AND `0xFFFB`)",
+   "anchors": [["003B1010", "cmp"], ["003B1026", "test"], ["003B1030", "mov"], ["003B103A", "add"], ["003B103E", "cmp"]]},
+  {"fn": "003C8B20", "entered_from": "`00252E30` + 0x0",
+   "text": "returns dword `+0xC8` of qword `02B47730` when that pointer is non-null and bit `0x4` of its byte `+0xC0` is set; returns 0 when the pointer is null or the bit is clear",
+   "anchors": [["003C8B27", "test"], ["003C8B2C", "test"], ["003C8B35", "mov"], ["003C8B3F", "xor"]]},
+  {"fn": "003C9590", "entered_from": "`00252E50` + 0x0",
+   "text": "returns 1 when qword `02B47730` is non-null, bit `0x4` of its byte `+0xC0` is set and its dword `+0xC8` is non-zero (`setne`); returns 0 otherwise",
+   "anchors": [["003C9599", "test"], ["003C959E", "test"], ["003C95A7", "cmp"], ["003C95AD", "setne"]]}
+ ],
+ "skipped": [],
+ "notes": "00182610: the callee at + 0x8 and + 0x17 is the same function; no return value is set on either path (rax is whatever the last call left). 0029D210: 00916330 is only loaded as a pointer argument; the listing does not decode what it points at. 003B1000: the per-record dword it tests sits at 8 bytes before the qword (the listing addresses it as [rax - 8] from 02EBEC08); no separate address is named for it."
+}
