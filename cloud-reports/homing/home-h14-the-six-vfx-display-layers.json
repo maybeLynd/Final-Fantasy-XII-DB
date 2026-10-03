@@ -1,0 +1,11 @@
+{
+ "page": "17-Presentation-Rendering/Effect-File-Formats/the-six-vfx-display-layers.md",
+ "session": "session_01Ft9DsjYbzydEyFv6u1R8to",
+ "rows": [
+  {"fn": "001823E0", "entered_from": "`001B2530` + 0x3A",
+   "text": "stores 0 to dword `01F7F538`, calls the function at `001823E0` + 0x12, and tail-jumps (`001823E0` + 0x21) with `rcx` = that call's result and `edx` = the incoming `ecx`",
+   "anchors": [["001823E8", "mov"], ["001823F2", "call"], ["001823FA", "mov"], ["00182401", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": ""
+}
