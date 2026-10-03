@@ -1,0 +1,27 @@
+{
+ "page": "05-Spawn-Encounter-Lifecycle/spawn-placement-and-retirement.md",
+ "session": "session_01SCNjBjkQLVBQa4akEYXVn4",
+ "mode": "homing",
+ "rows": [
+  {"fn": "00290300",
+   "text": "tail-jumps to `00291010(qword 0209BE80, ecx, edx)`: the incoming `ecx` moves to `edx`, the incoming `edx` to `r8d`, and `rcx` is loaded from qword `0209BE80`",
+   "anchors": [["00290303", "mov"], ["00290305", "mov"], ["0029030C", "jmp"]]},
+  {"fn": "00311E90",
+   "text": "for index 0 to 3 calls `0031B810(index)` and skips the index when the result is null or its qword `+0x698` is null, or when (dword `+0x64` OR dword `+0x3c`) of that qword AND `0x80000003` is non-zero and `00377C20` (called with `ecx` still holding that OR) returns 0; each surviving result is stored at the next qword slot of the array at `022C1788` (only while the slot index is below 4) and counted; then ORs `0x600` into dword `+4` of each non-null pointer in the first count slots of that array; returns nothing",
+   "anchors": [["00311EBA", "call"], ["00311ED9", "test"], ["00311EE1", "call"], ["00311EF0", "mov"], ["00311F19", "or"]]},
+  {"fn": "0032A830",
+   "text": "calls `00300BA0(rcx, edx, 0)` and returns its result, except that a negative (signed) result is returned as 0",
+   "anchors": [["0032A834", "xor"], ["0032A837", "call"], ["0032A840", "cmovs"]]},
+  {"fn": "00330050",
+   "text": "tail-jumps to `0032ED80` with `ecx` loaded from dword `rcx+0x28`",
+   "anchors": [["00330053", "jmp"]]},
+  {"fn": "00350100",
+   "text": "calls `00350100+0x10` and `00350100+0x1A` (each with `r9`); adds 3 to the second result and clamps the sum to 3 to 4 (signed: below 3 becomes 3, above 4 becomes 4) as `ecx`; when the first result is 0 it tail-jumps to `003EBD00` with that `ecx`, otherwise tail-jumps to `00350100+0x48` with the same `ecx`",
+   "anchors": [["00350110", "call"], ["0035011F", "add"], ["00350135", "cmovg"], ["00350148", "jmp"], ["00350157", "jmp"]]},
+  {"fn": "0050C800",
+   "text": "returns 0 at once when dword `[r8]` is non-zero; otherwise calls `0036FCC0` with the incoming `rcx` and `edx` unchanged, calls `0050C800+0x22` with `ecx` = 0, 1, 2 and 3 in turn, stores 1 at dword `[r8]` and returns 0",
+   "anchors": [["0050C806", "cmp"], ["0050C814", "call"], ["0050C822", "call"], ["0050C829", "cmp"], ["0050C833", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "00330050: the dword +0x28 load is the entry instruction; the only interior anchor is the tail jmp. 00311E90: the ecx passed to 00377C20 is the OR of the two flag dwords as the listing leaves it (no explicit argument set-up); slots of 022C1788 past the count are not cleared. 00267E10, 003EBB90 and 0026B8E0 are not named on the page and are cited by call site."
+}
