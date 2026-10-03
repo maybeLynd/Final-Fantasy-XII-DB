@@ -1,0 +1,17 @@
+{
+ "page": "00-Engine-Core-Runtime/what-the-engine-fixes-at-boot.md",
+ "session": "session_01PfF5HpG9wWe4vsreQxCTLf",
+ "rows": [
+  {"fn": "0036B060", "entered_from": "`0037B3D0` + 0xB",
+   "text": "returns 0 when `ecx` is above 0xE (unsigned), otherwise returns `022D7FD0` + `ecx` * 0xA8",
+   "anchors": [["0036B063", "ja"], ["0036B06F", "imul"], ["0036B076", "add"], ["0036B07A", "xor"]]},
+  {"fn": "003AA1F0", "entered_from": "`00501750` + 0x93",
+   "text": "starting from `a` = qword `[qword 02EBEF70]`, returns the first non-null `a` whose sign-extended word `[a+0xC]` equals `ecx` and sign-extended byte `[a+0xE]` equals `edx`, stepping to the result of the call at `003AA1F0` + 0x36 with dword `[a]`; returns 0 when `a` becomes null",
+   "anchors": [["003AA205", "mov"], ["003AA215", "cmp"], ["003AA21F", "cmp"], ["003AA226", "call"], ["003AA230", "xor"]]},
+  {"fn": "008632E0", "entered_from": "`00863540` + 0x28",
+   "text": "takes `p` from the call at `008632E0` + 0x21 with 8; when `p` is non-null it stores the result of the indirect call at `008632E0` + 0x3D with (0, `edx`, `r8d`, 0) to qword `[p]` and stores `p` to qword `[rcx]`, otherwise stores 0 to qword `[rcx]`; returns `rcx`",
+   "anchors": [["00863301", "call"], ["00863311", "je"], ["0086331D", "call"], ["00863323", "mov"], ["0086332B", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "008632E0: the call at + 0x3D goes through an import slot."
+}
