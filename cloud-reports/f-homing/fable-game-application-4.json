@@ -1,0 +1,421 @@
+{
+ "page": "00-Engine-Core-Runtime/Application-Root/game-application.md",
+ "session": "session_0137cceA3k2cA9BjsRcas6z4",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "006AF910",
+   "text": "unlinks the two-pointer node at `rdx+0x18` (stores its qword `+8` into qword `+8` of the node at its qword `+0`, and its qword `+0` into qword `+0` of the node at its qword `+8`) and points both its qwords at itself; when qword `rdx+0x28` is non-null with bit 0 clear, calls `00584730` on it; then passes `rdx` to the call at `006AF910` + 0x45 and returns 1 in `al`",
+   "anchors": [
+    [
+     "006AF92D",
+     "mov"
+    ],
+    [
+     "006AF937",
+     "mov"
+    ],
+    [
+     "006AF948",
+     "test"
+    ],
+    [
+     "006AF94C",
+     "call"
+    ],
+    [
+     "006AF955",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006BC540",
+   "text": "returns 0 when `ecx` is 0; otherwise calls `0017D260(ecx*0x18, 8)`, returns that result as is when it is null, and else copies `ecx` 0x18-byte entries from `rdx` into it (16 bytes by `movups` plus a qword by `movsd` each, skipping a null destination slot without advancing `rdx`) and returns the buffer",
+   "anchors": [
+    [
+     "006BC54F",
+     "test"
+    ],
+    [
+     "006BC567",
+     "call"
+    ],
+    [
+     "006BC572",
+     "je"
+    ],
+    [
+     "006BC58F",
+     "movups"
+    ],
+    [
+     "006BC59B",
+     "movsd"
+    ]
+   ]
+  },
+  {
+   "fn": "006C0B50",
+   "text": "passes `rdx+0x58` to the call at `006C0B50` + 0x16; when bit 31 of dword `rdx+0x10` is clear and qword `rdx+0x18` is non-null, calls `00584730` on that qword; then zeroes qword `rdx+0x18` and dword `rdx+0x10` and returns 1 in `al`",
+   "anchors": [
+    [
+     "006C0B66",
+     "call"
+    ],
+    [
+     "006C0B6F",
+     "shr"
+    ],
+    [
+     "006C0B81",
+     "call"
+    ],
+    [
+     "006C0B88",
+     "mov"
+    ],
+    [
+     "006C0B8C",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006C4B70",
+   "text": "passes `rdx+0x50` to the call at `006C4B70` + 0x16; when dword `rdx+0x20` has bit 31 clear and is above 1 (unsigned) and qword `rdx+0x28` is non-null, calls `00584730` on that qword; then zeroes qword `rdx+0x28` and dword `rdx+0x20` and returns 1 in `al`",
+   "anchors": [
+    [
+     "006C4B86",
+     "call"
+    ],
+    [
+     "006C4B91",
+     "shr"
+    ],
+    [
+     "006C4B9E",
+     "cmp"
+    ],
+    [
+     "006C4BAC",
+     "call"
+    ],
+    [
+     "006C4BB3",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006C52D0",
+   "text": "when dword `[rcx]` has bit 31 clear and is above 1 (unsigned) and qword `rcx+8` is non-null, calls `00584730` on that qword; then zeroes dword `[rcx]` and qword `rcx+8`, leaving 0 in `rax`",
+   "anchors": [
+    [
+     "006C52E6",
+     "shr"
+    ],
+    [
+     "006C52F3",
+     "cmp"
+    ],
+    [
+     "006C5301",
+     "call"
+    ],
+    [
+     "006C5309",
+     "mov"
+    ],
+    [
+     "006C530B",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006C7D00",
+   "text": "returns 5 when `r8d` is negative (signed); otherwise takes the old pointer `p` as qword `rcx+8` when dword `[rcx]` with bit 31 cleared is above 1 (unsigned), as the address `rcx+8` when it is 1, or null when it is 0; when `r8d` is 1 copies dword `[rdx]` to dword `rcx+8` and uses the address `rcx+8` as the new pointer and 1 as the new header, otherwise uses `rdx` and `r8d` with bit 31 set; calls `00584730(p)` when `p` is non-null, differs from the new pointer and from `rcx+8`, and bit 31 of dword `[rcx]` is clear; stores the new pointer at qword `rcx+8` unless it is the address `rcx+8`, stores the new header at dword `[rcx]`, and returns 0",
+   "anchors": [
+    [
+     "006C7D13",
+     "jns"
+    ],
+    [
+     "006C7D35",
+     "cmp"
+    ],
+    [
+     "006C7D64",
+     "mov"
+    ],
+    [
+     "006C7D8C",
+     "call"
+    ],
+    [
+     "006C7DA0",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006C8870",
+   "text": "stores the address `00D86960` at qword `[rcx]` and `00D86AD0` at qword `rcx+8`, then tail-jumps to `0016D6A0(rcx+0x880)`",
+   "anchors": [
+    [
+     "006C8877",
+     "mov"
+    ],
+    [
+     "006C8881",
+     "mov"
+    ],
+    [
+     "006C8885",
+     "add"
+    ],
+    [
+     "006C888C",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006CC490",
+   "text": "stores the address `00D89A80` at qword `[rcx]`, calls `00809054(rcx+0x60, 0x20, 2, 006CC410)`, calls `00809950(rcx, 0xa8)` only when bit 0 of `edx` is set, and returns `rcx`",
+   "anchors": [
+    [
+     "006CC4B0",
+     "mov"
+    ],
+    [
+     "006CC4C3",
+     "lea"
+    ],
+    [
+     "006CC4C7",
+     "call"
+    ],
+    [
+     "006CC4CD",
+     "test"
+    ],
+    [
+     "006CC4DA",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006CDD30",
+   "text": "calls `00584730` on qword `rdx+0x40` and then on qword `rdx+0x28`, each only when that qword is non-null with bit 0 clear; then passes `rdx` to the call at `006CDD30` + 0x43 and returns 1 in `al`",
+   "anchors": [
+    [
+     "006CDD4F",
+     "test"
+    ],
+    [
+     "006CDD53",
+     "call"
+    ],
+    [
+     "006CDD66",
+     "test"
+    ],
+    [
+     "006CDD6A",
+     "call"
+    ],
+    [
+     "006CDD73",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006D7380",
+   "text": "returns at once when `edx` is 0; otherwise collects, in order, each of the floats `[rcx]` and `[rcx+4]` that is non-zero (or NaN) as a weight with the matching source qword of `[r8]` and `[r8+8]`, and fills `c` = `edx`*2 floats of the buffer at qword `[r9]`: with no weight it tail-jumps to `00861EC0([r9], 0, c*4)`; with one weight `w0` (source `s0`) it tail-jumps to `00861EBA([r9], s0, c*4)` when `w0` equals 1.0 (`01CEBBA8`), else writes `w0*s0[i]` (nothing when `c` is 0); with two it writes `w0*s0[i] + w1*s1[i]`; its three- and four-source arms are unreachable since at most two weights are collected",
+   "anchors": [
+    [
+     "006D73C9",
+     "ucomiss"
+    ],
+    [
+     "006D7429",
+     "jmp"
+    ],
+    [
+     "006D7567",
+     "jmp"
+    ],
+    [
+     "006D7597",
+     "mulps"
+    ],
+    [
+     "006D7530",
+     "addss"
+    ]
+   ]
+  },
+  {
+   "fn": "006D7630",
+   "text": "returns at once when `edx` is 0; otherwise collects, in order, each of the floats `[rcx]` and `[rcx+4]` that is non-zero (or NaN) as a weight with the matching source qword of `[r8]` and `[r8+8]`, and fills `c` = `edx`*3 floats of the buffer at qword `[r9]`: with no weight it tail-jumps to `00861EC0([r9], 0, c*4)`; with one weight `w0` (source `s0`) it tail-jumps to `00861EBA([r9], s0, c*4)` when `w0` equals 1.0 (`01CEBBA8`), else writes `w0*s0[i]` (nothing when `c` is 0); with two it writes `w0*s0[i] + w1*s1[i]`; its three- and four-source arms are unreachable since at most two weights are collected",
+   "anchors": [
+    [
+     "006D7679",
+     "ucomiss"
+    ],
+    [
+     "006D76D9",
+     "jmp"
+    ],
+    [
+     "006D7817",
+     "jmp"
+    ],
+    [
+     "006D7847",
+     "mulps"
+    ],
+    [
+     "006D77E0",
+     "addss"
+    ]
+   ]
+  },
+  {
+   "fn": "006D78E0",
+   "text": "returns at once when `edx` is 0; otherwise collects, in order, each of the floats `[rcx]` and `[rcx+4]` that is non-zero (or NaN) as a weight with the matching source qword of `[r8]` and `[r8+8]`, and fills `c` = `edx`*4 floats of the buffer at qword `[r9]`: with no weight it tail-jumps to `00861EC0([r9], 0, c*4)`; with one weight `w0` (source `s0`) it tail-jumps to `00861EBA([r9], s0, c*4)` when `w0` equals 1.0 (`01CEBBA8`), else writes `w0*s0[i]` (nothing when `c` is 0); with two it writes `w0*s0[i] + w1*s1[i]`; its three- and four-source arms are unreachable since at most two weights are collected",
+   "anchors": [
+    [
+     "006D7929",
+     "ucomiss"
+    ],
+    [
+     "006D798D",
+     "jmp"
+    ],
+    [
+     "006D7AD7",
+     "jmp"
+    ],
+    [
+     "006D7B07",
+     "mulps"
+    ],
+    [
+     "006D7AA0",
+     "addss"
+    ]
+   ]
+  },
+  {
+   "fn": "006D7BA0",
+   "text": "returns at once when `edx` is 0; otherwise (under a stack cookie from `01F44830` that `00808C40` checks on every later exit) collects, in order, each of the floats `[rcx]`, `[rcx+4]`, `[rcx+8]` that is non-zero (or NaN) as a weight with the matching source qword of `[r8]`, `[r8+8]`, `[r8+0x10]`, and fills `c` = `edx`*2 floats of the buffer at qword `[r9]`: with no weight it calls `00861EC0([r9], 0, c*4)`; with one weight `w0` (source `s0`) it calls `00861EBA([r9], s0, c*4)` when `w0` equals 1.0 (`01CEBBA8`), else writes `w0*s0[i]` (nothing when `c` is 0); with two or three it writes the sum of `wk*sk[i]` over the collected sources; its four-source arm is unreachable since at most three weights are collected",
+   "anchors": [
+    [
+     "006D7C29",
+     "ucomiss"
+    ],
+    [
+     "006D7C83",
+     "call"
+    ],
+    [
+     "006D7DC3",
+     "call"
+    ],
+    [
+     "006D7D50",
+     "addss"
+    ],
+    [
+     "006D7E84",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006D7EA0",
+   "text": "returns at once when `edx` is 0; otherwise (under a stack cookie from `01F44830` that `00808C40` checks on every later exit) collects, in order, each of the floats `[rcx]`, `[rcx+4]`, `[rcx+8]` that is non-zero (or NaN) as a weight with the matching source qword of `[r8]`, `[r8+8]`, `[r8+0x10]`, and fills `c` = `edx`*3 floats of the buffer at qword `[r9]`: with no weight it calls `00861EC0([r9], 0, c*4)`; with one weight `w0` (source `s0`) it calls `00861EBA([r9], s0, c*4)` when `w0` equals 1.0 (`01CEBBA8`), else writes `w0*s0[i]` (nothing when `c` is 0); with two or three it writes the sum of `wk*sk[i]` over the collected sources; its four-source arm is unreachable since at most three weights are collected",
+   "anchors": [
+    [
+     "006D7F29",
+     "ucomiss"
+    ],
+    [
+     "006D7F83",
+     "call"
+    ],
+    [
+     "006D80C3",
+     "call"
+    ],
+    [
+     "006D8050",
+     "addss"
+    ],
+    [
+     "006D8184",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006D81A0",
+   "text": "returns at once when `edx` is 0; otherwise (under a stack cookie from `01F44830` that `00808C40` checks on every later exit) collects, in order, each of the floats `[rcx]`, `[rcx+4]`, `[rcx+8]` that is non-zero (or NaN) as a weight with the matching source qword of `[r8]`, `[r8+8]`, `[r8+0x10]`, and fills `c` = `edx`*4 floats of the buffer at qword `[r9]`: with no weight it calls `00861EC0([r9], 0, c*4)`; with one weight `w0` (source `s0`) it calls `00861EBA([r9], s0, c*4)` when `w0` equals 1.0 (`01CEBBA8`), else writes `w0*s0[i]` (nothing when `c` is 0); with two or three it writes the sum of `wk*sk[i]` over the collected sources; its four-source arm is unreachable since at most three weights are collected",
+   "anchors": [
+    [
+     "006D8229",
+     "ucomiss"
+    ],
+    [
+     "006D8287",
+     "call"
+    ],
+    [
+     "006D83C3",
+     "call"
+    ],
+    [
+     "006D8350",
+     "addss"
+    ],
+    [
+     "006D8484",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006D84A0",
+   "text": "returns at once when `edx` is 0; otherwise (under a stack cookie from `01F44830` that `00808C40` checks on every later exit) collects, in order, each of the floats `[rcx]`, `[rcx+4]`, `[rcx+8]`, `[rcx+0xc]` that is non-zero (or NaN) as a weight with the matching source qword of `[r8]`, `[r8+8]`, `[r8+0x10]`, `[r8+0x18]`, and fills `c` = `edx`*2 floats of the buffer at qword `[r9]`: with no weight it calls `00861EC0([r9], 0, c*4)`; with one weight `w0` (source `s0`) it calls `00861EBA([r9], s0, c*4)` when `w0` equals 1.0 (`01CEBBA8`), else writes `w0*s0[i]` (nothing when `c` is 0); with two, three or four it writes the sum of `wk*sk[i]` over the collected sources",
+   "anchors": [
+    [
+     "006D8553",
+     "ucomiss"
+    ],
+    [
+     "006D85AD",
+     "call"
+    ],
+    [
+     "006D86F3",
+     "call"
+    ],
+    [
+     "006D861D",
+     "addss"
+    ],
+    [
+     "006D87B4",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Doubts per function. Callees the page does not name (the shared tail call of 006AF910 and 006CDD30, the +0x16 calls) are cited by call site. 006AF910/006CDD30: the bit-0 test is 'not al; test al,1; je skip', so 00584730 runs only when bit 0 of the qword is clear; both call the same unnamed site callee with rdx. 006C0B50/006C4B70/006C52D0: the bit-31 test uses the same idiom (shr 0x1f; not al), so the free runs only when bit 31 is clear. 006BC540: the inner null test on the destination slot can never fire for a non-null buffer; rdx advances only when a slot is copied. 006C7D00: the r8d == 1 path tests rcx+8 for null (always non-null). Blend family 006D7380..006D84A0: weights are tested with ucomiss against 0.0, and jp/jne treat NaN as non-zero; when [rcx] is 0.0 the code reloads the uninitialised local slot 0, which the next collected weight overwrites; the 1.0 test is ucomiss/jp/jne (exactly 1.0, not NaN); the scaled path uses mulps by 8 and 4 floats plus a scalar tail; summation order differs per arm (e.g. two-source arm computes w1*s1 + w0*s0), stated as a plain sum. 006D7380/006D7630/006D78E0 tail-jump and have no cookie; 006D7BA0/006D7EA0/006D81A0/006D84A0 call and finish through the cookie check (00808C40 is named by the page). In the three-weight bodies the unreachable four-source arm would read the cookie slot as a source pointer. No skips."
+}
