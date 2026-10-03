@@ -1,0 +1,11 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/phyre-subsystem-map.md",
+ "session": "session_019FUgqVeNcfdAVa4Yc3dLqG",
+ "rows": [
+  {"fn": "00793410", "entered_from": "`007933C0` + 0x40",
+   "text": "stores `01CB2498` at qword `[rcx]`; when dword `rcx+8` is non-zero, calls the function at `00793410` + 0x3C with qword `rcx+0x10` if that qword is non-null and bit 31 of the dword is clear, then stores qword 0 at `+0x10` and dword 0 at `+8`; it then makes the same check once more on the current fields, calling the function at `00793410` + 0x5E with qword `+0x10` when bit 31 of dword `+8` is clear and the qword is non-null, and again stores 0 in both fields",
+   "anchors": [["0079342E", "mov"], ["00793448", "test"], ["0079344C", "call"], ["0079346E", "call"], ["00793478", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "Both release calls go to the same callee; cited by site because the host excerpt does not name it. The second check can only call when dword +8 was 0 on entry (the first block zeroes both fields otherwise)."
+}
