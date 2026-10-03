@@ -1,0 +1,130 @@
+{
+ "page": "05-Spawn-Encounter-Lifecycle/Group-Completion-And-Respawn/when-a-group-is-wiped-and-when-it-comes-back.md",
+ "session": "session_01M9DqRDfozfMhVgDdX8oP4v",
+ "rows": [
+  {
+   "fn": "00234990",
+   "text": "loops `ebx` from 0 while it is signed-less than dword `0208E6A0` (re-read each pass), calling `00234990 + 0x18` with `ebx`; when the returned object is non-null, its qword `+0x698` is non-null, byte `+5` of that sub-object equals 1, and bit (byte `+0xE98` of the object, mod 32) of `ecx` is set, calls `00234990 + 0x4C` with the object and 0; does nothing when the count is 0 or negative",
+   "anchors": [
+    [
+     "0023499E",
+     "cmp"
+    ],
+    [
+     "002349A8",
+     "call"
+    ],
+    [
+     "002349C5",
+     "cmp"
+    ],
+    [
+     "002349D5",
+     "bt"
+    ],
+    [
+     "002349DC",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "002EDCC0",
+   "text": "returns without work when `cx` is -1, when `(movsx cx) * 0x740` plus qword `022C6F28` is zero, or when dword `+0x284` of that row is 0; otherwise rewrites that dword with bit 31 set to (`edx` != 0) and then bit 28 set when `edx` is 0 or cleared when `edx` is non-zero",
+   "anchors": [
+    [
+     "002EDCC4",
+     "je"
+    ],
+    [
+     "002EDCCA",
+     "imul"
+    ],
+    [
+     "002EDCFA",
+     "mov"
+    ],
+    [
+     "002EDD09",
+     "mov"
+    ],
+    [
+     "002EDD15",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0035C880",
+   "text": "stores `(dword 022C83EC AND NOT ecx) OR edx` back to dword `022C83EC`",
+   "anchors": [
+    [
+     "0035C882",
+     "and"
+    ],
+    [
+     "0035C888",
+     "or"
+    ],
+    [
+     "0035C88A",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0035DC90",
+   "text": "scans the `edx` 12-byte records at `rcx` in order and returns the index of the first whose dword `+0` equals `r8d`, or -1 when none matches or `edx` is 0 or negative",
+   "anchors": [
+    [
+     "0035DC99",
+     "test"
+    ],
+    [
+     "0035DCA0",
+     "cmp"
+    ],
+    [
+     "0035DCAB",
+     "add"
+    ],
+    [
+     "0035DCB4",
+     "or"
+    ],
+    [
+     "0035DCB8",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0035DEB0",
+   "text": "sorts the `edx` 12-byte records at `rcx` into ascending signed order of dword `+4`: for each position i from 0 to `edx` - 2 it compares record i with every record from i to the end and, when record i's dword `+4` is greater, swaps the two records (qword `+0` and dword `+8`); does nothing when `edx` is 1 or less",
+   "anchors": [
+    [
+     "0035DEBE",
+     "test"
+    ],
+    [
+     "0035DED9",
+     "cmp"
+    ],
+    [
+     "0035DEEC",
+     "movsd"
+    ],
+    [
+     "0035DEF8",
+     "movsd"
+    ],
+    [
+     "0035DF14",
+     "jne"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "FABLE w5-3 draft. Calls to callees the page context does not name are cited by call site (`<entry> + 0xNN`)."
+}
