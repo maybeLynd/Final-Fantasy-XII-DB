@@ -1,0 +1,138 @@
+{
+ "page": "15-Input/Binding-Profiles/keymap-ini-file-format-and-default-controls.md",
+ "session": "session_01RdWndR492EddP9yUcFAhaM",
+ "rows": [
+  {
+   "fn": "00198670",
+   "text": "reads the signed byte `+0x3A` of `rcx`; when its bit 2 (value 4) is clear, ORs 4 into it, stores 1 to byte `+0x3B` and writes the updated byte back to `+0x3A`; when bit 2 is already set it returns without writing either byte",
+   "anchors": [
+    [
+     "00198679",
+     "test"
+    ],
+    [
+     "0019867B",
+     "jne"
+    ],
+    [
+     "0019867D",
+     "or"
+    ],
+    [
+     "00198680",
+     "mov"
+    ],
+    [
+     "00198684",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "001D8520",
+   "text": "adds a step to float `+0x60` of `rcx` and stores the sum there, the step being 1.0 (`01CEBBA8`) when `00184950()` returns 2 and 0.5 (`01CEBB70`) otherwise; when the sum is not below 255.0 (`008C5B40`) it rewrites `+0x60` as 255.0 minus the step and stores the f32 bit pattern of -6.0 as an immediate to `+0x64`; otherwise, when the sum is not above 63.0 (`00900380`), it rewrites `+0x60` as 63.0 plus the step and stores the immediate f32 6.0 to `+0x64`; a sum strictly between 63.0 and 255.0 is left as stored and `+0x64` is untouched",
+   "anchors": [
+    [
+     "001D8529",
+     "call"
+    ],
+    [
+     "001D8558",
+     "movss"
+    ],
+    [
+     "001D8563",
+     "mov"
+    ],
+    [
+     "001D857D",
+     "comiss"
+    ],
+    [
+     "001D8586",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0024B0C0",
+   "text": "with `B` = qword `+0x20` of `rcx` plus 0x30, reads the word at `B + 0x14 + 2*(edx >> 8)` (unsigned shift), adds the low byte of `edx` to it and reads the word at `B + 0x14 + 2*` that sum, then returns the pointer `B` + word `B + 0x10` + 8 * (that second word + sign-extended `r8d`)",
+   "anchors": [
+    [
+     "0024B0C4",
+     "add"
+    ],
+    [
+     "0024B0CE",
+     "movzx"
+    ],
+    [
+     "0024B0DC",
+     "movzx"
+    ],
+    [
+     "0024B0E2",
+     "movzx"
+    ],
+    [
+     "0024B0ED",
+     "lea"
+    ]
+   ]
+  },
+  {
+   "fn": "00797EE0",
+   "text": "when `rcx` and `rdx` are both non-null and qword `+0x118` of the object at qword `+0xDF8` of `rcx` is non-null, takes the first byte at `rdx` AND 0x7F as an index into the byte table `01F3DA30`, subtracts 28 from the table byte (keeping the 32-bit result zero-extended) and stores byte 1 at that object's `+0x30` plus the result; returns 0 on every path",
+   "anchors": [
+    [
+     "00797EE3",
+     "je"
+    ],
+    [
+     "00797EF1",
+     "mov"
+    ],
+    [
+     "00797F0B",
+     "movzx"
+    ],
+    [
+     "00797F0F",
+     "sub"
+    ],
+    [
+     "00797F15",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00797F20",
+   "text": "when `rcx` and `rdx` are both non-null and qword `+0x118` of the object at qword `+0xDF8` of `rcx` is non-null, takes the first byte at `rdx` AND 0x7F as an index into the byte table `01F3DA30`, subtracts 28 from the table byte (keeping the 32-bit result zero-extended) and stores byte 0 at that object's `+0x30` plus the result; returns 0 on every path",
+   "anchors": [
+    [
+     "00797F23",
+     "je"
+    ],
+    [
+     "00797F31",
+     "mov"
+    ],
+    [
+     "00797F4B",
+     "movzx"
+    ],
+    [
+     "00797F4F",
+     "sub"
+    ],
+    [
+     "00797F55",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "001D8520: the page context says the alpha is held at 255.0 and lifted to a 63.0 floor, but the body stores 255.0 minus the step and 63.0 plus the step (the step being 1.0 or 0.5); the -6.0/6.0 values are the f32 reading of the immediates 0xC0C00000/0x40C00000, which the listing does not decode. Both comiss branches use jb, so a NaN sum falls through neither clamp. 00797EE0/00797F20: a table byte below 28 would wrap to a large 32-bit offset (mov eax, eax after sub rax, 0x1c); the sentence states the zero-extension but not the table contents. 0024B0C0: the dword-to-qword widening of r8d (movsxd) is signed, all word reads are zero-extended. No doubts beyond these."
+}
