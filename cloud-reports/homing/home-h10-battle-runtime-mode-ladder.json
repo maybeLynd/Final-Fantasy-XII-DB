@@ -1,0 +1,14 @@
+{
+ "page": "00-Engine-Core-Runtime/Battle-Runtime-Mode/battle-runtime-mode-ladder.md",
+ "session": "session_019FUgqVeNcfdAVa4Yc3dLqG",
+ "rows": [
+  {"fn": "0031E860", "entered_from": "`00313DB0` + 0xB3",
+   "text": "calls the function at `0031E860` + 0x4 and returns its null result when it returns null; otherwise tail-jumps at `0031E860` + 0x1A with that result as `rcx`",
+   "anchors": [["0031E864", "call"], ["0031E86C", "jne"], ["0031E873", "mov"], ["0031E87A", "jmp"]]},
+  {"fn": "00422E40", "entered_from": "`0042DF10` + 0x92",
+   "text": "tail-jumps at `00422E40` + 0x6 with `r8d` = 1 and the other incoming registers unchanged",
+   "anchors": [["00422E46", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "Callees cited by site because the host excerpts do not name them. 00422E40: the r8d store is the entry instruction; the only interior instruction is the tail jump."
+}
