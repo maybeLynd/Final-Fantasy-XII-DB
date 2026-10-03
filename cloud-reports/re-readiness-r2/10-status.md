@@ -11,7 +11,14 @@
 
 ## 0. Summary
 
-*(Filled in when the Gaps and Rating sections are written; see the end of the file.)*
+| | |
+|---|---|
+| Pass-1 gaps CLOSED / NARROWED / OPEN / WRONG-IN-PASS-1 | **n/a**: pass 1 did not map this system (part B) |
+| New gaps | **35**: STATIC **15** (N-1 to N-15), RUNTIME **3** (N-16 to N-18), DATA **3** (N-19 to N-21), DOC **14** (N-22 to N-35) |
+| Of which, two pages disagree | **8**: N-24, N-25, N-26, N-27, N-28, N-32, N-33, N-35 |
+| Tracked by a register row | 4 rows touch these gaps, each with a state that no longer matches the page: `FA-3` ANSWERED (N-3), `GA-1` ANSWERED (N-15), `UQ-147` SUPERSEDED (N-16), `E-1` CLOSED (N-20, N-32). `EY-3` ANSWERED is the pointer for N-22. Ids the contracts carry with no row: `SW-1`, `SW-4`, `OPUS-NOTICE-NODE360`. |
+| Rating | **MOSTLY** (new). Old: **none** (not mapped in pass 1). |
+| Entry points mapped | 31 entry rows in §1.1 (status write 12, layers and rebuild 5, tick 9, MP 5) |
 
 ## Pages read, and how they are cited
 
@@ -287,3 +294,28 @@ register-hygiene finding.
 | N-33 | **Internal inconsistencies in `ASC`.** §7a now has three stages, but §4 still says "four more things are true afterwards" and the §15 claim table says "four further stages follow". §13ak labels the kind-0 row table `FOED` (foe) while §13g and §13al correct kind 0 to the 40-row party table. | `ASC:186` vs `ASC:91`–`94`, `ASC:2478`; `ASC:1566`–`1570` vs `ASC:743`, `ASC:1617` | no row |
 | N-34 | **The rebuild has no whole reproduction formula.** §12's block is "the kind-0 accumulation and the apply, and nothing else … **Do not implement from this block alone.**" The kind-1 source, the eight licence fields and the §7a tail are given only in prose and in §13ak's notes. | `ASC:262`–`266`; prose: `ASC:132`–`217`, `ASC:1566`–`1591` | no row |
 | N-35 | **The README's "Not yet documented" list is stale.** It still lists "KO, revive and terminal state transitions" and "Status timers and the augment Timer Link field"; the terminal cases, recover and defeat paths (`SWP` §2.7, §2.7a; `ASC` §13g), the status timers (`SWP` §2.4a) and the effect-slot timer byte (`PTP` §4, §9) now cover them. | `README:35`–`36`; `SWP:241`–`315`, `ASC:706`–`730`, `SWP:136`–`191`, `PTP:137`–`139`, `PTP:276` | no row |
+
+---
+
+## 3. Rating
+
+**Old rating: none** (pass 1 did not map this system). **New rating: MOSTLY.**
+
+| part | rating | what decides it |
+|---|---|---|
+| The status write `0030E360` | MOSTLY | Signature, flags, six modes, presence rule, defaults with constants, cascade data, terminal dispatch decoded and executed (EXP-086, 67/67). Missing: N-1 (fault reachability), N-2 (status > 31 tail), N-3 (`003E6B40`); two internal contradictions to fix first (N-24, N-25). |
+| The effect layers `0030E130` / `003847C0` | MOSTLY | Addressing, the six invariants and the revocation are exact and replayed (9/9). Missing: what the set-path builder `00386AE0` writes (N-5) and the "auxiliary update" (N-4), so the mutate body's own side effect is not fully specified; the namespace names (N-19, N-20); and the alias contradiction (N-32) would mislead an implementer reading the older sections. |
+| The auto-status rebuild `0030FED0` | MOSTLY | The whole body ran as shipped bytes (EXP-228, 542/542), the diff and the kind split are exact. Its own header says BEHAVIORALLY UNDERSTOOD, not CONTRACT READY; there is no complete formula (N-34), the gate meanings are open (N-10), and the contract mixes stale labels (N-33). |
+| The periodic tick `00310DB0` | MOSTLY | Five-stage order, both timer families, stage 2's arms and stage 5's ramp are given with addresses and replayed. Missing: stage 4's sub-50 fallback and the HP arm's interval (N-7, N-8), and the gate list disagrees across the pair (N-27, N-28). |
+| MP gain, walk recovery, spend | MOSTLY, near READY | Every formula and both ladders with shipped values. Missing: what feeds the walk accumulator (N-13). |
+
+**What decides MOSTLY rather than READY or NOT YET.** Every operation in the category has a contract or a page that
+gives its inputs, outputs, state and order, with addresses, and most of it has run as shipped bytes. No structural
+piece is absent: there is no operation whose behaviour is unknown as a whole. What stops READY is a short list of
+named holes, most of which a desk read closes: one builder body (`00386AE0`, N-5), one unnamed update in `0030E130`
+(N-4), two arms of stage 4 (N-7, N-8), the initial values of the per-status arrays (N-12) and the walk accumulator's
+producer (N-13). The rest is either unobserved in a live game (N-16 to N-18, which a re-implementation can proceed
+without) or documentation. The DOC group is the largest (14 of 35). Four of those DOC items are contradictions that
+would cause a wrong implementation if the wrong page were trusted: N-24 (predicate attributed to the wrong function),
+N-25 (kind and type bytes swapped), N-27 (gate order) and N-32 (the Disease alias). Fixing those four is the cheapest
+step toward READY.
