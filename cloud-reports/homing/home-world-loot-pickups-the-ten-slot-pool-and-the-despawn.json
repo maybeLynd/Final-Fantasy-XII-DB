@@ -1,0 +1,26 @@
+{
+ "page": "13-Rewards-Progression-Economy/world-loot-pickups-the-ten-slot-pool-and-the-despawn.md",
+ "session": "session_01Mh9D4U6XdnAn8vURhKVJHy",
+ "rows": [
+  {"fn": "00231F20", "entered_from": "`002FB560` + 0xA5",
+   "text": "sign-extends the word `r8w`, shifts it left by 5 (a 32-byte stride) and indexes the array at qword `rcx+0x10`; copies the four dwords at offsets `+0x0`, `+0x4`, `+0x8` and `+0xC` of that 32-byte element to `rdx+0x0` through `rdx+0xC`",
+   "anchors": [["00231F24", "mov"], ["00231F28", "shl"], ["00231F2C", "mov"], ["00231F47", "mov"]]},
+  {"fn": "002E9BE0", "entered_from": "`003B73B0` + 0x49",
+   "text": "when `rcx` is non-null and qword `rcx+0xC0` is non-null, returns the sign-extended byte `+0x13` of the object that qword points to; when either pointer is null, returns -1",
+   "anchors": [["002E9BE3", "je"], ["002E9BE5", "mov"], ["002E9BEF", "je"], ["002E9BF1", "movsx"], ["002E9BF6", "or"]]},
+  {"fn": "0033CBF0", "entered_from": "`002FB560` + 0xFB",
+   "text": "under a stack cookie (`01F44830`), calls `0033CBF0` + 0x2F with `rcx` = a local at `rsp+0x20`; passes the incoming float `xmm2` as `xmm0` to the call at + 0x37; calls + 0x49 with that local as both `rcx` and `rdx` and the float result of + 0x37 in `xmm2`; then calls + 0x59 with the incoming `rcx`, the local and the incoming `rdx`",
+   "anchors": [["0033CC1F", "call"], ["0033CC27", "call"], ["0033CC39", "call"], ["0033CC49", "call"]]},
+  {"fn": "003EC5B0", "entered_from": "`002FB560` + 0x33",
+   "text": "calls `003EC5B0` + 0x8 with the incoming `ecx` and returns its value when non-zero; otherwise returns 0 when dword `02B5EC94` is zero or `ecx` is above 15 (unsigned), and else calls + 0x2D with (`ecx`, dword `02B5EC94`, 0, 1) and a fifth (stack) argument of 0",
+   "anchors": [["003EC5B8", "call"], ["003EC5C1", "mov"], ["003EC5CB", "cmp"], ["003EC5D4", "mov"], ["003EC5DD", "call"]]},
+  {"fn": "003EC720", "entered_from": "`002FB560` + 0x79",
+   "text": "keeps the incoming floats `xmm1`, `xmm2` and `xmm3` across a call to `003EC720` + 0x1E made with the incoming arguments, then tail-jumps (+ 0x44) with `rcx` = the sign-extended dword that call returned and the saved `xmm1`, `xmm2` and `xmm3` restored",
+   "anchors": [["003EC73E", "call"], ["003EC743", "movsxd"], ["003EC74C", "movaps"], ["003EC764", "jmp"]]},
+  {"fn": "003EC770", "entered_from": "`002FB560` + 0x12A",
+   "text": "keeps the incoming floats `xmm1`, `xmm2` and `xmm3` across a call to `003EC770` + 0x1E made with the incoming arguments, then tail-jumps (+ 0x44) with `rcx` = the sign-extended dword that call returned and the saved `xmm1`, `xmm2` and `xmm3` restored",
+   "anchors": [["003EC78E", "call"], ["003EC793", "movsxd"], ["003EC79C", "movaps"], ["003EC7B4", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "All callees are cited by site because the host excerpt names none of them. 0033CBF0: + 0x66 is the stack-cookie check call, left out of the sentence except as 'under a stack cookie'; the size of the rsp+0x20 local is not stated (the cookie slot at rsp+0x60 bounds it to at most 0x40 bytes). 003EC5B0: the '1' passed in r9d is computed as eax+1 with eax known to be 0 on that path; on the final path eax is whatever + 0x2D returns, which the sentence does not state. 003EC720 and 003EC770: the bodies are byte-identical except for the tail-jump target, and both call the same function at + 0x1E; rdx, r8 and r9 are not re-set before the tail jump (whatever the call leaves there passes through), so the sentence names only rcx and xmm1-xmm3."
+}
