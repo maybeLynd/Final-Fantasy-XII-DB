@@ -1,0 +1,61 @@
+{
+ "page": "15-Input/Gameplay-Capability-Policy/capability-inhibition-policy.md",
+ "session": "session_019yEjih72UCRaxGuuSzfAJF",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "00254FE0",
+   "text": "XORs dword `01E0C2A8` with 1 and stores the result back; calls `002E0FA0()` and, when bit 10 (`0xa`) of its return is set, replaces the toggled value by 0; then tail-jumps (`00254FE0`+0x2F) with `ecx` = 0 and `edx` = that value (the toggled dword, or 0)",
+   "anchors": [
+    [
+     "00254FEC",
+     "xor"
+    ],
+    [
+     "00254FEF",
+     "mov"
+    ],
+    [
+     "00254FF5",
+     "call"
+    ],
+    [
+     "00255003",
+     "cmovb"
+    ],
+    [
+     "0025500F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0028E580",
+   "text": "calls the functions at `0028E580`+0x0A and +0x0F; when bit 1 (value 2) of the second one's return byte is clear it passes `ecx` = 0 to the call at +0x2A, otherwise it calls `002E0FA0()` and passes `ecx` = 1 when bit 10 (`0xa`) of that return is clear and 0 when it is set; then calls +0x2F and, for `ebx` = 0 to 3, calls +0x4C(qword `0209BE80` + `ebx`*0x20, `ebx`)",
+   "anchors": [
+    [
+     "0028E596",
+     "test"
+    ],
+    [
+     "0028E59A",
+     "call"
+    ],
+    [
+     "0028E5A6",
+     "jae"
+    ],
+    [
+     "0028E5AA",
+     "call"
+    ],
+    [
+     "0028E5CC",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Calls to functions this page does not name are cited by site (entry + offset). Doubt: 0028E580's call at +0x0F receives whatever rcx the call at +0x0A left; the body sets no argument for it, so the sentence names no argument. Doubts: 1 (0028E580, minor)."
+}
