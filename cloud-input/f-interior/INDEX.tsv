@@ -193,3 +193,4 @@ r2-force-fight-toggle	15-Input/Modal-Toggles/r2-force-fight-toggle.md	6	334	2026
 ui-request-router	16-UI/Request-Router/ui-request-router.md	8	614	2026-10-02 23:37	PACKED-FABLE
 keymap-ini-file-format-and-default-controls	15-Input/Binding-Profiles/keymap-ini-file-format-and-default-controls.md	5	316	2026-10-02 23:37	PACKED-FABLE
 what-happens-when-a-character-levels-up	13-Rewards-Progression-Economy/what-happens-when-a-character-levels-up.md	5	235	2026-10-02 23:37	PACKED-FABLE
+how-a-path-is-resolved-to-bytes	02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/how-a-path-is-resolved-to-bytes.md	4	609	2026-10-03 00:36	PACKED-FABLE
