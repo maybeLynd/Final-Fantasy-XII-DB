@@ -1,0 +1,17 @@
+{
+ "page": "24-Compiler-And-CRT-Runtime/Runtime-Service-Surface/what-the-game-asks-windows-for.md",
+ "session": "session_01Cj7Fn364nPXZ9Bw71KUr9i",
+ "rows": [
+  {"fn": "00159520", "entered_from": "`0015B820` + 0x35",
+   "text": "measures the zero-terminated wide string at `rcx` and scans its characters, returning 1 at the first `0x5C` or `0x2F` and 0 when none is found; a null `rcx` or an empty string returns 0",
+   "anchors": [["00159543", "not"], ["0015954A", "je"], ["00159553", "cmp"], ["00159559", "cmp"], ["00159575", "mov"]]},
+  {"fn": "00159580", "entered_from": "`0015B820` + 0x24C",
+   "text": "calls the import at `008C2358` with 0, calls the import at `008C2350`(0, 0) to get a count n, allocates through `008C2348`(`0x40`, n * 2) and returns 0 when that fails; otherwise calls `008C2350`(buffer, n) again and returns the buffer when the result is non-zero and not above n, else frees the buffer through `008C21F8` and returns 0",
+   "anchors": [["0015958C", "call"], ["00159596", "call"], ["001595A8", "call"], ["001595C5", "cmp"], ["001595DA", "call"]]},
+  {"fn": "0015B550", "entered_from": "`0015BB30` + 0xB5",
+   "text": "when the wide string at a non-null `rcx` begins with `0x5C` or `0x2F`, or when `0015B550` + 0x26(its first character) is non-zero, its second character is `0x3A` and its third is `0x5C` or `0x2F`, it tail-jumps at `0015B550` + 0x55 with `rcx` and `edx`; otherwise (including a null `rcx`) it calls `0015B550` + 0x5D(`rcx`) and, when that returns 0, tail-jumps at `0015B550` + 0x75 with `rcx` and `edx`, else calls the import at `008C2358` with `0x7E` and returns 0",
+   "anchors": [["0015B567", "cmp"], ["0015B57F", "cmp"], ["0015B5A5", "jmp"], ["0015B5AD", "call"], ["0015B5CF", "call"]]}
+ ],
+ "skipped": [],
+ "notes": "Import calls are named by their IAT slot (`008C2358`, `008C2350`, `008C2348`, `008C21F8`) as the listing resolves them; the host page itself names `008C2348`. Direct callees of 0015B550 (00861F92, 0015B070, 00159520, 00159AA0) are not named in the host excerpt and are cited by site; the call at `0015B550` + 0x5D is to 00159520, the first body of this same pack. 00159580: the 'not above n' test is the unsigned `jb` at 001595C7 (fails when n is below the second result)."
+}
