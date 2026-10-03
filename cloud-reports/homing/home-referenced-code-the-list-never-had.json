@@ -1,0 +1,14 @@
+{
+ "page": "99-Unresolved-Residual/Unlisted-Code/referenced-code-the-list-never-had.md",
+ "session": "session_01A1Qvgw5xe7BnV34LPHQcLH",
+ "rows": [
+  {"fn": "0037A960", "entered_from": "`003DEA10` + 0x8",
+   "text": "forms `r8` = `02EBF420` + sign-extended `ecx` times `0x50` and returns when qword `r8+0x18` is null or dword `+4` of its target is 0; otherwise, for each index below that dword (unsigned, with the qword and the dword re-read every pass), stores byte 0 at `+0x12` of the 8-byte element at that index from the qword's target",
+   "anchors": [["0037A963", "lea"], ["0037A96B", "lea"], ["0037A980", "cmp"], ["0037A990", "mov"], ["0037A9A2", "jb"]]},
+  {"fn": "003B1560", "entered_from": "`0036E9A0` + 0x0",
+   "text": "walks `0x30`-byte entries by a cursor from `02EBE600` while it is below `02EBEC00` (signed), stopping the walk at the first entry whose dword at cursor `-0x20` is 0; for each entry whose byte at the cursor has bit 0 set it makes the call at `003B1560` + 0x32 with `ecx` = that dword when the incoming `ecx` is non-zero, or else clears bit 0 of that byte; entries with bit 0 clear are passed over",
+   "anchors": [["003B1583", "test"], ["003B158A", "test"], ["003B1592", "call"], ["003B159B", "mov"], ["003B15A4", "jl"]]}
+ ],
+ "skipped": [],
+ "notes": "003B1560: the range `02EBE600`..`02EBEC00` is 0x600 bytes, i.e. at most 32 entries; the cursor points 0x20 bytes into each entry (the dword tested is at cursor -0x20). 0037A960: the host row for the neighbour `0037AA00` describes the same shape over `02EBF420`."
+}
