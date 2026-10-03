@@ -1,0 +1,62 @@
+{
+ "page": "08-Combat-Formula/Steal/the-steal-roll.md",
+ "session": "session_014Lqi23L8goQ9zhmHGJGtzN",
+ "rows": [
+  {
+   "fn": "001DD0B0",
+   "entered_from": "`0017FF20` + 0x1A",
+   "text": "loads qword `01F82D20` and branches on its dword `+8`: when it is 1 and dword `rcx+0x24` is below dword `rcx+0x20` (unsigned), returns dword `+0` of entry `+0x24` of the 0x1C-stride array at qword `rcx+0x28` shifted left 16 and OR'd with that entry's dword `+4`; when it is 0 and dword `rcx+0x38` is below dword `rcx+0x34` plus 1 (unsigned 32-bit), returns the same combination from entry `+0x38` of the 0x1C-stride array at qword `rcx+0x40`; every other case returns dword `+4` of the object at qword `01F82D20`",
+   "anchors": [
+    [
+     "001DD0BD",
+     "cmp"
+    ],
+    [
+     "001DD0DA",
+     "or"
+    ],
+    [
+     "001DD0EF",
+     "cmp"
+    ],
+    [
+     "001DD105",
+     "or"
+    ],
+    [
+     "001DD108",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00394380",
+   "entered_from": "`003939B0` + 0x3E4",
+   "text": "calls `00394380` + 0xE with `ecx` = 1, zeroes a 0x30-byte stack block and fills it with the qword returned by `00394380` + 0x38 (`ecx` = 0x890) at `+0`, qword 0 at `+8`, qword `0208EA28` at `+0x10`, the incoming `rcx` at `+0x18`, dword 0 at `+0x20`, byte 2 at `+0x28` and dword 0x1002 at `+0x2C`, then calls `00394380` + 0x70 with `ecx` = 0 and the block's address in `rdx` and returns with that call's `rax`",
+   "anchors": [
+    [
+     "0039438E",
+     "call"
+    ],
+    [
+     "003943B8",
+     "call"
+    ],
+    [
+     "003943C4",
+     "mov"
+    ],
+    [
+     "003943E3",
+     "mov"
+    ],
+    [
+     "003943F0",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "001DD0B0: the fallback at 001DD108 reads [rcx+4] with rcx still holding the qword loaded from 01F82D20 on all three paths that reach it (mode 1 out of range, mode neither 0 nor 1, mode 0 out of range). The mode-0 bound uses inc eax so a dword +0x34 of 0xFFFFFFFF wraps to 0 and always takes the fallback; the sentence says 'plus 1 (unsigned 32-bit)' for that reason. 00394380: all three callees are cited by site (+0xE, +0x38, +0x70) since the host excerpt for this body does not name them (002F9860 appears in another excerpt of the page, but is cited by site anyway). Doubt: low on both."
+}
