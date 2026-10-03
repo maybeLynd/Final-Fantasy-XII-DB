@@ -1,0 +1,424 @@
+{
+ "page": "00-Engine-Core-Runtime/CONTRACT-boot-fixups.md",
+ "session": "session_015JQJRUavwc3iK8Y7ZWtHdD",
+ "rows": [
+  {
+   "fn": "0035D070",
+   "entered_from": "`003C6000` + 0x13",
+   "text": "loads the address `022C8060` into `rcx` and tail-jumps (site `0035D070` + 0x7) with the other incoming registers unchanged; it has no other work",
+   "anchors": [
+    [
+     "0035D077",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0044D460",
+   "entered_from": "`002F3BC0` + 0xCA",
+   "text": "calls `0044D460` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `0044D460` + 0x1B with the original `rcx`, then `0044D460` + 0x20 with no arguments set, stores that call's `eax` into dword `rcx+0x258` (original `rcx`) and returns 1",
+   "anchors": [
+    [
+     "0044D469",
+     "call"
+    ],
+    [
+     "0044D470",
+     "jne"
+    ],
+    [
+     "0044D47B",
+     "call"
+    ],
+    [
+     "0044D485",
+     "mov"
+    ],
+    [
+     "0044D48B",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0044ED90",
+   "entered_from": "`002F3BC0` + 0xF1",
+   "text": "calls `0044ED90` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `0044ED90` + 0x1B with the original `rcx`, then `0044ED90` + 0x20 with no arguments set, stores that call's `eax` into dword `rcx+0x244` (original `rcx`) and returns 1",
+   "anchors": [
+    [
+     "0044ED99",
+     "call"
+    ],
+    [
+     "0044EDA0",
+     "jne"
+    ],
+    [
+     "0044EDAB",
+     "call"
+    ],
+    [
+     "0044EDB5",
+     "mov"
+    ],
+    [
+     "0044EDBB",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0044F930",
+   "entered_from": "`002F3BC0` + 0xFE",
+   "text": "calls `0044F930` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `0044F930` + 0x1B with the original `rcx`, then `0044F930` + 0x20 with no arguments set, stores that call's `eax` into dword `rcx+0x454` (original `rcx`) and returns 1",
+   "anchors": [
+    [
+     "0044F939",
+     "call"
+    ],
+    [
+     "0044F940",
+     "jne"
+    ],
+    [
+     "0044F94B",
+     "call"
+    ],
+    [
+     "0044F955",
+     "mov"
+    ],
+    [
+     "0044F95B",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00451140",
+   "entered_from": "`002F3BC0` + 0x118",
+   "text": "calls `00451140` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `00451140` + 0x1B with the original `rcx`, then `00451140` + 0x20 with no arguments set, stores that call's `eax` into dword `rcx+0x290` (original `rcx`) and returns 1",
+   "anchors": [
+    [
+     "00451149",
+     "call"
+    ],
+    [
+     "00451150",
+     "jne"
+    ],
+    [
+     "0045115B",
+     "call"
+    ],
+    [
+     "00451165",
+     "mov"
+    ],
+    [
+     "0045116B",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00451890",
+   "entered_from": "`002F3BC0` + 0x125",
+   "text": "calls `00451890` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `00451890` + 0x1B with the original `rcx`, then `00451890` + 0x20 with no arguments set, stores that call's `eax` into dword `rcx+0x290` (original `rcx`) and returns 1",
+   "anchors": [
+    [
+     "00451899",
+     "call"
+    ],
+    [
+     "004518A0",
+     "jne"
+    ],
+    [
+     "004518AB",
+     "call"
+    ],
+    [
+     "004518B5",
+     "mov"
+    ],
+    [
+     "004518BB",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00453CB0",
+   "entered_from": "`002F3BC0` + 0x14C",
+   "text": "calls `00453CB0` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `00453CB0` + 0x1B with the original `rcx`, then `00453CB0` + 0x20 with no arguments set, stores that call's `eax` into dword `rcx+0x244` (original `rcx`) and returns 1",
+   "anchors": [
+    [
+     "00453CB9",
+     "call"
+    ],
+    [
+     "00453CC0",
+     "jne"
+    ],
+    [
+     "00453CCB",
+     "call"
+    ],
+    [
+     "00453CD5",
+     "mov"
+    ],
+    [
+     "00453CDB",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "004548F0",
+   "entered_from": "`002F3BC0` + 0x159",
+   "text": "calls `004548F0` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `004548F0` + 0x1B with the original `rcx`, then `004548F0` + 0x20 with no arguments set, stores that call's `eax` into dword `rcx+0x290` (original `rcx`) and returns 1",
+   "anchors": [
+    [
+     "004548F9",
+     "call"
+    ],
+    [
+     "00454900",
+     "jne"
+    ],
+    [
+     "0045490B",
+     "call"
+    ],
+    [
+     "00454915",
+     "mov"
+    ],
+    [
+     "0045491B",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0045BF50",
+   "entered_from": "`002F3BC0` + 0x1E8",
+   "text": "calls `0045BF50` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise stores 0x10001 into dword `rcx+0x24C` (original `rcx`), calls `0045BF50` + 0x2C and `0045BF50` + 0x37 with no arguments set, storing their `eax` into dwords `rcx+0x244` and `rcx+0x248` in that order, then calls `0045BF50` + 0x45 with the original `rcx` and returns 1",
+   "anchors": [
+    [
+     "0045BF60",
+     "jne"
+    ],
+    [
+     "0045BF72",
+     "mov"
+    ],
+    [
+     "0045BF81",
+     "mov"
+    ],
+    [
+     "0045BF8F",
+     "mov"
+    ],
+    [
+     "0045BF95",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0045C920",
+   "entered_from": "`002F3BC0` + 0x1F5",
+   "text": "calls `0045C920` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise stores 0x10001 into dword `rcx+0x24C` (original `rcx`), calls `0045C920` + 0x2C and `0045C920` + 0x37 with no arguments set, storing their `eax` into dwords `rcx+0x244` and `rcx+0x248` in that order, then calls `0045C920` + 0x45 with the original `rcx` and returns 1",
+   "anchors": [
+    [
+     "0045C930",
+     "jne"
+    ],
+    [
+     "0045C942",
+     "mov"
+    ],
+    [
+     "0045C951",
+     "mov"
+    ],
+    [
+     "0045C95F",
+     "mov"
+    ],
+    [
+     "0045C965",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0045D290",
+   "entered_from": "`002F3BC0` + 0x202",
+   "text": "calls `0045D290` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise stores 0x10001 into dword `rcx+0x24C` (original `rcx`), calls `0045D290` + 0x2C and `0045D290` + 0x37 with no arguments set, storing their `eax` into dwords `rcx+0x244` and `rcx+0x248` in that order, then calls `0045D290` + 0x45 with the original `rcx` and returns 1",
+   "anchors": [
+    [
+     "0045D2A0",
+     "jne"
+    ],
+    [
+     "0045D2B2",
+     "mov"
+    ],
+    [
+     "0045D2C1",
+     "mov"
+    ],
+    [
+     "0045D2CF",
+     "mov"
+    ],
+    [
+     "0045D2D5",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0045DCA0",
+   "entered_from": "`002F3BC0` + 0x20C",
+   "text": "calls `0045DCA0` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `0045DCA0` + 0x26 with (`rcx+0x2A0`, 0), stores 0x10001 into dword `rcx+0x2F0` (original `rcx` throughout), calls `0045DCA0` + 0x3A, `0045DCA0` + 0x45 and `0045DCA0` + 0x50 with no arguments set, storing their `eax` into dwords `rcx+0x254`, `rcx+0x258` and `rcx+0x25C` in that order, then calls `0045DCA0` + 0x5E with the original `rcx` and returns 1",
+   "anchors": [
+    [
+     "0045DCB0",
+     "jne"
+    ],
+    [
+     "0045DCC6",
+     "call"
+    ],
+    [
+     "0045DCD0",
+     "mov"
+    ],
+    [
+     "0045DCF8",
+     "mov"
+    ],
+    [
+     "0045DCFE",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0045E8C0",
+   "entered_from": "`002F3BC0` + 0x216",
+   "text": "calls `0045E8C0` + 0x9 with `rcx` unchanged and, when it returns 0 in `eax`, returns that 0; otherwise calls `0045E8C0` + 0x26 with (`rcx+0x2A0`, 0), stores 0x10001 into dword `rcx+0x2F0` (original `rcx` throughout), calls `0045E8C0` + 0x3A, `0045E8C0` + 0x45 and `0045E8C0` + 0x50 with no arguments set, storing their `eax` into dwords `rcx+0x254`, `rcx+0x258` and `rcx+0x25C` in that order, then calls `0045E8C0` + 0x5E with the original `rcx` and returns 1",
+   "anchors": [
+    [
+     "0045E8D0",
+     "jne"
+    ],
+    [
+     "0045E8E6",
+     "call"
+    ],
+    [
+     "0045E8F0",
+     "mov"
+    ],
+    [
+     "0045E918",
+     "mov"
+    ],
+    [
+     "0045E91E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "004CF230",
+   "entered_from": "`004C8320` + 0x396A",
+   "text": "writes to the four floats at `rcx`, `rcx+4`, `rcx+8` and `rcx+0xC` the smaller of the matching float at `rdx` (same offsets) and the third argument `xmm2`: the first through `minss`, the other three through `comiss` branches that store the source float when `xmm2` is above it and `xmm2` otherwise (an unordered compare stores `xmm2`); it returns nothing",
+   "anchors": [
+    [
+     "004CF234",
+     "minss"
+    ],
+    [
+     "004CF238",
+     "movss"
+    ],
+    [
+     "004CF241",
+     "comiss"
+    ],
+    [
+     "004CF246",
+     "movss"
+    ],
+    [
+     "004CF24D",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "004E7980",
+   "entered_from": "`0037E0F0` + 0x9B",
+   "text": "calls `004E7980` + 0x13 with (`rcx`, the address `004E7D90`, 0), then stores 0x3000000 into dword `rcx+8` and 0x2000000 into dword `rcx+0xC` (original `rcx`) and tail-jumps (site `004E7980` + 0x2F) with `rcx+0x10` as `rcx`",
+   "anchors": [
+    [
+     "004E7989",
+     "lea"
+    ],
+    [
+     "004E7993",
+     "call"
+    ],
+    [
+     "004E799C",
+     "mov"
+    ],
+    [
+     "004E79A3",
+     "mov"
+    ],
+    [
+     "004E79AF",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "004EB910",
+   "entered_from": "`004EBE80` + 0x74A",
+   "text": "increments word `02064DB8`; replaces each float pair (a,b) = (`02064BF0`,`02064BF4`) and (`02064C00`,`02064C04`) by (`02064D00`*a + `02064D10`*b, `02064D04`*a + `02064D14`*b), adds the new pairs to the first two floats of two copies of the 16-byte entry at index word `02064B0C` + 2 of the 0x10-stride table `02064E30` and stores the copies times 16 as truncated int32 vectors at `02064C60` and `02064C70`; when word `02064DBC` differs from word `02064B0C` it first subtracts `02064CF0`/`02064CF4` times `02064C80` from both float pairs; then adds `02064CF0`/`02064CF4` times `02064B60` (first pair) or `02064B64` (second) and subtracts `02064B30`/`02064B34`; every pair update (to `02064C10`/`02064C14` or `02064C20`/`02064C24`) is followed by a call when either float is 0, one when either is negative and one always (`004EB910` + 0x231/0x252/0x257, 0x29A/0x2B9/0x2BE, 0x38F/0x3B0/0x3B5, 0x3F8/0x417/0x41C); finally maps x to x*`02064BA0` + `02064B90` and y to y*`02064BA4` + `02064B94` in both pairs, sets floats `02064C18`, `02064C28` to 1.0 (`01E0283C`), copies `02064C10`, `02064B70`, `02064C60`, `02064C20`, `02064B80`, `02064C70` to six entries from index word `02064DB4` and adds 6 to it",
+   "anchors": [
+    [
+     "004EB94A",
+     "inc"
+    ],
+    [
+     "004EBAE2",
+     "je"
+    ],
+    [
+     "004EBB41",
+     "call"
+    ],
+    [
+     "004EBDF5",
+     "movups"
+    ],
+    [
+     "004EBE69",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Callees are cited by call site throughout, including 008631E0 and 004E7A90 in 004E7980 (both are named elsewhere on the host page, but not in this function's host excerpt). 004E7D90 in 004E7980 is the address passed as the second argument (no `fn` mark in the listing); it is not called here. The 13 wrappers under 002F3BC0 share one shape; their zero path returns the `eax` 0 of the first call. 004CF230: the third argument is taken as `xmm2` (Win64 float slot); NaN behaviour: minss and the comiss branches both yield `xmm2` when either operand is NaN. DOUBT 004EB910 (1387 B): the sentence summarises a long straight-line float body and stays under the 1,200 hard limit; please re-read the 2x2 product mapping (new BF0 = D00*BF0 + D10*BF4, new BF4 = D04*BF0 + D14*BF4, likewise for C00/C04), the B60-first-pair / B64-second-pair split, and the table-entry order (index +0 from C10, +1 B70, +2 C60, +3 C20, +4 B80, +5 C70). It omits minor stores (02064B20/02064B24 products, 02064C18/1C/28/2C copies of the entry's z/w, 02064C30/34/40/44 product scratch, the 16.0 vector constant 009153F0). The skipped-vs-taken branch at 004EBAE2 uses the flags of the word compare at 004EB967 (no flag-setting instruction in between). The helper calls may rewrite 02064C10/14/20/24: the body reloads them after each call group."
+}
