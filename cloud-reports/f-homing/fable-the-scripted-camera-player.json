@@ -1,0 +1,24 @@
+{
+ "page": "17-Presentation-Rendering/Scripted-Camera/the-scripted-camera-player.md",
+ "session": "session_01CZh28JMQoyNT8qWV5qwsPp",
+ "mode": "homing",
+ "rows": [
+  {"fn": "002565C0",
+   "text": "takes `R` = `002593A0()` (incoming registers) and returns 0 when float `R+0x90` equals float `R+0xa0` and float `R+0x98` equals float `R+0xa8` (an unordered compare counts as unequal); otherwise calls `00861F02(R+0x90 - R+0xa0, R+0x98 - R+0xa8)`, adds 0.3926991 (`00915610`), adds 6.283185 (`01CEBC78`) when the sum is below 0, then adds -6.283185 (`00915624`) when it is above 6.283185, and returns the truncated quotient of that value by 0.7853982 (`00915614`)",
+   "anchors": [["002565E8", "ucomiss"], ["00256611", "call"], ["0025662E", "addss"], ["00256637", "addss"], ["00256647", "cvttss2si"]]},
+  {"fn": "0027B3B0",
+   "text": "zeroes three 16-byte stack buffers `A`, `B` and `C`, calls `002E9D10(ecx, A)` and `002E9D10(edx, B)`, then the call at `0027B3B0`+0x57 (`C`, `A`, `B`) and the call at +0x61 (`C`), and finally checks the stack cookie (seeded from `01F44830` XOR `rsp`) through `00808C40`",
+   "anchors": [["0027B3CF", "mov"], ["0027B3E7", "call"], ["0027B3F3", "call"], ["0027B407", "call"], ["0027B411", "call"]]},
+  {"fn": "00373380",
+   "text": "when `rdx` is non-null and dword `rdx+0x10` equals dword `rcx+4`, stores -1 at `rdx+0x10` and, with `P` = `0020E600(dword rdx+0x84)` and the word list at `0020E600(dword rdx+0x84)` + signed word `rdx+0x88`*0x290, for each of the first signed word `rdx+0x8a` ids `n` takes record `P` + `n`*0x290 and, when `0020E600` of its dword `+0x278` is non-null, stores `0020E620(0)` there and word -1 at `+0x27c`; then always stores -1 at dword `rcx+8` and word `rcx+0x14`, takes `Q` and a word list the same way from `rcx`, calls the function at `00373380`+0x109 (`Q`+0x1f0), and when `T` = `0020E600(dword rcx+0xa0)` is non-null, for each of the first signed word `rcx+0x8a` ids takes record `Q` + id*0x290, clears bit `0x2` of its word `+0x280` and, when `0020E600(dword rcx+0xa0)` is non-null again, reads dword `v` = `[00409270(T, signed word +0x27e)]` and stores word -1 at `+0x270` if bits `0xfff000` of `v` are all set, else (`v` >> 0xc) AND `0xfff`, and word -1 at `+0x276`; returns nothing",
+   "anchors": [["003733AE", "cmp"], ["0037341F", "call"], ["00373489", "call"], ["003734E1", "call"], ["00373504", "mov"]]},
+  {"fn": "0042D9C0",
+   "text": "calls `00421D70(rcx, word rdx+0x1c)` and, unless its low word is `0xffff`, stores `rcx` at qword `rdx+0x20`, that word at `rdx+0x28` and dword 1 at `rdx+0x18`; returns the call's result on both paths",
+   "anchors": [["0042D9D4", "call"], ["0042D9DE", "cmp"], ["0042D9E3", "mov"], ["0042D9E7", "mov"], ["0042D9EB", "mov"]]},
+  {"fn": "0050D540",
+   "text": "calls `00377DB0` with the incoming registers unchanged; returns 0 when it returns non-zero, and when it returns 0 calls the function at `0050D540`+0x10 (1) and returns 1",
+   "anchors": [["0050D544", "call"], ["0050D54B", "jne"], ["0050D550", "call"], ["0050D555", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "Homing pack (callee-host). 'call at <entry>+0xNN' cites callees the page does not name. 00373380: both id loops start with a 16-bit signed compare of 0 against word +0x8a and loop on a 32-bit signed compare; the first phase is skipped (to the unconditional second phase) when rdx is null or the dwords differ. 0027B3B0: the three buffers are rsp+0x20, +0x30, +0x40, each zeroed as two qwords. 0042D9C0: eax is not touched after the call, hence the return value."
+}
