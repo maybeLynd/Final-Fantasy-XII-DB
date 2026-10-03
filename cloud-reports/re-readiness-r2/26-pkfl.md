@@ -56,8 +56,9 @@ the live game. 14 of the 23 DOC items are stale text or front matter on `PK` / `
 **New gaps: 8.** DOC 6 · STATIC 1 · DATA 1 · RUNTIME 0 (§3).
 
 **Rating: MOSTLY, unchanged from pass 1** (pass 1: MOSTLY overall, with three parts NOT YET). The three parts pass 1
-rated NOT YET (writing a package, `(ns, index)` addressing, the sub-file request) are now **MOSTLY**: what they
-lack is pointers and two narrow static reads, not structure (§4).
+rated NOT YET (writing a package, `(ns, index)` addressing, the sub-file request) are now **MOSTLY**. The sub-file
+request is READY on its own page and lacks only a pointer from `PK`. Reading a package is now READY. What the system
+lacks is pointers, stale-text cleanup and four narrow static reads, not structure (§4).
 
 ## 2. Pass-1 gaps
 
