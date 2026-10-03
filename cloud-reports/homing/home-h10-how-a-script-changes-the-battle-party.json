@@ -1,0 +1,11 @@
+{
+ "page": "01-Script-VM-Native-Bridge/Party-Presentation-Verbs/how-a-script-changes-the-battle-party.md",
+ "session": "session_0141duvveFVGsG54cn7rpP77",
+ "rows": [
+  {"fn": "0035A050", "entered_from": "`0034D4E0` + 0xA4",
+   "text": "returns `ecx` AND 0x7F in `eax`",
+   "anchors": [["0035A053", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "0035A050 (doubt): the AND is the entry instruction; the only interior instruction doing work is the mov that returns the masked value, used as the anchor. Skip it if an entry-plus-mov body counts as entry-only work."
+}
