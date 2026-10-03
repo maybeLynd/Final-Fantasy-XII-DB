@@ -1,0 +1,26 @@
+{
+ "page": "06-Movement-And-Navigation/Movement-Mode-Selection/how-the-engine-chooses-3d-or-flat-movement.md",
+ "session": "session_01DtsGzxAwuV39oMMCAfQd2j",
+ "rows": [
+  {"fn": "001AD670", "entered_from": "`0017F5B0` + 0x23",
+   "text": "stores `dl` to byte `+0x244` of `rcx`; then, for index `ebx` from 0 while `ebx` is below (signed) dword `+0x20` of the object returned by `001AD670` + 0xE (re-fetched each pass at + 0x50), computes a flag that is 1 when byte `+0x1C` of the result of `001AD670` + 0x20 is non-zero, calls `001AD670` + 0x3C with the object from `001AD670` + 0x2F, that flag and the index, and when this returns non-null passes the result to `001AD670` + 0x49; a count of 0 or less skips the loop",
+   "anchors": [["001AD676", "mov"], ["001AD686", "jle"], ["001AD69B", "setne"], ["001AD6AC", "call"], ["001AD6B9", "call"]]},
+  {"fn": "00358420", "entered_from": "`00262870` + 0x1C",
+   "text": "calls `00358420` + 0xB with (`ecx` 0, `edx` 1), then the same callee at `00358420` + 0x15 with (`ecx` 1, `edx` 0), then stores byte 0 to `022C7F99`",
+   "anchors": [["0035842B", "call"], ["00358435", "call"], ["0035843A", "mov"]]},
+  {"fn": "003631A0", "entered_from": "`00262870` + 0x17",
+   "text": "stores `cl` to byte `022CBA91` and `edx` to dword `022CBA84`",
+   "anchors": [["003631A6", "mov"]]},
+  {"fn": "00363B20", "entered_from": "`00262870` + 0xE",
+   "text": "stores `ecx` to dword `022CBB30` when `ecx` is greater than 0 (signed), else stores `0xB4` (180)",
+   "anchors": [["00363B22", "mov"], ["00363B27", "cmovg"], ["00363B2A", "mov"]]},
+  {"fn": "003B7510", "entered_from": "`003B6F30` + 0x23",
+   "text": "for each index below dword `02EBCAA0` (signed, re-read every pass; nothing when 0 or less) takes qword `02EBCA80` + 8*i and, when it and the record returned for it by `003B7510` + 0x3B are both non-null, calls `003B7510` + 0x56 with (object, record, record+4, record+8) and `003B7510` + 0x6A with (object, record+0x10, record+0x14, record+0x18), stores the byte from `003B7510` + 0x72 to record byte `+0x64`, and stores the floats from `003B7510` + 0x7D to `+0x34`, from `003B7510` + 0x8A to `+0x24` and from `003B7510` + 0x97 (the same callee as + 0x7D) to `+0x34` again",
+   "anchors": [["003B751E", "jle"], ["003B7556", "je"], ["003B758A", "mov"], ["003B75A2", "movss"], ["003B75AC", "movss"]]},
+  {"fn": "003DB150", "entered_from": "`002E54A0` + 0xD7",
+   "text": "adds the three floats at `rcx`, `rcx+4`, `rcx+8` into the floats at `r8`, `r8+4`, `r8+8` in place; when `rdx` is non-null it then copies the three sums to dwords `+0x30`, `+0x34`, `+0x38` of `rdx`, copies the second sum also to dword `+0xAC`, and stores word `0xFFFF` to `+0x82`",
+   "anchors": [["003DB159", "movss"], ["003DB17A", "movss"], ["003DB183", "je"], ["003DB19D", "mov"], ["003DB1A6", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "003631A0: its first store is the entry instruction, so the only interior anchor is the second store; skip it if a single-anchor two-store row is not wanted. 003B7510: the second entered-from site is `003B7080` + 0x28; the callee at + 0x7D and + 0x97 is the same function, so +0x34 ends up holding the second call's value. 001AD670: the loop-bound object is fetched by the same callee at + 0xE, + 0x2F and + 0x50."
+}
