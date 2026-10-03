@@ -1,0 +1,62 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/resource-section-addressing.md",
+ "session": "session_01HFDWqiFGBo93D32pyB6Lkx",
+ "rows": [
+  {
+   "fn": "0046C1E0",
+   "entered_from": "`0041FCF0` + 0x367",
+   "text": "clears byte `[rcx]` and, when `dx` is not -1 and dword `+0x284` of the `0x740`-byte record indexed by the sign-extended `dx` in the array at qword `022C6F28` is non-zero, sets byte `[rcx]` to 1, stores `edx` to dword `rcx+8` and the record's qword `+0x108` to qword `rcx+0x10`, and stores the low byte returned by the call at `0046C1E0` + 0x4B (with `ecx` 9) plus 3 to byte `rcx+4`; otherwise only the cleared byte is written",
+   "anchors": [
+    [
+     "0046C1E6",
+     "mov"
+    ],
+    [
+     "0046C1F8",
+     "imul"
+    ],
+    [
+     "0046C206",
+     "cmp"
+    ],
+    [
+     "0046C227",
+     "mov"
+    ],
+    [
+     "0046C232",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00512C50",
+   "entered_from": "`003E1C50` + 0x717",
+   "text": "replaces dword `rcx+0x30` with `0020E620(0020E600(dword rcx+0x30) + edx)` (32-bit sum) and returns that value",
+   "anchors": [
+    [
+     "00512C5F",
+     "mov"
+    ],
+    [
+     "00512C62",
+     "call"
+    ],
+    [
+     "00512C67",
+     "lea"
+    ],
+    [
+     "00512C6A",
+     "call"
+    ],
+    [
+     "00512C74",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "0046C1E0: the callee at + 0x4B is not named in the host excerpt; cited by site. The record-pointer cmove (0046C20C) only nulls on a zero +0x284. 00512C50: 0020E600 and 0020E620 are both named in the host excerpt, so they are named by address."
+}
