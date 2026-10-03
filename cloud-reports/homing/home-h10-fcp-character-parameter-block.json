@@ -1,0 +1,29 @@
+{
+ "page": "17-Presentation-Rendering/Model-And-Motion-Formats/fcp-character-parameter-block.md",
+ "session": "session_017yNt9L5rrbK5hdpiNRA3BS",
+ "rows": [
+  {"fn": "00263640", "entered_from": "`002E28E0` + 0x416",
+   "text": "when byte `rcx+3` AND `0xE0` equals `0x60`, loads float dword `+0xE4` of qword `rcx+0xB8` into `xmm1` and tail-jumps (`00263640` + 0x19) with the incoming `rcx`; otherwise returns without doing anything",
+   "anchors": [["00263646", "cmp"], ["00263651", "movss"], ["00263659", "jmp"]]},
+  {"fn": "002644E0", "entered_from": "`00349F10` + 0x23",
+   "text": "when byte `rcx+3` AND `0xE0` equals `0x60`, returns in `xmm0` float dword `+0xB0` of qword `rcx+0xB8`; otherwise returns the product of 1.0 (`01DFE0BC`) and 0.2094395 (`00915728`)",
+   "anchors": [["002644E6", "cmp"], ["002644F2", "mulss"], ["00264502", "movss"]]},
+  {"fn": "00269E60", "entered_from": "`002E28E0` + 0x677",
+   "text": "takes byte `rcx+3` shifted right by 5: when it is 1, stores float `xmm1` to dword `+0x68` of qword `rcx+0xB8` and sets byte `+0x5C` there to whether `xmm1` is below 0.0; when it is 3, stores `xmm1` to dwords `+0xC0` and `+0xC8` of that qword and sets byte `+0xDD` to whether `xmm1` is below 0.0; on every path (other values store nothing) it tail-jumps with the incoming `rcx` (`00269E60` + 0x3A or + 0x5A)",
+   "anchors": [["00269E6D", "je"], ["00269E81", "movss"], ["00269E94", "mov"], ["00269EAC", "movss"], ["00269EBA", "jmp"]]},
+  {"fn": "0026A370", "entered_from": "`002E28E0` + 0x6C5",
+   "text": "when byte `rcx+3` AND `0xE0` equals `0x60`, stores `dl`, `r8b` and `r9b` to bytes `+0x104`, `+0x105` and `+0x106` of qword `rcx+0xB8` and tail-jumps (`0026A370` + 0x25) with the incoming `rcx`; otherwise returns without storing",
+   "anchors": [["0026A376", "cmp"], ["0026A381", "mov"], ["0026A38E", "mov"], ["0026A395", "jmp"]]},
+  {"fn": "0026AA30", "entered_from": "`002E28E0` + 0x66C",
+   "text": "when byte `rcx+3` AND `0xE0` equals `0x60`, stores floats `xmm1` and `xmm2` to dwords `+0x98` and `+0x9C` of qword `rcx+0xB8`; otherwise returns without storing",
+   "anchors": [["0026AA36", "cmp"], ["0026AA41", "movss"], ["0026AA49", "movss"]]},
+  {"fn": "002E7C70", "entered_from": "`002E28E0` + 0x735",
+   "text": "returns without action when `rcx` is null, qword `rcx+0xC0` is null, the dword it points to is -1 or that dword's low word is -1; otherwise forms the record address as the sign-extended low word times `0x740` plus qword `022C6F28` and, when that address is nonzero and its dword `+0x284` is nonzero, calls `002E7C70` + 0x56 with the record, 1, the full dword in `r8d` and the incoming `edx` in `r9d`, then ORs `0x800` into the record's dword `+0x290`",
+   "anchors": [["002E7C88", "cmp"], ["002E7CA2", "imul"], ["002E7CB2", "cmp"], ["002E7CC6", "call"], ["002E7CCB", "or"]]},
+  {"fn": "0046C1E0", "entered_from": "`0041FCF0` + 0x367",
+   "text": "clears byte `[rcx]`; when word `dx` is not -1 it forms the record address as sign-extended `dx` times `0x740` plus qword `022C6F28`, treated as null when the record's dword `+0x284` is 0, and when non-null sets byte `[rcx]` to 1, stores `edx` to dword `rcx+8`, copies the record's qword `+0x108` to qword `rcx+0x10` and stores the byte result of `0046C1E0` + 0x4B (called with 9) plus 3 to byte `rcx+4`; otherwise it leaves only the cleared byte",
+   "anchors": [["0046C1EC", "cmp"], ["0046C20C", "cmove"], ["0046C215", "mov"], ["0046C227", "mov"], ["0046C232", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "00269E60: the shifted value is `byte >> 5` (0-7); only 1 and 3 store. The tail jumps carry the incoming `rcx` but `rdx` differs per path (clobbered), so the sentence does not state a second argument. 002E7C70: the `je` at 002E7CB0 tests the zero flag of the `add`, i.e. the computed record address being zero. 002644E0's float constants are cited from the decoded listing; their product (about 0.2094) is not stated."
+}
