@@ -1,0 +1,17 @@
+{
+ "page": "04-Actor-Entity/Actor-Names/the-npc-name-dictionary.md",
+ "session": "session_019FUgqVeNcfdAVa4Yc3dLqG",
+ "rows": [
+  {"fn": "00182870", "entered_from": "`00382BF0` + 0xCC",
+   "text": "calls the function at `00182870` + 0x17 with the incoming registers and returns when it returns null; otherwise calls it again (`00182870` + 0x21) and passes that result as `rcx` to the function at `00182870` + 0x31, with the incoming `ecx` as `edx`, the incoming `xmm1` as `xmm2` and the incoming `r8` as `r9`",
+   "anchors": [["00182887", "call"], ["0018288F", "je"], ["00182891", "call"], ["0018289C", "movaps"], ["001828A1", "call"]]},
+  {"fn": "001D9930", "entered_from": "`001DA220` + 0x42",
+   "text": "returns at once when the list headed at `rcx+0x118` is empty (head qword points to itself); otherwise walks it (next link qword `[node]`) calling the function at `001D9930` + 0x2A with each node's qword `+0x10`, walks it again passing each node to the virtual call through qword `+0x18` of the table at qword `rcx+0x128` with `rcx+0x128`, the node and 0x18, then points both head qwords `+0x118` and `+0x120` back at the head and stores byte 1 at `rcx+0x130`",
+   "anchors": [["001D9944", "cmp"], ["001D995A", "call"], ["001D9988", "call"], ["001D999D", "mov"], ["001D99A1", "mov"]]},
+  {"fn": "001D9EC0", "entered_from": "`001DA220` + 0x56",
+   "text": "walks the list headed at `rcx+0xD0` (next link qword `[node]`, nothing done when empty), each node's record at qword `+0x10` giving a word key `[+0]` and a dword argument `+4`, and calls the function at `001D9EC0` + 0x84 with `rcx` and that argument: for a key equal to word `rcx+0xE8` only when word `rcx+0x1BC` differs from it; keys below word `+0xE8` (signed) are skipped; for a key above it the call is made directly when the key equals word `+0x1BC`, otherwise the key is first stored in word `+0x1BC` and a store flag set, except that a key above word `+0x1BC` (signed) once the flag is set ends the walk",
+   "anchors": [["001D9EFF", "cmp"], ["001D9F04", "cmp"], ["001D9F2D", "jne"], ["001D9F2F", "mov"], ["001D9F44", "call"]]}
+ ],
+ "skipped": [],
+ "notes": "All three bodies' callees are cited by site because the host excerpts do not name them. 00182870: the second call at +0x21 is made with whatever registers the first call left; stated only as 'calls it again'. 001D9930: the virtual call's table is qword [rcx+0x128] (rdi+0x10 with rdi = rcx+0x118)."
+}
