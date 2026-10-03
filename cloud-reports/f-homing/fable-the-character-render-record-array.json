@@ -1,0 +1,109 @@
+{
+ "page": "17-Presentation-Rendering/Character-Render-Records/the-character-render-record-array.md",
+ "session": "session_019yEjih72UCRaxGuuSzfAJF",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "002E4FE0",
+   "text": "returns 0 when `rcx` is null or dword `[rcx]` is -1; otherwise, when word `[rcx]` is not `0xffff`, the record at qword `022C6F28` + word * `0x740` is non-null and its dword `+0x284` is non-zero, calls `00427300`(record) with the other argument registers unchanged; returns 1 on every path past the first check",
+   "anchors": [
+    [
+     "002E4FEC",
+     "je"
+    ],
+    [
+     "002E4FFB",
+     "imul"
+    ],
+    [
+     "002E500B",
+     "cmp"
+    ],
+    [
+     "002E5014",
+     "call"
+    ],
+    [
+     "002E5019",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0034C4B0",
+   "text": "calls `0034C4B0`+0x10(`r9`) for a first value and `0034C4B0`+0x1A(`r9`) for a second, calls `0016D6A0`(second) and +0x2A(second), and when that last call returns non-null calls `002E87F0`(its result, first value)",
+   "anchors": [
+    [
+     "0034C4C0",
+     "call"
+    ],
+    [
+     "0034C4CA",
+     "call"
+    ],
+    [
+     "0034C4D3",
+     "call"
+    ],
+    [
+     "0034C4E2",
+     "je"
+    ],
+    [
+     "0034C4E9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "003EB250",
+   "text": "returns qword `02B5EB70` (B) when `rcx` or B is null; otherwise unlinks B (qwords `+0`, `+8`), links it in front of head `02B5EB20`, stores `dl` at byte `B+0x41`, 1 at byte `B+0x40` and `rcx` at `B+0x18`, increments word `rcx+0x1c`, clears bit 2 of byte `rcx+0x18`, and stores at dword `B+0x10` the result of `003EB250`+0x97(dword `rcx+0x10`, `r8d`, `r9d`), called with dword `rcx+0x14` in `01F7F508` (0 after); then, for R = qword `022C6F28` + word `B+0x10` * `0x740`, each step only when that word is not `0xffff`, R is non-null and dword `R+0x284` is non-zero: zeroes qword `R+0x108`, calls +0x100(R, 0), zeroes byte `R+0x413`, takes x = +0x17D(R) (else 30.0 `008F8D80`); calls +0x18B(`B+0x10`, 0) and +0x1A2(word `B+0x10`, 1.0, 1.0, 1.0 `01CEBBA8`) always; then `00427300`(R, x) and +0x207(R); returns B",
+   "anchors": [
+    [
+     "003EB2A4",
+     "mov"
+    ],
+    [
+     "003EB2E7",
+     "call"
+    ],
+    [
+     "003EB31B",
+     "mov"
+    ],
+    [
+     "003EB3CD",
+     "call"
+    ],
+    [
+     "003EB421",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "003EB910",
+   "text": "when `rcx` is non-null and dword `rcx+0x10` is not negative (signed), calls `003EC260`(word `rcx+0x10`, `rdx`, `r8`, `r9`, 1 as the fifth argument); otherwise returns without a call",
+   "anchors": [
+    [
+     "003EB914",
+     "test"
+    ],
+    [
+     "003EB91D",
+     "jl"
+    ],
+    [
+     "003EB923",
+     "mov"
+    ],
+    [
+     "003EB92B",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "003EB250 is long (about 800 characters); each record-gated step re-reads word B+0x10 and re-checks the record, which the sentence states once. The +0x1A2 call gets its float arguments in xmm1-xmm3 (all 1.0) and the word in ecx; the 00427300 call gets x in xmm1. 0034C4B0 passes the second call's integer result to 0016D6A0 as listed. Doubts: 1 (003EB250, length and density)."
+}
