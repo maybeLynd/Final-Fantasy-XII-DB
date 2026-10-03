@@ -1,0 +1,127 @@
+# Reconstruction readiness, pass 2 — `FFXII TZA/14-Story-Event-Quest-Hunt/` (`14-story`)
+
+| | |
+|---|---|
+| Stream | R2 (reconstruction readiness, pass 2), per [`docs/cloud-briefs/re-readiness-r2.md`](../../docs/cloud-briefs/re-readiness-r2.md), part A |
+| Lane | FABLE, cloud session r2-15 |
+| Date | 2026-10-03 |
+| Snapshot | this repo's text snapshot (synced from XIIOnline `f9d9053b9`; the 14 pages last touched by sync `60d9db066`); no executable, Ghidra or live game was used |
+| Pass 1 | [`cloud-reports/re-readiness/14-story.md`](../re-readiness/14-story.md) (snapshot `df2c9f47`, 2026-10-02): 20 self-stated gaps S-1..S-20, 16 structural gaps G-1..G-16, 18 value contradictions C-V1..C-V18, 22 stale/banner items C-S1..C-S22; rated **MOSTLY** |
+| Status of this file | **draft / pointer**. Nothing here is evidence. Every verdict quotes a page and gives `page:line` in the current snapshot. |
+
+Page abbreviations (all inside `FFXII TZA/14-Story-Event-Quest-Hunt/` unless a path is given):
+`pfb` = `persistent-flag-banks.md` (1,470 lines), `contract` = `CONTRACT-persistent-flag-banks.md` (661 lines),
+`evmem` = `event-memory-at-actor-bind.md` (392 lines), `README` = `README.md` (35 lines). Pages outside the folder are
+cited by their path under `FFXII TZA/`. OPUS's 2026-10-02 decisions on pass 1's value items are recorded at
+`_index/candidates/opus-story-readiness-fixes-1002/byte-verdicts.md` (cited as `byte-verdicts`).
+
+**How verdicts are counted.** Pass 1 had four lists. The brief's "pass-1 gaps" are its section 2 (S-*, G-*). Its
+section 3 contradictions (C-V*, C-S*) are gaps under the brief's criterion "two pages that disagree", so they get a
+verdict too and are counted separately. **WRONG-IN-PASS-1** is used where the information already existed in the
+database at pass 1's snapshot `df2c9f47` (checked with `git show df2c9f47:<path>`), usually on a page outside the
+folder that pass 1 declared it did not audit; what such an item still lacks is given with a class (usually DOC, a
+missing pointer). Where an item splits, the verdict names the main part and the "still missing" column the rest.
+
+## 1. Summary
+
+*(written last; see the end of this commit series)*
+
+## 2. Pass-1 gaps
+
+### 2.1 Self-stated gaps (pass 1 §2.1)
+
+| id | verdict | evidence (quote + `page:line`) | still missing (class) |
+|---|---|---|---|
+| S-1 no live observation | **OPEN** | "Readiness is `CONTRACT READY`, not `RECONSTRUCTION READY` — §13 carries no LIVE observation" (`contract:33`); "any runtime observation \| **none exists**" (`contract:488`); the three cheap checks are unchanged (`contract:364-367`) | one attach reading `0x02164280 + 0x200 + 0x14F4`, stepping `0032A8A0` with `0x400B`, and reading `+0x1394..+0x13B3` on a fresh game (RUNTIME) |
+| S-2 FULL-SUBSYSTEM parity | **OPEN** | "`FULL-SUBSYSTEM` is still not covered … 11 of the **17** entry points" (`contract:579-584`); "Verdict `INCOMPLETE`" (`contract:374`) | differential tests for `0032A8A0` (schedule arm), `00377970`, `00379160`, `002EF2D0`, `00377440`, `002EF2B0` (STATIC; the schedule arm needs the shipped `mapjumpgroupflagrom.bin`, DATA) |
+| S-3 runtime-only parity classes | **OPEN** | "**Requires the running game:** `STATE-TRANSITION` …" (`contract:548`); "`STATE-TRANSITION`, …" untested (`contract:613`) | STATE-TRANSITION, INTEGRATION, TIMING, PRESENTATION runs (RUNTIME) |
+| S-4 single-threaded access | **OPEN** | "**single-threaded access is not proven.**" (`contract:205`) | a thread census of the 32 gate callers and 17 setter callers (RUNTIME) |
+| S-5 what each Primary id controls | **OPEN** | "which map jumps each id controls is per-script reading that was not done" (`pfb:377`); "What each id *means* is still per-script reading; the table says where to read" (`pfb:379`) | per-id meaning of the 328 flag ids in `members/mapjump-flag-census.tsv` (DATA) |
+| S-6 `shutoral` = airship | **OPEN** | "an inference from a romanised identifier, with no shipped use to test it against" (`pfb:497`; also `pfb:393`) | not decidable from shipped scripts, which never use the six verbs (`contract:453`); a label only, no port behaviour depends on it (DATA) |
+| S-7 `+0x1535` name / hidden reader | **OPEN** | "A reader through a … block copy is not excluded" (`pfb:463-465`); "computed offset would not be seen" (`pfb:485`) | a pointer-propagation census of `+0x1535` (STATIC) |
+| S-8 census limit on absences | **OPEN** | "Neither would see a payload pointer stored to memory and read back later, nor a bulk `memcpy` over the whole payload" (`pfb:1069-1070`; also `pfb:484`) | a stated limit, not a defect; closing it needs the propagation analysis the 19 field map ran (`19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/the-save-payload-field-map.md:44-47`) applied to the bank range (STATIC) |
+| S-9 `0xFFFF` read as never vs absent | **OPEN** | "*Whether a given caller reads that as "never" or as "absent" depends on its own polarity and is not asserted.*" (`pfb:236-237`) | per-caller polarity at the nine `0xFFFF` sites (STATIC) |
+| S-10 `FUN_00266D10` = new game? | **OPEN** | "**That `FUN_00266D10` is "new game".** … it was **not read in full**, and no menu path was traced to it." (`pfb:1329-1330`) | the menu path to `00266D10` / `002EF650` (STATIC) |
+| S-11 `0016D6A0`, `00253A80`, `00238A80` unread | **WRONG-IN-PASS-1** (for `00238A80`) | `pfb:1331-1332` still says "unread", but the same page names `00238A80`: "The save rebind `SaveRuntime_RebindImageBackedGameplayState` (`00238A80`) rebases inventory class descriptors" (`pfb:1364`), and the 19 field map reads its store: it sets `02EBF190` "to the buffer `+0x4E68C`" (`19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/the-save-payload-field-map.md:65-67`); both present at `df2c9f47` | `0016D6A0` and `00253A80` are still unread (STATIC); `pfb:1331` lacks the pointer to `pfb:1364` (DOC) |
+| S-12 `00378540` registers exactly five tables? | **OPEN** | "Five are now accounted for; the routine is 943 bytes and was read only at the two sites the operand scan pointed to." (`pfb:1333-1334`) — and `pfb:200` adds a sixth request (`(9, 0xA)` → `00378BA0`), which this sentence does not count | a full read of `00378540` (STATIC); see C-V16 |
+| S-13 the eight header bytes | **OPEN** | "Both list files carry a `+0x00` .. `+0x07` header that neither consumer touches." (`pfb:1335-1336`); now decoded as the tags `FLAGDEF1` / `EVMEMLST` (`pfb:514`, `evmem:245-246`) | nothing a port needs: no consumer reads them (`evmem:253-254`). Kept OPEN only because `pfb:1335` still lists it (DOC) |
+| S-14 what the two actor buffers hold | **OPEN** | "**What the two payload buffers hold.** Their sizes (1 MiB, 100 KiB), tags (13, 14) and lifetime are read; their contents are not." (`evmem:233-234`). The 04 page names the registration strings: "registering the name strings `00915710` (`EVTMEM`) and `00915718`" (`04-Actor-Entity/Actor-Manager-Record/the-actor-manager-record-field-map.md:273`) | the buffers' contents (STATIC); the `EVTMEM` name is a pointer `evmem` lacks (DOC); see new gap N-1 |
+| S-15 third byte of a `02ADD100` record | **OPEN** | "the third byte is read by no accessor in that family - FABLE's observation, still open." (`evmem:235-237`) | a reader of byte `+2` of the 3-byte record, or a stated negative (STATIC; owned by 03, contract S-11) |
+| S-16 same kind of event? | **OPEN** | "They are consulted consecutively on the same id, which is suggestive and is not evidence." (`evmem:255-256`) | an interpretive question; a port reproduces both lookups without it (STATIC) |
+| S-17 bestiary exclusion list meaning | **WRONG-IN-PASS-1** | `evmem:209` still says "meaning (marks, story bosses) is not read here", but the handbook page reads the section `00315D50` walks: "\| 3 \| `+0xDC` \| 11 monster ids: Trickster, Gilgamesh, Behemoth King, Fafnir, Carrot, Deathgaze, Yiazmat, Hell Wyrm, Ultima, Zodiark, Shadowseer \| `00315D50` (own counters in `01EED130`; `00315820` skips them), achievement mode 7 \|" (`16-UI/Handbook/the-handbook-screen.md:359`); present at `df2c9f47` | `evmem:207-210` lacks the pointer (DOC) |
+| S-18 which achievements read `FieldData_GetVariable0` | **OPEN** | "Which achievements they serve is not read." (`contract:627`). The handbook page states that the bestiary rules compare story progress (`FieldData_GetVariable0`) and are read by `003161A0` (mode 6) and `003154B0` category 6 (`16-UI/Handbook/the-handbook-screen.md:357`), but no page ties those to the "Two achievement-side bodies (308 B and 367 B)" of `pfb:1374` | the two bodies' addresses and their achievement ids (DOC, probably answerable from the 16 / 20 pages) |
+| S-19 `01F83530` stays zero | **OPEN** | "\"zero for the process's life\" is supported, not proven" (`pfb:524`) | a live read of `01F83530` (RUNTIME) |
+| S-20 gate words with bit 15 | **OPEN** | "5 with bit 15 set, a form this page does not read" (`pfb:381`; same sentence at `16-UI/Map-Screens/the-map-screens-and-their-shared-map-data.md:242`) | how the map-screen row builders treat a bit-15 gate word (STATIC) |
+
+### 2.2 Structural gaps (pass 1 §2.2)
+
+| id | verdict | evidence (quote + `page:line`) | still missing (class) |
+|---|---|---|---|
+| G-1 threshold variable not located | **OPEN** | the variable is still given only as pseudo-C over `g_fieldFlags` and `g_fieldVariables` (`pfb:221-231`); no page in the folder names their addresses or writer. (Its call rate is now measured: "`FieldData_GetVariable0` is one of the hottest functions in the game — 114,204 calls", `_index/RUNTIME-RESEARCH.md:363-370`.) | the two globals' addresses, the writer of the field variable block, and when it is replaced (STATIC) |
+| G-2 publish vs reset order | **OPEN** | `00379160` returns when `02ADD0D0` is null: "`if (t == NULL) return;`" (`pfb:1159-1160`); the pointer is cleared by `00377CC0` and published by `00378B90` (`pfb:1199-1206`); no page orders these against `002EF2D0` | that `mapjumpgroupinit.bin` is published before the new-game reset (STATIC) |
+| G-3 treasure record and per-chest mask | **OPEN** | the record still lists only `+0x00`, `+0x08`, `+0x09`, `+0x0B`..`+0x16` (`pfb:874-885`). The mask routine is described on the 00 hub page: "`002FB430` (208 B) is the three-slot ring inserter `002FAED0` and `002FAFD0` call: a `+0x28`-counted scan of the `0xC`-stride entries finds `edi`; a hit sets bit `1<<r8` in `+8` and merges `(r9<<r8)` into `+4` …" (`00-Engine-Core-Runtime/Shared-State-Accessors/cross-subsystem-accessor-hubs.md:795-801`, present at `df2c9f47`, so that part was WRONG-IN-PASS-1) | record size and bytes `+0x01`..`+0x07`, `+0x0A` (STATIC); which table `002FAFD0` passes to `002FB430` (STATIC); the bit-6 "random 1 .. N" draw as a formula (STATIC); `pfb:875` lacks the pointer to the hub page (DOC) |
+| G-4 chest flag half vs script check | **OPEN** | the chest writer sets the Low half (`pfb:822`, `:877`); "`istreasureflag` (the high half, 26 uses), `istreasurebattleflag` (the low half, no shipped use)" (`pfb:370`). The verb table names a script setter pair for each half: `settreasureflag` → `00352EA0`, `releasetreasureflag` → `00353390`, `settreasurebattleflag` → `00353750`, `releasetreasurebattleflag` → `00353BD0` (`01-Script-VM-Native-Bridge/Verb-Dispatch/scriptvm-verb-table.tsv:1011-1014`) | which half a given chest's flag is tested in, and the shipped-use counts of `settreasureflag` / `releasetreasureflag` (DATA); see new gap N-11 |
+| G-5 Bank512 VM handlers unmapped | **WRONG-IN-PASS-1** | the verb table maps all six: `00352EA0` `settreasureflag`, `00353390` `releasetreasureflag`, `00353750` `settreasurebattleflag`, `00353BD0` `releasetreasurebattleflag`, `00354000` `istreasureflag`, `00354540` `istreasurebattleflag` (`scriptvm-verb-table.tsv:1011-1016`); with "`istreasureflag`'s calls the `Bank512` high query and `istreasurebattleflag`'s the low" (`pfb:377`) and `00353750` / `00353BD0` calling `0032AD70` (`evmem:366`), the `battle` verbs are the Low half. The table was present at `df2c9f47` | `pfb:613` still lists the six without names; that `00352EA0` / `00353390` reach `SetBank512High` `0032ADF0` is not stated on any 14 page (DOC) |
+| G-6 trap trigger cadence and helpers | **NARROWED** | new interior rows: "`003EC6C0` \| 59 B \| … for index 0 to 15, calls `003EB720(index)` …" (`pfb:1449`); five callees of `002FB560` homed (`00231F20`, `0033CBF0`, `003EC5B0`, `003EC720`, `003EC770`, `pfb:1457-1461`) and two of theirs (`003EB200`, `003EB910`, `pfb:1469-1470`) | the call edge from `BattleUnit_RunPeriodicCombatMaintenance` to `002F8060` and its cadence (`pfb:767` still says only "returns to") (STATIC); `002FB560` and `003EB720` themselves, and the 342-byte body `002FA740` calls (`pfb:1357`) (STATIC) |
+| G-7 trap table header source | **NARROWED** | the tag-3 base is now stated: "`002641B0` → `00265770` case 3 at `002657B2` = image + `[image + 0x40]`" (`25-EBP-Script-Container/Bytecode-And-Opcodes/section-000-bytecode.md:362`, corrected 2026-10-02); "`002641B0(slot, index)` returns the resolved pointer" (`section-000-bytecode.md:256-257`) | which script image manager slot 0 holds when `settrapresource` runs (STATIC) |
+| G-8 save header use of `gate(0x400B)` | **NARROWED** | the receiving field is now stated: "`+0x44   dword   [0x11]  written as 0   <- corrected 2026-10-02, OPUS: zeroed, then, when the story-flag test of 0x400B is non-zero, the clan rank byte is stored here`" (`19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/save-image-buffers-header-and-payload.md:238`) | the other two `0x400B` call sites ("there are **three** such call sites, not one", `pfb:1012`) (STATIC); `pfb:249-258` lacks the pointer to the header field (DOC) |
+| G-9 gate caller list | **NARROWED** | "32 callers of the gate, Primary's only reader (59 direct call sites in 31 functions, plus one caller through the gate's thunk)" (`pfb:631`, corrected 2026-10-02); the thunk is `0032A920`, called once from `00321190` at `00321244` (`byte-verdicts:8`) | the 31 functions and the id each site passes (STATIC) |
+| G-10 `00576300` / `00570080` bodies | **WRONG-IN-PASS-1** | both are described outside the folder: "`00576300(out)` is the **record line builder** — the main content path" of the handbook index (`02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/hchk-hctg-hdat-handbook-indexes.md:353-358`); `00570080` is the parent of the "**handbook content page**" `005742D0` and the "handbook pane" `00570630` (`16-UI/Unlabelled-Panes/the-unlabelled-procedures.md:51-52`); both present at `df2c9f47` | `evmem:337`, `:388`, `:392` still call them "event-memory" bodies; see new gap N-2 (DOC) |
+| G-11 statistics counter `00316A50` | **WRONG-IN-PASS-1** | the counter has its own contract: "`00316A50` `AchievementCounter_UpdateAndMaybeFire` — `cl` = achievement id, `edx` = amount" (`20-Platform-Online-Achievements/CONTRACT-achievement-counters.md:47`), storage "`SaveImage_GetActiveBuffer() + 0x3844`, 40 bytes" (`:97`); present at `df2c9f47` | `evmem:182-184` lacks the pointer and gives a different count; see new gap N-4 (DOC) |
+| G-12 `00315D50` return contract | **WRONG-IN-PASS-1** | the handbook page reads the walk and the list: "each hop skips one whole section; the hop count selects the section, three for `00315D50`" (`16-UI/Handbook/the-handbook-screen.md:258-260`); the eleven ids have "own counters in `01EED130`; `00315820` skips them" (`:359`) | the literal return value for an unlisted id (−1) is still not stated on any page (STATIC, small) |
+| G-13 bestiary base | **WRONG-IN-PASS-1** | `evmem:198-199` links the save-payload field map, which places it: `020927C0` is set to "`SaveImage_GetActiveRuntimeBuffer() + 0x8200` … — payload `+0x8000`" (`the-save-payload-field-map.md:65-66`), and lists "`+0xB404` \| 1 \| … `00315820` …; `00315A90` …" (`:223`). `0x8000 + 0x3404 = 0xB404` | the 14 pages' "persistent payload is exactly `0x1538`" wording; see new gap N-5 (DOC) |
+| G-14 `00377B60` fallback address malformed | **OPEN** | "returns the `02EB1F0` fallback string" (`pfb:1407`), still seven hex digits | the eight-digit address and the table global (STATIC) |
+| G-15 hunts | **OPEN** | "**A hunt is therefore a flag convention plus a counter, authored in script over that surface.**" (`evmem:189`); no page names a hunt's flags or counters | the script reading of the hunt board conventions (DATA) |
+| G-16 `+0x1062` / `+0x1063` bits | **WRONG-IN-PASS-1** (in part) | the 19 field map names both bytes and their accessors: "`+0x1062` \| 1 \| per-transition flag byte \| 11 / 8 \| … `WorldTransition_ClearFlag1062_Bit04` `003149E0` …" and "`+0x1063` \| 1 \| (transition record, unnamed) \| 5 / 5" (`the-save-payload-field-map.md:183-184`); present at `df2c9f47` | the meaning of each bit other than `+0x1062` bit 4 (by name) and `+0x1063` bit 6 (music override, `pfb:457`) (STATIC) |
+
+### 2.3 Value contradictions (pass 1 §3.1)
+
+| id | verdict | evidence (quote + `page:line`) | still missing (class) |
+|---|---|---|---|
+| C-V1 six or five banks | **CLOSED** | "~~Six banks~~ Five banks of them (six accessor families)" (`pfb:34`); "### ~~Six banks~~ Five banks, all inside the save payload" (`pfb:53-55`); same at `contract:38`, `:73`, `:102`, `:474`, `README:14`, `:33`, `evmem:179`, `:287`; decided at `byte-verdicts:12` | — (the history items `pfb:489`, `:492` keep "six" as quoted register text) |
+| C-V2 53 or 52 initial flags | **CLOSED** | "**Fifty-two authored ids are switched on in the Primary bank before the first frame of play**" (`pfb:1090`); "52 of the 53 ids in `mapjumpgroupinit.bin` are switched on" (`contract:328`) | — |
+| C-V3 gate size | **CLOSED** | "~~~127 B~~ 122 B, `0032A8A0`-`0032A919` `ret`" (`contract:645`) | — |
+| C-V4 `002BA530` vs `002BA548` | **CLOSED** | "`002B9C70`/~~`002BA548`~~ `002BA530` (`002BA548` is an instruction inside it)" (`contract:391`; also `:487`) | — |
+| C-V5 gate under `Bank64A` | **CLOSED** | "~~`QueryPrimaryOrAuthoredThresholdGate`,~~ `QueryBank64A`, `SetBank64A` - the gate has no `+0x1384` operand; it reads Primary `+0x14F4` (`0032A900`)" (`pfb:925`) | — |
+| C-V6 "seven siblings" with eight addresses | **CLOSED** | "(~~`0032A8C6`,~~ `0032AB6F`, `0032ABFD`, `0032AD7D`, `0032ADFD`; `0032A8C6` is the gate's own `jb` after `cmp edi, 0x200`, not a sibling's bound test" (`contract:483`) | — |
+| C-V7 payload size / mapped part | **NARROWED** | OPUS left it to the page owner (`byte-verdicts:13`). The 353,424 is now explained elsewhere: "the type store tiles all 353,424 payload bytes" (`19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/save-image-buffers-header-and-payload.md:729-731`), i.e. the whole save payload, not the `0x1538` flag region (`pfb:1123`) | `pfb:564` still says "336 mapped bytes (`0x1384`–`0x1533`)" where the range is 432 bytes by arithmetic (DOC); the two meanings of "payload" are new gap N-5 |
+| C-V8 50/45/5 vs two pairs | **CLOSED** | "~~authored threshold + **50 / 45 / 5**~~ authored gil chance (byte `+0x0B`), then **50 / 50** between two item ids, or **95 / 5** between two others with the armlet" (`pfb:829`); "**Two two-way pairs, not a three-way outcome**" (`pfb:862`) | residue: the unstruck sketch at `pfb:840-842` and register row AF-4 — new gap N-3 |
+| C-V9 untyped record indices | **CLOSED** | "~~`record[2]`~~ byte `+0x04` (`record[2]` counts shorts)" (`pfb:828`); "*In the sketch above `record` is a byte pointer*" (`pfb:850`); `pfb:855` | residue in register row AF-4 — new gap N-3 |
+| C-V10 one or two RNG-fed flag writers | **CLOSED** | "**Exactly two functions in FFXII both draw a random number and set a persistent flag** - `002F8060` and `002FAFD0` - **and in neither does the flag depend on the draw**" (`pfb:982-984`; also `pfb:823`, `:901`) | residue at `pfb:799`, `:803`, `:903-905` and AF-4 — new gap N-3 |
+| C-V11 where a negative `Bank64A` id writes | **CLOSED** | "the payload below the bank, at `+0x1384` + trunc(id / 8), with no lower bound in the code" (`contract:236`); "*That span is the test id set's, not a bound … ids -1 to -7 write nothing*" (`contract:284`) | `byte-verdicts:15` asks to "Verify the query twin before editing"; the query side is not restated (STATIC, small) |
+| C-V12 `00262A76` writes what | **CLOSED** | "`00262A76` (`bpl`, which is zero there, so this writer clears the byte, as the flag-bank page says" (`contract:417`) | — |
+| C-V13 100 or 104 functions | **CLOSED** | "163 calls in ~~104~~ 98 functions" (`contract:404`, `:486`; `pfb:506`) | — |
+| C-V14 30 vs 32 callers; 4 vs 3 setters | **NARROWED** | callers settled: "~~30 query callers~~ 32 callers of the gate" (`pfb:631`) | the "against 4 setters" in the same sentence was not re-derived ("Setter count not re-derived", `byte-verdicts:8`); three are named (`pfb:609`, `:628`) (STATIC) |
+| C-V15 VM surface per bank | **WRONG-IN-PASS-1** | the verb table already showed `Bank512` has one query and two setters **per half** (`scriptvm-verb-table.tsv:1011-1016`, see G-5) | `pfb:604` "one query handler and two setter handlers" and `evmem:179-180` still say "per bank" without "per half" (DOC) |
+| C-V16 three, five or six publishers | **OPEN** | "All three ten-byte publishers in this family are byte-identical" (`pfb:1303`); "There are at least five" (`pfb:1213`); "the family is five publishers, not three" (`pfb:1320`); a sixth request `(9, 0xA)` → `00378BA0` (`pfb:200`); left to the owner (`byte-verdicts:13`) | the publisher count of `00378540` (STATIC; same read as S-12) |
+| C-V17 corpus size 10,036 vs 1,114 × 9 | **OPEN** | "all language copies: 10,036 scripts" (`contract:255`) vs "In the 1,114 decompiled `us` scripts" (`pfb:377`); left to the owner (`byte-verdicts:13`) | per-locale script counts (DATA) |
+| C-V18 owned functions two or fifteen | **OPEN** | "\| Functions owned by `Story_Event_Quest_Hunt` \| **two** …" (`evmem:169`; also `:276-277`) vs "\| Functions \| 15 \|" (`README:8`); left to the owner (`byte-verdicts:13`) | the ledger count (DOC) |
+
+### 2.4 Stale / banner items (pass 1 §3.2)
+
+All are DOC: the answer is on the same page or a sibling; the stale side only needs striking or a pointer.
+
+| id | verdict | where it still shows (current `page:line`) |
+|---|---|---|
+| C-S1 README index | **NARROWED** | status and bank count corrected 2026-10-02 (`README:14`, `:33`); still lists only `persistent-flag-banks.md`, still omits `+0x138C` from the offsets and still says "verified contiguous" (`README:15`, `:34`); the section is still duplicated (`README:11`, `:30`) |
+| C-S2 `last_reviewed: 2026-09-08` | **OPEN** | `pfb:20`, `contract:16`, `evmem:21`, against body edits dated to 2026-10-03 (`pfb:1451`, `:1463`) |
+| C-S3 `passes: 2` | **OPEN** | `pfb:25-26` vs "its first falsification pass" (`pfb:1079`) |
+| C-S4 "no open item of its own" | **OPEN** | `evmem:4` vs the three unchecked items at `evmem:233-237`, `:255-256` |
+| C-S5 AA-2 open | **OPEN** | "**AA-2 stays OPEN**" (`pfb:652`); "still have **no engine consumer at all**. `AA-2`." (`contract:382`) |
+| C-S6 AA-5 open | **OPEN** | "UNKNOWN - 256 flags' worth, unexplained [AA-5]" (`pfb:294`); "Still unexplained" (`pfb:599`); "UNEXPLAINED" (`contract:88`) |
+| C-S7 AA-8 meaning unknown | **OPEN** | "UNEXPLAINED - the payload's last four bytes" (`contract:92`); "Extent closed, meaning unknown. `AA-8`." (`contract:409`) |
+| C-S8 `+0x1534` "Registered as AA-6" | **OPEN** | `pfb:1049` |
+| C-S9 DS-1 ids unread | **OPEN** | `pfb:1295`, `:1327`; `contract:186`; `evmem:154-155` |
+| C-S10 lists inside `SRYK` | **OPEN** | `pfb:514`, `:1294` |
+| C-S11 capacities, not counts | **OPEN** | `pfb:1293`; `evmem:152-153` |
+| C-S12 DX-1 open | **OPEN** | `contract:316`, `:539` |
+| C-S13 `PROPOSED-repos2d-4` held open | **OPEN** | "**Already open as `PROPOSED-repos2d-4`**" (`pfb:517`) and `pfb:1319-1320`, against the answer at `pfb:521` |
+| C-S14 contract §17 four-accessor stage | **OPEN** | `contract:606`, `:611`, `:616` |
+| C-S15 "two event-memory lookups" | **OPEN** | `evmem:181`, `:186` |
+| C-S16 "list that grows as events happen" | **OPEN** | `evmem:135` |
+| C-S17 map ended at `+0x1535` | **OPEN** | `pfb:1127` |
+| C-S18 one `0x400B` site | **OPEN** | `pfb:249` vs `pfb:1012` |
+| C-S19 `shutoral` verbs cited to §8 | **OPEN** | `contract:250` |
+| C-S20 `002DDA30` vs session-counter function | **OPEN** | `pfb:463` vs `contract:420-423` |
+| C-S21 duplicate headings | **OPEN** | `pfb:1345`, `:1389`; `README:11`, `:30` |
+| C-S22 "five query functions and two setters" | **OPEN** | `pfb:540` |
