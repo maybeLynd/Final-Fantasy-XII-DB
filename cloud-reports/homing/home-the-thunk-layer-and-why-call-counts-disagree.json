@@ -1,0 +1,14 @@
+{
+ "page": "24-Compiler-And-CRT-Runtime/Thunk-Layer/the-thunk-layer-and-why-call-counts-disagree.md",
+ "session": "session_01G1D6BV8reSc8hRtefJLZec",
+ "rows": [
+  {"fn": "0028C4C0", "entered_from": "`0028E290` + 0x98",
+   "text": "when `rcx` is non-null, walks the list linked by qword `+0xD70` starting at `rcx` and calls `0028C4C0` + 0x13 with each node; a null `rcx` returns at once",
+   "anchors": [["0028C4C3", "je"], ["0028C4D3", "call"], ["0028C4D8", "mov"], ["0028C4E2", "jne"]]},
+  {"fn": "0029CF10", "entered_from": "`00253780` + 0x61",
+   "text": "calls `0029CF10` + 0x4 and then `0029CF10` + 0x9 without setting up arguments, then tail-jumps to `0029CF10` + 0x12",
+   "anchors": [["0029CF14", "call"], ["0029CF19", "call"], ["0029CF22", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "0029CF10: no argument registers are written, so the first call receives the caller's rcx/rdx unchanged; the row does not claim what the callees take."
+}
