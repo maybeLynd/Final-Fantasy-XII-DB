@@ -1,0 +1,11 @@
+{
+ "page": "04-Actor-Entity/Actor-Storage-Record/the-actor-storage-record-field-map.md",
+ "session": "session_0141duvveFVGsG54cn7rpP77",
+ "rows": [
+  {"fn": "00423280", "entered_from": "`002E9560` + 0x45",
+   "text": "returns 30.0 (`008F8D80`) in `xmm0` when dword `rcx+0xC4` is -1; otherwise calls `00423280` + 0x15 with dword `rcx+0x10` and `00423280` + 0x27 with (qword `+0xDA8` of that result, dword `rcx+0xC4`), returns 30.0 when the second call returns null, and otherwise tail-jumps through `00423280` + 0x39 with that result as `rcx`",
+   "anchors": [["00423286", "cmp"], ["00423295", "call"], ["004232A7", "call"], ["004232B9", "jmp"], ["004232BE", "movss"]]}
+ ],
+ "skipped": [],
+ "notes": ""
+}
