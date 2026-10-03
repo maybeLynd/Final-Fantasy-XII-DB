@@ -1,0 +1,11 @@
+{
+ "page": "16-UI/Text-And-Number-Rendering/font-data-kerning-and-expansion.md",
+ "session": "session_01RTHsxVMB4gEbgZ4DBoNz7W",
+ "rows": [
+  {"fn": "001FDE60", "entered_from": "`001B58E0` + 0x219",
+   "text": "zeroes qwords `rdx+0`, `+8` and `+0x10`, calls (`001FDE60` + 0x2C) with `rdx+0x18` and `rcx+0x118`, then calls (`001FDE60` + 0x42) with `rdx`, qword `rcx+0x100` and qword `rcx+0x108`, and returns `rdx`",
+   "anchors": [["001FDE6F", "mov"], ["001FDE8C", "call"], ["001FDE9B", "mov"], ["001FDEA2", "call"], ["001FDEAC", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "001FDE60: the dword 0 stored at [rsp+0x20] before the first call is a stack slot, not one of the two register arguments; not stated."
+}
