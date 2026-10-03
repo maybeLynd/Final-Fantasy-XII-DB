@@ -1,0 +1,35 @@
+{
+ "page": "18-Audio/the-voice-pack-slots-and-the-voice-verbs.md",
+ "session": "cloud FABLE h5-1",
+ "rows": [
+  {
+   "fn": "003EA2C0",
+   "entered_from": "`00351EB0` + 0x1E",
+   "text": "with `S` = `02B5D0B0` + signed `ecx`*0x40, stores `P`, the qword at `S` + 0x20 + 8*`i` for `i` = `003EA2C0` + 0x1D() (signed), at qword `S+0x30`; when byte `S+4` is 3, `P` is non-null and dword `P+4` is above `edx` (unsigned), with `E` = `P` + `edx`*0x10 it calls `003EA3E0(dword E+0x14, dword E+0x10)`, clears bit 31 of dword `E+8` and zeroes qword `E+0x10`; otherwise it returns after the `S+0x30` store",
+   "anchors": [
+    [
+     "003EA2DD",
+     "call"
+    ],
+    [
+     "003EA2EE",
+     "mov"
+    ],
+    [
+     "003EA2FD",
+     "jbe"
+    ],
+    [
+     "003EA30E",
+     "call"
+    ],
+    [
+     "003EA315",
+     "and"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "003EA3E0 is named in the host excerpt, so it is cited by address."
+}
