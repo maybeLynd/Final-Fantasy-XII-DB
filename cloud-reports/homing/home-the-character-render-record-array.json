@@ -1,0 +1,23 @@
+{
+ "page": "17-Presentation-Rendering/Character-Render-Records/the-character-render-record-array.md",
+ "session": "session_01RTHsxVMB4gEbgZ4DBoNz7W",
+ "rows": [
+  {"fn": "001E1520", "entered_from": "`0015CC90` + 0x10",
+   "text": "zeroes qwords `rcx+0`, `+8` and `+0x10` and passes `rcx+0x18` with \"EASTL vector\" (`008C5F58`) to the call at `001E1520` + 0x38; builds the same layout at `rcx+0x20` and at `rcx+0x58`: qwords `+8` to `+0x20` and dword `+0x28` zeroed, `+0x30` passed to a call (`001E1520` + 0x7D, + 0xD0) together with the result of a call given a stack slot and \"EASTL set\" (`008F3CB0`) (`001E1520` + 0x4D, + 0xA3), then qwords `+8` and `+0x10` set to the address of `+8` and qword `+0x18`, byte `+0x20` and dword `+0x28` cleared; calls (`001E1520` + 0xED) with `rcx` and `edx`; then, when `edx` is non-zero, `edx` times calls (`001E1520` + 0x124) with `rcx+0x20`, a pointer to `rcx+0x58`, a pointer to qword `[rcx]` (re-read each pass) + index * 0x18 and the byte at the caller's stack `rsp+0x10`; returns `rcx`",
+   "anchors": [["001E1558", "call"], ["001E15A2", "mov"], ["001E160D", "call"], ["001E1615", "je"], ["001E1644", "call"]]},
+  {"fn": "002E88A0", "entered_from": "`00342410` + 0x21",
+   "text": "returns without a write when `rcx` is null, qword `rcx+0xC0` is null, or that block's dword `+0` or word `+0` is -1; otherwise forms qword `022C6F28` + sign-extended word `+0` * 0x740 and, unless that sum is zero or its dword `+0x284` is 0, clears bit 2 of its byte `+0xC0` and sets that bit when `edx` is non-zero",
+   "anchors": [["002E88B1", "cmp"], ["002E88BE", "setne"], ["002E88CC", "imul"], ["002E88E5", "and"], ["002E88F4", "or"]]},
+  {"fn": "002E8900", "entered_from": "`00342410` + 0x36",
+   "text": "returns without a write when `rcx` is null, qword `rcx+0xC0` is null, or that block's dword `+0` or word `+0` is -1; otherwise forms qword `022C6F28` + sign-extended word `+0` * 0x740 and, unless that sum is zero or its dword `+0x284` is 0, stores the float `xmm1` at its `+0x274`",
+   "anchors": [["002E8911", "cmp"], ["002E8923", "imul"], ["002E8933", "cmp"], ["002E893C", "movss"]]},
+  {"fn": "002E8950", "entered_from": "`00342CF0` + 0x21",
+   "text": "returns without a write when `rcx` is null, qword `rcx+0xC0` is null, or that block's dword `+0` or word `+0` is -1; otherwise forms qword `022C6F28` + sign-extended word `+0` * 0x740 and, unless that sum is zero or its dword `+0x284` is 0, clears bit 1 of its byte `+0xC0` and sets that bit when `edx` is non-zero",
+   "anchors": [["002E8961", "cmp"], ["002E896E", "setne"], ["002E897C", "imul"], ["002E8995", "and"], ["002E89A3", "or"]]},
+  {"fn": "002E89B0", "entered_from": "`00342CF0` + 0x36",
+   "text": "returns without a write when `rcx` is null, qword `rcx+0xC0` is null, or that block's dword `+0` or word `+0` is -1; clamps the float `xmm1` to 0.0 when it is below 0.0 and otherwise to at most 1.0 (`01CEBBA8`); forms qword `022C6F28` + sign-extended word `+0` * 0x740 and, unless that sum is zero or its dword `+0x284` is 0, stores the clamped float at its `+0x27C`",
+   "anchors": [["002E89C9", "comiss"], ["002E89D6", "minss"], ["002E89E7", "imul"], ["002E89F7", "cmp"], ["002E8A00", "movss"]]}
+ ],
+ "skipped": [],
+ "notes": "001E1520: the byte passed as the fourth argument of the loop call is read from [rsp+0x88] after six pushes and sub 0x48, which is the caller's stack at entry rsp+0x10 (the rdx home slot), never written in this body. The second and fourth string calls take stack-slot addresses ([rsp+0x90], [rsp+0x98]) as rcx; their results feed the calls at +0x7D and +0xD0 as rdx. 002E89B0: a NaN xmm1 passes through the clamp unchanged (comiss unordered, minss returns the source)."
+}
