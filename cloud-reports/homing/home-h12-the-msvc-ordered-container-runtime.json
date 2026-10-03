@@ -1,0 +1,11 @@
+{
+ "page": "24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/the-msvc-ordered-container-runtime.md",
+ "session": "session_016ZjFjnefAbEBqR8eRqGh2C",
+ "rows": [
+  {"fn": "00799B20", "entered_from": "`00169270` + 0x27",
+   "text": "calls (`00799B20` + 0x17) with 0x28 in `ecx`, and when that returns null makes the indirect call at (`00799B20` + 0x26); it then stores the returned block's own address to its qwords `+0`, `+8` and `+0x10`, stores 0x101 to word `+0x18` (bytes `+0x18` and `+0x19` both 1) and returns the block",
+   "anchors": [["00799B37", "call"], ["00799B46", "call"], ["00799B4D", "mov"], ["00799B65", "mov"], ["00799B68", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "00799B20: the null-path call at +0x26 goes through the pointer slot 008C2DA8 (decoded u64 0x1CCED90); cited by site per the homing rule. The `test rcx, rcx` guards on rax+8 and rax+0x10 never skip once rax is non-null. Self-linked qwords +0/+8/+0x10 with bytes +0x18/+0x19 = 1 match an MSVC std::_Tree head node, but the sentence keeps to representation."
+}
