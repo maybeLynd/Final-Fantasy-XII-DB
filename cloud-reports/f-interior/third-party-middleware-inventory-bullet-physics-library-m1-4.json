@@ -1,0 +1,549 @@
+{
+ "page": "23-Third-Party-Libraries/third-party-middleware-inventory.md",
+ "session": "session_01Qb35WU9jkfZsMnRhLhis8N",
+ "mode": "member",
+ "family": "Bullet physics library",
+ "rows": [
+  {
+   "fn": "00837700",
+   "text": "makes the call at `00837700`+0x2A on `rcx`, stores `01CCE008` at qword `rcx+0`, divides 1.0 (`01CEBBA8`) by the result of the call at `00837700`+0x67 on x*x + y*y + z*z of the three floats at `rdx` and stores x, y and z times that quotient at floats `rcx+0x40`, `+0x44`, `+0x48`; it also stores 0 at dword `+0x4c`, the float `xmm2` at `+0x50`, 0 at qwords `+0x60` and `+0x68` and 0x1C at dword `+8`, and returns `rcx`",
+   "anchors": [
+    [
+     "0083772A",
+     "call"
+    ],
+    [
+     "00837736",
+     "mov"
+    ],
+    [
+     "00837767",
+     "call"
+    ],
+    [
+     "0083777E",
+     "divss"
+    ],
+    [
+     "008377C6",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "008377E0",
+   "text": "stores `01CCE008` at qword `rcx+0`, makes the call at `008377E0`+0x19 on `rcx`, and when bit 0 of `edx` is set makes the call at `008377E0`+0x2B (`rcx`, 0x70); returns `rcx`",
+   "anchors": [
+    [
+     "008377F3",
+     "mov"
+    ],
+    [
+     "008377F9",
+     "call"
+    ],
+    [
+     "008377FE",
+     "test"
+    ],
+    [
+     "0083780B",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00837820",
+   "text": "stores 0xDD5E0B6B at dwords `r8+0`, `+4` and `+8` and 0 at dword `r8+0xc`, and 0x5D5E0B6B at dwords `r9+0` and `r9+4` and as the qword at `r9+8` (0x5D5E0B6B at `+8`, 0 at `+0xc`)",
+   "anchors": [
+    [
+     "00837829",
+     "mov"
+    ],
+    [
+     "0083782D",
+     "mov"
+    ],
+    [
+     "0083783D",
+     "mov"
+    ],
+    [
+     "0083784C",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00837D10",
+   "text": "makes the call at `00837D10`+0x10 with `rcx`, `rdx` and `r8` unchanged, then copies dwords `rcx+0x60`..`+0x6c` to `rdx+0x10`..`+0x1c`, `rcx+0x40`..`+0x4c` to `rdx+0x20`..`+0x2c` and `rcx+0x50` to `rdx+0x30`, and returns the string \"btStaticPlaneShapeData\" (`01CCE090`)",
+   "anchors": [
+    [
+     "00837D20",
+     "call"
+    ],
+    [
+     "00837D28",
+     "mov"
+    ],
+    [
+     "00837D40",
+     "mov"
+    ],
+    [
+     "00837D5D",
+     "mov"
+    ],
+    [
+     "00837D60",
+     "lea"
+    ]
+   ]
+  },
+  {
+   "fn": "00837D70",
+   "text": "copies the 16 bytes at `rdx` to `rcx+0x60`",
+   "anchors": [
+    [
+     "00837D73",
+     "movdqa"
+    ]
+   ]
+  },
+  {
+   "fn": "00837D80",
+   "text": "when `r9d` is positive zeroes `r9d` 16-byte entries (two qwords each) at `r8`; otherwise does nothing",
+   "anchors": [
+    [
+     "00837D83",
+     "test"
+    ],
+    [
+     "00837D90",
+     "mov"
+    ],
+    [
+     "00837D94",
+     "mov"
+    ],
+    [
+     "00837D9B",
+     "sub"
+    ]
+   ]
+  },
+  {
+   "fn": "00837DB0",
+   "text": "calls vtable slot `+0x50` of `rcx` twice and stores r2 * (r1 * (`xmm1` * 0.4 (`009153EC`))), with r1 and r2 the two float results, at floats `r8+0`, `+4` and `+8` and 0 at dword `r8+0xc`",
+   "anchors": [
+    [
+     "00837DD0",
+     "call"
+    ],
+    [
+     "00837DD3",
+     "mulss"
+    ],
+    [
+     "00837DE8",
+     "call"
+    ],
+    [
+     "00837DF5",
+     "mulss"
+    ],
+    [
+     "00837E05",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "00838020",
+   "text": "zeroes the 16 bytes at `rdx` and returns `rdx`",
+   "anchors": [
+    [
+     "00838022",
+     "mov"
+    ],
+    [
+     "00838025",
+     "mov"
+    ],
+    [
+     "00838029",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00838030",
+   "text": "stores `01CCE0B0` at qword `rcx+0` and, when bit 0 of `dl` is set, makes the call at `00838030`+0x1D (`rcx`, 8); returns `rcx`",
+   "anchors": [
+    [
+     "00838040",
+     "mov"
+    ],
+    [
+     "00838043",
+     "test"
+    ],
+    [
+     "0083804D",
+     "call"
+    ],
+    [
+     "00838052",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00838060",
+   "text": "sorts the 32-byte entries at qword `rcx+0x10` from index `r8d` to `r9d` around the middle entry ((`r8d`+`r9d`)/2): the left scan passes entries that rank before the pivot and the right scan entries that rank after it, where X ranks before Y when dword `+0x18` of X's qword `+0` object (-1 when null) is greater, or, with the same qword `+0`, dword `+0x18` of X's qword `+8` object (-1 when null) is greater, or, with the same qwords `+0` and `+8`, X's qword `+0x10` is greater (unsigned); it swaps each stopped pair and moves both scans on until they cross, then calls itself (passing `dl` on) on `r8d` to the right scan's end when that end is above `r8d`, and on the left scan's end to `r9d` when that is below `r9d`",
+   "anchors": [
+    [
+     "008380A1",
+     "shl"
+    ],
+    [
+     "0083811C",
+     "jg"
+    ],
+    [
+     "0083812D",
+     "cmp"
+    ],
+    [
+     "00838232",
+     "movaps"
+    ],
+    [
+     "00838290",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00838600",
+   "text": "makes the call at `00838600`+0x37 with `rcx`, `rdx` and `r8` unchanged, 0xFFFE in `r9d`, then 0xFFFF, the word `r9w`, the fifth (stack) argument and the sixth (stack) argument's byte as stack arguments, stores `01CCE310` at qword `rcx+0` and returns `rcx`",
+   "anchors": [
+    [
+     "00838612",
+     "mov"
+    ],
+    [
+     "00838630",
+     "lea"
+    ],
+    [
+     "00838637",
+     "call"
+    ],
+    [
+     "00838643",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00838800",
+   "text": "stores `01CCE1A8` at qword `rcx+0` and, when bit 0 of `dl` is set, makes the call at `00838800`+0x1D (`rcx`, 8); returns `rcx`",
+   "anchors": [
+    [
+     "00838810",
+     "mov"
+    ],
+    [
+     "00838813",
+     "test"
+    ],
+    [
+     "0083881D",
+     "call"
+    ],
+    [
+     "00838822",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00838830",
+   "text": "when qword `rcx+0x18` is non-null, makes the call at `00838830`+0x2F on it if byte `rcx+0x20` is nonzero and zeroes the qword; then stores 1 at byte `rcx+0x20`, 0 at qwords `rcx+0x18` and `rcx+0xc`, and `00D7AAC8` at qword `rcx+0`, and when bit 0 of `edx` is set makes the call at `00838830`+0x5D (`rcx`, 0x28); returns `rcx`",
+   "anchors": [
+    [
+     "0083885F",
+     "call"
+    ],
+    [
+     "00838869",
+     "mov"
+    ],
+    [
+     "00838871",
+     "mov"
+    ],
+    [
+     "0083887C",
+     "mov"
+    ],
+    [
+     "0083888D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008388B0",
+   "text": "when qword `rcx+0xa0` is non-null calls its vtable slot `+0x30` with `rdx`, `r8` and `r9` passed on and returns; otherwise, for each index i from 1 below 2*word `rcx+0x40` + 1 whose dword at qword `rcx+0x58` + 4i has bit 0 set, takes the 0x60-byte entry at qword `rcx+0x48` + 0x60*(that dword's word `+2`) and, unless float `rdx[0]` exceeds entry float `+0x30`, `+0x20` exceeds `r8[0]`, `rdx[8]` exceeds `+0x38`, `+0x28` exceeds `r8[8]`, `rdx[4]` exceeds `+0x34` or `+0x24` exceeds `r8[4]`, calls vtable slot `+8` of `r9` with the entry in `rdx`",
+   "anchors": [
+    [
+     "008388E0",
+     "call"
+    ],
+    [
+     "00838917",
+     "test"
+    ],
+    [
+     "00838935",
+     "comiss"
+    ],
+    [
+     "00838964",
+     "comiss"
+    ],
+    [
+     "0083897F",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008389C0",
+   "text": "calls `008392A0(rcx, &a, rdx, 0)` and `008392A0(rcx, &b, r8, 1)`, takes handle h = word `rcx+0x50` and the 0x60-byte entry E at qword `rcx+0x48` + 0x60h, copies E's word `+0x40` to `rcx+0x50`, increments word `rcx+0x40` (n = twice the new value) and fills E (`r9` at qword `+0`, the fifth and sixth (stack) arguments' words at `+8` and `+0xa`, the eighth at qword `+0x10`, h at dword `+0x18`); for each of 3 axes k it adds 2 to word `+0x46`+2k of entry 0, moves dword n-1 of the array at qword `rcx+0x58`+8k to index n+1, writes (word k of a, h) at index n-1 and (word k of b, h) at index n, and sets E's words `+0x40`+2k and `+0x46`+2k to n-1 and n; it then moves E's axis-0 and axis-1 edges toward lower indexes while their word is below the preceding edge's, incrementing the passed entry's index word (`+0x46`+2k for an edge with bit 0 set, else `+0x40`+2k) and decrementing E's, makes the calls at `008389C0`+0x366 and `+0x382` (`rcx`, 2, E's word `+0x44` or `+0x4a`, the seventh (stack) argument, byte 1) and returns h",
+   "anchors": [
+    [
+     "00838A0C",
+     "call"
+    ],
+    [
+     "00838A56",
+     "inc"
+    ],
+    [
+     "00838AEF",
+     "add"
+    ],
+    [
+     "00838B71",
+     "cmp"
+    ],
+    [
+     "00838D26",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00838D80",
+   "text": "returns at once unless vtable slot `+0x68` of qword `rcx+0x88` returns a nonzero byte; otherwise takes the array returned by its slot `+0x30` (count dword `+4`, capacity dword `+8`, 32-byte entries at qword `+0x10`, ownership byte `+0x18`), sorts it with `00838060(array, a stack byte, 0, count-1)` when count exceeds 1 and resizes it to count minus dword `rcx+0x9c` (growing through the allocation at `00838D80`+0xA7, a copy, the free at `+0x10B` when the byte is set, and zero-filled new entries), zeroing dword `rcx+0x9c`; it then walks the entries and, for each whose first two qwords repeat the previous entry's or whose two objects (qwords `+0` and `+8`) are disjoint on one of 3 axes (word `+0x46`+2k of one below word `+0x40`+2k of the other), calls slot `+0x38` of qword `rcx+0x88` (entry, `rdx`), zeroes the two qwords, increments dword `rcx+0x9c` and decrements dword `02EAF39C`; finally it sorts and resizes the array the same way again (allocation at `+0x299`, free at `+0x2FA`) and zeroes dword `rcx+0x9c`",
+   "anchors": [
+    [
+     "00838D98",
+     "call"
+    ],
+    [
+     "00838DEA",
+     "call"
+    ],
+    [
+     "00838F63",
+     "cmp"
+    ],
+    [
+     "00838F9D",
+     "call"
+    ],
+    [
+     "00838FAE",
+     "dec"
+    ]
+   ]
+  },
+  {
+   "fn": "00839110",
+   "text": "calls `008389C0` with `rcx`, `rdx` and `r8` unchanged, the fifth (stack) argument in `r9` and the sixth to ninth (stack) arguments as its stack arguments, takes entry E = qword `rcx+0x48` + 0x60 times the returned word, and when qword `rcx+0xa0` is non-null calls its vtable slot `+8` with `rdx`, `r8`, `r9d`, the fifth to eighth arguments and 0, storing the result at qword E`+0x50`; returns E",
+   "anchors": [
+    [
+     "00839178",
+     "call"
+    ],
+    [
+     "0083918F",
+     "add"
+    ],
+    [
+     "00839196",
+     "je"
+    ],
+    [
+     "008391C8",
+     "call"
+    ],
+    [
+     "008391CC",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00839200",
+   "text": "when qword `rcx+0xa0` is non-null calls its vtable slot `+0x10` with qword `rdx+0x50` and `r8`; then tail-jumps to `00839420(rcx, word rdx+0x18, r8)`",
+   "anchors": [
+    [
+     "0083921F",
+     "test"
+    ],
+    [
+     "00839227",
+     "mov"
+    ],
+    [
+     "0083922B",
+     "call"
+    ],
+    [
+     "0083922E",
+     "movzx"
+    ],
+    [
+     "00839247",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00839250",
+   "text": "copies the 16 bytes at `rdx+0x20` to `r8` and the 16 bytes at `rdx+0x30` to `r9`",
+   "anchors": [
+    [
+     "00839254",
+     "movdqa"
+    ],
+    [
+     "00839259",
+     "movaps"
+    ],
+    [
+     "0083925D",
+     "movdqa"
+    ]
+   ]
+  },
+  {
+   "fn": "00839270",
+   "text": "copies the 16 bytes at `rcx+0x10` to `rdx` and the 16 bytes at `rcx+0x20` to `r8`",
+   "anchors": [
+    [
+     "00839274",
+     "movdqa"
+    ],
+    [
+     "00839278",
+     "movaps"
+    ],
+    [
+     "0083927C",
+     "movdqa"
+    ]
+   ]
+  },
+  {
+   "fn": "008392A0",
+   "text": "for each axis k of 3 computes v = (float `r8`[k] - float `rcx+0x10`+4k) * float `rcx+0x30`+4k and stores at word `rdx`[k] the word `r9w` when v is not above 0, else (word `rcx+8` AND (word `rcx+0xa` when v is at least its float value, else v truncated)) OR `r9w`",
+   "anchors": [
+    [
+     "008392A8",
+     "subss"
+    ],
+    [
+     "008392C6",
+     "mulss"
+    ],
+    [
+     "008392EF",
+     "comiss"
+    ],
+    [
+     "008392F9",
+     "and"
+    ],
+    [
+     "00839372",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00839380",
+   "text": "when qword `rcx+0xa0` is non-null tail-jumps through its vtable slot `+0x28` with `rdx`, `r8` and `r9` unchanged; otherwise, for each index i from 1 below 2*word `rcx+0x40` + 1 whose dword at qword `rcx+0x58` + 4i has bit 0 set, calls vtable slot `+8` of `r9` with the 0x60-byte entry at qword `rcx+0x48` + 0x60*(that dword's word `+2`) in `rdx`",
+   "anchors": [
+    [
+     "0083939A",
+     "je"
+    ],
+    [
+     "008393A9",
+     "jmp"
+    ],
+    [
+     "008393D7",
+     "test"
+    ],
+    [
+     "008393F4",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00839420",
+   "text": "with E = qword `rcx+0x48` + 0x60*`dx`, calls vtable slot `+0x18` of qword `rcx+0x88` (E, `r8`) when its slot `+0x68` returns 0, and subtracts 2 from words `+0x46`, `+0x48` and `+0x4a` of entry 0; for each of 3 axes k (dword edges at qword `rcx+0x58`+8k) it sets the value word of E's edge at index word E`+0x46`+2k, then of E's edge at index word E`+0x40`+2k, to word `rcx+0xa`, moving each toward higher indexes past every following edge with a nonzero handle word and a value not above it, decrementing the passed entry's index word (`+0x46`+2k for an edge with bit 0 set, else `+0x40`+2k) and incrementing E's, and then writes (word `rcx+0xa`, handle 0) at edge index 2*word `rcx+0x40` - 1; finally it stores word `rcx+0x50` at E's word `+0x40`, decrements word `rcx+0x40` and stores `dx` at word `rcx+0x50`",
+   "anchors": [
+    [
+     "00839468",
+     "call"
+    ],
+    [
+     "008394B4",
+     "add"
+    ],
+    [
+     "008394E5",
+     "mov"
+    ],
+    [
+     "00839514",
+     "cmp"
+    ],
+    [
+     "0083961E",
+     "add"
+    ]
+   ]
+  }
+ ],
+ "skipped": [
+  {
+   "fn": "00837870",
+   "why": "its whole work is the entry instruction (returns the address of the string \"STATICPLANE\")"
+  },
+  {
+   "fn": "00839290",
+   "why": "its whole work is the entry instruction (loads qword rcx+0x88 into rax)"
+  }
+ ],
+ "notes": "Callees outside this pack are cited by call site; library routines are not named (no string in these bodies supports a name except the shape-data string returned by 00837D10). Doubts: 00837820 (the four dword constants are not decoded by the listing, so they are given in hex); 00838D80 (the dl byte passed to 00838060 is read from the function's own home slot, which this body does not write before the first sort); 008389C0 and 00839420 (edge arrays hold (value word, handle word) dwords; the bit-0 test is on the value word, as the listing shows)."
+}
