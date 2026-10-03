@@ -1,0 +1,48 @@
+{
+ "page": "17-Presentation-Rendering/Character-Rendering/character-render-object.md",
+ "date": "2026-10-03, wave h8",
+ "session": "https://claude.ai/code/session_01FFgsi7DcuyVgymuET5UYvk",
+ "report": "home-character-render-object.json",
+ "rows": [
+  {
+   "fn": "001E2250",
+   "entered_from": "`001E5370` + 0x81",
+   "text": "inserts `r8d` copies of the 0x18-byte element at `r9` (qword `+8`, byte `+0x10`) before `rdx` into the array with qwords `B`, `E`, `C` at `rcx`, `rcx+8`, `rcx+0x10`: returns when `r8d` is 0; when `r8d` is at most (`C`-`E`)/0x18 (unsigned, 32-bit) it uses a stack copy (vtable `009010D8`): if `r8d` is below the count `t` of elements from `rdx` to `E` (unsigned) it calls `001E2250` + 0xC6 to construct the last `r8d` at `E` and shifts the rest up by field assignment, else it constructs `r8d`-`t` copies at `E` and calls `001E2250` + 0x19F to construct the `t` tail ones next; advances `E` by `r8d`, assigns the copy's fields to the `r8d` (or `t`) slots from `rdx` and calls `001E2250` + 0x149 or + 0x1E8 on the copy; otherwise it requests 0x18 times max(2*size (1 when size is 0), size+`r8d`) bytes through vtable slot `+0x10` of the object at `rcx+0x18` (`001E2250` + 0x238), constructs there the elements before `rdx`, the copies, the rest, calls vtable slot 0 of each old element with `edx` = 0, frees a non-null `B` through slot `+0x18` (`001E2250` + 0x36A), and stores new `B`, `E`, `C`; own constructions write vtable `009010B8`, the two fields, then vtable `009010D8`, skipping null slots",
+   "anchors": [
+    [
+     "001E22A5",
+     "ja"
+    ],
+    [
+     "001E2316",
+     "call"
+    ],
+    [
+     "001E2488",
+     "call"
+    ],
+    [
+     "001E2578",
+     "call"
+    ],
+    [
+     "001E25C2",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [
+  "00186840"
+ ],
+ "corrections": [
+  {
+   "fn": "001E2250",
+   "was": "inserts `r8d` copies of the 0x18-byte element at `r9` (its qword `+8` and byte `+0x10`) before `rdx` into the array whose qwords `[rcx]`, `[rcx+8]`, `[rcx+0x10]` are `B`, `E`, `C`: returns at once when `r8d` is 0; when `r8d` is at most (`C`-`E`)/0x18 (unsigned, 32-bit) it works in place, calling `001E2250` + 0xC6 or + 0x19F to extend past `E` (which it advances), shifting the remaining elements up by assigning qword `+8` and byte `+0x10`, filling the gap from a stack copy with vtable `009010D8`, then calling `001E2250` + 0x149 or + 0x1E8 on that copy; otherwise it requests max(2*size (1 when size is 0), size+`r8d`) elements times 0x18 bytes through vtable slot `+0x10` of the object at `rcx+0x18` (`001E2250` + 0x238), constructs into them the elements before `rdx`, the copies, then the rest (vtable `009010B8`, qword `+8`, byte `+0x10`, then vtable `009010D8`, skipping null slots), calls vtable slot 0 of each old element with `edx` = 0, frees `B` through slot `+0x18` (`001E2250` + 0x36A) when it is non-null, and stores the new `B`, `E` and `C`",
+   "now": "inserts `r8d` copies of the 0x18-byte element at `r9` (qword `+8`, byte `+0x10`) before `rdx` into the array with qwords `B`, `E`, `C` at `rcx`, `rcx+8`, `rcx+0x10`: returns when `r8d` is 0; when `r8d` is at most (`C`-`E`)/0x18 (unsigned, 32-bit) it uses a stack copy (vtable `009010D8`): if `r8d` is below the count `t` of elements from `rdx` to `E` (unsigned) it calls `001E2250` + 0xC6 to construct the last `r8d` at `E` and shifts the rest up by field assignment, else it constructs `r8d`-`t` copies at `E` and calls `001E2250` + 0x19F to construct the `t` tail ones next; advances `E` by `r8d`, assigns the copy's fields to the `r8d` (or `t`) slots from `rdx` and calls `001E2250` + 0x149 or + 0x1E8 on the copy; otherwise it requests 0x18 times max(2*size (1 when size is 0), size+`r8d`) bytes through vtable slot `+0x10` of the object at `rcx+0x18` (`001E2250` + 0x238), constructs there the elements before `rdx`, the copies, the rest, calls vtable slot 0 of each old element with `edx` = 0, frees a non-null `B` through slot `+0x18` (`001E2250` + 0x36A), and stores new `B`, `E`, `C`; own constructions write vtable `009010B8`, the two fields, then vtable `009010D8`, skipping null slots",
+   "why": "001E22F2 jae splits the in-place path: the assigning shift loop 001E2340 runs only when r8d < t (after the 001E2316 call); when r8d >= t, 001E23B9..001E23CD construct r8d-t copies at E (vtables 009010B8 then 009010D8), 001E23EF constructs the t tail elements after them, and 001E2420 assigns only t slots"
+  }
+ ]
+}

@@ -273,3 +273,11 @@ interpreter, and the dispatch `002AB8F0` (a jump-table control in pass 2) calls 
 | function | size | what the body does | interior anchors |
 |---|---|---|---|
 | `0082A5D0` | 135 B | Increments the word at `+0x46` of the object at `rcx+0x38` and returns when it is at most 0xC8 (unsigned `jbe`); otherwise, with the state record at `rcx+0x30`, it takes a location string (`01CCCFD8` when the dword `+0x68` of the record's first-qword object is zero, else `0081BFF0` formatting `01CCCFE8` with that dword), formats `01CCD000` with `01CCD068`, 0xC8 and that string through `0081BFF0` (both formats on the qword `+0x38` of the record's `+0x18` object), and passes the result with the record's `+0x18` qword to `00824330`, where the listed range ends. | `0082A5E3`, `0082A5EF`, `0082A628`, `0082A646`, `0082A652` |
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted, opus-the-bodies-the-list-cuts-short-ee-1003-2)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-the-bodies-the-list-cuts-short-ee-1003-2/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00729920` | 189 B | stores `xmm2` and `xmm3` in the third- and fourth-argument home slots and calls `0075AE30(rcx, &third slot, &fourth slot)` with `xmm1` also in `xmm4`, keeping `k` = `ecx` in `r10d` across the call; maps `k` 3, 5, 7, 9, 0xB, 0xC, 0xD and 0xF to 2, 4, 6, 8, 0xA, 1, 0xA and 0xE; any other `k` above 0xE (unsigned) goes to image base + 0x609A58; then dispatches on `k` through the jump table at image base + `0x609A60`: 0 and 1 to image base + 0x609A58, 2 and 4 to image base + 0x609A3A, 6 and 8 to `007299D5`, 0xA to image base + 0x6099ED and 0xE to image base + 0x609A52; the listed extent ends with the first instruction at `007299D5`, which loads the fourth-argument slot float into `xmm2` | `00729940`, `00729949`, `0072998F`, `007299B9`, `007299D3` |

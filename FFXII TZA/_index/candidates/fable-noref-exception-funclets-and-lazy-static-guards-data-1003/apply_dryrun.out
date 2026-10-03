@@ -1,0 +1,3 @@
+VERIFY 33 functions, 126 anchors, 33 references, page 24-Compiler-And-CRT-Runtime/Exception-Handling-And-Unwind/exception-funclets-and-lazy-static-guards.md (LF)
+DRY (verified; --apply appends 33 rows)
+FAILS 0

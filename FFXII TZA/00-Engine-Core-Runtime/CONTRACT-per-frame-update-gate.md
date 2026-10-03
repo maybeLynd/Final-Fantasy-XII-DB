@@ -1710,7 +1710,7 @@ Interior anchor `002C0F7D` (function `002C0F30`).
 
 Interior anchor `003C50B9` (function `003C5060`).
 
-`00360C70` (190 B) is the four-slot arm-and-spawn one gated lane runs at registration: it writes `+0 = 0`, `+3 = lane index` into four `0x18`-stride slots at `022CB9F0`, takes registry handle `edi` from `0032E400(6, 9)`, clears `022CBA50`/`022CBA58`/`022CBA60`, and on a live handle enters the `0036C1D0(5, 5)` lock to `0036A190(edi)`-resolve the record and `0032E620`-spawn the lane with handler `00360B40` carried in the stack parameter block
+`00360C70` (190 B) is the four-slot arm-and-spawn one gated lane runs at registration: it writes `+0 = 0`, `+3 = lane index` into four `0x18`-stride slots at `022CB9F0`, ~~takes registry handle `edi` from `0032E400(6, 9)`, clears `022CBA50`/`022CBA58`/`022CBA60`, and on a live handle enters the `0036C1D0(5, 5)` lock to `0036A190(edi)`-resolve the record and~~ takes `edi` = `0032E400(9, 6)` - `ecx` = 9 selects the group table `[022C51F0 + 9*8]` and `edx` = 6 the dword entry, a size (`MusicTrackState022CB9F0` `+0x60` per `51ad88762`), -1 for group 0xFF - clears `022CBA50`/`022CBA58`/`022CBA60`, and when that value is not negative (`js`) enters the `0036C1D0(5, 5)` lock to obtain a block from `0036A190(edi)` and *(corrected 2026-10-03, SWE2-EC7, record `swe2ec7-corr-00360c70-args-1003`: argument order and the 'handle' reading)* `0032E620`-spawn the lane with handler `00360B40` carried in the stack parameter block
 
 Interior anchor `00360CA1` (function `00360C70`).
 

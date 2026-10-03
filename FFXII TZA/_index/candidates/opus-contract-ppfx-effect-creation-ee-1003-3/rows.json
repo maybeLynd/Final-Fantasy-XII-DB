@@ -1,0 +1,97 @@
+{
+ "page": "17-Presentation-Rendering/Post-Processing/CONTRACT-ppfx-effect-creation.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "CONTRACT-ppfx-effect-creation-r9.json",
+ "rows": [
+  {
+   "fn": "00715A00",
+   "text": "with `d` = `rcx` and `s` = `rdx`: when dword [s] is 0, zeroes qword [d] and stores `02EA1720` at qword [d+8]; otherwise copies dword [s] to dword [d] and the low dword of `n` = the sign-extended dword [s+4] to dword [d+4], takes `b` = `006DA880(qword [01F3BA68], n + 8, 00D99990 \"..\\src\\GPU\\TinyEffect\\TFXString.cpp\", 0x9A, 0)` and, when `b` is non-null, stores `n` at qword [b], `p` being `b`+8 (else 0); stores `p` at qword [d+8], copies the sign-extended dword [d] bytes from qword [s+8] to `p` by `00861EBA` and zeroes byte [qword [d+8] + sign-extended dword [d]] (both re-read; no null test); returns `d`",
+   "anchors": [
+    [
+     "00715A0F",
+     "mov"
+    ],
+    [
+     "00715A27",
+     "mov"
+    ],
+    [
+     "00715A6C",
+     "call"
+    ],
+    [
+     "00715A8B",
+     "call"
+    ],
+    [
+     "00715AA1",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00718350",
+   "text": "with `t` = `rcx` and `s` = `rdx`: when `s` is non-null, `n` = the number of bytes before the first zero byte at `s`, and when the low dword of `n` is non-zero: calls `007153B0(t, that dword, 0)`, stores that dword (not the call's return) at dword [t], copies that dword + 1 (sign-extended) bytes from `s` to qword [t+8] (read after the call) by `00861EBA` and returns `t`; when `s` is null or that dword is 0: with `e` = `02EA1720`, calls `006DA8A0(qword [01F3BA68], qword [t+8] - 8)` when qword [t+8] is neither null nor `e`, then zeroes qword [t] and stores `e` at qword [t+8]; returns `t`",
+   "anchors": [
+    [
+     "0071836E",
+     "lea"
+    ],
+    [
+     "0071838A",
+     "call"
+    ],
+    [
+     "007183B3",
+     "cmp"
+    ],
+    [
+     "007183C2",
+     "call"
+    ],
+    [
+     "007183D6",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00718400",
+   "text": "with `t` = `rcx` and `c` = `dl`: unless dword [t] is 1, with `k` = dword [t+4]: when `k` is below 2 or above 0x100 (signed), stores 0x40 at dword [t+4], takes `b` = `006DA880(qword [01F3BA68], 0x48, f, l, 0)` with (f, l) = (`00D99A08`, 0xFB) when `k` is below 2, else (`00D99A30`, 0x11D) (both \"..\\src\\GPU\\TinyEffect\\TFXString.cpp\"), stores 0x40 at qword [b] when `b` is non-null, `p` being `b`+8 (else 0), calls `006DA8A0(qword [01F3BA68] read again, qword [t+8] - 8)` when qword [t+8] is neither `02EA1720` nor null, and stores `p` at qword [t+8]; then stores 1 at dword [t], `c` at byte [qword [t+8]] and 0 at byte [qword [t+8] + 1] (re-read; no null test); returns `t`",
+   "anchors": [
+    [
+     "0071840A",
+     "cmp"
+    ],
+    [
+     "00718421",
+     "cmp"
+    ],
+    [
+     "00718461",
+     "call"
+    ],
+    [
+     "00718496",
+     "call"
+    ],
+    [
+     "007184AE",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "00718350",
+   "why": "byte re-read by a non-drafting agent: Body checks out (64-bit strlen loop from rbx = -1, test of the low dword ebx, 007153B0(t, ebx, 0) with rcx still t, memcpy (00861EBA -> VCRUNTIME140 memcpy) of movsxd(ebx+1) bytes to qword [t+8] read after the call, empty/null path freeing qword [t+8]-8 via 006DA8A0 unless null or 02EA1720, then 0 and 02EA1720). Defect: 'calls 007153B0(t, that dword, 0), stores it at dword [t]' - after a call, 'it' reads as the call's return value; the code stores ebx, the length dword (mov dword [rdi], ebx at 007183D4), and the return in eax is discarded. Named explicitly."
+  }
+ ],
+ "mode": "ee",
+ "family": ""
+}

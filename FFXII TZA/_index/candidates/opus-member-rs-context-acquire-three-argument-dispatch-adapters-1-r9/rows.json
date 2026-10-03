@@ -1,0 +1,1554 @@
+{
+ "page": "22-Middleware-PhyreEngine/Script-Object-Accessors/phyre-script-object-accessors.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "phyre-script-object-accessors-context-acquire-three-argument-dispatch-adapters-1-r9.json",
+ "rows": [
+  {
+   "fn": "005C7E20",
+   "text": "calls `005B4E00` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "005C7E32",
+     "call"
+    ],
+    [
+     "005C7E37",
+     "mov"
+    ],
+    [
+     "005C7E3D",
+     "mov"
+    ],
+    [
+     "005C7E4A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005C7E50",
+   "text": "calls `005B5130` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "005C7E62",
+     "call"
+    ],
+    [
+     "005C7E67",
+     "mov"
+    ],
+    [
+     "005C7E6D",
+     "mov"
+    ],
+    [
+     "005C7E7A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005C7E80",
+   "text": "calls `005B5460` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "005C7E92",
+     "call"
+    ],
+    [
+     "005C7E97",
+     "mov"
+    ],
+    [
+     "005C7E9D",
+     "mov"
+    ],
+    [
+     "005C7EAA",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005C7EB0",
+   "text": "calls `005B57A0` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "005C7EC2",
+     "call"
+    ],
+    [
+     "005C7EC7",
+     "mov"
+    ],
+    [
+     "005C7ECD",
+     "mov"
+    ],
+    [
+     "005C7EDA",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005C7EE0",
+   "text": "calls `005B5AE0` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "005C7EF2",
+     "call"
+    ],
+    [
+     "005C7EF7",
+     "mov"
+    ],
+    [
+     "005C7EFD",
+     "mov"
+    ],
+    [
+     "005C7F0A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005C7F10",
+   "text": "calls `005B5E10` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "005C7F22",
+     "call"
+    ],
+    [
+     "005C7F27",
+     "mov"
+    ],
+    [
+     "005C7F2D",
+     "mov"
+    ],
+    [
+     "005C7F3A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005C7F40",
+   "text": "calls `005B6140` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "005C7F52",
+     "call"
+    ],
+    [
+     "005C7F57",
+     "mov"
+    ],
+    [
+     "005C7F5D",
+     "mov"
+    ],
+    [
+     "005C7F6A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005C7F70",
+   "text": "calls `005B6470` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "005C7F82",
+     "call"
+    ],
+    [
+     "005C7F87",
+     "mov"
+    ],
+    [
+     "005C7F8D",
+     "mov"
+    ],
+    [
+     "005C7F9A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005C7FA0",
+   "text": "calls `005B67A0` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "005C7FB2",
+     "call"
+    ],
+    [
+     "005C7FB7",
+     "mov"
+    ],
+    [
+     "005C7FBD",
+     "mov"
+    ],
+    [
+     "005C7FCA",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005C7FD0",
+   "text": "calls `005B6AD0` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "005C7FE2",
+     "call"
+    ],
+    [
+     "005C7FE7",
+     "mov"
+    ],
+    [
+     "005C7FED",
+     "mov"
+    ],
+    [
+     "005C7FFA",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005C8000",
+   "text": "calls `005B6E00` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "005C8012",
+     "call"
+    ],
+    [
+     "005C8017",
+     "mov"
+    ],
+    [
+     "005C801D",
+     "mov"
+    ],
+    [
+     "005C802A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005C8030",
+   "text": "calls `005B7130` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "005C8042",
+     "call"
+    ],
+    [
+     "005C8047",
+     "mov"
+    ],
+    [
+     "005C804D",
+     "mov"
+    ],
+    [
+     "005C805A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005C8060",
+   "text": "calls `005B7460` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "005C8072",
+     "call"
+    ],
+    [
+     "005C8077",
+     "mov"
+    ],
+    [
+     "005C807D",
+     "mov"
+    ],
+    [
+     "005C808A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005C8090",
+   "text": "calls `005B7790` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "005C80A2",
+     "call"
+    ],
+    [
+     "005C80A7",
+     "mov"
+    ],
+    [
+     "005C80AD",
+     "mov"
+    ],
+    [
+     "005C80BA",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005C80C0",
+   "text": "calls `005B7AC0` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "005C80D2",
+     "call"
+    ],
+    [
+     "005C80D7",
+     "mov"
+    ],
+    [
+     "005C80DD",
+     "mov"
+    ],
+    [
+     "005C80EA",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0060B2D0",
+   "text": "calls `005EB7C0` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "0060B2E2",
+     "call"
+    ],
+    [
+     "0060B2E7",
+     "mov"
+    ],
+    [
+     "0060B2ED",
+     "mov"
+    ],
+    [
+     "0060B2FA",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0060B300",
+   "text": "calls `005EBB00` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "0060B312",
+     "call"
+    ],
+    [
+     "0060B317",
+     "mov"
+    ],
+    [
+     "0060B31D",
+     "mov"
+    ],
+    [
+     "0060B32A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0060B330",
+   "text": "calls `005EBE40` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "0060B342",
+     "call"
+    ],
+    [
+     "0060B347",
+     "mov"
+    ],
+    [
+     "0060B34D",
+     "mov"
+    ],
+    [
+     "0060B35A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0060B360",
+   "text": "calls `005EC180` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "0060B372",
+     "call"
+    ],
+    [
+     "0060B377",
+     "mov"
+    ],
+    [
+     "0060B37D",
+     "mov"
+    ],
+    [
+     "0060B38A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0060B390",
+   "text": "calls `005EC4C0` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "0060B3A2",
+     "call"
+    ],
+    [
+     "0060B3A7",
+     "mov"
+    ],
+    [
+     "0060B3AD",
+     "mov"
+    ],
+    [
+     "0060B3BA",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0060B3C0",
+   "text": "calls `005EC800` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "0060B3D2",
+     "call"
+    ],
+    [
+     "0060B3D7",
+     "mov"
+    ],
+    [
+     "0060B3DD",
+     "mov"
+    ],
+    [
+     "0060B3EA",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0060B3F0",
+   "text": "calls `005ECB40` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "0060B402",
+     "call"
+    ],
+    [
+     "0060B407",
+     "mov"
+    ],
+    [
+     "0060B40D",
+     "mov"
+    ],
+    [
+     "0060B41A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0060B420",
+   "text": "calls `005ECE70` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "0060B432",
+     "call"
+    ],
+    [
+     "0060B437",
+     "mov"
+    ],
+    [
+     "0060B43D",
+     "mov"
+    ],
+    [
+     "0060B44A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0060B450",
+   "text": "calls `005ED1A0` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "0060B462",
+     "call"
+    ],
+    [
+     "0060B467",
+     "mov"
+    ],
+    [
+     "0060B46D",
+     "mov"
+    ],
+    [
+     "0060B47A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0060B480",
+   "text": "calls `005ED4D0` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "0060B492",
+     "call"
+    ],
+    [
+     "0060B497",
+     "mov"
+    ],
+    [
+     "0060B49D",
+     "mov"
+    ],
+    [
+     "0060B4AA",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0060B4B0",
+   "text": "calls `005ED800` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "0060B4C2",
+     "call"
+    ],
+    [
+     "0060B4C7",
+     "mov"
+    ],
+    [
+     "0060B4CD",
+     "mov"
+    ],
+    [
+     "0060B4DA",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0060B4E0",
+   "text": "calls `005EDB30` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "0060B4F2",
+     "call"
+    ],
+    [
+     "0060B4F7",
+     "mov"
+    ],
+    [
+     "0060B4FD",
+     "mov"
+    ],
+    [
+     "0060B50A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0060B510",
+   "text": "calls `005EDE60` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "0060B522",
+     "call"
+    ],
+    [
+     "0060B527",
+     "mov"
+    ],
+    [
+     "0060B52D",
+     "mov"
+    ],
+    [
+     "0060B53A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0060B540",
+   "text": "calls `005EE190` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "0060B552",
+     "call"
+    ],
+    [
+     "0060B557",
+     "mov"
+    ],
+    [
+     "0060B55D",
+     "mov"
+    ],
+    [
+     "0060B56A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0060B570",
+   "text": "calls `005EE4C0` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "0060B582",
+     "call"
+    ],
+    [
+     "0060B587",
+     "mov"
+    ],
+    [
+     "0060B58D",
+     "mov"
+    ],
+    [
+     "0060B59A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0060B5A0",
+   "text": "calls `005EE7F0` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "0060B5B2",
+     "call"
+    ],
+    [
+     "0060B5B7",
+     "mov"
+    ],
+    [
+     "0060B5BD",
+     "mov"
+    ],
+    [
+     "0060B5CA",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0060B5D0",
+   "text": "calls `005EEB20` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "0060B5E2",
+     "call"
+    ],
+    [
+     "0060B5E7",
+     "mov"
+    ],
+    [
+     "0060B5ED",
+     "mov"
+    ],
+    [
+     "0060B5FA",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0060B600",
+   "text": "calls `005EEE50` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "0060B612",
+     "call"
+    ],
+    [
+     "0060B617",
+     "mov"
+    ],
+    [
+     "0060B61D",
+     "mov"
+    ],
+    [
+     "0060B62A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0060B630",
+   "text": "calls `005EF180` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "0060B642",
+     "call"
+    ],
+    [
+     "0060B647",
+     "mov"
+    ],
+    [
+     "0060B64D",
+     "mov"
+    ],
+    [
+     "0060B65A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0060B660",
+   "text": "calls `005EF4B0` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "0060B672",
+     "call"
+    ],
+    [
+     "0060B677",
+     "mov"
+    ],
+    [
+     "0060B67D",
+     "mov"
+    ],
+    [
+     "0060B68A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0060B690",
+   "text": "calls `005EF7E0` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "0060B6A2",
+     "call"
+    ],
+    [
+     "0060B6A7",
+     "mov"
+    ],
+    [
+     "0060B6AD",
+     "mov"
+    ],
+    [
+     "0060B6BA",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0060B6C0",
+   "text": "calls `005EFB10` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "0060B6D2",
+     "call"
+    ],
+    [
+     "0060B6D7",
+     "mov"
+    ],
+    [
+     "0060B6DD",
+     "mov"
+    ],
+    [
+     "0060B6EA",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0060B6F0",
+   "text": "calls `005EFE60` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "0060B702",
+     "call"
+    ],
+    [
+     "0060B707",
+     "mov"
+    ],
+    [
+     "0060B70D",
+     "mov"
+    ],
+    [
+     "0060B71A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00626FF0",
+   "text": "calls `00618970` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "00627002",
+     "call"
+    ],
+    [
+     "00627007",
+     "mov"
+    ],
+    [
+     "0062700D",
+     "mov"
+    ],
+    [
+     "0062701A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00627020",
+   "text": "calls `00618CA0` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "00627032",
+     "call"
+    ],
+    [
+     "00627037",
+     "mov"
+    ],
+    [
+     "0062703D",
+     "mov"
+    ],
+    [
+     "0062704A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0063D090",
+   "text": "calls `00635DC0` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "0063D0A2",
+     "call"
+    ],
+    [
+     "0063D0A7",
+     "mov"
+    ],
+    [
+     "0063D0AD",
+     "mov"
+    ],
+    [
+     "0063D0BA",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00658440",
+   "text": "calls `0064AA20` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "00658452",
+     "call"
+    ],
+    [
+     "00658457",
+     "mov"
+    ],
+    [
+     "0065845D",
+     "mov"
+    ],
+    [
+     "0065846A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00672350",
+   "text": "calls `00668AE0` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "00672362",
+     "call"
+    ],
+    [
+     "00672367",
+     "mov"
+    ],
+    [
+     "0067236D",
+     "mov"
+    ],
+    [
+     "0067237A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00672380",
+   "text": "calls `00668E10` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "00672392",
+     "call"
+    ],
+    [
+     "00672397",
+     "mov"
+    ],
+    [
+     "0067239D",
+     "mov"
+    ],
+    [
+     "006723AA",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006723B0",
+   "text": "calls `00669140` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "006723C2",
+     "call"
+    ],
+    [
+     "006723C7",
+     "mov"
+    ],
+    [
+     "006723CD",
+     "mov"
+    ],
+    [
+     "006723DA",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006723E0",
+   "text": "calls `00669470` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "006723F2",
+     "call"
+    ],
+    [
+     "006723F7",
+     "mov"
+    ],
+    [
+     "006723FD",
+     "mov"
+    ],
+    [
+     "0067240A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00672410",
+   "text": "calls `006697A0` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "00672422",
+     "call"
+    ],
+    [
+     "00672427",
+     "mov"
+    ],
+    [
+     "0067242D",
+     "mov"
+    ],
+    [
+     "0067243A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00672440",
+   "text": "calls `00669AD0` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "00672452",
+     "call"
+    ],
+    [
+     "00672457",
+     "mov"
+    ],
+    [
+     "0067245D",
+     "mov"
+    ],
+    [
+     "0067246A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00672470",
+   "text": "calls `00669E00` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "00672482",
+     "call"
+    ],
+    [
+     "00672487",
+     "mov"
+    ],
+    [
+     "0067248D",
+     "mov"
+    ],
+    [
+     "0067249A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006724A0",
+   "text": "calls `0066A130` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "006724B2",
+     "call"
+    ],
+    [
+     "006724B7",
+     "mov"
+    ],
+    [
+     "006724BD",
+     "mov"
+    ],
+    [
+     "006724CA",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006724D0",
+   "text": "calls `0066A460` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "006724E2",
+     "call"
+    ],
+    [
+     "006724E7",
+     "mov"
+    ],
+    [
+     "006724ED",
+     "mov"
+    ],
+    [
+     "006724FA",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00672500",
+   "text": "calls `0066A7B0` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "00672512",
+     "call"
+    ],
+    [
+     "00672517",
+     "mov"
+    ],
+    [
+     "0067251D",
+     "mov"
+    ],
+    [
+     "0067252A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00672530",
+   "text": "calls `0066AB00` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "00672542",
+     "call"
+    ],
+    [
+     "00672547",
+     "mov"
+    ],
+    [
+     "0067254D",
+     "mov"
+    ],
+    [
+     "0067255A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0067E220",
+   "text": "calls `0067D810` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "0067E232",
+     "call"
+    ],
+    [
+     "0067E237",
+     "mov"
+    ],
+    [
+     "0067E23D",
+     "mov"
+    ],
+    [
+     "0067E24A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006A4640",
+   "text": "calls `00698930` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "006A4652",
+     "call"
+    ],
+    [
+     "006A4657",
+     "mov"
+    ],
+    [
+     "006A465D",
+     "mov"
+    ],
+    [
+     "006A466A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006A9250",
+   "text": "calls `006A84C0` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "006A9262",
+     "call"
+    ],
+    [
+     "006A9267",
+     "mov"
+    ],
+    [
+     "006A926D",
+     "mov"
+    ],
+    [
+     "006A927A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006AF680",
+   "text": "calls `006AE780` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "006AF692",
+     "call"
+    ],
+    [
+     "006AF697",
+     "mov"
+    ],
+    [
+     "006AF69D",
+     "mov"
+    ],
+    [
+     "006AF6AA",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006BE530",
+   "text": "calls `006BCC40` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "006BE542",
+     "call"
+    ],
+    [
+     "006BE547",
+     "mov"
+    ],
+    [
+     "006BE54D",
+     "mov"
+    ],
+    [
+     "006BE55A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006BE560",
+   "text": "calls `006BCF80` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "006BE572",
+     "call"
+    ],
+    [
+     "006BE577",
+     "mov"
+    ],
+    [
+     "006BE57D",
+     "mov"
+    ],
+    [
+     "006BE58A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006BE590",
+   "text": "calls `006BD2B0` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "006BE5A2",
+     "call"
+    ],
+    [
+     "006BE5A7",
+     "mov"
+    ],
+    [
+     "006BE5AD",
+     "mov"
+    ],
+    [
+     "006BE5BA",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006C26B0",
+   "text": "calls `006C1920` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "006C26C2",
+     "call"
+    ],
+    [
+     "006C26C7",
+     "mov"
+    ],
+    [
+     "006C26CD",
+     "mov"
+    ],
+    [
+     "006C26DA",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006C4570",
+   "text": "calls `006C3800` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "006C4582",
+     "call"
+    ],
+    [
+     "006C4587",
+     "mov"
+    ],
+    [
+     "006C458D",
+     "mov"
+    ],
+    [
+     "006C459A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006C7960",
+   "text": "calls `006C6230` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "006C7972",
+     "call"
+    ],
+    [
+     "006C7977",
+     "mov"
+    ],
+    [
+     "006C797D",
+     "mov"
+    ],
+    [
+     "006C798A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006C7990",
+   "text": "calls `006C6560` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "006C79A2",
+     "call"
+    ],
+    [
+     "006C79A7",
+     "mov"
+    ],
+    [
+     "006C79AD",
+     "mov"
+    ],
+    [
+     "006C79BA",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006D53D0",
+   "text": "calls `006D2390` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "006D53E2",
+     "call"
+    ],
+    [
+     "006D53E7",
+     "mov"
+    ],
+    [
+     "006D53ED",
+     "mov"
+    ],
+    [
+     "006D53FA",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006D5400",
+   "text": "calls `006D26C0` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "006D5412",
+     "call"
+    ],
+    [
+     "006D5417",
+     "mov"
+    ],
+    [
+     "006D541D",
+     "mov"
+    ],
+    [
+     "006D542A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006D5430",
+   "text": "calls `006D29F0` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "006D5442",
+     "call"
+    ],
+    [
+     "006D5447",
+     "mov"
+    ],
+    [
+     "006D544D",
+     "mov"
+    ],
+    [
+     "006D545A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00873EB0",
+   "text": "calls `0086E470` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "00873EC2",
+     "call"
+    ],
+    [
+     "00873EC7",
+     "mov"
+    ],
+    [
+     "00873ECD",
+     "mov"
+    ],
+    [
+     "00873EDA",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00873EE0",
+   "text": "calls `0086E7B0` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "00873EF2",
+     "call"
+    ],
+    [
+     "00873EF7",
+     "mov"
+    ],
+    [
+     "00873EFD",
+     "mov"
+    ],
+    [
+     "00873F0A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0087A7B0",
+   "text": "calls `00879EC0` with 0 in `ecx`, then tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "0087A7C2",
+     "call"
+    ],
+    [
+     "0087A7C7",
+     "mov"
+    ],
+    [
+     "0087A7CD",
+     "mov"
+    ],
+    [
+     "0087A7DA",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "member",
+ "family": "context-acquire three-argument dispatch adapters"
+}

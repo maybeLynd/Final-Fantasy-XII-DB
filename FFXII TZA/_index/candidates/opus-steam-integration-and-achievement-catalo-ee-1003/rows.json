@@ -1,0 +1,45 @@
+{
+ "page": "20-Platform-Online-Achievements/steam-integration-and-achievement-catalogue.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "steam-integration-and-achievement-catalo-r8.json",
+ "rows": [
+  {
+   "fn": "007DDC20",
+   "text": "calls `AcquireSRWLockExclusive` (`008C2308`) on `rcx`+0x90; with `n` = dword [rcx+0x84]: when `n` is at least 4 (signed) calls `ReleaseSRWLockExclusive` (`008C22F8`) on `rcx`+0x90 and returns 0x80004005; otherwise stores `edx` at dword [rcx+0x74+4k] with `k` = (dword [rcx+0x88] + `n`) signed remainder 4, increments dword +0x84, calls `ReleaseSRWLockExclusive` on `rcx`+0x90 and `SetEvent` (`008C2198`) on qword [rcx+0x48]; returns 0 when that is non-zero, else `e` = `GetLastError` (`008C20A8`), returning (`e` AND 0xFFFF) OR 0x80070000 when `e` is greater than 0 (signed) and `e` otherwise",
+   "anchors": [
+    [
+     "007DDC42",
+     "call"
+    ],
+    [
+     "007DDC5A",
+     "call"
+    ],
+    [
+     "007DDC86",
+     "mov"
+    ],
+    [
+     "007DDC9A",
+     "call"
+    ],
+    [
+     "007DDCA4",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "007DDC20",
+   "why": "byte re-read by a non-drafting agent: Body checks out (IAT slots resolve to AcquireSRWLockExclusive/ReleaseSRWLockExclusive/SetEvent/GetLastError; signed remainder 4 via and 0x80000003 fix-up; HRESULT_FROM_WIN32 shape with jle). Defect: in 'with n = dword [rcx+0x84]: when n is at least 4 (signed) calls ReleaseSRWLockExclusive on it', the nearest antecedent of 'it' is n; the call is on rcx+0x90 (lea rcx,[rdi+0x90] at 007DDC53). Named explicitly."
+  }
+ ],
+ "mode": "ee",
+ "family": ""
+}

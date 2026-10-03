@@ -1,0 +1,118 @@
+{
+ "page": "22-Middleware-PhyreEngine/Script-Object-Accessors/phyre-script-object-accessors.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "phyre-script-object-accessors-tagged-out-record-vptr-store-103-byte-form-1-r9.json",
+ "rows": [
+  {
+   "fn": "005CBEB0",
+   "text": "with `f` = `rcx`, `o` = `rdx`, `k` = `r8` and `out` = `r9`: returns 0 when `o` is null; `v` = the pointer at qword [f+8] called with `o` - 8 + the sign-extended dword [f+0x10]; returns 0 when `out` is null or `k` is not (`02CAE660` OR 1); else stores 0 at qword [out] and `v` at qword [out+8] and returns 1",
+   "anchors": [
+    [
+     "005CBEC8",
+     "movsxd"
+    ],
+    [
+     "005CBED3",
+     "call"
+    ],
+    [
+     "005CBEDF",
+     "lea"
+    ],
+    [
+     "005CBEEA",
+     "cmp"
+    ],
+    [
+     "005CBEEF",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006B6200",
+   "text": "with `f` = `rcx`, `o` = `rdx`, `k` = `r8` and `out` = `r9`: returns 0 when `o` is null; `v` = the pointer at qword [f+8] called with `o` - 8 + the sign-extended dword [f+0x10]; returns 0 when `out` is null or `k` is not (`02E4D630` OR 1); else stores 0 at qword [out] and `v` at qword [out+8] and returns 1",
+   "anchors": [
+    [
+     "006B6218",
+     "movsxd"
+    ],
+    [
+     "006B6223",
+     "call"
+    ],
+    [
+     "006B622F",
+     "lea"
+    ],
+    [
+     "006B623A",
+     "cmp"
+    ],
+    [
+     "006B623F",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006B62F0",
+   "text": "with `f` = `rcx`, `o` = `rdx`, `k` = `r8` and `out` = `r9`: returns 0 when `o` is null; `v` = the pointer at qword [f+8] called with `o` - 8 + the sign-extended dword [f+0x10]; returns 0 when `out` is null or `k` is not (`02E518D0` OR 1); else stores 0 at qword [out] and `v` at qword [out+8] and returns 1",
+   "anchors": [
+    [
+     "006B6308",
+     "movsxd"
+    ],
+    [
+     "006B6313",
+     "call"
+    ],
+    [
+     "006B631F",
+     "lea"
+    ],
+    [
+     "006B632A",
+     "cmp"
+    ],
+    [
+     "006B632F",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006B6360",
+   "text": "with `f` = `rcx`, `o` = `rdx`, `k` = `r8` and `out` = `r9`: returns 0 when `o` is null; `v` = the pointer at qword [f+8] called with `o` - 8 + the sign-extended dword [f+0x10]; returns 0 when `out` is null or `k` is not (`02E404B0` OR 1); else stores 0 at qword [out] and `v` at qword [out+8] and returns 1",
+   "anchors": [
+    [
+     "006B6378",
+     "movsxd"
+    ],
+    [
+     "006B6383",
+     "call"
+    ],
+    [
+     "006B638F",
+     "lea"
+    ],
+    [
+     "006B639A",
+     "cmp"
+    ],
+    [
+     "006B639F",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "member",
+ "family": "tagged out-record vptr store, 103-byte form"
+}

@@ -820,3 +820,11 @@ is the whole of the relationship. Read from the shipping bytes 2026-09-14 (OPUS)
 mapped battle slot, refuses one above `0x27`, and returns `state block + 8 + slot x 0x1C8` - a battle stats record. The
 arm calls it in a loop and keeps up to nine record pointers, the records it then writes LP into. Nothing about
 achievements crosses; the crossing is that getter.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-steam-integration-and-achievement-catalo-ee-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `007DDC20` | 176 B | calls `AcquireSRWLockExclusive` (`008C2308`) on `rcx`+0x90; with `n` = dword [rcx+0x84]: when `n` is at least 4 (signed) calls `ReleaseSRWLockExclusive` (`008C22F8`) on `rcx`+0x90 and returns 0x80004005; otherwise stores `edx` at dword [rcx+0x74+4k] with `k` = (dword [rcx+0x88] + `n`) signed remainder 4, increments dword +0x84, calls `ReleaseSRWLockExclusive` on `rcx`+0x90 and `SetEvent` (`008C2198`) on qword [rcx+0x48]; returns 0 when that is non-zero, else `e` = `GetLastError` (`008C20A8`), returning (`e` AND 0xFFFF) OR 0x80070000 when `e` is greater than 0 (signed) and `e` otherwise | `007DDC42`, `007DDC5A`, `007DDC86`, `007DDC9A`, `007DDCA4` |

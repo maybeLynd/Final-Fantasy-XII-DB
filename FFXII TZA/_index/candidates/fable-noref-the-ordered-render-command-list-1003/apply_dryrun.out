@@ -1,0 +1,3 @@
+VERIFY 3 functions, 8 anchors, page 17-Presentation-Rendering/Render-Command-List/the-ordered-render-command-list.md (LF)
+DRY (verified; --apply appends 3 rows)
+FAILS 0

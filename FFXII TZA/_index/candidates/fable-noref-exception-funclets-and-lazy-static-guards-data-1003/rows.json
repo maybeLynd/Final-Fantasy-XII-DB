@@ -1,0 +1,1169 @@
+{
+ "page": "24-Compiler-And-CRT-Runtime/Exception-Handling-And-Unwind/exception-funclets-and-lazy-static-guards.md",
+ "date": "2026-10-03",
+ "rows": [
+  {
+   "fn": "00195360",
+   "text": "loads qword `+8` and, when it is non-null, calls slot 2 (qword `+0x10`) of its vtable; when that returns non-null it tail-jumps to slot 0 of the returned object's vtable with `edx` = 1; reached by the cleanup funclet `00896DB0`, which runs `lea rcx, [rdx + 0x28]` and jumps to it; that funclet is unwind-map entry 0 of the FuncInfo `008F3428` that the funclet's parent function's .pdata unwind record names (action field `01D56674`), and 2 other funclets of the block reach it too",
+   "anchors": [
+    [
+     "0019536D",
+     "mov"
+    ],
+    [
+     "00195379",
+     "call"
+    ],
+    [
+     "00195385",
+     "mov"
+    ],
+    [
+     "00195391",
+     "jmp"
+    ]
+   ],
+   "why_here": "reached only through EH funclets of the 00896280-008A6960 block (FuncInfo unwind/catch maps), which this page documents as a population",
+   "ref": {
+    "kind": "funclet",
+    "funclet": "00896DB0",
+    "site": "00896DB7",
+    "slot": "01D56674",
+    "parent": "00197A50",
+    "funcinfo": "008F3428"
+   },
+   "cites": [
+    "00896280",
+    "008A6960"
+   ]
+  },
+  {
+   "fn": "001953A0",
+   "text": "calls the import slot `008C2600` and, when its `al` result is zero, calls the import slot `008C26D0` with qword `[rcx]`; then, with `p` = qword `[rcx]`, it loads the qword at `p` + 0x48 + the sign-extended dword `+4` of qword `[p]` and, when that is non-null, calls slot 2 (qword `+0x10`) of its vtable; reached by the cleanup funclet `008968BC`, which runs `lea rcx, [rdx + 0x28]` and jumps to it; that funclet is unwind-map entry 1 of the FuncInfo that `00194B00`'s unwind record names (action field `01D55F50`), and 1 other funclet of the block reaches it too",
+   "anchors": [
+    [
+     "001953B2",
+     "call"
+    ],
+    [
+     "001953C0",
+     "call"
+    ],
+    [
+     "001953CD",
+     "movsxd"
+    ],
+    [
+     "001953D1",
+     "mov"
+    ],
+    [
+     "001953DE",
+     "call"
+    ]
+   ],
+   "why_here": "reached only through EH funclets of the 00896280-008A6960 block (FuncInfo unwind/catch maps), which this page documents as a population",
+   "ref": {
+    "kind": "funclet",
+    "funclet": "008968BC",
+    "site": "008968C3",
+    "slot": "01D55F50",
+    "parent": "00194B00"
+   },
+   "cites": [
+    "00896280",
+    "008A6960"
+   ]
+  },
+  {
+   "fn": "001953F0",
+   "text": "calls the import slot `008C2600` and, when its `al` result is zero, calls the import slot `008C2700` with qword `[rcx]`; then, with `p` = qword `[rcx]`, it loads the qword at `p` + 0x48 + the sign-extended dword `+4` of qword `[p]` and, when that is non-null, calls slot 2 (qword `+0x10`) of its vtable; reached by the cleanup funclet `0089690C`, which runs `lea rcx, [rdx + 0x28]` and jumps to it; that funclet is unwind-map entry 1 of the FuncInfo that `00194CD0`'s unwind record names (action field `01D55E6C`)",
+   "anchors": [
+    [
+     "00195402",
+     "call"
+    ],
+    [
+     "00195410",
+     "call"
+    ],
+    [
+     "0019541D",
+     "movsxd"
+    ],
+    [
+     "00195421",
+     "mov"
+    ],
+    [
+     "0019542E",
+     "call"
+    ]
+   ],
+   "why_here": "reached only through EH funclets of the 00896280-008A6960 block (FuncInfo unwind/catch maps), which this page documents as a population",
+   "ref": {
+    "kind": "funclet",
+    "funclet": "0089690C",
+    "site": "00896913",
+    "slot": "01D55E6C",
+    "parent": "00194CD0"
+   },
+   "cites": [
+    "00896280",
+    "008A6960"
+   ]
+  },
+  {
+   "fn": "0019A4F0",
+   "text": "loads qword `[rcx]` into `rcx` and tail-jumps through the import slot `008C27C8`; reached by the cleanup funclet `00896D00`, which runs `lea rcx, [rdx + 0x28]` and jumps to it; that funclet is unwind-map entry 0 of the FuncInfo `008F3D48` that the funclet's parent function's .pdata unwind record names (action field `01D5657C`), and 2 other funclets of the block reach it too",
+   "anchors": [
+    [
+     "0019A4F3",
+     "jmp"
+    ]
+   ],
+   "why_here": "reached only through EH funclets of the 00896280-008A6960 block (FuncInfo unwind/catch maps), which this page documents as a population",
+   "ref": {
+    "kind": "funclet",
+    "funclet": "00896D00",
+    "site": "00896D07",
+    "slot": "01D5657C",
+    "parent": "0019AA20",
+    "funcinfo": "008F3D48"
+   },
+   "cites": [
+    "00896280",
+    "008A6960"
+   ]
+  },
+  {
+   "fn": "0019DD30",
+   "text": "when qword `[rcx]` is non-null, calls slot 3 (qword `+0x18`) of the object embedded at `+0x18` with that qword and the span qword `+0x10` minus it truncated to a multiple of 0x118 (signed multiply-high division); reached by the cleanup funclet `00896EB0`, which runs `mov rcx, qword ptr [rdx + 0x80]` and jumps to it; that funclet is unwind-map entry 0 of the FuncInfo `008F4310` that the funclet's parent function's .pdata unwind record names (action field `01D56E1C`)",
+   "anchors": [
+    [
+     "0019DD40",
+     "mov"
+    ],
+    [
+     "0019DD56",
+     "movabs"
+    ],
+    [
+     "0019DD71",
+     "imul"
+    ],
+    [
+     "0019DD7B",
+     "call"
+    ]
+   ],
+   "why_here": "reached only through EH funclets of the 00896280-008A6960 block (FuncInfo unwind/catch maps), which this page documents as a population",
+   "ref": {
+    "kind": "funclet",
+    "funclet": "00896EB0",
+    "site": "00896EB7",
+    "slot": "01D56E1C",
+    "parent": "0019D740",
+    "funcinfo": "008F4310"
+   },
+   "cites": [
+    "00896280",
+    "008A6960"
+   ]
+  },
+  {
+   "fn": "0019DD90",
+   "text": "when qword `+0x100` is non-null, calls slot 3 (qword `+0x18`) of the object embedded at `+0x118` with that qword and the span qword `+0x110` minus it with its low 3 bits cleared; reached by the cleanup funclet `00896EF0`, which runs `lea rcx, [rdx + 0x50]` and jumps to it; that funclet is unwind-map entry 0 of the FuncInfo that `0019E010`'s unwind record names (action field `01D56DA0`), and 1 other funclet of the block reaches it too",
+   "anchors": [
+    [
+     "0019DDA0",
+     "mov"
+    ],
+    [
+     "0019DDC0",
+     "and"
+    ],
+    [
+     "0019DDC4",
+     "call"
+    ]
+   ],
+   "why_here": "reached only through EH funclets of the 00896280-008A6960 block (FuncInfo unwind/catch maps), which this page documents as a population",
+   "ref": {
+    "kind": "funclet",
+    "funclet": "00896EF0",
+    "site": "00896EF7",
+    "slot": "01D56DA0",
+    "parent": "0019E010"
+   },
+   "cites": [
+    "00896280",
+    "008A6960"
+   ]
+  },
+  {
+   "fn": "001A2830",
+   "text": "when qword `+0x10` minus qword `[rcx]` is greater than 1 (signed) and qword `[rcx]` is non-null, calls slot 3 (qword `+0x18`) of the object embedded at `+0x18` with qword `[rcx]` and the low dword of `+0x10` minus the low dword of `[rcx]`; reached by the cleanup funclet `00897020`, which runs `mov rcx, qword ptr [rdx + 0x90]` and jumps to it; that funclet is unwind-map entry 0 of the FuncInfo that `001A2130`'s unwind record names (action field `01D57A90`), and 75 other funclets of the block reach it too",
+   "anchors": [
+    [
+     "001A2840",
+     "mov"
+    ],
+    [
+     "001A284A",
+     "cmp"
+    ],
+    [
+     "001A2860",
+     "sub"
+    ],
+    [
+     "001A2863",
+     "call"
+    ]
+   ],
+   "why_here": "reached only through EH funclets of the 00896280-008A6960 block (FuncInfo unwind/catch maps), which this page documents as a population",
+   "ref": {
+    "kind": "funclet",
+    "funclet": "00897020",
+    "site": "00897027",
+    "slot": "01D57A90",
+    "parent": "001A2130"
+   },
+   "cites": [
+    "00896280",
+    "008A6960"
+   ]
+  },
+  {
+   "fn": "001A28D0",
+   "text": "when qword `+0x58` minus qword `+0x48` is greater than 1 (signed) and qword `+0x48` is non-null, calls slot 3 (qword `+0x18`) of the object embedded at `+0x60` with qword `+0x48` and the low dword of `+0x58` minus the low dword of `+0x48`; reached by the cleanup funclet `0089711C`, which runs `lea rcx, [rdx + 0x98]` and jumps to it; that funclet is unwind-map entry 1 of the FuncInfo that `001A2F70`'s unwind record names (action field `01D58300`)",
+   "anchors": [
+    [
+     "001A28DD",
+     "mov"
+    ],
+    [
+     "001A28E8",
+     "cmp"
+    ],
+    [
+     "001A28F2",
+     "sub"
+    ],
+    [
+     "001A2901",
+     "call"
+    ]
+   ],
+   "why_here": "reached only through EH funclets of the 00896280-008A6960 block (FuncInfo unwind/catch maps), which this page documents as a population",
+   "ref": {
+    "kind": "funclet",
+    "funclet": "0089711C",
+    "site": "00897123",
+    "slot": "01D58300",
+    "parent": "001A2F70"
+   },
+   "cites": [
+    "00896280",
+    "008A6960"
+   ]
+  },
+  {
+   "fn": "001A2D50",
+   "text": "for each 0x20-byte element from qword `[rcx]` while it is below qword `+8` (unsigned) whose first qword is non-null, calls slot 3 (qword `+0x18`) of the object embedded at element `+0x18` with that qword and the span element qword `+0x10` minus it with its low 3 bits cleared; then, when qword `[rcx]` is non-null, calls slot 3 of the object embedded at `+0x18` with it and the span qword `+0x10` minus it with its low 5 bits cleared; reached by the cleanup funclet `00897065`, which runs `mov rcx, qword ptr [rdx + 0x90]`; `add rcx, 0x120` and jumps to it; that funclet is unwind-map entry 4 of the FuncInfo that `001A2130`'s unwind record names (action field `01D57AB0`)",
+   "anchors": [
+    [
+     "001A2D73",
+     "cmp"
+    ],
+    [
+     "001A2D92",
+     "call"
+    ],
+    [
+     "001A2D96",
+     "add"
+    ],
+    [
+     "001A2DB5",
+     "and"
+    ],
+    [
+     "001A2DB9",
+     "call"
+    ]
+   ],
+   "why_here": "reached only through EH funclets of the 00896280-008A6960 block (FuncInfo unwind/catch maps), which this page documents as a population",
+   "ref": {
+    "kind": "funclet",
+    "funclet": "00897065",
+    "site": "00897073",
+    "slot": "01D57AB0",
+    "parent": "001A2130"
+   },
+   "cites": [
+    "00896280",
+    "008A6960"
+   ]
+  },
+  {
+   "fn": "001A2E10",
+   "text": "when qword `+0x50` minus qword `+0x40` is greater than 1 (signed) and qword `+0x40` is non-null, calls slot 3 (qword `+0x18`) of the object embedded at `+0x58` with qword `+0x40` and the low dword of `+0x50` minus the low dword of `+0x40`; reached by the cleanup funclet `00897110`, which runs `lea rcx, [rdx + 0x30]` and jumps to it; that funclet is unwind-map entry 0 of the FuncInfo that `001A2F70`'s unwind record names (action field `01D582F8`)",
+   "anchors": [
+    [
+     "001A2E1D",
+     "mov"
+    ],
+    [
+     "001A2E28",
+     "cmp"
+    ],
+    [
+     "001A2E32",
+     "sub"
+    ],
+    [
+     "001A2E41",
+     "call"
+    ]
+   ],
+   "why_here": "reached only through EH funclets of the 00896280-008A6960 block (FuncInfo unwind/catch maps), which this page documents as a population",
+   "ref": {
+    "kind": "funclet",
+    "funclet": "00897110",
+    "site": "00897117",
+    "slot": "01D582F8",
+    "parent": "001A2F70"
+   },
+   "cites": [
+    "00896280",
+    "008A6960"
+   ]
+  },
+  {
+   "fn": "001AADE0",
+   "text": "for each 0x20-byte element from qword `[rcx]` while it is below qword `+8` (unsigned) whose qword `+0x10` minus qword `[element]` is greater than 1 (signed) and whose first qword is non-null, calls slot 3 (qword `+0x18`) of the object embedded at element `+0x18` with that qword and the low-dword difference; then, when qword `[rcx]` is non-null, calls slot 3 of the object embedded at `+0x18` with it and the span qword `+0x10` minus it with its low 5 bits cleared; reached by the cleanup funclet `00897410`, which runs `mov rcx, qword ptr [rdx + 0x70]` and jumps to it; that funclet is unwind-map entry 0 of the FuncInfo that `001ADD30`'s unwind record names (action field `01D594AC`), and 1 other funclet of the block reaches it too",
+   "anchors": [
+    [
+     "001AAE03",
+     "cmp"
+    ],
+    [
+     "001AAE1A",
+     "cmp"
+    ],
+    [
+     "001AAE33",
+     "call"
+    ],
+    [
+     "001AAE56",
+     "and"
+    ],
+    [
+     "001AAE5A",
+     "call"
+    ]
+   ],
+   "why_here": "reached only through EH funclets of the 00896280-008A6960 block (FuncInfo unwind/catch maps), which this page documents as a population",
+   "ref": {
+    "kind": "funclet",
+    "funclet": "00897410",
+    "site": "00897417",
+    "slot": "01D594AC",
+    "parent": "001ADD30"
+   },
+   "cites": [
+    "00896280",
+    "008A6960"
+   ]
+  },
+  {
+   "fn": "001AAEE0",
+   "text": "when qword `+8` is non-null, calls slot 3 (qword `+0x18`) of the object embedded at `+0x20` with that qword and the span qword `+0x18` minus it with its low 3 bits cleared; reached by the cleanup funclet `0089727C`, which runs `lea rcx, [rdx + 0x38]` and jumps to it; that funclet is unwind-map entry 1 of the FuncInfo that `001AA840`'s unwind record names (action field `01D588AC`), and 1 other funclet of the block reaches it too",
+   "anchors": [
+    [
+     "001AAEF0",
+     "mov"
+    ],
+    [
+     "001AAF07",
+     "and"
+    ],
+    [
+     "001AAF0B",
+     "call"
+    ]
+   ],
+   "why_here": "reached only through EH funclets of the 00896280-008A6960 block (FuncInfo unwind/catch maps), which this page documents as a population",
+   "ref": {
+    "kind": "funclet",
+    "funclet": "0089727C",
+    "site": "00897283",
+    "slot": "01D588AC",
+    "parent": "001AA840"
+   },
+   "cites": [
+    "00896280",
+    "008A6960"
+   ]
+  },
+  {
+   "fn": "001AE130",
+   "text": "when qword `+0x18` minus qword `+8` is greater than 1 (signed) and qword `+8` is non-null, calls slot 3 (qword `+0x18`) of the object embedded at `+0x20` with qword `+8` and the low dword of `+0x18` minus the low dword of `+8`; reached by the cleanup funclet `008974EC`, which runs `lea rcx, [rdx + 0x58]` and jumps to it; that funclet is unwind-map entry 1 of the FuncInfo that `001AE550`'s unwind record names (action field `01D599F8`)",
+   "anchors": [
+    [
+     "001AE13D",
+     "mov"
+    ],
+    [
+     "001AE148",
+     "cmp"
+    ],
+    [
+     "001AE152",
+     "sub"
+    ],
+    [
+     "001AE161",
+     "call"
+    ]
+   ],
+   "why_here": "reached only through EH funclets of the 00896280-008A6960 block (FuncInfo unwind/catch maps), which this page documents as a population",
+   "ref": {
+    "kind": "funclet",
+    "funclet": "008974EC",
+    "site": "008974F3",
+    "slot": "01D599F8",
+    "parent": "001AE550"
+   },
+   "cites": [
+    "00896280",
+    "008A6960"
+   ]
+  },
+  {
+   "fn": "001BCD90",
+   "text": "walks the circular list headed at `rcx+8` (next link qword `[node]`, read before the call), calling slot 3 (qword `+0x18`) of the object embedded at `rcx+0x18` with each node and `r8d` = 0x20 until the walk returns to the head; the head's links are left as they were; reached by the cleanup funclet `00897BF8`, which runs `lea rcx, [rdx + 0x50]` and jumps to it; that funclet is unwind-map entry 2 of the FuncInfo that `001BCE30`'s unwind record names (action field `01D5B804`)",
+   "anchors": [
+    [
+     "001BCDA9",
+     "lea"
+    ],
+    [
+     "001BCDC3",
+     "mov"
+    ],
+    [
+     "001BCDCA",
+     "mov"
+    ],
+    [
+     "001BCDD4",
+     "call"
+    ],
+    [
+     "001BCDD8",
+     "cmp"
+    ]
+   ],
+   "why_here": "reached only through EH funclets of the 00896280-008A6960 block (FuncInfo unwind/catch maps), which this page documents as a population",
+   "ref": {
+    "kind": "funclet",
+    "funclet": "00897BF8",
+    "site": "00897BFF",
+    "slot": "01D5B804",
+    "parent": "001BCE30"
+   },
+   "cites": [
+    "00896280",
+    "008A6960"
+   ]
+  },
+  {
+   "fn": "001BE990",
+   "text": "for each 0x28-byte element from qword `[rcx]` while it is below qword `+8` (unsigned) whose qword `+0x10` minus qword `[element]` is greater than 1 (signed) and whose first qword is non-null, calls slot 3 (qword `+0x18`) of the object embedded at element `+0x18` with that qword and the low-dword difference; then, when qword `[rcx]` is non-null, calls slot 3 of the object embedded at `+0x18` with it and the span qword `+0x10` minus it truncated to a multiple of 0x28 (signed multiply-high division); reached by the cleanup funclet `00897CA0`, which runs `mov rcx, qword ptr [rdx + 0x38]`; `add rcx, 0x58` and jumps to it; that funclet is unwind-map entry 1 of the FuncInfo that `001BE730`'s unwind record names (action field `01D5BB84`)",
+   "anchors": [
+    [
+     "001BE9CA",
+     "cmp"
+    ],
+    [
+     "001BE9E3",
+     "call"
+    ],
+    [
+     "001BE9E7",
+     "add"
+    ],
+    [
+     "001BEA06",
+     "movabs"
+    ],
+    [
+     "001BEA2C",
+     "call"
+    ]
+   ],
+   "why_here": "reached only through EH funclets of the 00896280-008A6960 block (FuncInfo unwind/catch maps), which this page documents as a population",
+   "ref": {
+    "kind": "funclet",
+    "funclet": "00897CA0",
+    "site": "00897CAB",
+    "slot": "01D5BB84",
+    "parent": "001BE730"
+   },
+   "cites": [
+    "00896280",
+    "008A6960"
+   ]
+  },
+  {
+   "fn": "001DE300",
+   "text": "calls `001DE180` with `rcx` + 0x90 and then tail-jumps through the import slot `008C25E8` with the same pointer; reached by the cleanup funclet `0089840A`, which runs `lea rcx, [rdx + 0x60]` and jumps to it; that funclet is unwind-map entry 4 of the FuncInfo `00900A20` that the funclet's parent function's .pdata unwind record names (action field `01D5E13C`)",
+   "anchors": [
+    [
+     "001DE306",
+     "lea"
+    ],
+    [
+     "001DE310",
+     "call"
+    ],
+    [
+     "001DE31D",
+     "jmp"
+    ]
+   ],
+   "why_here": "reached only through EH funclets of the 00896280-008A6960 block (FuncInfo unwind/catch maps), which this page documents as a population",
+   "ref": {
+    "kind": "funclet",
+    "funclet": "0089840A",
+    "site": "00898411",
+    "slot": "01D5E13C",
+    "parent": "001DE5D0",
+    "funcinfo": "00900A20"
+   },
+   "cites": [
+    "00896280",
+    "008A6960"
+   ]
+  },
+  {
+   "fn": "001DE330",
+   "text": "calls `001DE200` with `rcx` + 0x88 and then tail-jumps through the import slot `008C25E8` with the same pointer; reached by the cleanup funclet `00898480`, which runs `lea rcx, [rdx + 0x40]` and jumps to it; that funclet is unwind-map entry 2 of the FuncInfo `00900A48` that the funclet's parent function's .pdata unwind record names (action field `01D5E27C`)",
+   "anchors": [
+    [
+     "001DE336",
+     "lea"
+    ],
+    [
+     "001DE340",
+     "call"
+    ],
+    [
+     "001DE34D",
+     "jmp"
+    ]
+   ],
+   "why_here": "reached only through EH funclets of the 00896280-008A6960 block (FuncInfo unwind/catch maps), which this page documents as a population",
+   "ref": {
+    "kind": "funclet",
+    "funclet": "00898480",
+    "site": "00898487",
+    "slot": "01D5E27C",
+    "parent": "001DEE90",
+    "funcinfo": "00900A48"
+   },
+   "cites": [
+    "00896280",
+    "008A6960"
+   ]
+  },
+  {
+   "fn": "001DE360",
+   "text": "calls `001DE280` with `rcx` + 0x98 and then tail-jumps through the import slot `008C25E8` with the same pointer; reached by the cleanup funclet `00898E31`, which runs `lea rcx, [rdx + 0xc0]` and jumps to it; that funclet is unwind-map entry 3 of the FuncInfo that `002002E0`'s unwind record names (action field `01D6102C`), and 6 other funclets of the block reach it too",
+   "anchors": [
+    [
+     "001DE366",
+     "lea"
+    ],
+    [
+     "001DE370",
+     "call"
+    ],
+    [
+     "001DE37D",
+     "jmp"
+    ]
+   ],
+   "why_here": "reached only through EH funclets of the 00896280-008A6960 block (FuncInfo unwind/catch maps), which this page documents as a population",
+   "ref": {
+    "kind": "funclet",
+    "funclet": "00898E31",
+    "site": "00898E38",
+    "slot": "01D6102C",
+    "parent": "002002E0"
+   },
+   "cites": [
+    "00896280",
+    "008A6960"
+   ]
+  },
+  {
+   "fn": "001E1B20",
+   "text": "when qword `[rcx]` is non-null, calls slot 3 (qword `+0x18`) of the object embedded at `+0x18` with that qword and the span qword `+0x10` minus it truncated to a multiple of 0x220 (signed multiply-high division); reached by the cleanup funclet `008984FC`, which runs `mov rcx, qword ptr [rdx + 0x80]`; `add rcx, 0x38` and jumps to it; that funclet is unwind-map entry 2 of the FuncInfo that `001E1670`'s unwind record names (action field `01D5EA5C`)",
+   "anchors": [
+    [
+     "001E1B30",
+     "mov"
+    ],
+    [
+     "001E1B46",
+     "movabs"
+    ],
+    [
+     "001E1B61",
+     "imul"
+    ],
+    [
+     "001E1B6B",
+     "call"
+    ]
+   ],
+   "why_here": "reached only through EH funclets of the 00896280-008A6960 block (FuncInfo unwind/catch maps), which this page documents as a population",
+   "ref": {
+    "kind": "funclet",
+    "funclet": "008984FC",
+    "site": "00898507",
+    "slot": "01D5EA5C",
+    "parent": "001E1670"
+   },
+   "cites": [
+    "00896280",
+    "008A6960"
+   ]
+  },
+  {
+   "fn": "001E1C60",
+   "text": "when qword `[rcx]` is non-null, calls slot 3 (qword `+0x18`) of the object embedded at `+0x18` with that qword and qword `+0x10` minus it; reached by the cleanup funclet `0089850C`, which runs `mov rcx, qword ptr [rdx + 0x80]`; `add rcx, 0x58` and jumps to it; that funclet is unwind-map entry 3 of the FuncInfo that `001E1670`'s unwind record names (action field `01D5EA64`), and 1 other funclet of the block reaches it too",
+   "anchors": [
+    [
+     "001E1C70",
+     "mov"
+    ],
+    [
+     "001E1C83",
+     "sub"
+    ],
+    [
+     "001E1C86",
+     "call"
+    ]
+   ],
+   "why_here": "reached only through EH funclets of the 00896280-008A6960 block (FuncInfo unwind/catch maps), which this page documents as a population",
+   "ref": {
+    "kind": "funclet",
+    "funclet": "0089850C",
+    "site": "00898517",
+    "slot": "01D5EA64",
+    "parent": "001E1670"
+   },
+   "cites": [
+    "00896280",
+    "008A6960"
+   ]
+  },
+  {
+   "fn": "001E76B0",
+   "text": "when qword `[rcx]` is non-null, calls slot 3 (qword `+0x18`) of the object embedded at `+0x18` with that qword and the span qword `+0x10` minus it truncated to a multiple of 0x3C (signed multiply-high division); reached by the cleanup funclet `00898660`, which runs `mov rcx, qword ptr [rdx + 0x40]`; `add rcx, 0x18` and jumps to it; that funclet is unwind-map entry 0 of the FuncInfo that `001E7480`'s unwind record names (action field `01D5EDBC`)",
+   "anchors": [
+    [
+     "001E76C0",
+     "mov"
+    ],
+    [
+     "001E76D6",
+     "movabs"
+    ],
+    [
+     "001E76F4",
+     "imul"
+    ],
+    [
+     "001E76FB",
+     "call"
+    ]
+   ],
+   "why_here": "reached only through EH funclets of the 00896280-008A6960 block (FuncInfo unwind/catch maps), which this page documents as a population",
+   "ref": {
+    "kind": "funclet",
+    "funclet": "00898660",
+    "site": "0089866B",
+    "slot": "01D5EDBC",
+    "parent": "001E7480"
+   },
+   "cites": [
+    "00896280",
+    "008A6960"
+   ]
+  },
+  {
+   "fn": "001F5080",
+   "text": "when qword `[rcx]` is non-null, calls slot 3 (qword `+0x18`) of the object embedded at `+0x18` with that qword and the span qword `+0x10` minus it truncated to a multiple of 0x318 (signed multiply-high division); reached by the cleanup funclet `0089899C`, which runs `mov rcx, qword ptr [rdx + 0x360]`; `add rcx, 0x58` and jumps to it; that funclet is unwind-map entry 3 of the FuncInfo that `001F4DA0`'s unwind record names (action field `01D60588`), and 1 other funclet of the block reaches it too",
+   "anchors": [
+    [
+     "001F5090",
+     "mov"
+    ],
+    [
+     "001F50A6",
+     "movabs"
+    ],
+    [
+     "001F50C4",
+     "imul"
+    ],
+    [
+     "001F50CE",
+     "call"
+    ]
+   ],
+   "why_here": "reached only through EH funclets of the 00896280-008A6960 block (FuncInfo unwind/catch maps), which this page documents as a population",
+   "ref": {
+    "kind": "funclet",
+    "funclet": "0089899C",
+    "site": "008989A7",
+    "slot": "01D60588",
+    "parent": "001F4DA0"
+   },
+   "cites": [
+    "00896280",
+    "008A6960"
+   ]
+  },
+  {
+   "fn": "001F50E0",
+   "text": "when qword `[rcx]` is non-null, calls slot 3 (qword `+0x18`) of the object embedded at `+0x18` with that qword and the span qword `+0x10` minus it truncated to a multiple of 0x24 (signed multiply-high division); reached by the cleanup funclet `008989AC`, which runs `mov rcx, qword ptr [rdx + 0x360]`; `add rcx, 0x390` and jumps to it; that funclet is unwind-map entry 4 of the FuncInfo that `001F4DA0`'s unwind record names (action field `01D60590`)",
+   "anchors": [
+    [
+     "001F50F0",
+     "mov"
+    ],
+    [
+     "001F5106",
+     "movabs"
+    ],
+    [
+     "001F5120",
+     "lea"
+    ],
+    [
+     "001F512B",
+     "call"
+    ]
+   ],
+   "why_here": "reached only through EH funclets of the 00896280-008A6960 block (FuncInfo unwind/catch maps), which this page documents as a population",
+   "ref": {
+    "kind": "funclet",
+    "funclet": "008989AC",
+    "site": "008989BA",
+    "slot": "01D60590",
+    "parent": "001F4DA0"
+   },
+   "cites": [
+    "00896280",
+    "008A6960"
+   ]
+  },
+  {
+   "fn": "001FC2E0",
+   "text": "when qword `+8` is non-null, calls slot 3 (qword `+0x18`) of the object embedded at `+0x20` with that qword and the span qword `+0x18` minus it with its low 2 bits cleared; reached by the cleanup funclet `00898AAC`, which runs `lea rcx, [rdx + 0x58]` and jumps to it; that funclet is unwind-map entry 1 of the FuncInfo that `001FC640`'s unwind record names (action field `01D60E9C`)",
+   "anchors": [
+    [
+     "001FC2F0",
+     "mov"
+    ],
+    [
+     "001FC307",
+     "and"
+    ],
+    [
+     "001FC30B",
+     "call"
+    ]
+   ],
+   "why_here": "reached only through EH funclets of the 00896280-008A6960 block (FuncInfo unwind/catch maps), which this page documents as a population",
+   "ref": {
+    "kind": "funclet",
+    "funclet": "00898AAC",
+    "site": "00898AB3",
+    "slot": "01D60E9C",
+    "parent": "001FC640"
+   },
+   "cites": [
+    "00896280",
+    "008A6960"
+   ]
+  },
+  {
+   "fn": "00204540",
+   "text": "calls `00209360` with `rcx`; then, when qword `+0x20` is non-null, calls slot 2 (qword `+0x10`) of its vtable and, when that returns non-null, calls slot 0 of the returned object's vtable with `edx` = 1; reached by the cleanup funclet `00899A08`, which runs `lea rcx, [rdx + 0x30]` and jumps to it; that funclet is unwind-map entry 6 of the FuncInfo that `0020A800`'s unwind record names (action field `01D62684`)",
+   "anchors": [
+    [
+     "00204552",
+     "call"
+    ],
+    [
+     "00204558",
+     "mov"
+    ],
+    [
+     "00204564",
+     "call"
+    ],
+    [
+     "00204578",
+     "call"
+    ]
+   ],
+   "why_here": "reached only through EH funclets of the 00896280-008A6960 block (FuncInfo unwind/catch maps), which this page documents as a population",
+   "ref": {
+    "kind": "funclet",
+    "funclet": "00899A08",
+    "site": "00899A0F",
+    "slot": "01D62684",
+    "parent": "0020A800"
+   },
+   "cites": [
+    "00896280",
+    "008A6960"
+   ]
+  },
+  {
+   "fn": "00204590",
+   "text": "when qword `+0x18` is non-null, calls slot 2 (qword `+0x10`) of its vtable and, when that returns non-null, calls slot 0 of the returned object's vtable with `edx` = 1; reached by the cleanup funclet `008999D0`, which runs `lea rcx, [rdx + 0x30]`; `add rcx, 8` and jumps to it; that funclet is unwind-map entry 2 of the FuncInfo that `0020A800`'s unwind record names (action field `01D62664`)",
+   "anchors": [
+    [
+     "0020459D",
+     "mov"
+    ],
+    [
+     "002045A9",
+     "call"
+    ],
+    [
+     "002045B5",
+     "mov"
+    ],
+    [
+     "002045BD",
+     "call"
+    ]
+   ],
+   "why_here": "reached only through EH funclets of the 00896280-008A6960 block (FuncInfo unwind/catch maps), which this page documents as a population",
+   "ref": {
+    "kind": "funclet",
+    "funclet": "008999D0",
+    "site": "008999DB",
+    "slot": "01D62664",
+    "parent": "0020A800"
+   },
+   "cites": [
+    "00896280",
+    "008A6960"
+   ]
+  },
+  {
+   "fn": "00206CD0",
+   "text": "walks the chain from qword `[rcx]` (next link qword `+0x10`), storing 0 to each node's `+0x10` after reading it and calling slot 0 of the node's vtable with `edx` = 1, and stores 0 to qword `[rcx]` whether or not the chain was empty; reached by the catch funclet `008996A0`, which calls it with `rcx` = qword `+0x40` of the parent frame (its incoming `rdx`) plus 0x40; that funclet is catch handler 0 of try block 0 in the FuncInfo `00905538` that the funclet's parent function's .pdata unwind record names (handler field `01D62FF0`)",
+   "anchors": [
+    [
+     "00206CDF",
+     "mov"
+    ],
+    [
+     "00206CFB",
+     "mov"
+    ],
+    [
+     "00206D01",
+     "call"
+    ],
+    [
+     "00206D08",
+     "mov"
+    ],
+    [
+     "00206D25",
+     "mov"
+    ]
+   ],
+   "why_here": "reached only through EH funclets of the 00896280-008A6960 block (FuncInfo unwind/catch maps), which this page documents as a population",
+   "ref": {
+    "kind": "funclet",
+    "funclet": "008996A0",
+    "site": "008996B5",
+    "slot": "01D62FF0",
+    "parent": "00206AD0",
+    "funcinfo": "00905538"
+   },
+   "cites": [
+    "00896280",
+    "008A6960"
+   ]
+  },
+  {
+   "fn": "0020C860",
+   "text": "stores the `.rdata` address `00906340` to qword `[rcx]` and, when bit 0 of byte `+8` is set, tail-jumps through the import slot `008C3178`; otherwise it returns; reached by the cleanup funclet `00899B00`, which runs `mov rcx, qword ptr [rdx + 0x40]`; `add rcx, 0x20` and jumps to it; that funclet is unwind-map entry 0 of the FuncInfo `009062E8` that the funclet's parent function's .pdata unwind record names (action field `01D63F4C`)",
+   "anchors": [
+    [
+     "0020C864",
+     "lea"
+    ],
+    [
+     "0020C86B",
+     "mov"
+    ],
+    [
+     "0020C870",
+     "jmp"
+    ]
+   ],
+   "why_here": "reached only through EH funclets of the 00896280-008A6960 block (FuncInfo unwind/catch maps), which this page documents as a population",
+   "ref": {
+    "kind": "funclet",
+    "funclet": "00899B00",
+    "site": "00899B0B",
+    "slot": "01D63F4C",
+    "parent": "0020C730",
+    "funcinfo": "009062E8"
+   },
+   "cites": [
+    "00896280",
+    "008A6960"
+   ]
+  },
+  {
+   "fn": "0020C880",
+   "text": "stores the `.rdata` address `00906380` to qword `[rcx]` and, when bit 0 of byte `+8` is set, tail-jumps through the import slot `008C3178`; otherwise it returns; reached by the cleanup funclet `00899B10`, which runs `mov rcx, qword ptr [rdx + 0x40]`; `add rcx, 0x40` and jumps to it; that funclet is unwind-map entry 1 of the FuncInfo `009062E8` that the funclet's parent function's .pdata unwind record names (action field `01D63F54`)",
+   "anchors": [
+    [
+     "0020C884",
+     "lea"
+    ],
+    [
+     "0020C88B",
+     "mov"
+    ],
+    [
+     "0020C890",
+     "jmp"
+    ]
+   ],
+   "why_here": "reached only through EH funclets of the 00896280-008A6960 block (FuncInfo unwind/catch maps), which this page documents as a population",
+   "ref": {
+    "kind": "funclet",
+    "funclet": "00899B10",
+    "site": "00899B1B",
+    "slot": "01D63F54",
+    "parent": "0020C730",
+    "funcinfo": "009062E8"
+   },
+   "cites": [
+    "00896280",
+    "008A6960"
+   ]
+  },
+  {
+   "fn": "00211A60",
+   "text": "when qword `[rcx]` is non-null, calls slot 3 (qword `+0x18`) of the object embedded at `+0x18` with that qword and the span qword `+0x10` minus it truncated to a multiple of 0x128 (signed multiply-high division); reached by the cleanup funclet `00899CE0`, which runs `mov rcx, qword ptr [rdx + 0x80]` and jumps to it; that funclet is unwind-map entry 0 of the FuncInfo `00906BB0` that the funclet's parent function's .pdata unwind record names (action field `01D64904`)",
+   "anchors": [
+    [
+     "00211A70",
+     "mov"
+    ],
+    [
+     "00211A86",
+     "movabs"
+    ],
+    [
+     "00211AA1",
+     "imul"
+    ],
+    [
+     "00211AAB",
+     "call"
+    ]
+   ],
+   "why_here": "reached only through EH funclets of the 00896280-008A6960 block (FuncInfo unwind/catch maps), which this page documents as a population",
+   "ref": {
+    "kind": "funclet",
+    "funclet": "00899CE0",
+    "site": "00899CE7",
+    "slot": "01D64904",
+    "parent": "002116B0",
+    "funcinfo": "00906BB0"
+   },
+   "cites": [
+    "00896280",
+    "008A6960"
+   ]
+  },
+  {
+   "fn": "0021EBC0",
+   "text": "when qword `[rcx]` is non-null, calls slot 3 (qword `+0x18`) of the object embedded at `+0x18` with that qword and the span qword `+0x10` minus it truncated to a multiple of 0xA (signed multiply-high division); reached by the cleanup funclet `0089A090`, which runs `mov rcx, qword ptr [rdx + 0x60]` and jumps to it; that funclet is unwind-map entry 0 of the FuncInfo that `0021E090`'s unwind record names (action field `01D670A4`)",
+   "anchors": [
+    [
+     "0021EBD0",
+     "mov"
+    ],
+    [
+     "0021EBE6",
+     "movabs"
+    ],
+    [
+     "0021EC05",
+     "add"
+    ],
+    [
+     "0021EC0B",
+     "call"
+    ]
+   ],
+   "why_here": "reached only through EH funclets of the 00896280-008A6960 block (FuncInfo unwind/catch maps), which this page documents as a population",
+   "ref": {
+    "kind": "funclet",
+    "funclet": "0089A090",
+    "site": "0089A097",
+    "slot": "01D670A4",
+    "parent": "0021E090"
+   },
+   "cites": [
+    "00896280",
+    "008A6960"
+   ]
+  },
+  {
+   "fn": "005DDAE0",
+   "text": "when qword `[rcx]` is non-null, stores 0 to dword `+8` of the object it points to; reached by the cleanup funclet `0089D990`, which runs `lea rcx, [rdx + 0x1b8]` and jumps to it; that funclet is unwind-map entry 0 of the FuncInfo that `0060B980`'s unwind record names (action field `01DA3738`)",
+   "anchors": [
+    [
+     "005DDAE3",
+     "test"
+    ],
+    [
+     "005DDAE8",
+     "mov"
+    ]
+   ],
+   "why_here": "reached only through EH funclets of the 00896280-008A6960 block (FuncInfo unwind/catch maps), which this page documents as a population",
+   "ref": {
+    "kind": "funclet",
+    "funclet": "0089D990",
+    "site": "0089D997",
+    "slot": "01DA3738",
+    "parent": "0060B980"
+   },
+   "cites": [
+    "00896280",
+    "008A6960"
+   ]
+  },
+  {
+   "fn": "00681840",
+   "text": "with `p` = qword `[rcx]` and `q` = qword `rcx+8` both non-null and `n` = dword `p+0x58` non-zero, stores n-1 to dword `p+0x58` when `q` equals qword `p+0x50` + 0x28 * (n-1), and otherwise leaves it; reached by the cleanup funclet `008A0030`, which runs `lea rcx, [rdx + 0x38]` and jumps to it; that funclet is unwind-map entry 0 of the FuncInfo that `00684D10`'s unwind record names (action field `01DB6808`), and 1 other funclet of the block reaches it too",
+   "anchors": [
+    [
+     "00681848",
+     "mov"
+    ],
+    [
+     "00681851",
+     "mov"
+    ],
+    [
+     "00681864",
+     "lea"
+    ],
+    [
+     "00681868",
+     "cmp"
+    ],
+    [
+     "0068186D",
+     "mov"
+    ]
+   ],
+   "why_here": "reached only through EH funclets of the 00896280-008A6960 block (FuncInfo unwind/catch maps), which this page documents as a population",
+   "ref": {
+    "kind": "funclet",
+    "funclet": "008A0030",
+    "site": "008A0037",
+    "slot": "01DB6808",
+    "parent": "00684D10"
+   },
+   "cites": [
+    "00896280",
+    "008A6960"
+   ]
+  }
+ ],
+ "corrections": [
+  {
+   "fn": "00195360",
+   "was": "loads qword `+8` and, when it is non-null, calls slot 2 (qword `+0x10`) of its vtable; when that returns non-null it tail-jumps to slot 0 of the returned object's vtable with `edx` = 1; reached by the cleanup funclet `00896DB0`, which runs `lea rcx, [rdx + 0x28]` and jumps to it; that funclet is unwind-map entry 0 of the FuncInfo that `00197A50`'s unwind record names (action field `01D56674`), and 2 other funclets of the block reach it too",
+   "now": "loads qword `+8` and, when it is non-null, calls slot 2 (qword `+0x10`) of its vtable; when that returns non-null it tail-jumps to slot 0 of the returned object's vtable with `edx` = 1; reached by the cleanup funclet `00896DB0`, which runs `lea rcx, [rdx + 0x28]` and jumps to it; that funclet is unwind-map entry 0 of the FuncInfo `008F3428` that the funclet's parent function's .pdata unwind record names (action field `01D56674`), and 2 other funclets of the block reach it too",
+   "why": "neighbour gate: the funclet's parent function, new to the page, was cited by entry and imported its own caller/callee edges into layers this page never mentions; the parent is not called by the funclet or the body, so it is now named by role and its FuncInfo is cited by address instead. The FuncInfo address is checked at the bytes (apply.py: `ref.funcinfo` must equal the FuncInfo the parent's own .pdata unwind record names, still taken from `ref.parent`), so the row states no less than before."
+  },
+  {
+   "fn": "0019A4F0",
+   "was": "loads qword `[rcx]` into `rcx` and tail-jumps through the import slot `008C27C8`; reached by the cleanup funclet `00896D00`, which runs `lea rcx, [rdx + 0x28]` and jumps to it; that funclet is unwind-map entry 0 of the FuncInfo that `0019AA20`'s unwind record names (action field `01D5657C`), and 2 other funclets of the block reach it too",
+   "now": "loads qword `[rcx]` into `rcx` and tail-jumps through the import slot `008C27C8`; reached by the cleanup funclet `00896D00`, which runs `lea rcx, [rdx + 0x28]` and jumps to it; that funclet is unwind-map entry 0 of the FuncInfo `008F3D48` that the funclet's parent function's .pdata unwind record names (action field `01D5657C`), and 2 other funclets of the block reach it too",
+   "why": "neighbour gate: the funclet's parent function, new to the page, was cited by entry and imported its own caller/callee edges into layers this page never mentions; the parent is not called by the funclet or the body, so it is now named by role and its FuncInfo is cited by address instead. The FuncInfo address is checked at the bytes (apply.py: `ref.funcinfo` must equal the FuncInfo the parent's own .pdata unwind record names, still taken from `ref.parent`), so the row states no less than before."
+  },
+  {
+   "fn": "0019DD30",
+   "was": "when qword `[rcx]` is non-null, calls slot 3 (qword `+0x18`) of the object embedded at `+0x18` with that qword and the span qword `+0x10` minus it truncated to a multiple of 0x118 (signed multiply-high division); reached by the cleanup funclet `00896EB0`, which runs `mov rcx, qword ptr [rdx + 0x80]` and jumps to it; that funclet is unwind-map entry 0 of the FuncInfo that `0019D740`'s unwind record names (action field `01D56E1C`)",
+   "now": "when qword `[rcx]` is non-null, calls slot 3 (qword `+0x18`) of the object embedded at `+0x18` with that qword and the span qword `+0x10` minus it truncated to a multiple of 0x118 (signed multiply-high division); reached by the cleanup funclet `00896EB0`, which runs `mov rcx, qword ptr [rdx + 0x80]` and jumps to it; that funclet is unwind-map entry 0 of the FuncInfo `008F4310` that the funclet's parent function's .pdata unwind record names (action field `01D56E1C`)",
+   "why": "neighbour gate: the funclet's parent function, new to the page, was cited by entry and imported its own caller/callee edges into layers this page never mentions; the parent is not called by the funclet or the body, so it is now named by role and its FuncInfo is cited by address instead. The FuncInfo address is checked at the bytes (apply.py: `ref.funcinfo` must equal the FuncInfo the parent's own .pdata unwind record names, still taken from `ref.parent`), so the row states no less than before."
+  },
+  {
+   "fn": "001DE300",
+   "was": "calls `001DE180` with `rcx` + 0x90 and then tail-jumps through the import slot `008C25E8` with the same pointer; reached by the cleanup funclet `0089840A`, which runs `lea rcx, [rdx + 0x60]` and jumps to it; that funclet is unwind-map entry 4 of the FuncInfo that `001DE5D0`'s unwind record names (action field `01D5E13C`)",
+   "now": "calls `001DE180` with `rcx` + 0x90 and then tail-jumps through the import slot `008C25E8` with the same pointer; reached by the cleanup funclet `0089840A`, which runs `lea rcx, [rdx + 0x60]` and jumps to it; that funclet is unwind-map entry 4 of the FuncInfo `00900A20` that the funclet's parent function's .pdata unwind record names (action field `01D5E13C`)",
+   "why": "neighbour gate: the funclet's parent function, new to the page, was cited by entry and imported its own caller/callee edges into layers this page never mentions; the parent is not called by the funclet or the body, so it is now named by role and its FuncInfo is cited by address instead. The FuncInfo address is checked at the bytes (apply.py: `ref.funcinfo` must equal the FuncInfo the parent's own .pdata unwind record names, still taken from `ref.parent`), so the row states no less than before."
+  },
+  {
+   "fn": "001DE330",
+   "was": "calls `001DE200` with `rcx` + 0x88 and then tail-jumps through the import slot `008C25E8` with the same pointer; reached by the cleanup funclet `00898480`, which runs `lea rcx, [rdx + 0x40]` and jumps to it; that funclet is unwind-map entry 2 of the FuncInfo that `001DEE90`'s unwind record names (action field `01D5E27C`)",
+   "now": "calls `001DE200` with `rcx` + 0x88 and then tail-jumps through the import slot `008C25E8` with the same pointer; reached by the cleanup funclet `00898480`, which runs `lea rcx, [rdx + 0x40]` and jumps to it; that funclet is unwind-map entry 2 of the FuncInfo `00900A48` that the funclet's parent function's .pdata unwind record names (action field `01D5E27C`)",
+   "why": "neighbour gate: the funclet's parent function, new to the page, was cited by entry and imported its own caller/callee edges into layers this page never mentions; the parent is not called by the funclet or the body, so it is now named by role and its FuncInfo is cited by address instead. The FuncInfo address is checked at the bytes (apply.py: `ref.funcinfo` must equal the FuncInfo the parent's own .pdata unwind record names, still taken from `ref.parent`), so the row states no less than before."
+  },
+  {
+   "fn": "00206CD0",
+   "was": "walks the chain from qword `[rcx]` (next link qword `+0x10`), storing 0 to each node's `+0x10` after reading it and calling slot 0 of the node's vtable with `edx` = 1, and stores 0 to qword `[rcx]` whether or not the chain was empty; reached by the catch funclet `008996A0`, which calls it with `rcx` = qword `+0x40` of the parent frame (its incoming `rdx`) plus 0x40; that funclet is catch handler 0 of try block 0 in the FuncInfo that `00206AD0`'s unwind record names (handler field `01D62FF0`)",
+   "now": "walks the chain from qword `[rcx]` (next link qword `+0x10`), storing 0 to each node's `+0x10` after reading it and calling slot 0 of the node's vtable with `edx` = 1, and stores 0 to qword `[rcx]` whether or not the chain was empty; reached by the catch funclet `008996A0`, which calls it with `rcx` = qword `+0x40` of the parent frame (its incoming `rdx`) plus 0x40; that funclet is catch handler 0 of try block 0 in the FuncInfo `00905538` that the funclet's parent function's .pdata unwind record names (handler field `01D62FF0`)",
+   "why": "neighbour gate: the funclet's parent function, new to the page, was cited by entry and imported its own caller/callee edges into layers this page never mentions; the parent is not called by the funclet or the body, so it is now named by role and its FuncInfo is cited by address instead. The FuncInfo address is checked at the bytes (apply.py: `ref.funcinfo` must equal the FuncInfo the parent's own .pdata unwind record names, still taken from `ref.parent`), so the row states no less than before."
+  },
+  {
+   "fn": "0020C860",
+   "was": "stores the `.rdata` address `00906340` to qword `[rcx]` and, when bit 0 of byte `+8` is set, tail-jumps through the import slot `008C3178`; otherwise it returns; reached by the cleanup funclet `00899B00`, which runs `mov rcx, qword ptr [rdx + 0x40]`; `add rcx, 0x20` and jumps to it; that funclet is unwind-map entry 0 of the FuncInfo that `0020C730`'s unwind record names (action field `01D63F4C`)",
+   "now": "stores the `.rdata` address `00906340` to qword `[rcx]` and, when bit 0 of byte `+8` is set, tail-jumps through the import slot `008C3178`; otherwise it returns; reached by the cleanup funclet `00899B00`, which runs `mov rcx, qword ptr [rdx + 0x40]`; `add rcx, 0x20` and jumps to it; that funclet is unwind-map entry 0 of the FuncInfo `009062E8` that the funclet's parent function's .pdata unwind record names (action field `01D63F4C`)",
+   "why": "neighbour gate: the funclet's parent function, new to the page, was cited by entry and imported its own caller/callee edges into layers this page never mentions; the parent is not called by the funclet or the body, so it is now named by role and its FuncInfo is cited by address instead. The FuncInfo address is checked at the bytes (apply.py: `ref.funcinfo` must equal the FuncInfo the parent's own .pdata unwind record names, still taken from `ref.parent`), so the row states no less than before."
+  },
+  {
+   "fn": "0020C880",
+   "was": "stores the `.rdata` address `00906380` to qword `[rcx]` and, when bit 0 of byte `+8` is set, tail-jumps through the import slot `008C3178`; otherwise it returns; reached by the cleanup funclet `00899B10`, which runs `mov rcx, qword ptr [rdx + 0x40]`; `add rcx, 0x40` and jumps to it; that funclet is unwind-map entry 1 of the FuncInfo that `0020C730`'s unwind record names (action field `01D63F54`)",
+   "now": "stores the `.rdata` address `00906380` to qword `[rcx]` and, when bit 0 of byte `+8` is set, tail-jumps through the import slot `008C3178`; otherwise it returns; reached by the cleanup funclet `00899B10`, which runs `mov rcx, qword ptr [rdx + 0x40]`; `add rcx, 0x40` and jumps to it; that funclet is unwind-map entry 1 of the FuncInfo `009062E8` that the funclet's parent function's .pdata unwind record names (action field `01D63F54`)",
+   "why": "neighbour gate: the funclet's parent function, new to the page, was cited by entry and imported its own caller/callee edges into layers this page never mentions; the parent is not called by the funclet or the body, so it is now named by role and its FuncInfo is cited by address instead. The FuncInfo address is checked at the bytes (apply.py: `ref.funcinfo` must equal the FuncInfo the parent's own .pdata unwind record names, still taken from `ref.parent`), so the row states no less than before."
+  },
+  {
+   "fn": "00211A60",
+   "was": "when qword `[rcx]` is non-null, calls slot 3 (qword `+0x18`) of the object embedded at `+0x18` with that qword and the span qword `+0x10` minus it truncated to a multiple of 0x128 (signed multiply-high division); reached by the cleanup funclet `00899CE0`, which runs `mov rcx, qword ptr [rdx + 0x80]` and jumps to it; that funclet is unwind-map entry 0 of the FuncInfo that `002116B0`'s unwind record names (action field `01D64904`)",
+   "now": "when qword `[rcx]` is non-null, calls slot 3 (qword `+0x18`) of the object embedded at `+0x18` with that qword and the span qword `+0x10` minus it truncated to a multiple of 0x128 (signed multiply-high division); reached by the cleanup funclet `00899CE0`, which runs `mov rcx, qword ptr [rdx + 0x80]` and jumps to it; that funclet is unwind-map entry 0 of the FuncInfo `00906BB0` that the funclet's parent function's .pdata unwind record names (action field `01D64904`)",
+   "why": "neighbour gate: the funclet's parent function, new to the page, was cited by entry and imported its own caller/callee edges into layers this page never mentions; the parent is not called by the funclet or the body, so it is now named by role and its FuncInfo is cited by address instead. The FuncInfo address is checked at the bytes (apply.py: `ref.funcinfo` must equal the FuncInfo the parent's own .pdata unwind record names, still taken from `ref.parent`), so the row states no less than before."
+  }
+ ]
+}

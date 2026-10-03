@@ -1,0 +1,40 @@
+{
+ "page": "16-UI/Handbook/the-handbooks-monster-viewer.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-handbooks-monster-viewer-r8.json",
+ "rows": [
+  {
+   "fn": "0034B120",
+   "text": "with `e` = `rdx` and `k` = `00267E10(r9)`: when `a` = `002E97B0(e)` and qword [a+8] are non-null, calls `002E6BC0(e, 0)`, `002EB490(qword [a+8], k)`, `002ECBA0(qword [a+8], k, 1)` and `002EC6B0(e, k)` (qword [a+8] re-read for each), and calls `00314D40(1)` when `002E4C30(qword [a+8], 002E9C00(e))` returns 0",
+   "anchors": [
+    [
+     "0034B13F",
+     "call"
+    ],
+    [
+     "0034B158",
+     "call"
+    ],
+    [
+     "0034B174",
+     "call"
+    ],
+    [
+     "0034B191",
+     "call"
+    ],
+    [
+     "0034B19D",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

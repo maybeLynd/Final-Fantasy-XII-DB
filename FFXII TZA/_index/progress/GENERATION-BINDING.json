@@ -1,15 +1,15 @@
 {
  "as_of": {
   "in:_index/_inbox/TEAM.json": {
-   "path": "Database/Tools/work/progress-board-snapshot-42340.json",
+   "path": "Database/Tools/work/progress-board-snapshot-36484.json",
    "reason": "volatile (read only from its snapshot)",
-   "sha256": "a21d45e50ca4d2c4f396f51626b3738da081b25c2bd969e063a34ace45e889a8",
+   "sha256": "60941dc737a910ff57c5738fc5f5aa41a7ecbbc583a3ff43c374e20699739ed8",
    "state": "present"
   },
   "preimage:doc-signature.txt": {
    "path": "Database/Tools/work/progress-doc-signature.txt",
    "reason": "derived preimage, recorded not bound",
-   "sha256": "6c048e271be755bdc6415dd27ac59a50b13c2346ba78e2f2011d50c9e51edadc",
+   "sha256": "d5665c718ad94d63807a57edef91e8a7b0505cf090d432fbc8eaeb4977c9ff2e",
    "state": "present"
   }
  },
@@ -18,7 +18,7 @@
   "Database/FFXII TZA/_index/CONTRADICTIONS.tsv": "95dd77c664c5d63eeb21537fdb3fe224785227d2bfab09013850436fece64f3b",
   "Database/FFXII TZA/_index/COVERAGE-DIMENSIONS.md": "4a3965e1e59575e5cf7d9625c8f26c1521b752b2e8ec96c5f8c65e68739cc3d7",
   "Database/FFXII TZA/_index/COVERAGE.md": "00c9d76b298ec4f1dee7109a3bf328cfc139284cdbd09c6da3503e3b2c29e1c3",
-  "Database/FFXII TZA/_index/L2-VERDICTS.md": "9e18f66651f55ac5b927b36edefe8128b2f59b40437b7c9e2898b3c5ffe453f8",
+  "Database/FFXII TZA/_index/L2-VERDICTS.md": "8e09417d752b378d5ec3ab151bc91e2a96576ad9ac1f3fba2c2483fca629640c",
   "Database/FFXII TZA/_index/OPEN-QUESTIONS.md": "fddd24ac1fdedbbd8ed5a9b1e9729d0e75d6e8b311bc6ef7611de428e1954ddd",
   "Database/FFXII TZA/_index/PARITY-STATUS.md": "950a84ce2e0e737fd1888cc6c5a46d2e9b6363fd8f00f879cd6a097fdabfa79b",
   "Database/FFXII TZA/_index/PROGRAM-STATE.md": "e364035e202f1396d88d3fbbd3d1ec3903e7e92bf7b3415a50dc20f103afd73f",
@@ -32,16 +32,16 @@
   "Database/Tools/analysis-kit/gfz-scripts/generation.py": "ec45e3f6d4bbc0c0e42d7f869cf6a8e76b31dc7121be0fd1c03dd3ac354bdff6",
   "Database/Tools/analysis-kit/gfz-scripts/transfer_audit.py": "e5aa2debc61e6805c8470a179a359a9af47f614fef6b90ec491f892aecdcdc01"
  },
- "committed_at": "2026-10-03T14:52:37Z",
+ "committed_at": "2026-10-03T17:38:35Z",
  "format": "ff12-derived-binding-1",
- "generation": "g20261003T145235Z-80b332",
+ "generation": "g20261003T173834Z-72e4d4",
  "hash": "sha256 of CRLF-folded bytes",
  "outputs": {
-  "Database/FFXII TZA/PROGRESS.md": "6cb7d900858f0ac0fcce46cc87bc51beb948eb7aced7899772347d8782e15897",
-  "Database/FFXII TZA/_index/progress/crosswalk.md": "6fdce10f293ba84bb873b4329750d56d0c5aa44d96c1f9e572aa5faf55bd76c2",
-  "Database/FFXII TZA/_index/progress/metrics.md": "7de3b44554f6b03620aad3687a1c5a8b3ce80df9474aa39155f19ecfdf77647b",
-  "Database/FFXII TZA/_index/progress/snapshot.json": "559f9aa7750474844092567fd07251586145a3c2b5456547f2915b264f9c7a9c",
-  "Database/FFXII TZA/_index/progress/snapshot.md": "92829628789f13caa711106dca33f7b3d65f946e7538a55c3e43589d9839e999"
+  "Database/FFXII TZA/PROGRESS.md": "151d0d8026e465cd8ea2659e68a8b6ce7fa6c51a7ea221285aec818493712383",
+  "Database/FFXII TZA/_index/progress/crosswalk.md": "c7045d050fdfd37eca2e286c2540c2b04735921793c77b6f5e95652a08540f7c",
+  "Database/FFXII TZA/_index/progress/metrics.md": "899c268c81369fbc887d1ff2dc76ea612a1a2bddc6f10ff32c8329e5d1b87946",
+  "Database/FFXII TZA/_index/progress/snapshot.json": "72ac12386986add685f89f40619b038a24fc9ed89848ed0e3c85059f6cc86e21",
+  "Database/FFXII TZA/_index/progress/snapshot.md": "a220d4d0be255c28186488b777f0b37f29a49e192e7061ea96820306b9f5fc0d"
  },
  "regenerate": [
   "python",

@@ -1,0 +1,222 @@
+{
+ "page": "22-Middleware-PhyreEngine/Script-Object-Accessors/phyre-script-object-accessors.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "phyre-script-object-accessors-optional-pointer-member-call-dispatch-adapters-75-byte-form-1-r9.json",
+ "rows": [
+  {
+   "fn": "006B2B70",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `006B0760` with `rcx`, `rdx` and `r8` as received; when `p` is non-null tail-jumps to `006840A0` with `c` in `rcx` and `p` in `rdx` (`r8` not set); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "006B2B7A",
+     "mov"
+    ],
+    [
+     "006B2B80",
+     "call"
+    ],
+    [
+     "006B2B8B",
+     "je"
+    ],
+    [
+     "006B2B9A",
+     "jmp"
+    ],
+    [
+     "006B2BA4",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006B2BC0",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `006B08A0` with `rcx`, `rdx` and `r8` as received; when `p` is non-null tail-jumps to `00684130` with `c` in `rcx` and `p` in `rdx` (`r8` not set); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "006B2BCA",
+     "mov"
+    ],
+    [
+     "006B2BD0",
+     "call"
+    ],
+    [
+     "006B2BDB",
+     "je"
+    ],
+    [
+     "006B2BEA",
+     "jmp"
+    ],
+    [
+     "006B2BF4",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006B2C10",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `006B09E0` with `rcx`, `rdx` and `r8` as received; when `p` is non-null tail-jumps to `00684130` with `c` in `rcx` and `p` in `rdx` (`r8` not set); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "006B2C1A",
+     "mov"
+    ],
+    [
+     "006B2C20",
+     "call"
+    ],
+    [
+     "006B2C2B",
+     "je"
+    ],
+    [
+     "006B2C3A",
+     "jmp"
+    ],
+    [
+     "006B2C44",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006B2C60",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `006B0B20` with `rcx`, `rdx` and `r8` as received; when `p` is non-null tail-jumps to `00684280` with `c` in `rcx` and `p` in `rdx` (`r8` not set); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "006B2C6A",
+     "mov"
+    ],
+    [
+     "006B2C70",
+     "call"
+    ],
+    [
+     "006B2C7B",
+     "je"
+    ],
+    [
+     "006B2C8A",
+     "jmp"
+    ],
+    [
+     "006B2C94",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006B2CB0",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `006B0EC0` with `rcx`, `rdx` and `r8` as received; when `p` is non-null tail-jumps to `00684300` with `c` in `rcx` and `p` in `rdx` (`r8` not set); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "006B2CBA",
+     "mov"
+    ],
+    [
+     "006B2CC0",
+     "call"
+    ],
+    [
+     "006B2CCB",
+     "je"
+    ],
+    [
+     "006B2CDA",
+     "jmp"
+    ],
+    [
+     "006B2CE4",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006B2D00",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `006B1320` with `rcx`, `rdx` and `r8` as received; when `p` is non-null tail-jumps to `00684360` with `c` in `rcx` and `p` in `rdx` (`r8` not set); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "006B2D0A",
+     "mov"
+    ],
+    [
+     "006B2D10",
+     "call"
+    ],
+    [
+     "006B2D1B",
+     "je"
+    ],
+    [
+     "006B2D2A",
+     "jmp"
+    ],
+    [
+     "006B2D34",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006B2D50",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `006B1600` with `rcx`, `rdx` and `r8` as received; when `p` is non-null tail-jumps to `006843D0` with `c` in `rcx` and `p` in `rdx` (`r8` not set); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "006B2D5A",
+     "mov"
+    ],
+    [
+     "006B2D60",
+     "call"
+    ],
+    [
+     "006B2D6B",
+     "je"
+    ],
+    [
+     "006B2D7A",
+     "jmp"
+    ],
+    [
+     "006B2D84",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006B2DA0",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `006B19A0` with `rcx`, `rdx` and `r8` as received; when `p` is non-null tail-jumps to `00684450` with `c` in `rcx` and `p` in `rdx` (`r8` not set); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "006B2DAA",
+     "mov"
+    ],
+    [
+     "006B2DB0",
+     "call"
+    ],
+    [
+     "006B2DBB",
+     "je"
+    ],
+    [
+     "006B2DCA",
+     "jmp"
+    ],
+    [
+     "006B2DD4",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "member",
+ "family": "optional-pointer member-call dispatch adapters, 75-byte form"
+}

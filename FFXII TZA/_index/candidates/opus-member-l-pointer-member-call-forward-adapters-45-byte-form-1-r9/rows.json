@@ -1,0 +1,170 @@
+{
+ "page": "22-Middleware-PhyreEngine/Script-Object-Accessors/phyre-script-object-accessors.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "phyre-script-object-accessors-optional-pointer-member-call-forward-adapters-45-byte-form-1-r9.json",
+ "rows": [
+  {
+   "fn": "005A0BD0",
+   "text": "calls `005A02D0` with `rcx`, `rdx` and `r8` as received, then tail-jumps to `00684080` with the received `rdx` in `rcx`, the received `r8` in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "005A0BDA",
+     "mov"
+    ],
+    [
+     "005A0BDD",
+     "mov"
+    ],
+    [
+     "005A0BE0",
+     "call"
+    ],
+    [
+     "005A0BEB",
+     "mov"
+    ],
+    [
+     "005A0BF8",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00627050",
+   "text": "calls `00613800` with `rcx`, `rdx` and `r8` as received, then tail-jumps to `00684080` with the received `rdx` in `rcx`, the received `r8` in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "0062705A",
+     "mov"
+    ],
+    [
+     "0062705D",
+     "mov"
+    ],
+    [
+     "00627060",
+     "call"
+    ],
+    [
+     "0062706B",
+     "mov"
+    ],
+    [
+     "00627078",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00627080",
+   "text": "calls `00613A30` with `rcx`, `rdx` and `r8` as received, then tail-jumps to `00684080` with the received `rdx` in `rcx`, the received `r8` in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "0062708A",
+     "mov"
+    ],
+    [
+     "0062708D",
+     "mov"
+    ],
+    [
+     "00627090",
+     "call"
+    ],
+    [
+     "0062709B",
+     "mov"
+    ],
+    [
+     "006270A8",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006270B0",
+   "text": "calls `00613E80` with `rcx`, `rdx` and `r8` as received, then tail-jumps to `00684080` with the received `rdx` in `rcx`, the received `r8` in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "006270BA",
+     "mov"
+    ],
+    [
+     "006270BD",
+     "mov"
+    ],
+    [
+     "006270C0",
+     "call"
+    ],
+    [
+     "006270CB",
+     "mov"
+    ],
+    [
+     "006270D8",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006270E0",
+   "text": "calls `006143B0` with `rcx`, `rdx` and `r8` as received, then tail-jumps to `00684080` with the received `rdx` in `rcx`, the received `r8` in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "006270EA",
+     "mov"
+    ],
+    [
+     "006270ED",
+     "mov"
+    ],
+    [
+     "006270F0",
+     "call"
+    ],
+    [
+     "006270FB",
+     "mov"
+    ],
+    [
+     "00627108",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00627110",
+   "text": "calls `00614640` with `rcx`, `rdx` and `r8` as received, then tail-jumps to `00684080` with the received `rdx` in `rcx`, the received `r8` in `rdx` and the return value in `r8`",
+   "anchors": [
+    [
+     "0062711A",
+     "mov"
+    ],
+    [
+     "0062711D",
+     "mov"
+    ],
+    [
+     "00627120",
+     "call"
+    ],
+    [
+     "0062712B",
+     "mov"
+    ],
+    [
+     "00627138",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "member",
+ "family": "optional-pointer member-call forward adapters, 45-byte form"
+}

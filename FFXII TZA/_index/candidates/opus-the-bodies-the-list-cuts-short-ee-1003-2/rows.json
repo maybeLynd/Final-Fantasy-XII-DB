@@ -1,0 +1,40 @@
+{
+ "page": "99-Unresolved-Residual/Unlisted-Code/the-bodies-the-list-cuts-short.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-bodies-the-list-cuts-short-r8.json",
+ "rows": [
+  {
+   "fn": "00729920",
+   "text": "stores `xmm2` and `xmm3` in the third- and fourth-argument home slots and calls `0075AE30(rcx, &third slot, &fourth slot)` with `xmm1` also in `xmm4`, keeping `k` = `ecx` in `r10d` across the call; maps `k` 3, 5, 7, 9, 0xB, 0xC, 0xD and 0xF to 2, 4, 6, 8, 0xA, 1, 0xA and 0xE; any other `k` above 0xE (unsigned) goes to image base + 0x609A58; then dispatches on `k` through the jump table at image base + `0x609A60`: 0 and 1 to image base + 0x609A58, 2 and 4 to image base + 0x609A3A, 6 and 8 to `007299D5`, 0xA to image base + 0x6099ED and 0xE to image base + 0x609A52; the listed extent ends with the first instruction at `007299D5`, which loads the fourth-argument slot float into `xmm2`",
+   "anchors": [
+    [
+     "00729940",
+     "call"
+    ],
+    [
+     "00729949",
+     "jne"
+    ],
+    [
+     "0072998F",
+     "jne"
+    ],
+    [
+     "007299B9",
+     "ja"
+    ],
+    [
+     "007299D3",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

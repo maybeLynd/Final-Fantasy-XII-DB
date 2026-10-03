@@ -1,0 +1,40 @@
+{
+ "page": "17-Presentation-Rendering/Model-And-Motion-Formats/fef-and-motion-entries.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "fef-and-motion-entries-r8.json",
+ "rows": [
+  {
+   "fn": "00319E40",
+   "text": "with `o` = `rcx`: `v` = `0030CA50(o)`; returns when `v` + 1 is at most 1 (unsigned, so `v` is 0 or -1); for i below dword [o+0x77C] (signed, re-read each step), when `p` = qword [o+0x780+16i] and then `e` = `00263E30(p)` are non-null, appends dword [e+8] to a 32-dword stack array (no bound on the count `n`); when `n` is non-zero calls `002EAD00(dword [o+8], n, array, v)` and, when `00237420()` returns non-zero, `0024ED50(v)` (stack cookie `01F44830` checked by `00808C40`)",
+   "anchors": [
+    [
+     "00319E60",
+     "call"
+    ],
+    [
+     "00319EB9",
+     "call"
+    ],
+    [
+     "00319EC8",
+     "mov"
+    ],
+    [
+     "00319EFF",
+     "call"
+    ],
+    [
+     "00319F10",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

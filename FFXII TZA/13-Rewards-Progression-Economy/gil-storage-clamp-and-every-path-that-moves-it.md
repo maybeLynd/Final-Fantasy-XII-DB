@@ -523,3 +523,11 @@ compare).
 | `00300490` | 28 B | stores `r8d` as the fifth (stack) argument, sets `r9d` to 4 and `r8d` to 0, and calls `003008A0(rcx, rdx, 0, 4, incoming r8d)`, returning its result | Interior anchor `00300494`; Interior anchor `00300499`; Interior anchor `0030049F`; Interior anchor `003004A2` |
 | `0030DD70` | 78 B | when dword `01EEBCFC` is greater than 0 (signed), calls `003008A0(i, 0x63, 0, 1, 0)` for `i` = 0, 1, ... (passed zero-extended from its low word), re-reading dword `01EEBCFC` after each call and looping while `i` is less than it (signed); when the dword is 0 or less it calls nothing; it sets no return value of its own | Interior anchor `0030DD7E`; Interior anchor `0030DDA0`; Interior anchor `0030DDA4`; Interior anchor `0030DDAB`; Interior anchor `0030DDB1` |
 | `0032A810` | 24 B | calls `00300B80(rcx, rdx, 0)` and returns its result, except that a negative result (signed) is returned as 0 | Interior anchor `0032A814`; Interior anchor `0032A817`; Interior anchor `0032A81E`; Interior anchor `0032A820` |
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-gil-storage-clamp-and-every-path-that-mo-ee-1003-2/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0030AEA0` | 132 B | on a stack record `s` with dword 0xE at s+0 and `cx` at word s+6: returns -1 when `0031C5D0(&s)` is negative; otherwise stores dword [s+0x38] at dword [rdx], word [s+0x3C] zero-extended at dword [r8], word [s+0x40] sign-extended at dword [r9], word [s+0x3E] zero-extended at the dword the fifth argument points to and word [s+0x42] sign-extended at the dword the sixth argument points to (no null tests), and returns 0 | `0030AEBF`, `0030AECD`, `0030AEE4`, `0030AEFC`, `0030AF0B` |

@@ -968,3 +968,17 @@ pass-22 slice OPUS-P22-SLICE-24-99).*
 | `00163EA0` | 119 B | calls `00631E20(02CF8580, 02CF8470, 0)`, clears bit 1 and sets bit 3 of dword `02CF867C`, stores `02CF7AE0`, `02CF7C20` and `02CF7D60` at qwords `02CF8640`, `02CF8648` and `02CF8650`, stores `00D56ED0` at qword `02CF8580`, and tail-jumps `00808B90` with the address of a 26-byte stub | `00163EB5`, `00163EC7`, `00163EEC`, `00163F00`, `00163F12` |
 | `00164180` | 56 B | calls `006318A0(02CF8270)`, stores 0 at dword `02CF82A8` and `00D582D0` at qword `02CF8270`, and tail-jumps `00808B90` with the address of a 26-byte stub | `0016418B`, `00164197`, `001641A8`, `001641B3` |
 | `001E0F70` | 49 B | when `InputManager_GetSingleton()` is non-null, calls `InputManager_MaterializeRuntimeBindingProfiles(InputManager_GetSingleton())` and tail-jumps `InputManager_RestoreDefaultBindingProfiles(InputManager_GetSingleton())`; otherwise returns | `001E0F74`, `001E0F7C`, `001E0F86`, `001E0F97` |
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-static-initialization-order-and-injectio-ee-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00808C90` | 185 B | calls `0086200A` (the `_set_app_type` stub) with 2, `0086202E` (`_set_fmode`) with the result of `00809C38()`, then stores `005C5230()` at the dword `0086204C()` (`__p__commode`) returns; when `00808988(1)` returns 0 in `al` calls `0080996C(7)` (an int3 follows); otherwise calls `00809C88()`, `00808B90(00809CD4)` and `00861FE0` (`_configure_narrow_argv`) with the result of `0053DD10()`; a non-zero result loads 7 into `ecx`, the last listed instruction; otherwise calls `00809C40()` and, when `00809C6C()` returns non-zero, `00862010` (`__setusermatherr`) with `005C5230`; then calls `0016D6A0` twice with no argument set up, `00862040` (`_configthreadlocale`) with `005C5230()`, `00861FE6` (`_initialize_narrow_environment`) when `0061ECF0()` returns non-zero in `al`, and `005C5230()`; returns 0 | `00808C9B`, `00808CC0`, `00808CE1`, `00808CFF`, `00808D23` |
+
+### Crossings into other layers - functions this page's newest interior rows name (OPUS, 2026-10-03)
+
+- **Script_VM_Native_Bridge - SERVICE (17 edges).** `0053DD10` is also called by `00341840`, `00341F90`, `00345250`, `00346AA0` (+8 more), filed to the script VM / native bridge (+5 more edges of the same shape) - shared machinery across the layer boundary, no shared ownership.
+- **UI - SERVICE (1 edge).** `0053DD10` is also called by `003C80C0`, filed to ui - shared machinery across the layer boundary, no shared ownership.
+- **WorldAreaField - SERVICE (1 edge).** `0053DD10` is also called by `003789A0`, filed to world area - shared machinery across the layer boundary, no shared ownership.

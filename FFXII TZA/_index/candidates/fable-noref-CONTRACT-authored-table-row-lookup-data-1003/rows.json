@@ -1,0 +1,25 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/CONTRACT-authored-table-row-lookup.md",
+ "date": "2026-10-03",
+ "rows": [
+  {
+   "fn": "0020D7B0",
+   "text": "sign-extends `ecx` to `rcx` and tail-jumps through the import slot `008C2B40`; passed as `rcx`, with `edx` = 1 and `r8` = `rdi` + 0xC0, to the function pointer `r9` that `0020D2F0` + 0x347 calls",
+   "anchors": [
+    [
+     "0020D7B3",
+     "jmp"
+    ]
+   ],
+   "why_here": "argument of 0020D2F0's indirect call; this page reads 0020D2F0",
+   "ref": {
+    "kind": "code",
+    "container": "0020D2F0",
+    "site": "0020D630"
+   },
+   "cites": [
+    "0020D2F0"
+   ]
+  }
+ ]
+}

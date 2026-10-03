@@ -1,0 +1,64 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-fifteen-modules-registered-before-main-phyre-prendering-module-1-r9a.json",
+ "rows": [
+  {
+   "fn": "006221E0",
+   "text": "with `o` = `rcx`, `i` = `edx` (zero-extended) and B = qword [o+0x38] when dword [o+0x30] AND 0x7FFFFFFF is above 1, `o`+0x38 when it is 1, else 0: `P` = qword [B + 64i + 0x18]; `L` = 0 when dword [o+0x18] has bit `0x2`, else min(dword [o+0x10], 0xB) (unsigned); `D` = qword [`005FD050()` + 0x110]; for each f of 6 and m from 0 to `L` (`w` = dword [o+0x28] at each f; `F` = qword [o] and B re-read at each use): with (`a`, `k`) = (`w`, 1), or ((`w` + 3) AND ~3, 4) when byte [F+0x18] has bit `0x1`, calls `D`'s vtable slot +0x180 with (D, qword [B + 64i], f(L + 1) + m, 0, P, ((dword [F+0x14] times a) times k) >> 3, 0); then with `z` = `w` (dword [o+0x28] when `w` is 0), rounded up to a multiple of 4 when bit `0x1` of byte [F+0x18] is set, adds (z times dword [F+0x14] times z) >> 3 (32-bit products) to `P` and sets `w` = max(`w` >> 1, 1) (unsigned)",
+   "anchors": [
+    [
+     "00622224",
+     "mov"
+    ],
+    [
+     "00622246",
+     "call"
+    ],
+    [
+     "0062228D",
+     "imul"
+    ],
+    [
+     "006222D6",
+     "call"
+    ],
+    [
+     "006222FF",
+     "shr"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "005DC8D0": "too large for one exact row",
+  "005DF890": "too large for one exact row",
+  "005E3F70": "too large for one exact row",
+  "005E45B0": "too large for one exact row",
+  "005E4AA0": "too large for one exact row",
+  "005E7070": "too large for one exact row",
+  "005E7E60": "too large for one exact row",
+  "005E81E0": "too large for one exact row",
+  "005E9680": "too large for one exact row",
+  "005E9970": "too large for one exact row",
+  "005EA7A0": "too large for one exact row",
+  "005EAF40": "too large for one exact row",
+  "005EB7C0": "too large for one exact row",
+  "005EBE40": "too large for one exact row",
+  "005EC180": "too large for one exact row",
+  "005EC4C0": "too large for one exact row",
+  "005EC800": "too large for one exact row",
+  "00607990": "too large for one exact row",
+  "00608A40": "too large for one exact row",
+  "0062D0D0": "too large for one exact row",
+  "0062D740": "too large for one exact row",
+  "006B7A00": "too large for one exact row",
+  "006BED60": "too large for one exact row"
+ },
+ "missing": [],
+ "corrections": [],
+ "mode": "member",
+ "family": "Phyre PRendering module"
+}

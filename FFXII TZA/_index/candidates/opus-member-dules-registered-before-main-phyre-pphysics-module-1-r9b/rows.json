@@ -1,0 +1,85 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-fifteen-modules-registered-before-main-phyre-pphysics-module-1-r9b.json",
+ "rows": [
+  {
+   "fn": "00690BF0",
+   "text": "with `x`, `y`, `z`, `w` = floats [rdx] to [rdx+0xC] and the doubled products xx = (x+x)x, yy = (y+y)y, zz = (z+z)z, xy = (y+y)x, xz = (z+z)x, yz = (z+z)y, xw = (x+x)w, yw = (y+y)w and zw = (z+z)w, writes the 16 floats at `rcx` as rows (1 - yy - zz, xy + zw, xz - yw, 0), (xy - zw, 1 - xx - zz, yz + xw, 0), (xz + yw, yz - xw, 1 - xx - yy, 0) and (float [r8], float [r8+4], float [r8+8], 1.0), each 1 - a - b evaluated as (1.0 (`01CEBBA8`) - a) - b; returns `rcx`",
+   "anchors": [
+    [
+     "00690C33",
+     "movss"
+    ],
+    [
+     "00690C93",
+     "mulss"
+    ],
+    [
+     "00690CEF",
+     "movss"
+    ],
+    [
+     "00690D44",
+     "movss"
+    ],
+    [
+     "00690D70",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00691570",
+   "text": "with mij = float j of the 16-byte row i at rdx + 16i, t = m11 + m00 + m22 and N = (t is below 0; comiss, NaN false): P = N and not (m22 > m00 and m22 > m11), Q = N and (m11 > m00 or m22 > m00), U = N and (m22 > m11 or not m11 > m00); negates m22 and m10 when P, m00 and m21 when Q, m11 and m02 when U; S = m11 + m00 + m22 + 1.0 (`01CEBBA8`) of those values, h = 0.5 (`01CEBB70`) / `00861F14`(S) (sqrtf); with a = (m12 - m21) h, b = (m20 - m02) h and c = (m01 - m10) h (each first term unnegated) and d = h S, the tuple (a, b, c, d) becomes (d, c, b, a) when P, then has its first two and its last two components swapped when Q; stores it as four floats at `rcx` and returns `rcx`",
+   "anchors": [
+    [
+     "006915E2",
+     "comiss"
+    ],
+    [
+     "00691644",
+     "xorps"
+    ],
+    [
+     "00691674",
+     "call"
+    ],
+    [
+     "006916C0",
+     "movaps"
+    ],
+    [
+     "00691706",
+     "movss"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "00631290": "too large for one exact row",
+  "0063CD20": "row in the r9a report for this pack",
+  "00667C80": "too large for one exact row",
+  "00691C00": "row in the r9a report for this pack",
+  "00692290": "too large for one exact row",
+  "006928B0": "too large for one exact row",
+  "00698720": "too large for one exact row",
+  "0069E970": "too large for one exact row",
+  "0069F150": "too large for one exact row",
+  "0069F690": "row in the r9a report for this pack",
+  "0069F980": "row in the r9a report for this pack",
+  "006A0310": "too large for one exact row",
+  "006A0680": "too large for one exact row",
+  "006A2080": "row in the r9a report for this pack",
+  "006A21D0": "row in the r9a report for this pack",
+  "006A4870": "row in the r9a report for this pack",
+  "006A4E30": "too large for one exact row",
+  "006A6180": "too large for one exact row"
+ },
+ "missing": [],
+ "corrections": [],
+ "mode": "member",
+ "family": "Phyre PPhysics module"
+}

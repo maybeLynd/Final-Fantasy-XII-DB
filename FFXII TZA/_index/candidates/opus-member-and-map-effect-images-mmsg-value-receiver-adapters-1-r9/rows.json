@@ -1,0 +1,446 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/binmenu-guest-face-and-map-effect-images.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "binmenu-guest-face-and-map-effect-images-mmsg-value-receiver-adapters-1-r9.json",
+ "rows": [
+  {
+   "fn": "002F76A0",
+   "text": "stores the sign-extended `ecx` at qword `02EC3D98` and tail-jumps to `00238640` with 3 in `ecx` and that value in `rdx`",
+   "anchors": [
+    [
+     "002F76A3",
+     "mov"
+    ],
+    [
+     "002F76A8",
+     "mov"
+    ],
+    [
+     "002F76AF",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002F76C0",
+   "text": "stores the sign-extended `ecx` at qword `02EC3DC0` and tail-jumps to `00238640` with 8 in `ecx` and that value in `rdx`",
+   "anchors": [
+    [
+     "002F76C3",
+     "mov"
+    ],
+    [
+     "002F76C8",
+     "mov"
+    ],
+    [
+     "002F76CF",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002F76E0",
+   "text": "stores the sign-extended `ecx` at qword `02EC3DA8` and tail-jumps to `00238640` with 5 in `ecx` and that value in `rdx`",
+   "anchors": [
+    [
+     "002F76E3",
+     "mov"
+    ],
+    [
+     "002F76E8",
+     "mov"
+    ],
+    [
+     "002F76EF",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002F7700",
+   "text": "stores the sign-extended `ecx` at qword `02EC3DE8` and tail-jumps to `00238640` with 0xD in `ecx` and that value in `rdx`",
+   "anchors": [
+    [
+     "002F7703",
+     "mov"
+    ],
+    [
+     "002F7708",
+     "mov"
+    ],
+    [
+     "002F770F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002F7720",
+   "text": "stores the sign-extended `ecx` at qword `02EC3DD0` and tail-jumps to `00238640` with 0xA in `ecx` and that value in `rdx`",
+   "anchors": [
+    [
+     "002F7723",
+     "mov"
+    ],
+    [
+     "002F7728",
+     "mov"
+    ],
+    [
+     "002F772F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002F7740",
+   "text": "stores the sign-extended `ecx` at qword `02EC3DC8` and tail-jumps to `00238640` with 9 in `ecx` and that value in `rdx`",
+   "anchors": [
+    [
+     "002F7743",
+     "mov"
+    ],
+    [
+     "002F7748",
+     "mov"
+    ],
+    [
+     "002F774F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002F7760",
+   "text": "stores the sign-extended `ecx` at qword `02EC3E20` and tail-jumps to `00238640` with 0x14 in `ecx` and that value in `rdx`",
+   "anchors": [
+    [
+     "002F7763",
+     "mov"
+    ],
+    [
+     "002F7768",
+     "mov"
+    ],
+    [
+     "002F776F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002F7780",
+   "text": "stores the sign-extended `ecx` at qword `02EC3DF0` and tail-jumps to `00238640` with 0xE in `ecx` and that value in `rdx`",
+   "anchors": [
+    [
+     "002F7783",
+     "mov"
+    ],
+    [
+     "002F7788",
+     "mov"
+    ],
+    [
+     "002F778F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002F77A0",
+   "text": "stores the sign-extended `ecx` at qword `02EC3DF8` and tail-jumps to `00238640` with 0xF in `ecx` and that value in `rdx`",
+   "anchors": [
+    [
+     "002F77A3",
+     "mov"
+    ],
+    [
+     "002F77A8",
+     "mov"
+    ],
+    [
+     "002F77AF",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002F77C0",
+   "text": "stores the sign-extended `ecx` at qword `02EC3E08` and tail-jumps to `00238640` with 0x11 in `ecx` and that value in `rdx`",
+   "anchors": [
+    [
+     "002F77C3",
+     "mov"
+    ],
+    [
+     "002F77C8",
+     "mov"
+    ],
+    [
+     "002F77CF",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002F77E0",
+   "text": "stores the sign-extended `ecx` at qword `02EC3DD8` and tail-jumps to `00238640` with 0xB in `ecx` and that value in `rdx`",
+   "anchors": [
+    [
+     "002F77E3",
+     "mov"
+    ],
+    [
+     "002F77E8",
+     "mov"
+    ],
+    [
+     "002F77EF",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002F7820",
+   "text": "stores the sign-extended `ecx` at qword `02EC3E00` and tail-jumps to `00238640` with 0x10 in `ecx` and that value in `rdx`",
+   "anchors": [
+    [
+     "002F7823",
+     "mov"
+    ],
+    [
+     "002F7828",
+     "mov"
+    ],
+    [
+     "002F782F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002F7840",
+   "text": "stores the sign-extended `ecx` at qword `02EC3E30` and tail-jumps to `00238640` with 0x16 in `ecx` and that value in `rdx`",
+   "anchors": [
+    [
+     "002F7843",
+     "mov"
+    ],
+    [
+     "002F7848",
+     "mov"
+    ],
+    [
+     "002F784F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002F7860",
+   "text": "stores the sign-extended `ecx` at qword `02EC3E38` and tail-jumps to `00238640` with 0x17 in `ecx` and that value in `rdx`",
+   "anchors": [
+    [
+     "002F7863",
+     "mov"
+    ],
+    [
+     "002F7868",
+     "mov"
+    ],
+    [
+     "002F786F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002F7880",
+   "text": "stores the sign-extended `ecx` at qword `02EC3E40` and tail-jumps to `00238640` with 0x18 in `ecx` and that value in `rdx`",
+   "anchors": [
+    [
+     "002F7883",
+     "mov"
+    ],
+    [
+     "002F7888",
+     "mov"
+    ],
+    [
+     "002F788F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002F78A0",
+   "text": "stores the sign-extended `ecx` at qword `02EC3E48` and tail-jumps to `00238640` with 0x19 in `ecx` and that value in `rdx`",
+   "anchors": [
+    [
+     "002F78A3",
+     "mov"
+    ],
+    [
+     "002F78A8",
+     "mov"
+    ],
+    [
+     "002F78AF",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002F78C0",
+   "text": "stores the sign-extended `ecx` at qword `02EC3E50` and tail-jumps to `00238640` with 0x1A in `ecx` and that value in `rdx`",
+   "anchors": [
+    [
+     "002F78C3",
+     "mov"
+    ],
+    [
+     "002F78C8",
+     "mov"
+    ],
+    [
+     "002F78CF",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002F78E0",
+   "text": "stores the sign-extended `ecx` at qword `02EC3E58` and tail-jumps to `00238640` with 0x1B in `ecx` and that value in `rdx`",
+   "anchors": [
+    [
+     "002F78E3",
+     "mov"
+    ],
+    [
+     "002F78E8",
+     "mov"
+    ],
+    [
+     "002F78EF",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002F7900",
+   "text": "stores the sign-extended `ecx` at qword `02EC3D88` and tail-jumps to `00238640` with 1 in `ecx` and that value in `rdx`",
+   "anchors": [
+    [
+     "002F7903",
+     "mov"
+    ],
+    [
+     "002F7908",
+     "mov"
+    ],
+    [
+     "002F790F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002F7920",
+   "text": "stores the sign-extended `ecx` at qword `02EC3E10` and tail-jumps to `00238640` with 0x12 in `ecx` and that value in `rdx`",
+   "anchors": [
+    [
+     "002F7923",
+     "mov"
+    ],
+    [
+     "002F7928",
+     "mov"
+    ],
+    [
+     "002F792F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002F7940",
+   "text": "stores the sign-extended `ecx` at qword `02EC3E18` and tail-jumps to `00238640` with 0x13 in `ecx` and that value in `rdx`",
+   "anchors": [
+    [
+     "002F7943",
+     "mov"
+    ],
+    [
+     "002F7948",
+     "mov"
+    ],
+    [
+     "002F794F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002F7960",
+   "text": "stores the sign-extended `ecx` at qword `02EC3DB0` and tail-jumps to `00238640` with 6 in `ecx` and that value in `rdx`",
+   "anchors": [
+    [
+     "002F7963",
+     "mov"
+    ],
+    [
+     "002F7968",
+     "mov"
+    ],
+    [
+     "002F796F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002F7980",
+   "text": "stores the sign-extended `ecx` at qword `02EC3D90` and tail-jumps to `00238640` with 2 in `ecx` and that value in `rdx`",
+   "anchors": [
+    [
+     "002F7983",
+     "mov"
+    ],
+    [
+     "002F7988",
+     "mov"
+    ],
+    [
+     "002F798F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "002F79A0",
+   "text": "stores the sign-extended `ecx` at qword `02EC3DB8` and tail-jumps to `00238640` with 7 in `ecx` and that value in `rdx`",
+   "anchors": [
+    [
+     "002F79A3",
+     "mov"
+    ],
+    [
+     "002F79A8",
+     "mov"
+    ],
+    [
+     "002F79AF",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "member",
+ "family": "MMSG value receiver adapters"
+}

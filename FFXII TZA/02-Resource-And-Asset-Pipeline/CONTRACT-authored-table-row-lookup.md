@@ -1421,3 +1421,11 @@ pass-22 debt `42a617a9a`).*
 | function | size | what the body does | interior anchors |
 |---|---|---|---|
 | `0019CD40` | 155 B | computes the element count (qword `[rcx+8]` minus qword `[rcx]`) / 0x18 and, when `edx` is above it (unsigned), calls `0020BB10(rcx, qword [rcx+8], edx - count, pointer to a zeroed 0x18-byte stack value)` and returns its result; otherwise adds to qword `[rcx+8]` the signed 0x18-byte-element distance that moves it to qword `[rcx]` + `edx` * 0x18, and returns that byte delta in `rax` | Interior anchor `0019CD60`; Interior anchor `0019CD77`; Interior anchor `0019CD98`; Interior anchor `0019CDB1`; Interior anchor `0019CDD1` |
+
+## No-reference bodies homed by the table that reaches them (FABLE, 2026-10-03)
+
+*No page cited these functions and no census-listed instruction calls or jumps to them: each is reached through data or through code this page documents. Each sentence states what the body does (access and representation, not purpose) and ends with the reference that reaches it; the anchors are instructions inside the body that do it. Handed over by SWE2-EC7 and read whole by FABLE against the certified image; verified by [`apply.py`](../_index/candidates/fable-noref-CONTRACT-authored-table-row-lookup-data-1003/apply.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic, and every named reference holds or forms the body's address at the bytes.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0020D7B0` | 10 B | sign-extends `ecx` to `rcx` and tail-jumps through the import slot `008C2B40`; passed as `rcx`, with `edx` = 1 and `r8` = `rdi` + 0xC0, to the function pointer `r9` that `0020D2F0` + 0x347 calls | Interior anchor `0020D7B3` |

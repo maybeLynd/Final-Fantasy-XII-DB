@@ -1,0 +1,767 @@
+{
+ "page": "22-Middleware-PhyreEngine/Embedded-Lua-And-Object-Bindings/embedded-lua-and-phyre-object-bindings.md",
+ "date": "2026-10-03",
+ "rows": [
+  {
+   "fn": "005CBE30",
+   "text": "returns 0 without a call when `rdx` is NULL; otherwise advances the cursor, passes the slot's dword in `edx`, calls the bound pointer with `this` = `rdx` - 8 plus the caller's sign-extended dword `+0x10`, and applies the tag test with the address `02CAD840` with bit 0 set (`or rax, 1`), storing the returned pointer; vtable slot 2 of `PMethodCallerConcrete<PAnimatableComponent, PAnimationClip *, unsigned int>`",
+   "anchors": [
+    [
+     "005CBE50",
+     "add"
+    ],
+    [
+     "005CBE57",
+     "mov"
+    ],
+    [
+     "005CBE5A",
+     "movsxd"
+    ],
+    [
+     "005CBE65",
+     "call"
+    ],
+    [
+     "005CBE7C",
+     "cmp"
+    ]
+   ],
+   "why_here": "slot 2 of `PMethodCallerConcrete<PAnimatableComponent, PAnimationClip *, unsigned int>` (rtti-methods.tsv); the page's PCaller section documents the PMethodCallerConcrete thunks"
+  },
+  {
+   "fn": "00610D00",
+   "text": "skips the call when `rdx` is NULL; otherwise advances the cursor twice, passing the first slot's dword in `edx` and the second slot's qword in `r8`, calls the bound pointer with `this` = `rdx` unadjusted, and returns 0 on both paths; vtable slot 2 of `PMethodCallerConcrete<PMeshInstance, void, unsigned int, const PMatrix4 &>`",
+   "anchors": [
+    [
+     "00610D17",
+     "add"
+    ],
+    [
+     "00610D1E",
+     "mov"
+    ],
+    [
+     "00610D25",
+     "mov"
+    ],
+    [
+     "00610D28",
+     "mov"
+    ],
+    [
+     "00610D2C",
+     "call"
+    ]
+   ],
+   "why_here": "slot 2 of `PMethodCallerConcrete<PMeshInstance, void, unsigned int, const PMatrix4 &>` (rtti-methods.tsv); the page's PCaller section documents the PMethodCallerConcrete thunks"
+  },
+  {
+   "fn": "0063E490",
+   "text": "calls the bound pointer with no argument loaded and no NULL test of `rdx`, then applies the tag test with the address `02CF8980` with bit 0 set, storing the returned pointer; vtable slot 2 of `PFunctionCallerConcrete<PNamespace &>`",
+   "anchors": [
+    [
+     "0063E4A0",
+     "call"
+    ],
+    [
+     "0063E4AB",
+     "lea"
+    ],
+    [
+     "0063E4B2",
+     "or"
+    ],
+    [
+     "0063E4B6",
+     "cmp"
+    ],
+    [
+     "0063E4C7",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 2 of `PFunctionCallerConcrete<PNamespace &>` (rtti-methods.tsv); the page's PCaller section documents the PFunctionCallerConcrete thunks"
+  },
+  {
+   "fn": "0063E580",
+   "text": "returns 0 without a call when `rdx` is NULL; otherwise advances the cursor, passes the slot's qword in `r8` and a 16-byte stack buffer in `rdx`, calls the bound pointer with `this` = `rdx` plus the caller's sign-extended dword `+0x10`, and applies the tag test with the address `02E4E430` (no bit set), copying the 16 bytes at the returned pointer to `[r9+8]`; vtable slot 2 of `PMethodCallerConcrete<PCluster, PTypedObject, const PClassDescriptor &>`",
+   "anchors": [
+    [
+     "0063E59D",
+     "add"
+    ],
+    [
+     "0063E5A4",
+     "movsxd"
+    ],
+    [
+     "0063E5AB",
+     "lea"
+    ],
+    [
+     "0063E5B4",
+     "call"
+    ],
+    [
+     "0063E5D8",
+     "movups"
+    ]
+   ],
+   "why_here": "slot 2 of `PMethodCallerConcrete<PCluster, PTypedObject, const PClassDescriptor &>` (rtti-methods.tsv); the page's PCaller section documents the PMethodCallerConcrete thunks"
+  },
+  {
+   "fn": "0063E6D0",
+   "text": "returns 0 without a call when `rdx` is NULL; otherwise advances the cursor, passes the slot's qword in `rdx`, calls the bound pointer with `this` = the target - 0x10 plus the caller's sign-extended dword `+0x10`, and applies the tag test with the address `02CF8470` with bit 0 set, storing the returned pointer; vtable slot 2 of `PMethodCallerConcrete<PNamespace, const PClassDescriptor *, const char *>`",
+   "anchors": [
+    [
+     "0063E6F0",
+     "add"
+    ],
+    [
+     "0063E6F7",
+     "mov"
+    ],
+    [
+     "0063E6FF",
+     "lea"
+    ],
+    [
+     "0063E706",
+     "call"
+    ],
+    [
+     "0063E71D",
+     "cmp"
+    ]
+   ],
+   "why_here": "slot 2 of `PMethodCallerConcrete<PNamespace, const PClassDescriptor *, const char *>` (rtti-methods.tsv); the page's PCaller section documents the PMethodCallerConcrete thunks"
+  },
+  {
+   "fn": "0065E4B0",
+   "text": "returns 0 without a call when `rdx` is NULL; otherwise advances the cursor, passes the slot's dword in `r8d` and a 16-byte stack buffer in `rdx`, calls the bound pointer with `this` = the target unadjusted, and applies the tag test with the address `02E4E430` (no bit set), copying the 16 bytes at the returned pointer to `[r9+8]`; vtable slot 2 of `PMethodCallerConcrete<PPostEffectManager, PTypedObject, unsigned int>`",
+   "anchors": [
+    [
+     "0065E4D0",
+     "lea"
+    ],
+    [
+     "0065E4D8",
+     "add"
+    ],
+    [
+     "0065E4DF",
+     "mov"
+    ],
+    [
+     "0065E4E3",
+     "call"
+    ],
+    [
+     "0065E507",
+     "movups"
+    ]
+   ],
+   "why_here": "slot 2 of `PMethodCallerConcrete<PPostEffectManager, PTypedObject, unsigned int>` (rtti-methods.tsv); the page's PCaller section documents the PMethodCallerConcrete thunks"
+  },
+  {
+   "fn": "00677DE0",
+   "text": "with no NULL test, advances the cursor, passes the slot's qword in `rcx`, calls the bound pointer, and applies the tag test with the address `02D3E680` with bit 0 set, storing the returned pointer; vtable slot 2 of both `PFunctionCallerConcrete<PAssetReference *, const PBase &>` and `PFunctionCallerConcrete<const PAssetReference *, const char *>`",
+   "anchors": [
+    [
+     "00677DF8",
+     "add"
+    ],
+    [
+     "00677DFF",
+     "mov"
+    ],
+    [
+     "00677E03",
+     "call"
+    ],
+    [
+     "00677E19",
+     "cmp"
+    ],
+    [
+     "00677E2A",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 2 of both `PFunctionCallerConcrete<PAssetReference *, const PBase &>` and `PFunctionCallerConcrete<const PAssetReference *, const char *>` (rtti-methods.tsv); the page's PCaller section documents the PFunctionCallerConcrete thunks"
+  },
+  {
+   "fn": "00677E50",
+   "text": "returns 0 without a call when `rdx` is NULL; otherwise calls the bound pointer with no argument and `this` = `rdx` plus the caller's sign-extended dword `+0x10`, and applies the tag test with the address `02CF8470` with bit 0 set, storing the returned pointer; vtable slot 2 of `PMethodCallerConcrete<PAssetReference, const PClassDescriptor &>`",
+   "anchors": [
+    [
+     "00677E68",
+     "movsxd"
+    ],
+    [
+     "00677E6F",
+     "call"
+    ],
+    [
+     "00677E7A",
+     "lea"
+    ],
+    [
+     "00677E85",
+     "cmp"
+    ],
+    [
+     "00677E96",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 2 of `PMethodCallerConcrete<PAssetReference, const PClassDescriptor &>` (rtti-methods.tsv); the page's PCaller section documents the PMethodCallerConcrete thunks"
+  },
+  {
+   "fn": "00677EC0",
+   "text": "returns 0 without a call when `rdx` is NULL; otherwise calls the bound pointer with no argument and `this` = `rdx` plus the caller's sign-extended dword `+0x10`, and applies the tag test with the address `02E4D630` with bit 0 set, storing the returned pointer; vtable slot 2 of `PMethodCallerConcrete<PAssetReference, const PString &>`",
+   "anchors": [
+    [
+     "00677ED8",
+     "movsxd"
+    ],
+    [
+     "00677EDF",
+     "call"
+    ],
+    [
+     "00677EEA",
+     "lea"
+    ],
+    [
+     "00677EF5",
+     "cmp"
+    ],
+    [
+     "00677F06",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 2 of `PMethodCallerConcrete<PAssetReference, const PString &>` (rtti-methods.tsv); the page's PCaller section documents the PMethodCallerConcrete thunks"
+  },
+  {
+   "fn": "00677F30",
+   "text": "returns 0 without a call when `rdx` is NULL; otherwise calls the bound pointer with a 16-byte stack buffer in `rdx` and `this` = the target plus the caller's sign-extended dword `+0x10`, and applies the tag test with the address `02E4E430` (no bit set), copying the 16 bytes at the returned pointer to `[r9+8]`; vtable slot 2 of `PMethodCallerConcrete<PAssetReference, PTypedObject>`",
+   "anchors": [
+    [
+     "00677F48",
+     "movsxd"
+    ],
+    [
+     "00677F4F",
+     "lea"
+    ],
+    [
+     "00677F54",
+     "call"
+    ],
+    [
+     "00677F63",
+     "cmp"
+    ],
+    [
+     "00677F77",
+     "movups"
+    ]
+   ],
+   "why_here": "slot 2 of `PMethodCallerConcrete<PAssetReference, PTypedObject>` (rtti-methods.tsv); the page's PCaller section documents the PMethodCallerConcrete thunks"
+  },
+  {
+   "fn": "0067F4D0",
+   "text": "returns 0 without a call when `rdx` is NULL; otherwise calls the bound pointer with `this` = `rdx` unadjusted and no argument and, when `r9` is non-NULL, calls `006B33F0` and applies the tag test with that call's result with bit 0 set, storing the first call's returned pointer; vtable slot 2 of `PMethodCallerConcrete<PWorldMatrix, PMatrix4x3 &>`",
+   "anchors": [
+    [
+     "0067F4E8",
+     "mov"
+    ],
+    [
+     "0067F4F0",
+     "call"
+    ],
+    [
+     "0067F4FB",
+     "call"
+    ],
+    [
+     "0067F500",
+     "or"
+    ],
+    [
+     "0067F509",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 2 of `PMethodCallerConcrete<PWorldMatrix, PMatrix4x3 &>` (rtti-methods.tsv); the page's PCaller section documents the PMethodCallerConcrete thunks"
+  },
+  {
+   "fn": "00686010",
+   "text": "calls the bound pointer with no argument loaded and no NULL test of `rdx`, then applies the tag test with the address `02E41470` with bit 0 set, storing the returned pointer; vtable slot 2 of `PFunctionCallerConcrete<const PScript *>`",
+   "anchors": [
+    [
+     "00686020",
+     "call"
+    ],
+    [
+     "0068602B",
+     "lea"
+    ],
+    [
+     "00686032",
+     "or"
+    ],
+    [
+     "00686036",
+     "cmp"
+    ],
+    [
+     "00686047",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 2 of `PFunctionCallerConcrete<const PScript *>` (rtti-methods.tsv); the page's PCaller section documents the PFunctionCallerConcrete thunks"
+  },
+  {
+   "fn": "00686070",
+   "text": "returns 0 without a call when `rdx` is NULL; otherwise calls the bound pointer with `this` = the target unadjusted and a 16-byte stack buffer in `rdx`, and applies the tag test with the address `02E4E430` (no bit set), copying the 16 bytes at the returned pointer to `[r9+8]`; vtable slot 2 of `PMethodCallerConcrete<PAsyncProcessHeader, PTypedObject>`",
+   "anchors": [
+    [
+     "0068608B",
+     "lea"
+    ],
+    [
+     "00686090",
+     "mov"
+    ],
+    [
+     "00686093",
+     "call"
+    ],
+    [
+     "006860A3",
+     "cmp"
+    ],
+    [
+     "006860B7",
+     "movups"
+    ]
+   ],
+   "why_here": "slot 2 of `PMethodCallerConcrete<PAsyncProcessHeader, PTypedObject>` (rtti-methods.tsv); the page's PCaller section documents the PMethodCallerConcrete thunks"
+  },
+  {
+   "fn": "006A6800",
+   "text": "returns 0 without a call when `rdx` is NULL; otherwise calls the bound pointer with `this` = the target unadjusted and a 16-byte stack buffer in `rdx`, copies the 16 bytes at the returned pointer into that buffer and, when `r9` is non-NULL, calls `006B1600` and applies the tag test with that call's result (no bit set), copying the buffer's 16 bytes to `[r9+8]`; vtable slot 2 of `PMethodCallerConcrete<PPhysicsRigidBody, Vector3>`",
+   "anchors": [
+    [
+     "006A681B",
+     "lea"
+    ],
+    [
+     "006A6823",
+     "call"
+    ],
+    [
+     "006A682A",
+     "movups"
+    ],
+    [
+     "006A6834",
+     "call"
+    ],
+    [
+     "006A684F",
+     "movups"
+    ]
+   ],
+   "why_here": "slot 2 of `PMethodCallerConcrete<PPhysicsRigidBody, Vector3>` (rtti-methods.tsv); the page's PCaller section documents the PMethodCallerConcrete thunks"
+  },
+  {
+   "fn": "006ACBB0",
+   "text": "with no NULL test, advances the cursor, passes the slot's qword in `rcx`, calls the bound pointer, and applies the tag test with the address `02E4EAF0` with bit 0 set, storing the returned pointer; vtable slot 2 of `PFunctionCallerConcrete<PEntity *, PWorldMatrix *>`",
+   "anchors": [
+    [
+     "006ACBC8",
+     "add"
+    ],
+    [
+     "006ACBCF",
+     "mov"
+    ],
+    [
+     "006ACBD3",
+     "call"
+    ],
+    [
+     "006ACBE9",
+     "cmp"
+    ],
+    [
+     "006ACBFA",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 2 of `PFunctionCallerConcrete<PEntity *, PWorldMatrix *>` (rtti-methods.tsv); the page's PCaller section documents the PFunctionCallerConcrete thunks"
+  },
+  {
+   "fn": "006ACCC0",
+   "text": "returns 0 without a call when `rdx` is NULL; otherwise advances the cursor, passes the slot's qword in `r8` and a 16-byte stack buffer in `rdx`, calls the bound pointer with `this` = the target unadjusted, and applies the tag test with the address `02E4E430` (no bit set), copying the 16 bytes at the returned pointer to `[r9+8]`; vtable slot 2 of both `PMethodCallerConcrete<PEntity, PTypedObject, const PClassDescriptor &>` and `PMethodCallerConcrete<PInstancesComponent, PTypedObject, const PClassDescriptor *>`",
+   "anchors": [
+    [
+     "006ACCE0",
+     "lea"
+    ],
+    [
+     "006ACCE8",
+     "add"
+    ],
+    [
+     "006ACCEF",
+     "mov"
+    ],
+    [
+     "006ACCF3",
+     "call"
+    ],
+    [
+     "006ACD17",
+     "movups"
+    ]
+   ],
+   "why_here": "slot 2 of both `PMethodCallerConcrete<PEntity, PTypedObject, const PClassDescriptor &>` and `PMethodCallerConcrete<PInstancesComponent, PTypedObject, const PClassDescriptor *>` (rtti-methods.tsv); the page's PCaller section documents the PMethodCallerConcrete thunks"
+  },
+  {
+   "fn": "006AF810",
+   "text": "returns 0 without a call when `rdx` is NULL; otherwise calls the bound pointer with `this` = `rdx` unadjusted and no argument and, when `r9` is non-NULL, calls `006AE780` with `ecx` = 0 and applies the tag test with that call's result with bit 0 set, storing the first call's returned pointer; vtable slot 2 of `PMethodCallerConcrete<PInstancesComponent, const PArray<PTypedObject, 8> &>`",
+   "anchors": [
+    [
+     "006AF828",
+     "mov"
+    ],
+    [
+     "006AF830",
+     "call"
+    ],
+    [
+     "006AF83B",
+     "xor"
+    ],
+    [
+     "006AF83D",
+     "call"
+    ],
+    [
+     "006AF846",
+     "cmp"
+    ]
+   ],
+   "why_here": "slot 2 of `PMethodCallerConcrete<PInstancesComponent, const PArray<PTypedObject, 8> &>` (rtti-methods.tsv); the page's PCaller section documents the PMethodCallerConcrete thunks"
+  },
+  {
+   "fn": "006B01A0",
+   "text": "with no NULL test, advances the cursor, passes the slot's qword in `rcx`, calls the bound pointer, and applies the tag test with the address `02E4FF60` with bit 0 set, storing the returned pointer; vtable slot 2 of `PFunctionCallerConcrete<PNameComponent *, const char *>`",
+   "anchors": [
+    [
+     "006B01B8",
+     "add"
+    ],
+    [
+     "006B01BF",
+     "mov"
+    ],
+    [
+     "006B01C3",
+     "call"
+    ],
+    [
+     "006B01D9",
+     "cmp"
+    ],
+    [
+     "006B01EA",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 2 of `PFunctionCallerConcrete<PNameComponent *, const char *>` (rtti-methods.tsv); the page's PCaller section documents the PFunctionCallerConcrete thunks"
+  },
+  {
+   "fn": "006B6270",
+   "text": "returns 0 without a call when `rdx` is NULL; otherwise advances the cursor, passes the slot's qword in `rdx`, calls the bound pointer with `this` = the target - 8 plus the caller's sign-extended dword `+0x10`, and applies the tag test with the address `02E518D0` with bit 0 set, storing the returned pointer; vtable slot 2 of `PMethodCallerConcrete<PNode, PNode *, const char *>`",
+   "anchors": [
+    [
+     "006B6290",
+     "add"
+    ],
+    [
+     "006B6297",
+     "mov"
+    ],
+    [
+     "006B629F",
+     "lea"
+    ],
+    [
+     "006B62A6",
+     "call"
+    ],
+    [
+     "006B62BD",
+     "cmp"
+    ]
+   ],
+   "why_here": "slot 2 of `PMethodCallerConcrete<PNode, PNode *, const char *>` (rtti-methods.tsv); the page's PCaller section documents the PMethodCallerConcrete thunks"
+  },
+  {
+   "fn": "006C0640",
+   "text": "skips the call when `rdx` is NULL; otherwise reads the doubles at cursor `+0` and `+8`, narrows them with `cvtpd2ps` into `xmm1` and `xmm2`, advances the cursor by 0x10, calls the bound pointer with `this` = the target unadjusted, and returns 0 on both paths; vtable slot 2 of `PMethodCallerConcrete<PLight, void, float, float>`",
+   "anchors": [
+    [
+     "006C0654",
+     "mov"
+    ],
+    [
+     "006C0657",
+     "movsd"
+    ],
+    [
+     "006C0661",
+     "cvtpd2ps"
+    ],
+    [
+     "006C0665",
+     "mov"
+    ],
+    [
+     "006C0671",
+     "call"
+    ]
+   ],
+   "why_here": "slot 2 of `PMethodCallerConcrete<PLight, void, float, float>` (rtti-methods.tsv); the page's PCaller section documents the PMethodCallerConcrete thunks"
+  },
+  {
+   "fn": "006C0680",
+   "text": "skips the call when `rdx` is NULL; otherwise reads the doubles at cursor `+0`, `+8`, `+0x10` and `+0x18`, narrows them with `cvtpd2ps` into `xmm1`, `xmm2` and `xmm3` and a float stored as the fifth (stack) argument, advances the cursor by 0x20, calls the bound pointer with `this` = the target unadjusted, and returns 0 on both paths; vtable slot 2 of `PMethodCallerConcrete<PLight, void, float, float, float, float>`",
+   "anchors": [
+    [
+     "006C0697",
+     "movsd"
+    ],
+    [
+     "006C06A5",
+     "mov"
+    ],
+    [
+     "006C06B9",
+     "cvtpd2ps"
+    ],
+    [
+     "006C06C5",
+     "movss"
+    ],
+    [
+     "006C06CB",
+     "call"
+    ]
+   ],
+   "why_here": "slot 2 of `PMethodCallerConcrete<PLight, void, float, float, float, float>` (rtti-methods.tsv); the page's PCaller section documents the PMethodCallerConcrete thunks"
+  },
+  {
+   "fn": "007A3200",
+   "text": "with no NULL test, calls the bound pointer with a 16-byte stack buffer in `rcx`, and applies the tag test with the address `02E4E430` (no bit set), copying the 16 bytes at the returned pointer to `[r9+8]`; vtable slot 2 of `PFunctionCallerConcrete<PTypedObject>`",
+   "anchors": [
+    [
+     "007A3210",
+     "lea"
+    ],
+    [
+     "007A3218",
+     "call"
+    ],
+    [
+     "007A3227",
+     "cmp"
+    ],
+    [
+     "007A322C",
+     "movups"
+    ],
+    [
+     "007A323B",
+     "movups"
+    ]
+   ],
+   "why_here": "slot 2 of `PFunctionCallerConcrete<PTypedObject>` (rtti-methods.tsv); the page's PCaller section documents the PFunctionCallerConcrete thunks"
+  },
+  {
+   "fn": "007A3260",
+   "text": "returns 0 without a call when `rdx` is NULL; otherwise calls the bound pointer with no argument and `this` = `rdx` - 8, and applies the tag test with the address `02EA5560` with bit 0 set, storing the returned pointer; vtable slot 2 of `PMethodCallerConcrete<PApplication, PInputMapper &>`",
+   "anchors": [
+    [
+     "007A3278",
+     "lea"
+    ],
+    [
+     "007A327C",
+     "call"
+    ],
+    [
+     "007A3287",
+     "lea"
+    ],
+    [
+     "007A3292",
+     "cmp"
+    ],
+    [
+     "007A32A3",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 2 of `PMethodCallerConcrete<PApplication, PInputMapper &>` (rtti-methods.tsv); the page's PCaller section documents the PMethodCallerConcrete thunks"
+  },
+  {
+   "fn": "007A34D0",
+   "text": "returns 0 without a call when `rdx` is NULL; otherwise advances the cursor, passes the slot's dword in `edx`, calls the bound pointer with `this` = the target - 8, and applies the tag test with the address `02EA5380` with bit 0 set, storing the returned pointer; vtable slot 2 of `PMethodCallerConcrete<PApplication, PApplicationViewport *, unsigned int>`",
+   "anchors": [
+    [
+     "007A34ED",
+     "lea"
+    ],
+    [
+     "007A34F1",
+     "add"
+    ],
+    [
+     "007A34F8",
+     "mov"
+    ],
+    [
+     "007A34FB",
+     "call"
+    ],
+    [
+     "007A3512",
+     "cmp"
+    ]
+   ],
+   "why_here": "slot 2 of `PMethodCallerConcrete<PApplication, PApplicationViewport *, unsigned int>` (rtti-methods.tsv); the page's PCaller section documents the PMethodCallerConcrete thunks"
+  },
+  {
+   "fn": "007A3540",
+   "text": "returns 0 without a call when `rdx` is NULL; otherwise calls the bound pointer with no argument and `this` = `rdx` - 8, and applies the tag test with the address `02EA9400` with bit 0 set, storing the returned pointer; vtable slot 2 of `PMethodCallerConcrete<PApplication, PDebugUtils *>`",
+   "anchors": [
+    [
+     "007A3558",
+     "lea"
+    ],
+    [
+     "007A355C",
+     "call"
+    ],
+    [
+     "007A3567",
+     "lea"
+    ],
+    [
+     "007A3572",
+     "cmp"
+    ],
+    [
+     "007A3583",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 2 of `PMethodCallerConcrete<PApplication, PDebugUtils *>` (rtti-methods.tsv); the page's PCaller section documents the PMethodCallerConcrete thunks"
+  },
+  {
+   "fn": "007A35A0",
+   "text": "returns 0 without a call when `rdx` is NULL; otherwise calls the bound pointer with no argument and `this` = `rdx` - 8, and applies the tag test with the address `02CF8A80` with bit 0 set, storing the returned pointer; vtable slot 2 of `PMethodCallerConcrete<PApplication, const PWorld *>`",
+   "anchors": [
+    [
+     "007A35B8",
+     "lea"
+    ],
+    [
+     "007A35BC",
+     "call"
+    ],
+    [
+     "007A35C7",
+     "lea"
+    ],
+    [
+     "007A35D2",
+     "cmp"
+    ],
+    [
+     "007A35E3",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 2 of `PMethodCallerConcrete<PApplication, const PWorld *>` (rtti-methods.tsv); the page's PCaller section documents the PMethodCallerConcrete thunks"
+  },
+  {
+   "fn": "008742A0",
+   "text": "returns 0 without a call when `rdx` is NULL; otherwise advances the cursor, passes the slot's dword in `edx`, calls the bound pointer with `this` = the target - 8 plus the caller's sign-extended dword `+0x10`, and applies the tag test with the address `02CF8470` with bit 0 set, storing the returned pointer; vtable slot 2 of `PMethodCallerConcrete<PInputAction, const PClassDescriptor *, unsigned int>`",
+   "anchors": [
+    [
+     "008742C0",
+     "add"
+    ],
+    [
+     "008742C7",
+     "mov"
+    ],
+    [
+     "008742CE",
+     "lea"
+    ],
+    [
+     "008742D5",
+     "call"
+    ],
+    [
+     "008742EC",
+     "cmp"
+    ]
+   ],
+   "why_here": "slot 2 of `PMethodCallerConcrete<PInputAction, const PClassDescriptor *, unsigned int>` (rtti-methods.tsv); the page's PCaller section documents the PMethodCallerConcrete thunks"
+  }
+ ],
+ "owner_tokens": {
+  "005CBE30": "PMethodCallerConcrete",
+  "00610D00": "PMethodCallerConcrete",
+  "0063E490": "PFunctionCallerConcrete",
+  "0063E580": "PMethodCallerConcrete",
+  "0063E6D0": "PMethodCallerConcrete",
+  "0065E4B0": "PMethodCallerConcrete",
+  "00677DE0": "PFunctionCallerConcrete",
+  "00677E50": "PMethodCallerConcrete",
+  "00677EC0": "PMethodCallerConcrete",
+  "00677F30": "PMethodCallerConcrete",
+  "0067F4D0": "PMethodCallerConcrete",
+  "00686010": "PFunctionCallerConcrete",
+  "00686070": "PMethodCallerConcrete",
+  "006A6800": "PMethodCallerConcrete",
+  "006ACBB0": "PFunctionCallerConcrete",
+  "006ACCC0": "PMethodCallerConcrete",
+  "006AF810": "PMethodCallerConcrete",
+  "006B01A0": "PFunctionCallerConcrete",
+  "006B6270": "PMethodCallerConcrete",
+  "006C0640": "PMethodCallerConcrete",
+  "006C0680": "PMethodCallerConcrete",
+  "007A3200": "PFunctionCallerConcrete",
+  "007A3260": "PMethodCallerConcrete",
+  "007A34D0": "PMethodCallerConcrete",
+  "007A3540": "PMethodCallerConcrete",
+  "007A35A0": "PMethodCallerConcrete",
+  "008742A0": "PMethodCallerConcrete"
+ },
+ "kind": "lua",
+ "note_extra": "In the `PCaller` rows, `rcx` is the caller object, whose qword `+8` is the bound pointer; `rdx` is the target object, `r8` the third argument, `r9` the fourth, and the fifth argument points to the argument cursor. \"Advances the cursor\" means the body adds 8 to the cursor and reads the 8-byte slot it moved past. \"The tag test\" means: when `r9` is non-NULL and `r8` equals the stated value, the body stores qword 0 at `[r9]` and the result at `[r9+8]` and returns 1; every other path returns 0.",
+ "source": "SWE2-EC7 hand-off Database/Tools/work/SWE2-EC7/handoff_noref_to_fable_1003.tsv (rtti column), homing_rtti_noref_1003.tsv, h211/callers.tsv"
+}

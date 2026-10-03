@@ -155,6 +155,119 @@ nothing because the clamp is in the rebuild.
 `reserved`, and **kind 0 returns `owned - reserved`**. ~~That subtraction is the availability the~~
 ~~item-use path needs, because an item is reserved when the character commits and consumed later.~~ The high six bits are the **equipped** count, not an item-use reservation: equipping adds 1 on channel 2 (`0030C447`–`0030C45C`) and unequipping takes 1 (`0030F9D7`–`0030F9EB`), only for `0x1nnn` ids other than `0x1000` (`0030C426`–`0030C445`), while an item action takes from the owned count at once on channel 1 (`0030EF9F`–`0030EFB0`) and keeps its reservation on the unit at `+0xDC8`. So kind 0 is owned minus equipped, the free copies *(corrected 2026-10-02, OPUS: checked at those addresses; equipment-slots-and-the-single-stat-rebuild.md §3, using-an-item-is-an-action-that-costs-an-item.md §3)*.
 
+## 7a. Item use: reserve, then consume or refund (FABLE, 2026-10-03)
+
+*Added for the SCOPE-SHORT on S-29 that SWE2-AUDIT-SPEC adopted from AUDIT-SEM ([`auditspec-l2-expansion-1003`](../_index/candidates/auditspec-l2-expansion-1003/README.md) item 3). The registry subject names item use, and `0030EF20`, `00305640` and `00300280` were in no contract, so the order of reserve, consume and refund was unstated. The three bodies are [the item-use page](using-an-item-is-an-action-that-costs-an-item.md)'s §3–§5, and they are not restated here. This section states when each one runs and what that does to this contract's owned count (§7) through its ±1 entry `003008A0`. Static and isolated original-code. Every fact below is checked by [`check_s29.py`](../_index/candidates/fable-l2exp-s29-mech-1003/check_s29.py) (FAILS 0). Callers are cited by their call sites; the functions that hold them are named, not cited.*
+
+### Interface (FABLE)
+
+There is no new entry. Two of the three operations call this contract's ±1 entry on channel 1 (owned), in relative mode, with a fifth argument of 0:
+
+| operation | body | inventory call | unit fields | live call sites |
+|---|---|---|---|---|
+| reserve | `BattleAction_PrepareExecutionResources` `0030EF20` | `003008A0(row +0x22, −1, 0, 1, 0)` at `0030EFB0`, only when row `+0x1E` is 3 | stores `+0xDC8` at `0030EF93`, **before** the call; stores `+0xE58` (the gil cost) at `0030EFC0` | phase 0 of `BattleUnit_AdvanceStandardActionState` (`00304962`) |
+| consume | `BattleAction_ConsumeExecutionResources` `00305640` | **none** | `+0xE58` = 0 at `003056B3`, `+0xDC8` = `0xFFFF` at `003056BA` | `BattleUnit_AdvanceStandardActionState` (`00304F38`), `Battle_ProcessActionTargetEntry` (`003192B7`), the special-sequence stage (`003132B7`) |
+| refund | `BattleAction_RefundReservedExecutionResources` `00300280` | `003008A0(+0xDC8, +1, 0, 1, 0)` at `003002CB`, only when `+0xDC8` is not `0xFFFF` | `+0xDC8` = `0xFFFF` at `003002D0`; when `+0xE58` is non-zero, gil += `+0xE58` and `+0xE58` = 0 (`003002D7`–`003002F5`) | `BattleUnit_CancelAndResetCurrentAction` (`0031063A`), and nothing else |
+
+A fourth site pair, `003073AB` (reserve) and `003073B9` (consume) in `Battle_ProcessActionTarget`, is unreachable (IU5). Every other `.rdata` hit on the three bodies is a chained-unwind `RUNTIME_FUNCTION` copy, and no pointer constant names any of them. The reserve and the refund run only for a unit whose kind byte `[+0x698]+5` is 0. The consume skips only its two stores for other kinds (the item-use page §5).
+
+### State read and written (FABLE)
+
+- **Unit `+0xDC8`** (u16, `0xFFFF` = none) and **`+0xE58`** (i32), described on [the battle-unit field map](../04-Actor-Entity/Battle-Unit/the-battle-unit-field-map.md) §2.2.
+- **The packed word's owned bits** (§7) of the item's class.
+- **The engage stash `022C1DB0`.** It has 32 slots of 12 bytes: `{u16 item, u32 gil}` at `slot × 12`, indexed by unit `+0xEA9`. A `0x180`-byte memset clears it (`0030C3F2`–`0030C3FF`), called only from area initialisation (`0023445E`). Its use is [the combo page](../07-Combat-Action/how-a-combo-continues-and-what-it-blocks.md)'s test 3.
+- **The phase byte `+0x6B4`.** The reserve sits in phase 0 of `BattleUnit_AdvanceStandardActionState`. That routine dispatches on `+0x6B4` (`rsi` = unit + `0x6B0`, `0030487F`) through a 13-slot jump table (just past the routine's code), after `cmp eax, 0xC` / `ja` (`00304940`). Slot 0 is `0030495C`, whose first call is the reserve (`00304962`).
+
+### The order (FABLE)
+
+1. **Reserve runs once per action, at phase 0, and phase 0 is entered only after a cancel.**
+   - Over every byte store with displacement `0x6B4`, only two store 0. One is the commit's `0030F814` (`sil`, from `xor esi, esi` at `0030F796`, with `rsi` unwritten until the store). The other is the cancel's `003106F2` (`bpl`, from `xor ebp, ebp` at `00310649`).
+   - The commit `BattleUnit_CommitAction` runs the cancel first when its fifth argument is non-zero (`0030F776`–`0030F78A`). Four of its five call sites pass 1: `BattleUnit_SelectAndCommitNextAction` (`00305B2F`, `00305C9B`), `BattleUnit_TrySelectAndCommitAiOrderFromSet` (`00305DF4`) and the combo continuation (`0030FA5C`).
+   - The fifth site is the engage auto-attack (`003130DC`). It passes 0 (`0031309C`) and then sets the phase to 5 (`003130F2`).
+   - The combo continuation also sets phase 5 after its commit (`0030FA80`). `0030FA80` and `003130F2` are the only phase-5 stores. **Neither phase-5 entry reserves.**
+2. **Consume has three live sites, each tied to execution.**
+   - `Battle_ProcessActionTargetEntry` consumes on the first target entry only (`003191FD`), once per committed action. The latch is `+0x700` bit 1: tested at `00319241`, set at `003192BC`, and cleared by the commit (`0030F7F2`) and the cancel (`003106C5`).
+   - `BattleUnit_AdvanceStandardActionState` consumes at `00304F38` only for a row whose dword `+0x0C` has bit 30 set (`00304F22`) and whose id is outside `0xD0`..`0xF1` (`00304F00`–`00304F0E`).
+   - The special-sequence stage that a script verb body reaches (call site `003495B2`) consumes at `003132B7`. Its body calls neither the reserve nor the refund.
+3. **Refund runs only inside the cancel.**
+   - The cancel returns early for a null unit or a null `+0x698` (`003105D3`, `003105E9`). From `003105EF` to the refund call `0031063A` it has no branch.
+   - The cancel has twelve call sites (`00236A77`, `002FF9C7`, `0030014D`, `00300E61`, `00300FF4`, `00301195`, `003086B2`, `003087C1`, `0030F78A`, `003243F9`, `00324490`, `00326AA9`).
+
+### Invariants IU1–IU7 (FABLE)
+
+*§4's invariants are unnumbered. The S-29 replay labels them P1–P3, Q and I. IU continues that letter scheme for item use.*
+
+- **IU1. A reserve never overwrites a live reservation.**
+  - The reserve stores `+0xDC8` unconditionally (`0030EF93`). Its only live caller is phase 0, and every route into phase 0 passes through the cancel's refund first (order 1).
+  - The phase-5 entries skip the reserve. Executed, an overwrite would lose an item: two reserves with no clear between them take two and hold one, and one refund leaves 2 of 3 (K11e).
+- **IU2. A reserved item comes back at most once.**
+  - The consume clears both fields and makes no inventory call. The refund tests `+0xDC8 ≠ 0xFFFF` (`003002B6`) and `+0xE58 ≠ 0` (`003002DD`), so a refund after a consume, or a second refund, moves nothing.
+  - Executed:
+    - reserve then consume: owned 3 → 2, the reservation is `{5, 0}` and then `{0xFFFF, 0}`, and a later refund leaves 2 (K11a);
+    - reserve then refund: 3 → 2 → 3 (K11b);
+    - with effect 32: gil 1000 → 610 with `+0xE58` = 390, and the refund restores 1000 (K11g).
+- **IU3. An engage auto-attack keeps the suspended reservation without moving the item.**
+  - The engage copies `+0xDC8` / `+0xE58` into `022C1DB0` (`003130AB`–`003130C7`) before its commit. It calls the restore if the commit fails (`00313109`).
+  - The restore runs only while flag bit 22 is set (`0030827B`). It writes both fields back (`003082B2`, `003082C0`). Its only two calls release the presentation slot (`00308290`) and restore the suspended action (`003082C6`); there is no inventory call.
+  - A consume during the auto-attack clears the unit's fields, and the restore puts them back. A cancel during it runs the restore first (call `00310806`, inside the call at `00310605`) and only then refunds (`0031063A`). So the suspended item is returned once.
+- **IU4. The refund cannot see whether the reserve took anything.**
+  - Both the reserve and the refund discard `003008A0`'s return. In the reserve the next call overwrites `eax` (`0030EFBB`). In the refund, `eax` is either overwritten by the gil call (`003002E1`) or returned unread to the cancel, which writes `rax` at `0031063F`.
+  - The channel-1 mutate clamps owned to `[equipped, 99]` (`002FD2E9`–`002FD307`). Executed:
+    - **a reserve at owned 0 stores nothing and still reserves, and the refund then makes owned 1** (K11c);
+    - **a refund at owned 99 stores nothing and clears the reservation**, so the item is gone (K11d).
+- **IU5. The reserve has one live site.**
+  - `Battle_ProcessActionTarget`'s arm (`003073AB` / `003073B9`) runs only when its fifth argument is 1: `[rbp+0x130]` is the entry `rsp + 0x28` (`00307388`).
+  - Its only call site, `00319362` in `Battle_ProcessActionTargetEntry`, stores 0 there (`00319354`).
+- **IU6. The consume needs no reserve.**
+  - The special-sequence stage consumes (`003132B7`) with no reserve in its body. Any reservation live on that unit when the stage runs is therefore cleared without return.
+  - Kind-1 units neither reserve nor refund (K11f).
+- **IU7. The availability check honours the unit's own reservation.**
+  - `003037A0` returns reason `0x12` unless the free count is positive. The free count is query kind 0 through `+0x50`, which is owned − equipped: `0030B14E`, `setg` at `0030B158`.
+  - The check also admits the item when `+0xDC8` already holds it (`003037F9`).
+  - Executed `(owned, equipped, +0xDC8)` → reason: `(1,0,none)` 0, `(0,0,none)` `0x12`, `(0,0,same)` 0, `(0,0,other)` `0x12`, `(1,1,none)` `0x12`, `(1,1,same)` 0 (K11h).
+  - With IU1 this is consistent for one unit: its re-commit refunds before it re-reserves.
+
+### Failure paths (FABLE)
+
+- **Two units on the last free copy.**
+  - Each passes `003037A0` while the count is 1.
+  - The second reserve takes nothing (IU4), so a cancel of it later returns an item the bag never gave: the party gains one.
+  - Not shown reachable in play. The order in which checks and phase-0 runs interleave across units is not traced.
+- **A cancel at the cap destroys the item.** If owned reached 99 after the reserve (for example by a pickup), the refund stores nothing and clears `+0xDC8`.
+- **Special-sequence consume.** If a reservation is live when the special-sequence stage runs, it is dropped (IU6). Whether one can be live there is not traced.
+- **The unit reset `BattleUnit_ResetStateForReuse`** calls the cancel only when bit 4 of the flag word is set (`00236A6F`). It stores `+0xDC8` = `0xFFFF` at `00236AFC` either way, and it never addresses `+0xE58`. A reservation live on a unit reset with bit 4 clear would be dropped without a refund, and its gil would stay parked. Whether that can happen is not traced.
+- **A reimplementation that re-reserves on a re-commit without cancelling** loses an item per re-commit (IU1, K11e). One that refunds by "count before" rather than by `+0xDC8` changes IU4's two outcomes.
+
+### Evidence class (FABLE)
+
+- **Static** (K1–K10 and K12 of `check_s29.py`): a raw reference index in every form (E8/E9, 0F 8x, EB/7x, rip-relative, image-base-relative, pointer constants), a width-filtered displacement sweep of `+0x6B4`, and fixed-text reads at every cited site.
+- **Isolated original code** (K11, Unicorn 2.1.4): the three bodies, `003008A0`, `00309F30`, the packed handlers `002FD150` / `002FD8D0`, `00325F40`, the gil cost `00309060` and the gil getter and setter, all at their own addresses, over a planted world. The planted state is class 0's `+0x08` storage, the action-table header at `02EBF138`, the gil block and one unit.
+  - The consume's MP and pool calls (`003056F4`, `0030570D`), its category calls (`0030575C`, `003057A5`) and the gil setter's achievement call (`00254F02`) were answered by recording hooks. The consume's charges are [EXP-065](../_experiments/EXP-065-resource-consume-controls.md)'s and EXP-066's.
+- **Five sensitivity controls each turn a check to FAIL:**
+  - S1: the consume's `0xFFFF` store NOPed;
+  - S2: the reserve's `−1` made 0;
+  - S3: the claim "a refund never returns more than was taken";
+  - S4: `00319354` storing 1;
+  - S5: the engage writing phase 0.
+- **Live: none.**
+- **Not traced:**
+  - the indirect sites in the static closures, including whether one action can pass both `00304F38` and `003192B7`. The standard action-state routine's closure does not reach `Battle_ProcessActionTargetEntry`'s two call sites (`0031A022`, `00325515`), with 1,045 indirect sites not followed;
+  - stores to `+0x6B4` through a shifted base other than `unit + 0x6B0` increments;
+  - the meaning of flag-word bit 4.
+
+### Crossings into other layers (FABLE, 2026-10-03)
+
+*The edges this section's citations add, each with what crosses it.*
+
+- **Rewards/Progression/Economy — SERVICE.**
+  - All three bodies read and write the party's gil through the economy's getter and setter: the reserve at `0030EFCC` / `0030EFD8`, the consume at `0030571A` / `0030572B`, and the refund at `003002E1` / `003002F0`.
+  - The getter reads the gil cell (`00253690`–`00253697`: `[02092758]+8`). The setter clamps to `[0, 99,999,999]` and stores it (`00254F07`–`00254F1F`).
+  - Item use moves an amount. The gil cell, the clamp and every other gil path belong to the economy ([the gil page](../13-Rewards-Progression-Economy/gil-storage-clamp-and-every-path-that-moves-it.md)).
+- **Platform/Online/Achievements — SERVICE.**
+  - For a row of category 10 the consume's tail calls the counter that fires achievement counter `0x13` (`0030575C`). That counter fires once, and only when bit 5 of game-state byte `+0x3845` is set (`00316444`–`0031646D`).
+  - For categories 0, 1, 2 and 10 the tail calls the counter update through a one-instruction thunk (`003057A5` → `00253770` `jmp`). The gil setter makes the same update when the amount changes (`00254F02`).
+  - Item use only reports to those counters. It reads nothing back from them, and an item row (category 3) reaches neither.
+
 ## 8. Script · resource · event interactions
 
 The descriptor table is authored and compiled into `.data`; the storage behind it is not.

@@ -1,0 +1,45 @@
+{
+ "page": "18-Audio/Sound-Bank-And-Voice-Formats/sead-win-config.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "sead-win-config-r8.json",
+ "rows": [
+  {
+   "fn": "007DD9F0",
+   "text": "with `o` = `rcx` calls `AcquireSRWLockExclusive` on o+0xF0; when qword [o+0x30] is non-null calls its slot +0 with 1 and zeroes it; `a` = `007AD460(8, 0x50, 1)`, if non-null cleared by `00861EC0(a, 0, 0x50)`, then qwords +0 = `01CB7B80`, +0x10 = `01CB7BD8`, +0x18 = `01CB7C20`, +8, +0x20 to +0x40, dword +0x48 = 0; stores `a` at qword [o+0x30] and calls its slot +8 with (a, o+0x10) (no null test); when that is negative, calls slot +0 of qword [o+0x30] with 1 if non-null and stores at qword [o+0x30] `b` = `007AD460(8, 0x48, 1)` (if non-null: qwords +0x30 to +0x40, +8, +0x28 = 0, +0 = `01CB80F8`, +0x10 to +0x20 = -1), and `r` = its slot +8 with (b, o+0x10) (unchecked) goes to E if negative; stores o+8 (0 if `o` is null) at qword [qword [o+0x30] + 8] and `r` = the slot +0x20 of qword [o+0x30] with qword [o+0x40]; a negative `r` calls `ReleaseSRWLockExclusive` on o+0xF0, calls `0019C5D0(s, 0x100, 01CB8218, r)` on a 0x100-byte stack `s`, puts a newline at returned `L` (L - 2 if 0xFF or more; unchecked) and a zero after it (index negative or 0x100 or more: `00809728`), calls `OutputDebugStringA` and `007A5570(2, s)`; else (and at E) calls `ReleaseSRWLockExclusive` on o+0xF0; returns `r`",
+   "anchors": [
+    [
+     "007DDA3A",
+     "call"
+    ],
+    [
+     "007DDA4C",
+     "call"
+    ],
+    [
+     "007DDAB6",
+     "call"
+    ],
+    [
+     "007DDB3D",
+     "call"
+    ],
+    [
+     "007DDB68",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "007DD9F0",
+   "why": "byte re-read by a non-drafting agent: Lock, both allocations (007AD460(8,0x50,1) / (8,0x48,1)), the field stores, the slot +8 / +0x20 calls with no null test, the o+8-or-0 store and the error path all check out. Defect: the terminator index is movsxd then 'cmp rcx, 0x100; jae 00809728' - an unsigned 64-bit compare, so a negative index (L <= -2 from 0019C5D0) also reaches 00809728; the row's 'index 0x100 or more' states only the upper bound. Wording fix only; length kept within 1200."
+  }
+ ],
+ "mode": "ee",
+ "family": ""
+}

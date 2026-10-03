@@ -9,7 +9,9 @@
 | type | size | declared | named | meaning stated | gaps | readiness | level |
 |---|---:|---:|---:|---:|---:|---|---|
 | `AchievementDescriptor` | 0x8 | 8 B (100.0 %) | 5 / 5 | 4 / 5 | 0 | SIGNATURE RESOLVED | L1 |
-| `AchievementState` | 0x28 | 40 B (100.0 %) | 14 / 14 | 12 / 14 | 0 | SIGNATURE RESOLVED | L1 |
+| `AchievementManager` | 0x80 | 24 B (18.8 %) | 4 / 4 | 4 / 4 | 1 | TYPE RESOLVED | L1 |
+| `AchievementState` | 0x28 | 40 B (100.0 %) | 14 / 14 | 13 / 14 | 0 | SIGNATURE RESOLVED | L1 |
+| `ActionDefinition` | *none declared* | 1 B (no denominator) | 1 / 1 | 1 / 1 | 0 | SEMANTICALLY IDENTIFIED | L1 |
 | `ActiveLogEntry0198` | 0x198 | 408 B (100.0 %) | 7 / 7 | 7 / 7 | 0 | SIGNATURE RESOLVED | L1 |
 | `ActiveLogWidget40C8` | 0x40C8 | 16584 B (100.0 %) | 13 / 13 | 13 / 13 | 0 | SIGNATURE RESOLVED | L1 |
 | `ActorDefinitionCountedU16Section` | 0x4 | 4 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
@@ -19,71 +21,82 @@
 | `ActorRecordPool` | *none declared* | 12 B (no denominator) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
 | `ActorResourceEntry` | 0x14 | 20 B (100.0 %) | 12 / 12 | 11 / 12 | 0 | SIGNATURE RESOLVED | L1 |
 | `ActorSequenceDescriptor` | 0x4 | 4 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | SIGNATURE RESOLVED | L1 |
-| `ActorStorageRecord` | 0x6E0 | 1760 B (100.0 %) | 102 / 102 | 92 / 102 | 0 | TYPE RESOLVED | L1 |
+| `ActorStorageRecord` | 0x6E0 | 1760 B (100.0 %) | 85 / 85 | 78 / 85 | 0 | TYPE RESOLVED | L1 |
 | `ActorSystemReadyFlags02B40530` | 0x8 | 8 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SEMANTICALLY IDENTIFIED | L1 |
 | `ActorWaitSlot` | 0x28 | 40 B (100.0 %) | 15 / 15 | 14 / 15 | 0 | SIGNATURE RESOLVED | L1 |
 | `AiOrderRecord` | 0x18 | 24 B (100.0 %) | 6 / 6 | 6 / 6 | 0 | TYPE RESOLVED | L1 |
 | `AiOrderSet` | 0x170 | 368 B (100.0 %) | 3 / 3 | 2 / 3 | 0 | SIGNATURE RESOLVED | L1 |
 | `AlignedHeapHooks01F2EAA8` | 0x10 | 16 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SEMANTICALLY IDENTIFIED | L1 |
-| `AppBootStatic01F7F480` | 0x124 | 292 B (100.0 %) | 55 / 55 | 9 / 55 | 0 | SIGNATURE RESOLVED | L1 |
+| `AmbienceListenerState022CBA70` | 0x108 | 264 B (100.0 %) | 44 / 44 | 33 / 44 | 0 | TYPE RESOLVED | L1 |
+| `AppBootStatic01F7F490` | 0x114 | 276 B (100.0 %) | 50 / 50 | 25 / 50 | 0 | SIGNATURE RESOLVED | L1 |
 | `AreaEntryCounter` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `AudioBankHandleArray` | 0xC | 12 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | TYPE RESOLVED | L1 |
 | `AudioBankSlot` | 0x18 | 24 B (100.0 %) | 10 / 10 | 10 / 10 | 0 | SIGNATURE RESOLVED | L1 |
 | `AudioBankSlotListHead` | 0x2 | 2 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SEMANTICALLY IDENTIFIED | L1 |
-| `AudioParameterRamp` | 0x30 | 48 B (100.0 %) | 11 / 11 | 10 / 11 | 0 | SIGNATURE RESOLVED | L1 |
-| `AudioPlaybackStateBlock` | 0xC | 12 B (100.0 %) | 7 / 7 | 1 / 7 | 0 | TYPE RESOLVED | L1 |
+| `AudioParameterRamp` | 0x30 | 48 B (100.0 %) | 12 / 12 | 9 / 12 | 0 | SIGNATURE RESOLVED | L1 |
 | `AudioRequestGate` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `AuthoredBlobFixupTable` | 0x8 | 8 B (100.0 %) | 3 / 3 | 2 / 3 | 0 | SIGNATURE RESOLVED | L1 |
 | `AuthoredExpressionBlock` | *none declared* | 65 B (no denominator) | 2 / 2 | 2 / 2 | 0 | CLASSIFIED | L1 |
 | `AuthoredExpressionRecord` | 0x10 | 16 B (100.0 %) | 7 / 7 | 7 / 7 | 0 | CLASSIFIED | L1 |
 | `AuthoredIdListImage` | *none declared* | 12 B (no denominator) | 3 / 3 | 3 / 3 | 0 | SIGNATURE RESOLVED | L1 |
-| `AuthoredTableHeader` | 0x20 | 32 B (100.0 %) | 9 / 9 | 8 / 9 | 0 | SIGNATURE RESOLVED | L1 |
+| `AuthoredTableHeader` | 0x20 | 32 B (100.0 %) | 10 / 10 | 9 / 10 | 0 | SIGNATURE RESOLVED | L1 |
 | `AuthoredTableRegistrySlot` | 0x8 | 8 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L2 |
 | `AuthoredTriggerLiveEntry` | 0xC | 12 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | TYPE RESOLVED | L1 |
 | `AuthoredTriggerLiveSet` | 0x2C | 44 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | TYPE RESOLVED | L1 |
+| `BatchMerger6DA450` | 0x10000 | 65536 B (100.0 %) | 7 / 7 | 7 / 7 | 0 | TYPE RESOLVED | L1 |
 | `BattleFormulaScratch` | 0xA8 | 168 B (100.0 %) | 45 / 45 | 44 / 45 | 0 | SIGNATURE RESOLVED | L1 |
-| `BattleMenuChildWidget1620` | 0x1620 | 5664 B (100.0 %) | 60 / 60 | 51 / 60 | 0 | CLASSIFIED | L1 |
-| `BattleMenuPanelWidget3010` | 0x3010 | 12304 B (100.0 %) | 110 / 110 | 93 / 110 | 0 | SIGNATURE RESOLVED | L1 |
-| `BattleMenuWidget2DC0` | 0x2DC0 | 11712 B (100.0 %) | 50 / 50 | 41 / 50 | 0 | SIGNATURE RESOLVED | L1 |
+| `BattleMenuChildBase4C0` | 0x4C0 | 1216 B (100.0 %) | 17 / 17 | 17 / 17 | 0 | TYPE RESOLVED | L1 |
+| `BattleMenuChildRecord1E0` | 0x1E0 | 480 B (100.0 %) | 13 / 13 | 13 / 13 | 0 | TYPE RESOLVED | L1 |
+| `BattleMenuChildWidget1620` | 0x1620 | 5664 B (100.0 %) | 34 / 34 | 34 / 34 | 0 | CLASSIFIED | L1 |
+| `BattleMenuPanelWidget3010` | 0x3010 | 12304 B (100.0 %) | 30 / 30 | 26 / 30 | 0 | SIGNATURE RESOLVED | L1 |
+| `BattleMenuPanelWidget3010Block` | 0x40 | 64 B (100.0 %) | 14 / 14 | 1 / 14 | 0 | SIGNATURE RESOLVED | L1 |
+| `BattleMenuWidget2DC0` | 0x2DC0 | 11712 B (100.0 %) | 27 / 27 | 27 / 27 | 0 | SIGNATURE RESOLVED | L1 |
+| `BattlePackBlobPointer` | 0x8 | 8 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `BattleResultRecord` | 0x148 | 328 B (100.0 %) | 41 / 41 | 34 / 41 | 0 | SIGNATURE RESOLVED | L1 |
 | `BattleRuntimeUnitRecord` | 0x40 | 64 B (100.0 %) | 12 / 12 | 5 / 12 | 0 | SIGNATURE RESOLVED | L1 |
-| `BattleStatsRecord` | 0x1C8 | 508 B (111.4 %) | 58 / 58 | 54 / 58 | 0 | TYPE RESOLVED | L1 |
+| `BattleStatsRecord` | 0x1C8 | 508 B (111.4 %) | 58 / 58 | 55 / 58 | 0 | TYPE RESOLVED | L1 |
 | `BattleSystemState` | 0x7410 | 29712 B (100.0 %) | 42 / 42 | 35 / 42 | 0 | SIGNATURE RESOLVED | L1 |
-| `BattleTargetBuffer` | 0x208 | 520 B (100.0 %) | 5 / 5 | 4 / 5 | 0 | SIGNATURE RESOLVED | L1 |
+| `BattleTargetBuffer` | 0x208 | 520 B (100.0 %) | 6 / 6 | 5 / 6 | 0 | SIGNATURE RESOLVED | L1 |
 | `BattleTargetEntry` | 0x10 | 16 B (100.0 %) | 3 / 3 | 2 / 3 | 0 | SIGNATURE RESOLVED | L1 |
 | `BattleTargetResultEntry` | 0x10 | 16 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | SIGNATURE RESOLVED | L1 |
-| `BattleUnit` | 0xF50 | 3920 B (100.0 %) | 177 / 177 | 147 / 177 | 0 | TYPE RESOLVED | L1 |
+| `BattleUnit` | 0xF50 | 3920 B (100.0 %) | 174 / 174 | 145 / 174 | 0 | TYPE RESOLVED | L1 |
 | `BattleUnitSlotCount` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `BgmStream` | 0x38 | 56 B (100.0 %) | 16 / 16 | 12 / 16 | 0 | TYPE RESOLVED | L1 |
 | `BitTable02099DE8` | 0x8 | 8 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `BootAllocationSlot01FD4A20` | 0x8 | 8 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `BootAllocationSlot01FD4A90` | 0x8 | 8 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
-| `BootSingleton01F7F598` | 0xDD8 | 3544 B (100.0 %) | 81 / 81 | 40 / 81 | 0 | TYPE RESOLVED | L1 |
+| `BootHandshakeWord` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
+| `BootSingleton01F7F598` | 0xDD8 | 3544 B (100.0 %) | 94 / 94 | 51 / 94 | 0 | TYPE RESOLVED | L1 |
 | `BootSubBlock0338` | 0x338 | 824 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | SIGNATURE RESOLVED | L1 |
-| `CD3D11_BLEND_DESC` | 0x108 | 264 B (100.0 %) | 3 / 3 | 0 / 3 | 0 | SIGNATURE RESOLVED | L1 |
-| `CD3D11_DEPTH_STENCIL_DESC` | 0x34 | 52 B (100.0 %) | 8 / 8 | 0 / 8 | 0 | SIGNATURE RESOLVED | L1 |
-| `CD3D11_RASTERIZER_DESC` | 0x28 | 40 B (100.0 %) | 9 / 9 | 0 / 9 | 0 | SIGNATURE RESOLVED | L1 |
-| `CPostEffect` | 0xD40 | 3392 B (100.0 %) | 529 / 529 | 218 / 529 | 0 | TYPE RESOLVED | L1 |
-| `Category` | 0x88 | 136 B (100.0 %) | 20 / 20 | 17 / 20 | 0 | TYPE RESOLVED | L1 |
-| `CharacterLightingTuningBank` | 0xC0 | 192 B (100.0 %) | 47 / 47 | 43 / 47 | 0 | SEMANTICALLY IDENTIFIED | L1 |
+| `CAtlBaseModule` | 0x60 | 96 B (100.0 %) | 11 / 11 | 11 / 11 | 0 | TYPE RESOLVED | L1 |
+| `CD3D11_BLEND_DESC` | 0x108 | 264 B (100.0 %) | 3 / 3 | 1 / 3 | 0 | SIGNATURE RESOLVED | L1 |
+| `CD3D11_DEPTH_STENCIL_DESC` | 0x34 | 52 B (100.0 %) | 9 / 9 | 2 / 9 | 0 | SIGNATURE RESOLVED | L1 |
+| `CD3D11_RASTERIZER_DESC` | 0x28 | 40 B (100.0 %) | 10 / 10 | 2 / 10 | 0 | SIGNATURE RESOLVED | L1 |
+| `CPostEffect` | 0xD40 | 3392 B (100.0 %) | 679 / 679 | 401 / 679 | 0 | TYPE RESOLVED | L1 |
+| `CameraContext` | 0x860 | 0 B (0.0 %) | 0 / 0 | 0 / 0 | 1 | SEMANTICALLY IDENTIFIED | L1 |
+| `CapabilityRow12Cell` | 0x8 | 8 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
+| `Category` | 0x88 | 136 B (100.0 %) | 19 / 19 | 17 / 19 | 0 | TYPE RESOLVED | L1 |
+| `CharacterLightingTuningBank` | 0xC0 | 192 B (100.0 %) | 48 / 48 | 44 / 48 | 0 | SEMANTICALLY IDENTIFIED | L1 |
 | `CharacterRenderObject` | 0x668 | 1640 B (100.0 %) | 52 / 52 | 52 / 52 | 0 | SIGNATURE RESOLVED | L1 |
-| `CharacterRenderRecord` | 0x740 | 1856 B (100.0 %) | 351 / 354 | 300 / 354 | 0 | SIGNATURE RESOLVED | L1 |
+| `CharacterRenderRecord` | 0x740 | 1856 B (100.0 %) | 342 / 345 | 317 / 345 | 0 | SIGNATURE RESOLVED | L1 |
 | `CharacterRenderSystemTail` | 0x130 | 304 B (100.0 %) | 28 / 28 | 24 / 28 | 0 | SIGNATURE RESOLVED | L1 |
 | `CharacterShaderParamTable` | 0x318 | 792 B (100.0 %) | 99 / 99 | 99 / 99 | 0 | TYPE RESOLVED | L1 |
 | `ChunkedSlotBankEntry` | 0x20 | 32 B (100.0 %) | 8 / 8 | 8 / 8 | 0 | TYPE RESOLVED | L1 |
 | `ChunkedSlotEntry` | 0x10 | 16 B (100.0 %) | 4 / 4 | 4 / 4 | 0 | TYPE RESOLVED | L1 |
-| `CoreRuntimeStatic02064AA0` | 0x60 | 96 B (100.0 %) | 25 / 25 | 3 / 25 | 0 | SIGNATURE RESOLVED | L1 |
-| `CorridorNavAgent` | 0x110 | 272 B (100.0 %) | 32 / 32 | 10 / 32 | 0 | TYPE RESOLVED | L1 |
+| `ConstantBufferD3D11Element` | 0x10 | 16 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | SIGNATURE RESOLVED | L1 |
+| `CoreRuntimeStatic02064AA0` | 0x60 | 96 B (100.0 %) | 25 / 25 | 16 / 25 | 0 | SIGNATURE RESOLVED | L1 |
+| `CorridorNavAgent` | 0x110 | 272 B (100.0 %) | 36 / 36 | 14 / 36 | 0 | TYPE RESOLVED | L1 |
 | `CountedU32LookupTable` | *none declared* | 0 B (no denominator) | 0 / 0 | 0 / 0 | 0 | SIGNATURE RESOLVED | L1 |
 | `CrtIsaAvailable01F44858` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SEMANTICALLY IDENTIFIED | L1 |
 | `CullOutcodeHistory02B404B0` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SEMANTICALLY IDENTIFIED | L1 |
-| `D3D11_DEPTH_STENCILOP_DESC` | 0x10 | 16 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
-| `D3D11_RENDER_TARGET_BLEND_DESC` | 0x20 | 32 B (100.0 %) | 4 / 4 | 0 / 4 | 0 | SIGNATURE RESOLVED | L1 |
-| `DeveloperConsoleSettings01F81428` | 0x10E8 | 4328 B (100.0 %) | 89 / 89 | 81 / 89 | 0 | TYPE RESOLVED | L1 |
+| `D3D11_DEPTH_STENCILOP_DESC` | 0x10 | 16 B (100.0 %) | 4 / 4 | 4 / 4 | 0 | SIGNATURE RESOLVED | L1 |
+| `D3D11_RENDER_TARGET_BLEND_DESC` | 0x20 | 32 B (100.0 %) | 9 / 9 | 6 / 9 | 0 | SIGNATURE RESOLVED | L1 |
+| `DeferredFrameCallback0215FD98` | 0x8 | 8 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
+| `DeveloperConsoleSettings01F81428` | 0x10E8 | 4328 B (100.0 %) | 229 / 229 | 221 / 229 | 0 | TYPE RESOLVED | L1 |
 | `DeveloperTuningCodeEntry` | 0x10 | 16 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | TYPE RESOLVED | L1 |
-| `DynGeoFontTextSpecialFinalInstance` | 0x170 | 368 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | CLASSIFIED | L1 |
-| `DynGeoFontTextSpecialInstance` | 0x160 | 352 B (100.0 %) | 5 / 5 | 5 / 5 | 0 | CLASSIFIED | L1 |
-| `DynGeoFontTextSpecialShadowInstance` | 0x168 | 360 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | CLASSIFIED | L1 |
+| `DynGeoFontTextSpecialFinalInstance` | 0x170 | 368 B (100.0 %) | 8 / 8 | 4 / 8 | 0 | CLASSIFIED | L1 |
+| `DynGeoFontTextSpecialInstance` | 0x160 | 352 B (100.0 %) | 10 / 10 | 6 / 10 | 0 | CLASSIFIED | L1 |
+| `DynGeoFontTextSpecialShadowInstance` | 0x168 | 360 B (100.0 %) | 8 / 8 | 4 / 8 | 0 | CLASSIFIED | L1 |
 | `EasingLutEntryCount` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SEMANTICALLY IDENTIFIED | L1 |
 | `EasingLutRow` | 0x1E0 | 480 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `EastlPointerVector` | 0x20 | 32 B (100.0 %) | 4 / 4 | 4 / 4 | 0 | SIGNATURE RESOLVED | L1 |
@@ -99,9 +112,12 @@
 | `EncodedIdQueryRecord` | 0x98 | 154 B (101.3 %) | 41 / 41 | 41 / 41 | 0 | SIGNATURE RESOLVED | L1 |
 | `EquipmentDefinitionRecord` | *none declared* | 4 B (no denominator) | 4 / 4 | 4 / 4 | 0 | SIGNATURE RESOLVED | L1 |
 | `EvaluationContext` | 0x30 | 48 B (100.0 %) | 9 / 9 | 7 / 9 | 0 | SIGNATURE RESOLVED | L1 |
+| `EventFocusParams02EBA4C0` | 0x30 | 48 B (100.0 %) | 9 / 9 | 8 / 9 | 0 | TYPE RESOLVED | L1 |
+| `FadeLayerRecord` | 0x30 | 48 B (100.0 %) | 13 / 13 | 10 / 13 | 0 | TYPE RESOLVED | L1 |
 | `Ff12Ar03Header` | 0x30 | 48 B (100.0 %) | 4 / 4 | 4 / 4 | 0 | TYPE RESOLVED | L1 |
 | `FieldClockTicks` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `FieldDataPointers02ADD0B8` | 0x18 | 24 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | SEMANTICALLY IDENTIFIED | L1 |
+| `FieldObjectSystemGlobals0215FD40` | 0x18 | 24 B (100.0 %) | 10 / 10 | 8 / 10 | 0 | TYPE RESOLVED | L1 |
 | `FieldPendingRequestCells022C8030` | 0x20 | 32 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `FieldRecord` | 0x3 | 3 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
 | `FieldRecordTable` | *none declared* | 4 B (no denominator) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
@@ -117,21 +133,25 @@
 | `FrameSkipEnabled01E02801` | 0x1 | 1 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SEMANTICALLY IDENTIFIED | L1 |
 | `FrameUpdateGateEnableWord` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `GambitConfig` | 0x34 | 52 B (100.0 %) | 4 / 4 | 3 / 4 | 0 | SIGNATURE RESOLVED | L1 |
+| `GameApplication` | 0x1140 | 4416 B (100.0 %) | 6 / 6 | 4 / 6 | 0 | SIGNATURE RESOLVED | L1 |
 | `GameSettingConfig` | 0x65C | 1628 B (100.0 %) | 42 / 42 | 38 / 42 | 0 | TYPE RESOLVED | L1 |
 | `GameSettingKeyName` | 0x8 | 8 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SEMANTICALLY IDENTIFIED | L1 |
 | `GameSettingValueNameRow` | 0x48 | 72 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SEMANTICALLY IDENTIFIED | L1 |
 | `GameSettingValueTableSource` | 0x144 | 324 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `GameplayInputSnapshot` | 0x3C | 60 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | TYPE RESOLVED | L1 |
 | `GeneratorInitLatch` | 0x1 | 1 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
-| `GlyphRunWidget1498` | 0x1498 | 5272 B (100.0 %) | 47 / 47 | 31 / 47 | 0 | SIGNATURE RESOLVED | L1 |
+| `GlobalFrameTick` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
+| `GlyphRunRecord14` | 0x14 | 20 B (100.0 %) | 9 / 9 | 9 / 9 | 0 | TYPE RESOLVED | L1 |
+| `GlyphRunWidget1498` | 0x1498 | 5272 B (100.0 %) | 43 / 43 | 32 / 43 | 0 | SIGNATURE RESOLVED | L1 |
 | `GraphicsNoiseDrawCursor` | 0x8 | 8 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `GraphicsNoiseRefillCount` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
+| `GroupCompletionBytes0209A2C4` | 0x4 | 4 B (100.0 %) | 4 / 4 | 2 / 4 | 0 | TYPE RESOLVED | L1 |
 | `GroupPersistentBank` | 0x200 | 512 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SEMANTICALLY IDENTIFIED | L1 |
 | `HalfRateSuppressToggle` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `HandleSlotListState02B404C0` | 0x48 | 72 B (100.0 %) | 14 / 14 | 14 / 14 | 0 | SEMANTICALLY IDENTIFIED | L1 |
-| `HandleSlotRecord` | 0x60 | 96 B (100.0 %) | 10 / 10 | 10 / 10 | 0 | TYPE RESOLVED | L1 |
-| `HelpMessageSlotRecord0100` | 0x100 | 256 B (100.0 %) | 30 / 30 | 8 / 30 | 0 | TYPE RESOLVED | L1 |
-| `HelpMessageWidget0500` | 0x500 | 1280 B (100.0 %) | 35 / 35 | 21 / 35 | 0 | SIGNATURE RESOLVED | L1 |
+| `HandleSlotRecord` | 0x60 | 96 B (100.0 %) | 11 / 11 | 11 / 11 | 0 | TYPE RESOLVED | L1 |
+| `HelpMessageSlotRecord0100` | 0x100 | 256 B (100.0 %) | 11 / 11 | 3 / 11 | 0 | TYPE RESOLVED | L1 |
+| `HelpMessageWidget0500` | 0x500 | 1280 B (100.0 %) | 13 / 13 | 9 / 13 | 0 | SIGNATURE RESOLVED | L1 |
 | `ImageAddressArenaBlockHeader` | 0x40 | 64 B (100.0 %) | 24 / 24 | 24 / 24 | 0 | CLASSIFIED | L2 |
 | `ImageAddressArenaRecord` | 0xA8 | 168 B (100.0 %) | 25 / 25 | 25 / 25 | 0 | CLASSIFIED | L2 |
 | `ImageAddressHandleSlot` | 0x10 | 16 B (100.0 %) | 6 / 6 | 6 / 6 | 0 | SEMANTICALLY IDENTIFIED | L2 |
@@ -151,12 +171,13 @@
 | `InventoryCategoryListDescriptor` | 0x8 | 8 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | TYPE RESOLVED | L2 |
 | `ItemClassDescriptor` | 0x58 | 88 B (100.0 %) | 14 / 14 | 14 / 14 | 0 | TYPE RESOLVED | L1 |
 | `LegacyPs2GsDerivedSlotRecord` | 0x28 | 40 B (100.0 %) | 6 / 6 | 6 / 6 | 0 | TYPE RESOLVED | L1 |
-| `LegacyPs2GsReferenceDescriptor` | 0x30 | 48 B (100.0 %) | 7 / 7 | 3 / 7 | 0 | TYPE RESOLVED | L1 |
+| `LegacyPs2GsNestedChunkRecord68` | 0x68 | 104 B (100.0 %) | 16 / 16 | 16 / 16 | 0 | TYPE RESOLVED | L1 |
+| `LegacyPs2GsReferenceDescriptor` | 0x30 | 48 B (100.0 %) | 8 / 8 | 4 / 8 | 0 | TYPE RESOLVED | L1 |
 | `LegacyPs2GsSlotClassBank` | 0x18 | 24 B (100.0 %) | 4 / 4 | 4 / 4 | 0 | TYPE RESOLVED | L1 |
 | `LegacyPs2GsSourceTextureRecord` | 0x60 | 96 B (100.0 %) | 9 / 9 | 6 / 9 | 0 | TYPE RESOLVED | L1 |
-| `LegacyPs2GsTextureContext` | 0x240 | 576 B (100.0 %) | 71 / 71 | 47 / 71 | 0 | TYPE RESOLVED | L1 |
+| `LegacyPs2GsTextureContext` | 0x240 | 576 B (100.0 %) | 46 / 46 | 40 / 46 | 0 | TYPE RESOLVED | L1 |
 | `LicenseBoardFile` | 0x488 | 1160 B (100.0 %) | 4 / 4 | 4 / 4 | 0 | SIGNATURE RESOLVED | L1 |
-| `LicenseNodeRecord` | 0x18 | 24 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | DISCOVERED | L1 |
+| `LicenseNodeRecord` | 0x18 | 24 B (100.0 %) | 6 / 6 | 5 / 6 | 0 | DISCOVERED | L1 |
 | `LiveRampRequest02B40538` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SEMANTICALLY IDENTIFIED | L1 |
 | `LoadRouteFlags02089344` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SEMANTICALLY IDENTIFIED | L1 |
 | `LootChainProfileDrawCount` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SEMANTICALLY IDENTIFIED | L1 |
@@ -171,7 +192,7 @@
 | `LuaNode` | 0x28 | 40 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | CLASSIFIED | L1 |
 | `LuaPrecompiledChunkHeader` | 0x12 | 18 B (100.0 %) | 10 / 10 | 10 / 10 | 0 | TYPE RESOLVED | L2 |
 | `LuaProto` | 0x80 | 128 B (100.0 %) | 25 / 25 | 25 / 25 | 0 | SIGNATURE RESOLVED | L1 |
-| `LuaState` | 0xD0 | 208 B (100.0 %) | 23 / 23 | 23 / 23 | 0 | SIGNATURE RESOLVED | L1 |
+| `LuaState` | 0xD0 | 208 B (100.0 %) | 26 / 26 | 26 / 26 | 0 | SIGNATURE RESOLVED | L1 |
 | `LuaString` | *none declared* | 32 B (no denominator) | 8 / 8 | 8 / 8 | 0 | SIGNATURE RESOLVED | L1 |
 | `LuaTValue` | 0x10 | 16 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | TYPE RESOLVED | L1 |
 | `LuaTable` | 0x40 | 64 B (100.0 %) | 13 / 13 | 13 / 13 | 0 | CLASSIFIED | L1 |
@@ -179,60 +200,65 @@
 | `LuaUpvaldesc` | 0x10 | 16 B (100.0 %) | 4 / 4 | 4 / 4 | 0 | CLASSIFIED | L1 |
 | `LuaUserdata` | *none declared* | 48 B (no denominator) | 8 / 8 | 8 / 8 | 0 | SIGNATURE RESOLVED | L1 |
 | `MWeatherTableImage` | *none declared* | 9 B (no denominator) | 3 / 3 | 3 / 3 | 0 | SIGNATURE RESOLVED | L1 |
-| `Manager0209AC60` | 0xE00 | 3584 B (100.0 %) | 242 / 242 | 5 / 242 | 0 | CLASSIFIED | L1 |
-| `ManagerSingleton0209BE80` | 0x10FD0 | 69584 B (100.0 %) | 67 / 67 | 53 / 67 | 0 | SIGNATURE RESOLVED | L1 |
-| `ManagerSub00A0Entry` | 0x100 | 256 B (100.0 %) | 4 / 4 | 4 / 4 | 0 | DISCOVERED | L1 |
-| `ManagerSub0209AC60_02F8` | 0xD8 | 216 B (100.0 %) | 29 / 29 | 17 / 29 | 0 | CLASSIFIED | L1 |
-| `ManagerSub0209AC60_02F8_00C0` | 0x102D0 | 66256 B (100.0 %) | 35 / 35 | 28 / 35 | 0 | SIGNATURE RESOLVED | L1 |
-| `ManagerSub0209BE80_00A0` | 0x52E0 | 21216 B (100.0 %) | 15 / 15 | 14 / 15 | 0 | DISCOVERED | L1 |
-| `ManagerSub0209BE80_5380` | 0x460 | 1120 B (100.0 %) | 7 / 7 | 7 / 7 | 0 | DISCOVERED | L1 |
-| `ManagerSub0209BE80_57E0` | 0x26C0 | 9920 B (100.0 %) | 58 / 58 | 54 / 58 | 0 | DISCOVERED | L1 |
+| `Manager0209AC60` | 0xE00 | 3584 B (100.0 %) | 243 / 243 | 5 / 243 | 0 | CLASSIFIED | L1 |
+| `ManagerSingleton0209BE80` | 0x10FD0 | 71408 B (102.6 %) | 68 / 68 | 54 / 68 | 0 | SIGNATURE RESOLVED | L1 |
+| `ManagerSub00A0Entry` | 0x100 | 256 B (100.0 %) | 22 / 22 | 3 / 22 | 0 | SEMANTICALLY IDENTIFIED | L1 |
+| `ManagerSub0209AC60_02F8` | 0xD8 | 216 B (100.0 %) | 8 / 8 | 6 / 8 | 0 | CLASSIFIED | L1 |
+| `ManagerSub0209AC60_02F8_00C0` | 0x102D0 | 66256 B (100.0 %) | 8 / 8 | 8 / 8 | 0 | SIGNATURE RESOLVED | L1 |
+| `ManagerSub0209BE80_00A0` | 0x52E0 | 21216 B (100.0 %) | 15 / 15 | 14 / 15 | 0 | SEMANTICALLY IDENTIFIED | L1 |
+| `ManagerSub0209BE80_5380` | 0x460 | 1120 B (100.0 %) | 7 / 7 | 7 / 7 | 0 | SEMANTICALLY IDENTIFIED | L1 |
+| `ManagerSub0209BE80_57E0` | 0x26C0 | 9920 B (100.0 %) | 61 / 61 | 57 / 61 | 0 | SEMANTICALLY IDENTIFIED | L1 |
 | `ManagerSub0209BE80_57E0ArrayRecord` | 0x2A0 | 672 B (100.0 %) | 21 / 21 | 17 / 21 | 0 | TYPE RESOLVED | L1 |
-| `ManagerSub0209BE80_57E0PairRecord` | 0xD0 | 208 B (100.0 %) | 32 / 32 | 32 / 32 | 0 | CLASSIFIED | L1 |
-| `ManagerSub0209BE80_7EA0` | 0x110 | 272 B (100.0 %) | 13 / 13 | 13 / 13 | 0 | DISCOVERED | L1 |
-| `ManagerSub0209BE80_7FB0` | 0xFF0 | 4080 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | DISCOVERED | L1 |
-| `ManagerSub0209BE80_8FA0` | 0x1110 | 4368 B (100.0 %) | 48 / 48 | 46 / 48 | 0 | DISCOVERED | L1 |
-| `ManagerSub0209BE80_A0D0` | 0x990 | 2448 B (100.0 %) | 10 / 10 | 9 / 10 | 0 | DISCOVERED | L1 |
-| `ManagerSub0209BE80_AB30` | 0x61F0 | 25072 B (100.0 %) | 71 / 71 | 21 / 71 | 0 | DISCOVERED | L1 |
+| `ManagerSub0209BE80_57E0PairRecord` | 0xD0 | 208 B (100.0 %) | 35 / 35 | 35 / 35 | 0 | CLASSIFIED | L1 |
+| `ManagerSub0209BE80_7EA0` | 0x110 | 272 B (100.0 %) | 13 / 13 | 13 / 13 | 0 | SEMANTICALLY IDENTIFIED | L1 |
+| `ManagerSub0209BE80_7FB0` | 0xFF0 | 4080 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SEMANTICALLY IDENTIFIED | L1 |
+| `ManagerSub0209BE80_8FA0` | 0x1110 | 4368 B (100.0 %) | 51 / 51 | 50 / 51 | 0 | SEMANTICALLY IDENTIFIED | L1 |
+| `ManagerSub0209BE80_A0D0` | 0x990 | 2448 B (100.0 %) | 10 / 10 | 9 / 10 | 0 | SEMANTICALLY IDENTIFIED | L1 |
+| `ManagerSub0209BE80_AB30` | 0x61F0 | 25072 B (100.0 %) | 71 / 71 | 21 / 71 | 0 | SEMANTICALLY IDENTIFIED | L1 |
 | `ManagerSub5380PoolAEntry` | 0x30 | 48 B (100.0 %) | 12 / 12 | 12 / 12 | 0 | TYPE RESOLVED | L1 |
 | `ManagerSub5380PoolBEntry` | 0x28 | 40 B (100.0 %) | 8 / 8 | 8 / 8 | 0 | TYPE RESOLVED | L1 |
 | `ManagerSub5380PoolCEntry` | 0x28 | 40 B (100.0 %) | 9 / 9 | 9 / 9 | 0 | TYPE RESOLVED | L1 |
-| `ManagerSub7EA0Entry` | 0x20 | 32 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | DISCOVERED | L1 |
-| `ManagerSub7FB0Record` | 0x110 | 272 B (100.0 %) | 38 / 38 | 16 / 38 | 0 | DISCOVERED | L1 |
-| `ManagerSub8FA0SlotRecord02B8` | 0x2B8 | 696 B (100.0 %) | 39 / 39 | 28 / 39 | 0 | TYPE RESOLVED | L2 |
-| `ManagerSubA0D0Record` | 0x110 | 272 B (100.0 %) | 21 / 21 | 7 / 21 | 0 | TYPE RESOLVED | L1 |
+| `ManagerSub7EA0Entry` | 0x20 | 32 B (100.0 %) | 7 / 7 | 3 / 7 | 0 | SEMANTICALLY IDENTIFIED | L1 |
+| `ManagerSub7FB0Record` | 0x110 | 272 B (100.0 %) | 16 / 16 | 10 / 16 | 0 | SEMANTICALLY IDENTIFIED | L1 |
+| `ManagerSub8FA0SlotRecord02B8` | 0x2B8 | 696 B (100.0 %) | 16 / 16 | 14 / 16 | 0 | TYPE RESOLVED | L2 |
+| `ManagerSubA0D0Record` | 0x110 | 272 B (100.0 %) | 10 / 10 | 10 / 10 | 0 | TYPE RESOLVED | L1 |
 | `MapAnimNode` | 0x130 | 304 B (100.0 %) | 38 / 38 | 29 / 38 | 0 | TYPE RESOLVED | L1 |
 | `MapAnimSlot` | 0x50 | 80 B (100.0 %) | 16 / 16 | 16 / 16 | 0 | TYPE RESOLVED | L1 |
 | `MapAnimTrackState` | 0x18 | 24 B (100.0 %) | 5 / 5 | 5 / 5 | 0 | TYPE RESOLVED | L1 |
 | `MapCtrlFlagChannel02F8F220` | 0x7F | 127 B (100.0 %) | 12 / 12 | 12 / 12 | 0 | TYPE RESOLVED | L1 |
-| `MapLightingTuning02CB7FD0` | 0xD0 | 208 B (100.0 %) | 54 / 54 | 44 / 54 | 0 | SEMANTICALLY IDENTIFIED | L1 |
-| `MapPackBindState02ADD0D8` | 0x20 | 32 B (100.0 %) | 11 / 11 | 3 / 11 | 0 | SEMANTICALLY IDENTIFIED | L1 |
-| `MapPackSlotPointers02ADCFE0` | 0xC8 | 200 B (100.0 %) | 22 / 22 | 11 / 22 | 0 | SEMANTICALLY IDENTIFIED | L1 |
-| `MapRefFieldRow` | 0x8 | 8 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | SEMANTICALLY IDENTIFIED | L1 |
+| `MapLightingTuning02CB7FD0` | 0xD0 | 208 B (100.0 %) | 54 / 54 | 47 / 54 | 0 | SEMANTICALLY IDENTIFIED | L1 |
+| `MapPackBindState02ADD0D8` | 0x20 | 32 B (100.0 %) | 11 / 11 | 11 / 11 | 0 | SEMANTICALLY IDENTIFIED | L1 |
+| `MapPackSlotPointers02ADCFE0` | 0xC8 | 200 B (100.0 %) | 22 / 22 | 16 / 22 | 0 | SEMANTICALLY IDENTIFIED | L1 |
+| `MapRefFieldRow` | 0x8 | 8 B (100.0 %) | 4 / 4 | 2 / 4 | 0 | SEMANTICALLY IDENTIFIED | L1 |
 | `MapRefImageHeader` | 0x30 | 48 B (100.0 %) | 9 / 9 | 9 / 9 | 0 | SIGNATURE RESOLVED | L1 |
 | `MapRefImageSlot` | 0x18 | 24 B (100.0 %) | 3 / 3 | 2 / 3 | 0 | TYPE RESOLVED | L1 |
 | `MapRefWeatherBlock` | 0x10 | 16 B (100.0 %) | 4 / 4 | 4 / 4 | 0 | SEMANTICALLY IDENTIFIED | L1 |
 | `MapRefWeatherLane` | 0x4 | 4 B (100.0 %) | 4 / 4 | 4 / 4 | 0 | SEMANTICALLY IDENTIFIED | L1 |
-| `MapScreenContainer` | 0x179E0 | 96736 B (100.0 %) | 73 / 73 | 21 / 73 | 0 | SIGNATURE RESOLVED | L1 |
-| `MapScreenMarkerNode0B0` | 0xB0 | 176 B (100.0 %) | 6 / 6 | 6 / 6 | 0 | SIGNATURE RESOLVED | L1 |
-| `MapScreenPage` | 0xBC08 | 48136 B (100.0 %) | 53 / 53 | 53 / 53 | 0 | SIGNATURE RESOLVED | L1 |
+| `MapScreenContainer` | 0x179E0 | 96736 B (100.0 %) | 44 / 44 | 13 / 44 | 0 | SIGNATURE RESOLVED | L1 |
+| `MapScreenLinkNode0B0` | 0xB0 | 176 B (100.0 %) | 8 / 8 | 8 / 8 | 0 | SIGNATURE RESOLVED | L1 |
+| `MapScreenMarkerEntry070` | 0x70 | 112 B (100.0 %) | 12 / 12 | 10 / 12 | 0 | SIGNATURE RESOLVED | L1 |
+| `MapScreenPage` | 0xBC08 | 48136 B (100.0 %) | 50 / 50 | 50 / 50 | 0 | SIGNATURE RESOLVED | L1 |
 | `MapScreenPageSlot` | 0xBC10 | 48144 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
 | `Matrix3` | 0x30 | 48 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `Matrix4` | 0x40 | 64 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
-| `MessageWindowRecord` | 0x410 | 1040 B (100.0 %) | 63 / 63 | 50 / 63 | 0 | SIGNATURE RESOLVED | L1 |
-| `MirrorBlockBytes02099DA0` | 0x8 | 8 B (100.0 %) | 8 / 8 | 0 / 8 | 0 | TYPE RESOLVED | L1 |
+| `MessageWindowRecord` | 0x410 | 1040 B (100.0 %) | 40 / 40 | 34 / 40 | 0 | SIGNATURE RESOLVED | L1 |
+| `MirrorBlockBytes02099DA0` | 0x8 | 8 B (100.0 %) | 8 / 8 | 7 / 8 | 0 | TYPE RESOLVED | L1 |
 | `MirrorBlockDword02099DB4` | 0x4 | 4 B (100.0 %) | 1 / 1 | 0 / 1 | 0 | TYPE RESOLVED | L1 |
 | `MirrorBlockDword02099DB8` | 0x4 | 4 B (100.0 %) | 1 / 1 | 0 / 1 | 0 | TYPE RESOLVED | L1 |
 | `ModeState0209273C` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
-| `MovementBody` | 0x130 | 304 B (100.0 %) | 61 / 61 | 16 / 61 | 0 | TYPE RESOLVED | L1 |
+| `MovementBody` | 0x130 | 304 B (100.0 %) | 68 / 68 | 34 / 68 | 0 | TYPE RESOLVED | L1 |
 | `MovementBodyPoolControl` | 0x18 | 24 B (100.0 %) | 6 / 6 | 3 / 6 | 0 | TYPE RESOLVED | L1 |
 | `MovementContext` | 0x230 | 560 B (100.0 %) | 80 / 80 | 76 / 80 | 0 | SIGNATURE RESOLVED | L1 |
+| `MovieMemoryState02ADD930` | 0x4 | 4 B (100.0 %) | 4 / 4 | 4 / 4 | 0 | TYPE RESOLVED | L1 |
 | `MsvcTreeNodeHeader` | 0x20 | 32 B (100.0 %) | 6 / 6 | 6 / 6 | 0 | TYPE RESOLVED | L1 |
 | `Mt19937State` | 0x9C4 | 2500 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | TYPE RESOLVED | L1 |
 | `MusicLadderEntry` | 0x3 | 3 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SEMANTICALLY IDENTIFIED | L1 |
 | `MusicRun` | *none declared* | 7 B (no denominator) | 4 / 4 | 4 / 4 | 0 | SEMANTICALLY IDENTIFIED | L1 |
 | `MusicTable` | *none declared* | 12 B (no denominator) | 3 / 3 | 2 / 3 | 0 | SEMANTICALLY IDENTIFIED | L1 |
+| `MusicTrackSlot` | 0x18 | 24 B (100.0 %) | 8 / 8 | 7 / 8 | 0 | TYPE RESOLVED | L1 |
+| `MusicTrackState022CB9F0` | 0x74 | 116 B (100.0 %) | 4 / 4 | 4 / 4 | 0 | TYPE RESOLVED | L1 |
 | `NameBindingEntry` | 0x40 | 64 B (100.0 %) | 18 / 18 | 17 / 18 | 0 | TYPE RESOLVED | L1 |
+| `NameBindingListHeads0215FD58` | 0x40 | 64 B (100.0 %) | 8 / 8 | 8 / 8 | 0 | TYPE RESOLVED | L1 |
 | `NameBindingSubRecord` | 0x120 | 288 B (100.0 %) | 20 / 20 | 20 / 20 | 0 | TYPE RESOLVED | L1 |
 | `NameRegistryNode` | 0x20 | 32 B (100.0 %) | 5 / 5 | 5 / 5 | 0 | SIGNATURE RESOLVED | L2 |
 | `NativeCommandFamilyTables` | 0x80 | 128 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
@@ -244,27 +270,27 @@
 | `NavPortalRecord` | 0x8 | 8 B (100.0 %) | 6 / 6 | 6 / 6 | 0 | CLASSIFIED | L1 |
 | `NavRegionAdjacencyEntry` | 0x2 | 2 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SEMANTICALLY IDENTIFIED | L1 |
 | `NavRegionRecord` | 0x22 | 34 B (100.0 %) | 4 / 4 | 4 / 4 | 0 | CLASSIFIED | L1 |
-| `NavRunStateBlock` | 0x30 | 48 B (100.0 %) | 14 / 14 | 9 / 14 | 0 | CLASSIFIED | L1 |
+| `NavRunStateBlock` | 0x30 | 48 B (100.0 %) | 14 / 14 | 11 / 14 | 0 | CLASSIFIED | L1 |
 | `NavSlotPointerArray` | 0x8 | 8 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | CLASSIFIED | L1 |
-| `NavTrailerRecord28` | 0x20 | 32 B (100.0 %) | 2 / 2 | 0 / 2 | 0 | TYPE RESOLVED | L1 |
+| `NavTrailerRecord28` | 0x20 | 32 B (100.0 %) | 7 / 7 | 7 / 7 | 0 | TYPE RESOLVED | L1 |
 | `NavigationPathState` | 0x490 | 1168 B (100.0 %) | 6 / 6 | 6 / 6 | 0 | SIGNATURE RESOLVED | L1 |
 | `OffsetIndexedStringTable` | *none declared* | 0 B (no denominator) | 0 / 0 | 0 / 0 | 0 | SIGNATURE RESOLVED | L1 |
 | `OnceFlag01FD4A88` | 0x1 | 1 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
-| `OrderedCommandList` | 0x30 | 48 B (100.0 %) | 7 / 7 | 7 / 7 | 0 | SIGNATURE RESOLVED | L1 |
+| `OrderedCommandList` | 0x30 | 48 B (100.0 %) | 8 / 8 | 8 / 8 | 0 | SIGNATURE RESOLVED | L1 |
 | `OrderedObject` | 0x18 | 24 B (100.0 %) | 4 / 4 | 4 / 4 | 0 | SIGNATURE RESOLVED | L1 |
 | `OwnedObjectPtr022C8058` | 0x8 | 8 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | DISCOVERED | L1 |
 | `PAnimatableComponent` | 0x108 | 264 B (100.0 %) | 8 / 8 | 8 / 8 | 0 | SIGNATURE RESOLVED | L1 |
 | `PAnimationAdditiveBlenderController` | 0x38 | 56 B (100.0 %) | 4 / 4 | 3 / 4 | 0 | SIGNATURE RESOLVED | L1 |
 | `PAnimationBlenderController` | 0x28 | 40 B (100.0 %) | 4 / 4 | 3 / 4 | 0 | SIGNATURE RESOLVED | L1 |
-| `PAnimationChannel` | 0x68 | 104 B (100.0 %) | 5 / 5 | 2 / 5 | 0 | SIGNATURE RESOLVED | L1 |
-| `PAnimationChannelBase` | 0x48 | 72 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | SIGNATURE RESOLVED | L1 |
-| `PAnimationChannelTarget` | 0x38 | 56 B (100.0 %) | 8 / 8 | 5 / 8 | 0 | SIGNATURE RESOLVED | L1 |
-| `PAnimationChannelTimes` | 0x18 | 24 B (100.0 %) | 2 / 2 | 0 / 2 | 0 | SIGNATURE RESOLVED | L1 |
+| `PAnimationChannel` | 0x68 | 104 B (100.0 %) | 5 / 5 | 3 / 5 | 0 | SIGNATURE RESOLVED | L1 |
+| `PAnimationChannelBase` | 0x48 | 72 B (100.0 %) | 4 / 4 | 4 / 4 | 0 | SIGNATURE RESOLVED | L1 |
+| `PAnimationChannelTarget` | 0x38 | 56 B (100.0 %) | 9 / 9 | 6 / 9 | 0 | SIGNATURE RESOLVED | L1 |
+| `PAnimationChannelTimes` | 0x18 | 24 B (100.0 %) | 3 / 3 | 1 / 3 | 0 | SIGNATURE RESOLVED | L1 |
 | `PAnimationClip` | 0x38 | 56 B (100.0 %) | 9 / 9 | 8 / 9 | 0 | SIGNATURE RESOLVED | L1 |
 | `PAnimationClipBinding` | 0x8 | 8 B (100.0 %) | 4 / 4 | 0 / 4 | 0 | SIGNATURE RESOLVED | L1 |
 | `PAnimationClipBindingChannelMap` | 0x4 | 4 B (100.0 %) | 2 / 2 | 0 / 2 | 0 | SIGNATURE RESOLVED | L1 |
 | `PAnimationClipBindingDataBlockCache` | 0x18 | 24 B (100.0 %) | 4 / 4 | 0 / 4 | 0 | SIGNATURE RESOLVED | L1 |
-| `PAnimationConstantChannel` | 0x58 | 88 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | SIGNATURE RESOLVED | L1 |
+| `PAnimationConstantChannel` | 0x58 | 88 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
 | `PAnimationController` | 0x28 | 40 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | SIGNATURE RESOLVED | L1 |
 | `PAnimationDataSource` | 0x18 | 24 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
 | `PAnimationDataSourceListEntry` | 0x98 | 152 B (100.0 %) | 6 / 6 | 2 / 6 | 0 | SIGNATURE RESOLVED | L1 |
@@ -274,25 +300,25 @@
 | `PAnimationHierarchyNode` | 0x10 | 16 B (100.0 %) | 2 / 2 | 1 / 2 | 0 | SIGNATURE RESOLVED | L1 |
 | `PAnimationNetworkInstance` | 0x78 | 120 B (100.0 %) | 21 / 21 | 13 / 21 | 0 | SIGNATURE RESOLVED | L1 |
 | `PAnimationNetworkInstanceTarget` | 0x30 | 48 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
-| `PAnimationSet` | 0x30 | 48 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
+| `PAnimationSet` | 0x30 | 48 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | SIGNATURE RESOLVED | L1 |
 | `PAnimationSlotArray` | 0x8 | 8 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
-| `PAnimationSlotFilter` | 0x40 | 64 B (100.0 %) | 6 / 6 | 4 / 6 | 0 | SIGNATURE RESOLVED | L1 |
+| `PAnimationSlotFilter` | 0x40 | 64 B (100.0 %) | 6 / 6 | 5 / 6 | 0 | SIGNATURE RESOLVED | L1 |
 | `PAnimationSlotFilterDeferredLoad` | 0x10 | 16 B (100.0 %) | 2 / 2 | 1 / 2 | 0 | SIGNATURE RESOLVED | L1 |
 | `PAnimationSlotListIndex` | 0x18 | 24 B (100.0 %) | 5 / 5 | 2 / 5 | 0 | SIGNATURE RESOLVED | L1 |
 | `PAnimationSpuTargetBlenderController` | 0x20 | 32 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
 | `PAnimationTargetBlenderController` | 0x20 | 32 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
 | `PAnimationWeightedBlenderController` | 0x38 | 56 B (100.0 %) | 4 / 4 | 3 / 4 | 0 | SIGNATURE RESOLVED | L1 |
-| `PApplication` | 0x1130 | 4400 B (100.0 %) | 98 / 98 | 95 / 98 | 0 | SIGNATURE RESOLVED | L1 |
+| `PApplication` | 0x1130 | 4400 B (100.0 %) | 102 / 102 | 93 / 102 | 0 | SIGNATURE RESOLVED | L1 |
 | `PApplicationViewport` | 0x38 | 56 B (100.0 %) | 9 / 9 | 9 / 9 | 0 | SIGNATURE RESOLVED | L1 |
-| `PArray` | 0x10 | 16 B (100.0 %) | 2 / 2 | 0 / 2 | 0 | CLASSIFIED | L1 |
+| `PArray` | 0x10 | 16 B (100.0 %) | 3 / 3 | 2 / 3 | 0 | CLASSIFIED | L1 |
 | `PAssetReference` | 0x50 | 80 B (100.0 %) | 9 / 9 | 7 / 9 | 0 | SIGNATURE RESOLVED | L1 |
 | `PAssetReferenceImport` | 0x18 | 24 B (100.0 %) | 3 / 3 | 1 / 3 | 0 | SIGNATURE RESOLVED | L1 |
 | `PAssetReferenceRegistry01F2EA70` | 0x30 | 48 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SEMANTICALLY IDENTIFIED | L1 |
 | `PAsyncProcessHeader` | 0x28 | 40 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PAtmospherics` | 0x288 | 648 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
-| `PAtmosphericsBase` | 0x288 | 648 B (100.0 %) | 17 / 17 | 9 / 17 | 0 | SIGNATURE RESOLVED | L1 |
+| `PAtmosphericsBase` | 0x288 | 648 B (100.0 %) | 42 / 42 | 38 / 42 | 0 | SIGNATURE RESOLVED | L1 |
 | `PAtmosphericsD3D11` | 0x288 | 648 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
-| `PBitmapFont` | 0x38 | 56 B (100.0 %) | 7 / 7 | 1 / 7 | 0 | SIGNATURE RESOLVED | L1 |
+| `PBitmapFont` | 0x38 | 56 B (100.0 %) | 8 / 8 | 3 / 8 | 0 | SIGNATURE RESOLVED | L1 |
 | `PBitmapFontCharInfo` | 0x30 | 48 B (100.0 %) | 10 / 10 | 3 / 10 | 0 | SIGNATURE RESOLVED | L1 |
 | `PBlendableAnimationSource` | 0x80 | 128 B (100.0 %) | 6 / 6 | 6 / 6 | 0 | SIGNATURE RESOLVED | L1 |
 | `PCamera` | 0xC0 | 192 B (100.0 %) | 6 / 6 | 6 / 6 | 0 | SIGNATURE RESOLVED | L1 |
@@ -310,45 +336,45 @@
 | `PComponent` | 0x18 | 24 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | SIGNATURE RESOLVED | L1 |
 | `PConstantBuffer` | 0x50 | 80 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PConstantBufferBase` | 0xC | 12 B (100.0 %) | 2 / 2 | 0 / 2 | 0 | SIGNATURE RESOLVED | L1 |
-| `PConstantBufferD3D11` | 0x50 | 80 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
+| `PConstantBufferD3D11` | 0x50 | 80 B (100.0 %) | 7 / 7 | 7 / 7 | 0 | SIGNATURE RESOLVED | L1 |
 | `PContextVariantFoldingTable` | 0x14 | 20 B (100.0 %) | 5 / 5 | 0 / 5 | 0 | SIGNATURE RESOLVED | L1 |
 | `PDataBlock` | 0x88 | 136 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
-| `PDataBlockBase` | 0x20 | 32 B (100.0 %) | 5 / 5 | 1 / 5 | 0 | SIGNATURE RESOLVED | L1 |
-| `PDataBlockBufferD3D11` | 0x48 | 72 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
-| `PDataBlockD3D11` | 0x88 | 136 B (100.0 %) | 6 / 6 | 2 / 6 | 0 | SIGNATURE RESOLVED | L1 |
+| `PDataBlockBase` | 0x20 | 32 B (100.0 %) | 6 / 6 | 2 / 6 | 0 | SIGNATURE RESOLVED | L1 |
+| `PDataBlockBufferD3D11` | 0x48 | 72 B (100.0 %) | 11 / 11 | 11 / 11 | 0 | SIGNATURE RESOLVED | L1 |
+| `PDataBlockD3D11` | 0x88 | 136 B (100.0 %) | 6 / 6 | 3 / 6 | 0 | SIGNATURE RESOLVED | L1 |
 | `PDebugUtils` | 0x58 | 88 B (100.0 %) | 3 / 3 | 1 / 3 | 0 | SIGNATURE RESOLVED | L1 |
 | `PDeferredLighting` | 0x4330 | 17200 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
-| `PDeferredLightingBase` | 0x41D8 | 16856 B (100.0 %) | 14 / 14 | 8 / 14 | 0 | SIGNATURE RESOLVED | L1 |
-| `PDeferredLightingD3D11` | 0x4330 | 17200 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
-| `PDeferredLightingSlot0080` | 0x80 | 128 B (100.0 %) | 17 / 17 | 0 / 17 | 0 | CLASSIFIED | L1 |
+| `PDeferredLightingBase` | 0x41D8 | 16856 B (100.0 %) | 17 / 17 | 9 / 17 | 0 | SIGNATURE RESOLVED | L1 |
+| `PDeferredLightingD3D11` | 0x4330 | 17200 B (100.0 %) | 34 / 34 | 34 / 34 | 0 | SIGNATURE RESOLVED | L1 |
+| `PDeferredLightingSlot0080` | 0x80 | 128 B (100.0 %) | 24 / 24 | 0 / 24 | 0 | CLASSIFIED | L1 |
 | `PDepthOfField` | 0xD0 | 208 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PDepthOfFieldBase` | 0x80 | 128 B (100.0 %) | 5 / 5 | 4 / 5 | 0 | SIGNATURE RESOLVED | L1 |
-| `PDepthOfFieldD3D11` | 0xD0 | 208 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
-| `PDynamicDataBlock` | 0x28 | 40 B (100.0 %) | 3 / 3 | 0 / 3 | 0 | SIGNATURE RESOLVED | L1 |
-| `PDynamicMesh` | 0x38 | 56 B (100.0 %) | 3 / 3 | 1 / 3 | 0 | SIGNATURE RESOLVED | L1 |
+| `PDepthOfFieldD3D11` | 0xD0 | 208 B (100.0 %) | 6 / 6 | 6 / 6 | 0 | SIGNATURE RESOLVED | L1 |
+| `PDynamicDataBlock` | 0x28 | 40 B (100.0 %) | 4 / 4 | 2 / 4 | 0 | SIGNATURE RESOLVED | L1 |
+| `PDynamicMesh` | 0x38 | 56 B (100.0 %) | 5 / 5 | 3 / 5 | 0 | SIGNATURE RESOLVED | L1 |
 | `PDynamicMeshInstance` | 0x18 | 24 B (100.0 %) | 3 / 3 | 2 / 3 | 0 | SIGNATURE RESOLVED | L1 |
 | `PDynamicSegmentDesc` | 0x10 | 16 B (100.0 %) | 4 / 4 | 0 / 4 | 0 | SIGNATURE RESOLVED | L1 |
-| `PEffect` | 0x78 | 120 B (100.0 %) | 8 / 8 | 0 / 8 | 0 | SIGNATURE RESOLVED | L1 |
-| `PEffectVariant` | 0x68 | 104 B (100.0 %) | 7 / 7 | 1 / 7 | 0 | SIGNATURE RESOLVED | L1 |
+| `PEffect` | 0x78 | 120 B (100.0 %) | 12 / 12 | 5 / 12 | 0 | SIGNATURE RESOLVED | L1 |
+| `PEffectVariant` | 0x68 | 104 B (100.0 %) | 11 / 11 | 6 / 11 | 0 | SIGNATURE RESOLVED | L1 |
 | `PEntity` | 0x38 | 56 B (100.0 %) | 3 / 3 | 2 / 3 | 0 | SIGNATURE RESOLVED | L1 |
 | `PFXAA` | 0x70 | 112 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
-| `PFXAABase` | 0x70 | 112 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
+| `PFXAABase` | 0x70 | 112 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | SIGNATURE RESOLVED | L1 |
 | `PFXAAD3D11` | 0x70 | 112 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PForwardShadowRenderer` | 0x10 | 16 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
-| `PGameConfig` | 0x18 | 24 B (100.0 %) | 2 / 2 | 1 / 2 | 0 | SIGNATURE RESOLVED | L1 |
+| `PGameConfig` | 0x18 | 24 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
 | `PGlow` | 0xD8 | 216 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PGlowBase` | 0xA0 | 160 B (100.0 %) | 6 / 6 | 5 / 6 | 0 | SIGNATURE RESOLVED | L1 |
 | `PGlowD3D11` | 0xD8 | 216 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
-| `PGlowGPUBase` | 0xD8 | 216 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
+| `PGlowGPUBase` | 0xD8 | 216 B (100.0 %) | 8 / 8 | 8 / 8 | 0 | SIGNATURE RESOLVED | L1 |
 | `PIndexDataBlock` | 0x80 | 128 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PIndexDataBlockBase` | 0x14 | 20 B (100.0 %) | 6 / 6 | 2 / 6 | 0 | SIGNATURE RESOLVED | L1 |
-| `PIndexDataBlockBufferD3D11` | 0x48 | 72 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
-| `PIndexDataBlockD3D11` | 0x80 | 128 B (100.0 %) | 6 / 6 | 2 / 6 | 0 | SIGNATURE RESOLVED | L1 |
+| `PIndexDataBlockBufferD3D11` | 0x48 | 72 B (100.0 %) | 11 / 11 | 11 / 11 | 0 | SIGNATURE RESOLVED | L1 |
+| `PIndexDataBlockD3D11` | 0x80 | 128 B (100.0 %) | 7 / 7 | 4 / 7 | 0 | SIGNATURE RESOLVED | L1 |
 | `PIndirectArgsBuffer` | 0x28 | 40 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
-| `PIndirectArgsBufferBase` | 0x8 | 8 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
-| `PIndirectArgsBufferD3D11` | 0x28 | 40 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
+| `PIndirectArgsBufferBase` | 0x8 | 8 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
+| `PIndirectArgsBufferD3D11` | 0x28 | 40 B (100.0 %) | 5 / 5 | 5 / 5 | 0 | SIGNATURE RESOLVED | L1 |
 | `PInputAction` | 0x28 | 40 B (100.0 %) | 6 / 6 | 4 / 6 | 0 | SIGNATURE RESOLVED | L1 |
-| `PInputMap` | 0x18 | 24 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
+| `PInputMap` | 0x18 | 24 B (100.0 %) | 2 / 2 | 1 / 2 | 0 | SIGNATURE RESOLVED | L1 |
 | `PInputMapper` | 0x2C8 | 712 B (100.0 %) | 5 / 5 | 4 / 5 | 0 | SIGNATURE RESOLVED | L1 |
 | `PInputSource` | 0x28 | 40 B (100.0 %) | 8 / 8 | 2 / 8 | 0 | SIGNATURE RESOLVED | L1 |
 | `PInputSourceJoypadAxis` | 0x38 | 56 B (100.0 %) | 4 / 4 | 3 / 4 | 0 | SIGNATURE RESOLVED | L1 |
@@ -377,49 +403,49 @@
 | `PInputSourceVisionTrackerY` | 0x28 | 40 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PInputSourceVisionTrackerZ` | 0x28 | 40 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PInstanceListHeader` | 0x24 | 36 B (100.0 %) | 9 / 9 | 9 / 9 | 0 | SIGNATURE RESOLVED | L1 |
-| `PInstancesComponent` | 0x28 | 40 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | SIGNATURE RESOLVED | L1 |
-| `PLODGroup` | 0x68 | 104 B (100.0 %) | 11 / 11 | 6 / 11 | 0 | SIGNATURE RESOLVED | L1 |
-| `PLODLevel` | 0x38 | 56 B (100.0 %) | 5 / 5 | 2 / 5 | 0 | SIGNATURE RESOLVED | L1 |
+| `PInstancesComponent` | 0x28 | 40 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
+| `PLODGroup` | 0x68 | 104 B (100.0 %) | 13 / 13 | 9 / 13 | 0 | SIGNATURE RESOLVED | L1 |
+| `PLODLevel` | 0x38 | 56 B (100.0 %) | 5 / 5 | 3 / 5 | 0 | SIGNATURE RESOLVED | L1 |
 | `PLight` | 0x40 | 64 B (100.0 %) | 10 / 10 | 6 / 10 | 0 | SIGNATURE RESOLVED | L1 |
 | `PLowResParticles` | 0x50 | 80 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PMLAA` | 0xB0 | 176 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
-| `PMLAABase` | 0xB0 | 176 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
+| `PMLAABase` | 0xB0 | 176 B (100.0 %) | 5 / 5 | 5 / 5 | 0 | SIGNATURE RESOLVED | L1 |
 | `PMLAAD3D11` | 0xB0 | 176 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PMaterial` | 0x28 | 40 B (100.0 %) | 6 / 6 | 4 / 6 | 0 | SIGNATURE RESOLVED | L1 |
 | `PMaterialPostEffect` | 0x68 | 104 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
-| `PMaterialSet` | 0x10 | 16 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
+| `PMaterialSet` | 0x10 | 16 B (100.0 %) | 3 / 3 | 2 / 3 | 0 | SIGNATURE RESOLVED | L1 |
 | `PMaterialSwitch` | 0x10 | 16 B (100.0 %) | 2 / 2 | 0 / 2 | 0 | SIGNATURE RESOLVED | L1 |
 | `PMatrix4` | 0x40 | 64 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PMatrix4x3` | 0x30 | 48 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
-| `PMesh` | 0x80 | 128 B (100.0 %) | 3 / 3 | 1 / 3 | 0 | SIGNATURE RESOLVED | L1 |
-| `PMeshInstance` | 0xC8 | 200 B (100.0 %) | 21 / 21 | 9 / 21 | 0 | SIGNATURE RESOLVED | L1 |
+| `PMesh` | 0x80 | 128 B (100.0 %) | 8 / 8 | 8 / 8 | 0 | SIGNATURE RESOLVED | L1 |
+| `PMeshInstance` | 0xC8 | 200 B (100.0 %) | 21 / 21 | 11 / 21 | 0 | SIGNATURE RESOLVED | L1 |
 | `PMeshInstanceAttachPoint` | 0x18 | 24 B (100.0 %) | 4 / 4 | 2 / 4 | 0 | SIGNATURE RESOLVED | L1 |
-| `PMeshInstanceBounds` | 0x30 | 48 B (100.0 %) | 4 / 4 | 4 / 4 | 0 | SIGNATURE RESOLVED | L1 |
-| `PMeshInstanceSegmentContext` | 0x48 | 72 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
+| `PMeshInstanceBounds` | 0x30 | 48 B (100.0 %) | 6 / 6 | 6 / 6 | 0 | SIGNATURE RESOLVED | L1 |
+| `PMeshInstanceSegmentContext` | 0x48 | 72 B (100.0 %) | 3 / 3 | 2 / 3 | 0 | SIGNATURE RESOLVED | L1 |
 | `PMeshInstanceSegmentStreamBinding` | 0x18 | 24 B (100.0 %) | 6 / 6 | 1 / 6 | 0 | SIGNATURE RESOLVED | L1 |
 | `PMeshParticleSystemBase` | 0x3248 | 12872 B (100.0 %) | 23 / 23 | 23 / 23 | 0 | SIGNATURE RESOLVED | L1 |
 | `PMeshSegment` | 0xC0 | 192 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
-| `PMeshSegmentBase` | 0x30 | 48 B (100.0 %) | 8 / 8 | 5 / 8 | 0 | SIGNATURE RESOLVED | L1 |
+| `PMeshSegmentBase` | 0x30 | 48 B (100.0 %) | 8 / 8 | 6 / 8 | 0 | SIGNATURE RESOLVED | L1 |
 | `PMeshSegmentContext` | 0x28 | 40 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PMeshSegmentD3D11` | 0xC0 | 192 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | SIGNATURE RESOLVED | L1 |
-| `PModifierAndInputs` | 0x20 | 32 B (100.0 %) | 4 / 4 | 1 / 4 | 0 | SIGNATURE RESOLVED | L1 |
-| `PModifierNetwork` | 0x70 | 112 B (100.0 %) | 10 / 10 | 2 / 10 | 0 | SIGNATURE RESOLVED | L1 |
+| `PModifierAndInputs` | 0x20 | 32 B (100.0 %) | 4 / 4 | 2 / 4 | 0 | SIGNATURE RESOLVED | L1 |
+| `PModifierNetwork` | 0x70 | 112 B (100.0 %) | 15 / 15 | 6 / 15 | 0 | SIGNATURE RESOLVED | L1 |
 | `PModifierNetworkBuffer` | 0x18 | 24 B (100.0 %) | 5 / 5 | 1 / 5 | 0 | SIGNATURE RESOLVED | L1 |
-| `PModifierNetworkDynamicMesh` | 0x78 | 120 B (100.0 %) | 7 / 7 | 4 / 7 | 0 | SIGNATURE RESOLVED | L1 |
+| `PModifierNetworkDynamicMesh` | 0x78 | 120 B (100.0 %) | 13 / 13 | 9 / 13 | 0 | SIGNATURE RESOLVED | L1 |
 | `PModifierNetworkDynamicMeshInstance` | 0x28 | 40 B (100.0 %) | 4 / 4 | 3 / 4 | 0 | SIGNATURE RESOLVED | L1 |
 | `PModifierNetworkDynamicMeshSegment` | 0x18 | 24 B (100.0 %) | 5 / 5 | 1 / 5 | 0 | SIGNATURE RESOLVED | L1 |
 | `PModifierNetworkInfoPacket` | 0x20 | 32 B (100.0 %) | 9 / 9 | 1 / 9 | 0 | SIGNATURE RESOLVED | L1 |
 | `PModifierNetworkInfoPacket_Buffer` | 0x2 | 2 B (100.0 %) | 1 / 1 | 0 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PModifierNetworkInfoPacket_ModifierCode` | 0x20 | 32 B (100.0 %) | 4 / 4 | 1 / 4 | 0 | SIGNATURE RESOLVED | L1 |
 | `PModifierNetworkInfoPacket_ModifierInstance` | 0x20 | 32 B (100.0 %) | 4 / 4 | 1 / 4 | 0 | SIGNATURE RESOLVED | L1 |
-| `PModifierNetworkInstance` | 0x28 | 40 B (100.0 %) | 2 / 2 | 1 / 2 | 0 | SIGNATURE RESOLVED | L1 |
+| `PModifierNetworkInstance` | 0x28 | 40 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | SIGNATURE RESOLVED | L1 |
 | `PModifierNetworkInstanceInput` | 0x20 | 32 B (100.0 %) | 4 / 4 | 2 / 4 | 0 | SIGNATURE RESOLVED | L1 |
 | `PModifierNetworkInstancePacketInput` | 0x8 | 8 B (100.0 %) | 2 / 2 | 0 / 2 | 0 | SIGNATURE RESOLVED | L1 |
 | `PMorphModifierWeightsUserDataObject` | 0x10 | 16 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PMotionBlur` | 0xD70 | 3440 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
-| `PMotionBlurBase` | 0xD68 | 3432 B (100.0 %) | 5 / 5 | 4 / 5 | 0 | SIGNATURE RESOLVED | L1 |
+| `PMotionBlurBase` | 0xD68 | 3432 B (100.0 %) | 9 / 9 | 9 / 9 | 0 | SIGNATURE RESOLVED | L1 |
 | `PMotionBlurD3D11` | 0xD70 | 3440 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
-| `PNameComponent` | 0x30 | 48 B (100.0 %) | 3 / 3 | 2 / 3 | 0 | SIGNATURE RESOLVED | L1 |
+| `PNameComponent` | 0x30 | 48 B (100.0 %) | 4 / 4 | 3 / 4 | 0 | SIGNATURE RESOLVED | L1 |
 | `PNamedSemanticDescriptor` | 0x60 | 96 B (100.0 %) | 12 / 12 | 5 / 12 | 0 | TYPE RESOLVED | L1 |
 | `PNode` | 0x68 | 104 B (100.0 %) | 6 / 6 | 5 / 6 | 0 | SIGNATURE RESOLVED | L1 |
 | `PNodeContext` | 0x10 | 16 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
@@ -429,7 +455,7 @@
 | `POctreeChildren` | 0x288 | 648 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
 | `POctreeData` | 0x38 | 56 B (100.0 %) | 6 / 6 | 4 / 6 | 0 | SIGNATURE RESOLVED | L1 |
 | `POctreeWorld` | 0xC8 | 200 B (100.0 %) | 6 / 6 | 4 / 6 | 0 | SIGNATURE RESOLVED | L1 |
-| `PParameterBuffer` | 0x20 | 32 B (100.0 %) | 4 / 4 | 3 / 4 | 0 | SIGNATURE RESOLVED | L1 |
+| `PParameterBuffer` | 0x20 | 32 B (100.0 %) | 4 / 4 | 4 / 4 | 0 | SIGNATURE RESOLVED | L1 |
 | `PParameterBufferBase` | 0x4 | 4 B (100.0 %) | 1 / 1 | 0 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PPhysicsBox` | 0x88 | 136 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PPhysicsBoxBase` | 0x80 | 128 B (100.0 %) | 2 / 2 | 1 / 2 | 0 | SIGNATURE RESOLVED | L1 |
@@ -438,10 +464,10 @@
 | `PPhysicsCapsule` | 0x90 | 144 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PPhysicsCapsuleBase` | 0x88 | 136 B (100.0 %) | 5 / 5 | 4 / 5 | 0 | SIGNATURE RESOLVED | L1 |
 | `PPhysicsCapsuleBullet` | 0x90 | 144 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
-| `PPhysicsCharacterCamera` | 0x208 | 520 B (100.0 %) | 18 / 18 | 15 / 18 | 0 | SIGNATURE RESOLVED | L1 |
+| `PPhysicsCharacterCamera` | 0x208 | 520 B (100.0 %) | 16 / 16 | 13 / 16 | 0 | SIGNATURE RESOLVED | L1 |
 | `PPhysicsCharacterController` | 0x190 | 400 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PPhysicsCharacterControllerBase` | 0x130 | 304 B (100.0 %) | 23 / 23 | 13 / 23 | 0 | SIGNATURE RESOLVED | L1 |
-| `PPhysicsCharacterControllerBullet` | 0x190 | 400 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
+| `PPhysicsCharacterControllerBullet` | 0x190 | 400 B (100.0 %) | 6 / 6 | 6 / 6 | 0 | SIGNATURE RESOLVED | L1 |
 | `PPhysicsCylinder` | 0x88 | 136 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PPhysicsCylinderBase` | 0x80 | 128 B (100.0 %) | 4 / 4 | 3 / 4 | 0 | SIGNATURE RESOLVED | L1 |
 | `PPhysicsCylinderBullet` | 0x88 | 136 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
@@ -458,9 +484,9 @@
 | `PPhysicsPlaneBullet` | 0x88 | 136 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
 | `PPhysicsRigidBody` | 0x128 | 296 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PPhysicsRigidBodyBase` | 0x118 | 280 B (100.0 %) | 24 / 24 | 14 / 24 | 0 | SIGNATURE RESOLVED | L1 |
-| `PPhysicsRigidBodyBullet` | 0x128 | 296 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
+| `PPhysicsRigidBodyBullet` | 0x128 | 296 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | SIGNATURE RESOLVED | L1 |
 | `PPhysicsShape` | 0x70 | 112 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
-| `PPhysicsShapeBase` | 0x68 | 104 B (100.0 %) | 10 / 10 | 4 / 10 | 0 | SIGNATURE RESOLVED | L1 |
+| `PPhysicsShapeBase` | 0x68 | 104 B (100.0 %) | 11 / 11 | 5 / 11 | 0 | SIGNATURE RESOLVED | L1 |
 | `PPhysicsShapeBullet` | 0x70 | 112 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
 | `PPhysicsSphere` | 0x80 | 128 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PPhysicsSphereBase` | 0x78 | 120 B (100.0 %) | 3 / 3 | 2 / 3 | 0 | SIGNATURE RESOLVED | L1 |
@@ -469,21 +495,21 @@
 | `PPhysicsTaperedCylinder` | 0x88 | 136 B (100.0 %) | 5 / 5 | 4 / 5 | 0 | SIGNATURE RESOLVED | L1 |
 | `PPhysicsWorld` | 0xE8 | 232 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PPhysicsWorldBase` | 0x60 | 96 B (100.0 %) | 8 / 8 | 4 / 8 | 0 | SIGNATURE RESOLVED | L1 |
-| `PPhysicsWorldBullet` | 0xE8 | 232 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
+| `PPhysicsWorldBullet` | 0xE8 | 232 B (100.0 %) | 20 / 20 | 20 / 20 | 0 | SIGNATURE RESOLVED | L1 |
 | `PPostEffectBase` | 0x50 | 80 B (100.0 %) | 14 / 14 | 9 / 14 | 0 | SIGNATURE RESOLVED | L1 |
-| `PPostEffectManager` | 0x28 | 40 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
+| `PPostEffectManager` | 0x28 | 40 B (100.0 %) | 2 / 2 | 1 / 2 | 0 | SIGNATURE RESOLVED | L1 |
 | `PQuarryComponent` | 0x68 | 104 B (100.0 %) | 4 / 4 | 2 / 4 | 0 | SIGNATURE RESOLVED | L1 |
 | `PRandomGenerator` | 0x1 | 1 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PRaycastResult` | 0x30 | 48 B (100.0 %) | 4 / 4 | 2 / 4 | 0 | SIGNATURE RESOLVED | L1 |
 | `PRenderStream` | 0x10 | 16 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
 | `PRenderStreamInput` | 0x8 | 8 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
 | `PRenderTarget` | 0x50 | 80 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
-| `PRenderTargetBase` | 0x10 | 16 B (100.0 %) | 4 / 4 | 0 / 4 | 0 | SIGNATURE RESOLVED | L1 |
-| `PRenderTargetD3D11` | 0x50 | 80 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
+| `PRenderTargetBase` | 0x10 | 16 B (100.0 %) | 5 / 5 | 2 / 5 | 0 | SIGNATURE RESOLVED | L1 |
+| `PRenderTargetD3D11` | 0x50 | 80 B (100.0 %) | 11 / 11 | 11 / 11 | 0 | SIGNATURE RESOLVED | L1 |
 | `PSamplerState` | 0x28 | 40 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
-| `PSamplerStateBase` | 0x20 | 32 B (100.0 %) | 12 / 12 | 7 / 12 | 0 | SIGNATURE RESOLVED | L1 |
+| `PSamplerStateBase` | 0x20 | 32 B (100.0 %) | 12 / 12 | 8 / 12 | 0 | SIGNATURE RESOLVED | L1 |
 | `PSamplerStateD3D11` | 0x28 | 40 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
-| `PSceneRenderPass` | 0x50 | 80 B (100.0 %) | 4 / 4 | 1 / 4 | 0 | SIGNATURE RESOLVED | L1 |
+| `PSceneRenderPass` | 0x50 | 80 B (100.0 %) | 7 / 7 | 5 / 7 | 0 | SIGNATURE RESOLVED | L1 |
 | `PSceneWideParameterBuffer` | 0x8 | 8 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
 | `PScheduler` | 0x2F8 | 760 B (100.0 %) | 25 / 25 | 21 / 25 | 0 | SIGNATURE RESOLVED | L1 |
 | `PScreenSpaceAmbientOcclusion` | 0x68 | 104 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
@@ -492,10 +518,10 @@
 | `PScreenSpaceReflection` | 0xB0 | 176 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PScreenSpaceReflectionBase` | 0xB0 | 176 B (100.0 %) | 4 / 4 | 2 / 4 | 0 | SIGNATURE RESOLVED | L1 |
 | `PScreenSpaceReflectionD3D11` | 0xB0 | 176 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
-| `PScript` | 0x58 | 88 B (100.0 %) | 8 / 8 | 1 / 8 | 0 | SIGNATURE RESOLVED | L1 |
+| `PScript` | 0x58 | 88 B (100.0 %) | 10 / 10 | 4 / 10 | 0 | SIGNATURE RESOLVED | L1 |
 | `PScriptCallbackHandler` | 0x18 | 24 B (100.0 %) | 2 / 2 | 1 / 2 | 0 | SIGNATURE RESOLVED | L1 |
 | `PScriptableComponent` | 0x40 | 64 B (100.0 %) | 5 / 5 | 3 / 5 | 0 | SIGNATURE RESOLVED | L1 |
-| `PShader` | 0x40 | 64 B (100.0 %) | 4 / 4 | 1 / 4 | 0 | SIGNATURE RESOLVED | L1 |
+| `PShader` | 0x40 | 64 B (100.0 %) | 7 / 7 | 4 / 7 | 0 | SIGNATURE RESOLVED | L1 |
 | `PShaderComputeProgram` | 0x90 | 144 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PShaderComputeProgramD3D11` | 0x90 | 144 B (100.0 %) | 6 / 6 | 2 / 6 | 0 | SIGNATURE RESOLVED | L1 |
 | `PShaderFragmentProgram` | 0x80 | 128 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
@@ -506,7 +532,7 @@
 | `PShaderParameterCaptureBufferDataBlock` | 0x18 | 24 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
 | `PShaderParameterCaptureBufferIndexDataBlock` | 0x18 | 24 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
 | `PShaderParameterCaptureBufferLocation` | 0x2 | 2 B (100.0 %) | 1 / 1 | 0 / 1 | 0 | SIGNATURE RESOLVED | L1 |
-| `PShaderParameterCaptureBufferLocationSize` | 0x4 | 4 B (100.0 %) | 2 / 2 | 1 / 2 | 0 | SIGNATURE RESOLVED | L1 |
+| `PShaderParameterCaptureBufferLocationSize` | 0x4 | 4 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
 | `PShaderParameterCaptureBufferLocationType` | 0x4 | 4 B (100.0 %) | 3 / 3 | 2 / 3 | 0 | SIGNATURE RESOLVED | L1 |
 | `PShaderParameterCaptureBufferLocationTypeConstantBuffer` | 0x10 | 16 B (100.0 %) | 6 / 6 | 3 / 6 | 0 | SIGNATURE RESOLVED | L1 |
 | `PShaderParameterCaptureBufferRWByteAddressBuffer` | 0x28 | 40 B (100.0 %) | 4 / 4 | 4 / 4 | 0 | SIGNATURE RESOLVED | L1 |
@@ -523,53 +549,54 @@
 | `PShaderParameterCaptureConstantBuffer` | 0x18 | 24 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
 | `PShaderParameterDefinition` | 0x18 | 24 B (100.0 %) | 7 / 7 | 3 / 7 | 0 | SIGNATURE RESOLVED | L1 |
 | `PShaderPass` | 0x2C0 | 704 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
-| `PShaderPassBase` | 0x30 | 48 B (100.0 %) | 5 / 5 | 4 / 5 | 0 | SIGNATURE RESOLVED | L1 |
+| `PShaderPassBase` | 0x30 | 48 B (100.0 %) | 5 / 5 | 5 / 5 | 0 | SIGNATURE RESOLVED | L1 |
 | `PShaderPassD3D11` | 0x2C0 | 704 B (100.0 %) | 10 / 10 | 10 / 10 | 0 | SIGNATURE RESOLVED | L1 |
 | `PShaderPassInfo` | 0x30 | 48 B (100.0 %) | 8 / 8 | 0 / 8 | 0 | SIGNATURE RESOLVED | L1 |
 | `PShaderPassParameterLocationTypes` | 0x20 | 32 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
-| `PShaderPassParameterLocationTypesBase` | 0x10 | 16 B (100.0 %) | 4 / 4 | 4 / 4 | 0 | SIGNATURE RESOLVED | L1 |
+| `PShaderPassParameterLocationTypesBase` | 0x10 | 16 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
 | `PShaderPassParameterLocationTypesConstantBuffer` | 0x20 | 32 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
 | `PShaderPassStateBase` | 0x4 | 4 B (100.0 %) | 1 / 1 | 0 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PShaderPassStateD3D11` | 0x190 | 400 B (100.0 %) | 7 / 7 | 2 / 7 | 0 | SIGNATURE RESOLVED | L1 |
 | `PShaderProgramBase` | 0x1 | 1 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
-| `PShaderProgramD3D11` | 0x78 | 120 B (100.0 %) | 7 / 7 | 2 / 7 | 0 | SIGNATURE RESOLVED | L1 |
-| `PShaderProgramParamsAndStreams` | 0x20 | 32 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
-| `PShaderSource` | 0x28 | 40 B (100.0 %) | 5 / 5 | 1 / 5 | 0 | SIGNATURE RESOLVED | L1 |
+| `PShaderProgramD3D11` | 0x78 | 120 B (100.0 %) | 11 / 11 | 6 / 11 | 0 | SIGNATURE RESOLVED | L1 |
+| `PShaderProgramParamsAndStreams` | 0x20 | 32 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
+| `PShaderSource` | 0x28 | 40 B (100.0 %) | 5 / 5 | 2 / 5 | 0 | SIGNATURE RESOLVED | L1 |
 | `PShaderStreamDefinition` | 0x18 | 24 B (100.0 %) | 6 / 6 | 3 / 6 | 0 | SIGNATURE RESOLVED | L1 |
 | `PShaderVertexProgram` | 0x98 | 152 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
-| `PShaderVertexProgramD3D11` | 0x98 | 152 B (100.0 %) | 3 / 3 | 2 / 3 | 0 | SIGNATURE RESOLVED | L1 |
-| `PShadowCaster` | 0x80 | 128 B (100.0 %) | 5 / 5 | 3 / 5 | 0 | SIGNATURE RESOLVED | L1 |
+| `PShaderVertexProgramD3D11` | 0x98 | 152 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | SIGNATURE RESOLVED | L1 |
+| `PShadowCaster` | 0x80 | 128 B (100.0 %) | 7 / 7 | 6 / 7 | 0 | SIGNATURE RESOLVED | L1 |
 | `PShadowRenderer` | 0x10 | 16 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PShadowSplit` | 0xE8 | 232 B (100.0 %) | 3 / 3 | 1 / 3 | 0 | SIGNATURE RESOLVED | L1 |
-| `PShape` | 0x38 | 56 B (100.0 %) | 7 / 7 | 2 / 7 | 0 | SIGNATURE RESOLVED | L1 |
-| `PSharray` | *none declared* | 4 B (no denominator) | 1 / 1 | 0 / 1 | 0 | CLASSIFIED | L1 |
+| `PShape` | 0x38 | 56 B (100.0 %) | 9 / 9 | 4 / 9 | 0 | SIGNATURE RESOLVED | L1 |
+| `PSharray` | *none declared* | 16 B (no denominator) | 3 / 3 | 3 / 3 | 0 | CLASSIFIED | L1 |
 | `PSkeletonJointBounds` | 0x20 | 32 B (100.0 %) | 4 / 4 | 2 / 4 | 0 | SIGNATURE RESOLVED | L1 |
 | `PSkinBoneRemap` | 0x4 | 4 B (100.0 %) | 2 / 2 | 0 / 2 | 0 | SIGNATURE RESOLVED | L1 |
 | `PStreamInputDescD3D11` | 0x20 | 32 B (100.0 %) | 6 / 6 | 1 / 6 | 0 | SIGNATURE RESOLVED | L1 |
-| `PStreamInputLayoutD3D11` | 0x18 | 24 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
-| `PString` | 0x8 | 8 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
+| `PStreamInputLayoutD3D11` | 0x18 | 24 B (100.0 %) | 2 / 2 | 1 / 2 | 0 | SIGNATURE RESOLVED | L1 |
+| `PString` | 0x8 | 8 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PStructuredBuffer` | 0x68 | 104 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PStructuredBufferBase` | 0x14 | 20 B (100.0 %) | 4 / 4 | 0 / 4 | 0 | SIGNATURE RESOLVED | L1 |
-| `PStructuredBufferD3D11` | 0x68 | 104 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
+| `PStructuredBufferD3D11` | 0x68 | 104 B (100.0 %) | 6 / 6 | 6 / 6 | 0 | SIGNATURE RESOLVED | L1 |
 | `PTexture2D` | 0x188 | 392 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PTexture2DBase` | 0x30 | 48 B (100.0 %) | 3 / 3 | 1 / 3 | 0 | SIGNATURE RESOLVED | L1 |
-| `PTexture2DD3D11` | 0x188 | 392 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
+| `PTexture2DD3D11` | 0x188 | 392 B (100.0 %) | 5 / 5 | 5 / 5 | 0 | SIGNATURE RESOLVED | L1 |
 | `PTexture3D` | 0x90 | 144 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PTexture3DBase` | 0x38 | 56 B (100.0 %) | 5 / 5 | 1 / 5 | 0 | SIGNATURE RESOLVED | L1 |
-| `PTexture3DD3D11` | 0x90 | 144 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
-| `PTextureCommonBase` | 0x28 | 40 B (100.0 %) | 8 / 8 | 3 / 8 | 0 | SIGNATURE RESOLVED | L1 |
+| `PTexture3DD3D11` | 0x90 | 144 B (100.0 %) | 4 / 4 | 4 / 4 | 0 | SIGNATURE RESOLVED | L1 |
+| `PTextureCommonBase` | 0x28 | 40 B (100.0 %) | 9 / 9 | 6 / 9 | 0 | SIGNATURE RESOLVED | L1 |
 | `PTextureCubeMap` | 0x350 | 848 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PTextureCubeMapBase` | 0x30 | 48 B (100.0 %) | 3 / 3 | 1 / 3 | 0 | SIGNATURE RESOLVED | L1 |
-| `PTextureCubeMapD3D11` | 0x350 | 848 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
+| `PTextureCubeMapD3D11` | 0x350 | 848 B (100.0 %) | 5 / 5 | 5 / 5 | 0 | SIGNATURE RESOLVED | L1 |
 | `PTimeController` | 0x10 | 16 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PTimeIntervalController` | 0x28 | 40 B (100.0 %) | 6 / 6 | 2 / 6 | 0 | SIGNATURE RESOLVED | L1 |
 | `PTimeScaleOffsetController` | 0x20 | 32 B (100.0 %) | 4 / 4 | 3 / 4 | 0 | SIGNATURE RESOLVED | L1 |
 | `PTimer` | 0x1 | 1 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
-| `PTrigger` | 0x58 | 88 B (100.0 %) | 6 / 6 | 3 / 6 | 0 | SIGNATURE RESOLVED | L1 |
+| `PTrigger` | 0x58 | 88 B (100.0 %) | 6 / 6 | 4 / 6 | 0 | SIGNATURE RESOLVED | L1 |
 | `PTriggerReceiverComponent` | 0x58 | 88 B (100.0 %) | 5 / 5 | 4 / 5 | 0 | SIGNATURE RESOLVED | L1 |
 | `PTriggerReceiverTypeCallbackData` | 0x28 | 40 B (100.0 %) | 5 / 5 | 3 / 5 | 0 | SIGNATURE RESOLVED | L1 |
 | `PTypeDefaultUInt` | 0x30 | 48 B (100.0 %) | 3 / 3 | 2 / 3 | 0 | TYPE RESOLVED | L1 |
 | `PTypedObject` | 0x10 | 16 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SIGNATURE RESOLVED | L1 |
+| `PUtility` | 0x20 | 32 B (100.0 %) | 5 / 5 | 5 / 5 | 0 | TYPE RESOLVED | L1 |
 | `PVertexStream` | 0x18 | 24 B (100.0 %) | 6 / 6 | 3 / 6 | 0 | SIGNATURE RESOLVED | L1 |
 | `PVisionMoveTracker` | 0x8 | 8 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PVisionMoveTrackerBase` | 0x8 | 8 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
@@ -579,8 +606,8 @@
 | `PVisionTrackerWin32` | 0x8 | 8 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PWorldMatrix` | 0x30 | 48 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PageRecord022D94B0` | 0x18 | 24 B (100.0 %) | 6 / 6 | 4 / 6 | 0 | TYPE RESOLVED | L1 |
-| `PaneListWidget0B68` | 0xB68 | 2920 B (100.0 %) | 44 / 44 | 29 / 44 | 0 | TYPE RESOLVED | L1 |
-| `PaneSlotWidget0160` | 0x160 | 352 B (100.0 %) | 59 / 59 | 41 / 59 | 0 | TYPE RESOLVED | L1 |
+| `PaneListWidget0B68` | 0xB68 | 2920 B (100.0 %) | 20 / 20 | 18 / 20 | 0 | TYPE RESOLVED | L1 |
+| `PaneSlotWidget0160` | 0x160 | 352 B (100.0 %) | 35 / 35 | 27 / 35 | 0 | TYPE RESOLVED | L1 |
 | `PartyFocusHandles` | 0xC | 12 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | SEMANTICALLY IDENTIFIED | L1 |
 | `PartyFocusOverrideCells022C7FEC` | 0xC | 12 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | TYPE RESOLVED | L1 |
 | `PartyFocusRequestKind` | 0x1 | 1 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SEMANTICALLY IDENTIFIED | L1 |
@@ -593,8 +620,10 @@
 | `PartySelectionRegistryPtrs022C8388` | 0x20 | 32 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `PartySelectionWalkState022C8060` | 0x20 | 32 B (100.0 %) | 9 / 9 | 9 / 9 | 0 | TYPE RESOLVED | L1 |
 | `PendingCompletionQueue01F81248` | 0x108 | 264 B (100.0 %) | 18 / 18 | 18 / 18 | 0 | CLASSIFIED | L1 |
-| `PersistentFlagPayload` | 0x1538 | 5432 B (100.0 %) | 29 / 29 | 26 / 29 | 0 | TYPE RESOLVED | L2 |
-| `PhyreClassDescriptor` | 0x100 | 256 B (100.0 %) | 30 / 30 | 29 / 30 | 0 | TYPE RESOLVED | L1 |
+| `PendingResetBlock` | 0xC | 12 B (100.0 %) | 7 / 7 | 5 / 7 | 0 | TYPE RESOLVED | L1 |
+| `PersistentFlagPayload` | 0x1538 | 5432 B (100.0 %) | 31 / 31 | 30 / 31 | 0 | TYPE RESOLVED | L2 |
+| `PhyreClassDescriptor` | 0x100 | 256 B (100.0 %) | 31 / 31 | 31 / 31 | 0 | TYPE RESOLVED | L1 |
+| `PhyreClassRegistrationCounter` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `PhyreNamespaceBuffer` | 0x10 | 16 B (100.0 %) | 3 / 3 | 2 / 3 | 0 | CLASSIFIED | L2 |
 | `PhyrePackedNamespaceClassRecord` | 0x24 | 36 B (100.0 %) | 7 / 7 | 4 / 7 | 0 | TYPE RESOLVED | L1 |
 | `PhyrePackedNamespaceHeader` | 0x20 | 32 B (100.0 %) | 8 / 8 | 6 / 8 | 0 | TYPE RESOLVED | L1 |
@@ -604,9 +633,9 @@
 | `Point3` | 0x10 | 16 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `PostEffectLibraryInstanceCell` | 0x8 | 8 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `PostProcessFrameParams` | 0xF0 | 240 B (100.0 %) | 28 / 28 | 4 / 28 | 0 | TYPE RESOLVED | L1 |
-| `PostProcessParamContext` | 0x4A8 | 1192 B (100.0 %) | 143 / 143 | 143 / 143 | 0 | SIGNATURE RESOLVED | L1 |
+| `PostProcessParamContext` | 0x4A8 | 1192 B (100.0 %) | 144 / 144 | 144 / 144 | 0 | SIGNATURE RESOLVED | L1 |
 | `PostProcessingLibraryWrapper` | 0x10 | 16 B (100.0 %) | 3 / 3 | 2 / 3 | 0 | SIGNATURE RESOLVED | L1 |
-| `PpfxInitDescriptor` | 0x118 | 280 B (100.0 %) | 40 / 40 | 4 / 40 | 0 | TYPE RESOLVED | L1 |
+| `PpfxInitDescriptor` | 0x118 | 280 B (100.0 %) | 48 / 48 | 7 / 48 | 0 | TYPE RESOLVED | L1 |
 | `PpfxLogErrorGate` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `PpfxLogMasterGate` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `PpfxLogVerboseGate` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
@@ -615,26 +644,38 @@
 | `PresentationEntryReferenceContainer` | 0xC30 | 3120 B (100.0 %) | 10 / 10 | 9 / 10 | 0 | SIGNATURE RESOLVED | L1 |
 | `PresentationEntryReferenceNode` | 0x30 | 48 B (100.0 %) | 8 / 8 | 7 / 8 | 0 | SIGNATURE RESOLVED | L1 |
 | `PrimitiveEmitModeState02AEE900` | 0x11 | 17 B (100.0 %) | 4 / 4 | 4 / 4 | 0 | TYPE RESOLVED | L1 |
+| `PrimitiveRendererD3D11` | *none declared* | 133432 B (no denominator) | 120 / 120 | 120 / 120 | 0 | TYPE RESOLVED | L1 |
 | `Quat` | 0x10 | 16 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `RampChannelGlobals02B40520` | 0x8 | 8 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | SEMANTICALLY IDENTIFIED | L1 |
-| `RampChannelRecord` | 0xE0 | 224 B (100.0 %) | 43 / 43 | 19 / 43 | 0 | TYPE RESOLVED | L1 |
+| `RampChannelRecord` | 0xE0 | 224 B (100.0 %) | 63 / 63 | 5 / 63 | 0 | TYPE RESOLVED | L1 |
 | `ReadJsonDataEnabled01DF6E48` | 0x1 | 1 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SEMANTICALLY IDENTIFIED | L1 |
+| `Record02EC19C0` | 0x8 | 8 B (100.0 %) | 3 / 3 | 0 / 3 | 0 | SIGNATURE RESOLVED | L1 |
 | `RectTween` | 0x14 | 20 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | TYPE RESOLVED | L1 |
+| `RelationCacheCounters02EBA480` | 0x2 | 2 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | TYPE RESOLVED | L1 |
+| `RelationCachePool02CA81F0` | 0x201 | 513 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | TYPE RESOLVED | L1 |
+| `RelationCacheSlot` | 0x10 | 16 B (100.0 %) | 7 / 7 | 7 / 7 | 0 | TYPE RESOLVED | L1 |
 | `RenderCommandBuffer` | 0x18 | 24 B (100.0 %) | 4 / 4 | 4 / 4 | 0 | TYPE RESOLVED | L1 |
 | `RenderCommandBufferPair` | 0x34 | 52 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | TYPE RESOLVED | L1 |
 | `RenderCommandOwnerList` | 0x20 | 32 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
+| `RenderContext02CC0410` | *none declared* | 139768 B (no denominator) | 77 / 77 | 76 / 77 | 0 | SIGNATURE RESOLVED | L1 |
+| `RenderContextPassStateBlock` | 0xCD0 | 3280 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | TYPE RESOLVED | L1 |
+| `RenderContextRecord18` | 0x18 | 24 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | TYPE RESOLVED | L1 |
+| `RenderContextRecord28` | 0x28 | 40 B (100.0 %) | 6 / 6 | 6 / 6 | 0 | TYPE RESOLVED | L1 |
+| `RenderDynamicBuffers58` | 0x58 | 88 B (100.0 %) | 7 / 7 | 7 / 7 | 0 | TYPE RESOLVED | L1 |
 | `RenderLightingSettings01DFE190` | 0x20 | 32 B (100.0 %) | 11 / 11 | 8 / 11 | 0 | SEMANTICALLY IDENTIFIED | L1 |
 | `RenderListSkipFlag01DF08FC` | 0x1 | 1 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `RenderModelInstance` | 0x260 | 608 B (100.0 %) | 43 / 43 | 43 / 43 | 0 | SIGNATURE RESOLVED | L1 |
-| `RenderModelInstanceContainer` | 0x70 | 112 B (100.0 %) | 25 / 25 | 25 / 25 | 0 | TYPE RESOLVED | L1 |
+| `RenderModelInstanceContainer` | 0x70 | 112 B (100.0 %) | 6 / 6 | 6 / 6 | 0 | TYPE RESOLVED | L1 |
 | `RenderPassEnableTable022C7F90` | 0x8 | 8 B (100.0 %) | 4 / 4 | 4 / 4 | 0 | TYPE RESOLVED | L1 |
-| `RenderPassStateBytes022C7F98` | 0x3 | 3 B (100.0 %) | 3 / 3 | 2 / 3 | 0 | TYPE RESOLVED | L1 |
-| `RenderResourceEntry` | 0x50 | 80 B (100.0 %) | 10 / 10 | 10 / 10 | 0 | DISCOVERED | L1 |
-| `RenderResourceEntryBank` | 0x60 | 96 B (100.0 %) | 20 / 20 | 20 / 20 | 0 | SIGNATURE RESOLVED | L1 |
+| `RenderPassStateBytes022C7F98` | 0x3 | 3 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | TYPE RESOLVED | L1 |
+| `RenderPrimitivePass1E8` | 0x1E8 | 488 B (100.0 %) | 9 / 9 | 9 / 9 | 0 | TYPE RESOLVED | L1 |
+| `RenderResourceEntry` | 0x50 | 80 B (100.0 %) | 10 / 10 | 10 / 10 | 0 | SIGNATURE RESOLVED | L1 |
+| `RenderResourceEntryBank` | 0x60 | 96 B (100.0 %) | 21 / 21 | 21 / 21 | 0 | SIGNATURE RESOLVED | L1 |
 | `RenderResourceEntryBuffer` | 0x20 | 32 B (100.0 %) | 7 / 7 | 7 / 7 | 0 | SIGNATURE RESOLVED | L1 |
 | `RenderResourceRoot` | 0xDB0 | 3504 B (100.0 %) | 8 / 8 | 8 / 8 | 0 | SIGNATURE RESOLVED | L1 |
-| `RenderStrideC0Bank` | 0x90 | 144 B (100.0 %) | 22 / 22 | 22 / 22 | 0 | SIGNATURE RESOLVED | L1 |
+| `RenderStrideC0Bank` | 0x90 | 144 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | SIGNATURE RESOLVED | L1 |
 | `RenderStrideC0Element` | 0xC0 | 192 B (100.0 %) | 28 / 28 | 28 / 28 | 0 | DISCOVERED | L1 |
+| `RenderUavBuffers58` | 0x58 | 88 B (100.0 %) | 7 / 7 | 7 / 7 | 0 | TYPE RESOLVED | L1 |
 | `ResourceKindOverrideTable` | 0x800 | 2048 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `ResourcePathNamespaceSlot` | 0x8 | 8 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SEMANTICALLY IDENTIFIED | L1 |
 | `ResourceQueueGeneration` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
@@ -642,6 +683,7 @@
 | `ResourceReadStatus` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `ResourceRequestQueue` | 0x28 | 40 B (100.0 %) | 6 / 6 | 6 / 6 | 0 | SIGNATURE RESOLVED | L1 |
 | `ResourceRequestSlot` | 0x80 | 128 B (100.0 %) | 24 / 24 | 24 / 24 | 0 | TYPE RESOLVED | L1 |
+| `ResourceSectionHeader` | 0x30 | 36 B (75.0 %) | 2 / 2 | 2 / 2 | 1 | TYPE RESOLVED | L1 |
 | `ResourceSectionNameScratch` | 0x20 | 32 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `RngReseedGate` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `RuntimeFlags02089340` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
@@ -649,24 +691,42 @@
 | `SaveContainerRotation` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `SaveImage` | 0x56690 | 353936 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | TYPE RESOLVED | L1 |
 | `SaveImageHeader` | 0x200 | 512 B (100.0 %) | 43 / 43 | 39 / 43 | 0 | SIGNATURE RESOLVED | L1 |
-| `SavePayload` | 0x56490 | 353424 B (100.0 %) | 31 / 31 | 21 / 31 | 0 | SIGNATURE RESOLVED | L1 |
+| `SavePayload` | 0x56490 | 353424 B (100.0 %) | 31 / 31 | 23 / 31 | 0 | SIGNATURE RESOLVED | L1 |
 | `SaveWriteBusyFlag` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
-| `SceneLightingParams01F82ED0` | 0x3C | 60 B (100.0 %) | 15 / 15 | 9 / 15 | 0 | TYPE RESOLVED | L1 |
+| `SceneLightingParams01F82ED0` | 0x3C | 60 B (100.0 %) | 15 / 15 | 14 / 15 | 0 | TYPE RESOLVED | L1 |
+| `SceneSkipEntry` | 0x10 | 16 B (100.0 %) | 7 / 7 | 7 / 7 | 0 | TYPE RESOLVED | L1 |
+| `SceneSkipState022CB730` | 0x2BC | 700 B (100.0 %) | 9 / 9 | 8 / 9 | 0 | TYPE RESOLVED | L1 |
 | `ScheduledTaskRecord` | 0x48 | 72 B (100.0 %) | 15 / 15 | 15 / 15 | 0 | TYPE RESOLVED | L1 |
+| `ScreenFadeState022BDD50` | 0x16C | 364 B (100.0 %) | 9 / 9 | 9 / 9 | 0 | TYPE RESOLVED | L1 |
 | `ScriptNativeDispatchRecord` | 0x20 | 32 B (100.0 %) | 4 / 4 | 4 / 4 | 0 | SIGNATURE RESOLVED | L1 |
 | `ScriptStepGates022C7F80` | 0xC | 12 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | TYPE RESOLVED | L1 |
+| `ScriptVariableRef30` | 0x30 | 48 B (100.0 %) | 11 / 11 | 11 / 11 | 0 | TYPE RESOLVED | L1 |
+| `SeadFixedListSeadHandle30` | 0x30 | 48 B (100.0 %) | 7 / 7 | 7 / 7 | 0 | TYPE RESOLVED | L1 |
+| `SeadFixedListSeadHandleNode28` | 0x28 | 40 B (100.0 %) | 6 / 6 | 6 / 6 | 0 | TYPE RESOLVED | L1 |
 | `SecondaryContext` | 0x188 | 392 B (100.0 %) | 28 / 28 | 25 / 28 | 0 | SIGNATURE RESOLVED | L1 |
 | `SecondaryContextElement` | 0x30 | 48 B (100.0 %) | 15 / 15 | 13 / 15 | 0 | TYPE RESOLVED | L1 |
 | `SecurityCookie01F44830` | 0x8 | 8 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SEMANTICALLY IDENTIFIED | L1 |
 | `SeparationCandidateScratch` | 0x10 | 16 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `SeparationCellMasks` | 0x200 | 512 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
+| `ShadowConstantsStage02CB8160` | 0x2C0 | 704 B (100.0 %) | 30 / 30 | 19 / 30 | 0 | TYPE RESOLVED | L1 |
+| `ShadowSettings01F82EA8` | 0xB08 | 2824 B (100.0 %) | 114 / 114 | 114 / 114 | 0 | TYPE RESOLVED | L1 |
 | `SharedGameplayLcgState` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `SineTable01F004E0` | 0x20000 | 131072 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
+| `SpawnArcDegrees` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
+| `SpawnCandidateRecord` | 0x30 | 48 B (100.0 %) | 8 / 8 | 5 / 8 | 0 | TYPE RESOLVED | L1 |
+| `SpawnCounterRow` | 0x80 | 128 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
+| `SpawnDistanceTunables02089360` | 0xC | 12 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | TYPE RESOLVED | L1 |
+| `SpawnFieldHistory02089370` | 0x8 | 8 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | TYPE RESOLVED | L1 |
 | `SpawnGroupLedger` | 0x18 | 24 B (100.0 %) | 4 / 4 | 3 / 4 | 0 | TYPE RESOLVED | L2 |
 | `SpawnKeepImage` | 0x20010 | 131088 B (100.0 %) | 5 / 5 | 4 / 5 | 0 | SIGNATURE RESOLVED | L1 |
+| `SpawnKeepWindowSeconds0208936C` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `SpawnRecord` | 0x250 | 592 B (100.0 %) | 24 / 24 | 18 / 24 | 0 | TYPE RESOLVED | L2 |
+| `SpritePartsRef20` | 0x20 | 32 B (100.0 %) | 4 / 4 | 4 / 4 | 0 | TYPE RESOLVED | L1 |
 | `SssLightingParams02CB8420` | 0x24 | 36 B (100.0 %) | 10 / 10 | 4 / 10 | 0 | TYPE RESOLVED | L1 |
+| `StaticFloat02EBF000` | 0x4 | 4 B (100.0 %) | 1 / 1 | 0 / 1 | 0 | TYPE RESOLVED | L1 |
 | `StatusDefinitionRecord` | 0x28 | 40 B (100.0 %) | 17 / 17 | 15 / 17 | 0 | SIGNATURE RESOLVED | L1 |
+| `StatusOrderCache022C8B08` | 0x1900 | 6400 B (100.0 %) | 5 / 5 | 5 / 5 | 0 | TYPE RESOLVED | L1 |
+| `StatusOrderCacheEntryA8` | 0xA8 | 168 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | TYPE RESOLVED | L1 |
 | `SteamAchievementRecord` | 0x198 | 408 B (100.0 %) | 6 / 6 | 6 / 6 | 0 | TYPE RESOLVED | L1 |
 | `SteamApiContextInitHeader` | 0x10 | 16 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | TYPE RESOLVED | L1 |
 | `SteeringRecord` | 0x80 | 128 B (100.0 %) | 40 / 40 | 38 / 40 | 0 | TYPE RESOLVED | L1 |
@@ -674,18 +734,24 @@
 | `StickWorldVector022C7FD0` | 0x10 | 16 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `StorageByteStreamVector01F44D40` | 0x18 | 24 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | SEMANTICALLY IDENTIFIED | L1 |
 | `StringTerminatorPad01F2EAA0` | 0x8 | 8 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SEMANTICALLY IDENTIFIED | L1 |
+| `StructuredBufferD3D11Element` | 0x28 | 40 B (100.0 %) | 6 / 6 | 6 / 6 | 0 | SIGNATURE RESOLVED | L1 |
 | `SummonEffectState02B40508` | 0x11 | 17 B (100.0 %) | 11 / 11 | 11 / 11 | 0 | TYPE RESOLVED | L1 |
 | `SystemStopRateRamp020926E4` | 0x10 | 16 B (100.0 %) | 5 / 5 | 5 / 5 | 0 | SEMANTICALLY IDENTIFIED | L1 |
-| `SystemStopRecord` | 0x18 | 24 B (100.0 %) | 5 / 5 | 3 / 5 | 0 | SIGNATURE RESOLVED | L1 |
+| `SystemStopRecord` | 0x18 | 24 B (100.0 %) | 5 / 5 | 2 / 5 | 0 | SIGNATURE RESOLVED | L1 |
 | `SystemStopRegistry` | 0x578 | 1400 B (100.0 %) | 6 / 6 | 5 / 6 | 0 | SIGNATURE RESOLVED | L1 |
 | `TextDrawState` | 0xD0 | 208 B (100.0 %) | 68 / 68 | 68 / 68 | 0 | TYPE RESOLVED | L1 |
 | `TextLayoutRecord` | 0x28 | 40 B (100.0 %) | 9 / 9 | 8 / 9 | 0 | SIGNATURE RESOLVED | L1 |
 | `TextPainter` | 0x1108 | 4360 B (100.0 %) | 31 / 31 | 19 / 31 | 0 | SIGNATURE RESOLVED | L1 |
 | `TextPainterPointer` | 0x8 | 8 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `TextRunAdvance` | 0x10 | 16 B (100.0 %) | 4 / 4 | 4 / 4 | 0 | TYPE RESOLVED | L1 |
+| `Texture2DD3D11Element` | 0x58 | 88 B (100.0 %) | 13 / 13 | 13 / 13 | 0 | SIGNATURE RESOLVED | L1 |
+| `Texture3DD3D11Element` | 0x28 | 40 B (100.0 %) | 6 / 6 | 6 / 6 | 0 | SIGNATURE RESOLVED | L1 |
+| `TextureCubeMapD3D11Element` | 0x40 | 64 B (100.0 %) | 10 / 10 | 10 / 10 | 0 | SIGNATURE RESOLVED | L1 |
 | `TextureUtilSingletonCell` | 0xC | 12 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | TYPE RESOLVED | L1 |
 | `TickCounter01FD4A80` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `TimeBaseScale01DFE0BC` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
+| `TimerPeriodMin` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
+| `TimerPeriodRaised` | 0x1 | 1 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `TrackedUnitCodeEntry` | 0x18 | 24 B (100.0 %) | 3 / 3 | 2 / 3 | 0 | TYPE RESOLVED | L1 |
 | `TransformWorkbenchSaveDepth` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SEMANTICALLY IDENTIFIED | L1 |
 | `TransformWorkbenchSavedPointer` | 0x8 | 8 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
@@ -696,87 +762,104 @@
 | `Vector2` | 0x8 | 8 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `Vector3` | 0x10 | 16 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
 | `Vector4` | 0x10 | 16 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SIGNATURE RESOLVED | L1 |
+| `Vf00ConstantVector` | 0x10 | 16 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | TYPE RESOLVED | L1 |
 | `Vif1InstalledAddressList02088E50` | *none declared* | 4 B (no denominator) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `Vif1Registers02088E30` | 0x20 | 32 B (100.0 %) | 10 / 10 | 10 / 10 | 0 | TYPE RESOLVED | L1 |
 | `VmValueStack` | 0x284 | 644 B (100.0 %) | 5 / 5 | 5 / 5 | 0 | TYPE RESOLVED | L2 |
-| `Vp8DecoderInstance` | 0x4480 | 17536 B (100.0 %) | 28 / 28 | 28 / 28 | 0 | SIGNATURE RESOLVED | L1 |
+| `Vp8BlockDescriptor` | 0x38 | 56 B (100.0 %) | 8 / 8 | 8 / 8 | 0 | TYPE RESOLVED | L1 |
+| `Vp8BoolDecoder` | 0x30 | 48 B (100.0 %) | 7 / 7 | 7 / 7 | 0 | TYPE RESOLVED | L1 |
+| `Vp8DecodeThreadData` | 0x18 | 24 B (100.0 %) | 4 / 4 | 4 / 4 | 0 | TYPE RESOLVED | L1 |
+| `Vp8DecoderInstance` | 0x4480 | 17536 B (100.0 %) | 116 / 116 | 116 / 116 | 0 | SIGNATURE RESOLVED | L1 |
+| `Vp8FrameBuffer` | 0x90 | 144 B (100.0 %) | 16 / 16 | 16 / 16 | 0 | TYPE RESOLVED | L1 |
+| `Vp8FrameContext` | 0x459 | 1113 B (100.0 %) | 6 / 6 | 6 / 6 | 0 | TYPE RESOLVED | L1 |
+| `Vp8LoopFilterInfo` | 0xD10 | 3344 B (100.0 %) | 8 / 8 | 8 / 8 | 0 | TYPE RESOLVED | L1 |
+| `Vp8MacroblockDecoder` | 0x12A0 | 4768 B (100.0 %) | 49 / 49 | 49 / 49 | 0 | TYPE RESOLVED | L1 |
 | `Vp8ModeInfo` | 0x4C | 76 B (100.0 %) | 11 / 11 | 11 / 11 | 0 | TYPE RESOLVED | L1 |
+| `Vp8PostprocState` | 0xC40 | 3136 B (100.0 %) | 8 / 8 | 8 / 8 | 0 | TYPE RESOLVED | L1 |
+| `VpxInternalErrorInfo` | 0x160 | 352 B (100.0 %) | 6 / 6 | 6 / 6 | 0 | TYPE RESOLVED | L1 |
 | `VpxVp8DecoderContext` | 0x330 | 816 B (100.0 %) | 19 / 19 | 19 / 19 | 0 | TYPE RESOLVED | L1 |
 | `Vu1ConstantVector01E02830` | 0x10 | 16 B (100.0 %) | 4 / 4 | 4 / 4 | 0 | SEMANTICALLY IDENTIFIED | L1 |
 | `Vu1DataMemory02064E30` | 0x4000 | 16384 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `Vu1MicroprogramFloat01E02828` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `Vu1ProgramTable02068E30` | 0x20000 | 131072 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
-| `Vu1RegisterBank02064B00` | 0x330 | 816 B (100.0 %) | 69 / 69 | 22 / 69 | 0 | TYPE RESOLVED | L1 |
+| `Vu1RegisterBank02064B00` | 0x330 | 816 B (100.0 %) | 87 / 87 | 46 / 87 | 0 | TYPE RESOLVED | L1 |
 | `WalkKeyEdgeLatch022C7FF9` | 0x1 | 1 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `WeaponRecipeRef` | 0x8 | 8 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | SEMANTICALLY IDENTIFIED | L1 |
 | `WeatherEnvironmentClass` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `WeatherEnvironmentFlag` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `WeatherLaneByte2Mirror` | 0x4 | 4 B (100.0 %) | 1 / 1 | 0 / 1 | 0 | TYPE RESOLVED | L1 |
 | `WeatherWindClass` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
-| `Widget` | *none declared* | 145 B (no denominator) | 35 / 35 | 35 / 35 | 0 | SIGNATURE RESOLVED | L2 |
-| `Widget0209CC18` | 0x150 | 336 B (100.0 %) | 25 / 25 | 8 / 25 | 0 | TYPE RESOLVED | L1 |
-| `Widget02B5F1F8` | 0x130 | 304 B (100.0 %) | 33 / 33 | 9 / 33 | 0 | TYPE RESOLVED | L1 |
-| `Widget02B5F200` | 0x100 | 256 B (100.0 %) | 21 / 21 | 7 / 21 | 0 | TYPE RESOLVED | L1 |
-| `Widget02CA6C80` | 0x1D8 | 472 B (100.0 %) | 21 / 21 | 7 / 21 | 0 | TYPE RESOLVED | L1 |
-| `Widget02CA8F30` | 0xC0 | 192 B (100.0 %) | 22 / 22 | 7 / 22 | 0 | TYPE RESOLVED | L1 |
-| `Widget02CA9718` | 0x130 | 304 B (100.0 %) | 35 / 35 | 8 / 35 | 0 | TYPE RESOLVED | L1 |
-| `Widget02CA9790` | 0x268 | 616 B (100.0 %) | 37 / 37 | 13 / 37 | 0 | TYPE RESOLVED | L1 |
-| `Widget02CA99B0` | 0x4B0 | 1200 B (100.0 %) | 19 / 19 | 6 / 19 | 0 | TYPE RESOLVED | L1 |
-| `Widget02CA99B4` | 0x1C8 | 456 B (100.0 %) | 39 / 39 | 10 / 39 | 0 | TYPE RESOLVED | L1 |
-| `Widget02CA99E8` | 0x178 | 376 B (100.0 %) | 19 / 19 | 6 / 19 | 0 | TYPE RESOLVED | L1 |
-| `WidgetConsumer02AEE4C8` | 0x1D0 | 464 B (100.0 %) | 21 / 21 | 8 / 21 | 0 | TYPE RESOLVED | L1 |
+| `Widget` | *none declared* | 165 B (no denominator) | 39 / 39 | 39 / 39 | 0 | SIGNATURE RESOLVED | L2 |
+| `Widget0209CC18` | 0x150 | 336 B (100.0 %) | 6 / 6 | 2 / 6 | 0 | TYPE RESOLVED | L1 |
+| `Widget02B5F1F8` | 0x130 | 304 B (100.0 %) | 15 / 15 | 4 / 15 | 0 | TYPE RESOLVED | L1 |
+| `Widget02B5F200` | 0x100 | 256 B (100.0 %) | 3 / 3 | 2 / 3 | 0 | TYPE RESOLVED | L1 |
+| `Widget02CA6C80` | 0x1D8 | 472 B (100.0 %) | 7 / 7 | 6 / 7 | 0 | TYPE RESOLVED | L1 |
+| `Widget02CA8F30` | 0xC0 | 192 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
+| `Widget02CA9718` | 0x130 | 304 B (100.0 %) | 16 / 16 | 3 / 16 | 0 | TYPE RESOLVED | L1 |
+| `Widget02CA9790` | 0x268 | 616 B (100.0 %) | 20 / 20 | 9 / 20 | 0 | TYPE RESOLVED | L1 |
+| `Widget02CA99B0` | 0x4B0 | 1200 B (100.0 %) | 21 / 21 | 21 / 21 | 0 | TYPE RESOLVED | L1 |
+| `Widget02CA99B4` | 0x1C8 | 456 B (100.0 %) | 18 / 18 | 4 / 18 | 0 | TYPE RESOLVED | L1 |
+| `Widget02CA99E8` | 0x178 | 376 B (100.0 %) | 7 / 7 | 7 / 7 | 0 | TYPE RESOLVED | L1 |
+| `Widget0720At0209BE80_AB30` | 0x720 | 1824 B (100.0 %) | 4 / 4 | 4 / 4 | 0 | TYPE RESOLVED | L1 |
+| `WidgetChild00D0At3CA530` | 0xD0 | 208 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | TYPE RESOLVED | L1 |
+| `WidgetChild0650At298250` | 0x650 | 1616 B (100.0 %) | 8 / 8 | 8 / 8 | 0 | TYPE RESOLVED | L1 |
+| `WidgetConsumer02AEE4C8` | 0x1D0 | 464 B (100.0 %) | 6 / 6 | 3 / 6 | 0 | TYPE RESOLVED | L1 |
 | `WidgetDrawRecord` | 0xA0 | 160 B (100.0 %) | 18 / 18 | 13 / 18 | 0 | TYPE RESOLVED | L1 |
 | `WidgetFocusStack` | 0x10C | 268 B (100.0 %) | 3 / 3 | 3 / 3 | 0 | TYPE RESOLVED | L1 |
 | `WidgetGenerationParity` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `WidgetMessage` | 0x18 | 24 B (100.0 %) | 4 / 4 | 3 / 4 | 0 | SIGNATURE RESOLVED | L2 |
-| `WidgetSingleton01EFAC10` | 0x108 | 264 B (100.0 %) | 19 / 19 | 6 / 19 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton01FD4940` | 0xD0 | 208 B (100.0 %) | 24 / 24 | 7 / 24 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton01FD4948` | 0xD0 | 208 B (100.0 %) | 20 / 20 | 6 / 20 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton0208E6C0` | 0x730 | 1840 B (100.0 %) | 51 / 51 | 17 / 51 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton0208E6C8` | 0xC8 | 200 B (100.0 %) | 19 / 19 | 6 / 19 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton0208E6D0` | 0x4C0 | 1216 B (100.0 %) | 36 / 36 | 10 / 36 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton0208E6D8` | 0x4D8 | 1240 B (100.0 %) | 34 / 34 | 12 / 34 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton020927F0` | 0x140 | 320 B (100.0 %) | 48 / 48 | 9 / 48 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton0209AC18` | 0xC0 | 192 B (100.0 %) | 22 / 22 | 7 / 22 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton0209AC20` | 0xC0 | 192 B (100.0 %) | 19 / 19 | 6 / 19 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton0209C300` | 0xF0 | 240 B (100.0 %) | 19 / 19 | 6 / 19 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton0209C318` | 0xC0 | 192 B (100.0 %) | 20 / 20 | 6 / 20 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton0209C380` | 0xC0 | 192 B (100.0 %) | 19 / 19 | 6 / 19 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton0209C498` | 0x3F8 | 1016 B (100.0 %) | 34 / 34 | 10 / 34 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton0209C4C8` | 0xF8 | 248 B (100.0 %) | 41 / 41 | 8 / 41 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton0209E5F8` | 0xC8 | 200 B (100.0 %) | 20 / 20 | 6 / 20 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton0209E600` | 0xC0 | 192 B (100.0 %) | 19 / 19 | 6 / 19 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton022C83A8` | 0xD0 | 208 B (100.0 %) | 19 / 19 | 6 / 19 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton022C83E0` | 0xF8 | 248 B (100.0 %) | 29 / 29 | 8 / 29 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton022CA428` | 0xC8 | 200 B (100.0 %) | 20 / 20 | 6 / 20 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton022CBE20` | 0xE0 | 224 B (100.0 %) | 29 / 29 | 7 / 29 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton02AED490` | 0x5F0 | 1520 B (100.0 %) | 37 / 37 | 11 / 37 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton02AEE4C0` | 0xD8 | 216 B (100.0 %) | 23 / 23 | 17 / 23 | 0 | SIGNATURE RESOLVED | L1 |
-| `WidgetSingleton02AEE4D0` | 0xF0 | 240 B (100.0 %) | 19 / 19 | 6 / 19 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton02B457E0` | 0x278 | 632 B (100.0 %) | 46 / 46 | 9 / 46 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton02B476B0` | 0xC8 | 200 B (100.0 %) | 23 / 23 | 7 / 23 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton02B47730` | 0xD8 | 216 B (100.0 %) | 26 / 26 | 7 / 26 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton02B47740` | 0xD8 | 216 B (100.0 %) | 26 / 26 | 8 / 26 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton02B47758` | 0xAA0 | 2720 B (100.0 %) | 32 / 32 | 21 / 32 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton02B47758_02A0` | 0x1C0 | 448 B (100.0 %) | 26 / 26 | 13 / 26 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton02B47758_0460` | 0x190 | 400 B (100.0 %) | 21 / 21 | 10 / 21 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton02B47758_05F0` | 0x4A0 | 1184 B (100.0 %) | 26 / 26 | 14 / 26 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton02B62D78` | 0xD0 | 208 B (100.0 %) | 26 / 26 | 7 / 26 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton02B62D80` | 0xE8 | 232 B (100.0 %) | 26 / 26 | 8 / 26 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton02B62D88` | 0xF0 | 240 B (100.0 %) | 33 / 33 | 9 / 33 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton02CA8A78` | 0xC8 | 200 B (100.0 %) | 21 / 21 | 7 / 21 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton02CA8F38` | 0x188 | 392 B (100.0 %) | 56 / 56 | 13 / 56 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton02CA8FE0` | 0xD0 | 208 B (100.0 %) | 19 / 19 | 6 / 19 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton02CA9670` | 0x110 | 272 B (100.0 %) | 28 / 28 | 9 / 28 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton02CA9678` | 0x390 | 912 B (100.0 %) | 47 / 47 | 17 / 47 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton02CA96D8` | 0xD0 | 208 B (100.0 %) | 21 / 21 | 7 / 21 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton02CA972C` | 0xC0 | 192 B (100.0 %) | 19 / 19 | 6 / 19 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton02CA9738` | 0x120 | 288 B (100.0 %) | 32 / 32 | 7 / 32 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton02CA99C0` | 0x720 | 1824 B (100.0 %) | 59 / 59 | 15 / 59 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton02CA99C8` | 0x110 | 272 B (100.0 %) | 37 / 37 | 9 / 37 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton02CA99D0` | 0xD0 | 208 B (100.0 %) | 22 / 22 | 6 / 22 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton02CA99D8` | 0xD0 | 208 B (100.0 %) | 22 / 22 | 6 / 22 | 0 | TYPE RESOLVED | L1 |
-| `WidgetSingleton02CA99E0` | 0xD0 | 208 B (100.0 %) | 20 / 20 | 6 / 20 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton01EFAC10` | 0x108 | 264 B (100.0 %) | 4 / 4 | 4 / 4 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton01FD4940` | 0xD0 | 208 B (100.0 %) | 5 / 5 | 2 / 5 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton01FD4948` | 0xD0 | 208 B (100.0 %) | 3 / 3 | 2 / 3 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton0208E6C0` | 0x730 | 1840 B (100.0 %) | 30 / 30 | 11 / 30 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton0208E6C8` | 0xC8 | 200 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton0208E6D0` | 0x4C0 | 1216 B (100.0 %) | 15 / 15 | 4 / 15 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton0208E6D8` | 0x4D8 | 1240 B (100.0 %) | 14 / 14 | 6 / 14 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton020927F0` | 0x140 | 320 B (100.0 %) | 30 / 30 | 4 / 30 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton0209AC18` | 0xC0 | 192 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton0209AC20` | 0xC0 | 192 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton0209C300` | 0xF0 | 240 B (100.0 %) | 17 / 17 | 17 / 17 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton0209C318` | 0xC0 | 192 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton0209C380` | 0xC0 | 192 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton0209C498` | 0x3F8 | 1016 B (100.0 %) | 16 / 16 | 7 / 16 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton0209C4C8` | 0xF8 | 248 B (100.0 %) | 19 / 19 | 2 / 19 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton0209E5F8` | 0xC8 | 200 B (100.0 %) | 2 / 2 | 1 / 2 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton0209E600` | 0xC0 | 192 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton022C83A8` | 0xD0 | 208 B (100.0 %) | 5 / 5 | 5 / 5 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton022C83E0` | 0xF8 | 248 B (100.0 %) | 10 / 10 | 3 / 10 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton022CA428` | 0xC8 | 200 B (100.0 %) | 3 / 3 | 2 / 3 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton022CBE20` | 0xE0 | 224 B (100.0 %) | 7 / 7 | 2 / 7 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton02AED490` | 0x5F0 | 1520 B (100.0 %) | 17 / 17 | 7 / 17 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton02AED490EntryA` | 0x18 | 24 B (100.0 %) | 6 / 6 | 3 / 6 | 0 | SIGNATURE RESOLVED | L1 |
+| `WidgetSingleton02AED490EntryB` | 0x10 | 16 B (100.0 %) | 5 / 5 | 2 / 5 | 0 | SIGNATURE RESOLVED | L1 |
+| `WidgetSingleton02AEE4C0` | 0xD8 | 216 B (100.0 %) | 5 / 5 | 5 / 5 | 0 | SIGNATURE RESOLVED | L1 |
+| `WidgetSingleton02AEE4D0` | 0xF0 | 240 B (100.0 %) | 7 / 7 | 7 / 7 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton02B457E0` | 0x278 | 632 B (100.0 %) | 21 / 21 | 4 / 21 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton02B457E0Record` | 0xA8 | 168 B (100.0 %) | 8 / 8 | 3 / 8 | 0 | SIGNATURE RESOLVED | L1 |
+| `WidgetSingleton02B476B0` | 0xC8 | 200 B (100.0 %) | 2 / 2 | 1 / 2 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton02B47730` | 0xD8 | 216 B (100.0 %) | 7 / 7 | 2 / 7 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton02B47740` | 0xD8 | 216 B (100.0 %) | 6 / 6 | 2 / 6 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton02B47758` | 0xAA0 | 2720 B (100.0 %) | 12 / 12 | 12 / 12 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton02B47758_02A0` | 0x1C0 | 448 B (100.0 %) | 3 / 3 | 2 / 3 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton02B47758_0460` | 0x190 | 400 B (100.0 %) | 2 / 2 | 2 / 2 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton02B47758_05F0` | 0x4A0 | 1184 B (100.0 %) | 6 / 6 | 6 / 6 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton02B62D78` | 0xD0 | 208 B (100.0 %) | 6 / 6 | 1 / 6 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton02B62D80` | 0xE8 | 232 B (100.0 %) | 8 / 8 | 3 / 8 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton02B62D88` | 0xF0 | 240 B (100.0 %) | 12 / 12 | 4 / 12 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton02CA8A78` | 0xC8 | 200 B (100.0 %) | 3 / 3 | 2 / 3 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton02CA8F38` | 0x188 | 392 B (100.0 %) | 35 / 35 | 6 / 35 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton02CA8FE0` | 0xD0 | 208 B (100.0 %) | 4 / 4 | 4 / 4 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton02CA9670` | 0x110 | 272 B (100.0 %) | 10 / 10 | 4 / 10 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton02CA9678` | 0x390 | 912 B (100.0 %) | 41 / 41 | 24 / 41 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton02CA96D8` | 0xD0 | 208 B (100.0 %) | 4 / 4 | 3 / 4 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton02CA972C` | 0xC0 | 192 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton02CA9738` | 0x120 | 288 B (100.0 %) | 14 / 14 | 2 / 14 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton02CA99C0` | 0x720 | 1824 B (100.0 %) | 24 / 24 | 6 / 24 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton02CA99C0QueueEntry` | 0x58 | 88 B (100.0 %) | 5 / 5 | 5 / 5 | 0 | SIGNATURE RESOLVED | L1 |
+| `WidgetSingleton02CA99C8` | 0x110 | 272 B (100.0 %) | 20 / 20 | 5 / 20 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton02CA99D0` | 0xD0 | 208 B (100.0 %) | 4 / 4 | 1 / 4 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton02CA99D8` | 0xD0 | 208 B (100.0 %) | 4 / 4 | 1 / 4 | 0 | TYPE RESOLVED | L1 |
+| `WidgetSingleton02CA99E0` | 0xD0 | 208 B (100.0 %) | 3 / 3 | 2 / 3 | 0 | TYPE RESOLVED | L1 |
 | `WidgetStateFlag01EFAC10` | 0x1 | 1 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `WidgetStateFlag01EFAC11` | 0x1 | 1 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
 | `WidgetStateFlag01EFAC12` | 0x1 | 1 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | TYPE RESOLVED | L1 |
@@ -791,9 +874,9 @@
 | `WorldTickLatchedRequest` | 0x4 | 4 B (100.0 %) | 1 / 1 | 0 / 1 | 0 | TYPE RESOLVED | L1 |
 | `WriteOnlyDword022C8380` | 0x4 | 4 B (100.0 %) | 1 / 1 | 1 / 1 | 0 | DISCOVERED | L1 |
 
-**Totals over the 764 type(s) that declare a size: 1927004 of 1926950 bytes (100.0 %).** A further **18 type(s) declare no size** and carry 918 declared byte(s) between them; those bytes are NOT counted above, because a numerator without a denominator is not a percentage. An earlier version added them to the numerator alone and reported 100.1 % where the truth is 100.0 %.
+**Totals over the 844 type(s) that declare a size: 2034877 of 2035259 bytes (100.0 %).** A further **21 type(s) declare no size** and carry 274151 declared byte(s) between them; those bytes are NOT counted above, because a numerator without a denominator is not a percentage. An earlier version added them to the numerator alone and reported 113.5 % where the truth is 100.0 %.
 
-**9269 field(s) across all 782 type(s), 9266 named (100.0 %), 6084 with a stated meaning (65.6 %).** The two figures measure different axes - labelling and stated purpose - and neither is understanding. The byte percentage above is dominated by whichever types are largest, not by how much is known: read it beside the per-type rows, never alone.
+**9382 field(s) across all 865 type(s), 9379 named (100.0 %), 7218 with a stated meaning (76.9 %).** The two figures measure different axes - labelling and stated purpose - and neither is understanding. The byte percentage above is dominated by whichever types are largest, not by how much is known: read it beside the per-type rows, never alone.
 
 ## The other structured-layout population — `struct` fences
 
@@ -801,26 +884,20 @@ Authored formats and in-document record shapes are declared as ```` ```struct ``
 
 | category | fences | fields |
 |---|---:|---:|
-| `01-Script-VM-Native-Bridge` | 2 | 5 |
-| `02-Resource-And-Asset-Pipeline` | 31 | 149 |
-| `03-World-Area-Field` | 11 | 93 |
-| `04-Actor-Entity` | 2 | 7 |
-| `06-Movement-And-Navigation` | 2 | 17 |
-| `12-Items-Equipment-Shops-License` | 2 | 4 |
-| `16-UI` | 2 | 5 |
-| `17-Presentation-Rendering` | 30 | 164 |
-| `18-Audio` | 9 | 44 |
-| `19-Save-Load-Settings` | 1 | 21 |
-| `22-Middleware-PhyreEngine` | 4 | 11 |
-| `24-Compiler-And-CRT-Runtime` | 1 | 7 |
-| `25-EBP-Script-Container` | 18 | 131 |
-| `26-PKFL-Package-Container` | 1 | 2 |
+| `h` | 9 | 89 |
 
-**116 fence(s), 660 field(s), across 53 document(s) in 14 categor(y/ies).**
+**9 fence(s), 89 field(s), across 1 document(s) in 1 categor(y/ies).**
 
 ## Denominator, stated
 
-**This is coverage *of the store*, not of the game.** The store currently holds 782 type(s). The number of FFXII types that exist is unknown, so a game-wide type-coverage percentage cannot be computed and is not offered here.
+**This is coverage *of the store*, not of the game.** The store currently holds 865 type(s). The number of FFXII types that exist is unknown, so a game-wide type-coverage percentage cannot be computed and is not offered here.
 
 **And the store is not the only place a layout can live** — see the fence table above before concluding that a category has nothing recovered.
 
+## Undeclared spans
+
+Each is layout that has not been recovered — a real gap, listed so it can be closed.
+
+- CameraContext: undeclared tail 0x000..0x860 (2144 bytes)
+- AchievementManager: undeclared tail 0x018..0x080 (104 bytes)
+- ResourceSectionHeader: undeclared gap 0x004..0x010 (12 bytes) before nameKey

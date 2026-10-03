@@ -238,3 +238,17 @@ output `falsify_monster_viewer.out`, image `73461d08…`, 0 BROKEN, exit 0.
 |---|---|---|---|---|
 | `003A2C80` | 251 B | `004781A0` + 0x31 | computes n = (`r8d` + 15) / 16 (signed) and, when `r8d` is non-zero and qword `02F8F2D0` + n times 16 is at or above qword `02F8F2D8` (unsigned), returns without writing; otherwise takes 0x28-byte record (word `02F8F2C6`) of the array at qword `02F8F2F8`, increments that word, and stores in the record qword `02F8F2D0` at `+0`, the fifth (stack) argument at dword `+8`, `r9b` at byte `+0xB`, `r8d` at dword `+0xC`, `rcx` at qword `+0x10` and, at dword `+0x20`, (dword `02AEF41C` times 2, OR 1 when the call at `003A2C80` + 0x8E returns non-zero or dword `02AEF418` is non-zero) times 2; when `r8d` is non-zero it then makes the call at + 0xD2 with qword `02F8F2D0`, `rdx` and n times 16, and adds n times 16 to qword `02F8F2D0` | Interior anchor `003A2CAF`; Interior anchor `003A2CC4`; Interior anchor `003A2CF1`; Interior anchor `003A2D34`; Interior anchor `003A2D5E` |
 | `00504700` | 51 B | `00477F20` + 0xE6 | when bit 4 (0x10) of byte `rcx+0x244` is set, makes the call at `00504700` + 0x1A with (`rcx`, 1, 1); in both cases then tail-jumps at + 0x2E to the same callee with (`rcx`, 1, 0) | Interior anchor `00504706`; Interior anchor `00504710`; Interior anchor `0050471A`; Interior anchor `0050471F`; Interior anchor `0050472E` |
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-the-handbooks-monster-viewer-ee-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0034B120` | 146 B | with `e` = `rdx` and `k` = `00267E10(r9)`: when `a` = `002E97B0(e)` and qword [a+8] are non-null, calls `002E6BC0(e, 0)`, `002EB490(qword [a+8], k)`, `002ECBA0(qword [a+8], k, 1)` and `002EC6B0(e, k)` (qword [a+8] re-read for each), and calls `00314D40(1)` when `002E4C30(qword [a+8], 002E9C00(e))` returns 0 | `0034B13F`, `0034B158`, `0034B174`, `0034B191`, `0034B19D` |
+
+### Crossings into other layers - functions this page's newest interior rows name (OPUS, 2026-10-03)
+
+- **CombatAI - SERVICE (1 edge).** `002E9C00` is also called by `003014C0`, filed to combatai - shared machinery across the layer boundary, no shared ownership.
+- **Gameplay - CLIENT and SERVICE (1 edge).** `0034B120` is also a caller of `002E9C00`, filed to gameplay - shared machinery across the layer boundary, no shared ownership.
+- **Party - SERVICE (1 edge).** `002E97B0` is also called by `00358F90`, filed to party - shared machinery across the layer boundary, no shared ownership.

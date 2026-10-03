@@ -1,0 +1,410 @@
+{
+ "page": "22-Middleware-PhyreEngine/Script-Object-Accessors/phyre-script-object-accessors.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "phyre-script-object-accessors-optional-pointer-context-dispatch-adapters-static-descriptor-spelling-1-r9.json",
+ "rows": [
+  {
+   "fn": "005847A0",
+   "text": "with `c` = `rdx` and `p` = qword [r8]: when `p` is non-null tail-jumps to `00684080` with (c, p, `02CA9FA0`); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "005847A9",
+     "mov"
+    ],
+    [
+     "005847AF",
+     "test"
+    ],
+    [
+     "005847B2",
+     "je"
+    ],
+    [
+     "005847B4",
+     "lea"
+    ],
+    [
+     "005847C0",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00584A00",
+   "text": "with `c` = `rdx` and `p` = qword [r8]: when `p` is non-null tail-jumps to `00684080` with (c, p, `02CA9DA0`); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "00584A09",
+     "mov"
+    ],
+    [
+     "00584A0F",
+     "test"
+    ],
+    [
+     "00584A12",
+     "je"
+    ],
+    [
+     "00584A14",
+     "lea"
+    ],
+    [
+     "00584A20",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00584F10",
+   "text": "with `c` = `rdx` and `p` = qword [r8]: when `p` is non-null tail-jumps to `00684080` with (c, p, `02CA9EA0`); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "00584F19",
+     "mov"
+    ],
+    [
+     "00584F1F",
+     "test"
+    ],
+    [
+     "00584F22",
+     "je"
+    ],
+    [
+     "00584F24",
+     "lea"
+    ],
+    [
+     "00584F30",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005A1190",
+   "text": "with `c` = `rdx` and `p` = qword [r8]: when `p` is non-null tail-jumps to `00684080` with (c, p, `02CAD040`); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "005A1199",
+     "mov"
+    ],
+    [
+     "005A119F",
+     "test"
+    ],
+    [
+     "005A11A2",
+     "je"
+    ],
+    [
+     "005A11A4",
+     "lea"
+    ],
+    [
+     "005A11B0",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005A16A0",
+   "text": "with `c` = `rdx` and `p` = qword [r8]: when `p` is non-null tail-jumps to `00684080` with (c, p, `02CAD840`); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "005A16A9",
+     "mov"
+    ],
+    [
+     "005A16AF",
+     "test"
+    ],
+    [
+     "005A16B2",
+     "je"
+    ],
+    [
+     "005A16B4",
+     "lea"
+    ],
+    [
+     "005A16C0",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005A18D0",
+   "text": "with `c` = `rdx` and `p` = qword [r8]: when `p` is non-null tail-jumps to `00684080` with (c, p, `02CAE960`); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "005A18D9",
+     "mov"
+    ],
+    [
+     "005A18DF",
+     "test"
+    ],
+    [
+     "005A18E2",
+     "je"
+    ],
+    [
+     "005A18E4",
+     "lea"
+    ],
+    [
+     "005A18F0",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005A1D30",
+   "text": "with `c` = `rdx` and `p` = qword [r8]: when `p` is non-null tail-jumps to `00684080` with (c, p, `02CAD540`); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "005A1D39",
+     "mov"
+    ],
+    [
+     "005A1D3F",
+     "test"
+    ],
+    [
+     "005A1D42",
+     "je"
+    ],
+    [
+     "005A1D44",
+     "lea"
+    ],
+    [
+     "005A1D50",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005A22F0",
+   "text": "with `c` = `rdx` and `p` = qword [r8]: when `p` is non-null tail-jumps to `00684080` with (c, p, `02CAD440`); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "005A22F9",
+     "mov"
+    ],
+    [
+     "005A22FF",
+     "test"
+    ],
+    [
+     "005A2302",
+     "je"
+    ],
+    [
+     "005A2304",
+     "lea"
+    ],
+    [
+     "005A2310",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005A28E0",
+   "text": "with `c` = `rdx` and `p` = qword [r8]: when `p` is non-null tail-jumps to `00684080` with (c, p, `02CAE350`); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "005A28E9",
+     "mov"
+    ],
+    [
+     "005A28EF",
+     "test"
+    ],
+    [
+     "005A28F2",
+     "je"
+    ],
+    [
+     "005A28F4",
+     "lea"
+    ],
+    [
+     "005A2900",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00674D20",
+   "text": "with `c` = `rdx` and `p` = qword [r8]: when `p` is non-null tail-jumps to `00684080` with (c, p, `02D3E780`); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "00674D29",
+     "mov"
+    ],
+    [
+     "00674D2F",
+     "test"
+    ],
+    [
+     "00674D32",
+     "je"
+    ],
+    [
+     "00674D34",
+     "lea"
+    ],
+    [
+     "00674D40",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006A94C0",
+   "text": "with `c` = `rdx` and `p` = qword [r8]: when `p` is non-null tail-jumps to `00684090` with (c, p, `02E4E1E0`); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "006A94C9",
+     "mov"
+    ],
+    [
+     "006A94CF",
+     "test"
+    ],
+    [
+     "006A94D2",
+     "je"
+    ],
+    [
+     "006A94D4",
+     "lea"
+    ],
+    [
+     "006A94E0",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006AA740",
+   "text": "with `c` = `rdx` and `p` = qword [r8]: when `p` is non-null tail-jumps to `00684090` with (c, p, `02E4E720`); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "006AA749",
+     "mov"
+    ],
+    [
+     "006AA74F",
+     "test"
+    ],
+    [
+     "006AA752",
+     "je"
+    ],
+    [
+     "006AA754",
+     "lea"
+    ],
+    [
+     "006AA760",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006ADCC0",
+   "text": "with `c` = `rdx` and `p` = qword [r8]: when `p` is non-null tail-jumps to `00684090` with (c, p, `02E4F900`); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "006ADCC9",
+     "mov"
+    ],
+    [
+     "006ADCCF",
+     "test"
+    ],
+    [
+     "006ADCD2",
+     "je"
+    ],
+    [
+     "006ADCD4",
+     "lea"
+    ],
+    [
+     "006ADCE0",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006AF9C0",
+   "text": "with `c` = `rdx` and `p` = qword [r8]: when `p` is non-null tail-jumps to `00684090` with (c, p, `02E4FF60`); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "006AF9C9",
+     "mov"
+    ],
+    [
+     "006AF9CF",
+     "test"
+    ],
+    [
+     "006AF9D2",
+     "je"
+    ],
+    [
+     "006AF9D4",
+     "lea"
+    ],
+    [
+     "006AF9E0",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006CDDD0",
+   "text": "with `c` = `rdx` and `p` = qword [r8]: when `p` is non-null tail-jumps to `00684090` with (c, p, `02E5C710`); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "006CDDD9",
+     "mov"
+    ],
+    [
+     "006CDDDF",
+     "test"
+    ],
+    [
+     "006CDDE2",
+     "je"
+    ],
+    [
+     "006CDDE4",
+     "lea"
+    ],
+    [
+     "006CDDF0",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "all 15",
+   "why": "anchor on each row's own lea r8 (its member-unique value) instead of the add rsp epilogue - the non-drafting verifier's advisory (verify_tmpl.json)",
+   "by": "OPUS"
+  }
+ ],
+ "mode": "member",
+ "family": "optional-pointer context dispatch adapters, static-descriptor spelling"
+}

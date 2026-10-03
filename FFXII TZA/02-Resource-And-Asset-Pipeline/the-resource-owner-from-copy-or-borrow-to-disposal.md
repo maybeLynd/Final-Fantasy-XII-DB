@@ -241,3 +241,11 @@ The behavioural results are SECTION-06 and SECTION-10's executed controls and ar
 | O4 | §5 "leaves cache +38" | **survives**: `00409730` stores `+0`, `+4`, `+0x30`, `+0x40` and `+0x44`, never `+0x38` |
 
 No correction, so no consumer record.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-the-resource-owner-from-copy-or-borrow-t-ee-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00427B00` | 194 B | with `g` = qword `022C6F28` and `i` = dword [g+0x48800] (returns when that is -1): for record `R` = g + 0x740 i: when `0020E600(dword [R+0x68])` equals `rcx`, zeroes qword [R+0x68] and stores `0020E620(0)` at dword [R+0x69C]; when `0020E600(dword [R+0xD8])` equals `rcx`, zeroes qwords [R+0xD8] and [R+0xE0]; when `0020E600(dword [R+0xF0])` equals `rcx`, zeroes qwords [R+0xF0] and [R+0xF8]; then re-reads `g` from `022C6F28` (used for the next record too) and takes `i` = the sign-extended word [g+0x740i+4], repeating until it is -1 | `00427B3D`, `00427B4E`, `00427B61`, `00427B82`, `00427BA3` |

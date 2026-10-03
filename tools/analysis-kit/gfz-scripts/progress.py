@@ -257,6 +257,14 @@ def _self_test_row_credits():
          + TEMPLATE_MEMBER_MARKER + " |\n\nThe body reads `00120240`.\n", set(), ({G}, {G})),
     ]
     bad = []
+    SC = DOC + "\n| f | anchor |\n|---|---|\n| `00120200` | Scope: calls and stores; interior `00120230`; " + SCOPED_ROW_MARKER + " |\n"
+    _so = set()
+    _u, _t, _p = doc_credits(SC, entries, sizes, uc1f, scoped_out=_so)
+    if (_so, _t, _p) != ({G}, set(), set()):
+        bad.append("scoped row with scoped_out: got %r %r %r" % (_so, _t, _p))
+    _u, _t, _p = doc_credits(SC, entries, sizes, uc1f)
+    if (_t, _p) != (set(), {G}):
+        bad.append("scoped row without scoped_out: got %r %r" % (_t, _p))
     for name, text, want_uc1, want_tp in cases:
         got_u, got_t, got_p = doc_credits(text, entries, sizes, uc1f)
         if got_u != want_uc1 or (want_tp is not None and (got_t, got_p) != want_tp):
@@ -321,6 +329,9 @@ def _self_test_row_credits():
 #   counts only when an interior cite of it sits in a row carrying check_dispositions.UC1_INTERIOR_BREAK. The phrase
 #   and the row splitter are imported from check_dispositions so the two measures cannot drift apart.
 TEMPLATE_MEMBER_MARKER = "template member: distinguishing operand"
+# SWE2-AUDIT-SPEC's scoped-row ruling (auditspec-ruling-scoped-ee-row-1003, condition 5): a large body explained by a
+# set-exact scoped row is a separately reported credit. The row carries this literal marker at the end of its scope.
+SCOPED_ROW_MARKER = "scoped row: set-exact"
 
 
 _HEADING = re.compile(r"^(#{1,6})[ \t]+(.+?)[ \t]*#*[ \t]*$", re.M)
@@ -466,20 +477,24 @@ def family_rule_inputs(db, sizes):
     return in_scope, len(fams), dict(members), dict(anchors)
 
 
-def doc_credits(text, entries, sizes, uc1f, fam_members=None, fam_anchors=None):
+def doc_credits(text, entries, sizes, uc1f, fam_members=None, fam_anchors=None, scoped_out=None):
     """For one page: (UC-1 bodies credited by the break phrase, explaining credits from template-member rows,
     explaining credits from every other row). Empty unless the page is evidence-bearing. A credit follows
     cite_credits (the base rule, and the family-declaring-page rule when the page declares families); the UC-1
-    credit needs a strictly interior cite in the phrase's own row, as check_dispositions.measure_a does."""
+    credit needs a strictly interior cite in the phrase's own row, as check_dispositions.measure_a does.
+    When `scoped_out` is a set, a credit from a row carrying SCOPED_ROW_MARKER goes there instead of the template or
+    plain set (the scoped-row ruling's separate report); with no `scoped_out` such a row counts as before."""
     import check_dispositions as CD
     uc1_ok, tmpl, plain = set(), set(), set()
     if not evidence_bearing(text):
         return uc1_ok, tmpl, plain
     has_t = TEMPLATE_MEMBER_MARKER in text
     has_u = CD.UC1_INTERIOR_BREAK in text
-    for row in (CD._rows(text) if (has_t or has_u) else [text]):
+    has_s = scoped_out is not None and SCOPED_ROW_MARKER in text
+    for row in (CD._rows(text) if (has_t or has_u or has_s) else [text]):
         tm = has_t and TEMPLATE_MEMBER_MARKER in row
         ub = has_u and CD.UC1_INTERIOR_BREAK in row
+        sm = has_s and SCOPED_ROW_MARKER in row
         for h in re.findall(r"`(?:0x)?(0[0-9A-Fa-f]{7})`", row):
             v = int(h, 16)
             i = bisect.bisect_right(entries, v) - 1
@@ -489,7 +504,7 @@ def doc_credits(text, entries, sizes, uc1f, fam_members=None, fam_anchors=None):
             if not (e <= v < e + sizes[e]):
                 continue
             if cite_credits(e, v, sizes, fam_members, fam_anchors):
-                (tmpl if tm else plain).add(e)
+                (scoped_out if sm else tmpl if tm else plain).add(e)
             if ub and e in uc1f and v > e:
                 uc1_ok.add(e)
     return uc1_ok, tmpl, plain
@@ -925,6 +940,7 @@ def main(argv=None):
     cited = set()
     explained = set()
     uc1_phrase_credit, template_credit, plain_credit = set(), set(), set()
+    scoped_credit = set()
     explained_with_index = set()           # the same rule before ee_index_only sections are removed
     explained_nofam, fam_row_credit = set(), set()
     # OPUS-REQ-DATA-EE-FAMILY-DECLARING-PAGE-1003. FAIL CLOSED: if the accepted families cannot be read, the
@@ -1007,7 +1023,7 @@ def main(argv=None):
                     if _fm is not None and e in _fm:
                         fam_row_credit.add(e)
         if bearing:
-            _u, _t, _p = doc_credits(t_ee, entries, sizes, uc1_frontier, _fm, _fa)
+            _u, _t, _p = doc_credits(t_ee, entries, sizes, uc1_frontier, _fm, _fa, scoped_out=scoped_credit)
             uc1_phrase_credit |= _u
             template_credit |= _t
             plain_credit |= _p
@@ -1019,12 +1035,14 @@ def main(argv=None):
     # SERIES BREAK 2026-10-03 (SWE2-AUDIT-SPEC ruling; FRONTIER's a46d39253 rule): a UC-1 body whose interior cite sits
     # in a row carrying check_dispositions.UC1_INTERIOR_BREAK is explained. Every other UC-1 frontier body, including
     # those cited without the phrase, stays subtracted. Before this date every UC-1 body was subtracted.
-    row_split_agrees = (template_credit | plain_credit) == explained
+    row_split_agrees = (template_credit | plain_credit | scoped_credit) == explained
     uc1_cited = cited & uc1_frontier
     uc1_credited = uc1_phrase_credit & explained
     explained -= (uc1_frontier - uc1_credited)
     plain_credit -= (uc1_frontier - uc1_credited)
-    template_only = explained - plain_credit
+    scoped_credit -= (uc1_frontier - uc1_credited)
+    scoped_only = explained - plain_credit - template_credit
+    template_only = explained - plain_credit - scoped_only
 
     comp = collections.OrderedDict()
     comp["engine_explained"] = (len(explained), total_fn)
@@ -1236,6 +1254,12 @@ def main(argv=None):
           % (len(explained), tight, len(explained) - len(template_only), plain_pct))
     print("      %d function(s) are explained ONLY by a row marked \"%s\""
           % (len(template_only), TEMPLATE_MEMBER_MARKER))
+    # SWE2-AUDIT-SPEC's scoped-row ruling, condition 5: scoped credits reported separately.
+    unscoped_pct = 100.0 * (len(explained) - len(scoped_only)) / total_fn if total_fn else 0.0
+    print("  scoped-row spread: engine_explained %d (%.2f%%) with scoped rows, %d (%.2f%%) without -"
+          % (len(explained), tight, len(explained) - len(scoped_only), unscoped_pct))
+    print("      %d function(s) are explained ONLY by a row marked \"%s\""
+          % (len(scoped_only), SCOPED_ROW_MARKER))
     # OPUS-REQ-DATA-EE-INDEX-ONLY-1003: what the ee_index_only sections would have credited.
     idx_lost = explained_with_index - explained - (uc1_frontier - uc1_credited)
     # OPUS-REQ-DATA-EE-FAMILY-DECLARING-PAGE-1003: what the family-declaring-page rule moved.

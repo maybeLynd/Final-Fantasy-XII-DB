@@ -1,0 +1,67 @@
+{
+ "page": "17-Presentation-Rendering/Render-Command-List/the-ordered-render-command-list.md",
+ "date": "2026-10-03",
+ "rows": [
+  {
+   "fn": "001F16A0",
+   "text": "loads the vtable of the object in `rdx` and tail-jumps to its slot 7 (qword `+0x38`) with `rcx` = that object, `rdx` = qword `+8` and `r8` = qword `+0x10` of the command object in `rcx`, and `r9` = the same object as the new `rcx`; vtable slot 1 of GiSetRtForRtSampling",
+   "anchors": [
+    [
+     "001F16A3",
+     "mov"
+    ],
+    [
+     "001F16A6",
+     "mov"
+    ],
+    [
+     "001F16AA",
+     "mov"
+    ],
+    [
+     "001F16B1",
+     "jmp"
+    ]
+   ],
+   "why_here": "slot 1 of GiSetRtForRtSampling (rtti-methods.tsv); the page's UQ-231 answer names GiSetRtForRtSampling and its vtable; the Gi family page is dirty in the working tree"
+  },
+  {
+   "fn": "001FBD70",
+   "text": "loads the vtable of the object in `rdx` and tail-jumps to its slot 38 (qword `+0x130`) with `rcx` = that object; vtable slot 1 of GiBeginScene",
+   "anchors": [
+    [
+     "001FBD73",
+     "mov"
+    ],
+    [
+     "001FBD76",
+     "jmp"
+    ]
+   ],
+   "why_here": "slot 1 of GiBeginScene (rtti-methods.tsv); the page's UQ-231 answer names GiBeginScene and its vtable; the Gi family page is dirty in the working tree"
+  },
+  {
+   "fn": "001FBE40",
+   "text": "loads the vtable of the object in `rdx` and tail-jumps to its slot 37 (qword `+0x128`) with `rcx` = that object; vtable slot 1 of GiEndScene",
+   "anchors": [
+    [
+     "001FBE43",
+     "mov"
+    ],
+    [
+     "001FBE46",
+     "jmp"
+    ]
+   ],
+   "why_here": "slot 1 of GiEndScene (rtti-methods.tsv); the page's UQ-231 answer names GiEndScene and its vtable; the Gi family page is dirty in the working tree"
+  }
+ ],
+ "owner_tokens": {
+  "001F16A0": "GiSetRtForRtSampling",
+  "001FBD70": "GiBeginScene",
+  "001FBE40": "GiEndScene"
+ },
+ "kind": "rtti",
+ "note_extra": "",
+ "source": "SWE2-EC7 hand-off Database/Tools/work/SWE2-EC7/handoff_noref_to_fable_1003.tsv (rtti column), homing_rtti_noref_1003.tsv, h211/callers.tsv"
+}

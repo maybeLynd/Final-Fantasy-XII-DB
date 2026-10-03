@@ -1,0 +1,228 @@
+{
+ "page": "22-Middleware-PhyreEngine/Script-Object-Accessors/phyre-script-object-accessors.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "phyre-script-object-accessors-optional-pointer-offset-add-dispatch-adapters-64-byte-form-1-r9.json",
+ "rows": [
+  {
+   "fn": "005A0EC0",
+   "text": "with `c` = `rdx` and `p` = qword [r8]: when `p` is non-null tail-jumps to `00684080` with (c, p + 8, `02CADD50`); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "005A0EC9",
+     "mov"
+    ],
+    [
+     "005A0ED2",
+     "je"
+    ],
+    [
+     "005A0ED4",
+     "add"
+    ],
+    [
+     "005A0ED8",
+     "lea"
+    ],
+    [
+     "005A0EE4",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005A13E0",
+   "text": "with `c` = `rdx` and `p` = qword [r8]: when `p` is non-null tail-jumps to `00684080` with (c, p + 8, `02CAECE0`); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "005A13E9",
+     "mov"
+    ],
+    [
+     "005A13F2",
+     "je"
+    ],
+    [
+     "005A13F4",
+     "add"
+    ],
+    [
+     "005A13F8",
+     "lea"
+    ],
+    [
+     "005A1404",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005A1A00",
+   "text": "with `c` = `rdx` and `p` = qword [r8]: when `p` is non-null tail-jumps to `00684080` with (c, p + 8, `02CAEEE0`); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "005A1A09",
+     "mov"
+    ],
+    [
+     "005A1A12",
+     "je"
+    ],
+    [
+     "005A1A14",
+     "add"
+    ],
+    [
+     "005A1A18",
+     "lea"
+    ],
+    [
+     "005A1A24",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005A21B0",
+   "text": "with `c` = `rdx` and `p` = qword [r8]: when `p` is non-null tail-jumps to `00684080` with (c, p + 8, `02CAEFE0`); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "005A21B9",
+     "mov"
+    ],
+    [
+     "005A21C2",
+     "je"
+    ],
+    [
+     "005A21C4",
+     "add"
+    ],
+    [
+     "005A21C8",
+     "lea"
+    ],
+    [
+     "005A21D4",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005A2470",
+   "text": "with `c` = `rdx` and `p` = qword [r8]: when `p` is non-null tail-jumps to `00684090` with (c, p + 8, `02CAD140`); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "005A2479",
+     "mov"
+    ],
+    [
+     "005A2482",
+     "je"
+    ],
+    [
+     "005A2484",
+     "add"
+    ],
+    [
+     "005A2488",
+     "lea"
+    ],
+    [
+     "005A2494",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005A27F0",
+   "text": "with `c` = `rdx` and `p` = qword [r8]: when `p` is non-null tail-jumps to `00684080` with (c, p + 8, `02CAEA60`); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "005A27F9",
+     "mov"
+    ],
+    [
+     "005A2802",
+     "je"
+    ],
+    [
+     "005A2804",
+     "add"
+    ],
+    [
+     "005A2808",
+     "lea"
+    ],
+    [
+     "005A2814",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0062F9D0",
+   "text": "with `c` = `rdx` and `p` = qword [r8]: when `p` is non-null tail-jumps to `00684080` with (c, p + 0x30, `02CF8580`); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "0062F9D9",
+     "mov"
+    ],
+    [
+     "0062F9E2",
+     "je"
+    ],
+    [
+     "0062F9E4",
+     "add"
+    ],
+    [
+     "0062F9E8",
+     "lea"
+    ],
+    [
+     "0062F9F4",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006CCE20",
+   "text": "with `c` = `rdx` and `p` = qword [r8]: when `p` is non-null tail-jumps to `00684090` with (c, p + 8, `02E5C050`); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "006CCE29",
+     "mov"
+    ],
+    [
+     "006CCE32",
+     "je"
+    ],
+    [
+     "006CCE34",
+     "add"
+    ],
+    [
+     "006CCE38",
+     "lea"
+    ],
+    [
+     "006CCE44",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "8 rows",
+   "by": "OPUS",
+   "why": "anchors now include each row's own lea (its member-unique global) - the non-drafting verifier's anchor_flag / suggested_anchors (verify_tmpl2.json)"
+  }
+ ],
+ "mode": "member",
+ "family": "optional-pointer offset-add dispatch adapters, 64-byte form"
+}

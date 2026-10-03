@@ -1,0 +1,275 @@
+{
+ "page": "16-UI/Dynamic-Geometry-Instances/dyngeo-instance-family.md",
+ "date": "2026-10-03",
+ "rows": [
+  {
+   "fn": "006CA650",
+   "text": "computes `rcx` + 0x18864 + (dword `+0x20864` zero-extended and shifted left by 15), stores 0 to dword `+0x20864`, stores the pointer at qword `+0xC0` and returns it; vtable slot 2 of PrimitiveRendererD3D11",
+   "anchors": [
+    [
+     "006CA656",
+     "shl"
+    ],
+    [
+     "006CA65A",
+     "add"
+    ],
+    [
+     "006CA660",
+     "mov"
+    ],
+    [
+     "006CA66D",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 2 of PrimitiveRendererD3D11 (rtti-methods.tsv); the page's slot table and homed rows document PrimitiveRendererD3D11 slots; the Gi family page is dirty in the working tree"
+  },
+  {
+   "fn": "006CA680",
+   "text": "copies the qword at `+0xA8` + 8 times dword `+0xB0` to qword `+0xC0`, then calls slot 14 (qword `+0x70`) of the object at qword `+0x110` of qword `+0x848` with that qword in `rdx`, `r8d` = 0, `r9d` = 4, a fifth argument 0 and a sixth pointing at a stack qword; it returns 0 when the call's result is negative (`js`) or the stack qword is 0, and the stack qword otherwise; vtable slot 43 of PrimitiveRendererD3D11",
+   "anchors": [
+    [
+     "006CA6A5",
+     "lea"
+    ],
+    [
+     "006CA6B0",
+     "mov"
+    ],
+    [
+     "006CA6CF",
+     "call"
+    ],
+    [
+     "006CA6D4",
+     "js"
+    ],
+    [
+     "006CA6D6",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 43 of PrimitiveRendererD3D11 (rtti-methods.tsv); the page's slot table and homed rows document PrimitiveRendererD3D11 slots; the Gi family page is dirty in the working tree"
+  },
+  {
+   "fn": "006CA6F0",
+   "text": "copies the qword at `+0x90` + 8 times dword `+0xA0` to qword `+0xB8`, then calls slot 14 (qword `+0x70`) of the object at qword `+0x110` of qword `+0x848` with that qword in `rdx`, `r8d` = 0, `r9d` = 4, a fifth argument 0 and a sixth pointing at a stack qword; it returns 0 when the call's result is negative (`js`) or the stack qword is 0, and the stack qword otherwise; vtable slot 41 of PrimitiveRendererD3D11",
+   "anchors": [
+    [
+     "006CA715",
+     "lea"
+    ],
+    [
+     "006CA720",
+     "mov"
+    ],
+    [
+     "006CA73F",
+     "call"
+    ],
+    [
+     "006CA744",
+     "js"
+    ],
+    [
+     "006CA746",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 41 of PrimitiveRendererD3D11 (rtti-methods.tsv); the page's slot table and homed rows document PrimitiveRendererD3D11 slots; the Gi family page is dirty in the working tree"
+  },
+  {
+   "fn": "006CAB50",
+   "text": "calls slot 15 (qword `+0x78`) of its own vtable with `rcx`, `rdx`, `r8` and `r9` unchanged and with `r8d`, `r9d` and its own fifth-argument dword as stack arguments 5, 6 and 7, and returns that call's result; vtable slot 14 of PrimitiveRendererD3D11",
+   "anchors": [
+    [
+     "006CAB54",
+     "mov"
+    ],
+    [
+     "006CAB5F",
+     "mov"
+    ],
+    [
+     "006CAB64",
+     "mov"
+    ],
+    [
+     "006CAB69",
+     "call"
+    ]
+   ],
+   "why_here": "slot 14 of PrimitiveRendererD3D11 (rtti-methods.tsv); the page's slot table and homed rows document PrimitiveRendererD3D11 slots; the Gi family page is dirty in the working tree"
+  },
+  {
+   "fn": "006CAC10",
+   "text": "stores `rdx` at qword `+0x1B8` and returns 0; vtable slot 10 of PrimitiveRendererD3D11",
+   "anchors": [
+    [
+     "006CAC17",
+     "xor"
+    ]
+   ],
+   "why_here": "slot 10 of PrimitiveRendererD3D11 (rtti-methods.tsv); the page's slot table and homed rows document PrimitiveRendererD3D11 slots; the Gi family page is dirty in the working tree"
+  },
+  {
+   "fn": "006CAD30",
+   "text": "stores `rdx` at qword `+0x860` and `r8` at qword `+0x868` and returns 0; vtable slot 7 of PrimitiveRendererD3D11",
+   "anchors": [
+    [
+     "006CAD37",
+     "xor"
+    ],
+    [
+     "006CAD39",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 7 of PrimitiveRendererD3D11 (rtti-methods.tsv); the page's slot table and homed rows document PrimitiveRendererD3D11 slots; the Gi family page is dirty in the working tree"
+  },
+  {
+   "fn": "006CAD50",
+   "text": "stores `edx` at dword `+0x20900`, `r8d` at `+0x20904`, `edx` + `r9d` at `+0x20908` and `r8d` plus the fifth-argument dword at `+0x2090C`, stores byte 1 at `+0x20920` when the sixth-argument dword is non-zero (`cmp` with 0, unsigned `seta`) and 0 otherwise, and stores byte 1 at `+0x208F0`, with no explicit return value; vtable slot 32 of PrimitiveRendererD3D11",
+   "anchors": [
+    [
+     "006CAD5A",
+     "mov"
+    ],
+    [
+     "006CAD61",
+     "mov"
+    ],
+    [
+     "006CAD67",
+     "cmp"
+    ],
+    [
+     "006CAD73",
+     "seta"
+    ],
+    [
+     "006CAD82",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 32 of PrimitiveRendererD3D11 (rtti-methods.tsv); the page's slot table and homed rows document PrimitiveRendererD3D11 slots; the Gi family page is dirty in the working tree"
+  },
+  {
+   "fn": "006CAD90",
+   "text": "stores the float in `xmm2` at dword `+0x208EC` and `dl` at byte `+0x208E8` and returns 0; vtable slot 11 of PrimitiveRendererD3D11",
+   "anchors": [
+    [
+     "006CAD98",
+     "xor"
+    ],
+    [
+     "006CAD9A",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 11 of PrimitiveRendererD3D11 (rtti-methods.tsv); the page's slot table and homed rows document PrimitiveRendererD3D11 slots; the Gi family page is dirty in the working tree"
+  },
+  {
+   "fn": "006CADB0",
+   "text": "stores at byte `+0x855` the byte at `01F2EEB8` when the byte at `02E5BDDC` is non-zero and `dl` otherwise (both bytes are in `.data`, so mutable), and returns 0 on both paths; vtable slot 12 of PrimitiveRendererD3D11",
+   "anchors": [
+    [
+     "006CADB7",
+     "je"
+    ],
+    [
+     "006CADB9",
+     "movzx"
+    ],
+    [
+     "006CADC0",
+     "mov"
+    ],
+    [
+     "006CADC9",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 12 of PrimitiveRendererD3D11 (rtti-methods.tsv); the page's slot table and homed rows document PrimitiveRendererD3D11 slots; the Gi family page is dirty in the working tree"
+  },
+  {
+   "fn": "006CAE70",
+   "text": "stores `edx` at dword `+0x80`, `r8d` at dword `+0x84` and byte 1 at `+0x208F1`, with no explicit return value; vtable slot 36 of PrimitiveRendererD3D11",
+   "anchors": [
+    [
+     "006CAE76",
+     "mov"
+    ],
+    [
+     "006CAE7D",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 36 of PrimitiveRendererD3D11 (rtti-methods.tsv); the page's slot table and homed rows document PrimitiveRendererD3D11 slots; the Gi family page is dirty in the working tree"
+  },
+  {
+   "fn": "006CAE90",
+   "text": "stores `edx` at dword `+0x70`, `r8d` at dword `+0x74` and byte 1 at `+0x208F1`, and returns 0; vtable slot 9 of PrimitiveRendererD3D11",
+   "anchors": [
+    [
+     "006CAE93",
+     "xor"
+    ],
+    [
+     "006CAE95",
+     "mov"
+    ],
+    [
+     "006CAE99",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 9 of PrimitiveRendererD3D11 (rtti-methods.tsv); the page's slot table and homed rows document PrimitiveRendererD3D11 slots; the Gi family page is dirty in the working tree"
+  },
+  {
+   "fn": "006CB590",
+   "text": "calls slot 15 (qword `+0x78`) of the object at qword `+0x110` of qword `+0x848` with `rdx` = the qword at `+0x90` + 8 times dword `+0xA0` and `r8d` = 0, then stores 0 to dword `+0xA0` and returns qword `+0xB8`; vtable slot 42 of PrimitiveRendererD3D11",
+   "anchors": [
+    [
+     "006CB5A3",
+     "mov"
+    ],
+    [
+     "006CB5B3",
+     "mov"
+    ],
+    [
+     "006CB5BB",
+     "call"
+    ],
+    [
+     "006CB5BE",
+     "mov"
+    ],
+    [
+     "006CB5C5",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 42 of PrimitiveRendererD3D11 (rtti-methods.tsv); the page's slot table and homed rows document PrimitiveRendererD3D11 slots; the Gi family page is dirty in the working tree"
+  }
+ ],
+ "owner_tokens": {
+  "006CA650": "PrimitiveRendererD3D11",
+  "006CA680": "PrimitiveRendererD3D11",
+  "006CA6F0": "PrimitiveRendererD3D11",
+  "006CAB50": "PrimitiveRendererD3D11",
+  "006CAC10": "PrimitiveRendererD3D11",
+  "006CAD30": "PrimitiveRendererD3D11",
+  "006CAD50": "PrimitiveRendererD3D11",
+  "006CAD90": "PrimitiveRendererD3D11",
+  "006CADB0": "PrimitiveRendererD3D11",
+  "006CAE70": "PrimitiveRendererD3D11",
+  "006CAE90": "PrimitiveRendererD3D11",
+  "006CB590": "PrimitiveRendererD3D11"
+ },
+ "kind": "rtti",
+ "note_extra": "",
+ "source": "SWE2-EC7 hand-off Database/Tools/work/SWE2-EC7/handoff_noref_to_fable_1003.tsv (rtti column), homing_rtti_noref_1003.tsv, h211/callers.tsv"
+}

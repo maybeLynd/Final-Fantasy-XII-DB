@@ -1,0 +1,196 @@
+{
+ "page": "22-Middleware-PhyreEngine/Script-Object-Accessors/phyre-script-object-accessors.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "phyre-script-object-accessors-optional-pointer-member-call-vcall-dispatch-adapters-87-byte-form-1-r9.json",
+ "rows": [
+  {
+   "fn": "005C1C10",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `o` = `005BCAC0(c)`; returns 0 when `o` is null; else calls the pointer at qword [f+8] with `o`, then `0080F420(c, 1)` and `00810580(c, the low dword of that call result)`, and returns 1",
+   "anchors": [
+    [
+     "005C1C23",
+     "call"
+    ],
+    [
+     "005C1C30",
+     "call"
+    ],
+    [
+     "005C1C3D",
+     "call"
+    ],
+    [
+     "005C1C47",
+     "call"
+    ],
+    [
+     "005C1C4C",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005C1DA0",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `o` = `005BCD20(c)`; returns 0 when `o` is null; else calls the pointer at qword [f+8] with `o`, then `0080F420(c, 1)` and `00810580(c, the low dword of that call result)`, and returns 1",
+   "anchors": [
+    [
+     "005C1DB3",
+     "call"
+    ],
+    [
+     "005C1DC0",
+     "call"
+    ],
+    [
+     "005C1DCD",
+     "call"
+    ],
+    [
+     "005C1DD7",
+     "call"
+    ],
+    [
+     "005C1DDC",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0066FBF0",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `o` = `0066E7D0(c)`; returns 0 when `o` is null; else calls the pointer at qword [f+8] with `o`, then `0080F420(c, 1)` and `00810580(c, the low dword of that call result)`, and returns 1",
+   "anchors": [
+    [
+     "0066FC03",
+     "call"
+    ],
+    [
+     "0066FC10",
+     "call"
+    ],
+    [
+     "0066FC1D",
+     "call"
+    ],
+    [
+     "0066FC27",
+     "call"
+    ],
+    [
+     "0066FC2C",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006A1110",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `o` = `0069D520(c)`; returns 0 when `o` is null; else calls the pointer at qword [f+8] with `o`, then `0080F420(c, 1)` and `00810580(c, the low dword of that call result)`, and returns 1",
+   "anchors": [
+    [
+     "006A1123",
+     "call"
+    ],
+    [
+     "006A1130",
+     "call"
+    ],
+    [
+     "006A113D",
+     "call"
+    ],
+    [
+     "006A1147",
+     "call"
+    ],
+    [
+     "006A114C",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006AF170",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `o` = `006AEE00(c)`; returns 0 when `o` is null; else calls the pointer at qword [f+8] with `o`, then `0080F420(c, 1)` and `00810580(c, the low dword of that call result)`, and returns 1",
+   "anchors": [
+    [
+     "006AF183",
+     "call"
+    ],
+    [
+     "006AF190",
+     "call"
+    ],
+    [
+     "006AF19D",
+     "call"
+    ],
+    [
+     "006AF1A7",
+     "call"
+    ],
+    [
+     "006AF1AC",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0079A7D0",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `o` = `00796960(c)`; returns 0 when `o` is null; else calls the pointer at qword [f+8] with `o`, then `0080F420(c, 1)` and `00810580(c, the low dword of that call result)`, and returns 1",
+   "anchors": [
+    [
+     "0079A7E3",
+     "call"
+    ],
+    [
+     "0079A7F0",
+     "call"
+    ],
+    [
+     "0079A7FD",
+     "call"
+    ],
+    [
+     "0079A807",
+     "call"
+    ],
+    [
+     "0079A80C",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0079ACF0",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `o` = `00796CF0(c)`; returns 0 when `o` is null; else calls the pointer at qword [f+8] with `o`, then `0080F420(c, 1)` and `00810580(c, the low dword of that call result)`, and returns 1",
+   "anchors": [
+    [
+     "0079AD03",
+     "call"
+    ],
+    [
+     "0079AD10",
+     "call"
+    ],
+    [
+     "0079AD1D",
+     "call"
+    ],
+    [
+     "0079AD27",
+     "call"
+    ],
+    [
+     "0079AD2C",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "member",
+ "family": "optional-pointer member-call vcall dispatch adapters, 87-byte form"
+}

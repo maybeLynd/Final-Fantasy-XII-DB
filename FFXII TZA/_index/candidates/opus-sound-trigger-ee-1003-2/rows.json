@@ -1,0 +1,105 @@
+{
+ "page": "18-Audio/Sound-Selection/sound-trigger.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "sound-trigger-r8.json",
+ "rows": [
+  {
+   "fn": "007AE260",
+   "text": "with `t` = qword [rcx+8]: returns 0.0 when `t` is null or `n` = word [t+4] is 0; clamps `x` = `xmm1` to [0, 1.0] (NaN gives 0); over the `n` 16-byte points at `t` + word [t+2] (byte +2 curve, float +4 key, float +8 value) binary-searches `x` with mid = (lo + hi) / 2 (signed), stopping at a key equal to `x` or an unordered compare; steps the last probed index `i` back by one when `x` is not at or above key `i` (a NaN key included) and `i` > 0, otherwise clamps an `i` of `n` or more to `n` - 1; `v` = value `i` when `i` is `n` - 1, else value `i` + `007A9E50((x - key i) / (key i+1 - key i), curve i)` times (value i+1 - value i); when byte [t+6] is 1 returns 0.0 for `v` not above 0 (NaN included) and otherwise tail-jumps to `00861F6E` with (`008F8180` (10.0), (1 - `v`) times `01CB4980` (-4.8)); any other byte returns `v`",
+   "anchors": [
+    [
+     "007AE2A3",
+     "jae"
+    ],
+    [
+     "007AE2E8",
+     "ucomiss"
+    ],
+    [
+     "007AE307",
+     "comiss"
+    ],
+    [
+     "007AE36E",
+     "call"
+    ],
+    [
+     "007AE3E5",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "007B5580",
+   "text": "takes `n` = qword [rcx+0x18]; when it is null calls `0019C5D0(a 0x100-byte stack buffer, 0x100, 01CB4568 \"[sead][!!error!!]list append error full!\")`, stores a newline at the returned length (2 less when that is 0xFF or more, signed) with no range test, so a negative or over-long length writes outside the buffer, and a terminator after it (an index of 0x100 or more, unsigned, calls `00809728` instead), calls `OutputDebugStringA` (`008C2120`) and `007A5570(2, buffer)` and returns -1; otherwise sets qword [rcx+0x18] = qword [n+0x10]; when qword [rcx+0x20] is 0 stores `n` at qwords [rcx+0x20] and [rcx+0x28] and zeroes qwords [n+0x10] and [n+8], else sets qword [n+8] = qword [rcx+0x28], zeroes qword [n+0x10], stores `n` at qword +0x10 of the old qword [rcx+0x28] and at qword [rcx+0x28]; sets bit `0x1` of dword [n+0x1C], stores `r8` at qword [n+0x20], increments dword [rcx+0xC], copies dword [n+0x18] to [rdx] when `rdx` is non-null and returns 0 (stack cookie `01F44830` checked by `00808C40`)",
+   "anchors": [
+    [
+     "007B55B3",
+     "call"
+    ],
+    [
+     "007B561F",
+     "mov"
+    ],
+    [
+     "007B564B",
+     "mov"
+    ],
+    [
+     "007B5653",
+     "or"
+    ],
+    [
+     "007B5668",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007E2EB0",
+   "text": "for each i below byte [rcx+0x94] (re-read each step), with `o` = qword [rcx+0xB0+8i], reads qword [o+0x98] between `EnterCriticalSection` (`008C20B8`) and `LeaveCriticalSection` (`008C20C0`) on `o`+8 (no null test on `o`), and when that equals `rdx` returns qword [rcx+0xB0+8i] read again from the array; returns 0 when none does",
+   "anchors": [
+    [
+     "007E2EE0",
+     "mov"
+    ],
+    [
+     "007E2EEA",
+     "call"
+    ],
+    [
+     "007E2EF0",
+     "mov"
+    ],
+    [
+     "007E2EFA",
+     "call"
+    ],
+    [
+     "007E2F34",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "007AE260",
+   "why": "byte re-read by a non-drafting agent: NaN wording on the step-back: comiss x, key i followed by jae means an unordered compare (a NaN key, which is exactly where the search stops on the ucomiss/je path) also steps i back, not only 'x below key i'. The index after the search is the last probed mid, and on the no-step path an index of n or more is clamped to n - 1 by cmovge. Rest verified: null t or n = 0 returns 0.0; comiss/jae then minss clamps x to [0, 1.0] (NaN gives 0); 16-byte points at t + word [t+2]; mid via cdq/sub/sar (signed, toward zero); ucomiss + je stops on equal or unordered; 007A9E50(ratio, edx = curve byte); byte [t+6] = 1 uses comiss/ja (NaN returns 0.0), powf thunk 00861F6E"
+  },
+  {
+   "fn": "007B5580",
+   "why": "byte re-read by a non-drafting agent: Unbounded stack-buffer store: the newline is written at byte [rsp+0x20+len] with len sign-extended and no range test (007B55C7); only the terminator index len + 1 is compared (unsigned) against 0x100 before 00809728. A negative or over-long returned length (0x102 or more) therefore writes outside the 0x100-byte buffer. The 0xFF compare is signed (jl). Rest verified: OutputDebugStringA is the IAT slot 008C2120; 007A5570(2, buffer); free-list pop and tail append with qword [rcx+0x28] re-read; bit 0x1 of dword [n+0x1C]; r8 at [n+0x20]; inc dword [rcx+0xC]; dword [n+0x18] to [rdx] when non-null; returns 0 / -1 with cookie check."
+  },
+  {
+   "fn": "007E2EB0",
+   "why": "byte re-read by a non-drafting agent: Re-read after a match: on a match the body returns qword [rcx+0xB0+8i] read again from the array at 007E2F34, after the Enter/LeaveCriticalSection calls, not the o it locked and compared. Also o is used without a null test. Rest verified: count byte [rcx+0x94] tested unsigned first (jbe), re-read with movzx each step; EnterCriticalSection (008C20B8) / LeaveCriticalSection (008C20C0) on o+8 around the qword [o+0x98] read; compare with rdx; 0 when no entry matches."
+  }
+ ],
+ "mode": "ee",
+ "family": ""
+}

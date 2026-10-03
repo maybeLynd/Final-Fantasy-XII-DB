@@ -1717,3 +1717,11 @@ Interior anchor `00196C0E` (function `00196B90`).
 |---|---|---|---|---|
 | `001E0980` | 36 B | `002284F0` + 0x160 | returns without work when the call at `001E0980` + 0x4 returns null; otherwise repeats that call at `001E0980` + 0xE and tail-jumps through the site `001E0980` + 0x1A with `rcx` = its result | Interior anchor `001E0984`; Interior anchor `001E098C`; Interior anchor `001E098E`; Interior anchor `001E099A` |
 | `002498A0` | 12 B | `001EC060` + 0xEF | returns dword `02F97364` ANDed with `0x800` (bit 11) | Interior anchor `002498A6` |
+
+## No-reference bodies homed by the table that reaches them (FABLE, 2026-10-03)
+
+*No page cited these functions and no census-listed instruction calls or jumps to them: each is reached through data or through code this page documents. Each sentence states what the body does (access and representation, not purpose) and ends with the reference that reaches it; the anchors are instructions inside the body that do it. Handed over by SWE2-EC7 and read whole by FABLE against the certified image; verified by [`apply.py`](../../_index/candidates/fable-noref-binding-profiles-remapping-and-control-state-data-1003/apply.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic, and every named reference holds or forms the body's address at the bytes.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00241890` | 79 B | with `p` = qword `+0xC8`, computes `i` = (sign-extended word `p+0xF2` + sign-extended word `p+0xF4`) times the zero-extended byte `p+0xEC` plus the sign-extended bytes `p+0xEE` and `p+0xED`, and returns 1 when the dword at `0208E6E4` + 20*`i` minus 2 is above 2 (unsigned) and 0 otherwise; stored to qword `+0x4B8` of `rbx` by `0023CE10` + 0x179 | Interior anchor `00241897`; Interior anchor `002418AE`; Interior anchor `002418D0`; Interior anchor `002418D8`; Interior anchor `002418DB` |

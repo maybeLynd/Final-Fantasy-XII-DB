@@ -374,3 +374,11 @@ sizes and `edges.tsv`, no body read for the note (OPUS, 2026-09-29, pass-22 debt
 | function | size | what the body does | interior anchors |
 |---|---|---|---|
 | `00511660` | 61 B | makes the call at `00511660+0x09` with the incoming registers unchanged and returns its value when non-zero; otherwise reads a and then b with the calls at `00511660+0x1A` and `00511660+0x24` (each with `r9`) and returns `002D6640(b, a)` | Interior anchor `00511669`; Interior anchor `00511670`; Interior anchor `0051167A`; Interior anchor `00511684`; Interior anchor `0051168D` |
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-derived-call-signatures-ee-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0079D730` | 284 B | with `k` = `edx`, dispatching on `k` - 1 through the jump table at image base + `0x67D84C`, returns as a float: for `k` 1 to 6 the signed dword at `rcx` + 0x414, 0x420, 0x42C, 0x418, 0x424 and 0x430 divided by 255 (`008C5B40`); for `k` 7 to 10 the signed dword at +0x41C, +0x428, +0x434 and +0x438 divided by 1023 (`00D6B968`); for `k` 17 and 18 the zero-extended byte +0x44D and byte +0x44E divided by 255; 0.0 for every other `k` (11 to 16, and `k` - 1 above 0x11 unsigned) | `0079D750`, `0079D75D`, `0079D7D5`, `0079D83F`, `0079D848` |

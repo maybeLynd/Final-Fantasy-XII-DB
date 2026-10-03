@@ -1,0 +1,70 @@
+{
+ "page": "00-Engine-Core-Runtime/Application-Root/game-application.md",
+ "date": "2026-10-03",
+ "rows": [
+  {
+   "fn": "001AE450",
+   "text": "when qword `+0x38` is non-null, calls slot 3 (qword `+0x18`) of the object embedded at `+0x50` with that qword and the span qword `+0x48` minus it truncated to a multiple of 0x30 (signed multiply-high division); passed as the fifth argument (stack `+0x20`) of the `00808FE4` call at `001ADD30` + 0x29D, beside `001AE010` in `r9`",
+   "anchors": [
+    [
+     "001AE460",
+     "mov"
+    ],
+    [
+     "001AE477",
+     "movabs"
+    ],
+    [
+     "001AE492",
+     "lea"
+    ],
+    [
+     "001AE49D",
+     "call"
+    ]
+   ],
+   "why_here": "001ADD30 passes it to 00808FE4; this page lists 001ADD30",
+   "ref": {
+    "kind": "code",
+    "container": "001ADD30",
+    "site": "001ADFB3",
+    "store_site": "001ADFBA",
+    "store_op": "qword ptr [rsp + 0x20], rax"
+   },
+   "cites": [
+    "001ADD30"
+   ]
+  },
+  {
+   "fn": "006CC330",
+   "text": "stores 0 to qwords `[rcx]`, `+8` and `+0x10` and the `.rdata` address `008F6500` to qword `+0x18`, and returns `rcx`; passed in `r9` to the `00808FE4` call at `006CC350` + 0x76 with `edx` = 0x20, `r8d` = 2 and `006CC410` as the fifth argument",
+   "anchors": [
+    [
+     "006CC332",
+     "mov"
+    ],
+    [
+     "006CC33D",
+     "lea"
+    ],
+    [
+     "006CC344",
+     "mov"
+    ],
+    [
+     "006CC348",
+     "mov"
+    ]
+   ],
+   "why_here": "006CC350 passes it to 00808FE4; this page reads 006CC350 in the camera sub-object ctor",
+   "ref": {
+    "kind": "code",
+    "container": "006CC350",
+    "site": "006CC3B2"
+   },
+   "cites": [
+    "006CC350"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,144 @@
+{
+ "page": "22-Middleware-PhyreEngine/Script-Object-Accessors/phyre-script-object-accessors.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "phyre-script-object-accessors-float-pipeline-member-vcall-adapters-121-byte-form-1-r9.json",
+ "rows": [
+  {
+   "fn": "006B2400",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `x` = the float `00811640(c, -1, 0)` returns; calls `00811130(c, -2)`; returns 0 when `o` = `00683BF0(c)` is null; else calls `00684280(c, r)` with `r` = the pointer at qword [f+8] called with `o` and `x` in `xmm1`, and returns 1",
+   "anchors": [
+    [
+     "006B241E",
+     "call"
+    ],
+    [
+     "006B242E",
+     "call"
+    ],
+    [
+     "006B243B",
+     "test"
+    ],
+    [
+     "006B2446",
+     "call"
+    ],
+    [
+     "006B244F",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006B2480",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `x` = the float `00811640(c, -1, 0)` returns; calls `00811130(c, -2)`; returns 0 when `o` = `00683BF0(c)` is null; else calls `00684300(c, r)` with `r` = the pointer at qword [f+8] called with `o` and `x` in `xmm1`, and returns 1",
+   "anchors": [
+    [
+     "006B249E",
+     "call"
+    ],
+    [
+     "006B24AE",
+     "call"
+    ],
+    [
+     "006B24BB",
+     "test"
+    ],
+    [
+     "006B24C6",
+     "call"
+    ],
+    [
+     "006B24CF",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006B2500",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `x` = the float `00811640(c, -1, 0)` returns; calls `00811130(c, -2)`; returns 0 when `o` = `00683BF0(c)` is null; else calls `00684360(c, r)` with `r` = the pointer at qword [f+8] called with `o` and `x` in `xmm1`, and returns 1",
+   "anchors": [
+    [
+     "006B251E",
+     "call"
+    ],
+    [
+     "006B252E",
+     "call"
+    ],
+    [
+     "006B253B",
+     "test"
+    ],
+    [
+     "006B2546",
+     "call"
+    ],
+    [
+     "006B254F",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006B2580",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `x` = the float `00811640(c, -1, 0)` returns; calls `00811130(c, -2)`; returns 0 when `o` = `00683BF0(c)` is null; else calls `006843D0(c, r)` with `r` = the pointer at qword [f+8] called with `o` and `x` in `xmm1`, and returns 1",
+   "anchors": [
+    [
+     "006B259E",
+     "call"
+    ],
+    [
+     "006B25AE",
+     "call"
+    ],
+    [
+     "006B25BB",
+     "test"
+    ],
+    [
+     "006B25C6",
+     "call"
+    ],
+    [
+     "006B25CF",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006B2600",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `x` = the float `00811640(c, -1, 0)` returns; calls `00811130(c, -2)`; returns 0 when `o` = `00683BF0(c)` is null; else calls `00684450(c, r)` with `r` = the pointer at qword [f+8] called with `o` and `x` in `xmm1`, and returns 1",
+   "anchors": [
+    [
+     "006B261E",
+     "call"
+    ],
+    [
+     "006B262E",
+     "call"
+    ],
+    [
+     "006B263B",
+     "test"
+    ],
+    [
+     "006B2646",
+     "call"
+    ],
+    [
+     "006B264F",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "member",
+ "family": "float-pipeline member vcall adapters, 121-byte form"
+}

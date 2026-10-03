@@ -1,0 +1,37 @@
+{
+ "page": "23-Third-Party-Libraries/EASTL/eastl-strings-containers-and-the-logging-allocator.md",
+ "date": "2026-10-03",
+ "rows": [
+  {
+   "fn": "00194EB0",
+   "text": "calls the import slot `008C26A8` on the subobject at `rcx` + the sign-extended dword `+4` of qword `[rcx]` with `dl` = 0x0A, passes its byte result to the import slot `008C26E0` with `rcx`, calls the import slot `008C26E8` with `rcx` and returns `rcx`; passed as the `rdx` argument of the import-slot `008C26D8` call by `00201C40` + 0x214, and 7 other sites form it the same way",
+   "anchors": [
+    [
+     "00194EBE",
+     "movsxd"
+    ],
+    [
+     "00194EC5",
+     "call"
+    ],
+    [
+     "00194ED1",
+     "call"
+    ],
+    [
+     "00194EDA",
+     "call"
+    ]
+   ],
+   "why_here": "argument formed by JsonBox's string reader 00201C40, which this page reads",
+   "ref": {
+    "kind": "code",
+    "container": "00201C40",
+    "site": "00201E54"
+   },
+   "cites": [
+    "00201C40"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,118 @@
+{
+ "page": "22-Middleware-PhyreEngine/Script-Object-Accessors/phyre-script-object-accessors.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "phyre-script-object-accessors-optional-pointer-member-offset-vcall-120-byte-form-1-r9.json",
+ "rows": [
+  {
+   "fn": "005C18B0",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `a` = `005BCD20(c)`; returns 0 when `o` = `005BC4D0(c)` is null; else calls the pointer at qword [f+8] with (`o` + the sign-extended dword [f+0x10], `a`), then `0080F420(c, 1)` and `00810580(c, the low dword of that call result)`, and returns 1",
+   "anchors": [
+    [
+     "005C18C8",
+     "call"
+    ],
+    [
+     "005C18D3",
+     "call"
+    ],
+    [
+     "005C18DD",
+     "movsxd"
+    ],
+    [
+     "005C18E7",
+     "call"
+    ],
+    [
+     "005C18F4",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C1930",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `a` = `005BDDC0(c)`; returns 0 when `o` = `005BC4D0(c)` is null; else calls the pointer at qword [f+8] with (`o` + the sign-extended dword [f+0x10], `a`), then `0080F420(c, 1)` and `00810580(c, the low dword of that call result)`, and returns 1",
+   "anchors": [
+    [
+     "005C1948",
+     "call"
+    ],
+    [
+     "005C1953",
+     "call"
+    ],
+    [
+     "005C195D",
+     "movsxd"
+    ],
+    [
+     "005C1967",
+     "call"
+    ],
+    [
+     "005C1974",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C19B0",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `a` = `00683B50(c)`; returns 0 when `o` = `005BC4D0(c)` is null; else calls the pointer at qword [f+8] with (`o` + the sign-extended dword [f+0x10], `a`), then `0080F420(c, 1)` and `00810580(c, the low dword of that call result)`, and returns 1",
+   "anchors": [
+    [
+     "005C19C8",
+     "call"
+    ],
+    [
+     "005C19D3",
+     "call"
+    ],
+    [
+     "005C19DD",
+     "movsxd"
+    ],
+    [
+     "005C19E7",
+     "call"
+    ],
+    [
+     "005C19F4",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0063A280",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `a` = `00636920(c)`; returns 0 when `o` = `005BE870(c)` is null; else calls the pointer at qword [f+8] with (`o` + the sign-extended dword [f+0x10], `a`), then `0080F420(c, 1)` and `00810580(c, the low dword of that call result)`, and returns 1",
+   "anchors": [
+    [
+     "0063A298",
+     "call"
+    ],
+    [
+     "0063A2A3",
+     "call"
+    ],
+    [
+     "0063A2AD",
+     "movsxd"
+    ],
+    [
+     "0063A2B7",
+     "call"
+    ],
+    [
+     "0063A2C4",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "member",
+ "family": "optional-pointer member-offset vcall, 120-byte form"
+}

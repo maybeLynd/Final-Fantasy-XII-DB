@@ -1,0 +1,118 @@
+{
+ "page": "22-Middleware-PhyreEngine/Script-Object-Accessors/phyre-script-object-accessors.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "phyre-script-object-accessors-optional-pointer-member-call-cloned-forward-80-byte-form-1-r9.json",
+ "rows": [
+  {
+   "fn": "005C1D50",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `o` = `005BCD20(c)`; returns 0 when `o` is null; else calls `00684080(c, v, 02E4D630)` with `v` = the pointer at qword [f+8] called with `o` (no null test on `v`) and returns 1",
+   "anchors": [
+    [
+     "005C1D63",
+     "call"
+    ],
+    [
+     "005C1D6B",
+     "je"
+    ],
+    [
+     "005C1D70",
+     "call"
+    ],
+    [
+     "005C1D73",
+     "lea"
+    ],
+    [
+     "005C1D80",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005FF8F0",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `o` = `005F86B0(c)`; returns 0 when `o` is null; else calls `00684080(c, v, 02D3A440)` with `v` = the pointer at qword [f+8] called with `o` (no null test on `v`) and returns 1",
+   "anchors": [
+    [
+     "005FF903",
+     "call"
+    ],
+    [
+     "005FF90B",
+     "je"
+    ],
+    [
+     "005FF910",
+     "call"
+    ],
+    [
+     "005FF913",
+     "lea"
+    ],
+    [
+     "005FF920",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005FF940",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `o` = `005F86B0(c)`; returns 0 when `o` is null; else calls `00684080(c, v, 02D3A640)` with `v` = the pointer at qword [f+8] called with `o` (no null test on `v`) and returns 1",
+   "anchors": [
+    [
+     "005FF953",
+     "call"
+    ],
+    [
+     "005FF95B",
+     "je"
+    ],
+    [
+     "005FF960",
+     "call"
+    ],
+    [
+     "005FF963",
+     "lea"
+    ],
+    [
+     "005FF970",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0079A720",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `o` = `00796960(c)`; returns 0 when `o` is null; else calls `00684080(c, v, 02EA5560)` with `v` = the pointer at qword [f+8] called with `o` (no null test on `v`) and returns 1",
+   "anchors": [
+    [
+     "0079A733",
+     "call"
+    ],
+    [
+     "0079A73B",
+     "je"
+    ],
+    [
+     "0079A740",
+     "call"
+    ],
+    [
+     "0079A743",
+     "lea"
+    ],
+    [
+     "0079A750",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "member",
+ "family": "optional-pointer member-call cloned forward, 80-byte form"
+}

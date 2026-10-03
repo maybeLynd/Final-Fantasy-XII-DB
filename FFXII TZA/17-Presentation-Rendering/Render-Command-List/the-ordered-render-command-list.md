@@ -1982,3 +1982,13 @@ Interior anchor `001C3682` (function `001C3600`).
 | `001F39E0` | 30 B | calls `001B7F20` with `rcx` unchanged and tail-jumps `001B7D50` with its result as `rcx` and the incoming `rdx` | `001F39E9`, `001F39F1`, `001F39F9` |
 | `0022A550` | 44 B | returns 1 when byte `02064AD3` equals 2 and `00358330(1)` returns non-zero; otherwise returns 0 | `0022A554`, `0022A562`, `0022A56B`, `0022A575` |
 | `002640E0` | 30 B | returns float `+0xE0` of the qword `+0xB8` of `rcx` when byte `+3` of `rcx` AND `0xE0` equals `0x60`; otherwise returns 0.0 | `002640E6`, `002640EA`, `002640F5` |
+
+## No-reference bodies homed by owning class (FABLE, 2026-10-03)
+
+*No page cited these functions and nothing calls them directly: each is a virtual method, entered through its owning class's vtable, and this page documents that class. Each sentence states what the body does (access and representation, not purpose) and ends with the vtable slot and owning class from `rtti-methods.tsv`; the anchors are instructions inside the body that do it. Handed over by SWE2-EC7 and read whole by FABLE against the certified image; verified by [`apply.py`](../../_index/candidates/fable-noref-the-ordered-render-command-list-1003/apply.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `001F16A0` | 21 B | loads the vtable of the object in `rdx` and tail-jumps to its slot 7 (qword `+0x38`) with `rcx` = that object, `rdx` = qword `+8` and `r8` = qword `+0x10` of the command object in `rcx`, and `r9` = the same object as the new `rcx`; vtable slot 1 of GiSetRtForRtSampling | Interior anchor `001F16A3`; Interior anchor `001F16A6`; Interior anchor `001F16AA`; Interior anchor `001F16B1` |
+| `001FBD70` | 13 B | loads the vtable of the object in `rdx` and tail-jumps to its slot 38 (qword `+0x130`) with `rcx` = that object; vtable slot 1 of GiBeginScene | Interior anchor `001FBD73`; Interior anchor `001FBD76` |
+| `001FBE40` | 13 B | loads the vtable of the object in `rdx` and tail-jumps to its slot 37 (qword `+0x128`) with `rcx` = that object; vtable slot 1 of GiEndScene | Interior anchor `001FBE43`; Interior anchor `001FBE46` |

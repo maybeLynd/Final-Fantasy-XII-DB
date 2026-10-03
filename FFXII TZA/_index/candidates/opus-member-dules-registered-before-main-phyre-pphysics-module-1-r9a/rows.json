@@ -1,0 +1,215 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-fifteen-modules-registered-before-main-phyre-pphysics-module-1-r9a.json",
+ "rows": [
+  {
+   "fn": "0063CD20",
+   "text": "with `o` = `rcx` and `d` = `rdx`: returns when qword [o+0x10] is 0; reads `f` = dword [d+0x28], then `v` = `d`'s vtable slot +8 and `k` = dword [v+0x5C] (0 when `v` is null); byte [o+0x18] = (`k` is 3 or 4); when `k` is 2 or 3 or 4: `a` = `v`'s slot +0x20 with (v, qword [o+8]), `b` = its slot +0x38 with (v, qword [o+8]), then its slot +0x40 with (v, qword [o+0x10], b, a); otherwise returns when the slot +8 of qword [d+0x30] returns non-null and `f` lacks bit `0x2`; else `m` = `v`'s slot +0x20 with (v, qword [o+8]) when `k` is 1, else 1; with `e` = the sign-extended (dword [d+0x48] - dword [qword [d+0x18] + 0xF4]), `s` = dword [qword [d+0x30] + 0x38] and `u` = `d`'s slot +8 again, copies (8 when `g` = dword [d+0x28] (re-read) has bit `0x2`, or lacks bit `0x40` while `u` is non-null with dword [u+0x5C] = 2; else `s`) times `m` (32-bit) bytes from qword [o+8] + e to qword [o+0x10] + e by `00861EBA`",
+   "anchors": [
+    [
+     "0063CD53",
+     "call"
+    ],
+    [
+     "0063CD77",
+     "mov"
+    ],
+    [
+     "0063CDB4",
+     "call"
+    ],
+    [
+     "0063CE25",
+     "call"
+    ],
+    [
+     "0063CE59",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00691C00",
+   "text": "with `o` = `rcx` and `g` = qword [o+0xC8]: when `g` is non-null: when `c` = qword [g+0x10], `p` = qword [c+0x60] and qword [o+0x118] are non-null calls `p`'s vtable slot +0xA0 with (p, qword [o+0x118]); removes `o` from the list from qword [g+8] (next pointer qword +0) when present, zeroing qwords [o] and [o+0xC8]; when qword [g+0x10] (re-read) is non-null removes `o` from the list from qword [qword [g+0x10] + 0x58] (next pointer qword +0xD8) when present, zeroing qword [o+0xD8]; then, whether or not `g` is null, calls the vtable slot +8 with 1 of qword [o+0x118] and the slot +0 with 1 of qword [o+0x120], each when non-null, zeroes qwords [o+0x120], [o+0x118] and [o+0xC8] and tail-jumps to `00691D40(o)`",
+   "anchors": [
+    [
+     "00691C64",
+     "call"
+    ],
+    [
+     "00691C91",
+     "mov"
+    ],
+    [
+     "00691CD5",
+     "mov"
+    ],
+    [
+     "00691CF3",
+     "call"
+    ],
+    [
+     "00691D0B",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0069F690",
+   "text": "with the float second argument `v` (`xmm1`; `rdx` is replaced) builds a stack object `s`: qword +0 = `00D79858`, byte +8, qwords +0xC, +0x18, +0x30, +0x40, +0x48, +0x68 and +0x78 and dword +0x20 = 0, floats +0x24, +0x2C, +0x38, +0x50, +0x54 and +0x58 = 1.0 with dwords +0x28 and +0x3C = 0, dword +0x60 = 4 and float +0x70 = `v`; with a zeroed dword `d` in the second-argument home slot calls `0069F150(rcx, &s, r8, r9, &d, fifth-argument dword)`; then stores `00D79830` at qword [s] and calls the vtable slot +0 with 1 of qword [s+0x78] when it is non-null; returns `d` when the call returned 0, else -1",
+   "anchors": [
+    [
+     "0069F6C1",
+     "mov"
+    ],
+    [
+     "0069F713",
+     "movss"
+    ],
+    [
+     "0069F72C",
+     "call"
+    ],
+    [
+     "0069F741",
+     "mov"
+    ],
+    [
+     "0069F756",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0069F980",
+   "text": "with `o` = `rcx`: `b` = `00671600(qword [o+0x70], &s)` for a stack pair `s` (dword 0, qword 0) and `n` = dword [qword [o+0x70] + 0x18] read after it; `r` = 9 when `b` is null; when qword [o+0x78] is 0, it becomes `00833440(a, b, n, 0xC)` for `a` = `0085E680(0xA0, 0x10)` (0 when `a` is null), `r` = 0xE when that is null; else calls `008341D0(&t, it)` for stack `t`, `00834460(&t)` with 0.0 in `xmm1` and the vtable slot +0 with 1 of qword [o+0x78] when non-null, then stores at qword [o+0x78] `00833440(c, qword [t+0x10] (read before), 00834890(&t), 0x10)` for `c` = `0085E680(0xA0, 0x10)` (0 when `c` is null), giving `r` = 0xE after `008343A0(&t)` when that is null, else calling its slot +0x48 with 0.0 in `xmm1` and `008343A0(&t)`; every other path (including a non-zero qword [o+0x78] at entry) copies qword [o+0x78] to qword [o+0x68] with `r` = 0; finally calls `00584730(qword [s+8])` when dword [s] lacks bit `0x80000000` and that qword is non-null; returns `r`",
+   "anchors": [
+    [
+     "0069F9B3",
+     "call"
+    ],
+    [
+     "0069FA05",
+     "call"
+    ],
+    [
+     "0069FA36",
+     "call"
+    ],
+    [
+     "0069FA8B",
+     "call"
+    ],
+    [
+     "0069FAE6",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006A2080",
+   "text": "with `r` = `rdx` (16-byte result), the float third argument `v` (`xmm2`) and the fifth to seventh arguments `q`, `A`, `B`: builds a stack object `s` (qword +0 = `00D79858`, byte +8, qwords +0xC, +0x18, +0x30, +0x40, +0x48, +0x68 and +0x78 and dword +0x20 = 0, floats +0x24, +0x2C, +0x38, +0x50, +0x54 and +0x58 = 1.0 with dwords +0x28 and +0x3C = 0, dword +0x60 = 4, float +0x70 = `v`) and a zeroed 16-byte pair `P` just below it; when `006A1DD0(rcx, &s, r9, q, &T, 0xF)` (32-byte stack `T`) returns non-zero in `al` and both qwords of `P` are non-null: stores them at s+0x80 and s+0x88, copies the first and second 16 bytes of `T` to [A] and [B] when each is non-null, and the pair to [r]; otherwise stores 0 at qword [r] and `006372A0()` at qword [r+8]; then stores `00D79830` at qword [s], calls the vtable slot +0 with 1 of qword [s+0x78] when non-null and returns `r`",
+   "anchors": [
+    [
+     "006A2114",
+     "movss"
+    ],
+    [
+     "006A2133",
+     "call"
+    ],
+    [
+     "006A2164",
+     "movups"
+    ],
+    [
+     "006A2184",
+     "call"
+    ],
+    [
+     "006A21A9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006A21D0",
+   "text": "with `r` = `rdx` (16-byte result), the float third argument `v` (`xmm2`), the fifth to seventh arguments `q`, `A`, `B` and the eighth-argument dword `k`: builds a stack object `s` (qword +0 = `00D79858`, byte +8, qwords +0xC, +0x18, +0x30, +0x40, +0x48, +0x68 and +0x78 and dword +0x20 = 0, floats +0x24, +0x2C, +0x38, +0x50, +0x54 and +0x58 = 1.0 with dwords +0x28 and +0x3C = 0, dword +0x60 = 4, float +0x70 = `v`) and a zeroed 16-byte pair `P` just below it; when `006A1DD0(rcx, &s, r9, q, &T, k)` (32-byte stack `T`) returns non-zero in `al` and both qwords of `P` are non-null: stores them at s+0x80 and s+0x88, copies the first and second 16 bytes of `T` to [A] and [B] when each is non-null, and the pair to [r]; otherwise stores 0 at qword [r] and `006372A0()` at qword [r+8]; then stores `00D79830` at qword [s], calls the vtable slot +0 with 1 of qword [s+0x78] when non-null and returns `r`",
+   "anchors": [
+    [
+     "006A2264",
+     "movss"
+    ],
+    [
+     "006A2282",
+     "call"
+    ],
+    [
+     "006A22B3",
+     "movups"
+    ],
+    [
+     "006A22D3",
+     "call"
+    ],
+    [
+     "006A22F8",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006A4870",
+   "text": "with `w` = `rcx` and `b` = `rdx`: returns 0 when qword [b+0x10] is 0 or `b` is not in the list from qword [w+0x48] (next pointer qword +0); unlinks `b` (its predecessor's next, or qword [w+0x48], takes qword [b]) and zeroes qword [b]; for each node `n` from qword [b+8] by qword [n] (read before the step): removes `n` from the list from qword [w+0x58] (next pointer qword +0xD8) when present, zeroing its qword +0xD8; when `c` = qword [n+0xC8] is non-null, with `m` = qword [qword [c+0x10] + 0x60] (0 when qword [c+0x10] is null), calls the vtable slot +0xA0 of `p` = qword [w+0x60] with (p, qword [n+0x118]) when `p` is non-null and equals `m` and qword [n+0x118] is non-null; zeroes qword [n+0xC8]; then zeroes qword [b+0x10]; returns 0",
+   "anchors": [
+    [
+     "006A48A0",
+     "cmp"
+    ],
+    [
+     "006A48CA",
+     "mov"
+    ],
+    [
+     "006A491B",
+     "mov"
+    ],
+    [
+     "006A4965",
+     "call"
+    ],
+    [
+     "006A498D",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "00631290": "too large for one exact row",
+  "00667C80": "too large for one exact row",
+  "00690BF0": "deferred to a later member pass",
+  "00691570": "deferred to a later member pass",
+  "00692290": "too large for one exact row",
+  "006928B0": "too large for one exact row",
+  "00698720": "too large for one exact row",
+  "0069E970": "too large for one exact row",
+  "0069F150": "too large for one exact row",
+  "006A0310": "too large for one exact row",
+  "006A0680": "too large for one exact row",
+  "006A4E30": "too large for one exact row",
+  "006A6180": "too large for one exact row"
+ },
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "00691C00",
+   "why": "byte re-read by a non-drafting agent: Body checks out (c/p test with the redundant p == qword [c+0x60] compare, both list walks and unlinks, slot +8 / slot +0 with edx 1, the three zeroings, tail jmp 00691D40). Defect: branch scope. 'when g is non-null: ...; then calls the vtable slot +8 ...' reads as inside the g block, but a null g jumps (je 00691CDF) straight to the slot calls, zeroings and tail-jump, which run on every path. Made explicit."
+  }
+ ],
+ "mode": "member",
+ "family": "Phyre PPhysics module"
+}

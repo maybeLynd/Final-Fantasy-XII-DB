@@ -1,7 +1,7 @@
-<!-- TEAM-CURRENT:begin agent=SWE2-AUDIT-SPEC board_rev=51279 epoch=4 queue_sha=03b1292461a0c572 -->
-> generated 2026-10-03T15:31:39+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=SWE2-AUDIT-SPEC board_rev=51638 epoch=4 queue_sha=cb0a9463239ff4ed -->
+> generated 2026-10-03T16:58:51+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: AUDITSEM-REQ-AUDITSPEC-CENSUS2-BLINDSPOT-AND-RULES-1003
+> ACTIVE: none
 > READY addressed to you: none
 > READY pool: 0 | BLOCKED: 0
 <!-- TEAM-CURRENT:end -->
@@ -55,7 +55,7 @@ rules and every existing record are unchanged.
 Updated at every checkpoint; a restarted session rebuilds from this block before touching the board.
 Required by the continuity rule in the root `CLAUDE.md` ("What a plain `Continue` means").
 
-- **STAND-IN CHECKPOINT 2026-10-03 15:30Z (Claude stand-in for Devin, session bb063a3a; read this first; supersedes the 14:30Z bullet).** Since 14:30Z published: P25 b9502c733 (ASTRA native-relation invariant ACCEPT; FABLE's EXP-091 repair review), P26 c2bba0636 (4 single-row OPUS EE), P27 220da2129 (5 OPUS EE by FABLE incl. vtable-method-index 40 rows; ASTRA relation-reset ACCEPT), P28 (4 OPUS EE by a helper, gambit narrowed; census3 = part 1 of AUDITSEM-REQ-AUDITSPEC-CENSUS2-BLINDSPOT-AND-RULES-1003, which stays ACTIVE for part 2). Batch runner: `Tools/work/SWE2-AUDIT-SPEC/w10/runbatch.sh PNN PUBTASK` (absolute paths; finbatch claims before finishing). Blocked: ASTRA-REQ-SPEC-PATHFILE-TRANSPORT-0930 (dependency unpublished). Routing: OPUS/ASTRA reviews -> FABLE or helpers or self; FABLE packages -> SWE2 helpers only. Queue watcher `Tools/work/SWE2-FRONTIER/standin1003/queue_watch.py`; fleet plan holds all 8 lanes until Devin starts (release with `hold_plan.py ""` in the stand-in scratchpad). Publish tools per lane: `Tools/work/<LANE>/standin1003/` (bop.py, mkpub.py, pub_runner.py); splice publishes over peer overlays: `Tools/work/SWE2-FRONTIER/standin1003/splice_pub.py` (one dirty path) or `splice_pub_multi.py` ("PATH1;PATH2"; apply your edit to the worktree first - the saved copy is restored).
+- **STAND-IN CHECKPOINT 2026-10-03 17:00Z (Claude stand-in for Devin, session bb063a3a; read this first; supersedes the 16:15Z bullet).** Since 16:15Z published: P35 af389614b (element types 80-97; template rows by tdiff, re-confirmed after tdiff was fixed to compare resolved rip targets), P36 54799fe04, P37 05cde976e (5 OPUS pkgs), P38 f54d948c0, P39 233613791, P40 f54822cb2 (helper batches k/j/l, all ACCEPT), P41 c4e2d37af (FABLE's 8 vtable-method-index pkgs, 269 rows, 2 narrowed). OPUS told on the board that scoped rows are open (ruling 4fdcdb5ea + scorer f16614595). Queue empty except ASTRA-REQ-SPEC-PATHFILE-TRANSPORT-0930 (dependency ASTRA-PUBLISH-PATHFILE-TRANSPORT-0930 unpublished). Tools: `w10/runbatch.sh`, `intdump.py`, `tdiff.py`, `hostfit.py`. Queue watcher `Tools/work/SWE2-FRONTIER/standin1003/queue_watch.py`; fleet plan holds all 8 lanes until Devin starts (release with `hold_plan.py ""` in the stand-in scratchpad). Publish tools per lane: `Tools/work/<LANE>/standin1003/` (bop.py, mkpub.py, pub_runner.py); splices: `Tools/work/SWE2-FRONTIER/standin1003/splice_pub.py` (one dirty path) or `splice_pub_multi.py` ("PATH1;PATH2"; apply your edit to the worktree first - the saved copy is restored).
 
 - **CURRENT (2026-10-02, board rev 47347).** Fixed identity **SWE2-AUDIT-SPEC**. ACTIVE queue
   drained (0). This session closed: 23 OPUS CLOUDINT interior-citation packages

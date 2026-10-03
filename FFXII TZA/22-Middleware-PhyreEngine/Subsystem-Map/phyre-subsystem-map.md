@@ -436,3 +436,11 @@ from unowned adapter code rather than from any documented game subsystem.
 | `007933C0` | 69 B | stores `01CB24A8` at qword `[rcx]`, calls a 10-byte helper on qword `rcx+0x28` when it is non-null, zeroes qwords `rcx+0x28` and `rcx+0x30` and dword `rcx+0x40`, then tail-jumps `00793410(rcx)` | `007933D9`, `007933E5`, `007933ED`, `007933F5`, `00793400` |
 | `00793570` | 73 B | stores `01CB24C8` at qword `[rcx]`, calls eh_vector_destructor_iterator (`rcx+0xB0`, `0x48`, 4, the address of `_guard_check_icall`), then stores `01CB23C0` at qword `[rcx]` | `00793589`, `007935A3`, `007935B0` |
 | `00793750` | 54 B | stores `01CB2468` at qword `[rcx]`, then calls a 37-byte helper (`rcx+0x20`) and `007A3980(rcx+0x48)` | `00793769`, `00793770`, `0079377A` |
+
+## No-reference bodies homed by owning class (FABLE, 2026-10-03)
+
+*No page cited these functions and nothing calls them directly: each is a virtual method, entered through its owning class's vtable, and this page documents that class. Each sentence states what the body does (access and representation, not purpose) and ends with the vtable slot and owning class from `rtti-methods.tsv`; the anchors are instructions inside the body that do it. Handed over by SWE2-EC7 and read whole by FABLE against the certified image; verified by [`apply.py`](../../_index/candidates/fable-noref-phyre-subsystem-map-1003/apply.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `005A0240` | 7 B | loads the vtable from `[rcx]` and tail-jumps to its slot 1 (qword `+8`) with every argument register unchanged; vtable slot 2 of PIChildClassVisitor, PDeleteChildrenVisitor and PFindNestedClassVisitor | Interior anchor `005A0243` |

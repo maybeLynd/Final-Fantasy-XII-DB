@@ -1,0 +1,66 @@
+{
+ "page": "16-UI/Text-And-Number-Rendering/font-data-kerning-and-expansion.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "font-data-kerning-and-expansion-r8.json",
+ "rows": [
+  {
+   "fn": "001FDDD0",
+   "text": "finds in the tree with head `rcx`+0x78 and root qword [rcx+0x88] the node `a` for key `r8d`: descends to qword [n+8] after recording `n` when dword [n+0x20] is not less (signed) than the key, else to qword [n], until null; the last recorded node counts only when the key is also not less than its dword +0x20 (so equal), none recorded meaning the head; returns 0 when `a` is the head; then finds the same way, in the tree with head `a`+0x30 and root qword [a+0x40], the node `b` for key `edx` and returns dword [b+0x24], or 0 when `b` is that head",
+   "anchors": [
+    [
+     "001FDDE6",
+     "cmp"
+    ],
+    [
+     "001FDE02",
+     "cmp"
+    ],
+    [
+     "001FDE24",
+     "cmp"
+    ],
+    [
+     "001FDE40",
+     "cmp"
+    ],
+    [
+     "001FDE52",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "001FF990",
+   "text": "with `m` = `rcx` and source node `s` = `rdx`: `r` = `001FFAB0(m, s, r8)`; when qword [s] is non-null stores `001FF990(m, qword [s], r)` at qword [r]; then, with `p` = `r`, for each `s` = qword [s+8] while non-null: `b` = the return of the vtable slot +0x10 of the object at m+0x30 with (m+0x30, 0x50, 0); unless b+0x20 is null, zeroes qwords b+0x20 to b+0x30 and calls `001EDF00(b+0x38, s+0x38)`, `001A4BF0(b+0x20, qword [s+0x20], qword [s+0x28])` and `001FE6B0(b+0x40, s+0x40)`; with no null test on `b` zeroes qwords [b] and [b+8], stores `p` at qword [b+0x10], byte [s+0x18] at byte [b+0x18] and `b` at qword [p+8]; when qword [s] is non-null stores `001FF990(m, qword [s], b)` at qword [b]; sets `p` = `b`; returns `r`",
+   "anchors": [
+    [
+     "001FF9B0",
+     "call"
+    ],
+    [
+     "001FF9CB",
+     "call"
+    ],
+    [
+     "001FF9FA",
+     "call"
+    ],
+    [
+     "001FFA38",
+     "call"
+    ],
+    [
+     "001FFA74",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

@@ -1,0 +1,157 @@
+{
+ "page": "17-Presentation-Rendering/Effect-File-Formats/the-element-types-60-74.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-element-types-60-74-r8b.json",
+ "rows": [
+  {
+   "fn": "0034B8D0",
+   "text": "with `e` = `rdx`: takes `a` = `002E97B0(e)` and calls `00263A30(byte [e+0x15], word [e])`; when `a` and `s` = qword [a+8] are non-null: if `002E4C30(s, 002E9C00(e))` is greater than 0 (signed), calls `002EAC90(e)` and, when byte [e+0xD] is 0x80 or more (unsigned), `002EB380(e)`; otherwise, when `k` = `002E9C00(e)` (called again) and `002EB9D0(s, k)` are both not negative, calls `00314D40(1)` and returns 1; in every other case returns 0 when `0053DD10()` returns non-zero, else calls `0016D6A0(1)` and returns 1",
+   "anchors": [
+    [
+     "0034B8E7",
+     "call"
+    ],
+    [
+     "0034B8F6",
+     "call"
+    ],
+    [
+     "0034B916",
+     "call"
+    ],
+    [
+     "0034B945",
+     "call"
+    ],
+    [
+     "0034B96D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0052E270",
+   "text": "with `d` = qword [rcx+0x20], `s` = `rcx`+0x230, F(o) = the float `004309C0(d+o, dword [rcx+0x44])` and V(o) = the 16 bytes at `00430B90(&stack, d+o, dword [rcx+0x44])` (the dword read before each call), stores in order: float s+0x58 = F(0x1D0), s+0x80 = V(0x1E0), float s+0x5C = F(0x220), s+0x70 = V(0x230), float s+0x90 = F(0x270), s+0xB0 = V(0x280), float s+0x94 = F(0x2C0), s+0xA0 = V(0x2D0), floats s+0xC0, s+0xC4, s+0xFC, s+0x3C, s+0x9C = F(0x320), F(0x330), F(0x340), F(0x350), F(0x360); then tail-jumps to `0054C440(s)`",
+   "anchors": [
+    [
+     "0052E297",
+     "call"
+    ],
+    [
+     "0052E2B1",
+     "call"
+    ],
+    [
+     "0052E2F4",
+     "movdqa"
+    ],
+    [
+     "0052E36A",
+     "call"
+    ],
+    [
+     "0052E3E2",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0052F400",
+   "text": "with `d` = qword [rcx+0x20], `s` = `rcx`+0x230, F(o) = the float `004309C0(d+o, dword [rcx+0x44])` and V(o) = the 16 bytes at `00430B90(&stack, d+o, dword [rcx+0x44])` (the dword read before each call), stores in order: float s+0xA8 = F(0x1D0), s+0x100 = V(0x1E0), float s+0xAC = F(0x220), s+0xF0 = V(0x230), float s+0xB4 = F(0x270), s+0x120 = V(0x280), float s+0xB8 = F(0x2C0), s+0x110 = V(0x2D0), floats s+0xBC, s+0xC0, s+0xD8 = F(0x320), F(0x330), F(0x340); then tail-jumps to `0054DD30(s)`",
+   "anchors": [
+    [
+     "0052F427",
+     "call"
+    ],
+    [
+     "0052F444",
+     "call"
+    ],
+    [
+     "0052F48A",
+     "movdqa"
+    ],
+    [
+     "0052F503",
+     "call"
+    ],
+    [
+     "0052F550",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0054C440",
+   "text": "with `c` = `rcx`, `a` = float [c+0xC4], `b` = float [c+0x3C], `t1` = (1 - `a`) times float [c+0xFC] + `a` and `t2` = (1 - `b`) times float [c+0x9C] + `b`: for each i below word [c+0x52], with `p` = qword [c+0x108] + 0xA0 i and only when qword [p+0x30] equals `p`, uses set A when `a` >= float [p+0xC] or `b` >= float [p+0x98], else set B when `t1` >= float [p+0xC] or `t2` >= float [p+0x98] (NaN compares fail), else skips `p`; with (G, A0, A1, A2, V, D) = c's floats (+0x58, +0x80, +0x84, +0x88, +0x70 to +0x78, +0x5C) for A and (+0x90, +0xB0, +0xB4, +0xB8, +0xA0 to +0xA8, +0x94) for B: subtracts float [c+0xC0] times float [c+0x44] times G times A1 from float [p+0x24], adds the new value times G times A1 to float [p+0x74], G times float [p+0x28] times A2 to float [p+0x78] and G times float [p+0x20] times A0 to float [p+0x70], adds V.j times float [p+0x10+4j] times D to float [p+4j] for j = 0 to 2, and calls `0046D560(p+0x40)`",
+   "anchors": [
+    [
+     "0054C478",
+     "subss"
+    ],
+    [
+     "0054C4BB",
+     "comiss"
+    ],
+    [
+     "0054C50E",
+     "movss"
+    ],
+    [
+     "0054C5D7",
+     "subss"
+    ],
+    [
+     "0054C679",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0054DD30",
+   "text": "with `c` = `rcx`, `a` = float [c+0xC0] and `t` = (1 - `a`) times float [c+0xD8] + `a`: for each i below dword [c+0xA4] (unsigned), with `p` = qword [c+0x190] + 0xA0 i, uses set A when `a` >= float [p+0xC], else set B when `t` >= float [p+0xC] (NaN compares fail), else skips `p`; with (K, M0, M1, M2, V, D) = c's floats (+0xA8, +0x100, +0x104, +0x108, +0xF0 to +0xF8, +0xAC) for A and (+0xB4, +0x120, +0x124, +0x128, +0x110 to +0x118, +0xB8) for B: adds -(float [c+0x68] times float [p+0x7C]) times float [c+0xBC] times K times M1 to float [p+0x24]; forms the stack vector `v` = (K float [p+0x20] M0, K (new [p+0x24]) M1, K float [p+0x28] M2), passed through `00202B90(&v, c+0x150, &v)` when byte [c+0x9C] has bit `0x2`, and adds it to floats [p+0x70] to [p+0x78]; adds V.j times float [p+0x10+4j] times D to float [p+4j] for j = 0 to 2 and calls `0046D560(p+0x40)` (stack cookie `01F44830` checked by `00808C40`)",
+   "anchors": [
+    [
+     "0054DD7B",
+     "addss"
+    ],
+    [
+     "0054DDB0",
+     "jb"
+    ],
+    [
+     "0054DE42",
+     "call"
+    ],
+    [
+     "0054DED0",
+     "jb"
+    ],
+    [
+     "0054DFF6",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [
+  "004B1190",
+  "004B9EA0",
+  "004BC320",
+  "004C8320",
+  "004D0FA0",
+  "004D7BF0",
+  "004DDDF0",
+  "004DF440",
+  "004E0F70",
+  "004E31E0",
+  "004E7D90",
+  "004F7070"
+ ],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

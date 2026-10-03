@@ -334,3 +334,11 @@ Interior anchor `0019EC14` (the `call 001A0BB0` insert).
 ## SWE2-EC7-39 update (2026-09-19) - `001BE730`
 
 `001BE730` (403 B) is the procedural-texture path builder the page names - `01F44830`, `"./GameData/%s/ArtData/map/proceduralTexture/proceduralTexture_%s.ah"`, `001EDF00` quintuple plus `0017D2E0`/`0019EF80`/`0019EB60`/`0019C5D0`/`00808C40`. Interior anchor `001BE78B` (an `001EDF00` call).
+
+## No-reference bodies homed by the table that reaches them (FABLE, 2026-10-03)
+
+*No page cited these functions and no census-listed instruction calls or jumps to them: each is reached through data or through code this page documents. Each sentence states what the body does (access and representation, not purpose) and ends with the reference that reaches it; the anchors are instructions inside the body that do it. Handed over by SWE2-EC7 and read whole by FABLE against the certified image; verified by [`apply.py`](../../_index/candidates/fable-noref-ah-asset-header-manifests-data-1003/apply.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic, and every named reference holds or forms the body's address at the bytes.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0019EF00` | 20 B | copies `rcx` to `rdx`, loads qword `01F81158` into `rcx` and, when it is non-null, tail-jumps to `0019E740`; otherwise it returns; its address is formed into `r12` by `0019E7B0` + 0x153 | Interior anchor `0019EF03`; Interior anchor `0019EF0A`; Interior anchor `0019EF0D` |

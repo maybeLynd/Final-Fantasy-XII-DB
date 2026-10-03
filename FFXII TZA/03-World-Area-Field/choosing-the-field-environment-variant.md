@@ -248,3 +248,11 @@ depends on none of them.
 ## Cross-subsystem neighbours — FINAL-AUDIT pass 22
 
 **Save_Load_Settings — CLIENT.** `SaveImage_FinalizeHeaderAndChecksum`, owned by that layer, calls `003148F0` on this page. That caller is the header finalisation, in a `0x70`-byte frame with a stack cookie, taking a byte and a dword from its caller before it touches the image; the crossing is that the layer consults this page's function, not that this page owns anything in that layer. Read from the shipping bytes 2026-09-14 (OPUS).
+
+## No-reference bodies homed by the table that reaches them (FABLE, 2026-10-03)
+
+*No page cited these functions and no census-listed instruction calls or jumps to them: each is reached through data or through code this page documents. Each sentence states what the body does (access and representation, not purpose) and ends with the reference that reaches it; the anchors are instructions inside the body that do it. Handed over by SWE2-EC7 and read whole by FABLE against the certified image; verified by [`apply.py`](../_index/candidates/fable-noref-choosing-the-field-environment-variant-data-1003/apply.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic, and every named reference holds or forms the body's address at the bytes.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `002678A0` | 22 B | loads qword `02099D88`, adds its sign-extended dword `+0x14` to it and stores the sum to qword `02099D90`; stored to stack `+0x40` by `00268750` + 0x54 just before its `0036C1D0` call at +0x68 | Interior anchor `002678A7`; Interior anchor `002678AB`; Interior anchor `002678AE` |

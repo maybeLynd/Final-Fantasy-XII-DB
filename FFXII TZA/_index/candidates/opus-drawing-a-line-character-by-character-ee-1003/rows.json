@@ -1,0 +1,122 @@
+{
+ "page": "99-Unresolved-Residual/Glyph-Run-Rendering/drawing-a-line-character-by-character.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "drawing-a-line-character-by-character-r8.json",
+ "rows": [
+  {
+   "fn": "00686830",
+   "text": "zeroes qwords [rcx], +8, +0x10 and dword +0x18; stores `h` = `rdx`+0x38 at qword +0x20, qword [h] at qword +0x28 (0 when it equals `h`) and the static `02D39A40` at qword +0x30; then, while `001B7CE0(rcx)` returns a zero byte (there is no other exit), replaces a non-null qword +0x28 by the qword it points at (0 when that equals qword +0x20); then calls `001AA0A0(rcx)` and returns `rcx`",
+   "anchors": [
+    [
+     "0068683F",
+     "mov"
+    ],
+    [
+     "0068684D",
+     "lea"
+    ],
+    [
+     "0068685B",
+     "mov"
+    ],
+    [
+     "0068686D",
+     "mov"
+    ],
+    [
+     "0068689B",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006868C0",
+   "text": "zeroes qwords [rcx], +8, +0x10 and dword +0x18; stores `h` = `rdx`+0x38 at qword +0x20, qword [h] at qword +0x28 (0 when it equals `h`) and the static `02CB78A0` at qword +0x30; then, while `001B7CE0(rcx)` returns a zero byte (there is no other exit), replaces a non-null qword +0x28 by the qword it points at (0 when that equals qword +0x20); then calls `001AA0A0(rcx)` and returns `rcx`",
+   "anchors": [
+    [
+     "006868CF",
+     "mov"
+    ],
+    [
+     "006868DD",
+     "lea"
+    ],
+    [
+     "006868EB",
+     "mov"
+    ],
+    [
+     "006868FD",
+     "mov"
+    ],
+    [
+     "0068692B",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00686950",
+   "text": "zeroes qwords [rcx], +8, +0x10 and dword +0x18; stores `h` = `rdx`+0x38 at qword +0x20, qword [h] at qword +0x28 (0 when it equals `h`) and the static `02CF1C40` at qword +0x30; then, while `001B7CE0(rcx)` returns a zero byte (there is no other exit), replaces a non-null qword +0x28 by the qword it points at (0 when that equals qword +0x20); then calls `001AA0A0(rcx)` and returns `rcx`",
+   "anchors": [
+    [
+     "0068695F",
+     "mov"
+    ],
+    [
+     "0068696D",
+     "lea"
+    ],
+    [
+     "0068697B",
+     "mov"
+    ],
+    [
+     "0068698D",
+     "mov"
+    ],
+    [
+     "006869BB",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006869E0",
+   "text": "zeroes qwords [rcx], +8, +0x10 and dword +0x18; stores `h` = `rdx`+0x38 at qword +0x20, qword [h] at qword +0x28 (0 when it equals `h`) and the static `02CF1A40` at qword +0x30; then, while `001B7CE0(rcx)` returns a zero byte (there is no other exit), replaces a non-null qword +0x28 by the qword it points at (0 when that equals qword +0x20); then calls `001AA0A0(rcx)` and returns `rcx`",
+   "anchors": [
+    [
+     "006869EF",
+     "mov"
+    ],
+    [
+     "006869FD",
+     "lea"
+    ],
+    [
+     "00686A0B",
+     "mov"
+    ],
+    [
+     "00686A1D",
+     "mov"
+    ],
+    [
+     "00686A4B",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [
+  "002986E0",
+  "006497E0",
+  "0064A500"
+ ],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

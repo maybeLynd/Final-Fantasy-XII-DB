@@ -1,0 +1,124 @@
+{
+ "page": "22-Middleware-PhyreEngine/Script-Object-Accessors/phyre-script-object-accessors.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "phyre-script-object-accessors-optional-pointer-alloc-record-install-104-byte-form-1-r9.json",
+ "rows": [
+  {
+   "fn": "00680520",
+   "text": "with `c` = `rdx` and `v` = `r8`: calls `0080F420(c, 1)`; `b` = `00810240(c, 0x10)`; when `b` is non-null stores `02E41070` at qword [b] and `v` at qword [b+8]; calls `0080FA50(c, -1001000, 00D6FDE0)` and tail-jumps to `00810F60(c, -2)`",
+   "anchors": [
+    [
+     "00680538",
+     "call"
+    ],
+    [
+     "00680545",
+     "call"
+    ],
+    [
+     "0068054F",
+     "lea"
+    ],
+    [
+     "0068056C",
+     "call"
+    ],
+    [
+     "00680583",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00680720",
+   "text": "with `c` = `rdx` and `v` = `r8`: calls `0080F420(c, 1)`; `b` = `00810240(c, 0x10)`; when `b` is non-null stores `02E41270` at qword [b] and `v` at qword [b+8]; calls `0080FA50(c, -1001000, 00D6FDE0)` and tail-jumps to `00810F60(c, -2)`",
+   "anchors": [
+    [
+     "00680738",
+     "call"
+    ],
+    [
+     "00680745",
+     "call"
+    ],
+    [
+     "0068074F",
+     "lea"
+    ],
+    [
+     "0068076C",
+     "call"
+    ],
+    [
+     "00680783",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00680B30",
+   "text": "with `c` = `rdx` and `v` = `r8`: calls `0080F420(c, 1)`; `b` = `00810240(c, 0x10)`; when `b` is non-null stores `02E41170` at qword [b] and `v` at qword [b+8]; calls `0080FA50(c, -1001000, 00D6FDE0)` and tail-jumps to `00810F60(c, -2)`",
+   "anchors": [
+    [
+     "00680B48",
+     "call"
+    ],
+    [
+     "00680B55",
+     "call"
+    ],
+    [
+     "00680B5F",
+     "lea"
+    ],
+    [
+     "00680B7C",
+     "call"
+    ],
+    [
+     "00680B93",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00680E10",
+   "text": "with `c` = `rdx` and `v` = `r8`: calls `0080F420(c, 1)`; `b` = `00810240(c, 0x10)`; when `b` is non-null stores `02E41470` at qword [b] and `v` at qword [b+8]; calls `0080FA50(c, -1001000, 00D6FDE0)` and tail-jumps to `00810F60(c, -2)`",
+   "anchors": [
+    [
+     "00680E28",
+     "call"
+    ],
+    [
+     "00680E35",
+     "call"
+    ],
+    [
+     "00680E3F",
+     "lea"
+    ],
+    [
+     "00680E5C",
+     "call"
+    ],
+    [
+     "00680E73",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "4 rows",
+   "by": "OPUS",
+   "why": "anchors now include each row's own lea (its member-unique global) - the non-drafting verifier's anchor_flag / suggested_anchors (verify_tmpl2.json)"
+  }
+ ],
+ "mode": "member",
+ "family": "optional-pointer alloc + record install, 104-byte form"
+}

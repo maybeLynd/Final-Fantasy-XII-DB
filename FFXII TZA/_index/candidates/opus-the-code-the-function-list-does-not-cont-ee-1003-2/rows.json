@@ -1,0 +1,43 @@
+{
+ "page": "99-Unresolved-Residual/Unlisted-Code/the-code-the-function-list-does-not-contain.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-code-the-function-list-does-not-cont-r9.json",
+ "rows": [
+  {
+   "fn": "00179920",
+   "text": "fills the 4x4 byte block at `rcx` (cell (r, c) at rcx + r times `rdx` + c) from `t0`..`t3` = bytes [r9] to [r9+3] and `L`, `u0`, `u1`, `u2` = bytes [r8-1] to [r8+2], all eight read before any store, with h(x, y) = (x + y + 1) >> 1 and q(x, y, z) = (x + 2y + z + 2) >> 2: (0,0) and (1,2) = h(t0, L); (1,0) and (2,2) = h(t0, t1); (2,0) and (3,2) = h(t1, t2); (3,0) = h(t2, t3); (0,3) = q(u0, u1, u2); (0,2) = q(L, u0, u1); (0,1) and (1,3) = q(t0, L, u0); (1,1) and (2,3) = q(L, t0, t1); (2,1) and (3,3) = q(t0, t1, t2); (3,1) = q(t1, t2, t3)",
+   "anchors": [
+    [
+     "0017993F",
+     "movzx"
+    ],
+    [
+     "0017996F",
+     "mov"
+    ],
+    [
+     "001799AD",
+     "mov"
+    ],
+    [
+     "001799E7",
+     "mov"
+    ],
+    [
+     "00179A23",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [
+  "0017B960",
+  "00729920"
+ ],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

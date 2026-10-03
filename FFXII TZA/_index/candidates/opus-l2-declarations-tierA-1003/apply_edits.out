@@ -1,0 +1,3 @@
+# apply_edits.py dry run after --apply (OPUS_APPLY_ALLOWED = the store's uncommitted lines), 2026-10-03
+ALREADY (2 edits)
+FAILS 0

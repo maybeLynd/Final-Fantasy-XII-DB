@@ -1,0 +1,3 @@
+VERIFY 2 functions, 8 anchors, 2 references, page 00-Engine-Core-Runtime/Application-Root/game-application.md (CRLF)
+DRY (verified; --apply appends 2 rows)
+FAILS 0

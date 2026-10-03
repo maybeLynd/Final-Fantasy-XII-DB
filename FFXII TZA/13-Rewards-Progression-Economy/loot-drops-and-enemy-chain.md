@@ -771,3 +771,11 @@ Shared callees outside the census: none.
 `dword[022C3178] &= ~1`, `022C3170`/`022C3160`/`022C3158` zeroed, and
 `022C3168 = -1` — the four-qword record plus flag bit cleared when the
 chain ends. Interior anchor `003183BE` (the `-1` store).
+
+## SWE2-EC7-220 update (2026-10-03) - `btladjustsystem` reaches the `003183A0` chain-record reset
+
+A script verb reaches the `003183A0` reset of the section above through `002FEAC0`. Offsets and widths only; the verb name is the script's.
+
+| function | size | verbs | what the body does | interior anchors |
+|---|---|---|---|---|
+| `002FEAC0` | 10 B | `btladjustsystem` `0x0517` (its handler pops one integer and passes it in `ecx`) | tests bit 0 of `cl`. When the bit is set it tail-jumps to `003183A0`, which takes no argument: it clears bit 0 of dword `022C3178`, zeroes qwords `022C3170`, `022C3160` and `022C3158` and stores -1 in qword `022C3168`. When the bit is clear it returns without a write. No other bit of the argument is read | Interior anchor `002FEAC3`; Interior anchor `002FEAC9` |

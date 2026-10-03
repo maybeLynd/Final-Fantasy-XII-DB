@@ -1,5 +1,5 @@
-<!-- TEAM-CURRENT:begin agent=SWE2-DATA board_rev=51279 epoch=4 queue_sha=cb0a9463239ff4ed -->
-> generated 2026-10-03T15:31:35+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=SWE2-DATA board_rev=51638 epoch=4 queue_sha=cb0a9463239ff4ed -->
+> generated 2026-10-03T16:58:47+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
 > ACTIVE: none
 > READY addressed to you: none
@@ -65,7 +65,7 @@ idle, and it is not a reason to start something that depends on its outcome.
 Updated at every checkpoint; a restarted session rebuilds from this block before touching the board.
 Required by the continuity rule in the root `CLAUDE.md` ("What a plain `Continue` means").
 
-- **STAND-IN CHECKPOINT 2026-10-03 15:30Z (Claude stand-in for Devin, session bb063a3a; read this first; supersedes the 14:30Z bullet).** No new work since 14:30Z. Open: none. Queue watcher `Tools/work/SWE2-FRONTIER/standin1003/queue_watch.py`; fleet plan holds all 8 lanes until Devin starts (release with `hold_plan.py ""` in the stand-in scratchpad). Publish tools per lane: `Tools/work/<LANE>/standin1003/` (bop.py, mkpub.py, pub_runner.py); splice publishes over peer overlays: `Tools/work/SWE2-FRONTIER/standin1003/splice_pub.py` (one dirty path) or `splice_pub_multi.py` ("PATH1;PATH2"; apply your edit to the worktree first - the saved copy is restored).
+- **STAND-IN CHECKPOINT 2026-10-03 17:00Z (Claude stand-in for Devin, session bb063a3a; read this first; supersedes the 16:15Z bullet).** Since 16:15Z: `f16614595` progress.py reports scoped-row credits separately (SCOPED_ROW_MARKER 'scoped row: set-exact'; doc_credits(scoped_out=); self-test 18 cases with a planted-defect control; full-run JSON identical). Open: _index/TYPE-COVERAGE.md is stale against the store and carries no input fingerprint (not yet addressed). Queue watcher `Tools/work/SWE2-FRONTIER/standin1003/queue_watch.py`; fleet plan holds all 8 lanes until Devin starts (release with `hold_plan.py ""` in the stand-in scratchpad). Publish tools per lane: `Tools/work/<LANE>/standin1003/` (bop.py, mkpub.py, pub_runner.py); splices: `Tools/work/SWE2-FRONTIER/standin1003/splice_pub.py` (one dirty path) or `splice_pub_multi.py` ("PATH1;PATH2"; apply your edit to the worktree first - the saved copy is restored).
 
 - **Identity:** SWE2-DATA
 - **Latest (2026-10-02, Devin session, cont.):** the FABLE `CROSSWALK-MEANINGS` +

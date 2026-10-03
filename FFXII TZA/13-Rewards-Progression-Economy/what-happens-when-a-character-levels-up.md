@@ -614,10 +614,10 @@ non-null `vfn` is invoked as `vfn(node, rdx)` at
 ### Interior citation — frontier hub `0028F970` (2026-09-18, SWE2-EC7)
 
 `0028F970` — 112 B, 5 callers: the flag-reset arm of the `0028F800`/
-`00296B80`/`0028F970` triple — requires bit `0x2000` of `[0209BE80]+0x10F68`,
+`00296B80`/`0028F970` triple — ~~requires bit `0x2000` of `[0209BE80]+0x10F68`,~~ returns at once when `[0209BE80]` is null or bit `0x2000` of `[0209BE80]+0x10F68` is SET (`0028F986 bt ecx, 0xd` / `jb` to the epilogue), and otherwise
 clears bits `0x10` and `0x400`, zeroes word `+0x10FA0`, calls
-`00273A20([0209BE78]+0xAB30)` at [`0028F9C4`](../_index/ADDRESS-INDEX.md),
-and on success sets `+0x10CFC |= 0x40`.
+`00273A20(`~~`[0209BE78]`~~`[0209BE80]+0xAB30)` at [`0028F9C4`](../_index/ADDRESS-INDEX.md),
+and on success sets `+0x10CFC |= 0x40` *(corrected 2026-10-03, SWE2-EC7, record `swe2ec7-corr-0028f970-gate-1003`: the bit-13 test is an early-out, and the `00273A20` argument is formed from `[0209BE80]`)*.
 ## SWE2-EC7-23 update (2026-09-18) — `003C94F0` global reconcile arm
 
 `003C94F0` (87 B) is the `[02B47730]` global reconcile arm the level-up/reward

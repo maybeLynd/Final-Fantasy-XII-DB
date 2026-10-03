@@ -1,0 +1,79 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-fifteen-modules-registered-before-main-phyre-ppostprocessing-module-1-r9a.json",
+ "rows": [
+  {
+   "fn": "00654470",
+   "text": "with `o` = `rcx`, `c` = `rdx`, `x` = `r8d` and `y` = `r9d`: returns 0x16 when qword [o+0xD68] is non-zero; returns 0 when `h` = `0063A990(c, 1, 02CBB900, 0)` or `e` = `005D8E40(c, h)` is null; `r` = 5 and goes to F when byte [e+8] is non-zero or `p` = qword [e] is null; `r` = `0060DD70(p, x, y, 02CF7838, 0)`, going to F when non-zero; else clears bit `0x2` of dword [p+0x18], zeroes byte [p+9], calls `00610990(p)` and zeroes byte [e+9]; then with `q` = qword [e] when byte [e+8] is 0, else 0 (no null test), clears bit `0x2` of dword [q+0x18] and calls `00610990(q)`; stores `0064A000(c, x, y, 02CF7480, 0, 0, 0)` at qword [o+0xD18]; returns 0x16 when qword [o+0xD68] is now non-zero, 5 when qword [q'] is not `02CF7838` (q' chosen the same way, re-read), else stores `e` at qword [o+0xD68] and returns 0; F: calls `0063ABF0(c, e)` and `0063ABF0(c, h)` and returns `r`",
+   "anchors": [
+    [
+     "006544C9",
+     "call"
+    ],
+    [
+     "0065451A",
+     "call"
+    ],
+    [
+     "00654534",
+     "call"
+    ],
+    [
+     "0065457C",
+     "call"
+    ],
+    [
+     "006545D0",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "006007B0": "too large for one exact row",
+  "0060F830": "deferred to a later member pass",
+  "006491B0": "too large for one exact row",
+  "006497E0": "too large for one exact row",
+  "0064A500": "too large for one exact row",
+  "0064AA20": "too large for one exact row",
+  "006508C0": "too large for one exact row",
+  "006515C0": "too large for one exact row",
+  "006525F0": "too large for one exact row",
+  "00652A90": "too large for one exact row",
+  "00653E80": "too large for one exact row",
+  "00654170": "too large for one exact row",
+  "00654610": "too large for one exact row",
+  "00654830": "too large for one exact row",
+  "00654B00": "too large for one exact row",
+  "00654E20": "deferred to a later member pass",
+  "00655180": "too large for one exact row",
+  "006553D0": "too large for one exact row",
+  "00655690": "too large for one exact row",
+  "006566D0": "too large for one exact row",
+  "006568D0": "too large for one exact row",
+  "00656B20": "too large for one exact row",
+  "00656F20": "too large for one exact row",
+  "00657870": "deferred to a later member pass",
+  "00657A20": "deferred to a later member pass",
+  "00657BC0": "deferred to a later member pass",
+  "00657D60": "too large for one exact row",
+  "006580D0": "deferred to a later member pass",
+  "00658BA0": "too large for one exact row",
+  "00659080": "too large for one exact row",
+  "00659EC0": "too large for one exact row",
+  "0065BA00": "too large for one exact row",
+  "0065C080": "too large for one exact row",
+  "0065C330": "deferred to a later member pass",
+  "0065C4D0": "deferred to a later member pass",
+  "0065C760": "deferred to a later member pass",
+  "0065D310": "deferred to a later member pass",
+  "0065D720": "too large for one exact row"
+ },
+ "missing": [],
+ "corrections": [],
+ "mode": "member",
+ "family": "Phyre PPostProcessing module"
+}

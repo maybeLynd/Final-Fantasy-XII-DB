@@ -1,0 +1,40 @@
+{
+ "page": "16-UI/Unlabelled-Panes/the-unlabelled-procedures.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-unlabelled-procedures-r8.json",
+ "rows": [
+  {
+   "fn": "00345830",
+   "text": "with `d` = `rdx` and `q` = `r9` (`r8` is not read): `a` = `00267DB0(q)`, then `b` = `00267DB0(q)` again; calls `00265020(d, &x, &y, &z)` for stack floats `x`, `y` and `z`; `f` = 0.0 when `b` equals `x` and `a` equals `z` (a NaN compares unequal), else `f` = `003A19A0` with the floats (z, x, a, b) in `xmm0` to `xmm3`; calls `0026B4C0(rcx, f)` with `f` in `xmm1`",
+   "anchors": [
+    [
+     "00345855",
+     "call"
+    ],
+    [
+     "00345860",
+     "call"
+    ],
+    [
+     "0034587A",
+     "call"
+    ],
+    [
+     "00345885",
+     "ucomiss"
+    ],
+    [
+     "003458A4",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

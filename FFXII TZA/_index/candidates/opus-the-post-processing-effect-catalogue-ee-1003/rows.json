@@ -1,0 +1,97 @@
+{
+ "page": "17-Presentation-Rendering/Post-Processing/the-post-processing-effect-catalogue.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-post-processing-effect-catalogue-r8.json",
+ "rows": [
+  {
+   "fn": "0070B780",
+   "text": "takes `r` from vtable slot +0x1C0 of the object at qword [rcx+0x20] (`edx`, `r8`, `r9` as received); stores `edx` (`f`) at dword +0x598, the fifth-argument dword at +0x5A0 and `xmm3` (`v`) at float +0x59C, then replaces `v` by 0 (byte +0xCCC non-zero) or 1.0 when 0 > `v` (NaN keeps it); copies dword +0x4C8 to +0x4D8; when the sixth-argument dword `n` is not negative, zeroes qword `02EA1900`, takes `r` = `00722900(0x1F, 0, 0, 0, 0, 1.0, 0, 0, 0)` and sets dword +0x4D8 = dword +0x4CC + `n`; copies dword +0x4D8 to dword +0xA0 of the object `o` at qword +0x108 and calls `0075BFC0(o, dword +0x594, 0x7FFFFFFF)`; when byte +0x147 is non-zero and qword +0x60 is null, calls `006DF480(00D91070, 0x2728)` and `006DF480(00D91160)` (when dwords `01F3BA80`, `01F3BA90` are both 1 or more) and returns 0x80004005; when byte +0x147 is zero, `r` = `0075CD90(o, dword +0x4D8, 1, f, r8, v, fifth dword, 0, 0, 0x30000 if f has bit 0x10000000 else 0x10000)`; a negative `r` calls `006DF480(00D91238, 0x273D)` and `006DF480(00D91280, r, 0071B3C0(r))` under the same dwords and is returned; otherwise sets byte [rcx] = 1 and returns 0",
+   "anchors": [
+    [
+     "0070B7B5",
+     "call"
+    ],
+    [
+     "0070B7E8",
+     "jbe"
+    ],
+    [
+     "0070B841",
+     "call"
+    ],
+    [
+     "0070B87C",
+     "call"
+    ],
+    [
+     "0070B90E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0070BA00",
+   "text": "returns 0x80004005 when byte [rcx] is non-zero, first calling `006DF480(00D96DB0, 0x6D03)` and `006DF480(00D96E40)` when dwords `01F3BA80` and `01F3BA90` are both 1 or more; likewise (`006DF480(00D97210, 0x6D1C)`, `006DF480(00D97250)`) when byte [rcx+0x147] is non-zero and qword [rcx+0x60] is null; otherwise calls `0070B780(rcx, 0, 0, float 00902EF8 (0xFF7FFFFF) in xmm3, fifth dword 0, sixth dword -1)` (r9 left as received, result ignored) and returns `0070B990(rcx, edx, 0)` when that is negative, else 0",
+   "anchors": [
+    [
+     "0070BA32",
+     "call"
+    ],
+    [
+     "0070BA81",
+     "call"
+    ],
+    [
+     "0070BAC2",
+     "call"
+    ],
+    [
+     "0070BACF",
+     "call"
+    ],
+    [
+     "0070BADB",
+     "cmovs"
+    ]
+   ]
+  },
+  {
+   "fn": "0078A240",
+   "text": "returns 0x80070057 when `r9` is null; otherwise zeroes qword [r9], calls `007157A0(&A, rdx)`, `00716020(&A)` and `00717350(&A, &B, 0)` on stack strings `A` and `B`, and takes `t` = `00790790(rdx, qword [rcx+0x30])`; a null `t` gives `r` = 0x80004005; otherwise stores at qword [r9] `e` = `006DA880(qword [01F3BA68], 0xE8, 00DAEFD0, 0x675, 0)` (\"GPUInterfaceEffect.cpp\" after a path prefix), replaced by `00789900(e, rcx)` when non-null, takes `r` = `007897D0(e, t)` (no null test on `e`) and calls `0078A4F0(t)`; a negative `r` calls `006DF480(00DAF020, 0x67C)` and `006DF480(00DAF070, r, 0071B3C0(r))` when dwords `01F3BA80` and `01F3BA90` are both 1 or more, else `r` = 0; calls `00715C70` on `B` and then `A` and returns `r`",
+   "anchors": [
+    [
+     "0078A27D",
+     "call"
+    ],
+    [
+     "0078A2A7",
+     "call"
+    ],
+    [
+     "0078A2E0",
+     "call"
+    ],
+    [
+     "0078A307",
+     "call"
+    ],
+    [
+     "0078A33F",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "0070BA00",
+   "why": "byte re-read by a non-drafting agent: Argument position: the float 00902EF8 is loaded into xmm3, the 4th argument slot, and the stack holds dword 0 at [rsp+0x20] (5th) and -1 at [rsp+0x28] (6th); r9 is not set up. The draft's list (rcx, 0, 0, r9, float, 0, -1) has seven entries and makes the float the 5th argument, which contradicts the 0070B780 row (5th dword to +0x5A0, 6th = n, so -1 skips the 00722900 path). Rest verified: byte [rcx] and byte +0x147 / qword +0x60 gates, jb 1 log gates, 0070B990(rcx, edx, 0) with cmovs returning it only when negative."
+  }
+ ],
+ "mode": "ee",
+ "family": ""
+}

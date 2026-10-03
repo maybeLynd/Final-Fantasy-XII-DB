@@ -1,0 +1,47 @@
+{
+ "page": "00-Engine-Core-Runtime/ABI-Recovery/derived-call-signatures.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "derived-call-signatures-r8.json",
+ "rows": [
+  {
+   "fn": "0079D730",
+   "text": "with `k` = `edx`, dispatching on `k` - 1 through the jump table at image base + `0x67D84C`, returns as a float: for `k` 1 to 6 the signed dword at `rcx` + 0x414, 0x420, 0x42C, 0x418, 0x424 and 0x430 divided by 255 (`008C5B40`); for `k` 7 to 10 the signed dword at +0x41C, +0x428, +0x434 and +0x438 divided by 1023 (`00D6B968`); for `k` 17 and 18 the zero-extended byte +0x44D and byte +0x44E divided by 255; 0.0 for every other `k` (11 to 16, and `k` - 1 above 0x11 unsigned)",
+   "anchors": [
+    [
+     "0079D750",
+     "jmp"
+    ],
+    [
+     "0079D75D",
+     "divss"
+    ],
+    [
+     "0079D7D5",
+     "divss"
+    ],
+    [
+     "0079D83F",
+     "divss"
+    ],
+    [
+     "0079D848",
+     "xorps"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [
+  "0085DDE0"
+ ],
+ "corrections": [
+  {
+   "fn": "0079D730",
+   "why": "byte re-read by a non-drafting agent: Body is right otherwise (table, offsets, divisors 255.0/1023.0, k 17 -> +0x44D, k 18 -> +0x44E all check out), but the k 7-10 clause drops 'signed' after the k 1-6 clause states it, reading as a different (unsigned) conversion: all ten dword cases are movd + cvtdq2ps (signed int32). The k 17/18 bytes are movzx (zero-extended) and the row does not say so."
+  }
+ ],
+ "mode": "ee",
+ "family": ""
+}

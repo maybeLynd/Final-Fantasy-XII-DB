@@ -1,0 +1,63 @@
+FABLE check_s38 - the render pool flag word +0x48818 and its owners outside the family (2026-10-03)
+unicorn 2.1.4
+image sha256 verified (rvlib), base 00120000
+PASS  V0  unicorn pinned 2.1.4
+      002E8707  fn=002E8700  w4  and dword ptr [rax + 0x48818], 0xffffffef
+      002E871C  fn=002E8700  w4  or dword ptr [rdx + 0x48818], eax
+      002E8CD0  fn=002E8CC0  w4  or dword ptr [rax + 0x48818], 1
+      002E8CD8  fn=002E8CC0  w4  and dword ptr [rax + 0x48818], 0xfffffffe
+      002EBBD2  fn=002EBBB0  w4  or dword ptr [rax + 0x48818], 1
+      002EBBDA  fn=002EBBB0  w4  and dword ptr [rax + 0x48818], 0xfffffffe
+      002EBC20  fn=002EBBF0  w4  or dword ptr [rax + 0x48818], 1
+      002EBC28  fn=002EBBF0  w4  and dword ptr [rax + 0x48818], 0xfffffffe
+      00426A00  fn=004269A0  w4  mov dword ptr [rsi + 0x48818], ebx
+      00426C59  fn=004269A0  w4  or dword ptr [rax + 0x48818], 5
+      00427DB3  fn=00427C90  w4  or dword ptr [rdi + 0x48818], 0x20
+      00428790  fn=00428710  w4  mov ebx, dword ptr [rdi + 0x48818]
+      004287A1  fn=00428710  w4  mov dword ptr [rdi + 0x48818], eax
+      004287AC  fn=00428710  w4  mov eax, dword ptr [rdi + 0x48818]
+      004287B7  fn=00428710  w4  xor dword ptr [rdi + 0x48818], eax
+      00428863  fn=00428710  w4  or dword ptr [rdi + 0x48818], 0x20
+      0042D004  fn=0042CF70  w1  test byte ptr [rsi + 0x48818], 4
+      0042D3A2  fn=0042D050  w1  test byte ptr [r14 + 0x48818], 4
+      0042EA43  fn=0042E850  w1  test byte ptr [rsi + 0x48818], 1
+      0042EA6C  fn=0042E850  w1  test byte ptr [rsi + 0x48818], 1
+      0042EAB1  fn=0042E850  w1  test byte ptr [rsi + 0x48818], 1
+      0042EB79  fn=0042E850  w1  test byte ptr [rsi + 0x48818], 0x10
+      0042ED37  fn=0042ED30  w4  or dword ptr [rax + 0x48818], 5
+      0042ED83  fn=0042ED60  w4  and dword ptr [rbx + 0x48818], 0xffffffdf
+      0042ED94  fn=0042ED60  w1  test byte ptr [rbx + 0x48818], 0x20
+PASS  K1a  25 sites in 12 functions at displacement 0x48818..0x4881B, as listed: ['002E8700', '002E8CC0', '002EBBB0', '002EBBF0', '004269A0', '00427C90', '00428710', '0042CF70', '0042D050', '0042E850', '0042ED30', '0042ED60']
+PASS  K1b  every write and plain load is a dword; the byte accesses are `test` only: [(1, 'test'), (4, 'and'), (4, 'mov'), (4, 'or'), (4, 'xor')]
+PASS  K1c  no wider operand from +0x48800..+0x48817 covers the word []
+PASS  K1d  no lea / immediate in 0x48800..0x4881B forms a biased base or an address []
+PASS  K1e  the pool pointer's mirror 02EBB740 is written at 004260D1 and 0042ED6D and read nowhere: ['004260D1 mov qword ptr [rip + 0x2a95668], rax', '0042ED6D mov qword ptr [rip + 0x2a8c9cc], rbx']
+PASS  K2a  after the constructor's zero store (00426A00, ebx = 0 from 004269DF) the writes set only bits [0, 2, 4, 5] []
+PASS  K2b  bit 2 is cleared by no write except the constructor's zero store (cleared: [0, 4, 5])
+PASS  K3a  every owner's callers, raw index (E8/E9, 0F 8x, EB/7x, rip, [reg+RVA], 8-byte pointers): 002E8700<-0025D9B8<-00314346; 002E8CC0<-00262B85; 002EBBB0<-0026A470<-00347842; 002EBBF0<-002265D6; 0042ED30<-002E8050<-0026CAC0; 002E63C0<-00262B80,00266DBF; retire<-0042ED8A, promote<-0042ED8F; ctor<-00332641; 0042ED60<-003326B6 {}
+PASS  K3b  call sites lie in 00314020, 002628B0 (x2), 00266D10, 00347830, 00226280, 0026C8C0, 0042ED60, 00332660, 003325D0 {3228486: '00314020', 2501509: '002628B0', 2501504: '002628B0', 2518463: '00266D10', 3438658: '00347830', 2254294: '00226280', 2542272: '0026C8C0', 4386186: '0042ED60', 3352246: '00332660', 3352129: '003325D0'}
+PASS  K3c  the veto byte 0215FD56: writers 002E63C0 (zero), 002EBBC1, 002EBC0F; readers 002E8CC0, 002EBBB0, 002EBBF0 only 
+PASS  K3e  bit 4's source: byte 02099DA3 is written only by 0025D950; the override pair 02099DA4/02099DA5 is written by 0026AB50 (cl, dl) from verb handlers 00356030 (1, popped int) and 003563C0 (0, 0), and zeroed by the area unload 002628B0 (00262A24/00262A2B, ebp = 0 from 0026292A) and the area reset 00266D10 (00266D47/00266D4E) 
+PASS  K3d  route shapes: 002E63C0 then 002E8CC0 at 00262B80/00262B85, 002E63C0 then no re-derive at 00266DBF; requester 1 = bit 35 (002265C8..002265D4); the verb passes its popped int (0034783C); 0025D950 passes byte 02099DA3 (0025D9AA/0025D9AD); 0042ED60 clears bit 5, retires, promotes, tests bit 5, rebuilds []
+PASS  K4a  00425FB0(root cb, child cb, ctx) passes ctx (r8 -> rdi) as rdx to both callbacks; 004264A0 registers root 0042D050 / child 0042CBF0 and 00426500 root 0042D7A0 / child 0042CF70, each with ctx = [022C6F28]; the two bit-2 readers keep that pool base (0042CF81 rsi, 0042D072 r14) []
+PASS  K4b  the two bit-2 gates: model instance (003E55B0's answer) +8 bit 1 = flag bit 2 AND record +0x284 bit 23 (root, 0042D3A2..0042D3C9), AND the parent's bit 23 too (child, 0042D004..0042D039) []
+      closure of 0042C410: 247 functions, 34 indirect call/jmp sites not followed
+PASS  K5a  no function directly reachable from the promotion callee 0042C410 touches the word or the veto byte []
+      closure of 004269A0: 1046 functions, 571 indirect sites not followed
+PASS  K5b  the constructor reaches no per-record walker or bit-2 reader between its zero store and its OR of 5 []
+PASS  K5c  positive control: the same closure walk from 0042ED60 reaches retire 00427C90 and promote 00428710
+PASS  K6  0026C8C0 reaches 0026CAC0 exactly when its first argument is 0: `test ecx, ecx` / `jne 0026CAC5` at 0026C95D/0026C95F with ecx unwritten before it, and every path from 0026C965 to the one exit ['0026CDE3'] passes 0026CAC0 (the other two ends call 00809728, the range-check failure); 002265D6 on every path of 00226280 past the dirty gate 0022628E; 00426C59 after 00426A00 on every path of 004269A0; 00314346 before 00314020's only ret 0031436C
+PASS  K7a  veto mask: script off -> (byte, word) (1, 24); tick veto (3, 24); script on (2, 24) (tick still vetoes, bit 0 stays 0); tick on (0, 25); bits 2 and 5 untouched
+PASS  K7b  0042ED30 over a held veto (byte 1): word 05 (bit 0 set, the byte unread); 002E8CC0 then: 04
+PASS  K7c  002E63C0 on byte 3 / word 24: (0, 24) - no veto, culling still off; 002E8CC0 then (0, 25)
+PASS  K7d  002E8700(x): bit 4 = (x != 0), others kept: ['25', '35', '15', '25', '35']
+PASS  K7e  promotion pin (pre, callee xor, callee sees, after): ['(25,05,24,21)', '(24,01,24,24)', '(25,00,24,25)', '(24,04,24,20)'] - the callee sees bit 0 clear, bit 0 returns to PRE, the callee's bit-2 change survives
+PASS  K7f  0042CF70: instance +8 bit 1 by (flag bit 2, child bit 23, parent bit 23): 000->0 001->0 010->0 011->0 100->0 101->0 110->0 111->1
+PASS  K7g  0042ED60 (pre bit 5, retire sets, promote sets) -> rebuild 0041E500: 000->no 010->yes 001->yes 100->no; tail 00427BD0 reached in every case
+PASS  S1  002EBC1E jne -> je: K7a fails
+PASS  S2  0042ED37 or ..., 5 -> or ..., 4: K7b fails
+PASS  S3  004287B4 and eax, 1 -> and eax, 5: K7e fails
+PASS  S4  0042D004 test ..., 4 -> test ..., 1: K7f fails
+PASS  S5  0042ED83 bit-5 clear NOPed: K7g fails
+PASS  S6  the claim 'bit 2 is never read' is refuted by the census: ['0042D004', '0042D3A2']
+FAILS 0

@@ -1,0 +1,191 @@
+{
+ "page": "17-Presentation-Rendering/Post-Processing/ppfx-function-identification.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "ppfx-function-identification-r8.json",
+ "rows": [
+  {
+   "fn": "00721030",
+   "text": "with `o` = `rcx`, keeps qword [o+0x28], calls `007271C0(o)` and copies the 32 bytes at `rdx` to `o`+0x38; with `f` = dword [o+0x38] stores at dword +0x58 the flags 0x10000000 (bit `0x100` of `f`), OR 0x1200000 (`0x4000`), 0x1000 (`0x100000`), 0x2000 (`0x200000`), 0x10000 (`0x1000000`), 0x240000 (`0x2000000`), 0x1000000 (`0x10000000`); sets dword +0x54 = dword +0x44 when it is 0; with `w` = dword +0x3C (dword +0x5C when negative) and `h` = dword +0x40 (dword +0x60 when negative): unless `w` is greater (signed) than dword +0x3C, `h` greater than dword +0x40, or `o` is one of the eight qwords at `02EA18C0`, stores `w`/`h` at dwords +0x5C/+0x60, zeroes qword +0x64 and calls `00720EE0(o)`; zeroes dword +0x6C, sets float +0x70 = 1.0, zeroes qword +0x100 and copies qword +0x108 to +0x110; for the qwords `q` at +0xF0 and +0xF8 that are non-null, with `m` = qword [01F3BA68] read once before either call: when qword [q+8] is non-null calls `006DA8A0(m, that - 8)` and nulls it, then calls `006DA8A0(m, q)` and nulls the qword; tail-jumps to `00727170(o, the kept qword)`",
+   "anchors": [
+    [
+     "00721061",
+     "call"
+    ],
+    [
+     "0072108B",
+     "cmovne"
+    ],
+    [
+     "00721110",
+     "cmp"
+    ],
+    [
+     "0072112E",
+     "call"
+    ],
+    [
+     "0072117F",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007226E0",
+   "text": "with `i` = `ecx`, `f` = `edx` and `p` = `r9`: when `f` lacks bit `0x100000` and byte `02EA18B1` is non-zero, returns `00722C80(p, the fifth-argument float, the sixth-argument dword, the seventh-argument qword, 0)` when that is negative, else 0; otherwise zeroes the byte the seventh argument points at when it is non-null and, with `o` = qword i of the table at image base + 0x2D818C0 (`02EA18C0`), returns 0 when `o` is null; else takes `r` = `0071FD40(o, i, dword i of the table at image base + 0x1E1CB18 (`01F3CB18`), f, r8d, 1, 0, p, fifth float, sixth dword, p, fifth float, sixth dword, seventh qword)` and returns it when negative; when `f` lacks bit `0x100000` also zeroes qword i of `02EA18C0` and dword i of `01F3CB18`; returns 0",
+   "anchors": [
+    [
+     "007226EE",
+     "bt"
+    ],
+    [
+     "00722724",
+     "mov"
+    ],
+    [
+     "00722781",
+     "call"
+    ],
+    [
+     "00722790",
+     "mov"
+    ],
+    [
+     "007227E7",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00722800",
+   "text": "with `f` = `ecx`, `q` = `rdx`, `d` = `r9d`, `v` = `xmm2` and `t` = the fifth-argument qword: when `f` lacks bit `0x100000` and byte `02EA18B1` is non-zero, returns `00722C80(0, v, d, 0, t)` when that is negative, else 0; otherwise zeroes byte [t] when `t` is non-null, returns 0 when qword `02EA1900` is 0, and when `q` is null takes the first non-null of the eight qwords at `02EA18C0` (when there is none, zeroes qword `02EA1900` and returns 0); takes `r` = `0071FF60(q, f, 1, v, d, v, d, t)`, returns it when negative, else zeroes qword `02EA1900` when `f` lacks bit `0x100000` and returns 0",
+   "anchors": [
+    [
+     "00722816",
+     "bt"
+    ],
+    [
+     "0072282C",
+     "cmp"
+    ],
+    [
+     "00722850",
+     "mov"
+    ],
+    [
+     "007228CC",
+     "call"
+    ],
+    [
+     "007228E3",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00722C80",
+   "text": "when byte `02EA18B1` is zero, calls `006DF480(00D9BAD0, 0x121F)` and `006DF480(00D9BB10)` (when dwords `01F3BA80` and `01F3BA90` are both 1 or more) and returns 0x8000FFFF; otherwise takes `o` = the first non-null of the eight qwords `02EA18C0` to `02EA18F8` and `k` its index (`o` null and `k` 0 when all are null; no null test follows) and `c` = dword `k` of the array at `01F3CB18`; when bit `0x80000000` of dword [o+0x38] is set or qword [qword [o+0xE0+8*dword [o+0xA0] (sign-extended)] + 8c] (`c` zero-extended) is 0, calls `006DF480(00D9BB90, 0x123D)` and `006DF480(00D9BBD0)` under the same dwords and returns 0x8000FFFF; else zeroes the qwords `01F3CB18` to `01F3CB30`, the nine qwords `02EA18C0` to `02EA1900`, byte `02EA18B1` and dword `02EA1908` and returns 0",
+   "anchors": [
+    [
+     "00722CB3",
+     "call"
+    ],
+    [
+     "00722CF5",
+     "test"
+    ],
+    [
+     "00722D98",
+     "test"
+    ],
+    [
+     "00722DBE",
+     "cmp"
+    ],
+    [
+     "00722E21",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007897D0",
+   "text": "returns 0x80070057 when `rdx` is null; otherwise stores `rdx` at qword [rcx+0xE0], increments dword [rdx+8] and zeroes qwords +0xB0, +0xB8 and +0xC0; for each i below the low dword of (qword +0xD0 - qword +0xC8) shifted right by 3 (arithmetic, recomputed each step, signed compare), when pointer i `e` of the array at qword +0xC8 is non-null loads `m` = qword [01F3BA68], calls `00715C70(e+8)` and `006DA8A0(m, e)` and nulls the entry; then copies qword +0xC8 to +0xD0 and stores the low dword of (qword [x+0xA8] - qword [x+0xA0]) shifted right by 3 (arithmetic) at dword +0xBC with `x` = qword +0xE0; returns 0",
+   "anchors": [
+    [
+     "0078980B",
+     "inc"
+    ],
+    [
+     "0078986B",
+     "call"
+    ],
+    [
+     "00789876",
+     "call"
+    ],
+    [
+     "007898AB",
+     "mov"
+    ],
+    [
+     "007898CB",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007906C0",
+   "text": "takes `o` = `006DA880(qword [01F3BA68], 0x180, 00E1FCA0, 0x2A5E, 0)` (\"TinyEffect.cpp\" after a path prefix), replaced by `0078B9D0(o)` when non-null; when `0078D7E0(o, rcx, rdx, r8b)` (no null test on `o`) is negative, loads `m` = qword [01F3BA68], then, when `o` is non-null, calls `o`'s vtable slot +0 with 0 and `006DA8A0(m, o)`, and returns 0; otherwise returns `o`",
+   "anchors": [
+    [
+     "0079070A",
+     "call"
+    ],
+    [
+     "0079071C",
+     "call"
+    ],
+    [
+     "00790735",
+     "call"
+    ],
+    [
+     "00790752",
+     "call"
+    ],
+    [
+     "0079075B",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "00721030",
+   "why": "byte re-read by a non-drafting agent: Read-before-call ordering: for each q the body loads qword [01F3BA68] once into rbp at 00721168, before the first 006DA8A0 call (which receives that value), and passes the same register to the second call; the draft's text implies a fresh read per call. Everything else verified: qword [o+0x28] kept in r15 before 007271C0(o); 32-byte copy after the call; flag mapping (bit 0x100, 0x4000, 0x100000, 0x200000, 0x1000000, 0x2000000, 0x10000000 to 0x10000000, 0x1200000, 0x1000, 0x2000, 0x10000, 0x240000, 0x1000000); jns selections of w/h, jg signed tests, 8-qword scan of 02EA18C0; tail jmp 00727170(o, kept qword)."
+  },
+  {
+   "fn": "007226E0",
+   "why": "byte re-read by a non-drafting agent: Address form: the listing reaches both tables only as image-base displacements (lea rsi, 00120000 then +0x2D818C0 and +0x1E1CB18); 01F3CB18 is named bare, without the base + displacement form the row uses for 02EA18C0, so the named address does not appear in the listing. Logic verified: frame (rsp = rsp0-0x78: 5th float [rsp+0xA0], 6th dword [rsp+0xA8], 7th qword [rsp+0xB0]); bt edx,0x14 + jae to the 02EA18B1 test; 00722C80(r9, xmm1 = 5th, r8d = 6th, r9 = 7th, stack 0) with cmovs; i zero-extended (mov r11d, ecx); 0071FD40 fourteen-argument list matches stack slots 0x20-0x68; bl = 1 only when bit 0x100000 is set, so the table entries are zeroed when it is"
+  },
+  {
+   "fn": "00722C80",
+   "why": "byte re-read by a non-drafting agent: Sign extension: the slot index dword [o+0xA0] is read with movsxd (sign-extended) at 00722DAF, while c is loaded with a 32-bit mov (zero-extended) and used as an unsigned index at 00722DBE; the draft states neither. Rest verified: 02EA18B1 zero path with jb 1 log gates and 0x8000FFFF; first-non-null chain over 02EA18C0..02EA18F8 leaves o = 0, k = 0 when all are null and nothing tests o; bit 0x80000000 test and qword compare against 0; clears 01F3CB18..01F3CB30, 02EA18C0..02EA1900, byte 02EA18B1, dword 02EA1908; returns 0."
+  },
+  {
+   "fn": "007897D0",
+   "why": "byte re-read by a non-drafting agent: Read-before-call ordering and shift wording: qword [01F3BA68] is loaded into rbx at 00789860, before the 00715C70(e+8) call, and that value is passed to 006DA8A0; both counts are formed with sar 3 (arithmetic shift, floor) and the loop compares only the low dword (signed jl). Rest verified: null rdx gives 0x80070057; qword +0xE0 = rdx, inc dword [rdx+8], three qwords zeroed; array qword +0xC8 re-read for the entry and for nulling it; +0xD0 = +0xC8; dword +0xBC from qword +0xE0 re-read; returns 0."
+  },
+  {
+   "fn": "007906C0",
+   "why": "byte re-read by a non-drafting agent: Read-before-call ordering: on the negative path qword [01F3BA68] is loaded into rdi at 0079073E, before the null test and before o's vtable slot +0 call, and that value goes to 006DA8A0. Rest verified: 006DA880(qword [01F3BA68], 0x180, 00E1FCA0 = '..\\src\\GPU\\TinyEffect\\TinyEffect.cpp', 0x2A5E, 0); o becomes 0078B9D0's return or 0; 0078D7E0(o, rcx, rdx, movzx r8b) with no null test; slot +0 with edx = 0; returns 0 on the negative path, else o."
+  }
+ ],
+ "mode": "ee",
+ "family": ""
+}

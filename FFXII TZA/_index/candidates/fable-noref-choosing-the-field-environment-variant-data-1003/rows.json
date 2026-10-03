@@ -1,0 +1,35 @@
+{
+ "page": "03-World-Area-Field/choosing-the-field-environment-variant.md",
+ "date": "2026-10-03",
+ "rows": [
+  {
+   "fn": "002678A0",
+   "text": "loads qword `02099D88`, adds its sign-extended dword `+0x14` to it and stores the sum to qword `02099D90`; stored to stack `+0x40` by `00268750` + 0x54 just before its `0036C1D0` call at +0x68",
+   "anchors": [
+    [
+     "002678A7",
+     "movsxd"
+    ],
+    [
+     "002678AB",
+     "add"
+    ],
+    [
+     "002678AE",
+     "mov"
+    ]
+   ],
+   "why_here": "stored by MapRef_BeginLoadResources 00268750, the map_ref.bin loader this page names",
+   "ref": {
+    "kind": "code",
+    "container": "00268750",
+    "site": "002687A4",
+    "store_site": "002687AB",
+    "store_op": "qword ptr [rsp + 0x40], rax"
+   },
+   "cites": [
+    "00268750"
+   ]
+  }
+ ]
+}

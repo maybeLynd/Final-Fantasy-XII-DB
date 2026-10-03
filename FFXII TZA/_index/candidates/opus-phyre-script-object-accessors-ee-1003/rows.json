@@ -1,0 +1,40 @@
+{
+ "page": "22-Middleware-PhyreEngine/Script-Object-Accessors/phyre-script-object-accessors.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "phyre-script-object-accessors-r8.json",
+ "rows": [
+  {
+   "fn": "00810810",
+   "text": "with `s` = qword [rcx+0x20] and `N` = `01CCB510`, resolves A(i) for `edx` and then for `r8d`: for i greater than 0, qword [s] + 16i when that is below qword [rcx+0x10] (unsigned), else `N`; for i from -1000999 to 0, qword [rcx+0x10] + 16i (sign-extended); for i = -1001000 (0xFFF0B9D8), qword [rcx+0x18] + 0x40; below that, with `f` = qword [s]: `N` when dword [f+8] is 0x16, else with `c` = qword [f] and `u` = -1001000 - i, `N` when `u` is greater (signed) than byte [c+0xA], else `c` + 16(`u` + 1); returns 1 when neither result is `N`, their dwords +8 are equal and `00821520(0, A(edx), A(r8d))` is non-zero, else 0",
+   "anchors": [
+    [
+     "00810838",
+     "cmp"
+    ],
+    [
+     "00810869",
+     "cmp"
+    ],
+    [
+     "00810880",
+     "cmp"
+    ],
+    [
+     "00810918",
+     "cmp"
+    ],
+    [
+     "0081091F",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

@@ -567,3 +567,12 @@ the image:**
   `002BDB60` / `002BDC00`, gated on `+0x10F68` bit 6), and by the pump at `002917AA` / `002917B6`.
 
 The sentence is struck in place and kept as history.
+
+## SWE2-EC7-220 update (2026-10-03) - `get_interventionmenu_status` reads flag bits 13 and 4 of `+0x10F68`
+
+The flag dword `+0x10F68` of the object at qword `0209BE80` carries the flag bits the `+0x10FA0` row of the mailbox table above names. `0028F970` (112 B, read whole) returns without a write when bit 13 is set (`bt ecx, 0xd`) and otherwise clears bits 4 and 10 and word `+0x10FA0`. The two bodies below read bits 13 and 4 of the same dword. Offsets and widths only; the verb name is the script's.
+
+| function | size | verbs | what the body does | interior anchors |
+|---|---|---|---|---|
+| `002E2340` | 60 B | `get_interventionmenu_status` `0x0457` (its handler writes the return value as the verb's integer result) | calls `0028F6A0` and returns 0 when that returns 0, 1 for 1, 2 for 2 and 3 for any other value. `0028F6A0` returns only 0, 1 or 2, so the 3 arm is not reached through this call | Interior anchor `002E2344`; Interior anchor `002E234D`; Interior anchor `002E2352`; Interior anchor `002E2357`; Interior anchor `002E2361` |
+| `0028F6A0` | 80 B | - (called by `002E2340`) | returns 0 when qword `0209BE80` is null, when bit 13 (`0x2000`) of its dword `+0x10F68` is set, or when `00273A20(object + 0xAB30)` returns 0 (`00273A20` is the 9-byte test that the qword at `rcx` is non-null). Otherwise it reloads `0209BE80` and returns 1 when bit 4 (`0x10`) of byte `+0x10F68` is set and 2 when it is clear (`and cl, 0x10`, `neg cl`, `sbb eax, eax`, `add eax, 2`) | Interior anchor `0028F6B7`; Interior anchor `0028F6C3`; Interior anchor `0028F6CA`; Interior anchor `0028F6DA`; Interior anchor `0028F6E6` |

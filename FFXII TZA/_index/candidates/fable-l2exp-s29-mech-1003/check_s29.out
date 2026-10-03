@@ -1,0 +1,45 @@
+FABLE check_s29 - S-29 item use: reserve, then consume or refund (2026-10-03)
+unicorn 2.1.4
+image sha256 verified (rvlib), base 00120000
+PASS  V0  unicorn pinned 2.1.4
+PASS  K1a.0030EF20  callers of 0030EF20: ['00304962 call', '003073AB call']
+PASS  K1a.00305640  callers of 00305640: ['00304F38 call', '003073B9 call', '003132B7 call', '003192B7 call']
+PASS  K1a.00300280  callers of 00300280: ['0031063A call']
+PASS  K1b  every .rdata/.data hit on the three is a chained-unwind RUNTIME_FUNCTION copy, no pointer constant []
+PASS  K2a  003105D0 is branch-free from 003105EF to the refund call 0031063A (0 jumps), behind the null-unit and null-+0x698 gates []
+PASS  K2b  003105D0 has twelve call sites: ['00236A77', '002FF9C7', '0030014D', '00300E61', '00300FF4', '00301195', '003086B2', '003087C1', '0030F78A', '003243F9', '00324490', '00326AA9']
+PASS  K2c  00236A60 cancels only when flag-word bit 4 is set (00236A6F/00236A75), writes +0xDC8 = 0xFFFF at 00236AFC either way, and has no +0xE58 access (0) []
+PASS  K3a  00304850 dispatches on phase byte +0x6B4 (rsi = unit + 0x6B0) through a 13-slot table at 00305044; slot 0 = 0030495C runs the prepare at 00304962 []
+PASS  K3b  byte stores of 0 to +0x6B4: ['0030F814', '003106F2'] (immediates {'inc': 7, '2': 27, '4': 1, '5': 2}; register-sourced ['002FE7FB', '0030F814', '003106F2'], sources proven True)
+PASS  K4a  0030F760 call sites: ['00305B2F', '00305C9B', '00305DF4', '0030FA5C', '003130DC']
+PASS  K4b  the 5th argument (cancelFirst) at each site: {'00305B2F': 1, '00305C9B': 1, '00305DF4': 1, '0030FA5C': 1, '003130DC': 0}
+PASS  K4c  0030F760 runs the cancel first only when its 5th argument is non-zero []
+PASS  K4d  the engage auto-attack 00312FA0 stashes +0xDC8/+0xE58 at 022C1DB0[slot x 12], commits with cancelFirst 0, sets phase 5 on success and calls the restore on failure []
+PASS  K4e  the restore 00308270 (bit 22 only) puts +0xDC8/+0xE58 back and calls only ['0030C970', '0030EDA0'] - no inventory move []
+PASS  K4f  00310780 reaches the restore call 00310806 on every path past its gates, and the cancel calls 00310780 (00310605) before the refund (0031063A)
+PASS  K4g  the combo continuation 0030FA00 re-commits with cancelFirst 1 and enters phase 5; the phase-5 stores are ['0030FA80', '003130F2'] []
+PASS  K4h  0030C3F0 memsets 022C1DB0 for 0x180 bytes (32 x 12) and is called only at 0023445E []
+PASS  K5  00307300's prepare+consume arm needs the 5th argument == 1 ([rbp+0x130] = entry rsp + 0x28); its only caller ['00319362'] stores ['00319354 dword ptr [rsp + 0x20], 0'] []
+PASS  K6  003191B0 consumes once per committed action: first entry, latch +0x700 bit 1 set at 003192BC, cleared by the commit 0030F7F2 and the cancel 003106C5 []
+PASS  K7  00304850's consume runs only for row dword +0x0C bit 30 and id outside 0xD0..0xF1 []
+PASS  K8t  the refund's two tests (003002B6, 003002DD), the channel-1 clamp to [equipped, 99] (002FD2E9-002FD2FA) and the deltas -1 / +1 read as stated []
+PASS  K8  003008A0's return is discarded: prepare 0030EFBB call 0x309060; refund 003002E1 call 0x253690, or returned unread (no write) to the cancel, which writes 0031063F movabs rax, 0xffffbff75fffcfff
+PASS  K9  003037A0 admits when 0030B0E0 (query kind 0 through +0x50, `setg`) is positive or +0xDC8 == the item; else 0x12 []
+PASS  K10b  00313120's only caller is the verb body 003495A0 (003495B2): ['003495B2 call']
+PASS  K10  00313120 (00313120-003133F2) calls the consume and none of prepare / refund / cancel: ['0020E600', '00303830', '00305640', '00308FF0', '003098D0', '0030EC00', '00316CD0', '00316CF0', '0031B7E0', '003299B0']
+PASS  K12  00304850's direct closure (2761 functions, 1045 indirect call/jmp sites not followed) reaches the reserve and the consume but not 003191B0 or its callers 00319F50 / 00325260 []
+PASS  K13  crossing and evidence sites read as stated (gil cell 02092758; category 3 leaves at 0030575A) []
+PASS  K11a  reserve then consume: after prepare (2, (5, 0), [(5, -1, 0, 1, 0)]); after consume (2, (65535, 0), []); a refund after it (2, (65535, 0), [])
+PASS  K11b  reserve then refund: owned 3 -> 2 -> (3, (65535, 0), [(5, 1, 0, 1, 0)])
+PASS  K11c  reserve at owned 0: after prepare (0, (5, 0)) (nothing taken, reservation set); after refund (1, (65535, 0))
+PASS  K11d  refund at owned 99: (99, (65535, 0), [(5, 1, 0, 1, 0)]) - the reserved item is not stored
+PASS  K11e  two prepares with no clear between: (1, (5, 0)); after one refund owned 2 of 3
+PASS  K11f  kind-1 unit: prepare (3, (65535, 0), []); refund over a planted +0xDC8 (3, (5, 0), [])
+PASS  K11g  gil (row +0x0A 31, effect 32): prepare (610, (65535, 390)); refund (1000, (65535, 0)); prepare + consume (610, (65535, 0))
+PASS  K11h  003037A0 (owned, equipped, +0xDC8) -> reason: {'1/0/FFFF': 0, '0/0/FFFF': 18, '0/0/5': 0, '0/0/6': 18, '1/1/FFFF': 18, '1/1/5': 0}
+PASS  S1  003056BA's 0xFFFF store NOPed: K11a fails, so K11a measures consume's clear
+PASS  S2  0030EFAA `or edx, -1` -> `xor edx, edx`: K11b fails, so K11b measures prepare's take
+PASS  S3  the claim 'a refund never returns more than the prepare took' is refuted by K11c (prepare took 0, refund added 1)
+PASS  S4  00319354 stores 1: K5 fails, so K5 reads the caller's constant
+PASS  S5  003130F2 stores phase 0: K3 fails, so K3 counts zero writers of +0x6B4
+FAILS 0

@@ -212,3 +212,34 @@ this page covers the eighteen byte-doubled units only.
 **WorldAreaField, World, ActorEntity, Presentation, Save_Load_Settings, Script_VM_Native_Bridge — CLIENT (24 edges).** Most of these edges are other layers' loaders using the per-kind size lookup `0032E400` (`[022C51F0][kind][id]` for `id < 0x400`, else a fallback call) and the request queue `0032E620`. The callers are `MapRef_BeginLoadResources` (`00268750`), `003319D0`, `00378030`, `00379A10`, `AreaArd_LoadOrUnloadFieldResource` (`003EA820`), `00378540`, `ActorResource_BeginManagerResourceSetLoad` (`0032FCA0`), `ActorResource_BeginPrimaryPayloadLoad` (`00330310`), `003306E0`, `003B2310`, `003B53C0`, the save-slot loader `002EF300` and the script adapters `0050DF70` / `0050DFE0`. The rest go through `AreaData_BindAndRebaseSectionDescriptor` (`003845F0`). It rebases the descriptor's offsets (`+0xC`, `+0x10`, `+0x18`, `+0x1C` by adding the base) and re-encodes only its `+0x14` pointer through the image-address codec (`0020E620`), then walks the entries through `003846F0`; `00236C30`, `BattleData_SetAreaArdSectionCategory` (`0023A160`), `00238640` and `003847B0` call it. These are shared loaders and a shared rebase; the image formats stay this page's.
 
 **CombatAI and CombatAction — CLIENT (2 edges).** `GambitTargetDefinition_BindAndBuildMenuLookup` (`00238880`) and `00237FC0` call the same section rebase `003845F0`, and that is their only tie here.
+
+## Family members explained one by one: MMSG value receiver adapters (OPUS, 2026-10-03, opus-member-and-map-effect-images-mmsg-value-receiver-adapters-1-r9)
+
+*Members of the family `MMSG value receiver adapters`, which this page declares, that no page explained. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted locally from OPUS's pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-member-and-map-effect-images-mmsg-value-receiver-adapters-1-r9/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `002F76A0` | 20 B | stores the sign-extended `ecx` at qword `02EC3D98` and tail-jumps to `00238640` with 3 in `ecx` and that value in `rdx` | `002F76A3`, `002F76A8`, `002F76AF` |
+| `002F76C0` | 20 B | stores the sign-extended `ecx` at qword `02EC3DC0` and tail-jumps to `00238640` with 8 in `ecx` and that value in `rdx` | `002F76C3`, `002F76C8`, `002F76CF` |
+| `002F76E0` | 20 B | stores the sign-extended `ecx` at qword `02EC3DA8` and tail-jumps to `00238640` with 5 in `ecx` and that value in `rdx` | `002F76E3`, `002F76E8`, `002F76EF` |
+| `002F7700` | 20 B | stores the sign-extended `ecx` at qword `02EC3DE8` and tail-jumps to `00238640` with 0xD in `ecx` and that value in `rdx` | `002F7703`, `002F7708`, `002F770F` |
+| `002F7720` | 20 B | stores the sign-extended `ecx` at qword `02EC3DD0` and tail-jumps to `00238640` with 0xA in `ecx` and that value in `rdx` | `002F7723`, `002F7728`, `002F772F` |
+| `002F7740` | 20 B | stores the sign-extended `ecx` at qword `02EC3DC8` and tail-jumps to `00238640` with 9 in `ecx` and that value in `rdx` | `002F7743`, `002F7748`, `002F774F` |
+| `002F7760` | 20 B | stores the sign-extended `ecx` at qword `02EC3E20` and tail-jumps to `00238640` with 0x14 in `ecx` and that value in `rdx` | `002F7763`, `002F7768`, `002F776F` |
+| `002F7780` | 20 B | stores the sign-extended `ecx` at qword `02EC3DF0` and tail-jumps to `00238640` with 0xE in `ecx` and that value in `rdx` | `002F7783`, `002F7788`, `002F778F` |
+| `002F77A0` | 20 B | stores the sign-extended `ecx` at qword `02EC3DF8` and tail-jumps to `00238640` with 0xF in `ecx` and that value in `rdx` | `002F77A3`, `002F77A8`, `002F77AF` |
+| `002F77C0` | 20 B | stores the sign-extended `ecx` at qword `02EC3E08` and tail-jumps to `00238640` with 0x11 in `ecx` and that value in `rdx` | `002F77C3`, `002F77C8`, `002F77CF` |
+| `002F77E0` | 20 B | stores the sign-extended `ecx` at qword `02EC3DD8` and tail-jumps to `00238640` with 0xB in `ecx` and that value in `rdx` | `002F77E3`, `002F77E8`, `002F77EF` |
+| `002F7820` | 20 B | stores the sign-extended `ecx` at qword `02EC3E00` and tail-jumps to `00238640` with 0x10 in `ecx` and that value in `rdx` | `002F7823`, `002F7828`, `002F782F` |
+| `002F7840` | 20 B | stores the sign-extended `ecx` at qword `02EC3E30` and tail-jumps to `00238640` with 0x16 in `ecx` and that value in `rdx` | `002F7843`, `002F7848`, `002F784F` |
+| `002F7860` | 20 B | stores the sign-extended `ecx` at qword `02EC3E38` and tail-jumps to `00238640` with 0x17 in `ecx` and that value in `rdx` | `002F7863`, `002F7868`, `002F786F` |
+| `002F7880` | 20 B | stores the sign-extended `ecx` at qword `02EC3E40` and tail-jumps to `00238640` with 0x18 in `ecx` and that value in `rdx` | `002F7883`, `002F7888`, `002F788F` |
+| `002F78A0` | 20 B | stores the sign-extended `ecx` at qword `02EC3E48` and tail-jumps to `00238640` with 0x19 in `ecx` and that value in `rdx` | `002F78A3`, `002F78A8`, `002F78AF` |
+| `002F78C0` | 20 B | stores the sign-extended `ecx` at qword `02EC3E50` and tail-jumps to `00238640` with 0x1A in `ecx` and that value in `rdx` | `002F78C3`, `002F78C8`, `002F78CF` |
+| `002F78E0` | 20 B | stores the sign-extended `ecx` at qword `02EC3E58` and tail-jumps to `00238640` with 0x1B in `ecx` and that value in `rdx` | `002F78E3`, `002F78E8`, `002F78EF` |
+| `002F7900` | 20 B | stores the sign-extended `ecx` at qword `02EC3D88` and tail-jumps to `00238640` with 1 in `ecx` and that value in `rdx` | `002F7903`, `002F7908`, `002F790F` |
+| `002F7920` | 20 B | stores the sign-extended `ecx` at qword `02EC3E10` and tail-jumps to `00238640` with 0x12 in `ecx` and that value in `rdx` | `002F7923`, `002F7928`, `002F792F` |
+| `002F7940` | 20 B | stores the sign-extended `ecx` at qword `02EC3E18` and tail-jumps to `00238640` with 0x13 in `ecx` and that value in `rdx` | `002F7943`, `002F7948`, `002F794F` |
+| `002F7960` | 20 B | stores the sign-extended `ecx` at qword `02EC3DB0` and tail-jumps to `00238640` with 6 in `ecx` and that value in `rdx` | `002F7963`, `002F7968`, `002F796F` |
+| `002F7980` | 20 B | stores the sign-extended `ecx` at qword `02EC3D90` and tail-jumps to `00238640` with 2 in `ecx` and that value in `rdx` | `002F7983`, `002F7988`, `002F798F` |
+| `002F79A0` | 20 B | stores the sign-extended `ecx` at qword `02EC3DB8` and tail-jumps to `00238640` with 7 in `ecx` and that value in `rdx` | `002F79A3`, `002F79A8`, `002F79AF` |

@@ -1,0 +1,326 @@
+{
+ "page": "22-Middleware-PhyreEngine/Script-Object-Accessors/phyre-script-object-accessors.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "phyre-script-object-accessors-member-vcall-optional-pointer-dispatch-adapters-1-r9.json",
+ "rows": [
+  {
+   "fn": "005FFA10",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `o` = `005F86B0(c)`; returns 0 when `o` is null; `v` = the pointer at qword [f+8] called with `o`; when `v` is non-null calls `00684080(c, v, 02CB7080)`, else `0080F420(c, 1)` and `00810620` with `c` in `rcx`; returns 1",
+   "anchors": [
+    [
+     "005FFA23",
+     "call"
+    ],
+    [
+     "005FFA30",
+     "call"
+    ],
+    [
+     "005FFA3B",
+     "lea"
+    ],
+    [
+     "005FFA45",
+     "call"
+    ],
+    [
+     "005FFA58",
+     "pop"
+    ]
+   ]
+  },
+  {
+   "fn": "005FFA90",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `o` = `005F86B0(c)`; returns 0 when `o` is null; `v` = the pointer at qword [f+8] called with `o`; when `v` is non-null calls `00684080(c, v, 02E404B0)`, else `0080F420(c, 1)` and `00810620` with `c` in `rcx`; returns 1",
+   "anchors": [
+    [
+     "005FFAA3",
+     "call"
+    ],
+    [
+     "005FFAB0",
+     "call"
+    ],
+    [
+     "005FFABB",
+     "lea"
+    ],
+    [
+     "005FFAC5",
+     "call"
+    ],
+    [
+     "005FFAD8",
+     "pop"
+    ]
+   ]
+  },
+  {
+   "fn": "00678F10",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `o` = `00678CB0(c)`; returns 0 when `o` is null; `v` = the pointer at qword [f+8] called with `o`; when `v` is non-null calls `00684080(c, v, 02E404B0)`, else `0080F420(c, 1)` and `00810620` with `c` in `rcx`; returns 1",
+   "anchors": [
+    [
+     "00678F23",
+     "call"
+    ],
+    [
+     "00678F30",
+     "call"
+    ],
+    [
+     "00678F3B",
+     "lea"
+    ],
+    [
+     "00678F45",
+     "call"
+    ],
+    [
+     "00678F58",
+     "pop"
+    ]
+   ]
+  },
+  {
+   "fn": "006A12B0",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `o` = `0069D650(c)`; returns 0 when `o` is null; `v` = the pointer at qword [f+8] called with `o`; when `v` is non-null calls `00684080(c, v, 02E404B0)`, else `0080F420(c, 1)` and `00810620` with `c` in `rcx`; returns 1",
+   "anchors": [
+    [
+     "006A12C3",
+     "call"
+    ],
+    [
+     "006A12D0",
+     "call"
+    ],
+    [
+     "006A12DB",
+     "lea"
+    ],
+    [
+     "006A12E5",
+     "call"
+    ],
+    [
+     "006A12F8",
+     "pop"
+    ]
+   ]
+  },
+  {
+   "fn": "006A8D10",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `o` = `006A8B60(c)`; returns 0 when `o` is null; `v` = the pointer at qword [f+8] called with `o`; when `v` is non-null calls `00684080(c, v, 02E404B0)`, else `0080F420(c, 1)` and `00810620` with `c` in `rcx`; returns 1",
+   "anchors": [
+    [
+     "006A8D23",
+     "call"
+    ],
+    [
+     "006A8D30",
+     "call"
+    ],
+    [
+     "006A8D3B",
+     "lea"
+    ],
+    [
+     "006A8D45",
+     "call"
+    ],
+    [
+     "006A8D58",
+     "pop"
+    ]
+   ]
+  },
+  {
+   "fn": "006AB090",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `o` = `006AAF00(c)`; returns 0 when `o` is null; `v` = the pointer at qword [f+8] called with `o`; when `v` is non-null calls `00684080(c, v, 02E4EAF0)`, else `0080F420(c, 1)` and `00810620` with `c` in `rcx`; returns 1",
+   "anchors": [
+    [
+     "006AB0A3",
+     "call"
+    ],
+    [
+     "006AB0B0",
+     "call"
+    ],
+    [
+     "006AB0BB",
+     "lea"
+    ],
+    [
+     "006AB0C5",
+     "call"
+    ],
+    [
+     "006AB0D8",
+     "pop"
+    ]
+   ]
+  },
+  {
+   "fn": "006AC4F0",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `o` = `006AC1D0(c)`; returns 0 when `o` is null; `v` = the pointer at qword [f+8] called with `o`; when `v` is non-null calls `00684080(c, v, 02E404B0)`, else `0080F420(c, 1)` and `00810620` with `c` in `rcx`; returns 1",
+   "anchors": [
+    [
+     "006AC503",
+     "call"
+    ],
+    [
+     "006AC510",
+     "call"
+    ],
+    [
+     "006AC51B",
+     "lea"
+    ],
+    [
+     "006AC525",
+     "call"
+    ],
+    [
+     "006AC538",
+     "pop"
+    ]
+   ]
+  },
+  {
+   "fn": "006BFD60",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `o` = `006BFB10(c)`; returns 0 when `o` is null; `v` = the pointer at qword [f+8] called with `o`; when `v` is non-null calls `00684080(c, v, 02E404B0)`, else `0080F420(c, 1)` and `00810620` with `c` in `rcx`; returns 1",
+   "anchors": [
+    [
+     "006BFD73",
+     "call"
+    ],
+    [
+     "006BFD80",
+     "call"
+    ],
+    [
+     "006BFD8B",
+     "lea"
+    ],
+    [
+     "006BFD95",
+     "call"
+    ],
+    [
+     "006BFDA8",
+     "pop"
+    ]
+   ]
+  },
+  {
+   "fn": "006C7500",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `o` = `006C70E0(c)`; returns 0 when `o` is null; `v` = the pointer at qword [f+8] called with `o`; when `v` is non-null calls `00684080(c, v, 02E404B0)`, else `0080F420(c, 1)` and `00810620` with `c` in `rcx`; returns 1",
+   "anchors": [
+    [
+     "006C7513",
+     "call"
+    ],
+    [
+     "006C7520",
+     "call"
+    ],
+    [
+     "006C752B",
+     "lea"
+    ],
+    [
+     "006C7535",
+     "call"
+    ],
+    [
+     "006C7548",
+     "pop"
+    ]
+   ]
+  },
+  {
+   "fn": "006C8650",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `o` = `006C8520(c)`; returns 0 when `o` is null; `v` = the pointer at qword [f+8] called with `o`; when `v` is non-null calls `00684080(c, v, 02E404B0)`, else `0080F420(c, 1)` and `00810620` with `c` in `rcx`; returns 1",
+   "anchors": [
+    [
+     "006C8663",
+     "call"
+    ],
+    [
+     "006C8670",
+     "call"
+    ],
+    [
+     "006C867B",
+     "lea"
+    ],
+    [
+     "006C8685",
+     "call"
+    ],
+    [
+     "006C8698",
+     "pop"
+    ]
+   ]
+  },
+  {
+   "fn": "0079A9D0",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `o` = `00796960(c)`; returns 0 when `o` is null; `v` = the pointer at qword [f+8] called with `o`; when `v` is non-null calls `00684080(c, v, 02EA9400)`, else `0080F420(c, 1)` and `00810620` with `c` in `rcx`; returns 1",
+   "anchors": [
+    [
+     "0079A9E3",
+     "call"
+    ],
+    [
+     "0079A9F0",
+     "call"
+    ],
+    [
+     "0079A9FB",
+     "lea"
+    ],
+    [
+     "0079AA05",
+     "call"
+    ],
+    [
+     "0079AA18",
+     "pop"
+    ]
+   ]
+  },
+  {
+   "fn": "0079AA50",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `o` = `00796960(c)`; returns 0 when `o` is null; `v` = the pointer at qword [f+8] called with `o`; when `v` is non-null calls `00684080(c, v, 02CF8A80)`, else `0080F420(c, 1)` and `00810620` with `c` in `rcx`; returns 1",
+   "anchors": [
+    [
+     "0079AA63",
+     "call"
+    ],
+    [
+     "0079AA70",
+     "call"
+    ],
+    [
+     "0079AA7B",
+     "lea"
+    ],
+    [
+     "0079AA85",
+     "call"
+    ],
+    [
+     "0079AA98",
+     "pop"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "member",
+ "family": "member-vcall optional-pointer dispatch adapters"
+}

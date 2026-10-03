@@ -1,0 +1,102 @@
+{
+ "page": "22-Middleware-PhyreEngine/Script-Object-Accessors/phyre-script-object-accessors.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "phyre-script-object-accessors-descriptor-forward-tail-call-adapters-21-byte-form-1-r9.json",
+ "rows": [
+  {
+   "fn": "00584850",
+   "text": "tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and `02CA9FA0` in `r8`",
+   "anchors": [
+    [
+     "00584853",
+     "mov"
+    ],
+    [
+     "00584856",
+     "mov"
+    ],
+    [
+     "00584859",
+     "lea"
+    ],
+    [
+     "00584860",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00584AB0",
+   "text": "tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and `02CA9DA0` in `r8`",
+   "anchors": [
+    [
+     "00584AB3",
+     "mov"
+    ],
+    [
+     "00584AB6",
+     "mov"
+    ],
+    [
+     "00584AB9",
+     "lea"
+    ],
+    [
+     "00584AC0",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00584FC0",
+   "text": "tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and `02CA9EA0` in `r8`",
+   "anchors": [
+    [
+     "00584FC3",
+     "mov"
+    ],
+    [
+     "00584FC6",
+     "mov"
+    ],
+    [
+     "00584FC9",
+     "lea"
+    ],
+    [
+     "00584FD0",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00674DD0",
+   "text": "tail-jumps to `00684080` with `rdx` as received in `rcx`, `r8` as received in `rdx` and `02D3E780` in `r8`",
+   "anchors": [
+    [
+     "00674DD3",
+     "mov"
+    ],
+    [
+     "00674DD6",
+     "mov"
+    ],
+    [
+     "00674DD9",
+     "lea"
+    ],
+    [
+     "00674DE0",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "member",
+ "family": "descriptor-forward tail-call adapters, 21-byte form"
+}

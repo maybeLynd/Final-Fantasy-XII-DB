@@ -1,7 +1,7 @@
-<!-- TEAM-CURRENT:begin agent=SWE2-FRONTIER board_rev=51279 epoch=4 queue_sha=9ee5053f5eee93dc -->
-> generated 2026-10-03T15:31:32+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=SWE2-FRONTIER board_rev=51675 epoch=4 queue_sha=0b935dfd3f6f237a -->
+> generated 2026-10-03T17:32:58+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
-> ACTIVE: SWE2FRONTIER-PUB-RESUME-1003D
+> ACTIVE: SWE2FRONTIER-PUB-RESUME-1003G
 > READY addressed to you: none
 > READY pool: 0 | BLOCKED: 0
 <!-- TEAM-CURRENT:end -->
@@ -65,7 +65,17 @@ idle, and it is not a reason to start something that depends on its outcome.
 Updated at every checkpoint; a restarted session rebuilds from this block before touching the board.
 Required by the continuity rule in the root `CLAUDE.md` ("What a plain `Continue` means").
 
-- **STAND-IN CHECKPOINT 2026-10-03 15:30Z (Claude stand-in for Devin, session bb063a3a; read this first; supersedes the 14:30Z bullet).** Since 14:30Z: ASTRA got two more publication turns without intervention (86cdcde10 native-relation invariant, e06561376 relation reset); `splice_pub_multi.py` added for splices over two dirty files. Open: none. Queue watcher `Tools/work/SWE2-FRONTIER/standin1003/queue_watch.py`; fleet plan holds all 8 lanes until Devin starts (release with `hold_plan.py ""` in the stand-in scratchpad). Publish tools per lane: `Tools/work/<LANE>/standin1003/` (bop.py, mkpub.py, pub_runner.py); splice publishes over peer overlays: `Tools/work/SWE2-FRONTIER/standin1003/splice_pub.py` (one dirty path) or `splice_pub_multi.py` ("PATH1;PATH2"; apply your edit to the worktree first - the saved copy is restored).
+- **2026-10-03 ~17:30Z — Devin SWE2-FRONTIER back under user control (session `calm-lamp`).**
+  Post-restart resume: controller auto-recovered (pid 6716). Verified at rev 51656 — **queue empty** (all FRONTIER
+  tasks DONE by the stand-in; only `FRONTIER-REQ-ASTRA-WORKFLOW-INDEPENDENT-VERIFY` ACTIVE with ASTRA). Actions:
+  released `SWE2-FRONTIER` from `held_by_subagent` in `fleet-plan.json` (all 7 other lanes stay held — 5 claude.exe
+  alive, the stand-in may still be running; release lanes one-by-one on verified stand-down); cleared 25 stale
+  DEP_STARVED replans (SPEC's OV42 deps all DONE); board note at rev 51656. **Next:** planner watch — monitor the
+  stand-in's wind-down (FABLE board ops at 17:23Z are a separate live session); when held lanes show no Claude
+  activity, release them to normal Devin wakes; pick up the stand-in's "Open for Devin" list below. `@publication`
+  free. Stand-in tooling: `Tools/work/<LANE>/standin1003/` (`hold_plan.py ""` releases all holds; `bop.py`,
+  `mkpub.py`, `pub_runner.py`, `splice_pub*.py` per lane).
+- **STAND-IN CHECKPOINT 2026-10-03 17:00Z (Claude stand-in for Devin, session bb063a3a; read this first; supersedes the 16:15Z bullet).** No new FRONTIER package since 16:15Z. Open: none. Queue watcher `Tools/work/SWE2-FRONTIER/standin1003/queue_watch.py`; fleet plan holds all 8 lanes until Devin starts (release with `hold_plan.py ""` in the stand-in scratchpad). Publish tools per lane: `Tools/work/<LANE>/standin1003/` (bop.py, mkpub.py, pub_runner.py); splices: `Tools/work/SWE2-FRONTIER/standin1003/splice_pub.py` (one dirty path) or `splice_pub_multi.py` ("PATH1;PATH2"; apply your edit to the worktree first - the saved copy is restored).
 
 - **2026-10-03 09:05Z - Claude stand-in for Devin (SWE2-FRONTIER), final; supersedes the 03:25Z entry below.**
   **Current package/claim:** none. Every SWE2-FRONTIER task on the board is DONE (queue empty at rev ~50139). No

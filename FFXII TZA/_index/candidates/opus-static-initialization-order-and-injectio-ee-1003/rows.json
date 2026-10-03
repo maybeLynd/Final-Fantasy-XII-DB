@@ -1,0 +1,40 @@
+{
+ "page": "24-Compiler-And-CRT-Runtime/Static-Initialization-And-Lifetime/static-initialization-order-and-injection-timing.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "static-initialization-order-and-injectio-r8.json",
+ "rows": [
+  {
+   "fn": "00808C90",
+   "text": "calls `0086200A` (the `_set_app_type` stub) with 2, `0086202E` (`_set_fmode`) with the result of `00809C38()`, then stores `005C5230()` at the dword `0086204C()` (`__p__commode`) returns; when `00808988(1)` returns 0 in `al` calls `0080996C(7)` (an int3 follows); otherwise calls `00809C88()`, `00808B90(00809CD4)` and `00861FE0` (`_configure_narrow_argv`) with the result of `0053DD10()`; a non-zero result loads 7 into `ecx`, the last listed instruction; otherwise calls `00809C40()` and, when `00809C6C()` returns non-zero, `00862010` (`__setusermatherr`) with `005C5230`; then calls `0016D6A0` twice with no argument set up, `00862040` (`_configthreadlocale`) with `005C5230()`, `00861FE6` (`_initialize_narrow_environment`) when `0061ECF0()` returns non-zero in `al`, and `005C5230()`; returns 0",
+   "anchors": [
+    [
+     "00808C9B",
+     "call"
+    ],
+    [
+     "00808CC0",
+     "call"
+    ],
+    [
+     "00808CE1",
+     "call"
+    ],
+    [
+     "00808CFF",
+     "call"
+    ],
+    [
+     "00808D23",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

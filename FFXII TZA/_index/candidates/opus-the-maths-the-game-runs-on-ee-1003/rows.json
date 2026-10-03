@@ -1,0 +1,68 @@
+{
+ "page": "24-Compiler-And-CRT-Runtime/Maths-Library/the-maths-the-game-runs-on.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-maths-the-game-runs-on-r8.json",
+ "rows": [
+  {
+   "fn": "0085EA40",
+   "text": "with `p` = `r8`, `x` = `r9` and F(q) = `0085E740(rcx, edx, q, x)`: `i` = F(p) (sign-extended); with `t` = qword [x+0x10] returns `i` when dword [t+4i] is 3; calls `00861D30(&v, p)` for a stack vec3 `v` and takes `w` = (v.y p.z - v.z p.y, v.z p.x - v.x p.z, v.x p.y - v.y p.x); with Q(a) = p + 0.025 (`00D22C30`) times (v sinf(r) + w cosf(r)), r = a times pi/180 (`008C5F68`), sinf and cosf by `00861F0E` and `00861F08`, passed as a stack vec4 with 0 last, and `e` = -1: for `a` = 0, 45, ..., 360 (steps `00902EF0`, limit `00902438`): `j` = F(Q(a)); goes to D when `e` and `j` are both `i`; unless `e` is -1 or equals `j`, for `b` = `a` - 40 (`00D11670`) up to `a` in steps of 5 (`009146E4`): `k` = F(Q(b)), going to D when `e` and `k` are both `i`, then `e` = `k`; after each `a` sets `e` = `j`; when every angle passes, stores 0 at dword [t+4i] and repeats everything from the first F(p); D: stores 3 at dword [qword [x+0x10] + 4i] and returns `i`",
+   "anchors": [
+    [
+     "0085EACC",
+     "call"
+    ],
+    [
+     "0085EAEF",
+     "call"
+    ],
+    [
+     "0085EB70",
+     "call"
+    ],
+    [
+     "0085EC0D",
+     "call"
+    ],
+    [
+     "0085ED45",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "008800C0",
+   "text": "with `v` = `rcx`, `c` = `rdx` and `p` = `r8`: returns 0xFFFFFF7B when `p` is null; otherwise builds the stack reader `b` (qword +0 = 0, qwords +8 and +0x10 = qword [p], dword +0x18 = dword [p+8], dword +0x1C = 0), takes `t` = `0017CB40(&b, 8)` and calls `00880C10(&b, &s, 6)` on a zeroed 6-byte stack buffer `s`; returns 0xFFFFFF7C unless the first dword and the next word of `s` equal dword `01CEBB50` (\"vorbis\") and word `01CEBB54`; then for `t` 1: returns 0xFFFFFF7B when dword [p+0xC] is 0 or dword [v+8] is non-zero, 0xFFFFFF86 when qword [v+0x20] is null, else `00880720(v, &b, qword [v+0x20])` + 7; for `t` 3: returns 0xFFFFFF7B when dword [v+8] is 0 or qword [c+0x18] is non-null, else `00880540(c, &b)`; for `t` 5: returns 0xFFFFFF7B when dword [v+8] is 0 or qword [c+0x18] is 0, 0xFFFFFF7F when qword [v+0x20] is null, 0xFFFFFF7B when dword [qword [v+0x20] + 0x18] is greater than 0 (signed), else `00880230(v, &b)`; any other `t` returns 0xFFFFFF7B",
+   "anchors": [
+    [
+     "0088010B",
+     "call"
+    ],
+    [
+     "0088012B",
+     "call"
+    ],
+    [
+     "00880134",
+     "cmp"
+    ],
+    [
+     "008801A0",
+     "call"
+    ],
+    [
+     "008801F2",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [
+  "0028BB50"
+ ],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

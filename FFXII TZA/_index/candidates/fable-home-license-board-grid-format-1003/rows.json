@@ -1,0 +1,39 @@
+{
+ "page": "12-Items-Equipment-Shops-License/license-board-grid-format.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01FFgsi7DcuyVgymuET5UYvk",
+ "report": "home-license-board-grid-format.json",
+ "rows": [
+  {
+   "fn": "00282F10",
+   "entered_from": "`003FCAD0` + 0xCD",
+   "text": "maps `ecx` to an index `i`: `ecx`-0x1000 when `ecx`-0x1000 is at most 0x1A4 (unsigned), else `ecx`-0x3E5C when `ecx`-0x4000 is at most 0x18, else `ecx`-0x2E44 when `ecx`-0x3000 is at most 0x51, else 0; then tests byte `i`+0xB2E of qword `0209AC30` against 1 shifted left by byte `rdx+0x60` and returns in `al` 1 when that bit is set, 0 otherwise",
+   "anchors": [
+    [
+     "00282F19",
+     "cmp"
+    ],
+    [
+     "00282F2F",
+     "cmp"
+    ],
+    [
+     "00282F43",
+     "cmp"
+    ],
+    [
+     "00282F66",
+     "test"
+    ],
+    [
+     "00282F6E",
+     "setne"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": []
+}

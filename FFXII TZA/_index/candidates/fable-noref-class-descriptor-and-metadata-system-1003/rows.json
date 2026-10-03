@@ -1,0 +1,535 @@
+{
+ "page": "22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/class-descriptor-and-metadata-system.md",
+ "date": "2026-10-03",
+ "rows": [
+  {
+   "fn": "005A1110",
+   "text": "stores the address `00D312F0` (the `PAnimationHierarchyNode` vtable, in `.rdata`) to qwords `+0x10`, `+0x38` and `+0x58` of the object in `rdx` and returns 1 in `al`; vtable slot 11 of `PClassDescriptorAbstract<PBlendableAnimationSource>`, `PClassDescriptorConcrete<PBlendableAnimationSource>` and `PClassDescriptorForType<PBlendableAnimationSource>`",
+   "anchors": [
+    [
+     "005A111C",
+     "lea"
+    ],
+    [
+     "005A1123",
+     "mov"
+    ],
+    [
+     "005A1127",
+     "mov"
+    ],
+    [
+     "005A112B",
+     "mov"
+    ],
+    [
+     "005A112F",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 11 of `PClassDescriptorAbstract<PBlendableAnimationSource>`, `PClassDescriptorConcrete<PBlendableAnimationSource>` and `PClassDescriptorForType<PBlendableAnimationSource>` (rtti-methods.tsv); the page documents the PClassDescriptorAbstract descriptor classes"
+  },
+  {
+   "fn": "005A1580",
+   "text": "calls `005A9E70` with the object in `rdx` as `rcx` and returns 1 in `al`; vtable slot 11 of `PClassDescriptorAbstract<PAnimationClip>`, `PClassDescriptorConcrete<PAnimationClip>` and `PClassDescriptorForType<PAnimationClip>`",
+   "anchors": [
+    [
+     "005A1584",
+     "mov"
+    ],
+    [
+     "005A1587",
+     "call"
+    ],
+    [
+     "005A158C",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 11 of `PClassDescriptorAbstract<PAnimationClip>`, `PClassDescriptorConcrete<PAnimationClip>` and `PClassDescriptorForType<PAnimationClip>` (rtti-methods.tsv); the page documents the PClassDescriptorAbstract descriptor classes"
+  },
+  {
+   "fn": "005A2280",
+   "text": "calls `005A9D80` with the object in `rdx` as `rcx` and returns 1 in `al`; vtable slot 11 of `PClassDescriptorAbstract<PAnimationChannel>`, `PClassDescriptorConcrete<PAnimationChannel>` and `PClassDescriptorForType<PAnimationChannel>`",
+   "anchors": [
+    [
+     "005A2284",
+     "mov"
+    ],
+    [
+     "005A2287",
+     "call"
+    ],
+    [
+     "005A228C",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 11 of `PClassDescriptorAbstract<PAnimationChannel>`, `PClassDescriptorConcrete<PAnimationChannel>` and `PClassDescriptorForType<PAnimationChannel>` (rtti-methods.tsv); the page documents the PClassDescriptorAbstract descriptor classes"
+  },
+  {
+   "fn": "005A3EA0",
+   "text": "tail-jumps through the qword at `+0x100` of the descriptor object in `rcx` (a field, not its vtable) with `rcx` = the second argument, `rdx` = the third, `r8` unchanged and `r9` = the descriptor; vtable slot 15 of `PClassDescriptorHeader<PAnimationClipBinding>`, `PClassDescriptorHeader<PModifierNetworkInfoPacket>`, `PClassDescriptorHeader<POccluderGeometryObject>` and `PClassDescriptorHeaderWithoutDefaultConstructor<PParameterBuffer>`",
+   "anchors": [
+    [
+     "005A3EA3",
+     "mov"
+    ],
+    [
+     "005A3EA6",
+     "mov"
+    ],
+    [
+     "005A3EA9",
+     "mov"
+    ],
+    [
+     "005A3EAC",
+     "jmp"
+    ]
+   ],
+   "why_here": "slot 15 of `PClassDescriptorHeader<PAnimationClipBinding>`, `PClassDescriptorHeader<PModifierNetworkInfoPacket>`, `PClassDescriptorHeader<POccluderGeometryObject>` and `PClassDescriptorHeaderWithoutDefaultConstructor<PParameterBuffer>` (rtti-methods.tsv); the page documents the PClassDescriptorHeader descriptor classes"
+  },
+  {
+   "fn": "005A44E0",
+   "text": "stores qword 0 at `[rdx]` when `rdx` is non-NULL and returns 1 in `al` on both paths; vtable slot 10 of `PClassDescriptorConcrete<PAnimationEvent>`, `<PAnimationSlotArray>`, `<PModifierNetworkInstancePacketInput>`, `<PVisionMoveTracker>` and `<PVisionTracker>`, and `PClassDescriptorHeader<PAnimationClipBinding>`",
+   "anchors": [
+    [
+     "005A44E3",
+     "je"
+    ],
+    [
+     "005A44E7",
+     "mov"
+    ],
+    [
+     "005A44EA",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 10 of `PClassDescriptorConcrete<PAnimationEvent>`, `<PAnimationSlotArray>`, `<PModifierNetworkInstancePacketInput>`, `<PVisionMoveTracker>` and `<PVisionTracker>`, and `PClassDescriptorHeader<PAnimationClipBinding>` (rtti-methods.tsv); the page documents the PClassDescriptorConcrete descriptor classes"
+  },
+  {
+   "fn": "005D2C60",
+   "text": "when `rdx` is non-NULL stores qword 0xFF at `[rdx]` and qword 0 at `[rdx+8]`, and returns 1 in `al` on both paths; vtable slot 10 of `PClassDescriptorWithoutDefaultConstructor<PShaderParameterCaptureBufferTextureBase>`",
+   "anchors": [
+    [
+     "005D2C63",
+     "je"
+    ],
+    [
+     "005D2C67",
+     "mov"
+    ],
+    [
+     "005D2C6E",
+     "mov"
+    ],
+    [
+     "005D2C72",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 10 of `PClassDescriptorWithoutDefaultConstructor<PShaderParameterCaptureBufferTextureBase>` (rtti-methods.tsv); the page documents the PClassDescriptorWithoutDefaultConstructor descriptor classes"
+  },
+  {
+   "fn": "006110B0",
+   "text": "calls `0062BAB0` with the object in `rdx`; when bit 31 of that object's dword `+0x78` is clear it calls `00619070` with qword `+0x80` and that dword; it then stores 0 to qword `+0x80` and dword `+0x78`, calls `00616B40` with the object, and returns 1 in `al`; vtable slot 11 of `PClassDescriptorAbstract<PShaderVertexProgramD3D11>`, `PClassDescriptorForType<PShaderVertexProgramD3D11>` and `PClassDescriptorWithoutDefaultConstructor<PShaderVertexProgramD3D11>`",
+   "anchors": [
+    [
+     "006110C5",
+     "call"
+    ],
+    [
+     "006110D0",
+     "shr"
+    ],
+    [
+     "006110D7",
+     "je"
+    ],
+    [
+     "006110E4",
+     "call"
+    ],
+    [
+     "006110F8",
+     "call"
+    ]
+   ],
+   "why_here": "slot 11 of `PClassDescriptorAbstract<PShaderVertexProgramD3D11>`, `PClassDescriptorForType<PShaderVertexProgramD3D11>` and `PClassDescriptorWithoutDefaultConstructor<PShaderVertexProgramD3D11>` (rtti-methods.tsv); the page documents the PClassDescriptorWithoutDefaultConstructor descriptor classes"
+  },
+  {
+   "fn": "00613530",
+   "text": "when `rdx` is non-NULL stores 0 to qwords `+0`, `+0x10` and `+0x20` through `+0x68` and to dwords `+8`, `+0x18` and `+0x70` of that object, and returns 1 in `al` on both paths; vtable slot 10 of `PClassDescriptorWithoutDefaultConstructor<PShaderProgramD3D11>`",
+   "anchors": [
+    [
+     "00613533",
+     "je"
+    ],
+    [
+     "00613537",
+     "mov"
+    ],
+    [
+     "0061353A",
+     "mov"
+    ],
+    [
+     "0061354C",
+     "mov"
+    ],
+    [
+     "0061356B",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 10 of `PClassDescriptorWithoutDefaultConstructor<PShaderProgramD3D11>` (rtti-methods.tsv); the page documents the PClassDescriptorWithoutDefaultConstructor descriptor classes"
+  },
+  {
+   "fn": "0062F880",
+   "text": "when `rdx` is non-NULL stores `rdx` itself at qwords `+0` and `+8`, 0 at dword `+0x10` and 0 at qword `+0x18`, and returns 1 in `al` on both paths; vtable slot 10 of `PClassDescriptorWithoutDefaultConstructor<PWorld>`",
+   "anchors": [
+    [
+     "0062F883",
+     "je"
+    ],
+    [
+     "0062F887",
+     "mov"
+    ],
+    [
+     "0062F88A",
+     "mov"
+    ],
+    [
+     "0062F88E",
+     "mov"
+    ],
+    [
+     "0062F891",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 10 of `PClassDescriptorWithoutDefaultConstructor<PWorld>` (rtti-methods.tsv); the page documents the PClassDescriptorWithoutDefaultConstructor descriptor classes"
+  },
+  {
+   "fn": "00688000",
+   "text": "calls `006A49A0`, `006A4710` and `00691DF0` in turn, each with the object in `rdx` as `rcx`, and returns 1 in `al`; vtable slot 11 of `PClassDescriptorAbstract<PPhysicsWorld>`, `PClassDescriptorConcrete<PPhysicsWorld>` and `PClassDescriptorForType<PPhysicsWorld>`",
+   "anchors": [
+    [
+     "00688015",
+     "call"
+    ],
+    [
+     "0068801D",
+     "call"
+    ],
+    [
+     "00688025",
+     "call"
+    ],
+    [
+     "0068802B",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 11 of `PClassDescriptorAbstract<PPhysicsWorld>`, `PClassDescriptorConcrete<PPhysicsWorld>` and `PClassDescriptorForType<PPhysicsWorld>` (rtti-methods.tsv); the page documents the PClassDescriptorAbstract descriptor classes"
+  },
+  {
+   "fn": "006A9450",
+   "text": "calls `006AAA50` with the object in `rdx` as `rcx` and returns 1 in `al`; vtable slot 11 of `PClassDescriptorAbstract<PQuarryComponent>`, `PClassDescriptorConcrete<PQuarryComponent>` and `PClassDescriptorForType<PQuarryComponent>`",
+   "anchors": [
+    [
+     "006A945D",
+     "mov"
+    ],
+    [
+     "006A9460",
+     "call"
+    ],
+    [
+     "006A9465",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 11 of `PClassDescriptorAbstract<PQuarryComponent>`, `PClassDescriptorConcrete<PQuarryComponent>` and `PClassDescriptorForType<PQuarryComponent>` (rtti-methods.tsv); the page documents the PClassDescriptorAbstract descriptor classes"
+  },
+  {
+   "fn": "006AA6C0",
+   "text": "calls `006ACA70` with qword `+8` of the object in `rdx` when that qword is non-NULL, and returns 1 in `al` on both paths; vtable slot 11 of `PClassDescriptorAbstract<PComponent>`, `PClassDescriptorConcrete<PComponent>` and `PClassDescriptorForType<PComponent>`",
+   "anchors": [
+    [
+     "006AA6CD",
+     "mov"
+    ],
+    [
+     "006AA6D1",
+     "test"
+    ],
+    [
+     "006AA6D6",
+     "call"
+    ],
+    [
+     "006AA6DC",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 11 of `PClassDescriptorAbstract<PComponent>`, `PClassDescriptorConcrete<PComponent>` and `PClassDescriptorForType<PComponent>` (rtti-methods.tsv); the page documents the PClassDescriptorAbstract descriptor classes"
+  },
+  {
+   "fn": "006AA7F0",
+   "text": "takes count = dword `+0x70`, cursor = qword `+0x58` and value = qword `+0x50` of the object in `rdx`, reads the stride once as the dword at `+0x38` of the value, and for count iterations stores the value at qword `+0x10` of the cursor and advances the cursor by the stride; it returns 0; vtable slot 14 of `PClassDescriptorAbstract<PComponent>` and `PClassDescriptorConcrete<PComponent>`",
+   "anchors": [
+    [
+     "006AA7F3",
+     "mov"
+    ],
+    [
+     "006AA7FF",
+     "mov"
+    ],
+    [
+     "006AA803",
+     "mov"
+    ],
+    [
+     "006AA807",
+     "add"
+    ],
+    [
+     "006AA810",
+     "xor"
+    ]
+   ],
+   "why_here": "slot 14 of `PClassDescriptorAbstract<PComponent>` and `PClassDescriptorConcrete<PComponent>` (rtti-methods.tsv); the page documents the PClassDescriptorAbstract descriptor classes"
+  },
+  {
+   "fn": "006B2E40",
+   "text": "tail-jumps to `006843D0` with `rcx` = the second argument and `rdx` = the third; vtable slot 4 of `PClassDescriptorWrapper<Vector3>`",
+   "anchors": [
+    [
+     "006B2E43",
+     "mov"
+    ],
+    [
+     "006B2E46",
+     "jmp"
+    ]
+   ],
+   "why_here": "slot 4 of `PClassDescriptorWrapper<Vector3>` (rtti-methods.tsv); the page documents the PClassDescriptorWrapper descriptor classes"
+  },
+  {
+   "fn": "006CD6A0",
+   "text": "returns 0 when `rdx` is NULL and the qword at `[rdx]` otherwise; vtable slot 8 of `PNamedSemanticDescriptorForDynamicType<PTriggerType>` and `<PSceneRenderPassType>`, and `PNamedSemanticDescriptorForType<PAnimationKeyDataType>`, `<PModifier>`, `<PRenderDataType>` and `<PTextureFormatBase>`",
+   "anchors": [
+    [
+     "006CD6A3",
+     "jne"
+    ],
+    [
+     "006CD6A5",
+     "xor"
+    ],
+    [
+     "006CD6A8",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 8 of `PNamedSemanticDescriptorForDynamicType<PTriggerType>` and `<PSceneRenderPassType>`, and `PNamedSemanticDescriptorForType<PAnimationKeyDataType>`, `<PModifier>`, `<PRenderDataType>` and `<PTextureFormatBase>` (rtti-methods.tsv); the page documents the PNamedSemanticDescriptorForType descriptor classes"
+  },
+  {
+   "fn": "006CE820",
+   "text": "when `rdx` is non-NULL stores 0 to the four qwords `+0` through `+0x18` of that object, and returns 1 in `al` on both paths; vtable slot 10 of `PClassDescriptorConcrete<PModifierNetworkInfoPacket_ModifierCode>` and `<PModifierNetworkInfoPacket_ModifierInstance>`, and `PClassDescriptorHeader<PModifierNetworkInfoPacket>`",
+   "anchors": [
+    [
+     "006CE823",
+     "je"
+    ],
+    [
+     "006CE827",
+     "mov"
+    ],
+    [
+     "006CE832",
+     "mov"
+    ],
+    [
+     "006CE836",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 10 of `PClassDescriptorConcrete<PModifierNetworkInfoPacket_ModifierCode>` and `<PModifierNetworkInfoPacket_ModifierInstance>`, and `PClassDescriptorHeader<PModifierNetworkInfoPacket>` (rtti-methods.tsv); the page documents the PClassDescriptorConcrete descriptor classes"
+  },
+  {
+   "fn": "006D98C0",
+   "text": "returns 0 when `rdx` is NULL and the qword at `[rdx+8]` otherwise; vtable slot 8 of `PNamedSemanticDescriptorForDynamicType<PContextSwitch>` and ten PNamedSemanticDescriptorForType instantiations (PInputAxisSemantic, PInputChannelSemantic, PInputJoypadButtonSemantic, PInputKeySemantic, PInputMouseButtonSemantic, PInputTypeSemantic, PLODBlendType, PLODMetricType, PLightType, PShadowCasterType)",
+   "anchors": [
+    [
+     "006D98C3",
+     "jne"
+    ],
+    [
+     "006D98C5",
+     "xor"
+    ],
+    [
+     "006D98C8",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 8 of `PNamedSemanticDescriptorForDynamicType<PContextSwitch>` and ten PNamedSemanticDescriptorForType instantiations (PInputAxisSemantic, PInputChannelSemantic, PInputJoypadButtonSemantic, PInputKeySemantic, PInputMouseButtonSemantic, PInputTypeSemantic, PLODBlendType, PLODMetricType, PLightType, PShadowCasterType) (rtti-methods.tsv); the page documents the PNamedSemanticDescriptorForType descriptor classes"
+  },
+  {
+   "fn": "006D9E80",
+   "text": "when `rdx` is non-NULL stores 0 to qwords `+0`, `+8`, `+0x10` and `+0x20` and to dwords `+0x18` and `+0x28` of that object, and returns 1 in `al` on both paths; vtable slot 10 of `PClassDescriptorHeader<POccluderGeometryObject>`",
+   "anchors": [
+    [
+     "006D9E83",
+     "je"
+    ],
+    [
+     "006D9E87",
+     "mov"
+    ],
+    [
+     "006D9E92",
+     "mov"
+    ],
+    [
+     "006D9E99",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 10 of `PClassDescriptorHeader<POccluderGeometryObject>` (rtti-methods.tsv); the page documents the PClassDescriptorHeader descriptor classes"
+  },
+  {
+   "fn": "008773B0",
+   "text": "calls `00878070` with `rdx` + 0x78 and then with `rdx` + 0x28, and returns 1 in `al`; vtable slot 11 of `PClassDescriptorAbstract<POctreeWorld>`, `PClassDescriptorForType<POctreeWorld>` and `PClassDescriptorWithoutDefaultConstructor<POctreeWorld>`",
+   "anchors": [
+    [
+     "008773C2",
+     "lea"
+    ],
+    [
+     "008773C6",
+     "call"
+    ],
+    [
+     "008773CB",
+     "lea"
+    ],
+    [
+     "008773CF",
+     "call"
+    ]
+   ],
+   "why_here": "slot 11 of `PClassDescriptorAbstract<POctreeWorld>`, `PClassDescriptorForType<POctreeWorld>` and `PClassDescriptorWithoutDefaultConstructor<POctreeWorld>` (rtti-methods.tsv); the page documents the PClassDescriptorAbstract descriptor classes"
+  },
+  {
+   "fn": "008775E0",
+   "text": "with no NULL test takes `n` = qword `+0x20` and `p` = qword `+0x28` of the object in `rdx`, stores `n` at qword `+0x20` of `p` and `p` at qword `+0x28` of `n`, points the object's own qwords `+0x20` and `+0x28` back at the object, stores qword 0 at `+0`, and returns 1 in `al`; vtable slot 11 of `PClassDescriptorAbstract<POctreeData>`, `PClassDescriptorForType<POctreeData>` and `PClassDescriptorWithoutDefaultConstructor<POctreeData>`",
+   "anchors": [
+    [
+     "008775E4",
+     "mov"
+    ],
+    [
+     "008775E8",
+     "mov"
+    ],
+    [
+     "008775EC",
+     "mov"
+    ],
+    [
+     "008775F2",
+     "mov"
+    ],
+    [
+     "008775FA",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 11 of `PClassDescriptorAbstract<POctreeData>`, `PClassDescriptorForType<POctreeData>` and `PClassDescriptorWithoutDefaultConstructor<POctreeData>` (rtti-methods.tsv); the page documents the PClassDescriptorAbstract descriptor classes"
+  },
+  {
+   "fn": "008779E0",
+   "text": "when `rdx` is non-NULL stores 0 to qword `+0x10`, dword `+0x18` and dword `+0`, copies dwords `+0x14` and `+0x18` (both already 0 from those stores) to dwords `+4` and `+8`, stores 0 to dwords `+0x20`, `+0x24` and `+0x34` and qwords `+0x38`, `+0x40` and `+0x48`, 10 to dword `+0x28` and qword 1 to `+0x2C`, and returns 1 in `al` on both paths; vtable slot 10 of `PClassDescriptorWithoutDefaultConstructor<POctree>`",
+   "anchors": [
+    [
+     "008779E7",
+     "mov"
+    ],
+    [
+     "008779F0",
+     "mov"
+    ],
+    [
+     "008779F6",
+     "mov"
+    ],
+    [
+     "008779FF",
+     "mov"
+    ],
+    [
+     "00877A06",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 10 of `PClassDescriptorWithoutDefaultConstructor<POctree>` (rtti-methods.tsv); the page documents the PClassDescriptorWithoutDefaultConstructor descriptor classes"
+  },
+  {
+   "fn": "00879980",
+   "text": "when `rdx` is non-NULL stores 0 to dword `+0` and qwords `+8` and `+0x10` of that object, and returns 1 in `al` on both paths; vtable slot 10 of `PClassDescriptorConcrete<PGameConfig>` and `<PInputMap>`, and `PClassDescriptorWithoutDefaultConstructor<PStreamInputLayoutD3D11>`",
+   "anchors": [
+    [
+     "00879983",
+     "je"
+    ],
+    [
+     "00879987",
+     "mov"
+    ],
+    [
+     "0087998D",
+     "mov"
+    ],
+    [
+     "00879991",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 10 of `PClassDescriptorConcrete<PGameConfig>` and `<PInputMap>`, and `PClassDescriptorWithoutDefaultConstructor<PStreamInputLayoutD3D11>` (rtti-methods.tsv); the page documents the PClassDescriptorConcrete descriptor classes"
+  }
+ ],
+ "owner_tokens": {
+  "005A1110": "PClassDescriptorAbstract",
+  "005A1580": "PClassDescriptorAbstract",
+  "005A2280": "PClassDescriptorAbstract",
+  "005A3EA0": "PClassDescriptorHeader",
+  "005A44E0": "PClassDescriptorConcrete",
+  "005D2C60": "PClassDescriptorWithoutDefaultConstructor",
+  "006110B0": "PClassDescriptorWithoutDefaultConstructor",
+  "00613530": "PClassDescriptorWithoutDefaultConstructor",
+  "0062F880": "PClassDescriptorWithoutDefaultConstructor",
+  "00688000": "PClassDescriptorAbstract",
+  "006A9450": "PClassDescriptorAbstract",
+  "006AA6C0": "PClassDescriptorAbstract",
+  "006AA7F0": "PClassDescriptorAbstract",
+  "006B2E40": "PClassDescriptorWrapper",
+  "006CD6A0": "PNamedSemanticDescriptorForType",
+  "006CE820": "PClassDescriptorConcrete",
+  "006D98C0": "PNamedSemanticDescriptorForType",
+  "006D9E80": "PClassDescriptorHeader",
+  "008773B0": "PClassDescriptorAbstract",
+  "008775E0": "PClassDescriptorAbstract",
+  "008779E0": "PClassDescriptorWithoutDefaultConstructor",
+  "00879980": "PClassDescriptorConcrete"
+ },
+ "kind": "rtti",
+ "note_extra": "",
+ "source": "SWE2-EC7 hand-off Database/Tools/work/SWE2-EC7/handoff_noref_to_fable_1003.tsv (rtti column), homing_rtti_noref_1003.tsv, h211/callers.tsv"
+}

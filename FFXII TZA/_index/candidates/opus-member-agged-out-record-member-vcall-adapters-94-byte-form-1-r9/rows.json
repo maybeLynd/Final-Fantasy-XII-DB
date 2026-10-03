@@ -1,0 +1,222 @@
+{
+ "page": "22-Middleware-PhyreEngine/Script-Object-Accessors/phyre-script-object-accessors.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "phyre-script-object-accessors-tagged-out-record-member-vcall-adapters-94-byte-form-1-r9.json",
+ "rows": [
+  {
+   "fn": "005CC300",
+   "text": "with `f` = `rcx`, `o` = `rdx`, `k` = `r8` and `out` = `r9`: returns 0 when `o` is null; `v` = the pointer at qword [f+8] called with `o`; returns 0 when `out` is null or `k` is not (`02E4D630` OR 1); else stores 0 at qword [out] and `v` at qword [out+8] and returns 1",
+   "anchors": [
+    [
+     "005CC313",
+     "test"
+    ],
+    [
+     "005CC31B",
+     "call"
+    ],
+    [
+     "005CC326",
+     "lea"
+    ],
+    [
+     "005CC331",
+     "cmp"
+    ],
+    [
+     "005CC336",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00610B50",
+   "text": "with `f` = `rcx`, `o` = `rdx`, `k` = `r8` and `out` = `r9`: returns 0 when `o` is null; `v` = the pointer at qword [f+8] called with `o`; returns 0 when `out` is null or `k` is not (`02D3A440` OR 1); else stores 0 at qword [out] and `v` at qword [out+8] and returns 1",
+   "anchors": [
+    [
+     "00610B63",
+     "test"
+    ],
+    [
+     "00610B6B",
+     "call"
+    ],
+    [
+     "00610B76",
+     "lea"
+    ],
+    [
+     "00610B81",
+     "cmp"
+    ],
+    [
+     "00610B86",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00610BB0",
+   "text": "with `f` = `rcx`, `o` = `rdx`, `k` = `r8` and `out` = `r9`: returns 0 when `o` is null; `v` = the pointer at qword [f+8] called with `o`; returns 0 when `out` is null or `k` is not (`02D3A640` OR 1); else stores 0 at qword [out] and `v` at qword [out+8] and returns 1",
+   "anchors": [
+    [
+     "00610BC3",
+     "test"
+    ],
+    [
+     "00610BCB",
+     "call"
+    ],
+    [
+     "00610BD6",
+     "lea"
+    ],
+    [
+     "00610BE1",
+     "cmp"
+    ],
+    [
+     "00610BE6",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00610CA0",
+   "text": "with `f` = `rcx`, `o` = `rdx`, `k` = `r8` and `out` = `r9`: returns 0 when `o` is null; `v` = the pointer at qword [f+8] called with `o`; returns 0 when `out` is null or `k` is not (`02CB7080` OR 1); else stores 0 at qword [out] and `v` at qword [out+8] and returns 1",
+   "anchors": [
+    [
+     "00610CB3",
+     "test"
+    ],
+    [
+     "00610CBB",
+     "call"
+    ],
+    [
+     "00610CC6",
+     "lea"
+    ],
+    [
+     "00610CD1",
+     "cmp"
+    ],
+    [
+     "00610CD6",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006A68F0",
+   "text": "with `f` = `rcx`, `o` = `rdx`, `k` = `r8` and `out` = `r9`: returns 0 when `o` is null; `v` = the pointer at qword [f+8] called with `o`; returns 0 when `out` is null or `k` is not (`02E518D0` OR 1); else stores 0 at qword [out] and `v` at qword [out+8] and returns 1",
+   "anchors": [
+    [
+     "006A6903",
+     "test"
+    ],
+    [
+     "006A690B",
+     "call"
+    ],
+    [
+     "006A6916",
+     "lea"
+    ],
+    [
+     "006A6921",
+     "cmp"
+    ],
+    [
+     "006A6926",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006A9360",
+   "text": "with `f` = `rcx`, `o` = `rdx`, `k` = `r8` and `out` = `r9`: returns 0 when `o` is null; `v` = the pointer at qword [f+8] called with `o`; returns 0 when `out` is null or `k` is not (`02E404B0` OR 1); else stores 0 at qword [out] and `v` at qword [out+8] and returns 1",
+   "anchors": [
+    [
+     "006A9373",
+     "test"
+    ],
+    [
+     "006A937B",
+     "call"
+    ],
+    [
+     "006A9386",
+     "lea"
+    ],
+    [
+     "006A9391",
+     "cmp"
+    ],
+    [
+     "006A9396",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006AB210",
+   "text": "with `f` = `rcx`, `o` = `rdx`, `k` = `r8` and `out` = `r9`: returns 0 when `o` is null; `v` = the pointer at qword [f+8] called with `o`; returns 0 when `out` is null or `k` is not (`02CF8470` OR 1); else stores 0 at qword [out] and `v` at qword [out+8] and returns 1",
+   "anchors": [
+    [
+     "006AB223",
+     "test"
+    ],
+    [
+     "006AB22B",
+     "call"
+    ],
+    [
+     "006AB236",
+     "lea"
+    ],
+    [
+     "006AB241",
+     "cmp"
+    ],
+    [
+     "006AB246",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006AB270",
+   "text": "with `f` = `rcx`, `o` = `rdx`, `k` = `r8` and `out` = `r9`: returns 0 when `o` is null; `v` = the pointer at qword [f+8] called with `o`; returns 0 when `out` is null or `k` is not (`02E4EAF0` OR 1); else stores 0 at qword [out] and `v` at qword [out+8] and returns 1",
+   "anchors": [
+    [
+     "006AB283",
+     "test"
+    ],
+    [
+     "006AB28B",
+     "call"
+    ],
+    [
+     "006AB296",
+     "lea"
+    ],
+    [
+     "006AB2A1",
+     "cmp"
+    ],
+    [
+     "006AB2A6",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "member",
+ "family": "tagged out-record member vcall adapters, 94-byte form"
+}

@@ -2856,3 +2856,9 @@ Interior anchor `00332FDB` (function `00332FA0`).
 | `003EB190` | 111 B | does nothing when `ecx` is above 0x1f (unsigned); otherwise, when qword slot `02B5EA20[ecx]` (stride 8) is non-null, calls `003EB470` on it and clears the slot, then stores into the slot, and returns, the result of the call at `003EB190` + 0x52 with (`rdx`, `r8d`, `r9d`, the fifth (stack) argument) | Interior anchor `003EB193`; Interior anchor `003EB1C9`; Interior anchor `003EB1CE`; Interior anchor `003EB1E2`; Interior anchor `003EB1F1` |
 | `00473490` | 43 B | calls `00466C40(ecx)`, then the call at `00473490` + 0x17 with the same `ecx`, and returns in `xmm0` the second float minus the first | Interior anchor `0047349D`; Interior anchor `004734A7`; Interior anchor `004734AC` |
 | `004734C0` | 46 B | calls `00466BB0(ecx)`, then `00466C40(ecx)`, and returns in `xmm0` the first float minus the second | Interior anchor `004734CD`; Interior anchor `004734D7`; Interior anchor `004734DC`; Interior anchor `004734E0` |
+
+## SWE2-EC7-217 update (2026-10-03) - the nearfade override bytes `02099DA4`/`02099DA5`
+
+`0026AB50` (13 B) writes the two override bytes that the `0025D950` row above reads: it stores `cl` at byte `02099DA4` and `dl` at byte `02099DA5`, and returns. It is reached by tail jumps from two verb handlers. `set_force_char_nearfade` `0x0552` passes 1 and the popped integer; `clear_force_char_nearfade` `0x0553` passes 0 and 0. While the flag `02099DA4` is set, `0025D950` therefore stores the script's byte `02099DA5` in `02099DA3` in place of the value it computed, and passes it sign-extended to `002E8700`.
+
+Interior anchor `0026AB56` (function `0026AB50`).

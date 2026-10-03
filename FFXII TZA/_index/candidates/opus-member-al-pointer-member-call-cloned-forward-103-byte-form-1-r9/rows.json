@@ -1,0 +1,124 @@
+{
+ "page": "22-Middleware-PhyreEngine/Script-Object-Accessors/phyre-script-object-accessors.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "phyre-script-object-accessors-optional-pointer-member-call-cloned-forward-103-byte-form-1-r9.json",
+ "rows": [
+  {
+   "fn": "006775A0",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `v` = the pointer at qword [f+8] called with `00676700(c)` (no null test); when `v` is non-null calls `00684080(c, v, 02D3E680)`, else `0080F420(c, 1)` and `00810620` with `c` in `rcx`; returns 1",
+   "anchors": [
+    [
+     "006775B3",
+     "call"
+    ],
+    [
+     "006775C4",
+     "je"
+    ],
+    [
+     "006775C6",
+     "lea"
+    ],
+    [
+     "006775D0",
+     "call"
+    ],
+    [
+     "006775EA",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00677610",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `v` = the pointer at qword [f+8] called with `00683B50(c)` (no null test); when `v` is non-null calls `00684080(c, v, 02D3E680)`, else `0080F420(c, 1)` and `00810620` with `c` in `rcx`; returns 1",
+   "anchors": [
+    [
+     "00677623",
+     "call"
+    ],
+    [
+     "00677634",
+     "je"
+    ],
+    [
+     "00677636",
+     "lea"
+    ],
+    [
+     "00677640",
+     "call"
+    ],
+    [
+     "0067765A",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006AC3D0",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `v` = the pointer at qword [f+8] called with `0067EDD0(c)` (no null test); when `v` is non-null calls `00684080(c, v, 02E4EAF0)`, else `0080F420(c, 1)` and `00810620` with `c` in `rcx`; returns 1",
+   "anchors": [
+    [
+     "006AC3E3",
+     "call"
+    ],
+    [
+     "006AC3F4",
+     "je"
+    ],
+    [
+     "006AC3F6",
+     "lea"
+    ],
+    [
+     "006AC400",
+     "call"
+    ],
+    [
+     "006AC41A",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006B00A0",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `v` = the pointer at qword [f+8] called with `00683B50(c)` (no null test); when `v` is non-null calls `00684090(c, v, 02E4FF60)`, else `0080F420(c, 1)` and `00810620` with `c` in `rcx`; returns 1",
+   "anchors": [
+    [
+     "006B00B3",
+     "call"
+    ],
+    [
+     "006B00C4",
+     "je"
+    ],
+    [
+     "006B00C6",
+     "lea"
+    ],
+    [
+     "006B00D0",
+     "call"
+    ],
+    [
+     "006B00EA",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "4 rows",
+   "by": "OPUS",
+   "why": "anchors now include each row's own lea (its member-unique global) - the non-drafting verifier's anchor_flag / suggested_anchors (verify_tmpl2.json)"
+  }
+ ],
+ "mode": "member",
+ "family": "optional-pointer member-call + cloned-forward, 103-byte form"
+}

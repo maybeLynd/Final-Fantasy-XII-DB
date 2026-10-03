@@ -1,0 +1,33 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/Prefetch-And-Json-Data/ah-asset-header-manifests.md",
+ "date": "2026-10-03",
+ "rows": [
+  {
+   "fn": "0019EF00",
+   "text": "copies `rcx` to `rdx`, loads qword `01F81158` into `rcx` and, when it is non-null, tail-jumps to `0019E740`; otherwise it returns; its address is formed into `r12` by `0019E7B0` + 0x153",
+   "anchors": [
+    [
+     "0019EF03",
+     "mov"
+    ],
+    [
+     "0019EF0A",
+     "test"
+    ],
+    [
+     "0019EF0D",
+     "jne"
+    ]
+   ],
+   "why_here": "formed by the manifest parser 0019E7B0 that this page reads",
+   "ref": {
+    "kind": "code",
+    "container": "0019E7B0",
+    "site": "0019E903"
+   },
+   "cites": [
+    "0019E7B0"
+   ]
+  }
+ ]
+}

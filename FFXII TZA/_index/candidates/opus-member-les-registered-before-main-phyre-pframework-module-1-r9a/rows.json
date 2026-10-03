@@ -1,0 +1,70 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-fifteen-modules-registered-before-main-phyre-pframework-module-1-r9a.json",
+ "rows": [
+  {
+   "fn": "007A10A0",
+   "text": "with `o` = `rcx`, `x` = `edx`, `y` = `r8d`, `w` = `r9d`, `h` = the fifth-argument dword and `a` = float [o+0x20]: when `a` equals 1.0 (`01CEBBA8`; a NaN does not) stores `x`, `y`, `w` and `h` at dwords +0x24, +0x28, +0x2C and +0x30; otherwise, converting the zero-extended dwords to float and truncating back: `H` = trunc(w / a), `T` = trunc((h - H as a 32-bit difference) times 0.5 (`01CEBB70`)), `W` = trunc(h times a) and `S` = trunc((w - W, 32-bit) times 0.5); when `y` + `T` (32-bit) is non-zero and `H` is below `h` (unsigned) stores `x`, `y` + `T`, `w` and `H` at dwords +0x24 to +0x30, else `x` + `S`, `y`, `W` and `h`; both paths tail-jump to the vtable slot +0x20 of `o`",
+   "anchors": [
+    [
+     "007A10A9",
+     "ucomiss"
+    ],
+    [
+     "007A10CD",
+     "jmp"
+    ],
+    [
+     "007A10EE",
+     "divss"
+    ],
+    [
+     "007A1141",
+     "cmp"
+    ],
+    [
+     "007A1156",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "008744F0",
+   "text": "with `o` = `rcx`, for each (A, B) of (0x1B8, 0x30), (0x390, 0x208), (0x568, 0x3E0), (0x740, 0x5B8) and (0x918, 0x790) in that order: calls `0062B890(o+A)` when `00625ED0(o+A)` returns non-zero in `al`, then `0062BCB0(o+B)` when `00625F00(o+B)` returns non-zero in `al`; then calls `0060EDA0(o+8, 0)` and tail-jumps to `0060EDA0(o+0x18, 0)`",
+   "anchors": [
+    [
+     "00874509",
+     "call"
+    ],
+    [
+     "00874519",
+     "call"
+    ],
+    [
+     "00874522",
+     "call"
+    ],
+    [
+     "0087452F",
+     "call"
+    ],
+    [
+     "0087461A",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "0079D730": "deferred to a later member pass",
+  "007A1790": "too large for one exact row",
+  "007A2140": "too large for one exact row"
+ },
+ "missing": [],
+ "corrections": [],
+ "mode": "member",
+ "family": "Phyre PFramework module"
+}

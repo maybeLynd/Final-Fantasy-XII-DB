@@ -1,0 +1,40 @@
+{
+ "page": "00-Engine-Core-Runtime/Shared-State-Accessors/cross-subsystem-accessor-hubs.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "cross-subsystem-accessor-hubs-r8.json",
+ "rows": [
+  {
+   "fn": "003B50E0",
+   "text": "with `w` = the low word of `ecx` (sign-extended): `t` = `002EA030(edx)`; returns 0 when `w` is -1, when dword [R+0x284] is 0 for the record `R` = qword `022C6F28` + 0x740 w, or when `p` = `003E56C0(R)` is null; returns byte [p+0xCD] when `t` equals `002EA030(0)`, else byte [p+0xCE] when `t` equals `002EA030(1)`, else 0",
+   "anchors": [
+    [
+     "003B50EF",
+     "call"
+    ],
+    [
+     "003B5110",
+     "cmp"
+    ],
+    [
+     "003B511F",
+     "call"
+    ],
+    [
+     "003B512E",
+     "call"
+    ],
+    [
+     "003B514E",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

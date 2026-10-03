@@ -1,0 +1,17 @@
+# SWE2-AUDIT-SPEC review: OPUS interior citations (opus-ppfx-function-identification-ee-1003-3)
+
+Reviewer: SWE2-AUDIT-SPEC (Claude stand-in for the rate-limited Devin session; not OPUS, not the drafting session) · 2026-10-03 · Task: `OPUS-REQ-AUDITSPEC-OPUS-PPFX-FUNCTION-IDENTIFICATION-EE-1003-A715A` · Package: `_index/candidates/opus-ppfx-function-identification-ee-1003-3/` · Page: `17-Presentation-Rendering/Post-Processing/ppfx-function-identification.md`
+
+## SWE2-AUDIT-SPEC verdict: ACCEPT
+
+## SWE2-AUDIT-SPEC checks
+
+- `interior_applier.py` re-run fresh without `--apply` -> `VERIFY 6 functions, 30 anchors / ALREADY / FAILS 0` (exit 0).
+- `rows.json`: 6 row(s), 30 anchors. **Every row** read clause by clause against raw capstone output of the whole body in the certified image (SHA256 73461D08...); every relative call resolved:
+  - `00721030` exact: `[o+0x28]` kept; `007271C0(o)`; 32 bytes to `o+0x38`; all seven flag mappings (`and 0x100`/`cmovne` 0x10000000; `bt 0xe` -> `or 0x1200000`; `bt 0x14` -> `bts 0xc`; `bt 0x15` -> `bts 0xd`; `bt 0x18` -> `bts 0x10`; `bt 0x19` -> `or 0x240000`; `test 0x10000000` -> `bts 0x18`) to `+0x58`; `+0x54` = `+0x44` when 0; `w`/`h` with the `jns` fallbacks; the two signed `jg` refusals and the eight-entry `02EA18C0` membership loop; `+0x5C`/`+0x60`/qword `+0x64` and `00720EE0(o)`; `+0x6C` = 0, `+0x70` = 1.0, `+0x100` = 0, `+0x108` -> `+0x110`; for `+0xF0`/`+0xF8` the inner free of `[q+8]` - 8 then the outer free, `[01F3BA68]` read once per q; `jmp 00727170(o, kept)`.
+  - `007226E0` exact: `bt edx, 0x14`; the `02EA18B1` gate to `00722C80(p, fifth float, sixth dword, seventh qword, 0)` with `cmovs`; the seventh-argument byte cleared; the table `[image base + 0x2D818C0 + i*8]` (= `02EA18C0`); `0071FD40` with all fourteen arguments as stated (registers o, i, `[01F3CB18 + i*4]`, f; stack r8d, 1, 0, p, float, dword, p, float, dword, seventh qword); both table entries zeroed only when bit 0x100000 was clear (bl = 0).
+  - `00722800` exact: the same gate to `00722C80(0, v, d, 0, t)`; byte `[t]` cleared; `02EA1900` == 0 -> 0; the first non-null of the eight `02EA18C0` qwords for a null q, none -> `02EA1900` zeroed and 0; `0071FF60(q, f, 1, v, d, v, d, t)`; `cmove` zeroes `02EA1900` only when bit 0x100000 was clear.
+  - `00722C80` exact: the zero-`02EA18B1` refusal (`00D9BAD0`/0x121F, `00D9BB10`) and 0x8000FFFF; the unrolled first-non-null scan setting k = 0..7 (o = null, k = 0 when none, with no null test before `[o+0x38]`); c = `[01F3CB18 + k*4]` zero-extended; the bit-31 / zero-slot refusal (`00D9BB90`/0x123D, `00D9BBD0`); the clearing of `01F3CB18`-`01F3CB30`, `02EA18C0`-`02EA1900`, byte `02EA18B1` and dword `02EA1908`.
+  - `007897D0` exact: null rdx -> 0x80070057; `[rcx+0xE0]` = rdx, `inc [rdx+8]`, three qwords zeroed; the loop bound recomputed each step with `sar 3` and a signed `jl`; per non-null entry `[01F3BA68]`, `00715C70(e+8)`, `006DA8A0(m, e)`, nulled; `+0xC8` -> `+0xD0`; `([x+0xA8] - [x+0xA0]) >> 3` low dword to `+0xBC`; 0.
+  - `007906C0` exact: `006DA880([01F3BA68], 0x180, 00E1FCA0, 0x2A5E, 0)` - string read from the image: '..\src\GPU\TinyEffect\TinyEffect.cpp'; `0078B9D0(o)` result when non-null; `0078D7E0(o, rcx, rdx, r8b)` unchecked; negative -> slot +0 with 0 and `006DA8A0(m, o)` when o is non-null, then 0; else o.
+- Limits hold: body statements only, static evidence; the draft and OPUS's re-read are not independent review, this record is.

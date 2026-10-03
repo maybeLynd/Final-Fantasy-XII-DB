@@ -1,0 +1,40 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/the-resource-owner-from-copy-or-borrow-to-disposal.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-resource-owner-from-copy-or-borrow-t-r8.json",
+ "rows": [
+  {
+   "fn": "00427B00",
+   "text": "with `g` = qword `022C6F28` and `i` = dword [g+0x48800] (returns when that is -1): for record `R` = g + 0x740 i: when `0020E600(dword [R+0x68])` equals `rcx`, zeroes qword [R+0x68] and stores `0020E620(0)` at dword [R+0x69C]; when `0020E600(dword [R+0xD8])` equals `rcx`, zeroes qwords [R+0xD8] and [R+0xE0]; when `0020E600(dword [R+0xF0])` equals `rcx`, zeroes qwords [R+0xF0] and [R+0xF8]; then re-reads `g` from `022C6F28` (used for the next record too) and takes `i` = the sign-extended word [g+0x740i+4], repeating until it is -1",
+   "anchors": [
+    [
+     "00427B3D",
+     "call"
+    ],
+    [
+     "00427B4E",
+     "call"
+    ],
+    [
+     "00427B61",
+     "call"
+    ],
+    [
+     "00427B82",
+     "call"
+    ],
+    [
+     "00427BA3",
+     "movsx"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

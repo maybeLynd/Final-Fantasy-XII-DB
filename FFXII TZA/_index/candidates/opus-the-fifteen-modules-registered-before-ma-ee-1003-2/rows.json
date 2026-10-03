@@ -1,0 +1,45 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-fifteen-modules-registered-before-ma-r8.json",
+ "rows": [
+  {
+   "fn": "00628050",
+   "text": "returns 0x16 when dword [rcx+0x48] is non-zero; otherwise, with `n` = `edx`, returns 0 at once when `n` equals dword [rcx+0x18] AND 0x7FFFFFFF; else calls `00627CF0(rcx+0x18, n)`; for i from 0 below `n` (unsigned), with `a` = qword [rcx+0x20] when dword [rcx+0x18] AND 0x7FFFFFFF (re-read each step) is above 1 (unsigned), `rcx`+0x20 when it is 1, else 0: zeroes qword [a+16i] and dword [a+16i+0xC]; then, when qword [rcx+0x10] is non-null, calls `00584730` on it and zeroes it; returns 0",
+   "anchors": [
+    [
+     "00628083",
+     "je"
+    ],
+    [
+     "00628090",
+     "call"
+    ],
+    [
+     "006280AA",
+     "jbe"
+    ],
+    [
+     "006280BD",
+     "mov"
+    ],
+    [
+     "006280D8",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "00628050",
+   "why": "byte re-read by a non-drafting agent: Branch scope is ambiguous: when n equals the masked count, 'je 006280E6' skips everything, including the qword [rcx+0x10] / 00584730 step, and returns 0; the row's 'then, when qword [rcx+0x10] is non-null ...' after the semicolon-separated block reads as unconditional. Rewritten to put the equal case first. Loop (unsigned count from zero-extended edi, a re-read each step) checks out."
+  }
+ ],
+ "mode": "ee",
+ "family": ""
+}

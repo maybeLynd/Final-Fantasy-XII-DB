@@ -693,3 +693,11 @@ Interior anchor `00212110` (the
 
 - **Script VM / native bridge - SERVICE (1 edge).** `00369800` is also reached from `0050DDA0`, a 23-byte body filed to the script VM / native bridge that tail-jumps to it (`0050DDB2 jmp 00369800`) - shared machinery across the layer boundary, no shared ownership.
 - **World area / field - SERVICE (1 edge).** `0036C100` is also called by `00378BC0` (940 B), filed to world area (`00378CD5`) - shared machinery across the layer boundary, no shared ownership.
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted, opus-audio-bank-and-controller-family-ee-1003-2)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-audio-bank-and-controller-family-ee-1003-2/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `007C2280` | 311 B | with `o` = `rcx`: `v` = `007B2470(&stack qword holding qword [o+0x28])`; returns 0 in `al` when qword [o+0x18] is 0 or `v`'s vtable slot +0x20 returns 0 in `al`; returns 1 when `v`'s slot +8 returns other than 2; returns 0 when qword [v+0xA8] is non-zero; otherwise calls `007D0600(o+0x10, &p, dword [o+0x638])` on a zeroed 16-byte stack pair `p` and, for i from 0 while i is below byte [qword [p+8] + 5] (both re-read each step), takes `e` = `007D03B0(&p, &stack q, i)` and `x` = `007E3040(v, word [qword [e+8] + 4])` (then stores `01CB5D88` at q), returning 0 when `x` is null or `007E2F90(x)` is below 1.0 (`01CEBBA8`; comiss/jb, so NaN also returns 0); returns 1 after the loop (stack cookie `01F44830` checked by `00808C40`) | `007C22AA`, `007C22DE`, `007C2314`, `007C235D`, `007C2374` |

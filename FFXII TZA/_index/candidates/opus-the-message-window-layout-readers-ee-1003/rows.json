@@ -1,0 +1,45 @@
+{
+ "page": "16-UI/Message-Windows/the-message-window-layout-readers.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-message-window-layout-readers-r8.json",
+ "rows": [
+  {
+   "fn": "002A36A0",
+   "text": "with `w` = `rcx`: returns when `w` is null or dword [w+0x44] AND 0x180000 is not 0x100000; when byte [w+0x3F3] has any of the bits 0x3C and the signed word `n` = word [w+0x3F0] is above 0, calls `002A7D30` (at least once) until a counter from 0, incremented after each call, is no longer below word [w+0x3F0] re-read and sign-extended after each call (signed compare), `rcx` starting at qword [w+0x3F8] and advanced by 0x60 from its value after each call, then calls `002A5BC0(w)` and ANDs byte [w+0x3F3] with 0xE3; in either case then sets bit `0x80` of byte [w+0x3F3]",
+   "anchors": [
+    [
+     "002A36B0",
+     "and"
+    ],
+    [
+     "002A36C7",
+     "test"
+    ],
+    [
+     "002A36F0",
+     "call"
+    ],
+    [
+     "002A370B",
+     "call"
+    ],
+    [
+     "002A3717",
+     "or"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [
+  {
+   "fn": "002A36A0",
+   "why": "byte re-read by a non-drafting agent: Gates, the rcx-advanced-from-its-post-call-value detail, 002A5BC0(w), AND 0xE3 and the unconditional OR 0x80 all check out. Defect: 'calls 002A7D30 n times' states a fixed count, but the loop bound is the word [w+0x3F0] re-read (movsx) after every call (002A36F5), so the call count follows the re-read value (first call always made, since n > 0 is tested first); rewritten to state the loop as coded."
+  }
+ ],
+ "mode": "ee",
+ "family": ""
+}

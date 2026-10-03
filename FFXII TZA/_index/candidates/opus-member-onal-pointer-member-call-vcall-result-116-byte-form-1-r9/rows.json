@@ -1,0 +1,118 @@
+{
+ "page": "22-Middleware-PhyreEngine/Script-Object-Accessors/phyre-script-object-accessors.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "phyre-script-object-accessors-optional-pointer-member-call-vcall-result-116-byte-form-1-r9.json",
+ "rows": [
+  {
+   "fn": "005C21B0",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `a` = `005BADB0(c)`; returns 0 when `o` = `005BDDC0(c)` is null; else calls the pointer at qword [f+8] with (o, a), then `0080F420(c, 1)` and `00810580(c, the low dword of that call result)`, and returns 1",
+   "anchors": [
+    [
+     "005C21C8",
+     "call"
+    ],
+    [
+     "005C21D3",
+     "call"
+    ],
+    [
+     "005C21E3",
+     "call"
+    ],
+    [
+     "005C21F0",
+     "call"
+    ],
+    [
+     "005C21FA",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C2230",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `a` = `005BCD20(c)`; returns 0 when `o` = `005BDDC0(c)` is null; else calls the pointer at qword [f+8] with (o, a), then `0080F420(c, 1)` and `00810580(c, the low dword of that call result)`, and returns 1",
+   "anchors": [
+    [
+     "005C2248",
+     "call"
+    ],
+    [
+     "005C2253",
+     "call"
+    ],
+    [
+     "005C2263",
+     "call"
+    ],
+    [
+     "005C2270",
+     "call"
+    ],
+    [
+     "005C227A",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0063A440",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `a` = `00683B50(c)`; returns 0 when `o` = `00637170(c)` is null; else calls the pointer at qword [f+8] with (o, a), then `0080F420(c, 1)` and `00810580(c, the low dword of that call result)`, and returns 1",
+   "anchors": [
+    [
+     "0063A458",
+     "call"
+    ],
+    [
+     "0063A463",
+     "call"
+    ],
+    [
+     "0063A473",
+     "call"
+    ],
+    [
+     "0063A480",
+     "call"
+    ],
+    [
+     "0063A48A",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006AC620",
+   "text": "with `f` = `rcx` and `c` = `rdx`: `a` = `006AAE00(c)`; returns 0 when `o` = `006AC1D0(c)` is null; else calls the pointer at qword [f+8] with (o, a), then `0080F420(c, 1)` and `00810580(c, the low dword of that call result)`, and returns 1",
+   "anchors": [
+    [
+     "006AC638",
+     "call"
+    ],
+    [
+     "006AC643",
+     "call"
+    ],
+    [
+     "006AC653",
+     "call"
+    ],
+    [
+     "006AC660",
+     "call"
+    ],
+    [
+     "006AC66A",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "member",
+ "family": "optional-pointer member-call vcall result, 116-byte form"
+}

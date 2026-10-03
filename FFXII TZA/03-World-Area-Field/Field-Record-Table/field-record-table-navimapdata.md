@@ -1240,3 +1240,12 @@ byte fetch).
 | function | size | what the body does | interior anchors |
 |---|---|---|---|
 | `0031BD80` | 62 B | returns `0xffff` when `rcx` is null, when the call at `0031BD80+0xd` (with `rcx`) returns null, or when qword `+0x698` of that result is null; otherwise tail-jumps to `0031BDC0(that qword + 0x50, edx)` with the incoming `edx` | Interior anchor `0031BD8D`; Interior anchor `0031BD97`; Interior anchor `0031BDA3`; Interior anchor `0031BDAE`; Interior anchor `0031BDB3` |
+
+## SWE2-EC7-220 update (2026-10-03) - `setmenudisablestatus` writes one bit of slot 1 of the `0215F1C0` array
+
+`002E1BE0` writes the 16-slot dword array at `0215F1C0` that the `002E1CD0` section above sets and clears and that `002E0FA0` folds. `002E1CD0` applies the fixed mask `0x139203` to any slot below `0x10`; `002E1BE0` changes one bit of slot 1 (dword `0215F1C4`) and no other slot. `002E12E0` is its bit-index check, and `002E1BE0` is that function's only caller (raw `.text` scan). Offsets and widths only; the verb name is the script's.
+
+| function | size | verbs | what the body does | interior anchors |
+|---|---|---|---|---|
+| `002E1BE0` | 54 B | `setmenudisablestatus` `0x03A5` (its handler passes the second integer it pops in `ecx` and the first in `edx`) | copies `edx` to `r8d` and calls `002E12E0(ecx)`; a negative result returns without a write. Otherwise it forms `1 << result` and, when `r8d` is non-zero, ORs it into dword `0215F1C4`; when `r8d` is 0 it ANDs that dword with the complement. So bits 0 to 18 of slot 1 can be set or cleared this way, and an out-of-range bit index changes nothing | Interior anchor `002E1BE7`; Interior anchor `002E1BF7`; Interior anchor `002E1BFE`; Interior anchor `002E1C0B` |
+| `002E12E0` | 146 B | - (called only by `002E1BE0`) | returns -1 when `ecx` is above `0x12` (unsigned, so a negative `ecx` too); otherwise dispatches through a 19-entry table of dword offsets from the image base, and arm `i` returns `i`, so it returns `ecx` unchanged. It touches no register but `rax`, `rcx` and `rdx` | Interior anchor `002E12E3`; Interior anchor `002E12F3`; Interior anchor `002E12FD`; Interior anchor `002E136E` |

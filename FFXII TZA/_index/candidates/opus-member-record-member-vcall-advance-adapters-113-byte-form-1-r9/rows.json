@@ -1,0 +1,170 @@
+{
+ "page": "22-Middleware-PhyreEngine/Script-Object-Accessors/phyre-script-object-accessors.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "phyre-script-object-accessors-tagged-out-record-member-vcall-advance-adapters-113-byte-form-1-r9.json",
+ "rows": [
+  {
+   "fn": "005CC3E0",
+   "text": "with `f` = `rcx`, `o` = `rdx`, `k` = `r8`, `out` = `r9` and `a` = the fifth argument: returns 0 when `o` is null; adds 8 to qword [a] and calls the pointer at qword [f+8] with `o` and the dword 8 below the new qword [a]; returns 0 when `out` is null or `k` is not (`02CAD440` OR 1); else stores 0 at qword [out] and the call result at qword [out+8] and returns 1",
+   "anchors": [
+    [
+     "005CC3FB",
+     "mov"
+    ],
+    [
+     "005CC403",
+     "add"
+    ],
+    [
+     "005CC40D",
+     "call"
+    ],
+    [
+     "005CC419",
+     "lea"
+    ],
+    [
+     "005CC424",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005CC460",
+   "text": "with `f` = `rcx`, `o` = `rdx`, `k` = `r8`, `out` = `r9` and `a` = the fifth argument: returns 0 when `o` is null; adds 8 to qword [a] and calls the pointer at qword [f+8] with `o` and the dword 8 below the new qword [a]; returns 0 when `out` is null or `k` is not (`02CADC50` OR 1); else stores 0 at qword [out] and the call result at qword [out+8] and returns 1",
+   "anchors": [
+    [
+     "005CC47B",
+     "mov"
+    ],
+    [
+     "005CC483",
+     "add"
+    ],
+    [
+     "005CC48D",
+     "call"
+    ],
+    [
+     "005CC499",
+     "lea"
+    ],
+    [
+     "005CC4A4",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "005CC570",
+   "text": "with `f` = `rcx`, `o` = `rdx`, `k` = `r8`, `out` = `r9` and `a` = the fifth argument: returns 0 when `o` is null; adds 8 to qword [a] and calls the pointer at qword [f+8] with `o` and the dword 8 below the new qword [a]; returns 0 when `out` is null or `k` is not (`02CAD840` OR 1); else stores 0 at qword [out] and the call result at qword [out+8] and returns 1",
+   "anchors": [
+    [
+     "005CC58B",
+     "mov"
+    ],
+    [
+     "005CC593",
+     "add"
+    ],
+    [
+     "005CC59D",
+     "call"
+    ],
+    [
+     "005CC5A9",
+     "lea"
+    ],
+    [
+     "005CC5B4",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0065E430",
+   "text": "with `f` = `rcx`, `o` = `rdx`, `k` = `r8`, `out` = `r9` and `a` = the fifth argument: returns 0 when `o` is null; adds 8 to qword [a] and calls the pointer at qword [f+8] with `o` and the dword 8 below the new qword [a]; returns 0 when `out` is null or `k` is not (`02CF8470` OR 1); else stores 0 at qword [out] and the call result at qword [out+8] and returns 1",
+   "anchors": [
+    [
+     "0065E44B",
+     "mov"
+    ],
+    [
+     "0065E453",
+     "add"
+    ],
+    [
+     "0065E45D",
+     "call"
+    ],
+    [
+     "0065E469",
+     "lea"
+    ],
+    [
+     "0065E474",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00674860",
+   "text": "with `f` = `rcx`, `o` = `rdx`, `k` = `r8`, `out` = `r9` and `a` = the fifth argument: returns 0 when `o` is null; adds 8 to qword [a] and calls the pointer at qword [f+8] with `o` and the dword 8 below the new qword [a]; returns 0 when `out` is null or `k` is not (`02CB6B80` OR 1); else stores 0 at qword [out] and the call result at qword [out+8] and returns 1",
+   "anchors": [
+    [
+     "0067487B",
+     "mov"
+    ],
+    [
+     "00674883",
+     "add"
+    ],
+    [
+     "0067488D",
+     "call"
+    ],
+    [
+     "00674899",
+     "lea"
+    ],
+    [
+     "006748A4",
+     "cmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006AF890",
+   "text": "with `f` = `rcx`, `o` = `rdx`, `k` = `r8`, `out` = `r9` and `a` = the fifth argument: returns 0 when `o` is null; adds 8 to qword [a] and calls the pointer at qword [f+8] with `o` and the dword 8 below the new qword [a]; returns 0 when `out` is null or `k` is not (`02E4E430` OR 1); else stores 0 at qword [out] and the call result at qword [out+8] and returns 1",
+   "anchors": [
+    [
+     "006AF8AB",
+     "mov"
+    ],
+    [
+     "006AF8B3",
+     "add"
+    ],
+    [
+     "006AF8BD",
+     "call"
+    ],
+    [
+     "006AF8C9",
+     "lea"
+    ],
+    [
+     "006AF8D4",
+     "cmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "member",
+ "family": "tagged out-record member vcall advance adapters, 113-byte form"
+}

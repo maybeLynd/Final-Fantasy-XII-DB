@@ -1,0 +1,3 @@
+VERIFY 1 functions, 3 anchors, 1 references, page 02-Resource-And-Asset-Pipeline/Prefetch-And-Json-Data/ah-asset-header-manifests.md (LF)
+DRY (verified; --apply appends 1 rows)
+FAILS 0

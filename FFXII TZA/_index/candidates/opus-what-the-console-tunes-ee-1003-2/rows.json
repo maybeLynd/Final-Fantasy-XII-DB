@@ -1,0 +1,92 @@
+{
+ "page": "00-Engine-Core-Runtime/Developer-Tuning-Console/what-the-console-tunes.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "what-the-console-tunes-r8.json",
+ "rows": [
+  {
+   "fn": "001FF4F0",
+   "text": "with key `k` = `rdx` (bytes qword [k] to qword [k+8], length `L`): walks from qword [rcx+0x18] (head `h` = `rcx`+8); at node `n` with bytes qword [n+0x20] to qword [n+0x28] (length `M`) compares by `00861ED2(qword [n+0x20], qword [k], min(L, M))`, a 0 result ordering by `M` against `L` (signed); when `n` orders below `k` continues at qword [n], else records `n` as `b` (initially `h`) and continues at qword [n+8], until null; when `b` is not `h` and `00861ED2(qword [k], qword [b+0x20], min(L, M of b))` (0 ordering by `L` against `M`) does not order `k` below `b`, returns `b`+0x40; otherwise, with stack temp `t` (dword 6, qword 0 at t+8) and stack pair `p` (zeroed qwords p to p+0x10), calls `001EDF00(p+0x18, k+0x18)`, `001A4BF0(p, qword [k], qword [k+8])`, `001FE6B0(p+0x20, t)`, `001FFD40(rcx, &r, &b, p, low byte of b)`, `002001F0(p+0x20)`, the vtable slot +0x18 call of p+0x18 with (p+0x18, qword [p], low dword of qword [p+0x10] - qword [p]) when that qword difference is above 1 (signed) and qword [p] is non-null, and `002001F0(t)`; returns `r`+0x40",
+   "anchors": [
+    [
+     "001FF564",
+     "call"
+    ],
+    [
+     "001FF5C5",
+     "call"
+    ],
+    [
+     "001FF608",
+     "call"
+    ],
+    [
+     "001FF647",
+     "call"
+    ],
+    [
+     "001FF688",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "002001F0",
+   "text": "dispatches on the tag dword [rcx] (sign-extended; above 5 unsigned returns) through the jump table at image base + `0xE02C0`, with `p` = qword [rcx+8]: tag 0 returns when `p` is null, else, when qword [p+0x10] - qword [p] is above 1 (signed) and qword [p] is non-null, calls the vtable slot +0x18 of the object at p+0x18 with (p+0x18, qword [p], low dword of the difference), then tail-jumps to `00809950(p, 0x20)`; tags 1, 2 and 5 tail-jump to `00809950(p, 4)`, `(p, 8)` and `(p, 1)` with no null test; tag 3 returns when `p` is null, else calls `00200140(p, qword [p+0x18])` and tail-jumps to `00809950(p, 0x38)`; tag 4 returns when `p` is null, else calls `001C36F0(p)` and tail-jumps to `00809950(p, 0x20)`",
+   "anchors": [
+    [
+     "0020021D",
+     "jmp"
+    ],
+    [
+     "0020024F",
+     "call"
+    ],
+    [
+     "0020027B",
+     "call"
+    ],
+    [
+     "00200297",
+     "call"
+    ],
+    [
+     "002002B4",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00202930",
+   "text": "with stack stream `s` and its buffer `b` = `s`+8: stores `008F3F50` at qword [s], calls the `basic_ios` constructor (`008C25E0`) on s+0xA8 and the `basic_ostream` constructor (`008C25D8`) with (s, b, 0, 0); stores `008F3F48` at s + `d` (`d` = dword [qword [s]+4]) and `d` - 0xA8 at the dword 4 below it; calls the `basic_streambuf` constructor (`008C2798`) on `b`, stores `008F3EC8` at qword [b], zeroes bytes b+0x7C and b+0x71, calls `_Init` (`008C27B0`) on `b`, zeroes qword b+0x80, copies qword `01F81140` to b+0x74 and zeroes qword b+0x68; with `i` = s + `d`, calls `setstate` (`008C26A0`) with (i, 2, 0) when `0019B990(b, qword [rdx], 2, 0x40)` returns null, else `clear` (`008C24E0`) with (i, 0, 0); when qword [b+0x80] is non-null calls `00201460(rcx, s, r8b, r9b)` (zero-extended) and, when `0019B8C0(b)` returns null, `setstate` with (i, 2, 0); then re-stores `008F3F48` and `d` - 0xA8 as before and calls `0019B400(b)`, the `basic_ostream` destructor (`008C25D0`) on s+0x10 and the `basic_ios` destructor (`008C25E8`) on s+0xA8",
+   "anchors": [
+    [
+     "0020297C",
+     "call"
+    ],
+    [
+     "00202A2A",
+     "call"
+    ],
+    [
+     "00202A4C",
+     "call"
+    ],
+    [
+     "00202A76",
+     "call"
+    ],
+    [
+     "00202ACF",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "ee",
+ "family": ""
+}

@@ -592,3 +592,11 @@ and `002B0280`, which are the text-control language's.
 
 *Tier 2: ledger names, sizes and `edges.tsv`, roles as this page reads them; no new body read (OPUS, 2026-09-29,
 pass-22 slice OPUS-P22-SLICE-24-99).*
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-the-ordered-container-runtime-ee-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `001BD040` | 359 B | with `m` = `rcx`, `o` = `rdx`, `r` = `r8` and key `k` = qword [r] (re-read for each check after the descent): descends from qword [m+0x18] with head `h` = `m`+8: at node `n`, `c` = (`k` below qword [n+0x20], unsigned), continuing at qword [n+8] when `c`, else at qword [n], until null; `p` = the last node (`h` with `c` = 1 when the root is null); `q` = `p`, replaced by `0016D720(p)` when `c` holds and `p` is not qword [m+0x10]; when `c` holds and `p` is qword [m+0x10], or qword [q+0x20] is below `k` (unsigned), inserts: `b` = the vtable slot +0x10 of the object at m+0x30 with (m+0x30, 0x40, 0), `001BC950(b+0x20, r)` unless b+0x20 is null, `0016D840(b, p, h, s)` with `s` = 1 when `p` is not `h` and `k` is not below qword [p+0x20], else 0, increments dword [m+0x28] and stores `b` at qword [o] and 1 at byte [o+8]; otherwise stores `q` at qword [o] and 0 at byte [o+8]; returns `o` | `001BD080`, `001BD0AE`, `001BD0DD`, `001BD10B`, `001BD186` |

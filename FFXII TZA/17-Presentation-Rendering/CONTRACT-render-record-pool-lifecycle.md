@@ -536,6 +536,111 @@ machinery (`0032E…`, `0035E…`), neither of which this contract covers.
 - The relationship, if any, between the 16-bit index at `+0x2C` and either list.
 - Which caller supplies the names that key allocation.
 
+## 14a. The flag word's owners outside the family - who writes bits 0, 2 and 4, and what the pool reads back (FABLE, 2026-10-03)
+
+*Added for SWE2-AUDIT-SPEC's SCOPE-SHORT on S-38 ([`auditspec-l2-expansion-1003`](../_index/candidates/auditspec-l2-expansion-1003/README.md) item 3,
+adopting AUDIT-SEM's proposal): §14 says bits 0, 2 and 4 of the tail's flag word `+0x18` (pool `+0x48818`) are
+"touched by callers outside this family", and no credited contract said who touches them or what the family reads
+back. Static and isolated original-code; every fact below is checked by
+[`check_s38.py`](../_index/candidates/fable-l2exp-s38-mech-1003/check_s38.py) (FAILS 0). What the bits do downstream is
+[the record array page](Character-Render-Records/the-character-render-record-array.md)'s §12 "`+0x18`, the flag word" and
+[the fade page](Character-Render-Records/how-a-character-fades-the-ten-channels.md)'s §4c "The switch is a veto mask".
+This section states the owners, their routes and the rules between them and this family.*
+
+**Interface.** No new entry. 25 instructions in 12 functions address the word; every write and plain load is a dword
+and every byte access is a `test` (K1). By bit:
+
+| bit | set by | cleared by | read by | family? |
+|---|---|---|---|---|
+| 0, culling on | `002EBBB0` (`002EBBD2`), `002EBBF0` (`002EBC20`) and `002E8CC0` (`002E8CD0`) when the veto byte `0215FD56` is 0; the constructor (`00426C59`) and the reset helper `0042ED30` (`0042ED37`) without reading it | the same three setters (`002EBBDA`, `002EBC28`, `002E8CD8`) when the byte is not 0; promotion for one call (`004287A1`) | the fade and cull pass `0042E850` (`0042EA43`, `0042EA6C`, `0042EAB1`); promotion, to restore it (`00428790`, `004287AC`) | constructor and promotion |
+| 2 | the constructor (`00426C59`) and `0042ED30` (`0042ED37`) | no write after construction | `0042D050` (`0042D3A2`) and `0042CF70` (`0042D004`) | constructor |
+| 4, external fade | `002E8700` (`002E871C`) when its argument is not 0 | `002E8700` (`002E8707`) | `0042E850` (`0042EB79`) | none |
+| 5, active list changed | retire (`00427DB3`) and promote (`00428863`) | `0042ED60` (`0042ED83`) | `0042ED60` (`0042ED94`) | the two setters |
+
+The constructor's plain store `00426A00` clears all 32 bits first (`ebx` is 0 from `004269DF`).
+
+**Routes** (every caller in every form, K3; the orders are dominance facts in one body, K6):
+- `002EBBB0` is requester 0: `0026A470` (jmp) from the verb handler `00347830`, `setcharclipall`, which passes its
+  popped int (`0034783C`).
+- `002EBBF0` is called with requester 1 (`002265CC`) by the stop registry's apply `00226280` at `002265D6`, with
+  enable = bit 35 of the composed mask (`002265C8`..`002265D4`), on every path past the apply's dirty gate `0022628E`
+  ([the stop registry contract](../00-Engine-Core-Runtime/System-Stop-Registry/CONTRACT-system-stop-registry.md)).
+- `002E8CC0` re-derives the bit from the byte. Its one caller is the area unload `002628B0` at `00262B85`, the
+  instruction after `00262B80` calls `002E63C0`, which zeroes the byte.
+- `0042ED30` is reached through `002E8050` (jmp) from `ActorManager_BindLoadedDefinitionPayload` `0026C8C0` at
+  `0026CAC0`, on every path of a **slot-0** bind: `0026C95D`/`0026C95F` jump past it for any other slot
+  ([the bind](../04-Actor-Entity/Actor-Manager-Record/the-actor-manager-record-field-map.md) §2.2).
+- `002E8700` is the tail (`0025D9B8`) of `0025D950`, which passes byte `02099DA3` (`0025D9AA`) and is called at
+  `00314346`, before `00314020`'s only `ret` (`0031436C`). `0025D950` is the only writer of `02099DA3`; its override
+  pair `02099DA4`/`02099DA5` is written by `0026AB50` from verbs `0552` `set_force_char_nearfade` (`00356030`: 1 and
+  the popped int) and `0553` `clear_force_char_nearfade` (`003563C0`: 0 and 0), and zeroed by the area unload
+  (`00262A24`, `00262A2B`) and the area reset `00266D10` (`00266D47`, `00266D4E`) (K3e).
+- **The veto byte `0215FD56` has three writers**: the two setters (`002EBBC1`, `002EBC0F`) and `002E63C0`, which stores
+  0 and is called by the area unload (`00262B80`) and the area reset (`00266DBF`) (K3c).
+- **Retire and promote have one caller each**, `0042ED60` (`0042ED8A`, `0042ED8F`), which clears bit 5 before them
+  (`0042ED83`) and tests it after them (`0042ED94`).
+
+**What the family reads back.** Only promotion reads the word: `00428790` keeps it as PRE, `004287A1` stores PRE
+without bit 0, `004287A7` calls `0042C410`, and `004287AC`..`004287B7` put back bit 0 alone (§20). Construct,
+look-up, allocate, retire and release read no bit of it. The two bit-2 readers are per-record callbacks of the walker
+`00425FB0`, which hands every callback its third argument as `rdx` (`00425FC7`, `00426006`, `0042601D`); `004264A0`
+registers `0042D050` and `00426500` registers `0042CF70`, each with that argument loaded from `022C6F28`, so `rsi` at
+`0042CF81` and `r14` at `0042D072` hold the pool base (K4a).
+
+**Invariants 6-11** *(numbered after §4's invariants 1-5)*.
+6. **Only bits 0, 2, 4 and 5 are ever set.** After the constructor's zero store, every write ORs 1, 5 or `0x20`, ORs
+   `0x10` or 0 (`002E8715`..`002E8719` make `eax` that), ANDs off bit 0, 4 or 5, or moves bit 0 alone (`0042879E`,
+   `004287B4`) (K2a). No operand of a wider access from `+0x48800`..`+0x48817` covers the word, no `lea` or immediate in
+   `0x48800`..`0x4881B` builds a biased base, and the pool pointer's one copy `02EBB740` (written at `004260D1` and
+   `0042ED6D`) is never read (K1c-K1e).
+7. **Bit 2 is 1 at every reader.** It is set at the end of construction and by `0042ED30`, and no write after
+   construction clears it (K2b); the constructor reaches no per-record walker between `00426A00` and `00426C59` (K5b).
+   So the two gates test a constant, and the model instance's `+8` bit 1 (the instance is `003E55B0`'s answer) follows
+   the record's `+0x284` bit 23 (`0042D3B7`) and, for a child, also the parent's (`0042D00D`, `0042D019`). Executed
+   (K7f): `0042CF70` sets the bit for 1 of the 8 combinations of (bit 2, child bit 23, parent bit 23) and clears it for
+   the other 7.
+8. **Bit 0 equals "veto byte is 0" only after one of the three setters.** Each setter stores the byte and then derives
+   the bit from the whole byte (K7a: with two requesters vetoing, releasing one leaves bit 0 at 0, and releasing both
+   sets it). Three writes break that agreement, and nothing repairs it before the next setter call:
+   - the constructor and `0042ED30` set bit 0 without reading the byte (K7b: byte 1, bit 0 becomes 1);
+   - `002E63C0` zeroes the byte and leaves bit 0 as it was (K7c). The area unload follows it at once with `002E8CC0`;
+     the area reset `00266D10` does not.
+9. **Promotion's pin protects bit 0 against no static writer.** The direct call closure of `0042C410` (247 functions,
+   34 indirect call or jmp sites not followed) contains none of the twelve functions that address the word, and not
+   `002E63C0` (K5a). So by static evidence nothing under the pin writes bit 0 or reads the cleared value, which answers
+   §20's open "whether any `PHOOK` implementation reads `+0x48818` bit 0" for the direct closure. Executed (K7e): the
+   callee sees bit 0 clear, bit 0 returns to PRE, and a change the callee makes to bit 2 survives.
+10. **Bit 4 has one writer outside the family, and the family never reads it.** `002E8700` stores `argument != 0`
+    there and keeps the other bits (K7d), once per completed run of `00314020`. The constructor clears it and
+    `0042ED30` keeps it.
+11. **Bit 5 is the family's only output through this word, and it is fresh at its one reader.** It is set only by
+    retire and promote, and both are reached only from `0042ED60`, which clears it first. So at `0042ED94` the bit
+    means "this pass retired or promoted at least one record", and a bit left from an earlier pass is never acted on.
+    Executed (K7g): the rebuild `0041E500` runs when retire or promote sets the bit, and not when neither does, even
+    with the bit set on entry.
+
+**Failure paths.**
+- **Culling on over a held veto.** After construction or a slot-0 bind, bit 0 is 1 even when `0215FD56` holds a veto
+  (a script's `setcharclipall(0)` or a stop-registry entry). Distant characters are culled against a requester's wish
+  until the next setter call. Whether any play path holds a veto across a slot-0 bind is not measured.
+- **Culling off with no veto.** After the area reset's `002E63C0`, a bit 0 that was 0 stays 0 with no requester
+  recorded, until the next setter call.
+- **A reimplementation that computes bit 0 from the byte on every read** removes both windows and changes culling at
+  those two moments. One that keeps a single boolean instead of the byte loses the two-requester rule (the fade page).
+- **A writer of bit 0 behind one of `0042C410`'s 34 indirect sites** would be undone by the pin, and the bit would
+  then disagree with the byte.
+- **A reimplementation of `0042ED60` that does not clear bit 5 first** rebuilds on every pass after the first change
+  (the S5 control shows that shape).
+
+**Evidence class.** Static: K1-K6 of `check_s38.py` (a displacement sweep of `0x48818`..`0x4881B` with operand widths,
+a covering-operand sweep from `+0x48800`, a biased-base scan, and a raw index of every owner and of the three bytes in
+every form: E8/E9, 0F 8x, EB/7x, rip-relative, image-base-relative and pointer constants; dominance in chained
+`.pdata` bodies; direct call closures). Isolated original-code: K7 under Unicorn 2.1.4 runs `002EBBB0`, `002EBBF0`,
+`002E8CC0`, `002E63C0`, `002E8700` and `0042ED30` whole, promotion's pin `00428790`..`004287BD`, and `0042CF70` and
+`0042ED60` whole with their callees answered by hooks. Six sensitivity controls each turn a check to FAIL. **Live:
+none.** **Not traced:** which thread each route runs on (all are assumed to share one), the 34 indirect sites under
+`0042C410` and the constructor's 571, and how often a veto meets a slot-0 bind in play.
+
 ## 15. Evidence
 
 Static, from the shipping image (`73461D08…`), instruction by instruction. The access census

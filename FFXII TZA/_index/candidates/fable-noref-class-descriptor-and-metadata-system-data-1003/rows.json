@@ -1,0 +1,347 @@
+{
+ "page": "22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/class-descriptor-and-metadata-system.md",
+ "date": "2026-10-03",
+ "rows": [
+  {
+   "fn": "005C4CC0",
+   "text": "returns dword `[rcx]` with bit 31 cleared (`btr`); stored to qword `02CB3B30` by `005B5130` + 0x2BB, after `00632A10` has built the member object at `02CB3AD0`, and 70 other sites form it the same way",
+   "anchors": [
+    [
+     "005C4CC2",
+     "btr"
+    ]
+   ],
+   "why_here": "stored by guarded class-registration stubs (this page's family, members/guarded-class-registration-stubs.tsv)",
+   "ref": {
+    "kind": "code",
+    "container": "005B5130",
+    "site": "005B53EB",
+    "store_site": "005B53F2",
+    "store_target": "02CB3B30"
+   },
+   "cites": [
+    "005B5130"
+   ]
+  },
+  {
+   "fn": "00671250",
+   "text": "with n = dword `[rcx]` with bit 31 cleared, returns qword `+8` when n is above 1, the address `rcx` + 8 when n is 1, and 0 when n is 0; stored to qword `02CECB08` by `005EFE60` + 0x203, and 9 other sites form it the same way",
+   "anchors": [
+    [
+     "00671252",
+     "btr"
+    ],
+    [
+     "00671256",
+     "cmp"
+    ],
+    [
+     "0067125B",
+     "mov"
+    ],
+    [
+     "00671260",
+     "lea"
+    ],
+    [
+     "00671268",
+     "cmove"
+    ]
+   ],
+   "why_here": "stored by Phyre class registrars this page lists",
+   "ref": {
+    "kind": "code",
+    "container": "005EFE60",
+    "site": "005F0063",
+    "store_site": "005F006A",
+    "store_target": "02CECB08"
+   },
+   "cites": [
+    "005EFE60"
+   ]
+  },
+  {
+   "fn": "00677A50",
+   "text": "copies qwords `+0x38` and `+0x40` to `[rdx]` and `[rdx+8]` and returns `rdx`; stored to stack `+0x48` by `00675740` + 0x393",
+   "anchors": [
+    [
+     "00677A54",
+     "mov"
+    ],
+    [
+     "00677A58",
+     "mov"
+    ],
+    [
+     "00677A5E",
+     "mov"
+    ]
+   ],
+   "why_here": "stored by 00675740, which this page reads",
+   "ref": {
+    "kind": "code",
+    "container": "00675740",
+    "site": "00675AD3",
+    "store_site": "00675ADA",
+    "store_op": "qword ptr [rsp + 0x48], rax"
+   },
+   "cites": [
+    "00675740"
+   ]
+  },
+  {
+   "fn": "006A77C0",
+   "text": "with `p` = qword `[rcx]`: returns 0 when `p` is null; with `p`'s bit 0 subtracted, returns 1 when the result is 0 and otherwise the length of the string there plus 1; stored to qword `02E4D790` by `006A72B0` + 0xB1",
+   "anchors": [
+    [
+     "006A77C8",
+     "movzx"
+    ],
+    [
+     "006A77CE",
+     "sub"
+    ],
+    [
+     "006A77DA",
+     "cmp"
+    ],
+    [
+     "006A77E0",
+     "inc"
+    ],
+    [
+     "006A77E5",
+     "inc"
+    ]
+   ],
+   "why_here": "stored by 006A72B0, whose vtable store this page tabulates",
+   "ref": {
+    "kind": "code",
+    "container": "006A72B0",
+    "site": "006A7361",
+    "store_site": "006A7368",
+    "store_target": "02E4D790"
+   },
+   "cites": [
+    "006A72B0"
+   ]
+  },
+  {
+   "fn": "006A77F0",
+   "text": "returns qword `[rcx]` minus its own bit 0 (the low bit of byte `[rcx]`); stored to qword `02E4D798` by `006A72B0` + 0xF4",
+   "anchors": [
+    [
+     "006A77F3",
+     "mov"
+    ],
+    [
+     "006A77F6",
+     "and"
+    ],
+    [
+     "006A77F9",
+     "sub"
+    ]
+   ],
+   "why_here": "stored by 006A72B0, whose vtable store this page tabulates",
+   "ref": {
+    "kind": "code",
+    "container": "006A72B0",
+    "site": "006A73A4",
+    "store_site": "006A73AB",
+    "store_target": "02E4D798"
+   },
+   "cites": [
+    "006A72B0"
+   ]
+  },
+  {
+   "fn": "006AF4E0",
+   "text": "returns qword `+0x20` plus the zero-extended `edx` times 16; stored to qword `02E4FA98` by `006AE350` + 0x1BF",
+   "anchors": [
+    [
+     "006AF4E2",
+     "shl"
+    ],
+    [
+     "006AF4E6",
+     "add"
+    ]
+   ],
+   "why_here": "stored by 006AE350, whose vtable store this page tabulates",
+   "ref": {
+    "kind": "code",
+    "container": "006AE350",
+    "site": "006AE50F",
+    "store_site": "006AE516",
+    "store_target": "02E4FA98"
+   },
+   "cites": [
+    "006AE350"
+   ]
+  },
+  {
+   "fn": "006B2E60",
+   "text": "stores the float `xmm1` to dword `+0xC` and returns `rcx`; stored to qword `02E51028` by `006B0EC0` + 0x413, and 1 other site forms it the same way",
+   "anchors": [
+    [
+     "006B2E65",
+     "mov"
+    ]
+   ],
+   "why_here": "stored by 006B0EC0, a vector/quaternion registrar this page tabulates",
+   "ref": {
+    "kind": "code",
+    "container": "006B0EC0",
+    "site": "006B12D3",
+    "store_site": "006B12DA",
+    "store_target": "02E51028"
+   },
+   "cites": [
+    "006B0EC0"
+   ]
+  },
+  {
+   "fn": "006B2E70",
+   "text": "stores the float `xmm1` to dword `[rcx]` and returns `rcx`; stored to qword `02E50968` by `006B0B20` + 0x1D6, and 4 other sites form it the same way",
+   "anchors": [
+    [
+     "006B2E74",
+     "mov"
+    ]
+   ],
+   "why_here": "stored by 006B0B20, a vector/quaternion registrar this page tabulates",
+   "ref": {
+    "kind": "code",
+    "container": "006B0B20",
+    "site": "006B0CF6",
+    "store_site": "006B0CFD",
+    "store_target": "02E50968"
+   },
+   "cites": [
+    "006B0B20"
+   ]
+  },
+  {
+   "fn": "006B2E80",
+   "text": "stores the float `xmm1` to dword `+4` and returns `rcx`; stored to qword `02E509C8` by `006B0B20` + 0x295, and 4 other sites form it the same way",
+   "anchors": [
+    [
+     "006B2E85",
+     "mov"
+    ]
+   ],
+   "why_here": "stored by 006B0B20, a vector/quaternion registrar this page tabulates",
+   "ref": {
+    "kind": "code",
+    "container": "006B0B20",
+    "site": "006B0DB5",
+    "store_site": "006B0DBC",
+    "store_target": "02E509C8"
+   },
+   "cites": [
+    "006B0B20"
+   ]
+  },
+  {
+   "fn": "006B2E90",
+   "text": "stores the float `xmm1` to dword `+8` and returns `rcx`; stored to qword `02E50A28` by `006B0B20` + 0x354, and 3 other sites form it the same way",
+   "anchors": [
+    [
+     "006B2E95",
+     "mov"
+    ]
+   ],
+   "why_here": "stored by 006B0B20, a vector/quaternion registrar this page tabulates",
+   "ref": {
+    "kind": "code",
+    "container": "006B0B20",
+    "site": "006B0E74",
+    "store_site": "006B0E7B",
+    "store_target": "02E50A28"
+   },
+   "cites": [
+    "006B0B20"
+   ]
+  },
+  {
+   "fn": "006B3AA0",
+   "text": "copies dwords `[rdx]`, `[rdx+4]` and `[rdx+8]` to dwords `+0x20`, `+0x24` and `+0x28` and returns `rcx`; stored to qword `02E51728` by `006B33F0` + 0x1D6",
+   "anchors": [
+    [
+     "006B3AA2",
+     "mov"
+    ],
+    [
+     "006B3AA8",
+     "mov"
+    ],
+    [
+     "006B3AAE",
+     "mov"
+    ],
+    [
+     "006B3AB1",
+     "mov"
+    ]
+   ],
+   "why_here": "stored by the PMatrix4x3 registrar 006B33F0 this page tabulates",
+   "ref": {
+    "kind": "code",
+    "container": "006B33F0",
+    "site": "006B35C6",
+    "store_site": "006B35CD",
+    "store_target": "02E51728"
+   },
+   "cites": [
+    "006B33F0"
+   ]
+  },
+  {
+   "fn": "008AF500",
+   "text": "stores the `.rdata` address `00D26BE0` to qword `01F2E0D0` and returns; passed as the `rcx` argument of the `00808B90` exit registration by `006372B0` + 0x48",
+   "anchors": [
+    [
+     "008AF507",
+     "mov"
+    ]
+   ],
+   "why_here": "exit routine registered by the magic static 006372B0 this page reads",
+   "ref": {
+    "kind": "code",
+    "container": "006372B0",
+    "site": "006372F8"
+   },
+   "cites": [
+    "006372B0"
+   ]
+  },
+  {
+   "fn": "008B1D50",
+   "text": "stores the `.rdata` address `00D6C378` to qword `02D3E9D0` and tail-jumps to `00633770` with `rcx` = `02D3E9D0`; passed as the `rcx` argument of the `00808B90` exit registration by `00675740` + 0x1FB",
+   "anchors": [
+    [
+     "008B1D57",
+     "lea"
+    ],
+    [
+     "008B1D5E",
+     "mov"
+    ],
+    [
+     "008B1D65",
+     "jmp"
+    ]
+   ],
+   "why_here": "exit routine registered by 00675740, which this page reads",
+   "ref": {
+    "kind": "code",
+    "container": "00675740",
+    "site": "0067593B"
+   },
+   "cites": [
+    "00675740"
+   ]
+  }
+ ]
+}

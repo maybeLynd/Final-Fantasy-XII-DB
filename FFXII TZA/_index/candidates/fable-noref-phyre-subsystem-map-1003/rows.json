@@ -1,0 +1,23 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/phyre-subsystem-map.md",
+ "date": "2026-10-03",
+ "rows": [
+  {
+   "fn": "005A0240",
+   "text": "loads the vtable from `[rcx]` and tail-jumps to its slot 1 (qword `+8`) with every argument register unchanged; vtable slot 2 of PIChildClassVisitor, PDeleteChildrenVisitor and PFindNestedClassVisitor",
+   "anchors": [
+    [
+     "005A0243",
+     "jmp"
+    ]
+   ],
+   "why_here": "slot 2 of PIChildClassVisitor and two derived visitors (rtti-methods.tsv); this page is the only one that names PIChildClassVisitor (its reflection and type system row)"
+  }
+ ],
+ "owner_tokens": {
+  "005A0240": "PIChildClassVisitor"
+ },
+ "kind": "rtti",
+ "note_extra": "",
+ "source": "SWE2-EC7 hand-off Database/Tools/work/SWE2-EC7/handoff_noref_to_fable_1003.tsv (rtti column), homing_rtti_noref_1003.tsv, h211/callers.tsv"
+}

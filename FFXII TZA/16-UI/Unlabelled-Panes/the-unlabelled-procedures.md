@@ -289,3 +289,11 @@ twenty-three relationships. Edge count from `edges.tsv`. Read from the shipping 
 | `00181D50` | 43 B | `005701B0` + 0xAF | makes the call at `00181D50` + 0x11 with `xmm0` and `xmm1` both 1.0 (`01CEBBA8`) and stores its result at qword `+0x270` of the object returned by the call at + 0x19 | Interior anchor `00181D56`; Interior anchor `00181D61`; Interior anchor `00181D69`; Interior anchor `00181D6E` |
 | `00181D80` | 43 B | `005701B0` + 0xB4 | makes the call at `00181D80` + 0x11 with `xmm0` and `xmm1` both 1.0 (`01CEBBA8`) and stores its result at qword `+0x278` of the object returned by the call at + 0x19 | Interior anchor `00181D86`; Interior anchor `00181D91`; Interior anchor `00181D99`; Interior anchor `00181D9E` |
 | `0056FEA0` | 68 B | `005701B0` + 0x189 | makes the call at `0056FEA0` + 0x10 with qword `rcx+0xC0`, then the calls at + 0x21 and + 0x32 with qwords `rcx+0x140` and `rcx+0x150`, each only when that qword is non-null, and finally tail-jumps at + 0x3F (the same callee as + 0x21 and + 0x32) with `rcx` itself | Interior anchor `0056FEB0`; Interior anchor `0056FEBF`; Interior anchor `0056FED0`; Interior anchor `0056FEDF` |
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-the-unlabelled-procedures-ee-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00345830` | 158 B | with `d` = `rdx` and `q` = `r9` (`r8` is not read): `a` = `00267DB0(q)`, then `b` = `00267DB0(q)` again; calls `00265020(d, &x, &y, &z)` for stack floats `x`, `y` and `z`; `f` = 0.0 when `b` equals `x` and `a` equals `z` (a NaN compares unequal), else `f` = `003A19A0` with the floats (z, x, a, b) in `xmm0` to `xmm3`; calls `0026B4C0(rcx, f)` with `f` in `xmm1` | `00345855`, `00345860`, `0034587A`, `00345885`, `003458A4` |

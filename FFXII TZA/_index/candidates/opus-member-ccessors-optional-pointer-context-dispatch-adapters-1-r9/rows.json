@@ -1,0 +1,1834 @@
+{
+ "page": "22-Middleware-PhyreEngine/Script-Object-Accessors/phyre-script-object-accessors.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "phyre-script-object-accessors-optional-pointer-context-dispatch-adapters-1-r9.json",
+ "rows": [
+  {
+   "fn": "005C7970",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005B4E00` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "005C797A",
+     "mov"
+    ],
+    [
+     "005C7982",
+     "call"
+    ],
+    [
+     "005C798D",
+     "je"
+    ],
+    [
+     "005C799F",
+     "jmp"
+    ],
+    [
+     "005C79A9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C79C0",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005B5130` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "005C79CA",
+     "mov"
+    ],
+    [
+     "005C79D2",
+     "call"
+    ],
+    [
+     "005C79DD",
+     "je"
+    ],
+    [
+     "005C79EF",
+     "jmp"
+    ],
+    [
+     "005C79F9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C7A10",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005B5460` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "005C7A1A",
+     "mov"
+    ],
+    [
+     "005C7A22",
+     "call"
+    ],
+    [
+     "005C7A2D",
+     "je"
+    ],
+    [
+     "005C7A3F",
+     "jmp"
+    ],
+    [
+     "005C7A49",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C7A60",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005B57A0` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "005C7A6A",
+     "mov"
+    ],
+    [
+     "005C7A72",
+     "call"
+    ],
+    [
+     "005C7A7D",
+     "je"
+    ],
+    [
+     "005C7A8F",
+     "jmp"
+    ],
+    [
+     "005C7A99",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C7AB0",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005B5AE0` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "005C7ABA",
+     "mov"
+    ],
+    [
+     "005C7AC2",
+     "call"
+    ],
+    [
+     "005C7ACD",
+     "je"
+    ],
+    [
+     "005C7ADF",
+     "jmp"
+    ],
+    [
+     "005C7AE9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C7B00",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005B5E10` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "005C7B0A",
+     "mov"
+    ],
+    [
+     "005C7B12",
+     "call"
+    ],
+    [
+     "005C7B1D",
+     "je"
+    ],
+    [
+     "005C7B2F",
+     "jmp"
+    ],
+    [
+     "005C7B39",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C7B50",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005B6140` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "005C7B5A",
+     "mov"
+    ],
+    [
+     "005C7B62",
+     "call"
+    ],
+    [
+     "005C7B6D",
+     "je"
+    ],
+    [
+     "005C7B7F",
+     "jmp"
+    ],
+    [
+     "005C7B89",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C7BA0",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005B6470` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "005C7BAA",
+     "mov"
+    ],
+    [
+     "005C7BB2",
+     "call"
+    ],
+    [
+     "005C7BBD",
+     "je"
+    ],
+    [
+     "005C7BCF",
+     "jmp"
+    ],
+    [
+     "005C7BD9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C7BF0",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005B67A0` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "005C7BFA",
+     "mov"
+    ],
+    [
+     "005C7C02",
+     "call"
+    ],
+    [
+     "005C7C0D",
+     "je"
+    ],
+    [
+     "005C7C1F",
+     "jmp"
+    ],
+    [
+     "005C7C29",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C7C40",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005B6AD0` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "005C7C4A",
+     "mov"
+    ],
+    [
+     "005C7C52",
+     "call"
+    ],
+    [
+     "005C7C5D",
+     "je"
+    ],
+    [
+     "005C7C6F",
+     "jmp"
+    ],
+    [
+     "005C7C79",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C7C90",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005B6E00` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "005C7C9A",
+     "mov"
+    ],
+    [
+     "005C7CA2",
+     "call"
+    ],
+    [
+     "005C7CAD",
+     "je"
+    ],
+    [
+     "005C7CBF",
+     "jmp"
+    ],
+    [
+     "005C7CC9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C7CE0",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005B7130` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "005C7CEA",
+     "mov"
+    ],
+    [
+     "005C7CF2",
+     "call"
+    ],
+    [
+     "005C7CFD",
+     "je"
+    ],
+    [
+     "005C7D0F",
+     "jmp"
+    ],
+    [
+     "005C7D19",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C7D30",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005B7460` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "005C7D3A",
+     "mov"
+    ],
+    [
+     "005C7D42",
+     "call"
+    ],
+    [
+     "005C7D4D",
+     "je"
+    ],
+    [
+     "005C7D5F",
+     "jmp"
+    ],
+    [
+     "005C7D69",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C7D80",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005B7790` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "005C7D8A",
+     "mov"
+    ],
+    [
+     "005C7D92",
+     "call"
+    ],
+    [
+     "005C7D9D",
+     "je"
+    ],
+    [
+     "005C7DAF",
+     "jmp"
+    ],
+    [
+     "005C7DB9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005C7DD0",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005B7AC0` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "005C7DDA",
+     "mov"
+    ],
+    [
+     "005C7DE2",
+     "call"
+    ],
+    [
+     "005C7DED",
+     "je"
+    ],
+    [
+     "005C7DFF",
+     "jmp"
+    ],
+    [
+     "005C7E09",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0060ABA0",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005EB7C0` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "0060ABAA",
+     "mov"
+    ],
+    [
+     "0060ABB2",
+     "call"
+    ],
+    [
+     "0060ABBD",
+     "je"
+    ],
+    [
+     "0060ABCF",
+     "jmp"
+    ],
+    [
+     "0060ABD9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0060ABF0",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005EBB00` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "0060ABFA",
+     "mov"
+    ],
+    [
+     "0060AC02",
+     "call"
+    ],
+    [
+     "0060AC0D",
+     "je"
+    ],
+    [
+     "0060AC1F",
+     "jmp"
+    ],
+    [
+     "0060AC29",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0060AC40",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005EBE40` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "0060AC4A",
+     "mov"
+    ],
+    [
+     "0060AC52",
+     "call"
+    ],
+    [
+     "0060AC5D",
+     "je"
+    ],
+    [
+     "0060AC6F",
+     "jmp"
+    ],
+    [
+     "0060AC79",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0060AC90",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005EC180` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "0060AC9A",
+     "mov"
+    ],
+    [
+     "0060ACA2",
+     "call"
+    ],
+    [
+     "0060ACAD",
+     "je"
+    ],
+    [
+     "0060ACBF",
+     "jmp"
+    ],
+    [
+     "0060ACC9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0060ACE0",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005EC4C0` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "0060ACEA",
+     "mov"
+    ],
+    [
+     "0060ACF2",
+     "call"
+    ],
+    [
+     "0060ACFD",
+     "je"
+    ],
+    [
+     "0060AD0F",
+     "jmp"
+    ],
+    [
+     "0060AD19",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0060AD30",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005EC800` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "0060AD3A",
+     "mov"
+    ],
+    [
+     "0060AD42",
+     "call"
+    ],
+    [
+     "0060AD4D",
+     "je"
+    ],
+    [
+     "0060AD5F",
+     "jmp"
+    ],
+    [
+     "0060AD69",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0060AD80",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005ECB40` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "0060AD8A",
+     "mov"
+    ],
+    [
+     "0060AD92",
+     "call"
+    ],
+    [
+     "0060AD9D",
+     "je"
+    ],
+    [
+     "0060ADAF",
+     "jmp"
+    ],
+    [
+     "0060ADB9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0060ADD0",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005ECE70` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "0060ADDA",
+     "mov"
+    ],
+    [
+     "0060ADE2",
+     "call"
+    ],
+    [
+     "0060ADED",
+     "je"
+    ],
+    [
+     "0060ADFF",
+     "jmp"
+    ],
+    [
+     "0060AE09",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0060AE20",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005ED1A0` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "0060AE2A",
+     "mov"
+    ],
+    [
+     "0060AE32",
+     "call"
+    ],
+    [
+     "0060AE3D",
+     "je"
+    ],
+    [
+     "0060AE4F",
+     "jmp"
+    ],
+    [
+     "0060AE59",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0060AE70",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005ED4D0` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "0060AE7A",
+     "mov"
+    ],
+    [
+     "0060AE82",
+     "call"
+    ],
+    [
+     "0060AE8D",
+     "je"
+    ],
+    [
+     "0060AE9F",
+     "jmp"
+    ],
+    [
+     "0060AEA9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0060AEC0",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005ED800` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "0060AECA",
+     "mov"
+    ],
+    [
+     "0060AED2",
+     "call"
+    ],
+    [
+     "0060AEDD",
+     "je"
+    ],
+    [
+     "0060AEEF",
+     "jmp"
+    ],
+    [
+     "0060AEF9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0060AF10",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005EDB30` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "0060AF1A",
+     "mov"
+    ],
+    [
+     "0060AF22",
+     "call"
+    ],
+    [
+     "0060AF2D",
+     "je"
+    ],
+    [
+     "0060AF3F",
+     "jmp"
+    ],
+    [
+     "0060AF49",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0060AF60",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005EDE60` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "0060AF6A",
+     "mov"
+    ],
+    [
+     "0060AF72",
+     "call"
+    ],
+    [
+     "0060AF7D",
+     "je"
+    ],
+    [
+     "0060AF8F",
+     "jmp"
+    ],
+    [
+     "0060AF99",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0060AFB0",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005EE190` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "0060AFBA",
+     "mov"
+    ],
+    [
+     "0060AFC2",
+     "call"
+    ],
+    [
+     "0060AFCD",
+     "je"
+    ],
+    [
+     "0060AFDF",
+     "jmp"
+    ],
+    [
+     "0060AFE9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0060B000",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005EE4C0` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "0060B00A",
+     "mov"
+    ],
+    [
+     "0060B012",
+     "call"
+    ],
+    [
+     "0060B01D",
+     "je"
+    ],
+    [
+     "0060B02F",
+     "jmp"
+    ],
+    [
+     "0060B039",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0060B050",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005EE7F0` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "0060B05A",
+     "mov"
+    ],
+    [
+     "0060B062",
+     "call"
+    ],
+    [
+     "0060B06D",
+     "je"
+    ],
+    [
+     "0060B07F",
+     "jmp"
+    ],
+    [
+     "0060B089",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0060B0A0",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005EEB20` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "0060B0AA",
+     "mov"
+    ],
+    [
+     "0060B0B2",
+     "call"
+    ],
+    [
+     "0060B0BD",
+     "je"
+    ],
+    [
+     "0060B0CF",
+     "jmp"
+    ],
+    [
+     "0060B0D9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0060B0F0",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005EEE50` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "0060B0FA",
+     "mov"
+    ],
+    [
+     "0060B102",
+     "call"
+    ],
+    [
+     "0060B10D",
+     "je"
+    ],
+    [
+     "0060B11F",
+     "jmp"
+    ],
+    [
+     "0060B129",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0060B140",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005EF180` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "0060B14A",
+     "mov"
+    ],
+    [
+     "0060B152",
+     "call"
+    ],
+    [
+     "0060B15D",
+     "je"
+    ],
+    [
+     "0060B16F",
+     "jmp"
+    ],
+    [
+     "0060B179",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0060B190",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005EF4B0` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "0060B19A",
+     "mov"
+    ],
+    [
+     "0060B1A2",
+     "call"
+    ],
+    [
+     "0060B1AD",
+     "je"
+    ],
+    [
+     "0060B1BF",
+     "jmp"
+    ],
+    [
+     "0060B1C9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0060B1E0",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005EF7E0` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "0060B1EA",
+     "mov"
+    ],
+    [
+     "0060B1F2",
+     "call"
+    ],
+    [
+     "0060B1FD",
+     "je"
+    ],
+    [
+     "0060B20F",
+     "jmp"
+    ],
+    [
+     "0060B219",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0060B230",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005EFB10` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "0060B23A",
+     "mov"
+    ],
+    [
+     "0060B242",
+     "call"
+    ],
+    [
+     "0060B24D",
+     "je"
+    ],
+    [
+     "0060B25F",
+     "jmp"
+    ],
+    [
+     "0060B269",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0060B280",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `005EFE60` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "0060B28A",
+     "mov"
+    ],
+    [
+     "0060B292",
+     "call"
+    ],
+    [
+     "0060B29D",
+     "je"
+    ],
+    [
+     "0060B2AF",
+     "jmp"
+    ],
+    [
+     "0060B2B9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00626F50",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `00618970` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "00626F5A",
+     "mov"
+    ],
+    [
+     "00626F62",
+     "call"
+    ],
+    [
+     "00626F6D",
+     "je"
+    ],
+    [
+     "00626F7F",
+     "jmp"
+    ],
+    [
+     "00626F89",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00626FA0",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `00618CA0` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "00626FAA",
+     "mov"
+    ],
+    [
+     "00626FB2",
+     "call"
+    ],
+    [
+     "00626FBD",
+     "je"
+    ],
+    [
+     "00626FCF",
+     "jmp"
+    ],
+    [
+     "00626FD9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0063CF80",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `00635DC0` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "0063CF8A",
+     "mov"
+    ],
+    [
+     "0063CF92",
+     "call"
+    ],
+    [
+     "0063CF9D",
+     "je"
+    ],
+    [
+     "0063CFAF",
+     "jmp"
+    ],
+    [
+     "0063CFB9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006583F0",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `0064AA20` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "006583FA",
+     "mov"
+    ],
+    [
+     "00658402",
+     "call"
+    ],
+    [
+     "0065840D",
+     "je"
+    ],
+    [
+     "0065841F",
+     "jmp"
+    ],
+    [
+     "00658429",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00671FE0",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `00668AE0` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "00671FEA",
+     "mov"
+    ],
+    [
+     "00671FF2",
+     "call"
+    ],
+    [
+     "00671FFD",
+     "je"
+    ],
+    [
+     "0067200F",
+     "jmp"
+    ],
+    [
+     "00672019",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00672030",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `00668E10` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "0067203A",
+     "mov"
+    ],
+    [
+     "00672042",
+     "call"
+    ],
+    [
+     "0067204D",
+     "je"
+    ],
+    [
+     "0067205F",
+     "jmp"
+    ],
+    [
+     "00672069",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00672080",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `00669140` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "0067208A",
+     "mov"
+    ],
+    [
+     "00672092",
+     "call"
+    ],
+    [
+     "0067209D",
+     "je"
+    ],
+    [
+     "006720AF",
+     "jmp"
+    ],
+    [
+     "006720B9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006720D0",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `00669470` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "006720DA",
+     "mov"
+    ],
+    [
+     "006720E2",
+     "call"
+    ],
+    [
+     "006720ED",
+     "je"
+    ],
+    [
+     "006720FF",
+     "jmp"
+    ],
+    [
+     "00672109",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00672120",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `006697A0` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "0067212A",
+     "mov"
+    ],
+    [
+     "00672132",
+     "call"
+    ],
+    [
+     "0067213D",
+     "je"
+    ],
+    [
+     "0067214F",
+     "jmp"
+    ],
+    [
+     "00672159",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00672170",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `00669AD0` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "0067217A",
+     "mov"
+    ],
+    [
+     "00672182",
+     "call"
+    ],
+    [
+     "0067218D",
+     "je"
+    ],
+    [
+     "0067219F",
+     "jmp"
+    ],
+    [
+     "006721A9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006721C0",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `00669E00` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "006721CA",
+     "mov"
+    ],
+    [
+     "006721D2",
+     "call"
+    ],
+    [
+     "006721DD",
+     "je"
+    ],
+    [
+     "006721EF",
+     "jmp"
+    ],
+    [
+     "006721F9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00672210",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `0066A130` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "0067221A",
+     "mov"
+    ],
+    [
+     "00672222",
+     "call"
+    ],
+    [
+     "0067222D",
+     "je"
+    ],
+    [
+     "0067223F",
+     "jmp"
+    ],
+    [
+     "00672249",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00672260",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `0066A460` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "0067226A",
+     "mov"
+    ],
+    [
+     "00672272",
+     "call"
+    ],
+    [
+     "0067227D",
+     "je"
+    ],
+    [
+     "0067228F",
+     "jmp"
+    ],
+    [
+     "00672299",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006722B0",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `0066A7B0` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "006722BA",
+     "mov"
+    ],
+    [
+     "006722C2",
+     "call"
+    ],
+    [
+     "006722CD",
+     "je"
+    ],
+    [
+     "006722DF",
+     "jmp"
+    ],
+    [
+     "006722E9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00672300",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `0066AB00` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "0067230A",
+     "mov"
+    ],
+    [
+     "00672312",
+     "call"
+    ],
+    [
+     "0067231D",
+     "je"
+    ],
+    [
+     "0067232F",
+     "jmp"
+    ],
+    [
+     "00672339",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0067E1D0",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `0067D810` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "0067E1DA",
+     "mov"
+    ],
+    [
+     "0067E1E2",
+     "call"
+    ],
+    [
+     "0067E1ED",
+     "je"
+    ],
+    [
+     "0067E1FF",
+     "jmp"
+    ],
+    [
+     "0067E209",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006A45F0",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `00698930` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "006A45FA",
+     "mov"
+    ],
+    [
+     "006A4602",
+     "call"
+    ],
+    [
+     "006A460D",
+     "je"
+    ],
+    [
+     "006A461F",
+     "jmp"
+    ],
+    [
+     "006A4629",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006A9200",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `006A84C0` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "006A920A",
+     "mov"
+    ],
+    [
+     "006A9212",
+     "call"
+    ],
+    [
+     "006A921D",
+     "je"
+    ],
+    [
+     "006A922F",
+     "jmp"
+    ],
+    [
+     "006A9239",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006AF630",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `006AE780` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "006AF63A",
+     "mov"
+    ],
+    [
+     "006AF642",
+     "call"
+    ],
+    [
+     "006AF64D",
+     "je"
+    ],
+    [
+     "006AF65F",
+     "jmp"
+    ],
+    [
+     "006AF669",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006BE440",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `006BCC40` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "006BE44A",
+     "mov"
+    ],
+    [
+     "006BE452",
+     "call"
+    ],
+    [
+     "006BE45D",
+     "je"
+    ],
+    [
+     "006BE46F",
+     "jmp"
+    ],
+    [
+     "006BE479",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006BE490",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `006BCF80` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "006BE49A",
+     "mov"
+    ],
+    [
+     "006BE4A2",
+     "call"
+    ],
+    [
+     "006BE4AD",
+     "je"
+    ],
+    [
+     "006BE4BF",
+     "jmp"
+    ],
+    [
+     "006BE4C9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006BE4E0",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `006BD2B0` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "006BE4EA",
+     "mov"
+    ],
+    [
+     "006BE4F2",
+     "call"
+    ],
+    [
+     "006BE4FD",
+     "je"
+    ],
+    [
+     "006BE50F",
+     "jmp"
+    ],
+    [
+     "006BE519",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006C2660",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `006C1920` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "006C266A",
+     "mov"
+    ],
+    [
+     "006C2672",
+     "call"
+    ],
+    [
+     "006C267D",
+     "je"
+    ],
+    [
+     "006C268F",
+     "jmp"
+    ],
+    [
+     "006C2699",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006C4520",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `006C3800` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "006C452A",
+     "mov"
+    ],
+    [
+     "006C4532",
+     "call"
+    ],
+    [
+     "006C453D",
+     "je"
+    ],
+    [
+     "006C454F",
+     "jmp"
+    ],
+    [
+     "006C4559",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006C78C0",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `006C6230` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "006C78CA",
+     "mov"
+    ],
+    [
+     "006C78D2",
+     "call"
+    ],
+    [
+     "006C78DD",
+     "je"
+    ],
+    [
+     "006C78EF",
+     "jmp"
+    ],
+    [
+     "006C78F9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006C7910",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `006C6560` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "006C791A",
+     "mov"
+    ],
+    [
+     "006C7922",
+     "call"
+    ],
+    [
+     "006C792D",
+     "je"
+    ],
+    [
+     "006C793F",
+     "jmp"
+    ],
+    [
+     "006C7949",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006D52E0",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `006D2390` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "006D52EA",
+     "mov"
+    ],
+    [
+     "006D52F2",
+     "call"
+    ],
+    [
+     "006D52FD",
+     "je"
+    ],
+    [
+     "006D530F",
+     "jmp"
+    ],
+    [
+     "006D5319",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006D5330",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `006D26C0` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "006D533A",
+     "mov"
+    ],
+    [
+     "006D5342",
+     "call"
+    ],
+    [
+     "006D534D",
+     "je"
+    ],
+    [
+     "006D535F",
+     "jmp"
+    ],
+    [
+     "006D5369",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "006D5380",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `006D29F0` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "006D538A",
+     "mov"
+    ],
+    [
+     "006D5392",
+     "call"
+    ],
+    [
+     "006D539D",
+     "je"
+    ],
+    [
+     "006D53AF",
+     "jmp"
+    ],
+    [
+     "006D53B9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00873E10",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `0086E470` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "00873E1A",
+     "mov"
+    ],
+    [
+     "00873E22",
+     "call"
+    ],
+    [
+     "00873E2D",
+     "je"
+    ],
+    [
+     "00873E3F",
+     "jmp"
+    ],
+    [
+     "00873E49",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00873E60",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `0086E7B0` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "00873E6A",
+     "mov"
+    ],
+    [
+     "00873E72",
+     "call"
+    ],
+    [
+     "00873E7D",
+     "je"
+    ],
+    [
+     "00873E8F",
+     "jmp"
+    ],
+    [
+     "00873E99",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0087A760",
+   "text": "with `c` = `rdx` and `p` = qword [r8] (read first): calls `00879EC0` with 0 in `ecx`; when `p` is non-null tail-jumps to `00684080` with (c, p, the return value); otherwise calls `0080F420(c, 1)` and tail-jumps to `00810620` with `c` in `rcx`",
+   "anchors": [
+    [
+     "0087A76A",
+     "mov"
+    ],
+    [
+     "0087A772",
+     "call"
+    ],
+    [
+     "0087A77D",
+     "je"
+    ],
+    [
+     "0087A78F",
+     "jmp"
+    ],
+    [
+     "0087A799",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "member",
+ "family": "optional-pointer context dispatch adapters"
+}

@@ -1025,3 +1025,11 @@ FABLE's embedded-EFX sweep are carried, not re-run.
 | function | size | entered from | what the body does | interior anchors |
 |---|---|---|---|---|
 | `00422FD0` | 120 B | `00423B10` + 0x13F | returns 0 when `rdx` is null; otherwise passes `rdx` to the call at `00422FD0` + 0x18 and its result, with 0 when `r8d AND 0xF000` is `0x5000` and `r8d AND 0xFFF` otherwise, to the call at `00422FD0` + 0x3C, and returns 1 only when that second result is non-null, dword `rcx+0x284` has bit `0x10000` set and the second result's dword `+4` has a bit of `0x30000` set, else 0 | Interior anchor `00422FE8`; Interior anchor `00422FF5`; Interior anchor `0042300C`; Interior anchor `00423016`; Interior anchor `00423022` |
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-fef-and-motion-entries-ee-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00319E40` | 257 B | with `o` = `rcx`: `v` = `0030CA50(o)`; returns when `v` + 1 is at most 1 (unsigned, so `v` is 0 or -1); for i below dword [o+0x77C] (signed, re-read each step), when `p` = qword [o+0x780+16i] and then `e` = `00263E30(p)` are non-null, appends dword [e+8] to a 32-dword stack array (no bound on the count `n`); when `n` is non-zero calls `002EAD00(dword [o+8], n, array, v)` and, when `00237420()` returns non-zero, `0024ED50(v)` (stack cookie `01F44830` checked by `00808C40`) | `00319E60`, `00319EB9`, `00319EC8`, `00319EFF`, `00319F10` |
