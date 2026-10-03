@@ -1,0 +1,26 @@
+{
+ "page": "16-UI/Handbook/the-handbooks-monster-viewer.md",
+ "session": "session_019ww1AYv6HUCASSLr6wdSTQ",
+ "rows": [
+  {"fn": "001EBA90", "entered_from": "`001C6320` + 0x22C",
+   "text": "stores float `xmm1` at `rcx+0x250` and at `rcx+0x110`, calls (at `001EBA90` + 0x20) the function in slot +8 of the vtable of the object at `rcx+0x40` with that object, then stores dword 0x3F93CD3A at `rcx+0x114` and tail-jumps (at `001EBA90` + 0x38) through the same vtable slot with the same object",
+   "anchors": [["001EBA9A", "movss"], ["001EBAA8", "movss"], ["001EBAB0", "call"], ["001EBAB9", "mov"], ["001EBAC8", "jmp"]]},
+  {"fn": "001EBB70", "entered_from": "`001C6320` + 0x62D",
+   "text": "copies 0xD0 bytes (thirteen unaligned 16-byte moves) from `rdx` to `rcx+0x144`",
+   "anchors": [["001EBB7A", "movups"], ["001EBBAD", "sub"], ["001EBBB5", "movups"], ["001EBBEB", "movups"]]},
+  {"fn": "001EBBF0", "entered_from": "`001C6320` + 0xE2",
+   "text": "zeroes dword `rcx+0x12C`; when `r8d` is non-zero it then stores `r8d` at dword `rcx+0x124` + `edx`*4 and `edx`+1 at dword `rcx+0x12C`, and when `r8d` is 0 it returns after the zeroing",
+   "anchors": [["001EBBFD", "je"], ["001EBC02", "mov"], ["001EBC0A", "lea"], ["001EBC0D", "mov"]]},
+  {"fn": "001EBC20", "entered_from": "`001C6320` + 0x145",
+   "text": "stores byte 1 at `rcx+0x140` and stores `edx` modulo 80 (signed division through the multiplier 0x66666667 and an arithmetic shift of 5) at dword `rcx+0x224`",
+   "anchors": [["001EBC23", "mov"], ["001EBC2F", "imul"], ["001EBC41", "sub"], ["001EBC44", "mov"]]},
+  {"fn": "002ECBA0", "entered_from": "`0034B120` + 0x54",
+   "text": "when `edx` is non-negative and the signed word `rcx+0x1E` is non-negative, it selects the 0x120-byte record of that index in the table at `02161DA0`, and when that record's dword `+0x5C` equals dword `rcx+0x24` and `r8d` is 1 it ORs (1 with bit `edx` set by `bts`) into the record's dword `+0x44`; any failed test returns without writing",
+   "anchors": [["002ECBA2", "js"], ["002ECBB5", "lea"], ["002ECBC2", "cmp"], ["002ECBC8", "cmp"], ["002ECBD4", "or"]]},
+  {"fn": "002F1690", "entered_from": "`001C6320` + 0x27B",
+   "text": "stores `xmm0` minus 1000.0 (`008C5F78`) into float `022BDEBC`",
+   "anchors": [["002F1698", "movss"]]}
+ ],
+ "skipped": [],
+ "notes": "001EBA90: the two indirect calls go through the vtable at qword [rcx+0x40]; the call-site offsets are given instead of any address. 0x3F93CD3A is not decoded by the listing (as f32 it reads about 1.1547), so the sentence keeps the raw dword. 001EBBF0 is also entered from `001C6320` + 0x124. 002ECBA0: bts on a register uses edx mod 32."
+}
