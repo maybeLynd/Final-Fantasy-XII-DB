@@ -1,0 +1,85 @@
+{
+ "page": "22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/class-descriptor-and-metadata-system.md",
+ "session": "cloud FABLE h5-1",
+ "rows": [
+  {
+   "fn": "006AAA20",
+   "entered_from": "`005A9480` + 0x14",
+   "text": "zeroes qwords `[rcx]` and `[rcx+8]`, stores `rdx` at qword `rcx+0x10` and returns `rcx`",
+   "anchors": [
+    [
+     "006AAA22",
+     "mov"
+    ],
+    [
+     "006AAA25",
+     "mov"
+    ],
+    [
+     "006AAA29",
+     "mov"
+    ],
+    [
+     "006AAA2C",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006B6820",
+   "entered_from": "`00661A70` + 0x7A",
+   "text": "stores the address `00D80970` at qword `[rcx]`; points qwords `+8`, `+0x10` and `+0x18` at `rcx+8` and zeroes dword `+0x20` and qword `+0x28`; stores `rdx` at qword `+0x30`, `r8d` and `r9d` at dwords `+0x38`/`+0x3c`, and the fifth and sixth (stack) arguments at qwords `+0x40`/`+0x48`; links the two-qword node at `rcx+0x50` in front of the list headed by qword `01F2EBB8` (node `+0` = the old head, node `+8` = `01F2EBB8`, then qword `01F2EBB8` and the old head's qword `+8` = the node); returns `rcx`",
+   "anchors": [
+    [
+     "006B6827",
+     "mov"
+    ],
+    [
+     "006B6844",
+     "mov"
+    ],
+    [
+     "006B6872",
+     "mov"
+    ],
+    [
+     "006B6883",
+     "mov"
+    ],
+    [
+     "006B688A",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006C7D00",
+   "entered_from": "`0060F2D0` + 0x58",
+   "text": "returns 5 when `r8d` is negative (signed); otherwise takes `old` = qword `[rcx+8]` when dword `[rcx]` with bit 31 cleared is above 1, `rcx+8` when it is 1 and null when it is 0; when `r8d` is 1 it copies dword `[rdx]` to dword `rcx+8` and takes `rcx+8` as the new pointer and 1 as the new header, otherwise `rdx` and `r8d` with bit 31 set; calls `006C7D00` + 0x8C(`old`) when `old` is non-null, differs from both the new pointer and `rcx+8`, and bit 31 of dword `[rcx]` is clear; stores the new pointer at qword `rcx+8` unless it is `rcx+8`, stores the new header at dword `[rcx]` and returns 0",
+   "anchors": [
+    [
+     "006C7D13",
+     "jns"
+    ],
+    [
+     "006C7D27",
+     "btr"
+    ],
+    [
+     "006C7D4F",
+     "bts"
+    ],
+    [
+     "006C7D8C",
+     "call"
+    ],
+    [
+     "006C7DA0",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "006B6820: 00D80970 is a lea target stored at [rcx] (likely a vtable); the listing does not decode it. The 01F2EBB8 load is annotated with its static value 0x01F2EBB8 (an empty self-linked head); the row states the run-time link order. 006C7D00: the null test on rcx+8 at 006C7D5D cannot fail in practice and is not stated."
+}
