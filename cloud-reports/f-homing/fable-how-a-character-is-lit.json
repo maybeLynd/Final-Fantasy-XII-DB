@@ -1,0 +1,13 @@
+{
+ "page": "17-Presentation-Rendering/Character-Rendering/how-a-character-is-lit.md",
+ "session": "cloud session_01U9MRHY1rprnFC3Ptyv2Mfo",
+ "mode": "homing",
+ "rows": [],
+ "skipped": [
+  {
+   "fn": "004FDDA0",
+   "why": "1,221-byte body that copies eight 16-byte constants (02AEDE70..02AEDEA0, 02AEDD30..02AEDD60) to 02CA7F80..02CA7FF0, then writes three blocks (0x10, 0x150 and 0x170 bytes, the last including a 0x150-byte copy from 02EBA400) into the buffer returned by 005044B0, each guarded by a capacity check that calls 00504450 and re-fetches 005044B0, with some 60 distinct immediate and global stores; every store cannot be stated in under 1,200 characters"
+  }
+ ],
+ "notes": "004FDDA0 skipped for length only; the listing is readable. The block contents are qword pairs that look like value/register-id pairs (ids 0xe, 0x46, 0x45, 0x49, 0x1a, 0x22, 0x14-0x19, 0x3b, 0x4c-0x4f, 0x40, 0x41, 0x18), with 0x1000-minus-dword sizes from 022D8EAC/022D8EB4 shifted left by 3 and the dwords minus 1 packed into one qword; a split into per-block rows would be needed to document it."
+}
