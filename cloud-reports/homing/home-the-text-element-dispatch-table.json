@@ -1,0 +1,20 @@
+{
+ "page": "99-Unresolved-Residual/Glyph-Run-Rendering/the-text-element-dispatch-table.md",
+ "session": "session_01B5JAqPgewUFviUD5ZfpMqA",
+ "rows": [
+  {"fn": "00297290", "entered_from": "`00299090` + 0x389",
+   "text": "with q = qword `+0x10` of qword `rdx+0x60` (0 when `rdx` is null): when bit 0 of byte `rcx+2` is clear, clears bit 0 of dword `q+8` and returns; otherwise sets it and steps word `[rcx]`: with bit 1 of byte `rcx+2` set, adds 0x10 and, at 0x100 or more (signed), stores 0x100, clears bit 1, sets bit 2 and zeroes byte `rcx+3`; else with bit 2 set, subtracts 0x10 and zeroes dword `[rcx]` at 0 or below; else increments byte `rcx+3` and, above 0x40 (unsigned), sets bit 2 and zeroes byte `rcx+3`; then calls `00297290` + 0x10B with a stack output, the stack-built constant block at `rbp-0x30` with 3 in `r8d` (bit-1 path) or at `rbp-0x48` with 2, and the sign-extended word `[rcx]` in `r9d`, and stores the dword made of output byte `+6` three times then output byte `+4` into dwords `q+0x28`, `+0x2C`, `+0x30` and `+0x34`",
+   "anchors": [["002972C9", "and"], ["00297304", "or"], ["0029734E", "add"], ["0029739B", "call"], ["002973BA", "mov"]]},
+  {"fn": "002974E0", "entered_from": "`0029C770` + 0x4E",
+   "text": "walks the 0x160-byte entries from `rcx+0x240` while the index is below (signed) the count returned by the call at `002974E0` + 0x18 (re-called at `002974E0` + 0x43 each step), and returns when none has byte `+0xDE` equal to 1; for the first entry e that does, with r = qword `+0xD0` of qword `e+0x60`, n = byte `rcx+0xB42` and s = qword `+0x58` of qword `rcx+0xB38`, writes four words at `rdx`: word `r+0xC`; word `s+6` minus (n minus 1) times word `s+0xC` plus word `r+0xE`; word `r+0x10`; and word `+0xC` of qword `e+0x58` times n minus word `r+0x12`",
+   "anchors": [["00297511", "cmp"], ["0029753E", "mov"], ["0029756F", "mov"], ["00297579", "mov"], ["00297595", "mov"]]},
+  {"fn": "002975B0", "entered_from": "`0029B870` + 0x23C",
+   "text": "returns `edx` when `r8d` and `r9d` are both zero or byte `rcx+0xB42` (n) is zero; otherwise, for up to n tries, moves an index that starts at `edx`: when `r8d` is non-zero it adds `r8d`, turning a negative result into n minus 1 and a result not below n into 0; else it adds `r9d`, clamping at 0 below and at n minus 1 above; it returns the first index whose byte `rcx+0x318` plus index times 0x160 has bit 0 set, and `edx` when no try finds one",
+   "anchors": [["002975E1", "je"], ["002975F6", "cmovl"], ["00297604", "cmovns"], ["0029761A", "test"], ["0029762C", "mov"]]},
+  {"fn": "002A2860", "entered_from": "`002A6190` + 0x79A",
+   "text": "returns when word `rcx+0x3F0` is 0 or below (signed); otherwise zeroes byte `+0x3F3` and word `+0x3F0`, passes qword `+0x3F8` to the call at `002A2860` + 0x2A and tail-jumps (`002A2860` + 0x3B) with qword `+0x400`",
+   "anchors": [["002A2871", "jle"], ["002A2875", "mov"], ["002A287C", "mov"], ["002A288A", "call"], ["002A289B", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "00297290: over 600 characters because every branch of the word [rcx] step is stated; the two stack blocks are constant (rbp-0x30: dword 0, word 0, dwords 0x28000, 0x100, 0x800000, 0x1FFFF, 0x100, 0x1000000, 0x28080, word 0x100; rbp-0x48: dword 0, word 0, dwords 0x8000, 0x100, 0x1000000, 0x8080, word 0x100) and are summarised rather than listed in the sentence; the body ends with the stack-cookie check call at +0x13A, not mentioned. On the bit-2 path the zeroing store is a full dword at [rcx], so it also clears bytes +2 and +3. 002975B0: on the r9d path each try adds r9d to the previous index, not to edx."
+}
