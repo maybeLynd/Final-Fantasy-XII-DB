@@ -1,0 +1,14 @@
+{
+ "page": "99-Unresolved-Residual/drawing-one-coloured-rectangle.md",
+ "session": "session_017yNt9L5rrbK5hdpiNRA3BS",
+ "rows": [
+  {"fn": "001B2000", "entered_from": "`001B0190` + 0x26",
+   "text": "copies the 16 dwords (`0x40` bytes) at `+0x6C8` of the result of `001B2000` + 0xE to `rcx+0x3AA8`, reads float `+0x754` and float `+0x750` from the results of `001B2000` + 0x7F and `001B2000` + 0x8C (all three calls set no arguments), and tail-jumps (`001B2000` + 0xA9) with `rcx` = `rcx+0x3AA8`, `xmm1` = the `+0x750` float and `xmm2` = the `+0x754` float",
+   "anchors": [["001B200E", "call"], ["001B2013", "add"], ["001B207C", "mov"], ["001B2084", "movss"], ["001B20A9", "jmp"]]},
+  {"fn": "00403F00", "entered_from": "`002BC9C0` + 0x46",
+   "text": "builds two 8-byte stack blocks from words `+0x14` and `+0x16` of qword `r8+0x20`, the first holding words 0, 0, `+0x14`, `+0x16` and the second holding the negated word `rcx+0x50` twice, then `+0x14`, then the signed `+0x16` times 1.75 (`00D117D8`) truncated to an integer; it calls `00403F00` + 0x75 with the incoming `rcx`, `rdx` = the incoming `r8`, `r8` = the first block and `r9` = the second, then stores byte `rcx+0x5C` back to the value it held at entry",
+   "anchors": [["00403F28", "movzx"], ["00403F4B", "neg"], ["00403F64", "mulss"], ["00403F75", "call"], ["00403F7A", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "001B2000: the three calls are the same callee (sites +0xE, +0x7F, +0x8C) and receive whatever the caller left in the argument registers (rcx is the incoming rcx only for the first). 00403F00: the incoming rdx is not used; it is overwritten with qword r8+0x20 and then with r8."
+}
