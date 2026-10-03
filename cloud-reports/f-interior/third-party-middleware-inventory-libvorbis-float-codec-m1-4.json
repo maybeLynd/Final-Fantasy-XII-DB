@@ -1,0 +1,636 @@
+{
+ "page": "23-Third-Party-Libraries/third-party-middleware-inventory.md",
+ "mode": "member",
+ "family": "libvorbis float codec",
+ "session": "session_01NgpgLF1bfi2v4CpEv1Fjik",
+ "rows": [
+  {
+   "fn": "00890A70",
+   "text": "for i below the sixth (stack) argument (signed) moves qword `r9`[i] to the next free slot from the start of `r9` whenever dword i of the array at the fifth (stack) argument is nonzero; returns 0 when none was kept, else tail-jumps to `00890ED0` with (`rcx`, `r8`, `r9`, the kept count) and the seventh argument in the fifth-argument slot",
+   "anchors": [
+    [
+     "00890AA0",
+     "cmp"
+    ],
+    [
+     "00890AAD",
+     "mov"
+    ],
+    [
+     "00890AC4",
+     "je"
+    ],
+    [
+     "00890AD1",
+     "mov"
+    ],
+    [
+     "00890AE3",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00890B00",
+   "text": "for i below the fifth (stack) argument (signed) moves qword `r8`[i] to the next free slot from the start of `r8` whenever dword `r9`[i] is nonzero; returns 0 when none was kept, else tail-jumps to `00890B70` with (`rcx`, `rdx`, `r8`, the kept count) and `00883C70` in the fifth-argument slot",
+   "anchors": [
+    [
+     "00890B20",
+     "cmp"
+    ],
+    [
+     "00890B2D",
+     "mov"
+    ],
+    [
+     "00890B3F",
+     "je"
+    ],
+    [
+     "00890B41",
+     "lea"
+    ],
+    [
+     "00890B56",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00890B70",
+   "text": "with I = qword `[rdx]`, P = qword `rdx+0x18`, dim = dword `[P]` and s = dword I`+8`, returns 0 unless min(dword I`+4`, dword `rcx+0x34` >> 1) - dword I`+0` is positive; with v = that / s it carves `(v + dim - 1) / dim * 8` bytes per channel (`r9d` channels) from the block at `rcx` (pool qword `+0x58`, used dword `+0x60`, size dword `+0x64`; a full pool is chained through `+0x70` and counted into `+0x68`, then replaced via the indirect calls at ``00890B70 + 0xD8`` and ``00890B70 + 0x107``); then for each stage t below dword `rdx+0xc` and group i below v: in stage 0 per channel it returns 0 when dword P`+8` is not positive or the call at `00890B70 + 0x1B5` (P, `rcx+8`) is negative, maps the result through the dword array at qword P`+0x28` (returning 0 on -1 or a value not below dword I`+0x10`) and stores the qword it selects from qword `rdx+0x30`, returning 0 if null; for dim steps and each channel j with class c whose bit t is set in dword I`+0x18`+4c and whose book qword `[qword [rdx+0x20]+8c]+8t` is non-null it calls the fifth (stack) argument with (book, `r8`[j] + 4(dword I`+0` + i*s), `rcx+8`, s) at `00890B70 + 0x2A4`, returning 0 on -1; returns 0",
+   "anchors": [
+    [
+     "00890BBA",
+     "cmovl"
+    ],
+    [
+     "00890C77",
+     "call"
+    ],
+    [
+     "00890D25",
+     "call"
+    ],
+    [
+     "00890DE8",
+     "bt"
+    ],
+    [
+     "00890E14",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00890ED0",
+   "text": "with I = qword `[rdx]`, P = qword `rdx+0x18`, L = qword P`+0x10`, dim = dword `[P]`, s = dword I`+8` and v = (dword I`+4` - dword I`+0`) / s, zeroes two 0x200-byte stack tables (calls at `00890ED0 + 0x6F` and `00890ED0 + 0x81`) and loops stage t below dword `rdx+0xc` and group i below v: in stage 0, per channel j below `r9d`, it folds dim dwords of row j of the fifth (stack) argument from i (each step times dword I`+0xc`, dwords past v as 0) and, when the result e is below dword P`+4`, makes the call at `00890ED0 + 0x164` with (`rcx`, dword e of qword P`+0x20`, signed byte e of qword L`+8`) and adds that byte to dword `rdx+0x3c` (0 when e is negative or not below dword L`+4`); then for dim steps and each channel with class c (stage 0 also adds s to one stack table at c) whose bit t is set in dword I`+0x18`+4c and whose book qword `[qword [rdx+0x20]+8c]+8t` is non-null it calls `00891740(rcx, r8[j] + 4(dword I+0 + i*s), s, book)` and adds the result to dword `rdx+0x38` and to the other stack table at c; returns 0",
+   "anchors": [
+    [
+     "00890F3F",
+     "call"
+    ],
+    [
+     "00890FF2",
+     "imul"
+    ],
+    [
+     "00891034",
+     "call"
+    ],
+    [
+     "00891137",
+     "call"
+    ],
+    [
+     "0089113C",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "00891260",
+   "text": "with I = qword `[rdx]` and v = (dword I`+4` - dword I`+0`) / dword I`+8`, takes 8 bytes and `v * 4` bytes from the calls at `00891260 + 0x51` and `00891260 + 0x63` (both with `rcx`), stores the second block at qword 0 of the first and zeroes it with the call at `00891260 + 0x81`; for each i below v it scans every `r9d`-th step below dword I`+8` with a position l that runs on from dword I`+0` / `r9d`, keeping the largest absolute dword at l of row 0 of `r8` and of rows 1 to `r9d` - 1, and stores at i the first j below dword I`+0xc` - 1 where the first maximum is not above dword I`+0x918`+4j and the second not above dword I`+0xa18`+4j (else dword I`+0xc` - 1); then increments dword `rdx+0x40` and returns the first block",
+   "anchors": [
+    [
+     "008912C3",
+     "call"
+    ],
+    [
+     "0089131C",
+     "cmovg"
+    ],
+    [
+     "00891341",
+     "cmovg"
+    ],
+    [
+     "00891390",
+     "mov"
+    ],
+    [
+     "008913B4",
+     "inc"
+    ]
+   ]
+  },
+  {
+   "fn": "008913D0",
+   "text": "with I = qword `[rdx]`, s = dword I`+8` and v = (dword I`+4` - dword I`+0`) / s, takes `r9d * 8` bytes from the call at `008913D0 + 0x55` with `rcx` and for each of `r9d` channels carves `v * 4` bytes (8-aligned) from the block at `rcx` (pool qword `+0x58`, used dword `+0x60`, size dword `+0x64`; a full pool is chained through `+0x70` and counted into `+0x68`, then replaced via the indirect calls at ``008913D0 + 0xB6`` and ``008913D0 + 0xDB``), zeroed by the call at `008913D0 + 0x104`; for each i below v and channel j it takes the largest absolute value and the sum of absolute values of the s dwords of `r8`[j] from dword I`+0` + i*s (an SSE path when s is at least 8 and dword `01F44858` at least 2), truncates the sum times 100.0 (`01CEBC60`) / s, and stores at [j][i] the first k below dword I`+0xc` - 1 where the maximum is not above dword I`+0x918`+4k and dword I`+0xa18`+4k is negative or above the scaled sum (else dword I`+0xc` - 1); increments dword `rdx+0x40` and returns the pointer block",
+   "anchors": [
+    [
+     "00891442",
+     "divsd"
+    ],
+    [
+     "0089165F",
+     "cmovg"
+    ],
+    [
+     "00891690",
+     "cmp"
+    ],
+    [
+     "008916B7",
+     "mov"
+    ],
+    [
+     "00891713",
+     "inc"
+    ]
+   ]
+  },
+  {
+   "fn": "00891740",
+   "text": "with dim = dword `[r9]`, repeats `r8d` / dim times (signed): calls `00891800(r9, rdx)` and, when the result e is non-negative and below dword `+4` of qword `r9+0x10`, makes the call at `00891740 + 0x6E` with (`rcx`, dword e of qword `r9+0x20`, signed byte e of qword `[r9+0x10]+8`) and adds that byte to the total (0 otherwise), advancing `rdx` by dim dwords; returns the total",
+   "anchors": [
+    [
+     "0089175D",
+     "idiv"
+    ],
+    [
+     "00891786",
+     "call"
+    ],
+    [
+     "00891796",
+     "jge"
+    ],
+    [
+     "008917AE",
+     "call"
+    ],
+    [
+     "008917C3",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "00891800",
+   "text": "with dim = dword `[rcx]`, q = dword `rcx+0x48`, m0 = dword `rcx+0x4c`, d = dword `rcx+0x50` and z = q >> 1, quantises the dwords of `rdx` from the last down (v = (a - m0 + (d >> 1)) / d, or a - m0 when d is 1), maps v to 2(z - v) - 1 below z and 2(v - z) otherwise, clamped to 0..q-1, folds index = index * q + that, and keeps v*d + m0 in a local vector p; when the signed length byte at index of qword `[rcx+0x10]+8` is not positive it scans the dword `rcx+4` entries with a local odometer vector e (an element not below m0 + d(q-1) resets to 0 and carries; the next becomes -(e + d) when non-negative, else -e) and, for entries with a positive length byte, keeps the first smallest sum of (e - a) squared as index with e as p (SSE path when dim is at least 8 and dword `01F44858` at least 2); when index is not -1 it subtracts p from the dwords of `rdx`; returns index",
+   "anchors": [
+    [
+     "0089189F",
+     "idiv"
+    ],
+    [
+     "008918D9",
+     "mov"
+    ],
+    [
+     "0089196F",
+     "cmp"
+    ],
+    [
+     "00891AFF",
+     "cmp"
+    ],
+    [
+     "00891C57",
+     "sub"
+    ]
+   ]
+  },
+  {
+   "fn": "00891F40",
+   "text": "takes a 0xB18-byte block from the call at `00891F40 + 0x33` with (1, 0xB18), zeroes it (`00891F40 + 0x46`) and fills it from bit reads on `rdx`: dwords `+0`, `+4`, `+8` (24 bits each, `+8` plus 1; calls at `00891F40 + 0x5A`, `00891F40 + 0x68`, `00891F40 + 0x77`), `+0xc` (6 bits plus 1, `00891F40 + 0x88`) and `+0x14` (8, `00891F40 + 0x99`); per `+0xc` entry a 3-bit value (`00891F40 + 0xC8`), ORed with a 5-bit value shifted left 3 (`00891F40 + 0xEB`) when a 1-bit flag (`00891F40 + 0xD4`) is set, into dword `+0x18`+4j; then one 8-bit value (`00891F40 + 0x148`) per set bit of those into dwords from `+0x118`; it fails on a negative read, on `+0x14` or a `+0x118` value not below dword `+0x18` of Q = qword `rcx+0x20`, on a `+0x118` book (qword Q`+0xb20` + 8 times the value) with zero dword `+0x10`, or when the `+0x14` book's dword `+0` is below 1 or `+0xc` to that power exceeds its dword `+4`; success stores the power to `+0x10` and returns the block, failure zeroes it (`00891F40 + 0x1D8`), passes it to the indirect call at `00891F40 + 0x1E0` and returns 0",
+   "anchors": [
+    [
+     "00891F73",
+     "call"
+    ],
+    [
+     "00891FE4",
+     "js"
+    ],
+    [
+     "0089203F",
+     "or"
+    ],
+    [
+     "008920FA",
+     "cmp"
+    ],
+    [
+     "00892104",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00892150",
+   "text": "writes through calls of the shape (`rdx`, value, bits): dword `+0` of `rcx` (24 bits, `00892150 + 0x2B`), dword `+4` (24, `00892150 + 0x3B`), dword `+8` minus 1 (24, `00892150 + 0x4D`), dword `+0xc` minus 1 (6, `00892150 + 0x5F`) and dword `+0x14` (8, `00892150 + 0x6F`); for each of the dword `+0xc` dwords c from `+0x18` it writes c with 3 bits, 1 with 1 bit and c >> 3 with 5 bits (`00892150 + 0xA4`, `00892150 + 0xB4`, `00892150 + 0xCF`) when c has more than 3 significant bits, else c with 4 bits (`00892150 + 0xCF`), counting the set bits of all c; then writes that many dwords from `+0x118` with 8 bits each (`00892150 + 0x11B`)",
+   "anchors": [
+    [
+     "0089217B",
+     "call"
+    ],
+    [
+     "008921E6",
+     "cmp"
+    ],
+    [
+     "00892204",
+     "call"
+    ],
+    [
+     "0089221F",
+     "call"
+    ],
+    [
+     "0089226B",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008922D0",
+   "text": "returns at once when `rcx` is null; otherwise passes each non-null qword of the array at qword `+0x20` (dword `+8` entries) to the indirect call at `008922D0 + 0x3D`, then the array itself (`008922D0 + 0x57`), each qword of the array at qword `+0x30` (dword `+0x28` entries, `008922D0 + 0x78`) and that array (`008922D0 + 0x8D`), zeroes the nine qwords `+0` to `+0x40` and passes `rcx` to the indirect call at `008922D0 + 0xBB`",
+   "anchors": [
+    [
+     "0089230D",
+     "call"
+    ],
+    [
+     "00892327",
+     "call"
+    ],
+    [
+     "00892348",
+     "call"
+    ],
+    [
+     "00892368",
+     "mov"
+    ],
+    [
+     "0089238B",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008923E0",
+   "text": "with n = (signed) half of dword (4 times dword `rcx+0x2c`) of qword `+0x20` of qword `+8` of qword `rcx+0x50`: when `r8` is null it zeroes `n * 4` bytes at `r9` (call at `008923E0 + 0x214`) and returns 0; otherwise, with F = qword `rdx+0x510` and m = dword F`+0x340`, it starts from x = 0 and y = dword `[r8]` times m clamped to 0..255, and for j from 1 below dword `rdx+0x504` takes c = dword `rdx+0x108`+4(j-1): when dword c of `r8` has no bits above 0x7FFF it computes y' = that times m clamped to 0..255 and x' = dword F`+0x344`+4c, calls `00893860(n, x, x', y, y', r9)` and moves to (x', y'); finally multiplies the floats of `r9` from x below n by float y of the table at `01CEB190` (SSE path for 8 or more) and returns 1",
+   "anchors": [
+    [
+     "00892487",
+     "and"
+    ],
+    [
+     "008924C1",
+     "call"
+    ],
+    [
+     "00892510",
+     "movss"
+    ],
+    [
+     "008925CB",
+     "movss"
+    ],
+    [
+     "008925F4",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008929C0",
+   "text": "steps x from `ecx` below `edx` along the integer line from (`ecx`, `r8d`) to (`edx`, `r9d`) (y advances by dy / dx, signed, plus one unit in the sign of dy whenever an error term that grows by abs(dy) - abs(dx * (dy / dx)) reaches dx); at each x it quantises float x of the fifth (stack) argument as q = (int)(v * 7.314286 (`01CEBC7C`) + 1023.5 (`01CEBC94`)) clamped to 0..1023, sums (y - q) squared and a count n, and when float x of the sixth argument plus float `+0x458` of the seventh is not below v (and, after the first x, q is nonzero) returns 1 if q exceeds y + float `+0x448` or y - float `+0x44c` exceeds q; after the line it returns 0 when float `+0x448` squared over n or float `+0x44c` squared over n exceeds float `+0x450`, else 1 when the integer mean squared error exceeds float `+0x450` and 0 otherwise",
+   "anchors": [
+    [
+     "00892A10",
+     "idiv"
+    ],
+    [
+     "00892A2B",
+     "cvttss2si"
+    ],
+    [
+     "00892A9B",
+     "comiss"
+    ],
+    [
+     "00892B3C",
+     "add"
+    ],
+    [
+     "00892BE1",
+     "seta"
+    ]
+   ]
+  },
+  {
+   "fn": "00892C10",
+   "text": "sums in doubles over the `edx` 0x38-byte records at `rcx`, with w = (dword `+0x1c` + dword `+0x34`) * float `+0x454` of the fifth (stack) argument / (dword `+0x1c` + 1) + 1.0 (`01CEBBF0`): X += `+0x20` + w*`+8`, Y += `+0x24` + w*`+0xc`, XX += `+0x28` + w*`+0x10`, XY += `+0x30` + w*`+0x18`, N += `+0x34` + w*`+0x1c`; adds the points (x0 = dword `[rcx]`, dword `[r8]`) and (x1 = dword `+4` of the last record, dword `[r9]`) when that value is non-negative; when D = N*XX - X*X is positive it takes a = (Y*XX - XY*X) / D and b = (N*XY - X*Y) / D, passes a + b*x + 0.5 (`01CEBBD8`) for x0 and x1 to the calls at `00892C10 + 0x60F` and `00892C10 + 0x631`, stores the truncated results clamped to 0..1023 to `[r8]` and `[r9]` and returns 0; otherwise stores 0 to both and returns 1",
+   "anchors": [
+    [
+     "00892CEC",
+     "divss"
+    ],
+    [
+     "00892D21",
+     "addsd"
+    ],
+    [
+     "008931CE",
+     "comisd"
+    ],
+    [
+     "0089321F",
+     "call"
+    ],
+    [
+     "00893261",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "008932B0",
+   "text": "zeroes the 0x38 bytes at the fifth (stack) argument A and stores `r8d` and `r9d` to its dwords `+0` and `+4`; for x from `r8d` to min(`r9d`, sixth argument - 1) inclusive it quantises float x of `rcx` as q = (int)(v * 7.314286 (`01CEBC7C`) + 1023.5 (`01CEBC94`)) capped at 1023, skips q not above 0, and adds x, q, x*x, q*q, x*q and 1 to the sums stored at A `+8`, `+0xc`, `+0x10`, `+0x14`, `+0x18`, `+0x1c` when float x of `rdx` plus float `+0x458` of the seventh argument is not below v, otherwise to those stored at A `+0x20` to `+0x34`; it stores the twelve sums and loads the `+0x1c` count into `eax` (the listing ends inside the epilogue)",
+   "anchors": [
+    [
+     "00893329",
+     "mov"
+    ],
+    [
+     "008933E9",
+     "cvttss2si"
+    ],
+    [
+     "0089341F",
+     "comiss"
+    ],
+    [
+     "0089375E",
+     "mov"
+    ],
+    [
+     "00893775",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "008937A0",
+   "text": "writes into the dword array at the sixth (stack) argument the integer line from (`edx`, `r9d`) to (`r8d`, the fifth (stack) argument) for x from `edx` below min(`ecx`, `r8d`): entry `edx` gets `r9d`, and each later entry the previous value plus dy / dx (signed), plus one more unit in the sign of dy whenever an error term that grows by abs(dy) - abs(dx * (dy / dx)) reaches dx (dx is then subtracted from it)",
+   "anchors": [
+    [
+     "008937DD",
+     "idiv"
+    ],
+    [
+     "008937F1",
+     "cmovle"
+    ],
+    [
+     "008937FA",
+     "mov"
+    ],
+    [
+     "0089382A",
+     "cmovns"
+    ],
+    [
+     "00893833",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00893860",
+   "text": "steps the integer line from (`edx`, `r9d`) to (`r8d`, the fifth (stack) argument) for x from `edx` below min(`ecx`, `r8d`), y starting at `r9d` and then advancing by dy / dx (signed) plus one more unit in the sign of dy whenever an error term that grows by abs(dy) - abs(dx * (dy / dx)) reaches dx, and multiplies float x of the array at the sixth (stack) argument by float y of the table at `01CEB190`",
+   "anchors": [
+    [
+     "008938AD",
+     "idiv"
+    ],
+    [
+     "008938D0",
+     "cmovle"
+    ],
+    [
+     "008938E2",
+     "mulss"
+    ],
+    [
+     "00893964",
+     "movss"
+    ],
+    [
+     "00893A4E",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "00893B10",
+   "text": "takes a 0x528-byte block L from the call at `00893B10 + 0x38` with (1, 0x528), zeroes it (`00893B10 + 0x4B`), stores `rdx` (I) to qword L`+0x510` and dword I`+0x348` to L`+0x508`; n = the sum over the dword I`+0` entries of dword I`+0x80` indexed by the dwords from I`+4`, and n + 2 goes to L`+0x504`; it sorts pointers to the n + 2 dwords from I`+0x344` with the indirect call at `00893B10 + 0x1D3` (count, 8, comparator `008942D0`), writes each sorted index to L`+0x104`+4i, the inverse to L`+0x208`, the sorted values to L`+0`, and maps dword I`+0x340` 1, 2, 3, 4 to 0x100, 0x80, 0x56, 0x40 at L`+0x50c`; then for each post from index 2 stores to L`+0x408` and L`+0x30c` (4 per post) the indices of the earlier posts nearest below and above its value (indices 0 and 1 by default, bounded by 0 and dword L`+0x508`), and returns L",
+   "anchors": [
+    [
+     "00893B48",
+     "call"
+    ],
+    [
+     "00893BE4",
+     "mov"
+    ],
+    [
+     "00893CE3",
+     "call"
+    ],
+    [
+     "00893D94",
+     "mov"
+    ],
+    [
+     "00893E40",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "008942D0",
+   "text": "returns dword `[qword [rcx]]` minus dword `[qword [rdx]]`",
+   "anchors": [
+    [
+     "008942D3",
+     "mov"
+    ],
+    [
+     "008942D6",
+     "mov"
+    ],
+    [
+     "008942D9",
+     "sub"
+    ]
+   ]
+  },
+  {
+   "fn": "008942F0",
+   "text": "writes through calls of the shape (`rdx`, value, bits): dword `[rcx]` (5 bits, `008942F0 + 0x31`); each of those dwords from `rcx+4` (4 bits, `008942F0 + 0x5B`), tracking their maximum m; for j up to m, dword `+0x80`+4j minus 1 (3, `008942F0 + 0xAE`), dword `+0xc0`+4j (2, `008942F0 + 0xBE`), when that is nonzero dword `+0x100`+4j (8, `008942F0 + 0xD4`), and each of the 1 << (dword `+0xc0`+4j) dwords from `+0x140`+0x20j plus 1 (8, `008942F0 + 0xFD`); then dword `+0x340` minus 1 (2, `008942F0 + 0x13B`), the bit length b of dword `+0x348` minus 1 (4, `008942F0 + 0x15F`), and consecutive dwords from `+0x34c` with b bits each (`008942F0 + 0x1C8`), as many as the sum of dword `+0x80` indexed by each dword from `+4`",
+   "anchors": [
+    [
+     "00894321",
+     "call"
+    ],
+    [
+     "00894352",
+     "cmovl"
+    ],
+    [
+     "008943C4",
+     "call"
+    ],
+    [
+     "0089444F",
+     "call"
+    ],
+    [
+     "008944B8",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00894500",
+   "text": "when `rcx` is non-null, makes the call at `00894500 + 0x15` with (`rcx`, 0, 0x528) and then passes `rcx` to the indirect call at `00894500 + 0x1D`; otherwise returns at once",
+   "anchors": [
+    [
+     "00894503",
+     "je"
+    ],
+    [
+     "00894515",
+     "call"
+    ],
+    [
+     "0089451D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00894530",
+   "text": "when `rcx` is non-null, makes the call at `00894530 + 0x15` with (`rcx`, 0, 0x460) and then passes `rcx` to the indirect call at `00894530 + 0x1D`; otherwise returns at once",
+   "anchors": [
+    [
+     "00894533",
+     "je"
+    ],
+    [
+     "00894545",
+     "call"
+    ],
+    [
+     "0089454D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00894560",
+   "text": "returns 0 when `r8` or `r9` is null; otherwise takes `dword rdx+0x504 * 4` bytes from the call at `00894560 + 0x59` with `rcx` and, for each of the dword `rdx+0x504` entries, stores ((0x10000 - d) * (dword `r8`[i] AND 0x7FFF) + d * (dword `r9`[i] AND 0x7FFF) + 0x8000) >> 16 (arithmetic), d the fifth (stack) argument, setting bit 15 when both inputs have bit 0x8000 set (an SSE path when the count is at least 8, dword `01F44858` at least 2 and the buffers do not overlap); returns the new block",
+   "anchors": [
+    [
+     "008945B9",
+     "call"
+    ],
+    [
+     "008947DA",
+     "imul"
+    ],
+    [
+     "008947EF",
+     "sar"
+    ],
+    [
+     "00894807",
+     "bts"
+    ],
+    [
+     "0089480B",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00894850",
+   "text": "with F = qword `r8+0x510`: when `r9` is null it writes 0 with 1 bit (call at `00894850 + 0x64B`), zeroes `(dword rdx+0x34 / 2) * 4` bytes at the fifth (stack) argument (`00894850 + 0x669`) and returns 0; otherwise (1) requantises the low 15 bits of each of the dword `r8+0x504` dwords of `r9` (shift right 2 or 3, divide by 12 or shift right 4 for dword F`+0x340` 1 to 4; bit 15 kept); (2) for each post from 2 predicts a value on the line between its neighbours (indices at `r8+0x408`/`r8+0x30c`, x from F`+0x344`) and either sets bit 15 (code 0) or codes its difference against the headroom to dword `r8+0x50c` into a stack array, clearing bit 15 of both neighbours; (3) writes 1 with 1 bit and the first two values with the bit length of `+0x50c` minus 1 (`00894850 + 0x258`, `00894850 + 0x29C`, `00894850 + 0x2BD`), updating dwords `r8+0x51c` and `r8+0x520`; (4) per partition packs class subvalues and writes them through 0x58-byte codebooks (`00894850 + 0x443`, `00894850 + 0x4D4`; lengths into `r8+0x518`/`r8+0x51c`); (5) renders posts without bit 15 into the fifth argument with `008937A0`, fills on to dword `rdx+0x34` / 2 and returns 1",
+   "anchors": [
+    [
+     "008948DE",
+     "and"
+    ],
+    [
+     "008949EA",
+     "idiv"
+    ],
+    [
+     "00894A5C",
+     "bts"
+    ],
+    [
+     "00894C93",
+     "call"
+    ],
+    [
+     "00894E19",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008955A0",
+   "text": "with d = 3.141593 (`01CEBC50`) / `r9d` and L the floats at the fifth (stack) argument (m = sixth argument), replaces L pairwise by the call at `008955A0 + 0xA8` times the 16-byte constant at `01CEBD40` (two doubles of 2.0) and an odd last one by the call at `008955A0 + 0xEB` times 2.0 (`01CEBC10`); then for i below `r8d`, with k = dword `rdx`[i] and w = 2.0 times the call at `008955A0 + 0x19B` on k*d, starts q and p at 0.5 (`01CEBB70`), multiplies them by w - L[j-1] and w - L[j] for odd j below m, then for odd m sets q = (q*(w - L[m-1])) squared and p = p*p*(4.0 (`01CEBC70`) - w*w), else q = q*q*(2.0 (`01CEBC08`) + w) and p = p*p*(2.0 - w); passes p + q to the call at `008955A0 + 0x22F`, sends (seventh argument / that - eighth argument) * 0.1151292473 (`01CEBBB8`) through the call at `008955A0 + 0x24F`, and multiplies float i of `rcx`, and of each following i with the same dword k, by the result",
+   "anchors": [
+    [
+     "00895601",
+     "divss"
+    ],
+    [
+     "00895648",
+     "call"
+    ],
+    [
+     "0089573B",
+     "call"
+    ],
+    [
+     "008957CF",
+     "call"
+    ],
+    [
+     "00895806",
+     "movss"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "008932B0 and 00894850: each listing stops inside the epilogue (pop r15 / pop r13) at its extent end, so no ret is shown; the rows state the value left in eax (008932B0) or the path returns as listed. 008955A0: the constant at 01CEBD40 is decoded by the listing as f32x4 [0, 2, 0, 2]; it is used by mulpd, so each 8-byte lane (0x4000000000000000) reads as the double 2.0, as the sentence says. 00890A70 / 00890B00: the tail jumps reuse the caller's fifth stack slot (seventh argument, or 00883C70); the sixth slot keeps the original count. Long bodies (00890B70, 00890ED0, 00891F40, 00894850) are stated as top-level structure in clauses (rule 5); per-instruction detail such as the SSE alignment checks is summarised. No row names a library routine: the listings carry no strings, only constants."
+}
