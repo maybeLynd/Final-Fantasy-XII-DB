@@ -1,0 +1,561 @@
+{
+ "page": "23-Third-Party-Libraries/third-party-middleware-inventory.md",
+ "mode": "member",
+ "family": "Bullet physics library",
+ "session": "session_01NgpgLF1bfi2v4CpEv1Fjik",
+ "rows": [
+  {
+   "fn": "008478B0",
+   "text": "tail-jumps through slot `+0xd8` of the vtable at qword `[rcx]`, keeping `rcx` and rotating the other arguments: `r9d` becomes the second argument, `rdx` the third and `r8` the fourth",
+   "anchors": [
+    [
+     "008478B3",
+     "mov"
+    ],
+    [
+     "008478BC",
+     "mov"
+    ],
+    [
+     "008478BF",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "008478D0",
+   "text": "makes the call at `008478D0 + 0x13` with (`rcx`, `r8`), then copies the 16 bytes at `rcx + 0x50` to `[r9]`",
+   "anchors": [
+    [
+     "008478E3",
+     "call"
+    ],
+    [
+     "008478E8",
+     "movaps"
+    ],
+    [
+     "008478F1",
+     "movdqa"
+    ]
+   ]
+  },
+  {
+   "fn": "00847900",
+   "text": "makes the call at `00847900 + 0x12` with (`rcx`, `r8`); when `edx` is nonzero it then multiplies the floats at `[r8]`, `[r8+4]` and `[r8+8]` by -1 (`01CEBC9C`) in place",
+   "anchors": [
+    [
+     "00847912",
+     "call"
+    ],
+    [
+     "00847919",
+     "je"
+    ],
+    [
+     "0084791F",
+     "movss"
+    ],
+    [
+     "00847934",
+     "movss"
+    ],
+    [
+     "00847946",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "00847960",
+   "text": "copies the 16 bytes at `rcx + (edx + 5) * 16` (`edx` sign-extended) to `[r8]`",
+   "anchors": [
+    [
+     "00847963",
+     "add"
+    ],
+    [
+     "0084796A",
+     "movaps"
+    ],
+    [
+     "0084796E",
+     "movdqa"
+    ]
+   ]
+  },
+  {
+   "fn": "00847CB0",
+   "text": "when qword `+0x10` of `rcx` is non-null passes it to the call at `00847CB0 + 0x28` if byte `+0x18` is nonzero; then stores 1 to byte `+0x18`, zero to qword `+0x10` and zero to the eight bytes at `+4`",
+   "anchors": [
+    [
+     "00847CD2",
+     "cmp"
+    ],
+    [
+     "00847CD8",
+     "call"
+    ],
+    [
+     "00847CE2",
+     "mov"
+    ],
+    [
+     "00847CE6",
+     "mov"
+    ],
+    [
+     "00847CEA",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00847E60",
+   "text": "stores `01CCEEF0` to qword `[rcx]`, 1 to bytes `+0x20`, `+0x50` and `+0x70`, 0 to byte `+0x30` and zero to qwords `+0xc`, `+0x18`, `+0x28`, `+0x3c`, `+0x48`, `+0x5c`, `+0x68` and `+0x78`; when dword `+0x10` is below 2 (signed; the `+0xc` qword store has just zeroed it) it takes a buffer from the call at `00847E60 + 0x6C` with (0x40, 0x10), copies dword `+0xc` 32-byte entries into it from qword `+0x18`, passes the old qword `+0x18` to the call at `00847E60 + 0xD9` when it is non-null and byte `+0x20` is nonzero, and stores 1 to byte `+0x20`, the buffer to `+0x18` and 2 to dword `+0x10`; then calls `00848360(rcx)` and returns `rcx`",
+   "anchors": [
+    [
+     "00847E87",
+     "mov"
+    ],
+    [
+     "00847EBC",
+     "cmp"
+    ],
+    [
+     "00847ECC",
+     "call"
+    ],
+    [
+     "00847F4A",
+     "mov"
+    ],
+    [
+     "00847F54",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00847F70",
+   "text": "when qword `+0x10` of `rcx` is non-null passes it to the call at `00847F70 + 0x28` if byte `+0x18` is nonzero; then stores 1 to byte `+0x18`, zero to qword `+0x10` and zero to the eight bytes at `+4`",
+   "anchors": [
+    [
+     "00847F92",
+     "cmp"
+    ],
+    [
+     "00847F98",
+     "call"
+    ],
+    [
+     "00847FA2",
+     "mov"
+    ],
+    [
+     "00847FA6",
+     "mov"
+    ],
+    [
+     "00847FAA",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00847FC0",
+   "text": "when qword `+0x10` of `rcx` is non-null passes it to the call at `00847FC0 + 0x28` if byte `+0x18` is nonzero; then stores 1 to byte `+0x18`, zero to qword `+0x10` and zero to the eight bytes at `+4`",
+   "anchors": [
+    [
+     "00847FE2",
+     "cmp"
+    ],
+    [
+     "00847FE8",
+     "call"
+    ],
+    [
+     "00847FF2",
+     "mov"
+    ],
+    [
+     "00847FF6",
+     "mov"
+    ],
+    [
+     "00847FFA",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00848020",
+   "text": "stores `01CCEEF0` to qword `[rcx]`; then for qword `+0x68` with byte `+0x70`, qword `+0x48` with byte `+0x50` and qword `+0x18` with byte `+0x20`, in that order, passes a non-null qword to the call at `00848020 + 0x32`, `00848020 + 0x57` or `00848020 + 0x7C` when its byte is nonzero, then stores 1 to the byte and zero to the qword and to the eight bytes at `+0x5c`, `+0x3c` or `+0xc`; finally stores `00D7AAC8` to qword `[rcx]`",
+   "anchors": [
+    [
+     "0084803E",
+     "mov"
+    ],
+    [
+     "00848052",
+     "call"
+    ],
+    [
+     "00848077",
+     "call"
+    ],
+    [
+     "0084809C",
+     "call"
+    ],
+    [
+     "008480B9",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "008480D0",
+   "text": "stores `01CCE450` to qword `[rcx]`; when bit 0 of `dl` is set it makes the call at `008480D0 + 0x1D` with (`rcx`, 0x20); returns `rcx`",
+   "anchors": [
+    [
+     "008480E0",
+     "mov"
+    ],
+    [
+     "008480E3",
+     "test"
+    ],
+    [
+     "008480ED",
+     "call"
+    ],
+    [
+     "008480F2",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00848100",
+   "text": "stores `01CCE450` to qword `[rcx]`; when bit 0 of `dl` is set it makes the call at `00848100 + 0x1D` with (`rcx`, 0x10); returns `rcx`",
+   "anchors": [
+    [
+     "00848110",
+     "mov"
+    ],
+    [
+     "00848113",
+     "test"
+    ],
+    [
+     "0084811D",
+     "call"
+    ],
+    [
+     "00848122",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00848170",
+   "text": "increments dword `02EAF394`; when qword `+0x28` of `rcx` is non-null the test result is the byte returned by its vtable slot `+8` (the call at `00848170 + 0x2A`, with `rdx` and `r8`), otherwise it is true when word `[rdx+8]` AND word `[r8+0xa]` and word `[rdx+0xa]` AND word `[r8+8]` are both nonzero; a false result returns 0 and a true one tail-jumps to `008485E0(rcx, rdx, r8)`",
+   "anchors": [
+    [
+     "0084817F",
+     "inc"
+    ],
+    [
+     "0084819A",
+     "call"
+    ],
+    [
+     "008481A3",
+     "test"
+    ],
+    [
+     "008481AE",
+     "test"
+    ],
+    [
+     "008481E9",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "008481F0",
+   "text": "when qword `[rdx+0x10]` is non-null, calls vtable slot 0 of that object with 0 (the call at `008481F0 + 0x1E`), then vtable slot `+0x60` of `r8` with that qword (the call at `008481F0 + 0x2A`), and zeroes qword `[rdx+0x10]`; otherwise does nothing",
+   "anchors": [
+    [
+     "00848204",
+     "test"
+    ],
+    [
+     "0084820E",
+     "call"
+    ],
+    [
+     "0084821A",
+     "call"
+    ],
+    [
+     "0084821D",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00848230",
+   "text": "builds on the stack the four qwords `01CCEF78`, `rdx`, `rcx`, `r8` and calls vtable slot `+0x58` of `rcx` with the record's address (the call at `00848230 + 0x30`)",
+   "anchors": [
+    [
+     "0084823D",
+     "lea"
+    ],
+    [
+     "00848249",
+     "mov"
+    ],
+    [
+     "00848253",
+     "mov"
+    ],
+    [
+     "00848260",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00848360",
+   "text": "returns at once unless dword `+0x3c` of `rcx` (n) is below dword `+0x10` (m, signed); otherwise grows the dword arrays at qword `+0x48` (size `+0x3c`, capacity `+0x40`, owner byte `+0x50`) and qword `+0x68` (size `+0x5c`, capacity `+0x60`, owner byte `+0x70`) to m entries (when a capacity is below m it allocates `m * 4` bytes through the call at `00848360 + 0x56` or `00848360 + 0xFF`, copies the old entries, passes an owned old buffer to the call at `00848360 + 0x9F` or `00848360 + 0x14A` and stores m as capacity; then zeroes entries from the old size up and stores m as size); fills m entries of both arrays with -1; then for each i below n, with E the 32-byte entry i of qword `+0x18`, forms k = dword `+0x18` of the object at qword E`+8` shifted left 16 OR dword `+0x18` of the object at qword E`+0`, mixes it (k += NOT(k << 15), k XOR= k >> 10, k *= 9, k XOR= k >> 6, k += NOT(k << 11), k XOR= k >> 16, arithmetic shifts), ANDs it with m - 1 and links i as `+0x68`[i] = `+0x48`[k], `+0x48`[k] = i",
+   "anchors": [
+    [
+     "00848377",
+     "jge"
+    ],
+    [
+     "008483B6",
+     "call"
+    ],
+    [
+     "00848504",
+     "mov"
+    ],
+    [
+     "00848568",
+     "or"
+    ],
+    [
+     "008485BB",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "008485E0",
+   "text": "orders `rdx` and `r8` so that A has the lower dword `+0x18` and B the other, forms k = B`+0x18` << 16 OR A`+0x18`, mixes it (k += NOT(k << 15), k XOR= k >> 10, k *= 9, k XOR= k >> 6, k += NOT(k << 11), k XOR= k >> 16), ANDs it with dword `+0x10` of `rcx` minus 1 and walks the chain from the dword head array at qword `+0x48` through the next array at qword `+0x68` over the 32-byte entries of qword `+0x18`, returning the entry whose objects at qwords `+0` and `+8` carry A's and B's ids; otherwise, when count dword `+0xc` equals capacity dword `+0x10`, it reallocates the entries to twice the count (1 when zero) through the call at `008485E0 + 0x11C`, copying them and passing an owned old buffer to the call at `008485E0 + 0x189`; it increments `+0xc`, calls vtable slot `+8` of a non-null qword `+0x78` with (A, B) at `008485E0 + 0x1D0`, calls `00848360(rcx)` and rehashes if the capacity grew, writes A and B (lower id first) to the new entry's qwords `+0` and `+8` with `+0x10` and `+0x18` zeroed, links it at the bucket head and returns it",
+   "anchors": [
+    [
+     "008485FC",
+     "jle"
+    ],
+    [
+     "0084867E",
+     "cmp"
+    ],
+    [
+     "008486FC",
+     "call"
+    ],
+    [
+     "008487BF",
+     "call"
+    ],
+    [
+     "00848862",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00848910",
+   "text": "when qword `[rdx]` or qword `[rdx+8]` equals qword `+8` of `rcx`, calls vtable slot `+0x38` of qword `+0x10` of `rcx` with (`rdx`, qword `+0x18` of `rcx`) (the call at `00848910 + 0x21`); returns 0 on both paths",
+   "anchors": [
+    [
+     "0084891B",
+     "cmp"
+    ],
+    [
+     "00848924",
+     "jne"
+    ],
+    [
+     "00848931",
+     "call"
+    ],
+    [
+     "00848934",
+     "xor"
+    ]
+   ]
+  },
+  {
+   "fn": "00848940",
+   "text": "returns 1 when qword `[rdx]` or qword `[rdx+8]` equals qword `+8` of `rcx`, and 0 otherwise",
+   "anchors": [
+    [
+     "00848944",
+     "cmp"
+    ],
+    [
+     "0084894D",
+     "je"
+    ],
+    [
+     "0084894F",
+     "xor"
+    ],
+    [
+     "00848952",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00848BE0",
+   "text": "builds on the stack the two qwords `01CCEF90`, `rdx` and calls vtable slot `+0x58` of `rcx` with the record's address (the call at `00848BE0 + 0x26`)",
+   "anchors": [
+    [
+     "00848BED",
+     "lea"
+    ],
+    [
+     "00848BF9",
+     "mov"
+    ],
+    [
+     "00848C06",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00848E90",
+   "text": "returns at once when `rdx` or `r8` is null; otherwise sets the stack of 16-byte pairs at `rcx` (size dword `+0x24`, capacity `+0x28`, data qword `+0x30`, owner byte `+0x38`) to 0x80 entries (when the capacity is below 0x80 it reallocates 0x800 bytes through the call at `00848E90 + 0x73` and releases an owned old buffer at `00848E90 + 0xBB`), stores (`rdx`, `r8`) at entry 0 and pops pairs (A, B) until the depth is 0, doubling the stack (calls at `00848E90 + 0x18E` and `00848E90 + 0x1DC`) whenever the depth passes its limit (0x7C, then size minus 4); when A equals B with qword A`+0x30` non-null it pushes (A0, A0), (A1, A1), (A0, A1), with A0/A1 its qwords `+0x28`/`+0x30`; when A differs from B and the boxes at `+0`/`+0x10` overlap (no `cmpltps` max-below-min lane set in x, y, z) it pushes the four child pairs when both have qword `+0x30`, the two pairs of the internal one's children with the other when one has, and when neither has, with O = qword `[r9]`, calls vtable slot `+8` of qword O`+0xa0` with (A`+0x28`, B`+0x28`) at `00848E90 + 0x42D` and increments dword O`+0xbc`",
+   "anchors": [
+    [
+     "00848F9E",
+     "mov"
+    ],
+    [
+     "00848FB8",
+     "movups"
+    ],
+    [
+     "0084914A",
+     "cmpltps"
+    ],
+    [
+     "008492BD",
+     "call"
+    ],
+    [
+     "008492CB",
+     "jne"
+    ]
+   ]
+  },
+  {
+   "fn": "00849310",
+   "text": "returns at once when `rdx` is null; otherwise takes a 0x200-byte stack of node pointers (capacity 0x40) from the call at `00849310 + 0x61` with `rdx` as its only entry and pops nodes until it is empty: a node whose box (min `+0`, max `+0x10`) overlaps the box at `r8` (min `+0`, max `+0x10`) in x, y and z (no `cmpltps` lane set) pushes its qwords `+0x28` and `+0x30` when qword `+0x30` is non-null, doubling the stack when full (allocations at `00849310 + 0x100` and `00849310 + 0x193`, old buffers released at `00849310 + 0x13E` and `00849310 + 0x1CE`), and otherwise passes its qword `+0x28` to vtable slot `+8` of the object at qword `[r9]` (the call at `00849310 + 0x207`); finally releases the stack at `00849310 + 0x21A`",
+   "anchors": [
+    [
+     "00849371",
+     "call"
+    ],
+    [
+     "008493B2",
+     "cmpltps"
+    ],
+    [
+     "00849476",
+     "mov"
+    ],
+    [
+     "00849517",
+     "call"
+    ],
+    [
+     "0084952A",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00849560",
+   "text": "returns at once when `rdx` is null; otherwise takes a 0x200-byte stack of node pointers (capacity 0x40) from the call at `00849560 + 0x61` with `rdx` as its only entry and pops nodes until it is empty: a node whose box (min `+0`, max `+0x10`) overlaps the box at `r8` (min `+0`, max `+0x10`) in x, y and z (no `cmpltps` lane set) pushes its qwords `+0x28` and `+0x30` when qword `+0x30` is non-null, doubling the stack when full (allocations at `00849560 + 0x100` and `00849560 + 0x193`, old buffers released at `00849560 + 0x13E` and `00849560 + 0x1CE`); a leaf equal to N = qword `+0x40` of qword `[r9+8]` is skipped, any other, with O = qword `[r9]`, goes to vtable slot `+8` of qword O`+0xa0` with (leaf `+0x28`, N`+0x28`) (the call at `00849560 + 0x21F`) and increments dword O`+0xbc`; finally releases the stack at `00849560 + 0x23B`",
+   "anchors": [
+    [
+     "008495C1",
+     "call"
+    ],
+    [
+     "00849602",
+     "cmpltps"
+    ],
+    [
+     "00849765",
+     "cmp"
+    ],
+    [
+     "0084977F",
+     "call"
+    ],
+    [
+     "00849785",
+     "inc"
+    ]
+   ]
+  },
+  {
+   "fn": "008497D0",
+   "text": "returns at once when `rdx` is null; otherwise takes a 0x400-byte stack of 0x80 zeroed node pointers from the call at `008497D0 + 0x5B` with `rdx` at entry 0 and pops nodes until the depth is 0: for each it forms bounds[0] = node min (`+0`) minus the floats at the ninth (stack) argument and bounds[1] = node max (`+0x10`) minus those at the eighth, and runs an x, y, z slab test, per axis entry `(bounds[s] - [r8]) * [fifth argument]` and exit with bounds[1 - s], s the dwords at the sixth argument, rejecting crossed intervals and requiring the float seventh argument to exceed the entry value and the exit value to exceed 0.0; a passing node with non-null qword `+0x30` pushes its qwords `+0x28` and `+0x30`, doubling and zero-filling the stack when the depth passes its limit (0x7E, then size minus 2; calls at `008497D0 + 0x262` and `008497D0 + 0x29E`), and a passing leaf passes its qword `+0x28` to vtable slot `+8` of the object at qword `[tenth argument]` (the call at `008497D0 + 0x311`); finally releases the stack at `008497D0 + 0x328`",
+   "anchors": [
+    [
+     "0084982B",
+     "call"
+    ],
+    [
+     "00849980",
+     "comiss"
+    ],
+    [
+     "008499DD",
+     "comiss"
+    ],
+    [
+     "00849ABA",
+     "mov"
+    ],
+    [
+     "00849AE1",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "skipped": [
+  {
+   "fn": "00847890",
+   "why": "its whole work is the entry instruction (loads the address of the string \"Triangle\", `01CB2848`, into `rax`) before `ret`"
+  },
+  {
+   "fn": "00848C10",
+   "why": "its whole work is the entry instruction (stores `rdx` to qword `+0x78` of `rcx`) before `ret`"
+  }
+ ],
+ "notes": "00847E60: the qword store at +0xc also zeroes dword +0x10, so the below-2 branch is always taken as listed; the sentence states both. 00849310/00849560/008497D0/00848E90: the callee objects are reached through a double load (qword [r9] or qword [tenth argument], then its vtable), stated literally. 00848E90: the fill value for new stack entries is an uninitialised 16-byte stack slot; the sentence leaves it unstated. Doubt (low): 008497D0 names stack arguments by position from rbp = entry rsp - 0x3f (fifth = entry rsp + 0x28 ... tenth = entry rsp + 0x50); the fourth register argument r9 is unused."
+}
