@@ -1,0 +1,11 @@
+{
+ "page": "00-Engine-Core-Runtime/Battle-Frame/CONTRACT-world-simulation-tick.md",
+ "session": "session_01TiSPB1n4bzRPUs6xFapccb",
+ "rows": [
+  {"fn": "001DBFA0", "entered_from": "`002DF1A0` + 0x2E",
+   "text": "calls `001DBFA0` + 0x1E with no arguments, then calls `001DBFA0` + 0x3A with that result in `rcx`, the incoming `ecx` in `edx`, the incoming `edx` in `r8d`, the incoming `r8d` in `r9d`, the incoming `r9d` as the fifth (stack) argument and the incoming fifth (stack) argument as the sixth, and returns with that second call's `rax` unchanged",
+   "anchors": [["001DBFBE", "call"], ["001DBFC9", "mov"], ["001DBFD6", "mov"], ["001DBFDA", "call"]]}
+ ],
+ "skipped": [],
+ "notes": "001DBFA0: [rsp+0x60] after push rdi and sub rsp,0x30 is entry [rsp+0x28], the incoming fifth argument; it is stored to [rsp+0x28] (sixth) and r9d to [rsp+0x20] (fifth). Only the low 32 bits of each incoming register are forwarded. Both callees are absent from the host excerpt and are cited by site. The other site 002DF1E0 + 0x2C is not cited by the host page."
+}
