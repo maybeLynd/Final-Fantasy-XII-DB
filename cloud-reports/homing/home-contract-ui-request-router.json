@@ -1,0 +1,17 @@
+{
+ "page": "16-UI/CONTRACT-ui-request-router.md",
+ "session": "session_01RYbqU7tsSU3HnpGNjV9Ghv",
+ "rows": [
+  {"fn": "0037E8A0", "entered_from": "`003F4E70` + 0xB1",
+   "text": "returns the address `01CEB638` when qword `+0xC8` of qword `02AED490` is null or when `ecx` is not below (signed) its zero-extended word `+0xA`; otherwise loads `ecx` from its dword `+0xC + ecx*8` and tail-jumps through the jump at `0037E8A0` + 0x2A",
+   "anchors": [["0037E8A7", "mov"], ["0037E8B3", "lea"], ["0037E8BF", "cmp"], ["0037E8C6", "mov"], ["0037E8CA", "jmp"]]},
+  {"fn": "0037F3B0", "entered_from": "`003F4E70` + 0x1A4",
+   "text": "returns 0 when qword `02AED490` is non-null; otherwise builds on the stack a pair (dword `0x10000`, `rcx`) and a block (dword 0, a pointer to that pair, qword 0), makes the call at `0037F3B0` + 0x56 with 0x5F0, the code address loaded at `0037F3EE` and the block, and returns 1; both paths check the stack cookie seeded from `01F44830`",
+   "anchors": [["0037F3C3", "cmp"], ["0037F3D2", "mov"], ["0037F3EE", "lea"], ["0037F406", "call"], ["0037F40B", "mov"]]},
+  {"fn": "003EBD70", "entered_from": "`002628B0` + 0x1CD",
+   "text": "stores 0 in qword `02B5EC60`; when qword `02B5EC68` is non-null, makes the call at `003EBD70` + 0x1B with it and stores 0 there; then stores 0 in qwords `02B5EC70`, `02B5EC78`, `02B5EC80` and `02B5EC88` and returns 0",
+   "anchors": [["003EBD7B", "mov"], ["003EBD8B", "call"], ["003EBD90", "mov"], ["003EBD9D", "mov"], ["003EBDB2", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "0037F3B0: the `lea` at `0037F3EE` resolves to `0037F4D0`, past this body's extent; it is cited by the instruction that loads it, not by its own address, since it may be a callback function. The calls at +0x68 and +0x7C are the stack-cookie checks and are covered by the closing clause."
+}
