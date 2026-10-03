@@ -1,0 +1,11 @@
+{
+ "page": "18-Audio/Audio-Bank-And-Controller-Family/audio-bank-and-controller-family.md",
+ "session": "session_016GtCXT5XBGf5Aqww1giQQs",
+ "rows": [
+  {"fn": "00221870", "entered_from": "`00222700` + 0x2F",
+   "text": "stores `009078B0` at qword `+0` of `rcx`, then walks the circular list whose head is at `rcx+8` (first node at qword `rcx+8`, stopping when a node equals `rcx+8`), reading each node's next qword `+0` before calling vtable slot `+0x18` of the object at `rcx+0x18` with (`rcx+0x18`, the node, `r8d` = 0x18)",
+   "anchors": [["00221890", "mov"], ["0022189A", "cmp"], ["002218A3", "mov"], ["002218B4", "call"], ["002218BB", "jne"]]}
+ ],
+ "skipped": [],
+ "notes": ""
+}
