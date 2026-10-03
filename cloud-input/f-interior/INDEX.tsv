@@ -151,3 +151,8 @@ the-actor-manager-record-field-map	04-Actor-Entity/Actor-Manager-Record/the-acto
 drawing-a-line-character-by-character	99-Unresolved-Residual/Glyph-Run-Rendering/drawing-a-line-character-by-character.md	2	2560	2026-10-02 18:41	PACKED-FABLE-FOR-SWE2-EC7
 generated-function-families	24-Compiler-And-CRT-Runtime/Generated-Families/generated-function-families.md	2	82	2026-10-02 18:41	PACKED-FABLE-FOR-SWE2-EC7
 static-initialisers-and-teardowns	24-Compiler-And-CRT-Runtime/Static-Initialization-And-Teardown/static-initialisers-and-teardowns.md	1	7	2026-10-02 18:41	PACKED-FABLE-FOR-SWE2-EC7
+the-shop-screens	16-UI/Shop-Screens/the-shop-screens.md	13	1632	2026-10-02 19:59	PACKED
+member-registration-and-the-recovered-field-schema	22-Middleware-PhyreEngine/Reflection-And-Class-Metadata/member-registration-and-the-recovered-field-schema.md	9	876	2026-10-02 19:59	PACKED
+file-size-tables-fst	02-Resource-And-Asset-Pipeline/Loose-Files-And-Size-Tables/file-size-tables-fst.md	6	631	2026-10-02 19:59	PACKED
+what-the-engine-fixes-at-boot	00-Engine-Core-Runtime/what-the-engine-fixes-at-boot.md	4	284	2026-10-02 19:59	PACKED
+render-event-selection-evidence	17-Presentation-Rendering/Character-Render-Records/render-event-selection-evidence.md	4	298	2026-10-02 19:59	PACKED
