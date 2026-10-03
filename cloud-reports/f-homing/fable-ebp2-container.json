@@ -1,0 +1,35 @@
+{
+ "page": "25-EBP-Script-Container/Container/ebp2-container.md",
+ "session": "session_01Jt7JVDWnpXmUBxAYuwnHXL",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "003545B0",
+   "text": "calls `002640C0` with the incoming registers (result p), then reads five values a, b, c, d, e by the calls at `003545B0+0x2C`, `+0x36`, `+0x40`, `+0x4B`, `+0x56` (each with `r9`); calls `00264D60(p, e)` and `002673A0(p, e)`, and only when `002673A0` returns 0 calls `003545B0+0x94` with (the `00264D60` result, d, c, b, a, qword `[p+0xb0]`)",
+   "anchors": [
+    [
+     "003545D1",
+     "call"
+    ],
+    [
+     "00354612",
+     "call"
+    ],
+    [
+     "0035461F",
+     "call"
+    ],
+    [
+     "00354626",
+     "jne"
+    ],
+    [
+     "00354644",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Five-call chain: 003545DC (+0x2C), 003545E6 (+0x36), 003545F0 (+0x40), 003545FB (+0x4B), 00354606 (+0x56) all call 00267E10, which ebp2-container.md does not name."
+}
