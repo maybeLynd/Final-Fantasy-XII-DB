@@ -1,0 +1,20 @@
+{
+ "page": "12-Items-Equipment-Shops-License/item-id-encoding-and-equipment-compatibility.md",
+ "session": "session_017yNt9L5rrbK5hdpiNRA3BS",
+ "rows": [
+  {"fn": "00264E40", "entered_from": "`00264CA0` + 0x11",
+   "text": "returns -1 when `ecx` is above 8 (unsigned compare); otherwise jumps through a table of dword offsets indexed by `ecx` (0 to 8) to one of five arms that return 2, 3, 4, 0 or 1",
+   "anchors": [["00264E43", "ja"], ["00264E4F", "mov"], ["00264E59", "jmp"], ["00264E76", "or"]]},
+  {"fn": "00292F60", "entered_from": "`003FF920` + 0x3A",
+   "text": "maps `ecx` to a return value: 0 to 1, 1 to 3, 2 and 3 to 4, 4 to 5, and every other value to 0",
+   "anchors": [["00292F62", "je"], ["00292F67", "je"], ["00292F71", "je"], ["00292F76", "je"], ["00292F78", "xor"]]},
+  {"fn": "003FEDC0", "entered_from": "`003FDA20` + 0x79",
+   "text": "under a stack cookie (`01F44830`), when qword `+0x148` of qword `0209AC30` is zero it builds a stack block of dword 0, the sign-extended `ecx` and qword 0, calls `003FEDC0` + 0x48 with `0xC0`, a rip-relative address loaded at `003FEDFC` and that block, stores the result to qword `+0x148` of qword `0209AC30` and calls `003FEDC0` + 0x65 with qword `0208EA28` and the result; when `+0x148` is already non-zero it does neither",
+   "anchors": [["003FEDDA", "cmp"], ["003FEDFC", "lea"], ["003FEE08", "call"], ["003FEE17", "mov"], ["003FEE25", "call"]]},
+  {"fn": "003FFA20", "entered_from": "`003FF040` + 0xBC",
+   "text": "calls `003FFA20` + 0x1C with the sign-extended word `+0xDE0` of qword `0209AC30`, then `003FFA20` + 0x2F with that result, the incoming `ecx`, the zero-extended `dx` and 1, then `003FFA20` + 0x36 (0), + 0x3B () and + 0x42 (0); when qword `+0x130` of qword `0209AC30` is non-null it calls `003FFA20` + 0x63 with that object's qword `+0xC0` and 0; it then calls `003FFA20` + 0x6C (0, 0) and tail-jumps (`003FFA20` + 0x80) with `ecx` = 1",
+   "anchors": [["003FFA35", "movsx"], ["003FFA4F", "call"], ["003FFA78", "je"], ["003FFA83", "call"], ["003FFAA0", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "DOUBT 00264E40: the jump table's contents are not decoded in the listing, so the sentence states the five arm results but not which of the cases 0-8 reaches which arm; FABLE should read the table (it sits right after the code; its address is deliberately not written) and either add the case map or drop the row. 003FEDC0: the address loaded at 003FEDFC lies just past this body's extent; it is described by its load site instead of its value because it sits right after the function's code (it is probably the next function, used as a callback, but the listing does not show that). The cookie check tail (call at 003FEE32) is not stated beyond 'under a stack cookie'."
+}
