@@ -1,0 +1,11 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/lst-menuquest-list.md",
+ "session": "session_016ZjFjnefAbEBqR8eRqGh2C",
+ "rows": [
+  {"fn": "0037FA00", "entered_from": "`0037F4D0` + 0x47",
+   "text": "when qword `rcx+0xC8` is non-null, calls (`0037FA00` + 0x1B) with it and zeroes `+0xC8`; then, when byte `+0xEE` is non-zero, walks 0x18-byte entries from `+0xF0` while the counter is below byte `+0xEE` (re-read each pass), calling (`0037FA00` + 0x44) with each entry's qword `+0x10` and zeroing its byte `+0`, and finally zeroes byte `+0xEE`",
+   "anchors": [["0037FA1B", "call"], ["0037FA20", "mov"], ["0037FA44", "call"], ["0037FA49", "mov"], ["0037FA62", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "0037FA00: both calls go to the same callee; cited by site since the host excerpt does not name it. The loop call is made without a null test on the entry's qword +0x10."
+}
