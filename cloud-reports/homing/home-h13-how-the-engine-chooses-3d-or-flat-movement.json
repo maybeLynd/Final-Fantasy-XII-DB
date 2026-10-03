@@ -1,0 +1,14 @@
+{
+ "page": "06-Movement-And-Navigation/Movement-Mode-Selection/how-the-engine-chooses-3d-or-flat-movement.md",
+ "session": "session_016GtCXT5XBGf5Aqww1giQQs",
+ "rows": [
+  {"fn": "002E4E00", "entered_from": "`00357F00` + 0x115",
+   "text": "returns 0.0 when `rcx` is null, when qword `+0xC0` of `rcx` is null, or when the dword it points to is -1; returns -1.0 (`01CEBC9C`) when that pointer's low word is -1, when the record address `022C6F28` + 0x740 times the sign-extended word is zero, or when that record's dword `+0x284` is 0; otherwise tail-jumps with the record in `rcx` at `002E4E00` + 0x45",
+   "anchors": [["002E4E11", "cmp"], ["002E4E19", "cmp"], ["002E4E1F", "movss"], ["002E4E3C", "cmp"], ["002E4E45", "jmp"]]},
+  {"fn": "002E71C0", "entered_from": "`00357F00` + 0x7A",
+   "text": "computes two values from qword `+0xC0` of `rcx` and returns them ORed: each is 1 when `rcx` is null, that qword is null or the dword it points to is -1; 0 when that pointer's low word is -1, when the record address `022C6F28` + 0x740 times the sign-extended word is zero, or when that record's dword `+0x284` is 0; otherwise the result of the call with the record and `edx` = 3 at `002E71C0` + 0x60 for the first value and with `edx` = 4 at `002E71C0` + 0xAE for the second",
+   "anchors": [["002E71E5", "cmp"], ["002E7220", "call"], ["002E7229", "mov"], ["002E726E", "call"], ["002E7281", "or"]]}
+ ],
+ "skipped": [],
+ "notes": "002E4E00: the dword-equals--1 test (returns 0.0) precedes the word-equals--1 test (returns -1.0); both are stated."
+}
