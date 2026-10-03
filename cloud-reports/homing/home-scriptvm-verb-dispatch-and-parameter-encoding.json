@@ -24,7 +24,7 @@
    "text": "returns 1 when bit `ecx` (modulo 32) of the sign-extended byte `02B59350` is set, otherwise 0",
    "anchors": [["003DE707", "xor"], ["003DE709", "bt"], ["003DE70C", "setb"]]},
   {"fn": "005688D0", "entered_from": "`005113D0` + 0x14",
-   "text": "indexes the qword table `02CA96E0` by the signed dword at qword `02EBF190` + 0x7370 + 4 times signed dword `+0xF0` of qword `+0x160` of qword `0209AC30`; when the entry is null, makes the call at `005688D0` + 0x58 and returns 1; otherwise makes the call at `005688D0` + 0x3A (`rcx` still that index) and returns 0 when bit 1 (`0x2`) of the entry's byte `+0x358` is clear or the call returned 2 or 3, else makes the call at `005688D0` + 0x58 and returns 1",
+   "text": "indexes the qword table `02CA96E0` by the signed dword at offset `0x7370` plus 4 times signed dword `+0xF0` of qword `+0x160` of qword `0209AC30`, inside the block at qword `02EBF190`; when the entry is null, makes the call at `005688D0` + 0x58 and returns 1; otherwise makes the call at `005688D0` + 0x3A (`rcx` still that index) and returns 0 when bit 1 (`0x2`) of the entry's byte `+0x358` is clear or the call returned 2 or 3, else makes the call at `005688D0` + 0x58 and returns 1",
    "anchors": [["005688F9", "movsxd"], ["00568905", "test"], ["0056890F", "test"], ["00568923", "cmp"], ["00568928", "call"]]}
  ],
  "skipped": [],
