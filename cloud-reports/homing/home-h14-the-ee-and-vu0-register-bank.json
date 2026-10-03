@@ -1,0 +1,11 @@
+{
+ "page": "00-Engine-Core-Runtime/Shared-Transform-Workbench/the-ee-and-vu0-register-bank.md",
+ "session": "session_01Ff3pgr29V1M59kxPqNgYBZ",
+ "rows": [
+  {"fn": "0028F810", "entered_from": "`0029BC80` + 0xFE",
+   "text": "replaces `rcx` with qword `+0x10F78` of qword `0209BE80` and tail-jumps at `0028F810` + 0xE, leaving the other argument registers unchanged",
+   "anchors": [["0028F817", "mov"], ["0028F81E", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": ""
+}
