@@ -1,0 +1,11 @@
+{
+ "page": "17-Presentation-Rendering/Model-And-Motion-Formats/fcp-character-parameter-block.md",
+ "session": "session_01Ff3pgr29V1M59kxPqNgYBZ",
+ "rows": [
+  {"fn": "0046C1E0", "entered_from": "`0041FCF0` + 0x367",
+   "text": "stores byte 0 at `[rcx]` and stops there when `dx` is 0xFFFF or the record at qword `022C6F28` + sign-extended `dx` * 0x740 is null or has dword `+0x284` equal to 0; otherwise stores byte 1 at `[rcx]`, `edx` at dword `+8`, the record's qword `+0x108` at qword `+0x10`, and the byte returned by the call at `0046C1E0` + 0x4B with `ecx` = 9, plus 3, at byte `+4`",
+   "anchors": [["0046C1E6", "mov"], ["0046C1EC", "cmp"], ["0046C20C", "cmove"], ["0046C227", "mov"], ["0046C232", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": ""
+}
