@@ -1,0 +1,23 @@
+{
+ "page": "19-Save-Load-Settings/CONTRACT-save-image-buffers.md",
+ "session": "session_01A1Qvgw5xe7BnV34LPHQcLH",
+ "rows": [
+  {"fn": "005DE310", "entered_from": "`00616CC0` + 0x58",
+   "text": "when byte `rcx+8` is non-zero, makes the call at `005DE310` + 0x24 with `ecx` = 3 and `rdx` = `00D4B350`, otherwise skips it; then, when qword `rcx+0x20` is non-null, passes it in `rcx` to the call at `005DE310` + 0x33, otherwise skips it, and returns",
+   "anchors": [["005DE322", "cmp"], ["005DE32F", "mov"], ["005DE334", "call"], ["005DE33E", "test"], ["005DE343", "call"]]},
+  {"fn": "005DE390", "entered_from": "`00616D20` + 0x58",
+   "text": "when byte `rcx+8` is non-zero, makes the call at `005DE390` + 0x24 with `ecx` = 3 and `rdx` = `00D4B350`, otherwise skips it; then, when qword `rcx+0x20` is non-null, passes it in `rcx` to the call at `005DE390` + 0x33, otherwise skips it, and returns",
+   "anchors": [["005DE3A2", "cmp"], ["005DE3AF", "mov"], ["005DE3B4", "call"], ["005DE3BE", "test"], ["005DE3C3", "call"]]},
+  {"fn": "00616140", "entered_from": "`00162370` + 0x21",
+   "text": "passes `rcx` unchanged to the call at `00616140` + 0x16; stores dword 0 at `rcx+0x38` and makes the call at `00616140` + 0x2B with `rcx` = `rcx+0x38` and `edx` = 1; then zeroes qwords `+0x88`, `+0x68`, `+0x70`, `+0x78` and `+0x80` and returns the incoming `rcx`",
+   "anchors": [["00616156", "call"], ["00616160", "mov"], ["0061616B", "call"], ["00616170", "mov"], ["00616190", "mov"]]},
+  {"fn": "006161A0", "entered_from": "`00162370` + 0x2E",
+   "text": "passes `rcx` unchanged to the call at `006161A0` + 0x16; stores dword 0 at `rcx+0x30` and makes the call at `006161A0` + 0x2B with `rcx` = `rcx+0x30` and `edx` = 1; then zeroes qwords `+0xA0`, `+0x78`, `+0x80`, `+0x88`, `+0x90` and `+0x98` and returns the incoming `rcx`",
+   "anchors": [["006161B6", "call"], ["006161C0", "mov"], ["006161CB", "call"], ["006161D0", "mov"], ["006161FD", "mov"]]},
+  {"fn": "00623E70", "entered_from": "`0062B1E0` + 0x29",
+   "text": "clears bit 31 of dword `rcx+0x30`; when the result is above 1 (unsigned) returns qword `rcx+0x38` plus `(edx << 6) + 0x20`; otherwise returns the address `rcx+0x38` plus `(edx << 6) + 0x20`, with 0 in place of `rcx+0x38` when the result is 0",
+   "anchors": [["00623E73", "btr"], ["00623E7A", "jbe"], ["00623E7C", "mov"], ["00623E99", "cmove"], ["00623EA5", "add"]]}
+ ],
+ "skipped": [],
+ "notes": "005DE310/005DE390 are byte-identical apart from position; 00D4B350 is a lea target (data), cited because the listing resolves it. 00623E70 is also entered from `0062B1E0` + 0x43. No doubts."
+}
