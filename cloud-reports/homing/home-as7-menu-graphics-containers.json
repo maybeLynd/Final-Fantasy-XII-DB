@@ -1,0 +1,14 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/as7-menu-graphics-containers.md",
+ "session": "session_01G1D6BV8reSc8hRtefJLZec",
+ "rows": [
+  {"fn": "00292050", "entered_from": "`00292390` + 0x152",
+   "text": "with `o` = qword `+0x300` of qword `0209AC30`, returns qword `o+0xD0+ecx*0x10` when `o` is non-null and dword `o+0x168` has bit `ecx` set, testing it through `1 << cl` truncated to 16 bits (so only bits 0-15 can match); otherwise returns 0",
+   "anchors": [["00292057", "mov"], ["00292068", "shl"], ["0029206D", "test"], ["0029207F", "mov"], ["00292084", "xor"]]},
+  {"fn": "003DF7B0", "entered_from": "`002628B0` + 0x133",
+   "text": "clears bit `ecx` of dword `02B59D18` when `edx` is non-zero and sets it when `edx` is 0, storing the result back; when that result is 0 tail-jumps to `003DF7B0` + 0x24, otherwise calls `003DF7B0` + 0x33(0, 0, 0, 0) and zeroes qwords `02B59D00` and `02B59D08` and dwords `02B59D10` and `02B59D14`",
+   "anchors": [["003DF7BE", "btr"], ["003DF7C3", "bts"], ["003DF7D4", "jmp"], ["003DF7E3", "call"], ["003DF7EA", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "00292050: the index is computed as (sign-extended ecx + 0xD) * 2 qwords, i.e. byte offset 0xD0 + ecx*0x10. 003DF7B0: btr/bts with a register bit offset on a register operand use ecx mod 32."
+}
