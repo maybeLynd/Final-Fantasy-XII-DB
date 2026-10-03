@@ -154,13 +154,13 @@ C-V3, C-V8, C-V12, C-V15, C-V17, C-V20, C-V21, C-V22). **All nine are now resolv
 - C-V1 (`INT:150-154`);
 - C-V2 (`INT:114`);
 - C-V3 (`REQ:246`, row A1: "`sx(byte[actor+0x11])·0x28`");
-- C-V4 (`BIND:431`, `:440`, `:447`: 210 B, `00358A00` ends at `00358A14`, 545 B);
+- C-V4 (`BIND:430`, `:439`, `:446`: 210 B, `00358A00` ends at `00358A14`, 545 B);
 - C-V5 for the value (`BIND:79`, `BIND:4`; the stale text is N-1);
 - C-V7 (`BIND:405-407`);
-- C-V8 and C-V9 (`DT:642-646`, `:762-776`, `:830-836`, `:855-860`);
+- C-V8 and C-V9 (`DT:643-646`, `:763-776`, `:830-836`, `:855-860`);
 - C-V10 (`DT:752-753`);
 - C-V12 (`VARS:469`, `C-BR:117`);
-- C-V13 (`VD:208`);
+- C-V13 (`VD:206`);
 - C-V14 (`VD:242`, `C-VD:147`);
 - C-V15 (`C-VD:175`: "(u32)");
 - C-V16 (`VD:726`, `:1058`, `:1242`);
@@ -177,7 +177,7 @@ C-V3, C-V8, C-V12, C-V15, C-V17, C-V20, C-V21, C-V22). **All nine are now resolv
 - C-V37 (`STDM:485`);
 - C-V38 (`BP:56`);
 - C-V39 (`READIN:74`);
-- C-V40 (`STDM:491-494`);
+- C-V40 (`STDM:492-494`);
 - C-V42 (`C-NCL:282`: "built, once");
 - C-V43 (`NCL:777`);
 - C-V46 to C-V49 (`README:22-23`, `VD:36-38`, `:592`, `:1160-1162`, `:1221`, `:672`);
@@ -225,4 +225,38 @@ Gaps found on this pass that pass 1 did not list. Most come from text added sinc
 | N-6 | **The insertion helpers' success and effects on a non-`0xFF` free head** (the notification allocation path) | STATIC | `REQ:140-141`: "**Still open:** … the insertion helpers' success and effects on a non-`0xFF` free head." | `OV-10` (adjacent) |
 | N-7 | **The `029A` → `029B` out-reference flow's open items**: the initial queue order, native writers of the destination cells, the image buffer's allocation and lifetime, and what action word 0 means | STATIC (queue order, writers); DATA (action word 0) | `CC:878-882`: "**OPEN, as SWE2-DATA states them:** the initial queue order (`022C2178` at init); native writers of these cells outside the bytecode; allocation, non-aliasing and lifetime of the image buffer against the queue globals; the meaning of action word 0."; `VARS:634-635`: "It does not establish the context base's value, the image's allocation or lifetime, or native writers of the cells outside the bytecode." | no row names `022C2178`; `OV-42` PARTLY ANSWERED is the nearest |
 | N-8 | **`POP` still says `DO-1` is open and growing**, although the register answered it before pass 1 | DOC | `POP:473`: "`DO-1` stays open and gets larger."; `POP:271`: "unclassified** — `DO-1`."; against REG `DO-1`: "**ANSWERED 2026-09-26 … all 505 handlers are in members/dispatch-secondary-handler-shapes.tsv.**" | `DO-1` ANSWERED |
-| N-9 | **The new homed handler bodies do not say which verb reaches them, and name most callees only by call site.** A re-implementer cannot attach them to a verb id, and the callee is not described. By contrast, the `NCL` rows give the dispatch record | STATIC | `VD:1444`: "*No page cited these functions and none of their callers is documented: they are reached by table or pointer dispatch or through undocumented callers.*"; e.g. `VD:1453` `00511200`: "makes the call at `00511200+0x3F` with (c, b, a)"; `VD:1477` `0034A920`: "loops forever calling `00267F90(r9, 2)`; it has no exit path" (reaching record not given); the same form at `READIN:422-441` and `BP:181-187`. The `NCL` form, for contrast: `NCL:808` "reached through the result field (`+0x20`) of record 0x1D7 … so it is the result callback of command id 0x01D7" | `CY-3` SUPERSEDED (scope) |
+| N-9 | **The new homed handler bodies do not say which verb reaches them, and name most callees only by call site.** A re-implementer cannot attach them to a verb id, and the callee is not described. By contrast, the `NCL` rows give the dispatch record | STATIC | `VD:1444`: "*No page cited these functions and none of their callers is documented: they are reached by table or pointer dispatch or through undocumented callers.*"; e.g. `VD:1453` `00511200`: "makes the call at `00511200+0x3F` with (c, b, a)"; `VD:1477` `0034A920`: "loops forever calling `00267F90(r9, 2)`; it has no exit path" (reaching record not given); the same form at `READIN:422-441` and `BP:181-187`. The `NCL` form, for contrast: `NCL:809` "reached through the result field (`+0x20`) of record 0x1D7 … so it is the result callback of command id 0x01D7" | `CY-3` SUPERSEDED (scope) |
+
+---
+
+## 4. Rating
+
+**New rating: NOT YET** (pass 1: NOT YET).
+
+**What decides it.** The rating is still set by one structural gap, G-1. A re-implementer can now write the machinery
+that runs a script from these pages: the dispatch loop and its stop and advance arms, the operand-typed arithmetic,
+the five command tables and their initialiser, the begin / poll / result lifecycle, the value stack, the
+`+0x15` phase byte and the variable homes. On those, pass 1's decisive contradictions are now settled at the bytes
+(§2.3, all nine it asked to check). But a script's effects live in its verbs. About 1,886 functions serve as
+callbacks (`VD:552`); since pass 1 about 140 bodies have gained an access-level sentence. Most of those sentences name
+their callees only by call site, and the homed ones do not say which verb reaches them (N-9). The opcode table is
+complete, but only in a candidate directory (G-2, DOC). That is a pointer away, not a structural hole, so the
+interpreter is no longer what keeps the system at NOT YET. If the README said which category owns each verb body,
+G-1 would become a dependency and the system could be rated MOSTLY.
+
+| part | pass 1 | pass 2 | what decides it now |
+|---|---|---|---|
+| Value stack and the script-to-native calling convention | MOSTLY | **READY** | C-V12, C-V20, C-V21 and C-V22 are settled (`VARS:469`, `C-BR:266-268`, `CC:216`, `C-BR:396-398`). Residue: stated limits only (S-11 is unmeasured but the ABI is given; S-21) and the stale text in N-2. |
+| Variables and storage classes | MOSTLY | **READY** | C-V23 is settled (`VARS:254`), and so is the `+0x44` byte (S-10, G-8). The open items are script data, not VM behaviour (S-7, S-8, S-9). |
+| Dispatch tables, call-id split and lifecycle | MOSTLY | **MOSTLY** | C-V8, C-V13 to C-V18 and C-V42 are settled. Open: per-command scratch shapes (G-9); a 1,960-command partition that sums to 1,960 (G-10); two unstruck stale sides (C-V11, C-V41); stale counts on `NCL` (C-V53). |
+| Request scheduling | MOSTLY | **MOSTLY** | C-V3, C-V4 and C-V7 are settled, and the cancel and retirement order is now written (`REQ:85-141`). Open: kind 2 against kind 1 and the active-actor global (G-5); the mode-1 arm and `0025B580` (G-7); the flags helper behind a dead pointer (N-3); the scheduler's post-cancel effects (N-5); pool exhaustion in play (S-2, RUNTIME). |
+| The interpreter (loop and opcode set) | NOT YET | **MOSTLY** | The default arm (C-V1) and arithmetic typing (C-V2, G-3) are corrected on the page, and the yield path was already described (G-4, wrong in pass 1). Open: the per-opcode semantics live only in the BF-1 candidate (G-2, DOC); no complete return taxonomy (G-6). |
+| Verbs (the native handlers) | NOT YET | **NOT YET** | G-1 (NARROWED) and N-9. |
+| Party verbs, entity names, waits and stubs | MOSTLY | **MOSTLY** | Settled: C-V24 to C-V26, C-V28, C-V32, C-V33, C-V35, C-V37 to C-V40; the shared poll and end test are read (G-13, G-14). Open: C-V27, C-V29 to C-V31, C-V34, C-V36, C-V59; the roster mutators and lock routine (S-27); `02EBF3FC`'s role (G-13). |
+| Debug companion files | not needed | **not needed** | Not loaded by the shipped game (`ATEL:881-887`). Three unstruck narrowings and two figures remain (C-V44, C-V45). |
+
+**Shortest path to MOSTLY overall.**
+1. The README says which category owns each verb body, so that G-1 becomes a dependency.
+2. The BF-1 opcode table is carried onto `INT` or `C-INT` (G-2, G-3).
+3. The five DOC fixes on these pages: N-1, N-2, N-8, C-V11 and C-V41 (strike the stale sides), and C-V53.
+4. A static read of the `+0x12` flags helper and of `0025B580` (N-3, G-7).
