@@ -1,0 +1,11 @@
+{
+ "page": "03-World-Area-Field/Field-Record-Table/field-record-bit15-action-permission.md",
+ "session": "session_01Xkefj8Gz4bCEiqGqVRB1MS",
+ "rows": [
+  {"fn": "0031E860", "entered_from": "`00313DB0` + 0xB3",
+   "text": "calls `0031E860` + 0x4 and returns its result when it is null; otherwise tail-jumps (`0031E860` + 0x1A) with `rcx` = that result",
+   "anchors": [["0031E864", "call"], ["0031E869", "test"], ["0031E87A", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "0031E860 is also reached by jmp from 00303E90 + 0x15 and 00313590 + 0x15. The incoming rcx is not set before the first call, so whatever the caller passed is forwarded unchanged."
+}
