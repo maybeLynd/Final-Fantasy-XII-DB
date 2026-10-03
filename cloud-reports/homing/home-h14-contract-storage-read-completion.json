@@ -1,0 +1,11 @@
+{
+ "page": "19-Save-Load-Settings/CONTRACT-storage-read-completion.md",
+ "session": "session_019ww1AYv6HUCASSLr6wdSTQ",
+ "rows": [
+  {"fn": "003BB2F0", "entered_from": "`00582040` + 0x1B8",
+   "text": "stores 7 at dword `02B40E1C`, 0 at dwords `02B40EC0`, `02B40E18` and `02B40FE4` and qword 1 at `02B40E10`, then tail-jumps (at `003BB2F0` + 0x2B) with `ecx` = 0",
+   "anchors": [["003BB2F2", "mov"], ["003BB2FE", "mov"], ["003BB30A", "mov"], ["003BB310", "mov"], ["003BB31B", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": ""
+}
