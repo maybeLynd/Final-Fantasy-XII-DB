@@ -1,0 +1,11 @@
+{
+ "page": "17-Presentation-Rendering/Effect-File-Formats/the-six-vfx-display-layers.md",
+ "session": "session_01Cj7Fn364nPXZ9Bw71KUr9i",
+ "rows": [
+  {"fn": "001823E0", "entered_from": "`001B2530` + 0x3A",
+   "text": "stores 0 to dword `01F7F538`, calls `001823E0` + 0x12, and tail-jumps at `001823E0` + 0x21 with `rcx` = that call's result and `edx` = the incoming `ecx`",
+   "anchors": [["001823E8", "mov"], ["001823F2", "call"], ["001823FA", "mov"], ["00182401", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "001823E0: neither callee (0018CA40, 0018BDD0) is named in the host excerpt; both are cited by site. The call at + 0x12 receives `rcx` unchanged from entry; whether it reads it is not visible here, so no argument is stated."
+}
