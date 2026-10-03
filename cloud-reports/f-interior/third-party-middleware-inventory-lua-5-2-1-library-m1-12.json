@@ -1,0 +1,652 @@
+{
+ "page": "23-Third-Party-Libraries/third-party-middleware-inventory.md",
+ "session": "session_017xjc7Mufp2Duoak7yA6of2",
+ "mode": "member",
+ "family": "Lua 5.2.1 library",
+ "rows": [
+  {
+   "fn": "00825000",
+   "text": "starts a dword buffer with 0x78 ('x') and reads up to two more characters, each from the byte stream at qword `rcx+0x40` (count qword `[stream]` decremented, pointer `[stream+8]` advanced, or the call at `00825000 + 0x67` when the count was 0) and stored at dword `[rcx]` and in the buffer; while the character's entry (index c+1) in the class table `01CCCBC0` has bit 0x10 it accumulates value*16 plus the call at `+0x81`'s result, returning the sum after two; otherwise it zeroes the length qword `[rcx+0x48]+8`, appends 0x5C ('\\') and the buffered characters up to the first -1 to that buffer (doubling its capacity through the call at `+0x10C` when full, \"lexical element too long\" (`01CCBD98`) via the call at `+0x1AF` once the capacity reaches 0x7FFFFFFFFFFFFFFE) and raises \"hexadecimal digit expected\" (`01CCBE60`) with 0x121 via the call at `+0x1CB`; consistent with readhexaesc in Lua 5.2's llex.c (that string and the 'x' seed)",
+   "anchors": [
+    [
+     "00825067",
+     "call"
+    ],
+    [
+     "00825078",
+     "test"
+    ],
+    [
+     "0082508B",
+     "add"
+    ],
+    [
+     "00825128",
+     "mov"
+    ],
+    [
+     "008251CB",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008251F0",
+   "text": "appends byte `dl` to the buffer at qword `rcx+0x48` (data qword `+0`, length `+8`, capacity `+0x10`): when length+1 exceeds the capacity it raises \"lexical element too long\" (`01CCBD98`) via the call at `008251F0 + 0x81` if the capacity is at least 0x7FFFFFFFFFFFFFFE, otherwise (unless 2*capacity+1 exceeds -3 unsigned, which branches away) reallocates through the call at `+0x4C` with `[rcx+0x38]` to twice the capacity and stores the new data pointer and capacity; it then stores the byte at data+length and increments the length",
+   "anchors": [
+    [
+     "00825222",
+     "jae"
+    ],
+    [
+     "0082523C",
+     "call"
+    ],
+    [
+     "00825244",
+     "mov"
+    ],
+    [
+     "0082524F",
+     "mov"
+    ],
+    [
+     "00825253",
+     "inc"
+    ]
+   ]
+  },
+  {
+   "fn": "00825280",
+   "text": "appends the current character dword `[rcx]` with `008251F0(rcx, c)`, advances to the next character (byte stream at qword `rcx+0x40`, or the calls at `00825280 + 0x40` and `+0xEE` when its count is 0) into `[rcx]`, and while it is 0x3D ('=') appends it to the buffer at `rcx+0x48` (growing it through the call at `+0xAC`) and advances again, counting them; it returns the count when the final character equals the first one and NOT count otherwise",
+   "anchors": [
+    [
+     "00825294",
+     "call"
+    ],
+    [
+     "008252DD",
+     "cmp"
+    ],
+    [
+     "0082533F",
+     "mov"
+    ],
+    [
+     "00825375",
+     "inc"
+    ],
+    [
+     "00825387",
+     "not"
+    ]
+   ]
+  },
+  {
+   "fn": "008253D0",
+   "text": "keeps byte `rcx+0x68`, replaces it with the first character of the string at the first qword of the import call at `008253D0 + 0x19`'s result, rewrites every byte of the buffer (data qword `[rcx+0x48]`, length `+8`) equal to the old value to the new one, and returns when the call at `+0x63` on (data, length-1, `rdx`) is nonzero; otherwise it rewrites bytes equal to the new value to 0x2E ('.') and raises \"malformed number\" (`01CCBE08`) with 0x11F via the call at `+0xB5`",
+   "anchors": [
+    [
+     "008253FA",
+     "mov"
+    ],
+    [
+     "00825419",
+     "mov"
+    ],
+    [
+     "00825433",
+     "call"
+    ],
+    [
+     "00825459",
+     "mov"
+    ],
+    [
+     "00825485",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00825660",
+   "text": "gets a name from argument 1 (call at `00825660 + 0x25`) and a mode from argument 2 (call at `+0x43`, default `008C5880`), creates a 0x10-byte block (call at `+0x51`) with qword `+8` zeroed, runs the call at `+0x6B` with \"FILE*\" (`01CCBEF0`), and stores 0 at `+0` and `008262E0` at `+8`; the mode must start with a character the import call at `+0x93` finds in the string at `01CCBF7C`, may continue with 0x2B ('+') and then 0x62 ('b'), and must end there, otherwise it returns the call at `+0xEA`'s result for \"invalid mode '%s' (should match '[rwa]%%+?b?')\" (`01CCBF80`) with the mode; a valid mode opens the name with the import call at `+0xBC`, stores the handle at `+0` and returns 1, or the call at `+0xD2`'s result (with 0 and the name) when the handle is null; consistent with io_open in Lua 5.2's liolib.c (that message)",
+   "anchors": [
+    [
+     "008256B1",
+     "call"
+    ],
+    [
+     "008256DE",
+     "mov"
+    ],
+    [
+     "008256F3",
+     "call"
+    ],
+    [
+     "0082571C",
+     "call"
+    ],
+    [
+     "0082574A",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00825F20",
+   "text": "takes n = the call at `00825F20 + 0x19`'s result minus 1, running the call at `+0x35` with 0x11 and \"too many options\" (`01CCBFE0`) when n exceeds 0x11; it runs the call at `+0x44` with 1, the call at `+0x4F` with n, the call at `+0x59` with `edx` and the call at `+0x69` for each index 2 to n+1, then tail-jumps at `+0x94` with (`rcx`, `008263B0`, n+3); consistent with aux_lines in Lua 5.2's liolib.c (that string)",
+   "anchors": [
+    [
+     "00825F41",
+     "cmp"
+    ],
+    [
+     "00825F55",
+     "call"
+    ],
+    [
+     "00825F79",
+     "call"
+    ],
+    [
+     "00825F89",
+     "call"
+    ],
+    [
+     "00825FB4",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00825FC0",
+   "text": "spills its register arguments and returns the import call at `00825FC0 + 0x37`'s result for (the qword pointed to by the call at `+0x21`'s result, `rcx`, `rdx`, 0, a pointer to its arguments from `r8` on)",
+   "anchors": [
+    [
+     "00825FE1",
+     "call"
+    ],
+    [
+     "00825FE9",
+     "mov"
+    ],
+    [
+     "00825FF4",
+     "mov"
+    ],
+    [
+     "00825FF7",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00826010",
+   "text": "takes n = stack top (call at `00826010 + 0x1F`) minus 1 and runs the import call at `+0x2A` on `rdx`; n = 0 reads with `008268E0(rcx, rdx, 1)` and ends at index `r8d`+1; otherwise it checks room (call at `+0x7B`, \"too many arguments\" `01CCBFF8`) and for each argument from index `r8d` while the last read succeeded: a type-3 argument (call at `+0x94`) of value 0 (call at `+0xA6`) peeks a character (import calls at `+0xB3`, `+0xC0`) and pushes an empty string (call at `+0xCE`), succeeding unless it was -1, a nonzero value reads with `00826850(rcx, rdx, value)`; any other argument's string (call at `+0xF4`) must start with 0x2A ('*', else the call at `+0x112` with \"invalid option\") and its second character selects 'n' (`00825FC0(rdx, 008F6D40, &v)`; 1 pushes float v via `+0x14D`, else `+0x159` runs), 'l' or 'L' (`008268E0` with 1 or 0), 'a' (`00826770(rcx, rdx)`), or else returns the call at `+0x1A8`'s result with \"invalid format\" (`01CCC020`); then a nonzero import call at `+0x50` on `rdx` returns the call at `+0x66`'s result (`rcx`, 0, 0), a failed last read runs the calls at `+0x1B9` with -2 and `+0x1C1`, and it returns the end index minus `r8d`",
+   "anchors": [
+    [
+     "00826052",
+     "call"
+    ],
+    [
+     "008260FA",
+     "call"
+    ],
+    [
+     "0082614A",
+     "call"
+    ],
+    [
+     "00826195",
+     "call"
+    ],
+    [
+     "008261D6",
+     "sub"
+    ]
+   ]
+  },
+  {
+   "fn": "00826200",
+   "text": "with n = stack top (call at `00826200 + 0x1B`) minus `r8d`, returns 1 for n = 0; otherwise, for each argument from index `r8d`, a type-3 value (call at `+0x37`) is written while all writes have succeeded with \"%.14g\" (`01CCB950`) to `rdx` (call at `+0x68`, the 32-bit float from the call at `+0x4D` widened to double), succeeding when that returns more than 0, and any other value is converted with the call at `+0x96` and written with the import call at `+0xAF` as (string, 1, length, `rdx`), succeeding when the full length is written; it returns 1 when every write succeeded, else the call at `+0x85`'s result (`rcx`, 0, 0)",
+   "anchors": [
+    [
+     "00826229",
+     "je"
+    ],
+    [
+     "00826268",
+     "call"
+    ],
+    [
+     "008262AF",
+     "call"
+    ],
+    [
+     "008262B5",
+     "cmp"
+    ],
+    [
+     "00826285",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008262E0",
+   "text": "gets the block from the call at `008262E0 + 0x15` with (`rcx`, 1, \"FILE*\" `01CCBEF0`), closes the handle at its qword `+0` with the import call at `+0x1D`, and tail-jumps at `+0x35` with (`rcx`, 1 when that returned 0 else 0, 0)",
+   "anchors": [
+    [
+     "008262F5",
+     "call"
+    ],
+    [
+     "008262FD",
+     "call"
+    ],
+    [
+     "0082630A",
+     "sete"
+    ],
+    [
+     "00826315",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00826320",
+   "text": "gets the block from the call at `00826320 + 0x15` with (`rcx`, 1, \"FILE*\" `01CCBEF0`), stores `00826320` at its qword `+8`, runs the call at `+0x28` and the call at `+0x3D` with \"cannot close standard file\" (`01CCC2A0`) and 0x1A, and returns 2",
+   "anchors": [
+    [
+     "00826335",
+     "call"
+    ],
+    [
+     "00826341",
+     "mov"
+    ],
+    [
+     "00826348",
+     "call"
+    ],
+    [
+     "0082635D",
+     "call"
+    ],
+    [
+     "00826362",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "008263B0",
+   "text": "reads a block from index 0xFFF0B9D7 (call at `008263B0 + 0x18`) and an integer n from index 0xFFF0B9D6 (call at `+0x2B`); when the block's qword `+8` is 0 it tail-jumps at `+0x54` with \"file is already closed\" (`01CCC030`); otherwise it sets the top to 1 (call at `+0x6A`), pushes indexes 0xFFF0B9D4 downwards n times (call at `+0x85`) and gets r = `00826010(rcx, block qword +0, 2)`; it returns r when the call at `+0xAB` on index -r is nonzero, for r above 1 returns the call at `+0xD8`'s result with the format at `008F4438` and the string at index 1-r (call at `+0xC6`), and otherwise, when the call at `+0xE4` on 0xFFF0B9D5 is nonzero, sets the top to 0, pushes 0xFFF0B9D7, gets the \"FILE*\" block at index 1 (call at `+0x110`) and calls its qword `+8` after zeroing it; it returns 0",
+   "anchors": [
+    [
+     "008263EB",
+     "jne"
+    ],
+    [
+     "0082644D",
+     "call"
+    ],
+    [
+     "00826462",
+     "je"
+    ],
+    [
+     "00826488",
+     "call"
+    ],
+    [
+     "008264D4",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00826500",
+   "text": "creates a table (call at `00826500 + 0x1E` with 0, 0xB), registers the list at `01CCC0B0` into it (call at `+0x30`), creates the \"FILE*\" (`01CCBEF0`) metatable (call at `+0x3F`), stores it as its own \"__index\" (`00D6FDF0`) (calls at `+0x4A`, `+0x5E`), registers the list at `01CCC170` into it (call at `+0x70`) and pops it (call at `+0x7D`); then for the handles from the import calls at `+0x84`, `+0xFA` and `+0x169` (arguments 0, 1, 2) it creates a 0x10-byte block (calls at `+0x95`, `+0x10B`, `+0x17A`) with the \"FILE*\" metatable, the handle at `+0` and `00826320` at `+8`, stores the first two also at index 0xFFF0B9D8 under \"_IO_input\" (`01CCBFD0`) and \"_IO_output\" (`01CCBF50`), and stores the three in the table as \"stdin\" (`01CCC2BC`), \"stdout\" (`01CCC2C4`) and \"stderr\" (`01CCC2CC`); returns 1; consistent with luaopen_io in Lua 5.2's liolib.c (those names)",
+   "anchors": [
+    [
+     "0082653F",
+     "call"
+    ],
+    [
+     "00826584",
+     "call"
+    ],
+    [
+     "008265C1",
+     "mov"
+    ],
+    [
+     "008265DC",
+     "call"
+    ],
+    [
+     "008266AF",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008266D0",
+   "text": "creates a 0x10-byte block (call at `008266D0 + 0x22`) with qword `+8` zeroed, runs the call at `+0x3C` with \"FILE*\" (`01CCBEF0`), stores 0 at `+0` and `008262E0` at `+8`, then stores the handle from the import call at `+0x59` on (`rdx`, `r8`) at `+0`; when it is null it passes the dword at the import call at `+0x67`'s result through the import call at `+0x6F` and runs the call at `+0x85` with \"cannot open file '%s' (%s)\" (`01CCBF60`), `rdx` and that string",
+   "anchors": [
+    [
+     "008266F2",
+     "call"
+    ],
+    [
+     "00826722",
+     "mov"
+    ],
+    [
+     "00826729",
+     "call"
+    ],
+    [
+     "0082672F",
+     "mov"
+    ],
+    [
+     "00826755",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00826770",
+   "text": "initialises a stack buffer for `rcx` (call at `00826770 + 0x2C`) and repeatedly reserves a chunk (calls at `+0x38`, `+0x80`) and fills it from `rdx` with the import call at `+0x4B` (later `+0x93`) as (chunk, 1, size, `rdx`), adding each count to the buffer's qword `+0x10`; the size starts at 0x200 and doubles (while not above 0x3FFFFFFFFFFFFFFF) after each full read, a short read stops, and the buffer is finished with the call at `+0xB0`",
+   "anchors": [
+    [
+     "008267BB",
+     "call"
+    ],
+    [
+     "008267C1",
+     "add"
+    ],
+    [
+     "008267E5",
+     "add"
+    ],
+    [
+     "00826811",
+     "jae"
+    ],
+    [
+     "00826820",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00826850",
+   "text": "initialises a stack buffer for `rcx` (call at `00826850 + 0x2A`), reserves `r8` bytes (call at `+0x37`), fills them from `rdx` with the import call at `+0x4A` as (chunk, 1, `r8`, `rdx`), adds the count to the buffer's qword `+0x10`, finishes the buffer (call at `+0x5D`) and returns 1 when the count is nonzero, else 0",
+   "anchors": [
+    [
+     "00826887",
+     "call"
+    ],
+    [
+     "0082689A",
+     "call"
+    ],
+    [
+     "008268A0",
+     "add"
+    ],
+    [
+     "008268AD",
+     "call"
+    ],
+    [
+     "008268B7",
+     "setne"
+    ]
+   ]
+  },
+  {
+   "fn": "008268E0",
+   "text": "initialises a stack buffer for `rcx` (call at `008268E0 + 0x2F`) and reads lines of up to 0x200 bytes from `rdx` into reserved chunks with the import calls at `+0x51` and `+0x9B`; a chunk ending in 0x0A adds its length minus `r8d` to the buffer's qword `+0x10`, finishes the buffer (call at `+0xF5`) and returns 1, other chunks add their full length and continue; when a read returns null it finishes the buffer (call at `+0xAB`) and returns 1 if the call at `+0xB6` on index -1 is nonzero, else 0",
+   "anchors": [
+    [
+     "00826931",
+     "call"
+    ],
+    [
+     "00826952",
+     "cmp"
+    ],
+    [
+     "00826959",
+     "add"
+    ],
+    [
+     "008269CB",
+     "add"
+    ],
+    [
+     "008269A0",
+     "setne"
+    ]
+   ]
+  },
+  {
+   "fn": "008269F0",
+   "text": "gets the block from the call at `008269F0 + 0x19` with (`rcx`, 1, \"FILE*\" `01CCBEF0`), runs the call at `+0x32` with \"attempt to use a closed file\" (`01CCBF30`) when its qword `+8` is 0, and returns its qword `+0`",
+   "anchors": [
+    [
+     "00826A09",
+     "call"
+    ],
+    [
+     "00826A11",
+     "cmp"
+    ],
+    [
+     "00826A22",
+     "call"
+    ],
+    [
+     "00826A27",
+     "mov"
+    ],
+    [
+     "00826A35",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00826C50",
+   "text": "takes a format from argument 1 (call at `00826C50 + 0x35`, default `01CCC4DC`) and a time that is argument 2's 32-bit float truncated to 64 bits (call at `+0x60`) when the call at `+0x45` gives a positive type, else the import call at `+0x50`'s result for 0; a leading 0x21 ('!') is skipped and converted with the import call at `+0x79`, otherwise with `+0x84`, and a null result pushes nil (call at `+0x95`); a format equal to the bytes at `01CCC4E0` ('*', 't', 0) builds a 9-slot table (call at `+0xD7`) of the result's dwords `+0` to `+0x20` under the names at `00D12540`, `01CCB384`, \"hour\", `01CCC4EC`, \"month\" (+1), \"year\" (+0x76C), \"wday\" (+1), \"yday\" (+1) and, when `+0x20` is non-negative, the boolean \"isdst\"; any other format is copied into a stack buffer (call at `+0x227`) except that each '%' sequence is checked by `00827350(rcx, next, spec)` and expanded by the import call at `+0x299` into a 0xC8-byte area appended by the call at `+0x2AF`; the buffer is finished with the call at `+0x2C4`; returns 1; consistent with os_date in Lua 5.2's loslib.c (the field names and the 0x76C year offset)",
+   "anchors": [
+    [
+     "00826CC4",
+     "cmp"
+    ],
+    [
+     "00826D27",
+     "call"
+    ],
+    [
+     "00826DD5",
+     "add"
+    ],
+    [
+     "00826ECC",
+     "call"
+    ],
+    [
+     "00826EE9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00826F50",
+   "text": "when argument 1 has a non-positive type (call at `00826F50 + 0x1D`) takes the import call at `+0x28`'s result for 0; otherwise it checks argument 1 for type 5 (call at `+0x54`), sets the top to 1 and reads its fields as integers into a stack structure: the name at `00D12540` (dword `+0`, default 0), `01CCB384` (`+4`, default 0), \"hour\" (`+8`, default 0xC), `01CCC4EC` (`+0xC`), \"month\" (`+0x10`, minus 1) and \"year\" (`+0x14`, minus 0x76C), the last three raising \"field '%s' missing in date table\" (`01CCC478`) when absent (calls at `+0x15E`, `+0x1B0`, `+0x205`), and \"isdst\" (`+0x20`, -1 when nil, else the boolean from the call at `+0x24B`), then converts with the import call at `+0x268`; it pushes nil (call at `+0x27F`) for -1, otherwise the value as a 32-bit float (call at `+0x28E`), and returns 1",
+   "anchors": [
+    [
+     "00826FE8",
+     "cmove"
+    ],
+    [
+     "0082705F",
+     "cmove"
+    ],
+    [
+     "00827168",
+     "lea"
+    ],
+    [
+     "008271B8",
+     "call"
+    ],
+    [
+     "008271D9",
+     "cvtsi2ss"
+    ]
+   ]
+  },
+  {
+   "fn": "00827350",
+   "text": "uses the first two string pointers at `01CCC3A0`: when the first byte of `rdx` is nonzero and the import call at `00827350 + 0x3E` finds it in the first string, it stores that byte at `r8+1` and, when the second string is empty, stores 0 at `r8+2` and returns `rdx`+1, or, when the second byte of `rdx` is nonzero and found (call at `+0x66`) in the second string, stores it at `r8+2` and 0 at `r8+3` and returns `rdx`+2; otherwise it formats \"invalid conversion specifier '%%%s'\" (`01CCC4B8`) with `rdx` (call at `+0x86`), passes that to the call at `+0x96` with 1 and returns `rdx`",
+   "anchors": [
+    [
+     "0082738E",
+     "call"
+    ],
+    [
+     "0082739C",
+     "mov"
+    ],
+    [
+     "008273A6",
+     "cmp"
+    ],
+    [
+     "0082740D",
+     "mov"
+    ],
+    [
+     "008273E6",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00827A10",
+   "text": "when index 1 has type 8 (call at `00827A10 + 0x31`) uses the thread from the call at `+0x45` and a base of 1, else `rcx` and 0; it reads an integer n from index base+2 (call at `+0x5A`) and, when index base+1 has type 6 (call at `+0x69`), pushes it (call at `+0x78`), looks n up with a null frame (call at `+0x85`) and pushes the resulting string (call at `+0x90`), returning 1; otherwise it reads a level from index base+1 (call at `+0x97`), returns the call at `+0xBC`'s result with \"level out of range\" (`01CCC648`) when the call at `+0xA7` gives 0 for that level, and looks n up in that frame (call at `+0xCE`): when found it moves one value from the thread (call at `+0xE7`), pushes the name (call at `+0xF2`) and index -2 (call at `+0xFF`) and returns 2, else pushes nil (call at `+0x10E`) and returns 1",
+   "anchors": [
+    [
+     "00827A46",
+     "cmp"
+    ],
+    [
+     "00827A83",
+     "cmp"
+    ],
+    [
+     "00827AB7",
+     "call"
+    ],
+    [
+     "00827ADE",
+     "call"
+    ],
+    [
+     "00827B14",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00827E50",
+   "text": "when index 1 has type 8 (call at `00827E50 + 0x22`) uses the thread from the call at `+0x37` and a base of 1, else `rcx` and 0; when index base+1 has a non-positive type (call at `+0x50`) it sets the top to base+1 (call at `+0x5F`) and uses a null hook with mask and count 0; otherwise it reads a string from index base+2 (call at `+0x79`), checks index base+1 for type 6 (call at `+0x8D`), reads an optional count from base+3 (call at `+0x9B`, default 0), uses `008284A0` as the hook and builds a mask of 1, 2 and 4 for 'c', 'r' and 'l' found in the string by the import calls at `+0xB2`, `+0xC7` and `+0xDD`, plus 8 for a positive count; when the call at `+0x10B` on index 0xFFF0B9D8 and \"_HKEY\" (`01CCC7DC`) returns 0 it stores the string at `01CCC7E4` as the new table's \"__mode\" (`01CCBB54`) and makes the table its own metatable (calls at `+0x132`, `+0x13D`, `+0x14A`); it then stores index base+1 in that table under the thread (calls at `+0x152`, `+0x160`, `+0x16B`, `+0x178`), calls `+0x189` with (thread, hook, mask, count) and returns 0",
+   "anchors": [
+    [
+     "00827F13",
+     "cmovne"
+    ],
+    [
+     "00827F47",
+     "cmovle"
+    ],
+    [
+     "00827F5B",
+     "call"
+    ],
+    [
+     "00827FC8",
+     "call"
+    ],
+    [
+     "00827FD9",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00828000",
+   "text": "uses the thread from the call at `00828000 + 0x36` when index 1 has type 8 (call at `+0x26`), else `rcx`; it reads a mask (call at `+0x46`) and a hook (call at `+0x50`) from it; a non-null hook other than `008284A0` pushes \"external hook\" (`01CCC7E8`, 0xD bytes, call at `+0x76`), otherwise it fetches the thread's entry from the table at index 0xFFF0B9D8 under \"_HKEY\" (`01CCC7DC`) (calls at `+0x8C`, `+0x94`, `+0xA5`, `+0xB2`, `+0xBF`); it then pushes a string of 'c', 'r', 'l' for mask bits 1, 2, 4 (call at `+0x103`) and the integer from the call at `+0x10B` (call at `+0x116`), returning 3",
+   "anchors": [
+    [
+     "00828061",
+     "cmp"
+    ],
+    [
+     "0082808C",
+     "call"
+    ],
+    [
+     "008280CC",
+     "mov"
+    ],
+    [
+     "008280FE",
+     "mov"
+    ],
+    [
+     "0082811B",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00828140",
+   "text": "repeatedly writes \"lua_debug> \" (`01CCC7F8`) with the format at `008F4438` to the handle from the import call at `00828140 + 0x23` for 2 (call at `+0x3A`), flushes it, and reads up to 0xFA bytes from handle 0 into a stack line (import call at `+0x68`), returning 0 when the read is null or the line's first 6 bytes equal those at `01CCC804`; otherwise it loads the line named \"=(debug command)\" (`01CCC810`, call at `+0xEE`) and runs it with the call at `+0x10B` (0, 0, 0, 0, 0), and when either gives nonzero writes the string at index -1 (call at `+0x11D`) to handle 2 with the format at `00D6E970` (call at `+0x13D`); it then sets the top to 0 (call at `+0x15B`) and prompts again; consistent with db_debug in Lua 5.2's ldblib.c (\"lua_debug> \")",
+   "anchors": [
+    [
+     "008281A8",
+     "call"
+    ],
+    [
+     "008281FD",
+     "cmp"
+    ],
+    [
+     "0082822E",
+     "call"
+    ],
+    [
+     "0082824B",
+     "call"
+    ],
+    [
+     "0082829B",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "Calls to functions outside this pack are cited by call site; after the first, a bare `+0xNN` in a row is a call site (or tail jump) of that row's function. Index values 0xFFF0B9D4..0xFFF0B9D8 are written as the listing gives them (they are registry/upvalue pseudo-indexes in Lua 5.2 terms, not stated as fact in the rows). Doubts: 00825FC0 forwards to an import whose identity the listing does not decode; 008251F0's 'branches away' target (00825277) lies past the listed bytes, so it is not named. The 'consistent with' clauses rest only on the strings named in each clause."
+}
