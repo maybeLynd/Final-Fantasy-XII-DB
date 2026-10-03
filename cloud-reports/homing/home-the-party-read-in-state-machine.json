@@ -1,0 +1,23 @@
+{
+ "page": "01-Script-VM-Native-Bridge/Party-Presentation-Verbs/the-party-read-in-state-machine.md",
+ "session": "session_01G1D6BV8reSc8hRtefJLZec",
+ "rows": [
+  {"fn": "00263640", "entered_from": "`002E28E0` + 0x416",
+   "text": "when byte `rcx+3` AND 0xE0 is 0x60, loads float `+0xE4` of qword `rcx+0xB8` into `xmm1` and tail-jumps to `00263640` + 0x19 with `rcx` and `rdx` unchanged; otherwise returns",
+   "anchors": [["00263644", "and"], ["00263646", "cmp"], ["00263651", "movss"], ["00263659", "jmp"]]},
+  {"fn": "0026AA30", "entered_from": "`002E28E0` + 0x66C",
+   "text": "when byte `rcx+3` AND 0xE0 is 0x60, stores float `xmm1` to `+0x98` and float `xmm2` to `+0x9C` of qword `rcx+0xB8`; otherwise returns without a write",
+   "anchors": [["0026AA36", "cmp"], ["0026AA3A", "mov"], ["0026AA41", "movss"], ["0026AA49", "movss"]]},
+  {"fn": "002E7C70", "entered_from": "`002E28E0` + 0x735",
+   "text": "with `v` = dword `[qword rcx+0xC0]`, returns without work when `rcx` or qword `+0xC0` is null, `v` is -1 or the low word of `v` is 0xFFFF; otherwise takes `e` = qword `022C6F28` plus the sign-extended low word of `v` times 0x740 and, when `e` is non-zero and dword `e+0x284` is non-zero, calls `002E7C70` + 0x56(`e`, 1, `v`, `edx`) and sets bit 11 (0x800) of dword `e+0x290`",
+   "anchors": [["002E7C88", "cmp"], ["002E7CA2", "imul"], ["002E7CB2", "cmp"], ["002E7CC6", "call"], ["002E7CCB", "or"]]},
+  {"fn": "003B5470", "entered_from": "`00359B10` + 0x5F",
+   "text": "when byte `02B40512` is non-zero, calls `003B5470` + 0x1C(1) and passes `edx` and that result to `003B5470` + 0x25; then, when byte `02B4050A` is non-zero, calls `003B5470` + 0x35(0) and passes `ecx` and that result to `003B5470` + 0x3E",
+   "anchors": [["003B547A", "cmp"], ["003B548C", "call"], ["003B5495", "call"], ["003B549A", "cmp"], ["003B54AE", "call"]]},
+  {"fn": "00423280", "entered_from": "`002E28E0` + 0x265",
+   "text": "returns 30.0 (`008F8D80`) in `xmm0` when dword `rcx+0xC4` is -1; otherwise calls `00423280` + 0x15(dword `rcx+0x10`) and `00423280` + 0x27(qword `+0xDA8` of that result, dword `rcx+0xC4`), and tail-jumps to `00423280` + 0x39 with the second result when it is non-null, else returns 30.0",
+   "anchors": [["00423286", "cmp"], ["00423295", "call"], ["004232A7", "call"], ["004232B9", "jmp"], ["004232BE", "movss"]]}
+ ],
+ "skipped": [],
+ "notes": "002E7C70: the `je` after `add rbx, [022C6F28]` tests a zero sum, i.e. a null table base with index 0; the row states it as `e` non-zero. The callee at +0x56 gets r8d = the full dword v (not just its low word). 003B5470: the first pair runs on the incoming edx and the second on the incoming ecx; each pair's second call takes the original argument in ecx and the first call's result in edx."
+}
