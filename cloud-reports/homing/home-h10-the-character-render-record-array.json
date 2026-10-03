@@ -1,0 +1,23 @@
+{
+ "page": "17-Presentation-Rendering/Character-Render-Records/the-character-render-record-array.md",
+ "session": "session_01Cj7Fn364nPXZ9Bw71KUr9i",
+ "rows": [
+  {"fn": "001E1520", "entered_from": "`0015CC90` + 0x10",
+   "text": "zeroes qwords `+0x0`, `+0x8` and `+0x10` of `rcx` and passes `+0x18` with \"EASTL vector\" (`008C5F58`) to the call at `001E1520` + 0x38; builds two headers at `+0x20` and `+0x58` the same way (qwords `+0x8` to `+0x20` and dword `+0x28` zeroed, `+0x30` filled by a call fed the result of a call on \"EASTL set\" (`008F3CB0`), then `+0x8` and `+0x10` set to the address of `+0x8`); calls `001E1520` + 0xED(`rcx`, `edx`); then, when `edx` is non-zero, makes `edx` calls at `001E1520` + 0x124 on `rcx+0x20`, one per `0x18`-byte element of qword `[rcx]`; returns `rcx`",
+   "anchors": [["001E1542", "mov"], ["001E1558", "call"], ["001E15A2", "mov"], ["001E160D", "call"], ["001E1644", "call"]]},
+  {"fn": "002E88A0", "entered_from": "`00342410` + 0x21",
+   "text": "when `rcx` and its qword `+0xC0` are non-null, the dword there is not -1 and its low word is not -1, indexes the `0x740`-byte record array at qword `022C6F28` by that sign-extended word and, when the record address is non-null and its dword `+0x284` is non-zero, clears bit `0x4` of the record's byte `+0xC0` and sets it again when `edx` is non-zero; every failed test returns without writing",
+   "anchors": [["002E88BE", "setne"], ["002E88CC", "imul"], ["002E88DC", "cmp"], ["002E88E5", "and"], ["002E88F4", "or"]]},
+  {"fn": "002E8900", "entered_from": "`00342410` + 0x36",
+   "text": "when `rcx` and its qword `+0xC0` are non-null, the dword there is not -1 and its low word is not -1, indexes the `0x740`-byte record array at qword `022C6F28` by that sign-extended word and, when the record address is non-null and its dword `+0x284` is non-zero, stores `xmm1` to the record's float `+0x274`; every failed test returns without writing",
+   "anchors": [["002E8911", "cmp"], ["002E8923", "imul"], ["002E8933", "cmp"], ["002E893C", "movss"]]},
+  {"fn": "002E8950", "entered_from": "`00342CF0` + 0x21",
+   "text": "when `rcx` and its qword `+0xC0` are non-null, the dword there is not -1 and its low word is not -1, indexes the `0x740`-byte record array at qword `022C6F28` by that sign-extended word and, when the record address is non-null and its dword `+0x284` is non-zero, clears bit `0x2` of the record's byte `+0xC0` and sets it again when `edx` is non-zero; every failed test returns without writing",
+   "anchors": [["002E896E", "setne"], ["002E897C", "imul"], ["002E898C", "cmp"], ["002E8995", "and"], ["002E89A3", "or"]]},
+  {"fn": "002E89B0", "entered_from": "`00342CF0` + 0x36",
+   "text": "when `rcx` and its qword `+0xC0` are non-null and the dword there is not -1, clamps `xmm1` to 0.0 from below and to 1.0 (`01CEBBA8`) from above; then, when that dword's low word is not -1, indexes the `0x740`-byte record array at qword `022C6F28` by the sign-extended word and, when the record address is non-null and its dword `+0x284` is non-zero, stores the clamped value to the record's float `+0x27C`; every failed test returns without writing",
+   "anchors": [["002E89C9", "comiss"], ["002E89D6", "minss"], ["002E89E7", "imul"], ["002E89F7", "cmp"], ["002E8A00", "movss"]]}
+ ],
+ "skipped": [],
+ "notes": "001E1520: the three callees (call sites + 0x38/+0x4D/+0x7D/+0xA3/+0xD0, +0xED, +0x124) are not named in the host excerpt, so they are cited by site only. The calls at + 0x4D and + 0xA3 write to stack locals, and each header's `+0x30` call takes the preceding call's return as its second argument; the sentence says only 'fed the result of a call on \"EASTL set\"'. The loop's fourth argument is a byte read from `[rsp+0x88]`, which after the prologue is the entry home slot where `rcx` was spilled (so it is the low byte of `rcx`); left out of the sentence as doubtful in meaning. The loop's second argument is a pointer to a local holding `rcx+0x58` and its third a pointer to a local holding qword `[rcx]` plus `i*0x18`. 002E89B0: a NaN `xmm1` passes through the `minss` unchanged; not stated."
+}
