@@ -1,0 +1,11 @@
+{
+ "page": "22-Middleware-PhyreEngine/Animation-Channel-Binding/animation-channel-binding-and-transform-composition.md",
+ "session": "session_01Cj7Fn364nPXZ9Bw71KUr9i",
+ "rows": [
+  {"fn": "005E3040", "entered_from": "`005C9F30` + 0x3F",
+   "text": "returns 0 when `ecx` is 0; otherwise calls `005E3040` + 0x26(`ecx` * 8, 8) and returns 0 when it returns null; else copies `r8d` qwords from `rdx` into the start of the buffer, zero-fills the following `ecx` minus `r8d` qwords with `rep stosq` when that difference is non-zero, and returns the buffer",
+   "anchors": [["005E3059", "je"], ["005E3066", "call"], ["005E3094", "mov"], ["005E309D", "sub"], ["005E30B1", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "005E3040: the allocator (0017D260) is not named in the host excerpt and is cited by site. The copy loop tests each destination slot for null before storing and advances the source only on a store; the slots are never null after a successful allocation, so the sentence states a plain copy. No guard for `r8d` above `ecx` (the difference would wrap)."
+}
