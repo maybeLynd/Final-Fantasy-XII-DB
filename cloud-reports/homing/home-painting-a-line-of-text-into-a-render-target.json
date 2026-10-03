@@ -1,0 +1,11 @@
+{
+ "page": "99-Unresolved-Residual/Glyph-Run-Rendering/painting-a-line-of-text-into-a-render-target.md",
+ "session": "session_01DtsGzxAwuV39oMMCAfQd2j",
+ "rows": [
+  {"fn": "001FDF10", "entered_from": "`001B58E0` + 0x109",
+   "text": "zeroes qwords `+0`, `+8` and `+0x10` of `rdx`; calls `001FDF10` + 0x2C with (`rdx+0x18`, `rcx+0xF8`, the incoming `r8` and `r9`, a zero dword as the fifth (stack) argument); then calls `001FDF10` + 0x42 with (`rdx`, qword `+0xE0` of `rcx`, qword `+0xE8` of `rcx`) and returns `rdx`",
+   "anchors": [["001FDF1F", "mov"], ["001FDF38", "mov"], ["001FDF3C", "call"], ["001FDF52", "call"], ["001FDF5C", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "001FDF10: other direct site `001B6230` + 0x24. r8 and r9 are not written before the + 0x2C call, so they pass through from the caller (whether the callee reads them is not visible here)."
+}
