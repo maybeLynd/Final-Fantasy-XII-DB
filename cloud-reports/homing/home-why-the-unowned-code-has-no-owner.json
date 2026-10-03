@@ -1,0 +1,11 @@
+{
+ "page": "99-Unresolved-Residual/Unowned-Code-Census/why-the-unowned-code-has-no-owner.md",
+ "session": "session_01RTHsxVMB4gEbgZ4DBoNz7W",
+ "rows": [
+  {"fn": "006D5940", "entered_from": "`008B75A0` + 0x7",
+   "text": "walks the list whose head qword is `02E9FD60` (each node links on to qword `+8`) for the node equal to `rcx` and, when it finds it, stores that node's qword `+8` into the head or the predecessor's `+8` and zeroes it; then, for dword `+0x20` with qword `+0x28` and for dword `+0x10` with qword `+0x18`, calls (`006D5940` + 0x74, + 0x96 respectively) with the qword when bit 31 of the dword is clear and the qword is non-null, and zeroes the qword and the dword in either case",
+   "anchors": [["006D597B", "cmp"], ["006D5998", "mov"], ["006D59A2", "shr"], ["006D59B4", "call"], ["006D59D6", "call"]]}
+ ],
+ "skipped": [],
+ "notes": "006D5940: the list compare is (node + 8) against (rcx + 8), i.e. node equal to rcx; the cmove to null inside the loop cannot fire because the loop exits on a null link. Both release calls go to the same callee."
+}
