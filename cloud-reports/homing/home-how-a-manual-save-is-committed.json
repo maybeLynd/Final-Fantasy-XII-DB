@@ -1,0 +1,20 @@
+{
+ "page": "19-Save-Load-Settings/how-a-manual-save-is-committed.md",
+ "session": "session_01RYbqU7tsSU3HnpGNjV9Ghv",
+ "rows": [
+  {"fn": "003BB2F0", "entered_from": "`00582040` + 0x1B8",
+   "text": "stores 7 in dword `02B40E1C`, 0 in dwords `02B40EC0`, `02B40E18` and `02B40FE4` and the qword 1 at `02B40E10`, then tail-jumps through the jump at `003BB2F0` + 0x2B with `ecx` = 0",
+   "anchors": [["003BB2F2", "mov"], ["003BB2FE", "mov"], ["003BB310", "mov"], ["003BB31B", "jmp"]]},
+  {"fn": "003BB380", "entered_from": "`00582040` + 0x1C2",
+   "text": "stores 3 in dword `02B40E1C`, 0 in dwords `02B40EC0` and `02B40FE4`, the qword 0 at `02B40E14` and 0 in dword `02B40E10`, and returns 0",
+   "anchors": [["003BB382", "mov"], ["003BB38C", "mov"], ["003BB392", "mov"], ["003BB398", "mov"], ["003BB39F", "mov"]]},
+  {"fn": "003BB3B0", "entered_from": "`00582040` + 0xC9",
+   "text": "stores 4 in dword `02B40E1C`, 0 in dwords `02B40EC0` and `02B40FE4`, the qword 0 at `02B40E14` and 0 in dword `02B40E10`, and returns 0",
+   "anchors": [["003BB3B2", "mov"], ["003BB3BC", "mov"], ["003BB3C2", "mov"], ["003BB3C8", "mov"], ["003BB3CF", "mov"]]},
+  {"fn": "003BB6A0", "entered_from": "`00582040` + 0xFF",
+   "text": "returns 0 when `ecx` is above `0xC7` (unsigned); otherwise stores qword `[rdx]` in the qword table `02B407C0` at index `ecx`, copies the zero-terminated string at `r8` (terminator included) to `02B40E28`, stores `ecx` in dword `02B40558`, 0 in dwords `02B40EC0`, `02B40E18` and `02B40FE4`, 8 in dword `02B40E1C` and the qword 1 at `02B40E10`, makes the call at `003BB6A0` + 0x6F and returns 1",
+   "anchors": [["003BB6A4", "cmp"], ["003BB6C3", "mov"], ["003BB6D4", "mov"], ["003BB6FA", "mov"], ["003BB70F", "call"]]}
+ ],
+ "skipped": [],
+ "notes": "003BB2F0 and 003BB6A0: the qword store of 1 at `02B40E10` also zeroes dword `02B40E14`. 003BB380 and 003BB3B0: the qword 0 at `02B40E14` covers `02B40E14` through `02B40E1B`, beside the dword at `02B40E1C`."
+}
