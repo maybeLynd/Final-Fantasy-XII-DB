@@ -1,0 +1,11 @@
+{
+ "page": "14-Story-Event-Quest-Hunt/persistent-flag-banks.md",
+ "session": "session_019FUgqVeNcfdAVa4Yc3dLqG",
+ "rows": [
+  {"fn": "003EB700", "entered_from": "`003EC720` + 0x1E",
+   "text": "returns 0 when `ecx` is above 0x1F (unsigned); otherwise returns the qword at index `ecx` (stride 8) of the table at `02B5EA20`",
+   "anchors": [["003EB703", "ja"], ["003EB708", "lea"], ["003EB70F", "mov"], ["003EB714", "xor"]]}
+ ],
+ "skipped": [],
+ "notes": ""
+}
