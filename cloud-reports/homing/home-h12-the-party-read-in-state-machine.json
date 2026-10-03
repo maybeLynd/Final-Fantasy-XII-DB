@@ -1,0 +1,11 @@
+{
+ "page": "01-Script-VM-Native-Bridge/Party-Presentation-Verbs/the-party-read-in-state-machine.md",
+ "session": "session_016ZjFjnefAbEBqR8eRqGh2C",
+ "rows": [
+  {"fn": "003B5470", "entered_from": "`00359B10` + 0x5F",
+   "text": "when byte `02B40512` is non-zero, calls (`003B5470` + 0x1C) with 1 in `ecx` and passes its `eax` as `edx` to (`003B5470` + 0x25) with the incoming `edx` in `ecx`; then, when byte `02B4050A` is non-zero, calls (`003B5470` + 0x35) with 0 in `ecx` and passes its `eax` as `edx` to (`003B5470` + 0x3E) with the incoming `ecx` in `ecx`; each step is skipped when its byte is zero",
+   "anchors": [["003B547A", "cmp"], ["003B548C", "call"], ["003B5495", "call"], ["003B549A", "cmp"], ["003B54AE", "call"]]}
+ ],
+ "skipped": [],
+ "notes": "003B5470: the calls at +0x1C/+0x35 share one callee and the calls at +0x25/+0x3E share another; all cited by site since the host excerpt names neither. No return value is set after the last call."
+}
