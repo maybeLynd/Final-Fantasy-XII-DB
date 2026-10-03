@@ -15,7 +15,7 @@
    "text": "passes `rcx` unchanged to the call at `006161A0` + 0x16; stores dword 0 at `rcx+0x30` and makes the call at `006161A0` + 0x2B with `rcx` = `rcx+0x30` and `edx` = 1; then zeroes qwords `+0xA0`, `+0x78`, `+0x80`, `+0x88`, `+0x90` and `+0x98` and returns the incoming `rcx`",
    "anchors": [["006161B6", "call"], ["006161C0", "mov"], ["006161CB", "call"], ["006161D0", "mov"], ["006161FD", "mov"]]},
   {"fn": "00623E70", "entered_from": "`0062B1E0` + 0x29",
-   "text": "clears bit 31 of dword `rcx+0x30`; when the result is above 1 (unsigned) returns qword `rcx+0x38` plus `(edx << 6) + 0x20`; otherwise returns the address `rcx+0x38` plus `(edx << 6) + 0x20`, with 0 in place of `rcx+0x38` when the result is 0",
+   "text": "clears bit 31 of dword `rcx+0x30`; when the result is above 1 (unsigned) returns qword `rcx+0x38` plus `edx*0x40+0x20`; otherwise returns the address `rcx+0x38` plus `edx*0x40+0x20`, with 0 in place of `rcx+0x38` when the result is 0",
    "anchors": [["00623E73", "btr"], ["00623E7A", "jbe"], ["00623E7C", "mov"], ["00623E99", "cmove"], ["00623EA5", "add"]]}
  ],
  "skipped": [],
