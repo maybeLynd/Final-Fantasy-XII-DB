@@ -1,0 +1,14 @@
+{
+ "page": "19-Save-Load-Settings/CONTRACT-save-image-buffers.md",
+ "session": "session_01D1qcH91DQC7cqg95y9syrn",
+ "rows": [
+  {"fn": "005DCC10", "entered_from": "`00616140` + 0x16",
+   "text": "stores the address `02CF7A30` as qword `[rcx]`, word 0x300 at `rcx+8`, dword 2 at `+0x18`, and zero in qword `+0xC`, dword `+0x14`, qwords `+0x20` and `+0x28` and dword `+0x30`; returns `rcx`",
+   "anchors": [["005DCC17", "mov"], ["005DCC1C", "mov"], ["005DCC22", "mov"], ["005DCC31", "mov"], ["005DCC37", "mov"]]},
+  {"fn": "005DCC40", "entered_from": "`006161A0` + 0x16",
+   "text": "stores the address `02CF7A30` as qword `[rcx]`, word 0x300 at `rcx+8`, dword 2 at `+0x18`, and zero in qword `+0xC`, dword `+0x14`, qword `+0x20` and dword `+0x28`; returns `rcx`",
+   "anchors": [["005DCC47", "mov"], ["005DCC4C", "mov"], ["005DCC52", "mov"], ["005DCC5D", "mov"], ["005DCC63", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "The two bodies differ only in the tail: 005DCC10 zeroes qword +0x28 and dword +0x30, 005DCC40 zeroes dword +0x28 and has no +0x30 store. The listing does not say what 02CF7A30 is, so the rows say only that its address is stored. No doubts."
+}
