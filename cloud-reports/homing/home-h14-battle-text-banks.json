@@ -1,0 +1,14 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/battle-text-banks.md",
+ "session": "session_01Ff3pgr29V1M59kxPqNgYBZ",
+ "rows": [
+  {"fn": "002D4FB0", "entered_from": "`002902D0` + 0x1E",
+   "text": "copies its arguments into a stack block (qword `rcx`, then dwords `edx`, `r8d`, `r9d`, the fifth and the sixth (stack) arguments) and passes (0xF8, `002D59E0`, a stack record of dword 0, a pointer to that block and qword 0) to the call at `002D4FB0` + 0x5F, discarding the result; the frame carries the `01F44830` stack cookie",
+   "anchors": [["002D4FC6", "mov"], ["002D4FE0", "mov"], ["002D4FF8", "mov"], ["002D5003", "mov"], ["002D500F", "call"]]},
+  {"fn": "0056DA80", "entered_from": "`0056CF10` + 0x1F3",
+   "text": "with f = dword `[r8]` and the qword array P = qword `[rdx+0x10]`, takes A = dword `[r9]` and B = dword `[r9+4]` when bit 0 of f is set (swapped when clear) and C = dword `[r9+8]`, and a main index M = B when bit 1 of f is set, otherwise C; it sets bit 0 of dword `+8` of `P[M]` (clears it instead when bit 1 is set and bit 2 clear), copies bit 2 of f into bit 0 of dword `+8` of `P[dword [r9+0xC]]`, `P[dword [r9+0x10]]` and `P[dword [r9+0x14]]`, and clears that bit in `P[A]` and in the one of B and C that is not M; except in that bit-1-set, bit-2-clear case it passes (`P[M]`, 0, 0, v, 0, 0) to the call at `0056DA80` + 0x132 and `P[M]` to the call at `0056DA80` + 0x13F, v being word `[r8+4]` when bit 1 is set and word `[rcx+0xE]` otherwise; when bit 2 of f is set it then passes (`P[dword [r9+0xC]]`, 0, 0, v * (dword `[rcx+0x10]` AND 0x7FFFFFFF), 0, 0) to the call at `0056DA80` + 0x172 and that object to the call at `0056DA80` + 0x183",
+   "anchors": [["0056DB20", "or"], ["0056DB3C", "xor"], ["0056DB8F", "and"], ["0056DBB2", "call"], ["0056DBF2", "call"]]}
+ ],
+ "skipped": [],
+ "notes": "002D4FB0: block layout on the stack is qword rcx at rsp+0x20, dwords at +0x28/+0x2C/+0x30/+0x34/+0x38; the record passed as r8 is dword 0 at rsp+0x40, the block pointer at +0x48 and qword 0 at +0x50 (dword +0x44 not written). 0056DA80: the row is long (about 1,000 characters) because every flag path changes which index is set, cleared and called; the bit-2 copy uses the xor-and-xor idiom (dword ^= ((f >> 2) ^ dword) AND 1). The product in the second call is a 32-bit imul. In the bit-1-set, bit-2-clear case the value register stays -1 but is never passed."
+}
