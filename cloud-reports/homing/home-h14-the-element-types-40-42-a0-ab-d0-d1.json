@@ -1,0 +1,11 @@
+{
+ "page": "17-Presentation-Rendering/Effect-File-Formats/the-element-types-40-42-a0-ab-d0-d1.md",
+ "session": "session_01PfF5HpG9wWe4vsreQxCTLf",
+ "rows": [
+  {"fn": "00376990", "entered_from": "`00461250` + 0x13",
+   "text": "returns at once when `ecx` is 0; otherwise with `e` = `02ADBB40` + (low byte of `ecx`) * 0x90, when dword `[e]` equals `ecx` it decrements byte `02ADBB30`, stores 0 to dword `[e]`, makes the call at `00376990` + 0x35 with dword `[e+0x50]` when that dword is non-zero, and stores 0 to dword `[e+0x50]`; a mismatch returns without writing",
+   "anchors": [["00376992", "je"], ["003769A7", "shl"], ["003769AE", "cmp"], ["003769B2", "dec"], ["003769C5", "call"]]}
+ ],
+ "skipped": [],
+ "notes": ""
+}
