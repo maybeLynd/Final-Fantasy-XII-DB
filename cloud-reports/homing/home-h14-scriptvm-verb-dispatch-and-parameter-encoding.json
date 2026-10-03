@@ -1,0 +1,20 @@
+{
+ "page": "01-Script-VM-Native-Bridge/Verb-Dispatch/scriptvm-verb-dispatch-and-parameter-encoding.md",
+ "session": "session_01Ft9DsjYbzydEyFv6u1R8to",
+ "rows": [
+  {"fn": "00264110", "entered_from": "`00377900` + 0x35",
+   "text": "forwards to the function at `00264110` + 0x2A with `ecx` = 1, `edx` = the incoming `ecx`, `r8d` = the incoming `edx`, `r9` = the incoming `r8`, and as its fifth, sixth and seventh (stack) arguments the incoming `r9`, the incoming fifth and the incoming sixth (stack) arguments, and returns its result",
+   "anchors": [["00264114", "mov"], ["00264128", "mov"], ["00264133", "mov"], ["00264135", "mov"], ["0026413A", "call"]]},
+  {"fn": "00264B90", "entered_from": "`00264B50` + 0x27",
+   "text": "zeroes the dwords at `r9` and at the fifth, sixth and seventh (stack) argument pointers, then loads the qword at `02098E10` + `edx`*0x288 (sign-extended) and returns 0 when it is null; resolves `r8d` in order (-1 to signed word `+0x52`, then -2 to word `+0x78`, then -3 to word `+0x7A`, then any negative to word `+0x52`) and uses it as an index (0 when still negative); returns 0 when word `+0x0` is 2 or less (unsigned), when the call at `00264B90` + 0xA8 (with dword `+0x84` when `ecx` is non-zero, else dword `+0x54`) returns 0, or when the index is not below the dword at the record plus the low 32 bits of that result; otherwise copies dwords `+0x4`, `+0x8`, `+0xC`, `+0x10` of the index-th 0x20-byte entry after that dword to `r9` and the three stack pointers and returns 1",
+   "anchors": [["00264BC7", "imul"], ["00264BF4", "movsx"], ["00264C23", "cmp"], ["00264C47", "cmp"], ["00264C52", "mov"]]},
+  {"fn": "003DF7B0", "entered_from": "`003546C0` + 0x1D",
+   "text": "clears bit `ecx` of dword `02B59D18` when `edx` is non-zero, else sets it, and stores the result back; when the new dword is 0 it tail-jumps (`003DF7B0` + 0x24), otherwise it calls the function at `003DF7B0` + 0x33 with all four register arguments 0 and then zeroes qwords `02B59D00` and `02B59D08` and dwords `02B59D10` and `02B59D14`",
+   "anchors": [["003DF7BE", "btr"], ["003DF7C3", "bts"], ["003DF7C6", "mov"], ["003DF7D4", "jmp"], ["003DF7E3", "call"]]},
+  {"fn": "003EB700", "entered_from": "`003412B0` + 0x63",
+   "text": "returns 0 when `ecx` is above 0x1F (unsigned), otherwise the qword at index `ecx` of the 8-byte array at `02B5EA20`",
+   "anchors": [["003EB703", "ja"], ["003EB70F", "mov"], ["003EB714", "xor"]]}
+ ],
+ "skipped": [],
+ "notes": "00264110: stack-argument mapping derived from sub rsp,0x48 (incoming fifth at [rsp+0x70], sixth at [rsp+0x78]). 00264B90: stack arguments read at [rsp+0x60/0x68/0x70] after three pushes and sub 0x20 (fifth, sixth, seventh); the -1/-2/-3 substitutions are sequential, so a substituted value can itself be substituted again; the record-relative offset is the zero-extended low dword of the callee's result (mov edx,eax; add rdx,rbx); the index bound compare is unsigned (jae). 003DF7B0: btr/bts with a register bit index act mod 32."
+}
