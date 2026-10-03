@@ -1,0 +1,476 @@
+{
+ "page": "00-Engine-Core-Runtime/Application-Root/game-application.md",
+ "session": "session_01KH3C4ef9JMeuUJwhyMv4yo",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "00169580",
+   "text": "calls `00184E60(02EA5768)`, stores the address `00902ED8` at qword `02EA5760` and the dword `0x3f800000` at `02EA5828` and `02EA5830`, calls the function at `00169580` + 0x39 with `rcx` = `02EA5760`, and tail-jumps to `00808B90(008B7C90)`",
+   "anchors": [
+    [
+     "0016958B",
+     "call"
+    ],
+    [
+     "00169597",
+     "mov"
+    ],
+    [
+     "001695A8",
+     "mov"
+    ],
+    [
+     "001695B9",
+     "call"
+    ],
+    [
+     "001695C9",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00169600",
+   "text": "stores a zeroed 16-byte `xmm0` (built from a cleared `xmm1`) at `02EA5510` and tail-jumps to `00808B90(008B7D40)`",
+   "anchors": [
+    [
+     "00169603",
+     "lea"
+    ],
+    [
+     "00169614",
+     "movaps"
+    ],
+    [
+     "0016961B",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00169640",
+   "text": "atomically exchanges 0 into dword `02EACF88` (`xchg`) and tail-jumps to `00808B90(008B8630)`",
+   "anchors": [
+    [
+     "00169642",
+     "lea"
+    ],
+    [
+     "00169649",
+     "xchg"
+    ],
+    [
+     "0016964F",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00169830",
+   "text": "stores qword 0 and then dword 0 at `02EAD308`, the address `01CB49E8` at qword `02EAD300` and 16 zero bytes at `02EAD310`, and tail-jumps to `00808B90(008B87B0)`",
+   "anchors": [
+    [
+     "00169839",
+     "mov"
+    ],
+    [
+     "0016984A",
+     "mov"
+    ],
+    [
+     "00169854",
+     "mov"
+    ],
+    [
+     "0016985B",
+     "movdqu"
+    ],
+    [
+     "00169863",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00169E90",
+   "text": "zeroes the eight qwords `02EAD850` through `02EAD888`, makes the indirect call at `00169E90` + 0x45 with `rcx` = `02EAD850`, zeroes dwords `02EAD880`, `02EAD884` and `02EAD888`, makes the indirect call at `00169E90` + 0x6A with (0, 1, 0, 0) and stores its result at qword `02EAD878`, then tail-jumps to `00808B90(008B8D40)`",
+   "anchors": [
+    [
+     "00169E9D",
+     "mov"
+    ],
+    [
+     "00169ED5",
+     "call"
+    ],
+    [
+     "00169EFA",
+     "call"
+    ],
+    [
+     "00169F07",
+     "mov"
+    ],
+    [
+     "00169F12",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0016D6C0",
+   "text": "tail-jumps to `00210EB0` with `rcx` = the incoming `rdx`",
+   "anchors": [
+    [
+     "0016D6C3",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0017F610",
+   "text": "when `001AD440()` returns non-null, calls it again and calls the function at `0017F610` + 0x1C with that result and the incoming `ecx`; then when the call at `0017F610` + 0x21 returns non-null, repeats it (`0017F610` + 0x2B) and stores the incoming `ecx` at dword `+0xd08` of its result; each step is skipped on a null result, and nothing is returned",
+   "anchors": [
+    [
+     "0017F620",
+     "je"
+    ],
+    [
+     "0017F622",
+     "call"
+    ],
+    [
+     "0017F62C",
+     "call"
+    ],
+    [
+     "0017F639",
+     "je"
+    ],
+    [
+     "0017F640",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00195620",
+   "text": "stores the address `008F35E8` at qword `[rcx]`, makes the indirect call at `00195620` + 0x1D with `rcx+8`, calls `00809950(rcx, 0x18)` only when bit `0x1` of `edx` is set, and returns the incoming `rcx`",
+   "anchors": [
+    [
+     "00195634",
+     "mov"
+    ],
+    [
+     "0019563D",
+     "call"
+    ],
+    [
+     "00195643",
+     "test"
+    ],
+    [
+     "00195650",
+     "call"
+    ],
+    [
+     "00195655",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00199A80",
+   "text": "calls `005CD6D0(rcx+0x90)` only when byte `rcx+0xb8` is non-zero; calls the function at `00199A80` + 0x2C with `rcx+0x58` and at `00199A80` + 0x36 with `rcx+0x20`; then, when qword `[rcx]` is non-null, calls slot `+0x18` of the table at qword `rcx+0x18` with (`rcx+0x18`, qword `[rcx]`, (qword `rcx+0x10` minus qword `[rcx]`) AND `0xfffffffffffffff0`)",
+   "anchors": [
+    [
+     "00199A99",
+     "je"
+    ],
+    [
+     "00199AA2",
+     "call"
+    ],
+    [
+     "00199AAC",
+     "call"
+    ],
+    [
+     "00199AC2",
+     "je"
+    ],
+    [
+     "00199AD6",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0019A1A0",
+   "text": "with all offsets from the incoming `rcx`, loops while byte `+0x154` is non-zero (tested before each round) and then returns 0; each round calls `005CCB80(5)` and `005CD4F0(rcx+0x28)`; when the circular list headed at `+0x50` is non-empty (counted by following qword `[node]` back to the head), takes `t` = qword `+0x10` of the node at qword `+0x58`, unlinks that node (qword `[node+8]` gets `[node]`, qword `[node]+8` gets `[node+8]`) and calls slot `+0x18` of the table at qword `+0x60` with (`rcx+0x60`, node, 0x18), otherwise `t` = 0; calls `005CD820(rcx+0x28)`; when `t` is non-null calls qword `[t]` (only if non-null) with `rcx` = qword `t+8`, then `005CD4F0(rcx+0x68)`, `002124C0(rcx+0x90, t)` and `005CD820(rcx+0x68)`",
+   "anchors": [
+    [
+     "0019A1D5",
+     "call"
+    ],
+    [
+     "0019A212",
+     "mov"
+    ],
+    [
+     "0019A22D",
+     "call"
+    ],
+    [
+     "0019A268",
+     "call"
+    ],
+    [
+     "0019A27E",
+     "jne"
+    ]
+   ]
+  },
+  {
+   "fn": "0019A3E0",
+   "text": "when qword `rcx+0x10` (`p`) is non-null, calls `00809054(p, 0x98, qword [p-8], 0019A500)`, then `00809950(p-8, qword [p-8] * 0x98 + 8)`, and zeroes qword `rcx+0x10`; on both paths tail-jumps through the indirect jump at `0019A3E0` + 0x62 with `rcx` = qword `[rcx]`",
+   "anchors": [
+    [
+     "0019A3FE",
+     "je"
+    ],
+    [
+     "0019A413",
+     "call"
+    ],
+    [
+     "0019A427",
+     "call"
+    ],
+    [
+     "0019A42D",
+     "mov"
+    ],
+    [
+     "0019A442",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0019A450",
+   "text": "for each of qwords `rcx+8`, `rcx+0x10` and `rcx+0x18` in turn, when that qword `b` is non-null: calls `00210EB0(qword b+8)` and zeroes qword `b+8` only when that qword is non-null, then calls `00809950(b, 0x18)`; the three slots of `rcx` themselves are not cleared",
+   "anchors": [
+    [
+     "0019A464",
+     "je"
+    ],
+    [
+     "0019A46D",
+     "je"
+    ],
+    [
+     "0019A46F",
+     "call"
+    ],
+    [
+     "0019A474",
+     "mov"
+    ],
+    [
+     "0019A484",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0019B130",
+   "text": "stores byte 0 at `[rcx]` and at the bytes addressed by qwords `+8`, `+0x10` and `+0x18`, zeroes qwords `+0x20` and `+0x28`, calls `00809950(qword +0x38, 8)` only when dword `+0x30` is non-zero, then zeroes dwords `+0x30`, `+0x88` and `+0x40`",
+   "anchors": [
+    [
+     "0019B140",
+     "mov"
+    ],
+    [
+     "0019B146",
+     "mov"
+    ],
+    [
+     "0019B15F",
+     "cmp"
+    ],
+    [
+     "0019B16B",
+     "call"
+    ],
+    [
+     "0019B173",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0019C7C0",
+   "text": "calls `005CC8A0(rcx)` and `001EDF00(local, 008F4120 \"EASTL map\")`; with `d` = `rcx+0x28` zeroes qwords `d+8` through `d+0x20` and dword `d+0x28`, calls `001EDF00(d+0x30, that result)`, stores `d+8` at qwords `d+8` and `d+0x10` and zeroes qword `d+0x18`, byte `d+0x20` and dword `d+0x28`; calls the function at `0019C7C0` + 0x81 with (`rcx+0x60`, 0x1800, byte 1), then `005CD0A0(rcx)` and `00220760(d)`, and returns `rcx`",
+   "anchors": [
+    [
+     "0019C7D8",
+     "call"
+    ],
+    [
+     "0019C7E9",
+     "call"
+    ],
+    [
+     "0019C816",
+     "call"
+    ],
+    [
+     "0019C841",
+     "call"
+    ],
+    [
+     "0019C852",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0019C870",
+   "text": "calls `005CD6D0(rcx+0x90)` only when byte `rcx+0xb8` is non-zero; calls the function at `0019C870` + 0x2C with `rcx+0x58` and at `0019C870` + 0x36 with `rcx+0x20`; then, when qword `[rcx]` is non-null, calls slot `+0x18` of the table at qword `rcx+0x18` with (`rcx+0x18`, qword `[rcx]`, (qword `rcx+0x10` minus qword `[rcx]`) divided by 0x18 (signed, magic multiply) times 0x18)",
+   "anchors": [
+    [
+     "0019C889",
+     "je"
+    ],
+    [
+     "0019C892",
+     "call"
+    ],
+    [
+     "0019C89C",
+     "call"
+    ],
+    [
+     "0019C8CC",
+     "imul"
+    ],
+    [
+     "0019C8E8",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0019D1D0",
+   "text": "stores `r9` at qword `[rcx]`; for each 0x130-byte element from `rdx` up to `r8`, when qword `[rcx]` is non-null copies the element's first 0x100 bytes there, zeroes the copy's qwords `+0x100`, `+0x108`, `+0x110`, calls `001EDF00(copy+0x118, 008C5F58 \"EASTL vector\")`, swaps those three qwords with the source's (skipped only when the two addresses are equal) and copies qword `+0x120` and byte `+0x128`; on both paths advances the source and qword `[rcx]` by 0x130; returns `rcx`",
+   "anchors": [
+    [
+     "0019D234",
+     "movups"
+    ],
+    [
+     "0019D2AC",
+     "call"
+    ],
+    [
+     "0019D2BD",
+     "mov"
+    ],
+    [
+     "0019D305",
+     "mov"
+    ],
+    [
+     "0019D324",
+     "add"
+    ]
+   ]
+  },
+  {
+   "fn": "0019D5B0",
+   "text": "zeroes qwords `[rcx]`, `+8`, `+0x10` and calls `001EDF00(rcx+0x18, 008C5F58 \"EASTL vector\")`; for each of `s` = `rcx+0x20` and then `rcx+0x58` it calls `001EDF00(local, 008F3CB0 \"EASTL set\")`, zeroes qwords `s+8` through `s+0x20` and dword `s+0x28`, calls `001EDF00(s+0x30, that result)`, stores `s+8` at qwords `s+8`/`s+0x10` and zeroes qword `s+0x18`, byte `s+0x20` and dword `s+0x28`; calls `005CC8A0(rcx+0x90)`, stores `r8b` at byte `+0xb8`, calls the function at `0019D5B0` + 0x10B with (`rcx`, `edx`), then for i = 0 to `edx` - 1 (none when `edx` is 0) calls `00199DB0(rcx+0x20, &local holding rcx+0x58, &local holding qword [rcx] + i*0x130, byte read from the unwritten `r8` home slot)`; finally calls `005CD0A0(rcx+0x90)` only when byte `+0xb8` is non-zero, and returns `rcx`",
+   "anchors": [
+    [
+     "0019D5F7",
+     "call"
+    ],
+    [
+     "0019D63A",
+     "call"
+    ],
+    [
+     "0019D6BB",
+     "call"
+    ],
+    [
+     "0019D6F2",
+     "call"
+    ],
+    [
+     "0019D715",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0019D740",
+   "text": "zeroes qwords `[rcx]`, `+8`, `+0x10` and calls `001EDF00(rcx+0x18, 008C5F58 \"EASTL vector\")`; for each of `s` = `rcx+0x20` and then `rcx+0x58` it calls `001EDF00(local, 008F3CB0 \"EASTL set\")`, zeroes qwords `s+8` through `s+0x20` and dword `s+0x28`, calls `001EDF00(s+0x30, that result)`, stores `s+8` at qwords `s+8`/`s+0x10` and zeroes qword `s+0x18`, byte `s+0x20` and dword `s+0x28`; calls `005CC8A0(rcx+0x90)`, stores `r8b` at byte `+0xb8`, calls the function at `0019D740` + 0x10B with (`rcx`, `edx`), then for i = 0 to `edx` - 1 (none when `edx` is 0) calls `00199DB0(rcx+0x20, &local holding rcx+0x58, &local holding qword [rcx] + i*0x118, byte read from the unwritten `r8` home slot)`; finally calls `005CD0A0(rcx+0x90)` only when byte `+0xb8` is non-zero, and returns `rcx`",
+   "anchors": [
+    [
+     "0019D787",
+     "call"
+    ],
+    [
+     "0019D7CA",
+     "call"
+    ],
+    [
+     "0019D84B",
+     "call"
+    ],
+    [
+     "0019D882",
+     "call"
+    ],
+    [
+     "0019D8A5",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0019E740",
+   "text": "takes `p` = qword `rdx+0x110` and returns at once when `p` is null or when the sign-extended word `[rdx]` differs from ((qword `p+0x108` minus qword `p+0x100`) shifted right by 3) minus 1 (32-bit); otherwise passes the result of the call at `0019E740` + 0x32 to `00199F10`, stores the address `0019EE50` at qword `+0` and `p` at qword `+8` of the block it returns, and calls `0019A000(r, block)` with `r` the result of the call at `0019E740` + 0x50",
+   "anchors": [
+    [
+     "0019E750",
+     "je"
+    ],
+    [
+     "0019E76B",
+     "jne"
+    ],
+    [
+     "0019E77A",
+     "call"
+    ],
+    [
+     "0019E789",
+     "mov"
+    ],
+    [
+     "0019E79B",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "skipped": [
+  {
+   "fn": "0019E010",
+   "why": "685-byte body with four paths (count above remaining capacity with reallocation, count 0, count below and at-or-above the elements after the insert point) through six callees the page does not name (0019D970, 0019D1D0, 0019CE30, 0019D420, 0019D100, 0019DF90), each needing a call-site citation; cannot be stated with every path under 1,200 characters. The documented callee 00808C40 is only the stack-cookie check."
+  }
+ ],
+ "notes": "Doubts per function. 00169580: 0x3f800000 is written as the raw dword (the listing does not decode it as a float). 00169830: the qword store and the later dword store both resolve to 02EAD308 (rip-relative, verified from the next-instruction addresses); stated as listed. 00169E90 and 0019A3E0: the import calls/jump go through IAT slots (008C20B0, 008C22E8, 008C23E0); cited by site, slot addresses not written. 0016D6C0: the work is one move plus the tail jump; rowed because the tail jump is inside the body. 0019A3E0: 0019A500 is a lea-loaded address passed as the fourth argument (code pointer presumed, not stated); it lies 0xB7 bytes after the body, not adjacent. 0019E740: 0019EE50 is a lea-loaded address stored into the block, likewise not adjacent to the body. 0019A1A0: the node count is incremented in rcx but tested as ecx; the round loops back to 0019A1D0, so rdi (rcx+0x50) is not recomputed. 0019D5B0/0019D740: twins (callee site +0x10B is 0019EC40 vs 0019ED80; element stride 0x130 vs 0x118); the fourth argument of 00199DB0 is a byte read from [rsp+0x90], the incoming r8 home slot, which nothing in the body writes (likely an empty allocator passed by value) - stated literally; the 'local' passed to the second EASTL set 001EDF00 call is [rsp+0x28], the same slot that briefly held rcx+0x20. Both rows are about 1,000 characters."
+}
