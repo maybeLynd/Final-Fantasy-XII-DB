@@ -1,0 +1,36 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/how-the-bigfile-index-loads-and-is-verified.md",
+ "session": "session_015VFSZr38WAiiWF7vDja8Ar",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "002150B0",
+   "entered_from": "`001F4250` + 0x67",
+   "text": "stores `rdx` at qword `rcx+0x18`, zeroes qword `rcx+0x20` and qwords `+0x10` and `+8` of the object at qword `rcx+0x28`, and stores byte 1 at `[rcx]`",
+   "anchors": [
+    [
+     "002150B4",
+     "mov"
+    ],
+    [
+     "002150BA",
+     "mov"
+    ],
+    [
+     "002150BE",
+     "mov"
+    ],
+    [
+     "002150C2",
+     "mov"
+    ],
+    [
+     "002150C6",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": ""
+}
