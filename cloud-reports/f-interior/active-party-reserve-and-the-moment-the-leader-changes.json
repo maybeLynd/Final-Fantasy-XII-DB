@@ -1,0 +1,34 @@
+{
+ "page": "11-Party/active-party-reserve-and-the-moment-the-leader-changes.md",
+ "session": "session_0182wopbAGkg4Gtt5QPc4Pw1",
+ "rows": [
+  {
+   "fn": "00352560",
+   "text": "passes `r9` (the fourth argument) to the call at `00352560`+0x7, passes its `eax` result to the call at `00352560`+0xE, and tail-jumps `0026C3B0` with that call's returned pointer in `rcx`",
+   "anchors": [
+    [
+     "00352564",
+     "mov"
+    ],
+    [
+     "00352567",
+     "call"
+    ],
+    [
+     "0035256E",
+     "call"
+    ],
+    [
+     "00352573",
+     "mov"
+    ],
+    [
+     "0035257A",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": ""
+}
