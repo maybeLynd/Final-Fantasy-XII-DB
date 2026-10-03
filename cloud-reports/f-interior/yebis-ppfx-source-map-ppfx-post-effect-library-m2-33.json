@@ -1,0 +1,239 @@
+{
+ "page": "23-Third-Party-Libraries/PostEffects-Yebis-PPFX/yebis-ppfx-source-map.md",
+ "mode": "member",
+ "family": "PPFX post-effect library",
+ "session": "session_017DsdqG4U4kGfYmsNf7ryWB",
+ "rows": [
+  {
+   "fn": "007254A0",
+   "text": "returns 0x80070057 when `edx` is above 0x3F (unsigned); otherwise stores `edx` at dword `rcx+0xA08` and returns 0",
+   "anchors": [
+    [
+     "007254A3",
+     "ja"
+    ],
+    [
+     "007254A5",
+     "mov"
+    ],
+    [
+     "007254AB",
+     "xor"
+    ],
+    [
+     "007254AE",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007254D0",
+   "text": "returns 0x80070057 when `edx` is above 5 (unsigned); otherwise tail-jumps to vtable slot `+0x148` of `rcx` with `edx` = (dword `rcx+0xA08` AND 0xFFFFFFF8) OR `edx`",
+   "anchors": [
+    [
+     "007254D6",
+     "ja"
+    ],
+    [
+     "007254E1",
+     "and"
+    ],
+    [
+     "007254E4",
+     "or"
+    ],
+    [
+     "007254E7",
+     "jmp"
+    ],
+    [
+     "007254EE",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00725500",
+   "text": "returns 0x80070057 when `edx` is above 2 (unsigned); otherwise tail-jumps to vtable slot `+0x148` of `rcx` with `edx` = (`edx` * 8) OR (dword `rcx+0xA08` AND 0xFFFFFFE7)",
+   "anchors": [
+    [
+     "00725503",
+     "ja"
+    ],
+    [
+     "0072550B",
+     "lea"
+    ],
+    [
+     "00725515",
+     "and"
+    ],
+    [
+     "0072551A",
+     "jmp"
+    ],
+    [
+     "00725521",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00725530",
+   "text": "returns 0x80070057 when `edx` is above 1 (unsigned); otherwise tail-jumps to vtable slot `+0x148` of `rcx` with `edx` = (`edx` shifted left 5) OR (dword `rcx+0xA08` AND 0xFFFFFFDF)",
+   "anchors": [
+    [
+     "00725533",
+     "ja"
+    ],
+    [
+     "0072553E",
+     "and"
+    ],
+    [
+     "00725541",
+     "shl"
+    ],
+    [
+     "00725546",
+     "jmp"
+    ],
+    [
+     "0072554D",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00725560",
+   "text": "returns dword `rcx+0xA08` AND 7",
+   "anchors": [
+    [
+     "00725566",
+     "and"
+    ]
+   ]
+  },
+  {
+   "fn": "00725570",
+   "text": "returns dword `rcx+0xA08` shifted right arithmetically by 3, AND 3",
+   "anchors": [
+    [
+     "00725576",
+     "sar"
+    ],
+    [
+     "00725579",
+     "and"
+    ]
+   ]
+  },
+  {
+   "fn": "00725590",
+   "text": "returns dword `rcx+0xA08` shifted right arithmetically by 5, AND 1",
+   "anchors": [
+    [
+     "00725596",
+     "sar"
+    ],
+    [
+     "00725599",
+     "and"
+    ]
+   ]
+  },
+  {
+   "fn": "007255B0",
+   "text": "copies the 16 bytes at `rdx` to `rcx+0xA0C`, calls vtable slot `+0x130` of `rcx` with `rcx`, and returns 0",
+   "anchors": [
+    [
+     "007255B4",
+     "movups"
+    ],
+    [
+     "007255BA",
+     "movups"
+    ],
+    [
+     "007255C1",
+     "call"
+    ],
+    [
+     "007255C7",
+     "xor"
+    ]
+   ]
+  }
+ ],
+ "skipped": [
+  {
+   "fn": "007250D0",
+   "why": "its whole work is the entry instruction (mov eax, 0x80004001), then ret"
+  },
+  {
+   "fn": "007250E0",
+   "why": "its whole work is the entry instruction (mov eax, 0x80004001), then ret"
+  },
+  {
+   "fn": "007250F0",
+   "why": "its whole work is the entry instruction (mov eax, 0x80004001), then ret"
+  },
+  {
+   "fn": "00725100",
+   "why": "its whole work is the entry instruction (mov eax, 0x80004001), then ret"
+  },
+  {
+   "fn": "00725110",
+   "why": "its whole work is the entry instruction (mov eax, 0x80004001), then ret"
+  },
+  {
+   "fn": "00725120",
+   "why": "its whole work is the entry instruction (mov eax, 0x80004001), then ret"
+  },
+  {
+   "fn": "00725130",
+   "why": "its whole work is the entry instruction (mov eax, 0x80004001), then ret"
+  },
+  {
+   "fn": "00725140",
+   "why": "its whole work is the entry instruction (mov eax, 1), then ret"
+  },
+  {
+   "fn": "00725150",
+   "why": "its whole work is the entry instruction (mov eax, 1), then ret"
+  },
+  {
+   "fn": "007251B0",
+   "why": "its whole work is the entry instruction (mov eax, 1), then ret"
+  },
+  {
+   "fn": "007251C0",
+   "why": "its whole work is the entry instruction (mov eax, 1), then ret"
+  },
+  {
+   "fn": "007251D0",
+   "why": "its whole work is the entry instruction (mov eax, 1), then ret"
+  },
+  {
+   "fn": "007251F0",
+   "why": "its whole work is the entry instruction (mov eax, 1), then ret"
+  },
+  {
+   "fn": "00725220",
+   "why": "its whole work is the entry instruction (mov eax, 1), then ret"
+  },
+  {
+   "fn": "00725270",
+   "why": "its whole work is the entry instruction (mov eax, 1), then ret"
+  },
+  {
+   "fn": "00725280",
+   "why": "its whole work is the entry instruction (stores -1 at dword rcx+0xA04); the only interior instruction zeroes the return value"
+  },
+  {
+   "fn": "007254C0",
+   "why": "its whole work is the entry instruction (loads dword rcx+0xA08 as the return value), then ret"
+  }
+ ],
+ "notes": "The setters 007254D0/00725500/00725530 and getters 00725560/00725570/00725590 work on the same dword +0xA08 as bit fields 0-2, 3-4 and 5; 007254A0 stores the whole dword (0..0x3F). 00725280 (stores -1 at +0xA04, returns 0) was skipped as entry-only; FABLE may prefer to row it with the xor anchor."
+}
