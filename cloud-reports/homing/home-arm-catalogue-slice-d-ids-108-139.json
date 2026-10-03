@@ -1,0 +1,36 @@
+{
+ "page": "00-Engine-Core-Runtime/Developer-Tuning-Console/arm-catalogue-slice-D-ids-108-139.md",
+ "session": "session_015VFSZr38WAiiWF7vDja8Ar",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "001A7990",
+   "entered_from": "`001BF8B0` + 0x199",
+   "text": "returns 0 when the call at `001A7990` + 0x9 (with `rcx`) returns 0; otherwise, with k that result, walks nodes from qword `rcx+0x460`, remembering a node and following its qword `+8` when its qword `+0x20` is not below k (unsigned) and following its qword `+0` otherwise, until a null link; returns 1 when a node was remembered and k is not below that node's qword `+0x20`, and 0 otherwise (the remembered slot starts as `rcx+0x450`)",
+   "anchors": [
+    [
+     "001A79A4",
+     "jne"
+    ],
+    [
+     "001A79D0",
+     "cmp"
+    ],
+    [
+     "001A79D9",
+     "mov"
+    ],
+    [
+     "001A79EC",
+     "cmp"
+    ],
+    [
+     "001A79F8",
+     "setne"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "001A7990: the comparisons are unsigned (jb/jae); the result is setne against rcx+0x450, so 'a node was remembered' means the remembered pointer is not rcx+0x450."
+}
