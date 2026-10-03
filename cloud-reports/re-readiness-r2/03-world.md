@@ -34,7 +34,44 @@ snapshot `0dc9cb77`. `OQ` means `_index/OPEN-QUESTIONS.md`.
 
 ## 1. Summary
 
-*(written last; see the end of this section's commit history)*
+**Pass-1 gaps (36: S-1 to S-19, G-1 to G-17):**
+
+| verdict | count | ids |
+|---|---:|---|
+| CLOSED | **2** | S-3, G-5 |
+| NARROWED | **15** | S-2, S-4, S-6, S-9, S-12, S-13, S-14; G-2, G-6, G-8, G-9, G-10, G-12, G-13, G-14 |
+| OPEN | **13** | S-5, S-7, S-10, S-11, S-15, S-16, S-17, S-18, S-19; G-4, G-7, G-15, G-16 |
+| WRONG-IN-PASS-1 | **6** | S-1, S-8; G-1, G-3, G-11, G-17. The answer was already on another category's page or in the register at `df2c9f47`; pass 1 searched only the 03 pages |
+
+**Classes of the 28 OPEN and NARROWED residues** (the first-named class where a residue has two):
+- STATIC: 17
+- RUNTIME: 3 (S-4, S-10, S-15)
+- DATA: 2 (S-19, G-16)
+- DOC: 3 (S-6, G-4, G-6)
+- LIMIT: 3 (S-5, S-7, S-13: names or design intent with no admissible source)
+
+Many residues also carry a DOC note: stale text on a 03 page.
+
+**New gaps: 13.**
+- STATIC: **6** (NEW-3, NEW-4, NEW-5, NEW-10, NEW-12, NEW-13)
+- RUNTIME: 0
+- DATA: 0
+- DOC: **7** (NEW-1, NEW-2, NEW-6, NEW-7, NEW-8, NEW-9, NEW-11)
+
+**Rating:**
+- pass 1: **NOT YET**
+- pass 2: **NOT YET**, one structural gap from MOSTLY.
+  - G-7, the field-entry order across pack load, binding and the weather roll, is the remaining structural gap.
+  - `YM00` per-chunk semantics (G-14) is the one part still NOT YET.
+  - Upgraded since pass 1:
+    - trigger points: NOT YET → MOSTLY;
+    - weather materialisation: NOT YET → MOSTLY;
+    - LegacyPS2GS: MOSTLY → READY;
+    - field record table: READY with G-5 closed.
+
+**Biggest finding.** Six pass-1 gaps, including the two that made trigger points NOT YET (G-1, G-3), were already
+answered on 2026-09-12 by the persistent-flag-banks page (AF-1/AF-3) and the periodic-tick page. The 03 pages never
+pointed at them, and pass 1 did not look outside the folder.
 
 ## 2. Pass-1 gaps
 
@@ -105,3 +142,44 @@ method note. "Register" gives the row a gap touches, when there is one.
 | NEW-11 | **The fourth writer of `+0x1061` is not named on any page.** The variant contract: "a save-lifecycle function stores `dil` there (FABLE's record readiness-apply-fable-1002)" (`CONTRACT-field-environment-variant.md:87`, `:134`). The save map lists "`00268320` …; `0026D8F0` …; … `0026D910` (`0026DA92`); +1 more" (`19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/the-save-payload-field-map.md:182`). The arm/skip behaviour of EV-3 depends on every setter. | DOC | `CONTRACT-field-environment-variant.md:87`; `19-Save-Load-Settings/Save-Image-Layout-And-Pipeline/the-save-payload-field-map.md:182` | — |
 | NEW-12 | **The engine-wide decode base `01F83530` is "undriven, not absent".** "`00210570` tests `cmp cx, 0x4000` / `jge` signed at `00210575`, then `movsx rax, cx` and stores at `[01F83580 + id·16]` …, so id `0xFFFB` = −5 lands on `01F83530`; the route is undriven, not absent". So the zero-extension decode of `YM00` offsets holds "while that route stays undriven" (`:904`). Whether any caller passes a negative id is not stated. | STATIC | `Map-Pack/the-map-ctrl-pack.md:902-904` | PROPOSED-repos2d-4 (ANSWERED in its own text, `OQ:1334`) |
 | NEW-13 | **The `0x28`-stride working-set table's initial bytes are not checked.** "whose fill writes only `+0x00`, `+0x08`, `+0x10`, `+0x18` and the byte `+0x20` … the table comes from `003EC8D0` at `002F75DC`, whose own zeroing is not checked here". UQ-89 says nothing reads the entries, so this matters only for a byte-exact port. | STATIC | `Map-Pack/the-map-ctrl-pack.md:606` | UQ-89 ANSWERED (`OQ:2803`) |
+
+## 4. Rating
+
+**Overall: NOT YET** (pass 1: NOT YET). It is now one structural gap away from MOSTLY, not five.
+
+Pass 1's bar for MOSTLY (its §4) and where each item stands:
+
+| pass 1 asked for | now |
+|---|---|
+| a local check of the priority contradictions C-V13, C-V14, C-V15, C-V19, C-V20, C-V23, C-V26 | **all seven settled** by OPUS's dated byte corrections of 2026-10-02. In order: the `+0x1061` flag (`CONTRACT-field-environment-variant.md:87`); four direct entries (`Weather/weather-slot-state-model.md:138`); `0209A6E8` is the weather slot (`Map-Pack/the-map-ctrl-pack.md:593-595`); `0026F470` walks the binding table (`:177`); row `+4`/`+6` are `u16` area/group (`CONTRACT-weather.md:105`); bit base `9 × (3 × selector + slot − 1)` (`Weather/mweather-resource-format.md:50`); bit 30 is the tag-24 link (`Map-Pack/the-map-ctrl-pack.md:1201`) |
+| the trigger points' data source and caller (G-1) | **answered**, and already answered at pass 1 on `14-Story-Event-Quest-Hunt/persistent-flag-banks.md:721-781` and the periodic-tick page; the 03 pages only lack the pointer (NEW-1) |
+| the field-transition order across pack load, binding and the weather roll (G-7) | **still open**, and the one item that keeps the rating at NOT YET |
+| the slot → environment-bank mapping (G-8) | **narrowed** to two STATIC reads: the JSON key → `i` mapping and `00180620`'s argument |
+| one joined `map_ref.bin` layout (G-6) | **narrowed**: row `+4`/`+6` joined; row `+0`, block `+0..+3` and header `+0x14` still typed separately (NEW-4) |
+
+**Per part:**
+
+| part | pass 1 | now | what decides it |
+|---|---|---|---|
+| Field record table and accessors | READY apart from G-5 | **READY** | G-5 is closed (boot, once). The null window is boot-only, and its live half (S-4) cannot change a port's behaviour after the boot bind. |
+| Authored trigger points | NOT YET as a system | **MOSTLY** | Record, table source, arming verb, ring, caller, gather and effect are all stated, on the story and periodic-tick pages. Open: the ring clear's timing and the re-arm census (S-2), the second ring writer (NEW-3), `002F82F0` (G-2), and the contract's TP-6 arm (G-4). |
+| Weather decide and commit | MOSTLY | **MOSTLY** (near READY) | The EV-3, D-3, I-6 and bit-base corrections remove the value disputes. Left: the `setweatherslot` guard byte `+0x12` (G-13), `002E9D90` and the `02099DB4` meaning (G-12), the `+0x1061` fourth writer (NEW-11), and the `02099D90` role (NEW-4). |
+| Weather materialisation and presentation | NOT YET | **MOSTLY** | The bank index is the committed slot − 1 (`001AA3B0`), presets are rows of `01EFFA30`, the rotations are read, and the EFB operation is settled. Left, all STATIC: the `+0x560` shader binding (S-9), the `01EFFA30` values and the `003D8E50` generator (G-9), `00259B30` / `003E8980` / `00379860` (G-10), the `022CB720` bits (NEW-5), and the `0024F610` effect lookup (S-12). |
+| `map_ref.bin` | MOSTLY | **MOSTLY** | One joining paragraph short (G-6), plus the `+0x14` table (NEW-4). |
+| Map-control pack: request, split, dispatch, bind | MOSTLY | **MOSTLY** | Unchanged; G-7 is the gap. |
+| Pack sections: `ACTL` / `LGT2` / `SP1` | MOSTLY | **MOSTLY** | The `LGT2` consumer is still unread (G-15); the `ACTL` owner byte is a VM-lane question (S-14). |
+| Pack section: `YM00` | NOT YET | **NOT YET** | Tag 23 is now read, but tags 12 / 32, 9 and 25, the two `0x68` sub-records and most of the `0x50` slot record are still callee lists (G-14). |
+| LegacyPS2GS rebuild | MOSTLY | **READY** | The type filter (C-V16) and the slot mask (C-V15) are corrected. The 1-vs-4 factor is retired as NO ADMISSIBLE SOURCE, with its weight stated. The output table is "read by nothing" (UQ-89). Only stale page text remains (NEW-8). |
+
+**What decides it.** The rating stays at NOT YET for one reason: **G-7**. No page states, in order, how entering a
+field sequences the two pack requests (`00331990`), their asynchronous completion and binding (`00378BC0`), the
+pending-to-active switch of `003148F0`, and the field-runtime pass that runs the weather roll (`0025D9E0` →
+`002620E0`). Every system in this category is triggered by that sequence, and the category's own README still lists
+"Area/zone identity and transitions" as not documented. The other weight is `YM00`'s per-chunk semantics (G-14), but
+that is one section of one file.
+
+Everything else is now a named STATIC desk read (17 residues and 6 new gaps) or page hygiene (DOC). The six WRONG-IN-PASS-1 verdicts
+and the seven DOC new gaps are the cheapest work here. Pointers from the 03 pages to
+`14-Story-Event-Quest-Hunt/persistent-flag-banks.md`, the EFX page and the save payload map, plus striking the stale
+§14 items and banners, would close or narrow 13 rows without reading a byte. With G-7 written and those pointers in,
+the category would rate **MOSTLY**, with only `YM00` at NOT YET.
