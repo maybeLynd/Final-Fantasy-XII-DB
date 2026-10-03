@@ -1,0 +1,35 @@
+{
+ "page": "18-Audio/Sound-Bank-And-Voice-Formats/seb-se-block-index.md",
+ "session": "session_01M9DqRDfozfMhVgDdX8oP4v",
+ "rows": [
+  {
+   "fn": "001DBD20",
+   "text": "calls `001DBD20 + 0x16` with the incoming registers unchanged and tail-jumps to `00210B60` with its result in `rcx`, the incoming `ecx` in `edx`, the incoming `edx` in `r8d` and the incoming `r8` in `r9`",
+   "anchors": [
+    [
+     "001DBD36",
+     "call"
+    ],
+    [
+     "001DBD3B",
+     "mov"
+    ],
+    [
+     "001DBD44",
+     "mov"
+    ],
+    [
+     "001DBD55",
+     "jmp"
+    ]
+   ]
+  }
+ ],
+ "skipped": [
+  {
+   "fn": "002DEC10",
+   "why": "its whole work is the entry instruction (movsx eax, word [rcx+8]) followed by ret"
+  }
+ ],
+ "notes": "FABLE w5-3 draft. Calls to callees the page context does not name are cited by call site (`<entry> + 0xNN`)."
+}
