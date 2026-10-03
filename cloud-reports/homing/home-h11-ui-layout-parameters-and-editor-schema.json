@@ -1,0 +1,35 @@
+{
+ "page": "16-UI/Layout-Parameter-System/ui-layout-parameters-and-editor-schema.md",
+ "session": "session_01AFJLw2DoBajZE8phUsPUJB",
+ "rows": [
+  {
+   "fn": "003689E0",
+   "entered_from": "`002D45C0` + 0x76",
+   "text": "returns at once when word `022CBE30` is zero; otherwise, when `ecx` is non-zero, tail-jumps (`003689E0` + 0x13) with 8 in `ecx`; when `ecx` is zero it reads byte `022CBE87` and returns without stores when that is 2 or 3, else rewrites word `022CBE8A` (to 0 when the byte is 0, to sign-extended word `022CBE8A` shifted left 3 and divided (signed `idiv`) by sign-extended word `022CBE88` when it is 1, left unchanged when it is above 3) and then stores 2 in byte `022CBE87` and 8 in word `022CBE88`",
+   "anchors": [
+    [
+     "003689F3",
+     "jmp"
+    ],
+    [
+     "00368A0B",
+     "ja"
+    ],
+    [
+     "00368A20",
+     "idiv"
+    ],
+    [
+     "00368A26",
+     "mov"
+    ],
+    [
+     "00368A39",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": ""
+}
