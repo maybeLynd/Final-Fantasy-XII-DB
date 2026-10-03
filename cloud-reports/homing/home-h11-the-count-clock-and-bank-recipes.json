@@ -1,0 +1,35 @@
+{
+ "page": "08-Combat-Formula/Recipe-System/the-count-clock-and-bank-recipes.md",
+ "session": "session_01AFJLw2DoBajZE8phUsPUJB",
+ "rows": [
+  {
+   "fn": "002286B0",
+   "entered_from": "`002470D0` + 0x2F",
+   "text": "does nothing when qword `01FD4948` is null; otherwise, when `rcx` and its qword `+0x0` are both non-null, calls that qword (`call r8`) with `rcx` in `rcx` and the address `00908B60` in `rdx` and re-reads `01FD4948`, and in either case stores `rcx` in qword `+0xC8` of the object `01FD4948` points to",
+   "anchors": [
+    [
+     "002286C3",
+     "je"
+    ],
+    [
+     "002286CA",
+     "mov"
+    ],
+    [
+     "002286D9",
+     "call"
+    ],
+    [
+     "002286DC",
+     "mov"
+    ],
+    [
+     "002286E3",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "002286B0: the re-read after the indirect call is not re-tested for null before the `+0xC8` store."
+}
