@@ -1,0 +1,444 @@
+{
+ "page": "19-Save-Load-Settings/Game-Settings-Config/game-settings-ini-and-runtime-config.md",
+ "session": "session_0113mD5fGL648y6vQqrtN2Rj",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "001F3A00",
+   "text": "calls `00189120` and passes its result to the call at `001F3A00+0x11`, then calls `001F3A00+0x1B` with (the incoming `rdx`, 0); calls `001B31D0()` and, when it returns non-null, calls `001B31D0()` again and passes that result to the call at `001F3A00+0x32`; finally tail-jumps at `001F3A00+0x44` with (the incoming `rdx`, 3)",
+   "anchors": [
+    [
+     "001F3A09",
+     "call"
+    ],
+    [
+     "001F3A1B",
+     "call"
+    ],
+    [
+     "001F3A28",
+     "je"
+    ],
+    [
+     "001F3A32",
+     "call"
+    ],
+    [
+     "001F3A44",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0023CAF0",
+   "text": "with P0..P4 the qwords at `+0`, `+8`, `+0x10`, `+0x18`, `+0x20` of qword `rdx+0x10`, i the sign-extended `r9d`, set/clear meaning OR 1/AND 0xfffffffe on a Pk's dword `+8`, and S(x) storing the result of the function called at `0023CAF0+0x46` (also at `+0xAE` and `+0x126`) on x at qword `R+0x18` and `0020E620(0)` at dword `R+0x20`: when dword `rcx+0xc8` is 0, R = P4, S(i + 0x53f), then it clears P0, P1, P3 and P2 and sets P4; otherwise R = P3, S(the call at `0023CAF0+0x3F` on dword `rcx+0xd0+i*4`), sets P3 and clears P4, then when dword `rcx+0xe8` equals i it sets P0, clears P1 and P2 and, when dword `rcx+0xec` is non-zero, does S(0x46dd); else when dwords `rcx+0xdc+i*4` and `rcx+0xd0+i*4` differ it sets P2 and clears P1 and P0, and when they are equal sets P1 and clears P0 and P2; every path ends with `0029FAD0(R)` and returns 1",
+   "anchors": [
+    [
+     "0023CB1E",
+     "je"
+    ],
+    [
+     "0023CB3D",
+     "mov"
+    ],
+    [
+     "0023CB61",
+     "cmp"
+    ],
+    [
+     "0023CBBD",
+     "cmp"
+    ],
+    [
+     "0023CC67",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0026A660",
+   "text": "when `edx` is 0 it only clears bit 0x20 of byte `rcx+0xc`; otherwise, when byte `rcx+0x18` is not 1 and word `rcx+0xd2` is 0xffff, it takes the low 32 bits of `0020E600(dword +0x18 of qword rcx+0x40)` as an offset R from the qword at `02098E10` + byte `rcx+0x15` * 0x288 and loops forever (a `jmp` to itself) when the signed word at R is 5 or less or the signed word at R+0xc is negative; then, when byte `rcx+0x18` is not 1 and word `rcx+0xd0` is 0xffff, it calls `0020E600` on that same dword and discards the result; finally it sets bit 0x20 of byte `rcx+0xc`",
+   "anchors": [
+    [
+     "0026A6B7",
+     "call"
+    ],
+    [
+     "0026A6C7",
+     "jge"
+    ],
+    [
+     "0026A6D7",
+     "jmp"
+    ],
+    [
+     "0026A6F4",
+     "call"
+    ],
+    [
+     "0026A70F",
+     "or"
+    ]
+   ]
+  },
+  {
+   "fn": "002A7C70",
+   "text": "when `r9d` is 0 it ANDs dword `rcx+8` with 0xfffffff7 and copies dword `[rdx]` to dword `rcx+0x20`; otherwise it first zeroes dword `rcx+0x20` when word `rcx+0x40` is 0 and `001EDDA0()` returns 0, then ORs 8 into dword `rcx+8`, copies dword `rcx+0x20` to `rcx+0x34`, stores `r8w` at word `rcx+0x44`, stores at words `rcx+0x38`, `+0x3A`, `+0x3C`, `+0x3E` the differences of bytes `rdx+0` to `rdx+3` minus bytes `rcx+0x20` to `rcx+0x23`, zeroes word `rcx+0x40` and stores `r9w` at word `rcx+0x42`",
+   "anchors": [
+    [
+     "002A7C95",
+     "and"
+    ],
+    [
+     "002A7CAF",
+     "call"
+    ],
+    [
+     "002A7CBC",
+     "or"
+    ],
+    [
+     "002A7CD7",
+     "mov"
+    ],
+    [
+     "002A7D0E",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "002D5590",
+   "text": "switches on dword `[rdx]`: for 1 it stores 0x28 at dword `rcx+0xc4` and dword `rdx+8` at `rcx+0xc0`, calls `002D5590+0x80` with (`rcx`, `00917180`), calls `002D5590+0xBD` with (`rcx+0x50`, qword `+0x18` of the qword at `0209AC30`, 4 when dword `rcx+0xc0` is 1, 5 when it is 2, else 3, `rcx`), copies that result's words `+4`, `+6`, `+8`, `+0xA` to words `rcx+0x98`, `+0x9A`, `+0x9C`, `+0x9E`, clears bit 0x80 of dword `rcx+0x40` and returns 0; for 2, when `001EDEC0(dword rcx+0xb4)` is non-zero and dword `rcx+0xc4` is positive (signed) it decrements that dword and, when the new value is 0 or less, calls `002D5590+0x56` with `rcx`, returning 0 on each of these paths; any other value tail-jumps at `002D5590+0x1D` with `rcx` and `rdx` unchanged",
+   "anchors": [
+    [
+     "002D55AD",
+     "jmp"
+    ],
+    [
+     "002D55B8",
+     "call"
+    ],
+    [
+     "002D55D5",
+     "mov"
+    ],
+    [
+     "002D55F3",
+     "mov"
+    ],
+    [
+     "002D564D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "003484A0",
+   "text": "tail-jumps at `003484A0+0x15` with `rcx` = `00263FF0(3)`",
+   "anchors": [
+    [
+     "003484A4",
+     "mov"
+    ],
+    [
+     "003484A9",
+     "call"
+    ],
+    [
+     "003484AE",
+     "mov"
+    ],
+    [
+     "003484B5",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00348A70",
+   "text": "tail-jumps at `00348A70+0x15` with `rcx` = `00263FF0(3)`",
+   "anchors": [
+    [
+     "00348A74",
+     "mov"
+    ],
+    [
+     "00348A79",
+     "call"
+    ],
+    [
+     "00348A7E",
+     "mov"
+    ],
+    [
+     "00348A85",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00348DA0",
+   "text": "tail-jumps at `00348DA0+0x15` with `rcx` = `00263FF0(3)`",
+   "anchors": [
+    [
+     "00348DA4",
+     "mov"
+    ],
+    [
+     "00348DA9",
+     "call"
+    ],
+    [
+     "00348DAE",
+     "mov"
+    ],
+    [
+     "00348DB5",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00357170",
+   "text": "calls `00263FF0(0)`, then the function at `00357170+0x10` with no argument loaded, and when that returns anything other than 2 ORs 4 into byte `+0x17` of the `00263FF0` result; returns the second call's `eax`",
+   "anchors": [
+    [
+     "00357176",
+     "xor"
+    ],
+    [
+     "00357178",
+     "call"
+    ],
+    [
+     "00357180",
+     "call"
+    ],
+    [
+     "00357185",
+     "cmp"
+    ],
+    [
+     "0035718A",
+     "or"
+    ]
+   ]
+  },
+  {
+   "fn": "003E0860",
+   "text": "returns at once when `rcx` is null; otherwise, for the dwords `rcx+8`, `+0x28`, `+0x34`, `+0x3C`, `+0x24` in that order, calls `0020E600(dword)` and, when it returns non-null, calls `0020E600(dword)` again and passes that result to the call at `003E0860+0x29`, `+0x46`, `+0x63`, `+0x80` and `+0x9D` respectively",
+   "anchors": [
+    [
+     "003E0863",
+     "je"
+    ],
+    [
+     "003E0874",
+     "call"
+    ],
+    [
+     "003E0889",
+     "call"
+    ],
+    [
+     "003E08A6",
+     "call"
+    ],
+    [
+     "003E08FD",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00551610",
+   "text": "when qword `rcx+8` is 0 it clears bit 0 of dwords `rdx+8` and `r8+8` and returns; otherwise, when byte `rcx+2` is non-zero it stores word 0 at `rdx+0xa`, sets bit 0 of dword `rdx+8` and copies byte `+7` of qword `rdx+0x20` to byte `rdx+0x39`, else when bit 0 of dword `rcx+0x10` is set it does the same with word 1 and byte `+0xf`, else it clears bit 0 of dword `rdx+8`; then it copies bit 1 of dword `rcx+0x10` into bit 0 of dword `r9+8`, sets bit 0 of dword `r8+8`, copies qword `rcx+8` to qword `r8+0x18` and stores `0020E620(0)` at dword `r8+0x20`",
+   "anchors": [
+    [
+     "00551621",
+     "jne"
+    ],
+    [
+     "00551636",
+     "jbe"
+    ],
+    [
+     "00551681",
+     "xor"
+    ],
+    [
+     "0055168E",
+     "mov"
+    ],
+    [
+     "00551697",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005516A0",
+   "text": "with T = qword `rdx+0x10` (8-byte entries), A = T[signed byte `rcx+0x17`], B = T[signed byte `rcx+0x16`], C = T[signed word `rcx+0x18`] and i the sign-extended `r9d`, computes v = ((signed word `rcx+0x14` >> 7) * signed word `r8+0x58`) >> 7 (arithmetic shifts), stores its low byte at `B+0x27` and the dword 0x80808080 with that byte as its top byte at `A+0x28` to `A+0x34` and `C+0x28` to `C+0x34`; when v is 0 it clears bit 0 of dwords `A+8`, `B+8`, `C+8`; otherwise by signed word `rcx+0x10`: 0 calls `005516A0+0x140`(`rcx+0x28+i*0x18`, A, B, C), 3 calls `005516A0+0xB4`(`rcx+0x28`, A, B, C), 1 with E = `rcx+i*0x18` clears bit 0 of `A+8` and `B+8` when qword `E+0x30` is 0, else sets word `A+0xa` to 1, bit 0 of `A+8` and byte `A+0x39` from byte `+0xf` of qword `A+0x20` when bit 0 of byte `E+0x38` is set (only clearing bit 0 of `A+8` when not), clears bit 0 of `C+8`, sets bit 0 of `B+8`, copies qword `E+0x30` to `B+0x18` and stores `0020E620(0)` at dword `B+0x20`; other values do nothing more; returns 1 on every path",
+   "anchors": [
+    [
+     "005516EE",
+     "mov"
+    ],
+    [
+     "0055171B",
+     "jne"
+    ],
+    [
+     "00551754",
+     "call"
+    ],
+    [
+     "005517B1",
+     "call"
+    ],
+    [
+     "005517E0",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00552050",
+   "text": "when qword `rcx+8` is 0 it clears bit 0 of dwords `rdx+8`, `r8+8` and `r9+8` and returns; otherwise, when bit 0 of byte `rcx+0x14` is set it stores word 0 at `rdx+0xa`, sets bit 0 of dword `rdx+8` and copies byte `+7` of qword `rdx+0x20` to byte `rdx+0x39`, else when bit 0 of byte `rcx+0x10` is set it does the same with word 1 and byte `+0xf`, else it clears bit 0 of dword `rdx+8`; then it copies bit 1 of dword `rcx+0x10` into bit 0 of dword `r9+8`, sets bit 0 of dword `r8+8`, copies qword `rcx+8` to qword `r8+0x18` and stores `0020E620(0)` at dword `r8+0x20`",
+   "anchors": [
+    [
+     "00552061",
+     "jne"
+    ],
+    [
+     "0055207B",
+     "je"
+    ],
+    [
+     "005520C6",
+     "xor"
+    ],
+    [
+     "005520D3",
+     "mov"
+    ],
+    [
+     "005520DC",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00556F50",
+   "text": "stores `rcx` + 0xd0 + (sign-extended `r9d` << 8) at qword `+0x18` of the first qword entry of qword `rdx+0x10`, stores `0020E620(0)` at dword `+0x20` of that entry and returns 1",
+   "anchors": [
+    [
+     "00556F61",
+     "mov"
+    ],
+    [
+     "00556F67",
+     "shl"
+    ],
+    [
+     "00556F70",
+     "mov"
+    ],
+    [
+     "00556F74",
+     "call"
+    ],
+    [
+     "00556F79",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00616560",
+   "text": "calls `00616560+0x1E`(`rcx+0x18c0`); when qword `rcx+0x1840` is non-null calls slot `+0x10` of its vtable with it and zeroes the qword; clears bit 0x80 of dword `rcx+0x183c`; calls `0016D6A0(rcx+0x1820)` and `00616560+0x72`(`rcx+0xba0`, 0x190, 8, `0016D6A0`); when bit 31 of dword `rcx+0x6f8` is clear calls `00618FD0`(qword `rcx+0x700`, that dword); zeroes qword `rcx+0x700` and dword `rcx+0x6f8`; calls `0016D6A0(rcx+0x630)`, `00616560+0xD3`(`rcx+0x570`, 0x18, 8, `0016D6A0`) and `0016D6A0` on `rcx+0x548` and `rcx+0x520`; calls `00616560+0x10E`(`rcx+0x4d0`) when qword `rcx+0x4f8` or `rcx+0x4e8` is non-zero and then `00616560+0x11B`(`rcx+0x4d0`) always, likewise `00616560+0x13C`(`rcx+0x480`) when qword `rcx+0x4a8` or `rcx+0x498` is non-zero and then `00616560+0x149`(`rcx+0x480`); finally calls `00616560+0x156`(`rcx+0x2f8`), `00616560+0x163`(`rcx+0x170`), `0016D6A0(rcx+0xc8)` and `00616560+0x18A`(`rcx+8`, 0x18, 8, `0016D6A0`)",
+   "anchors": [
+    [
+     "0061657E",
+     "call"
+    ],
+    [
+     "00616593",
+     "call"
+    ],
+    [
+     "006165F4",
+     "call"
+    ],
+    [
+     "0061666E",
+     "call"
+    ],
+    [
+     "006166EA",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0067ACF0",
+   "text": "zeroes dword `[rcx]` and qword `rcx+8` and copies dword `rdx+0x10` to `rcx+0x10`; when that dword is non-zero it calls `0067B100(rcx, dword [rdx] with bit 31 cleared)` and then, when qword `rcx+8` is non-null, `00861EBA`(qword `rcx+8`, qword `rdx+8`, dword `rcx+0x10`); returns `rcx` on both paths",
+   "anchors": [
+    [
+     "0067AD0D",
+     "mov"
+    ],
+    [
+     "0067AD16",
+     "mov"
+    ],
+    [
+     "0067AD27",
+     "btr"
+    ],
+    [
+     "0067AD2B",
+     "call"
+    ],
+    [
+     "0067AD40",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00798AC0",
+   "text": "copies `rdx` (length by a byte scan, plus 1) to a stack buffer N with `00861EBA` after `00808F10` and stores 0 over its first ',' at index 1 or later; returns 0 when `rcx` is null; else calls `005CDAA0(2, 01CB2BC0, N)`, slot `+0x10` of the vtable at `rcx+0xe8` and `00798AC0+0xDC`(`rcx+0xe8`); between `00615BC0`/`00616700` on a local L calls `00624960(00624670(&L), &W, &H, &S)` and returns its non-zero result; calls `0017D260`(S*H + 0x38, 4) and returns 0xd when null, else with P = result + 2 calls `00798AC0+0x16C`(`00624670(&L)`, P+0x36) the same way, returning a non-zero result after `00584730`(result); swaps bytes 0 and 2 of each 3-byte group in H rows of W groups at stride S from P+0x36; stores word 0x4d42 at P, dword 0x36 at P+0xA, 0x28 at P+0xE, W at P+0x12, H at P+0x16, qword 0x180001 at P+0x1A, zeroing P+2 and P+0x22 to P+0x35; calls `00597A70`(&F, N), then, when the low byte of `0059D920(&F)` is non-zero, `00798AC0+0x231`(&F, P, S*H + 0x38), giving 9 on a non-zero return else 0, while a zero `0059D920` gives dword F+8; calls `00798AC0+0x248`(&F), `00798AC0+0x252`(&F) and `00584730`, then returns that value",
+   "anchors": [
+    [
+     "00798B64",
+     "mov"
+    ],
+    [
+     "00798BD2",
+     "call"
+    ],
+    [
+     "00798C77",
+     "mov"
+    ],
+    [
+     "00798C96",
+     "mov"
+    ],
+    [
+     "00798CF1",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "skipped": [
+  {
+   "fn": "003EF050",
+   "why": "its body is a 19-case jump-table switch on dword [rdx] - 1 whose table (right after the code) the listing does not decode, so which case reaches which arm is not readable from the listing"
+  }
+ ],
+ "notes": "Doubts per function. 001F3A00: 00189120 and 001B31D0 get no explicitly loaded rcx; 00189120 sees the incoming rcx. 0023CAF0 (840 chars): the 002F9860-target call sits at three sites (+0x46, +0xAE, +0x126), all cited; i is compared to dword rcx+0xe8 as a 32-bit value. 0026A660: the 0020E600 result is moved to ecx (32-bit) before being added to the table qword, so the row says 'low 32 bits as an offset'; the two failure branches go to a jmp-to-self at 0026A6D7 (a hang, stated literally). 002A7C70: return value not stated (eax differs by path: dword [rdx] or a byte of rcx+0x23). 002D5590: 00917180 is passed as rdx to the +0x80 call; its contents are not decoded in the listing. 003484A0/00348A70/00348DA0: identical shape, differing only in the tail target (003B7AB0, 003B7210, 003B7A30), cited by site. 00357170: the +0x10 call gets rcx left over from 00263FF0 (not loaded). 005516A0 (1,026 chars) and 00798AC0 (about 1,120 chars) are close to the cap; 005516A0's sites +0x140 and +0xB4 are this pack's own 00551610 and 00552050. 00798AC0: the ',' scan starts at index 1 (a ',' at index 0 is not cut); the stack-cookie check at the end is not stated; 0017D260's second argument is ebx + 4 with ebx known 0 there. 00616560: the 00809054 calls (sites +0x72, +0xD3, +0x18A) take 0016D6A0's address (lea) as their fourth argument. 003EF050 skipped (undecoded jump table). Calls to functions this page does not name are cited by site; 0016D6A0, 00861EBA, 00808F10, 005CDAA0, 00615BC0, 00624670, 00624960, 00616700, 0017D260, 00597A70, 0059D920, 00584730, 00189120, 001EDDA0, 001EDEC0, 0020E600, 0020E620, 00618FD0, 0067B100 are named on the page and so cited by address."
+}
