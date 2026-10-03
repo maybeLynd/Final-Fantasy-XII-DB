@@ -1,0 +1,173 @@
+{
+ "page": "22-Middleware-PhyreEngine/Subsystem-Map/the-fifteen-modules-registered-before-main.md",
+ "date": "2026-10-03",
+ "rows": [
+  {
+   "fn": "00637350",
+   "text": "calls slot 1 (qword `+8`) of its vtable; it returns 0x12 when that returns non-null with bit 0 of byte `+0xFC` of the result set, and otherwise stores qword `+0x30` to `[rdx]` and the length of the string there plus 1 to dword `[r8]` and returns 0; stored to qword `01F2E3B0` by `00637F20` + 0x1ED, the cell's load-time value too, and 1 other site forms it the same way",
+   "anchors": [
+    [
+     "0063736B",
+     "call"
+    ],
+    [
+     "00637373",
+     "test"
+    ],
+    [
+     "0063737C",
+     "mov"
+    ],
+    [
+     "006373A3",
+     "cmp"
+    ],
+    [
+     "006373B0",
+     "mov"
+    ]
+   ],
+   "why_here": "stored by the 13-arm lazy-init battery 00637F20 this page tabulates",
+   "ref": {
+    "kind": "code",
+    "container": "00637F20",
+    "site": "0063810D",
+    "store_site": "00638114",
+    "store_target": "01F2E3B0"
+   },
+   "cites": [
+    "00637F20"
+   ]
+  },
+  {
+   "fn": "0066F580",
+   "text": "walks the list from qword `02D38DB8` (next link qword `+8`), comparing the string at each node's qword `[node]` byte by byte with the string at `rdx`; it stores the first matching node, or 0 when `rdx` is null or no node matches, to qword `[rcx]` and returns 0 when it found one and 0x13 otherwise; passed as the sixth argument (stack `+0x28`) of the `006B6820` call at `00661A70` + 0x7A",
+   "anchors": [
+    [
+     "0066F592",
+     "mov"
+    ],
+    [
+     "0066F5B0",
+     "movzx"
+    ],
+    [
+     "0066F5C7",
+     "mov"
+    ],
+    [
+     "0066F5D6",
+     "mov"
+    ],
+    [
+     "0066F5DE",
+     "cmovne"
+    ]
+   ],
+   "why_here": "argument of the registration body 00661A70 this page tabulates",
+   "ref": {
+    "kind": "code",
+    "container": "00661A70",
+    "site": "00661AB7",
+    "store_site": "00661ABE",
+    "store_op": "qword ptr [rsp + 0x28], rax"
+   },
+   "cites": [
+    "00661A70"
+   ]
+  },
+  {
+   "fn": "006CD4C0",
+   "text": "stores qword `[rcx]` to `[rdx]` and the length of the string it points to plus 1 to dword `[r8]`, and returns 0; passed as the fifth argument (stack `+0x20`) of the `006B6820` call at `005A65B0` + 0x7A, and 5 other sites form it the same way",
+   "anchors": [
+    [
+     "006CD4C3",
+     "or"
+    ],
+    [
+     "006CD4D3",
+     "cmp"
+    ],
+    [
+     "006CD4DC",
+     "mov"
+    ],
+    [
+     "006CD4E1",
+     "mov"
+    ]
+   ],
+   "why_here": "argument of the record builder 005A65B0 this page tabulates; five more registration bodies pass it",
+   "ref": {
+    "kind": "code",
+    "container": "005A65B0",
+    "site": "005A6603",
+    "store_site": "005A660A",
+    "store_op": "qword ptr [rsp + 0x20], rax"
+   },
+   "cites": [
+    "005A65B0"
+   ]
+  },
+  {
+   "fn": "00876870",
+   "text": "stores qword `+8` to `[rdx]` and the length of the string it points to plus 1 to dword `[r8]`, and returns 0; passed as the fifth argument (stack `+0x20`) of the `006B6820` call at `006D94E0` + 0x7A, and 10 other sites form it the same way",
+   "anchors": [
+    [
+     "00876874",
+     "or"
+    ],
+    [
+     "00876883",
+     "cmp"
+    ],
+    [
+     "0087688C",
+     "mov"
+    ],
+    [
+     "00876891",
+     "mov"
+    ]
+   ],
+   "why_here": "argument of 006D94E0 and ten more registration bodies this page tabulates",
+   "ref": {
+    "kind": "code",
+    "container": "006D94E0",
+    "site": "006D9533",
+    "store_site": "006D953A",
+    "store_op": "qword ptr [rsp + 0x20], rax"
+   },
+   "cites": [
+    "006D94E0"
+   ]
+  },
+  {
+   "fn": "008B70D0",
+   "text": "stores the `.rdata` address `00D8A730` to qword `02E5C938` and tail-jumps to `006AA200` with `rcx` = `02E5C938`; passed as the `rcx` argument of the `00808B90` exit registration by `006CE5B0` + 0x77",
+   "anchors": [
+    [
+     "008B70D7",
+     "lea"
+    ],
+    [
+     "008B70DE",
+     "mov"
+    ],
+    [
+     "008B70E5",
+     "jmp"
+    ]
+   ],
+   "why_here": "exit routine registered by 006CE5B0, which this page reads",
+   "ref": {
+    "kind": "code",
+    "container": "006CE5B0",
+    "site": "006CE627"
+   },
+   "cites": [
+    "006CE5B0"
+   ]
+  }
+ ]
+}

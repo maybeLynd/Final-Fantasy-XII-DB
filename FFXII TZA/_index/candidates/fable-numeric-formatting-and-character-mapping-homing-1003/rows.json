@@ -8,7 +8,7 @@
  "rows": [
   {
    "fn": "003CA530",
-   "text": "dispatches on dword `[rdx]`: 1 calls `003CA530`+0x2A2(`rcx+0x50`, qword `+0x28` of qword `0209AC30`, 3, `rcx`), copies the result's words `+4/+6/+8/+0xa` to `rcx+0x98/+0x9a/+0x9c/+0x9e` when `rcx` is non-null, calls `003CA530`+0x2E1(0, local `L`) and, with `Q` = qword `+8` of `[rcx+0x60]`, stores `00272CB0(dword L+8)` at qword `Q+0x18` and `003CA530`+0x306(0) at dword `Q+0x20`; 2 calls `003CA530`+0x63(0, `L`), takes `f` = float `L+0xc`, `i` = (int)`f`, `t` = (int)((`f`-`i`)*10.0); `c` = `003CA530`+0xB1(0) when `f` >= 1.0, else the `003CA530`+0x1C5 blend of the bytes of `003CA530`+0x137(6) and `003CA530`+0x144(0) by (int)(`f`*256.0), bytes 0-2 each times `k` then `>> 7`, byte 3 kept, where `k` = 0x80, or for `f` <= 0 (int)(`003CA530`+0x105((dword `0208F570` - dword `rcx+0xc0`)*pi/30)*64+128) with `0208F570` stored at `+0xc0` when it was 0; then, with `R` = qword `+0x18` of qword `+0x18` of `[rcx+0x60]`, calls `003CA530`+0x23A(`[[R+0x60]]`, 3, 5, `c`, `i`) and `003CA530`+0x268(qword `+0x18` of `[R+0x60]`, 1, 5, `c`, `t`), passing 0 for `R` null; both return 0; other values return `003CA530`+0x32(`rcx`)",
+   "text": "dispatches on dword `[rdx]`: 1 calls `003CA530`+0x2A2(`rcx+0x50`, qword `+0x28` of qword `0209AC30`, 3, `rcx`), copies the result's words `+4/+6/+8/+0xa` to `rcx+0x98/+0x9a/+0x9c/+0x9e` when `rcx` is non-null, calls `003CA530`+0x2E1(0, local `L`) and, with `Q` = qword `+8` of `[rcx+0x60]`, stores `00272CB0(dword L+8)` at qword `Q+0x18` and `003CA530`+0x306(0) at dword `Q+0x20`; 2 calls `003CA530`+0x63(0, `L`), takes `f` = float `L+0xc`, `i` = (int)`f`, `t` = (int)((`f`-`i`)*10.0); `c` = `003CA530`+0xB1(0) when `f` >= 1.0, else the `003CA530`+0x1C5 blend of the bytes of `003CA530`+0x137(6) and `003CA530`+0x144(0) by (int)(`f`*256.0), bytes 0-2 each times `k` then `>> 7`, byte 3 kept, where `k` = 0x80, or for `f` <= 0 ~~(int)(`003CA530`+0x105((dword `0208F570` - dword `rcx+0xc0`)*pi/30)*64+128)~~ (int)(`003CA530`+0x105((dword `0208F570` - dword `rcx+0xc0`, converted as an unsigned 32-bit value)*pi/30)*64+128) with `0208F570` stored at `+0xc0` when it was 0; then, with `R` = qword `+0x18` of qword `+0x18` of `[rcx+0x60]`, calls `003CA530`+0x23A(`[[R+0x60]]`, 3, 5, `c`, `i`) and `003CA530`+0x268(qword `+0x18` of `[R+0x60]`, 1, 5, `c`, `t`), passing 0 for `R` null; both return 0; other values return `003CA530`+0x32(`rcx`) *(narrowed 2026-10-03, FABLE, on SWE2-AUDIT-SPEC's review: `mov eax, r14d` / `sub eax, ebx` zero-extends `rax`, and `cvtsi2ss xmm0, rax` at `003CA620` converts the 32-bit difference as unsigned)*",
    "anchors": [
     [
      "003CA554",
@@ -64,5 +64,22 @@
  "missing": [],
  "corrections": [],
  "mode": "homing",
- "family": ""
+ "family": "",
+ "narrowed": [
+  {
+   "fn": "003CA530",
+   "by": "FABLE",
+   "on": "2026-10-03",
+   "record": "_index/candidates/fable-home-host-moves-b6-1003",
+   "review": "_index/candidates/auditspec-review-fable-numeric-formatting-and-character-mapping-homing-1003/REVIEW.md",
+   "struck": [
+    [
+     "(int)(`003CA530`+0x105((dword `0208F570` - dword `rcx+0xc0`)*pi/30)*64+128)",
+     "(int)(`003CA530`+0x105((dword `0208F570` - dword `rcx+0xc0`, converted as an unsigned 32-bit value)*pi/30)*64+128)"
+    ]
+   ],
+   "previous_text": "dispatches on dword `[rdx]`: 1 calls `003CA530`+0x2A2(`rcx+0x50`, qword `+0x28` of qword `0209AC30`, 3, `rcx`), copies the result's words `+4/+6/+8/+0xa` to `rcx+0x98/+0x9a/+0x9c/+0x9e` when `rcx` is non-null, calls `003CA530`+0x2E1(0, local `L`) and, with `Q` = qword `+8` of `[rcx+0x60]`, stores `00272CB0(dword L+8)` at qword `Q+0x18` and `003CA530`+0x306(0) at dword `Q+0x20`; 2 calls `003CA530`+0x63(0, `L`), takes `f` = float `L+0xc`, `i` = (int)`f`, `t` = (int)((`f`-`i`)*10.0); `c` = `003CA530`+0xB1(0) when `f` >= 1.0, else the `003CA530`+0x1C5 blend of the bytes of `003CA530`+0x137(6) and `003CA530`+0x144(0) by (int)(`f`*256.0), bytes 0-2 each times `k` then `>> 7`, byte 3 kept, where `k` = 0x80, or for `f` <= 0 (int)(`003CA530`+0x105((dword `0208F570` - dword `rcx+0xc0`)*pi/30)*64+128) with `0208F570` stored at `+0xc0` when it was 0; then, with `R` = qword `+0x18` of qword `+0x18` of `[rcx+0x60]`, calls `003CA530`+0x23A(`[[R+0x60]]`, 3, 5, `c`, `i`) and `003CA530`+0x268(qword `+0x18` of `[R+0x60]`, 1, 5, `c`, `t`), passing 0 for `R` null; both return 0; other values return `003CA530`+0x32(`rcx`)",
+   "plain": "dispatches on dword `[rdx]`: 1 calls `003CA530`+0x2A2(`rcx+0x50`, qword `+0x28` of qword `0209AC30`, 3, `rcx`), copies the result's words `+4/+6/+8/+0xa` to `rcx+0x98/+0x9a/+0x9c/+0x9e` when `rcx` is non-null, calls `003CA530`+0x2E1(0, local `L`) and, with `Q` = qword `+8` of `[rcx+0x60]`, stores `00272CB0(dword L+8)` at qword `Q+0x18` and `003CA530`+0x306(0) at dword `Q+0x20`; 2 calls `003CA530`+0x63(0, `L`), takes `f` = float `L+0xc`, `i` = (int)`f`, `t` = (int)((`f`-`i`)*10.0); `c` = `003CA530`+0xB1(0) when `f` >= 1.0, else the `003CA530`+0x1C5 blend of the bytes of `003CA530`+0x137(6) and `003CA530`+0x144(0) by (int)(`f`*256.0), bytes 0-2 each times `k` then `>> 7`, byte 3 kept, where `k` = 0x80, or for `f` <= 0 (int)(`003CA530`+0x105((dword `0208F570` - dword `rcx+0xc0`, converted as an unsigned 32-bit value)*pi/30)*64+128) with `0208F570` stored at `+0xc0` when it was 0; then, with `R` = qword `+0x18` of qword `+0x18` of `[rcx+0x60]`, calls `003CA530`+0x23A(`[[R+0x60]]`, 3, 5, `c`, `i`) and `003CA530`+0x268(qword `+0x18` of `[R+0x60]`, 1, 5, `c`, `t`), passing 0 for `R` null; both return 0; other values return `003CA530`+0x32(`rcx`)"
+  }
+ ]
 }

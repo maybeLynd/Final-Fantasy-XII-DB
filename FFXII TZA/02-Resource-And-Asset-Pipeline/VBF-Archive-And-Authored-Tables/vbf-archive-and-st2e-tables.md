@@ -1300,13 +1300,3 @@ bytes (pass 7), and §13's request census.
 | function | size | what the body does | interior anchors |
 |---|---|---|---|
 | `0035C630` | 38 B | calls four UI-layer helpers in order (a 19-byte thunk, then 88-, 48- and 31-byte bodies), then tail-jumps a 27-byte UI-layer body with `ecx` = 1 | `0035C634`, `0035C639`, `0035C63E`, `0035C643`, `0035C651` |
-
-## Homed frontier bodies called from this page's functions (FABLE, 2026-10-03, cloud-drafted)
-
-*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../../_index/candidates/fable-home-vbf-archive-and-st2e-tables-1003/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
-
-| function | size | entered from | what the body does | interior anchors |
-|---|---|---|---|---|
-| `0028FF80` | 88 B | `0035C630` + 0x9 | when qword `+0x10F80` of the object at qword `0209BE80` is null, stores there the result of the call at `0028FF80` + 0x1A with `ecx` = 0x1D90 and then makes the call at + 0x3B with that stored qword; in both cases returns 1 when `+0x10F80` is non-null and 0 otherwise | Interior anchor `0028FF8B`; Interior anchor `0028FF9A`; Interior anchor `0028FFA6`; Interior anchor `0028FFBB`; Interior anchor `0028FFD0` |
-| `003C98E0` | 31 B | `0035C630` + 0x13 | returns when qword `02B47740` is non-zero; otherwise tail-jumps at `003C98E0` + 0x19 with `ecx` = 0xD8, `rdx` = the address `003C9A30` and `r8d` = 0 | Interior anchor `003C98E8`; Interior anchor `003C98ED`; Interior anchor `003C98F4`; Interior anchor `003C98F9` |
-| `003CA280` | 48 B | `0035C630` + 0xE | when qword `02B47758` is null, stores there the result of the call at `003CA280` + 0x1F with `ecx` = 0xAA0, `rdx` = the address `003CA860` and `r8d` = 0; returns the qword `02B47758` holds afterwards (the existing one when it was already non-null) | Interior anchor `003CA28B`; Interior anchor `003CA293`; Interior anchor `003CA29F`; Interior anchor `003CA2A4` |

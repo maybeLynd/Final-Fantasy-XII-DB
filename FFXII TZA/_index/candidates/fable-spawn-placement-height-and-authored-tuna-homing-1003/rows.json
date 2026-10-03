@@ -1,0 +1,42 @@
+{
+ "page": "05-Spawn-Encounter-Lifecycle/spawn-placement-height-and-authored-tunables.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_012a8rbQTfxKzPeUw5FnjutN",
+ "report": [
+  "fable-spawn-placement-height-and-authored-tunables.json"
+ ],
+ "rows": [
+  {
+   "fn": "00235DD0",
+   "text": "calls `003272A0` when `ecx` is negative (signed), else `00235DD0`+0x2E, with the incoming registers unchanged, and returns -1.0 (`01CEBC9C`) when that returns null; otherwise stores the vector (`xmm1`, 0.0, `xmm2`) on the stack, calls `00235DD0`+0x6E with (result `+0xE0`, that vector, float result `+0x160` in `xmm2`), then calls `0031A930` with that call's `xmm0` result and float `+0x160` in `xmm1`, and returns its result multiplied by 360.0 (`00902438`) and divided by 6.283185 (`01CEBC78`)",
+   "anchors": [
+    [
+     "00235DF5",
+     "jns"
+    ],
+    [
+     "00235E08",
+     "movss"
+    ],
+    [
+     "00235E3E",
+     "call"
+    ],
+    [
+     "00235E46",
+     "call"
+    ],
+    [
+     "00235E53",
+     "divss"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing",
+ "family": ""
+}

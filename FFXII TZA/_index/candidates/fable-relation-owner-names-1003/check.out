@@ -1,0 +1,23 @@
+PASS  relationListHead             00512F30+0x23  movzx eax, byte ptr [r11 + 0xc]
+PASS  relationListHead             00512F30+0x160  cmp byte ptr [r11 + 0xc], 0xff
+PASS  relationListHead             00512F30+0x16B  mov byte ptr [r11 + 0xc], cl
+PASS  relationListHead             00512CD0+0x2D  mov byte ptr [rcx + 0xc], al
+PASS  relationListTail             00512F30+0x158  movzx ecx, byte ptr [r11 + 0xd]
+PASS  relationListTail             00512F30+0x16F  movzx ecx, byte ptr [r11 + 0xd]
+PASS  relationListTail             00512F30+0x191  mov byte ptr [r11 + 0xd], cl
+PASS  relationListTail             00512CD0+0x56  mov byte ptr [rcx + 0xd], al
+PASS  relationListCount            00512F30+0x10D  inc byte ptr [r11 + 0xe]
+PASS  relationListCount            00512CD0+0x97  dec byte ptr [r9 + 0xe]
+PASS  relationListCount            00512EE0+0xA  mov byte ptr [rcx + 0xe], 0
+PASS  relationListHead+Tail reset  00512EE0+0x4  mov word ptr [rcx + 0xc], 0xffff
+PASS  inlineRelationKindNibble     00512F30+0x1B9  and byte ptr [r11 + 0xf], 0xf3
+PASS  inlineRelationKindNibble     00512F30+0x1BE  or byte ptr [r11 + 0xf], 3
+PASS  inlineRelationKindNibble     00512F30+0x1E0  and byte ptr [r11 + 0xf], 0xf0
+PASS  inlineRelationKindNibble     00512F30+0x200  and byte ptr [r11 + 0xf], 0xf1
+PASS  inlineRelationKindNibble     00512F30+0x205  or byte ptr [r11 + 0xf], 1
+PASS  inlineRelationKindNibble     00512EE0+0x0  and byte ptr [rcx + 0xf], 0xf0
+PASS  high nibble of +0xF untouched by 00512F30's owner-block writes (0 offenders)
+PASS  control wrong instruction is rejected
+PASS  control moved site is rejected
+PASS  control wrong base register is rejected
+FAILS 0

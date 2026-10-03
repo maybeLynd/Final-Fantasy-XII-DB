@@ -531,3 +531,13 @@ leftover the engine ignores, it is an input the engine ~~consumes and then overw
 | function | size | what the body does | interior anchors |
 |---|---|---|---|
 | `00269530` | 105 B | for each of the four qwords at `0209A1F0` whose object has byte `+0x18` equal to 1, takes `q = 003587C0(byte +0x19 sign-extended, word +0x1A)` and calls `002693D0(q, 1)` when `q` is non-null and differs from that object | `0026954E`, `00269556`, `00269564`, `0026956E`, `0026957B` |
+
+## Homed bodies: functions reached only indirectly whose callees this page cites (FABLE, 2026-10-03, F homing)
+
+*No page cited these functions and none of their callers is documented: they are reached by table or pointer dispatch or through undocumented callers. Each one calls something this page documents, which the sentence names. Each sentence states what the body does (access and representation, not purpose); the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's F homing pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-section-010-homing-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `0034E220` | 49 B | calls `0034E220+0xC(r9)`; when it returns non-zero tail-jumps to `002E64E0` with `rcx` = the incoming `rdx`, otherwise tail-jumps to `002EBE50(incoming rdx, 0, 0)` | Interior anchor `0034E22C`; Interior anchor `0034E236`; Interior anchor `0034E23D`; Interior anchor `0034E24C` |
+| `003B7A30` | 117 B | when qword `02EBCC68` is non-null calls `002693D0(r, 1)` with r the result of the call at `003B7A30+0x12` on it; then for i from 0 while i is below dword `02EBCBC0` (signed, re-read after each call) does the same for each non-null qword at `02EBCAC0` + 8*i (call site `003B7A30+0x48`) | Interior anchor `003B7A40`; Interior anchor `003B7A4F`; Interior anchor `003B7A76`; Interior anchor `003B7A85`; Interior anchor `003B7A98` |
+| `003B7AB0` | 78 B | for i from 0 while i is below dword `02EBCAA0` (signed, re-read each pass) takes the qword at `02EBCA80` + 8*i, passes it to the call at `003B7AB0+0x23` and calls `002693D0(that result, 1)`; no null check | Interior anchor `003B7AB8`; Interior anchor `003B7AD3`; Interior anchor `003B7AE0`; Interior anchor `003B7AEB` |

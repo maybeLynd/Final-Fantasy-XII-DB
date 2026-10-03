@@ -1,0 +1,10 @@
+# optional-pointer offset-add dispatch adapters, 64-byte form (optptr-offsetadd-dispatch-64), one row per member, keyed on +0x18 lea - derived from the shipping image by fam_rows.py (kind operand_at)
+entry	anchor	mnemonic	value	name	callee
+005A0EC0	005A0ED8	lea	02CADD50	+0x14=0x8 +0x24=00684080	all
+005A13E0	005A13F8	lea	02CAECE0	+0x14=0x8 +0x24=00684080	all
+005A1A00	005A1A18	lea	02CAEEE0	+0x14=0x8 +0x24=00684080	all
+005A21B0	005A21C8	lea	02CAEFE0	+0x14=0x8 +0x24=00684080	all
+005A2470	005A2488	lea	02CAD140	+0x14=0x8 +0x24=00684090	all
+005A27F0	005A2808	lea	02CAEA60	+0x14=0x8 +0x24=00684080	all
+0062F9D0	0062F9E8	lea	02CF8580	+0x14=0x30 +0x24=00684080	all
+006CCE20	006CCE38	lea	02E5C050	+0x14=0x8 +0x24=00684090	all

@@ -8,7 +8,7 @@
  "rows": [
   {
    "fn": "00346780",
-   "text": "calls `00267E10(r9)` and `00267DB0(r9)`, scaling the float result by 0.5 (`01CEBB70`); takes pointer A = `00265060(rdx)` and pointer B = `00265060(00264010(the 00267E10 result))`; calls `00346780+0x65` with `rdx`, then `00346780+0x8B` with `xmm1` = the scaled float, `xmm2`/`xmm3` = floats A `+0`/A `+8` and stack arguments B `+0` (first) and B `+8` (second); tail-jumps to `00346780+0xB4` with the incoming `rcx` and that call's result in `edx`",
+   "text": "calls `00267E10(r9)` and `00267DB0(r9)`, scaling the float result by 0.5 (`01CEBB70`); takes pointer A = `00265060(rdx)` and pointer B = `00265060(00264010(the 00267E10 result))`; calls `00346780+0x65` with `rdx`, then `00346780+0x8B` ~~with `xmm1` = the scaled float~~ with `xmm0` = that call's float result, `xmm1` = the scaled float, `xmm2`/`xmm3` = floats A `+0`/A `+8` and stack arguments B `+0` (first) and B `+8` (second); tail-jumps to `00346780+0xB4` with the incoming `rcx` and that call's result in `edx` *(narrowed 2026-10-03, FABLE, on SWE2-AUDIT-SPEC's review: the angle call's first argument is `xmm0`, the `00265200` result, which `003A1BB0` uses)*",
    "anchors": [
     [
      "003467AB",
@@ -34,7 +34,7 @@
   },
   {
    "fn": "00346EF0",
-   "text": "calls `00267DB0(r9)` three times (results f1, f2, f3, with f3 scaled by 0.5 (`01CEBB70`)); takes pointer B = `00265060(rdx)`; calls `00346EF0+0x60` with `rdx`, then `00346EF0+0x7E` with `xmm1` = scaled f3, `xmm2`/`xmm3` = floats B `+0`/B `+8` and stack arguments f2 (first) and f1 (second); tail-jumps to `00346EF0+0xA7` with the incoming `rcx` and that call's result in `edx`",
+   "text": "calls `00267DB0(r9)` three times (results f1, f2, f3, with f3 scaled by 0.5 (`01CEBB70`)); takes pointer B = `00265060(rdx)`; calls `00346EF0+0x60` with `rdx`, then `00346EF0+0x7E` ~~with `xmm1` = scaled f3~~ with `xmm0` = that call's float result, `xmm1` = scaled f3, `xmm2`/`xmm3` = floats B `+0`/B `+8` and stack arguments f2 (first) and f1 (second); tail-jumps to `00346EF0+0xA7` with the incoming `rcx` and that call's result in `edx` *(narrowed 2026-10-03, FABLE, on SWE2-AUDIT-SPEC's review: the angle call's first argument is `xmm0`, the `00265200` result, which `003A1BB0` uses)*",
    "anchors": [
     [
      "00346F1B",
@@ -64,5 +64,37 @@
  "missing": [],
  "corrections": [],
  "mode": "homing",
- "family": ""
+ "family": "",
+ "narrowed": [
+  {
+   "fn": "00346780",
+   "by": "FABLE",
+   "on": "2026-10-03",
+   "record": "_index/candidates/fable-home-host-moves-b6-1003",
+   "review": "_index/candidates/auditspec-review-fable-battle-action-handler-table-homing-1003/REVIEW.md",
+   "struck": [
+    [
+     "with `xmm1` = the scaled float",
+     "with `xmm0` = that call's float result, `xmm1` = the scaled float"
+    ]
+   ],
+   "previous_text": "calls `00267E10(r9)` and `00267DB0(r9)`, scaling the float result by 0.5 (`01CEBB70`); takes pointer A = `00265060(rdx)` and pointer B = `00265060(00264010(the 00267E10 result))`; calls `00346780+0x65` with `rdx`, then `00346780+0x8B` with `xmm1` = the scaled float, `xmm2`/`xmm3` = floats A `+0`/A `+8` and stack arguments B `+0` (first) and B `+8` (second); tail-jumps to `00346780+0xB4` with the incoming `rcx` and that call's result in `edx`",
+   "plain": "calls `00267E10(r9)` and `00267DB0(r9)`, scaling the float result by 0.5 (`01CEBB70`); takes pointer A = `00265060(rdx)` and pointer B = `00265060(00264010(the 00267E10 result))`; calls `00346780+0x65` with `rdx`, then `00346780+0x8B` with `xmm0` = that call's float result, `xmm1` = the scaled float, `xmm2`/`xmm3` = floats A `+0`/A `+8` and stack arguments B `+0` (first) and B `+8` (second); tail-jumps to `00346780+0xB4` with the incoming `rcx` and that call's result in `edx`"
+  },
+  {
+   "fn": "00346EF0",
+   "by": "FABLE",
+   "on": "2026-10-03",
+   "record": "_index/candidates/fable-home-host-moves-b6-1003",
+   "review": "_index/candidates/auditspec-review-fable-battle-action-handler-table-homing-1003/REVIEW.md",
+   "struck": [
+    [
+     "with `xmm1` = scaled f3",
+     "with `xmm0` = that call's float result, `xmm1` = scaled f3"
+    ]
+   ],
+   "previous_text": "calls `00267DB0(r9)` three times (results f1, f2, f3, with f3 scaled by 0.5 (`01CEBB70`)); takes pointer B = `00265060(rdx)`; calls `00346EF0+0x60` with `rdx`, then `00346EF0+0x7E` with `xmm1` = scaled f3, `xmm2`/`xmm3` = floats B `+0`/B `+8` and stack arguments f2 (first) and f1 (second); tail-jumps to `00346EF0+0xA7` with the incoming `rcx` and that call's result in `edx`",
+   "plain": "calls `00267DB0(r9)` three times (results f1, f2, f3, with f3 scaled by 0.5 (`01CEBB70`)); takes pointer B = `00265060(rdx)`; calls `00346EF0+0x60` with `rdx`, then `00346EF0+0x7E` with `xmm0` = that call's float result, `xmm1` = scaled f3, `xmm2`/`xmm3` = floats B `+0`/B `+8` and stack arguments f2 (first) and f1 (second); tail-jumps to `00346EF0+0xA7` with the incoming `rcx` and that call's result in `edx`"
+  }
+ ]
 }

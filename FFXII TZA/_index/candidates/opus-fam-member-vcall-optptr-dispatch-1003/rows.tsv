@@ -1,0 +1,14 @@
+# member-vcall optional-pointer dispatch adapters (member-vcall-optptr-dispatch), one row per member, keyed on +0x13 call + +0x2B lea - derived from the shipping image by fam_rows.py (kind operand_at)
+entry	anchor	mnemonic	value	name	callee
+005FFA10	005FFA23	call	005F86B0+02CB7080	-	all
+005FFA90	005FFAA3	call	005F86B0+02E404B0	-	all
+00678F10	00678F23	call	00678CB0+02E404B0	-	all
+006A12B0	006A12C3	call	0069D650+02E404B0	-	all
+006A8D10	006A8D23	call	006A8B60+02E404B0	-	all
+006AB090	006AB0A3	call	006AAF00+02E4EAF0	-	all
+006AC4F0	006AC503	call	006AC1D0+02E404B0	-	all
+006BFD60	006BFD73	call	006BFB10+02E404B0	-	all
+006C7500	006C7513	call	006C70E0+02E404B0	-	all
+006C8650	006C8663	call	006C8520+02E404B0	-	all
+0079A9D0	0079A9E3	call	00796960+02EA9400	-	all
+0079AA50	0079AA63	call	00796960+02CF8A80	-	all

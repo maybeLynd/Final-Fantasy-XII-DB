@@ -468,7 +468,10 @@ def apply(rec, allow):
     R = "Database/FFXII TZA/_index/candidates/%s/" % rec
     spec = {"id": "OPUS-PUB-%s" % tag, "title": title, "msg": "Tools/work/OPUS/" + msgf,
             "gate": "(cd 'FFXII TZA/_index/candidates/%s' && python -B interior_applier.py | tail -1 | grep -qx 'FAILS 0') && echo CINT-OK || echo GATE-FAIL cint" % rec,
-            "paths": ["Database/FFXII TZA/" + page, R + "README.md", R + "rows.json", R + "interior_applier.py", R + "interior_applier.out"],
+            "paths": ["Database/FFXII TZA/" + page] + [R + f for f in sorted(os.listdir(rdir))
+                      # every file in the record (2026-10-03: a scoped record's checker files were left out and its
+                      # README links broke 1003AP)
+                      if f != "__pycache__" and not f.endswith(".opus-tmp") and f != "WITHDRAWN.md"],
             "requests": [{"id": "OPUS-REQ-AUDITSPEC-%s" % tag, "to": "SWE2-AUDIT-SPEC", "target": "_index/candidates/%s/" % rec,
                           "scope": "review", "priority": "P2",
                           "question": ("At {commit}: %d UC-1 game-code rows on %s under FABLE's route ruling (fable-uc1-gamecode-route-ruling-1003, test 2 SPEC review). Drafted by a non-OPUS agent, re-read by OPUS. Please check at least 15 rows against the bytes, including each row's entry statement (test 1) and the series-break phrase (test 3)." % (n, page)) if cfg.get("mode") == "uc1" else

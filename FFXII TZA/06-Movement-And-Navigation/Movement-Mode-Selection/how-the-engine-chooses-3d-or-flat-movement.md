@@ -718,7 +718,6 @@ Shared callees outside the census: `0025A5F0`, `0036D840`, `003588B0`,
 
 | function | size | entered from | what the body does | interior anchors |
 |---|---|---|---|---|
-| `001AD670` | 101 B | `0017F5B0` + 0x23 | stores `dl` to byte `+0x244` of `rcx`; then, for index `ebx` from 0 while `ebx` is below (signed) dword `+0x20` of the object returned by `001AD670` + 0xE (re-fetched each pass at + 0x50), computes a flag that is 1 when byte `+0x1C` of the result of `001AD670` + 0x20 is non-zero, calls `001AD670` + 0x3C with the object from `001AD670` + 0x2F, that flag and the index, and when this returns non-null passes the result to `001AD670` + 0x49; a count of 0 or less skips the loop | Interior anchor `001AD676`; Interior anchor `001AD686`; Interior anchor `001AD69B`; Interior anchor `001AD6AC`; Interior anchor `001AD6B9` |
 | `00358420` | 38 B | `00262870` + 0x1C | calls `00358420` + 0xB with (`ecx` 0, `edx` 1), then the same callee at `00358420` + 0x15 with (`ecx` 1, `edx` 0), then stores byte 0 to `022C7F99` | Interior anchor `0035842B`; Interior anchor `00358435`; Interior anchor `0035843A` |
 | `003631A0` | 13 B | `00262870` + 0x17 | stores `cl` to byte `022CBA91` and `edx` to dword `022CBA84` | Interior anchor `003631A6` |
 | `00363B20` | 17 B | `00262870` + 0xE | stores `ecx` to dword `022CBB30` when `ecx` is greater than 0 (signed), else stores `0xB4` (180) | Interior anchor `00363B22`; Interior anchor `00363B27`; Interior anchor `00363B2A` |

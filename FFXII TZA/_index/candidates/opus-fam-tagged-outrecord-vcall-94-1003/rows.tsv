@@ -1,0 +1,10 @@
+# tagged out-record member vcall adapters, 94-byte form (tagged-outrecord-vcall-94), one row per member, keyed on +0x26 lea - derived from the shipping image by fam_rows.py (kind operand_at)
+entry	anchor	mnemonic	value	name	callee
+005CC300	005CC326	lea	02E4D630	-	all
+00610B50	00610B76	lea	02D3A440	-	all
+00610BB0	00610BD6	lea	02D3A640	-	all
+00610CA0	00610CC6	lea	02CB7080	-	all
+006A68F0	006A6916	lea	02E518D0	-	all
+006A9360	006A9386	lea	02E404B0	-	all
+006AB210	006AB236	lea	02CF8470	-	all
+006AB270	006AB296	lea	02E4EAF0	-	all

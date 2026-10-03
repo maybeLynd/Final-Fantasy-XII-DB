@@ -1,0 +1,142 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/Prefetch-And-Json-Data/ta-texture-animation-lists.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01SRPAB4nYztytvoFuWnwY9e",
+ "report": [
+  "fable-ta-texture-animation-lists.json"
+ ],
+ "rows": [
+  {
+   "fn": "0019D420",
+   "text": "returns at once when `edx` is 0; otherwise, for `edx` destination records of stride 0x130 starting at `rcx`, skips a null destination and else copies 0x100 bytes from `r8` to it, calls `0019D8D0(dest+0x100, r8+0x100)` and copies qword `+0x120` and byte `+0x128` from `r8`; the same source `r8` is used for every record",
+   "anchors": [
+    [
+     "0019D422",
+     "je"
+    ],
+    [
+     "0019D473",
+     "movups"
+    ],
+    [
+     "0019D4D0",
+     "call"
+    ],
+    [
+     "0019D4DC",
+     "mov"
+    ],
+    [
+     "0019D4FA",
+     "jne"
+    ]
+   ]
+  },
+  {
+   "fn": "0019D970",
+   "text": "copies 0x100 bytes from `rdx` to `rcx` in two 0x80-byte passes, calls `0019D8D0(rcx+0x100, rdx+0x100)`, copies qword `+0x120` and byte `+0x128` from `rdx` to `rcx` and returns `rcx`",
+   "anchors": [
+    [
+     "0019D9A1",
+     "movups"
+    ],
+    [
+     "0019D9E9",
+     "jne"
+    ],
+    [
+     "0019D9F9",
+     "call"
+    ],
+    [
+     "0019DA05",
+     "mov"
+    ],
+    [
+     "0019DA19",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "001AAE70",
+   "text": "calls `001AB350(rcx, qword [rcx], qword [rcx+8])`, then when qword `[rcx]` is non-null releases it through virtual slot `+0x18` of the object at `rcx+0x18` with size ((qword `+0x10` minus qword `+0`) / 0x30, signed) * 0x30",
+   "anchors": [
+    [
+     "001AAE89",
+     "call"
+    ],
+    [
+     "001AAE92",
+     "test"
+    ],
+    [
+     "001AAEA5",
+     "movabs"
+    ],
+    [
+     "001AAECB",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "001AD0C0",
+   "text": "when qword `rcx+8` is below qword `rcx+0x10` (unsigned), advances qword `rcx+8` by 0x30 and, if the old value is non-null, copies dword `[rdx]` and word `rdx+4` into it, calls `0019D8D0(old+8, rdx+8)` and copies byte `rdx+0x28` to `old+0x28`; otherwise calls `001AB8A0(rcx, qword rcx+8, rdx)`",
+   "anchors": [
+    [
+     "001AD0DB",
+     "cmp"
+    ],
+    [
+     "001AD0EA",
+     "mov"
+    ],
+    [
+     "001AD10C",
+     "call"
+    ],
+    [
+     "001AD115",
+     "mov"
+    ],
+    [
+     "001AD120",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "001B6A70",
+   "text": "walks the list from qword `rcx+0x80` until it reaches `rcx+0x78`, calling for each node `00185A90(00189120(), the address loaded at 001B6AA0, node qword +0x20)` and stepping with `0016D6D0(node)`; then walks the chain from qword `rcx+0x88` (next at `+8`) calling `00220390(rcx+0x70, link qword +0)` and releasing each link through virtual slot `+0x18` of the object at `rcx+0xa0` with size 0x28; finally points qwords `rcx+0x80` and `rcx+0x78` at `rcx+0x78`, zeroes qword `+0x88`, byte `+0x90` and dword `+0x98`, and returns 1 when dword `+0x60` is 0, else 0",
+   "anchors": [
+    [
+     "001B6AAA",
+     "call"
+    ],
+    [
+     "001B6AB2",
+     "call"
+    ],
+    [
+     "001B6AD7",
+     "call"
+    ],
+    [
+     "001B6B15",
+     "mov"
+    ],
+    [
+     "001B6B3C",
+     "sete"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing",
+ "family": ""
+}

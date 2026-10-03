@@ -1,0 +1,9 @@
+members 16, committed rows 15, declared exclusions 1
+control swapped-value: refused (2 failure(s) from the comparison)
+control moved-anchor: refused (1 failure(s) from the comparison)
+control swapped-field +0x20: refused (1 failure(s) from the comparison)
+known answer 005847A0: anchor 005847B4 references 02CA9FA0 in its raw bytes = committed value
+skips: 1 re-verified (still derive)
+key unique: 16 member value(s), 0 shared
+page citations: 15 of 15 anchors cited in their member's row
+FAILS 0

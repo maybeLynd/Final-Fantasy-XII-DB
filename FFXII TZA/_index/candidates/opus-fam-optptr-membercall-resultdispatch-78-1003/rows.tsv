@@ -1,0 +1,8 @@
+# optional-pointer member-call result-dispatch adapters, 78-byte form (optptr-membercall-resultdispatch-78), one row per member, keyed on +0x10 call - derived from the shipping image by fam_rows.py (kind operand_at)
+entry	anchor	mnemonic	value	name	callee
+005A0B80	005A0B90	call	005A02D0	-	all
+00626DC0	00626DD0	call	00613800	-	all
+00626E10	00626E20	call	00613A30	-	all
+00626E60	00626E70	call	00613E80	-	all
+00626EB0	00626EC0	call	006143B0	-	all
+00626F00	00626F10	call	00614640	-	all

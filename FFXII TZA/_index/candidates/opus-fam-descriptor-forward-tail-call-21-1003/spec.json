@@ -1,0 +1,28 @@
+{
+ "page": "22-Middleware-PhyreEngine/Script-Object-Accessors/phyre-script-object-accessors.md",
+ "members": "22-Middleware-PhyreEngine/Script-Object-Accessors/members/nativeadapter-descriptorforwardtailcall.tsv",
+ "kind": "operand_at",
+ "group": "all",
+ "title": "descriptor-forward tail-call adapters, 21-byte form (descriptor-forward-tail-call-21), one row per member, keyed on +0x9 lea",
+ "package": "_index/candidates/opus-member-descriptor-forward-tail-call-adapters-21-byte-form-1-r9",
+ "key": [
+  [
+   "0x9",
+   "lea",
+   "rip"
+  ]
+ ],
+ "fields": [],
+ "skip": {
+  "00584D30": "not in the r9 member pack, which held only frontier members; cited on 22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md, so no row on this page (it still derives: check re-verifies)"
+ },
+ "apply": "never: the page already carries the member rows (package opus-member-descriptor-forward-tail-call-adapters-21-byte-form-1-r9); progress.py reads only page, rows.tsv entry and anchor",
+ "size": 21,
+ "form": [
+  "mov rax, r8",
+  "mov rcx, rdx",
+  "mov rdx, rax",
+  "lea r8, [#]",
+  "jmp 00684080"
+ ]
+}

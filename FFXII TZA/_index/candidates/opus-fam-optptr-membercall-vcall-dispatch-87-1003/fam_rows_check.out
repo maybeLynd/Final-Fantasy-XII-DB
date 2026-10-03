@@ -1,0 +1,8 @@
+members 7, committed rows 7, declared exclusions 0
+control swapped-field: n/a (no non-key field varies between members)
+control swapped-value: refused (2 failure(s) from the comparison)
+control moved-anchor: refused (1 failure(s) from the comparison)
+known answer 005C1C10: anchor 005C1C23 references 005BCAC0 in its raw bytes = committed value
+key unique: 7 member value(s), 0 shared
+page citations: 7 of 7 anchors cited in their member's row
+FAILS 0

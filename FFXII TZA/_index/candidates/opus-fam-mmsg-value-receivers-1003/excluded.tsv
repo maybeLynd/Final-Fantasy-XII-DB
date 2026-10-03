@@ -1,0 +1,6 @@
+# members without a row. 'skip: ...' = derives, declared skipped in spec.json (check re-verifies that it still derives and, with skip_caller, that the caller still calls it); otherwise refused by the image for this family's per-member form (check verifies each is still refused)
+entry	reason
+002F7660	body size 17, the family form is 20 bytes
+002F7680	skip: not in the r9 member pack, which held only frontier members; cited on 10-Status-Periodic-Terminal/the-thirty-two-statuses.md, so no row on this page (it still derives: check re-verifies)
+002F7800	skip: not in the r9 member pack, which held only frontier members; cited on 10-Status-Periodic-Terminal/the-thirty-two-statuses.md, so no row on this page (it still derives: check re-verifies)
+002F79C0	skip: not in the r9 member pack, which held only frontier members; cited on 10-Status-Periodic-Terminal/the-thirty-two-statuses.md, so no row on this page (it still derives: check re-verifies)

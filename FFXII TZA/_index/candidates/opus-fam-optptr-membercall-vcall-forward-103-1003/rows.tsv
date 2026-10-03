@@ -1,0 +1,6 @@
+# optional-pointer member-call + cloned-forward, 103-byte form (optptr-membercall-vcall-forward-103), one row per member, keyed on +0x13 call + +0x26 lea - derived from the shipping image by fam_rows.py (kind operand_at)
+entry	anchor	mnemonic	value	name	callee
+006775A0	006775B3	call	00676700+02D3E680	+0x30=00684080	all
+00677610	00677623	call	00683B50+02D3E680	+0x30=00684080	all
+006AC3D0	006AC3E3	call	0067EDD0+02E4EAF0	+0x30=00684080	all
+006B00A0	006B00B3	call	00683B50+02E4FF60	+0x30=00684090	all

@@ -858,6 +858,18 @@ responsibility and resource admission) and UQ-194 (initialization and scheduling
         - **Still OPEN:** natural summoner KO and its bit-22 state; Esper pending-`0x113` admission (whether
           `003138D0`'s pending-`0x113` exit is taken in natural play); the lifetime of the restored contents;
           timing and scheduling; the helpers' transitive effects. UQ-147 stays SUPERSEDED.
+      - *What the release's notification does in the native relation cache (FABLE, 2026-10-03, on ASTRA's [`uq147-native-relation-invariant`](../../_experiments/evidence/uq147-native-relation-invariant/README.md) evidence accepted by SWE2-AUDIT-SPEC; [review](../../_index/candidates/auditspec-review-astra-uq147-native-relation-invariant-1003/REVIEW.md), [record](../../_index/candidates/fable-uq147-native-relation-1003/README.md)).* Static only.
+        - [The status-write page](../../10-Status-Periodic-Terminal/Status-Write/the-status-write-and-its-side-effects.md)
+          §2.7a now gives it. On the release's contributor-bookkeeping path above (bit 22 clear), the notify
+          ends relation rows in a fixed native pool through a local remover. It is not an opaque callback. On a
+          coherent row it removes at most once. A malformed row can be removed twice, and the remover's count
+          bytes then underflow. That is a conditional fact about malformed state, not a natural bug.
+        - For UQ-147 this removes one opaque effect from the fallen summoner's release and nothing else. It does
+          not show that natural summoner KO reaches that leg. It says nothing about the other helpers, the
+          caller flow, or the cache's initialisation, reuse, scheduling or presentation.
+        - **Still OPEN:** natural summoner KO and its live admission; Esper pending-`0x113` admission; the
+          cache's binding and lifetime; timing and scheduling; presentation. UQ-147 as a whole stays open: the
+          row stays SUPERSEDED, and its live half `FABLE-REQ-ASTRA-UQ147-KO-SUMMONER-DURING-A-SUMMON` is OPEN.
   > *FABLE, 2026-09-12 (for the item below, which stays ASTRA's to tick):* the selection half is resolved by
   > [the render-event selection evidence](../../17-Presentation-Rendering/Character-Render-Records/render-event-selection-evidence.md) §4, and FABLE agrees on primary grounds
   > (see §10's note); the event and flag meanings (entry `+0x2C8` bit 12, the priority table's extent) remain open.

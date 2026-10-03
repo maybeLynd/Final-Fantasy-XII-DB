@@ -1,0 +1,3 @@
+VERIFY 3 functions, 11 anchors, 3 references, page 24-Compiler-And-CRT-Runtime/Static-Initialization-And-Lifetime/static-initialization-order-and-injection-timing.md (LF)
+DRY (verified; --apply appends 3 rows)
+FAILS 0

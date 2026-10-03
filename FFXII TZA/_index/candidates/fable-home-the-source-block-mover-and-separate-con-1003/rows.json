@@ -46,5 +46,61 @@
  "rejected": [],
  "skipped": {},
  "missing": [],
- "corrections": []
+ "corrections": [],
+ "moved": [
+  {
+   "fn": "00420860",
+   "entered_from": "`00427DE0` + 0xD7",
+   "text": "calls the site `00420860` + 0x19 with `rcx+0x210`, `rdx`, `r8` and `r9` passed through, and 1.0 (`01CEBBA8`) as the fifth (stack) argument, then returns",
+   "anchors": [
+    [
+     "00420864",
+     "movss"
+    ],
+    [
+     "0042086C",
+     "add"
+    ],
+    [
+     "00420873",
+     "movss"
+    ],
+    [
+     "00420879",
+     "call"
+    ]
+   ],
+   "moved_to": "17-Presentation-Rendering/Character-Render-Records/the-character-render-record-array.md",
+   "moved_by": "FABLE",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/fable-home-host-moves-b6-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-the-source-block-mover-and-separate-con-1003/REVIEW.md",
+   "moved_text": "calls the site `00420860` + 0x19 with `rcx+0x210`, the floats `xmm1`, `xmm2` and `xmm3` passed through, and 1.0 (`01CEBBA8`) as the fifth (stack) argument, then returns",
+   "text_edit": {
+    "why": "the source-block-mover review, Repair 3: the callee `006C0520` reads `xmm1`-`xmm3`, never `rdx`, `r8` or `r9`",
+    "removed": "`rdx`, `r8` and `r9` passed through",
+    "kept": "the floats `xmm1`, `xmm2` and `xmm3` passed through"
+   }
+  },
+  {
+   "fn": "004209F0",
+   "entered_from": "`00427DE0` + 0xA2",
+   "text": "ORs 0x200 into dword `rcx+0x284`, then tail-jumps at the site `004209F0` + 0x11 with `rcx+0x180` and the other registers unchanged",
+   "anchors": [
+    [
+     "004209FA",
+     "add"
+    ],
+    [
+     "00420A01",
+     "jmp"
+    ]
+   ],
+   "moved_to": "17-Presentation-Rendering/Character-Render-Records/the-character-render-record-array.md",
+   "moved_by": "FABLE",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/fable-home-host-moves-b6-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-the-source-block-mover-and-separate-con-1003/REVIEW.md"
+  }
+ ]
 }

@@ -1,0 +1,164 @@
+{
+ "page": "16-UI/Config-Screen/the-config-screen-and-what-a-setting-change-runs.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01GN6iTDBmJu6H6spinV3LPm",
+ "report": [
+  "fable-the-config-screen-and-what-a-setting-change-runs.json"
+ ],
+ "rows": [
+  {
+   "fn": "003CAED0",
+   "text": "makes the call at `003CAED0+0x2D` with (0, a stack buffer); when dword `rcx+0x1d0` (n) is non-zero and the buffer's dword `+0x14` is below n (unsigned), it stores that buffer dword to `rcx+0x1d0`, first resetting record R = `rcx+0xc0` + (n-1)*`0x58` unless bit 1 of R's dword `+0x48` is set (ORs `0xe` into it, calls `002726C0(R, 0x80, 0, -0x80, 0x5c, 0xd9)`, `002727C0(R, 0x20)`, `002726C0(R+0x20, 0x80, 0x80, -0x80, 0x5c, 0xd9)`, writes dwords `0xbf0`, `0xff0`, `0xbf0` at R `+0x28`, `+0x2c`, `+0x30`, calls `002727C0(R+0x20, 0x10)` and zeroes words `+0x14`, `+0x34`); then for each of the 3 records S at `rcx+0xc0`, stride `0x58`, whose dword `+0x48` has bits 0 and 1 set: with bit 2, clears it when the call at `003CAED0+0x118` on S returns 1, else writes `00271960(S, word S+0x14)` to bytes `+0x2b`, `+0x2f`, `+0x33`, `+0x37` of qword `S+0x40`; with bit 3, clears it when the call at `003CAED0+0x15E` on S+0x20 returns 1, else writes `00271960(S+0x20, word S+0x34)` to bytes `+0x28` to `+0x36` except `+0x2b`, `+0x2f`, `+0x33`; when neither bit is left, clears bit 0 of that object's dword `+8` and of S's dword `+0x48`",
+   "anchors": [
+    [
+     "003CAF18",
+     "jae"
+    ],
+    [
+     "003CAF5F",
+     "call"
+    ],
+    [
+     "003CAFD8",
+     "cmp"
+    ],
+    [
+     "003CB01A",
+     "mov"
+    ],
+    [
+     "003CB080",
+     "and"
+    ]
+   ]
+  },
+  {
+   "fn": "00408830",
+   "text": "reads qword `02B62D80`; when it is null tail-jumps to `004073B0(0, ecx)`; when it is non-null and bit 1 of its byte `+0xc8` is set returns without calling; otherwise tail-jumps to `004073B0(qword +0xc0 of it, ecx)`",
+   "anchors": [
+    [
+     "0040883C",
+     "je"
+    ],
+    [
+     "0040883E",
+     "test"
+    ],
+    [
+     "0040884C",
+     "mov"
+    ],
+    [
+     "00408853",
+     "jmp"
+    ],
+    [
+     "0040885A",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00512140",
+   "text": "when the call at `00512140+0x04` returns 0 tail-jumps to `00295D80` without setting up any argument; otherwise returns with that non-zero value in `eax`",
+   "anchors": [
+    [
+     "00512144",
+     "call"
+    ],
+    [
+     "0051214B",
+     "jne"
+    ],
+    [
+     "00512151",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "0056CBC0",
+   "text": "when qword `rcx+0xc8` is null, clears bit 0 of dword `+8` in the objects at qwords `+0`, `+8`, `+0x10`, `+0x18` of qword `rdx+0x10` and returns 1; otherwise takes E = that pointer + `r9d`*`0x20` and flags F with bits 0-1 of dword `rcx+0xe4` and bit 2 set only when bit 1 is and, for q = qword `rcx+0xc0`, (word `q+0xf2` + word `q+0xf4`) * byte `q+0xec` + signed bytes `q+0xee` and `q+0xed` equals `r9d`; calls `00253690` (no argument set up) for v, then `00392FC0(rdx, s)` where s is 2 when F has bit 1 but not bit 2 and 0 when it has both; when F lacks bit 1 but has bit 0, s is 1 when dword `E+0x10` is `0x80000000` or more (unsigned) or word `E+0xc` is 0 and 0 otherwise; when F has neither, s is 1 when dword `E+0x10` without bit 31 is above v (unsigned), and 0 otherwise; makes the call at `0056CBC0+0x10D` with (E, `rdx`, `00D23568`); when F bit 0 is clear, sets bit 0 of dword `+8` of the object at qword `+0x18` of qword `rdx+0x10` to F bit 2; returns 1",
+   "anchors": [
+    [
+     "0056CBD5",
+     "je"
+    ],
+    [
+     "0056CC50",
+     "cmp"
+    ],
+    [
+     "0056CC5C",
+     "call"
+    ],
+    [
+     "0056CCBB",
+     "call"
+    ],
+    [
+     "0056CCF9",
+     "or"
+    ]
+   ]
+  },
+  {
+   "fn": "0056CD50",
+   "text": "when qword `rcx+0xc8` is null, clears bit 0 of dword `+8` in the objects at qwords `+0`, `+8`, `+0x10`, `+0x20`, `+0x28` of qword `rdx+0x10` and returns 1; otherwise takes E = that pointer + `r9d`*`0x20` and flags F with bits 0-1 of dword `rcx+0xe4` and bit 2 set only when bit 1 is and, for q = qword `rcx+0xc0`, (word `q+0xf2` + word `q+0xf4`) * byte `q+0xec` + signed bytes `q+0xee` and `q+0xed` equals `r9d`; calls `00253690` (no argument set up) for v, then `00392FC0(rdx, s)` where s is 2 when F has bit 1 but not bit 2 and 0 when it has both; when F lacks bit 1 but has bit 0, s is 1 when dword `E+0x10` is `0x80000000` or more (unsigned) or word `E+0xc` is 0 and 0 otherwise; when F has neither, s is 1 when word `E+0xe` is non-zero or dword `E+0x10` without bit 31 is above v (unsigned), and 0 otherwise; makes the call at `0056CD50+0x11C` with (E, `rdx`, `00D23550`); when F bit 0 is clear, sets bit 0 of dword `+8` of the object at qword `+0x20` of qword `rdx+0x10` to (word `E+0xe` non-zero) and of the one at qword `+0x28` to F bit 2; returns 1",
+   "anchors": [
+    [
+     "0056CD68",
+     "je"
+    ],
+    [
+     "0056CDDA",
+     "cmp"
+    ],
+    [
+     "0056CE34",
+     "cmovae"
+    ],
+    [
+     "0056CE5A",
+     "call"
+    ],
+    [
+     "0056CE93",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0056D1B0",
+   "text": "when qword `rcx+0xc8` is null, clears bit 0 of dword `+8` in the objects at qwords `+0`, `+8`, `+0x10`, `+0x18`, `+0x20` of qword `rdx+0x10` and returns 1; otherwise takes E = that pointer + `r9d`*`0x20` and flags F with bits 0-1 of dword `rcx+0xe4` and bit 2 set only when bit 1 is and, for q = qword `rcx+0xc0`, (word `q+0xf2` + word `q+0xf4`) * byte `q+0xec` + signed bytes `q+0xee` and `q+0xed` equals `r9d`; calls `00253690` (no argument set up) for v, then `00392FC0(rdx, s)` where s is 2 when F has bit 1 but not bit 2 and 0 when it has both; when F lacks bit 1 but has bit 0, s is 1 when dword `E+0x10` is `0x80000000` or more (unsigned) or word `E+0xc` is 0 and 0 otherwise; when F has neither, s is 1 when word `E+0xe` is non-zero or dword `E+0x10` without bit 31 is above v (unsigned), and 0 otherwise; makes the call at `0056D1B0+0x11C` with (E, `rdx`, `00D23538`); when F bit 0 is clear, sets bit 0 of dword `+8` of the object at qword `+0x18` of qword `rdx+0x10` to (word `E+0xe` non-zero) and of the one at qword `+0x20` to F bit 2; returns 1",
+   "anchors": [
+    [
+     "0056D1C8",
+     "je"
+    ],
+    [
+     "0056D23A",
+     "cmp"
+    ],
+    [
+     "0056D294",
+     "cmovae"
+    ],
+    [
+     "0056D2BA",
+     "call"
+    ],
+    [
+     "0056D2F3",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing",
+ "family": ""
+}

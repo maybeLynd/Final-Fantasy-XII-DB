@@ -1,0 +1,117 @@
+## 8a. Language code to id — `0017E270`, and where the id goes (FABLE, 2026-10-03)
+
+*Added by FABLE on SWE2-AUDIT-SPEC's L2-expansion item 3 (S-44, SCOPE-SHORT narrow): the locale page's §3 and §6
+mechanism ([language selection and locale ids](../Language-And-Locale/language-selection-and-locale-ids.md)) was stated
+on that page and in no contract. §8 above maps the OS LANGID to `setting[0]`; this section maps `setting[0]` to the
+internal language id and follows the id to every call site that receives it. §4's invariants carry no ids, so the
+`LC-` ids here are new and local to this section. Every LC row marked "executed" is run by
+[`check_s44.py`](../../_index/candidates/fable-l2exp-s44-mech-1003/check_s44.py) (original code under unicorn 2.1.4).*
+
+**Interface.**
+
+| operation | entry | conv | signature | returns |
+|---|---|---|---|---|
+| language code to id | `0017E270` (407 B, **no `.pdata` entry**) | MS x64 | `()`; no argument | `eax` = id, one of 1, 2, 3, 4, 5, 7, 8, 10, 11 |
+
+**What it reads and writes.**
+- It reads the singleton pointer `0x01F82D20` (`0017E270`) with **no null test**, then `setting[0]` (`+0x00`) as a
+  sign-extended dword (`0017E27E`). It uses that value **unbounded** as an index into the 10-entry `char*` table
+  `0x01DF0030` (`0017E277` `lea`, `0017E281`). It then compares three bytes of the selected string (two letters and the
+  terminator) against the nine literals `0x008C5904 + 4k`, k = 0..8 (`jp` .. `cn`), in table order. That is 27 byte
+  compares, `0017E288`–`0017E3E8`.
+- **It writes nothing.** The body has no store and no call, and ends at `0017E406` `ret`. The id is therefore a pure
+  function of `setting[0]` at the moment of the call. Nothing inside `0017E270` caches it.
+- The raw reference index finds **one instruction image-wide** that references the table, `0017E277`, and no pointer
+  constant to it.
+
+**The mapping (LC-1, LC-2; executed over all ten table indices).**
+
+| `setting[0]` | code | id |
+|---:|---|---:|
+| 0 | `jp` | **10** |
+| 1 | `en` | 1 |
+| 2 | `fr` | 2 |
+| 3 | `de` | 3 |
+| 4 | `it` | 4 |
+| 5 | `es` | 5 |
+| 6 | `kr` | **7** |
+| 7 | `ch` | **8** |
+| 8 | `cn` | **11** |
+| 9 | `none` | **10** |
+
+**Where the id goes.** The raw index (E8/E9 rel32, 0F 8x rel32, EB/7x rel8, rip-relative, `[reg+RVA]`, pointer
+constants) gives **exactly five references to `0017E270`, all `call`s**, and each consumes `eax` at once:
+
+| call site | function | what it does with the id |
+|---|---|---|
+| `0022A0C6` | `0022A0B0` (startup) | stores it to **`0x01E02814`** (`0022A0CB`). That is the only writer of the cell. The same function re-reads the cell twice. At `0022A146` the id becomes `ecx` of `ResourcePath_Init` `002DF9A0` (`0022A159`; [file-size tables](../../02-Resource-And-Asset-Pipeline/Loose-Files-And-Size-Tables/file-size-tables-fst.md) §7b). At `0022A172` it becomes `ecx` of `00862BD0` (`0022A178`), which passes it in `edx` to `001D68F0`, with `rcx` set to `001D69F0()`. Neither callee body is read here. Two other functions read the cell: the cell's getter (`return [01E02814]`, named by role here, its entry is in the package README; 36 `call` sites in 17 functions by the raw index) and the predicate `00229E50` (LC-5). |
+| `001D9640` | `001D9400`, the FileCache constructor ([the settings page](game-settings-ini-and-runtime-config.md), FileCache neighbours) | `cmp eax, 0xB` / `ja 001D9734` (`001D9645`, `001D9648`) and a 12-entry image-base-relative jump table that follows the body. It writes a two-letter code and its NUL to the new object's `+0x1B8`..`+0x1BA` (`r12` = the object, `001D95CF`; stores `001D966A`…`001D974B`). LC-3 |
+| `00287919`, `00287C5A`, `002B5CD0` | one function per site (the three entries are in the package's `check_s44.py`, which reads each site) | `mov ecx, eax` (`0028791E`, `00287C5F`, `002B5CD5`), then `call 00285F60`. These are **the only three call sites of `00285F60`**. LC-4 |
+
+**Invariants.**
+- **LC-1 (executed).** `0017E270` returns the table above. The ids 0, 6, 9 and anything above 11 are **never
+  produced**. `jp` is 10, not 0. The two Chinese variants are 8 (`ch`) and 11 (`cn`).
+- **LC-2 (executed).** **The match is by value, over three bytes, case-sensitive, and every non-match returns 10.**
+  - A code in a fresh buffer still matches: `en` gives 1 and `cn` gives 11.
+  - These all give 10: `en` followed by `0x01` (the terminator byte is compared), `EN`, the empty string, `us` and
+    `cnx`.
+  - **So `none` (index 9) and every unknown code behave exactly like `jp`.**
+  - The `cn` arm and the default arm are branchless: `0017E3F0` yields 11, and `0017E3FA` yields 10 on every flag
+    state.
+- **LC-3 (executed, ids 0..15).** The FileCache constructor inverts the id back to a two-letter code. The default is
+  `us` (`0x009005E0`):
+
+  | id | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 and above |
+  |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+  | `+0x1B8` | `jp` | **`us`** | `fr` | `de` | `it` | `es` | `us` | `kr` | `ch` | `us` | `jp` | `cn` | `us` |
+
+  - The constructor writes exactly three bytes. `+0x1BB` is not touched.
+  - **Code → id → code returns the input for eight of the nine languages. `en` comes back as `us`.**
+  - Negative ids take the same unsigned `ja` to `us`. That case is static only: ids 0..15 were executed.
+- **LC-4 (executed, ids 0..15).** `00285F60` folds the language id:
+
+  | id | 2 (`fr`) | 3 (`de`) | 4 (`it`) | 5 (`es`) | 7 (`kr`) | 8 (`ch`) | 11 (`cn`) | every other id |
+  |---|---|---|---|---|---|---|---|---|
+  | result | 6 | 5 | 4 | 3 | 0 | 2 | 1 | **9** |
+
+  - "Every other id" includes `en` (1) and `jp` (10). The entry loads `edx = 9` (`00285F60`), and the `ja` at
+    `00285F6A` returns it unchanged.
+  - The fold's input is always `0017E270`'s return, because all three of its call sites pass it straight through.
+- **LC-5 (executed, ids 0..15).** `00229E50` reads the cache `0x01E02814`. It returns **0 exactly for ids 0, 7, 8, 10
+  and 11**, the `bt` mask `0xD81` (`00229E5B`, `00229E60`), and 1 for every other id. Ids above 11 take the `ja` at
+  `00229E59`. Of the produced ids, `kr`, `ch`, `jp` and `cn` give 0, and so do `none` and every unknown code (through 10).
+- **LC-6 (static).** **Two timings read one setting.**
+  - The cache `0x01E02814` is written once, by `0022A0B0` at `0022A0CB`. The getter, the predicate
+    `00229E50` and the two re-reads in `0022A0B0` see that value.
+  - The other four call sites re-evaluate `setting[0]` whenever they run.
+  - The two agree only while `setting[0]` does not change after `0022A0CB`. The three established writers of
+    `setting[0]` all run inside the constructor `007980A0`, which §4 places before `main` and therefore before
+    `0022A0B0`. They are the OS mapping (`00798257` → `001DE0C0`), the ini parse (`0079826B`) and Steam (`00798272` →
+    `007A0C60`, which stores through `001DF340` at `007A0F17`).
+  - **Not excluded:** a post-boot writer. The console's computed-index setter sites are not resolved to their index
+    ranges (locale page, AV-3).
+
+**Failure paths and edge conditions.**
+- `*(0x01F82D20)` is dereferenced without a test (`0017E270`). This is safe for the same reason as `0017D8F0`:
+  construction precedes `main` (§4).
+- **The index is not bounded** (`0017E27E` `movsxd`, `0017E281`). A `setting[0]` outside 0..9 makes the function read
+  a qword past (or before) the table and dereference it as a string.
+  - The known writers produce 0..8. The OS mapping in §8 does. Steam's name match does too (`007A0D10`–`007A0F09`;
+    an unmatched name writes nothing). The ini value-name row 0 has nine names (§3).
+  - **Not traced here:** whether the ini parse accepts a raw integer for `Language` outside 0..8.
+- An unmatched code is not an error. It becomes 10, the same id as `jp` (LC-2). Each consumer has its own default for
+  ids it does not list: `us` in the FileCache (LC-3), 9 from `00285F60` (LC-4), and 1 from `00229E50` (LC-5).
+- The constant 10 that `0017E410` returns, cached at `0x01E0281C` (`0022A0D6`), is a dead cache: the raw index finds
+  that store and nothing else (locale page, AV-5).
+
+**Evidence class.**
+- **LC-1 to LC-5 are NATIVE-REPLAY.** The original bytes were executed under unicorn 2.1.4: all ten table indices,
+  seven crafted codes, and ids 0..15 through the three consumers. The FileCache case runs the constructor's switch
+  only (`001D9645`..`001D9753`), not the whole constructor.
+- **LC-6, the caller census and the failure paths are NATIVE/STATIC** (raw reference index and full body reads).
+- **No live observation is cited.** EXP-001 (§13) did not vary `Language`.
+- The check has four sensitivity cases, and each makes a replay case FAIL as required:
+  - a mutated image, `en` arm `mov eax, 1` → 6;
+  - the set `{0, 7, 10, 11}` for LC-5;
+  - the set `{0, 6, 7, 8, 10, 11}` for LC-5;
+  - `kr` → 6 for LC-1.

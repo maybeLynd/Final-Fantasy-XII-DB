@@ -188,7 +188,7 @@
   {
    "fn": "00623D70",
    "entered_from": "`0062B020` + 0x29",
-   "text": "clears bit 31 of dword `rcx+0x18`; when the result is above 1 (unsigned) it returns qword `rcx+0x20` + `edx` * 0x10 + 0xC, when it is 1 it returns `rcx+0x20` + `edx` * 0x10 + 0xC, and when it is 0 it returns `edx` * 0x10 + 0xC on a null base",
+   "text": "~~clears bit 31 of dword `rcx+0x18`; when the result is above 1 (unsigned)~~ takes dword `rcx+0x18` with bit 31 masked off in a register (memory is not written); when that value is above 1 (unsigned) it returns qword `rcx+0x20` + ~~`edx` * 0x10~~ zero-extended `edx` * 0x10 + 0xC, when it is 1 it returns `rcx+0x20` + ~~`edx` * 0x10~~ zero-extended `edx` * 0x10 + 0xC, and when it is 0 it returns ~~`edx` * 0x10~~ zero-extended `edx` * 0x10 + 0xC on a null base *(narrowed 2026-10-03, FABLE, on SWE2-AUDIT-SPEC's review: N1: `btr eax, 0x1F` clears bit 31 in a register copy only; the index is `edx` zero-extended (`mov eax, edx`))*",
    "anchors": [
     [
      "00623D73",
@@ -229,6 +229,117 @@
    "was": "copies the 8-byte entry at sign-extended word `rdx+0xA` of qword `rdx+0x20` into a local as words `+0`, `+2`, word `+4` AND 0xFFF and (dword `+4` shifted right 12) AND 0xFFF; when the fifth (stack) argument is 0 it pairs `r8w`, `r9w` with words `rdx+0x10`, `rdx+0x12` unchanged, otherwise it sets `r8w` = sixth + ((`r8d` - sixth) * fifth >> 8), `r9w` = seventh + ((`r9d` - seventh) * fifth >> 8) and replaces both words with (word * fifth) >> 8; stores at `rcx+0x5C` the low nibble of byte `rdx+0x39` plus the byte at (high nibble + word `+0x12`) of the block at qword `+0x20` of qword `rdx+0x18` plus 0x30; then calls (`00366A30` + 0x13B) with `rcx`, qword `rdx+0x18`, the local entry, the four local words, a local holding dword 0, 0.0 and pointer `rdx+0x28`, and 1.0 (`01CEBBA8`)",
    "now": "copies the 8-byte entry at sign-extended word `rdx+0xA` of qword `rdx+0x20` into a local as words `+0`, `+2`, word `+4` AND 0xFFF and (dword `+4` shifted right 12) AND 0xFFF; when the fifth (stack) argument is 0 it pairs `r8w`, `r9w` with words `rdx+0x10`, `rdx+0x12` unchanged, otherwise it sets `r8w` = sixth + ((`r8d` - sixth) * fifth >> 8), `r9w` = seventh + ((`r9d` - seventh) * fifth >> 8) and replaces both words with (word * fifth) >> 8; with B = qword `+0x20` of qword `rdx+0x18` plus 0x30, stores at `rcx+0x5C` the low nibble of byte `rdx+0x39` plus the byte at B + high nibble + word `B+0x12`; then calls (`00366A30` + 0x13B) with `rcx`, qword `rdx+0x18`, the local entry, the four local words, a local holding dword 0, 0.0 and pointer `rdx+0x28`, and 1.0 (`01CEBBA8`)",
    "why": "the index word is read at [r8+0x12] after r8 += 0x30 (00366B30, 00366B44), i.e. block+0x42; the old wording read as word +0x12 of the block"
+  }
+ ],
+ "moved": [
+  {
+   "fn": "00366A30",
+   "entered_from": "`00366B80` + 0x2A6",
+   "text": "copies the 8-byte entry at sign-extended word `rdx+0xA` of qword `rdx+0x20` into a local as words `+0`, `+2`, word `+4` AND 0xFFF and (dword `+4` shifted right 12) AND 0xFFF; when the fifth (stack) argument is 0 it pairs `r8w`, `r9w` with words `rdx+0x10`, `rdx+0x12` unchanged, otherwise it sets `r8w` = sixth + ((`r8d` - sixth) * fifth >> 8), `r9w` = seventh + ((`r9d` - seventh) * fifth >> 8) and replaces both words with (word * fifth) >> 8; with B = qword `+0x20` of qword `rdx+0x18` plus 0x30, stores at `rcx+0x5C` the low nibble of byte `rdx+0x39` plus the byte at B + high nibble + word `B+0x12`; then calls (`00366A30` + 0x13B) with `rcx`, qword `rdx+0x18`, the local entry, the four local words, a local holding dword 0, 0.0 and pointer `rdx+0x28`, and 1.0 (`01CEBBA8`)",
+   "anchors": [
+    [
+     "00366A8A",
+     "and"
+    ],
+    [
+     "00366AAB",
+     "jne"
+    ],
+    [
+     "00366AC6",
+     "imul"
+    ],
+    [
+     "00366B5A",
+     "mov"
+    ],
+    [
+     "00366B6B",
+     "call"
+    ]
+   ],
+   "moved_to": "15-Input/Modal-Toggles/r2-force-fight-toggle.md",
+   "moved_by": "FABLE",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/fable-home-host-moves-b6-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-effect-element-type-dispatch-1003/REVIEW.md"
+  },
+  {
+   "fn": "004FF230",
+   "entered_from": "`00537C80` + 0xF",
+   "text": "makes the same call three times with `edx` unchanged, on `rcx`, `rcx+0x40` and `rcx+0x80` (sites `004FF230` + 0xF, + 0x1A and + 0x28), and returns `rcx+0xD0`",
+   "anchors": [
+    [
+     "004FF23F",
+     "call"
+    ],
+    [
+     "004FF24A",
+     "call"
+    ],
+    [
+     "004FF258",
+     "call"
+    ],
+    [
+     "004FF262",
+     "lea"
+    ]
+   ],
+   "moved_to": "17-Presentation-Rendering/Effect-File-Formats/efx-and-efb-effect-containers.md",
+   "moved_by": "FABLE",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/fable-home-host-moves-b6-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-effect-element-type-dispatch-1003/REVIEW.md"
+  },
+  {
+   "fn": "004FE4A0",
+   "entered_from": "`00538350` + 0x39",
+   "text": "makes the same call three times with `edx` unchanged, on `rcx`, `rcx+0x10` and `rcx+0x20` (sites `004FE4A0` + 0xF, + 0x1A and + 0x25), and returns `rcx+0x80`",
+   "anchors": [
+    [
+     "004FE4AF",
+     "call"
+    ],
+    [
+     "004FE4BA",
+     "call"
+    ],
+    [
+     "004FE4C5",
+     "call"
+    ],
+    [
+     "004FE4CF",
+     "lea"
+    ]
+   ],
+   "moved_to": "17-Presentation-Rendering/Effect-File-Formats/efx-and-efb-effect-containers.md",
+   "moved_by": "FABLE",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/fable-home-host-moves-b6-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-effect-element-type-dispatch-1003/REVIEW.md"
+  }
+ ],
+ "narrowed": [
+  {
+   "fn": "00623D70",
+   "by": "FABLE",
+   "on": "2026-10-03",
+   "record": "_index/candidates/fable-home-host-moves-b6-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-effect-element-type-dispatch-1003/REVIEW.md",
+   "struck": [
+    [
+     "clears bit 31 of dword `rcx+0x18`; when the result is above 1 (unsigned)",
+     "takes dword `rcx+0x18` with bit 31 masked off in a register (memory is not written); when that value is above 1 (unsigned)"
+    ],
+    [
+     "`edx` * 0x10",
+     "zero-extended `edx` * 0x10"
+    ]
+   ],
+   "previous_text": "clears bit 31 of dword `rcx+0x18`; when the result is above 1 (unsigned) it returns qword `rcx+0x20` + `edx` * 0x10 + 0xC, when it is 1 it returns `rcx+0x20` + `edx` * 0x10 + 0xC, and when it is 0 it returns `edx` * 0x10 + 0xC on a null base",
+   "plain": "takes dword `rcx+0x18` with bit 31 masked off in a register (memory is not written); when that value is above 1 (unsigned) it returns qword `rcx+0x20` + zero-extended `edx` * 0x10 + 0xC, when it is 1 it returns `rcx+0x20` + zero-extended `edx` * 0x10 + 0xC, and when it is 0 it returns zero-extended `edx` * 0x10 + 0xC on a null base"
   }
  ]
 }

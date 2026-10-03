@@ -1,0 +1,250 @@
+{
+ "page": "22-Middleware-PhyreEngine/Phyre-Asset-Container/the-cluster-header-and-what-the-loader-rejects.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01GLiazqTkiTNo2qTSeFb6Kg",
+ "report": [
+  "fable-the-cluster-header-and-what-the-loader-rejects.json"
+ ],
+ "rows": [
+  {
+   "fn": "005A9DF0",
+   "text": "while qword `rcx+0x18` is non-null and not equal to `rcx`, calls `005A9DF0+0x28(rcx, that qword)` and re-reads it; then calls `006803D0(rcx+0x30)` and `00680030(rcx+0x30)`, and calls `0067F580(rcx)` twice",
+   "anchors": [
+    [
+     "005A9E0B",
+     "cmp"
+    ],
+    [
+     "005A9E18",
+     "call"
+    ],
+    [
+     "005A9E24",
+     "call"
+    ],
+    [
+     "005A9E2E",
+     "call"
+    ],
+    [
+     "005A9E37",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "005CC050",
+   "text": "returns 0 when `rdx` is null; otherwise advances the cursor qword pointed to by the fifth (stack) argument by 16, reading a dword from the first 8-byte slot passed and a qword from the second, and calls the function at qword `rcx+8` with (`rdx` - 8 + sign-extended dword `rcx+0x10`, that dword, that qword); when `r9` is non-null and `005A6670()` equals `r8`, it stores the call's dword result at `r9+8`, zeroes qword `[r9]` and returns 1, else returns 0",
+   "anchors": [
+    [
+     "005CC075",
+     "add"
+    ],
+    [
+     "005CC095",
+     "call"
+    ],
+    [
+     "005CC0A0",
+     "call"
+    ],
+    [
+     "005CC0AA",
+     "mov"
+    ],
+    [
+     "005CC0B7",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005CC0F0",
+   "text": "returns 0 when `rdx` is null; otherwise advances the cursor qword pointed to by the fifth (stack) argument by 8, reading the qword in the slot passed, and calls the function at qword `rcx+8` with (`rdx` - 8 + sign-extended dword `rcx+0x10`, that qword); when `r9` is non-null and `005A6670()` equals `r8`, it stores the call's dword result at `r9+8`, zeroes qword `[r9]` and returns 1, else returns 0",
+   "anchors": [
+    [
+     "005CC115",
+     "add"
+    ],
+    [
+     "005CC12B",
+     "call"
+    ],
+    [
+     "005CC136",
+     "call"
+    ],
+    [
+     "005CC140",
+     "mov"
+    ],
+    [
+     "005CC14D",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "005CC5F0",
+   "text": "returns 0 when `rdx` is null; otherwise advances the cursor qword pointed to by the fifth (stack) argument by 8, reading the qword in the slot passed, and calls the function at qword `rcx+8` with (`rdx`, that qword); when `r9` is non-null and `005A6670()` equals `r8`, it stores the call's dword result at `r9+8`, zeroes qword `[r9]` and returns 1, else returns 0",
+   "anchors": [
+    [
+     "005CC618",
+     "add"
+    ],
+    [
+     "005CC623",
+     "call"
+    ],
+    [
+     "005CC62E",
+     "call"
+    ],
+    [
+     "005CC638",
+     "mov"
+    ],
+    [
+     "005CC645",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006389C0",
+   "text": "when `rdx` is null stores 0 at qword `[rcx]` and returns 0x13; otherwise calls `00637440()`, hashes the zero-terminated byte string at `rdx` (start 0x7B5, then times 0x21 plus the byte AND 0x1F per byte), calls `006389C0+0x5F(00637440 result, &stack key)` with the hash at key `+0` and the string pointer at `+8`, stores its qword result at `[rcx]` and returns 0 when that is non-null, else 0x13",
+   "anchors": [
+    [
+     "006389E0",
+     "call"
+    ],
+    [
+     "00638A03",
+     "imul"
+    ],
+    [
+     "00638A1F",
+     "call"
+    ],
+    [
+     "00638A34",
+     "mov"
+    ],
+    [
+     "00638A37",
+     "cmovne"
+    ]
+   ]
+  },
+  {
+   "fn": "00638A50",
+   "text": "when `rdx` is null stores 0 at qword `[rcx]` and returns 0x13; otherwise calls `00637440()`, hashes the zero-terminated byte string at `rdx` (start 0x7B5, then times 0x21 plus the byte AND 0x1F per byte), calls `00638A50+0x5F(00637440 result, &stack key)` with the hash at key `+0` and the string pointer at `+8`, stores its qword result at `[rcx]` and returns 0 when that is non-null, else 0x13",
+   "anchors": [
+    [
+     "00638A70",
+     "call"
+    ],
+    [
+     "00638A93",
+     "imul"
+    ],
+    [
+     "00638AAF",
+     "call"
+    ],
+    [
+     "00638AC4",
+     "mov"
+    ],
+    [
+     "00638AC7",
+     "cmovne"
+    ]
+   ]
+  },
+  {
+   "fn": "0063BEF0",
+   "text": "returns 0 when `rdx` is null; otherwise calls `00637440()`, hashes the zero-terminated byte string at `rdx` (start 0x7B5, then times 0x21 plus the byte AND 0x1F per byte) and calls `0063BEF0+0x53(00637440 result, &stack key)` with the hash at key `+0` and the string pointer at `+8`; returns 0 when that is null or when its vtable slot `+8` called on it returns null, else tail-jumps to `0063BEF0+0x7B(rcx, that result)`",
+   "anchors": [
+    [
+     "0063BF05",
+     "call"
+    ],
+    [
+     "0063BF24",
+     "imul"
+    ],
+    [
+     "0063BF43",
+     "call"
+    ],
+    [
+     "0063BF53",
+     "call"
+    ],
+    [
+     "0063BF6B",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "006A6870",
+   "text": "returns 0 when `rdx` is null; otherwise calls the function at qword `rcx+8` with `rdx`; when `r9` is non-null and `005A6670()` equals `r8`, it stores the call's dword result at `r9+8`, zeroes qword `[r9]` and returns 1, else returns 0",
+   "anchors": [
+    [
+     "006A6890",
+     "call"
+    ],
+    [
+     "006A689A",
+     "call"
+    ],
+    [
+     "006A689F",
+     "cmp"
+    ],
+    [
+     "006A68A4",
+     "mov"
+    ],
+    [
+     "006A68B1",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006ACAC0",
+   "text": "when qword `rcx+8` is non-null it first calls `006ACAC0+0x2A(01F2EB40, rcx+0x10)`; it stores `rdx` at qword `rcx+8` and returns when `rdx` is null; otherwise it sets qwords `rcx+0x10`, `+0x18` and `+0x20` to `rcx+0x10`, `+0x28` to `rdx` and `+0x30` to 0 and then `rcx`, adds 1 minus (byte `rcx+0x20` AND 1) to qword `rcx+0x20`, sets qwords `rcx+0x10` and `+0x18` to `01F2EB40`, and walks from qword `01F2EB58` until it reaches `01F2EB40`, taking a node's qword `+0` when its qword `+0x18` is above `rdx` (unsigned) and `+8` when below, returning without linking on an equal key; it then sets qword `rcx+0x20` to the last parent (`01F2EB58` for an empty walk) plus (byte `rcx+0x20` AND 1), stores `rcx+0x10` in that parent's chosen child slot and calls `0067F700(01F2EB40, rcx+0x10)`",
+   "anchors": [
+    [
+     "006ACAEA",
+     "call"
+    ],
+    [
+     "006ACB10",
+     "mov"
+    ],
+    [
+     "006ACB59",
+     "cmp"
+    ],
+    [
+     "006ACB8A",
+     "mov"
+    ],
+    [
+     "006ACB91",
+     "call"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing",
+ "family": ""
+}

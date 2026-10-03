@@ -1,0 +1,47 @@
+{
+ "page": "22-Middleware-PhyreEngine/Script-Object-Accessors/phyre-script-object-accessors.md",
+ "members": "22-Middleware-PhyreEngine/Script-Object-Accessors/members/nativeadapter-optptrallocrecordinstall.tsv",
+ "kind": "operand_at",
+ "group": "all",
+ "title": "optional-pointer alloc + record install, 104-byte form (optptr-alloc-record-install-104), one row per member, keyed on +0x2F lea",
+ "package": "_index/candidates/opus-member-optional-pointer-alloc-record-install-104-byte-form-1-r9",
+ "key": [
+  [
+   "0x2F",
+   "lea",
+   "rip"
+  ]
+ ],
+ "fields": [],
+ "skip": {},
+ "apply": "never: the page already carries the member rows (package opus-member-optional-pointer-alloc-record-install-104-byte-form-1-r9); progress.py reads only page, rows.tsv entry and anchor",
+ "size": 104,
+ "form": [
+  "mov qword ptr [rsp + 8], rbx",
+  "push rdi",
+  "sub rsp, 0x20",
+  "mov rbx, rdx",
+  "mov rdi, r8",
+  "mov rcx, rbx",
+  "mov edx, 1",
+  "call 0080F420",
+  "mov edx, 0x10",
+  "mov rcx, rbx",
+  "call 00810240",
+  "test rax, rax",
+  "je +0x3D",
+  "lea rcx, [#]",
+  "mov qword ptr [rax + 8], rdi",
+  "mov qword ptr [rax], rcx",
+  "lea r8, [00D6FDE0]",
+  "mov edx, 0xfff0b9d8",
+  "mov rcx, rbx",
+  "call 0080FA50",
+  "mov edx, 0xfffffffe",
+  "mov rcx, rbx",
+  "mov rbx, qword ptr [rsp + 0x30]",
+  "add rsp, 0x20",
+  "pop rdi",
+  "jmp 00810F60"
+ ]
+}

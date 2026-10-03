@@ -999,6 +999,14 @@ single boot caller, also calls `00379CF0` in that layer — the startup hub's rn
 way through init. The edge is init-out from the boot hub, not a render-record responsibility;
 the record array owns nothing in RNG.
 
+**Script_VM_Native_Bridge — CLIENT (SWE2-EC7 2026-10-03, 38 edges).** Script-VM verb handlers
+call this layer's record machinery: the element binder and the add-motion/event-channel body
+each sit behind a block of handlers, and seven handlers tail-jump into
+the EC7-222 flag/sync backends (`002E7150`, `002EBAD0`, `002E82E0`, `002E8BB0`, `002E8C70`,
+`002ECF60`, `002ECFD0`); the remainder are the handler layer's shared arg-pop and
+return-path helpers touching page-cited bodies. The crossing is verbs asking for record
+writes, not bridge ownership of the records.
+
 ## 15. The `003325C0` exclusive subtree — all 33 members bound (SWE2-FRONTIER, followup queue)
 
 `0022A0B0` calls `003325C0` exactly once at boot: a twelve-byte thunk that loads the
@@ -1183,3 +1191,31 @@ jump. Interior anchor `003E55CB` (the `0020E600` context resolve).
 | `0051EE10` | 20 B | zeroes dwords `+0` and `+0x10` and qword `+8`, and stores 0x800 in qword `+0x14` | `0051EE12`, `0051EE1A`, `0051EE1C`, `0051EE20` |
 | `0051EE30` | 69 B | copies from `rdx` its qword `+8` passed through the 42-byte external-source handle check (null stays null) and its dwords `+0x10`, `+0x14` and `+0x18` | `0051EE4F`, `0051EE54`, `0051EE5B`, `0051EE67` |
 | `0051F020` | 91 B | stores `003AB8B0(edx, dword [rcx])` in qword `+8` and `edx` in dword `+0x10`, calls the 42-byte external-source handle check on the new qword, and when `r8d` is 1 zeroes `edx` bytes at `003AB7F0(qword +8)` with `00861EC0` | `0051F03C`, `0051F044`, `0051F04B`, `0051F059`, `0051F066` |
+
+## Homed bodies re-homed here for host fit (FABLE, 2026-10-03; AUDIT-SPEC batch 6)
+
+*FABLE's homing stream (cloud-drafted, FABLE-verified) homed these bodies on other pages. SWE2-AUDIT-SPEC reviewed each sentence, site and anchor set and rejected the host, because that page named the caller only in passing. The sentences are unchanged except where the review gave replacement wording, which the row's line below says. Each states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Why each row is here:*
+
+- `00420860`: this page documents its caller `00427DE0` as a subject (a list item, a paragraph). The sentence carries the review's replacement wording (the source-block-mover review, Repair 3: the callee `006C0520` reads `xmm1`-`xmm3`, never `rdx`, `r8` or `r9`).
+- `004209F0`: this page documents its caller `00427DE0` as a subject (a list item, a paragraph).
+
+*Verified by [`move_rows.py`](../../_index/candidates/fable-home-host-moves-b6-1003/move_rows.py): every site transfers to its function; the caller named above (for a thunk, the thunk's callers) is a subject of this page outside this section - an address in a heading, the first address of a table row, or the first address of a paragraph or list item; and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors | moved from |
+|---|---|---|---|---|---|
+| `00420860` | 35 B | `00427DE0` + 0xD7 | calls the site `00420860` + 0x19 with `rcx+0x210`, the floats `xmm1`, `xmm2` and `xmm3` passed through, and 1.0 (`01CEBBA8`) as the fifth (stack) argument, then returns | Interior anchor `00420864`; Interior anchor `0042086C`; Interior anchor `00420873`; Interior anchor `00420879` | [the-source-block-mover-and-separate-consumer-refresh](../../02-Resource-And-Asset-Pipeline/the-source-block-mover-and-separate-consumer-refresh.md) |
+| `004209F0` | 22 B | `00427DE0` + 0xA2 | ORs 0x200 into dword `rcx+0x284`, then tail-jumps at the site `004209F0` + 0x11 with `rcx+0x180` and the other registers unchanged | Interior anchor `004209FA`; Interior anchor `00420A01` | [the-source-block-mover-and-separate-consumer-refresh](../../02-Resource-And-Asset-Pipeline/the-source-block-mover-and-separate-consumer-refresh.md) |
+
+## SWE2-EC7-222 update (2026-10-03) - the render-record flag verbs' seven backends
+
+Five presentation verbs and the two halves of `stdmotioneventsync` all reach the same render record the actor's secondary context points at. Their handlers take the actor in `rcx`, and each body resolves `[actor + 0xC0]`, reads the bound element's render-record index (word `+0` of the context's `+0` element, or its dword `+0` for `stdmotioneventsync`), rejects `-1`, and lands on `022C6F28 + 0x740*index` - the same bound-record chain the element binder builds, with the same `+0x284` liveness test this page documents. `bonephysical` additionally walks the `+0x90` element (the `k = 4` slot). None touches the record when the chain is broken.
+
+| function | size | verb / caller | what the body does | interior anchors |
+|---|---|---|---|---|
+| `002E7150` | 108 B | `denybonephysical` `0x03D6` (handler `0034CCB0` tail-jumps with the popped int in `edx`) | resolves `[rcx+0xC0]`, its word `+0` (the element's render-record index, `-1` = unbound) and `022C6F28 + 0x740*index`; when the record's `+0x284` is non-zero it calls `003E68A0(record, edx != 0)` and ORs `0x800` into `+0x290` - the deny flag through the controller, plus the dirty bit | Interior anchor `002E715C`; Interior anchor `002E717F`; Interior anchor `002E718F`; Interior anchor `002E71A3`; Interior anchor `002E71A8` |
+| `002EBAD0` | 165 B | `bonephysical` `0x0169` (handler `00350350` tail-jumps with the popped int in `edx`) | resolves two elements of `[rcx+0xC0]` - the `+0` element and the `+0x90` element (the `k = 4` slot) - through the same word-index/`0x740`-record chain and calls `00428960(record, edx)` on each live record; | Interior anchor `002EBAE3`; Interior anchor `002EBB06`; Interior anchor `002EBB1F`; Interior anchor `002EBB30`; Interior anchor `002EBB65` |
+| `002E82E0` | 96 B | `setcharfogstatus` `0x0346` (handler `00347BC0` tail-jumps with the popped int in `edx`) | same resolution to the bound record; clears bit `0x200` of dword `+0x304`, sets it when `edx != 0` (`neg`/`sbb`/`and 0x200`/`or`), then ORs `0x2000000` into `+0x290` - the fog-disable write and its dirty bit | Interior anchor `002E82E5`; Interior anchor `002E8303`; Interior anchor `002E831C`; Interior anchor `002E8326`; Interior anchor `002E8335` |
+| `002E8BB0` | 87 B | `setzclipoverdraw` `0x0283` (handler `00342120` tail-jumps with the popped int in `edx`) | same resolution; when `+0x284` is non-zero it `bts`/`btr`s bit `0x17` of that dword itself by `edx != 0` - no separate dirty bit, the flag lives inside `+0x284` | Interior anchor `002E8BB5`; Interior anchor `002E8BF1`; Interior anchor `002E8BFC` |
+| `002E8C70` | 79 B | `setshadowratio` `0x028A` (handler `00343870` tail-jumps with the popped float in `xmm1`) | same resolution; stores `xmm1` at float `+0x3FC` of the live record and ORs `0x200000` into `+0x290` | Interior anchor `002E8C75`; Interior anchor `002E8CAC`; Interior anchor `002E8CB4` |
+| `002ECFD0` | 80 B | `stdmotioneventsync` `0x0473` begin half (handler `003479E0` tail-jumps) | resolves `[rcx+0xC0]`'s dword `+0` - the element's `entryId` - and calls `0042F210(entryId, 0)` and `0042F210(entryId, 1)`, which clear bits 0 and 1 of the bound record's byte `+0x419` - the motion-event pending bits, reset before the sync | Interior anchor `002ECFD9`; Interior anchor `002ED000`; Interior anchor `002ED005` |
+| `002ECF60` | 98 B | `stdmotioneventsync` `0x0473` poll half (handler `00347DD0` tail-jumps) | same `entryId` resolution; calls `0042F1C0(entryId, 0)` and `0042F1C0(entryId, 1)` - the `+0x419` bit tests - returning that callee's non-zero answer at the first set bit, or `2` when neither bit is set | Interior anchor `002ECF6D`; Interior anchor `002ECF97`; Interior anchor `002ECF9A`; Interior anchor `002ECFA5` |

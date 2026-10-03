@@ -1,0 +1,6 @@
+# descriptor-forward tail-call adapters, 21-byte form (descriptor-forward-tail-call-21), one row per member, keyed on +0x9 lea - derived from the shipping image by fam_rows.py (kind operand_at)
+entry	anchor	mnemonic	value	name	callee
+00584850	00584859	lea	02CA9FA0	-	all
+00584AB0	00584AB9	lea	02CA9DA0	-	all
+00584FC0	00584FC9	lea	02CA9EA0	-	all
+00674DD0	00674DD9	lea	02D3E780	-	all

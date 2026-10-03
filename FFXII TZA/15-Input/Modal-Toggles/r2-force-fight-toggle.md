@@ -783,3 +783,15 @@ document, which reaches `022CB726` from the other side.
 | function | size | what the body does | interior anchors |
 |---|---|---|---|
 | `007A5E50` | 191 B | Returns at once when the byte at `02EACFE9` is non-zero; otherwise it loops: calls `007AD630`, converts that result minus the qword at `02EACFF0` to a double as an unsigned value (adding the 2^64 constant at `00D27A68` when the difference is negative) and divides it by the result of `007AD670` converted the same way, stores the `007AD630` result to `02EACFF0`, narrows the quotient to a float and passes it in `xmm0` to `007BAEC0`, `007BB670`, `007BB780` and `007BC4F0`, calls the import at `008C21B0` with `ecx`=0x20, and repeats while the byte at `02EACFE9` stays zero, then returns. | `007A5E80`, `007A5EB6`, `007A5EBA`, `007A5EEA`, `007A5EF9` |
+
+## Homed bodies re-homed here for host fit (FABLE, 2026-10-03; AUDIT-SPEC batch 6)
+
+*FABLE's homing stream (cloud-drafted, FABLE-verified) homed these bodies on other pages. SWE2-AUDIT-SPEC reviewed each sentence, site and anchor set and rejected the host, because that page named the caller only in passing. The sentences are unchanged except where the review gave replacement wording, which the row's line below says. Each states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Why each row is here:*
+
+- `00366A30`: this page documents its caller `00366B80` as a subject (a table row, a list item).
+
+*Verified by [`move_rows.py`](../../_index/candidates/fable-home-host-moves-b6-1003/move_rows.py): every site transfers to its function; the caller named above (for a thunk, the thunk's callers) is a subject of this page outside this section - an address in a heading, the first address of a table row, or the first address of a paragraph or list item; and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors | moved from |
+|---|---|---|---|---|---|
+| `00366A30` | 331 B | `00366B80` + 0x2A6 | copies the 8-byte entry at sign-extended word `rdx+0xA` of qword `rdx+0x20` into a local as words `+0`, `+2`, word `+4` AND 0xFFF and (dword `+4` shifted right 12) AND 0xFFF; when the fifth (stack) argument is 0 it pairs `r8w`, `r9w` with words `rdx+0x10`, `rdx+0x12` unchanged, otherwise it sets `r8w` = sixth + ((`r8d` - sixth) * fifth >> 8), `r9w` = seventh + ((`r9d` - seventh) * fifth >> 8) and replaces both words with (word * fifth) >> 8; with B = qword `+0x20` of qword `rdx+0x18` plus 0x30, stores at `rcx+0x5C` the low nibble of byte `rdx+0x39` plus the byte at B + high nibble + word `B+0x12`; then calls (`00366A30` + 0x13B) with `rcx`, qword `rdx+0x18`, the local entry, the four local words, a local holding dword 0, 0.0 and pointer `rdx+0x28`, and 1.0 (`01CEBBA8`) | Interior anchor `00366A8A`; Interior anchor `00366AAB`; Interior anchor `00366AC6`; Interior anchor `00366B5A`; Interior anchor `00366B6B` | [effect-element-type-dispatch](../../17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md) |

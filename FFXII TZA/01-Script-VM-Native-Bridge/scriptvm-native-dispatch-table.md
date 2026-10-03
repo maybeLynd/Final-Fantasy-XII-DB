@@ -1176,3 +1176,11 @@ mechanical user of the same shared helper.
 - **Save_Load_Settings — MECHANICAL (2 edges).** 2 calls from page-cited bodies into shared Save_Load_Settings plumbing (`SaveImage_GetPersistentPayloadBase` (002EF2B0)) - the helpers' general call surface, not a Save_Load_Settings relationship of this page's subjects.
 - **World — CLIENT (2 edges).** 2 inbound (World bodies `00266D10` call page-cited `WorldField_InitializeCurrentFieldRuntimeParameters` (0026D910), `VMNativeCommandDispatch_InitializeFamilyTables` (003DC2D0)). Substantive edges include `WorldField_InitializeCurrentFieldRuntimeParameters` (0026D910) is called by `00266D10`; `VMNativeCommandDispatch_InitializeFamilyTables` (003DC2D0) is called by `00266D10`.
 - **WorldAreaField — CLIENT and SERVICE (4 edges).** 1 inbound (WorldAreaField bodies `0025ACA0` call page-cited `WorldField_InitializeCurrentFieldRuntimeParameters` (0026D910)); 3 outbound (page-cited `WorldField_InitializeCurrentFieldRuntimeParameters` (0026D910), `003565C0` call WorldAreaField bodies `00377850`, `WorldTransition_GetActiveOrPendingFieldId` (003148F0), `WorldField_InitializeCurrentFieldRuntimeParameters` (0026D910)). Substantive edges include `WorldField_InitializeCurrentFieldRuntimeParameters` (0026D910) is called by `0025ACA0`; `WorldField_InitializeCurrentFieldRuntimeParameters` (0026D910) calls `00377850`; `003565C0` calls `WorldField_InitializeCurrentFieldRuntimeParameters` (0026D910); the remaining edges run through shared helpers the page cites.
+
+## SWE2-EC7-223 update (2026-10-03) - the `debug_isnewcharsep` id-validity predicate
+
+`debug_isnewcharsep` is a one-instruction predicate on the verb's own argument - a sign/validity test with no module state, homed on the dispatch table that carries the verb.
+
+| function | size | verb / caller | what the body does | interior anchors |
+|---|---|---|---|---|
+| `003A1640` | 13 B | `debug_isnewcharsep` `0x2070` (handler `0050CAD0` calls it and returns its value) | returns 1 when `ecx != -1` and `ecx` is non-negative - the id-validity predicate the debug verb is | Interior anchor `003A1647` |

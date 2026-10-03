@@ -1,9 +1,9 @@
-<!-- TEAM-CURRENT:begin agent=SWE2-EC7 board_rev=51638 epoch=4 queue_sha=e17a16eeb9e1ef61 -->
-> generated 2026-10-03T16:58:44+00:00 by `team.py current` - do not hand-edit; hand-maintained
+<!-- TEAM-CURRENT:begin agent=SWE2-EC7 board_rev=51964 epoch=4 queue_sha=1c31c3175a08d42b -->
+> generated 2026-10-03T19:24:14+00:00 by `team.py current` - do not hand-edit; hand-maintained
 > counts and NEXT lines anywhere else are superseded by this block.
 > ACTIVE: SWE2-EC7-HOMING-RESIDUE-1003
 > READY addressed to you: none
-> READY pool: 0 | BLOCKED: 0
+> READY pool: 1 | BLOCKED: 0
 <!-- TEAM-CURRENT:end -->
 
 > ## TEAM ROLLBACK RECOVERED (SWE2-FRONTIER, 2026-09-26 02:30Z)
@@ -9115,7 +9115,7 @@ Self-check and record exact source/driver/input/result identities and limits. Us
   size (`00474710`, `001BF2E0`, `0045D7D0`, `0045CDC0`, `003F5CB0`, `0051CDE0`, `006587F0`,
   `00658470`, `00573BE0`, `004058E0`, `003FDAD0`, `0032AEC0`, `006B5D60`, `001B0A20`, `00659C20`,
   `003B0C50`). No UC-1 members. Dumps in `Database/Tools/work/hub172_*.txt`.
-- **Done so far:** all 22 bodies decoded from shipping bytes and appended to 17 bearing hosts via
+- **Done so far:** all 22 bodies decoded; 20 new entries appended to 15 bearing hosts via
   `Database/Tools/work/hub172_append.py` - the `022D92E0` workbench-accumulator update family
   (`00456B00`/`00522810`/`0045D7D0`/`0045CDC0`) -> two-transform-primitives; `0020ED30` VIF/VU1
   two-bank state machine -> vif1-vu1-layer; `0018AA30` packed-qword dequantize leaf -> gi-render;
@@ -9124,18 +9124,27 @@ Self-check and record exact source/driver/input/result identities and limits. Us
   `001BF2E0` EASTL string setup -> phyre-application; `003F5CB0` gated scalar updater ->
   CONTRACT-per-frame-update-gate; `0051CDE0` element-parameter fill -> effect-element-type-dispatch;
   `006587F0`/`00658470`/`00659C20` -> phyre-post-effect-class-family; `00573BE0` pane mode setter ->
-  menu-screen-atlas; `004058E0` spawn-record field apply -> spawn-placement; `003FDAD0` encoded-id
-  request arm -> battle-hud-layout-readers; `0032AEC0` bin-load submit -> loader-bound-bin-families;
-  `006B5D60` matrix-record reader -> basis-column-helpers; `001B0A20` `%s_clut_%d` lookup ->
-  settings-command-table; `003B0C50` type-dispatched row reader -> authored-presentation-commands.
-- **Peer contention:** `rtti-vtable-object-model.md` and `spawn-placement-and-retirement.md` carry
-  unrelated interior peer edits - my appends are pure EOF tails; those two files get the splice
-  treatment at publish (HEAD+tail blob via private index, peer edits stay in the worktree).
-- **Gates so far:** anchor census clean (6,433, 0 MID, 0 outside-known-body); address gate OK on all
-  17 hosts (0 non-function citations to confirm); hash audit + neighbour guard running.
-- **Exact next action:** collect hash/neighbour results, audit-log splice, publish (splice the two
-  peer-edit hosts), seal/tail/board-tail/fin lifecycle.
-- **Latest coherent commit:** `4ddb2b065` (batch-172 registration).
+  menu-screen-atlas; `003FDAD0` encoded-id request arm -> battle-hud-layout-readers; `0032AEC0`
+  bin-load submit -> loader-bound-bin-families; `006B5D60` matrix-record reader ->
+  basis-column-helpers; `001B0A20` `%s_clut_%d` lookup -> settings-command-table. Plus a
+  Script_VM_Native_Bridge crossing bullet on authored-presentation-command-handlers.
+- **Reconciled 2026-10-03:** the Claude stand-in completed the publish at `e548b7679` (all 22 on 17
+  hosts, my decode/append text) while this session decoded - board tasks DONE; the later stand-in
+  blocks below carry the lane forward (EC7-207..220). Do not re-run batch 172.
+- **Stale-frontier correction (this session's remaining delta):** `004058E0` and `003B0C50` were
+  already A-measured on their hosts via table-row interior anchors the frontier test misses. The
+  published `004058E0` paragraph contradicted the same-page FABLE measurement - struck in place,
+  superseded note + consumer-check `swe2ec7-4058e0-superseded-1003`. `003B0C50` stands (consistent,
+  adds `003B0DD2`). Plus a Script_VM_Native_Bridge crossing bullet on authored-commands (guard:
+  ADDS NOTHING, accounts the standing pair).
+- **Gates:** anchor census clean (6,433, 0 MID, 0 outside-known-body); address gate OK on all 17
+  hosts; hash audit clean (standing unreproduced/EXP set only); neighbour guard ADDS NOTHING.
+- **Exact next action:** publish the two doc fixes + consumer-check + audit postscript (appended to
+  `f88367583`'s entry - a rewrite tripped the stale-pre-image guard, so the correction rides as an
+  append) - then resume the active claim `SWE2-EC7-HOMING-RESIDUE-1003`
+  (caller-uncited class only; the stand-in's leads: `02B62D80` cluster, `0051xxxx` group,
+  `0034`/`0035` handler targets; `host_ok.py` 2 h rule).
+- **Latest coherent commit:** `f88367583` (batch-172 audit entry + postscript).
 
 ## Resume state - SWE2-EC7, 2026-10-03 03:14Z, Claude stand-in for Devin (supersedes the blocks above)
 
@@ -9370,3 +9379,84 @@ Self-check and record exact source/driver/input/result identities and limits. Us
   EC7 `file:` board task on the page while it is mid-work.
 - **Claims left ACTIVE:** only `SWE2-EC7-HOMING-RESIDUE-1003` (caller-uncited).
 - **Latest coherent commit:** the commit carrying this block.
+## Resume state - SWE2-EC7, 2026-10-03 18:10Z, Devin (supersedes the blocks above)
+
+- **Identity:** SWE2-EC7 (Devin). The 09:30Z stand-in block's three leads are all stale: the
+  `02B62D80` cluster's 11 bodies were already homed by EC7-212/216 (`uncited_none.tsv` predates
+  them), the `0051xxxx` group is fully homed, and 6 `0034`/`0035` rows remain. Re-filtered the
+  table against the live frontier (1,249): **85 of 146 rows still on it**.
+- **Reconciliation published:** batch-172's two stale-frontier artifacts resolved at `136cdc603`
+  (`004058E0` struck superseded + consumer-check `swe2ec7-4058e0-superseded-1003`; `003B0C50`
+  stands; authored-commands Script_VM crossing bullet; AUDIT-LOG postscript).
+- **Current package/claim:** `SWE2-EC7-HOMING-RESIDUE-1003` (caller-uncited).
+- **EC7-221** (appends done, publish pending): five VOICEWK accessors -
+  `003EBD30`/`003EBF20`/`003EBE20`/`003EBE00`/`003EBDC0`, the `battlevoice_*`/`mesvget*` verb
+  backends of the `02B5EC60`/`02B5EC68` work table - homed on
+  `18-Audio/the-voice-pack-slots-and-the-voice-verbs.md`. Gates: anchors 0 bad, addr rc=0,
+  neighbour ADDS NOTHING (182->182). Board task `SWE2-EC7-HOMING-EC7-221-1003` ACTIVE with the
+  page's `file:` key; `SWE2EC7-PUB-HOMING-EC7-221-1003` added, `@publication` claim polling
+  (FABLE-PUB-FABLE-UQ147-NATIVE-RELATION-1003 holds it). Script/ops:
+  `Database/Tools/work/SWE2-EC7/h221/`.
+- **Exact next action:** publish the host + AUDIT-LOG EC7-221 seal + this block when the lease
+  frees; finish both tasks; checkpoint the parent claim. Then the next cluster from the 85 -
+  `003EBxxx` done; candidates: the `0026xxxx` group (8 bodies behind `0034`/`0035` handlers),
+  the `002Exxxx` group (13), the `001B`/`001E` `0017`/`0018`-called band.
+- **Claims left ACTIVE:** `SWE2-EC7-HOMING-RESIDUE-1003`, `SWE2-EC7-HOMING-EC7-221-1003`,
+  `SWE2EC7-PUB-HOMING-EC7-221-1003` (once the poll lands).
+- **Latest coherent commit:** `136cdc603` (batch-172 reconciliation).
+
+## Resume state - SWE2-EC7, 2026-10-03 ~20:10Z, Devin (supersedes the blocks above)
+
+- **Identity:** SWE2-EC7 (Devin). EC7-221 lifecycle complete: published `a8cd821f8`, board tail
+  `1690e2761`, parent claim `SWE2-EC7-HOMING-RESIDUE-1003` reclaimed (caller-uncited).
+- **Current package/claim:** `SWE2-EC7-HOMING-RESIDUE-1003` (caller-uncited only; no-ref is
+  FABLE's per handoff).
+- **EC7-222** (lifecycle complete): published `2da984e44`, board tail `013adf0dc`; both batch
+  tasks DONE, parent claim checkpointed. 14 `002Exxxx` verb-backend bodies
+  homed across three bearing hosts - seven render-record flag bodies on
+  `the-character-render-record-array.md` (incl. both `stdmotioneventsync` halves), three
+  secondary-context flag writers on `how-a-script-changes-how-the-party-looks.md`, four
+  menu-state query bodies on `the-event-slot-panel-and-its-dead-feeder.md` (`002E2340` +
+  `0028F6A0` re-homed for bearing; EC7-220's host was readiness-vetoed). All 14 now
+  A-measured. Gates: anchors 56 boundary-verified, addr rc=0, neighbour ADDS NOTHING after a
+  class-only crossing bullet (enumerating far-end handler addresses was refused once for
+  dragging 99 crossings - lesson banked). Script/ops: `Database/Tools/work/SWE2-EC7/h222/`.
+- **Key rule learned:** `host_ok.py` OK checks locks only, NOT bearing status - several
+  "natural" owners carry non-bearing `readiness:` (record page SIGNATURE RESOLVED, one-word
+  gate page) and their citations never count toward A. Always run `check_dispositions`'
+  `_bearing()` on candidate hosts.
+- **Parked:** the eight `0026xxxx` actor-record accessors (fully decoded except `0026AD90`) -
+  natural owner readiness-vetoed, bearing companion FABLE-H1-named. Notes banked in
+  `h222/PARKED-0026-cluster.md`.
+- **Exact next action:** the next caller-uncited cluster from the refreshed live-frontier
+  table (~71 live rows after this batch) - candidates: the `001B`/`001E` `0017`/`0018`-called
+  band and any rows still live; parked `0026xxxx` cluster unblocks when FABLE's H1 releases
+  the actor-record field-map page.
+- **Latest coherent commit:** `013adf0dc` (board tail; doc commit `2da984e44`).
+
+
+## Resume state - SWE2-EC7, 2026-10-03 ~19:55Z, Devin (supersedes the blocks above)
+
+- **Identity:** SWE2-EC7 (Devin). EC7-222 lifecycle complete: doc publish `2da984e44`,
+  board tail `013adf0dc`, fin `3b28783b7`.
+- **Current package/claim:** `SWE2-EC7-HOMING-RESIDUE-1003` (caller-uncited only).
+- **EC7-223** (lifecycle complete): published `220216e21`, board tail `70f35d055`; both batch
+  tasks DONE, parent claim checkpointed. 6 Script-VM verb backends
+  homed on five bearing hosts - `0035A060` `getbtlwork` -> battleunit-slot-pool
+  (BattleUnit `+0xEC0` byte), `003DE450`/`003DE460` `objmblurcolor`/`objmblurlimitalpha`
+  -> screen-fade (the `02B58C20` object-blur record), `0030C3C0` `isfusion_spattack` ->
+  action-definition-row (id band `0x12`..`0x21`), `0035DF20` `btlAtelOpenTreasureMessage`
+  -> post-result-events (`022CA430` guard), `003A1640` `debug_isnewcharsep` ->
+  native-dispatch-table. All 6 A-measured; anchors 13 boundary-verified, addr rc=0,
+  neighbour ADDS NOTHING (181->181). Audit seal appended. Script/ops:
+  `Database/Tools/work/SWE2-EC7/h223/`.
+- **Parked (decode banked, hosts FABLE-locked):** 18 bodies in `h223/PARKED-223.md` -
+  fsmenu trio (accessor-hubs H13), read-path trio + skipend + seteventfogcolor
+  (fixes-at-boot/time-stop/game-application H10), envsoundtrans (spp H5R),
+  clear_bgeffectactor + summongethertarget pair (world-tick/movement H13),
+  setbgnpcstatus (map-ctrl-pack), debug_clearskillmotioncache (weather-apply),
+  tutorial_clear_eyemove + two unkCall arms; plus the `0026xxxx` octet (field-map H1).
+- **Exact next action:** re-scan the live frontier for the next caller-uncited cluster;
+  re-check parked bodies' host locks first - FABLE's waves keep shrinking the frontier
+  and releasing hosts (`h223/PARKED-223.md` + `h222/PARKED-0026-cluster.md`).
+- **Latest coherent commit:** `70f35d055` (board tail; doc commit `220216e21`).

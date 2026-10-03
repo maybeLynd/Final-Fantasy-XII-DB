@@ -762,3 +762,11 @@ Interior anchor `003355C4` (function `003355A0`).
 | function | size | what the body does | interior anchors |
 |---|---|---|---|
 | `003545B0` | 184 B | calls `002640C0` with the incoming registers (result p), then reads five values a, b, c, d, e by the calls at `003545B0+0x2C`, `+0x36`, `+0x40`, `+0x4B`, `+0x56` (each with `r9`); calls `00264D60(p, e)` and `002673A0(p, e)`, and only when `002673A0` returns 0 calls `003545B0+0x94` with (the `00264D60` result, d, c, b, a, qword `[p+0xb0]`) | Interior anchor `003545D1`; Interior anchor `00354612`; Interior anchor `0035461F`; Interior anchor `00354626`; Interior anchor `00354644` |
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-03, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../../_index/candidates/fable-home-ebp2-container-1003/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `00474070` | 140 B | `003545B0` + 0x94 | stores the sixth (stack) argument as qword `02CA6C78`, then calls `00474070` + 0x63 with `ecx` 0x1D8, `rdx` the `rip`-relative address loaded at `004740A4`, and `r8` pointing at a stack block of dword 0, the incoming `rcx` and a pointer to the four dwords `edx`, `r8d`, `r9d` and the fifth (stack) argument; stores that call's result as qword `02CA6C80` and zeroes qword `02CA6C78`, the frame guarded by the cookie from `01F44830` that the call at `00474070` + 0x82 checks | Interior anchor `004740BA`; Interior anchor `004740BF`; Interior anchor `004740D3`; Interior anchor `004740D8`; Interior anchor `004740DF` |

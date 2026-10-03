@@ -1,0 +1,15 @@
+FABLE S-44 language code -> id section, dry run (no file is written)
+HEAD 3a65dc239
+PASS  G1  Database/FFXII TZA/19-Save-Load-Settings/Game-Settings-Config/CONTRACT-game-setting-config.md is clean
+      line endings kept: LF
+PASS  A1  anchor ^## 8\. Script occurs 1 time(s) at line 239
+PASS  A2  anchor ^## 9\. Determinism\s*$ occurs 1 time(s) at line 251
+PASS  A3  anchors in order 8 < 9: [239, 251]
+PASS  S1  section.txt starts with the 8a heading and names FABLE, 2026-10-03
+PASS  E1  8a inserted before line 251 (## 9. Determinism)
+PASS  E2  staged order 8 < 8a < 9: [239, 251, 369]
+PASS  L1  4 relative link(s) in 8a resolve from the contract's folder
+PASS  C1  the census does not read 8a as a Types/State section
+PASS  C2  the census's state sections are unchanged by the insert: ['3. Types', '5. State']
+      dry run: contract +118 lines
+FAILS 0

@@ -1,0 +1,81 @@
+{
+ "page": "99-Unresolved-Residual/Glyph-Run-Rendering/drawing-a-line-character-by-character.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "drawing-a-line-character-by-character-r10.json",
+ "rows": [
+  {
+   "fn": "002986E0",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `0020E620`, `00225580`, `00271E50`, `00274870`, `002752E0`, `0029F480`, `0029FB50`, `002B58B0`, `002DD7E0`, `0035D330`, `0036D830`, `00808C40`, `import:sinf`; Stores: `b[r14+0x21]`, `b[rax+0x6,0xA,0xB,0x12,0x13]`, `b[rcx+0x6,0x7,0xA,0xB,0x12]`, `b[rdx+0xA]`, `d[r13+0x20,0x24]`, `d[r14+0x20]`, `d[rcx+0x28..0x34/4]`, `d[rcx+0xC]`, `d[rdx+0x28..0x34/4]`, `q[r13+0x18]`, `w[rax+0x2,0x8,0x10,0x16]`, `w[rcx+0x2,0x4,0x8,0x14]`, `w[rdx+0x10,0x16]`",
+   "anchors": [
+    [
+     "002987F4",
+     "call"
+    ],
+    [
+     "002987B9",
+     "mov"
+    ],
+    [
+     "00299064",
+     "call"
+    ],
+    [
+     "0029905A",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "006497E0",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `0017D260`, `001B6CE0`, `001B7170`, `001B7210`, `001B8100`, `006394E0`, `0063A990`, `006629F0`, `0066F970`, `0066FAB0`, `00671690`, `00671B10`, `00671B20`, `00671B30`, `00671D80`, `00674230`, `00674420`, `00674610`, `006747D0`, `006BA720`, `import:Sleep`, `import:cosf`, `import:sinf`; Stores: `b[rax+0x10]`, `b[rbx+0x1C]`, `b[rdi+0xC,0xE]`, `d[r14+0x18]`, `d[r15]`, `d[rax]`, `d[rbx+0x18,0x78]`, `d[rdi+0x4,0x8,0x10,0x70]`, `d[rdi]`, `d[rsi+0x4,0x8,0x10,0x14]`, `d[rsi]`, `q[r15+0x8]`, `q[rax+0x8]`, `q[rsi+0x8]`, `q[rsi]`, `w[r14+0x2..0x8/2]`, `w[r14-0x2]`, `w[r14]`",
+   "anchors": [
+    [
+     "0064981C",
+     "call"
+    ],
+    [
+     "00649873",
+     "mov"
+    ],
+    [
+     "00649BF3",
+     "call"
+    ],
+    [
+     "00649BA1",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0064A500",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `0017D260`, `001B6CE0`, `001B7170`, `001B7210`, `001B8100`, `006394E0`, `0063A990`, `006629F0`, `0066F970`, `0066FAB0`, `00671690`, `00671B10`, `00671B20`, `00671B30`, `00671D80`, `00674230`, `00674420`, `00674610`, `006747D0`, `006BA720`, `import:Sleep`, `import:cosf`, `import:sinf`; Stores: `b[r14+0x1C]`, `b[r15+0xC,0xE]`, `b[rax+0x10]`, `d[r14+0x18,0x78]`, `d[r15+0x4,0x8,0x10,0x70]`, `d[r15]`, `d[rax]`, `d[rdi+0x4,0x8]`, `d[rdi]`, `q[rax+0x8]`, `q[rdi+0x8]`, `w[r13+r10*2]`, `w[r13+rax*2]`",
+   "anchors": [
+    [
+     "0064A55A",
+     "call"
+    ],
+    [
+     "0064A5B8",
+     "mov"
+    ],
+    [
+     "0064A9DD",
+     "call"
+    ],
+    [
+     "0064A988",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "ee",
+ "family": "",
+ "method": "The page named these bodies only at their entry; each is too large for one exact sentence, so each row is a SCOPED row under SWE2-AUDIT-SPEC's ruling (auditspec-ruling-scoped-ee-row-1003, 4fdcdb5ea): it opens with its scope (every call and every non-stack store, with widths; branch conditions, arithmetic and order not stated) and ends the scope with the marker 'scoped row: set-exact'. The committed checker [`scoped_check.py`](scoped_check.py) (v3, sha256 3c28ea9ef93d35aa4bf422555e10c20ea700d7f43a2229f49735f93e07af65d9) derives both sets from the image by recursive descent over the function's extent (jump tables resolved, stack aliases tracked along control flow) and refuses any mismatch: [`scoped_check.out`](scoped_check.out) FAILS 0 over 3 row(s); its controls [`scoped_check_controls.out`](scoped_check_controls.out) CONTROL FAILS 0. Drafted by repos-91, a local helper, from the checker's output; the checker itself was reviewed twice by an independent agent that re-derived all 65 rows of this round with its own code (v1: 2 rows missed stores, fixed; v2/v3: all rows match). Scoped credit is reported separately from full rows (the ruling's condition 5)."
+}

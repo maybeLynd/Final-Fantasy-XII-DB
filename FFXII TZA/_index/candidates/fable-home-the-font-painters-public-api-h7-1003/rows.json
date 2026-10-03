@@ -1,0 +1,37 @@
+{
+ "page": "99-Unresolved-Residual/Glyph-Run-Rendering/the-font-painters-public-api.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01VNt9U2NfNQBph7nwiLwJy4",
+ "report": "home-the-font-painters-public-api.json",
+ "rows": [
+  {
+   "fn": "00213090",
+   "entered_from": "`001E9380` + 0x19",
+   "text": "stores byte 1 at `rcx+0x20` and the dword 0x3F800000 (the f32 bit pattern of 1.0) at `rcx+0x30`, `rcx+0x2C`, `rcx+0x28` and `rcx+0x24`, in that order, then returns",
+   "anchors": [
+    [
+     "00213094",
+     "mov"
+    ],
+    [
+     "0021309B",
+     "mov"
+    ],
+    [
+     "002130A2",
+     "mov"
+    ],
+    [
+     "002130A9",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [
+  "001E9380"
+ ],
+ "corrections": []
+}

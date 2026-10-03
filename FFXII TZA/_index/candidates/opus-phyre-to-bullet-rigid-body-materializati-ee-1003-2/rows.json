@@ -1,0 +1,94 @@
+{
+ "page": "23-Third-Party-Libraries/Bullet-Physics-Integration/phyre-to-bullet-rigid-body-materialization.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "phyre-to-bullet-rigid-body-materializati-r10.json",
+ "rows": [
+  {
+   "fn": "0083B780",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `00808C40`, `0083E050`, `00841850`, `00841860`, `[r10+0x10]`, `[r10+0x80]`, `[r8+0x68]`, `[rax+0x10]`, `[rax+0x18]`, `[rax+0x28]`, `[rax+0x50]`, `[rax+0x70]`, `[rax+0x8]`, `[rax+0xA0]`, `[rax+0xA8]`, `[rax+0xB0]`, `[rdx+0x20]`, `import:sqrtf`; Stores: none",
+   "anchors": [
+    [
+     "0083B80A",
+     "call"
+    ],
+    [
+     "0083DD5B",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0083E7E0",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `00808C40`, `00836D40`, `0083E610`, `0083E7E0`, `00841860`, `0084A9E0`, `0084B280`, `0084BDF0`, `[rax+0x10]`, `[rax+0x50]`, `[rax+0x70]`, `[rax+0x8]`, `import:sqrtf`; Stores: `q[r9+0xD0]`",
+   "anchors": [
+    [
+     "0083E8FC",
+     "call"
+    ],
+    [
+     "0083F640",
+     "mov"
+    ],
+    [
+     "0083F67E",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "0083FD10",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `00808C40`, `00830C40`, `00831990`, `00836DA0`, `0083E610`, `0083FD10`, `00841860`, `0084AA90`, `0084B280`, `0084B2C0`, `0084B320`, `[rax+0x10]`, `[rax+0x70]`, `import:sqrtf`; Stores: `q[rax+0xD0]`, `q[rcx+0xD0]`",
+   "anchors": [
+    [
+     "0083FDA4",
+     "call"
+    ],
+    [
+     "00840731",
+     "mov"
+    ],
+    [
+     "008407F4",
+     "call"
+    ],
+    [
+     "0084079A",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00846710",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `00841850`, `008424A0`, `00844CA0`, `0085E680`, `0085E710`, `[rax+0x8]`; Stores: `b[rbx+0x68..0xC8/32]`, `b[rbx+0xF0]`, `b[rcx+0x48]`, `d[rbx+0x44,0x74,0x78,0xB4,0xB8,0xDC,0xE0,0xF8]`, `d[rdx+r8*1+0x10]`, `d[rdx+r8*1+0xC]`, `q[rbx+0x54,0x60,0x80,0x94,0xA0,0xC0,0xE8]`, `w[rdx+r8*1+0x2]`, `w[rdx+r8*1+0x4]`, `w[rdx+r8*1+0x6]`, `w[rdx+r8*1+0x8]`, `w[rdx+r8*1+0xA]`, `w[rdx+r8*1]`, `x[rcx+0x10..0x30/16]`, `x[rcx]`, `x[rdx]`",
+   "anchors": [
+    [
+     "0084675D",
+     "call"
+    ],
+    [
+     "00846741",
+     "mov"
+    ],
+    [
+     "00846A1E",
+     "call"
+    ],
+    [
+     "00846BF0",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [
+  "00847E60",
+  "00849B30"
+ ],
+ "corrections": [],
+ "mode": "ee",
+ "family": "",
+ "method": "The page named these bodies only at their entry; each is too large for one exact sentence, so each row is a SCOPED row under SWE2-AUDIT-SPEC's ruling (auditspec-ruling-scoped-ee-row-1003, 4fdcdb5ea): it opens with its scope (every call and every non-stack store, with widths; branch conditions, arithmetic and order not stated) and ends the scope with the marker 'scoped row: set-exact'. The committed checker [`scoped_check.py`](scoped_check.py) (v3, sha256 3c28ea9ef93d35aa4bf422555e10c20ea700d7f43a2229f49735f93e07af65d9) derives both sets from the image by recursive descent over the function's extent (jump tables resolved, stack aliases tracked along control flow) and refuses any mismatch: [`scoped_check.out`](scoped_check.out) FAILS 0 over 4 row(s); its controls [`scoped_check_controls.out`](scoped_check_controls.out) CONTROL FAILS 0. Drafted by repos-91, a local helper, from the checker's output; the checker itself was reviewed twice by an independent agent that re-derived all 65 rows of this round with its own code (v1: 2 rows missed stores, fixed; v2/v3: all rows match). Scoped credit is reported separately from full rows (the ruling's condition 5)."
+}

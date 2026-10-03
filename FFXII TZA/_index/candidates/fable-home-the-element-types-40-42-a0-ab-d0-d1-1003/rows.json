@@ -197,5 +197,73 @@
  "rejected": [],
  "skipped": {},
  "missing": [],
- "corrections": []
+ "corrections": [],
+ "moved": [
+  {
+   "fn": "003B6DE0",
+   "entered_from": "`003B6F80` + 0xC8",
+   "text": "clamps `edx` to 0..0x20 (signed; a negative count becomes 0) and stores it at dword `02EBCC60`; for each of that many dwords at `r8` it stores the dword at `02EBCBE0[i]`, passes it to the call at `003B6DE0` + 0x68 and, when that returns non-null, clears bit 3 and sets bit 2 of the result's byte `+9` and stores the pointer at qword `02EBCAC0[i]`; it then walks the same count of qwords at `02EBCAC0`, packing to the front each pointer whose byte `+9` bit 3 is clear and setting that bit; finally it stores `ecx` at dword `02EBCC70`, the result of the call at `003B6DE0` + 0xD1 on `ecx` at qword `02EBCC68`, and the packed count at dword `02EBCBC0`",
+   "anchors": [
+    [
+     "003B6E12",
+     "cmovg"
+    ],
+    [
+     "003B6E48",
+     "call"
+    ],
+    [
+     "003B6E8A",
+     "test"
+    ],
+    [
+     "003B6EB1",
+     "call"
+    ],
+    [
+     "003B6EBD",
+     "mov"
+    ]
+   ],
+   "dropped_by": "FABLE",
+   "dropped_on": "2026-10-03",
+   "dropped_record": "_index/candidates/fable-home-host-moves-b6-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-the-element-types-40-42-a0-ab-d0-d1-1003/REVIEW.md",
+   "already_bound_on": "04-Actor-Entity/Actor-Storage-Record/the-record-behind-every-actor.md"
+  }
+ ],
+ "dropped": [
+  {
+   "fn": "003B6DE0",
+   "entered_from": "`003B6F80` + 0xC8",
+   "text": "clamps `edx` to 0..0x20 (signed; a negative count becomes 0) and stores it at dword `02EBCC60`; for each of that many dwords at `r8` it stores the dword at `02EBCBE0[i]`, passes it to the call at `003B6DE0` + 0x68 and, when that returns non-null, clears bit 3 and sets bit 2 of the result's byte `+9` and stores the pointer at qword `02EBCAC0[i]`; it then walks the same count of qwords at `02EBCAC0`, packing to the front each pointer whose byte `+9` bit 3 is clear and setting that bit; finally it stores `ecx` at dword `02EBCC70`, the result of the call at `003B6DE0` + 0xD1 on `ecx` at qword `02EBCC68`, and the packed count at dword `02EBCBC0`",
+   "anchors": [
+    [
+     "003B6E12",
+     "cmovg"
+    ],
+    [
+     "003B6E48",
+     "call"
+    ],
+    [
+     "003B6E8A",
+     "test"
+    ],
+    [
+     "003B6EB1",
+     "call"
+    ],
+    [
+     "003B6EBD",
+     "mov"
+    ]
+   ],
+   "dropped_by": "FABLE",
+   "dropped_on": "2026-10-03",
+   "dropped_record": "_index/candidates/fable-home-host-moves-b6-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-the-element-types-40-42-a0-ab-d0-d1-1003/REVIEW.md",
+   "already_bound_on": "04-Actor-Entity/Actor-Storage-Record/the-record-behind-every-actor.md"
+  }
+ ]
 }

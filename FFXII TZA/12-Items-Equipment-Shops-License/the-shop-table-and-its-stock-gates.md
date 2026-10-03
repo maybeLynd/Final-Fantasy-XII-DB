@@ -1023,3 +1023,11 @@ Shared callees outside the census: `002536A0`.
 | function | size | what the body does | interior anchors |
 |---|---|---|---|
 | `0027F030` | 282 B | starts a result at 0; when `r9d` is 0 and the fifth (stack) argument is not 1 and `002CCA10(r8d)` is non-zero, it calls `0027F030`+0x51(`edx`) and sets the result to 4 when `0027F030`+0x5F(that value, word `+0xd68` of qword `0209AC30`) returns 0; when `r9d` is 1 and `0027F030`+0x87(`r8d`) is non-zero, with b = byte `+0xd6b` of qword `0209AC30` it sets 4 unless `r8d` equals b when `0027F030`+0x92(b) is non-zero, and otherwise sets 4 when `0027F030`+0xAB(b) is non-zero, or else unless t = `0027F030`+0xC2(word `+0xd48`) passes `0027F030`+0xCB(t) and equals `r8d` (it keeps 0 when +0x87 returns 0); any other `r9d` keeps 0; on every path it calls `0027F030`+0xF2(byte `ecx`, word `edx`, `r9d`, the fifth argument), ORs 1 into the result when that returns 0, and returns the result | Interior anchor `0027F06A`; Interior anchor `0027F098`; Interior anchor `0027F0D2`; Interior anchor `0027F122`; Interior anchor `0027F13F` |
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-03, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../_index/candidates/fable-home-h9-the-shop-table-and-its-stock-gates-1003/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `002CCA30` | 9 B | `0027F030` + 0xAB | returns 1 when `ecx` equals 0x12 and 0 otherwise (`xor eax`, `cmp`, `sete al`) | Interior anchor `002CCA32`; Interior anchor `002CCA35` |

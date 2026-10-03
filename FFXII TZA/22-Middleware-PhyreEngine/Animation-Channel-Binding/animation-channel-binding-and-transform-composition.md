@@ -1150,3 +1150,11 @@ had, and it is named for the same reason.
 | function | size | entered from | what the body does | interior anchors |
 |---|---|---|---|---|
 | `0059FC20` | 126 B | `005C0820` + 0x11F | returns 1 when `rdx` or `r8` is null and 5 when `r8` is below `rdx` (unsigned); otherwise, with `len` = `r8d` - `edx` (32-bit), calls `0059FC20` + 0x3A(`rdx`, `len`+1) and returns `0xd` when that returns null; else it writes byte 0 at offset `len` of the returned buffer, calls `0059FC20` + 0x5C(`rcx`, buffer) and returns 0 | Interior anchor `0059FC36`; Interior anchor `0059FC40`; Interior anchor `0059FC5A`; Interior anchor `0059FC78`; Interior anchor `0059FC7C` |
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted, opus-animation-channel-binding-and-transform--ee-1003-2)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../../_index/candidates/opus-animation-channel-binding-and-transform--ee-1003-2/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `005BF290` | 2474 B | Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `005CAA80`; Stores: `d[r15+r10*8+0x18]`, `d[r15+r10*8+0x1C]`, `d[r15+r10*8+0x4]`, `d[r15+r10*8+0x8]`, `d[r15+r10*8+0xC]`, `d[r15+r10*8]`, `d[rax]`, `q[r15+r10*8+0x10]`, `x[r15+r10*8]` | `005BFB97`, `005BF398`, `005BF944` |

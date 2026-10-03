@@ -1,0 +1,25 @@
+{
+ "page": "00-Engine-Core-Runtime/Developer-Tuning-Console/what-the-console-tunes.md",
+ "date": "2026-10-03",
+ "rows": [
+  {
+   "fn": "00189090",
+   "text": "loads qword `+0x10` and stores byte 0 to `+9` of the object it points to; passed as the `rdx` argument of the `005FEA50` call by `00186130` + 0x72, and 2 other sites form it the same way",
+   "anchors": [
+    [
+     "00189094",
+     "mov"
+    ]
+   ],
+   "why_here": "00186130 passes it to 005FEA50 three times; this page lists 00186130",
+   "ref": {
+    "kind": "code",
+    "container": "00186130",
+    "site": "001861A2"
+   },
+   "cites": [
+    "00186130"
+   ]
+  }
+ ]
+}

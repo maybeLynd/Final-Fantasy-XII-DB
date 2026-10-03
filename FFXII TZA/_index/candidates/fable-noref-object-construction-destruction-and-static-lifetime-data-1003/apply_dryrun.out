@@ -1,0 +1,3 @@
+VERIFY 2 functions, 8 anchors, 2 references, page 24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/object-construction-destruction-and-static-lifetime.md (LF)
+DRY (verified; --apply appends 2 rows)
+FAILS 0

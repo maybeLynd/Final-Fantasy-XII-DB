@@ -1,0 +1,86 @@
+{
+ "page": "25-EBP-Script-Container/Sections/section-010.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_01Jt7JVDWnpXmUBxAYuwnHXL",
+ "report": [
+  "fable-section-010.json"
+ ],
+ "rows": [
+  {
+   "fn": "0034E220",
+   "text": "calls `0034E220+0xC(r9)`; when it returns non-zero tail-jumps to `002E64E0` with `rcx` = the incoming `rdx`, otherwise tail-jumps to `002EBE50(incoming rdx, 0, 0)`",
+   "anchors": [
+    [
+     "0034E22C",
+     "call"
+    ],
+    [
+     "0034E236",
+     "je"
+    ],
+    [
+     "0034E23D",
+     "jmp"
+    ],
+    [
+     "0034E24C",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "003B7A30",
+   "text": "when qword `02EBCC68` is non-null calls `002693D0(r, 1)` with r the result of the call at `003B7A30+0x12` on it; then for i from 0 while i is below dword `02EBCBC0` (signed, re-read after each call) does the same for each non-null qword at `02EBCAC0` + 8*i (call site `003B7A30+0x48`)",
+   "anchors": [
+    [
+     "003B7A40",
+     "je"
+    ],
+    [
+     "003B7A4F",
+     "call"
+    ],
+    [
+     "003B7A76",
+     "je"
+    ],
+    [
+     "003B7A85",
+     "call"
+    ],
+    [
+     "003B7A98",
+     "jl"
+    ]
+   ]
+  },
+  {
+   "fn": "003B7AB0",
+   "text": "for i from 0 while i is below dword `02EBCAA0` (signed, re-read each pass) takes the qword at `02EBCA80` + 8*i, passes it to the call at `003B7AB0+0x23` and calls `002693D0(that result, 1)`; no null check",
+   "anchors": [
+    [
+     "003B7AB8",
+     "cmp"
+    ],
+    [
+     "003B7AD3",
+     "call"
+    ],
+    [
+     "003B7AE0",
+     "call"
+    ],
+    [
+     "003B7AEB",
+     "cmp"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing",
+ "family": ""
+}

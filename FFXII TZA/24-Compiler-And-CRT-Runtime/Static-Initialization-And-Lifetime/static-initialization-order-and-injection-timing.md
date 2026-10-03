@@ -982,3 +982,13 @@ pass-22 slice OPUS-P22-SLICE-24-99).*
 - **Script_VM_Native_Bridge - SERVICE (17 edges).** `0053DD10` is also called by `00341840`, `00341F90`, `00345250`, `00346AA0` (+8 more), filed to the script VM / native bridge (+5 more edges of the same shape) - shared machinery across the layer boundary, no shared ownership.
 - **UI - SERVICE (1 edge).** `0053DD10` is also called by `003C80C0`, filed to ui - shared machinery across the layer boundary, no shared ownership.
 - **WorldAreaField - SERVICE (1 edge).** `0053DD10` is also called by `003789A0`, filed to world area - shared machinery across the layer boundary, no shared ownership.
+
+## No-reference bodies homed by the table that reaches them (FABLE, 2026-10-03)
+
+*No page cited these functions and no census-listed instruction calls or jumps to them: each is reached through data or through code this page documents. Each sentence states what the body does (access and representation, not purpose) and ends with the reference that reaches it; the anchors are instructions inside the body that do it. Handed over by SWE2-EC7 and read whole by FABLE against the certified image; verified by [`apply.py`](../../_index/candidates/fable-noref-static-initialization-order-and-injection-timing-data-1003/apply.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic, and every named reference holds or forms the body's address at the bytes.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `001610B0` | 34 B | zeroes the 0x80 bytes at `02CAEB60` as eight passes of two qword stores and returns; reached through slot 154 (`008C36A8`) of the C++ initializer table `008C31D8` | Interior anchor `001610B5`; Interior anchor `001610C0`; Interior anchor `001610C3`; Interior anchor `001610CB` |
+| `00168C10` | 38 B | stores 0 to the five qwords `02EA1960`, `02EA1968`, `02EA1970`, `02EA1978` and `02EA1980` and returns; reached through slot 675 (`008C46F0`) of the C++ initializer table `008C31D8` | Interior anchor `00168C12`; Interior anchor `00168C27`; Interior anchor `00168C2E` |
+| `00168EE0` | 33 B | calls `006EF480` with `ecx` = 5, `edx` = 0 and `xmm2` = the float at `01CEBBA8`, and stores its `eax` result to dword `02EA4024`; reached through slot 697 (`008C47A0`) of the C++ initializer table `008C31D8` | Interior anchor `00168EE4`; Interior anchor `00168EEE`; Interior anchor `00168EF1`; Interior anchor `00168EF6` |

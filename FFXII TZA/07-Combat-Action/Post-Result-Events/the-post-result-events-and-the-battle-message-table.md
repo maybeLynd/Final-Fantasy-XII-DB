@@ -930,3 +930,11 @@ call: `00861EC0` tails a `0x440`-byte zero fill at
 arms reach through.
 Interior anchor `0028A082` (the `0x440`
 constant).
+
+## SWE2-EC7-223 update (2026-10-03) - the `btlAtelOpenTreasureMessage` open guard
+
+`btlAtelOpenTreasureMessage` reads `022CA430`, the treasure-message record this page's message-table machinery fills, and reports whether a message is open (optionally matching a script-supplied id).
+
+| function | size | verb / caller | what the body does | interior anchors |
+|---|---|---|---|---|
+| `0035DF20` | 29 B | `btlAtelOpenTreasureMessage` `0x3037` (handler `0050FBC0` calls it and returns its value) | loads `022CA430` - the open treasure-message record - and returns 0 when the argument is 0 and the record is non-null, or when the argument equals the record's id; returns 1 otherwise. `0` means "open (and it is the one the script named)" | Interior anchor `0035DF27`; Interior anchor `0035DF34`; Interior anchor `0035DF37` |

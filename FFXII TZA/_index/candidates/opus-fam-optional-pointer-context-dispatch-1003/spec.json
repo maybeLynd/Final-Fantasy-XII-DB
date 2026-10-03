@@ -1,0 +1,44 @@
+{
+ "page": "22-Middleware-PhyreEngine/Script-Object-Accessors/phyre-script-object-accessors.md",
+ "members": "22-Middleware-PhyreEngine/Script-Object-Accessors/members/optional-pointer-context-dispatch-adapters.tsv",
+ "kind": "operand_at",
+ "group": "all",
+ "title": "optional-pointer context dispatch adapters (optional-pointer-context-dispatch), one row per member, keyed on +0x12 call",
+ "package": "_index/candidates/opus-member-ccessors-optional-pointer-context-dispatch-adapters-1-r9",
+ "key": [
+  [
+   "0x12",
+   "call",
+   "tgt"
+  ]
+ ],
+ "fields": [],
+ "skip": {},
+ "apply": "never: the page already carries the member rows (package opus-member-ccessors-optional-pointer-context-dispatch-adapters-1-r9); progress.py reads only page, rows.tsv entry and anchor",
+ "size": 80,
+ "form": [
+  "mov qword ptr [rsp + 8], rbx",
+  "push rdi",
+  "sub rsp, 0x20",
+  "mov rdi, qword ptr [r8]",
+  "xor ecx, ecx",
+  "mov rbx, rdx",
+  "call #",
+  "mov rcx, rbx",
+  "test rdi, rdi",
+  "je +0x34",
+  "mov r8, rax",
+  "mov rdx, rdi",
+  "mov rbx, qword ptr [rsp + 0x30]",
+  "add rsp, 0x20",
+  "pop rdi",
+  "jmp 00684080",
+  "mov edx, 1",
+  "call 0080F420",
+  "mov rcx, rbx",
+  "mov rbx, qword ptr [rsp + 0x30]",
+  "add rsp, 0x20",
+  "pop rdi",
+  "jmp 00810620"
+ ]
+}

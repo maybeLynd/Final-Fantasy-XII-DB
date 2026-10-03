@@ -1,0 +1,35 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/binmenu-guest-face-and-map-effect-images.md",
+ "members": "02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/members/mmsg-value-receiver-adapters.tsv",
+ "kind": "operand_at",
+ "group": "all",
+ "title": "MMSG value receiver adapters (mmsg-value-receivers), one row per member, keyed on +0x8 mov",
+ "package": "_index/candidates/opus-member-and-map-effect-images-mmsg-value-receiver-adapters-1-r9",
+ "key": [
+  [
+   "0x8",
+   "mov",
+   "rip"
+  ]
+ ],
+ "fields": [
+  [
+   "0x3",
+   "mov",
+   "imm"
+  ]
+ ],
+ "skip": {
+  "002F7680": "not in the r9 member pack, which held only frontier members; cited on 10-Status-Periodic-Terminal/the-thirty-two-statuses.md, so no row on this page (it still derives: check re-verifies)",
+  "002F7800": "not in the r9 member pack, which held only frontier members; cited on 10-Status-Periodic-Terminal/the-thirty-two-statuses.md, so no row on this page (it still derives: check re-verifies)",
+  "002F79C0": "not in the r9 member pack, which held only frontier members; cited on 10-Status-Periodic-Terminal/the-thirty-two-statuses.md, so no row on this page (it still derives: check re-verifies)"
+ },
+ "apply": "never: the page already carries the member rows (package opus-member-and-map-effect-images-mmsg-value-receiver-adapters-1-r9); progress.py reads only page, rows.tsv entry and anchor",
+ "size": 20,
+ "form": [
+  "movsxd rdx, ecx",
+  "mov ecx, #",
+  "mov qword ptr [#], rdx",
+  "jmp 00238640"
+ ]
+}

@@ -63590,3 +63590,209 @@ added under `SWE2-CONTRACT 2026-09-30/2026-10-01 (pass-22 debt/residue)`;
   census regenerated +105 / -0 (82 builder bank-B sites, all matching the decoded control; 23 caller r12 accesses).
   Record `_index/candidates/swe2struct-census-embed-fold-1003/`, `census_bankb_check.py` FAILS 0 (82 on the old census).
 - types_index 0 errors; check_census_widths back to its 1 baseline row.
+
+## EC7-206 batch-172 seal - 2026-10-03
+
+- Identity SWE2-EC7, package
+  SWE2-EC7-SHARED-HUB-IDENTIFICATION-172, 22 bodies
+  selected (6 multi-caller + 16 top one-caller
+  frontier by size, 3,064..440 B); 20 new entries
+  routed to 15 bearing hosts after two stale-
+  frontier artifacts were dropped.
+- Stale-frontier drops: `004058E0` and `003B0C50`
+  were already A-measured on their hosts (spawn-
+  placement's FABLE 2026-09-30 row corrects it to
+  a per-frame `+0x178`/`+0x130` step, not a spawn
+  apply; the authored-commands FABLE 2026-09-20
+  row reads `003B0C50` whole with `003B0D92`/
+  `003B0E67`/`003B0EE0` interior cites). The
+  frontier's interior-cite test misses table-row
+  anchors; both paragraphs removed before publish.
+- Decoded subjects: `0020ED30` the VIF/VU1
+  two-bank stream-submit state machine;
+  `0018AA30` the packed-qword 10-bit-channel
+  dequantize leaf; `00456B00`/`00522810`/
+  `0045D7D0`/`0045CDC0` the `022D92E0`
+  workbench-accumulator update family
+  (`+0xD0`/`+0x80` basis variants); `006A3E20`
+  the 9-float record normalizer (peer-measured
+  call sites name it the rotation extractor);
+  `00680210` the SEAD linked-list-to-`0x30`-array
+  flatten; `00474710` the frame-side update on
+  `022D8EAC`/`02AED560`; `001BF2E0` the EASTL
+  basic_string setup; `003F5CB0` the gated
+  scalar-field updater on `+0x820`; `0051CDE0`
+  the `022C6F28` element-parameter fill;
+  `006587F0`/`00658470`/`00659C20` the post-
+  effect record parser/dirty-detector/tree-
+  walker triplet; `00573BE0` the pane mode
+  setter with `+0x41A0` string rebuild;
+  `003FDAD0` the encoded-id request arm;
+  `0032AEC0` the bin-load submit; `006B5D60`
+  the 4x4-transpose matrix-record reader;
+  `001B0A20` the `%s_clut_%d` name lookup.
+- Interior anchors: 6,433 total, 0
+  mid-instruction, 0 outside-body.
+- Paragraph-address gate: ok on all 17 hosts
+  (0 non-function citations to confirm).
+- Hash audit: clean - standing unreproduced/
+  EXP stamp set only, nothing on batch hosts.
+- Publish-neighbour guard: ADDS NOTHING
+  (183 -> 182; the authored-commands
+  Script_VM_Native_Bridge crossing was
+  dispositioned in the same edit -
+  `00340700`/`0034D120`/`003476B0`/`0034E0E0`
+  client calls on `0026A430`/`002E9830`).
+- `rtti-vtable-object-model.md` carries
+  unrelated interior peer edits; it lands via
+  a HEAD+tail splice blob so the peer edits
+  stay uncommitted in the worktree.
+- **Postscript, 2026-10-03:** while this entry was
+  being written the Claude stand-in completed the
+  publish at `e548b7679` (all 22 bodies, 17 hosts,
+  this session's decode text) and ran the lifecycle
+  to DONE; the "exact next action" this entry records
+  was already finished. Reconciliation of the two
+  stale-frontier artifacts the entry names:
+  `004058E0`'s paragraph contradicted the same-page
+  2026-09-30 FABLE measurement and was struck
+  superseded (consumer check
+  `swe2ec7-4058e0-superseded-1003`); `003B0C50` stands
+  - consistent with FABLE's 2026-09-20 read-whole row,
+  adding the `003B0DD2` interior anchor. Neighbour
+  guard rerun on the two touched pages: ADDS NOTHING.
+
+
+## SWE2-EC7 EC7-221 homing batch seal - 2026-10-03
+
+- Identity SWE2-EC7 (Devin), package
+  SWE2-EC7-HOMING-RESIDUE-1003, class
+  caller-uncited: 5 VOICEWK accessor bodies -
+  the remaining verb backends of the
+  `02B5EC60`/`02B5EC68` battle-voice/message-
+  voice work table (`003EBD30`
+  `battlevoice_calc_member` `0x046D`, `003EBF20`
+  `battlevoice_regist_message_and_voice`
+  `0x046E`, `003EBE20` `mesvgetvoiceid`
+  `0x0490`, `003EBE00` `mesvgetmesid`
+  `0x0491`, `003EBDC0` `mesvgetfaceid`
+  `0x049C`), homed on
+  the-voice-pack-slots-and-the-voice-verbs.md
+  beside the pack machinery the module
+  complements. The module's lifecycle bodies
+  were already homed elsewhere: `003EBE70` /
+  `003EBE40` install and zero on
+  weather-apply, `003EBD70` teardown on
+  world-tick. Verb ids from
+  scriptvm-verb-table.tsv; every body read
+  whole from the shipping image.
+- Interior anchors: 10, boundary-verified;
+  census 11,467, 0 mid-instruction, 0
+  outside-body; paragraph-address gate clean;
+  publish-neighbour guard ADDS NOTHING
+  (182 -> 182). Host eligible under the 2 h
+  peer-commit rule; board task
+  `SWE2-EC7-HOMING-EC7-221-1003` held the
+  page while mid-work.
+
+## SWE2-EC7 EC7-222 homing batch seal - 2026-10-03
+
+- Identity SWE2-EC7 (Devin), package
+  SWE2-EC7-HOMING-RESIDUE-1003, class
+  caller-uncited: 14 bodies behind Script-VM
+  verb handlers in the `002Exxxx` element /
+  secondary-context module, homed onto three
+  bearing hosts (the natural owners are
+  unavailable: the record page's
+  `readiness: SIGNATURE RESOLVED` vetoes its
+  bearing status and the field-map companion
+  plus the UI router / staged-look / rig
+  pages are FABLE-named). Seven
+  render-record flag backends on
+  the-character-render-record-array.md
+  (`002E7150` `denybonephysical` `0x03D6`,
+  `002EBAD0` `bonephysical` `0x0169`,
+  `002E82E0` `setcharfogstatus` `0x0346`,
+  `002E8BB0` `setzclipoverdraw` `0x0283`,
+  `002E8C70` `setshadowratio` `0x028A`, both
+  halves of `stdmotioneventsync` `0x0473`
+  `002ECFD0` begin / `002ECF60` poll - all
+  resolve actor -> `+0xC0` secondary context
+  -> `022C6F28` 0x740 render record); three
+  secondary-context flag writers on
+  how-a-script-changes-how-the-party-looks.md
+  (`002EBC40` `ignorebattlemovectrl` `0x04E7`
+  -> `+0x11` bit 6, `002EC860` `motionloop`
+  `0x003B` -> `+0x11` bit 3, `002EC940`
+  `motionlooppreset` `0x04B4` -> `+0x2A`);
+  four menu-state query bodies on
+  the-event-slot-panel-and-its-dead-feeder.md
+  (`002E05A0` `debug_isopen_total_menu`
+  `0x2085` on `02092730`, `002E05E0`
+  `debug_isopen_menu` `0x2081` scanning the
+  eight `0x68` rows at `0215F200`,
+  `002E2340` `get_interventionmenu_status`
+  `0x0457` + its callee `0028F6A0`, re-homed
+  for bearing - EC7-220 published them on a
+  readiness-vetoed page).
+- Interior anchors: 56, boundary-verified by
+  instruction-start census; paragraph-address
+  gate clean; publish-neighbour guard ADDS
+  NOTHING (182 -> 181 after the added
+  Script_VM_Native_Bridge crossing bullet
+  accounted a standing finding). A crossing
+  bullet enumerating far-end handler
+  addresses was first refused for dragging
+  99 further crossings; final text names the
+  class only. Hosts eligible under the 2 h
+  peer-commit rule; board task
+  `SWE2-EC7-HOMING-EC7-222-1003` held the
+  three pages while mid-work. The eight-body
+  `0026xxxx` actor-record cluster is parked
+  host-blocked; decode banked in
+  `Database/Tools/work/SWE2-EC7/h222/`.
+
+## SWE2-EC7 EC7-223 homing batch seal - 2026-10-03
+
+- Class: caller-uncited under
+  `SWE2-EC7-HOMING-RESIDUE-1003` (the no-ref
+  remainder is FABLE's).
+- Six Script-VM verb backends read whole
+  from the shipping image (sha 73461D08),
+  homed onto five bearing hosts:
+  `0035A060` `getbtlwork` `0x0110` on
+  battleunit-slot-pool-and-actor-class.md
+  (actor `+0x30` BattleUnit via `00263E30`,
+  byte `+0xEC0 + idx`, 0-15 bounds);
+  `003DE450` `objmblurcolor` `0x01C6` and
+  `003DE460` `objmblurlimitalpha` `0x01C5`
+  on
+  the-screen-fade-layers-and-the-movie-fade-schedule.md
+  (the `02B58C20` object-motion-blur record:
+  colour dword `+4` + armed byte `+7`,
+  limit-alpha byte `+1`); `0030C3C0`
+  `isfusion_spattack` `0x02A1` on
+  the-action-definition-row.md (action-id
+  band `0x12`..`0x21`); `0035DF20`
+  `btlAtelOpenTreasureMessage` `0x3037` on
+  the-post-result-events-and-the-battle-message-table.md
+  (`022CA430` open-message guard, 0 = open);
+  `003A1640` `debug_isnewcharsep` `0x2070`
+  on scriptvm-native-dispatch-table.md
+  (sign/validity predicate).
+- Interior anchors: 13, boundary-verified
+  by instruction-start census (0 MID, 0
+  outside-body); address gate clean;
+  publish-neighbour guard ADDS NOTHING
+  (181 -> 181). Hosts verified bearing and
+  free of file: claims at claim time.
+- Ten further decoded bodies parked
+  (fsmenu trio, read-path trio, skipend,
+  clear_bgeffectactor, summongethertarget
+  pair, setbgnpcstatus, seteventfogcolor,
+  envsoundtrans, debug_clearskillmotioncache):
+  their bearing hosts carry FABLE file:
+  claims. Decode notes banked in
+  `Database/Tools/work/SWE2-EC7/h223/`.
+- Board: `SWE2-EC7-HOMING-EC7-223-1003`
+  held the five pages while mid-work.

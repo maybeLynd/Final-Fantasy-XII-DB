@@ -1,0 +1,107 @@
+{
+ "page": "24-Compiler-And-CRT-Runtime/Static-Initialization-And-Lifetime/static-initialization-order-and-injection-timing.md",
+ "date": "2026-10-03",
+ "rows": [
+  {
+   "fn": "001610B0",
+   "text": "zeroes the 0x80 bytes at `02CAEB60` as eight passes of two qword stores and returns; reached through slot 154 (`008C36A8`) of the C++ initializer table `008C31D8`",
+   "anchors": [
+    [
+     "001610B5",
+     "lea"
+    ],
+    [
+     "001610C0",
+     "mov"
+    ],
+    [
+     "001610C3",
+     "mov"
+    ],
+    [
+     "001610CB",
+     "sub"
+    ]
+   ],
+   "why_here": "slot 154 of the 1,172-entry C++ initializer table this page parses",
+   "ref": {
+    "kind": "slot",
+    "table": "008C31D8",
+    "field": "0",
+    "stride": "8",
+    "index": 154,
+    "site": "008C36A8",
+    "width": 8
+   },
+   "cites": [
+    "008C31D8"
+   ]
+  },
+  {
+   "fn": "00168C10",
+   "text": "stores 0 to the five qwords `02EA1960`, `02EA1968`, `02EA1970`, `02EA1978` and `02EA1980` and returns; reached through slot 675 (`008C46F0`) of the C++ initializer table `008C31D8`",
+   "anchors": [
+    [
+     "00168C12",
+     "mov"
+    ],
+    [
+     "00168C27",
+     "mov"
+    ],
+    [
+     "00168C2E",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 675 of the 1,172-entry C++ initializer table this page parses",
+   "ref": {
+    "kind": "slot",
+    "table": "008C31D8",
+    "field": "0",
+    "stride": "8",
+    "index": 675,
+    "site": "008C46F0",
+    "width": 8
+   },
+   "cites": [
+    "008C31D8"
+   ]
+  },
+  {
+   "fn": "00168EE0",
+   "text": "calls `006EF480` with `ecx` = 5, `edx` = 0 and `xmm2` = the float at `01CEBBA8`, and stores its `eax` result to dword `02EA4024`; reached through slot 697 (`008C47A0`) of the C++ initializer table `008C31D8`",
+   "anchors": [
+    [
+     "00168EE4",
+     "movss"
+    ],
+    [
+     "00168EEE",
+     "lea"
+    ],
+    [
+     "00168EF1",
+     "call"
+    ],
+    [
+     "00168EF6",
+     "mov"
+    ]
+   ],
+   "why_here": "slot 697 of the 1,172-entry C++ initializer table this page parses",
+   "ref": {
+    "kind": "slot",
+    "table": "008C31D8",
+    "field": "0",
+    "stride": "8",
+    "index": 697,
+    "site": "008C47A0",
+    "width": 8
+   },
+   "cites": [
+    "008C31D8"
+   ]
+  }
+ ]
+}

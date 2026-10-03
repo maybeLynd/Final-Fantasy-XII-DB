@@ -1,0 +1,9 @@
+members 28, committed rows 24, declared exclusions 4
+control swapped-value: refused (2 failure(s) from the comparison)
+control moved-anchor: refused (1 failure(s) from the comparison)
+control swapped-field +0x3: refused (1 failure(s) from the comparison)
+known answer 002F76A0: anchor 002F76A8 references 02EC3D98 in its raw bytes = committed value
+skips: 3 re-verified (still derive)
+key unique: 27 member value(s), 0 shared
+page citations: 24 of 24 anchors cited in their member's row
+FAILS 0

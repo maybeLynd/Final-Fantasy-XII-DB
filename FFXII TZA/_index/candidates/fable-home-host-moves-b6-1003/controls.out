@@ -1,0 +1,12 @@
+control subject-chain-cell             exit 1, 1 VERIFY FAIL: 0028FF80: the target page does not document the caller 0035C630 as a subject outside the batch-6 section -> refused
+control subject-passing-paragraph      exit 1, 1 VERIFY FAIL: 001D9F70: the target page does not document the caller 0017D940 as a subject outside the batch-6 section -> refused
+control drop-names-a-documenting-page  exit 1, 1 VERIFY FAIL: 001D9F70: 24-Compiler-And-CRT-Runtime/Lazy-Static-Initialization/lazy-statics-and-the-one-time-init-lock.md  -> refused
+control thunk-site-off                 exit 1, 2 VERIFY FAIL: 00408AD0: `0026C8C0` + 0x191 is not a direct call/jmp to 003EC850 -> refused
+control strike-unsaid-text             exit 1, 1 VERIFY FAIL: 00623D70: a struck span does not occur on the row the recorded number of times -> refused
+control strike-count                   exit 1, 1 VERIFY FAIL: 00623D70: a struck span does not occur on the row the recorded number of times -> refused
+control replace-not-derived            exit 1, 1 VERIFY FAIL: 00420860: text_edit does not turn the source text into the moved text -> refused
+control lea-wrong-target               exit 1, 1 VERIFY FAIL: 0029D4D0: 0029D4DB does not load 0029D560 -> refused
+control drop-caller-site-missing       exit 1, 1 VERIFY FAIL: 004068B0: raw callers {'004061F0': ['00406481', '004064B1']}, recorded {'004061F0': ['00406481']} -> refused
+control insert-before-missing          exit 1, 1 VERIFY FAIL: 17-Presentation-Rendering/Effect-File-Formats/efx-and-efb-effect-containers.md: the insert-before heading '# -> refused
+control anchor-shift                   exit 1, 1 VERIFY FAIL: 004FE4A0: 004FE4B0 decodes to None, recorded 'call' -> refused
+CONTROLS 11, NOT REFUSED 0

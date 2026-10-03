@@ -601,3 +601,11 @@ Interior anchor `003DCC59` (function `003DCBC0`).
 | function | size | what the body does | interior anchors |
 |---|---|---|---|
 | `003EBE70` | 171 B | stores qword `02B5EC60` = `rcx` and returns when it is null; otherwise passes a non-null qword `02B5EC68` to the call at `003EBE70+0x20` and zeroes it, calls `0036C1D0(5, 5)`, stores qword `02B5EC68` = `0036A190(0x100)` and, when that is non-null, calls `0036C660(it, "VOICEWK" 00D11820, 0x100)`; then calls `0036C140()`, zeroes qwords `02B5EC70` to `02B5EC88` and, when qword `02B5EC60` is still non-null, tail-jumps through `003EBE70+0xA1` with (it, `02B5EC70`), else returns | Interior anchor `003EBE7E`; Interior anchor `003EBE90`; Interior anchor `003EBEB6`; Interior anchor `003EBED2`; Interior anchor `003EBF11` |
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-03, cloud-drafted)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../../_index/candidates/fable-home-h9-weather-apply-and-environment-materi-1003/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `00321EA0` | 110 B | `003EBE70` + 0xA1 | makes the call at `00321EA0` + 0x23 with (0, `rcx`, `rdx`, 0) and fifth (stack) argument 1 and returns 1 when it returns non-zero; otherwise makes the call at `00321EA0` + 0x52 (same target) with (0, `rcx`, `rdx`, 0) and fifth (stack) argument 0 and returns 1 when that returns non-zero, else 0 | Interior anchor `00321EAD`; Interior anchor `00321EC3`; Interior anchor `00321EEC`; Interior anchor `00321EF2`; Interior anchor `00321EFE` |

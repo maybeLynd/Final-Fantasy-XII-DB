@@ -1,0 +1,121 @@
+image 73461d0896204b1c base 120000
+PASS  N 00310780-00310861 decodes exactly
+PASS  003107E7 is `xor r8d, r8d`
+PASS  003107F6 is `call 0x313b30`
+PASS  003107FE is `call 0x2fead0`
+PASS  00310806 is `call 0x308270`
+PASS  N r8 is not rewritten between +0x67 and +0x76  | 003107EA 003107F0 003107F3
+PASS  N +0x67 falls through to +0x76 (no branch between)
+PASS  N later calls +0x99 / +0xAC / +0xB9 / +0xD6 are calls
+PASS  P 00313B30-00313CCA (410 B) decodes exactly
+PASS  P seven .pdata fragments tile 00313B30-00313CCA, chained to the entry  | 7
+PASS  00313B56 is `mov r12d, r8d`
+PASS  P r12 is written only at 00313B56 (= r8d) before the epilogue pop  | 00313CC7
+PASS  00313C3D is `test r12d, r12d`
+PASS  00313C40 is `sete dil`
+PASS  00313C59 is `mov byte ptr [rsp + 0x31], dil`
+PASS  00313C5E is `setne al`
+PASS  00313C61 is `inc al`
+PASS  00313C63 is `mov byte ptr [rsp + 0x30], al`
+PASS  00313C6E is `mov dword ptr [rsp + 0x34], ecx`
+PASS  00313C76 is `mov dword ptr [rsp + 0x38], eax`
+PASS  00313C7E is `mov dword ptr [rsp + 0x3c], eax`
+PASS  00313C54 is `lea rdx, [rsp + 0x30]`
+PASS  00313C89 is `call 0x2ed2a0`
+PASS  W 002ED2A0-002ED2FD decodes exactly
+PASS  002ED2E1 is `cmp dword ptr [rcx + 0x284], 0`
+PASS  002ED2EA is `mov rdx, rbx`
+PASS  002ED2F2 is `jmp 0x3e6b50`
+PASS  003E6B50 is `add rcx, 0x650`
+PASS  003E6B57 is `jmp 0x512f30`
+PASS  H 00512F30-00513144 (532 B) decodes exactly
+PASS  H seven .pdata fragments tile the body, chained to 00512F30  | 7
+PASS  H int3 padding at 00513144
+PASS  H only transfers out: 00513005 call / 00513022 jmp -> 00512CD0  | [('513005', 'call', '512CD0'), ('513022', 'jmp', '512CD0')]
+PASS  H no memory-indirect or register-indirect transfer
+PASS  00512F44 is `je 0x5130fd`
+PASS  00512F4D is `je 0x5130cb`
+PASS  H 00512F58 lea r10 resolves to the pool 02CA81F0
+PASS  00512F77 is `add rbx, r10`
+PASS  00512FB6 is `add rax, r10`
+PASS  00512FD6 is `add rax, r10`
+PASS  H 26 persistent write sites  | 26
+PASS  H every write is in the envelope: receiver inline block, pool row, cursor, counters  | []
+PASS  00512F94 is `cmp byte ptr [rdi + 1], 0`
+PASS  00512F9D is `cmp dword ptr [rdi + 4], eax`
+PASS  00512F9A is `mov eax, dword ptr [rdi + 0xc]`
+PASS  00513067 is `mov ecx, dword ptr [rdi + 4]`
+PASS  0051306A is `mov dword ptr [rax], ecx`
+PASS  0051306C is `mov ecx, dword ptr [rdi + 8]`
+PASS  0051306F is `mov dword ptr [rax + 4], ecx`
+PASS  00513072 is `mov ecx, dword ptr [rdi + 0xc]`
+PASS  00513075 is `mov dword ptr [rax + 8], ecx`
+PASS  00512F80 is `cmp al, dl`
+PASS  00512F87 is `cmp dword ptr [rbx + 4], eax`
+PASS  00512F84 is `mov eax, dword ptr [rdi + 8]`
+PASS  00512FF1 is `cmp byte ptr [rdi + 1], 1`
+PASS  00512FF7 is `mov eax, dword ptr [rdi + 0xc]`
+PASS  00512FFA is `cmp dword ptr [rbx + 8], eax`
+PASS  00513005 is `call 0x512cd0`
+PASS  0051300A is `mov eax, dword ptr [rdi + 0xc]`
+PASS  0051300D is `cmp dword ptr [rdi + 4], eax`
+PASS  00513022 is `jmp 0x512cd0`
+PASS  00513027 is `mov dword ptr [rbx + 8], eax`
+PASS  H the call at 00513005 returns into 0051300A (the second test runs after a first removal)
+PASS  005130FD is `cmp byte ptr [rdi + 1], 1`
+PASS  00513104 is `jne 0x51311b`
+PASS  00513106 is `cmp dword ptr [r11 + 8], eax`
+PASS  0051310A is `jne 0x512feb`
+PASS  00513110 is `and byte ptr [r11 + 0xf], 0xf0`
+PASS  H kind-1 flag-1 path writes only 00513110 (the nibble clear)  | 00513110
+PASS  H the creation-refused exit 00512FE6 writes nothing
+PASS  L 00512CD0-00512D72 (162 B) decodes exactly
+PASS  L no .pdata row covers 00512CD0; next entry begins at 00512D80
+PASS  L int3 padding 00512D72-00512D80
+PASS  L no call, no transfer out of the body
+PASS  L 00512CD4 lea r10 resolves to the pool 02CA81F0
+PASS  L 11 persistent write sites  | 11
+PASS  L every write is one byte at +0xC..+0xF or the live count 02EBA481 (identity words never written)  | []
+PASS  00512D62 is `and byte ptr [r8 + 0xf], 0xf0`
+PASS  00512D67 is `dec byte ptr [r9 + 0xe]`
+PASS  00512D6B is `dec byte ptr [rip + 0x29a7710]`
+PASS  L 00512D6B decrements 02EBA481
+PASS  00512CDB is `mov r8, rdx`
+PASS  00512CDE is `mov r9, rcx`
+PASS  L tail 00512D62..00512D71 is straight-line (no test or branch before either decrement)
+PASS  L every path reaches 00512D62
+PASS  L does not write rbx, rdi or r11  | ['r10', 'r8', 'r9', 'rax', 'rcx', 'rdx', 'rflags', 'rsp']
+PASS  Q polarities read from the image: create flag==0 and pu!=pt; remove-1 flag==1 and nt==pt; remove-2 pu==pt  | ('eq', 'ne', 'eq', 'eq', 'eq')
+PASS  Q 203 set partitions of six identities  | 203
+PASS  Q 20 coherent cases (10 partitions x 2 flags)  | 20
+PASS  Q 0 coherent double removals  | 0
+PASS  Q 0 coherent cases where the stored target equals the recipient without a removal  | 0
+PASS  Q creation never yields a row with target == recipient  | 0
+PASS  Q broken-premise witness (all six equal, flag 1) reaches both removals
+PASS  X the clauses cite 8 call-site offsets  | 8
+PASS  X every cited fn+0xNN is an instruction boundary  | []
+PASS  X E1 cites only 8-hex functions its page already cites (00310780)  | []
+PASS  X E1: every relative link resolves from its page (6 links)  | []
+PASS  X E2 cites only 8-hex functions its page already cites (none)  | []
+PASS  X E2: every relative link resolves from its page (4 links)  | []
+PASS  K README.md: every relative link resolves from the record folder (6 links)  | []
+PASS  K README.md: every heading contains FABLE (8 headings)  | []
+PASS  K README.md ends with '## Consumer check (FABLE)'
+PASS  K affected: lines are exactly the two edited pages, nothing after the path  | ['affected: Database/FFXII TZA/10-Status-Periodic-Terminal/Status-Write/the-status-write-and-its-side-effects.md', 'affected: Database/FFXII TZA/15-Input/Gameplay-Capability-Policy/capability-inhibition-policy.md']
+PASS  K a `run: check.py at <sha> (FAILS 0)` line
+PASS  manifest.json sha256 = e1db8d80874a9a1c...  | e1db8d80874a9a1c9b38948d5a3e56eeff8fe659586a5b094e0628a0fd85ac3c
+PASS  all 53 manifest members hash as listed  | []
+PASS  CONTROL c1 00512FFD jne -> je (reversed matching-target branch): grp_reducer passes on the clean image, FAILS on the patched copy  | baseline fails 0, patched fails 3
+PASS  CONTROL c2 00512FA0 je -> jne (creation inequality inverted): grp_reducer passes on the clean image, FAILS on the patched copy  | baseline fails 0, patched fails 2
+PASS  CONTROL c3 00512D62 and [r8+0xF] -> [r8+0x8] (remover writes the target word): grp_remover passes on the clean image, FAILS on the patched copy  | baseline fails 0, patched fails 2
+PASS  CONTROL c4 00513005 call 00512CD0 -> call rax (an opaque callback): grp_handler passes on the clean image, FAILS on the patched copy  | baseline fails 0, patched fails 4
+PASS  CONTROL c5 00512D62 -> je over the count decrement (an occupancy guard): grp_remover passes on the clean image, FAILS on the patched copy  | baseline fails 0, patched fails 3
+PASS  CONTROL c6 005130F3 store [r11+8] -> [r11+0x7F] (write outside the envelope): grp_handler passes on the clean image, FAILS on the patched copy  | baseline fails 0, patched fails 1
+PASS  CONTROL c7 00310780+0x67 xor r8d,r8d -> mov r8b,1 (non-zero third argument): grp_notify_leg passes on the clean image, FAILS on the patched copy  | baseline fails 0, patched fails 1
+PASS  CONTROL c8 003E6B50 add rcx,0x650 -> 0x640 (another receiver): grp_route passes on the clean image, FAILS on the patched copy  | baseline fails 0, patched fails 1
+PASS  CONTROL t1 E1 cites `00310780`+0x77 (not an instruction boundary): grp_text passes on the clean clauses, FAILS on the mutated text  | baseline fails 0, mutated fails 1
+PASS  CONTROL t2 E1 names the handler by address `00512F30` (a new neighbour edge): grp_text passes on the clean clauses, FAILS on the mutated text  | baseline fails 0, mutated fails 1
+PASS  CONTROL t3 E2 names `00310780` (not cited on the capability page): grp_text passes on the clean clauses, FAILS on the mutated text  | baseline fails 0, mutated fails 1
+PASS  CONTROL t4 E1 links a page that does not exist: grp_text passes on the clean clauses, FAILS on the mutated text  | baseline fails 0, mutated fails 1
+PASS  image on disk unchanged after the controls (sha256 re-read)
+FAILS 0

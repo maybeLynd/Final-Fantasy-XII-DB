@@ -1,0 +1,50 @@
+{
+ "page": "22-Middleware-PhyreEngine/Script-Object-Accessors/phyre-script-object-accessors.md",
+ "members": "22-Middleware-PhyreEngine/Script-Object-Accessors/members/optptr-offsetadd-dispatch-adapters.tsv",
+ "kind": "operand_at",
+ "group": "all",
+ "title": "optional-pointer offset-add dispatch adapters, 64-byte form (optptr-offsetadd-dispatch-64), one row per member, keyed on +0x18 lea",
+ "package": "_index/candidates/opus-member-l-pointer-offset-add-dispatch-adapters-64-byte-form-1-r9",
+ "key": [
+  [
+   "0x18",
+   "lea",
+   "rip"
+  ]
+ ],
+ "fields": [
+  [
+   "0x14",
+   "add",
+   "imm"
+  ],
+  [
+   "0x24",
+   "jmp",
+   "tgt"
+  ]
+ ],
+ "skip": {},
+ "apply": "never: the page already carries the member rows (package opus-member-l-pointer-offset-add-dispatch-adapters-64-byte-form-1-r9); progress.py reads only page, rows.tsv entry and anchor",
+ "size": 64,
+ "form": [
+  "push rbx",
+  "sub rsp, 0x20",
+  "mov rbx, rdx",
+  "mov rdx, qword ptr [r8]",
+  "mov rcx, rbx",
+  "test rdx, rdx",
+  "je +0x29",
+  "add rdx, #",
+  "lea r8, [#]",
+  "add rsp, 0x20",
+  "pop rbx",
+  "jmp #",
+  "mov edx, 1",
+  "call 0080F420",
+  "mov rcx, rbx",
+  "add rsp, 0x20",
+  "pop rbx",
+  "jmp 00810620"
+ ]
+}

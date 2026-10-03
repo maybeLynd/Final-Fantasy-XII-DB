@@ -1,0 +1,72 @@
+{
+ "page": "24-Compiler-And-CRT-Runtime/Cxx-Runtime-Families/object-construction-destruction-and-static-lifetime.md",
+ "date": "2026-10-03",
+ "rows": [
+  {
+   "fn": "00195100",
+   "text": "stores the `.rdata` address `008F35E8` to qword `[rcx]`, zeroes qwords `+8` and `+0x10`, calls the import slot `008C2A30` with the source (`rdx`) + 8 and its own `+8`, then stores the `.rdata` address `008F3618` over qword `[rcx]` and returns `rcx`; reached as the copy function (dword `+0x18`) of the CatchableType `01DEAAD8`, the first entry of the catchable-type array `01DEAAC0` of the ThrowInfo `01DEAAA0` that `00194F50` + 0xC1 forms for its throw",
+   "anchors": [
+    [
+     "00195110",
+     "lea"
+    ],
+    [
+     "00195127",
+     "call"
+    ],
+    [
+     "0019512D",
+     "lea"
+    ],
+    [
+     "00195134",
+     "mov"
+    ]
+   ],
+   "why_here": "copy function of a CatchableType in the ThrowInfo that 00194F50 (this page's use_facet<codecvt> row) throws",
+   "ref": {
+    "kind": "catchable",
+    "thrower": "00194F50",
+    "throw_site": "00195011",
+    "throwinfo": "01DEAAA0",
+    "catchable": "01DEAAD8"
+   },
+   "cites": [
+    "00194F50"
+   ]
+  },
+  {
+   "fn": "00195140",
+   "text": "stores the `.rdata` address `008F35E8` to qword `[rcx]`, zeroes qwords `+8` and `+0x10`, calls the import slot `008C2A30` with the source (`rdx`) + 8 and its own `+8`, and returns `rcx`; reached as the copy function (dword `+0x18`) of the CatchableType `01DEAA78`, listed in the catchable-type array `01DEAAC0` of the ThrowInfo `01DEAAA0` that `00194F50` + 0xC1 forms for its throw (three more throwers form the same ThrowInfo)",
+   "anchors": [
+    [
+     "00195150",
+     "lea"
+    ],
+    [
+     "00195157",
+     "mov"
+    ],
+    [
+     "0019515C",
+     "mov"
+    ],
+    [
+     "00195167",
+     "call"
+    ]
+   ],
+   "why_here": "copy function of a CatchableType in the ThrowInfo that 00194F50 (this page's use_facet<codecvt> row) throws",
+   "ref": {
+    "kind": "catchable",
+    "thrower": "00194F50",
+    "throw_site": "00195011",
+    "throwinfo": "01DEAAA0",
+    "catchable": "01DEAA78"
+   },
+   "cites": [
+    "00194F50"
+   ]
+  }
+ ]
+}

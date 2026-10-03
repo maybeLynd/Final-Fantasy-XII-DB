@@ -1,0 +1,39 @@
+{
+ "page": "16-UI/Config-Screen/the-config-screen-and-what-a-setting-change-runs.md",
+ "date": "2026-10-03",
+ "rows": [
+  {
+   "fn": "00241840",
+   "text": "with `p` = qword `+0xD8`, computes `i` = (sign-extended word `p+0xF2` + sign-extended word `p+0xF4`) times the zero-extended byte `p+0xEC` plus the sign-extended bytes `p+0xEE` and `p+0xED`, and returns 1 when the dword at `00914714` + 20*`i` is 0 and 0 otherwise; stored to qword `+0x728` of `rbx` by `0023BD40` + 0x1C7",
+   "anchors": [
+    [
+     "00241847",
+     "movsx"
+    ],
+    [
+     "0024185E",
+     "imul"
+    ],
+    [
+     "00241882",
+     "cmp"
+    ],
+    [
+     "00241885",
+     "sete"
+    ]
+   ],
+   "why_here": "stored by the config screen procedure 0023BD40 this page documents",
+   "ref": {
+    "kind": "code",
+    "container": "0023BD40",
+    "site": "0023BF07",
+    "store_site": "0023BF15",
+    "store_op": "qword ptr [rbx + 0x728], rax"
+   },
+   "cites": [
+    "0023BD40"
+   ]
+  }
+ ]
+}

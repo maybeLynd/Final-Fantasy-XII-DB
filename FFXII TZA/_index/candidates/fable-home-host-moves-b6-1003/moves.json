@@ -1,0 +1,1134 @@
+{
+ "date": "2026-10-03",
+ "by": "FABLE",
+ "target_heading": "## Homed bodies re-homed here for host fit (FABLE, 2026-10-03; AUDIT-SPEC batch 6)",
+ "target_before": {
+  "17-Presentation-Rendering/Effect-File-Formats/efx-and-efb-effect-containers.md": "## 2c. "
+ },
+ "review_batches": "SWE2-AUDIT-SPEC P11, P12, P14 (auditspec-review-fable-home-*-1003, *-homing-1003)",
+ "moves": [
+  {
+   "fn": "00623EB0",
+   "source_page": "16-UI/Dynamic-Geometry-Instances/dyngeo-instance-family.md",
+   "source_record": "_index/candidates/fable-home-dyngeo-instance-family-1003",
+   "source_section_date": "2026-10-03",
+   "review": "_index/candidates/auditspec-review-fable-home-dyngeo-instance-family-1003/REVIEW.md",
+   "target_page": "17-Presentation-Rendering/Gi-Render-Commands/gi-render-command-family.md",
+   "entered_from": "`0062A0A0` + 0x45D",
+   "source_text": "returns 0 when `edx` is not below (unsigned) dword `rcx+0x18` with bit 31 cleared; otherwise returns qword `+0` of the 0x10-stride entry `edx`, on the base qword `rcx+0x20` when that count is above 1 and on `rcx+0x20` itself when it is 1",
+   "text": "returns 0 when `edx` is not below (unsigned) dword `rcx+0x18` with bit 31 cleared; otherwise returns qword `+0` of the 0x10-stride entry `edx`, on the base qword `rcx+0x20` when that count is above 1 and on `rcx+0x20` itself when it is 1",
+   "text_edit": null,
+   "anchors": [
+    [
+     "00623EB3",
+     "btr"
+    ],
+    [
+     "00623EBC",
+     "jae"
+    ],
+    [
+     "00623EC8",
+     "jbe"
+    ],
+    [
+     "00623ED4",
+     "mov"
+    ],
+    [
+     "00623EEB",
+     "mov"
+    ]
+   ],
+   "host": {
+    "by": "caller"
+   },
+   "evidence": [
+    {
+     "addr": "0062A0A0",
+     "kind": "paragraph",
+     "line": 1770,
+     "quote": "`0062A0A0` (1648 B) is the GI command-stream interpreter `006"
+    }
+   ],
+   "held": "held: the target page is modified in the shared tree (git status M)"
+  },
+  {
+   "fn": "00624040",
+   "source_page": "16-UI/Dynamic-Geometry-Instances/dyngeo-instance-family.md",
+   "source_record": "_index/candidates/fable-home-dyngeo-instance-family-1003",
+   "source_section_date": "2026-10-03",
+   "review": "_index/candidates/auditspec-review-fable-home-dyngeo-instance-family-1003/REVIEW.md",
+   "target_page": "17-Presentation-Rendering/Gi-Render-Commands/gi-render-command-family.md",
+   "entered_from": "`0062A0A0` + 0x276",
+   "source_text": "returns 0 when `edx` is not below (unsigned) dword `rcx+0x30` with bit 31 cleared; otherwise returns qword `+8` of the 0x40-stride entry `edx`, on the base qword `rcx+0x38` when that count is above 1 and on `rcx+0x38` itself when it is 1",
+   "text": "returns 0 when `edx` is not below (unsigned) dword `rcx+0x30` with bit 31 cleared; otherwise returns qword `+8` of the 0x40-stride entry `edx`, on the base qword `rcx+0x38` when that count is above 1 and on `rcx+0x38` itself when it is 1",
+   "text_edit": null,
+   "anchors": [
+    [
+     "00624043",
+     "btr"
+    ],
+    [
+     "0062404C",
+     "jae"
+    ],
+    [
+     "00624058",
+     "jbe"
+    ],
+    [
+     "00624065",
+     "mov"
+    ],
+    [
+     "0062407E",
+     "mov"
+    ]
+   ],
+   "host": {
+    "by": "caller"
+   },
+   "evidence": [
+    {
+     "addr": "0062A0A0",
+     "kind": "paragraph",
+     "line": 1770,
+     "quote": "`0062A0A0` (1648 B) is the GI command-stream interpreter `006"
+    }
+   ],
+   "held": "held: the target page is modified in the shared tree (git status M)"
+  },
+  {
+   "fn": "00624690",
+   "source_page": "16-UI/Dynamic-Geometry-Instances/dyngeo-instance-family.md",
+   "source_record": "_index/candidates/fable-home-dyngeo-instance-family-1003",
+   "source_section_date": "2026-10-03",
+   "review": "_index/candidates/auditspec-review-fable-home-dyngeo-instance-family-1003/REVIEW.md",
+   "target_page": "17-Presentation-Rendering/Gi-Render-Commands/gi-render-command-family.md",
+   "entered_from": "`0062A0A0` + 0x363",
+   "source_text": "returns 0 when `edx` is not below (unsigned) dword `rcx+0x20` with bit 31 cleared or when bit 0 of byte `rcx+0x74` is clear; otherwise returns qword `+8` of the 0x48-stride entry `edx`, on the base qword `rcx+0x28` when that count is above 1 and on `rcx+0x28` itself when it is 1",
+   "text": "returns 0 when `edx` is not below (unsigned) dword `rcx+0x20` with bit 31 cleared or when bit 0 of byte `rcx+0x74` is clear; otherwise returns qword `+8` of the 0x48-stride entry `edx`, on the base qword `rcx+0x28` when that count is above 1 and on `rcx+0x28` itself when it is 1",
+   "text_edit": null,
+   "anchors": [
+    [
+     "0062469C",
+     "jae"
+    ],
+    [
+     "0062469E",
+     "test"
+    ],
+    [
+     "006246AE",
+     "jbe"
+    ],
+    [
+     "006246B8",
+     "mov"
+    ],
+    [
+     "006246CE",
+     "mov"
+    ]
+   ],
+   "host": {
+    "by": "caller"
+   },
+   "evidence": [
+    {
+     "addr": "0062A0A0",
+     "kind": "paragraph",
+     "line": 1770,
+     "quote": "`0062A0A0` (1648 B) is the GI command-stream interpreter `006"
+    }
+   ],
+   "held": "held: the target page is modified in the shared tree (git status M)"
+  },
+  {
+   "fn": "006246E0",
+   "source_page": "16-UI/Dynamic-Geometry-Instances/dyngeo-instance-family.md",
+   "source_record": "_index/candidates/fable-home-dyngeo-instance-family-1003",
+   "source_section_date": "2026-10-03",
+   "review": "_index/candidates/auditspec-review-fable-home-dyngeo-instance-family-1003/REVIEW.md",
+   "target_page": "17-Presentation-Rendering/Gi-Render-Commands/gi-render-command-family.md",
+   "entered_from": "`0062A0A0` + 0x56D",
+   "source_text": "returns 0 when `edx` is not below (unsigned) dword `rcx+0x18` with bit 31 cleared or when bit 0 of byte `rcx+0x6C` is clear; otherwise returns qword `+8` of the 0x48-stride entry `edx`, on the base qword `rcx+0x20` when that count is above 1 and on `rcx+0x20` itself when it is 1",
+   "text": "returns 0 when `edx` is not below (unsigned) dword `rcx+0x18` with bit 31 cleared or when bit 0 of byte `rcx+0x6C` is clear; otherwise returns qword `+8` of the 0x48-stride entry `edx`, on the base qword `rcx+0x20` when that count is above 1 and on `rcx+0x20` itself when it is 1",
+   "text_edit": null,
+   "anchors": [
+    [
+     "006246EC",
+     "jae"
+    ],
+    [
+     "006246EE",
+     "test"
+    ],
+    [
+     "006246FE",
+     "jbe"
+    ],
+    [
+     "00624708",
+     "mov"
+    ],
+    [
+     "0062471E",
+     "mov"
+    ]
+   ],
+   "host": {
+    "by": "caller"
+   },
+   "evidence": [
+    {
+     "addr": "0062A0A0",
+     "kind": "paragraph",
+     "line": 1770,
+     "quote": "`0062A0A0` (1648 B) is the GI command-stream interpreter `006"
+    }
+   ],
+   "held": "held: the target page is modified in the shared tree (git status M)"
+  },
+  {
+   "fn": "0029D4D0",
+   "source_page": "02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/five-small-bin-tables.md",
+   "source_record": "_index/candidates/fable-home-five-small-bin-tables-1003",
+   "source_section_date": "2026-10-03",
+   "review": "_index/candidates/auditspec-review-fable-home-five-small-bin-tables-1003/REVIEW.md",
+   "target_page": "16-UI/Layout-Parameter-System/ui-layout-parameters-and-editor-schema.md",
+   "entered_from": "`0029E110` + 0x203",
+   "source_text": "calls `0029D4D0` + 0x21 with (qword `0209C498` + `0x160`, `0x148`, the address loaded by the `lea` at `0029D4DB`, 0) and the same callee at `0029D4D0` + 0x43 with (qword `0209C498` + `0x2A8`, `0x148`, the same address, 0); then calls `0029D4D0` + 0x56 with (qword `0209C498`, that pointer + `0x160`) and tail-jumps to the same callee at `0029D4D0` + 0x6D with (qword `0209C498`, that pointer + `0x2A8`), re-reading `0209C498` before each call",
+   "text": "calls `0029D4D0` + 0x21 with (qword `0209C498` + `0x160`, `0x148`, the procedure `0029D550`, 0) and the same callee at `0029D4D0` + 0x43 with (qword `0209C498` + `0x2A8`, `0x148`, the same address, 0); then calls `0029D4D0` + 0x56 with (qword `0209C498`, that pointer + `0x160`) and tail-jumps to the same callee at `0029D4D0` + 0x6D with (qword `0209C498`, that pointer + `0x2A8`), re-reading `0209C498` before each call",
+   "text_edit": {
+    "why": "the five-small-bin-tables review, Repair 2: name the procedure (the `lea` at `0029D4DB` loads `0029D550`; move_rows.py checks it)",
+    "removed": "the address loaded by the `lea` at `0029D4DB`",
+    "kept": "the procedure `0029D550`"
+   },
+   "anchors": [
+    [
+     "0029D4E2",
+     "add"
+    ],
+    [
+     "0029D4F1",
+     "call"
+    ],
+    [
+     "0029D513",
+     "call"
+    ],
+    [
+     "0029D526",
+     "call"
+    ],
+    [
+     "0029D53D",
+     "jmp"
+    ]
+   ],
+   "host": {
+    "by": "caller"
+   },
+   "evidence": [
+    {
+     "addr": "0029E110",
+     "kind": "row",
+     "line": 210,
+     "quote": "| `NgSignal…` | 2 | `0029E110` |"
+    },
+    {
+     "addr": "0029E110",
+     "kind": "item",
+     "line": 504,
+     "quote": "s the legend's host.** Each global has exactly one reader, `0029E110` (`0029E251`,"
+    }
+   ],
+   "lea_checks": [
+    [
+     "0029D4DB",
+     "0029D550"
+    ]
+   ]
+  },
+  {
+   "fn": "00408AD0",
+   "source_page": "99-Unresolved-Residual/Glyph-Run-Rendering/how-a-line-of-text-becomes-glyph-quads.md",
+   "source_record": "_index/candidates/fable-home-how-a-line-of-text-becomes-glyph-quads-1003",
+   "source_section_date": "2026-10-03",
+   "review": "_index/candidates/auditspec-review-fable-home-how-a-line-of-text-becomes-glyph-quads-1003/REVIEW.md",
+   "target_page": "00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md",
+   "entered_from": "`003EC850` + 0x0",
+   "source_text": "when qword `02B62D80` is non-null and bit 1 (`0x2`) of its dword `+0xC8` is clear, clears bit 2 of that dword (AND `0xFFFFFFFB`); otherwise it writes nothing",
+   "text": "when qword `02B62D80` is non-null and bit 1 (`0x2`) of its dword `+0xC8` is clear, clears bit 2 of that dword (AND `0xFFFFFFFB`); otherwise it writes nothing",
+   "text_edit": null,
+   "anchors": [
+    [
+     "00408AD7",
+     "test"
+    ],
+    [
+     "00408AE2",
+     "test"
+    ],
+    [
+     "00408AE7",
+     "and"
+    ],
+    [
+     "00408AEA",
+     "mov"
+    ]
+   ],
+   "host": {
+    "by": "thunk",
+    "thunk": "003EC850",
+    "thunk_callers": [
+     "`002628B0` + 0x2E4",
+     "`0026C8C0` + 0x192"
+    ],
+    "lead": "`003EC850` is a 5-byte thunk to `00408AD0`; `002628B0` + 0x2E4 and `0026C8C0` + 0x192 call it"
+   },
+   "evidence": [
+    {
+     "addr": "002628B0",
+     "kind": "heading",
+     "line": 529,
+     "quote": "### The `002628B0` exclusive subtree — the manager unload's 26 helper"
+    },
+    {
+     "addr": "002628B0",
+     "kind": "paragraph",
+     "line": 531,
+     "quote": "The manager-slot unload `002628B0` (EX-9's drain-side function) owns 26 frontier func"
+    },
+    {
+     "addr": "0026C8C0",
+     "kind": "row",
+     "line": 179,
+     "quote": "| `ActorManager_BindLoadedDefinitionPayload` (`0026C8C0`) | `mov [rdi + 0x201], bl` at `0026CC38`, `rbx` be"
+    }
+   ]
+  },
+  {
+   "fn": "003DB150",
+   "source_page": "06-Movement-And-Navigation/Movement-Mode-Selection/how-the-engine-chooses-3d-or-flat-movement.md",
+   "source_record": "_index/candidates/fable-home-how-the-engine-chooses-3d-or-flat-movem-1003",
+   "source_section_date": "2026-10-03",
+   "review": "_index/candidates/auditspec-review-fable-home-how-the-engine-chooses-3d-or-flat-movem-1003/REVIEW.md",
+   "target_page": "06-Movement-And-Navigation/heading-speed-to-position-delta.md",
+   "entered_from": "`002E54A0` + 0xD7",
+   "source_text": "adds the three floats at `rcx`, `rcx+4`, `rcx+8` into the floats at `r8`, `r8+4`, `r8+8` in place; when `rdx` is non-null it then copies the three sums to dwords `+0x30`, `+0x34`, `+0x38` of `rdx`, copies the second sum also to dword `+0xAC`, and stores word `0xFFFF` to `+0x82`",
+   "text": "adds the three floats at `rcx`, `rcx+4`, `rcx+8` into the floats at `r8`, `r8+4`, `r8+8` in place; when `rdx` is non-null it then copies the three sums to dwords `+0x30`, `+0x34`, `+0x38` of `rdx`, copies the second sum also to dword `+0xAC`, and stores word `0xFFFF` to `+0x82`",
+   "text_edit": null,
+   "anchors": [
+    [
+     "003DB159",
+     "movss"
+    ],
+    [
+     "003DB17A",
+     "movss"
+    ],
+    [
+     "003DB183",
+     "je"
+    ],
+    [
+     "003DB19D",
+     "mov"
+    ],
+    [
+     "003DB1A6",
+     "mov"
+    ]
+   ],
+   "host": {
+    "by": "caller"
+   },
+   "evidence": [
+    {
+     "addr": "002E54A0",
+     "kind": "paragraph",
+     "line": 239,
+     "quote": "The world-context path is a **chain, not a pair**: `Movement"
+    },
+    {
+     "addr": "002E54A0",
+     "kind": "row",
+     "line": 255,
+     "quote": "| `002E54A0` | `Movement_TransformAndAccumulateCandidate` | 282"
+    },
+    {
+     "addr": "002E54A0",
+     "kind": "item",
+     "line": 515,
+     "quote": "t tail-jumps to `Movement_TransformAndAccumulateCandidate` `002E54A0` (`002E548C`)."
+    }
+   ],
+   "held": "held: the target page is modified in the shared tree (git status M)"
+  },
+  {
+   "fn": "003AC870",
+   "source_page": "00-Engine-Core-Runtime/Shared-Transform-Workbench/the-ee-and-vu0-register-bank.md",
+   "source_record": "_index/candidates/fable-home-the-ee-and-vu0-register-bank-1003",
+   "source_section_date": "2026-10-03",
+   "review": "_index/candidates/auditspec-review-fable-home-the-ee-and-vu0-register-bank-1003/REVIEW.md",
+   "target_page": "22-Middleware-PhyreEngine/The-Frame/what-happens-between-two-frames.md",
+   "entered_from": "`00376470` + 0x82",
+   "source_text": "stores 1.0 (`01CEBBA8`) to dword `02B3F51C` and byte 0 to `02B3F503`",
+   "text": "stores 1.0 (`01CEBBA8`) to dword `02B3F51C` and byte 0 to `02B3F503`",
+   "text_edit": null,
+   "anchors": [
+    [
+     "003AC878",
+     "movss"
+    ],
+    [
+     "003AC880",
+     "mov"
+    ]
+   ],
+   "host": {
+    "by": "caller"
+   },
+   "evidence": [
+    {
+     "addr": "00376470",
+     "kind": "heading",
+     "line": 1216,
+     "quote": "### Interior citation — frontier hubs `00376470`, `0036FDF0` (2026-09-18, SWE2-EC7)"
+    },
+    {
+     "addr": "00376470",
+     "kind": "paragraph",
+     "line": 1220,
+     "quote": "`00376470` — 1,300 B, 5 callers. A per-record transform batch"
+    }
+   ],
+   "held": "held: the target page is modified in the shared tree (git status M)"
+  },
+  {
+   "fn": "00243EE0",
+   "source_page": "00-Engine-Core-Runtime/the-encoded-id-class-registry.md",
+   "source_record": "_index/candidates/fable-home-the-encoded-id-class-registry-1003",
+   "source_section_date": "2026-10-03",
+   "review": "_index/candidates/auditspec-review-fable-home-the-encoded-id-class-registry-1003/REVIEW.md",
+   "target_page": "16-UI/Battle-Hud/the-battle-hud-layout-readers.md",
+   "entered_from": "`002C4720` + 0x8D5",
+   "source_text": "returns at once when bits 2-17 of dword `[rcx]` are zero; otherwise walks the qword pointer array at qword `rcx+0x10` (stride 8) for `(dword [rcx] >> 2) AND 0xFFFF` entries, re-read each pass, and for each entry takes the kind `(dword +8 >> 2) AND 0xF`: kinds 2, 5 and 9 copy words `+4` and `+6` of the qword `[entry]` record into the entry's words `+0xC` and `+0xE`; kind 8 copies the same two words into words `+0x98` and `+0x9A` of qword `entry+0x18` when that is non-null; other kinds write nothing",
+   "text": "returns at once when bits 2-17 of dword `[rcx]` are zero; otherwise walks the qword pointer array at qword `rcx+0x10` (stride 8) for `(dword [rcx] >> 2) AND 0xFFFF` entries, re-read each pass, and for each entry takes the kind `(dword +8 >> 2) AND 0xF`: kinds 2, 5 and 9 copy words `+4` and `+6` of the qword `[entry]` record into the entry's words `+0xC` and `+0xE`; kind 8 copies the same two words into words `+0x98` and `+0x9A` of qword `entry+0x18` when that is non-null; other kinds write nothing",
+   "text_edit": null,
+   "anchors": [
+    [
+     "00243EE6",
+     "test"
+    ],
+    [
+     "00243EFC",
+     "shr"
+    ],
+    [
+     "00243F1D",
+     "mov"
+    ],
+    [
+     "00243F54",
+     "mov"
+    ],
+    [
+     "00243F3C",
+     "jb"
+    ]
+   ],
+   "host": {
+    "by": "caller"
+   },
+   "evidence": [
+    {
+     "addr": "002C4720",
+     "kind": "row",
+     "line": 82,
+     "quote": "| `002C4720` (←`002C12B0`/`002C1320`/`002C4460`←`002C1A80`→`002"
+    }
+   ],
+   "held": "held: the target page is modified in the shared tree (git status M)"
+  },
+  {
+   "fn": "003AED50",
+   "source_page": "02-Resource-And-Asset-Pipeline/the-external-source-owner-and-borrowed-view-lifetime.md",
+   "source_record": "_index/candidates/fable-home-the-external-source-owner-and-borrowed--1003",
+   "source_section_date": "2026-10-03",
+   "review": "_index/candidates/auditspec-review-fable-home-the-external-source-owner-and-borrowed--1003/REVIEW.md",
+   "target_page": "17-Presentation-Rendering/Authored-Commands/the-authored-presentation-command-handlers.md",
+   "entered_from": "`0041FCF0` + 0x210",
+   "source_text": "stores 1 to dword `+0` of `rcx`, 0 to qwords `+0x18` and `+0x20` and to dword `+0x28`, and `edx` to dword `+4`",
+   "text": "stores 1 to dword `+0` of `rcx`, 0 to qwords `+0x18` and `+0x20` and to dword `+0x28`, and `edx` to dword `+4`",
+   "text_edit": null,
+   "anchors": [
+    [
+     "003AED52",
+     "mov"
+    ],
+    [
+     "003AED58",
+     "mov"
+    ],
+    [
+     "003AED60",
+     "mov"
+    ],
+    [
+     "003AED63",
+     "mov"
+    ]
+   ],
+   "host": {
+    "by": "caller"
+   },
+   "evidence": [
+    {
+     "addr": "0041FCF0",
+     "kind": "paragraph",
+     "line": 449,
+     "quote": "**And `word[+0x2F8]`, the field this command's per-node body"
+    }
+   ],
+   "held": "held: the target page is modified in the shared tree (git status M)"
+  },
+  {
+   "fn": "0027F150",
+   "source_page": "16-UI/License-Board-View/the-license-board-screen-widgets.md",
+   "source_record": "_index/candidates/fable-home-the-license-board-screen-widgets-1003",
+   "source_section_date": "2026-10-03",
+   "review": "_index/candidates/auditspec-review-fable-home-the-license-board-screen-widgets-1003/REVIEW.md",
+   "target_page": "16-UI/Shared-Dialogs/the-shared-dialog-widgets.md",
+   "entered_from": "`002C2320` + 0x895",
+   "source_text": "reads five words starting at `+0xD48` of qword `0209AC30` with stride `0x20` and returns 0 at the first one that is neither `0xFFFF` nor `0x1000`; returns 1 when all five are one of those two values",
+   "text": "reads five words starting at `+0xD48` of qword `0209AC30` with stride `0x20` and returns 0 at the first one that is neither `0xFFFF` nor `0x1000`; returns 1 when all five are one of those two values",
+   "text_edit": null,
+   "anchors": [
+    [
+     "0027F159",
+     "add"
+    ],
+    [
+     "0027F173",
+     "cmp"
+    ],
+    [
+     "0027F179",
+     "cmp"
+    ],
+    [
+     "0027F186",
+     "cmp"
+    ],
+    [
+     "0027F18C",
+     "mov"
+    ]
+   ],
+   "host": {
+    "by": "caller"
+   },
+   "evidence": [
+    {
+     "addr": "002C2320",
+     "kind": "paragraph",
+     "line": 243,
+     "quote": "**Items_Equipment_Shops_License — SERVICE.** `002C2320` on this page calls `Equipment_CheckPrimarySecondar"
+    }
+   ]
+  },
+  {
+   "fn": "003FF160",
+   "source_page": "16-UI/License-Board-View/the-license-board-screen-widgets.md",
+   "source_record": "_index/candidates/fable-home-the-license-board-screen-widgets-1003",
+   "source_section_date": "2026-10-03",
+   "review": "_index/candidates/auditspec-review-fable-home-the-license-board-screen-widgets-1003/REVIEW.md",
+   "target_page": "16-UI/Shared-Dialogs/the-shared-dialog-widgets.md",
+   "entered_from": "`002C2320` + 0x35F",
+   "source_text": "builds a stack block of a zero dword followed by the sign-extended `ecx` and `edx` as qwords; when qword `+0x108` of qword `0209AC30` is null, calls `003FF160` + 0x4D with (`0x190`, `003FF360`, the block), stores the result to that `+0x108` and calls `003FF160` + 0x6A with (qword `0208EA28`, the result); when `+0x108` is already non-null it does neither; both paths end with the stack-cookie check (cookie `01F44830`) at `003FF160` + 0x77",
+   "text": "builds a stack block of a zero dword followed by the sign-extended `ecx` and `edx` as qwords; when qword `+0x108` of qword `0209AC30` is null, calls `003FF160` + 0x4D with (`0x190`, `003FF360`, the block), stores the result to that `+0x108` and calls `003FF160` + 0x6A with (qword `0208EA28`, the result); when `+0x108` is already non-null it does neither; both paths end with the stack-cookie check (cookie `01F44830`) at `003FF160` + 0x77",
+   "text_edit": null,
+   "anchors": [
+    [
+     "003FF176",
+     "mov"
+    ],
+    [
+     "003FF192",
+     "cmp"
+    ],
+    [
+     "003FF1AD",
+     "call"
+    ],
+    [
+     "003FF1BC",
+     "mov"
+    ],
+    [
+     "003FF1CA",
+     "call"
+    ]
+   ],
+   "host": {
+    "by": "caller"
+   },
+   "evidence": [
+    {
+     "addr": "002C2320",
+     "kind": "paragraph",
+     "line": 243,
+     "quote": "**Items_Equipment_Shops_License — SERVICE.** `002C2320` on this page calls `Equipment_CheckPrimarySecondar"
+    }
+   ]
+  },
+  {
+   "fn": "003FF9F0",
+   "source_page": "16-UI/License-Board-View/the-license-board-screen-widgets.md",
+   "source_record": "_index/candidates/fable-home-the-license-board-screen-widgets-1003",
+   "source_section_date": "2026-10-03",
+   "review": "_index/candidates/auditspec-review-fable-home-the-license-board-screen-widgets-1003/REVIEW.md",
+   "target_page": "16-UI/Shared-Dialogs/the-shared-dialog-widgets.md",
+   "entered_from": "`002C2320` + 0x5E2",
+   "source_text": "when qword `+0x108` of qword `0209AC30` is non-null, stores `ecx` to its dword `+0x178` and `rdx` to its qword `+0x180`; otherwise does nothing",
+   "text": "when qword `+0x108` of qword `0209AC30` is non-null, stores `ecx` to its dword `+0x178` and `rdx` to its qword `+0x180`; otherwise does nothing",
+   "text_edit": null,
+   "anchors": [
+    [
+     "003FF9FE",
+     "test"
+    ],
+    [
+     "003FFA03",
+     "mov"
+    ],
+    [
+     "003FFA18",
+     "mov"
+    ]
+   ],
+   "host": {
+    "by": "caller"
+   },
+   "evidence": [
+    {
+     "addr": "002C2320",
+     "kind": "paragraph",
+     "line": 243,
+     "quote": "**Items_Equipment_Shops_License — SERVICE.** `002C2320` on this page calls `Equipment_CheckPrimarySecondar"
+    }
+   ]
+  },
+  {
+   "fn": "00420860",
+   "source_page": "02-Resource-And-Asset-Pipeline/the-source-block-mover-and-separate-consumer-refresh.md",
+   "source_record": "_index/candidates/fable-home-the-source-block-mover-and-separate-con-1003",
+   "source_section_date": "2026-10-03",
+   "review": "_index/candidates/auditspec-review-fable-home-the-source-block-mover-and-separate-con-1003/REVIEW.md",
+   "target_page": "17-Presentation-Rendering/Character-Render-Records/the-character-render-record-array.md",
+   "entered_from": "`00427DE0` + 0xD7",
+   "source_text": "calls the site `00420860` + 0x19 with `rcx+0x210`, `rdx`, `r8` and `r9` passed through, and 1.0 (`01CEBBA8`) as the fifth (stack) argument, then returns",
+   "text": "calls the site `00420860` + 0x19 with `rcx+0x210`, the floats `xmm1`, `xmm2` and `xmm3` passed through, and 1.0 (`01CEBBA8`) as the fifth (stack) argument, then returns",
+   "text_edit": {
+    "why": "the source-block-mover review, Repair 3: the callee `006C0520` reads `xmm1`-`xmm3`, never `rdx`, `r8` or `r9`",
+    "removed": "`rdx`, `r8` and `r9` passed through",
+    "kept": "the floats `xmm1`, `xmm2` and `xmm3` passed through"
+   },
+   "anchors": [
+    [
+     "00420864",
+     "movss"
+    ],
+    [
+     "0042086C",
+     "add"
+    ],
+    [
+     "00420873",
+     "movss"
+    ],
+    [
+     "00420879",
+     "call"
+    ]
+   ],
+   "host": {
+    "by": "caller"
+   },
+   "evidence": [
+    {
+     "addr": "00427DE0",
+     "kind": "item",
+     "line": 386,
+     "quote": "-frame path reaches it: `RenderRecords_ProcessDirtyState` (`00427DE0`) → `0042AC30` → `00423B10` →"
+    },
+    {
+     "addr": "00427DE0",
+     "kind": "paragraph",
+     "line": 785,
+     "quote": "`RenderRecords_ProcessDirtyState` (`00427DE0`) walks the live records once per frame and runs **"
+    }
+   ]
+  },
+  {
+   "fn": "004209F0",
+   "source_page": "02-Resource-And-Asset-Pipeline/the-source-block-mover-and-separate-consumer-refresh.md",
+   "source_record": "_index/candidates/fable-home-the-source-block-mover-and-separate-con-1003",
+   "source_section_date": "2026-10-03",
+   "review": "_index/candidates/auditspec-review-fable-home-the-source-block-mover-and-separate-con-1003/REVIEW.md",
+   "target_page": "17-Presentation-Rendering/Character-Render-Records/the-character-render-record-array.md",
+   "entered_from": "`00427DE0` + 0xA2",
+   "source_text": "ORs 0x200 into dword `rcx+0x284`, then tail-jumps at the site `004209F0` + 0x11 with `rcx+0x180` and the other registers unchanged",
+   "text": "ORs 0x200 into dword `rcx+0x284`, then tail-jumps at the site `004209F0` + 0x11 with `rcx+0x180` and the other registers unchanged",
+   "text_edit": null,
+   "anchors": [
+    [
+     "004209FA",
+     "add"
+    ],
+    [
+     "00420A01",
+     "jmp"
+    ]
+   ],
+   "host": {
+    "by": "caller"
+   },
+   "evidence": [
+    {
+     "addr": "00427DE0",
+     "kind": "item",
+     "line": 386,
+     "quote": "-frame path reaches it: `RenderRecords_ProcessDirtyState` (`00427DE0`) → `0042AC30` → `00423B10` →"
+    },
+    {
+     "addr": "00427DE0",
+     "kind": "paragraph",
+     "line": 785,
+     "quote": "`RenderRecords_ProcessDirtyState` (`00427DE0`) walks the live records once per frame and runs **"
+    }
+   ]
+  },
+  {
+   "fn": "00366A30",
+   "source_page": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "source_record": "_index/candidates/fable-home-effect-element-type-dispatch-1003",
+   "source_section_date": "2026-10-03",
+   "review": "_index/candidates/auditspec-review-fable-home-effect-element-type-dispatch-1003/REVIEW.md",
+   "target_page": "15-Input/Modal-Toggles/r2-force-fight-toggle.md",
+   "entered_from": "`00366B80` + 0x2A6",
+   "source_text": "copies the 8-byte entry at sign-extended word `rdx+0xA` of qword `rdx+0x20` into a local as words `+0`, `+2`, word `+4` AND 0xFFF and (dword `+4` shifted right 12) AND 0xFFF; when the fifth (stack) argument is 0 it pairs `r8w`, `r9w` with words `rdx+0x10`, `rdx+0x12` unchanged, otherwise it sets `r8w` = sixth + ((`r8d` - sixth) * fifth >> 8), `r9w` = seventh + ((`r9d` - seventh) * fifth >> 8) and replaces both words with (word * fifth) >> 8; with B = qword `+0x20` of qword `rdx+0x18` plus 0x30, stores at `rcx+0x5C` the low nibble of byte `rdx+0x39` plus the byte at B + high nibble + word `B+0x12`; then calls (`00366A30` + 0x13B) with `rcx`, qword `rdx+0x18`, the local entry, the four local words, a local holding dword 0, 0.0 and pointer `rdx+0x28`, and 1.0 (`01CEBBA8`)",
+   "text": "copies the 8-byte entry at sign-extended word `rdx+0xA` of qword `rdx+0x20` into a local as words `+0`, `+2`, word `+4` AND 0xFFF and (dword `+4` shifted right 12) AND 0xFFF; when the fifth (stack) argument is 0 it pairs `r8w`, `r9w` with words `rdx+0x10`, `rdx+0x12` unchanged, otherwise it sets `r8w` = sixth + ((`r8d` - sixth) * fifth >> 8), `r9w` = seventh + ((`r9d` - seventh) * fifth >> 8) and replaces both words with (word * fifth) >> 8; with B = qword `+0x20` of qword `rdx+0x18` plus 0x30, stores at `rcx+0x5C` the low nibble of byte `rdx+0x39` plus the byte at B + high nibble + word `B+0x12`; then calls (`00366A30` + 0x13B) with `rcx`, qword `rdx+0x18`, the local entry, the four local words, a local holding dword 0, 0.0 and pointer `rdx+0x28`, and 1.0 (`01CEBBA8`)",
+   "text_edit": null,
+   "anchors": [
+    [
+     "00366A8A",
+     "and"
+    ],
+    [
+     "00366AAB",
+     "jne"
+    ],
+    [
+     "00366AC6",
+     "imul"
+    ],
+    [
+     "00366B5A",
+     "mov"
+    ],
+    [
+     "00366B6B",
+     "call"
+    ]
+   ],
+   "host": {
+    "by": "caller"
+   },
+   "evidence": [
+    {
+     "addr": "00366B80",
+     "kind": "row",
+     "line": 300,
+     "quote": "| `00366B80` | sound object initialiser | 1,420 B | writes the"
+    },
+    {
+     "addr": "00366B80",
+     "kind": "item",
+     "line": 520,
+     "quote": "element of the layout sheet `battle_4_c` the label widget `00366B80` draws, and whether it is"
+    }
+   ]
+  },
+  {
+   "fn": "004FF230",
+   "source_page": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "source_record": "_index/candidates/fable-home-effect-element-type-dispatch-1003",
+   "source_section_date": "2026-10-03",
+   "review": "_index/candidates/auditspec-review-fable-home-effect-element-type-dispatch-1003/REVIEW.md",
+   "target_page": "17-Presentation-Rendering/Effect-File-Formats/efx-and-efb-effect-containers.md",
+   "entered_from": "`00537C80` + 0xF",
+   "source_text": "makes the same call three times with `edx` unchanged, on `rcx`, `rcx+0x40` and `rcx+0x80` (sites `004FF230` + 0xF, + 0x1A and + 0x28), and returns `rcx+0xD0`",
+   "text": "makes the same call three times with `edx` unchanged, on `rcx`, `rcx+0x40` and `rcx+0x80` (sites `004FF230` + 0xF, + 0x1A and + 0x28), and returns `rcx+0xD0`",
+   "text_edit": null,
+   "anchors": [
+    [
+     "004FF23F",
+     "call"
+    ],
+    [
+     "004FF24A",
+     "call"
+    ],
+    [
+     "004FF258",
+     "call"
+    ],
+    [
+     "004FF262",
+     "lea"
+    ]
+   ],
+   "host": {
+    "by": "caller",
+    "why": "This page already read the body in its own text (\"Each body runs `004FF230`\"); the row adds its interior anchors."
+   },
+   "evidence": [
+    {
+     "addr": "00537C80",
+     "kind": "row",
+     "line": 240,
+     "quote": "| 0 | `00537C80` | `0x160` | 8,029 |"
+    }
+   ]
+  },
+  {
+   "fn": "004FE4A0",
+   "source_page": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "source_record": "_index/candidates/fable-home-effect-element-type-dispatch-1003",
+   "source_section_date": "2026-10-03",
+   "review": "_index/candidates/auditspec-review-fable-home-effect-element-type-dispatch-1003/REVIEW.md",
+   "target_page": "17-Presentation-Rendering/Effect-File-Formats/efx-and-efb-effect-containers.md",
+   "entered_from": "`00538350` + 0x39",
+   "source_text": "makes the same call three times with `edx` unchanged, on `rcx`, `rcx+0x10` and `rcx+0x20` (sites `004FE4A0` + 0xF, + 0x1A and + 0x25), and returns `rcx+0x80`",
+   "text": "makes the same call three times with `edx` unchanged, on `rcx`, `rcx+0x10` and `rcx+0x20` (sites `004FE4A0` + 0xF, + 0x1A and + 0x25), and returns `rcx+0x80`",
+   "text_edit": null,
+   "anchors": [
+    [
+     "004FE4AF",
+     "call"
+    ],
+    [
+     "004FE4BA",
+     "call"
+    ],
+    [
+     "004FE4C5",
+     "call"
+    ],
+    [
+     "004FE4CF",
+     "lea"
+    ]
+   ],
+   "host": {
+    "by": "caller"
+   },
+   "evidence": [
+    {
+     "addr": "00538350",
+     "kind": "row",
+     "line": 242,
+     "quote": "| 2 | `00538350` | `0x280` | 60 |"
+    }
+   ]
+  }
+ ],
+ "edits": [
+  {
+   "fn": "00623D70",
+   "page": "17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md",
+   "section": "## Homed frontier bodies called from this page's functions (FABLE, 2026-10-03",
+   "record": "_index/candidates/fable-home-effect-element-type-dispatch-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-effect-element-type-dispatch-1003/REVIEW.md",
+   "source_text": "clears bit 31 of dword `rcx+0x18`; when the result is above 1 (unsigned) it returns qword `rcx+0x20` + `edx` * 0x10 + 0xC, when it is 1 it returns `rcx+0x20` + `edx` * 0x10 + 0xC, and when it is 0 it returns `edx` * 0x10 + 0xC on a null base",
+   "spans": [
+    [
+     "clears bit 31 of dword `rcx+0x18`; when the result is above 1 (unsigned)",
+     "takes dword `rcx+0x18` with bit 31 masked off in a register (memory is not written); when that value is above 1 (unsigned)",
+     1
+    ],
+    [
+     "`edx` * 0x10",
+     "zero-extended `edx` * 0x10",
+     3
+    ]
+   ],
+   "plain": "takes dword `rcx+0x18` with bit 31 masked off in a register (memory is not written); when that value is above 1 (unsigned) it returns qword `rcx+0x20` + zero-extended `edx` * 0x10 + 0xC, when it is 1 it returns `rcx+0x20` + zero-extended `edx` * 0x10 + 0xC, and when it is 0 it returns zero-extended `edx` * 0x10 + 0xC on a null base",
+   "why": "N1: `btr eax, 0x1F` clears bit 31 in a register copy only; the index is `edx` zero-extended (`mov eax, edx`)"
+  },
+  {
+   "fn": "00346780",
+   "page": "07-Combat-Action/Action-Dispatch/battle-action-handler-table.md",
+   "section": "## Homed bodies: functions reached only indirectly whose callees this page cites (FABLE, 2026-10-03, F homing)",
+   "record": "_index/candidates/fable-battle-action-handler-table-homing-1003",
+   "review": "_index/candidates/auditspec-review-fable-battle-action-handler-table-homing-1003/REVIEW.md",
+   "source_text": "calls `00267E10(r9)` and `00267DB0(r9)`, scaling the float result by 0.5 (`01CEBB70`); takes pointer A = `00265060(rdx)` and pointer B = `00265060(00264010(the 00267E10 result))`; calls `00346780+0x65` with `rdx`, then `00346780+0x8B` with `xmm1` = the scaled float, `xmm2`/`xmm3` = floats A `+0`/A `+8` and stack arguments B `+0` (first) and B `+8` (second); tail-jumps to `00346780+0xB4` with the incoming `rcx` and that call's result in `edx`",
+   "spans": [
+    [
+     "with `xmm1` = the scaled float",
+     "with `xmm0` = that call's float result, `xmm1` = the scaled float",
+     1
+    ]
+   ],
+   "plain": "calls `00267E10(r9)` and `00267DB0(r9)`, scaling the float result by 0.5 (`01CEBB70`); takes pointer A = `00265060(rdx)` and pointer B = `00265060(00264010(the 00267E10 result))`; calls `00346780+0x65` with `rdx`, then `00346780+0x8B` with `xmm0` = that call's float result, `xmm1` = the scaled float, `xmm2`/`xmm3` = floats A `+0`/A `+8` and stack arguments B `+0` (first) and B `+8` (second); tail-jumps to `00346780+0xB4` with the incoming `rcx` and that call's result in `edx`",
+   "why": "the angle call's first argument is `xmm0`, the `00265200` result, which `003A1BB0` uses"
+  },
+  {
+   "fn": "00346EF0",
+   "page": "07-Combat-Action/Action-Dispatch/battle-action-handler-table.md",
+   "section": "## Homed bodies: functions reached only indirectly whose callees this page cites (FABLE, 2026-10-03, F homing)",
+   "record": "_index/candidates/fable-battle-action-handler-table-homing-1003",
+   "review": "_index/candidates/auditspec-review-fable-battle-action-handler-table-homing-1003/REVIEW.md",
+   "source_text": "calls `00267DB0(r9)` three times (results f1, f2, f3, with f3 scaled by 0.5 (`01CEBB70`)); takes pointer B = `00265060(rdx)`; calls `00346EF0+0x60` with `rdx`, then `00346EF0+0x7E` with `xmm1` = scaled f3, `xmm2`/`xmm3` = floats B `+0`/B `+8` and stack arguments f2 (first) and f1 (second); tail-jumps to `00346EF0+0xA7` with the incoming `rcx` and that call's result in `edx`",
+   "spans": [
+    [
+     "with `xmm1` = scaled f3",
+     "with `xmm0` = that call's float result, `xmm1` = scaled f3",
+     1
+    ]
+   ],
+   "plain": "calls `00267DB0(r9)` three times (results f1, f2, f3, with f3 scaled by 0.5 (`01CEBB70`)); takes pointer B = `00265060(rdx)`; calls `00346EF0+0x60` with `rdx`, then `00346EF0+0x7E` with `xmm0` = that call's float result, `xmm1` = scaled f3, `xmm2`/`xmm3` = floats B `+0`/B `+8` and stack arguments f2 (first) and f1 (second); tail-jumps to `00346EF0+0xA7` with the incoming `rcx` and that call's result in `edx`",
+   "why": "the angle call's first argument is `xmm0`, the `00265200` result, which `003A1BB0` uses"
+  },
+  {
+   "fn": "003CA530",
+   "page": "16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md",
+   "section": "## Homed bodies: functions reached only indirectly whose callees this page cites (FABLE, 2026-10-03, F homing)",
+   "record": "_index/candidates/fable-numeric-formatting-and-character-mapping-homing-1003",
+   "review": "_index/candidates/auditspec-review-fable-numeric-formatting-and-character-mapping-homing-1003/REVIEW.md",
+   "source_text": "dispatches on dword `[rdx]`: 1 calls `003CA530`+0x2A2(`rcx+0x50`, qword `+0x28` of qword `0209AC30`, 3, `rcx`), copies the result's words `+4/+6/+8/+0xa` to `rcx+0x98/+0x9a/+0x9c/+0x9e` when `rcx` is non-null, calls `003CA530`+0x2E1(0, local `L`) and, with `Q` = qword `+8` of `[rcx+0x60]`, stores `00272CB0(dword L+8)` at qword `Q+0x18` and `003CA530`+0x306(0) at dword `Q+0x20`; 2 calls `003CA530`+0x63(0, `L`), takes `f` = float `L+0xc`, `i` = (int)`f`, `t` = (int)((`f`-`i`)*10.0); `c` = `003CA530`+0xB1(0) when `f` >= 1.0, else the `003CA530`+0x1C5 blend of the bytes of `003CA530`+0x137(6) and `003CA530`+0x144(0) by (int)(`f`*256.0), bytes 0-2 each times `k` then `>> 7`, byte 3 kept, where `k` = 0x80, or for `f` <= 0 (int)(`003CA530`+0x105((dword `0208F570` - dword `rcx+0xc0`)*pi/30)*64+128) with `0208F570` stored at `+0xc0` when it was 0; then, with `R` = qword `+0x18` of qword `+0x18` of `[rcx+0x60]`, calls `003CA530`+0x23A(`[[R+0x60]]`, 3, 5, `c`, `i`) and `003CA530`+0x268(qword `+0x18` of `[R+0x60]`, 1, 5, `c`, `t`), passing 0 for `R` null; both return 0; other values return `003CA530`+0x32(`rcx`)",
+   "spans": [
+    [
+     "(int)(`003CA530`+0x105((dword `0208F570` - dword `rcx+0xc0`)*pi/30)*64+128)",
+     "(int)(`003CA530`+0x105((dword `0208F570` - dword `rcx+0xc0`, converted as an unsigned 32-bit value)*pi/30)*64+128)",
+     1
+    ]
+   ],
+   "plain": "dispatches on dword `[rdx]`: 1 calls `003CA530`+0x2A2(`rcx+0x50`, qword `+0x28` of qword `0209AC30`, 3, `rcx`), copies the result's words `+4/+6/+8/+0xa` to `rcx+0x98/+0x9a/+0x9c/+0x9e` when `rcx` is non-null, calls `003CA530`+0x2E1(0, local `L`) and, with `Q` = qword `+8` of `[rcx+0x60]`, stores `00272CB0(dword L+8)` at qword `Q+0x18` and `003CA530`+0x306(0) at dword `Q+0x20`; 2 calls `003CA530`+0x63(0, `L`), takes `f` = float `L+0xc`, `i` = (int)`f`, `t` = (int)((`f`-`i`)*10.0); `c` = `003CA530`+0xB1(0) when `f` >= 1.0, else the `003CA530`+0x1C5 blend of the bytes of `003CA530`+0x137(6) and `003CA530`+0x144(0) by (int)(`f`*256.0), bytes 0-2 each times `k` then `>> 7`, byte 3 kept, where `k` = 0x80, or for `f` <= 0 (int)(`003CA530`+0x105((dword `0208F570` - dword `rcx+0xc0`, converted as an unsigned 32-bit value)*pi/30)*64+128) with `0208F570` stored at `+0xc0` when it was 0; then, with `R` = qword `+0x18` of qword `+0x18` of `[rcx+0x60]`, calls `003CA530`+0x23A(`[[R+0x60]]`, 3, 5, `c`, `i`) and `003CA530`+0x268(qword `+0x18` of `[R+0x60]`, 1, 5, `c`, `t`), passing 0 for `R` null; both return 0; other values return `003CA530`+0x32(`rcx`)",
+   "why": "`mov eax, r14d` / `sub eax, ebx` zero-extends `rax`, and `cvtsi2ss xmm0, rax` at `003CA620` converts the 32-bit difference as unsigned"
+  }
+ ],
+ "drops": [
+  {
+   "fn": "001AD670",
+   "source_page": "06-Movement-And-Navigation/Movement-Mode-Selection/how-the-engine-chooses-3d-or-flat-movement.md",
+   "source_section_date": "2026-10-03",
+   "source_record": "_index/candidates/fable-home-how-the-engine-chooses-3d-or-flat-movem-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-how-the-engine-chooses-3d-or-flat-movem-1003/REVIEW.md",
+   "source_text": "stores `dl` to byte `+0x244` of `rcx`; then, for index `ebx` from 0 while `ebx` is below (signed) dword `+0x20` of the object returned by `001AD670` + 0xE (re-fetched each pass at + 0x50), computes a flag that is 1 when byte `+0x1C` of the result of `001AD670` + 0x20 is non-zero, calls `001AD670` + 0x3C with the object from `001AD670` + 0x2F, that flag and the index, and when this returns non-null passes the result to `001AD670` + 0x49; a count of 0 or less skips the loop",
+   "host_fails": {
+    "reason": "held by the review: no page reads its caller 0017F5B0 as a body; home it with its caller (the review names ta-texture-animation-lists.md once 0017F5B0 is cited there)",
+    "callers": {
+     "0017F5B0": [
+      "0017F5D3"
+     ]
+    },
+    "pages": [
+     {
+      "page": "02-Resource-And-Asset-Pipeline/Prefetch-And-Json-Data/ta-texture-animation-lists.md",
+      "addr": "0017F5B0",
+      "quotes": []
+     }
+    ]
+   }
+  },
+  {
+   "fn": "001D9F70",
+   "source_page": "24-Compiler-And-CRT-Runtime/Lazy-Static-Initialization/lazy-statics-and-the-one-time-init-lock.md",
+   "source_section_date": "2026-10-03",
+   "source_record": "_index/candidates/fable-home-lazy-statics-and-the-one-time-init-lock-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-lazy-statics-and-the-one-time-init-lock-1003/REVIEW.md",
+   "source_text": "returns without a write when `edx` is above 1 (unsigned); otherwise atomically adds 1 (`lock xadd`) to dword `rcx+0x24` + sign-extended `edx` * 4 and returns that dword's previous value",
+   "host_fails": {
+    "reason": "returned to the frontier: the review's host game-application.md names the caller 0017D940 only in passing, inside the 001A07B0 paragraph; it is not a subject there, and the review names no alternative host",
+    "callers": {
+     "0017D940": [
+      "0017D957"
+     ]
+    },
+    "pages": [
+     {
+      "page": "00-Engine-Core-Runtime/Application-Root/game-application.md",
+      "addr": "0017D940",
+      "quotes": [
+       "`001A1240` run: `0017D940(0)`"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "fn": "004068B0",
+   "source_page": "05-Spawn-Encounter-Lifecycle/spawn-placement-and-retirement.md",
+   "source_section_date": "2026-10-03",
+   "source_record": "_index/candidates/fable-home-spawn-placement-and-retirement-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-spawn-placement-and-retirement-1003/REVIEW.md",
+   "source_text": "when `edx` equals dword `rcx+0x174` it only rewrites that dword; otherwise, if dword `+0x118` is non-zero, it zeroes it, stores `edx` at `+0xE4` and on byte `+0xC0` calls (`004068B0` + 0x72) with `rcx` for 0, (`004068B0` + 0x68) with `rcx` for 1, or (`004068B0` + 0x5E) with qword `+0xD0` and `edx` less dword `+0xE0` when greater (signed) for 3; it then clears bit 0x20 of dword `+0x130` and sets word `+0x178`: if bit 0x40 is set, to 0x28 when byte `+0x136` is 0, else to 8 with byte (`+0x13C` + byte `+0x137`) = 0xA; else if bit 0x80 is set, to 1 when byte `+0x136` is 0, else to 8 with byte (`+0x13B` + byte `+0x137`) = 1, setting bit 0x20 in both cases; else, when `edx` is below the old `+0x174` (signed), it adds 0x28 / (old - `edx`), at least 1, to dword `+0x17C` and sets 0x28 while that sum is below 0xFA0, or sets 1 and zeroes `+0x17C`; when not below, it sets 1 and sets bit 0x20 only if `edx` is greater (signed) than dword `+0xE4`; finally it stores `edx` at `+0x174` and calls (`004068B0` + 0x19B) with qword `+0xD0` and dword `+0xE4` less `+0xE0` when greater",
+   "host_fails": {
+    "reason": "returned to the frontier: the review's host numeric-formatting-and-character-mapping.md does not cite the caller 004061F0; the review's repair homes the callers there first, which needs new sentences for them (a homing package, not a move)",
+    "callers": {
+     "004061F0": [
+      "00406481",
+      "004064B1"
+     ]
+    },
+    "pages": [
+     {
+      "page": "16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md",
+      "addr": "004061F0",
+      "quotes": []
+     }
+    ]
+   }
+  },
+  {
+   "fn": "00407240",
+   "source_page": "05-Spawn-Encounter-Lifecycle/spawn-placement-and-retirement.md",
+   "source_section_date": "2026-10-03",
+   "source_record": "_index/candidates/fable-home-spawn-placement-and-retirement-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-spawn-placement-and-retirement-1003/REVIEW.md",
+   "source_text": "returns at once when `rcx` is null; otherwise stores `edx` minus dword `rcx+0xE4` at `+0x120`, copies `+0xE4` to `+0x11C` and `+0x124`, zeroes dwords `+0x114` and `+0x128`, and stores the sign-extended word `+0x108` at `+0x118`, or 1 when that word is 0",
+   "host_fails": {
+    "reason": "returned to the frontier: the review's host numeric-formatting-and-character-mapping.md does not cite the caller 004061F0; the review's repair homes the callers there first, which needs new sentences for them (a homing package, not a move)",
+    "callers": {
+     "004061F0": [
+      "00406552"
+     ]
+    },
+    "pages": [
+     {
+      "page": "16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md",
+      "addr": "004061F0",
+      "quotes": []
+     }
+    ]
+   }
+  },
+  {
+   "fn": "00408140",
+   "source_page": "05-Spawn-Encounter-Lifecycle/spawn-placement-and-retirement.md",
+   "source_section_date": "2026-10-03",
+   "source_record": "_index/candidates/fable-home-spawn-placement-and-retirement-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-spawn-placement-and-retirement-1003/REVIEW.md",
+   "source_text": "zeroes dword `rcx+0x118`, stores `edx` at `+0xE4` and dispatches on byte `+0xC0`: for 0 it tail-jumps (`00408140` + 0x46) and for 1 it tail-jumps (`00408140` + 0x41), both with `rcx`; for 3 it tail-jumps (`00408140` + 0x3C) with qword `+0xD0` and `edx` less dword `+0xE0` when `edx` is greater (signed); any other value returns",
+   "host_fails": {
+    "reason": "returned to the frontier: the review's host numeric-formatting-and-character-mapping.md does not cite the caller 00406770; the review's repair homes the callers there first, which needs a new sentence for it (a homing package, not a move)",
+    "callers": {
+     "00406770": [
+      "00406831"
+     ]
+    },
+    "pages": [
+     {
+      "page": "16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md",
+      "addr": "00406770",
+      "quotes": []
+     }
+    ]
+   }
+  },
+  {
+   "fn": "0028FF80",
+   "source_page": "02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/vbf-archive-and-st2e-tables.md",
+   "source_section_date": "2026-10-03",
+   "source_record": "_index/candidates/fable-home-vbf-archive-and-st2e-tables-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-vbf-archive-and-st2e-tables-1003/REVIEW.md",
+   "source_text": "when qword `+0x10F80` of the object at qword `0209BE80` is null, stores there the result of the call at `0028FF80` + 0x1A with `ecx` = 0x1D90 and then makes the call at + 0x3B with that stored qword; in both cases returns 1 when `+0x10F80` is non-null and 0 otherwise",
+   "host_fails": {
+    "reason": "returned to the frontier: the review's host the-message-window-layout-readers.md names the caller 0035C630 only inside the call chain of its 002BDCE0 row (that row's first address is 002BDCE0); it is not a subject there, and the review names no alternative host",
+    "callers": {
+     "0035C630": [
+      "0035C639"
+     ]
+    },
+    "pages": [
+     {
+      "page": "16-UI/Message-Windows/the-message-window-layout-readers.md",
+      "addr": "0035C630",
+      "quotes": [
+       "| `002BDCE0` (→`0028E220`→`0035C630`→`00253780`, the battle log) |"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "fn": "003C98E0",
+   "source_page": "02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/vbf-archive-and-st2e-tables.md",
+   "source_section_date": "2026-10-03",
+   "source_record": "_index/candidates/fable-home-vbf-archive-and-st2e-tables-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-vbf-archive-and-st2e-tables-1003/REVIEW.md",
+   "source_text": "returns when qword `02B47740` is non-zero; otherwise tail-jumps at `003C98E0` + 0x19 with `ecx` = 0xD8, `rdx` = the address `003C9A30` and `r8d` = 0",
+   "host_fails": {
+    "reason": "returned to the frontier: the review's host the-message-window-layout-readers.md names the caller 0035C630 only inside the call chain of its 002BDCE0 row (that row's first address is 002BDCE0); it is not a subject there, and the review names no alternative host",
+    "callers": {
+     "0035C630": [
+      "0035C643"
+     ]
+    },
+    "pages": [
+     {
+      "page": "16-UI/Message-Windows/the-message-window-layout-readers.md",
+      "addr": "0035C630",
+      "quotes": [
+       "| `002BDCE0` (→`0028E220`→`0035C630`→`00253780`, the battle log) |"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "fn": "003CA280",
+   "source_page": "02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/vbf-archive-and-st2e-tables.md",
+   "source_section_date": "2026-10-03",
+   "source_record": "_index/candidates/fable-home-vbf-archive-and-st2e-tables-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-vbf-archive-and-st2e-tables-1003/REVIEW.md",
+   "source_text": "when qword `02B47758` is null, stores there the result of the call at `003CA280` + 0x1F with `ecx` = 0xAA0, `rdx` = the address `003CA860` and `r8d` = 0; returns the qword `02B47758` holds afterwards (the existing one when it was already non-null)",
+   "host_fails": {
+    "reason": "returned to the frontier: the review's host the-message-window-layout-readers.md names the caller 0035C630 only inside the call chain of its 002BDCE0 row (that row's first address is 002BDCE0); it is not a subject there, and the review names no alternative host",
+    "callers": {
+     "0035C630": [
+      "0035C63E"
+     ]
+    },
+    "pages": [
+     {
+      "page": "16-UI/Message-Windows/the-message-window-layout-readers.md",
+      "addr": "0035C630",
+      "quotes": [
+       "| `002BDCE0` (→`0028E220`→`0035C630`→`00253780`, the battle log) |"
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "fn": "003B6DE0",
+   "source_page": "17-Presentation-Rendering/Effect-File-Formats/the-element-types-40-42-a0-ab-d0-d1.md",
+   "source_section_date": "2026-10-03",
+   "source_record": "_index/candidates/fable-home-the-element-types-40-42-a0-ab-d0-d1-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-the-element-types-40-42-a0-ab-d0-d1-1003/REVIEW.md",
+   "source_text": "clamps `edx` to 0..0x20 (signed; a negative count becomes 0) and stores it at dword `02EBCC60`; for each of that many dwords at `r8` it stores the dword at `02EBCBE0[i]`, passes it to the call at `003B6DE0` + 0x68 and, when that returns non-null, clears bit 3 and sets bit 2 of the result's byte `+9` and stores the pointer at qword `02EBCAC0[i]`; it then walks the same count of qwords at `02EBCAC0`, packing to the front each pointer whose byte `+9` bit 3 is clear and setting that bit; finally it stores `ecx` at dword `02EBCC70`, the result of the call at `003B6DE0` + 0xD1 on `ecx` at qword `02EBCC68`, and the packed count at dword `02EBCBC0`",
+   "already_bound_on": {
+    "page": "04-Actor-Entity/Actor-Storage-Record/the-record-behind-every-actor.md",
+    "quote": "`003B6DE0`, the routine `003B6F80` hands its list to."
+   }
+  }
+ ]
+}

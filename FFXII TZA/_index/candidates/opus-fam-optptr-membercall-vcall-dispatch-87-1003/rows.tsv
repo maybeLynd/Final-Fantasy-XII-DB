@@ -1,0 +1,9 @@
+# optional-pointer member-call vcall dispatch adapters, 87-byte form (optptr-membercall-vcall-dispatch-87), one row per member, keyed on +0x13 call - derived from the shipping image by fam_rows.py (kind operand_at)
+entry	anchor	mnemonic	value	name	callee
+005C1C10	005C1C23	call	005BCAC0	-	all
+005C1DA0	005C1DB3	call	005BCD20	-	all
+0066FBF0	0066FC03	call	0066E7D0	-	all
+006A1110	006A1123	call	0069D520	-	all
+006AF170	006AF183	call	006AEE00	-	all
+0079A7D0	0079A7E3	call	00796960	-	all
+0079ACF0	0079AD03	call	00796CF0	-	all

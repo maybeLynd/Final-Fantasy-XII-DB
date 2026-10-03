@@ -364,3 +364,11 @@ executed or observed live.
 **Script_VM_Native_Bridge — CLIENT (3 edges).** `0033FED0` and `0034BA00` call the scheduling getter `00229E40`, and `0034FFC0` (23 bytes) pops one integer off the script value stack and tail-jumps into the `+0x34` reader `00305F10`. Script verbs reach one row reader directly with a script-supplied argument, and two others read the same scheduling global; the row itself is not a script structure.
 
 **Status_Periodic_Terminal — CLIENT (3 edges).** `BattleUnit_RecoverFromTerminalStatusSetIfClear` `00301140` and `BattleUnit_RunPeriodicCombatMaintenance` `00310DB0` call `002EACD0`, and `00310DB0` also calls `BattleFormula_ResolveTargetResult` `00385F60`. The maintenance tick is where the `+0x24` attached-effect id is applied through `002EACD0` (the trap applier of §2.2), and the tick resolves its periodic results through the same formula entry that reads `+0x0C`; the status layer is a caller of these readers, not a reader of the row.
+
+## SWE2-EC7-223 update (2026-10-03) - the `isfusion_spattack` id-band test
+
+`isfusion_spattack` is an id-band test on the argument itself - it asks whether the action id the script hands it lies inside the fusion/special band, a property of the id space this row table indexes.
+
+| function | size | verb / caller | what the body does | interior anchors |
+|---|---|---|---|---|
+| `0030C3C0` | 34 B | `isfusion_spattack` `0x02A1` (handler `0034BF90` tail-jumps) | returns 1 when `ecx != -1` and `ecx + 0xD0` lies in `[0xE2, 0xF1]` - i.e. action ids `0x12`..`0x21`, the band the verb asks about; everything else returns 0 | Interior anchor `0030C3CB`; Interior anchor `0030C3D7`; Interior anchor `0030C3D9` |

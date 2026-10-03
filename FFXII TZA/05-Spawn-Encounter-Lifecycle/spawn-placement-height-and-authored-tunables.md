@@ -1189,3 +1189,10 @@ centering nudge on odd columns. Interior anchor `00233086` (the
 
 `00325EA0` (152 B) is the `Vector3_RotateTranslatedXZOffsetByEncodedAngle` the placement page names - call-free `cvttss2si` index `&0x7FFF` into the `01F004E0` trig table, `00D10820`/`00D10828` scale constants. Interior anchor `00325EF8` (the `01F004E0` table index).
 
+## Homed bodies: functions reached only indirectly whose callees this page cites (FABLE, 2026-10-03, F homing)
+
+*No page cited these functions and none of their callers is documented: they are reached by table or pointer dispatch or through undocumented callers. Each one calls something this page documents, which the sentence names. Each sentence states what the body does (access and representation, not purpose); the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's F homing pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../_index/candidates/fable-spawn-placement-height-and-authored-tuna-homing-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `00235DD0` | 167 B | calls `003272A0` when `ecx` is negative (signed), else `00235DD0`+0x2E, with the incoming registers unchanged, and returns -1.0 (`01CEBC9C`) when that returns null; otherwise stores the vector (`xmm1`, 0.0, `xmm2`) on the stack, calls `00235DD0`+0x6E with (result `+0xE0`, that vector, float result `+0x160` in `xmm2`), then calls `0031A930` with that call's `xmm0` result and float `+0x160` in `xmm1`, and returns its result multiplied by 360.0 (`00902438`) and divided by 6.283185 (`01CEBC78`) | Interior anchor `00235DF5`; Interior anchor `00235E08`; Interior anchor `00235E3E`; Interior anchor `00235E46`; Interior anchor `00235E53` |

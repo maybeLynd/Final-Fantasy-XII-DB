@@ -1,0 +1,42 @@
+{
+ "page": "12-Items-Equipment-Shops-License/the-bazaar-recipe-unlock-and-purchase.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_019yEjih72UCRaxGuuSzfAJF",
+ "report": [
+  "fable-the-bazaar-recipe-unlock-and-purchase.json"
+ ],
+ "rows": [
+  {
+   "fn": "003FEE40",
+   "text": "dword `[rdx]` 0x12 returns 0 and any value but 1 tail-jumps (`003FEE40`+0x21) with `rcx`, `rdx`; for 1, with s = dword `rdx+8`, G = qword `0209AC30`, Pn = qword `n` of qword `rcx+0x60` (0 when `rcx` is null): calls +0x51(`rcx+0x50`, qword `G+0x40`, 2, `rcx`) and, if `rcx` is non-null, copies its words `+4` to `+0xa` to `rcx+0x98` to `+0x9e`; calls +0x93(`rcx`, `00D12050`), `0029FB50`(P10), +0xCE(local L, word `G`+s*0x20+`0xd48`, s); stores `002F9860`(0x4a9a, 0x4a9c, 0x4a9d, 0x4a9e for s 1-4, else 0x4a99) at qword `P30+0x18` and `0020E620`(0) at dword `P30+0x20`, calls `0029FB50`(P30); word `L+8` = `0xffff` clears bit 0 of dwords `P20+8`, `P28+8`; else stores byte `[qword P20+0x20 + b*8 + 7]` at `P20+0x39` and b at word `P20+0xa` (b = byte `L+0xa`), qword `L` at `P28+0x18`, `0020E620`(0) at dword `P28+0x20`; returns 0",
+   "anchors": [
+    [
+     "003FEE53",
+     "je"
+    ],
+    [
+     "003FEEAC",
+     "mov"
+    ],
+    [
+     "003FEEEB",
+     "call"
+    ],
+    [
+     "003FEF61",
+     "mov"
+    ],
+    [
+     "003FEF89",
+     "je"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "homing",
+ "family": ""
+}

@@ -1,0 +1,71 @@
+HOST-FAILS 001AD670 raw callers 0017F5B0 (0017F5D3); named host(s) ta-texture-animation-lists.md: caller not a subject
+HOST-FAILS 001D9F70 raw callers 0017D940 (0017D957); named host(s) game-application.md: caller not a subject
+HOST-FAILS 004068B0 raw callers 004061F0 (00406481/004064B1); named host(s) numeric-formatting-and-character-mapping.md: caller not a subject
+HOST-FAILS 00407240 raw callers 004061F0 (00406552); named host(s) numeric-formatting-and-character-mapping.md: caller not a subject
+HOST-FAILS 00408140 raw callers 00406770 (00406831); named host(s) numeric-formatting-and-character-mapping.md: caller not a subject
+HOST-FAILS 0028FF80 raw callers 0035C630 (0035C639); named host(s) the-message-window-layout-readers.md: caller not a subject
+HOST-FAILS 003C98E0 raw callers 0035C630 (0035C643); named host(s) the-message-window-layout-readers.md: caller not a subject
+HOST-FAILS 003CA280 raw callers 0035C630 (0035C63E); named host(s) the-message-window-layout-readers.md: caller not a subject
+LEAD 0017D940 is a subject on 1 bearing page(s): 24-Compiler-And-CRT-Runtime/Lazy-Static-Initialization/lazy-statics-and-the-one-time-init-lock.md (L796 item)
+LEAD 0017F5B0 is a subject on 0 bearing page(s)
+LEAD 0035C630 is a subject on 1 bearing page(s): 02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/vbf-archive-and-st2e-tables.md (L1302 row)
+LEAD 004061F0 is a subject on 0 bearing page(s)
+LEAD 00406770 is a subject on 0 bearing page(s)
+VERIFY 10 functions, 41 anchors, 6 target pages, 4 edits, 9 drops
+PATCHED source 0029D4D0 02-Resource-And-Asset-Pipeline/PS2-Image-Data-Formats/five-small-bin-tables.md (section withdrawn)
+PATCHED record 0029D4D0 _index/candidates/fable-home-five-small-bin-tables-1003
+PATCHED target 0029D4D0 16-UI/Layout-Parameter-System/ui-layout-parameters-and-editor-schema.md
+PATCHED source 00408AD0 99-Unresolved-Residual/Glyph-Run-Rendering/how-a-line-of-text-becomes-glyph-quads.md (section withdrawn)
+PATCHED record 00408AD0 _index/candidates/fable-home-how-a-line-of-text-becomes-glyph-quads-1003
+PATCHED target 00408AD0 00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md
+PATCHED source 0027F150 16-UI/License-Board-View/the-license-board-screen-widgets.md
+PATCHED record 0027F150 _index/candidates/fable-home-the-license-board-screen-widgets-1003
+PATCHED target 0027F150 16-UI/Shared-Dialogs/the-shared-dialog-widgets.md
+PATCHED source 003FF160 16-UI/License-Board-View/the-license-board-screen-widgets.md
+PATCHED record 003FF160 _index/candidates/fable-home-the-license-board-screen-widgets-1003
+PATCHED target 003FF160 16-UI/Shared-Dialogs/the-shared-dialog-widgets.md
+PATCHED source 003FF9F0 16-UI/License-Board-View/the-license-board-screen-widgets.md (section withdrawn)
+PATCHED record 003FF9F0 _index/candidates/fable-home-the-license-board-screen-widgets-1003
+PATCHED target 003FF9F0 16-UI/Shared-Dialogs/the-shared-dialog-widgets.md
+PATCHED source 00420860 02-Resource-And-Asset-Pipeline/the-source-block-mover-and-separate-consumer-refresh.md
+PATCHED record 00420860 _index/candidates/fable-home-the-source-block-mover-and-separate-con-1003
+PATCHED target 00420860 17-Presentation-Rendering/Character-Render-Records/the-character-render-record-array.md
+PATCHED source 004209F0 02-Resource-And-Asset-Pipeline/the-source-block-mover-and-separate-consumer-refresh.md (section withdrawn)
+PATCHED record 004209F0 _index/candidates/fable-home-the-source-block-mover-and-separate-con-1003
+PATCHED target 004209F0 17-Presentation-Rendering/Character-Render-Records/the-character-render-record-array.md
+PATCHED source 00366A30 17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md
+PATCHED record 00366A30 _index/candidates/fable-home-effect-element-type-dispatch-1003
+PATCHED target 00366A30 15-Input/Modal-Toggles/r2-force-fight-toggle.md
+PATCHED source 004FF230 17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md
+PATCHED record 004FF230 _index/candidates/fable-home-effect-element-type-dispatch-1003
+PATCHED target 004FF230 17-Presentation-Rendering/Effect-File-Formats/efx-and-efb-effect-containers.md
+PATCHED source 004FE4A0 17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md
+PATCHED record 004FE4A0 _index/candidates/fable-home-effect-element-type-dispatch-1003
+PATCHED target 004FE4A0 17-Presentation-Rendering/Effect-File-Formats/efx-and-efb-effect-containers.md
+PATCHED page 00623D70 17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md
+PATCHED record 00623D70 _index/candidates/fable-home-effect-element-type-dispatch-1003
+PATCHED page 00346780 07-Combat-Action/Action-Dispatch/battle-action-handler-table.md
+PATCHED record 00346780 _index/candidates/fable-battle-action-handler-table-homing-1003
+PATCHED page 00346EF0 07-Combat-Action/Action-Dispatch/battle-action-handler-table.md
+PATCHED record 00346EF0 _index/candidates/fable-battle-action-handler-table-homing-1003
+PATCHED page 003CA530 16-UI/Text-And-Number-Rendering/numeric-formatting-and-character-mapping.md
+PATCHED record 003CA530 _index/candidates/fable-numeric-formatting-and-character-mapping-homing-1003
+PATCHED source 001AD670 06-Movement-And-Navigation/Movement-Mode-Selection/how-the-engine-chooses-3d-or-flat-movement.md
+PATCHED record 001AD670 _index/candidates/fable-home-how-the-engine-chooses-3d-or-flat-movem-1003
+PATCHED source 001D9F70 24-Compiler-And-CRT-Runtime/Lazy-Static-Initialization/lazy-statics-and-the-one-time-init-lock.md (section withdrawn)
+PATCHED record 001D9F70 _index/candidates/fable-home-lazy-statics-and-the-one-time-init-lock-1003
+PATCHED source 004068B0 05-Spawn-Encounter-Lifecycle/spawn-placement-and-retirement.md
+PATCHED record 004068B0 _index/candidates/fable-home-spawn-placement-and-retirement-1003
+PATCHED source 00407240 05-Spawn-Encounter-Lifecycle/spawn-placement-and-retirement.md
+PATCHED record 00407240 _index/candidates/fable-home-spawn-placement-and-retirement-1003
+PATCHED source 00408140 05-Spawn-Encounter-Lifecycle/spawn-placement-and-retirement.md (section withdrawn)
+PATCHED record 00408140 _index/candidates/fable-home-spawn-placement-and-retirement-1003
+PATCHED source 0028FF80 02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/vbf-archive-and-st2e-tables.md
+PATCHED record 0028FF80 _index/candidates/fable-home-vbf-archive-and-st2e-tables-1003
+PATCHED source 003C98E0 02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/vbf-archive-and-st2e-tables.md
+PATCHED record 003C98E0 _index/candidates/fable-home-vbf-archive-and-st2e-tables-1003
+PATCHED source 003CA280 02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/vbf-archive-and-st2e-tables.md (section withdrawn)
+PATCHED record 003CA280 _index/candidates/fable-home-vbf-archive-and-st2e-tables-1003
+PATCHED source 003B6DE0 17-Presentation-Rendering/Effect-File-Formats/the-element-types-40-42-a0-ab-d0-d1.md
+PATCHED record 003B6DE0 _index/candidates/fable-home-the-element-types-40-42-a0-ab-d0-d1-1003
+FAILS 0

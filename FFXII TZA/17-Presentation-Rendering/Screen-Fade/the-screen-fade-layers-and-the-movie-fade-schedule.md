@@ -772,3 +772,12 @@ Each setter is reached by two verbs. The `0x00C7`-`0x00CE` form passes index 0 (
 | `003DDF20` | 56 B | `blurrotate` `0x00C8` / `0x054B` | stores `xmm1` (float) at `D+0x30` (`02B58AC0 + 0x68 * index`), in two arms shaped like `003DDEE0`'s | Interior anchor `003DDF24`; Interior anchor `003DDF34`; Interior anchor `003DDF41`; Interior anchor `003DDF52` |
 | `003DDF60` | 45 B | `blurscale` `0x00CB` / `0x054E` | stores `xmm1` at `D+0x28` and `xmm2` at `D+0x2C` (floats) | Interior anchor `003DDF6F`; Interior anchor `003DDF80`; Interior anchor `003DDF86` |
 | `003DE110` | 46 B | `blurtrans` `0x00CE` / `0x0551` | stores `dl << 4` in the high nibble of byte `D+1`, keeping the low nibble | Interior anchor `003DE11F`; Interior anchor `003DE130`; Interior anchor `003DE136`; Interior anchor `003DE13A` |
+
+## SWE2-EC7-223 update (2026-10-03) - the `objmblur*` verbs' two record writes
+
+Two `objmblur*` verbs write the object-motion-blur record at `02B58C20` - the record this page names as sitting just past the screen blur descriptor array it documents.
+
+| function | size | verb / caller | what the body does | interior anchors |
+|---|---|---|---|---|
+| `003DE450` | 16 B | `objmblurcolor` `0x01C6` (handler `00355500` tail-jumps) | copies the dword at `[rcx]` (the handler's packed four popped bytes) to `02B58C24` and sets byte `02B58C27` to `0x80` - the colour write plus its armed flag, same pair shape as the page's `blurcolor` `003DDE50` writes at `D+0x38` | Interior anchor `003DE452`; Interior anchor `003DE458` |
+| `003DE460` | 12 B | `objmblurlimitalpha` `0x01C5` (handler `003551F0` tail-jumps with the popped float in `xmm0`) | stores `cvttss2si(xmm0)` as the byte at `02B58C21` - the limit-alpha byte of the same record | Interior anchor `003DE465` |

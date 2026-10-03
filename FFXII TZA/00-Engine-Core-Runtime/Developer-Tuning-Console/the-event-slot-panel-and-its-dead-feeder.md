@@ -356,3 +356,14 @@ open.
 
 Corrected in place: the pusher row and the read count. The consumer record is
 `_index/candidates/event-slot-panel-falsification-pass-1-0929/`.
+
+## SWE2-EC7-222 update (2026-10-03) - the menu-state query verbs behind `debug_isopen*` and `get_interventionmenu_status`
+
+Three verbs read menu state rather than change it. `debug_isopen_menu` scans the same eight `0x68`-byte rows at `0215F200` that `00265680`'s readiness test and the dead feeder use; `debug_isopen_total_menu` and the last leg of `debug_isopen_menu` read `02092730`, the last-posted UI request id ([the router](../../16-UI/Request-Router/ui-request-router.md)); `get_interventionmenu_status` calls `0028F6A0`, which reads flag bits of the `0209BE80` HUD object ([the per-frame gate page](../Per-Frame-Update-Gate/one-word-decides-which-fifteen-subsystems-tick.md)). The last two rows were first measured in EC7-220 on that gate page; its `readiness:` veto keeps them off the A set, so they are homed here where the menu machinery they read is the subject.
+
+| function | size | verb / caller | what the body does | interior anchors |
+|---|---|---|---|---|
+| `002E05A0` | 24 B | `debug_isopen_total_menu` `0x2085` (handler `0050D200` calls it and returns its value) | returns 1 unless dword `02092730` - the last UI request id any route posted - is `0` or `5` | Interior anchor `002E05AA`; Interior anchor `002E05AF` |
+| `002E05E0` | 108 B | `debug_isopen_menu` `0x2081` (handler `0050D220` calls it and returns its value) | scans the eight `0x68`-byte rows at `0215F200`; a row counts when its qword `+0` is non-null and its byte `+0x3E` bit 0 (kept by the `shl 7`/`sar 7` sign trick, the same flag `00265680` tests) or `+0x38` is non-zero; returns `(any row flagged) | (02092730 not in {0, 5})` | Interior anchor `002E0604`; Interior anchor `002E060E`; Interior anchor `002E0615`; Interior anchor `002E062A`; Interior anchor `002E063B` |
+| `002E2340` | 60 B | `get_interventionmenu_status` `0x0457` (handler `00340020` calls it and returns its value) | calls `0028F6A0` and returns 0 for 0, 1 for 1, 2 for 2 and 3 for anything else - the `3` arm is unreachable through this callee, which returns only 0, 1 or 2 | Interior anchor `002E234D`; Interior anchor `002E2352`; Interior anchor `002E2357`; Interior anchor `002E2361` |
+| `0028F6A0` | 80 B | called by `002E2340` only | returns 0 when qword `0209BE80` is null, when bit 13 (`0x2000`) of its dword `+0x10F68` is set, or when `00273A20(object + 0xAB30)` - the 9-byte non-null test - returns 0; otherwise reloads `0209BE80` and returns 1 when bit 4 (`0x10`) of byte `+0x10F68` is set, 2 when clear | Interior anchor `0028F6B7`; Interior anchor `0028F6C3`; Interior anchor `0028F6CA`; Interior anchor `0028F6DA`; Interior anchor `0028F6E6` |

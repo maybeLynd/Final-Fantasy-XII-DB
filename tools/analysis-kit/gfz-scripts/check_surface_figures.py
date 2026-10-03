@@ -57,27 +57,30 @@ def ledger_figures():
 def game_engine_split(db):
     """(game types, engine types, fields on a game type) from the type store.
 
-    DERIVED, not declared: types.tsv has no game/engine flag. Its `category` column is the
-    system folder, and 22-Middleware-PhyreEngine holds the engine/middleware types. The
-    partition is safe to gate on because TWO independently written figures agree with it -
-    COVERAGE-DIMENSIONS' 182 engine and 69 GAME, and PROGRAM-STATE's GAME types 69.
+    DERIVED, not declared: types.tsv has no game/engine flag. The partition mirrors the
+    producer - program_coverage.py counts a type as engine/middleware when its types.tsv
+    category (the system folder) starts with 22-, 23- or 24- (Middleware-PhyreEngine,
+    Third-Party-Libraries, Compiler-And-CRT-Runtime), restricted to types that have rows
+    in fields.tsv. An earlier cut counted only 22-Middleware-PhyreEngine and read every
+    types.tsv row; once the 23- and 24- categories held types it reported 527 GAME against
+    a freshly generated file's 490 - a stale CHECK, not a stale surface.
     """
     tp = os.path.join(db, "_types", "types.tsv")
     fp = os.path.join(db, "_types", "fields.tsv")
     if not (os.path.exists(tp) and os.path.exists(fp)):
         return None
-    tl = io.open(tp, encoding="utf-8", errors="replace").read().split(chr(10))
-    th = tl[0].split(chr(9))
-    ti = {k: th.index(k) for k in th}
-    if "category" not in ti or "type" not in ti:
-        return None
-    rows = [l.split(chr(9)) for l in tl[1:] if l.strip()]
-    engine = {r[ti["type"]] for r in rows if len(r) > ti["category"]
-              and r[ti["category"]] == "22-Middleware-PhyreEngine"}
-    gm = {r[ti["type"]] for r in rows} - engine
-    fl_ = io.open(fp, encoding="utf-8", errors="replace").read().split(chr(10))
-    fr = [l.split(chr(9)) for l in fl_[1:] if l.strip()]
-    return len(gm), len(engine), sum(1 for r in fr if r[0] in gm)
+    cat = {}
+    for l in io.open(tp, encoding="utf-8", errors="replace").read().split(chr(10))[1:]:
+        if l.strip():
+            c = l.split(chr(9))
+            cat[c[0]] = c[2] if len(c) > 2 else ""
+    engine = {t for t in cat if cat[t].startswith(("22-", "23-", "24-"))}
+    fr = [l.split(chr(9)) for l in
+          io.open(fp, encoding="utf-8", errors="replace").read().split(chr(10))[1:]
+          if l.strip()]
+    in_fields = {r[0] for r in fr}
+    gm = in_fields - engine
+    return len(gm), len(in_fields & engine), sum(1 for r in fr if r[0] in gm)
 
 
 def per_type_counts(db):
@@ -190,6 +193,24 @@ def main():
                         bad.append("%s: quotes %s=%s, ledger has %s=%s"
                                    % (name, key, got, key, want))
 
+    # COVERAGE-DIMENSIONS' input fingerprint - recomputed by the producer's own
+    # input_fp (importing the generator, not re-deriving its input set, so the
+    # check can never drift from what was actually hashed).
+    cd_doc = os.path.join(a.db, "_index", "COVERAGE-DIMENSIONS.md")
+    if os.path.exists(cd_doc):
+        import program_coverage
+        pc_work = os.path.join(os.path.dirname(os.path.dirname(
+            os.path.dirname(os.path.abspath(__file__)))), "work")
+        want_fp = program_coverage.input_fp(a.db, pc_work)
+        m = re.search(r"Input fingerprint:\s*`([0-9a-f]{64})`",
+                      io.open(cd_doc, encoding="utf-8", errors="replace").read())
+        if not m:
+            bad.append("_index/COVERAGE-DIMENSIONS.md: no input fingerprint "
+                       "(generated before fingerprinting, cannot prove currency)")
+        elif m.group(1) != want_fp:
+            bad.append("_index/COVERAGE-DIMENSIONS.md: fingerprint %s… vs inputs %s…"
+                       % (m.group(1)[:12], want_fp[:12]))
+
     # the GAME / engine split in COVERAGE-DIMENSIONS section 6 - three more quoted figures
     # that no gate read. 'fields on a GAME type' drifted to 1347 against a store of 1346.
     split = game_engine_split(a.db)
@@ -212,6 +233,26 @@ def main():
     ptn, ptt = per_type_counts(a.db)
     cov = os.path.join(a.db, "_index", "TYPE-COVERAGE.md")
     if os.path.exists(cov) and ptt:
+        # Input fingerprint: sha-256 over the complete bytes of the store the
+        # generator read. The value-drift rows below can only catch a change
+        # that moved a quoted figure; this catches everything else, including
+        # an unfingerprinted file produced by an older generator.
+        store = os.path.join(a.db, "_types")
+        if os.path.exists(os.path.join(store, "types.tsv")):
+            import hashlib
+            h = hashlib.sha256()
+            for fn in ("types.tsv", "fields.tsv"):
+                h.update(fn.encode("utf-8") + b"\0")
+                h.update(io.open(os.path.join(store, fn), "rb").read())
+            want_fp = h.hexdigest()
+            m = re.search(r"Input fingerprint:\s*`([0-9a-f]{64})`",
+                          io.open(cov, encoding="utf-8", errors="replace").read())
+            if not m:
+                bad.append("_index/TYPE-COVERAGE.md: no input fingerprint "
+                           "(generated before fingerprinting, cannot prove currency)")
+            elif m.group(1) != want_fp:
+                bad.append("_index/TYPE-COVERAGE.md: fingerprint %s… vs store %s…"
+                           % (m.group(1)[:12], want_fp[:12]))
         checked = 0
         for line in io.open(cov, encoding="utf-8", errors="replace"):
             m = PER_TYPE_ROW.match(line)

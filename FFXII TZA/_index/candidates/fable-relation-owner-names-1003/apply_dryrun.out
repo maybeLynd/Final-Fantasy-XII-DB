@@ -1,0 +1,5 @@
+WOULD PATCH CharacterRenderRecord 0x65C: relationEventFlag -> relationListHead
+WOULD PATCH CharacterRenderRecord 0x65D: embeddedBlockByte65D -> relationListTail
+WOULD PATCH CharacterRenderRecord 0x65E: stateByte65E -> relationListCount
+WOULD PATCH CharacterRenderRecord 0x65F: nibbleByte65F -> inlineRelationKindNibble
+FAILS 0

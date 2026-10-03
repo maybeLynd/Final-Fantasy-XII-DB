@@ -1,0 +1,6 @@
+# optional-pointer member-offset vcall, 120-byte form (optptr-member-offset-vcall-120), one row per member, keyed on +0x18 call - derived from the shipping image by fam_rows.py (kind operand_at)
+entry	anchor	mnemonic	value	name	callee
+005C18B0	005C18C8	call	005BCD20	+0x23=005BC4D0	all
+005C1930	005C1948	call	005BDDC0	+0x23=005BC4D0	all
+005C19B0	005C19C8	call	00683B50	+0x23=005BC4D0	all
+0063A280	0063A298	call	00636920	+0x23=005BE870	all

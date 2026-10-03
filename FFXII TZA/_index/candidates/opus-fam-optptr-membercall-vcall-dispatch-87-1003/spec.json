@@ -1,0 +1,48 @@
+{
+ "page": "22-Middleware-PhyreEngine/Script-Object-Accessors/phyre-script-object-accessors.md",
+ "members": "22-Middleware-PhyreEngine/Script-Object-Accessors/members/optptr-membercall-vcall-dispatch.tsv",
+ "kind": "operand_at",
+ "group": "all",
+ "title": "optional-pointer member-call vcall dispatch adapters, 87-byte form (optptr-membercall-vcall-dispatch-87), one row per member, keyed on +0x13 call",
+ "package": "_index/candidates/opus-member-er-member-call-vcall-dispatch-adapters-87-byte-form-1-r9",
+ "key": [
+  [
+   "0x13",
+   "call",
+   "tgt"
+  ]
+ ],
+ "fields": [],
+ "skip": {},
+ "apply": "never: the page already carries the member rows (package opus-member-er-member-call-vcall-dispatch-adapters-87-byte-form-1-r9); progress.py reads only page, rows.tsv entry and anchor",
+ "size": 87,
+ "form": [
+  "mov qword ptr [rsp + 8], rbx",
+  "push rdi",
+  "sub rsp, 0x20",
+  "mov rbx, rcx",
+  "mov rdi, rdx",
+  "mov rcx, rdx",
+  "call #",
+  "test rax, rax",
+  "je +0x4C",
+  "mov rcx, rax",
+  "call qword ptr [rbx + 8]",
+  "mov edx, 1",
+  "mov rcx, rdi",
+  "mov ebx, eax",
+  "call 0080F420",
+  "mov edx, ebx",
+  "mov rcx, rdi",
+  "call 00810580",
+  "mov eax, 1",
+  "mov rbx, qword ptr [rsp + 0x30]",
+  "add rsp, 0x20",
+  "pop rdi",
+  "ret",
+  "mov rbx, qword ptr [rsp + 0x30]",
+  "add rsp, 0x20",
+  "pop rdi",
+  "ret"
+ ]
+}

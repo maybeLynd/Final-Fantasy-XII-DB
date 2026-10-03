@@ -1,0 +1,677 @@
+{
+ "page": "17-Presentation-Rendering/Effect-File-Formats/the-element-types-80-97.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-element-types-80-97-r10.json",
+ "rows": [
+  {
+   "fn": "00458010",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `0020E600`, `0026EE00`, `002F1F40`, `003970A0`, `00397910`, `00398030`, `00399600`, `0039A9B0`, `0039B550`, `0039B620`, `0039B960`, `003A33B0`, `0042FDB0`, `004309C0`, `004314E0`, `00431830`, `00434900`, `00434A70`, `00808C40`; Stores: `d[02AE1930..02AE1940/8]`, `d[02AE1950..02AE195C/4]`, `d[02AE1970,02AE1974,02AE197C,02AEE900]`, `q[02AE1A40,02AE1A50,02AEE908]`, `x[02AE19C0..02AE19E0/16]`",
+   "anchors": [
+    [
+     "00458096",
+     "call"
+    ],
+    [
+     "00458115",
+     "movups"
+    ],
+    [
+     "004584C8",
+     "call"
+    ],
+    [
+     "004583F5",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "004584E0",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `0020E600`, `0026EE00`, `002F1F40`, `00394DA0`, `003970A0`, `00397910`, `00398030`, `00399600`, `0039A9B0`, `0039B550`, `0039B620`, `0039B960`, `003A33B0`, `0042FDB0`, `004309C0`, `004314E0`, `00431830`, `00434900`, `00434A70`, `00808C40`; Stores: `d[02AE1BE0..02AE1BEC/4]`, `d[02AE1BF8,02AE1C2C,02AE1C3C,02AEE900]`, `d[02AE1C00..02AE1C24/4]`, `d[02AE1C50..02AE1C5C/4]`, `q[02AE1D10..02AE1D80/16]`, `q[02AEE908]`, `x[02AE1C60..02AE1CB0/16]`",
+   "anchors": [
+    [
+     "00458565",
+     "call"
+    ],
+    [
+     "004585B2",
+     "movups"
+    ],
+    [
+     "00458C90",
+     "call"
+    ],
+    [
+     "00458B1A",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "00458CA0",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `0020E600`, `0026EE00`, `002F1F40`, `003970A0`, `00397910`, `00398030`, `00399600`, `0039A9B0`, `0039B550`, `0039B620`, `0039B960`, `003A33B0`, `0042FDB0`, `004309C0`, `004314E0`, `00431830`, `00434900`, `00434A70`, `00808C40`; Stores: `d[02AE09C0..02AE09D0/4]`, `d[02AE09E0..02AE0A04/4]`, `d[02AE0A0C..02AE0A14/4]`, `d[02AE0A1C,02AEE900]`, `q[02AE0AD0..02AE0B40/16]`, `q[02AEE908]`, `x[02AE0A50..02AE0A70/16]`",
+   "anchors": [
+    [
+     "00458D26",
+     "call"
+    ],
+    [
+     "00458DA5",
+     "movups"
+    ],
+    [
+     "004593CD",
+     "call"
+    ],
+    [
+     "004592DC",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0047C360",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `0022CC20`, `0047BFB0`, `004825F0`, `0048F790`, `r15`; Stores: `d[01E02828,02064B3C,02064B48,02064B94,02064BA0,02064BA4,02064C30,02064C34,02064C40,02064C44]`, `d[02064AFC..02064B04/4]`, `d[02064B20..02064B34/4]`, `d[02064C60..02064C68/4]`, `d[02064CA0..02064CD4/4]`, `d[02064CDC..02064D1C/4]`, `d[r8+r12*1]`, `d[r9+r12*1]`, `d[rcx+r12*1]`, `q[02064B40,02064B60,02064CB8]`, `q[02064CE0..02064D10/16]`, `w[02064B10,02064B12,02064DE4]`, `w[02064DB0..02064DB8/4]`, `w[02064DC8..02064DD8/4]`, `x[02064B20,02064B50]`, `x[02064B70..02064B90/16]`, `x[02064BB0..02064BE0/16]`, `x[02064CA0..02064D10/16]`, `x[r8+r12*1]`, `x[r9+r12*1]`, `x[rax+r12*1]`, `x[rcx+r12*1]`, `x[rdx+r12*1]`",
+   "anchors": [
+    [
+     "0047C8BC",
+     "call"
+    ],
+    [
+     "0047C429",
+     "mov"
+    ],
+    [
+     "0047DFF9",
+     "call"
+    ],
+    [
+     "0047E0DC",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00482860",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `0022CC20`, `0022CC30`, `0022CC40`, `0047BFB0`, `004825F0`, `0048F790`, `import:sqrtf`, `r15`; Stores: `d[01E02828,02064B4C,02064BA8,02064BAC,02064BF0,02064BF4,02064C00,02064C04,02064C10,02064C14,02064C20,02064C24]`, `d[02064AFC..02064B04/4]`, `d[02064B20..02064B2C/4]`, `d[02064B60..02064B68/4]`, `d[02064B70..02064B7C/4]`, `d[02064C30..02064C54/4]`, `d[02064C60..02064C78/4]`, `d[02064CB0..02064CD4/4]`, `d[02064CE0..02064D1C/4]`, `d[r9+r12*1]`, `d[rcx+r12*1]`, `q[02064CB8]`, `q[02064CE0..02064D10/16]`, `w[02064B10,02064B12]`, `w[02064DB0..02064DB8/4]`, `w[02064DC8..02064DE4/4]`, `x[02064B20..02064BE0/16]`, `x[02064C60]`, `x[02064CB0..02064D10/16]`, `x[rax+rsi*1]`, `x[rcx+r12*1]`, `x[rcx+rsi*1]`",
+   "anchors": [
+    [
+     "00482A3D",
+     "call"
+    ],
+    [
+     "004828B9",
+     "mov"
+    ],
+    [
+     "004851A6",
+     "call"
+    ],
+    [
+     "00485147",
+     "movups"
+    ]
+   ]
+  },
+  {
+   "fn": "00485790",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `0022CC20`, `0022CC30`, `0022CC40`, `0047BFB0`, `0048F790`, `[rsp+0x130]`, `import:sqrtf`, `rsi`; Stores: `d[01E02828,02064B38,02064B3C,02064C48]`, `d[02064AFC..02064B04/4]`, `d[02064B20..02064B30/4]`, `d[02064B48..02064B70/20]`, `d[02064B74..02064B7C/4]`, `d[02064B90..02064B9C/4]`, `d[02064BF0..02064BF8/4]`, `d[02064C00..02064C08/4]`, `d[02064C10..02064C18/4]`, `d[02064C20..02064C3C/4]`, `d[02064C80..02064C8C/4]`, `d[02064CA0..02064CA8/4]`, `d[02064CB0..02064CF8/4]`, `d[02064D00..02064D1C/4]`, `d[r8+rbp*1]`, `d[r9+rbp*1]`, `d[rcx+rbp*1+0x8]`, `d[rcx]`, `q[02064B30,02064B40,02064CB0,02064CC0,02064D10]`, `w[02064B10..02064B16/2]`, `w[02064DB0..02064DBC/4]`, `w[02064DC8..02064DDC/4]`, `w[02064DE4]`, `x[02064B20,02064CB0]`, `x[02064B70..02064B90/16]`, `x[02064BB0..02064BE0/16]`, `x[rcx+r8*1]`, `x[rcx+rbp*1]`",
+   "anchors": [
+    [
+     "00485895",
+     "call"
+    ],
+    [
+     "004857ED",
+     "mov"
+    ],
+    [
+     "00487B91",
+     "call"
+    ],
+    [
+     "00487936",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00488340",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `0022CC20`, `0022CC30`, `0022CC40`, `00487D60`, `00487F90`, `0048F790`, `[rsp+0x190]`, `import:sqrtf`; Stores: `d[01E02828]`, `d[02064AFC..02064B04/4]`, `d[02064B20..02064B2C/4]`, `d[02064B38..02064B40/4]`, `d[02064B48..02064B50/4]`, `d[02064B60..02064B6C/4]`, `d[02064C30..02064C38/4]`, `d[02064C40..02064C48/4]`, `d[02064C50..02064C60/8]`, `d[02064C64..02064C74/4]`, `d[02064C80..02064D08/4]`, `d[02064D10..02064D1C/4]`, `d[r8+rdi*1]`, `d[rcx+r12*1]`, `d[rdi+rcx*1+0x4]`, `q[02064C40..02064CB0/56]`, `q[02064CD0,02064D00]`, `w[02064B10..02064B1E/2]`, `w[02064D00,02064D02,02064D10,02064D12]`, `w[02064DB0..02064DE8/4]`, `x[02064B20..02064B80/16]`, `x[02064BA0..02064C20/16]`, `x[02064C70]`, `x[02064CC0..02064CF0/16]`, `x[rax+r12*1]`, `x[rax+rdi*1]`, `x[rcx+r12*1]`, `x[rcx+rdi*1]`, `x[rdx+r12*1]`",
+   "anchors": [
+    [
+     "004883B5",
+     "call"
+    ],
+    [
+     "004883A5",
+     "movss"
+    ],
+    [
+     "0048AB1D",
+     "call"
+    ],
+    [
+     "0048AB09",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0048AF70",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `0022CC20`, `0047BFB0`, `004825F0`, `0048F790`, `import:sqrtf`, `r12`; Stores: `d[01E02828,02064B38,02064B3C,02064B54,02064C60,02064C64,02064C70,02064C74]`, `d[02064AFC..02064B04/4]`, `d[02064B20..02064B30/4]`, `d[02064C80..02064C88/4]`, `d[02064C90..02064C98/4]`, `d[02064CA0..02064CA8/4]`, `d[02064CB0..02064CD8/4]`, `d[02064CE0..02064D1C/4]`, `d[r11+r13*1]`, `d[r8+r13*1]`, `d[r9+r13*1]`, `d[rcx+r13*1]`, `q[02064B30,02064CB0,02064CB8,02064D08,02064D10]`, `q[02064CE0..02064D00/16]`, `w[02064DB0..02064DB8/4]`, `w[02064DC8..02064DD8/4]`, `w[02064DE4]`, `x[02064B20,02064B40,02064B50,02064B70,02064B80]`, `x[02064BB0..02064BE0/16]`, `x[02064CB0..02064D10/16]`, `x[rax+r13*1]`, `x[rcx+r13*1]`",
+   "anchors": [
+    [
+     "0048B6BB",
+     "call"
+    ],
+    [
+     "0048B007",
+     "mov"
+    ],
+    [
+     "0048CD31",
+     "call"
+    ],
+    [
+     "0048CD60",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0048D4B0",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `0022CC20`, `0047BFB0`, `0048D240`, `[rsp+0x190]`, `import:sqrtf`; Stores: `d[01E02828,02064B38,02064B3C,02064B54,02064C60,02064C64,02064C70,02064C74]`, `d[02064AFC..02064B04/4]`, `d[02064B20..02064B30/4]`, `d[02064C80..02064C88/4]`, `d[02064C90..02064C98/4]`, `d[02064CA0..02064CD8/4]`, `d[02064CE0..02064D1C/4]`, `d[r9+r12*1]`, `d[r9+rsi*1]`, `d[rax+r8*1+0xC]`, `d[rcx+r12*1]`, `d[rcx+r8*1+0x8]`, `d[rcx+rax*1+0xC]`, `d[rcx+rsi*1]`, `d[rdx+r12*1]`, `q[02064B30,02064CB0,02064D08,02064D10]`, `q[02064CE0..02064D00/16]`, `w[02064D18,02064D1A]`, `w[02064DB0..02064DB8/4]`, `w[02064DC8..02064DE4/4]`, `x[02064B20,02064B40,02064B50,02064B70,02064B80]`, `x[02064BB0..02064BE0/16]`, `x[02064CB0..02064D10/16]`, `x[r12+r8*1]`, `x[rax+r12*1]`, `x[rcx+r12*1]`, `x[rcx+rax*1]`, `x[rcx+rsi*1]`",
+   "anchors": [
+    [
+     "0048DC5B",
+     "call"
+    ],
+    [
+     "0048D4DD",
+     "mov"
+    ],
+    [
+     "0048F23A",
+     "call"
+    ],
+    [
+     "0048F3E7",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0048F8C0",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `0022CC20`, `0022CC30`, `0022CC40`, `0047BFB0`, `004825F0`, `0048F790`, `import:sqrtf`, `rbp`; Stores: `d[01E02828,02064B3C,02064BAC]`, `d[02064AFC..02064B04/4]`, `d[02064B20..02064B2C/4]`, `d[02064B60..02064B7C/4]`, `d[02064B90..02064B9C/4]`, `d[02064BF0..02064C1C/4]`, `d[02064C30..02064C3C/4]`, `d[02064C44..02064C4C/4]`, `d[02064C5C..02064C68/4]`, `d[02064C70..02064C78/4]`, `d[02064CB0..02064CD8/4]`, `d[02064CE0..02064D1C/4]`, `d[r9+r15*1]`, `d[rcx+r15*1]`, `d[rdx+r15*1]`, `q[02064CB8..02064CD0/8]`, `q[02064CE0..02064D10/16]`, `q[rcx+r15*1]`, `q[rdx+r15*1]`, `w[02064B10,02064B12,02064DE4]`, `w[02064DB0..02064DB8/4]`, `w[02064DC8..02064DDC/4]`, `x[02064B20..02064BE0/16]`, `x[02064CB0..02064D10/16]`, `x[rax+r15*1]`, `x[rcx+r15*1]`, `x[rcx+rdx*1]`",
+   "anchors": [
+    [
+     "0048F9D6",
+     "call"
+    ],
+    [
+     "0048F915",
+     "mov"
+    ],
+    [
+     "00492B42",
+     "call"
+    ],
+    [
+     "00492D15",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "004930A0",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `0022CC20`, `0022CC30`, `0022CC40`, `0047BFB0`, `0048F790`, `[rsp+0x130]`, `import:sqrtf`, `rdi`; Stores: `d[01E02828,02064B38,02064B3C,02064C38,02064C40,02064C44]`, `d[02064AFC..02064B04/4]`, `d[02064B20..02064B30/4]`, `d[02064B48..02064B70/20]`, `d[02064B74..02064B7C/4]`, `d[02064B90..02064B9C/4]`, `d[02064BF0..02064BF8/4]`, `d[02064C00..02064C08/4]`, `d[02064C10..02064C18/4]`, `d[02064C20..02064C28/4]`, `d[02064C50..02064C58/4]`, `d[02064C80..02064C8C/4]`, `d[02064CA0..02064CA8/4]`, `d[02064CB0..02064CF8/4]`, `d[02064D00..02064D1C/4]`, `d[r9+rbp*1]`, `d[rcx+rbp*1+0x8]`, `d[rcx+rbp*1]`, `d[rcx]`, `q[02064B30,02064B40,02064CC0,02064D10]`, `w[02064B10..02064B16/2]`, `w[02064DB0..02064DBC/4]`, `w[02064DC8..02064DDC/4]`, `w[02064DE4]`, `x[02064B20,02064CB0]`, `x[02064B70..02064B90/16]`, `x[02064BB0..02064BE0/16]`, `x[rcx+r8*1]`, `x[rcx+rbp*1]`",
+   "anchors": [
+    [
+     "004931A2",
+     "call"
+    ],
+    [
+     "004930FA",
+     "mov"
+    ],
+    [
+     "00495685",
+     "call"
+    ],
+    [
+     "0049543C",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "004958A0",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `0022CC20`, `0022CC30`, `0022CC40`, `[rsp+0x130]`, `import:sqrtf`, `rbp`; Stores: `d[01E02828,02064B38,02064B3C,02064B48]`, `d[02064AFC..02064B04/4]`, `d[02064B20..02064B30/4]`, `d[02064B50..02064B5C/4]`, `d[02064B6C..02064B7C/4]`, `d[02064B90..02064B9C/4]`, `d[02064C80..02064C88/4]`, `d[02064C90..02064CA8/4]`, `d[02064CB0..02064CC8/4]`, `d[02064CD0..02064CF8/4]`, `d[02064D00..02064D1C/4]`, `d[r9+r14*1]`, `d[rcx+r14*1+0x8]`, `d[rcx+r14*1]`, `d[rcx]`, `q[02064B30,02064B40,02064CB0,02064D10]`, `w[02064B10..02064B16/2]`, `w[02064DB0..02064DBC/4]`, `w[02064DC8..02064DDC/4]`, `w[02064DE4]`, `x[02064B20,02064CB0]`, `x[02064B70..02064B90/16]`, `x[02064BB0..02064BE0/16]`, `x[rcx+r14*1]`, `x[rcx+r8*1]`",
+   "anchors": [
+    [
+     "004959AA",
+     "call"
+    ],
+    [
+     "00495901",
+     "mov"
+    ],
+    [
+     "004978D5",
+     "call"
+    ],
+    [
+     "0049768C",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00497AC0",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `0024DE20`, `00314910`, `ijmp:rax`; Stores: `d[02064B00..02064B08/4]`, `d[02064B20..02064B2C/4]`, `d[02064B38,02064C28,02064C38,02064CC0,02064CC4,02064CCC,02064DBC,02064DD8]`, `d[02064B40..02064B48/4]`, `d[02064B50..02064B78/4]`, `d[02064B80..02064BA8/4]`, `d[02064BB0..02064BD8/4]`, `d[02064BE0..02064C1C/4]`, `d[02064C40..02064C48/4]`, `d[02064C50..02064C58/4]`, `d[02064C60..02064C68/4]`, `d[02064C70..02064C78/4]`, `d[r14+r13*1+0xC]`, `d[rcx+r14*1+0x8]`, `d[rcx+r14*1+0xC]`, `d[rcx+r14*1]`, `q[02064B30]`, `q[02064C00..02064C70/16]`, `q[rcx+r14*1]`, `w[02064DB0,02064DB4,02064DBC,02064DE4]`, `w[02064DC8..02064DD4/4]`, `x[02064B20..02064BB0/48]`, `x[02064BC0..02064BE0/16]`, `x[02064CD0..02064D10/16]`, `x[rax+r14*1]`, `x[rcx+r14*1]`",
+   "anchors": [
+    [
+     "00497B23",
+     "call"
+    ],
+    [
+     "00497B70",
+     "mov"
+    ],
+    [
+     "0049984C",
+     "jmp"
+    ],
+    [
+     "004997EA",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00499A20",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `0022CC20`, `004A6780`, `ijmp:rax`; Stores: `d[02064B00..02064B08/4]`, `d[02064B20..02064B2C/4]`, `d[02064B38,02064C18,02064C28,02064CE0,02064CE4,02064CF0,02064CF4,02064D00,02064D04,02064D10,02064D14,02064DBC,02064DD8]`, `d[02064B40..02064B88/4]`, `d[02064B90..02064B98/4]`, `d[02064BA0..02064BA8/4]`, `d[02064BB0..02064BB8/4]`, `d[02064BC0..02064C0C/4]`, `d[02064C30..02064C48/4]`, `d[02064C50..02064C58/4]`, `d[02064C60..02064C68/4]`, `d[02064C70..02064C78/4]`, `d[02064CA0..02064CA8/4]`, `d[02064CB0..02064CB8/4]`, `d[rcx+r12*1+0xC]`, `d[rcx+rdi*1+0x8]`, `d[rcx+rdi*1+0xC]`, `d[rcx+rdi*1]`, `q[02064B30,02064CD0]`, `q[02064C00..02064C70/16]`, `q[rcx+rdi*1]`, `w[02064DB0,02064DB4,02064DBC,02064DE0,02064DE4]`, `w[02064DC8..02064DD8/4]`, `x[02064B20]`, `x[02064BC0..02064BF0/16]`, `x[02064CD0..02064D10/16]`, `x[r10+r8*1]`, `x[r11+r8*1]`, `x[r12+rax*1]`, `x[rcx+r12*1]`, `x[rcx+rdi*1]`",
+   "anchors": [
+    [
+     "00499A83",
+     "call"
+    ],
+    [
+     "00499AB0",
+     "mov"
+    ],
+    [
+     "0049B84B",
+     "jmp"
+    ],
+    [
+     "0049B7E6",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0049B9E0",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `0022CC20`, `004A6780`, `[rsp+0x160]`, `ijmp:rax`, `import:sqrtf`; Stores: `d[01E02828,02064BA0]`, `d[02064AFC..02064B04/4]`, `d[02064B20..02064B2C/4]`, `d[02064BF0..02064BF8/4]`, `d[02064C00..02064C08/4]`, `d[02064C10..02064C18/4]`, `d[02064C70..02064C78/4]`, `d[02064C80..02064C88/4]`, `d[02064C90..02064C98/4]`, `d[02064CA0..02064CA8/4]`, `d[02064CB0..02064CD8/4]`, `d[02064CE0..02064CF8/4]`, `d[02064D00..02064D08/4]`, `d[02064D10..02064D1C/4]`, `d[rbx+r12*1]`, `d[rcx+r12*1+0x4]`, `d[rcx+r12*1+0x8]`, `d[rcx+r12*1+0xC]`, `d[rcx+r12*1]`, `q[02064D10]`, `w[02064B10,02064B12,02064DE4]`, `w[02064DB0..02064DD8/4]`, `x[02064B20,02064B80,02064D10]`, `x[02064BB0..02064BE0/16]`, `x[02064CB0..02064CE0/16]`, `x[rax+r12*1]`, `x[rcx+r12*1]`",
+   "anchors": [
+    [
+     "0049BA0D",
+     "call"
+    ],
+    [
+     "0049BA26",
+     "mov"
+    ],
+    [
+     "0049D304",
+     "jmp"
+    ],
+    [
+     "0049CEC1",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0049D540",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `0022CC20`, `004A6780`, `ijmp:rax`, `rdi`; Stores: `d[02064B00..02064B08/4]`, `d[02064B20..02064B38/4]`, `d[02064B40..02064B48/4]`, `d[02064B50..02064B88/4]`, `d[02064B90..02064B98/4]`, `d[02064BA8,02064BF8,02064C78,02064CE0,02064CE4,02064CF0,02064CF4,02064D00,02064D04,02064D10,02064D14,02064DBC,02064DD8]`, `d[02064BB0..02064BD8/4]`, `d[02064BE0..02064BE8/4]`, `d[02064C00..02064C28/4]`, `d[02064C30..02064C38/4]`, `d[02064C40..02064C6C/4]`, `d[02064C80..02064C88/4]`, `d[02064C90..02064C98/4]`, `d[rcx+r13*1+0x8]`, `d[rcx+r13*1]`, `q[02064B40,02064B50,02064B90,02064BA0,02064BE0,02064BF0,02064C30,02064CB0]`, `q[02064C40..02064CA0/48]`, `q[rcx+r13*1]`, `w[02064DB0..02064DE8/4]`, `x[02064B20]`, `x[02064B60..02064C50/80]`, `x[02064CC0..02064D10/16]`, `x[r12+rdx*1]`, `x[rax+r13*1]`, `x[rcx+r13*1]`, `x[rcx+rdx*1]`, `x[rdx+r13*1]`",
+   "anchors": [
+    [
+     "0049D5A3",
+     "call"
+    ],
+    [
+     "0049D5CB",
+     "mov"
+    ],
+    [
+     "0049FE8A",
+     "jmp"
+    ],
+    [
+     "0049FDCE",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "004A0090",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `004A6780`, `ijmp:rax`; Stores: `d[02064B00..02064B08/4]`, `d[02064B20..02064B38/4]`, `d[02064B40..02064B48/4]`, `d[02064B50..02064B88/4]`, `d[02064B90..02064B98/4]`, `d[02064BA0..02064BCC/4]`, `d[02064BD8,02064BE8,02064C28,02064C38,02064C78,02064CC8,02064DBC,02064DD8]`, `d[02064BF0..02064C1C/4]`, `d[02064C40..02064C6C/4]`, `d[02064C80..02064C9C/4]`, `d[r10+rcx*1+0x8]`, `d[r8+r13*1+0x8]`, `d[rax+r13*1]`, `d[rcx+r10*1+0x8]`, `d[rcx+r13*1+0x8]`, `d[rcx+r13*1]`, `q[02064B30,02064B40,02064B80,02064B90,02064BD0,02064BE0,02064C20,02064C30]`, `q[02064C60..02064CC0/16]`, `q[r10+rcx*1]`, `q[r8+r13*1]`, `q[rcx+r10*1]`, `q[rcx+r13*1]`, `w[02064DB0..02064DC0/4]`, `w[02064DC8,02064DE4]`, `w[02064DD0..02064DDC/4]`, `x[02064B20,02064B50,02064B60,02064BA0,02064BB0,02064BF0,02064C00,02064C40,02064C50]`, `x[02064CC0..02064D10/16]`, `x[r10+r13*1]`, `x[r10+rbp*1]`, `x[r14+r10*1]`, `x[r15+r13*1]`, `x[r8+r10*1]`, `x[rax+r13*1]`, `x[rbx+r10*1]`, `x[rcx+r10*1]`, `x[rcx+r13*1]`, `x[rdi+r10*1]`, `x[rsi+r10*1]`",
+   "anchors": [
+    [
+     "004A00F3",
+     "call"
+    ],
+    [
+     "004A012A",
+     "mov"
+    ],
+    [
+     "004A1C02",
+     "jmp"
+    ],
+    [
+     "004A1BA0",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "004A1E30",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `0022CC20`, `ijmp:rax`, `r15`; Stores: `d[02064B00,02064B04,02064CF0,02064CF4,02064D18,02064DBC,02064DD8]`, `d[02064B20..02064B8C/4]`, `d[02064CC0..02064CE4/4]`, `d[rcx+r12*1+0x8]`, `d[rcx+r12*1+0xC]`, `d[rcx+r12*1]`, `q[02064B30..02064B60/16]`, `q[02064CE0,02064CF0,02064D10]`, `q[rcx+r12*1]`, `w[02064DB0..02064DBC/4]`, `w[02064DC8..02064DE8/4]`, `x[02064B20,02064B70,02064B80]`, `x[02064CC0..02064D10/16]`, `x[rax+r12*1]`, `x[rcx+r12*1]`",
+   "anchors": [
+    [
+     "004A25DC",
+     "call"
+    ],
+    [
+     "004A1E8A",
+     "mov"
+    ],
+    [
+     "004A3144",
+     "jmp"
+    ],
+    [
+     "004A307C",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "004A33B0",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `0022CC20`, `004A6780`, `ijmp:rax`; Stores: `d[02064B00,02064B04,02064CE0,02064CE4,02064CF0,02064CF4,02064D18,02064DBC,02064DD8]`, `d[02064B20..02064B58/4]`, `d[02064B60..02064B7C/4]`, `d[02064CC0..02064CD8/4]`, `d[rcx+r14*1+0x8]`, `d[rcx+r14*1+0xC]`, `d[rcx+r14*1]`, `q[02064B30,02064B40,02064B60,02064CE0,02064CF0,02064D10]`, `q[rcx+r14*1]`, `w[02064B10,02064B12]`, `w[02064DB0..02064DBC/4]`, `w[02064DC8..02064DE4/4]`, `x[02064B20,02064B70]`, `x[02064CE0..02064D10/16]`, `x[rax+r14*1]`, `x[rcx+r14*1]`",
+   "anchors": [
+    [
+     "004A340A",
+     "call"
+    ],
+    [
+     "004A3432",
+     "mov"
+    ],
+    [
+     "004A4210",
+     "jmp"
+    ],
+    [
+     "004A41A3",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "004A4410",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `0022CC20`, `0022CC30`, `0022CC40`, `004A6780`, `ijmp:rax`, `import:sqrtf`, `r14`; Stores: `d[02064B00,02064B04,02064CF0,02064CF4,02064DBC,02064DD8]`, `d[02064B20..02064B8C/4]`, `d[02064BC0..02064BD8/4]`, `d[02064CC0..02064CE4/4]`, `d[02064D10..02064D1C/4]`, `d[rcx+r15*1+0x8]`, `d[rcx+r15*1+0xC]`, `d[rcx+r15*1]`, `q[02064B30,02064B40,02064B60,02064BD0,02064CE0,02064CF0,02064D10]`, `q[rcx+r15*1]`, `w[02064B10,02064B12]`, `w[02064DB0..02064DBC/4]`, `w[02064DC4..02064DE8/4]`, `x[02064B20,02064B70,02064B80]`, `x[02064CC0..02064D10/16]`, `x[rax+r15*1]`, `x[rcx+r15*1]`",
+   "anchors": [
+    [
+     "004A446A",
+     "call"
+    ],
+    [
+     "004A4491",
+     "mov"
+    ],
+    [
+     "004A62BE",
+     "jmp"
+    ],
+    [
+     "004A61F0",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "004A6C20",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `0022CC20`, `0022CC30`, `0022CC40`, `004A6780`, `ijmp:rax`, `import:sqrtf`; Stores: `d[02064B00,02064B04,02064CA0,02064CA4,02064CB0,02064CB4,02064CC0,02064CC4,02064D10,02064D14,02064D1C,02064DBC,02064DD8]`, `d[02064B20..02064B38/4]`, `d[02064B40..02064B78/4]`, `d[02064CD0..02064CEC/4]`, `d[rcx+r15*1+0x8]`, `d[rcx+r15*1+0xC]`, `d[rcx+r15*1]`, `q[02064B30..02064B70/16]`, `q[02064CE0,02064D10]`, `q[rcx+r15*1]`, `w[02064B10..02064B14/2]`, `w[02064DB0..02064DBC/4]`, `w[02064DC8..02064DE4/4]`, `x[02064B20..02064B40/16]`, `x[02064B60]`, `x[02064CC0..02064D10/16]`, `x[rax+r15*1]`, `x[rcx+r15*1]`",
+   "anchors": [
+    [
+     "004A6C76",
+     "call"
+    ],
+    [
+     "004A6CAA",
+     "mov"
+    ],
+    [
+     "004A8854",
+     "jmp"
+    ],
+    [
+     "004A87FB",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "004A8B00",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `0022CC20`, `004A6780`, `ijmp:rax`; Stores: `d[02064B00..02064B08/4]`, `d[02064B20..02064B38/4]`, `d[02064B40..02064B68/4]`, `d[02064B70..02064B98/4]`, `d[02064BA0..02064BC8/4]`, `d[02064BD0..02064C08/4]`, `d[02064C10..02064C28/4]`, `d[02064C30..02064C38/4]`, `d[02064C40..02064C48/4]`, `d[02064C50..02064C58/4]`, `d[02064C60..02064C68/4]`, `d[02064C70..02064C78/4]`, `d[02064C80..02064C88/4]`, `d[02064C90..02064C98/4]`, `d[02064CA0..02064CA8/4]`, `d[02064DBC,02064DD8]`, `d[r12+r15*1+0xC]`, `d[r15+rbp*1+0xC]`, `d[rcx+r15*1+0x8]`, `d[rcx+r15*1]`, `q[02064BF0..02064CA0/16]`, `q[rcx+r15*1]`, `w[02064B10..02064B16/2]`, `w[02064DB0..02064DBC/4]`, `w[02064DC8..02064DD8/4]`, `w[02064DE4]`, `x[02064B20..02064B40/16]`, `x[02064B70..02064BD0/48]`, `x[02064CC0..02064D10/16]`, `x[rcx+r15*1]`",
+   "anchors": [
+    [
+     "004A8B62",
+     "call"
+    ],
+    [
+     "004A8B7A",
+     "mov"
+    ],
+    [
+     "004AAE1D",
+     "jmp"
+    ],
+    [
+     "004AADBB",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "004AAFC0",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `0022CC20`, `004A6780`, `ijmp:rax`; Stores: `d[02064B00..02064B08/4]`, `d[02064B20..02064B38/4]`, `d[02064B40..02064B68/4]`, `d[02064B70..02064B98/4]`, `d[02064BA0..02064BC8/4]`, `d[02064BD0..02064C08/4]`, `d[02064C10..02064C18/4]`, `d[02064C20..02064C38/4]`, `d[02064C40..02064C48/4]`, `d[02064C50..02064C58/4]`, `d[02064C60..02064C68/4]`, `d[02064CA0,02064CA4,02064CB0,02064CB4,02064CC0,02064CC4,02064CD0,02064CD4,02064CE0,02064CE4,02064CF0,02064CF4,02064D00,02064D04,02064D10,02064D14,02064DBC,02064DD8]`, `d[rax+r12*1+0xC]`, `d[rcx+r12*1+0x8]`, `d[rcx+r12*1+0xC]`, `d[rcx+r12*1]`, `q[02064BF0..02064C60/16]`, `q[rcx+r12*1]`, `w[02064B10..02064B1E/2]`, `w[02064DB0..02064DBC/4]`, `w[02064DC8..02064DD8/4]`, `w[02064DE0,02064DE4]`, `x[02064B20..02064B40/16]`, `x[02064B70..02064BD0/48]`, `x[02064CC0..02064D10/16]`, `x[rcx+r12*1]`",
+   "anchors": [
+    [
+     "004AB01E",
+     "call"
+    ],
+    [
+     "004AB047",
+     "mov"
+    ],
+    [
+     "004AD83B",
+     "jmp"
+    ],
+    [
+     "004AD7DC",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "004B0230",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `0022CC20`, `0022CC30`, `0022CC40`, `004A6780`, `ijmp:rax`; Stores: `d[02064B00,02064B04,02064B38,02064CB0,02064CB4,02064CBC,02064DBC,02064DD8]`, `d[02064B20..02064B2C/4]`, `d[02064B40..02064B48/4]`, `d[02064B50..02064B6C/4]`, `d[02064C40..02064C48/4]`, `d[rcx+r13*1+0xC]`, `d[rcx+r13*1]`, `q[02064B30,02064B60,02064C40,02064CC0]`, `w[02064B10,02064B12,02064DB0,02064DB4,02064DD8,02064DE4]`, `w[02064DBC..02064DD4/12]`, `x[02064B20,02064B50]`, `x[02064CD0..02064D10/16]`, `x[r12+r13*1]`, `x[r15+r13*1]`, `x[rax+r13*1]`, `x[rcx+r13*1]`",
+   "anchors": [
+    [
+     "004B0287",
+     "call"
+    ],
+    [
+     "004B02B6",
+     "mov"
+    ],
+    [
+     "004B0B6A",
+     "jmp"
+    ],
+    [
+     "004B0B0C",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "004BF500",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `0022CC20`, `0022CC30`, `0022CC40`, `004A6780`, `ijmp:rax`, `import:sqrtf`, `rsi`; Stores: `d[01E02828,02064B60,02064B68,02064B78,02064B7C,02064BA0,02064D1C]`, `d[01E02830..01E02838/4]`, `d[02064AFC..02064B04/4]`, `d[02064B20..02064B30/4]`, `d[02064C8C..02064CE4/4]`, `d[rcx+rbp*1+0x4]`, `d[rcx+rbp*1+0x8]`, `d[rcx+rbp*1+0xC]`, `d[rcx+rbp*1]`, `q[02064B70,02064C90]`, `w[02064DB0..02064DDC/4]`, `w[02064DE4]`, `x[02064B20,02064D10]`, `x[02064B80..02064BE0/16]`, `x[02064CB0..02064CE0/16]`, `x[rax+rbp*1]`, `x[rcx+rbp*1]`",
+   "anchors": [
+    [
+     "004BF527",
+     "call"
+    ],
+    [
+     "004BF563",
+     "movups"
+    ],
+    [
+     "004C0C67",
+     "jmp"
+    ],
+    [
+     "004C07E2",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "004C2160",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `0022CC20`, `0022CC30`, `0022CC40`, `004C4C40`, `005375F0`, `005376D0`, `import:sqrtf`, `rsi`; Stores: `d[01E02828,02064BC0,02064C20,02064C38,02064C54,02064C60,02064C64,02064C70,02064C74]`, `d[02064AFC..02064B04/4]`, `d[02064B20..02064B2C/4]`, `d[02064B50..02064B58/4]`, `d[02064B60..02064B68/4]`, `d[02064B70..02064B78/4]`, `d[02064B80..02064B88/4]`, `d[02064B90..02064B98/4]`, `d[02064BA0..02064BA8/4]`, `d[02064C40..02064C4C/4]`, `d[02064CB0..02064CD4/4]`, `w[02064DB0..02064DBC/4]`, `w[02064DD0,02064DD8,02064DE4,02064DE8]`, `x[02064B20,02064B30,02064CC0]`, `x[02064BC0..02064BF0/16]`, `x[02064CE0..02064D10/16]`, `x[rax+rbp*1]`, `x[rcx+rbp*1]`",
+   "anchors": [
+    [
+     "004C219F",
+     "call"
+    ],
+    [
+     "004C2185",
+     "mov"
+    ],
+    [
+     "004C3527",
+     "call"
+    ],
+    [
+     "004C350D",
+     "movups"
+    ]
+   ]
+  },
+  {
+   "fn": "004C37C0",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `0022CC20`, `0022CC30`, `0022CC40`, `004C4C40`, `005375F0`, `005376D0`, `import:sqrtf`, `rdi`; Stores: `d[01E02828,02064BA0,02064BA4,02064BC0]`, `d[02064AFC..02064B04/4]`, `d[02064B20..02064B2C/4]`, `d[02064B70..02064B78/4]`, `d[02064B80..02064B98/4]`, `d[02064C30..02064C38/4]`, `d[02064C4C..02064C5C/4]`, `d[02064CB0..02064CCC/4]`, `w[02064B10,02064B12,02064DD0,02064DD8,02064DE4,02064DE8]`, `w[02064DB0..02064DC4/4]`, `x[02064B20,02064B30,02064C10,02064C20,02064CC0]`, `x[02064BC0..02064BF0/16]`, `x[02064CE0..02064D10/16]`, `x[rax+rsi*1]`, `x[rcx+rsi*1]`",
+   "anchors": [
+    [
+     "004C3801",
+     "call"
+    ],
+    [
+     "004C37E3",
+     "mov"
+    ],
+    [
+     "004C4965",
+     "call"
+    ],
+    [
+     "004C4949",
+     "movups"
+    ]
+   ]
+  },
+  {
+   "fn": "004C4D20",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `0022CC20`, `004C4C40`, `import:sqrtf`, `r14`; Stores: `d[01E02828,02064AFC,02064B00,02064B68,02064BC0,02064C24]`, `d[02064B20..02064B2C/4]`, `d[02064C40..02064C48/4]`, `d[02064C80..02064C88/4]`, `d[02064C90..02064C98/4]`, `d[02064CB0..02064CDC/4]`, `w[02064DB0..02064DBC/4]`, `w[02064DC8..02064DD0/4]`, `w[02064DD8,02064DE4,02064DE8]`, `x[02064B20,02064B30,02064CC0]`, `x[02064BC0..02064BF0/16]`, `x[02064C10..02064C30/16]`, `x[02064CE0..02064D10/16]`, `x[rax+r15*1]`, `x[rcx+r15*1]`",
+   "anchors": [
+    [
+     "004C4D65",
+     "call"
+    ],
+    [
+     "004C4D54",
+     "mov"
+    ],
+    [
+     "004C5AD6",
+     "call"
+    ],
+    [
+     "004C5AB9",
+     "movups"
+    ]
+   ]
+  },
+  {
+   "fn": "004C5DF0",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `0022CC20`, `004C4C40`, `import:sqrtf`, `rbp`; Stores: `d[01E02828,02064AFC,02064B00,02064BC0,02064C24]`, `d[02064B20..02064B2C/4]`, `d[02064C40..02064C48/4]`, `d[02064C80..02064C88/4]`, `d[02064C90..02064C98/4]`, `d[02064CB0..02064CD0/4]`, `w[02064DB0..02064DBC/4]`, `w[02064DD0,02064DD8,02064DE4,02064DE8]`, `x[02064B20,02064B30,02064CC0]`, `x[02064BC0..02064C30/16]`, `x[02064CE0..02064D10/16]`, `x[rax+r14*1]`, `x[rcx+r14*1]`",
+   "anchors": [
+    [
+     "004C5E34",
+     "call"
+    ],
+    [
+     "004C5E23",
+     "mov"
+    ],
+    [
+     "004C6ABB",
+     "call"
+    ],
+    [
+     "004C6A9E",
+     "movups"
+    ]
+   ]
+  },
+  {
+   "fn": "004C6DE0",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `0022CC20`, `004C4C40`, `import:sqrtf`, `r14`; Stores: `d[01E02828,02064AFC,02064B00,02064BC0,02064C14,02064C60]`, `d[02064B20..02064B2C/4]`, `d[02064C30..02064C38/4]`, `d[02064C70..02064C78/4]`, `d[02064C80..02064C88/4]`, `d[02064C90..02064C9C/4]`, `d[02064CB0..02064CDC/4]`, `w[02064DB0..02064DC8/4]`, `w[02064DD0,02064DD8,02064DE4,02064DE8]`, `x[02064B20,02064B30,02064CC0]`, `x[02064BC0..02064C20/16]`, `x[02064CE0..02064D10/16]`, `x[rax+r15*1]`, `x[rcx+r15*1]`",
+   "anchors": [
+    [
+     "004C6E19",
+     "call"
+    ],
+    [
+     "004C6E02",
+     "mov"
+    ],
+    [
+     "004C7C25",
+     "call"
+    ],
+    [
+     "004C7C0A",
+     "movups"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {
+  "004ADD10": "withdrawn: too large for one exact row, even as a scoped row (1383 characters at set-exact)"
+ },
+ "missing": [],
+ "corrections": [],
+ "mode": "ee",
+ "family": "",
+ "method": "The page named these bodies only at their entry; each is too large for one exact sentence, so each row is a SCOPED row under SWE2-AUDIT-SPEC's ruling (auditspec-ruling-scoped-ee-row-1003, 4fdcdb5ea): it opens with its scope (every call and every non-stack store, with widths; branch conditions, arithmetic and order not stated) and ends the scope with the marker 'scoped row: set-exact'. The committed checker [`scoped_check.py`](scoped_check.py) (v3, sha256 3c28ea9ef93d35aa4bf422555e10c20ea700d7f43a2229f49735f93e07af65d9) derives both sets from the image by recursive descent over the function's extent (jump tables resolved, stack aliases tracked along control flow) and refuses any mismatch: [`scoped_check.out`](scoped_check.out) FAILS 0 over 30 row(s); its controls [`scoped_check_controls.out`](scoped_check_controls.out) CONTROL FAILS 0. Drafted by repos-91, a local helper, from the checker's output; the checker itself was reviewed twice by an independent agent that re-derived all 65 rows of this round with its own code (v1: 2 rows missed stores, fixed; v2/v3: all rows match). Scoped credit is reported separately from full rows (the ruling's condition 5)."
+}

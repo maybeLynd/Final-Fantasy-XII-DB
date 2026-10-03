@@ -1011,3 +1011,11 @@ The consumer record is [`boot-fixups-falsification-pass-1-0929`](../_index/candi
 | function | size | entered from | what the body does | interior anchors |
 |---|---|---|---|---|
 | `004E7980` | 52 B | `0037E0F0` + 0x9B | calls `004E7980` + 0x13 with (`rcx`, the address `004E7D90`, 0), then stores 0x3000000 into dword `rcx+8` and 0x2000000 into dword `rcx+0xC` (original `rcx`) and tail-jumps (site `004E7980` + 0x2F) with `rcx+0x10` as `rcx` | Interior anchor `004E7989`; Interior anchor `004E7993`; Interior anchor `004E799C`; Interior anchor `004E79A3`; Interior anchor `004E79AF` |
+
+## Interior citations for the entry-cited functions (OPUS, 2026-10-03, cloud-drafted)
+
+*Functions this page named only at their entry. Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from OPUS's disassembly pack and re-read by OPUS against the certified image; verified by [`interior_applier.py`](../_index/candidates/opus-contract-boot-fixups-ee-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*
+
+| function | size | what the body does | interior anchors |
+|---|---|---|---|
+| `004EBE80` | 2769 B | Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `0022CC20`, `0022CC30`, `0022CC40`, `002EFE70`, `004EB910`, `005375F0`, `005376D0`, `rdi`; Stores: `d[01E02828,02064B20,02064B24,02064B30,02064B34,02064B7C,02064B8C,02064C90,02064C94,02064CA0,02064CA4,02064D00,02064D04,02064D10,02064D14]`, `d[02064AFC..02064B04/4]`, `d[02064BA0..02064BBC/4]`, `d[02064BF0..02064C0C/4]`, `d[02064C80..02064C88/4]`, `d[02064CB0..02064CB8/4]`, `d[02064CF0..02064CF8/4]`, `w[02064DB0..02064DC8/4]`, `w[02064DD0,02064DD4,02064DE8]`, `x[02064B30..02064B90/16]` | `004EBEDB`, `004EBECA`, `004EC8D2`, `004EC8C0` |

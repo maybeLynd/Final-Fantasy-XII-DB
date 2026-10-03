@@ -2862,3 +2862,16 @@ Interior anchor `00332FDB` (function `00332FA0`).
 `0026AB50` (13 B) writes the two override bytes that the `0025D950` row above reads: it stores `cl` at byte `02099DA4` and `dl` at byte `02099DA5`, and returns. It is reached by tail jumps from two verb handlers. `set_force_char_nearfade` `0x0552` passes 1 and the popped integer; `clear_force_char_nearfade` `0x0553` passes 0 and 0. While the flag `02099DA4` is set, `0025D950` therefore stores the script's byte `02099DA5` in `02099DA3` in place of the value it computed, and passes it sign-extended to `002E8700`.
 
 Interior anchor `0026AB56` (function `0026AB50`).
+
+## Homed bodies re-homed here for host fit (FABLE, 2026-10-03; AUDIT-SPEC batch 6)
+
+*FABLE's homing stream (cloud-drafted, FABLE-verified) homed these bodies on other pages. SWE2-AUDIT-SPEC reviewed each sentence, site and anchor set and rejected the host, because that page named the caller only in passing. The sentences are unchanged except where the review gave replacement wording, which the row's line below says. Each states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Why each row is here:*
+
+- `003EC850` is a 5-byte thunk to `00408AD0`; `002628B0` + 0x2E4 and `0026C8C0` + 0x192 call it.
+- `00408AD0`: its caller is the thunk `003EC850` (the line above); this page documents `002628B0` and `0026C8C0` as subjects (a heading, a paragraph; a table row).
+
+*Verified by [`move_rows.py`](../../_index/candidates/fable-home-host-moves-b6-1003/move_rows.py): every site transfers to its function; the caller named above (for a thunk, the thunk's callers) is a subject of this page outside this section - an address in a heading, the first address of a table row, or the first address of a paragraph or list item; and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors | moved from |
+|---|---|---|---|---|---|
+| `00408AD0` | 33 B | `003EC850` + 0x0 | when qword `02B62D80` is non-null and bit 1 (`0x2`) of its dword `+0xC8` is clear, clears bit 2 of that dword (AND `0xFFFFFFFB`); otherwise it writes nothing | Interior anchor `00408AD7`; Interior anchor `00408AE2`; Interior anchor `00408AE7`; Interior anchor `00408AEA` | [how-a-line-of-text-becomes-glyph-quads](../../99-Unresolved-Residual/Glyph-Run-Rendering/how-a-line-of-text-becomes-glyph-quads.md) |

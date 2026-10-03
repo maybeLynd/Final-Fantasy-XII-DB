@@ -1,0 +1,6 @@
+# optional-pointer alloc + record install, 104-byte form (optptr-alloc-record-install-104), one row per member, keyed on +0x2F lea - derived from the shipping image by fam_rows.py (kind operand_at)
+entry	anchor	mnemonic	value	name	callee
+00680520	0068054F	lea	02E41070	-	all
+00680720	0068074F	lea	02E41270	-	all
+00680B30	00680B5F	lea	02E41170	-	all
+00680E10	00680E3F	lea	02E41470	-	all

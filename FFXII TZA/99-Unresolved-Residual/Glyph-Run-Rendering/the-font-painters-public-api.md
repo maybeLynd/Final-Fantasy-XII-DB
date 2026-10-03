@@ -378,3 +378,11 @@ This page describes unowned code in the residual folder, and it cites the bodies
 | function | size | entered from | what the body does | interior anchors |
 |---|---|---|---|---|
 | `001E9380` | 51 B | `0017FC50` + 0x10 | calls the site `001E9380` + 0x19 on each of 0x40 consecutive 0x38-byte elements starting at `rcx+0x1500` | Interior anchor `001E938A`; Interior anchor `001E9391`; Interior anchor `001E9399`; Interior anchor `001E939E`; Interior anchor `001E93A6` |
+
+## Homed frontier bodies called from this page's functions (FABLE, 2026-10-03, cloud-drafted, continued)
+
+*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../../_index/candidates/fable-home-the-font-painters-public-api-h7-1003/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors |
+|---|---|---|---|---|
+| `00213090` | 33 B | `001E9380` + 0x19 | stores byte 1 at `rcx+0x20` and the dword 0x3F800000 (the f32 bit pattern of 1.0) at `rcx+0x30`, `rcx+0x2C`, `rcx+0x28` and `rcx+0x24`, in that order, then returns | Interior anchor `00213094`; Interior anchor `0021309B`; Interior anchor `002130A2`; Interior anchor `002130A9` |

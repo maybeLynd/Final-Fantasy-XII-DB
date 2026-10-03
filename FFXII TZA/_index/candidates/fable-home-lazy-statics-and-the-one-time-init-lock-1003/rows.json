@@ -27,5 +27,57 @@
  "rejected": [],
  "skipped": {},
  "missing": [],
- "corrections": []
+ "corrections": [],
+ "moved": [
+  {
+   "fn": "001D9F70",
+   "entered_from": "`0017D940` + 0x17",
+   "text": "returns without a write when `edx` is above 1 (unsigned); otherwise atomically adds 1 (`lock xadd`) to dword `rcx+0x24` + sign-extended `edx` * 4 and returns that dword's previous value",
+   "anchors": [
+    [
+     "001D9F73",
+     "ja"
+    ],
+    [
+     "001D9F78",
+     "lea"
+    ],
+    [
+     "001D9F7C",
+     "mov"
+    ]
+   ],
+   "dropped_by": "FABLE",
+   "dropped_on": "2026-10-03",
+   "dropped_record": "_index/candidates/fable-home-host-moves-b6-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-lazy-statics-and-the-one-time-init-lock-1003/REVIEW.md",
+   "host_fails": "returned to the frontier: the review's host game-application.md names the caller 0017D940 only in passing, inside the 001A07B0 paragraph; it is not a subject there, and the review names no alternative host"
+  }
+ ],
+ "dropped": [
+  {
+   "fn": "001D9F70",
+   "entered_from": "`0017D940` + 0x17",
+   "text": "returns without a write when `edx` is above 1 (unsigned); otherwise atomically adds 1 (`lock xadd`) to dword `rcx+0x24` + sign-extended `edx` * 4 and returns that dword's previous value",
+   "anchors": [
+    [
+     "001D9F73",
+     "ja"
+    ],
+    [
+     "001D9F78",
+     "lea"
+    ],
+    [
+     "001D9F7C",
+     "mov"
+    ]
+   ],
+   "dropped_by": "FABLE",
+   "dropped_on": "2026-10-03",
+   "dropped_record": "_index/candidates/fable-home-host-moves-b6-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-lazy-statics-and-the-one-time-init-lock-1003/REVIEW.md",
+   "host_fails": "returned to the frontier: the review's host game-application.md names the caller 0017D940 only in passing, inside the 001A07B0 paragraph; it is not a subject there, and the review names no alternative host"
+  }
+ ]
 }

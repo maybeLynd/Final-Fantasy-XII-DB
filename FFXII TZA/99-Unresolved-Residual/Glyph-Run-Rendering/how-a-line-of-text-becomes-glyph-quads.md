@@ -2056,14 +2056,6 @@ This page describes unowned code in the residual folder, and it cites the bodies
 | `0053ED10` | 73 B | calls `00244F50(0xC8, 0053EB90, 0)` when qword `02CA8A78` is zero, then tail-jumps `00244F50(0x1498, 0053E380, 0)` when qword `02CA8A80` is zero and returns otherwise | `0053ED14`, `0053ED2D`, `0053ED32`, `0053ED4F` |
 | `00799980` | 92 B | calls `0071F970(rdx, 008F6D40, &f)` and stores the float `f` at `+0x6C` of `rcx`; when `f` is not greater than 0.0 (`comiss`, `jb` skips otherwise, also skipping on NaN) stores at qword `+0x50` the double `005CC930()` minus qword `02CB60E8` minus qword `+0x50` minus qword `+0x40` plus qword `+0x50`; returns 0 | `0079999B`, `007999A9`, `007999AC`, `007999B3`, `007999CF` |
 
-## Homed frontier bodies called from this page's functions (FABLE, 2026-10-03, cloud-drafted)
-
-*Functions no page cited until now. Each is entered directly from a function this page already cites (the site is given as caller + offset). Each sentence states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's homing pack and re-read by FABLE against the certified image; verified by [`homing_applier.py`](../../_index/candidates/fable-home-how-a-line-of-text-becomes-glyph-quads-1003/homing_applier.py): every site transfers to its function, the page cites the caller, and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
-
-| function | size | entered from | what the body does | interior anchors |
-|---|---|---|---|---|
-| `00408AD0` | 33 B | `003EC850` + 0x0 | when qword `02B62D80` is non-null and bit 1 (`0x2`) of its dword `+0xC8` is clear, clears bit 2 of that dword (AND `0xFFFFFFFB`); otherwise it writes nothing | Interior anchor `00408AD7`; Interior anchor `00408AE2`; Interior anchor `00408AE7`; Interior anchor `00408AEA` |
-
 ## Homed bodies: functions reached only indirectly whose callees this page cites (FABLE, 2026-10-03, F homing)
 
 *No page cited these functions and none of their callers is documented: they are reached by table or pointer dispatch or through undocumented callers. Each one calls something this page documents, which the sentence names. Each sentence states what the body does (access and representation, not purpose); the anchors are instructions inside it that do it. Drafted by a cloud session from FABLE's F homing pack and re-read by FABLE against the certified image; verified by [`interior_applier.py`](../../_index/candidates/fable-how-a-line-of-text-becomes-glyph-quads-homing-1003/interior_applier.py): every anchor is an instruction boundary inside its function and decodes to the recorded mnemonic.*

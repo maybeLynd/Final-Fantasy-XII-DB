@@ -35,5 +35,45 @@
  "rejected": [],
  "skipped": {},
  "missing": [],
- "corrections": []
+ "corrections": [],
+ "moved": [
+  {
+   "fn": "0029D4D0",
+   "entered_from": "`0029E110` + 0x203",
+   "text": "calls `0029D4D0` + 0x21 with (qword `0209C498` + `0x160`, `0x148`, the address loaded by the `lea` at `0029D4DB`, 0) and the same callee at `0029D4D0` + 0x43 with (qword `0209C498` + `0x2A8`, `0x148`, the same address, 0); then calls `0029D4D0` + 0x56 with (qword `0209C498`, that pointer + `0x160`) and tail-jumps to the same callee at `0029D4D0` + 0x6D with (qword `0209C498`, that pointer + `0x2A8`), re-reading `0209C498` before each call",
+   "anchors": [
+    [
+     "0029D4E2",
+     "add"
+    ],
+    [
+     "0029D4F1",
+     "call"
+    ],
+    [
+     "0029D513",
+     "call"
+    ],
+    [
+     "0029D526",
+     "call"
+    ],
+    [
+     "0029D53D",
+     "jmp"
+    ]
+   ],
+   "moved_to": "16-UI/Layout-Parameter-System/ui-layout-parameters-and-editor-schema.md",
+   "moved_by": "FABLE",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/fable-home-host-moves-b6-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-five-small-bin-tables-1003/REVIEW.md",
+   "moved_text": "calls `0029D4D0` + 0x21 with (qword `0209C498` + `0x160`, `0x148`, the procedure `0029D550`, 0) and the same callee at `0029D4D0` + 0x43 with (qword `0209C498` + `0x2A8`, `0x148`, the same address, 0); then calls `0029D4D0` + 0x56 with (qword `0209C498`, that pointer + `0x160`) and tail-jumps to the same callee at `0029D4D0` + 0x6D with (qword `0209C498`, that pointer + `0x2A8`), re-reading `0209C498` before each call",
+   "text_edit": {
+    "why": "the five-small-bin-tables review, Repair 2: name the procedure (the `lea` at `0029D4DB` loads `0029D550`; move_rows.py checks it)",
+    "removed": "the address loaded by the `lea` at `0029D4DB`",
+    "kept": "the procedure `0029D550`"
+   }
+  }
+ ]
 }

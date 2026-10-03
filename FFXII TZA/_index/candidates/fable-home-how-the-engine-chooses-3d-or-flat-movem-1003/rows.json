@@ -138,5 +138,73 @@
  "rejected": [],
  "skipped": {},
  "missing": [],
- "corrections": []
+ "corrections": [],
+ "moved": [
+  {
+   "fn": "001AD670",
+   "entered_from": "`0017F5B0` + 0x23",
+   "text": "stores `dl` to byte `+0x244` of `rcx`; then, for index `ebx` from 0 while `ebx` is below (signed) dword `+0x20` of the object returned by `001AD670` + 0xE (re-fetched each pass at + 0x50), computes a flag that is 1 when byte `+0x1C` of the result of `001AD670` + 0x20 is non-zero, calls `001AD670` + 0x3C with the object from `001AD670` + 0x2F, that flag and the index, and when this returns non-null passes the result to `001AD670` + 0x49; a count of 0 or less skips the loop",
+   "anchors": [
+    [
+     "001AD676",
+     "mov"
+    ],
+    [
+     "001AD686",
+     "jle"
+    ],
+    [
+     "001AD69B",
+     "setne"
+    ],
+    [
+     "001AD6AC",
+     "call"
+    ],
+    [
+     "001AD6B9",
+     "call"
+    ]
+   ],
+   "dropped_by": "FABLE",
+   "dropped_on": "2026-10-03",
+   "dropped_record": "_index/candidates/fable-home-host-moves-b6-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-how-the-engine-chooses-3d-or-flat-movem-1003/REVIEW.md",
+   "host_fails": "held by the review: no page reads its caller 0017F5B0 as a body; home it with its caller (the review names ta-texture-animation-lists.md once 0017F5B0 is cited there)"
+  }
+ ],
+ "dropped": [
+  {
+   "fn": "001AD670",
+   "entered_from": "`0017F5B0` + 0x23",
+   "text": "stores `dl` to byte `+0x244` of `rcx`; then, for index `ebx` from 0 while `ebx` is below (signed) dword `+0x20` of the object returned by `001AD670` + 0xE (re-fetched each pass at + 0x50), computes a flag that is 1 when byte `+0x1C` of the result of `001AD670` + 0x20 is non-zero, calls `001AD670` + 0x3C with the object from `001AD670` + 0x2F, that flag and the index, and when this returns non-null passes the result to `001AD670` + 0x49; a count of 0 or less skips the loop",
+   "anchors": [
+    [
+     "001AD676",
+     "mov"
+    ],
+    [
+     "001AD686",
+     "jle"
+    ],
+    [
+     "001AD69B",
+     "setne"
+    ],
+    [
+     "001AD6AC",
+     "call"
+    ],
+    [
+     "001AD6B9",
+     "call"
+    ]
+   ],
+   "dropped_by": "FABLE",
+   "dropped_on": "2026-10-03",
+   "dropped_record": "_index/candidates/fable-home-host-moves-b6-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-how-the-engine-chooses-3d-or-flat-movem-1003/REVIEW.md",
+   "host_fails": "held by the review: no page reads its caller 0017F5B0 as a body; home it with its caller (the review names ta-texture-animation-lists.md once 0017F5B0 is cited there)"
+  }
+ ]
 }

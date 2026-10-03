@@ -1,0 +1,6 @@
+# tagged out-record vptr store, 103-byte form (tagged-outrecord-vptr-store-103), one row per member, keyed on +0x2F lea - derived from the shipping image by fam_rows.py (kind operand_at)
+entry	anchor	mnemonic	value	name	callee
+005CBEB0	005CBEDF	lea	02CAE660	-	all
+006B6200	006B622F	lea	02E4D630	-	all
+006B62F0	006B631F	lea	02E518D0	-	all
+006B6360	006B638F	lea	02E404B0	-	all

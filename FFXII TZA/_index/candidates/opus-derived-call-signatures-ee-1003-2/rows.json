@@ -1,0 +1,37 @@
+{
+ "page": "00-Engine-Core-Runtime/ABI-Recovery/derived-call-signatures.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "derived-call-signatures-r10.json",
+ "rows": [
+  {
+   "fn": "0085DDE0",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `00859EB0`, `0085A1F0`, `0085A400`, `0085A730`, `[rax+0x28]`; Stores: `d[r11+r10*4]`, `d[rax+rcx*4]`, `d[rbx+0xC8]`, `d[rdx+0xA0,0xA4]`, `d[rsi+r11*4]`",
+   "anchors": [
+    [
+     "0085DFCB",
+     "call"
+    ],
+    [
+     "0085DE5A",
+     "mov"
+    ],
+    [
+     "0085E1A8",
+     "call"
+    ],
+    [
+     "0085E0D2",
+     "movss"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "ee",
+ "family": "",
+ "method": "The page named these bodies only at their entry; each is too large for one exact sentence, so each row is a SCOPED row under SWE2-AUDIT-SPEC's ruling (auditspec-ruling-scoped-ee-row-1003, 4fdcdb5ea): it opens with its scope (every call and every non-stack store, with widths; branch conditions, arithmetic and order not stated) and ends the scope with the marker 'scoped row: set-exact'. The committed checker [`scoped_check.py`](scoped_check.py) (v3, sha256 3c28ea9ef93d35aa4bf422555e10c20ea700d7f43a2229f49735f93e07af65d9) derives both sets from the image by recursive descent over the function's extent (jump tables resolved, stack aliases tracked along control flow) and refuses any mismatch: [`scoped_check.out`](scoped_check.out) FAILS 0 over 1 row(s); its controls [`scoped_check_controls.out`](scoped_check_controls.out) CONTROL FAILS 0. Drafted by repos-91, a local helper, from the checker's output; the checker itself was reviewed twice by an independent agent that re-derived all 65 rows of this round with its own code (v1: 2 rows missed stores, fixed; v2/v3: all rows match). Scoped credit is reported separately from full rows (the ruling's condition 5)."
+}

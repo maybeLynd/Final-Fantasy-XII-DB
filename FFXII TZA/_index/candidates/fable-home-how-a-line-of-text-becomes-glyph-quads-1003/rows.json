@@ -31,5 +31,35 @@
  "rejected": [],
  "skipped": {},
  "missing": [],
- "corrections": []
+ "corrections": [],
+ "moved": [
+  {
+   "fn": "00408AD0",
+   "entered_from": "`003EC850` + 0x0",
+   "text": "when qword `02B62D80` is non-null and bit 1 (`0x2`) of its dword `+0xC8` is clear, clears bit 2 of that dword (AND `0xFFFFFFFB`); otherwise it writes nothing",
+   "anchors": [
+    [
+     "00408AD7",
+     "test"
+    ],
+    [
+     "00408AE2",
+     "test"
+    ],
+    [
+     "00408AE7",
+     "and"
+    ],
+    [
+     "00408AEA",
+     "mov"
+    ]
+   ],
+   "moved_to": "00-Engine-Core-Runtime/Battle-Frame/the-world-tick-and-the-field-frame.md",
+   "moved_by": "FABLE",
+   "moved_on": "2026-10-03",
+   "moved_record": "_index/candidates/fable-home-host-moves-b6-1003",
+   "review": "_index/candidates/auditspec-review-fable-home-how-a-line-of-text-becomes-glyph-quads-1003/REVIEW.md"
+  }
+ ]
 }

@@ -29,6 +29,7 @@ Usage
 """
 import argparse
 import collections
+import hashlib
 import io
 import os
 import re
@@ -283,6 +284,101 @@ def pct(n, d):
     return "-" if not d else "%.2f %%" % (100.0 * n / d)
 
 
+def _canonical_work():
+    return os.path.join(os.path.dirname(os.path.dirname(
+        os.path.dirname(os.path.abspath(__file__)))), "work")
+
+
+def input_fp(db, work):
+    """sha-256 over every input this report consumes, complete bytes.
+
+    The derived-data rule (_index/EVIDENCE-POLICY.md): a generated file proves
+    its currency by carrying the fingerprint of what it read. The set mirrors
+    main()'s consumption exactly: the doc walk's own exclusions are honoured
+    (`.md` under `_index/_inbox/` and in `_templates/` dirs are never read),
+    every `.tsv` under db IS hashed because the side-file census reads all of
+    them - which also covers the `_types` store, the UC-1 band TSVs and
+    `_index/FUNCTION-EXTENT-ERRATA.tsv` - and `Reconstruction/` contributes
+    NAMES only, because only the file list is counted there. Absent optional
+    inputs are hashed as MISSING: an appearing input must move the fp.
+    """
+    h = hashlib.sha256()
+
+    def feed_bytes(rel, path):
+        h.update(rel.replace("\\", "/").encode("utf-8") + b"\0")
+        with io.open(path, "rb") as fh:
+            for chunk in iter(lambda: fh.read(1 << 20), b""):
+                h.update(chunk)
+
+    def feed_missing(rel):
+        h.update(rel.replace("\\", "/").encode("utf-8") + b"\0MISSING\0")
+
+    for rel in ("graph/functions.tsv", "graph/edges.tsv",
+                "h78/rip_data_refs.tsv", "h94/phyre_schema.tsv"):
+        p = os.path.join(work, rel)
+        if os.path.exists(p):
+            feed_bytes("work/" + rel, p)
+        else:
+            feed_missing("work/" + rel)
+    # whether the UC-1 band/extent rules apply is itself an input: the same
+    # bytes produce different figures when `work` is not the canonical tree.
+    h.update(b"canonical_work=%d\0" % (os.path.realpath(
+        os.path.join(work, "graph", "functions.tsv")) ==
+        os.path.realpath(os.path.join(_canonical_work(),
+                                      "graph", "functions.tsv"))))
+    md_seen, tsv_seen = [], []
+    # The artifact itself is not an input (the progress-report rule, CKPT10R3):
+    # hashing the previous generation would make the fingerprint self-
+    # referential and unreproducible. Its own content barely feeds the report
+    # anyway - _index docs are neither system docs, readmes nor contracts.
+    own = os.path.realpath(os.path.join(db, "_index", "COVERAGE-DIMENSIONS.md"))
+    for root, dirs, files in os.walk(db):
+        dirs[:] = [d for d in dirs if d not in ("_templates",)
+                   and not (os.path.relpath(root, db) == "_index"
+                            and d == "progress")]
+        for f in files:
+            if not f.endswith(".md"):
+                continue
+            p = os.path.join(root, f)
+            rel = os.path.relpath(p, db).replace("\\", "/")
+            # PROGRESS.md and _index/progress/ are consumed (a readme row, and
+            # index docs in the corpus) but are DOWNSTREAM artifacts: the
+            # publish pipeline regenerates them from bound inputs that include
+            # this very file, so hashing them makes the fingerprint stale at
+            # birth (observed at 04387af2f). They are excluded from the input
+            # set, not from consumption.
+            if rel.startswith("_index/_inbox/") or os.path.realpath(p) == own \
+                    or rel == "PROGRESS.md" or rel.startswith("_index/progress/"):
+                continue
+            md_seen.append(p)
+    for p in sorted(md_seen):
+        feed_bytes("db/" + os.path.relpath(p, db), p)
+    # the side-file census walks db WITHOUT exclusions (line ~"for _r, _d, _f
+    # in os.walk(db)"), so the .tsv input set is everything, _templates
+    # included.
+    for root, dirs, files in os.walk(db):
+        for f in files:
+            if f.endswith(".tsv"):
+                tsv_seen.append(os.path.join(root, f))
+    for p in sorted(tsv_seen):
+        feed_bytes("db/" + os.path.relpath(p, db), p)
+    rec = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(db))),
+                       "Reconstruction")
+    if os.path.isdir(rec):
+        names = []
+        for r, _d, fs in os.walk(rec):
+            for n in fs:
+                if n.endswith(".c") or (n.startswith("diff_")
+                                        and n.endswith(".py")):
+                    names.append(os.path.relpath(os.path.join(r, n), rec)
+                                 .replace("\\", "/"))
+        for n in sorted(names):
+            h.update(("rec-name/" + n).encode("utf-8") + b"\0")
+    else:
+        feed_missing("Reconstruction/")
+    return h.hexdigest()
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--db", required=True)
@@ -404,6 +500,12 @@ def main():
     w("")
     w("*Generated by `Database/Tools/analysis-kit/gfz-scripts/program_coverage.py`. "
       "Re-run it; never quote these numbers from memory.*")
+    w("")
+    w("*Input fingerprint: `%s` - sha-256 over the complete bytes of every input "
+      "this run read (the `work` TSVs, every `.md`+`.tsv` under db with the doc "
+      "walk's own exclusions, `Reconstruction/` counted names). A moved input "
+      "moves it; `check_surface_figures.py` reports a moved fingerprint as STALE.*"
+      % input_fp(db, work))
     w("")
     w("> **Every ratio carries its denominator, every proxy is labelled a proxy, and a dimension "
       "the current data cannot support prints `UNMEASURED` with a reason.** A single composite "

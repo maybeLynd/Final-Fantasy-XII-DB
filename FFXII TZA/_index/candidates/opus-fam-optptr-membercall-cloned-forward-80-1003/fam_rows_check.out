@@ -1,0 +1,8 @@
+members 4, committed rows 4, declared exclusions 0
+control swapped-value: refused (2 failure(s) from the comparison)
+control moved-anchor: refused (1 failure(s) from the comparison)
+control swapped-field +0x13: refused (1 failure(s) from the comparison)
+known answer 005C1D50: anchor 005C1D73 references 02E4D630 in its raw bytes = committed value
+key unique: 4 member value(s), 0 shared
+page citations: 4 of 4 anchors cited in their member's row
+FAILS 0

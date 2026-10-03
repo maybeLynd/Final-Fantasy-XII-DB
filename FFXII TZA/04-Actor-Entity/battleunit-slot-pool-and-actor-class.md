@@ -829,3 +829,11 @@ Here it was, and `rbx` is bounds-checked against the pool two instructions earli
 `00263D40` (135 B) is the variable-length chain read: `rbx = [rcx]` must carry `word[+0] > 3`, then `[rdx+0x40]`'s `dword[+0x18]` resolves through `0020E600` into the word-run buffer at `base + rbx`; the body walks `esi + 1` links (each link's `word[0] + 1` is its own stride) and returns `word[rcx + rdi*2 + 2]` when `rdi < word[rcx]`, else -1 - the nested-record element getter the slot-pool and actor-record callers share.
 
 Interior anchor `00263D90` (function `00263D40`).
+
+## SWE2-EC7-223 update (2026-10-03) - the `getbtlwork` verb's BattleUnit byte read
+
+`getbtlwork` is one more script read of the BattleUnit record this page maps: the verb reaches the actor's `+0x30` back-pointer through `00263E30` and reads a byte of the BattleUnit's `+0xEC0` sixteen-entry array.
+
+| function | size | verb / caller | what the body does | interior anchors |
+|---|---|---|---|---|
+| `0035A060` | 34 B | `getbtlwork` `0x0110` (handler `00349520` tail-jumps) | calls `0031C1A0(this, edx, &out)` - which resolves the actor's `+0x30` BattleUnit back-pointer through `00263E30`, bounds-checks the index to 0-15, and copies `byte[+0xEC0 + index]` - then returns the out byte sign-extended, or 0 when the helper failed (no BattleUnit or bad index) | Interior anchor `0035A06E`; Interior anchor `0035A077`; Interior anchor `0035A07A` |

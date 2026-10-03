@@ -1,0 +1,42 @@
+{
+ "page": "99-Unresolved-Residual/Unowned-Code-Census/why-the-unowned-code-has-no-owner.md",
+ "date": "2026-10-03",
+ "rows": [
+  {
+   "fn": "00422A10",
+   "text": "with `p` = qword `+0x2E0`, stores word 0 to `p+0x456` and byte 0xFF to `p+0x2AF`, and returns -1 in `eax`; reached through qword `+0` of the data object `01F00090` that slot 0 of the `01F00398` dispatch table points to",
+   "anchors": [
+    [
+     "00422A17",
+     "mov"
+    ],
+    [
+     "00422A20",
+     "mov"
+    ],
+    [
+     "00422A27",
+     "or"
+    ]
+   ],
+   "why_here": "first qword of the object slot 0 of this page's 01F00398 table names",
+   "ref": {
+    "kind": "slot",
+    "table": "01F00090",
+    "field": "0",
+    "stride": "0",
+    "index": 0,
+    "site": "01F00090",
+    "width": 8,
+    "via": {
+     "site": "01F00398",
+     "value": "01F00090"
+    }
+   },
+   "cites": [
+    "01F00398",
+    "01F00090"
+   ]
+  }
+ ]
+}

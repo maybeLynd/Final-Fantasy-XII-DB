@@ -1,0 +1,7 @@
+# float-pipeline member vcall adapters, 121-byte form (float-pipeline-vcall-121), one row per member, keyed on +0x4F call - derived from the shipping image by fam_rows.py (kind operand_at)
+entry	anchor	mnemonic	value	name	callee
+006B2400	006B244F	call	00684280	-	all
+006B2480	006B24CF	call	00684300	-	all
+006B2500	006B254F	call	00684360	-	all
+006B2580	006B25CF	call	006843D0	-	all
+006B2600	006B264F	call	00684450	-	all

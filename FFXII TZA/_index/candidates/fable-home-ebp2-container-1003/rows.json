@@ -1,0 +1,42 @@
+{
+ "page": "25-EBP-Script-Container/Container/ebp2-container.md",
+ "date": "2026-10-03",
+ "session": "https://claude.ai/code/session_019FhK6qDUyvajmAsnJawqmj",
+ "report": "home-ebp2-container.json",
+ "rows": [
+  {
+   "fn": "00474070",
+   "entered_from": "`003545B0` + 0x94",
+   "text": "stores the sixth (stack) argument as qword `02CA6C78`, then calls `00474070` + 0x63 with `ecx` 0x1D8, `rdx` the `rip`-relative address loaded at `004740A4`, and `r8` pointing at a stack block of dword 0, the incoming `rcx` and a pointer to the four dwords `edx`, `r8d`, `r9d` and the fifth (stack) argument; stores that call's result as qword `02CA6C80` and zeroes qword `02CA6C78`, the frame guarded by the cookie from `01F44830` that the call at `00474070` + 0x82 checks",
+   "anchors": [
+    [
+     "004740BA",
+     "mov"
+    ],
+    [
+     "004740BF",
+     "mov"
+    ],
+    [
+     "004740D3",
+     "call"
+    ],
+    [
+     "004740D8",
+     "mov"
+    ],
+    [
+     "004740DF",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [
+  "0029B440",
+  "0035BC30"
+ ],
+ "corrections": []
+}

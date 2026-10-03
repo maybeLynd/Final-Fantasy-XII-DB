@@ -315,6 +315,20 @@ be pending, and the mode-0 read always fails and frees its own block first.
 | the handlers' tables and their teardown | E12 | 1 |
 | the EFB buffer: one fixed block, freed only by `00378230` after its contexts | E10–E11 | 1 |
 
+## Homed bodies re-homed here for host fit (FABLE, 2026-10-03; AUDIT-SPEC batch 6)
+
+*FABLE's homing stream (cloud-drafted, FABLE-verified) homed these bodies on other pages. SWE2-AUDIT-SPEC reviewed each sentence, site and anchor set and rejected the host, because that page named the caller only in passing. The sentences are unchanged except where the review gave replacement wording, which the row's line below says. Each states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Why each row is here:*
+
+- `004FF230`: this page documents its caller `00537C80` as a subject (a table row). This page already read the body in its own text ("Each body runs `004FF230`"); the row adds its interior anchors.
+- `004FE4A0`: this page documents its caller `00538350` as a subject (a table row).
+
+*Verified by [`move_rows.py`](../../_index/candidates/fable-home-host-moves-b6-1003/move_rows.py): every site transfers to its function; the caller named above (for a thunk, the thunk's callers) is a subject of this page outside this section - an address in a heading, the first address of a table row, or the first address of a paragraph or list item; and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors | moved from |
+|---|---|---|---|---|---|
+| `004FF230` | 63 B | `00537C80` + 0xF | makes the same call three times with `edx` unchanged, on `rcx`, `rcx+0x40` and `rcx+0x80` (sites `004FF230` + 0xF, + 0x1A and + 0x28), and returns `rcx+0xD0` | Interior anchor `004FF23F`; Interior anchor `004FF24A`; Interior anchor `004FF258`; Interior anchor `004FF262` | [effect-element-type-dispatch](../../17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md) |
+| `004FE4A0` | 60 B | `00538350` + 0x39 | makes the same call three times with `edx` unchanged, on `rcx`, `rcx+0x10` and `rcx+0x20` (sites `004FE4A0` + 0xF, + 0x1A and + 0x25), and returns `rcx+0x80` | Interior anchor `004FE4AF`; Interior anchor `004FE4BA`; Interior anchor `004FE4C5`; Interior anchor `004FE4CF` | [effect-element-type-dispatch](../../17-Presentation-Rendering/Effect-File-Formats/effect-element-type-dispatch.md) |
+
 ## 2c. The mode-0 `.efb` request, and why it never collides with mode 1 — 2026-09-30 (SWE2-CONTRACT for OPUS)
 
 *For the player:* nothing is visible. When the field loader loads a field, it also asks for a second map-effect file,

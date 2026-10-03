@@ -1,0 +1,37 @@
+{
+ "page": "23-Third-Party-Libraries/Lua-Core/the-lua-loader-and-what-it-accepts.md",
+ "date": "2026-10-03",
+ "session": "local-ee-drafter",
+ "report": "the-lua-loader-and-what-it-accepts-r10.json",
+ "rows": [
+  {
+   "fn": "00829B10",
+   "text": "Scope: all calls (direct, tail, exit jcc, indirect by operand, imports by name) and all non-stack stores with widths; branch conditions, arithmetic and order not stated; scoped row: set-exact. Calls: `0081BFF0`, `0081D9A0`, `0081F6B0`, `008241C0`, `00824260`, `00824330`, `00824340`, `00829680`, `00829D70`, `00829F50`, `0082C220`, `0082C540`, `0082D3B0`, `0082F470`, `0082F860`; Stores: `b[r9+0x42]`, `b[rcx+0x7A]`, `d[rax+0x68,0x6C]`, `d[rcx+r8*8+0x8]`, `d[rdx+0x8]`, `d[rsi+0x4]`, `d[rsi]`, `q[rbx+0x10]`, `q[rcx+0x48]`, `q[rdi+0x30]`, `q[rdx]`, `q[rsi+0x8]`",
+   "anchors": [
+    [
+     "00829B3A",
+     "call"
+    ],
+    [
+     "00829B45",
+     "mov"
+    ],
+    [
+     "00829D41",
+     "call"
+    ],
+    [
+     "00829CF1",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "rejected": [],
+ "skipped": {},
+ "missing": [],
+ "corrections": [],
+ "mode": "ee",
+ "family": "",
+ "method": "The page named these bodies only at their entry; each is too large for one exact sentence, so each row is a SCOPED row under SWE2-AUDIT-SPEC's ruling (auditspec-ruling-scoped-ee-row-1003, 4fdcdb5ea): it opens with its scope (every call and every non-stack store, with widths; branch conditions, arithmetic and order not stated) and ends the scope with the marker 'scoped row: set-exact'. The committed checker [`scoped_check.py`](scoped_check.py) (v3, sha256 3c28ea9ef93d35aa4bf422555e10c20ea700d7f43a2229f49735f93e07af65d9) derives both sets from the image by recursive descent over the function's extent (jump tables resolved, stack aliases tracked along control flow) and refuses any mismatch: [`scoped_check.out`](scoped_check.out) FAILS 0 over 1 row(s); its controls [`scoped_check_controls.out`](scoped_check_controls.out) CONTROL FAILS 0. Drafted by repos-91, a local helper, from the checker's output; the checker itself was reviewed twice by an independent agent that re-derived all 65 rows of this round with its own code (v1: 2 rows missed stores, fixed; v2/v3: all rows match). Scoped credit is reported separately from full rows (the ruling's condition 5)."
+}

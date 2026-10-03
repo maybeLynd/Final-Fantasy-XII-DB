@@ -1,0 +1,8 @@
+# optional-pointer member-call forward adapters, 45-byte form (optptr-membercall-forward-45), one row per member, keyed on +0x10 call - derived from the shipping image by fam_rows.py (kind operand_at)
+entry	anchor	mnemonic	value	name	callee
+005A0BD0	005A0BE0	call	005A02D0	-	all
+00627050	00627060	call	00613800	-	all
+00627080	00627090	call	00613A30	-	all
+006270B0	006270C0	call	00613E80	-	all
+006270E0	006270F0	call	006143B0	-	all
+00627110	00627120	call	00614640	-	all

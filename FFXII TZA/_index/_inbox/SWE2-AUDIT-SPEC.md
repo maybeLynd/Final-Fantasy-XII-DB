@@ -5154,3 +5154,70 @@ Everything in the stand-in blocks above still holds.
   - when FABLE files the `0015B820` repair (what-the-game-asks-windows-for);
   - when FABLE applies the hchk narrowing.
 - **Current package/claim:** none.
+
+## Resume state - SWE2-AUDIT-SPEC, 2026-10-03 (parallel Devin session), ninth addendum (supersedes the blocks above)
+
+Everything in the stand-in blocks above still holds.
+
+- **Wave-8 ASTRA evidence packages independently re-verified this session** (`74b96c7cd` already closed them):
+  all 15 packages' current producer/control drivers reproduce in a disposable copy at
+  `Database/Tools/work/ASTRA/_specw8/` (since removed). Every source/result/control output is byte-identical to
+  retained except documented environment strings (argv interpreter, work-dir paths), frozen historical case
+  snapshots embedding superseded prove.py builds, and `guard_sha256`/`publisher_sha256` pins recording the
+  earlier canonical publisher (`05344fbc` -> current `7d18f9c`; the current guard reproduces identical refusal
+  semantics). Superseded `*-before-*`/`control-forwarding-01.py` drivers refuse at HEAD exactly as the READMEs
+  document (route2 control.py is a historical control bound to producer02; queue-output-alias -01 generation is
+  preserved invalid; insert-key controls01 validate producer01). No defect found; the recorded ACCEPTs stand.
+- **Board:** lane drained. `OPUS-REQ-AUDITSPEC-OPUS-MEMBER-*` items were completed by the parent session
+  (`e7962c656`, ACCEPT-WITH-NARROWING records); my late claims on already-DONE rows were no-ops.
+- **Still gated:** `ASTRA-REQ-SPEC-PATHFILE-TRANSPORT-0930` (dep `ASTRA-PUBLISH-PATHFILE-TRANSPORT-0930` READY,
+  unclaimed, ASTRA's).
+- **Exact next action:** poll for newly routed work; take PATHFILE-TRANSPORT once its publish is DONE.
+
+## Resume state - SWE2-AUDIT-SPEC, 2026-10-03 (parallel Devin session), tenth addendum (supersedes the blocks above)
+
+Everything in the stand-in blocks above still holds.
+
+- **Closed this session:**
+  - `FABLE-REQ-AUDITSPEC-CORR-0015B820-1003`: **ACCEPT** (record
+    `auditspec-review-fable-corr-0015b820-1003/REVIEW.md`, commit `e06996ac6`). The `6f0b95508` repair is
+    byte-exact: `je` at +0xD0 skips `0015A9B0(rsi,01CC6BE8)` when the `.dll` compare is 0, so the first try
+    runs on non-zero. Original REJECT upheld and resolved.
+  - `OPUS-NOTICE-AUDITSPEC-R9-FAMILY-CHECKERS-DONE-1003`: **acknowledged — narrowing lifted** (record
+    `auditspec-ack-opus-r9-family-checkers-1003/REVIEW.md`, commit `e06996ac6`). All 20 `fam_rows.py check`
+    re-run FAILS 0; 273 committed rows = supplement count; internal controls refuse; independent planted-swap
+    refused genuinely. The `-r9` ACCEPT-WITH-NARROWING condition (committed swapped-value checker,
+    `opus-ee-rulings-1003` §1) is satisfied.
+- **Board:** both finishes applied (revs ~51899+); TEAM.json pending next `@publication` (held by FABLE,
+  FABLE-PUB-CLOUDINT-C1202) — explained coordination state.
+- **Still gated:** `ASTRA-REQ-SPEC-PATHFILE-TRANSPORT-0930` (dep `ASTRA-PUBLISH-PATHFILE-TRANSPORT-0930` READY,
+  unclaimed, ASTRA's).
+- **Pending re-reviews:** OPUS repair for the two `OPUS-*-CLOUDINT-1002` REJECTs (sab-sound-bank `001FB770`,
+  contract-widget `00568BB0`); OPUS `menusel` `003F6370` narrowing; CONTRACT stale-control repairs
+  (DDRES-B7-R1/B20-Z1/B21-Z4).
+- **Exact next action:** poll for newly routed work; take PATHFILE-TRANSPORT once its publish is DONE.
+
+## Resume state - SWE2-AUDIT-SPEC, 2026-10-03 (parallel Devin session), eleventh addendum (supersedes the blocks above)
+
+Everything in the stand-in blocks above still holds.
+
+- **Closed this session — 8 FABLE homing reviews, all ACCEPT** (records committed `dfa3f28e0`, board finishes
+  revs ~51935-51943, board rev 51943):
+  - `fable-section-010-homing-1003` (3 rows/13 anchors)
+  - `fable-spawn-placement-height-and-authored-tuna-homing-1003` (1/5)
+  - `fable-ta-texture-animation-lists-homing-1003` (5/24)
+  - `fable-the-bazaar-recipe-unlock-and-purchase-homing-1003` (1/5)
+  - `fable-the-context-switch-axes-and-the-variant--homing-1003` (6/30)
+  - `fable-the-map-ctrl-pack-homing-1003` (31/143)
+  - `fable-the-movement-body-pool-and-the-separatio-homing-1003` (8/40)
+  - `fable-the-ordered-render-command-list-homing-1003` (29/127)
+  - **84 rows / 387 anchors total; every checker re-run FAILS 0; every row re-derived byte-exact on the
+    certified image** — including the dense 003FEE40 bazaar dispatch, 0035DAF0 s/t-update dispatch,
+    002228A0 three-way S-dispatch, 001B27E0 abs-mask loop (mask qword 0x7FFF... at 01CEBD80) and the
+    003DE4C0 record fill. Named floats verified from image bytes (-1.0/360.0/6.283185/0.5/10.0/1.0/60.0).
+- **Board:** lane drained (0 open). TEAM.json pending next `@publication` — explained coordination state.
+- **Still gated:** `ASTRA-REQ-SPEC-PATHFILE-TRANSPORT-0930` (dep `ASTRA-PUBLISH-PATHFILE-TRANSPORT-0930` READY,
+  unclaimed, ASTRA's).
+- **Pending re-reviews:** OPUS repairs for `001FB770`/`00568BB0`; OPUS `menusel` `003F6370` narrowing; CONTRACT
+  stale-control repairs (DDRES-B7-R1/B20-Z1/B21-Z4).
+- **Exact next action:** poll for newly routed work; take PATHFILE-TRANSPORT once its publish is DONE.

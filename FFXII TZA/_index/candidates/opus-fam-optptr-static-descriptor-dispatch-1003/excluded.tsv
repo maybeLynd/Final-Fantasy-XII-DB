@@ -1,0 +1,3 @@
+# members without a row. 'skip: ...' = derives, declared skipped in spec.json (check re-verifies that it still derives and, with skip_caller, that the caller still calls it); otherwise refused by the image for this family's per-member form (check verifies each is still refused)
+entry	reason
+00584C70	skip: not in the r9 member pack, which held only frontier members; cited on 22-Middleware-PhyreEngine/Phyre-Asset-Container/CONTRACT-phyre-cluster-header.md, so no row on this page (it still derives: check re-verifies)

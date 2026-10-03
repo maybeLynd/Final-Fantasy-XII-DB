@@ -1,0 +1,33 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/Prefetch-And-Json-Data/ta-texture-animation-lists.md",
+ "date": "2026-10-03",
+ "rows": [
+  {
+   "fn": "008A69A0",
+   "text": "calls `001A49C0` with `rcx` = `01F81188` and `rdx` = qword `01F811A0`; its address is formed into `rcx` by `001A9940` + 0x87 for the `00808B90` exit registration at +0xCD",
+   "anchors": [
+    [
+     "008A69AD",
+     "mov"
+    ],
+    [
+     "008A69B4",
+     "lea"
+    ],
+    [
+     "008A69BB",
+     "call"
+    ]
+   ],
+   "why_here": "exit routine registered by the phyremaps accessor 001A9940 this page names",
+   "ref": {
+    "kind": "code",
+    "container": "001A9940",
+    "site": "001A99C7"
+   },
+   "cites": [
+    "001A9940"
+   ]
+  }
+ ]
+}

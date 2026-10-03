@@ -278,3 +278,19 @@ Interior anchor `003671CB` (function `00367110`).
 |---|---|---|---|---|
 | `00270230` | 45 B | `0028D460` + 0x307 | stores at floats `rcx+0`, `+4`, `+8` and `+0xC` the floats `rdx+0`, `+4`, `+8` and `+0xC` plus `xmm2`, `xmm3`, `xmm2` and `xmm3` respectively (the third and fourth arguments) | Interior anchor `00270236`; Interior anchor `0027023A`; Interior anchor `00270243`; Interior anchor `0027024D`; Interior anchor `00270257` |
 | `003FF9A0` | 71 B | `002C2320` + 0x561 | reads qword `+0x108` of the object at qword `0209AC30` and returns when it is null; otherwise makes the call at `003FF9A0` + 0x26 with qword `+0x170` of that `+0x108` object and `edx`, `r8d`, `r9d` all 0, then tail-jumps at + 0x3D with `rcx` = qword `+0x108` re-read from `0209AC30` | Interior anchor `003FF9AB`; Interior anchor `003FF9B5`; Interior anchor `003FF9B7`; Interior anchor `003FF9C6`; Interior anchor `003FF9DD` |
+
+## Homed bodies re-homed here for host fit (FABLE, 2026-10-03; AUDIT-SPEC batch 6)
+
+*FABLE's homing stream (cloud-drafted, FABLE-verified) homed these bodies on other pages. SWE2-AUDIT-SPEC reviewed each sentence, site and anchor set and rejected the host, because that page named the caller only in passing. The sentences are unchanged except where the review gave replacement wording, which the row's line below says. Each states what the body does (access and representation, not purpose), and the anchors are instructions inside it that do it. Why each row is here:*
+
+- `0027F150`: this page documents its caller `002C2320` as a subject (a paragraph).
+- `003FF160`: this page documents its caller `002C2320` as a subject (a paragraph).
+- `003FF9F0`: this page documents its caller `002C2320` as a subject (a paragraph).
+
+*Verified by [`move_rows.py`](../../_index/candidates/fable-home-host-moves-b6-1003/move_rows.py): every site transfers to its function; the caller named above (for a thunk, the thunk's callers) is a subject of this page outside this section - an address in a heading, the first address of a table row, or the first address of a paragraph or list item; and every anchor is an instruction boundary inside its function that decodes to the recorded mnemonic.*
+
+| function | size | entered from | what the body does | interior anchors | moved from |
+|---|---|---|---|---|---|
+| `0027F150` | 69 B | `002C2320` + 0x895 | reads five words starting at `+0xD48` of qword `0209AC30` with stride `0x20` and returns 0 at the first one that is neither `0xFFFF` nor `0x1000`; returns 1 when all five are one of those two values | Interior anchor `0027F159`; Interior anchor `0027F173`; Interior anchor `0027F179`; Interior anchor `0027F186`; Interior anchor `0027F18C` | [the-license-board-screen-widgets](../../16-UI/License-Board-View/the-license-board-screen-widgets.md) |
+| `003FF160` | 129 B | `002C2320` + 0x35F | builds a stack block of a zero dword followed by the sign-extended `ecx` and `edx` as qwords; when qword `+0x108` of qword `0209AC30` is null, calls `003FF160` + 0x4D with (`0x190`, `003FF360`, the block), stores the result to that `+0x108` and calls `003FF160` + 0x6A with (qword `0208EA28`, the result); when `+0x108` is already non-null it does neither; both paths end with the stack-cookie check (cookie `01F44830`) at `003FF160` + 0x77 | Interior anchor `003FF176`; Interior anchor `003FF192`; Interior anchor `003FF1AD`; Interior anchor `003FF1BC`; Interior anchor `003FF1CA` | [the-license-board-screen-widgets](../../16-UI/License-Board-View/the-license-board-screen-widgets.md) |
+| `003FF9F0` | 48 B | `002C2320` + 0x5E2 | when qword `+0x108` of qword `0209AC30` is non-null, stores `ecx` to its dword `+0x178` and `rdx` to its qword `+0x180`; otherwise does nothing | Interior anchor `003FF9FE`; Interior anchor `003FFA03`; Interior anchor `003FFA18` | [the-license-board-screen-widgets](../../16-UI/License-Board-View/the-license-board-screen-widgets.md) |
