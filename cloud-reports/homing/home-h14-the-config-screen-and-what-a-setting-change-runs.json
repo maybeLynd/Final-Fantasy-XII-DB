@@ -1,0 +1,20 @@
+{
+ "page": "16-UI/Config-Screen/the-config-screen-and-what-a-setting-change-runs.md",
+ "session": "session_01PfF5HpG9wWe4vsreQxCTLf",
+ "rows": [
+  {"fn": "00292010", "entered_from": "`00281ED0` + 0x1FC",
+   "text": "with `p` = qword `+0x300` of qword `0209AC30`, returns at once when `p` is null; otherwise ANDs dword `[p+0x168]` with 0xFFF5FFFF and ORs it with 0x50000, then re-reads the same pointer and ANDs that dword with 0xFF0FFFFF",
+   "anchors": [["00292021", "je"], ["00292023", "and"], ["0029202D", "or"], ["00292045", "and"]]},
+  {"fn": "003B0190", "entered_from": "`0024C600` + 0x1F",
+   "text": "for each 0x18-byte slot `s` from `02EBEC08` while below `02EBEF68` (36 slots) whose dword `[s-8]` is non-zero, byte `[s+9]` is not 1 and qword `o` = `[s]` is non-null, writes `edx` over every dword equal to `ecx` among dword `[o+8]` and, for each `i` below byte `[o+0x372]`, dwords `[o+0x10+4*i]` and `[o+0x90+4*i]`",
+   "anchors": [["003B01B5", "je"], ["003B01CC", "mov"], ["003B01E8", "mov"], ["003B01F1", "mov"], ["003B0206", "add"]]},
+  {"fn": "003B14F0", "entered_from": "`0024C600` + 0x28",
+   "text": "for each object `o` on the list from qword `02091128` (next at qword `+0x348`; nothing when the head is null), writes `edx` over every dword equal to `ecx` among dword `[o+8]` and, for each `i` below byte `[o+0x372]`, dwords `[o+0x10+4*i]` and `[o+0x90+4*i]`",
+   "anchors": [["003B1500", "je"], ["003B1508", "mov"], ["003B1526", "mov"], ["003B152F", "mov"], ["003B1544", "mov"]]},
+  {"fn": "003F5260", "entered_from": "`003FBA80` + 0x342",
+   "text": "makes the call at `003F5260` + 0x14 with (`rcx+0x10`, `02AEDDB0`), then tail-jumps at `003F5260` + 0x29 with (`rcx+0x50`, `02AED5F0`)",
+   "anchors": [["003F5269", "lea"], ["003F5274", "call"], ["003F527D", "lea"], ["003F5289", "jmp"]]}
+ ],
+ "skipped": [],
+ "notes": "003B0190: the slot loop compares the slot pointer with 02EBEF68 signed (jl); 36 slots is (02EBEF68 - 02EBEC08) / 0x18."
+}
