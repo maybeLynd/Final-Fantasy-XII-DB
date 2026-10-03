@@ -1,0 +1,17 @@
+{
+ "page": "00-Engine-Core-Runtime/the-encoded-id-class-registry.md",
+ "session": "session_01B5SV9waPUkdPQzR9MzNgSH",
+ "rows": [
+  {"fn": "00243EE0", "entered_from": "`002C4720` + 0x8D5",
+   "text": "returns at once when bits 2-17 of dword `[rcx]` are zero; otherwise walks the qword pointer array at qword `rcx+0x10` (stride 8) for `(dword [rcx] >> 2) AND 0xFFFF` entries, re-read each pass, and for each entry takes the kind `(dword +8 >> 2) AND 0xF`: kinds 2, 5 and 9 copy words `+4` and `+6` of the qword `[entry]` record into the entry's words `+0xC` and `+0xE`; kind 8 copies the same two words into words `+0x98` and `+0x9A` of qword `entry+0x18` when that is non-null; other kinds write nothing",
+   "anchors": [["00243EE6", "test"], ["00243EFC", "shr"], ["00243F1D", "mov"], ["00243F54", "mov"], ["00243F3C", "jb"]]},
+  {"fn": "002CFDA0", "entered_from": "`002D0100` + 0x73",
+   "text": "looks up the words `[rcx]` and `[rdx]` as `0035D330(1, word << 0x10)` and returns the difference of the two records' dwords `+0x38` (first minus second) when it is non-zero; otherwise looks both up again and returns the difference of their dwords `+0x30` when non-zero, else the difference of the two zero-extended words",
+   "anchors": [["002CFDC9", "call"], ["002CFDE0", "sub"], ["002CFE0D", "sub"], ["002CFE0F", "sub"], ["002CFE14", "cmovne"]]},
+  {"fn": "002D01A0", "entered_from": "`002CFEE0` + 0xA2",
+   "text": "looks up the words `[rcx]` and `[rdx]` as `0035D330(1, word << 0x10)` and returns the difference of the two records' dwords `+0x30` (first minus second) when it is non-zero, else the difference of the two zero-extended words",
+   "anchors": [["002D01BF", "call"], ["002D01D1", "call"], ["002D01D6", "sub"], ["002D01D8", "sub"], ["002D01DD", "cmovne"]]}
+ ],
+ "skipped": [],
+ "notes": "002CFDA0 and 002D01A0 name the callee `0035D330` directly rather than by call site because the host page already cites it as one of the registry's four entry points (it is named in the 002CFDA0 excerpt; the 002D01A0 excerpt is cut just before it). If FABLE prefers call sites here: 002CFDA0 calls it at +0x29, +0x3B, +0x56 and +0x68; 002D01A0 at +0x1F and +0x31. 00243EE0: the initial `test dword [rcx], 0x3fffc` / `jbe` exits when the masked value is zero, which matches the loop count's bits."
+}
