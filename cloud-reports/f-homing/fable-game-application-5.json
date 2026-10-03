@@ -1,0 +1,425 @@
+{
+ "page": "00-Engine-Core-Runtime/Application-Root/game-application.md",
+ "session": "session_01SCNjBjkQLVBQa4akEYXVn4",
+ "mode": "homing",
+ "rows": [
+  {
+   "fn": "006D87D0",
+   "text": "returns at once when `edx` is 0; otherwise collects, in order, each float of `rcx+0`, `+4`, `+8` and `+0xc` that is non-zero (or NaN) together with the matching source pointer qword `[r8+0]`, `+8`, `+0x10` or `+0x18`, and for n = 3*`edx` floats writes to the buffer at qword `[r9]`: with no such weight calls `00861EC0([r9], 0, 4n)`; with one weight equal to 1.0 (`01CEBBA8`) calls `00861EBA([r9], its source, 4n)`; with one other weight stores weight*source per float; with two, three or four weights stores per float the sum of weight*source over them",
+   "anchors": [
+    [
+     "006D8800",
+     "ucomiss"
+    ],
+    [
+     "006D88DD",
+     "call"
+    ],
+    [
+     "006D8A23",
+     "call"
+    ],
+    [
+     "006D8A57",
+     "mulps"
+    ],
+    [
+     "006D8951",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "006D8B00",
+   "text": "returns at once when `edx` is 0; otherwise collects, in order, each float of `rcx+0`, `+4`, `+8` and `+0xc` that is non-zero (or NaN) together with the matching source pointer qword `[r8+0]`, `+8`, `+0x10` or `+0x18`, and for n = 4*`edx` floats writes to the buffer at qword `[r9]`: with no such weight calls `00861EC0([r9], 0, 4n)`; with one weight equal to 1.0 (`01CEBBA8`) calls `00861EBA([r9], its source, 4n)`; with one other weight stores weight*source per float; with two, three or four weights stores per float the sum of weight*source over them",
+   "anchors": [
+    [
+     "006D8B30",
+     "ucomiss"
+    ],
+    [
+     "006D8C11",
+     "call"
+    ],
+    [
+     "006D8D53",
+     "call"
+    ],
+    [
+     "006D8D87",
+     "mulps"
+    ],
+    [
+     "006D8C81",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "00793490",
+   "text": "when dword `rcx+8` has bit 31 clear, its value is above 1 (unsigned) and qword `rcx+0x10` is non-null, calls `00584730` with that qword; on every path then zeroes qword `+0x10` and dword `+8` and returns 0",
+   "anchors": [
+    [
+     "007934A7",
+     "shr"
+    ],
+    [
+     "007934B4",
+     "cmp"
+    ],
+    [
+     "007934C2",
+     "call"
+    ],
+    [
+     "007934CA",
+     "mov"
+    ],
+    [
+     "007934CE",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00795800",
+   "text": "returns 0 when `rcx` or `rdx` is null or P = qword `+0x88` of qword `rcx+0xdf8` is null; otherwise compares the string `rdx` through the function pointer at qword `008C3000` against, in order, \"Circle\" 0x32, \"Cross\" 0x31, \"Triangle\" 0x33, \"Square\" 0x30, \"Start\" 0x39, \"Select\" 0x38, the undecoded string at `01CB286C` 0x3c, \"Down\" 0x3e, \"Left\" 0x3f, \"Right\" 0x3d, and on the first comparison that returns 0 stores 1 at byte P + that offset and returns 0; when none matches it calls `005CDAA0(2, 01CB2888, rdx)` and returns 5",
+   "anchors": [
+    [
+     "0079584F",
+     "mov"
+    ],
+    [
+     "00795879",
+     "mov"
+    ],
+    [
+     "007959C9",
+     "mov"
+    ],
+    [
+     "007959E9",
+     "call"
+    ],
+    [
+     "007959F3",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00795A00",
+   "text": "returns 0 when `rcx` or `rdx` is null or P = qword `+0x88` of qword `rcx+0xdf8` is null; otherwise compares the string `rdx` through the function pointer at qword `008C3000` against, in order, \"Circle\" 0x32, \"Cross\" 0x31, \"Triangle\" 0x33, \"Square\" 0x30, \"Start\" 0x39, \"Select\" 0x38, the undecoded string at `01CB286C` 0x3c, \"Down\" 0x3e, \"Left\" 0x3f, \"Right\" 0x3d, and on the first comparison that returns 0 stores 0 at byte P + that offset and returns 0; when none matches it calls `005CDAA0(2, 01CB2888, rdx)` and returns 5",
+   "anchors": [
+    [
+     "00795A4F",
+     "mov"
+    ],
+    [
+     "00795A79",
+     "mov"
+    ],
+    [
+     "00795BC9",
+     "mov"
+    ],
+    [
+     "00795BE9",
+     "call"
+    ],
+    [
+     "00795BF3",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00795C00",
+   "text": "returns 0 when `rcx` or `rdx` is null; when P = qword `+0x88` of qword `rcx+0xdf8` is non-null, compares the string `rdx` through the function pointer at qword `008C3000` against, in order, \"Circle\" 0x32, \"Cross\" 0x31, \"Triangle\" 0x33, \"Square\" 0x30, \"Start\" 0x39, \"Select\" 0x38, the undecoded string at `01CB286C` 0x3c, \"Down\" 0x3e, \"Left\" 0x3f, \"Right\" 0x3d, stores 1 at byte P + the first matching offset, and when none matches calls `005CDAA0(2, 01CB2888, rdx)` and returns 5; after a match (or with P null) calls the virtual function at `+0x38` of `rcx`'s table with `rcx` and returns its result when non-zero, otherwise returns the result of `00795C00+0x173(rcx, rdx, 0)`",
+   "anchors": [
+    [
+     "00795C38",
+     "je"
+    ],
+    [
+     "00795D59",
+     "mov"
+    ],
+    [
+     "00795D63",
+     "call"
+    ],
+    [
+     "00795D73",
+     "call"
+    ],
+    [
+     "00795D9D",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00796280",
+   "text": "returns 1 when dword `rcx+0x18` AND 3 is 0; otherwise builds a stack record of dwords 0x18, 0x10, dword `rcx+0x18`, 2, `0xffffff01` and `0xff`, calls the virtual function at `+0x30` of `rdx`'s table as (`rdx`, 4, the record) and returns 0 when it returns a negative (signed) value, else 1; the cookie check goes through `00808C40` on both returns",
+   "anchors": [
+    [
+     "00796299",
+     "test"
+    ],
+    [
+     "007962C9",
+     "mov"
+    ],
+    [
+     "007962D9",
+     "call"
+    ],
+    [
+     "007962DE",
+     "jns"
+    ],
+    [
+     "007962F4",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "007963C0",
+   "text": "counts the bytes of the string `rdx` up to and including its terminating 0 (L), reserves (L + 0xf) AND `0xfffffffffffffff0` bytes of stack through `00808F10` (with `0xffffffffffffff0` instead when L + 0xf wraps), copies the string there with `00861EBA(buffer, rdx, L)`, and, when the copy's first byte is non-zero, replaces the first `,` found from its second byte onward with 0; then calls `005CDAA0(2, 01CB2830, buffer, float rcx+0x60 widened to double, dword rcx+0x64)` and returns 0",
+   "anchors": [
+    [
+     "007963F3",
+     "cmp"
+    ],
+    [
+     "00796414",
+     "call"
+    ],
+    [
+     "00796424",
+     "call"
+    ],
+    [
+     "00796444",
+     "mov"
+    ],
+    [
+     "0079646A",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00798EB0",
+   "text": "when `ecx` is 5 and `rdx` differs from qword `02EA5248`, calls `00798EB0+0x35(rdx, a stack rectangle)`, takes w = its dword `+8` minus dword `+0` and h = dword `+0xc` minus dword `+4`, and calls `00798EB0+0x91(rdx, dword 01F3DA1C / 2 - w / 2, dword 01F3DA20 / 2 - h / 2, w, h, 1)` (signed halvings; the listing decodes those dwords as 0x780 and 0x438); on every path it then calls `00798EB0+0xA6(qword 02EA5258, ecx, rdx, r8)` and returns its result through the `00808C40` cookie check",
+   "anchors": [
+    [
+     "00798ECF",
+     "cmp"
+    ],
+    [
+     "00798ED4",
+     "cmp"
+    ],
+    [
+     "00798EE5",
+     "call"
+    ],
+    [
+     "00798F41",
+     "call"
+    ],
+    [
+     "00798F56",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00799C90",
+   "text": "with c = dword `[rcx]` AND `0x7fffffff`, takes the old data as qword `rcx+8` when c is above 1, the address `rcx+8` when c is 1, or null when c is 0; when c + 1 is above 1 allocates `0017D260((c+1) << 6, 4)` as the new data and returns 0xd when that is null, otherwise the new data is `rcx+8`; copies c 64-byte elements from the old data to the new, copies 64 bytes from `rdx` to element c, and calls `00584730(old data)` when it is non-null, differs from the new data and from `rcx+8`, and dword `[rcx]` bit 31 is clear; stores the new data at qword `rcx+8` when it is not `rcx+8`, stores c + 1 at dword `[rcx]` and returns 0",
+   "anchors": [
+    [
+     "00799CB3",
+     "btr"
+    ],
+    [
+     "00799CEB",
+     "call"
+    ],
+    [
+     "00799D1F",
+     "movups"
+    ],
+    [
+     "00799D93",
+     "call"
+    ],
+    [
+     "00799DA0",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0079A550",
+   "text": "stores `0x3f800000` at dword `rdx+0xc` and at dword `r8+0xc`, builds a 64-byte stack element from the 16 bytes at `rdx`, floats `r8+0`, `r8+4`, `r8+8` and 1.0 (`01CEBBA8`), the 16 bytes at `r9` and the 16 bytes at the fifth (stack) argument, calls `0079A550+0x80(rcx+8, that element)` and returns its result through the `00808C40` cookie check",
+   "anchors": [
+    [
+     "0079A572",
+     "mov"
+    ],
+    [
+     "0079A57F",
+     "mov"
+    ],
+    [
+     "0079A5BD",
+     "movss"
+    ],
+    [
+     "0079A5D0",
+     "call"
+    ],
+    [
+     "0079A5DD",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "007A08F0",
+   "text": "returns 0 when `rcx` is null or P = qword `+0x88` of qword `rcx+0xdf8` is null; otherwise compares the string `rdx` through the function pointer at qword `008C3000` against, in order, \"Circle\" 0x32, \"Cross\" 0x31, \"Triangle\" 0x33, \"Square\" 0x30, \"Start\" 0x39, \"Select\" 0x38, the undecoded string at `01CB286C` 0x3c, \"Down\" 0x3e, \"Left\" 0x3f, \"Right\" 0x3d, and on the first comparison that returns 0 stores `r8b` at byte P + that offset and returns 0; when none matches it calls `005CDAA0(2, 01CB2888, rdx)` and returns 5",
+   "anchors": [
+    [
+     "007A08FF",
+     "movzx"
+    ],
+    [
+     "007A0920",
+     "je"
+    ],
+    [
+     "007A0A41",
+     "mov"
+    ],
+    [
+     "007A0A66",
+     "call"
+    ],
+    [
+     "007A0A70",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "008633B0",
+   "text": "stores the address `01CCFA70` at qword `[rcx]`; when qword `rcx+8` is non-null, calls `008633B0+0x24(that qword, 0)` and `008633B0+0x2E(that qword)` and zeroes qword `+8` and dword `+0x10`; when bit 0 of `edx` is set calls `00809950(rcx, 0x28)`; returns `rcx`",
+   "anchors": [
+    [
+     "008633C4",
+     "mov"
+    ],
+    [
+     "008633D4",
+     "call"
+    ],
+    [
+     "008633DE",
+     "call"
+    ],
+    [
+     "008633EA",
+     "mov"
+    ],
+    [
+     "008633FB",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "00874490",
+   "text": "calls `00625ED0(rcx+0x188)` and, when the low byte of its result is non-zero, `0062B890(rcx+0x188)`; then calls `005DDB00(rcx+0x188)` and tail-jumps to `005DE250(rcx)`",
+   "anchors": [
+    [
+     "008744AE",
+     "call"
+    ],
+    [
+     "008744B4",
+     "test"
+    ],
+    [
+     "008744BF",
+     "call"
+    ],
+    [
+     "008744CC",
+     "call"
+    ],
+    [
+     "008744DF",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00879B00",
+   "text": "with c = dword `[rdx]` AND `0x7fffffff`, takes R = `00879B00+0x26(c, qword rdx+8)`; when qword `rcx+8` differs from R, dword `[rcx]` bit 31 is clear and that qword is non-null, calls `00584730` with it; then stores R at qword `rcx+8`, c at dword `[rcx]` and qword `rdx+0x10` at qword `rcx+0x10`, and returns `rcx`",
+   "anchors": [
+    [
+     "00879B20",
+     "btr"
+    ],
+    [
+     "00879B26",
+     "call"
+    ],
+    [
+     "00879B48",
+     "call"
+    ],
+    [
+     "00879B4D",
+     "mov"
+    ],
+    [
+     "00879B61",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "0087A830",
+   "text": "for the pairs (dword `rcx+0x20`, qword `+0x28`), (dword `+0x10`, qword `+0x18`) and (dword `+0`, qword `+8`), in that order, calls `00584730` with the qword when the dword has bit 31 clear and the qword is non-null, then zeroes the qword and the dword; returns nothing",
+   "anchors": [
+    [
+     "0087A84A",
+     "shr"
+    ],
+    [
+     "0087A85C",
+     "call"
+    ],
+    [
+     "0087A880",
+     "call"
+    ],
+    [
+     "0087A8A1",
+     "call"
+    ],
+    [
+     "0087A8AB",
+     "mov"
+    ]
+   ]
+  }
+ ],
+ "skipped": [],
+ "notes": "008C3000, 008C28D0, 008C2920, 008C2848, 008C2400 and 008C23E0 are indirect calls through qword slots; 008C3000 is named on the page, the others are cited by call site. The string at 01CB286C (offset 0x3c) and 01CB2888/01CB2830 are not decoded in the listing, so their text is not stated. 006D87D0/006D8B00: when the first weight is zero the body reads uninitialised stack slots for slot 0 until a later non-zero weight overwrites them, so the effective behaviour is as stated. 007963C0: rdx and r8 are not reloaded after the 00808F10 call; the row assumes that call preserves them (as the listing leaves them). 0079A550 writes 0x3f800000 into the caller's rdx/r8 vectors before copying them. 00796280 and 00798EB0 are homed through the cookie check 00808C40."
+}
