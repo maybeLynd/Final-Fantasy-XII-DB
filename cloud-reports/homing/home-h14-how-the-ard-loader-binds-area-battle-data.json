@@ -1,0 +1,11 @@
+{
+ "page": "02-Resource-And-Asset-Pipeline/VBF-Archive-And-Authored-Tables/St2e-Carriers/how-the-ard-loader-binds-area-battle-data.md",
+ "session": "session_019ww1AYv6HUCASSLr6wdSTQ",
+ "rows": [
+  {"fn": "0031A8C0", "entered_from": "`002FDDA0` + 0x36F",
+   "text": "calls (at `0031A8C0` + 0xA) with `ecx` and 0, then clears the bits of `ecx` in dword `022C314C` (AND with NOT `ecx`)",
+   "anchors": [["0031A8CA", "call"], ["0031A8CF", "not"], ["0031A8D1", "and"]]}
+ ],
+ "skipped": [],
+ "notes": "0031A8C0 is also entered from `00344980` + 0x19 (jmp)."
+}
