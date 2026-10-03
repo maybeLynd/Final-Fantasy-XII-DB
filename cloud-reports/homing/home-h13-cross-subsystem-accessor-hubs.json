@@ -1,0 +1,11 @@
+{
+ "page": "00-Engine-Core-Runtime/Shared-State-Accessors/cross-subsystem-accessor-hubs.md",
+ "session": "session_01U2ms7GBJ3ZiXCPQHy7WKZA",
+ "rows": [
+  {"fn": "00393190", "entered_from": "`0057FA30` + 0x12",
+   "text": "when bits 2 to 17 of dword `[rcx]` are not all zero (`test 0x3fffc`), loops an index from 0 while it is below the count (dword `[rcx]` >> 2) AND 0xFFFF and, for each pointer in the qword array at qword `rcx+0x10`, replaces bit 0 of dword `+8` of the pointed-to object with bit 0 of `edx`; otherwise returns without writing",
+   "anchors": [["00393196", "test"], ["0039319E", "and"], ["003931BB", "and"], ["003931BF", "or"], ["003931CB", "cmp"]]}
+ ],
+ "skipped": [],
+ "notes": "00393190: the zero-count guard (test of dword [rcx] with 0x3fffc, jbe) masks exactly the bits that the loop bound (shr 2, movzx ax) keeps, so the loop runs (dword [rcx] >> 2) AND 0xFFFF times."
+}
