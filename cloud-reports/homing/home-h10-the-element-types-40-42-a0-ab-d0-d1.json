@@ -1,0 +1,14 @@
+{
+ "page": "17-Presentation-Rendering/Effect-File-Formats/the-element-types-40-42-a0-ab-d0-d1.md",
+ "session": "session_019FUgqVeNcfdAVa4Yc3dLqG",
+ "rows": [
+  {"fn": "00264420", "entered_from": "`00345430` + 0x3C",
+   "text": "when qword `rcx+0xC0` is non-null and bit 2 of its byte `+0x154` is set, returns that byte AND 1; otherwise calls the function at `00264420` + 0x27 with the incoming `rcx` and returns 1 when it returns non-zero (`eax`), 0 when it returns 0",
+   "anchors": [["0026442B", "test"], ["00264437", "test"], ["0026443F", "and"], ["00264447", "call"], ["00264450", "setne"]]},
+  {"fn": "00376990", "entered_from": "`00461250` + 0x13",
+   "text": "returns at once when `ecx` is 0; otherwise selects the 0x90-byte record at index `cl` of the array at `02ADBB40` and, only when its dword `[+0]` equals `ecx`, decrements byte `02ADBB30`, stores 0 in that dword, calls the function at `00376990` + 0x35 with dword `+0x50` when it is non-zero, and stores 0 in dword `+0x50`",
+   "anchors": [["003769A3", "lea"], ["003769AE", "cmp"], ["003769B2", "dec"], ["003769C5", "call"], ["003769CA", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "Callees cited by site because the host excerpts do not name them. 00376990: the record index is cl zero-extended, times 9 then shifted left 4 (stride 0x90)."
+}
