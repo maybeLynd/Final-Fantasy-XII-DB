@@ -1,0 +1,527 @@
+{
+ "page": "23-Third-Party-Libraries/third-party-middleware-inventory.md",
+ "mode": "member",
+ "family": "Bullet physics library",
+ "session": "session_013rwnEBVBjHYrPM3ikBMija",
+ "rows": [
+  {
+   "fn": "008332A0",
+   "text": "swaps the first 0x58 bytes (four 16-byte blocks, qword `+0x40`, dwords `+0x48`/`+0x4c` and qword `+0x50`) of records `edx` and `r8d` (stride 0x60) in the array at qword `rcx+0x10`",
+   "anchors": [
+    [
+     "008332BF",
+     "shl"
+    ],
+    [
+     "008332FC",
+     "movdqa"
+    ],
+    [
+     "00833347",
+     "mov"
+    ],
+    [
+     "00833355",
+     "movdqa"
+    ],
+    [
+     "00833380",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00833710",
+   "text": "when qword `rcx+0x10` is non-null, passes it to the call at `00833710`+0x28 if byte `+0x18` is non-zero and zeroes it; then sets byte `+0x18` to 1 and zeroes qword `+0x10` and the qword at `+4`",
+   "anchors": [
+    [
+     "0083372D",
+     "test"
+    ],
+    [
+     "00833732",
+     "cmp"
+    ],
+    [
+     "00833738",
+     "call"
+    ],
+    [
+     "00833742",
+     "mov"
+    ],
+    [
+     "0083374A",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00833760",
+   "text": "when qword `rcx+0x90` is non-null, passes it to the call at `00833760`+0x2E if byte `+0x98` is non-zero and zeroes it; sets byte `+0x98` to 1, zeroes qword `+0x90` and the qword at `+0x84`, stores `00D7A770` at qword `rcx+0`, and tail-jumps with `rcx` from +0x67",
+   "anchors": [
+    [
+     "00833785",
+     "cmp"
+    ],
+    [
+     "0083378E",
+     "call"
+    ],
+    [
+     "008337A9",
+     "mov"
+    ],
+    [
+     "008337B7",
+     "mov"
+    ],
+    [
+     "008337C7",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "00833B40",
+   "text": "stores the three floats of 16-byte record `edx` in the array at qword `rcx+0x90`, each multiplied by the matching float of `rcx+0x20`, with a zero fourth float as 16 bytes at `r8`",
+   "anchors": [
+    [
+     "00833B51",
+     "shl"
+    ],
+    [
+     "00833B5C",
+     "mulss"
+    ],
+    [
+     "00833B6F",
+     "mulss"
+    ],
+    [
+     "00833B8D",
+     "movdqa"
+    ]
+   ]
+  },
+  {
+   "fn": "00833BA0",
+   "text": "calls `[vtable+0x78]`(`rcx`, `rdx`, `r8`) at `00833BA0`+0x1B and, unless `[vtable+0x50]`(`rcx`) (+0x24) returns exactly 0.0, normalizes the float3 at `r8` (replaced by (-1, -1, -1) from -1.0 `01CEBC9C` when its squared length is below `01CCD4E0`, raw `0x28800000`; 1.0 `01CEBBA8` over the call at +0xB5) and adds it times `[vtable+0x50]`(`rcx`) (+0xD9) to the three floats at `rdx`; returns `rdx`",
+   "anchors": [
+    [
+     "00833BBB",
+     "call"
+    ],
+    [
+     "00833BCF",
+     "je"
+    ],
+    [
+     "00833C1F",
+     "comiss"
+    ],
+    [
+     "00833C79",
+     "call"
+    ],
+    [
+     "00833C98",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "008341C0",
+   "text": "copies the 16 bytes at `rdx` to `rcx+0x20` and tail-jumps with `rcx` from `008341C0`+0x8",
+   "anchors": [
+    [
+     "008341C3",
+     "movdqa"
+    ],
+    [
+     "008341C8",
+     "jmp"
+    ]
+   ]
+  },
+  {
+   "fn": "008341D0",
+   "text": "sets bytes `rcx+0x18` and `+0x38` to 1, zeroes qwords `+0x10`, `+4`, `+0x30` and `+0x24` and stores `rdx` at qword `+0x48`; then, for qword `+0x10` (flag byte `+0x18`, call at `008341D0`+0x48) and qword `+0x30` (flag `+0x38`, call at +0x6C), passes a non-null pointer to the call when its flag is non-zero, sets the flag to 1 and zeroes the pointer and the qword 0xC below it; finally zeroes dword `+0x40` and returns `rcx`",
+   "anchors": [
+    [
+     "00834205",
+     "mov"
+    ],
+    [
+     "00834218",
+     "call"
+    ],
+    [
+     "0083423C",
+     "call"
+    ],
+    [
+     "00834251",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00834270",
+   "text": "when qword `rcx+0x10` is non-null, passes it to the call at `00834270`+0x28 if byte `+0x18` is non-zero and zeroes it; then sets byte `+0x18` to 1 and zeroes qword `+0x10` and the qword at `+4`",
+   "anchors": [
+    [
+     "0083428D",
+     "test"
+    ],
+    [
+     "00834292",
+     "cmp"
+    ],
+    [
+     "00834298",
+     "call"
+    ],
+    [
+     "008342A2",
+     "mov"
+    ],
+    [
+     "008342AA",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "008342C0",
+   "text": "for qword `rcx+0x30` (flag byte `+0x38`, call at `008342C0`+0x28) and then qword `+0x10` (flag byte `+0x18`, call at +0x4D): passes a non-null pointer to the call when its flag byte is non-zero, then sets the flag to 1 and zeroes the pointer and the qword at `+0x24` (respectively `+4`)",
+   "anchors": [
+    [
+     "008342E2",
+     "cmp"
+    ],
+    [
+     "008342E8",
+     "call"
+    ],
+    [
+     "008342FA",
+     "mov"
+    ],
+    [
+     "0083430D",
+     "call"
+    ],
+    [
+     "0083431F",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00834330",
+   "text": "for qword `rcx+0x40` (flag byte `+0x48`, call at `00834330`+0x28) and then qword `+0x18` (flag byte `+0x20`, call at +0x4D): passes a non-null pointer to the call when its flag byte is non-zero, then sets the flag to 1 and zeroes the pointer and the qword at `+0x34` (respectively `+0xc`)",
+   "anchors": [
+    [
+     "00834352",
+     "cmp"
+    ],
+    [
+     "00834358",
+     "call"
+    ],
+    [
+     "0083436A",
+     "mov"
+    ],
+    [
+     "0083437D",
+     "call"
+    ],
+    [
+     "0083438F",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "008343A0",
+   "text": "runs twice, in the order qword `rcx+0x30` (flag byte `+0x38`, also zeroing the qword at `+0x24`; calls at `008343A0`+0x28 and +0x72) then qword `+0x10` (flag byte `+0x18`, also zeroing `+4`; calls at +0x4D and +0x97), the step: pass a non-null pointer to the call when its flag byte is non-zero, then set the flag to 1 and zero the pointer",
+   "anchors": [
+    [
+     "008343C8",
+     "call"
+    ],
+    [
+     "008343ED",
+     "call"
+    ],
+    [
+     "00834412",
+     "call"
+    ],
+    [
+     "00834437",
+     "call"
+    ],
+    [
+     "00834449",
+     "mov"
+    ]
+   ]
+  },
+  {
+   "fn": "00834460",
+   "text": "with the object at qword `rcx+0x48`: takes n from its `[vtable+0x90]` (call at `00834460`+0x4F) and, when n is positive, copies n 16-byte points from `[vtable+0x98]`(obj, i, stack) (+0x7F) into the array at `01F44B80`; then for each of the n+0x2A directions (0x2A when n is not positive) at `01F448E0` stores the 16 bytes returned by `[vtable+0x70]`(obj, stack, direction) (+0xC6) into a stack array, and passes a stack descriptor (1, that count, the array, stride 0x10, 0.001 `008C5B2C`, 0x1000, 0x1000) and a zeroed result record to the call at +0x164; a result of 1 returns 0; otherwise it resizes the 16-byte array of `rcx` (count dword `+4`, capacity `+8`, pointer qword `+0x10`, owner byte `+0x18`; allocation at +0x1A8, release at +0x201) to the result's vertex count and copies the vertices in, stores the index count at dword `+0x40`, resizes the dword array at `+0x24`/`+0x28`/`+0x30`/`+0x38` likewise (allocation at +0x2AC) and copies the indices, makes the call at +0x377 with the result and returns 1; the frame is guarded by the cookie at `01F44830` (check call at +0x40A)",
+   "anchors": [
+    [
+     "008344AF",
+     "call"
+    ],
+    [
+     "00834526",
+     "call"
+    ],
+    [
+     "008345C4",
+     "call"
+    ],
+    [
+     "008346E5",
+     "mov"
+    ],
+    [
+     "008347D7",
+     "call"
+    ]
+   ]
+  },
+  {
+   "fn": "008348A0",
+   "text": "makes the call at `008348A0`+0x19 with `rcx`, stores `01CCDB68` at qword `rcx+0`, 0xa at dword `+8`, 1 at dword `+0x50`, `xmm1` at floats `+0x30` and `+0x38`, 0.5 (`01CEBB70`) x `xmm2` at float `+0x34` and 0 at dword `+0x3c`, and returns `rcx`",
+   "anchors": [
+    [
+     "008348B9",
+     "call"
+    ],
+    [
+     "008348BE",
+     "mulss"
+    ],
+    [
+     "008348CD",
+     "mov"
+    ],
+    [
+     "008348D3",
+     "mov"
+    ],
+    [
+     "008348E1",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "00835290",
+   "text": "makes the call at `00835290`+0x10 with (`rcx`, `rdx`), copies dwords `rcx+0x30`-`+0x3c` to `rdx+0x20`-`+0x2c`, `rcx+0x20`-`+0x2c` to `rdx+0x10`-`+0x1c`, dword `rcx+0x40` to `rdx+0x30` and dword `rcx+0x50` to `rdx+0x38`, and returns `01CCDC18` \"btCapsuleShapeData\"; consistent with btCapsuleShape::serialize in Bullet (the returned struct name)",
+   "anchors": [
+    [
+     "008352A0",
+     "call"
+    ],
+    [
+     "008352A8",
+     "mov"
+    ],
+    [
+     "008352C0",
+     "mov"
+    ],
+    [
+     "008352E3",
+     "mov"
+    ],
+    [
+     "008352E6",
+     "lea"
+    ]
+   ]
+  },
+  {
+   "fn": "00835300",
+   "text": "adds `[vtable+0x50]`(`rcx`) (calls at `00835300`+0x2E, +0x3B and +0x48) to the floats `rcx+0x38`, `+0x34` and `+0x30`, stores `xmm1` at float `+0x40`, subtracts `[vtable+0x50]`(`rcx`) again (calls at +0x6C, +0x78 and +0x84) from each sum, and stores the three results with a zero fourth float as 16 bytes at `rcx+0x30`",
+   "anchors": [
+    [
+     "0083532E",
+     "call"
+    ],
+    [
+     "00835367",
+     "movss"
+    ],
+    [
+     "0083536C",
+     "call"
+    ],
+    [
+     "00835387",
+     "subss"
+    ],
+    [
+     "008353D5",
+     "movdqa"
+    ]
+   ]
+  },
+  {
+   "fn": "008353F0",
+   "text": "makes the call at `008353F0`+0x10 with `rcx`, stores `01CCDC60` at qword `rcx+0` and 1 at dword `+0x50`, stores (`rdx`.x x float `+0x20`, `rdx`.y x `+0x24`, `rdx`.z x `+0x28`) each minus float `+0x40`, with a zero fourth float, as 16 bytes at `rcx+0x30`, sets dword `+8` to 0xd and returns `rcx`",
+   "anchors": [
+    [
+     "00835400",
+     "call"
+    ],
+    [
+     "00835411",
+     "mov"
+    ],
+    [
+     "00835417",
+     "mov"
+    ],
+    [
+     "00835454",
+     "mov"
+    ],
+    [
+     "00835473",
+     "movdqa"
+    ]
+   ]
+  },
+  {
+   "fn": "008354E0",
+   "text": "with s = the call at `008354E0`+0x50 on `r8`.x² + `r8`.z²: writes at `rcx` x = float `rdx+0` and z = 0 when s is exactly 0, else x = `r8`.x x `rdx+0` / s and z = `r8`.z x `rdx+0` / s, and in both cases y = float `rdx+4`, negated (sign mask `01CEBDA0`) when `r8`.y is negative; returns `rcx`",
+   "anchors": [
+    [
+     "00835530",
+     "call"
+    ],
+    [
+     "00835538",
+     "ucomiss"
+    ],
+    [
+     "00835549",
+     "xorps"
+    ],
+    [
+     "00835566",
+     "movss"
+    ],
+    [
+     "00835593",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "00835970",
+   "text": "forms L = 2 x (float3 `rcx+0x30` + `[vtable+0x50]`(`rcx`)) per axis (calls at `00835970`+0x32, +0x3E and +0x4A) and stores `xmm1` / 12 (`009146E8`) times (Ly² + Lz², Lx² + Lz², Lx² + Ly²) to the three floats at `r8`, with dword `+0xc` 0",
+   "anchors": [
+    [
+     "008359A2",
+     "call"
+    ],
+    [
+     "008359BD",
+     "divss"
+    ],
+    [
+     "008359CB",
+     "mov"
+    ],
+    [
+     "00835A1D",
+     "mulss"
+    ],
+    [
+     "00835A4D",
+     "movss"
+    ]
+   ]
+  },
+  {
+   "fn": "00835A60",
+   "text": "adds `[vtable+0x50]`(`rcx`) (call at `00835A60`+0x54) to each float of `rcx+0x30`, takes extents as the absolute values (mask `01CEBD80`) of the 3x3 rows at `rdx` times that float3, and stores the float3 at `rdx+0x30` minus the extents as 16 bytes at `r8` and plus them at `r9`, both with a zero fourth float",
+   "anchors": [
+    [
+     "00835AB4",
+     "call"
+    ],
+    [
+     "00835AF2",
+     "andps"
+    ],
+    [
+     "00835B8C",
+     "addss"
+    ],
+    [
+     "00835C7F",
+     "movdqa"
+    ],
+    [
+     "00835C83",
+     "movdqa"
+    ]
+   ]
+  },
+  {
+   "fn": "00835CA0",
+   "text": "calls `[vtable+0x50]`(`rcx`) three times (at `00835CA0`+0x15, +0x1E and +0x27) and returns the last result plus float `rcx+0x30`",
+   "anchors": [
+    [
+     "00835CB5",
+     "call"
+    ],
+    [
+     "00835CBE",
+     "call"
+    ],
+    [
+     "00835CC7",
+     "call"
+    ],
+    [
+     "00835CCA",
+     "addss"
+    ]
+   ]
+  }
+ ],
+ "skipped": [
+  {
+   "fn": "00833290",
+   "why": "its whole work is the entry instruction (stores xmm1 at float rcx+0x6c) before ret"
+  },
+  {
+   "fn": "00833B20",
+   "why": "its whole work is the entry instruction (returns the address of the string \"Convex\" at 01CCDA10) before ret"
+  },
+  {
+   "fn": "00834890",
+   "why": "its whole work is the entry instruction (returns dword rcx+4) before ret"
+  },
+  {
+   "fn": "00834FF0",
+   "why": "its whole work is the entry instruction (returns the address of the string \"CapsuleShape\" at 01CCDC08) before ret"
+  },
+  {
+   "fn": "00835C90",
+   "why": "its whole work is the entry instruction (returns the address of the string \"CylinderY\" at 01CCDD08) before ret"
+  }
+ ],
+ "notes": "Calls outside this pack (including 00830B40 and 00832290, which sit in pack m1-1) are cited by site. 00835300: the first three margin calls feed +0x38, +0x34, +0x30 in that order (call order matters only if the virtual has side effects). 00834460 is stated as top-level structure (rule 5); doubt: the resize clauses compress the grow-and-copy branches. 'consistent with' only for 00835290 (string btCapsuleShapeData)."
+}
