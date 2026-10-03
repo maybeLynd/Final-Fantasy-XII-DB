@@ -10,7 +10,7 @@
    "anchors": [["002176C8", "xorps"], ["002176CB", "movss"], ["00217728", "movss"], ["00217777", "mov"], ["00217780", "mov"]]},
   {"fn": "0028F6A0", "entered_from": "`0022A770` + 0x2E0",
    "text": "returns 0 when qword `0209BE80` is null, when bit 13 (`0x2000`) of its dword `+0x10F68` is set, or when the call at `0028F6A0` + 0x2A with that pointer plus `0xAB30` returns 0; otherwise returns 1 when bit 4 (`0x10`) of byte `+0x10F68` is set and 2 when it is clear (`neg`/`sbb`/`add 2`)",
-   "anchors": [["0028F6B7", "test"], ["0028F6CA", "call"], ["0028F6E4", "and"], ["0028F6E6", "sbb"], ["0028F6E8", "add"]]},
+   "anchors": [["0028F6B7", "test"], ["0028F6CA", "call"], ["0028F6E1", "and"], ["0028F6E6", "sbb"], ["0028F6E8", "add"]]},
   {"fn": "002E4E00", "entered_from": "`00357F00` + 0x115",
    "text": "returns 0.0 when `rcx` is null, when its qword `+0xC0` is null or when the dword that pointer addresses is -1; returns -1.0 (`01CEBC9C`) when that pointer's word `+0` is `0xFFFF`, when qword `022C6F28` plus the signed word times 0x740 is zero, or when dword `+0x284` of that element is 0; otherwise tail-jumps through the site `002E4E00` + 0x45 with `rcx` = the element",
    "anchors": [["002E4E11", "cmp"], ["002E4E1F", "movss"], ["002E4E2C", "imul"], ["002E4E3C", "cmp"], ["002E4E45", "jmp"]]},
