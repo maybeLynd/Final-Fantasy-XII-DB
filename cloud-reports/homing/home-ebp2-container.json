@@ -1,0 +1,11 @@
+{
+ "page": "25-EBP-Script-Container/Container/ebp2-container.md",
+ "session": "session_019FhK6qDUyvajmAsnJawqmj",
+ "rows": [
+  {"fn": "00474070", "entered_from": "`003545B0` + 0x94",
+   "text": "stores the sixth (stack) argument as qword `02CA6C78`, then calls `00474070` + 0x63 with `ecx` 0x1D8, `rdx` the `rip`-relative address loaded at `004740A4`, and `r8` pointing at a stack block of dword 0, the incoming `rcx` and a pointer to the four dwords `edx`, `r8d`, `r9d` and the fifth (stack) argument; stores that call's result as qword `02CA6C80` and zeroes qword `02CA6C78`, the frame guarded by the cookie from `01F44830` that the call at `00474070` + 0x82 checks",
+   "anchors": [["004740BA", "mov"], ["004740BF", "mov"], ["004740D3", "call"], ["004740D8", "mov"], ["004740DF", "mov"]]}
+ ],
+ "skipped": [],
+ "notes": "00474070: neither callee (the call at +0x63, the cookie check at +0x82) is named on the host page, so both are cited by site. The address loaded into rdx at 004740A4 resolves to the address immediately after this body's extent; per the jump-table/trailing-data rule it is described, not written. The stack block layout: dword 0 at rsp+0x20, qword rcx at rsp+0x28, qword pointer at rsp+0x30 to {edx at +0x38, r8d at +0x3C, r9d at +0x40, fifth stack argument (rsp+0x80 on entry to the frame) at +0x44}. The row does not claim a return value: rax after the cookie-check call is not stated by the listing."
+}
