@@ -208,7 +208,7 @@ the speed `ctx+0xB0` is non-zero; otherwise it clears bit 8 and returns 0 (`0033
 
 - [The action definition row](action-definition-row.md) - the 60-byte row
   whose bytes `+0x02`, `+0x03`, `+0x05` and flag word `+0x0C` these functions read.
-- The battle unit field map - where
+- [The battle unit field map](../Characters-And-Objects/battle-unit-fields.md) - where
   the three distances sit on the unit.
 - Battle locomotion
   - the movement solver that runs the spacing and pacing steps.

@@ -49,7 +49,7 @@ callers: action selection `00305AB0` (`00305B2F`, `00305C9B`), the AI order step
 6. When bit 1 of the action-context word `+0x6B0` is set it is cleared, and the stats-record list gets
    one entry: `+0x6B9` = the byte at `022C1DB8 + 12 * [unit+0xEA9]`, `+0x6B6` = 1 (`0030F865`-`0030F894`).
 7. `+0x24` holds the handle of the unit's group leader (see
-   the battle unit field map); a unit
+   [the battle unit field map](../Characters-And-Objects/battle-unit-fields.md)); a unit
    is its group's leader when its own id `+0x08` equals it, and a group is the units sharing that
    handle. When the unit is not its group's leader, `+0x750` is zeroed (`0030F89B`-`0030F8A3`).
 8. For a resolved target and an id up to `0x21E` (`0030F8A9`-`0030F8B6`):

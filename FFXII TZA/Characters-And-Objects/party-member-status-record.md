@@ -203,7 +203,7 @@ Which screen reads which field of its copy:
 ## Related
 
 - [The battle stats record field map](../Damage-And-Battle-Formulas/unit-stats-fields.md): the source record.
-- The battle unit field map: the unit fields read.
+- [The battle unit field map](battle-unit-fields.md): the unit fields read.
 - The battle-state block field map: the slot words and the leader byte.
 - [Area flags and navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md): the town flag.
 - [EXP, LP and level ups](../Rewards-EXP-Gil-And-Loot/exp-lp-and-level-ups.md): the experience curve.
