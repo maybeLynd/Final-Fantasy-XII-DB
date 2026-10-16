@@ -104,7 +104,8 @@ BGM stream reader (`003EADD0`) first.
 - **Delivery** `0032E330(slot)`: `+0x40(+0x60, +0x70, 1)` when set; for kind `0xFF`, frees the path
   (`003697F0`).
 - **Failure** `0032E370(slot)`: `+0x40(+0x60, +0x70, 0)` only when the byte count `+0x28` is −1; then
-  frees a kind-`0xFF` path. A failed read with any other byte count calls nothing.
+  frees a kind-`0xFF` path. A failed read with any other byte count calls nothing, and a −1-size request
+  reaches this only when the previous read had failed.
 - **Cancel** `0032E2F0(slot)`: `+0x48(+0x60)` with `+0x28` = 0 when set, then state 0.
 
 The first argument is the descriptor's `+0x08` word, not the buffer; a requester reads its bytes at
@@ -197,8 +198,9 @@ counter `022CA5E0` and the BGM stream reader at `02B5E0E0`.
 
 - A request's offset is floored to a 2 KB boundary; a reader of a file at an unaligned offset gets the
   bytes from the boundary below.
-- A failed read calls its requester back only when the byte count was −1; with a real size the
-  requester is never told, and the slot is released.
+- A request whose size entry is −1 is never read (`002DF780` does nothing); the queue completes it
+  with the previous read's status, normally as delivered, with nothing written. A real read that fails
+  calls nothing, and the slot is released.
 - Cancelling a path request frees the path at once, even while its read is in flight; a second
   cancel of the same id before the pump finishes it frees the path again.
 
@@ -206,5 +208,5 @@ counter `022CA5E0` and the BGM stream reader at `02B5E0E0`.
 
 - [Bigfile archive](bigfile-archive.md): the archive behind path and kind reads.
 - [File path resolution](file-path-resolution.md): how a path becomes bytes.
-- File size tables: where the kind and index sizes come from.
+- [File size tables](file-size-tables-fst.md): where the kind and index sizes come from.
 - [Music](../Sound-And-Music/music.md): the BGM stream that makes requests chunked.
