@@ -137,7 +137,7 @@ key `0x114`) or "This will close FINAL FANTASY XII THE ZODIAC AGE" (text `0x890`
 confirmed return fades (`002EFA70(2, 0x18, 0)`), waits for `002EFD20(2)` to report 2 and calls
 `00285EC0(0x0C)`; a confirmed quit calls `001E0FB0(0)`. The same task's skip path calls
 `00285EA0(1)`, which sets bit 13 of `+0x400`
-(the native command lifecycle).
+([the native command lifecycle](../Scripts-And-Script-Commands/native-commands.md)).
 
 The consumer is the area controller `00280140`, in its message `0x12` arm (`00280248` to
 `0028027C`): with bit 8 set it clears the bit and tests `+0x3FC` against `0x0C`. For `0x0C` it

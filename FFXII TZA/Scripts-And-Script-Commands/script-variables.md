@@ -163,5 +163,5 @@ The save payload bytes `0` to `0xCF4`, the script image's file and local areas, 
 ## Related
 
 - [Script interpreter](script-interpreter.md): the opcodes and the value stack.
-- Verb dispatch: how a verb receives a reference.
+- [Verb dispatch](verb-dispatch.md): how a verb receives a reference.
 - [Save data fields](../Saving-Loading-And-Settings/save-data-fields.md): the payload the globals live in.

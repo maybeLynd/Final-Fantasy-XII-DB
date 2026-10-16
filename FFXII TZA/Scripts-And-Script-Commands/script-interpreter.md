@@ -140,7 +140,7 @@ opcode its mnemonic, length, handler and effect. By family:
 
 `CALL operand` stores the actor's own index in `X`, then runs `002621D0(slot, actor, stack,
 operand, waitSlot)`. The verb id splits into family `operand >> 12` and command `operand & 0xFFF`;
-the three callbacks come from the family tables (native commands), and the
+the three callbacks come from the family tables ([native commands](native-commands.md)), and the
 target actor is the issuer unless `X` names another, resolved by ordinal through `00358940`.
 
 With phase `+0x15` at 0 the result word `+0xC` is zeroed and the begin callback runs with the scratch
@@ -208,6 +208,6 @@ from.
 ## Related
 
 - [Script requests](script-requests.md): the wait kinds 3 to 7 and the request opcodes.
-- Native commands: the family tables and the begin, poll and result callbacks.
-- Verb dispatch: the argument convention a verb sees on the stack.
+- [Native commands](native-commands.md): the family tables and the begin, poll and result callbacks.
+- [Verb dispatch](verb-dispatch.md): the argument convention a verb sees on the stack.
 - [Script variables](script-variables.md): the storage classes behind `PUSHV` and `POPV`.
