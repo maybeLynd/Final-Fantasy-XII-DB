@@ -56,6 +56,12 @@ wide, and clears eight option rows at `+0x5B0`-`+0x62C` (`0057C4BF`-`0057C682`).
 4. Message 10 forwards input to the list unless the window is in notice mode (`0057C9A3`).
 
 `00241D40`, installed by `00241BF0` and `00241C90`, is a second confirm procedure that reads the same layout keys.
+Its row callback `00241D00` draws Yes (`menu_command.bin` `0x3E8`) on row 0 and No (`0x3E9`) on the other.
+
+The procedure registers itself in the table `0208EA60` under slot 2 when its creator's root is `[0208EA38]`, 4 for `[0208EA50]`
+and 1 otherwise (`00241E11`-`00241E48`), and clears the slot when it closes (`0024257E`). `00241A50(slot)` answers
+whether one is open; the battle menu asks with 1 (`0027C4D2`) and `00228C70` with 2 (`00228E65`). Its other
+callers are `0027A353`, also in the battle menu, and `00229095`.
 
 ### The item sort bar
 
@@ -85,9 +91,16 @@ and every other id goes to the default `0056FA73`.
 | 2 | Sky Pirate's Den | "What will it take to fill the den?" | 7 |
 | 3 | Traveler's Tips | "Hints for the wary adventurer." | 4 |
 
-A record is `{u16 label; u16 help; u8 kind; u8 flag}`. A pick posts its kind to the parent with `0x8001`
+A record is 6 bytes (below). A pick posts its kind to the parent with `0x8001`
 (`0056F96A`-`0056F9B5`). Records 4-11 hold the page titles of the eight Clan Primer page kinds: 4-7 point at
 labels `0x1B58`-`0x1B5B`, which are empty, and 8-11 reuse the four labels above.
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u16` | label | label text |
+| `02` | `u16` | help | help text |
+| `04` | `u8` | kind | posted to the parent on a pick |
+| `05` | `u8` | flag | - |
 
 ### The license board's description box
 

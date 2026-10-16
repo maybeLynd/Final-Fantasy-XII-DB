@@ -63,7 +63,7 @@ stat = growth[field] * d + base[field] + stats[adjustment]
 | Stat | Base and growth field | Adjustment word |
 |---|---|---|
 | max HP | `+0x20` (`u32`) | none |
-| max MP | `+0x24` (`s16`) | none |
+| max MP | `+0x24` (`i16`) | none |
 | Strength | `+0x26` | `+0x08` |
 | Magick Power | `+0x27` | `+0x0A` |
 | Vitality | `+0x28` | `+0x0C` |
@@ -88,9 +88,9 @@ Each of the five equipment words that names an item (`00322C50(6, id)`) adds by 
 
 | Group | Equipment classes | Adds |
 |---|---|---|
-| 1 | weapons and ammunition | row `+0x1A` to Attack Power, row `+0x1D` to weapon evade |
-| 2 | shields | row `+0x18` to shield evade, row `+0x19` to magick evade |
-| 3 | helms, armor, accessories | row `+0x18` to Defense, row `+0x19` to Magick Resist |
+| `1` | weapons and ammunition | row `+0x1A` to Attack Power, row `+0x1D` to weapon evade |
+| `2` | shields | row `+0x18` to shield evade, row `+0x19` to magick evade |
+| `3` | helms, armor, accessories | row `+0x18` to Defense, row `+0x19` to Magick Resist |
 
 Every item then adds its attribute record, whatever its group (`002FF4A7`-`002FF571`): `u16 +0x00` to max
 HP, `u16 +0x02` to max MP, bytes `+0x04`-`+0x07` to Strength, Magick Power, Vitality and Speed; it ORs
@@ -105,9 +105,9 @@ Three lists of effect ids add a bonus when the id is set in either effect layer,
 
 | List | Ids | Adds to | Bonus | Text |
 |---|---|---|---|---|
-| `00D10290` | 35, 42-47, 60-68 | Strength | 1 each | "Increases physical attack damage" |
-| `00D102A0` | 19, 22, 24, 26, 69-73, 87, 97-102 | Magick Power | 1 each | "Increases magick potency" |
-| `00D102B0` | 74-85 | max HP | 30, 70, 110, 150, 190, 230, 270, 310, 350, 390, 435, 500 | "Increases max HP by ..." |
+| `00D10290` | `35`, `42`-`47`, `60`-`68` | Strength | 1 each | "Increases physical attack damage" |
+| `00D102A0` | `19`, `22`, `24`, `26`, `69`-`73`, `87`, `97`-`102` | Magick Power | 1 each | "Increases magick potency" |
+| `00D102B0` | `74`-`85` | max HP | 30, 70, 110, 150, 190, 230, 270, 310, 350, 390, 435, 500 | "Increases max HP by ..." |
 
 ### Totals and caps
 

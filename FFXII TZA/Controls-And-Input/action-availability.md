@@ -43,19 +43,19 @@ read the combined mask, and `002E1020(row)` reads one row for three of them.
 
 | Row | Holder | Bits |
 |---:|---|---|
-| 0 | the movie verbs `moviestandby` `0x368` (its handler `00356460` is a jump to `0035B840` at `00356467`; `0035B861`, `0035B86D`), `movieplay` `0x36A` and `movieend` `0x36D` (mask, `0035B816`, `0035B967`); the event-skip arm `00360980`, from verb `skipstart` `0x51A` (`0034D3BB`; `003609A7`, `003609B3`), and its release `00360A50`, from `003603F0` and `00360A20` (`00360B06`, `00360B12`); the title screen (`00394112`, `003940CB`); actor and field loads (`002678EB`, `0025D41A`, `0025D5A9`) | 0, 1, 9, 12, 13, 15-17, 19, 20, 21 |
-| 1 | verb `setmenudisablestatus` `0x3A5` through `002E1BE0` (`0035276D`); bit 21 for the movie player (`001B82E4`, `001B76C8`, `001B80A4`, `001B84BE`), saving and loading (`0058252C`, `005823F8`, `005828B4`, `00582F1B`), the title screen (`00393A29`, `00393E07`), a Config screen widget (`0023FC78`, `0024024B`) and the callback `002CEB40` that `002CEFA0` installs (`002CEDE5`, `002CEBB6`) | 0-18, 21 |
-| 2 | battle selection, `00313A00`, below | 0-8, 10-12, 20 |
-| 3 | verbs `questresultwindow` `0x37C` and `queststartwindow` `0x386` (`00344C84`, `00345704`, `0034515F`, `003464E8`) and `00268D10`/`00263050` | the mask |
-| 4 | the screen-mask verbs `maskopen` `0x08A`, `maskopenfast` `0x3B5`, `mesvmaskopen` `0x446`, `mesvmaskopenfast` `0x447`, `maskclose` `0x08B`, `maskclosefast` `0x3B6` | 0, 1, 9, 20 |
-| 6 | user control, verbs `ucon` and `ucon_4a5` (`0026C70C`, `0026C80C`, `0026C82C`) and `00263660`, `0026C3E0` | the mask |
-| 7 | the full-screen frame modes: set by `00228930` and `002E09A0`, cleared by the main loop (`0022BBA1`-`0022BBC5`) | 0, 1, 9, 20 |
-| 8 | the menu-request family, below | 0-2, 4-9, 11, 12, 20 |
-| 9 | verb `crossfade` `0x16F` (`002F1AD4`, `002F1AE1`) and its completion (`002F19D3`, `002F19E0`) | 0, 20 |
-| 10 | a timed hold after a menu request (`002F1C8B`, `002F18AC`) | 1 |
-| 12 | user control (`0026C738`) and a spawn group's last member dying (`00306F9A`), through `00307140` | 0, 3-8, 11, 12, 20 |
-| 13 | cleared only: `0025B500` jumps to `002E1CD0` with clear 1 and row 13 (`0025B567`-`0025B573`) | - |
-| 15 | the pause menu, `00229590` (`002299BB`-`002299DB`, `00229785`-`002297A9`) | 0, 1, 9, 20 |
+| `0` | the movie verbs `moviestandby` `0x368` (its handler `00356460` is a jump to `0035B840` at `00356467`; `0035B861`, `0035B86D`), `movieplay` `0x36A` and `movieend` `0x36D` (mask, `0035B816`, `0035B967`); the event-skip arm `00360980`, from verb `skipstart` `0x51A` (`0034D3BB`; `003609A7`, `003609B3`), and its release `00360A50`, from `003603F0` and `00360A20` (`00360B06`, `00360B12`); the title screen (`00394112`, `003940CB`); actor and field loads (`002678EB`, `0025D41A`, `0025D5A9`) | `0`, `1`, `9`, `12`, `13`, `15`-`17`, `19`, `20`, `21` |
+| `1` | verb `setmenudisablestatus` `0x3A5` through `002E1BE0` (`0035276D`); bit 21 for the movie player (`001B82E4`, `001B76C8`, `001B80A4`, `001B84BE`), saving and loading (`0058252C`, `005823F8`, `005828B4`, `00582F1B`), the title screen (`00393A29`, `00393E07`), a Config screen widget (`0023FC78`, `0024024B`) and the callback `002CEB40` that `002CEFA0` installs (`002CEDE5`, `002CEBB6`) | `0`-`18`, `21` |
+| `2` | battle selection, `00313A00`, below | `0`-`8`, `10`-`12`, `20` |
+| `3` | verbs `questresultwindow` `0x37C` and `queststartwindow` `0x386` (`00344C84`, `00345704`, `0034515F`, `003464E8`) and `00268D10`/`00263050` | the mask |
+| `4` | the screen-mask verbs `maskopen` `0x08A`, `maskopenfast` `0x3B5`, `mesvmaskopen` `0x446`, `mesvmaskopenfast` `0x447`, `maskclose` `0x08B`, `maskclosefast` `0x3B6` | `0`, `1`, `9`, `20` |
+| `6` | user control, verbs `ucon` and `ucon_4a5` (`0026C70C`, `0026C80C`, `0026C82C`) and `00263660`, `0026C3E0` | the mask |
+| `7` | the full-screen frame modes: set by `00228930` and `002E09A0`, cleared by the main loop (`0022BBA1`-`0022BBC5`) | `0`, `1`, `9`, `20` |
+| `8` | the menu-request family, below | `0`-`2`, `4`-`9`, `11`, `12`, `20` |
+| `9` | verb `crossfade` `0x16F` (`002F1AD4`, `002F1AE1`) and its completion (`002F19D3`, `002F19E0`) | `0`, `20` |
+| `10` | a timed hold after a menu request (`002F1C8B`, `002F18AC`) | `1` |
+| `12` | user control (`0026C738`) and a spawn group's last member dying (`00306F9A`), through `00307140` | `0`, `3`-`8`, `11`, `12`, `20` |
+| `13` | cleared only: `0025B500` jumps to `002E1CD0` with clear 1 and row 13 (`0025B567`-`0025B573`) | - |
+| `15` | the pause menu, `00229590` (`002299BB`-`002299DB`, `00229785`-`002297A9`) | `0`, `1`, `9`, `20` |
 
 Rows 5, 11 and 14 have no writer.
 
@@ -98,17 +98,28 @@ sets row 7 through `002E2240(1)` (`002E2248`). On close, `00229510` clears row 7
 
 | Bit | Blocks |
 |---:|---|
-| 0 | the main menu with Triangle (`00253D6E`) and its requests (`002E1AB9`, `002E1B31`, `002E25C7`) |
-| 4 | the Circle or Cross interact press (`0025413F`) and force fight (`002736F0`, `0027399F`, `002C6580`) |
-| 6, 9 | Escape Mode, forced off (`00252B8C`, `00252B92`) |
-| 10 | the battle command menu with Square or the confirm button (`00253F83`, `002541A4`, `0035D66D`), changing the leader (`0035D98D`), Escape Mode (`00252BA2`, `00252BE6`), the battle display and the map screens (`0028333C`, `00400F6F`, `00400FAD`, `004017B0`) |
-| 11 | the Select and L3 presses (`00253E00`, `00253F0A`, `00253ECD`) |
-| 12, 16, 17 | Start's arms (`002288C8`, `0022887E`, `00228893`) |
-| 13, 19 | event skip with Start (`00228905`, `002288F6`) |
-| 18 | the target cursor (`003C9176`, `003C919F`) |
-| 21 | opening the pause menu (`002283DA`, `002283E7`) and the audio hold (`00229B03`) |
+| `0` | the main menu with Triangle (`00253D6E`) and its requests (`002E1AB9`, `002E1B31`, `002E25C7`) |
+| `4` | the Circle or Cross interact press (`0025413F`) and force fight (`002736F0`, `0027399F`, `002C6580`) |
+| `6`, `9` | Escape Mode, forced off (`00252B8C`, `00252B92`) |
+| `10` | the battle command menu with Square or the confirm button (`00253F83`, `002541A4`, `0035D66D`), changing the leader (`0035D98D`), Escape Mode (`00252BA2`, `00252BE6`), the battle display and the map screens (`0028333C`, `00400F6F`, `00400FAD`, `004017B0`) |
+| `11` | the Select and L3 presses (`00253E00`, `00253F0A`, `00253ECD`) |
+| `12`, `16`, `17` | Start's arms (`002288C8`, `0022887E`, `00228893`) |
+| `18` | the target cursor (`003C9176`, `003C919F`) |
+| `21` | opening the pause menu (`002283DA`, `002283E7`) and the audio hold (`00229B03`) |
 
 No reader tests bits 7, 14, 15 or 20.
+
+Bits 13 and 19 do not block anything: they steer Start's event-skip arm. Bit 19 must be set for that arm to run
+at all (`002288F6`), which is why the movie busy bit clears it. Inside the Start handler `002287D0`, with bit 19 set, the arm it passes to `00228700` is 1 only when bit 13 is set and
+`003606B0` finds a non-zero word among `022CB9C4`, `022CB9C8` and `022CB9CC`, and 2 otherwise
+(`002288F6`-`00228911`). `00360880` walks the same three words, takes the lowest set bit of each and runs that skip
+through `00360710`.
+
+`00228380`, which holds the bit-21 test, first starts the task `00228490` when `0017E4C0` answers 0
+(`0022839B`-`002283AE`). `0017E4C0` reads the application's byte `+0x27`, the window-active byte: application slot 14
+(`007A0B40`) stores it, called by the window procedure with 1 when a new window is in front (`0079914C`) and by
+`007A4150`, which also posts message `0x8001` to show or hide the cursor. The task's pointer `01FD4948` is the cell
+`00228480` tests.
 
 ### Menu requests
 
@@ -117,13 +128,13 @@ that bit's word of `01E0C2C0` (`00254500`-`0025453C`). The menu router refuses t
 
 | Bit | Requests refused |
 |---:|---|
-| 0, 3 | 2, the main menu |
-| 1 | 1, the battle command menu; 3, choosing the leader; 5, cycling targets |
-| 2, 10 | 3 |
-| 5 | 5 |
-| 6 | 14 |
-| 8 | 1, and 21 |
-| 9 | 5, and 14 |
+| `0`, `3` | 2, the main menu |
+| `1` | 1, the battle command menu; 3, choosing the leader; 5, cycling targets |
+| `2`, `10` | 3 |
+| `5` | 5 |
+| `6` | 14 |
+| `8` | 1, and 21 |
+| `9` | 5, and 14 |
 
 ## Modding notes
 

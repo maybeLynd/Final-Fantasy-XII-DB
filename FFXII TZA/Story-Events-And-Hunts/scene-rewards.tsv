@@ -91,7 +91,7 @@ alc_e01	system_crystal_actor	talk	additem_47f	0x805A	Ogir-Yensa Sandsea	1	litera
 alc_e01	system_crystal_actor	talk	additem_47f	0x805B	The Phon Coast	1	literal	-
 alc_e01	system_crystal_actor	talk	additem_47f	0x805C	Tchita Uplands	1	literal	-
 alc_e01	telepoeffectctrl	telepoeffect	subitem	0x2000	Teleport Stone	1	literal	-
-alc_e01	乗船カウンタートーク	カウンター処理	subgill	gil		file[0xf7c]:s32	-	-
+alc_e01	乗船カウンタートーク	カウンター処理	subgill	gil		file[0xf7c]:i32	-	-
 alc_f01	NPC_JULES	talk	subgill	gil		getprice(45172)	-	-
 alc_f01	NPC_WEB_04	talk	additemmes	0x2113	Pinewood Chop	1	literal	-
 alc_f01	NPC_WEB_06	talk	additemmes	0x2113	Pinewood Chop	1	literal	-
@@ -320,25 +320,25 @@ bul_b02	system_crystal_actor	talk	additem_47f	0x805A	Ogir-Yensa Sandsea	1	litera
 bul_b02	system_crystal_actor	talk	additem_47f	0x805B	The Phon Coast	1	literal	-
 bul_b02	system_crystal_actor	talk	additem_47f	0x805C	Tchita Uplands	1	literal	-
 bul_b02	telepoeffectctrl	telepoeffect	subitem	0x2000	Teleport Stone	1	literal	-
-bul_b02	ガーディ	talk_gardy	subgill	gil		local[0x1c]:s32	-	-
-bul_b02	ガーディ	talk_gardy	subgill	gil		local[0x1c]:s32	-	-
-bul_b02	ガーディ	talk_gardy	subgill	gil		local[0x1c]:s32	-	-
+bul_b02	ガーディ	talk_gardy	subgill	gil		local[0x1c]:i32	-	-
+bul_b02	ガーディ	talk_gardy	subgill	gil		local[0x1c]:i32	-	-
+bul_b02	ガーディ	talk_gardy	subgill	gil		local[0x1c]:i32	-	-
 byu_a01	NPC01	talk_step01	additemmes	-		1	stored before the request from PUSHV local_var_s60f10_2	イベント特殊効果画面.ゲット＆メッセージ表示
 byu_a01	NPC02	talk_step01	subgill	gil		local_arr[0xcc][2][local[0xdc]:u8]	-	-
 byu_a01	NPC02	talk_step01	additem_47f	0x908B	reward package: 1000 gil	1	literal	-
 byu_a01	NPC02	talk_step01	addgill	gil		1000	-	-
 byu_a01	NPC02	talk_step01	subitem	0x210D	Bhujerban Madhu	1	literal	-
-byu_a01	NPC02	talk_step01	subgill	gil		(local[0xf0]:s32 - local[0xec]:s32)	-	-
+byu_a01	NPC02	talk_step01	subgill	gil		(local[0xf0]:i32 - local[0xec]:i32)	-	-
 byu_a01	魂レクト	talk	additemmes	0x210D	Bhujerban Madhu	1	literal	-
 byu_a02	NPC02	talk_step01	additem_47f	0x908B	reward package: 1000 gil	1	literal	-
 byu_a02	NPC02	talk_step01	addgill	gil		1000	-	-
 byu_a02	NPC02	talk_step01	subitem	0x210D	Bhujerban Madhu	1	literal	-
-byu_a02	NPC02	talk_step01	subgill	gil		(local[0xbc]:s32 - local[0xb8]:s32)	-	-
+byu_a02	NPC02	talk_step01	subgill	gil		(local[0xbc]:i32 - local[0xb8]:i32)	-	-
 byu_a02	魂レクト	talk	additemmes	0x210D	Bhujerban Madhu	1	literal	-
 byu_a03	NPC02	talk_step01	additem_47f	0x908B	reward package: 1000 gil	1	literal	-
 byu_a03	NPC02	talk_step01	addgill	gil		1000	-	-
 byu_a03	NPC02	talk_step01	subitem	0x210D	Bhujerban Madhu	1	literal	-
-byu_a03	NPC02	talk_step01	subgill	gil		(local[0xcc]:s32 - local[0xc8]:s32)	-	-
+byu_a03	NPC02	talk_step01	subgill	gil		(local[0xcc]:i32 - local[0xc8]:i32)	-	-
 byu_a03	魂レクト	talk	additemmes	0x210D	Bhujerban Madhu	1	literal	-
 byu_a04	NPC01	talk	additemmes	-		1	stored before the request from PUSHV local_var_s41f2_2	イベント特殊効果画面.ゲット＆メッセージ表示
 byu_a04	NPC02	talk	subgill	gil		local_arr[0xbc][2][local[0xcc]:u8]	-	-
@@ -346,7 +346,7 @@ byu_a04	NPC02	talk	additemmes	0x210C	Great Serpentskin	1	literal	-
 byu_a04	NPC02	talk	additem_47f	0x908B	reward package: 1000 gil	1	literal	-
 byu_a04	NPC02	talk	addgill	gil		1000	-	-
 byu_a04	NPC02	talk	subitem	0x210D	Bhujerban Madhu	1	literal	-
-byu_a04	NPC02	talk	subgill	gil		(local[0xe0]:s32 - local[0xdc]:s32)	-	-
+byu_a04	NPC02	talk	subgill	gil		(local[0xe0]:i32 - local[0xdc]:i32)	-	-
 byu_a04	system_crystal_actor	init	additem_47f	0x8040	Rabanastre	1	literal	-
 byu_a04	system_crystal_actor	talk	additem_47f	0x8040	Rabanastre	1	literal	-
 byu_a04	system_crystal_actor	talk	additem_47f	0x8042	Nalbina Fortress	1	literal	-
@@ -380,7 +380,7 @@ byu_a07	NPC01	talk_step01	additemmes	0x8098	Merchant's Armband	1	stored before t
 byu_a07	NPC02	talk_step01	additem_47f	0x908B	reward package: 1000 gil	1	literal	-
 byu_a07	NPC02	talk_step01	addgill	gil		1000	-	-
 byu_a07	NPC02	talk_step01	subitem	0x210D	Bhujerban Madhu	1	literal	-
-byu_a07	NPC02	talk_step01	subgill	gil		(local[0xcc]:s32 - local[0xc8]:s32)	-	-
+byu_a07	NPC02	talk_step01	subgill	gil		(local[0xcc]:i32 - local[0xc8]:i32)	-	-
 byu_a07	NPC02	talk_step01	additemmes	0x908C	reward package: Bangle x1	1	literal	-
 byu_a07	NPC02	talk_step01	subitem	0x8099	Pilika's Diary	1	literal	-
 byu_a07	NPC02	talk_step01	additemmes	0x908D	reward package: Jade Collar x1	1	literal	-
@@ -389,50 +389,50 @@ byu_a07	魂レクト	talk	additemmes	0x210D	Bhujerban Madhu	1	literal	-
 byu_a08	NPC02	talk	additem_47f	0x908B	reward package: 1000 gil	1	literal	-
 byu_a08	NPC02	talk	addgill	gil		1000	-	-
 byu_a08	NPC02	talk	subitem	0x210D	Bhujerban Madhu	1	literal	-
-byu_a08	NPC02	talk	subgill	gil		(local[0xc4]:s32 - local[0xc0]:s32)	-	-
+byu_a08	NPC02	talk	subgill	gil		(local[0xc4]:i32 - local[0xc0]:i32)	-	-
 byu_a08	魂レクト	talk	additemmes	0x210D	Bhujerban Madhu	1	literal	-
 byu_a11	NPC02	talk	additem_47f	0x908B	reward package: 1000 gil	1	literal	-
 byu_a11	NPC02	talk	addgill	gil		1000	-	-
 byu_a11	NPC02	talk	subitem	0x210D	Bhujerban Madhu	1	literal	-
-byu_a11	NPC02	talk	subgill	gil		(local[0xb8]:s32 - local[0xb4]:s32)	-	-
+byu_a11	NPC02	talk	subgill	gil		(local[0xb8]:i32 - local[0xb4]:i32)	-	-
 byu_a11	魂レクト	talk	additemmes	0x210D	Bhujerban Madhu	1	literal	-
 byu_a12	NPC02	talk	additem_47f	0x908B	reward package: 1000 gil	1	literal	-
 byu_a12	NPC02	talk	addgill	gil		1000	-	-
 byu_a12	NPC02	talk	subitem	0x210D	Bhujerban Madhu	1	literal	-
-byu_a12	NPC02	talk	subgill	gil		(local[0xb8]:s32 - local[0xb4]:s32)	-	-
+byu_a12	NPC02	talk	subgill	gil		(local[0xb8]:i32 - local[0xb4]:i32)	-	-
 byu_a12	魂レクト	talk	additemmes	0x210D	Bhujerban Madhu	1	literal	-
 byu_a14	NPC02	talk	additem_47f	0x908B	reward package: 1000 gil	1	literal	-
 byu_a14	NPC02	talk	addgill	gil		1000	-	-
 byu_a14	NPC02	talk	subitem	0x210D	Bhujerban Madhu	1	literal	-
-byu_a14	NPC02	talk	subgill	gil		(local[0xc0]:s32 - local[0xbc]:s32)	-	-
+byu_a14	NPC02	talk	subgill	gil		(local[0xc0]:i32 - local[0xbc]:i32)	-	-
 byu_a14	魂レクト	talk	additemmes	0x210D	Bhujerban Madhu	1	literal	-
 byu_a15	NPC02	talk	additem_47f	0x908B	reward package: 1000 gil	1	literal	-
 byu_a15	NPC02	talk	addgill	gil		1000	-	-
 byu_a15	NPC02	talk	subitem	0x210D	Bhujerban Madhu	1	literal	-
-byu_a15	NPC02	talk	subgill	gil		(local[0xc0]:s32 - local[0xbc]:s32)	-	-
+byu_a15	NPC02	talk	subgill	gil		(local[0xc0]:i32 - local[0xbc]:i32)	-	-
 byu_a15	日記レクト	talk	additemmes	0x8099	Pilika's Diary	1	stored before the request	イベント特殊効果画面.だいじなものゲット
 byu_a15	魂レクト	talk	additemmes	0x210D	Bhujerban Madhu	1	literal	-
 byu_a16	NPC02	talk	additem_47f	0x908B	reward package: 1000 gil	1	literal	-
 byu_a16	NPC02	talk	addgill	gil		1000	-	-
 byu_a16	NPC02	talk	subitem	0x210D	Bhujerban Madhu	1	literal	-
-byu_a16	NPC02	talk	subgill	gil		(local[0xc0]:s32 - local[0xbc]:s32)	-	-
+byu_a16	NPC02	talk	subgill	gil		(local[0xc0]:i32 - local[0xbc]:i32)	-	-
 byu_a16	魂レクト	talk	additemmes	0x210D	Bhujerban Madhu	1	literal	-
 byu_a17	NPC01	talk	additemmes	0x807E	Site 3 Key	1	stored before the request	イベント特殊効果画面.だいじなものゲット
 byu_a17	NPC01	talk	additemmes	0x807E	Site 3 Key	1	stored before the request	イベント特殊効果画面.だいじなものゲット
 byu_a17	NPC02	talk	additem_47f	0x908B	reward package: 1000 gil	1	literal	-
 byu_a17	NPC02	talk	addgill	gil		1000	-	-
 byu_a17	NPC02	talk	subitem	0x210D	Bhujerban Madhu	1	literal	-
-byu_a17	NPC02	talk	subgill	gil		(local[0xbc]:s32 - local[0xb8]:s32)	-	-
+byu_a17	NPC02	talk	subgill	gil		(local[0xbc]:i32 - local[0xb8]:i32)	-	-
 byu_a17	魂レクト	talk	additemmes	0x210D	Bhujerban Madhu	1	literal	-
 byu_a18	NPC02	talk_step01	additem_47f	0x908B	reward package: 1000 gil	1	literal	-
 byu_a18	NPC02	talk_step01	addgill	gil		1000	-	-
 byu_a18	NPC02	talk_step01	subitem	0x210D	Bhujerban Madhu	1	literal	-
-byu_a18	NPC02	talk_step01	subgill	gil		(local[0xb8]:s32 - local[0xb4]:s32)	-	-
+byu_a18	NPC02	talk_step01	subgill	gil		(local[0xb8]:i32 - local[0xb4]:i32)	-	-
 byu_a18	魂レクト	talk	additemmes	0x210D	Bhujerban Madhu	1	literal	-
 byu_b01	NPC02	talk_step01	additem_47f	0x908B	reward package: 1000 gil	1	literal	-
 byu_b01	NPC02	talk_step01	addgill	gil		1000	-	-
 byu_b01	NPC02	talk_step01	subitem	0x210D	Bhujerban Madhu	1	literal	-
-byu_b01	NPC02	talk_step01	subgill	gil		(local[0xd8]:s32 - local[0xd4]:s32)	-	-
+byu_b01	NPC02	talk_step01	subgill	gil		(local[0xd8]:i32 - local[0xd4]:i32)	-	-
 byu_b01	system_crystal_actor	init	additem_47f	0x8040	Rabanastre	1	literal	-
 byu_b01	system_crystal_actor	talk	additem_47f	0x8040	Rabanastre	1	literal	-
 byu_b01	system_crystal_actor	talk	additem_47f	0x8042	Nalbina Fortress	1	literal	-
@@ -460,7 +460,7 @@ byu_b01	system_crystal_actor	talk	additem_47f	0x805A	Ogir-Yensa Sandsea	1	litera
 byu_b01	system_crystal_actor	talk	additem_47f	0x805B	The Phon Coast	1	literal	-
 byu_b01	system_crystal_actor	talk	additem_47f	0x805C	Tchita Uplands	1	literal	-
 byu_b01	telepoeffectctrl	telepoeffect	subitem	0x2000	Teleport Stone	1	literal	-
-byu_b01	乗船カウンタートーク	カウンター処理	subgill	gil		file[0x5c]:s32	-	-
+byu_b01	乗船カウンタートーク	カウンター処理	subgill	gil		file[0x5c]:i32	-	-
 byu_b01	魂レクト	talk	additemmes	0x210D	Bhujerban Madhu	1	literal	-
 dgl_g01	常駐ディレクター	main	subitem	0x8078	Dawn Shard	1	literal	-
 dgl_g01	常駐ディレクター	main	setitemnum	0x1183	Dawn Shard	0	literal	-
@@ -585,7 +585,7 @@ dst_a05	system_crystal_actor	talk	additem_47f	0x805A	Ogir-Yensa Sandsea	1	litera
 dst_a05	system_crystal_actor	talk	additem_47f	0x805B	The Phon Coast	1	literal	-
 dst_a05	system_crystal_actor	talk	additem_47f	0x805C	Tchita Uplands	1	literal	-
 dst_a05	telepoeffectctrl	telepoeffect	subitem	0x2000	Teleport Stone	1	literal	-
-dst_a07	NPC02	talk_step01	subgill	gil		local[0xb8]:s32	-	-
+dst_a07	NPC02	talk_step01	subgill	gil		local[0xb8]:i32	-	-
 dst_a07	チョコへそＦＳ０１	talk	additemmes	0x906E	reward package: 1 gil	1	literal	-
 dst_a07	チョコへそＦＳ０２	talk	additemmes	0x906F	reward package: 3 gil	1	literal	-
 dst_a07	チョコへそＦＳ０３	talk	additemmes	0x906F	reward package: 3 gil	1	literal	-
@@ -623,17 +623,17 @@ dst_b01	NPC02	talk	additem_47f	0x907D	reward package: 10 gil	haveitem(8449)	lite
 dst_b01	NPC02	talk	addgill	gil		(haveitem(8449) * 30)	-	-
 dst_b01	NPC02	talk	subitem	0x2101	Common Fish	haveitem(8449)	literal	-
 dst_b01	NPC02	talk	subitem	0x2101	Common Fish	haveitem(8449)	literal	-
-dst_b01	NPC02	talk	subgill	gil		(local[0xe8]:s32 - local[0xe4]:s32)	-	-
+dst_b01	NPC02	talk	subgill	gil		(local[0xe8]:i32 - local[0xe4]:i32)	-	-
 dst_b01	NPC02	talk	additem_47f	0x907E	reward package: 100 gil	haveitem(8450)	literal	-
 dst_b01	NPC02	talk	addgill	gil		(haveitem(8450) * 50)	-	-
 dst_b01	NPC02	talk	subitem	0x2102	Delicious Fish	haveitem(8450)	literal	-
 dst_b01	NPC02	talk	subitem	0x2102	Delicious Fish	haveitem(8450)	literal	-
-dst_b01	NPC02	talk	subgill	gil		(local[0xe8]:s32 - local[0xe4]:s32)	-	-
+dst_b01	NPC02	talk	subgill	gil		(local[0xe8]:i32 - local[0xe4]:i32)	-	-
 dst_b01	NPC02	talk	additem_47f	0x907F	reward package: 200 gil	haveitem(8451)	literal	-
 dst_b01	NPC02	talk	addgill	gil		(haveitem(8451) * 100)	-	-
 dst_b01	NPC02	talk	subitem	0x2103	Nebra Succulent	haveitem(8451)	literal	-
 dst_b01	NPC02	talk	subitem	0x2103	Nebra Succulent	haveitem(8451)	literal	-
-dst_b01	NPC02	talk	subgill	gil		(local[0xe8]:s32 - local[0xe4]:s32)	-	-
+dst_b01	NPC02	talk	subgill	gil		(local[0xe8]:i32 - local[0xe4]:i32)	-	-
 dst_b01	NPC02	talk	subitem	0x2100	Empty Bottle	haveitem(8448)	literal	-
 dst_b01	NPC02	talk	additemmes	0x9080	reward package: Electrum x1	1	literal	-
 dst_b01	system_crystal_actor	init	additem_47f	0x8040	Rabanastre	1	literal	-
@@ -830,7 +830,7 @@ fon_b01	system_crystal_actor	talk	additem_47f	0x805A	Ogir-Yensa Sandsea	1	litera
 fon_b01	system_crystal_actor	talk	additem_47f	0x805B	The Phon Coast	1	literal	-
 fon_b01	system_crystal_actor	talk	additem_47f	0x805C	Tchita Uplands	1	literal	-
 fon_b01	telepoeffectctrl	telepoeffect	subitem	0x2000	Teleport Stone	1	literal	-
-fon_b01	ガーディ	talk	subgill	gil		local[0x8]:s32	-	-
+fon_b01	ガーディ	talk	subgill	gil		local[0x8]:i32	-	-
 fon_b01	バンガ05	talk	subitem	-		1	table element file_arr[0x1c][30][file[0x95]:u8]	-
 fon_b01	バンガ13	talk	subitem	-		1	table element file_arr[0x1c][30][file[0x95]:u8]	-
 fon_b01	バンガ15	talk	subitem	-		1	table element file_arr[0x1c][30][file[0x95]:u8]	-
@@ -1113,8 +1113,8 @@ glf_a01	system_crystal_actor	talk	additem_47f	0x805A	Ogir-Yensa Sandsea	1	litera
 glf_a01	system_crystal_actor	talk	additem_47f	0x805B	The Phon Coast	1	literal	-
 glf_a01	system_crystal_actor	talk	additem_47f	0x805C	Tchita Uplands	1	literal	-
 glf_a01	telepoeffectctrl	telepoeffect	subitem	0x2000	Teleport Stone	1	literal	-
-glf_a01	ガーディ	talk	subgill	gil		local[0x8]:s32	-	-
-glf_a01	ガーディ	talk	subgill	gil		local[0x8]:s32	-	-
+glf_a01	ガーディ	talk	subgill	gil		local[0x8]:i32	-	-
+glf_a01	ガーディ	talk	subgill	gil		local[0x8]:i32	-	-
 glf_a01	地図屋	talk	subgill	gil		local_arr[0x8][2][local[0x18]:u8]	-	-
 glf_a01	地図屋	talk	additemmes	-		1	stored before the request from PUSHV local_var_s25f2_2	イベント特殊効果画面.ゲット＆メッセージ表示
 glf_a01	常駐イベント	旅立ち	additemmes	0x911E	reward package: Killer Bow x1 + Onion Arrows x1	1	literal	-
@@ -1789,7 +1789,7 @@ mrm_g0101	監督	main	additem	0xC01E	Zodiark	1	literal	-
 mrm_g0101	監督	main	additem	0xC01B	Zeromus	1	literal	-
 mrm_g0101	監督	main	additem	0xC01A	Chaos	1	literal	-
 mrm_g0101	監督	main	additem	0xC01D	Ultima	1	literal	-
-nac_a01	NAC_ガーディ	talk_gardy	subgill	gil		local[0x8]:s32	-	-
+nac_a01	NAC_ガーディ	talk_gardy	subgill	gil		local[0x8]:i32	-	-
 nac_a01	system_crystal_actor	init	additem_47f	0x8040	Rabanastre	1	literal	-
 nac_a01	system_crystal_actor	talk	additem_47f	0x8040	Rabanastre	1	literal	-
 nac_a01	system_crystal_actor	talk	additem_47f	0x8042	Nalbina Fortress	1	literal	-
@@ -1818,7 +1818,7 @@ nac_a01	system_crystal_actor	talk	additem_47f	0x805B	The Phon Coast	1	literal	-
 nac_a01	system_crystal_actor	talk	additem_47f	0x805C	Tchita Uplands	1	literal	-
 nac_a01	telepoeffectctrl	telepoeffect	subitem	0x2000	Teleport Stone	1	literal	-
 nac_a03	ロケイベント監督	ジョニーお礼渡す	additemmes	0x906A	reward package: Elixir x1 + Knot of Rust x1	1	literal	-
-nac_b01	乗船カウンタートーク	カウンター処理	subgill	gil		file[0x10]:s32	-	-
+nac_b01	乗船カウンタートーク	カウンター処理	subgill	gil		file[0x10]:i32	-	-
 naf_b02	system_crystal_actor	init	additem_47f	0x8040	Rabanastre	1	literal	-
 naf_b02	system_crystal_actor	talk	additem_47f	0x8040	Rabanastre	1	literal	-
 naf_b02	system_crystal_actor	talk	additem_47f	0x8042	Nalbina Fortress	1	literal	-
@@ -2231,7 +2231,7 @@ rbl_a05	system_crystal_actor	talk	additem_47f	0x805A	Ogir-Yensa Sandsea	1	litera
 rbl_a05	system_crystal_actor	talk	additem_47f	0x805B	The Phon Coast	1	literal	-
 rbl_a05	system_crystal_actor	talk	additem_47f	0x805C	Tchita Uplands	1	literal	-
 rbl_a05	telepoeffectctrl	telepoeffect	subitem	0x2000	Teleport Stone	1	literal	-
-rbl_b01	o_tama	talk	additemmes	0x2116	Black Orb	local[0x8]:s16	literal	-
+rbl_b01	o_tama	talk	additemmes	0x2116	Black Orb	local[0x8]:i16	literal	-
 rbl_b01	tama01	talk	additemmes	0x2116	Black Orb	1	literal	-
 rbl_b01	tama02	talk	additemmes	0x2116	Black Orb	1	literal	-
 rbl_b01	tama03	talk	additemmes	0x2116	Black Orb	1	literal	-
@@ -2244,7 +2244,7 @@ rbl_g02	daiza_e	talk	subitem	0x2116	Black Orb	10	literal	-
 rbl_g02	daiza_w	talk	subitem	0x2116	Black Orb	1	literal	-
 rbl_g02	daiza_w	talk	subitem	0x2116	Black Orb	5	literal	-
 rbl_g02	daiza_w	talk	subitem	0x2116	Black Orb	10	literal	-
-rbl_g02	o_tama	talk	additemmes	0x2116	Black Orb	local[0x8]:s16	literal	-
+rbl_g02	o_tama	talk	additemmes	0x2116	Black Orb	local[0x8]:i16	literal	-
 rbl_g02	tama01	talk	additemmes	0x2116	Black Orb	1	literal	-
 rbl_g02	tama02	talk	additemmes	0x2116	Black Orb	1	literal	-
 rbl_g02	tama03	talk	additemmes	0x2116	Black Orb	1	literal	-
@@ -2256,7 +2256,7 @@ rbl_g03	daiza_e	talk	subitem	0x2116	Black Orb	10	literal	-
 rbl_g03	daiza_w	talk	subitem	0x2116	Black Orb	1	literal	-
 rbl_g03	daiza_w	talk	subitem	0x2116	Black Orb	5	literal	-
 rbl_g03	daiza_w	talk	subitem	0x2116	Black Orb	10	literal	-
-rbl_g03	o_tama	talk	additemmes	0x2116	Black Orb	local[0x8]:s16	literal	-
+rbl_g03	o_tama	talk	additemmes	0x2116	Black Orb	local[0x8]:i16	literal	-
 rbl_g03	tama01	talk	additemmes	0x2116	Black Orb	1	literal	-
 rbl_g03	tama02	talk	additemmes	0x2116	Black Orb	1	literal	-
 rbl_g03	tama03	talk	additemmes	0x2116	Black Orb	1	literal	-
@@ -2268,7 +2268,7 @@ rbl_h02	daiza_e	talk	subitem	0x2116	Black Orb	10	literal	-
 rbl_h02	daiza_w	talk	subitem	0x2116	Black Orb	1	literal	-
 rbl_h02	daiza_w	talk	subitem	0x2116	Black Orb	5	literal	-
 rbl_h02	daiza_w	talk	subitem	0x2116	Black Orb	10	literal	-
-rbl_h02	o_tama	talk	additemmes	0x2116	Black Orb	local[0x8]:s16	literal	-
+rbl_h02	o_tama	talk	additemmes	0x2116	Black Orb	local[0x8]:i16	literal	-
 rbl_h02	tama01	talk	additemmes	0x2116	Black Orb	1	literal	-
 rbl_h02	tama02	talk	additemmes	0x2116	Black Orb	1	literal	-
 rbl_h02	tama03	talk	additemmes	0x2116	Black Orb	1	literal	-
@@ -2280,7 +2280,7 @@ rbl_h03	daiza_e	talk	subitem	0x2116	Black Orb	10	literal	-
 rbl_h03	daiza_w	talk	subitem	0x2116	Black Orb	1	literal	-
 rbl_h03	daiza_w	talk	subitem	0x2116	Black Orb	5	literal	-
 rbl_h03	daiza_w	talk	subitem	0x2116	Black Orb	10	literal	-
-rbl_h03	o_tama	talk	additemmes	0x2116	Black Orb	local[0x8]:s16	literal	-
+rbl_h03	o_tama	talk	additemmes	0x2116	Black Orb	local[0x8]:i16	literal	-
 rbl_h03	tama01	talk	additemmes	0x2116	Black Orb	1	literal	-
 rbl_h03	tama02	talk	additemmes	0x2116	Black Orb	1	literal	-
 rbl_h03	tama03	talk	additemmes	0x2116	Black Orb	1	literal	-
@@ -2292,7 +2292,7 @@ rbl_i02	daiza_e	talk	subitem	0x2116	Black Orb	10	literal	-
 rbl_i02	daiza_w	talk	subitem	0x2116	Black Orb	1	literal	-
 rbl_i02	daiza_w	talk	subitem	0x2116	Black Orb	5	literal	-
 rbl_i02	daiza_w	talk	subitem	0x2116	Black Orb	10	literal	-
-rbl_i02	o_tama	talk	additemmes	0x2116	Black Orb	local[0x8]:s16	literal	-
+rbl_i02	o_tama	talk	additemmes	0x2116	Black Orb	local[0x8]:i16	literal	-
 rbl_i02	tama01	talk	additemmes	0x2116	Black Orb	1	literal	-
 rbl_i02	tama02	talk	additemmes	0x2116	Black Orb	1	literal	-
 rbl_i02	tama03	talk	additemmes	0x2116	Black Orb	1	literal	-
@@ -2304,7 +2304,7 @@ rbl_i03	daiza_e	talk	subitem	0x2116	Black Orb	10	literal	-
 rbl_i03	daiza_w	talk	subitem	0x2116	Black Orb	1	literal	-
 rbl_i03	daiza_w	talk	subitem	0x2116	Black Orb	5	literal	-
 rbl_i03	daiza_w	talk	subitem	0x2116	Black Orb	10	literal	-
-rbl_i03	o_tama	talk	additemmes	0x2116	Black Orb	local[0x8]:s16	literal	-
+rbl_i03	o_tama	talk	additemmes	0x2116	Black Orb	local[0x8]:i16	literal	-
 rbl_i03	tama01	talk	additemmes	0x2116	Black Orb	1	literal	-
 rbl_i03	tama02	talk	additemmes	0x2116	Black Orb	1	literal	-
 rbl_i03	tama03	talk	additemmes	0x2116	Black Orb	1	literal	-
@@ -2345,11 +2345,11 @@ rbn_a01	カトリーヌ	talk	additemmes	0x9059	reward package: Hunting Crossbow 
 rbn_a01	カトリーヌ５	talk	additemmes	0x905C	reward package: Ether x1 + Hi-Potion x3	1	literal	-
 rbn_a01	コカトリス	talk	additemmes	0x9063	reward package: Deathbringer x1	1	literal	-
 rbn_a02	カトリーヌ５	talk	additemmes	0x905C	reward package: Ether x1 + Hi-Potion x3	1	literal	-
-rbn_a03	NPC02	talk_step01	subgill	gil		local[0xa8]:s32	-	-
-rbn_a03	NPC02	talk_step01	subgill	gil		local[0xa8]:s32	-	-
-rbn_a03	NPC02	talk_step01	subgill	gil		local[0xa8]:s32	-	-
-rbn_a03	NPC02	talk_step01	subgill	gil		local[0xa8]:s32	-	-
-rbn_a03	NPC02	talk_step01	subgill	gil		local[0xa8]:s32	-	-
+rbn_a03	NPC02	talk_step01	subgill	gil		local[0xa8]:i32	-	-
+rbn_a03	NPC02	talk_step01	subgill	gil		local[0xa8]:i32	-	-
+rbn_a03	NPC02	talk_step01	subgill	gil		local[0xa8]:i32	-	-
+rbn_a03	NPC02	talk_step01	subgill	gil		local[0xa8]:i32	-	-
+rbn_a03	NPC02	talk_step01	subgill	gil		local[0xa8]:i32	-	-
 rbn_a03	カトリーヌ	talk	additemmes	0x905B	reward package: Firefly x1	1	literal	-
 rbn_a03	カトリーヌ５	talk	additemmes	0x905C	reward package: Ether x1 + Hi-Potion x3	1	literal	-
 rbn_a04	NPC02	talk_after_parade	additemmes	0x9056	reward package: Loxley Bow x1 + Hi-Potion x2	1	literal	-
@@ -2372,7 +2372,7 @@ rbn_a16	NPC02	talk_step01	subitem	0x808E	Serpentwyne Must	1	literal	-
 rbn_a16	常駐監督	EV掲示板とミュート	additemmes	0x9000	reward package: Orrachea Armlet x1	1	literal	-
 rbn_a16	常駐監督	EV掲示板とミュート	additemmes	0x8071	Clan Primer	1	stored before the request	イベント特殊効果画面.ゲット＆メッセージ表示
 rbn_a16	常駐監督	EV掲示板とミュート	additemmes	0x8070	Writ of Transit	1	stored before the request	イベント特殊効果画面.だいじなものゲット
-rbn_a17	NPC02	talk_gardy	subgill	gil		local[0xb0]:s32	-	-
+rbn_a17	NPC02	talk_gardy	subgill	gil		local[0xb0]:i32	-	-
 rbn_a17	NPC02	talk_step00	subitem	0x2114	Small Package	1	literal	-
 rbn_a17	system_crystal_actor	init	additem_47f	0x8040	Rabanastre	1	literal	-
 rbn_a17	system_crystal_actor	talk	additem_47f	0x8040	Rabanastre	1	literal	-
@@ -2402,7 +2402,7 @@ rbn_a17	system_crystal_actor	talk	additem_47f	0x805B	The Phon Coast	1	literal	-
 rbn_a17	system_crystal_actor	talk	additem_47f	0x805C	Tchita Uplands	1	literal	-
 rbn_a17	telepoeffectctrl	telepoeffect	subitem	0x2000	Teleport Stone	1	literal	-
 rbn_a17	常駐監督	EV東門のいざこざ	subitem	0x8072	Galbana Lilies	1	literal	-
-rbn_a18	NPC02	talk_gardy	subgill	gil		local[0xb8]:s32	-	-
+rbn_a18	NPC02	talk_gardy	subgill	gil		local[0xb8]:i32	-	-
 rbn_a18	system_crystal_actor	init	additem_47f	0x8040	Rabanastre	1	literal	-
 rbn_a18	system_crystal_actor	talk	additem_47f	0x8040	Rabanastre	1	literal	-
 rbn_a18	system_crystal_actor	talk	additem_47f	0x8042	Nalbina Fortress	1	literal	-
@@ -2430,7 +2430,7 @@ rbn_a18	system_crystal_actor	talk	additem_47f	0x805A	Ogir-Yensa Sandsea	1	litera
 rbn_a18	system_crystal_actor	talk	additem_47f	0x805B	The Phon Coast	1	literal	-
 rbn_a18	system_crystal_actor	talk	additem_47f	0x805C	Tchita Uplands	1	literal	-
 rbn_a18	telepoeffectctrl	telepoeffect	subitem	0x2000	Teleport Stone	1	literal	-
-rbn_a19	NPC02	talk_gardy	subgill	gil		local[0xb0]:s32	-	-
+rbn_a19	NPC02	talk_gardy	subgill	gil		local[0xb0]:i32	-	-
 rbn_a19	system_crystal_actor	init	additem_47f	0x8040	Rabanastre	1	literal	-
 rbn_a19	system_crystal_actor	talk	additem_47f	0x8040	Rabanastre	1	literal	-
 rbn_a19	system_crystal_actor	talk	additem_47f	0x8042	Nalbina Fortress	1	literal	-
@@ -2466,7 +2466,7 @@ rbn_a19	モグシー	talk	additemmes	0x80AF	Sluice Gate Key	1	stored before the 
 rbn_a19	リムザ	talk	subitem	0x80B1	Wind Globe	1	literal	-
 rbn_a19	リムザ	talk	additemmes	0x80B2	Windvane	1	stored before the request	イベント特殊効果画面.だいじなものゲット
 rbn_b01	カトリーヌ５	talk	additemmes	0x905C	reward package: Ether x1 + Hi-Potion x3	1	literal	-
-rbn_b01	乗船カウンタートーク	カウンター処理	subgill	gil		file[0x1c]:s32	-	-
+rbn_b01	乗船カウンタートーク	カウンター処理	subgill	gil		file[0x1c]:i32	-	-
 rrp_a01	system_crystal_actor	init	additem_47f	0x8040	Rabanastre	1	literal	-
 rrp_a01	system_crystal_actor	talk	additem_47f	0x8040	Rabanastre	1	literal	-
 rrp_a01	system_crystal_actor	talk	additem_47f	0x8042	Nalbina Fortress	1	literal	-
@@ -3908,7 +3908,7 @@ tri_t05	トライアル監督	main	additemmes	0x9128	reward package: 6000 gil + 
 tri_t05	トライアル監督	main	additemmes	0x9129	reward package: 7000 gil + Hi-Ether x10 + Serum x15	1	literal	-
 tri_t05	トライアル監督	main	additemmes	0x912A	reward package: 8000 gil + Elixir x3 + Bubble Mote x3	1	literal	-
 tri_t05	トライアル監督	main	additemmes	0x912B	reward package: 9000 gil + Megalixir x2 + Remedy x15	1	literal	-
-var_a01	NPC_MOG_GARDY	talk	subgill	gil		local[0x54]:s32	-	-
+var_a01	NPC_MOG_GARDY	talk	subgill	gil		local[0x54]:i32	-	-
 var_a01	NPC_MOG_GARDY	talk	additemmes	0x9065	reward package: Defender x1	1	literal	-
 var_a01	system_crystal_actor	init	additem_47f	0x8040	Rabanastre	1	literal	-
 var_a01	system_crystal_actor	talk	additem_47f	0x8040	Rabanastre	1	literal	-
@@ -5069,7 +5069,7 @@ var_b01	system_crystal_actor	talk	additem_47f	0x805A	Ogir-Yensa Sandsea	1	litera
 var_b01	system_crystal_actor	talk	additem_47f	0x805B	The Phon Coast	1	literal	-
 var_b01	system_crystal_actor	talk	additem_47f	0x805C	Tchita Uplands	1	literal	-
 var_b01	telepoeffectctrl	telepoeffect	subitem	0x2000	Teleport Stone	1	literal	-
-var_b01	乗船カウンタートーク	カウンター処理	subgill	gil		file[0x9a4]:s32	-	-
+var_b01	乗船カウンタートーク	カウンター処理	subgill	gil		file[0x9a4]:i32	-	-
 vic_a01	イベント管理	チィ帰る_再生	subitem	0x2115	Dewdrop Pebble	haveitem(8469)	literal	-
 vic_a01	キラリＡ	talk	additemmes	0x2115	Dewdrop Pebble	1	literal	-
 vic_a01	キラリＢ	talk	additemmes	0x2115	Dewdrop Pebble	1	literal	-

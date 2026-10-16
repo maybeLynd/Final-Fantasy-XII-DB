@@ -2,7 +2,7 @@
 title: "Controls: how a key, button or stick becomes a game action, the control codes each device answers to, and how presses, holds and repeats are told apart"
 kind: "system"
 category: "Controls and input"
-summary: "How input reaches the game: the input manager and its poll, the three bands of control codes and the device each reads, the records that turn codes into a 16-button mask and four stick bytes, the movement-key modes, the 16-frame channel history, how a press, a hold, a release and a menu repeat are made, the stick dead zone and the stick-to-direction bits, the button words the game reads each frame, the confirm and cancel buttons, and the six controls read straight from the keymap."
+summary: "How input reaches the game: the input manager and its poll, the three bands of control codes and the device each reads, the records that turn codes into a 16-button mask and four stick bytes, the movement-key modes, the 16-frame channel history, how a press, a hold, a release and a menu repeat are made, the stick dead zone and the stick-to-direction bits, the button words the game reads each frame, the device-state count, the confirm and cancel buttons and the verbs that read them, the mouse wheel in menu lists, whether prompts show pad buttons or keys, the six controls read straight from the keymap, and what each button does in the field."
 addresses: "01F7FFE0, 00196FF0, 00197160, 01DF1480, 0035F420, 0035FAC0, 0035FBD0, 002498B0, 02F97360"
 ---
 
@@ -55,9 +55,9 @@ code against three bands (`001971C5`-`00197218`):
 
 | Codes | Device | Read by |
 |---|---|---|
-| 1-3 | mouse buttons | `0079E6D0` |
-| 11-27 | any of up to 18 pads | `0079E650` |
-| 28-152 | the keyboard | `0079E6A0`, keyboard 0 |
+| `1`-`3` | mouse buttons | `0079E6D0` |
+| `11`-`27` | any of up to 18 pads | `0079E650` |
+| `28`-`152` | the keyboard | `0079E6A0`, keyboard 0 |
 
 A code in no band, such as 0, 4-10 or 153 and up, is never polled. While `001C1990()` reports state 1 and `00228480`
 answers 0, the translator skips the band tests (`001971B2`-`001971C3`), and mode 3 leaves the sticks centred. A held code clears its button's bit (`0019723D`), so
@@ -69,10 +69,10 @@ Each axis entry is `{mode, axis, codeA, codeB}`, dispatched on its mode (`001972
 
 | Mode | Effect on stick byte i |
 |---:|---|
-| 1 | `0xFF` while codeA is held (`00197680`) |
-| 2 | codeA and codeB push the byte down and up by `0x7F` and `0x80`; for entries 0 and 1 the right stick's invert flags swap them, and entries 2 and 3 always push up with codeA (`0019748E`) |
-| 3 | the pad stick `axis`, scaled from -1..1 to 0..255, with axes 2 and 3 flipped and flipped again by the invert flags (`001973E5`) |
-| 4 | mouse: buttons through the backend bytes `+0x170`-`+0x172`, and code 3 as the wheel, one notch per 120 (`001972C7`-`001973BC`) |
+| `1` | `0xFF` while codeA is held (`00197680`) |
+| `2` | codeA and codeB push the byte down and up by `0x7F` and `0x80`; for entries 0 and 1 the right stick's invert flags swap them, and entries 2 and 3 always push up with codeA (`0019748E`) |
+| `3` | the pad stick `axis`, scaled from -1..1 to 0..255, with axes 2 and 3 flipped and flipped again by the invert flags (`001973E5`) |
+| `4` | mouse: buttons through the backend bytes `+0x170`-`+0x172`, and code 3 as the wheel, one notch per 120 (`001972C7`-`001973BC`) |
 
 All records add into the same frame, so a key and a pad stick move the same byte.
 
@@ -109,6 +109,20 @@ Each poll writes one 36-byte frame into a 16-frame ring at `+0x44` of the channe
 3. `0035F760` snaps a stick inside a radius of `0x20` to the centre (`0035F7BD`, `0035F83F`). A left stick past `0x68`
    adds the Up, Right, Down or Left bit to set 1 (`0035F8AE`), which is the buttons plus the left stick as directions.
 
+Byte 0 of a frame is the device state, the second argument of `0035F420` (`0035F572`). `0035FCA0` passes 1, the
+answer of `0053DD10`, which always returns 1 (`0035FCF0`-`0035FD85`). `0035EEB0(channel, i, back)` reads per-button
+byte i of a frame, the newest for `back` 0, and `0046DB10(i)` is `0035EEB0(0, i, 0)`.
+
+### The device-state count
+
+`00227D70`, called by the Start handler `002287D0` (`00228885`), reads the state byte of channel 0's newest frame
+through `0035F150(0, 0, 0)`:
+
+- state 1 sets the count `01E027F8` to 6 and answers 0; any other non-zero state sets it to 6 and answers 2;
+- state 0 counts `01E027F8` down and answers 2 while it was above 0, and answers 1 once it is 0.
+
+Every frame `0035F420` writes holds state 1, so once channel 0 has been polled the answer is 0.
+
 ### Repeats
 
 `0035FBD0` makes the repeat mask of each set from eight button groups. A change fires at once and waits 12 polls
@@ -142,6 +156,64 @@ Circle, Cross, Square. It is called from the main loop (`0022B908`) and from `00
 when the Config setting `+0x64` is 0 (`0017E210`), and the other way round otherwise. It also stores the setting's
 answer at `01FD4A64` (`0022A510`).
 
+Among the readers of `01FD4A64`, `0022A540` answers whether it is 0, for the input filter `001967D0` (`00196803`), and
+the script verbs `get_pad_ok` `0x518` and `get_pad_cancel` `0x519` return the confirm and cancel masks through
+`002E12B0` and `002E1290` (handlers `0034AF20` and `0034B290`).
+
+### The mouse wheel in menus
+
+`002D3900(list)` runs a menu list's cursor with the wheel added to the buttons (`002D392B`-`002D39C5`):
+
+1. It takes held, pressed and repeat of set 0 (`02F97368`, `02F9736A`, `02F9736C`).
+2. Every second call (the count `0209E65C` against `01E0CF88`, 2) it reads and clears the wheel's notch total with
+   `001E0A10` (manager `+0x0C`, cleared by `001986D0`).
+3. With notches, 3 or more (`01E0CF84`) count as one when the list's `+0xE8` is below 13 (`002D397C`). A positive
+   total adds Up (`0x10`) to pressed and repeat, a negative one Down (`0x40`).
+4. It then moves the list once per notch with `002D3BA0`, stopping at the first or last row (`002D4F10`) or when
+   `002D0580` holds the cursor.
+5. Without notches it moves the list once with the plain buttons.
+
+`002D0580` arms a stop (`0209E660`) when the cursor is one row past the row at `+0xF6` while moving up, or one row
+before the last while moving down. While the stop is armed, the cursor is on that end row and the wheel is still
+turning (`001E0E30`), it answers 1; with the cursor anywhere else it disarms. `002D3A50` is the
+same with the filtered copy `02F97390`-`02F97394`, for the gambit screen (`0056984D`, `0056B871`, and `00569CF5` in `005691E0`), and `002D09F0`
+moves a list with the filtered copy and no wheel (`00560D48`).
+
+The Config screen's lists (`0023F240`, `00240DE0`), the clan primer's (`00570CE0`) and `00284EC0`, `002A9980`,
+`002C2F90` and `002C4220` repeat the same pacing with their own code. The debug menu code `001D1660` can change the
+pacing through `002D4F70` (1-10) and `002D4F90` (1-5).
+
+### Pad or keyboard prompts
+
+The input manager's byte `+0x38` records whether the pad was used last:
+
+- `0079D010`, the device poll, compares every key, pad button and mouse button with its previous state, and on a
+  change calls application slot 25 with 0 for a key, 1 for a pad button and 0 for a mouse button (`0079D087`,
+  `0079D107`, `0079D181`). Slot 25 is `0017D1E0`, which stores the byte through `00198E70`.
+- The translator sets it to 1 when a pad stick axis reads non-zero (`0019744B`), and F9 clears it (`0017DE60`).
+
+`001E0C10` reads it (`00197780`). An icon in text asks `002AB8F0` for its button (`002AEBCE`). The answer is an index
+in the order Circle, Triangle, L1, L2, R1, R2, L3, R3, Square, Cross, Left, Right, Up, Down:
+
+| Icon code | Index |
+|---|---|
+| `0x20`, `0x21`, `0x23` | the confirm mask's button, 0 or 9; 0 when the keyboard was used last |
+| `0x27` | the cancel mask's button, 0 or 9; 9 when the keyboard was used last |
+| `0x22`, `0x24` | 8, Square |
+| `0x25`, `0x26` | 1, Triangle |
+| `0x28`, `0x29`, `0x2A`, `0x2B` | 2, 4, 3 and 5: L1, R1, L2 and R2 |
+
+Any other code is returned unchanged. `002B5B60`, run by the script verb `0x5CD` (handler `00341030`), fills the 14
+bytes at `01E0CE30` in that order with the key-cap index of each button's first-profile key (`001E0BD0`,
+`001E0DA0`), exchanging entries 0 and 9 when the Config setting `+0x64` is not 0.
+
+Entries 10-13 then take the
+direction keys of the active movement-key block (`001E0DC0`, slots 7, 5, 4 and 6). With no block active that
+call gives code 0, which the index search `00197790` never finds, since it covers indices 0-105 only; the entry
+then keeps the first pass's key, the Left, Right, Up or Down binding, because both passes store only an index
+other than -1 (`002B5B60`). A scan of rip-relative and image-base displacement
+operands in the listed functions finds no other reference to `01E0CE30`.
+
 ### Controls read straight from the keymap
 
 Six controls are not in the published records. Their readers ask `00197710(manager, 0, group, slot)` for the first
@@ -153,6 +225,44 @@ profile's code, read from `01F80F90` (`0019775A`-`0019776F`), and test it on the
 | R2, group 0 slot 9 | `0017DE10` | the input arbiter (`002541D4`), [Escape Mode](escape.md) |
 | Speed1-3, group 2 slots 0-2 | `0017DEA0` | `0022AA59` |
 | WalkMode, group 2 slot 3 | `0017DFC0` | the party's movement (`00359518`) |
+
+### The field buttons
+
+The input arbiter `00253C70` reads the field's presses once per field frame. It returns before reading a button
+when bit 1 of the battle mode register `022C83E8` is set (`0035C740`), when the byte `0215F1A0` is set (`002E12D0`),
+or when `00228380` or the Start handler `002287D0` answers non-zero (`00253C97`-`00253CCC`). The buttons are read
+only while `00265680` answers non-zero (`00253D0D`), from held and pressed of set 0.
+
+While `003135E0` (bit 0 of `+0x5B04` of `02EBF190`) and `0035C750` (bit 4 of `022C83E8`) both answer non-zero, the
+confirm button, the four directions and Square are dropped from the presses (`00253D3D`-`00253D5E`). The arms then
+run in this order, and the policy bits are those of [Action availability](action-availability.md):
+
+| Presses | Condition | What happens |
+|---|---|---|
+| Triangle alone, held and pressed | policy bit 0 clear | the main menu, request 2 (`00253D61`-`00253D78`) |
+| Select or L3 | see [Menus](../Menus-And-HUD/menus.md) | the map requests; `002500F0(mask, 2)` answers 1 when policy bit 11 is clear, `00236760` answers 0 and `002E25B0(2)` allows request 2 (`00253E6D`) |
+| any | `02092730` is 0 and `00303EC0` answers non-zero | `003CA200`, and the presses are cleared (`00253F62`-`00253F70`) |
+| Square | `02092730` is 0, policy bit 10 clear, `003669D0` answers 0 | `002F1710`, then request 1 (`00253F7C`-`00253F98`, `002541B9`-`002541C7`) |
+| cancel | `02092730` is 0 | `003C8950` (`00253F9D`-`00253FA9`) |
+| Left or Right | L1 not held, `003669D0` answers 0, `02092730` is 0 or 3 | unless `02092734` is 1 or request 5 is refused, the target-cycling route `0035DA80`, `003C8990`, `003C87B0(5)` (`00253FB3`-`00254044`) |
+| Up or Down, or wheel notches | L1 not held, two of the nine members `00320040(3, i)` returns have `+0x60` not negative and flag bit 1 clear or flag `0x4008` is set, `02092730` is 0 or 5 | request 3; with the area's bit 15 the wheel total is cleared first (`00254052`-`002540D2`) |
+| confirm or Square, or a pending pick | `02092730` is 0 | the interaction (`00254132`-`0025415A`), or request 1 (`002541A4`-`002541C7`) |
+
+The helpers the arms call:
+
+- `003C9570` returns the pick at `+0xCC` of the object in `02B47730` while its `+0xC0` bit 3 is set, and
+  `003C9550` clears that bit; `003C8950` runs `00268620` and clears bit 1 when bit 1 is set.
+- `003CA200` calls the callback at `+0x2A0` of the object in `02B47758` with message `0x1F` when that callback is set
+  (`00273A20`) and the object's `+0x2E0` bit 4 is set.
+- `002F1710` finishes the entry in `022BE7D0`: it copies the entry's second word over its first, calls its callback
+  at `+0x08`, sets `+0x1C` to 1 and clears the entry's bit, numbered by `+0x18`, in `022BE7C0`.
+- `00267720` answers 1 only when `0209A2AA` is set, the controlled character exists (`003590D0`, `003588B0`), its record is not one that `002373A0` accepts and
+`00233D70` refuses, no
+  menu is open (`002E05C0`), `00265680` answers non-zero and `02099DB4` is 0.
+- `00252DE0`, from the area unload `002628B0`, clears `02092730` and `02092734` and sets `020927C8` and `020927CC`
+  to 1 (`00252DF5`-`00252E0B`).
+
+The R2 toggle after the arms is on [Escape Mode](escape.md).
 
 ## Modding notes
 

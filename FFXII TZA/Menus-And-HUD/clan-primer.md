@@ -35,14 +35,23 @@ leave without returning.
 
 ### Categories
 
-`0056F810` builds its rows from the four 6-byte records at `00D23688`, `{u16 label, u16 help, u8 kind, u8}`:
+`0056F810` builds its rows from the four 6-byte records at `00D23688`:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u16` | label | category label |
+| `02` | `u16` | help | help line |
+| `04` | `u8` | kind | page kind |
+| `05` | `u8` | b5 | 1, or 2 for Traveler's Tips |
+
+The shipped records:
 
 | Row | Category | Help | Kind | Shown when (`0056F750`) |
 |---|---|---|---|---|
-| 0 | Hunts (`0x1B5F`) | "Hunt information and progress." | 6 | the Hunts sync passes, story window 11 is open (`0032A8A0(0x400B)`, entry 11 of the story schedule `00377970`) and a hunt is listed |
-| 1 | Bestiary (`0x1B5C`) | "Insights on foes you have defeated." | 5 | the Bestiary sync passes, story window 11 is open and an entry is unlocked |
-| 2 | Sky Pirate's Den (`0x1B5D`) | "What will it take to fill the den?" | 7 | story window 11 is open |
-| 3 | Traveler's Tips (`0x1B5E`) | "Hints for the wary adventurer." | 4 | the Traveler's Tips sync passes and an entry is unlocked |
+| `0` | Hunts (`0x1B5F`) | "Hunt information and progress." | `6` | the Hunts sync passes, story window 11 is open (`0032A8A0(0x400B)`, entry 11 of the story schedule `00377970`) and a hunt is listed |
+| `1` | Bestiary (`0x1B5C`) | "Insights on foes you have defeated." | `5` | the Bestiary sync passes, story window 11 is open and an entry is unlocked |
+| `2` | Sky Pirate's Den (`0x1B5D`) | "What will it take to fill the den?" | `7` | story window 11 is open |
+| `3` | Traveler's Tips (`0x1B5E`) | "Hints for the wary adventurer." | `4` | the Traveler's Tips sync passes and an entry is unlocked |
 
 The labels and help lines are in `penelosdiary` and `help_penelosdiary`. A row carries the new-entry badge when fewer
 entries are read than unlocked (`0056FAD0`). Confirming posts the kind to the back panel, which hands it to the mid
@@ -83,7 +92,16 @@ Confirming an entry opens the entry page through `0056EC10`. The cursor of each 
 5. A request to a busy slot waits in its queue (`00575A50`). Each slot reports to the back panel when its content is
    ready or freed.
 
-A catalog record is `{u32 text, u16 group, u16 bundle, u16 detail, u8 flag}` (`00575D10`, `005778F0`, `005760A0`).
+A catalog record is 12 bytes (below), with text -1 for none (`00575D10`,
+`005778F0`, `005760A0`).
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `i32` | text | entry text, -1 for none |
+| `04` | `u16` | group | group |
+| `06` | `u16` | bundle | text bundle |
+| `08` | `u16` | picturePage | picture page |
+| `0A` | `u8` | flag | flag |
 
 ### Unlocks
 
@@ -94,13 +112,13 @@ state up to date.
 
 An entry's unlock bit is at save `+0x32CC` and its read bit at `+0x330C`, at the family's offset from `00D10630`
 (`003154B0`, `003156E0`). `00577550` recomputes each unlock bit from the family's unlock record (`00575E80`, 8 bytes);
-every field that is not -1 must hold:
+every field that is not all ones (`0xFF`, or `0xFFFF` for the words) must hold (`00575E8C`, `00575EA9`, `00575EC7`):
 
 | Field | Test |
 |---|---|
-| `i8 a`, `i8 b` | `00315470(a) == b` |
-| `i8 c` | `00315620(c) != 0` |
-| `i16 +4` | story flag `0032A8A0(flag)` |
+| `u8 a`, `u8 b` | `00315470(a) == b` |
+| `u8 c` | `00315620(c) != 0` |
+| `u16 +4` | story flag `0032A8A0(flag)` |
 | `u16 +6` | the story counter (`00265270`) >= value |
 
 #### Bestiary
@@ -114,18 +132,23 @@ Each entry has seven text slots, whose unlock is worked out each time the entry 
 
 | Mode | A slot unlocks when |
 |---|---|
-| 0 | this monster's kill count reaches the slot's value |
-| 1 | the story counter reaches the slot's value |
-| 2 | this monster or the monster the slot names has been defeated |
+| `0` | this monster's kill count reaches the slot's value |
+| `1` | the story counter reaches the slot's value |
+| `2` | this monster or the monster the slot names has been defeated |
 
 The read marks are save `+0x3604 + i`, one bit per slot (`00315670`, `00315AD0`). `00577550(5)` sets the marks of empty
 slots, so an entry counts as read when every unlocked slot has been viewed. The entry shows the kill count (`005760A0`).
 
 #### Hunts
 
-`menuquest.dat` holds `{u32 text, u32 key}` records; group 1 (`key & 0xFF`) is the 45 hunts, quest ids `0x80`-`0xAC`.
+`menuquest.dat` holds 8-byte records (below); group 1 (`key & 0xFF`) is the 45 hunts, quest ids `0x80`-`0xAC`.
 A hunt is listed when `0046B1A0(quest)` or `0046B240(quest)` is true (`00576550(6)`), and read marks are at save
 `+0x33F4`.
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | text | title text id |
+| `04` | `u32` | key | group in bits 0-7, quest id in bits 8-17 |
 
 #### Sky Pirate's Den
 
@@ -142,10 +165,25 @@ awards with `00577550(7)` (`005750AF`, `00316930`). `00572920` lays out one grou
 3. The loader `002EE430` loads the body, then weapon 0 and weapon 1, then the motion set chosen by weapon 0
    (`003203B0`), and marks each part's render record `+0x6E0 = 1`.
 4. Each frame, `001EC060` turns the model from the stick (`00249860`, `00249880`): the yaw wraps from 0 to 360 and the
-   pitch stays between -15 and 30 degrees.
+   pitch stays between -15 and 30 degrees. It turns vectors with `001EB3D0`, a vector times the upper 3 x 3 of a
+   matrix (`001EC3DC`).
 5. `00477F20` draws a record with `+0x6E0` set only in frame mode 3 (`00229EA0`), and every other record only outside
    it, so the model appears only in the menu.
 6. Closing the entry (`001846B0`, `00570355`) frees the model and restores `02CB8138`.
+
+The viewer is the `0x2E0`-byte object `[01F82E18]`, built on first use by `001EBA40`. When the entry page opens it,
+`00181D50` and `00181D80` take two screen-sized render targets from the pool `[01F81210]` (`00182BE0(1.0, 1.0)`)
+into viewer `+0x270` and `+0x278` (`0057025F`, `00570264`); `00181B90` and `00181BD0` hand them back when it
+closes (`0057032C`, `00570350`).
+
+`001C6320` passes the entry's keys on to the viewer:
+
+- `monsterWeaponIndex` and `monsterWeaponIndex2` to `001EBBF0` as weapons 0 and 1: the index goes to
+  `+0x124 + 4 x slot` and the count `slot + 1` to `+0x12C`, or the count is 0 when the index is 0;
+- `motionIndex` to `001EBC20`, which keeps it modulo 80 at `+0x224`;
+- `cameraFov` to `001EBA90` (`+0x250`, `+0x110`);
+- the ambient light and the two lights, colours and directions, in one `0xD0`-byte block to `001EBB70`, which copies
+  it to `+0x144` (`001C694D`).
 
 ## Shipped data
 

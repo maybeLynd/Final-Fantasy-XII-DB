@@ -30,15 +30,11 @@ track's first byte, or 0 for a negative track or no file.
 
 ## Layouts
 
-`MusicCtrlHeader` (`0x34` bytes, offsets from the start of the file):
-
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `00` | `char[4]` | magic | "MUS0" |
 | `04` | `u32` | maxField | 1311, the highest field id |
 | `08` | `u32[11]` | pageOffset | one page per 128 field ids; 0 for a page with no runs |
-
-`MusicRun` (`0x4` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -46,16 +42,12 @@ track's first byte, or 0 for a negative track or no file.
 | `02` | `u8` | rungs | ladder steps after the run |
 | `03` | `u8` | track | the track, 0 for none |
 
-`MusicRung` (`0x3` bytes, offsets from the start of the record):
-
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `00` | `u16` | above | a story counter value |
 | `02` | `u8` | track | the track once the counter is above it, 0 for none |
 
 `musicinfo.bin` is 256 entries of two bytes, one per track:
-
-`MusicInfoEntry` (`0x2` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|

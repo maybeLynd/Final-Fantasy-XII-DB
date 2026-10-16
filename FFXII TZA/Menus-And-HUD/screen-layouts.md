@@ -61,8 +61,6 @@ The loader `001CA600` binds every key by its own code, with no table (1,602 inst
 
 No two keys share a cell, and every cell is in `.data`.
 
-`JsonBoxValue` (`0x10` bytes, offsets from the start of the record):
-
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `00` | `u32` | tag | 1 integer, 2 double, 3 object, 6 absent (`00200BE0`, `001FF5E1`) |

@@ -103,14 +103,18 @@ Action `0xB1` with a target present then posts `0x3B` (`0046A5FE`-`0046A617`).
 `0046AB10(stats, event, context)` (371 bytes) handles every message:
 
 1. It drops the message when the context's action id is `0x1FF` or above, or when the target's unit
-   exists and either `02089340` has any of `0x3080` or the target stats byte `+4` has bit 5
-   (`0046AB19`-`0046AB56`).
+   exists and either `02089340` has any of `0x3080` or the target's battle unit (`0031B860`) has bit `0x20` of
+   byte `+4` (`0046AB19`-`0046AB56`).
 2. It drops it when the visibility filter `00469570` returns 0 (`0046AB65`).
 3. For a row with bit 0 of byte `+4`, it drops it when one of the ten 0x20-byte ring entries at
    `02EBB560` (event `u16` at `+0`, tick at `+4`, stats at `+8`) holds the same event and stats and
    its tick plus `450 * [01DFE0B4]` is still ahead of `0032A150()` (`0046ABB3`-`0046ABF5`).
 4. It records `{event, tick, stats}` in the ring entry `[02EBB54C]`, advances that index modulo 10,
    and calls `005369C0(stats, event, context)` (`0046AC00`-`0046AC66`).
+
+The area initialisation `002342F0` empties the ring through `0033A380` (`00234463`), which calls
+`004696A0` (`0033A3B0`): every entry's event becomes `0xFFFF`, its tick, stats and word `+0x18` 0,
+and the index `02EBB54C` 0 (`004696A0`-`004697BB`).
 
 ### The visibility filter
 
@@ -136,9 +140,23 @@ into a status name, kind 7 into an item name or a number (`0xE000` + n), and kin
 name; kind 4 is formatted through a sub-template taken from the message table's text heap
 (`002B4090`).
 
-## Layouts
+The helpers behind those arguments:
 
-`BattleMessageRow` (`0x8` bytes, offsets from the start of the row):
+- `00536310(stats, &flag)` gives the name id. For a unit whose actor has a name id of 0 or more
+  (`00267410`), it returns the actor's `i16` at `+0x102`, read by `00263B40`, and sets `flag`
+  (`005363A5`-`005363D6`); for any other unit, the `u16` at `+8` of its `[+0xE60]` record
+  (`005363DC`-`005363F0`). A stats record with byte `+0x05` = 0 reads word `+0x30` of its row in the
+  table `[02EBF130]` instead (`00536345`-`00536388`).
+- For kind 7, when the language test `00254A10` is true, `00536410` takes the item name from
+  `00309E70(id)` (`00536769`-`00536777`). That fills a class-1 query record (`0031C5D0`) and returns
+  its name through `002B58B0`, or the empty string `01CEB638` when the fill fails
+  (`00309E70`-`00309EB7`).
+- `0035B990` takes the request's text through `00393740` on both of its paths (`0035B9CD`,
+  `0035BA07`). `00393740` returns null unless the request's first dword is 7 and its text pointer
+  `+0x28` is set; otherwise it copies the text through a 384-byte buffer into the caller's buffer
+  (`0039375F`-`00393795`).
+
+## Layouts
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|

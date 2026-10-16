@@ -110,7 +110,10 @@ or 0.0 when there is no equipment row (`00309377`-`0030938B`). The byte is divid
 
 `003204E0` reads numbers 12-23 through `002ECE50(object, dword at 01EED320 + number * 4)` (the
 character parameter ids `0x09000D0E`-`0x09001819`, `01EED350`) and multiplies the result by the float
-at `[object+0xB8]+0x28` (the third output of `00265240`).
+at `[object+0xB8]+0x28` (the third output of `00265240`). Numbers 24, 26, 28 and 31 take the
+integer path instead: `002ECE80(object, id)` hands the same character record id, with the same null
+and -1 guards, to `003E6310` (`002ECE80`-`002ECEA0`), and `003204E0` stores the returned dword as it
+is (`00320580`-`00320590`).
 
 `002ECE50` passes the int that `[object+0xC0]` points to (returning 0.0 when the pointer is null or the
 int is -1) to `003E6150`. That reads the parameter from the character's parameter block (`004FE270`)
@@ -211,7 +214,9 @@ the speed `ctx+0xB0` is non-zero; otherwise it clears bit 8 and returns 0 (`0033
 - [Battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md)
   - the movement solver that runs the spacing and pacing steps.
 - The inner values have a second reader: `00320E10` calls `00320D70` twice (`00320F6A`, `00320F82`)
-  for the unit's current action and is used only by the query-record builder `0031ADB0`.
+  for the unit's current action and is used only by the query-record builder `0031ADB0`. It takes
+  one object's body size as the larger of its `00265090` pair through `0030A160` (`00320FF6`;
+  `0030A16E`-`0030A179`).
 - [The FCP character parameter block](../17-Presentation-Rendering/model-files-cm-ca.md
 )
   - the per-character parameters behind weapon-flag actions.

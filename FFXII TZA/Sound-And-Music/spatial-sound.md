@@ -57,11 +57,11 @@ A `PolygonSound` outline is drawn by its mode byte `+0x104` (`007F25E0`):
 
 | Mode | Shape |
 |---:|---|
-| 0 | the nearest point |
-| 1 | line segments |
-| 2 | a triangle strip |
-| 3 | a triangle fan |
-| 4 | a triangle list |
+| `0` | the nearest point |
+| `1` | line segments |
+| `2` | a triangle strip |
+| `3` | a triangle fan |
+| `4` | a triangle list |
 
 For a triangle it drops the listener onto the triangle's plane; when that point is inside, the plane distance counts,
 and otherwise the three edges are tried (`007F7440`, `007F7570`). Distances are full 3-D, through the lane mask
@@ -92,11 +92,11 @@ gets the same level, and with 1 the sound is fully directional ([Sound effects](
 
 | Shape | Source | Outline |
 |---:|---|---|
-| 0 | `PolygonSound` | an ellipse of 13 triangles with half-sizes `+0x30`, `+0x34`, turned by `+0x50` |
-| 1 | `PolygonSound` | a rectangle of half-sizes `+0x30`, `+0x34` |
-| 2 | `PolygonSound` | a line through the record's points |
-| 3 | `AmbientSound` | none |
-| 4 | `DynamicSound` | none; its range comes from the bank |
+| `0` | `PolygonSound` | an ellipse of 13 triangles with half-sizes `+0x30`, `+0x34`, turned by `+0x50` |
+| `1` | `PolygonSound` | a rectangle of half-sizes `+0x30`, `+0x34` |
+| `2` | `PolygonSound` | a line through the record's points |
+| `3` | `AmbientSound` | none |
+| `4` | `DynamicSound` | none; its range comes from the bank |
 
 The starting volume is byte `+0x19` over 127 times the weather slot's percentage over 100 (`00221C11`-`00221C42`).
 The sources come from three places:

@@ -17,15 +17,25 @@ The goods are section 57 of `battle_pack.bin`, the section its directory entry a
 bound to `02EBF058` by the battle data binder (`00236F6E`-`00236F7C`). It is an `st2e` table of 128 rows of 36
 bytes:
 
-| Offset | Field | Read by |
-|---|---|---|
-| `00` | `u16` name word | the query filler `0031C5D0` |
-| `02` | `u16` description text id | the query filler |
-| `+0x04`, `+0x08`, `+0x0C` | `u16` item given, each with a `u8` count at `+0x06`, `+0x0A`, `+0x0E`; count 0 for none | `002FD780` (`002FD7F2`-`002FD85D`) |
-| `10` | `u32` price in gil | the query filler, to the query record's `+0x28` (`0031DA1F`) |
-| `14` | `u16` flags: bit 0 can come back, bit 1 a script sets it | `0030B33F`, `0030B5F6` |
-| `+0x16`, `+0x1A`, `+0x1E` | `u16` loot to sell, each with a `u8` count at `+0x18`, `+0x1C`, `+0x20`; an unused slot is id 0 with count 0 | `0030B375`-`0030B45F` |
-| `22` | `u16` 120 on every row, copied to the query record's `+0x2C` | the query filler (`0031DA32`-`0031DA36`) |
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u16` | name | name word, read by the query filler `0031C5D0` |
+| `02` | `u16` | description | description text id, read by the query filler |
+| `04` | `u16` | item0 | first item given (`002FD780`, `002FD7F2`-`002FD85D`) |
+| `06` | `u8` | count0 | its count; 0 for none |
+| `08` | `u16` | item1 | second item given |
+| `0A` | `u8` | count1 | its count |
+| `0C` | `u16` | item2 | third item given |
+| `0E` | `u8` | count2 | its count |
+| `10` | `u32` | price | price in gil, copied to the query record's `+0x28` (`0031DA1F`) |
+| `14` | `u16` | flags | bit `0x1` it can come back, bit `0x2` a script sets it (`0030B33F`, `0030B5F6`) |
+| `16` | `u16` | loot0 | first loot to sell; an unused slot is id 0 with count 0 (`0030B375`-`0030B45F`) |
+| `18` | `u8` | lootCount0 | its count |
+| `1A` | `u16` | loot1 | second loot to sell |
+| `1C` | `u8` | lootCount1 | its count |
+| `1E` | `u16` | loot2 | third loot to sell |
+| `20` | `u8` | lootCount2 | its count |
+| `22` | `u16` | c22 | 120 on every row, copied to the query record's `+0x2C` (`0031DA32`-`0031DA36`) |
 
 ### Unlocking a good
 

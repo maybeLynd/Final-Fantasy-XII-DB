@@ -87,8 +87,6 @@ calls `001DBE60(id, record + 0x10)` for each. `0021A040` skips an id already loa
 
 ## Layouts
 
-`SabHeader` (`0x10` bytes, offsets from the start of the file):
-
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `00` | `char[4]` | magic | "sabf" in a .sab, "mabf" in a .mab |
@@ -96,14 +94,12 @@ calls `001DBE60(id, record + 0x10)` for each. `0021A040` skips an id already loa
 | `05` | `u8` | flag | 1 in a six-digit bank and in every .mab, 0 in the others |
 | `06` | `u16` | dirDelta | `0x10` |
 | `08` | `u8` | chunkCount | 4 in a .sab, 3 in a .mab |
-| `09` | `u8` | nameLength | length of the bank name at +`0x10` |
+| `09` | `u8` | nameLength | length of the bank name at `+0x10` |
 | `0A` | `u16` | param | 1 makes the voice mixer drop the front-back pan |
 | `0C` | `u32` | fileSize | the file's length |
 
 The bank name follows at `+0x10`, `nameLength` bytes and a zero. The chunk directory starts at
 `((0x10 + nameLength) & 0xF0) + dirDelta`, which is `0x20` in every shipped file.
-
-`SabChunk` (`0x10` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -111,8 +107,6 @@ The bank name follows at `+0x10`, `nameLength` bytes and a zero. The chunk direc
 | `04` | `u32` | flags | `0x00100000` |
 | `08` | `u32` | offset | from the start of the file |
 | `0C` | `u32` | pad | 0 |
-
-`SeBlockIndex` (`0x210` bytes, offsets from the start of the file):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -122,22 +116,18 @@ The bank name follows at `+0x10`, `nameLength` bytes and a zero. The chunk direc
 | `0C` | `u32` | fileSize | the file's length |
 | `10` | `i32[128]` | slotOffset from +0x210; -1 for an empty slot |  |
 
-`SeBlockSlot` (`0x5` bytes, offsets from the start of the record):
-
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `00` | `u32` | word | copied twice into the slot's node, read by no bank method |
 | `04` | `u8` | flags | the slot's start flags, read when the sound starts (`00224570`) |
-
-`SeSepRecord` (`0x15` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `00` | `char[5]` | magic | "SeSep" |
 | `08` | `i32` | id | the six-digit bank id |
 | `0C` | `u32` | size | record length in bit 0-30 |
-| `10` | `u32` | word | copied to bank +`0x40` and +`0x45` |
-| `14` | `u8` | flags | copied to bank +`0x44` and +`0x49` |
+| `10` | `u32` | word | copied to bank `+0x40` and `+0x45` |
+| `14` | `u8` | flags | copied to bank `+0x44` and `+0x49` |
 
 ## Shipped data
 

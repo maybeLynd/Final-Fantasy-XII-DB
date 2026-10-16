@@ -32,14 +32,14 @@ bit, for example "fire damage" with icon `0x8A` and "dark damage" with `0x91`):
 
 | Bit | Element | Spells | Weapons and ammunition |
 |---:|---|---|---|
-| 0 | fire | Fire, Fira | Flametongue, Fiery Arrows |
-| 1 | lightning | Thunder, Thundara | Storm Spear, Lightning Arrows |
-| 2 | ice | Blizzard, Blizzara | Icebrand, Trident |
-| 3 | earth | Quakeja, Tremor | Koga Blade, Mud Shot |
-| 4 | water | Aqua, Aquara | Murasame, Aqua Shot |
-| 5 | wind | Aero, Aeroga | Zephyr Pole, Windslicer Shot |
-| 6 | holy | Holy, Holyja | Excalibur, Holy Lance |
-| 7 | dark | Dark, Darkra | Yagyu Darkblade, Dark Shot |
+| `0` | fire | Fire, Fira | Flametongue, Fiery Arrows |
+| `1` | lightning | Thunder, Thundara | Storm Spear, Lightning Arrows |
+| `2` | ice | Blizzard, Blizzara | Icebrand, Trident |
+| `3` | earth | Quakeja, Tremor | Koga Blade, Mud Shot |
+| `4` | water | Aqua, Aquara | Murasame, Aqua Shot |
+| `5` | wind | Aero, Aeroga | Zephyr Pole, Windslicer Shot |
+| `6` | holy | Holy, Holyja | Excalibur, Holy Lance |
+| `7` | dark | Dark, Darkra | Yagyu Darkblade, Dark Shot |
 
 A magick's element is byte `+0x13` of its action row
 ([Action definition row](../Battle-Actions/action-definition-row.md)). A weapon's is byte `+0x1E` of
@@ -117,9 +117,9 @@ Three slots apply the element against the target's statuses:
 
 | Slot | Function | Runs for | Oil (status 11) and fire | Float (status 26) and earth |
 |---:|---|---|---|---|
-| 92 | `0038B010` | magick recipes 7, 11, 63, 83, 105 | x3 (`0038B076`-`0038B0DB`) | miss: `02AEDFBC` and `02AEDFB8` = 1 (`0038B0E3`-`0038B131`) |
-| 102 | `0038C940` | recipes 65, 66 | x3 (`0038CA23`-`0038CA88`) | miss (`0038CA90`-`0038CADE`) |
-| 96 | `0038B950` | the weapon recipes 20-29, 64, 103, 104 | x3 with the weapon or ammunition element (`0038BA44`-`0038BBE6`) | not tested |
+| `92` | `0038B010` | magick recipes 7, 11, 63, 83, 105 | x3 (`0038B076`-`0038B0DB`) | miss: `02AEDFBC` and `02AEDFB8` = 1 (`0038B0E3`-`0038B131`) |
+| `102` | `0038C940` | recipes 65, 66 | x3 (`0038CA23`-`0038CA88`) | miss (`0038CA90`-`0038CADE`) |
+| `96` | `0038B950` | the weapon recipes 20-29, 64, 103, 104 | x3 with the weapon or ammunition element (`0038BA44`-`0038BBE6`) | not tested |
 
 The same three slots also multiply the scale for other statuses, for example Shell (status 19) by
 0.75 at `0038B057`-`0038B065`.
@@ -160,7 +160,7 @@ The environment and weather classes belong to the area, and the terrain class to
 - **Weather class** `02099DAC` (read through `003214A0`): `0026D910` takes the lane's weather preset from
   `00377850`, giving 0 for preset 0, 1 for presets 1-3 and 2 for presets 4 and above
   (`0026DA31`-`0026DA4E`).
-- **Terrain class** (`003210E0`, then `00263DD0`): the target actor's ground index, the `s16` at `+0x8A`
+- **Terrain class** (`003210E0`, then `00263DD0`): the target actor's ground index, the `i16` at `+0x8A`
   of the record its `+0xC0` and `+0x138` pointers reach (index 0 when either is missing), looked up in the
   32-entry table at `map_ref.bin` header `+0x14` (`00263DD7`-`00263E00`; bound by `002678A0`).
 
@@ -168,14 +168,10 @@ The environment and weather classes belong to the area, and the terrain class to
 
 The element and affinity fields of an equipment row and its attribute record:
 
-`EquipmentElementFields` (offsets from the start of the record):
-
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `1E` | `u8` | element | weapon or ammunition element, one bit (`0038BE30`, `0038B950`) |
-| `28` | `u32` | attributes | offset of the attribute record past header +`0x18`; made a pointer at load (`00238225`-`0023823E`) |
-
-`EquipmentAffinityFields` (offsets from the start of the record):
+| `28` | `u32` | attributes | offset of the attribute record past header `+0x18`; made a pointer at load (`00238225`-`0023823E`) |
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -221,10 +217,10 @@ The environment class over the 279 weather lanes of `map_ref.bin` (93 blocks of 
 
 | Class | Lanes |
 |---:|---:|
-| 0 | 12 |
-| 1 | 1 |
-| 2 | 4 |
-| 3 | 16 |
+| `0` | 12 |
+| `1` | 1 |
+| `2` | 4 |
+| `3` | 16 |
 | 4 (no rule) | 246 |
 
 The terrain table at header `+0x14` holds `4, 3, 4, 4, 1, 2, 4, 4, 3, 3, 4, 0, 0, 4, 4, 0, 4, 2` for

@@ -48,10 +48,10 @@ any one of them licenses it.
 
 | Categories | Kind | Used for |
 |---|---|---|
-| 1-8 | 0 | equipment |
-| 9-14, 19, 20 | 1 | actions: magicks, technicks, Quickenings, Espers |
-| 15-18 | 2 | augments ([Augments](../Damage-And-Battle-Formulas/augments.md)) |
-| 30 | 3 | Second Board |
+| 1-8 | `0` | equipment |
+| 9-14, 19, 20 | `1` | actions: magicks, technicks, Quickenings, Espers |
+| 15-18 | `2` | augments ([Augments](../Damage-And-Battle-Formulas/augments.md)) |
+| 30 | `3` | Second Board |
 | any other | none | - |
 
 ### Quickenings
@@ -87,18 +87,24 @@ picks the rule:
 
 | Reason | When | Sites |
 |---:|---|---|
-| 6 | no record | `00323D2C`-`00323D43` |
-| 7 | the node number is not below the table's count | `00323D44`-`00323D6A` |
-| 1 | the member already owns it | `00323D6B`-`00323DAB` |
-| 4 | a byte `+0x06` = 2 square while the member owns three of nodes 0-17 | `00323E61`-`00323E76` |
-| 3 | a byte `+0x06` = 1 or 3 square that any of party rows 0-6 that has been active owns (`00324280`) | `00323E2C`-`00323E3C`, `00323E78`-`00323E86` |
-| 5 | a byte `+0x06` = 3 square whose node *n*, 18-30, does not yet have presence bit `0xC000 + n` set, or any other node | `00323E3E`-`00323E5F` |
-| 8 | a category 30 square while presence bit `0xC01F` is not set | `00323E88`-`00323EA3` |
-| 2, 9 | a byte `+0x06` of 4 or more: 2 when LP is charged and the cost is above the LP, else 9 | `00323E0B`-`00323E25` |
+| `6` | no record | `00323D2C`-`00323D43` |
+| `7` | the node number is not below the table's count | `00323D44`-`00323D6A` |
+| `1` | the member already owns it | `00323D6B`-`00323DAB` |
+| `4` | a byte `+0x06` = 2 square while the member owns three of nodes 0-17 | `00323E61`-`00323E76` |
+| `3` | a byte `+0x06` = 1 or 3 square that any of party rows 0-6 that has been active owns (`00324280`) | `00323E2C`-`00323E3C`, `00323E78`-`00323E86` |
+| `5` | a byte `+0x06` = 3 square whose node *n*, 18-30, does not yet have presence bit `0xC000 + n` set, or any other node | `00323E3E`-`00323E5F` |
+| `8` | a category 30 square while presence bit `0xC01F` is not set | `00323E88`-`00323EA3` |
+| `2`, `9` | a byte `+0x06` of 4 or more: 2 when LP is charged and the cost is above the LP, else 9 | `00323E0B`-`00323E25` |
 
 The presence bits are the class `0xC` bits of the inventory, read through `0030B0E0`. On the shipped nodes, byte
 `+0x06` is 2 on nodes 0-17, the Quickenings, 3 on nodes 18-30, the Espers, and 0 elsewhere; node 360, Second
 Board, is the one category 30 node.
+
+The script verb `fsmenu_getlicensestatus` (`0x7034`, `00511310`) asks for reason 1 only. It pops a node and
+then a member and returns `00282E80(member, node)`, which is 1 when `00323600(member, node)` gives
+reason 1, the member owns the square, and 0 otherwise (`00511328`-`0051133B`, `00282E80`).
+`00323600` takes record `[02EBF190] + 8 + member * 0x1C8` for a member up to 39 and no record, reason 6,
+above (`00323600`-`0032362A`).
 
 ### Squares a member starts with
 
@@ -113,7 +119,7 @@ Script verb `0x5D6` `resetJobs(member)` calls `00328BD0` for main characters 0-5
 
 1. It removes all the member's equipment (`0031A260`).
 2. `00328990` walks each of the member's two boards, the bytes `+0x1C3` and `+0x1C4`. It clears every owned square
-   the member did not start with and adds its cost back to the LP, kept below 99,999 (`003289F0`-`00328AF2`).
+   the member did not start with and adds its cost back to the LP, clamped to 0-99,999 (`00328990`, `003289F0`-`00328AF2`).
 3. It then refreshes the menu state (`00559760`), and when the member is the current summoner it dismisses the Esper
    (`003137F0`, `003138D0(1)`, `00313550(0)`) (`00328C3A`-`00328C59`).
 4. It rebuilds the stats with `0030FED0(record, 0x97)` (`00328C5E`-`00328C66`), reloads the member's gambit preset
@@ -123,8 +129,6 @@ Script verb `0x5D6` `resetJobs(member)` calls `00328BD0` for main characters 0-5
    (`00328CB4`-`00328CF5`).
 
 ## Layouts
-
-`LicenseNode` (`0x18` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|

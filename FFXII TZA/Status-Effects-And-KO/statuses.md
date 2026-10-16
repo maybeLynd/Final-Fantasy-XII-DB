@@ -47,11 +47,11 @@ Row word `+0x06` holds these bits:
 
 | Bit | Meaning | Sites |
 |---|---|---|
-| 13 | harmful: Vitality shortens it, a removal posts "is cured of" rather than "fades from", and augment 57 blocks it | `00387806`, `0046A34D`, `00387D25`-`00387D76` |
-| 10 | Remedy always cures it | `003873FE`, `0038540C` |
-| 14, 12, 11 | Remedy cures it with augment 116, 117 or 118 | `0038746E`, `003874DE`, `0038754D` |
-| 5 | it can be applied again while present in the timed word, restarting its timers; one held in `+0x3C` is still refused | `00387DA2`-`00387DC6`, `00390953` |
-| 8 | it is refused on a target that is not a party record | `00387E17`, `0038FDC6`, `003909A5` |
+| `13` | harmful: Vitality shortens it, a removal posts "is cured of" rather than "fades from", and augment 57 blocks it | `00387806`, `0046A34D`, `00387D25`-`00387D76` |
+| `10` | Remedy always cures it | `003873FE`, `0038540C` |
+| `14`, `12`, `11` | Remedy cures it with augment 116, 117 or 118 | `0038746E`, `003874DE`, `0038754D` |
+| `5` | it can be applied again while present in the timed word, restarting its timers; one held in `+0x3C` is still refused | `00387DA2`-`00387DC6`, `00390953` |
+| `8` | it is refused on a target that is not a party record | `00387E17`, `0038FDC6`, `003909A5` |
 
 The augment texts (bank 10, entries 116-118) are "Remedies remove Stop, Doom, and Disease.", "Remedies remove
 Petrify, Confuse, and Oil." and "Remedies remove Sleep, Sap, Immobilize, and Disable."

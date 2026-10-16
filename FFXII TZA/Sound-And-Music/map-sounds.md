@@ -68,26 +68,24 @@ and plays the id at the emitter's position, `+0x20`-`+0x28`, through `002DEFA0` 
 
 ## Layouts
 
-`Spp1Header` (`0x20` bytes, offsets from the start of the file):
-
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `00` | `char[4]` | magic | "SPP1" |
 | `04` | `u32` | count | ids in the list |
 | `08` | `u32` | bankLength | bytes of SeSep records to open |
 | `0C` | `u32` | bankOffset | the records' offset when the pack gives no bank |
-| `10` | `u16` | hasMapNo | 1 when +`0x12` is a map number |
+| `10` | `u16` | hasMapNo | 1 when `+0x12` is a map number |
 | `12` | `u16` | mapNo | the zone's map number, or `0xFFFF` |
 | `14` | `u32` | zero14 | 0 |
 | `18` | `u16` | padAt | the id list's end rounded up to 16 |
 | `1A` | `u16` | weatherAt | the weather table's offset, or 0 |
 | `1C` | `u32` | zero1C | 0 |
 
-```struct Spp1Id base=record size=0x4
-+0x00  u32  soundId  a six-digit bank id
-```
+Each id entry, `Spp1Id`, 4 bytes:
 
-`Spp1Weather` (`0x10` bytes, offsets from the start of the file+weatherAt):
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | soundId | a six-digit bank id |
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|

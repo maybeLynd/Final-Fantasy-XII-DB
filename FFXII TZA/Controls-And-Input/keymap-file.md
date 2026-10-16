@@ -17,7 +17,8 @@ addresses: "00197EE0, 00195060, 00198000, 00196550, 001965E0, 00198B60, 001993B0
 
 `00197EE0` builds the path once into `01F80D90`: the Documents folder (`SHGetFolderPathW` with folder 5), then
 `\My Games\`, `FINAL FANTASY XII THE ZODIAC AGE\`, the Steam account id from `001F3ED0`, and `keymap.ini`, creating
-each folder that is missing. The reader and the writer both use that one path.
+each folder that is missing: `001F3EA0` calls `_wmkdir` when `_waccess` fails, once per folder (`00197F22`-`00197F98`).
+The reader and the writer both use that one path.
 
 `InputManager_Initialize` (`00195060`, from `0019877E`) reads the file once, at start-up (`001950A9`-`001950EB`):
 
@@ -32,8 +33,6 @@ The file is written by `001993B0`, from the Config screen (`001E0F40`, called at
 down (`0017D670`, from `0017CDC0`). A first run with no file therefore ends by writing the defaults.
 
 ## Layouts
-
-`KeymapProfile` (`0x70` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -59,6 +58,11 @@ line by line, at most 127 characters each:
 4. Any other line ends the read, keeping what was read before it.
 
 A value with no digits, or one too large, stops the game with a standard library error.
+
+The reader and the writer go through a wide-character file buffer whose vtable is `008F38F0` (`001980B9`,
+`00199453`); its put-back and seek methods `00197E10`, `001987A0` and `00198880` use the library's buffer helpers
+`00195C10` and `00195BD0`. The reader copies text from each line into a wide string with `00196140`
+(`001982FB`, `0019840F`), which grows the string's buffer with `00195820`.
 
 The profile starts at -1, before any header, and is never checked against 0-2: a binding is stored at
 `01F80F90 + 0x70 * profile + 4 * slot`. So a binding before the first header, or under `[Keyboard0]`, lands

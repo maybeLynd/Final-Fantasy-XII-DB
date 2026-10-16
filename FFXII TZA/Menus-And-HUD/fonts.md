@@ -43,27 +43,23 @@ then asks for two more files:
 
 | Bit | File | Request | Reader |
 |---:|---|---|---|
-| 0 | `<name>.ker` | `001B5750` (`001B5040`) | `001B5230`, through `001B6080` |
-| 1 | `<name>.fex` | `001B5480` (`001B5061`) | `001B4C00`, through `001B6030` |
+| `0` | `<name>.ker` | `001B5750` (`001B5040`) | `001B5230`, through `001B6080` |
+| `1` | `<name>.fex` | `001B5480` (`001B5061`) | `001B4C00`, through `001B6030` |
 
 ## Layouts
-
-`FontDatHeader` (`0x28` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `00` | `u32` | fontId | the font's id (lookup `001B4E33`, insert `0020B5F0`) |
 | `04` | `u32` | glyphCount | number of glyph records |
-| `08` | `u32` | atlasW | atlas width; copied to font record +`0x24` |
-| `0C` | `u32` | atlasH | copied to font record +`0x28` |
+| `08` | `u32` | atlasW | atlas width; copied to font record `+0x24` |
+| `0C` | `u32` | atlasH | copied to font record `+0x28` |
 | `10` | `u32` | cellW | equal to every glyph record's cellW |
 | `14` | `u32` | cellH | equal to every glyph record's cellH |
 | `18` | `f32` | scale | divides advances and kerning (`001E9C01`) |
 | `1C` | `u32` | flags | bit 0 asks for .ker, bit 1 for .fex |
-| `20` | `u32` | metricA | copied to font record +`0x1C` |
-| `24` | `u32` | metricB | copied to font record +`0x20` |
-
-`FontGlyphRecord` (`0x24` bytes, offsets from the start of the record):
+| `20` | `u32` | metricA | copied to font record `+0x1C` |
+| `24` | `u32` | metricB | copied to font record `+0x20` |
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -79,8 +75,6 @@ then asks for two more files:
 
 The atlas fills row by row: `jp/font00` records 0-36 sit on row 0 and record 37 starts the next row at y 55.
 
-`KerPair` (`0xC` bytes, offsets from the start of the record):
-
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `00` | `i32` | left | code point of the first glyph of the pair |
@@ -89,8 +83,6 @@ The atlas fills row by row: `jp/font00` records 0-36 sit on row 0 and record 37 
 
 A `.ker` is these records to the end of the file. Pairs such as `('T', '.', -3)` and `('F', ',', -1)` show the first
 field is the left glyph; no file except `us/fontex_subtitle` has the reverse of such a pair.
-
-`FexChunk` (`0x8` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -116,8 +108,11 @@ So the authored pairs apply as authored. The current glyph then becomes the prev
 
 An expansion list remaps glyph indices for one piece of text. The key of each list is `00674A00` of a three-part path,
 `event\<folder>\<name>` or `plan_map\<folder>\<name>` (`001B6350`): a hash starting at `0x1505` that multiplies by 33
-and adds each character, with bit 31 cleared (`00674A03`-`00674A23`). When text is drawn, `001E9D20` binds the
-running font and the list for the text's key to the text context (`001E9DB9`-`001E9DD5`). `001E9860` then reads glyph
+and adds each character, with bit 31 cleared (`00674A03`-`00674A23`).
+
+When text is drawn, `001E9D20` binds the
+running font and the list for the text's key to the text context (`001E9DB9`-`001E9DD5`). `001FDD60` finds that list in the
+font's map at `+0xB0` and returns 0 when the key has none (`001E9DD0`). `001E9860` then reads glyph
 `list[index]` instead of `index`; an index past the list's end gives glyph 0.
 
 ### Glyph advances

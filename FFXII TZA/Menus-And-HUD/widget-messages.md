@@ -15,8 +15,6 @@ whose record is built in the delivering function.
 
 ### The message record
 
-`WidgetMessage` (`0x18` bytes, offsets from the start of the record):
-
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `00` | `u32` | id | message id |
@@ -31,25 +29,25 @@ do no more than that.
 
 | Id | Meaning | Sender |
 |---:|---|---|
-| 1 | construct, with the creator's `a` and `b` | `002465F0` |
-| 2 | per-tick update | the drain `00248030` |
-| 3, 4, 5 | draw: before the widget's content, after it, after the children | the draw pass `00245E60` (`002462D0`, `0024635A`, `002463BC`) |
-| 6, 7 | activated, deactivated | `002473F0` (`0024740C`-`00247418`), repeated down the subtree |
-| 8, 9 | focus gained, focus lost | `00244830` |
-| 10, 11 | input turn for the focus widget; 11 while a widget up its chain is running | `002481C0`; also `002286B0` |
-| 12 | command to an owner: `a` is a sub-command, `b` its argument | `00247510` (101 calls in 67 functions) and 11 other sites |
-| 13 | a notice carrying an id | the Config screens, `002D4330` |
-| 14 | opening run started | `00246AD0` |
-| 15 | closing begins | `00244F00`, `00244DD0` (`00244EF5`), `00241940`, `002419B0`, `00550470` |
-| 16 | a resource batch has loaded | `00249410`, `002494F0`, `002495C0` and screen code |
-| 17, 22 | tween channel 0 finished, stepped | `00246C20` (`00246D7E`-`00246DB7`) |
-| 18 | being destroyed | `00245020` to the widget, `002473B0` to its subtree |
-| 19, 20 | forward run finished, backward run finished | `00246C20` (`0024701E`-`0024706B`) |
-| 21 | tween channel 1 stepped | `00246C20` (`00246EF8`) |
-| 23 | tween channel 2 stepped | `00246C20` (`00246F9D`) |
-| 24 | released | `002482E0` (`002483A8`-`002483B2`) |
-| 25 | animation tick | `00246C20` (`00246C51`) |
-| 26 | per-element query; the reply is used | `002D2600`, `002D28E0` |
+| `1` | construct, with the creator's `a` and `b` | `002465F0` |
+| `2` | per-tick update | the drain `00248030` |
+| `3`, `4`, `5` | draw: before the widget's content, after it, after the children | the draw pass `00245E60` (`002462D0`, `0024635A`, `002463BC`) |
+| `6`, `7` | activated, deactivated | `002473F0` (`0024740C`-`00247418`), repeated down the subtree |
+| `8`, `9` | focus gained, focus lost | `00244830` |
+| `10`, `11` | input turn for the focus widget; 11 while a widget up its chain is running | `002481C0`; also `002286B0` |
+| `12` | command to an owner: `a` is a sub-command, `b` its argument | `00247510` (101 calls in 67 functions) and 11 other sites |
+| `13` | a notice carrying an id | the Config screens, `002D4330` |
+| `14` | opening run started | `00246AD0` |
+| `15` | closing begins | `00244F00`, `00244DD0` (`00244EF5`), `00241940`, `002419B0`, `00550470` |
+| `16` | a resource batch has loaded | `00249410`, `002494F0`, `002495C0` and screen code |
+| `17`, `22` | tween channel 0 finished, stepped | `00246C20` (`00246D7E`-`00246DB7`) |
+| `18` | being destroyed | `00245020` to the widget, `002473B0` to its subtree |
+| `19`, `20` | forward run finished, backward run finished | `00246C20` (`0024701E`-`0024706B`) |
+| `21` | tween channel 1 stepped | `00246C20` (`00246EF8`) |
+| `23` | tween channel 2 stepped | `00246C20` (`00246F9D`) |
+| `24` | released | `002482E0` (`002483A8`-`002483B2`) |
+| `25` | animation tick | `00246C20` (`00246C51`) |
+| `26` | per-element query; the reply is used | `002D2600`, `002D28E0` |
 
 No procedure answers ids 27 or 28 and no sender in the census raises them.
 

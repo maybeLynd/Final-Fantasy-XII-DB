@@ -343,17 +343,17 @@ order_id	handler	operation	value	name
 0x4155	002FE660	add param to the register	register kind = record +0x06 >> 12, index = low byte of +0x06 (00321190 / 00329E60)	
 0x4156	002FE660	set bit param of the register	register kind = record +0x06 >> 12, index = low byte of +0x06 (00321190 / 00329E60)	
 0x4157	002FE660	clear bit param of the register	register kind = record +0x06 >> 12, index = low byte of +0x06 (00321190 / 00329E60)	
-0x4158	002FDDA0	add param to the stats s16 at +0x08, clamped to +-99, then rebuild (0030FED0)	param = record +0x02	
-0x4159	002FDDA0	add param to the stats s16 at +0x0A, clamped to +-99, then rebuild (0030FED0)	param = record +0x02	
-0x415A	002FDDA0	add param to the stats s16 at +0x0C, clamped to +-99, then rebuild (0030FED0)	param = record +0x02	
-0x415B	002FDDA0	add param to the stats s16 at +0x0E, clamped to +-99, then rebuild (0030FED0)	param = record +0x02	
-0x415C	002FDDA0	add param to the stats s16 at +0x1E, clamped to +-100, then rebuild (0030FED0)	param = record +0x02	
-0x415D	002FDDA0	add param to the stats s16 at +0x12, clamped to +-255, then rebuild (0030FED0)	param = record +0x02	
-0x415E	002FDDA0	add param to the stats s16 at +0x14, clamped to +-255, then rebuild (0030FED0)	param = record +0x02	
-0x415F	002FDDA0	add param to the stats s16 at +0x10, clamped to +-255, then rebuild (0030FED0)	param = record +0x02	
-0x4160	002FDDA0	add param to the stats s16 at +0x18, clamped to +-100, then rebuild (0030FED0)	param = record +0x02	
-0x4161	002FDDA0	add param to the stats s16 at +0x1A, clamped to +-100, then rebuild (0030FED0)	param = record +0x02	
-0x4162	002FDDA0	add param to the stats s16 at +0x1C, clamped to +-100, then rebuild (0030FED0)	param = record +0x02	
+0x4158	002FDDA0	add param to the stats i16 at +0x08, clamped to +-99, then rebuild (0030FED0)	param = record +0x02	
+0x4159	002FDDA0	add param to the stats i16 at +0x0A, clamped to +-99, then rebuild (0030FED0)	param = record +0x02	
+0x415A	002FDDA0	add param to the stats i16 at +0x0C, clamped to +-99, then rebuild (0030FED0)	param = record +0x02	
+0x415B	002FDDA0	add param to the stats i16 at +0x0E, clamped to +-99, then rebuild (0030FED0)	param = record +0x02	
+0x415C	002FDDA0	add param to the stats i16 at +0x1E, clamped to +-100, then rebuild (0030FED0)	param = record +0x02	
+0x415D	002FDDA0	add param to the stats i16 at +0x12, clamped to +-255, then rebuild (0030FED0)	param = record +0x02	
+0x415E	002FDDA0	add param to the stats i16 at +0x14, clamped to +-255, then rebuild (0030FED0)	param = record +0x02	
+0x415F	002FDDA0	add param to the stats i16 at +0x10, clamped to +-255, then rebuild (0030FED0)	param = record +0x02	
+0x4160	002FDDA0	add param to the stats i16 at +0x18, clamped to +-100, then rebuild (0030FED0)	param = record +0x02	
+0x4161	002FDDA0	add param to the stats i16 at +0x1A, clamped to +-100, then rebuild (0030FED0)	param = record +0x02	
+0x4162	002FDDA0	add param to the stats i16 at +0x1C, clamped to +-100, then rebuild (0030FED0)	param = record +0x02	
 0x4163	002FDDA0	enemy side: set its per-party-member byte table to 1 for every living party member (00321B00)		
 0x4164	002FDDA0	enemy side: add param to its per-party-member byte table for every living party member (00321B00)	param = record +0x02	
 0x4165	002FDA60	move to the goal the order record gives (00312730); ends when 0033A120 reports it reached	goal refreshed every frame (00319110); a failed navigation step waits	

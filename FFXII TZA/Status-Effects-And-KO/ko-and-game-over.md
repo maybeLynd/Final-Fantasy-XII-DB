@@ -126,6 +126,9 @@ effect `0x78` on itself and keeps its handle in `+0x74`, unless it is an enemy w
 The unit frame refreshes it every frame (`00234034`, `00234112`, `00234133`). The switch is on or off; there is
 no fade.
 
+`003126E0(unit)` returns 1 while the mask is 0 (`003126E4`-`003126ED`). `00328530` asks it for the
+target and builds its target line through `00290320` only when it returns 1 (`00328555`-`003285A0`).
+
 ### The fallen unit's frame
 
 `00233F70` runs a different frame for an active unit with KO, Stone or X-Zone that is not torn down
@@ -157,6 +160,8 @@ Removing the last of KO, Stone and X-Zone runs `00301140(unit)` (`0030E811`;
 [Gaining and losing statuses](status-changes.md)). With none of the three left (`00301146`-`003012F6`):
 
 1. A body that is hidden, and not already placed (flag bit 26), is placed with `00311F70` (`0030116B`-`00301185`).
+   The hidden test is `002E9600(actor)` returning 0; it returns bit 3 of byte `+0x10` of `[actor+0xC0]`
+   for an actor whose byte `+3` has `0x60` in its top three bits, and 0 otherwise (`002E9600`-`002E9623`).
 2. The actor is refreshed from the definition, the action cancelled and the issued command cleared.
 3. Revive effect `0x7B` starts on the unit (`003011F5`-`00301216`), and the re-plan set is installed
    ([Enemy AI](../Enemy-AI-And-Gambits/enemy-ai.md)).

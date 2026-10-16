@@ -56,8 +56,6 @@ The list is `common/eventmemorylist.bin`, kind 9 file `0x29`, requested by `0037
 
 ## Layouts
 
-`EventMemoryList` (`0x1A` bytes, offsets from the start of the file):
-
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `00` | `char[8]` | magic | "EVMEMLST" |

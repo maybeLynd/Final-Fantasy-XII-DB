@@ -129,7 +129,15 @@ Each augment counts in either layer. The action pays when it runs: `00305640` su
 ## Shipped data
 
 The MP table is `battle_pack.bin` section 3, 25 rows of 8 bytes, bound by `00236C92`. Rows 0-19 are the
-damage ladder `{u16 damage, u8 factor, u8 Esper factor}`:
+damage ladder:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u16` | damage | damage from |
+| `02` | `u8` | factor | MP factor |
+| `03` | `u8` | esperFactor | Esper MP factor |
+
+The shipped rows:
 
 | Damage from | MP | Esper MP |
 |---:|---:|---:|
@@ -154,7 +162,14 @@ damage ladder `{u16 damage, u8 factor, u8 Esper factor}`:
 | 9,000 | 15 | 90 |
 | 9,999 | 30 | 180 |
 
-Rows 20-24 are the walking ladder `{i32 distance, i32 MP limit}`:
+Rows 20-24 are the walking ladder:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `i32` | distance | distance per point |
+| `04` | `i32` | mpLimit | current MP up to |
+
+The shipped rows:
 
 | Current MP up to | Distance per point |
 |---:|---:|

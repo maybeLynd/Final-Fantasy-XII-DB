@@ -30,13 +30,11 @@ Every reader computes the row itself: it loads the registry slot `02EBF0F8`, res
 
 ## Layouts
 
-`EquipmentRow` (`0x34` bytes, offsets from the start of the record):
-
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `00` | `u16` | pad00 | 0 on every row |
 | `02` | `u16` | nameWord | name: bank = word >> 11, entry = word & `0x7FF` (`0031C5D0` at `0031C911`) |
-| `04` | `u8` | subType | kind of item, copied to the query record +`0x2C` (`0031C9C4`) |
+| `04` | `u8` | subType | kind of item, copied to the query record `+0x2C` (`0031C9C4`) |
 | `05` | `u8` | pad05 | 0 on every row |
 | `06` | `u8` | sortKey | the Optimise tie-break: equal values go to the higher id (`002F7C3C`) |
 | `07` | `u8` | slotFlags | bits 7-5 slot, bit 4 no license, bit 2 hits flying, bit 1 cannot sell; table below |
@@ -60,13 +58,11 @@ Every reader computes the row itself: it loads the registry slot `02EBF0F8`, res
 | `24` | `u8` | b24 | weapons: one value per weapon kind; no read in a census of the code that loads `02EBF0F8` and its callees |
 | `25` | `u8` | reachKind | weapons: which range pair sets the near and middle distance (`00320D70` at `00320D93`) |
 | `26` | `u8` | motionClass | weapons: attack motion class, through the map at `02EBF180`, main-hand rows only (`003203B0` at `0032041E`) |
-| `27` | `u8` | chargeBase | weapons: charge time base for actions with flag +`0x0C` bit 27 (`002F8410` at `002F851A`) |
+| `27` | `u8` | chargeBase | weapons: charge time base for actions with flag `+0x0C` bit 27 (`002F8410` at `002F851A`) |
 | `28` | `u32` | bonusRecord | offset of the bonus record from section offset `0x7144`, 0-4200; rebased at load (`0023823E`) |
 | `2C` | `u16` | attackEffect | weapons: low 15 bits = the effect a plain Attack shows (`0030AC50` at `0030AD56`) |
 | `2E` | `u16` | pad2E | 0 on every row |
 | `30` | `u32` | modelId | weapons, ammunition and shields: the held model, 0x0077xxxx (`0031BF60` at `0031BFE0`) |
-
-`EquipmentBonus` (`0x18` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -76,14 +72,14 @@ Every reader computes the row itself: it loads the registry slot `02EBF0F8`, res
 | `05` | `u8` | magickPower | added to Magick Power (`002FF4DE`) |
 | `06` | `u8` | vitality | added to Vitality (`002FF4ED`) |
 | `07` | `u8` | speed | added to Speed (`002FF4FD`) |
-| `08` | `u32` | statusesHeld | statuses the wearer has while it is equipped, into stats +`0x3C` (`002FF51B`) |
-| `0C` | `u32` | statusImmune | statuses the wearer cannot get, into stats +`0x38` (`002FF50D`) |
-| `10` | `u8` | absorb | elements absorbed, into stats +`0x41` (`002FF538`) |
-| `11` | `u8` | immune | elements nullified, into stats +`0x43` (`002FF556`) |
-| `12` | `u8` | halved | elements halved, into stats +`0x42` (`002FF547`) |
-| `13` | `u8` | weak | elements the wearer is weak to, into stats +`0x40` (`002FF529`) |
-| `14` | `u8` | potency | elements boosted, into stats +`0x44` (`002FF56D`) |
-| `15` | `u8[3] pad15` | 0 in every record |  |
+| `08` | `u32` | statusesHeld | statuses the wearer has while it is equipped, into stats `+0x3C` (`002FF51B`) |
+| `0C` | `u32` | statusImmune | statuses the wearer cannot get, into stats `+0x38` (`002FF50D`) |
+| `10` | `u8` | absorb | elements absorbed, into stats `+0x41` (`002FF538`) |
+| `11` | `u8` | immune | elements nullified, into stats `+0x43` (`002FF556`) |
+| `12` | `u8` | halved | elements halved, into stats `+0x42` (`002FF547`) |
+| `13` | `u8` | weak | elements the wearer is weak to, into stats `+0x40` (`002FF529`) |
+| `14` | `u8` | potency | elements boosted, into stats `+0x44` (`002FF56D`) |
+| `15` | `u8[3]` | pad15 | 0 in every record |
 
 What each record field does to a unit is on [Stats](../Damage-And-Battle-Formulas/stats.md) and
 [Elements](../Damage-And-Battle-Formulas/elements.md).
@@ -107,13 +103,13 @@ category 1-9, and `0031E9A0` folds the category into the group (`0031E9A0`-`0031
 
 | Category | Classes | Group | `+0x18` | `+0x19` | `+0x1A` |
 |---|---|---|---|---|---|
-| 1 | 0 | 1 | reach | recipe | Attack Power |
-| 2 | 1, 10, 11, 12, 15, 16 | 1 | reach | recipe | Attack Power |
-| 3 | 2-6, 13, 14 | 1 | reach | recipe | Attack Power |
-| 4 | 7, 8, 9, 17 | 1 | reach | recipe | Attack Power |
-| 5 | 23-26 | 1 | 0 | 0 | Attack Power |
-| 6 | 18 | 2 | shield evade | magick evade | 0 |
-| 7, 8, 9 | 19, 20, 21-22 | 3 | Defense | Magick Resist | augment, `0xFF` for none |
+| 1 | 0 | `1` | reach | recipe | Attack Power |
+| 2 | 1, 10, 11, 12, 15, 16 | `1` | reach | recipe | Attack Power |
+| 3 | 2-6, 13, 14 | `1` | reach | recipe | Attack Power |
+| 4 | 7, 8, 9, 17 | `1` | reach | recipe | Attack Power |
+| 5 | 23-26 | `1` | 0 | 0 | Attack Power |
+| 6 | 18 | `2` | shield evade | magick evade | 0 |
+| 7, 8, 9 | 19, 20, 21-22 | `3` | Defense | Magick Resist | augment, `0xFF` for none |
 
 Reach is in tenths (`00309300` at `0030938B`); the recipe is the plain Attack's damage formula (`00385F60` at
 `003861FD`, [Weapon formulas](../Damage-And-Battle-Formulas/weapon-formulas.md)); the augment is the one the item gives
@@ -134,33 +130,33 @@ two-handed weapons take nothing in the off hand.
 
 | Class | Category | Rows | Off hand | First items |
 |---|---|---:|---|---|
-| 0 | 1 | 11 | 18 or none | Unarmed |
-| 1 | 2 | 27 | 18 | Broadsword, Longsword, Iron Sword |
-| 2 | 3 | 13 | none | Claymore, Defender, Save the Queen |
-| 3 | 3 | 10 | none | Kotetsu, Osafune, Kogarasumaru |
-| 4 | 3 | 8 | none | Ashura, Sakura-saezuri, Kagenui |
-| 5 | 3 | 15 | none | Javelin, Spear, Partisan |
-| 6 | 3 | 13 | none | Oaken Pole, Cypress Pole, Battle Bamboo |
-| 7 | 4 | 16 | 23 | Shortbow, Silver Bow, Aevis Killer |
-| 8 | 4 | 9 | 24 | Bowgun, Crossbow, Paramina Crossbow |
-| 9 | 4 | 12 | 25 | Altair, Capella, Vega |
-| 10 | 2 | 7 | 18 | Handaxe, Broadaxe, Slasher |
-| 11 | 2 | 6 | 18 | Iron Hammer, War Hammer, Sledgehammer |
-| 12 | 2 | 12 | 18 | Dagger, Mage Masher, Assassin's Dagger |
-| 13 | 3 | 8 | none | Rod, Serpent Rod, Healing Rod |
-| 14 | 3 | 10 | none | Oak Staff, Cherry Staff, Wizard's Staff |
-| 15 | 2 | 11 | 18 | Mace, Bronze Mace, Bhuj |
-| 16 | 2 | 6 | 18 | Gilt Measure, Arc Scale, Multiscale |
-| 17 | 4 | 6 | 26 | Hornito, Fumarole, Tumulus |
-| 18 | 6 | 20 | none | Gendarme, Leather Shield, Buckler |
-| 19 | 7 | 60 | none | Leather Cap, Headgear, Headguard |
-| 20 | 8 | 60 | none | Leather Clothing, Chromed Leathers, Leather Breastplate |
-| 21 | 9 | 42 | none | Opal Ring, Ruby Ring, Tourmaline Ring |
-| 22 | 9 | 6 | none | Manufacted Nethicite, Cat-ear Hood, Fuzzy Miter |
-| 23 | 5 | 8 | none | Onion Arrows, Parallel Arrows, Fiery Arrows |
-| 24 | 5 | 8 | none | Onion Bolts, Long Bolts, Stone Bolts |
-| 25 | 5 | 8 | none | Onion Shot, Silent Shot, Aqua Shot |
-| 26 | 5 | 8 | none | Onion Bombs, Poison Bombs, Stun Bombs |
+| `0` | 1 | 11 | 18 or none | Unarmed |
+| `1` | 2 | 27 | 18 | Broadsword, Longsword, Iron Sword |
+| `2` | 3 | 13 | none | Claymore, Defender, Save the Queen |
+| `3` | 3 | 10 | none | Kotetsu, Osafune, Kogarasumaru |
+| `4` | 3 | 8 | none | Ashura, Sakura-saezuri, Kagenui |
+| `5` | 3 | 15 | none | Javelin, Spear, Partisan |
+| `6` | 3 | 13 | none | Oaken Pole, Cypress Pole, Battle Bamboo |
+| `7` | 4 | 16 | 23 | Shortbow, Silver Bow, Aevis Killer |
+| `8` | 4 | 9 | 24 | Bowgun, Crossbow, Paramina Crossbow |
+| `9` | 4 | 12 | 25 | Altair, Capella, Vega |
+| `10` | 2 | 7 | 18 | Handaxe, Broadaxe, Slasher |
+| `11` | 2 | 6 | 18 | Iron Hammer, War Hammer, Sledgehammer |
+| `12` | 2 | 12 | 18 | Dagger, Mage Masher, Assassin's Dagger |
+| `13` | 3 | 8 | none | Rod, Serpent Rod, Healing Rod |
+| `14` | 3 | 10 | none | Oak Staff, Cherry Staff, Wizard's Staff |
+| `15` | 2 | 11 | 18 | Mace, Bronze Mace, Bhuj |
+| `16` | 2 | 6 | 18 | Gilt Measure, Arc Scale, Multiscale |
+| `17` | 4 | 6 | 26 | Hornito, Fumarole, Tumulus |
+| `18` | 6 | 20 | none | Gendarme, Leather Shield, Buckler |
+| `19` | 7 | 60 | none | Leather Cap, Headgear, Headguard |
+| `20` | 8 | 60 | none | Leather Clothing, Chromed Leathers, Leather Breastplate |
+| `21` | 9 | 42 | none | Opal Ring, Ruby Ring, Tourmaline Ring |
+| `22` | 9 | 6 | none | Manufacted Nethicite, Cat-ear Hood, Fuzzy Miter |
+| `23` | 5 | 8 | none | Onion Arrows, Parallel Arrows, Fiery Arrows |
+| `24` | 5 | 8 | none | Onion Bolts, Long Bolts, Stone Bolts |
+| `25` | 5 | 8 | none | Onion Shot, Silent Shot, Aqua Shot |
+| `26` | 5 | 8 | none | Onion Bombs, Poison Bombs, Stun Bombs |
 
 The rows count ids `0x1000`-`0x11A3`, and the names are each row's own name word. Rows 420-556 are unused
 placeholder rows named "NOT USED" and "Reserve".

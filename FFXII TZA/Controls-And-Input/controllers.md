@@ -2,7 +2,7 @@
 title: "Controllers: how a gamepad is found, the three kinds of controller the game builds, plugging one in during play, and the Steam Input action names"
 kind: "system"
 category: "Controls and input"
-summary: "How a pad becomes a controller: the start-up device walk and its two callbacks, the device types each accepts, the duplicate test, the Steam, XInput and DirectInput controller objects and the order they are tried in, the four-pad XInput limit, the DirectInput set-up and its failure rules, the eighteen Steam Input action names, and the device-arrival message that repeats the walk."
+summary: "How a pad becomes a controller: the start-up device walk and its two callbacks, the device types each accepts, the duplicate test, the Steam, XInput and DirectInput controller objects and the order they are tried in, the four-pad XInput limit, the XInput library the game loads and its pad-0 button read, the DirectInput set-up and its failure rules, the eighteen Steam Input action names, and the device-arrival message that repeats the walk."
 addresses: "00797910, 00796230, 00798A40, 00797690, 00792B70, 00792CB0, 00792AB0, 007999E0"
 ---
 
@@ -66,6 +66,18 @@ All three constructors call the base `00792940`, which links the object into the
 device's description, `0x244` bytes, into `+0x1D0` (`00792AD7`-`00792AF1`, `00792CF4`-`00792D11`), so its instance
 GUID is at `+0x1D4`, the field step 2 compares. The Steam constructor `00792B70` copies none, so a Steam controller
 holds no GUID. The XInput controller adds its user index at `+0x458` (`00792CB0`).
+
+The base also builds four
+`0x48`-byte entries at `+0xB0` with `00792D90` (`007929BD`), which points each entry's two links at itself and sets
+its floats `+0x1C` to 1.0 and `+0x24` to 0.005.
+
+### The XInput library
+
+The XInput constructor `00792CB0` ends by calling `00862C70`, which loads `.\xinput1_3.dll` with `LoadLibraryW`,
+keeps its export ordinal 100 in `02EBA3F0` and sets `02EAF8F0` (`00862C70`-`00862CCD`). `00862CF0` does the same
+load when `02EAF8F0` is still 0, reads user 0 through that export into `02EBA3E0`, and answers 1 when bit `0x400` of
+the button word `02EBA3E4` is set, or the button word itself otherwise. The R2 latch of [Escape Mode](escape.md)
+reads it; a raw scan finds no other caller of `00862CF0` or `00862C70` than these two and the constructor.
 
 ### The Steam action names
 

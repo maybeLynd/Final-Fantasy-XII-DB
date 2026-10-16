@@ -30,7 +30,7 @@ pane shows the member's selected set (`00327C40`, set index at `[02EBF190] + 0x7
 
 | Row | Shows |
 |---|---|
-| 0 | the character's name; its switch is bit 2 of the party record (`00309B40`) |
+| `0` | the character's name; its switch is bit 2 of the party record (`00309B40`) |
 | 1 to the slot count | one gambit line: condition and action names, "-" (`0x3EB`) when empty, and ON or OFF from the set's mask |
 
 The slot count is the set's byte `+0x32` ([Gambits](../Enemy-AI-And-Gambits/gambits.md)); the script verb
@@ -103,7 +103,7 @@ Confirming an entry runs `0056AC50`. An entry whose state is not 0 is refused, a
 | `0x1D`-`0x1F` | conditions | "The selected action cannot target a foe." / "...an ally." / "...the user." (`0xC78`-`0xC7A`) |
 
 The target states come from `00327A10(action, condition)`: the condition's target, Foe, Ally or Self, must be allowed
-by the action row's `+0x0C` (bit 3 for Foe, bit 2 for Ally, bit 0 or 2 for Self). An accepted entry is written into the
+by the action row's `+0x0C` (`8` for Foe, `4` for Ally, `1` or `4` for Self). An accepted entry is written into the
 line (`0056A1D0`) and saved, and the list closes after 32 frames.
 
 ### The save

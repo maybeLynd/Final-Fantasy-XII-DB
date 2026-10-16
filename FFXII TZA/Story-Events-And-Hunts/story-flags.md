@@ -24,11 +24,11 @@ Every bank is in the save payload, the bytes from `SaveImage_GetPersistentPayloa
 | Bank | Payload offset | Ids | Setter / query | Script verbs | Holds |
 |---|---|---|---|---|---|
 | Primary | `+0x14F4` | 2-511 set, 0-511 read | `0032AB60` / the gate `0032A8A0` | `0x430` `setmapjumpgroupflag` (also `0x301` `setnaviicon`), `0x431` `releasemapjumpgroupflag` (also `0x302`), `0x432` `ismapjumpgroupflag` (also `0x300`) | map-jump groups and map icons |
-| Bank2048 | `+0x13B4` | 0-2047 | `0032ABF0` / `0032A930` | `0x399` `settalknpcname`, `0x39A` `releasetalknpcname`, `0x39B` `istalknpcname` | names learned by talking |
-| Bank512, first half | `+0x14B4`, bits 0-255 | 0-255 | `0032AD70` / `0032AA60` | `0x3F3` `settreasurebattleflag`, `0x3F4` `releasetreasurebattleflag`, `0x3F6` `istreasurebattleflag` | chests opened, traps fired |
-| Bank512, second half | `+0x14B4`, bits 256-511 | 0-255 | `0032ADF0` / `0032AAD0` | `0x3F1` `settreasureflag`, `0x3F2` `releasetreasureflag`, `0x3F5` `istreasureflag` | scripts only |
-| Bank64A | `+0x1384` | 0-63 | `0032AC70` / `0032A9A0` | `0x2FA` `setshutoralappear`, `0x2F9` `clearshutoralappear`, `0x2F8` `isshutoralappear` | scripts only |
-| Bank64B | `+0x138C` | 0-63 | `0032ACF0` / `0032AA00` | `0x2FD` `setshutoralenable`, `0x2FC` `clearshutoralenable`, `0x2FB` `isshutoralenable` | scripts only |
+| Bank2048 | `+0x13B4` | `0`-`2047` | `0032ABF0` / `0032A930` | `0x399` `settalknpcname`, `0x39A` `releasetalknpcname`, `0x39B` `istalknpcname` | names learned by talking |
+| Bank512, first half | `+0x14B4`, bits 0-255 | `0`-`255` | `0032AD70` / `0032AA60` | `0x3F3` `settreasurebattleflag`, `0x3F4` `releasetreasurebattleflag`, `0x3F6` `istreasurebattleflag` | chests opened, traps fired |
+| Bank512, second half | `+0x14B4`, bits 256-511 | `0`-`255` | `0032ADF0` / `0032AAD0` | `0x3F1` `settreasureflag`, `0x3F2` `releasetreasureflag`, `0x3F5` `istreasureflag` | scripts only |
+| Bank64A | `+0x1384` | `0`-`63` | `0032AC70` / `0032A9A0` | `0x2FA` `setshutoralappear`, `0x2F9` `clearshutoralappear`, `0x2F8` `isshutoralappear` | scripts only |
+| Bank64B | `+0x138C` | `0`-`63` | `0032ACF0` / `0032AA00` | `0x2FD` `setshutoralenable`, `0x2FC` `clearshutoralenable`, `0x2FB` `isshutoralenable` | scripts only |
 
 An id outside a bank's range reads as 0 and sets nothing. The four Bank64 accessors test the range with a signed
 compare only (`0032A9A4`, `0032AA04`, `0032AC77`, `0032ACF7`), so a negative id reaches the bank's bytes below it.
@@ -95,16 +95,12 @@ The new-game reset `002EF2D0` clears the first `0x1538` bytes of the payload, wh
 
 ## Layouts
 
-`FlagRom` (`0x358` bytes, offsets from the start of the file):
-
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `000` | `char[8]` | magic | "FLAGROM1" |
 | `008` | `u16` | count | 152 |
 | `00A` | `u16[152]` | offsets | file offset of each record |
 | `13A` | `u16[271]` | lists | the records: story counter values, bit 15 on each record's last value |
-
-`FlagDef` (`0x74` bytes, offsets from the start of the file):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|

@@ -28,12 +28,10 @@ the action id is the formula scratch word `02AEDFD4`.
 
 ## Layouts
 
-`ActionRow` (`0x3C` bytes, offsets from the start of the record):
-
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `00` | `u16` | helpId | help text id; 4000 = none (`0031C5D0` at `0031DBB1`, through `002F9860`) |
-| `02` | `u8` | rangeNear | near range band, tenths; used when +`0x0C` bit 26 is clear (`00320D70`) |
+| `02` | `u8` | rangeNear | near range band, tenths; used when `+0x0C` bit 26 is clear (`00320D70`) |
 | `03` | `u8` | rangeMiddle | middle range band, tenths (`00320D70`) |
 | `04` | `u8` | knockback | knockback chance base (`00388B50` at `00388BE6`) |
 | `05` | `u8` | reach | reach in tenths; bounds the Reflect retarget (`00309300`, `00384F40`) |
@@ -50,11 +48,11 @@ the action id is the formula scratch word `02AEDFD4`.
 | `13` | `u8` | element | one bit per element (`0038B220`, `0038B6A0`) |
 | `14` | `u8` | statusChance | on-hit status chance, percent (`0038F970` at `0038F9B0`) |
 | `15` | `u8` | boostPercent | percent added to the working magnitude `02AEE004` (`0038F8E0` at `0038F93B`) |
-| `16` | `u8[2] pad16` | 0 on every row |  |
+| `16` | `u8[2]` | pad16 | 0 on every row |
 | `18` | `u32` | statusMask | statuses the action applies or removes, one bit each (`003872D0`, `003851F0`) |
 | `1C` | `u8` | category | action category 0-9; picks the presentation event (`0030A370` at `0030A37F`) |
 | `1D` | `u8` | enmityDirect | enmity toward the user (`003216E0` at `00321716`) |
-| `1E` | `u8` | kind | action kind; picks what +`0x22` holds (`003093D0`, `00469EC0`) |
+| `1E` | `u8` | kind | action kind; picks what `+0x22` holds (`003093D0`, `00469EC0`) |
 | `1F` | `u8` | enmitySpread | enmity passed to foes already hostile (`00321733`) |
 | `20` | `u8` | enmityOthers | enmity taken from the others, negated (`00321744`) |
 | `21` | `u8` | effectClass | 0-8, picks an effect started while the action runs (`00329F80` at `00329FE7`) |
@@ -81,18 +79,18 @@ ownership rule for each):
 
 | Kind | Rows | Examples |
 |---:|---:|---|
-| 0 | 1 | Attack |
-| 1 | 81 | magicks: Cure, Blindna |
-| 2 | 24 | technicks: First Aid, Charge |
-| 3 | 51 | items: Potion, Ether |
-| 5 | 13 | summons: Belias, Mateus |
-| 6 | 18 | Quickenings: Red Spiral, White Whorl |
-| 7 | 235 | Foecraft: Fear, Aerora |
-| 8 | 16 | traps: explosion, choking gas |
-| 9 | 26 | Esper attacks: Painflare, Hellfire |
-| 10 | 16 | Concurrences: Inferno, Torrent |
-| 13, 14, 16, 17 | 3, 1, 1, 1 | the Reserve rows 155-157, `actstop`, `escape`, `escapestop` |
-| 255 | 56 | `NOT USED` and Reserve rows |
+| `0` | 1 | Attack |
+| `1` | 81 | magicks: Cure, Blindna |
+| `2` | 24 | technicks: First Aid, Charge |
+| `3` | 51 | items: Potion, Ether |
+| `5` | 13 | summons: Belias, Mateus |
+| `6` | 18 | Quickenings: Red Spiral, White Whorl |
+| `7` | 235 | Foecraft: Fear, Aerora |
+| `8` | 16 | traps: explosion, choking gas |
+| `9` | 26 | Esper attacks: Painflare, Hellfire |
+| `10` | 16 | Concurrences: Inferno, Torrent |
+| `13`, `14`, `16`, `17` | 3, 1, 1, 1 | the Reserve rows 155-157, `actstop`, `escape`, `escapestop` |
+| `255` | 56 | `NOT USED` and Reserve rows |
 
 ### The element byte
 
@@ -100,39 +98,39 @@ Bit *n* of `+0x13` is one element; no shipped row sets more than one:
 
 | Bit | Rows | Examples |
 |---:|---:|---|
-| 0 | 19 | Fire, Fira, Firaga |
-| 1 | 11 | Thunder, Thundara |
-| 2 | 10 | Blizzard, Blizzara |
-| 3 | 8 | Quakeja, Tremor |
-| 4 | 13 | Aqua, Aquara |
-| 5 | 13 | Aero, Aeroga |
-| 6 | 9 | Holy, Holyja |
-| 7 | 13 | Dark, Darkra |
+| `0` | 19 | Fire, Fira, Firaga |
+| `1` | 11 | Thunder, Thundara |
+| `2` | 10 | Blizzard, Blizzara |
+| `3` | 8 | Quakeja, Tremor |
+| `4` | 13 | Aqua, Aquara |
+| `5` | 13 | Aero, Aeroga |
+| `6` | 9 | Holy, Holyja |
+| `7` | 13 | Dark, Darkra |
 
 ### The flag word at +0x0C
 
 | Bit | Rows | Effect (reader) |
 |---:|---:|---|
-| 0, 2, 3 | 71, 341, 416 | the user, allies and foes can be targeted ([Target selection](target-selection.md); `003230E0`, `0031EB20`) |
-| 1 | 13 | the area is the whole party ([Area of effect](area-of-effect.md); `0030D461`) |
-| 4 | 32 | sets bit 10 of the command entry (`0031F0A4`-`0031F0AF`) |
-| 5, 6 | 22, 103 | how the target list is built ([Target selection](target-selection.md); `00322BD5`-`00322BED`) |
-| 8, 9 | 186, 378 | copied to the query record's `+0x20` (`0031DB9E`-`0031DBA7`) |
-| 11 | 57 | clears bit 5 of the result's byte `+0` (`00386079`); also read by `0031AA30` (`0031AB02`) |
-| 12 | 18 | the shape reader reports the whole party or no area, whatever the radius (`0031A990`) |
-| 13 | 162 | magick class: a target with effect 56 voids it as result kind 7 (`00390EE5`, `003910C3`); no charge time under effect 54 (`002F8689`) |
-| 14 | 207 | physical class: effect 55 voids it as result kind 7 (`00390E9A`, `00391076`) |
-| 16 | 78 | Reflect (status 23) bounces it: result kind 8 and a new target from `00384F40` (`00390D7F`, `00390DF1`-`00390E42`) |
-| 17 | 28 | runs the special-guard roll (`00388058`) |
-| 19 | 97 | Silence blocks it (`002FFE56`, [Command availability](command-availability.md)) |
-| 21 | 26 | the area is centred on the user ([Area of effect](area-of-effect.md); `0030D271`) |
-| 24, 25 | 49, 5 | the area is a cone or a line ([Area of effect](area-of-effect.md); `0030D2C0`) |
-| 26 | 35 | the weapon's reach and range bands replace the row's ([Action range](action-range.md); `00309377`, `00320D74`, `00390C7F`) |
-| 27 | 1 | the charge base comes from the weapon row's `+0x27` (`002F8494`, [Action phases](action-phases.md)) |
-| 28 | 36 | changes the command entry (`0031F0EF`, `0031F157`) |
-| 29 | 112 | the command entry carries a cost (`0031F000`) |
-| 30 | 87 | runs a scene: summon, Quickening, Concurrence ([Quickenings and summons](quickenings-and-summons.md); 17 sites, `00304D3F` among them) |
-| 31 | 64 | consumes an item: the command entry carries the item count (`0031F077`) |
+| `0`, `2`, `3` | 71, 341, 416 | the user, allies and foes can be targeted ([Target selection](target-selection.md); `003230E0`, `0031EB20`) |
+| `1` | 13 | the area is the whole party ([Area of effect](area-of-effect.md); `0030D461`) |
+| `4` | 32 | sets bit 10 of the command entry (`0031F0A4`-`0031F0AF`) |
+| `5`, `6` | 22, 103 | how the target list is built ([Target selection](target-selection.md); `00322BD5`-`00322BED`) |
+| `8`, `9` | 186, 378 | copied to the query record's `+0x20` (`0031DB9E`-`0031DBA7`) |
+| `11` | 57 | clears bit 5 of the result's byte `+0` (`00386079`); also read by `0031AA30` (`0031AB02`) |
+| `12` | 18 | the shape reader reports the whole party or no area, whatever the radius (`0031A990`) |
+| `13` | 162 | magick class: a target with effect 56 voids it as result kind 7 (`00390EE5`, `003910C3`); no charge time under effect 54 (`002F8689`) |
+| `14` | 207 | physical class: effect 55 voids it as result kind 7 (`00390E9A`, `00391076`) |
+| `16` | 78 | Reflect (status 23) bounces it: result kind 8 and a new target from `00384F40` (`00390D7F`, `00390DF1`-`00390E42`) |
+| `17` | 28 | runs the special-guard roll (`00388058`) |
+| `19` | 97 | Silence blocks it (`002FFE56`, [Command availability](command-availability.md)) |
+| `21` | 26 | the area is centred on the user ([Area of effect](area-of-effect.md); `0030D271`) |
+| `24`, `25` | 49, 5 | the area is a cone or a line ([Area of effect](area-of-effect.md); `0030D2C0`) |
+| `26` | 35 | the weapon's reach and range bands replace the row's ([Action range](action-range.md); `00309377`, `00320D74`, `00390C7F`) |
+| `27` | 1 | the charge base comes from the weapon row's `+0x27` (`002F8494`, [Action phases](action-phases.md)) |
+| `28` | 36 | changes the command entry (`0031F0EF`, `0031F157`) |
+| `29` | 112 | the command entry carries a cost (`0031F000`) |
+| `30` | 87 | runs a scene: summon, Quickening, Concurrence ([Quickenings and summons](quickenings-and-summons.md); 17 sites, `00304D3F` among them) |
+| `31` | 64 | consumes an item: the command entry carries the item count (`0031F077`) |
 
 Bits 13 and 14 are also copied into the kind-10 AI operand mask as its bits 8 and 9 (`00312213`-`00312232`).
 Bits 7, 10, 15, 18 and 20 are set on 324, 292, 24, 1 (Attack) and 81 rows and are read by none of the
@@ -142,14 +140,14 @@ Bits 7, 10, 15, 18 and 20 are set on 324, 292, 24, 1 (Attack) and 81 rows and ar
 
 | Bit | Rows | Effect (reader) |
 |---:|---:|---|
-| 0-2 | 70 | a value 0-5; for kind-1 rows, values 0-4 pick which of five magick lists the row joins (`002376F0` at `002377FF`, `00237881`); 5 is only on row 81, `NOT USED` |
-| 3 | 21 | the user gains MP from the damage when it has effect 86 (`002F92C1`, `002F9323`) |
-| 4 | 40 | the user gains MP from the damage when it has effect 20 (`002F9330`-`002F937B`) |
-| 6, 7 | 10, 2 | the action may target a KO or a Stone unit ([Target selection](target-selection.md); `002FFAF5`, `002FFB30`) |
-| 8 | 61 | the effect test of `0030CA80` is skipped (`0030CB71`) |
-| 10, 11 | 195, 65 | the target wakes from Sleep and loses Confuse, or loses Invisible (`00390F20` at `00391112`, `00391192`) |
-| 13 | 98 | no License needed ([Command availability](command-availability.md); `00323F52`) |
-| 14 | 93 | returned by `0030BB30` for categories 1-8 (`0030BC0C`) |
+| `0`-`2` | 70 | a value 0-5; for kind-1 rows, values 0-4 pick which of five magick lists the row joins (`002376F0` at `002377FF`, `00237881`); 5 is only on row 81, `NOT USED` |
+| `3` | 21 | the user gains MP from the damage when it has effect 86 (`002F92C1`, `002F9323`) |
+| `4` | 40 | the user gains MP from the damage when it has effect 20 (`002F9330`-`002F937B`) |
+| `6`, `7` | 10, 2 | the action may target a KO or a Stone unit ([Target selection](target-selection.md); `002FFAF5`, `002FFB30`) |
+| `8` | 61 | the effect test of `0030CA80` is skipped (`0030CB71`) |
+| `10`, `11` | 195, 65 | the target wakes from Sleep and loses Confuse, or loses Invisible (`00390F20` at `00391112`, `00391192`) |
+| `13` | 98 | no License needed ([Command availability](command-availability.md); `00323F52`) |
+| `14` | 93 | returned by `0030BB30` for categories 1-8 (`0030BC0C`) |
 
 Bits 9, 12 and 15 (3, 20 and 10 rows) are read through the whole word by the AI order selectors
 (`00303434`, `00303492`, `00308CF2`) and by `003851F0` and `003872D0` (`003852AB`, `00387382`).
@@ -161,12 +159,12 @@ word-wide reads take bits 0-2 (`00300B3F`, `00317CFF`, `0031CDC2`, `0031EF87`, `
 
 | Bit | Rows | Effect (reader) |
 |---:|---:|---|
-| 0 | 51 | tested by `003875D0` (`00387629`) |
-| 1 | 26 | tested by `003872D0` (`00387331`) |
-| 2 | 2 | the area takes the side opposite the target (Self-Sacrifice, Self-Destruct; `0030D36C`) |
-| 3 | 1 | the area takes everyone (Mass-Destruct; `0030D36C`) |
-| 4 | 227 | when clear, one branch of the pre-resolution gates fails the result (`00390D55`-`00390D63`) |
-| 5 | 14 | the eligibility check fails for a candidate whose byte `+0x55` is `0x0D` (`0030844B`-`00308457`) |
+| `0` | 51 | the action adds statuses: `003875D0` returns the mask `+0x18` only with it set and bit 9 of `+0x2C` clear (`00387629`); the gambit target picker passes over a unit that already has them all ([Gambit conditions](../Enemy-AI-And-Gambits/gambit-conditions.md); `0030856F`) |
+| `1` | 26 | the action removes statuses: tested by `003872D0` (`00387331`); the gambit target picker passes over a unit that has none of them (`003084EF`) |
+| `2` | 2 | the area takes the side opposite the target (Self-Sacrifice, Self-Destruct; `0030D36C`) |
+| `3` | 1 | the area takes everyone (Mass-Destruct; `0030D36C`) |
+| `4` | 227 | when clear, one branch of the pre-resolution gates fails the result (`00390D55`-`00390D63`) |
+| `5` | 14 | the gambit target picker keeps a candidate whose byte `+0x55` is `0x0D` without testing what the action would change (`0030844B`-`00308457`) |
 
 ## Shipped data
 

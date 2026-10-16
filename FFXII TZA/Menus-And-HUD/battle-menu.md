@@ -41,27 +41,44 @@ Each widget dispatches through its own tables: the manager answers 21 messages (
 
 | Kind | List | Title |
 |---:|---|---|
-| 1 | top commands, list 6 | none |
-| 2 | Magicks & Technicks, list 8 | "Magicks & Technicks" |
-| 3 | Mist, list 9 | "Mist" |
-| 4 | items, list `0xB` | "Items" |
-| 6, 7 | Summon and Quickening actions, list `0xB` | "Summon", "Quickening" |
-| 10-14 | the magicks of one school, list `0xB` | "White Magicks" to "Arcane Magicks" |
-| 15 | technicks, list `0xB` | "Technicks" |
+| `1` | top commands, list 6 | none |
+| `2` | Magicks & Technicks, list 8 | "Magicks & Technicks" |
+| `3` | Mist, list 9 | "Mist" |
+| `4` | items, list `0xB` | "Items" |
+| `6`, `7` | Summon and Quickening actions, list `0xB` | "Summon", "Quickening" |
+| `10`-`14` | the magicks of one school, list `0xB` | "White Magicks" to "Arcane Magicks" |
+| `15` | technicks, list `0xB` | "Technicks" |
 | `0x10`-`0x13` | a target list, codes `0x10`, `0xD`, `0xF`, `0x1C` (`01E0C398`) | the action's name |
 
 The command lists are `{flag, id}` pairs (`0031EB88`-`0031EBEC`):
 
 | List | Table | Rows |
 |---:|---|---|
-| 6 | `00D10650` | Attack, Magicks & Technicks, Mist, Dismiss, Gambits, Items |
-| 8 | `00D10680` | White, Black, Time, Green and Arcane Magicks, Technicks |
-| 9 | `00D1065C` | Summon, Quickening |
+| `6` | `00D10650` | Attack, Magicks & Technicks, Mist, Dismiss, Gambits, Items |
+| `8` | `00D10680` | White, Black, Time, Green and Arcane Magicks, Technicks |
+| `9` | `00D1065C` | Summon, Quickening |
 
 Mist is listed only while `003135C0` is 0, and Dismiss only while it is 1 ([Command availability](../Battle-Actions/command-availability.md)),
 so the top list shows one of the two. Each row is checked with `00318CD0`, which leaves it out, greys it with a reason,
 or lists it (`0031ECA3`-`0031ED3D`). An action list keeps the actions of the list's kind byte `+0x1E` (and school
 `+0x2C & 7`) that the member owns and has left (`00317BC0`), with their MP, Mist charge or item count.
+
+### Row painters
+
+`0027E050` installs one painter per list (`0027E2F0`):
+
+| Painter | Lists | Draws |
+|---|---|---|
+| `00276BE0` | top commands, Mist | the command labels |
+| `0027D240` | the magick schools, kind 2 | the label word of the school row (class `0x18`) when flag bit 2 is set, of the command row (class `0x15`) otherwise |
+| `0027CE70` | the action lists, kinds 4-8, 10-15 and 20 | the action rows |
+| `0027BC10` | kind 9, list `0x18` | the name of a class 1 row, or Remove (`menu_command.bin` `0x404`) for the id -1, with byte `+0x15EF` set to 6 for the row equal to `+0x1538` |
+| `0027D5C0` | target list `0xF` | the name of the row's id through `0031C5D0` |
+| `0027E530` | the other target lists | the unit's name (`00272CB0`) and, when `00272C80` gives a number, that number after it |
+
+A row whose greyed flag is set is drawn at alpha `0x40`. An empty list draws one row with alpha `96 + 32 x sin(t x pi / 30)`
+of the frame counter: "No Available Targets" (`menu_message.bin` `0x7D1`) for a target list, and `0x7D2`, empty in the
+shipped text, for the others (`0027D24A`-`0027D25E`, `0027BC1A`-`0027BC29`).
 
 ### Names and help
 
@@ -91,6 +108,28 @@ The list widget reads the pressed word ([Controls](../Controls-And-Input/control
 - In a target list, L1 and R1 step the target category (`0027B430`, `0027C730`) among the tabs the manager allows.
 - The row cursor, confirm and cancel come from the page's list, which posts `0x8000`, `0x8001` and `0x8002` to the list
   widget in the convention of [Dialogs](dialogs.md).
+
+### Target tabs
+
+The tab strip `0027C870` shows one tab per target list the action allows.
+`00276960(tabs, actor, action, kind, show, mask, ...)` sets it up from the mask:
+
+1. Mask bits 1, 2, 8 and 4 enable tabs 0 to 3, the strip's child nodes 2 to 5 (tables `00915BE0` and `00915BF0`,
+   `00276A19`-`00276A60`).
+2. Bit 8 is dropped when target list `0xF` has no row (`0027B090`), and bit 4 when list `0x1C` has none left after
+   filtering (`0027AF80`).
+3. A disabled tab's four corner alphas are set to 0; an enabled tab is placed at `0027B290(tabs, mask, i)` and fades
+   in by `0x18` per call.
+4. The strip is centred from its total width `0027B120`, and its side nodes 6 and 7 are shown only when two or more
+   tabs are enabled (mask not 1, 2, 4 or 8).
+
+The filter skips, for filter 1, rows with flag bit 1 and units whose status words hold KO, Stone or bit 31
+(`00273710`, mask `0x80000003`), and for every filter units whose byte `+0x0A` (`002647E0`) has bit 2 (filter 0) or bit 0
+(otherwise). `0027B5A0` and `0027B6C0` make the same two checks from a saved request when L1 or R1 is pressed
+(`0027C730`), and `0027BB70` applies the filter to a page's rows in place, keeping the count at `+0x40`.
+
+`0027DCA0` moves the strip half way towards its centred position, snapping when it is within 1. `00276830(tabs,
+kind)` marks the tab of list kind `0x10`-`0x13`: the other tabs draw one palette further on.
 
 ### From a row to an action
 
@@ -123,12 +162,16 @@ cursor move:
 - a greyed row shows its refusal first, through `0027C150`;
 - a target row opens the target information window (`002C0870`) instead of text.
 
+`0027C220(page, row)` picks the refusal: in a command list (page kind 6 to 10) a row with flag bit 1 gives its reason
+byte `+4`, in an action list (kind 11) a row with flag bit 0 gives its byte `+6`; a positive reason with a row in
+`0027C150` becomes that text (`0027C220`-`0027C27E`).
+
 | Refusal | Text (`help_menu.bin`) |
 |---:|---|
-| 7 | "Stopped: Cannot take commands." (`0xC92`) |
-| 8 | "Sleeping: Cannot take commands." (`0xC94`) |
-| 9 | "Confused: Cannot take commands." (`0xC95`) |
-| 10 | "Silenced: Cannot use magicks." (`0xC96`) |
+| `0x7` | "Stopped: Cannot take commands." (`0xC92`) |
+| `0x8` | "Sleeping: Cannot take commands." (`0xC94`) |
+| `0x9` | "Confused: Cannot take commands." (`0xC95`) |
+| `0xA` | "Silenced: Cannot use magicks." (`0xC96`) |
 | `0xB` | "Disabled: Cannot take commands." (`0xC93`) |
 | `0xC` | "Berserk: Cannot take commands." (`0xC91`) |
 | `0xE` | "Magicks forbidden: Cannot use magicks." (`0xC90`) |
@@ -156,6 +199,14 @@ The party list `0029BE50` (`0xB68` bytes, at `[0209BE80] + 0x10F78`) draws one s
 
 The battle menu highlights the acting member's slot (`00296AF0`) and clears it (`00296B80`).
 
+The menu finds members through the party status records at `0035BB20(i)`, `0x0C0` bytes each, with the handle at
+`+0x04`:
+
+- `00273320(handle)` returns the member's position, or -1, and `002737B0(handle)` whether it is in the party.
+- `00272EE0(handle)` returns the record's type `+0x60`, or 6 when no record of the first four has the handle.
+- `00273460()` returns the handle of the first record with flag bit 2, and `002734B0()` that record.
+- `00273800(handle)` returns 1 when the member's record has flag bit 3 clear, that is, when it is in range.
+
 ### The boss gauge
 
 The boss gauge `00405310` (manager `00406A60`, `02B62D88`) draws up to two bars from the table at `02EC1380`, which
@@ -173,8 +224,8 @@ the unit's byte `+0x17` bit 1 and the HUD's bit are set. The step is `min(HP, ma
 | Kind | Layout keys |
 |---:|---|
 | 0, party | `HpGaugeSide{Min,Max}_{R,G,B,A}` (`01E0CEF8`-`01E0CF14`) |
-| 1 | `HpGaugeEnmey{Min,Max}_{R,G,B,A}` (`01E0CED8`-`01E0CEF4`) |
-| 2 | `HpGaugeOther{Min,Max}_{R,G,B,A}` (`01E0CF18`-`01E0CF34`) |
+| `1` | `HpGaugeEnmey{Min,Max}_{R,G,B,A}` (`01E0CED8`-`01E0CEF4`) |
+| `2` | `HpGaugeOther{Min,Max}_{R,G,B,A}` (`01E0CF18`-`01E0CF34`) |
 
 ### Layout keys
 
@@ -193,15 +244,11 @@ The label widths come from a pre-pass, `00273E30`, which scene and action code r
 
 ## Layouts
 
-`BattleMenuCommandEntry` (`0x8` bytes, offsets from the start of the record):
-
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `00` | `u16` | id | class `0x15` row, or class `0x18` school when flags bit 2 is set |
 | `03` | `u8` | flags | bit 1 greyed, bit 2 school row, bit 3 greyed by `00318CD0` answer 2 |
 | `04` | `u8` | reason | refusal shown through `0027C150` |
-
-`BattleMenuActionEntry` (`0x8` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|

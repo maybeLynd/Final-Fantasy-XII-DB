@@ -146,8 +146,6 @@ reset and the previous command is kept in `+0x730`
 
 The header of an order set, followed by its 24-byte orders ([Gambits](gambits.md)) from `+0x20`:
 
-`AiOrderSet` (`0x20` bytes, offsets from the start of the record):
-
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `00` | `u8[12]` | counts | orders in subgroups 0-11, summed by the walk (`00305D30`, `00305D89`) |

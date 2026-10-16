@@ -34,7 +34,7 @@ battle units first (`0031B860`, `00300553`, `0030055E`).
 | the applier, target | `00311668` | result `+0x24` | from result `+0x2C`, below |
 | the applier, user | `00311739` | result `+0x20`, when result bit 7 | from result `+0x2C`, no source record |
 | the cap reconcile `0030F340` | `0030F3DC` | cap minus HP | `0x217` |
-| the deferred HP queue `003065D0`, `0030EB10` | `00306699`, `0030EB5F` | queued delta | 0 |
+| the deferred HP queue `003065D0`, `0030EB10` | `00306699`, `0030EB5F` | queued delta | `0x0` |
 | spawn and timeline code (absolute) | `00235316`, `0023A451`, `0031A09B`, `00329CAE` | value | caller's |
 
 For the target, the applier runs only when result `+0x2C` bit 8 is set (`00311610`). It uses the
@@ -50,14 +50,14 @@ The function unpacks its flags first (`00300580`-`00300601`):
 
 | Bit | Effect | Sites |
 |---:|---|---|
-| 0 | skip both suppression gates | `003005A0`, `00300605`, `0030072F` |
-| 1 | no "has fallen" message | `00300588`, `0030079C` |
-| 2 | no presentation event at all | `003005D2` |
-| 4 | no hit or heal reaction | `0030058D`, `003006AC` |
-| 5 | with a delta of 0, the reaction counts as a heal | `003005AB`-`003005C0` |
-| 6 | no event while the target survives | `003005E5`, `0030086C` |
-| 7 | no damage number | `003005F6`, `003006D8` |
-| 8 | the KO event is `0x200E` | `00300846` |
+| `0` | skip both suppression gates | `003005A0`, `00300605`, `0030072F` |
+| `1` | no "has fallen" message | `00300588`, `0030079C` |
+| `2` | no presentation event at all | `003005D2` |
+| `4` | no hit or heal reaction | `0030058D`, `003006AC` |
+| `5` | with a delta of 0, the reaction counts as a heal | `003005AB`-`003005C0` |
+| `6` | no event while the target survives | `003005E5`, `0030086C` |
+| `7` | no damage number | `003005F6`, `003006D8` |
+| `8` | the KO event is `0x200E` | `00300846` |
 
 All flags, including bits this function does not test (`0x217` carries bit 9), are passed on to the
 status write (`0030076E`, `003007B9`).

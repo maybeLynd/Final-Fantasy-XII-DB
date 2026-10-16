@@ -30,20 +30,20 @@ addresses: "00254B50, 0215F1A0, 002E1B10, 002E1A60, 002E0DA0, 002E09A0, 00280A00
 
 | Id | Route | Opens |
 |---:|---|---|
-| 1, 4 | `0035D660`, after its own refusals (`0035D66D`, `0035D67B`) | the command menu, widget procedure `00279E20` |
-| 2 | generic; parameter 0 builds `00280D20` (`0027FC9C`) | the main menu, procedure `00280DE0` |
-| 3 | `0035D980` | choosing the party leader: "Select a new party leader." (`menu_message.bin` `0x86E`) |
-| 5 | `003C87B0` | the field target cycle |
-| 6 | generic, `0027F8DB`-`0027F984` | the save crystal's save and load menu, `00583930` |
-| 10 | generic, `0057B800(parameter)` (`0027FCC2`-`0027FCDA`) | a shop; the parameter is the shop |
-| 11 | generic, `003EF750` (`0027FFB5`-`0027FFC3`) | game over, procedure `003EF830` |
-| 12 | `0028E970` | the special-attack window, procedure `002D5EB0` |
-| 15 | generic, `0027FA11` | the world map with the title "Airship Route" (`help_menu.bin` `0xC04`) |
-| 17 | generic, `0027F98E` | the world map with the title "Choose your destination." (`0xC03`) and the confirm "Fly to ...?" (`menu_message.bin` `0x7FF`) |
-| 18 | generic, `0027F99D` | the world map with no title |
-| 19 | generic, `0037FF80(parameter)` (`0027F9AF`) | the notice board's list |
-| 22 | generic | by parameter, below |
-| 24 | `0035D080` | the notice "All members of the party have fallen. ..." (`0x86F`), then the main menu |
+| `1`, `4` | `0035D660`, after its own refusals (`0035D66D`, `0035D67B`) | the command menu, widget procedure `00279E20` |
+| `2` | generic; parameter 0 builds `00280D20` (`0027FC9C`) | the main menu, procedure `00280DE0` |
+| `3` | `0035D980` | choosing the party leader: "Select a new party leader." (`menu_message.bin` `0x86E`) |
+| `5` | `003C87B0` | the field target cycle |
+| `6` | generic, `0027F8DB`-`0027F984` | the save crystal's save and load menu, `00583930` |
+| `10` | generic, `0057B800(parameter)` (`0027FCC2`-`0027FCDA`) | a shop; the parameter is the shop |
+| `11` | generic, `003EF750` (`0027FFB5`-`0027FFC3`) | game over, procedure `003EF830` |
+| `12` | `0028E970` | the special-attack window, procedure `002D5EB0` |
+| `15` | generic, `0027FA11` | the world map with the title "Airship Route" (`help_menu.bin` `0xC04`) |
+| `17` | generic, `0027F98E` | the world map with the title "Choose your destination." (`0xC03`) and the confirm "Fly to ...?" (`menu_message.bin` `0x7FF`) |
+| `18` | generic, `0027F99D` | the world map with no title |
+| `19` | generic, `0037FF80(parameter)` (`0027F9AF`) | the notice board's list |
+| `22` | generic | by parameter, below |
+| `24` | `0035D080` | the notice "All members of the party have fallen. ..." (`0x86F`), then the main menu |
 
 The generic route `00280A00` refuses while a menu widget sits at the root's `+0xC0` or `+0xB8` (`00280A1A`-`00280A30`).
 Otherwise it sets the request word and latch through `00252B40(id, 1)` and builds the two widgets `0027FB70` and
@@ -89,10 +89,10 @@ The router is also called directly, without the mailbox:
 
 | Caller | Id | Site |
 |---|---:|---|
-| the input arbiter | 1, 3 | `002541C7`, `002540D2` |
-| `0035BC50`, when a member cannot lead | 3 | `0035BF2F`, through `00254B40` |
-| `0035C7B0`, the party-fallen check | 24 | `0035C7FF`, through `00254B40` |
-| the target cycle widget `003C8B70` | 1 | `003C8F65`, through `00254B40` |
+| the input arbiter | `1`, `3` | `002541C7`, `002540D2` |
+| `0035BC50`, when a member cannot lead | `3` | `0035BF2F`, through `00254B40` |
+| `0035C7B0`, the party-fallen check | `24` | `0035C7FF`, through `00254B40` |
+| the target cycle widget `003C8B70` | `1` | `003C8F65`, through `00254B40` |
 
 `00254B40(id)` is `00254B50(id, 0, 0)`. The arbiter also runs request 5's route itself (`00254044`).
 

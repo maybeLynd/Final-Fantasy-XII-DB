@@ -23,6 +23,11 @@ flag `02089340` bit 4 must be set, the handle must resolve to an actor with a ba
 3 must be set (`003272A4`-`003272CE`). Every reader of the leader's battle unit asks `003272A0`; the lock setters
 below and the release `00358B40` resolve the handle `022C7FE0` to its actor directly, without those three tests.
 
+Two more readers keep only the bit-4 test. `00327270` returns the leader's actor (`003590D0()` through
+`003588B0`), or none while bit 4 is clear (`00327274`-`0032728D`). `003272F0` returns the leader's
+roster slot, the first of slots 0-3 whose `00263750` actor is that actor, or -1 when bit 4 is clear,
+the handle does not resolve or no slot holds it (`003272F6`-`0032734E`).
+
 ### Changing the leader
 
 A change is a request and a later commit:

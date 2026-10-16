@@ -90,10 +90,10 @@ Two script commands set an enemy's two masks:
 
 | Code | Effect |
 |---:|---|
-| 3 | the status goes into the immunity mask `+0xE90` (`00239538`) |
-| 2 | the status is added once, while the spawn record is fresh (`00239551`-`00239577`) |
-| 1 | the same, when bit 0 of a shared gameplay LCG draw is set (`00239547`-`0023954F`) |
-| 0 | nothing |
+| `3` | the status goes into the immunity mask `+0xE90` (`00239538`) |
+| `2` | the status is added once, while the spawn record is fresh (`00239551`-`00239577`) |
+| `1` | the same, when bit 0 of a shared gameplay LCG draw is set (`00239547`-`0023954F`) |
+| `0` | nothing |
 
 "Fresh" means bits 0 and 2 of the spawn record's first dword are clear (`002394DF`-`002394F9`). After the
 stats rebuild, `0030FED0` turns every bit of `+0xE90` into an immunity with `0030E360(..., mode 5)`,

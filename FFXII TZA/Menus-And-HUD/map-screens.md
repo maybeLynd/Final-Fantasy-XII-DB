@@ -71,8 +71,6 @@ which the overlay waits for. It is created from `00253A30` and the HUD-on step `
 
 `00404060` loads the 32-byte record every page reads at `+0x130`:
 
-`MapScreenResources` (`0x20` bytes, offsets from the start of the record):
-
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `00` | `u32[2]` | back | LocaBack_c.tm2 (kind 7 `0xBA`) |

@@ -125,13 +125,13 @@ unit bit 32 is set (and that bit is cleared). The other reasons are tested only 
 
 | Reason | When |
 |---:|---|
-| 2 | bit 5 of `02089340` is set |
-| 3 | unit bit 14 is set |
-| 9 | the user has status bit 0, 1, 3, 4 or 31 (`0x8000001B`) |
-| 4 | (action id below `0x21F`) the target count `+0x77C` is 0 or the target `+0x710` does not resolve |
-| 5 | (action id below `0x21F`) `002FFA60(action, target)` returns 0 |
-| 6 | (action id below `0x21F`) `002FFCF0` refuses the action |
-| 7 | bit 13 of the word at `[+0x708]+4` is clear and `0030AF30` times the action out |
+| `2` | bit 5 of `02089340` is set |
+| `3` | unit bit 14 is set |
+| `9` | the user has status bit 0, 1, 3, 4 or 31 (`0x8000001B`) |
+| `4` | (action id below `0x21F`) the target count `+0x77C` is 0 or the target `+0x710` does not resolve |
+| `5` | (action id below `0x21F`) `002FFA60(action, target)` returns 0 |
+| `6` | (action id below `0x21F`) `002FFCF0` refuses the action |
+| `7` | bit 13 of the word at `[+0x708]+4` is clear and `0030AF30` times the action out |
 
 `002FFA60(action, target)` returns 1 when the target has none of status bits 0, 1, 31 (or
 `00377C20()` is non-zero), or when the action row's `+0x2C` has bit 6 or bit 7 (`002FFA88`-`002FFB43`).

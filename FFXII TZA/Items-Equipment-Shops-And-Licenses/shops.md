@@ -18,13 +18,34 @@ The shop table is section 39 of `battle_pack.bin`, the section its directory ent
 to. The battle data binder hands it to `00238660` (`00236F28`-`00236F2E`), which stores the section address in
 the registry slot `02EBF158` and adds it to every offset in the table: the header's data offset, each shop's
 ladder, each ladder's data, each list and each list's data (`00238678`-`0023881D`). It has three levels, each
-with the same 12-byte header `{u32 tag, u16 stride, u16 count, u32 data}`:
+with the same 12-byte header, `ShopLevelHeader`:
 
-| Level | Tag | Row | Fields |
+| Offset | Type | Name | Meaning |
 |---|---|---|---|
-| shops | `0x64` | 8 bytes | `u16` name id, `u16` padding, `u32` ladder offset |
-| ladder | `0x164` | 8 bytes | `u8` condition kind, `u8` operand, `u16` threshold, `u32` list offset |
-| list | `0x264` | 2 bytes | an encoded id: `0x0xxx` item, `0x1xxx` equipment, `0x2xxx` loot, `0x3xxx` magick, `0x4xxx` technick, `0x6xxx` gambit |
+| `00` | `u32` | tag | `0x64` shops, `0x164` ladders, `0x264` lists |
+| `04` | `u16` | stride | bytes per row |
+| `06` | `u16` | count | rows |
+| `08` | `u32` | data | offset of the first row, made an address by `00238660` |
+
+A shop row, 8 bytes:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u16` | name | the shop's name id |
+| `02` | `u16` | pad | padding |
+| `04` | `u32` | ladder | offset of the shop's ladder |
+
+A ladder row, 8 bytes:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | kind | condition kind |
+| `01` | `u8` | operand | condition operand |
+| `02` | `u16` | threshold | condition threshold |
+| `04` | `u32` | list | offset of the list the rung selects |
+
+A list row is one `u16`, an encoded id: `0x0xxx` item, `0x1xxx` equipment, `0x2xxx` loot, `0x3xxx` magick, `0x4xxx`
+technick, `0x6xxx` gambit.
 
 ### Choosing a list
 
@@ -33,10 +54,10 @@ with the same 12-byte header `{u32 tag, u16 stride, u16 count, u32 data}`:
 
 | Kind | Condition | Test |
 |---|---|---|
-| 0 | none | always passes (`002FADC5`-`002FADCA`) |
-| 1 | story operand | operand bank element *operand* at least the threshold (`002FADD0`-`002FADEC`); no shipped entry uses it |
-| 2 | story progress | operand bank element 0 at least the threshold (`002FADF3`-`002FAE0D`) |
-| 3 | clan rank | the clan rank at least the threshold (`002FAE14`-`002FAE1F`) |
+| `0` | none | always passes (`002FADC5`-`002FADCA`) |
+| `1` | story operand | operand bank element *operand* at least the threshold (`002FADD0`-`002FADEC`); no shipped entry uses it |
+| `2` | story progress | operand bank element 0 at least the threshold (`002FADF3`-`002FAE0D`) |
+| `3` | clan rank | the clan rank at least the threshold (`002FAE14`-`002FAE1F`) |
 
 Kinds 1 and 2 read the story operand bank through `00321190(3, 0, operand)`, a signed 16-bit value; element 0 is
 the word at the start of the save payload ([Save data](../Saving-Loading-And-Settings/save-data-fields.md)). When no

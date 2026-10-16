@@ -53,8 +53,6 @@ Dismiss confirmation in a panel slot, and the `0xD0` target tabs at `+0x60E0`, a
 
 ### The header
 
-`WidgetHeader` (`0xC0` bytes, offsets from the start of the record):
-
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `00` | `u32[2]` | proc | procedure(self, message); `005C5230` when none |
@@ -68,7 +66,7 @@ Dismiss confirmation in a panel slot, and the `0xD0` target tabs at `+0x60E0`, a
 | `40` | `u32` | flags | below; `0x80A` plus the generation and borrowed bits when built (`00246653`) |
 | `44` | `u16` | w44 | 100 (`002466FA`) |
 | `48` | `u32[2]` | trans | animation descriptor, default `00915198` (`00246687`) |
-| `50` | `u32` | flags2 | bit 0 clip, bit 1 owns the array at +`0x60` |
+| `50` | `u32` | flags2 | bit 0 clip, bit 1 owns the array at `+0x60` |
 | `60` | `u32[2]` | arr | array freed by the release (`0024838A`) |
 | `68` | `u32[2]` | half | the descriptor half of the current run |
 | `70` | `u32` | frames | run length in frames |
@@ -92,20 +90,31 @@ Dismiss confirmation in a panel slot, and the `0xD0` target tabs at `+0x60E0`, a
 | 4 | has the focus (`00244865`) |
 | 5 | passed to children on attach (`00248271`) |
 | 6 | close requested (`00244F0A`) |
+| 7 | the byte offsets at `+0xA4`-`+0xAD` move the draw box (`00246480`) |
 | 9 | a run was started |
 | 10 | release deferred to the next tick (`00245097`) |
-| 13 | has had a child attached |
+| 13 | has had a child attached, or a child's priority changed: the children are re-sorted (`00244990`) |
 | 14 | borrowed storage |
 | 15 | use the default animation descriptor |
 | 17 | generation parity |
 | 18 | skip the per-tick update |
+| 24 | drawn in the second draw pass (`00247730`) |
+| 27 | `+0xAE`/`+0xAF` also widen the draw box |
 
 ### The tree
 
 `00244960(parent, child)` attaches a child only when it has no parent yet, through `00248220`
 (`00244960`-`00244965`), which appends it to the parent's children, links the siblings, counts it and stores the parent
 (`00248230`-`00248267`). An active parent activates an attached child that may be activated (`002473F0`, which sends
-message 6, `002482AE`-`002482C7`).
+message 6, `002482AE`-`002482C7`). A parent with bit 5 passes it to the child and to every descendant of the child
+through the pre-order walker `002463F0(widget, callback, value)` with the bit setter `002418E0` (`00248271`-`002482A0`).
+
+Two shortcuts use the main root `[0208EA28]`:
+
+- `00246AC0(widget)` opens a widget under it (`00246AD0`).
+- `00247950(widget, on)` attaches a widget that has no parent to it with bit 1 set to `on`. For a widget that has a
+  parent it sets bit 1 to `on` through `00247870`, which also runs the activation `002473F0` when bit 5 is set
+  (`0024795C`-`0024797A`).
 
 Messages travel along the tree:
 
@@ -113,6 +122,39 @@ Messages travel along the tree:
 - `002753F0(widget, message)` delivers to the widget and then every descendant (`002753FA`-`00275427`).
 
 The message record and every id are in [Widget messages](widget-messages.md).
+
+### Draw order and the two draw passes
+
+`00247930(widget, priority)` stores a widget's draw priority at `+0x44` (100 when built) and sets bit 13 on its
+parent. When the walker `00244980` reaches a widget with bit 13, it re-sorts that widget's children with `002479B0`
+and clears the bit (`00244990`-`0024499F`):
+
+1. Each child's priority, position in the list and pointer go into the scratch table `0208ED60`
+   (`00247A0A`-`00247A2D`).
+2. The sort `00249CE0` orders them with the comparator `00244610`: a larger priority first, equal priorities in
+   their old order.
+3. The children are relinked in that order (`00247A51`-`00247AB1`).
+
+The root draw passes `002450B0` and `00245110` set `0208F564` to 0 and to 1 and walk the tree with `00245E60`. A
+widget's own content is drawn only in the pass equal to its `+0x40` bit 24, with bit 28 clear (`0024623A`-`0024624B`);
+its box is drawn in that pass when `+0x40` bit 7 is also set (`002461BB`-`002461CE`).
+`00247730(widget, pass)` sets that bit on a widget and every descendant.
+
+`00245E60` takes each widget's box from `00246480(widget, box)` (`00245F50`):
+
+- the position and size from `+0x98`, an inner rectangle the size of the widget, scale 1.0 at box `+0x1C` and
+  `+0x20`, and the alpha `+0xA0`;
+- with bit 7, the signed bytes `+0xAC`/`+0xAD` added to the position, the inner offset from `+0xA4`/`+0xA5`, and
+  `+0xA6`/`+0xA7` added to the inner size, plus `+0xAE`/`+0xAF` with bit 27;
+- then the running opening or closing run, through `00244A20`.
+
+It returns 1 when a float at box `+0x10`-`+0x18` is not 0 or the scale is not 1.0. `00246450` returns the position
+alone, with the same bit 7 offset.
+
+`00247780(on)` sets bit 0 of `0208ED58`. While it is set, both passes also call `00245510` for a root whose `+0xC0`
+is 1, which hands the root's position and alpha to `00367940` (`002450D7`-`002450F5`, `00245137`-`00245149`); the
+first pass does so only while `0208F568` is 0. The script verbs `fsmenu_showcursor` and `fsmenu_hidecursor` set and
+clear the bit (`00510964`, `005109A3`).
 
 ### The per-tick update and the input turn
 
@@ -138,6 +180,9 @@ Five UI tick functions (`00250540`, `002506D0`, `00250730`, `002507C0`, `002508E
 - `00244830` clears the old widget's bit 4 and sends it message 9, then sets the new widget's bit 4 and sends it
   message 8.
 - `002448D0(widget)` gives the focus up: when the widget has it, the stack pops and the new top takes it.
+- `00244700(widget, all)` takes a widget out of the stack wherever it sits, every copy when `all` is set and the
+  topmost one otherwise, then drops entries equal to their neighbour. `002446E0(widget)` gives the focus up and
+  removes every copy.
 
 ### Opening and closing runs
 
@@ -158,6 +203,38 @@ channel (messages 22 and 17, 21, 23), and ends a run with message 19 (forward) o
 (`0024701E`-`0024706B`). When a closing run ends, a widget with bit 6 set is torn down (`002449C3`).
 
 `0208F570` only advances: the five tick functions add to it, and `0022819C` resets it.
+
+### Tweens
+
+Besides its opening and closing runs, a widget has four animated values, one per bit of `+0x80`. Each starter
+refuses while any of the other three bits is set, records the start value, the change and the length
+`ms x 60 / 1000` frames, and stores a curve in bits 10-13:
+
+| Bit | Starter | Animates | Message per step |
+|---:|---|---|---|
+| `0` | `002468A0(widget, x, y, curve, ms)` | the position `+0x98`/`+0x9A` | 22, and 17 at the end |
+| `1` | `00247130(widget, w, h, anchor, ms)`, curve 1 | the size `+0x9C`/`+0x9E`; anchor bit 0 or 1 keeps the right or bottom edge in place (`00246EAE`-`00246EDE`) | 21 |
+| `2` | `00247300(widget, from, to, curve, ms)` | the float `+0x8C` | 23 |
+| `3` | `002472A0(widget, value, slot)` | nothing: the float `+0x84` is copied into the draw box's float at `+0x10`, `+0x14` or `+0x18` for slot 0, 1 or 2 (`00244D74`-`00244DC1`) | none |
+
+`00247260` starts bit 1 like `00247130` and then replaces the curve with its sixth argument. `002468A0` sends 17
+twice instead of starting when the widget is already at the target (`002468DE`-`00246922`).
+
+Each tick `00246C20` steps the lowest running bit. The elapsed frames are multiplied by the rate `+0xB8` while the
+game runs at speed (`00246C58`-`00246C7D`); `002418F0` sets that rate the way the opening run does: 1.0, or one over
+the speed steps (`00229E70`) when `00229DF0` is set and `00229EA0` returns 2.
+
+The curve function `00248F40(curve, length, t)` returns 1.0 once `t` reaches `length`; before that, with
+`p = t / length`:
+
+| Curve | Value |
+|---:|---|
+| 0, 6-15 | `p` |
+| 1 | `sin(p x pi / 2)` |
+| 2 | `1 - sin((p / 2 + 0.5) x pi)` |
+| 3 | `0.5 - 0.5 x sin((p + 0.5) x pi)` |
+| 4 | `0.6 + 0.4 x sqrt(p)` (`003A1D30`) |
+| 5 | `0.4 + 0.3 x sin(p x pi / 2) + 0.3 x p` |
 
 ### Teardown
 

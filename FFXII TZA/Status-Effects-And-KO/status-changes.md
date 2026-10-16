@@ -39,6 +39,16 @@ Its fourteen call sites include the result applier `003112F0` (`0031153A`, `0031
 (`0030077A`, `003007CF`), the augment rebuild `0030FED0` (`00310409`) and the order handler `002FDDA0`
 (`002FDF40`, `002FDF79`).
 
+Two wrappers fix the mode. `0030E990(target, source, status, -, -, flags)` removes: it passes duration
+and beat 0 and mode 0 (`0030E994`-`0030E9A9`). `0030EAE0` adds with mode 3 and passes duration, beat
+and flags through (`0030EAE4`-`0030EAFC`). `0030E990` is used by:
+
+- `0030E8F0`, for each of the 32 statuses with `flags | 0x200` (`0030E8F0`);
+- the area initialisation `002342F0`, which removes X-Zone (31) with flags 0 from each of the 40
+  stats records at `[02EBF190] + 8`, `0x1C8` bytes apart (`00234358`-`0023438E`);
+- `00318A00` and `00318A90`, which pick `0030EAE0` or `0030E990` by a flag (`00318A49`-`00318A63`,
+  `00318AF0`-`00318B14`).
+
 ### What refuses a change
 
 With flags bit 0 clear, two gates run on the target and source units (`0030E420`-`0030E45A`):

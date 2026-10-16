@@ -23,6 +23,9 @@ and `00879570` for the channel names, then registers its destructor with `atexit
 3. otherwise puts the node at the front of the list whose head is `02EB9D80` for channels, `02EB83B8` for keys
    (`008795D0`-`008795DA`).
 
+For example, `0016BDE0` inserts the key node of `Key_Numpad_8` (`01F458C8`) and registers `008BCF20`, which at exit
+sets the node's type pointer to `01CD89D8` and unlinks it from the key list `02EB83B8` (`008BCF20`-`008BCF7A`).
+
 | Node offset | Field |
 |---|---|
 | `+0x00` | type pointer |

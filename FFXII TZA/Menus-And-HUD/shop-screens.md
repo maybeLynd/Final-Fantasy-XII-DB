@@ -30,9 +30,9 @@ argument; the mode is chosen inside the screen. The title is the shop's name, `0
 
 | Row | Label (`menu_command.bin`) | Help | Help when greyed |
 |---|---|---|---|
-| 0 | Buy (`0x48B`) | "Purchase goods." (`0xC67`) | never greyed (`0057BE1E`) |
-| 1 | Sell (`0x48C`) | "Selling loot can make new bazaar goods available for purchase." (`0xC68`) | "You possess no saleable items." (`0xCAB`) |
-| 2 | Bazaar (`0x48D`) | "Purchase bazaar goods." (`0xC69`) | "No bazaar goods currently available." (`0xCAC`) |
+| `0` | Buy (`0x48B`) | "Purchase goods." (`0xC67`) | never greyed (`0057BE1E`) |
+| `1` | Sell (`0x48C`) | "Selling loot can make new bazaar goods available for purchase." (`0xC68`) | "You possess no saleable items." (`0xCAB`) |
+| `2` | Bazaar (`0x48D`) | "Purchase bazaar goods." (`0xC69`) | "No bazaar goods currently available." (`0xCAC`) |
 
 Sell is offered when any Sell tab has goods and Bazaar when the bazaar list has any, through `0056E880`. A greyed row
 refuses the choice (`0057C070`).

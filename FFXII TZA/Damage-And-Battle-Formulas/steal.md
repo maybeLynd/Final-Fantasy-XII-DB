@@ -162,8 +162,6 @@ of an item already in the list) and posts one line per entry (`0046A940`-`0046A9
 
 The enemy's record at unit `+0xE60`, the fields the steal reads:
 
-`EnemyStealFields` (offsets from the start of the record):
-
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `32` | `u16` | stealCommon | common steal item; `0xFFFF` = none (`00390390`, `0023A570`) |
@@ -172,9 +170,9 @@ The enemy's record at unit `+0xE60`, the fields the steal reads:
 
 The spawn record at unit `+0x6A0`:
 
-```struct SpawnStealBits base=record
-+0x14  u8   stealLeft      bits 0-2: common, uncommon, rare item still available (0023A570, 00390390, 003112F0)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `14` | `u8` | stealLeft | bits `0x1`, `0x2`, `0x4`: the common, uncommon and rare item is still available (`0023A570`, `00390390`, `003112F0`) |
 
 ## Modding notes
 

@@ -54,13 +54,13 @@ The scene moves through these stages:
 
 | State | Set by | Meaning |
 |---|---|---|
-| 0 | `003065D0`, `00306570` | idle |
-| 1 | `00306BD0` (`00306C11`) | claimed: owner stored; stays here while scene manager 3 is busy (`0032F6E0(3)` non-zero), and only the same owner may claim again |
-| 2 | `00306BD0` (`00306C40`) | loading: `00309230(unit, row)`, `0032FC30(3)`, `0032ED70(3)`, and the kind set from the id |
-| 3 | `00306B10` (`00306B58`) | loaded: once `0032F6C0(3)` returns 0, bit 0 of `022C2158` is cleared and `0023B020` schedules the one-shot callback `00306560` with the unit's id |
-| 4 | `00306B10` | ready: the callback (run by `00234520` on a later tick) has set bit 0 of `022C2158`; `00306B10` returns 1 |
-| 5 | `00306760` (`00306ADF`) | playing |
-| 6, 7 | `003065D0` | ending (both set within one call) |
+| `0` | `003065D0`, `00306570` | idle |
+| `1` | `00306BD0` (`00306C11`) | claimed: owner stored; stays here while scene manager 3 is busy (`0032F6E0(3)` non-zero), and only the same owner may claim again |
+| `2` | `00306BD0` (`00306C40`) | loading: `00309230(unit, row)`, `0032FC30(3)`, `0032ED70(3)`, and the kind set from the id |
+| `3` | `00306B10` (`00306B58`) | loaded: once `0032F6C0(3)` returns 0, bit 0 of `022C2158` is cleared and `0023B020` schedules the one-shot callback `00306560` with the unit's id |
+| `4` | `00306B10` | ready: the callback (run by `00234520` on a later tick) has set bit 0 of `022C2158`; `00306B10` returns 1 |
+| `5` | `00306760` (`00306ADF`) | playing |
+| `6`, `7` | `003065D0` | ending (both set within one call) |
 
 `00306B10(unit)` returns -1 for a unit that is not the owner and for the owner outside states 2-4,
 0 while waiting, 1 in state 4. States 6 and 7 are set and left within one `003065D0` call, and the
@@ -141,13 +141,13 @@ called from `002341D0`, the area initialisation `00234397` and the slot release 
 | Global | Width | Meaning |
 |---|---|---|
 | `022C2160` | u32 | stage, 0-7 |
-| `022C2168` | ptr | owner unit |
+| `022C2168` | `void*` | owner unit |
 | `022C215C` | u32 | kind, 1-7 |
 | `022C2158` | u32 | bit 0: scene ready (set by `00306560`) |
-| `022C1F50` | 0x208 B | deferred HP list for Esper attacks and Quickenings |
+| `022C1F50` | `u8[520]` | deferred HP list for Esper attacks and Quickenings |
 | `022BE970` | u32 | 1 while an Esper attack's scene plays |
 | `022C2178` / `022C218C` | u32 | Quickening index / its user's id |
-| `022C21B4` / `022C21B8` | u32 / ptr[] | Quickening target count / targets |
+| `022C21B4` / `022C21B8` | u32 / `void*` | Quickening target count / the targets, one unit pointer per target from `022C21B8` on (`0030690D`) |
 
 ## Modding notes
 

@@ -137,6 +137,14 @@ the HP write `00300530` (bit 8, `0030071A`), `0031ADB0` (bits 8 and 11, low byte
 byte 8), `003176E0` (low byte), and the combo continuation `00308610`/`0030C010` (bit 10); bit 10 is
 cleared at `002FFA14`, `0030019B`, `00300EAD`, `003011E0` and `0030AFF8`.
 
+Before it resolves a target, the applier turns the entry's low byte back into an outcome with
+`002FEE20`, the inverse of `0030DAE0`, and passes it in the result's byte `+0x04` to `00385F60`
+(`00307552`-`00307577`):
+
+| Entry code | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | other |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| Outcome (`002FEE20`) | `0` | `5` | `1` | `3` | `2` | `4` | `6` | `7` | `8` | `10` | `11` | `9` |
+
 ### The shape reader
 
 `0031A990(row, out)` (154 bytes) describes the same fields as a shape: it
@@ -148,8 +156,6 @@ and `00328530` and jumped to from `0031AB80`.
 
 ## Layouts
 
-`ActionTargetList` (`0x208` bytes, offsets from the start of the target-list):
-
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `00` | `u8` | flags | bit 0 kept by the clear (`00316D05`-`00316D16`); the rest cleared |
@@ -158,13 +164,11 @@ and `00328530` and jumped to from `0031AB80`.
 | `04` | `i32` | count | entries in use; signed (movsxd at `00316CD0` and `00316D70`); append refuses at 32 (`00316CD4`) |
 | `08` | `u8[512]` | entries | 32 ActionTargetEntry records of 16 bytes |
 
-`ActionTargetEntry` (`0x10` bytes, offsets from the start of the target-entry):
-
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `u64` | actorWork | the unit's +`0x10` object; stored by `00316CDC`, compared by `00316D83` |
+| `00` | `u64` | actorWork | the unit's `+0x10` object; stored by `00316CDC`, compared by `00316D83` |
 | `08` | `u32` | entryFlags | low byte the outcome code (`0030DAE0`), bits 8-11 result flags; written by the effect applier `00307300` |
-| `0C` | `u32` | tail | no unit-relative reader of +`0x78C` in the image (entry-pointer reads not excluded) |
+| `0C` | `u32` | tail | no unit-relative reader of `+0x78C` in the image (entry-pointer reads not excluded) |
 
 ## Modding notes
 

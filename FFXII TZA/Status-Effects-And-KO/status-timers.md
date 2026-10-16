@@ -29,6 +29,11 @@ It stops at once, running nothing below, when (`00310DCB`-`00310E1B`):
 - a special-sequence scene is on screen (`022C2160` is 5 or 6);
 - the area's town bit is set.
 
+For a party-side unit (stats `+0x05` = 0) the `+0x24` value is `003271E0()`: the id `+0x08` of the
+unit that `00327150` finds, the slot unit whose stats record is entry `[[02EBF190] + 0x5AA4]` (0 to 39)
+of the records at `[02EBF190] + 8`, or 0 when there is none (`00305E70`-`00305E97`,
+`00327150`-`003271BF`, `003271E0`).
+
 A summoned Esper at 0 HP, or whose summoner is gone or down, is dismissed with `003138D0(0)` and nothing else
 runs (`00310E21`-`00310EFD`). Then four gates skip to the tail, below (`00310F12`-`00310F4F`): the actor
 manager is not ready (`00265680`), the battle or unit eligibility mask is set

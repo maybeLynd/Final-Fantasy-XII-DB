@@ -93,14 +93,19 @@ A recipe's first list runs when the action executes, through `00385680` (slot ca
 
 | Slot | Function | Does |
 |---:|---|---|
-| 5 | `00388350` | knockback chance = weapon byte `+0x1B`, adjusted by a random share of both levels |
-| 6 | `00388440` | rolls knockback against it, unless the target has effect 0 |
-| 7, 8 | `00388490`, `003884F0` | the alternative outcome flag `02AEDFC4`: a chance from the target's Speed when it has effect 6 |
-| 9, 10 | `00388550`, `00388660` | the combo chance and count ([Combos](../Battle-Actions/combos.md)) |
-| 22 | `00388FB0` | loads the target's shield, weapon and innate evade (`+0x33`, `+0x32`, `+0x31`) and sets the hit chance to 100 |
-| 33 | `00389310` | halves the hit for a Blind source; clears the bands for an Invisible source or a target under Stop, Sleep or Disable, and the innate band under Immobilize |
-| 34 | `00389370` | adds 25 to the innate band (30 for a party-side target) under target effect 4, adds the shield-block augments 3 and 88-90 to the block band, clears all three bands when the user has effect 2 (the Cameo Belt's augment), and clears bands the target's equipment does not allow |
-| 41 | `003896B0` | the outcome roll below |
+| `5` | `00388350` | knockback chance = weapon byte `+0x1B`, adjusted by a random share of both levels |
+| `6` | `00388440` | rolls knockback against it, unless the target has effect 0 |
+| `7`, `8` | `00388490`, `003884F0` | the alternative outcome flag `02AEDFC4`: a chance from the target's Speed when it has effect 6 |
+| `9`, `10` | `00388550`, `00388660` | the combo chance and count ([Combos](../Battle-Actions/combos.md)) |
+| `22` | `00388FB0` | loads the target's shield, weapon and innate evade (`+0x33`, `+0x32`, `+0x31`) and sets the hit chance to 100 |
+| `33` | `00389310` | halves the hit for a Blind source; clears the bands for an Invisible source or a target under Stop, Sleep or Disable, and the innate band under Immobilize |
+| `34` | `00389370` | adds 25 to the innate band (30 for a party-side target) under target effect 4, adds the shield-block augments 3 and 88-90 to the block band, clears all three bands when the user has effect 2 (the Cameo Belt's augment), and clears bands the target's equipment does not allow |
+| `41` | `003896B0` | the outcome roll below |
+
+The bands slot 34 keeps come from `00384E50(target)`, which reads the integers `0x2902032B` and
+`0x6003082D` of the target's model `@FCP` block through `004FE2F0` (`00384EBC`-`00384F12`). It gets
+the block from `002E7FD0(actor)`: 0 for a null actor, a null `[actor+0xC0]` or an id of -1 there,
+otherwise `002EDBD0(id)` for the character record that id names (`002E7FD0`-`002E7FF0`).
 
 A magick recipe such as 7 has only slot 2 (`00387FD0`): an action with flag bit 17 can be blocked by a
 shield, against the target's magick evade `+0x34` plus augments 88-90 (`00387FD0`-`0038823B`).
@@ -120,6 +125,29 @@ Each failed band draws again, and when all three fail `MT19937 % 100` at or abov
 (`02AEDFBC`). Without that bit only the hit chance is rolled. A landed hit with knockback sets result
 `+0x18` bit 3.
 
+### The knockback value
+
+When the committed resolve ends with result `+0x18` bit 3 set, the resolver stores
+`00385E50(source, target, &context)` as an `f32` in result `+0x134` (`0038680F`-`0038682E`). The
+value starts from a property of the target's model:
+
+```
+k = 2.0                                  the target has no battle unit (01CEBC08, 00385E79)
+k = p / s / 100.0                        p: @FCP float 0x09001E1F of the target's model
+                                         s: the float at [actor+0xB8]+0x28
+k = k * 0.5   when the outcome (result +0x04) is 1, 3, 7 or 11      mask 0x88A (00385EA9-00385EBC)
+ref = min(7000, maxHp +0x24, doubled under Bubble)
+ref = min(7000, max(hp +0x48, 1))        under Disease instead
+k = k * 1.5   when the HP loss 02AEE004 > ref * 0.6                 (00385EC4-00385F32)
+```
+
+`p / s` is number 33 of `003204E0`, reached through `003204D0`, which passes the unit's actor
+`[unit+0x10]` (`00385E7F`-`00385E8C`): `002ECE50` reads property `0x09001E1F` through `003E6150`
+([Model files](../Graphics/model-files-cm-ca.md)), and number 33 then divides by the
+float `00265240` returns from `[actor+0xB8]+0x28` (`0032055C`-`0032056A`). Outcome 1 is a weapon parry
+and 3 a shield block (above). The constants are 100.0 (`008F3134`), 0.5 (`01CEBB70`), 0.6
+(`008F3100`) and 1.5 (`00901B3C`).
+
 ### The committed list: the number
 
 A weapon recipe's committed list is `28 or 29, prep, 96 97 98 99, 125, 165 171 176 182`, and the magick
@@ -127,19 +155,19 @@ recipe 7's is `62 92 93 94 95 113 170 175 182`:
 
 | Slot | Function | Does |
 |---:|---|---|
-| 29 | `00389140` | ranged critical roll (recipes 25-27) |
-| 65-79 | various | attack, defence and scale for the weapon type ([Weapon formulas](weapon-formulas.md)) |
-| 62 | `00389DD0` | magick: scale `2 + Mag * (Lv + Mag) / 256`, attack = power + 12.5 % variance, defence = Magick Resist |
-| 96 | `0038B950` | weapon status multipliers, table below |
-| 92 | `0038B010` | magick status multipliers, table below |
-| 97, 93 | `0038BC00`, `0038B150` | the HP Critical and full-HP augments, below |
-| 98 | `0038BE00` | doubles the scale on a critical |
-| 99, 94, 95 | `0038BE30`, `0038B220`, `0038B6A0` | elements and weather ([Elements](elements.md)) |
-| 125, 113 | `0038D280` | the finisher: `(attack - defence) * scale` into HP loss or gain |
-| 165 | `0038F890` | ×1.2 for effect 49, ×2 for effect 50 (`0038F89B`-`0038F8D0`) |
-| 170, 171 | `0038F970`, `0038F9D0` | the status chance: the action's `+0x14`, or the weapon's `+0x1F` |
-| 175, 176 | `0038FB80`, `0038FBC0` | roll it; a miss stops the list |
-| 182 | `0038FCD0` | add the action's or weapon's statuses |
+| `29` | `00389140` | ranged critical roll (recipes 25-27) |
+| `65`-`79` | various | attack, defence and scale for the weapon type ([Weapon formulas](weapon-formulas.md)) |
+| `62` | `00389DD0` | magick: scale `2 + Mag * (Lv + Mag) / 256`, attack = power + 12.5 % variance, defence = Magick Resist |
+| `96` | `0038B950` | weapon status multipliers, table below |
+| `92` | `0038B010` | magick status multipliers, table below |
+| `97`, `93` | `0038BC00`, `0038B150` | the HP Critical and full-HP augments, below |
+| `98` | `0038BE00` | doubles the scale on a critical |
+| `99`, `94`, `95` | `0038BE30`, `0038B220`, `0038B6A0` | elements and weather ([Elements](elements.md)) |
+| `125`, `113` | `0038D280` | the finisher: `(attack - defence) * scale` into HP loss or gain |
+| `165` | `0038F890` | ×1.2 for effect 49, ×2 for effect 50 (`0038F89B`-`0038F8D0`) |
+| `170`, `171` | `0038F970`, `0038F9D0` | the status chance: the action's `+0x14`, or the weapon's `+0x1F` |
+| `175`, `176` | `0038FB80`, `0038FBC0` | roll it; a miss stops the list |
+| `182` | `0038FCD0` | add the action's or weapon's statuses |
 
 ### Multipliers from statuses
 

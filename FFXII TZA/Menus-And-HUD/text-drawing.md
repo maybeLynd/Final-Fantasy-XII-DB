@@ -28,7 +28,12 @@ addresses: "001E8070, 001E8580, 002142A0, 00213FE0, 00212E70, 00213140, 00214210
    the font id, one batch per font in each of two groups of 32 (`001E9E26`-`001E9E46`). The line's box and origin are
    widened to cover the glyph.
 
-The palette entries are named `fontclut_%d` (`001E9533`).
+The palette entries are named `fontclut_%d` (`001E9533`). When a language's font folder is chosen (`001B44A0`),
+`001E98A0` loads every entry from 0 to 27 that is not loaded yet through the reader `001C5F20`.
+
+The font display's constructor `001E71B0` builds the 64 batches, `0x38` bytes each, with `001E7480`, which reserves
+room for `0x400` vertices of `0x3C` bytes through `001E9AE0`; `001E7710` frees a batch's vertices. `001E74F0` and
+`001E76B0` release partly built members when the constructor unwinds (`008985CC`, `0089866B`).
 
 ### The text flush
 
@@ -71,13 +76,13 @@ mode):
 
 | Slot | Does |
 |---:|---|
-| 1 | the draw entry `00213FE0`: viewport, blend and state codes, identity matrix, then its own slot 10 (`00214191`) |
-| 3 | sets the 4 x 4 matrix (`00214710`) |
-| 4 | sets layer `i`'s texture (`00213B30`) |
-| 5 | sizes layer `i`'s vertex array (`00213F90`) |
-| 6 | appends a vertex to layer `i` (`00213D10`; `Final` `00213B40` applies its matrix first) |
-| 10 | draws the layers |
-| 11 | renderer mode 0, 1 for `Shadow`, 2 for `Final` and `ShadowFinal` (`00214890`, `002148B0`, `00214860`) |
+| `1` | the draw entry `00213FE0`: viewport, blend and state codes, identity matrix, then its own slot 10 (`00214191`) |
+| `3` | sets the 4 x 4 matrix (`00214710`) |
+| `4` | sets layer `i`'s texture (`00213B30`) |
+| `5` | sizes layer `i`'s vertex array (`00213F90`) |
+| `6` | appends a vertex to layer `i` (`00213D10`; `Final` `00213B40` applies its matrix first) |
+| `10` | draws the layers |
+| `11` | renderer mode 0, 1 for `Shadow`, 2 for `Final` and `ShadowFinal` (`00214890`, `002148B0`, `00214860`) |
 
 Slots 4, 5 and 6 refuse a layer index of 10 or more (`00213B33`, `00213F93`, `00213D2B`).
 
@@ -107,13 +112,16 @@ On the offscreen path, each line is drawn in five ordered steps (`001E8664`-`001
 1. A render target from the size ladder is bound: the smallest of ten sizes from 50 x 60 to 1920 x 1080 that holds the
    line (`001E97B0`, table `009018F0`).
 2. A `Shadow` instance draws every glyph in white (`00213E30` with flag 1, `001E87B6`), a mask of the line.
+   `002147B0` sets each `Shadow` instance's viewport to the target's width and height, target `+0x28` and `+0x2C`
+   (`001E86D3`, `001E88DC`).
 3. A `FontBorderOrderedGaussObject` filters the mask in two passes (`00212E70`, `00190260`): first across, with
    `SingleStepOffset` one texel wide, from the ladder target into its partner (`00186800`, `001867E0`), then down, one
    texel high, back again.
 4. A second `Shadow` instance draws the glyphs in their own colour over it (flag 0, `001E89C6`).
 5. A `FontBorderOrderedResetObject` restores the screen target (`00213040`), and a `ShadowFinal` instance draws the
    target onto the screen as one quad (`00214930`), with the line's first alpha on its left corners and its latest
-   alpha on its right ones (`00214A67`-`00214AA8`).
+   alpha on its right ones (`00214A67`-`00214AA8`). `002148F0` makes the target its layer-0 texture (`001E8AAF`), and
+   `002145A0` maps each corner through the matrix `+0x11C` into clip space (`00214A62`).
 
 The border shader's parameters are `ColorBuffer`, `SingleStepOffset`, `FontBorderSetting` and `FontBorderColor`
 (`001902FF`-`00190352`). The colour is the palette's border colour, and `FontBorderSetting` is the border width from
@@ -126,7 +134,9 @@ So the border is a shader pass over a white mask, and the glyphs are drawn once 
 
 Each font also loads `<name>_shadow.dds.phyre` beside its atlas (`001B6212`). Only `DynGeoFontTextInstance` uses it:
 its draw `00213140` draws the line twice through `002133D0`, first with the shadow atlas in the border colour, then
-with the glyph atlas in the glyph colour. With the shipped `[01E02818]` of 1, the flush does not take this path.
+with the glyph atlas in the glyph colour. The flush copies the 16 bytes at font display `+0x13A0` into its `+0x40`
+(`00213520`, `001E924E`) and the matrix `+0xE30` into its `+0x54` (`002134B0`, `001E928A`). With the shipped
+`[01E02818]` of 1, the flush does not take this path.
 
 ### How a draw reaches the renderer
 
@@ -144,8 +154,6 @@ with the glyph atlas in the glyph colour. With the shipped `[01E02818]` of 1, th
 | text context | the interpreter's argument (`002AC5F0`) | size, spacing, colour and pager state |
 
 ## Layouts
-
-`DynGeoFontTextSpecialInstance` (`0x160` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -166,8 +174,6 @@ with the glyph atlas in the glyph colour. With the shipped `[01E02818]` of 1, th
 `Shadow` adds the line origin at `+0x160`/`+0x164` (`00214B10`), `ShadowFinal` the target index at `+0x160`
 (`002147A0`), and `Final` a byte at `+0x168` (`0021394D`).
 
-`DynGeoVertex` (`0x30` bytes, offsets from the start of the record):
-
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `00` | `f32` | x | clip space; (x - 2048) x 2 / 1920 (`00213D31`-`00213D61`) |
@@ -184,8 +190,6 @@ with the glyph atlas in the glyph colour. With the shipped `[01E02818]` of 1, th
 The byte `[01F811E0]` is set from `[01E0280C]`, shipped 1 (`0022A113`-`0022A120`, `001B24B0`); with it clear the
 mapping divides by 512 and 448 instead (`001B1620`, `00213D38`).
 
-`FontClutEntry` (`0x24` bytes, offsets from the start of the record):
-
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `00` | `u8` | loaded | set by `001E9515` |
@@ -197,8 +201,6 @@ mapping divides by 512 and 448 instead (`001B1620`, `00213D38`).
 | `18` | `u32` | g1 |  |
 | `1C` | `u32` | b1 |  |
 | `20` | `u32` | a1 | over 128 |
-
-`FontPaintRecord` (`0x2C` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|

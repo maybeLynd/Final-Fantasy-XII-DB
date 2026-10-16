@@ -82,8 +82,6 @@ by the effect applier `00307300` (`00307436`, `00307ABD`), the periodic maintena
 
 ## Layouts
 
-`ActionResult` (`0x148` bytes, offsets from the start of the result):
-
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `000` | `u8` | flags0 | left to the caller by `003848E0` |
@@ -111,18 +109,19 @@ by the effect applier `00307300` (`00307436`, `00307ABD`), the periodic maintena
 | `052` | `u16` | zero52 | zeroed by `003848E0`; not read by `003112F0` |
 | `054` | `u32` | addMask | statuses to add (step 6) |
 | `058` | `u32` | removeMask | statuses to remove (step 6) |
-| `05C` | `i32[32]` | statusA | per-status parameter A (duration); copied to target +`0xBC` |
-| `0DC` | `i16[32]` | statusB | per-status parameter B (beat timer); copied to target +`0x13C` |
+| `05C` | `i32[32]` | statusA | per-status parameter A (duration); copied to target `+0xBC` |
+| `0DC` | `i16[32]` | statusB | per-status parameter B (beat timer); copied to target `+0x13C` |
 | `11C` | `u8` | targetLevel | `0xFF` none (step 4) |
 | `11D` | `u8` | userLevel | `0xFF` none (step 4) |
 | `11E` | `i16[4]` | enemyStats | new Strength, Magick Power, Defence, Magick Resist; -1 none (step 11) |
 | `126` | `u16` | zero126 | zeroed by `003848E0`; not read by `003112F0` |
-| `128` | `u8[4]` | affinitySet | OR-ed into the enemy record bytes +`0x7B`, +`0x79`, +`0x78`, +`0x7A` (step 12) |
+| `128` | `u8[4]` | affinitySet | OR-ed into the enemy record bytes `+0x7B`, `+0x79`, `+0x78`, `+0x7A` (step 12) |
 | `12C` | `u8[4]` | affinityClr | cleared out of the same bytes (step 12) |
 | `130` | `u16` | packedParam | -1 from `003848E0`; not read by `003112F0` |
-| `132` | `u8[6]` | zero132 | zeroed by `003848E0`; not read by `003112F0` |
-| `138` | `i32` | echoB | to [`02EBF190`]+`0x5B0E` (low byte) when not -1 (`00385BA0`) |
-| `13C` | `i32` | echoA | to [`02EBF190`]+`0x5B00` when not -1 (`00385BA0`) |
+| `132` | `u8[2]` | zero132 | zeroed by `003848E0`; not read by `003112F0` |
+| `134` | `f32` | knockback | zeroed by `003848E0`; with flagsB bit 3 the resolver stores `00385E50`'s value here (`0038680F`-`0038682E`; [Damage formula](../Damage-And-Battle-Formulas/damage-formula.md)) |
+| `138` | `i32` | echoB | to [`02EBF190`]`+0x5B0E` (low byte) when not -1 (`00385BA0`) |
+| `13C` | `i32` | echoA | to [`02EBF190`]`+0x5B00` when not -1 (`00385BA0`) |
 | `140` | `u32` | flagsC | bits 4, 5, 6, 7: flags for the status and effect writes; bit 14: sound `0x34` |
 | `144` | `u32` | zero144 | zeroed by `003848E0`; not read by `003112F0` |
 

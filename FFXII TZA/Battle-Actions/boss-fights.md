@@ -79,7 +79,7 @@ does not jump.
 
 ## Shipped data
 
-From the decompiled shipped scripts (all 2,990 `us` scripts):
+From the decompiled shipped scripts (all 1,114 `us` scripts):
 
 | Fact | Count |
 |---|---:|
@@ -88,9 +88,10 @@ From the decompiled shipped scripts (all 2,990 `us` scripts):
 | calls with groups 2-5 (in 5 scripts) | 15 |
 | scripts that put an enemy in a group 1-5 | 235 |
 | scripts that call `bossgaugeopen` | 162 |
+| of those, also putting an enemy in a group 1-5 | 160 (not `lus_a02`, `lus_b01`) |
 | scripts that call `suspendbattle` / `resumebattle` | 532 / 470 |
 | scripts that call `lockmapjump` | 68 |
-| of those, also using a group | 160 (not `lus_a02`, `lus_b01`) |
+| of those, also putting an enemy in a group 1-5 | 19 |
 | `mapjump(12)` exit entries | 1,525 |
 | of those, calling `sysucoff` in their opening lines | 1,462 |
 

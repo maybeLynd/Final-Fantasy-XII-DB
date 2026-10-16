@@ -30,8 +30,6 @@ file request functions `00384420` and `003843F0`.
 
 ## Layouts
 
-`LicenseBoardFile` (`0x488` bytes, offsets from the start of the file):
-
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `00` | `u8[4]` | magic | "licd"; no code compares it |

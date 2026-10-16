@@ -2,7 +2,7 @@
 title: "Control remapping: how the Config screen binds a key, the swap when a key is already in use, the keys that cannot be bound, the default profiles and how a change reaches the game"
 kind: "system"
 category: "Controls and input"
-summary: "How remapping works: where the three keyboard profiles live, the Config screen's binding rows and which profiles each row can edit, capturing a key, the assignment with its result codes, the yes-or-no swap when the key is in use, clearing a binding, the reserved keys, publishing a profile into the records the game reads, the Circle and Cross exchange, saving on leaving the screen, restoring the defaults, and the gaps a modder can hit."
+summary: "How remapping works: where the three keyboard profiles live, the Config screen's binding rows and which profiles each row can edit, what a row shows and the key names per keyboard layout, capturing a key, the assignment with its result codes, the yes-or-no swap when the key is in use, clearing a binding, the reserved keys, publishing a profile into the records the game reads, the Circle and Cross exchange, saving on leaving the screen, restoring the defaults, and the gaps a modder can hit."
 addresses: "01F80F90, 0023C5C0, 001E1050, 00198A00, 01DF13E0, 00195DF0, 00198B60, 00198960, 002414B0"
 ---
 
@@ -46,6 +46,26 @@ The Config screen `0023CE10` builds 41 rows from the table at `0208E6E0`, which 
 So every control has a row, and profiles 2 and 3 can be edited only for the eight with three columns, the ones the
 shipped profiles 2 and 3 bind.
 
+### What a binding row shows
+
+`0023C5C0` installs `0023CAF0` as the cell writer of its row (`0023CA37`). For each column it shows:
+
+- on row 0, which `002414B0` builds with type 1 and three columns, the heading Main key, Alternate key 1 or
+  Alternate key 2, text `0x53F` plus the column (`0023CB0A`, `0023CC10`);
+- on a binding row, the name of the column's code (`0023CB24`-`0023CB36`), or Press a Key (`0x46DD`) on the
+  column being captured (`0023CB8C`-`0023CB99`);
+- a cursor mark on the selected column, and otherwise one mark when the code still equals the one the row held
+  when the screen opened (`+0xDC`, `0023CBB6`-`0023CBBD`) and another when it was changed.
+
+`001E0B00(code)` turns a code into its text id, and `0023CAF0` is its only caller (raw call scan). The names are
+rows of `menu_command_template.bin`, one set of 104 key names per Windows keyboard layout:
+
+| Code | Text id |
+|---|---|
+| `0` and below | `0x46DC`, Key Not Assigned |
+| `1`-`27` | `0x46DD` plus the code: Left Mouse Button, Middle Mouse Button and Right Mouse Button for 1-3 |
+| `28` and up | `0x46E1` plus the code minus 28; `0x4749` for the French layout `0x40C`, `0x47B1` for the German layout `0x407` (`GetKeyboardLayout`) |
+
 ### Binding a control
 
 Inside a row (`0023C5C0`):
@@ -88,11 +108,11 @@ The 35 codes at `01DF13E0` are refused at assignment (`00198AC0`) and at load (`
 
 | Codes | Controls |
 |---|---|
-| 2 | mouse button 2, the second of the three mouse codes |
-| 81, 82, 84, 85 | `Key_Minus`, `Key_Equals`, `Key_RightBracket`, `Key_Backslash` |
-| 88, 89, 90 | `Key_Comma`, `Key_Period`, `Key_Slash` |
-| 119, 122, 123 | `Key_Left_Alt`, `Key_Right_Alt`, `Key_AccentGrave` |
-| 125, 130-152 | keys with no registered name |
+| `2` | mouse button 2, the second of the three mouse codes |
+| `81`, `82`, `84`, `85` | `Key_Minus`, `Key_Equals`, `Key_RightBracket`, `Key_Backslash` |
+| `88`, `89`, `90` | `Key_Comma`, `Key_Period`, `Key_Slash` |
+| `119`, `122`, `123` | `Key_Left_Alt`, `Key_Right_Alt`, `Key_AccentGrave` |
+| `125`, `130`-`152` | keys with no registered name |
 
 [Control names](control-names.md) and its table `control-names.tsv` name every code.
 
@@ -142,6 +162,8 @@ every default.
 - The assigner stores any code that is not reserved, including codes no band polls. The range check at saving covers
   the first profile only.
 - L2, R2, the speed keys and WalkMode accept the left and right mouse buttons, which never fire for them.
+- A pad code from 4 to 27 written into keymap.ini is shown under a key's name: `001E0B00` gives code n the text
+  of code n + 24, so the pad's code 11 shows as H.
 
 ## Related
 

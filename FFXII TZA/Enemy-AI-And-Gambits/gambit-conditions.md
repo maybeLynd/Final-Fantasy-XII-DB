@@ -53,15 +53,45 @@ The maximum is max HP `+0x24`, doubled under Bubble, or under Disease the curren
 is max MP `+0x28`, or 0 when effect 39 is in either layer ([Augments](../Damage-And-Battle-Formulas/augments.md)). A
 unit with max MP 0 or effect 39 never passes an MP percentage test (`00302F37`-`00302F59`).
 
+### Units the action would not change
+
+The picker `003087E0` asks `003083B0(unit, candidate, action)` about every unit the first test kept and keeps
+only those it answers 0 for: a unit answered 1 never becomes the highest, lowest or nearest, and is left out of
+a random pick (`00308848`-`00308AD0`). When no unit is kept, the order fails (`003017C4`-`003017CD`), and the
+walk goes on to the next line.
+
+`003083B0` answers 0 at once when the deciding unit is an enemy (stats `+0x05` = 1), when the action id is
+above `0x21E` (`003083E1`-`003083FD`), or when the action row has bit 5 of `+0x36` and the candidate's byte
+`+0x55` is `0x0D` (`0030844B`-`00308457`). Otherwise it answers 1 only when every effect the action row marks
+would change nothing on the candidate (`0030846A`-`003085E6`):
+
+| Row bit | Effect | Changes nothing when | Sites |
+|---|---|---|---|
+| `+0x2C` bit 12 | restores HP | current HP `+0x48` is at least the maximum: max HP `+0x24`, doubled under Bubble, or under Disease the current HP and at least 1 | `0030846A`-`003084B1` |
+| `+0x2C` bit 15 | restores MP | current MP `+0x4C` is at least max MP `+0x28`, which counts as 0 when byte `+0x6C` or `+0x7C` is negative | `003084B3`-`003084E1` |
+| `+0x36` bit 1 | removes statuses | `0031C500` finds none of them on the candidate (the action's mask from `003872D0` ANDed with the statuses `+0x64` and `+0x3C`), or each one is also removed by the action of a unit already committed against it | `003084EF`-`00308565` |
+| `+0x36` bit 0 | adds statuses | `00320AF0` finds none still to add, or each one is also added by the action of a unit already committed against it | `0030856F`-`003085DE` |
+
+The units already committed against the candidate are the bits of its mask `+0xEA4`, each unit's action being
+its `+0x714` ([Committing an action](../Battle-Actions/action-commit.md); `00308520`-`00308535`, `003085A0`-`003085B4`).
+
+`00320AF0(user, candidate, action)` returns the action's status mask `+0x18` without the candidate's statuses
+`+0x64 | +0x3C`, and 0 when either stats record is missing (`00320AF9`-`00320B13`). The mask comes from
+`003875D0`, which returns it only for a row with bit 0 of `+0x36` set and bit 9 of `+0x2C` clear
+(`00387629`). An action row with none of the four bits is never passed over.
+
+So an "Ally: status = Poison" line whose action removes Poison skips an ally whose Poison an action already
+committed against it removes, and an "Ally: any" line whose action restores HP skips allies at full HP.
+
 ### Threshold tables
 
 | Test | Values | Table |
 |---|---|---|
-| HP % | 90, 80, 70, 60, 50, 40, 30, 20, 10, 0 | `00D102E0` |
-| HP | 100,000, 50,000, 10,000, 5,000, 3,000, 2,000, 1,000, 500 | `00D10350` |
+| HP % | `90`, `80`, `70`, `60`, `50`, `40`, `30`, `20`, `10`, `0` | `00D102E0` |
+| HP | `100,000`, `50,000`, `10,000`, `5,000`, `3,000`, `2,000`, `1,000`, `500` | `00D10350` |
 | MP % | ten times the row's sub-selector byte | `003032AF`-`003032B4` |
 | item count | ten times the sub-selector byte | `003032EE`-`003032F5` |
-| summon timer | 20, 30, 60, 90, 120 | `00D10380` |
+| summon timer | `20`, `30`, `60`, `90`, `120` | `00D10380` |
 
 ### Conditions that test something narrower or wider than their help line
 

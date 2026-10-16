@@ -42,8 +42,6 @@ All 16 later reads of `02EAD3E0`, in 15 functions, pass it to a chunk finder, so
 
 ## Layouts
 
-`ConfigHeader` (`0x10` bytes, offsets from the start of the file):
-
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `00` | `char[4]` | magic | "scnf" |
@@ -52,8 +50,6 @@ All 16 later reads of `02EAD3E0`, in 15 functions, pass it to a chunk finder, so
 | `08` | `u8` | chunkCount | 10 |
 | `09` | `u8[3]` | h09 | 0 |
 | `0C` | `u32` | copySize | bytes the engine copies; 1,264 |
-
-`ConfigChunkEntry` (`0x10` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -84,8 +80,6 @@ The class names are the run-time type names of each chunk's wrapper.
 
 ### Categories
 
-`CONFIGCATEGORY` (`0x20` bytes, offsets from the start of the record):
-
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `00` | `u8` | version | 2 |
@@ -93,7 +87,7 @@ The class names are the run-time type names of each chunk's wrapper.
 | `02` | `u16` | nameAt | offset of the name, `0x10` |
 | `04` | `i16` | size | 0 none; above 0 that many sound slots; below 0 shares category -size |
 | `06` | `u16` | c06 | the name length |
-| `10` | `char[]` | name | the category name |
+| `10` | `char` | name | the category name, inline, `+0x06` characters long |
 
 `007AAA40` refuses a chunk with no elements (`007AAA66`). A size of 0 leaves the category empty (`007AAB11`), a
 positive size allocates that many slots (`007AA2E3`), and a negative one binds it to another category
@@ -101,8 +95,6 @@ positive size allocates that many slots (`007AA2E3`), and a negative one binds i
 its element count: each category gets that many plus one volume ramps (`007AAAB2`, `007AA15A`).
 
 ### The bus
-
-`CONFIGBUS` (`0x30` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
@@ -116,7 +108,7 @@ its element count: each category gets that many plus one volume ramps (`007AAAB2
 | `0B` | `u8` | nameLength | places the effect table |
 | `0C` | `f32` | level | the bus volume |
 | `10` | `f32[4]` | sendLevels | one per send |
-| `20` | `char[]` | name | the bus name |
+| `20` | `char` | name | the bus name, inline, `+0x0B` characters long |
 
 `007AC4F0` builds the buses: `+0x01` picks the slot (`007AC770`), the root bus takes `+0x0C` as its level
 (`007ACAAE`, `007ACAE0`), and other buses read their sends (`007AC7AD`-`007AC822`) and effects (`007AC83A`). The
@@ -161,8 +153,6 @@ A preset's records set a bus ramp (`007AD09E`-`007AD0A9`) or switch an effect on
 come from `eps ` through `007ADDC0`, one section per effect type, with block sizes from `01CB49A0` and `01CB4990`.
 
 ### The HCA mixer switch
-
-`CONFIGHCAMXSETTINGS` (`0x10` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|

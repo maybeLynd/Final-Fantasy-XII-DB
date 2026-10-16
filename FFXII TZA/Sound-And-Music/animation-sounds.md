@@ -56,15 +56,15 @@ so a repeat is stepped down by one, wrapping:
 
 | Type | Group | Variant |
 |---:|---:|---|
-| 1 | 1 | 0; the footstep varies by ground, below |
-| 2 | 0 | by the kind of the `0x200` attachment: kind 1 picks 0-2, 2 picks 3-5, 3 picks 6-7, 4 picks 8-9, 5 is `0x0C`, 6 is `0x0D`; no attachment, no sound |
-| 3 | 0 | `0x0A` |
-| 4 | 2 | by the `0x400` attachment's kind: kind 1 draws 0-3, 0 is silence, else 0-2; kind 2 draws 0-4, 0 is silence, else 6-7; another kind is silence |
-| 5 | 2 | draws 0-3, 0 is silence, else 3-5 |
-| 6 | 2 | 8 or 9 |
-| 7 | 2 | a countdown in byte `+4`; at zero it reloads with 3-11 and draws 0-3, 0 is silence, else `0x0A`-`0x0C` |
-| 8, 9, 10 | 2 | `0x15`, `0x17`, `0x19` |
-| 11, 12 | 0 | `0x0E`, `0x0F` |
+| 1 | `1` | 0; the footstep varies by ground, below |
+| 2 | `0` | by the kind of the `0x200` attachment: kind 1 picks 0-2, 2 picks 3-5, 3 picks 6-7, 4 picks 8-9, 5 is `0x0C`, 6 is `0x0D`; no attachment, no sound |
+| 3 | `0` | `0x0A` |
+| 4 | `2` | by the `0x400` attachment's kind: kind 1 draws 0-3, 0 is silence, else 0-2; kind 2 draws 0-4, 0 is silence, else 6-7; another kind is silence |
+| 5 | `2` | draws 0-3, 0 is silence, else 3-5 |
+| 6 | `2` | 8 or 9 |
+| 7 | `2` | a countdown in byte `+4`; at zero it reloads with 3-11 and draws 0-3, 0 is silence, else `0x0A`-`0x0C` |
+| 8, 9, 10 | `2` | `0x15`, `0x17`, `0x19` |
+| 11, 12 | `0` | `0x0E`, `0x0F` |
 
 Types 4 and 5 are also silent when `003326C0` finds nothing for emitter word `+8` (`0046C433`, `0046C50F`).
 
@@ -79,11 +79,13 @@ its volume byte by `volume / 128`, capped at `0x7F`, plays nothing when that is 
 
 `002E9D90(actor record, group, variant, footstep flag)` finds the sample in the actor's sound set at `+0xC0`:
 
-- Group 0 reads the set's common half, groups 1 and 2 the set itself.
+- Group 0 reads its block from the binding in the presentation record's first attach slot (`[actor + 0xC0] + 0x30`,
+  `002E9F50`); only the weapon (`w`) rows of `charseinfo` author that block. Groups 1 and 2 read the set itself.
 - For group 1, the footstep, the index is the movement body's ground type `+0x8A` (`002E9F29`) looked up in
   `soundfoottable.bin`, with the table's 32 added when the flag and the field's environment variant are both set.
-- For group 2 with a variant below 10, a voice id of class 3 on the actor gives the sound directly, the character's
-  own voice.
+- For group 2 with a variant below 10, when the actor's voice-pool entry (`+0x20` of the actor it resolves to through
+  `00263F40` and `00263F10`) has state 3, its bank loaded (`0036ECA0`), the sound comes straight from that bank
+  (`0036EC50`, `002E9F81`): the character's own voice.
 - The footstep flag is set for types 1, 8, 9 and 10.
 
 ### The play routine
@@ -92,10 +94,10 @@ its volume byte by `volume / 128`, capped at `0x7F`, plays nothing when that is 
 
 | Mode | Does |
 |---:|---|
-| 0 | the chain above. Footsteps are dropped while a record test with `0x1A` holds; types 11 and 12 play only for the party's focus character; type 7 not while the last voice still plays. A new voice of types 4-7 stops the playing one, kept at `+0x18` with its type at `+0x1C` |
-| 1, 2, 3 | a direct sound id from one of three bank getters, centred, at `volume * 64 / 128`; not authored |
-| 4 | an explicit sound number at the character, bit 31 added below `0x100` |
-| 5 | with type 1, stores `0xC00` in emitter word `+5` |
+| `0` | the chain above. Footsteps are dropped while a record test with `0x1A` holds; types 11 and 12 play only for the party's focus character; type 7 not while the last voice still plays. A new voice of types 4-7 stops the playing one, kept at `+0x18` with its type at `+0x1C` |
+| `1`, `2`, `3` | a direct sound id from one of three bank getters, centred, at `volume * 64 / 128`; not authored |
+| `4` | an explicit sound number at the character, bit 31 added below `0x100` |
+| `5` | with type 1, stores `0xC00` in emitter word `+5` |
 
 ## Modding notes
 

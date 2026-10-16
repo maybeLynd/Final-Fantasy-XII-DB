@@ -11,7 +11,7 @@ addresses: "01EEC460, 00305080, 00301830, 002FDDA0, 002FDA60, 002FDC30"
 A unit's action id `+0x714` holds either an ordinary action (ids up to `0x21E`, which carry a target
 list) or an internal **order** (`0x4000`-`0x4166`, no target list). Orders are what AI order lists and
 scripts use for moving, waiting, changing statuses and effect bits and adjusting stats; each comes with
-a small order record (the action data `+0x708`), whose `s16` at `+0x02` is the order's parameter.
+a small order record (the action data `+0x708`), whose `i16` at `+0x02` is the order's parameter.
 The table lists all 359 order ids with what the game does for each.
 
 ### Dispatch
@@ -70,7 +70,7 @@ The ids fall into these groups (full rows in the `.tsv`):
 | `0x4139`-`0x4140` / `0x4141`-`0x4148` | `002FDDA0` | set / clear bit 0-7 of the battle flags `022C314C` (`0031A910` / `0031A8C0`, which also call `00469C00`) |
 | `0x414D` | `002FE840` | unless unit bit 24 is set or the phase gate of the running-action check applies, `00313400(unit)`, or `00313480()` when unit bit 23 is set; ends when unit bits 50 and 51 are clear |
 | `0x414F` | `002FE8D0` | `002E73C0(actor, param)` |
-| `0x4158`-`0x4162` | `002FDDA0` | add the parameter to one `s16` of the stats record (`+0x08`, `+0x0A`, `+0x0C`, `+0x0E`, `+0x1E`, `+0x12`, `+0x14`, `+0x10`, `+0x18`, `+0x1A`, `+0x1C`), clamped to +-99, +-100 or +-255, then rebuild (`0030FED0`) |
+| `0x4158`-`0x4162` | `002FDDA0` | add the parameter to one `i16` of the stats record (`+0x08`, `+0x0A`, `+0x0C`, `+0x0E`, `+0x1E`, `+0x12`, `+0x14`, `+0x10`, `+0x18`, `+0x1A`, `+0x1C`), clamped to +-99, +-100 or +-255, then rebuild (`0030FED0`) |
 | `0x4163` / `0x4164` | `002FDDA0` | enemy side: set to 1 / add the parameter to the enemy's per-party-member byte table (`[unit+0x6A0]+0x1A` indexed by type id) for every living party member (`00321B00`) |
 | `0x4166` | `002FE910` | `0046A6E0(param)` |
 | `0x4025`, `0x4036`-`0x4045`, `0x4128` | none | empty slots: refused by dispatch and availability |

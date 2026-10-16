@@ -92,8 +92,6 @@ the end `00326500` picks the controlled member and `022C2670` counts the fightin
 
 The slot maps in the battle state block:
 
-`PartySlotMaps` (`0x5A` bytes, offsets from the start of the record):
-
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `00` | `u16[9]` | map0 | live party seats; low byte = selector, `0xFF` empty (`0031BAAA`) |

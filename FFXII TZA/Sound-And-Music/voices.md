@@ -30,8 +30,9 @@ Slot `k` always holds sub-file `k` of the calling event's pack:
 
 ### The packs
 
-`003E9F80` loads a slot only for event managers 1-3: `0032F360` answers -1 for any other manager, so field maps load
-no voice pack. The event's pack directories, `0x208` bytes each, are read by `0032FCA0` (`0032FF3A`-`0032FFE2`):
+`003E9F80` loads a slot only for event managers 1-3: `0032F360` refuses managers 4 and up, and manager 0 answers -1
+because `0032FCA0` loads it as kind 5 and blanks its directory (`0032FFAA`, `0032FFFC`), so field maps load no voice
+pack. The event's pack directories, `0x208` bytes each, are read by `0032FCA0` (`0032FF3A`-`0032FFE2`):
 
 - kind 8, `plan_master\<language>\event\...\<event>.vpc`, into `022C6EE8`;
 - kind 37, the `.vpcjp`, into `022C6EC0`.
@@ -102,15 +103,11 @@ does it go on to the battle-voice banks (`0021C870`). Pan and volume go through 
 
 ## Layouts
 
-`VoicePack` (`0x208` bytes, offsets from the start of the file):
-
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `00` | `char[4]` | magic | "PKFL" |
 | `04` | `u32` | count | 64 |
 | `08` | `u32[128]` | files | per sub-file an offset then a size; size 0 for none |
-
-`VoiceCueTable` (`0x8` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|

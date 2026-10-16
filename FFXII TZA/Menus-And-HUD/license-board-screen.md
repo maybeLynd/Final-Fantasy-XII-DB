@@ -51,7 +51,9 @@ tile byte per square with `table[(rand() & 3) + 4 x ((col + row) & 1)]` (`0055B4
 
 `0055B560` allocates the squares, 0x38 bytes each (`0055B63C`), and runs the fill `0055BFF0`. For each square inside
 the board it reads the board cell, then the license node's record (`0035D330(0x19, node)`, `0055C0FA`-`0055C15C`) and
-the member's answer for the node (`00323600`, which calls `00323D10`; [Licenses](../Items-Equipment-Shops-And-Licenses/licenses.md)).
+the member's answer for the node (`00323600`, which calls `00323D10`; [Licenses](../Items-Equipment-Shops-And-Licenses/licenses.md)). The script verb
+`fsmenu_getneedlp` (`005112E0`) returns a node's LP cost through `00282E60`, the record byte the square's `lpCost`
+is copied from (`0055C117`).
 
 - A Quickening square shows the member's own Quickening in the order bought, from `00D230B0` and bank-8 words
   `row x 3 + 0x53` (`0055C16F`-`0055C247`).
@@ -59,14 +61,12 @@ the member's answer for the node (`00323600`, which calls `00323D10`; [Licenses]
 - The ten Gambit Slot squares (nodes 266-275) are left out unless the Gambits command is available
   (`00283730(0x4B9)`, `0032A8A0(0x4009)`, `0055C34E`-`0055C38B`).
 
-`LicenseBoardSquare` (`0x38` bytes, offsets from the start of the record):
-
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `00` | `u32[2]` | name | the square's name string |
 | `08` | `u16` | node | license node, `0xFFFF` for an empty or hidden square |
-| `0B` | `u8` | rule | node byte +`0x06`: 1, 2 or 3 choose the confirm text |
-| `0C` | `u16` | lpCost | node byte +`0x04` |
+| `0B` | `u8` | rule | node byte `+0x06`: 1, 2 or 3 choose the confirm text |
+| `0C` | `u16` | lpCost | node byte `+0x04` |
 | `0E` | `u16` | artNode | row of the art table [`02CA9670`] |
 | `10` | `u32[2]` | kindText | the kind of license, Weapon to Gambit (`0x4280`-`0x4289`) |
 | `18` | `u32` | state | bits 0-3 corner shape, 4-7 state, 8-11 state shown, 12-15 purchase flags |
@@ -82,7 +82,7 @@ the member's answer for the node (`00323600`, which calls `00323D10`; [Licenses]
 | `29` | `u8` | fadeIn | fade direction |
 | `2A` | `i16` | countdown frames before the pending state shows |  |
 | `2C` | `u32` | effect | the playing effect (`003B2D80`) |
-| `30` | `u32` | category | node byte +`0x05`; `0x1E` is the Second Board |
+| `30` | `u32` | category | node byte `+0x05`; `0x1E` is the Second Board |
 
 ### Square states
 
@@ -92,18 +92,18 @@ The member's answer for the node sets the purchase flags through the table at `0
 |---|---|
 | 0, can be obtained | bit 14 when the cost is at most the member's LP (`0055C492`), and bit 15 |
 | 1, owned | bits 12 and 13, state 5 (`0055C472`) |
-| 2 | bit 15 unless bit 12 |
-| 3, 4, 5, 8 | the square is emptied (`0055C4CA`) |
+| `2` | bit 15 unless bit 12 |
+| `3`, `4`, `5`, `8` | the square is emptied (`0055C4CA`) |
 
 `0055E090` then turns bit 15 into bit 12 on each square next to an owned one. So bit 13 means owned, bit 12
 obtainable now, bit 14 affordable and bit 15 obtainable later. The state nibble, bits 4-7, takes four values:
 
 | State | Meaning | Set by |
 |---:|---|---|
-| 0 | empty | the fill |
-| 1 | a square not yet next to an owned one | `0055E230` |
-| 4 | next to an owned square | `0055E3F0(view, 4, owned)` |
-| 5 | owned | answer 1, or the purchase (`0055F641`) |
+| `0` | empty | the fill |
+| `1` | a square not yet next to an owned one | `0055E230` |
+| `4` | next to an owned square | `0055E3F0(view, 4, owned)` |
+| `5` | owned | answer 1, or the purchase (`0055F641`) |
 
 Squares in states 4 and 5, and Esper and Second Board squares in state 1, are drawn with their art (`0055BAC0`). A
 state-4 square shows its LP cost when zoomed in.

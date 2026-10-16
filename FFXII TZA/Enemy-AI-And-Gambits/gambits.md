@@ -113,17 +113,17 @@ test only has to find one unit. Every test, opcode and pick rule of the shipped 
 
 | Mode | Admits | Gambit word | Site |
 |---:|---|---|---|
-| 0 | every unit | - | `0030BD45` |
-| 1 | a unit on the other side | Foe | `0030BD6D` |
-| 2 | a unit on the same side | Ally | `0030BD5E` |
-| 3 | the unit whose id is the deciding unit's `+0x24` | - | `0030BDBC` |
-| 4 | the deciding unit itself | Self | `0030BD4F` |
-| 5 | a unit with the same team byte `+0x54` | - | `0030BDCB` |
-| 6 | a unit on the same side other than itself | - | `0030BDDB` |
-| 7 | a unit with the same team byte other than itself | - | `0030BDF1` |
-| 8 | a unit with a different team byte | - | `0030BE08` |
-| 9 | the deciding unit's current target `+0x710` | - | `0030BE18` |
-| 10 | the unit in the deciding unit's `+0x748` | - | `0030BE2A` |
+| `0` | every unit | - | `0030BD45` |
+| `1` | a unit on the other side | Foe | `0030BD6D` |
+| `2` | a unit on the same side | Ally | `0030BD5E` |
+| `3` | the unit whose id is the deciding unit's `+0x24` | - | `0030BDBC` |
+| `4` | the deciding unit itself | Self | `0030BD4F` |
+| `5` | a unit with the same team byte `+0x54` | - | `0030BDCB` |
+| `6` | a unit on the same side other than itself | - | `0030BDDB` |
+| `7` | a unit with the same team byte other than itself | - | `0030BDF1` |
+| `8` | a unit with a different team byte | - | `0030BE08` |
+| `9` | the deciding unit's current target `+0x710` | - | `0030BE18` |
+| `10` | the unit in the deciding unit's `+0x748` | - | `0030BE2A` |
 
 For mode 1, when a party record looks at an enemy-table record, the enemy must also hold enmity above 0
 toward one of the 40 combatants (`0030BDA0`, `00321840` → `00321770`). Without it no Foe condition, not even
@@ -133,9 +133,17 @@ toward one of the 40 combatants (`0030BDA0`, `00321840` → `00321770`). Without
 
 `00308EC0` reads the order's action word (`00308EC0`-`00308FCC`). A word below `0x8000` is the action id
 itself. A word from `0x8000` is an index into the weighted table `[02EBF160]`: entries `index` to
-`index + 1` of its pointer list bound a run of 4-byte entries `{u16 action, u8 weight, u8}`, and a shared
+`index + 1` of its pointer list bound a run of 4-byte entries (below), and a shared
 gameplay LCG roll `r = LCG % 100` picks the first entry whose running weight sum is above `r`
 (`00308F61`-`00308F99`). With no such entry the result is `0xFFFF`.
+
+Each weighted entry, 4 bytes:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u16` | action | the action id |
+| `02` | `u8` | weight | its weight in the roll |
+| `03` | `u8` | pad | not read by the pick |
 
 ### From the menu to the list
 
@@ -168,8 +176,6 @@ definition passes the party table row's word `+0x14` as the preset (`0023AEEE`).
 
 The gambit bank, `0x34` bytes, three per party member:
 
-`GambitBank` (`0x34` bytes, offsets from the start of the record):
-
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `00` | `u16[24]` | lines | twelve (condition, action) pairs; `0xFFFF` = empty (`00327E6B`-`00327E80`) |
@@ -179,36 +185,32 @@ The gambit bank, `0x34` bytes, three per party member:
 
 One order of a walked set, 24 bytes from set `+0x20`:
 
-`AiOrderLine` (`0x18` bytes, offsets from the start of the record):
-
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `00` | `u16` | action | action id, or `0x8000` + weighted-table index (`00308ECA`) |
 | `02` | `i16` | chance | percent chance the line is tried; 0 = always (`00301608`) |
-| `04` | `u16` | flags | `0x40` try while resuming, `0x80` skip on resume (`00305DB2`, `00305DBC`); `0x4000` on the order in flight limits a resume to `0x40` orders (`00305D7F`); `0x20` >> i with `0x20` >> (i + 1) chains test i + 1 to test i (`003016BE`); `0x800` not repeated while it is the previous order (`003015A6`); a gambit line takes the condition row's +`0x0E` (`00327F2F`) |
-| `06` | `u16` | relation0 | first test: relation mode, 0 = no test (`00301685`; row +`0x10`, `00327EEA`) |
-| `08` | `u8` | sub0 | first test: sub-selector (`00301B1A`; row +`0x08`, `00327EDF`) |
+| `04` | `u16` | flags | `0x40` try while resuming, `0x80` skip on resume (`00305DB2`, `00305DBC`); `0x4000` on the order in flight limits a resume to `0x40` orders (`00305D7F`); `0x20` >> i with `0x20` >> (i + 1) chains test i + 1 to test i (`003016BE`); `0x800` not repeated while it is the previous order (`003015A6`); a gambit line takes the condition row's `+0x0E` (`00327F2F`) |
+| `06` | `u16` | relation0 | first test: relation mode, 0 = no test (`00301685`; row `+0x10`, `00327EEA`) |
+| `08` | `u8` | sub0 | first test: sub-selector (`00301B1A`; row `+0x08`, `00327EDF`) |
 | `09` | `u8` | opcode0 | first test: opcode; even = highest, set or at least, odd = lowest, clear or below (`00301B14`, `00301B44`) |
-| `0A` | `i16` | operand0 | first test: operand (`00301B1F`; row +`0x18`, `00327EF2`) |
-| `0C` | `u16` | relation1 | second test, from row +`0x11` (`00327F02`) |
-| `0E` | `u8` | sub1 | from row +`0x0A` (`00327EFA`) |
-| `0F` | `u8` | opcode1 | from row +`0x0B` (`00327EFA`) |
-| `10` | `i16` | operand1 | from row +`0x1A` (`00327F0A`) |
-| `12` | `u16` | relation2 | third test, from row +`0x12` (`00327F1A`) |
-| `14` | `u8` | sub2 | from row +`0x0C` (`00327F12`) |
-| `15` | `u8` | opcode2 | from row +`0x0D` (`00327F12`) |
-| `16` | `i16` | operand2 | from row +`0x1C` (`00327F22`) |
+| `0A` | `i16` | operand0 | first test: operand (`00301B1F`; row `+0x18`, `00327EF2`) |
+| `0C` | `u16` | relation1 | second test, from row `+0x11` (`00327F02`) |
+| `0E` | `u8` | sub1 | from row `+0x0A` (`00327EFA`) |
+| `0F` | `u8` | opcode1 | from row `+0x0B` (`00327EFA`) |
+| `10` | `i16` | operand1 | from row `+0x1A` (`00327F0A`) |
+| `12` | `u16` | relation2 | third test, from row `+0x12` (`00327F1A`) |
+| `14` | `u8` | sub2 | from row `+0x0C` (`00327F12`) |
+| `15` | `u8` | opcode2 | from row `+0x0D` (`00327F12`) |
+| `16` | `i16` | operand2 | from row `+0x1C` (`00327F22`) |
 
 One gambit condition, a row of `battle_pack.bin` section 7 (`02EBF0D8`, 32 bytes):
-
-`GambitConditionRow` (`0x20` bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `00` | `u8[3]` | pad00 | 0 in every row |
-| `03` | `u8` | b03 | `0xFF` in every row; copied to the menu record +`0x2C` (`0031D0CB`) |
+| `03` | `u8` | b03 | `0xFF` in every row; copied to the menu record `+0x2C` (`0031D0CB`) |
 | `04` | `u16` | helpId | 16000 + row: the help line (`0031D0BE`) |
-| `06` | `u16` | value06 | 50, 70, 100 or 300; copied to the menu record +`0x28` (`0031D0B7`) |
+| `06` | `u16` | value06 | 50, 70, 100 or 300; copied to the menu record `+0x28` (`0031D0B7`) |
 | `08` | `u8` | sub0 | first test sub-selector (`00327EDF`) |
 | `09` | `u8` | opcode0 | first test opcode (`00327EDF`) |
 | `0A` | `u8` | sub1 | second test sub-selector (`00327EFA`) |

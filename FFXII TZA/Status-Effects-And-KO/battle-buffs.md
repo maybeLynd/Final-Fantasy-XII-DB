@@ -59,25 +59,25 @@ Two paths set `+0x68` in shipped play:
 
 | Id | Set by | Effect | Sites |
 |---:|---|---|---|
-| 2 | order `0x4094` | an attacker with it removes the target's evade bands and ignores the weather penalty on ranged hits | `00389548`, `003895D4`, `00389614` |
-| 4 | order `0x4096` | the holder's innate evade band gains 25, or 30 on the party side | `0038937F`-`003893BF` |
-| 6 | order `0x4098` | the holder parries at half its Speed | `0038849A`-`003884CB` |
-| 7 | order `0x4099` | with id 6, it parries at twice its Speed instead | `003884B3`-`003884D8` |
-| 11 | order `0x409D` | the holder's attacks deal ×1.5 at full HP (×1.4 off the party side) | `0038BC54`-`0038BCA3`; constants `00901B3C`, `00901B38` |
-| 16 | order `0x40A2` | weather and terrain do not scale elemental damage to or from the holder | `0038B226`-`0038B23D` |
-| 18 | order `0x40A4` | the holder's attacks always hit | `00388F2A`-`00388F37` |
-| 31 | order `0x40B1` | the target's Reflect does not bounce the holder's magick | `00390DFA`-`00390E39` |
-| 48 | Greater Barrier | damage to the holder is cut to 70 %, except from `0xB3` | `00390F8B`-`00390FC3` |
-| 49 | Battle Cry | the holder's damage ×1.2 | `0038F89B`-`0038F8B8`; constant `008FCC90` |
-| 50 | Saber | the holder's damage ×2 | `0038F8BE`-`0038F8D0` |
-| 51 | Mana Spring, Unleash | the holder's actions cost nothing | `002F97A3`-`002F97E0` |
-| 52 | Shift | the holder's weakness moves to a random element, and again on each hit on it | `00386B0C`, `0038B78D`, `0038C1ED` |
-| 53 | Enrage, Limit Break | Attack and orders charge instantly | `002F85A6`-`002F888A` |
-| 54 | Chain Magick, Limit Break, Unleash | actions with row `+0x0C` bit 13 charge instantly | `002F8627`-`002F862D` |
-| 55 | Force Barrier, Perfect Defense | Paling: actions with row `+0x0C` bit 14 are nullified | `00390E4B`-`00390EEE` |
-| 56 | Magick Barrier, Perfect Defense | Magick Shield: actions with row `+0x0C` bit 13 are nullified | `00390EA3`-`00390EEE` |
-| 57 | Wall | White Wind: harmful statuses do not land on the holder | `00387D25`-`00387D72` |
-| 59 | Chain Reaction | no effect of its own; the shipped AI tests it to pick its phase | `00302478` |
+| `2` | order `0x4094` | an attacker with it removes the target's evade bands and ignores the weather penalty on ranged hits | `00389548`, `003895D4`, `00389614` |
+| `4` | order `0x4096` | the holder's innate evade band gains 25, or 30 on the party side | `0038937F`-`003893BF` |
+| `6` | order `0x4098` | the holder parries at half its Speed | `0038849A`-`003884CB` |
+| `7` | order `0x4099` | with id 6, it parries at twice its Speed instead | `003884B3`-`003884D8` |
+| `11` | order `0x409D` | the holder's attacks deal ×1.5 at full HP (×1.4 off the party side) | `0038BC54`-`0038BCA3`; constants `00901B3C`, `00901B38` |
+| `16` | order `0x40A2` | weather and terrain do not scale elemental damage to or from the holder | `0038B226`-`0038B23D` |
+| `18` | order `0x40A4` | the holder's attacks always hit | `00388F2A`-`00388F37` |
+| `31` | order `0x40B1` | the target's Reflect does not bounce the holder's magick | `00390DFA`-`00390E39` |
+| `48` | Greater Barrier | damage to the holder is cut to 70 %, except from `0xB3` | `00390F8B`-`00390FC3` |
+| `49` | Battle Cry | the holder's damage ×1.2 | `0038F89B`-`0038F8B8`; constant `008FCC90` |
+| `50` | Saber | the holder's damage ×2 | `0038F8BE`-`0038F8D0` |
+| `51` | Mana Spring, Unleash | the holder's actions cost nothing | `002F97A3`-`002F97E0` |
+| `52` | Shift | the holder's weakness moves to a random element, and again on each hit on it | `00386B0C`, `0038B78D`, `0038C1ED` |
+| `53` | Enrage, Limit Break | Attack and orders charge instantly | `002F85A6`-`002F888A` |
+| `54` | Chain Magick, Limit Break, Unleash | actions with row `+0x0C` bit 13 charge instantly | `002F8627`-`002F862D` |
+| `55` | Force Barrier, Perfect Defense | Paling: actions with row `+0x0C` bit 14 are nullified | `00390E4B`-`00390EEE` |
+| `56` | Magick Barrier, Perfect Defense | Magick Shield: actions with row `+0x0C` bit 13 are nullified | `00390EA3`-`00390EEE` |
+| `57` | Wall | White Wind: harmful statuses do not land on the holder | `00387D25`-`00387D72` |
+| `59` | Chain Reaction | no effect of its own; the shipped AI tests it to pick its phase | `00302478` |
 
 Ids 48-51 and 53-57 also have orders, `0x40C2`-`0x40CB`. The shipped order sets contain set orders for every id
 in the table but 52, and clear orders for most of them.
@@ -95,9 +95,9 @@ result's clear list, and the result applier clears it (`003855CD`-`00385645`,
 
 | Id | Rises | Falls |
 |---:|---|---|
-| 55 | `0x3E` "A Paling rises around ..." | `0x3F` "The Paling surrounding ... falls." |
-| 56 | `0x40` "A Magick Shield forms around ..." | `0x41` "The Magick Shield surrounding ... fades." |
-| 57 | `0x42` "A White Wind surrounds ..." | `0x43` "The White Wind surrounding ... dies." |
+| `55` | `0x3E` "A Paling rises around ..." | `0x3F` "The Paling surrounding ... falls." |
+| `56` | `0x40` "A Magick Shield forms around ..." | `0x41` "The Magick Shield surrounding ... fades." |
+| `57` | `0x42` "A White Wind surrounds ..." | `0x43` "The White Wind surrounding ... dies." |
 
 The other ids last until a clear order (one id, or all with `0x4091`) removes them or the record is set up again ([Battle message
 list](../Battle-Actions/battle-message-list.md)).

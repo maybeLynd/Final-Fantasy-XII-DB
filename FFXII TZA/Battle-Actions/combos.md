@@ -129,6 +129,14 @@ with a stats record that has none of status bits 0, 1 and 31 (or `00377C20()` is
 `02089340` is set, `00237670(unit id)` is non-zero; and the special-sequence state `022C2160` is 0 or 7
 (`0030C016`-`0030C0B0`).
 
+### The hit count
+
+The effect applier `00307300` counts the hits of action `0x96` in `+0x6B8`. For a target whose
+entry code is 0 it adds 1 and, once the count is above 1, passes the unit id and the count to
+`0028E920`, which hands them to the HUD object at `[0209BE80] + 0x5380` through `00289D70`
+(`0030761D`-`00307676`, `0028E920`). The re-commit in `0030FA00` keeps the count, so it runs across
+the whole combo.
+
 ### Reset
 
 `003105D0` clears `+0x6B7` and `+0x6B8` with one word store (`003106EB`) when the unit's
@@ -146,7 +154,7 @@ action is cancelled or reset.
 | Field | Width | Meaning | Written by |
 |---|---|---|---|
 | unit `+0x6B7` | u8 | extra hits dealt so far | `0030FA79` (+1); `003106EB` (cleared) |
-| unit `+0x6B8` | u8 | kept across a re-commit | `0030FA65`; `003106EB` (cleared) |
+| unit `+0x6B8` | u8 | hits of action `0x96`, kept across a re-commit | `00307665` (+1); `0030FA65`; `003106EB` (cleared) |
 | record `+0x12` high nibble | u4 | extra hits rolled for this combo | `00388865` |
 | `02AEDFE4` | u32 | combo chance, percent | `00388648` |
 | target entry flags bit 10 | bit | continue the combo after this hit | `003075E0` |

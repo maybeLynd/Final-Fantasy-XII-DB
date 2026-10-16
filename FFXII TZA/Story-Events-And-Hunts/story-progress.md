@@ -22,12 +22,12 @@ picks the base for the class through the jump table at `002626A8` (`002625EA`-`0
 
 | Class | Base | Set at |
 |---:|---|---|
-| 0 | the save payload, actor manager `+0x48` (`00262605`) | `0026CAF8`-`0026CAFD` |
-| 1 | actor manager `+0x40` (`0026260B`) | - |
-| 2 | the address the callback at `+0x98` returns (`00262611`-`00262617`) | - |
-| 3 | the script image plus its own `+0x40` word (`00262633`-`00262636`) | - |
-| 4 | actor manager `+0x58` (`00262627`) | - |
-| 5 | actor manager `+0x60` (`0026262D`) | - |
+| `0` | the save payload, actor manager `+0x48` (`00262605`) | `0026CAF8`-`0026CAFD` |
+| `1` | actor manager `+0x40` (`0026260B`) | - |
+| `2` | the address the callback at `+0x98` returns (`00262611`-`00262617`) | - |
+| `3` | the script image plus its own `+0x40` word (`00262633`-`00262636`) | - |
+| `4` | actor manager `+0x58` (`00262627`) | - |
+| `5` | actor manager `+0x60` (`0026262D`) | - |
 
 Class 0 is the save payload itself: `002EF2B0` returns the active save buffer plus `0x200` (`002EF2B4`-`002EF2B9`), and
 the actor manager keeps that pointer at `+0x48` when it binds the loaded definitions (`0026CAF8`-`0026CAFD`). So a

@@ -22,11 +22,11 @@ The factory `007B2F70` builds one object per sound played. It reads the sound re
 
 | Class | Object | Select |
 |---:|---|---|
-| 0, 1 | `Sound` | `007BD370`: plays every candidate |
-| 2 | `RandomSound` | `007E5160` |
-| 3 | `OrderSound` | `007E58D0` |
-| 4 | `CycleSound` | `007E6360` |
-| 5 | `SwitchSound` | `007E67C0` |
+| `0`, `1` | `Sound` | `007BD370`: plays every candidate |
+| `2` | `RandomSound` | `007E5160` |
+| `3` | `OrderSound` | `007E58D0` |
+| `4` | `CycleSound` | `007E6360` |
+| `5` | `SwitchSound` | `007E67C0` |
 
 The names are the classes' run-time type names. When the bank is a streaming bank not yet loaded, the factory builds a
 `VariationSound` instead (`007B2FF2`): the bank's readiness answer, `007E4300` for a streaming bank, is false, and

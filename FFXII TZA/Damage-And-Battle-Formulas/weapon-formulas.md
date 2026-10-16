@@ -123,8 +123,8 @@ chance `02AEDFE0`. The Cameo Belt (equipment row 372, class 21) has augment byte
 
 | Slot | Weapons | Hit chance factor | Sites |
 |---:|---|---:|---|
-| 35 | bows | 0.8 (`008F3108`) | `003895D4`-`003895FC` |
-| 36 | crossbows | 0.5 (`01CEBB70`) | `00389614`-`00389630` |
+| `35` | bows | 0.8 (`008F3108`) | `003895D4`-`003895FC` |
+| `36` | crossbows | 0.5 (`01CEBB70`) | `00389614`-`00389630` |
 
 ### Critical hits
 

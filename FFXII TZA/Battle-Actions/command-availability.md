@@ -77,7 +77,7 @@ Byte `+0x1E` of an action row is its kind; the names come from the members of ea
 `003060E0(id, stats, 0)` checks ownership for the party side only; enemies pass. Kind 0 and 255
 pass. Kinds 1,
 2, 5 and 6: a guest (type id `0x07`-`0x19`) or Esper (`0x1B`-`0x27`) passes when the row's ability id
-`+0x22` is one of the ten `s16` at `+0x58` of its record in the table at `02EBF130`; anyone else when
+`+0x22` is one of the ten `i16` at `+0x58` of its record in the table at `02EBF130`; anyone else when
 `0030B0E0(+0x22)` (the owned count for that id class, through the handler table at `01EEBD10`) is above
 0. Kind 3: `003037A0` (below). Kind 9: only an Esper passes. Kind 4 and kinds 7, 8 and 10 return 5.
 `00306480` turns any non-zero result into `0x0F`.
@@ -97,7 +97,7 @@ record (`0030A330`) is below `00324020(stats)`; for any other row the License Bo
 | Code | Test |
 |---:|---|
 | `0x12` | `003037A0`: for a party-side unit, the item the action uses (`003093D0(id)`, not `0xFFFF`) has an owned count of 0 (`0030B0E0`) and is not the item already set aside at `+0xDC8` |
-| `0x13` | MP: the `s16` at stats `+0x4C` is below `00309110` - for kinds other than 5 and 6, the row's byte `+0x0A` adjusted by `002F95D0`, or 0 when the unit pays with gil |
+| `0x13` | MP: the `i16` at stats `+0x4C` is below `00309110` - for kinds other than 5 and 6, the row's byte `+0x0A` adjusted by `002F95D0`, or 0 when the unit pays with gil |
 | `0x14` | Mist charges: the byte at stats `+0x4E` is below `00308FF0` - the row's byte `+0x0A` for kinds 5 and 6, else 0 |
 | `0x15` | gil: for a party-side unit paying with gil (`002F9820`: effect bit 0 of `+0x6C` or `+0x7C`, effect 32, "Enables casting of magicks with gil, rather than MP"), when the cost `00309060` is above both the party's gil (`[02092758]+8`, `00253690`) and the gil already reserved at `+0xE58` |
 

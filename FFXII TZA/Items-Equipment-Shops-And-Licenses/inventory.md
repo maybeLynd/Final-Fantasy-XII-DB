@@ -64,10 +64,10 @@ The packed handler has four channels, chosen by `channel` (`002FD198`-`002FD1B9`
 
 | Channel | Changes | Clamp | Sites |
 |---|---|---|---|
-| 0 | the free copies, by moving the worn part | worn kept within 0 and owned | `002FD383`-`002FD3F1`; no caller uses it |
-| 1 | owned | not below worn, not above 99 | `002FD2AD`-`002FD37C` |
-| 2 | worn | 0 to owned | `002FD23C`-`002FD2A5` |
-| 3 | the region-two byte | 0 to 99 | `002FD1BF`-`002FD237` |
+| `0` | the free copies, by moving the worn part | worn kept within 0 and owned | `002FD383`-`002FD3F1`; no caller uses it |
+| `1` | owned | not below worn, not above 99 | `002FD2AD`-`002FD37C` |
+| `2` | worn | 0 to owned | `002FD23C`-`002FD2A5` |
+| `3` | the region-two byte | 0 to 99 | `002FD1BF`-`002FD237` |
 
 A rise on channel 1 also sets the item's ever-owned bit (`002FD323`-`002FD34B`). A relative channel-1 change with
 `flags` bit 0 posts the obtain message through `0046A630`, in both handlers (`002FD2AD`-`002FD37C`,
