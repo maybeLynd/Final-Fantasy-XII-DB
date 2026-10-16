@@ -38,5 +38,6 @@ Addresses are virtual addresses in the shipping `FFXII_TZA.exe` (SHA-256
 - [Menus and HUD](FFXII%20TZA/Menus-And-HUD/README.md) - The menus, the battle HUD, text and number display.
 - [Sound and music](FFXII%20TZA/Sound-And-Music/README.md) - Sound effects, music and voice playback.
 - [Saving, loading and settings](FFXII%20TZA/Saving-Loading-And-Settings/README.md) - Save files, loading, the game options and language selection.
+- [Steam and achievements](FFXII%20TZA/Steam-And-Achievements/README.md) - The Steam integration and the achievements.
 - [Random numbers](FFXII%20TZA/Random-Numbers/README.md) - Every random number generator in the game, how each is seeded and which rolls use it.
 - [PKFL package files](FFXII%20TZA/PKFL-Package-Files/README.md) - The format of the PKFL package files.

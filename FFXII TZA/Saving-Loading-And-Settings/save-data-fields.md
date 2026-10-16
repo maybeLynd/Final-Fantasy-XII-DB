@@ -135,7 +135,7 @@ Offsets in this table are block offsets; add `0x8000` for the payload offset.
 | `+0x33F4` | 6 | tab 6 (category 5) bits, 48 entries | `00315B50` | |
 | `+0x3404` | 512 | bestiary defeat count per entry, stored as count + 1 | | `00315420`, `003154B0` |
 | `+0x3604` | 512 | bestiary page-viewed bits, 8 per entry | `00315B50` | |
-| `+0x3844` | 4 | tab 7 family A, 30 bits: the achievements already fired (achievement page) | `00315910` | `003154B0` |
+| `+0x3844` | 4 | tab 7 family A, 30 bits: the achievements already fired ([achievement page](../Steam-And-Achievements/achievements.md)) | `00315910` | `003154B0` |
 | `+0x3848` | 4 | tab 7 family B, 30 bits | `00315B50` | |
 | `+0x3868` | 4 | the points `00315390` ranks 1-12 against the rank table below | | `00315390`, whose rank `00583D60` writes to the header's `+0x44` |
 | `+0x47B8` | `0x30` | `i32[12]`: the entry count of each class's derived inventory list | `00252E60` | `00252F70` |
@@ -238,4 +238,4 @@ the save layer itself does to it:
 - [Spawn placement and retirement](../Enemy-Spawning/enemy-spawning.md): the spawn-keep entries.
 - [Persistent flag banks](../Story-Events-And-Hunts/story-flags.md): the flag accessors.
 - [The battle-state block field map](../Party/party-data.md).
-- Steam integration and achievement catalogue.
+- [Steam integration and achievement catalogue](../Steam-And-Achievements/achievements.md).
