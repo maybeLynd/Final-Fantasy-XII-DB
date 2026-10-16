@@ -21,6 +21,7 @@ Addresses are virtual addresses in the shipping `FFXII_TZA.exe` (SHA-256
 
 - [Engine core](FFXII%20TZA/Engine-Core/README.md) - The main loop and per-frame update, startup and the values fixed at boot, the developer tuning console, logging, the object model and the engine's shared state.
 - [Scripts and script commands](FFXII%20TZA/Scripts-And-Script-Commands/README.md) - How area and event scripts run: the script virtual machine, its instructions, and every native command a script can call.
+- [Game files and data tables](FFXII%20TZA/Game-Files-And-Data-Tables/README.md) - How game files are found, loaded and read: archives, file tables, the battle and game data tables and the image formats.
 - [World, areas and travel](FFXII%20TZA/World-Areas-And-Travel/README.md) - Areas and zone changes, the per-area map information table, weather, save crystals, teleports, chocobos and airships.
 - [Characters and objects](FFXII%20TZA/Characters-And-Objects/README.md) - The records behind every character, enemy and object in an area, and how they are created, identified and removed.
 - [Enemy spawning](FFXII%20TZA/Enemy-Spawning/README.md) - When and where enemies appear, respawn and are removed.
