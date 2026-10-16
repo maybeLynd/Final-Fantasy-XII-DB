@@ -354,7 +354,7 @@ its staged triple; the globals `02164200` and `02099DB4`.
 ## Related
 
 - [Movement step](heading-speed-to-position-delta.md): the driver that runs the steer and the step.
-- Battle locomotion: the combat steering that feeds the unit's intent.
+- [Battle locomotion](battle-locomotion.md): the combat steering that feeds the unit's intent.
 - [Field runtime](../Characters-And-Objects/field-runtime.md): the resolver that calls the integrator.
 - [Actor record](../Characters-And-Objects/actor-record.md): the class byte and the contexts.
 - The staged look command: the head requests.

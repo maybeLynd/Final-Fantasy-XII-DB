@@ -189,7 +189,7 @@ divides them as the search does, and applies the same clearance rule. The region
 and the output is that waypoint with the mover's own y. In the goal region nothing is re-aimed and
 the waypoint is the goal.
 
-The caller is the unit's navigation step `00325BB0(unit)` (battle locomotion),
+The caller is the unit's navigation step `00325BB0(unit)` ([battle locomotion](battle-locomotion.md)),
 run from four combat sites (`002FDBE9`, `002FDD69`, `00304D5B`, `00308341`):
 
 1. when `00325D90()` is 0 it runs `0033C9B0` on the locomotion block `+0x80` and returns true;
@@ -306,7 +306,7 @@ obstacle grid's records, occupancy bytes, mask scratch, count and actor list.
 
 ## Related
 
-- Battle locomotion: the solver that consumes the waypoint.
+- [Battle locomotion](battle-locomotion.md): the solver that consumes the waypoint.
 - [Map pack](../World-Areas-And-Travel/mpk-map-pack.md): slot four.
 - [Battle unit fields](../Characters-And-Objects/battle-unit-fields.md): the unit's class byte and blocks.
-- Movement bodies and separation: the collision radii.
+- [Movement bodies and separation](movement-bodies-and-separation.md): the collision radii.

@@ -210,7 +210,7 @@ the speed `ctx+0xB0` is non-zero; otherwise it clears bit 8 and returns 0 (`0033
   whose bytes `+0x02`, `+0x03`, `+0x05` and flag word `+0x0C` these functions read.
 - [The battle unit field map](../Characters-And-Objects/battle-unit-fields.md) - where
   the three distances sit on the unit.
-- Battle locomotion
+- [Battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md)
   - the movement solver that runs the spacing and pacing steps.
 - The inner values have a second reader: `00320E10` calls `00320D70` twice (`00320F6A`, `00320F82`)
   for the unit's current action and is used only by the query-record builder `0031ADB0`.

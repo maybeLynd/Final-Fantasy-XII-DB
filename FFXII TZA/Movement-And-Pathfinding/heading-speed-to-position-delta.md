@@ -52,8 +52,8 @@ the movement body `[controller + 0x138]`:
 4. it integrates: `context + 0xB8` = `002E5610(actor, body, context, &delta)`, the squared
    displacement;
 5. when `002EA7F0(actor)` is non-zero it registers the body's cell from the context's position, plus
-   the offset at `+0x40`/`+0x48` when byte `+0x107` has bit 1 (`003DB020`, movement bodies and
-   separation);
+   the offset at `+0x40`/`+0x48` when byte `+0x107` has bit 1 (`003DB020`, [movement bodies and
+   separation](movement-bodies-and-separation.md));
 6. it runs `002E6330(actor)`.
 
 The driver's own `mode` and `override` arrive from the resolver and are passed to the delta
@@ -280,7 +280,7 @@ mode; the body's `+0x70`, `+0x90`, `+0xC8` and `+0x110`; the render record's `+0
 ## Related
 
 - [Facing and steering](facing-and-steering.md): the facing angle, the steering request and the turn.
-- Movement bodies and separation: the body the step is solved against.
+- [Movement bodies and separation](movement-bodies-and-separation.md): the body the step is solved against.
 - [Field runtime](../Characters-And-Objects/field-runtime.md): the resolver that calls the driver.
 - [Battle units](../Characters-And-Objects/battle-units.md): the unit fields the intent is read from.
 - Character render record array: the record the override reads.

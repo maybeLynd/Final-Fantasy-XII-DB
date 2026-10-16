@@ -87,5 +87,5 @@ The ids fall into these groups (full rows in the `.tsv`):
   the status orders add and remove.
 - Gambits and enmity - the AI order
   lists that issue these orders and the per-party-member table of `0x4163`/`0x4164`.
-- Battle locomotion
+- [Battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md)
   - the movement goals of the move orders.
