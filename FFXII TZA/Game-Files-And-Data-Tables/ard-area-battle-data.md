@@ -119,7 +119,7 @@ inside it, so the loaded block is no longer a copy of the file.
 ### The second area root (EBP section 19)
 
 A script container (`.ebp`) can carry a second `FF12AR03` block in directory slot 19
-(script container). When the container arrives,
+([script container](../EBP-Script-Files/ebp-script-container.md)). When the container arrives,
 `003304A0` passes it to `003320D0` (`00330666`), which drops the area slot and jumps to `003EAA00`:
 
 1. a block already held is unbound (`003DCF10(0)`) and released (`00331880`);

@@ -91,5 +91,5 @@ Actor and function names are the ones the scripts carry.
 - [Quests](quests.md) - the quest state kept beside the flag banks.
 - [Save data](../Saving-Loading-And-Settings/save-data-fields.md) - the payload's first `0x200` bytes, the script word
   bank the counter opens.
-- Script bytecode - `PUSHII`, `POPV`
+- [Script bytecode](../EBP-Script-Files/ebp-script-image.md) - `PUSHII`, `POPV`
   and the jump opcodes.

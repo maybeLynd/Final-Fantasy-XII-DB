@@ -1,0 +1,220 @@
+---
+title: "EBP camera tables: the CML1 shot list and the CAM7 shots a script's camera verbs play"
+kind: "format"
+category: "EBP script files"
+summary: "Sections 8 and 9 of an .ebp script: the CML1 list whose rows a script's camera verbs name and the CAM7 table of shots, ease curves and paths those rows index; how both are bound to an actor manager and what the load does to them, the shot record's key and segment command stream as the player reads it, the attachment word, the curve and path evaluators, the shipped tables in all nine language trees, and the rules an edit must follow."
+addresses: ["0032FA10", "0032FAC0", "002561C0", "003DA1F0", "0032F3D0", "005C5230", "00256530", "002572E0", "003DA400", "003DA330", "003DA300", "00258350", "00255410", "002554E0", "003CC5F0", "003CC740", "003CC890", "0032ED80", "02092800", "022C6D58", "022C6D80"]
+---
+
+# EBP camera tables: the CML1 shot list and the CAM7 shots a script's camera verbs play
+
+## What the player sees
+
+The directed camera of a cutscene, and of a field map that frames a moment such as a door
+opening, is authored as named shots: where the camera starts, where it looks, how it swings or
+cranes to the next pose and how long that takes. Section 9 holds the shots and section 8 the list
+of rows a script's camera verbs pick from. 296 of the 345 event scripts and 127 of the 769 field
+map scripts in a language tree carry them; a map without them keeps the ordinary follow camera.
+
+## Where it comes from
+
+Sections 8 and 9 are slots 8 and 9 of the `.ebp` directory
+([EBP script container](ebp-script-container.md)). The directory walker `003304A0` dispatches
+slot 9 first (`0033058E`) and slot 8 after it (`003305A9`); each handler takes the manager index
+from the low four bits of its argument.
+
+| Section | Handler | Steps | Pending bit |
+|---|---|---|---|
+| 9, CAM7 | `0032FAC0` | stores the section at `022C6D58[manager]`, clears the four camera channels (`002566E0(manager, 0..3)`), runs the loader `002561C0`, and only when it returns non-zero sets manager record `+0xE0` (`0026CE20`) | 7 |
+| 8, CML1 | `0032FA10` | stores the section at `022C6D80[manager]`, sets manager record `+0xD8` (`0026CE00`), and runs `003DA1F0` when `+0xE0` is set | 8 |
+
+The teardown `0032ED80` runs `002561A0` and the channel clear for CAM7, then clears both globals
+and both record fields (`0032EFC4`, `0032F00C`); the free beside each clear is gated on
+`005C5230(5)`, which returns 0. The manager record and the camera channel entries the verbs bind
+are on [actor managers](../Characters-And-Objects/actor-managers.md).
+
+## Layouts
+
+All offsets are from the section start unless a record is named.
+
+```
+CML1 (section 8)
++0x00  char[4]  magic       "CML1"; never compared
++0x04  u32      count       rows
++0x08  u32[2]   -           0; not read
++0x10  row[count]
+       +0x00  u32  nameOffset  name, from the section start
+       +0x04  i32  camera      CAM7 record number; -1 = none
+       +0x08  u32  -           zeroed at load
+       +0x0C  u32  -           low byte zeroed at load
+then the names, NUL-terminated; zero fill to 0x40
+
+CAM7 (section 9)
++0x00  char[4]  magic       "CAM7"; anything else and nothing is bound
++0x04  u32      cameras     shot records
++0x08  u32      countB      ease curves
++0x0C  u32      countC      paths
++0x10  u32[3]   -           0; not read
++0x1C  u32      first       first shot record, from the section start
+then the shot records, the ease curves and the paths, back to back
+
+shot record
++0x00  u32      -           0
++0x04  u32      length      to the next record
++0x08  char[24] name        copied with strncpy(…, 24)
++0x20  u32      attach      attachment word (002572E0)
++0x24  u16      eyeJoint    joint for eye attach modes 1 and 2
++0x26  u16      targetJoint joint for target attach modes 1 and 2
++0x28  commands             keys and segments, then 0xFF and three pad bytes
+
+key (type 1, 0x40 bytes)
++0x00  u8       1
++0x04  f32[3]   eye
++0x14  f32[3]   target
++0x24  f32      angle       to the view's +0x20
++0x28  f32      fov         degrees
++0x2C  f32[2]   follow      path-follow values
++0x38  f32      followLead  path-follow value
+(+0x10, +0x20, +0x34, +0x3C not read)
+
+segment (type 2, 0x2C bytes)
++0x00  u8       2
++0x04  u16[13]  timing      bit 15 set: ease curve (bits 0-14); else frames
++0x1E  u16      eyePath     bit 15 set: path (bits 0-13); bit 14: progress is a distance
++0x20  u16      targetPath  as eyePath
++0x22  u16      duration    frames
++0x24  u8       kind        0-6; see Playing a shot
++0x25  u8       absolute    non-zero: the path offsets replace the pose
+
+ease curve (array B)
++0x00  u32      length      0x18 + 0x24 * keys
++0x04  u32      keys
++0x08  f32      start       time; at or before it the value is +0x0C
++0x0C  f32      startValue
++0x10  f32      end         time; the normaliser
++0x14  f32      endValue    at or after end, and with no keys
++0x18  key[keys], 0x24 bytes: +0x10 a, +0x14 b, +0x18 c, +0x1C d, +0x20 span
+
+path (array C)
++0x00  u16      length      0x20 + 0x38 * segments + 8 * arcs
++0x04  u16      segments
++0x06  u16      arcs
++0x08  f32[3]   start       at parameter 0 or below
++0x14  f32[3]   end         at parameter 1 or above
++0x20  segment[segments], 0x38 bytes: x a b c d, y a b c d, z a b c d, +0x30 span
+then arc[arcs]: f32 distance, f32 parameter
+```
+
+Each shot becomes a 0x40-byte entry in `[02092810 + manager * 0xBB0]`: `+0x00` the name, `+0x18`
+the address of record `+0x28`, `+0x20` and `+0x28` the eye and target actors, `+0x30` and `+0x32`
+the joint words, `+0x34`-`+0x3D` the attachment bits.
+
+## Shipped data
+
+Every count is per language tree; the CAM7 sections are byte-identical in all nine trees.
+
+| Fact | Value |
+|---|---|
+| files | 423, all carrying both sections; neither section appears without the other |
+| shots | 3,942; 1 to 69 per file |
+| CML1 rows | 3,933; 1 to 69 per file; in 284 files row `k` names shot `k` |
+| rows naming no shot (-1) | 2 |
+| row count differs from shot count | 11 files, exactly the 11 that hold two shots with one name; in each, the row for that name points at the later shot |
+| row names | every row's name equals the name of the shot it points at |
+| commands | 7,614 keys, 3,654 segments; streams `K S K E` 3,421, `K E` 421, `K S K S K E` 59, one stream starting with a segment |
+| record lengths | 108 (421), 216 (3,421), 324 (59), 432 (20), 388 (11), 280 (3), 560 (2), and 152, 496, 540, 648 and 1,296 once each |
+| segment kinds | 0: 3,406; 1: 116; 2: 57; 3: 67; 4: 8; 5 and 6 unused |
+| names | at most 23 bytes, all NUL-terminated |
+| attachment word `0x80008000` | 3,730 shots (no attachment) |
+| ease curves, paths | 15,350 and 1,682; each used by exactly one segment word; every curve's spans sum to 1.0 |
+| layout checks | every stream ends at its record length, the three arrays end on zero padding, and `first` is `0x20` |
+
+## Loader behaviour
+
+### CAM7 at load
+
+`002561C0(section, manager)`:
+
+1. Returns 0 unless `+0x00` is `CAM7` (`002561C8`); the handler then binds nothing.
+2. Stores the section at `02092808 + manager * 0xBB0` (`00256205`).
+3. Returns 1 at once when `cameras` is 0 (manager below 5).
+4. For each shot, from `section + first`: copies 24 name bytes with `strncpy` (`00256276`), so a
+   24-byte name has no terminator; stores the command stream address, zeroes `+0x20` and `+0x28`,
+   copies the joint words, and steps by `length`.
+5. Builds pointer arrays for the ease curves (stepping by the `u32` at `+0`) and the paths
+   (stepping by the `u16` at `+0`) at `02092818` and `02092820`.
+
+Nothing is compared with the section's length.
+
+`002572E0(manager)`, run by `0026CE60` once `+0xD8` and `+0xE0` are both set, decodes each
+shot's `attach` word:
+
+| Bits | Eye | Target |
+|---|---|---|
+| actor | 0-8: the n-th type-3 actor of the manager, n - 1 (`00257AD0`), 0 for none | 16-24 |
+| attach mode | 13-14 | 29-30 |
+| turn with the actor | 15 | 31 |
+| hold height | 11 | 27 |
+| hold ground position | 12 | 28 |
+| angle and fov from the joint | 9, 10 | - |
+
+### CML1 at load
+
+`003DA1F0(manager)` sets record `+0x18` and `+0x1A` to -1 and the four channel entries to idle,
+then for each row zeroes `+0x08` and the low byte of `+0x0C` (`003DA292`, `003DA296`). Its name
+lookup `00256530` runs only when `0032F3D0(1, name)` returns non-zero, and kind 1 ends in
+`005C5230(5)`, which is `xor eax, eax`: the lookup never runs, the authored `camera` column is
+used as shipped, and no name is ever compared.
+
+### Who reads a row
+
+Each reader checks the row number against `count` and takes row `+0x04` at `+0x14 + row * 0x10`:
+
+| Verb | Handler | Reader | Does |
+|---|---|---|---|
+| `camerastart_7d`, `camerastart_7e` | `0034F2F0`, `0034F930` | `003DA400` (`003DA456`) | binds the shot to a camera channel |
+| `camerahitcheck`, `camerahitcheck_33c` | `0034EDB0`, `0034E9B0` | `003DA330` (`003DA35E`) | runs the shot on a scratch player and reports a hit (`002567E0`) |
+| `behindtoeventcamera` | `00349FA0` | `003DA300` (`003DA31F`) | starts the move to the shot (`00255C50`) |
+
+### Playing a shot
+
+`00258350` walks the stream from the channel's position each frame:
+
+- a key copies eye, target, angle, fov and the three follow values into the pose, is remembered
+  as the segment's start, and the walk continues;
+- a segment adds the frame time to its clock, computes its 13 progresses (`00255410`: an ease
+  curve through `003CC5F0`, else clock / frames), its two path offsets (`002554E0`), and the
+  pose between the remembered key and the key after it by `kind`; once the clock reaches
+  `duration` the walk moves on, carrying the rest of the clock;
+- `0xFF` marks the channel finished.
+
+The eye is the eye path offset plus the pose's eye and the target likewise, unless `absolute`
+is set; both go through the attachment transforms and into the view at `02096370`, the fov as
+`fov * π / 180`. The eye is interpolated by `00257B50`, or by `00257BF0` for kind 1 and `00257D10` for
+kind 2; the target by `00258090`, or by `00257E40` for kind 3 and `00257F60` for kind 4. Kinds 5
+and 6 replace both with the path-follow routines `00256960` and `00256CA0`.
+
+`003CC5F0` finds the curve key by summing spans until they pass `time / end` and returns
+`a·s³ + b·s² + c·s + d`, `s` the position inside that key. `003CC890` turns a distance into a
+parameter by a binary search of the arcs, and `003CC740` finds the segment by its span and returns
+the three cubics. A plain path word runs the whole path as the progress goes from 0 to 1
+(`003CC6C0`); with bit 14 the progress is a distance (`003CC710`).
+
+## Modding notes
+
+- The `camera` column of section 8 decides which shot plays; renaming a shot changes nothing.
+- Keep section 9's magic; a wrong one leaves the manager without shots while section 8 still binds.
+- Keep shot names under 24 bytes.
+- A record's `length` must equal `0x28` + `0x40` per key + `0x2C` per segment + 4; nothing checks it.
+- A segment blends from the last key the walk stored at the channel's `+0xE0`; start a stream
+  with a key unless the shot follows another on the same channel.
+- Ease-curve spans must sum to 1.0, and every timing and path word must name an existing curve or
+  path; neither is bounds-checked.
+- Keep the three arrays in order: their only boundaries are the lengths.
+
+## Related
+
+- [EBP script container](ebp-script-container.md): the directory and the walker that dispatches these sections.
+- [EBP camera shake](ebp-camera-shake.md): the CML1 and SHK1 pair that shakes these shots.
+- [Actor managers](../Characters-And-Objects/actor-managers.md): the record fields and the camera channel binds.
+- [Verb table](../Scripts-And-Script-Commands/verb-table.md): the camera verbs.

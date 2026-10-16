@@ -165,7 +165,7 @@ returns the first block whose flags have `0x8000` and not `0x10000`, or null.
 ### Script glyph sheets (EBP section 6)
 
 A script container (`.ebp`) can carry a glyph sheet in directory slot 6
-(script container). When the container arrives,
+([script container](../EBP-Script-Files/ebp-script-container.md)). When the container arrives,
 `003304A0` passes that section, with the area slot in the low four bits, to `00330060` (`00330565`), which:
 
 1. stores it at `022C6CF0[g]` and in the area record (`0026C860`, `02098EC0 + g × 0x288`);

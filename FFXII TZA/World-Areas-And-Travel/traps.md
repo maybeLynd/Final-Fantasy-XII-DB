@@ -23,7 +23,7 @@ they are invisible.
 
 Every trap belongs to the field's zone script. The script header's word `+0x6C` points at
 `{u32 count = 1; u32 packedRef}`, and `002641B0(slot, index)` resolves entry `index` of that list
-for manager `slot` (section 000):
+for manager `slot` ([section 000](../EBP-Script-Files/ebp-script-image.md)):
 
 1. the reference's tag (bits 24-26) must not be 2, and a zero reference means the script has no
    table;
@@ -294,6 +294,6 @@ commonest pairs being 246/247 (43), 248/249 (38), 248/252 (23) and 248/254 (20).
 - [What the periodic tick does](../Status-Effects-And-KO/status-timers.md): the caller of the trigger walk.
 - [Battle log](../Battle-Actions/battle-log.md): the four trap messages.
 - [The action definition row](../Battle-Actions/action-definition-row.md) and [the count clock and bank recipes](../Damage-And-Battle-Formulas/weapon-formulas.md): the rows and their slots.
-- Section 000 of the script container: the header word `+0x6C` and the tag-3 region.
+- [Section 000 of the script container](../EBP-Script-Files/ebp-script-image.md): the header word `+0x6C` and the tag-3 region.
 - [Area flags](area-flags-navimapdata.md): the town flag that disables arming, markers and triggering.
 - [Field runtime](../Characters-And-Objects/field-runtime.md): the tick's per-slot pre-pass that runs the Libra toggle.
