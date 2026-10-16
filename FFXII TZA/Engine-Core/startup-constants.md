@@ -3,7 +3,7 @@ title: "Startup constants: the random seed, the frame-rate constant, the memory 
 kind: "system"
 category: "Engine core"
 summary: "What the boot fixer decides once and the rest of the game reads thereafter: the Mersenne Twister seeded from a literal and reseeded from the wall clock only on a save load, the frame-rate time base and the ticks-per-frame constant derived from FrameLimit, the confirm and cancel button masks derived from DecideButton, the language index, the two build-id files, the eleven heap blocks of the memory budget and the nine arenas registered from them, and the order in which the boot fixer runs the engine's one-time initialisers."
-addresses: "0022A0B0, 0022BDF0, 001EDDC0, 0017D8F0, 00229F10, 0022A4F0, 0017E210, 0017E270, 0017E410, 00314DE0, 00184960, 001EDEF0, 001EDE70, 0017D990, 0017D9D0, 00379CF0, 00863D30, 00584210, 0036D240, 00369D30, 0036D990, 00368A90, 0035EB70, 0022A770, 0022A4B0, 0037B3D0"
+addresses: "0022A0B0, 0022BDF0, 001EDDC0, 0017D8F0, 00229F10, 0022A4F0, 0017E210, 0017E270, 0017E410, 00314DE0, 00184960, 001EDEF0, 001EDE70, 0017D990, 0017D9D0, 00379CF0, 00863D30, 00584210, 0036D240, 00369D30, 0036D990, 00368A90, 0035EB70, 0022A770, 0022A4B0, 0037B3D0, 003692D0, 00369510, 008628E0, 00369650, 003696D0, 00259180, 003AC890, 002FC200, 00375120, 00382910, 004679C0, 00248410"
 ---
 
 ## What the player sees
@@ -136,7 +136,70 @@ allocation](../Compiler-And-C-Runtime/memory-and-allocation.md)).
 Id 10 is never registered; `0037B3D0` re-sizes id 11 when `02ADD931` differs from `02ADD930`,
 freeing the block (`0036D250`) and registering a new one of `0x3C0000` when `02ADD930` is 3, else
 `0x400000`; ids 12 to 14 are registered elsewhere. The unregistered 1 MiB block at `01FD4A90` is the per-model oscillator table; the
-0.5 MiB block at `01FD4A20` is stored and never read.
+0.5 MiB block at `01FD4A20` is stored and never read. `0036B060(id)` returns an arena's table
+entry, `022D7FD0 + id × 0xA8`, or null for an id of 15 or more.
+
+### The PS2 boot shims
+
+Step 8 replays the PlayStation 2 boot against stubs. `003692D0` walks seven module records at
+`01EF9290` (stride `0x18`, the first `sio2man.irx`). `00369510(name, out, host, demo)` builds each
+path: the prefix `host0:/image/FF12/modules/` when `host` is set, another prefix otherwise, `DEMO/`
+when `demo` is set, then the name, upper-cased with `/` turned into `\` unless `host` is set.
+
+The loader `008628E0` stores 0 through its fourth argument and returns 0, so every module counts as
+loaded and its bit goes into `022D7FCC`. Before the walk, `00369650` performs the I/O processor
+reset with `ioprp300.img` (`01EF9360`): only stub calls, `003691E0` and `0046E000`, which also
+sets `02CA6074` and `02CA6114` to -1. `004746C0` is four stub calls.
+
+`0036FD70` clears `02AD9E00` and runs `003696D0`, which releases the three handles at `022D7FC0` to
+`022D7FC8` (retrying while the stub reports busy) and sets each to -1. `003694D0` fills the two
+256-byte tables `022C5AF0` (`0032EAF0`) and `022C59F0` (`0032EB10`, which also sets bit 7 of its
+byte `0x1F`) with -1 for a non-zero argument, else 0.
+
+### The subsystem resets
+
+The step-8 calls `00266D10` and `00259180` return the field's fixed tables to their boot state.
+`00259180` runs under arena 8 (`0036C1D0(8)` … `0036C140`, which pops the arena stack at
+`022D89C0`); the ones that allocate select arena 6 or 9 the same way and allocate (`0036A100`) only
+when their pointer is null:
+
+| Reset | What it does |
+|---|---|
+| `003CD6E0` | allocates `0x800` at `02B47790` and `0x2800` at `02B47798`; clears 32 and 128 records in them |
+| `003AC890` | allocates `0x3800` at `02B3F528`; `02B3F518` = 1.0; `003ABB60` clears its 128 records, takes the first as a type-7 record with the next serial from `02B3F504` (1 to `0xFFFFFF`), and makes it the list `02B3F508` / `02B3F510`; per frame `003AC870` resets the factor `02B3F51C` to 1.0 and `003AC900(f)` multiplies it by f |
+| `003B4790` | allocates `0x1800` at `02B404E0`; sets the pairs (3, `00D11520`) and (5, `00D11538`); clears 64 records |
+| `00376A80` | clears `02ADBB30`, `02ADBB34` and the first word of 8 records at `02ADBB40` (stride `0x90`) |
+| `003D7F10` | clears a word in each of 32 records from `02EBBA00` (stride `0x84`) |
+| `003D8C30` | points `02B4E3D0` to `02B4E3E8` at the four data blocks `01EFE3A0`, `01EFE510`, `01EFE690`, `01EFE810` and runs `0050C450` over each; `02B4D7B8` = 1.0; clears 32 records |
+| `003773C0`, `003B3E10` | clear 128 records ending at `02ADCFC0`, and the 8-byte records from `02EBCC80` to `02EBCD84` |
+| `00259250` | resets the block at `02096810` to `02096D28` (white at `02096810`, 0.5 at `020968BC`, `0x80808080` at `020968B0`) |
+| `0039CD50` | allocates `0x20000` at `02AEED50`; `0039AED0(2048.0, 2048.0)` and `0039AF20(512.0)`, which store `02EBEFFC`, `02EBEFF8`, `02EBF000` and copy 64 bytes from `02AEDD30` to `02AEE5A0`; `02AEE910` = 8 |
+| `00375120` | clears 32 records at `02EBFA48`; writes a 16-step grey ramp (step `0x11`, alpha `0x80`) at `02ADB6E0` and eight 32-step ramps after it |
+| `002FC200` | chains the 48 records of `0x38` bytes at `02EC32E0` into a list (`02EC3D70`); clears `02EC19C0` (`0x1000` bytes) and copies 401 five-bit values from `01EEBB10` into it, one per 8 bytes |
+| `003B16B0` | clears the 32 records of `0x30` at `02EBE5E0` and `02EBEBE0` / `02EBEBE4` |
+| `0026F9F0` | fills 96 bytes at `02F8F23C` with 3 and sets `02F8F29C` = `0x100` |
+| `0025A600(0.1, 1000.0)` | stores the two floats `02098DE0` / `02098DE4` |
+
+`00266D10`, the actor-system reset, runs among others `00314940` (`022C2544` = 1.0), `002556F0`
+(five groups of four `0x2E0`-byte records from `02092810`, plus one more, each through `003CBFF0`;
+`020964FC` = 1.0, `02096514` = `0x20`), `002F1A00` (zeroes `022BE7C0`, `022BE7C8`, `022BE7D0`),
+`003DD7E0`, `003DDD10`, `003DE710`, `003DF030`, `003E7DF0`, `003EBAB0` and `003EBE40`.
+
+Those last seven number and clear the tables from `02B581A0` to `02B5EC88`: 5 × 16 slots, four records with
+`0x13602` and colour `0x80FFFFFF`, 16 records, 5 × 8 slots, 32 records numbered `0x20` to `0x3F`
+with a 28-node list, and eight pairs of 0 and `0x100`.
+
+`0036F4D0` runs `00382910`, which clears 8 records at `02AED700` (stride `0xE0`) and builds two
+view records with `004679C0(record, width, height)`: `02AED4A0` for the frame size
+`[022D8EAC]` × `[022D8EB4]` and `02AED500` for 2000 × 2000. A view record holds the size at `+0x44`
+/ `+0x48`, depth limits 1024 and 16,776,191 at `+0x4C` / `+0x50`, `00229D20()` at `+0x40`, scales of
+width / 2 and -height / 2, a depth scale and offset from the limits, and 2048 as the screen
+offset.
+
+Step 4's `00184660` ends with `00248410`, which sets `0208ECC0` / `0208ECC4` to minus half of
+`[01E0C1D8]` / `[01E0C1DC]` and writes that size into the four objects at `0208EA20` to `0208EA38`
+(`+0x9C` / `+0x9E`), and `0024B100`, which copies the size into the halfwords `01E0C1D4` /
+`01E0C1D6`.
 
 ## Layouts
 

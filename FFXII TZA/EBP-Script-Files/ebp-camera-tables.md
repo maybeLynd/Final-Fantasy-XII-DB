@@ -3,7 +3,7 @@ title: "EBP camera tables: the CML1 shot list and the CAM7 shots a script's came
 kind: "format"
 category: "EBP script files"
 summary: "Sections 8 and 9 of an .ebp script: the CML1 list whose rows a script's camera verbs name and the CAM7 table of shots, ease curves and paths those rows index; how both are bound to an actor manager and what the load does to them, the shot record's key and segment command stream as the player reads it, the attachment word, the curve and path evaluators, the shipped tables in all nine language trees, and the rules an edit must follow."
-addresses: "0032FA10, 0032FAC0, 002561C0, 003DA1F0, 0032F3D0, 005C5230, 00256530, 002572E0, 003DA400, 003DA330, 003DA300, 00258350, 00255410, 002554E0, 003CC5F0, 003CC740, 003CC890, 0032ED80, 02092800, 022C6D58, 022C6D80"
+addresses: "0032FA10, 0032FAC0, 002561C0, 003DA1F0, 0032F3D0, 005C5230, 00256530, 002572E0, 003DA400, 003DA330, 003DA300, 00258350, 00255410, 002554E0, 003CC5F0, 003CC740, 003CC890, 0032ED80, 02092800, 022C6D58, 022C6D80, 00258190, 002ED430, 002E7F10, 002ED130, 002EA890"
 ---
 
 ## What the player sees
@@ -124,6 +124,10 @@ Every count is per language tree; the CAM7 sections are byte-identical in all ni
 | segment kinds | 0: 3,406; 1: 116; 2: 57; 3: 67; 4: 8; 5 and 6 unused |
 | names | at most 23 bytes, all NUL-terminated |
 | attachment word `0x80008000` | 3,730 shots (no attachment) |
+| eye attached | 180 shots: mode 0 83, mode 1 31, mode 2 66; turn 152, hold height 7, hold ground 5, bit 9 34, bit 10 34 |
+| target attached | 181 shots: mode 0 83, mode 1 32, mode 2 66; turn 153, hold height 7, hold ground 1 |
+| attach mode 3 | unused |
+| eye bits 9-14 set with eye actor 0 | 11 shots; never read |
 | ease curves, paths | 15,350 and 1,682; each used by exactly one segment word; every curve's spans sum to 1.0 |
 | layout checks | every stream ends at its record length, the three arrays end on zero padding, and `first` is `0x20` |
 
@@ -197,6 +201,43 @@ and 6 replace both with the path-follow routines `00256960` and `00256CA0`.
 parameter by a binary search of the arcs, and `003CC740` finds the segment by its span and returns
 the three cubics. A plain path word runs the whole path as the progress goes from 0 to 1
 (`003CC6C0`); with bit 14 the progress is a distance (`003CC710`).
+
+### Attaching the eye and target
+
+Before it walks the stream, `00258350` builds the two attachment transforms, the eye's at channel
+`+0x190` and the target's at `+0x1D0`. A side whose entry has no actor (`+0x20`, `+0x28`), or whose
+manager fails `002671F0`, gets the identity (`00203170`). Otherwise `00258190(attach, matrix,
+&fovAdd, &angleSub)` builds it from the side's bits, and the channel byte `+0x189` (eye) or `+0x18A`
+(target) is set afterwards, marking the side as attached.
+
+`00258190`:
+
+1. keeps the matrix's old position (`+0x30`, `+0x34`, `+0x38`);
+2. sets the rotation: the identity, or with "turn with the actor" a turn about the vertical by the
+   actor's heading (`00265200`, `003CC480(0, heading, 0, matrix)`);
+3. takes the point by the attach mode: 0, the actor's position (`00265020`); 1, the position of
+   joint `eyeJoint` or `targetJoint` from `002E7F10`; 2, the same from `002ED430`;
+4. writes the point as the position, except that "hold height" keeps the old y and "hold ground
+   position" keeps the old x and z once the side is attached;
+5. with bit 9 or bit 10 of the word, finds the joint's node (`002ED130`) and reads the node's record
+   (`002EA890`): bit 9 puts its `+0x198` in `angleSub`, bit 10 its `+0x194` in `fovAdd`.
+
+The view's angle is then the pose's angle minus `angleSub`, and its fov `fov * π / 180 + fovAdd`.
+
+The two joint modes look in different places:
+
+- `002E7F10(actor, joint, 0, out)` takes the actor's model record (`022C6F28 + slot × 0x740`, the
+  slot the word at `[actor + 0xC0]`) and hands it to `00426770`, which asks that model and the one
+  chained at its `+0x08` for the joint's matrix (`00421E20`); it returns 1 when one answered.
+- `002ED430(actor, joint, 0, out)` checks the same slot and passes on to `003A6DF0`, which finds the
+  model that holds the joint among its flagged nodes (`00426650`, `00421D70`) and reads the node's
+  matrix (`00422050`); it returns whether that gave a result.
+- `002ED130(actor, joint)` runs the flagged-node search on the actor's own model: a model whose
+  `+0x9C` is 2 (`00372800`) is searched for a node with that id and bit `0x100` of its `+0x04` set
+  (`003737C0`). `002EA890(actor, index)` returns record `index` (`0x290` bytes each) of the
+  model's node records at `[+0x84]`.
+
+The word's bits beside an actor field of 0 are never read: such a side keeps the identity.
 
 ## Modding notes
 

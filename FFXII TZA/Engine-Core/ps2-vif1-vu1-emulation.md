@@ -221,6 +221,12 @@ through `0020EB60(lastIndex + 1, device)`, then zeroes the index count; when the
 past 682 it moves the primitive's unfinished trailing vertices to the front (for a fan, after
 vertex 0).
 
+Among the state `0020ED30` selects, `0020FF10` decodes the GS TEST register of the current context
+(`01FC35C8`, or `01FC35D0` while `01FC3601` is set): ATE bit 0, ATST bits 1 to 3, AREF bits 4 to 11,
+AFAIL bits 12 and 13, DATE bit 14, DATM bit 15, ZTE bit 16, ZTST bits 17 and 18, into `01FD3668` to
+`01FD3684`. It hands the device (its vtable `+0x88`) the alpha test with AREF / 255 and the method
+`0020F2A0(ATST)`, which maps 1 to 7 onto 7, 4, 6, 3, 2, 1, 5 and anything else onto 0.
+
 `0020EB60` looks TEX0_1 or TEX0_2 (by the CTXT bit `01FC3601`) up in the 16-byte texture table
 `01F83580` by
 `(TEX0 >> 37) & 0x3FFF` when TME is set and the format field is at least `0x300000`, copies the

@@ -3,7 +3,7 @@ title: "Force fight mode: the flag behind the fleeing state, who sets it and wha
 kind: "system"
 category: "Engine core"
 summary: "The one dword that says whether the party is fighting or fleeing: its image value, the raw and the effective readers, the script verb and the R2 toggle that write it, the two enable bytes the writers respect, and every reader of the raw predicate with what it changes: command availability, combo continuation, engagement, the AI's approach distance, the battle locomotion divisors and the capability row."
-addresses: "01E0C2B8, 00253B90, 0030C0D0, 00253BA0, 00254EA0, 003444D0, 003BA2E0, 003BA300, 003BA310, 0050C910, 00266D10, 002628B0, 00252C80, 00252B60, 00253C70, 003603B0, 003603C0, 0035C6F0, 0035C880, 00366950, 003669F0, 003667E0, 00366870, 00276650, 00276D30, 002FFCF0, 00307D10, 00308130, 00308610, 00309A90, 0030C010, 0030FA00, 00313A00, 002E1C20, 002E1CA0, 00234590, 00336710, 00339BF0, 0033A720, 0033C310, 0033CEF0, 0033D3E0, 00267E10"
+addresses: "01E0C2B8, 00253B90, 0030C0D0, 00253BA0, 00254EA0, 003444D0, 003BA2E0, 003BA300, 003BA310, 0050C910, 00266D10, 002628B0, 00252C80, 00252B60, 00253C70, 003603B0, 003603C0, 0035C6F0, 0035C880, 00366950, 003669F0, 003667E0, 00366870, 00276650, 00276D30, 002FFCF0, 00307D10, 00308130, 00308610, 00309A90, 0030C010, 0030FA00, 00313A00, 002E1C20, 002E1CA0, 00234590, 00336710, 00339BF0, 0033A720, 0033C310, 0033CEF0, 0033D3E0, 00267E10, 00307FF0"
 ---
 
 ## What the player sees
@@ -80,6 +80,7 @@ The raw predicate has 8 call sites in 7 functions and the thunk 8 sites in 6 fun
 | `002FFCF0` | refuses every command with reason `0x24` for a party-side unit without Confuse or Berserk (status `0x08000020`), except Dismiss (`0x113`) and Dismount (`0x95`) ([command availability](../Battle-Actions/command-availability.md)) |
 | `00308610`, `0030C010` | the combat frame skips the combo continuation `0030FA00` for a unit without Confuse or Berserk, and `0030C010` answers "no" to the same question ([combos](../Battle-Actions/combos.md)) |
 | `00307D10` | the engagement update: for a unit that is not the chocobo (`0x1A`) and not in a town, with the two statuses clear, it clears `022C1F48` bits 1 and 2, zeroes `022C1F40` and the unit's `+0xDCC`, and clears unit `+4` bits 9, 10 and 16 (bit 16 = engaged); the other arm (fighting, or the chocobo, a town or a status set) runs the bit-9 path through `00307CE0`, `0030BF20` and `0030B050` |
+| `00307FF0` | the two global writes alone (`022C1F48 &= 0xF9`, `022C1F40` = 0), run by the area initialisation `002342F0` and by `002348E0`, which first tears down every enemy unit (`00300E40`) |
 | `00308130` | "may the unit engage" answers false for a unit with the two statuses clear; otherwise unit `+4` bit 16, or `022C1F48` bit 0 with the clock `0032A150()` at or past `+0xDCC` |
 | `00309A90` | the approach distance is 3.8 at party-control level 1 or 2.2 otherwise, instead of the fighting value 24.0 ([party control modes](party-control-modes.md)) |
 | `00313A00` | the capability row writes: the second of its fourteen bits is set (`002E1C20`) instead of cleared (`002E1CA0`) when the target cursor is open or the party is fleeing |

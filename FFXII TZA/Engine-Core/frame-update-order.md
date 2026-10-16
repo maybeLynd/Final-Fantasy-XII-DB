@@ -3,7 +3,7 @@ title: "Frame update order: what runs each frame for the field, the battle layer
 kind: "system"
 category: "Engine core"
 summary: "How one frame of the running game advances: the seven-state main loop and the handlers behind the title, the field, the full menu and the capture frames; the field frame's time accumulator that decides how many whole simulation steps run; the simulation tick's prologue, its five actor-manager slots and sixteen sub-steps, and its fixed tail; the field frame orchestrator that runs once per step for slot zero; the per-unit battle frame bound to every unit record; and the battle-state word the frame reads and writes bit by bit."
-addresses: "0022A490, 0022A580, 00229F00, 00229EA0, 0022B6E0, 0022B7E0, 0022A770, 0022B8C0, 0022AF50, 0022BC20, 0022B000, 0035EB70, 0035EC80, 00314020, 0025BFB0, 0032FC30, 00267310, 00234590, 0025D9E0, 00234520, 003DB1F0, 002623A0, 002EEEB0, 00233F70, 00265A20, 00267240, 002671C0, 00300FC0, 002341C0, 0023B020, 00238A60, 00238AE0, 00238B00, 00238B20, 00238B70, 0032A200, 0050F2E0, 0050F170, 0050F380, 002E09A0, 002E2240, 0035E6F0, 00360080, 0035E9F0, 0035E9B0, 00358510, 00358280, 003586A0, 00358550, 00229ED0, 00233700, 00233640, 002335D0, 0023B200, 0026A5B0, 00360710, 00360A50, 002342F0, 002368D0, 0032A170, 00308610, 003590D0, 0031B770, 0026B730, 0036F460, 0027E9E0, 002507C0"
+addresses: "0022A490, 0022A580, 00229F00, 00229EA0, 0022B6E0, 0022B7E0, 0022A770, 0022B8C0, 0022AF50, 0022BC20, 0022B000, 0035EB70, 0035EC80, 00314020, 0025BFB0, 0032FC30, 00267310, 00234590, 0025D9E0, 00234520, 003DB1F0, 002623A0, 002EEEB0, 00233F70, 001EBA40, 0022BEB0, 00332590, 0037C2E0, 0035E7A0, 00265A20, 00267240, 002671C0, 00300FC0, 002341C0, 0023B020, 00238A60, 00238AE0, 00238B00, 00238B20, 00238B70, 0032A200, 0050F2E0, 0050F170, 0050F380, 002E09A0, 002E2240, 0035E6F0, 00360080, 0035E9F0, 0035E9B0, 00358510, 00358280, 003586A0, 00358550, 00229ED0, 00233700, 00233640, 002335D0, 0023B200, 0026A5B0, 00360710, 00360A50, 002342F0, 002368D0, 0032A170, 00308610, 003590D0, 0031B770, 0026B730, 0036F460, 0027E9E0, 002507C0, 0022BFB0, 00307FF0, 00322190, 0030C3F0"
 ---
 
 ## What the player sees
@@ -47,23 +47,74 @@ and from `002E2240`); `00229EA0` is the getter. `01FD4A68` is 1 in states 4 and 
 and `0035E9B0(-16.0)` run before the dispatch; `02064AD8` toggles in every state but 4 and 6;
 states 4 and 6 call `001E0580` first.
 
+`0022BFB0(v)`, the handler of verb `0x05CA` (through `00340B70`), sets `01FD49E0` and stores `v` at
+`01FD49E4`; on the next pass `0022A580` calls `00182810(v)` (`0022A5E3`) and clears the request.
+`00182810` writes `v != 0` to byte `+0x1E9` of the post-process parameter object (`00193D50`,
+`00193F70`).
+
+State 1's gate `0037C2E0` walks the entries of the table `[02EBF0A8]` (`003204B0` the count,
+`00320B30` an entry) and resolves each to a record (`002EAE20`) at `02ADD948`. A record with bit
+`0x4` of `+0x19` set (`002E4C70` returns 0) goes to `002EAF70`. Any other holds the gate (it returns
+1 and resumes there next frame) until bit `0x2` of its `+0x18` is set (`002E4C20`), and then gets bit
+`0x2` of `+0x19` (`002EBE20(record, 1)`). The gate returns 0 once every entry is through.
+
 After the handler, with `01FD4A84` set and `00184950()` = 2, `0035E9F0` and `0035E9B0(17.0)` run;
 `001E0560` arms the pump's second pass when `01F82D31` was set; with `01FD4A68` clear,
 `02F974A0` clear and no second pass armed, `001832F0()` runs, then `00375B80(0)`; and a callback
 pending at `02064AEC` is called and cleared.
 
+### The menu frame and the monster viewer
+
+The full menu frame `0022B8C0` (state 3) runs a few steps that only matter for the Bestiary's
+monster viewer, the object at `01F82E18` (`001EBA40`, `0x2E0` bytes, constructor `001EB190`;
+[Clan Primer](../Menus-And-HUD/clan-primer.md)). `00181DD0` reads its byte `+0x118`, set while a monster is
+shown:
+
+1. without a monster shown it starts with `00182370` (`00186110` on the render manager);
+2. after the pad and the UI effects, with `02064AA0` at 0, `00258EB0` pushes arena 2 (`0036C1D0`),
+   runs `0024B9B0(0, 4)` and pops it (`0036C140`), and `00374950` follows;
+3. it installs `0022BEB0` as the menu draw callback (`002D0570` stores it at `0209E630`);
+4. after `OTHER`, with a monster shown, `00181B20` posts a `CopyBufferObj` (`0018B8B0`,
+   `001F1810`) between the first entry of `00186910(render manager, 0)` (null when that entry's byte `+8`
+   is set) and the viewer's `+0x278`; `00181E50` then steps the viewer's fade at `+0x20` (`001EC000`);
+5. with a monster shown it sets `02064AE8` and runs `003323D0`, `00314370(0)` and `0036F510`, and
+   when `00181DB0()` is 0 and `00358340()` holds, `00258E40`; `00181DB0` is `001EB990`, which holds
+   while the viewer's byte `+0x26D` or `+0x26E` is set. Without a monster, a set `02064AE8` is
+   cleared and `00314370(1)` and `0036F510` run.
+
+The draw callback `0022BEB0` brackets the frame's own draws with `001FBE50` and `001FBD80(1)`.
+With a monster shown it posts the same copy for the viewer's `+0x270` (`00181AB0`) and, when
+`002EF030()` is 1, interleaves `00258EE0(1)` to `00258EE0(5)` and `00375500(2)` / `(3)`, each behind
+`003583F0(0)` or `00358350(0)`, with the viewer's turn `00184690` (`001EC060`).
+
+It starts the viewer's 80-frame fade (`00181C10`, `001EBCF0`:
+halved when `001EDE70()` is 0, from 200 down by 200 / frames) once `00181C70()` (`+0x284`) is 0,
+and steps that fade, the one at `+0x00`, with `00181E30` (`001EBF90`). Both fades draw through `001EB800`.
+
+The two capture states share their tail. `0022AF50` (state 4) and `0022B000` (state 6) both run
+`00332590`, which points `022C6F20` at `022C6F30`, runs `0041E500` and `00426950`, and clears
+arena 6's byte `+0x62` in the table at `022D7FD0` when bit 6 of `022D89B8` is set (`003697C0(6)`).
+They also run `00376D80`, which for each of the eight records at `02ADBB40` (stride `0x90`) with
+a non-zero first word sets bit 3 of `+0x54` and copies `+0x08`, `+0x10`, `+0x18` and `+0x20` into
+the word after each.
+
+State 6 also runs `00375F20`, which sets bit 0 of the first word of the
+records at `02EBF9F0` (stride `0x70`) up to the first whose `+0x58` is 0.
+
 ### The field frame
 
 `0022A770` is state 2. After the pad (`0036F2F0`, `0035FF90`, `0036FDF0`, `002498B0`) and the
 draw set-up it runs, when `0017E4E0()` is 0, `001EC760()` passes of the following; each pass ends
-in the camera, the end-of-frame list and the pacer.
+in the camera, the end-of-frame list and the pacer. `001EC690` advances the counter `01F832C4`, which `001EC760`
+among others reads: once when `001EC760` returns 0, and in the pass loop's first step. The event-slot
+pusher `0020AF10` zeroes it (`0020AFAA`).
 
 Before the pad, once per `01E02824` with `00264610(0)` non-null, the deferred `0026B730(01E02808
 & 0xFFFF)` runs. Each pass of the loop then:
 
 - runs the speed-mode pad block (below);
 - sets the speed factor `02064AC4` to 1.0 or, with the speed permit `02064AD2` set, the entry of
-  the speed table `00908BA8` = {1.0, 2.0, 4.0} selected by the speed index `01FD4A98`;
+  the speed table `00908BA8` = {1.0, 2.0, 4.0} selected by the speed index `01FD4A98` (`00229E00` returns that entry);
   `003603C0()` forces 1.0 and runs `002370A0`;
 - keeps the accumulator `02064AC0` as it stands at `01E02820`; when the pump's flag `02064AA0` was
   set, sets the accumulator to 1.0 (if `01FD4A8C` was 1, which is then cleared) or 0, and clears
@@ -71,6 +122,11 @@ Before the pad, once per `01E02824` with `00264610(0)` non-null, the deferred `0
 - with bit 27 of `00226B10(0)`, `0036F460(accumulator)`; with the `002878A0` predicate false and
   `0017DE60()`, `0027E9E0`; with the predicate true, `003583A0()` and the accumulator at 0,
   `002507C0(1)` ([subsystem update flags](subsystem-update-flags.md)).
+- `0036F460` hands the map animation clock `004678E0`
+  ([texture animation lists](../Game-Files-And-Data-Tables/texture-animation-lists-ta.md)) the
+  accumulator's growth since its last call divided by `[01DFE0B8]`, keeps the fraction in `02AD9B50`,
+  and ends with `00468520`, which runs `003CD820` on `+0x14` of each record of the table
+  `[02CA6010]` (count `[02CA6020]`, stride `0x40`) whose `+4` is 0.
 
 While the accumulator is at least 1.0, one simulation step runs:
 
@@ -116,6 +172,10 @@ With `0017E4E0()` non-zero the frame runs `002506D0` and, when `001EC560()`, the
   bit 10 (0 to 1, or 0 to 2 when `002DDDA0()` is 1; any other value back to 0), `00233640` while
   held (through `002335D0`), and the resets `002370A0` (from `003603C0`), `00239790`, `00237DF0`,
   `00233C10` and `0023B2E0`.
+- When `00233700` or `00233640` raises the index to 1 or 2 it also calls `00182FB0(index)`, as do
+  `00239790` and `0023B2E0`. That runs `001D85C0` on the `ExtraUI` object `[01F82CD0]` (`001D8210`,
+  built by `001D8150`): `+0x60` = 255.0, `+0x64` = 6.0, `+0x69` = 1, `+0x6C` = 1.5, and `+0x40` copied
+  from `+0x58` for index 2, else from `+0x48`.
 - The pad block at the top of each pass clears the latch `01FD4A74` when `00265760()` is 0 or
   `00226BC0()`, `002F1A20()` or `0028F6A0()` holds; otherwise, with `0017DEA0()` 0, bit 10 of
   `0036FF70()` and `0036FFD0()` sets the latch and runs `0023B200` (the edge through `0208E6B8`:
@@ -126,6 +186,11 @@ The pacer `0035EB70(n, x)` (and its copy `0035EC80`), on the game thread, folds 
 `022CA5D8`, stores `max(n, 1)` ticks at `022CA5F4`, clears the tick counter `022CA5F0` and returns
 its previous value; on any other thread it spins until the tick counter at `022CA5E0` has
 advanced by `max(n, 1)`.
+
+Between the fold and the reset (`022CA5C4` = 0) the pacer stores at `022CA5DC` the result of
+`0035E7A0`, which adds `022CA5D0` to `022CA5C4` once more and measures that sum a against a period
+L of 314, or 264 when `00290180()` is 2: it returns the distance from a up to the next multiple of
+L, except that below L, outside frame mode 3 (`00229EA0`), it returns 2L - a.
 
 ### The simulation tick
 
@@ -254,6 +319,13 @@ loaded, unit flag bit 3 must be set and bit 16 clear. Then:
 `002FA470`), clears bit 4. The area initialisation `002342F0` writes `(word & 0xFFFFC01E) | 0x10`:
 bit 4 set, bits 0 and 5 to 13 cleared at once. The boot's battle work init `002368D0` zeroes the
 word.
+
+The area initialisation also runs three resets: `00307FF0` (`00234432`) clears `022C1F48` bits 1 and
+2 and zeroes `022C1F40`, as the engagement update does ([force-fight mode](force-fight-mode.md));
+`00322190` (`00234437`) zeroes the sixteen `u16` words at `0208D334` that `0031B4F0` reads and
+`00328D90` writes; `0030C3F0` (`0023445E`) zeroes the 32 records of 12 bytes at `022C1DB0`, one per
+unit slot byte `+0xEA9`, where `00312FA0` saves a unit's `+0xDC8` word and `+0xE58` dword and
+`00308270` restores them.
 
 | Bit | Set by | Cleared by | Meaning |
 |---|---|---|---|

@@ -3,7 +3,7 @@ title: "Map menu files: the sloc picture files and the amap, cmap, gmap, lmap an
 kind: "format"
 category: "Game files and data tables"
 summary: "The menumap files under worldmap/: the 48 sloc files holding each sub-location's zone pictures, their sizes and icon sets; lmap, the zones, markers, links and zoom levels of every sub-location; cmap, the sub-location directory, the per-map exploration thresholds and the guide-line schedule; gmap, the guide lines; wmap, the World Map's regions, areas, routes and Strahl destinations; amap, the area names, area maps and group-to-area table. Covers the layouts as the readers read them, the map-data widget that loads them, what each reader does on the map screens, the shipped files and the rules an edit must follow."
-addresses: "02B457E0, 003BC450, 003BC2D0, 00253780, 020927D0, 003C1F00, 003C26C0, 003BF520, 003BF5E0, 003BE2D0, 003BECA0, 003DFBB0, 003DFB50, 003C0340, 003BF430, 003BFF20, 003C1070, 003C0380, 003BE680, 003C2320, 003BCDE0, 003BDFF0, 003C17E0, 003C1680, 003C1DF0, 003BD950, 003BD890, 003BD8F0, 003BD040, 003BD480, 003C08B0, 003BCCA0, 003BFE10, 003C0250, 003C1D70, 00254380, 002543A0, 002543D0, 002543F0, 003BEC50, 003C4AE0, 003BF920"
+addresses: "02B457E0, 003BC450, 003BC2D0, 00253780, 020927D0, 003C1F00, 003C26C0, 003BF520, 003BF5E0, 003BE2D0, 003BECA0, 003DFBB0, 003DFB50, 003C0340, 003BF430, 003BFF20, 003C1070, 003C0380, 003BE680, 003C2320, 003BCDE0, 003BDFF0, 003C17E0, 003C1680, 003C1DF0, 003BD950, 003BD890, 003BD8F0, 003BD040, 003BD480, 003C08B0, 003BCCA0, 003BFE10, 003C0250, 003C1D70, 00254380, 002543A0, 002543D0, 002543F0, 003BEC50, 003C4AE0, 003BF920, 003C0450, 003C12B0"
 ---
 
 ## What the player sees
@@ -172,7 +172,7 @@ Directory (at dirOff), one entry per sub-location:
 | `04` | `entry[count],` | 8 | bytes: |
 | `00` | `u8` | group | persistence group |
 | `01` | `u8` | palette | 0 = none, else kind 7 id `0xE1` + palette |
-| `02` | `i16` | - |  |
+| `02` | `i16` | gate | story gate; -1 = none (`003C12B0`) |
 | `04` | `i32` | name | sub-location name text id; -1 = none |
 
 Maps (at mapsOff):
@@ -356,6 +356,15 @@ The minimap draws the zone pack's own picture and placement, not these ([MPK map
   one of them, otherwise the first, and scale by 3200 / level (`002B7FFA`-`002B8067`).
 
 ### Readers of cmap
+
+- `003C0450(out, group, check)` lists the sub-locations that share a persistence group for the World
+  Map (`00551800`, `00551930`, `00551B30`). It returns 0 for a group of `0x3B` or more and for a
+  group with fewer than two of the first 50 directory entries; with `check` set and a group other
+  than the current field's (`00264F90`), also when no entry of the group is accepted.
+- Otherwise it writes a `0x18`-byte row per entry of the group that `003C12B0` accepts (index, group,
+  the name text through `002F9920` or null for -1, and `003C05F0(index)`) and returns the count.
+  `003C12B0(n)` refuses an entry whose gate is set and does not pass (`0032A8A0`) and accepts it at
+  once when the area map is owned (`002543F0`).
 
 - The directory's group byte joins a sub-location to its persistence group (`003C0380`, `003BD480`), and its
   name id gives the marker label fallback (`003C2320`) and the location entry (`003C02B0`).

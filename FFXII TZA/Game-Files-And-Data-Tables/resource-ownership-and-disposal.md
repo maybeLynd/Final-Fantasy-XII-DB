@@ -3,7 +3,7 @@ title: "Resource ownership and disposal: who owns a loaded source, copy or borro
 kind: "system"
 category: "Game files and data tables"
 summary: "How the game keeps track of who owns loaded data: the render resource bank and its two entry modes (an owned copy or a retained external source), the effect tickets and 0x890-byte effect contexts that borrow or copy effect data, the four loaders that register sources, the 80 script motion slots behind motionread, motionreadsync and motiondispose and their states, borrowed section views, and the fixed order in which consumers, tickets, entries and backing memory are released."
-addresses: "0041E580, 0041E490, 00409FE0, 00409A60, 00409730, 00409D60, 00409960, 00409C00, 00427B00, 003B3160, 003B38B0, 003B37E0, 003B39E0, 003B3B10, 003B3C00, 0024B3A0, 0024F410, 0024F4D0, 003A9600, 003A9950, 003A9730, 003A9A70, 003EDAD0, 003AB880, 003AB940, 003AB7C0, 00369800, 02EBCD80, 02EBD480, 020910A0, 02F97340, 02B64380, 02B581A0, 02B58A60, 003DDA20, 003DD4C0, 003DDA70, 003DD850, 003DD420, 003DD380, 003DD740, 003DD770, 003492A0, 003499C0, 0034A6A0, 0032F240, 0032F170, 0032F290, 0032F260, 00267310, 002E4D20, 002E4E50, 003DC340, 003DC5B0, 0032E620, 0041FCF0, 00409CA0, 0040A1E0, 003A7D30, 004096F0, 0051F880"
+addresses: "0041E580, 0041E490, 00409FE0, 00409A60, 00409730, 00409D60, 00409960, 00409C00, 00427B00, 003B3160, 003B38B0, 003B37E0, 003B39E0, 003B3B10, 003B3C00, 0024B3A0, 0024F410, 0024F4D0, 003A9600, 003A9950, 003A9730, 003A9A70, 003EDAD0, 003AB880, 003AB940, 003AB7C0, 00369800, 02EBCD80, 02EBD480, 020910A0, 02F97340, 02B64380, 02B581A0, 02B58A60, 003DDA20, 003DD4C0, 003DDA70, 003DD850, 003DD420, 003DD380, 003DD740, 003DD770, 003492A0, 003499C0, 0034A6A0, 0032F240, 0032F170, 0032F290, 0032F260, 00267310, 002E4D20, 002E4E50, 003DC340, 003DC5B0, 0032E620, 0041FCF0, 00409CA0, 0040A1E0, 003A7D30, 004096F0, 0051F880, 005371C0, 00537270"
 ---
 
 ## What the player sees
@@ -168,6 +168,11 @@ the movable tree so compaction cannot move it. The sum is `low32(base) + offset`
 `00409C00(entry)` ends the view: `0051EF80` for mode 0, `003AB940` for mode 1. The pin is a flag, not
 a count: one release ends every pin on the block. The only user is `0041FCF0`, which opens a view at
 `0041FFA0` and ends it at `0041FFF8`.
+
+`005371C0(array, fn, first)` uses the same view on a strided array (stride `+0x20`, count `+0x24`): it
+opens it (`0051EE30`, `006B5C70`), calls `fn` on `count - first` elements counted from element 0,
+not from `first`, and ends it (`0051EF80`). Its one caller `00537270(array, stride, count, fn)` sizes
+the array (`0051F020`), stores the stride and count, and runs it with `first` 0 when `fn` is set.
 
 ### Disposal order
 

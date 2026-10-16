@@ -25,7 +25,7 @@ other pages establish for their globals:
 | `003590D0` | `022C7FE0` (u32) | 78 | the party-focus actor's packed handle |
 | `001B1C00` | `01F811E8` | 56 | the immediate-mode batcher singleton |
 | `00796E20` | `02EA5368` | 55 | the PhyreEngine application object |
-| `001A9930` | `01F81168` | 47 | the render settings owner ([graphics settings](graphics-settings.md)) |
+| `001A9930` | `01F81168` | 47 | the map-art context, whose keys and setters [graphics settings](graphics-settings.md) describes |
 | `0018CA40` | `01F7F5E8` | 46 | the render command vector |
 | `00198790` | `01F7FFE0` | 46 | the input manager singleton pointer |
 | `002EF640` | `02164280` (address) | 28 | the save runtime buffer ([saving and loading](../Saving-Loading-And-Settings/saving-and-loading.md)) |

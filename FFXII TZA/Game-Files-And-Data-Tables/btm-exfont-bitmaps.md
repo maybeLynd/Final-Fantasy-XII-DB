@@ -3,7 +3,7 @@ title: "ExFont sheets (.btm): the 4-bit glyph cells of the six staff-roll faces,
 kind: "format"
 category: "Game files and data tables"
 summary: "The six headerless ExFont/font_stf_*.btm sheets: 4-bit glyph cells packed back to back and located only by the glyph tables in fontpack_fs.bin, the loader that binds them to sheet slots 7 to 12 and sets their ready bits, the glyph lookup that rounds each cell to a power of two, the staff-roll task that requests and waits for them, the twelve shipped copies, and the rules a replacement sheet must follow."
-addresses: "00365810, 00D10C98, 022CBE00, 022CBBB0, 00364950, 003658F0, 003643A0, 00366080, 00364380, 003657E0, 00364210, 003649A0, 00474650, 003A1F20, 0053EB90, 0053E0B0, 002DF9A0"
+addresses: "00365810, 00D10C98, 022CBE00, 022CBBB0, 00364950, 003658F0, 003643A0, 00366080, 00364380, 003657E0, 00364210, 003649A0, 00474650, 003A1F20, 0053EB90, 0053E0B0, 002DF9A0, 0017FC00, 001E7F90"
 ---
 
 ## What the player sees
@@ -118,6 +118,11 @@ size from the size table (`0032E400(7, id)`, `00365882`), allocates it (`002497E
 `00249810` otherwise), stores the buffer at state `+0x110 + 8 x (slot - 1)` and files a kind-7 request
 (`0032E620`, `003658C7`) whose completion is `00364380` with `slot - 1` as its value. It never checks the size.
 In both cases it then passes `slot + 10`, the `font_stf` font ids 17 to 22, to `0017FC00`.
+
+`0017FC00(id)` registers the font with the text renderer at `[01F811F8]`: `001E7F90` takes a 16-byte
+record from the renderer's list at `+0xE70`, fills it with `{id, 0x20 * n + id, 0, 2}` (`n` the
+first dword of the object at `[01F81200]`) and files it under the key `(2 << 32) | id` in the tree at
+`+0xF30`, adding the key when it is missing (`001E78D0`).
 
 `00364380` ORs `1 << (slot - 1)` into the ready word (`00364393`) and returns at once when the state pointer is
 null. `003657E0(slot)` reads that bit. `00365810` does not request a face whose buffer is already set.

@@ -3,7 +3,7 @@ title: "Resource arenas and relocation: the fifteen memory arenas, block headers
 kind: "system"
 category: "Game files and data tables"
 summary: "How the game's resource memory is laid out and moved: the arena records and their boot sizes, the current-arena stack, the 0x40-byte block header and its corruption check, suballocation from the free lists, the 32-bit address encoding, tagged handles and their slot table, acquiring and releasing a handle and the tree of blocks that may move, compaction and the allocation-pressure retry, the mover's order of operations, and how an effect file's stored pointers are repaired after its source moves, with the 32-bit limits each step carries."
-addresses: "022D7FD0, 00369D30, 0022A0B0, 0036C1D0, 0036C140, 022D89BC, 022D89C0, 022D89B8, 0036A490, 00369860, 0036C660, 0036A100, 0036A190, 0036BC60, 0036BFE0, 0020E600, 0020E620, 01F83530, 0036B130, 003AB7F0, 0036A000, 0036D170, 003AB880, 003AB940, 00369800, 0036A9C0, 0036B410, 0036B4E0, 0036C790, 00369C60, 0036AAD0, 0036ABE0, 0036A2A0, 004746F0, 00369CF0, 003697C0, 002E65A0, 003B3480, 0024D970, 0024D940, 003AA3D0, 003A9BA0, 003A9860, 003A8FF0, 005004C0, 0036C5A0, 002E6D60, 002EA320, 0036B160, 0036C4B0, 0036C6C0, 0036CAD0, 0036D050, 0036A240, 0037B450, 0037B330, 0024AC30, 0024AB30, 0024AB60"
+addresses: "022D7FD0, 00369D30, 0022A0B0, 0036C1D0, 0036C140, 022D89BC, 022D89C0, 022D89B8, 0036A490, 00369860, 0036C660, 0036A100, 0036A190, 0036BC60, 0036BFE0, 0020E600, 0020E620, 01F83530, 0036B130, 003AB7F0, 0036A000, 0036D170, 003AB880, 003AB940, 00369800, 0036A9C0, 0036B410, 0036B4E0, 0036C790, 00369C60, 0036AAD0, 0036ABE0, 0036A2A0, 004746F0, 00369CF0, 003697C0, 002E65A0, 003B3480, 0024D970, 0024D940, 003AA3D0, 003A9BA0, 003A9860, 003A8FF0, 005004C0, 0036C5A0, 002E6D60, 002EA320, 0036B160, 0036C4B0, 0036C6C0, 0036CAD0, 0036D050, 0036A240, 0037B450, 0037B330, 0024AC30, 0024AB30, 0024AB60, 0036A570, 0036A850, 00369760, 0036C1F0, 0036B670, 0036B730, 0036B7F0, 0036B8B0, 0036C9D0"
 ---
 
 ## What the player sees
@@ -53,7 +53,7 @@ with 256 slots (`00369D30`).
 |---|---|
 | `0` | boot (`0037B390`, from `0022A0B0`), `0035B8D0`, `0024AB60` |
 | `1` | `0035B840`, which also takes kind 28 path `2n + 1` (`002DF980`) |
-| `2` | `003DD6C0`, when a party slot has bit `0x1` of `+0x10` and bit `0x40` of `+0x17` and `0037B330()` is 0 or 2 |
+| `2` | `003DD6C0`, when a party slot has bit `0x1` of `+0x10` and bit `0x40` of `+0x17` and `0037B330()` is 0 or 2; with no such slot it stores 0 as the waiting mode (`0037B490(0)`) |
 | `3` | `0024AC30`, the menu overlay load |
 
 - A mode can also wait in `02ADD932`: `0037B490` stores it, `0037B380` reads it, and `0037B2F0` (from
@@ -73,6 +73,17 @@ Allocation goes to the current arena `022D89BC`. `0036C1D0(arena, …)` pushes t
 (arena, a tag byte, flags) onto a 16-byte stack and selects a new one; `0036C140` pops it. Popping an
 empty stack spins forever, and `0036BC60` spins forever when asked to allocate with nothing pushed
 (`022D89C0` = 0).
+
+`0036C1D0` is an entry stub: it passes stack 0 and the qword at its stack pointer + 4, minus 5
+(`0036C1D7`), and jumps to the body `0036C1F0(arena, category, stack, value)`. The body:
+
+1. reads the stack's depth from `022D89C0 + stack × 4` and spins forever at a depth of 31 or more;
+2. saves the current arena `022D89BC`, the category byte `022D8E18`, the byte `022D8E28` and the
+   qword `022D8E20` in entry `depth` at `022D89D0 + (stack × 32 + depth) × 0x10`, and adds 1 to the depth;
+3. stores `category` in `022D8E18` and `value` in `022D8E20`, and makes the arena the byte at
+   `022D89A8 + arena` the new current arena.
+
+`0036C140` reads the same four fields back from stack 0's top entry.
 
 ### Blocks
 
@@ -97,6 +108,41 @@ copies seven characters of the name to `+0x34`, terminates it, stores the tag at
 `00369860(payload, caller)` frees a block. A payload whose header lacks the magic, or whose `+0x3E` is
 non-zero, makes it format a dump of `0xB0` header bytes and `0xD0` caller bytes, record the arena in
 `022D89BC`, call `0036A570(arena, 0xB)` and `exit(1)`.
+
+`0036A570(arena, flags, category)` walks an enabled arena and prints nothing. Per flag bit it follows
+the blocks from the heap start `+0x10` (bit 0, building a state label from each header's flags and
+copying the name of a block of `category`, or of any block for a negative one), the free list from
+`+0x90` (bit 1), the used and free slot chains from `+0x48` and `+0x40` (bits 3 and 4) and, for bit 5,
+the tree from `+0x50` through `0036A850`, which recurses on each node's `+0x24` link and follows
+`+0x28`. The labels stay in a local buffer that no output call receives.
+
+`00369760(arena)` returns 1 for a disabled arena or one whose `+0x10`, `+0x90` and `+0x98` are equal;
+otherwise it runs the walk with all flags (`0x3F`) and returns 0. `0036C0F0` runs it with flag 1.
+
+### Block chains
+
+Every header is on the address chain, previous block at `+0x0C` and next at `+0x10`, which the walk
+follows from the heap start (`0036A570`). A free block is also on the free chain, previous at
+`+0x04` and next at `+0x08`, whose ends are record `+0x90` and `+0x98`. All four links are encoded
+offsets. Four helpers link a header `b` beside a header `a`:
+
+| Helper | Chain | Puts `b` |
+|---|---|---|
+| `0036B670(a, b)` | free | after `a` |
+| `0036B730(a, b)` | free | before `a` |
+| `0036B7F0(a, b)` | address | after `a` |
+| `0036B8B0(a, b)` | address | before `a` |
+
+- Each first checks `b`'s `+0x3E`: when it is non-zero it walks the current arena with flags `0xB`
+  (`0036A570`) and calls `exit(1)`. It then zeroes `+0x3E` on every header whose links it rewrites.
+- With a null `a`, `b` gets null links on that chain.
+- `0036C9D0(header, both)` takes a header off the free chain and, when `both` is set, off the address
+  chain too, writing `0xFF99` over its magic so the header no longer counts as a block; it zeroes `+0x3E`.
+
+The carving in `0036BC60` uses all of them: it takes the chosen free block off both chains, puts the
+allocation and the remainder on the address chain where the old block was, and puts the remainder on
+the free chain beside the old block's free neighbours. The free `00369860`, the resize helpers
+`0036C290` and `0036C380` (from `0036CB00`), `0036B2C0` and `0036B980` call them too.
 
 ### The 32-bit address encoding
 
@@ -225,6 +271,16 @@ block header   +0x00 u16 0xFF12, +0x02 u8 category (022D8E18, stamped at 0036A15
                +0x24/+0x28/+0x2C encoded tree links, +0x34 char[8] label, +0x3E u16 must be 0 on free; payload +0x40
 handle slot    +0x00 u16 next, +0x02 u16 previous, +0x04 u8 arena, +0x05 u8 in use, +0x06 u16 check word, +0x08 header
 ```
+
+`ArenaStackEntry` (`0x10` bytes, offsets from the start of the 022D89D0+(stack*32+depth)*0x10):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u16` | arena | the current arena `022D89BC` |
+| `02` | `u8` | category | `022D8E18` |
+| `03` | `u8` | flag | `022D8E28` |
+| `04` | `u32` | pad | not written by `0036C1F0` |
+| `08` | `u64` | value | `022D8E20` |
 
 The arena record's fields are listed access by access in
 [`resource-arena-record-accesses.tsv`](resource-arena-record-accesses.tsv) and

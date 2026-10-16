@@ -3,7 +3,7 @@ title: "Asynchronous load manager: the loading thread, its request records, the 
 kind: "system"
 category: "Game files and data tables"
 summary: "The AsyncLoadManager at 01F81160 that loads files off the main thread: its pool of 1,024 request records, the queue and the two ways a request enters it, the loading thread, the four kinds (a .phyre asset, a PS2 file read by name or from an open stream, a whole text file), how a finished request's callback runs on the loading thread or in the next frame's pump, how PS2 file reads choose between the queue and a direct read, and the table that appends a character effect file to 144 model files."
-addresses: "01F81160, 001A11B0, 001A1220, 0019F620, 001A0AF0, 0019F490, 0019FFD0, 001A0A90, 001A0BB0, 001A0C50, 001A1230, 001A07B0, 001A0CF0, 001A0E50, 001A0F80, 001A09E0, 001A1310, 001A0960, 0019F930, 002DF780, 001D6D90, 001D6FB0, 001D6EF0, 001D6B40, 001BA860, 002124C0"
+addresses: "01F81160, 001A11B0, 001A1220, 0019F620, 001A0AF0, 0019F490, 0019FFD0, 001A0A90, 001A0BB0, 001A0C50, 001A1230, 001A07B0, 001A0CF0, 001A0E50, 001A0F80, 001A09E0, 001A1310, 001A0960, 0019F930, 002DF780, 001D6D90, 001D6FB0, 001D6EF0, 001D6B40, 001BA860, 002124C0, 005CC900, 005CC8A0"
 ---
 
 ## What the player sees
@@ -147,16 +147,16 @@ then frees the pool, the completion vector and any list nodes left.
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `000` | `void*` | vtable | `AsyncLoadManager` |
-| `008` | `Thread` | thread | started by `001A0AF0` |
+| `008` | `Thread` | thread | the thread record of [runtime services](../Compiler-And-C-Runtime/runtime-services.md) (handle, start, argument; zeroed by `005CC900`), started by `001A0AF0` |
 | `020` | `u8` | started | |
-| `028` | `Mutex` | queue lock | |
-| `050` | `List` | queue | `0x18`-byte nodes, the record at node `10`; the tail pointer is at `58` |
+| `028` | `PhyreLock` | queue lock | the PhyreEngine lock of [runtime services](../Compiler-And-C-Runtime/runtime-services.md), built by `005CC8A0` |
+| `050` | `List` | queue | an EASTL list: the anchor's next and previous (the tail) at `50` and `58`, its allocator at `60` named `EASTL list`; `0x18`-byte nodes, the record at node `10` |
 | `068` | `u8` | queue empty | |
 | `069` | `u8` | thread idle | |
-| `070` | `Mutex` | completion lock | |
-| `098` | `Vector` | completions | begin, end at `A0`, capacity at `A8`; completion entries |
-| `0B8` | `RecordPool` | requests | 1,024 request records |
-| `178` | `Mutex` | pool lock | |
+| `070` | `PhyreLock` | completion lock | the PhyreEngine lock, built by `005CC8A0` |
+| `098` | `Vector` | completions | an [EASTL vector](../Third-Party-Libraries/eastl-strings-and-containers.md): begin, end at `A0`, capacity at `A8`, allocator at `B0`; completion entries |
+| `0B8` | `RecordPool` | requests | the pool template of [game application](../Engine-Core/game-application.md) (`0019F490`): vector at `+0`, sets at `+0x20` and `+0x58`, lock at `+0x90`, flag `+0xB8` 0 here; 1,024 request records |
+| `178` | `PhyreLock` | pool lock | the PhyreEngine lock, built by `005CC8A0` |
 | `1A0` | `u8` | run | |
 | `1A1` | `u8[128]` | letter enable | indexed by the character code |
 | `228` | `char*[163840]` | appendix paths | `[character × 1280 + number]`, the `.efx` path or null |

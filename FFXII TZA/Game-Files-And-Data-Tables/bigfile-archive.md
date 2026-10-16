@@ -188,6 +188,8 @@ The last 16 bytes of the file are the MD5 of `[0, indexSize)`.
 | `08` | `Part*` | head | |
 | `10` | `Part*` | middle | |
 | `18` | `Part*` | tail | |
+| `30` | `u32` | owned | non-zero: the reset frees the buffer at `38`; zeroed by `0019A2A0` and the reset `0019B130` |
+| `38` | `void*` | buffer | freed with `free` while `30` is non-zero |
 | `40` | `u32` | use count | |
 | `48` | `u64` | archive offset | |
 | `50` | `u64` | skipped | bytes in whole blocks skipped |

@@ -47,7 +47,7 @@ id	label	arm	kind	field	step	bound	note	slice
 57	Operate cube map	001D3A4A	int-step	001AD440()+0x168	±1	-	passes value ±1 to 001AD4D0; skipped when the object is null	B
 58	Set cube map properties:	001D4BFA	none	-	-	-	label row; the action arm is the shared do-nothing tail	B
 59	Recapture cube maps:	001D4BFA	none	-	-	-	button row; the action arm is the shared do-nothing tail	B
-60	Capture panorama:	001D1F5A	int-step	obj+0xC28	±1	0..1	cmov ±1; also writes obj+0xC0C	B
+60	Capture panorama:	001D1F5A	int-step	obj+0xC28	±1	0..12	cmov ±1; also writes obj+0xC0C	B
 61	Camera Light enable:	001D213D	toggle	01DFE192	-	0/1	global byte	B
 62	After Water fix enable:	001D2150	toggle	obj+0x10D9	-	0/1	cmp/sete	B
 63	Hair Camera Light Direction X Bias:	001D2165	nudge	02CB80B0	±0.01	-	subss/addss, one constant; hair/eye lighting slot copied to the staged shader constants by 006084B0	B

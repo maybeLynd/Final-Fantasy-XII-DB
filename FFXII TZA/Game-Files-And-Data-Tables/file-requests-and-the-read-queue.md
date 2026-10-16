@@ -3,7 +3,7 @@ title: "File requests and the read queue: the request slots, how a load is queue
 kind: "system"
 category: "Game files and data tables"
 summary: "How the game asks for a file and gets it: the pool of 64 request slots and its pending and free lists, the builder that takes a kind and index or a path, the request id, the size lookup, the pump's six states from queued to delivered or failed, chunked reads of 512 KB parts while the BGM stream reader is armed, the delivery, failure and cancel callbacks, the full-queue stall, the drain and the asking form, the in-flight test and the cancel, which kinds the call sites pass, and the shipped constant requests."
-addresses: "0032E450, 022C31C0, 022C51C0, 022C51C8, 022C51D0, 01EED498, 0032EA90, 022C51F0, 0032E400, 002DF960, 0032E620, 003EB0D0, 0032E870, 0032E990, 0032EC40, 0032E780, 0032E7C0, 0032E070, 0032E040, 0032E520, 0032E4D0, 0032E590, 0032E2F0, 0032E330, 0032E370, 0032E3B0, 0046E030, 002DF780, 002DF6C0, 0046DFE0, 0046E0E0, 0215EFF4, 0035E810, 022CA5E0, 0035EA30, 003EADD0, 02B5E0E0, 0046DD50, 003E9780, 003BB790, 0050DFE0, 00249180, 022C5AF0, 022C59F0, 0032EA50, 0032ECE0, 0032ED20"
+addresses: "0032E450, 022C31C0, 022C51C0, 022C51C8, 022C51D0, 01EED498, 0032EA90, 022C51F0, 0032E400, 002DF960, 0032E620, 003EB0D0, 0032E870, 0032E990, 0032EC40, 0032E780, 0032E7C0, 0032E070, 0032E040, 0032E520, 0032E4D0, 0032E590, 0032E2F0, 0032E330, 0032E370, 0032E3B0, 0046E030, 002DF780, 002DF6C0, 0046DFE0, 0046E0E0, 0215EFF4, 0035E810, 022CA5E0, 0035EA30, 003EADD0, 02B5E0E0, 0046DD50, 003E9780, 003BB790, 0050DFE0, 00249180, 022C5AF0, 022C59F0, 0032EA50, 0032ECE0, 0032ED20, 0051ED10, 0051EDB0"
 ---
 
 ## What the player sees
@@ -64,6 +64,13 @@ address as the index.
   back to 1.
 
 It returns the id. A null descriptor gives offset 0 and no callbacks.
+
+`0051ED10(kind, index, callback)` loads a whole file into arena 5: it sizes it (`0032E400`), takes
+the block top-down (`0036A190`) under that arena (`0036C1D0(5)`, `0036C140`) and files it with a
+descriptor whose callback word is the low 32 bits of `callback` and whose delivery and failure
+callback is `0051EDB0`. That stub sign-extends the word (`movsxd rax, ecx`) and jumps to it, so the
+caller's function runs with the destination and the flag the pump passes; it returns the
+block.
 
 ### The pump
 
