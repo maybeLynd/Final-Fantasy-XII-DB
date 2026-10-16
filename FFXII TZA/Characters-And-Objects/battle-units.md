@@ -92,7 +92,7 @@ the actor and returns. Otherwise:
 2. for an enemy (stats kind 1) with flag bit 4 set, unless a terminal status is present outside a
    town (`00377C20`), it copies the unit's position `+0xE0`-`+0xEF` into the spawn record's `+0x60`
    and the yaw `+0x160` into `+0x74`, and sets the spawn record's flag bit 2
-   (spawn placement);
+   ([spawn placement](../Enemy-Spawning/enemy-spawning.md));
 3. it zeroes the whole slot and clears bit 0; the test before the clear (`unit >= base`, else
    `unit < base + 32 * 0xEA7900`, and `0xEA7900` is `0xF50 * 0xF50`) cannot fail for any pointer.
 
@@ -201,4 +201,4 @@ Other writers that apply a mask held in a register are not in the table: among t
 - [Actor managers](actor-managers.md): the manager slots the handle's selector names.
 - [The actor record](actor-record.md): the actor side of the link.
 - [Unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md): the record at `+0x698`.
-- Spawn placement and retirement: the spawn record the release writes.
+- [Spawn placement and retirement](../Enemy-Spawning/enemy-spawning.md): the spawn record the release writes.

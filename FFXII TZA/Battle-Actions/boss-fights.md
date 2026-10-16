@@ -101,7 +101,7 @@ From the decompiled shipped scripts (all 2,990 `us` scripts):
 - [Quickenings and summons](quickenings-and-summons.md) - another script-visible battle state.
 - [Target selection](target-selection.md) - the cancel reasons, including the battle freeze.
 - [Action commit](action-commit.md) - the idle-unit queue the freeze stops.
-- Group completion and respawn
+- [Group completion and respawn](../Enemy-Spawning/enemy-respawning.md)
   - the spawn side of the groups.
 - The R2 modal toggle - the FLEEING mode, which
   boss fights do not switch off.

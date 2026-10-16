@@ -325,6 +325,6 @@ third.
 - [Area flags: the navimapdata.bin record for every area, the town flag, the KO, Stone and X-Zone override and the other bits](area-flags-navimapdata.md)
 - The world tick and the field frame
 - The time-stop registry
-- Spawn placement and retirement
+- [Spawn placement and retirement](../Enemy-Spawning/enemy-spawning.md)
 - How a cutscene runs
 - [The save payload field map](../Saving-Loading-And-Settings/save-data-fields.md)

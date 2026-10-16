@@ -150,4 +150,4 @@ Examples from the `us` file:
 - Persistent flag banks: the 2048-bit bank the name flag lives in.
 - [Languages](../Saving-Loading-And-Settings/languages.md): which language folder the dictionary is loaded from.
 - [Save data fields](../Saving-Loading-And-Settings/save-data-fields.md): where the flag bank sits in the save.
-- The spawn keep entry: where an actor's `+0xF8` text and `+0x102` id come from.
+- [The spawn keep entry](../Enemy-Spawning/spawn-record-fields.md): where an actor's `+0xF8` text and `+0x102` id come from.

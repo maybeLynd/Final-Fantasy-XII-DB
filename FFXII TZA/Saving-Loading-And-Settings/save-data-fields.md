@@ -167,7 +167,7 @@ the first is met.
 
 A group bank is the `0x200` bytes at `02099FF0`: `0025D8E0` copies them out in four `0x80`-byte passes
 and `00269A20` copies them back. A spawn-keep image is `0x20010` bytes, laid out by `00233440`
-(spawn placement page):
+([spawn placement page](../Enemy-Spawning/enemy-spawning.md)):
 
 ```
 struct SpawnKeepImage base=payload+0xE240 size=0x20010
@@ -235,7 +235,7 @@ the save layer itself does to it:
 - [Saving and loading](saving-and-loading.md): when the payload is captured, written and restored.
 - [Game settings](game-settings.md): the options record inside the image-backed block.
 - [Zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md): the transition record's users.
-- Spawn placement and retirement: the spawn-keep entries.
+- [Spawn placement and retirement](../Enemy-Spawning/enemy-spawning.md): the spawn-keep entries.
 - Persistent flag banks: the flag accessors.
 - The battle-state block field map.
 - Steam integration and achievement catalogue.

@@ -218,4 +218,4 @@ class row (02EBF150)
 - [Battle unit fields](battle-unit-fields.md): the unit record the installer fills.
 - [Unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md): the stats record field by field.
 - [EXP, LP and level ups](../Rewards-EXP-Gil-And-Loot/exp-lp-and-level-ups.md) and [stat growth per level](../Rewards-EXP-Gil-And-Loot/stat-growth-per-level.md): the curve and the grower.
-- Spawn placement and retirement: the spawn record and the lane map.
+- [Spawn placement and retirement](../Enemy-Spawning/enemy-spawning.md): the spawn record and the lane map.
