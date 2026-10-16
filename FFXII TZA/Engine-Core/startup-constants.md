@@ -132,8 +132,8 @@ The registrar (ids below
 bytes and writes the arena's name there (`sprintf`), lays a bitmap and a word table at the head of
 the block (64-byte aligned, sized from the registered size), then the handle slots: `slotCount`
 records of 16 bytes chained by index when the count is non-zero, and finally the arena's free
-region, half-split, handed to `0036A490` (memory and
-allocation).
+region, half-split, handed to `0036A490` ([memory and
+allocation](../Compiler-And-C-Runtime/memory-and-allocation.md)).
 
 Id 10 is never registered; `0037B3D0` re-sizes id 11 when `02ADD931` differs from `02ADD930`,
 freeing the block (`0036D250`) and registering a new one of `0x3C0000` when `02ADD930` is 3, else

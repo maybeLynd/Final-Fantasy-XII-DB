@@ -120,4 +120,4 @@ The sink object and its two guards, the two options words, and the standard outp
 ## Related
 
 - [Startup constants](startup-constants.md): the boot sequence the step names belong to.
-- Lazy statics and the one-time init lock: the guard pattern the sink uses.
+- [Lazy statics and the one-time init lock](../Compiler-And-C-Runtime/lazy-statics-and-one-time-init.md): the guard pattern the sink uses.
