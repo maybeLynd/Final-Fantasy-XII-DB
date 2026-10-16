@@ -55,7 +55,9 @@ if (recipient.b[+0x6B] & 0x20 || recipient.b[+0x7B] & 0x20) exp = 0;
 
 A recipient gets 0 unless it is a party record (`+0x05` = 0) with a unit on the field (`0031B860`
 finds the battle unit whose stats pointer is the record), its type id `+0x04` is outside
-`0x1B`-`0x27`, and it is not out of play. Battle mode 1 is bit 0 of `[02EBF190] + 0x5B04` with
+`0x1B`-`0x27`, and it is not out of play. The type id is the record's `chr_data` row: 0-6 the main
+characters, 7-25 guests and story variants, `0x1A` the Chocobo and `0x1B`-`0x27` the thirteen Espers
+(see the stat growth page). Battle mode 1 is bit 0 of `[02EBF190] + 0x5B04` with
 bits 1-3 clear outside town areas (`0030D9A0`). The script verb `btlAtelSetSummonMode` sets and clears
 that bit through `00313550`. In that mode the receiving unit is the one whose id equals byte
 `[02EBF190] + 0x5AD5`, looked up in the slot table at `+0x5A48` by `00320890`; it must still pass the
@@ -69,7 +71,8 @@ lp = d * [E78].u8[+0x2F] + [E70].u8[+0x2F];
 if (recipient.b[+0x6B] & 0x10 || recipient.b[+0x7B] & 0x10) lp *= 2;
 ```
 
-A recipient gets 0 unless it is a party record whose type id is 0-6, `0x1A` or 40 and above, and that
+A recipient gets 0 unless it is a party record whose type id is 0-6 (the main characters), `0x1A` (the
+Chocobo) or 40 and above, and that
 is not out of play. LP is not divided. Byte `0209A2A9` is set by the script verb
 `debug_set_e3demo_status` (`0050CB60` through `0026A580`) and cleared on every area initialisation
 (`00266D77` in `00266D10`).
