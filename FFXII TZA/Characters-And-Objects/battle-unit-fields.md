@@ -24,10 +24,10 @@ the instruction, each instruction checked against the executable.
 | `+0x030` | 4 | the killer id the lethal transition records | [HP and KO](../Damage-And-Battle-Formulas/hp-and-ko.md) |
 | `+0x048` | 4 | the HP floor the HP write honours | [HP and KO](../Damage-And-Battle-Formulas/hp-and-ko.md) |
 | `+0x057` | 1 | the actor's entry group `+0xF6`, copied at bind | [battle units](battle-units.md) |
-| `+0x080` | `0x610` | the block the reuse reset `00236A60` zeroes (`+0x80`-`+0x68F`): position, navigation and the waypoint table | this page |
+| `+0x080` | 1552 | the block the reuse reset `00236A60` zeroes (`+0x80`-`+0x68F`): position, navigation and the waypoint table | this page |
 | `+0x0E0` | 16 | the world position, read by `00265020` and copied to the spawn record at release | [battle units](battle-units.md) |
 | `+0x160` | 4 | the yaw copied to the spawn record's `+0x74` at release | [battle units](battle-units.md) |
-| `+0x200` | `0x490` | the navigation path state (below) | this page |
+| `+0x200` | 1168 | the navigation path state (below) | this page |
 | `+0x694` | 3 | three bytes the reset sets to `0xFF`, `0xFFFF` | this page |
 | `+0x698` | 8 | the combat stats record | [unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md) |
 | `+0x6A0` | 8 | the spawn record for an enemy, null for a party member | [battle units](battle-units.md) |
@@ -38,7 +38,7 @@ the instruction, each instruction checked against the executable.
 | `+0x718` | 16 | the copy of the action block taken at commit | [action commit](../Battle-Actions/action-commit.md) |
 | `+0x730`, `+0x740` | 16 + 8 | the cancelled action's record, target and id | [action phases](../Battle-Actions/action-phases.md) |
 | `+0x768`, `+0x76C` | 8 | action fields the status record shows while acting | [party member status record](party-member-status-record.md) |
-| `+0x778` | `0x208` | the target buffer (below) | [target selection](../Battle-Actions/target-selection.md) |
+| `+0x778` | 520 | the target buffer (below) | [target selection](../Battle-Actions/target-selection.md) |
 | `+0xBA0` | 2 | the issued command's action id | [party member status record](party-member-status-record.md) |
 | `+0xBC4`, `+0xBC8` | 4 + `0x200` | the perception candidate cache: count, then 16-byte entries | [enmity](../Enemy-AI-And-Gambits/enmity.md) |
 | `+0xDC8` | 2 | the reserved consumed item, `0xFFFF` when none | [command availability](../Battle-Actions/command-availability.md) |

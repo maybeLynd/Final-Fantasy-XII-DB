@@ -67,14 +67,14 @@ Eight registrations, each with an RTTI-named `CCallback<owner, event>` object an
 
 | Id | Event | Handler | Effect |
 |---:|---|---|---|
-| 1101 | `UserStatsReceived_t` | `0020C940` | the stats receipt, below |
-| 1102 | `UserStatsStored_t` | `0020CB20` | logs `Stored stats for Steam` or `RequestStatsd - failed, %d` |
-| 1103 | `UserAchievementStored_t` | `0020C8C0` | counts one more achieved; at 40, awards entry 0 if Steam has it unachieved (`0020CE10`) |
-| 331 | `GameOverlayActivated_t` | `008655A0` | logs the overlay state and stores it in byte `+0x1D` of the application object `[02EA5368]` |
-| `0x65` | `SteamServersConnected_t` | `00865560` | listener `+0x84` = 1, `+0x88` = 0 |
-| `0x67` | `SteamServersDisconnected_t` | `00865570` | listener `+0x88` += 1, `+0x80` = 1, `+0x84` = 0 |
-| `0x66` | `SteamServerConnectFailure_t` | `00865570` | the same body |
-| `0x2C0` | `SteamShutdown_t` | `00865590` | listener `+0x80` and `+0x88` = 0 |
+| `1101` | `UserStatsReceived_t` | `0020C940` | the stats receipt, below |
+| `1102` | `UserStatsStored_t` | `0020CB20` | logs `Stored stats for Steam` or `RequestStatsd - failed, %d` |
+| `1103` | `UserAchievementStored_t` | `0020C8C0` | counts one more achieved; at 40, awards entry 0 if Steam has it unachieved (`0020CE10`) |
+| `331` | `GameOverlayActivated_t` | `008655A0` | logs the overlay state and stores it in byte `+0x1D` of the application object `[02EA5368]` |
+| `101` | `SteamServersConnected_t` | `00865560` | listener `+0x84` = 1, `+0x88` = 0 |
+| `103` | `SteamServersDisconnected_t` | `00865570` | listener `+0x88` += 1, `+0x80` = 1, `+0x84` = 0 |
+| `102` | `SteamServerConnectFailure_t` | `00865570` | the same body |
+| `704` | `SteamShutdown_t` | `00865590` | listener `+0x80` and `+0x88` = 0 |
 
 The first three belong to the manager, the overlay one to the object at `02EB3860`, and the last four to
 the listener at `02EACC90` (`008653B0`).
