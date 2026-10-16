@@ -323,7 +323,7 @@ third.
 ## Related
 
 - [Area flags: the navimapdata.bin record for every area, the town flag, the KO, Stone and X-Zone override and the other bits](area-flags-navimapdata.md)
-- The world tick and the field frame
+- [The world tick and the field frame](../Engine-Core/frame-update-order.md)
 - The time-stop registry
 - [Spawn placement and retirement](../Enemy-Spawning/enemy-spawning.md)
 - How a cutscene runs

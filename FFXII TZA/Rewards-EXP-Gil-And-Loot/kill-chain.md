@@ -185,7 +185,7 @@ the chain level.
 
 The coin's three LCG steps advance the same state
 `022C256C` the loot rolls use, so the two are correlated through that state. The clock-based seed
-computed when a save loads (`00584210`, see boot fixups)
+computed when a save loads (`00584210`, see [boot fixups](../Engine-Core/startup-constants.md))
 goes to a different generator, the Mersenne Twister whose state starts at `02EB3870` (624 words, index
 `02EB4230`), seeded through `00863D30` (reached by the thunk `00379CF0`): its first use seeds 5489 and
 then the clock value (`00863D4D`-`00863D6A`). It does not touch `022C256C`.

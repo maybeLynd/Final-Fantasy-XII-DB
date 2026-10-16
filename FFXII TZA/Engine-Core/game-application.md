@@ -84,7 +84,7 @@ objects at `01F7F4C0` (`0x20`), `01F7F4C8` (`0xC0`), `01F7F4D0` (`0x10`) and `01
 `AsyncLoadManager` (`001A11B0`), `00198750`, `0019EF40`, `001B6BC0`, `001B29F0`, the movie player
 (`001B7EE0`, then `001B7850`), the `SaveloadManager` (`001C18A0`, `001C1710`, `001C1940`), `001B5F10`,
 `001D6990`, `001D8150`, `001D89D0`, `001831A0`, and the startup constants `0022A0B0(b, a)`
-(startup constants).
+([startup constants](startup-constants.md)).
 
 After the constants come `001B1BA0`, `001B1580`, `0022A4B0`, the screen fade
 (`001D8CD0`), a `0x10`-byte object at `01F7F4E0` (`001D5600`), `001AD3E0`, the procedural-texture
@@ -123,7 +123,7 @@ and then loops over passes:
 4. the movie player `001B8400(player, dt)` (`01F81218`: `+4` is the status
    `getmoviestatus` reads through `00184860`, `001B82F0` starts a movie);
 5. the game step `0022A490(dt, mode != 0)`: it stores the mode at `02064AA0`, runs the main state
-   machine `0022A580` (states 0 to 6 at `02064AD3`, frame update order)
+   machine `0022A580` (states 0 to 6 at `02064AD3`, [frame update order](frame-update-order.md))
    and increments `02064AD0` when `0022A580` returns non-zero; `0022A490` returns nothing of its
    own, so the pump's result is `0022A580`'s register value surviving the increment;
 6. `001D8AB0(001D8A60(), dt)`, the `SaveloadManager` `001C1910` (`01F81260`), the screen fade
@@ -212,7 +212,7 @@ published frame delta and the second-pass flag; the pump mode and the game-step 
 
 ## Related
 
-- Startup constants: what `0022A0B0` fixes at boot.
-- Frame update order: the main state machine `0022A580` and the field
+- [Startup constants](startup-constants.md): what `0022A0B0` fixes at boot.
+- [Frame update order](frame-update-order.md): the main state machine `0022A580` and the field
   frame.
 - Class hierarchy: the RTTI the base class name comes from.
