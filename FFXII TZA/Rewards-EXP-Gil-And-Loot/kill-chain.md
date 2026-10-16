@@ -186,5 +186,5 @@ then the clock value (`00863D4D`-`00863D6A`). It does not touch `022C256C`.
 - The field record table -
   the town flag that resets the chain on entry.
 - Language selection and locale ids
-- Who gets EXP, LP and gil from a kill - the
+- [Who gets EXP, LP and gil from a kill](exp-lp-and-level-ups.md) - the
   defeat-reward routine that calls the chain update.
