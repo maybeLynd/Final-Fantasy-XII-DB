@@ -67,7 +67,7 @@ holds the slot pointer in `02099D70` for the duration):
 `0026CE60(slot)` runs after the bind for a slot whose `+0x10` bit 0 is clear and `+0x13` is set:
 
 1. it allocates the record pool with `002679F0(slot)` and stores it at `+0x08`
-   (the actor record), then runs `00266C50`,
+   ([the actor record](actor-record.md)), then runs `00266C50`,
    `002342F0` on slot 0, and `00265A20` ([battle units](battle-units.md));
 2. on slot 0 it makes one checked indirect call, clears the sixteen party-slot pointers at
    `0209A210`, zeroes `02099DA6`, runs `002EA870(0)`, `002EA690` and `003DD220(1)`, then runs the
@@ -219,6 +219,6 @@ struct ActorManagerSlotEntry size=0x18
 ## Related
 
 - [Field runtime](field-runtime.md): the pass that drives a slot's records.
-- The actor record: the pool's records.
+- [The actor record](actor-record.md): the pool's records.
 - [Save data fields](../Saving-Loading-And-Settings/save-data-fields.md): the operand bank and the group persistent bank.
 - Script variables and their storage classes: how the homes are addressed.

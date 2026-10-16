@@ -246,7 +246,7 @@ record +0x14: bit 4 drive the bound battle unit through +0x38 (0025DF00), bit 6 
 
 ## Related
 
-- The actor record: the record the pass drives and its `+0xA8` wait slots.
+- [The actor record](actor-record.md): the record the pass drives and its `+0xA8` wait slots.
 - [Actor managers](actor-managers.md): the slot block.
 - [Zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md): the fade request and the mapjump mode.
 - [Weather](../World-Areas-And-Travel/weather.md): the lane the init core passes on.

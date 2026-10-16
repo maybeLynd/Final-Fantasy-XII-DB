@@ -199,6 +199,6 @@ Other writers that apply a mask held in a register are not in the table: among t
 
 - [Field runtime](field-runtime.md): the frame callback a bound unit gets.
 - [Actor managers](actor-managers.md): the manager slots the handle's selector names.
-- The actor record: the actor side of the link.
+- [The actor record](actor-record.md): the actor side of the link.
 - [Unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md): the record at `+0x698`.
 - Spawn placement and retirement: the spawn record the release writes.
