@@ -94,7 +94,7 @@ type 2 and 9, 36 bytes
                       +0x0C u16  atlas name record index
                       +0x0E u16  sub-image code
                       +0x10 u16  record offset from the code's record (frame)
-                      +0x12 u16  opacity; 0xFF takes byte 7 of the sub-image record
+                      +0x12 u16  palette selector; 0xFF takes byte 7 of the sub-image record
                       +0x14 u32[4] vertex colours, one per corner
 type 4, 28 bytes      nothing past the header is read
 type 5, 24 bytes      +0x0C u32  colour
@@ -104,23 +104,23 @@ type 5, 24 bytes      +0x0C u32  colour
                       +0x14 s32  string id; -1 = no text
 type 7, 72 bytes      +0x0C u16  atlas name record index
                       +0x0E u16  sub-image code of the base record
-                      +0x13 u8   bit 1: the fill keeps the background's opacity and colour
+                      +0x13 u8   bit 1: the fill keeps the background's palette and colour
                       +0x14 s16  background x, y offset (+0x16)
                       +0x18 u16  background left cap, middle, right cap (+0x1A, +0x1C), records from the base
-                      +0x1E u16  background opacity (0xFF = record default)
+                      +0x1E u16  background palette selector (0xFF = record default)
                       +0x20 u16  background length
                       +0x22 u16  background height
                       +0x24 u32  background colour
                       +0x28 s16  fill x, y offset (+0x2A)
                       +0x2C u16  fill left cap, middle, right cap (+0x2E, +0x30)
-                      +0x32 u16  fill opacity
+                      +0x32 u16  fill palette selector (0xFF = record default)
                       +0x34 u16  fill length at the maximum
                       +0x36 u16  fill height
                       +0x38 u32  fill colour
                       +0x3C u32  overlay colour
                       +0x40 u16  overlay atlas name record index; 0xFFFF = no overlay
                       +0x42 u16  overlay sub-image code
-                      +0x44 u8   overlay opacity (0xFF = record default)
+                      +0x44 u8   overlay palette selector (0xFF = record default)
 type 8, 44 bytes      +0x0C u16  list record to show in a grid
                       +0x0E u8   columns
                       +0x0F u8   rows
@@ -190,7 +190,7 @@ Measured over every `.mrp` file and every `mrppack_ys.bin` unit in the archive.
 | largest block | `1040`<sub>h</sub> bytes for one list |
 | atlas name records | 1,998; 49 distinct names, 28 of them referenced by items; longest 12 characters; bytes 14 and 15 zero in all |
 | atlas indices | none out of range; 58 type-7 items have no overlay, 220 overlay `battle_4_c` |
-| sprite opacity | 12,341 of 20,181 type-2 items use the record default (`FF`<sub>h</sub>) |
+| sprite palette | 12,341 of 20,181 type-2 items use the record default (`FF`<sub>h</sub>) |
 | text | 2,859 type-5 items have no string; 1,625 carry ids 12,034 to 191,536, in groups 1, 2, 18 and 19 |
 | type 6 | 46 items, all type-5 text records with string id -1 and colour `80808080`<sub>h</sub>, and each the last item of its record |
 | child references | every type-1 and type-8 record index is in range; no list reaches itself; records shown by type 8 contain only types 2, 4, 5 and 6 |
@@ -236,7 +236,7 @@ its block.
   the parent with `00244960`; the node keeps it at `+18`<sub>h</sub>. On creation the procedure decodes the record named by
   item `+0C`<sub>h</sub> from the same file into its own `+50`<sub>h</sub>, with itself as parent, and takes that record's rectangle.
 - Types 2 and 9 (`0029F4C0`) resolve the atlas (node `+18`<sub>h</sub>), find the sub-image record (`+20`<sub>h</sub>), store the
-  frame at `+0A`<sub>h</sub>, the opacity at `+39`<sub>h</sub>, the four vertex colours at `+28`<sub>h</sub>-`+37`<sub>h</sub>, and set `+3A`<sub>h</sub> to the
+  frame at `+0A`<sub>h</sub>, the palette selector at `+39`<sub>h</sub>, the four vertex colours at `+28`<sub>h</sub>-`+37`<sub>h</sub>, and set `+3A`<sub>h</sub> to the
   first colour's fourth byte and `+3B`<sub>h</sub> to `80`<sub>h</sub>.
 - Type 4 (`0029ED40`) stores null at node `+18`<sub>h</sub>. Its draw arm `0029ED30` jumps to `+18`<sub>h</sub> only when it is set,
   so the node is a callback slot that draws nothing until code stores a function there.
@@ -271,8 +271,10 @@ bits 2-5. Types 1, 3, 6 and 8 have no arm.
   caps it shrinks the caps in proportion.
 
 The sprite size and source come from the sub-image record at `+20h + frame × 8`: `u16` x, `u16` y, then width
-and height as 12-bit fields of the dword at `+4`. The opacity byte's high nibble indexes a per-atlas byte table
-and the low nibble is added to it.
+and height as 12-bit fields of the dword at `+4`. The palette selector's high nibble indexes a per-atlas byte table
+and the low nibble is added to it; the sum goes to the draw context's `+5C`<sub>h</sub> (`0029F5D0`, and `00243752` for a
+type-2 run), which the sprite emitters use as the palette: the palette buffer offset for 8-bit images, and the
+palette block and entry for 4-bit ones (`002D9380`, `002DB8A0`-`002DB8D3`).
 
 ### Reaching and recolouring nodes
 
@@ -306,10 +308,10 @@ With `A` = slot `+20`<sub>h</sub> (the picture header) and `T = A + 30h`, the st
 ```python
 page = u16[T + 0x14 + (code >> 8) × 2]
 entry = u16[T + 0x14 + (page + (code & 0xFF)) × 2]
-record = T + u16[T + 0x10] + entry × 8          8 bytes: x, y, w:12, h:12, byte 7 default opacity
+record = T + u16[T + 0x10] + entry × 8          8 bytes: x, y, w:12, h:12, byte 7 default palette selector
 ```
 
-`u16[T + 12h]` is the offset of the opacity byte table. Types 2 and 9 then step `frame` records on; type 7 counts
+`u16[T + 12h]` is the offset of the palette byte table. Types 2 and 9 then step `frame` records on; type 7 counts
 its six pieces from the base record.
 
 ### Registering and filling an atlas

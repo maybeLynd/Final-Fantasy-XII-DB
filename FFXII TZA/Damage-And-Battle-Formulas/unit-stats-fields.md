@@ -20,15 +20,17 @@ by `0030FED0` ([Augments](augments.md)).
 
 ## Columns
 
-`unit-stats-fields.tsv`, one row per field:
+`unit-stats-fields.tsv`, one row per field and owner. A field that means the same for both kinds has one row; a
+field that means different things has a party row and an enemy row at the same offset:
 
 | Column | Meaning |
 |---|---|
 | `offset` | the field's offset in the record |
-| `width_type` | its width and type; "or" separates the party and enemy readings |
+| `owner` | `both`, `party` (kind 0) or `enemy` (kind 1) |
+| `width_type` | its width and type for that owner |
 | `field` | a short name |
 | `meaning` | what the field holds, with the instruction that fixes it |
-| `writers`, `readers` | how many functions write or read the field, and up to six of them with one site each |
+| `writers`, `readers` | how many functions write or read the offset, and up to six of them with one site each; a party row and an enemy row at one offset share these |
 
 The writers and readers come from an access census of the record: every function that loads unit
 `+698`<sub>h</sub> or the party array, followed through register copies and through calls that pass the record,
