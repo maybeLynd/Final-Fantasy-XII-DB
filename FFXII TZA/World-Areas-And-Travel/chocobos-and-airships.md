@@ -3,10 +3,8 @@ title: "Chocobos and airships: riding a chocobo, the ride timer and its dismount
 kind: "system"
 category: "World, areas and travel"
 summary: "What riding a chocobo is to the engine: one mode bit in the battle-state block and one persistent flag, the three-minute ride timer and the turbo timer in the shared timer slots, the dismount task that fades, swaps the party back and clears the flag, the menu's Dismount command and the ground test behind it, the mode ladder that tells riding from the other modes, the music the ride selects, the verbs the keeper and crystal scripts use, how a save carries the riding bit, and airship travel, which has no verb of its own and is a gil charge, a scene and a map jump in the aerodrome scripts."
-addresses: ["00303D90", "00303EE0", "00303EC0", "0030D9A0", "003135C0", "00303F00", "003514D0", "00347230", "00347820", "00347C60", "00356630", "00355910", "0033F650", "0050F8A0", "0037CFF0", "0037CFC0", "0037D100", "00304440", "00234590", "00303CC0", "00336390", "0017D380", "0017D3A0", "0031B8C0", "00311E20", "0035CFA0", "0035C960", "0035CA70", "003CA310", "003CA860", "00304680", "00304060", "00304140", "00237DF0", "0034EE20", "0034DD90", "0032AB60", "003EBA90", "003EBB70", "003EBC50", "003EBD00", "002E73C0", "002EB030", "00263750", "00306760", "005843E0", "002EF3C0", "002EF410", "00261F90", "002DEE50", "003611F0", "0026A7F0", "00342E50", "00265680", "001D50D0", "005C5230"]
+addresses: "00303D90, 00303EE0, 00303EC0, 0030D9A0, 003135C0, 00303F00, 003514D0, 00347230, 00347820, 00347C60, 00356630, 00355910, 0033F650, 0050F8A0, 0037CFF0, 0037CFC0, 0037D100, 00304440, 00234590, 00303CC0, 00336390, 0017D380, 0017D3A0, 0031B8C0, 00311E20, 0035CFA0, 0035C960, 0035CA70, 003CA310, 003CA860, 00304680, 00304060, 00304140, 00237DF0, 0034EE20, 0034DD90, 0032AB60, 003EBA90, 003EBB70, 003EBC50, 003EBD00, 002E73C0, 002EB030, 00263750, 00306760, 005843E0, 002EF3C0, 002EF410, 00261F90, 002DEE50, 003611F0, 0026A7F0, 00342E50, 00265680, 001D50D0, 005C5230"
 ---
-
-# Chocobos and airships: riding a chocobo, the ride timer and its dismount, and aerodrome travel
 
 ## What the player sees
 
@@ -194,23 +192,25 @@ Everything in a flight is therefore a gil write, a scene and a map jump
 
 ## Layouts
 
-```
-struct ChocoboRide base=[02EBF190]+0x5AE0 size=0x10
-+0x00  u32  flags       bit 0 timer running, bit 1 turbo on, bits 2-3 turbo charges
-+0x04  f32  rideLeft    seconds; 180.0 at mounting (00303D90, 00304440)
-+0x08  f32  turboLeft   seconds (00303F00, 00304440)
-+0x0C  u32  turboArg    the last 00303F00 argument
-```
+Struct ChocoboRide base=[`02EBF190`]+`0x5AE0` size=`0x10`:
 
-```
-struct TimerSlot base=02B5EBC0 size=0x14
-+0x00  i32  start      (003EBC50)
-+0x04  i32  target
-+0x08  f32  value      003EBA90
-+0x0C  f32  step       ±1/60 or ±1/50 per frame
-+0x10  u8   running    003EBD00
-+0x11  u8   expired    003EBB70
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | flags | bit 0 timer running, bit 1 turbo on, bits 2-3 turbo charges |
+| `04` | `f32` | rideLeft | seconds; 180.0 at mounting (`00303D90`, `00304440`) |
+| `08` | `f32` | turboLeft | seconds (`00303F00`, `00304440`) |
+| `0C` | `u32` | turboArg | the last `00303F00` argument |
+
+Struct TimerSlot base=`02B5EBC0` size=`0x14`:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `i32` | start | (`003EBC50`) |
+| `04` | `i32` | target |  |
+| `08` | `f32` | value | `003EBA90` |
+| `0C` | `f32` | step | ±1/60 or ±1/50 per frame |
+| `10` | `u8` | running | `003EBD00` |
+| `11` | `u8` | expired | `003EBB70` |
 
 ```
 mode = bit3(+0x5B04) ? 5 : bit2 ? 4 : town ? 3 : bit1 ? 2 : bit0        (0030D9A0)

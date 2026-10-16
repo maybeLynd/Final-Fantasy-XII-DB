@@ -3,10 +3,8 @@ title: "Game over: what a party wipe does, the GAME OVER screen, and the return 
 kind: "system"
 category: "World, areas and travel"
 summary: "What happens after the last party member falls: the request the field frame posts and the second route a menu death takes, the executor that opens the game-over screen, the task tree that fades the field out, shows the GAME OVER image and the press-to-continue prompt, and fades to black, the request for the title map and the byte it really sets, the main-loop check that tears the field down and returns to the title screen, what is not reloaded, and where a load afterwards puts the party, including the save-crystal entrance alias."
-addresses: ["00234590", "0035C7A0", "0035C7B0", "00227370", "002E1B10", "00254850", "00254E50", "002805D0", "0027EFA0", "002E09A0", "00254B50", "0028F970", "00280A00", "00252B40", "0027FB70", "00280140", "003EF750", "003EF830", "003EFAA0", "003EF2E0", "003EEEC0", "003EF4A0", "003EF050", "003EF680", "003EF770", "003EF290", "00361630", "00360C20", "003611F0", "00360D70", "002DDCA0", "002EFA70", "00285EC0", "00285EA0", "003603E0", "003603D0", "0034EB20", "00360120", "003601D0", "003321E0", "0022A770", "0022BC20", "00228C70", "0027F2E0", "00264B90", "00377AB0", "00377A90", "0037B4D0", "00356500", "00359C60", "0030F4B0", "00237CA0", "0034AAB0", "002FEAC0", "00314DC0", "00314D80", "0034AC10"]
+addresses: "00234590, 0035C7A0, 0035C7B0, 00227370, 002E1B10, 00254850, 00254E50, 002805D0, 0027EFA0, 002E09A0, 00254B50, 0028F970, 00280A00, 00252B40, 0027FB70, 00280140, 003EF750, 003EF830, 003EFAA0, 003EF2E0, 003EEEC0, 003EF4A0, 003EF050, 003EF680, 003EF770, 003EF290, 00361630, 00360C20, 003611F0, 00360D70, 002DDCA0, 002EFA70, 00285EC0, 00285EA0, 003603E0, 003603D0, 0034EB20, 00360120, 003601D0, 003321E0, 0022A770, 0022BC20, 00228C70, 0027F2E0, 00264B90, 00377AB0, 00377A90, 0037B4D0, 00356500, 00359C60, 0030F4B0, 00237CA0, 0034AAB0, 002FEAC0, 00314DC0, 00314D80, 0034AC10"
 ---
-
-# Game over: what a party wipe does, the GAME OVER screen, and the return to the title map
 
 ## What the player sees
 
@@ -209,49 +207,55 @@ clears `022C3178` bit 0, zeroes `022C3170`, `022C3160` and `022C3158` and sets `
 
 ## Layouts
 
-```
-root block [0209AC30]
-+0x0B8  ptr   mode-screen task             +0x0C0  ptr   area controller (00280A00 refuses while set)
-+0x0D0  ptr   pause task 00228C70
-+0x3FC  i32   requested field (00285EC0)
-+0x400  u32   bit 8 field request pending; bits 9/10 restore pending/verified; bit 11 cleared by 0027F2E0;
-              bit 13 set by 00285EA0; low byte rewritten by 0027F2E0
-+0xDEE  u8    cleared by 0027EFA0          +0xDEF  u8    1 while a mode screen opens, 0 after the controller's message
-```
+Root block [`0209AC30`]:
 
-```
-struct GameOverTask size=0x108   (00244F50(0x108, 003EF830, 0); 02B5F1C8 points at it)
-+0x0B4  u32   tick handle (001EDEC0)
-+0x0C0  i32   state 0..8                   +0x0C4  i32   countdown frames
-+0x0D0  ptr   image task 003EF2E0          +0x0D8  ptr   timing task 003EEEC0
-+0x0E0  ptr   logo task 003EF4A0           +0x0E8  ptr   prompt task 003EF050
-+0x0F0  i32   1 once message 0x10 arrived
-+0x0F8  reg   texture registration (00393460)   +0x100  reg   texture registration (003933F0)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `0B8` | `void*` | mode-screen task | +`0x0C0`  ptr   area controller (`00280A00` refuses while set) |
+| `0D0` | `void*` | pause task 00228C70 |  |
+| `3FC` | `i32` | requested field (00285EC0) |  |
+| `400` | `u32` | bit 8 field request pending; bits 9/10 restore pending/verified; bit 11 cleared by 0027F2E0; | bit 13 set by `00285EA0`; low byte rewritten by `0027F2E0` |
+| `DEE` | `u8` | cleared by 0027EFA0 | +`0xDEF`  u8    1 while a mode screen opens, 0 after the controller's message |
 
-```
-struct ImageSlot base=022CB9F0 count=4 size=0x18   (00361630 loads, 00360C20 reads, 00360D70 releases)
-+0x00  u8   state: 0 free, 3 loading, 4 loaded, 5 ready; 00360D70 releases state 5 and flags the rest
-+0x01  u8   image id (7 = gameover_c)
-+0x02  u8   flags: bit 0 release requested, bit 1 fading (00361200)
-+0x03  u8   result byte returned by 00361630
-+0x08  ptr  payload                        +0x14  u32  handle from 001DBB80(id)
-```
+Struct GameOverTask size=`0x108`   (`00244F50`(`0x108`, `003EF830`, 0); `02B5F1C8` points at it):
 
-```
-title-return bytes
-022CB720  u8   busy mask (0 = idle; 003321E0 refreshes bit 7; 00360100 sets, 003601B0/003601C0 modify, 00360370 clears)
-022CB724  u32  written 0x5A by 00360120      022CB726  u8   1 after the teardown
-022CB727  u8   cleared by 00360120           022CB72A  u8   softwarereset request (003603D0)
-022CB72B  u8   title-map request (003603E0, from the area controller when +0x3FC is 0x0C)
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `B4` | `u32` | tick handle (001EDEC0) |  |
+| `C0` | `i32` | state 0..8 | +`0x0C4`  i32   countdown frames |
+| `D0` | `void*` | image task 003EF2E0 | +`0x0D8`  ptr   timing task `003EEEC0` |
+| `E0` | `void*` | logo task 003EF4A0 | +`0x0E8`  ptr   prompt task `003EF050` |
+| `F0` | `i32` | 1 once message 0x10 arrived |  |
+| `F8` | `reg` | texture registration (00393460) | +`0x100`  reg   texture registration (`003933F0`) |
 
-request and mode
-0215F1A0  u8   request pending     0215F1A1  u8  latch that refuses 002E1B10
-0215F1A4  u32  request id          0215F1A8  u32  request parameter
-02092730  u32  current mode        02092734  u32  mode parameter     020927D8  u32  raw mode
-022C83E8  u32  bit 8 game over posted, bit 1 armed, bit 0 and bit 4 the 0x18 and 0x17 posts
-00254C70  u8[]  mode-request arm table (id - 1 → arm)   00254C58  u32[6]  arm jump table
-```
+Struct ImageSlot base=`022CB9F0` count=4 size=`0x18`   (`00361630` loads, `00360C20` reads, `00360D70` releases):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | state: 0 free, 3 loading, 4 loaded, 5 ready; 00360D70 releases state 5 and flags the rest |  |
+| `01` | `u8` | image id (7 = gameover_c) |  |
+| `02` | `u8` | flags: bit 0 release requested, bit 1 fading (00361200) |  |
+| `03` | `u8` | result byte returned by 00361630 |  |
+| `08` | `void*` | payload | +`0x14`  u32  handle from `001DBB80`(id) |
+
+Title-return bytes:
+
+| Address | Type | Name | Meaning |
+|---|---|---|---|
+| `022CB720` | `u8` | busy mask (0 = idle; 003321E0 refreshes bit 7; 00360100 sets, 003601B0/003601C0 modify, 00360370 clears) |  |
+| `022CB724` | `u32` | written 0x5A by 00360120 | `022CB726`  u8   1 after the teardown |
+| `022CB727` | `u8` | cleared by 00360120 | `022CB72A`  u8   softwarereset request (`003603D0`) |
+| `022CB72B` | `u8` | title-map request (003603E0, from the area controller when +0x3FC is 0x0C) |  |
+
+Request and mode:
+
+| Address | Type | Name | Meaning |
+|---|---|---|---|
+| `0215F1A0` | `u8` | request pending | `0215F1A1`  u8  latch that refuses `002E1B10` |
+| `0215F1A4` | `u32` | request id | `0215F1A8`  u32  request parameter |
+| `02092730` | `u32` | current mode | `02092734`  u32  mode parameter     `020927D8`  u32  raw mode |
+| `022C83E8` | `u32` | bit 8 game over posted, bit 1 armed, bit 0 and bit 4 the 0x18 and 0x17 posts |  |
+| `00254C70` | `u8[]` | mode-request arm table (id - 1 → arm) | `00254C58`  u32[6]  arm jump table |
 
 ## Shipped data
 

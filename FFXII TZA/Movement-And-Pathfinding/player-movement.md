@@ -3,10 +3,8 @@ title: "Player movement: how the left stick moves the controlled character, the 
 kind: "system"
 category: "Movement and pathfinding"
 summary: "The one actor per tick that receives analogue movement: which handle the stick drives and how it changes, the stick vector with its dead zone and the four magnitude bands that pick walk or run speed, the keyboard walk toggle, the camera-relative rotation and the yaw smoothing, the per-tick application of speed, facing, desired heading and animation mode, the motion-flag word on the body, and the suppression word and four lock bytes that scripts, status and the party controller use to stop the character."
-addresses: ["00358C60", "00358CB0", "003594E0", "00358A20", "004742A0", "00264DF0", "0026D810", "002EC5B0", "002E9BB0", "0026B5A0", "0026A0D0", "002681D0", "00317E60", "00235EA0", "003045A0", "002E7E50", "00265680", "00265720", "00265830", "00267330", "00358B40", "00358BC0", "003593A0", "003590E0", "00359410", "00358EE0", "00358F90", "00359200", "00359250", "003592C0", "00359330", "0023B040", "0026D6D0"]
+addresses: "00358C60, 00358CB0, 003594E0, 00358A20, 004742A0, 00264DF0, 0026D810, 002EC5B0, 002E9BB0, 0026B5A0, 0026A0D0, 002681D0, 00317E60, 00235EA0, 003045A0, 002E7E50, 00265680, 00265720, 00265830, 00267330, 00358B40, 00358BC0, 003593A0, 003590E0, 00359410, 00358EE0, 00358F90, 00359200, 00359250, 003592C0, 00359330, 0023B040, 0026D6D0"
 ---
-
-# Player movement: how the left stick moves the controlled character, the walk and run bands, the camera-relative turn, and the locks that stop it
 
 ## What the player sees
 
@@ -79,9 +77,9 @@ float `+0x17C`, or `5.0 / (30.0 * [01DFE0B8])` without a leader.
 
 `00358CB0(handle)` runs only while every active manager has its three bytes `+4`-`+6` non-zero
 (`00265720`) and slot 0's skip flag (`00267330(0)`, byte `+0` bit 7) is clear. With the actor
-(`003588B0`) and its movement context (`00265970`) it stores `+0x98 = [01DFE0B8] * 30 * 3.6 *
-00235EA0()`, builds the stick vector, and rotates it into camera space with `004742A0(022C7FA0,
-022C7FD0, v, context)`.
+(`003588B0`) and its body placement (`00265970`, the body's `+0x30`) it stores the placement's
+`+0x98` (the body's `+0xC8`) `= [01DFE0B8] * 30 * 3.6 * 00235EA0()`, builds the stick vector, and
+rotates it into camera space with `004742A0(022C7FA0, 022C7FD0, v, placement)`.
 
 The rotation keeps a camera basis at `022C7FA0`: a vector shorter than 0.01 zeroes the output and
 marks the basis stale (`+0`); `002DDCF0()` or a stick yaw (`atan2(v.x, v.z)`) more than `0.3927`
@@ -89,7 +87,7 @@ from the cached yaw `+8` also marks it stale, and a stale basis is rebuilt from 
 `02AEDF30 + 16 k` (`k` from `00D22690`, y zeroed, normalised).
 
 The output is `(row0.x v.x - row1.x
-v.z, 0, row0.z v.x - row1.z v.z)` normalised and scaled by `|v| * context +0x98 / ([01DFE0B8] * 30 *
+v.z, 0, row0.z v.x - row1.z v.z)` normalised and scaled by `|v| * placement +0x98 / ([01DFE0B8] * 30 *
 3.6)`, which is `|v|` times the run speed; `+0xC` follows the output's bearing by at most 0.25 per
 call and its negative goes to `out.w`.
 
@@ -197,7 +195,8 @@ globals
 01EF9220  f32  dead zone 50.0                01EF9224 f32 floor 0.1
 01EF9228  f32[4] band widths 0.2, 0.7, 0.05, 1.0
 
-movement context: +0x98 f32 [01DFE0B8] * 30 * 3.6 * run speed   +0xA4 f32 desired heading   +0xD0 f32 speed
+body placement (00265970): +0x98 f32 [01DFE0B8] * 30 * 3.6 * run speed (the body's +0xC8)
+movement context: +0xA4 f32 desired heading   +0xD0 f32 speed
 body: +0x80 u16 animation mode   +0xC8 f32 animation rate   +0x110 u32 motion flags
 ```
 

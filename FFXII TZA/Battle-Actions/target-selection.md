@@ -3,10 +3,8 @@ title: "Target selection: which targets the battle menu lists, the 24-unit range
 kind: "system"
 category: "Battle actions"
 summary: "How the battle menu builds the target list for an action - allies, foes and self from the action's flags, the 24-unit horizontal range measured from the character you control, KO'd and stoned allies listed from anywhere for actions that can affect them, greyed entries, the default cursor - and what is checked again once the action is under way."
-addresses: ["0031EB20", "00322A80", "003230E0", "00322490", "0046B870", "0046B690", "0046BAC0", "002FFA60", "002FFB60"]
+addresses: "0031EB20, 00322A80, 003230E0, 00322490, 0046B870, 0046B690, 0046BAC0, 002FFA60, 002FFB60"
 ---
-
-# Target selection: which targets the battle menu lists, the 24-unit range and the KO exception
 
 ## What the player sees
 

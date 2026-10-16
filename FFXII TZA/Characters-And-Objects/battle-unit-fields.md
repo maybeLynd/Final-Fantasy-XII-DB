@@ -3,10 +3,8 @@ title: "Battle unit fields: the unit record offset by offset, its regions, and e
 kind: "reference"
 category: "Characters and objects"
 summary: "The battle unit record laid out by region: the flag word and the bind fields at its head, the position and navigation state, the waypoint table and its predecessor map, the stats and spawn pointers, the action block with the committed and cancelled copies, the target buffer, the perception cache, the reserved item and gil, the definition rows and the slot index; which final page names each field; and the companion table of every access to a unit that the typed scan reached, with each instruction checked against the executable."
-addresses: ["00234480", "00236A60", "00316CD0", "00316CF0", "003839F0", "003839C0", "00383670", "00234200", "00265020", "00329220"]
+addresses: "00234480, 00236A60, 00316CD0, 00316CF0, 003839F0, 003839C0, 00383670, 00234200, 00265020, 00329220"
 ---
-
-# Battle unit fields: the unit record offset by offset, its regions, and every reach the access table proves
 
 ## What it lists
 
@@ -95,13 +93,14 @@ The target buffer at `+0x778` is not touched by the reuse reset.
 
 ### The navigation path state
 
-```
-struct BattleUnitPathState base=unit+0x200 size=0x490
-+0x00   i32       current         the waypoint index the walker is on (00383670 reads and writes it)
-+0x0C   u16[2]    endpoints       0xFFFF after 003839C0
-+0x10   u8[128]   predecessor     the next waypoint after each index; 0xFF after 003839F0
-+0x90   f32[2][128] waypoints     x and z per index; 00383670 copies entry i to its output at +0 and +8
-```
+Struct BattleUnitPathState base=unit+`0x200` size=`0x490`:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `i32` | current | the waypoint index the walker is on (`00383670` reads and writes it) |
+| `0C` | `u16[2]` | endpoints | `0xFFFF` after `003839C0` |
+| `10` | `u8[128]` | predecessor | the next waypoint after each index; `0xFF` after `003839F0` |
+| `90` | `f32[2][128] waypoints` | x and z per index; 00383670 copies entry i to its output at +0 and +8 |  |
 
 `00383670(position, _, out, state, arg)` follows the predecessor chain from `current` while
 `00383A30` reports each step reached, calls `00383C90` for the chosen index, copies that waypoint's
@@ -109,13 +108,14 @@ two floats into `out` (with the position's y at `out + 4`) and stores the index 
 
 ### The target buffer
 
-```
-struct BattleTargetBuffer base=unit+0x778 size=0x208
-+0x00  u8       header     bit 0 survives the reset 00316CF0
-+0x01  u8[2]    cleared by the reset
-+0x04  i32      count      at most 32; 00316CD0 appends at count and increments
-+0x08  u8[512]  entries    32 entries of 16 bytes: the actor at +0, the outcome word at +8 (target selection page)
-```
+Struct BattleTargetBuffer base=unit+`0x778` size=`0x208`:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | header | bit 0 survives the reset `00316CF0` |
+| `01` | `u8[2]` | cleared by the reset |  |
+| `04` | `i32` | count | at most 32; `00316CD0` appends at count and increments |
+| `08` | `u8[512]` | entries | 32 entries of 16 bytes: the actor at +0, the outcome word at +8 (target selection page) |
 
 ### Reset extents
 

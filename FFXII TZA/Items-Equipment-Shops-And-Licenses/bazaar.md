@@ -3,10 +3,8 @@ title: "Bazaar: every bazaar good, the loot you must sell to unlock it, its pric
 kind: "reference"
 category: "Items, equipment, shops and licenses"
 summary: "Each of the 128 goods of the bazaar table: its name, price and the items it gives, the up to three loots and counts that must be sold to unlock it, whether it can come back after it is bought, and whether a script sets it instead, with the loot-sold tally, the refresh after every sale, the flag byte that shows a good, the purchase that empties the tallies, and the two script verbs that offer the Grimoires."
-addresses: ["02EBF058", "0030B270", "0030B180", "002FEEB0", "00310870", "0030B570", "002FD780"]
+addresses: "02EBF058, 0030B270, 0030B180, 002FEEB0, 00310870, 0030B570, 002FD780"
 ---
-
-# Bazaar: every bazaar good, the loot you must sell to unlock it, its price, what it gives, and how unlocking and buying work
 
 ## What it lists
 
@@ -21,13 +19,13 @@ bytes:
 
 | Offset | Field | Read by |
 |---|---|---|
-| `+0x00` | `u16` name word | the query filler `0031C5D0` |
-| `+0x02` | `u16` description text id | the query filler |
+| `00` | `u16` name word | the query filler `0031C5D0` |
+| `02` | `u16` description text id | the query filler |
 | `+0x04`, `+0x08`, `+0x0C` | `u16` item given, each with a `u8` count at `+0x06`, `+0x0A`, `+0x0E`; count 0 for none | `002FD780` (`002FD7F2`-`002FD85D`) |
-| `+0x10` | `u32` price in gil | the query filler, to the query record's `+0x28` (`0031DA1F`) |
-| `+0x14` | `u16` flags: bit 0 can come back, bit 1 a script sets it | `0030B33F`, `0030B5F6` |
+| `10` | `u32` price in gil | the query filler, to the query record's `+0x28` (`0031DA1F`) |
+| `14` | `u16` flags: bit 0 can come back, bit 1 a script sets it | `0030B33F`, `0030B5F6` |
 | `+0x16`, `+0x1A`, `+0x1E` | `u16` loot to sell, each with a `u8` count at `+0x18`, `+0x1C`, `+0x20`; an unused slot is id 0 with count 0 | `0030B375`-`0030B45F` |
-| `+0x22` | `u16` 120 on every row, copied to the query record's `+0x2C` | the query filler (`0031DA32`-`0031DA36`) |
+| `22` | `u16` 120 on every row, copied to the query record's `+0x2C` | the query filler (`0031DA32`-`0031DA36`) |
 
 ### Unlocking a good
 

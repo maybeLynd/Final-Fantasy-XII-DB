@@ -3,10 +3,8 @@ title: "PS2 VIF1 and VU1 emulation: the packet decoder, the recompiled microprog
 kind: "system"
 category: "Engine core"
 summary: "The second PlayStation 2 layer the remaster keeps: a VIF1 command decoder at 0022C970 over a 16 KB emulated VU1 memory, 57 vector-unit microprograms recompiled to x64 and installed by MPG as function pointers, the 77 packet templates two boot hubs build and the registrars that build packets per draw, the GiVmax render command that runs a packet at emit time and collects its GS output, and the GS replay that turns GIF packets into D3D11 vertices and indices for twenty honoured GS registers."
-addresses: ["0022C970", "0022C940", "0022BFF0", "0022C8D0", "0022C930", "0022CC40", "0022CC30", "0037DF90", "0037E0F0", "008631E0", "008631D0", "001DB840", "001DB550", "001DB660", "001DB3D0", "001FB840", "001DB7E0", "003A34D0", "003A35E0", "003A33B0", "003A2F70", "0020E630", "0020F310", "00210320", "0020F3E0", "0020FCA0", "00210230", "0020EA50", "0020FE70", "0020FBA0", "0020EC80", "0020EB60", "0020F250", "004EF860", "00476C80"]
+addresses: "0022C970, 0022C940, 0022BFF0, 0022C8D0, 0022C930, 0022CC40, 0022CC30, 0037DF90, 0037E0F0, 008631E0, 008631D0, 001DB840, 001DB550, 001DB660, 001DB3D0, 001FB840, 001DB7E0, 003A34D0, 003A35E0, 003A33B0, 003A2F70, 0020E630, 0020F310, 00210320, 0020F3E0, 0020FCA0, 00210230, 0020EA50, 0020FE70, 0020FBA0, 0020EC80, 0020EB60, 0020F250, 004EF860, 00476C80"
 ---
-
-# PS2 VIF1 and VU1 emulation: the packet decoder, the recompiled microprograms and the GS replay
 
 ## What the player sees
 

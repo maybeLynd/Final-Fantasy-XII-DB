@@ -3,10 +3,8 @@ title: "Image hardening: the executable's load address, DEP, Control Flow Guard 
 kind: "system"
 category: "Compiler and C runtime"
 summary: "What the PE headers and the code of FFXII_TZA.exe say about its protections: a fixed load address with relocations shipped but no ASLR, DEP requested with no writable and executable section, Control Flow Guard instrumentation in the runtime that the loader never switches on, live per-process stack cookies and range checks that fast-fail the process, the shared do-nothing body at 0016D6A0, and the teardowns that end in it, including Phyre's 12 by 12 scalar-conversion tree."
-addresses: ["00808EE4", "00809B8C", "00808C40", "00809654", "00809620", "00809728", "0080973C", "01F44830", "01F44838", "008C31C0", "008C31C8", "0016D6A0", "00896270", "00809958", "0059A030", "0059D2D0", "01F2CDA0", "02CA9D91", "0067F700", "00594EB0", "00594350", "02D3E880", "00165F80", "008B1B00"]
+addresses: "00808EE4, 00809B8C, 00808C40, 00809654, 00809620, 00809728, 0080973C, 01F44830, 01F44838, 008C31C0, 008C31C8, 0016D6A0, 00896270, 00809958, 0059A030, 0059D2D0, 01F2CDA0, 02CA9D91, 0067F700, 00594EB0, 00594350, 02D3E880, 00165F80, 008B1B00"
 ---
-
-# Image hardening: the executable's load address, DEP, Control Flow Guard and stack cookies as built
 
 ## What the player sees
 
@@ -140,19 +138,23 @@ an empty fourth entry. The optional header gives linker version 14.0. There is n
 
 ## Layouts
 
-```
-IMAGE_OPTIONAL_HEADER64 (fields used here)
-  +0x18   u64   ImageBase                        0x00120000
-  +0x46   u16   DllCharacteristics               0x8120
+IMAGE_OPTIONAL_HEADER64 (fields used here):
 
-IMAGE_LOAD_CONFIG_DIRECTORY64, 148 bytes at 01CEBE40
-  +0x58   u64   SecurityCookie                   0x01F44830
-  +0x70   u64   GuardCFCheckFunctionPointer      0x008C31C0
-  +0x78   u64   GuardCFDispatchFunctionPointer   0x008C31C8
-  +0x80   u64   GuardCFFunctionTable             0
-  +0x88   u64   GuardCFFunctionCount             0
-  +0x90   u32   GuardFlags                       0x00000100
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `18` | `u64` | ImageBase | `0x00120000` |
+| `46` | `u16` | DllCharacteristics | `0x8120` |
+
+IMAGE_LOAD_CONFIG_DIRECTORY64, 148 bytes at `01CEBE40`:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `58` | `u64` | SecurityCookie | `0x01F44830` |
+| `70` | `u64` | GuardCFCheckFunctionPointer | `0x008C31C0` |
+| `78` | `u64` | GuardCFDispatchFunctionPointer | `0x008C31C8` |
+| `80` | `u64` | GuardCFFunctionTable | 0 |
+| `88` | `u64` | GuardCFFunctionCount | 0 |
+| `90` | `u32` | GuardFlags | `0x00000100` |
 
 ```
 section   address    virtual size   raw size    access
@@ -168,23 +170,27 @@ _RDATA    03005000   0x000A250      0x000A400   R--
 .reloc    0305C000   0x0039360      0x0039400   R--
 ```
 
-```
-scalar-conversion tree node, 0x30 bytes, guard dword at +0x30 (02CAAD10..02CACC58)
-  +0x00  u64   link0        self-linked until inserted
-  +0x08  u64   link1
-  +0x10  u64   parent       low bit is the node colour
-  +0x18  u64   source       type descriptor (lookup key, first)
-  +0x20  u64   destination  type descriptor (lookup key, second)
-  +0x28  u64   routine      conversion routine
+Scalar-conversion tree node, `0x30` bytes, guard dword at +`0x30` (`02CAAD10`..02CACC58):
 
-event record 02D3E880, 0x28 bytes
-  +0x00  u8    created
-  +0x08  u64   handle       CreateEventA result
-  +0x10  u8    flag         set by 005CD0A0, cleared by 005CD6D0
-  +0x18  u32   (zeroed by 005CC8A0)
-  +0x20  u32   (zeroed by 005CC8A0)
-  +0x24  u32   (zeroed by 005CC8A0)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u64` | link0 | self-linked until inserted |
+| `08` | `u64` | link1 |  |
+| `10` | `u64` | parent | low bit is the node colour |
+| `18` | `u64` | source | type descriptor (lookup key, first) |
+| `20` | `u64` | destination | type descriptor (lookup key, second) |
+| `28` | `u64` | routine | conversion routine |
+
+Event record `02D3E880`, `0x28` bytes:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | created |  |
+| `08` | `u64` | handle | CreateEventA result |
+| `10` | `u8` | flag | set by `005CD0A0`, cleared by `005CD6D0` |
+| `18` | `u32` | (zeroed by 005CC8A0) |  |
+| `20` | `u32` | (zeroed by 005CC8A0) |  |
+| `24` | `u32` | (zeroed by 005CC8A0) |  |
 
 ## Shipped data
 

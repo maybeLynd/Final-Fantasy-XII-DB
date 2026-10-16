@@ -3,10 +3,8 @@ title: "Action definition row: power, targeting, range, element and flag fields 
 kind: "format"
 category: "Battle actions"
 summary: "The 60-byte row every battle action is read from (magicks, technicks, items, summons, Quickenings, Foecraft, traps): where the 543 rows ship in battle_pack.bin and how they are bound at load, every field with the function that reads it, the three flag words bit by bit, and the shipped values."
-addresses: ["00237FC0", "00236C30", "00238850", "003845F0", "0020E600", "00385F60", "0031C5D0", "0031EB20", "00390AB0"]
+addresses: "00237FC0, 00236C30, 00238850, 003845F0, 0020E600, 00385F60, 0031C5D0, 0031EB20, 00390AB0"
 ---
-
-# Action definition row: power, targeting, range, element and flag fields of a battle action
 
 ## What the player sees
 
@@ -30,49 +28,51 @@ the action id is the formula scratch word `02AEDFD4`.
 
 ## Layouts
 
-```struct ActionRow base=record size=0x3C
-+0x00  u16  helpId        help text id; 4000 = none (0031C5D0 at 0031DBB1, through 002F9860)
-+0x02  u8   rangeNear     near range band, tenths; used when +0x0C bit 26 is clear (00320D70)
-+0x03  u8   rangeMiddle   middle range band, tenths (00320D70)
-+0x04  u8   knockback     knockback chance base (00388B50 at 00388BE6)
-+0x05  u8   reach         reach in tenths; bounds the Reflect retarget (00309300, 00384F40)
-+0x06  u8   areaRadius    area radius; 0 = the target alone (0030D160, 0031A990)
-+0x07  u8   areaAngle     cone half-angle in degrees, or line half-width (0030D160, 0031A990)
-+0x08  u8   recipe        damage recipe; 0 = the weapon's (00385F60 at 0038617E)
-+0x09  u8   chargeBase    charge time base (002F8410 at 002F8586)
-+0x0A  u8   cost          MP cost, or Mist charges for kinds 5 and 6 (002F95D0, 00308FF0, 00309110)
-+0x0B  u8   b0B           1-3 on rows 182-207 only
-+0x0C  u32  flags         action flags; table below
-+0x10  u8   power         action power (31 formula slots)
-+0x11  u8   power2        second power byte (00388C10, 0038A9D0, 0038EB30)
-+0x12  u8   hit           hit threshold into 02AEDFE0 (00389040 at 00389089)
-+0x13  u8   element       one bit per element (0038B220, 0038B6A0)
-+0x14  u8   statusChance  on-hit status chance, percent (0038F970 at 0038F9B0)
-+0x15  u8   boostPercent  percent added to the working magnitude 02AEE004 (0038F8E0 at 0038F93B)
-+0x16  u8[2] pad16        0 on every row
-+0x18  u32  statusMask    statuses the action applies or removes, one bit each (003872D0, 003851F0)
-+0x1C  u8   category      action category 0-9; picks the presentation event (0030A370 at 0030A37F)
-+0x1D  u8   enmityDirect  enmity toward the user (003216E0 at 00321716)
-+0x1E  u8   kind          action kind; picks what +0x22 holds (003093D0, 00469EC0)
-+0x1F  u8   enmitySpread  enmity passed to foes already hostile (00321733)
-+0x20  u8   enmityOthers  enmity taken from the others, negated (00321744)
-+0x21  u8   effectClass   0-8, picks an effect started while the action runs (00329F80 at 00329FE7)
-+0x22  u16  linkedId      the magick, technick, item or ability id of the row (003093D0, 003060E0)
-+0x24  u16  effectId      the action's own effect id; bit 15 a flag (0030AC50, 0030A190, 00310DB0)
-+0x26  u8   esper         the Esper's row in the party table, on the 13 summon rows (00306760)
-+0x27  u8   pad27         0 on every row
-+0x28  u16  cinematicId   Quickening and Concurrence cinematic (0030A190 at 0030A209)
-+0x2A  u16  pad2A         0 on every row
-+0x2C  u16  flags2        second flag word; table below
-+0x2E  u16  descId        description text id (0031C5D0 at 0031DBBE)
-+0x30  u32  event         presentation event of phases 9-11 (0030A370 at 0030A457)
-+0x34  u16  nameWord      name: bank = word >> 11, entry = word & 0x7FF (00305F10, 00536410)
-+0x36  u16  targetFlags   third flag word; table below
-+0x38  u8   menuPage      command list page (00237FC0 at 00238033)
-+0x39  u8   menuRow       row on that page (00237FC0 at 00238043)
-+0x3A  u8   aiReaction    bit number set in the AI operand mask of kind 10 (00312170 at 003121F5)
-+0x3B  u8   pad3B         0 on every row
-```
+`ActionRow` (`0x3C` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u16` | helpId | help text id; 4000 = none (`0031C5D0` at `0031DBB1`, through `002F9860`) |
+| `02` | `u8` | rangeNear | near range band, tenths; used when +`0x0C` bit 26 is clear (`00320D70`) |
+| `03` | `u8` | rangeMiddle | middle range band, tenths (`00320D70`) |
+| `04` | `u8` | knockback | knockback chance base (`00388B50` at `00388BE6`) |
+| `05` | `u8` | reach | reach in tenths; bounds the Reflect retarget (`00309300`, `00384F40`) |
+| `06` | `u8` | areaRadius | area radius; 0 = the target alone (`0030D160`, `0031A990`) |
+| `07` | `u8` | areaAngle | cone half-angle in degrees, or line half-width (`0030D160`, `0031A990`) |
+| `08` | `u8` | recipe | damage recipe; 0 = the weapon's (`00385F60` at `0038617E`) |
+| `09` | `u8` | chargeBase | charge time base (`002F8410` at `002F8586`) |
+| `0A` | `u8` | cost | MP cost, or Mist charges for kinds 5 and 6 (`002F95D0`, `00308FF0`, `00309110`) |
+| `0B` | `u8` | b0B | 1-3 on rows 182-207 only |
+| `0C` | `u32` | flags | action flags; table below |
+| `10` | `u8` | power | action power (31 formula slots) |
+| `11` | `u8` | power2 | second power byte (`00388C10`, `0038A9D0`, `0038EB30`) |
+| `12` | `u8` | hit | hit threshold into `02AEDFE0` (`00389040` at `00389089`) |
+| `13` | `u8` | element | one bit per element (`0038B220`, `0038B6A0`) |
+| `14` | `u8` | statusChance | on-hit status chance, percent (`0038F970` at `0038F9B0`) |
+| `15` | `u8` | boostPercent | percent added to the working magnitude `02AEE004` (`0038F8E0` at `0038F93B`) |
+| `16` | `u8[2] pad16` | 0 on every row |  |
+| `18` | `u32` | statusMask | statuses the action applies or removes, one bit each (`003872D0`, `003851F0`) |
+| `1C` | `u8` | category | action category 0-9; picks the presentation event (`0030A370` at `0030A37F`) |
+| `1D` | `u8` | enmityDirect | enmity toward the user (`003216E0` at `00321716`) |
+| `1E` | `u8` | kind | action kind; picks what +`0x22` holds (`003093D0`, `00469EC0`) |
+| `1F` | `u8` | enmitySpread | enmity passed to foes already hostile (`00321733`) |
+| `20` | `u8` | enmityOthers | enmity taken from the others, negated (`00321744`) |
+| `21` | `u8` | effectClass | 0-8, picks an effect started while the action runs (`00329F80` at `00329FE7`) |
+| `22` | `u16` | linkedId | the magick, technick, item or ability id of the row (`003093D0`, `003060E0`) |
+| `24` | `u16` | effectId | the action's own effect id; bit 15 a flag (`0030AC50`, `0030A190`, `00310DB0`) |
+| `26` | `u8` | esper | the Esper's row in the party table, on the 13 summon rows (`00306760`) |
+| `27` | `u8` | pad27 | 0 on every row |
+| `28` | `u16` | cinematicId | Quickening and Concurrence cinematic (`0030A190` at `0030A209`) |
+| `2A` | `u16` | pad2A | 0 on every row |
+| `2C` | `u16` | flags2 | second flag word; table below |
+| `2E` | `u16` | descId | description text id (`0031C5D0` at `0031DBBE`) |
+| `30` | `u32` | event | presentation event of phases 9-11 (`0030A370` at `0030A457`) |
+| `34` | `u16` | nameWord | name: bank = word >> 11, entry = word & `0x7FF` (`00305F10`, `00536410`) |
+| `36` | `u16` | targetFlags | third flag word; table below |
+| `38` | `u8` | menuPage | command list page (`00237FC0` at `00238033`) |
+| `39` | `u8` | menuRow | row on that page (`00237FC0` at `00238043`) |
+| `3A` | `u8` | aiReaction | bit number set in the AI operand mask of kind 10 (`00312170` at `003121F5`) |
+| `3B` | `u8` | pad3B | 0 on every row |
 
 ### The kind byte
 

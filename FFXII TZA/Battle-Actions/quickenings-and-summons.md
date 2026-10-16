@@ -3,10 +3,8 @@ title: "Quickenings and summons: the one-at-a-time scene for summons, Esper atta
 kind: "system"
 category: "Battle actions"
 summary: "Which battle actions play as a special scene (summons, Dismiss, the Espers' finishing attacks, Quickenings, Concurrences, Mount and Dismount), why only one can run at a time and a second one waits, the stages from claiming the scene to ending it, what the battle stops doing while it plays, and when an Esper attack's damage lands."
-addresses: ["0030CE10", "00306BD0", "00306B10", "00306760", "003065D0", "00306570", "00306BB0"]
+addresses: "0030CE10, 00306BD0, 00306B10, 00306760, 003065D0, 00306570, 00306BB0"
 ---
-
-# Quickenings and summons: the one-at-a-time scene for summons, Esper attacks, Quickenings and chocobo mounting
 
 ## What the player sees
 

@@ -3,10 +3,8 @@ title: "Event memory: the event and summon memory heaps a field gets when its ac
 kind: "system"
 category: "Story, events and hunts"
 summary: "What happens to two working heaps when a field's actor manager is bound: both are released, the 1 MiB event memory heap EVTMEM is made again unless the field's id is in eventmemorylist.bin, and the 100 KiB summon memory heap SMNMEM is made again unless the field record's bit 15 is set, with the list's file format, its loader and its eight shipped ids."
-addresses: ["0026C8C0", "00377440", "00377480", "0025A990", "0025AA30", "02ADD0A8"]
+addresses: "0026C8C0, 00377440, 00377480, 0025A990, 0025AA30, 02ADD0A8"
 ---
-
-# Event memory: the event and summon memory heaps a field gets when its actors are bound, and the list of fields that get no event memory
 
 ## What the player sees
 
@@ -58,11 +56,13 @@ The list is `common/eventmemorylist.bin`, kind 9 file `0x29`, requested by `0037
 
 ## Layouts
 
-```struct EventMemoryList base=file size=0x1A
-+0x00  char[8]  magic   "EVMEMLST"
-+0x08  u16      count   8
-+0x0A  u16[8]   ids     the field ids that get no event memory
-```
+`EventMemoryList` (`0x1A` bytes, offsets from the start of the file):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[8]` | magic | "EVMEMLST" |
+| `08` | `u16` | count | 8 |
+| `0A` | `u16[8]` | ids | the field ids that get no event memory |
 
 ## Shipped data
 

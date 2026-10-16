@@ -3,10 +3,8 @@ title: "Battle locomotion: how a combat unit picks its step and heading, the tur
 kind: "system"
 category: "Movement and pathfinding"
 summary: "The solver that moves a battle unit each step: the navigation step that routes it and builds the solver context, the two solver variants chosen by the unit's definition, the quadratic arrival curve that sets the step distance, the heading turn limiter with its three angles and two rates, the six steering modes a countdown runs, the spacing and avoidance pass with its randomised manoeuvre, the detour and stall recoveries, the corridor probes that test a step against moving units, walls and the obstacle grid, the order goal decoder, and what the solver writes back."
-addresses: ["00325BB0", "00336CE0", "00336710", "003394A0", "0033BED0", "00339BF0", "003364D0", "0033CB70", "00334120", "0033A570", "00338140", "0033D660", "003343D0", "0033C870", "00334E00", "0033E1F0", "0033C200", "0033BD70", "00334950", "003347C0", "0033C310", "0033BFB0", "00339F00", "0033CEF0", "0033D200", "0033CE60", "0033CDE0", "0033BAA0", "0033BC80", "00334AB0", "00334C30", "00335B60", "003357B0", "0033D3E0", "00335E50", "0033A3D0", "00335F90", "00391410", "00312730", "00253B90", "0030A130"]
+addresses: "00325BB0, 0033A720, 00339DF0, 0033B6F0, 00337470, 00335180, 0033CC80, 0033A240, 0033D890, 00337C10, 00336CE0, 00336710, 003394A0, 0033BED0, 00339BF0, 003364D0, 0033CB70, 00334120, 0033A570, 00338140, 0033D660, 003343D0, 0033C870, 00334E00, 0033E1F0, 0033C200, 0033BD70, 00334950, 003347C0, 0033C310, 0033BFB0, 00339F00, 0033CEF0, 0033D200, 0033CE60, 0033CDE0, 0033BAA0, 0033BC80, 00334AB0, 00334C30, 00335B60, 003357B0, 0033D3E0, 00335E50, 0033A3D0, 00335F90, 00391410, 00312730, 00253B90, 0030A130"
 ---
-
-# Battle locomotion: how a combat unit picks its step and heading, the turn limiter, spacing and avoidance, detour and stall recovery, and the corridor probes
 
 ## What the player sees
 
@@ -141,6 +139,159 @@ speed exceeds the distance to that point, and otherwise counts it down by one.
 | 5 | `0033CDE0` | turn while moving at `+0xE4` or `+0xE8` without stopping |
 | 6 | `0033BAA0` | orbit: the orbit heading `00334AB0` is probed (`00335B60(ctx, heading, 0, 1.0, 0.8, 0)`); when the probe rejects and the pair clearance `0033D660` returns 0, the countdown is cleared and the speed zeroed; else `+0xB4` takes the orbit heading, the pitch 0, the speed `speedA`, `0033BC80` runs on the point 0.1 ahead, and the limited heading `+0xBC` approaches the target bearing `+0xA8` by `1.5 * (speedA / circumference) * 2pi` |
 
+### The heading search
+
+`0033A720(ctx)` chooses the heading of a step by trying a fan of headings around the bearing to the
+step point. The default solver reaches it through `0033A570` when the unit is farther than its stop
+distance `+0xAC` from the destination `+0x30`, or under order `0x4124` when the straight walk to the
+goal is blocked (`0033D3E0`); otherwise `0033A570` stops the unit. The spacing pass runs it for bit
+1. It works in this order:
+
+1. The field row: the current map (`003148F0`) is looked up by its first `u16` in the `move_support`
+   table (`02EBF010`, [authored data
+   tables](../Game-Files-And-Data-Tables/authored-data-tables.md)); the first matching row
+   gives a distance cap (byte `+2` / 10) and a narrow-fan flag (byte `+4` bit 0).
+2. A flier (mover class `+0x174` = 3) has the goal's height `+0x24` set to the terrain height
+   (`003208C0`) plus its step scale `+0xC0`.
+3. The step point `+0x10` is the goal `+0x20`, or the look-ahead point `00335180` when the corridor
+   to the goal is blocked (`00335F90`). Its flat distance `d` (`004686D0`), its bearing (`004687F0`)
+   and the pitch `00337470` are taken.
+4. The probe distance is `min(3.0, d)` when the step point is not the goal. At the goal it is the
+   smaller of the row's cap (3.0 without a row) plus the second radius `+0x110`, and `d - +0xAC +
+   +0x110` (for goal kind 2, `d - +0xAC` minus the target's smaller radius); a row also caps it at its
+   own distance (plus `+0x110` unless goal kind 2). It is never negative.
+5. `0033B6F0` updates the zig-zag memory (below), and the fan is tried.
+
+The fan comes from three tables on the stack, picked by the mover class and the side the last
+detour took (block `+0x38` bits 6-7: 0 none, 1 the positive side, 2 the negative side):
+
+| Fan | Side none | Side 1 | Side 2 |
+|---|---|---|---|
+| mover class 0-1, 12 entries | 0, 30, -30, 60, -60, 90, -90, 135, -135, 0, 0, 0 | 0, 30, 60, 90, -30, -60, -90, 135, -135, 0, 0, 0 | 0, -30, -60, -90, 30, 60, 90, -135, 135, 0, 0, 0 |
+| the row's narrow flag, 10 entries | 0, 30, -30, 60, -60, 90, -90, 0, 0, 0 | 0, 30, 60, 90, -30, -60, -90, 0, 0, 0 | 0, -30, -60, -90, 30, 60, 90, 0, 0, 0 |
+| mover class 2 and up, 7 entries | 0, 45, -45, 90, -90, 135, -135 | 0, 45, 90, -40, -90, 135, -135 | 0, -45, -90, 45, 90, -135, 135 |
+
+Angles are degrees added to the bearing. The -40 in the class-2 side-1 fan is the shipped value
+(`0xBF32B8C3`, -0.6981 rad), not -45. A flier tries each heading at the pitches 0, 30 and 45
+degrees added to `00337470`'s pitch; every other unit at that pitch alone. For each candidate:
+
+1. it is skipped, and that memory consumed, when it lies within 45 degrees of a remembered heading
+   (block bytes `+0x2F`/`+0x30`, live while `+0x31`/`+0x32` are non-zero);
+2. it is skipped when it is more than 150 degrees from the last chosen heading (byte `+0x2C`, `byte
+   * pi / 128`), or its pitch is not within 90 degrees;
+3. a candidate of 135 degrees, once an earlier candidate came back 2 (moving units in the way, none
+   blocking), is replaced by that earlier candidate, taken without a probe;
+4. otherwise the forward clearance `00335B60` probes it at the probe distance (at `+0x110 + 1.8`
+   for the 135-degree entries), with tolerance `1 - attempts / 10` and flags 8 for the straight
+   heading, plus 4 under order `0x4124` or `0x4022` while fleeing, else 2. A result of 0 takes it; a
+   result of 2 is remembered.
+
+A taken heading gets its steering mode from `00339DF0` (below). Mode 2 needs a second clear probe
+along the limited heading `+0xBC` (distance 1.0, tolerance 0.8) and then runs `0033D200`, whose
+result replaces the mode; a blocked second probe makes it mode 1. Mode 1 runs `0033CEF0`. Mode 3
+stops the unit, steps both `+0xB4` and `+0xBC` from the current heading toward the candidate by the
+slow rate `+0xEC`, and starts a countdown of 10 when none runs (cleared when the heading arrives).
+
+The pitch goes to `+0xB8`, the heading to byte `+0x2C`, `0033CC80` records the aim, the side bits
+are set by the sign of the offset (both cleared for 0), and the attempt counter (block `+0x3C` bits
+4-7) is cleared. When no candidate is taken, `0033CEF0` runs toward the bearing, `0033CC80` records
+mode 4, and the attempt counter rises by one up to 10, which lowers the next search's tolerance.
+
+`0033CC80(ctx, mode, heading, pitch, distance)` writes the aim: when the distance exceeds the
+speed `+0xB0`, the mode goes to the flag word's bits 0-4 and the point `distance` ahead along the
+heading and pitch (`01F004C0`, `{0, 0, 1}`, scaled, turned about x by the pitch and about y by the
+heading) to block `+0x04`-`+0x0C`, the same `+0x04` mode 6 uses as its orbit radius; otherwise the
+mode and countdown are cleared.
+
+The vector helpers here: `004687F0` is the flat bearing of a vector, `acos(z / |v|)` from the table
+`00D12590`, negated for a negative x; `004692F0` rescales a vector to a length (`00469320`
+normalises it, leaving zero for a vector within `1e-6` of zero, and `00202FE0` scales);
+`00202F00`, `00202E90` and `00202F70` copy a matrix and turn it about y, x and z (`00217880`,
+`00217790`, `00217970`).
+
+`00203170` writes the identity matrix that `0033CC80`, `0033D890` and the
+collision sweep's `0022EF20` start from. The same vector library holds `00203030` (a four-float
+vector times a scalar), `00202CA0` (the four floats times the reciprocal of a scalar), `00202CF0`
+(x, y and z divided by a scalar) and `002030E0` (a matrix copy with a vector added to its
+translation row); their callers are presentation and text code outside this category.
+
+### The steering mode table
+
+`00339DF0(ctx, heading)` turns the angle `a = |wrap(heading - +0xE0)|` into a steering mode. It
+indexes 48 rows of 12 bytes at `01EED4C0` by block byte `+0x175` (values above 7 read as 1) times
+6, plus 3 when flag `+0x170` bit 3 is clear, plus the speed band (0 at rest, 1 up to the threshold
+`+0x104`, 2 above). A row holds two angles in degrees and two mode bytes: `a` above 0.01 and above
+the first angle returns 3; `a` below the second angle returns the first byte plus 1; anything else
+the second byte plus 1.
+
+### The zig-zag memory
+
+`0033B6F0(ctx)` counts down the two memories `+0x31`/`+0x32`, takes the bearing of the unit's move
+since the last call (from the position kept at block `+0x24`/`+0x28`, then updated), and keeps the
+last two move headings as bytes at `+0x2E` (latest) and `+0x2D`.
+
+When those two differ by more than
+90 degrees and the latest also differs from this move by more than 90, the unit is reversing
+direction: unless a live memory already lies 130 degrees or more from byte `+0x2C`, the first free
+memory takes `+0x2C` with a life of 5 solves. A move more than 30 degrees from `+0x2E` shifts it
+into `+0x2D` and stores the new bearing.
+
+### The flier's pitch and the look-ahead point
+
+`00337470(ctx)` returns 0 for any mover class but 3. A flier takes a reference point: the target
+position `+0x40` when the goal is kind 1, the step point is the goal and the unit is not of
+definition mode 2; else the step point. Two points lie along the route toward the current region's
+waypoint (the path record's `+0x90`): `A` at `+0x110 + 0.1`, `B` at the waypoint's flat distance
+plus `+0x110`.
+
+Each takes the terrain height (`003208C0`) when its ground is walkable for the mover class
+(`0026E100`), else the reference's. The aim is `B` or the reference, whichever is higher, when `A`
+plus the step scale is not above the unit; otherwise the higher of `A` and `B` when either is above
+the reference, else the reference. The pitch is `00468700` toward the aim raised by the step scale.
+
+`00335180(out, ctx)` is the look-ahead point. Starting from the route's start region (path `+0x04`)
+it takes that region's waypoint, and while the region is not the goal and has a next region it
+advances when the unit's position lies inside a triangle of the next region (all three edge crosses
+of one sign) or within 0.2 of one of its edges (`00468F70`); at most 128 steps. The point's height
+is the terrain height plus the step scale for a flier, else the unit's own.
+
+### The definition modes and the circling formation
+
+`0033A240(block)`, run from the per-unit frame `00233F70` (`00234076`) and from `00308610`, gives an
+enemy its own locomotion by its definition. It builds the solver context (`00336710(ctx, block,
+0)`) and acts only for a unit whose stats record is an enemy's (byte `+5` = 1), whose class row
+(`[unit + 0xE68]`) has a non-zero mode in byte `+0x18` bits 1-3, whose step flags `+0x1F0` have
+neither `0x1000` nor `0x2000`, and whose flag bit 18 is clear or speed `+0x158` is 0.
+
+While no action is being shown (`02089350` = 0) it runs the mode's body: 1 `0033DFD0`, 2
+`0033D890`, 3 `0033DB60`. Either way it writes the context's speed, desired heading, pitch and
+limited heading back to the block's `+0xD8`, `+0xDC`, `+0xF4` and `+0xE0`.
+
+`0033D890(ctx)` is mode 2. While the unit's status words (`+0x3C | +0x64` of the stats record) lack
+KO (bit 0) and the battle-state word `02089340` lacks bit 5, the unit moves at `speedA` along its
+limited heading with pitch 0. A KO'd mode-2 unit whose `0x40`-byte slot record (`0208DE80` indexed
+by unit byte `+0xEA9`) has `+0x1C` bit 0 joins the circling formation instead:
+
+1. the first such unit in a frame runs `00337C10`, which counts the KO'd mode-2 enemies into
+   `022C7CEB`, finds an enemy of mode 5 (the last one in the unit table) and advances the shared
+   angle `022C7CE0` by `02EC0F84`;
+2. `00337C10` also samples the centre `022C7CF0` from that enemy's position: on a call
+   with the counter `022C7D00` at 0, which starts counting when the enemy moves (speed `+0x158`
+   non-zero); then, from the tenth call on, on every call until a call finds it stopped and resets
+   the counter; it sets `022C7D04` bit 0;
+3. each circling unit takes the next place `022C7CE9`: its goal `+0x20` is 1.0 from the centre at
+   the angle `022C7CE0 + place * 2pi / count` (0 apart with fewer than two), raised to its step scale
+   plus 3.2, and its step scale `+0x108` becomes 1.5;
+4. within 0.1 of the goal the slot record's `+0x1C` bit 1 is set; until then the speed is `3.0 / (30
+   * [01DFE0B8])`, after it the distance capped at `7.0 / (30 * [01DFE0B8])`;
+5. the desired heading and pitch aim at the goal (`004687F0`, `00468700`) and the limited heading
+   faces the centre.
+
+The field frame clears `022C7D04` bit 0 and the place counter `022C7CE9` each frame (`0033B6D0`, after
+`00338490`), and the area initialisation clears the block (`0033A380`). `00337A00`, at start-up, sets the angle step
+`02EC0F84` to `2 / (30 * [01DFE0B4])` radians and stores `[01DFE0B4] * 240` beside it at `02EC0F80`.
+`[01DFE0B4]` is the integer 1 in the image, so the formation turns 2 radians a second.
+
 ### Spacing and avoidance
 
 `00338140(ctx)`, for goal kind 1: when the target is the unit itself, or the distance to the target
@@ -272,7 +423,10 @@ unit; `0x4023` the target of `+0x710` with the parameter as reach; `0x4024` the 
 
 `0x4124`, `0x4125`, `0x414A`, `0x414E` and `0x4165` are five higher sources; `0x4021`, `0x4025` and
 everything else reject. The reach returned is the larger of the actor's radii plus the target's
-where one exists.
+where one exists; for `0x4022` it is `00309B10(unit)`, the unit's larger radius plus 0.1, plus
+`00309A90()`. `00312DF0` draws random points until `00317DE0(unit, point, flag)` accepts one: it
+tests a copy of the point with `00337700` (no shaped obstacle at the point, on the mesh, and walkable
+at the unit's larger radius for its mover class `+0x1F4`, `00336390`) or, with the flag, `003377C0`.
 
 ## Layouts
 
@@ -316,6 +470,8 @@ solver context (stack, 0x110 bytes)
 | 60 | frames | the stall counter's limit |
 | 5.0 (`009146E4`), 0.5 (`01CEBB70`), 3.0 (`008F311C`) | | the detour range and the pair margins |
 | `0x3FB4FDF4` = 1.414 | | the navigation radius factor |
+| `move_support` (`02EBF010`) | 120 rows; caps 1.5 (6 rows), 2.0 (102), 2.5 (12); one narrow row (map 311); map 290 listed twice, the first row (1.5) wins | the heading search field row |
+| `01EED4C0`, by byte `+0x175` | 0: above 120 degrees mode 3, below 90 (45 in the fast band) mode 2, else 1; 1: always 1; 2 and 4: always 2; 3: above 45 mode 3, else 2; 5: below 30 mode 1, else 2; 6: above 0.01 rad mode 3, else 2; 7: 2, or 1 in the slow band; the halves for flag bit 3 are identical | the steering mode table |
 
 ## Operations
 

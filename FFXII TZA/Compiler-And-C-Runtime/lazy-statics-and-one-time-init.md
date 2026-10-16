@@ -3,10 +3,8 @@ title: "Lazy statics and one-time initialisation: thread-safe local statics, the
 kind: "system"
 category: "Compiler and C runtime"
 summary: "How FFXII_TZA.exe builds 1,681 function-local statics on first use: the inline gate that compares a per-static guard with the thread's epoch in TLS, the runtime's header, footer and abort routines around one critical section, the 100 ms wait on a condition variable, the 1,545 unwind funclets that reset a guard when a constructor throws, the teardowns registered on first build, and what the statics are, chiefly Phyre class descriptors and type descriptors."
-addresses: ["008092FC", "0080929C", "0080926C", "008093C0", "00809364", "00809124", "02EAED40", "02EAED68", "02EAED70", "02EAED78", "02EAED80", "01F44850", "02EAED3C", "00189CE0", "01F7F5C8", "008964A0", "005C3B10", "02CB5D48", "02CB5D58", "02CAD140", "00630180", "0062FF50", "006301F0", "00630490", "006B19A0", "005AD8F0", "005E5400", "00221770", "00210EC0"]
+addresses: "008092FC, 0080929C, 0080926C, 008093C0, 00809364, 00809124, 02EAED40, 02EAED68, 02EAED70, 02EAED78, 02EAED80, 01F44850, 02EAED3C, 00189CE0, 01F7F5C8, 008964A0, 005C3B10, 02CB5D48, 02CB5D58, 02CAD140, 00630180, 0062FF50, 006301F0, 00630490, 006B19A0, 005AD8F0, 005E5400, 00221770, 00210EC0"
 ---
-
-# Lazy statics and one-time initialisation: thread-safe local statics, their guards, the shared lock and the release on exceptions
 
 ## What the player sees
 

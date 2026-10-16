@@ -3,10 +3,8 @@ title: "ATEL debug companions: the source, message and symbol files shipped besi
 kind: "system"
 category: "EBP script files"
 summary: "The .sbn, .msb and .dbg files of the control scripts ctrl, btlctrl, evctrl and mapctrl in ps2data/image/ff12/<in|ch>/bin: the script source text with a paged line map, the debug menu messages, and a symbol database of source files, variables, global variables and native command names. No path in the executable names them, and the sibling loader that knows their extensions asks every size with kind 0xFF, which 0032E400 answers with -1, then returns before registering anything."
-addresses: ["003306E0", "0032E400", "0032FCA0", "00D10990"]
+addresses: "003306E0, 0032E400, 0032FCA0, 00D10990, 0032F6F0"
 ---
-
-# ATEL debug companions: the source, message and symbol files shipped beside the four control scripts, and why the game never opens them
 
 ## What the player sees
 
@@ -27,8 +25,17 @@ cmi shk skl vld` at `00D10990`.
 ### The sibling loader stops at its first query
 
 `003306E0`, called from `0032FCA0` (`00330029`), builds sibling names for a script by putting those
-extensions on its path (the first six at `0033078D` to `00330A59`). It then sizes the names with
-`0032E400`, 14 calls that all pass kind `0xFF` (`00330E47` to `00330F71`).
+extensions on its path (the first six at `0033078D` to `00330A59`).
+
+Three names go into a subfolder through `0032F6F0(path, folder, extension)` (`00330AB9`,
+`00330AE9`, `00330C39`), each with the folder `camera` (`00D109AC`) and the extension `cam`, `lgt` or
+`shk`. `0032F6F0` inserts the folder and a backslash before the file name, which starts after the
+last `\` or `/`. It then copies the extension over the characters after the last `.`, stopping at
+the end of either, or cuts the name at that `.` when the extension is null, and copies the result
+back over `path`.
+
+`003306E0` then sizes the names with `0032E400`, 14 calls that all pass kind `0xFF` (`00330E47` to
+`00330F71`).
 
 - `0032E400` compares the kind with `0xFF` before any lookup (`0032E404`) and returns -1
   (`0032E438`).
@@ -65,11 +72,11 @@ Offsets ascend; each message is a byte stream ending in `00` that opens with `0F
 
 ### .dbg, the symbol database
 
-```
-+0x00  {u32 section; u32 table}[5]   three used; slot 1's section is the name pool
-+0x2C  u32  commandTable[16]          one per native command class
-+0x6C  u32  n, u32 nameOffset[n]      source files, one per .sbn block
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `{u32 section; u32 table}[5]` | three used; slot 1's section is the name pool |  |
+| `2C` | `u32` | commandTable[16] | one per native command class |
+| `6C` | `u32` | n, u32 nameOffset[n] | source files, one per .sbn block |
 
 All name offsets are relative to the pool. Slot 0's table is the module's declared variables
 (`{u32 count; u32 nameOffset[count]}`); slot 2's table is its global variables

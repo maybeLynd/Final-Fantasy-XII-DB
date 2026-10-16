@@ -3,10 +3,8 @@ title: "Model effects and motion commands: @FEF and the motion entries"
 kind: "format"
 category: "Graphics"
 summary: "The entries of the .cm and .ca containers that are behaviour rather than shape: the @FEF section that embeds an EFX0010 effect in 144 models, how the model row binds it and the start-up table that names the 144 files, and the motion entries @FMC (command blocks), @FMN (bone channel lists), @FMW (keyed channel data) and @FRM, with the readers that select and decode them and the shipped census."
-addresses: ["00504F00", "00504E70", "00504940", "0016D6A0", "0040A230", "00409F80", "02B64380", "0041F340", "003B3550", "0041D220", "0041CA70", "004090D0", "0041CD30", "0041BEE0", "0041B4E0", "00409190", "00370E00", "0041B550", "0041B650", "00409170", "00409150", "0041A470", "00418650", "00418700", "004186A0", "0041FCF0"]
+addresses: "00504F00, 00504E70, 00504940, 0016D6A0, 0040A230, 00409F80, 02B64380, 0041F340, 003B3550, 0041D220, 0041CA70, 004090D0, 0041CD30, 0041BEE0, 0041B4E0, 00409190, 00370E00, 0041B550, 0041B650, 00409170, 00409150, 0041A470, 00418650, 00418700, 004186A0, 0041FCF0"
 ---
-
-# Model effects and motion commands: @FEF and the motion entries
 
 ## What the player sees
 
@@ -28,24 +26,24 @@ The motion entries are read when a presentation entry is set up to play a motion
 
 ### @FEF
 
-```
-+0x00  '@FEF', u32 kind 0, u32 length, u32 1
-+0x10  char[32]  the container's name
-+0x30  a complete EFX0010 effect file: u32 +0x08 = 1.0f, u32 +0x0C = entry length - 0x30
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `'@FEF',` | u32 | kind 0, u32 length, u32 1 |
+| `10` | `char[32]` | the container's name |  |
+| `30` | `a` | complete | EFX0010 effect file: u32 +`0x08` = 1.0f, u32 +`0x0C` = entry length - `0x30` |
 
 ### @FMC, the command block
 
-```
-+0x04  u32  1 (0x10001 in 405 of the 32,151 entries)
-+0x0C  u32  record count
-+0x10  char[32]  the command block's name (weapon_ready, treasure_open, ...)
-+0x30  records, each:
-  +0x00  u8   1 for the block's main record
-  +0x03  u8   sub-record count
-  +0x04  u16  record length
-  +0x06  sub-records: u16 key, u16 (length << 6 | command count), then the commands
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `04` | `u32` | 1 (0x10001 in 405 of the 32,151 entries) |  |
+| `0C` | `u32` | record count |  |
+| `10` | `char[32]` | the command block's name (weapon_ready, treasure_open, ...) |  |
+| `30` | `records,` | each: |  |
+| `00` | `u8` | 1 for the block's main record |  |
+| `03` | `u8` | sub-record count |  |
+| `04` | `u16` | record length |  |
+| `06` | `sub-records:` | u16 | key, u16 (length << 6 \| command count), then the commands |
 
 A key of `0xFFFF` marks the block of commands that `0041CD30` runs before the keyed ones; the other
 keys are motion frames. The commands themselves are the authored presentation commands
@@ -53,16 +51,16 @@ keys are motion frames. The commands themselves are the authored presentation co
 
 ### @FMN, the bone channel list
 
-```
-+0x04  u32  kind: 0x02001111 or 0x02001011
-+0x0C  u32  record count
-+0x10  char[32]  the motion's name
-+0x50  u16  duration in frames
-+0xF0  records (the start 00409190 picks for both kinds), 22 bytes each:
-  +0x00  u16     node key
-  +0x02  u16     bits 0-8 channel mask, bits 9-14 record length (22)
-  +0x04  u16[9]  channel numbers in the paired @FMW; 0x8000 | n where the mask bit is clear
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `04` | `u32` | kind: 0x02001111 or 0x02001011 |  |
+| `0C` | `u32` | record count |  |
+| `10` | `char[32]` | the motion's name |  |
+| `50` | `u16` | duration in frames |  |
+| `F0` | `records` | (the | start `00409190` picks for both kinds), 22 bytes each: |
+| `00` | `u16` | node key |  |
+| `02` | `u16` | bits 0-8 channel mask, bits 9-14 record length (22) |  |
+| `04` | `u16[9]` | channel numbers in the paired @FMW; 0x8000 \| n where the mask bit is clear |  |
 
 ### @FMW, the channel data
 
@@ -82,12 +80,11 @@ literals add to the previous key's frame.
 
 ### @FRM
 
-```
-+0x0C  u32  1
-+0x10  char[32]  the .ca file's name
-+0x30  payload: byte +0x01 to 003E18D0, byte +0x02 low six bits to skeleton +0xA4,
-       u32 +0x08 offset of a second region, from the payload (0 = none)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `0C` | `u32` | 1 |  |
+| `10` | `char[32]` | the .ca file's name |  |
+| `30` | `payload:` | byte | +`0x01` to `003E18D0`, byte +`0x02` low six bits to skeleton +`0xA4`, u32 +`0x08` offset of a second region, from the payload (0 = none) |
 
 ### The version-1 .ca slot table
 

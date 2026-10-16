@@ -3,10 +3,8 @@ title: "Story progress: the main story counter at the start of the save, the scr
 kind: "system"
 category: "Story, events and hunts"
 summary: "Where the story stands and how it moves: the six classes of script variable and the one that is the save payload itself, read and written live, the main story counter as the payload's first word, the native code that reads it, how zone director scripts raise it behind a test of its current value, the values only the developer menus set, and where the flags and quests that sit beside it are described."
-addresses: ["002625E7", "002626A8", "0026CAF8", "002EF2B0", "00265270", "02098E58"]
+addresses: "002625E7, 002626A8, 0026CAF8, 002EF2B0, 00265270, 02098E58"
 ---
-
-# Story progress: the main story counter at the start of the save, the script variables that live in the save, and how scenes move the story on
 
 ## What the player sees
 

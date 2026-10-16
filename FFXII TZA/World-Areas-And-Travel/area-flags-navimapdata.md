@@ -3,10 +3,8 @@ title: "Area flags: the navimapdata.bin record for every area, the town flag, th
 kind: "system"
 category: "World, areas and travel"
 summary: "The 3-byte per-area record shipped in navimapdata.bin: which areas count as towns, the bit that lets a KO'd, Stoned or X-Zoned character stay in play, the MP regime, the Map entry, the area-name flag, the party hold flag and the default leader, the seven accessor functions that read them, the two save-data overrides and the shipped census."
-addresses: ["00377C20", "00377480", "00377A40", "00377BA0", "003779F0", "00377700", "00377C70", "00378540"]
+addresses: "00377C20, 00377480, 00377A40, 00377BA0, 003779F0, 00377700, 00377C70, 00378540"
 ---
-
-# Area flags: the navimapdata.bin record for every area, the town flag, the KO, Stone and X-Zone override and the other bits
 
 ## What the player sees
 
@@ -136,6 +134,13 @@ Bit 14 is read by `00377A40` for an explicit id. Its five callers are menu and H
 current area's bit is set (`003F92DA`) it prints the area's name from the name table through
 `00377870` after the location text; otherwise it prints text `0x3EC`.
 
+The same name table (`MapName`, `planmapname.bin`, at `02ADD0F8`) also names the regions.
+`00377B60(id)` returns the area name at entry `id` of the offset table `+0x10` while `id` is below the
+area count `+0x04`. `003778B0(field)` returns the name of the field's region, the persistence group
+`00264F90(field)`: entry `[+0x04] + group` of the same offset table, while the group is below the
+region count `+0x08`; an empty entry or a missing table gives the empty string `01CEB638`. Its callers
+are the menu location line `0029C530` and the save-file entry `0057FB00`.
+
 ### The hold flag and its save veto
 
 Bit 0 of the third byte is read inverted by `00377700`: it returns 1 only when the bit is clear and
@@ -173,15 +178,19 @@ third byte. The defaults do not agree on what they mean:
 
 ## Layouts
 
-```struct AreaTable base=table size=0x8
-+0x00  u32   tag       'NAV' 0x02 (0x0256414E); the seven readers never test it
-+0x04  u32   count     record count, 1,154 shipped; every reader bounds the id against it unsigned (00377C35)
-```
+`AreaTable` (`0x8` bytes, offsets from the start of the table):
 
-```struct AreaRecord base=table+8+3*id size=0x3
-+0x00  u16   flags     bits 0-11 Map entry (003779F0), bits 12-13 MP regime (00377BA0), bit 14 area name (00377A40), bit 15 town (00377C20, 00377480)
-+0x02  u8    options   bit 0 hold flag (00377700, read inverted), bits 1-3 authored and read by nothing (scope: the eight readers of 02ADD100 above), bits 4-6 default leader (00377C70), bit 7 never set and never read
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | tag | 'NAV' `0x02` (`0x0256414E`); the seven readers never test it |
+| `04` | `u32` | count | record count, 1,154 shipped; every reader bounds the id against it unsigned (`00377C35`) |
+
+`AreaRecord` (`0x3` bytes, offsets from the start of the table+8+3*id):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u16` | flags | bits 0-11 Map entry (`003779F0`), bits 12-13 MP regime (`00377BA0`), bit 14 area name (`00377A40`), bit 15 town (`00377C20`, `00377480`) |
+| `02` | `u8` | options | bit 0 hold flag (`00377700`, read inverted), bits 1-3 authored and read by nothing (scope: the eight readers of `02ADD100` above), bits 4-6 default leader (`00377C70`), bit 7 never set and never read |
 
 ## Shipped data
 
@@ -224,6 +233,16 @@ variants of those areas. Areas with MP regime 2 or 3 include Terminus No. 7, the
 (Vale of Lingering Sorrow, Echoes of the Past, The Slumbermead), the Great Crystal (A Vikaari Bhrum,
 Sthaana Pisces, Crystal Core), the Pharos (Hall of Effulgent Light, Cloister of Solace, The Crucible),
 the Henne Mines (Site 7) and Giruvegan (Hall of Worth, Throne of Veiled Gods).
+
+The name table's header, measured in all nine language copies of `planmapname.bin`:
+
+| Fact | Value |
+|---|---|
+| magic `+0x00` | `PLMN` |
+| area entries `+0x04` | 1,312 (`0x520`) |
+| region entries `+0x08` | 59 (`0x3B`) |
+| all entries `+0x0C` | 1,371 (`0x55B`) |
+| `us` regions | region 0 has no entry; 41 and 44 share the entry `NOT USED`; 3 is Barheim Passage, 37 Nalbina Town |
 
 ## Operations
 

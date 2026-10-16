@@ -3,10 +3,8 @@ title: "Battle unit construction: the party and enemy definition tables, the sta
 kind: "system"
 category: "Characters and objects"
 summary: "How a battle unit becomes a party member or an enemy from a definition id: the installer's split on the id's high byte, the enemy path through the area's enemy table and the spawn record, the party path through the party table and the battle-state block, the common stores, the fresh stats record with its level, equipment, licences, gambits and starting MP, the level grower and the experience curve, the handle re-key on a definition change, the kind byte at stats +5, and the partition of the type byte that the reward, availability and script code test."
-addresses: ["0023A570", "0023AC80", "0030C470", "0030C650", "002F8F20", "00236100", "002B58B0", "00322050", "003220E0", "00322C50", "00323790", "0031A630", "00323910", "00327CB0", "00326030", "00327DE0", "002F8E90", "002F90C0", "002F8BB0", "0050FF20", "00309230", "00254A40"]
+addresses: "0023A570, 0023AC80, 0030C470, 0030C650, 002F8F20, 00236100, 002B58B0, 00322050, 003220E0, 00322C50, 00323790, 0031A630, 00323910, 00327CB0, 00326030, 00327DE0, 002F8E90, 002F90C0, 002F8BB0, 0050FF20, 00309230, 00254A40"
 ---
-
-# Battle unit construction: the party and enemy definition tables, the stats record a unit gets, the kind byte and the type partition
 
 ## What the player sees
 
@@ -160,48 +158,51 @@ bits 8-15  kind       0 party table 02EBF130, 1 enemy table 02EBF120, other: not
 bits 0-7   index      the row; for kind 0 also the type byte at stats +0x04
 ```
 
-```
-struct EnemyRow table=02EBF120 (stride at table +0x08)
-+0x00  u16  classRow        row of 02EBF150 (the class row at unit +0xE68)
-+0x02  u8   counterSlot     spawn counter index, 0xFF for none
-+0x03  u8   flags           bits 0-1 the tracked-HP class (00328FF0, flag bit 43)
-+0x08  u16  nameRef         bank << 11 | entry into 02EBF170
-+0x15  u8   flags2          bit 2 also sets flag bit 43
-+0x16  u16  equipment0
-+0x1C  u16  equipment1
-+0x22  u16  rewardRow       row of 02EBF148 (unit +0xE70)
-+0x24  u16  rewardLevelRow  row of 02EBF140 (unit +0xE78)
-+0x32  u16  steal0          0xFFFF for none; record +0x14 bit 0
-+0x34  u16  steal1          bit 1
-+0x36  u16  steal2          bit 2
-+0x50  u16  logicRow        row of 02EBF168 (unit +0x6E0)
-```
+Struct EnemyRow table=`02EBF120` (stride at table +`0x08`):
 
-```
-struct PartyRow table=02EBF130 (stride at table +0x08)
-+0x0A  u16[5] equipment     slots 0-4
-+0x14  u16  gambitPreset
-+0x16  u16  baseHp
-+0x1A  u16  baseMp
-+0x1E  u8   baseStat0        with +0x21, +0x24, +0x27: the four float stats
-+0x2B  u8   scale            unit +0x68 and +0x6C (times 1.5)
-+0x2C  u8   flags            bit 6 sets record +0x00 bit 2
-+0x2E  u8   startLevel       0 means 1
-+0x30  u16  nameRef
-+0x44  u16  startLp
-+0x46  u8   baseStat4        unit stat +0x20, raised to the licence rank
-+0x47  u8   startMpPercent
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u16` | classRow | row of `02EBF150` (the class row at unit +`0xE68`) |
+| `02` | `u8` | counterSlot | spawn counter index, `0xFF` for none |
+| `03` | `u8` | flags | bits 0-1 the tracked-HP class (`00328FF0`, flag bit 43) |
+| `08` | `u16` | nameRef | bank << 11 \| entry into `02EBF170` |
+| `15` | `u8` | flags2 | bit 2 also sets flag bit 43 |
+| `16` | `u16` | equipment0 |  |
+| `1C` | `u16` | equipment1 |  |
+| `22` | `u16` | rewardRow | row of `02EBF148` (unit +`0xE70`) |
+| `24` | `u16` | rewardLevelRow | row of `02EBF140` (unit +`0xE78`) |
+| `32` | `u16` | steal0 | `0xFFFF` for none; record +`0x14` bit 0 |
+| `34` | `u16` | steal1 | bit 1 |
+| `36` | `u16` | steal2 | bit 2 |
+| `50` | `u16` | logicRow | row of `02EBF168` (unit +`0x6E0`) |
 
-```
-class row (02EBF150)
-+0x04  u8   type            unit +0x55
-+0x05  u8   kind            unit +0x56
-+0x06  u16  clanEntry       unit +0x52
-+0x22  u8   facing          unit +0x64 = value * 2π / 360
-+0x23  u8   scale           unit +0x68
-+0x27  u8   scale2          unit +0x6C
-```
+Struct PartyRow table=`02EBF130` (stride at table +`0x08`):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `0A` | `u16[5] equipment` | slots 0-4 |  |
+| `14` | `u16` | gambitPreset |  |
+| `16` | `u16` | baseHp |  |
+| `1A` | `u16` | baseMp |  |
+| `1E` | `u8` | baseStat0 | with +`0x21`, +`0x24`, +`0x27`: the four float stats |
+| `2B` | `u8` | scale | unit +`0x68` and +`0x6C` (times 1.5) |
+| `2C` | `u8` | flags | bit 6 sets record +`0x00` bit 2 |
+| `2E` | `u8` | startLevel | 0 means 1 |
+| `30` | `u16` | nameRef |  |
+| `44` | `u16` | startLp |  |
+| `46` | `u8` | baseStat4 | unit stat +`0x20`, raised to the licence rank |
+| `47` | `u8` | startMpPercent |  |
+
+Class row (`02EBF150`):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `04` | `u8` | type | unit +`0x55` |
+| `05` | `u8` | kind | unit +`0x56` |
+| `06` | `u16` | clanEntry | unit +`0x52` |
+| `22` | `u8` | facing | unit +`0x64` = value * 2π / 360 |
+| `23` | `u8` | scale | unit +`0x68` |
+| `27` | `u8` | scale2 | unit +`0x6C` |
 
 ## Modding notes
 

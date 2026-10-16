@@ -3,10 +3,8 @@ title: "Bin_menu images: the headerless 8-bit guest portraits and area icons pas
 kind: "format"
 category: "Game files and data tables"
 summary: "The eighteen headerless bin_menu .bin images (mini_guest_face, map_efe00-06, face_guest07-16): raw 8-bit colour indices with no palette of their own, the requests that pick a file from a guest's character id or the first set area flag, the three routines that copy them row by row into a sub-image of the menu pictures mini_face_c, partytop_8_c and battle_4_c and re-upload it, the 162 shipped copies, and the size and palette rules a replacement must follow."
-addresses: ["0035C5B0", "0035C430", "00283270", "002CEAE0", "002CE980", "003C9A30", "003C9950", "003C9E50", "00280750", "00280670", "00181580", "00180C80", "00180A70", "0024A5A0", "022CA470", "0209AC30", "022C314C", "0031A7B0"]
+addresses: "0035C5B0, 0035C430, 00283270, 002CEAE0, 002CE980, 003C9A30, 003C9950, 003C9E50, 00280750, 00280670, 00181580, 00180C80, 00180A70, 0024A5A0, 022CA470, 0209AC30, 022C314C, 0031A7B0"
 ---
-
-# Bin_menu images: the headerless 8-bit guest portraits and area icons pasted into menu pictures
 
 ## What the player sees
 
@@ -36,17 +34,24 @@ from the same language's `packfiles/tex2pack_ys.bin` (kind 7, `0xD7`).
 A file has no header, magic, size or palette. It is a run of 8-bit colour indices that the paste routine
 reads as rows of its destination rectangle's width:
 
-```
-mini_guest_face.bin (73,728 bytes)
-+0x0000 + 0x2000 n  u8[128][64]  cell for guest character id 7 + n: 128 rows of 64 indices
+Mini_guest_face.bin (73,728 bytes):
 
-map_efe0N.bin (16,384 bytes)
-+0x0000  u8[64][128]  first cell: 64 rows of 128 indices
-+0x2000  u8[64][128]  second cell, copied into the 64 rows below the first
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `+ 0x2000 n` | u8[128][64] | cell for guest character id 7 + n: 128 rows of 64 indices |
 
-face_guestNN.bin (12,288 bytes)
-+0x0000  u8[]  rows of the partytop_8_c rectangle's width
-```
+Map_efe0N.bin (16,384 bytes):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `0000` | `u8[64][128]` | first cell: 64 rows of 128 indices |  |
+| `2000` | `u8[64][128]` | second cell, copied into the 64 rows below the first |  |
+
+Face_guestNN.bin (12,288 bytes):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8[]` | rows of the partytop_8_c rectangle's width |  |
 
 The destination rectangle is a sub-image record of the picture's `eXt` block, found as the
 [UI typed lists](ui-typed-lists.md) page gives it (`page = u16[T + 0x14 + (code >> 8) x 2]`, then the entry, then

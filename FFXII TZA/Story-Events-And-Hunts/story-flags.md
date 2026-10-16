@@ -3,10 +3,8 @@ title: "Story flags: the five banks of yes-or-no flags the save keeps, the story
 kind: "system"
 category: "Story, events and hunts"
 summary: "How the game remembers what has happened: the five flag banks in the save payload with their offsets and id ranges, the accessors and their bounds, the encoded id whose bit 14 reads the story schedule in mapjumpgroupflagrom.bin instead of a flag, ids 0 and 1 as always and never, what each bank holds (map-jump groups and map icons, names learned by talking, chests opened and traps fired, two script-only banks), every native setter and reader, the main menu items the schedule unlocks, and the reset that clears the banks and sets the 52 starting flags."
-addresses: ["0032A8A0", "00377970", "0032AB60", "0032ABF0", "0032AD70", "0032AA60", "00379160", "002EF2D0"]
+addresses: "0032A8A0, 00377970, 0032AB60, 0032ABF0, 0032AD70, 0032AA60, 00379160, 002EF2D0"
 ---
-
-# Story flags: the five banks of yes-or-no flags the save keeps, the story schedule some flag ids read instead, who sets and reads each, and the flags a new game starts with
 
 ## What the player sees
 
@@ -97,18 +95,22 @@ The new-game reset `002EF2D0` clears the first `0x1538` bytes of the payload, wh
 
 ## Layouts
 
-```struct FlagRom base=file size=0x358
-+0x000  char[8]   magic    "FLAGROM1"
-+0x008  u16       count    152
-+0x00A  u16[152]  offsets  file offset of each record
-+0x13A  u16[271]  lists    the records: story counter values, bit 15 on each record's last value
-```
+`FlagRom` (`0x358` bytes, offsets from the start of the file):
 
-```struct FlagDef base=file size=0x74
-+0x00  char[8]  magic  "FLAGDEF1"
-+0x08  u16      count  53
-+0x0A  u16[53]  ids    the Primary ids a new game starts with
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `000` | `char[8]` | magic | "FLAGROM1" |
+| `008` | `u16` | count | 152 |
+| `00A` | `u16[152]` | offsets | file offset of each record |
+| `13A` | `u16[271]` | lists | the records: story counter values, bit 15 on each record's last value |
+
+`FlagDef` (`0x74` bytes, offsets from the start of the file):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[8]` | magic | "FLAGDEF1" |
+| `08` | `u16` | count | 53 |
+| `0A` | `u16[53]` | ids | the Primary ids a new game starts with |
 
 ## Shipped data
 

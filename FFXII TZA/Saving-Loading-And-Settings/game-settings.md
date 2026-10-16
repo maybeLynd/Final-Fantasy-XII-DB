@@ -3,10 +3,8 @@ title: "Game settings: the GameSetting.ini object and its options, the ini file'
 kind: "system"
 category: "Saving, loading and settings"
 summary: "Every player option outside the save: the 31-slot settings object built at start-up from a defaults table and GameSetting.ini, the file's key=value parser and writer, the three quality presets and the ten settings they control, how FrameLimit selects the 30 or 60 fps time base, how DecideButton swaps confirm and cancel, the Config screen's set and get dispatchers and the options record they edit inside the save image (battle mode, battle speed, volumes, camera axes), what Active and Wait battle mode changes, and the FF12CONFIG file in the game archive."
-addresses: ["001DE050", "001DED50", "001DE5D0", "001DF350", "001DEE90", "001DFD40", "001DE4F0", "0022BDF0", "001EDDC0", "0017E6E0", "0022A4F0", "002407F0", "002403F0", "002DDE60", "002DE060", "00255290", "00408C30"]
+addresses: "001DE050, 001DED50, 001DE5D0, 001DF350, 001DEE90, 001DFD40, 001DE4F0, 0022BDF0, 001EDDC0, 0017E6E0, 0022A4F0, 002407F0, 002403F0, 002DDE60, 002DE060, 00255290, 00408C30, 001DF2C0, 00628690"
 ---
-
-# Game settings: the GameSetting.ini object and its options, the ini file's load and save, the quality presets, FrameLimit, DecideButton, the Config screen's commands, Active and Wait battle mode and the FF12CONFIG file
 
 ## What the player sees
 
@@ -106,12 +104,17 @@ onward. The old value-name rows for the numeric settings hold only the `none` po
 5. When Language is neither `jp` (0) nor `kr` or `ch` (6, 7), three value-table pairs at
    `01DFDA58`, `01DFDBA8` and `01DFDCF8` are set to `{12, 13}`.
 
+The parser reads the text through a string stream: `001DF7D0` copies the text into the stream's
+buffer and sets its pointers, `001A9E10` builds the key and value strings, `001DFA00` returns a
+string's characters (the heap copy once its capacity is above 15) and `001DF760` frees a buffer.
+
 ### Writing the file
 
 `001DEE90` serialises all 31 settings as `Key=Value`: Resolution and WindowSize as
 `width,height`, a setting with one value name as its number, and any other setting as the name of
-its current value (`DecideButton=Circle`). `001DFD40` writes that text to the ini path with
-`_wfopen_s("wb")`.
+its current value (`DecideButton=Circle`). It builds the text in a string stream, takes it out with
+`001E00D0` (which calls `001E0100` on the stream's buffer at `+8`), and releases the buffer with
+`001DF8C0`. `001DFD40` writes that text to the ini path with `_wfopen_s("wb")`.
 
 ### The three writers
 
@@ -145,6 +148,27 @@ graphics-settings apply, which then pushes five settings to their consumers in t
 | CharacterSelfShadow | Off | On | On |
 | PostAA, DepthofField, Glare, SoftParticle, WaterQuality | 1 | 1 | 1 |
 
+### The supported MSAA modes
+
+The dword `+0x44C` is a bit set of the MSAA values the display adapter supports. The constructor
+sets it to 1 (bit 0, Off), and `0017D9C0(bit)` adds one more bit through `001DF2B0(object, bit)`.
+
+The device setup `00628690` asks the device at its `+0x108` for the quality level count of format
+`0x1C` (`R8G8B8A8_UNORM`) at sample counts 2 to 32 (virtual slot `+0xF0`, `CheckMultisampleQualityLevels`
+in the `ID3D11Device` layout). For every count with a non-zero level count it sets:
+
+| Sample count | Bit, MSAA value |
+|---|---|
+| 2 | 1, MSAA2X |
+| 4 | 2, MSAA4X |
+| 8 | 3, MSAA8X; also 4, CSAA16x, when the level count is above 16 |
+| 16 | 5, CSAA16XQ |
+
+`001DF2C0(object, value, forward)` steps from `value` to the next value (or, with `forward` 0, the
+previous one) in 0-4 whose bit is set, wrapping around, and stores it as MSAA (`+0x20`) of the
+object at `01F82D20`. Its one caller is the debug menu (`001D4A53`), which then sets byte `+0xDBA`
+of `00189120()` to whether the result is non-zero.
+
 ### FrameLimit
 
 `0017D8F0` returns FrameLimit (`+0x48`). `0022BDF0`, the first call of the boot frame mode
@@ -172,6 +196,10 @@ The Config screen's command `0x26` calls `0017E6E0(value)`: `001DF340(object, 25
 mask `01E0C2A0` and the cancel mask `01E0C2A4` to `0x2000` and `0x4000` for value 0 and the
 reverse otherwise, and `01FD4A64` to whether the value is non-zero. The same masks are set at boot
 (see the [languages page](languages.md)).
+
+The Controls screen's Default calls `0017E520`, which runs `001DEE70` on the object: CameraRevise
+(`+0x58`) = 1, MouseSensityX (`+0x5C`) = 4, and one 8-byte store that sets MouseSensityY (`+0x60`) to
+4 and DecideButton (`+0x64`) to 0. Its caller `0023E020` then applies the masks with `0022A4F0`.
 
 ### The Config screen's commands
 
@@ -244,7 +272,9 @@ bytes) and copies its bytes into the globals listed in the layout below.
 - The u16 at file `+0x0A` goes to `02B62DB4` unless the dword `01E02804` is not negative, in which
   case its low word is stored instead.
 - `02B62DAB` is always set to 1, and `02B62DB4` is zeroed when the second command-line argument is
-  `debug`.
+  `debug`. The arguments come from `0017D240(&vector, &count)`, which returns the pointer and count
+  the application object keeps at `01F7F480` and `01F7F488` (its `+0x1130` and `+0x1138`, stored by
+  `0017CEB0`).
 - When the file loads, `02B62DAD` is first set to `01E02804 >= 0`.
 - The `01E02810` branch (a `FFXII_%03d` or `PS2Data//oldsave//new%03d` probe that sets `02B62DAD`
   = 2) runs only when that dword is not negative.
@@ -253,40 +283,44 @@ bytes) and copies its bytes into the globals listed in the layout below.
 
 ## Layouts
 
-```struct GameSettingObject base=record size=0x65C
-+0x000  u32[31] settings   the 31 settings, offset = index * 4; 001DE050, 001DF350, 001DF340
-+0x07C  u8[972] tables     the value tables 001DF240 fills from 01DFD850, 01DFD9A0 and 01DFDAF0 (81 dwords each at +0x7C, +0x1C0 and +0x304)
-+0x448  u32     count      81 after 001DF240
-+0x44C  u32     msaa       set to 1 by 001DE050
-+0x450  u16[260] path      the ini path, wcscpy_s by 001DE050
-+0x658  u16     fresh      0x0101 from 001DE050, 0 after a file load (001DED50)
-+0x65A  u8      fresh2     1 from 001DE050, 0 after a file load
-+0x65B  u8      pad        not written by 001DE050, 001DED50 or 001DF240
-```
+`GameSettingObject` (`0x65C` bytes, offsets from the start of the record):
 
-```struct Ff12Config base=file size=0x17
-+0x00  u8   unread00   not copied by 00408C30
-+0x01  u8   unread01   not copied
-+0x02  u8   opt02      to 02B62DA8 (reset value 3)
-+0x03  u8   opt03      to 02B62DA9
-+0x04  u8   opt04      to 02B62DAA
-+0x05  u8   unread05   not copied
-+0x06  u8   opt06      to 02B62DAC
-+0x07  u8   unread07   not copied
-+0x08  u8   opt08      to 02B62DAE
-+0x09  u8   opt09      to 02B62DAF (reset value 1)
-+0x0A  u16  fieldId    to 02B62DB4 unless 01E02804 is not negative
-+0x0C  u8   opt0C      to 02B62DB0
-+0x0D  u8   opt0D      to 02B62DB1
-+0x0E  u8   opt0E      to 02B62DB2
-+0x0F  u8   opt0F      to 02B62DB3
-+0x10  u8   opt10      to 02B62DB6
-+0x11  u8   opt11      to 02B62DB7
-+0x12  u8   opt12      to 02B62DB8
-+0x13  u8[2] unread13  not copied
-+0x15  u8   opt15      to 02B62DBB (not reset by 00408BA0)
-+0x16  u8   opt16      to 02B62DBC
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `000` | `u32[31] settings` | the 31 settings, offset = index * 4; 001DE050, 001DF350, 001DF340 |  |
+| `07C` | `u8[972] tables` | the value tables 001DF240 fills from 01DFD850, 01DFD9A0 and 01DFDAF0 (81 dwords each at +0x7C, +0x1C0 and +0x304) |  |
+| `448` | `u32` | count | 81 after `001DF240` |
+| `44C` | `u32` | msaa | bit set of the supported MSAA values: 1 from `001DE050`, more bits from `001DF2B0`; read by `001DF2C0` |
+| `450` | `u16[260] path` | the ini path, wcscpy_s by 001DE050 |  |
+| `658` | `u16` | fresh | `0x0101` from `001DE050`, 0 after a file load (`001DED50`) |
+| `65A` | `u8` | fresh2 | 1 from `001DE050`, 0 after a file load |
+| `65B` | `u8` | pad | not written by `001DE050`, `001DED50` or `001DF240` |
+
+`Ff12Config` (`0x17` bytes, offsets from the start of the file):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | unread00 | not copied by `00408C30` |
+| `01` | `u8` | unread01 | not copied |
+| `02` | `u8` | opt02 | to `02B62DA8` (reset value 3) |
+| `03` | `u8` | opt03 | to `02B62DA9` |
+| `04` | `u8` | opt04 | to `02B62DAA` |
+| `05` | `u8` | unread05 | not copied |
+| `06` | `u8` | opt06 | to `02B62DAC` |
+| `07` | `u8` | unread07 | not copied |
+| `08` | `u8` | opt08 | to `02B62DAE` |
+| `09` | `u8` | opt09 | to `02B62DAF` (reset value 1) |
+| `0A` | `u16` | fieldId | to `02B62DB4` unless `01E02804` is not negative |
+| `0C` | `u8` | opt0C | to `02B62DB0` |
+| `0D` | `u8` | opt0D | to `02B62DB1` |
+| `0E` | `u8` | opt0E | to `02B62DB2` |
+| `0F` | `u8` | opt0F | to `02B62DB3` |
+| `10` | `u8` | opt10 | to `02B62DB6` |
+| `11` | `u8` | opt11 | to `02B62DB7` |
+| `12` | `u8` | opt12 | to `02B62DB8` |
+| `13` | `u8[2] unread13` | not copied |  |
+| `15` | `u8` | opt15 | to `02B62DBB` (not reset by `00408BA0`) |
+| `16` | `u8` | opt16 | to `02B62DBC` |
 
 ## Operations
 
@@ -297,6 +331,8 @@ bytes) and copies its bytes into the globals listed in the layout below.
 | `001DE5D0`, `001DF350` | parse the text, parse one value |
 | `001DEE90`, `001DFD40` | serialise, write the file |
 | `001DE4F0` | apply a quality preset |
+| `00628690`, `001DF2B0`, `001DF2C0` | record the supported MSAA values, step MSAA through them |
+| `001DEE70` | reset the four control settings |
 | `0022BDF0`, `001EDDC0` | read FrameLimit at boot, set the time base |
 | `0017E6E0`, `0022A4F0` | DecideButton setter, mask applier |
 | `002407F0`, `002403F0` | the Config screen's set and get dispatchers |

@@ -3,10 +3,8 @@ title: "Subsystem update flags: the enable word that switches the sixteen interf
 kind: "system"
 category: "Engine core"
 summary: "One dword at 01E0C464, all ones in the shipped image and written by nothing, that the interface pump tests sixteen times a frame to decide which update groups of the UI manager object run: the sixteen groups in their frame order with their masks, the extra gates each carries, the sub-object of the manager each handler receives, where the pump sits inside the field frame, and the second word that enables the one group gated twice."
-addresses: ["0028E290", "002507C0", "00289970", "001EDE80", "003F8B40", "002917E0", "0028C4C0", "0028D1C0", "003F6BB0", "003F7050", "003F9F40", "00291B90", "003F6100", "003F24D0", "003F24A0", "0030C300", "003F80D0", "00296860", "00290CF0", "00290EB0", "003F8EC0", "003F31B0", "003FA790", "002C6180", "0028C870", "002547C0", "00253970", "00184960", "00184950", "00226280", "0036D840"]
+addresses: "0028E290, 002507C0, 00289970, 001EDE80, 003F8B40, 002917E0, 0028C4C0, 0028D1C0, 003F6BB0, 003F7050, 003F9F40, 00291B90, 003F6100, 003F24D0, 003F24A0, 0030C300, 003F80D0, 00296860, 00290CF0, 00290EB0, 003F8EC0, 003F31B0, 003FA790, 002C6180, 0028C870, 002547C0, 00253970, 00184960, 00184950, 00226280, 0036D840"
 ---
-
-# Subsystem update flags: the enable word that switches the sixteen interface update groups on or off each frame
 
 ## What the player sees
 

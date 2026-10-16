@@ -3,10 +3,8 @@ title: "Licenses: what the License Board test asks for an action or a piece of e
 kind: "system"
 category: "Items, equipment, shops and licenses"
 summary: "How licenses work: who the test applies to and who always passes, the action and equipment bits that need no license, the owned-square bits every member carries and the requirement mask built from the license nodes, the four requirement kinds a node's category gives, the counted rule for Quickenings, the reasons a square can be refused, what buying a square costs and grants (LP, Quickenings, MP bars), the squares each member starts with, and the resetJobs verb that refunds both boards."
-addresses: ["00323EC0", "00323C60", "00323BB0", "002F8FA0", "00323890", "00323D10", "00323910", "00328BD0", "00328990"]
+addresses: "00323EC0, 00323C60, 00323BB0, 002F8FA0, 00323890, 00323D10, 00323910, 00328BD0, 00328990"
 ---
-
-# Licenses: what the License Board test asks for an action or a piece of equipment, who is never tested, Quickenings, and buying or resetting a square
 
 ## What the player sees
 
@@ -126,15 +124,17 @@ Script verb `0x5D6` `resetJobs(member)` calls `00328BD0` for main characters 0-5
 
 ## Layouts
 
-```struct LicenseNode base=record size=0x18
-+0x00  u16     nameWord   name: bank = word >> 11, entry = word & 0x7FF
-+0x02  u16     w02        0x4280-0x4289, one value per group of categories; category 18 has two
-+0x04  u8      lpCost     LP the square costs (003239C3, 0031E093)
-+0x05  u8      category   1-30; gives the requirement kind (002F9049 through 00323890)
-+0x06  u8      rule       0 ordinary, 2 Quickening, 3 Esper; picks the refusal rule (00323DF0)
-+0x07  u8      startMask  bit n: party row n starts owning it (0023AE68, 0031E0E9)
-+0x08  u16[8]  ids        the ids the square grants, at most four on a shipped node, 0xFFFF for none (002F9060)
-```
+`LicenseNode` (`0x18` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u16` | nameWord | name: bank = word >> 11, entry = word & `0x7FF` |
+| `02` | `u16` | w02 | `0x4280`-`0x4289`, one value per group of categories; category 18 has two |
+| `04` | `u8` | lpCost | LP the square costs (`003239C3`, `0031E093`) |
+| `05` | `u8` | category | 1-30; gives the requirement kind (`002F9049` through `00323890`) |
+| `06` | `u8` | rule | 0 ordinary, 2 Quickening, 3 Esper; picks the refusal rule (`00323DF0`) |
+| `07` | `u8` | startMask | bit n: party row n starts owning it (`0023AE68`, `0031E0E9`) |
+| `08` | `u16[8]` | ids | the ids the square grants, at most four on a shipped node, `0xFFFF` for none (`002F9060`) |
 
 ## Shipped data
 

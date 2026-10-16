@@ -3,10 +3,8 @@ title: "Unit stats fields: every field of a unit's combat stats record, what it 
 kind: "reference"
 category: "Damage and battle formulas"
 summary: "Each field of the 0x1C8-byte combat stats record every battle unit carries (unit +0x698), from the kind byte and the party or enemy base values to the computed stats, status words, affinities, HP and MP, equipment, effect layers, timers, experience, license points, licenses and level, with its width, its meaning and the functions that write and read it."
-addresses: ["002FEF30", "0030FED0", "0030E360", "00300530", "0030C470"]
+addresses: "002FEF30, 0030FED0, 0030E360, 00300530, 0030C470"
 ---
-
-# Unit stats fields: every field of a unit's combat stats record, what it holds, and what writes and reads it
 
 ## What it lists
 

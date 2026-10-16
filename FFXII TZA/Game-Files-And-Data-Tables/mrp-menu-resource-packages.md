@@ -3,10 +3,8 @@ title: "Menu resource packages (.mrp): the twelve menu layout files, who loads e
 kind: "format"
 category: "Game files and data tables"
 summary: "The standalone mrp_menu/*.mrp files: which screen requests each of the twelve names and with which kind 7 id, the request wrappers that attach the relocation callback, the request groups that tell a screen when all its files have landed, the other carriers of the same format (mrppack_ys.bin and the map packs), the in_sdver copies, the 116 shipped files by name, and the rules for editing or adding one."
-addresses: ["00249320", "00249350", "003933F0", "00249210", "0208F578", "002495C0", "00249660", "002A00F0", "00249580", "02090790", "00249410", "00280980", "002DF9A0", "01E0280C", "003EF830", "00393FF0", "003F4840", "0057B780", "00562F90", "00404060", "00582790", "00579AF0", "00574E80"]
+addresses: "00249320, 00249350, 003933F0, 00249210, 0208F578, 002495C0, 00249660, 002A00F0, 00249580, 02090790, 00249410, 00280980, 002DF9A0, 01E0280C, 003EF830, 00393FF0, 003F4840, 0057B780, 00562F90, 00404060, 00582790, 00579AF0, 00574E80, 002486B0, 002494A0"
 ---
-
-# Menu resource packages (.mrp): the twelve menu layout files, who loads each one and how a request becomes a relocated list file
 
 ## What the player sees
 
@@ -97,6 +95,10 @@ closes the group with `00249410`. Each completion increments the group's `+0x1A`
 count matches `+0x18`, the widget gets message `0x10` (or the group's function at `+0x10` runs). A screen therefore
 sees its `.mrp` relocated before it is told its files are ready: `002495C0` runs the record's completion
 before it raises the group count.
+
+`002486B0(function)` takes a group the same way for a function instead of a widget (`+0x04` = 1, the
+function at `+0x10`). `002494A0` zeroes the twelve groups and, when `[0208F578]` is null, points it at
+the 48 request records at `02090910` and zeroes them.
 
 ### The in_sdver copies
 

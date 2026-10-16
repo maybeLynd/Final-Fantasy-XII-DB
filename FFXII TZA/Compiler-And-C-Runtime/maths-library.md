@@ -3,10 +3,8 @@ title: "Maths library: the C runtime maths imports, the inline SSE maths and the
 kind: "system"
 category: "Compiler and C runtime"
 summary: "Which maths routines FFXII_TZA.exe uses and where they come from: the 45 scalar functions imported from the system C runtime and how often each is called, the only four scalar square-root instructions, the sound engine's four-wide vector routines, the runtime's four-wide power routines and their CPU-level dispatch, the angle wrap and ground-plane distance helpers, the floating-point control calls, and the angle constants the image does and does not carry."
-addresses: ["008C2BB8", "00861F14", "0016A270", "02EADEF0", "007D0F60", "007D1140", "007E9030", "007EF1E0", "007F25E0", "007F1EC0", "00809900", "00809920", "0080A270", "0080B8A0", "01F44858", "0033CB70", "0033CEF0", "004686D0", "003A1960", "0031E620", "0038EAF0", "006E5A20", "0077A8C0", "008C2D18"]
+addresses: "008C2BB8, 00861F14, 0016A270, 02EADEF0, 007D0F60, 007D1140, 007E9030, 007EF1E0, 007F25E0, 007F1EC0, 00809900, 00809920, 0080A270, 0080B8A0, 01F44858, 0033CB70, 0033CEF0, 004686D0, 003A1960, 0031E620, 0038EAF0, 006E5A20, 0077A8C0, 008C2D18, 00380190"
 ---
-
-# Maths library: the C runtime maths imports, the inline SSE maths and the floating-point setup
 
 ## What the player sees
 
@@ -98,6 +96,9 @@ inverses.
 - `004686D0` returns `sqrtf((a.z - b.z)² + (a.x - b.x)²)` by tail-jumping to the `sqrtf` stub;
   `003A1960` is the same sum without the root, and `0031E620` is a forwarder to it. Neither reads
   `y` (`+4`).
+- `00380190(out, axis, angle)` builds a quaternion from an axis and an angle: x, y and z are the
+  axis divided by its length (`sqrtf`) times `sinf(angle / 2)`, w is `cosf(angle / 2)`. Its callers
+  are the camera's sphere sweep `00230C10` and the scripted camera's matrix rebuild `003CBD60`.
 
 ### A power in the battle formulas
 
@@ -116,11 +117,13 @@ saved bits under the same mask (`006E97D8`). Two x87 helpers at `00125743` (`fld
 
 ## Layouts
 
-```struct Vec3Xz base=record size=0xC
-+0x00  f32  x  read by the distance helpers
-+0x04  f32  y  not read by 004686D0 or 003A1960
-+0x08  f32  z  read by the distance helpers
-```
+`Vec3Xz` (`0xC` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `f32` | x | read by the distance helpers |
+| `04` | `f32` | y | not read by `004686D0` or `003A1960` |
+| `08` | `f32` | z | read by the distance helpers |
 
 ## Shipped data
 

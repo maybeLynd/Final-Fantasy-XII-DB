@@ -3,10 +3,8 @@ title: "Geometry primitives: the unit sphere, cylinder and box tests behind coll
 kind: "system"
 category: "Movement and pathfinding"
 summary: "The small geometry toolbox under movement and collision: the shape record with its transform pair, the segment-against-shape solver and its three unit-space primitives, the point-in-shape test, the polygon plane and winding predicates, the ray cast that walks the collision mesh cell by cell through those predicates, and the three clamps that pull a point into an authored ellipse, rectangle or segment chain, all computing in the shared VU0 workbench."
-addresses: ["00380FA0", "00381AC0", "00381630", "00381450", "00381EB0", "00382020", "0046BF60", "0046BFA0", "0022E6D0", "0022CF50", "0022D4B0", "0022F430", "002315E0", "0022F8B0", "00233050", "0022D0D0", "00202E10", "00202B70", "00361DE0", "003623C0", "00363FD0", "00362230", "003631B0", "0025A8E0", "0025C830", "0046DB50", "0036DD80", "0036DD90", "0036DDA0"]
+addresses: "00380FA0, 00381AC0, 00381630, 00381450, 00381EB0, 00382020, 0046BF60, 0046BFA0, 0022E6D0, 0022CF50, 0022D4B0, 0022F430, 002315E0, 0022F8B0, 00233050, 0022D0D0, 00202E10, 00202B70, 00361DE0, 003623C0, 00363FD0, 00362230, 003631B0, 0025A8E0, 0025C830, 0046DB50, 0036DD80, 0036DD90, 0036DDA0"
 ---
-
-# Geometry primitives: the unit sphere, cylinder and box tests behind collision, the collision-mesh ray cast that uses them, and the volume clamps
 
 ## What the player sees
 
@@ -63,8 +61,9 @@ becomes the new best. The nearest accepted face is the hit.
 `0046BF60(p, n, q)` is `(p - q) . n`; `0046BFA0(A, d, n, p)` is `-|d| ((A - p) . n) / (d . n)`, the
 distance along the segment to the plane through `p` with normal `n`. `00382020(p)` is 1 when
 `-1 < p.y < 1` and `sqrt(p.x^2 + p.z^2) < 1`; `0046DB50` reuses it on the records of the list
-`003DAE20` returns (heading at `+0x10`/`+0x18`, radii at `+0x70`/`+0x74`, height at `+0x78`, a
-different record from the movement body) to find the highest record top above a point.
+`003DAE20` returns, the body placements linked each frame by `003DB0D0` (heading at
+`+0x10`/`+0x18`, the inner shape's radii at `+0x70`/`+0x74` and height at `+0x78`), to find the
+highest record top above a point.
 
 ### Point in shape
 
@@ -105,16 +104,17 @@ new best: `q.best = t`, the hit point goes to `[q.+0x20]`, `q.+0x42 = id`, `q.st
 23 set the hit only raises `q.state` from 0 to 1, a marker that something was crossed without
 stopping the ray.
 
-```
-struct MeshQuery  (the walker's record, built on the caller's stack)
-+0x00  f32[4]  delta = end - start (w from end)     +0x10  ptr  start point
-+0x18  ptr     end point                            +0x20  ptr  the hit point written
-+0x28  ptr     per-cell callback                    +0x30  f32  best t (starts at the length)
-+0x34  f32     segment length                       +0x38  i32  stop at the first hit when set
-+0x3C  i16     current cell                         +0x3E  i16  cell list start
-+0x40  i16     cell list count                      +0x42  i16  hit id (0xFFFF none)
-+0x44  i16     state: 0 none, 1 marker only, 2 hit  +0x46  i16  query kind
-```
+Struct MeshQuery  (the walker's record, built on the caller's stack):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `f32[4]` | delta = end - start (w from end) | +`0x10`  ptr  start point |
+| `18` | `void*` | end point | +`0x20`  ptr  the hit point written |
+| `28` | `void*` | per-cell callback | +`0x30`  f32  best t (starts at the length) |
+| `34` | `f32` | segment length | +`0x38`  i32  stop at the first hit when set |
+| `3C` | `i16` | current cell | +`0x3E`  i16  cell list start |
+| `40` | `i16` | cell list count | +`0x42`  i16  hit id (`0xFFFF` none) |
+| `44` | `i16` | state: 0 none, 1 marker only, 2 hit | +`0x46`  i16  query kind |
 
 `0022F430(part, q)` walks the segment through the collision grid. The cell of a point is
 `00233050`: column `(x + originX) / cellW`, row `(z + originZ) / cellH` after subtracting half a
@@ -149,15 +149,16 @@ dispatches on each record's kind byte `+0x09 & 0x7F`: 0 the ellipse clamp, 1 the
 2 the segment chain, anything else leaves the point unchanged. All three take `(point, out,
 record)` and write a four-float `out` with `w = 1.0`.
 
-```
-struct EmitterVolume  base=[022CBAF0] + offset
-+0x09  u8      kind (& 0x7F): 0 ellipse, 1 rectangle, 2 segment chain
-+0x14  u32     segment count (kind 2)
-+0x20  f32[4]  centre
-+0x30  f32     extent a       +0x34  f32  extent b
-+0x40  f32[8]  segments (kind 2): start f32[4], direction f32[4], 0x20 bytes each
-+0x50  f32     rotation angle
-```
+Struct EmitterVolume  base=[`022CBAF0`] + offset:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `09` | `u8` | kind (& 0x7F): 0 ellipse, 1 rectangle, 2 segment chain |  |
+| `14` | `u32` | segment count (kind 2) |  |
+| `20` | `f32[4]` | centre |  |
+| `30` | `f32` | extent a | +`0x34`  f32  extent b |
+| `40` | `f32[8]` | segments (kind 2): start f32[4], direction f32[4], 0x20 bytes each |  |
+| `50` | `f32` | rotation angle |  |
 
 Both clamps collapse to the centre when either extent is at or below 0: `out = centre`. Otherwise
 `d = point - centre` is rotated into the volume's frame, `u = d.x cos(a) - d.z sin(a)` and `v =

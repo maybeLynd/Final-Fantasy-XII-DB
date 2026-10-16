@@ -3,10 +3,8 @@ title: "Third-party libraries: which libraries are linked into the executable, h
 kind: "reference"
 category: "Third-party libraries"
 summary: "Every third-party library statically linked into FFXII_TZA.exe: the text or table that identifies it, the version where the binary states one, its address span, its member list and what the game uses it for; with the zlib, JsonBox and Dear ImGui details, and why the ImGui context is never used."
-addresses: ["01CBA5D0", "01CDB290", "0016F080", "01CEB590", "01F48940", "00D86C00", "00791D80", "00791E70", "00169620", "008B7DA0", "01F40380", "02EA58C0", "02EA54F0", "0080C5A0", "0080C5C0", "0087AF40", "01CC9F50", "01CDA260", "01CCA080", "00200BF0", "00200E60", "001FF740", "008C5F58"]
+addresses: "01CBA5D0, 01CDB290, 0016F080, 01CEB590, 01F48940, 00D86C00, 00791D80, 00791E70, 00169620, 008B7DA0, 01F40380, 02EA58C0, 02EA54F0, 0080C5A0, 0080C5C0, 0087AF40, 01CC9F50, 01CDA260, 01CCA080, 00200BF0, 00200E60, 001FF740, 008C5F58, 0080E600, 002165B0"
 ---
-
-# Third-party libraries: which libraries are linked into the executable, how each is identified and versioned, and where each lies
 
 ## What it lists
 
@@ -72,6 +70,11 @@ The two banners are unreferenced constants, ` inflate 1.2.11 Copyright 1995-2017
 - The deflate side, from `0087AF40`, which is `compress2`; it hands `deflateInit_` the
   `0x58`-byte stream size (`0087AF7B`).
 
+The checksum is zlib's table-driven CRC-32: `crc32` (`0080E5F0`) jumps to `crc32_z` (`0080E910`),
+which returns 0 for a null buffer and otherwise jumps to `crc32_little` (`0080E600`). That body
+reads the table at `01CC7E70` (`00000000`, `77073096`, ...). Its callers are zlib functions of the
+second range, `0087BD60` and `0087CA60`.
+
 Only three places outside zlib call it. The archive block reader `0019AA20` and the save reader
 (call at `00865DFB`) call `uncompress`; the save writer calls `compress2` (`0086646C`).
 
@@ -92,7 +95,19 @@ This copy keeps its strings and containers in EASTL:
 
 `00200BF0(value, path)` is the file reader the game uses: it opens the path through the engine's
 file stream (`00597970`), copies the whole file into memory, wraps it in a string stream and parses
-it with `00200E60`. Every call into JsonBox from outside it comes from the game's JSON readers
+it with `00200E60`.
+
+The writer's `SolidusEscaper` filter is `002165B0`. The overflow slot of
+`OutputFilter<SolidusEscaper>` (`002016F0`, vtable `00905070` slot 3) passes it the filter's two
+state bytes at `+0x70`, the target stream buffer and the character:
+
+- a `"` not preceded by a backslash toggles the in-string byte;
+- a `/` inside a string, not preceded by a backslash, is written as the two characters `\/`, from
+  the static string `01FD4058` that the start-up initialiser `0015FEF0` fills;
+- an unescaped backslash inside a string sets the escaped byte for the next character; every other
+  character clears it. Every character but a replaced `/` is written unchanged (`sputc`).
+
+Every call into JsonBox from outside it comes from the game's JSON readers
 (`001C2F50` to `001CCB20`), a few static initialisers and unwind code. What the game reads with it
 is on [Standard file formats](../Game-Files-And-Data-Tables/standard-file-formats.md).
 
@@ -101,22 +116,22 @@ is on [Standard file formats](../Game-Files-And-Data-Tables/standard-file-format
 `00791D80` is Dear ImGui's `ImGuiIO` constructor: it clears `0xB88` bytes and stores ImGui's
 default settings.
 
-```
-+0x00  f32[2]  -1.0, -1.0        display size, unset
-+0x08  f32     1/60 (0x3C888889)  frame time
-+0x0C  f32     5.0                ini saving interval
-+0x10  char*   "imgui.ini"        01CB3990
-+0x18  char*   "imgui_log.txt"    01CB39A0
-+0x20  f32     0.3                double-click time
-+0x24  f32     6.0                double-click distance
-+0x78  ptr     02EA54F0           the default font atlas
-+0x80  f32     1.0                font scale
-+0xA0  fnptr   00796E70           default platform callback
-+0xA8  fnptr   00798D70           default platform callback
-+0xB0  fnptr   malloc
-+0xB8  fnptr   free
-+0xC0  fnptr   00797360           default platform callback
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `f32[2]` | -1.0, -1.0 | display size, unset |
+| `08` | `f32` | 1/60 (0x3C888889) | frame time |
+| `0C` | `f32` | 5.0 | ini saving interval |
+| `10` | `char*` | "imgui.ini" | `01CB3990` |
+| `18` | `char*` | "imgui_log.txt" | `01CB39A0` |
+| `20` | `f32` | 0.3 | double-click time |
+| `24` | `f32` | 6.0 | double-click distance |
+| `78` | `void*` | 02EA54F0 | the default font atlas |
+| `80` | `f32` | 1.0 | font scale |
+| `A0` | `fn*` | 00796E70 | default platform callback |
+| `A8` | `fn*` | 00798D70 | default platform callback |
+| `B0` | `fn*` | malloc |  |
+| `B8` | `fn*` | free |  |
+| `C0` | `fn*` | 00797360 | default platform callback |
 
 The ImGui context is the static object `02EA58C0`:
 

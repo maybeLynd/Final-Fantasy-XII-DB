@@ -3,10 +3,8 @@ title: "Object construction and destruction: vtable installs, deleting destructo
 kind: "system"
 category: "Compiler and C runtime"
 summary: "The compiler's object code in FFXII_TZA.exe: constructors that install the base vtable and then their own, the scalar deleting destructor and its flag in edx, the two-bit form in which bit 0x4 sends the sized delete to a do-nothing body, the deallocator chains to free and _aligned_free, destructors that rewind to the base vtable (the 26 PInputSource classes named by RTTI), the counted buffer whose top bit marks borrowed storage, and EASTL allocators that free through their own vtable."
-addresses: ["00809950", "00210EB0", "0019C590", "00584730", "0019C570", "0016D6A0", "007AD450", "0085E710", "00210EC0", "001D70A0", "00195530", "0086CE50", "01CD6268", "0015BC40", "00792350", "001EDF00", "005CA130", "00627750", "00623F50", "0019CA20"]
+addresses: "00809950, 00210EB0, 0019C590, 00584730, 0019C570, 0016D6A0, 007AD450, 0085E710, 00210EC0, 001D70A0, 00195530, 0086CE50, 01CD6268, 0015BC40, 00792350, 001EDF00, 005CA130, 00627750, 00623F50, 0019CA20, 001A4250"
 ---
-
-# Object construction and destruction: vtable installs, deleting destructors, deallocators and owned buffers
 
 ## What the player sees
 
@@ -117,6 +115,31 @@ EASTL containers carry an allocator object whose vtable slot `+0x18` frees `(poi
 capacity in bytes (`0019CA20`); list clears walk the nodes and release each through the same slot
 (`00199B00`).
 
+The compiler generates the container operations once per element type. 76 such bodies between
+`00188640` and `001FFF00` are listed in `object-construction-and-destruction-eastl-container-instances.tsv`
+with the operation and element size of each: vector reserve, insert, erase, copy, fill and release,
+tree copy, erase and node creation, list insert and clear, and element copy constructors.
+
+Two examples: `001AF000` inserts `n` copies into a vector of `0x40`-byte elements, growing the buffer to
+the larger of twice the old count (1 when empty) and the new count, and `001BA990` erases a range of
+`0x2A8`-byte `ChrModel` elements, destroying each through slot 0 of its vtable.
+
+Five of them are destructors of one class template that pairs these containers with a lock:
+`00199A80`, `0019C870`, `0019DAD0`, `001B3AF0` and `001E74F0`. Each destroys the PhyreEngine lock
+record at `+0x90` (`0x28` bytes; see [runtime services](runtime-services.md)) through `005CD6D0`,
+which closes the event at lock `+0x08`, when the byte at `+0xB8` is set. It then erases the trees at
+`+0x58` and `+0x20` (`0x28`-byte nodes; `001E7560` for `001E74F0`) and frees the vector at `+0x00`,
+whose elements are `0x10`, `0x18`, `0x118`, `0x20` and `0x10` bytes.
+
+The template is the record pool that [game application](../Engine-Core/game-application.md)
+describes: its constructor `001997F0` builds the lock at `+0x90` with `005CC8A0` and stores the
+flag at `+0xB8`, and `00199A80` is the destructor that the unwind funclet `00896C60` of
+`001999D0` runs on the `AsyncJobManager` pool at `+0x90`.
+
+`001E74F0` is reached only from the unwind funclet `008985BE` of `001E71B0`. `001E76B0`, from the
+unwind funclet `00898660` of `001E7480`, releases a vector of `0x3C`-byte elements: it divides the
+byte span by 60 and multiplies by `0x3C`.
+
 `00210EC0` is a one-argument allocation entry: it sets `r8d = -1` and `edx = 0` and
 jumps to the `malloc` import stub `0085E730`; the lazy singleton `0018A620` allocates its object through it.
 
@@ -171,6 +194,7 @@ compiler and library forms by function address; each was profiled against the im
 | `intrusive-virtual-node-dispose-loop`, `nativeleaf-listwalkvcallslot3` | 12 and 4 list clears through the allocator's slot `+0x18` |
 | `nativeleaf-vectorbufferrelease`, `-vectordestroydeallocloop` | 5 and 5 vector releases, the second destroying each element first |
 | `nativeleaf-bumpallocpop` | 2 cursor steps that copy `+0x10` to `+0x18` and advance `+0x10` by `0x10` |
+| `eastl-container-instances` | 76 vector, tree and list operations generated per element type, with the operation and element size of each |
 
 ## Modding notes
 

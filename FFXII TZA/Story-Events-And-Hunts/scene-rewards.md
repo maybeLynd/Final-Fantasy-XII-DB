@@ -3,10 +3,8 @@ title: "Scene rewards: every item and gil amount the story scripts give or take,
 kind: "reference"
 category: "Story, events and hunts"
 summary: "Each item and gil give or take in the shipping us scripts: the script, actor and function, the verb, the item with its name, the count or amount, and where the item comes from, whether written in the call, stored by the caller before it requests one of the shared give routines, or chosen from a set or a table, with what each of the seven verbs does natively."
-addresses: ["00345080", "003449A0", "0034A6D0", "0034B1E0", "00346930", "00346E30", "003459C0", "00345520", "0032A810"]
+addresses: "00345080, 003449A0, 0034A6D0, 0034B1E0, 00346930, 00346E30, 003459C0, 00345520, 0032A810"
 ---
-
-# Scene rewards: every item and gil amount the story scripts give or take, by script and function, and how each item is chosen
 
 ## What it lists
 

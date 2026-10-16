@@ -3,10 +3,8 @@ title: "Runtime services: what the game asks Windows and the C runtime for, its 
 kind: "system"
 category: "Compiler and C runtime"
 summary: "The executable's dependence on the platform: the import table by DLL and how code reaches every slot, the start-up chain from the C runtime entry to the game's main body, the two crash-dump writers and the fatal-error box, the thread creators with their affinity, priority and naming, the debug channel the sound and post-effect libraries write to, the timer set-up, the text conversion it does not import, and the C runtime routines linked into the image."
-addresses: ["00808D78", "007A3770", "007980A0", "0079AD50", "0079B1E0", "008A5AD0", "005CCBF0", "005CCD00", "005CCAB0", "005CCBA0", "005CD1E0", "00863430", "006DF480", "006DF3A0", "005CC980", "005CC930", "00781EC0", "0071D9E0", "01F40128", "02EA0B88", "008C2120"]
+addresses: "00808D78, 007A3770, 007980A0, 0079AD50, 0079B1E0, 008A5AD0, 005CCBF0, 005CCD00, 005CCAB0, 005CCBA0, 005CD1E0, 00863430, 006DF480, 006DF3A0, 005CC980, 005CC930, 00781EC0, 0071D9E0, 01F40128, 02EA0B88, 008C2120"
 ---
-
-# Runtime services: what the game asks Windows and the C runtime for, its crash dumps, threads and debug output
 
 ## What the player sees
 
@@ -113,6 +111,34 @@ the object's slot 1 and passes its result to `ExitThread`.
 `007A5B50`, `007B6F70`, `007DE120`, `007DE8D0`), four of which log `[sead]` messages; `007DE120`
 and `007DE8D0` create the sound library's `MockDeviceThread` and `AudioSampleThread`.
 
+### The PhyreEngine lock
+
+The PhyreEngine layer builds its lock from a Win32 event and two counters, in a `0x28`-byte record
+(layout below):
+
+- `005CC8A0` constructs the record by zeroing `+0x00`, `+0x08`, `+0x10`, `+0x18`, `+0x20` and `+0x24`.
+  The lock at `01F7F510` is built this way by the C++ initialiser `0015BCD0`, which then registers
+  `008A6990` with `atexit`; that teardown only jumps to the `ret 0` body `0016D6A0`.
+- `005CD0A0` creates the event once: `005CD0E0` calls `CreateEventA` with auto-reset and an initial
+  state of not signalled, stores the handle at `+0x08` and sets the byte at `+0x10`; the byte at
+  `+0x00` is set when the handle is valid. `005CD6D0` closes the handle and clears both bytes.
+- `005CD4F0` locks through `005CD450`: it counts itself at `+0x18` as a waiter, swaps the state at
+  `+0x20` from 0 to 1, and waits on the event (`WaitForSingleObject`, no time-out) while the swap
+  fails. It then adds 1 to `+0x24`. 61 sites take it.
+- `005CD370` locks through `005CD380`, the re-entrant form: the state holds the owner's thread id
+  (`GetCurrentThreadId`), and a thread that already owns the lock only adds 1 to `+0x24`. Its one
+  caller, `0017ED20`, first creates the lock at `01F7F510` with `005CD0A0` while its byte `+0x00`
+  is 0.
+- `005CD820` releases the plain lock: it subtracts 1 from `+0x24`, swaps the state from 1 to 0, and
+  signals the event through `005CD570` (`SetEvent`) when the waiter count is above 0.
+- `005CD7D0` releases the re-entrant lock. Only when the state equals the caller's thread id does it
+  subtract 1 from `+0x24`, and only when that reaches 0 does it swap the state from the thread id
+  to 0. It signals the event through `005CD570` whenever the waiter count is above 0. It has 20 call
+  and jump sites; `0017F760` tail-jumps to it for `01F7F510`.
+
+A wait that returns `WAIT_ABANDONED` (`0x80`) formats the error with `FormatMessageA`, frees the
+text and leaves the lock untaken.
+
 ### The debug channel
 
 `OutputDebugStringA` (IAT `008C2120`) has 150 call sites in 93 functions:
@@ -163,7 +189,7 @@ image carries (`00D86C00`, loaded by `006CBD20`) reads `FeatureId = YEBIS_D3D11,
 
 ### The C runtime routines in the image
 
-The 52 functions in `runtime-services-msvc-runtime-tail.tsv` are C and C++ runtime code linked
+The 56 functions in `runtime-services-msvc-runtime-tail.tsv` are C and C++ runtime code linked
 into the executable:
 
 - 13 formatted-output wrappers that fetch the options word through `0016D670` and call one
@@ -176,29 +202,45 @@ into the executable:
 - 30 start-up, security-check and exception-support routines, among them `atexit` `00808B90`,
   `_alloca_probe` `00808F10`, the `/GS` handler checks `00808BA8`, `00808BC8` and `00808F64`,
   `__scrt_fastfail` `0080996C`, `capture_current_context` `008097D8` and `_Init_thread_abort`
-  `0080926C`.
+  `0080926C`;
+- 4 start-up helpers that `00808D78` calls: `__scrt_release_startup_lock` `00808AF0` (clears the
+  start-up lock `02EAED00`), `__scrt_uninitialize_crt` `00808B14` (calls `0061ECF0` twice),
+  `__scrt_get_show_window_mode` `00809AB4` (`GetStartupInfoW`, 10 when no show mode is given) and
+  `__scrt_is_managed_app` `00809AF0` (tests the CLR directory in the image's own PE header).
 
 ## Layouts
 
 The parameter block `005CD1E0` reads (its second argument):
 
-```
-+0x00  ptr   start       thread function
-+0x08  u32   stackSize   passed to CreateThread
-+0x10  ptr   arg         argument for the thread function
-+0x18  i32   priorityMode 0: priority 1, 2: priority -1, 3: priority from +0x2C
-+0x20  ptr   name        thread name for the debugger; null gives "PhyreEngineThread"
-+0x2C  i32   priority    used with mode 3
-+0x30  u64   affinity    SetThreadAffinityMask argument
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `void*` | start | thread function |
+| `08` | `u32` | stackSize | passed to CreateThread |
+| `10` | `void*` | arg | argument for the thread function |
+| `18` | `i32` | priorityMode 0: priority 1, 2: priority -1, 3: priority from +0x2C |  |
+| `20` | `void*` | name | thread name for the debugger; null gives "PhyreEngineThread" |
+| `2C` | `i32` | priority | used with mode 3 |
+| `30` | `u64` | affinity | SetThreadAffinityMask argument |
 
 The thread record it fills (its first argument), which `005CCBA0` receives:
 
-```
-+0x00  ptr   handle      from CreateThread
-+0x08  ptr   start       copied from the parameters
-+0x10  ptr   arg         copied from the parameters
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `void*` | handle | from CreateThread |
+| `08` | `void*` | start | copied from the parameters |
+| `10` | `void*` | arg | copied from the parameters |
+
+The PhyreEngine lock, `0x28` bytes (constructor `005CC8A0`; plain lock `005CD450` and release
+`005CD820`; re-entrant lock `005CD380` and release `005CD7D0`):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | created | set by `005CD0A0` when `CreateEventA` succeeds, cleared by `005CD6D0` |
+| `08` | `void*` | event | the auto-reset event the waiters block on |
+| `10` | `u8` | flag | set by `005CD0A0`, cleared by `005CD6D0` |
+| `18` | `i32` | waiters | changed with lock-prefixed adds around each attempt |
+| `20` | `u32` | state | `0` free; `1` taken (plain form); the owner's thread id (re-entrant form) |
+| `24` | `i32` | depth | times the owner has taken it |
 
 ## Shipped data
 

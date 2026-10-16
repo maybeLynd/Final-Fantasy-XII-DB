@@ -3,10 +3,8 @@ title: "Story counter values: every value the shipped scripts write to the main 
 kind: "reference"
 category: "Story, events and hunts"
 summary: "Each of the 313 values the us scripts assign to the main story counter, with the shipping scripts, actors and functions that write it and the counter test that guards each write, the writes in code no path reaches, the writes made only by the developer menus, and how the census found every write."
-addresses: ["00265270", "0026CAF8", "02098E58", "002EF2B0"]
+addresses: "00265270, 0026CAF8, 02098E58, 002EF2B0"
 ---
-
-# Story counter values: every value the shipped scripts write to the main story counter, and the scripts and functions that write it
 
 ## What it lists
 

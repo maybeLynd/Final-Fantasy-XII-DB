@@ -3,10 +3,8 @@ title: "Loot drops: drop roll, item slots, quantities, drop tables and the chain
 kind: "system"
 category: "Rewards: EXP, LP, gil and loot"
 summary: "How a defeated enemy's loot is rolled: which drop-chance row the chain selects, slot and quantity rolls, the drop-table layouts with shipped rows, the developer 100 % drop override, and the HP/MP/Protect/Shell chain bonus on pickup."
-addresses: ["003180F0", "003185D0", "003186F0", "00318820", "00318960", "00318510", "00319530", "00310DB0"]
+addresses: "003180F0, 003185D0, 003186F0, 00318820, 00318960, 00318510, 00319530, 00310DB0"
 ---
-
-# Loot drops: drop roll, item slots, quantities, drop tables and the chain bonus
 
 ## What the player sees
 
@@ -150,22 +148,26 @@ A status is refused (`02AEDFBC` = 1) in any of these cases (`003908DF`-`003909E3
 The drop table is `battle_pack.bin` directory entry `+0x1C`, bound to `02EBF0C0` at `00236CD7`; it is
 identical in all nine language copies.
 
-```struct LootTableHeader base=section
-+0x00  char[4]  magic    'st2e'
-+0x04  i32      count    rows; 4 in the shipped file
-+0x08  u16      stride   row size; 0x25 in the shipped file
-+0x0A  u16      pad0A    not read by the loot code
-+0x0C  u32      rowsOff  offset of the rows, resolved through 0020E600
-```
+`LootTableHeader` (offsets from the start of the section):
 
-```struct LootTableRow base=record size=0x25
-+0x00  i8[5]   chance        drop chance per slot, percent (003185D0)
-+0x05  i8      runLimit      same-model run limit for the quantity row (003181C7); -1 ends the list
-+0x06  i8[20]  qtyWeights    four cumulative quantity weights per slot (003186F0)
-+0x1A  u8[7]   bonusCopy     the same values as the chain-bonus row at 01EED3B8; the code reads the EXE copy
-+0x21  i8      breakLimit    breaks-in-a-row limit for the weighted chance profile (00318960); -1 ends the list
-+0x22  i8[3]   profileWeights weights of chance profiles 0-2 (00318820)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[4]` | magic | 'st2e' |
+| `04` | `i32` | count | rows; 4 in the shipped file |
+| `08` | `u16` | stride | row size; `0x25` in the shipped file |
+| `0A` | `u16` | pad0A | not read by the loot code |
+| `0C` | `u32` | rowsOff | offset of the rows, resolved through `0020E600` |
+
+`LootTableRow` (`0x25` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `i8[5]` | chance | drop chance per slot, percent (`003185D0`) |
+| `05` | `i8` | runLimit | same-model run limit for the quantity row (`003181C7`); -1 ends the list |
+| `06` | `i8[20]` | qtyWeights | four cumulative quantity weights per slot (`003186F0`) |
+| `1A` | `u8[7]` | bonusCopy | the same values as the chain-bonus row at `01EED3B8`; the code reads the EXE copy |
+| `21` | `i8` | breakLimit | breaks-in-a-row limit for the weighted chance profile (`00318960`); -1 ends the list |
+| `22` | `i8[3]` | profileWeights weights of chance profiles 0-2 (00318820) |  |
 
 The shipped rows:
 
@@ -178,17 +180,19 @@ The shipped rows:
 
 The enemy's drop record (`[unit+0xE60]`), the fields the drop roll reads:
 
-```struct EnemyDropFields base=record
-+0x28  u16[5]  slotItems     the five normal drops; 0xFFFF = none
-+0x32  ...     other         fields not read by the drop roll
-+0x42  u8      extraChance0  chance of extra drop 0, percent
-+0x43  u8      extraChance1  chance of extra drop 1, percent
-+0x44  ...     gap44         not read by the drop roll
-+0x48  u16     extraCond0    key item that must be held for extra drop 0
-+0x4A  u16     extraItem0    extra drop 0
-+0x4C  u16     extraCond1    key item for extra drop 1
-+0x4E  u16     extraItem1    extra drop 1
-```
+`EnemyDropFields` (offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `28` | `u16[5]` | slotItems | the five normal drops; `0xFFFF` = none |
+| `32` | `...` | other | fields not read by the drop roll |
+| `42` | `u8` | extraChance0 | chance of extra drop 0, percent |
+| `43` | `u8` | extraChance1 | chance of extra drop 1, percent |
+| `44` | `...` | gap44 | not read by the drop roll |
+| `48` | `u16` | extraCond0 | key item that must be held for extra drop 0 |
+| `4A` | `u16` | extraItem0 | extra drop 0 |
+| `4C` | `u16` | extraCond1 | key item for extra drop 1 |
+| `4E` | `u16` | extraItem1 | extra drop 1 |
 
 Over the 1,146 shipped spawn rows the condition is always one of eight key items: `0x8065`-`0x806A`
 and `0x806B` (the Monographs) and `0x806C` (the Canopic Jar); the extra item is Arcana (`0x204C`,

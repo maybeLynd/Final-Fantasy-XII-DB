@@ -3,10 +3,8 @@ title: "HP and KO: how damage and healing change HP, the HP floor and cap, reviv
 kind: "system"
 category: "Damage and battle formulas"
 summary: "The one function every HP change goes through: its flag bits and who passes them, the gates that refuse a change, the refusal of damage to a KO, Stone or X-Zone target, the floor and the cap (max HP, doubled by Bubble, frozen by Disease), revive when a heal lands on zero HP, and the KO sequence: the fallen message, the KO status, the killer, the death count and the group ledger."
-addresses: ["00300530", "00300520", "003112F0", "0030F340", "00239820", "0030E360", "00469BB0", "00306F00", "003299B0"]
+addresses: "00300530, 00300520, 003112F0, 0030F340, 00239820, 0030E360, 00469BB0, 00306F00, 003299B0"
 ---
-
-# HP and KO: how damage and healing change HP, the HP floor and cap, revive from zero and what happens at KO
 
 ## What the player sees
 

@@ -3,10 +3,8 @@ title: "Phyre post-effect classes: the PhyreEngine post-effect family the game l
 kind: "system"
 category: "PhyreEngine"
 summary: "PhyreEngine's PPostProcessing classes as the executable carries them: the 37 RTTI classes, the 36 nine-slot vtables and what each slot does, the nine classes with render bodies and the passes they draw, the inert MLAA and SSAO, the class-descriptor factories and the post-effect manager, the PFXAA the game builds and runs itself, and the shipped data, which names none of the classes."
-addresses: ["00D61E50", "00655DC0", "006575E0", "00657680", "006571C0", "00657150", "006571A0", "00657140", "0065B8F0", "00653CD0", "00653B20", "0065B270", "00652940", "0060CD10", "0060B980", "00640280", "00642F50", "0018CD90", "00645DB0", "0065A630", "0065A640", "00191DA0", "0018FD70", "001EE8E0", "00649070"]
+addresses: "00D61E50, 00655DC0, 006575E0, 00657680, 006571C0, 00657150, 006571A0, 00657140, 0065B8F0, 00653CD0, 00653B20, 0065B270, 00652940, 0060CD10, 0060B980, 00640280, 00642F50, 0018CD90, 00645DB0, 0065A630, 0065A640, 00191DA0, 0018FD70, 001EE8E0, 00649070"
 ---
-
-# Phyre post-effect classes: the PhyreEngine post-effect family the game links, which classes have bodies, and the one it runs
 
 ## What the player sees
 
@@ -114,18 +112,19 @@ record by the target's format, and submits one draw through `0060B980`.
 
 ## Layouts
 
-```
-PPostEffectBase (the fields the base slots use)
-+0x10  ptr   m_effectMaterial   registered at 00649101 by 00649070
-+0x18  ptr   cached             [+0x10]
-+0x20  ptr   cached             [[+0x10]+0x08]
-+0x28  ptr   cached             [[[+0x10]+0x08]+0x18]
-+0x30  ...   material items     the array a worker's selector indexes
-+0x40  u8    configured         set by slot 1
-+0x41  u8    m_enabled          registered at 00649170
-+0x44  u32   width
-+0x48  u32   height
-```
+PPostEffectBase (the fields the base slots use):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `10` | `void*` | m_effectMaterial | registered at `00649101` by `00649070` |
+| `18` | `void*` | cached | [+`0x10`] |
+| `20` | `void*` | cached | [[+`0x10`]+`0x08`] |
+| `28` | `void*` | cached | [[[+`0x10`]+`0x08`]+`0x18`] |
+| `30` | `...` | material items | the array a worker's selector indexes |
+| `40` | `u8` | configured | set by slot 1 |
+| `41` | `u8` | m_enabled | registered at `00649170` |
+| `44` | `u32` | width |  |
+| `48` | `u32` | height |  |
 
 The generated class table is
 [phyre-post-effect-classes-posteffect-class-family.tsv](phyre-post-effect-classes-posteffect-class-family.tsv). Instruction-level

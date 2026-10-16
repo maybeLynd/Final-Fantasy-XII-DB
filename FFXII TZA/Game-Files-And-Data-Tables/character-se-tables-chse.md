@@ -3,10 +3,8 @@ title: "Character sound tables (chse): the per-model table that names the sound 
 kind: "format"
 category: "Game files and data tables"
 summary: "The charseinfo_<letter>.bin files: one CHSE table per model class with one 16-byte row per model number, giving three SE block ids and a battle-voice bank; the boot loader that reads all eight, the row lookup by bound id, the block loads and the voice-bank fallback that read the rows, how animation sounds pick a slot, the 943 shipped rows, and the rules an edited table must follow."
-addresses: ["002EA530", "021641A8", "002ED950", "002EA6E0", "002E60F0", "002ED910", "003212E0", "0036F0F0", "002E9D90", "002DF9A0"]
+addresses: "002EA530, 021641A8, 002ED950, 002EA6E0, 002E60F0, 002ED910, 003212E0, 0036F0F0, 002E9D90, 002DF9A0"
 ---
-
-# Character sound tables (chse): the per-model table that names the sound blocks and battle-voice bank a model's animation sounds play from
 
 ## What the player sees
 
@@ -43,21 +41,25 @@ So `021641A8` to `021641E0` hold the tables for `b`, `c`, `g`, `m`,
 
 ## Layouts
 
-```struct ChseHeader base=file size=0x10
-+0x00  char[4]  magic    "CHSE"; ignored
-+0x04  u16      version  1; ignored
-+0x06  u16      letter   the file's own letter; ignored
-+0x08  i32      count    rows that follow; the row bound
-+0x0C  u32      zero     0; ignored
-```
+`ChseHeader` (`0x10` bytes, offsets from the start of the file):
 
-```struct ChseRow base=record size=0x10
-+0x00  i16     block0     SE block for sound group 0; negative = none
-+0x02  i16     block1     SE block for sound group 1, the footsteps; negative = none
-+0x04  i16     block2     SE block for sound group 2; negative = none
-+0x06  i16     voiceBank  battle-voice bank number, shoutNN; negative = none
-+0x08  u8[8]   unused     0; ignored
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[4]` | magic | "CHSE"; ignored |
+| `04` | `u16` | version | 1; ignored |
+| `06` | `u16` | letter | the file's own letter; ignored |
+| `08` | `i32` | count | rows that follow; the row bound |
+| `0C` | `u32` | zero | 0; ignored |
+
+`ChseRow` (`0x10` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `i16` | block0 | SE block for sound group 0; negative = none |
+| `02` | `i16` | block1 | SE block for sound group 1, the footsteps; negative = none |
+| `04` | `i16` | block2 | SE block for sound group 2; negative = none |
+| `06` | `i16` | voiceBank | battle-voice bank number, shoutNN; negative = none |
+| `08` | `u8[8]` | unused | 0; ignored |
 
 Row n starts at `16 × (n + 1)` and belongs to the model with number n in that letter class, the model id
 `<letter><n>` a script binds ([Script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md)).

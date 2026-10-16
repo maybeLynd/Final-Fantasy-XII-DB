@@ -3,10 +3,8 @@ title: "Character rig and look: the seventeen procedural controllers, the staged
 kind: "system"
 category: "Graphics"
 summary: "The rig of seventeen procedural controllers a character carries on top of its animation, the two switches that turn them on and off, the record flags and script verbs behind the lip flap, nod, head shake, eyes and body shake, the status and event triggers of the Confuse, Immobilize, Float and flinch motions, the order the rig's frame solves and applies them, the staged look command that turns head-look requests into look-controller state, and the eased focus point other code reads as where a character is."
-addresses: ["003E1350", "003E1610", "00370E20", "003E6DA0", "003E00C0", "00427DE0", "0042DD90", "0042EE90", "002E8570", "002EDF30", "002EE0D0", "002EDE70", "002EDDC0", "002E75A0", "0042BDE0", "004718D0", "00471640", "004716A0", "00471150", "00427320", "00518F50", "003DFE70", "0042BED0", "00520430", "0051A890", "003E37F0", "00429920", "003E37E0", "002EC3F0", "003E2FD0", "003E3200", "003E2F30", "003E3340", "003E0910", "003E2810", "003E3D70", "00426220", "003E43D0", "003E5ED0", "003E5FA0", "003E6070", "003E5810", "004288E0", "0042C410"]
+addresses: "003E1350, 003E1610, 00370E20, 003E6DA0, 003E00C0, 00427DE0, 0042DD90, 0042EE90, 002E8570, 002EDF30, 002EE0D0, 002EDE70, 002EDDC0, 002E75A0, 0042BDE0, 004718D0, 00471640, 004716A0, 00471150, 00427320, 00518F50, 003DFE70, 0042BED0, 00520430, 0051A890, 003E37F0, 00429920, 003E37E0, 002EC3F0, 003E2FD0, 003E3200, 003E2F30, 003E3340, 003E0910, 003E2810, 003E3D70, 00426220, 003E43D0, 003E5ED0, 003E5FA0, 003E6070, 003E5810, 004288E0, 0042C410"
 ---
-
-# Character rig and look: the seventeen procedural controllers, the staged look command and the focus point
 
 ## What the player sees
 
@@ -248,52 +246,62 @@ also copies the view matrix at `02AEDEF0`, `003A56F0`, and the actor service `00
 
 ## Layouts
 
-```
-rig (resource entry +0x94)
-+0x00  u32[17]  slots       encoded controller pointers, slot 4 empty
-+0x58  u32      time        slot 0's time input
-+0x5F  u8       flags       bit 1 skips the look and physics applies
-+0x62  u8       denyPhys    bone physics denied
-+0x63  u8       sway        non-zero runs slot 0 only
-+0x68  i16[2]   linked      record indices
-+0x70  u32[2]   linkedRec   encoded record pointers
-+0x78  u32[2]   linkedBones encoded bone arrays
+Rig (resource entry +`0x94`):
 
-staged look command (render record +0x580)
-+0x00  u32     request     bits as in the table above
-+0x04  f32[3]  target      frames, a, b
-+0x20  u32[3]  sourceA
-+0x30  u32[3]  sourceB
-+0x40  f32[3]  eyes        frames, x, y
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32[17]` | slots | encoded controller pointers, slot 4 empty |
+| `58` | `u32` | time | slot 0's time input |
+| `5F` | `u8` | flags | bit 1 skips the look and physics applies |
+| `62` | `u8` | denyPhys | bone physics denied |
+| `63` | `u8` | sway | non-zero runs slot 0 only |
+| `68` | `i16[2]` | linked | record indices |
+| `70` | `u32[2]` | linkedRec | encoded record pointers |
+| `78` | `u32[2]` | linkedBones encoded bone arrays |  |
 
-look controller (rig slot 2)
-+0x05  u8      mode         low nibble; 0x11 when on
-+0x10  f32[2]  angles       current
-+0x18  f32     duration     minimum blend frames
-+0x1C  u8      state        bit 0 on, 1 asleep, 2 confused, 5 neutral
-+0x1D  u8      modes        low nibble from request bit 2
-+0x1E  u8      limits       low nibble the angle lock
-+0x50  f32[3]  sourceB
-+0x5C  u32     kindB        0 vector, 1 bones, 2 angles, 3 direction
-+0x60  f32[3]  sourceA
-+0x6C  u32     kindA
-+0x70  f32     progress
-+0x74  f32     rate
-+0x78  f32[2]  start
-+0x88  u32     blending
+Staged look command (render record +`0x580`):
 
-render-record fields
-+0x304  u32     flags      bits 6, 7, 8, 15, 16 the controller requests
-+0x40B  u8      timedOn    bits 5-7 copies of the talking-head bits
-+0x4BC  f32     shake      body-shake amount
-+0x640  f32[3]  timers     lip flap, nod, head shake
-+0x660  f32[3]  lastKind1
-+0x66C  u8      slide      high nibble kind 1, low nibble kind 0
-+0x66D  u8      focusFlags bit 0 keep the source height, bit 1 snap
-+0x670  f32[4]  focus
-+0x680  f32[4]  second
-+0x690  f32[3]  lastKind0
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | request | bits as in the table above |
+| `04` | `f32[3]` | target | frames, a, b |
+| `20` | `u32[3]` | sourceA |  |
+| `30` | `u32[3]` | sourceB |  |
+| `40` | `f32[3]` | eyes | frames, x, y |
+
+Look controller (rig slot 2):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `05` | `u8` | mode | low nibble; `0x11` when on |
+| `10` | `f32[2]` | angles | current |
+| `18` | `f32` | duration | minimum blend frames |
+| `1C` | `u8` | state | bit 0 on, 1 asleep, 2 confused, 5 neutral |
+| `1D` | `u8` | modes | low nibble from request bit 2 |
+| `1E` | `u8` | limits | low nibble the angle lock |
+| `50` | `f32[3]` | sourceB |  |
+| `5C` | `u32` | kindB | 0 vector, 1 bones, 2 angles, 3 direction |
+| `60` | `f32[3]` | sourceA |  |
+| `6C` | `u32` | kindA |  |
+| `70` | `f32` | progress |  |
+| `74` | `f32` | rate |  |
+| `78` | `f32[2]` | start |  |
+| `88` | `u32` | blending |  |
+
+Render-record fields:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `304` | `u32` | flags | bits 6, 7, 8, 15, 16 the controller requests |
+| `40B` | `u8` | timedOn | bits 5-7 copies of the talking-head bits |
+| `4BC` | `f32` | shake | body-shake amount |
+| `640` | `f32[3]` | timers | lip flap, nod, head shake |
+| `660` | `f32[3]` | lastKind1 |  |
+| `66C` | `u8` | slide | high nibble kind 1, low nibble kind 0 |
+| `66D` | `u8` | focusFlags bit 0 keep the source height, bit 1 snap |  |
+| `670` | `f32[4]` | focus |  |
+| `680` | `f32[4]` | second |  |
+| `690` | `f32[3]` | lastKind0 |  |
 
 ## Shipped data
 

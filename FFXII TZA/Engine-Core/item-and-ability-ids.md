@@ -3,10 +3,8 @@ title: "Item and ability ids: the sixteen-bit id space, the fifteen inventory cl
 kind: "system"
 category: "Engine core"
 summary: "How one sixteen-bit number names an item, a piece of equipment, a loot, a magick, a technick, a gambit condition, a key item, a quickening, a reward package, a bazaar good or an amount of gil: the top nibble selects one of fifteen inventory class descriptors, the descriptor's handlers keep a count or a bit per id in the battle state block, a thirty-two-class validator bounds every id against its authored table, and one query record of 0x98 bytes answers every menu's name, description and quantity question. Also the empty id 0xFFFF and its one-byte twin 0xFF."
-addresses: ["00309440", "01EEBCC0", "0030B6A0", "00322C50", "00323054", "00309EC0", "0030AE30", "0030ADC0", "00309F30", "003008A0", "002FD150", "002FD8D0", "002FD420", "002FD970", "002FD530", "002FD640", "002FD780", "002FD880", "00325F40", "00252E60", "002535D0", "0031C5D0", "0031E598", "0035D330", "0035D380", "0035E070", "00236C30", "003845F0", "0020E600", "00254EE0", "00253690", "0046A630", "00512CD0", "02EBF190"]
+addresses: "00309440, 01EEBCC0, 0030B6A0, 00322C50, 00323054, 00309EC0, 0030AE30, 0030ADC0, 00309F30, 003008A0, 002FD150, 002FD8D0, 002FD420, 002FD970, 002FD530, 002FD640, 002FD780, 002FD880, 00325F40, 00252E60, 002535D0, 0031C5D0, 0031E598, 0035D330, 0035D380, 0035E070, 00236C30, 003845F0, 0020E600, 00254EE0, 00253690, 0046A630, 00512CD0, 02EBF190"
 ---
-
-# Item and ability ids: the sixteen-bit id space, the fifteen inventory classes, the thirty-two-class validator and the query record
 
 ## What the player sees
 
@@ -33,13 +31,13 @@ table at `01EEBCC0` has fifteen records of `0x58` bytes:
 | Offset | Field |
 |---|---|
 | `+0x00` / `+0x08` | region A: offset into the battle state block `[02EBF190]`, and the pointer the rebaser derives from it |
-| `+0x10` | region A length in 16-bit words |
+| `10` | region A length in 16-bit words |
 | `+0x18` / `+0x20`, `+0x28` / `+0x30` | regions B and C the same way (0 = none) |
-| `+0x38` | class, 5 to 19 |
-| `+0x3C` | id count; an index at or past it is invalid |
-| `+0x40` | cumulative id base, the running sum of the earlier counts (written at run time) |
-| `+0x48` | mutate handler `(id, delta, absolute, channel, flags)` or 0 |
-| `+0x50` | query handler `(id, mode)` or 0 |
+| `38` | class, 5 to 19 |
+| `3C` | id count; an index at or past it is invalid |
+| `40` | cumulative id base, the running sum of the earlier counts (written at run time) |
+| `48` | mutate handler `(id, delta, absolute, channel, flags)` or 0 |
+| `50` | query handler `(id, mode)` or 0 |
 
 The rebaser `0030B6A0(state)` adds the state block's address to every non-zero offset, writes
 the cumulative bases, zeroes `0x200` bytes at state `+0x57C8` and masks `0x80` bytes at `+0x59C8`

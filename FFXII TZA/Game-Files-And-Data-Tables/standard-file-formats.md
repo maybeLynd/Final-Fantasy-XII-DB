@@ -3,10 +3,8 @@ title: "Standard file formats: the TGA, CSV, JSON, WebM, C-header and PS2 icon f
 kind: "format"
 category: "Game files and data tables"
 summary: "The archive files in public formats: two TGA title images, seventeen CSV tables, 830 JSON documents, forty WebM movies, six C headers, the PS2 memory-card icon pair and the PS2 boot descriptor. For each, its shipped counts and sizes, the function that opens it and what that function does with the bytes, and which files no path in the executable names."
-addresses: ["00473E80", "01F26568", "001D8D60", "001EE820", "001A9050", "001A7A50", "00674A00", "0024C970", "0024F240", "0024EF90", "001D9A40", "00200BF0", "001C3760", "001C7360", "001C7520", "00202930", "001C61F0", "001C53F0", "001C5F20", "001C76E0", "001C5930", "001C5750", "001C6E20", "001C2F50", "00582790", "00249210", "005832B0", "002DF9A0", "01E461F0", "002DF980", "001B7F30"]
+addresses: "00473E80, 01F26568, 001D8D60, 001EE820, 001A9050, 001A7A50, 00674A00, 0024C970, 0024F240, 0024EF90, 001D9A40, 00200BF0, 001C3760, 001C7360, 001C7520, 00202930, 001C61F0, 001C53F0, 001C5F20, 001C76E0, 001C5930, 001C5750, 001C6E20, 001C2F50, 00582790, 00249210, 005832B0, 002DF9A0, 01E461F0, 002DF980, 001B7F30"
 ---
-
-# Standard file formats: the TGA, CSV, JSON, WebM, C-header and PS2 icon files the game ships, and which of them it reads
 
 ## What the player sees
 
@@ -36,17 +34,17 @@ PS2 icon pair and the boot descriptor are instead entries of the per-kind path a
 
 ### TGA title image
 
-```
-+0x00  u8   id length          0
-+0x01  u8   colour-map type    0
-+0x02  u8   image type         2 (uncompressed true colour)
-+0x03  u8[9] colour map, origin 0
-+0x0C  u16  width              1920   <- read
-+0x0E  u16  height             1080   <- read
-+0x10  u8   bits per pixel     24
-+0x11  u8   descriptor         0x20 (top-left origin)
-+0x12  u8[width*height*3]      pixels, B G R, first row at the top
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | id length | 0 |
+| `01` | `u8` | colour-map type | 0 |
+| `02` | `u8` | image type | 2 (uncompressed true colour) |
+| `03` | `u8[9]` | colour | map, origin 0 |
+| `0C` | `u16` | width | 1920   <- read |
+| `0E` | `u16` | height | 1080   <- read |
+| `10` | `u8` | bits per pixel | 24 |
+| `11` | `u8` | descriptor | `0x20` (top-left origin) |
+| `12` | `u8[width*height*3]` | pixels, B G R, first row at the top |  |
 
 The game reads only the width and height; it assumes the rest (no id field, 24-bit, top-left).
 
@@ -98,26 +96,29 @@ objects; a font colour file holds `mClutIndex`, `mClutComment` and eight colour 
 
 ### PS2 memory-card icon pair
 
-```
-icon.sys (192 bytes; the PS2 icon.sys layout cut at 0xC0)
-+0x00  char[4]  "PS2D"
-+0x06  u16      26              title line-break position
-+0x0C  u32      109             background transparency
-+0x10  u32[4][4]                background corner colours (39,24,6,0 / 186,164,125,0 alternating)
-+0x50  f32[3][4]                light directions (0.5, 0.5, 0.5, 0)
-+0x80  f32[3][4], f32[4]        light colours, ambient
-       (a full PS2 icon.sys continues with the title at +0xC0 and three icon names; this one ends here)
+Icon.sys (192 bytes; the PS2 icon.sys layout cut at `0xC0`):
 
-icon1.ico (33,688 bytes; PS2 icon model, not a Windows icon)
-+0x00  u32  0x00010000          file id (the same four bytes a Windows .ico starts with)
-+0x04  u32  1                   animation shapes
-+0x08  u32  6                   texture type
-+0x0C  f32  1.0
-+0x10  u32  36                  vertices
-+0x14  36 x 24 bytes            vertex, normal, uv, colour
-+0x374 20 + 16 bytes            animation header (one frame), frame record
-+0x398 u16[128*128]             texture (32,768 bytes)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[4]` | "PS2D" |  |
+| `06` | `u16` | 26 | title line-break position |
+| `0C` | `u32` | 109 | background transparency |
+| `10` | `u32[4][4]` | background corner colours (39,24,6,0 / 186,164,125,0 alternating) |  |
+| `50` | `f32[3][4]` | light directions (0.5, 0.5, 0.5, 0) |  |
+| `80` | `f32[3][4], f32[4]` | light colours, ambient | (a full PS2 icon.sys continues with the title at +`0xC0` and three icon names; this one ends here) |
+
+Icon1.ico (33,688 bytes; PS2 icon model, not a Windows icon):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `000` | `u32` | 0x00010000 | file id (the same four bytes a Windows .ico starts with) |
+| `004` | `u32` | 1 | animation shapes |
+| `008` | `u32` | 6 | texture type |
+| `00C` | `f32` | 1.0 |  |
+| `010` | `u32` | 36 | vertices |
+| `014` | `36 x 24 bytes` | vertex, normal, uv, colour |  |
+| `374` | `20 + 16 bytes` | animation header (one frame), frame record |  |
+| `398` | `u16[128*128]` | texture (32,768 bytes) |  |
 
 ### PS2 boot descriptor
 

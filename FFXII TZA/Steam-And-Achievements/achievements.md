@@ -3,10 +3,8 @@ title: "Achievements: the achievement list, the counters and conditions that awa
 kind: "system"
 category: "Steam and achievements"
 summary: "The 41 achievement records with their developer tags and Steam titles, the 30 descriptors that give each tracked achievement a counter or a test, the saved counter block and award bits, the menuhandbook.bin targets and lists the tests read, the code that feeds every counter, the periodic sweep and its re-send, the script and scene awards, the path from an award to SetAchievement and StoreStats, and the Sky Pirate's Den statues that show the awards."
-addresses: ["01DFE410", "00D10460", "00D10550", "00316A50", "00315E90", "003166F0", "00316760", "00316BF0", "003165C0", "00316930", "003162E0", "01EED070", "00316440", "003160C0", "003161A0", "00315420", "00309EC0", "008632B0", "0020CE60", "00352250", "0034C9A0", "0020CB50", "00906290", "003158B0", "022C2550", "00316810", "00572920", "003154B0", "00315390", "020927C0"]
+addresses: "01DFE410, 00D10460, 00D10550, 00316A50, 00315E90, 003166F0, 00316760, 00316BF0, 003165C0, 00316930, 003162E0, 01EED070, 00316440, 003160C0, 003161A0, 00315420, 00309EC0, 008632B0, 0020CE60, 00352250, 0034C9A0, 0020CB50, 00906290, 003158B0, 022C2550, 00316810, 00572920, 003154B0, 00315390, 020927C0"
 ---
-
-# Achievements: the achievement list, the counters and conditions that award each one, and how an award reaches Steam
 
 ## What the player sees
 
@@ -71,6 +69,10 @@ the mode through the eight-entry table at `00316098`:
 total (`00254E80`, `002536D0`, capped at 99,999,999) and index 8 is the mean of level byte `+0xBA` over the
 party records whose slot is 0-5 (`00282FA0`), or 0 when fewer than six qualify. Every other counter-less
 index reads -1 and never passes.
+
+`00282DD0(i)` returns party record `i`, `[0209AC30] + 0x408 + i × 0xC0`. The mean walks records 0-8 and
+also skips a record whose `+0x60` word is negative or whose first byte has bit `0x2` set (`003167A2`);
+the re-send's sampler for index 8 reads the records the same way (`00316382`).
 
 ### Map and Bestiary tests
 
@@ -153,38 +155,38 @@ reads counter 17 as the clan points.
 
 The achievement record, `01DFE410 + entry x 0x198`:
 
-```
-+0x000  u64        id       descriptor index for entries 1-30; the entry's own index for 31-40; 0 for entry 0
-+0x008  char*      tag      ACH_ tag, the name passed to Steam
-+0x010  char[128]  title    English Steam title; replaced by Steam's "name" on stats receipt
-+0x090  char[256]  desc     empty in the image; Steam's "desc" on stats receipt
-+0x190  u8         achieved set by an award, rewritten from Steam on stats receipt
-+0x194  u32        -        cleared by an award
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `000` | `u64` | id | descriptor index for entries 1-30; the entry's own index for 31-40; 0 for entry 0 |
+| `008` | `char*` | tag | ACH_ tag, the name passed to Steam |
+| `010` | `char[128]` | title | English Steam title; replaced by Steam's "name" on stats receipt |
+| `090` | `char[256]` | desc | empty in the image; Steam's "desc" on stats receipt |
+| `190` | `u8` | achieved set by an award, rewritten from Steam on stats receipt |  |
+| `194` | `u32` | - | cleared by an award |
 
 The descriptor, `00D10460 + index x 8`:
 
-```
-+0x00  u8   kind    0 no counter, 2 signed word, 4 signed dword (00316A81, 003166F0)
-+0x01  u8   offset  the counter's byte offset in block +0x384C
-+0x02  u8   mode    test, see the evaluator
-+0x03  u8   -       0 in all 30
-+0x04  i32  param   target, exact value, u16 range pair or monster-list index
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | kind | 0 no counter, 2 signed word, 4 signed dword (`00316A81`, `003166F0`) |
+| `01` | `u8` | offset | the counter's byte offset in block +`0x384C` |
+| `02` | `u8` | mode | test, see the evaluator |
+| `03` | `u8` | - | 0 in all 30 |
+| `04` | `i32` | param | target, exact value, u16 range pair or monster-list index |
 
 The saved achievement state, block `[020927C0]` (`002536A0`), which the save carries at payload `+0x8000`:
 
-```
-+0x3844  u32       awarded   bit i = descriptor i awarded; only ever set
-+0x384C  i16[5]    counters 0-4
-+0x3856  i16       counter 13 (a 16-bit set)
-+0x3858  i16       counter 14
-+0x385A  u16       -         no descriptor points here
-+0x385C  i32       counter 11
-+0x3860  i32       counter 6
-+0x3864  i32       counter 7
-+0x3868  i32       counter 17 (clan points)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `3844` | `u32` | awarded | bit i = descriptor i awarded; only ever set |
+| `384C` | `i16[5]` | counters 0-4 |  |
+| `3856` | `i16` | counter 13 (a 16-bit set) |  |
+| `3858` | `i16` | counter 14 |  |
+| `385A` | `u16` | - | no descriptor points here |
+| `385C` | `i32` | counter 11 |  |
+| `3860` | `i32` | counter 6 |  |
+| `3864` | `i32` | counter 7 |  |
+| `3868` | `i32` | counter 17 (clan points) |  |
 
 The `menuhandbook.bin` chain. Each hop adds the `u16` at the current position, starting at blob `+8`:
 

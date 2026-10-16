@@ -3,10 +3,8 @@ title: "Graphics thread handshake: the shared command-state word, the GS registe
 kind: "system"
 category: "Graphics"
 summary: "How a frame hands its GS command stream over through the one dword at 02EBA3F8: the GS register batch 0036D400 writes, the three publishers that store a buffer address, a record count and 0x100 into the word, the reset burst at the start of every frame state, the settle-spin clear at the end, the vertical-sync callback that zeroes the word from the TkSyncv thread, the effect-capture bit, the fence word that nothing writes, and the census of the spin loops that cannot wait."
-addresses: ["02EBA3F8", "0036D400", "0036F360", "003A2D80", "003A2E30", "0036F2F0", "0036F2C0", "0036D7E0", "0022BFD0", "0035E9A0", "0035EC90", "00369100", "02EAF6D8", "003749F0", "00376050", "02F8F2E0", "00D10F88", "022D8EAC", "022D8EB4"]
+addresses: "02EBA3F8, 0036D400, 0036F360, 003A2D80, 003A2E30, 0036F2F0, 0036F2C0, 0036D7E0, 0022BFD0, 0035E9A0, 0035EC90, 00369100, 02EAF6D8, 003749F0, 00376050, 02F8F2E0, 00D10F88, 022D8EAC, 022D8EB4"
 ---
-
-# Graphics thread handshake: the shared command-state word, the GS register batch and the waits around them
 
 ## What the player sees
 
@@ -166,25 +164,27 @@ command-state word 02EBA3F8, as the PS2 code uses it
   reset     nine stores ending in 0 (0036F2F0); 0 (0036D7E0)
 ```
 
-```
-GS command record, 0x10 bytes
-+0x00  u64  value
-+0x08  u64  register        GS register number; the header and GIF tag records hold tags
-```
+GS command record, `0x10` bytes:
 
-```
-GS environment globals (seeded by 0036D280)
-022D8EA8  u32  frame index     0
-022D8EAC  u32  width           0x200
-022D8EB0  u32  display width   0x200, read as a u16 by 0036D2F0
-022D8EB4  u32  height          0x1C0
-022D8EB8  u32  pages/surface   (width * height) >> 11 = 112 (0036D2F0)
-022D8EC8  u64  FRAME_1 value
-022D8ED0  u64  ZBUF_1 value
-022D8ED8  u32  clear colour
-022D8EDC  u32  clear colour on 1
-022D8EF0  f32  width / 2000    022D8EF4  f32  height / 2000
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u64` | value |  |
+| `08` | `u64` | register | GS register number; the header and GIF tag records hold tags |
+
+GS environment globals (seeded by `0036D280`):
+
+| Address | Type | Name | Meaning |
+|---|---|---|---|
+| `022D8EA8` | `u32` | frame index | 0 |
+| `022D8EAC` | `u32` | width | `0x200` |
+| `022D8EB0` | `u32` | display width | `0x200`, read as a u16 by `0036D2F0` |
+| `022D8EB4` | `u32` | height | `0x1C0` |
+| `022D8EB8` | `u32` | pages/surface | (width * height) >> 11 = 112 (`0036D2F0`) |
+| `022D8EC8` | `u64` | FRAME_1 value |  |
+| `022D8ED0` | `u64` | ZBUF_1 value |  |
+| `022D8ED8` | `u32` | clear colour |  |
+| `022D8EDC` | `u32` | clear colour on 1 |  |
+| `022D8EF0` | `f32` | width / 2000 | `022D8EF4`  f32  height / 2000 |
 
 The spin census is beside this page in `graphics-thread-handshake-inert-spin-census.tsv`: every
 backward loop in 38,161 listed bodies whose body only tests registers, 19 in all. Seventeen are the

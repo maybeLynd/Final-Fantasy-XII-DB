@@ -3,10 +3,8 @@ title: "PS2-era .bin families: every .bin file family under ps2data, the loader 
 kind: "reference"
 category: "Game files and data tables"
 summary: "One row per .bin family in the archive's ps2data tree (146 families, 1,439 files): its locales and size, leading bytes, the resource kind and id the path arrays give it, which locale copies the executable names and which copy each of the twelve languages reads, the function that requests it, what it holds and the page that covers it. Also the shared pack directory, the 20 families no path names, and the loose battle tables that repeat battle_pack.bin entries."
-addresses: ["002DF9A0", "01E0280C", "0032E400", "0032E620", "00249210", "00249180", "00384420", "002368D0", "00238260", "002385D0", "01E09F68", "00378540", "00268750", "002467A0", "00246A10", "00280750", "00280670", "002808D0", "00280980", "00280AD0", "003658F0", "003643A0", "0039C3F0", "0039C150", "0036FFF0", "0037CCC0", "00259DF0", "003DCBC0", "0029CED0", "002C8EE0", "00291C80", "00561390"]
+addresses: "002DF9A0, 01E0280C, 0032E400, 0032E620, 00249210, 00249180, 00384420, 002368D0, 00238260, 002385D0, 01E09F68, 00378540, 00268750, 002467A0, 00246A10, 00280750, 00280670, 002808D0, 00280980, 00280AD0, 003658F0, 003643A0, 0039C3F0, 0039C150, 0036FFF0, 0037CCC0, 00259DF0, 003DCBC0, 0029CED0, 002C8EE0, 00291C80, 00561390"
 ---
-
-# PS2-era .bin families: every .bin file family under ps2data, the loader that reads it and what it holds
 
 ## What it lists
 
@@ -149,14 +147,12 @@ row of their `st2e` sibling (1,345 and 128), Japanese designer labels such as `L
 
 The `ashd` scheme of `katano/event.bin`, decoded by the measurement script:
 
-```
-+0x00  char[4]  "ashd"
-+0x04  u32      0x2509        unused by the decoding
-+0x08  u32      decoded size
-+0x0C  tokens   even byte t:  copy the next t / 2 bytes
-                odd byte t:   u16 w = t | next << 8; copy (w >> 12) + 3 bytes from
-                              ((w >> 1) & 0x7FF) + 1 bytes back
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[4]` | "ashd" |  |
+| `04` | `u32` | 0x2509 | unused by the decoding |
+| `08` | `u32` | decoded size |  |
+| `0C` | `tokens` | even byte t: | copy the next t / 2 bytes odd byte t:   u16 w = t \| next << 8; copy (w >> 12) + 3 bytes from ((w >> 1) & `0x7FF`) + 1 bytes back |
 
 The file decodes to exactly `0xB10` bytes, which are another `ashd` stream; that decodes to exactly
 `0x23E0` bytes, a script section tagged `0x80000002` with the time stamp `09/18 20:20:10` and the source name

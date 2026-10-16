@@ -3,10 +3,8 @@ title: "EASTL strings and containers: the string, vector and tree layouts, the l
 kind: "system"
 category: "Third-party libraries"
 summary: "How the executable's EASTL code is laid out and behaves: the allocator_memory_log allocator and its vtable, the three-pointer string with its shared empty byte, vector growth, the red-black tree shared by every set and map, and the 64 start-up initialisers that build static EASTL strings and containers, most of them JsonBox's token strings."
-addresses: ["001EDF00", "00902720", "001EDF10", "001EDF80", "001EDFE0", "0016D690", "01F82E48", "001FF740", "02EBA2E0", "001E7D30", "0016D6D0", "0016D720", "0016D780", "0016D7E0", "0016D840", "0016DA60", "001A3380", "00200E60", "0015D610", "0015C560", "0015D2F0", "0015D230"]
+addresses: "001EDF00, 00902720, 001EDF10, 001EDF80, 001EDFE0, 0016D690, 01F82E48, 001FF740, 02EBA2E0, 001E7D30, 0016D6D0, 0016D720, 0016D780, 0016D7E0, 0016D840, 0016DA60, 001A3380, 00200E60, 0015D610, 0015C560, 0015D2F0, 0015D230, 0015FFE0, 001A52A0, 001FC640"
 ---
-
-# EASTL strings and containers: the string, vector and tree layouts, the logging allocator and the static strings built at start-up
 
 ## What the player sees
 
@@ -102,6 +100,27 @@ The 52 non-empty strings are four copies of the 13 strings a JSON writer and rea
 `\"`, `\\`, `\/`, `\b`, `\f`, `\n`, `\r`, `\t`, `\u`, the words `true`, `false`, `null` and the hex
 digits `0123456789ABCDEFabcdef`. They belong to JsonBox, which the image names in its RTTI
 (`JsonBox::Indenter`, `JsonBox::IndentCanceller`, `JsonBox::SolidusEscaper`).
+The four copies of `\t` are built by `0015D9D0`, `0015E780`, `0015F3B0` and `0015FFE0`; the last
+allocates 3 bytes, copies the two characters from `009047BC` into the static string at `01FD3FB8`
+and registers `008A8050`.
+
+### Code instantiated per element type
+
+The compiler emits the string, vector and tree operations once for each element type, so the same
+operation appears many times with different element sizes. 32 such bodies are listed in
+`eastl-strings-and-containers-template-instances.tsv` with the operation and the element or node
+size of each; the other 75 are on
+[object construction and destruction](../Compiler-And-C-Runtime/object-construction-and-destruction.md).
+
+- `001A52A0` appends a character range to a string. When the result does not fit, the new capacity
+  is 8 while the old capacity is below 9, otherwise twice the old one, and never less than the
+  length needed; it then copies both parts into the new block and frees the old one.
+- `001FC640` is a map's `operator[]` with a `u32` key at node `+0x20`: it walks from the root
+  `+0x18`, and when the key is missing it inserts a default value, an empty vector whose allocator
+  is named `EASTL vector`, through `001FD310`.
+
+The string bodies follow the rules under Strings: `001B38B0` and `001A4BF0` take the shared byte
+`02EBA2E0` when the length plus one is below 2.
 
 ### JsonBox values
 
@@ -112,37 +131,41 @@ whole file into a stream and hands it to `00200E60`; the screen-layout files are
 
 ## Layouts
 
-```
-eastl::basic_string<char>   0x20 bytes
-+0x00  ptr   begin          first character
-+0x08  ptr   end            the terminator; length = end - begin
-+0x10  ptr   capacityEnd    one past the block; 02EBA2E1 for an empty string
-+0x18  ptr   allocator      the allocator object itself (its vtable pointer)
-```
+Eastl::basic_string<char>   `0x20` bytes:
 
-```
-eastl::vector<T>
-+0x00  ptr   begin
-+0x08  ptr   end            size = (end - begin) / sizeof(T)
-+0x10  ptr   capacityEnd
-+0x18  ptr   allocator      the allocator object itself
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `void*` | begin | first character |
+| `08` | `void*` | end | the terminator; length = end - begin |
+| `10` | `void*` | capacityEnd | one past the block; `02EBA2E1` for an empty string |
+| `18` | `void*` | allocator | the allocator object itself (its vtable pointer) |
 
-```
-tree node (set and map elements)
-+0x00  ptr   right
-+0x08  ptr   left
-+0x10  ptr   parent
-+0x18  u8    colour         0 red, 1 black
-+0x20  ...   value          key first; node size is 0x20 plus the value
-```
+Eastl::vector<T>:
 
-```
-map container, as 001A3380 uses it
-+0x08  node  anchor         its +0x00 rightmost, +0x08 leftmost, +0x10 root
-+0x28  u32   count
-+0x30  ptr   allocator      the allocator object itself
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `void*` | begin |  |
+| `08` | `void*` | end | size = (end - begin) / sizeof(T) |
+| `10` | `void*` | capacityEnd |  |
+| `18` | `void*` | allocator | the allocator object itself |
+
+Tree node (set and map elements):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `void*` | right |  |
+| `08` | `void*` | left |  |
+| `10` | `void*` | parent |  |
+| `18` | `u8` | colour | 0 red, 1 black |
+| `20` | `...` | value | key first; node size is `0x20` plus the value |
+
+Map container, as `001A3380` uses it:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `08` | `node` | anchor | its +`0x00` rightmost, +`0x08` leftmost, +`0x10` root |
+| `28` | `u32` | count |  |
+| `30` | `void*` | allocator | the allocator object itself |
 
 ## Shipped data
 
@@ -175,3 +198,7 @@ map container, as 001A3380 uses it
 - `eastl-strings-and-containers-ordered-container-runtime.tsv` and
   `eastl-strings-and-containers-ordered-container-runtime-callers.tsv`: the tree runtime and its
   callers.
+- `eastl-strings-and-containers-template-instances.tsv`: container code instantiated per element
+  type.
+- [Object construction and destruction](../Compiler-And-C-Runtime/object-construction-and-destruction.md):
+  the other per-type container bodies and the record-pool template they build.

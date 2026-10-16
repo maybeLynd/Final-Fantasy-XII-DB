@@ -3,10 +3,8 @@ title: "EBP camera shake: the CML1 shake list and the SHK1 curves that make a sc
 kind: "format"
 category: "EBP script files"
 summary: "Sections 10 and 11 of an .ebp script: the CML1 list whose rows the shake verbs name and the SHK1 bank of shakes and curves it indexes; how both are bound to an actor manager and what the load does to them, how a shake's 32 curve slots drive eight random sine oscillators and what each output moves on screen, the shipped banks in all nine language trees, and the rules an edit must follow."
-addresses: ["003316B0", "00331610", "0037DA90", "0037DA70", "003DD120", "003DD230", "003DCFB0", "0037D1F0", "0037D130", "0037DD50", "0037D4C0", "00382B70", "003820C0", "003CC5F0", "02ADD980", "022C6DD0", "022C6DF8"]
+addresses: "003316B0, 00331610, 0037DA90, 0037DA70, 003DD120, 003DD230, 003DCFB0, 0037D1F0, 0037D130, 0037DD50, 0037D4C0, 00382B70, 003820C0, 003CC5F0, 02ADD980, 022C6DD0, 022C6DF8"
 ---
-
-# EBP camera shake: the CML1 shake list and the SHK1 curves that make a scripted camera tremble
 
 ## What the player sees
 

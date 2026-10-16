@@ -3,10 +3,8 @@ title: "Kill rewards: what an enemy's death triggers, when it gives nothing, and
 kind: "system"
 category: "Rewards: EXP, LP, gil and loot"
 summary: "The statuses whose arrival on an enemy starts the defeat sequence, the reward gate (party kills, party-applied Poison and Petrify, the no-reward flag), and every step in order: chain, kill and species counters, EXP and LP, the reward display, gil, the drop and the score counter, with the achievements they feed."
-addresses: ["0030E360", "00312280", "003171C0", "00315820", "00317090", "003112F0"]
+addresses: "0030E360, 00312280, 003171C0, 00315820, 00317090, 003112F0"
 ---
-
-# Kill rewards: what an enemy's death triggers, when it gives nothing, and the order of chain, EXP, LP, gil, loot and counters
 
 ## What the player sees
 

@@ -3,10 +3,8 @@ title: "Map menu files: the sloc picture files and the amap, cmap, gmap, lmap an
 kind: "format"
 category: "Game files and data tables"
 summary: "The menumap files under worldmap/: the 48 sloc files holding each sub-location's zone pictures, their sizes and icon sets; lmap, the zones, markers, links and zoom levels of every sub-location; cmap, the sub-location directory, the per-map exploration thresholds and the guide-line schedule; gmap, the guide lines; wmap, the World Map's regions, areas, routes and Strahl destinations; amap, the area names, area maps and group-to-area table. Covers the layouts as the readers read them, the map-data widget that loads them, what each reader does on the map screens, the shipped files and the rules an edit must follow."
-addresses: ["02B457E0", "003BC450", "003BC2D0", "00253780", "020927D0", "003C1F00", "003C26C0", "003BF520", "003BF5E0", "003BE2D0", "003BECA0", "003DFBB0", "003DFB50", "003C0340", "003BF430", "003BFF20", "003C1070", "003C0380", "003BE680", "003C2320", "003BCDE0", "003BDFF0", "003C17E0", "003C1680", "003C1DF0", "003BD950", "003BD890", "003BD8F0", "003BD040", "003BD480", "003C08B0", "003BCCA0", "003BFE10", "003C0250", "003C1D70", "00254380", "002543A0", "002543D0", "002543F0"]
+addresses: "02B457E0, 003BC450, 003BC2D0, 00253780, 020927D0, 003C1F00, 003C26C0, 003BF520, 003BF5E0, 003BE2D0, 003BECA0, 003DFBB0, 003DFB50, 003C0340, 003BF430, 003BFF20, 003C1070, 003C0380, 003BE680, 003C2320, 003BCDE0, 003BDFF0, 003C17E0, 003C1680, 003C1DF0, 003BD950, 003BD890, 003BD8F0, 003BD040, 003BD480, 003C08B0, 003BCCA0, 003BFE10, 003C0250, 003C1D70, 00254380, 002543A0, 002543D0, 002543F0, 003BEC50, 003C4AE0, 003BF920"
 ---
-
-# Map menu files: the sloc picture files and the amap, cmap, gmap, lmap and wmap tables behind the location map and the World Map
 
 ## What the player sees
 
@@ -95,100 +93,122 @@ The pictures are TIM2 images ([TIM2 images](tim2-images.md)); the files end with
 
 ### lmap: menumap_location.bin
 
-```
-header
-+0x00  char[4]  magic       "lmap"
-+0x04  u32      -           202
-+0x08  u8       -           0
-+0x09  u8       count       records (48); every accessor bounds the index by it
-+0x0A  u16[count] offset    each record's offset from the file start
+Header:
 
-record, one per sub-location
-+0x00  u8       zones       A entries
-+0x01  u8       markers     B entries
-+0x02  u8       links       C entries
-+0x03  u8       members     D entries
-+0x04  A[zones], B[markers]  24 bytes each
-       C[links]              20 bytes each
-       zoom                  8 bytes
-       D[members]            4 bytes each
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[4]` | magic | "lmap" |
+| `04` | `u32` | - | 202 |
+| `08` | `u8` | - | 0 |
+| `09` | `u8` | count | records (48); every accessor bounds the index by it |
+| `0A` | `u16[count] offset` | each record's offset from the file start |  |
 
-A zone and B marker (one point space: A first, then B)
-+0x00  s16[2]   x, y        position on the page
-+0x04  u8[4]    next        four neighbouring points (003BE810); 0xFF = none
-+0x08  u16[2]   -           copied to the draw row
-+0x0C  u16      fieldId     A: the zone's field id
-       s32      label       B: destination label text id; -1 = destination's name
-+0x0E  s16      gate        A: story gate
-+0x10  u32      flags       A: bits 0-1 picture variant, bits 2-5 zone group
-+0x10  u8       -           B: copied to the draw row
-+0x11  u8       dest        B: destination sub-location
-+0x12  s16      gate        B: unlock gate; -1 = always
-+0x14  u8       -           B: second link point
-+0x15  u8       destPoint   B: point in the destination
-+0x16  s16      gate        B: second gate
+Record, one per sub-location:
 
-C link
-+0x00  u16[2]   fieldIds    the two zones it joins
-+0x04  s16[6]   points      three x, y pairs
-+0x10  s16      gate        map-jump flag gate; -1 = none
-+0x12  u16      -           0
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | zones | A entries |
+| `01` | `u8` | markers | B entries |
+| `02` | `u8` | links | C entries |
+| `03` | `u8` | members | D entries |
+| `04` | `A[zones], B[markers]` | 24 bytes each | C[links]              20 bytes each zoom                  8 bytes D[members]            4 bytes each |
 
-zoom
-+0x00  u16[3]   zoom        the record's zoom levels
-+0x06  u16      -           0
+A zone and B marker (one point space: A first, then B):
 
-D member
-+0x00  u16      node        an A field id
-+0x02  u16      member      a further field shown as that zone
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `i16[2]` | x, y | position on the page |
+| `04` | `u8[4]` | next | four neighbouring points (`003BE810`); `0xFF` = none |
+| `08` | `u16[2]` | - | copied to the draw row |
+| `0C` | `u16` | fieldId | A: the zone's field id s32      label       B: destination label text id; -1 = destination's name |
+| `0E` | `i16` | gate | A: story gate |
+| `10` | `u32` | flags | A: bits 0-1 picture variant, bits 2-5 zone group |
+| `10` | `u8` | - | B: copied to the draw row |
+| `11` | `u8` | dest | B: destination sub-location |
+| `12` | `i16` | gate | B: unlock gate; -1 = always |
+| `14` | `u8` | - | B: second link point |
+| `15` | `u8` | destPoint | B: point in the destination |
+| `16` | `i16` | gate | B: second gate |
+
+C link:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u16[2]` | fieldIds | the two zones it joins |
+| `04` | `i16[6]` | points | three x, y pairs |
+| `10` | `i16` | gate | map-jump flag gate; -1 = none |
+| `12` | `u16` | - | 0 |
+
+Zoom:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u16[3]` | zoom | the record's zoom levels |
+| `06` | `u16` | - | 0 |
+
+D member:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u16` | node | an A field id |
+| `02` | `u16` | member | a further field shown as that zone |
 
 ### cmap: menumap_common.bin
 
-```
-header
-+0x00  char[4]  magic       "cmap"
-+0x04  u32      -           0xCB
-+0x08  u16      dirOff      0x0C
-+0x0A  u16      mapsOff     0x190
+Header:
 
-directory (at dirOff), one entry per sub-location
-+0x00  u32      count       48
-+0x04  entry[count], 8 bytes:
-       +0x00  u8   group     persistence group
-       +0x01  u8   palette   0 = none, else kind 7 id 0xE1 + palette
-       +0x02  s16  -
-       +0x04  s32  name      sub-location name text id; -1 = none
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[4]` | magic | "cmap" |
+| `04` | `u32` | - | `0xCB` |
+| `08` | `u16` | dirOff | `0x0C` |
+| `0A` | `u16` | mapsOff | `0x190` |
 
-maps (at mapsOff)
-+0x00  u16      count       369
-+0x02  u16[count] value     low byte: explored cells a map needs
+Directory (at dirOff), one entry per sub-location:
 
-guide schedule (at mapsOff + 2 + 2*count, rounded up to 4)
-+0x00  u32      count       77
-+0x04  entry[count], 8 bytes:
-       +0x00  u16  counter   story counter at which it applies
-       +0x02  u16  gate      story gate; 0xFFFF = none
-       +0x04  u8   file      guide file number
-       +0x05  u8   -         0
-       +0x06  u16  line      line index in the guide file
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | count | 48 |
+| `04` | `entry[count],` | 8 | bytes: |
+| `00` | `u8` | group | persistence group |
+| `01` | `u8` | palette | 0 = none, else kind 7 id `0xE1` + palette |
+| `02` | `i16` | - |  |
+| `04` | `i32` | name | sub-location name text id; -1 = none |
+
+Maps (at mapsOff):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u16` | count | 369 |
+| `02` | `u16[count] value` | low byte: explored cells a map needs |  |
+
+Guide schedule (at mapsOff + 2 + 2*count, rounded up to 4):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | count | 77 |
+| `04` | `entry[count],` | 8 | bytes: |
+| `00` | `u16` | counter | story counter at which it applies |
+| `02` | `u16` | gate | story gate; `0xFFFF` = none |
+| `04` | `u8` | file | guide file number |
+| `05` | `u8` | - | 0 |
+| `06` | `u16` | line | line index in the guide file |
 
 ### gmap: menumap_guideNN.bin
 
-```
-+0x00  char[4]  magic       "gmap"
-+0x04  u32      -           0x64
-+0x08  u16      textOff     string area, from the file start
-+0x0A  u16      tim2Off     TIM2 picture, from the file start; 0xFFFF = none
-+0x0C  u16      -           0
-+0x0E  u16      count       lines
-+0x10  entry[count], 8 bytes:
-       +0x00  u16  counter   copy of the schedule entry's counter
-       +0x02  u16  gate      copy of the schedule entry's gate
-       +0x04  u16  text      string offset from textOff; 0xFFFF = none
-       +0x06  u16  -         0
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[4]` | magic | "gmap" |
+| `04` | `u32` | - | `0x64` |
+| `08` | `u16` | textOff | string area, from the file start |
+| `0A` | `u16` | tim2Off | TIM2 picture, from the file start; `0xFFFF` = none |
+| `0C` | `u16` | - | 0 |
+| `0E` | `u16` | count | lines |
+| `10` | `entry[count],` | 8 | bytes: |
+| `00` | `u16` | counter | copy of the schedule entry's counter |
+| `02` | `u16` | gate | copy of the schedule entry's gate |
+| `04` | `u16` | text | string offset from textOff; `0xFFFF` = none |
+| `06` | `u16` | - | 0 |
 
 The strings are zero-terminated game text ([Text drawing](../Menus-And-HUD/text-drawing.md)).
 
@@ -231,14 +251,14 @@ destination: {u16 value, u8 area, u8 0}
 
 ### amap: menumap_area.bin
 
-```
-+0x00  char[4]  magic       "amap"
-+0x04  u32      -           0xC9
-+0x08  u16      typeOff     u8 count, u8 type[count], per area
-+0x0A  u16      groupOff    u8 count, u8 area[count], per persistence group
-+0x0C  u16      mapOff      u16 count, u16 item[count], per group; 0xFFFF = none
-+0x0E  u16      nameOff     u32 count, s32 text[count], per area
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[4]` | magic | "amap" |
+| `04` | `u32` | - | `0xC9` |
+| `08` | `u16` | typeOff | u8 count, u8 type[count], per area |
+| `0A` | `u16` | groupOff | u8 count, u8 area[count], per persistence group |
+| `0C` | `u16` | mapOff | u16 count, u16 item[count], per group; `0xFFFF` = none |
+| `0E` | `u16` | nameOff | u32 count, s32 text[count], per area |
 
 ## Shipped data
 
@@ -300,9 +320,11 @@ The widget holds up to two sloc files, in two 0xA8-byte slots at `+0x120`: data 
 - `003BF520(field, variant)` returns the picture handle whose key matches, from the slot of the field's
   sub-location; `003C1180` uses the picture's TIM2 size for explored-cell tests and `00402C30` binds it to the
   zone's draw element.
-- `003BF5E0` returns the same key's NPS2 record. `003C2320` copies its width and height into the zone's
+- `003BF5E0` returns the same key's NPS2 record, and `003BEC50(field, key)` returns it for a field,
+  finding the field's sub-location with `003C0380` first. `003C2320` copies its width and height into the zone's
   draw row (`+0x24`, `+0x26`), and `003BED70` uses them to size the page around the drawn zones.
-- `00404730` draws a zone picture through the zone's explored-cell mask from `002551B0`; with no mask, or
+- `00404730` draws a zone picture through the zone's explored-cell mask from `002551B0`, which `003C4AE0`
+  asks for with `00264790()` when that is positive, and otherwise, or on a null result, takes the block at `02B45A50`; with no mask, or
   with bit 15 of the element's flags, every cell is shown.
 - `003BE2D0(field)` returns the field's NAVIICN2 block. `003DFBB0` gives a kind's count (kinds 1 to 9 below
   the block's `kinds`); `003DFB50` gives entry i and drops it when its gate fails.
@@ -317,7 +339,8 @@ The minimap draws the zone pack's own picture and placement, not these ([MPK map
 ### Readers of lmap
 
 - `003C0340(n)` returns `zones + markers` of record n; `003BF430(n, i)` returns point i (zone for
-  `i < zones`, else marker) and its kind (0 zone, 1 marker, 3 none).
+  `i < zones`, else marker) and its kind (0 zone, 1 marker, 3 none). `003BF920(n, i)` returns point i's
+  field id when it is a zone that passes `003C18A0`, and `FFFF` otherwise (callers `003BDB30`, `003BDCD0`).
 - `003C0380(field)` finds the field's sub-location: for each cmap entry whose group is the field's
   persistence group (`00264F90`), it maps the field through the record's members (`003BFF20`) and looks for a
   zone with that field id. `003C1070` tells whether the player stands in a zone or one of its members.

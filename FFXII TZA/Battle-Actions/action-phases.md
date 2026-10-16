@@ -3,10 +3,8 @@ title: "Action phases: delay, charge time, approach, execution and the end of a 
 kind: "system"
 category: "Battle actions"
 summary: "The thirteen phases a committed battle action goes through, frame by frame - the random delay before it starts, the charge time and what speeds it up (Haste, Slow, Berserk, augments, the Battle Speed setting), walking into reach, Invisible wearing off, waiting for its turn to be shown, building the targets and resolving the effects, and when the action counts as finished - plus the charge that is kept when the same order is given again."
-addresses: ["00304850", "002FA1A0", "002F8410", "002F9C00", "00313DB0", "003105D0"]
+addresses: "00304850, 002FA1A0, 002F8410, 002F9C00, 00313DB0, 003105D0"
 ---
-
-# Action phases: delay, charge time, approach, execution and the end of a battle action
 
 ## What the player sees
 

@@ -3,10 +3,8 @@ title: "Loot pickups: the ten-slot pool, creation and eviction, the one-minute l
 kind: "system"
 category: "Rewards: EXP, LP, gil and loot"
 summary: "How a defeated enemy's loot becomes a pickup on the ground: the placement test, the pool of ten pickups and the eviction of the oldest, the frame-counted lifetime with its five blink steps, who collects a pickup on contact and who destroys it, the nearest-pickup search used by movement orders, and the HUD object that draws it."
-addresses: ["00319CA0", "00319600", "00319920", "003197B0", "002FB150", "00319850", "00319A20", "00319B10", "0028F000", "003FA160", "003FC510"]
+addresses: "00319CA0, 00319600, 00319920, 003197B0, 002FB150, 00319850, 00319A20, 00319B10, 0028F000, 003FA160, 003FC510"
 ---
-
-# Loot pickups: the ten-slot pool, creation and eviction, the one-minute lifetime and blink, collection on contact, and the pickup object
 
 ## What the player sees
 
@@ -227,29 +225,35 @@ The element update `003FC510` runs the element through its states:
 
 ## Layouts
 
-```struct LootPickupSlot base=record size=0x60
-+0x00  i32   slot      0-9, the index into the presence table; written by 00319B10
-+0x04  i32   state     0 free, 1 falling, 2 landed, 3-6 blinking, 7 last blink; 00319CA0, 00319600
-+0x08  u32   stamp     frame counter 0208D45C when the pickup landed; 00319600
-+0x0C  u32   pad       zeroed with the stamp (one qword store) and never read
-+0x10  u64   prev      pointer to the previous live pickup; 00319CA0, 00319600, 00319920, 003197B0
-+0x18  u64   next      pointer to the next live pickup; same writers
-+0x20  u8[56] drops    seven entries {u16 item, u16 pad, i32 count}, 0xFFFF = empty; copied by 00319CA0
-+0x58  u32   handle    the pickup object; 00319CA0
-+0x5C  u32   tail      not written by any of the five pool functions (00319B10, 00319CA0, 00319600, 00319920, 003197B0)
-```
+`LootPickupSlot` (`0x60` bytes, offsets from the start of the record):
 
-```struct LootPresenceRecord base=record size=0x20
-+0x00  u8    present   1 when a position is published; 002FB2D0, 002FB2A0, 002FB250
-+0x01  u8[15] pad      not written by the four presence functions
-+0x10  f32[4] position  x, y, z, 1.0; 002FB2D0
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `i32` | slot | 0-9, the index into the presence table; written by `00319B10` |
+| `04` | `i32` | state | 0 free, 1 falling, 2 landed, 3-6 blinking, 7 last blink; `00319CA0`, `00319600` |
+| `08` | `u32` | stamp | frame counter `0208D45C` when the pickup landed; `00319600` |
+| `0C` | `u32` | pad | zeroed with the stamp (one qword store) and never read |
+| `10` | `u64` | prev | pointer to the previous live pickup; `00319CA0`, `00319600`, `00319920`, `003197B0` |
+| `18` | `u64` | next | pointer to the next live pickup; same writers |
+| `20` | `u8[56] drops` | seven entries {u16 item, u16 pad, i32 count}, 0xFFFF = empty; copied by 00319CA0 |  |
+| `58` | `u32` | handle | the pickup object; `00319CA0` |
+| `5C` | `u32` | tail | not written by any of the five pool functions (`00319B10`, `00319CA0`, `00319600`, `00319920`, `003197B0`) |
 
-```struct LootPickupDescriptor base=record size=0x18
-+0x00  f32[4] position  x, y, z, 1.0; 00319CA0
-+0x10  i32   look      00319A20 result, 0-2
-+0x14  i32   level     chain level 0-3 through 01EED3A8
-```
+`LootPresenceRecord` (`0x20` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | present | 1 when a position is published; `002FB2D0`, `002FB2A0`, `002FB250` |
+| `01` | `u8[15] pad` | not written by the four presence functions |  |
+| `10` | `f32[4] position` | x, y, z, 1.0; 002FB2D0 |  |
+
+`LootPickupDescriptor` (`0x18` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `f32[4] position` | x, y, z, 1.0; 00319CA0 |  |
+| `10` | `i32` | look | `00319A20` result, 0-2 |
+| `14` | `i32` | level | chain level 0-3 through `01EED3A8` |
 
 ## Operations
 

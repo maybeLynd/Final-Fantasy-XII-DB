@@ -3,10 +3,8 @@ title: "Model oscillators and the pose sequencer: per-model procedural motion"
 kind: "system"
 category: "Graphics"
 summary: "The two kinds of motion a model makes beyond its authored motions: the oscillator record (the sway section of a model's rig) that 0040ACF0 steps every frame with a wind-driven phase and a directed per-record phase, its reset and sub-stepped settle, the authored command and the effect element that drive it; and the pose sequencer, eight slots per character that play authored (duration, value) sequences from @FCP section 7 and feed the add-motion pose groups and a texture patch copy, with the shipped census."
-addresses: ["003703A0", "003DFFE0", "0040ACF0", "0040D890", "0040F390", "0040AA20", "0040B3B0", "01EFFA30", "02CA4390", "0040ABF0", "00520510", "00520E90", "0054A9C0", "0054B1F0", "0052B5E0", "0052BBD0", "0040DBB0", "0040B780", "003E6F50", "003E7450", "003E6A20", "004772E0", "00477370", "00477480", "004776D0", "00477670", "00477610", "00477750", "00477B10", "02CA6CA0", "00520D30", "00520DF0"]
+addresses: "003703A0, 003DFFE0, 0040ACF0, 0040D890, 0040F390, 0040AA20, 0040B3B0, 01EFFA30, 02CA4390, 0040ABF0, 00520510, 00520E90, 0054A9C0, 0054B1F0, 0052B5E0, 0052BBD0, 0040DBB0, 0040B780, 003E6F50, 003E7450, 003E6A20, 004772E0, 00477370, 00477480, 004776D0, 00477670, 00477610, 00477750, 00477B10, 02CA6CA0, 00520D30, 00520DF0"
 ---
-
-# Model oscillators and the pose sequencer: per-model procedural motion
 
 ## What the player sees
 
@@ -175,13 +173,13 @@ rectangle table:  +0 / +2 destination x, y; +4 / +6 width, height; +0x0E + 4v / 
 
 ### A sequencer entry (0x40 bytes at 02CA6CA0)
 
-```
-+0x00  u16   in use          +0x02  u16   non-zero stops stepping (004775E0)
-+0x04  u32   handle          +0x08  u32   render record
-+0x0C  u32   variant
-+0x10  u8[8] active    +0x18  u8[8] re-pick    +0x20  u8[8] event (0xFF none)
-+0x28  u8[8] choice    +0x30  u8[8] frame      +0x38  u8[8] ticks in the frame
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u16` | in use | +`0x02`  u16   non-zero stops stepping (`004775E0`) |
+| `04` | `u32` | handle | +`0x08`  u32   render record |
+| `0C` | `u32` | variant |  |
+| `10` | `u8[8] active` | +0x18 | u8[8] re-pick    +`0x20`  u8[8] event (`0xFF` none) |
+| `28` | `u8[8] choice` | +0x30 | u8[8] frame      +`0x38`  u8[8] ticks in the frame |
 
 The record's functions are listed in
 [model-oscillators-and-pose-sequencer-model-oscillator-subsystem.tsv](model-oscillators-and-pose-sequencer-model-oscillator-subsystem.tsv).

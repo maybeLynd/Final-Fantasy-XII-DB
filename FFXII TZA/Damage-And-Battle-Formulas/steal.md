@@ -3,10 +3,8 @@ title: "Steal: the item chances, the three Thief's Cuffs rolls and the steal mes
 kind: "system"
 category: "Damage and battle formulas"
 summary: "How a Steal attempt picks from an enemy's common, uncommon and rare steal items: when an enemy has nothing left to steal, the single first-hit roll at 3, 10 and 55 percent, the three independent rolls at 6, 30 and 80 percent with Thief's Cuffs, the debug value that can force an item, how a won item reaches the inventory, and which battle message each outcome posts."
-addresses: ["00390390", "00385F60", "003847C0", "0030FED0", "0023A570", "00385BA0", "003112F0", "00469EC0", "0046A870", "0017D450"]
+addresses: "00390390, 00385F60, 003847C0, 0030FED0, 0023A570, 00385BA0, 003112F0, 00469EC0, 0046A870, 0017D450"
 ---
-
-# Steal: the item chances, the three Thief's Cuffs rolls and the steal messages
 
 ## What the player sees
 
@@ -164,11 +162,13 @@ of an item already in the list) and posts one line per entry (`0046A940`-`0046A9
 
 The enemy's record at unit `+0xE60`, the fields the steal reads:
 
-```struct EnemyStealFields base=record
-+0x32  u16  stealCommon    common steal item; 0xFFFF = none (00390390, 0023A570)
-+0x34  u16  stealUncommon  uncommon steal item; 0xFFFF = none
-+0x36  u16  stealRare      rare steal item; 0xFFFF = none
-```
+`EnemyStealFields` (offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `32` | `u16` | stealCommon | common steal item; `0xFFFF` = none (`00390390`, `0023A570`) |
+| `34` | `u16` | stealUncommon | uncommon steal item; `0xFFFF` = none |
+| `36` | `u16` | stealRare | rare steal item; `0xFFFF` = none |
 
 The spawn record at unit `+0x6A0`:
 

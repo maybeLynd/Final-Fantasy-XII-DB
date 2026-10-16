@@ -3,10 +3,8 @@ title: "Inventory: how items, equipment, loot, magicks, technicks, gambits and k
 kind: "system"
 category: "Items, equipment, shops and licenses"
 summary: "How the game keeps what the party owns: the encoded id and its class nibble, the fifteen class descriptors and the storage each class uses (a count word with owned and equipped parts capped at 99, or one bit), the bundle and gil ids that expand into other grants, the one change function and its four channels, the first-acquisition marks, the ever-owned bits and the loot-sold tallies, every feature that changes the inventory, the writers that bypass the change function, and the gil purse with its cap."
-addresses: ["01EEBCC0", "003008A0", "002FD150", "002FD420", "00300B80", "0030B6A0", "003047F0", "00253690", "00254EE0", "003004B0"]
+addresses: "01EEBCC0, 003008A0, 002FD150, 002FD420, 00300B80, 0030B6A0, 003047F0, 00253690, 00254EE0, 003004B0"
 ---
-
-# Inventory: how items, equipment, loot, magicks, technicks, gambits and key items are stored and counted, what changes them, and the gil purse
 
 ## What the player sees
 

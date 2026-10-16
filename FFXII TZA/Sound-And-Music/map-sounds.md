@@ -3,10 +3,8 @@ title: "Map sounds: the per-map sound list, the sounds its scripts and emitters 
 kind: "format"
 category: "Sound and music"
 summary: "The SPP1 map sound list carried in each map pack: its header, id list and weather table, how binding it opens every listed sound bank, the two script verbs that play an entry by number, the map's sound emitters, the ambience picked per weather slot with its fades, what unbinding keeps, and the shipped lists with their id ranges."
-addresses: ["003635E0", "00363750", "00346260", "00346990", "003638B0", "00363B40", "002DF070", "022CBAF8"]
+addresses: "003635E0, 00363750, 00346260, 00346990, 003638B0, 00363B40, 002DF070, 022CBAF8"
 ---
-
-# Map sounds: the per-map sound list, the sounds its scripts and emitters play, and the weather ambience
 
 ## What the player sees
 
@@ -70,27 +68,31 @@ and plays the id at the emitter's position, `+0x20`-`+0x28`, through `002DEFA0` 
 
 ## Layouts
 
-```struct Spp1Header base=file size=0x20
-+0x00  char[4]  magic       "SPP1"
-+0x04  u32      count       ids in the list
-+0x08  u32      bankLength  bytes of SeSep records to open
-+0x0C  u32      bankOffset  the records' offset when the pack gives no bank
-+0x10  u16      hasMapNo    1 when +0x12 is a map number
-+0x12  u16      mapNo       the zone's map number, or 0xFFFF
-+0x14  u32      zero14      0
-+0x18  u16      padAt       the id list's end rounded up to 16
-+0x1A  u16      weatherAt   the weather table's offset, or 0
-+0x1C  u32      zero1C      0
-```
+`Spp1Header` (`0x20` bytes, offsets from the start of the file):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[4]` | magic | "SPP1" |
+| `04` | `u32` | count | ids in the list |
+| `08` | `u32` | bankLength | bytes of SeSep records to open |
+| `0C` | `u32` | bankOffset | the records' offset when the pack gives no bank |
+| `10` | `u16` | hasMapNo | 1 when +`0x12` is a map number |
+| `12` | `u16` | mapNo | the zone's map number, or `0xFFFF` |
+| `14` | `u32` | zero14 | 0 |
+| `18` | `u16` | padAt | the id list's end rounded up to 16 |
+| `1A` | `u16` | weatherAt | the weather table's offset, or 0 |
+| `1C` | `u32` | zero1C | 0 |
 
 ```struct Spp1Id base=record size=0x4
 +0x00  u32  soundId  a six-digit bank id
 ```
 
-```struct Spp1Weather base=file+weatherAt size=0x10
-+0x00  u16     count  entries
-+0x02  i16[7]  entry  a list index per weather slot; -1 for none
-```
+`Spp1Weather` (`0x10` bytes, offsets from the start of the file+weatherAt):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u16` | count | entries |
+| `02` | `i16[7]` | entry | a list index per weather slot; -1 for none |
 
 The magic, `+0x10`-`+0x18` and `+0x1C` are read by none of the binder, the unbinder, the two verbs, the emitter
 reader and the weather pick.

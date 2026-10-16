@@ -3,10 +3,8 @@ title: "Movement bodies and separation: the collision body every steerable actor
 kind: "system"
 category: "Movement and pathfinding"
 summary: "The pool of movement bodies behind every steerable actor: how a body is allocated, attached after the presentation and released with it, how its ellipse, height and base are sized from the actor's contexts, the placement record that holds the field cell, the ground height and the cell attributes, the per-frame registration into thirty-two angular sectors around the mean of all bodies, the per-tick separation pass that visits each pair once, the pair resolver with its layer, owner, vertical and ellipse tests and its weight rule, and how the push is consumed on the next candidate position."
-addresses: ["003DAE30", "003DA8A0", "003DAD00", "002E3500", "00269EC0", "002682D0", "002685F0", "00268380", "003DAF20", "00380D30", "003808A0", "003DB1B0", "003DB020", "0046AD20", "003DAA40", "003DAC70", "003DAAB0", "003DAB50", "00314F30", "00314F50", "003DA5A0", "003DA730", "00314E10", "003DA9F0", "002E5180", "002E5380", "003B7730", "00266D10"]
+addresses: "003DAE30, 002E8E20, 0026B2E0, 0026BBC0, 0026BF60, 00265390, 0026B170, 003DA8A0, 003DAD00, 002E3500, 00269EC0, 002682D0, 002685F0, 00268380, 003DAF20, 00380D30, 003808A0, 003DB1B0, 003DB020, 0046AD20, 003DAA40, 003DAC70, 003DAAB0, 003DAB50, 00314F30, 00314F50, 003DA5A0, 003DA730, 00314E10, 003DA9F0, 002E5180, 002E5380, 003B7730, 00266D10, 00269E60, 0026ABD0, 0026B9D0, 00263810, 0026A560, 0026BE00, 00263640, 002E86B0, 0026AB60, 0026BEE0, 0026BDD0, 002640E0"
 ---
-
-# Movement bodies and separation: the collision body every steerable actor carries, its placement on the field, and the tick that pushes overlapping bodies apart
 
 ## What the player sees
 
@@ -55,6 +53,11 @@ presentation and re-creates; the releasers `002E3D00` and `002E3AF0` run from th
 presentation release and the manager release ([actor record](../Characters-And-Objects/actor-record.md)).
 A body lives exactly as long as its actor's presentation.
 
+`0026A7C0(record, on)` (verb `setfloatstatus`) sets or clears the controller's `+0x151` bit 1 and
+re-runs `002682D0`; `0026ACE0` writes the same byte's bit 5. `002646A0` returns an actor's body,
+`00264670` the ground height kept at the movement context's `+0xD4`, and `002644C0` and `00264EA0`
+the controller's `+0x151` bits 0 and 7.
+
 ### The shape
 
 `00268380(record)`: for a class-3 actor the radii pair comes from the movement context's `+0x50`
@@ -72,6 +75,128 @@ context's `+0x140 + +0x144`; the three percentages are the movement context's by
 with `+0x44` = 0 and `+0x4C` = 1.0, the radii and height copied to `+0x94`-`+0x9C`, and the inner
 shape `+0xA0` = `a * radiusA / 50`, `+0xA8` = `b * height / 50 + base`, `+0xA4` = `c * radiusB / 50`.
 The facing writer re-sizes the same way ([facing and steering](facing-and-steering.md)).
+
+`0026A490(record)` sets the three percentages from the actor's character parameters (`003E6150`
+of the render record id, times 50): `0x9002322` to `+0x104`, `0x9002524` to `+0x105` and `0x9002423`
+to `+0x106`, or `{37, 50, 37}` without a render record, and re-sizes.
+
+### Scale, radii and the interaction ellipses
+
+A class-3 actor's movement context holds the scale and three `Ellipse` records, each kept as an
+authored base and a scaled copy:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `020` | `f32[3]` | scale | x, y and z |
+| `040` | `f32[3]` | offset | moves the interaction point (and the body, see `+0x107`) |
+| `050` | `Ellipse` | body | the body radii: base `+0x80` scaled by the scale's x and z, read by `003DA710` |
+| `060` | `Ellipse` | touch | base `+0x88` scaled |
+| `070` | `Ellipse` | talk | base `+0x90` scaled |
+| `080` | `f32[2]` | bodyBase | authored body radii |
+| `088` | `f32[2]` | touchBase | authored touch radii |
+| `090` | `f32[2]` | talkBase | authored talk radii |
+| `0BC` | `f32` | talkHalfAngle | the facing window of the talk test |
+| `0C8` | `f32` | talkHeight | band above, times the scale's y |
+| `0CC` | `f32` | talkDepth | band below, times the scale's y |
+| `0DD` | `u8` | noHeightTest | set by a negative talk height |
+| `0DE` | `u8` | talkFollowsBody | the talk ellipse copies the body radii |
+| `0DF` | `u8` | touchFollowsBody | the touch ellipse copies the body radii |
+| `0FC` | `f32` | margin | separation margin, the mean of the scaled body radii |
+| `107` | `u8` | offsetUse | bit 0 the offset moves the interaction point, bit 1 it moves the body |
+
+`Ellipse` (0x10 bytes):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `f32` | a | radius |
+| `04` | `f32` | b | radius |
+| `08` | `f32` | angle | written by `003DA850` |
+| `0C` | `f32` | margin | added by `003DA5A0` |
+
+`002E8E20(record)`, called by the scale setters `0026B720` and `002E5FD0` (identical; verbs
+`setscale`, `setscale_164`, `debug_setscale`), hands the scale to the render record (`002EE050`)
+and re-applies the three bases. `0026B2E0(record, a, b)` sets the body base and scaled radii
+(`003DA860`), sets the margin `+0xFC` to the mean of the two scaled radii (at least 0.01), and while
+`+0xDE` or `+0xDF` is set copies the body radii into the talk or touch ellipse, with that ellipse's
+own margin (`003DA890`); `0026B2D0` (verb `setradius`) passes one radius for both.
+
+`0026BBC0(record, a, b)` sets the talk ellipse and clears `+0xDE`; `0026BF60` sets the touch ellipse
+and clears `+0xDF`. For a class-1 object the same setters write the context's `+0x40` and `+0x30`
+pairs unscaled, and `0026BF60` also sets `+0x5D` bit 1. The verbs reach them through:
+
+- `0026BB50` (one radius for both; verb `debug_settalkradius`), `00239370(record, angle, height,
+  radius)` (verb `btlAtelSetEventData`: each value only when not negative, through `0026BB50`,
+  `0026BA00` and `0026B940`);
+- `0023B260` (verb `btlAtelTreasureInit`: talk 1.5, touch 4.0) and `0023B2A0(record, touch, talk)`
+  (verb `btlAtelTreasureInitWithRange`);
+- `0026BD50` and `0026BFF0` (verbs `settalkwh`, `setwh`, `setrect`, `settouchwh`, `fieldsign`), which
+  take absolute values; for a class-1 object they set `+0x5D` bit 2 or 1 and keep the inner (talk)
+  pair no larger than the outer (touch) pair.
+
+`0026B940` (verb `talkang`) sets the talk half-angle `+0xBC` (class 1 `+0x50`); `0026BA00` (verb
+`settalkheight`) sets `+0xC8` with `+0xDD` raised for a negative height (class 1 `+0x68` and `+0x5C`)
+and re-sizes; `0026BC70` (verb `fieldsign`) writes the angle of the touch and talk ellipses
+(`003DA850`) and the wrapped angle to `+0x48`, which for a class-3 actor is the offset's z.
+
+The offset: `0026B170(record, x, y, z)` stores it, sets actor byte `+0x0D` bit 5 when it is non-zero
+(clears it for zero) and, when `+0x107` bit 1 is set and the offset changed, re-places the actor at its
+position (`0026B0C0`). `0026B230(record, bits)` writes `+0x107` bits 0 and 1 and re-places the
+actor when bit 1 changes; the verb `setposoffset` runs both. `0026BA70` (verb `settalkradiusoffset`)
+stores the offset, sets bit 0 and clears bit 1, re-placing when bit 1 was set; `0026BB00` (verb
+`fieldsign`) gives it an absolute point and stores the difference from the position.
+
+The interaction point is what `00265390(record, &x, &y, &z)` returns: a class-1 object's `+0x10`
+triple; for class 3 the position raised by the controller's `+0x140 + +0x144`, plus the offset when
+`+0x107` bit 0 is set.
+
+The talk test `0025BAD0` builds the same point, refuses a focus actor outside
+the height band (`+0xC8` above, `+0xCC` below, both times the scale's y) unless `+0xDD` (the lower edge also less the focus actor's own height), needs the
+focus body's ellipse to overlap the talk ellipse (`003DA5A0`), and checks the focus facing against
+the half-angle (`003A1BB0`). The touch test `0025C230` uses the touch and talk ellipses
+([script requests](../Scripts-And-Script-Commands/script-requests.md)).
+
+### Heights, walk speed and the margin
+
+These verbs write the rest of the context. Each setter tests the class first: a class-3 actor's
+context or a class-1 object's is written, any other actor is left alone.
+
+| Verb | Id | Handler | Setter | What it writes |
+|---|---|---|---|---|
+| `setheight(h)` | `0x00A7` | `0034D260` | `00269E60(h)`, then `0026ABD0(h * 0.25)` | class 3: height `+0xC0` and talk height `+0xC8` = `h`, `+0xDD` = `h < 0`, then `+0xC4` and the talk depth `+0xCC` = `h / 4`; class 1: `+0x68` = `h`, `+0x5C` = `h < 0`; the body is re-sized (`00268380`) |
+| `setunderheight(v)` | `0x00A8` | `0034D6D0` | `0026ABD0` | class 3 only: `+0xC4` and `+0xCC` = `v` |
+| `settalkheight(h)` | `0x018D` | `0034CAC0` | `0026BA00(h)`, then `0026B9D0(h * 0.25)` | the talk height (above), then the talk depth = `h / 4` |
+| `settalkunderheight(v)` | `0x018E` | `0034CE60` | `0026B9D0` | the talk depth: class 3 `+0xCC`, class 1 `+0x6C` |
+| `getdefaultheight()` | `0x02B0` | `003503D0` | `00263810` | a float result (`0026B4C0`): for class 3 the model's parameter `0x09001D1E` (`002E9630`, 0 without a render record), for class 1 `+0x68`, else 0 |
+| `setwalkspeed(v)` | `0x020E` | `00352530` | `0026A560` | class 3 only: `+0xE0` = `v` |
+| `setwalkthresholdspeed(v)` | `0x0247` | `0034CEA0` | `0026BE00` | class 3 only: `+0xE4` = `v`, then the render record's copy (`002E86B0`) |
+| `setfreetargetw(n)` | `0x0264` | `00352500` | `0026AB60` | the integer `n` as a float, at least 0.01: class 3 the margin `+0xFC`, class 1 `+0x70` |
+| `touchradius(r)` | `0x0051` | `00356000` | `0026BEE0` | class 3: the touch ellipse takes the body radii with `r` as its own margin (`003DA890`) and `+0xDF` is set; class 1: the touch pair `+0x30`/`+0x34` = `r` (`003DA860`) |
+
+`00263810` also holds a branch that returns `+0xC0 * +0x24` for class 3, but the class-3 test in
+front of it jumps to `002E9630` first (`0026381B`), so the branch never runs. The parameter it
+reads is the one the presentation set-up hands to `00269E60`, so `getdefaultheight` answers the
+model's authored height whatever `setheight` stored since.
+
+The presentation set-up `002E28E0` gives `+0xE0` the model's parameter `0x09000606` and `+0xE4`
+the parameter `0x09000707` times `[01DFE0BC]`, both 0 without a render record, and then runs
+`00263640` (`002E2CF6`), which hands `+0xE4` to the render record as the verb does. The verb stores
+its value as given, without the `[01DFE0BC]` factor.
+
+`002E86B0(actor, v)` writes the render record's `+0x420` (`[022C6F28] + id * 0x740`, only when its
+`+0x284` is non-zero). The locomotion selectors `004256E0` and `004255B0` compare the render
+record's `+0x23C` with it: at or above it `004255B0` picks state 2 and `004256E0` state 2 or a
+direction state 9 to 11; below it, down to the lower bound `003E58B0`, both pick state 1 or a
+direction state 3 to 5. `0041F730` starts `+0x420` at 0.013333.
+
+`002640E0(actor)` reads `+0xE0` back (0 for any class but 3). The move verbs push it as the speed
+argument before running their body: `rcmove`/`cmove` (`0x003E`/`0x0059`, `003548B0`),
+`rcmovea`/`cmovea` (`0x0040`/`0x005B`, `00348240`), `rmove`/`move` (`0x0042`/`0x005D`, `003488B0`),
+`rmovea`/`movea` (`0x0044`/`0x005F`, `00349080`), `ramove` (`0x04CE`, `00349680`) and `ramovea`
+(`0x04D0`, `00349D90`). The camera-side update reads it too ([player movement](player-movement.md)).
+
+`fieldsign` (`00355A00`) also reads a third point record, or reuses the one it read last when the
+third index is negative: `0026BDD0` stores its three coordinates at a class-1 object's
+`+0x20`-`+0x28`, and `0026AB60` sets the margin to the mean of its two widths.
 
 ### The placement record
 
@@ -114,6 +239,12 @@ each side; with `d <= r` all 32.
 The result is `+0x120` the bits, `+0x124` the sector, `+0x128`
 `d - r` (0 when `d <= r`) and `+0x12C` `d + r`; a negative radius clears all four. The sums and
 the count are updated even when the record pointer is null.
+
+The driver's tail `002E6330` also appends the body's placement to a frame list (head `02B57CC8`,
+tail `02B57CD0`, linked through the placement's `+0xA0`; `003DB0D0`) when actor byte `+0x09` has bit
+6, `002E9FE0` holds and the controller's `+0x14E` is set; while `00263FB0()` is 1 it also needs the
+controller's `+0x151` bit 7 (`00264EA0`). `003DAE20` returns the list's head; the highest-top search
+`0046DB50` walks it ([geometry primitives](geometry-primitives.md)).
 
 ### The separation pass
 
@@ -184,7 +315,9 @@ controller's `+0x151` bit 2, stores the ground height (`003DADE0`) at the moveme
 
 The re-run's
 `002E5380` adds the accumulators into the candidate delta and then zeroes them itself, so a push
-moves the actor on its next candidate position and is gone the tick after.
+moves the actor on its next candidate position and is gone the tick after. `0025D540(record)`
+clears the same accumulators (`003DA9F0`) and `+0xEF` outside the tick unless the lifecycle byte
+`+0x18` is 1; the `setpos2` verbs run it.
 
 The step then measures
 the frame's displacement (planar unless record byte `+0x08` bit 2), zeroes it when record byte
@@ -193,31 +326,95 @@ and `+0x0C` bit 4 is clear, stores it at the context's `+0xEC`, hands it to the 
 (`00420A10`) and the unit (`00329A80`), runs `002E4A40` and `002E6000(record, 0)`, and clears
 `+0x0C` bit 4.
 
+### The mask word
+
+`0025B470(record, w)`, run by the verbs `bindp`, `bindhitobj` and `setweight`, keeps only bit 4 of
+the body's mask word `+0x110` (`002E9BB0`, `002EC5B0`) and, for a negative `w` outside a cutscene
+(`00377C20`) with actor byte `+0x15` zero, sets bit 4.
+
 ## Layouts
 
-```
-struct MovementBody base=02B4E4C0 count=128 size=0x130
-+0x000  u16  prev   +0x002 u16 next   +0x004 u16 self   (0xFFFF none)
-+0x006  u8   layer (00269EC0)          +0x007 u8 activeThisTick
-+0x008  f32  weight (context +0x148)   +0x018 u64[2] pairBits
-+0x030  placement: +0x30 f32[4] position, +0x40 f32[4] orientation, +0x50/+0x60 derived positions,
-        +0x70 f32[4] displacement, +0x80 u8 cellClass, +0x82 i16 cell, +0x84 i16 secondCell,
-        +0x86 u16 attr bits 13-17, +0x88 u16 attr bits 3-6, +0x8A u16 00231F80 bits, +0x8E u16 blockedMask,
-        +0x90 u32 flags (bits 0-1 context +0x151, bit 2 attr bit 12, bit 3 second height above, bit 4 solver moved),
-        +0x94/+0x98/+0x9C copies of the radii and height, +0xA0/+0xA4/+0xA8 inner shape,
-        +0xAC f32 groundHeight, +0xB0/+0xB4 stepped radii, +0xC0 f32 secondHeight, +0xC8 f32 requestedSpeed
-+0x0E0  f32  height  +0x0E4 f32 base   +0x0E8 f32 partner's push squared
-+0x0EC  u8   pushed  +0x0ED u8 contacts  +0x0EE u8 soleMover  +0x0EF u8
-+0x0F0  f32  radiusA +0x0F4 f32 radiusB  +0x0F8 f32 heading  +0x0FC f32 margin
-+0x100  f32  pushX   +0x104 f32 pushY    +0x108 f32 pushZ
-+0x110  u32  maskA   +0x114 u32 maskB    +0x119 u8 owner
-+0x120  u32  sectorBits  +0x124 u32 sector  +0x128 f32 d - r  +0x12C f32 d + r
+`MovementBody`: 128 records of `0x130` bytes at `02B4E4C0`.
 
-globals
-02B57CC0  u16  active head    02B57CC4  u16  free head
-02B57CE0  u64[32][2]  sector masks   02B57EE0  u64[2]  candidate set
-02CA6034 / 02CA603C  f32  sector centre   02CA6040 / 02CA6048 / 02CA604C  the running mean
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `000` | `u16` | prev | previous body in its list, `FFFF` none |
+| `002` | `u16` | next | next body in its list, `FFFF` none |
+| `004` | `u16` | self | the body's own index |
+| `006` | `u8` | layer | set by `00269EC0`; only equal layers pair |
+| `007` | `u8` | activeThisTick | set by `003DB020`, cleared by `003DAA40` |
+| `008` | `f32` | weight | the context's `+0x148` |
+| `018` | `u64[2]` | pairBits | the pair bitmap the walk `003DAB50` remembers |
+| `030` | `f32[4]` | position | start of the placement (placement `+0x00`); `{0, 0, 0, 1.0}` at allocation (`00380B80`) |
+| `040` | `f32[4]` | orientation | the heading's direction pair, `+0x44` = 0, `+0x4C` = 1.0; `{0, 0, 1.0, 1.0}` at allocation (`00380B80`) |
+| `050` | `f32[4]` | placement20 | four 1.0 at allocation (`00380B80`) |
+| `060` | `f32[4]` | groundTint | vertex colours of the type-2 polygon underfoot, blended by `00231A90`; `0209A3A0` without one; four 1.0 (white) at allocation (`00380B80`) |
+| `070` | `f32[4]` | displacement | the cell solver's push of the last move |
+| `080` | `u8` | cellClass | the kind the floor overrides test (`00230A40`); its word is -1 at allocation (`00380B80`) |
+| `082` | `i16` | cell | polygon underfoot, `-2` refused; -1 at allocation (`00380B80`) |
+| `084` | `i16` | secondCell | the type-4 marker polygon |
+| `086` | `u16` | floorGroup | attribute bits 13-17; `FFFF` at allocation (`00380B80`) |
+| `088` | `u16` | mjGroup | attribute bits 3-6; `FFFF` at allocation (`00380B80`) |
+| `08A` | `u16` | groundField | `00231F80`'s bits; `FFFF` at allocation (`00380B80`) |
+| `08E` | `u16` | blockedMask | the field's blocked kinds (`00232090`) |
+| `090` | `u32` | flags | bits 0-1 from the controller's `+0x151`, bit 2 attribute bit 12, bit 3 second height above, bit 4 the solver moved the body; bits 0-4 cleared at allocation (`00380B80`) |
+| `094` | `f32[3]` | sizeCopy | copies of the two radii and the height; 0.5, 0.5, 2.0 at allocation (`00380B80`) |
+| `0A0` | `f32[3]` | innerShape | the percentage-scaled radii and top; 0.5, 0.5, 2.0 at allocation (`00380B80`) |
+| `0AC` | `f32` | groundHeight | plane height underfoot; 0 at allocation (`00380B80`) |
+| `0B0` | `f32[2]` | steppedRadii | step toward `+0x94`/`+0x98` by 0.25; zero at allocation (`00380B80`) |
+| `0C0` | `f32` | secondHeight | the second cell's height; zero at allocation (`00380B80`) |
+| `0C8` | `f32` | requestedSpeed | `[01DFE0B8] * 30 * 3.6 * speed`; 18.0 at allocation (`00380B80`), the slot `00358CB0` later overwrites with the run speed |
+| `0D0` | `void*` | frameLink | next placement in the frame list (`003DB0D0`); zero at allocation (`00380B80`) |
+| `0E0` | `f32` | height | from `00268380` |
+| `0E4` | `f32` | base | from `00268380` |
+| `0E8` | `f32` | partnerPushSq | squared length of the partner's increment |
+| `0EC` | `u8` | pushed | a pair pushed this body this tick |
+| `0ED` | `u8` | contacts | counted by the pair resolver for each pair that moves the body |
+| `0EE` | `u8` | soleMover | 1 when the body took a pair's whole push, cleared when a push was split |
+| `0EF` | `u8` | pushSummary | set by `002E5380` from `+0xEC`, `+0xE8` and `+0xEE`; cleared with the accumulators |
+| `0F0` | `f32` | radiusA | ellipse radius |
+| `0F4` | `f32` | radiusB | ellipse radius; -1.0 on a freed body |
+| `0F8` | `f32` | heading | the ellipse's angle |
+| `0FC` | `f32` | margin | added to the separation |
+| `100` | `f32[3]` | push | accumulated x, y and z |
+| `110` | `u32` | maskA | the mask word `00314E10` and `0025B470` read |
+| `114` | `u32` | maskB | the second mask word |
+| `119` | `u8` | owner | equal non-zero owners never pair |
+| `120` | `u32` | sectorBits | from `0046AD20` |
+| `124` | `u32` | sector | the body's own sector |
+| `128` | `f32` | nearDistance | `d - r`, 0 when `d <= r` |
+| `12C` | `f32` | farDistance | `d + r` |
+
+| Address | Type | Name | Meaning |
+|---|---|---|---|
+| `02B57CC0` | `u16` | activeHead | first active body |
+| `02B57CC4` | `u16` | freeHead | first free body |
+| `02B57CC8` | `void*` | frameListHead | first placement linked by `003DB0D0` |
+| `02B57CD0` | `void*` | frameListTail | last placement linked |
+| `02B57CE0` | `u64[64]` | sectorMasks | 32 sectors, two words each |
+| `02B57EE0` | `u64[2]` | candidates | the candidate set of `003DAAB0` |
+| `02CA6034` | `f32` | centreX | sector centre x (`02CA603C` z) |
+| `02CA6040` | `f32` | sumX | running sum of x (`02CA6048` z, `02CA604C` the count) |
+
+`MovementContextHeights` (offsets from the start of the context):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `C0` | `f32` | height | class 3; setheight (`00269E60`), read by the shape `00268380` and the talk and touch tests |
+| `C4` | `f32` | underHeight | class 3; written with the talk depth by `0026ABD0` |
+| `E0` | `f32` | walkSpeed | class 3; model parameter `0x09000606`, setwalkspeed; read by `002640E0` |
+| `E4` | `f32` | walkThreshold | class 3; parameter `0x09000707` times [`01DFE0BC`], setwalkthresholdspeed; copied to render +`0x420` |
+
+`ObjectContextHeights` (offsets from the start of the context):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `20` | `f32[3]` | fieldsignPoint | the third fieldsign point (`0026BDD0`) |
+| `30` | `f32[2]` | touch | touch radii (`0026BEE0`) |
+| `5C` | `u8` | noHeightTest | h < 0 (`00269E60`, `0026BA00`) |
+| `68` | `f32` | talkHeight | the band above (`00269E60`, `0026BA00`) |
+| `6C` | `f32` | talkDepth | the band below (`0026B9D0`) |
+| `70` | `f32` | margin | setfreetargetw (`0026AB60`) |
 
 ## Shipped data
 

@@ -3,10 +3,8 @@ title: "Field runtime: how a frame drives every actor's script through the manag
 kind: "system"
 category: "Characters and objects"
 summary: "The per-frame pass that walks the actor manager slots and drives each actor's script: who calls it and how many sub-steps a frame runs, the refusals that stop a pass, the branches of the pass body, the party roster loop and the whole-field settled fold, the wait resolver between the pass and the bytecode interpreter with its wait kinds and parked flag, the wait slots the interpreter arms, the field-settled sequence that runs when nothing is pending, and the two globals the rest of the frame reads."
-addresses: ["0025D9E0", "00314020", "0025DF00", "0025E4C0", "00358940", "002620E0", "00261F90", "0025E400", "00583920", "003590D0", "003588B0", "0032FC30", "00233AA0", "00269860", "003DBF60", "003DC050", "003DB2A0", "002674B0", "003DB640", "00267420", "00267310", "0020E600", "0020E620"]
+addresses: "0025D9E0, 00314020, 0025DF00, 0025E4C0, 00358940, 002620E0, 00261F90, 0025E400, 00583920, 003590D0, 003588B0, 0032FC30, 00233AA0, 00269860, 003DBF60, 003DC050, 003DB2A0, 002674B0, 003DB640, 00267420, 00267310, 0020E600, 0020E620, 00269800"
 ---
-
-# Field runtime: how a frame drives every actor's script through the manager slots and the wait slots
 
 ## What the player sees
 
@@ -37,22 +35,23 @@ once nothing in the field is pending any more, runs the one-time sequence that f
 A slot is a `0x288`-byte block at `02098E10 + slot * 0x288`; five of them fill `02098E10`-`02099AB7`.
 The fields the pass uses:
 
-```
-struct ActorManagerSlot base=02098E10 size=0x288
-+0x000  u8*   payload        the bound definition payload; its i16 +0x50 is the designated record's ordinal
-+0x008  u8*   recordPool     i32 count, then count record pointers (00358940)
-+0x010  u8    flags          bit 0 bound, bit 2 field initialised, bit 3 and bit 4 the slot-0 request steps, bit 5 the 02ADD968 hold, bit 6 music selected, bit 7 field busy
-+0x011  u8    flags2         bit 0 a copy of flags bit 7, bit 1 one-shot trigger, bit 2 suspended, bit 3 blocks the request path
-+0x012  u8    drivePending   a designated record must be driven this pass
-+0x013  u8    requestFlag    with flags bit 0, enables the request path
-+0x017  u8    flags3         bit 2 skips the arming call, bit 4 the frozen pass, bit 7 the music hold
-+0x020  i32   recordCount    the records the loops visit (00358940 bounds the ordinal by the pool's own count)
-+0x024  i32   passCounter    incremented at every pass end
-+0x028  i32   slotIndex      0 for the primary slot
-+0x038  i32   passCounter2   incremented at every pass end
-+0x200  u8    rosterFlags    bit 1: the party roster is still being collected
-+0x201  u8    stepRequest    read by the tick's sub-step gate (00267310)
-```
+Struct ActorManagerSlot base=`02098E10` size=`0x288`:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `000` | `u8*` | payload | the bound definition payload; its i16 +`0x50` is the designated record's ordinal |
+| `008` | `u8*` | recordPool | i32 count, then count record pointers (`00358940`) |
+| `010` | `u8` | flags | bit 0 bound, bit 2 field initialised, bit 3 and bit 4 the slot-0 request steps, bit 5 the `02ADD968` hold, bit 6 music selected, bit 7 field busy |
+| `011` | `u8` | flags2 | bit 0 a copy of flags bit 7, bit 1 one-shot trigger, bit 2 suspended, bit 3 blocks the request path |
+| `012` | `u8` | drivePending | a designated record must be driven this pass |
+| `013` | `u8` | requestFlag | with flags bit 0, enables the request path |
+| `017` | `u8` | flags3 | bit 2 skips the arming call, bit 4 the frozen pass, bit 7 the music hold |
+| `020` | `i32` | recordCount | the records the loops visit (`00358940` bounds the ordinal by the pool's own count) |
+| `024` | `i32` | passCounter | incremented at every pass end |
+| `028` | `i32` | slotIndex | 0 for the primary slot |
+| `038` | `i32` | passCounter2 | incremented at every pass end |
+| `200` | `u8` | rosterFlags | bit 1: the party roster is still being collected |
+| `201` | `u8` | stepRequest | read by the tick's sub-step gate (`00267310`) |
 
 ### The refusals
 
@@ -143,6 +142,10 @@ marks the pass busy, is driven through `0025DF00`, and its `+0x14` bit 6 is fold
 value. `002F1A30(1)` (a scan of the 32 entries at `022BDEDE` under the mask `022BE7C0`) sets slot 0's
 flags2 bit 1 on slot 0; a set flags2 bit 1 marks the pass busy and is cleared.
 
+The same arming call is made outside the pass by `00269800(slot)`, which runs `00269860(record, 1)`
+on every record of the slot's class-3 range (ordinals `+0x1DE` to `+0x1DE + +0x1D6 - 1`); the
+`entrystart` verb's begin (`0x013F`, `003574B0`) runs it on slot 0.
+
 ### The field-settled sequence
 
 When flags bit 7 is set, nothing marked the pass busy and the slot index is 0, the pass runs once:
@@ -198,20 +201,21 @@ After the loop the resolver finishes the visit:
 A record's wait slots are the `0x28`-byte entries at `[record + 0xA8]`, one per resource channel,
 indexed by the record's `+0x11`:
 
-```
-struct ActorWaitSlot size=0x28
-+0x00  i32  stamp           kind 4 compares it with the record's +0x58
-+0x14  u8   waitKind        0 parked, 1 or 2 runnable, 3-7 the waits above
-+0x15  u8   commandPhase    0 begin pending, 1 polling, 2 int result pending, 3 float result pending (002621D0)
-+0x16  u8   parked          set when a visit ends held
-+0x18  i32  targetRef       kinds 3 and 6: a base-relative reference (0020E620 encodes, 0020E600 decodes against [01F83530])
-+0x1C  i32  listRef         kinds 5 and 7: a base-relative reference to a list (i32 count, then i32 entries: record ordinal low, resource id high)
-+0x20  u16  waitResourceId  kind 3
-+0x22  u16  listCursor      kinds 5 and 7: the entry the walk resumes from
-+0x24  u16  targetOrdinal   the record ordinal the interpreter armed the wait on
-+0x26  u8   waitChannel     kind 6
-+0x27  u8   settled         cleared when a wait is armed, set by kinds 3, 6 and 7
-```
+Struct ActorWaitSlot size=`0x28`:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `i32` | stamp | kind 4 compares it with the record's +`0x58` |
+| `14` | `u8` | waitKind | 0 parked, 1 or 2 runnable, 3-7 the waits above |
+| `15` | `u8` | commandPhase | 0 begin pending, 1 polling, 2 int result pending, 3 float result pending (`002621D0`) |
+| `16` | `u8` | parked | set when a visit ends held |
+| `18` | `i32` | targetRef | kinds 3 and 6: a base-relative reference (`0020E620` encodes, `0020E600` decodes against [`01F83530`]) |
+| `1C` | `i32` | listRef | kinds 5 and 7: a base-relative reference to a list (i32 count, then i32 entries: record ordinal low, resource id high) |
+| `20` | `u16` | waitResourceId | kind 3 |
+| `22` | `u16` | listCursor | kinds 5 and 7: the entry the walk resumes from |
+| `24` | `u16` | targetOrdinal | the record ordinal the interpreter armed the wait on |
+| `26` | `u8` | waitChannel | kind 6 |
+| `27` | `u8` | settled | cleared when a wait is armed, set by kinds 3, 6 and 7 |
 
 The interpreter `0025E4C0` arms a wait only when the thing waited on is already active (for kind 6,
 `003DB640` at `0025F593`, then the stores `0025F5A3`-`0025F5D4`, with `waitKind` and

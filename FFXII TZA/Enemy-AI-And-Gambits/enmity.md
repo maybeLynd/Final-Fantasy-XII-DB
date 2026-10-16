@@ -3,10 +3,8 @@ title: "Enmity: the hidden threat table that decides who an enemy attacks, what 
 kind: "system"
 category: "Enemy AI and gambits"
 summary: "How each enemy keeps one threat byte per party member: the three enmity numbers every action carries (to the target, spread to other enemies, drawn from the rest of the party), the +10 first-grudge boost and the seeding of every other member, the floor of 1, the decay of 10 every 30 steps while the enemy is not engaged, what KO, Stone, X-Zone and leaving the fight reset, the two orders that change it, and how the enemy AI reads it to pick a target."
-addresses: ["003216E0", "00321850", "003219D0", "00321B00", "00321530", "00321D30", "003215C0", "00321630", "00321770"]
+addresses: "003216E0, 00321850, 003219D0, 00321B00, 00321530, 00321D30, 003215C0, 00321630, 00321770"
 ---
-
-# Enmity: the hidden threat table that decides who an enemy attacks, what raises it, how it spreads and how it decays
 
 ## What the player sees
 

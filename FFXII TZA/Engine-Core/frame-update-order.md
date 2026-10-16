@@ -3,10 +3,8 @@ title: "Frame update order: what runs each frame for the field, the battle layer
 kind: "system"
 category: "Engine core"
 summary: "How one frame of the running game advances: the seven-state main loop and the handlers behind the title, the field, the full menu and the capture frames; the field frame's time accumulator that decides how many whole simulation steps run; the simulation tick's prologue, its five actor-manager slots and sixteen sub-steps, and its fixed tail; the field frame orchestrator that runs once per step for slot zero; the per-unit battle frame bound to every unit record; and the battle-state word the frame reads and writes bit by bit."
-addresses: ["0022A490", "0022A580", "00229F00", "00229EA0", "0022B6E0", "0022B7E0", "0022A770", "0022B8C0", "0022AF50", "0022BC20", "0022B000", "0035EB70", "0035EC80", "00314020", "0025BFB0", "0032FC30", "00267310", "00234590", "0025D9E0", "00234520", "003DB1F0", "002623A0", "002EEEB0", "00233F70", "00265A20", "00267240", "002671C0", "00300FC0", "002341C0", "0023B020", "00238A60", "00238AE0", "00238B00", "00238B20", "00238B70", "0032A200", "0050F2E0", "0050F170", "0050F380", "002E09A0", "002E2240", "0035E6F0", "00360080", "0035E9F0", "0035E9B0", "00358510", "00358280", "003586A0", "00358550", "00229ED0", "00233700", "00233640", "002335D0", "0023B200", "0026A5B0", "00360710", "00360A50", "002342F0", "002368D0", "0032A170", "00308610", "003590D0", "0031B770", "0026B730", "0036F460", "0027E9E0", "002507C0"]
+addresses: "0022A490, 0022A580, 00229F00, 00229EA0, 0022B6E0, 0022B7E0, 0022A770, 0022B8C0, 0022AF50, 0022BC20, 0022B000, 0035EB70, 0035EC80, 00314020, 0025BFB0, 0032FC30, 00267310, 00234590, 0025D9E0, 00234520, 003DB1F0, 002623A0, 002EEEB0, 00233F70, 00265A20, 00267240, 002671C0, 00300FC0, 002341C0, 0023B020, 00238A60, 00238AE0, 00238B00, 00238B20, 00238B70, 0032A200, 0050F2E0, 0050F170, 0050F380, 002E09A0, 002E2240, 0035E6F0, 00360080, 0035E9F0, 0035E9B0, 00358510, 00358280, 003586A0, 00358550, 00229ED0, 00233700, 00233640, 002335D0, 0023B200, 0026A5B0, 00360710, 00360A50, 002342F0, 002368D0, 0032A170, 00308610, 003590D0, 0031B770, 0026B730, 0036F460, 0027E9E0, 002507C0"
 ---
-
-# Frame update order: what runs each frame for the field, the battle layer and every unit
 
 ## What the player sees
 
@@ -290,27 +288,31 @@ word.
 
 ## Layouts
 
-```
-main loop cells (02064AA0 ..)
-02064AA0  u32  the pump's flag          02064AA4  u32  0
-02064AA8  u32  steps this pass          02064AC0  f32  time accumulator
-02064AC4  f32  speed factor             02064AC8  f32  step gain (1.0)
-02064ACC  u32  pacer ticks per frame    02064AD0  u8   game-step count
-02064AD1  u8                            02064AD2  u8   speed permit (00358550: 022C7F9A == 0x1F)
-02064AD3  u8   state 0-6                02064AD4  f32  1.0
-01FD4A68  u32  1 in states 4 and 6      01FD4A84  u32  1 in states 2, 3 and 5
-01FD4A80  u32  frame counter            01FD4A74  u32  speed pad latch   01FD4A8C  u32  one-shot 1.0 accumulator reload
-01FD4A98  i32  speed index 0-2          00908BA8  f32[4]  speed table {1.0, 2.0, 4.0, 0.0}
-022C7F9A  u8   step permit byte (bits 1-4 = the four preconditions; 1 at boot and after every step)
-01E02820  f32  accumulator at the top of the pass   02064AEC  ptr  end-of-step callback (called once, then cleared)
+Main loop cells (`02064AA0` ..):
 
-tick globals
-022C2548  u32  tick in progress         022C252C / 022C2530  u32 tick counters
-01EED060 / 01EED064  i32  the deferred mode request (-1 none)
-02099ABC  u32  manager request mask (bits 0-4)
-02098E10  actor-manager slots, 5 x 0x288: +0x201 u8 sub-step opt-in
-02089340  u32  the battle-state word    0208E6A8 / 0208E6A4  the one-shot callback and its handle
-```
+| Address | Type | Name | Meaning |
+|---|---|---|---|
+| `02064AA0` | `u32` | the pump's flag | `02064AA4`  u32  0 |
+| `02064AA8` | `u32` | steps this pass | `02064AC0`  f32  time accumulator |
+| `02064AC4` | `f32` | speed factor | `02064AC8`  f32  step gain (1.0) |
+| `02064ACC` | `u32` | pacer ticks per frame | `02064AD0`  u8   game-step count |
+| `02064AD1` | `u8` | 02064AD2 | u8   speed permit (`00358550`: `022C7F9A` == `0x1F`) |
+| `02064AD3` | `u8` | state 0-6 | `02064AD4`  f32  1.0 |
+| `01FD4A68` | `u32` | 1 in states 4 and 6 | `01FD4A84`  u32  1 in states 2, 3 and 5 |
+| `01FD4A80` | `u32` | frame counter | `01FD4A74`  u32  speed pad latch   `01FD4A8C`  u32  one-shot 1.0 accumulator reload |
+| `01FD4A98` | `i32` | speed index 0-2 | `00908BA8`  f32[4]  speed table {1.0, 2.0, 4.0, 0.0} |
+| `022C7F9A` | `u8` | step permit byte (bits 1-4 = the four preconditions; 1 at boot and after every step) |  |
+| `01E02820` | `f32` | accumulator at the top of the pass | `02064AEC`  ptr  end-of-step callback (called once, then cleared) |
+
+Tick globals:
+
+| Address | Type | Name | Meaning |
+|---|---|---|---|
+| `022C2548` | `u32` | tick in progress | `022C252C` / `022C2530`  u32 tick counters |
+| `01EED060` | `/ 01EED064` | i32 | the deferred mode request (-1 none) |
+| `02099ABC` | `u32` | manager request mask (bits 0-4) |  |
+| `02098E10` | `actor-manager` | slots, | 5 x `0x288`: +`0x201` u8 sub-step opt-in |
+| `02089340` | `u32` | the battle-state word | `0208E6A8` / `0208E6A4`  the one-shot callback and its handle |
 
 ## Shipped data
 

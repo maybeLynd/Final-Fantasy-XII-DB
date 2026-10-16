@@ -3,10 +3,8 @@ title: "Authored presentation commands: the command handlers and their ramp chan
 kind: "system"
 category: "Graphics"
 summary: "The presentation commands authored in model and motion data and run on a character's render record: how the stream is walked and dispatched through the pair table and the two handler banks, what each registered handler does, and the five ramp channels that commands 0x0D to 0x10 drive on the character's shadow entry, with the tick that advances them and the shadow build that consumes them."
-addresses: ["0041DA90", "01EFFAF0", "02CA4410", "02CA4670", "0041D6C0", "0041D6D0", "0041CCA0", "004269A0", "002EA320", "002EA5F0", "00417AD0", "00417C60", "004173D0", "00417440", "00417460", "004174D0", "00426870", "00520800", "02B40528", "003B6890", "003B6A90", "003B69B0", "003B6A10", "003B6950", "003B5890", "003B5C00", "003B5D40", "003B62D0", "02B40524", "003B6930"]
+addresses: "0041DA90, 01EFFAF0, 02CA4410, 02CA4670, 0041D6C0, 0041D6D0, 0041CCA0, 004269A0, 002EA320, 002EA5F0, 00417AD0, 00417C60, 004173D0, 00417440, 00417460, 004174D0, 00426870, 00520800, 02B40528, 003B6890, 003B6A90, 003B69B0, 003B6A10, 003B6950, 003B5890, 003B5C00, 003B5D40, 003B62D0, 02B40524, 003B6930"
 ---
-
-# Authored presentation commands: the command handlers and their ramp channels
 
 ## What the player sees
 
@@ -169,30 +167,30 @@ The values used are saved at `+0xC0` to `+0xD4` for the next cross-fade.
 
 A command record:
 
-```
-+0x00  u16  bits 0-6 id, bits 7-15 length in bytes
-+0x02  ...  parameters: subtype bytes at +2/+3, words or floats from +4
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u16` | bits 0-6 id, bits 7-15 length in bytes |  |
+| `02` | `...` | parameters: subtype bytes at +2/+3, words or floats from +4 |  |
 
 A first-pool shadow slot (`0xE0` bytes, 160 at `[02B40528]`), the ramp fields:
 
-```
-+0x00  u8      counter, channel 0 (pair)
-+0x01  u8      counter, channel 1
-+0x02  u8      counter, channel 2 (pair)
-+0x03  u8      counter, channel 3
-+0x10  u32     handle: generation << 8 | slot
-+0x40  u8      bit 0 enabled
-+0x41  u8      bit 0 paused, bit 1 hidden
-+0x43  u8      counter, cross-fade
-+0x50  f32[2]  channel 0: anchor offset       +0x60  f32[2]  its step
-+0x58  f32[2]  channel 2: extent scales       +0x68  f32[2]  its step
-+0x70  f32     channel 1: rotation            +0x74  f32     its step
-+0x78  f32     channel 3: strength            +0x7C  f32     its step
-+0x80  f32[6]  the cross-fade's previous values
-+0x98  f32     cross-fade weight input        +0x9C  f32     its step
-+0xC0  f32[6]  the values last built
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | counter, channel 0 (pair) |  |
+| `01` | `u8` | counter, channel 1 |  |
+| `02` | `u8` | counter, channel 2 (pair) |  |
+| `03` | `u8` | counter, channel 3 |  |
+| `10` | `u32` | handle: generation << 8 \| slot |  |
+| `40` | `u8` | bit 0 enabled |  |
+| `41` | `u8` | bit 0 paused, bit 1 hidden |  |
+| `43` | `u8` | counter, cross-fade |  |
+| `50` | `f32[2]` | channel 0: anchor offset | +`0x60`  f32[2]  its step |
+| `58` | `f32[2]` | channel 2: extent scales | +`0x68`  f32[2]  its step |
+| `70` | `f32` | channel 1: rotation | +`0x74`  f32     its step |
+| `78` | `f32` | channel 3: strength | +`0x7C`  f32     its step |
+| `80` | `f32[6]` | the cross-fade's previous values |  |
+| `98` | `f32` | cross-fade weight input | +`0x9C`  f32     its step |
+| `C0` | `f32[6]` | the values last built |  |
 
 Every access to the slot fields is in
 [the ramp-channel access table](authored-presentation-commands-ramp-channel-record-accesses.tsv).

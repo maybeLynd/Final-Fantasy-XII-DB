@@ -3,10 +3,8 @@ title: "File size tables: the per-language .fst that sizes every file by resourc
 kind: "format"
 category: "Game files and data tables"
 summary: "The FileSizeTables/FileSizeTable_<lang>.fst files: a headerless table of 41 resource kinds by 5,000 ids giving each file's byte size or -1, how the game picks and reads one at boot, how request sizes come from it, why a -1 entry is never read, the 41 path arrays the ids index, which kinds are sized and what each holds, the kinds with paths but no sizes, and how the twelve language files differ."
-addresses: ["002DF9A0", "02EC3EE0", "002DF960", "0032E400", "0032EB40", "002DF780", "0215F000", "01E88B00", "00B56AC8", "0032FCA0", "0024AC30", "022C51F0", "0032EA90"]
+addresses: "002DF9A0, 02EC3EE0, 002DF960, 0032E400, 0032EB40, 002DF780, 0215F000, 01E88B00, 00B56AC8, 0032FCA0, 0024AC30, 022C51F0, 0032EA90, 0046DE50, 0032EC20, 0046E050, 0046DE80, 0046DD50, 00536F30, 00536DD0"
 ---
-
-# File size tables: the per-language .fst that sizes every file by resource kind and id
 
 ## What the player sees
 
@@ -116,6 +114,24 @@ with nothing read. No call site of `0032E620` passes kind 6, 27 or 31.
 - **A refused request.** The queue completes it with the
   previous read's status, normally as delivered, with the destination untouched.
 - **No bounds checks.** Neither reader tests the kind or the id against 41 or 5,000.
+
+### Behind the staged head read
+
+`0032EB40` first clears read-layer slot `slot` (`0046DE50`: its destination `+0x10`) and gives its request the
+word `slot << 24 | kind << 16 | id` and the delivery callback `0032EC20`, which unpacks that word into
+`0046E050(slot, kind, id, dest)`. That fills one of two `0xA0`-byte slots at `02CA6070`: the kind, the
+destination, and a sector that `0046DE80(kind, id)` computes from a sector directory at
+`02EBA508`.
+
+Nothing writes `02EBA508`, which is 0 in the image, so the sector is always 0. The read layer's tick
+`0046DD50` acts only in its states 1 to 4, and its state `02CA6068` is 0 in the image and written only by
+the tick itself (to 0, 3 and 4), so the tick never leaves state 0.
+
+The expansion the tick would hand to `00369050` therefore never runs: `00536F30` reads a header (12
+bytes when byte 3 is `d`, else 16; the size in the low 25 bits of `+8`) and by the low two bits of `+4`
+copies the data, expands it with `00536DD0`, or with `00537030`. In `00536DD0` an even control byte b
+copies `b >> 1` literal bytes, and an odd one with the next byte copies `(next >> 4) + 3` bytes from
+`((word >> 1) & 0x7FF) + 1` bytes back.
 
 ## Modding notes
 

@@ -3,10 +3,8 @@ title: "Party members and guests: who can join, how the story adds and removes t
 kind: "system"
 category: "Party"
 summary: "Who is in the party: the main and guest ranges of the forty party rows, the add and remove functions and the rule that nobody is in the party twice, where a guest is seated, the level and LP catch-up a joining member gets, what a join adds to the inventory and what a leave takes away, the commit and wait every change goes through, the script verbs and how they pick who fights, how a member's actor takes a roster slot, and every join and leave the shipped scripts perform."
-addresses: ["003172E0", "003170E0", "00328B20", "003288F0", "00316DF0", "00317480", "00323540", "003261D0", "00328DB0", "00269C70", "00322350"]
+addresses: "003172E0, 003170E0, 00328B20, 003288F0, 00316DF0, 00317480, 00323540, 003261D0, 00328DB0, 00269C70, 00322350"
 ---
-
-# Party members and guests: who can join, how the story adds and removes them, where a guest sits, and what a join brings
 
 ## What the player sees
 

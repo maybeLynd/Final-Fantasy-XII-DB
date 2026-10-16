@@ -3,10 +3,8 @@ title: "Position entries (FF12POS3): a zone's authored points, boxes and ellipse
 kind: "format"
 category: "EBP script files"
 summary: "Section 16 of a zone .ebp, magic FF12POS3 and named POSENT by the engine: a 16-byte header and 0x30-byte records holding a type (point, box or ellipse), two extents, a position and a heading. The section is bound whole into field root 0 (02B59D48) and read through one accessor, 003DFD00, by spawn placement, the enemy wander orders, the AI distance condition, two fixed-entry steering routines and the position verbs; also the older-layout reader behind getcrystalid and getanchorid, the 4,653 shipped tables and the editing rules."
-addresses: ["003320E0", "003DFE60", "02B59D48", "003DFD00", "00320940", "003209C0", "00236450", "00319390", "00312DF0", "00312730", "00301AD0", "003394A0", "0033DB60", "00354FB0", "003DFAC0", "00264CA0", "003DFA50"]
+addresses: "003320E0, 003DFE60, 02B59D48, 003DFD00, 00320940, 003209C0, 00236450, 00319390, 00312DF0, 00312730, 00301AD0, 003394A0, 0033DB60, 00354FB0, 003DFAC0, 00264CA0, 003DFA50"
 ---
-
-# Position entries (FF12POS3): a zone's authored points, boxes and ellipses, the accessor that copies them and the systems that read them
 
 ## What the player sees
 
@@ -33,17 +31,17 @@ releases the roots.
 +size  u32      0x0000000A
 ```
 
-```
-+0x00  u32  type      read as a byte: 0 point, 1 box, 2 ellipse
-+0x04  f32  extentX   box width or ellipse diameter along the record's local x
-+0x08  f32  extentZ   box depth or ellipse diameter along the record's local z
-+0x0C  f32            1.0
-+0x10  f32  x
-+0x14  f32  y
-+0x18  f32  z
-+0x1C  f32  heading   radians, rotates the region
-+0x20  f32[4]         0
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | type | read as a byte: 0 point, 1 box, 2 ellipse |
+| `04` | `f32` | extentX | box width or ellipse diameter along the record's local x |
+| `08` | `f32` | extentZ | box depth or ellipse diameter along the record's local z |
+| `0C` | `f32` | 1.0 |  |
+| `10` | `f32` | x |  |
+| `14` | `f32` | y |  |
+| `18` | `f32` | z |  |
+| `1C` | `f32` | heading | radians, rotates the region |
+| `20` | `f32[4]` | 0 |  |
 
 ## Shipped data
 

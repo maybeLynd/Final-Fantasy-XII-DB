@@ -3,10 +3,8 @@ title: "Exception handling: x64 unwind data, funclets and the C++ EH tables"
 kind: "system"
 category: "Compiler and C runtime"
 summary: "How exceptions and unwinding work in FFXII_TZA.exe: the .pdata and UNWIND_INFO records and the four handlers they name, the FuncInfo record with its unwind, try-block and IP-to-state maps, the cleanup and catch funclets in .text$x and what they jump to, the nine __try scopes, the one exception type the image throws itself, and the stream-sentry destructor clones the unwind maps reach."
-addresses: ["02F98000", "00861EB4", "00808BA8", "00808F64", "00861ED8", "00861ECC", "00861EAE", "0080926C", "00715C70", "0016D6A0", "006DA980", "00809054", "008090C0", "008A5C0A", "005CD1E0", "007A3770", "005CCBF0", "00194B00", "008F34F0", "008968C8", "00896BE0", "001952E0", "01DEAAA0"]
+addresses: "02F98000, 00861EB4, 00808BA8, 00808F64, 00861ED8, 00861ECC, 00861EAE, 0080926C, 00715C70, 0016D6A0, 006DA980, 00809054, 008090C0, 008A5C0A, 005CD1E0, 007A3770, 005CCBF0, 00194B00, 008F34F0, 008968C8, 00896BE0, 001952E0, 01DEAAA0, 0019A4F0"
 ---
-
-# Exception handling: x64 unwind data, funclets and the C++ EH tables
 
 ## What the player sees
 
@@ -90,6 +88,9 @@ bytes. The common tail-jump targets:
 - `001A2830`, from 74: frees an EASTL buffer (begin `+0`, capacity end `+0x10`) through slot 3 of
   the allocator at `+0x18`.
 
+`0019A4F0` is the clean-up target of three funclets (`00896D00`, `008A5930`, `008A593C`): it frees the
+`BSTR` its argument points to (`SysFreeString`, `jmp [008C27C8]`).
+
 ### Funclets that do nothing
 
 `0016D6A0` is three bytes, `ret 0`. 66 funclets tail-jump to it, 106 call it, and 3 pass it as the
@@ -113,6 +114,18 @@ and returns the address the parent resumes at.
   stream and returns `00194C5E`, inside its parent `00194B00`.
 - `00896993` frees a `std::string` buffer before rethrowing; see
   [msvc-containers.md](msvc-containers.md).
+- Of the 63 in the first group, 22 first free a half-built block through `00210EB0`, and 16 release
+  one through a sized standard-library release that checks the 32-byte rule: `00790840` (8-byte
+  elements, 8 funclets), `00209AD0` (4-byte, 4) or `00209B50` (16-byte, 4). 7 rethrow at once and 18
+  clean up another way first; `00899670`, for one, calls slot 0 of the object at frame `+0x60` with
+  `edx` 1 when it is non-null.
+- `008A5C4B`, the handler of `008098D4`, returns `008098E9`, where that routine clears `eax`:
+  `008098D4` allocates through `00210EC0` and returns null instead of passing an exception on.
+- `00896960`, a handler of the string grow `00195670`, allocates again through `001DF990` for the
+  size held at frame `+0x68` plus one byte and resumes at `0019573B`.
+
+`exception-handling-catch-funclets.tsv` lists all 72 with their parents, `FuncInfo` records, sizes,
+the calls they make and where they end.
 
 ### What the image throws
 
@@ -164,66 +177,86 @@ and `uncaught_exception` from `MSVCP140`, and `001DDC40` calls `_Ipfx`, `sgetc` 
 So the bodies are the destructor of the stream sentry these routines construct at frame `+0x28`.
 They are listed in `exception-handling-bk6-sentry-base-destructor-clones.tsv`.
 
+`001953F0` is the fuller form for a wide-character output stream: unless `uncaught_exception`
+returns true it calls `basic_ostream<wchar_t>::_Osfx`, then makes the same slot-2 call. The funclet
+`0089690C` (`lea rcx,[rdx+0x28] ; jmp 001953F0`) reaches it from `00194CD0`.
+
 ## Layouts
 
-```struct RuntimeFunction base=record size=0xC
-+0x00  u32  begin       RVA of the first byte of the range
-+0x04  u32  end         RVA one past the last byte
-+0x08  u32  unwindInfo  RVA of the UNWIND_INFO in .xdata
-```
+`RuntimeFunction` (`0xC` bytes, offsets from the start of the record):
 
-```struct UnwindInfoHead base=record size=0x4
-+0x00  u8  versionFlags  version in bits 0-2 (always 1); flags in bits 3-7: 1 exception handler, 2 termination handler, 4 chained
-+0x01  u8  prologSize    bytes of prologue
-+0x02  u8  codeCount     2-byte unwind codes that follow, padded to an even count; then the handler RVA and its data, or the chained RuntimeFunction
-+0x03  u8  frame         frame register in bits 0-3, scaled offset in bits 4-7
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | begin | RVA of the first byte of the range |
+| `04` | `u32` | end | RVA one past the last byte |
+| `08` | `u32` | unwindInfo | RVA of the UNWIND_INFO in .xdata |
 
-```struct FuncInfo base=record size=0x28
-+0x00  u32  magic           0x19930522 in all 4,446 records
-+0x04  i32  maxState        unwind-map entries
-+0x08  u32  unwindMap       RVA of UnwindMapEntry[maxState]
-+0x0C  u32  tryBlockCount   try blocks
-+0x10  u32  tryBlockMap     RVA of TryBlockMapEntry[tryBlockCount]
-+0x14  u32  ipMapCount      IP-to-state entries
-+0x18  u32  ipToStateMap    RVA of IpToStateEntry[ipMapCount]
-+0x1C  i32  dispUnwindHelp  frame offset of the slot the prologue sets to -2
-+0x20  u32  esTypeList      0 in every record
-+0x24  u32  flags           1 in 2,443 records, 5 in 2,003
-```
+`UnwindInfoHead` (`0x4` bytes, offsets from the start of the record):
 
-```struct UnwindMapEntry base=record size=0x8
-+0x00  i32  toState  state to continue with; always lower than this entry's index
-+0x04  u32  action   RVA of the cleanup funclet, 0 for none
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | versionFlags | version in bits 0-2 (always 1); flags in bits 3-7: 1 exception handler, 2 termination handler, 4 chained |
+| `01` | `u8` | prologSize | bytes of prologue |
+| `02` | `u8` | codeCount | 2-byte unwind codes that follow, padded to an even count; then the handler RVA and its data, or the chained RuntimeFunction |
+| `03` | `u8` | frame | frame register in bits 0-3, scaled offset in bits 4-7 |
 
-```struct IpToStateEntry base=record size=0x8
-+0x00  u32  ip     RVA from which the state applies
-+0x04  i32  state  -1 outside any object's lifetime
-```
+`FuncInfo` (`0x28` bytes, offsets from the start of the record):
 
-```struct TryBlockMapEntry base=record size=0x14
-+0x00  i32  tryLow        first state of the try range
-+0x04  i32  tryHigh       last state of the try range
-+0x08  i32  catchHigh     highest state inside the handlers
-+0x0C  i32  catchCount    handlers; 1 in every block
-+0x10  u32  handlerArray  RVA of HandlerType[catchCount]
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | magic | `0x19930522` in all 4,446 records |
+| `04` | `i32` | maxState | unwind-map entries |
+| `08` | `u32` | unwindMap | RVA of UnwindMapEntry[maxState] |
+| `0C` | `u32` | tryBlockCount | try blocks |
+| `10` | `u32` | tryBlockMap | RVA of TryBlockMapEntry[tryBlockCount] |
+| `14` | `u32` | ipMapCount | IP-to-state entries |
+| `18` | `u32` | ipToStateMap | RVA of IpToStateEntry[ipMapCount] |
+| `1C` | `i32` | dispUnwindHelp | frame offset of the slot the prologue sets to -2 |
+| `20` | `u32` | esTypeList | 0 in every record |
+| `24` | `u32` | flags | 1 in 2,443 records, 5 in 2,003 |
 
-```struct HandlerType base=record size=0x14
-+0x00  u32  adjectives    0x40 in every handler
-+0x04  u32  typeDesc      0 in every handler: catch (...)
-+0x08  i32  catchObj      frame offset of the caught object, 0
-+0x0C  u32  handler       RVA of the catch funclet
-+0x10  u32  frameOffset   0x38, 0x48 or 0x58
-```
+`UnwindMapEntry` (`0x8` bytes, offsets from the start of the record):
 
-```struct ScopeEntry base=record size=0x10
-+0x00  u32  begin    RVA of the guarded range
-+0x04  u32  end      RVA one past it
-+0x08  u32  handler  filter RVA, the constant 1, or the __finally RVA
-+0x0C  u32  target   RVA of the __except body inside the parent; 0 for __finally
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `i32` | toState | state to continue with; always lower than this entry's index |
+| `04` | `u32` | action | RVA of the cleanup funclet, 0 for none |
+
+`IpToStateEntry` (`0x8` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | ip | RVA from which the state applies |
+| `04` | `i32` | state | -1 outside any object's lifetime |
+
+`TryBlockMapEntry` (`0x14` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `i32` | tryLow | first state of the try range |
+| `04` | `i32` | tryHigh | last state of the try range |
+| `08` | `i32` | catchHigh | highest state inside the handlers |
+| `0C` | `i32` | catchCount | handlers; 1 in every block |
+| `10` | `u32` | handlerArray | RVA of HandlerType[catchCount] |
+
+`HandlerType` (`0x14` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | adjectives | `0x40` in every handler |
+| `04` | `u32` | typeDesc | 0 in every handler: catch (...) |
+| `08` | `i32` | catchObj | frame offset of the caught object, 0 |
+| `0C` | `u32` | handler | RVA of the catch funclet |
+| `10` | `u32` | frameOffset | `0x38`, `0x48` or `0x58` |
+
+`ScopeEntry` (`0x10` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | begin | RVA of the guarded range |
+| `04` | `u32` | end | RVA one past it |
+| `08` | `u32` | handler | filter RVA, the constant 1, or the __finally RVA |
+| `0C` | `u32` | target | RVA of the __except body inside the parent; 0 for __finally |
 
 A `__C_specific_handler` record's data is a `u32` scope count followed by that many `ScopeEntry`.
 

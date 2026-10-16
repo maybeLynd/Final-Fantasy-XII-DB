@@ -3,10 +3,8 @@ title: "Random number generators: the gameplay Mersenne Twister, the shared game
 kind: "system"
 category: "Random numbers"
 summary: "Every random source in the game: the Mersenne Twister that combat and chests draw from and how it is seeded at boot, lazily and on a save load; the three-step linear congruential generator that loot, the chain, spawning and the AI share and its per-area counter seed; the second Mersenne Twister that only the noise texture uses; the C runtime rand; the bit-feedback generator behind presentation effects; the counter hash and the xorshift128 inside the post-processing code. Each with its state address, step formula, seed and draw count."
-addresses: ["00863BF0", "00863C80", "00866B90", "00866D60", "00863D30", "00328370", "00328D80", "0018EE20", "0018D740", "0015BCF0", "003D8E50", "004005E0", "006B05E0", "0074BDE0"]
+addresses: "00863BF0, 00863C80, 00866B90, 00866D60, 00863D30, 00328370, 00328D80, 0018EE20, 0018D740, 0015BCF0, 003D8E50, 004005E0, 006B05E0, 0074BDE0"
 ---
-
-# Random number generators: the gameplay Mersenne Twister, the shared gameplay LCG, the graphics-noise Mersenne Twister, the C runtime rand, the presentation bit-feedback generator, the counter hash and the PPFX xorshift, with their constants, seeds and states
 
 ## What the player sees
 
@@ -179,19 +177,23 @@ set. The counter and the kernels (`02EA24A0`) are referenced only from this rout
 
 ## Layouts
 
-```struct Mt19937State base=record size=0x9C8
-+0x000  u32[624] state    the MT19937 state vector; 00866D60 (seed), 00866B90 (twist)
-+0x9C0  i32      index    next word to draw, 624 = refill needed; 00866D60, 00866B90, 00863BF0, 00863C80
-+0x9C4  u8       seeded   0 until the first seed; 00863BF0, 00863C80, 00863D30
-+0x9C5  u8[3]    pad      not written by the five functions
-```
+`Mt19937State` (`0x9C8` bytes, offsets from the start of the record):
 
-```struct GraphicsNoiseMtState base=record size=0x9D0
-+0x000  u32[624] state    the MT19937 state vector; 0018D740 (seed), 0018EE20 (twist)
-+0x9C0  u64      cursor   pointer to the next word; 0018EE20, 001946E0
-+0x9C8  u32      count    words left before a refill; 0018EE20, 001946E0
-+0x9CC  u32      pad      not written by the three functions
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `000` | `u32[624] state` | the MT19937 state vector; 00866D60 (seed), 00866B90 (twist) |  |
+| `9C0` | `i32` | index | next word to draw, 624 = refill needed; `00866D60`, `00866B90`, `00863BF0`, `00863C80` |
+| `9C4` | `u8` | seeded | 0 until the first seed; `00863BF0`, `00863C80`, `00863D30` |
+| `9C5` | `u8[3]` | pad | not written by the five functions |
+
+`GraphicsNoiseMtState` (`0x9D0` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `000` | `u32[624] state` | the MT19937 state vector; 0018D740 (seed), 0018EE20 (twist) |  |
+| `9C0` | `u64` | cursor | pointer to the next word; `0018EE20`, `001946E0` |
+| `9C8` | `u32` | count | words left before a refill; `0018EE20`, `001946E0` |
+| `9CC` | `u32` | pad | not written by the three functions |
 
 ## Operations
 

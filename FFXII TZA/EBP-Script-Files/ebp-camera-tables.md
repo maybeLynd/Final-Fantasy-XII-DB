@@ -3,10 +3,8 @@ title: "EBP camera tables: the CML1 shot list and the CAM7 shots a script's came
 kind: "format"
 category: "EBP script files"
 summary: "Sections 8 and 9 of an .ebp script: the CML1 list whose rows a script's camera verbs name and the CAM7 table of shots, ease curves and paths those rows index; how both are bound to an actor manager and what the load does to them, the shot record's key and segment command stream as the player reads it, the attachment word, the curve and path evaluators, the shipped tables in all nine language trees, and the rules an edit must follow."
-addresses: ["0032FA10", "0032FAC0", "002561C0", "003DA1F0", "0032F3D0", "005C5230", "00256530", "002572E0", "003DA400", "003DA330", "003DA300", "00258350", "00255410", "002554E0", "003CC5F0", "003CC740", "003CC890", "0032ED80", "02092800", "022C6D58", "022C6D80"]
+addresses: "0032FA10, 0032FAC0, 002561C0, 003DA1F0, 0032F3D0, 005C5230, 00256530, 002572E0, 003DA400, 003DA330, 003DA300, 00258350, 00255410, 002554E0, 003CC5F0, 003CC740, 003CC890, 0032ED80, 02092800, 022C6D58, 022C6D80"
 ---
-
-# EBP camera tables: the CML1 shot list and the CAM7 shots a script's camera verbs play
 
 ## What the player sees
 

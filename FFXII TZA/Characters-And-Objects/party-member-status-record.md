@@ -3,10 +3,8 @@ title: "Party member status record: the snapshot the menus and HUD read a party 
 kind: "system"
 category: "Characters and objects"
 summary: "The 192-byte record that the status screen, the party menu, the licence board, the save screen and the HUD read a party member from: who builds it, from which fields of the party stats record, its battle unit and its party row, every field it carries with its source, the flag word that says whether the member is KO'd, engaged, idle, selected or out of range, the experience curve behind the points to the next level, and which screen reads which field."
-addresses: ["00329220", "0031FE70", "00320040", "0031FEC0", "0031FF70", "0031B9F0", "0031FDA0", "003879C0", "0030C2C0", "003135E0", "00313800", "00303EE0", "00327200", "0030A310", "002F8F20", "00387090", "003A1960", "00324020", "00263C20", "00313F60"]
+addresses: "00329220, 0031FE70, 00320040, 0031FEC0, 0031FF70, 0031B9F0, 0031FDA0, 003879C0, 0030C2C0, 003135E0, 00313800, 00303EE0, 00327200, 0030A310, 002F8F20, 00387090, 003A1960, 00324020, 00263C20, 00313F60"
 ---
-
-# Party member status record: the snapshot the menus and HUD read a party member through, field by field
 
 ## What the player sees
 
@@ -135,44 +133,45 @@ While a unit owns the record:
 
 ## Layouts
 
-```
-struct PartyMemberStatusRecord size=0xC0
-+0x00  u32     flags           the flag word above
-+0x04  u32     actorHandle     the roster member's handle, or the owning unit's +0x08
-+0x08  u32     focusHandle     the unit's +0x710 while acting
-+0x10  u8*     name            the party row's name text; the empty string when a unit owns the record
-+0x18  u32     unitField64     unit +0x64
-+0x1C  u32     unitField68     unit +0x68
-+0x20  i32     hp              stats +0x48
-+0x24  i32     hpMaxEffective  stats +0x24, or max(hp, 1) under status bit 16
-+0x28  i32     hpCap           hpMaxEffective doubled under status bit 28
-+0x2C  i32     mp              stats +0x4C
-+0x30  i32     mpCapacity      stats +0x28
-+0x34  i32     mpCapacityShown mpCapacity, or 0 when layer bytes +0x6C or +0x7C carry bit 7
-+0x38  i32     secondary       stats +0x06
-+0x3C  u32     actionField768  unit +0x768 while acting
-+0x40  u32     actionField76C  unit +0x76C while acting
-+0x44  u32     statusPresence  stats +0x64 | +0x3C
-+0x48  u32     statusWord      stats +0x3C
-+0x4C  u8[16]  mergedLayers    stats +0x68 OR +0x78, byte-wise
-+0x5C  u16     actionId        the unit's +0x714, or 00387090(stats) from phase 9
-+0x5E  u16     issuedCommand   unit +0xBA0 while unit flag bit 14
-+0x60  u16     type            stats +0x04
-+0x62  u16     kind            stats +0x05
-+0x64  u16     classRowWord52  [unit + 0xE68] +0x52 for a kind-1 record
-+0x66  u8[32]  countdown       low byte of duration dword +0xBC + 4s, minus 1, for present statuses 2 and 6, else 0xFE
-+0x86  u8      charges         stats +0x4E
-+0x87  u8      bars            stats +0x37
-+0x88  u8      spawnCounter    spawn record +0x12
-+0x89  u8[5]   affinity        stats +0x40 .. +0x44
-+0x90  i32     experience      stats +0x18C (full)
-+0x94  i32     toNextLevel     curve(level) - experience (full)
-+0x98  u32[6]  equipment       stats +0x50 .. +0x5A, each << 16 (full)
-+0xB0  i32     lp              stats +0x190 (full)
-+0xB4  u16[3]  partyRowBytes   party row +4 .. +6
-+0xBA  u8      level           stats +0x1C2 (full)
-+0xBB  u8      licenceCount    set bits among licence bits 0-17 (full)
-```
+Struct PartyMemberStatusRecord size=`0xC0`:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | flags | the flag word above |
+| `04` | `u32` | actorHandle | the roster member's handle, or the owning unit's +`0x08` |
+| `08` | `u32` | focusHandle | the unit's +`0x710` while acting |
+| `10` | `u8*` | name | the party row's name text; the empty string when a unit owns the record |
+| `18` | `u32` | unitField64 | unit +`0x64` |
+| `1C` | `u32` | unitField68 | unit +`0x68` |
+| `20` | `i32` | hp | stats +`0x48` |
+| `24` | `i32` | hpMaxEffective | stats +`0x24`, or max(hp, 1) under status bit 16 |
+| `28` | `i32` | hpCap | hpMaxEffective doubled under status bit 28 |
+| `2C` | `i32` | mp | stats +`0x4C` |
+| `30` | `i32` | mpCapacity | stats +`0x28` |
+| `34` | `i32` | mpCapacityShown mpCapacity, or 0 when layer bytes +0x6C or +0x7C carry bit 7 |  |
+| `38` | `i32` | secondary | stats +`0x06` |
+| `3C` | `u32` | actionField768 | unit +`0x768` while acting |
+| `40` | `u32` | actionField76C | unit +`0x76C` while acting |
+| `44` | `u32` | statusPresence | stats +`0x64` \| +`0x3C` |
+| `48` | `u32` | statusWord | stats +`0x3C` |
+| `4C` | `u8[16]` | mergedLayers | stats +`0x68` OR +`0x78`, byte-wise |
+| `5C` | `u16` | actionId | the unit's +`0x714`, or `00387090`(stats) from phase 9 |
+| `5E` | `u16` | issuedCommand | unit +`0xBA0` while unit flag bit 14 |
+| `60` | `u16` | type | stats +`0x04` |
+| `62` | `u16` | kind | stats +`0x05` |
+| `64` | `u16` | classRowWord52 | [unit + `0xE68`] +`0x52` for a kind-1 record |
+| `66` | `u8[32]` | countdown | low byte of duration dword +`0xBC` + 4s, minus 1, for present statuses 2 and 6, else `0xFE` |
+| `86` | `u8` | charges | stats +`0x4E` |
+| `87` | `u8` | bars | stats +`0x37` |
+| `88` | `u8` | spawnCounter | spawn record +`0x12` |
+| `89` | `u8[5]` | affinity | stats +`0x40` .. +`0x44` |
+| `90` | `i32` | experience | stats +`0x18C` (full) |
+| `94` | `i32` | toNextLevel | curve(level) - experience (full) |
+| `98` | `u32[6]` | equipment | stats +`0x50` .. +`0x5A`, each << 16 (full) |
+| `B0` | `i32` | lp | stats +`0x190` (full) |
+| `B4` | `u16[3]` | partyRowBytes | party row +4 .. +6 |
+| `BA` | `u8` | level | stats +`0x1C2` (full) |
+| `BB` | `u8` | licenceCount | set bits among licence bits 0-17 (full) |
 
 The sixth equipment word at `+0xAC` is the stats record's `+0x5A`, not a sixth slot: see the
 [equipment slots page](../Items-Equipment-Shops-And-Licenses/equipment.md).

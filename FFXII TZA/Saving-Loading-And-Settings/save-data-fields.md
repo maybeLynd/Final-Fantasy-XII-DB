@@ -3,10 +3,8 @@ title: "Save data fields: the regions of the save payload, who writes and reads 
 kind: "reference"
 category: "Saving, loading and settings"
 summary: "A map of the save image's persistent payload (the bytes after the 0x200-byte header): the span a new game clears with its script operand bank, script globals, quest arrays, zone transition record, flag banks and music override; the copy of the battle-state block head; the image-backed state block with the navigation-map exploration table, the Clan Primer and achievement bit sets and the inventory counts; the checksum; the two group banks and spawn-keep images; the transition metadata record; and the battle-state block. The companion table lists every payload access verified against the executable, by offset, function, site and instruction."
-addresses: ["002EF2B0", "002EF2D0", "00253970", "00253A80", "00229B40", "005843E0", "00584580", "005844A0", "00233440", "00233550", "0025D8E0", "00269A20", "002EF3C0", "002EF410", "00238A80", "00233C10", "002370C0", "00583D60"]
+addresses: "002EF2B0, 002EF2D0, 00253970, 00253A80, 00229B40, 005843E0, 00584580, 005844A0, 00233440, 00233550, 0025D8E0, 00269A20, 002EF3C0, 002EF410, 00238A80, 00233C10, 002370C0, 00583D60"
 ---
-
-# Save data fields: the regions of the save payload, who writes and reads each, and the access table
 
 ## What it lists
 
@@ -86,20 +84,21 @@ transition record, the flag banks and the music override; the last two bytes, `+
 The record at `+0x1044` is written by `003145E0` when a zone change is staged and reset by
 `00314970`:
 
-```
-struct ZoneTransitionRecord base=payload+0x1044 size=0x20
-+0x00  i32  destinationField      the field being entered; also 01EED064 (003145E0)
-+0x04  i32  destinationEntrance   the entrance index (003145E0, 00314D80)
-+0x08  i32  previousField         the old destinationField (003145E0)
-+0x0C  i32  previousEntrance      the old destinationEntrance (003145E0)
-+0x10  u32  mode                  the mode argument (003145E0, 00314DA0)
-+0x14  i32  persistenceGroup      00264F90(destinationField) (003145E0)
-+0x18  i32  transitionField       destinationField again; 00314530 copies it on restore (003145E0)
-+0x1C  u8   runtimeParameter      0 to 2, set by 0026D910 while initState is 0, passed to 00180620
-+0x1D  u8   initState             1 from 00268320 and 0026D8F0, cleared by 0026D910
-+0x1E  u8   flags1                bit 5 cleared by 003145E0, set by 00314530
-+0x1F  u8   flags2                bit 6: the music override at +0x1534 is in force (0026A720, 0026DE20)
-```
+Struct ZoneTransitionRecord base=payload+`0x1044` size=`0x20`:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `i32` | destinationField | the field being entered; also `01EED064` (`003145E0`) |
+| `04` | `i32` | destinationEntrance | the entrance index (`003145E0`, `00314D80`) |
+| `08` | `i32` | previousField | the old destinationField (`003145E0`) |
+| `0C` | `i32` | previousEntrance | the old destinationEntrance (`003145E0`) |
+| `10` | `u32` | mode | the mode argument (`003145E0`, `00314DA0`) |
+| `14` | `i32` | persistenceGroup | `00264F90`(destinationField) (`003145E0`) |
+| `18` | `i32` | transitionField | destinationField again; `00314530` copies it on restore (`003145E0`) |
+| `1C` | `u8` | runtimeParameter | 0 to 2, set by `0026D910` while initState is 0, passed to `00180620` |
+| `1D` | `u8` | initState | 1 from `00268320` and `0026D8F0`, cleared by `0026D910` |
+| `1E` | `u8` | flags1 | bit 5 cleared by `003145E0`, set by `00314530` |
+| `1F` | `u8` | flags2 | bit 6: the music override at +`0x1534` is in force (`0026A720`, `0026DE20`) |
 
 `00584210` stashes `+0x1044`-`+0x1054` into the header's `+0x80`-`+0x90` when a load begins and puts
 them back on the restore path (see the [save file format page](save-file-format.md)).
@@ -169,13 +168,14 @@ A group bank is the `0x200` bytes at `02099FF0`: `0025D8E0` copies them out in f
 and `00269A20` copies them back. A spawn-keep image is `0x20010` bytes, laid out by `00233440`
 ([spawn placement page](../Enemy-Spawning/enemy-spawning.md)):
 
-```
-struct SpawnKeepImage base=payload+0xE240 size=0x20010
-+0x00000  u16       fieldIdA     02089372 (00233440 writes, 00233550 restores)
-+0x00002  u16       fieldIdB     02089370
-+0x00010  u8[65536] bank2        the 64 entries of 0x250 bytes at [0208E698]; 0x9400 bytes copied, the rest zero
-+0x10010  u8[65536] bank1        the 64 entries at [0208E690]; written on save, not restored
-```
+Struct SpawnKeepImage base=payload+`0xE240` size=`0x20010`:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00000` | `u16` | fieldIdA | `02089372` (`00233440` writes, `00233550` restores) |
+| `00002` | `u16` | fieldIdB | `02089370` |
+| `00010` | `u8[65536] bank2` | the 64 entries of 0x250 bytes at [0208E698]; 0x9400 bytes copied, the rest zero |  |
+| `10010` | `u8[65536] bank1` | the 64 entries at [0208E690]; written on save, not restored |  |
 
 `00233440` zeroes the image first and copies the banks in `0x128` passes of `0x80` bytes; `00233550`
 restores bank 2 and the two field ids only.
@@ -198,14 +198,15 @@ byte to `0208D455`.
 
 ### The save-transition metadata record
 
-```
-struct SaveTransitionRecord base=payload+0x4E460 size=0x2C
-+0x00  i32     mode         0208D455 as a dword (00584580)
-+0x04  u32     stamp        021B28E4 (002EF3C0); 003145E0 writes the destination field here (00314731) when bit 12 is clear and the field is not 12, and 00584580's 002EF3C0 overwrites it unless 003145E0 returned early
-+0x08  u8[16]  blockA       battle-state block +0x5AE0-+0x5AEF (002EF3C0)
-+0x18  u8[16]  blockB       battle-state block +0x5AD0-+0x5ADF (002EF3C0, 002EF510)
-+0x28  u32     flags        battle-state block +0x5B04 (002EF3C0); 002EF510 sets bit 0 from bit 1 of +0x18
-```
+Struct SaveTransitionRecord base=payload+`0x4E460` size=`0x2C`:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `i32` | mode | `0208D455` as a dword (`00584580`) |
+| `04` | `u32` | stamp | `021B28E4` (`002EF3C0`); `003145E0` writes the destination field here (`00314731`) when bit 12 is clear and the field is not 12, and `00584580`'s `002EF3C0` overwrites it unless `003145E0` returned early |
+| `08` | `u8[16]` | blockA | battle-state block +`0x5AE0`-+`0x5AEF` (`002EF3C0`) |
+| `18` | `u8[16]` | blockB | battle-state block +`0x5AD0`-+`0x5ADF` (`002EF3C0`, `002EF510`) |
+| `28` | `u32` | flags | battle-state block +`0x5B04` (`002EF3C0`); `002EF510` sets bit 0 from bit 1 of +`0x18` |
 
 `002EF540` fills the whole record from the `0x2C` bytes at `021B28E0` during `00229B40`. The restore
 `002EF410` copies `+0x08` to block `+0x5AE0` and `+0x28` to `+0x5B04`; when bit 1 of `+0x18` is set it
@@ -226,6 +227,10 @@ the save layer itself does to it:
   32-bit truncated sum of the block's address and the offset at `+0x08`, `+0x20` and `+0x30`, and
   `+0x40` the running total of the `+0x3C` sizes), zeroes the `0x200` bytes at block `+0x57C8` and
   clears the low three bits of the 128 bytes at `+0x59C8`.
+- Before a capture, `00234ED0` (called by `00229B40` at `00229B71` and by `005844A0` at `00584510`)
+  copies each of the 40 members' selected gambit bank, `+0x5B10 + (3k + [+0x7370 + 4k]) * 0x34`, to
+  `+0x90 + k * 0x1C8`. That is where the older block layout keeps it, and where `00235AF0` reads it
+  from when it migrates an older block on load.
 - Bits 12, 13 and 14 of the flag dword at `+0x04` are read by `00236760`, `00236740` and `00236780`
   and copied into the header's `+0x57` by `00583D60`.
 

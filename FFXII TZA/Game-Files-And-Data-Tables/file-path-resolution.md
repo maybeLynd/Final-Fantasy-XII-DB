@@ -3,10 +3,8 @@ title: "File path resolution: how a file name becomes bytes through the RAM file
 kind: "system"
 category: "Game files and data tables"
 summary: "How the game opens a file by name: the PStreamReaderFile stream and its read, seek, open and close slots, the resolver with its selector and log tags, route 1 into the RAM file cache (the upper-case key, the 33-multiplicative hash, the name filter, hits, stamps and views) and route 2 into the archive (the lower-case key and MD5), how an archive hit is copied into the cache, the cache's memory budget, insertion, eviction and view release, and the formats that share the .dat and .bin extensions."
-addresses: ["00597970", "00597930", "0059EE90", "0059D920", "0059D4B0", "0059BD40", "0059FDA0", "0059FD10", "0059ED70", "00D26C60", "00D26C90", "001D6B20", "001D6B90", "001D6B70", "00865390", "001DB050", "01F83440", "01F83441", "001D6D20", "0020C1B0", "0020C440", "00674A00", "0020C300", "00217A60", "00217A70", "00217AD0", "0019AEE0", "0059A9B0", "001D6BB0", "0020BFA0", "0020B130", "001D6A20", "0020B680", "0020B5F0", "0020B0F0", "0020B840", "001D6AA0", "0020B9A0", "00599250", "00D27930", "00D27910", "00D27948"]
+addresses: "00597970, 00597930, 0059EE90, 0059D920, 0059D4B0, 0059BD40, 0059FDA0, 0059FD10, 0059ED70, 00D26C60, 00D26C90, 001D6B20, 001D6B90, 001D6B70, 00865390, 001DB050, 01F83440, 01F83441, 001D6D20, 0020C1B0, 0020C440, 00674A00, 0020C300, 00217A60, 00217A70, 00217AD0, 0019AEE0, 0059A9B0, 001D6BB0, 0020BFA0, 0020B130, 001D6A20, 0020B680, 0020B5F0, 0020B0F0, 0020B840, 001D6AA0, 0020B9A0, 00599250, 00D27930, 00D27910, 00D27948, 00597A20, 00597A70, 0059BD80, 0059D900, 0059FBA0, 0059D510, 0020C150, 0020B0D0, 0020B150, 0020C560"
 ---
-
-# File path resolution: how a file name becomes bytes through the RAM file cache or the archive, the stream reader, and what lives under .dat and .bin
 
 ## What the player sees
 
@@ -38,7 +36,23 @@ ignores the resolver's status. `00597930` builds the same `0x30`-byte frame with
 | 6 | `0059FDA0` | Seek relative (origin 1) through the archive reader, the Win32 handle (`SetFilePointer`) or the view, the first that is set; returns the requested offset, or 0 when the backend reports −1 |
 
 The low bit of the name pointer at `+0x10` marks a borrowed string: Rebind, Close-then-Rebind and the
-base destructor `00598100` free the copy only when that bit is clear.
+base destructor `00598100` free the copy only when that bit is clear. `00598140`, the `PStream` base
+destructor, reinstalls that vtable and frees an owned name the same way.
+
+### Other constructors and frame helpers
+
+- `00597A20` builds a `PStreamReaderFile` with no name: handle −1, view −1, no archive reader, and
+  selector 1.
+- `00597A70(stream, name)` builds a `PStreamWriterFile` (over `PStream`) with selector 0; it runs the
+  resolver on the name with `cacheable` 0 and keeps a copy of the name.
+- `0059BD80(frame)` and `0059D900(frame)` are Close and IsOpen on the `+0x20` frame alone, for code
+  that holds a frame without its stream; `001D6E80(frame)` closes one and frees it.
+- `0059FBA0(frame, offset, origin)` seeks with an origin: through the archive reader (`00215220`),
+  `SetFilePointer`, or a positive view (`0020C180` → `00217AD0`), the first that is set, and returns
+  −1 when none is.
+- `0019EAA0(…, name)` opens a name (selector 1), closes it when it opened, and returns whether it did.
+- `0059D510(stream, buffer, n)` reads through slot 5, adds the count to the stream's dword `+0x18`,
+  and returns 0 when all n bytes came and 9 otherwise.
 
 ### The resolver
 
@@ -114,6 +128,9 @@ Releasing a view, `0020B9A0(manager, key, view)`, takes the lock, finds the entr
 byte `+0x10` by one unless it is 0, and then frees the 16-byte view whether or not the key was found.
 The cached bytes stay in the cache.
 
+`0020C150(cache, view, buffer, n)` is the read that slot 5 reaches through `001D6CA0`: it calls
+`00217A70` when the view and the count are both non-zero and returns 0 otherwise.
+
 ### Copying an archive hit into the cache
 
 `0059A9B0(frame, key)` asks the cache for a buffer of the file's size (`001D6BB0` → `0020BFA0(cache,
@@ -133,6 +150,12 @@ come from the cache; a result of 0 or less frees the buffer again.
   existing entry through `0020C300`.
 
 ### The cache's memory budget and eviction
+
+The constructor's first step, `0020B0D0`, stores the limit at `+0x00`, `0x10000` in the dword `+0x08`
+and 0 as the usage. Cache entries come from a record pool at `+0x98` (`0020B150`, built without a
+lock of its own; `0020B3E0` destroys it); `0020C560` sizes its vector, and `0020BB10` fills new records
+with `{data 0, size 0, +0x0C 0, +0x0E −1, views 0, kind 1}`.
+
 
 `0020B130(cache, size)` refuses an allocation when the usage `+0x10` is above the limit `+0x00`;
 otherwise it adds the size to the usage and calls `malloc`. The test runs before the size is added,

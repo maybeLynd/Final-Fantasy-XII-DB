@@ -3,10 +3,8 @@ title: "Battle orders: the internal order ids 0x4000-0x4166, their handlers and 
 kind: "reference"
 category: "Battle actions"
 summary: "Every internal battle order id from 0x4000 to 0x4166 - moves, waits, adding and removing statuses, setting and clearing effect bits, stat adjustments, flag and register changes - with the handler the order table sends it to, its parameter, the status or effect it names, and the availability chance check AI order lists apply."
-addresses: ["01EEC460", "00305080", "00301830", "002FDDA0", "002FDA60", "002FDC30"]
+addresses: "01EEC460, 00305080, 00301830, 002FDDA0, 002FDA60, 002FDC30"
 ---
-
-# Battle orders: the internal order ids 0x4000-0x4166, their handlers and what each order does
 
 ## What it lists
 

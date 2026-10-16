@@ -3,10 +3,8 @@ title: "ExFont sheets (.btm): the 4-bit glyph cells of the six staff-roll faces,
 kind: "format"
 category: "Game files and data tables"
 summary: "The six headerless ExFont/font_stf_*.btm sheets: 4-bit glyph cells packed back to back and located only by the glyph tables in fontpack_fs.bin, the loader that binds them to sheet slots 7 to 12 and sets their ready bits, the glyph lookup that rounds each cell to a power of two, the staff-roll task that requests and waits for them, the twelve shipped copies, and the rules a replacement sheet must follow."
-addresses: ["00365810", "00D10C98", "022CBE00", "022CBBB0", "00364950", "003658F0", "003643A0", "00366080", "00364380", "003657E0", "00364210", "003649A0", "00474650", "003A1F20", "0053EB90", "0053E0B0", "002DF9A0"]
+addresses: "00365810, 00D10C98, 022CBE00, 022CBBB0, 00364950, 003658F0, 003643A0, 00366080, 00364380, 003657E0, 00364210, 003649A0, 00474650, 003A1F20, 0053EB90, 0053E0B0, 002DF9A0"
 ---
-
-# ExFont sheets (.btm): the 4-bit glyph cells of the six staff-roll faces, how they are loaded and how a glyph finds its cell
 
 ## What the player sees
 
@@ -43,42 +41,53 @@ up to 8, 16, 32, 64 or 128. A cell starts at its glyph record's sheet offset.
 
 The glyph tables, as `003643A0`, `00366080` and `00364210` read them:
 
-```
-fontpack_fs.bin
-+0x00  u32  fontBlock    offset of the font block from the file start (003643A0)
+Fontpack_fs.bin:
 
-font block
-+0x00  s16  tableCount   number of glyph tables walked by 00366080
-+0x02  s16  value        rounded up to even and doubled into state +0x244
-+0x04  ...  table 0      first glyph table
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | fontBlock | offset of the font block from the file start (`003643A0`) |
 
-glyph table
-+0x00  s32  next         offset of the next table from this one
-+0x04  s32  glyphCount   number of 12-byte records
-+0x08  u8[8]             not read by 00364210
-+0x10  ...  records      glyphCount records
+Font block:
 
-glyph record (12 bytes)
-+0x00  u16  code         character code matched by 00364210
-+0x02  u8   cellW        glyph width in texels
-+0x03  u8   cellH        glyph height in texels
-+0x04  u8[4]             skipped by 00364210
-+0x08  u32  sheetOffset  byte offset of the cell in the sheet of the same face
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `i16` | tableCount | number of glyph tables walked by `00366080` |
+| `02` | `i16` | value | rounded up to even and doubled into state +`0x244` |
+| `04` | `...` | table 0 | first glyph table |
+
+Glyph table:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `i32` | next | offset of the next table from this one |
+| `04` | `i32` | glyphCount | number of 12-byte records |
+| `08` | `u8[8]` | not read by 00364210 |  |
+| `10` | `...` | records | glyphCount records |
+
+Glyph record (12 bytes):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u16` | code | character code matched by `00364210` |
+| `02` | `u8` | cellW | glyph width in texels |
+| `03` | `u8` | cellH | glyph height in texels |
+| `04` | `u8[4]` | skipped by 00364210 |  |
+| `08` | `u32` | sheetOffset | byte offset of the cell in the sheet of the same face |
 
 The font state is a `0x250`-byte block at `022CBBB0`; `00364950` zeroes it and stores its address in `022CBE00`.
 
-```
-font state (pointer at 022CBE00)
-+0x000  ptr  fontpack     the loaded fontpack_fs.bin
-+0x008  ptr  fontBlock    fontpack + u32[0]
-+0x010  ptr  tables[16]   glyph table of face n at +0x10 + 8n
-+0x090  ptr  tableEnds[16] end of face n's records
-+0x110  ptr  sheets[16]   .btm buffer of face n at +0x110 + 8n
-+0x228  ptr  cacheTail    least recently used glyph cache entry
-+0x230  ptr  cacheHead    most recently used glyph cache entry
-+0x240  u32  ready        bit n set when face n's sheet has arrived
-```
+Font state (pointer at `022CBE00`):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `000` | `void*` | fontpack | the loaded fontpack_fs.bin |
+| `008` | `void*` | fontBlock | fontpack + u32[0] |
+| `010` | `void*` | tables[16] | glyph table of face n at +`0x10` + 8n |
+| `090` | `void*` | tableEnds[16] end of face n's records |  |
+| `110` | `void*` | sheets[16] | .btm buffer of face n at +`0x110` + 8n |
+| `228` | `void*` | cacheTail | least recently used glyph cache entry |
+| `230` | `void*` | cacheHead | most recently used glyph cache entry |
+| `240` | `u32` | ready | bit n set when face n's sheet has arrived |
 
 Sheet slot `s` is face `s - 1`, so the six staff-roll faces are faces 6 to 11 and their sheets sit at state
 `+0x140` to `+0x168`.

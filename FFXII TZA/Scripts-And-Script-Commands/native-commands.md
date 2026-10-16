@@ -3,10 +3,8 @@ title: "Native commands: the five command tables, the begin, poll and result cal
 kind: "system"
 category: "Scripts and script commands"
 summary: "What happens inside one script verb call: the lifecycle that runs begin, poll and result as one fall-through rather than three visits, the phase byte that marks a verb still running or typed for return, the five command tables and how their callbacks are populated, the instantaneous and durative shapes, the scratch word that wait and the sync verbs count or select with, the per-manager skip mask that ends a wait early, and the handlers many verbs share."
-addresses: ["002621D0", "003DC2D0", "003DC270", "003DC240", "003DC2A0", "02B57EF0", "01EED700", "01F281B0", "01F29418", "01F29440", "01F26720", "0016D6A0", "005C5230", "0034CF90", "0034DCC0", "00265880", "0034C290", "0034C570", "00353E20", "00353A10", "0033F4C0", "00267310", "02099011", "0026A5B0", "00360710", "00360A50", "0034ECF0", "0026B4E0", "0026B4C0", "0050D660"]
+addresses: "002621D0, 003DC2D0, 003DC270, 003DC240, 003DC2A0, 02B57EF0, 01EED700, 01F281B0, 01F29418, 01F29440, 01F26720, 0016D6A0, 005C5230, 0034CF90, 0034DCC0, 00265880, 0034C290, 0034C570, 00353E20, 00353A10, 0033F4C0, 00267310, 02099011, 0026A5B0, 00360710, 00360A50, 0034ECF0, 0026B4E0, 0026B4C0, 0050D660, 0025C0F0, 0025C130, 0026BE50, 0026BE90, 02099DE8, 0209A2A0, 0036E290, 002E7080, 0036DFC0, 0036E500, 022D94B0"
 ---
-
-# Native commands: the five command tables, the begin, poll and result callbacks, the phase byte, and how a durative verb waits
 
 ## What the player sees
 
@@ -108,6 +106,32 @@ word)` whether that camera channel is still busy, with the index of the current 
 `02099D70` points at, `+0x28`), and, if so, stays running unless the skip mask of the issuer's
 manager (its `+0x15`) says otherwise.
 
+### Signal waits
+
+`effecttotalsignalsync(n)` (`0x029F`) and `motiontotalsignalsync(n)` (`0x02B7`) wait for a
+numbered signal. Both use the begin `003567F0`, which pops `n` into the scratch word. The poll
+`0034AA70` tests bit `n` of the eight bytes at `02099DE8` through `0025C0F0`, and `0034B310` tests
+bit `n` of `0209A2A0` through `0025C130`. While the bit is clear the poll returns 1 and the script
+waits; once it is set the poll clears it (`0026BE50` or `0026BE90` with 0) and the verb finishes,
+so one signal releases one waiter. Neither poll reads the skip mask.
+
+`0036E290(handle, &n)`, which `0036E310` installs as entry 0 of the effect callback table
+`02091140` (`0024F780` stores it), raises the effect signals: it sets bit `n` of `02099DE8` with
+`0026BE50(n, 1)` and, when the handle is a script effect handle, the same bit in that effect slot's
+own signal bytes. The motion signals have one writer, `002E7080`, which `002EA320` and `002EA5F0`
+install as entry `0x26` of the motion callback table `02CA4410` (`0041D6C0` stores it): it calls
+`0026BE90(0, 1)`, so a motion only ever raises bit 0.
+
+`effectsignalsync(slot, n)` (`0x026A`) waits on one effect slot's bytes instead. Its begin
+`00354CB0` pops `n` and the slot and stores the slot's handle, the first dword of record `022D94B0
++ slot × 0x18` read by `0036E500` (slot clamped to 31, a negative slot reading slot 0), with `n`.
+The poll `00355160` finishes at once on a zero handle and otherwise keeps the script waiting while
+`0036DFC0(handle, n)` returns 0 and the issuer's manager has a clear skip mask.
+
+`0036DFC0` decodes the slot with `003B24A0`, which accepts only a handle whose top nibble is 7 and
+takes the slot from bits 6 to 11 (any other handle returns 1 at once). It then tests bit `n` of
+the bytes at `+0x10` of that slot's record, and returns 1 and clears the bit only when it is set.
+
 ### The skip mask
 
 `00267310(manager)` reads byte `02099011 + manager × 0x288`, the manager slot's `+0x201`, and
@@ -129,13 +153,50 @@ destination. Editing one shared body edits every verb that points at it.
 
 ## Layouts
 
-```
-family array    02B57EF0: 16 × u64; 003DC2D0 writes 01F26720 to all, then 01EED700 / 01F281B0 / 01F29418 / 01F29440 to 0 / 3 / 5 / 7
-command table   +0 s32 count, +4 zero; record N at +8 + 32N: +0 begin, +8 poll, +0x10 null, +0x18 result
-wait slot       +0xC result word, +0x15 phase (0 idle, 1 running, 2 int, 3 float), +0x18 scratch[16]
-skip mask       02099011 + manager × 0x288 (slot +0x201), one bit per skip index
-begin           (issuer, target, scratch, stack, manager); poll (issuer, target, scratch) → odd = running; result (issuer, target, scratch, stack)
-```
+The callbacks are called as `begin(issuer, target, scratch, stack, manager)`, `poll(issuer, target,
+scratch)`, where an odd return means still running, and `result(issuer, target, scratch, stack)`.
+
+Globals:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `2B57EF0` | `CommandTable*[16]` | families | `003DC2D0` writes `01F26720` to all, then `01EED700`, `01F281B0`, `01F29418` and `01F29440` to families 0, 3, 5 and 7 |
+| `2099011` | `u8` | skipMask | manager slot `+0x201`, at `+ manager × 0x288`; one bit per skip index |
+| `2099DE8` | `u8[8]` | effectSignals | effect total signals, one bit per signal number |
+| `209A2A0` | `u8[8]` | motionSignals | motion total signals |
+| `22D94B0` | `EffectSlot[32]` | effectSlots | script effect slots, stride `0x18` |
+
+CommandTable:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `i32` | count | number of command records |
+| `04` | `u32` | zero | always 0 |
+| `08` | `Command` | first | record N at `08 + 0x20 × N` |
+
+Command (32 bytes):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `void*` | begin | begin callback or null |
+| `08` | `void*` | poll | poll callback or null |
+| `10` | `void*` | unused | always null |
+| `18` | `void*` | result | result callback or null |
+
+Wait slot fields used here:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `0C` | `u32` | result | the int, or the float for phase 3, that the call pushes |
+| `15` | `u8` | phase | 0 idle, 1 running, 2 int, 3 float |
+| `18` | `u8[16]` | scratch | written by the begin, read by the poll |
+
+EffectSlot (`0x18` bytes):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | handle | the script effect handle |
+| `10` | `u8[8]` | signals | per-slot signal bits |
 
 ## Shipped data
 
@@ -156,8 +217,8 @@ whose poll returns odd costs one poll per frame until it finishes.
 
 ## State
 
-The wait slot's phase byte, result word and scratch block, the family array, and the per-manager
-skip mask byte.
+The wait slot's phase byte, result word and scratch block, the family array, the per-manager
+skip mask byte, and the two signal bit arrays with the effect slots' signal bytes.
 
 ## Modding notes
 

@@ -3,10 +3,8 @@ title: "Position to scalar: the distance fade colour of effect elements"
 kind: "system"
 category: "Graphics"
 summary: "The function that turns an effect element's 3-D position into one distance and then into the alpha of a modulate colour: its three distance modes, the four fade kinds of the fade record, the container flags that further scale the alpha (owner fade, status-display denial, the time-stop dimming ramp), and the 76 draw sites that multiply the result into what they draw."
-addresses: ["002F1F40", "002F1D90", "0039B550", "0039ABF0", "0039AF70", "00398F90", "02F97348", "02AEECB0", "02AEEA20", "02AED5F0", "003ED0E0", "003ECF70", "0026EE00", "003A3FD0", "0042FB20", "003E7DE0", "0024BFD0", "020926E8", "00442550"]
+addresses: "002F1F40, 002F1D90, 0039B550, 0039ABF0, 0039AF70, 00398F90, 02F97348, 02AEECB0, 02AEEA20, 02AED5F0, 003ED0E0, 003ECF70, 0026EE00, 003A3FD0, 0042FB20, 003E7DE0, 0024BFD0, 020926E8, 00442550"
 ---
-
-# Position to scalar: the distance fade colour of effect elements
 
 ## What the player sees
 
@@ -97,17 +95,17 @@ multiplies the result by the element's colour `+0x240`, and draws the point in t
 
 The fade record (in the container at `+0x2F0`, or in the element definition at `+0x50`):
 
-```
-+0x00  u8   kind: 0 none, 1, 2, 3 global, 4 both pairs
-+0x01  u8   distance mode: 0 depth, 1 distance, 2 distance without lane 1
-+0x02  u8   floor for the +0x04/+0x08 pair
-+0x03  u8   floor for the +0x06/+0x0A pair
-+0x04  i16  full-alpha distance, pair 2
-+0x06  i16  full-alpha distance, pair 1
-+0x08  i16  zero-alpha distance, pair 2
-+0x0A  i16  zero-alpha distance, pair 1
-+0x0C  f32  kind 3: floor scale
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | kind: 0 none, 1, 2, 3 global, 4 both pairs |  |
+| `01` | `u8` | distance mode: 0 depth, 1 distance, 2 distance without lane 1 |  |
+| `02` | `u8` | floor for the +0x04/+0x08 pair |  |
+| `03` | `u8` | floor for the +0x06/+0x0A pair |  |
+| `04` | `i16` | full-alpha distance, pair 2 |  |
+| `06` | `i16` | full-alpha distance, pair 1 |  |
+| `08` | `i16` | zero-alpha distance, pair 2 |  |
+| `0A` | `i16` | zero-alpha distance, pair 1 |  |
+| `0C` | `f32` | kind 3: floor scale |  |
 
 ## State
 

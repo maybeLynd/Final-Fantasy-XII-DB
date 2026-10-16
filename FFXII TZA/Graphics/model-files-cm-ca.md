@@ -3,10 +3,8 @@ title: "Model files (.cm, .ca): the @FRP container and its FCP, FDM, FOR, FTE, F
 kind: "format"
 category: "Graphics"
 summary: "The model and animation containers: the .cm and .ca files under obj_finish, the seven entries a model row binds from a .cm, the @FCP parameter block with its section table, property ids and default tables, the @FTR skeleton and how it is built, the @FOR variant records and distance LOD, the @FDM key table, the @FTE textures and @FCT four-page palettes, the draw builder's texture and palette pick, and the shipped census of all 4,230 files."
-addresses: ["00504F00", "00504E70", "00504940", "004780C0", "0041FCF0", "0041F340", "00420480", "002EDBD0", "003E55F0", "004FE270", "004FE2F0", "01F265B0", "01F266B0", "003E6150", "003E5AD0", "0041E5B0", "004292B0", "003712E0", "00372820", "003713C0", "00409300", "004094D0", "00409250", "0046D560", "004201F0", "00504840", "005048A0", "0053AB50", "00504D30", "005044D0", "00504D20"]
+addresses: "00504F00, 00504E70, 00504940, 004780C0, 0041FCF0, 0041F340, 00420480, 002EDBD0, 003E55F0, 004FE270, 004FE2F0, 01F265B0, 01F266B0, 003E6150, 003E5AD0, 0041E5B0, 004292B0, 003712E0, 00372820, 003713C0, 00409300, 004094D0, 00409250, 0046D560, 004201F0, 00504840, 005048A0, 0053AB50, 00504D30, 005044D0, 00504D20"
 ---
-
-# Model files (.cm, .ca): the @FRP container and its FCP, FDM, FOR, FTE, FCT and FTR entries
 
 ## What the player sees
 
@@ -55,13 +53,13 @@ version 1                  1,195 .ca: +0x30 u32 columns (80), +0x34 u32 rows, of
 
 Every entry starts with the same `0x30`-byte header the section search compares.
 
-```
-+0x00  char[4]   tag      @FCP, @FTR, @FDM, @FOR, @FTE, @FCT, @FEF, @FMC, @FMN, @FMW, @FRM
-+0x04  u32       kind     @FTR 2; @FCP, @FDM, @FOR, @FTE, @FCT, @FEF 0
-+0x08  u32       length   bytes of the entry, header included
-+0x0C  u32       count    @FCP 1, @FTR nodes, @FTE textures, @FCT palettes, @FDM and @FOR 0
-+0x10  char[32]  name     the container's name for the model entries
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[4]` | tag | @FCP, @FTR, @FDM, @FOR, @FTE, @FCT, @FEF, @FMC, @FMN, @FMW, @FRM |
+| `04` | `u32` | kind | @FTR 2; @FCP, @FDM, @FOR, @FTE, @FCT, @FEF 0 |
+| `08` | `u32` | length | bytes of the entry, header included |
+| `0C` | `u32` | count | @FCP 1, @FTR nodes, @FTE textures, @FCT palettes, @FDM and @FOR 0 |
+| `10` | `char[32]` | name | the container's name for the model entries |
 
 ### The model row
 
@@ -69,15 +67,15 @@ Every entry starts with the same `0x30`-byte header the section search compares.
 `+0x0C`, binds the container section at `+0x1F0` and the `@FEF` section at `+0x228` (`00504E70`), and
 stores each entry's offset from the container, or −1 when the entry is absent (`00409A30`):
 
-```
-+0x1F8  ptr   the @FRP container (00504940)
-+0x208  u32   @FOR offset          +0x214  u32   @FEF offset
-+0x20C  u32   @FDM offset          +0x218  u32   @FTE offset
-+0x210  u32   @FTR offset          +0x21C  u32   @FCT offset
-+0x220  u32   @FCP offset          +0x230  ptr   the @FEF section (00504940)
-+0xB8   s8    the @FOR record key  +0xB9  s8    the option number
-+0xB3   u8    LOD levels (+0x3A + 1)   +0xBA  s8    the palette page (00504D20)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `1F8` | `void*` | the @FRP container (00504940) |  |
+| `208` | `u32` | @FOR offset | +`0x214`  u32   @FEF offset |
+| `20C` | `u32` | @FDM offset | +`0x218`  u32   @FTE offset |
+| `210` | `u32` | @FTR offset | +`0x21C`  u32   @FCT offset |
+| `220` | `u32` | @FCP offset | +`0x230`  ptr   the @FEF section (`00504940`) |
+| `0B8` | `i8` | the @FOR record key | +`0xB9`  s8    the option number |
+| `0B3` | `u8` | LOD levels (+0x3A + 1) | +`0xBA`  s8    the palette page (`00504D20`) |
 
 ### @FCP, the parameter block
 
@@ -152,34 +150,34 @@ record +(i+1) x 0x20   part i's selector bytes
 
 ### @FDM, the key table
 
-```
-+0x30  u16    1, 2 or 3
-+0x32  u16    offset of {u32 count, u32 keys[count]} (0x50)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `30` | `u16` | 1, 2 or 3 |  |
+| `32` | `u16` | offset of {u32 count, u32 keys[count]} (0x50) |  |
 
 ### @FTE, textures
 
-```
-+0x30  u8     count, then u8 texture slots uploaded with every draw
-+0x40  records, 0x20 bytes each, +0x0C of the header many
-  +0x00  u32  VRAM bytes, a multiple of 0x2000
-  +0x04  u16  width            +0x06  u16  height
-  +0x08  u16  GS pixel format: 0x13 8-bit indexed, 0x14 4-bit indexed
-  +0x0A  u16  upload width     +0x0C  u16  upload height
-  +0x14  u32  upload bytes = upload width x height x 4
-  +0x18  u32  pixel data offset, from the entry
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `30` | `u8` | count, then u8 texture slots uploaded with every draw |  |
+| `40` | `records,` | 0x20 | bytes each, +`0x0C` of the header many |
+| `00` | `u32` | VRAM bytes, a multiple of 0x2000 |  |
+| `04` | `u16` | width | +`0x06`  u16  height |
+| `08` | `u16` | GS pixel format: 0x13 8-bit indexed, 0x14 4-bit indexed |  |
+| `0A` | `u16` | upload width | +`0x0C`  u16  upload height |
+| `14` | `u32` | upload bytes = upload width x height x 4 |  |
+| `18` | `u32` | pixel data offset, from the entry |  |
 
 ### @FCT, palettes
 
-```
-+0x30  records, 0x10 bytes each, +0x0C of the header many
-  +0x00  u16  VRAM bytes (0x2000)
-  +0x02  u16  palette bytes (colours = bytes / 4)
-  +0x04  u8   upload width     +0x05  u8   pages (4)
-  +0x06  u16  upload height
-  +0x0C  u32  data offset, from the entry: four pages of palette-bytes each
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `30` | `records,` | 0x10 | bytes each, +`0x0C` of the header many |
+| `00` | `u16` | VRAM bytes (0x2000) |  |
+| `02` | `u16` | palette bytes (colours = bytes / 4) |  |
+| `04` | `u8` | upload width | +`0x05`  u8   pages (4) |
+| `06` | `u16` | upload height |  |
+| `0C` | `u32` | data offset, from the entry: four pages of palette-bytes each |  |
 
 ## Shipped data
 

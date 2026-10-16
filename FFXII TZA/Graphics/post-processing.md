@@ -3,10 +3,8 @@ title: "Post-processing: the game's passes and their shader constants, the post-
 kind: "system"
 category: "Graphics"
 summary: "The game's own post-process chain: the twelve pass functions with the shader constants and pass records each names, how ambient occlusion and anti-aliasing pick their pass, the post-process command block and where its values come from, which PPFX features the game's initialisation leaves off, the PPFX effect catalogue with its handle layout, the two registries of named render passes, and the GPU frame-marker table."
-addresses: ["0018D240", "0018E4A0", "0018F6B0", "0018F8F0", "0018FE00", "00190260", "00190760", "00191130", "00191560", "00191E90", "001925D0", "001930F0", "001EE8E0", "0018F510", "00191DA0", "0018EEE0", "00193D50", "01F7F5F0", "00194310", "00194250", "006FF900", "006CBD20", "007142F0", "007307A0", "0072D820", "0072A320", "0072DCF0", "02EA1590", "01F2D6A0", "02CBF998", "005DC6F0", "005FDCB0", "005DDD60", "01F82C80", "001D62D0", "001D6000"]
+addresses: "0018D240, 0018E4A0, 0018F6B0, 0018F8F0, 0018FE00, 00190260, 00190760, 00191130, 00191560, 00191E90, 001925D0, 001930F0, 001EE8E0, 0018F510, 00191DA0, 0018EEE0, 00193D50, 01F7F5F0, 00194310, 00194250, 006FF900, 006CBD20, 007142F0, 007307A0, 0072D820, 0072A320, 0072DCF0, 02EA1590, 01F2D6A0, 02CBF998, 005DC6F0, 005FDCB0, 005DDD60, 01F82C80, 001D62D0, 001D6000"
 ---
-
-# Post-processing: the game's passes and their shader constants, the post-process command, the PPFX features and effect techniques, and the registries of named render passes
 
 ## What the player sees
 
@@ -197,19 +195,19 @@ clears the marker list (`001D6170`).
 
 The render-parameter block fields this page uses (`0x4A8` bytes at `01F7F5F0`):
 
-```
-+0x0F4  f32     glare luminance             +0x0F8  f32     glare threshold
-+0x110  u8      depth-of-field enable       +0x114  f32     focus distance
-+0x118  f32     aperture f-number           +0x11C  f32     f-number scale
-+0x120  f32     lens (35.0)
-+0x184  i32     SMAA quality
-+0x198  u8      EnableAO
-+0x1A8  f32[6]  SAO bias, radius, intensity: Chr, then Sce
-+0x1C4  f32[6]  HBAO angle bias, radius, contrast: Chr, then Sce
-+0x344  i32     1 = HBAO
-+0x3E8  u8      anti-aliasing built         +0x3E9  u8      anti-aliasing configured
-+0x4A3  u8      PostAA is SMAA
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `0F4` | `f32` | glare luminance | +`0x0F8`  f32     glare threshold |
+| `110` | `u8` | depth-of-field enable | +`0x114`  f32     focus distance |
+| `118` | `f32` | aperture f-number | +`0x11C`  f32     f-number scale |
+| `120` | `f32` | lens (35.0) |  |
+| `184` | `i32` | SMAA quality |  |
+| `198` | `u8` | EnableAO |  |
+| `1A8` | `f32[6]` | SAO bias, radius, intensity: Chr, then Sce |  |
+| `1C4` | `f32[6]` | HBAO angle bias, radius, contrast: Chr, then Sce |  |
+| `344` | `i32` | 1 = HBAO |  |
+| `3E8` | `u8` | anti-aliasing built | +`0x3E9`  u8      anti-aliasing configured |
+| `4A3` | `u8` | PostAA is SMAA |  |
 
 ## Shipped data
 

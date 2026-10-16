@@ -3,10 +3,8 @@ title: "Equipment row: every field of a weapon, shield, armor, accessory or ammu
 kind: "format"
 category: "Items, equipment, shops and licenses"
 summary: "The 52-byte row of the equipment table and the 24-byte bonus record it points at: the name, the slot and flag byte, the class byte that sets the item's group and what it can be paired with, the price, the group-specific fields (a weapon's reach, recipe, attack, knockback, combo, evade, element, statuses, charge time and model; a shield's evades; an armor piece's Defense, Magick Resist and augment), the bonus record's stats, statuses and elements, and the classes the shipped table holds."
-addresses: ["02EBF0F8", "00238160", "0031E9F0", "0031E9A0", "0031C5D0", "002FEF30", "0030FED0", "00317930"]
+addresses: "02EBF0F8, 00238160, 0031E9F0, 0031E9A0, 0031C5D0, 002FEF30, 0030FED0, 00317930"
 ---
-
-# Equipment row: every field of a weapon, shield, armor, accessory or ammunition data row and its bonus record
 
 ## What the player sees
 
@@ -32,56 +30,60 @@ Every reader computes the row itself: it loads the registry slot `02EBF0F8`, res
 
 ## Layouts
 
-```struct EquipmentRow base=record size=0x34
-+0x00  u16  pad00         0 on every row
-+0x02  u16  nameWord      name: bank = word >> 11, entry = word & 0x7FF (0031C5D0 at 0031C911)
-+0x04  u8   subType       kind of item, copied to the query record +0x2C (0031C9C4)
-+0x05  u8   pad05         0 on every row
-+0x06  u8   sortKey       the Optimise tie-break: equal values go to the higher id (002F7C3C)
-+0x07  u8   slotFlags     bits 7-5 slot, bit 4 no license, bit 2 hits flying, bit 1 cannot sell; table below
-+0x08  u8   ordinal       order of the row inside its class (0031C9CB)
-+0x09  u8   class         equipment class 0-26; sets the group and the pairing (0031E9F0)
-+0x0A  u32  pad0A         0 on every row
-+0x0E  u16  helpId        extra text id, through 002F9860 (0031C9B0); 0 on every row
-+0x10  u8   chargeWeight  summed over the five equipped items to slow the charge while battle flag 022C314C bit 6 is set (002F9C00)
-+0x11  i8   offHandClass  the class an off-hand item must have; -1 for none (002F7EC0, 00317930)
-+0x12  u16  price         buy price in gil (0031C981)
-+0x14  u32  pad14         0 on every row
-+0x18  u8   value18       reach, shield evade or Defense, by group; table below
-+0x19  u8   value19       recipe, magick evade or Magick Resist, by group
-+0x1A  u8   value1A       Attack Power or augment, by group
-+0x1B  u8   knockback     weapons: knockback chance (00388350 at 00388409)
-+0x1C  u8   combo         weapons: combo chance, or critical chance for recipes 25-27 (00388550, 00389140)
-+0x1D  u8   weaponEvade   weapons: added to weapon evade (002FF4A0)
-+0x1E  u8   element       weapons and ammunition: attack element, one bit each (0038BE30)
-+0x1F  u8   statusChance  weapons and ammunition: on-hit status chance, percent (0038F9D0 at 0038FB44)
-+0x20  u32  statusMask    weapons and ammunition: statuses a plain Attack inflicts (00384C30 at 00384DB2)
-+0x24  u8   b24           weapons: one value per weapon kind; no read in a census of the code that loads 02EBF0F8 and its callees
-+0x25  u8   reachKind     weapons: which range pair sets the near and middle distance (00320D70 at 00320D93)
-+0x26  u8   motionClass   weapons: attack motion class, through the map at 02EBF180, main-hand rows only (003203B0 at 0032041E)
-+0x27  u8   chargeBase    weapons: charge time base for actions with flag +0x0C bit 27 (002F8410 at 002F851A)
-+0x28  u32  bonusRecord   offset of the bonus record from section offset 0x7144, 0-4200; rebased at load (0023823E)
-+0x2C  u16  attackEffect  weapons: low 15 bits = the effect a plain Attack shows (0030AC50 at 0030AD56)
-+0x2E  u16  pad2E         0 on every row
-+0x30  u32  modelId       weapons, ammunition and shields: the held model, 0x0077xxxx (0031BF60 at 0031BFE0)
-```
+`EquipmentRow` (`0x34` bytes, offsets from the start of the record):
 
-```struct EquipmentBonus base=record size=0x18
-+0x00  u16  maxHp         added to max HP (002FF4AF)
-+0x02  u16  maxMp         added to max MP (002FF4BF)
-+0x04  u8   strength      added to Strength (002FF4CF)
-+0x05  u8   magickPower   added to Magick Power (002FF4DE)
-+0x06  u8   vitality      added to Vitality (002FF4ED)
-+0x07  u8   speed         added to Speed (002FF4FD)
-+0x08  u32  statusesHeld  statuses the wearer has while it is equipped, into stats +0x3C (002FF51B)
-+0x0C  u32  statusImmune  statuses the wearer cannot get, into stats +0x38 (002FF50D)
-+0x10  u8   absorb        elements absorbed, into stats +0x41 (002FF538)
-+0x11  u8   immune        elements nullified, into stats +0x43 (002FF556)
-+0x12  u8   halved        elements halved, into stats +0x42 (002FF547)
-+0x13  u8   weak          elements the wearer is weak to, into stats +0x40 (002FF529)
-+0x14  u8   potency       elements boosted, into stats +0x44 (002FF56D)
-+0x15  u8[3] pad15        0 in every record
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u16` | pad00 | 0 on every row |
+| `02` | `u16` | nameWord | name: bank = word >> 11, entry = word & `0x7FF` (`0031C5D0` at `0031C911`) |
+| `04` | `u8` | subType | kind of item, copied to the query record +`0x2C` (`0031C9C4`) |
+| `05` | `u8` | pad05 | 0 on every row |
+| `06` | `u8` | sortKey | the Optimise tie-break: equal values go to the higher id (`002F7C3C`) |
+| `07` | `u8` | slotFlags | bits 7-5 slot, bit 4 no license, bit 2 hits flying, bit 1 cannot sell; table below |
+| `08` | `u8` | ordinal | order of the row inside its class (`0031C9CB`) |
+| `09` | `u8` | class | equipment class 0-26; sets the group and the pairing (`0031E9F0`) |
+| `0A` | `u32` | pad0A | 0 on every row |
+| `0E` | `u16` | helpId | extra text id, through `002F9860` (`0031C9B0`); 0 on every row |
+| `10` | `u8` | chargeWeight | summed over the five equipped items to slow the charge while battle flag `022C314C` bit 6 is set (`002F9C00`) |
+| `11` | `i8` | offHandClass | the class an off-hand item must have; -1 for none (`002F7EC0`, `00317930`) |
+| `12` | `u16` | price | buy price in gil (`0031C981`) |
+| `14` | `u32` | pad14 | 0 on every row |
+| `18` | `u8` | value18 | reach, shield evade or Defense, by group; table below |
+| `19` | `u8` | value19 | recipe, magick evade or Magick Resist, by group |
+| `1A` | `u8` | value1A | Attack Power or augment, by group |
+| `1B` | `u8` | knockback | weapons: knockback chance (`00388350` at `00388409`) |
+| `1C` | `u8` | combo | weapons: combo chance, or critical chance for recipes 25-27 (`00388550`, `00389140`) |
+| `1D` | `u8` | weaponEvade | weapons: added to weapon evade (`002FF4A0`) |
+| `1E` | `u8` | element | weapons and ammunition: attack element, one bit each (`0038BE30`) |
+| `1F` | `u8` | statusChance | weapons and ammunition: on-hit status chance, percent (`0038F9D0` at `0038FB44`) |
+| `20` | `u32` | statusMask | weapons and ammunition: statuses a plain Attack inflicts (`00384C30` at `00384DB2`) |
+| `24` | `u8` | b24 | weapons: one value per weapon kind; no read in a census of the code that loads `02EBF0F8` and its callees |
+| `25` | `u8` | reachKind | weapons: which range pair sets the near and middle distance (`00320D70` at `00320D93`) |
+| `26` | `u8` | motionClass | weapons: attack motion class, through the map at `02EBF180`, main-hand rows only (`003203B0` at `0032041E`) |
+| `27` | `u8` | chargeBase | weapons: charge time base for actions with flag +`0x0C` bit 27 (`002F8410` at `002F851A`) |
+| `28` | `u32` | bonusRecord | offset of the bonus record from section offset `0x7144`, 0-4200; rebased at load (`0023823E`) |
+| `2C` | `u16` | attackEffect | weapons: low 15 bits = the effect a plain Attack shows (`0030AC50` at `0030AD56`) |
+| `2E` | `u16` | pad2E | 0 on every row |
+| `30` | `u32` | modelId | weapons, ammunition and shields: the held model, 0x0077xxxx (`0031BF60` at `0031BFE0`) |
+
+`EquipmentBonus` (`0x18` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u16` | maxHp | added to max HP (`002FF4AF`) |
+| `02` | `u16` | maxMp | added to max MP (`002FF4BF`) |
+| `04` | `u8` | strength | added to Strength (`002FF4CF`) |
+| `05` | `u8` | magickPower | added to Magick Power (`002FF4DE`) |
+| `06` | `u8` | vitality | added to Vitality (`002FF4ED`) |
+| `07` | `u8` | speed | added to Speed (`002FF4FD`) |
+| `08` | `u32` | statusesHeld | statuses the wearer has while it is equipped, into stats +`0x3C` (`002FF51B`) |
+| `0C` | `u32` | statusImmune | statuses the wearer cannot get, into stats +`0x38` (`002FF50D`) |
+| `10` | `u8` | absorb | elements absorbed, into stats +`0x41` (`002FF538`) |
+| `11` | `u8` | immune | elements nullified, into stats +`0x43` (`002FF556`) |
+| `12` | `u8` | halved | elements halved, into stats +`0x42` (`002FF547`) |
+| `13` | `u8` | weak | elements the wearer is weak to, into stats +`0x40` (`002FF529`) |
+| `14` | `u8` | potency | elements boosted, into stats +`0x44` (`002FF56D`) |
+| `15` | `u8[3] pad15` | 0 in every record |  |
 
 What each record field does to a unit is on [Stats](../Damage-And-Battle-Formulas/stats.md) and
 [Elements](../Damage-And-Battle-Formulas/elements.md).

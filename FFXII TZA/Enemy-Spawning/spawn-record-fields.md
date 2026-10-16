@@ -3,10 +3,8 @@ title: "Spawn record fields: the keep entry behind every spawned enemy, offset b
 kind: "reference"
 category: "Enemy spawning"
 summary: "The 0x250-byte spawn record (the keep entry) that every enemy built from the enemy definition table is driven through: the three ways code reaches one, each field with its width, its writers and its readers, the eight flag bits with who sets, clears and tests them, the stats record that lives at +0x80, the three byte ranges nothing touches, and the access table of every lane-map and seed-route reach with each instruction checked against the executable."
-addresses: ["00236100", "002360D0", "0023A570", "0023AC80", "002395A0", "0023A2E0", "00236860", "00237080", "00239840", "00239410", "002391C0", "002396B0", "0023A200", "0023A410", "00233AD0", "00234200", "002350C0", "00235720", "002355A0", "002354F0", "00235360", "00300530", "003112F0", "00385BA0", "0030FED0", "00300310", "003003F0", "00307300", "00311F70", "00239210", "00312EE0", "00308040", "00238BF0", "00301AD0", "00321530", "00321D40", "00233780"]
+addresses: "00236100, 002360D0, 0023A570, 0023AC80, 002395A0, 0023A2E0, 00236860, 00237080, 00239840, 00239410, 002391C0, 002396B0, 0023A200, 0023A410, 00233AD0, 00234200, 002350C0, 00235720, 002355A0, 002354F0, 00235360, 00300530, 003112F0, 00385BA0, 0030FED0, 00300310, 003003F0, 00307300, 00311F70, 00239210, 00312EE0, 00308040, 00238BF0, 00301AD0, 00321530, 00321D40, 00233780, 00321DC0, 00321810"
 ---
-
-# Spawn record fields: the keep entry behind every spawned enemy, offset by offset, its flag bits and every proven access
 
 ## What it lists
 
@@ -46,29 +44,29 @@ routes; the back-pointer writers are named per field below with their sites.
 
 | Offset | Width | Field | Writers | Readers |
 |---|---|---|---|---|
-| `+0x00` | u32 | flags, eight bits (next table) | see the bit table | see the bit table |
-| `+0x04` | f32 | lifecycle point threshold: the absolute value of the float `0023A200` receives, with bit 3 for positive and bit 6 for below -1.0; zeroed first. The same call sets unit flag bit 40 for a non-zero float and clears it for 0 | `0023A200` | `00308040` (`003080D0`) |
-| `+0x08` | u16 | death count | `00300530` (`00300801`, `inc`); zeroed by `002395A0` (`0023965C`) | `00235F50`; `00235720` against `+0x0A` |
-| `+0x0A` | u16 | death limit: `row.b_00 + rand % (row.b_01 + 1)`, or 0 | `002395A0` | `00235EF0`; `00235720` |
-| `+0x0C` | u32 | second of the last death: `counter / (int)(30.0 * [01DFE0B8])` | `00300530` (`00300829`); zeroed by `002395A0` | `00235FB0` (`00236017`); `00235720` (`002358D1`) |
-| `+0x10` | u16 | respawn cooldown in whole seconds: `row.w_02 + rand % (row.w_04 + 1)`, or 0 | `002395A0` | `002366E0`; `00235720` |
-| `+0x12` | u8 | spawn-history counter: the low byte of the row's `0208D354` counter before increment, 0 for a `0xFF` row | `0023A570` | `00238BF0` (`00238EA9`), passed with the unit's text pointer to `00269F20` |
-| `+0x14` | u8 | steal slots, bits 0-2 = the slot is authored (the row's word `+0x32`, `+0x34` or `+0x36` is not `0xFFFF`), set at a fresh spawn; a consumer clears the bit once the slot is taken | `0023A570`; cleared per slot by `003112F0` (`0031146F`) and `00385BA0` (`00385C17` `0xFB`, `00385C41` `0xFD`, `00385C6B` `0xFE`) | `003112F0`, `00385BA0` |
-| `+0x15` | u8 | range-retire inhibit tag, written with bit 4 | `002391C0` | `00301AD0` (`00301D75`, after testing bit 4 at `00301D70`) |
-| `+0x16` | u8 | the script's selection, `0xFF` none; bits 0 and 2 of the flags are cleared when it changes | `00239840`; `0xFF` from `0023A2E0`, `00236860` (as a word with `+0x17`), `00237080` | `00236140` (returns -2 on a bad lane) |
-| `+0x17` | u8 | persistence key; `00235360` copies the first history entry with the same key, bit 1 set and bit 0 or 2 set over the live entry | `00239840` and `0023A2E0` from `+0x18` on a fresh entry; 0 from `00236860`; `002395A0` | `00235360` (`0023541F`) |
-| `+0x18` | u8 | the authored key the resets restore `+0x17` from: `row.b_06` when the table's byte `+1` is set, else 0 | `002395A0` | `0023A2E0`, `00239840` |
-| `+0x19` | u8 | enmity decay timer | `00321530` (`0032156D` forms the address) | [enmity](../Enemy-AI-And-Gambits/enmity.md) |
-| `+0x1A`-`+0x41` | u8[40] | enmity toward combatant id 0-39 | `00321D40` (`00321D61` forms the `+0x19` base; the per-id byte is reached by index), the enmity writers | the same |
-| `+0x42`-`+0x4F` | 14 B | untouched by any function in either route | | |
-| `+0x50`-`+0x5F` | f32[4] | persisted world position, stored whole | `00300310` (`003003CE`), `00307300` (`003079F4`), `00311F70` (`00312092`), `00239410`, `002355A0`, `00235720` | the selectors through the bank copies |
-| `+0x60`-`+0x6F` | f32[4] | candidate position x, y, z at `+0x60`, `+0x64`, `+0x68` | `00239410` (y = 0), `002355A0`, `00235720`, `00234200` (`00234291`, from unit `+0xE0`, under the release gate below) | `0023A410`: when unit `+0x1F6` has bit 3 the ground probe rewrites `+0x64` and unit `+0x188` is added, then the record is passed to `00300310` |
-| `+0x70` | f32 | persisted facing yaw | `003003F0` (`0030046E`), `00307300` (`00307A4F`), `00311F70` (`003120F7`), `00239210` (a random yaw in `[0, 360)` when its argument is negative; the same yaw goes to the actor through `0026A0D0` and `0026B620`) | no reader of the field found; the bank copies carry it |
-| `+0x74` | u32 | unit `+0x160` at slot release | `00234200` (`0023429E`, under the release gate below) | none found |
-| `+0x78`-`+0x7C` | u8[5] | persisted elemental affinity: weak, absorb, resist, immune, and the source's half-again, mirrored with stats `+0x40`-`+0x44` under bit 7 ([elements](../Damage-And-Battle-Formulas/elements.md)) | `003112F0` (`or`/`and` per byte, `00311954`-`00311A74`); zeroed by `0023A2E0`, `00236860`, `00237080` | `0030FED0` |
-| `+0x7D`-`+0x7F` | 3 B | untouched | | |
-| `+0x80`-`+0x247` | `0x1C8` | the stats record, initialised in place by `0023AC80` and grown by `0030C470` ([unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md)) | the `arg0+0x80` rows of the table | the same |
-| `+0x248`-`+0x24F` | 8 B | untouched | | |
+| `000` | u32 | flags, eight bits (next table) | see the bit table | see the bit table |
+| `004` | f32 | lifecycle point threshold: the absolute value of the float `0023A200` receives, with bit 3 for positive and bit 6 for below -1.0; zeroed first. The same call sets unit flag bit 40 for a non-zero float and clears it for 0 | `0023A200` | `00308040` (`003080D0`) |
+| `008` | u16 | death count | `00300530` (`00300801`, `inc`); zeroed by `002395A0` (`0023965C`) | `00235F50`; `00235720` against `+0x0A` |
+| `00A` | u16 | death limit: `row.b_00 + rand % (row.b_01 + 1)`, or 0 | `002395A0` | `00235EF0`; `00235720` |
+| `00C` | u32 | second of the last death: `counter / (int)(30.0 * [01DFE0B8])` | `00300530` (`00300829`); zeroed by `002395A0` | `00235FB0` (`00236017`); `00235720` (`002358D1`) |
+| `010` | u16 | respawn cooldown in whole seconds: `row.w_02 + rand % (row.w_04 + 1)`, or 0 | `002395A0` | `002366E0`; `00235720` |
+| `012` | u8 | spawn-history counter: the low byte of the row's `0208D354` counter before increment, 0 for a `0xFF` row | `0023A570` | `00238BF0` (`00238EA9`), passed with the unit's text pointer to `00269F20` |
+| `014` | u8 | steal slots, bits 0-2 = the slot is authored (the row's word `+0x32`, `+0x34` or `+0x36` is not `0xFFFF`), set at a fresh spawn; a consumer clears the bit once the slot is taken | `0023A570`; cleared per slot by `003112F0` (`0031146F`) and `00385BA0` (`00385C17` `0xFB`, `00385C41` `0xFD`, `00385C6B` `0xFE`) | `003112F0`, `00385BA0` |
+| `015` | u8 | range-retire inhibit tag, written with bit 4 | `002391C0` | `00301AD0` (`00301D75`, after testing bit 4 at `00301D70`) |
+| `016` | u8 | the script's selection, `0xFF` none; bits 0 and 2 of the flags are cleared when it changes | `00239840`; `0xFF` from `0023A2E0`, `00236860` (as a word with `+0x17`), `00237080` | `00236140` (returns -2 on a bad lane) |
+| `017` | u8 | persistence key; `00235360` copies the first history entry with the same key, bit 1 set and bit 0 or 2 set over the live entry | `00239840` and `0023A2E0` from `+0x18` on a fresh entry; 0 from `00236860`; `002395A0` | `00235360` (`0023541F`) |
+| `018` | u8 | the authored key the resets restore `+0x17` from: `row.b_06` when the table's byte `+1` is set, else 0 | `002395A0` | `0023A2E0`, `00239840` |
+| `019` | u8 | enmity decay timer | `00321530` (`0032156D` forms the address); zeroed by `00321810` | [enmity](../Enemy-AI-And-Gambits/enmity.md) |
+| `01A` | u8[40] | enmity toward combatant id 0-39 | `00321D40` (`00321D61` forms the `+0x19` base; the per-id byte is reached by index), the enmity writers; `00321DC0(base, v)` sets the byte of every id that `00322C50(2, id)` admits to `v` clamped to 0-255, run by `00321810(unit, on)` with 0 or 1 from `002392D0` (verb `btlAtelSetEntryFlag`, `00510300`: flag bit 15 clear gives 1, set gives 0; only while spawn byte `+0` bits 0 and 2 are clear) | the same |
+| `042` | u8[14] | untouched by any function in either route | | |
+| `050` | f32[4] | persisted world position, stored whole | `00300310` (`003003CE`), `00307300` (`003079F4`), `00311F70` (`00312092`), `00239410`, `002355A0`, `00235720` | the selectors through the bank copies |
+| `060` | f32[4] | candidate position x, y, z at `+0x60`, `+0x64`, `+0x68` | `00239410` (y = 0), `002355A0`, `00235720`, `00234200` (`00234291`, from unit `+0xE0`, under the release gate below) | `0023A410`: when unit `+0x1F6` has bit 3 the ground probe rewrites `+0x64` and unit `+0x188` is added, then the record is passed to `00300310` |
+| `070` | f32 | persisted facing yaw | `003003F0` (`0030046E`), `00307300` (`00307A4F`), `00311F70` (`003120F7`), `00239210` (a random yaw in `[0, 360)` when its argument is negative; the same yaw goes to the actor through `0026A0D0` and `0026B620`) | no reader of the field found; the bank copies carry it |
+| `074` | u32 | unit `+0x160` at slot release | `00234200` (`0023429E`, under the release gate below) | none found |
+| `078` | u8[5] | persisted elemental affinity: weak, absorb, resist, immune, and the source's half-again, mirrored with stats `+0x40`-`+0x44` under bit 7 ([elements](../Damage-And-Battle-Formulas/elements.md)) | `003112F0` (`or`/`and` per byte, `00311954`-`00311A74`); zeroed by `0023A2E0`, `00236860`, `00237080` | `0030FED0` |
+| `07D` | u8[3] | untouched | | |
+| `080` | u8[456] | the stats record, initialised in place by `0023AC80` and grown by `0030C470` ([unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md)) | the `arg0+0x80` rows of the table | the same |
+| `248` | u8[8] | untouched | | |
 
 `00234200`, the slot release, writes `+0x60`, `+0x74` and flag bit 2 only for a kind-1 unit whose
 byte `+0` has bit 4, with a non-null back-pointer, and, when its status words carry `0x80000003`,

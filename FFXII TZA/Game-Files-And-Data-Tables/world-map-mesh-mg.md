@@ -3,10 +3,8 @@ title: "World map mesh (.mg): the world-map geometry file, its layout and how th
 kind: "format"
 category: "Game files and data tables"
 summary: "meshdata.mg, the one .mg file: a two-entry directory of sub-meshes, each a header, a slot array, 32-byte vertices and a u16 index stream. Sub-mesh 0 is the four textured tiles of the World Map picture, bound by slot name to w_main0..3.tm2; sub-mesh 1 is a strip mesh drawn with w_shade_p.tm2 on the World Map and untextured on the license board. Covers the loader, the binder, both draw paths, the shipped file and the rules an edited file must follow."
-addresses: ["00562F90", "00563110", "00274780", "00555A50", "005556A0", "00555400", "00555D10", "00556240", "00555B90", "00555F80", "00552250", "005528C0", "00550540", "00561390", "0055A8A0", "00D231C0", "00D23270", "0024A5A0", "00249210", "002493D0", "002DF9A0", "02CA8F38", "02CA8F40"]
+addresses: "00562F90, 00563110, 00274780, 00555A50, 005556A0, 00555400, 00555D10, 00556240, 00555B90, 00555F80, 00552250, 005528C0, 00550540, 00561390, 0055A8A0, 00D231C0, 00D23270, 0024A5A0, 00249210, 002493D0, 002DF9A0, 02CA8F38, 02CA8F40"
 ---
-
-# World map mesh (.mg): the world-map geometry file, its layout and how the map screen loads and draws it
 
 ## What the player sees
 
@@ -30,48 +28,52 @@ Two screens request it. The World Map set-up `00550540` calls `00562F90` on the 
 
 All offsets are little-endian. The file starts with a directory of two `{offset, size}` pairs:
 
-```
-+0x00  u32  sub0Offset   offset of sub-mesh 0 from the file start
-+0x04  u32  sub0Size     not read
-+0x08  u32  sub1Offset   offset of sub-mesh 1 from the file start
-+0x0C  u32  sub1Size     not read
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | sub0Offset | offset of sub-mesh 0 from the file start |
+| `04` | `u32` | sub0Size | not read |
+| `08` | `u32` | sub1Offset | offset of sub-mesh 1 from the file start |
+| `0C` | `u32` | sub1Size | not read |
 
 `00274780(buffer, i)` returns `buffer + u32[buffer + 8 × i]` (`00274783`, `00274786`); it is the only
 reader of the directory. Each sub-mesh starts with a header whose offsets count from the sub-mesh start:
 
-```
-+0x00  s32    idxOff     u16 index stream
-+0x04  s32    idxCount   not read
-+0x08  s32    vtxOff     vertex array, 0x20 bytes per vertex
-+0x0C  s32    vtxCount   read by the tile path (sub-mesh 0) only
-+0x10  s32    slotOff    slot array, 0x20 bytes per slot
-+0x14  s32    slotCount  slots drawn and bound
-+0x18  u8[8]  -          zero in both shipped sub-meshes; not read
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `i32` | idxOff | u16 index stream |
+| `04` | `i32` | idxCount | not read |
+| `08` | `i32` | vtxOff | vertex array, `0x20` bytes per vertex |
+| `0C` | `i32` | vtxCount | read by the tile path (sub-mesh 0) only |
+| `10` | `i32` | slotOff | slot array, `0x20` bytes per slot |
+| `14` | `i32` | slotCount | slots drawn and bound |
+| `18` | `u8[8]` | - | zero in both shipped sub-meshes; not read |
 
 `00555A50(sub, i)` returns `sub + s32[sub + 0x10] + 0x20 × i`. A slot is:
 
-```
-+0x00  char[16]  name        NUL-padded; the binder overwrites +0x00..+0x07 with an image-entry pointer
-+0x10  s32       indexStart  first index-stream entry of the slot's run (sub-mesh 1 path)
-+0x14  s32       indexCount  entries in the run (sub-mesh 1 path)
-+0x18  s16[4]    colour      R, G, B, A; 0x80 = 1.0
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[16]` | name | NUL-padded; the binder overwrites +`0x00`..+`0x07` with an image-entry pointer |
+| `10` | `i32` | indexStart | first index-stream entry of the slot's run (sub-mesh 1 path) |
+| `14` | `i32` | indexCount | entries in the run (sub-mesh 1 path) |
+| `18` | `i16[4]` | colour | R, G, B, A; `0x80` = 1.0 |
 
 A sub-mesh 0 vertex and a sub-mesh 1 vertex share the size but not the first half:
 
-```
-sub-mesh 0 (tiles)
-+0x00  f32     s         fraction of the bound texture's width
-+0x04  f32     t         fraction of the bound texture's height
-+0x08  f32[2]  -         1.0 in every shipped vertex; not read by the draw path
-+0x10  f32[4]  x, y, z, w  position
+Sub-mesh 0 (tiles):
 
-sub-mesh 1 (strips)
-+0x00  s32[4]  colour    R, G, B, A
-+0x10  f32[4]  x, y, z, w  position
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `f32` | s | fraction of the bound texture's width |
+| `04` | `f32` | t | fraction of the bound texture's height |
+| `08` | `f32[2]` | - | 1.0 in every shipped vertex; not read by the draw path |
+| `10` | `f32[4]` | x, y, z, w | position |
+
+Sub-mesh 1 (strips):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `i32[4]` | colour | R, G, B, A |
+| `10` | `f32[4]` | x, y, z, w | position |
 
 An index entry is a `u16`: bit 15 (`0x8000`) starts a new strip, and bits 0 to 14 are the vertex index.
 
@@ -116,16 +118,17 @@ The loader then walks the eleven `{name, flag}` entries at `00D231C0`:
 
 It then requests `w_menu.mrp` (`0xA6`) into `+0x18` and sets `+0x88` to −1.
 
-```
-meshObject (World Map host + 0xC0)
-+0x00  ptr  sub-mesh 0       set by the binder
-+0x08  ptr  sub-mesh 1       set by the binder
-+0x10  ptr  file buffer
-+0x18  ptr  w_menu.mrp request
-+0x20  ptr  w_shade_p image entry; +0x28..+0x40 w_main0..w_main3; +0x48 w_icon_p, +0x50 w_line01, +0x58 w_line02
-+0x70  ptr  cursol_4_p image entry
-+0x78  ptr  w_line01 image entry, looked up by the binder
-```
+MeshObject (World Map host + `0xC0`):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `void*` | sub-mesh 0 | set by the binder |
+| `08` | `void*` | sub-mesh 1 | set by the binder |
+| `10` | `void*` | file buffer |  |
+| `18` | `void*` | w_menu.mrp request |  |
+| `20` | `void*` | w_shade_p image entry; +0x28..+0x40 w_main0..w_main3; +0x48 w_icon_p, +0x50 w_line01, +0x58 w_line02 |  |
+| `70` | `void*` | cursol_4_p image entry |  |
+| `78` | `void*` | w_line01 image entry, looked up by the binder |  |
 
 ### Binding textures
 

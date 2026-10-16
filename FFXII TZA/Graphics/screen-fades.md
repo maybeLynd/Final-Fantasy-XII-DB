@@ -3,10 +3,8 @@ title: "Screen fades: the seven fade layers, the fade verbs and the per-movie fa
 kind: "system"
 category: "Graphics"
 summary: "The full-screen fades to black or white: the seven fade layer records and the one function that starts a fade on them, the screen-effect descriptor pool that times and draws every fade as a sorted full-screen quad, the per-tick poll that leaves a finished fade-out on screen and frees a finished fade-in, the script verbs and the engine's own fades by layer, the instant black of a cutscene skip, the 49-row fade schedule applied around each pre-rendered movie, and the effect fade verbs."
-addresses: ["022BDD60", "002EFA70", "002EF910", "00375900", "00375A20", "00375AE0", "00375470", "00374950", "00375500", "003740B0", "01EFAC20", "002EFE10", "002EFE40", "002EFE50", "002EFE60", "0037DDD0", "0037DEA0", "02EBF008", "00360710", "002EFD80", "002EFDC0"]
+addresses: "022BDD60, 002EFA70, 002EF910, 00375900, 00375A20, 00375AE0, 00375470, 00374950, 00375500, 003740B0, 01EFAC20, 002EFE10, 002EFE40, 002EFE50, 002EFE60, 0037DDD0, 0037DEA0, 02EBF008, 00360710, 002EFD80, 002EFDC0"
 ---
-
-# Screen fades: the seven fade layers, the fade verbs and the per-movie fade schedule
 
 ## What the player sees
 
@@ -194,13 +192,14 @@ holds until `efffadecancel` (`0x02A6`, `002EFD50`) or the next effect fade relea
 
 ## Layouts
 
-```
-FadeLayer[7] at 022BDD60, stride 0x30
-+0x00  u32   handle      class-8 screen-effect handle, 0 when free
-+0x04  u8    state       0 free, 1 running, 2 finished
-+0x05  u8    direction   0 out, 1 in
-+0x08  ...   descriptor  0x28 bytes, below
-```
+FadeLayer[7] at `022BDD60`, stride `0x30`:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | handle | class-8 screen-effect handle, 0 when free |
+| `04` | `u8` | state | 0 free, 1 running, 2 finished |
+| `05` | `u8` | direction | 0 out, 1 in |
+| `08` | `...` | descriptor | `0x28` bytes, below |
 
 ```
 Kind-1 descriptor (record +0x08; pool record +0x00)
@@ -219,17 +218,18 @@ pool record only:
 The pool copies 0x68 bytes, more than the 0x28 a fade record has; the bytes past `+0x28` come
 from the next layer's record and the kind-1 code reads none of them.
 
-```
-Movie fade row (registry slot 02EBF008, stride 8)
-+0x00  u8   id          equals the row index
-+0x01  u8   inStart     frame the fade-in starts
-+0x02  u8   inLength    fade-in frames, 0 for none
-+0x03  u8   outLead     frames between the fade-out's end and the end mark
-+0x04  u8   outLength   fade-out frames, 0 for none
-+0x05  u8   unused      0 in every row
-+0x06  u8   unused      0 in every row
-+0x07  u8   flags       bit 0 white fade-in, bit 1 white fade-out
-```
+Movie fade row (registry slot `02EBF008`, stride 8):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | id | equals the row index |
+| `01` | `u8` | inStart | frame the fade-in starts |
+| `02` | `u8` | inLength | fade-in frames, 0 for none |
+| `03` | `u8` | outLead | frames between the fade-out's end and the end mark |
+| `04` | `u8` | outLength | fade-out frames, 0 for none |
+| `05` | `u8` | unused | 0 in every row |
+| `06` | `u8` | unused | 0 in every row |
+| `07` | `u8` | flags | bit 0 white fade-in, bit 1 white fade-out |
 
 ## Shipped data
 

@@ -3,10 +3,8 @@ title: "Shader variant selection: the eight context-switch axes and the variant 
 kind: "system"
 category: "PhyreEngine"
 summary: "PhyreEngine's context switches: the eight static switch objects (NUM_LIGHTS, LOD_BLEND, INSTANCING_ENABLED, SHADER_LOD_LEVEL, ORTHO_CAMERA, INDICES_16BIT, SKINNING_ENABLED, LOW_RES_PARTICLES), how each evaluates a draw into words of the variant key, the binary search of the effect's variant table, the -D defines the same objects write, the base switch built by name at run time, and what the 93 shipped effects author."
-addresses: ["00606A20", "0060B980", "006B8D20", "02E522D0", "02E522E0", "006B9050", "006B9120", "006B90A0", "006B9070", "006B93D0", "006B9410", "006B93A0", "006B9450", "006B94C0", "006B9630", "006B9B90", "006B89C0", "006B8590", "005FDD40", "01F2EBC8", "00D80EA8"]
+addresses: "00606A20, 0060B980, 006B8D20, 02E522D0, 02E522E0, 006B9050, 006B9120, 006B90A0, 006B9070, 006B93D0, 006B9410, 006B93A0, 006B9450, 006B94C0, 006B9630, 006B9B90, 006B89C0, 006B8590, 005FDD40, 01F2EBC8, 00D80EA8"
 ---
-
-# Shader variant selection: the eight context-switch axes and the variant key a draw uses
 
 ## What the player sees
 
@@ -116,21 +114,23 @@ both pools.
 
 ## Layouts
 
-```
-PContextSwitch, 0x28 bytes
-+0x00  ptr   vtable     base 00D80EA8; slot 0 deleting destructor, 1 value list, 2 evaluate, 3 defines
-+0x08  ptr   name       C string, the registry key
-+0x10  ptr   next       registry link, head 02E522D0
-+0x18  u8    pooled     1 for a switch built by 006B8590
-+0x20  u32   words      key words this switch writes
-+0x24  u8    value      read only by the base evaluator 006B9050
-```
+PContextSwitch, `0x28` bytes:
 
-```
-light output record (caller's stack, 0060B980 [rbp+0x100])
-+0x00  ptr[4]  lights   kept lights, in code order
-+0x20  u32     count
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `void*` | vtable | base `00D80EA8`; slot 0 deleting destructor, 1 value list, 2 evaluate, 3 defines |
+| `08` | `void*` | name | C string, the registry key |
+| `10` | `void*` | next | registry link, head `02E522D0` |
+| `18` | `u8` | pooled | 1 for a switch built by `006B8590` |
+| `20` | `u32` | words | key words this switch writes |
+| `24` | `u8` | value | read only by the base evaluator `006B9050` |
+
+Light output record (caller's stack, `0060B980` [rbp+`0x100`]):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `void*[4]` | lights | kept lights, in code order |
+| `20` | `u32` | count |  |
 
 | Object | Name | Class vtable | Evaluator |
 |---|---|---|---|

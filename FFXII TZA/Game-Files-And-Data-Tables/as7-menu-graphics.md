@@ -3,10 +3,8 @@ title: "Menu graphics containers (.as7): the compressed page archives behind ite
 kind: "format"
 category: "Game files and data tables"
 summary: "The big-endian A7 containers in bin_menu: a page directory and a shared static dictionary, the LZ page codec 00248500 and its walker 0024AA00, how the item-picture path decodes one 64 x 96 page into the itemgra_c atlas with an Item_Clut palette, how the silhouette path decodes 258 pages into each of two TIM2 images, the 18 shipped files, and the rules an edited container must keep."
-addresses: ["0024AA00", "00248500", "02090788", "02091090", "00291C80", "0209BEA0", "00291D90", "00292050", "00292390", "01E0C470", "01E0C474", "002C8EE0", "0209E638", "002CEB40", "002CEFD0", "002CEE00", "0024A440", "0024A1D0"]
+addresses: "0024AA00, 00248500, 02090788, 02091090, 00291C80, 0209BEA0, 00291D90, 00292050, 00292390, 01E0C470, 01E0C474, 002C8EE0, 0209E638, 002CEB40, 002CEFD0, 002CEE00, 0024A440, 0024A1D0, 002C9040"
 ---
-
-# Menu graphics containers (.as7): the compressed page archives behind item pictures and character silhouettes
 
 ## What the player sees
 
@@ -27,7 +25,8 @@ The files are resource kind 7, in the `in` and `ch` locale folders only:
   buffer at `+8`).
 - Silhouettes: the field HUD root `00253780` calls `002C8EE0`, which requests ids `0x74` (`monotone_chr.bin`) and
   `0x75` (`Char_Silhouette.as7`) into the slots at `0209E638`. `002CEB40` copies them into its widget, so the
-  container's buffer sits at widget `+0xD8`.
+  container's buffer sits at widget `+0xD8`. Each slot holds the request id at `+0`, which the delivery
+  callback `002C9040(i)` clears to 0, and the buffer at `+8`.
 
 ## Layouts
 
@@ -44,12 +43,12 @@ dictOff  dictionary blob, to the end of the file
 
 The dictionary blob:
 
-```
-+0x00  u8     mode     0 or 3 decode; any other value fails
-+0x01  u8     b        length bit count
-+0x02  u16be  outLen   mode 0 only: bytes every page decodes to
-+0x04  u8[]   dict     mode 0; for mode 3 the dictionary starts at +0x02
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | mode | 0 or 3 decode; any other value fails |
+| `01` | `u8` | b | length bit count |
+| `02` | `u16be` | outLen | mode 0 only: bytes every page decodes to |
+| `04` | `u8[]` | dict | mode 0; for mode 3 the dictionary starts at +`0x02` |
 
 In mode 3 each page stream begins with its own big-endian u16 output length instead. A page stream is tokens:
 

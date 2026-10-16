@@ -3,10 +3,8 @@ title: "TIM2 images: the PS2-era .tm2 picture format, how the game reads one, an
 kind: "format"
 category: "Game files and data tables"
 summary: "The TIM2 container behind the 447 .tm2 menu pictures, the nine menuquest.nfs glyph sheets and thousands of images embedded in packs, scripts and map files: the file and picture headers as the texture binder 0024A1D0 and the image registry read them, the 4-bit glyph-sheet block at picture +0x30, the eight-entry registry at 02AEE810 with its seven caller slots and its fillers and clearers, the shipped header values, and the rules a replacement must follow."
-addresses: ["0024A1D0", "0024A480", "0024A4E0", "002493D0", "0208F580", "00181000", "00180E70", "00181250", "00181190", "0039BEC0", "00D11470", "02AEE810", "0039BF50", "0039BDA0", "003EFDF0", "0039BB60", "0039BB30", "0039BA30", "0039BAD0", "0039C150", "0039C3F0", "0029CAC0", "0029CB10", "0209C320", "0037F1F0", "003BC4E0", "00575710", "0020E600", "0020E620"]
+addresses: "0024A1D0, 0024A480, 0024A4E0, 002493D0, 0208F580, 00181000, 00180E70, 00181250, 00181190, 0039BEC0, 00D11470, 02AEE810, 0039BF50, 0039BDA0, 003EFDF0, 0039BB60, 0039BB30, 0039BA30, 0039BAD0, 0039C150, 0039C3F0, 0029CAC0, 0029CB10, 0209C320, 0037F1F0, 003BC4E0, 00575710, 0020E600, 0020E620"
 ---
-
-# TIM2 images: the PS2-era .tm2 picture format, how the game reads one, and the seven-slot image registry
 
 ## What the player sees
 
@@ -29,46 +27,50 @@ binders call `0024A1D0` directly on TIM2s inside a pack (`00246A10` binds five f
 
 ## Layouts
 
-```
-TIM2 file header (16 bytes; the first picture always starts at +0x10)
-+0x00  char[4]  magic       "TIM2"; checked by the registry gate (0039BEE3), not by the binder
-+0x04  u8       version     read by neither the binder nor the registry
-+0x05  u8       format      read by neither; 0 in every shipped file
-+0x06  u16      pictures    picture count; walked by the registry (0039BF50, 0039BDA0), not by 0024A1D0
-+0x08  u8[8]    reserved
+TIM2 file header (16 bytes; the first picture always starts at +`0x10`):
 
-Picture header (0x30 bytes, then the game block or eXt area up to header size)
-+0x00  u32  totalSize    header + image + CLUT; the registry steps to the next picture by it
-+0x04  u32  clutSize
-+0x08  u32  imageSize    0024A1D0: CLUT = picture + headerSize + imageSize
-+0x0C  u16  headerSize   pixels start at picture + headerSize; > 0x30 marks a game block
-+0x0E  u16  clutColors   CLUT colour count (0024A1D0)
-+0x10  u8   pictFormat
-+0x11  u8   mipmaps
-+0x12  u8   clutType     passed to the CLUT builders
-+0x13  u8   imageType    passed to the CLUT builders
-+0x14  u16  width
-+0x16  u16  height
-+0x18  u64  gsTex0       bits 20-25 pick the binder's path; bits 51-54 kept in the entry
-+0x20  u64  gsTex1
-+0x28  u32  gsRegs
-+0x2C  u32  gsTexClut
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[4]` | magic | "TIM2"; checked by the registry gate (`0039BEE3`), not by the binder |
+| `04` | `u8` | version | read by neither the binder nor the registry |
+| `05` | `u8` | format | read by neither; 0 in every shipped file |
+| `06` | `u16` | pictures | picture count; walked by the registry (`0039BF50`, `0039BDA0`), not by `0024A1D0` |
+| `08` | `u8[8]` | reserved |  |
+
+Picture header (`0x30` bytes, then the game block or eXt area up to header size):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | totalSize | header + image + CLUT; the registry steps to the next picture by it |
+| `04` | `u32` | clutSize |  |
+| `08` | `u32` | imageSize | `0024A1D0`: CLUT = picture + headerSize + imageSize |
+| `0C` | `u16` | headerSize | pixels start at picture + headerSize; > `0x30` marks a game block |
+| `0E` | `u16` | clutColors | CLUT colour count (`0024A1D0`) |
+| `10` | `u8` | pictFormat |  |
+| `11` | `u8` | mipmaps |  |
+| `12` | `u8` | clutType | passed to the CLUT builders |
+| `13` | `u8` | imageType | passed to the CLUT builders |
+| `14` | `u16` | width |  |
+| `16` | `u16` | height |  |
+| `18` | `u64` | gsTex0 | bits 20-25 pick the binder's path; bits 51-54 kept in the entry |
+| `20` | `u64` | gsTex1 |  |
+| `28` | `u32` | gsRegs |  |
+| `2C` | `u32` | gsTexClut |  |
 
 A registered glyph sheet carries a game block at picture `+0x30` instead of an `eXt` area:
 
-```
-Glyph-sheet block (picture +0x30; present when headerSize > 0x30)
-+0x30  u32  flags     low nibble 1 for the gate (file +0x40 of picture 0); 0x4000 = offsets converted;
-                      bits 0x18000 select the sheet in 0039BA30
-+0x34  u32  self      written: handle of this picture
-+0x38  u32  next      written: handle of the following picture, or of address 0 when that picture has a block
-+0x3C  u32  offsetA   offset from +0x30, converted once to a handle
-+0x44  u32  offsetB   offset from +0x30, converted once to a handle
-+0x48  u32  offsetC   offset from +0x30, converted once to a handle
-+0x4C  u16  bandBase  written: 0x2A00 + 0xA0 x (row / 128)
-+0x4E  u16  bandRow   written: row mod 128
-```
+Glyph-sheet block (picture +`0x30`; present when headerSize > `0x30`):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `30` | `u32` | flags | low nibble 1 for the gate (file +`0x40` of picture 0); `0x4000` = offsets converted; bits `0x18000` select the sheet in `0039BA30` |
+| `34` | `u32` | self | written: handle of this picture |
+| `38` | `u32` | next | written: handle of the following picture, or of address 0 when that picture has a block |
+| `3C` | `u32` | offsetA | offset from +`0x30`, converted once to a handle |
+| `44` | `u32` | offsetB | offset from +`0x30`, converted once to a handle |
+| `48` | `u32` | offsetC | offset from +`0x30`, converted once to a handle |
+| `4C` | `u16` | bandBase | written: `0x2A00` + `0xA0` x (row / 128) |
+| `4E` | `u16` | bandRow | written: row mod 128 |
 
 A handle is a 32-bit offset from the base pointer at `01F83530`: `0020E620` subtracts it and `0020E600`
 adds it back.

@@ -3,10 +3,8 @@ title: "Thunks and import stubs: jump forwarders, argument-adjusting tail calls,
 kind: "system"
 category: "Compiler and C runtime"
 summary: "The one-jump functions of FFXII_TZA.exe and how code reaches imported functions: the 763 five-byte forwarders and how each is reached, the tail calls that drop or rewrite an argument on the way, the 120 import stubs and where they sit, the import address table and the direct calls through it, the guard-check stub just past it, and how all of this changes a caller count or a hook."
-addresses: ["008C2000", "01DEAB00", "00861E90", "00808888", "0080F2BC", "00861EAE", "00861EB4", "00861ED8", "00809958", "008C31C0", "00313F60", "00377C20", "00291D40", "0028E8B0", "002BE020", "0028FB40", "005A5850", "0016D6C0", "002A2BF0", "0025E3F0"]
+addresses: "008C2000, 01DEAB00, 00861E90, 00808888, 0080F2BC, 00861EAE, 00861EB4, 00861ED8, 00809958, 008C31C0, 00313F60, 00377C20, 00291D40, 0028E8B0, 002BE020, 0028FB40, 005A5850, 0016D6C0, 002A2BF0, 0025E3F0"
 ---
-
-# Thunks and import stubs: jump forwarders, argument-adjusting tail calls, import stubs and the import table
 
 ## What the player sees
 
@@ -144,25 +142,31 @@ pass their own.
 
 ## Layouts
 
-```struct ImportDescriptor base=record size=0x14
-+0x00  u32  lookupTable  RVA of the name-lookup qwords (.idata$4)
-+0x04  u32  timeStamp    0
-+0x08  u32  chain        forwarder chain
-+0x0C  u32  name         RVA of the DLL name
-+0x10  u32  firstThunk   RVA of the DLL's first slot in the import address table
-```
+`ImportDescriptor` (`0x14` bytes, offsets from the start of the record):
 
-```struct ImportStub base=record size=0x6
-+0x00  u8[2]  opcode  FF 25
-+0x02  i32    disp    slot address minus the address of the next instruction
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | lookupTable | RVA of the name-lookup qwords (.idata$4) |
+| `04` | `u32` | timeStamp | 0 |
+| `08` | `u32` | chain | forwarder chain |
+| `0C` | `u32` | name | RVA of the DLL name |
+| `10` | `u32` | firstThunk | RVA of the DLL's first slot in the import address table |
+
+`ImportStub` (`0x6` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8[2]` | opcode | FF 25 |
+| `02` | `i32` | disp | slot address minus the address of the next instruction |
 
 The seven-byte form puts a `48` prefix before `FF 25`, and its displacement counts from `+7`.
 
-```struct JumpForwarder base=record size=0x5
-+0x00  u8   opcode  E9
-+0x01  i32  disp    target minus (forwarder + 5)
-```
+`JumpForwarder` (`0x5` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | opcode | E9 |
+| `01` | `i32` | disp | target minus (forwarder + 5) |
 
 ## Shipped data
 

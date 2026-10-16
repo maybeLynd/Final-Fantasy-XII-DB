@@ -3,10 +3,8 @@ title: "Legacy PS2 GS layer: the GS memory model, the map texture slot rebuild a
 kind: "system"
 category: "Graphics"
 summary: "What the remaster keeps of the PlayStation 2 Graphics Synthesizer model outside the VIF1 / VU1 emulation: the 512 x 448 surface seed and its three reserved surfaces, the GS page geometry of 003A1E50, the 4 MiB local-memory budget, the rebuild that gives the bound map's multiply used textures compact slots when the weather slot changes or a map is bound, the per-pass reset of those slots, the GS image-transfer registers, and the VU register words that recompiled microprograms use for Q and vf00."
-addresses: ["0036D280", "0036D2F0", "022D8EAC", "022D8EB4", "022D8EA8", "003A1E50", "00466190", "00466220", "00467AA0", "00467AD0", "00467B00", "00467B10", "002F7380", "0026E290", "0026E8D0", "0209A670", "0209A6E8", "0209A708", "002F4520", "00244200", "004B9870", "01E02830", "02064B00"]
+addresses: "0036D280, 0036D2F0, 022D8EAC, 022D8EB4, 022D8EA8, 003A1E50, 00466190, 00466220, 00467AA0, 00467AD0, 00467B00, 00467B10, 002F7380, 0026E290, 0026E8D0, 0209A670, 0209A6E8, 0209A708, 002F4520, 00244200, 004B9870, 01E02830, 02064B00"
 ---
-
-# Legacy PS2 GS layer: the GS memory model, the map texture slot rebuild and the VU register leftovers
 
 ## What the player sees
 
@@ -132,33 +130,36 @@ Recompiled VU1 microprograms keep VU registers in fixed globals next to the emul
 
 ## Layouts
 
-```
-texture record (map +0x150 bank, from [+0x08]), 0x60 bytes
-+0x00  u8   psm            GS pixel format
-+0x05  u8   levels         capped at 7 by 00466190
-+0x06  u16  width          halved per level
-+0x08  u16  height         halved per level
-+0x0C  u16  continues      non-zero: counted with the record before it
-+0x0E  s16  count, then slot   reference count during step 4; slot or 0xFFFF after step 5
-```
+Texture record (map +`0x150` bank, from [+`0x08`]), `0x60` bytes:
 
-```
-instance record (map +0x178, tag 30 of the map pack), 0x30 bytes
-+0x02  s16  placement row   read by 003A6FC0
-+0x04  u16  texture record index
-+0x0C  u32  flags           bit 23 + slot: present for that weather slot
-+0x1D  u8   sub-index       a repeat of the previous index and sub-index is not counted again
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | psm | GS pixel format |
+| `05` | `u8` | levels | capped at 7 by `00466190` |
+| `06` | `u16` | width | halved per level |
+| `08` | `u16` | height | halved per level |
+| `0C` | `u16` | continues | non-zero: counted with the record before it |
+| `0E` | `i16` | count, then slot | reference count during step 4; slot or `0xFFFF` after step 5 |
 
-```
-slot record (map +0x218, count +0x228), 0x28 bytes
-+0x00  u64  cleared at allocation and by 002F4520 every pass
-+0x08  u64  cleared at allocation
-+0x10  u64  cleared at allocation
-+0x18  u64  cleared at allocation
-+0x20  u8   0 at allocation, 0xFF from 002F4520 every pass
-+0x21  -    never written
-```
+Instance record (map +`0x178`, tag 30 of the map pack), `0x30` bytes:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `02` | `i16` | placement row | read by `003A6FC0` |
+| `04` | `u16` | texture record index |  |
+| `0C` | `u32` | flags | bit 23 + slot: present for that weather slot |
+| `1D` | `u8` | sub-index | a repeat of the previous index and sub-index is not counted again |
+
+Slot record (map +`0x218`, count +`0x228`), `0x28` bytes:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u64` | cleared at allocation and by 002F4520 every pass |  |
+| `08` | `u64` | cleared at allocation |  |
+| `10` | `u64` | cleared at allocation |  |
+| `18` | `u64` | cleared at allocation |  |
+| `20` | `u8` | 0 at allocation, 0xFF from 002F4520 every pass |  |
+| `21` | `-` | never written |  |
 
 ```
 GS model constants

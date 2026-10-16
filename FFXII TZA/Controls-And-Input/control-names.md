@@ -3,10 +3,8 @@ title: "Control names: every key and button name the game registers, the code ea
 kind: "reference"
 category: "Controls and input"
 summary: "Each name in the game's two input name registries, the key names and the channel names: the code its node holds, which is the code keymap.ini stores, the registries it is in, whether it is a pad button or a keyboard key, and the other names with the same code, with how the registries are built at start-up and why the mouse-button names bind pad buttons."
-addresses: ["00876C80", "00879570", "02EB83B8", "02EB9D80"]
+addresses: "00876C80, 00879570, 02EB83B8, 02EB9D80"
 ---
-
-# Control names: every key and button name the game registers, the code each one stands for, and which names are aliases of one another
 
 ## What it lists
 

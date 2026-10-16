@@ -3,10 +3,8 @@ title: "Movement step: how yaw, pitch and speed become a character's per-frame d
 kind: "system"
 category: "Movement and pathfinding"
 summary: "The innermost movement seam: the per-frame driver that runs steering, computes the step, publishes the angles and integrates the position; the class gate every movement call shares; the spherical decomposition of yaw, pitch and speed and the flat branch that drops the pitch; the two controller flags and the runtime gate that choose flat or three-dimensional motion; the animation-state override that replaces or decays the step; the pass-through path; the two integration paths and the displacement measure; and the setters that feed the angles and the speed, including the battle unit's intent."
-addresses: ["002E5030", "002E4380", "00424080", "002E5610", "002E5380", "002E54A0", "002E5C10", "00329B00", "0026D6F0", "0026D6A0", "0026A330", "002E55C0", "0026A0D0", "0026A060", "0023A070", "00265200", "00265020", "00267260", "00264460", "003B7730", "003B6ED0", "003B7E10", "003B7E20", "003A1D30", "002E9BB0", "002EC5B0", "0025DF00"]
+addresses: "002E5030, 002E4380, 00424080, 002E5610, 002E5380, 002E54A0, 002E5C10, 00329B00, 0026D6F0, 0026D6A0, 0026A330, 002E55C0, 0026A0D0, 0026A060, 0023A070, 00265200, 00265020, 00267260, 00264460, 003B7730, 003B6ED0, 003B7E10, 003B7E20, 003A1D30, 002E9BB0, 002EC5B0, 0025DF00, 00263C80"
 ---
-
-# Movement step: how yaw, pitch and speed become a character's per-frame displacement, when motion is flat, and how animation takes the wheel
 
 ## What the player sees
 
@@ -183,6 +181,10 @@ mode 1 also clearing bits 2 and 3. It has ten call sites.
 pitch to `+0xA0`, both behind the class gate. The facing a character shows is a third angle,
 `+0xA8`, returned by `00265200` for class 3 (`+0x38` for class 1) and written only by the facing
 writer; it is the [facing and steering](facing-and-steering.md) page's.
+
+`00263C80(actor)` reads the pitch back: `+0xA0` for class 3, the context's `+0x54` for class 1, 0
+otherwise. The battle-unit refresh `00236300` copies the yaw (`00263CC0`), this pitch and the facing
+(`00265200`) into unit `+0x15C`, `+0x174` and `+0x160`, the fields the producer `0023A070` reads.
 
 For a battle unit the producer is `0023A070(unit)`, run from the per-unit frame `00233F70`
 (`00234019`, `0023407E`): when `02089340` has a bit of `0x600` and the unit's stats record is kind

@@ -3,10 +3,8 @@ title: "Script screen effects: cut-in, motion blur, soft focus and the screen bl
 kind: "system"
 category: "Graphics"
 summary: "The screen effects scripts start over the finished picture: how the cut-in, motion blur and soft focus capture the frame into a render target and draw it back through the screen-effect pool, their staging blocks, play and clear bodies and per-frame builders, the motion blur fade and the held-frame path behind the item-obtained message, the four screen blur sprites of the blur verbs, what an area change and a cutscene skip reset, and how often the shipped scripts use each verb."
-addresses: ["020926E4", "0024D540", "00182B40", "02B59D20", "02092640", "0024CF50", "0024CEB0", "0024CBE0", "003AA6B0", "02B58C38", "02092678", "0024EC00", "0024EB20", "0024EA10", "003AAA50", "003DE160", "003DE210", "0036E810", "0024FAE0", "0024FA40", "003AB500", "00375B90", "02B58A80", "003DDF90", "0024E910"]
+addresses: "020926E4, 0024D540, 00182B40, 02B59D20, 02092640, 0024CF50, 0024CEB0, 0024CBE0, 003AA6B0, 02B58C38, 02092678, 0024EC00, 0024EB20, 0024EA10, 003AAA50, 003DE160, 003DE210, 0036E810, 0024FAE0, 0024FA40, 003AB500, 00375B90, 02B58A80, 003DDF90, 0024E910"
 ---
-
-# Script screen effects: cut-in, motion blur, soft focus and the screen blur sprites
 
 ## What the player sees
 
@@ -34,6 +32,12 @@ Cut-in, motion blur and soft focus follow one pattern:
   later; only a full list frees it at once (`00182CA0`).
 - The target allocator `00182B40` ignores its two scale arguments. It always asks for the render
   width by the render height × 512 / 448 (`00186AA0`, `00186A90`), so every target is full size.
+
+- The targets come from a pool kept by `001B6C40()`: `001B66F0` finds the 0xA8-byte pool for the width,
+  height and format (`02CF7480`), creating it with `001B6560` when missing, and `001B67F0` takes a free
+  target from it or makes a new one (`001EE040`). `00182CA0` hands a target back through `001B68D0`,
+  which finds its pool by the texture's width `+0x28`, height `+0x2C` and format (its first qword) and returns it (`001B6990`).
+
 - The per-frame driver `0024D540` calls the three per-frame bodies with the draw index, 0 or 1,
   only while the main-loop state `00229EA0()` is 2 or 6 (`0024D6AA`-`0024D6B7`). The field frame
   `0022A770` is state 2 ([frame update order](../Engine-Core/frame-update-order.md)).
@@ -119,6 +123,61 @@ every tick until the fade ends. The end clears `02B58C48` and, going out, tail-j
 draws everything but the menu (bit 3) and draw 1 only bits 3 and 4, then queues a capture (stage 7,
 `0x50703`), a bind with the size word, and a kind-2 quad with `amount` and colour `80 80 80 80`.
 
+### The mode-screen backdrop
+
+When a mode screen such as game over opens, the last field picture stays behind it. `00251D90(type,
+fadeIn, fadeOut)` creates the backdrop, a 0x140-byte widget with the message procedure `002509D0`, unless
+one exists ([game over](../World-Areas-And-Travel/game-over.md) calls it with 1, 60, 120). Its create arm
+stores it at `020927F0`, the type at `+0xE4`, the two frame counts at `+0x120` and `+0x122`, progress 0 at
+`+0x110` and state 1 at `+0xE6`.
+
+- Types 0 and 1 take the first picture of the TIM2 at `[0209AC30] + 0x388` (`0024A9E0`) and a palette
+  from `[0209AC30] + 0x390` (type 0) or `+ 0x3A8` (type 1). The picture's texture `0209AC38` (`00184140`)
+  and palette texture `0209AC40` (`001837A0`) are made once and kept.
+- The teardown arm frees the capture buffer `+0xC0` (`003697F0`), releases the three targets
+  `+0xC8`, `+0xD0`, `+0xD8` (`00182CA0`) and clears `020927F0`.
+
+The scene draw `0022B0B0` calls `00251010` (`0022B61C`) to capture. For types 0 and 1 it allocates a
+buffer in resource arena 2 (`0036C1D0`, `0036A100`) and two targets (`00182B40`). It queues two stage-7
+captures (`0x50703`) through that buffer into the two targets, starts the fade toward 1.0 (`00250E50`) and
+sets state 3. After each stage-7 draw `00251E00` passes the buffer to `0036CAD0`.
+
+The menu frames `0022B8C0` and `0022BC20` draw it each frame with `002512B0`:
+
+1. Nothing is drawn while `+0xE8` bit `0x4` is set (`00251F00`). Types 2 and 3 draw one opaque black
+   kind-2 quad in stage 5 (colour `00 00 00 80`) and stop.
+2. For types 0 and 1, nothing is drawn while `00181DD0()` reports a camera override.
+3. At full progress, once the composite target `+0xD8` exists, it binds that target and draws it as a
+   kind-2 quad, and stops. Below full progress the composite is released first.
+4. It binds the second capture and draws it plainly while the progress is below 1.0. With `+0xE8` bit
+   `0x1` set it then binds the first capture with the palette `+0xF8` and the palette texture `0209AC48`. A kind-5 quad follows with strength bytes 25 and 6 (more in
+   state 7), then two kind-7 quads at the overlay alpha and a fifth of it.
+5. It binds the menu picture and draws a kind-2 quad in blend 2 (`0x2502`, subtractive) at the
+   progress `+0x110`.
+6. When the progress is exactly 1.0 and no composite exists, it allocates `+0xD8` and queues a
+   stage-5 capture into it (`0x50503`).
+
+`00250CA0` (from `002506D0`, field frame `0022A770`) moves the progress from its start `+0x114` by `+0x118`
+along `00248F40(kind, frames, elapsed)`, counted on `0208F570`. The states are: 3 fading in (kind 1,
+`+0x120` frames) then 4; 5 fading out (`+0x122` frames, kind 1, or kind 0 when `+0xE8` bit `0x8` is set
+by `00251F20`) then 6; 7 a pulse of `+0x129` strength over `+0x12A` frames (`00250C50`) then 8.
+`00250F30` starts the fade-out for types 0, 2, 3 and 4, `00251EA0(scale, frames, direction)` restarts the overlay alpha
+`+0x130` (eased the same way), and `00251E80` destroys the widget.
+
+| `00248F40` kind | Value at `t = elapsed / frames` (1.0 once `elapsed ≥ frames`) |
+|---|---|
+| 1 | `sin(πt/2)` |
+| 2 | `1 − sin((t/2 + 1/2)π)` |
+| 3 | `0.5 − sin((t + 1/2)π) / 2` |
+| 4 | `0.6 + 0.4 ×` a random value (`003A1D30`) |
+| 5 | `0.4 + 0.3 sin(πt/2) + 0.3 t` |
+| other | `t` |
+
+`00251D20()` returns the state, or 2 when `+0xE8` bit 0 is clear; `00251D50()` returns 1 when there is no
+backdrop or its state is 0, 6 or 8. `00251EE0` sets the fade-out frames. `00250E90(palette)` swaps in
+another palette (`+0x40` past its header) through `00183760`, or, for types other than 2 and 3, restores
+type 0's palette.
+
 ### The screen blur sprites
 
 The `blur*` verbs drive four sprite records of 0x68 bytes at `02B58A80`, index 0 to 3: a handle at
@@ -169,56 +228,77 @@ bit 4  motion blur up
 bit 5  motion blur: capture on the next frame
 ```
 
-```
-Cut-in staging 02B59D20 / live 02092640 (0x24)
-+0x00  u8      type        cutintype: 0-4 kept, else 2; 0 draws nothing; reset 2
-+0x01  u8      lineFade    bit 0: cutinlinefade; reset 0
-+0x04  f32     x           cutinpos; reset 0
-+0x08  f32     y           cutinpos; reset 0
-+0x0C  f32     rotation    cutinrotate, radians; reset 0
-+0x10  f32     lineWidth   cutinlinewidth; reset 2.0
-+0x14  f32     u           cutinuv; reset 0
-+0x18  f32     v           cutinuv; reset 0
-+0x1C  u8[4]   colour      cutincolor; reset 80 80 80 80
-+0x20  u8[4]   lineColour  cutinlinecolor; reset 00 00 00 80
-```
+Cut-in staging `02B59D20` / live `02092640` (`0x24`):
 
-```
-Motion blur staging 02B58C38 / live 02092678 (0x0C)
-+0x00  u8      preset      moveblurpresettype: 1->2, 2->3, else 1; reset 1
-+0x01  u8      mask        moveblurcluttype: 1->2, 2->3, 3->0, else 1; reset 1
-+0x02  u8      noise       moveblurnoisetype: 0-3 kept, else 0; reset 0; the builder ignores it
-+0x03  u8      screenType  moveblurscreentype: 1->2, else 1; reset 1
-+0x04  u8      flags       bit 0 capture once (moveblurcaptureonce); reset 0
-+0x08  f32     strength    movebluraplpha; reset 0.5
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | type | cutintype: 0-4 kept, else 2; 0 draws nothing; reset 2 |
+| `01` | `u8` | lineFade | bit 0: cutinlinefade; reset 0 |
+| `04` | `f32` | x | cutinpos; reset 0 |
+| `08` | `f32` | y | cutinpos; reset 0 |
+| `0C` | `f32` | rotation | cutinrotate, radians; reset 0 |
+| `10` | `f32` | lineWidth | cutinlinewidth; reset 2.0 |
+| `14` | `f32` | u | cutinuv; reset 0 |
+| `18` | `f32` | v | cutinuv; reset 0 |
+| `1C` | `u8[4]` | colour | cutincolor; reset 80 80 80 80 |
+| `20` | `u8[4]` | lineColour | cutinlinecolor; reset 00 00 00 80 |
 
-```
-Soft focus live block 020925F0
-+0x00  u8      mode        1, or 2 for mode 1
-+0x01  u8      b           the third argument
-+0x02  u8      size        always 4
-+0x04  f32     amount
-+0x08  ptr     target      copy of 02092620
-+0x10  u32[3]  handles
-```
+Motion blur staging `02B58C38` / live `02092678` (`0x0C`):
 
-```
-Screen blur sprite 02B58A80 + index x 0x68
-+0x00  u32     handle
-+0x10  u8      kind        2
-+0x11  u8      stageBlend  low nibble stage (6), high nibble blend (3)
-+0x12  u8      class       1
-+0x13  u8      priority    0
-+0x2C  u8      flags       low nibble 3, or 7 for alpha 0.08
-+0x30  f32     offsetX
-+0x34  f32     offsetY
-+0x38  f32     scaleX      1.0
-+0x3C  f32     scaleY      1.0
-+0x40  f32     rotation    0
-+0x44  f32     alpha       0.5
-+0x48  u8[4]   colour      FF FF FF 80
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | preset | moveblurpresettype: 1->2, 2->3, else 1; reset 1 |
+| `01` | `u8` | mask | moveblurcluttype: 1->2, 2->3, 3->0, else 1; reset 1 |
+| `02` | `u8` | noise | moveblurnoisetype: 0-3 kept, else 0; reset 0; the builder ignores it |
+| `03` | `u8` | screenType | moveblurscreentype: 1->2, else 1; reset 1 |
+| `04` | `u8` | flags | bit 0 capture once (moveblurcaptureonce); reset 0 |
+| `08` | `f32` | strength | movebluraplpha; reset 0.5 |
+
+Soft focus live block `020925F0`:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | mode | 1, or 2 for mode 1 |
+| `01` | `u8` | b | the third argument |
+| `02` | `u8` | size | always 4 |
+| `04` | `f32` | amount |  |
+| `08` | `void*` | target | copy of `02092620` |
+| `10` | `u32[3]` | handles |  |
+
+Screen blur sprite `02B58A80` + index x `0x68`:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | handle |  |
+| `10` | `u8` | kind | 2 |
+| `11` | `u8` | stageBlend | low nibble stage (6), high nibble blend (3) |
+| `12` | `u8` | class | 1 |
+| `13` | `u8` | priority | 0 |
+| `2C` | `u8` | flags | low nibble 3, or 7 for alpha 0.08 |
+| `30` | `f32` | offsetX |  |
+| `34` | `f32` | offsetY |  |
+| `38` | `f32` | scaleX | 1.0 |
+| `3C` | `f32` | scaleY | 1.0 |
+| `40` | `f32` | rotation | 0 |
+| `44` | `f32` | alpha | 0.5 |
+| `48` | `u8[4]` | colour | FF FF FF 80 |
+
+Mode-screen backdrop ([`020927F0`]), `0x140` bytes:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `0C0` | `void*` | capture buffer | arena 2 |
+| `0C8` | `void*` | first target | +`0x0D0` second target, +`0x0D8` composite |
+| `0E4` | `i16` | type | 0-3 |
+| `0E6` | `i16` | state | 1 created, 3-4 in, 5-6 out, 7-8 pulse |
+| `0E8` | `u32` | flags | bit `0x1` set on create, `0x4` hidden, `0x8` linear fade-out |
+| `0F8` | `void*` | overlay palette |  |
+| `100` | `void*` | picture pixels | +`0x108` picture palette |
+| `110` | `f32` | progress | +`0x114` start, +`0x118` span, +`0x11C` start frame |
+| `120` | `u16` | fade-in frames | +`0x122` fade-out frames |
+| `124` | `f32` | pulse progress | +`0x128` u8 25, +`0x129` u8 pulse strength, +`0x12A` u16 pulse frames |
+| `12C` | `u32` | pulse start frame |  |
+| `130` | `f32` | overlay alpha | +`0x134` scale, +`0x138` u8 direction, +`0x13A` u16 frames, +`0x13C` start |
 
 ## Shipped data
 

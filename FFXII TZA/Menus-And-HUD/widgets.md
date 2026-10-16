@@ -3,10 +3,8 @@ title: "Widgets: how every menu element is built, sized, attached, focused, anim
 kind: "system"
 category: "Menus and HUD"
 summary: "The menu element object model: the one constructor and its three entry points, the 0x120-byte pool and the heap, what an object's size says about it, the 0xC0-byte header and its flag bits, parents that build children in their own memory, the tree links and posting up and down it, the per-tick update and input turn, the focus stack, opening and closing runs with the millisecond-to-frame conversion and the three tween channels, the half-rate phase counter, the widget that registers itself once, and the title asset and its consumer."
-addresses: ["002465F0", "00244F50", "00245000", "00248220", "00248030", "00244640", "00246AD0", "00245020"]
+addresses: "002465F0, 00244F50, 00245000, 00248220, 00248030, 00244640, 00246AD0, 00245020"
 ---
-
-# Widgets: how every menu element is built, sized, attached, focused, animated and torn down
 
 ## What the player sees
 
@@ -55,34 +53,36 @@ Dismiss confirmation in a panel slot, and the `0xD0` target tabs at `+0x60E0`, a
 
 ### The header
 
-```struct WidgetHeader base=record size=0xC0
-+0x00  u32[2]  proc    procedure(self, message); 005C5230 when none
-+0x08  u32[2]  cont    continuation the release jumps to after freeing (00248405)
-+0x10  u32[2]  parent  set by the attach 00248220 (00248267)
-+0x18  u32[2]  child   first child (00248239)
-+0x20  u32[2]  next    next sibling (0024825C)
-+0x28  u32[2]  prev    previous sibling (00248260)
-+0x30  u32     nchild  number of children (00248264)
-+0x38  u32[2]  draw    draw record while the draw pass is on this widget
-+0x40  u32     flags   below; 0x80A plus the generation and borrowed bits when built (00246653)
-+0x44  u16     w44     100 (002466FA)
-+0x48  u32[2]  trans   animation descriptor, default 00915198 (00246687)
-+0x50  u32     flags2  bit 0 clip, bit 1 owns the array at +0x60
-+0x60  u32[2]  arr     array freed by the release (0024838A)
-+0x68  u32[2]  half    the descriptor half of the current run
-+0x70  u32     frames  run length in frames
-+0x74  u32     start   frame the run started (0208F570)
-+0x78  u32     t78     0 forward, 1.0 backward
-+0x7C  u32     state   low nibble: run state 0-4
-+0x80  u32     tween   bits 0-2: tween channels running
-+0x98  u16[2]  pos     tween channel 0 output
-+0x9C  u16[2]  ext     tween channel 1 output
-+0xA0  u8      alpha   0x80 when built
-+0xA1  u8      rgb     0x80 when built
-+0xA2  u8      slot    pool slot marker; 0 frees it (002483E9)
-+0xB4  u32     phase   half-rate phase counter
-+0xB8  f32     rate    1.0, or 1 / steps at game speed (00246B49)
-```
+`WidgetHeader` (`0xC0` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32[2]` | proc | procedure(self, message); `005C5230` when none |
+| `08` | `u32[2]` | cont | continuation the release jumps to after freeing (`00248405`) |
+| `10` | `u32[2]` | parent | set by the attach `00248220` (`00248267`) |
+| `18` | `u32[2]` | child | first child (`00248239`) |
+| `20` | `u32[2]` | next | next sibling (`0024825C`) |
+| `28` | `u32[2]` | prev | previous sibling (`00248260`) |
+| `30` | `u32` | nchild | number of children (`00248264`) |
+| `38` | `u32[2]` | draw | draw record while the draw pass is on this widget |
+| `40` | `u32` | flags | below; `0x80A` plus the generation and borrowed bits when built (`00246653`) |
+| `44` | `u16` | w44 | 100 (`002466FA`) |
+| `48` | `u32[2]` | trans | animation descriptor, default `00915198` (`00246687`) |
+| `50` | `u32` | flags2 | bit 0 clip, bit 1 owns the array at +`0x60` |
+| `60` | `u32[2]` | arr | array freed by the release (`0024838A`) |
+| `68` | `u32[2]` | half | the descriptor half of the current run |
+| `70` | `u32` | frames | run length in frames |
+| `74` | `u32` | start | frame the run started (`0208F570`) |
+| `78` | `u32` | t78 | 0 forward, 1.0 backward |
+| `7C` | `u32` | state | low nibble: run state 0-4 |
+| `80` | `u32` | tween | bits 0-2: tween channels running |
+| `98` | `u16[2]` | pos | tween channel 0 output |
+| `9C` | `u16[2]` | ext | tween channel 1 output |
+| `A0` | `u8` | alpha | `0x80` when built |
+| `A1` | `u8` | rgb | `0x80` when built |
+| `A2` | `u8` | slot | pool slot marker; 0 frees it (`002483E9`) |
+| `B4` | `u32` | phase | half-rate phase counter |
+| `B8` | `f32` | rate | 1.0, or 1 / steps at game speed (`00246B49`) |
 
 | `+0x40` bit | Meaning |
 |---:|---|

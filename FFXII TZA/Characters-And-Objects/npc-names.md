@@ -3,10 +3,8 @@ title: "NPC names: the npcdic.bin name pairs, the actor's name id, and the story
 kind: "system"
 category: "Characters and objects"
 summary: "How a field character's name tag is chosen: the name id every actor carries, the pair of strings that id selects in npcdic.bin, the persistent flag with the same number that switches to the second string once the player has talked to that character, the two script verbs that assign a name id, and the shipped dictionaries for the nine languages."
-addresses: ["003EAC40", "003EAC70", "003EAC10", "003EABE0", "00263990", "002639E0", "0026DEA0", "00269F40", "0034B9A0", "0034C170", "002E16B0", "00379D20", "00272CB0", "00272CE0", "00268D10"]
+addresses: "003EAC40, 003EAC70, 003EAC10, 003EABE0, 00263990, 002639E0, 0026DEA0, 00269F40, 0034B9A0, 0034C170, 002E16B0, 00379D20, 00272CB0, 00272CE0, 00268D10, 00536310, 00536280, 00267410, 005369C0, 00272C80"
 ---
-
-# NPC names: the npcdic.bin name pairs, the actor's name id, and the story flag that swaps a name
 
 ## What the player sees
 
@@ -82,16 +80,37 @@ whenever the dictionary is loaded with a non-zero count; -2 reads the magic at `
 accepted; lower ids read the memory before the block. A negative id makes the actor show its literal
 text at `+0xF8`.
 
+### Names in battle messages
+
+The battle message composer `005369C0` (called from `0046AB10`) names the acting and the target
+unit from their stats records, in three steps:
+
+1. `00536310(stats, &fromDictionary)` picks a name reference. A null record gives `0xFFFF`, and a
+   kind-0 record (byte `+0x05`) gives word `+0x30` of the party table row its byte `+0x04` names.
+2. For any other kind it finds the owning unit (`0031B860`, which scans the unit pool for the unit
+   whose `+0x698` is the record). When that unit's actor has a name id of 0 or more (`00267410`
+   tests `+0x102 >= 0`), it returns the id (`00263B40`) with `fromDictionary` = 1; otherwise word
+   `+0x08` of the unit's definition row `+0xE60`, or 0 with no unit.
+3. `00536280(ref, fromDictionary)` turns the reference into text. From the dictionary it calls
+   `0026DEA0(ref, 1)`, so an enemy with an NPC name id is always named by the pair's second name,
+   whatever the actor's name flag holds. Otherwise `0xFFFF` gives the empty string `01CEB638`, and
+   any other reference is split into a bank (`ref >> 11`) and an entry (`ref & 0x7FF`) of the text
+   banks at `[02EBF170]` and rendered by `002B58B0`.
+
+`00272C80(handle)` returns `00263A10` of the actor a handle resolves to (`003588B0`), and -1 when it
+does not resolve.
+
 ## Layouts
 
-```
-struct NpcDictionary base=npcdic.bin size=file
-+0x00  u8[4]        magic      "NPC0"
-+0x04  u32          relocated  0 in the file; 003EAC70 writes 1 after relocation
-+0x08  u32          count      2282 in every shipped language: 1141 pairs
-+0x0C  i32[2282]    entries    file offsets of the strings; string pointers once relocated
-+0x23B4 u8[]        strings    zero-terminated, in the script text encoding (0x20-0x39 = A-Z, 0x3A-0x53 = a-z, 0x04 = space)
-```
+Struct NpcDictionary base=npcdic.bin size=file:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `0000` | `u8[4]` | magic | "NPC0" |
+| `0004` | `u32` | relocated | 0 in the file; `003EAC70` writes 1 after relocation |
+| `0008` | `u32` | count | 2282 in every shipped language: 1141 pairs |
+| `000C` | `i32[2282]` | entries | file offsets of the strings; string pointers once relocated |
+| `23B4` | `u8[]` | strings | zero-terminated, in the script text encoding (`0x20`-`0x39` = A-Z, `0x3A`-`0x53` = a-z, `0x04` = space) |
 
 The first string begins at `0x0C + 4 * count = 0x23B4` in every shipped file.
 

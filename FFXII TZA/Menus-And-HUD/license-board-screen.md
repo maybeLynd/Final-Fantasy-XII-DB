@@ -3,10 +3,8 @@ title: "License Board screen: the board chooser, the square grid and its states,
 kind: "system"
 category: "Menus and HUD"
 summary: "How the Licenses screen opens on a member's board or the board chooser, how the grid is built from the board file plus one row and column with random tile variants, the 0x38-byte square and its state bits, how owned, reachable and affordable squares are worked out, the corner shapes, the change sweep with its 32-square batch, the board preview, the scripted cursor moves, the confirm texts, and the purchase with its animation and notices."
-addresses: ["0055B3F0", "0055BFF0", "0055B310", "0055DD70", "0055CD40", "00557DB0", "0055D978", "0055F3E0"]
+addresses: "0055B3F0, 0055BFF0, 0055B310, 0055DD70, 0055CD40, 00557DB0, 0055D978, 0055F3E0"
 ---
-
-# License Board screen: the board chooser, the square grid and its states, the change sweep, preview, and obtaining a license
 
 ## What the player sees
 
@@ -61,28 +59,30 @@ the member's answer for the node (`00323600`, which calls `00323D10`; [Licenses]
 - The ten Gambit Slot squares (nodes 266-275) are left out unless the Gambits command is available
   (`00283730(0x4B9)`, `0032A8A0(0x4009)`, `0055C34E`-`0055C38B`).
 
-```struct LicenseBoardSquare base=record size=0x38
-+0x00  u32[2]  name      the square's name string
-+0x08  u16     node      license node, 0xFFFF for an empty or hidden square
-+0x0B  u8      rule      node byte +0x06: 1, 2 or 3 choose the confirm text
-+0x0C  u16     lpCost    node byte +0x04
-+0x0E  u16     artNode   row of the art table [02CA9670]
-+0x10  u32[2]  kindText  the kind of license, Weapon to Gambit (0x4280-0x4289)
-+0x18  u32     state     bits 0-3 corner shape, 4-7 state, 8-11 state shown, 12-15 purchase flags
-+0x20  u8      col       column
-+0x21  u8      row       row
-+0x22  u8      phase     0 idle, 1 effect armed, 2 countdown, 3 effect playing (0055F010)
-+0x23  u8      pending   the state the transition will show
-+0x24  u8      tile      tile variant 0-7
-+0x25  u8      alpha     0x80 when built
-+0x26  u8      fadeLeft  fade counter
-+0x27  u8      fadeLen   fade length
-+0x28  u8      fadeOn    fade running
-+0x29  u8      fadeIn    fade direction
-+0x2A  i16     countdown frames before the pending state shows
-+0x2C  u32     effect    the playing effect (003B2D80)
-+0x30  u32     category  node byte +0x05; 0x1E is the Second Board
-```
+`LicenseBoardSquare` (`0x38` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32[2]` | name | the square's name string |
+| `08` | `u16` | node | license node, `0xFFFF` for an empty or hidden square |
+| `0B` | `u8` | rule | node byte +`0x06`: 1, 2 or 3 choose the confirm text |
+| `0C` | `u16` | lpCost | node byte +`0x04` |
+| `0E` | `u16` | artNode | row of the art table [`02CA9670`] |
+| `10` | `u32[2]` | kindText | the kind of license, Weapon to Gambit (`0x4280`-`0x4289`) |
+| `18` | `u32` | state | bits 0-3 corner shape, 4-7 state, 8-11 state shown, 12-15 purchase flags |
+| `20` | `u8` | col | column |
+| `21` | `u8` | row | row |
+| `22` | `u8` | phase | 0 idle, 1 effect armed, 2 countdown, 3 effect playing (`0055F010`) |
+| `23` | `u8` | pending | the state the transition will show |
+| `24` | `u8` | tile | tile variant 0-7 |
+| `25` | `u8` | alpha | `0x80` when built |
+| `26` | `u8` | fadeLeft | fade counter |
+| `27` | `u8` | fadeLen | fade length |
+| `28` | `u8` | fadeOn | fade running |
+| `29` | `u8` | fadeIn | fade direction |
+| `2A` | `i16` | countdown frames before the pending state shows |  |
+| `2C` | `u32` | effect | the playing effect (`003B2D80`) |
+| `30` | `u32` | category | node byte +`0x05`; `0x1E` is the Second Board |
 
 ### Square states
 

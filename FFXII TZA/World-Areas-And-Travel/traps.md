@@ -3,10 +3,8 @@ title: "Traps: how walking onto a trap fires it, the trap table, the two outcome
 kind: "system"
 category: "World, areas and travel"
 summary: "The traps a field carries: the trap table in the zone script and its twelve-byte records, the arming walk the settrapresource verb runs at field load with its arm chance and its world markers, the per-field live mask kept in a ring of three, who can spring a trap and who is caught in its radius, the horizontal proximity test, the hard-coded roll between the two authored actions, the action rows a trap can name and what they do, the battle message, Libra's reveal of the markers, and the census of the shipped traps."
-addresses: ["002F8060", "002FB8C0", "002FB3B0", "002FA230", "002FA740", "002FAEC0", "002341C0", "002641B0", "00265770", "00355400", "002E9A60", "00263F80", "002EB7A0", "003EC630", "002EBD60", "002E3DC0", "002FB560", "003EC5B0", "003EC720", "003EC770", "00355E00", "003EC6C0", "003EB720", "002ED3A0", "003EC700", "002E7410", "002F82F0", "0030C300", "00234590", "00310DB0", "00322C50", "002EACD0", "00385F60", "003112F0", "0046A9D0", "0046AB10", "00320A30", "0032AD70", "0032AA60", "00379CD0", "003A1920", "00265020", "0031B810", "003148F0", "00377C20", "00237DF0", "00233C10", "0038CD60"]
+addresses: "002F8060, 002FB8C0, 002FB3B0, 002FA230, 002FA740, 002FAEC0, 002341C0, 002641B0, 00265770, 00355400, 002E9A60, 00263F80, 002EB7A0, 003EC630, 002EBD60, 002E3DC0, 002FB560, 003EC5B0, 003EC720, 003EC770, 00355E00, 003EC6C0, 003EB720, 002ED3A0, 003EC700, 002E7410, 002F82F0, 0030C300, 00234590, 00310DB0, 00322C50, 002EACD0, 00385F60, 003112F0, 0046A9D0, 0046AB10, 00320A30, 0032AD70, 0032AA60, 00379CD0, 003A1920, 00265020, 0031B810, 003148F0, 00377C20, 00237DF0, 00233C10, 0038CD60"
 ---
-
-# Traps: how walking onto a trap fires it, the trap table, the two outcomes and their odds, and re-arming by settrapresource
 
 ## What the player sees
 
@@ -158,29 +156,31 @@ back it becomes 0 and the markers get mode 2.
 
 ## Layouts
 
-```
-struct TrapRecord base=trapTable+offset[i] size=0x0C
-+0x00  i16  x            tenths of a world unit (002F81BE, 002FA82C)
-+0x02  i16  z            tenths of a world unit
-+0x04  u8   flagId       persistent flag set on firing and tested at arming; 0xFF = none (002F8243, 002FA7E8)
-+0x05  u8   armChance    percent; roll % 100 below it arms the trap (002FA7FC)
-+0x06  u16  action75     the action row chosen below 75 (002F8237)
-+0x08  u16  action25     the action row chosen at 75 and above (002F823E)
-+0x0A  u8   radius       world units; 0 = the triggering unit alone (002FB8E0)
-+0x0B  u8   zero         0 in every shipped record
-```
+Struct TrapRecord base=trapTable+offset[i] size=`0x0C`:
 
-```
-struct TrapRing base=02EC3EA0 size=0x2C
-+0x00  i32  field0       the field id of entry 0
-+0x04  u32  mask0        its live mask, bit i = trap i armed
-+0x0C  i32  field1
-+0x10  u32  mask1
-+0x18  i32  field2
-+0x1C  u32  mask2
-+0x24  i32  writeIndex   next entry to fill, 0 to 2 (002FB3B0, 002FA740)
-+0x28  i32  count        entries in use, at most 3
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `i16` | x | tenths of a world unit (`002F81BE`, `002FA82C`) |
+| `02` | `i16` | z | tenths of a world unit |
+| `04` | `u8` | flagId | persistent flag set on firing and tested at arming; `0xFF` = none (`002F8243`, `002FA7E8`) |
+| `05` | `u8` | armChance | percent; roll % 100 below it arms the trap (`002FA7FC`) |
+| `06` | `u16` | action75 | the action row chosen below 75 (`002F8237`) |
+| `08` | `u16` | action25 | the action row chosen at 75 and above (`002F823E`) |
+| `0A` | `u8` | radius | world units; 0 = the triggering unit alone (`002FB8E0`) |
+| `0B` | `u8` | zero | 0 in every shipped record |
+
+Struct TrapRing base=`02EC3EA0` size=`0x2C`:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `i32` | field0 | the field id of entry 0 |
+| `04` | `u32` | mask0 | its live mask, bit i = trap i armed |
+| `0C` | `i32` | field1 |  |
+| `10` | `u32` | mask1 |  |
+| `18` | `i32` | field2 |  |
+| `1C` | `u32` | mask2 |  |
+| `24` | `i32` | writeIndex | next entry to fill, 0 to 2 (`002FB3B0`, `002FA740`) |
+| `28` | `i32` | count | entries in use, at most 3 |
 
 ```
 fires(unit, trap) = eligible(unit) && armed(field, trap)

@@ -3,10 +3,8 @@ title: "PhyreEngine Lua bindings: how engine objects are pushed to and taken fro
 kind: "system"
 category: "PhyreEngine"
 summary: "The binding layer PhyreEngine links between its reflected classes and the embedded Lua interpreter: the 16-byte object userdata tagged with the PhyreObject metatable, the push routine and the 747 type-checked object accessors, the per-class binding slots in each class descriptor's vtable, the generated method-call adapters, and the start-up registration that records scripting classes in the engine's reflection but installs nothing in any Lua state."
-addresses: ["00682D20", "00684080", "00684090", "00682980", "00682A10", "006828F0", "00599770", "00599B70", "00812960", "02E41000", "005A0E80", "005A10F0", "005A2BA0", "00584E10", "00584C50", "0063F850", "00683FF0", "006841F0", "00682AA0", "00684F60", "00810ED0", "00810470", "005A08E0", "00685AC0", "006822E0", "00681F30", "006827C0", "00681C50", "00681D80", "0067E6C0"]
+addresses: "00682D20, 00684080, 00684090, 00682980, 00682A10, 006828F0, 00599770, 00599B70, 00812960, 02E41000, 005A0E80, 005A10F0, 005A2BA0, 00584E10, 00584C50, 0063F850, 00683FF0, 006841F0, 00682AA0, 00684F60, 00810ED0, 00810470, 005A08E0, 00685AC0, 006822E0, 00681F30, 006827C0, 00681C50, 00681D80, 0067E6C0"
 ---
-
-# PhyreEngine Lua bindings: how engine objects are pushed to and taken from Lua, the generated adapters, and what installs them
 
 ## What the player sees
 
@@ -123,33 +121,33 @@ creates a state (see the Lua runtime page), so they never run.
 
 ## Layouts
 
-```
-+0x00  ptr  descriptor   class descriptor of the object
-+0x08  ptr  object       the engine object
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `void*` | descriptor | class descriptor of the object |
+| `08` | `void*` | object | the engine object |
 
 The `PObjectAccessor` failure record at `02E41000`:
 
-```
-+0x00  ptr  file         source path of the accessor template
-+0x08  u32  line         0x6A / 0x76 pointer form, 0x8D / 0x8F reference form
-+0x10  ptr  function     the accessor's own name
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `void*` | file | source path of the accessor template |
+| `08` | `u32` | line | `0x6A` / `0x76` pointer form, `0x8D` / `0x8F` reference form |
+| `10` | `void*` | function | the accessor's own name |
 
 The `PScript` members `006822E0` registers; `00680F40` clears them and sets `m_executionInterval`
 to 1:
 
-```
-+0x00  PArray  m_scriptChunk32        PArray<PUInt8>
-+0x10  PArray  m_scriptChunk64        PArray<PUInt8>; the loader reads +0x10 count, +0x18 data
-+0x20  PArray  m_functionNames        PArray<PString>; entry points by index
-+0x30  ptr     m_onLoadEntryPoint
-+0x38  ptr     m_onUnloadEntryPoint
-+0x40  ptr     m_defaultEntryPoint
-+0x48  ptr     m_sourceName
-+0x50  u8      m_isPersistent
-+0x54  u32     m_executionInterval
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `PArray` | m_scriptChunk32 | PArray<PUInt8> |
+| `10` | `PArray` | m_scriptChunk64 | PArray<PUInt8>; the loader reads +`0x10` count, +`0x18` data |
+| `20` | `PArray` | m_functionNames | PArray<PString>; entry points by index |
+| `30` | `void*` | m_onLoadEntryPoint |  |
+| `38` | `void*` | m_onUnloadEntryPoint |  |
+| `40` | `void*` | m_defaultEntryPoint |  |
+| `48` | `void*` | m_sourceName |  |
+| `50` | `u8` | m_isPersistent |  |
+| `54` | `u32` | m_executionInterval |  |
 
 ## Shipped data
 

@@ -3,10 +3,8 @@ title: "EBP text sections: the message bank and the field-sign caption bank a sc
 kind: "format"
 category: "EBP script files"
 summary: "Sections 2 and 3 of an .ebp script: the offset-table layout both banks share, the flag bit section 2 carries, how each bank is bound to its actor manager, the lookups that turn a text id into a string and what they fail to check, every verb that reads them and where the text ends up on screen, the shipped banks in all nine language trees, and the rules an edit must follow."
-addresses: ["00330190", "00330220", "0026C880", "0026C8A0", "00264D60", "00264D90", "002673A0", "01CEB638", "00348DF0", "0034ADA0", "0050EAB0", "002E1E00", "002E0540", "00265680", "002E16B0", "002A2C00", "002B32D0", "00269F20", "00355A00", "00357120", "00356B70", "022C6CA0", "022C6CC8"]
+addresses: "00330190, 00330220, 0026C880, 0026C8A0, 00264D60, 00264D90, 002673A0, 01CEB638, 00348DF0, 0034ADA0, 0050EAB0, 002E1E00, 002E0540, 00265680, 002E16B0, 002A2C00, 002B32D0, 00269F20, 00355A00, 00357120, 00356B70, 022C6CA0, 022C6CC8"
 ---
-
-# EBP text sections: the message bank and the field-sign caption bank a script's text ids index
 
 ## What the player sees
 

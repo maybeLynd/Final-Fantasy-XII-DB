@@ -3,10 +3,8 @@ title: "Battle message list: every battle_message.bin row with its argument slot
 kind: "reference"
 category: "Battle actions"
 summary: "All 102 rows of the battle message table (battle_message.bin, loaded as battle_pack.bin entry 2) - for each event id the four argument slots it fills (user name, target name, status, item, action, numbers), whether it is always shown or subject to the 24-unit rule, its category, whether repeats are suppressed, and its US English text."
-addresses: ["02EBF018", "00236C7B", "005369C0", "00469570", "0046AB10"]
+addresses: "02EBF018, 00236C7B, 005369C0, 00469570, 0046AB10"
 ---
-
-# Battle message list: every battle_message.bin row with its argument slots, flags and English text
 
 ## What it lists
 

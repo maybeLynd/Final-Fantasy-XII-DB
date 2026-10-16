@@ -3,10 +3,8 @@ title: "Actor model rebuild: the state machine that reloads an actor's model, at
 kind: "system"
 category: "Characters and objects"
 summary: "How the engine brings an actor's loaded model in line with its current definition: the 12-byte rebuild record, the 24-state machine that hides the actor, swaps the main model, the pool entry at actor +0x20, the two attachment parts and the part pair, the motion lane and the body replacement, waiting on each load and re-requesting a stale one, then places and shows the actor; and the party read-in verbs, the world tick, battle setup, unit spawn and the scene step that run it."
-addresses: ["0037B4D0", "0037B4C0", "00377DB0", "02ADD0D8", "002EBB80", "002E96B0", "002E96D0", "0031C250", "0031BEC0", "0031BE30", "002EB7A0", "002EAE20", "002EB540", "002E9810", "002E97C0", "002E4C20", "002E4C30", "002E3DC0", "002E3F00", "002EBD60", "002E3C20", "002E3110", "002E28E0", "002EBC90", "0031C540", "0026D610", "00321380", "002E8450", "0036EC10", "0036F0F0", "0036ECA0", "002ED910", "022D9AB0", "022D9AE0", "00320170", "002EB9D0", "002EB490", "002EC6B0", "0037CB90", "00377A90", "0031BAC0", "00233AD0", "002DEBD0", "002DEB90", "0037C730", "0037C980", "0037CA00", "0037CA80", "0037CB50", "0037C1A0", "0037CE80", "0037C8D0", "003523B0", "005101B0", "00359880", "02EBF3D0", "02EBF3F0", "0034E3E0", "00233AA0", "0031C2F0", "00233CF0", "0037CF50", "00510160", "00342C90", "0037CFD0", "0037CB80", "0037CB10", "002EA6A0", "002E8FD0"]
+addresses: "0037B4D0, 0037B4C0, 00377DB0, 02ADD0D8, 002EBB80, 002E96B0, 002E96D0, 0031C250, 0031BEC0, 0031BE30, 002EB7A0, 002EAE20, 002EB540, 002E9810, 002E97C0, 002E4C20, 002E4C30, 002E3DC0, 002E3F00, 002EBD60, 002E3C20, 002E3110, 002E28E0, 002EBC90, 0031C540, 0026D610, 00321380, 002E8450, 0036EC10, 0036F0F0, 0036ECA0, 002ED910, 022D9AB0, 022D9AE0, 00320170, 002EB9D0, 002EB490, 002EC6B0, 0037CB90, 00377A90, 0031BAC0, 00233AD0, 002DEBD0, 002DEB90, 0037C730, 0037C980, 0037CA00, 0037CA80, 0037CB50, 0037C1A0, 0037CE80, 0037C8D0, 003523B0, 005101B0, 00359880, 02EBF3D0, 02EBF3F0, 0034E3E0, 00233AA0, 0031C2F0, 00233CF0, 0037CF50, 00510160, 00342C90, 0037CFD0, 0037CB80, 0037CB10, 002EA6A0, 002E8FD0, 022C8010, 00359800, 00359A30, 0035A0A0, 0035A240, 002E6090"
 ---
-
-# Actor model rebuild: the state machine that reloads an actor's model, attachments and body for its current definition, and what runs it
 
 ## What the player sees
 
@@ -21,14 +19,14 @@ invisible are the loads this machine waits on.
 
 The machine `0037B4D0(record)` (thunk `0037B4C0`) works on a 12-byte record:
 
-```
-+0x00 u32  actor, as an encoded image pointer (0020E620 / 0020E600)
-+0x04 u32  handle of the binding entry being waited on
-+0x08 u8   state 0..23 in bits 0-6; bit 7 = place the actor at the end
-+0x09 s8   party slot, -1 for none
-+0x0A u8   pass counter for states 13-15
-+0x0B u8   saved value of 002DEBD0(), restored by 002DEB90 at the end
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | actor, as an encoded image pointer (0020E620 / 0020E600) |  |
+| `04` | `u32` | handle of the binding entry being waited on |  |
+| `08` | `u8` | state 0..23 in bits 0-6; bit 7 = place the actor at the end |  |
+| `09` | `i8` | party slot, -1 for none |  |
+| `0A` | `u8` | pass counter for states 13-15 |  |
+| `0B` | `u8` | saved value of 002DEBD0(), restored by 002DEB90 at the end |  |
 
 Every transition keeps bit 7 and writes the new state. A call runs states until one has to wait
 (return 0) or state 23 is reached (return 1). An actor that no longer resolves returns 1 at once,
@@ -73,6 +71,9 @@ otherwise word `+4` of the unit's record `+0x698` (`0xFFFF` without one). `0031C
 model id: `0xFFFF` gives −1; a high byte of 0 gives the dword at `+0x70` of the `02EBF130` row for
 the low byte (bounded by `00322C50(2, ·)`); a high byte of 1 goes through the `02EBF120` row's
 first byte to a `02EBF150` row's first dword; anything else gives −1.
+
+`0026D610(actor, b, c)`, the store of state 2's variant bytes, jumps to `002E6090` for a class-3
+actor, which writes `b` and `c` to `[actor + 0xC0] + 0x14C` and `+0x14D` when the context exists.
 
 `002EBB80(actor, on)` is the hide and show: for an actor of kind `0x60` with a context it writes
 context `+0x10` bit `0x8` and refreshes visibility (`002E8FD0`), which shows the model when
@@ -137,6 +138,45 @@ Placement needs record bit 7 and a slot of 0 or more. The task, the world tick a
 the record with bit 7 clear, so they rebuild without moving the actor. `0037CE80` sets bit 7 and
 clears context `+0x11` bit `0x1`; `setupbattle` passes its slot, so its members are placed, while
 the scene step passes slot −1, which skips placement.
+
+### Dispose and recover
+
+The scene step is the last phase of the pair of verbs `disposeentry` (`0x006B`) and `recoverentry`
+(`0x006C`), which take down and bring back the models of manager 0's battle-eligible actors. They
+share the `i16` state word `022C8010`, which the world tick advances once per frame through
+`00359800` (called at `00314282`):
+
+| State | Set by | What the tick does |
+|---|---|---|
+| 0 | `0035A240`, and the scene step when its walk ends | nothing |
+| 1 | the `disposeentry` begin `00344EA0` through `0035A640`, only from state 0 | `00359A30`, below, which ends in state 2 |
+| 2 | `00359A30` | nothing |
+| 3 | the `recoverentry` begin `00345A30` through `0035A660`, only from state 2 | zeroes `022C8024` and `022C8028`, enters state 4 and starts the `entryread` task (`0037C910(0)`), and in the same tick continues as state 4 |
+| 4 | the tick | waits until the task pointer `02ADD968` is null (`0037CB40`), then enters state 5 and runs the scene step at once, in the same tick |
+| 5 | the tick | the scene step `00359880` |
+
+`00359A30`, the disposal:
+
+1. sets battle flags `02089340` bit 5 (`00238B70(1)`, which also calls `002E7C10(actor, actor,
+   0x30B, 0)` for every unit in use with flag bit 4) and bit 7 (`00238AE0(1)`);
+2. releases each record of manager 0's ordinal window (first `+0x1DE`, count `+0x1D6`, only while bit `0x1`
+   of `+0x10` is set) that holds a unit at `+0x30` (`0035A590`: `0026D6D0`, `00233F50(record, 1)`, `002ED020`);
+3. clears the keep bit `0x10` of `+0x19` in all 128 binding entries (`002E63D0`) and zeroes dword
+   `+0x40` of the 32 lane records (`002E6570`);
+4. for every record of slot 0 with `+0x14` bit 7 and a tag of 4 or more (`002647B0` = 0), takes its
+   readiness `002EA6A0` and releases its model with the per-`+0x04` teardown `0025AB30`; context
+   `+0x11` bit 0 records that readiness, and is cleared for every other record.
+
+The scene step walks slot 0's records one per pass with the counter `022C8028`, rebuilding each
+record whose `+0x14` bit 7 is set, whose tag is 4 or more and whose context `+0x11` bit 0 was set
+at disposal, one machine run at a time (`022C8024` = 1 while one runs, 2 when the walk is done).
+
+The begins store 1 for an accepted call and 0 (dispose) or -1 (recover) otherwise. The
+`disposeentry` poll `003453D0` holds an accepted call until the state reads 2, 3 or 5
+(`0035A0A0`); the `recoverentry` poll `00346020` holds an accepted call while it does, so it
+returns once the walk is back at 0. Both write `022C253D` = 1 (`00314D40`) while they hold.
+`0035A240` clears the state from the slot-0 bind's field reset `0026DB30`, from `002695A0` and
+from `00266D10`.
 
 ## Layouts
 

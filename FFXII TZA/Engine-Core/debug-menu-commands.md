@@ -3,10 +3,8 @@ title: "Debug menu commands: every developer-console row id with its label, arm,
 kind: "reference"
 category: "Engine core"
 summary: "All 282 command ids of the developer console's dispatcher 001D1660, ids 12 to 293: the label the menu prints, the arm the dispatch table at 001D4C1C selects, what kind of control the arm is, the field it steps or the function it calls, the step magnitude and the wrap or clamp, in debug-menu-commands.tsv."
-addresses: ["001D1660", "001D4C1C", "001D4BFA", "001D0390", "01F81428"]
+addresses: "001D1660, 001D4C1C, 001D4BFA, 001D0390, 01F81428"
 ---
-
-# Debug menu commands: every developer-console row id with its label, arm, kind, field, step and bound
 
 ## What it lists
 

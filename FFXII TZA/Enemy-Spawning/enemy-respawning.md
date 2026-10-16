@@ -3,10 +3,8 @@ title: "Enemy respawning: death counts, cooldowns, the group table that wakes a 
 kind: "system"
 category: "Enemy spawning"
 summary: "What happens to a spawned enemy after it dies: the death count, the second stamp and the per-entry rolled cooldown and death limit, the clock the stamp is measured on and what a runtime reset does to it, the two readers of the cooldown and how they differ, the group table that records member deaths and completes a group when every registered member is dead, the lock and the word a completed group posts for the zone script, the two spawn-keep banks that remember the last two areas and the return window that decides whether a bank is kept, and what the save image carries of all this."
-addresses: ["00300530", "002395A0", "0032A100", "0032A160", "0032A150", "00235F50", "00235FB0", "002366E0", "00236670", "00235720", "00306E60", "00239710", "0050F8C0", "00306F00", "003250F0", "00307110", "00307030", "003070E0", "00233D20", "0026ADC0", "00307140", "00238B70", "00238AE0", "00307090", "002342F0", "00233780", "002368D0", "00235340", "00235330", "00237DF0", "00233C10", "00233440", "00233550", "00234990", "002352E0", "00300E40", "002350C0", "00328370", "003148F0"]
+addresses: "00300530, 002395A0, 0032A100, 0032A160, 0032A150, 00235F50, 00235FB0, 002366E0, 00236670, 00235720, 00306E60, 00239710, 0050F8C0, 00306F00, 003250F0, 00307110, 00307030, 003070E0, 00233D20, 0026ADC0, 00307140, 00238B70, 00238AE0, 00307090, 002342F0, 00233780, 002368D0, 00235340, 00235330, 00237DF0, 00233C10, 00233440, 00233550, 00234990, 002352E0, 00300E40, 002350C0, 00328370, 003148F0"
 ---
-
-# Enemy respawning: death counts, cooldowns, the group table that wakes a zone script, and the two-area memory
 
 ## What the player sees
 
@@ -268,45 +266,49 @@ its transient state while every other teardown clears them.
 
 ## Layouts
 
-```
-struct SpawnGroupTable base=02EC13C0 count=64 size=0x18
-+0x00  u64  memberMask   bit (slot & 31), sign-extended from 32 bits; set by 00306E60(unit, 1)
-+0x08  u64  deadMask     set by 00306F00, cleared by 00306E60 either way
-+0x10  u8   flags        bit 0 = completion pending for 00307030
-+0x11  u8[7] padding
-```
+Struct SpawnGroupTable base=`02EC13C0` count=64 size=`0x18`:
 
-```
-struct SpawnRecordRespawnFields in the spawn record (0x250 bytes, spawn-record-fields page)
-+0x00  u32  flags        bit 0 retired awaiting re-entry, bit 1 committed, bit 2 released
-+0x08  u16  deathCount   00300801
-+0x0A  u16  deathLimit   002395A0: base + rand % (range + 1), or 0
-+0x0C  u32  deathSecond  00300829: counter / fps
-+0x10  u16  cooldown     002395A0: base + rand % (range + 1), or 0; whole seconds
-+0x12  u8   historyCounter  low byte of the row's 0208D354 counter at install
-+0x17  u8   persistenceKey  zeroed with +0x16 by 00236860 / 00237080; +0x18 the authored key the resets restore it from
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u64` | memberMask | bit (slot & 31), sign-extended from 32 bits; set by `00306E60`(unit, 1) |
+| `08` | `u64` | deadMask | set by `00306F00`, cleared by `00306E60` either way |
+| `10` | `u8` | flags | bit 0 = completion pending for `00307030` |
+| `11` | `u8[7]` | padding |  |
 
-```
-struct SpawnKeepImage size=0x20010   (00233440 writes, 00233550 restores)
-+0x00000  u16        fieldTwoAgo   02089372
-+0x00002  u16        fieldLast     02089370
-+0x00010  u8[0x9400] bank2         [0208E698]; restored by 00233550
-+0x10010  u8[0x9400] bank1         [0208E690]; written, never restored
-```
+Struct SpawnRecordRespawnFields in the spawn record (`0x250` bytes, spawn-record-fields page):
 
-```
-globals
-0208D45C  u32  frame counter, +1 per field frame whose timer 0 moved (0032A100); 0 at reset
-01DFE0B8  f32  frame-rate scale, 1.0 at 30 fps, 2.0 at 60; fps = (int)(30.0 * scale)
-02089370  u16  last field       02089372  u16  field two transitions ago
-02089374  u32  counter at the last transition
-0208936C  i32  return window, seconds (300)
-0208D454  u8   bank parity      0208D354  u16[2][64]  spawn-history counters
-02EBF190  ptr  battle-state block; dword +0 stamp 0x05071901
-02089340  u32  battle flags: bit 1 nothing pending, bit 5 and 7 the lock, bits 8-11 close the gate
-02098E68  ptr  the 64-word field table; word 3 receives the completed group
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | flags | bit 0 retired awaiting re-entry, bit 1 committed, bit 2 released |
+| `08` | `u16` | deathCount | `00300801` |
+| `0A` | `u16` | deathLimit | `002395A0`: base + rand % (range + 1), or 0 |
+| `0C` | `u32` | deathSecond | `00300829`: counter / fps |
+| `10` | `u16` | cooldown | `002395A0`: base + rand % (range + 1), or 0; whole seconds |
+| `12` | `u8` | historyCounter | low byte of the row's `0208D354` counter at install |
+| `17` | `u8` | persistenceKey | zeroed with +`0x16` by `00236860` / `00237080`; +`0x18` the authored key the resets restore it from |
+
+Struct SpawnKeepImage size=`0x20010`   (`00233440` writes, `00233550` restores):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00000` | `u16` | fieldTwoAgo | `02089372` |
+| `00002` | `u16` | fieldLast | `02089370` |
+| `00010` | `u8[37888] bank2` | [0208E698]; restored by 00233550 |  |
+| `10010` | `u8[37888] bank1` | [0208E690]; written, never restored |  |
+
+Globals:
+
+| Address | Type | Name | Meaning |
+|---|---|---|---|
+| `0208D45C` | `u32` | frame counter, +1 per field frame whose timer 0 moved (0032A100); 0 at reset |  |
+| `01DFE0B8` | `f32` | frame-rate scale, 1.0 at 30 fps, 2.0 at 60; fps = (int)(30.0 * scale) |  |
+| `02089370` | `u16` | last field | `02089372`  u16  field two transitions ago |
+| `02089374` | `u32` | counter at the last transition |  |
+| `0208936C` | `i32` | return window, seconds (300) |  |
+| `0208D454` | `u8` | bank parity | `0208D354`  u16[2][64]  spawn-history counters |
+| `02EBF190` | `void*` | battle-state block; dword +0 stamp 0x05071901 |  |
+| `02089340` | `u32` | battle flags: bit 1 nothing pending, bit 5 and 7 the lock, bits 8-11 close the gate |  |
+| `02098E68` | `void*` | the 64-word field table; word 3 receives the completed group |  |
 
 ## Shipped data
 

@@ -3,10 +3,8 @@ title: "CharacterRenderObject: the per-character draw object, its model instance
 kind: "system"
 category: "Graphics"
 summary: "The object that draws one character: how a render record gets one and gives it back, its 0x668-byte layout and 31-slot vtable, the ready byte that gates it, the 0x318-byte shader binding record kept per mesh, the double-buffered publish of the PS2 z-bias values, matrices and fog colour, the bone palette copy, and the 0x260-byte render model instances and their draw list."
-addresses: ["00903B68", "001F4DA0", "001F52F0", "001F51E0", "001F6E70", "001F6D60", "001F89E0", "001F7790", "0018D240", "001FB120", "001FAD50", "001F9A80", "001FA3D0", "001F9B20", "001FA1A0", "001FAA10", "001FA820", "001F6E50", "001F86D0", "001BD4A0", "001BD840", "001BDAB0", "01F81248", "0017F0D0", "0017F100", "0017EFC0", "003703A0", "0053AB50", "0053D780", "00504700", "00477F20", "004780C0", "005049E0", "003E55B0", "00189120", "01F7F598", "001F5D70"]
+addresses: "00903B68, 001F4DA0, 001F52F0, 001F51E0, 001F6E70, 001F6D60, 001F89E0, 001F7790, 0018D240, 001FB120, 001FAD50, 001F9A80, 001FA3D0, 001F9B20, 001FA1A0, 001FAA10, 001FA820, 001F6E50, 001F86D0, 001BD4A0, 001BD840, 001BDAB0, 01F81248, 0017F0D0, 0017F100, 0017EFC0, 003703A0, 0053AB50, 0053D780, 00504700, 00477F20, 004780C0, 005049E0, 003E55B0, 00189120, 01F7F598, 001F5D70"
 ---
-
-# CharacterRenderObject: the per-character draw object, its model instances, shader bindings and the transform publish
 
 ## What the player sees
 
@@ -132,69 +130,69 @@ instance `+0x244` bit 4 is set, and `0053D780` reaches `0053AB50`.
 
 The object, as its constructor `001F4DA0` and the methods above use it:
 
-```
-+0x000  ptr  vtable 00903B68
-+0x008  vec  16-byte elements (begin, end, capacity), allocator at +0x020
-+0x028  ptr  companion object (slots 1 and 3 add it to and remove it from a list)
-+0x030  vec  mesh instances, 8-byte pointers, allocator at +0x048
-+0x050  ptr  the single extra mesh instance
-+0x058  vec  part records, 0x318 bytes each, allocator at +0x070
-+0x078  0x318 B  template part record
-+0x390  vec  0x24-byte elements, allocator at +0x3A8 (slot 17 empties it)
-+0x3C0  f32[4]  output vector, 0 after a reset
-+0x3D0  i32[4]  output vector, 4 after a reset
-+0x3E0  object  constructed by 00633040
-+0x480  i32  key, -1 at construction
-+0x488  ptr  model description
-+0x490  ptr  companion model description
-+0x498  u8   slot 4 sets, slot 5 returns
-+0x499  u8   key is in the table at 01DFE1B0
-+0x49C  u32  part id matched by slot 16 (slot 15 sets)
-+0x4A0  f32  slot 11 stores its argument / 128
-+0x4A4  u32  slot 11 sets 1
-+0x4A8  f32  1.0; slot 8 stores its float argument
-+0x4AC  f32  1.0; slot 8 stores the light block's ambient alpha
-+0x4B0  u32  mSpecialShadowFlag (slot 25)
-+0x4B4  u8   ready
-+0x4B5  u8   1
-+0x4B6  u8   1 (slot 21)
-+0x4B8  u32  slot 22
-+0x4BC  u32  slot 23
-+0x4C0  f32  20.0
-+0x4C4  f32[48]  matrix bank A
-+0x584  f32[48]  matrix bank B
-+0x644  f32[4]  fog colour bank A
-+0x654  f32[4]  fog colour bank B
-+0x664  u32  refraction mode (slot 24)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `000` | `void*` | vtable 00903B68 |  |
+| `008` | `vec` | 16-byte elements (begin, end, capacity), allocator at +0x020 |  |
+| `028` | `void*` | companion object (slots 1 and 3 add it to and remove it from a list) |  |
+| `030` | `vec` | mesh instances, 8-byte pointers, allocator at +0x048 |  |
+| `050` | `void*` | the single extra mesh instance |  |
+| `058` | `vec` | part records, 0x318 bytes each, allocator at +0x070 |  |
+| `078` | `0x318 B` | template part record |  |
+| `390` | `vec` | 0x24-byte elements, allocator at +0x3A8 (slot 17 empties it) |  |
+| `3C0` | `f32[4]` | output vector, 0 after a reset |  |
+| `3D0` | `i32[4]` | output vector, 4 after a reset |  |
+| `3E0` | `object` | constructed by 00633040 |  |
+| `480` | `i32` | key, -1 at construction |  |
+| `488` | `void*` | model description |  |
+| `490` | `void*` | companion model description |  |
+| `498` | `u8` | slot 4 sets, slot 5 returns |  |
+| `499` | `u8` | key is in the table at 01DFE1B0 |  |
+| `49C` | `u32` | part id matched by slot 16 (slot 15 sets) |  |
+| `4A0` | `f32` | slot 11 stores its argument / 128 |  |
+| `4A4` | `u32` | slot 11 sets 1 |  |
+| `4A8` | `f32` | 1.0; slot 8 stores its float argument |  |
+| `4AC` | `f32` | 1.0; slot 8 stores the light block's ambient alpha |  |
+| `4B0` | `u32` | mSpecialShadowFlag (slot 25) |  |
+| `4B4` | `u8` | ready |  |
+| `4B5` | `u8` | 1 |  |
+| `4B6` | `u8` | 1 (slot 21) |  |
+| `4B8` | `u32` | slot 22 |  |
+| `4BC` | `u32` | slot 23 |  |
+| `4C0` | `f32` | 20.0 |  |
+| `4C4` | `f32[48]` | matrix bank A |  |
+| `584` | `f32[48]` | matrix bank B |  |
+| `644` | `f32[4]` | fog colour bank A |  |
+| `654` | `f32[4]` | fog colour bank B |  |
+| `664` | `u32` | refraction mode (slot 24) |  |
 
 The part record:
 
-```
-+0x000  ptr  the mesh's parameter set; its +0x08 is the parameter block
-+0x008  f32  z-bias a, bank A
-+0x00C  f32  z-bias a, bank B
-+0x010  f32  z-bias b, bank A
-+0x014  f32  z-bias b, bank B
-+0x030  ptr[92]  parameter descriptors, sunIndex first, g_txChrAlpha at +0x310
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `void*` | the mesh's parameter set; its +0x08 is the parameter block |  |
+| `08` | `f32` | z-bias a, bank A |  |
+| `0C` | `f32` | z-bias a, bank B |  |
+| `10` | `f32` | z-bias b, bank A |  |
+| `14` | `f32` | z-bias b, bank B |  |
+| `30` | `void*[92]` | parameter descriptors, sunIndex first, g_txChrAlpha at +0x310 |  |
 
 The render model instance, as `005049E0` resets it:
 
-```
-+0x000  i16  own index, -1 when free
-+0x002  i16  next in the draw list
-+0x004  i32  sort key
-+0x008  u32  bit 0 drawn
-+0x050  f32[16]  matrix, identity
-+0x090  f32[4]  colour, 1.0
-+0x0A0  f32[4]  colour times the script colour, 1.0
-+0x0B0  i16  composite fade, Q12, 0x1000
-+0x0D0  f32[4]  255.0
-+0x0F8  ptr  render record
-+0x244  u32  bit 0 blend override, bit 4 draw twice; 4 after a reset
-+0x248  f32  blend override value, 1.0
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `000` | `i16` | own index, -1 when free |  |
+| `002` | `i16` | next in the draw list |  |
+| `004` | `i32` | sort key |  |
+| `008` | `u32` | bit 0 drawn |  |
+| `050` | `f32[16]` | matrix, identity |  |
+| `090` | `f32[4]` | colour, 1.0 |  |
+| `0A0` | `f32[4]` | colour times the script colour, 1.0 |  |
+| `0B0` | `i16` | composite fade, Q12, 0x1000 |  |
+| `0D0` | `f32[4]` | 255.0 |  |
+| `0F8` | `void*` | render record |  |
+| `244` | `u32` | bit 0 blend override, bit 4 draw twice; 4 after a reset |  |
+| `248` | `f32` | blend override value, 1.0 |  |
 
 The vtable has 31 slots (`00903B68`, read from the image):
 

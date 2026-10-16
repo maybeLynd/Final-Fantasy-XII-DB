@@ -3,10 +3,8 @@ title: "Fonts: the font files a language uses, their kerning pairs and expansion
 kind: "format"
 category: "Menus and HUD"
 summary: "The PC font files: how a language picks its font list, the font data header and 0x24-byte glyph records with the flag word that asks for kerning and expansion files, the kerning pair and expansion list layouts and their loaders, how a kerning pair is looked up between two glyphs, how a glyph's advance is computed, why every digit of a number takes the width of a zero, and how a text code becomes a glyph index."
-addresses: ["001B44A0", "001B4D70", "001B5230", "001FDC10", "001FDDD0", "001B4C00", "002AC2F0", "002AE610"]
+addresses: "001B44A0, 001B4D70, 001B5230, 001FDC10, 001FDDD0, 001B4C00, 002AC2F0, 002AE610"
 ---
-
-# Fonts: the font files a language uses, their kerning pairs and expansion lists, and how digits and glyphs are laid out
 
 ## What the player sees
 
@@ -50,46 +48,54 @@ then asks for two more files:
 
 ## Layouts
 
-```struct FontDatHeader base=record size=0x28
-+0x00  u32  fontId      the font's id (lookup 001B4E33, insert 0020B5F0)
-+0x04  u32  glyphCount  number of glyph records
-+0x08  u32  atlasW      atlas width; copied to font record +0x24
-+0x0C  u32  atlasH      copied to font record +0x28
-+0x10  u32  cellW       equal to every glyph record's cellW
-+0x14  u32  cellH       equal to every glyph record's cellH
-+0x18  f32  scale       divides advances and kerning (001E9C01)
-+0x1C  u32  flags       bit 0 asks for .ker, bit 1 for .fex
-+0x20  u32  metricA     copied to font record +0x1C
-+0x24  u32  metricB     copied to font record +0x20
-```
+`FontDatHeader` (`0x28` bytes, offsets from the start of the record):
 
-```struct FontGlyphRecord base=record size=0x24
-+0x00  u32  key       the glyph's key: a glyph index in font00, fontguide, fontquest, fonttutorial and us fontex_subtitle, a Unicode code point in the others
-+0x04  u32  utf8      the glyph's UTF-8 bytes, packed from the low byte
-+0x08  u32  atlasX    left edge in the atlas (002AA5C7)
-+0x0C  u32  atlasY    top edge in the atlas (002AA5E0)
-+0x10  u32  cellW     width in the atlas
-+0x14  u32  cellH     height in the atlas
-+0x18  u32  advance2  equal to advance in every record of the 62 listed files
-+0x1C  u32  advance   the pen advance (002AC4EC)
-+0x20  i32  kernCp    the glyph's code point for kerning, or -1 for none (002AC527)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | fontId | the font's id (lookup `001B4E33`, insert `0020B5F0`) |
+| `04` | `u32` | glyphCount | number of glyph records |
+| `08` | `u32` | atlasW | atlas width; copied to font record +`0x24` |
+| `0C` | `u32` | atlasH | copied to font record +`0x28` |
+| `10` | `u32` | cellW | equal to every glyph record's cellW |
+| `14` | `u32` | cellH | equal to every glyph record's cellH |
+| `18` | `f32` | scale | divides advances and kerning (`001E9C01`) |
+| `1C` | `u32` | flags | bit 0 asks for .ker, bit 1 for .fex |
+| `20` | `u32` | metricA | copied to font record +`0x1C` |
+| `24` | `u32` | metricB | copied to font record +`0x20` |
+
+`FontGlyphRecord` (`0x24` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | key | the glyph's key: a glyph index in font00, fontguide, fontquest, fonttutorial and us fontex_subtitle, a Unicode code point in the others |
+| `04` | `u32` | utf8 | the glyph's UTF-8 bytes, packed from the low byte |
+| `08` | `u32` | atlasX | left edge in the atlas (`002AA5C7`) |
+| `0C` | `u32` | atlasY | top edge in the atlas (`002AA5E0`) |
+| `10` | `u32` | cellW | width in the atlas |
+| `14` | `u32` | cellH | height in the atlas |
+| `18` | `u32` | advance2 | equal to advance in every record of the 62 listed files |
+| `1C` | `u32` | advance | the pen advance (`002AC4EC`) |
+| `20` | `i32` | kernCp | the glyph's code point for kerning, or -1 for none (`002AC527`) |
 
 The atlas fills row by row: `jp/font00` records 0-36 sit on row 0 and record 37 starts the next row at y 55.
 
-```struct KerPair base=record size=0xC
-+0x00  i32  left    code point of the first glyph of the pair
-+0x04  i32  right   code point of the second glyph
-+0x08  i32  adjust  pen adjustment in font pixels; negative tightens
-```
+`KerPair` (`0xC` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `i32` | left | code point of the first glyph of the pair |
+| `04` | `i32` | right | code point of the second glyph |
+| `08` | `i32` | adjust | pen adjustment in font pixels; negative tightens |
 
 A `.ker` is these records to the end of the file. Pairs such as `('T', '.', -3)` and `('F', ',', -1)` show the first
 field is the left glyph; no file except `us/fontex_subtitle` has the reverse of such a pair.
 
-```struct FexChunk base=record size=0x8
-+0x00  u32  key    the hash of a resource path
-+0x04  i32  count  number of u32 values that follow
-```
+`FexChunk` (`0x8` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | key | the hash of a resource path |
+| `04` | `i32` | count | number of u32 values that follow |
 
 A `.fex` is chunks of `{key, count, value[count]}` to the end of the file. The values are glyph keys in first-use order.
 

@@ -3,10 +3,8 @@ title: "License Board: the twelve job board files, the square grid each holds, a
 kind: "format"
 category: "Items, equipment, shops and licenses"
 summary: "The licd board file: its 8-byte header and its 24 by 24 grid of two-byte node numbers, what a node number indexes and the empty-square value, which file each language loads and how, the six functions that read the grid, the twelve job boards with their square counts and Second Board square, the sixty squares on every board and the fourteen Quickening nodes on none."
-addresses: ["02EBF1A0", "00238260", "02EBF038", "00328990", "0055B3F0", "00556F90"]
+addresses: "02EBF1A0, 00238260, 02EBF038, 00328990, 0055B3F0, 00556F90"
 ---
-
-# License Board: the twelve job board files, the square grid each holds, and the squares every board shares
 
 ## What the player sees
 
@@ -32,12 +30,14 @@ file request functions `00384420` and `003843F0`.
 
 ## Layouts
 
-```struct LicenseBoardFile base=file size=0x488
-+0x000  u8[4]     magic    "licd"; no code compares it
-+0x004  u16       width    24 on every board
-+0x006  u16       height   24 on every board
-+0x008  u16[576]  cells    row-major, cell(col, row) = cells[row * width + col]; 0xFFFF = no square
-```
+`LicenseBoardFile` (`0x488` bytes, offsets from the start of the file):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8[4]` | magic | "licd"; no code compares it |
+| `04` | `u16` | width | 24 on every board |
+| `06` | `u16` | height | 24 on every board |
+| `08` | `u16[576]` | cells | row-major, cell(col, row) = cells[row * width + col]; `0xFFFF` = no square |
 
 A cell holds a node number, 0-360, an index into the license node table: section 12 of `battle_pack.bin`, bound
 to `02EBF038` by the battle data binder (`00236D5C`-`00236D67`), 361 records of 24 bytes. The id check

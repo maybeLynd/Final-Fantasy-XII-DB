@@ -3,10 +3,8 @@ title: "Actor record fields: the record offset by offset, its flag bytes, and th
 kind: "reference"
 category: "Characters and objects"
 summary: "The access tables of the actor record and its two interior contexts: every reach the typed scans proved, by function, site, offset and instruction, with each instruction checked against the executable; the record's regions and the fields the actor record page names; the movement context at record +0x120 with the position at its head; and the secondary context at record +0x350."
-addresses: ["00266530", "00266AD0", "003DB580", "00265020", "0026AE90", "002E4A10", "0025DF00"]
+addresses: "00266530, 00266AD0, 003DB580, 00265020, 0026AE90, 002E4A10, 0025DF00"
 ---
-
-# Actor record fields: the record offset by offset, its flag bytes, and the movement and secondary contexts
 
 ## What it lists
 

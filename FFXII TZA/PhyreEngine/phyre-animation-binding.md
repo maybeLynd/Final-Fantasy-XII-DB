@@ -3,10 +3,8 @@ title: "Animation channel binding: how an animation curve finds its target and h
 kind: "system"
 category: "PhyreEngine"
 summary: "PhyreEngine's PAnimation channel binding: the nineteen channel semantics, the six binder classes that turn a named channel target into a target record (data member, shader parameter, method, function, scene node, mesh-instance node), the per-frame composer that folds rotation, scale and translation channels into a matrix and hands other channels to memcpy or a setter, the additive and weighted slot marking, and the two shipped map clusters that use it."
-addresses: ["005C0820", "005C1160", "005C0C90", "005C0B60", "005C72A0", "005A7E90", "005C6020", "005C61A0", "01F2CE40", "01CEBBA8", "00D317D8", "00D31768", "005AF3B0", "005C0E00", "005C1000", "00D31850", "00D31868", "005B2D60"]
+addresses: "005C0820, 005C1160, 005C0C90, 005C0B60, 005C72A0, 005A7E90, 005C6020, 005C61A0, 01F2CE40, 01CEBBA8, 00D317D8, 00D31768, 005AF3B0, 005C0E00, 005C1000, 00D31850, 00D31868, 005B2D60"
 ---
-
-# Animation channel binding: how an animation curve finds its target and how rotation, scale and translation become a bone matrix
 
 ## What the player sees
 
@@ -143,40 +141,44 @@ controller `+0x30`:
 
 ## Layouts
 
-```
-binding descriptor (PAnimationChannelTarget, members registered by 005AF3B0), 0x38 bytes
-+0x00  ptr   m_instanceObjectType  class the target must be
-+0x08  ptr   m_instanceObject      default target object
-+0x10  ptr   m_baseObjectType
-+0x18  ptr   m_baseObject
-+0x20  u32   m_type                2 data member, 3 method, 4 function, 5 shader parameter
-+0x28  ptr   m_name                path or name; bit 0 of the pointer is masked off
-+0x30  u32   m_index               array index
-```
+Binding descriptor (PAnimationChannelTarget, members registered by `005AF3B0`), `0x38` bytes:
 
-```
-target record, 0x30 bytes
-+0x00  u32   kind      0 unbound, 1 address, 2 method, 3 function
-+0x08  ptr   dest      kind 1 address, also the matrix base
-+0x10  u32   size      kind 1 bytes: at most 0x10, or 0x40 from a scene binder
-+0x18  ptr   context   kind 2 object
-+0x20  ptr   method    kind 2
-+0x28  ptr   function  kind 3
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `void*` | m_instanceObjectType | class the target must be |
+| `08` | `void*` | m_instanceObject | default target object |
+| `10` | `void*` | m_baseObjectType |  |
+| `18` | `void*` | m_baseObject |  |
+| `20` | `u32` | m_type | 2 data member, 3 method, 4 function, 5 shader parameter |
+| `28` | `void*` | m_name | path or name; bit 0 of the pointer is masked off |
+| `30` | `u32` | m_index | array index |
 
-```
-channel value slot, 0x28 bytes
-+0x00  f32[4]  value
-+0x10  ptr     semantic   descriptor at 01F2CE40..., null for none
-```
+Target record, `0x30` bytes:
 
-```
-channel semantic, 0x18 bytes
-+0x00  ptr   name
-+0x08  ptr   link      0 in the image
-+0x10  u32   floats
-+0x14  u32   index     0 in the image
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | kind | 0 unbound, 1 address, 2 method, 3 function |
+| `08` | `void*` | dest | kind 1 address, also the matrix base |
+| `10` | `u32` | size | kind 1 bytes: at most `0x10`, or `0x40` from a scene binder |
+| `18` | `void*` | context | kind 2 object |
+| `20` | `void*` | method | kind 2 |
+| `28` | `void*` | function | kind 3 |
+
+Channel value slot, `0x28` bytes:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `f32[4]` | value |  |
+| `10` | `void*` | semantic | descriptor at `01F2CE40`..., null for none |
+
+Channel semantic, `0x18` bytes:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `void*` | name |  |
+| `08` | `void*` | link | 0 in the image |
+| `10` | `u32` | floats |  |
+| `14` | `u32` | index | 0 in the image |
 
 Instruction-level access tables per class, beside this page:
 

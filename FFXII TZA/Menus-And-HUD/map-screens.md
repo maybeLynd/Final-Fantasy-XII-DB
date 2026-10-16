@@ -3,10 +3,8 @@ title: "Map screens: the World Map, the location map, the map overlay and the mi
 kind: "system"
 category: "Menus and HUD"
 summary: "The game's maps: the World Map menu entry and its host, the location map opened with Display Map, the map overlay toggled with Map Transparency, their shared two-page container and its open request, the map-data widget and the menumap files it loads, what a page draws, which story flags, visits and owned maps decide what is shown, the minimap drawn during play from the zone's own picture, and when each object lives."
-addresses: ["00253C70", "002B6350", "002B9D30", "003BC450", "003BC2D0", "003C18A0", "003C5910", "003C4070"]
+addresses: "00253C70, 002B6350, 002B9D30, 003BC450, 003BC2D0, 003C18A0, 003C5910, 003C4070"
 ---
-
-# Map screens: the World Map, the location map, the map overlay and the minimap, and the map data and story flags they read
 
 ## What the player sees
 
@@ -73,12 +71,14 @@ which the overlay waits for. It is created from `00253A30` and the HUD-on step `
 
 `00404060` loads the 32-byte record every page reads at `+0x130`:
 
-```struct MapScreenResources base=record size=0x20
-+0x00  u32[2]  back   LocaBack_c.tm2 (kind 7 0xBA)
-+0x08  u32[2]  atlas  Loca_8_c.tm2 (0xB9)
-+0x10  u32[2]  line   w_line01.tm2 (0xB0), the texture of the page's line quad
-+0x18  u32[2]  mrp    Loca.mrp (0xBF)
-```
+`MapScreenResources` (`0x20` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32[2]` | back | LocaBack_c.tm2 (kind 7 `0xBA`) |
+| `08` | `u32[2]` | atlas | Loca_8_c.tm2 (`0xB9`) |
+| `10` | `u32[2]` | line | w_line01.tm2 (`0xB0`), the texture of the page's line quad |
+| `18` | `u32[2]` | mrp | Loca.mrp (`0xBF`) |
 
 ### The map-data widget
 

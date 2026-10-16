@@ -3,10 +3,8 @@ title: "Lua runtime: the embedded Lua 5.2.1 interpreter, its chunk loader, its s
 kind: "system"
 category: "Third-party libraries"
 summary: "The Lua 5.2.1 interpreter linked into the executable with a 4-byte float lua_Number: the PhyreEngine loader that passes no mode and so accepts both source text and precompiled chunks, the 18-byte chunk header it checks, the standard libraries compiled in and the four that are registered but never opened, and the static facts that keep it idle: no code creates a lua_State and no shipped file holds a script."
-addresses: ["00683C30", "00812F70", "00810180", "0081DF50", "0081D790", "0082BE30", "0082E910", "0082E490", "00684D10", "00686280", "00684F60", "00685AC0", "006844C0", "02E41570", "02E41578", "00685F60", "01CCB3E0", "01CCB470", "00824340", "01CCBA90", "00818AC0", "00825660"]
+addresses: "00683C30, 00812F70, 00810180, 0081DF50, 0081D790, 0082BE30, 0082E910, 0082E490, 00684D10, 00686280, 00684F60, 00685AC0, 006844C0, 02E41570, 02E41578, 00685F60, 01CCB3E0, 01CCB470, 00824340, 01CCBA90, 00818AC0, 00825660, 00681840, 008216A0, 008162F0, 00827600"
 ---
-
-# Lua runtime: the embedded Lua 5.2.1 interpreter, its chunk loader, its standard libraries and why no script runs
 
 ## What the player sees
 
@@ -70,6 +68,18 @@ Three functions load and run a script, each calling `00683C30` and then `lua_pca
 Each takes the script from a `PScript` object. `00684D10` takes the state from its argument or from
 an entry of the buffer pool at `02E41050`; none of the three creates one.
 
+### The buffer pool
+
+When the pool exists, `00684D10` takes its next free entry: entries are `0x28` bytes from the
+pointer at pool `+0x50`, `+0x58` counts the entries in use and `+0x48` (bit 31 cleared) is the
+capacity. It copies entry `+0x10` bytes (bit 31 cleared) from the buffer at entry `+0x18` to the one
+at entry `+0x08` and runs the script on the state at entry `+0x20`.
+
+On its way out it gives the entry back by decrementing `+0x58`, but only when the entry is still the
+last one taken. `00681840` is the same release as a separate function; the only callers are two
+exception-unwind funclets, `008A0030` and `008A0070`, which pass it the pool and entry they find in
+their parent's frame.
+
 ### No code creates a Lua state
 
 Creating a state runs `lua_newstate` and its `f_luaopen`, which interns the memory-error message,
@@ -118,33 +128,46 @@ The `io`, `os`, `debug` and `package` functions, among them `io.open`
 (`00825660`, which checks its mode against `[rwa]%+?b?` and opens a `FILE*`) and `package.loadlib`
 (`00828580`), are therefore present and unreachable.
 
-## Layouts
+### Interpreter bodies outside the member list
+
+Three of the largest Lua functions are not in `lua-runtime-members.tsv`; each carries Lua's own
+messages:
+
+- `008216A0` is `luaV_execute`, the bytecode loop: it raises "'for' initial value must be a
+  number", "'for' limit must be a number" and "'for' step must be a number". `luaD_call` (`0081D900`)
+  and the coroutine resume `0081E5A0` (with "cannot resume dead coroutine") and `0081E920`, which
+  it calls, call it.
+- `008162F0` is `string.format`: the string library's registration array pairs the name `format`
+  with it (`01CCAD98`), and it raises "invalid option '%%%c' to 'format'".
+- `00827600` is `debug.getinfo`: the debug library's array pairs `getinfo` with it (`01CCC6F8`); its
+  default option string is "flnStu" and it raises "function or level expected".
+
 
 The precompiled-chunk header `0082E490` compares, 18 bytes:
 
-```
-+0x00  u8[4]  signature        1B 4C 75 61  "\x1bLua"
-+0x04  u8     version          52  (5.2)
-+0x05  u8     format           00
-+0x06  u8     endianness       01  little-endian
-+0x07  u8     sizeofInt        04
-+0x08  u8     sizeofSizeT      08
-+0x09  u8     sizeofInstr      04
-+0x0A  u8     sizeofNumber     04  float
-+0x0B  u8     integralNumbers  00
-+0x0C  u8[6]  tail             19 93 0D 0A 1A 0A  (01CCD300)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8[4]` | signature | 1B 4C 75 61  "\x1bLua" |
+| `04` | `u8` | version | 52  (5.2) |
+| `05` | `u8` | format | 00 |
+| `06` | `u8` | endianness | 01  little-endian |
+| `07` | `u8` | sizeofInt | 04 |
+| `08` | `u8` | sizeofSizeT | 08 |
+| `09` | `u8` | sizeofInstr | 04 |
+| `0A` | `u8` | sizeofNumber | 04  float |
+| `0B` | `u8` | integralNumbers | 00 |
+| `0C` | `u8[6]` | tail | 19 93 0D 0A 1A 0A  (`01CCD300`) |
 
 It reads 17 bytes after the signature byte the parser has already taken (`0082E4CC`) and compares all
 18 with the expected header it builds from immediates (`0082E4C7` to `0082E4EA`).
 
 The `PScript` fields `00683C30` reads:
 
-```
-+0x10  u32   length         bit 31 is a flag and is cleared
-+0x18  ptr   data           null: nothing is loaded
-+0x48  ptr   name           low bit is a flag and is cleared
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `10` | `u32` | length | bit 31 is a flag and is cleared |
+| `18` | `void*` | data | null: nothing is loaded |
+| `48` | `void*` | name | low bit is a flag and is cleared |
 
 ## Shipped data
 

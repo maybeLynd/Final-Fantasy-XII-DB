@@ -3,10 +3,8 @@ title: "YEBIS and PPFX: the post-effect library, how the game starts and drives 
 kind: "system"
 category: "Third-party libraries"
 summary: "Silicon Studio's YEBIS post-effect library (its core is named PPFX) as linked into the game: its address span and identity, the source paths and diagnostic log it carries, the API entry points, how the renderer creates its context and runs it each frame, the licence verifier and why the shipped licence never reaches its date test, and the EnableYebis switch with its delayed form."
-addresses: ["006DA880", "006DA8A0", "006DA8F0", "006DAA50", "006DA990", "006DAA70", "006DE780", "006DFF40", "0071D9E0", "006FF900", "0070BA00", "00707560", "006DF480", "006CBD20", "006CBEA0", "00193DA0", "0018E470", "00194290", "00194A30", "001F3300", "00167990", "02E5BDE0", "02EA0B70", "02EA0B3C", "02EA0B90", "00D86C00", "00717760"]
+addresses: "006DA880, 006DA8A0, 006DA8F0, 006DAA50, 006DA990, 006DAA70, 006DE780, 006DFF40, 0071D9E0, 006FF900, 0070BA00, 00707560, 006DF480, 006CBD20, 006CBEA0, 00193DA0, 0018E470, 00194290, 00194A30, 001F3300, 00167990, 02E5BDE0, 02EA0B70, 02EA0B3C, 02EA0B90, 00D86C00, 00717760, 0065E530, 006CBAA0, 0078A530, 0072A320, 00E21F90"
 ---
-
-# YEBIS and PPFX: the post-effect library, how the game starts and drives it, its licence check and the EnableYebis switch
 
 ## What the player sees
 
@@ -91,6 +89,28 @@ No instruction or stored pointer in the image refers to these texts:
    `02D38540`) and marks it ready: `0065E580` (call at `0062549D`) sets its byte `+8` to 1.
 3. The first frame that runs the pass calls `006CBD20` through `0065E5A0`; see the next section.
 
+### The integration object
+
+`0065E5D0` allocates the 16-byte object once through `00210EC0` and builds it with `0065E530`, which
+clears its record pointer and ready byte, allocates a `0x78`-byte record and fills it with
+`006CBAA0`. That constructor clears the context and shim pointers and stores nine fixed values,
+among them 1000.0 at `+0x10`, 0.1 at `+0x20`, 10000.0 at `+0x6C` and 45.0 at `+0x70`.
+
+The frame work `00193DA0` reaches the record only through one-line wrappers, each of which loads the
+record pointer from the object's `+0x00` and jumps to the integration function:
+
+| Wrapper | Target | Call in `00193DA0` |
+|---|---|---|
+| `0065E5B0` | none: true when the record's context pointer is set | `00193DD1`, `00193DF5` |
+| `0065E5A0` | `006CBD20`, create the context | `00193DE8` |
+| `0065E6C0` | `006CC2F0` | the branch taken when the command's `+0x99` is set |
+| `0065E6A0` | `006CC1F0`, the first block of scene values | `00193E11` |
+| `0065E6B0` | `006CC260`, the second block | `00193E36` |
+| `0065E670` | `006CC1E0`, glare, with mode 1 and 1.0 (`01CEBBA8`) added | `00193E6C` |
+| `0065E630` | `006CC170`, scale and mode; the mode passes through `006CBD00`, which returns its second argument | `00193EB4` |
+| `0065E610` | `006CC090`, depth of field | `00193F40` |
+| `0065E5C0` | `006CBEA0`, the render targets and the effect run | `00193F58` |
+
 ### Creating the context
 
 `006CBD20` runs on the first post-processed frame:
@@ -174,26 +194,60 @@ comments (`00717DEF`) and calls `0071A230` to test for spaces, tabs and newlines
 and is called only by `00719FB0`, whose only caller `0071A050` is neither called nor stored anywhere
 in the image. The tokenizer is linked and never reached.
 
+### The embedded effect archive
+
+The library's compiled texture effects are a single block of `0xE8E9C2` bytes (15,264,194) in the
+image, starting at `00E21F90`. It begins with text fields: `.tfxo file`, three decimal numbers, `hlsl`,
+then the effect name `TexUtil_D3D11` and a newline-separated technique list that starts with
+`tech_AlchemySsao_T1_S16`.
+
+`0078A530` copies the whole block into a `malloc` buffer in eight runs of `0x1D1D40` bytes (sources
+`00E21F90` to `01ADEC50`, the last run shorter) and returns it. Its only caller is
+`TEXSHADERSET::CreateEffect()` (`0072A320`, named by its log lines), which on its first call
+(`+0x00` still null) hands the copy, its size and the name `_LUMINANCE_REMAP_S1.pso` to `0078A120`,
+frees the copy, and then looks up the effect's parameter handles by name (`fParam_FocusDistance`,
+`afRGBA_Modulate`, `fParam_GammaCorrection` and others).
+
+### Bodies outside the member lists
+
+Nine large bodies in the span are in neither member list. Each is called only from inside the span
+(`006E9C20` from `007422F0`, `007428B0` and `0074CA90`; `0077FFE0` from `00780260`, `00780590` and
+`007809C0`), and all are effect-pass code:
+
+- `006E9C20` computes blur tap offsets: it divides the target size by the tap spacing, caps the
+  count, and writes one `{x, y, 0, 0}` float vector per tap.
+- `00740BE0` clamps a sample count to 4 to 8, selects the shader for it, uploads constants through
+  slot `+0x98` of the GPU device at `+0x38` and binds textures through slot `+0xB8`.
+- `0078AD20`, the code of `TinyEffect.cpp`, reflects a shader with `D3DReflect` and allocates its
+  `0xC0`-byte variable records through `006DA880`.
+- `0077FFE0` maps a GPU resource (device slot `+0x70`), copies four bytes of it into `+0xA0` to
+  `+0xA3` and unmaps it (slot `+0x78`).
+- `00735E40` stages up to eight float vectors at `02EA1C50` and uploads them through device slots
+  `+0xD0` and `+0x98`; `0074F740` runs it twice (`0074FDD9`, `007502CD`).
+- `00741680` runs `00740BE0` three times (`00741B5C`, `00741D2A`, `00741F18`).
+- `007651F0` returns 0 unless its source at `+0x260` is set and three of its intensities are
+  positive; otherwise it builds its pass constants from them.
+
 ## Layouts
 
 The render parameter block's switch fields (the block is `0x4A8` bytes; the rest is on
 [Graphics settings](../Engine-Core/graphics-settings.md)):
 
-```
-+0x0A0  u8    the pass is on (constructor value 1)
-+0x0A1  u8    the pending value of a delayed change
-+0x1F0  i32   frames left before the pending value is applied
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `0A0` | `u8` | the pass is on (constructor value 1) |  |
+| `0A1` | `u8` | the pending value of a delayed change |  |
+| `1F0` | `i32` | frames left before the pending value is applied |  |
 
 The library's global block, `0xD40` bytes at `[02EA0B70]`, as far as its constructor `006FF5D0`
 lays it out:
 
-```
-+0x0A8  map header  built by 00714800
-+0x0B8  map header  built by 007147A0
-+0x0C8  map header  built by 00714740
-+0xC80  ptr         cleared by the constructor
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `0A8` | `map header` | built by 00714800 |  |
+| `0B8` | `map header` | built by 007147A0 |  |
+| `0C8` | `map header` | built by 00714740 |  |
+| `C80` | `void*` | cleared by the constructor |  |
 
 The licence text at `00D86C00`, as shipped:
 

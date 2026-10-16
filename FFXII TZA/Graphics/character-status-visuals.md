@@ -3,10 +3,8 @@ title: "Character status visuals: how a status changes a character's colour, lig
 kind: "system"
 category: "Graphics"
 summary: "The per-frame push that turns each battle unit's status word into presentation: the colour-look list where the lowest index wins, the tint, Stone, Petrify, Doom, Berserk and HP Critical looks made of private lights and the character's lighting fields, the second block that fades an Invisible character and colours the shadow under Slow and Immobilize, the rig switches for Sleep, Confuse, Immobilize and Float, and the two denial latches."
-addresses: ["003E7650", "02B59D80", "00320BB0", "0046FD00", "0046FFA0", "00470050", "004703F0", "004700E0", "0046FBB0", "00470AA0", "00470780", "00470590", "00470B70", "00470660", "00470EB0", "004704C0", "00470230", "0051E3A0", "0051DBF0", "0051DDC0", "0051DC90", "0051E0A0", "0051E170", "0051DE30", "00428CD0", "005044D0", "00428F10", "003ABD50", "003ACC10", "003ACAA0", "003E7CC0", "003E7C70", "02B59D70", "02B59D71", "01F20AA0", "01F21F40", "01F22030"]
+addresses: "003E7650, 02B59D80, 00320BB0, 0046FD00, 0046FFA0, 00470050, 004703F0, 004700E0, 0046FBB0, 00470AA0, 00470780, 00470590, 00470B70, 00470660, 00470EB0, 004704C0, 00470230, 0051E3A0, 0051DBF0, 0051DDC0, 0051DC90, 0051E0A0, 0051E170, 0051DE30, 00428CD0, 005044D0, 00428F10, 003ABD50, 003ACC10, 003ACAA0, 003E7CC0, 003E7C70, 02B59D70, 02B59D71, 01F20AA0, 01F21F40, 01F22030"
 ---
-
-# Character status visuals: how a status changes a character's colour, light, opacity and shadow
 
 ## What the player sees
 
@@ -226,60 +224,70 @@ lights, so display denial switches them off and lifts the dimming while the step
 
 ## Layouts
 
-```
-presentation record, 02B59D80 + slot × 0x150
-+0x000  u16      live          1 when set up by 003E7500
-+0x004  i16      record        the render-record index
-+0x008  u32      shown         the status word last pushed
-+0x010  ptr      rig           003E6DA0 of the render record, 0 = none
-+0x020  0x50     colourList    block 1
-+0x070  0x48     second        block 2
-+0x0C0  u32[32]  flags         one per status bit
-+0x140  u32      setBits
-+0x144  u32      clearedBits
+Presentation record, `02B59D80` + slot × `0x150`:
 
-colour-look block (record +0x20)
-+0x00  u32   mask       bits 0-13
-+0x04  u8    shown
-+0x05  u8    wanted     lowest set bit, 0xFF = none
-+0x06  u8    frame      flash and cycle counter
-+0x07  u8    flags      bit 0 changing, bits 1-7 entry count
-+0x08  u32   light0     handle
-+0x0C  u32   light1     handle
-+0x10  u32   target     the render-record index the lights belong to
-+0x18  ptr   step
-+0x20  f32   phase
-+0x24  f32   envelope
-+0x28  ptr   renderRecord
-+0x38  u8    state      Petrify and Doom
-+0x39  u8    count      the remembered Petrify or Doom count
-+0x3A  u8    hold       control deny
-+0x40  f32[4] offset    the tint's colour offset
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `000` | `u16` | live | 1 when set up by `003E7500` |
+| `004` | `i16` | record | the render-record index |
+| `008` | `u32` | shown | the status word last pushed |
+| `010` | `void*` | rig | `003E6DA0` of the render record, 0 = none |
+| `020` | `0x50` | colourList | block 1 |
+| `070` | `0x48` | second | block 2 |
+| `0C0` | `u32[32]` | flags | one per status bit |
+| `140` | `u32` | setBits |  |
+| `144` | `u32` | clearedBits |  |
 
-second block (record +0x70)
-+0x08  ptr   renderRecord
-+0x10  u32   mask
-+0x14  u32   enemy
-+0x18  u8    shownA
-+0x19  u8    wantedA
-+0x1A  u8    changingA
-+0x1C  f32   phaseA
-+0x20  f32   envelopeA
-+0x28  ptr   stepA
-+0x30  u8    shownB
-+0x31  u8    wantedB
-+0x32  u8    changingB
-+0x33  u8    stop
-+0x34  f32   phaseB
-+0x38  f32   envelopeB
-+0x40  ptr   stepB
+Colour-look block (record +`0x20`):
 
-render-record fields the looks write
-+0x5D0  f32[3]  colour       the ambient blend target
-+0x5DC  f32     amount       ambient mode amount
-+0x5E0  u8      ambientMode  1 blend, 2 multiply
-+0x5EC  f32     lightScale   copied to 02B3F518
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | mask | bits 0-13 |
+| `04` | `u8` | shown |  |
+| `05` | `u8` | wanted | lowest set bit, `0xFF` = none |
+| `06` | `u8` | frame | flash and cycle counter |
+| `07` | `u8` | flags | bit 0 changing, bits 1-7 entry count |
+| `08` | `u32` | light0 | handle |
+| `0C` | `u32` | light1 | handle |
+| `10` | `u32` | target | the render-record index the lights belong to |
+| `18` | `void*` | step |  |
+| `20` | `f32` | phase |  |
+| `24` | `f32` | envelope |  |
+| `28` | `void*` | renderRecord |  |
+| `38` | `u8` | state | Petrify and Doom |
+| `39` | `u8` | count | the remembered Petrify or Doom count |
+| `3A` | `u8` | hold | control deny |
+| `40` | `f32[4] offset` | the tint's colour offset |  |
+
+Second block (record +`0x70`):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `08` | `void*` | renderRecord |  |
+| `10` | `u32` | mask |  |
+| `14` | `u32` | enemy |  |
+| `18` | `u8` | shownA |  |
+| `19` | `u8` | wantedA |  |
+| `1A` | `u8` | changingA |  |
+| `1C` | `f32` | phaseA |  |
+| `20` | `f32` | envelopeA |  |
+| `28` | `void*` | stepA |  |
+| `30` | `u8` | shownB |  |
+| `31` | `u8` | wantedB |  |
+| `32` | `u8` | changingB |  |
+| `33` | `u8` | stop |  |
+| `34` | `f32` | phaseB |  |
+| `38` | `f32` | envelopeB |  |
+| `40` | `void*` | stepB |  |
+
+Render-record fields the looks write:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `5D0` | `f32[3]` | colour | the ambient blend target |
+| `5DC` | `f32` | amount | ambient mode amount |
+| `5E0` | `u8` | ambientMode | 1 blend, 2 multiply |
+| `5EC` | `f32` | lightScale | copied to `02B3F518` |
 
 ## Shipped data
 

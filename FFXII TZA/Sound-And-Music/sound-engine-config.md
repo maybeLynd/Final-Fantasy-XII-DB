@@ -3,10 +3,8 @@ title: "Sound engine configuration: the start-up file that sets the sound catego
 kind: "format"
 category: "Sound and music"
 summary: "The file sead.win.config: where it is loaded and how the engine copies it whole, its header and chunk directory, the ten chunks with their layouts and the code that reads each field, the category sizes that size the engine's voice pools, the master bus, the three macros, the effect presets and the HCA mixer switch, the shipped values, and what a changed or missing chunk does."
-addresses: ["00210760", "007A4D50", "007B0F90", "007AE410", "007ADB20", "007AC4F0", "007B31A0", "007ACD30"]
+addresses: "00210760, 007A4D50, 007B0F90, 007AE410, 007ADB20, 007AC4F0, 007B31A0, 007ACD30"
 ---
-
-# Sound engine configuration: the start-up file that sets the sound categories, the master bus, the macros and the effect presets
 
 ## What the player sees
 
@@ -44,22 +42,26 @@ All 16 later reads of `02EAD3E0`, in 15 functions, pass it to a chunk finder, so
 
 ## Layouts
 
-```struct ConfigHeader base=file size=0x10
-+0x00  char[4]  magic       "scnf"
-+0x04  u16      h04         0
-+0x06  u16      dirOffset   0x10
-+0x08  u8       chunkCount  10
-+0x09  u8[3]    h09         0
-+0x0C  u32      copySize    bytes the engine copies; 1,264
-```
+`ConfigHeader` (`0x10` bytes, offsets from the start of the file):
 
-```struct ConfigChunkEntry base=record size=0x10
-+0x00  char[4]  tag     the chunk's tag
-+0x04  u16      e04     0
-+0x06  u16      e06     0x10
-+0x08  u32      offset  from the start of the file
-+0x0C  u32      e0C     0
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[4]` | magic | "scnf" |
+| `04` | `u16` | h04 | 0 |
+| `06` | `u16` | dirOffset | `0x10` |
+| `08` | `u8` | chunkCount | 10 |
+| `09` | `u8[3]` | h09 | 0 |
+| `0C` | `u32` | copySize | bytes the engine copies; 1,264 |
+
+`ConfigChunkEntry` (`0x10` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[4]` | tag | the chunk's tag |
+| `04` | `u16` | e04 | 0 |
+| `06` | `u16` | e06 | `0x10` |
+| `08` | `u32` | offset | from the start of the file |
+| `0C` | `u32` | e0C | 0 |
 
 Each finder walks `chunkCount` entries from `dirOffset` and compares the tag with its entry in the tag table at
 `01CB4928` (`007ADB5A`); a tag not there gives a null chunk. A table chunk starts with a `u8` version, a `u16` at
@@ -82,14 +84,16 @@ The class names are the run-time type names of each chunk's wrapper.
 
 ### Categories
 
-```struct CONFIGCATEGORY base=record size=0x20
-+0x00  u8      version   2
-+0x01  u8      c01       the element index
-+0x02  u16     nameAt    offset of the name, 0x10
-+0x04  i16     size      0 none; above 0 that many sound slots; below 0 shares category -size
-+0x06  u16     c06       the name length
-+0x10  char[]  name      the category name
-```
+`CONFIGCATEGORY` (`0x20` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | version | 2 |
+| `01` | `u8` | c01 | the element index |
+| `02` | `u16` | nameAt | offset of the name, `0x10` |
+| `04` | `i16` | size | 0 none; above 0 that many sound slots; below 0 shares category -size |
+| `06` | `u16` | c06 | the name length |
+| `10` | `char[]` | name | the category name |
 
 `007AAA40` refuses a chunk with no elements (`007AAA66`). A size of 0 leaves the category empty (`007AAB11`), a
 positive size allocates that many slots (`007AA2E3`), and a negative one binds it to another category
@@ -98,19 +102,21 @@ its element count: each category gets that many plus one volume ramps (`007AAAB2
 
 ### The bus
 
-```struct CONFIGBUS base=record size=0x30
-+0x00  u8      version      2
-+0x01  u8      busIndex     0 is the root bus
-+0x02  u16     nameAt       0x20
-+0x04  i8      send0        a bus to send to, or -1
-+0x05  u8      effectCount  effects on the bus
-+0x06  u8[4]   sendTargets  more send buses
-+0x0A  u8      sendCount    how many of them
-+0x0B  u8      nameLength   places the effect table
-+0x0C  f32     level        the bus volume
-+0x10  f32[4]  sendLevels   one per send
-+0x20  char[]  name         the bus name
-```
+`CONFIGBUS` (`0x30` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | version | 2 |
+| `01` | `u8` | busIndex | 0 is the root bus |
+| `02` | `u16` | nameAt | `0x20` |
+| `04` | `i8` | send0 | a bus to send to, or -1 |
+| `05` | `u8` | effectCount | effects on the bus |
+| `06` | `u8[4]` | sendTargets | more send buses |
+| `0A` | `u8` | sendCount | how many of them |
+| `0B` | `u8` | nameLength | places the effect table |
+| `0C` | `f32` | level | the bus volume |
+| `10` | `f32[4]` | sendLevels | one per send |
+| `20` | `char[]` | name | the bus name |
 
 `007AC4F0` builds the buses: `+0x01` picks the slot (`007AC770`), the root bus takes `+0x0C` as its level
 (`007ACAAE`, `007ACAE0`), and other buses read their sends (`007AC7AD`-`007AC822`) and effects (`007AC83A`). The
@@ -156,13 +162,15 @@ come from `eps ` through `007ADDC0`, one section per effect type, with block siz
 
 ### The HCA mixer switch
 
-```struct CONFIGHCAMXSETTINGS base=record size=0x10
-+0x00  u8   h00       0
-+0x01  u8   channels  16
-+0x02  u16  h02       0x10
-+0x04  u32  rate      44,100
-+0x08  u8   enable    0
-```
+`CONFIGHCAMXSETTINGS` (`0x10` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | h00 | 0 |
+| `01` | `u8` | channels | 16 |
+| `02` | `u16` | h02 | `0x10` |
+| `04` | `u32` | rate | 44,100 |
+| `08` | `u8` | enable | 0 |
 
 `007A4D50` copies `+0x08`, `+0x01` and `+0x04` into its parameters `+0x1C`, `+0x18` and `+0x14` (`007A4F5F`-`007A4F6E`).
 Only with `enable` set does `007AC4F0` build the HCA mixer voice (`007ACC6B`-`007ACC9B`). The engine renders at the

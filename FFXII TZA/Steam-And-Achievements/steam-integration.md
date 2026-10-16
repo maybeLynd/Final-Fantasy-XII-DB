@@ -3,10 +3,8 @@ title: "Steam integration: how the game starts and pumps Steam, the interfaces a
 kind: "system"
 category: "Steam and achievements"
 summary: "The start-up order (interface context, SteamAPI_Init, the achievement manager, the overlay listener, the relaunch check with app id 595520), the interface context and the five interface slots the game calls, the eight callbacks and their handlers, the per-window-pump SteamAPI_RunCallbacks, the stats receipt, the Steam language and user id the game reads, the teardown, and every path that changes when Steam is absent."
-addresses: ["007980A0", "01DFE0D0", "001F3E10", "001F3AE0", "0020CD30", "0020C730", "01F83450", "0020CCC0", "008655E0", "008655A0", "007A0810", "008653B0", "00865510", "007A3110", "0020C940", "0020C8C0", "0020CB20", "0020CE60", "0020CE10", "0020CD80", "00865660", "007A0C60", "001F3ED0", "0017D990", "00798FF0"]
+addresses: "007980A0, 01DFE0D0, 001F3E10, 001F3AE0, 0020CD30, 0020C730, 01F83450, 0020CCC0, 008655E0, 008655A0, 007A0810, 008653B0, 00865510, 007A3110, 0020C940, 0020C8C0, 0020CB20, 0020CE60, 0020CE10, 0020CD80, 00865660, 007A0C60, 001F3ED0, 0017D990, 00798FF0"
 ---
-
-# Steam integration: how the game starts and pumps Steam, the interfaces and callbacks it uses, and what it does without Steam
 
 ## What the player sees
 
@@ -118,6 +116,10 @@ stays local, and the receipt then overwrites `+0x190` with Steam's value.
 the first close request while `00865510` returns 1 is ignored (`02EACD28`), and any other asks for
 confirmation with a message box (texts `0x7836` and `0x7835`).
 
+`0019A510(id)` loads those texts from the executable's string table (`007991FE`, `00799234`): in each
+module of the ATL module list it finds block `id / 16 + 1` of resource type 6, and `0019A5B0` steps over
+`id & 0xF` length-prefixed strings in the block, returning 0 for an empty or missing string.
+
 ### Language and user id
 
 `007A0C60` returns at once without the apps interface. Otherwise it maps Steam's game language to the
@@ -132,6 +134,12 @@ string empty otherwise. The save folder appends it ([save file format](../Saving
 After the message loop ends, `007980A0` calls `0020CD80` (`007986AB`), which unregisters the manager's
 three callbacks, frees it and stores 0 at `01F83450`, and `00865660` (`007986B0`) for the overlay object.
 The game imports no `SteamAPI_Shutdown`.
+
+The manager's callback objects have their own destructors, `0020C860` (`CCallbackImpl<24>`, 1101,
+`+0x20`), `0020C880` (`CCallbackImpl<16>`, 1102, `+0x40`) and `0020C840` (`CCallbackImpl<152>`, 1103,
+`+0x60`). Each calls `SteamAPI_UnregisterCallback` when bit 0 of the object's `+0x08` is set. They run
+only from the unwind funclets `00899B00`, `00899B10` and `00899B20` of `0020C730`, when its construction
+is abandoned.
 
 ### `code_steam.txt`
 
@@ -167,24 +175,24 @@ The interface context, as `SteamInternal_ContextInit` returns it (`001F3AE0`):
 
 The achievement manager, `0x80` bytes at `[01F83450]`:
 
-```
-+0x00  i32       appId      utilities slot +0x48; compared with each callback's first field
-+0x08  ptr       entries    01DFE410, 0x198 bytes per entry
-+0x10  i32       count      41
-+0x14  i32       achieved   entries 1-40 achieved
-+0x18  u8        received   set by the stats receipt; gates every send
-+0x20  callback  1101 object (handler at +0x38)
-+0x40  callback  1102 object
-+0x60  callback  1103 object
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `i32` | appId | utilities slot +`0x48`; compared with each callback's first field |
+| `08` | `void*` | entries | `01DFE410`, `0x198` bytes per entry |
+| `10` | `i32` | count | 41 |
+| `14` | `i32` | achieved | entries 1-40 achieved |
+| `18` | `u8` | received | set by the stats receipt; gates every send |
+| `20` | `fn*` | 1101 object (handler at +0x38) |  |
+| `40` | `fn*` | 1102 object |  |
+| `60` | `fn*` | 1103 object |  |
 
 The connection listener at `02EACC90`, four `0x20`-byte callback objects, then:
 
-```
-+0x80  i32  lost        1 after a disconnect or a failed connect
-+0x84  i32  connected   1 at start and after a connect
-+0x88  i32  failures    disconnects and failed connects since the last connect
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `80` | `i32` | lost | 1 after a disconnect or a failed connect |
+| `84` | `i32` | connected | 1 at start and after a connect |
+| `88` | `i32` | failures | disconnects and failed connects since the last connect |
 
 ## Shipped data
 

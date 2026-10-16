@@ -3,10 +3,8 @@ title: "Area of effect: radius, cone and line targeting, which side an area hits
 kind: "system"
 category: "Battle actions"
 summary: "How a battle action turns its one chosen target into everyone it hits - the radius byte, a circle on the target or on the user, cones and lines, the side rule that follows the chosen target and ignores Confuse, which units an area skips, the whole-party flag and the 32-entry target list."
-addresses: ["0030D160", "0030AB40", "002FFF50", "0031A990", "00316CF0", "00316CD0", "00316D70"]
+addresses: "0030D160, 0030AB40, 002FFF50, 0031A990, 00316CF0, 00316CD0, 00316D70"
 ---
-
-# Area of effect: radius, cone and line targeting, which side an area hits, and the target list
 
 ## What the player sees
 
@@ -150,19 +148,23 @@ and `00328530` and jumped to from `0031AB80`.
 
 ## Layouts
 
-```struct ActionTargetList base=target-list size=0x208
-+0x000  u8     flags        bit 0 kept by the clear (00316D05-00316D16); the rest cleared
-+0x001  u16    keys         cleared to 0 by 00316D1D
-+0x003  u8     pad3         cleared by the memset of 00316D0B
-+0x004  i32    count        entries in use; signed (movsxd at 00316CD0 and 00316D70); append refuses at 32 (00316CD4)
-+0x008  u8[512]  entries      32 ActionTargetEntry records of 16 bytes
-```
+`ActionTargetList` (`0x208` bytes, offsets from the start of the target-list):
 
-```struct ActionTargetEntry base=target-entry size=0x10
-+0x00  u64    actorWork    the unit's +0x10 object; stored by 00316CDC, compared by 00316D83
-+0x08  u32    entryFlags   low byte the outcome code (0030DAE0), bits 8-11 result flags; written by the effect applier 00307300
-+0x0C  u32    tail         no unit-relative reader of +0x78C in the image (entry-pointer reads not excluded)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | flags | bit 0 kept by the clear (`00316D05`-`00316D16`); the rest cleared |
+| `01` | `u16` | keys | cleared to 0 by `00316D1D` |
+| `03` | `u8` | pad3 | cleared by the memset of `00316D0B` |
+| `04` | `i32` | count | entries in use; signed (movsxd at `00316CD0` and `00316D70`); append refuses at 32 (`00316CD4`) |
+| `08` | `u8[512]` | entries | 32 ActionTargetEntry records of 16 bytes |
+
+`ActionTargetEntry` (`0x10` bytes, offsets from the start of the target-entry):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u64` | actorWork | the unit's +`0x10` object; stored by `00316CDC`, compared by `00316D83` |
+| `08` | `u32` | entryFlags | low byte the outcome code (`0030DAE0`), bits 8-11 result flags; written by the effect applier `00307300` |
+| `0C` | `u32` | tail | no unit-relative reader of +`0x78C` in the image (entry-pointer reads not excluded) |
 
 ## Modding notes
 

@@ -3,10 +3,8 @@ title: "MSVC containers: the std::map tree, std::string and std::regex code link
 kind: "system"
 category: "Compiler and C runtime"
 summary: "The Microsoft standard-library containers that sit in FFXII_TZA.exe beside the engine's EASTL: the std::map / std::set red-black tree with its head node, lookup, insert, erase and clear routines and its three instantiations, the std::string layout and its deallocation rule, the std::regex instantiation behind one event-path check, and the MSVCP140 imports these containers call."
-addresses: ["00714800", "0070D360", "00712F60", "0071E500", "00714DC0", "00714CE0", "00714B60", "00714980", "006FF5D0", "006FF840", "0071D170", "0071EE70", "00169270", "008B7940", "02EA5550", "001DFA10", "0020A800", "009058C0", "008C2618", "008C2430"]
+addresses: "00714800, 0070D360, 00712F60, 0071E500, 00714DC0, 00714CE0, 00714B60, 00714980, 006FF5D0, 006FF840, 0071D170, 0071EE70, 00169270, 008B7940, 02EA5550, 001DFA10, 0020A800, 009058C0, 008C2618, 008C2430, 001A1990, 001A5500, 001A5630, 00865EC0, 001A1EA0, 00195940, 00197A50, 0019B580, 0019B990, 001A1920, 00865E30, 001E0360, 0020AFE0"
 ---
-
-# MSVC containers: the std::map tree, std::string and std::regex code linked into the executable
 
 ## What the player sees
 
@@ -114,6 +112,56 @@ The game code that uses it is `0020A800`, called from `0020AC30`. It compiles th
 against it (`00203790`), so it tests whether a path has the form `…\plan_master\<name>\event\…`. The
 regex routines that only this use reaches are listed in `msvc-containers-stl-regex-char.tsv`.
 
+The rest of the instantiation, 92 bodies between `002031A0` and `0020B000`, is listed in
+`msvc-containers-stl-regex-char-members.tsv` with one function that refers to each. All but four
+are called only from `0020A800` and the routines of the first list. The node destructors `002043A0`
+(`_Node_class`) and `00204660` (`_Node_if`) are called by the deleting destructors in the vtables at
+`00905A28` and `00905930`; `00206CD0` and `00204590` are reached from the catch funclet `008996A0`
+of `00206AD0` and the unwind funclet `008999D0` of `0020A800`.
+
+Two examples. `00209530` is the parser's lexer step: it looks the next character up in the
+metacharacters `()$^.*+?[]|\-{},:=!` plus newline, carriage return and backspace (`009059B8`,
+through `strchr`) and turns it into a token according to the syntax flags. `00205890` parses one
+alternative. It raises `_Xregex_error` with 5 on a `)` outside any group (`00205B02`), and with 6,
+4 and 10 at `00205B0E`, `00205B1A` and `00205B26`.
+
+### std::sort
+
+`006B9CF0`, slot 1 of `Phyre::PRendering::PContextSwitchLights`, uses two instantiations of the
+Microsoft `std::sort`: `006B82A0` over 8-byte elements with a comparator function, and `006B8180`
+over 32-bit values compared with `<`. It passes the element count as the starting depth budget.
+Both follow the library's introsort:
+
+1. A range of 32 elements or fewer goes to an insertion sort: `006B6FE0` for the 8-byte elements,
+   `006B6F30` for the 32-bit values.
+2. A longer range is partitioned around a median guess (`006B7800`, `006B7660`): of three elements
+   below 41, of nine from 41 on. The 8-byte partition `006B7800` takes the guess from `006B6D70`
+   (`cmp rax, 0x28` at `006B6D8D`), which orders each group of three with the comparator through
+   `006B7560`; the 32-bit partition takes it from `006B6C20`. The smaller side is sorted by
+   recursion and the larger by the loop.
+3. Each partition cuts the budget to `budget/2 + budget/4`. When it reaches 0 the range is
+   heap-sorted: `006B7290` and `006B71A0` build the heap, `006B8060` and `006B7FC0` pop it, sifting
+   through `006B7CF0` and `006B7C20`.
+
+### Library members compiled into the image
+
+Beside the tree, 49 more bodies of the Microsoft library are compiled from its headers rather than
+imported. `msvc-containers-library-members.tsv` names each with the import, vtable or failure string
+that identifies it:
+
+- `std::string` and `std::wstring` growth, append, assign, erase, find, compare, `operator+` and move. `00195670` grows a
+  string: it rounds the capacity up with `or 0xF`, grows it by half, and fails through `_Xbad_alloc`.
+- The file streams: the `basic_ifstream<wchar_t>`, `basic_ofstream<wchar_t>` and
+  `basic_ofstream<char>` destructor bodies (`00195440`, `001954B0`, `0019B480`) and the
+  `basic_filebuf` open (`00197A50`, `0019B990`), `_Endwrite` (`00195940`, `0019B580`) and close (`001969D0`,
+  `0019B8C0`, through `fclose`). The key-binding writer
+  `001993B0` calls `001969D0`.
+- The string streams: the `basic_stringbuf` constructor `001DDFD0`, its `str()` `001E0100` (the stream's `001E0360`) and the
+  destructors of `basic_istringstream`, `basic_ostringstream` and `basic_stringstream`.
+- The inserters `00194CD0` (wide string) and `001DDE10` (narrow), `std::endl` `00194EB0`, the
+  `std::exception` and `std::bad_cast` copy constructors, and two vector members (`001A4D20`,
+  `0020E420`), and `001A1EA0`, the header's `sprintf_s` into a 32-byte buffer.
+
 ### The library calls behind the containers
 
 The containers and the streams call `MSVCP140.dll`, which supplies 115 of the image's import slots.
@@ -133,25 +181,31 @@ their sentry destructors appear.
 
 ## Layouts
 
-```struct MsvcTree base=record size=0x10
-+0x00  u64  head   pointer to the head node
-+0x08  u64  count  number of elements
-```
+`MsvcTree` (`0x10` bytes, offsets from the start of the record):
 
-```struct MsvcTreeNode base=record
-+0x00  u64  left    smaller child; in the head, the smallest node
-+0x08  u64  parent  parent; in the head, the root
-+0x10  u64  right   larger child; in the head, the largest node
-+0x18  u8   color   0 red, 1 black
-+0x19  u8   isNil   1 in the head node only
-+0x20  ...  the element, key first: 0x10 bytes in tree A, 0x40 in tree B, 8 in tree C
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u64` | head | pointer to the head node |
+| `08` | `u64` | count | number of elements |
 
-```struct MsvcString base=record size=0x20
-+0x00  u8[16]  chars     the characters while capacity is below 16; otherwise a heap pointer in the first 8 bytes
-+0x10  u64     size      characters in use
-+0x18  u64     capacity  15 for the inline buffer
-```
+`MsvcTreeNode` (offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u64` | left | smaller child; in the head, the smallest node |
+| `08` | `u64` | parent | parent; in the head, the root |
+| `10` | `u64` | right | larger child; in the head, the largest node |
+| `18` | `u8` | color | 0 red, 1 black |
+| `19` | `u8` | isNil | 1 in the head node only |
+| `20` | `...` | the element, key first: 0x10 bytes in tree A, 0x40 in tree B, 8 in tree C |  |
+
+`MsvcString` (`0x20` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8[16]` | chars | the characters while capacity is below 16; otherwise a heap pointer in the first 8 bytes |
+| `10` | `u64` | size | characters in use |
+| `18` | `u64` | capacity | 15 for the inline buffer |
 
 ## Shipped data
 
@@ -162,6 +216,9 @@ their sentry destructors appear.
 | `std::regex` node classes | 12, vtables `009058C0` to `00905A28` |
 | `MSVCP140.dll` import slots | 115 |
 | `_Xlength_error` call sites | 59 |
+| further `std::regex` bodies (`msvc-containers-stl-regex-char-members.tsv`) | 92 |
+| other library bodies compiled in (`msvc-containers-library-members.tsv`) | 49 |
+| `std::sort` insertion-sort limit | 32 elements (`cmp rax, 0x20` at `006B81AA`) |
 
 ## Modding notes
 

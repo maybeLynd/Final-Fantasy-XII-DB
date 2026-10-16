@@ -3,10 +3,8 @@ title: "How a character is lit: the light inputs, the shadow casters and the sha
 kind: "system"
 category: "Graphics"
 summary: "Character lighting: the 128-entry light pool and its five directional kinds, how each character's lights are chosen by scope, class and priority, the ambient contest and the per-character ambient mode and light scale, the six-light block and how the render object applies the map's character-light settings, the Phyre shadow caster defaults, and the two shadow pools a render record holds an entry in."
-addresses: ["02B3F528", "02B3F508", "003AB960", "003ABD00", "003ABD50", "003ACC10", "003ACAA0", "003AD540", "003AE0E0", "003AD830", "003AE4C0", "003ADC40", "003AED20", "002E8610", "02CA8110", "004FD4B0", "001F9B20", "006C0EB0", "006C15D0", "01F2EDC8", "02B40528", "003B6890", "003B56D0", "003B6000", "003B6900", "003B6B80", "003B5980", "02B3F570", "003AF340", "003AFBE0", "003AFD00", "003E73B0", "00426340", "002E8950", "002E89B0", "002E88A0", "002E8900"]
+addresses: "02B3F528, 02B3F508, 003AB960, 003ABD00, 003ABD50, 003ACC10, 003ACAA0, 003AD540, 003AE0E0, 003AD830, 003AE4C0, 003ADC40, 003AED20, 002E8610, 02CA8110, 004FD4B0, 001F9B20, 006C0EB0, 006C15D0, 01F2EDC8, 02B40528, 003B6890, 003B56D0, 003B6000, 003B6900, 003B6B80, 003B5980, 02B3F570, 003AF340, 003AFBE0, 003AFD00, 003E73B0, 00426340, 002E8950, 002E89B0, 002E88A0, 002E8900"
 ---
-
-# How a character is lit: the light inputs, the shadow casters and the shadow pool
 
 ## What the player sees
 
@@ -180,19 +178,19 @@ and [second pool](character-lighting-and-shadows-shadow-pool-v2-slot-accesses.ts
 
 A light request (entry `+0x20`):
 
-```
-+0x00  u8   type: 1-5 directional kinds, 6 ambient, 7 the character's own list
-+0x01  u8   priority
-+0x02  u8   subtype (ambient colour form; 5 = multiplier)
-+0x03  u8   scope
-+0x04  u8   scope sub-kind
-+0x05  u8   bit 4 no ambient mode; bits 1-3 matrix; 0x80 and up no light scale
-+0x07  u8   bit 0 exclusive (not additive); bit 1 skip; bits 2-7 class
-+0x08  u32  target: id, handle or group mask
-+0x0C  f32  range
-+0x10  f32[4]  colour
-+0x20  ...  kind data (position, axis, cone, segment end)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | type: 1-5 directional kinds, 6 ambient, 7 the character's own list |  |
+| `01` | `u8` | priority |  |
+| `02` | `u8` | subtype (ambient colour form; 5 = multiplier) |  |
+| `03` | `u8` | scope |  |
+| `04` | `u8` | scope sub-kind |  |
+| `05` | `u8` | bit 4 no ambient mode; bits 1-3 matrix; 0x80 and up no light scale |  |
+| `07` | `u8` | bit 0 exclusive (not additive); bit 1 skip; bits 2-7 class |  |
+| `08` | `u32` | target: id, handle or group mask |  |
+| `0C` | `f32` | range |  |
+| `10` | `f32[4]` | colour |  |
+| `20` | `...` | kind data (position, axis, cone, segment end) |  |
 
 ## Modding notes
 

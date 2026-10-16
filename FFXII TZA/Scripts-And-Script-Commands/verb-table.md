@@ -3,10 +3,8 @@ title: "Script verb table: every call id with its name, callbacks, shape, argume
 kind: "reference"
 category: "Scripts and script commands"
 summary: "The reference for the 1,960 native commands a zone script can call: call id, family and command, the authored name and where it comes from, the begin, poll and result callbacks read from the five command tables, the shape each record has, the stub and empty records, the measured argument count against the catalogue's, the handler's control-flow class, the engine subsystems its handlers reach, and the number of calls in the decompiled US script corpus."
-addresses: ["01EED700", "01F281B0", "01F29418", "01F29440", "01F26720", "0016D6A0", "005C5230", "00267E10", "00267DB0", "0026B4E0", "00263D00", "00355940", "00355E80", "0050C910"]
+addresses: "01EED700, 01F281B0, 01F29418, 01F29440, 01F26720, 0016D6A0, 005C5230, 00267E10, 00267DB0, 0026B4E0, 00263D00, 00355940, 00355E80, 0050C910"
 ---
-
-# Script verb table: every call id with its name, callbacks, shape, argument count, what it reaches and how often the shipped scripts use it
 
 ## What it lists
 

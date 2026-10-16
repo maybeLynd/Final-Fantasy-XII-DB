@@ -3,10 +3,8 @@ title: "EBP navigation icons: the NAVIICN2 block a field map script carries for 
 kind: "format"
 category: "EBP script files"
 summary: "Section 4 of a field map's .ebp script: the NAVIICN2 icon block bound to one global, the accessors that read it, how each icon kind names a position entry of the zone script, which kinds and icons the minimap shows and where it places them, the verb that moves an actor to an icon's object, the shipped blocks, and the rules an edit must follow."
-addresses: ["00332100", "003DFDC0", "02B59D58", "003DFCC0", "003DFBE0", "003DFDD0", "00400CF0", "00400550", "00352430", "003DFA50", "003DFDA0", "0032A8A0"]
+addresses: "00332100, 003DFDC0, 02B59D58, 003DFCC0, 003DFBE0, 003DFDD0, 00400CF0, 00400550, 00352430, 003DFA50, 003DFDA0, 0032A8A0"
 ---
-
-# EBP navigation icons: the NAVIICN2 block a field map script carries for its minimap markers
 
 ## What the player sees
 
@@ -31,19 +29,22 @@ The block has the NAVIICN2 layout of the location map's sloc files
 ([map menu files](../Game-Files-And-Data-Tables/menu-map-files.md)). Offsets are from the
 section start, as `003DFCC0` and `003DFBE0` read them:
 
-```
-+0x00       char[8]  magic      "NAVIICN2"; byte +7 must be '2' or above (0x32)
-+0x08       u16      kinds      kinds present; a kind k is read only when 1 <= k <= 9 and k < kinds
-+0x0A + 4k  u16      offset     kind k's entries, from the section start
-+0x0C + 4k  u16      count      kind k's entry count
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[8]` | magic | "NAVIICN2"; byte +7 must be '2' or above (`0x32`) |
+| `08` | `u16` | kinds | kinds present; a kind k is read only when 1 <= k <= 9 and k < kinds |
+| `0A` | `+ 4k` | u16 | offset     kind k's entries, from the section start |
+| `0C` | `+ 4k` | u16 | count      kind k's entry count |
 
-entry (16 bytes)
-+0x00  s16[2]  from     read only by setposbynaviicon (low bytes)
-+0x04  s16[2]  at       not read for section 4
-+0x08  s16     icon     icon number; a negative icon is refused
-+0x0A  s16     gate     story gate (0032A8A0); 0 always passes, 1 never shows
-+0x0C  u8[4]   -        not read
-```
+Entry (16 bytes):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `i16[2]` | from | read only by setposbynaviicon (low bytes) |
+| `04` | `i16[2]` | at | not read for section 4 |
+| `08` | `i16` | icon | icon number; a negative icon is refused |
+| `0A` | `i16` | gate | story gate (`0032A8A0`); 0 always passes, 1 never shows |
+| `0C` | `u8[4]` | - | not read |
 
 ## Shipped data
 

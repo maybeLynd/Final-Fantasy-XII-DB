@@ -3,10 +3,8 @@ title: "Enemy AI: the order sets an enemy tries, the phase a command switches to
 kind: "system"
 category: "Enemy AI and gambits"
 summary: "How an enemy chooses what to do: the order sets every unit tries in a fixed order and the built-in sets for Confuse, Berserk, an issued command and the idle follow, where an enemy's authored order set comes from, the four set variants and twelve subgroups that orders 0x4112-0x4121 switch between, the perception list of up to 32 units an enemy notices by sight, by two radii, by being hit and by Lure, when that list is rebuilt, and what cancels or replaces an order in flight."
-addresses: ["00305AB0", "00305CC0", "002FDDA0", "0023A570", "003247F0", "00324F20", "00325060", "0030F130", "00308610", "003105D0"]
+addresses: "00305AB0, 00305CC0, 002FDDA0, 0023A570, 003247F0, 00324F20, 00325060, 0030F130, 00308610, 003105D0"
 ---
-
-# Enemy AI: the order sets an enemy tries, the phase a command switches to, what an enemy notices and when an order is replaced
 
 ## What the player sees
 
@@ -148,10 +146,12 @@ reset and the previous command is kept in `+0x730`
 
 The header of an order set, followed by its 24-byte orders ([Gambits](gambits.md)) from `+0x20`:
 
-```struct AiOrderSet base=record size=0x20
-+0x00  u8[12]   counts       orders in subgroups 0-11, summed by the walk (00305D30, 00305D89)
-+0x0C  u8[20]   pad0C        0 in the built-in sets
-```
+`AiOrderSet` (`0x20` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8[12]` | counts | orders in subgroups 0-11, summed by the walk (`00305D30`, `00305D89`) |
+| `0C` | `u8[20]` | pad0C | 0 in the built-in sets |
 
 ## Modding notes
 

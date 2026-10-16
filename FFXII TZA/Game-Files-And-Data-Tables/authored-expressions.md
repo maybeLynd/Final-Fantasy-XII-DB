@@ -3,10 +3,8 @@ title: "Authored expressions: the 16-byte value records in effect data, their op
 kind: "system"
 category: "Game files and data tables"
 summary: "How a number authored in effect data becomes a value: the 16-byte expression record with two operands, the constant, reference and curve operand kinds, the linear and B-spline curves over (x, y) pairs with an optional period, the six operators that add a random spread from the presentation generator, the integer and float evaluators, the four-record colour evaluator and the float RGB evaluator, and the edge cases authored data has to respect."
-addresses: ["004314E0", "00431350", "00431080", "003A6E60", "004309C0", "00430540", "004307C0", "003D8E50", "0039B630", "0039B6E0", "0042FDB0", "00431430", "00430370", "00430B90", "004308D0", "0020E600", "01EF93E8", "022D9138", "01EF93FC", "022D8F40"]
+addresses: "004314E0, 00431350, 00431080, 003A6E60, 004309C0, 00430540, 004307C0, 003D8E50, 0039B630, 0039B6E0, 0042FDB0, 00431430, 00430370, 00430B90, 004308D0, 0020E600, 01EF93E8, 022D9138, 01EF93FC, 022D8F40"
 ---
-
-# Authored expressions: the 16-byte value records in effect data, their operand kinds, curves and six operators, the random spread, and the colour forms
 
 ## What the player sees
 

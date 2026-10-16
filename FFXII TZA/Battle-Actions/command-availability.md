@@ -3,10 +3,8 @@ title: "Command availability: why a battle command is greyed out or refused, and
 kind: "system"
 category: "Battle actions"
 summary: "The one check the battle menu, gambits, AI and the action itself all use to decide whether a unit may use an action - the order of its tests (unable to act, FLEEING, summoning while an Esper is out, Stop, Sleep, Silence, Disable, commands disabled by the battle, abilities not owned, missing items, licenses, MP, Mist charges, gil) and the refusal code each test returns."
-addresses: ["002FFCF0", "0030E9C0", "0031A7B0", "00306480", "003060E0", "00323EC0", "00303BD0"]
+addresses: "002FFCF0, 0030E9C0, 0031A7B0, 00306480, 003060E0, 00323EC0, 00303BD0"
 ---
-
-# Command availability: why a battle command is greyed out or refused, and the refusal codes
 
 ## What the player sees
 

@@ -3,10 +3,8 @@ title: "Debug logging: the log call, its sink and the console prints the shipped
 kind: "system"
 category: "Engine core"
 summary: "The three ways the executable formats text: the PhyreEngine log call 005CDAA0 that formats every message into a 16 KB stack buffer and hands it with a channel number to a sink whose only action is a debugger break on channel 4, the vsprintf wrapper 0019C5D0, and the plain printf 0017D280 that writes boot and script-debug messages to a standard output no window shows; with the sink's lazy construction, the C runtime options word, and the census of channels the 245 log sites pass."
-addresses: ["005CDAA0", "005CDB90", "005CDA30", "005CD9C0", "008AADA0", "0019C5D0", "0017D280", "0016D670", "0018A320", "00809C50", "0036FCC0", "0017D9D0"]
+addresses: "005CDAA0, 005CDB90, 005CDA30, 005CD9C0, 008AADA0, 0019C5D0, 0017D280, 0016D670, 0018A320, 00809C50, 0036FCC0, 0017D9D0"
 ---
-
-# Debug logging: the log call, its sink and the console prints the shipped game still runs
 
 ## What the player sees
 
@@ -75,16 +73,16 @@ writes either, so every formatter above passes the value 4.
 
 ## Layouts
 
-```
-005CDAA0 frame     0x4050 bytes: a 0x4000-byte message buffer, the va_list and the cookie
-02CB6140  u64      the sink object: its vtable pointer, Phyre::PTTYCallback 00D360A0
-02CB6148  i32      guard of the sink object (005CDA30)
-02CB6150  ptr      the sink pointer the log call uses
-02CB6158  i32      guard of the sink pointer (005CDAA0, 005CD9C0, 005CD960, 008AADA0)
-02EBA3D0  u64      printf options, 4 after 00809C50
-01F7F5B0  u64      scanf options, bit 1 set by 00809C50
-00D360A0  vtable   slot 0 005CD8F0 (deleting destructor), slot 1 005CDB90(sink, channel, text)
-```
+| Address | Type | Name | Meaning |
+|---|---|---|---|
+| `005CDAA0` | `frame` | 0x4050 bytes: a 0x4000-byte message buffer, the va_list and the cookie |  |
+| `02CB6140` | `u64` | the sink object: its vtable pointer, Phyre::PTTYCallback 00D360A0 |  |
+| `02CB6148` | `i32` | guard of the sink object (005CDA30) |  |
+| `02CB6150` | `void*` | the sink pointer the log call uses |  |
+| `02CB6158` | `i32` | guard of the sink pointer (005CDAA0, 005CD9C0, 005CD960, 008AADA0) |  |
+| `02EBA3D0` | `u64` | printf options, 4 after 00809C50 |  |
+| `01F7F5B0` | `u64` | scanf options, bit 1 set by 00809C50 |  |
+| `00D360A0` | `vtable` | slot 0 005CD8F0 (deleting destructor), slot 1 005CDB90(sink, channel, text) |  |
 
 ## Shipped data
 

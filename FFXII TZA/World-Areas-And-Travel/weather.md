@@ -3,10 +3,8 @@ title: "Weather: the three weather slots of an area, the change roll on entering
 kind: "system"
 category: "World, areas and travel"
 summary: "Every area has three authored weather slots; entering it rolls whether the current slot is kept, using the probabilities the zone script authors, and the result is kept in the save and can be forced by a script. Applying a slot publishes the area's environment variant from map_ref.bin (the combat environment class and the terrain boolean), the 9-bit MWeather entry that sets the sky's wind preset, sun azimuth and elevation and the strong-wind combat class, and the per-slot map models, textures and effects."
-addresses: ["0026D910", "0025ACA0", "0025ABA0", "002658B0", "002620E0", "00265920", "003565C0", "003777C0", "002E3D40", "0040AAD0", "0026E8D0", "00264F10"]
+addresses: "0026D910, 0025ACA0, 0025ABA0, 002658B0, 002620E0, 00265920, 003565C0, 003777C0, 002E3D40, 0040AAD0, 0026E8D0, 00264F10"
 ---
-
-# Weather: the three weather slots of an area, the change roll on entering, the setweatherslot verb, the MWeather table, what the slot does to the sky, the map and combat, and the environment variant it selects
 
 ## What the player sees
 
@@ -230,6 +228,21 @@ rebuild `00379630`. `0026E8D0(slot)`:
 - `003ED7B0(slot - 1)` copies the slot's 0x180-byte environment record of `[02EBB7F0]` (`+0x10`,
   `+0x14`, `+0x1C`) to `02EBB7F8`, `02EBB7FC` and `02EBB804`, which `003ECCA0` reads each frame.
 
+The preset rebuild `00379630`, for an area without a light set, makes the map's lights from those
+constants:
+
+1. it frees the three light handles at `02ADD120` to `02ADD128` and the handle `02ADD11C`
+   (`003ABCA0`) and applies the slot with `0026E8D0`;
+2. for each of the first `0209A2D0` records at `0209A2E0` (at most three, 0x30 bytes apart) it files a
+   light request of type 1 (first dword `0x1002001`, the record's `+0x20` vector at request `+0x10`
+   and its `+0x00` vector at `+0x30`) through `003AB960` and keeps the handle at `02ADD120` onwards;
+3. `00379760` files a type-6 request (`0x1042006`) whose colour is `0209A370` to `0209A378` times the
+   three floats at `02EBF460`, the `+0x40` of light group 0 (`0037AD10`), with `0209A37C` as the
+   fourth value, and keeps it at `02ADD11C`.
+
+`0037ACA0(group)`, run from the refresh `003DE920`, clears the group's byte `+0x4C`; for group 0
+while `02EBF420` is empty it tail-jumps to `003774C0`, which frees the same four handles.
+
 `0209A6E8` is read by the draw-list build `002F5550` (a model is drawn only when bit `23 + slot` of
 its flag word is set, `002F5616`), by the texture page rebuild `002F7380` (`002F738E`), which
 `0026E290` runs once while the dirty flag is set, and by the five lighting passes above. `00379860`
@@ -264,49 +277,59 @@ the map-side globals, and `002628B0` (`00262B53`) sets `0209A6FC` to 1 at the zo
 
 ## Layouts
 
-```struct MapRefHeader base=mapref size=0x30
-+0x00  u8[4]  magic      "MRF" and the version byte 2
-+0x04  i32    rowsOff    image-relative offset of the field rows, 8 bytes each (0026D910, 00264F10)
-+0x08  i32    blocksOff  offset of the 16-byte weather blocks (0026D910)
-+0x0C  i32    unused     zero in the shipped file; not read by the functions on this page
-+0x10  i32    table10Off count dword then u32[count]: the environment class per environment index (0026DA10-0026DA26)
-+0x14  i32    table14Off count dword then u32[count]; not read by the functions on this page
-+0x18  i32    table18Off count dword then u8[count]: the terrain boolean per environment index (0026DA66-0026DA7D)
-+0x1C  i32[5] unused2    zero in the shipped file; not read by the functions on this page
-```
+`MapRefHeader` (`0x30` bytes, offsets from the start of the mapref):
 
-```struct MapRefFieldRow base=row size=0x8
-+0x00  u16  selector  the MWeather selector, 1 to 775 in the shipped file (00264F10)
-+0x02  i16  block     index of the 16-byte weather block, 0 to 92 (0026D9BB)
-+0x04  u16  area      the area index (00264EF9; the map pack page)
-+0x06  u16  group     the field group (00264FB9)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8[4]` | magic | "MRF" and the version byte 2 |
+| `04` | `i32` | rowsOff | image-relative offset of the field rows, 8 bytes each (`0026D910`, `00264F10`) |
+| `08` | `i32` | blocksOff | offset of the 16-byte weather blocks (`0026D910`) |
+| `0C` | `i32` | unused | zero in the shipped file; not read by the functions on this page |
+| `10` | `i32` | table10Off count dword then u32[count]: the environment class per environment index (0026DA10-0026DA26) |  |
+| `14` | `i32` | table14Off count dword then u32[count]; not read by the functions on this page |  |
+| `18` | `i32` | table18Off count dword then u8[count]: the terrain boolean per environment index (0026DA66-0026DA7D) |  |
+| `1C` | `i32[5] unused2` | zero in the shipped file; not read by the functions on this page |  |
 
-```struct MapRefWeatherBlock base=block size=0x10
-+0x00  u8[4]  lane0  never read by the weather functions (the slot index is biased by one)
-+0x04  u8[4]  slot1  lane for weather slot 1: +0 environment index, +1 not read here, +2 published to 02099DB0, +3 not read here
-+0x08  u8[4]  slot2  lane for weather slot 2, same layout
-+0x0C  u8[4]  slot3  lane for weather slot 3, same layout
-```
+`MapRefFieldRow` (`0x8` bytes, offsets from the start of the row):
 
-```struct MWeatherImage base=mweather size=0x8
-+0x00  u8[6]  magic  "GRMI01"
-+0x06  u16    count  selector count, 776 shipped; 003777C0 refuses a selector at or above it
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u16` | selector | the MWeather selector, 1 to 775 in the shipped file (`00264F10`) |
+| `02` | `i16` | block | index of the 16-byte weather block, 0 to 92 (`0026D9BB`) |
+| `04` | `u16` | area | the area index (`00264EF9`; the map pack page) |
+| `06` | `u16` | group | the field group (`00264FB9`) |
+
+`MapRefWeatherBlock` (`0x10` bytes, offsets from the start of the block):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8[4]` | lane0 | never read by the weather functions (the slot index is biased by one) |
+| `04` | `u8[4]` | slot1 | lane for weather slot 1: +0 environment index, +1 not read here, +2 published to `02099DB0`, +3 not read here |
+| `08` | `u8[4]` | slot2 | lane for weather slot 2, same layout |
+| `0C` | `u8[4]` | slot3 | lane for weather slot 3, same layout |
+
+`MWeatherImage` (`0x8` bytes, offsets from the start of the mweather):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8[6]` | magic | "GRMI01" |
+| `06` | `u16` | count | selector count, 776 shipped; `003777C0` refuses a selector at or above it |
 
 The bits follow from `+8`: entry `3 * selector + slot - 1` occupies 9 bits, low bit first; bits 0 to 2
 the wind preset, 3 to 6 the azimuth sector, 7 to 8 the elevation class.
 
-```struct WindPreset base=01EFFA30 size=0x20
-+0x00  f32  a     copied to 02CA4388 by 0040B3B0
-+0x04  f32  b     copied to 02CA4380
-+0x08  f32  c     copied to 02CA4384
-+0x0C  f32  d     copied to 02CA4398
-+0x10  f32  e     copied to 02CA439C
-+0x14  f32  f     copied to 02CA438C
-+0x18  u32  mode  copied to 02CA4394
-+0x1C  u32  pad   not read by 0040B3B0
-```
+`WindPreset` (`0x20` bytes, offsets from the start of the 01EFFA30):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `f32` | a | copied to `02CA4388` by `0040B3B0` |
+| `04` | `f32` | b | copied to `02CA4380` |
+| `08` | `f32` | c | copied to `02CA4384` |
+| `0C` | `f32` | d | copied to `02CA4398` |
+| `10` | `f32` | e | copied to `02CA439C` |
+| `14` | `f32` | f | copied to `02CA438C` |
+| `18` | `u32` | mode | copied to `02CA4394` |
+| `1C` | `u32` | pad | not read by `0040B3B0` |
 
 ## Shipped data
 

@@ -3,10 +3,8 @@ title: "Facing and steering: how a character turns, the steering request and its
 kind: "system"
 category: "Movement and pathfinding"
 summary: "The three angles a steerable actor carries and the two wraps that fold them into a single turn; the facing writer and what a facing change costs; the steering request record, its two inline slots and the depth-one push and pop that let a character resume its walk after a scripted interruption; the steer toward a target with its speed ramps, arrival test and near flag; the five turn modes the per-frame integrator runs, including the untimed and timed turns and the animation-driven turn; the look-at shapes; and the verbs that drive all of it."
-addresses: ["0026B5A0", "0026B620", "0026B6A0", "0026C090", "002E5E10", "002E5F90", "002E5FB0", "00265200", "0026A0D0", "0026A060", "0026AE90", "002E45E0", "002E55C0", "0026AE30", "0026ADF0", "0026B450", "0026A640", "00269C30", "0026AF10", "00357A20", "00357980", "0026C120", "002E5750", "002690D0", "0026C330", "0026C300", "002E60C0", "003A1C50", "003A19C0", "003A1AD0", "002EBE50", "002E8EE0", "002EC3F0", "002EC2C0", "002EBFA0", "002EC140", "002EC1C0", "002EC380", "0026A8E0", "0026A870", "0026A950", "0026AAD0", "002E5B60", "002E5B90", "0026A1A0", "00269F90", "002627C0", "002EAB80", "002EAAA0", "00263230", "00263050", "0026AFE0", "003EC040", "002EA780", "00263CC0", "00265600", "00264460", "0025DF00"]
+addresses: "0026B5A0, 0026B620, 0026B6A0, 0026C090, 002E5E10, 002E5F90, 002E5FB0, 00265200, 0026A0D0, 0026A060, 0026AE90, 002E45E0, 002E55C0, 0026AE30, 0026ADF0, 0026B450, 0026A640, 00269C30, 0026AF10, 00357A20, 00357980, 0026C120, 002E5750, 002690D0, 0026C330, 0026C300, 002E60C0, 003A1C50, 003A19C0, 003A1AD0, 002EBE50, 002E8EE0, 002EC3F0, 002EC2C0, 002EBFA0, 002EC140, 002EC1C0, 002EC380, 0026A8E0, 0026A870, 0026A950, 0026AAD0, 002E5B60, 002E5B90, 0026A1A0, 00269F90, 002627C0, 002EAB80, 002EAAA0, 00263230, 00263050, 0026AFE0, 003EC040, 002EA780, 00263CC0, 00265600, 00264460, 0025DF00, 003A1BB0, 0026D630, 00265580"
 ---
-
-# Facing and steering: how a character turns, the steering request and its two slots, scripted moves and turns, and what resumes after a cutscene
 
 ## What the player sees
 
@@ -52,7 +50,14 @@ The one-pass form maps an exact `+pi` to `-pi` and back, so the number of wraps 
 the stored sign at the antipode, and it perturbs an in-range value by an ulp or two. The loop form
 leaves an in-range value exactly alone and returns the closed interval `[-pi, pi]`; past
 `|x| >= 2^27` adding `2pi` no longer changes `x` and it cannot make progress. A reimplementation
-must keep each call site's form.
+must keep each call site's form. `00325E60` is the loop form with the two loops in the other order
+(the upper bound first), used by the formation placement `0031BAC0`.
+
+`003A1BB0(facing, half, x0, z0, x1, z1)` is the facing-window test built on the loop form: it takes
+`atan2(x1 - x0, z1 - z0) - facing`, folds it with the two loops, and returns whether its magnitude
+is below `half`. The talk tests `0025BAD0` (class 3) and `0025BE50` (class 1) use it, and so do the
+verbs `isrange(angle, actor)` (`0x0295`, `00346780`) and `isrange_296(angle, x, z)` (`0x0296`,
+`00346EF0`), which pass the actor's facing (`00265200`) and half the popped angle.
 
 ### Setting the facing
 
@@ -209,10 +214,19 @@ the two floats of its third argument to the heading and pitch instead. Otherwise
 | 4 | timed interpolation from the start heading `+0x38` to `+0x34`: `t = +0x78 / +0x68`, `heading = start + wrap(target - start) * t`, `+0x78 += 1` (`0026C300`); at `t >= 1`, or when the skip flag forces it, the final heading and `0026C120(actor, 0)` |
 | 5 | waits while `002EA780` reports the render record's turn still running (`003E6AF0` and `002EA910` = 1); when it stops, `0026C120(actor, 0)` |
 
+`002EA910` is 1 for an actor without a live render record or without an active entry (`003E6DF0`);
+otherwise it returns the render entry's own test `003E2C00` ([character render
+records](../Graphics/character-render-records.md)).
+
 `003EC040(id, target, direction, mode)` reads the render record: it returns 0 for a record whose
 save block is armed with word `+0x06` set, the record's own `+0x124` for the animation states
 `0x35`, `0x36` and `0x0D`, the target unchanged without an active entry, and otherwise steps the
 record's `+0x124` toward the target by the entry's rate `+0x24` or `+0x28` scaled by `[01DFE0BC]`.
+
+The remaining angle goes through `003EC510(angle, direction)`, which loops it into range and then,
+when non-zero, makes it positive for direction 0 or negative for direction 1 by a full turn, so the
+step always goes the chosen way round; `003A1980(a, cap)` is `min(|a|, cap)`, and a remainder below
+the rate snaps to the target.
 
 ### Untimed and timed turns
 
@@ -270,41 +284,56 @@ The look-at verbs set the shapes:
   `+0x1C`; it falls back to the position form with `0026A1A0(actor, 1)` (bit 7) when the target has
   no render record, and clears the channel (`002E64E0`) when the actor does not resolve.
 
-Shapes 4-7 are never written.
+Shapes 4-7 are never written. `002EC510(shape, actor, target)`, called by the `raturn` verbs
+(`0034E710`, `0034EFE0`, `0034F4F0`) and `003578B0`, `0050F6E0`, picks the look-at verb by shape for a
+class-3 actor with a movement context: 0 `002EC2C0` with the target as a position, 1 `002EBFA0` with
+the target's byte `+0x15` and word `+0x00` and `0x30B`, 2 and 3 `002EC140` and `002EC1C0` with the
+float at `+0x04` and 0.
+
+`00263B90(actor, slot)` returns steering slot 0 or 1 (`context + 0x120 + 0x80 * slot`) of a class-3
+actor, null for any other; `0026AC00` (verb `sethomingangzx`) runs `002E5B60` for a class-3 actor.
+
+`0026D630` is the class-3 test in front of `002E60C0` for the verb `setvelrotangzx` (`0x003C`,
+`003535C0`): the popped float becomes the spin rate `+0x3C` of the selected slot.
+`00265580(actor, i)`, behind the verb `getdestrotangzx_227` (`0x0227`, `00341250`), returns the
+target heading `+0x34` of slot `i` (`context + 0x154 + 0x80 * i`), with `i` capped at the selector
+`+0xDC` and the selected slot for a negative `i`; it returns 0 for any other class.
 
 ## Layouts
 
-```
-movement context (actor +0xB8), class 3
-+0x30  f32[4] start snapshot of the position (0026AF10)
-+0x38  f32   heading of a class-1 object (also +0x48)
-+0x98  f32 / +0x9C f32   untimed-turn frame scales, by resume shape
-+0xA0  f32   pitch            +0xA4 f32 desired heading (yaw)
-+0xA8  f32   facing           +0xAC f32 facing aux (pitch lane of the render triple)
-+0xB4  f32   steer channel heading mirror      +0x224 f32 steer channel pitch mirror
-+0xDC  u8    slot selector 0 or 1              +0xF0 ptr cursor to the selected slot
-+0x120 SteeringRecord[0]   +0x1A0 SteeringRecord[1]   0x80 bytes each
-```
+Movement context (actor +`0xB8`), class 3:
 
-```
-struct SteeringRecord size=0x80
-+0x00  f32[4] target position {x, y, z, 1.0}, or {ordinal, manager} for an actor target
-+0x10  f32[3] resume parameters   +0x1C u32 resume target handle
-+0x20  f32   reach (setreachr)     +0x24 f32 requested speed, scaled
-+0x28  u8    movement mode (bit 7 = untimed turn)   +0x29 u8 steering mode 0-4
-+0x2A  u8    target kind 0 position, 1 actor      +0x2B u8 configured ramp mode (setaccr)
-+0x2C  f32   ramp acceleration, scaled; 0.0 collapses modes 2-4 to 1
-+0x34  f32   target heading       +0x38 f32 turn start heading
-+0x3C  f32   spin rate (mode 1)
-+0x50  f32   yaw approach cap     +0x54 f32 pitch approach cap (002E5B60 / 002E5B90)
-+0x58  f32   turn step, pi/20     +0x5C f32 pi, never read
-+0x60  i16   steer channel frames +0x62 u8 flags: bits 0-2 shape, 3-5 selector, 6 direction, 7 initiator
-+0x63  u8    steer arm state      +0x64 u8 returned by 002E6300   +0x65 u8 teardown gate
-+0x66  i16   curve / total frames +0x68 i16 turn frames
-+0x6A  u8    bit 0 one-shot latch +0x6C f32 initiator turn step
-+0x70  f32   steer target heading +0x74 f32 steer target pitch
-+0x78  f32   turn frame index     +0x7C f32 raw move speed (re-armed each frame)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `030` | `f32[4]` | start | snapshot of the position (`0026AF10`) |
+| `038` | `f32` | heading of a class-1 object (also +0x48) |  |
+| `098` | `f32 / +0x9C f32` | untimed-turn frame scales, by resume shape |  |
+| `0A0` | `f32` | pitch | +`0xA4` f32 desired heading (yaw) |
+| `0A8` | `f32` | facing | +`0xAC` f32 facing aux (pitch lane of the render triple) |
+| `0B4` | `f32` | steer channel heading mirror | +`0x224` f32 steer channel pitch mirror |
+| `0DC` | `u8` | slot selector 0 or 1 | +`0xF0` ptr cursor to the selected slot |
+| `120` | `SteeringRecord[0]` | +0x1A0 SteeringRecord[1] | `0x80` bytes each |
+
+Struct SteeringRecord size=`0x80`:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `f32[4]` | target | position {x, y, z, 1.0}, or {ordinal, manager} for an actor target |
+| `10` | `f32[3] resume parameters` | +0x1C u32 resume target handle |  |
+| `20` | `f32` | reach (setreachr) | +`0x24` f32 requested speed, scaled |
+| `28` | `u8` | movement mode (bit 7 = untimed turn) | +`0x29` u8 steering mode 0-4 |
+| `2A` | `u8` | target kind 0 position, 1 actor | +`0x2B` u8 configured ramp mode (setaccr) |
+| `2C` | `f32` | ramp acceleration, scaled; 0.0 collapses modes 2-4 to 1 |  |
+| `34` | `f32` | target heading | +`0x38` f32 turn start heading |
+| `3C` | `f32` | spin rate (mode 1) |  |
+| `50` | `f32` | yaw approach cap | +`0x54` f32 pitch approach cap (`002E5B60` / `002E5B90`) |
+| `58` | `f32` | turn step, pi/20 | +`0x5C` f32 pi, never read |
+| `60` | `i16` | steer channel frames +0x62 u8 flags: bits 0-2 shape, 3-5 selector, 6 direction, 7 initiator |  |
+| `63` | `u8` | steer arm state | +`0x64` u8 returned by `002E6300`   +`0x65` u8 teardown gate |
+| `66` | `i16` | curve / total frames +0x68 i16 turn frames |  |
+| `6A` | `u8` | bit 0 one-shot latch +0x6C f32 initiator turn step |  |
+| `70` | `f32` | steer target heading +0x74 f32 steer target pitch |  |
+| `78` | `f32` | turn frame index | +`0x7C` f32 raw move speed (re-armed each frame) |
 
 ## Shipped data
 

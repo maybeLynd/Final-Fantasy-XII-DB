@@ -3,10 +3,8 @@ title: "Music table: the file that names each area's music track, how the story 
 kind: "format"
 category: "Sound and music"
 summary: "The music control file musicctrl.bin and the track flag file musicinfo.bin: where each is loaded and kept, the page and run layout of the field-to-track table and its in-place rebase, the lookup with its story-counter ladder, the boss-music bit that keeps a track through chocobo and summon music, every run of the shipped table with its zones, track and ladder, and what an edit changes."
-addresses: ["00379D20", "003EAB60", "003EAB90", "003EAA70", "02B5E0D0", "00360C70", "022CBA50", "00361010"]
+addresses: "00379D20, 003EAB60, 003EAB90, 003EAA70, 02B5E0D0, 00360C70, 022CBA50, 00361010"
 ---
-
-# Music table: the file that names each area's music track, how the story changes it, and the boss-music flags
 
 ## What the player sees
 
@@ -32,29 +30,37 @@ track's first byte, or 0 for a negative track or no file.
 
 ## Layouts
 
-```struct MusicCtrlHeader base=file size=0x34
-+0x00  char[4]  magic       "MUS0"
-+0x04  u32      maxField    1311, the highest field id
-+0x08  u32[11]  pageOffset  one page per 128 field ids; 0 for a page with no runs
-```
+`MusicCtrlHeader` (`0x34` bytes, offsets from the start of the file):
 
-```struct MusicRun base=record size=0x4
-+0x00  u16  fields   bits 0-10 the first field id, bits 11-15 how many more follow
-+0x02  u8   rungs    ladder steps after the run
-+0x03  u8   track    the track, 0 for none
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[4]` | magic | "MUS0" |
+| `04` | `u32` | maxField | 1311, the highest field id |
+| `08` | `u32[11]` | pageOffset | one page per 128 field ids; 0 for a page with no runs |
 
-```struct MusicRung base=record size=0x3
-+0x00  u16  above  a story counter value
-+0x02  u8   track  the track once the counter is above it, 0 for none
-```
+`MusicRun` (`0x4` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u16` | fields | bits 0-10 the first field id, bits 11-15 how many more follow |
+| `02` | `u8` | rungs | ladder steps after the run |
+| `03` | `u8` | track | the track, 0 for none |
+
+`MusicRung` (`0x3` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u16` | above | a story counter value |
+| `02` | `u8` | track | the track once the counter is above it, 0 for none |
 
 `musicinfo.bin` is 256 entries of two bytes, one per track:
 
-```struct MusicInfoEntry base=record size=0x2
-+0x00  u8  flags  bit 0 boss music
-+0x01  u8  b01    read by no code: 00361010 is the only reader of the file's pointer
-```
+`MusicInfoEntry` (`0x2` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | flags | bit 0 boss music |
+| `01` | `u8` | b01 | read by no code: `00361010` is the only reader of the file's pointer |
 
 ### The lookup
 

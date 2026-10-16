@@ -3,10 +3,8 @@ title: "Handbook files: the hctg, hchk, hdat and himg files behind Clan Primer e
 kind: "format"
 category: "Game files and data tables"
 summary: "The menuhandbook files of the six handbook families: the hctg family catalog with its entry records, section captions, page map and Bestiary slot counts; the hchk unlock tables; the hdat text bundles with their glyph sheets, gated text slots and line programs; the himg picture bundles; how the data manager turns an entry into kind-7 resource ids and reads each field; the shipped files; and the rules an edit must keep."
-addresses: ["005771F0", "00576F50", "00575870", "00575C30", "00575A50", "00575710", "00575B80", "005778F0", "00575D10", "00575DD0", "00576030", "005760A0", "00576740", "00576A50", "00577550", "00575E80", "00576860", "00576E30", "00576300", "00577A40", "00574900", "00D23740", "02CA9738"]
+addresses: "005771F0, 00576F50, 00575870, 00575C30, 00575A50, 00575710, 00575B80, 005778F0, 00575D10, 00575DD0, 00576030, 005760A0, 00576740, 00576A50, 00577550, 00575E80, 00576860, 00576E30, 00576300, 00577A40, 00574900, 00D23740, 02CA9738"
 ---
-
-# Handbook files: the hctg, hchk, hdat and himg files behind Clan Primer entries, how each is read, and what each field shows
 
 ## What the player sees
 
@@ -65,14 +63,14 @@ A caption gate, reached through `gateAt[section]`:
 
 An entry record, 12 bytes, at `recordsAt + 12 x entry`:
 
-```
-+0x00  i32  text      name; -1 = none. Families 0-4: message id (002F9920); Bestiary: battle-text word (003214B0, 002B58B0)
-+0x04  u16  section   the caption the entry is listed under (00576740)
-+0x06  u16  bundle    which hdat file holds the entry's text (00575D10)
-+0x08  u16  page      picture page number, through the page map (005778F0)
-+0x0A  u8   flag      copied to the detail record +0x14 (005760A0)
-+0x0B  u8   pad       0
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `i32` | text | name; -1 = none. Families 0-4: message id (`002F9920`); Bestiary: battle-text word (`003214B0`, `002B58B0`) |
+| `04` | `u16` | section | the caption the entry is listed under (`00576740`) |
+| `06` | `u16` | bundle | which hdat file holds the entry's text (`00575D10`) |
+| `08` | `u16` | page | picture page number, through the page map (`005778F0`) |
+| `0A` | `u8` | flag | copied to the detail record +`0x14` (`005760A0`) |
+| `0B` | `u8` | pad | 0 |
 
 After the records, at `recordsAt + 12 x entryCount`, sits `u16 count, u16 at[count]`; `at[entry]` is an
 offset from the `count` word to one byte, the entry's number of Bestiary text slots (`005760A0`). Only the
@@ -83,44 +81,44 @@ page `p` is in file `textBundles + pageMap[p]`.
 
 ### hchk: the unlock table
 
-```
-+0x00  char[4]  magic     "hchk"; the loaders ignore it
-+0x04  u32      version   103; not read
-+0x08  u16      count     records; 00577550 walks this many
-+0x0A  u16      unused    18 or 0; not read by 00577550
-+0x0C  rec[count]         8 bytes each, 16 for the Bestiary
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[4]` | magic | "hchk"; the loaders ignore it |
+| `04` | `u32` | version | 103; not read |
+| `08` | `u16` | count | records; `00577550` walks this many |
+| `0A` | `u16` | unused | 18 or 0; not read by `00577550` |
+| `0C` | `rec[count]` | 8 bytes each, 16 for the Bestiary |  |
 
 Families 0-4, 8 bytes per entry, evaluated by `00575E80`. A field holding all ones (`0xFF`, `0xFFFF`) is
 skipped; every other field must hold:
 
-```
-+0x00  u8   nibbleIndex   save nibble 00315470(index), one of 256 at save +0x336C, must equal +0x01
-+0x01  u8   nibbleValue
-+0x02  u8   bitIndex      save bit 00315620(index), one of 256 at save +0x334C, must be set
-+0x03  u8   marker        not read
-+0x04  u16  storyFlag     0032A8A0(flag) must pass
-+0x06  u16  storyMinimum  the story counter 00265270 must be at least this
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | nibbleIndex | save nibble `00315470`(index), one of 256 at save +`0x336C`, must equal +`0x01` |
+| `01` | `u8` | nibbleValue |  |
+| `02` | `u8` | bitIndex | save bit `00315620`(index), one of 256 at save +`0x334C`, must be set |
+| `03` | `u8` | marker | not read |
+| `04` | `u16` | storyFlag | `0032A8A0`(flag) must pass |
+| `06` | `u16` | storyMinimum | the story counter `00265270` must be at least this |
 
 Bestiary, 16 bytes per entry:
 
-```
-+0x00  u16  slot[7]   threshold of each text slot (00576860); 0xFF (mode 0) or 0xFFFF (modes 1, 2) = empty
-+0x0E  u16  mode      bit 0x2 = mode 2, else bit 0x1 = mode 1, else mode 0 (00576E30, 005768E0)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u16` | slot[7] | threshold of each text slot (`00576860`); `0xFF` (mode 0) or `0xFFFF` (modes 1, 2) = empty |
+| `0E` | `u16` | mode | bit `0x2` = mode 2, else bit `0x1` = mode 1, else mode 0 (`00576E30`, `005768E0`) |
 
 ### hdat: a text bundle
 
-```
-+0x00  char[4]  magic      "hdat"; the loaders ignore it
-+0x04  u32      version    103; not read
-+0x08  u16      first      entry number of the bundle's first record
-+0x0A  u16      count      records; the bundle holds entries first to first + count - 1
-+0x0C  i32      sheet      offset of a TIM2 glyph sheet; -1 = none (00575710)
-+0x10  u16      stringsAt  base of the string offsets
-+0x12  u16      recordAt[count]   offset of each record
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[4]` | magic | "hdat"; the loaders ignore it |
+| `04` | `u32` | version | 103; not read |
+| `08` | `u16` | first | entry number of the bundle's first record |
+| `0A` | `u16` | count | records; the bundle holds entries first to first + count - 1 |
+| `0C` | `i32` | sheet | offset of a TIM2 glyph sheet; -1 = none (`00575710`) |
+| `10` | `u16` | stringsAt | base of the string offsets |
+| `12` | `u16` | recordAt[count] | offset of each record |
 
 A record, `4 + 4 x slots + 8` bytes:
 
@@ -144,13 +142,13 @@ A string entry:
 
 ### himg: a picture bundle
 
-```
-+0x00  char[4]  magic     "himg"; the loaders ignore it
-+0x04  u32      version   100; not read
-+0x08  u16      first     page number of the file's first picture
-+0x0A  u16      count     pictures; the file holds pages first to first + count - 1
-+0x0C  u32      pictureAt[count]   offset of each TIM2 picture
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[4]` | magic | "himg"; the loaders ignore it |
+| `04` | `u32` | version | 100; not read |
+| `08` | `u16` | first | page number of the file's first picture |
+| `0A` | `u16` | count | pictures; the file holds pages first to first + count - 1 |
+| `0C` | `u32` | pictureAt[count] | offset of each TIM2 picture |
 
 Each picture is a one-picture TIM2 image ([TIM2 images](tim2-images.md)). In every shipped file the
 pictures follow one another, each `0x10` plus its picture's total size long, the last ending the file.

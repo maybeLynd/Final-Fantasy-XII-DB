@@ -3,10 +3,8 @@ title: "PKFL packages: the per-area .mot, .snd, .vpc and .vpcjp containers, thei
 kind: "format"
 category: "PKFL package files"
 summary: "The PKFL container every area's motion, sound and voice package uses: an 8-byte header and a directory of offset and size pairs, payloads on 0x800 boundaries; how the area loader reads each package's directory into a fixed table, the seven slot readers and their callers, how a slot's payload is requested, the 10,314 shipped packages and what their slots hold, and the rules a package must follow."
-addresses: ["0032FCA0", "0032FC30", "0032F430", "022C6E70", "022C6E98", "022C6EE8", "022C6EC0", "0032F260", "0032F290", "0032F2C0", "0032F2F0", "0032F3A0", "0032F320", "0032F360", "003DD4C0", "003DF440", "003DF2C0", "003E9F80", "003E9EF0", "002DF980"]
+addresses: "0032FCA0, 0032FC30, 0032F430, 022C6E70, 022C6E98, 022C6EE8, 022C6EC0, 0032F260, 0032F290, 0032F2C0, 0032F2F0, 0032F3A0, 0032F320, 0032F360, 003DD4C0, 003DF440, 003DF2C0, 003E9F80, 003E9EF0, 002DF980"
 ---
-
-# PKFL packages: the per-area .mot, .snd, .vpc and .vpcjp containers, their offset and size directory, and the slot readers
 
 ## What the player sees
 
@@ -25,11 +23,11 @@ records `{ebp, mot, snd, vpcjp}` (four per area, index `4a`). Paths come from `0
 
 ## Layouts
 
-```
-+0x00  char[4]  'PKFL'      only byte 0 is tested, for non-zero
-+0x04  u32      slotCount   16 (.mot, .snd) or 64 (.vpc, .vpcjp); not read
-+0x08  {u32 offset, u32 size}[slotCount]   offsets from the file start; {0, 0} = slot empty
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[4]` | 'PKFL' | only byte 0 is tested, for non-zero |
+| `04` | `u32` | slotCount | 16 (.mot, .snd) or 64 (.vpc, .vpcjp); not read |
+| `08` | `{u32 offset, u32 size}[slotCount]` | offsets from the file start; {0, 0} = slot empty |  |
 
 The directory ends at `0x88` for 16 slots and `0x208` for 64. Every payload starts on a `0x800` boundary,
 the first at `0x800`.

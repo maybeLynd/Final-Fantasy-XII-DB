@@ -3,10 +3,8 @@ title: "Generated function families: the small compiler- and template-generated 
 kind: "reference"
 category: "Compiler and C runtime"
 summary: "The families of small functions in the executable that share one instruction sequence and differ only in constants, offsets and call targets: what a family is, the body of each family with an example, which member counts the image reproduces, the shared runtime functions the families call, the reflection descriptor adapters behind PhyreEngine's class descriptors (slot 5 and slot 11), and the member list of every family beside the page."
-addresses: ["0016D6A0", "00584730", "00210EC0", "00808B90", "00861EC0", "007DF6D0", "003844F0", "00633390", "005A2B80", "005BEC00", "006B2950", "006B2970", "005A4830", "0030DCB0", "003008A0", "005CDAA0"]
+addresses: "0016D6A0, 00584730, 00210EC0, 00808B90, 00861EC0, 007DF6D0, 003844F0, 00633390, 005A2B80, 005BEC00, 006B2950, 006B2970, 005A4830, 0030DCB0, 003008A0, 005CDAA0"
 ---
-
-# Generated function families: the small compiler- and template-generated bodies, their instruction forms and member lists
 
 ## What it lists
 

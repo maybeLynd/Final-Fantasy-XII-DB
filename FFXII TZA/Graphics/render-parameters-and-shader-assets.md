@@ -3,10 +3,8 @@ title: "Render parameters and shader assets: the post-process shader files and t
 kind: "system"
 category: "Graphics"
 summary: "The shader assets the post-process chain loads by path and where their handles are kept, and the scene-parameter JSON documents (the global defaults, one per map, one per cutscene): their shipped shape, the functions that look their keys up, the cascade keys composed at run time, and the authored keys no code reads."
-addresses: ["01DF0910", "0018D850", "0019CB20", "001FF740", "001FF6B0", "001C51D0", "001C3D50", "001C7940", "001CA600", "001C9190", "001A9B00", "001A9930", "008FB2D8"]
+addresses: "01DF0910, 0018D850, 0019CB20, 001FF740, 001FF6B0, 001C51D0, 001C3D50, 001C7940, 001CA600, 001C9190, 001A9B00, 001A9930, 008FB2D8"
 ---
-
-# Render parameters and shader assets: the post-process shader files and the scene-parameter documents
 
 ## What the player sees
 

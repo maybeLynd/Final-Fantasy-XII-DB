@@ -3,10 +3,8 @@ title: "PhyreEngine modules: the engine libraries linked into the game, where th
 kind: "system"
 category: "PhyreEngine"
 summary: "The PhyreEngine modules in the executable: the fifteen PUtility module objects that register themselves before main on one list, the init walk that starts them and the shutdown walk and exit destructors that stop them, what each module holds by its RTTI class names, each module's code span and entry points, the namespaces that have no module object, and the member lists and function-to-class map kept beside the page."
-addresses: ["02CACC90", "00D26BC0", "005A08E0", "005A0840", "005A0CB0", "01F2CDF0", "00166210", "006CCC10", "00167B90", "0059D550", "005A0D20", "005C5C80", "00608A40", "00654830", "006716D0", "00685AC0", "006A4100", "006C45F0", "006C4860", "006CCD60", "00875E10", "008762E0", "0087AE00", "00792350", "006388C0", "00639450"]
+addresses: "02CACC90, 00D26BC0, 005A08E0, 005A0840, 005A0CB0, 01F2CDF0, 00166210, 006CCC10, 00167B90, 0059D550, 005A0D20, 005C5C80, 00608A40, 00654830, 006716D0, 00685AC0, 006A4100, 006C45F0, 006C4860, 006CCD60, 00875E10, 008762E0, 0087AE00, 00792350, 006388C0, 00639450"
 ---
-
-# PhyreEngine modules: the engine libraries linked into the game, where their code lies and how they start and stop
 
 ## What the player sees
 
@@ -22,13 +20,14 @@ exits, so a module that fails to start stops the game from starting.
 Each PhyreEngine library that has start-up work owns one static object derived from `Phyre::PUtility`
 (base vtable `00D26BC0`). The objects form a singly linked list whose head is `02CACC90`:
 
-```
-PUtility module object
-+0x00  ptr   vtable: 00D26BC0 in the image, the module's own after construction
-+0x08  ptr   next module, 0 at the end
-+0x10  ptr   module name string ("Rendering", "Text", ...)
-+0x18  u32   ordering key, 0xFF in every module
-```
+PUtility module object:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `void*` | vtable: 00D26BC0 in the image, the module's own after construction |  |
+| `08` | `void*` | next module, 0 at the end |  |
+| `10` | `void*` | module name string ("Rendering", "Text", ...) |  |
+| `18` | `u32` | ordering key, 0xFF in every module |  |
 
 The base vtable has three slots: `005A0CB0` (destroy), and `005C5230` (return 0) for init and
 shutdown. Each module class overrides init (`+0x08`) and shutdown (`+0x10`) where it has work.

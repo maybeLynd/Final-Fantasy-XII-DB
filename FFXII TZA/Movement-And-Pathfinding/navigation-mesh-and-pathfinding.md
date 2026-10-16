@@ -3,10 +3,8 @@ title: "Navigation mesh and pathfinding: the mesh in the map pack, finding a reg
 kind: "system"
 category: "Movement and pathfinding"
 summary: "How a battle unit finds its way across an area: the navigation dataset in slot four of the map pack and its layout, the grid lookup that says which region a point is in, the per-unit path record with its two caches, the region search with its integer portal costs and the waypoints laid on portals with clearance, the per-class portal test and the script verb that opens and closes doors, the per-frame step that follows the route, and the coarse obstacle grid refilled every tick from actors, trailer records and registry entries, with the query that reads it."
-addresses: ["00384160", "00383840", "00383C80", "00383A20", "00383740", "00383F10", "00384130", "00382D10", "00383A30", "00382FF0", "00383620", "00383850", "0026E300", "00382EA0", "003842E0", "003792E0", "003278D0", "003839C0", "003839F0", "00383670", "00383C90", "00325BB0", "0030A130", "00392740", "00392200", "003912E0", "00391410", "00336CE0"]
+addresses: "00384160, 00391A30, 00391D90, 00391710, 00468A70, 00468580, 00336E40, 00336210, 00336AE0, 00383840, 00383C80, 00383A20, 00383740, 00383F10, 00384130, 00382D10, 00383A30, 00382FF0, 00383620, 00383850, 0026E300, 00382EA0, 003842E0, 003792E0, 003278D0, 003839C0, 003839F0, 00383670, 00383C90, 00325BB0, 0030A130, 00392740, 00392200, 003912E0, 00391410, 00336CE0"
 ---
-
-# Navigation mesh and pathfinding: the mesh in the map pack, finding a region, the route search and its waypoints, the doors a script opens, and the obstacle grid
 
 ## What the player sees
 
@@ -32,21 +30,22 @@ the trailer offset `+0x28`, and the grid's own two at `+8` and `+0xC`. `00383840
 pointer, `00383C80` whether it is set, `00383A20` clears it, and `00383740` returns the grid's
 rectangle as four floats.
 
-```
-struct NavDataset base=section
-+0x00  u32  1
-+0x04  u16  vertexCount          +0x06 u16 triangleCount (the whole-mesh test's bound)
-+0x08  u16  portalCount          +0x0A u16 regionCount, at most 128 (the search's arrays)
-+0x0C  off  vertices             8 B each: f32 x, f32 z
-+0x10  off  triangles            8 B each: u16 vertex[3], u16 region
-+0x14  off  portals              8 B each: u16 vertexA, u16 vertexB, u8 gated (+4), u8 mapId (+5), u8 classMask (+6)
-+0x18  off  regions              0x22 B each: +2 u16 triangleCount, +0x14 u16 triangleIndex[]
-+0x1C  off  adjacency            regionCount x regionCount u16: the portal index from i to j, 0 = none
-+0x20  off  grid                 u8 cellW, u8 cellH, u8 cols, u8 rows, i16 originX, i16 originZ,
-                                 +8 off cellTable (u16 per cell), +0xC off listPool
-+0x24  u32  trailer record count (at most 32 used)
-+0x28  off  trailer records      0x20 B each: i16 kind, f32 x +4, f32 z +8, f32 radius +0xC, f32 radius2 +0x10, f32 +0x14 (kind 1; read by the segment query only)
-```
+Struct NavDataset base=section:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | 1 |  |
+| `04` | `u16` | vertexCount | +`0x06` u16 triangleCount (the whole-mesh test's bound) |
+| `08` | `u16` | portalCount | +`0x0A` u16 regionCount, at most 128 (the search's arrays) |
+| `0C` | `off` | vertices | 8 B each: f32 x, f32 z |
+| `10` | `off` | triangles | 8 B each: u16 vertex[3], u16 region |
+| `14` | `off` | portals | 8 B each: u16 vertexA, u16 vertexB, u8 gated (+4), u8 mapId (+5), u8 classMask (+6) |
+| `18` | `off` | regions | `0x22` B each: +2 u16 triangleCount, +`0x14` u16 triangleIndex[] |
+| `1C` | `off` | adjacency | regionCount x regionCount u16: the portal index from i to j, 0 = none |
+| `20` | `off` | grid | u8 cellW, u8 cellH, u8 cols, u8 rows, i16 originX, i16 originZ, |
+| `08` | `off` | cellTable | (u16 per cell), +`0xC` off listPool |
+| `24` | `u32` | trailer record count (at most 32 used) |  |
+| `28` | `off` | trailer records | `0x20` B each: i16 kind, f32 x +4, f32 z +8, f32 radius +`0xC`, f32 radius2 +`0x10`, f32 +`0x14` (kind 1; read by the segment query only) |
 
 Portal index 0 means no portal, so the adjacency entries are 1-based and record 0 is padding.
 Across the 461 shipped sections every triangle names a region that lists it back, the adjacency
@@ -79,16 +78,17 @@ the upper z edge reads past the table; a cell size of 0 divides by zero. Nothing
 
 Each battle unit carries one at `+0x200` (`0x490` bytes):
 
-```
-struct NavPath base=unit+0x200
-+0x00  i32      region the mover was last placed in (written by the same-region exit and the full search)
-+0x04  i32      start region of the route held, 0xFF = none
-+0x08  i32      goal region of the route held, 0xFF = none
-+0x0C  u8[2]    the last (start, goal) pair that had no route
-+0x0E  u8[2]    the one before that
-+0x10  u8[128]  next[region]: the region to enter after this one; 0xFF ends the chain
-+0x90  f32[128][2]  waypoint[region]: the x, z to walk to while in this region
-```
+Struct NavPath base=unit+`0x200`:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `i32` | region the mover was last placed in (written by the same-region exit and the full search) |  |
+| `04` | `i32` | start region of the route held, 0xFF = none |  |
+| `08` | `i32` | goal region of the route held, 0xFF = none |  |
+| `0C` | `u8[2]` | the last (start, goal) pair that had no route |  |
+| `0E` | `u8[2]` | the one before that |  |
+| `10` | `u8[128]` | next[region]: the region to enter after this one; 0xFF ends the chain |  |
+| `90` | `f32[128][2]` | waypoint[region]: the x, z to walk to while in this region |  |
 
 `003839F0` fills `next[]` with `0xFF`; `003839C0` fills the two no-route pairs with `0xFFFF`.
 
@@ -210,7 +210,8 @@ run from four combat sites (`002FDBE9`, `002FDD69`, `00304D5B`, `00308341`):
 
 ### The obstacle grid
 
-Beside the mesh the area keeps a coarse grid, built once per area (`003924B0`), with `cols` at
+Beside the mesh the area keeps a coarse grid, built once per area (`003924B0`, in one block named
+`MapGrid` from `00384580`), with `cols` at
 `02AEE060`, `rows` at `02AEE064`, origin floats at `02AEE070`/`02AEE078`, the cell size at
 `02AEE090`, a record of `02AEE0B8` = `0x24` bytes per cell at `[02AEE0A0]`, an occupancy byte per
 cell at `[02AEE0A8]` and a mask scratch at `[02AEE0B0]`. Each record is a bitset of 288 obstacle
@@ -245,25 +246,134 @@ Bits 128-159 test the segment against the trailer record of that index as a box 
 returns 1, else 0. Actor ids 0-127 are never tested here; `00391710` is the query that walks the
 listed actors.
 
+### The actor queries
+
+Three queries list the actors (ids 0-127) whose shapes meet a query shape. Each ORs into the mask
+scratch the records of the occupied cells under the query's bounding square (clamped to the grid),
+tests every listed actor (count `02AEE0BC`, list `02AEE0C0`) whose bit is set, and copies the
+handles that pass to its output, returning their count. Every shape is flat: the queries zero or
+ignore y.
+
+| Query | Query shape | Test per actor |
+|---|---|---|
+| `00391A30(circle, out, ellipse)`, from `00391D10` | centre, radius `+0x10` | without `ellipse`: the actor's circle (`002FB340`: position, larger radius) overlaps, `00468D10`; with it: the actor's ellipse (`002FB500`: position, both radii, facing) against the circle, `00469060` |
+| `00391D90(segment, out, ellipse)`, from `003920F0` | ends `+0x00` and `+0x10`, half-width `+0x20` | without `ellipse`: the actor's centre lies between the ends within radius plus half-width of the line, or within that of the far end; with it: `00468F90` |
+| `00391710(sector, out)`, from `003919B0` | centre, radius `+0x10`, start angle `+0x20`, sweep `+0x24` | the actor's circle against the sector, `00468A70` |
+
+`00391D10` and `003920F0` pass bit 4 of their flags as `ellipse` and hand the list on to
+`003911D0`. The segment test without `ellipse` has no cap at the start: an actor just behind the
+first end is listed only when it is also near the far end.
+
+### The shape tests
+
+- `00468D10(a, b)`: two circles overlap when the squared centre distance is strictly below `(ra +
+  rb)^2`.
+- `00468580(ellipse, p)`: the ellipse's radius toward `p`. The offset is turned into the ellipse's
+  frame by its angle `+0x18` (the sine table `01F004E0`, `0x8000` steps a turn) and divided by the semi-axes
+  `+0x10` and `+0x14`, giving `(u, v)`; the radius is `|(a u, b v)| / |(u, v)|`, or `a` when `|(u,
+  v)|` is at most `1e-6`.
+- `00469060(ellipse, circle)`: overlap when the squared distance is at most `(radius toward the
+  circle + r)^2`.
+- `00468F90(segment, ellipse)`: `004691A0` takes the segment's closest point to the ellipse's centre
+  (an end when the projection falls outside); overlap when the distance is below the ellipse's
+  radius toward that point plus the half-width.
+- `00469410(A, B, w, circle)`: the segment from `A` to `B` widened by `w` meets the circle when the
+  closest point (the foot of the perpendicular, `B` past the end, `A` before the start) is closer
+  than `w + r`; `00468F70` calls it on a record holding `A`, `B` and `w`.
+- `00468A70(sector, circle)`: a circle on the centre passes; one at or beyond `R + r` fails; a sweep
+  of a full turn or more passes everything in reach.
+- Otherwise `00468A70` takes the angle from the start ray to the circle's centre (the arc-cosine
+  table `00D12590`, 16,384 steps, made a full-turn angle by the sign of the cross product); it must
+  lie in `(0, sweep]`, or either edge ray, from the centre to `R` along the start or the end angle,
+  must meet the circle (`00469410` with width 0).
+- A dot product that rounds above 1 has 1 subtracted rather than being clamped, so a circle exactly
+  on the start ray reads as ninety degrees off.
+
+### Finding a free spot beside an anchor
+
+`00336E40(request)` picks a standing point for an actor next to another: the party placement after a
+zone jump and the revive placement call it ([KO and game over](../Status-Effects-And-KO/ko-and-game-over.md)).
+The request holds a mode at `+0x00`, the anchor unit at `+0x08`, the unit to place at `+0x10`, and
+receives the point at `+0x20` and a heading at `+0x30`.
+
+The base is the anchor's position dropped onto the floor (`0026E350`), with the anchor's larger
+radius and its facing. Without an anchor the base is the recorded anchor `022C7DD0` with radius 0.5
+and heading `022C7DE0`, and the party leader (`003272A0`) gets that point and heading outright; with
+nothing recorded (`022C7D10` = 0) the unit keeps its own position and facing. `0033CA00` records the
+anchor from the controlled character: its position, facing, actor (`022C7D18`) and a copy of its
+placement (`022C7D20`, 0xB0 bytes).
+
+The distance and the first heading depend on the mode:
+
+| Mode | Distance | First heading |
+|---|---|---|
+| 0 | the unit's larger radius + the anchor's radius + 0.5 | the anchor's facing |
+| 1 | 3.6 when `0030D9A0()` is 1, else 2.0 (`00309AE0`) | the bearing from the point `+0x90` of camera record 2's view (`00259B10(2)`, `02097320 + 2 * 0x110`) through the base, turned 40 degrees left or right by a C runtime `rand()` bit |
+| 2 | as mode 0 | the anchor's facing plus 210 degrees |
+
+Twelve headings are tried in order, the first heading plus 0, -30, +30, -60, +60 and so on to -180
+degrees, each at the distance along that heading; a second ring adds 1.0 to the distance and 20
+degrees to the first heading. The first point that passes both tests below wins and the call
+returns 1; with none the base is used and it returns 0. The point is dropped onto the floor and the
+heading is the bearing from the point to the base, so the unit faces the anchor.
+
+`00336210(point, base, unit, kind)` accepts a point when the dynamic obstruction query
+(`003357B0`, flags `0x20`, or `0xA0` for mode 2) finds nothing there for the unit's larger radius,
+the straight walk from the point to the base is not blocked for class 2 (`0033D3E0`), the segment
+query (`00391410`) finds no shaped obstacle at the point, the point is on the mesh (`00384130`), and
+`00336390` finds walkable terrain (`0026E100`) at the point and at the four corners `+-r` in x and
+z. A unit with no actor is accepted at once.
+
+`00336AE0(anchor, point)` then asks whether the anchor could walk there: it copies the anchor's body
+placement (`00265970`, or the recorded copy when there is no anchor), makes it a kind-1 body with
+radii 0.5, moves its start 0.6 toward the point and, when the point is within 10, sweeps the rest of
+the way over the collision mesh (`00380C40`, the collision-mesh
+sweep); it passes when the sweep ends within 0.001 of the point. With
+no anchor and nothing recorded, the copy is the stack as it was.
+
+### Placing the party
+
+`00310920(point, angle)` is the body of the zone-jump party placement (`0037D000`). It collects the
+party's battle units (`0031B810` for slots 0-3) that have a status record free of `0x80000003`, or
+any of them in a cutscene (`00377C20`), into `022C1788` (four at most):
+
+- with none, the character `00327270()` names is placed at the point and turned to the angle;
+- with no leader (`003272A0`), `00310D30` does the same and every collected unit is placed at the
+  point itself;
+- with a leader, the leader is placed at the point and every other unit at the spot `00336E40`
+  finds for it in mode 2 beside the leader.
+
+Each placed unit's actor goes to its point (`0026B0C0`), the unit's `+0xD0` and `+0xE0` both take the
+point, `00392170` runs on its actor, unit flag bit 26 is set, `+0x15C` and `+0x160` take the angle,
+and the actor's yaw and facing are set to it (`0026A0D0`, `0026B620`). `00313670` re-places every
+collected unit other than the leader with `00311F70(0, unit, 0)`.
+
+`0033A380`, from the area initialisation `002342F0`, clears the recorded-anchor flag `022C7D10` and
+the 48 bytes at `022C7CE0`, and `004696A0` resets the ten `0x20`-byte slots at `02EBB560`.
+
 ## Layouts
 
-```
-globals
-02AEDFB0  ptr   the navigation dataset (null when none)
-00915760  i32[6]  class to override bit: {23, 25, 26, 27, -1, 24}
-0209A3E0  u32[32][2]  map-id overrides: dword 0 = override present, dword 1 = closed
-00D10818  f32   1.4140000343, the clearance factor
-00D112B0  i32[4]  {0, 1, 2, 0}, the edge index table
-02AEE060 .. 02AEE0C0  the obstacle grid (section above)
+Globals:
 
-battle unit
-+0x80   locomotion block (the solver's argument)      +0xD0  f32[4]  search start point
-+0xE0   f32[4]  mover position read by the follower   +0xF0  f32[4]  the waypoint written
-+0x100  f32[4]  goal                                  +0x158 u32     zeroed on flag bits 7 and 10
-+0x1F0  u32     step flags                            +0x1F4 u8      mover class
-+0x200  NavPath (0x490 bytes)                         +0x698 ptr     handler checked on a failed search
-+0x708  ptr     order record (word +4: 0x200, 0x100)  +0x714 u16     action id
-```
+| Address | Type | Name | Meaning |
+|---|---|---|---|
+| `02AEDFB0` | `void*` | the navigation dataset (null when none) |  |
+| `00915760` | `i32[6]` | class to override bit: {23, 25, 26, 27, -1, 24} |  |
+| `0209A3E0` | `u32[32][2]` | map-id overrides: dword 0 = override present, dword 1 = closed |  |
+| `00D10818` | `f32` | 1.4140000343, the clearance factor |  |
+| `00D112B0` | `i32[4]` | {0, 1, 2, 0}, the edge index table |  |
+| `02AEE060` | `.. 02AEE0C0` | the obstacle grid (section above) |  |
+
+Battle unit:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `080` | `locomotion block (the solver's argument)` | +0xD0 | f32[4]  search start point |
+| `0E0` | `f32[4]` | mover position read by the follower | +`0xF0`  f32[4]  the waypoint written |
+| `100` | `f32[4]` | goal | +`0x158` u32     zeroed on flag bits 7 and 10 |
+| `1F0` | `u32` | step flags | +`0x1F4` u8      mover class |
+| `200` | `NavPath (0x490 bytes)` | +0x698 ptr | handler checked on a failed search |
+| `708` | `void*` | order record (word +4: 0x200, 0x100) | +`0x714` u16     action id |
 
 ## Shipped data
 

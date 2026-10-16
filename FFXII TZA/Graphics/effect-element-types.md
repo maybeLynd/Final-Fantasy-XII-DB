@@ -3,10 +3,8 @@ title: "Effect element types: the handlers of every element type, what the verif
 kind: "system"
 category: "Graphics"
 summary: "The 65 effect element types that have code: their birth, update, draw, setup and release handlers per type range (0x00-0x0A, 0x40-0x42, 0x60-0x74, 0x80-0x97, 0xA0-0xAB, 0xD0-0xD1) with the shipped usage of each, the shared handlers, what the point, line, sprite, grid, mesh and registry types do, the blend modes of the point and line emitters, and the layout and census of the kind-0x54 mesh record that type 0x05 draws."
-addresses: ["002F2D60", "002F2530", "00500470", "00442550", "0039C550", "004427D0", "0039C4C0", "0039D890", "0039D970", "0039D5A0", "0039D6C0", "01EFAC20", "02AEE900", "02AEE908", "004490D0", "00501A50", "00502280", "00502EA0", "004434D0", "00444340", "00449AB0", "004355D0", "00377190", "02ADBFE0", "00377230", "004640A0", "003AB960", "0047BE20", "003D7FF0", "00465690", "00465CD0", "003D92C0", "02092628", "00436D00", "003AA280"]
+addresses: "002F2D60, 002F2530, 00500470, 00442550, 0039C550, 004427D0, 0039C4C0, 0039D890, 0039D970, 0039D5A0, 0039D6C0, 01EFAC20, 02AEE900, 02AEE908, 004490D0, 00501A50, 00502280, 00502EA0, 004434D0, 00444340, 00449AB0, 004355D0, 00377190, 02ADBFE0, 00377230, 004640A0, 003AB960, 0047BE20, 003D7FF0, 00465690, 00465CD0, 003D92C0, 02092628, 00436D00, 003AA280"
 ---
-
-# Effect element types: the handlers of every element type, what the verified types draw or change, and the kind-0x54 mesh record
 
 ## What the player sees
 
@@ -242,33 +240,38 @@ The id bytes name kind-`0x52` texture records: each is resolved through
 
 ## Layouts
 
-```
-kind-0x54 payload (from 00436D00)
-+0x00  u8   flags: bits 0-2 -> object +0x18C; bit 0 adds the index lists
-+0x02  u16  triangles        -> +0x10
-+0x04  u16  quads            -> +0x12
-+0x06  u16  positions        -> +0x14, array +0x20, 16 bytes each, w set to 1.0
-+0x08  u16  vectors          -> +0x16, array +0x24, 16 bytes each
-+0x0A  u16  4-byte entries   -> +0x18, array +0x28
-+0x0C  u16  8-byte entries   -> +0x1A, array +0x2C
-+0x0E  u16  id bytes         -> +0x1C, ids +0x180, handles +0x184 (8 bytes each)
-+0x10  u16  20-byte records  -> +0x1E, copied inline to +0x30
-+0x12       positions, vectors, 4-byte, 8-byte and 20-byte arrays in that order;
-            with flags bit 0, two index lists of 6 x triangles + 8 x quads bytes (+0x170, +0x174);
-            then one byte per triangle and quad (+0x188); then the id bytes
+Kind-`0x54` payload (from `00436D00`):
 
-element fields the verified draws read
-+0x044  s32  track frame, the time every track is sampled at
-+0x1F0  u32  colour
-+0x230  vec  point 1 (types 0x01, 0x03); +0x240 point 2 (0x03)
-+0x294  s32  mesh index (0x05)
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | flags: bits 0-2 -> object +0x18C; bit 0 adds the index lists |  |
+| `02` | `u16` | triangles | -> +`0x10` |
+| `04` | `u16` | quads | -> +`0x12` |
+| `06` | `u16` | positions | -> +`0x14`, array +`0x20`, 16 bytes each, w set to 1.0 |
+| `08` | `u16` | vectors | -> +`0x16`, array +`0x24`, 16 bytes each |
+| `0A` | `u16` | 4-byte entries | -> +`0x18`, array +`0x28` |
+| `0C` | `u16` | 8-byte entries | -> +`0x1A`, array +`0x2C` |
+| `0E` | `u16` | id bytes | -> +`0x1C`, ids +`0x180`, handles +`0x184` (8 bytes each) |
+| `10` | `u16` | 20-byte records | -> +`0x1E`, copied inline to +`0x30` |
+| `12` | `positions,` | vectors, | 4-byte, 8-byte and 20-byte arrays in that order; with flags bit 0, two index lists of 6 x triangles + 8 x quads bytes (+`0x170`, +`0x174`); then one byte per triangle and quad (+`0x188`); then the id bytes |
 
-definition fields the verified draws read
-+0x030       blend track (mode 6) and alpha percent
-+0x044  u8   element type
-+0x049  u8   bits 5-7 blend mode
-+0x190       mesh-index track (0x05); +0x590 u8 bit 4 mesh-index mode; +0x5A0 u32[32] mesh handles
-```
+Element fields the verified draws read:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `044` | `i32` | track frame, the time every track is sampled at |  |
+| `1F0` | `u32` | colour |  |
+| `230` | `vec` | point 1 (types 0x01, 0x03); +0x240 point 2 (0x03) |  |
+| `294` | `i32` | mesh index (0x05) |  |
+
+Definition fields the verified draws read:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `030` | `blend` | track | (mode 6) and alpha percent |
+| `044` | `u8` | element type |  |
+| `049` | `u8` | bits 5-7 blend mode |  |
+| `190` | `mesh-index` | track | (`0x05`); +`0x590` u8 bit 4 mesh-index mode; +`0x5A0` u32[32] mesh handles |
 
 ## Shipped data
 

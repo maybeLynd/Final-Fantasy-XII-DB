@@ -3,10 +3,8 @@ title: "Character render records: the record array, the pool lifecycle, render e
 kind: "system"
 category: "Graphics"
 summary: "The per-actor render record: the 160-record array and its system tail, how a record is allocated, promoted, retired and cleared, the two dirty words and the per-frame walk that services them, the render-event selection and the presentation-entry reference container, how an entry sets up and switches its tracks, and the render resource root with the chunked banks the records point into."
-addresses: ["003325D0", "022C6F28", "022C6F20", "022C6F30", "0041E3A0", "0041E550", "004269A0", "00426480", "0042FB80", "004279B0", "004278E0", "0041F730", "00420480", "00428710", "00427C90", "00429140", "004200A0", "00426EC0", "0042ED60", "00332660", "003323D0", "00426090", "00427DE0", "00427BD0", "00426420", "0051F9F0", "0051FBB0", "0051F6B0", "002ED570", "00409FE0", "0046E4D0", "004780C0", "0051F240", "0051F080", "0051F410", "0051F190", "0051BA40", "0051BA80", "0051B9F0", "0051B970", "00424D80", "004235C0", "0041FCA0", "00424230", "01F00410", "0041CD30", "0041CFC0", "0041C9A0", "00417920", "00417110"]
+addresses: "003325D0, 022C6F28, 022C6F20, 022C6F30, 0041E3A0, 0041E550, 004269A0, 00426480, 0042FB80, 004279B0, 004278E0, 0041F730, 00420480, 00428710, 00427C90, 00429140, 004200A0, 00426EC0, 0042ED60, 00332660, 003323D0, 00426090, 00427DE0, 00427BD0, 00426420, 0051F9F0, 0051FBB0, 0051F6B0, 002ED570, 00409FE0, 0046E4D0, 004780C0, 0051F240, 0051F080, 0051F410, 0051F190, 0051BA40, 0051BA80, 0051B9F0, 0051B970, 00424D80, 004235C0, 0041FCA0, 00424230, 01F00410, 0041CD30, 0041CFC0, 0041C9A0, 00417920, 00417110"
 ---
-
-# Character render records: the record array, the pool lifecycle, render events and the presentation entries
 
 ## What the player sees
 
@@ -151,23 +149,22 @@ and setters are in
 
 The `0x130` bytes after the records, at `022C6F28 + 0x48800`:
 
-```
-+0x00  i32  active list head (-1 empty)
-+0x04  i32  active list tail
-+0x08  i32  next-free cursor
-+0x0C  i32  live count (the allocator refuses at 160)
-+0x10  i32  pending list head
-+0x14  i32  pending list tail
-+0x18  u32  flags: bit 0 distance cull on, bit 2 set with bit 0 at start-up,
-            bit 4 viewer-inside fade on, bit 5 active list changed
-+0x1C  f32  distance at which the distance fade starts (34.0)
-+0x24  f32  distance fade range (4.0)
-+0x28  f32  1/6, copied to each promoted record's +0x414
-+0x2C  u16  reference record for the distance fade, 0xFFFF for none
-+0x30  u32  the render root, encoded (00426480)
-+0x42  u8   1: the per-record shadow walk 00426420 runs
-+0x43  u8   0: same walk, must be 0
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `i32` | active list head (-1 empty) |  |
+| `04` | `i32` | active list tail |  |
+| `08` | `i32` | next-free cursor |  |
+| `0C` | `i32` | live count (the allocator refuses at 160) |  |
+| `10` | `i32` | pending list head |  |
+| `14` | `i32` | pending list tail |  |
+| `18` | `u32` | flags: bit 0 distance cull on, bit 2 set with bit 0 at start-up, | bit 4 viewer-inside fade on, bit 5 active list changed |
+| `1C` | `f32` | distance at which the distance fade starts (34.0) |  |
+| `24` | `f32` | distance fade range (4.0) |  |
+| `28` | `f32` | 1/6, copied to each promoted record's +0x414 |  |
+| `2C` | `u16` | reference record for the distance fade, 0xFFFF for none |  |
+| `30` | `u32` | the render root, encoded (00426480) |  |
+| `42` | `u8` | 1: the per-record shadow walk 00426420 runs |  |
+| `43` | `u8` | 0: same walk, must be 0 |  |
 
 `004269A0` writes these defaults and `0042ED30` puts `+0x18` bits 0 and 2 and `+0x1C`..`+0x28` back.
 `00426090` stores `+0x2C` each step from the party-focus actor (`003590D0`, `002E9B80`). Every access
@@ -243,40 +240,40 @@ bytes from `+0x30`; the playing one is `+0x388`. The command handlers are on
 The record is `0x740` bytes; the array is 160 of them, `0x48800` bytes, then the tail. These fields
 are the ones the functions on this page use:
 
-```
-+0x000  i16  own index, -1 when free
-+0x002  i16  previous record in its list
-+0x004  i16  next record in its list
-+0x006  i16  parent record, -1 for a root
-+0x008  i16  first child
-+0x00A  i16  next sibling
-+0x010  u64  context (the render root), stored by the initialiser
-+0x018  i32  skeleton entry index (root +0xD98)
-+0x01C  char[32]  key, "makeid" and one byte
-+0x03C  char[32]  model name
-+0x060  i16  previous event
-+0x064  i16  model instance index (root +0xDA0)
-+0x0C0  u8   shadow kind (bits 3-4), scripted shadow LOD (bit 1), scripted shadow alpha (bit 2)
-+0x0C4  i32  current presentation entry id
-+0x0C8  i32  alternate presentation entry id
-+0x0CC  i16  current event
-+0x0CE  i16  alternate event
-+0x114  u32  shadow entry handle (pool at 02B40528)
-+0x118  u32  shadow entry handle (pool at 02B3F570)
-+0x210  f32[4]  colour, 1.0 after a clear
-+0x220  f32[4]  second colour, 1.0 after a clear
-+0x284  u32  state flags (bit 14 character-model directory, bit 30 skipped by the dirty walk)
-+0x290  u32  dirty word 1
-+0x294  u32  dirty word 2
-+0x400  ptr  the model's @FCP data
-+0x408  i16  @FCP section index
-+0x414  f32  1/6, from the tail at promotion
-+0x4C0  8 B x 10  fade channels (character-fades.md)
-+0x610  f32 x 4  live heading, speed, accumulator, flags (the coast-down latch)
-+0x620  f32 x 4  cached heading, speed, accumulator, latch word
-+0x6B0  i32  render-object key
-+0x6B8  ptr  CharacterRenderObject (character-render-object.md)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `000` | `i16` | own index, -1 when free |  |
+| `002` | `i16` | previous record in its list |  |
+| `004` | `i16` | next record in its list |  |
+| `006` | `i16` | parent record, -1 for a root |  |
+| `008` | `i16` | first child |  |
+| `00A` | `i16` | next sibling |  |
+| `010` | `u64` | context (the render root), stored by the initialiser |  |
+| `018` | `i32` | skeleton entry index (root +0xD98) |  |
+| `01C` | `char[32]` | key, "makeid" and one byte |  |
+| `03C` | `char[32]` | model name |  |
+| `060` | `i16` | previous event |  |
+| `064` | `i16` | model instance index (root +0xDA0) |  |
+| `0C0` | `u8` | shadow kind (bits 3-4), scripted shadow LOD (bit 1), scripted shadow alpha (bit 2) |  |
+| `0C4` | `i32` | current presentation entry id |  |
+| `0C8` | `i32` | alternate presentation entry id |  |
+| `0CC` | `i16` | current event |  |
+| `0CE` | `i16` | alternate event |  |
+| `114` | `u32` | shadow entry handle (pool at 02B40528) |  |
+| `118` | `u32` | shadow entry handle (pool at 02B3F570) |  |
+| `210` | `f32[4]` | colour, 1.0 after a clear |  |
+| `220` | `f32[4]` | second colour, 1.0 after a clear |  |
+| `284` | `u32` | state flags (bit 14 character-model directory, bit 30 skipped by the dirty walk) |  |
+| `290` | `u32` | dirty word 1 |  |
+| `294` | `u32` | dirty word 2 |  |
+| `400` | `void*` | the model's @FCP data |  |
+| `408` | `i16` | @FCP section index |  |
+| `414` | `f32` | 1/6, from the tail at promotion |  |
+| `4C0` | `8 B x 10` | fade channels (character-fades.md) |  |
+| `610` | `f32 x 4` | live heading, speed, accumulator, flags (the coast-down latch) |  |
+| `620` | `f32 x 4` | cached heading, speed, accumulator, latch word |  |
+| `6B0` | `i32` | render-object key |  |
+| `6B8` | `void*` | CharacterRenderObject (character-render-object.md) |  |
 
 The access tables beside this page list every instruction found touching each structure:
 

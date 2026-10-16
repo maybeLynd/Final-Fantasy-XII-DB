@@ -3,10 +3,8 @@ title: "Shop screens: Buy, Sell and Bazaar, the tabs and rows each shows, the pr
 kind: "system"
 category: "Menus and HUD"
 summary: "How a shop opens from a script, the Buy, Sell and Bazaar command rows and when Sell and Bazaar are greyed, the tabs each mode shows and how empty tabs drop out, how the rows and prices are built (the buy price as listed, half of it on a sale), the refusals, the quantity window, the trade commit and its gil roll, the new bazaar goods notice, and the equip offer and bazaar grant window after a purchase."
-addresses: ["0057B800", "0057B890", "0057BD40", "0056DD50", "0057CF20", "0056D370", "0056E700", "0057A620"]
+addresses: "0057B800, 0057B890, 0057BD40, 0056DD50, 0057CF20, 0056D370, 0056E700, 0057A620"
 ---
-
-# Shop screens: Buy, Sell and Bazaar, the tabs and rows each shows, the price paid, and how a trade reaches the inventory
 
 ## What the player sees
 

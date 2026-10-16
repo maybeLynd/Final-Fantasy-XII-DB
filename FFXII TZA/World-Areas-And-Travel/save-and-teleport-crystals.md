@@ -3,10 +3,8 @@ title: "Save crystals and gate crystals: the heal, the save menu, teleporting an
 kind: "system"
 category: "World, areas and travel"
 summary: "What happens when the party touches a crystal: the full heal and what it restores, the save menu request and how the save screen is opened and waited for, the teleport menu, the Teleport Stone, the flash and the ordinary map jump that carries the party, the arrival presentation in the destination zone, the crystal number that tells a save crystal from a gate crystal, and the two bits in the save image that switch saving and teleporting off, with every other bit of that flag byte and the script verbs that set them."
-addresses: ["00350240", "00351940", "00350600", "00351CE0", "00314D00", "00314C70", "00314B60", "00314B00", "003149E0", "00314A00", "0026DB30", "00352C80", "00264CA0", "00264E40", "002649B0", "00264AE0", "00264CE0", "00342490", "00343010", "0034AC10", "00314D80", "003462D0", "002E1A60", "002E0DA0", "002E1690", "002E0650", "00352E00", "00346DA0", "00254710", "002E09A0", "00254B50", "002E1BA0", "0022B8C0", "00356500", "00359C60", "0030F4B0", "0030F3F0", "0030F4D0", "0030F690", "0030F340", "0030F5A0", "00237CA0", "0034AAB0", "002FEAC0", "003567F0", "003529B0", "0036E6B0", "0024DE70", "003B0AD0", "0024E210", "00344170", "00269060", "00268690", "0036E700", "00314DA0", "00183070", "001D8770", "0034F870", "0034FDC0", "00350AE0", "00346E10", "00343CC0", "00349420", "00350FD0", "00351380", "00352080", "00314B80", "00314CD0", "00314CA0", "00314BB0", "00314BE0", "00314C40", "00314A60", "00314B40", "00314B20", "00314A80", "00314AA0", "00314AC0", "00314AE0", "00377700", "00377780", "00377BA0", "00377750", "00314530", "003145E0", "002695A0", "002628B0"]
+addresses: "00350240, 00351940, 00350600, 00351CE0, 00314D00, 00314C70, 00314B60, 00314B00, 003149E0, 00314A00, 0026DB30, 00352C80, 00264CA0, 00264E40, 002649B0, 00264AE0, 00264CE0, 00342490, 00343010, 0034AC10, 00314D80, 003462D0, 002E1A60, 002E0DA0, 002E1690, 002E0650, 00352E00, 00346DA0, 00254710, 002E09A0, 00254B50, 002E1BA0, 0022B8C0, 00356500, 00359C60, 0030F4B0, 0030F3F0, 0030F4D0, 0030F690, 0030F340, 0030F5A0, 00237CA0, 0034AAB0, 002FEAC0, 003567F0, 003529B0, 0036E6B0, 0024DE70, 003B0AD0, 0024E210, 00344170, 00269060, 00268690, 0036E700, 00314DA0, 00183070, 001D8770, 0034F870, 0034FDC0, 00350AE0, 00346E10, 00343CC0, 00349420, 00350FD0, 00351380, 00352080, 00314B80, 00314CD0, 00314CA0, 00314BB0, 00314BE0, 00314C40, 00314A60, 00314B40, 00314B20, 00314A80, 00314AA0, 00314AC0, 00314AE0, 00377700, 00377780, 00377BA0, 00377750, 00314530, 003145E0, 002695A0, 002628B0"
 ---
-
-# Save crystals and gate crystals: the heal, the save menu, teleporting and the two bits that switch them off
 
 ## What the player sees
 
@@ -224,29 +222,32 @@ fades in. `calltelepoeffect` (`0x333`, `00344170`) is `00269060()` then `0018307
   `002EA6A0`, the encoded handle (`003589B0`) is collected and `0036E700(0, n, handles, 9)` plays
   `003B02A0(0, handles, n, [01EF9400 + 9 * 4], 5)`, the dword being `0x8C`, then `0024F920(handle, 1)`;
   then `00314DA0(003148D0() & ~0x18)` clears mode bits 3 and 4 in payload `+0x1054`.
-- `00183070` runs `001D8770` on the file-cache object `[01F82CD8]` (`001D8A60`): `+0x08` = 0; when
-  byte `+0x24` is 0 it becomes 1 and `+0x20` is zeroed; byte `+0x1D` = 0.
+- `00183070` runs `001D8770` on the loading page `[01F82CD8]` (`001D8A60`; built by `001D89D0` with
+  the `LoadingPage` vtable): `+0x08` = 0; when the fading-out byte `+0x24` is 0 it becomes 1 and the
+  fade timer `+0x20` is zeroed; the armed byte `+0x1D` = 0. The loading page starts fading out.
 
 The field pass runs the same two calls once the field has settled after any arrival whose mode has
 bit 3 ([field runtime](../Characters-And-Objects/field-runtime.md)).
 
 ## Layouts
 
-```
-struct ZoneTransitionFlags base=payload+0x1062 size=2
-+0x00  u8  flags1   bit 0 battle off, bit 1 summoning off, bit 2 teleporting off, bit 3 saving off, bit 4 script switch, bit 5 restore pending, bit 6 map jammed, bit 7 mist override
-+0x01  u8  flags2   bits 0-1 map availability, bits 4-5 mist level, bit 6 music override in force
-```
+Struct ZoneTransitionFlags base=payload+`0x1062` size=2:
 
-```
-struct MenuRequest base=0215F1A0 size=0x10
-+0x00  u8   pending    1 while a full-screen menu is requested (002E1A60 sets, 002E09A0 clears)
-+0x01  u8   latch      1 from 002E1690 until the router clears it
-+0x04  u32  category   002E0DA0(id); 0x8006 for the crystal's save screen
-+0x08  u32  parameter  the popped parameter, remapped for id 6
-+0x0E  i8   done       0 from 002E0650; 1 from 002E1BA0 when the menu closes
-+0x0F  i8   done2      1 from 002E1BA0
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | flags1 | bit 0 battle off, bit 1 summoning off, bit 2 teleporting off, bit 3 saving off, bit 4 script switch, bit 5 restore pending, bit 6 map jammed, bit 7 mist override |
+| `01` | `u8` | flags2 | bits 0-1 map availability, bits 4-5 mist level, bit 6 music override in force |
+
+Struct MenuRequest base=`0215F1A0` size=`0x10`:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | pending | 1 while a full-screen menu is requested (`002E1A60` sets, `002E09A0` clears) |
+| `01` | `u8` | latch | 1 from `002E1690` until the router clears it |
+| `04` | `u32` | category | `002E0DA0`(id); `0x8006` for the crystal's save screen |
+| `08` | `u32` | parameter | the popped parameter, remapped for id 6 |
+| `0E` | `i8` | done | 0 from `002E0650`; 1 from `002E1BA0` when the menu closes |
+| `0F` | `i8` | done2 | 1 from `002E1BA0` |
 
 ```
 heal(mask):
@@ -354,7 +355,7 @@ The common effect table `01EF9400` holds `0x72, 0x73, 0x74, 0x75, 0x76, 0x88, 0x
 | `022C3158`-`022C3178` | mixed | the fields `btladjustsystem(1)` resets |
 | `02099FF0` | u8[0x200] | the group persistent bank `0026DB30` clears on a teleport arrival |
 | `0209A1F0` | ptr[4] | the party entries the arrival flash plays on |
-| `01F82CD8` | ptr | the file-cache object `00183070` touches |
+| `01F82CD8` | ptr | the loading page `00183070` fades out |
 | `g_menu_telepo_dest` | u16[31] at script global `0x0BF2` | the registered destinations |
 
 ## Modding notes

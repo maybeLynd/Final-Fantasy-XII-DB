@@ -3,10 +3,8 @@ title: "PhyreEngine asset files: the .phyre cluster header, the packed namespace
 kind: "format"
 category: "PhyreEngine"
 summary: "The .phyre file that holds every model, texture, shader and animation of the remastered art: the 84-byte cluster header, the packed namespace that names every class and field the file uses, the instance lists, user fixups, header-class tables, packed fixup tables and D3D11 buffers in stream order, the loader that checks the header, binds the file's schema to the engine's registered classes and converts each object to its runtime layout, and a census of all 35,984 shipped files."
-addresses: ["0019CB20", "00637C50", "0059E070", "0059A3B0", "0059A6F0", "0059C180", "00686D00", "0069E780", "0059D550", "02CA9D90", "0059AAE0", "0059B430", "00599500", "0059AC00", "0059E300", "0059E780", "0059D6A0", "0059F500", "0059D590", "0059E880", "0059D940", "0059CE30", "0059C700", "0059C250", "00686DE0", "02CAA0A0"]
+addresses: "0019CB20, 00637C50, 0059E070, 0059A3B0, 0059A6F0, 0059C180, 00686D00, 0069E780, 0059D550, 02CA9D90, 0059AAE0, 0059B430, 00599500, 0059AC00, 0059E300, 0059E780, 0059D6A0, 0059F500, 0059D590, 0059E880, 0059D940, 0059CE30, 0059C700, 0059C250, 00686DE0, 02CAA0A0"
 ---
-
-# PhyreEngine asset files: the .phyre cluster header, the packed namespace, the instance data and how the loader reads and fixes up a cluster
 
 ## What the player sees
 
@@ -57,43 +55,43 @@ Twenty-one `u32` fields. `005983E0` registers the first eighteen as `PClusterHea
 `00598C50` the last three as `PClusterHeaderD3D11`, and `00598DF0` the nine of `PInstanceListHeader`;
 the namespace of every file declares the same names in the same places.
 
-```
-+0x00  u32  m_phyreMarker              0x50485952, the bytes "RYHP"
-+0x04  u32  m_size                     header length, 84
-+0x08  u32  m_packedNamespaceSize      bytes of namespace that follow
-+0x0C  u32  m_platformID               0x44583131, the bytes "11XD"
-+0x10  u32  m_instanceListCount
-+0x14  u32  m_arrayFixupSize           packed bytes of the array fixup table
-+0x18  u32  m_arrayFixupCount          its decoded entries, the sum over the lists
-+0x1C  u32  m_pointerFixupSize
-+0x20  u32  m_pointerFixupCount
-+0x24  u32  m_pointerArrayFixupSize
-+0x28  u32  m_pointerArrayFixupCount
-+0x2C  u32  m_pointersInArraysCount    the sum over the lists
-+0x30  u32  m_userFixupCount
-+0x34  u32  m_userFixupDataSize
-+0x38  u32  m_totalDataSize            the sum of the lists' m_size
-+0x3C  u32  m_headerClassInstanceCount
-+0x40  u32  m_headerClassChildCount
-+0x44  u32  m_physicsEngineID          0, or 0x424C4C54 ("TLLB")
-+0x48  u32  m_indexBufferSize
-+0x4C  u32  m_vertexBufferSize
-+0x50  u32  m_maxTextureBufferSize
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | m_phyreMarker | `0x50485952`, the bytes "RYHP" |
+| `04` | `u32` | m_size | header length, 84 |
+| `08` | `u32` | m_packedNamespaceSize | bytes of namespace that follow |
+| `0C` | `u32` | m_platformID | `0x44583131`, the bytes "11XD" |
+| `10` | `u32` | m_instanceListCount |  |
+| `14` | `u32` | m_arrayFixupSize | packed bytes of the array fixup table |
+| `18` | `u32` | m_arrayFixupCount | its decoded entries, the sum over the lists |
+| `1C` | `u32` | m_pointerFixupSize |  |
+| `20` | `u32` | m_pointerFixupCount |  |
+| `24` | `u32` | m_pointerArrayFixupSize |  |
+| `28` | `u32` | m_pointerArrayFixupCount |  |
+| `2C` | `u32` | m_pointersInArraysCount | the sum over the lists |
+| `30` | `u32` | m_userFixupCount |  |
+| `34` | `u32` | m_userFixupDataSize |  |
+| `38` | `u32` | m_totalDataSize | the sum of the lists' m_size |
+| `3C` | `u32` | m_headerClassInstanceCount |  |
+| `40` | `u32` | m_headerClassChildCount |  |
+| `44` | `u32` | m_physicsEngineID | 0, or `0x424C4C54` ("TLLB") |
+| `48` | `u32` | m_indexBufferSize |  |
+| `4C` | `u32` | m_vertexBufferSize |  |
+| `50` | `u32` | m_maxTextureBufferSize |  |
 
 ### The instance-list header
 
-```
-+0x00  u32  m_classID                  1-based position in the namespace's class table
-+0x04  u32  m_count                    objects in the list
-+0x08  u32  m_size                     m_objectsSize + m_arraysSize
-+0x0C  u32  m_objectsSize
-+0x10  u32  m_arraysSize
-+0x14  u32  m_pointersInArraysCount
-+0x18  u32  m_arrayFixupCount          this list's share of each fixup table
-+0x1C  u32  m_pointerFixupCount
-+0x20  u32  m_pointerArrayFixupCount
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | m_classID | 1-based position in the namespace's class table |
+| `04` | `u32` | m_count | objects in the list |
+| `08` | `u32` | m_size | m_objectsSize + m_arraysSize |
+| `0C` | `u32` | m_objectsSize |  |
+| `10` | `u32` | m_arraysSize |  |
+| `14` | `u32` | m_pointersInArraysCount |  |
+| `18` | `u32` | m_arrayFixupCount | this list's share of each fixup table |
+| `1C` | `u32` | m_pointerFixupCount |  |
+| `20` | `u32` | m_pointerArrayFixupCount |  |
 
 ### The packed namespace
 
@@ -101,49 +99,49 @@ The namespace is the file's own schema: every type, class and member it uses, by
 the one the byte-swap routine `0059C180` walks (eight header words, then `nTypes` words, `nClasses`
 nine-word records and `nMembers` six-word records) and the one the validator `0059E070` checks.
 
-```
-+0x00  u32  bom                        0x01020304, stored 04 03 02 01
-+0x04  u32  size                       equals m_packedNamespaceSize
-+0x08  u32  nTypes
-+0x0C  u32  nClasses
-+0x10  u32  nMembers
-+0x14  u32  poolSize                   bytes of the string pool
-+0x18  u32  reserved                   zero
-+0x1C  u32  extraSize                  bytes of the block after the pool
-+0x20  u32[nTypes]                     pool offsets of the type names
-       class record  x nClasses        9 words each
-       member record x nMembers        6 words each
-       char[poolSize]                  NUL-terminated names
-       byte[extraSize]                 indexed by class word 8
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | bom | `0x01020304`, stored 04 03 02 01 |
+| `04` | `u32` | size | equals m_packedNamespaceSize |
+| `08` | `u32` | nTypes |  |
+| `0C` | `u32` | nClasses |  |
+| `10` | `u32` | nMembers |  |
+| `14` | `u32` | poolSize | bytes of the string pool |
+| `18` | `u32` | reserved | zero |
+| `1C` | `u32` | extraSize | bytes of the block after the pool |
+| `20` | `u32[nTypes]` | pool offsets of the type names | class record  x nClasses        9 words each member record x nMembers        6 words each char[poolSize]                  NUL-terminated names byte[extraSize]                 indexed by class word 8 |
 
 The loader requires `size == 0x20 + extraSize + 4 × (nTypes + 9 × nClasses + 6 × nMembers) + poolSize`
 (`0059E070`), which places the extra block after the pool.
 
-```
-class record
-+0x00  u32  parent                     1-based class index of the base class, 0 for a root
-+0x04  u32  fileSize                   low 28 bits: bytes per object in the file
-+0x08  u32  name                       pool offset
-+0x0C  u32  memberCount                the class's records, taken in order from the member table
-+0x1C  u32  flags                      0x01 dynamic class, 0x04 header class
-+0x20  u32  extra                      1-based offset into the extra block, 0 for none
+Class record:
 
-member record
-+0x00  u32  name                       pool offset
-+0x04  u32  type                       below nTypes: type-table index; else nTypes + 1-based class index
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | parent | 1-based class index of the base class, 0 for a root |
+| `04` | `u32` | fileSize | low 28 bits: bytes per object in the file |
+| `08` | `u32` | name | pool offset |
+| `0C` | `u32` | memberCount | the class's records, taken in order from the member table |
+| `1C` | `u32` | flags | `0x01` dynamic class, `0x04` header class |
+| `20` | `u32` | extra | 1-based offset into the extra block, 0 for none |
+
+Member record:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | name | pool offset |
+| `04` | `u32` | type | below nTypes: type-table index; else nTypes + 1-based class index |
 
 The same two-table reference, a type index below `nTypes` and otherwise `nTypes` plus a 1-based class
 index, is used by the user-fixup records.
 
 ### User-fixup records
 
-```
-+0x00  u32  type                       type or class reference, as in a member record
-+0x04  u32  size                       bytes of its data
-+0x08  u32  offset                     into the user-fixup data
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | type | type or class reference, as in a member record |
+| `04` | `u32` | size | bytes of its data |
+| `08` | `u32` | offset | into the user-fixup data |
 
 The data is usually a name: the class name a `PClassDescriptor` fixup resolves, or the format name of
 a texture.

@@ -3,10 +3,8 @@ title: "Script name bindings: how a script names a model by one number, the bind
 kind: "system"
 category: "Scripts and script commands"
 summary: "How a zone script names a model: the bound id and its letter class, the stamped handle checked before every use, the binding table of 128 entries on four lists (free, requested, live, retired) with find-or-create, holder bits, reference count, pins and the deferred release, the per-frame update that loads and retires entries, the 32-lane record each binding can own, what setuptreasure does in order and how a chest's spot bytes become a position and facing, and what each bind verb attaches to an actor."
-addresses: ["002E97C0", "002E9810", "0215FDA0", "02161DA0", "002EA320", "002E25E0", "002E9360", "002EB540", "002EAE20", "002E99C0", "002E4C20", "002E3E20", "002E3DC0", "002E3E90", "002EAF70", "002EB810", "002EBD60", "002EAEB0", "002E65A0", "002E6D60", "002E6700", "002EAD50", "002E4D20", "002EA6E0", "002E60F0", "002ED6F0", "002ED950", "002E9A60", "002EB7A0", "0032E400", "002E2660", "002EB5E0", "002EB9D0", "002E9920", "002EB690", "002EAFA0", "002EB890", "002E3F00", "002E4000", "002E6880", "002E6EB0", "002E4E50", "002E6900", "002E9470", "002ECAB0", "002ECA30", "002ECBA0", "00354400", "00354A40", "00355210", "002FAED0", "002FAF60", "0026E060", "002650B0", "0026A320", "002E28E0", "002E3110", "002EBC90", "002E3C20", "0037CB90", "0033F330", "00340380", "003409F0", "00342640", "003418B0", "00344F00", "00345A60", "003460F0", "00343B00", "00344550", "00343A30", "00344200", "003463F0", "003EB190", "00340FA0", "003414A0", "00341840", "00340450", "00340EC0", "0034B8D0", "0050D810", "0037B4D0", "00267310", "00314D40", "008F8180", "008F6D54", "01CEBC78"]
+addresses: "002E97C0, 002E9810, 0215FDA0, 02161DA0, 002EA320, 002E25E0, 002E9360, 002EB540, 002EAE20, 002E99C0, 002E4C20, 002E3E20, 002E3DC0, 002E3E90, 002EAF70, 002EB810, 002EBD60, 002EAEB0, 002E65A0, 002E6D60, 002E6700, 002EAD50, 002E4D20, 002EA6E0, 002E60F0, 002ED6F0, 002ED950, 002E9A60, 002EB7A0, 0032E400, 002E2660, 002EB5E0, 002EB9D0, 002E9920, 002EB690, 002EAFA0, 002EB890, 002E3F00, 002E4000, 002E6880, 002E6EB0, 002E4E50, 002E6900, 002E9470, 002ECAB0, 002ECA30, 002ECBA0, 00354400, 00354A40, 00355210, 002FAED0, 002FAF60, 0026E060, 002650B0, 0026A320, 002E28E0, 002E3110, 002EBC90, 002E3C20, 0037CB90, 0033F330, 00340380, 003409F0, 00342640, 003418B0, 00344F00, 00345A60, 003460F0, 00343B00, 00344550, 00343A30, 00344200, 003463F0, 003EB190, 00340FA0, 003414A0, 00341840, 00340450, 00340EC0, 0034B8D0, 0050D810, 0037B4D0, 00267310, 00314D40, 008F8180, 008F6D54, 01CEBC78, 002ECFD0, 00347DD0, 002E9C30"
 ---
-
-# Script name bindings: how a script names a model by one number, the binding table with its lists and lanes, where a treasure chest is placed, and the bind verbs
 
 ## What the player sees
 
@@ -164,6 +162,9 @@ The lane records are 32 × `0x120` bytes at `02161DA0` on their own lists: free 
 `+0x10`/`+0x18`). `002E2660(entry)` pops a free record, zeroes its masks, handles and counts, and
 cross-links it: record `+0x22` = the entry's slot, entry `+0x1E` = the record's index `+0x20`,
 record `+0x5C` = the entry's stamp. Every lane access checks `+0x5C` against the entry's stamp first.
+
+`002E9C30(entry)` returns the entry's lane record when the entry has one and its stamp matches,
+null otherwise; the model loader `002EE430` uses it.
 
 `002EB5E0(entry, lane, delta, group)` picks the lane with `002EB9D0`, creates the lane record if the
 entry has none, and requests lane 0 and the chosen lane through `002EB690`. `002EB9D0(entry, n)`
@@ -367,6 +368,11 @@ once for a handle of 0 or one that no longer resolves.
 loaded lane ends the poll after `002EAC90` (and `002EB380` when actor `+0x0D` bit 7 is set).
 Otherwise it claims the lane with `002EB9D0`, raises the loading flag and waits; it ends at once
 when the claim fails or the context has no main entry.
+
+`stdmotioneventsync` (`0x0473`) waits for a marker in the actor's motion. Its begin `002ECFD0`
+(through `003479E0`) clears bits 0 and 1 of the render record's `+0x419` (`0042F210` for each);
+its poll `00347DD0` ends when either bit is set again (`002ECF60`, `0042F1C0`). The motion sets
+them through its authored command id 4, subtypes 11 and 10 (`00417AD0`).
 
 `debug_bindp(model)` (`0050D660`) finds or creates the model with `002EAE20` (holder bit 0), stores
 the entry pointer itself rather than a handle, claims a free lane (`002EB9D0(entry, −1)`), requests

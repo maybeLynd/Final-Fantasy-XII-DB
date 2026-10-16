@@ -3,10 +3,8 @@ title: "Battle and menu text tables: the word banks in battle_pack.bin, the st2e
 kind: "format"
 category: "Game files and data tables"
 summary: "Where the names and help lines of the battle system and menus are stored: the fifteen word banks of battle_pack.bin addressed by a bank:row word, the packed string rows they hold, the 28 text groups loaded on demand from st2e string-table files and addressed by group × 1000 + row or by the row's own id, the text block inside an st2e string table, the glyph codes the strings use in each language, and the shipped counts."
-addresses: ["003214B0", "002B58B0", "02EBF170", "002F9860", "002F9920", "02EC3D80", "02F973C0", "01E09F68", "002385D0", "002FA560", "002F7660", "00238640", "002F83E0", "00248700", "0053EB90", "01CEB638", "003846F0", "003845F0", "002AC2F0"]
+addresses: "003214B0, 002B58B0, 02EBF170, 002F9860, 002F9920, 02EC3D80, 02F973C0, 01E09F68, 002385D0, 002FA560, 002F7660, 00238640, 002F83E0, 00248700, 0053EB90, 01CEB638, 003846F0, 003845F0, 002AC2F0, 002491B0, 00563520, 00292260, 002922C0, 00292190"
 ---
-
-# Battle and menu text tables: the word banks in battle_pack.bin, the st2e string tables behind menu and help text, and how a text id becomes a string
 
 ## What the player sees
 
@@ -123,6 +121,12 @@ A group is loaded on demand:
 
 `002FA560` is called from the menu widget handler `00248700`, for the group the widget names when
 it is not yet resident, and from `0053EB90` for groups 25 and 26.
+
+`002491B0(request group, group)` hands a group to that handler (`00244F50(0xD0, 00248700, ...)`) and counts
+it on the request group. `00292260` asks for groups 10, 20 and 14, `002922C0` (from `00556500`) for 17, and
+`00292190` (from `0057B780`) for 10, 20, 14 and 16, each only when `002F8040(group)` finds
+`02EC3D80[group]` empty. At start-up `0022A4B0` runs `00563520`, which takes a request group with the
+completion function `00563550` (`002486B0`), asks for groups 10, 20 and 14 and closes it (`00249410`).
 
 ## Modding notes
 

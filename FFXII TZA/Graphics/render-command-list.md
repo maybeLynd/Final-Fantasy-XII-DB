@@ -3,10 +3,8 @@ title: "Render command list: the per-frame command objects, the two lists that h
 kind: "system"
 category: "Graphics"
 summary: "How each render pass of a frame becomes a heap object appended to an ordered command list and an owning list, how the render pass runs the ordered list in two parts with a class mask instead of a sort, the class-filtered walks the opaque passes run from inside it, the console's ambient-occlusion-only exit, the three teardowns, the render-parameter block the execute bodies read, the character render-object manager installed beside the lists, and the two GS command buffers."
-addresses: ["01F7F5E0", "01F7F5E8", "00186CD0", "0018B480", "0018AD00", "0018C9E0", "0018B4E0", "0018CA40", "0018AFF0", "0018C610", "00212CC0", "0018B100", "0018B1B0", "0018B510", "0018B030", "0018B070", "0018B0B0", "0018B040", "0018B810", "0018C8F0", "00187950", "0022A580", "001F28B0", "00193D50", "01DFE0C4", "001BDA50", "003A1D50", "003A1DB0", "004FE420", "02EBEFC0"]
+addresses: "01F7F5E0, 01F7F5E8, 00186CD0, 0018B480, 0018AD00, 0018C9E0, 0018B4E0, 0018CA40, 0018AFF0, 0018C610, 00212CC0, 0018B100, 0018B1B0, 0018B510, 0018B030, 0018B070, 0018B0B0, 0018B040, 0018B810, 0018C8F0, 00187950, 0022A580, 001F28B0, 00193D50, 01DFE0C4, 001BDA50, 003A1D50, 003A1DB0, 004FE420, 02EBEFC0"
 ---
-
-# Render command list: the per-frame command objects, the two lists that hold them and the walks that run them
 
 ## What the player sees
 
@@ -235,50 +233,54 @@ record count to `0036F360`, resets the new buffer's cursor to its begin and retu
 
 ## Layouts
 
-```
-ordered command list ([01F7F5E0]), 0x30 bytes
-+0x00  ptr   begin
-+0x08  ptr   end            append cursor
-+0x10  ptr   capacity end   5,000 entries reserved by 0018AD00
-+0x18  ptr   allocator      vtable 00902720
-+0x20  u32   class mask     0xFFFFFFFF; bit 0x2 toggled by 0018B070
-+0x24  u32   split          0018B510; 0 after a clear
-+0x28  u8    split armed    0018B510: argument != 0
-+0x29  u8    opaque pass    1 during the nested walks of 001F36B0, 001F3570, 001F3650
-+0x2A  u8    afterwater     1 during the nested walk of 001F3510
-+0x2C  s32   mark           0018B030; -1 after a clear
-```
+Ordered command list ([`01F7F5E0`]), `0x30` bytes:
 
-```
-owner list ([01F7F5E8]), 0x20 bytes
-+0x00  ptr   begin
-+0x08  ptr   end
-+0x10  ptr   capacity end   0 at creation
-+0x18  ptr   allocator      vtable 00902720
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `void*` | begin |  |
+| `08` | `void*` | end | append cursor |
+| `10` | `void*` | capacity end | 5,000 entries reserved by `0018AD00` |
+| `18` | `void*` | allocator | vtable `00902720` |
+| `20` | `u32` | class mask | `0xFFFFFFFF`; bit `0x2` toggled by `0018B070` |
+| `24` | `u32` | split | `0018B510`; 0 after a clear |
+| `28` | `u8` | split armed | `0018B510`: argument != 0 |
+| `29` | `u8` | opaque pass | 1 during the nested walks of `001F36B0`, `001F3570`, `001F3650` |
+| `2A` | `u8` | afterwater | 1 during the nested walk of `001F3510` |
+| `2C` | `i32` | mark | `0018B030`; -1 after a clear |
 
-```
-command object (OrderedObject), 0x18 bytes and up
-+0x00  ptr   vtable         three slots: destroy, execute(object, device), class key
-+0x08  ptr   target         0 from 00212CC0; forwarded by 00212C60 and 00215320
-+0x10  u8    flush select   1 from 00212CC0; 0 for the four settings commands
-+0x18  ...   class fields   PostProcessObj: u32 mode; GiReset*: u32 key;
-                            SetDofObj: u8 +0x18, f32 +0x1C, f32 +0x20
-```
+Owner list ([`01F7F5E8`]), `0x20` bytes:
 
-```
-GeometryInstanceOrderedObject (vtable 00903920), 0x28 bytes from [01F7F4C0]
-+0x18  ptr   Gi command     001F4950
-+0x20  u32   class key      001F4950, returned by 001F49E0
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `void*` | begin |  |
+| `08` | `void*` | end |  |
+| `10` | `void*` | capacity end | 0 at creation |
+| `18` | `void*` | allocator | vtable `00902720` |
 
-```
-GS command buffer record (02EBEFC0, 02EBEFD8), 0x18 bytes
-+0x00  ptr   begin          [01FD4A78] + offset * 16
-+0x08  ptr   write cursor
-+0x10  u32   capacity       0x200
-+0x14  u32   ready          1 after 004FE420
-```
+Command object (OrderedObject), `0x18` bytes and up:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `void*` | vtable | three slots: destroy, execute(object, device), class key |
+| `08` | `void*` | target | 0 from `00212CC0`; forwarded by `00212C60` and `00215320` |
+| `10` | `u8` | flush select | 1 from `00212CC0`; 0 for the four settings commands |
+| `18` | `...` | class fields | PostProcessObj: u32 mode; GiReset*: u32 key; SetDofObj: u8 +`0x18`, f32 +`0x1C`, f32 +`0x20` |
+
+GeometryInstanceOrderedObject (vtable `00903920`), `0x28` bytes from [`01F7F4C0`]:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `18` | `void*` | Gi command | `001F4950` |
+| `20` | `u32` | class key | `001F4950`, returned by `001F49E0` |
+
+GS command buffer record (`02EBEFC0`, `02EBEFD8`), `0x18` bytes:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `void*` | begin | [`01FD4A78`] + offset * 16 |
+| `08` | `void*` | write cursor |  |
+| `10` | `u32` | capacity | `0x200` |
+| `14` | `u32` | ready | 1 after `004FE420` |
 
 The command classes and their vtables, in vtable order from `00902F90` (stride 0x20):
 

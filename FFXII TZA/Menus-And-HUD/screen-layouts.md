@@ -3,10 +3,8 @@ title: "Screen layouts: the UISize layout files, every key they set, the loader 
 kind: "format"
 category: "Menus and HUD"
 summary: "The UISize.json and UISize_sd.json layout files: which one the game loads and the 1920 x 1080 frame it lays out in, the loader that binds 226 keys to their cells one by one, how a missing key becomes 0, the editor schema shipped beside them, the keys no code reads, the one key code overwrites, and for every key its cell, shipped value and the screens and functions that read it, listed in screen-layouts.tsv."
-addresses: ["001C6C00", "001CA600", "001AF470", "001FF4F0", "00200B80", "0024B120", "00184660", "001B24B0"]
+addresses: "001C6C00, 001CA600, 001AF470, 001FF4F0, 00200B80, 0024B120, 00184660, 001B24B0"
 ---
-
-# Screen layouts: the UISize layout files, every key they set, the loader that binds each key to its cell, and the screens that read them
 
 ## What the player sees
 
@@ -63,10 +61,12 @@ The loader `001CA600` binds every key by its own code, with no table (1,602 inst
 
 No two keys share a cell, and every cell is in `.data`.
 
-```struct JsonBoxValue base=record size=0x10
-+0x00  u32     tag      1 integer, 2 double, 3 object, 6 absent (00200BE0, 001FF5E1)
-+0x08  u32[2]  payload  pointer to the value or the child map (00200B87, 00200B93)
-```
+`JsonBoxValue` (`0x10` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | tag | 1 integer, 2 double, 3 object, 6 absent (`00200BE0`, `001FF5E1`) |
+| `08` | `u32[2]` | payload | pointer to the value or the child map (`00200B87`, `00200B93`) |
 
 An integer read returns the integer for tag 1, the truncated double for tag 2, and 0 otherwise (`00200B9C`); a float
 read converts either and returns 0.0 otherwise (`00200B75`).

@@ -3,10 +3,8 @@ title: "Controllers: how a gamepad is found, the three kinds of controller the g
 kind: "system"
 category: "Controls and input"
 summary: "How a pad becomes a controller: the start-up device walk and its two callbacks, the device types each accepts, the duplicate test, the Steam, XInput and DirectInput controller objects and the order they are tried in, the four-pad XInput limit, the DirectInput set-up and its failure rules, the eighteen Steam Input action names, and the device-arrival message that repeats the walk."
-addresses: ["00797910", "00796230", "00798A40", "00797690", "00792B70", "00792CB0", "00792AB0", "007999E0"]
+addresses: "00797910, 00796230, 00798A40, 00797690, 00792B70, 00792CB0, 00792AB0, 007999E0"
 ---
-
-# Controllers: how a gamepad is found, the three kinds of controller the game builds, plugging one in during play, and the Steam Input action names
 
 ## What the player sees
 

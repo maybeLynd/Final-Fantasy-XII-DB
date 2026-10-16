@@ -3,10 +3,8 @@ title: "Effect element runtime: instances, emitters and elements, the per-step u
 kind: "system"
 category: "Graphics"
 summary: "How a parsed effect runs: the 0x3B0-byte effect instance and its kind list, the emitters an instance keeps and the elements each emitter owns, the update pass that runs once per simulation step, the element's birth, its base update and type tail, the cull test that releases an element or fires its eight child-spawn slots, the five method tables keyed by the element type, and the six display layers whose grouped passes walk the elements, append to the depth-sorted draw list and drain it."
-addresses: ["0024B270", "020910F0", "02F97348", "02EBEF88", "0024ED80", "00258D70", "0024B9B0", "003A7050", "003A8390", "0043EF40", "00441B30", "002F3BC0", "002F2D60", "002F3910", "002F2530", "002F4020", "005004C0", "002F31C0", "005002E0", "003A8950", "003A8AE0", "00258EE0", "00259030", "0024D370", "0024D4E0", "00441970", "02AEE910", "02F8F2F8", "02F8F2C6", "003A3740", "003A3A00", "0024D540"]
+addresses: "0024B270, 020910F0, 02F97348, 02EBEF88, 0024ED80, 00258D70, 0024B9B0, 003A7050, 003A8390, 0043EF40, 00441B30, 002F3BC0, 002F2D60, 002F3910, 002F2530, 002F4020, 005004C0, 002F31C0, 005002E0, 003A8950, 003A8AE0, 00258EE0, 00259030, 0024D370, 0024D4E0, 00441970, 02AEE910, 02F8F2F8, 02F8F2C6, 003A3740, 003A3A00, 0024D540"
 ---
-
-# Effect element runtime: instances, emitters and elements, the per-step update, birth, release and child spawns, and the six display layers
 
 ## What the player sees
 

@@ -3,10 +3,8 @@ title: "UI typed lists: the authored item lists menus are composed from, their n
 kind: "format"
 category: "Game files and data tables"
 summary: "The MRP list files and mrppack_ys.bin units that lay out menu screens: the header and its relocation, the 20-byte list records, the self-sized items and their nine type codes, what each type builds and how it is drawn, the 16-byte atlas name records, the 64-slot atlas registry and how TIM2 buffers fill it, the two-level sub-image lookup, the single allocation per list, the 344 shipped list files, and the rules an edited list must keep."
-addresses: ["002432B0", "00243514", "00243538", "0024355C", "002497B0", "0029ECB0", "0029E7D0", "0029F4C0", "0029ED40", "0029ED30", "0029FEB0", "0029FBD0", "0029F130", "0029ED50", "002A0180", "0029F930", "002D14E0", "0029F5D0", "002435C0", "00243C00", "002482E0", "002A0060", "0024A610", "0024A5F0", "0024A5A0", "0024A4E0", "0024A440", "0024A480", "0024A1D0", "0024A710", "0208F580", "02090780", "002A00F0", "002A1A80", "00249320", "00249380", "002493D0", "00280980", "002F9920", "0020E600", "0020E620"]
+addresses: "002432B0, 00243514, 00243538, 0024355C, 002497B0, 0029ECB0, 0029E7D0, 0029F4C0, 0029ED40, 0029ED30, 0029FEB0, 0029FBD0, 0029F130, 0029ED50, 002A0180, 0029F930, 002D14E0, 0029F5D0, 002435C0, 00243C00, 002482E0, 002A0060, 0024A610, 0024A5F0, 0024A5A0, 0024A4E0, 0024A440, 0024A480, 0024A1D0, 0024A710, 0208F580, 02090780, 002A00F0, 002A1A80, 00249320, 00249380, 002493D0, 00280980, 002F9920, 0020E600, 0020E620, 003931E0, 00393240, 0024A660"
 ---
-
-# UI typed lists: the authored item lists menus are composed from, their nine item types, the atlas registry their sprites come from, and the one-allocation build
 
 ## What the player sees
 
@@ -41,17 +39,17 @@ only by it.
 
 ### File header
 
-```
-+0x00  char[3] "MRP"
-+0x03  u8    prepared flag: 0 in the file, set to 1 by 002A00F0
-+0x04  u32   number of atlas name records
-+0x08  u32   offset of the atlas name records (file-relative; relocated)
-+0x10  u32   end of the name records (+0x08 + 16 × count)
-+0x1C  u32   number of list records
-+0x20  u32   offset of the list records (file-relative; relocated); 0x30 in every shipped list
-+0x24  u32   number of file-row atlas registrations
-+0x28  u32   offset of the row table (file-relative; relocated); rows are 12 bytes
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[3]` | "MRP" |  |
+| `03` | `u8` | prepared flag: 0 in the file, set to 1 by 002A00F0 |  |
+| `04` | `u32` | number of atlas name records |  |
+| `08` | `u32` | offset of the atlas name records (file-relative; relocated) |  |
+| `10` | `u32` | end of the name records (+0x08 + 16 × count) |  |
+| `1C` | `u32` | number of list records |  |
+| `20` | `u32` | offset of the list records (file-relative; relocated); 0x30 in every shipped list |  |
+| `24` | `u32` | number of file-row atlas registrations |  |
+| `28` | `u32` | offset of the row table (file-relative; relocated); rows are 12 bytes |  |
 
 `002A00F0` returns at once when byte `+3` is 1. Otherwise it rewrites `+0x08`, `+0x20` (through `002A1A80`) and
 `+0x28` from file offsets into the engine's 32-bit encoded addresses (`0020E620` subtracts the low half of the base
@@ -63,33 +61,31 @@ through `0024A440` (the readers are in `00406A60`); every shipped list has no ro
 
 ### List record (20 bytes)
 
-```
-+0x00  u32   bits 0-9   item count (at most 1,023)
-             bits 10-27 not read by the decoder
-             bit 28     copied to bit 0 of the built list's header
-+0x04  s16   x          the list's rectangle, copied by the widgets that own it
-+0x06  s16   y
-+0x08  u16   width
-+0x0A  u16   height
-+0x0C  u32   a value read by the peek reader 002BF3D0 (stored in 01E0CE88)
-+0x10  u32   offset of this record's first item, relative to the record itself
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | bits 0-9 | item count (at most 1,023) bits 10-27 not read by the decoder bit 28     copied to bit 0 of the built list's header |
+| `04` | `i16` | x | the list's rectangle, copied by the widgets that own it |
+| `06` | `i16` | y |  |
+| `08` | `u16` | width |  |
+| `0A` | `u16` | height |  |
+| `0C` | `u32` | a value read by the peek reader 002BF3D0 (stored in 01E0CE88) |  |
+| `10` | `u32` | offset of this record's first item, relative to the record itself |  |
 
 ### Item header
 
 Items are variable-length and say their own length, so the walk steps over any type.
 
-```
-+0x00  u8    item length in bytes
-+0x01  u8    type, 1-9
-+0x02  u8    not read by the decoder
-+0x03  u8    bit 4 (bit 28 of the first dword): drawn
-+0x04  s16   x
-+0x06  s16   y
-+0x08  u16   width
-+0x0A  u16   height
-+0x0C  ...   type fields
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | item length in bytes |  |
+| `01` | `u8` | type, 1-9 |  |
+| `02` | `u8` | not read by the decoder |  |
+| `03` | `u8` | bit 4 (bit 28 of the first dword): drawn |  |
+| `04` | `i16` | x |  |
+| `06` | `i16` | y |  |
+| `08` | `u16` | width |  |
+| `0A` | `u16` | height |  |
+| `0C` | `...` | type fields |  |
 
 ### Type fields
 
@@ -133,45 +129,44 @@ type 8, 44 bytes      +0x0C u16  list record to show in a grid
 
 ### Atlas name record (16 bytes)
 
-```
-+0x00  char[14]  atlas name, NUL-terminated
-+0x0E  u8        1 once resolved (0 in the file)
-+0x0F  u8        the registry slot it resolved to (0 in the file)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[14]` | atlas name, NUL-terminated |  |
+| `0E` | `u8` | 1 once resolved (0 in the file) |  |
+| `0F` | `u8` | the registry slot it resolved to (0 in the file) |  |
 
 ### Built list and node
 
 The caller passes a 24-byte list header, usually at widget `+0x50`:
 
-```
-+0x00  u32   bit 0 = record bit 28, bit 1 = 1, bits 2-17 = item count
-+0x08  ptr   the list record
-+0x10  ptr   the block: count node pointers, then the nodes; null when the size is 0
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | bit 0 = record bit 28, bit 1 = 1, bits 2-17 = item count |  |
+| `08` | `void*` | the list record |  |
+| `10` | `void*` | the block: count node pointers, then the nodes; null when the size is 0 |  |
 
 Every node starts with the same 0x14 bytes:
 
-```
-+0x00  ptr   the item
-+0x08  u32   bit 0 = item bit 28 (drawn), bits 2-5 = type & 0xF, bits 6-15 cleared for the constructor
-+0x0A  u16   0 (types 2, 9 store the frame here, type 7 a phase)
-+0x0C  s16   x, y (+0x0E), width (+0x10), height (+0x12), copied from item +0x04..+0x0B
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `void*` | the item |  |
+| `08` | `u32` | bit 0 = item bit 28 (drawn), bits 2-5 = type & 0xF, bits 6-15 cleared for the constructor |  |
+| `0A` | `u16` | 0 (types 2, 9 store the frame here, type 7 a phase) |  |
+| `0C` | `i16` | x, y (+0x0E), width (+0x10), height (+0x12), copied from item +0x04..+0x0B |  |
 
 ### Atlas registry slot (0x48 bytes, 64 slots at `0208F580`)
 
-```
-+0x00  char[16]  name
-+0x10  ptr   palette: the file's, or the reordered copy for format 0x14
-+0x18  ptr   the TIM2 buffer
-+0x20  ptr   the first picture header (buffer + 0x10)
-+0x28  ptr   a replacement palette, or null
-+0x30  u64   texture descriptor written by the layout pass
-+0x38  u32   flags: bits 0-3 caller flags, bit 5 occupied, bit 6 image bound, bit 7 in the layout,
-             bits 8-13 pixel format, bits 14-17 palette format, bits 18+ replacement palette colours
-+0x40  u32   number appended to the texture name, 0 for none
-+0x44  u32   value from 00181520
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[16]` | name |  |
+| `10` | `void*` | palette: the file's, or the reordered copy for format 0x14 |  |
+| `18` | `void*` | the TIM2 buffer |  |
+| `20` | `void*` | the first picture header (buffer + 0x10) |  |
+| `28` | `void*` | a replacement palette, or null |  |
+| `30` | `u64` | texture descriptor written by the layout pass |  |
+| `38` | `u32` | flags: bits 0-3 caller flags, bit 5 occupied, bit 6 image bound, bit 7 in the layout, | bits 8-13 pixel format, bits 14-17 palette format, bits 18+ replacement palette colours |
+| `40` | `u32` | number appended to the texture name, 0 for none |  |
+| `44` | `u32` | value from 00181520 |  |
 
 `02090780` counts registrations.
 
@@ -280,6 +275,15 @@ The sprite size and source come from the sub-image record at `+0x20 + frame × 8
 and height as 12-bit fields of the dword at `+4`. The opacity byte's high nibble indexes a per-atlas byte table
 and the low nibble is added to it.
 
+### Reaching and recolouring nodes
+
+- `003931E0(widget, i, j)` returns node i of the widget's list (`+0x60`). When that node is type 1 it
+  returns node j of the child widget's list instead (node `+0x18`), or null when there is no child.
+- `00393240(node, colour)` recolours a node from the menu colour table `0215E6C8` (`002DD7E0`; grey
+  `0x80808080` without the table): colours 0 to 5 take table entries 0, 2, 3, 4, 5 and 6, and any other
+  colour gives 0. A type 2 node gets the value in all four vertex colours (`+0x28`-`+0x34`); a type 5 node
+  gets it as its colour `+0x24` (`00392F30`).
+
 ### Release
 
 `002482E0` releases a widget. When bit 1 of the list header at its `+0x50` is set, it clears the bit, frees the
@@ -313,7 +317,8 @@ its six pieces from the base record.
 
 - `0024A4E0(name, flags)` takes the first free slot (bit 5 clear), copies the name to its NUL with no length
   check, zeroes `+0x28` and `+0x40`, sets the flags to `(old & 0x3FF10) | (flags & 0xF) | 0xA0`, counts
-  `02090780` and returns the slot; with all 64 busy it returns null.
+  `02090780` and returns the slot; with all 64 busy it returns null. `0024A660`, run from the menu system's
+  start-up `00253970`, zeroes the 64 slots and the count.
 - When the image arrives, `00249670` calls `0024A1D0(slot, buffer)`. It stores the buffer at `+0x18` and the
   picture header (buffer `+0x10`) at `+0x20`, copies the pixel format (bits 20-25 of the header's `GsTex0` at
   `+0x18`) into flag bits 8-13 and the palette format (bits 51-54) into bits 14-17, and names the texture `%s` or

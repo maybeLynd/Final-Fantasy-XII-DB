@@ -3,10 +3,8 @@ title: "PhyreEngine application framework: how the game process starts, runs its
 kind: "system"
 category: "PhyreEngine"
 summary: "The PhyreEngine framework layer the game runs inside: the start-up function that brings up Steam, the settings, the single-instance mutex, the engine modules and the window, the run setup that calls the game's initApplication and initScene slots and starts the update thread, the per-frame update that calls the input, animate, resize and render slots, the window procedure's deferred requests, and the close, shutdown and restart paths."
-addresses: ["007A3770", "007980A0", "00792350", "02EA5368", "0079E520", "0079B300", "0079F150", "007A4190", "007A4250", "007A4310", "007A3110", "007A0340", "00793E8C", "0079C140", "0079D920", "00798FF0", "0079B160", "0079B190", "0079EDD0", "007A42D0", "007A42E0", "0017E030", "0017E050", "01CB2508", "01CB2480", "02EA5245", "02EA5220", "02EA5228", "02EA5230"]
+addresses: "007A3770, 007980A0, 00792350, 02EA5368, 0079E520, 0079B300, 0079F150, 007A4190, 007A4250, 007A4310, 007A3110, 007A0340, 00793E8C, 0079C140, 0079D920, 00798FF0, 0079B160, 0079B190, 0079EDD0, 007A42D0, 007A42E0, 0017E030, 0017E050, 01CB2508, 01CB2480, 02EA5245, 02EA5220, 02EA5228, 02EA5230"
 ---
-
-# PhyreEngine application framework: how the game process starts, runs its frames and shuts down
 
 ## What the player sees
 
@@ -174,37 +172,38 @@ end in `ExitProcess(0)` (`0079887F`).
 The `PApplication` part of the application object, as the framework functions above use it. The
 `GameApplication` fields from `+0x1130` on are on the game application page.
 
-```
-PApplication  (base of GameApplication; address in 02EA5368)
-+0x000  ptr   vtable 01CB2508 (GameApplication: 008C5760)
-+0x010  ptr   PProcessorProfileTimelineCpu sub-object (its vtable)
-+0x01E  u8    resize pending (slot 12, run setup)
-+0x01F  u8    window-style refresh pending
-+0x020  u8    screen-mode change pending (slot 12)
-+0x021  u8    focus request pending (slot 13)     +0x026 u8  restore (1) or minimise (0)
-+0x022  u8    monitor re-check pending (slot 19)  +0x023 u8  skip the next re-check
-+0x024  u8    window moved (slot 20)
-+0x028  u8    title-bar or border mouse press (slot 17)
-+0x029  u8    resize pending (slot 18)            +0x02C i32 width  +0x030 i32 height
-+0x03C  i32   frame rate used for a full-screen switch
-+0x040  f64   total elapsed time
-+0x048  f64   frame delta
-+0x050  f64   time offset taken at run setup
-+0x058  ptr   console object (script or replay mode only)
-+0x060  f32   frames per second, measured over two seconds
-+0x064  u32   frame counter
-+0x069  u8    quit
-+0x06C  f32   fixed time step, 0 = real time
-+0x0E8  ...   render context
-+0xD10  ptr   render-interface parameter block (01F403A8)
-+0xD18  ptr   per-frame function: 00793E8C (slot 28) or 00793E98 (slot 29)
-+0xD20  u8    full screen
-+0xD24  i32   width (default 1280)                +0xD28 i32 height (default 720)
-+0xD98  ptr   input-recording stream
-+0xDB8  u32   viewport count                      +0xDC0 ptr viewport array
-+0xDE8  ptr   96 MiB arena                        +0xDF0 ptr 2 MiB block
-+0xDF8  ptr   input object
-```
+PApplication  (base of GameApplication; address in `02EA5368`):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `000` | `void*` | vtable 01CB2508 (GameApplication: 008C5760) |  |
+| `010` | `void*` | PProcessorProfileTimelineCpu sub-object (its vtable) |  |
+| `01E` | `u8` | resize pending (slot 12, run setup) |  |
+| `01F` | `u8` | window-style refresh pending |  |
+| `020` | `u8` | screen-mode change pending (slot 12) |  |
+| `021` | `u8` | focus request pending (slot 13) | +`0x026` u8  restore (1) or minimise (0) |
+| `022` | `u8` | monitor re-check pending (slot 19) | +`0x023` u8  skip the next re-check |
+| `024` | `u8` | window moved (slot 20) |  |
+| `028` | `u8` | title-bar or border mouse press (slot 17) |  |
+| `029` | `u8` | resize pending (slot 18) | +`0x02C` i32 width  +`0x030` i32 height |
+| `03C` | `i32` | frame rate used for a full-screen switch |  |
+| `040` | `f64` | total elapsed time |  |
+| `048` | `f64` | frame delta |  |
+| `050` | `f64` | time offset taken at run setup |  |
+| `058` | `void*` | console object (script or replay mode only) |  |
+| `060` | `f32` | frames per second, measured over two seconds |  |
+| `064` | `u32` | frame counter |  |
+| `069` | `u8` | quit |  |
+| `06C` | `f32` | fixed time step, 0 = real time |  |
+| `0E8` | `...` | render context |  |
+| `D10` | `void*` | render-interface parameter block (01F403A8) |  |
+| `D18` | `void*` | per-frame function: 00793E8C (slot 28) or 00793E98 (slot 29) |  |
+| `D20` | `u8` | full screen |  |
+| `D24` | `i32` | width (default 1280) | +`0xD28` i32 height (default 720) |
+| `D98` | `void*` | input-recording stream |  |
+| `DB8` | `u32` | viewport count | +`0xDC0` ptr viewport array |
+| `DE8` | `void*` | 96 MiB arena | +`0xDF0` ptr 2 MiB block |
+| `DF8` | `void*` | input object |  |
 
 The application vtable slots the framework calls, named by the framework's own log strings where it
 has them:

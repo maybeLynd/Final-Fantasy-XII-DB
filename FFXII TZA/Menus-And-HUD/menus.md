@@ -3,10 +3,8 @@ title: "Menus: how a menu screen is asked for and opened, the one-slot mailbox, 
 kind: "system"
 category: "Menus and HUD"
 summary: "How menus are requested: the request ids and the router that opens each one, the refusals by latch and action policy, the one-slot mailbox and the posts that fill it, the script verbs that open menus and their selector table, the drain that delivers a request once per tick, the full-screen hold while a menu is open and the close acknowledgement, what a menu hands back to the script, and the request ids nothing posts."
-addresses: ["00254B50", "0215F1A0", "002E1B10", "002E1A60", "002E0DA0", "002E09A0", "00280A00", "0027FB70"]
+addresses: "00254B50, 0215F1A0, 002E1B10, 002E1A60, 002E0DA0, 002E09A0, 00280A00, 0027FB70"
 ---
-
-# Menus: how a menu screen is asked for and opened, the one-slot mailbox, the refusals that keep a menu shut, and what a menu hands back
 
 ## What the player sees
 

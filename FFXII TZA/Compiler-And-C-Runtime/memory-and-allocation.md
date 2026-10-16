@@ -3,10 +3,8 @@ title: "Memory and allocation: the C runtime heap, the game's allocation wrapper
 kind: "system"
 category: "Compiler and C runtime"
 summary: "Where the game's memory comes from: the eight heap imports and the forwarders in front of them, the game's own operator new and delete, the aligned allocation pair and the standard library's 32-byte big-block rule, the two EASTL allocator classes and their inert log record, the big blocks taken at boot, the file-cache budget and working set sized from physical memory, the actor record pool, the movie player's ring buffers, and what each path does when an allocation fails."
-addresses: ["008C2B40", "008C2B48", "008C2B60", "008C2B70", "008C2B78", "00210EC0", "00210EB0", "00809950", "0085E730", "0019C590", "0017D260", "00584740", "00584730", "0019C580", "0019C570", "002099D0", "001A5A80", "0016D6B0", "0016D6C0", "008F6500", "00902720", "001EDF00", "001EDF10", "001EDF80", "001EDFE0", "01F82E48", "00808D5C", "0036D240", "0036D250", "0020C610", "01F83448", "01F83440", "01F83441", "0020C6B0", "01F83438", "00792F10", "002679F0", "01E0C328", "00267930", "00267BB0", "00267C20", "006CC5A0", "01F2EAA8", "01F2EAB0", "01F2EA70", "00675460", "003E9AA0", "0025A990", "0025AA30"]
+addresses: "008C2B40, 008C2B48, 008C2B60, 008C2B70, 008C2B78, 00210EC0, 00210EB0, 00809950, 0085E730, 0019C590, 0017D260, 00584740, 00584730, 0019C580, 0019C570, 002099D0, 001A5A80, 0016D6B0, 0016D6C0, 008F6500, 00902720, 001EDF00, 001EDF10, 001EDF80, 001EDFE0, 01F82E48, 00808D5C, 0036D240, 0036D250, 0020C610, 01F83448, 01F83440, 01F83441, 0020C6B0, 01F83438, 00792F10, 002679F0, 01E0C328, 00267930, 00267BB0, 00267C20, 006CC5A0, 01F2EAA8, 01F2EAB0, 01F2EA70, 00675460, 003E9AA0, 0025A990, 0025AA30"
 ---
-
-# Memory and allocation: the C runtime heap, the game's allocation wrappers, new and delete, aligned blocks and the subsystem allocators
 
 ## What the player sees
 
@@ -109,6 +107,12 @@ six slots:
 dropped. The containers construct the logging class through `001EDF00`, which stores the vtable
 `00902720` and returns. The plain vtable `008F6500` is loaded at five sites, in `001A2130`,
 `001A99B0`, `001E1670` and `00676BD0` and at `006CC33D`.
+
+The site at `001A99D5`, in `001A9940`, builds a guarded local static at `01F81188`: an EASTL tree
+whose `0x60`-byte nodes hold two `std::string`s at `+0x20` and `+0x40`, with the plain allocator at
+`+0x30`. On first use `001A9940` passes it with `/GameData/D3D11/ArtData/shared/phyremaps.txt` to
+`00677030`, through the jump thunk `00677340` (`001A998D`). Its `atexit` teardown `008A69A0` hands the root to `001A49C0`, which walks the nodes,
+frees both strings and returns each node through slot 3 of the allocator.
 
 ### The memory log that logs nothing
 
@@ -269,43 +273,51 @@ value as the length of its `"\r\n"` comparison when it splits the text into line
 
 ## Layouts
 
-```
-memory log record   01F82E48 -> malloc(0x20)
-  +0x00  u32  budget        0x2000000, never read
-  +0x04  u32  block         0x200000, never read
-  +0x08  u32  (none)        never written
-  +0x0C  u32  (none)        never written
-  +0x10  u64  total         0, never read
-  +0x18  u32  count         0, never read
-  +0x1C  u32  (none)        never written
+Memory log record   `01F82E48` -> malloc(`0x20`):
 
-actor record size table   01E0C328, 8 rows of 4 bytes
-  +0x00  u8   class         0 to 3; indexes the manager's words +0x1D0 and the record's byte +3
-  +0x01  u8   (none)        0 or 1; read by nothing
-  +0x02  u16  size          record bytes before rounding to 16
-  rows   0: class 0 0x328   1: class 1 0x3A8   2: class 1 0x330   3: class 2 0x348
-         4: class 2 0x2D0   5: class 3 0x6E0   6: class 3 0x6E0   7: class 3 0x668
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | budget | `0x2000000`, never read |
+| `04` | `u32` | block | `0x200000`, never read |
+| `08` | `u32` | (none) | never written |
+| `0C` | `u32` | (none) | never written |
+| `10` | `u64` | total | 0, never read |
+| `18` | `u32` | count | 0, never read |
+| `1C` | `u32` | (none) | never written |
 
-actor pool block
-  +0x00             u32  n, the record count
-  +0x08             ptr  record pointers, n entries
-  +header           -    manager +0x1F0 points here
-  +2*header         -    records, each round16(size) bytes, in row order
+Actor record size table   `01E0C328`, 8 rows of 4 bytes:
 
-ring buffer (006CC5A0)
-  +0x08  ptr  block          from the alloc argument
-  +0x10  u32  size + 0x10    the dword at block + this value is zeroed
-  +0x14  u32  0
-  +0x28, +0x38               two objects set up by 005CD0E0(p, 1)
-  +0x4C  u32  size + 0x20
-  +0x58  ptr  release function
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | class | 0 to 3; indexes the manager's words +`0x1D0` and the record's byte +3 |
+| `01` | `u8` | (none) | 0 or 1; read by nothing |
+| `02` | `u16` | size | record bytes before rounding to 16 rows   0: class 0 `0x328`   1: class 1 `0x3A8`   2: class 1 `0x330`   3: class 2 `0x348` 4: class 2 `0x2D0`   5: class 3 `0x6E0`   6: class 3 `0x6E0`   7: class 3 `0x668` |
 
-static block 01F2EA70
-  +0x00  ptr[6]  registry tree head, self-pointing when empty; root at +0x18
-  +0x30  u64     2, the line-terminator length read by 00677030
-  +0x38  ptr     00584740, allocate 16-byte aligned
-  +0x40  ptr     00584730, aligned free
-```
+Actor pool block:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | n, the record count |  |
+| `08` | `void*` | record pointers, n entries | +header           -    manager +`0x1F0` points here +2*header         -    records, each round16(size) bytes, in row order |
+
+Ring buffer (`006CC5A0`):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `08` | `void*` | block | from the alloc argument |
+| `10` | `u32` | size + 0x10 | the dword at block + this value is zeroed |
+| `14` | `u32` | 0 | +`0x28`, +`0x38`               two objects set up by `005CD0E0`(p, 1) |
+| `4C` | `u32` | size + 0x20 |  |
+| `58` | `void*` | release function |  |
+
+Static block `01F2EA70`:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `void*[6]` | registry tree head, self-pointing when empty; root at +0x18 |  |
+| `30` | `u64` | 2, the line-terminator length read by 00677030 |  |
+| `38` | `void*` | 00584740, allocate 16-byte aligned |  |
+| `40` | `void*` | 00584730, aligned free |  |
 
 The file cache manager's other fields are on the
 [file path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md) page.

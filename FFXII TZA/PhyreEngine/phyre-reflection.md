@@ -3,10 +3,8 @@ title: "Phyre reflection: how PhyreEngine describes its classes at run time, reg
 kind: "system"
 category: "PhyreEngine"
 summary: "PhyreEngine's run-time class reflection in the executable: the 0x100-byte class descriptor and its registration in a namespace and a by-name type tree, the member records that give each field's name, type, offset and attribute word, array members and annotations, the default instance and the two masks built per class, how PCluster::create sizes and initialises instances, how descriptors are torn down, and the data files that list the generated functions and the per-class field accesses."
-addresses: ["00632D80", "00632C90", "00632E80", "005A7ED0", "001603E0", "00639450", "00639160", "0063E410", "006388C0", "006311D0", "0063BA10", "00632960", "00632FB0", "00632A10", "00632A70", "00632BE0", "0062EFD0", "0062F080", "00597220", "0063C0C0", "006B66C0", "006B67D0", "006B67F0", "0063A990", "00639510", "0063C910", "00639A60", "00639C80", "0063CB80", "00633390", "0063D550", "0063D640", "006B6700", "00633240", "005847E0", "00584730", "02CF8260", "01F2E330", "01F2E780", "02CF8270", "02CF8470", "02CF8570"]
+addresses: "00632D80, 00632C90, 00632E80, 005A7ED0, 001603E0, 00639450, 00639160, 0063E410, 006388C0, 006311D0, 0063BA10, 00632960, 00632FB0, 00632A10, 00632A70, 00632BE0, 0062EFD0, 0062F080, 00597220, 0063C0C0, 006B66C0, 006B67D0, 006B67F0, 0063A990, 00639510, 0063C910, 00639A60, 00639C80, 0063CB80, 00633390, 0063D550, 0063D640, 006B6700, 00633240, 005847E0, 00584730, 02CF8260, 01F2E330, 01F2E780, 02CF8270, 02CF8470, 02CF8570"
 ---
-
-# Phyre reflection: how PhyreEngine describes its classes at run time, registers their members and creates instances
 
 ## What the player sees
 
@@ -171,41 +169,43 @@ the empty `0016D6A0` and free nothing.
 
 ## Layouts
 
-```
-PType (base of every type and descriptor)
-+0x00  ptr   vtable
-+0x08  ptr   type-tree links (three pointers, +0x08..+0x1F)
-+0x20  u32   name hash, written by 006388C0
-+0x28  ptr   name, as the tree key
-+0x30  ptr   name
-+0x38  u32   instance size
-+0x3C  u32   alignment
-+0x40  u64   0
-+0x48  u64   0
-```
+PType (base of every type and descriptor):
 
-```
-PClassDescriptor (0x100)
-+0x50  list  node in the namespace's class list
-+0x60  list  drained by 006B6700 at teardown
-+0x70  ptr   namespace
-+0x78  ptr   parent descriptor, or null
-+0x80  list  data members
-+0x90  list  methods
-+0xA0  list  script functions
-+0xB0  list  fourth list, emptied by the constructor and the destructor
-+0xC0  ptr   default instance
-+0xC8  ptr   undescribed-byte mask
-+0xD0  ptr   write mask
-+0xD8  ptr   0 (zeroed by the constructor)
-+0xE0  ptr   0 (zeroed by the constructor)
-+0xE8  u32   registration index (02CF8260)
-+0xEC  u32   0xFFFFFFFF
-+0xF0  i32   this class's adjustment
-+0xF4  i32   sum of adjustments to the root
-+0xF8  i32   layout base of an instance
-+0xFC  u32   flags
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `void*` | vtable |  |
+| `08` | `void*` | type-tree links (three pointers, +0x08..+0x1F) |  |
+| `20` | `u32` | name hash, written by 006388C0 |  |
+| `28` | `void*` | name, as the tree key |  |
+| `30` | `void*` | name |  |
+| `38` | `u32` | instance size |  |
+| `3C` | `u32` | alignment |  |
+| `40` | `u64` | 0 |  |
+| `48` | `u64` | 0 |  |
+
+PClassDescriptor (`0x100`):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `50` | `list` | node in the namespace's class list |  |
+| `60` | `list` | drained by 006B6700 at teardown |  |
+| `70` | `void*` | namespace |  |
+| `78` | `void*` | parent descriptor, or null |  |
+| `80` | `list` | data members |  |
+| `90` | `list` | methods |  |
+| `A0` | `list` | script functions |  |
+| `B0` | `list` | fourth list, emptied by the constructor and the destructor |  |
+| `C0` | `void*` | default instance |  |
+| `C8` | `void*` | undescribed-byte mask |  |
+| `D0` | `void*` | write mask |  |
+| `D8` | `void*` | 0 (zeroed by the constructor) |  |
+| `E0` | `void*` | 0 (zeroed by the constructor) |  |
+| `E8` | `u32` | registration index (02CF8260) |  |
+| `EC` | `u32` | 0xFFFFFFFF |  |
+| `F0` | `i32` | this class's adjustment |  |
+| `F4` | `i32` | sum of adjustments to the root |  |
+| `F8` | `i32` | layout base of an instance |  |
+| `FC` | `u32` | flags |  |
 
 A list is a `{next, prev}` pair that points at itself when empty; a node sits 8 bytes into its
 record, and an owned node has bit `0x1` at node `+0x20`.
@@ -221,39 +221,42 @@ record, and an owned node has bit `0x1` at node `+0x20`.
 0x80000000  default instance and masks built
 ```
 
-```
-PClassDescriptorDynamic (0x140), beyond the base
-+0x100  u16  pair compared by 0063D550 to skip a rebuild
-+0x104  u32  parent's instance size
-+0x108  …    three {u32, ptr} pairs at +0x108, +0x118, +0x128, zeroed by 00632E80
-+0x138  ptr  tagged name; +0x30 holds it with bit 0 cleared
-```
+PClassDescriptorDynamic (`0x140`), beyond the base:
 
-```
-PClassDataMember (0x58; arrays to +0x64)
-+0x00  ptr   vtable
-+0x08  list  node in the owner's +0x80 list
-+0x18  ptr   owning descriptor
-+0x20  ptr   name
-+0x28  u32   attribute word
-+0x30  ptr   type (a PType or a class descriptor)
-+0x38  list  annotations
-+0x48  u32   offset in the owner's layout
-+0x50  ptr   dynamic-type helper, or null
-+0x58  u32   element size (arrays)
-+0x5C  u32   array kind
-+0x60  u32   element count (fixed arrays)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `100` | `u16` | pair compared by 0063D550 to skip a rebuild |  |
+| `104` | `u32` | parent's instance size |  |
+| `108` | `…` | three {u32, ptr} pairs at +0x108, +0x118, +0x128, zeroed by 00632E80 |  |
+| `138` | `void*` | tagged name; +0x30 holds it with bit 0 cleared |  |
 
-```
-PAnnotation (0x30)
-+0x00  ptr   vtable
-+0x08  list  node in a member's +0x38 list
-+0x18  ptr   key (02CF8570 for WriteMask)
-+0x20  ptr   value type
-+0x28  u32   fourth constructor argument
-+0x30  u32   value (PAnnotationWithValue<unsigned int>)
-```
+PClassDataMember (`0x58`; arrays to +`0x64`):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `void*` | vtable |  |
+| `08` | `list` | node in the owner's +0x80 list |  |
+| `18` | `void*` | owning descriptor |  |
+| `20` | `void*` | name |  |
+| `28` | `u32` | attribute word |  |
+| `30` | `void*` | type (a PType or a class descriptor) |  |
+| `38` | `list` | annotations |  |
+| `48` | `u32` | offset in the owner's layout |  |
+| `50` | `void*` | dynamic-type helper, or null |  |
+| `58` | `u32` | element size (arrays) |  |
+| `5C` | `u32` | array kind |  |
+| `60` | `u32` | element count (fixed arrays) |  |
+
+PAnnotation (`0x30`):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `void*` | vtable |  |
+| `08` | `list` | node in a member's +0x38 list |  |
+| `18` | `void*` | key (02CF8570 for WriteMask) |  |
+| `20` | `void*` | value type |  |
+| `28` | `u32` | fourth constructor argument |  |
+| `30` | `u32` | value (PAnnotationWithValue<unsigned int>) |  |
 
 ```
 attribute word (member +0x28)
@@ -265,18 +268,19 @@ attribute word (member +0x28)
 0x40  a kind-2 array measured and defaulted inline, not as a pointer (PSharray<T>::m_u)
 ```
 
-```
-descriptor vtable slots (PClassDescriptorConcrete<PAnimatableComponent>, 00D29E90)
-+0x00  visit every member of the class and its ancestors (0063E2E0)
-+0x18  get the value from a script context
-+0x20  put the value into a script context
-+0x38  scalar deleting destructor
-+0x40  attach a member (0062EFD0)
-+0x48  detach a member (0062F080)
-+0x50  construct in place; returns false for a class without one (00657140)
-+0x58  destruct in place (0063FC60)
-+0x60  register the members (_purecall in ForType<T>)
-```
+Descriptor vtable slots (PClassDescriptorConcrete<PAnimatableComponent>, `00D29E90`):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `visit` | every | member of the class and its ancestors (`0063E2E0`) |
+| `18` | `get` | the | value from a script context |
+| `20` | `put` | the | value into a script context |
+| `38` | `scalar` | deleting | destructor |
+| `40` | `attach` | a | member (`0062EFD0`) |
+| `48` | `detach` | a | member (`0062F080`) |
+| `50` | `construct` | in | place; returns false for a class without one (`00657140`) |
+| `58` | `destruct` | in | place (`0063FC60`) |
+| `60` | `register` | the | members (_purecall in ForType<T>) |
 
 ## Shipped data
 

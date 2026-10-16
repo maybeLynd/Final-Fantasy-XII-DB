@@ -3,10 +3,8 @@ title: "Keymap file: keymap.ini, the control config file, when it is read and wr
 kind: "format"
 category: "Controls and input"
 summary: "The keyboard control file keymap.ini: where it lives, the one read at input start-up and the checks that throw a file away, the line grammar the parser accepts, the 28 names that are the slots of each of three profiles, the control codes the values hold, the two times the game writes the file, the Circle and Cross exchange, and the shipped default bindings of all three profiles."
-addresses: ["00197EE0", "00195060", "00198000", "00196550", "001965E0", "00198B60", "001993B0", "01DF11E0"]
+addresses: "00197EE0, 00195060, 00198000, 00196550, 001965E0, 00198B60, 001993B0, 01DF11E0"
 ---
-
-# Keymap file: keymap.ini, the control config file, when it is read and written, its names in slot order, and the shipped defaults
 
 ## What the player sees
 
@@ -35,11 +33,13 @@ down (`0017D670`, from `0017CDC0`). A first run with no file therefore ends by w
 
 ## Layouts
 
-```struct KeymapProfile base=record size=0x70
-+0x00  u32[16]  buttons   group 0: Select, L3, R3, Start, Up, Right, Down, Left, L2, R2, L1, R1, Triangle, Circle, Cross, Square
-+0x40  u32[8]   sticks    group 1: RX_P, RX_N, RY_P, RY_N, LX_P, LX_N, LY_P, LY_N
-+0x60  u32[4]   extras    group 2: Speed1, Speed2, Speed3, WalkMode
-```
+`KeymapProfile` (`0x70` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32[16]` | buttons | group 0: Select, L3, R3, Start, Up, Right, Down, Left, L2, R2, L1, R1, Triangle, Circle, Cross, Square |
+| `40` | `u32[8]` | sticks | group 1: RX_P, RX_N, RY_P, RY_N, LX_P, LX_N, LY_P, LY_N |
+| `60` | `u32[4]` | extras | group 2: Speed1, Speed2, Speed3, WalkMode |
 
 The three profiles sit at `01F80F90`, `0x70` bytes apart, and the file's `[Keyboard1]`-`[Keyboard3]` fill them in
 order. A slot's name is its place in the three name groups at `01DF11E0`, sixteen pointers per group, read by both

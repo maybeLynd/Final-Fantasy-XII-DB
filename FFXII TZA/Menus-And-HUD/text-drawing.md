@@ -3,10 +3,8 @@ title: "Text drawing: how a line of menu text becomes glyph quads, the drawing c
 kind: "system"
 category: "Menus and HUD"
 summary: "How a glyph becomes six vertices in a per-font batch, how the text flush turns the batches into drawing objects, the eight DynGeo drawing classes and their three shapes, the shared ten-layer draw body and its Final and Shadow variants, how menu text is drawn as a white mask, a border shader pass, the coloured glyphs and one composite quad, the pre-drawn shadow atlas path and the aspect row the shipped settings leave off, and where the painter's state is kept."
-addresses: ["001E8070", "001E8580", "002142A0", "00213FE0", "00212E70", "00213140", "00214210", "0209D490"]
+addresses: "001E8070, 001E8580, 002142A0, 00213FE0, 00212E70, 00213140, 00214210, 0209D490"
 ---
-
-# Text drawing: how a line of menu text becomes glyph quads, the drawing classes that draw them, and the border shader that outlines it
 
 ## What the player sees
 
@@ -147,67 +145,75 @@ with the glyph atlas in the glyph colour. With the shipped `[01E02818]` of 1, th
 
 ## Layouts
 
-```struct DynGeoFontTextSpecialInstance base=record size=0x160
-+0x000  u32[2]   vftable        the family's table
-+0x008  u32[20]  layerTexture   ten texture pointers (slot 4, read 002142D0)
-+0x058  u32[20]  layerVertices  ten pointers to 0x30-byte vertices (slot 5, read 00214332)
-+0x0A8  u32[10]  layerCount     vertex capacity per layer (slot 5)
-+0x0D0  i32[10]  layerCursor    next vertex per layer
-+0x0F8  u32[2]   blendCode      slot 7; decoded by 001EE650
-+0x100  u32[2]   stateCode      slot 8; decoded by 001EE7C0
-+0x108  i32      viewX          slot 9
-+0x10C  i32      viewY          slot 9
-+0x110  i32      viewW          slot 9; the target width on the offscreen path
-+0x114  i32      viewH          slot 9
-+0x118  u32      viewFlag       slot 9
-+0x11C  f32[16]  matrix         slot 3; identity when built
-```
+`DynGeoFontTextSpecialInstance` (`0x160` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `000` | `u32[2]` | vftable | the family's table |
+| `008` | `u32[20]` | layerTexture | ten texture pointers (slot 4, read `002142D0`) |
+| `058` | `u32[20]` | layerVertices | ten pointers to `0x30`-byte vertices (slot 5, read `00214332`) |
+| `0A8` | `u32[10]` | layerCount | vertex capacity per layer (slot 5) |
+| `0D0` | `i32[10]` | layerCursor | next vertex per layer |
+| `0F8` | `u32[2]` | blendCode | slot 7; decoded by `001EE650` |
+| `100` | `u32[2]` | stateCode | slot 8; decoded by `001EE7C0` |
+| `108` | `i32` | viewX | slot 9 |
+| `10C` | `i32` | viewY | slot 9 |
+| `110` | `i32` | viewW | slot 9; the target width on the offscreen path |
+| `114` | `i32` | viewH | slot 9 |
+| `118` | `u32` | viewFlag | slot 9 |
+| `11C` | `f32[16]` | matrix | slot 3; identity when built |
 
 `Shadow` adds the line origin at `+0x160`/`+0x164` (`00214B10`), `ShadowFinal` the target index at `+0x160`
 (`002147A0`), and `Final` a byte at `+0x168` (`0021394D`).
 
-```struct DynGeoVertex base=record size=0x30
-+0x00  f32  x  clip space; (x - 2048) x 2 / 1920 (00213D31-00213D61)
-+0x04  f32  y  (y - 2048) x -2 / 1080
-+0x08  f32  z
-+0x0C  f32  w
-+0x10  f32  r
-+0x14  f32  g
-+0x18  f32  b
-+0x1C  f32  a
-+0x20  f32  u
-+0x24  f32  v
-```
+`DynGeoVertex` (`0x30` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `f32` | x | clip space; (x - 2048) x 2 / 1920 (`00213D31`-`00213D61`) |
+| `04` | `f32` | y | (y - 2048) x -2 / 1080 |
+| `08` | `f32` | z |  |
+| `0C` | `f32` | w |  |
+| `10` | `f32` | r |  |
+| `14` | `f32` | g |  |
+| `18` | `f32` | b |  |
+| `1C` | `f32` | a |  |
+| `20` | `f32` | u |  |
+| `24` | `f32` | v |  |
 
 The byte `[01F811E0]` is set from `[01E0280C]`, shipped 1 (`0022A113`-`0022A120`, `001B24B0`); with it clear the
 mapping divides by 512 and 448 instead (`001B1620`, `00213D38`).
 
-```struct FontClutEntry base=record size=0x24
-+0x00  u8   loaded  set by 001E9515
-+0x04  u32  r2      border or shadow colour
-+0x08  u32  g2
-+0x0C  u32  b2
-+0x10  u32  a2      over 128
-+0x14  u32  r1      glyph colour
-+0x18  u32  g1
-+0x1C  u32  b1
-+0x20  u32  a1      over 128
-```
+`FontClutEntry` (`0x24` bytes, offsets from the start of the record):
 
-```struct FontPaintRecord base=record size=0x2C
-+0x00  u32  ownerKey     001E9E2A
-+0x04  u8   emitted      set by 001E83A3
-+0x08  f32  minX         1920 when reset
-+0x0C  f32  minY         1080 when reset
-+0x10  f32  maxX
-+0x14  f32  maxY
-+0x18  f32  originX
-+0x1C  f32  originY
-+0x20  f32  firstAlpha   001E84F9
-+0x24  f32  latestAlpha  001E8523
-+0x28  u8   offscreen    set by begin 001E99AA
-+0x29  u8   firstPending cleared 001E84D0
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | loaded | set by `001E9515` |
+| `04` | `u32` | r2 | border or shadow colour |
+| `08` | `u32` | g2 |  |
+| `0C` | `u32` | b2 |  |
+| `10` | `u32` | a2 | over 128 |
+| `14` | `u32` | r1 | glyph colour |
+| `18` | `u32` | g1 |  |
+| `1C` | `u32` | b1 |  |
+| `20` | `u32` | a1 | over 128 |
+
+`FontPaintRecord` (`0x2C` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | ownerKey | `001E9E2A` |
+| `04` | `u8` | emitted | set by `001E83A3` |
+| `08` | `f32` | minX | 1920 when reset |
+| `0C` | `f32` | minY | 1080 when reset |
+| `10` | `f32` | maxX |  |
+| `14` | `f32` | maxY |  |
+| `18` | `f32` | originX |  |
+| `1C` | `f32` | originY |  |
+| `20` | `f32` | firstAlpha | `001E84F9` |
+| `24` | `f32` | latestAlpha | `001E8523` |
+| `28` | `u8` | offscreen | set by begin `001E99AA` |
+| `29` | `u8` | firstPending cleared 001E84D0 |  |
 
 ## Modding notes
 

@@ -3,10 +3,8 @@ title: "Combos: combo chance, the hit-count roll, low-HP bonus and how each extr
 kind: "system"
 category: "Battle actions"
 summary: "How a weapon attack becomes a combo - the chance from the weapon's combo byte (x0.7, or x1.8 with the multiple-hits augment), the extra-hit count rolled once on the first hit with odds that rise as the attacker's HP falls, the caps, how every further hit re-commits the same action, what stops a combo (fleeing, a KO'd target, special sequences) and what a running combo blocks."
-addresses: ["00388550", "00388660", "0030FA00", "0030C010", "00308610", "00307300", "00385680", "003105D0"]
+addresses: "00388550, 00388660, 0030FA00, 0030C010, 00308610, 00307300, 00385680, 003105D0"
 ---
-
-# Combos: combo chance, the hit-count roll, low-HP bonus and how each extra hit is re-committed
 
 ## What the player sees
 

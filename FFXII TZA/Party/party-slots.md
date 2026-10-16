@@ -3,10 +3,8 @@ title: "Party slots: the nine seats, the five slot maps the game reads them thro
 kind: "system"
 category: "Party"
 summary: "How the party is seated: the nine two-byte seats of the live party, four active and five reserve, the four copies the battle, the battle menu and the rest of the game read instead, how a new game fills them, how the copies are rebuilt for summons, chocobo rides, towns and scripted party modes, and the functions that turn a seat into a stats record or a battle unit."
-addresses: ["0031B9F0", "0031B810", "00320AB0", "00329CC0", "003266C0", "0030D9A0"]
+addresses: "0031B9F0, 0031B810, 00320AB0, 00329CC0, 003266C0, 0030D9A0"
 ---
-
-# Party slots: the nine seats, the five slot maps the game reads them through, and how a seat reaches its battle unit
 
 ## What the player sees
 
@@ -94,13 +92,15 @@ the end `00326500` picks the controlled member and `022C2670` counts the fightin
 
 The slot maps in the battle state block:
 
-```struct PartySlotMaps base=record size=0x5A
-+0x00  u16[9]   map0         live party seats; low byte = selector, 0xFF empty (0031BAAA)
-+0x12  u16[9]   map1         fighting party (0031BA8B, 0031B841)
-+0x24  u16[9]   map2         battle command menu (0031BA71)
-+0x36  u16[9]   map3         gameplay (0031BA57)
-+0x48  u16[9]   map4         rebuilt copy (0031BA3D)
-```
+`PartySlotMaps` (`0x5A` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u16[9]` | map0 | live party seats; low byte = selector, `0xFF` empty (`0031BAAA`) |
+| `12` | `u16[9]` | map1 | fighting party (`0031BA8B`, `0031B841`) |
+| `24` | `u16[9]` | map2 | battle command menu (`0031BA71`) |
+| `36` | `u16[9]` | map3 | gameplay (`0031BA57`) |
+| `48` | `u16[9]` | map4 | rebuilt copy (`0031BA3D`) |
 
 The maps start at `[02EBF190] + 0x5A48`; the leader is the dword at `+0x5AA4`
 ([Party data](party-data.md)).

@@ -3,10 +3,8 @@ title: "Voices: the voice packs a cutscene loads, the sixty-four voice slots, th
 kind: "system"
 category: "Sound and music"
 summary: "How spoken lines in cutscenes play: the 64 global voice slots, one per pack sub-file, the .vpc and .vpcjp packs an event loads with both languages loaded and one chosen, the pack and cue-table formats, the cue word and its range rule, every voice verb with how often the shipped scripts call it, the pass that starts a line once its stream is ready, stopping, panning and volume, and the Voice volume category."
-addresses: ["02B5D0B0", "003EA0D0", "003E9F80", "003E9C10", "003E9780", "003581B0", "002DDE20", "002DF690"]
+addresses: "02B5D0B0, 003EA0D0, 003E9F80, 003E9C10, 003E9780, 003581B0, 002DDE20, 002DF690"
 ---
-
-# Voices: the voice packs a cutscene loads, the sixty-four voice slots, the English or Japanese choice, and the verbs that play, stop and pan a line
 
 ## What the player sees
 
@@ -104,16 +102,20 @@ does it go on to the battle-voice banks (`0021C870`). Pan and volume go through 
 
 ## Layouts
 
-```struct VoicePack base=file size=0x208
-+0x000  char[4]   magic    "PKFL"
-+0x004  u32       count    64
-+0x008  u32[128]  files    per sub-file an offset then a size; size 0 for none
-```
+`VoicePack` (`0x208` bytes, offsets from the start of the file):
 
-```struct VoiceCueTable base=record size=0x8
-+0x00  char[4]  magic  "VSP1"
-+0x04  u32      count  cues that follow, 16 bytes each: bank offset, bank size, 0, 0
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[4]` | magic | "PKFL" |
+| `04` | `u32` | count | 64 |
+| `08` | `u32[128]` | files | per sub-file an offset then a size; size 0 for none |
+
+`VoiceCueTable` (`0x8` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[4]` | magic | "VSP1" |
+| `04` | `u32` | count | cues that follow, 16 bytes each: bank offset, bank size, 0, 0 |
 
 Each cue's bank is a `sabf` container with one sound ([Sound banks](sound-banks.md)).
 

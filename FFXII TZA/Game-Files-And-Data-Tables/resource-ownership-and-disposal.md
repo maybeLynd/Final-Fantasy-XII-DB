@@ -3,10 +3,8 @@ title: "Resource ownership and disposal: who owns a loaded source, copy or borro
 kind: "system"
 category: "Game files and data tables"
 summary: "How the game keeps track of who owns loaded data: the render resource bank and its two entry modes (an owned copy or a retained external source), the effect tickets and 0x890-byte effect contexts that borrow or copy effect data, the four loaders that register sources, the 80 script motion slots behind motionread, motionreadsync and motiondispose and their states, borrowed section views, and the fixed order in which consumers, tickets, entries and backing memory are released."
-addresses: ["0041E580", "0041E490", "00409FE0", "00409A60", "00409730", "00409D60", "00409960", "00409C00", "00427B00", "003B3160", "003B38B0", "003B37E0", "003B39E0", "003B3B10", "003B3C00", "0024B3A0", "0024F410", "0024F4D0", "003A9600", "003A9950", "003A9730", "003A9A70", "003EDAD0", "003AB880", "003AB940", "003AB7C0", "00369800", "02EBCD80", "02EBD480", "020910A0", "02F97340", "02B64380", "02B581A0", "02B58A60", "003DDA20", "003DD4C0", "003DDA70", "003DD850", "003DD420", "003DD380", "003DD740", "003DD770", "003492A0", "003499C0", "0034A6A0", "0032F240", "0032F170", "0032F290", "0032F260", "00267310", "002E4D20", "002E4E50", "003DC340", "003DC5B0", "0032E620", "0041FCF0"]
+addresses: "0041E580, 0041E490, 00409FE0, 00409A60, 00409730, 00409D60, 00409960, 00409C00, 00427B00, 003B3160, 003B38B0, 003B37E0, 003B39E0, 003B3B10, 003B3C00, 0024B3A0, 0024F410, 0024F4D0, 003A9600, 003A9950, 003A9730, 003A9A70, 003EDAD0, 003AB880, 003AB940, 003AB7C0, 00369800, 02EBCD80, 02EBD480, 020910A0, 02F97340, 02B64380, 02B581A0, 02B58A60, 003DDA20, 003DD4C0, 003DDA70, 003DD850, 003DD420, 003DD380, 003DD740, 003DD770, 003492A0, 003499C0, 0034A6A0, 0032F240, 0032F170, 0032F290, 0032F260, 00267310, 002E4D20, 002E4E50, 003DC340, 003DC5B0, 0032E620, 0041FCF0, 00409CA0, 0040A1E0, 003A7D30, 004096F0, 0051F880"
 ---
-
-# Resource ownership and disposal: who owns a loaded source, copy or borrow, effect tickets and contexts, the script motion slots, borrowed views, and the order things are torn down
 
 ## What the player sees
 
@@ -130,7 +128,8 @@ The sweep `003DD4C0` runs over every record with its pending bit and state 2:
    at `022C6E70[g]`: byte 0 is an active flag, then sixteen `{u32 offset, u32 length}` pairs from `+8`
    (`0032F260`, `0032F290`). Area slot 4 and an inactive header give −1, so slot 4 never loads.
 3. It allocates the length in arena 6, or first in arena 11 when `0037B330()` is 2 and the area slot's
-   byte `+0x17` has bit `0x40` (route byte `+0x0D` = 1), pins the block and stores the handle, length,
+   byte `+0x17` has bit `0x40` (route byte `+0x0D` = 1; `0037B330` answers only 0 or 4, so this
+   route is never taken), pins the block and stores the handle, length,
    offset, kind and index + 1.
 4. A held area slot goes to state 1; otherwise `003DDA70` files the read (`0032E620`) with the record's
    address as the callback argument and sets state 3 without checking the result.
@@ -179,7 +178,12 @@ source)`. `00409D60` loops while the bank finds an entry for the source (`0051FE
    decoded `+0x68`, `+0xE0`, `+0xF8`, `+0x42C`, `+0x430` or `+0x390` is the source;
 2. cancels the entry's ticket when `+0x44` is not −1 (`003B37E0`; a 0 there matches no ticket);
 3. resets the entry (`00409730`);
-4. removes the slot (`0051FCF0`).
+4. removes the slot (`0051FCF0`); when that empties the slot's page, `0051F880` unlinks the page from the
+   bank's page list and resets it.
+
+`00409CA0(bank, tag, name)` runs the same steps 2 to 4 for every entry that holds a section with that tag
+and name (`0051FE30` with the test `0040A1E0`, which asks `00409A30`); `00504C40` uses it to drop the
+`@FDM` entries of an object. `00409FE0`'s lookup for an existing entry uses the same test.
 
 `003B37E0(id)` acts only when the slot's whole id matches, so a stale id does nothing. It sets the
 ticket `+0x30` to −1, then:
@@ -197,6 +201,11 @@ ticket `+0x30` to −1, then:
 `003A9600` and `003A9950` depend on the context's byte `+3` bit `0x1`. When it is set they free the
 run origin (`+0x870` or `+0x878`) only if the context copied the run. When it is clear they free every
 non-null table entry from index 1, whatever the borrow flag. Either way they then free the table.
+`003A7D30` releases the `+0x840` table the same way, except that with the bit clear it frees all 128
+entries from index 0, and with it set it frees the block at `+0x880`.
+
+`004096F0(entry)` returns an entry's source: the copy's data for mode 0 (`006B5C70`), the handle
+`+0x30` for mode 1, and 0 for any other mode.
 
 `00409730(entry)` calls `00427B00` with the entry's `+0x30`, which clears the render records'
 `+0x68` (and `+0x69C`), `+0xD8`/`+0xE0` and `+0xF0`/`+0xF8` that decode to it, then releases the

@@ -3,10 +3,8 @@ title: "Battle menu: the command lists, the party HP and MP list, the help line,
 kind: "system"
 category: "Menus and HUD"
 summary: "How the battle screen's menu is built and driven: the manager, panel, list widget and pages, the top command list and its sub-lists with their shipped names and help, the input, how a row becomes the next list, a target list or an issued action, the Dismiss confirmation, the refusal texts on the help line, the party list's HP and MP, the boss gauge and the overhead HP gauges, and the layout keys each part reads."
-addresses: ["00279E20", "00276D30", "002778C0", "0027E050", "0027C3D0", "00311B20", "0029BE50", "002C8310"]
+addresses: "00279E20, 00276D30, 002778C0, 0027E050, 0027C3D0, 00311B20, 0029BE50, 002C8310"
 ---
-
-# Battle menu: the command lists, the party HP and MP list, the help line, the boss and overhead gauges, and how a chosen command is issued
 
 ## What the player sees
 
@@ -195,18 +193,22 @@ The label widths come from a pre-pass, `00273E30`, which scene and action code r
 
 ## Layouts
 
-```struct BattleMenuCommandEntry base=record size=0x8
-+0x00  u16  id      class 0x15 row, or class 0x18 school when flags bit 2 is set
-+0x03  u8   flags   bit 1 greyed, bit 2 school row, bit 3 greyed by 00318CD0 answer 2
-+0x04  u8   reason  refusal shown through 0027C150
-```
+`BattleMenuCommandEntry` (`0x8` bytes, offsets from the start of the record):
 
-```struct BattleMenuActionEntry base=record size=0x8
-+0x00  u16  id      action id (class 0x14)
-+0x02  u16  cost    MP, Mist charges or item count
-+0x04  u16  flags   bit 0 greyed, bits 6-9 the targets the action needs
-+0x06  u8   reason  002FFCF0 code from 00317BC0
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u16` | id | class `0x15` row, or class `0x18` school when flags bit 2 is set |
+| `03` | `u8` | flags | bit 1 greyed, bit 2 school row, bit 3 greyed by `00318CD0` answer 2 |
+| `04` | `u8` | reason | refusal shown through `0027C150` |
+
+`BattleMenuActionEntry` (`0x8` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u16` | id | action id (class `0x14`) |
+| `02` | `u16` | cost | MP, Mist charges or item count |
+| `04` | `u16` | flags | bit 0 greyed, bits 6-9 the targets the action needs |
+| `06` | `u8` | reason | `002FFCF0` code from `00317BC0` |
 
 ## Modding notes
 

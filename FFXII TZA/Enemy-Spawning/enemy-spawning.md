@@ -3,10 +3,8 @@ title: "Enemy spawning: the spawn table, how a zone picks where a monster appear
 kind: "system"
 category: "Enemy spawning"
 summary: "How a zone script populates an area with monsters: the lane map and the spawn table it installs, the tunables every spawning zone sets and their script defaults, the automatic placement that picks a lane and a point around the party leader with its two generation modes and its distance test, the previous-map and continuing selections that bring a banked monster back where it was, the bind, the unit's activation and the terrain probe that supplies the height, the despawn mode and the range retirement that makes a monster vanish behind the player, and what the shipped zone scripts actually author."
-addresses: ["0023A2E0", "002395A0", "00236100", "002360D0", "0023A520", "0023A1D0", "0023A1F0", "00239020", "00235340", "00235330", "00235720", "00308D90", "00234AF0", "00234DA0", "002374E0", "00319390", "00328370", "002354F0", "00235360", "002355A0", "00236450", "00239840", "0023A3B0", "0023A570", "00233AD0", "00239E10", "0023A410", "003208C0", "00300310", "00239410", "00239210", "002391C0", "002396B0", "0023A200", "00236860", "00238FC0", "002350C0", "00300E40", "00306E60", "00233F70", "002342F0", "002368D0", "0031B810", "003273B0", "003272A0", "00320940", "003209C0", "003A1960", "005102D0"]
+addresses: "0023A2E0, 002395A0, 00236100, 002360D0, 0023A520, 0023A1D0, 0023A1F0, 00239020, 00235340, 00235330, 00235720, 00308D90, 00234AF0, 00234DA0, 002374E0, 00319390, 00328370, 002354F0, 00235360, 002355A0, 00236450, 00239840, 0023A3B0, 0023A570, 00233AD0, 00239E10, 0023A410, 003208C0, 00300310, 00239410, 00239210, 002391C0, 002396B0, 0023A200, 00236860, 00238FC0, 002350C0, 00300E40, 00306E60, 00233F70, 002342F0, 002368D0, 0031B810, 003273B0, 003272A0, 00320940, 003209C0, 003A1960, 005102D0"
 ---
-
-# Enemy spawning: the spawn table, how a zone picks where a monster appears, the ground height, and when it vanishes out of range
 
 ## What the player sees
 
@@ -282,35 +280,37 @@ never retires a mode-1 unit.
 
 ## Layouts
 
-```
-globals (BSS)
-02089358  i32  heading arc degrees        02089360  f32  min distance   02089364  f32  max distance
-02089368  f32  retire range               0208D457  u8   attempts (signed use)
-0208D458  u8   active cap (signed use)    0208936C  i32  return window, seconds
-02F973B8  f32  max considered squared distance, +INF (002368F0); shared with AI targeting and loot
-01F004E0  f32[32768]  sine table, table[i] = sin(2 pi i / 32768)
-009146EC / 009146F0 / 009146F4  f32  39.0 / 42.0 / 43.0, the script defaults
-```
+Globals (BSS):
 
-```
-BattleUnit fields this page uses
-+0x00   u64  flags: bit 2 active, 3 definition applied, 4 drive, 21 cap-tracked, 26 candidate prepared,
-             40 special range, 45 not an initial placement, 49 activated once
-+0x38   ptr  candidate table: u16 count, then u16 offsets per lane, then i16 candidate ids
-+0x40   ptr  lane map: u8 count, u8 slot per lane (0xFF none)
-+0x4C   f32  mode-2 threshold        +0x50 u8 despawn mode 0/1/2     +0x51 u8 anchor record
-+0x57   i8   the unit's own lane     +0x58 u8 category byte
-+0x188  f32  vertical lift           +0x1F6 u8 height mode: bit 3 = probe
-+0x698  ptr  stats record (+0x05 kind)  +0x6A0 ptr spawn record   +0xE68 ptr definition record
-```
+| Address | Type | Name | Meaning |
+|---|---|---|---|
+| `02089358` | `i32` | heading arc degrees | `02089360`  f32  min distance   `02089364`  f32  max distance |
+| `02089368` | `f32` | retire range | `0208D457`  u8   attempts (signed use) |
+| `0208D458` | `u8` | active cap (signed use) | `0208936C`  i32  return window, seconds |
+| `02F973B8` | `f32` | max considered squared distance, +INF (002368F0); shared with AI targeting and loot |  |
+| `01F004E0` | `f32[32768]` | sine table, table[i] = sin(2 pi i / 32768) |  |
+| `009146EC` | `/ 009146F0 / 009146F4` | f32 | 39.0 / 42.0 / 43.0, the script defaults |
 
-```
-field format-class-0 record (003DFD00(0, id, rec))
-+0x00  u8   type: 0 point, 1 box, 2 ellipse
-+0x04  f32  width    +0x08  f32  depth
-+0x10  f32[3] position or centre
-+0x1C  f32  heading
-```
+BattleUnit fields this page uses:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `000` | `u64` | flags: bit 2 active, 3 definition applied, 4 drive, 21 cap-tracked, 26 candidate prepared, | 40 special range, 45 not an initial placement, 49 activated once |
+| `038` | `void*` | candidate table: u16 count, then u16 offsets per lane, then i16 candidate ids |  |
+| `040` | `void*` | lane map: u8 count, u8 slot per lane (0xFF none) |  |
+| `04C` | `f32` | mode-2 threshold | +`0x50` u8 despawn mode 0/1/2     +`0x51` u8 anchor record |
+| `057` | `i8` | the unit's own lane | +`0x58` u8 category byte |
+| `188` | `f32` | vertical lift | +`0x1F6` u8 height mode: bit 3 = probe |
+| `698` | `void*` | stats record (+0x05 kind) | +`0x6A0` ptr spawn record   +`0xE68` ptr definition record |
+
+Field format-class-0 record (`003DFD00`(0, id, rec)):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | type: 0 point, 1 box, 2 ellipse |  |
+| `04` | `f32` | width | +`0x08`  f32  depth |
+| `10` | `f32[3]` | position | or centre |
+| `1C` | `f32` | heading |  |
 
 ## Shipped data
 

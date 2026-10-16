@@ -3,10 +3,8 @@ title: "PS2 CPU emulation: the in-memory PS2 register set that translated assemb
 kind: "system"
 category: "Engine core"
 summary: "The PlayStation 2 register set the remaster keeps in memory at 022D8F08 and 01EF93F0: the 32 general-purpose registers, HI and LO, the vector unit's 31 vector registers, ACC, Q and the CLIP flag, with the start-up routine that names the layer, the clear and the register save and restore, the 251 functions that compute through it, and the three shared routines (point transform, matrix product, matrix copy) that most of the engine reaches it by."
-addresses: ["0036D990", "0022CB90", "0036D9E0", "0036D930", "0036D8E0", "0036DD80", "0036DD90", "0036DDA0", "00398F90", "00397910", "003970A0", "0025A8E0", "0024AD00", "00363FD0", "0026EE00", "0022A0B0", "0017D6E0", "003D2B60", "003CD840"]
+addresses: "0036D990, 0022CB90, 0036D9E0, 0036D930, 0036D8E0, 0036DD80, 0036DD90, 0036DDA0, 00398F90, 00397910, 003970A0, 0025A8E0, 0024AD00, 00363FD0, 0026EE00, 0022A0B0, 0017D6E0, 003D2B60, 003CD840"
 ---
-
-# PS2 CPU emulation: the in-memory PS2 register set that translated assembly runs on
 
 ## What the player sees
 

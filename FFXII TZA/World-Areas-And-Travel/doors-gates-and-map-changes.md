@@ -3,10 +3,8 @@ title: "Doors, gates and map changes: the override table the setmapid verbs writ
 kind: "system"
 category: "World, areas and travel"
 summary: "How a zone script opens a gate or raises a barrier: the 80-entry override table at 0209A3E0 that setmapidfloor, setmapidwall and setmapidmj lay over every collision polygon's attribute word, which movement kinds each bit blocks, the ground field, the path reset every write triggers, the route-graph edges that consult the same table, the two 64-bit masks behind showmapmodel and hidemapmodel, and the map bind that clears all of it."
-addresses: ["0209A3E0", "0026E880", "003792E0", "003795A0", "00379430", "00232020", "00230A40", "0022F8B0", "0026E300", "00379010", "0026E5F0", "0026E960", "003278D0"]
+addresses: "0209A3E0, 0026E880, 003792E0, 003795A0, 00379430, 00232020, 00230A40, 0022F8B0, 0026E300, 00379010, 0026E5F0, 0026E960, 003278D0"
 ---
-
-# Doors, gates and map changes: the override table the setmapid verbs write, what its floor, wall and mj bits block, the show and hide model masks and when a new map clears them
 
 ## What the player sees
 
@@ -31,7 +29,7 @@ a polygon and at `+4` of a wall record. Its fields, with the functions that read
 
 | bits | field | written by a verb | read by |
 |---|---|---|---|
-| 0-2 | polygon type: 0 floor, 1 wall, 2 and 4 marker polygons | none | `00230A40`, `0022D4B0`, `0022CC50`, `00231A90`, `002321D0` |
+| 0-2 | polygon type: 0 floor, 1 wall, 2 and 4 marker polygons, 3 camera region | none | `00230A40`, `0022D4B0`, `0022CC50`, `00231A90`, `002321D0`, `00233230` |
 | 3-6 | mj group 0-15; selects override entry `0x40 + group` | none | `00232020`, `00230A40`, `00232090`, `00231F80`, `002321D0`, `00231A90` |
 | 12 | copied into bit 2 of the body's flag word | `setmapidfloor` kind 9 | `003808A0` |
 | 13-17 | floor group 0-31; the wall group on type-1 polygons and wall records | none | every override reader below |
@@ -200,9 +198,25 @@ Each applies the wall entry to the attribute word and then decides as follows.
 `003808A0(record, part)` runs after a body moved (`00380C40`) or was placed (`00380D30`). From the
 effective attribute of the body's polygon it stores the floor group into `+0x56`, the mj group into
 `+0x58`, bit 12 into flag bit 2 of `+0x60`, and the five-bit ground field (`00231F80`, bits 18-22 after
-overrides) into `+0x5A`. `00231F80` has that one caller (`0038090E`). None of the navigation functions
-on this page reads `+0x56`, `+0x58`, `+0x5A` or flag bit 2 back, so what the ground value and bit 12
-select lies outside this page (search scope: the readers of `0209A3E0` and of `00231F80`).
+overrides) into `+0x5A`. `00231F80` has that one caller (`0038090E`).
+
+The record is the placement at `+0x30` of an actor's movement body (`[actor + 0xC0] + 0x138`), so the
+body holds the floor group at `+0x86` and the ground field at `+0x8A`. The script reads and writes
+them through three helpers that return -1 when the actor has no body:
+
+| Verb | Handler | Helper | Effect |
+|---|---|---|---|
+| `0x2EA` `getmapid()` | `00348100` | `002E9890` | pushes the floor group of the running actor, negatives as 0 |
+| `0x48B` `getmapid_48b(actor)` | `00347240` | `002E9890` | the same for the actor `00263770` finds |
+| `0x2FF` `getmapgroundtype()` | `0034E0E0` | `002E9830` | pushes the ground field, negatives as 0 |
+| `0x48C` `getmapgroundtype_48c(actor)` | `003476B0` | `002E9830` | the same for a given actor |
+| `0x4E2` `setmapgroundtype(v)` | `0034E510` | `002EBC70` | writes `v` to the running actor's `+0x8A` |
+| `0x4E3` `setmapgroundtype_4e3(actor, v)` | `00347D20` | `002EBC70` | the same for a given actor |
+
+The ground field also picks an effect: the presentation command `0x18` (`00520C80`) calls
+`003B0C50`, which plays effect 100 for ground 0 to 3, 7, 9, 13 and 14, 101 for 4, 102 for 5,
+103 for 11, 12 and 15, 148 for 16 and 18, and nothing for the others (`003B02A0`). A
+`setmapgroundtype` write lasts until the body's next move or placement rewrites `+0x8A`.
 
 ### Asking whether a bit is overridden
 
@@ -254,6 +268,49 @@ Four consumers read the hidden set:
 - the background-animation update `004668C0` (`004668E4`) skips entries whose group bit is hidden;
 - `003ECCA0` (`003ECD84`) does the same for its entries.
 
+### Camera regions
+
+The part's shown and hidden sets of the frame come from type-3 polygons around the camera. Each frame
+the camera update `003820C0` calls `00233230(part, 02AEDEE0)` (`003827FB`) with the collision part
+(`0026E500(0)`) and the camera position, the fourth row of the camera matrix copy at `02AEDEB0`:
+
+1. `00382080` zeroes the 64 fade weights at `02EBF278`, and the part's sets `+0x48`, `+0x50`,
+   `+0x58` and `+0x60` are zeroed;
+2. `00233050` finds the camera's cell in the part's grid, and the polygons listed for the cell are
+   walked;
+3. a type-3 polygon for which `002324F0` returns a negative value at the camera position applies its
+   attribute word: with bit 3 set, the value `v` in bits 16-23 sets bit `v` of `+0x48` (shown models)
+   when below 64, else bit `v - 64` of `+0x58`; with bit 4 set, the value in bits 24-31 does the same
+   with `+0x50` (hidden models) and `+0x60`.
+
+For a model value below 64 `0022FF10(part, polygon, camera, v)` also writes the fade weight
+`02EBF278[v]`: the camera's barycentric weights in the polygon (`0022F050`) applied to the byte `+0x0F`
+of its three vertices, divided by 255. `003820C0` then copies `+0x48`, `+0x50`, `+0x58` and `+0x60` to
+`0209A698`, `0209A6A0`, `0209A6B0` and `0209A6B8` (`00382810` to `00382825`).
+
+The draw pass multiplies the alpha of a model whose group byte `+0x1C` is 1 to 254 and whose bit is
+not in the hidden set by `02EBF278[group]` (`002F4FDF`), so a region painted with vertex alpha fades
+its models in across the polygon. `003ECCA0` and `002F1F40` read the weights too.
+
+### Map effects
+
+The values 64 and above of a camera region name map effect channels, and the effect channels have
+script masks of their own. `00378FB0(channel, mode)` edits the forced-on set `0209A6D0` and the
+forced-off set `0209A6D8` at bit `channel & 0x3F`, with the same modes as `00379010`:
+
+| mode | 0209A6D0 | 0209A6D8 | verb and handler |
+|---|---|---|---|
+| 1 | set | clear | `showmapeffect` 0x4F8 `00345AC0`; `showmapeffect_4fa` 0x4FA `003455B0` takes the mode as its second operand |
+| 0 | clear | set | `hidemapeffect` 0x4F9 `003460A0` |
+| 2 | clear | clear | `defaultmapeffect` 0x4FB `00346600` |
+
+Each world step `0026EB30` (from `0036F510`) computes the hidden effect set
+`((0209A6A8 | 0209A6B8) & ~0209A6B0 | 0209A6D8) & ~0209A6D0`, where `0209A6A8` is the part's own
+set `[[part] + 0x38]` copied at bind (`0026E9EA`), or 0 while no map is bound. For each of the 64
+channels whose bit differs from the previous frame's set `0209A6E0` it stops the channel
+(`0026FE50`) when the bit is set and starts it for the current weather slot `0209A6E8`
+(`0026FEB0`, which runs `0026FAD0(channel, slot, 0)`) when it is clear.
+
 ### A new map clears everything
 
 The field tick's request handler `003775D0` calls `00378120` (`003776DD`) when bit 3 of `02ADD0F0` is
@@ -272,29 +329,35 @@ references: the table and the masks are state of the loaded map only.
 
 ## Layouts
 
-```struct MapIdOverride base=0209A3E0 size=0x8
-+0x00  u32  mask   bits replaced; set by 0026E880, cleared by 0026E850, 0026E130, 0026E150 and 0026E960
-+0x04  u32  value  replacement bits; written by 0026E880 only
-```
+`MapIdOverride` (`0x8` bytes, offsets from the start of the 0209A3E0):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | mask | bits replaced; set by `0026E880`, cleared by `0026E850`, `0026E130`, `0026E150` and `0026E960` |
+| `04` | `u32` | value | replacement bits; written by `0026E880` only |
 
 Eighty entries: floors 0x00-0x1F, walls 0x20-0x3F, mj groups 0x40-0x4F.
 
-```struct CollisionPolygon base=polygon size=0x20
-+0x00  f32[3]  normal     plane normal, dotted with a vertex in 0022DE60 and 0022D7E0
-+0x0C  u32     attr       the attribute word (field table in How it works)
-+0x10  i16[3]  vertex     indices into the 0x10-byte vertex array at [part + 8]; 00231A90 reads the vertex colour at +0xC
-+0x16  i16[3]  neighbour  polygon id across each edge, -1 for none (0022F9B0)
-+0x1C  u32     tail       not read by the functions on this page
-```
+`CollisionPolygon` (`0x20` bytes, offsets from the start of the polygon):
 
-```struct RouteEdge base=edge size=0x8
-+0x00  u16  nodeA     node index; node positions are 8-byte pairs at [graph + 0xC] (00383850)
-+0x02  u16  nodeB     node index
-+0x04  i8   hasEntry  -1 when the edge has no override entry (00383850)
-+0x05  u8   entry     override table entry passed to 0026E300 (00383850, 0033D3E0)
-+0x06  u8   kinds     authored kind bitmask, bit k means kind k may use the edge
-+0x07  u8   pad       not read by 00383850 or 0033D3E0
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `f32[3]` | normal | plane normal, dotted with a vertex in `0022DE60` and `0022D7E0` |
+| `0C` | `u32` | attr | the attribute word (field table in How it works) |
+| `10` | `i16[3]` | vertex | indices into the `0x10`-byte vertex array at [part + 8]; `00231A90` reads the vertex colour at +`0xC` |
+| `16` | `i16[3]` | neighbour | polygon id across each edge, -1 for none (`0022F9B0`) |
+| `1C` | `u32` | tail | not read by the functions on this page |
+
+`RouteEdge` (`0x8` bytes, offsets from the start of the edge):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u16` | nodeA | node index; node positions are 8-byte pairs at [graph + `0xC`] (`00383850`) |
+| `02` | `u16` | nodeB | node index |
+| `04` | `i8` | hasEntry | -1 when the edge has no override entry (`00383850`) |
+| `05` | `u8` | entry | override table entry passed to `0026E300` (`00383850`, `0033D3E0`) |
+| `06` | `u8` | kinds | authored kind bitmask, bit k means kind k may use the edge |
+| `07` | `u8` | pad | not read by `00383850` or `0033D3E0` |
 
 The edge table is `[graph + 0x14]` and the node-pair adjacency table `[graph + 0x1C]`, both resolved
 through `0020E600`; `graph + 0xA` is the node count.
@@ -335,6 +398,11 @@ A body steps towards a blocked polygon:
 | `0209A6FC` | 1: the part's sets take part in `0026E5F0` | `0026E1D0`, `0026E960`, `002628B0`, `00379070` | never cleared by the functions here |
 | `0209A670` | the bound map; 0 before a map is bound | `0026E960` | `0026E1D0` |
 | `0209A678`, `0209A680` | the two part descriptors | `0026E960` | `0026E640` |
+| `0209A6D0`, `0209A6D8` | forced-on and forced-off map effect masks | `00378FB0` | `0026E640` |
+| `0209A6A8` | the part's hidden effect set | `0026E960` | `0026E640` |
+| `0209A6B0`, `0209A6B8` | the camera regions' shown and hidden effect sets | `003820C0` | `0026E640` |
+| `0209A6E0` | the hidden effect set of the last step | `0026EB30` | replaced by `0026EB30` every step |
+| `02EBF278` | 64 `f32` fade weights of the camera regions | `0022FF10` | `00382080`, every frame |
 
 None of these addresses is read or written by the save image functions referenced from them; the state
 is rebuilt from the map and its script on every load.

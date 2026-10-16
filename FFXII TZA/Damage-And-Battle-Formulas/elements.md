@@ -3,10 +3,8 @@ title: "Elements: weakness, absorb, half damage, immunity, elemental potency, Oi
 kind: "system"
 category: "Damage and battle formulas"
 summary: "How the eight elements change damage: where a unit's weak, absorb, half and immune elements and its elemental potency come from (equipment, an enemy's area row), the order the affinity stage tests them for magicks and for weapon attacks, how absorb and immunity reach the final number, Oil tripling fire and Float voiding earth, and the weather and terrain scaling of magick elements that the Agate Ring turns off."
-addresses: ["0038B6A0", "0038BE30", "0038D280", "0038B220", "002FEF30", "0038B010", "0038C940", "0038B950", "0026D910", "00263DD0"]
+addresses: "0038B6A0, 0038BE30, 0038D280, 0038B220, 002FEF30, 0038B010, 0038C940, 0038B950, 0026D910, 00263DD0"
 ---
-
-# Elements: weakness, absorb, half damage, immunity, elemental potency, Oil, and weather and terrain scaling
 
 ## What the player sees
 
@@ -170,18 +168,22 @@ The environment and weather classes belong to the area, and the terrain class to
 
 The element and affinity fields of an equipment row and its attribute record:
 
-```struct EquipmentElementFields base=record
-+0x1E  u8   element      weapon or ammunition element, one bit (0038BE30, 0038B950)
-+0x28  u32  attributes   offset of the attribute record past header +0x18; made a pointer at load (00238225-0023823E)
-```
+`EquipmentElementFields` (offsets from the start of the record):
 
-```struct EquipmentAffinityFields base=record
-+0x10  u8   absorb       elements absorbed (002FF538)
-+0x11  u8   immune       elements nullified (002FF556)
-+0x12  u8   half         elements halved (002FF547)
-+0x13  u8   weak         elements doubled (002FF529)
-+0x14  u8   potency      elements boosted x1.5 when the wearer attacks (002FF56D)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `1E` | `u8` | element | weapon or ammunition element, one bit (`0038BE30`, `0038B950`) |
+| `28` | `u32` | attributes | offset of the attribute record past header +`0x18`; made a pointer at load (`00238225`-`0023823E`) |
+
+`EquipmentAffinityFields` (offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `10` | `u8` | absorb | elements absorbed (`002FF538`) |
+| `11` | `u8` | immune | elements nullified (`002FF556`) |
+| `12` | `u8` | half | elements halved (`002FF547`) |
+| `13` | `u8` | weak | elements doubled (`002FF529`) |
+| `14` | `u8` | potency | elements boosted x1.5 when the wearer attacks (`002FF56D`) |
 
 ## Shipped data
 

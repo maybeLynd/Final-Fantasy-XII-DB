@@ -3,10 +3,8 @@ title: "Gambits: how a character's gambit list is checked top to bottom, what ru
 kind: "system"
 category: "Enemy AI and gambits"
 summary: "How a party member picks its next action: a command the player issued comes first, Confuse and Berserk override the list, and the gambit list is then tried line by line until one line's conditions match and its action commits; each line's optional percent chance and weighted action roll; how the twelve lines, the on/off switch of each line and the three gambit sets are stored and rebuilt into the list the game walks; and the authored presets a character starts with."
-addresses: ["00305AB0", "00305CC0", "003014C0", "00308EC0", "00327DE0", "00326030", "00327CB0", "0030F760"]
+addresses: "00305AB0, 00305CC0, 003014C0, 00308EC0, 00327DE0, 00326030, 00327CB0, 0030F760"
 ---
-
-# Gambits: how a character's gambit list is checked top to bottom, what runs before it, the three gambit sets and the authored presets
 
 ## What the player sees
 
@@ -170,59 +168,65 @@ definition passes the party table row's word `+0x14` as the preset (`0023AEEE`).
 
 The gambit bank, `0x34` bytes, three per party member:
 
-```struct GambitBank base=record size=0x34
-+0x00  u16[24]  lines        twelve (condition, action) pairs; 0xFFFF = empty (00327E6B-00327E80)
-+0x30  u16      enabled      bit i set: line i is on (00327E60-00327E65)
-+0x32  u8       count        number of line slots the menu shows, 0-12; setgambit_slotmax adds to it (00327930)
-+0x33  u8       pad33        copied with the block
-```
+`GambitBank` (`0x34` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u16[24]` | lines | twelve (condition, action) pairs; `0xFFFF` = empty (`00327E6B`-`00327E80`) |
+| `30` | `u16` | enabled | bit i set: line i is on (`00327E60`-`00327E65`) |
+| `32` | `u8` | count | number of line slots the menu shows, 0-12; setgambit_slotmax adds to it (`00327930`) |
+| `33` | `u8` | pad33 | copied with the block |
 
 One order of a walked set, 24 bytes from set `+0x20`:
 
-```struct AiOrderLine base=record size=0x18
-+0x00  u16      action       action id, or 0x8000 + weighted-table index (00308ECA)
-+0x02  i16      chance       percent chance the line is tried; 0 = always (00301608)
-+0x04  u16      flags        0x40 try while resuming, 0x80 skip on resume (00305DB2, 00305DBC); 0x4000 on the order in flight limits a resume to 0x40 orders (00305D7F); 0x20 >> i with 0x20 >> (i + 1) chains test i + 1 to test i (003016BE); 0x800 not repeated while it is the previous order (003015A6); a gambit line takes the condition row's +0x0E (00327F2F)
-+0x06  u16      relation0    first test: relation mode, 0 = no test (00301685; row +0x10, 00327EEA)
-+0x08  u8       sub0         first test: sub-selector (00301B1A; row +0x08, 00327EDF)
-+0x09  u8       opcode0      first test: opcode; even = highest, set or at least, odd = lowest, clear or below (00301B14, 00301B44)
-+0x0A  i16      operand0     first test: operand (00301B1F; row +0x18, 00327EF2)
-+0x0C  u16      relation1    second test, from row +0x11 (00327F02)
-+0x0E  u8       sub1         from row +0x0A (00327EFA)
-+0x0F  u8       opcode1      from row +0x0B (00327EFA)
-+0x10  i16      operand1     from row +0x1A (00327F0A)
-+0x12  u16      relation2    third test, from row +0x12 (00327F1A)
-+0x14  u8       sub2         from row +0x0C (00327F12)
-+0x15  u8       opcode2      from row +0x0D (00327F12)
-+0x16  i16      operand2     from row +0x1C (00327F22)
-```
+`AiOrderLine` (`0x18` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u16` | action | action id, or `0x8000` + weighted-table index (`00308ECA`) |
+| `02` | `i16` | chance | percent chance the line is tried; 0 = always (`00301608`) |
+| `04` | `u16` | flags | `0x40` try while resuming, `0x80` skip on resume (`00305DB2`, `00305DBC`); `0x4000` on the order in flight limits a resume to `0x40` orders (`00305D7F`); `0x20` >> i with `0x20` >> (i + 1) chains test i + 1 to test i (`003016BE`); `0x800` not repeated while it is the previous order (`003015A6`); a gambit line takes the condition row's +`0x0E` (`00327F2F`) |
+| `06` | `u16` | relation0 | first test: relation mode, 0 = no test (`00301685`; row +`0x10`, `00327EEA`) |
+| `08` | `u8` | sub0 | first test: sub-selector (`00301B1A`; row +`0x08`, `00327EDF`) |
+| `09` | `u8` | opcode0 | first test: opcode; even = highest, set or at least, odd = lowest, clear or below (`00301B14`, `00301B44`) |
+| `0A` | `i16` | operand0 | first test: operand (`00301B1F`; row +`0x18`, `00327EF2`) |
+| `0C` | `u16` | relation1 | second test, from row +`0x11` (`00327F02`) |
+| `0E` | `u8` | sub1 | from row +`0x0A` (`00327EFA`) |
+| `0F` | `u8` | opcode1 | from row +`0x0B` (`00327EFA`) |
+| `10` | `i16` | operand1 | from row +`0x1A` (`00327F0A`) |
+| `12` | `u16` | relation2 | third test, from row +`0x12` (`00327F1A`) |
+| `14` | `u8` | sub2 | from row +`0x0C` (`00327F12`) |
+| `15` | `u8` | opcode2 | from row +`0x0D` (`00327F12`) |
+| `16` | `i16` | operand2 | from row +`0x1C` (`00327F22`) |
 
 One gambit condition, a row of `battle_pack.bin` section 7 (`02EBF0D8`, 32 bytes):
 
-```struct GambitConditionRow base=record size=0x20
-+0x00  u8[3]    pad00        0 in every row
-+0x03  u8       b03          0xFF in every row; copied to the menu record +0x2C (0031D0CB)
-+0x04  u16      helpId       16000 + row: the help line (0031D0BE)
-+0x06  u16      value06      50, 70, 100 or 300; copied to the menu record +0x28 (0031D0B7)
-+0x08  u8       sub0         first test sub-selector (00327EDF)
-+0x09  u8       opcode0      first test opcode (00327EDF)
-+0x0A  u8       sub1         second test sub-selector (00327EFA)
-+0x0B  u8       opcode1      second test opcode (00327EFA)
-+0x0C  u8       sub2         third test sub-selector, 0 in every row (00327F12)
-+0x0D  u8       opcode2      third test opcode, 0 in every row (00327F12)
-+0x0E  u16      orderFlags   copied to the order's flags, 0 in every row (00327F2F)
-+0x10  u8       relation0    1 Foe, 2 Ally, 4 Self (00327EEA)
-+0x11  u8       relation1    second test relation (00327F02)
-+0x12  u8       relation2    third test relation, 0 in every row (00327F1A)
-+0x13  u8       pad13        0 in every row
-+0x14  u16      nameWord     section 61 sub-table word >> 11, entry word & 0x7FF (0031D034)
-+0x16  u8       menuColumn   gambit menu column; 0xFF = not listed (002388F3)
-+0x17  u8       menuRow      gambit menu row (00238903)
-+0x18  i16      operand0     first test operand (00327EF2)
-+0x1A  i16      operand1     second test operand (00327F0A)
-+0x1C  i16      operand2     third test operand, 0 in every row (00327F22)
-+0x1E  u16      pad1E        0 in every row
-```
+`GambitConditionRow` (`0x20` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8[3]` | pad00 | 0 in every row |
+| `03` | `u8` | b03 | `0xFF` in every row; copied to the menu record +`0x2C` (`0031D0CB`) |
+| `04` | `u16` | helpId | 16000 + row: the help line (`0031D0BE`) |
+| `06` | `u16` | value06 | 50, 70, 100 or 300; copied to the menu record +`0x28` (`0031D0B7`) |
+| `08` | `u8` | sub0 | first test sub-selector (`00327EDF`) |
+| `09` | `u8` | opcode0 | first test opcode (`00327EDF`) |
+| `0A` | `u8` | sub1 | second test sub-selector (`00327EFA`) |
+| `0B` | `u8` | opcode1 | second test opcode (`00327EFA`) |
+| `0C` | `u8` | sub2 | third test sub-selector, 0 in every row (`00327F12`) |
+| `0D` | `u8` | opcode2 | third test opcode, 0 in every row (`00327F12`) |
+| `0E` | `u16` | orderFlags | copied to the order's flags, 0 in every row (`00327F2F`) |
+| `10` | `u8` | relation0 | 1 Foe, 2 Ally, 4 Self (`00327EEA`) |
+| `11` | `u8` | relation1 | second test relation (`00327F02`) |
+| `12` | `u8` | relation2 | third test relation, 0 in every row (`00327F1A`) |
+| `13` | `u8` | pad13 | 0 in every row |
+| `14` | `u16` | nameWord | section 61 sub-table word >> 11, entry word & `0x7FF` (`0031D034`) |
+| `16` | `u8` | menuColumn | gambit menu column; `0xFF` = not listed (`002388F3`) |
+| `17` | `u8` | menuRow | gambit menu row (`00238903`) |
+| `18` | `i16` | operand0 | first test operand (`00327EF2`) |
+| `1A` | `i16` | operand1 | second test operand (`00327F0A`) |
+| `1C` | `i16` | operand2 | third test operand, 0 in every row (`00327F22`) |
+| `1E` | `u16` | pad1E | 0 in every row |
 
 ## Shipped data
 

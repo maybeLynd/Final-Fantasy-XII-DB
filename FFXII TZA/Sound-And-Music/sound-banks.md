@@ -3,10 +3,8 @@ title: "Sound banks: the bank files that hold every sound effect, battle voice a
 kind: "format"
 category: "Sound and music"
 summary: "The bank container shared by sound effects, battle voices and music: its header and chunk directory and the checks the reader makes, the four bank families with their folders, name patterns and loaders, the SE block index that lists a block's sounds, the block-id rule, the 64-entry block registry, how a sound id splits into a registry slot and a sound slot, the effect-file records that open the six-digit banks, the audio manager's five controllers, and the files the PC build never opens."
-addresses: ["007CFF90", "007CF6B0", "00223AD0", "00222DC0", "00222740", "0036ED50", "002E60F0", "003A1650", "003A1180", "002105E0"]
+addresses: "007CFF90, 007CF6B0, 00223AD0, 00222DC0, 00222740, 0036ED50, 002E60F0, 003A1650, 003A1180, 002105E0"
 ---
-
-# Sound banks: the bank files that hold every sound effect, battle voice and music track, how each is named and found, and how a sound id names a bank and a slot
 
 ## What the player sees
 
@@ -89,47 +87,57 @@ calls `001DBE60(id, record + 0x10)` for each. `0021A040` skips an id already loa
 
 ## Layouts
 
-```struct SabHeader base=file size=0x10
-+0x00  char[4]  magic       "sabf" in a .sab, "mabf" in a .mab
-+0x04  u8       version     2; below 2 the directory is at +dirDelta
-+0x05  u8       flag        1 in a six-digit bank and in every .mab, 0 in the others
-+0x06  u16      dirDelta    0x10
-+0x08  u8       chunkCount  4 in a .sab, 3 in a .mab
-+0x09  u8       nameLength  length of the bank name at +0x10
-+0x0A  u16      param       1 makes the voice mixer drop the front-back pan
-+0x0C  u32      fileSize    the file's length
-```
+`SabHeader` (`0x10` bytes, offsets from the start of the file):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[4]` | magic | "sabf" in a .sab, "mabf" in a .mab |
+| `04` | `u8` | version | 2; below 2 the directory is at +dirDelta |
+| `05` | `u8` | flag | 1 in a six-digit bank and in every .mab, 0 in the others |
+| `06` | `u16` | dirDelta | `0x10` |
+| `08` | `u8` | chunkCount | 4 in a .sab, 3 in a .mab |
+| `09` | `u8` | nameLength | length of the bank name at +`0x10` |
+| `0A` | `u16` | param | 1 makes the voice mixer drop the front-back pan |
+| `0C` | `u32` | fileSize | the file's length |
 
 The bank name follows at `+0x10`, `nameLength` bytes and a zero. The chunk directory starts at
 `((0x10 + nameLength) & 0xF0) + dirDelta`, which is `0x20` in every shipped file.
 
-```struct SabChunk base=record size=0x10
-+0x00  char[4]  tag     "snd " "seq " "trk " "mtrl" in a .sab; "musc" "inst" "mtrl" in a .mab
-+0x04  u32      flags   0x00100000
-+0x08  u32      offset  from the start of the file
-+0x0C  u32      pad     0
-```
+`SabChunk` (`0x10` bytes, offsets from the start of the record):
 
-```struct SeBlockIndex base=file size=0x210
-+0x000  char[8]   magic      "SeBlock "
-+0x008  i16       block      the number in the file name
-+0x00A  i16       slotCount  128
-+0x00C  u32       fileSize   the file's length
-+0x010  i32[128]  slotOffset from +0x210; -1 for an empty slot
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[4]` | tag | "snd " "seq " "trk " "mtrl" in a .sab; "musc" "inst" "mtrl" in a .mab |
+| `04` | `u32` | flags | `0x00100000` |
+| `08` | `u32` | offset | from the start of the file |
+| `0C` | `u32` | pad | 0 |
 
-```struct SeBlockSlot base=record size=0x5
-+0x00  u32  word   copied twice into the slot's node, read by no bank method
-+0x04  u8   flags  the slot's start flags, read when the sound starts (00224570)
-```
+`SeBlockIndex` (`0x210` bytes, offsets from the start of the file):
 
-```struct SeSepRecord base=record size=0x15
-+0x00  char[5]  magic   "SeSep"
-+0x08  i32      id      the six-digit bank id
-+0x0C  u32      size    record length in bit 0-30
-+0x10  u32      word    copied to bank +0x40 and +0x45
-+0x14  u8       flags   copied to bank +0x44 and +0x49
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[8]` | magic | "SeBlock " |
+| `08` | `i16` | block | the number in the file name |
+| `0A` | `i16` | slotCount | 128 |
+| `0C` | `u32` | fileSize | the file's length |
+| `10` | `i32[128]` | slotOffset from +0x210; -1 for an empty slot |  |
+
+`SeBlockSlot` (`0x5` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | word | copied twice into the slot's node, read by no bank method |
+| `04` | `u8` | flags | the slot's start flags, read when the sound starts (`00224570`) |
+
+`SeSepRecord` (`0x15` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[5]` | magic | "SeSep" |
+| `08` | `i32` | id | the six-digit bank id |
+| `0C` | `u32` | size | record length in bit 0-30 |
+| `10` | `u32` | word | copied to bank +`0x40` and +`0x45` |
+| `14` | `u8` | flags | copied to bank +`0x44` and +`0x49` |
 
 ## Shipped data
 

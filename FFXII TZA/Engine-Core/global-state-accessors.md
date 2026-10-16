@@ -3,10 +3,8 @@ title: "Global state accessors: every one-instruction getter of a global, with i
 kind: "reference"
 category: "Engine core"
 summary: "The 401 functions in the executable whose whole body is one load or address-take of one global and a return, listed with the global they expose, the width read, the instruction, and how many functions call each, in global-state-accessors.tsv; with the most-called getters named, the image-address encode and decode pair 0020E600 / 0020E620 over the base 01F83530, and the two-global predicates beside them."
-addresses: ["0020E600", "0020E620", "00189120", "002640C0", "006372A0", "003590D0", "001B1C00", "00796E20", "001A9930", "0018CA40", "00198790", "002EF640", "00236850", "001EDE70", "001EDDA0", "001EDEC0", "00229E70", "00229EA0"]
+addresses: "0020E600, 0020E620, 00189120, 002640C0, 006372A0, 003590D0, 001B1C00, 00796E20, 001A9930, 0018CA40, 00198790, 002EF640, 00236850, 001EDE70, 001EDDA0, 001EDEC0, 00229E70, 00229EA0"
 ---
-
-# Global state accessors: every one-instruction getter of a global, with its global, width and callers
 
 ## What it lists
 

@@ -3,10 +3,8 @@ title: "LGT2 light sets: the 0x70-byte light records and chunk tables of an even
 kind: "format"
 category: "EBP script files"
 summary: "Section 14 of an event .ebp, magic LGT2: a header, an array of 0x70-byte light records and a chain of typed chunks (range, cut list, id index, curve table). The binder 0037AA90 stores the chunks into one of five 0x50-byte light groups at 02EBF420, rewrites each record's priority byte through a six-entry table and marks the group ready; the per-frame collector 0037AD40 and the object light pass 003ACC10 read the records. Shipped in 1,260 event scripts, with the rules an edited light set must follow."
-addresses: ["0037AA90", "02EBF420", "01EF94E4", "01EF94E0", "00330110", "0032F1B0", "0037B230", "0037A9B0", "0037AD40", "0037A5B0", "0037A450", "003ACC10", "003DEA00", "003DEA10", "0037B030", "0037B0F0", "0037B190"]
+addresses: "0037AA90, 02EBF420, 01EF94E4, 01EF94E0, 00330110, 0032F1B0, 0037B230, 0037A9B0, 0037AD40, 0037A5B0, 0037A450, 003ACC10, 003DEA00, 003DEA10, 0037B030, 0037B0F0, 0037B190, 003DE9A0, 0037A880, 0037A7F0, 003E8A40"
 ---
-
-# LGT2 light sets: the 0x70-byte light records and chunk tables of an event script's lighting, how they are bound into a light group and how the renderer picks them
 
 ## What the player sees
 
@@ -38,23 +36,23 @@ pending bit 16; when the manager's pending word empties, the finaliser `0032F1B0
 
 Light record, as its readers use it:
 
-```
-+0x02  u8    kind      1 interpolate, 2 curves, other values static
-+0x03  u8    state     bit 0x1 off, bit 0x2 animated, bit 0x4 loop the clock
-+0x04  s16[4]          kind 1: three start values; kind 2: four curve indices into the type-5 table
-+0x18  s16[3] / f32    kind 1: three end values; kind 2: f32 duration at +0x18
-+0x1C  f32             kind 2: the clock
-+0x20  request         the 0x50 bytes handed to the renderer
-+0x20  u8    lightKind 6 is folded into the object's colour; any other kind is passed on in the light list
-+0x21  u8    priority  0 to 5 remapped at bind; the highest kind-6 light becomes the object's key light
-+0x22  u8              5 on a kind-6 light makes +0x30..+0x38 multipliers
-+0x23  u8    filter    1 with +0x24 = 2: +0x28 must equal the object's id; 3: +0x28 is a mask (+0x24 7 include, 6 exclude)
-+0x24  u8    test
-+0x25  u8              bit 0x10 exempts the light from the object's blend
-+0x27  u8    flags     bit 0x1 not added to the summed colour; bits 2 to 7 an exclusion mask (bit 0x20 set on group 0)
-+0x28  u32   id        the value the filter tests
-+0x30  f32[4]          values written by kind 1 and kind 2 animation
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `02` | `u8` | kind | 1 interpolate, 2 curves, other values static |
+| `03` | `u8` | state | bit `0x1` off, bit `0x2` animated, bit `0x4` loop the clock |
+| `04` | `i16[4]` | kind 1: three start values; kind 2: four curve indices into the type-5 table |  |
+| `18` | `i16[3] / f32` | kind 1: three end values; kind 2: f32 duration at +0x18 |  |
+| `1C` | `f32` | kind 2: the clock |  |
+| `20` | `request` | the 0x50 bytes handed to the renderer |  |
+| `20` | `u8` | lightKind 6 is folded into the object's colour; any other kind is passed on in the light list |  |
+| `21` | `u8` | priority | 0 to 5 remapped at bind; the highest kind-6 light becomes the object's key light |
+| `22` | `u8` | 5 on a kind-6 light makes +0x30..+0x38 multipliers |  |
+| `23` | `u8` | filter | 1 with +`0x24` = 2: +`0x28` must equal the object's id; 3: +`0x28` is a mask (+`0x24` 7 include, 6 exclude) |
+| `24` | `u8` | test |  |
+| `25` | `u8` | bit 0x10 exempts the light from the object's blend |  |
+| `27` | `u8` | flags | bit `0x1` not added to the summed colour; bits 2 to 7 an exclusion mask (bit `0x20` set on group 0) |
+| `28` | `u32` | id | the value the filter tests |
+| `30` | `f32[4]` | values written by kind 1 and kind 2 animation |  |
 
 Chunks, by type:
 
@@ -165,7 +163,14 @@ four type-5 curves (`003CC5F0`) and clamps each result to -1..1 into `+0x30` to 
 |---|---|
 | `setlightcutstatus` (`00351210`), `setlightcutstatus_21c` (`00351D90`) | `003DEA00`: a cut's status on (`0037A9B0`) or off (`0037A910`) |
 | `setlightallcutstatus` (`00351850`) | `003DEA10`: every cut on (`0037AA00`) or off (`0037A960`) |
+| `setlightcutanimestatus` (`00352130`), `setlightcutanimestatus_21e` (`00352780`) | `003DE9A0(group, cut, status)`: state bit `0x2` set on every record of the cut's range (`0037A880`) or cleared (`0037A7F0`); the group is the caller's actor manager `+0x28` |
 | `003E8440`, `003E8690`, `003E8A10`, `003E8A70`, `003E8C50` | by id through types 6 and 3: off and on (`0037B0F0`, `0037B190`), animation start and stop (`0037A1D0`, `0037A130`), loop on and off (`0037A3B0`, `0037A310`), clock reset (`0037A270`, `0037A500`), finished test (`0037B030`) |
+
+Animation start and stop by id go through `003E8A40(id, start)`, which calls `0037A1D0(0, id)` when
+`start` is non-zero and `0037A130(0, id)` otherwise; `003E8440`, `003E85B0`, `003E8690` and
+`003E8C50` call it. Both look the id up in the type-6 table, map it through the type-3 table and set
+or clear state bit `0x2` of that one record in group 0. An id missing from the type-6 table selects
+entry 0 of the type-3 table.
 
 ## Modding notes
 

@@ -3,10 +3,8 @@ title: "Battle log: which result posts which battle message, the repeat limit an
 kind: "system"
 category: "Battle actions"
 summary: "How a resolved action becomes battle-log lines - the technick failure notices, the healing and status-cure lines for party members off the field, the technick result lines, steal and poach lines - how every message is posted through one function that drops repeats, hides lines about fights more than 24 units from the party leader unless the message is marked always-shown, and fills up to four arguments from the message row."
-addresses: ["00385BA0", "00469EC0", "0046AB10", "00469570", "002FA3B0", "005369C0"]
+addresses: "00385BA0, 00469EC0, 0046AB10, 00469570, 002FA3B0, 005369C0"
 ---
-
-# Battle log: which result posts which battle message, the repeat limit and the 24-unit visibility rule
 
 ## What the player sees
 
@@ -140,15 +138,17 @@ name; kind 4 is formatted through a sub-template taken from the message table's 
 
 ## Layouts
 
-```struct BattleMessageRow base=row size=0x8
-+0x00  u8   slot0        argument kind of slot 0 (005369C0, 00536410)
-+0x01  u8   slot1        argument kind of slot 1
-+0x02  u8   slot2        argument kind of slot 2
-+0x03  u8   flags3       bit 7: always shown (00469570); bits 2-6: category (005369C0); bits 0-1 dropped by 005369C0
-+0x04  u8   flags4       bit 0: repeat-limited (0046AB10)
-+0x05  u8   slot3        argument kind of slot 3
-+0x06  u16  zero6        0 in every shipped row
-```
+`BattleMessageRow` (`0x8` bytes, offsets from the start of the row):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | slot0 | argument kind of slot 0 (`005369C0`, `00536410`) |
+| `01` | `u8` | slot1 | argument kind of slot 1 |
+| `02` | `u8` | slot2 | argument kind of slot 2 |
+| `03` | `u8` | flags3 | bit 7: always shown (`00469570`); bits 2-6: category (`005369C0`); bits 0-1 dropped by `005369C0` |
+| `04` | `u8` | flags4 | bit 0: repeat-limited (`0046AB10`) |
+| `05` | `u8` | slot3 | argument kind of slot 3 |
+| `06` | `u16` | zero6 | 0 in every shipped row |
 
 ## Related
 

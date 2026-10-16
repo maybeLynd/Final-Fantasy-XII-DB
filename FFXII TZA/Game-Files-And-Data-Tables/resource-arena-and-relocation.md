@@ -3,10 +3,8 @@ title: "Resource arenas and relocation: the fifteen memory arenas, block headers
 kind: "system"
 category: "Game files and data tables"
 summary: "How the game's resource memory is laid out and moved: the arena records and their boot sizes, the current-arena stack, the 0x40-byte block header and its corruption check, suballocation from the free lists, the 32-bit address encoding, tagged handles and their slot table, acquiring and releasing a handle and the tree of blocks that may move, compaction and the allocation-pressure retry, the mover's order of operations, and how an effect file's stored pointers are repaired after its source moves, with the 32-bit limits each step carries."
-addresses: ["022D7FD0", "00369D30", "0022A0B0", "0036C1D0", "0036C140", "022D89BC", "022D89C0", "022D89B8", "0036A490", "00369860", "0036C660", "0036A100", "0036A190", "0036BC60", "0036BFE0", "0020E600", "0020E620", "01F83530", "0036B130", "003AB7F0", "0036A000", "0036D170", "003AB880", "003AB940", "00369800", "0036A9C0", "0036B410", "0036B4E0", "0036C790", "00369C60", "0036AAD0", "0036ABE0", "0036A2A0", "004746F0", "00369CF0", "003697C0", "002E65A0", "003B3480", "0024D970", "0024D940", "003AA3D0", "003A9BA0", "003A9860", "003A8FF0", "005004C0", "0036C5A0", "002E6D60", "002EA320"]
+addresses: "022D7FD0, 00369D30, 0022A0B0, 0036C1D0, 0036C140, 022D89BC, 022D89C0, 022D89B8, 0036A490, 00369860, 0036C660, 0036A100, 0036A190, 0036BC60, 0036BFE0, 0020E600, 0020E620, 01F83530, 0036B130, 003AB7F0, 0036A000, 0036D170, 003AB880, 003AB940, 00369800, 0036A9C0, 0036B410, 0036B4E0, 0036C790, 00369C60, 0036AAD0, 0036ABE0, 0036A2A0, 004746F0, 00369CF0, 003697C0, 002E65A0, 003B3480, 0024D970, 0024D940, 003AA3D0, 003A9BA0, 003A9860, 003A8FF0, 005004C0, 0036C5A0, 002E6D60, 002EA320, 0036B160, 0036C4B0, 0036C6C0, 0036CAD0, 0036D050, 0036A240, 0037B450, 0037B330, 0024AC30, 0024AB30, 0024AB60"
 ---
-
-# Resource arenas and relocation: the fifteen memory arenas, block headers, handles, the movable-block tree, compaction, and how moved effect data is repaired
 
 ## What the player sees
 
@@ -42,6 +40,32 @@ Boot (`0022A0B0`) and four later calls build these:
 | 14 | `0x19000` | 0 | `0025AAC1` |
 
 Arenas 0, 1 and 10 are built by none of them.
+
+### Arena 11's modes
+
+Arena 11 is rebuilt whenever its mode changes. `0037B450(mode)` stores the mode at `02ADD930`, runs
+`0037B3D0` and then stores it at `02ADD931`. `0037B3D0` sets `02ADD932` to 4 and, when the two bytes
+differ, calls `00369760(11)` and `0036D160(11)`, frees its block `01FD4A18` (`0036D250`), takes a
+new one (`0036D240`) of `0x3C0000` bytes for mode 3 or `0x400000` otherwise, and builds the arena in it
+with 256 slots (`00369D30`).
+
+| Mode | Set by |
+|---|---|
+| `0` | boot (`0037B390`, from `0022A0B0`), `0035B8D0`, `0024AB60` |
+| `1` | `0035B840`, which also takes kind 28 path `2n + 1` (`002DF980`) |
+| `2` | `003DD6C0`, when a party slot has bit `0x1` of `+0x10` and bit `0x40` of `+0x17` and `0037B330()` is 0 or 2 |
+| `3` | `0024AC30`, the menu overlay load |
+
+- A mode can also wait in `02ADD932`: `0037B490` stores it, `0037B380` reads it, and `0037B2F0` (from
+  `002E65A0`) applies it as `0037B450` does unless it is 4.
+- `0037B330` returns `02ADD930` while `02ADD931` is 0 and 4 otherwise. Both bytes always receive the same
+  mode, so it answers 0 or 4, and `003DD4C0`'s test for 2 never passes.
+- `0024AC30(n, wait)` acts only when `0037B330()` is 0: it sets mode 3 and requests kind 35, index `n + 7`,
+  straight into the block `01FD4A18` with the completion `0024ACF0`, which sets `02091094`; with `wait` it
+  drains the queue (`0032E520(0)`). Otherwise it only calls the do-nothing body `0016D6A0`.
+- `0024AB60` sets mode 0 and clears `02091094` when it is set. `0024AB30`, called from the menu handler
+  `00280140`, does nothing whatever it finds: it returns at once when `02091094` is 0 or `0037B330` answers
+  4, and otherwise jumps to the empty body `0016D6A0` with `ecx` = `0x80000`.
 
 ### The current arena
 
@@ -99,6 +123,18 @@ hang off `+0x48`.
   result are `0x40` or less.
 - `00369800(handle)` frees the slot (`0036A9C0`: unlinks it, takes the block out of the tree, zeroes
   the slot) and then the block (`00369860`).
+- `0036B160(size)` allocates a block with a handle in the current arena: bottom-up (`0036BC60`, then
+  `0036BFE0`), then `0036C4B0(arena, payload)`, which puts the block in the movable tree (`0036B410`),
+  sets `+0x15` bit 1 and clears bit 2, and takes a free slot (`0036AF20`).
+- When no slot is free, `0036C4B0` takes the block out of the tree again, frees it and returns 0; a slot
+  value without tag bits or below `0x100000` makes it write to address 8, a deliberate crash; otherwise
+  the slot's `+0x08` gets the header and the handle is returned.
+- `0036A240(slot, header)` binds a slot to a header: the slot's `+0x08` and check word `+0x06` (from the
+  header's `+0x1C`), and the header's encoded slot `+0x20`; it also zeroes the header's `+0x3E`.
+- `0036C6C0(handle, name, tag)` labels a handle's block as `0036C660` labels a payload's, once the
+  handle is tagged and at least `0x100000` and its header carries the magic and is allocated.
+- `0036CAD0(payload, size)` resizes a block in the current arena through `0036D050`: a size of 0 frees
+  it, a null payload allocates (`0036BFE0`), and any other goes to `0036CB00`.
 
 ### The movable-block tree
 
@@ -106,7 +142,10 @@ Each arena keeps the blocks that may be moved in a binary tree rooted at record 
 pointer). A block's left, right and parent links are encoded offsets at `+0x24`, `+0x28` and `+0x2C`,
 and it is ordered by its size `+0x18` as a signed value; an equal size goes right (`0036B4E0`).
 `0036B410` clears a block's links and `+0x3E` and inserts it, or makes it the root of an empty tree;
-`0036C790` removes it. Acquiring a handle takes its block out; releasing it puts it back.
+
+`0036C790` removes it, relinking children with `0036B490` (left, `+0x24`) and `0036B5A0` (right,
+`+0x28`), which also set the child's parent link `+0x2C`. Acquiring a handle takes its block out;
+releasing it puts it back.
 
 ### Compaction
 

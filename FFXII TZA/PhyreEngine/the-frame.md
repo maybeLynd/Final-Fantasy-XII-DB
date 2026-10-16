@@ -3,10 +3,8 @@ title: "Phyre frame: from the frame tick to the drawn picture, the draw-layer ma
 kind: "system"
 category: "PhyreEngine"
 summary: "What the game's draw does once PhyreEngine's frame tick has handed over: the draw routine and its two draws per frame, the per-draw pass mask at 022C7F90 that switches each pass, the PS2 Graphics Synthesizer register batch every frame mode writes, the two 512-record command buffers it is written into and flipped, the menu viewport scaled from 512 x 448, and the camera state the GiBeginEff render command copies when it is prepared."
-addresses: ["0022B0B0", "022C7F90", "00358450", "00358510", "0036D400", "003A1D50", "004FE420", "003A1DB0", "0036F360", "02EBEFC0", "00184460", "00864F30", "00864E90", "00678B50", "0016D6A0"]
+addresses: "0022B0B0, 022C7F90, 00358450, 00358510, 0036D400, 003A1D50, 004FE420, 003A1DB0, 0036F360, 02EBEFC0, 00184460, 00864F30, 00864E90, 00678B50, 0016D6A0"
 ---
-
-# Phyre frame: from the frame tick to the drawn picture, the draw-layer mask and the GS register stream
 
 ## What the player sees
 
@@ -139,39 +137,43 @@ passes `+0x48` to the device's slot `+0x30`, and sets two device values to 3.0.
 
 ## Layouts
 
-```
-command buffer record (02EBEFC0, 02EBEFD8), 0x18 bytes
-+0x00  ptr   begin
-+0x08  ptr   write      advanced by 0x10 per record
-+0x10  u32   capacity   0x200 records
-+0x14  u32   ready      set by 004FE420
-```
+Command buffer record (`02EBEFC0`, `02EBEFD8`), `0x18` bytes:
 
-```
-command record, 0x10 bytes
-+0x00  u64   value      register data
-+0x08  u64   register   GS register number
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `void*` | begin |  |
+| `08` | `void*` | write | advanced by `0x10` per record |
+| `10` | `u32` | capacity | `0x200` records |
+| `14` | `u32` | ready | set by `004FE420` |
 
-```
-pass mask (022C7F90)
-+0x00  u16   draw 0 pass bits
-+0x02  u16   draw 0 upper flags
-+0x04  u16   draw 1 pass bits
-+0x06  u16   draw 1 upper flags
-+0x08  u8    current draw byte (00358640)
-+0x09  u8    capture byte
-+0x0A  u8    speed permit byte
-```
+Command record, `0x10` bytes:
 
-```
-GiBeginEff render command, 0x90 bytes
-+0x00  ptr     vtable    01CCFB78
-+0x08  f32[16] block     from 02AEEB20
-+0x48  f32[16] projection  camera +0x30, depth terms rewritten by 00678B50
-+0x88  f32     near bound  02AEEBA0
-+0x8C  f32     far bound   02AEEBA4
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u64` | value | register data |
+| `08` | `u64` | register | GS register number |
+
+Pass mask (`022C7F90`):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u16` | draw 0 pass bits |  |
+| `02` | `u16` | draw 0 upper flags |  |
+| `04` | `u16` | draw 1 pass bits |  |
+| `06` | `u16` | draw 1 upper flags |  |
+| `08` | `u8` | current draw byte (00358640) |  |
+| `09` | `u8` | capture byte |  |
+| `0A` | `u8` | speed permit byte |  |
+
+GiBeginEff render command, `0x90` bytes:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `void*` | vtable | `01CCFB78` |
+| `08` | `f32[16] block` | from 02AEEB20 |  |
+| `48` | `f32[16] projection` | camera +0x30, depth terms rewritten by 00678B50 |  |
+| `88` | `f32` | near bound | `02AEEBA0` |
+| `8C` | `f32` | far bound | `02AEEBA4` |
 
 Instruction-level access tables beside this page:
 

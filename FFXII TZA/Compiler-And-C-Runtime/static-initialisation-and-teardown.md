@@ -3,10 +3,8 @@ title: "Static initialisation and teardown: the start-up order, the C and C++ in
 kind: "system"
 category: "Compiler and C runtime"
 summary: "How FFXII_TZA.exe builds its global objects before WinMain and registers their teardowns: the entry point and runtime start-up routine, the three-entry C table and the 1,172-entry C++ table with their null bounds, what the C++ initialisers construct (Phyre input semantics, render-pass and format name registries, EASTL allocators, half-float constants), how atexit forwards every registration to the runtime's process table, the shapes of the 2,562 registered teardowns, why a normal quit never runs them, and the TLS directory without callbacks."
-addresses: ["00808EE4", "00808D78", "02EAECF8", "008C5680", "008C56A0", "008C31D0", "008C5678", "00808C90", "00808D4C", "00809124", "00808D5C", "00808B90", "00808B40", "00808988", "02EAED08", "02EAED20", "007A3770", "007980A0", "0079887F", "005A0840", "005A08E0", "00879570", "00876C80", "008768A0", "005DC6F0", "005FDCB0", "001EDF00", "006E0220", "00616210", "00662C00", "008C56B0", "02EAED3C"]
+addresses: "00808EE4, 00808D78, 02EAECF8, 008C5680, 008C56A0, 008C31D0, 008C5678, 00808C90, 00808D4C, 00809124, 00808D5C, 00808B90, 00808B40, 00808988, 02EAED08, 02EAED20, 007A3770, 007980A0, 0079887F, 005A0840, 005A08E0, 00879570, 00876C80, 008768A0, 005DC6F0, 005FDCB0, 001EDF00, 006E0220, 00616210, 00662C00, 008C56B0, 02EAED3C"
 ---
-
-# Static initialisation and teardown: the start-up order, the C and C++ initialiser tables, atexit registration and the quit path
 
 ## What the player sees
 
@@ -202,10 +200,10 @@ function address in its first column:
 | `record-ctor-00616210-initialisers` | 33 C++ entries (texture-format records) |
 | `record-ctor-00662c00-initialisers` | 28 C++ entries (vertex-format records) |
 | `record-ctor-006d58d0-initialisers` | 9 C++ entries (morph records) |
-| `counter-append-initialisers` | 18 C++ entries that append the static to a counted pointer table |
+| `counter-append-initialisers` | 19 C++ entries, `00160BF0` to `00161070` at a 0x40 stride, that append the static to a counted pointer table |
 | `zeroinit-record-initialisers`, `zeroinit-3q-initialisers` | 16 and 3 C++ entries that zero a record |
 | `alloc-record-0067ffb0-initialisers`, `grow-helper-initialisers` | 8 and 6 C++ entries |
-| `ctor-00808fe4-initialisers` | 5 C++ entries that construct an array through `00808FE4` |
+| `ctor-00808fe4-initialisers` | 5 C++ entries that construct an array through `00808FE4`; `00162B30` passes the element constructor `005DC890`, which stores `0x34460000` and zeroes two qwords, for 23 elements of `0x18` bytes at `02CB7DA0` |
 | `ctor-0060df70-initialisers` | 2 C++ entries |
 | `callback-record-006155b0-registrars` | 6 C++ entries that tail-jump `006155B0` with three code pointers |
 | `xc-initializer-leftovers` | 83 C++ entries, each of its own form |

@@ -3,10 +3,8 @@ title: "Stat growth on level-up: HP, MP, Strength, Magick Power, Vitality and Sp
 kind: "system"
 category: "Rewards: EXP, LP, gil and loot"
 summary: "What changes when a character gains a level: the shared HP/MP growth table with its random bonus, the per-character Strength, Magick Power, Vitality and Speed growth bytes with each character's values, the starting stats and starting gil, the cap of 99, who can set a level, and the level-up message, popup and sound."
-addresses: ["0030C650", "002F9A60", "002F9B20", "002F9BD0", "0030C470", "00863BF0"]
+addresses: "0030C650, 002F9A60, 002F9B20, 002F9BD0, 0030C470, 00863BF0"
 ---
-
-# Stat growth on level-up: HP, MP, Strength, Magick Power, Vitality and Speed per level, starting stats, and the level-up notices
 
 ## What the player sees
 
@@ -101,24 +99,26 @@ first activation (see the gil page).
 
 ## Layouts
 
-```struct ChrDataRow base=record size=0x80
-+0x16  u16     startMaxHp     max HP at level 0
-+0x18  ...     gap18          not read by the growth code
-+0x1A  u16     startMaxMp     max MP at level 0
-+0x1C  ...     gap1C          not read by the growth code
-+0x1E  u8      strBase        Strength at level 0
-+0x1F  u8      strGrowth      Strength gained per level, in 1/128
-+0x20  u8      pad20          0 in every shipped row
-+0x21  u8      magBase        Magick Power at level 0
-+0x22  u8      magGrowth      Magick Power gained per level, in 1/128
-+0x23  u8      pad23          0 in every shipped row
-+0x24  u8      vitBase        Vitality at level 0
-+0x25  u8      vitGrowth      Vitality gained per level, in 1/128
-+0x26  u8      pad26          0 in every shipped row
-+0x27  u8      spdBase        Speed at level 0
-+0x28  u8      spdGrowth      Speed gained per level, in 1/128
-+0x29  ...     tail29         not read by the growth code
-```
+`ChrDataRow` (`0x80` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `16` | `u16` | startMaxHp | max HP at level 0 |
+| `18` | `...` | gap18 | not read by the growth code |
+| `1A` | `u16` | startMaxMp | max MP at level 0 |
+| `1C` | `...` | gap1C | not read by the growth code |
+| `1E` | `u8` | strBase | Strength at level 0 |
+| `1F` | `u8` | strGrowth | Strength gained per level, in 1/128 |
+| `20` | `u8` | pad20 | 0 in every shipped row |
+| `21` | `u8` | magBase | Magick Power at level 0 |
+| `22` | `u8` | magGrowth | Magick Power gained per level, in 1/128 |
+| `23` | `u8` | pad23 | 0 in every shipped row |
+| `24` | `u8` | vitBase | Vitality at level 0 |
+| `25` | `u8` | vitGrowth | Vitality gained per level, in 1/128 |
+| `26` | `u8` | pad26 | 0 in every shipped row |
+| `27` | `u8` | spdBase | Speed at level 0 |
+| `28` | `u8` | spdGrowth | Speed gained per level, in 1/128 |
+| `29` | `...` | tail29 | not read by the growth code |
 
 ## Shipped data
 

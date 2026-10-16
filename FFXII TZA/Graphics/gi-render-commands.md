@@ -3,10 +3,8 @@ title: "Gi render commands: the Gi* command family, the command arena, render bl
 kind: "system"
 category: "Graphics"
 summary: "The eighteen Gi* render command classes that carry the PS2-era drawing vocabulary (scene brackets, sprites, rectangles, screen images, primitives, state toggles, VU1 packets) into the PC renderer: the ring arena they are allocated from, the prepare and filing steps, the display list that sorts per-draw records, the GeometryInstanceOrderedObject wrapper that puts them on the ordered command list, the 0x80-byte render blocks executed on PhyreEngine's render thread, and the PrimitiveRendererD3D11 device whose vtable they call."
-addresses: ["01F7F4C0", "001A1470", "001A1460", "001A14D0", "001FB840", "0020E630", "01F7F4D0", "001F48B0", "001F49F0", "005FEA50", "001F4A10", "02CC0410", "005FD050", "00624660", "00D86960", "006C8750", "00607D20", "006106A0", "0060A410", "00607410", "02F8F2F8", "003A3740", "003A3A00", "00210570", "01F83580"]
+addresses: "01F7F4C0, 001A1470, 001A1460, 001A14D0, 001FB840, 0020E630, 01F7F4D0, 001F48B0, 001F49F0, 005FEA50, 001F4A10, 02CC0410, 005FD050, 00624660, 00D86960, 006C8750, 00607D20, 006106A0, 0060A410, 00607410, 02F8F2F8, 003A3740, 003A3A00, 00210570, 01F83580"
 ---
-
-# Gi render commands: the Gi* command family, the command arena, render blocks and the D3D11 primitive renderer
 
 ## What the player sees
 
@@ -136,14 +134,14 @@ The `Gi*` execute bodies call twenty of the slots:
 
 | Offset | Body | What it does |
 |---|---|---|
-| `+0x000` | `006CA760` | returns the vertex staging area `this + 0x10880 + 0x7FE0 × [this+0x18860]`, zeroes the index and keeps the pointer at `+0xB8` |
-| `+0x008` | `006CB5E0` | returns `+0xB8` |
-| `+0x020` | `006C8C50` | passes the draw to the batcher at `+0x880` (`006DA5A0`) |
+| `000` | `006CA760` | returns the vertex staging area `this + 0x10880 + 0x7FE0 × [this+0x18860]`, zeroes the index and keeps the pointer at `+0xB8` |
+| `008` | `006CB5E0` | returns `+0xB8` |
+| `020` | `006C8C50` | passes the draw to the batcher at `+0x880` (`006DA5A0`) |
 | `+0x080`, `+0x088` | `0060D760` | `mov eax, 0x17; ret`: no effect |
 | `+0x098`, `+0x0A0`, `+0x0A8`, `+0x0B0` | `006CAB40`, `006CABF0`, `006CAC00`, `006CABE0` | forward to the state object at `+0x208` |
-| `+0x128` | `006C9B00` | ends a scene (`006C9B20`, then `006C88B0`) |
-| `+0x130` | `006CA7B0` | begins a scene: resets the state bytes at `+0x208F0`, binds the target |
-| `+0x138` | `006C9AF0` | stores a byte at `+0x208F8` |
+| `128` | `006C9B00` | ends a scene (`006C9B20`, then `006C88B0`) |
+| `130` | `006CA7B0` | begins a scene: resets the state bytes at `+0x208F0`, binds the target |
+| `138` | `006C9AF0` | stores a byte at `+0x208F8` |
 
 The others used are `+0x030`, `+0x038`, `+0x040`, `+0x048`, `+0x058`, `+0x078`, `+0x0D0` and
 `+0x0D8`. The 0x7FE0-byte staging area holds 682 vertices of 0x30 bytes, the same batch size the
@@ -189,29 +187,32 @@ Producers read for this page: `0x2F` `005FEA50`, `0x16` `005FEFD0`, `0x18` `0060
 
 ## Layouts
 
-```
-command arena ([01F7F4C0]), 0x20 bytes
-+0x00  ptr  base        32 MB block
-+0x08  ptr  cursor
-+0x10  ptr  end
-+0x18  ptr  mark        001A1460 sets, 001A14D0 rewinds to it
-```
+Command arena ([`01F7F4C0`]), `0x20` bytes:
 
-```
-display-list record (02F8F2F8 + 0x28 * i)
-+0x00  ptr  argument     passed to +0x10
-+0x08  u32  sort key     003A3A50 compares this dword
-+0x0C  u32  appender count
-+0x10  ptr  function     called with +0x00 when non-null
-+0x18  ptr  node         filed through 0020E630 when +0x10 and +0x00 are null
-+0x20  u8   flags        bit 0: 003A2BD0 first; bit 1: post-processing point; bit 2: defer to 02AEF420
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `void*` | base | 32 MB block |
+| `08` | `void*` | cursor |  |
+| `10` | `void*` | end |  |
+| `18` | `void*` | mark | `001A1460` sets, `001A14D0` rewinds to it |
 
-```
-render block, 0x80 bytes
-+0x00  u32  opcode       0x01-0x2F
-+0x08  ...  payload      for 0x2F: +0x08 function, +0x10 argument
-```
+Display-list record (`02F8F2F8` + `0x28` * i):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `void*` | argument | passed to +`0x10` |
+| `08` | `u32` | sort key | `003A3A50` compares this dword |
+| `0C` | `u32` | appender count |  |
+| `10` | `void*` | function | called with +`0x00` when non-null |
+| `18` | `void*` | node | filed through `0020E630` when +`0x10` and +`0x00` are null |
+| `20` | `u8` | flags | bit 0: `003A2BD0` first; bit 1: post-processing point; bit 2: defer to `02AEF420` |
+
+Render block, `0x80` bytes:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | opcode | `0x01`-`0x2F` |
+| `08` | `...` | payload | for `0x2F`: +`0x08` function, +`0x10` argument |
 
 ```
 render context 02CC0410 (static, constructed by 00615840)

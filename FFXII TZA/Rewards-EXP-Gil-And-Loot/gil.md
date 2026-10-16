@@ -3,10 +3,8 @@ title: "Gil: storage, the gil cap, every way gil changes, and the Plunderer and 
 kind: "system"
 category: "Rewards: EXP, LP, gil and loot"
 summary: "Where gil is stored, the single setter that clamps it to 0-99,999,999 and meters every change, every function that changes gil (kills, chests, shops, quest rewards, script verbs, character joins, presets, action costs, results, debug), the gil-gained and gil-spent totals and the achievements they unlock."
-addresses: ["00253690", "00254EE0", "003004B0", "00300500", "00316A50", "00309060", "002F95D0", "00312280", "003F4AA0", "0050FAF0"]
+addresses: "00253690, 00254EE0, 003004B0, 00300500, 00316A50, 00309060, 002F95D0, 00312280, 003F4AA0, 0050FAF0, 002524C0"
 ---
-
-# Gil: storage, the gil cap, every way gil changes, and the Plunderer and Spendthrift counters
 
 ## What the player sees
 
@@ -173,6 +171,11 @@ verb `questresultwindow` (`0x37C`).
 ## Modding notes
 
 - The cap is the constant `0x05F5E0FF` in `00254EE0` (`00254F09`) and in `003058B0`; it is not data.
+- The shop's rolling gil total carries the same constant twice: `002A1DC0` flags a roll whose end
+  passes it, and `002524C0(current, change)` returns the change to roll: 99,999,999 for a current
+  above the cap, 0 for a negative current, the current itself when the change would go below 0,
+  `99,999,999 - current` when the sum would pass the cap, else the change. Raising the cap means
+  patching these too.
 - Writing `[02092758] + 8` directly skips both the clamp and the gained/spent totals. Write through
   `00254EE0`, or `003004B0` for a relative change.
 - The Plunderer and Spendthrift thresholds are in `menuhandbook.bin`, the record reached through the

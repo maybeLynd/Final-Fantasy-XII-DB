@@ -3,10 +3,8 @@ title: "Menu effects: the 64-record registry that menu screens use to spawn, pla
 kind: "system"
 category: "Graphics"
 summary: "The menu effect registry: the type-4 effect context a screen loads, the 64 records at 02EBDBC0 that map an id to a live effect instance, spawning with eviction of the oldest record when full, removal by id or by instance, the depth offset the Sky Pirate's Den sets per statue, the state query the License Board polls, and which screens drive it."
-addresses: ["02EBDBC0", "02EBE5C0", "003B29B0", "003B2B40", "003B28F0", "003B2D80", "003B2BC0", "003B2AA0", "003B2930", "003B2CA0", "003B2CE0", "003B2F50", "0024C460", "0024C550", "0024F610", "0024B270", "0024FCF0", "0039B620", "0039B550"]
+addresses: "02EBDBC0, 02EBE5C0, 003B29B0, 003B2B40, 003B28F0, 003B2D80, 003B2BC0, 003B2AA0, 003B2930, 003B2CA0, 003B2CE0, 003B2F50, 0024C460, 0024C550, 0024F610, 0024B270, 0024FCF0, 0039B620, 0039B550"
 ---
-
-# Menu effects: the 64-record registry that menu screens use to spawn, place and remove effects by id
 
 ## What the player sees
 
@@ -84,18 +82,21 @@ In the Sky Pirate's Den, `00572920` goes through the thirty descriptors and, for
 
 ## Layouts
 
-```
-registry record, 02EBDBC0 + n × 0x28, 64 records
-+0x00  u32  id        0 = free; 0x40000000 | counter
-+0x08  ptr  instance  the effect instance
-+0x10  u32  x         the spawn arguments, stored only
-+0x14  u32  y
-+0x18  u32  z
-+0x1C  u32  kind
-+0x20  u8   flags     bit 0 cleared on spawn
+Registry record, `02EBDBC0` + n × `0x28`, 64 records:
 
-02EBE5C0  u32  counter   the last id number handed out
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | id | 0 = free; `0x40000000` \| counter |
+| `08` | `void*` | instance | the effect instance |
+| `10` | `u32` | x | the spawn arguments, stored only |
+| `14` | `u32` | y |  |
+| `18` | `u32` | z |  |
+| `1C` | `u32` | kind |  |
+| `20` | `u8` | flags | bit 0 cleared on spawn |
+
+| Address | Type | Name | Meaning |
+|---|---|---|---|
+| `02EBE5C0` | `u32` | counter | the last id number handed out |
 
 ## State
 

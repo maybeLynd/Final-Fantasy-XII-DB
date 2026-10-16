@@ -3,10 +3,8 @@ title: "Zone changes: mapjump and the other jump verbs, the loading flags, the m
 kind: "system"
 category: "World, areas and travel"
 summary: "From the script line mapjump(map, entrance, mode) to the frame the new zone runs: the verb's wait and request, the transition record in the save data, the fade, the tick that tears the old zone down and starts the load, the pending-load and busy masks, the ready point, the scene loader, the jump-index verbs, the jump lock and the field id's file table."
-addresses: ["00354D00", "00355350", "00314440", "003145E0", "00314020", "0032FC30", "0032FCA0", "003321E0", "002620E0", "0034AD70"]
+addresses: "00354D00, 00355350, 00314440, 003145E0, 00314020, 0032FC30, 0032FCA0, 003321E0, 002620E0, 0034AD70"
 ---
-
-# Zone changes: mapjump and the other jump verbs, the loading flags, the moment the new zone is ready and what names a map
 
 ## What the player sees
 
@@ -117,6 +115,14 @@ sets `022C2528` = 1 and notifies the file cache. `003145E0` is also called by th
 `0032FC30(0, map)` calls `003EA6E0(map, byte 022C6D1D)`, then `0032FCA0(0, map)`, `0025D4D0(0)`, and sets
 bit 0 of `022C6E48`, the start hold. A branch guarded by `005C5230(5)` is dead in this build.
 
+That dead branch calls `003319D0(map)`. It takes the zone's `.ebp` path (namespace 5, index
+`map * 3`) and makes four sibling paths with `00331F50`, which replaces every occurrence of one
+substring with another: the folder `global` becomes `entry`, `entry`, `treasure` or `icon` and the
+extension `eps`, `ard`, `eps` or `icn`. Each file that exists (`0032E400(0xFF, path)`) is read into
+a block labelled `POSENT`, `MAPARD`, `TREENT` or `NV_ICON` with the source name `atelload.c`
+(`0036C750` cuts a path to its file name), with the completions `003320E0`, `003320D0`,
+`00332110` and `00332100`.
+
 ### Where the files come from
 
 `0032FCA0(m, ctx)` unloads the manager (`002628B0`), resets it (`0032ED80`), stores `ctx` at
@@ -211,6 +217,7 @@ or write the transition record:
 | `0x211` `getmapjumpposbyindex(i, ...)` | `003538F0` | x, y, z and angle of entrance `i` into four script variables |
 | `0x2C5` `effectkeepmapjump(v)` | `0033FC20` | `0036E9B0(v, 1)` |
 | `0x323` `getmapjumpanglebyindex(i)` | `00353490` | the angle of entrance `i` |
+| `0x365` `getmapdestposbyindex(i, ...)` | `00353ED0` | x, y, z and angle of destination `i` into four script variables, through `00377900` |
 | `0x331` `getmapjumpmode()` | `00343930` | payload `+0x1054` (`003148D0`) |
 | `0x332` `setmapjumpmode(v)` | `00343D90` | payload `+0x1054` (`00314DA0`) |
 | `0x3D1` `setnowjumpindex(i)` | `0034AC10` | payload `+0x1048` (`00314D80`) |
@@ -221,7 +228,16 @@ or write the transition record:
 
 `00377AB0(i, out)` looks entrance `i` up in the field data through `00264B50`; when there is no such
 entrance it takes `[[0209A678]] + 0x28` and `+0x2C` when `02ADD0D8` is set, else zero, and passes the
-angle through `003A1C50`. `0026DEF0(map)` reads the per-area music number table `003EAA70` (blocks of 128
+angle through `003A1C50`.
+
+`00264B90(table, manager, i, …)` is the reader under both: table 0 is
+the list whose offset is at `+0x54` of the manager's header (`00264B50`), table 1 the list at `+0x84`
+(`00264110`). Each list starts with a count, and entry `i` has x, y, z and the angle at
+`+0x04 + i × 0x20` to `+0x10 + i × 0x20`; an index at or above the count gives zeros and the result 0.
+The aliases -1, -2 and -3 resolve as in `00264CE0`. `00377900(i, out)` reads table 1 of
+manager 0, writes zeros when there is no such record and passes the angle through `003A1C50`.
+
+`0026DEF0(map)` reads the per-area music number table `003EAA70` (blocks of 128
 area ids under `[02B5E0D0]`, entries selected by the story variable `00265270()`); when the number is
 negative or its byte in `[022CBA50]` lacks bit 0 (`00361010`) it returns `0x5B` while the summon mode
 `003135C0` is on and `0x5A` while `00303EC0` reports non-zero.
@@ -255,19 +271,21 @@ third.
 
 ## Layouts
 
-```struct ZoneTransitionRecord base=payload+0x1044 size=0x20
-+0x00  i32  destinationField      payload +0x1044: the map being jumped to; also 01EED064 while pending (003145E0)
-+0x04  i32  destinationEntrance   payload +0x1048: the entrance index (003145E0, 00314D80)
-+0x08  i32  previousField         payload +0x104C: the old destinationField (003145E0)
-+0x0C  i32  previousEntrance      payload +0x1050: the old destinationEntrance (003145E0)
-+0x10  u32  mode                  payload +0x1054: the mode argument (003145E0, 00314DA0)
-+0x14  i32  persistenceGroup      payload +0x1058: 00264F90(destinationField) (003145E0)
-+0x18  i32  loadedField           payload +0x105C: destinationField (003145E0, 00314530)
-+0x1C  u8   startSelector         payload +0x1060: 0 to 2, written by 0026D910 while +0x1D is 0 and passed to 00180620; read by 002620E0 when 0017D490() is not positive
-+0x1D  u8   initPending           payload +0x1061: set to 1 by 00268320 and 0026D8F0, cleared by 0026D910 after it has written +0x1C
-+0x1E  u8   flags                 payload +0x1062: bit 5 cleared by 003145E0 and set by 00314530; bit 2 written by 00314D00; bits 0 and 7 read by the area-flag accessors
-+0x1F  u8   flags2                payload +0x1063: bits 4-5 the MP-regime override (area flags page); bit 6 selects payload +0x1534 as the music number (0026DE20)
-```
+`ZoneTransitionRecord` (`0x20` bytes, offsets from the start of the payload+0x1044):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `i32` | destinationField | payload +`0x1044`: the map being jumped to; also `01EED064` while pending (`003145E0`) |
+| `04` | `i32` | destinationEntrance | payload +`0x1048`: the entrance index (`003145E0`, `00314D80`) |
+| `08` | `i32` | previousField | payload +`0x104C`: the old destinationField (`003145E0`) |
+| `0C` | `i32` | previousEntrance | payload +`0x1050`: the old destinationEntrance (`003145E0`) |
+| `10` | `u32` | mode | payload +`0x1054`: the mode argument (`003145E0`, `00314DA0`) |
+| `14` | `i32` | persistenceGroup | payload +`0x1058`: `00264F90`(destinationField) (`003145E0`) |
+| `18` | `i32` | loadedField | payload +`0x105C`: destinationField (`003145E0`, `00314530`) |
+| `1C` | `u8` | startSelector | payload +`0x1060`: 0 to 2, written by `0026D910` while +`0x1D` is 0 and passed to `00180620`; read by `002620E0` when `0017D490`() is not positive |
+| `1D` | `u8` | initPending | payload +`0x1061`: set to 1 by `00268320` and `0026D8F0`, cleared by `0026D910` after it has written +`0x1C` |
+| `1E` | `u8` | flags | payload +`0x1062`: bit 5 cleared by `003145E0` and set by `00314530`; bit 2 written by `00314D00`; bits 0 and 7 read by the area-flag accessors |
+| `1F` | `u8` | flags2 | payload +`0x1063`: bits 4-5 the MP-regime override (area flags page); bit 6 selects payload +`0x1534` as the music number (`0026DE20`) |
 
 ## Operations
 

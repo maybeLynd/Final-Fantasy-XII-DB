@@ -3,10 +3,8 @@ title: "Save file format: the SAFH container, its zlib and RC4 layers, the save 
 kind: "format"
 category: "Saving, loading and settings"
 summary: "What a FFXII_000 save file is from the outside in: the 12-byte SAFH container header, the body that is zlib-compressed and then RC4-encrypted under a key derived from the rotated game title, the 353,936-byte image inside it with its 512-byte header (checksum, gil, play time, slot roster, area, format constants) and payload, the four image buffers the game keeps in memory, the checksum the writer computes, the stamps the loader checks, and what loading an older or edited image does."
-addresses: ["008666B0", "00866200", "00865840", "00865D90", "002EF640", "00583D60", "0057E310", "003BB220", "00253A80", "00255260", "00233C10", "002370C0", "00584210", "00862A40"]
+addresses: "008666B0, 00866200, 00865840, 00865D90, 002EF640, 00583D60, 0057E310, 003BB220, 00253A80, 00255260, 00233C10, 002370C0, 00584210, 00862A40"
 ---
-
-# Save file format: the SAFH container, its zlib and RC4 layers, the save image and its header fields, the four in-memory copies and the format stamps
 
 ## What the player sees
 
@@ -37,11 +35,13 @@ The container is read by `008666B0(path, mode)`, called from the stream opener `
 
 ### The container on disk
 
-```struct SaveFileContainer base=file size=0x0C
-+0x00  u8[4]  magic    "SAFH"; 008666B0 rejects anything else as a container (see Loader behaviour)
-+0x04  u32    size     the decoded image size, 0x56690 in this build; must be at most 0x100000 (00866817)
-+0x08  u32    rotation 0-31, the key rotation; must be below 32 (00866805); kept at 02EB3868
-```
+`SaveFileContainer` (`0xC` bytes, offsets from the start of the file):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8[4]` | magic | "SAFH"; `008666B0` rejects anything else as a container (see Loader behaviour) |
+| `04` | `u32` | size | the decoded image size, `0x56690` in this build; must be at most `0x100000` (`00866817`) |
+| `08` | `u32` | rotation 0-31, the key rotation; must be below 32 (00866805); kept at 02EB3868 |  |
 
 The body from `+0x0C` to the end of the file is the image, compressed with zlib `compress2` at
 level 9 (`0087AF40`, called from `00866200` with level 9) and then encrypted with RC4 by
@@ -65,10 +65,12 @@ The writer draws the rotation as `abs(rand()) mod 32` (`008663C5`-`008663ED`).
 
 ### The image
 
-```struct SaveImage base=image size=0x56690
-+0x000  u8[512]     header    see below
-+0x200  u8[353424]  payload   the persistent payload; 002EF2B0 returns its address
-```
+`SaveImage` (`0x56690` bytes, offsets from the start of the image):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `000` | `u8[512]` | header | see below |
+| `200` | `u8[353424]` | payload | the persistent payload; `002EF2B0` returns its address |
 
 The image is 353,936 bytes: the clear `002EF5F0` and the boot initialiser `002EF650` memset that
 many, the copy to the write buffer passes it (`002EF690`), and the submit records it at the
@@ -76,35 +78,37 @@ descriptor's `+0x100` (`0057E310`).
 
 ### The header
 
-```struct SaveImageHeader base=image size=0x200
-+0x000  u32    checksum  in the file: CRC-32 of image[0x08, 0xE200) (0057E3BF); the finaliser writes its complement here first (00583FA1)
-+0x004  u32    one       1 in the written image (0057E3C7)
-+0x008  i32    gil       written by 00254EE0 (00254F1F), read by 00253690
-+0x00C  u32    walked    walked-distance total mirrored from the battle block by 00254E80 (00254E90)
-+0x010  u64    ticks     play clock, 60 Hz ticks, added by 00254CC0; its bound is the sign-extended immediate 0xFFFFFFFF80BEFBFF compared unsigned (00254CF1, 00254D30-00254D33), so it never fires
-+0x018  u16    hours     (ticks / 216000) mod 10000, by 00254CC0 (00254DB5)
-+0x01A  u8     minutes   (ticks / 3600) mod 60, by 00254CC0
-+0x01B  u8     seconds   (ticks / 60) mod 60, by 00254CC0
-+0x01C  u8[4]  pad       not written by the enumerated writers
-+0x020  u8[28] roster    seven 4-byte entries, 00583D60: character id, level, jobs (high and low nibble), flags; unused entries start with 0xFF
-+0x03C  u32    clanrank1 0xFF, or the value 003200A0 reports when its flag bit 0 is set (00583D60)
-+0x040  u32    counter   counter kind 0x11 (003166F0) when story flag 0x400B is set, else untouched
-+0x044  u32    clanrank  00315390() when story flag 0x400B is set, else 0
-+0x048  u32    mapgroup  the area's map persistence group: 00254380(00264F90(areaId))
-+0x04C  u32    area      the active or pending area id (003148F0)
-+0x050  u32    savecount 00583D60's second argument (the controller's +0xD0); in the written image the save counter 02CA99B4, saturating at 0xFFFFFFFF (0057E3CE-0057E3DD)
-+0x054  u8     slot      00583D60's first argument: the save slot (controller +0xCD from 00581DA0 at 00581EE7; 0 from 005844A0 at 005844BE)
-+0x055  u8[2]  pad2      not written by the enumerated writers
-+0x057  u8     flags     bit 0 from 00236760 (stash pending), bit 1 from 00236740, bit 2 from 00236780 (00583F5A-00583F7D)
-+0x058  u32    date      constant 0x20050223, written by 00253A80 and never read
-+0x05C  u32    clearsize constant 0x1538, the size 002EF2DD clears at payload +0
-+0x060  u32    stamp     constant 0x05071901, the battle-state block's stamp
-+0x064  u32    blocksize constant 0x7410, the battle-state block's size
-+0x068  u32    magic2    0x0131F3EA, tested by 00255260
-+0x06C  u32    size2     0x4818, tested by 00255260; the image-backed state block's size
-+0x070  u8[32] stash     the mode-3 stash: +0x70 ticks, +0x78 hours, +0x7A minutes, +0x7B seconds, +0x7C walked, +0x80 five dwords of the world-transition record (00584210)
-+0x090  u8[368] rest      zeroed by the image clears; not written by the enumerated writers
-```
+`SaveImageHeader` (`0x200` bytes, offsets from the start of the image):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | checksum | in the file: CRC-32 of image[`0x08`, `0xE200`) (`0057E3BF`); the finaliser writes its complement here first (`00583FA1`) |
+| `04` | `u32` | one | 1 in the written image (`0057E3C7`) |
+| `08` | `i32` | gil | written by `00254EE0` (`00254F1F`), read by `00253690` |
+| `0C` | `u32` | walked | walked-distance total mirrored from the battle block by `00254E80` (`00254E90`) |
+| `10` | `u64` | ticks | play clock, 60 Hz ticks, added by `00254CC0`; its bound is the sign-extended immediate `0xFFFFFFFF80BEFBFF` compared unsigned (`00254CF1`, `00254D30`-`00254D33`), so it never fires |
+| `18` | `u16` | hours | (ticks / 216000) mod 10000, by `00254CC0` (`00254DB5`) |
+| `1A` | `u8` | minutes | (ticks / 3600) mod 60, by `00254CC0` |
+| `1B` | `u8` | seconds | (ticks / 60) mod 60, by `00254CC0` |
+| `1C` | `u8[4]` | pad | not written by the enumerated writers |
+| `20` | `u8[28] roster` | seven 4-byte entries, 00583D60: character id, level, jobs (high and low nibble), flags; unused entries start with 0xFF |  |
+| `3C` | `u32` | esper | the summoned Esper's character row: `003200A0` sets its flag bit 0 when summon mode is on (block +`0x5B04` bit 0, `003135E0`) and copies the row byte block +`0x5AD4` (`003137E0`); `00583D60` stores it, else `0xFF` (`00583F08`-`00583F0D`); the slot pane's ESPER row shows its name when it is not `0xFF` (`0057EFE0`, `0057F0CC`) |
+| `40` | `u32` | counter | counter kind `0x11` (`003166F0`) when story flag `0x400B` is set, else untouched |
+| `44` | `u32` | clanrank | `00315390`() when story flag `0x400B` is set, else 0 |
+| `48` | `u32` | mapgroup | the area's map persistence group: `00254380`(`00264F90`(areaId)) |
+| `4C` | `u32` | area | the active or pending area id (`003148F0`) |
+| `50` | `u32` | savecount 00583D60's second argument (the controller's +0xD0); in the written image the save counter 02CA99B4, saturating at 0xFFFFFFFF (0057E3CE-0057E3DD) |  |
+| `54` | `u8` | slot | `00583D60`'s first argument: the save slot (controller +`0xCD` from `00581DA0` at `00581EE7`; 0 from `005844A0` at `005844BE`) |
+| `55` | `u8[2]` | pad2 | not written by the enumerated writers |
+| `57` | `u8` | flags | bit 0 from `00236760` (stash pending), bit 1 from `00236740`, bit 2 from `00236780` (`00583F5A`-`00583F7D`) |
+| `58` | `u32` | date | constant `0x20050223`, written by `00253A80` and never read |
+| `5C` | `u32` | clearsize constant 0x1538, the size 002EF2DD clears at payload +0 |  |
+| `60` | `u32` | stamp | constant `0x05071901`, the battle-state block's stamp |
+| `64` | `u32` | blocksize constant 0x7410, the battle-state block's size |  |
+| `68` | `u32` | magic2 | `0x0131F3EA`, tested by `00255260` |
+| `6C` | `u32` | size2 | `0x4818`, tested by `00255260`; the image-backed state block's size |
+| `70` | `u8[32] stash` | the mode-3 stash: +0x70 ticks, +0x78 hours, +0x7A minutes, +0x7B seconds, +0x7C walked, +0x80 five dwords of the world-transition record (00584210) |  |
+| `90` | `u8[368] rest` | zeroed by the image clears; not written by the enumerated writers |  |
 
 The roster loop (`00583DC2`-`00583EEB`) walks party pages 0-8 from `00282DF0(page)`, skips a page
 whose word `+0x60` is negative or whose flag bit 1 is set, and writes for each page `{+0x60 low
@@ -167,6 +171,10 @@ encrypts, and writes to a temporary file `sav_tmp` in the Windows temp directory
 file exists and the flag `02B40E04` is set, the previous save is first copied to `sav_org` (the
 flag is then cleared); the temporary file is copied over the slot's file (`CopyFileW`), and on
 failure `sav_org` is copied back when one was made, else the slot file is removed.
+
+The two paths are the temp directory (`GetTempPathW`, 260 characters) joined with the wide names at `01CCFD70`
+and `01CCFD80` by `008656B0(out, directory, name)`, which appends the name to the directory string
+(`00865FF0`) and moves the result into `out` (`008662C3`, `00866328`).
 
 ### What a load checks
 

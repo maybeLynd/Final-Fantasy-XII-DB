@@ -3,10 +3,8 @@ title: "Scripted camera: the shot channels, the camera record stack, and how a c
 kind: "system"
 category: "Graphics"
 summary: "The camera a script or cutscene drives, from the shot channels to the matrices the renderer reads: the per-frame channel tick, how a playing shot is published into camera record 5, the eight camera records and the active mask whose highest bit wins, the eased return to the behind camera, the eight one-frame submissions and the priority arbitration in the camera update, where the shake offsets land, the matrices it builds, and the Screen Shake option's gate."
-addresses: ["003DA050", "002555D0", "0025A3B0", "0025A2C0", "0025A500", "0025A520", "02097300", "02098DEC", "00259820", "00257830", "00257520", "00256650", "003829D0", "02AED630", "003820C0", "02AED560", "00382B70", "0037D4C0", "0037D970", "02AEDEF0"]
+addresses: "003DA050, 002555D0, 0025A3B0, 0025A2C0, 0025A500, 0025A520, 02097300, 02098DEC, 00259820, 00257830, 00257520, 00256650, 003829D0, 02AED630, 003820C0, 02AED560, 00382B70, 0037D4C0, 0037D970, 02AEDEF0"
 ---
-
-# Scripted camera: the shot channels, the camera record stack, and how a camera reaches the renderer
 
 ## What the player sees
 
@@ -167,32 +165,35 @@ keeps its last values; the scripted shakes are not gated.
 
 ## Layouts
 
-```
-Camera record [8] at 02097300, stride 0x110
-+0x00  f32[4]   eye        source eye for the rebuild
-+0x10  f32[4]   target     source target for the rebuild
-+0x20  u8[0xD0] view       the camera below
-+0xF0  u32      mode       1, 2, 3 or other (00259820)
-+0xF4  u32      param      for mode 1
-```
+Camera record [8] at `02097300`, stride `0x110`:
 
-```
-Camera (0xD0), as the update reads it
-+0x08  f32      fov        radians
-+0x0C  f32      fovCopy    the second copy's field of view
-+0x10  f32      projScale  1 / tan(fov / 2)
-+0x20  f32[16]  view       copied to 02AEDE70
-+0x60  f32[16]  world      camera matrix; +0x90 is its fourth row, the eye
-+0xA0  f32[4]   target
-+0xC4  f32      roll
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `f32[4]` | eye | source eye for the rebuild |
+| `10` | `f32[4]` | target | source target for the rebuild |
+| `20` | `u8[208] view` | the camera below |  |
+| `F0` | `u32` | mode | 1, 2, 3 or other (`00259820`) |
+| `F4` | `u32` | param | for mode 1 |
 
-```
-Submission slot [8] at 02AED630, stride 0xE0
-+0x00  u8[0xD0] camera
-+0xD0  u32      submitted  1 until the next update
-+0xD4  i32      priority
-```
+Camera (`0xD0`), as the update reads it:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `08` | `f32` | fov | radians |
+| `0C` | `f32` | fovCopy | the second copy's field of view |
+| `10` | `f32` | projScale | 1 / tan(fov / 2) |
+| `20` | `f32[16]` | view | copied to `02AEDE70` |
+| `60` | `f32[16]` | world | camera matrix; +`0x90` is its fourth row, the eye |
+| `A0` | `f32[4]` | target |  |
+| `C4` | `f32` | roll |  |
+
+Submission slot [8] at `02AED630`, stride `0xE0`:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8[208]` | camera |  |
+| `D0` | `u32` | submitted | 1 until the next update |
+| `D4` | `i32` | priority |  |
 
 ## Shipped data
 

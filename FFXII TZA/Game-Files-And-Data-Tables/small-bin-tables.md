@@ -3,10 +3,8 @@ title: "Small .bin tables: footstep sounds, controller vibration, battle window 
 kind: "format"
 category: "Game files and data tables"
 summary: "Six small PS2-era tables the game reads whole and uses in place: soundfoottable.bin (FOOT), eventvib.bin (VIB0), menubtlwndinfo.bin (bwind), key_signal_data.bin (signe), questbase.bin (QST1) and summoneffectdata.bin. For each, its kind and id, its requester, the byte layout as the reader takes it, what the reader does with each field, the shipped values and what an edit must keep."
-addresses: ["00378540", "002E9D90", "00379E90", "0035B3E0", "0035B650", "0035B2F0", "0035AF20", "0035AE30", "0034AC30", "0035C5B0", "0035C3F0", "0027BDE0", "0027DED0", "0029DC90", "0029DA70", "0029DBE0", "0029E330", "00473D20", "00473B90", "00473C90", "003B53C0", "003B5340", "0036FBB0", "0036F9F0", "02ADD0C0", "02EC0B68", "022CA460", "0209C4A0", "02CA6C60", "02AD9B60"]
+addresses: "00378540, 002E9D90, 00379E90, 0035B3E0, 0035B650, 0035B2F0, 0035AF20, 0035AE30, 0034AC30, 0035C5B0, 0035C3F0, 0027BDE0, 0027DED0, 0029DC90, 0029DA70, 0029DBE0, 0029E330, 00473D20, 00473B90, 00473C90, 003B53C0, 003B5340, 0036FBB0, 0036F9F0, 02ADD0C0, 02EC0B68, 022CA460, 0209C4A0, 02CA6C60, 02AD9B60"
 ---
-
-# Small .bin tables: footstep sounds, controller vibration, battle window sizes, the button legend, quest window texts and summon colours
 
 ## What the player sees
 
@@ -51,13 +49,13 @@ for Japanese, UK, ASIA and IN.
 
 ### FOOT: soundfoottable.bin
 
-```
-+0x00  char[8]  "FOOT01\0\0"   tag, compared by no reader
-+0x08  u16      32             count: the offset of set B within the byte table
-+0x0C  u32      0
-+0x10  s8[32]   set A          sound for surface 0..31
-+0x30  s8[32]   set B          sound for surface 0..31 with the weather variant flag set
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[8]` | "FOOT01\0\0" | tag, compared by no reader |
+| `08` | `u16` | 32 | count: the offset of set B within the byte table |
+| `0C` | `u32` | 0 |  |
+| `10` | `i8[32]` | set A | sound for surface 0..31 |
+| `30` | `i8[32]` | set B | sound for surface 0..31 with the weather variant flag set |
 
 ### VIB0: eventvib.bin
 
@@ -76,11 +74,11 @@ start of pair k and the byte at `+7 + 2k` its end.
 
 ### bwind: menubtlwndinfo.bin
 
-```
-+0x00  char[8]  "bwind\0\0\0"  tag, compared by no reader
-+0x08  u32      count          15
-+0x0C  {u16 width, u16 rows}[count]
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[8]` | "bwind\0\0\0" | tag, compared by no reader |
+| `08` | `u32` | count | 15 |
+| `0C` | `{u16` | width, | u16 rows}[count] |
 
 ### signe: key_signal_data.bin
 
@@ -98,25 +96,25 @@ scene          u8 scene id, u8 a, u8 b, u8 n, then {u8 signal (section 1 index),
 
 ### QST1: questbase.bin
 
-```
-+0x00  char[4]  "QST1"         tag, compared by no reader
-+0x04  s32      count
-+0x08  u32[count]              bits 0-12 value A, bits 13-25 text index, bit 26 flag, bits 27-31 zero
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[4]` | "QST1" | tag, compared by no reader |
+| `04` | `i32` | count |  |
+| `08` | `u32[count]` | bits 0-12 value A, bits 13-25 text index, bit 26 flag, bits 27-31 zero |  |
 
 ### summoneffectdata.bin
 
-```
-+0x000 record[64]  10 bytes each, indexed by the active summon effect minus 1
-         +0x00 u8[3]  scale A, red, green, blue, in hundredths
-         +0x03 u8[3]  scale B, in hundredths
-         +0x06 u8[4]  colour of the full-screen tint
-+0x280 f32  copied to 02AE9660        +0x284 f32  copied to 02AE9664
-+0x288 f32  tint size factor (02AE9650 and scaled copies)
-+0x28C f32  copied to 02AE9668
-+0x290 u32, +0x294 u32  two words whose difference is split in thirds for the tint's layers
-+0x298 u8[8]  zero
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `000` | `record[64]` | 10 bytes each, indexed by the active summon effect minus 1 |  |
+| `000` | `u8[3]` | scale A, red, green, blue, in hundredths |  |
+| `003` | `u8[3]` | scale B, in hundredths |  |
+| `006` | `u8[4]` | colour of the full-screen tint |  |
+| `280` | `f32` | copied to 02AE9660 | +`0x284` f32  copied to `02AE9664` |
+| `288` | `f32` | tint size factor (02AE9650 and scaled copies) |  |
+| `28C` | `f32` | copied to 02AE9668 |  |
+| `290` | `u32, +0x294 u32` | two words whose difference is split in thirds for the tint's layers |  |
+| `298` | `u8[8]` | zero |  |
 
 The file has no tag: its first four bytes `64 50 3C 64` are record 0's scale bytes.
 

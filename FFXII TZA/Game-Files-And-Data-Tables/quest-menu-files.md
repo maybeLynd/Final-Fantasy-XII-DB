@@ -3,10 +3,8 @@ title: "Quest menu files: the menuquest list, petitioner strings and per-group d
 kind: "format"
 category: "Game files and data tables"
 summary: "The quest-menu files in each language's quest folder: menuquest.dat, the quest list with each quest's name, group and row picture; menuquest.lst, the petitioner line and picture threshold per quest; and menuquest00 to 02.bin, one per group, with each quest's detail text, its progress table and the QHD0 and QHT0 map-marker chunks. Covers the quest data widget that loads them, the Hunts rows, the detail pane and the map-data widget that read them, the shipped files and the rules an edit must keep."
-addresses: ["0037F4D0", "0037F440", "0037F3B0", "02AED490", "0037F1F0", "003800D0", "0037FD50", "0037FBA0", "0037FA80", "0037E5B0", "0037EFC0", "0037EE10", "0037EF70", "0037EAA0", "0037E8D0", "00577C30", "005789D0", "00578450", "0037FEA0", "00473D50", "00473DB0", "00473BB0", "00473CC0", "02CA6C68", "02CA6C70"]
+addresses: "0037F4D0, 0037F440, 0037F3B0, 02AED490, 0037F1F0, 003800D0, 0037FD50, 0037FBA0, 0037FA80, 0037E5B0, 0037EFC0, 0037EE10, 0037EF70, 0037EAA0, 0037E8D0, 00577C30, 005789D0, 00578450, 0037FEA0, 00473D50, 00473DB0, 00473BB0, 00473CC0, 02CA6C68, 02CA6C70, 0037F7C0, 0037FA00, 0037F140"
 ---
-
-# Quest menu files: the menuquest list, petitioner strings and per-group detail tables, how they are read, and what each field shows
 
 ## What the player sees
 
@@ -38,62 +36,62 @@ and `in` hold six `q_c00`-`q_c05.tm2` pictures.
 
 ### menuquest.dat
 
-```
-+0x00  char[4]  magic      "qstd"; the readers ignore it
-+0x04  u32      version    100; not read
-+0x08  u16      groups     3; not read
-+0x0A  u16      count      records; bounds every index (0037E5B0)
-+0x0C  rec[count]          8 bytes each
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[4]` | magic | "qstd"; the readers ignore it |
+| `04` | `u32` | version | 100; not read |
+| `08` | `u16` | groups | 3; not read |
+| `0A` | `u16` | count | records; bounds every index (`0037E5B0`) |
+| `0C` | `rec[count]` | 8 bytes each |  |
 
 A record:
 
-```
-+0x00  i32  text     the quest's name, a message id (002F9920)
-+0x04  u32  key      bits 0-7 group; bits 8-17 quest id; bits 20-27 row picture; bits 18-19 not read
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `i32` | text | the quest's name, a message id (`002F9920`) |
+| `04` | `u32` | key | bits 0-7 group; bits 8-17 quest id; bits 20-27 row picture; bits 18-19 not read |
 
 A quest's position is its index among the records of its own group; it selects the quest's record in
 the group's `.bin` file (`0037FD50`).
 
 ### menuquest.lst
 
-```
-+0x00  char[4]  magic      "qstl"; the readers ignore it
-+0x04  u32      version    100; not read
-+0x08  u16      stringsAt  base of the string offsets (0037F02A)
-+0x0A  u16      zero
-+0x0C  u16      zero
-+0x0E  u16      count      directory entries (0037EFD9)
-+0x10  dir[count]          8 bytes each
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[4]` | magic | "qstl"; the readers ignore it |
+| `04` | `u32` | version | 100; not read |
+| `08` | `u16` | stringsAt | base of the string offsets (`0037F02A`) |
+| `0A` | `u16` | zero |  |
+| `0C` | `u16` | zero |  |
+| `0E` | `u16` | count | directory entries (`0037EFD9`) |
+| `10` | `dir[count]` | 8 bytes each |  |
 
 A directory entry:
 
-```
-+0x00  u16  quest       quest id; the first entry with the id wins (0037EFF0)
-+0x02  u16  textAt      offset of the petitioner line from stringsAt; 0xFFFF = empty (0037F01C)
-+0x04  u8   threshold   low nibble: the progress part at which the row picture changes (0037E6A6)
-+0x05  u8[3]            zero
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u16` | quest | quest id; the first entry with the id wins (`0037EFF0`) |
+| `02` | `u16` | textAt | offset of the petitioner line from stringsAt; `0xFFFF` = empty (`0037F01C`) |
+| `04` | `u8` | threshold | low nibble: the progress part at which the row picture changes (`0037E6A6`) |
+| `05` | `u8[3]` | zero |  |
 
 The strings are the game's encoded text, zero-terminated. A quest with no entry gets an empty line.
 
 ### menuquest00.bin to menuquest02.bin
 
-```
-+0x00  u16  sectionAt[6]   offset of each section
-+0x0C  u16  pad            0xFFFF; not read
-+0x0E  u16  count          records; not read, the records are indexed by position
-+0x10  rec[count]          20 bytes each
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u16` | sectionAt[6] | offset of each section |
+| `0C` | `u16` | pad | `0xFFFF`; not read |
+| `0E` | `u16` | count | records; not read, the records are indexed by position |
+| `10` | `rec[count]` | 20 bytes each |  |
 
 A record, at `0x10 + 20 x position`:
 
-```
-+0x00  u16  item[6]   offset of the quest's item in each section, from sectionAt[s]; 0xFFFF = none
-+0x0C  u16  fill[4]   0x0FFF; not read
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u16` | item[6] | offset of the quest's item in each section, from sectionAt[s]; `0xFFFF` = none |
+| `0C` | `u16` | fill[4] | `0x0FFF`; not read |
 
 No reader uses `item[5]`: the progress row is found by position. The sections:
 
@@ -111,33 +109,33 @@ two zero bytes. Value `k` is the number of parts shown while the quest's progres
 
 Both chunks start the same way:
 
-```
-+0x00  char[4]  magic      "QHD0" or "QHT0"; the readers ignore it
-+0x04  u32      count      entries; bit 31 is set once the offsets are made addresses
-+0x08  u32      entryAt[count]   offset of each entry from the chunk
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[4]` | magic | "QHD0" or "QHT0"; the readers ignore it |
+| `04` | `u32` | count | entries; bit 31 is set once the offsets are made addresses |
+| `08` | `u32` | entryAt[count] | offset of each entry from the chunk |
 
 A `QHD0` entry, read by `00473BB0(entry, step, progress)`:
 
-```
-+0x00  u8   steps      step records that follow
-+0x01  u8   type       0 or 1
-+0x02  step[steps]     18 bytes each:
-         +0x00  u8   a         type 0: returned alone; type 1: returned with b and location
-         +0x01  u8   b
-         +0x02  u16  location  the location the map marks (type 1)
-         +0x04  u8   shown[7]      bit n: the step applies while progress / 5 is n (n at most 50)
-         +0x0B  u8   labelled[7]   bit n: the location carries the step's label then
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | steps | step records that follow |
+| `01` | `u8` | type | 0 or 1 |
+| `02` | `step[steps]` | 18 bytes each: |  |
+| `00` | `u8` | a | type 0: returned alone; type 1: returned with b and location |
+| `01` | `u8` | b |  |
+| `02` | `u16` | location | the location the map marks (type 1) |
+| `04` | `u8` | shown[7] | bit n: the step applies while progress / 5 is n (n at most 50) |
+| `0B` | `u8` | labelled[7] | bit n: the location carries the step's label then |
 
 A `QHT0` entry, read by `00473CC0(entry, step)`:
 
-```
-+0x00  u8   count      label pairs; not read
-+0x01  u8   value      returned by 00473CC0
-+0x02  u16  zero
-+0x04  {u16 first, u16 second}[]   per step: offsets of two label strings from the entry; 0x8000 and up = none
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | count | label pairs; not read |
+| `01` | `u8` | value | returned by `00473CC0` |
+| `02` | `u16` | zero |  |
+| `04` | `{u16 first, u16 second}[]` | per step: offsets of two label strings from the entry; 0x8000 and up = none |  |
 
 ## Shipped data
 
@@ -181,6 +179,16 @@ Group files load on demand: `0037FD50(index)` finds the quest's group and positi
 and `003800D0` asks for id `0x12A` plus the group. Asking for another group releases the other group
 files first (`0037FA80`), so one group's table is held at a time.
 
+The widget lists the group files it asked for at `+0xF0`: `0x18`-byte entries, count `+0xEE`, each with a
+state byte (1 loaded, 2 loading, 3 dropped on arrival) and the buffer at `+0x10`.
+
+- `0037F7C0(widget, i, force)` removes entry i and returns 1: a loaded or forced entry has its buffer
+  freed (`003697F0`); an entry still loading is marked 3 and kept, returning 0.
+- `0037FA00(widget)`, called from the widget procedure `0037F4D0`, frees `menuquest.dat` (`+0xC8`) and
+  every listed buffer and empties the list.
+- `0037F340(widget)` sends `{0x10, 8}` to the owner's handler at `+0xC0`, then sets bit `0x1` of `+0xE0`
+  and `+0xE5` = 2. `0037F190(owner, entry)` sends `{0x10, entry byte 1, its word +4 when that byte is 2}`.
+
 ### Hunt rows
 
 `0037EAA0(row, group)` counts, in record order, the quests of the group that are cleared (`0046B1A0`) or
@@ -212,7 +220,8 @@ The progress byte is the quest's scenario byte, save `+0x1064 + quest` (`0046B18
 Whenever the selected quest's group file is ready (`0037F1F0`, `0037FBA0`), `0037FEA0` takes the quest's
 `QHD0` chunk at `sectionAt[3] + item[3]` and its `QHT0` chunk at `sectionAt[4] + item[4]`. `00473D50`
 and `00473DB0` publish them at `02CA6C68` and `02CA6C70` and, the first time, add the chunk's address to
-each `entryAt` and set bit 31 of `count`. Widget bits `0x100` and `0x200` say whether each chunk is set.
+each `entryAt` and set bit 31 of `count`. Widget bits `0x100` and `0x200` say whether each chunk is set. `0037F140()` returns bit `0x200`, or 0
+when no widget exists; the map-data widget's procedure `003BC4E0` reads it.
 
 - `00473BB0` reads step `j` of entry 0 and tests bit `min(progress / 5, 50)` of `shown` and `labelled`.
 - The map-data widget takes the first type-1 step whose `shown` bit is set and looks its `location` up

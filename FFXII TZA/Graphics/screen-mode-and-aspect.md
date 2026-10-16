@@ -3,10 +3,8 @@ title: "Screen mode and aspect: the aspect fit, the Super Wide bound and the dis
 kind: "system"
 category: "Graphics"
 summary: "How the game fits its picture to the window: the resolution setter and the three-branch aspect fit that sets Normal Mode or Super Wide Mode and clamps the size between 16:9 and 48:9, the aspect every renderer reads back, the 16:9 viewport and quad scaling built on it, and the display object that holds the fit beside the display-mode and window-size lists."
-addresses: ["001DDBA0", "001DDAC0", "001DDAB0", "01F82D18", "001DD120", "001DD8C0", "001DCE20", "0017FFD0", "00186B80", "00229D20", "001DC730", "001DD420", "001DD8E0", "001DC5C0", "001DDA70"]
+addresses: "001DDBA0, 001DDAC0, 001DDAB0, 01F82D18, 001DD120, 001DD8C0, 001DCE20, 0017FFD0, 00186B80, 00229D20, 001DC730, 001DD420, 001DD8E0, 001DC5C0, 001DDA70"
 ---
-
-# Screen mode and aspect: the aspect fit, the Super Wide bound and the display object
 
 ## What the player sees
 
@@ -114,38 +112,39 @@ The windowed resolution row therefore always offers the current window size.
 The display object is 0x180 bytes, built once by `001DDA70` and constructed by `001DC5C0`; its
 first 0x18 bytes are the fit record.
 
-```
-+0x00  u32       mode           0 Normal Mode, 1 Super Wide Mode (ctor 0)
-+0x04  f32       fitA           1.0 or the width (middle branch); no reader
-+0x08  f32       fitB           1.0; no reader
-+0x0C  f32       fitC           0; no reader
-+0x10  u32       width          fitted width
-+0x14  u32       height         fitted height
-+0x18  u32       screenMode     ScreenMode at construction (setting 2)
-+0x20  u32       modeCount      display-mode entries (ctor 1)
-+0x24  u32       modeIndex      selected display mode
-+0x28  ptr       modes          DXGI_MODE_DESC[modeCount], 0x1C each
-+0x30  u32       refreshHz      numerator / denominator of the selected mode (ctor 60)
-+0x34  u32       windowLast     last index of the window-size list
-+0x38  u32       windowIndex    selected window size
-+0x40  ptr       windowSizes    0x1C entries, modeCount + 1
-+0x48  u32       adapter        selected adapter index
-+0x5C  u32       outputCount    outputs of the adapter
-+0x60  u32       monitor        selected output (ctor: setting 26, Monitor)
-+0x78  ptr       adapters       0x140-byte adapter records
-+0x80  string    modeName       "Super Wide Mode" or "Normal Mode" (001DCE20)
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | mode | 0 Normal Mode, 1 Super Wide Mode (ctor 0) |
+| `04` | `f32` | fitA | 1.0 or the width (middle branch); no reader |
+| `08` | `f32` | fitB | 1.0; no reader |
+| `0C` | `f32` | fitC | 0; no reader |
+| `10` | `u32` | width | fitted width |
+| `14` | `u32` | height | fitted height |
+| `18` | `u32` | screenMode | ScreenMode at construction (setting 2) |
+| `20` | `u32` | modeCount | display-mode entries (ctor 1) |
+| `24` | `u32` | modeIndex | selected display mode |
+| `28` | `void*` | modes | DXGI_MODE_DESC[modeCount], `0x1C` each |
+| `30` | `u32` | refreshHz | numerator / denominator of the selected mode (ctor 60) |
+| `34` | `u32` | windowLast | last index of the window-size list |
+| `38` | `u32` | windowIndex | selected window size |
+| `40` | `void*` | windowSizes | `0x1C` entries, modeCount + 1 |
+| `48` | `u32` | adapter | selected adapter index |
+| `5C` | `u32` | outputCount | outputs of the adapter |
+| `60` | `u32` | monitor | selected output (ctor: setting 26, Monitor) |
+| `78` | `void*` | adapters | `0x140`-byte adapter records |
+| `80` | `string` | modeName | "Super Wide Mode" or "Normal Mode" (`001DCE20`) |
 
-```
-DXGI_MODE_DESC (0x1C)
-+0x00  u32  Width
-+0x04  u32  Height
-+0x08  u32  RefreshRate.Numerator
-+0x0C  u32  RefreshRate.Denominator
-+0x10  u32  Format
-+0x14  u32  ScanlineOrdering
-+0x18  u32  Scaling
-```
+DXGI_MODE_DESC (`0x1C`):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | Width |  |
+| `04` | `u32` | Height |  |
+| `08` | `u32` | RefreshRate.Numerator |  |
+| `0C` | `u32` | RefreshRate.Denominator |  |
+| `10` | `u32` | Format |  |
+| `14` | `u32` | ScanlineOrdering |  |
+| `18` | `u32` | Scaling |  |
 
 ## Shipped data
 

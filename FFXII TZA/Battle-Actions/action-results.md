@@ -3,10 +3,8 @@ title: "Action results: the result record a resolved action produces and how it 
 kind: "system"
 category: "Battle actions"
 summary: "The 0x148-byte result record every resolved action, status tick and effect change fills, field by field, and the applier that turns it into changes on the target and the user - levels, steals and poached items, statuses added and removed, HP and MP, Mist charges, effect bits and their timers, an enemy's stat and affinity changes, gil - in the order they happen."
-addresses: ["003848E0", "003112F0", "00385BA0", "0030B9B0"]
+addresses: "003848E0, 003112F0, 00385BA0, 0030B9B0"
 ---
-
-# Action results: the result record a resolved action produces and how it is applied to target and user
 
 ## What the player sees
 
@@ -84,47 +82,49 @@ by the effect applier `00307300` (`00307436`, `00307ABD`), the periodic maintena
 
 ## Layouts
 
-```struct ActionResult base=result size=0x148
-+0x000  u8       flags0       left to the caller by 003848E0
-+0x001  u8[3]    pad01        left to the caller
-+0x004  u8       outcome      1-5 the evade/guard outcome of slot 41 (003896B0); 6 at 00386347 and 003858A2; 9 at 0038588A; 10 at 00386303
-+0x005  u8[3]    pad05        left to the caller
-+0x008  u32      gilCost      subtracted from the party's gil (step 13)
-+0x00C  u8[12]   zero0C       zeroed by 003848E0; not read by 003112F0
-+0x018  u32      flagsB       bit 1: continue a combo (00388660); bit 2: guard decision (00385A1C-00385A2D); bit 3: knockback (003896B0); 00307300 copies bits 0-3 to target entry bits 11, 10, 9, 8
-+0x01C  u8       resolved     1: post the battle-message events (00385BA0)
-+0x01D  i8       mpUnits      whole max-MP units added to the target's secondary resource (step 8)
-+0x01E  u16      zero1E       zeroed by 003848E0; not read by 003112F0
-+0x020  i32      userHp       user HP change or value (step 9)
-+0x024  i32      targetHp     target HP change or value (step 8)
-+0x028  i16      userMp       user MP change or value (step 9)
-+0x02A  i16      targetMp     target MP change or value (step 8)
-+0x02C  u32      flagsA       bit 0 set by 003848E0; bits 1-4 set-not-add; 7, 8, 13, 14 present; 19 marks the target unit
-+0x030  u16      unused30     0xFFFF from 003848E0; not read by 003112F0
-+0x032  u8[3]    steal        steal slots 0-2 (step 5, 00385BA0)
-+0x035  u8[3]    zero35       zeroed by 003848E0; not read by 003112F0
-+0x038  i32      poachItem    item id in the low word; -1 none (step 5)
-+0x03C  u8[2]    effectSet    effect bits to set; 0xFF none (step 10)
-+0x03E  u8[4]    effectClear  effect bits to clear; 0xFF none (step 10)
-+0x042  i16[8]   effectTimers copied to target +0x17C..+0x18A when not negative
-+0x052  u16      zero52       zeroed by 003848E0; not read by 003112F0
-+0x054  u32      addMask      statuses to add (step 6)
-+0x058  u32      removeMask   statuses to remove (step 6)
-+0x05C  i32[32]  statusA      per-status parameter A (duration); copied to target +0xBC
-+0x0DC  i16[32]  statusB      per-status parameter B (beat timer); copied to target +0x13C
-+0x11C  u8       targetLevel  0xFF none (step 4)
-+0x11D  u8       userLevel    0xFF none (step 4)
-+0x11E  i16[4]   enemyStats   new Strength, Magick Power, Defence, Magick Resist; -1 none (step 11)
-+0x126  u16      zero126      zeroed by 003848E0; not read by 003112F0
-+0x128  u8[4]    affinitySet  OR-ed into the enemy record bytes +0x7B, +0x79, +0x78, +0x7A (step 12)
-+0x12C  u8[4]    affinityClr  cleared out of the same bytes (step 12)
-+0x130  u16      packedParam  -1 from 003848E0; not read by 003112F0
-+0x132  u8[6]    zero132      zeroed by 003848E0; not read by 003112F0
-+0x138  i32      echoB        to [02EBF190]+0x5B0E (low byte) when not -1 (00385BA0)
-+0x13C  i32      echoA        to [02EBF190]+0x5B00 when not -1 (00385BA0)
-+0x140  u32      flagsC       bits 4, 5, 6, 7: flags for the status and effect writes; bit 14: sound 0x34
-+0x144  u32      zero144      zeroed by 003848E0; not read by 003112F0
-```
+`ActionResult` (`0x148` bytes, offsets from the start of the result):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `000` | `u8` | flags0 | left to the caller by `003848E0` |
+| `001` | `u8[3]` | pad01 | left to the caller |
+| `004` | `u8` | outcome | 1-5 the evade/guard outcome of slot 41 (`003896B0`); 6 at `00386347` and `003858A2`; 9 at `0038588A`; 10 at `00386303` |
+| `005` | `u8[3]` | pad05 | left to the caller |
+| `008` | `u32` | gilCost | subtracted from the party's gil (step 13) |
+| `00C` | `u8[12]` | zero0C | zeroed by `003848E0`; not read by `003112F0` |
+| `018` | `u32` | flagsB | bit 1: continue a combo (`00388660`); bit 2: guard decision (`00385A1C`-`00385A2D`); bit 3: knockback (`003896B0`); `00307300` copies bits 0-3 to target entry bits 11, 10, 9, 8 |
+| `01C` | `u8` | resolved | 1: post the battle-message events (`00385BA0`) |
+| `01D` | `i8` | mpUnits | whole max-MP units added to the target's secondary resource (step 8) |
+| `01E` | `u16` | zero1E | zeroed by `003848E0`; not read by `003112F0` |
+| `020` | `i32` | userHp | user HP change or value (step 9) |
+| `024` | `i32` | targetHp | target HP change or value (step 8) |
+| `028` | `i16` | userMp | user MP change or value (step 9) |
+| `02A` | `i16` | targetMp | target MP change or value (step 8) |
+| `02C` | `u32` | flagsA | bit 0 set by `003848E0`; bits 1-4 set-not-add; 7, 8, 13, 14 present; 19 marks the target unit |
+| `030` | `u16` | unused30 | `0xFFFF` from `003848E0`; not read by `003112F0` |
+| `032` | `u8[3]` | steal | steal slots 0-2 (step 5, `00385BA0`) |
+| `035` | `u8[3]` | zero35 | zeroed by `003848E0`; not read by `003112F0` |
+| `038` | `i32` | poachItem | item id in the low word; -1 none (step 5) |
+| `03C` | `u8[2]` | effectSet | effect bits to set; `0xFF` none (step 10) |
+| `03E` | `u8[4]` | effectClear | effect bits to clear; `0xFF` none (step 10) |
+| `042` | `i16[8]` | effectTimers copied to target +0x17C..+0x18A when not negative |  |
+| `052` | `u16` | zero52 | zeroed by `003848E0`; not read by `003112F0` |
+| `054` | `u32` | addMask | statuses to add (step 6) |
+| `058` | `u32` | removeMask | statuses to remove (step 6) |
+| `05C` | `i32[32]` | statusA | per-status parameter A (duration); copied to target +`0xBC` |
+| `0DC` | `i16[32]` | statusB | per-status parameter B (beat timer); copied to target +`0x13C` |
+| `11C` | `u8` | targetLevel | `0xFF` none (step 4) |
+| `11D` | `u8` | userLevel | `0xFF` none (step 4) |
+| `11E` | `i16[4]` | enemyStats | new Strength, Magick Power, Defence, Magick Resist; -1 none (step 11) |
+| `126` | `u16` | zero126 | zeroed by `003848E0`; not read by `003112F0` |
+| `128` | `u8[4]` | affinitySet | OR-ed into the enemy record bytes +`0x7B`, +`0x79`, +`0x78`, +`0x7A` (step 12) |
+| `12C` | `u8[4]` | affinityClr | cleared out of the same bytes (step 12) |
+| `130` | `u16` | packedParam | -1 from `003848E0`; not read by `003112F0` |
+| `132` | `u8[6]` | zero132 | zeroed by `003848E0`; not read by `003112F0` |
+| `138` | `i32` | echoB | to [`02EBF190`]+`0x5B0E` (low byte) when not -1 (`00385BA0`) |
+| `13C` | `i32` | echoA | to [`02EBF190`]+`0x5B00` when not -1 (`00385BA0`) |
+| `140` | `u32` | flagsC | bits 4, 5, 6, 7: flags for the status and effect writes; bit 14: sound `0x34` |
+| `144` | `u32` | zero144 | zeroed by `003848E0`; not read by `003112F0` |
 
 ## State
 

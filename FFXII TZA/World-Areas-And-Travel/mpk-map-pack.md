@@ -3,10 +3,8 @@ title: "MPK map pack: the sections of a map file, the two packs a field loads, h
 kind: "format"
 category: "World, areas and travel"
 summary: "One .mpk per zone under plan_master/map_ctrl: a count of 32, 32 section sizes and the sections back to back, each behind a 0x40-byte slot. Entering a field requests two packs, the field's own and its block's, carves each into 32 arena blocks in place, keeps sound, world (YM00), navigation, actor control, lights, pictures and placements, and frees the rest; the YM00, ACTL, SP1, WD and MRP containers are laid out here with their consumers, and the 550 shipped packs are censused."
-addresses: ["00331990", "00378A60", "00378030", "0036B980", "00378BC0", "003775D0", "00378120", "00378230", "002F6AB0", "003E8940", "003E8230", "00363B40", "003631B0", "00379870", "003C63A0", "0037AA90"]
+addresses: "00331990, 00378A60, 00378030, 0036B980, 00378BC0, 003775D0, 00378120, 00378230, 002F6AB0, 003E8940, 003E8230, 00363B40, 003631B0, 00379870, 003C63A0, 0037AA90"
 ---
-
-# MPK map pack: the sections of a map file, the two packs a field loads, how the loader splits and binds them, and what each section holds
 
 ## What the player sees
 
@@ -32,11 +30,13 @@ weather page, which reads the same two tables.
 
 ### The pack
 
-```struct MpkHeader base=file size=0xC0
-+0x00  u32      count   32 in all 550 packs; 0036B980 rejects a count above 32
-+0x04  u32[32]  size    section size per slot in slot order; 0 means the slot is absent
-+0x84  u8[60]   pad     the header is padded to a multiple of 0x40
-```
+`MpkHeader` (`0xC0` bytes, offsets from the start of the file):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | count | 32 in all 550 packs; `0036B980` rejects a count above 32 |
+| `04` | `u32[32]` | size | section size per slot in slot order; 0 means the slot is absent |
+| `84` | `u8[60]` | pad | the header is padded to a multiple of `0x40` |
 
 The header length is `((count + 1) * 4 + 0x3F) & ~0x3F`, 0xC0 for 32 slots. After it, for each slot
 whose size is non-zero and in slot order, come a 0x40-byte slot (zero in the file; the loader
@@ -64,13 +64,15 @@ shipped pack fills them.
 
 ### YM00, the world data
 
-```struct Ym00Header base=section size=0x14
-+0x00  u8[4]   magic     "YM00"
-+0x04  u32     stamp     an export value; not read by 002F6AB0, which starts at +0x10
-+0x08  u8[8]   author    an export tag; not read by 002F6AB0
-+0x10  u32     count     17 in all 461 sections; 002F6AB0 reads it at [base + 0x10]
-+0x14  u32[]   index     count + 1 entries of {u24 offset in 16-byte units from +0x10, u8 tag}; the last is the end sentinel with tag 0xFF
-```
+`Ym00Header` (`0x14` bytes, offsets from the start of the section):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8[4]` | magic | "YM00" |
+| `04` | `u32` | stamp | an export value; not read by `002F6AB0`, which starts at +`0x10` |
+| `08` | `u8[8]` | author | an export tag; not read by `002F6AB0` |
+| `10` | `u32` | count | 17 in all 461 sections; `002F6AB0` reads it at [base + `0x10`] |
+| `14` | `u32[]` | index | count + 1 entries of {u24 offset in 16-byte units from +`0x10`, u8 tag}; the last is the end sentinel with tag `0xFF` |
 
 `002F6AB0(object, kind)` walks the index: an entry whose offset equals the next entry's is skipped,
 otherwise its tag selects an arm (`cmp eax, 0x21`, a 34-case jump table). The arms that store or
@@ -83,10 +85,10 @@ parse a chunk:
 | 9 | `003ED3F0(chunk)`: the three 0x180-byte environment records at `02B5ED94` |
 | 11 | `0026E8C0` stores it at `0209A660`; dword 0 to `022D8ED8` unless 0xFFFFFFFF; dword 1 unpacked by `00466140` into the colour `0209A3A0`-`0209A3AC` (scaled by 1/128); dwords 2 and 3 to `0209A6EC` and `0209A6F0` |
 | 12 | `00468160(chunk, [+0x150], [+0x1B8])` |
-| 14, 26 | `003EC910(6, 0x20, 00467D00)` then `00467D20(buffer, chunk)`; `[+0x150]` = buffer, `00467BF0(buffer, 0)`; tag 26 also sets `[+0x230]` = 1 |
+| 14, 26 | `003EC910(6, 0x20, 00467D00)` then `00467D20(buffer, chunk)`; `[+0x150]` = buffer, `00467BF0(buffer, 0)` appends it to the buffer list at `02EBB6A0`; tag 26 also sets `[+0x230]` = 1 |
 | 17, 31 | `00232380(object + 0xA8 or + 0x40, chunk)`: a six-tag sub-container into the two 0x68-byte sub-records |
 | 22 | `[+0x180]` = chunk |
-| 23 | `00466E70(chunk)`: the `02EBB6E0` slot family |
+| 23 | `00466E70(chunk)`: the map animation slots at `[02EBB6F0]` (below) |
 | 24 | `[+0x220]` = count, `[+0x198]` = chunk + 0x10, `[+0x1D0]` = an allocation of `count * 0xE0` |
 | 25 | `003ED190(chunk)`: field-dependent environment setup |
 | 27 | `003ED840(chunk)` |
@@ -100,17 +102,143 @@ allocates `count30 * 0x70` at `[+0x1C0]`, fills each entry from the tag-30 recor
 record's `+0xC` or from the tag-0 row through the `+0x40` sub-record's transform, `00231A90`) and
 links the records that carry bit 30 of their `+0xC` word to their tag-24 entry (`word +0x14`).
 
+`003ED190` (tag 25) also sends a light direction to the shadow object through `001F1590`, which
+creates the 0xB08-byte shadow object at `01F82EA8` on first use (`001EF2D0`) and stores the direction
+with `001F08A0`. The direction is (0.0001, 1, 0) in field `0x11A` (`003148F0`); otherwise the
+vector at `+0x10` of the tag-11 chunk (`0209A660`) when it is non-zero; otherwise the chunk's three
+angles at `+0x90` to `+0x98` turned into a direction, or x 0.0001 and y 1.0 when all three are 0.
+`003ED3F0` (tag 9) also passes a direction to `001F1590`, the same (0.0001, 1, 0) in field `0x11A`.
+
+The tag-28 chunk is published when a map binds: `003ED870`, called by `0026E960`, stores the world
+object's `[+0x1A8]` at `02B5F1A8` when the chunk's first word is positive, and `003ED820` (from
+`0026E640` and `0036F4D0`) clears `02B5F1A0`, `02B5F1A8` and `02B5F1B0`.
+
+### Tag 23, the map animation slots
+
+Tag 23 holds the map's animation clips: moving and turning map parts, colour pulses, texture frames
+and the area's ambient colour. `00466E70(chunk)` builds one 0x50-byte slot per clip into an array at
+`[02EBB6F0]` (count `02EBB6E0`, chunk `02EBB6F8`). The chunk is a count at `+0x10` and an offset
+table from `+0x14` in 16-byte units from `+0x10`; slot `i` has a clip when entries `i` and `i + 1`
+differ.
+
+`MapAnimClip` (`0x30` bytes, offsets from the start of the clip):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[32] name` | "ambient" makes the slot's +0x34 = 0 |  |
+| `20` | `f32` | start | first frame (`00466C40`) |
+| `24` | `f32` | end | last frame (`00466BB0`) |
+| `28` | `i16` | targets | target count |
+| `2A` | `u16` | group | model group the clip belongs to |
+| `2C` | `i16` | mapCount | 0, or the count of 16-byte map entries from +`0x30` that replace +`0x28` |
+| `2E` | `u8` | flags | bit 0: `02EBB6E4` = this slot |
+
+After the clip header (and its map entries) comes a track list: a count and one offset per track,
+again in 16-byte units. A track starts with its own header and then its keys:
+
+`MapAnimTrack` (`0x20` bytes, offsets from the start of the track):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `i32` | keyCount |  |
+| `04` | `u8` | channel | the target field the track drives (`00466420`) |
+| `08` | `i16` | targetId | stored at the target's +`0x46` |
+| `0A` | `i16` | targetId2 | stored at the target's +`0x44` |
+| `0C` | `i32` | target | the target's index in the slot |
+| `10` | `f32[4] key0` | time, value, in-slope, out-slope; keyCount keys of 16 bytes from here |  |
+
+`00466E70` allocates the slot's track records (0x18 bytes each: key data, time `+0x08`, value
+`+0x0C`, key index `+0x10`) and its 0x130-byte targets, and sets bit `channel` of each target's
+`+0x40`. It then binds the tracks (`004677A0`), resets the slots (`00467420`) and runs one update
+(`004668C0`).
+
+`MapAnimSlot` (`0x50` bytes, offsets from the start of the [02EBB6F0]+i*0x50):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `void*` | clip |  |
+| `08` | `void*` | clipActive | non-null for a live slot; every accessor tests it |
+| `10` | `void*` | mapEntries | when clip +`0x2C` is non-zero |
+| `18` | `void*` | trackList |  |
+| `20` | `void*` | tracks | `0x18` bytes each |
+| `28` | `void*` | targets | `0x130` bytes each |
+| `30` | `i16` | trackCount |  |
+| `32` | `i16` | targetCount |  |
+| `34` | `i16` | ambient | 0 for the clip named "ambient", else -1 |
+| `38` | `f32` | rate | 1.0 after a reset (`00467700` sets it, `004735D0` too) |
+| `3C` | `f32` | rangeStart | clamped to the clip's start (`00467660`) |
+| `40` | `f32` | rangeEnd | clamped to the clip's end |
+| `44` | `f32` | time |  |
+| `48` | `f32` | step | dt * rate, added each frame by `004678E0`, zeroed after the update |
+| `4C` | `u32` | flags | bit 0 playing, bit 1 loop, bit 2 finished, bit 3 update once, bit 4 relink |
+
+`00466E70` gives every slot the loop bit and, when it has a clip, bits 0 and 4. `00467420` resets
+each live slot: the range becomes the clip's start and end, bit 2 is cleared and bit 3 set, the time
+and every track's time become the start, the rate 1.0, and every target gets an identity matrix
+(`00203170`), colour 1.0 at `+0x50` to `+0x5C`, rotation and translation 0 and scale 1.0.
+
+`004677A0` binds each track's value to its target through `00466420(target, channel, &value)`;
+with map entries, entry `+0x02` names the track, `+0x04` the channel and `+0x06` the target. The
+channels are:
+
+| Channel | Target field |
+|---|---|
+| 0 to 2 | translation `+0xE8`, `+0xF0`, `+0xF8` |
+| 3 to 5 | rotation in degrees `+0xD0`, `+0xD8`, `+0xE0` |
+| 6 to 8 | scale `+0x100`, `+0x108`, `+0x110` |
+| 9 | `+0x90`, the texture frame the draw pass reads |
+| 10, 11 | `+0x98`, `+0xA0` |
+| 12, 13, 14 | colour red, green, blue `+0xB0`, `+0xB8`, `+0xC0`; 15 sets all three |
+| 16 | `+0xA8`, which the draw pass scales by 0.01 |
+| 17 | colour alpha `+0xC8` |
+| 18 to 20 | rotation in radians `+0x118`, `+0x120`, `+0x128` |
+
+Each world step `004668C0` (reached through the thunk at `0036F400`) advances every slot with bit 0 whose bit 3 is set or
+whose step exceeds 0.001:
+
+1. bits 2 and 3 are cleared and the time moves by the step;
+2. with the loop bit and a range of at least 1.0 the time wraps within the range; otherwise it
+   clamps and bit 2 (finished) is set;
+3. unless the clip's group is above 0x100 with its bit in the hidden-model set (`0026E5F0`),
+   `00466240` advances each track and `00466550` rebuilds each target;
+4. the step is zeroed.
+
+`00466240(slot, track)` moves the track's time by the slot's step, clamps or wraps it the same way
+within the range and the track's own first and last key, finds the key pair around the time and
+interpolates with a cubic Hermite curve (each key's value, the first key's out-slope and the second
+key's in-slope) into the track's value. The slopes are per unit of time: with u = (t - t0) / (t1 - t0),
+the value is h00(u) v0 + h01(u) v1 + (t1 - t0) (h10(u) out0 + h11(u) in1).
+
+`00466550(slot, target)` reads the bound channels: translation into `+0x70` to `+0x78`, degrees
+turned into radians and wrapped into `+0x60` to `+0x68` (the radian channels overwrite them), scale
+into `+0x80` to `+0x88`. It rebuilds the target's matrix at `+0x00` from the three rotations
+(`00202E90`, `00202F00`, `00202F70`) and the translation, scales its four rows by `+0x80` to `+0x8C`
+(`00202FE0`) and, for the `ambient` slot, copies the colour `+0x50` to `+0x5C` to `0209A370` to
+`0209A37C`, the ambient colour of the map's lights.
+
+The draw code reaches targets through the tag-30 instances. `00466CB0(slot, idB, idA, mask)`
+returns the slot's first target when the clip's group is below 0x100 and its bit is in the
+instance's group mask, else the target whose `+0x46` (or map entry `+0x00`) equals `idB`, else the
+one whose `+0x44` equals `idA`. `002F6AB0` and `002F5550` call it with the instance record's `+0x02`
+and `+0x08` words and its group mask `+0x20`.
+
+When a slot's bit 4 is set, `002F5550` clears it and
+stores the target in each matching instance's 0x70-byte entry at `+0x50` while the slot plays
+(`00466B80`, bit 0), or 0 when it does not.
+
 ### ACTL, the actor-control table
 
-```struct ActlHeader base=section size=0x10
-+0x00  u8[4]  magic        "ACTL"
-+0x04  u16    version      must be 1: 003E8940 clears the pointer otherwise
-+0x06  u16    recordSize   0x16 in all 270 sections; 003E8230 and the two walkers advance by it
-+0x08  u16    idBound      003E8230 refuses an id at or above it
-+0x0A  u16    reserved     0
-+0x0C  u16    indexOffset  0x10: the bucket index {u16 bucketCount; {u16 bound, u16 recordOffset}[bucketCount]}
-+0x0E  u16    auxOffset    the aux table 003E7EC0 and 003E8D50 pass to the record handlers
-```
+`ActlHeader` (`0x10` bytes, offsets from the start of the section):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8[4]` | magic | "ACTL" |
+| `04` | `u16` | version | must be 1: `003E8940` clears the pointer otherwise |
+| `06` | `u16` | recordSize | `0x16` in all 270 sections; `003E8230` and the two walkers advance by it |
+| `08` | `u16` | idBound | `003E8230` refuses an id at or above it |
+| `0A` | `u16` | reserved | 0 |
+| `0C` | `u16` | indexOffset | `0x10`: the bucket index {u16 bucketCount; {u16 bound, u16 recordOffset}[bucketCount]} |
+| `0E` | `u16` | auxOffset | the aux table `003E7EC0` and `003E8D50` pass to the record handlers |
 
 `003E8230(id)` returns the record of an id:
 
@@ -124,24 +252,54 @@ links the records that carry bit 30 of their `+0xC` word to their tag-24 entry (
 records whose byte `+0x15` differs from a non-negative mode.
 
 `003E8020` keeps the record's state in its first word: bit 0 processed (set on first touch, when the
-nibbles of bytes `+0x13` and `+0x14` are swapped and `+0x12` is stamped 0x30), bit 1 the alternator,
-bits 2 and 3 an override, bit 4 "was active". A first word of 0xFFFF is a tombstone that every
-walker skips. The record's other fields and the handlers they drive belong to the actor-control
-page.
+low nibbles of bytes `+0x13` and `+0x14` are copied into their high nibbles and the high nibble of
+`+0x12` becomes 3), bit 1 the alternator, bits 2 and 3 an override, bit 4 "was active". A first word
+of 0xFFFF is a tombstone that every walker skips.
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u16` | state | the state bits above |
+| `02` | `i16` | animation | map animation slot, -1 for none (`004735D0` sets its rate) |
+| `08` | `i16` | light | `LGT2` light id, -1 for none; bit 14 routes it through the aux table (`003E8190`) |
+| `0E` | `i16` | effect | map effect channel, -1 for none |
+| `10` | `i16` | sound | map sound emitter below 1000 |
+| `12` | `u8` | mode | high nibble 0 runs `003E8440`, 1 runs the test `003E8350` |
+| `13` | `u8` | gate | a non-zero high nibble skips the mode step |
+| `14` | `u8` | soundMode | the high nibble feeds `00363A90` |
+| `15` | `i8` | effectArg | third argument of `0026FAD0`, negatives as 0; the walker's mode filter |
+
+On first touch `003E8020` runs `003E8990`, which clears state bits 3 and 4, rewinds the animation
+slot (`00473500(slot, -1.0, -1.0)`), sets its rate to 0 (`004735D0`) and sets the sound emitter's
+flags with `00363A90`. A toggle with bit 1 clear runs `003E85B0` and sets the bit; with bit 1 set it
+runs `003E8690` and clears it:
+
+- `003E85B0` sets the animation slot's rate to 0, turns the light's loop off and stops its animation
+  (`0037A310`, `0037A130`, or `003E8A10` and `003E8A40` through the aux table), starts the effect
+  channel (`0026FAD0`) and clears its flag (`002700F0(channel, 0)`), and sets bit 4 of the sound
+  emitter's flag byte (`00363AD0(id, 1)`);
+- `003E8690` sets the rate to 1.0, resets, turns on and restarts the light (`0037A270`, `0037B190`,
+  `0037A1D0`, `0037A310`), sets the channel's flags (`002700F0`, `00270130`) and starts it, and
+  clears the emitter's bit 4.
+
+In mode 1 `003E8020` sets state bit 4 when `003E8350` finds that `004735E0` (the animation slot), `0037B030` (the light,
+or the callback `003E82A0` through the aux table) and `00362E30` (the emitter's bit 0) all return 0
+and `0026FDB0` does not return 2 for the channel.
 
 ### SP1, the sound emitters
 
-```struct Sp1Header base=section size=0x20
-+0x00  u8[4]  magic            "SP1"
-+0x04  u32    listOffset       0x20 in all 456 sections: 00363B40 reads the weather-slot list here when the SPP1 list is absent
-+0x08  u32    areasOffset      the listener grid 00362E50 searches
-+0x0C  u32    indexOffset      {u16 bound; u16 recordOffset[]}: the emitter index 00362850 passes to 003631B0
-+0x10  u32    emittersOffset   a u16 prefix list terminated by bit 15, then the emitter records
-+0x14  u32    reserved14       0
-+0x18  u16    reserved18       0
-+0x1A  u16    reserved1A       0
-+0x1C  u32    reserved1C       0
-```
+`Sp1Header` (`0x20` bytes, offsets from the start of the section):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8[4]` | magic | "SP1" |
+| `04` | `u32` | listOffset | `0x20` in all 456 sections: `00363B40` reads the weather-slot list here when the SPP1 list is absent |
+| `08` | `u32` | areasOffset | the listener grid `00362E50` searches |
+| `0C` | `u32` | indexOffset | {u16 bound; u16 recordOffset[]}: the emitter index `00362850` passes to `003631B0` |
+| `10` | `u32` | emittersOffset | a u16 prefix list terminated by bit 15, then the emitter records |
+| `14` | `u32` | reserved14 | 0 |
+| `18` | `u16` | reserved18 | 0 |
+| `1A` | `u16` | reserved1A | 0 |
+| `1C` | `u32` | reserved1C | 0 |
 
 `003631B0(listener, list, index, current)` walks a list of index entries, resolves each through the
 index into a record at `022CBAF0 + recordOffset`, dispatches on the record's shape byte `+9`
@@ -166,16 +324,18 @@ section's own format is on the section-014 page.
 and keeps its width and height (`u16 +0x14` and `+0x16` of the texture header) at `02B457F8` and
 `02B457FC`. `00379870(i)` applies placement `i`:
 
-```struct Nps2Placement base=section size=0x40
-+0x00  u8[3]   magic   "NPS"
-+0x03  u8      version "2" in all 577 shipped records; 00379870 treats "1" as a 256 x 256 picture
-+0x04  u8[12]  pad     zero
-+0x10  f32     x       world position of the picture (00379870 -> 003C6360)
-+0x14  f32     y
-+0x18  f32     width   picture extent (00379870 -> 003C6380), read only for version "2"
-+0x1C  f32     height
-+0x20  u8[32]  pad2    zero
-```
+`Nps2Placement` (`0x40` bytes, offsets from the start of the section):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8[3]` | magic | "NPS" |
+| `03` | `u8` | version "2" in all 577 shipped records; 00379870 treats "1" as a 256 x 256 picture |  |
+| `04` | `u8[12]` | pad | zero |
+| `10` | `f32` | x | world position of the picture (`00379870` -> `003C6360`) |
+| `14` | `f32` | y |  |
+| `18` | `f32` | width | picture extent (`00379870` -> `003C6380`), read only for version "2" |
+| `1C` | `f32` | height |  |
+| `20` | `u8[32]` | pad2 | zero |
 
 ### WD and MRP, carried but unread
 
@@ -222,12 +382,14 @@ bytes.
 3. When no load is pending, `00377DC0` requests the loose effect bank `PS2Data\efb\<zone>.efb`
    (completions `003788F0` in mode 1 to `02ADD050`, `003789A0` in mode 0 to `02ADD098`, bind bits
    5 and 6) and `00378030` requests the pack: `0032E400(4, index)` sizes it, `0036A190` allocates an
-   arena block tagged `MapNo`, and `0032E620` submits the load with the completion `00378BC0` and the
-   argument `block | mode`.
+   arena block tagged `MapNo`, and `0032E620` submits the load with the completion `00378BC0` and
+   the argument `block | mode`.
 4. Mode 1 names the scene from the pack's path (`00379A10(4, index)`, with five alias pairs at
    `01EF9490`), which `001805D0` receives.
 
-The debug verb `mapload` (0x2001, `0050D4D0`) requests one pack in mode 1 with field 0.
+The debug verb `mapload` (0x2001, `0050D4D0`) requests one pack in mode 1 with field 0. Around
+the pack's allocation `0036C1A0` and `0036C110` push and pop the current arena number (`022D8E1C`,
+stack at `022D8DD0`).
 
 ### The split
 
@@ -248,7 +410,7 @@ pending word `02ADD0EC` and the bind word `02ADD0F0`:
 | slots | mode 1 (the field's own pack) | mode 0 (the block pack) |
 |---|---|---|
 | 24 to 27, 28 to 31 | stored at `02ADD010 + 8i` and `02ADD030 + 8i`, bits 9 + i and 13 + i | the same |
-| 4 | copied into a block tagged `IdMapNo` at `02ADCFE8`, the original freed | neither stored nor freed |
+| 4 | copied into a block of the same size (`0036C100` reads it from the block header) tagged `IdMapNo` at `02ADCFE8`, the original freed | neither stored nor freed |
 | 8 | `02ADCFE0`, bit 3 | `02ADCFF0`, bit 3 |
 | 0, 10 | freed | `02ADD080` and `02ADD068`, bit 0 |
 | 1 | freed | stored at `02ADD070` and freed at once |
@@ -282,6 +444,31 @@ The teardown `00378230(releaseWorld)` frees every stored section, unbinds the li
 (`0037AA50(0)`), the `ACTL` (`003E8940(0)`) and the navigation data (`00384160(0)`), drops the
 pictures and placements and resets the ambient colour; `003784A0` frees the block pack's world
 object, the loose effect bank and the two sound sections.
+
+The world objects go through two helpers. `0026EAC0`, called by `00378230` while a mode-1 `YM00` is
+current, releases the mode-1 object `0209A670`, runs `003ECF70` and clears the model block
+(`0026E640`); `0026EAF0`, called by `003784A0`, does the same and then releases the mode-0 object
+`0209A668`. Each release is `003EC860(slot, 0026EDB0)`: when the slot holds an object, `0026EDB0`
+runs the object's callback at `+0x128`, the block is freed (`003697F0`) and the slot zeroed. The
+teardown also runs `00363730`, which zeroes `022CBA90`, the `SP1` pointer `022CBAF0` and `022CBA9A`.
+
+`002F6AB0` sets that callback to `002F5450`. It frees the object's own tables (`[+0x1C0]` to
+`[+0x218]` and the tag-24 entries' `+0xC0`), removes the tag-14 buffer from the buffer list
+(`00468060`), frees the animation slots of tag 23 (`00466B10`: both arrays of every slot, then the
+slot array; `02EBB6E0` and `02EBB6F8` become 0) and releases the paletted textures of tag 12
+(`004680D0`).
+
+The buffer list at `02EBB6A0` is set up at boot by `00467BB0` (from `0036F4D0`, through `00536120`)
+with 0x28-byte entries: the last path component of a name, at most 31 characters, then the buffer
+at `+0x20`. `00467BF0` appends an entry (`005360C0`, which allocates the node and counts it at
+`+0x14`). `00468060` unlinks every entry of a buffer with `00536140`, whose release callback
+`00467B20` runs `00467B30` on the buffer (its callback at `+0x10`, then its 0x60-byte entry array at
+`+0x08` is freed) and frees the buffer.
+
+The area initialisation `00266D10` resets the loader once through `00377CC0`: every section pointer
+and world object pointer is zeroed, `02ADD0E0` becomes -1, `02ADD118` 1 and `02ADD130` the text
+`none`, the start-up tables are requested again (`00378540`), and the pending and bind words
+(`02ADD0EC`, `02ADD0F0`) and `02ADD0EA` are cleared.
 
 ## Modding notes
 

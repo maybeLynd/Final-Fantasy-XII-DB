@@ -3,10 +3,8 @@ title: "Bullet Physics: the linked rigid-body library, how PhyreEngine bodies be
 kind: "system"
 category: "Third-party libraries"
 summary: "The Bullet rigid-body library linked into the executable (the 2.77 line, bounded by its serializer names), the PhyreEngine route that would build a Bullet world and turn each PPhysicsRigidBody into a btCompoundShape and btRigidBody with stock construction defaults, the motion types and collision groups it applies, and the two static gates that keep the route from ever running: a physics manager that nothing enables and a shipped corpus with no physics objects."
-addresses: ["0069FB10", "006A0310", "006A2320", "006A4A60", "0069F070", "0069EF20", "00698C80", "006883A0", "0069E6F0", "00691240", "0068B9E0", "00832390", "00852DB0", "008542B0", "00854080", "0083A3A0", "0083A030", "00854980", "0085E680", "008365C0", "02E4AFF0"]
+addresses: "0069FB10, 006A0310, 006A2320, 006A4A60, 0069F070, 0069EF20, 00698C80, 006883A0, 0069E6F0, 00691240, 0068B9E0, 00832390, 00852DB0, 008542B0, 00854080, 0083A3A0, 0083A030, 00854980, 0085E680, 008365C0, 02E4AFF0, 008531F0, 008324B0, 006A3E20"
 ---
-
-# Bullet Physics: the linked rigid-body library, how PhyreEngine bodies become Bullet bodies, and why nothing is simulated
 
 ## What the player sees
 
@@ -149,48 +147,68 @@ Only when `+0xE9` was set does it re-add the body (slot `+0x130`) with group `1 
 the world keeps for that group (a 16-bit table at its `+0x78`), and wake it (`0083A030`). A new body from `0069FB10` has `+0xE9` clear, so `006A4A60` gives it only its velocities and
 transform.
 
+### Bullet bodies outside the member list
+
+Three Bullet functions are not in `bullet-physics-members.tsv`:
+
+- `008531F0` is `btRigidBody::applyDamping`, called from `00857E70`. It multiplies the linear
+  velocity `+0x150` by `(1 - linearDamping)` to the power of the time step (damping at `+0x1E0`, via
+  `powf`) and the angular velocity `+0x160` the same way with `+0x1E4`.
+- When the additional-damping byte `+0x1E8` is set, `008531F0` goes on to scale both velocities by
+  `+0x1EC` when their squared lengths are below `+0x1F4` (angular) and `+0x1F0` (linear). It then
+  pulls each velocity shorter than its damping value toward zero by 0.005, or zeroes it when it is
+  no longer than 0.005.
+- `008324B0` is the `btCompoundShape` destructor body that the deleting destructor `00832530` calls.
+  It frees the dynamic AABB tree at `+0x60` (`00840FC0`, then the aligned free `0085E710`), frees the
+  child array at `+0x28` when the byte `+0x30` says the shape owns it, and leaves the
+  `btCollisionShape` vtable in place.
+- `006A3E20` converts a 3x3 rotation, rows 16 bytes apart, to a quaternion `x, y, z, w`: from the
+  trace when it is positive, otherwise from the largest diagonal element. The linker placed it at
+  `006A3E20`, outside both Bullet ranges; its only callers are Bullet's `0083B050` (`0083B3DC`),
+  `0083B580` (`0083B6A8`) and `0084C6B0` (`0084C855`).
+
 ## Layouts
 
 `PPhysicsRigidBody`, the fields the Bullet route reads and writes:
 
-```
-+0x28  f32[3]  centreOfMass     subtracted from every child's position in the compound
-+0x38  f32[3]  position
-+0x48  f32[4]  orientation      quaternion x, y, z, w
-+0x58  f32[3]  inertia          all zero: computed from the compound shape
-+0x68  f32[3]  linearVelocity
-+0x78  f32[3]  angularVelocity
-+0x88  f32[3]  scale            multiplies every child's scale
-+0x98  ptr     material         friction at +0x04, restitution at +0x08
-+0xB0  u32     childCount       bit 31 is a flag; one child is stored inline at +0xB8
-+0xB8  ptr     children         the child array, or the single child itself
-+0xC0  f32[2]  damping          linear, angular
-+0xE0  u8      collisionGroup   index into the world's mask table
-+0xE4  f32     mass             0: the children's summed mass
-+0xE8  u8      motionType       0 static, 1 dynamic, 2 kinematic
-+0xE9  u8      inWorld          set when the Bullet body is in a world
-+0x118 ptr     bulletBody       btRigidBody, set once
-+0x120 ptr     compoundShape    btCompoundShape
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `028` | `f32[3]` | centreOfMass | subtracted from every child's position in the compound |
+| `038` | `f32[3]` | position |  |
+| `048` | `f32[4]` | orientation | quaternion x, y, z, w |
+| `058` | `f32[3]` | inertia | all zero: computed from the compound shape |
+| `068` | `f32[3]` | linearVelocity |  |
+| `078` | `f32[3]` | angularVelocity |  |
+| `088` | `f32[3]` | scale | multiplies every child's scale |
+| `098` | `void*` | material | friction at +`0x04`, restitution at +`0x08` |
+| `0B0` | `u32` | childCount | bit 31 is a flag; one child is stored inline at +`0xB8` |
+| `0B8` | `void*` | children | the child array, or the single child itself |
+| `0C0` | `f32[2]` | damping | linear, angular |
+| `0E0` | `u8` | collisionGroup | index into the world's mask table |
+| `0E4` | `f32` | mass | 0: the children's summed mass |
+| `0E8` | `u8` | motionType | 0 static, 1 dynamic, 2 kinematic |
+| `0E9` | `u8` | inWorld | set when the Bullet body is in a world |
+| `118` | `void*` | bulletBody | btRigidBody, set once |
+| `120` | `void*` | compoundShape | btCompoundShape |
 
 The construction info `0069FB10` fills, as `008542B0` reads it:
 
-```
-+0x00  f32     mass
-+0x08  ptr     motionState                         0
-+0x10  f32[16] startWorldTransform                 identity
-+0x50  ptr     collisionShape                      the compound
-+0x60  f32[4]  localInertia
-+0x70  f32[2]  linearDamping, angularDamping       from +0xC0, clamped to 0..1 by 00854080
-+0x78  f32[2]  friction, restitution               from the material
-+0x80  f32     linearSleepingThreshold             0.8
-+0x84  f32     angularSleepingThreshold            1.0
-+0x88  u8      additionalDamping                   0
-+0x8C  f32     additionalDampingFactor             0.005
-+0x90  f32     additionalLinearDampingThresholdSqr 0.01
-+0x94  f32     additionalAngularDampingThresholdSqr 0.01
-+0x98  f32     additionalAngularDampingFactor      0.01
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `f32` | mass |  |
+| `08` | `void*` | motionState | 0 |
+| `10` | `f32[16] startWorldTransform` | identity |  |
+| `50` | `void*` | collisionShape | the compound |
+| `60` | `f32[4]` | localInertia |  |
+| `70` | `f32[2]` | linearDamping, angularDamping | from +`0xC0`, clamped to 0..1 by `00854080` |
+| `78` | `f32[2]` | friction, restitution | from the material |
+| `80` | `f32` | linearSleepingThreshold | 0.8 |
+| `84` | `f32` | angularSleepingThreshold | 1.0 |
+| `88` | `u8` | additionalDamping | 0 |
+| `8C` | `f32` | additionalDampingFactor | 0.005 |
+| `90` | `f32` | additionalLinearDampingThresholdSqr 0.01 |  |
+| `94` | `f32` | additionalAngularDampingThresholdSqr 0.01 |  |
+| `98` | `f32` | additionalAngularDampingFactor | 0.01 |
 
 `PPhysicsWorld`'s default instance (`0068B9E0`): gravity (0, -9.8, 0) at `+0x00`, 1.0 at `+0x10`, and
 the broadphase box from (-5000, -5000, -5000) at `+0x14` to (5000, 5000, 5000) at `+0x24`.

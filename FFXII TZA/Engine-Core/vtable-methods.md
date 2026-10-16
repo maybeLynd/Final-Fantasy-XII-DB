@@ -3,10 +3,8 @@ title: "Vtable methods: every virtual slot in the executable with its class and 
 kind: "reference"
 category: "Engine core"
 summary: "All 25,801 vtable slots of the 2,286 RTTI-named vtables, one row each with the function address, the decorated and plain class name, the vtable address, the slot index and how many classes share the function, in vtable-methods.tsv; 4,275 of the 6,886 functions belong to exactly one class and can be named by it."
-addresses: ["008C5760", "00D86960", "009007E8", "00D360A0", "005C5230", "0016D6A0", "0016D680"]
+addresses: "008C5760, 00D86960, 009007E8, 00D360A0, 005C5230, 0016D6A0, 0016D680"
 ---
-
-# Vtable methods: every virtual slot in the executable with its class and the function it names
 
 ## What it lists
 

@@ -3,10 +3,8 @@ title: "Movies: the .mh seek index and the movie player's states"
 kind: "format"
 category: "Graphics"
 summary: "The full-motion movie files and the object that plays them: the PS2-era .mh seek index shipped beside the movie paths and never read, how a movie id maps to its path pair, and the movie player singleton's start, update, fade-out and time read-outs that the script layer drives."
-addresses: ["01F81218", "001B7F20", "001B82F0", "001B7F30", "001B8400", "001B83B0", "001B82A0", "001B7D30", "001B7690", "001B77B0", "001B77E0", "00184810", "001848A0", "001848E0", "0035B840", "0035B8D0", "0035B740", "0035B7D0", "002DF980", "01ECB4D0"]
+addresses: "01F81218, 001B7F20, 001B82F0, 001B7F30, 001B8400, 001B83B0, 001B82A0, 001B7D30, 001B7690, 001B77B0, 001B77E0, 00184810, 001848A0, 001848E0, 0035B840, 0035B8D0, 0035B740, 0035B7D0, 002DF980, 01ECB4D0"
 ---
-
-# Movies: the .mh seek index and the movie player's states
 
 ## What the player sees
 
@@ -29,42 +27,43 @@ The `.mh` files ship under `ps2data/movie_finish/<lang>/`. No `.md` stream ships
 
 A `.mh` file is a 24-byte header and a table of 12-byte entries:
 
-```
-+0x00  char[4]  magic        ".mhe" in all 43 files
-+0x04  u8       field04      1 in 3 files, 5 in 34, 9 in 6
-+0x05  u8       field05      1 in all 43
-+0x06  u16      field06      a different value in each file
-+0x08  u16      width        512 in all 43
-+0x0A  u16      height       352 in 37 files, 448 in 6
-+0x0C  u32      streamBytes  above every entry offset
-+0x10  u32      frameCount   1.000 to 1.049 times the last entry's frame
-+0x14  u32      entryCount   file size = 0x18 + 12 x entryCount
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `char[4]` | magic | ".mhe" in all 43 files |
+| `04` | `u8` | field04 | 1 in 3 files, 5 in 34, 9 in 6 |
+| `05` | `u8` | field05 | 1 in all 43 |
+| `06` | `u16` | field06 | a different value in each file |
+| `08` | `u16` | width | 512 in all 43 |
+| `0A` | `u16` | height | 352 in 37 files, 448 in 6 |
+| `0C` | `u32` | streamBytes | above every entry offset |
+| `10` | `u32` | frameCount | 1.000 to 1.049 times the last entry's frame |
+| `14` | `u32` | entryCount | file size = `0x18` + 12 x entryCount |
 
-```
-entry (0x0C bytes)
-+0x00  u32  offset   byte offset into the PS2 stream; never decreases
-+0x04  u32  frame    frame number; 0 in the first entry, never decreases
-+0x08  u32  flags    0, 1 or 2
-```
+Entry (`0x0C` bytes):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | offset | byte offset into the PS2 stream; never decreases |
+| `04` | `u32` | frame | frame number; 0 in the first entry, never decreases |
+| `08` | `u32` | flags | 0, 1 or 2 |
 
 The movie player is the singleton `01F81218` (getter `001B7F20`), `0xBB8` bytes:
 
-```
-+0x000  i32   movie id; -1 when idle
-+0x004  i32   state (0 to 6, below)
-+0x008  u8    the result of 0067A410, refreshed every update
-+0x009  u8    a frame has been fetched (0067ABF0)
-+0x00C  f32   sound volume: the Music volume option / 100
-+0x010  f32   fade-out time left, seconds
-+0x018  u64   position, from 0067A2F0
-+0x020  u64   duration, from 0067A340
-+0x02D  u8    the fade-out also lowers the sound
-+0x678  ...   the PVideoPlaybackWin32 playback object
-+0xB5D  u8    set by a stop request without fade
-+0xBAC  u8    a fading stop was requested
-+0xBB0  u32   audio language flag (+0x678 + 0x538): 1 when the Voice language option bit is set
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `000` | `i32` | movie id; -1 when idle |  |
+| `004` | `i32` | state (0 to 6, below) |  |
+| `008` | `u8` | the result of 0067A410, refreshed every update |  |
+| `009` | `u8` | a frame has been fetched (0067ABF0) |  |
+| `00C` | `f32` | sound volume: the Music volume option / 100 |  |
+| `010` | `f32` | fade-out time left, seconds |  |
+| `018` | `u64` | position, from 0067A2F0 |  |
+| `020` | `u64` | duration, from 0067A340 |  |
+| `02D` | `u8` | the fade-out also lowers the sound |  |
+| `678` | `...` | the PVideoPlaybackWin32 playback object |  |
+| `B5D` | `u8` | set by a stop request without fade |  |
+| `BAC` | `u8` | a fading stop was requested |  |
+| `BB0` | `u32` | audio language flag (+0x678 + 0x538): 1 when the Voice language option bit is set |  |
 
 ## Shipped data
 

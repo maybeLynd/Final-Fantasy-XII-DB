@@ -3,10 +3,8 @@ title: "Bone trails: the ribbon trails drawn behind weapon bones, from the model
 kind: "system"
 category: "Graphics"
 summary: "The trails a model's trail section asks for: the 0x50-byte descriptor naming a bone and four colours, the authored command that switches trails on and off through the record hierarchy, the sixteen-entry pool, the per-frame sampling of each bone's base and tip into sixteen-sample histories with a fade of two frames in and five out, and the draw that hands the histories to a VU1 program which emits a textured, alpha-blended triangle strip, two vertices a sample."
-addresses: ["00520160", "00425E70", "003E6770", "0042F250", "02CA8420", "0051C270", "0051CC30", "0051CC10", "0051BC10", "0051CDC0", "0051C380", "0051C3C0", "0051BC70", "00422170", "003711D0", "005409C0", "0053F490", "003A35E0", "01F2A220"]
+addresses: "00520160, 00425E70, 003E6770, 0042F250, 02CA8420, 0051C270, 0051CC30, 0051CC10, 0051BC10, 0051CDC0, 0051C380, 0051C3C0, 0051BC70, 00422170, 003711D0, 005409C0, 0053F490, 003A35E0, 01F2A220"
 ---
-
-# Bone trails: the ribbon trails drawn behind weapon bones, from the model descriptor to the triangle strip
 
 ## What the player sees
 
@@ -120,32 +118,36 @@ uploaded parameter block (`0053F995`).
 
 ## Layouts
 
-```
-trail entry, [02CA8420] + slot × 0x3C0
-+0x000  u32         handle     serial << 8 | slot, 0 = free
-+0x004  u8          on
-+0x005  u8          flags      bit 0 do not update, bit 1 do not draw
-+0x006  u8          samples    1 to 16
-+0x007  u8          alternator
-+0x008  f32         opacity    the character's
-+0x00C  f32         init20     20.0 at create
-+0x010  f32         fade
-+0x014  f32         param14    descriptor +0x0C
-+0x018  ptr         prev
-+0x020  ptr         next
-+0x030  f32[16][4]  tip        w = tip speed figure
-+0x130  f32[16][4]  base       w = base speed figure
-+0x230  f32[20][4]  direction
-+0x330  f32         angle
-+0x334  f32         angle2     the angle when the second sample arrived
-+0x370  0x50        descriptor
+Trail entry, [`02CA8420`] + slot × `0x3C0`:
 
-trail image, 01F2A220
-+0x02  u16  pixels    offset of the 64 × 64 eight-bit pixels
-+0x04  u16  palette   offset of the 256-entry palette after the pixels
-+0x0B  u8   logW      6
-+0x0C  u8   logH      6
-```
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `000` | `u32` | handle | serial << 8 \| slot, 0 = free |
+| `004` | `u8` | on |  |
+| `005` | `u8` | flags | bit 0 do not update, bit 1 do not draw |
+| `006` | `u8` | samples | 1 to 16 |
+| `007` | `u8` | alternator |  |
+| `008` | `f32` | opacity | the character's |
+| `00C` | `f32` | init20 | 20.0 at create |
+| `010` | `f32` | fade |  |
+| `014` | `f32` | param14 | descriptor +`0x0C` |
+| `018` | `void*` | prev |  |
+| `020` | `void*` | next |  |
+| `030` | `f32[16][4]` | tip | w = tip speed figure |
+| `130` | `f32[16][4]` | base | w = base speed figure |
+| `230` | `f32[20][4]` | direction |  |
+| `330` | `f32` | angle |  |
+| `334` | `f32` | angle2 | the angle when the second sample arrived |
+| `370` | `0x50` | descriptor |  |
+
+Trail image, `01F2A220`:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `02` | `u16` | pixels | offset of the 64 × 64 eight-bit pixels |
+| `04` | `u16` | palette | offset of the 256-entry palette after the pixels |
+| `0B` | `u8` | logW | 6 |
+| `0C` | `u8` | logH | 6 |
 
 ## Shipped data
 

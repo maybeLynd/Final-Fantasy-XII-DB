@@ -3,10 +3,8 @@ title: "Damage formula: how an attack or a magick is resolved, from the hit, eva
 kind: "system"
 category: "Damage and battle formulas"
 summary: "The resolver every action, status tick and effect goes through: the scratch values it resets, the context of merged statuses and effects the slots read, the first list that rolls hit, knockback, combo, evade, block and parry when the action executes, and the committed list that builds attack, defence and scale, applies statuses, augments, criticals and elements, and finishes the HP number, with the order a weapon attack and a magick run their slots in."
-addresses: ["00385F60", "00385680", "003847C0", "003849B0", "003848E0", "003896B0", "0038B950", "0038B010", "0038D280", "0038F890"]
+addresses: "00385F60, 00385680, 003847C0, 003849B0, 003848E0, 003896B0, 0038B950, 0038B010, 0038D280, 0038F890"
 ---
-
-# Damage formula: how an attack or a magick is resolved, from the hit, evade, block and parry rolls to the final number
 
 ## What the player sees
 

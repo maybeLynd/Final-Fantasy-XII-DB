@@ -3,10 +3,8 @@ title: "Widget messages: every message id a menu element answers, what it means 
 kind: "reference"
 category: "Menus and HUD"
 summary: "The 24-byte message record and the 56 message ids menu widgets use: the framework ids 1-26 with their senders (construction, per-tick update, draw, activation, focus, input turn, owner commands, runs and tweens, destruction and release), the command sub-codes a list or dialog posts to its owner, the private ids 29-53 of the battle menu and map screens and 285-289 of single screens, with handler and sender counts in widget-messages.tsv."
-addresses: ["00247510", "002465F0", "00248030", "00245E60", "002473F0", "00244830", "002481C0", "00246C20"]
+addresses: "00247510, 002465F0, 00248030, 00245E60, 002473F0, 00244830, 002481C0, 00246C20"
 ---
-
-# Widget messages: every message id a menu element answers, what it means and who sends it
 
 ## What it lists
 
@@ -17,11 +15,13 @@ whose record is built in the delivering function.
 
 ### The message record
 
-```struct WidgetMessage base=record size=0x18
-+0x00  u32     id  message id
-+0x08  u32[2]  a   first argument
-+0x10  u32[2]  b   second argument
-```
+`WidgetMessage` (`0x18` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | id | message id |
+| `08` | `u32[2]` | a | first argument |
+| `10` | `u32[2]` | b | second argument |
 
 A procedure is called as `procedure(widget, message)` and returns a value that some senders read. Most procedures
 dispatch through a jump table and send any other id to `005C5230`, which returns 0; 51 procedures have table arms that

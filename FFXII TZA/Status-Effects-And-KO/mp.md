@@ -3,10 +3,8 @@ title: "MP gain and cost: how MP is gained from walking, from being hit, from hi
 kind: "system"
 category: "Status effects and KO"
 summary: "Where MP comes from and where it goes: the walking recovery ladder keyed on current MP, the damage ladder for being hit and for hitting, the three augments each gain needs, the kill bonus from the foe's level, the rules every gain obeys, the areas that triple MP gains, the cap and the augment that pins MP to zero, the MP cost of an action with its halving, freeing and percentage cuts, and the gil channel that pays an action in gil."
-addresses: ["00300CE0", "00307B0D", "002F91A0", "002F9240", "002FB6C0", "002F9400", "00309110", "002F95D0", "00305640"]
+addresses: "00300CE0, 00307B0D, 002F91A0, 002F9240, 002FB6C0, 002F9400, 00309110, 002F95D0, 00305640"
 ---
-
-# MP gain and cost: how MP is gained from walking, from being hit, from hitting and from kills, what an action costs, and what pins MP to zero
 
 ## What the player sees
 
