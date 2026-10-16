@@ -64,6 +64,14 @@ the last close sets it to the widget's clip box `+48`<sub>h</sub> when `+5C`<sub
 | `002D8C80(widget, atlas, source, box)` | `box`, stretched | the default |
 | `002D8D10(widget, atlas, source, box, record, scale)` | `box` | the caller's |
 
+The draw pass gives each widget a fresh `A0`<sub>h</sub>-byte draw record from `002D8C00` (`00245EA7`): clip on (`+5C`<sub>h</sub> bit 17),
+alpha `80`<sub>h</sub> at `+5A`<sub>h</sub>, colour `80808080`<sub>h</sub> at `+90`<sub>h</sub> and `+94`<sub>h</sub>, and 1.0 at `+60`<sub>h</sub>, `+68`<sub>h</sub> and `+6C`<sub>h</sub>.
+
+`002D8530` applies its clip box `+48`<sub>h</sub>, or none when bit 17 is clear, through `00249FD0`; `002DD2F0(record, box)` clips
+to `box` moved by the record's `+50`<sub>h</sub>/`+52`<sub>h</sub> and cut to its clip box (`00249EE0`), or to an empty box when they do not
+meet. For the sprite draw (`002DBD81`), `002DD910` maps the four corners of a quad from the menu's space, centred on 2048, onto the render target, using
+the target's width and height (`00182EB0`, `00182E80`, 1920 and 1080 without a display) and the aspect `00182EE0`.
+
 The record's first word flips the source left to right (bit 0, `002DB1B8`) and top to bottom (bit 1, `002DB1D0`); a
 non-zero float at `+04`<sub>h</sub> rotates the sprite (`002DB22F`), about `+10`<sub>h</sub>/`+12`<sub>h</sub> when bit 2 is set and about the
 centre otherwise; a pointer at `+08`<sub>h</sub> supplies four corner colours.

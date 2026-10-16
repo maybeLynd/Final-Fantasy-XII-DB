@@ -232,6 +232,55 @@ segment: curve 1 gives `sin(p x pi/2)`, curve 2 `1 - sin((1 - p) x pi/2)`, any o
 blending along the last segment.
 `0028CB90` does the same over 8-byte keys `{i16 value, u8, u8, i16 curve, u16 time}` and blends through `002752E0`.
 
+### The active log
+
+The active log, procedure `002BE4F0` built by `002BDCE0` under the field HUD root, shows one battle-log line at a time.
+`0028E110` posts a line through `002BDB00` ([Battle log](../Battle-Actions/battle-log.md)), and `002BE8D0` files it
+as a `198`<sub>h</sub>-byte record: the text, `180`<sub>h</sub> bytes copied by `00254F30`, its colour at `+180`<sub>h</sub>, the hold time at
+`+184`<sub>h</sub>, an in-use bit at `+186`<sub>h</sub> and half its width at `+187`<sub>h</sub> (`0029CD00`). Records move between three lists
+linked through `+188`<sub>h</sub> and `+190`<sub>h</sub>:
+
+| List | Offset | Holds |
+|---|---|---|
+| queued | `+4098`<sub>h</sub> | posted lines; `002BF480` takes the first |
+| shown | `+40A0`<sub>h</sub> | the line on screen and the one sliding in |
+| free | `+40A8`<sub>h</sub> | spent records; a new line takes the first, or the oldest queued line's record when the list is empty |
+
+Each tick `002BEAC0` steps the log, with the frame base `01DFE0B4` as the unit:
+
+1. With nothing shown, it shows the first queued line and fades the log in by 16 a tick up to `80`<sub>h</sub> (`+40B4`<sub>h</sub>).
+2. A line slides in by `32 / [01DFE0B4]` a tick over `100`<sub>h</sub> (`+40B8`<sub>h</sub>); when it is in, `002BF010` retires the line
+   it replaced.
+3. Once the log is fully faded in and no time stop restricts anything (`00226BA0`), the timer `+40BA`<sub>h</sub> counts up to
+   150 x `[01DFE0B4]`. A queued line replaces the shown one when the timer reaches the shown line's hold time.
+4. With nothing queued, the log fades out once the timer is full, and `002BEE00` retires every shown line when the
+   fade reaches 0.
+
+Message 15 stops the steps (bit 0 of `+40B6`<sub>h</sub>), and the pane set-up `002BEF70` installs the layout record and the
+descriptor `002735E0(1)` for the log and its pane `002C0BE0`.
+
+### The HUD switch
+
+`00251F40(n)` shows the HUD for `n` above 0 and hides it otherwise, and does nothing while bits 6 and 7 of `01E0C320`
+are both set (`00251F51`). Among the parts it switches are the minimap (`003C5E00`, `003C58B0`), the map overlay page
+(`002B61B0`, `002B6140`; [Map screens](map-screens.md)) and the message windows (`0035D1B0`, `0035D0E0`;
+[Message windows](message-windows.md)).
+
+On show it also sets bit 0 of the word `+1D7A`<sub>h</sub> of the part at `+10F80`<sub>h</sub>
+through `00290280(0, v)`: `0035D560` gives v = 1 when bit 21 of the options word is set (`002DDDC0`) and bit 10 of
+the script hold mask is clear (`002E0FA0`), and `0035D550` gives 0 otherwise.
+
+Scripts reach it through a word of hide bits, one per verb family:
+
+1. `maskopen`, `maskclose`, `sethpmenu` and their fast and `mesv` forms set or clear their bit of `0215F1AC` with
+   `002E1C40`; the fast forms also set the same bit of `0215F1B4` with `002E1C70`
+   ([verb table](../Scripts-And-Script-Commands/verb-table.md)).
+2. Each tick `002E0940` compares the word with the last one seen (`0215F1B0`). On a change it calls
+   `00254440(word != 0, b)`, with b = 1 when any bit of `0215F1B4` is set, and clears `0215F1B4`.
+3. `00254440` sets bit 6 of `01E0C320` for a b of 0 or more, keeps the two values at `02092744` and `020927EC`, and
+   runs `00255330`, which hides the HUD for 1 and
+   otherwise runs the switch with the saved value `[020927E8]`.
+
 ### Entry points
 
 | Function | Does |
@@ -243,6 +292,7 @@ blending along the last segment.
 | `0028E900` | resets the help block (`002BE050`), which also closes the rings (`00290990`) |
 | `0028FEA0(text, arg)` | closes the help window (`002BE020`) and opens a new one (`002BE1A0`); called by `0027B880` |
 | `00290C60`, `00290C80` | write the open help window's word `+298`<sub>h</sub>, or `+294`<sub>h</sub> with its `+280`<sub>h</sub> bit 5, and the block's pending `+1040`<sub>h</sub> or `+103C`<sub>h</sub> when no window is open; called by `0027B880` |
+| `002E1BB0(v)` | the verb `setgaugehidestatus` (`3D4`<sub>h</sub>): `004087E0` sets bit 20 of `+40`<sub>h</sub> of the gauge window `[02B62D80] + C0h` for v = 2 and clears it for 0 and 1, unless bit 1 of the gauge's `+C8`<sub>h</sub> is set; it is the bit `setmeswinhidestatus` sets on a message window |
 | `00290190` | forwards to the return stub `0016D6A0` and does nothing; the HUD switch calls it with 0 (`00251F8A`) |
 
 The Escape Mode register and arming are on [Escape](../Controls-And-Input/escape.md).

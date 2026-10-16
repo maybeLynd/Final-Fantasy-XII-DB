@@ -239,6 +239,15 @@ byte `+4`, in an action list (kind 11) a row with flag bit 0 gives its byte `+6`
 
 The window rises by `HelpMessageMoveY` (`002BF77A`) while the boss gauge is out of its compact state.
 
+The host `002BE490` keeps the two windows `2B8`<sub>h</sub> bytes apart. On its message 2, `002BE290` builds the target
+information window (`002C0F30`) when bit 0 of `+57E`<sub>h</sub> asks for it, in the free window that `002BEA40` returns:
+`002BEA40` clears `+570`<sub>h</sub>, starts closing each busy window whose `+280`<sub>h</sub> bit 0 is clear, and returns a window with no
+procedure. `002BE290` then closes the window at `+570`<sub>h</sub> once its `+280`<sub>h</sub> has bit 2 set and bit 0 clear, and clears
+`+570`<sub>h</sub> and bit 1 of `+57E`<sub>h</sub>.
+
+While `002BFD20` lays the target window out, `002C0760` hides six of its child widgets
+and seven of its parts and sets its height from part 5, and `002C03A0` hides the child of part 12.
+
 ### The party list
 
 The party list `0029BE50` (`B68`<sub>h</sub> bytes, at `[0209BE80] + 10F78h`) draws one slot `0029A0A0` per member from the

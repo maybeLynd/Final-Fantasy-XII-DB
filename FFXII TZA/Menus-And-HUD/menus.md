@@ -112,6 +112,19 @@ The router is also called directly, without the mailbox:
 | `tutorial_sync_partymenu` | `3A6`<sub>h</sub> | waits until the next menu closes | none |
 | `clear_callpartymenu_status`, `is_callpartymenu_status` | `561`<sub>h</sub>, `562`<sub>h</sub> | clear and read mailbox `+F`<sub>h</sub> | 1 each |
 
+Four more verbs read or set menu state through helpers of their own:
+
+| Verb | Id | Helper | Does |
+|---|---|---|---|
+| `spattackwindowsync` | `2A9`<sub>h</sub> | `002E1660` | keeps waiting while `0028F7C0` answers 1 or 2; it answers 3 with no special-attack window at `[0209BE80] + 10FB0h`, or when the window's `+752`<sub>h</sub> is 1 or bit 0 of its `+749`<sub>h</sub> is set, and 1 otherwise |
+| `get_interventionmenu_status` | `457`<sub>h</sub> | `002E2340` | 0 without the battle menu (`[0209BE80] + AB30h`, refused by bit 13 of `+10F68`<sub>h</sub>), otherwise 1 with bit 4 of `+10F68`<sub>h</sub> set and 2 without (`0028F6A0`) |
+| `get_interventionmenu_commandstatus` | `45A`<sub>h</sub> | `002E2320`, `002E0E30` | the battle menu's current command (`002767C0`, through `0028F5F0`) plus 1 for 0-7, the same value for 9-17, 18 and 19 swapped, and 0 for any other |
+| `setpartymenustatus` | `45F`<sub>h</sub> | `002E23E0`, `002E13C0` | sets or clears one bit of `[020927C0] + 32C4h` (`00254E00`): kinds 0-7 give bits 0, 1, 9 and `12`<sub>h</sub>-`16`<sub>h</sub>, kind 9 bit `1E`<sub>h</sub>, any other `1D`<sub>h</sub> |
+
+`show_escapingwindow` (`458`<sub>h</sub>) jumps from `002E2310` to the return stub `0016D6A0` and does nothing. The bits
+`1E`<sub>h</sub>-`23`<sub>h</sub> of the same word lock Config rows ([Config screen](config-screen.md)). `setmenudisablestatus` (`3A5`<sub>h</sub>) sets or clears bit n of
+`0215F1C4` through `002E1BE0`, one of the 16 words `002E0FA0` ORs together; `002E12E0` passes 0-18 and turns any other value into -1, which is refused.
+
 Selector 5 with bit 15, the save menu, is called 1,148 times; selector 2, the shops, 98 times with 57 shops;
 selector 4, the notice board, 8 times; selector 0 with bit 15, the destination map, 18 times. Bit 15 makes the screen
 open with no fade (`0027FF6E`-`0027FF77`).

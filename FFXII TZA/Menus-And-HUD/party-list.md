@@ -140,6 +140,18 @@ at `022C8B08 + 1500h`, `+1600`<sub>h</sub>, `+1700`<sub>h</sub> and `+1800`<sub>
 - `00273160(out, flags, unit)` returns the first status of a unit in order 1 and its flag bits, for the overhead
   gauge `002C6F70`.
 
+`00273BA0` builds each order as a list of 4-byte entries (`00273C63`-`00273DB8`), and the Party Menu's member rows
+(`00284030`) and the Status pane (`002C573E`) make the same list for one unit's statuses:
+
+1. The member rows and the Status pane first fill n entries with `FEFE`<sub>h</sub> (`002D0280(list, n)`).
+2. `002D02C0(list, n, mask, order)` writes, for each status of the mask below n, its number, its byte for the order
+   (`+20`<sub>h</sub>-`+24`<sub>h</sub> of its class `1A`<sub>h</sub> record) and bit 0 of its `+25`<sub>h</sub>, and answers how many have a byte other than
+   `FF`<sub>h</sub>.
+3. `002D03B0(list, n)` sorts them by that byte, highest first (`00249CE0` with the comparator `002D0270`).
+
+`002D02A0(entry, mask)` answers whether an entry is a real status with a byte and set in a mask. The member row shows
+at most 11 entries and skips status `1D`<sub>h</sub> (`00284058`-`00284070`).
+
 The HP number's colour comes from the statuses present, in order 0 (`00271FB0`, `00297D62`): colour `B5`<sub>h</sub> when one
 has bit 4 at `+25`<sub>h</sub> and `B6`<sub>h</sub> for bit 3, pulsing by `128 + 32 x sin(frame x pi / 30)` (`00271EF0`); a status with
 bit 1 halves it.

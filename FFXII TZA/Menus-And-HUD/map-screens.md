@@ -101,6 +101,49 @@ Each frame, a page rebuilds its element list (`00402A40`) and draws (`002B8A19`-
 3. one marker per point, each a small map view through `003C4070` in mode 2 (`00404120`, `002B96E7`);
 4. the labels (`004044D0`).
 
+### Zoom and panning
+
+A page keeps its zoom in percent at `+D4`<sub>h</sub> and its scroll at `+C8`<sub>h</sub>/`+CC`<sub>h</sub>:
+
+1. The overlay page starts at `TrackMapScale` (200, `002B806C`) through `002B7210` and `002B6AE0`.
+2. `002B6AE0(page, zoom)` changes the zoom and keeps the view centre still: `002B69B0` scales the centre's distance
+   from the scroll by the new zoom, rounding to the nearest unit.
+3. Each frame `002B66E0` keeps the tracked point at `+BBD8`<sub>h</sub>, placed at the current zoom (`00403550`), inside a box
+   of 32 units either side of the view centre. It moves the scroll a sixth of the way per call, at least 1 unit,
+   within the bounds `+F8`<sub>h</sub>-`+104`<sub>h</sub>, and centres an axis whose bounds cross (`002B6865`-`002B6923`).
+
+`002B6950(out, w, h, mw, mh)` gives a page's margins: 24 units, or the half difference when the map is smaller than
+the view. `002B6B50` gives the icon scale from the display aspect (`0017FFD0`) and the floats `01E0CE50`, `01E0CE58`
+and `01E0CE5C`, 1.5 for an aspect below one third.
+
+### Points, lists and the legend
+
+`002B7460(page)` lists the page's points: `003BE3A0` fills up to `480`<sub>h</sub> bytes of rows for the map `+138`<sub>h</sub> in the
+mode `+BBE0`<sub>h</sub>, each marked with bit 15 when the page's `+13A`<sub>h</sub> bit 3 is set, and `00402D20` turns them into the
+element list `+BBC0`<sub>h</sub>; mode 6 also runs `00402BF0`. `002B9A20` draws each element of a list through `002B8EE0`,
+passing the highlight to the selected one.
+
+A point's name comes from `002B9C70` by its kind byte `+0D`<sub>h</sub>:
+
+| Kind | Name |
+|---:|---|
+| `1` | the area name `00377B60` ([area flags](../World-Areas-And-Travel/area-flags-navimapdata.md)) |
+| `2` | an NPC name, `0026DEA0` with the Bank2048 bit (`0032A930`) ([NPC names](../Characters-And-Objects/npc-names.md)) |
+| `3` | a shop's name, through the shop's name id `002FAE40` |
+| `4` | the text id itself |
+| other | the legend label of its icon `+08`<sub>h</sub> |
+
+The legend is the 14 pairs of icon frame and text id `187F`<sub>h</sub>-`188C`<sub>h</sub> at `00916A10`. The location map's legend
+pane `002BC310` paints each row with `002BA650`, and the point list pane `002BA310` sizes itself to the widest name
+(`002BA530`, measured with `0029CD00`) and paints each row with `002BD8C0`: the name and an icon, from the shared atlas
+(`0035D460`) for icons below `13`<sub>h</sub> and from the page's own atlas for the rest. `002B6310(location)` returns the area
+of a sub-location's persistence group (`003C02B0`, `003BF6C0`;
+[menu map files](../Game-Files-And-Data-Tables/menu-map-files.md)).
+
+`002BA1B0(v)` gives the location container a y from the menu bars: the screen height `01E0C1DC`, less
+`002C9430(81h)` when `002C9430(80h) + v` is not 0. `002BA1F0` is the location map's exit callback: when the location container `0209E5F0` is gone
+and `00402220` answers 0, it returns to the menu with `002814E0(417h)`.
+
 ### What is shown
 
 The story gate `0032A8A0` ([Story flags](../Story-Events-And-Hunts/story-flags.md)) and the encoded-id query
@@ -140,6 +183,7 @@ The picture comes from the zone's map pack: `003C63A0` registers it and `0037987
 | Object | Created | Released |
 |---|---|---|
 | overlay container `0209E5C0` | `002B6350` from the arbiter | `002B6260` sets bit 3; the container releases itself once both pages are gone (`002B7590`, continuation `002B7540`) |
+| overlay page while the HUD is off | the HUD switch `00251F40` hides the current page (`002B6140`: bit 1 off through `00247870`, then `002B6260`) | `002B61B0` sets bit 1 again |
 | location container `0209E5F0` | `002B9D30` | `002B9B30`; continuation `002BA6B0` |
 | field-time container `02B47760` | `003CB440` | `003CB410`, from `00253A30`, `00282122`, `0028E7A3` and `002BA080` |
 | World Map host `02CA8F38` | `00550400` | continuation `00552230`, which returns to the menu (`002814E0(418h)`) |

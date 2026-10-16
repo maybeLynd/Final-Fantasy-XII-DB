@@ -28,7 +28,11 @@ reaches Graphics Settings and Controls only through Config. Leaving either reope
 
 Config's rows come from the row-list table at `01E0BF60`, 45 pointers indexed by the screen's mode byte `+C0`<sub>h</sub>
 (`0023FBE0`, `0023D4F0`). Each row list is a 4-byte header followed by
-6-byte rows (below); a row with label `FFFF`<sub>h</sub> is a separator. The opener
+6-byte rows (below); a row with label `FFFF`<sub>h</sub> is a separator.
+
+`002405B0(mode, row)` returns a row of list `mode`,
+or 0 for a mode of 45 or more, an empty entry or a row past the header's count `+2`; Config reads the row's help id
+`+4` through it and shows it on the help line (`0023FF5D`-`0023FF8A`). The opener
 (`002406D2`) picks mode 0 (`01E0B670`, 27 rows) when the story counter (`00265270`) is 26 or more, otherwise mode 2
 (`01E0B7D0`, the same rows without the last three). Mode 1 (`01E0B720`) is the title's New Game list.
 
@@ -157,8 +161,10 @@ entries (`001DD0B0`), or `[01F82D20] + 4` when the index is past the list's end.
 
 ### Controls rows
 
-The 41 rows are the table at `0208E6E0`, built by `002414B0`. Rows 2-32 rebind keys ([Control remapping](../Controls-And-Input/control-remapping.md));
-the other settings rows are:
+The 41 rows are the table at `0208E6E0`, built by `002414B0`. Rows 2-32 rebind keys ([Control remapping](../Controls-And-Input/control-remapping.md)).
+The row painter `0023CD20` puts the row's text `+8` in the row widget's first part for a row of type 0, with the
+third part placed after the text's width (`0029FE20`) and the fourth hidden, and in its fourth part for types 1-4,
+with the first and third hidden; it paints nothing for any other type. The other settings rows are:
 
 | Row | Label | Options | Setting | Runs at once |
 |---:|---|---|---|---|

@@ -73,6 +73,21 @@ sub-commands:
 | `8103`<sub>h</sub> | shows the row's help: "Sort items in default order by category." (`CC1`<sub>h</sub>), "Sort by item strength." (`CC2`<sub>h</sub>), "Sort by amount." (`CC3`<sub>h</sub>) |
 | `8104`<sub>h</sub>-`8106`<sub>h</sub> | the three sorts, Auto-sort (`4A8`<sub>h</sub>), By Strength (`4A9`<sub>h</sub>) and By Quantity (`4AA`<sub>h</sub>), passed as 0-2 to `002527B0(7, ...)` and `00565CD0` |
 
+`00565CD0(screen, tab, sort)` sorts the tab's list (`00252F40` of the list id at `00D23960 + 4 x tab`) through
+`00249CE0` with one of six comparators, and does nothing for a list of fewer than two items. Each comparator reads the
+two items' query records (`0035D330(1, id << 16)`,
+[item and ability ids](../Engine-Core/item-and-ability-ids.md)) and falls back to the next rule on a tie:
+
+| Sort | Tab | Comparator | Order |
+|---|---|---|---|
+| Auto-sort | any | `002CFFE0` | class 6 items by `002CFDA0`; others by `+30`<sub>h</sub>, then the id |
+| By Strength | `0`, `3` | `002CFD30` | `+58`<sub>h</sub> highest first, then `002CFDA0` |
+| By Strength | `1` | `002CFEE0` | `+50`<sub>h</sub>; then for `+50`<sub>h</sub> = 2 `+58`<sub>h</sub> and `+5C`<sub>h</sub>, otherwise `+5C`<sub>h</sub> and `+60`<sub>h</sub>, highest first; then `002D01A0` |
+| By Strength | `2` | `002D0100` | `+5C`<sub>h</sub>, then `+60`<sub>h</sub>, highest first, then `002CFDA0` |
+| By Quantity | any | `002D0200` | the count `+24`<sub>h</sub> highest first, then `002CFFE0` |
+
+`002CFDA0` orders by `+38`<sub>h</sub>, then `+30`<sub>h</sub>, then the id, and `002D01A0` by `+30`<sub>h</sub>, then the id, all lowest first.
+
 Auto-sort is always offered; the other two rows depend on `00564380`. Message 18 clears the row highlights, sets the parent's sort-changed bit
 `+180h |= 40000000h` and clears the root's `+2F0`<sub>h</sub> (`005666D4`). Message 15 frees its backdrop through `0057C340`
 (`00566771`).

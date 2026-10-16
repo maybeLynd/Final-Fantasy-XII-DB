@@ -144,6 +144,61 @@ with the glyph atlas in the glyph colour. The flush copies the 16 bytes at font 
 2. When the list runs, the wrapper's callback `001F4A10` calls the instance's slot 1 with the renderer (`001F4A35`).
 3. Slot 1 sets the state and calls slot 10, which draws.
 
+### Measuring text
+
+Menu code measures a string without drawing it:
+
+- `002B3050(font, text, &w, &h)` sets up a text context on the stack (`002AC1E0`) with the font `0039BAD0(font)`, and
+  the alternate font record when that font is 7 and `00254A10` answers 0, and measures it with `002B3120`.
+- `002B3120(context, &w, &h)` lays a copy of the context out with `002B24B0` and the terminator `009166EC`, and gives 0
+  for both when the context has no text (`002B313F`).
+- `0029CD00(text, font, scale, &w, &h)` and `0029CD90(text, font, scale, n, &w, &h)` scale the result by `scale` when it
+  is above 0; `0029CD90` first adds `n` for every character (`002B4540`).
+- `002B3E30(line)`, called from the line layout `002AF340`, closes a measured line: it adds the line's height to the
+  total, keeps the widest line, and resets the line's values.
+- `002B3E90(context, text)` measures `text` with `002AF340` under the terminator `00916544` and moves the context's
+  shown count `+8C`<sub>h</sub> on by that many, at most what `002B43C0` counts ([Message windows](message-windows.md)).
+
+### Drawing text into a widget
+
+A widget draws a string at a point through its draw record ([Menu sprites](menu-sprites.md)). A string that starts
+with `ex` is UTF-16 (`00364980`), as the credits strings are ([Text codes](text-codes.md)), and takes its own path:
+
+| Call | Ordinary string | UTF-16 string |
+|---|---|---|
+| `002D89E0(record, x, y, text, font, source)`, draw | a text context from `002B3400`, then `002DD680` | `003659F0`, then `002DD5D0` |
+| `002D8B00(&w, &h, text, font, size)`, measure | `002B3050` | `003656A0` |
+| `0029CCF0(out, size, plus, x, utf16)`, a sign | the glyph code of `+` or `-` (`002B5A20`) | `ex00` and the UTF-16 `+` or `-`, 8 bytes |
+| `0029CCD0(x, font)`, a blank's width | the width of token 7 (`002ABAA0(0)`) | the advance of `0` in UTF-16 font `font - 1` (`003655F0`) |
+
+`002DD680` hands the record's palette byte `+5C`<sub>h</sub>, size `+60`<sub>h</sub> and letter spacing `+65`<sub>h</sub> to the context, and its
+colour `+90`<sub>h</sub> scaled by the alpha `+5A`<sub>h</sub> (and `+58`<sub>h</sub> for the alpha byte) to `+30`<sub>h</sub>. It places the text at
+(x, y) through `00397910` and draws it with `002B0280`. `002D8550` sets up the same and draws through `002AF960`, for
+the confirm windows and the pause task (`0057C92A`, `00242373`, `00227F39`).
+
+### Picking the batch
+
+The interpreter `002AC5F0` sets the painter's base size with `002B1ED0`: `0017F980` and `0017F960` for a context with
+the alternate font (bit 11 of `+44`<sub>h</sub>), otherwise `0017F8A0` and `0017F880`, stored at `0209CC70` and `0209CC74`. It
+opens a font's batch with `002AB820(font, group)`, which calls `001E9D20` through `0017FD30` with the painter
+`[0209D480]` and keeps the pair at `0209CC30` and `0209CC34`.
+
+### The colour table
+
+Menu colours come from one table of 8-byte entries: a `u32` count, then per entry an RGBA `u32` and a byte. The field
+HUD root's load callback `0029CED0` requests the file (`00249210`, `0029CEF6`), and `002DD810` keeps it at
+`0215E6C0`. `002DD840`, run from `0029CF10` once the root's resources are in, publishes the count at `0215E6B8` and the
+entries at `0215E6C8`.
+
+`002DD7E0(n)` returns entry n's colour, or `80808080`<sub>h</sub> for an index out of range or before the table is published,
+and `002DD7B0(n)` its byte.
+
+The battle log's formatter `00536410` takes a line's colour and byte for a category 0-7
+and a side 0-1 through `0035D430` and `0035D400`, from the entry numbers at `00D10C60`: `18`<sub>h</sub>-`1B`<sub>h</sub>, `14`<sub>h</sub>-`17`<sub>h</sub>,
+`1D`<sub>h</sub>, `1D`<sub>h</sub>, `1C`<sub>h</sub>, `1C`<sub>h</sub>, `1E`<sub>h</sub>, `1E`<sub>h</sub>, `1F`<sub>h</sub>, `1F`<sub>h</sub>; a category above 7 reads the first entry. `0029CF10` also fills the painter's rows from the two packs `0029CB50` and `0029CB60`
+(`002B3480`, through `002432B0`). The `fontcolor.bin` copies under `myoshiok` in the extract are 2,108 bytes, 263
+entries.
+
 ### Where the state is kept
 
 | Object | Where | Holds |

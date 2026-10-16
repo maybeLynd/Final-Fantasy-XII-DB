@@ -148,6 +148,14 @@ a negative value gives only the padding (`003EFD20`).
 Numbers reach the font through the font sheet's two character maps (`002AE77C`, `002AE861`): the first maps `0`-`9`
 to the `font00` digits and the second to the full-width digits.
 
+The same maps turn plain characters into text codes. Each holds one `u16` code per character from `20`<sub>h</sub>; a code of
+`20`<sub>h</sub>-`FF`<sub>h</sub> is written as one byte and any other as two:
+
+- `002B5AB0(out, ascii, n)` encodes up to `n` characters with the first map, writing a space as the token `04`<sub>h</sub>
+  (`002B5B2A`); the Brightness row and the title's text consumer use it (`0023B5C6`, `00393B5B`).
+- `002B5A20(out, size, plus, fullwidth)` writes the code of `+` (`plus` set) or `-` from the first map, or the second
+  with `fullwidth`, and its terminator.
+
 ## Shipped data
 
 | Folder | Fonts listed |

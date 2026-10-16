@@ -119,6 +119,42 @@ The four blank tokens scale with the text size and letter spacing (`002ACC97`-`0
 The escapes `,`, `1`, `l`, `m`, `n` and `V` are read and stepped over with no effect. `0F 0` and `0F _` have no arm,
 so the selector is drawn as a character (`002ACFC2`).
 
+### Template escapes
+
+Before a template is drawn, the formatter `002B49F0(size, out, template, args, typed)` copies it into `out` and fills
+some escapes from its arguments. It is reached through `002B4090` and `002B40C0`. Without `typed` it takes the
+arguments in order, eight bytes each; with `typed` each escape names an entry of an array of `10`<sub>h</sub>-byte arguments,
+type 1 a number and type 2 a string (for example `002B4ADA`-`002B4AFF`).
+
+| Escape | Becomes |
+|---|---|
+| `0F +` | `0F + 81` and the argument's byte, a render-state code |
+| `0F ,` | the 7-byte colour code `0F )` of the argument's RGBA |
+| `0F -` | the number in glyph codes (`002B3770`) |
+| `0F 1` | the string argument, padded with `01`<sub>h</sub> blanks to the escape's minimum length; with a field width w it sits between a tab code `0F 2` that stores the pen position and one that moves to it plus 2 x w |
+| `0F l` | with `typed`: a number, or for 1 the string argument's variant (`002B58B0`) |
+| `0F m` | with `typed`: a word row's singular, or for a count above 1 its plural (below) |
+| `0F n` | with `typed`: variant `k + 2` of a word row; for language ids 1-6 and 9 (`00254A10` answers 0) its first letter is capitalised when nothing has been written before it |
+
+Any other unit is copied. A result that does not fit ends `out` at `size - 1` and returns `FFFF`<sub>h</sub> (`002B51C3`).
+`002B58B0(row, k)` returns string `k` of a word row ([battle text tables](../Game-Files-And-Data-Tables/battle-text-tables.md)).
+
+`002B4550(size, out, row)` builds a plural: string 1 of the row is the plural template and string 0 the base word.
+Token `08`<sub>h</sub> with a two-byte count `& 7FFFh` copies that many bytes of the base word, token `09`<sub>h</sub> the whole word, and
+anything else is copied (`002B45E3`-`002B46A2`).
+
+`002B3770(size, out, &pos, value, digits, pad, fullwidth, space)` writes a number with `003EFD00` and turns each digit
+into the font's glyph code through the font sheet's first character map, or the second with `fullwidth`; a digit the
+map gives 0 becomes the blank token 7, or 1 with `fullwidth`, and `space` adds a final `04`<sub>h</sub> ([Fonts](fonts.md)).
+
+Three writers build codes for menu strings:
+
+- `002AB870(size, out, rgba)` writes the colour code `0F )`, 8 bytes with its terminator, the same encoding as the
+  `0F ,` arm;
+- `002AC2C0(n)` returns the static code `0F ? 81 n` at `01E0CDFC`;
+- `002B5240(record)` copies a string, replacing each `0F 8` with the name it stands for (`002639E0`), and
+  `002B5680(size, out, in)` copies one without its line breaks `02`<sub>h</sub> and baseline codes `0F <`.
+
 ### Codes no shipped text uses
 
 Over every string of the nine languages, these never appear:

@@ -240,6 +240,18 @@ The curve function `00248F40(curve, length, t)` returns 1.0 once `t` reaches `le
 | 4 | `0.6 + 0.4 x sqrt(p)` (`003A1D30`) |
 | 5 | `0.4 + 0.3 x sin(p x pi / 2) + 0.3 x p` |
 
+Many menu rows fade their alpha `+A0`<sub>h</sub> or colour byte `+A1`<sub>h</sub> with a pair of helpers that keep their state in the row
+widget's own `+C0`<sub>h</sub>-`+D3`<sub>h</sub>:
+
+- `002D04F0(widget, to, which, curve, ms)` starts the fade: bit 0 of `+C0`<sub>h</sub> running, bits 2-5 the curve, bits 6-7
+  `which` (above 0 for `+A1`<sub>h</sub>), the start value at `+C4`<sub>h</sub>, the change at `+C8`<sub>h</sub>, the length `ms x 60 / 1000`
+  frames at `+CC`<sub>h</sub> and the start frame `0208F570` at `+D0`<sub>h</sub>.
+- `002D0410(widget)`, run each tick by the row, writes `start + change x 00248F40(curve, length, now - start)` to the
+  byte and clears the running bits when the curve reaches 1.0.
+
+The Party Menu's member rows, the Status and Equip rows and the license board use them (`00284D76`, `002C1D26`,
+`00557EA1`, `0028453E`, `0055A761`).
+
 ### Teardown
 
 1. `00244F00` asks for the close: with bits 0 and 5 set it starts a closing run, otherwise it sends message 15 and tears

@@ -88,6 +88,12 @@ A procedure's layout comes from `mrppack_ys.bin`: `00280980` relocates its 23 un
 (`00280980`-`002809DE`), and `002432B0` reads a record of a unit. The table gives layouts as unit and record. Files are
 named from the resource path table `01EC73A0`, and images by the label the code passes to `0024A5A0`.
 
+Some screens also load text groups ([Battle and menu text tables](../Game-Files-And-Data-Tables/battle-text-tables.md)).
+`002F8040(g)` answers whether group g is resident (`02EC3D80`). The gambit editor's `00292210` adds groups 10 and 16
+to its resource batch when they are not (`002491B0`), and `002922F0`, run by the gambit editor (`00569236`), the Inventory (`00566217`), the
+shop (`0057BC88`) and `00560910` (`0056098E`), releases each resident group through `002F83E0`: 17 unless `[02CA8F94]` is set, 10, 20 and 14
+unless `[02CA96D4]` is set, and 16.
+
 ## Columns
 
 | Column | Meaning |
