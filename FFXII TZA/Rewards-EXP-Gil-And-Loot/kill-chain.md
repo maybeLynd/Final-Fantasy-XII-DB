@@ -1,0 +1,190 @@
+---
+title: Kill chain: chain count, chain level, the chain coin and resets
+kind: system
+category: 13-Rewards-Progression-Economy
+summary: How kills build the chain count and chain level, the 5 %/60 % coin rolled on every link, breaks in a row, everything that resets the chain (save crystals, towns, presets), the HUD counter and the chain's globals.
+addresses: [00317ED0, 003183D0, 0028EF00, 0028EF70, 003F9E50]
+---
+
+# Kill chain: chain count, chain level, the chain coin and resets
+
+## What the player sees
+
+Kill the same kind of enemy twice in a row and the **chain** counter goes up; kill a different kind
+and the chain breaks. "The same kind" means the same enemy class: one byte on the enemy, compared with
+the class of the previous kill, so the whole chain state is "what did I kill last".
+
+Breaking a chain is not simply a reset. The game counts **breaks in a row** - kills of different kinds
+one after another, which modding tools call the **reverse chain** - and while that count is above zero
+it picks the drop-chance table by a weighted roll instead of by chain level. Any kill that continues a
+chain sets the count back to zero.
+
+On every kill that continues a chain the game also flips a **coin**, and the odds depend on how the
+previous flip landed: 5 % after a failure, 60 % after a success. A long run of failures stays at 5 %;
+one success moves it to 60 % until the next failure. The coin is independent of chain length. While it
+is up, the chain number on screen pulses grey.
+
+The chain number shown is capped at 999, or 998 in every language except Japanese.
+
+The chain also has a **level**, 0 to 3, and the level is what improves drops. It rises when enough
+kills have been added since the last rise; picking up loot in the meantime makes the next rise less
+likely, unless the coin is up.
+
+Everything resets when you touch a save crystal, when you enter an area flagged as a town (towns,
+villages, shops, aerodromes and similar safe areas), and when a script applies a preset party and
+inventory state. Moving between ordinary areas keeps the chain.
+
+## How it works
+
+`EnemyChain_UpdateOnDefeat` (`00317ED0`, 529 bytes) has one caller, the defeat-reward routine
+`00312280`, which calls it (`003122CD`) only when the defeated unit's stats record (`[unit+0x698]`) has
+byte `+0x05` equal to 1 (an enemy) and the credited unit's record has byte `+0x05` equal to 0 (the
+party side) (`003122B9`-`003122C8`). The function checks the enemy side again: it does nothing for a
+null actor, for a missing stats record or one whose byte `+0x05` is not 1 (`00317EF8`), or when bit 1
+of byte `+0x28` of the actor's `[actor+0xE68]` record is set (`00317F09`).
+
+It compares the enemy's class byte `actor+0x56` with the previous kill's class at `022C3168`
+(`00317F21`). The class byte is the class record's type byte; the shipped areas use sixty-four values.
+
+**First kill** (`022C3168` negative, `00317F1B`): no chain yet. It clears the coin bit and stores the
+class (`003180BB`-`003180D0`).
+
+**Same class - the chain continues** (`00317F2D`-`00318065`):
+
+1. Chain length `022C315C` += 1, capped at 999 (`0x3E7`), or at 998 (`0x3E6`) when `00229E40()` is
+   non-zero (`00317F2D`-`00317F64`). `00229E40` returns the locale id at `01E02814`, which is 0 only for
+   Japanese, so every other language caps at 998.
+2. Breaks in a row `022C3164` = 0 (`00317F6A`).
+3. The same-model run `022C3160`: if the `u16` at `[actor+0xE68]+0x40` (the model id that palette swaps
+   share) equals the previous one at `022C316C`, it adds 1, capped at 999; otherwise it resets to 0 and
+   stores the new model id (`00317F70`-`00317FB6`). This run chooses the loot quantity table.
+4. `EnemyChain_TryAdvanceRank` (`003183D0`, 315 bytes) tries to raise the chain level (`00317FBC`); see
+   below.
+5. The coin: three LCG steps on the shared gameplay generator `022C256C` (multiplier `0x41C64E6D`,
+   increment `0x3039`) give `r` in 0-99 (`00317FC1`-`00318032`). If coin bit 0 of `022C3178` is set,
+   success is `r >= 40` (60 %); otherwise success is `r < 5` (5 %) (`00318034`-`00318048`).
+6. `0028EF70(length, coin, level)` posts the update to the chain display, adding 1 to the length passed
+   when `00229E40()` is non-zero (`0031804B`-`00318065`).
+7. The coin result becomes the new bit 0 of `022C3178` (`003180BB`-`003180C6`), and the class is stored.
+
+**Different class - the chain breaks** (`0031806C`-`003180B5`):
+
+1. `0028EF00(length, level)` posts the break to the display (again +1 to the length when
+   `00229E40()` is non-zero).
+2. Breaks in a row `022C3164` += 1, capped at 999.
+3. Zeroed together: `022C3170`/`022C3174` (one qword store, `00318091`), chain level `022C3158` and
+   length `022C315C` (one qword store, `00318098`), and the same-model run `022C3160`.
+4. The coin bit is cleared and the class stored (`003180BB`-`003180D0`). The break path draws nothing.
+
+**The level rise** (`003183D0`). Nothing happens at level 3 (`003183ED`). Otherwise
+`d = length - 022C3170`, the kills added since the last rise. If `d` is above the level's threshold at
+`00D107D4` (30, 50, 80 for levels 0, 1, 2) the level rises outright (`00318403`-`00318417`). If not,
+and the coin is down, `d` is reduced by `(level + 1) * 022C3174`, the loot pickups since the last rise
+(`0031841D`-`00318431`); `d` is clamped to 0-10, a fresh three-step LCG roll `r` in 0-99 is taken, and
+the level rises when `r` is below the byte at `00D106F8 + level*11 + d` (`0031844A`-`003184D7`):
+
+| `d` | 0-5 | 6 | 7 | 8 | 9 | 10 |
+|---|---:|---:|---:|---:|---:|---:|
+| level 0 | 0 % | 40 % | 60 % | 80 % | 90 % | 100 % |
+| level 1 | 0 % | 20 % | 30 % | 50 % | 60 % | 100 % |
+| level 2 | 0 % | 10 % | 20 % | 30 % | 40 % | 100 % |
+
+On a rise: level += 1, `022C3170` = the current length, `022C3174` = 0, and `0028EF50(level)` tells the
+display (`003184D9`-`003184F6`). The pickup count `022C3174` is incremented by every loot pickup
+(`00319974`).
+
+**Reset.** `003183A0` (42 bytes) clears the coin bit and zeroes `022C3158`-`022C3167` and
+`022C3170`-`022C3177`, and sets `022C3168` and `022C316C` to -1 (`003183A0`-`003183BE`). It is reached
+four ways:
+
+1. **Save crystals.** The script verb `btladjustsystem` (`0x517`, handler `0034AAB0`) passes its
+   argument to `002FEAC0`, which jumps to `003183A0` when bit 0 is set (`002FEAC3`). The save crystal's
+   talk function calls `btladjustsystem(1)` (see teleport and save crystals).
+2. **Entering a town.** When the new area's actor manager 0 finishes loading, `00332130(0)` calls
+   `0032F1B0(0)`, which calls `0026CE60(0)`; that runs once per load (manager byte `+0x10` bit 0 clear
+   and byte `+0x13` set) and calls the area initialisation `002342F0` (`0026CEC6`). `002342F0` is also
+   called by `00266D10` (`00267136`). It does nothing unless `02089300` is non-zero (`002342F4`; set to 1
+   at `00236A44`, cleared by the battle-work setup `002368D0`). Near its end it calls
+   `00377C20` and resets the chain only when that returns non-zero (`00234446`-`0023444F`).
+   `00377C20` returns bit 15 of the 16-bit word at `+8 + id*3` in the map-info table `02ADD100`
+   (`navimapdata.bin`), where `id` is the current field id from the save payload's `+0x1044`
+   (`003148F0`, negative ids read as 0); it returns 0 for an id at or past the table's count at `+4`, or
+   when the table is absent. Bit 15 is the town flag (see
+   the field record table).
+3. **A preset party state.** `002342F0` calls `00239960` (`00234349`), which consumes the pending
+   preset byte `0208D455` and sets it back to -1 (`00239966`-`0023997B`). For a preset index in range
+   it applies that preset and calls `003183A0` (`00239A85`); for -2 it jumps to `00237DF0` instead
+   (`0023998E`), which resets the chain at `00237E3C`; for -1 it does nothing. The byte is written by
+   the script verb `btlAtelSetNextSetSaveData` (`0050F810`), by `0023A110` (called from `003942F9`), from
+   the save image's `+0x4E660` when a save is restored (`00584482`), and to -1 by `002368D0`.
+4. **The battle-state reset** `00237DF0`, which also runs from `00233C10` (three calls), `00238A80`
+   and `00394460`.
+
+**Script access.** The script verb `btlAtelGetChainCount` (`00510100`) returns the breaks in a row for
+argument 0 (`00318380`), the chain length for 1 (`00318390`), and -1 otherwise. No script verb writes
+the chain.
+
+**The display.** The chain counter is a widget in the HUD sub-object at `+0x57E0`. `0028EF00` (79 B)
+resets the HUD's chain flags `+0x7C7C` to bits 3 and 0 and stores the pending count at `+0x7C78` and the
+level at `+0x7C82`; `0028EF70` (70 B) calls `0028F0C0()`, keeps the flags and sets bit 1 to the coin. `003F9F40` copies flag
+bit 1 into the widget's `+0xC4` bit 1 (`003FA069`-`003FA07E`), which makes the number redraw every frame
+in a pulsing grey. `003F9E50(widget, count, playSound)` (229 B) hides the widget for a count of 0, does
+not show a count of 1 while `00229E40()` is non-zero, and otherwise draws `min(count, 999)` in three
+digits (unsigned compare), playing sound `0x30` when asked. `0028EF50(level)` (29 B), called on a level
+rise, sets flag bit 2. `003F9F40` then counts frames at widget `+0x24A0` and, once the count passes
+15 times the frame base `01DFE0B4`, starts a second element at widget `+0xD0` with the handler
+`003FACF0` and clears the bit (`003F9F51`-`003F9FB5`). That element is a one-shot sprite: on creation it
+takes element `0x59` of the layout at `00D11FC8` and sits at the counter's x position; it plays sound
+`0x6C` (`00249C60`) and removes itself after 30 times the frame base (`003FACF0`).
+
+When the count is redrawn and is non-zero (unless widget `+0xC4` bit 2 was set before the redraw and
+still is, `003FA092`-`003FA0AB`), the digits take their colour from the colour table
+`0215E6C8` (`002DD7E0`, grey `0x80808080` when the table is absent): entry `0xC0`, `0xC1` or `0xC2`
+for levels 1-3 and `0xBF` for level 0 (`003FA0AD`-`003FA0DD`), applied to the three digits by
+`003FAAF0`, so the number's colour shows
+the chain level.
+
+**The coin and loot share one generator.** The coin's three LCG steps advance the same state
+`022C256C` the loot rolls use, so the two are correlated through that state. The clock-based seed
+computed when a save loads (`00584210`, see boot fixups)
+goes to a different generator, the Mersenne Twister whose state starts at `02EB3870` (624 words, index
+`02EB4230`), seeded through `00863D30` (reached by the thunk `00379CF0`): its first use seeds 5489 and
+then the clock value (`00863D4D`-`00863D6A`). It does not touch `022C256C`.
+
+## State
+
+| Global | Width | Meaning | Written by |
+|---|---|---|---|
+| `022C3158` | u32 | chain level 0-3 | `003183D0` (rise); zeroed on a break (`00318098`) |
+| `022C315C` | u32 | chain length, cap 999 or 998 | `00317F64`; zeroed on a break |
+| `022C3160` | u32 | same-model run, cap 999 | `00317F70`-`00317FB6`; zeroed on a break (`0031809F`) |
+| `022C3164` | u32 | breaks in a row, cap 999 | `003180B5`; zeroed by a continuing kill (`00317F6A`) |
+| `022C3168` | i32 | previous kill's class byte; negative before the first kill | `003180D0` |
+| `022C316C` | u32 | previous kill's model id | `00317FB6` |
+| `022C3170` | u32 | chain length at the last level rise | `003184DC`; zeroed on a break (`00318091`) |
+| `022C3174` | u32 | loot pickups since the last level rise | `00319974` (+1); `003184EC` (0); zeroed on a break |
+| `022C3178` | u32 | bit 0: the coin | `003180C6` |
+
+## Modding notes
+
+- The coin's odds are the two immediates at `0031803D` (`cmp ecx, 0x28`: success on 40-99) and
+  `00318045` (`cmp ecx, 5`: success on 0-4).
+- The coin's effect: while bit 0 of `022C3178` is set, loot pickups do not slow the level rise
+  (`0031841D`).
+- The level thresholds (`00D107D4`) and the rise chances (`00D106F8`) are tables in the executable, not
+  in game data.
+- The 999 / 998 cap is chosen by locale, not by data.
+- To change what the chain does to drops, see [Loot drops](loot-drops.md):
+  level, the same-model run and breaks in a row each select a row of the drop table.
+
+## Related
+
+- [Loot drops](loot-drops.md) - how chain level, the same-model
+  run and breaks in a row choose drop chances and quantities.
+- Teleport and save crystals - the
+  crystal script that resets the chain.
+- The field record table -
+  the town flag that resets the chain on entry.
+- Language selection and locale ids
+- Who gets EXP, LP and gil from a kill - the
+  defeat-reward routine that calls the chain update.
