@@ -161,6 +161,14 @@ Measured over the shader clusters in the archive (`gamedata/d3d11/artdata/shader
 | `m_effectVariants` count | 1 in all 93 |
 | `m_maxLightCount`, `m_supportedLightMask`, `m_numSupportedShaderLODLevels` | 0 in all 93 |
 | switch names as strings | only `SKINNING_ENABLED`, in 12 clusters, as a `PMaterialSwitch` define name |
+| compiled variant clusters, named `<shader>.fx#<32 hex digits>.phyre` | 80: `phyredefaultlitshader` 63, `phyrechrshader` 17 |
+| model clusters (`.dae.phyre`) that name a variant | 2,091 of 2,112: 1,047 under `chr`, 588 under `chr_shadow`, 456 under `map` |
+| variants some model names | 79 of 80; `phyredefaultlitshader.fx#9aa82ed50d0fd3164f55358a7406d2f5` is named by none |
+| most used variants | `phyrechrshader.fx#cb0f9f99…` by 1,591 models and `…#e0c4972f…` by 1,583; `phyredefaultlitshader.fx#5b374ae6…` by all 456 maps |
+
+A model names the compiled shader it draws with as `<shader>.fx#<hash>`, in its own cluster's strings; the archive
+ships each such variant as a separate cluster beside the shader, and no other file (`idmaps.txt` included) and no
+string in the executable builds or holds those names. Measured by `Database/Tools/phyre-census/shader_variant_files.py`.
 
 ## State
 
