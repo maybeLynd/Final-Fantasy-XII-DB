@@ -163,5 +163,5 @@ called from `002341D0`, the area initialisation `00234397` and the slot release 
 - [Combos](combos.md) - the combo gate that waits for the scene to finish.
 - [Action commit](action-commit.md) - the commit that comes before the scene.
 - [Area of effect](area-of-effect.md) - the target list the scene reads.
-- How a cutscene runs - scene
+- [How a cutscene runs](../Scripts-And-Script-Commands/cutscenes-and-the-world-lock.md) - scene
   manager 3 in script scenes.

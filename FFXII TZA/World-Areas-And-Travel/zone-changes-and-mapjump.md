@@ -326,5 +326,5 @@ third.
 - [The world tick and the field frame](../Engine-Core/frame-update-order.md)
 - [The time-stop registry](../Engine-Core/time-stop-and-freeze.md)
 - [Spawn placement and retirement](../Enemy-Spawning/enemy-spawning.md)
-- How a cutscene runs
+- [How a cutscene runs](../Scripts-And-Script-Commands/cutscenes-and-the-world-lock.md)
 - [The save payload field map](../Saving-Loading-And-Settings/save-data-fields.md)

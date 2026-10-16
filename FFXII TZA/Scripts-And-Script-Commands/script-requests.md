@@ -258,6 +258,6 @@ arming mask of every actor record, and the talk candidate at `0209A2B4` to `0209
 ## Related
 
 - [Script interpreter](script-interpreter.md): the opcodes and the wait slot.
-- The world lock: what the start flag takes.
+- [The world lock](cutscenes-and-the-world-lock.md): what the start flag takes.
 - [Actor record](../Characters-And-Objects/actor-record.md): the fields around the pool.
 - Script name bindings: the special-function footer.
