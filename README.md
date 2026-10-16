@@ -19,4 +19,5 @@ Addresses are virtual addresses in the shipping `FFXII_TZA.exe` (SHA-256
 
 ## Categories
 
+- [World, areas and travel](FFXII%20TZA/World-Areas-And-Travel/README.md) - Areas and zone changes, the per-area map information table, weather, save crystals, teleports, chocobos and airships.
 - [Rewards: EXP, LP, gil and loot](FFXII%20TZA/Rewards-EXP-Gil-And-Loot/README.md) - What a defeated enemy gives: EXP, LP and gil, loot drops and pickups, the kill chain, levelling up and the gil cap.

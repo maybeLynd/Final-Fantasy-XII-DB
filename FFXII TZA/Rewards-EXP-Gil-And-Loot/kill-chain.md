@@ -139,7 +139,7 @@ Near its end `002342F0` calls `00377C20` and resets the chain only when that ret
 table `02ADD100` (`navimapdata.bin`), where `id` is the current field id from the save payload's
 `+0x1044` (`003148F0`, negative ids read as 0). It returns 0 for an id at or past the table's count
 at `+4`, or when the table is absent. Bit 15 is the town flag (see
-the field record table).
+[the field record table](../World-Areas-And-Travel/area-flags-navimapdata.md)).
 
 ### Script access
 
@@ -220,7 +220,7 @@ then the clock value (`00863D4D`-`00863D6A`). It does not touch `022C256C`.
   run and breaks in a row choose drop chances and quantities.
 - Teleport and save crystals - the
   crystal script that resets the chain.
-- The field record table -
+- [The field record table](../World-Areas-And-Travel/area-flags-navimapdata.md) -
   the town flag that resets the chain on entry.
 - Language selection and locale ids
 - [Who gets EXP, LP and gil from a kill](exp-lp-and-level-ups.md) - the
