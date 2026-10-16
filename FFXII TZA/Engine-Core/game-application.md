@@ -215,4 +215,4 @@ published frame delta and the second-pass flag; the pump mode and the game-step 
 - [Startup constants](startup-constants.md): what `0022A0B0` fixes at boot.
 - [Frame update order](frame-update-order.md): the main state machine `0022A580` and the field
   frame.
-- Class hierarchy: the RTTI the base class name comes from.
+- [Class hierarchy](class-hierarchy.md): the RTTI the base class name comes from.
