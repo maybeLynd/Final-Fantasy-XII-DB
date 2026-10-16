@@ -230,4 +230,4 @@ mode word, and the lock counter with the hold bytes.
 - [Time stop and freeze](../Engine-Core/time-stop-and-freeze.md): the registry behind the lock.
 - [Script requests](script-requests.md): the talk filer and the start flag.
 - [Native commands](native-commands.md): the skip mask that ends waits.
-- Party verbs: the summon party switches.
+- [Party verbs](party-verbs.md): the summon party switches.
