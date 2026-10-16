@@ -36,7 +36,7 @@ step](heading-speed-to-position-delta.md)).
 
 Two normalisers fold an angle into a single turn, and they are different functions:
 
-```
+```python
 facing wrap (0026A0D0, 0026A060, 0026B5A0, 0026B620, 0026B6A0, 0026C090, 002E5E10, 0026A8E0 ...)
   b = (a >= 0) ? pi : -pi                       pi 01CEBC50, -pi 00915620
   wrapped = ((a + b) - trunc((a + b) / 2pi) * 2pi) - b     2pi 01CEBC78; one pass

@@ -197,7 +197,7 @@ the only free value is the largest the byte can hold.
 
 ## Layouts
 
-```
+```python
 encoded id (u16): nibble = id >> 12 (0..0xE), index = id & 0xFFF; class = nibble + 5; 0xFFFF = none
 01EEBCC0  descriptor[15], 0x58 each (layout above); 01EEBCF8 = record 0's class
 [02EBF190] + 0x4748  u16[64]  items          +0x47C8  u16[420] equipment     +0x4B10  u16[512] loot

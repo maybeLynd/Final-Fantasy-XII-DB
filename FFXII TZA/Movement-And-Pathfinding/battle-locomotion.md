@@ -84,7 +84,7 @@ Those three paths end in `0033BFB0`; a step claimed by
 `00339BF0(ctx)` is a quadratic arrival curve on the horizontal distance `d` to the destination `+0x30` (block `+0x90`;
 `004686D0` ignores y):
 
-```
+```python
 party unit (kind 0) with order 0x4022 while fighting (00253B90 zero) : return speedB (+0xFC)
 flags +0x170 bit 0 : speedA (+0xF8)     bit 1 : speedB
 goal kind +0x40 == 1, unit +0x768 >= +0x76C, d > stop (+0xD0)    : speedB

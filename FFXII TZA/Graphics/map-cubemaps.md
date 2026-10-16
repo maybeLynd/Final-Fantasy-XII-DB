@@ -134,7 +134,7 @@ Probe (`001AA840`), pointed to from manager +`0xF0`:
 | `40` | `u8` | enabled | 1 |
 | `44` | `u32` | variant | the _e<v> set in use |
 
-```
+```python
 cubeMapConfigs.txt, CRLF text
 <count>
 then per probe: <x> <y> <z> <weight> <radius>, one value per line

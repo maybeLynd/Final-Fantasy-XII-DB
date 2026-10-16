@@ -207,7 +207,7 @@ on both of its sides ([save data fields](../Saving-Loading-And-Settings/save-dat
 
 ## Layouts
 
-```
+```python
 [02EBF190] + 0x5B04  u32  the mode word: bit 0 summon, bit 1 chocobo, bit 2 event party, bit 3 event party 2
 [02EBF190] + 0x5B08  u32  the previous level (written by the dispatcher with commit)
 [02EBF190] + 0x5AD0  u16  summon flags (bit 1 the timer runs)   +0x5AD4 u8 the Esper's row (0x1B after reset)   +0x5AD5 u8 the summoner's row

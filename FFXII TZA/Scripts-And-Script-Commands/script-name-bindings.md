@@ -244,13 +244,13 @@ angle (`0026B620`, `0026A0D0`), sets its separation weight to −1.0 (`0026DAC0`
 caller. Byte `+8` is shared: bits 0-5 are the facing and bit 6 is the random-gil flag the payout
 reads ([reward verbs](reward-verbs.md) has the contents fields `+0xB..+0x17`).
 
-| Value | Formula | Code |
-|---|---|---|
-| x | `(int16) record[+0x04] / 10.0            008F8180 = 10.0` |  |
-| y | `0.0` |  |
-| z | `(int16) record[+0x06] / 10.0` |  |
-| w | `1.0` |  |
-| heading | `-(record[+0x08] & 0x3F) / 60.0 * 2*pi   008F6D54 = 60.0, 01CEBC78 = 6.2831855` |  |
+```python
+x = (int16) record[+0x04] / 10.0            008F8180 = 10.0
+y = 0.0
+z = (int16) record[+0x06] / 10.0
+w = 1.0
+heading = -(record[+0x08] & 0x3F) / 60.0 * 2*pi   008F6D54 = 60.0, 01CEBC78 = 6.2831855
+```
 
 The position is in tenths of a unit, the height is never authored, and the facing steps in 6°
 units; codes 60 to 63 go past a full turn and are not clamped.
@@ -415,7 +415,7 @@ presentation    [actor+0xC0]: +0x00 render index, +0x04 bound id, +0x08 entry, +
 
 `002ED6F0`, letter class → resource kind, file index, lane count:
 
-```
+```python
 'C' 0x43 -> 0x0F, n,      0      'b' 0x62 -> 0x16, n*2,    1      'n' 0x6E -> 0x13, n*0x19, 24
 'M' 0x4D -> 0x12, n,      0      'c' 0x63 -> 0x0E, n*0x19, 24     's' 0x73 -> 0x17, n*0x19, 24
 'N' 0x4E -> 0x14, n,      0      'g' 0x67 -> 0x0D, n*2,    1      't' 0x74 -> 0x19, n,      0

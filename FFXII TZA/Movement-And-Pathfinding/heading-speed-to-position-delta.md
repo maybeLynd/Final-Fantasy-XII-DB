@@ -75,7 +75,7 @@ When the controller exists and its first dword is not -1, the animation override
 receives that record id, the wrapped yaw and the speed by address (next section). Then, with the
 possibly rewritten values:
 
-```
+```python
 speed == 0                                  : out = {0, 0, 0, 1}
 flat (00267260 != 0 and 00264460 == 0)      : out = {sin(yaw) * speed, 0, cos(yaw) * speed, 1}
 otherwise                                   : out = {sin(yaw) * cos(pitch) * speed,

@@ -189,12 +189,12 @@ The saved achievement state, block `[020927C0]` (`002536A0`), which the save car
 
 The `menuhandbook.bin` chain. Each hop adds the `u16` at the current position, starting at blob `+8`:
 
-```
+```python
 +0x08 (hop 0)  u16 step, u16 mapCount, u8 bitmap[]            maps that mode 5 requires
 hop 1          u16 step, u16 bestiaryCount, u16, u16 ruleCount, {u16 id|type<<12, u16 value}[]
-hop 2          u16 step, u16 count, {u8 quest, u8 scenario}[]  00315DC0
+hop 2          u16 step, u16 count, {u8 quest, u8 scenario}[]  # 00315DC0
 hop 3          u16 step, u16 count, u16 monster[]              mode 7
-hop 4          u16, u16, u32 mask, u32 value[popcount(mask)]   003165C0
+hop 4          u16, u16, u32 mask, u32 value[popcount(mask)]  # 003165C0
 ```
 
 `003165C0(i)` returns 0 for `i >= 32`, a missing blob or a zero hop, or a clear mask bit; otherwise the value

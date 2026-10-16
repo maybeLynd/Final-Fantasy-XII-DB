@@ -83,10 +83,10 @@ and `max` = `max(cur, 1)` when status bit 16 is set, else `+0x24` (doubled under
 
 The divisions are signed and truncating. The count is then:
 
-```
+```python
 n = 1
-repeat 11 times: if MT() % 100 < chance: n = n + 1          (003887DA-00388807)
-enemy-side attacker: n = min(n, byte [[unit+0xE68]+0x20] - 1)   (00388827-0038884D)
+repeat 11 times: if MT() % 100 < chance: n = n + 1  # 003887DA-00388807
+enemy-side attacker: n = min(n, byte [[unit+0xE68]+0x20] - 1)  # 00388827-0038884D
 c = min(n, 11)
 ```
 

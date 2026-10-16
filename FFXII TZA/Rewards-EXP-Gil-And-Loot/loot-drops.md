@@ -35,11 +35,11 @@ load, so the same actions after the same area loads produce the same drops.
 Every roll here is `draw % 100` compared with a percentage, and every draw comes from the shared
 gameplay LCG at `022C256C`:
 
-| Value | Formula | Code |
-|---|---|---|
-| a | `state = state * 0x41C64E6D + 0x3039;` |  |
-| b | `state = state * 0x41C64E6D + 0x3039; state = state * 0x41C64E6D + 0x3039;` |  |
-| draw | `((a >> 16 & 0x7FF) << 10 ^ (b >> 16 & 0x3FF)) << 10 ^ (state >> 16 & 0x3FF);   // 11 + 10 + 10 bits` |  |
+```python
+a = state = state * 0x41C64E6D + 0x3039;
+b = state = state * 0x41C64E6D + 0x3039; state = state * 0x41C64E6D + 0x3039;
+draw = ((a >> 16 & 0x7FF) << 10 ^ (b >> 16 & 0x3FF)) << 10 ^ (state >> 16 & 0x3FF);   // 11 + 10 + 10 bits
+```
 
 The loot and chain functions do not call the generator `00328370`; each carries its own inlined copy
 of the same three steps (for example `00318540`-`0031858B`). The state is seeded by its setter

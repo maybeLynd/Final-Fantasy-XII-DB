@@ -57,15 +57,15 @@ The ammunition classes 23-26 have recipe 0; the ammunition supplies only its ele
 
 With `Lv` the wielder's level `+0x1C2` and the stats from the stats record ([Stats](stats.md)):
 
-| Value | Formula | Code |
-|---|---|---|
-| slot 65, 76   scale | `1 + Str * (Lv + Str) / 256        0038AAF6-0038AB3F` |  |
-| slot 66       scale | `1 + Str * (Lv + Spd) / 218        0038A116-0038A163` |  |
-| slot 67       scale | `1 + Str * (Lv + Mag) / 256        0038A1F6-0038A243` |  |
-| slot 68       scale | `2 * Str * (Lv + Vit) / 256        0038A2D6-0038A31F` |  |
-| slot 69       scale | `1 + Str * (Lv + Str) / 256        0038A3A6-0038A3EF` |  |
-| slot 79       scale | `1 + Mag * (Lv + Mag) / 256        0038AE56-0038AE9F` |  |
-| slot 72       scale | `Str * (Lv + Str) / 256            0038A68F-0038A6C5` |  |
+```python
+slot 65, 76   scale = 1 + Str * (Lv + Str) / 256        0038AAF6-0038AB3F
+slot 66       scale = 1 + Str * (Lv + Spd) / 218        0038A116-0038A163
+slot 67       scale = 1 + Str * (Lv + Mag) / 256        0038A1F6-0038A243
+slot 68       scale = 2 * Str * (Lv + Vit) / 256        0038A2D6-0038A31F
+slot 69       scale = 1 + Str * (Lv + Str) / 256        0038A3A6-0038A3EF
+slot 79       scale = 1 + Mag * (Lv + Mag) / 256        0038AE56-0038AE9F
+slot 72       scale = Str * (Lv + Str) / 256            0038A68F-0038A6C5
+```
 
 The divisions are float multiplications by `0.00390625` (`009088D8`), or a division by 218.0 (`00D112D0`).
 
@@ -73,10 +73,10 @@ The divisions are float multiplications by `0.00390625` (`009088D8`), or a divis
 
 Every preparation slot except 70 takes Attack Power `+0x2E` plus a variance:
 
-| Value | Formula | Code |
-|---|---|---|
-| variance | `(MT19937 % (int)(AP * 0.125 * 100)) / 100      0 when AP * 0.125 < 0.01` |  |
-| attack | `AP + variance                                   so AP <= attack < 1.125 * AP` |  |
+```python
+variance = (MT19937 % (int)(AP * 0.125 * 100)) / 100      0 when AP * 0.125 < 0.01
+attack = AP + variance                                   so AP <= attack < 1.125 * AP
+```
 
 The defence is the target's Defense `+0x2F`, except slot 69 (poles), which takes Magick Resist `+0x30`
 (`0038A446`).
@@ -86,9 +86,9 @@ The defence is the target's Defense `+0x2F`, except slot 69 (poles), which takes
 Slot 70 (`0038A470`) puts Attack Power plus a variance in both the scale and the attack, each with its own
 draw, and stores a defence of 0 (`0038A4C1`-`0038A57D`):
 
-| Value | Formula | Code |
-|---|---|---|
-| damage | `(AP + variance1) * (AP + variance2)` |  |
+```python
+damage = (AP + variance1) * (AP + variance2)
+```
 
 Recipe 27's outcome step is slot 44 (`00389A50`). It rolls only the hit chance against `MT19937 % 100`
 (`00389A59`-`00389A72`). The melee step 41 (`003896B0`) and the bow step 42 (`00389820`) also test the
@@ -102,10 +102,10 @@ plain hit roll as slot 44.
 Recipe 23 uses slot 126 (`0038DB50`) in place of 125; slots 165, 171, 176 and 182 still follow. It works like
 `0038D280` but replaces the scale with a random share of it (`0038DBF7`-`0038DC48`):
 
-| Value | Formula | Code |
-|---|---|---|
-| share | `(MT19937 % (int)(scale * 100)) / 100        0 when scale < 0.01` |  |
-| damage | `(attack - defence) * share` |  |
+```python
+share = (MT19937 % (int)(scale * 100)) / 100        0 when scale < 0.01
+damage = (attack - defence) * share
+```
 
 ### Unarmed
 
@@ -152,10 +152,10 @@ Recipe 56 (action `0xB0`, Numerology) runs slot 49 (`00389C60`) and slot 144 (`0
 Recipe 60 (action `0xB4`, Traveler) runs slot 146 (`0038EBE0`). `00320D50` returns the walked distance in
 the battle state block (`+0x5AC8` and `+0x5ACC`):
 
-| Value | Formula | Code |
-|---|---|---|
-| d | `((total % 1000) - [+0x5B00] + 1000) % 1000            0038EC49-0038EC93` |  |
-| damage | `10*d if d >= 990, 3*d if d >= 500, 2*d if d >= 100, else d      0038ECC3-0038ED01` |  |
+```python
+d = ((total % 1000) - [+0x5B00] + 1000) % 1000            0038EC49-0038EC93
+damage = 10*d if d >= 990, 3*d if d >= 500, 2*d if d >= 100, else d      0038ECC3-0038ED01
+```
 
 It stores `total % 1000` in result `+0x13C` (`0038ECBC`), which `00385BA0` moves into `+0x5B00`
 (`00385BD7`-`00385BEA`). Without a stored preview it deals the record's last value again (`0038ED17`).

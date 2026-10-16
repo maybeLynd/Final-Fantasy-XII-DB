@@ -51,7 +51,7 @@ The dictionary blob:
 
 In mode 3 each page stream begins with its own big-endian u16 output length instead. A page stream is tokens:
 
-```
+```python
 t >= 0x80   literal: copy the next (t & 0x7F) + 1 stream bytes
 t <  0x80   reference: w = t << 8 | next byte
             offset = w & (0xFFFF >> (b + 1))

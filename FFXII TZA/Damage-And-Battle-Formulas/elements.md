@@ -82,11 +82,11 @@ this order (`0038B709`-`0038B932`):
 
 Every test that matches applies, so the factors multiply:
 
-| Value | Formula | Code |
-|---|---|---|
-| weak and half             2.0 * 0.5 | `1.0` |  |
-| weak, with potency        2.0 * 1.5 | `3.0` |  |
-| weak, half, with potency  2.0 * 0.5 * 1.5 | `1.5` |  |
+```python
+weak and half             2.0 * 0.5 = 1.0
+weak, with potency        2.0 * 1.5 = 3.0
+weak, half, with potency  2.0 * 0.5 * 1.5 = 1.5
+```
 
 ### The weapon affinity stage
 

@@ -179,7 +179,7 @@ from `00266D10`.
 
 ## Layouts
 
-```
+```python
 rebuild record  +0 u32 encoded actor, +4 u32 pending handle, +8 u8 state | 0x80 place, +9 s8 slot, +0xA u8 pass, +0xB u8 saved byte
 read-in record  02EBF3F0 (+0xC 02EBF3FC mode, +0xD 02EBF3FD step, +0xE 02EBF3FE slot, +0x10 02EBF400 task)
 tick record     02EBF3D0 (02EBF3DE slot in progress, 02EBF3E0 slot mask)

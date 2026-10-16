@@ -100,10 +100,10 @@ MP.", and the shipped equipment row with augment byte `+0x1A` = 32 is the Turtle
 
 Otherwise it returns `002F95D0(unit, action)`. With `b` the action row's byte `+0x0A`:
 
-| Value | Formula | Code |
-|---|---|---|
-| cost | `b                               // action ids 0xD0-0xE1 and 0x106-0x112` |  |
-| cost | `trunc(b * 64.0 / 50.0) * 10     // every other action` |  |
+```python
+cost = b                               // action ids 0xD0-0xE1 and 0x106-0x112
+cost = trunc(b * 64.0 / 50.0) * 10     // every other action
+```
 
 ### The gil a kill pays
 

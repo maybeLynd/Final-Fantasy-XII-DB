@@ -179,7 +179,7 @@ non-zero. The debug give-all verbs add 99 of every id (`003008A0(id, 99, 0, 1, 0
 
 ## Layouts
 
-```
+```python
 inventory call   003008A0(item id, n, set, mode, arg): class = id >> 12, index = id & 0xFFF, class count at 01EEBCFC + class × 0x58
 discovery bits   [02EBF190] + 4: bit 0 and 01EECF98[school] for magicks, bit 6 technicks, bit 7 key items 0xC000..0xC011, bit 8 0xC012..0xC01E
 gil              003004B0(n, notify) = max(0, gil + n); 00254EE0 stores min(total, 99,999,999) and logs counter 6 or 7

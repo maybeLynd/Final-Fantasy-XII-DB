@@ -224,7 +224,7 @@ the base.
 
 ## Layouts
 
-```
+```python
 return value = AND over the driven records of (record +0x14 bit 6)   (forced to 0 by branches 3 and the roster loop)
 record +0x14: bit 4 drive the bound battle unit through +0x38 (0025DF00), bit 6 settled (both functions), bits 0-3 the repeat gate of branch 3
 ```

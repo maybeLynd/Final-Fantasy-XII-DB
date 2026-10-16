@@ -55,7 +55,7 @@ Light record, as its readers use it:
 
 Chunks, by type:
 
-```
+```python
 type 0  +0x08 u16 first, +0x0A u16 count          a contiguous range of records
 type 1  bound to group +0x10                       no shipped file carries one
 type 2  +0x04 u32 n, entries at +0x10, 8 bytes:    cut list

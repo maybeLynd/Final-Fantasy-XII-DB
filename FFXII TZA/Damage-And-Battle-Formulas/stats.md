@@ -37,12 +37,12 @@ callers. The equipment comparison `0030A4E0` calls it with its own block (`0030A
 For a party record (stats `+0x05` = 0), the base comes from the character row of table `02EBF130` that
 the type byte `+0x04` selects (`002FF02E`-`002FF0DC`):
 
-| Value | Formula | Code |
-|---|---|---|
-| maxHp | `(row[+0x18] + 1) * stats[+0x08] * row[+0x19] / 100` | `002F8E50` |
-| maxMp | `stats[+0x0C] * row[+0x1D] / 100` | `002F9180` |
-| Strength, Magick Power, Vitality, Speed | `(int) the floats stats[+0x10], [+0x14], [+0x18], [+0x1C]` |  |
-| innate evade | `row[+0x2A]` |  |
+```python
+maxHp = (row[+0x18] + 1) * stats[+0x08] * row[+0x19] / 100  # 002F8E50
+maxMp = stats[+0x0C] * row[+0x1D] / 100                   # 002F9180
+Strength, Magick Power, Vitality, Speed = (int) the floats stats[+0x10], [+0x14], [+0x18], [+0x1C]
+innate evade = row[+0x2A]
+```
 
 Both divisions truncate towards zero. The four floats are the character's grown values
 ([Stat growth per level](../Rewards-EXP-Gil-And-Loot/stat-growth-per-level.md)). The row's status
@@ -55,9 +55,9 @@ For any other record the base comes from three area tables, found through the un
 its word `+0x24` names (`002FF0E1`-`002FF1A4`). With `d` = the unit's level `+0x1C2` minus its reference
 level `+0x88` (`002FF1EE`-`002FF200`), each stat is:
 
-| Value | Formula | Code |
-|---|---|---|
-| stat | `growth[field] * d + base[field] + stats[adjustment]` |  |
+```python
+stat = growth[field] * d + base[field] + stats[adjustment]
+```
 
 | Stat | Base and growth field | Adjustment word |
 |---|---|---|

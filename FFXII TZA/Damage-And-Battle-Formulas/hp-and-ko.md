@@ -80,7 +80,7 @@ A second gate only skips the store: with flag bit 0 clear and a delta of 0 or le
 
 The new HP is `old + delta`, then limited (`0030063B`-`003006A4`):
 
-```
+```python
 floor = targetUnit ? targetUnit[+0x48] : 0
 if new < floor:            new = floor
 else:

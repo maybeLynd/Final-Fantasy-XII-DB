@@ -17,13 +17,13 @@ text id 12,000 + *s*, `0031E288`).
 
 The default duration comes from row byte `+0x08` through `00387730` (`00387740`-`00387992`):
 
-| Value | Formula | Code |
-|---|---|---|
-| b | `row +0x08            (0xFF: no duration)` |  |
-| vit | `target Vitality (+0x2C)` |  |
-| harmful:     v | `trunc(2b - b * vit / 100)` |  |
-| beneficial:  v | `trunc(b + b * vit / 100), times 1.5 with augment 30 in either layer` |  |
-| duration timer | `v * 300 * frame base` |  |
+```python
+b = row +0x08            (0xFF: no duration)
+vit = target Vitality (+0x2C)
+harmful:     v = trunc(2b - b * vit / 100)
+beneficial:  v = trunc(b + b * vit / 100), times 1.5 with augment 30 in either layer
+duration timer = v * 300 * frame base
+```
 
 The beat timer is row byte `+0x09` times 30 times the frame base (`003876D0`). The periodic step takes 10 off both
 every frame ([Status timers](status-timers.md)), so `+0x08` is in seconds and `+0x09` in tenths of a second at 30

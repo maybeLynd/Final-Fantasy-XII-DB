@@ -120,7 +120,7 @@ alone. `00423B10` also resolves the bases into `+0xE0`/`+0xF8` (`003AB7F0` of th
 list's `+0x08`/`+0x10` directly; `003E6E60`, with a current record (`00422D50`), re-derives them
 from `+0xE0 + +0xE8` and `+0xF8 + +0x100` each time it is asked.
 
-```
+```python
 table[mode]   u32   offset of the profile from the table (a 0 is not tested: the consumer reads the table head as the profile)
 profile       +0x00 u32  duration, frames      +0x04 u16 moveFrames    +0x06 u16 turnFrames
               +0x08 f32  scale                 +0x0C u32 offset of the speed curve from the profile

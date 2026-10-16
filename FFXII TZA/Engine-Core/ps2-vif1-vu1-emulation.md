@@ -235,7 +235,7 @@ through its slot `+0x28` with the index kind. The device object is the one `0021
 
 ## Layouts
 
-```
+```python
 VIF command word     [31:24] code, [23:0] parameters
 MPG on this port     0x4A000000 | addr, then a u64 x64 function pointer (the console: NUM microcode words)
 UNPACK word          [27:24] format (vn << 2 | vl), bit 15 add TOPS, bit 14 unsigned, [23:16] NUM, [9:0] address

@@ -86,7 +86,7 @@ directly: `jumps = functions + 4 + 8 × count` in every entry.
 
 ### Actor lists
 
-```
+```python
 list table   +0x30 -> u32 count, u32 listOff[count]
 list         listOff -> u32 count, {u16 actorOrdinal, u16 functionId}[count]
 ```

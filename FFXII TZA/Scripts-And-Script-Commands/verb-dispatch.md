@@ -134,7 +134,7 @@ its writer and one that does not ends in a jump to the native function it wraps.
 
 ## Layouts
 
-```
+```python
 call instruction   opcode (0x58 / 0x59 / 0x5D / 0x5E), u16 id = family << 12 | command
 family array       02B57EF0: 16 × u64 table pointer
 command table      +0 s32 count, +4 zero, then records from +8: +0 begin, +8 poll, +0x10 null, +0x18 result (32 bytes)

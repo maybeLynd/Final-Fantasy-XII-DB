@@ -248,10 +248,10 @@ Struct MenuRequest base=`0215F1A0` size=`0x10`:
 | `0E` | `i8` | done | 0 from `002E0650`; 1 from `002E1BA0` when the menu closes |
 | `0F` | `i8` | done2 | 1 from `002E1BA0` |
 
-```
+```python
 heal(mask):
-  bit 1   HP   = max HP               (0030F340)
-  bit 2   MP   = capacity             (0030F5A0)
+  bit 1   HP   = max HP  # 0030F340
+  bit 2   MP   = capacity  # 0030F5A0
   bit 4   clear statuses in [0208D320]
   bit 8   clear statuses in [0208D324]
   bit 16  clear statuses 0x544 as well

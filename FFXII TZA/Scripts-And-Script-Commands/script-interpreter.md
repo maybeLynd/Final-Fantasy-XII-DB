@@ -156,7 +156,7 @@ instruction length to repeat an instruction, against 4 that advance.
 
 ## Layouts
 
-```
+```python
 wait slot (0x28 each, [actor+0xA8] + (s8)[actor+0x11] * 0x28)
   +0x00 u64 PC   +0x08 X   +0x0C Y / result   +0x10 A   +0x14 kind   +0x15 phase   +0x18.. scratch
 value stack 02099AC0: +0 depth, +4 tag[64] (1 int, 2 float), +0x44 kind[64], +0x84 u32[64], +0x184 value[64]

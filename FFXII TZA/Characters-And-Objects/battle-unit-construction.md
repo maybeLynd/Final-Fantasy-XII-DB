@@ -151,7 +151,7 @@ row index, and for kind 0 it is the type the code partitions:
 
 ## Layouts
 
-```
+```python
 definition id (u16)
 bits 8-15  kind       0 party table 02EBF130, 1 enemy table 02EBF120, other: nothing installed
 bits 0-7   index      the row; for kind 0 also the type byte at stats +0x04

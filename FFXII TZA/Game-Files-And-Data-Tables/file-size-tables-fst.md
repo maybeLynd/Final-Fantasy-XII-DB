@@ -26,7 +26,7 @@ the executable's `x64`, so `../` is the install root.
 
 ## Layouts
 
-```
+```python
 FileSizeTable  820,000 bytes, no header
 +0x00000  u32[41 * 5000]  size[kind * 5000 + id] in bytes; 0xFFFFFFFF = no file for (kind, id)
 ```

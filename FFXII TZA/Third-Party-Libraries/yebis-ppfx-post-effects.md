@@ -250,10 +250,10 @@ lays it out:
 
 The licence text at `00D86C00`, as shipped:
 
-| Value | Formula | Code |
-|---|---|---|
-| FeatureId | `YEBIS_D3D11, BeginYear = 0, BeginMonth = 0, BeginDay = 0, EndYear = 0, EndMonth = 0,` |  |
-| EndDay | `0, MacAddress = 00-00-00-00-00-00, License = 5F7EAB4F21F6A264...` |  |
+```python
+FeatureId = YEBIS_D3D11, BeginYear = 0, BeginMonth = 0, BeginDay = 0, EndYear = 0, EndMonth = 0,
+EndDay = 0, MacAddress = 00-00-00-00-00-00, License = 5F7EAB4F21F6A264...
+```
 
 ## Shipped data
 

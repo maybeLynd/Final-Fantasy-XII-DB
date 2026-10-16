@@ -35,7 +35,7 @@ rows of 4.
 
 ## Layouts
 
-```
+```python
 word (battle_pack +0xF8)   +0x00 u16 bank count, +0x04 u32 bank offsets[count + 1] (from the word block)
 word bank                  +0x00 u16 row count, +0x04 u32 row offsets[count] (from the bank)
 word row                   00 00, then NUL-terminated strings

@@ -67,7 +67,7 @@ here is a target that now has KO, Stone or X-Zone without the field's bit 15 (`0
 
 `002FB6C0(unit, damage)` reads rows 1 to 19 of the MP table `[02EBF0B8]` (`002FB6E9`-`002FB85B`):
 
-```
+```python
 for i = 1 .. 19: if damage < row[i].threshold: return row[i - 1].factor
 return row[19].factor
 ```

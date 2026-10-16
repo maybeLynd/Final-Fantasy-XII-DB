@@ -68,7 +68,7 @@ The attribute word in `w4`, with bit 31 masked off, is the run-time member's att
 `0x2` a pointer, `0x4` a dynamic-type helper, `0x20` an enum, `0x40` an inline counted buffer, and
 the per-class bits `0x08` and `0x10`.
 
-```
+```python
 registration call (00632960), Win64 arguments
 rcx         record
 rdx         class descriptor

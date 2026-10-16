@@ -95,7 +95,7 @@ charge - when the unit has effect 53 (bit 5 of the effect bytes `+0x6E`/`+0x7E`)
 `+0x08` is 0, or effect 54 (bit 6) and the row's flag bit 13. A unit with speed 0 (stats `+0x2D`) gets
 `9000 * F`. Otherwise:
 
-```
+```python
 t = (b * 8 / speed + b) / 10
 if b != 0:
     t = t + (rand() % (15 * F)) / 100       party side   (rand() % (90 * F) on the enemy side)
@@ -227,10 +227,10 @@ while either is 0, and returns 2 when both are 2, 0 when either is 0, and 1 othe
   empty, and otherwise adds the weights of every pool entry in state 1, 2, 3 or 5 and the new
   effect's weight, and agrees when the sum is at most 24 (`002FCAC0`-`002FCB2B`).
 
-| Value | Formula | Code |
-|---|---|---|
-| weight(id) | `u16 at 02EC19C4 + id * 8, bits 0-4` |  |
-| fits | `sum(weight of the pool entries in states 1, 2, 3, 5) + weight(id) <= 24` |  |
+```python
+weight(id) = u16 at 02EC19C4 + id * 8, bits 0-4
+fits = sum(weight of the pool entries in states 1, 2, 3, 5) + weight(id) <= 24
+```
 
 Both caches take their animation set from `00325AD0(unit)`: for a party-side unit (stats `+0x05` =
 0) the byte at `T + u16[T] + 4` of the table `T` = `[02EBF180]`, otherwise the value `003202F0`

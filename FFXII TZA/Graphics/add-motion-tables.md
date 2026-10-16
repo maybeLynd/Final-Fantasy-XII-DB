@@ -55,14 +55,14 @@ array at `+0x20`) and the records as they are.
 
 ### skeletonmapping.bin
 
-```
+```python
 +0x00  i32  record count
 record:  char[32] model name, i32 n, then i32[n]: per bone of that model, a partner bone or -1
 ```
 
 ### highmodelreplace.bin
 
-```
+```python
 record:  i32 model id, i32 b, i32 c (-1 matches anything),
          then pairs {i32 replacement id, i32 lowest story progress} ended by -1
 the file ends with a -1 where a record would start

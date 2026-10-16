@@ -96,7 +96,7 @@ so the loose battle tables have no loader.
 The six `packfiles/*.bin` files share one container: a fixed directory of `u32` offsets from the file
 start, padded with `0xFFFFFFFF`, then the sub-files.
 
-```
+```python
 +0x00  u32[16] or u32[32]  offset of each sub-file; the first entry equals the directory size
                            (0x40 or 0x80), unused entries 0xFFFFFFFF
 ```

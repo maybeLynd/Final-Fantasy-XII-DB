@@ -117,7 +117,7 @@ the slot index is 1 to 3 and the class is 0, and discards it: nothing is notifie
 
 ## Layouts
 
-```
+```python
 descriptor table  [slot+0x78]: u32 count, then u64 per variable (dword 0 = the descriptor above)
 array header      image + offset: u32 element descriptor, u16 dimension count, u16, u32 dim[n]
 resolver record   +0 u8 6, +4 u16 kind, +8 u16 actor ordinal, +0xA u16 index, +0xC u32 descriptor, +0x10 u64 base+offset,

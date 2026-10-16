@@ -346,7 +346,7 @@ Render block, `0x80` bytes:
 | `00` | `u32` | opcode | `0x01`-`0x2F` |
 | `08` | `...` | payload | for `0x2F`: +`0x08` function, +`0x10` argument |
 
-```
+```python
 render context 02CC0410 (static, constructed by 00615840)
 +0x18C0  PrimitiveRendererD3D11   vtables 00D86960 (+0x00) and 00D86AD0 (+0x08)
 ```

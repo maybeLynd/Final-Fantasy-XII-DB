@@ -123,10 +123,10 @@ Each frame `004700E0` returns at once while the hold byte is set. Otherwise the 
 the changing bit is set; at zero it releases the light, clears the step and returns 1. With `p` the pulse at the phase
 (`0046FBB0`, the table `01F20AA0`):
 
-| Value | Formula | Code |
-|---|---|---|
-| light colour | `offset × (0.5 + 0.5p) × envelope, alpha 1.0` |  |
-| record +0x5EC | `1 - (0.8 + 0.2p) × envelope` |  |
+```python
+light colour = offset × (0.5 + 0.5p) × envelope, alpha 1.0
+record +0x5EC = 1 - (0.8 + 0.2p) × envelope
+```
 
 Blind's offset is `(-0.5, -0.5, -0.5)`, the shared look's `(-0.2, -0.7, 0)`. Oil installs the same step with
 `(-2, -2, -2)` and its own light: type 1 (directional), priority `0xBE`, byte `+5` = `0x80`, byte `+6` = 1, vector
@@ -158,12 +158,12 @@ moves by `0.33 × [01DFE0BC]` a frame, the light colour is `envelope × 0.4 × (
 and the mode 0. Every steady frame that is not leaving, a Doom count different from the one remembered at `+0x39`
 starts a flash; the installer zeroes `+0x39`, so the look starts with one. The flash runs 21 frames:
 
-| Value | Formula | Code |
-|---|---|---|
-| light colour | `(0.6 × curve1[f] + 0.4 × envelope) × (0.9, -0.2, -0.2)` |  |
-| record +0x5EC | `1 - curve2[f]` |  |
-| frames 3-10    : mode 2, record colour +0x5D0 | `(0.84, 0.84, 0.84); otherwise mode 0 and (1, 1, 1)` |  |
-| frames 0-20    : ambient mode 1 with +0x5DC | `curve1[f]` |  |
+```python
+light colour = (0.6 × curve1[f] + 0.4 × envelope) × (0.9, -0.2, -0.2)
+record +0x5EC = 1 - curve2[f]
+frames 3-10    : mode 2, record colour +0x5D0 = (0.84, 0.84, 0.84); otherwise mode 0 and (1, 1, 1)
+frames 0-20    : ambient mode 1 with +0x5DC = curve1[f]
+```
 
 HP Critical's installer `004704C0` creates the same light with the step `00470230`, which runs the same recipe with the
 colour `curve1[f] × (0.64, 0, -0.32)` on a 30-frame cycle. From frame 21 to the end of the cycle it sets bit `0x2` of
@@ -173,12 +173,12 @@ when the cycle wraps, so it always finishes its beat.
 Berserk's installer `00470660` creates two lights: the tint's ambient into `+8` and Oil's directional request into
 `+0xC`. Its step `00470EB0` uses the tint's phase and envelope; with `w = (0.5 + 0.5p) × envelope`:
 
-| Value | Formula | Code |
-|---|---|---|
-| ambient colour | `(2w, 0, 0)` |  |
-| directional colour | `(-3.5w, -3.5w, -3.5w)` |  |
-| directional vector | `normalise(point - camera position 02AEDF20)` |  |
-| record +0x5EC | `1 - (0.85 + 0.15p) × envelope` |  |
+```python
+ambient colour = (2w, 0, 0)
+directional colour = (-3.5w, -3.5w, -3.5w)
+directional vector = normalise(point - camera position 02AEDF20)
+record +0x5EC = 1 - (0.85 + 0.15p) × envelope
+```
 
 The point is the translation of the matrix `00421E20` returns for bone code `0x100`. While the hold byte is set the step
 still re-aims the light every frame and does nothing else.

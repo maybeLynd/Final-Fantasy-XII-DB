@@ -176,7 +176,7 @@ reached the end of the list.
 
 ## Layouts
 
-```
+```python
 stream          +0x10 name copy (bit 0 = borrowed), +0x20 frame: +0x20 u32 size, +0x28 Win32 handle (-1),
                 +0x30 archive reader (0), +0x38 u8 selector, +0x40 cache view (-1), +0x48 u32 cache key
 cache entry     +0x00 data, +0x08 u32 size, +0x0C s16, +0x0E s16, +0x10 u8 views open, +0x14 u32 kind

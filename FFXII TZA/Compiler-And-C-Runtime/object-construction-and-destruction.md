@@ -144,7 +144,7 @@ jumps to the `malloc` import stub `0085E730`; the lazy singleton `0018A620` allo
 
 ## Layouts
 
-```
+```python
 scalar deleting destructor, as the call sites see it
   rcx = object
   edx = flags   0x1  free the storage

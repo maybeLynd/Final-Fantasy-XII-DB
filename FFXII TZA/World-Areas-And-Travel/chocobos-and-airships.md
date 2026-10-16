@@ -82,7 +82,7 @@ The keeper scripts (`fon_a07` and the others) mount with `subitem(0x20D8, 1)` (G
 `setmapjumpgroupflag(115)`, a re-read of the map music (`musicplay(getnowmapmusicno_47a(0))`) and
 `resumebattle`. The dismount routine every script shares (`sumcho_byebye`) is:
 
-```
+```python
 if (getchocobomodebit()) { setchocobomode(0); partyallread(); releasemapjumpgroupflag(115); }
 ```
 
@@ -211,8 +211,8 @@ Struct TimerSlot base=`02B5EBC0` size=`0x14`:
 | `10` | `u8` | running | `003EBD00` |
 | `11` | `u8` | expired | `003EBB70` |
 
-```
-mode = bit3(+0x5B04) ? 5 : bit2 ? 4 : town ? 3 : bit1 ? 2 : bit0        (0030D9A0)
+```python
+mode = bit3(+0x5B04) ? 5 : bit2 ? 4 : town ? 3 : bit1 ? 2 : bit0  # 0030D9A0
 riding            = bit1(+0x5B04)                                        (getchocobomodebit)
 chocobo mode      = mode == 2                                            (getchocobomode)
 ride ends when    timer slot 1 expired && mode == 2 && 00303CC0() && chocobo unit exists

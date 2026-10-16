@@ -49,12 +49,12 @@ each live-bank entry `i` whose flag bit 1 (committed) is clear (`002395E3`) it w
 `rand` = `00328370` (the shared gameplay generator,
 [random number generators](../Random-Numbers/random-number-generators.md)):
 
-| Value | Formula | Code |
-|---|---|---|
-| rec.w_0A | `row.b_00 ? row.b_00 + rand % (row.b_01 + 1) : 0      death limit` |  |
-| rec.w_10 | `row.w_02 ? row.w_02 + rand % (row.w_04 + 1) : 0      cooldown, seconds` |  |
-| rec.dw_0C | `0 ; rec.w_08 = 0                                    stamp and count` |  |
-| rec.b_17 | `rec.b_18 = table.b_01 ? row.b_06 : 0                 persistence key` |  |
+```python
+rec.w_0A = row.b_00 ? row.b_00 + rand % (row.b_01 + 1) : 0      death limit
+rec.w_10 = row.w_02 ? row.w_02 + rand % (row.w_04 + 1) : 0      cooldown, seconds
+rec.dw_0C = 0 ; rec.w_08 = 0                                    stamp and count
+rec.b_17 = rec.b_18 = table.b_01 ? row.b_06 : 0                 persistence key
+```
 
 Both numbers are rolled per entry, so two visits to one zone can give the same monster different
 cooldowns. A committed entry keeps its numbers: the roll happens once per bank life.
@@ -209,7 +209,7 @@ and before the group table reset, and returns at once when either bank pointer i
 entered field id from `003148F0`, the counter from `0032A150`, and restores when both hold
 (`002337D6`-`00233803`):
 
-```
+```python
 field == 02089372                                          the field from two transitions ago
 (u32)(counter - 02089374) <= (u32)((int)(30.0 * [01DFE0B8]) * 0208936C)    unsigned, ja wipes
 ```

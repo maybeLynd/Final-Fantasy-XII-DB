@@ -41,7 +41,7 @@ at record `+0x26C` (`0042061B`).
 
 ### The container
 
-```
+```python
 @FRP header (0x30 bytes)   see resource sections; name = the file name without extension
 version 0                  every .cm (1,066) and 1,969 .ca: u32 offset table at +0x30, offsets from +0x30
 version 1                  1,195 .ca: +0x30 u32 columns (80), +0x34 u32 rows, offsets from +0x40, 0 = empty slot

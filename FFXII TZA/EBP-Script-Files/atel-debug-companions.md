@@ -63,7 +63,7 @@ Line `j` of page `p` starts at the page's base plus `lineStart[j]`; the first pa
 
 ### .msb, the messages
 
-```
+```python
 +0x00  u32  entry[n]    (flag << 16) | offset; n = low half of entry 0 / 4
 ```
 

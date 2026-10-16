@@ -51,11 +51,11 @@ the error itself goes through `luaL_error` (`00812960`: `luaL_where`, `lua_pushv
 Every reflected class has a descriptor whose vtable carries its script bindings. In the
 `PClusterHeader` descriptor vtable `00D249A8` and the `PAnimationChannelTarget` vtable `00D28030`:
 
-```
+```python
 slot 3  +0x18  get a value from the script      00584E10 (copies the 84-byte header out)
-slot 4  +0x20  push a value                     00584D30, 005A0E80
-slot 5  +0x28  get a pointer from the script    00584C50
-slot 6  +0x30  push a pointer, nil when null    00584C70, 005A5980
+slot 4  +0x20  push a value  # 00584D30, 005A0E80
+slot 5  +0x28  get a pointer from the script  # 00584C50
+slot 6  +0x30  push a pointer, nil when null  # 00584C70, 005A5980
 ```
 
 An abstract class's slot 3 is `0063F850`, which only logs that the operation is not supported. The

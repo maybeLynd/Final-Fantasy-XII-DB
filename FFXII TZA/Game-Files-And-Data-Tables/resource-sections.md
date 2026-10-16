@@ -117,7 +117,7 @@ bank, and sets flag bit 0. Its three callers are inside the render root builder 
 
 ## Layouts
 
-```
+```python
 section header  0x30: +0x00 u32 tag, +0x10 char[32] name (zero-padded)
 @FRP container  +0x00 '@FRP' (0x50524640), +0x04 u32 version (0 or 1), +0x0C u32 count,
                 v0: +0x30 u32[count] offsets from +0x30; v1: +0x30 u32 columns, +0x34 u32 rows, +0x40 u32[count] offsets from +0x40 (0 = empty)

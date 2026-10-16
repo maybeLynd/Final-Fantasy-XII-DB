@@ -25,7 +25,7 @@ the table at `[02099D88]`.
 
 ## Layouts
 
-```
+```python
 FF12AR03 header (0x30 bytes, offsets from the start of the file)
 +0x00  char[8]  'FF12AR03'       never read
 +0x08  u32      0

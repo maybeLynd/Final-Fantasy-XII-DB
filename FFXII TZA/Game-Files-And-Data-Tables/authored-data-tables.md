@@ -106,9 +106,9 @@ otherwise. For `0xFF` it sets the board size `+0x559` to 0, so slot −1 is neve
 
 There is no shared accessor. Every reader computes, inline,
 
-| Value | Formula | Code |
-|---|---|---|
-| row | `0020E600([table + 0x0C]) + u16[table + 0x08] × index` |  |
+```python
+row = 0020E600([table + 0x0C]) + u16[table + 0x08] × index
+```
 
 in 32-bit arithmetic (`003876D0`: `imul ecx, ebx; add ecx, eax`), so tables must lie below 4 GB.
 A null slot or a zero row reference gives a base of 0 and the read still happens: `003876D0`, the
@@ -179,7 +179,7 @@ the id's top nibble (5–19), −1 for nibble 15.
 
 ## Layouts
 
-```
+```python
 table header   +0x00 'st2e' (or u16 count on 003846F0 tables), +0x04 u32 row count, +0x08 u16 row stride,
                +0x0A u16 0, +0x0C row array, +0x10 reference, +0x14 encoded sub-directory,
                +0x18 reference, +0x1C reference (all offsets from the header until bound)

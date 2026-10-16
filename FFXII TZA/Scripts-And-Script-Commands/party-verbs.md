@@ -133,7 +133,7 @@ result.
 
 ## Layouts
 
-```
+```python
 party block   [02EBF190]: +0x5A48 u16[9] master (map 0), +0x5A5A u16[9] combat set (map 1), +0x5A7E u16[9] gameplay roster (map 3), +0x5AA4 u8 leader
 snapshot      022C2580 u16[9]: the edited copy of map 0; 003261D0 compacts it, writes it back and starts the read-in
 roster array  0209A1F0: 4 × actor pointer (00263750)
