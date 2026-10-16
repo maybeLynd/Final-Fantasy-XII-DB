@@ -17,36 +17,36 @@ the instruction, each instruction checked against the executable.
 
 | Unit offset | Size | Region | Who establishes it |
 |---|---|---|---|
-| `+0x000` | 8 | the flag word (bit 0 slot in use; the bit table on the battle units page) | [battle units](battle-units.md) |
-| `+0x008` | 4 | the actor handle, `003589B0(actor)` at bind | [battle units](battle-units.md) |
-| `+0x010` | 8 | the bound actor record | [battle units](battle-units.md) |
-| `+0x020` | 4 | 1 once the bind walk has run (`00234A00`) | [battle units](battle-units.md) |
-| `+0x030` | 4 | the killer id the lethal transition records | [HP and KO](../Damage-And-Battle-Formulas/hp-and-ko.md) |
-| `+0x048` | 4 | the HP floor the HP write honours | [HP and KO](../Damage-And-Battle-Formulas/hp-and-ko.md) |
-| `+0x057` | 1 | the actor's entry group `+0xF6`, copied at bind | [battle units](battle-units.md) |
-| `+0x080` | 1552 | the block the reuse reset `00236A60` zeroes (`+0x80`-`+0x68F`): position, navigation and the waypoint table | this page |
-| `+0x0E0` | 16 | the world position, read by `00265020` and copied to the spawn record at release | [battle units](battle-units.md) |
-| `+0x160` | 4 | the yaw copied to the spawn record's `+0x74` at release | [battle units](battle-units.md) |
-| `+0x200` | 1168 | the navigation path state (below) | this page |
-| `+0x694` | 3 | three bytes the reset sets to `0xFF`, `0xFFFF` | this page |
-| `+0x698` | 8 | the combat stats record | [unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md) |
-| `+0x6A0` | 8 | the spawn record for an enemy, null for a party member | [battle units](battle-units.md) |
-| `+0x6B0` | 4 | the command word: bit 1 a command issued and not yet committed | [action commit](../Battle-Actions/action-commit.md) |
-| `+0x6B4` | 1 | the action phase | [action phases](../Battle-Actions/action-phases.md) |
-| `+0x6B7`, `+0x6B8` | 2 | combo progress and its saved copy | [combos](../Battle-Actions/combos.md) |
-| `+0x700` | 16 | the action block; `+0x708` the action context, `+0x710` the target focus handle, `+0x714` the action id | [action commit](../Battle-Actions/action-commit.md), [battle orders](../Battle-Actions/battle-orders.md) |
-| `+0x718` | 16 | the copy of the action block taken at commit | [action commit](../Battle-Actions/action-commit.md) |
-| `+0x730`, `+0x740` | 16 + 8 | the cancelled action's record, target and id | [action phases](../Battle-Actions/action-phases.md) |
-| `+0x768`, `+0x76C` | 8 | action fields the status record shows while acting | [party member status record](party-member-status-record.md) |
-| `+0x778` | 520 | the target buffer (below) | [target selection](../Battle-Actions/target-selection.md) |
-| `+0xBA0` | 2 | the issued command's action id | [party member status record](party-member-status-record.md) |
-| `+0xBC4`, `+0xBC8` | 4 + `0x200` | the perception candidate cache: count, then 16-byte entries | [enmity](../Enemy-AI-And-Gambits/enmity.md) |
-| `+0xDC8` | 2 | the reserved consumed item, `0xFFFF` when none | [command availability](../Battle-Actions/command-availability.md) |
-| `+0xE54`, `+0xE58` | 8 | the gil the preview computed and the reserved gil cost | [command availability](../Battle-Actions/command-availability.md) |
-| `+0xE60` | 8 | the definition row | [steal](../Damage-And-Battle-Formulas/steal.md) |
-| `+0xE68` | 8 | the class row the status record reads `+0x52` and `+0x12` bit 7 from | [party member status record](party-member-status-record.md) |
-| `+0xE80` | 16 | the innate augment source | [augments](../Damage-And-Battle-Formulas/augments.md) |
-| `+0xEA9` | 1 | the slot index, written at bind | [battle units](battle-units.md) |
+| `000` | 8 | the flag word (bit 0 slot in use; the bit table on the battle units page) | [battle units](battle-units.md) |
+| `008` | 4 | the actor handle, `003589B0(actor)` at bind | [battle units](battle-units.md) |
+| `010` | 8 | the bound actor record | [battle units](battle-units.md) |
+| `020` | 4 | 1 once the bind walk has run (`00234A00`) | [battle units](battle-units.md) |
+| `030` | 4 | the killer id the lethal transition records | [HP and KO](../Damage-And-Battle-Formulas/hp-and-ko.md) |
+| `048` | 4 | the HP floor the HP write honours | [HP and KO](../Damage-And-Battle-Formulas/hp-and-ko.md) |
+| `057` | 1 | the actor's entry group `+0xF6`, copied at bind | [battle units](battle-units.md) |
+| `080` | 1552 | the block the reuse reset `00236A60` zeroes (`+0x80`-`+0x68F`): position, navigation and the waypoint table | this page |
+| `0E0` | 16 | the world position, read by `00265020` and copied to the spawn record at release | [battle units](battle-units.md) |
+| `160` | 4 | the yaw copied to the spawn record's `+0x74` at release | [battle units](battle-units.md) |
+| `200` | 1168 | the navigation path state (below) | this page |
+| `694` | 3 | three bytes the reset sets to `0xFF`, `0xFFFF` | this page |
+| `698` | 8 | the combat stats record | [unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md) |
+| `6A0` | 8 | the spawn record for an enemy, null for a party member | [battle units](battle-units.md) |
+| `6B0` | 4 | the command word: bit 1 a command issued and not yet committed | [action commit](../Battle-Actions/action-commit.md) |
+| `6B4` | 1 | the action phase | [action phases](../Battle-Actions/action-phases.md) |
+| `6B7`, `6B8` | 2 | combo progress and its saved copy | [combos](../Battle-Actions/combos.md) |
+| `700` | 16 | the action block; `+0x708` the action context, `+0x710` the target focus handle, `+0x714` the action id | [action commit](../Battle-Actions/action-commit.md), [battle orders](../Battle-Actions/battle-orders.md) |
+| `718` | 16 | the copy of the action block taken at commit | [action commit](../Battle-Actions/action-commit.md) |
+| `730`, `740` | 16 + 8 | the cancelled action's record, target and id | [action phases](../Battle-Actions/action-phases.md) |
+| `768`, `76C` | 8 | action fields the status record shows while acting | [party member status record](party-member-status-record.md) |
+| `778` | 520 | the target buffer (below) | [target selection](../Battle-Actions/target-selection.md) |
+| `BA0` | 2 | the issued command's action id | [party member status record](party-member-status-record.md) |
+| `BC4`, `BC8` | 4 + `0x200` | the perception candidate cache: count, then 16-byte entries | [enmity](../Enemy-AI-And-Gambits/enmity.md) |
+| `DC8` | 2 | the reserved consumed item, `0xFFFF` when none | [command availability](../Battle-Actions/command-availability.md) |
+| `E54`, `E58` | 8 | the gil the preview computed and the reserved gil cost | [command availability](../Battle-Actions/command-availability.md) |
+| `E60` | 8 | the definition row | [steal](../Damage-And-Battle-Formulas/steal.md) |
+| `E68` | 8 | the class row the status record reads `+0x52` and `+0x12` bit 7 from | [party member status record](party-member-status-record.md) |
+| `E80` | 16 | the innate augment source | [augments](../Damage-And-Battle-Formulas/augments.md) |
+| `EA9` | 1 | the slot index, written at bind | [battle units](battle-units.md) |
 
 ## Columns
 

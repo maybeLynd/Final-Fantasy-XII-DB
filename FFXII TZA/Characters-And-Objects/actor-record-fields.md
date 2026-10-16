@@ -78,7 +78,7 @@ for a tagged entry; the frozen pass `0025E400` runs `002E5180` on a record whose
 
 ### The flag bytes at init
 
-| Byte | Manager 0 | Other managers |
+| Byte offset | Manager 0 | Other managers |
 |---|---|---|
 | `08` | `(old & 0x9F) \| 0x11`, then bit 7 cleared | `(old & 0x8F) \| 1`, then bit 7 cleared |
 | `0D` | `(old & 0xA2) \| 0x82`, then bit 5 cleared | `(old & 0x22) \| 2`, then bit 5 cleared |

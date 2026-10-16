@@ -28,7 +28,7 @@ constructor: `EASTL basic_string` (`008F6600`), `EASTL vector` (`008C5F58`), `EA
 `001EDF00` stores the vtable and returns; the name argument is never kept. The vtable at `00902720`
 has six slots, followed by 0 at `00902750`:
 
-| Slot | Function | What it does |
+| Slot offset | Function | What it does |
 |---|---|---|
 | `00` | `0016D680` | returns the object |
 | `08` | `001EDF10` | `_aligned_malloc(size, alignment)` |

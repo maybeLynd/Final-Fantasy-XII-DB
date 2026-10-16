@@ -25,7 +25,7 @@ When nothing in its list fits, the enemy waits.
 Every unit carries four order-set pointers, tried by `00305AB0` in a fixed order ([Gambits](gambits.md)
 has the whole cascade):
 
-| Set | Holds | Installed by |
+| Set offset | Holds | Installed by |
 |---|---|---|
 | `6E8` | the re-plan set: `01EEC3C0` for a party record, `01EEC410` otherwise | `00313458`, `003134DA`, `002FED9E`, `002FEE05`, `0030126B`, `0030F331` |
 | `6F8` | the issued command's set `01EEC2D0`, target in `+0x748` | `00311DD4`-`00311DE1` |

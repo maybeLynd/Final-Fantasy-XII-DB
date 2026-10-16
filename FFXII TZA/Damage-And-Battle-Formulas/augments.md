@@ -67,7 +67,7 @@ The stats rebuild ORs two status words into the stats record
 ([Stats](stats.md)): the character row's words `+0x48` and `+0x4C`, and each equipped item's attribute
 words `+0x08` and `+0x0C` (`002FF0A3`-`002FF0D9`, `002FF505`-`002FF51E`):
 
-| Stats word | From row | From item | What it does |
+| Stats word offset | From row | From item | What it does |
 |---|---|---|---|
 | `3C` | `+0x48` | `+0x08` | statuses the unit has as long as the source stays (status word 2) |
 | `38` | `+0x4C` | `+0x0C` | statuses the unit cannot get: adding one to `+0x64` is refused (`0030E531`) |

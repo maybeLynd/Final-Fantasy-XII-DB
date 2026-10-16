@@ -163,7 +163,7 @@ length dword, and the size passed to the device is that length minus 2. The devi
 `+0x108`: `+0x18` CreateBuffer, `+0x58` CreateInputLayout, `+0x60` CreateVertexShader, `+0x68`
 CreateGeometryShader, `+0x78` CreatePixelShader and `+0xB8` CreateSamplerState.
 
-| Block | Builder | Contents |
+| Block offset | Builder | Contents |
 |---|---|---|
 | `07D8` | `00624980` (`00625D37`) | a vertex buffer, one vertex shader (`01F2EEC0`), three pixel shaders, a POSITION/TEXCOORD/TEXCOORD input layout and the `0x50`-byte `DebugDrawConstantBuffer` |
 | `0B50` | `00624C30` (`00625D4E`) | one vertex shader (`01F2FEB4`), eight pixel shaders, the `DrawClearConstantBuffer`, and eight state blocks |

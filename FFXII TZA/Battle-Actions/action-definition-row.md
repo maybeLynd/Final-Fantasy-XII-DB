@@ -167,25 +167,25 @@ word-wide reads take bits 0-2 (`00300B3F`, `00317CFF`, `0031CDC2`, `0031EF87`, `
 
 ## Shipped data
 
-| Field | Values in the 543 rows |
+| Field offset | Values in the 543 rows |
 |---|---|
-| `+0x02`, `+0x03` | 0 on 537 rows; `+0x02` is 1 on five rows and 20 on one, `+0x03` 20 on four and 15 on two |
-| `+0x05` | 100 × 212, 0 × 130, 30 × 56, 20 × 50, 255 × 39 |
-| `+0x06` | 0 × 296, 10 × 98, 8 × 63, 6 × 46, 100 × 13 |
-| `+0x07` | 0 × 490, 180 × 33, 60 × 7, 75 × 3 |
-| `+0x09` | 0 × 212, 3 × 149, 23 × 81, 1 × 32, 2 × 24; at most 60 |
-| `+0x0A` | 0 × 397, 2 × 23, 3 × 14, 8 × 12; at most 72; Cure 8 |
-| `+0x10` | 0 × 242, 100 × 36, 90 × 15; at most 253; Cure 20, Fira 67 |
-| `+0x12` | 100 × 312, 0 × 157 |
-| `+0x14` | 0 × 494; 100 on Bio, 35 on Firaja, 50 on Darkja |
-| `+0x15`, `+0x16`, `+0x17`, `+0x27`, `+0x2A`, `+0x3B` | 0 on every row |
-| `+0x18` | 0 × 387; Blindna `0x80`, Poisona `0x100`, Raise `0x1` |
-| `+0x22` | `0xFFFF` × 343; 200 distinct ids |
-| `+0x26` | 27-39 on the summons Belias to Zodiark, 0 elsewhere |
-| `+0x28` | 120-153 on the 26 Quickening and Concurrence rows (Red Spiral 120) |
-| `+0x34` | the row's own number, except rows 128-142, which hold 136, 137, 128, 129, 130, 138, 139, 140, 141, 135, 142, 131, 132, 133, 134 |
-| `+0x38`, `+0x39` | `0xFF` on 386 rows; Attack 0 / 0, Cure 1 / 0, Cura 1 / 1, Fira 2 / 9 |
-| `+0x3A` | 255 × 475; 15 × 49, 16 on Cure to Curaja and the Potions |
+| `02`, `03` | 0 on 537 rows; `+0x02` is 1 on five rows and 20 on one, `+0x03` 20 on four and 15 on two |
+| `05` | 100 × 212, 0 × 130, 30 × 56, 20 × 50, 255 × 39 |
+| `06` | 0 × 296, 10 × 98, 8 × 63, 6 × 46, 100 × 13 |
+| `07` | 0 × 490, 180 × 33, 60 × 7, 75 × 3 |
+| `09` | 0 × 212, 3 × 149, 23 × 81, 1 × 32, 2 × 24; at most 60 |
+| `0A` | 0 × 397, 2 × 23, 3 × 14, 8 × 12; at most 72; Cure 8 |
+| `10` | 0 × 242, 100 × 36, 90 × 15; at most 253; Cure 20, Fira 67 |
+| `12` | 100 × 312, 0 × 157 |
+| `14` | 0 × 494; 100 on Bio, 35 on Firaja, 50 on Darkja |
+| `15`, `16`, `17`, `27`, `2A`, `3B` | 0 on every row |
+| `18` | 0 × 387; Blindna `0x80`, Poisona `0x100`, Raise `0x1` |
+| `22` | `0xFFFF` × 343; 200 distinct ids |
+| `26` | 27-39 on the summons Belias to Zodiark, 0 elsewhere |
+| `28` | 120-153 on the 26 Quickening and Concurrence rows (Red Spiral 120) |
+| `34` | the row's own number, except rows 128-142, which hold 136, 137, 128, 129, 130, 138, 139, 140, 141, 135, 142, 131, 132, 133, 134 |
+| `38`, `39` | `0xFF` on 386 rows; Attack 0 / 0, Cure 1 / 0, Cura 1 / 1, Fira 2 / 9 |
+| `3A` | 255 × 475; 15 × 49, 16 on Cure to Curaja and the Potions |
 
 Cure's row, as stored:
 

@@ -40,7 +40,7 @@ the first that fails; the slot order is in Layouts.
 
 All 25 calls through `SteamInternal_ContextInit` read one of five slots from the context they get back:
 
-| Slot | Interface | Sites | What the game calls |
+| Slot offset | Interface | Sites | What the game calls |
 |---|---|---:|---|
 | `08` | `SteamUser019` | 4 | slot `+0x10` for the user id (`001F3ED0`); slot `+0x08`, a logged-on test (`0020CCC0`) |
 | `18` | `SteamUtils009` | 2 | the start-up test (`00798116`); slot `+0x48`, the app id (`0020C7FD`) |

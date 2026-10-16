@@ -48,7 +48,7 @@ its equipment row.
 
 Five bytes of a unit's stats record hold its affinities, each a mask over the eight elements:
 
-| Byte | Meaning | Equipment attribute byte | Enemy area row byte |
+| Byte offset | Meaning | Equipment attribute byte | Enemy area row byte |
 |---|---|---|---|
 | `40` | weak | `+0x13` | `+0x2C` |
 | `41` | absorb | `+0x10` | `+0x29` |

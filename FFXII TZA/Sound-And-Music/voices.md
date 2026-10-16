@@ -19,13 +19,13 @@ addresses: "02B5D0B0, 003EA0D0, 003E9F80, 003E9C10, 003E9780, 003581B0, 002DDE20
 The voice slots are 64 records of `0x40` bytes at `02B5D0B0`, global to every script (`003E9B10` builds them).
 Slot `k` always holds sub-file `k` of the calling event's pack:
 
-| Field | Holds |
+| Field offset | Holds |
 |---|---|
-| `+0x00` | the slot's own number, the pack sub-file it loads |
-| `+0x04` | the state: 0 free, 1 parked, 2 loading, 3 ready, 4 freed while loading, 5 one of two tables delivered |
-| `+0x05` | the event manager that loaded it |
-| `+0x20`, `+0x28` | the loaded `.vpcjp` and `.vpc` sub-files |
-| `+0x30` | the table in use, chosen by the language |
+| `00` | the slot's own number, the pack sub-file it loads |
+| `04` | the state: 0 free, 1 parked, 2 loading, 3 ready, 4 freed while loading, 5 one of two tables delivered |
+| `05` | the event manager that loaded it |
+| `20`, `28` | the loaded `.vpcjp` and `.vpc` sub-files |
+| `30` | the table in use, chosen by the language |
 
 ### The packs
 

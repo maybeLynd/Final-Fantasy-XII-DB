@@ -27,7 +27,7 @@ the root's four bank pointers (`0041E550`), builds them (`0041E3A0`), initialise
 `0041E3A0(root, 10, 10, 5, 5, 0x13, 0x2A00, 0x16000)` points each bank at storage inside the root and
 initialises it. It forwards only three of its counts; the reference container always takes 64 nodes.
 
-| Root field | Points at | What it holds | Initialiser |
+| Root field offset | Points at | What it holds | Initialiser |
 |---|---|---|---|
 | `D90` | root `+0x000` | resource entries, `0x50` bytes, 10 chunks of 32 | `00409F10` → `0051F9F0(bank, 0x50, 5, 10, 02B62E40, 02B62F80)` |
 | `D98` | root `+0x060` | skeleton entries, `0xC0` bytes, 5 chunks of 32 | `0046E250` → `0051F9F0(bank, 0xC0, 5, 5, 02CA61B0, 02CA6250)` |

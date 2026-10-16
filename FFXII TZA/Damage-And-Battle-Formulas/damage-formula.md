@@ -71,7 +71,7 @@ Gil Toss read it ([Weapon formulas](weapon-formulas.md)).
 
 `003847C0` fills the context the slots read (`003847D4`-`003848BC`):
 
-| Context | Holds |
+| Context offset | Holds |
 |---|---|
 | `00` | the action id |
 | `04` | the source's statuses (`+0x64 \| +0x3C`) |

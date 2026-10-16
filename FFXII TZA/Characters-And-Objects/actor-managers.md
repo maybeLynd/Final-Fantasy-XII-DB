@@ -96,7 +96,7 @@ The pool is a count dword followed by the record pointers: `00358940(slot, ordin
 The script interpreter receives the slot as its first argument and resolves script variables by
 storage class through these pointers ([script variables](../Scripts-And-Script-Commands/script-variables.md)):
 
-| Slot field | Points at | Accessors on slot 0 |
+| Slot field offset | Points at | Accessors on slot 0 |
 |---|---|---|
 | `40` | payload + payload `+0x38` | |
 | `48` | the persistent save payload: the `i16[256]` operand bank, then the script globals ([save data fields](../Saving-Loading-And-Settings/save-data-fields.md)) | `00264640(i)` reads and `0026ABA0(i, v)` writes entry `i < 0x100`; `00265270()` reads and `0026B730(v)` writes entry 0 |
