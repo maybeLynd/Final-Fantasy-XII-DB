@@ -90,7 +90,7 @@ The boot routine `0022A0B0` ([startup constants](startup-constants.md)) calls `0
 `0022CB90` is the vector unit 1 side: it zeroes the 16 KB data memory `02064E30`, the words
 `02064E1C`, `02064E28`, `02064E2C`, `02088E30` to `02088E38`, `01E02830` and `01E02838`, sets
 `01E0283C` to 1.0, and logs the same two lines
-(the VIF1 / VU1 layer). The
+([the VIF1 / VU1 layer](ps2-vif1-vu1-emulation.md)). The
 restart loop `0017D6E0` calls `0022CB90` again at `0017D723` on every pass.
 
 `0036D9E0` re-stores `vf00` and zeroes the forty rows `022D91B0` to `022D942F` with eighty 8-byte
@@ -236,7 +236,7 @@ calls, and a value that survives is one nobody overwrote.
 ## Related
 
 - [Startup constants](startup-constants.md): the boot sequence that initialises the layer.
-- The VIF1 / VU1 layer: the
+- [The VIF1 / VU1 layer](ps2-vif1-vu1-emulation.md): the
   second vector unit, with its own data memory at `02064E30`.
 - [Random number generators](../Random-Numbers/random-number-generators.md): the stream
   word at `022D9138`.
