@@ -160,4 +160,4 @@ To repack `FFXII_TZA.vbf` so that the game accepts it:
 ## Related
 
 - [How a path is resolved to bytes](file-path-resolution.md): the name normalisation and the two routes in front of the lookup.
-- Prefetch manifests: the prefetch data in the archive.
+- [Prefetch manifests](prefetch-manifests.md): the prefetch data in the archive.

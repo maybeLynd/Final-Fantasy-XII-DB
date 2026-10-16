@@ -106,6 +106,6 @@ clamps there and sets bit `0x4` (finished).
 
 ## Related
 
-- Asset header manifests: what loads the textures a list binds.
+- [Asset header manifests](prefetch-manifests.md): what loads the textures a list binds.
 - [File path resolution](file-path-resolution.md): the 33-multiplicative path hash the loaded-asset lookup uses.
 - [Map pack (.mpk)](../World-Areas-And-Travel/mpk-map-pack.md): the per-map data pack.
