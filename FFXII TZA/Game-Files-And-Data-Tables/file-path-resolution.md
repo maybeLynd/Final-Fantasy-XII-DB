@@ -185,7 +185,7 @@ The formats behind them are on the
 [handbook indexes](handbook-files.md),
 [menu map container](menu-map-files.md),
 [character SE tables](character-se-tables-chse.md) and
-loader-bound bin families pages.
+[loader-bound bin families](ps2data-bin-families.md) pages.
 
 ## Operations
 
