@@ -182,7 +182,7 @@ and `00328530` and jumped to from `0031AB80`.
 
 ## Related
 
-- The action definition row - the row these
+- [The action definition row](action-definition-row.md) - the row these
   bytes and bits belong to.
 - [Action range](action-range.md) - how close the user stands before the action runs.
 - Gambits and enmity - other uses of

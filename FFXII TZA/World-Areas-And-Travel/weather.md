@@ -406,7 +406,7 @@ in-image routes to `0026D910` are the boot setup, the field runtime pass and the
 
 ## Related
 
-- Weather and terrain element scaling
+- [Weather and terrain element scaling](../Damage-And-Battle-Formulas/elements.md)
 - [Random number generators: the gameplay Mersenne Twister, the shared gameplay LCG, the graphics-noise Mersenne Twister, the C runtime rand, the presentation bit-feedback generator, the counter hash and the PPFX xorshift, with their constants, seeds and states](../Random-Numbers/random-number-generators.md)
 - [Zone changes: mapjump and the other jump verbs, the loading flags, the moment the new zone is ready and what names a map](zone-changes-and-mapjump.md)
 - [Doors, gates and map changes: the override table the setmapid verbs write, what its floor, wall and mj bits block, the show and hide model masks and when a new map clears them](doors-gates-and-map-changes.md)

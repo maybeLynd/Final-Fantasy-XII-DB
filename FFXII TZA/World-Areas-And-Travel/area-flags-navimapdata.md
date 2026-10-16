@@ -272,4 +272,4 @@ the Henne Mines (Site 7) and Giruvegan (Hall of Worth, Throne of Veiled Gods).
 - Battle runtime mode ladder
 - The time-stop registry
 - The thirty-two statuses
-- The save payload field map
+- [The save payload field map](../Saving-Loading-And-Settings/save-data-fields.md)

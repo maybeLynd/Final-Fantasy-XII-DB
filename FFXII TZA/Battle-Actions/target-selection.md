@@ -164,7 +164,7 @@ availability check behind reason 6 (`002FFCF0` and its callees `0030E9C0`, `0031
 - [Area of effect](area-of-effect.md) - the relationship class and the area gathered after the
   target is chosen.
 - [Action range](action-range.md) - how close the user walks before acting.
-- The action definition row - flag words
+- [The action definition row](action-definition-row.md) - flag words
   `+0x0C` and `+0x2C`.
 - [Battle command availability](command-availability.md)
   - `002FFCF0` and its reason codes.

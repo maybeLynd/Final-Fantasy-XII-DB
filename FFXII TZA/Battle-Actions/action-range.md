@@ -206,7 +206,7 @@ the speed `ctx+0xB0` is non-zero; otherwise it clears bit 8 and returns 0 (`0033
 
 ## Related
 
-- The action definition row - the 60-byte row
+- [The action definition row](action-definition-row.md) - the 60-byte row
   whose bytes `+0x02`, `+0x03`, `+0x05` and flag word `+0x0C` these functions read.
 - The battle unit field map - where
   the three distances sit on the unit.
