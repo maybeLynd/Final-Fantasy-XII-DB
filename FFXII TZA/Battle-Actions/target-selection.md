@@ -168,5 +168,5 @@ availability check behind reason 6 (`002FFCF0` and its callees `0030E9C0`, `0031
   `+0x0C` and `+0x2C`.
 - [Battle command availability](command-availability.md)
   - `002FFCF0` and its reason codes.
-- The thirty-two statuses - status bits
+- [The thirty-two statuses](../Status-Effects-And-KO/statuses.md) - status bits
   0, 1, 3, 4, 5, 24 and 31.

@@ -28,6 +28,13 @@ Addresses are virtual addresses in the shipping `FFXII_TZA.exe` (SHA-256
 - [Battle actions](FFXII%20TZA/Battle-Actions/README.md) - How an attack, spell, technick or item use is chosen, charged, targeted and carried out.
 - [Damage and battle formulas](FFXII%20TZA/Damage-And-Battle-Formulas/README.md) - Damage, healing, hit, evade and other battle calculations.
 - [Enemy AI and gambits](FFXII%20TZA/Enemy-AI-And-Gambits/README.md) - How enemies choose what to do, and how the party's gambits are evaluated.
+- [Status effects and KO](FFXII%20TZA/Status-Effects-And-KO/README.md) - Status ailments and buffs, their timers and periodic effects, what ends them, and KO.
+- [Party](FFXII%20TZA/Party/README.md) - Party members, the leader, guests, swapping members in and out, and party formation.
+- [Items, equipment, shops and licenses](FFXII%20TZA/Items-Equipment-Shops-And-Licenses/README.md) - The inventory, equipment and its stats, shops and prices, and the license board.
 - [Rewards: EXP, LP, gil and loot](FFXII%20TZA/Rewards-EXP-Gil-And-Loot/README.md) - What a defeated enemy gives: EXP, LP and gil, loot drops and pickups, the kill chain, levelling up and the gil cap.
+- [Story, events and hunts](FFXII%20TZA/Story-Events-And-Hunts/README.md) - Story progress, event scenes, side quests and hunts.
+- [Controls and input](FFXII%20TZA/Controls-And-Input/README.md) - Controller, keyboard and mouse input and how it reaches the game.
+- [Menus and HUD](FFXII%20TZA/Menus-And-HUD/README.md) - The menus, the battle HUD, text and number display.
+- [Sound and music](FFXII%20TZA/Sound-And-Music/README.md) - Sound effects, music and voice playback.
 - [Saving, loading and settings](FFXII%20TZA/Saving-Loading-And-Settings/README.md) - Save files, loading, the game options and language selection.
 - [Random numbers](FFXII%20TZA/Random-Numbers/README.md) - Every random number generator in the game, how each is seeded and which rolls use it.

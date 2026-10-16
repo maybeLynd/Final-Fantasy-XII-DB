@@ -302,7 +302,7 @@ object, the loose effect bank and the two sound sections.
 - [Zone changes: mapjump and the other jump verbs, the loading flags, the moment the new zone is ready and what names a map](zone-changes-and-mapjump.md)
 - [Doors, gates and map changes: the override table the setmapid verbs write, what its floor, wall and mj bits block, the show and hide model masks and when a new map clears them](doors-gates-and-map-changes.md)
 - [How a unit finds its way across the navigation mesh](../Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md)
-- The map sound list
+- [The map sound list](../Sound-And-Music/map-sounds.md)
 - The menu-map container
 - section_014, the LGT2 light set
 - The EFX and EFB effect containers

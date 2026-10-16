@@ -1,0 +1,129 @@
+good	id	name	price	gives	unlocked_by_selling	repeatable	script_sets_availability
+0	0xD000	Antidote Set	100	Antidote x3 (0009)	Drab Wool x2 (205C)	no	no
+1	0xD001	Unassuming Surcoat	100	Chromed Leathers x1 (1119)	Wolf Pelt x2 (2069); Earth Stone x1 (2020)	no	no
+2	0xD002	Gilt Shield	250	Buckler x1 (10CA)	Molting x3 (2051); Fire Stone x3 (2023)	no	no
+3	0xD003	Tail of the Phoenix	400	Phoenix Down x2 (0006)	Small Feather x3 (206D)	no	no
+4	0xD004	First-aid Kit	450	Phoenix Down x2 (0006); Potion x2 (0000)	Large Feather x3 (206E)	no	no
+5	0xD005	Assorted Leathers	300	Leather Breastplate x1 (111A); Leather Headgear x1 (10DF)	Wolf Pelt x2 (2069); Tanned Hide x1 (2065); Dark Stone x2 (2027)	no	no
+6	0xD006	Bow & Bodkin	400	Parallel Arrows x1 (1185); Shortbow x1 (1042)	Bat Fang x1 (2076); Rat Pelt x2 (2060); Dark Stone x2 (2027)	no	no
+7	0xD007	Eye Drop Set	100	Eye Drops x3 (000A)	Demon Eyeball x2 (208E)	no	no
+8	0xD008	Marksman's Delight	550	Silent Shot x1 (1195); Capella x1 (1058)	Fish Scale x2 (2058); Green Liquid x1 (2089); Dark Stone x3 (2027)	no	no
+9	0xD009	Light Spear	310	Javelin x1 (102A)	Horn x2 (2073); Foul Flesh x2 (2098); Wind Stone x3 (2021)	no	no
+10	0xD00A	Iron-forged Blade	650	Iron Sword x1 (1003)	Iron Scraps x3 (2087); Foul Flesh x2 (2098); Earth Stone x3 (2020)	no	no
+11	0xD00B	Tinctures & Tonics	700	Potion x5 (0000); Handkerchief x3 (000C); Gold Needle x3 (0007)	Succulent Fruit x4 (207B)	no	no
+12	0xD00C	Arrows Alight	2800	Fiery Arrows x1 (1186); Longbow x1 (1046)	Crooked Fang x2 (2077); Fire Stone x4 (2023)	no	no
+13	0xD00D	Rain of Tears	800	Aqua Shot x1 (1196); Vega x1 (1059)	Yensa Scale x1 (2059); Green Liquid x3 (2089); Water Stone x4 (2022)	no	no
+14	0xD00E	Wooden Pole	480	Cypress Pole x1 (1037)	Bone Fragment x5 (2080); Succulent Fruit x3 (207B); Earth Stone x4 (2020)	no	no
+15	0xD00F	Eye Openers	1280	Phoenix Down x5 (0006); Prince's Kiss x5 (000B)	Chocobo Feather x4 (206F)	no	no
+16	0xD010	Crimson Blade	4444	Karkata x1 (10C0)	Solid Stone x2 (2085); Vampyr Fang x3 (20B0); Dark Crystal x15 (2037)	no	no
+17	0xD011	Traveler's Garb	1890	Feathered Cap x1 (10F8); Traveler's Vestment x1 (1134)	Braid Wool x2 (205D); Tanned Hide x2 (2065); Water Stone x5 (2022)	no	no
+18	0xD012	Golden Garb	3980	Golden Helm x1 (110C); Golden Armor x1 (1148); Golden Shield x1 (10CE)	Iron Carapace x3 (2052); Tanned Hide x2 (2065); Dark Magicite x3 (202F)	no	no
+19	0xD013	Matching Reds	2480	Red Cap x1 (10E4); Brigandine x1 (1120)	Coeurl Pelt x3 (206A); Quality Hide x2 (2063); Dark Magicite x3 (202F)	no	no
+20	0xD014	Smelling Salts, &c.	540	Hi-Potion x4 (0001); Nu Khai Sand x2 (000E)	Malboro Vine x4 (207D)	no	no
+21	0xD015	Burning Blade	2025	Flametongue x1 (1008)	Lumber x2 (2083); Malboro Vine x2 (207D); Fire Stone x6 (2023)	no	no
+22	0xD016	Sipping Wine	240	Bacchus's Wine x3 (0014)	Tyrant Hide x2 (2062)	no	no
+23	0xD017	Hollow-shaft Arrows	3980	Bamboo Arrows x1 (1187); Loxley Bow x1 (1048)	Bat Fang x5 (2076); Yellow Liquid x1 (208A); Water Magicite x3 (202A)	no	no
+24	0xD018	Burnished Protectives	4850	Burgonet x1 (110D); Shielded Armor x1 (1149); Ice Shield x1 (10CF)	Wyrm Carapace x2 (2053); Quality Hide x2 (2063); Earth Magicite x4 (2028)	no	no
+25	0xD019	Burning Fangs	980	Soleil Fang x5 (0011)	Pointed Horn x2 (2074)	no	no
+26	0xD01A	Alluring Finery	3180	Lamia's Tiara x1 (10FA); Enchanter's Habit x1 (1136)	Fine Wool x3 (205E); Tyrant Hide x1 (2062); Ice Magicite x4 (202C)	no	no
+27	0xD01B	Monk's Garb	3180	Headband x1 (10E5); Jujitsu Gi x1 (1121)	Coeurl Pelt x4 (206A); Tyrant Hide x2 (2062); Ice Magicite x4 (202C)	no	no
+28	0xD01C	Ranger's Crossbow	1080	Long Bolts x1 (118D); Crossbow x1 (1051)	Crooked Fang x4 (2077); Yellow Liquid x2 (208A); Ice Stone x1 (2024)	no	no
+29	0xD01D	Iron-forged Pole	2115	Iron Pole x1 (103A)	Sturdy Bone x5 (2081); Demon Eyeball x3 (208E); Fire Magicite x4 (202B)	no	no
+30	0xD01E	Triage Kit	2980	Phoenix Down x12 (0006); Hi-Potion x3 (0001)	Giant Feather x3 (2070)	no	no
+31	0xD01F	Magick Shards	1480	Aquara Mote x5 (002D)	Festering Flesh x4 (2099)	no	no
+32	0xD020	Ninja Garb	4800	Black Cowl x1 (10FC); Black Garb x1 (1138)	Fine Wool x4 (205E); Tanned Tyrant Hide x2 (2067); Fire Magicite x5 (202B)	no	no
+33	0xD021	Light & Sturdy Garb	5800	Adamant Hat x1 (10E8); Adamant Vest x1 (1124)	Coeurl Pelt x6 (206A); Tanned Tyrant Hide x2 (2067); Storm Magicite x5 (202D)	no	no
+34	0xD022	Huntsman's Crossbow	3500	Stone Bolts x1 (118E); Recurve Crossbow x1 (1053)	Bundle of Needles x1 (20A3); Festering Flesh x2 (2099); Ice Magicite x5 (202C)	no	no
+35	0xD023	Jag-tooth Ninja Sword	3800	Kagenui x1 (1025)	Giant Feather x5 (2070); Festering Flesh x4 (2099); Dark Magicite x5 (202F)	no	no
+36	0xD024	Survival Set	1500	Antidote x12 (0009); Eye Drops x12 (000A); Echo Herbs x12 (0008)	Malboro Fruit x4 (207E)	no	no
+37	0xD025	Soul of the Fire-bird	5980	Phoenix Down x25 (0006)	Bundle of Feathers x3 (2071)	no	no
+38	0xD026	Emboldening Arms	7980	Chakra Band x1 (10EA); Power Vest x1 (1126)	Quality Pelt x6 (206B); Tanned Giantskin x4 (2066); Fire Crystal x3 (2033)	no	no
+39	0xD027	Platinum Gear	9800	Platinum Helm x1 (1112); Platinum Armor x1 (114E); Platinum Shield x1 (10D2)	Insect Husk x2 (2054); Tanned Giantskin x5 (2066); Storm Magicite x6 (202D)	no	no
+40	0xD028	Noisome Incendiaries	3280	Poison Bombs x1 (119D); Fumarole x1 (109B)	Bomb Shell x1 (2094); Fire Crystal x3 (2033)	no	no
+41	0xD029	War Axe	4680	Francisca x1 (1066)	Pointed Horn x2 (2074); Malboro Fruit x4 (207E); Wind Magicite x6 (2029)	no	no
+42	0xD02A	Warped Blade	5650	Diamond Sword x1 (100D)	Bundle of Feathers x6 (2071); Maggoty Flesh x4 (209A); Fire Magicite x6 (202B)	no	no
+43	0xD02B	Forked Spear	6450	Trident x1 (1031)	Pointed Horn x4 (2074); Maggoty Flesh x5 (209A); Wind Magicite x6 (2029)	no	no
+44	0xD02C	Mudslinger	120000	Mud Shot x1 (1198); Mithuna x1 (10C5)	Emperor Scale x2 (20B7); Silver Liquid x3 (208B); Earth Crystal x8 (2030)	no	no
+45	0xD02D	Oil-soaked Incendiaries	10625	Oil Bombs x1 (119F); Tumulus x1 (109C)	Bomb Ashes x3 (2093); Book of Orgain x2 (2095); Fire Crystal x3 (2033)	no	no
+46	0xD02E	Blindflight Quarrels	11220	Black Bolts x1 (1190); Hunting Crossbow x1 (1054)	Spiral Incisor x3 (2078); Silver Liquid x3 (208B); Dark Crystal x3 (2037)	no	no
+47	0xD02F	Phials & Philtres	1980	Serum x8 (000F); Nu Khai Sand x16 (000E)	Malboro Flower x3 (207F)	no	no
+48	0xD030	Potion Crate	7480	Potion x30 (0000); Hi-Potion x20 (0001); X-Potion x10 (0002)	Screamroot x3 (207C)	no	no
+49	0xD031	Gigas Gear	17800	Gigas Hat x1 (10EC); Gigas Chestplate x1 (1128)	Prime Pelt x8 (206C); Prime Tanned Hide x7 (2068); Dark Crystal x7 (2037)	no	no
+50	0xD032	Armor-piercing Shot	8900	Windslicer Shot x1 (1199); Spica x1 (105E)	Ichthon Scale x4 (205A); Silver Liquid x5 (208B); Wind Crystal x7 (2031)	no	no
+51	0xD033	Permafrost Bow & Quiver	17200	Icecloud Arrows x1 (118A); Perseus Bow x1 (104D)	Spiral Incisor x4 (2078); Antarctic Wind x2 (20DA); Ice Crystal x7 (2034)	no	no
+52	0xD034	Befuddling Incendiaries	3800	Chaos Bombs x1 (11A0); Caldera x1 (109D)	Bomb Shell x4 (2094); Book of Orgain-Cent x3 (2096); Fire Crystal x7 (2033)	no	no
+53	0xD035	Mystic Staff	3600	Cloud Staff x1 (1089)	Quality Lumber x4 (2084); Demon Feather x6 (208F); Storm Crystal x7 (2035)	no	no
+54	0xD036	Elegant Pole	7980	Ivory Pole x1 (103E)	Blood-darkened Bone x8 (2082); Demon Feather x6 (208F); Wind Crystal x7 (2031)	no	no
+55	0xD037	Phoenix Flight	8750	Phoenix Down x50 (0006)	Windslicer Pinion x5 (2072)	no	no
+56	0xD038	Black Vestments	12800	Black Mask x1 (1102); Black Robes x1 (113F)	Blood Wool x9 (205F); Prime Tanned Hide x7 (2068); Dark Crystal x8 (2037)	no	no
+57	0xD039	White Vestments	12800	White Mask x1 (1103); White Robes x1 (113E)	Blood Wool x9 (205F); Beastlord Hide x7 (2064); Holy Crystal x8 (2036)	no	no
+58	0xD03A	Nature's Armory	13800	Crown of Laurels x1 (10EE); Rubber Suit x1 (112A)	Prime Pelt x9 (206C); Forbidden Flesh x7 (209B); Fire Crystal x8 (2033)	no	no
+59	0xD03B	Forbidding Shield	7800	Demon Shield x1 (10D8)	Aged Turtle Shell x2 (204F); Destrier Barding x8 (2056); Leamonde Halcyon x1 (204B)	no	no
+60	0xD03C	Sturdy Battle Gear	8000	Maximillian x1 (1152)	Charger Barding x4 (2057); Split Armor x2 (20A7); Pisces Gem x3 (2043)	no	no
+61	0xD03D	Magepower Helm	7500	Magepower Shishak x1 (1116)	Charger Barding x5 (2057); Chimera Head x2 (20A8); Feystone x1 (209C)	no	no
+62	0xD03E	Scout's Crossbow	6400	Time Bolts x1 (1191); Penetrator Crossbow x1 (1055)	Wyvern Fang x4 (2079); Ancient Bone x3 (20B3); Holy Crystal x9 (2036)	no	no
+63	0xD03F	Water-drop Munitions	2640	Water Bombs x1 (11A2)	Book of Orgain x3 (2095); Putrid Liquid x3 (20C7); Water Crystal x10 (2032)	no	no
+64	0xD040	Samurai's Katana	8400	Ame-no-Murakumo x1 (1020)	Iron Ore x5 (2088); Screamroot x7 (207C); Water Crystal x9 (2032)	no	no
+65	0xD041	Double-bladed Knife	7500	Zwill Crossblade x1 (1077)	Windslicer Pinion x5 (2072); Malboro Flower x7 (207F); Wind Crystal x9 (2031)	no	no
+66	0xD042	The Leering Blade	8800	Deathbringer x1 (100F)	Broken Sword x3 (209E); Demon Tail x7 (2090); Dark Crystal x10 (2037)	no	no
+67	0xD043	Attenuated Greatsword	9200	Save the Queen x1 (1014)	Quality Stone x4 (2086); Sky Jewel x7 (208D); Holy Crystal x10 (2036)	no	no
+68	0xD044	Memories of Yore	999	Pebble x99 (209D)	Quality Stone x5 (2086)	no	no
+69	0xD045	Devastating Incendiaries	12000	Castellanos x1 (11A3)	Bomb Fragment x3 (20D3); Frog Oil x2 (20D6); Aries Gem x3 (2038)	no	no
+70	0xD046	Darksteel Blade	17800	Stoneblade x1 (1010)	Orichalcum x2 (20BC); Chimera Head x2 (20A8); Taurus Gem x3 (2039)	no	no
+71	0xD047	Arrows of the Moon Goddess	1280	Artemis Arrows x1 (118B)	Great Serpent's Fang x2 (20B1); Dorsal Fin x2 (20C0); Gemini Gem x3 (203A)	no	no
+72	0xD048	Serpent Blade	90000	Mesa x1 (10AB)	Coeurl Whisker x2 (20A4); Sickle-Blade x2 (20E2); Cancer Gem x3 (203B)	no	no
+73	0xD049	Well-forged Blade	80000	Simha x1 (10C2)	Lifewick x3 (20DE); Ring Wyrm Scale x4 (205B); Leshach Halcyon x1 (2046)	no	no
+74	0xD04A	Comfy Headgear	25000	Cat-ear Hood x1 (117F)	White Incense x2 (20D9); Einherjarium x2 (20BE); Virgo Gem x7 (203D)	no	no
+75	0xD04B	Stone Shot	1480	Stone Shot x1 (119B)	Mirror Scale x2 (20B6); Tyrant Bone x2 (20B5); Libra Gem x3 (203E)	no	no
+76	0xD04C	The Scorpion	70000	Vrscika x1 (10C4)	Charged Gizzard x3 (20DD); Wyrm Bone x3 (20B4); Scorpio Gem x4 (203F)	no	no
+77	0xD04D	Silver Bow	100000	Dhanusha x1 (10C7)	Beastlord Horn x3 (20AF); Moon Ring x3 (20A2); Sagittarius Gem x4 (2040)	no	no
+78	0xD04E	Piercing Bolts	1680	Grand Bolts x1 (1193)	Wrath of the Gods x2 (20DC); Ring Wyrm Liver x2 (20C2); Capricorn Gem x3 (2041)	no	no
+79	0xD04F	Cursed Necklace	28000	Nihopalaoa x1 (1167)	Blood-stained Necklace x3 (20AB); Death's-Head x2 (20B2); Leo Gem x3 (203C)	no	no
+80	0xD050	Whisker of the Beast	60000	Kanya x1 (10C6)	Mythril x3 (20B8); Corpse Fly x3 (20D0); Aquarius Gem x4 (2042)	no	no
+81	0xD051	Late-model Rifle	8000	Arcturus x1 (1060)	Wyvern Wing x2 (20D2); Yensa Fin x2 (20C1); Salamand Halcyon x1 (2044)	no	no
+82	0xD052	Ultimate Blade	12800	Ultima Blade x1 (1016)	Adamantite x2 (20B9); Death Powder x2 (20CC); Gnoma Halcyon x1 (2047)	no	no
+83	0xD053	Bow of the Moon Goddess	9300	Artemis Bow x1 (104E)	Solid Horn x5 (2075); Moondust x2 (20E4); Sylphi Halcyon x1 (2049)	no	no
+84	0xD054	Brilliant Shield	7500	Venetian Shield x1 (10D9)	Ancient Turtle Shell x2 (2050); Ring Wyrm Liver x2 (20C2); Undin Halcyon x1 (2048)	no	no
+85	0xD055	Engraved Spear	9025	Gungnir x1 (1033)	Ketu Board x2 (20DF); Broken Spear x2 (20A0); Mystletainn x2 (20BD)	no	no
+86	0xD056	Golden Battle Axe	10000	Golden Axe x1 (1068)	Electrum x2 (20BF); Broken Greataxe x2 (209F); Mardu Halcyon x1 (2045)	no	no
+87	0xD057	Flask of Oily Liquid	4000	Ether x1 (0003)	Unpurified Ether x2 (20CA); Caramel x3 (20C8)	yes	no
+88	0xD058	Flask of Viscous Liquid	12000	Hi-Ether x1 (0004)	Unpurified Ether x2 (20CA); Foul Liquid x2 (20C6); Slime Oil x1 (20C9)	yes	no
+89	0xD059	Saint's Draught	36000	Elixir x1 (0005)	Ambrosia x3 (20C5); Demon Drink x3 (20CB); High Arcana x1 (204D)	yes	no
+90	0xD05A	Esoteric Draught	108000	Megalixir x1 (0015)	Onion x3 (20E8); Rat Tail x3 (20A9); High Arcana x2 (204D)	yes	no
+91	0xD05B	Life Crystal	9999	High Arcana x1 (204D)	Arcana x10 (204C); Feystone x1 (209C); Soul of Thamasa x1 (20AE)	yes	no
+92	0xD05C	Jewel of the Serpent	19998	Serpentarius x1 (20EE)	Snake Skin x4 (2061); Serpent Eye x2 (20C4); High Arcana x1 (204D)	yes	no
+93	0xD05D	Jewel of Creation	29997	Empyreal Soul x1 (20ED)	Soul Powder x1 (20CD); Wargod's Band x2 (20AD); High Arcana x1 (204D)	yes	no
+94	0xD05E	Matchless Metal	29997	Gemsteel x1 (20EF)	Scarletite x1 (20BA); Damascus Steel x2 (20BB); Hell-Gate's Flame x2 (20E1)	yes	no
+95	0xD05F	Master-crafted Blade	350000	Kumbha x1 (10AA)	Gemsteel x2 (20EF); Orichalcum x3 (20BC); Mallet x2 (20A5)	no	no
+96	0xD060	The Sunflower	600000	Tournesol x1 (1018)	Gemsteel x3 (20EF); Empyreal Soul x3 (20ED); Serpentarius x3 (20EE)	no	no
+97	0xD061	Dragon Crest	65535	Wyrmhero Blade x1 (10AD)	Omega Badge x1 (20EC); Godslayer's Badge x1 (20F4); Lu Shang's Badge x1 (20F5)	no	no
+98	0xD062	Mysterious Substance	14999	Dark Energy x1 (0018)	Grimoire Togail x3 (2091); Grimoire Aidhed x3 (2092); Bat Wing x1 (20D1)	no	no
+99	0xD063	Forgotten Grimoire	18000	Hunter's Monograph x1 (8066)	-	no	yes
+100	0xD064	Forgotten Grimoire	19000	Knight's Monograph x1 (8067)	-	no	yes
+101	0xD065	Forgotten Grimoire	22000	Dragoon's Monograph x1 (8068)	-	no	yes
+102	0xD066	Forgotten Grimoire	25000	Sage's Monograph x1 (8065)	-	no	yes
+103	0xD067	Magick Shard	99	Holy Mote x1 (0030)	Glass Jewel x8 (208C); Sky Jewel x8 (208D); Diakon Halcyon x1 (204A)	yes	no
+104	0xD068	Magick Shard	499	Scathe Mote x1 (0031)	Book of Orgain x8 (2095); Book of Orgain-Cent x8 (2096); Book of Orgain-Mille x8 (2097)	yes	no
+105	0xD069	Potion Pack	70	Potion x2 (0000)	Cactus Fruit x2 (207A)	no	no
+106	0xD06A	Hi-Potion Pack	1111	Hi-Potion x10 (0001)	Rainbow Egg x1 (20E5)	yes	no
+107	0xD06B	Chronos Tear Pack	333	Chronos Tear x10 (000D)	Eye of the Hawk x1 (20C3)	yes	no
+108	0xD06C	Fire-bird's Whisper	2222	Phoenix Down x10 (0006)	Jack-o'-Lantern x1 (20E9)	yes	no
+109	0xD06D	Serum Pack	999	Serum x10 (000F)	Demon's Sigh x1 (20EB)	yes	no
+110	0xD06E	X-Potion Pack	4444	X-Potion x10 (0002)	Behemoth Steak x1 (20D7)	yes	no
+111	0xD06F	Shell-worked Collar	6000	Turtleshell Choker x1 (1166)	Bomb Shell x2 (2094); Four-leaf Clover x2 (20E6)	no	no
+112	0xD070	Ninja Footgear	400	Gillie Boots x1 (117A)	Slaven Harness x2 (20AA)	no	no
+113	0xD071	Brawler's Fetish	3000	Amber Armlet x1 (115F)	Gimble Stalk x2 (20E7)	no	no
+114	0xD072	Blush of Light	1200	Firefly x1 (1171)	Tomato Stalk x2 (20EA); Magick Lamp x1 (20E0); Snowfly x1 (20CF)	no	no
+115	0xD073	Shoes of the Dead	450	Quasimodo Boots x1 (117D)	Zombie Powder x1 (20CE); Destrier Mane x1 (20AC)	no	no
+116	0xD074	Back Harness	600	Battle Harness x1 (1177)	Throat Wolf Blood x1 (20D4)	no	no
+117	0xD075	Large Gloves	2000	Blazer Gloves x1 (1163)	Bent Staff x3 (20A1)	no	no
+118	0xD076	Chain-link Belt	17820	Bubble Belt x1 (1173)	Battlewyrm Carapace x2 (2055); Adamantite x1 (20B9)	no	no
+119	0xD077	Wind Walkers	18000	Hermes Sandals x1 (1179)	Gysahl Greens x33 (20D8); Arcana x15 (204C)	no	no
+120	0xD078	Wing Cord	2000	Pheasant Netsuke x1 (116D)	Stardust x2 (20E3)	no	no
+121	0xD079	Gilt Phylactery	3000	Golden Amulet x1 (116F)	Tattered Garment x1 (20A6)	no	no
+122	0xD07A	Exquisite Ring	7800	Opal Ring x1 (1154)	Frogspawn x2 (20D5)	no	no
+123	0xD07B	Feathered Boots	300	Winged Boots x1 (117C)	Arctic Wind x1 (20DB)	no	no
+124	0xD07C	Forgotten Grimoire	21000	Mage's Monograph x1 (8069)	-	no	yes
+125	0xD07D	Forgotten Grimoire	20000	Warmage's Monograph x1 (806A)	-	no	yes
+126	0xD07E	Forgotten Grimoire	22000	Scholar's Monograph x1 (806B)	-	no	yes
+127	0xD07F	Morbid Urn	250000	Canopic Jar x1 (806C)	Horakhty's Flame x1 (20F1); Phobos Glaze x1 (20F2); Deimos Clay x1 (20F3)	no	no

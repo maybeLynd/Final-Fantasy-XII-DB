@@ -242,6 +242,6 @@ ground indices 0-17 and 0 for indices 18-31. Classes 3 and 4 match no rule.
 - [Action definition row](../Battle-Actions/action-definition-row.md) - the element byte of an action.
 - [Action results](../Battle-Actions/action-results.md) - result `+0x140` and an enemy's affinity changes.
 - [Steal](steal.md) - how an equipped item's augment byte reaches the effect layers.
-- Evaluation context - the merged effect bits.
-- Choosing the field environment variant
+- [Evaluation context](damage-formula.md) - the merged effect bits.
+- [Choosing the field environment variant](../World-Areas-And-Travel/weather.md)
   - where the environment and weather classes are published.

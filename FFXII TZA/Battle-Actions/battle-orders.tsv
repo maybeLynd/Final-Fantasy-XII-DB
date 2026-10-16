@@ -111,7 +111,7 @@ order_id	handler	operation	value	name
 0x406D	002FDDA0	add a status (0030E360 mode 3)	28	Bubble
 0x406E	002FDDA0	add a status (0030E360 mode 3)	29	HP Critical
 0x406F	002FDDA0	add a status (0030E360 mode 3)	30	Libra
-0x4070	002FDDA0	add a status (0030E360 mode 3)	31	X{a5}Zone
+0x4070	002FDDA0	add a status (0030E360 mode 3)	31	X-Zone
 0x4071	002FDDA0	remove a status (0030E360 mode 0)	0	KO
 0x4072	002FDDA0	remove a status (0030E360 mode 0)	1	Stone
 0x4073	002FDDA0	remove a status (0030E360 mode 0)	2	Petrify
@@ -143,7 +143,7 @@ order_id	handler	operation	value	name
 0x408D	002FDDA0	remove a status (0030E360 mode 0)	28	Bubble
 0x408E	002FDDA0	remove a status (0030E360 mode 0)	29	HP Critical
 0x408F	002FDDA0	remove a status (0030E360 mode 0)	30	Libra
-0x4090	002FDDA0	remove a status (0030E360 mode 0)	31	X{a5}Zone
+0x4090	002FDDA0	remove a status (0030E360 mode 0)	31	X-Zone
 0x4091	002FDDA0	clear all 128 effect bits of layer +0x68, then rebuild the stats (0030FED0)		
 0x4092	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	0	
 0x4093	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	1	
@@ -174,7 +174,7 @@ order_id	handler	operation	value	name
 0x40AC	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	26	
 0x40AD	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	27	Doubles EXP earned.
 0x40AE	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	28	Doubles license points earned.
-0x40AF	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	29	Reduces EXP earned to {85}.
+0x40AF	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	29	Reduces EXP earned to 0.
 0x40B0	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	30	NOT USED
 0x40B1	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	31	Magicks will not bounce off targets with Reflect status.
 0x40B2	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	32	Enables casting of magicks with gil, rather than MP.
@@ -184,7 +184,7 @@ order_id	handler	operation	value	name
 0x40B6	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	36	Reduces MP cost by half.
 0x40B7	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	37	Move safely past traps.
 0x40B8	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	38	
-0x40B9	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	39	Reduces MP to {85}.
+0x40B9	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	39	Reduces MP to 0.
 0x40BA	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	40	NOT USED
 0x40BB	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	41	Increases magick power when HP is full.
 0x40BC	002FDDA0	set an effect bit in layer +0x68 (0030E130 mode 2)	42	
@@ -238,7 +238,7 @@ order_id	handler	operation	value	name
 0x40EC	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	26	
 0x40ED	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	27	Doubles EXP earned.
 0x40EE	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	28	Doubles license points earned.
-0x40EF	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	29	Reduces EXP earned to {85}.
+0x40EF	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	29	Reduces EXP earned to 0.
 0x40F0	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	30	NOT USED
 0x40F1	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	31	Magicks will not bounce off targets with Reflect status.
 0x40F2	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	32	Enables casting of magicks with gil, rather than MP.
@@ -248,7 +248,7 @@ order_id	handler	operation	value	name
 0x40F6	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	36	Reduces MP cost by half.
 0x40F7	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	37	Move safely past traps.
 0x40F8	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	38	
-0x40F9	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	39	Reduces MP to {85}.
+0x40F9	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	39	Reduces MP to 0.
 0x40FA	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	40	NOT USED
 0x40FB	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	41	Increases magick power when HP is full.
 0x40FC	002FDDA0	clear an effect bit in layer +0x68 (0030E130 mode 0)	42	

@@ -43,8 +43,8 @@ calls it with 0 ([frame update order](frame-update-order.md)). It runs:
 
 ### The sixteen groups, in frame order
 
-Every group works on the UI manager object at `[0209BE80]` (UI request
-router); the table gives the handler, the extra
+Every group works on the UI manager object at `[0209BE80]` ([UI request
+router](../Menus-And-HUD/menus.md)); the table gives the handler, the extra
 condition the pump adds, and the sub-object or field the handler receives.
 
 | # | Mask | Width | Extra gate | Handler and argument |
@@ -127,5 +127,5 @@ object pointers the gates test.
 ## Related
 
 - [Frame update order](frame-update-order.md): where `002507C0` sits in the field frame.
-- UI request router: the UI manager object the
+- [UI request router](../Menus-And-HUD/menus.md): the UI manager object the
   groups update.

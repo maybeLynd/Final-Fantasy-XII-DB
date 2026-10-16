@@ -166,9 +166,9 @@ action is cancelled or reset.
 
 - [Area of effect](area-of-effect.md) - the target entry flags, including bit 10.
 - [Action range](action-range.md) - how the attacker closes in before the first hit.
-- The thirty-two statuses - status bits
+- [The thirty-two statuses](../Status-Effects-And-KO/statuses.md) - status bits
   5 (Confuse), 16, 27 (Berserk) and 28.
-- The R2 modal toggle - the FLEEING mode
+- [The R2 modal toggle](../Controls-And-Input/escape.md) - the FLEEING mode
   behind `01E0C2B8`.
-- The formula step table - the other
+- [The formula step table](../Damage-And-Battle-Formulas/damage-formula.md) - the other
   slots of the recipe.

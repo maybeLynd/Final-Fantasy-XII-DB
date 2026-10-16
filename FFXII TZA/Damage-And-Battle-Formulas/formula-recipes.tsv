@@ -6,7 +6,7 @@ recipe	preview_slots	committed_slots	action_rows	actions	weapon_rows	weapons
 4		60 90 91 110	6	0x0 Cure; 0x4 Cura; 0x6 Curaga; 0xB Curaja; 0x86 Cura Mote; 0x180 Boon	0	
 5		3 111	1	0xE Renew	0	
 6		3 4 61 90 91 112 180	2	0x5 Raise; 0xF Arise	0	
-7	2	62 92 93 94 95 113 170 175 182	56	0x11 Holy; 0x12 Fire; 0x13 Thunder; 0x14 Blizzard; 0x15 Aqua; 0x16 Aero; 0x17 Fira; 0x18 Thundara; 0x19 Blizzara; 0x1A Bio; 0x1B Aeroga; 0x1C Firaga; 0x1D Thundaga; 0x1E Blizzaga; 0x1F Shock; 0x20 Scourge; 0x21 Flare; 0x22 Ardor; 0x23 Scathe; 0x4C Dark; 0x4D Darkra; 0x4E Darkga; 0x7D Dark Mote; 0x7E Aero Mote; 0x7F Aquara Mote; 0x80 Bio Mote; 0x81 Shock Mote; 0x82 Holy Mote; 0x83 Scathe Mote; 0x88 Aeroga Mote; 0x8F Eksir Berries; 0xB6 Painflare; 0xB8 Flash-Freeze; 0xBA Flash Arc; 0xBC Roxxor; 0xC0 Briny Cannonade; 0xC6 Whirlwind; 0xCC Redemption; 0xCE Banish Ray; 0x11B Aerora; 0x11C Aquara; 0x11D Aquaga; 0x11E Quakeja; 0x11F Firaja; 0x120 Blizzaja; 0x121 Aquaja; 0x122 Aeroja; 0x123 Darkja; 0x124 Thundaja; 0x125 Holyja; 0x1BE Piercing Holy; 0x1BF Piercing Firaga; 0x1C0 Piercing Thundaga; 0x1C1 Piercing Blizzaga; 0x1DF S-{87}{8c} Tokamak; 0x1E0 S-{8d}{8a} Cyclotrone	0	
+7	2	62 92 93 94 95 113 170 175 182	56	0x11 Holy; 0x12 Fire; 0x13 Thunder; 0x14 Blizzard; 0x15 Aqua; 0x16 Aero; 0x17 Fira; 0x18 Thundara; 0x19 Blizzara; 0x1A Bio; 0x1B Aeroga; 0x1C Firaga; 0x1D Thundaga; 0x1E Blizzaga; 0x1F Shock; 0x20 Scourge; 0x21 Flare; 0x22 Ardor; 0x23 Scathe; 0x4C Dark; 0x4D Darkra; 0x4E Darkga; 0x7D Dark Mote; 0x7E Aero Mote; 0x7F Aquara Mote; 0x80 Bio Mote; 0x81 Shock Mote; 0x82 Holy Mote; 0x83 Scathe Mote; 0x88 Aeroga Mote; 0x8F Eksir Berries; 0xB6 Painflare; 0xB8 Flash-Freeze; 0xBA Flash Arc; 0xBC Roxxor; 0xC0 Briny Cannonade; 0xC6 Whirlwind; 0xCC Redemption; 0xCE Banish Ray; 0x11B Aerora; 0x11C Aquara; 0x11D Aquaga; 0x11E Quakeja; 0x11F Firaja; 0x120 Blizzaja; 0x121 Aquaja; 0x122 Aeroja; 0x123 Darkja; 0x124 Thundaja; 0x125 Holyja; 0x1BE Piercing Holy; 0x1BF Piercing Firaga; 0x1C0 Piercing Thundaga; 0x1C1 Piercing Blizzaga; 0x1DF S-27 Tokamak; 0x1E0 S-85 Cyclotrone	0	
 8	2	21 31 32 40 64 114	3	0x31 Balance; 0x84 Balance Mote; 0xC8 Gravity Well	0	
 9	0 2	21 31 32 40 190	3	0x32 Warp; 0x89 Warp Mote; 0xC2 Kill	0	
 10	0 2	1 21 31 32 40 115	2	0x44 Death; 0x1BC Death Strike	0	
@@ -58,10 +58,10 @@ recipe	preview_slots	committed_slots	action_rows	actions	weapon_rows	weapons
 56		49 144	1	0xB0 Numerology	0	
 57		181	1	0xB1 Libra	0	
 58		0 14 47 196	1	0xB2 Poach	0	
-59		47 145	1	0xB3 {86}{85}{85}{85} Needles	0	
+59		47 145	1	0xB3 1000 Needles	0	
 60		146	1	0xB4 Traveler	0	
 61	18	147	1	0xB5 Gil Toss	0	
-62			13	0x106 Belias; 0x107 Mateus; 0x108 Adrammelech; 0x109 Hashmal; 0x10A C{81}chulainn; 0x10B Famfrit; 0x10C Zalera; 0x10D Shemhazai; 0x10E Chaos; 0x10F Zeromus; 0x110 Exodus; 0x111 Ultima; 0x112 Zodiark	0	
+62			13	0x106 Belias; 0x107 Mateus; 0x108 Adrammelech; 0x109 Hashmal; 0x10A Cúchulainn; 0x10B Famfrit; 0x10C Zalera; 0x10D Shemhazai; 0x10E Chaos; 0x10F Zeromus; 0x110 Exodus; 0x111 Ultima; 0x112 Zodiark	0	
 63	2	62 92 93 94 95 89 113 170 175 182	1	0x11A Breakart Pentagram	0	
 64	5 6 7 8 9 10 22 33 34 41	28 76 96 97 98 99 125 165 166 171 176 182	0		58	class 0: 57 (unnamed rows); class 9: 1 (unnamed rows)
 65	16 6 25 33 34 41	77 102 97 95 113 170 175 182	85	0x147 Darkness; 0x148 Ice Break; 0x149 Water Spout; 0x14A Shining Ray; 0x14B Tremor; 0x14C Tempest; 0x14D Sandstorm; 0x14E Pyromania; 0x153 Fangs; 0x154 Sonic Fangs; 0x155 Crushing Fangs; 0x156 Screech; 0x157 Scream; 0x158 Wail; 0x159 Eerie Soundwave; 0x165 Aqua Bubbles; 0x166 Mythril Bubbles; 0x167 Gust; 0x168 Gale; 0x169 Remora Strike; 0x16A Breath; 0x16B White Breath; 0x16C Stone Breath; 0x16D Poison Breath; 0x16E Ember Breath; 0x16F Fireball; 0x170 Mucus; 0x171 Bile; 0x172 Water Cannon; 0x173 Water Ray; 0x174 Blast Wave; 0x175 Shock Wave; 0x176 Pulsar Wave; 0x181 Jump; 0x182 Mach Punch; 0x183 Goblin Attack; 0x184 Smite of Rage; 0x186 Spinkick; 0x187 Stomp; 0x18A Spiral Cut; 0x18B Spike Cutter; 0x18C Heave; 0x18D Mind Lash; 0x18E Snake Lash; 0x18F Sonic Turn; 0x190 Sonic Spin; 0x191 Flank Attack; 0x192 Stone Stomp; 0x193 Flatten; 0x194 Tail Swipe; 0x195 Tail Spear; 0x196 Screwtail; 0x19E Maser Eye; 0x1A2 Rage; 0x1A3 Bunny Slam; 0x1A4 Blitz Tongue; 0x1A5 Wing Spear; 0x1A6 Discharge; 0x1A9 Bone Toss; 0x1AA Choco-Comet; 0x1B5 Flurry Kick; 0x1B6 Power Stun; 0x1B9 Flame Breath; 0x1BA Power Spin; 0x1C8 Ground Shaker; 0x1C9 Shockstorm; 0x1CA Bushfire; 0x1CC Crown; 0x1CD Sword Dance; 0x1D1 Slice Thrice; 0x1D2 Ultimate Illusion; 0x1D5 Dash; 0x1D7 Circle of Judgment; 0x1D8 Sentence; 0x1D9 Guilt; 0x1DA Innocence; 0x1DB Eviscerator; 0x1DC High Jump; 0x1DD Nectar Volley; 0x1DE Pollen Dance; 0x1E1 Gatling Gun; 0x1E5 Pummel; 0x1E7 Mach Wave; 0x1EC Tree of Sephira; 0x1F0 Gigaflare Sword	0	
@@ -81,10 +81,10 @@ recipe	preview_slots	committed_slots	action_rows	actions	weapon_rows	weapons
 79		11 187	14	0x12A Wall; 0x135 Magick Barrier; 0x136 Force Barrier; 0x137 Greater Barrier; 0x139 Battle Cry; 0x13A Shift; 0x13B Saber; 0x13C Mana Spring; 0x13D Enrage; 0x13E Chain Magick; 0x140 Limit Break; 0x141 Unleash; 0x142 Perfect Defense; 0x199 Chain Reaction	0	
 80		11 188	0		0	
 81			0		0	
-82		17 181	5	0x12B Lv.{87} Sleep; 0x12C Lv.{88} Disable; 0x12D Lv.{89} Break; 0x12E Lv.{8a} Reverse; 0x12F Prime Lv. Death	0	
+82		17 181	5	0x12B Lv.2 Sleep; 0x12C Lv.3 Disable; 0x12D Lv.4 Break; 0x12E Lv.5 Reverse; 0x12F Prime Lv. Death	0	
 83		157 60 92 93 94 95 113 170 175 182	4	0x188 Self-Sacrifice; 0x197 Self-Destruct; 0x198 Mass-Destruct; 0x1B7 Kamikaze	0	
-84		158	6	0x130 Restore; 0x131 Renew; 0x15A Joyous Soundwave; 0x1C6 Breath of Life; 0x1CF Fly{a7} Enkidu{99}; 0x1E8 Azure Vortice	0	
-85		159	4	0x132 Focus; 0x133 Meditate; 0x1D0 Now{a7} Enkidu{99}; 0x1E9 Crimson Vortice	0	
+84		158	6	0x130 Restore; 0x131 Renew; 0x15A Joyous Soundwave; 0x1C6 Breath of Life; 0x1CF Fly, Enkidu!; 0x1E8 Azure Vortice	0	
+85		159	4	0x132 Focus; 0x133 Meditate; 0x1D0 Now, Enkidu!; 0x1E9 Crimson Vortice	0	
 86		0 160	1	0x19D Dimensional Rift	0	
 87		11 161	2	0x13F Growing Threat; 0x161 Mystery Waltz	0	
 88		0 162	1	0x144 Cannibalize	0	

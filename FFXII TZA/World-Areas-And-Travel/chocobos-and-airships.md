@@ -24,7 +24,7 @@ on the airship's deck. Now and then a monster attacks the airship in flight.
 
 ### The riding state
 
-Riding is held in the battle-state block at `[02EBF190]` (the block's field map):
+Riding is held in the battle-state block at `[02EBF190]` ([the block's field map](../Party/party-data.md)):
 
 | Field | Meaning |
 |---|---|
@@ -57,7 +57,7 @@ riding into a town, or while bit 2 or 3 is set, keeps the bit but leaves chocobo
 is ladder = 1.
 
 The area music follows the ladder: the field music select `00261F90` plays track `0x5B` when the
-ladder is 1 and track `0x5A`, the chocobo theme, when it is 2 (music);
+ladder is 1 and track `0x5A`, the chocobo theme, when it is 2 ([music](../Sound-And-Music/music-table.md));
 the dismount task stops that track again.
 
 ### The verbs
@@ -71,7 +71,7 @@ the dismount task stops that track again.
 | `getchocobomode()` | `0x407` | `00355910` | ladder = 2 |
 | `enable_by_chocobo(v)` | `0x40A` | `0033F650` | bit 0 of byte `+0x0B` of the calling actor = `v != 0` |
 | `btlAtelSetChocoboTurboMode(v)` | `0x302F` | `0050F8A0` | `00303F00(v != 0)` |
-| `setmapjumpgroupflag(id)` / `releasemapjumpgroupflag(id)` | `0x430` / `0x431` | `0034EE20` / `0034DD90` | `0032AB60(id, 1)` / `(id, 0)`: a primary persistent flag (persistent flag banks) |
+| `setmapjumpgroupflag(id)` / `releasemapjumpgroupflag(id)` | `0x430` / `0x431` | `0034EE20` / `0034DD90` | `0032AB60(id, 1)` / `(id, 0)`: a primary persistent flag ([persistent flag banks](../Story-Events-And-Hunts/story-flags.md)) |
 | `setflystatus(v)` | `0x1E0` | `00342E50` → `0026A7F0` | bit 0 of the actor's secondary context `+0x151`, and `+0x152` 1 ↔ 2 |
 
 No instruction in the image tests bit 0 of the actor byte `+0x0B` with an immediate mask; the byte
@@ -278,9 +278,9 @@ Counts over the 1,114 `us` zone and event scripts. Five scripts spend the Gysahl
 - [Zone changes and mapjump](zone-changes-and-mapjump.md): the jump the flights and the deck use.
 - [Save and teleport crystals](save-and-teleport-crystals.md): the crystal's dismount.
 - [Save data fields](../Saving-Loading-And-Settings/save-data-fields.md): the transition record that carries `+0x5B04`.
-- The battle-state block field map: the block the riding fields sit in.
-- Persistent flag banks: flags 115 and 94.
+- [The battle-state block field map](../Party/party-data.md): the block the riding fields sit in.
+- [Persistent flag banks](../Story-Events-And-Hunts/story-flags.md): flags 115 and 94.
 - [Actor record](../Characters-And-Objects/actor-record.md): the roster entries and the actor byte `+0x0B`.
-- The music control file and the BGM stream: tracks `0x5A` and `0x5B`.
+- [The music control file and the BGM stream](../Sound-And-Music/music-table.md): tracks `0x5A` and `0x5B`.
 - [Area flags](area-flags-navimapdata.md): the town bit the ladder ranks above riding.
 - [Game over](game-over.md): what a party wipe does.

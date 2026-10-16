@@ -69,7 +69,7 @@ btlAtelOpenTreasureMessage(id); sethpmenu_436(1, 5); talktreasureafter(id); btlA
 
 `setuptreasure` (`0x02BE`, begin `00354400`) places the chest actor and rolls its presence through
 `002FAED0`: no chest when the opened flag `0032AA60(record[9])` is set, otherwise a chest when
-`rand % 100` is below byte `+0xA` (script name bindings).
+`rand % 100` is below byte `+0xA` ([script name bindings](script-name-bindings.md)).
 
 `talktreasure(ref)` (`0x02BF`, begin `00355830`) resolves the chest record through the reference,
 has the controlled character approach it (`00269090`), stops its movement (`0026D6D0`) and disarms
@@ -107,7 +107,7 @@ nine slots at `[02EBF190] + 0x5A48` is written into a free index 4 to 8 of a sta
 activated with `00316DF0(record, 0)`. `removepartymember(sel)` (`0x0354`) clears the slot through
 `00328B20` and deactivates with `00323540`. The guest verbs (`addguestbattlemember`,
 `removeguestbattlemember`) and the treasure flag verbs are on [party verbs](party-verbs.md) and
-script name bindings.
+[script name bindings](script-name-bindings.md).
 
 Activation `00316DF0(record, arg)` acts only on a record whose flags bit 4 is clear. Unless arg bit
 1 is set while `00236740()` is 0, it first calls `00317480(record)` and, when `00236740()` is

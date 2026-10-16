@@ -28,7 +28,7 @@ puts it at the entrance the party came in by.
 
 The field frame `00234590` checks the party every frame and, when it is wiped, posts mode `0x0B`
 through `0035C7A0(0x0B)` and `0035C7B0(0x0B, 1)`; the four wipe predicates and the post are on
-when the game is over.
+[when the game is over](../Status-Effects-And-KO/ko-and-game-over.md).
 `0035C7B0` refuses while a request is already pending: `022C83E8` bit 8, a mode `02092730` of
 `0x0B` or `0x18`, or the request byte `0215F1A0`. Otherwise it runs five steps:
 
@@ -203,7 +203,7 @@ in `0208D320`, bit 3 those in `0208D324`, and `0x10` also removes `0x544`.
 
 `00237CA0` builds the two groups at start-up: status `i` goes to `0208D320` when its status-table
 row has bit 13 of the word at `+6`, else to `0208D324`; KO's row carries `0xA0DF`, so `healall(0)`
-revives (the thirty-two statuses). The
+revives ([the thirty-two statuses](../Status-Effects-And-KO/statuses.md)). The
 crystal also calls `btladjustsystem(1)` (`0x517`, `0034AAB0` to `002FEAC0`), which with bit 0 set
 clears `022C3178` bit 0, zeroes `022C3170`, `022C3160` and `022C3158` and sets `022C3168` to -1.
 
@@ -312,11 +312,11 @@ actors' halt class `0x16`; `022C3158` to `022C3178` after a crystal touch.
 
 ## Related
 
-- When the game is over: the four wipe predicates and the post.
+- [When the game is over](../Status-Effects-And-KO/ko-and-game-over.md): the four wipe predicates and the post.
 - [Zone changes](zone-changes-and-mapjump.md): the transition record, `00314440`, the busy mask and the file table.
 - [Save and teleport crystals](save-and-teleport-crystals.md): the heal, the save screen and the `-2` alias.
 - [Save data fields](../Saving-Loading-And-Settings/save-data-fields.md): slot 0 and the autosave.
-- UI request router: the area controller's messages.
-- The thirty-two statuses: KO's row and the status groups.
+- [UI request router](../Menus-And-HUD/menus.md): the area controller's messages.
+- [The thirty-two statuses](../Status-Effects-And-KO/statuses.md): KO's row and the status groups.
 - [Boss fights](../Battle-Actions/boss-fights.md): the jump lock that keeps a party in a fight.
 - The screen-fade layers: `002EFA70`.

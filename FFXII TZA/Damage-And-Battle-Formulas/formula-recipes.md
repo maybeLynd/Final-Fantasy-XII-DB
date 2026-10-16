@@ -42,8 +42,8 @@ Besides recipe 0, shipped actions use 89 recipes and weapons 11, and 8 recipes a
 | `weapon_rows` | how many weapon rows (equipment classes 0-17, `battle_pack.bin` section 13) have this recipe byte `+0x19` |
 | `weapons` | those rows by equipment class, with up to three named items per class |
 
-Names are the US texts. In them `-` and `'` replace the text codes `{A5}` and `{AC}`, and the formatting
-prefix of the Reserve rows is dropped.
+Names are the US texts, with the text's punctuation and digit codes written as the characters they show, and
+the formatting prefix of the Reserve rows dropped.
 
 ## Related
 

@@ -103,5 +103,5 @@ From the decompiled shipped scripts (all 2,990 `us` scripts):
 - [Action commit](action-commit.md) - the idle-unit queue the freeze stops.
 - [Group completion and respawn](../Enemy-Spawning/enemy-respawning.md)
   - the spawn side of the groups.
-- The R2 modal toggle - the FLEEING mode, which
+- [The R2 modal toggle](../Controls-And-Input/escape.md) - the FLEEING mode, which
   boss fights do not switch off.

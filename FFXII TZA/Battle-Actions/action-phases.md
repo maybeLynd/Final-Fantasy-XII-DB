@@ -179,5 +179,5 @@ stoned units (row `+0x2C` bits 6/7) whose target is in that state, it also calls
 - [Area of effect](area-of-effect.md) - the targets built in phase 9.
 - [Quickenings and summons](quickenings-and-summons.md) - the scene path of phases 9 and 10.
 - [Combos](combos.md) - the extra hits that re-enter this sequence.
-- The thirty-two statuses - status bits
+- [The thirty-two statuses](../Status-Effects-And-KO/statuses.md) - status bits
   15, 20, 24 and 27.

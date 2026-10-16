@@ -194,6 +194,6 @@ The spawn record at unit `+0x6A0`:
 - [Battle message list](../Battle-Actions/battle-message-list.md) - the texts of events `0x2D`-`0x34`.
 - [Loot drops](../Rewards-EXP-Gil-And-Loot/loot-drops.md) - the drop fields of the same enemy
   record.
-- Evaluation context - the merged effect bits.
+- [Evaluation context](damage-formula.md) - the merged effect bits.
 - [Which roll uses which generator](../Random-Numbers/which-roll-uses-which-generator.md) -
   the MT19937 stream the roll draws from.

@@ -1,0 +1,143 @@
+---
+title: "Screen layouts: the UISize layout files, every key they set, the loader that binds each key to its cell, and the screens that read them"
+kind: "format"
+category: "Menus and HUD"
+summary: "The UISize.json and UISize_sd.json layout files: which one the game loads and the 1920 x 1080 frame it lays out in, the loader that binds 226 keys to their cells one by one, how a missing key becomes 0, the editor schema shipped beside them, the keys no code reads, the one key code overwrites, and for every key its cell, shipped value and the screens and functions that read it, listed in screen-layouts.tsv."
+addresses: ["001C6C00", "001CA600", "001AF470", "001FF4F0", "00200B80", "0024B120", "00184660", "001B24B0"]
+---
+
+# Screen layouts: the UISize layout files, every key they set, the loader that binds each key to its cell, and the screens that read them
+
+## What the player sees
+
+- Every menu, window, gauge and text line sits where the layout file puts it: list heights, offsets, colours of the
+  HP gauges, fade band heights, the map overlay's scale and colour.
+- The layout fits the screen at any resolution, because positions are given in a fixed 1920 x 1080 frame.
+
+## Where it comes from
+
+### The files
+
+| File (`jsondata/uisize/`) | Size | Keys |
+|---|---:|---:|
+| `uisize.json` | 7,478 bytes | 231 |
+| `uisize_sd.json` | 4,609 bytes | 164, all also in `uisize.json` |
+
+Each is one JSON object of `"Key": number` pairs, with a trailing comma before the closing brace. The image names them
+`JsonData/UISize/UISize.json` (`008F9EC0`) and `JsonData/UISize/UISize_sd.json` (`008F9EE0`).
+
+`parametersmanageruisizestruct.csv` (10,350 bytes) ships in `jsondata/`: the layout editor's schema, with 36 section
+labels and 229 sliders, each with a name, decimal places, minimum, maximum and a `disable` flag. The image holds no
+string of its name, so the game does not read it.
+
+### Which file is loaded
+
+`001C6C00` (reached from `001B1580`, `001B159B`) loads the layout once:
+
+1. It returns unless the byte `01DF6E48` or `01F81282` is set (`001C6C20`-`001C6C30`).
+2. With the document `01F81318` already parsed, it goes straight to the loader (`001C6C44`).
+3. Otherwise it reads the byte `[01F811E0]` (`001B1620`, `001C6C4A`): set loads `UISize.json` (`001C6C83`), clear loads
+   `UISize_sd.json` (`001C6D54`). Then it parses the file into `01F81318` (`00200BF0`) and runs the loader `001CA600`.
+
+The byte `[01F811E0]` comes from `[01E0280C]`, shipped 1, through `00184660` and `001B24B0` at start-up
+(`0022A113`-`0022A120`). The same call sets the layout frame `01E0C1D8` x `01E0C1DC` to 1920 x 1080 (`0024B124`,
+`0024B12E`), or 512 x 448 when clear. So the shipped game loads `UISize.json` into a 1920 x 1080 frame.
+
+## Layouts
+
+The loader `001CA600` binds every key by its own code, with no table (1,602 instructions):
+
+1. It stops at once if `mScrollListHeight` is absent (`001CA604`-`001CA621`).
+2. For each key it looks the name up (`001FF740`), reads it as an integer (`00200B80`) or a float (`00200B50`), and
+   stores it through a pointer slot (`mov rcx, [rbx + slot]` / `mov [rcx], eax`).
+3. The slots are `[01F811E8] + 0x3B00` onwards, filled by `001AF470` (`001AF477`-`001B00E9`), and three more at
+   `[01F81200] + 0x2F8`-`+0x308`, filled by `001B44A0` (`001B4551`-`001B4574`), for the three float keys.
+
+| Count | |
+|---|---:|
+| keys bound | 226 |
+| read as integers | 223 |
+| read as floats (`FontItalicVal`, `FontItalicScale`, `FontShadowAlphaMuti`) | 3 |
+| file keys never bound (`NA_HintMessageIcon_PosX/Y`, `NA_HintMessage_PosX/Y`, `mBtlCommandScrollTableOffsetX`) | 5 |
+| slots with no key (cells `01F2CA94`-`01F2CAA0`) | 4 |
+
+No two keys share a cell, and every cell is in `.data`.
+
+```struct JsonBoxValue base=record size=0x10
++0x00  u32     tag      1 integer, 2 double, 3 object, 6 absent (00200BE0, 001FF5E1)
++0x08  u32[2]  payload  pointer to the value or the child map (00200B87, 00200B93)
+```
+
+An integer read returns the integer for tag 1, the truncated double for tag 2, and 0 otherwise (`00200B9C`); a float
+read converts either and returns 0.0 otherwise (`00200B75`).
+
+## Shipped data
+
+| | |
+|---|---:|
+| keys read by some screen | 213, in 124 functions, 481 read sites |
+| keys bound but read by nothing | 13: the ten `mCursor{Right,Down,Left,Up,Open}{X,Y}`, `BattleLogBlackBandH`, `LicenseBlackBandH`, `FontShadowAlphaMuti` |
+| shipped values outside their schema range | none, in either file |
+| keys `uisize_sd.json` lacks | 63 of the 226 bound |
+
+| Screen | Keys |
+|---|---:|
+| battle HUD: help line, target window, gauges, damage and EXP numbers, party window | 59 |
+| message windows | 27 |
+| battle menu ([Battle menu](battle-menu.md)) | 22 |
+| Gambits ([Gambits screen](gambit-screen.md)) | 18 |
+| menus: lists, scrolling, help, button signal | 15 |
+| World Map ([Map screens](map-screens.md)) | 11 |
+| dialogs ([Dialogs](dialogs.md)) | 10 |
+| map overlay, `TrackMap*` | 8 |
+| License Board ([License Board screen](license-board-screen.md)) | 6 |
+| others: window frames, menu bands, Clan Primer, portraits, pause menu, location map, text, status window, screen mask, item screen, auto window, shop | 37 |
+
+The cells' values in the image itself are the 512 x 448 layout: for 157 of the 163 bound keys `uisize_sd.json` holds,
+the cell starts at that file's value.
+
+### Columns of screen-layouts.tsv
+
+| Column | Meaning |
+|---|---|
+| `key` | the key name, as the loader looks it up (`008FB678`-`008FCBF0`) |
+| `file` | which shipped files hold it |
+| `cell` | the global the loader stores it in |
+| `type` | integer or float read, and the widths readers use |
+| `shipped_value` | the value in `uisize.json` |
+| `readers` | each reading function and its read sites |
+| `screen` | the screen the readers belong to |
+| `uisize_sd_value` | the value in `uisize_sd.json`, or `-` |
+| `cell_static_init` | the cell's value in the image before loading |
+| `loader_read_site` | the loader instruction that names the key; the typed read follows it |
+| `slot` | the pointer slot it is stored through |
+| `csv_label` | the schema section it sits under |
+| `csv_range` | the schema minimum, maximum and decimal places |
+| `reader_widths` | the access widths the readers use: u8, u16 or u32 |
+
+## Loader behaviour
+
+1. A key missing from the loaded file is inserted as absent (tag 6, `001FF5E1`) and stored as 0. Loading
+   `uisize_sd.json` would therefore set its 63 missing keys to 0, not leave their built-in values.
+2. The loader never checks a value against the schema's range.
+3. Every reader reads its cell directly by address (481 rip-relative sites); none goes through the
+   pointer slots.
+4. `EXPLPNumOffsetX` is the one key code writes: `0028B24A` overwrites it with `ExpNumOffsetX` or `LpNumOffsetX` before
+   its read at `0028B5F1`, so its file value never reaches the screen. Its schema row has `disable` set.
+5. The `disable` flag is set on six schema rows (`mNumEffectOffsetX1`, `NumEffectOffsetY1`, `mExpEffectOffsetY`,
+   `EXPLPNumOffsetX`, `FontBaseWidth`, `FontBaseHeight`); five of them are loaded and read as usual.
+
+## Modding notes
+
+- Edit `uisize.json`; `uisize_sd.json` is not loaded by the shipped game.
+- Keep every key the loader binds in the file, because a missing key sets its cell to 0.
+- Values are positions and sizes in the 1920 x 1080 frame; colour keys are 0-255.
+- The three float keys accept fractions; every other key is truncated to an integer.
+
+## Related
+
+- [Battle menu](battle-menu.md) - the battle screen keys.
+- [Map screens](map-screens.md) - the `TrackMap*` keys.
+- [Dialogs](dialogs.md) - the dialog keys.
+- [Fonts](fonts.md) - the text keys.
+- [Menus](menus.md) - the menu screens.

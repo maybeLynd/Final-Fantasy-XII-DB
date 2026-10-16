@@ -143,7 +143,7 @@ The applier writes only to the records it is given and the globals named in the 
 - [Area of effect](area-of-effect.md) - the target entry flags `00307300` fills from `flagsB`.
 - [Combos](combos.md) - `flagsB` bit 1.
 - [Action phases](action-phases.md) - where the resolution runs.
-- The thirty-two statuses - the status
+- [The thirty-two statuses](../Status-Effects-And-KO/statuses.md) - the status
   numbers of the masks.
-- The status write
+- [The status write](../Status-Effects-And-KO/status-changes.md)
   - what `0030E360` does with each add and remove.

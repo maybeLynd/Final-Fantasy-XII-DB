@@ -1,0 +1,202 @@
+---
+title: "License Board screen: the board chooser, the square grid and its states, the change sweep, preview, and obtaining a license"
+kind: "system"
+category: "Menus and HUD"
+summary: "How the Licenses screen opens on a member's board or the board chooser, how the grid is built from the board file plus one row and column with random tile variants, the 0x38-byte square and its state bits, how owned, reachable and affordable squares are worked out, the corner shapes, the change sweep with its 32-square batch, the board preview, the scripted cursor moves, the confirm texts, and the purchase with its animation and notices."
+addresses: ["0055B3F0", "0055BFF0", "0055B310", "0055DD70", "0055CD40", "00557DB0", "0055D978", "0055F3E0"]
+---
+
+# License Board screen: the board chooser, the square grid and its states, the change sweep, preview, and obtaining a license
+
+## What the player sees
+
+- Licenses asks for a character, then shows that character's license board; a character without a board first picks
+  one of the twelve boards ("Choose this license board?").
+- Owned squares are lit, the squares next to them can be obtained, and the rest of the board stays dark.
+- Obtaining a square asks for confirmation, plays an effect, lights the neighbours one after another, and may
+  announce a new Esper, a new Mist ability or the Second Board.
+- From the board chooser, a board can be previewed without choosing it.
+
+## How it works
+
+### Opening
+
+The member-pick widget `00560910` opens one of two screens (`00560910` messages 2, 12 and 20):
+
+| The member has | Screen | Built by |
+|---|---|---|
+| a board | the board screen `00561390` with the view `0055CD40` | `00561300(self, 0, 0xFF)` (`00560C98`) |
+| no board | the chooser window `00558FB0` with the chooser `00557DB0` | `00558F20` (`00560C89`) |
+
+The board screen loads `lic_bk`, `cm2_win_c`, `lic_8_c`, `lic_8_c2` and `lic_8_c3`, and the per-node art table into
+`[02CA9670]` (`005615C0`-`00561765`).
+
+### The board chooser
+
+The chooser steps through the twelve boards with left and right (`00557B90`), showing each board's name
+(`menu_command.bin` `0x3ED` + board) and description (`menu_message.bin` `0x838` + board) in the description box
+([Dialogs](dialogs.md)). Its stage byte `+0x37D` runs the opening (`00557DF0`):
+
+1. The first visit to the chooser shows "You must choose a license board in order to obtain licenses. ..." (`0x836`)
+   once per save, and sets the save-wide flag `0xBB` (`00252D10`).
+2. Confirm asks "Choose this license board?" (`0x835`, `00558607`).
+3. Yes plays three cues and stores the board: `00323740(row, board)` for a first board, or `003236F0(row, board)` for
+   the second (`00558630`-`00558668`). [License Board](../Items-Equipment-Shops-And-Licenses/license-board.md) has the
+   two board slots.
+
+### Building the grid
+
+`0055B3F0` picks the board shown, the member's stats byte `+0x1C5` (`003236B0`, `0055B446`), and sizes the view from
+the board file: width + 1 by height + 1 (`0055B484`-`0055B4A2`). The extra column and row are always empty. It fills a
+tile byte per square with `table[(rand() & 3) + 4 x ((col + row) & 1)]` (`0055B4E0`-`0055B517`), the table being
+`00 02 04 06 01 03 05 07`, so even and odd squares draw from different sets of variants.
+
+`0055B560` allocates the squares, 0x38 bytes each (`0055B63C`), and runs the fill `0055BFF0`. For each square inside
+the board it reads the board cell, then the license node's record (`0035D330(0x19, node)`, `0055C0FA`-`0055C15C`) and
+the member's answer for the node (`00323600`, which calls `00323D10`; [Licenses](../Items-Equipment-Shops-And-Licenses/licenses.md)).
+
+- A Quickening square shows the member's own Quickening in the order bought, from `00D230B0` and bank-8 words
+  `row x 3 + 0x53` (`0055C16F`-`0055C247`).
+- An Esper square shows the Esper's name once obtained (`0055C260`-`0055C284`).
+- The ten Gambit Slot squares (nodes 266-275) are left out unless the Gambits command is available
+  (`00283730(0x4B9)`, `0032A8A0(0x4009)`, `0055C34E`-`0055C38B`).
+
+```struct LicenseBoardSquare base=record size=0x38
++0x00  u32[2]  name      the square's name string
++0x08  u16     node      license node, 0xFFFF for an empty or hidden square
++0x0B  u8      rule      node byte +0x06: 1, 2 or 3 choose the confirm text
++0x0C  u16     lpCost    node byte +0x04
++0x0E  u16     artNode   row of the art table [02CA9670]
++0x10  u32[2]  kindText  the kind of license, Weapon to Gambit (0x4280-0x4289)
++0x18  u32     state     bits 0-3 corner shape, 4-7 state, 8-11 state shown, 12-15 purchase flags
++0x20  u8      col       column
++0x21  u8      row       row
++0x22  u8      phase     0 idle, 1 effect armed, 2 countdown, 3 effect playing (0055F010)
++0x23  u8      pending   the state the transition will show
++0x24  u8      tile      tile variant 0-7
++0x25  u8      alpha     0x80 when built
++0x26  u8      fadeLeft  fade counter
++0x27  u8      fadeLen   fade length
++0x28  u8      fadeOn    fade running
++0x29  u8      fadeIn    fade direction
++0x2A  i16     countdown frames before the pending state shows
++0x2C  u32     effect    the playing effect (003B2D80)
++0x30  u32     category  node byte +0x05; 0x1E is the Second Board
+```
+
+### Square states
+
+The member's answer for the node sets the purchase flags through the table at `0055C504`:
+
+| Answer | Flags |
+|---|---|
+| 0, can be obtained | bit 14 when the cost is at most the member's LP (`0055C492`), and bit 15 |
+| 1, owned | bits 12 and 13, state 5 (`0055C472`) |
+| 2 | bit 15 unless bit 12 |
+| 3, 4, 5, 8 | the square is emptied (`0055C4CA`) |
+
+`0055E090` then turns bit 15 into bit 12 on each square next to an owned one. So bit 13 means owned, bit 12
+obtainable now, bit 14 affordable and bit 15 obtainable later. The state nibble, bits 4-7, takes four values:
+
+| State | Meaning | Set by |
+|---:|---|---|
+| 0 | empty | the fill |
+| 1 | a square not yet next to an owned one | `0055E230` |
+| 4 | next to an owned square | `0055E3F0(view, 4, owned)` |
+| 5 | owned | answer 1, or the purchase (`0055F641`) |
+
+Squares in states 4 and 5, and Esper and Second Board squares in state 1, are drawn with their art (`0055BAC0`). A
+state-4 square shows its LP cost when zoomed in.
+
+### Corner shapes
+
+`0055DEA0` gives each square a corner piece in bits 0-3 from the squares to its left, above and above-left
+(`0055DF32`-`0055DF94`). It looks the three tests up in the 2 x 7 table at `00D230F8`, using the second row when the
+square itself is empty, and stores the entry plus 1. `0055AE80` draws the piece half a cell offset, so the grid of
+squares also forms the grid of joins between them.
+
+### The change sweep
+
+The sweep `0055B310` walks the squares and finds those whose state differs from the state shown
+(`0055B361`-`0055B36C`):
+
+1. With the view's collect bit set, it lists up to 32 changed squares at `+0x308` (`0055B380`-`0055B390`).
+2. Without it, it copies each state into the state shown at once (`0055B398`-`0055B3A6`).
+
+After a purchase, `0055DD70` sets the collect bit, runs the fill and gives each listed square a transition
+(`0055DDC6`-`0055DE80`): a newly reachable square shows state 4 after 0x2E frames with an effect, and an emptied
+square fades out. A square past the 32nd keeps its old look until the next sweep. `0055F010` runs the transitions
+every frame.
+
+### Preview
+
+The chooser's preview control closes it with the board in hand, and the window opens the board screen with the
+preview flag (`005590E3`, `00557B90`). In the view (`+0x570` bit 10, `0055CEB2`):
+
+- the board shown is the previewed one (`0055B436`);
+- the cursor starts on Essentials, node `0x1F` (`0055E600`);
+- obtaining squares and changing members are refused with sound 5, and the board switch is ignored (`0055C740`).
+
+Leaving the preview reopens the chooser on the same board (`005614A1`).
+
+### Scripted cursor moves
+
+Two script verbs move the view's cursor for lessons: `00560070` (from `00511F50`) walks it to a node, one injected
+direction step at a time (`002D66A0`), and `0055F740` (from `00511FE0`) marks the move done after a purchase. The
+mover is `0055AA00`, on `+0x563`.
+
+### Obtaining a license
+
+1. The confirm button (`01E0C2A0`) on a square opens its detail panel (`0055A1F0`); the cancel button (`01E0C2A4`)
+   closes it.
+2. Confirm again sends take-square (`0x8001`) to the view (`0055D617`):
+   - the owned Second Board square, when the member has no second board yet (`00323630`), closes the board and
+     opens the chooser for the second board (`0055D633`-`0055D6E5`);
+   - any other owned square, or one that cannot be obtained yet, plays sound 5;
+   - an obtainable square the member cannot afford shows "Insufficient license points." (`0xCD9`, `0055D709`);
+   - an obtainable, affordable square asks for confirmation.
+3. The question depends on the square (`0055D73A`-`0055D774`):
+
+   | Square | Question (`menu_message.bin`) |
+   |---|---|
+   | rule 1 | "Only one character can obtain this license. Obtain {name}?" (`0x861`) |
+   | rule 2 (Quickening) | "Each character can obtain up to three quickening licenses from those available on the board. Learn {name}?" (`0x863`) |
+   | rule 3 (Esper) | "Only one character can obtain the license for this Esper. Obtain {name}?" (`0x864`) |
+   | Second Board | "You will be unable to return to the License menu until you confirm your new board. Proceed anyway?" (`0x88D`) |
+   | any other | "Obtain {name}?" (`0x860`) |
+
+4. Yes reaches `0055D978`. It records the node taken in bank 8, then obtains it with `003235C0(row, node, 1)`
+   (`0055DA6E`), which calls `00323910` and charges the LP. This is the only call of `003235C0`.
+5. `0055F3E0` then runs the purchase stages on `+0x55E`: it pans to the square, lights it (`0055F641`), runs the
+   sweep (`0055DD70`), waits for the transitions, and shows the notices.
+
+| Notice (`listhelp_license.bin`) | When |
+|---|---|
+| "{name} has learned a new Mist ability!" (`0x426C`) | the member's Mist count grew (`+0x570` bit 5) |
+| "The character can now summon Espers under the Mist command in the Battle Menu." (`0x4269`) | the first Esper obtained |
+| "The character can now perform quickenings under the Mist command ..." (`0x426A`) | the first Quickening obtained |
+| "The license for the Esper {name} has been added to the board!" (`0x426B`) | when the board opens with a new Esper square (`0055E9E0`) |
+| "The Second Board license has been added to the license board!" (`0x428A`) | the same, for the Second Board square |
+
+Obtaining the Second Board ends with the chooser opening for the member's second board (`0055F3E0` stage 4).
+
+## Shipped data
+
+| | |
+|---|---|
+| boards | 12, each 24 x 24 squares in the file, 25 x 25 on screen (625 squares, 49 of them the empty border) |
+| Gambit Slot squares | 10 on each board, 120 in all |
+
+## Modding notes
+
+- The view is the board file plus one row and column; a larger board needs `+0x559`/`+0x55A` to fit a byte.
+- The screen tests LP against the menu record's `+0xB0` (`0055C496`), and the purchase charges the member's stats
+  record.
+- One purchase animates at most 32 changed squares; the rest change without an effect.
+
+## Related
+
+- [License Board](../Items-Equipment-Shops-And-Licenses/license-board.md) - the board file and the two board slots.
+- [Licenses](../Items-Equipment-Shops-And-Licenses/licenses.md) - the node records and what obtaining one does.
+- [Dialogs](dialogs.md) - the description box and the confirm and notice boxes.
+- [Menus](menus.md) - the Licenses entry.

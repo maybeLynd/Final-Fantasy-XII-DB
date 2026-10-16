@@ -83,9 +83,9 @@ The ids fall into these groups (full rows in the `.tsv`):
 
 - [Action phases](action-phases.md) - the path ordinary actions (ids up to `0x21E`) take instead.
 - [Action commit](action-commit.md) - the two accepted id ranges.
-- The thirty-two statuses - the statuses
+- [The thirty-two statuses](../Status-Effects-And-KO/statuses.md) - the statuses
   the status orders add and remove.
-- Gambits and enmity - the AI order
+- [Gambits and enmity](../Enemy-AI-And-Gambits/gambits.md) - the AI order
   lists that issue these orders and the per-party-member table of `0x4163`/`0x4164`.
 - [Battle locomotion](../Movement-And-Pathfinding/battle-locomotion.md)
   - the movement goals of the move orders.

@@ -271,5 +271,5 @@ the Henne Mines (Site 7) and Giruvegan (Hall of Worth, Throne of Veiled Gods).
 - [Kill chain: chain count, chain level, the chain coin and resets](../Rewards-EXP-Gil-And-Loot/kill-chain.md)
 - [Battle runtime mode ladder](../Engine-Core/party-control-modes.md)
 - [The time-stop registry](../Engine-Core/time-stop-and-freeze.md)
-- The thirty-two statuses
+- [The thirty-two statuses](../Status-Effects-And-KO/statuses.md)
 - [The save payload field map](../Saving-Loading-And-Settings/save-data-fields.md)

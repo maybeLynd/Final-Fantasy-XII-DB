@@ -1,0 +1,144 @@
+code	name	registries	band	aliases	channel_node	key_node
+0	Empty	channel, key	none	-	01F47528	01F456C8
+11	Button_0	channel	pad button	Button_LeftMB, Button_Square, Button_X	01F47508	-
+11	Button_LeftMB	channel	pad button	Button_0, Button_Square, Button_X	01F474A8	-
+11	Button_Square	channel	pad button	Button_0, Button_LeftMB, Button_X	01F474E8	-
+11	Button_X	channel	pad button	Button_0, Button_LeftMB, Button_Square	01F474C8	-
+12	Button_1	channel	pad button	Button_A, Button_Cross, Button_MiddleMB	01F47488	-
+12	Button_A	channel	pad button	Button_1, Button_Cross, Button_MiddleMB	01F47448	-
+12	Button_Cross	channel	pad button	Button_1, Button_A, Button_MiddleMB	01F47468	-
+12	Button_MiddleMB	channel	pad button	Button_1, Button_A, Button_Cross	01F47428	-
+13	Button_2	channel	pad button	Button_B, Button_Circle, Button_RightMB	01F47408	-
+13	Button_B	channel	pad button	Button_2, Button_Circle, Button_RightMB	01F473C8	-
+13	Button_Circle	channel	pad button	Button_2, Button_B, Button_RightMB	01F473E8	-
+13	Button_RightMB	channel	pad button	Button_2, Button_B, Button_Circle	01F473A8	-
+14	Button_3	channel	pad button	Button_Triangle, Button_Y	01F47388	-
+14	Button_Triangle	channel	pad button	Button_3, Button_Y	01F47368	-
+14	Button_Y	channel	pad button	Button_3, Button_Triangle	01F47348	-
+15	Button_4	channel	pad button	Button_L1, Button_LB	01F47328	-
+15	Button_L1	channel	pad button	Button_4, Button_LB	01F47308	-
+15	Button_LB	channel	pad button	Button_4, Button_L1	01F472E8	-
+16	Button_5	channel	pad button	Button_R1, Button_RB	01F472C8	-
+16	Button_R1	channel	pad button	Button_5, Button_RB	01F472A8	-
+16	Button_RB	channel	pad button	Button_5, Button_R1	01F47288	-
+17	Button_6	channel	pad button	Button_L2, Button_LT	01F47268	-
+17	Button_L2	channel	pad button	Button_6, Button_LT	01F47248	-
+17	Button_LT	channel	pad button	Button_6, Button_L2	01F47228	-
+18	Button_7	channel	pad button	Button_R2, Button_RT	01F47208	-
+18	Button_R2	channel	pad button	Button_7, Button_RT	01F471E8	-
+18	Button_RT	channel	pad button	Button_7, Button_R2	01F471C8	-
+19	Button_8	channel	pad button	Button_Back, Button_Select	01F471A8	-
+19	Button_Back	channel	pad button	Button_8, Button_Select	01F47168	-
+19	Button_Select	channel	pad button	Button_8, Button_Back	01F47188	-
+20	Button_9	channel	pad button	Button_Start	01F47148	-
+20	Button_Start	channel	pad button	Button_9	01F47128	-
+21	Button_10	channel	pad button	Button_L3, Button_LS	01F47108	-
+21	Button_L3	channel	pad button	Button_10, Button_LS	01F470E8	-
+21	Button_LS	channel	pad button	Button_10, Button_L3	01F470C8	-
+22	Button_11	channel	pad button	Button_R3, Button_RS	01F470A8	-
+22	Button_R3	channel	pad button	Button_11, Button_RS	01F47088	-
+22	Button_RS	channel	pad button	Button_11, Button_R3	01F47068	-
+23	Button_12	channel	pad button	Button_Up	01F47048	-
+23	Button_Up	channel	pad button	Button_12	01F47028	-
+24	Button_13	channel	pad button	Button_Right	01F47008	-
+24	Button_Right	channel	pad button	Button_13	01F46FE8	-
+25	Button_14	channel	pad button	Button_Down	01F46FC8	-
+25	Button_Down	channel	pad button	Button_14	01F46FA8	-
+26	Button_15	channel	pad button	Button_Left	01F46F88	-
+26	Button_Left	channel	pad button	Button_15	01F46F68	-
+28	Key_A	channel, key	keyboard	-	01F46F48	01F462C8
+29	Key_B	channel, key	keyboard	-	01F46F28	01F462A8
+30	Key_C	channel, key	keyboard	-	01F46F08	01F46288
+31	Key_D	channel, key	keyboard	-	01F46EE8	01F46268
+32	Key_E	channel, key	keyboard	-	01F46EC8	01F46248
+33	Key_F	channel, key	keyboard	-	01F46EA8	01F46228
+34	Key_G	channel, key	keyboard	-	01F46E88	01F46208
+35	Key_H	channel, key	keyboard	-	01F46E68	01F461E8
+36	Key_I	channel, key	keyboard	-	01F46E48	01F461C8
+37	Key_J	channel, key	keyboard	-	01F46E28	01F461A8
+38	Key_K	channel, key	keyboard	-	01F46E08	01F46188
+39	Key_L	channel, key	keyboard	-	01F46DE8	01F46168
+40	Key_M	channel, key	keyboard	-	01F46DC8	01F46148
+41	Key_N	channel, key	keyboard	-	01F46DA8	01F46128
+42	Key_O	channel, key	keyboard	-	01F46D88	01F46108
+43	Key_P	channel, key	keyboard	-	01F46D68	01F460E8
+44	Key_Q	channel, key	keyboard	-	01F46D48	01F460C8
+45	Key_R	channel, key	keyboard	-	01F46D28	01F460A8
+46	Key_S	channel, key	keyboard	-	01F46D08	01F46088
+47	Key_T	channel, key	keyboard	-	01F46CE8	01F46068
+48	Key_U	channel, key	keyboard	-	01F46CC8	01F46048
+49	Key_V	channel, key	keyboard	-	01F46CA8	01F46028
+50	Key_W	channel, key	keyboard	-	01F46C88	01F46008
+51	Key_X	channel, key	keyboard	-	01F46C68	01F45FE8
+52	Key_Y	channel, key	keyboard	-	01F46C48	01F45FC8
+53	Key_Z	channel, key	keyboard	-	01F46C28	01F45FA8
+54	Key_1	channel, key	keyboard	-	01F46C08	01F45F88
+55	Key_2	channel, key	keyboard	-	01F46BE8	01F45F68
+56	Key_3	channel, key	keyboard	-	01F46BC8	01F45F48
+57	Key_4	channel, key	keyboard	-	01F46BA8	01F45F28
+58	Key_5	channel, key	keyboard	-	01F46B88	01F45F08
+59	Key_6	channel, key	keyboard	-	01F46B68	01F45EE8
+60	Key_7	channel, key	keyboard	-	01F46B48	01F45EC8
+61	Key_8	channel, key	keyboard	-	01F46B28	01F45EA8
+62	Key_9	channel, key	keyboard	-	01F46B08	01F45E88
+63	Key_0	channel, key	keyboard	-	01F46AE8	01F45E68
+64	Key_Escape	channel, key	keyboard	-	01F46AC8	01F45E48
+65	Key_F1	channel, key	keyboard	-	01F46AA8	01F45E28
+66	Key_F2	channel, key	keyboard	-	01F46A88	01F45E08
+67	Key_F3	channel, key	keyboard	-	01F46A68	01F45DE8
+68	Key_F4	channel, key	keyboard	-	01F46A48	01F45DC8
+69	Key_F5	channel, key	keyboard	-	01F46A28	01F45DA8
+70	Key_F6	channel, key	keyboard	-	01F46A08	01F45D88
+71	Key_F7	channel, key	keyboard	-	01F469E8	01F45D68
+72	Key_F8	channel, key	keyboard	-	01F469C8	01F45D48
+73	Key_F9	channel, key	keyboard	-	01F469A8	01F45D28
+74	Key_F10	channel, key	keyboard	-	01F46988	01F45D08
+75	Key_F11	channel, key	keyboard	-	01F46968	01F45CE8
+76	Key_F12	channel, key	keyboard	-	01F46948	01F45CC8
+77	Key_Enter	channel, key	keyboard	-	01F46928	01F45CA8
+78	Key_Backspace	channel, key	keyboard	-	01F46908	01F45C88
+79	Key_Tab	channel, key	keyboard	-	01F468E8	01F45C68
+80	Key_Space	channel, key	keyboard	-	01F468C8	01F45C48
+81	Key_Minus	channel, key	keyboard	-	01F468A8	01F45C28
+82	Key_Equals	channel, key	keyboard	-	01F46888	01F45C08
+83	Key_LeftBracket	channel, key	keyboard	-	01F46868	01F45BE8
+84	Key_RightBracket	channel, key	keyboard	-	01F46848	01F45BC8
+85	Key_Backslash	channel, key	keyboard	-	01F46828	01F45BA8
+86	Key_Semicolon	channel, key	keyboard	-	01F46808	01F45B88
+87	Key_Apostrophe	channel, key	keyboard	-	01F467E8	01F45B68
+88	Key_Comma	channel, key	keyboard	-	01F467C8	01F45B48
+89	Key_Period	channel, key	keyboard	-	01F467A8	01F45B28
+90	Key_Slash	channel, key	keyboard	-	01F46788	01F45B08
+91	Key_Left	channel, key	keyboard	-	01F46768	01F45AE8
+92	Key_Right	channel, key	keyboard	-	01F46748	01F45AC8
+93	Key_Up	channel, key	keyboard	-	01F46728	01F45AA8
+94	Key_Down	channel, key	keyboard	-	01F46708	01F45A88
+95	Key_Home	channel, key	keyboard	-	01F466E8	01F45A68
+96	Key_End	channel, key	keyboard	-	01F466C8	01F45A48
+97	Key_PageUp	channel, key	keyboard	-	01F466A8	01F45A28
+98	Key_PageDown	channel, key	keyboard	-	01F46688	01F45A08
+99	Key_Insert	channel, key	keyboard	-	01F46668	01F459E8
+100	Key_Delete	channel, key	keyboard	-	01F46648	01F459C8
+101	Key_Numpad_1	channel, key	keyboard	-	01F46628	01F459A8
+102	Key_Numpad_2	channel, key	keyboard	-	01F46608	01F45988
+103	Key_Numpad_3	channel, key	keyboard	-	01F465E8	01F45968
+104	Key_Numpad_4	channel, key	keyboard	-	01F465C8	01F45948
+105	Key_Numpad_5	channel, key	keyboard	-	01F465A8	01F45928
+106	Key_Numpad_6	channel, key	keyboard	-	01F46588	01F45908
+107	Key_Numpad_7	channel, key	keyboard	-	01F46568	01F458E8
+108	Key_Numpad_8	channel, key	keyboard	-	01F46548	01F458C8
+109	Key_Numpad_9	channel, key	keyboard	-	01F46528	01F458A8
+110	Key_Numpad_0	channel, key	keyboard	-	01F46508	01F45888
+111	Key_Numpad_Slash	channel, key	keyboard	-	01F464E8	01F45868
+112	Key_Numpad_Asterisk	channel, key	keyboard	-	01F464C8	01F45848
+113	Key_Numpad_Minus	channel, key	keyboard	-	01F464A8	01F45828
+114	Key_Numpad_Plus	channel, key	keyboard	-	01F46488	01F45808
+115	Key_Numpad_Enter	channel, key	keyboard	-	01F46468	01F457E8
+116	Key_Numpad_Period	channel, key	keyboard	-	01F46448	01F457C8
+117	Key_Left_Control	channel, key	keyboard	-	01F46428	01F457A8
+118	Key_Left_Shift	channel, key	keyboard	-	01F46408	01F45788
+119	Key_Left_Alt	channel, key	keyboard	-	01F463E8	01F45768
+120	Key_Right_Control	channel, key	keyboard	-	01F463C8	01F45748
+121	Key_Right_Shift	channel, key	keyboard	-	01F463A8	01F45728
+122	Key_Right_Alt	channel, key	keyboard	-	01F46388	01F45708
+123	Key_AccentGrave	channel, key	keyboard	-	01F46368	01F456E8

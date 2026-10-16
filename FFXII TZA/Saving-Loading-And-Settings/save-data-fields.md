@@ -34,7 +34,7 @@ instruction text checked against the executable.
 | `+0x1064` | `0x100` | quest scenario flag, `u8` per quest id | `0046B490` (`setquestscenarioflag`) | `0046B180` (`getquestscenarioflag`) |
 | `+0x1164` | `0x200` | `u16` per quest id: the field id (`003148F0()`) when the quest was first ordered | `0046B3F0`, `0046B350` | `0046B0D0` |
 | `+0x1364` | `0x20` | quest ok bits | `0046B380` (`setquestok`) | `0046B1F0` (`isquestok`) |
-| `+0x1384` | 8 | flag bank of 64 bits (persistent flag banks page) | `0032AC70` | `0032A9A0` |
+| `+0x1384` | 8 | flag bank of 64 bits ([persistent flag banks page](../Story-Events-And-Hunts/story-flags.md)) | `0032AC70` | `0032A9A0` |
 | `+0x138C` | 8 | second flag bank of 64 bits | `0032ACF0` | `0032AA00` |
 | `+0x13B4` | `0x100` | flag bank of 2048 bits | `0032ABF0` | `0032A930` |
 | `+0x14B4` | `0x40` | flag bank of 512 bits: ids 0-255 in the first 32 bytes, ids 256-511 in the next | `0032AD70`, `0032ADF0` | `0032AA60`, `0032AAD0` |
@@ -49,7 +49,7 @@ instruction text checked against the executable.
 | `+0x2E250` | `0x200` | group persistent bank B | `0025D8E0` | `00269A20` |
 | `+0x2E450` | `0x20010` | spawn-keep image B | `00233440` | `00233550` |
 | `+0x4E460` | `0x2C` | the save-transition metadata record | `002EF540`, `002EF3C0`, `002EF510`, `00584580`, `003145E0` | `002EF410`, `005843E0` |
-| `+0x4E48C` | `0x7410` | the battle-state block, `*(02EBF190)` (its field map) | bound by `00238A80` and `00233C10`, reset by `002370C0` | |
+| `+0x4E48C` | `0x7410` | the battle-state block, `*(02EBF190)` ([its field map](../Party/party-data.md)) | bound by `00238A80` and `00233C10`, reset by `002370C0` | |
 
 Each spawn-keep image is preceded by its group bank, so pair A and pair B are two `0x20210`-byte
 blocks at `+0xE040` and `+0x2E250`, and `005844A0` clears both pairs with one `memset` of `0x40420` bytes
@@ -216,7 +216,7 @@ also restores `+0x5AD0` and calls `003139D0(+0x20)`; when bit 0 of `+0x08` is se
 
 `00238A80` and `00233C10` bind `02EBF190` to image `+0x4E68C`, payload `+0x4E48C`, and `00233C10`
 checks the magic `0x05071901` at `+0x00`. The block's interior is the
-battle-state block field map; what
+[battle-state block field map](../Party/party-data.md); what
 the save layer itself does to it:
 
 - `002370C0` resets the block: all `0x7410` bytes zeroed, the magic written, the words
@@ -236,6 +236,6 @@ the save layer itself does to it:
 - [Game settings](game-settings.md): the options record inside the image-backed block.
 - [Zone changes and mapjump](../World-Areas-And-Travel/zone-changes-and-mapjump.md): the transition record's users.
 - [Spawn placement and retirement](../Enemy-Spawning/enemy-spawning.md): the spawn-keep entries.
-- Persistent flag banks: the flag accessors.
-- The battle-state block field map.
+- [Persistent flag banks](../Story-Events-And-Hunts/story-flags.md): the flag accessors.
+- [The battle-state block field map](../Party/party-data.md).
 - Steam integration and achievement catalogue.

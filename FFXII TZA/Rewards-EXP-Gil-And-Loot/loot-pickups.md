@@ -110,7 +110,7 @@ equipment ids) it takes the row `(id - 0x1000) * rowSize` of the equipment table
 The appearance value is 0 as soon as one entry maps to 1-5 (the function returns at once), 1 when an entry
 maps to 6 and none to 1-5, and 2 otherwise, including for a pickup without equipment. Byte `+0x09`
 is the equipment class; the class list is on the
-item id page.
+[item id page](../Items-Equipment-Shops-And-Licenses/equipment-row.md).
 
 ### The lifetime
 

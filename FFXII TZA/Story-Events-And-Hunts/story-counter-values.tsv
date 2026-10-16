@@ -1,0 +1,314 @@
+value	shipping_writes	set_by	unreachable_writes	unreachable_in	developer_writes	developer_scripts
+0	0	-	0	-	55	evt_t0082 x16; evt_t0083 x2; evt_t0084 x14; evt_t0085 x14; evt_t0090; evt_t0500 x3; evt_t0505 x5
+10	0	-	0	-	1	evt_t0505
+13	1	naf_a01 常駐監督.main	0	-	1	evt_t0505
+16	1	naf_a02 常駐監督.main	0	-	3	evt_t0505 x3
+18	0	-	0	-	3	evt_t0505 x3
+19	1	naf_b01 常駐監督.main (when counter < 19)	0	-	1	evt_t0505
+20	0	-	0	-	2	evt_t0505 x2
+21	1	naf_b02 セーブクリスタルレクト.touch	0	-	1	evt_t0505
+22	1	naf_b04 常駐監督.main (when counter < 22)	0	-	1	evt_t0505
+23	1	naf_b04 AD.dead_sarch (when counter < 23)	0	-	1	evt_t0505
+25	1	naf_b04 大広間レクト.touch (when counter < 25)	0	-	2	evt_t0505 x2
+27	0	-	0	-	2	evt_t0505 x2
+30	0	-	0	-	1	evt_t0505
+33	1	grm_g01 常駐監督.main (when counter < 27)	0	-	2	evt_t0505 x2
+35	1	rbn_a02 常駐監督.ヴァン登場イベント	0	-	3	evt_t0090; evt_t0505 x2
+38	1	rbn_a03 常駐監督.main (when counter == 35)	0	-	1	evt_t0505
+40	1	rbn_a03 常駐監督.main (when counter == 35)	0	-	1	evt_t0505
+45	1	rbn_a03 常駐監督.EVミゲロ登場	0	-	4	evt_t0500 x2; evt_t0505 x2
+50	0	-	0	-	2	evt_t0500; evt_t0505
+54	0	-	0	-	1	evt_t0505
+58	0	-	0	-	1	evt_t0505
+62	0	-	0	-	4	evt_t0505 x4
+65	1	rbn_a16 常駐監督.main (when counter <= 45)	0	-	2	evt_t0505 x2
+68	1	rbn_a04 常駐監督.EV東門を抜けて	0	-	5	evt_t0096 x3; evt_t0505 x2
+70	1	dst_a01 トマト監視監督.トマト監視	0	-	1	evt_t0505
+75	1	dst_a01 トマト監視監督.トマト監視	0	-	1	evt_t0505
+78	1	dst_a01 トマト監視監督.トマト監視	0	-	4	evt_t0096 x2; evt_t0505 x2
+80	1	rbn_a17 常駐監督.EV東門のいざこざ	0	-	1	evt_t0505
+85	1	rbn_a17 常駐監督.EV東門のいざこざ	0	-	2	evt_t0505 x2
+90	0	-	0	-	1	evt_t0505
+95	1	rbn_y01 常駐監督.main (when counter <= 90)	0	-	1	evt_t0505
+100	1	rbn_y01 常駐監督.main (when counter <= 90)	0	-	5	evt_t0505 x5
+105	1	rbn_a01 常駐監督.main (when counter <= 100)	0	-	14	evt_t0096 x11; evt_t0500; evt_t0505 x2
+110	0	-	0	-	1	evt_t0505
+115	1	slm_a03 常駐監督.EVダラン登場	0	-	3	evt_t0090 x2; evt_t0505
+120	1	slm_a03 常駐監督.EVダラン登場	0	-	5	evt_t0090 x2; evt_t0505 x3
+125	1	sav_b01 １３マシュア.talk_taiyo_ＯＫ	0	-	2	evt_t0090; evt_t0505
+130	1	sav_b01 イベント管理.ギーザパンネロ合流_再生	0	-	2	evt_t0505 x2
+135	0	-	0	-	1	evt_t0505
+140	1	sav_b01 イベント管理.パンネロチュートリアル_再生	0	-	5	evt_t0090; evt_t0505 x4
+145	1	sav_c02 イベント管理.太陽石の作り方_再生	0	-	5	evt_t0090 x4; evt_t0505
+160	1	sav_b01 イベント管理.太陽石できた後半_再生	0	-	4	evt_t0090 x2; evt_t0505 x2
+170	1	slm_a02 制御レクト.パンネロ離脱touch	0	-	3	evt_t0090; evt_t0505 x2
+174	0	-	0	-	1	evt_t0505
+175	1	slm_a03 常駐監督.EV王宮の潜入方法2	0	-	2	evt_t0505 x2
+180	1	grm_a02 常駐ディレクター.main (when counter <= 175)	0	-	7	evt_t0090; evt_t0505 x6
+190	1	grm_a03 イベント管理.王宮突入_PLAY	0	-	1	evt_t0505
+200	1	rrp_a01 常駐ディレクター.main	0	-	4	evt_t0505 x4
+205	0	-	0	-	1	evt_t0505
+210	1	rrp_a03 開錠呪符イベント.はい	0	-	1	evt_t0505
+215	1	rrp_a04 宝物庫扉FS.はい	0	-	2	evt_t0505 x2
+220	1	rrp_a05 常駐ディレクター.main	0	-	2	evt_t0505 x2
+223	0	-	0	-	1	evt_t0505
+225	1	rrp_a06 ムービー開始位置.touchon	0	-	3	evt_t0090; evt_t0505 x2
+230	0	-	0	-	3	evt_t0505 x3
+235	1	grm_a04 イベント管理.即席パーティー結成_再生	0	-	2	evt_t0505 x2
+240	0	-	0	-	2	evt_t0505 x2
+244	1	grm_a04 イベント管理.ガラムガンビットチュートリアル_再生	0	-	5	evt_t0090; evt_t0505 x4
+249	0	-	0	-	2	evt_t0505 x2
+253	0	-	0	-	1	evt_t0505
+257	1	grm_b02 ボスイベント起動.ガラムサイズ帝国兵	0	-	4	evt_t0090; evt_t0505 x3
+260	1	grm_b02 イベント管理.アルマゲスト加入_PLAY	0	-	4	evt_t0090; evt_t0505 x3
+265	1	grm_c01 ボスイベント起動.プリン	0	-	3	evt_t0090; evt_t0505 x2
+270	0	-	0	-	1	evt_t0505
+275	0	-	0	-	1	evt_t0505
+280	0	-	0	-	2	evt_t0505 x2
+285	1	grm_d01 常駐監督.main (when counter >= 265 && counter < 275)	0	-	2	evt_t0505 x2
+290	1	slm_a01 常駐監督.main (when counter == 285)	7	alc_f04 掲示板.talk; byu_a18 掲示板.talk; fon_b01 掲示板.talk; nac_a02 掲示板.talk; rbn_a14 モンブラン.talk; rbn_a16 掲示板.talk; var_a14 掲示板.talk	5	evt_t0505 x5
+300	1	nac_a03 監督.main (when counter == 290)	0	-	2	evt_t0505 x2
+301	2	nac_a03 監督.main (when counter == 290); rbn_z01 常駐監督.main (when counter <= 290)	0	-	2	evt_t0505 x2
+302	1	nal_a01 常駐監督.main (when counter <= 301)	0	-	2	evt_t0505 x2
+303	1	nal_a01 常駐監督.main (when counter <= 301)	0	-	1	evt_t0505
+304	0	-	0	-	2	evt_t0505 x2
+306	0	-	0	-	2	evt_t0505 x2
+308	0	-	0	-	2	evt_t0505 x2
+310	1	nal_c02 装備変更.touch	0	-	2	evt_t0505 x2
+312	1	nal_c01 常駐ディレクター.init	0	-	2	evt_t0505 x2
+315	1	nal_c01 アンロック.touchon (when counter == 312)	0	-	4	evt_t0505 x4
+316	1	nal_d01 常駐監督.main (when counter <= 315)	0	-	1	evt_t0505
+317	1	mic_a01 イベント常駐監督.main (when counter <= 316)	0	-	2	evt_t0084; evt_t0505
+319	2	mic_a01 SHOP_NPC_バンガ.talk (when counter <= 317) x2	0	-	1	evt_t0505
+321	1	mic_a01 イベント常駐監督.古びた装置イベント2	0	-	2	evt_t0505 x2
+323	1	mic_a06 常駐監督.main (when counter <= 321)	0	-	3	evt_t0505 x3
+325	1	mic_b06 常駐監督.main (when counter <= 323)	0	-	1	evt_t0505
+330	1	mic_b06 常駐監督.main (when counter <= 323)	0	-	1	evt_t0505
+333	1	mic_b06 常駐監督.main (when counter <= 323)	0	-	2	evt_t0505 x2
+340	1	mic_c01 常駐監督.main	0	-	1	evt_t0505
+341	1	mic_c01 常駐監督.main	0	-	6	evt_t0084; evt_t0505 x5
+343	1	dst_a05 配置監督.main (when counter == 341)	0	-	10	evt_t0505 x10
+350	3	rbn_a17 常駐監督.main (when counter <= 343); rbn_a18 常駐監督.main (when counter <= 343); rbn_a19 常駐監督.main (when counter <= 343)	7	alc_f04 掲示板.talk; byu_a18 掲示板.talk; fon_b01 掲示板.talk; nac_a02 掲示板.talk; rbn_a14 モンブラン.talk; rbn_a16 掲示板.talk; var_a14 掲示板.talk	40	evt_t0090 x6; evt_t0096 x20; evt_t0500 x4; evt_t0505 x10
+360	0	-	0	-	2	evt_t0505 x2
+375	1	slm_a03 常駐監督.ダランの情報	0	-	4	evt_t0500; evt_t0505 x3
+386	1	slm_z01 常駐監督.EVウォースラ将軍前半	0	-	2	evt_t0505 x2
+390	1	slm_a01 常駐監督.main (when counter == 386)	0	-	5	evt_t0505 x5
+400	2	rbn_a03 常駐監督.EVヴァンとバッシュ; rbn_a03 制御レクト.touch_van_bash	0	-	2	evt_t0505 x2
+420	1	rbn_a16 常駐監督.最速の飛空艇	0	-	3	evt_t0505 x3
+440	0	-	0	-	2	evt_t0505 x2
+460	1	rbn_b01 常駐監督.ムービー再生	0	-	3	evt_t0505 x3
+490	1	byu_z01 常駐監督.main (when counter == 460)	0	-	1	evt_t0505
+520	2	byu_b01 常駐監督.init (when counter == 490); byu_z01 常駐監督.main (when counter == 460)	0	-	2	evt_t0505 x2
+546	1	byu_b01 常駐監督.main (when counter == 520)	0	-	2	evt_t0505 x2
+550	1	byu_a01 常駐監督.main (when counter == 546)	0	-	2	evt_t0505 x2
+580	1	byu_a04 突入イベントレクト.touch	0	-	4	evt_t0090; evt_t0505 x3
+610	1	lus_a01 イベント管理.帝国軍の気配_再生	0	-	3	evt_t0090; evt_t0505 x2
+640	0	-	0	-	1	evt_t0505
+645	1	lus_g01 ボスイベント起動.バッガモナン	0	-	15	evt_t0083; evt_t0090 x5; evt_t0505 x9
+655	0	-	0	-	1	evt_t0505
+658	0	-	0	-	1	evt_t0505
+660	12	lus_a01 イベント管理.バッガモナン振り切った_再生; lus_a02 イベント管理.逃げるラーサー_再生 (when counter >= 645 && counter < 660); lus_a03 イベント管理.逃げるラーサー_再生 (when counter >= 645 && counter < 660); lus_b01 イベント管理.逃げるラーサー_再生 (when counter >= 645 && counter < 660); lus_g01 常駐監督.main (when counter >= 645 && counter < 660); lus_g01 ボスイベント起動.バッガモナン; lus_g02 常駐監督.main (when counter >= 645 && counter < 660); lus_g02 イベント管理.逃げるラーサー_再生 (when counter >= 645 && counter < 660); lus_g03 常駐監督.main (when counter >= 645 && counter < 660); lus_g03 イベント管理.逃げるラーサー_再生 (when counter >= 645 && counter < 660); lus_g04 常駐監督.main (when counter >= 645 && counter < 660); lus_g04 イベント管理.逃げるラーサー_再生 (when counter >= 645 && counter < 660)	0	-	3	evt_t0090; evt_t0505 x2
+670	0	-	6	alc_f04 掲示板.talk; byu_a18 掲示板.talk; fon_b01 掲示板.talk; nac_a02 掲示板.talk; rbn_a16 掲示板.talk; var_a14 掲示板.talk	10	evt_t0096 x6; evt_t0505 x4
+680	1	byu_a04 配置監督.main (when counter in 658..670)	0	-	2	evt_t0505 x2
+710	15	byu_a01 オレバッシュ監督.監視開始; byu_a02 オレバッシュ監督.監視開始; byu_a03 オレバッシュ監督.監視開始; byu_a04 オレバッシュ監督.監視開始; byu_a04 オレバッシュレクト.touch; byu_a07 オレバッシュ監督.監視開始; byu_a08 オレバッシュ監督.監視開始; byu_a11 オレバッシュ監督.監視開始; byu_a12 オレバッシュ監督.監視開始; byu_a14 オレバッシュ監督.監視開始; byu_a15 オレバッシュ監督.監視開始; byu_a16 オレバッシュ監督.監視開始; byu_a17 オレバッシュ監督.監視開始; byu_a18 オレバッシュ監督.監視開始; byu_b01 オレバッシュ監督.監視開始	1	byu_a18 配置監督.main	4	evt_t0505 x4
+720	1	byu_x01 常駐監督.main (when counter == 710)	1	byu_a18 配置監督.main	2	evt_t0505 x2
+725	0	-	0	-	1	evt_t0505
+726	0	-	0	-	1	evt_t0505
+730	1	byu_a18 配置監督.main (when counter == 720)	0	-	2	evt_t0505 x2
+760	0	-	0	-	1	evt_t0505
+780	0	-	0	-	1	evt_t0505
+800	1	byu_y01 常駐監督.main (when counter == 730)	0	-	2	evt_t0505 x2
+830	1	rbn_x01 常駐監督.main (when counter <= 800)	0	-	3	evt_t0090; evt_t0505 x2
+840	0	-	0	-	1	evt_t0505
+860	0	-	0	-	1	evt_t0505
+890	1	rsn_z01 イベント管理.ＳＢ３イベント_再生	0	-	3	evt_t0090; evt_t0505 x2
+920	1	rsn_a01 イベント管理.ウォースラー救援_再生	0	-	28	evt_t0084 x24; evt_t0090; evt_t0505 x3
+930	1	rsn_b01 イベント管理.警報ギミックチュートリアル_再生	0	-	3	evt_t0090; evt_t0505 x2
+966	1	rsn_d01 常駐監督.main (when counter >= 930 && counter < 966)	0	-	12	evt_t0084 x9; evt_t0090; evt_t0505 x2
+970	1	rsn_y01 イベント管理.アーシェ救出	0	-	4	evt_t0090; evt_t0505 x3
+990	1	rsn_d01 イベント管理.リヴァイサン脱出開始_再生	0	-	3	evt_t0090; evt_t0505 x2
+1000	1	rsn_b01 イベント管理.パンネロ合流_再生	0	-	3	evt_t0090; evt_t0505 x2
+1010	0	-	0	-	1	evt_t0505
+1015	0	-	0	-	1	evt_t0505
+1018	0	-	0	-	1	evt_t0505
+1060	0	-	0	-	1	evt_t0505
+1090	1	rsn_a01 常駐監督.main (when counter >= 1000 && counter < 1010)	0	-	2	evt_t0505 x2
+1095	1	byu_b01 常駐監督.main (when counter == 1090)	0	-	1	evt_t0505
+1100	1	byu_b01 常駐監督.main (when counter == 1090)	0	-	2	evt_t0505 x2
+1120	1	byu_y01 常駐監督.main (when counter == 1100)	0	-	1	evt_t0505
+1130	1	byu_w01 常駐監督.main (when counter == 1120)	0	-	3	evt_t0505 x3
+1150	0	-	0	-	2	evt_t0090; evt_t0505
+1180	1	alc_z01 常駐監督.main (when counter < 1180)	0	-	6	evt_t0090 x2; evt_t0505 x4
+1210	0	-	7	alc_f04 掲示板.talk; byu_a18 掲示板.talk; fon_b01 掲示板.talk; nac_a02 掲示板.talk; rbn_a14 モンブラン.talk; rbn_a16 掲示板.talk; var_a14 掲示板.talk	25	evt_t0090; evt_t0096 x21; evt_t0505 x3
+1240	1	wdl_a06 イベント管理.シュトラール号の光学迷彩_再生	0	-	2	evt_t0090; evt_t0505
+1270	1	ene_a01 ムービーレクト.touchon	0	-	3	evt_t0505 x3
+1300	0	-	0	-	1	evt_t0505
+1330	1	ene_a02 EventDirector.main	0	-	1	evt_t0505
+1338	2	enw_a03 EventDirector.main (when counter < 1338); enw_a05 EventDirector.main (when counter < 1338)	0	-	7	evt_t0505 x7
+1342	1	rwg_a01 EventDirector.main (when counter < 1342)	0	-	1	evt_t0505
+1345	1	rwg_a01 EventDirector.main	0	-	2	evt_t0505 x2
+1352	1	rwg_a01 ボス登場.touch	0	-	1	evt_t0505
+1355	2	rwg_a01 EventDirector.main; rwg_a01 ボス登場.touch	0	-	2	evt_t0505 x2
+1360	2	rwg_a01 EventDirector.main; rwg_a01 ボス登場.touch	0	-	2	evt_t0505 x2
+1364	1	rwg_b01 常駐ディレクター.main	0	-	7	evt_t0081 x2; evt_t0505 x5
+1370	0	-	0	-	1	evt_t0505
+1372	1	rwg_b02 map_AD.map_dwbtl_start_id_check	0	-	4	evt_t0081 x2; evt_t0505 x2
+1374	2	rwg_c01 常駐ディレクター.main; rwg_d01 常駐ディレクター.main (when counter <= 1374)	0	-	4	evt_t0505 x4
+1376	1	rwg_d01 常駐ディレクター.main (when counter <= 1374)	0	-	1	evt_t0505
+1380	1	rwg_d01 ボス登場.touch	0	-	5	evt_t0505 x5
+1390	1	rwg_e01 暁の断片起動.touchon	0	-	3	evt_t0505 x3
+1450	1	rwg_a01 後半ムービー起動.touchon	0	-	3	evt_t0090; evt_t0505 x2
+1452	0	-	0	-	2	evt_t0505 x2
+1460	1	rsn_z01 イベント管理.ＳＢ４イベント_再生	0	-	3	evt_t0090; evt_t0505 x2
+1470	0	-	0	-	2	evt_t0505 x2
+1475	0	-	0	-	1	evt_t0505
+1500	0	-	0	-	1	evt_t0505
+1520	1	rsn_z02 常駐監督.main (when counter >= 1460 && counter < 1470)	0	-	5	evt_t0090; evt_t0505 x4
+1540	0	-	7	alc_f04 掲示板.talk; byu_a18 掲示板.talk; fon_b01 掲示板.talk; nac_a02 掲示板.talk; rbn_a14 モンブラン.talk; rbn_a16 掲示板.talk; var_a14 掲示板.talk	54	evt_t0090 x21; evt_t0096 x23; evt_t0500 x2; evt_t0505 x8
+1550	1	alc_z02 常駐監督.main (when counter < 1550)	0	-	3	evt_t0505 x3
+1560	1	bog_a02 監督.main (when counter == 1550)	0	-	2	evt_t0505 x2
+1570	1	rbn_a13 常駐監督.main (when counter < 1570)	0	-	2	evt_t0505 x2
+1580	1	rbn_a02 常駐監督.main (when counter == 1570)	0	-	7	evt_t0500; evt_t0505 x6
+1600	0	-	0	-	1	evt_t0505
+1620	0	-	0	-	3	evt_t0090; evt_t0500; evt_t0505
+1625	1	glf_a01 常駐イベント.コミューンへ	0	-	2	evt_t0505 x2
+1626	1	glf_a02 常駐イベント.Ev_Glf_a02_1stSTAY	0	-	1	evt_t0505
+1627	7	glf_a02 常駐イベント.Ev_Glf_a02_2ndSTAY; glf_a02 ガリフ長老02.talk (when counter < 1628) x3; glf_a02 ガリフ長老04.talk (when counter < 1628) x3	0	-	1	evt_t0505
+1628	1	glf_a02 常駐イベント.Ev_Glf_a02_3rdSTAY	0	-	1	evt_t0505
+1630	0	-	0	-	1	evt_t0505
+1640	2	glf_a03 常駐イベント.促し x2	0	-	8	evt_t0500 x6; evt_t0505 x2
+1650	1	glf_a01 常駐イベント.旅立ち	0	-	2	evt_t0505 x2
+1658	1	ozm_b04 常駐ディレクター.init (when counter == 1650)	0	-	1	evt_t0505
+1660	2	alc_z01 常駐監督.main (when counter < 1660); alc_z04 常駐監督.main	0	-	1	evt_t0505
+1670	0	-	0	-	2	evt_t0505 x2
+1700	1	gol_a02 VieraEventTrigger.touch	0	-	5	evt_t0090; evt_t0505 x4
+1730	0	-	0	-	1	evt_t0505
+1740	1	vic_a03 イベント管理.ミュリンを呼んできて_再生	0	-	3	evt_t0090; evt_t0505 x2
+1745	1	vic_a02 イベント管理.侵入者の気配_再生	0	-	4	evt_t0090 x2; evt_t0505 x2
+1756	1	vic_a01 イベント管理.ヨーテ前半_再生	0	-	5	evt_t0090 x2; evt_t0505 x3
+1760	0	-	0	-	3	evt_t0505 x3
+1790	1	vic_a03 イベント管理.ヨーテ後半_再生	0	-	4	evt_t0505 x4
+1810	1	ozm_c01 イベント起動.touchon (when counter == 1790)	0	-	6	evt_t0090 x3; evt_t0505 x3
+1820	1	hne_a07 イベント管理.ミュリン_再生	0	-	5	evt_t0090; evt_t0505 x4
+1830	0	-	0	-	27	evt_t0084 x24; evt_t0505 x3
+1899	0	-	0	-	1	evt_t0090
+1900	1	hne_b01 常駐監督.main (when counter >= 1820 && counter < 1830)	0	-	5	evt_t0090; evt_t0505 x4
+1910	0	-	0	-	1	evt_t0505
+1944	0	-	0	-	1	evt_t0505
+1950	1	vic_a01 イベント管理.姉と妹_再生	6	alc_f04 掲示板.talk; byu_a18 掲示板.talk; fon_b01 掲示板.talk; nac_a02 掲示板.talk; rbn_a16 掲示板.talk; var_a14 掲示板.talk	12	evt_t0096 x6; evt_t0505 x6
+1970	0	-	0	-	6	evt_t0505 x6
+1973	1	pbc_a03 常駐ディレクター.main	0	-	2	evt_t0505 x2
+1976	1	alc_z01 常駐監督.main (when counter < 1976)	0	-	3	evt_t0505 x3
+1982	1	bul_b02 配置監督.main (when counter < 1982)	7	alc_f04 掲示板.talk; byu_a18 掲示板.talk; fon_b01 掲示板.talk; nac_a02 掲示板.talk; rbn_a14 モンブラン.talk; rbn_a16 掲示板.talk; var_a14 掲示板.talk	26	evt_t0090 x4; evt_t0096 x20; evt_t0505 x2
+1984	1	bul_b01 配置監督.init (when counter < 1984)	0	-	1	evt_t0505
+1986	1	bul_a03 配置監督.main (when counter == 1984)	0	-	4	evt_t0090; evt_t0505 x3
+1990	0	-	0	-	1	evt_t0505
+1998	1	bul_a01 アルシド起動レクト.touch	0	-	2	evt_t0505 x2
+2000	1	alc_z01 常駐監督.main (when counter < 2000)	0	-	3	evt_t0505 x3
+2010	1	bul_a01 配置監督.main (when counter == 2000)	0	-	1	evt_t0505
+2050	1	bul_a01 配置監督.main (when counter == 2000)	0	-	6	evt_t0505 x6
+2057	1	mrm_b01 EventDirector.main (when counter < 2057)	0	-	3	evt_t0505 x3
+2060	0	-	0	-	1	evt_t0505
+2100	1	mrm_c01 ボス登場.main	0	-	4	evt_t0505 x4
+2150	1	mrm_e01 EventDirector.main	0	-	2	evt_t0505 x2
+2200	1	mrm_f01 イベントレクト.touchon	0	-	7	evt_t0084 x2; evt_t0505 x5
+2250	1	mrm_a02 ムービー起動.touchon	0	-	2	evt_t0505 x2
+2290	1	bul_b01 配置監督.main (when counter == 2250)	0	-	2	evt_t0505 x2
+2300	1	bul_a02 配置監督.main (when counter == 2290)	0	-	1	evt_t0505
+2350	1	bul_a02 配置監督.main (when counter == 2290)	0	-	1	evt_t0505
+3000	1	bul_a02 配置監督.main (when counter == 2290)	7	alc_f04 掲示板.talk; byu_a18 掲示板.talk; fon_b01 掲示板.talk; nac_a02 掲示板.talk; rbn_a14 モンブラン.talk; rbn_a16 掲示板.talk; var_a14 掲示板.talk	53	evt_t0084 x2; evt_t0090 x2; evt_t0096 x43; evt_t0505 x6
+3050	1	bul_a03 配置監督.main (when counter == 3000)	0	-	41	evt_t0090 x26; evt_t0505 x15
+3070	1	frs_d01 親方.talk (when counter < 3070)	0	-	21	evt_t0084 x2; evt_t0090 x9; evt_t0500; evt_t0505 x9
+3100	3	fon_b01 イベント起動01.touchon; fon_b01 イベント起動02.touchon; fon_b01 イベント起動03.touchon	0	-	10	evt_t0500 x4; evt_t0505 x6
+3120	1	rui_a04 監督.main (when counter < 3120)	0	-	0	-
+3130	1	rui_a04 監督.main (when counter < 3130)	0	-	1	evt_t0505
+3150	1	rui_d01 監督.main	0	-	3	evt_t0505 x3
+3200	1	rui_c01 監督.main	0	-	4	evt_t0505 x4
+3210	1	ald_a02 EventDirector.main	0	-	4	evt_t0505 x4
+3220	1	ald_a01 NPC_JULES.talk (when counter < 3220)	0	-	2	evt_t0505 x2
+3250	1	alc_b04 EventDirector.main	6	alc_f04 掲示板.talk; byu_a18 掲示板.talk; fon_b01 掲示板.talk; nac_a02 掲示板.talk; rbn_a16 掲示板.talk; var_a14 掲示板.talk	11	evt_t0096 x5; evt_t0505 x6
+3253	1	alc_b04 RECT_SPLIT_BAL.touchon	0	-	2	evt_t0505 x2
+3255	2	alc_f01 NPC_JULES.talk (when counter < 3255); alc_f01 NPC_タクシー受付.talk (when counter < 3255)	0	-	3	evt_t0505 x3
+3260	1	alc_c01 EventDirector.main (when counter < 3260)	0	-	1	evt_t0505
+3300	1	alc_c01 RECT_ジャッジ.touchon	0	-	1	evt_t0505
+3320	0	-	0	-	2	evt_t0505 x2
+3330	1	alc_c01 RECT_ジュールと再会.touchon	0	-	2	evt_t0505 x2
+3350	1	dor_a01 EventDirector.main	0	-	2	evt_t0505 x2
+3355	1	dor_a01 死体発見レクト.touchon	0	-	1	evt_t0505
+3360	0	-	0	-	1	evt_t0505
+3370	0	-	0	-	1	evt_t0505
+3400	1	dor_z01 常駐監督.main	0	-	3	evt_t0505 x3
+3440	1	dor_c12 EventDirector.main	0	-	2	evt_t0505 x2
+3450	0	-	0	-	1	evt_t0505
+3500	0	-	0	-	1	evt_t0505
+4000	1	dor_b01 EventDirector.main	0	-	8	evt_t0505 x8
+4050	1	bhm_y01 常駐監督.main (when counter < 4050)	0	-	3	evt_t0505 x3
+4090	0	-	0	-	1	evt_t0500
+4100	1	var_z01 常駐監督.main (when counter < 4100)	7	alc_f04 掲示板.talk; byu_a18 掲示板.talk; fon_b01 掲示板.talk; nac_a02 掲示板.talk; rbn_a14 モンブラン.talk; rbn_a16 掲示板.talk; var_a14 掲示板.talk	62	evt_t0084 x2; evt_t0090 x2; evt_t0096 x34; evt_t0500 x9; evt_t0505 x15
+4147	1	var_a04 EventDirector.main (when counter >= 4100 && counter < 4147)	0	-	1	evt_t0505
+4150	1	var_a04 EventDirector.main (when counter < 4150)	0	-	36	evt_t0090 x2; evt_t0505 x34
+4160	1	mfr_a04 イベントレクト.touchon	0	-	1	evt_t0505
+4200	1	mfr_b01 EventDirector.main	0	-	5	evt_t0084 x2; evt_t0505 x3
+4230	1	mfr_c03 イベント管理.ベリアス開門_再生	0	-	2	evt_t0505 x2
+4250	1	gil_a01 EventDirector.main	0	-	4	evt_t0505 x4
+4295	1	gil_a02 ボス登場.main (when counter < 4295)	0	-	2	evt_t0505 x2
+4300	1	gil_a02 ボス登場.touch	0	-	2	evt_t0505 x2
+4320	1	gil_c01 EventDirector.main	0	-	3	evt_t0505 x3
+4350	1	gil_c02 ボス登場.touch	0	-	3	evt_t0505 x3
+4370	1	gil_g10 EventDirector.main	0	-	2	evt_t0505 x2
+4400	1	gil_d01 ボス登場.main (when counter < 5000)	0	-	2	evt_t0505 x2
+4450	0	-	0	-	1	evt_t0505
+5000	1	gil_z01 常駐監督.main	0	-	3	evt_t0505 x3
+5020	2	alc_z01 常駐監督.main (when counter < 5020); alc_z03 常駐監督.main	0	-	2	evt_t0505 x2
+5100	1	gil_d01 EventDirector.main	0	-	12	evt_t0090; evt_t0505 x11
+5150	1	var_z01 常駐監督.main (when counter < 5150)	8	alc_f04 掲示板.talk; byu_a18 掲示板.talk; fon_b01 掲示板.talk; nac_a02 掲示板.talk; rbn_a14 モンブラン.talk x2; rbn_a16 掲示板.talk; var_a14 掲示板.talk	60	evt_t0090 x5; evt_t0096 x45; evt_t0505 x10
+5160	1	var_a04 EventDirector.main (when counter < 5160)	0	-	5	evt_t0505 x5
+5200	1	rwf_a01 常駐ディレクター.main (when counter < 5200)	0	-	2	evt_t0505 x2
+5220	0	-	0	-	1	evt_t0505
+5250	0	-	0	-	3	evt_t0505 x3
+5300	1	rwf_c01 ボス登場.touch	0	-	2	evt_t0505 x2
+5303	1	rwf_c01 扉開く.touchon (when counter == 5300)	0	-	2	evt_t0505 x2
+5305	0	-	0	-	3	evt_t0505 x3
+5310	0	-	0	-	2	evt_t0505 x2
+5320	1	rbl_d01 常駐ディレクター.main	0	-	4	evt_t0505 x4
+5330	0	-	0	-	3	evt_t0505 x3
+5340	0	-	0	-	5	evt_t0505 x5
+5350	0	-	0	-	2	evt_t0505 x2
+5370	1	rbl_q01 イベント起動.touchon (when counter < 5370)	0	-	3	evt_t0505 x3
+5400	1	dgl_f01 常駐ディレクター.main	0	-	1	evt_t0505
+5450	1	dgl_f01 常駐ディレクター.main	0	-	2	evt_t0505 x2
+5470	1	dgl_g01 常駐ディレクター.main	0	-	1	evt_t0505
+5500	1	dgl_g01 常駐ディレクター.main	0	-	1	evt_t0505
+5550	1	dgl_g01 常駐ディレクター.main	0	-	1	evt_t0505
+5600	1	dgl_g01 常駐ディレクター.main	0	-	1	evt_t0505
+5650	1	dgl_g01 常駐ディレクター.main	0	-	1	evt_t0505
+6000	1	dgl_g01 常駐ディレクター.main	0	-	5	evt_t0505 x5
+6050	1	var_a04 EventDirector.main (when counter < 6050)	0	-	1	evt_t0505
+6100	1	var_z01 常駐監督.main (when counter < 6100)	8	alc_f04 掲示板.talk; byu_a18 掲示板.talk; fon_b01 掲示板.talk; nac_a02 掲示板.talk; rbn_a14 モンブラン.talk x2; rbn_a16 掲示板.talk; var_a14 掲示板.talk	31	evt_t0096 x26; evt_t0505 x5
+6110	1	var_a04 EventDirector.main (when counter < 6110)	0	-	12	evt_t0505 x12
+6150	0	-	0	-	12	evt_t0500 x10; evt_t0505 x2
+6200	0	-	0	-	1	evt_t0505
+6230	0	-	0	-	1	evt_t0505
+6250	1	bhm_z01 常駐監督.main (when counter < 6150)	0	-	2	evt_t0505 x2
+6300	0	-	0	-	1	evt_t0505
+6350	0	-	0	-	1	evt_t0505
+6400	1	bhm_y01 常駐監督.main (when counter < 6300)	0	-	2	evt_t0505 x2
+6450	1	bhm_a04 常駐監督.main (when counter < 6450)	0	-	2	evt_t0505 x2
+6500	0	-	0	-	1	evt_t0505
+6550	1	bhm_a02 常駐監督.main (when counter < 6550)	0	-	1	evt_t0505
+6600	1	bhm_a02 常駐監督.main (when counter < 6550)	0	-	2	evt_t0505 x2
+6650	0	-	0	-	1	evt_t0505
+6700	1	bhm_b01 ボス監督.イベント制御	0	-	1	evt_t0505
+6750	1	bhm_b01 ボス監督.イベント制御	0	-	2	evt_t0505 x2
+6800	0	-	0	-	1	evt_t0505
+6850	1	bhm_c01 ボス監督.main (when counter <= 6850)	0	-	1	evt_t0505
+6900	1	bhm_c01 ボス監督.main (when counter <= 6850)	0	-	1	evt_t0505
+6950	0	-	0	-	1	evt_t0505
+7000	1	bhm_c01 ボス監督.main (when counter <= 6850)	0	-	2	evt_t0505 x2
+7050	0	-	0	-	1	evt_t0505
+7100	1	bhm_d01 ボス監督.main (when counter <= 7150)	0	-	1	evt_t0505
+7150	1	bhm_d01 ボス監督.main (when counter <= 7150)	0	-	1	evt_t0505
+7200	0	-	0	-	1	evt_t0505
+7250	0	-	0	-	3	evt_t0090 x2; evt_t0505
+10000	0	-	0	-	4	evt_t0500 x2; evt_t0505 x2
+11000	0	-	8	alc_f04 掲示板.talk; byu_a18 掲示板.talk; fon_b01 掲示板.talk; nac_a02 掲示板.talk; rbn_a14 モンブラン.talk x2; rbn_a16 掲示板.talk; var_a14 掲示板.talk	47	evt_t0082 x19; evt_t0083; evt_t0085 x22; evt_t0090; evt_t0500; evt_t0505 x3

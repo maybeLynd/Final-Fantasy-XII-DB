@@ -87,7 +87,7 @@ The callers of the wrappers:
 | 17 | `0030C2C0(unit)`: unit flag bit 52 (dword `+4` bit 20), after `002FEAD0` when `003278C0()` is 0 |
 
 Block offsets are offsets into the battle-state block `[02EBF190]`
-(its field map); `+0x5AA4` is
+([its field map](../Party/party-data.md)); `+0x5AA4` is
 the party leader byte and `+0x5AD5` the special-presentation actor there.
 
 ### HP, MP and the countdowns
@@ -175,7 +175,7 @@ struct PartyMemberStatusRecord size=0xC0
 ```
 
 The sixth equipment word at `+0xAC` is the stats record's `+0x5A`, not a sixth slot: see the
-equipment slots page.
+[equipment slots page](../Items-Equipment-Shops-And-Licenses/equipment.md).
 
 ## Operations
 
@@ -204,6 +204,6 @@ Which screen reads which field of its copy:
 
 - [The battle stats record field map](../Damage-And-Battle-Formulas/unit-stats-fields.md): the source record.
 - [The battle unit field map](battle-unit-fields.md): the unit fields read.
-- The battle-state block field map: the slot words and the leader byte.
+- [The battle-state block field map](../Party/party-data.md): the slot words and the leader byte.
 - [Area flags and navimapdata](../World-Areas-And-Travel/area-flags-navimapdata.md): the town flag.
 - [EXP, LP and level ups](../Rewards-EXP-Gil-And-Loot/exp-lp-and-level-ups.md): the experience curve.

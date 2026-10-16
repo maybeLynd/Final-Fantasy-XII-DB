@@ -1,0 +1,105 @@
+---
+title: "Widget messages: every message id a menu element answers, what it means and who sends it"
+kind: "reference"
+category: "Menus and HUD"
+summary: "The 24-byte message record and the 56 message ids menu widgets use: the framework ids 1-26 with their senders (construction, per-tick update, draw, activation, focus, input turn, owner commands, runs and tweens, destruction and release), the command sub-codes a list or dialog posts to its owner, the private ids 29-53 of the battle menu and map screens and 285-289 of single screens, with handler and sender counts in widget-messages.tsv."
+addresses: ["00247510", "002465F0", "00248030", "00245E60", "002473F0", "00244830", "002481C0", "00246C20"]
+---
+
+# Widget messages: every message id a menu element answers, what it means and who sends it
+
+## What it lists
+
+`widget-messages.tsv` has one row per message id that a widget procedure answers or a sender raises, 56 in all:
+1-26, 29-53 and 285-289. The counts come from decoding the 274 widget procedures of the image (the 267 built by
+[Widgets](widgets.md)'s constructors and seven base procedures their defaults pass messages to) and every delivery
+whose record is built in the delivering function.
+
+### The message record
+
+```struct WidgetMessage base=record size=0x18
++0x00  u32     id  message id
++0x08  u32[2]  a   first argument
++0x10  u32[2]  b   second argument
+```
+
+A procedure is called as `procedure(widget, message)` and returns a value that some senders read. Most procedures
+dispatch through a jump table and send any other id to `005C5230`, which returns 0; 51 procedures have table arms that
+do no more than that.
+
+### Framework ids
+
+| Id | Meaning | Sender |
+|---:|---|---|
+| 1 | construct, with the creator's `a` and `b` | `002465F0` |
+| 2 | per-tick update | the drain `00248030` |
+| 3, 4, 5 | draw: before the widget's content, after it, after the children | the draw pass `00245E60` (`002462D0`, `0024635A`, `002463BC`) |
+| 6, 7 | activated, deactivated | `002473F0` (`0024740C`-`00247418`), repeated down the subtree |
+| 8, 9 | focus gained, focus lost | `00244830` |
+| 10, 11 | input turn for the focus widget; 11 while a widget up its chain is running | `002481C0`; also `002286B0` |
+| 12 | command to an owner: `a` is a sub-command, `b` its argument | `00247510` (101 calls in 67 functions) and 11 other sites |
+| 13 | a notice carrying an id | the Config screens, `002D4330` |
+| 14 | opening run started | `00246AD0` |
+| 15 | closing begins | `00244F00`, `00244DD0` (`00244EF5`), `00241940`, `002419B0`, `00550470` |
+| 16 | a resource batch has loaded | `00249410`, `002494F0`, `002495C0` and screen code |
+| 17, 22 | tween channel 0 finished, stepped | `00246C20` (`00246D7E`-`00246DB7`) |
+| 18 | being destroyed | `00245020` to the widget, `002473B0` to its subtree |
+| 19, 20 | forward run finished, backward run finished | `00246C20` (`0024701E`-`0024706B`) |
+| 21 | tween channel 1 stepped | `00246C20` (`00246EF8`) |
+| 23 | tween channel 2 stepped | `00246C20` (`00246F9D`) |
+| 24 | released | `002482E0` (`002483A8`-`002483B2`) |
+| 25 | animation tick | `00246C20` (`00246C51`) |
+| 26 | per-element query; the reply is used | `002D2600`, `002D28E0` |
+
+No procedure answers ids 27 or 28 and no sender in the census raises them.
+
+### Command sub-codes (message 12)
+
+`00247510(widget, a, b)` builds message 12 and returns the reply (`00247523`-`0024755B`). The sub-codes a list or
+dialog posts to its owner:
+
+| `a` | Means | Sent by |
+|---|---|---|
+| `0x8000` | the cursor moved; `b` is the row | the list `002D3BA0` (`002D4199`) |
+| `0x8001` | the row was confirmed; a non-zero reply stops the list's own handling | `002D40FF` |
+| `0x8002` | cancel | the list owners, for example `0057C480`, `00557B90` |
+| `0x8003` | clear | `00561390` and the gambit editor's list ([Gambits screen](gambit-screen.md)) |
+| `0x8004` | a move has ended | `002D2DB0` (`002D38B5`) |
+| `0x8005` | posted right after `0x8000` with the same row | `002D41E8` |
+| `0x8100`-`0x8103` | the confirmation window's yes, no, cancel and cursor row | `0057C480` ([Dialogs](dialogs.md)) |
+| `0x8102`-`0x8106` | the item sort bar's close, help and three sorts | `00566680` ([Dialogs](dialogs.md)) |
+
+Screens also use small codes `0xE`-`0x1D` among themselves, most often `0x12` (21 calls) and `0xF` (17).
+
+### Private ids
+
+Ids 29-53 belong to two families only, which use them differently:
+
+- the battle menu (`00279E20`, `002778C0`, `00276D30`, `0027AA70`; [Battle menu](battle-menu.md));
+- the map screens (`002B7590`, `002BA700`, `002B7B80`, `002BAF80`, `003CB650`, `00552250`, `005528C0`;
+  [Map screens](map-screens.md)), where 31 is a cancelled page, 32 an open request, 33 a new page and 43 an opened page.
+
+The relay `00275F10` sends a chosen id to a chosen widget when it is destroyed: 35 for the map containers and 40 for the
+World Map (`00275F55`-`00275F82`, `002747B0`). Ids 285-289 each belong to one screen: 285 the yes-or-no and notice
+boxes, 286 the item sort bar, 287 the main menu's lists, 288 the script menu host, 289 the gambit lists.
+
+## Columns
+
+| Column | Meaning |
+|---|---|
+| `id` | the message id |
+| `meaning` | what receiving it means, with the sender's addresses |
+| `record_fields` | what `a` and `b` carry |
+| `handler_count` | procedures with an arm for the id that does more than the default |
+| `sender_count` | functions that deliver the id with an immediate in the census |
+| `example_handlers` | procedures that answer it |
+| `example_senders` | delivering functions, with the delivery site |
+
+Sender counts are lower bounds: a record passed in from a caller is counted only where it was read by hand (ids 6, 7,
+35 and 40).
+
+## Related
+
+- [Widgets](widgets.md) - how widgets are built, attached and animated.
+- [Dialogs](dialogs.md) - the list and confirmation widgets' sub-codes.
+- [Battle menu](battle-menu.md) and [Map screens](map-screens.md) - the two families of private ids.

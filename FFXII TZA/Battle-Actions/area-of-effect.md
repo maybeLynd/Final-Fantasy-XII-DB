@@ -185,9 +185,9 @@ and `00328530` and jumped to from `0031AB80`.
 - [The action definition row](action-definition-row.md) - the row these
   bytes and bits belong to.
 - [Action range](action-range.md) - how close the user stands before the action runs.
-- Gambits and enmity - other uses of
+- [Gambits and enmity](../Enemy-AI-And-Gambits/gambits.md) - other uses of
   the relationship class.
-- The thirty-two statuses - status bits
+- [The thirty-two statuses](../Status-Effects-And-KO/statuses.md) - status bits
   0, 1, 5, 24 and 31.
 - [The field record table](../World-Areas-And-Travel/area-flags-navimapdata.md)
   - the map-info word whose bit 15 `00377C20` returns.

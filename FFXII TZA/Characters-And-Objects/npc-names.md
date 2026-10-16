@@ -47,7 +47,7 @@ Entry `2 * id` is pair `id`'s first name and entry `2 * id + 1` its second.
 - when the actor's `i16` at `+0x102` is negative, the name is the literal text pointer at `+0xF8`
   (the spawn entry's own text; for such an actor `00263A10` returns the word at `+0x100`, and 0 otherwise);
 - otherwise bit 14 of the id is stripped, the 2048-bit persistent flag bank is asked for flag `id`
-  (`0032A930`, persistent flag banks), and
+  (`0032A930`, [persistent flag banks](../Story-Events-And-Hunts/story-flags.md)), and
   `003EAC10(id, flagSet)` returns the first name while the flag is clear and the second once it is
   set.
 
@@ -147,7 +147,7 @@ Examples from the `us` file:
 
 ## Related
 
-- Persistent flag banks: the 2048-bit bank the name flag lives in.
+- [Persistent flag banks](../Story-Events-And-Hunts/story-flags.md): the 2048-bit bank the name flag lives in.
 - [Languages](../Saving-Loading-And-Settings/languages.md): which language folder the dictionary is loaded from.
 - [Save data fields](../Saving-Loading-And-Settings/save-data-fields.md): where the flag bank sits in the save.
 - [The spawn keep entry](../Enemy-Spawning/spawn-record-fields.md): where an actor's `+0xF8` text and `+0x102` id come from.

@@ -130,5 +130,5 @@ still has bit 5, it clears the bit and calls `00305AB0(unit, 0)` when the unit:
 - [Area of effect](area-of-effect.md) - the target list the commit starts, and the stats-record list.
 - [Target selection](target-selection.md) - how the menu's target is chosen before the commit.
 - [Combos](combos.md) - the commit repeated for every extra hit.
-- Gambits and enmity - the gambit
+- [Gambits and enmity](../Enemy-AI-And-Gambits/gambits.md) - the gambit
   target selector that reads `+0x750`.

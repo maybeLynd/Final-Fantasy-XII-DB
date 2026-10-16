@@ -96,7 +96,7 @@ The body takes one of these branches after the refusals:
    6 is set, `drivePending` is cleared, the init core `002620E0` runs and the pass ends with 0.
 4. Otherwise the area music select `00261F90(slot)` runs first: on slot index 0 with flags bit 6
    clear it selects and starts the area's track once per field, sets flags bit 5 when flags3 bit 2
-   is clear, and sets bit 6 at its end (music).
+   is clear, and sets bit 6 at its end ([music](../Sound-And-Music/music-table.md)).
    Then the two holds below are checked, each marking the pass busy.
 5. With flags3 bit 7 clear and flags bit 5 clear the main work runs: the init core, the roster loop,
    the all-records loop, the trigger bit and the field-settled sequence, described below.

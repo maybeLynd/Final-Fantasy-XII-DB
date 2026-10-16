@@ -170,7 +170,7 @@ the result is never negative. `gettelepoindex` (`0x32D`, `00342490`) and `getsav
    `020927D8` is `0x11` or `0x12`, else 0. The crystal script ignores it.
 
 The request is consumed by the per-frame menu router `002E09A0`, run from the world tick
-`00314020` (UI request router):
+`00314020` ([UI request router](../Menus-And-HUD/menus.md)):
 
 1. the request is admitted when `0215F1A0` is set and either the category is below `0x14` with its
    bit in `0xE9000`, or `00226BA0()` returns 0, or `0053DD10()` returns non-zero;
@@ -375,7 +375,7 @@ The common effect table `01EF9400` holds `0x72, 0x73, 0x74, 0x75, 0x76, 0x88, 0x
 - [Save data fields](../Saving-Loading-And-Settings/save-data-fields.md): where the flag bytes sit in the save image.
 - [Saving and loading](../Saving-Loading-And-Settings/saving-and-loading.md): what the save screen does once open.
 - [Area flags](area-flags-navimapdata.md): the town flag and the record bits the readers fall back to.
-- UI request router: the consumer of the menu request.
+- [UI request router](../Menus-And-HUD/menus.md): the consumer of the menu request.
 - [Field runtime](../Characters-And-Objects/field-runtime.md): the field-settled sequence that repeats the arrival calls.
 - [NPC names](../Characters-And-Objects/npc-names.md): the crystal's name tag.
 - [Chocobos and airships](chocobos-and-airships.md): the dismount the teleport performs.

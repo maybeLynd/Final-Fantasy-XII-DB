@@ -1,0 +1,33 @@
+id	name	help_text	duration	beat	cancels	blocked_by	class	remedy	refresh	party_only	arm	sites
+0	KO	The character has lost consciousness and cannot move or act. Remove with a tuft of Phoenix Down.	-	-	Petrify, Stop, Sleep, Confuse, Doom, Poison, Sap, Reverse, Disable, Immobilize, Slow, Lure, Protect, Shell, Haste, Bravery, Faith, Reflect, Invisible, Regen, Float, Berserk, Bubble, HP Critical, Libra	KO, Stone, X-Zone	harmful	-	no	no	defeat cleanup and rewards; recovery on removal	row 0x1b198
+1	Stone	The character has been turned to stone and cannot move or act. Remove with a Gold Needle.	-	-	Petrify, Protect, Shell, Haste, Bravery, Faith, Reflect, Invisible, Regen, Float, Berserk, Bubble	KO, Stone, X-Zone	harmful	-	no	no	event 0x200C, then defeat cleanup and rewards; recovery on removal	row 0x1b1c0
+2	Petrify	The character is turning to stone and will be unable to move or act once the count reaches 0. Remove with a Gold Needle.	count 11	4.5 s	-	KO, Stone, Doom, X-Zone	harmful	with augment 117	no	no	marks unit +0xE9A bit 1 when a party record gave it	row 0x1b1e8
+3	Stop	The character is frozen in time and cannot move or act. Remove with a Chronos Tear.	30 s	-	Lure	KO, Stone, X-Zone	harmful	with augment 116	yes	no	-	row 0x1b210
+4	Sleep	The character has fallen into a deep sleep and cannot move or act. Remove with a Prince's Kiss.	25 s	-	-	KO, Stone, X-Zone	harmful	with augment 118	yes	no	event 0x2001 on arrival and removal	row 0x1b238
+5	Confuse	The character cannot tell friend from foe and cannot take commands. Remove with Nu Khai Sand.	40 s	-	-	KO, Stone, Berserk, X-Zone	harmful	with augment 117	yes	no	interrupts the action in flight (00300140), on arrival and removal	row 0x1b260
+6	Doom	The character is doomed and will be KO'd when the count reaches 0. Remove with a Remedy. (Requires the proper license.)	count 11	10 s	-	KO, Stone, Petrify, X-Zone	harmful	with augment 116	no	no	-	row 0x1b288
+7	Blind	The character is veiled in darkness, reducing chance to hit. Remove with Eye Drops.	-	-	-	KO, Stone, X-Zone	harmful	always	no	no	-	row 0x1b2b0
+8	Poison	Poison courses through the character's veins, draining HP for the duration. Remove with an Antidote.	50 s	12 s	-	KO, Stone, X-Zone	harmful	always	no	no	marks unit +0xE9A bit 0 when a party record gave it	row 0x1b2d8
+9	Silence	The character's voice is lost, preventing the casting of magicks. Remove with Echo Herbs.	-	-	-	KO, Stone, X-Zone	harmful	always	no	no	-	row 0x1b300
+10	Sap	The character's HP drops swiftly and surely. Remove by casting Regen.	-	0.1 s	Regen	KO, Stone, X-Zone	harmful	with augment 118	no	no	-	row 0x1b328
+11	Oil	A film of oil coats the character, increasing vulnerability to fire. Remove with a Handkerchief.	-	-	-	KO, Stone, X-Zone	harmful	with augment 117	no	no	-	row 0x1b350
+12	Reverse	Damage and healing effects are reversed. Taking damage restores HP, while healing reduces it.	15 s	-	-	KO, Stone, X-Zone	harmful	-	no	no	-	row 0x1b378
+13	Disable	The character is unable to act. Remove with a Remedy. (Requires the proper license.)	20 s	-	-	KO, Stone, X-Zone	harmful	with augment 118	no	no	-	row 0x1b3a0
+14	Immobilize	The character's feet are rooted to the ground, preventing movement. Remove with a Remedy. (Requires the proper license.)	50 s	-	-	KO, Stone, X-Zone	harmful	with augment 118	no	no	-	row 0x1b3c8
+15	Slow	The flow of time for the character is slowed, increasing time required to act. Remove by casting Haste.	60 s	-	Haste	KO, Stone, X-Zone	harmful	always	no	no	-	row 0x1b3f0
+16	Disease	The character's body festers with disease, preventing the healing of wounds. Remove with a Serum.	-	-	-	KO, Stone, Bubble, X-Zone	harmful	with augment 116	no	no	-	row 0x1b418
+17	Lure	The character draws the attention of foes and will be their sole target. The effect is temporary.	20 s	-	-	KO, Stone, Stop, X-Zone	beneficial	-	yes	no	-	row 0x1b440
+18	Protect	The character is enveloped in a magick field, increasing defense and reducing physical damage taken. The effect is temporary.	72 s	-	-	KO, Stone, X-Zone	beneficial	-	yes	no	-	row 0x1b468
+19	Shell	The character is enveloped in a magick field, increasing magick resist and reducing magick damage taken. The effect is temporary.	72 s	-	-	KO, Stone, X-Zone	beneficial	-	yes	no	-	row 0x1b490
+20	Haste	The flow of time for the character is hastened, reducing time required to act. The effect is temporary.	40 s	-	Slow	KO, Stone, X-Zone	beneficial	-	yes	no	-	row 0x1b4b8
+21	Bravery	The character is emboldened and grows greatly in strength, increasing physical damage dealt. The effect is temporary.	40 s	-	-	KO, Stone, X-Zone	beneficial	-	yes	no	-	row 0x1b4e0
+22	Faith	The character is pure of thought and at one with the arcane, increasing magick potency. The effect is temporary.	50 s	-	-	KO, Stone, X-Zone	beneficial	-	yes	no	-	row 0x1b508
+23	Reflect	The character is enveloped in a reflective barrier that bounces magicks back at their caster. The effect is temporary.	60 s	-	-	KO, Stone, X-Zone	beneficial	-	yes	no	-	row 0x1b530
+24	Invisible	The character is invisible, hidden from watchful eyes, and cannot be targeted by foes. The effect is temporary.	90 s	-	-	KO, Stone, X-Zone	beneficial	-	yes	no	-	row 0x1b558
+25	Regen	The natural recuperative faculties of the character's body are heightened, restoring HP gradually over time. The effect is temporary.	100 s	1.5 s	Sap	KO, Stone, X-Zone	beneficial	-	yes	no	-	row 0x1b580
+26	Float	The character floats above the ground, safe from traps. The effect is temporary.	60 s	-	-	KO, Stone, X-Zone	beneficial	-	yes	no	-	row 0x1b5a8
+27	Berserk	The character has given in to rage, fighting relentlessly with heightened attack power. Remove by casting Dispel.	45 s	-	-	KO, Stone, Confuse, X-Zone	beneficial	-	no	no	interrupts the action in flight (00300140), on arrival and removal	row 0x1b5d0
+28	Bubble	The character brims with life, doubling max HP. The effect is temporary.	60 s	-	-	KO, Stone, Disease, X-Zone	beneficial	-	yes	yes	-	row 0x1b5f8
+29	HP Critical	The character is gravely injured but can still move and act normally. Remove by restoring HP.	-	-	-	KO, Stone, X-Zone	harmful	-	no	no	-	row 0x1b620
+30	Libra	The character can perceive detailed information about foes. The effect is temporary.	240 s	-	-	KO, Stone, X-Zone	beneficial	-	no	yes	-	row 0x1b648
+31	X-Zone	The character has vanished without a trace. The effect cannot be reversed.	-	-	Petrify, Stop, Sleep, Confuse, Doom, Blind, Poison, Silence, Sap, Oil, Reverse, Disable, Immobilize, Slow, Disease, Lure, Protect, Shell, Haste, Bravery, Faith, Reflect, Invisible, Regen, Float, Berserk, Bubble, HP Critical, Libra	KO, Stone, X-Zone	harmful	-	no	yes	event 0x200E, then defeat cleanup and rewards; recovery on removal	row 0x1b670

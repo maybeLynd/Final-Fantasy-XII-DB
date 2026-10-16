@@ -116,7 +116,7 @@ record (`0030A330`) is below `00324020(stats)`; for any other row the License Bo
 - [Quickenings and summons](quickenings-and-summons.md) - the summon flag behind code `0x2C`.
 - [Target selection](target-selection.md) - the menu builder that asks this check.
 - [Action phases](action-phases.md) - the running action that asks it again.
-- The thirty-two statuses - status
+- [The thirty-two statuses](../Status-Effects-And-KO/statuses.md) - status
   names.
-- License check
+- [License check](../Items-Equipment-Shops-And-Licenses/licenses.md)
   - what the License Board check tests.

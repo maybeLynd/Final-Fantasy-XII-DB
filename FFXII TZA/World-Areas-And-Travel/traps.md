@@ -89,7 +89,7 @@ member (kind 0) outside the Esper band 27-39, outside a town (`00377C20`), while
 
 - carry bit 26 in the combined status words `+0x3C | +0x64`;
 - carry bit 5 in either layer byte `+0x6C` or `+0x7C`: effect id 37, "Move safely past traps",
-  the Float status's effect (the two layers,
+  the Float status's effect ([the two layers](../Status-Effects-And-KO/statuses.md),
   battle text banks);
 - have kind 1, or kind 0 with the type byte `+0x04` in 27-39.
 
@@ -110,7 +110,7 @@ On a hit, in order:
 1. `00379CD0()`, the Mersenne Twister draw, is reduced modulo 100; below 75 (`002F8231 cmp r8d,
    0x4B`) the action is the record's `+0x06`, otherwise its `+0x08`;
 2. when the flag id `+0x04` is not `0xFF`, `0032AD70(id, 1)` sets that persistent flag
-   (persistent flag banks);
+   ([persistent flag banks](../Story-Events-And-Hunts/story-flags.md));
 3. `002FB8C0(record, unit, out)` gathers the units the trap reaches: with radius `+0x0A` = 0 only
    the triggering unit; otherwise each of the four party members (`0031B810(0..3)`) whose stats
    pass the same three refusals plus the out-of-play mask `0x80000003`, and whose position
@@ -125,14 +125,14 @@ On a hit, in order:
 ### What a trap does
 
 The tick takes the returned action id and, when `00322C50(0x14, id)` accepts it, applies it to
-every gathered unit (the action definition row):
+every gathered unit ([the action definition row](../Battle-Actions/action-definition-row.md)):
 
 1. `002EACD0(handle, 1, &handle, row word +0x24 & 0x7FFF)` plays the row's effect;
 2. `00385F60(id, 0, stats, result)` and `003112F0(result, 0, stats, id)` resolve and apply the
    action on a zeroed result record.
 
 The sixteen rows the shipped traps name are 246 to 261; their recipes are single slots
-(the count clock and bank recipes):
+([the count clock and bank recipes](../Damage-And-Battle-Formulas/weapon-formulas.md)):
 
 | Rows | Slot | Effect |
 |---|---|---|
@@ -257,7 +257,7 @@ commonest pairs being 246/247 (43), 248/249 (38), 248/252 (23) and 248/254 (20).
   the code, and the arm chance and gather radius are per record.
 - `002F8060` is one of two functions in the image that both draw the generator and call a
   persistent-flag setter (the other is the treasure chest resolver `002FAFD0`,
-  persistent flag banks); with every
+  [persistent flag banks](../Story-Events-And-Hunts/story-flags.md)); with every
   shipped flag id `0xFF`, the trap's setter never runs in shipped play.
 
 - The two access tables beside this page, `traps-live-entry-accesses.tsv` and
@@ -289,11 +289,11 @@ commonest pairs being 246/247 (43), 248/249 (38), 248/252 (23) and 248/254 (20).
 
 ## Related
 
-- Persistent flag banks: the flag the firing sets and the arming tests.
-- The thirty-two statuses: Libra (bit 30) and the statuses the trap rows inflict.
-- What the periodic tick does: the caller of the trigger walk.
+- [Persistent flag banks](../Story-Events-And-Hunts/story-flags.md): the flag the firing sets and the arming tests.
+- [The thirty-two statuses](../Status-Effects-And-KO/statuses.md): Libra (bit 30) and the statuses the trap rows inflict.
+- [What the periodic tick does](../Status-Effects-And-KO/status-timers.md): the caller of the trigger walk.
 - [Battle log](../Battle-Actions/battle-log.md): the four trap messages.
-- The action definition row and the count clock and bank recipes: the rows and their slots.
+- [The action definition row](../Battle-Actions/action-definition-row.md) and [the count clock and bank recipes](../Damage-And-Battle-Formulas/weapon-formulas.md): the rows and their slots.
 - Section 000 of the script container: the header word `+0x6C` and the tag-3 region.
 - [Area flags](area-flags-navimapdata.md): the town flag that disables arming, markers and triggering.
 - [Field runtime](../Characters-And-Objects/field-runtime.md): the tick's per-slot pre-pass that runs the Libra toggle.

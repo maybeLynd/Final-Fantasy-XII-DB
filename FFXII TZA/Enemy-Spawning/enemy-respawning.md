@@ -165,8 +165,8 @@ bit, and its next death completes the group again: a room can be cleared twice.
 Three calls run on every completion, each with argument 1 (`00306FAD`-`00306FBC`):
 
 - `00307140(on)` calls `002E1C20(0xC)` ten times when on (`002E1CA0(0xC)` when off): the row-12
-  capability inhibitions (party roster and control
-  suppression), then `00359200(on, 2)`,
+  capability inhibitions ([party roster and control
+  suppression](../Party/party-leader.md)), then `00359200(on, 2)`,
   `00359330(2, 1, on)` and `0026BD20(2, on == 0)`;
 - `00238B70(on)` sets or clears `02089340` bit 5 and, for every battle-unit slot whose byte `+0`
   has bit 4, posts `002E7C10(actor, actor, 0x30B, 0)`;

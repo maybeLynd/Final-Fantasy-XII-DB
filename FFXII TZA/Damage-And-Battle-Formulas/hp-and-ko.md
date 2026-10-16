@@ -68,7 +68,9 @@ status write (`0030076E`, `003007B9`).
 
 The change is dropped before anything is written in these cases:
 
-1. With flag bit 0 clear, `0030B9B0(targetUnit, sourceUnit)` returns non-zero (`0030060F`-`00300616`).
+1. With flag bit 0 clear, `0030B9B0(targetUnit, sourceUnit)` returns non-zero (`0030060F`-`00300616`): a low bit
+   of the battle or unit eligibility mask is set ([Gaining and losing statuses](../Status-Effects-And-KO/status-changes.md)
+   has both masks).
 2. The delta is negative and the target has KO, Stone or X-Zone (statuses 0, 1 and 31, mask
    `0x80000003` over `+0x64 | +0x3C`), unless `00377C20` reports bit 15 of the active field record
    (`0030061C`-`00300635`, [Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md)).
