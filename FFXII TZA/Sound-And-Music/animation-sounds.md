@@ -98,6 +98,16 @@ its volume byte by `volume / 128`, capped at `0x7F`, plays nothing when that is 
 | `4` | an explicit sound number at the character, bit 31 added below `0x100` |
 | `5` | with type 1, stores `0xC00` in emitter word `+5` |
 
+`003A0E50(id, position, record)` makes the sound. An id with bit 30 set is a battle-voice line, bank `id >> 8 & 0xFF`
+and line `id & 0xFF`, played at the point in the Config voice language (`002DF460`); any other id plays from a block
+bank at the point (`002DF280`), and -1 plays nothing. The same call serves `0046C8F0`, `00332C40` and `003B99D0`.
+`003A0E80(kind, handle)` stops the previous voice of types 4-7 while it still plays (`0046CE04`-`0046CE1F`), with the
+kind from emitter byte `+0x07`: kind 0 through the battle-voice stop (`001DC330`), kind 1 through `002DF0F0`.
+
+The battle routine `00307300` plays mode 4 at a battle record's actor through `00329F70` (`00307727`), which passes
+the record's `+0x08` to `0046CBB0`. That finds the actor's render record (`0x740` bytes each from `[022C6F28]`) and
+calls `0046CC70` on its emitter at `+0x5F0`.
+
 ## Modding notes
 
 - A sound is part of the animation: to add or move one, edit the `0x05` or `0x29` command in the animation block.

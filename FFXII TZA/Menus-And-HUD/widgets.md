@@ -148,7 +148,8 @@ its box is drawn in that pass when `+0x40` bit 7 is also set (`002461BB`-`002461
 - then the running opening or closing run, through `00244A20`.
 
 It returns 1 when a float at box `+0x10`-`+0x18` is not 0 or the scale is not 1.0. `00246450` returns the position
-alone, with the same bit 7 offset.
+alone, with the same bit 7 offset. `00272310(widget, out)` gives a widget's place on screen: its own box position
+(`00246480`) plus that of every ancestor up the `+0x10` chain, for `003EE420` (`003EE511`, `003EE51F`).
 
 `00247780(on)` sets bit 0 of `0208ED58`. While it is set, both passes also call `00245510` for a root whose `+0xC0`
 is 1, which hands the root's position and alpha to `00367940` (`002450D7`-`002450F5`, `00245137`-`00245149`); the
@@ -193,6 +194,10 @@ Five UI tick functions (`00250540`, `002506D0`, `00250730`, `002507C0`, `002508E
    `ms x 60 / 1000` frames (`00246BDF`-`00246BEC`), started at the frame counter `0208F570`.
 4. From state 4 it reverses a closing run in place (`00246B72`-`00246B90`).
 5. It sets state 2 and sends message 14 (`00246BFF`).
+
+`00247570(widget, descriptor)` installs a widget's descriptor at `+0x48`, or the default `00915198` for 0. HUD and menu
+code takes most of theirs from the table of `0x28`-byte descriptors at `009158C0`, entry `i` through `002735E0(i)`
+(for example `0029BEE8`, `0028B92A`).
 
 `00244DD0(widget)` closes it, the mirror image: a backward run from descriptor `+0x14`, length 0 when `00181C90`
 returns 1, state 4, then message 15 (`00244EF5`).

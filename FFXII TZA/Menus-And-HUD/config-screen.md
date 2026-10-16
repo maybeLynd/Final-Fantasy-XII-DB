@@ -181,6 +181,25 @@ that same `+0x60`, so the row does what its label says. Type A makes Cross confi
 | `0023B330` | Brightness | each repeat |
 | `0023B6F0` | the other Graphics rows | each new press (`02F9736A`) |
 
+### The cursor skips rows
+
+Config moves its list cursor with `0023F240` (`0023FE31`), and Graphics Settings and Controls with
+`00240DE0(list, skip, hold)` (`0023C27F`, `0023D2B2`), each with the wheel added the way
+[Controls](../Controls-And-Input/controls.md) describes:
+
+1. The list steps once (`002D3BA0`).
+2. When the new row may not take the cursor, it steps again, up to the row count times, through `0023F7D0` (Config)
+   or `002413E0` (the other two), each a single step with the list's `+0xE4` bit 2 set around it.
+3. When the step answered 4 to 6, or the list's `+0xE4` bit 13 is set, it first puts the cursor back (`002D47C0`) and
+   tries steps with the list's bytes `+0x107`, `+0x108` and `+0xF6` set to 1, then 2 (`0023F660`-`0023F710`).
+4. When no row qualifies the cursor goes back where it was (`002D47C0`).
+
+For Config, `0023F190(screen)` decides: the row under the cursor may take it unless its command is `0x12`, or its
+command names a row list in `01E0BF60` whose layout kind is `0x0B` or `0x0C`. The other two screens pass their own
+test, kept at `+0x728` on Graphics Settings and `+0x4B8` on Controls; a non-zero answer skips the row. With `hold` set
+and a direction pressed, `00240DE0` posts `0x8003` to the list (`002D1AC0`) instead of moving; Graphics Settings sets
+it while a row's `+0xC8` differs from its `+0xC4` (`0023C25F`-`0023C26B`).
+
 ### Where each setting is saved
 
 | Settings | Kept in | Written |

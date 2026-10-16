@@ -100,6 +100,39 @@ does it go on to the battle-voice banks (`0021C870`). Pan and volume go through 
 ([Sound effects](sound-effects.md)). Every voice bank's sound has category 3, so the Config Voice row scales it
 (`002DE310`).
 
+Each cue helper first takes the slot's table for the language into `+0x30` (`002DEBB0`) and checks the slot is ready
+and the index below the count:
+
+- `003E9A10(slot, index)` answers 1 while a line is pending, a load handle at cue `+0x14` with bit 31 of `+0x08`,
+  and otherwise whether its stream still plays (`001DC2C0`); `voicesync` waits on it (`003527F0`).
+- `003E9B80(slot, index)` answers whether the cue holds a load handle, the test `voicepan` and `voicevolume` wait on
+  (`003537B0`).
+- `003EA430` and `003EA540` pan the cue's stream and set its volume (`002DF610`, `002DF6A0`), for the results of
+  `voicepan` (`00352E80`) and `voicevolume` (`00353C20`).
+- `003EA330(slot)` hands every cue's load handle and stream to `003EA3E0` and clears its pending bit, stream and
+  handle.
+
+`003E98B0(slot)` frees a slot: one still loading becomes state 4; a parked or ready one has its lines closed
+(`003EA330`), both tables and the block at `+0x38` freed, and returns to state 0.
+
+### Lines picked by party member
+
+A set of verbs lets a scene speak a line through whichever party member can say it. `battlevoice_regist_ctrl_data`
+`0x46B` (`00344000` -> `003EBE70`) takes a control table, keeps it at `02B5EC60`, allocates a `0x100`-byte block
+named `VOICEWK` at `02B5EC68` and picks a member for every group into the eight words at `02B5EC70`:
+
+1. `00321EA0` runs the search `00321F10` first with the party test and, when that finds no answer, again without it.
+2. `00321F10` gives each group in turn one of its candidates, `0xC4` bytes per group with a count at `+0x04` and
+   12-byte candidates from `+0x08` whose third word is the member (-1 fits any group), never the same member twice. With the test on, a member must be below 40 and its
+   party record at `[02EBF190] + 8 + member x 0x1C8` must have none of the bits `0x88000013` in `+0x64` or `+0x3C`.
+3. `battlevoice_calc_member` `0x46D` (`003447E0` -> `003EBD30`) clears the eight picks and runs the search again on
+   the kept table.
+
+`battlevoice_regist_message_and_voice` `0x46E` (`00344BB0` -> `003EBF20`) stores a voice id and a message id in
+`VOICEWK` entry `n` when group `g` picked candidate `c`. `mesvgetvoiceid` `0x490` (`003EBE20`) and `mesvgetmesid` `0x491`
+(`003EBE00`) read entry `n` back, -1 without a block, and `mesvgetfaceid` `0x49C` (`003EBDC0`) reads the middle word
+of the picked candidate of a group.
+
 ## Layouts
 
 | Offset | Type | Name | Meaning |

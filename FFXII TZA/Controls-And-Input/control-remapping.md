@@ -88,6 +88,20 @@ A yes to the question calls `001E1050` again with swap 1 (`0023C637`); a no chan
 binding with `001E1050(row, profile, 0, 1)` (`0023C8F5`), and in the first profile it plays error sound 4 instead
 (`0023C8BF`-`0023C8CF`).
 
+### The key-cap pictures
+
+`002B5C90`, run when a binding is stored (result 0), repoints the button-prompt pictures at the new keys. For each
+prompt it takes the first profile's key for the control (`001E0BD0`, `001E0DA0`), stores that key-cap index in the
+picture's word `+0x0A`, and points its sprite `+0x20` at an entry of the atlas's group 0 (`002B5CC8`-`002B60BA`):
+
+- for the 21 key-cap indices at `01E0C3F0` (`002878B0`), the entry follows the game's language: French 6, German 5,
+  Italian 4, Spanish 3, Korean 0, the two Chinese languages 2 and 1, any other 9 (`00285F60` of `0017E270`);
+- for any other key it follows the keyboard layout from `GetKeyboardLayout` (`001E0B90`): French `0x40C` gives 8,
+  German `0x407` gives 7, any other 9 (`00285FE0`).
+
+It also keeps WalkMode's key-cap index (group 2 slot 3) at `01E0CE28` and those of the sixteen group 0 controls at
+`01E0CE10`.
+
 ### The assignment
 
 `00198A00(manager, profile, group, slot, code, swap)` is the only writer of one binding:

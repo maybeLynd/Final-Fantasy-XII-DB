@@ -93,6 +93,29 @@ positive size allocates that many slots (`007AA2E3`), and a negative one binds i
 (`007AABD1`, `007AA342`). The name goes to the category object's `+0x70` (`007AA137`-`007AA156`). `ctgl` gives only
 its element count: each category gets that many plus one volume ramps (`007AAAB2`, `007AA15A`).
 
+`007ADAB0` gives one category element, by index for version 0 and through the offset table otherwise. `007AAA40`
+builds one `0x88`-byte `Driver::Category` per element (`007A96F0`; `007A9760` destroys one) and keeps the pointers at
+`02EAD008`. `007AA010` gives each category a handle list with as many nodes as its size.
+
+### How a category limits its sounds
+
+`007A9A10(category, handle)` adds a starting sound, music or instrument to its category, or to the one a negative size
+shares (`+0x58`):
+
+1. While the list is full, it walks it from its oldest entry and finds the one with the lowest priority, slot 25 of the
+   object, which for a sound is byte `+0x07` of its sound record (`007BD980`).
+2. When the new object's priority is lower than that one's, it refuses the new one (returns 1).
+3. Otherwise it stops the lowest one at once (slot 2, no fade) and takes it out of the list; an entry with no object
+   prints "list remove invalid iterator".
+4. It gives the new object the category's volume (`007A9F40`, slot 5) and pitch (`007A9D30`, slot 6), pauses it when
+   the category's pause count `+0x64` is above 0, and appends its handle at the newest end (`007BB9A0`).
+
+`007A9F40` multiplies the category's volume ramps `+0x38` and its master volume `+0x48`; `007A9D30` multiplies its
+pitch ramps `+0x40` and its master pitch `+0x4C`. Each driver pass `007AAEA0` advances the master volume ramp
+`01F403E0` (type 5, `007AAD90`) and the master pitch ramp `01F40410` (type 6, `007AAC80`) and stores them into every
+category (`007AA540` at `+0x48`, `007AA530` at `+0x4C`). `007AA550` sets a pitch ramp (type 4), and `007AA510`, run by
+a macro, the first volume ramp.
+
 ### The bus
 
 | Offset | Type | Name | Meaning |
@@ -114,18 +137,25 @@ its element count: each category gets that many plus one volume ramps (`007AAAB2
 effect table is at `nameAt + ((nameLength + 0x10) & 0xF0)` (`007ADA3F`), and an effect's type byte `+0x01` picks its
 class through the jump table at `007ACCF0` (`007AC883`).
 
-| Type | Effect class |
-|---:|---|
-| 0 | `EmptyEffect` |
-| 1 | `SurroundReverb` |
-| 2 | `Compressor` |
-| 3 | `Filter` |
-| 4 | `SideChainInput` |
-| 5 | `SimpleFilter` |
-| 6 | `Flanger` |
-| 7 | `GranularPitchShift` |
-| 8 | `HilbertFilter` |
-| 10 | `BuildReverb` |
+`007AD950` gives one bus element, by index for version 0 and through the offset table otherwise.
+`007AC410(mixer, bus)` gives a bus's voice; a bus number below 0 or past the count prints "bus access overrun! use
+master bus" and gives bus 0's. `007AC4D0(mixer, port)` gives a master port: 1 is bus 0's voice and 2 the voice at
+mixer `+0x18`. The mixer object, `Driver::Audio`, is built once at `02EAD0A8` (`007AC360`).
+
+| Type | Effect class | Builder |
+|---:|---|---|
+| 0 | `EmptyEffect` | |
+| 1 | `SurroundReverb` | `007D2150` |
+| 2 | `Compressor` | `007D85E0` |
+| 3 | `Filter` | `007D0AC0` |
+| 4 | `SideChainInput` | `007D80E0` |
+| 5 | `SimpleFilter` | `007D9530` |
+| 6 | `Flanger` | |
+| 7 | `GranularPitchShift` | |
+| 8 | `HilbertFilter` | `007DAAB0` |
+| 10 | `BuildReverb` | `007DAFF0` |
+
+Each builder installs its class's vtable and zeroes its ramps; `007AC4F0` calls it for its type (`007AC8F6`-`007ACA48`).
 
 ### Macros
 
@@ -143,6 +173,10 @@ has a header length at `+0x01`, an opcode at `+0x02` and a payload length at `+0
 | `0xA1` | `007B3F2F` | when the count passes the test, refuses the new sound |
 | `0xA2`-`0xAB` | from `007B4374` | other actions |
 
+`007AE1A0` gives one macro element. The filters compare whole numbers with `007B2BD0` and floats with `007B2C40`, by a
+code 0 to 5 for `==`, `!=`, `>`, `>=`, `<` and `<=`. With mode byte `+5` set to 1, one action adds its value to the
+sound's current one and wraps the sum into -1 to 1 by steps of 2 (`007B4800`, called at `007B3C46`).
+
 ### Effect presets
 
 `007ACD30(mixer, index, fade)` applies preset `index` of `epsp`, from the sound command `0x300` (`007EEF59`). An index
@@ -150,6 +184,35 @@ at or above the count logs `[sead][!!error!!]set effect preset number invalid [%
 passes that test and resets every bus to its `bus ` chunk values and re-enables every effect (`007ACE32`-`007ACFA8`).
 A preset's records set a bus ramp (`007AD09E`-`007AD0A9`) or switch an effect on or off, and an effect's settings
 come from `eps ` through `007ADDC0`, one section per effect type, with block sizes from `01CB49A0` and `01CB4990`.
+
+`007ADE50` gives one preset, `007ADF10` one of its effect records and `007ADA80` one of its bus records.
+
+### Events
+
+An `evt ` element is a timed list of commands. `007ADF60` gives one element; `007B67E0` wraps each in an
+`EventData` and builds a pool of 64 running events. Command `0x33` starts one (`007B6350`): `007EE910` builds the
+`Event` and `007EE990` sets it running (state 1) and runs its first step. `007EEA00(event, seconds)` counts its wait
+down and then runs commands until one waits. A command has a header length at `+0x01`, an opcode at `+0x02` and a
+payload length at `+0x04`:
+
+| Opcode | Does |
+|---|---|
+| `0x001` | ends the event (state 2) |
+| `0x002` | waits `+0x08` milliseconds |
+| `0x003`-`0x006` | plays (`007A78B0`), stops, pauses or resumes the sound with id `+0x08` |
+| `0x007` | posts a name (`007A5380`) |
+| `0x100`-`0x103` | music commands `0x1D`, `0x21`, `0x27` and `0x28` on the music with id `+0x08`; `0x102` first creates it from its bank (`007A4A10`) |
+| `0x200`-`0x205` | category volume, pitch, pause, resume and the two byte pairs |
+| `0x300` | applies an effect preset |
+| `0x301` | sets a bus value |
+
+Reading past the element's total size prints "Event::Update exceeded TotalCommandSize" and ends the event.
+
+### External parameters
+
+`007B0F90` builds one `0x40`-byte row per `expr` element at `02EAD3F8`, their count at `02EAD3EC`. `007B0E90(out, name)`
+gives the ramped value of the row whose name matches, or -1; a switched sound reads its value through it
+([Sound variations](sound-variations.md)). `007B1380` advances every row's ramp on each driver pass.
 
 ### The HCA mixer switch
 
@@ -216,3 +279,4 @@ The sum of the positive category sizes, 60, sizes the engine's pools (`007A4ED7`
 ## Related
 
 - [Sound banks](sound-banks.md) - the bank files the engine plays.
+- [Sound driver objects](sound-driver-objects.md) - the pools the category sizes set, and the category commands.

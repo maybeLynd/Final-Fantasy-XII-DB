@@ -33,6 +33,12 @@ and keeps a stack of the lists opened in the cursor block at `[0209BE80] + 0xAA6
 Each widget dispatches through its own tables: the manager answers 21 messages (`0027AA38`, `0027A9E0`), the panel 10
 (`00277880`, `00277854`) and the list widget 14 (`00279D98`, `00279D60`).
 
+`00290CF0` builds the manager only when the request bit 4 of `[0209BE80] + 0x10F68` is set and, unless bit 10 is also
+set, router id 1 is not refused (`00254500`, `00254550(set, 1)`, a bit test); the HUD itself is on [HUD](hud.md).
+The list widget keeps a chain of callback records `{fn*, argument, previous, next}`: `00274BA0` appends one
+(`002779C8`), and `00274BD0(head, first, n)` runs up to `n` of them and unlinks each that answers 1 (`00278390`,
+`00278592`, `00278A7A`, `00278A91`).
+
 ### Lists
 
 `0027E050` turns a menu kind into a list code for the list builder `0031EB20` and installs the row painter, and
@@ -103,7 +109,8 @@ The list widget reads the pressed word ([Controls](../Controls-And-Input/control
 
 - Square closes the menu in every state (`00277ADE`-`00277B15`).
 - Outside a target list, left and right step to the previous or next party member when more than one is in the party
-  (`00277BFF`, `0027C280`).
+  (`00277BFF`, `0027C280`). `0027C280(handle, step)` keeps the members whose record has flag bits 0 and 3 clear, puts
+  them in party order (`00273600`, an insertion sort of `{key, value}` pairs) and steps round them.
 - In a target list, L1 and R1 step the target category (`0027B430`, `0027C730`) among the tabs the manager allows.
 - The row cursor, confirm and cancel come from the page's list, which posts `0x8000`, `0x8001` and `0x8002` to the list
   widget in the convention of [Dialogs](dialogs.md).
@@ -129,6 +136,51 @@ The filter skips, for filter 1, rows with flag bit 1 and units whose status word
 
 `0027DCA0` moves the strip half way towards its centred position, snapping when it is within 1. `00276830(tabs,
 kind)` marks the tab of list kind `0x10`-`0x13`: the other tabs draw one palette further on.
+
+### The first target row
+
+`0027BED0(page, handles)` picks the row a target list opens on (`002798E8`), the first rule that finds one:
+
+1. the first row not greyed (flag bit 1) whose unit is one of the four handles given;
+2. the first row with flag bit 0;
+3. the row of the acting unit, page `+0x08`;
+4. the nearest row that is not greyed and not the actor and whose unit is on screen, else the nearest such row;
+5. the saved row `+0x44`, or the first row not greyed, or row 0.
+
+Distances are from the actor's position (`002E9D10`, `00203080`, `002703F0`). A unit is on screen when its position
+projects in front of the camera `02AEDDB0` (`00272250`) inside the 1920 x 1080 frame (`00273850`). `00272180(out,
+matrix, point)` projects a point and divides by its depth; `00272250` turns the result into frame coordinates,
+`(x - 0x8000) / 16 + 01E0C1D8 / 2` and the same for y, and `002722A0` does the same with the width divided by
+`00183280()`.
+
+### Refreshing an open list
+
+`0027D740(page)` rebuilds an open page while its `+0x1528` bit 10 is set:
+
+1. A command or action list is rebuilt with `0031EB20`; an action list (page kind 11) keeps the cursor on the row
+   with the same id, and the cursor is clamped to the last row.
+2. A target list (bit 13) is rebuilt from a copy of the page (`00272400`, which copies the `0x50`-byte header and the
+   eight-byte rows) and filtered (`0027BB70`). Once bit 14 is set it keeps its old order (`002727F0`: rows still
+   present first, in their old order, then the new ones); before that, with bit 12 it is sorted by distance from the
+   camera `02AEDDB0` (`002729A0`), and bit 14 is then set.
+3. The cursor stays on the same unit, or is clamped to the last row; bits `0x80800` are set when the row count or the
+   cursor changed.
+
+`0035BC50` sorts its list `0x1A` at `022C83F0` by distance in the same way (`00272B40`, `0035BD19`).
+
+### The target cursor
+
+`0027CD00(cursor, widget)` draws the hand over the target unit (`002780DC`): it projects the unit's position
+(`002713E0`, `002722A0`), hides the hand while the unit is behind the camera (`003678F0`), and otherwise slides it
+from its last place towards the unit by the blend at `+0x0A` (`002752E0`), jumping straight there after it was
+hidden; `00368360` draws it, and `00368940` also runs once the blend is full.
+
+The list's row hook `0027E4E0(page, widget, unit)` (`00279C26`) pulses a row while `0027B770` finds its unit within
+the radius `+0x1540` of the cursor's unit (`0027B3B0`), neither row greyed: `0027AF00` sets the draw's `+0x58` to half
+of the page's `+0xA0` and swings its `+0x5A` by `sin(frame x pi / 7)` times half its value. `0027BD80(actor, action)` returns the value `0031AB80`
+reports for a kind 1 answer, or 0 (`00279ABF`).
+
+The target lines and marks the list asks for while it is open (`0027DE30`, `0027DC10`) are on [HUD](hud.md).
 
 ### From a row to an action
 
@@ -160,6 +212,11 @@ cursor move:
 - an action row shows the action's description;
 - a greyed row shows its refusal first, through `0027C150`;
 - a target row opens the target information window (`002C0870`) instead of text.
+
+The help block's own calls (`0028FEA0`, `00290C60`, `00290C80`) are listed on [HUD](hud.md). The target information
+window `002BFD20` builds its weakness line with `00295D90(size, out, mask)` (`002C02B2`): "Weak: "
+(`listhelp_common.bin` `0x2331`), an optional part from `002AC290`, then one element icon, text `0x4B27` plus the
+element, for each set bit of the mask.
 
 `0027C220(page, row)` picks the refusal: in a command list (page kind 6 to 10) a row with flag bit 1 gives its reason
 byte `+4`, in an action list (kind 11) a row with flag bit 0 gives its byte `+6`; a positive reason with a row in
@@ -196,7 +253,9 @@ The party list `0029BE50` (`0xB68` bytes, at `[0209BE80] + 0x10F78`) draws one s
 | MP | `0029A8E0` | `+0x2C` |
 | MP bars | `0029A930` | `+0x38` over `+0x87` bars; the first `+0x86` bars pulse, with sound `0x48` or `0x49` when that count changes |
 
-The battle menu highlights the acting member's slot (`00296AF0`) and clears it (`00296B80`).
+The battle menu highlights the acting member's slot (`00296AF0`) and clears it (`00296B80`). How the rows are built
+and animated, the rolling numbers, and the modes in which the rows become the target cursor are on
+[Party list](party-list.md).
 
 The menu finds members through the party status records at `0035BB20(i)`, `0x0C0` bytes each, with the handle at
 `+0x04`:

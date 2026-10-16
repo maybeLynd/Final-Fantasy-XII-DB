@@ -28,6 +28,9 @@ The play calls sit in `002DEE80`-`002DF530` and reach the audio manager through 
 | `002DF170`, `002DF190` | handle or id, frames | stops with a fade of `frames / 60` seconds |
 | `002DF150`, `002DF1A0` | handle, volume (, frames) | sets the volume, at once or over frames |
 | `002DEF20` | handle, pan | sets the pan |
+| `002DF280` | id, position, record | `002DEFA0` with bit 31 set: a block-bank sound placed at the position; 0 for id -1 |
+| `002DF120` | handle, position | moves a playing placed sound, except while `003603C0` answers non-zero |
+| `002DF1E0` | bank id, frames, volume | sets the volume of every sound of that six-digit bank, at once or over frames |
 
 Volume is masked to 0-127 and pan to a byte before the controller (`00210C03`-`00210C0C`).
 
@@ -134,6 +137,16 @@ A curve above 5 gives 0 (`007A9E5A`). The ramp setter `007CA560` has 97 calls:
 `002DF0F0(handle, 0)` stops the sound with that handle with a 0.1 s fade (`00222390`). By id it sends a block-bank
 request as `id | 0x80000000` (`00210C65`), which `0021B640` acts on only for -1, -2 and -4 (`0021B647`), so one
 block-bank sound cannot be stopped by its id.
+
+`002716F0(handle)` stops a handle only when it is not negative and `002DEE80` answers that it still plays; its
+only caller is the special-attack window `002D5EB0` ([Menu screens](../Menus-And-HUD/menu-screens.md)).
+
+### Stopping after a delay
+
+`003B3EA0(handle, frames)` starts a fade-out of `frames` (`002DF170`) and queues the handle in the first free entry of
+32 at `02EBCC80`, with a countdown of `frames` plus a quarter of it, at least 2. `003B3D20`, run from `0024D540`,
+counts each entry down and stops its handle at 0 (`002DF0F0`), closing the queue up. When `003E7DE0` answers non-zero
+it instead calls `003B3E40`, which stops every queued handle at once and empties the queue.
 
 ## Modding notes
 

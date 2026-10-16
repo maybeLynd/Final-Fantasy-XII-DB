@@ -101,17 +101,61 @@ The feed `007EAA60` runs from the voice's buffer callback `007ED4C0`:
 
 When the voice has ended and its source voice is empty, `007ED4C0` sets the voice's state to 4.
 
+### The voice's controls
+
+A `Voice` keeps its source voice at `+0x68` and a state at `+0x70`: 1 once open, 2 playing, 3 paused and 4 ended.
+`007EBAB0` reports it as 0, 1, 2 or 3 (3 for state 4), and every control below refuses an ended voice:
+
+| Control | Function | Does |
+|---|---|---|
+| play | `007EDA60` | from state 1 only: fills the source voice (`007EAA60`) and runs its slot 3, or ends the voice when that fails |
+| resume | `007EDAB0` | runs the source voice's slot 3 and sets state 2 |
+| pause | `007EE6F0` | runs its slot 4 and sets state 3 |
+| stop | `007EE670` | runs its slot 4 and sets state 4, or for a looping type 5 or 6 material only marks the end at `+0x12C` (`007EE6AF`) |
+| volume | `007EE500` | clamps to 0-1 |
+| pitch | `007EE300` | clamps to 1/512-2 and sets the source voice's pitch (slot 7) |
+| low-pass | `007EDD20` | clamps to 0-1 and sets the `SimpleFilter`'s parameter `0x400` through `007D99A0` |
+| granular pitch | `007EDB60` | clamps to 0.5-512 on the voice's `GranularPitchShift` effect |
+| filter reset | `007EA9C0` | with a true flag sets the filter's parameter `0x400` to half the device rate (`007AED00`); stores the opposite flag at `+0x90` |
+| loop | `007EA920`, `007EBA90` | set the loop flag `+0x120`, and answer whether the material has a loop region and the flag is set |
+| effect value | `007EDB10` | sets a value of effect 1, 2 or 3 at `+0x108` |
+| sends | `007EDAF0`, `007EDE70`, `007EE470` | set a send level on the source voice (its slot 16); `007EE470` can scale the current one |
+
+A value that is not a finite number prints "set invalid volume!!", "set invalid pitch!!", "set invalid lowpass value!!"
+or "set invalid granular pitch value!!". `007EBA40` gives a time read from the source voice, and `007EE430` and
+`007EE450` pass two values on to it (`007E2660`, `007E2680`).
+
+The decoders read an in-memory material through three callbacks `Voice::Initialize` hands them: `007EE730` copies
+whole frames from the read position `+0x138`, `007EE7F0` sets that position and `007EE900` returns it. A streamed
+material is read through `007EE800`, which takes the bank's stream for this voice (`007E2EB0`, `007E31B0`).
+
 ### The HCA mixer
 
 `HCAMixerVoice` (slot 1 `007DD040`) mixes several HCA inputs through the CRI mixer `00121D40` into one source voice.
 It is built only by `007DCD70`, the only writer of `[02EAE088]`, when the configuration's `hcam` flag is set. A voice
 joins it instead of opening its own source voice only when its HCA header byte `+0xC` is set (`007DCAA0`).
 
+`007DC6B0` builds the mixer voice, and `007DC730` frees its CRI mixer (`00121030`), buffers and inputs. `007DCAC0`
+joins an input: it registers the voice with the CRI mixer (`00121770`) and appends it to the input list (`007DCB50`),
+whose nodes `007DCC60` builds.
+
 ### The external source
 
 `ExternalSourceVoice` (slot 1 `007B93A0`) is a voice its caller feeds with 16-bit buffers through `007B93E0`.
 `006794D0` is its only creator; it opens it at 48000 Hz with three buffers of 48000 frames each
 (`006794FC`-`00679533`).
+
+`007A4930` is the driver call behind it: it allocates `0x520` bytes, builds the object (`007B8D40`; `007B8E50` puts
+back its base vtables) and opens it (`007B9050`), returning its `IExternalSourceVoice` interface at `+0x08` or freeing
+it on failure. `007B9590` moves queued caller blocks, from a 32-entry queue at `+0x78`, into the source voice's buffers
+while it holds fewer than two, and `007B9AF0`, run for each external source by the update pass, advances its volume
+and pitch ramps.
+
+The movie player's `ExternalVoice` wraps it. `00679130` builds the wrapper with two events at `+0x30` and `+0x48`,
+and `006792C0` closes them (`005CD700`) and puts back the driver's `ExternalVoiceCallback` vtable.
+`0067A240(voice, samples, bytes)`, from the movie audio feed `00679600`, waits on `+0x48` (`005CD840`) and copies
+the block into buffer `count % 3` of `+0x10`, `+0x18` and `+0x20`. The first time, with `+0x40` clear, it queues the
+buffer at `+0x10` on the source (slot 1), signals `+0x30` (`005CD5E0`) and sets `+0x40`.
 
 ### Output format and the device
 
@@ -134,12 +178,28 @@ The device asks for each block through `007DF690`, which runs `007AF740` under t
    `007B0B80` otherwise; it resamples with `007B0390` when the device rate is not 48000.
 4. It hands the block to the device (`007DF3F0`), and updates a per-channel peak meter at `[02EAD378]`.
 
+The two output ports are `WASAPI::AudioRenderer` objects at `02EAE0B8` and `02EAE0C0`, built by `007DDED0` (`007DD2B0`;
+`007DD360` stops and frees one) with two callbacks, `007DF690` and `007DF660`; the second runs the function the start-up
+block gives at `02EAE0A8` under the lock `02EAE0B0`.
+
+`007DDD60` and `007DDE20` give a port's channel count and rate. `007DD980` reads a device
+format: 16-bit PCM gives sample kind 2 and float gives 1. A renderer takes requests through a four-entry ring
+(`007DDC20`) and output blocks through another (`007DF340`); `007DD410` releases a `WASAPIDevice`'s interfaces.
+
+When a device changes, `007AF570` prints "Device Changed! [%d][Channel:%d][SamplingRate:%d]" and reallocates the
+port's four output buffers for 1.1 blocks at the new rate and channel count, cut to a whole frame.
+
 ### The voice factory, pass and lifecycle
 
 `007AEA20(out, rate, channels, format, callback, ..., heap)` builds a source voice. With `heap` 0 it takes one from
 the pool `02EAD250` and links it into the list `02EAD2A0`; with `heap` 1 it allocates 0x2B8 bytes (`007AD460`) and
-links it into `02EAD300`. `Voice::Initialize` (`007ED303`) and the HCA mixer (`007DCE64`) give 0; the external source
-(`007B91BC`) gives 1.
+links it into `02EAD300` (`007AF490`). `Voice::Initialize` (`007ED303`) and the HCA mixer (`007DCE64`) give 0; the external source
+(`007B91BC`) gives 1. `007E0650` builds a source voice and `007E0720` tears one down; `007AED10` and `007AEE20` build
+the two fixed source lists.
+
+The masters and buses take their blocks from the same pool `02EAD250`. `007AE930(out, ..., port)` builds the master
+of an output port (`007DF930`, then `007DFB20` with a buffer from `02EAD200`), and `007AEC10` builds a submix
+(`007DFF20`, then `007E0130`; `007DFF80` frees its two buffers) and links it into `02EAD2D0`.
 
 The voice pass `007B0000` runs once per block:
 

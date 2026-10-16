@@ -82,6 +82,46 @@ trigger `007BD240(sound, sequence)` for each candidate it chooses:
 The sequence's own update `007E7540` counts the delay down and then starts it (`007E759A`-`007E75C7`). The delay is
 0, so a sound starts on its sequence's next update.
 
+### Playing a sequence
+
+Each kind is the `Sound` object (`007BC8D0` builds it, `007BCE00` tears it down) with its own vtable:
+`RandomSound` `007E50A0`, `OrderSound` `007E5810`, `CycleSound` `007E5CD0` and `SwitchSound` `007E6700`;
+`007E5DA0`, from the cycling rule, walks the sound's sequences by group (`007CF9A0`). A sound keeps its sequences' handles at `+0x400`, their count at
+`+0x4C`. `007E6960` builds a `Sequence` and `007E71F0` binds it to its record, printing "seq data invalid!" without one.
+
+When its delay has run out, the sequence starts its track (`007E6AA0`):
+
+1. It finds the track record the sequence names in the bank's `trk ` chunk and creates the track (`007B5690`): a
+   `MaterialTrack` (`007E9240`) plays a material, a `SoundTrack` (`007E99E0`) plays another sound, both over the
+   `Track` base `007E7A90` (`007E7D40` tears it down).
+2. It hands the track the sequence's values (`007E8B30`, `007E8B20`, `007E8AA0`, `007E8AB0`, `007E8AF0`); a
+   `SoundTrack` also passes its child sound a ramp and the switch value (`007E9F40`, `007E9EF0`).
+3. It applies the sequence's zero-one curves of type 3 to the track (its slot 3), then runs `007E8960` on it.
+
+A sequence's state `+0x9C` (`007E71E0`) is 2 while it plays, 3 while it stops, 4 once it has ended and 5 while paused:
+`007E7340` resumes it, `007E74A0` stops it and `007E7500` pauses it, each passing the change to its track (`007E8A40`,
+`007E8B40`, `007E8B90`), whose own state `+0x1E8` ends at 5. `007E72E0` marks a stop request unless the sequence has
+ended.
+
+Each pass the sound passes its values to every sequence, which marks them changed and hands them to its track on its
+own update:
+
+| Sound value | Forwarder | Sequence setter |
+|---|---|---|
+| slot 26 | `007BFE30` | `007E7420` (`+0x38`) |
+| slot 27 | `007BFDB0` | `007E7410` (`+0x40`) |
+| slot 28, three values | `007BFD00` | `007E73F0` (`+0x48`) |
+| the ramp at `+0x2B0` | `007BFC30` | `007E73D0` (`+0x54`) |
+| byte `+0x3F8` | `007BFBA0` | `007E73C0` (`+0x5C`) |
+| the ramps at `+0x248`, by index | `007BFEB0` | `007E7430` (`+0x60`), which also ramps a `SoundTrack`'s child |
+| four bus bytes `+0x80` | `007BF9B0` | `007E7380` (`+0x6C`) |
+| four send ramps | `007BFA60` | `007E73A0` (`+0x70`) |
+
+The track side takes them through `007E8A60`, `007E8A80` and `007E8AD0`. `007BE370`, `007BE390` and `007BE500` set a
+sound's send bus and level and its main send level, and `007BE4D0` clears `+0x180` and ramps a value from a macro.
+`007E71C0` gives a sequence's sound (its handle at `+0x10`) and `007E73E0` stores a sequence's `+0x68`.
+`007BD5E0` gives a sound's id, its bank's number over its sound number, once the bank is ready.
+
 ## Shipped data
 
 Over all 4,609 `.sab` banks:

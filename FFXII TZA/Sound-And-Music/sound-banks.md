@@ -58,11 +58,30 @@ their own number, and `se007` by id 1. The index file is read into a block (`002
 3. `00223AD0` reads the index, stores the registry slot at bank `+0x3C` and the block number at `+0x38`, and opens the
    block's `.win.sab` (`00223CB1`-`00223D05`).
 
+`002DEC10` reads an index's block number, the `i16` at `+0x08`, for `003A1650`. A record's handle is its generation
+`+0x0A` over its index `+0x08`, and every user compares the whole handle before it trusts a record:
+
+- `003A0F80(handle)` counts a use down. At 0, unless the record is permanent (`+0x0D`), it frees the slot's bank
+  (`002DEEF0`, which hands `0021B430` no file), adds one to the generation, unlinks the record (`003A1750`) and puts
+  it at the head of the free list `02AEF3D8`.
+- `003A1750` takes a record out of its list through the links `+0x00` (next) and `+0x02` (previous) and sets both to
+  `0xFFFF`.
+- `003A1290(handle)` answers the record's byte `+0x0C` for `002E60F0`.
+
+`003A13F0` loads three blocks once at start-up: blocks 0, 1 and 2, which `002ED8C0` maps to `se000`, `se007` and
+`se002`. Their callbacks `003A1390`, `003A1330` and `003A12D0` register each one (`003A1650`), keep its handle at
+`02AEF3FC`, `02AEF400` or `02AEF404`, and mark the record permanent.
+
 ### Sound ids
 
 A sound id is `registry slot << 9 + sound slot`. `003A1180(slot)` builds it from the current block handle at
 `02AEF3FC`. It answers -1 when `00267330(0)` is non-zero (`003A1180`-`003A118F`), or when that handle is -1 or its
 record does not match (`003A11AB`-`003A11D1`).
+
+`003A11F0(slot)` builds the same id without the `00267330` test, for `00249CA0`. `003A1100` and `003A1070` build ids
+from the blocks at `02AEF400` and `02AEF404`; both answer -1 while `02AEF400` is -1, so `003A1070` gives nothing until
+block 1 is loaded even when block 2 is.
+
 `0021B5B0(id)` finds the bank whose `+0x3C` equals `id / 512` (`0021B5DF`-`0021B5FA`). An index file has 128 slots,
 so slots 128-511 of each id range name nothing.
 
@@ -72,6 +91,15 @@ Effect and sound files carry `SeSep` records that name six-digit banks; 4,318 fi
 `.efx`, 545 `.mpk`, 7 `.cm`, 1 `.spp`). `002DF070` walks the records while each starts with `SeSep` and fits, and
 calls `001DBE60(id, record + 0x10)` for each. `0021A040` skips an id already loaded, and `00222DC0` stores the id and
 `id / 1000` and copies the record's `u32` and `u8` twice into the bank (`+0x40`/`+0x44`, `+0x45`/`+0x49`).
+
+The sound records of effect files open their banks through the table of 32 entries of `0x84` bytes at `02EBBA00`.
+The effect loader `00504060` adds an entry for a kind-1 record and opens its banks, or adds a reference to it
+(`003D7CE0`); an entry holds the kind, a reference count `+0x02`, the bank id `+0x04` and up to 30 play handles:
+
+- `003D7C50(kind, id, handle)` keeps a handle in the entry's first empty cell.
+- `003D7E90(entry)` counts the handles that still play (`002DEE80`) and clears the rest.
+- `003D7DC0`, run from `00258D70` and `00258E40`, empties every kind-1 entry with no reference and no playing
+  handle and releases its bank (`002DF050`); it leaves kind-3 entries alone.
 
 ### Battle voices
 
@@ -83,6 +111,8 @@ calls `001DBE60(id, record + 0x10)` for each. `0021A040` skips an id already loa
 - Each finished load finds its record by the handle, in `022D9AB0` when `handle & 0xF0` is 0 and otherwise in
   `022D9AE0`, at `handle & 0xF` times `0x18`. It registers the bank through `001DC130` with 1 for `us` (`0036EAB0`)
   and 0 for `jp` (`0036E9F0`).
+
+`0036F000` answers 1 only when no record of either table is in state 1 or 2, so every voice load has finished.
 
 ## Layouts
 
@@ -138,7 +168,7 @@ Every value below holds in all 4,609 `.sab`, 116 `.mab` and 248 `.seb` files:
 | chunks | `snd `, `seq `, `trk `, `mtrl` | `musc`, `inst`, `mtrl` |
 | name length | 5 for `se` banks, 7 for `shout` banks | 5 |
 | `+0x05` | 1 in the 4,097 six-digit banks, 0 in the 248 block banks and 264 voice banks | 1 |
-| `+0x0A` | 350 values; 1 in 157 banks, starting `se001001` | `0x2710` |
+| `+0x0A` | 350 values; 1 in 157 banks, starting `se001001` | 10,000 |
 | `fileSize` equals the length; chunk offsets rising, the first at the directory's end | yes | yes |
 
 The `.seb` files are `se000`, `se002`, `se007`, `se200`-`se434` and `se700`-`se709`, 708 to 24,968 bytes, with
@@ -175,6 +205,24 @@ both languages.
    and copies each slot's `u32` and `u8` into a 10-byte node at `+0x00`/`+0x04` and again at `+0x05`/`+0x09`. It reads
    nothing past the slot's fifth byte. The `SeBlock` string does not occur in the executable, so no code compares
    the magic.
+7. The driver reads every record through small wrapper classes, named by their run-time types. A chunk wrapper skips
+   the chunk's name padding (`(byte +0x09 + 0x10) & 0xF0` from version 2) and indexes its offset table at `u16`
+   `+0x02`; the record accessors that check the index refuse one at or past the count `u16` `+0x04`:
+
+| Class | Accessor |
+|---|---|
+| `SoundChunk`, `Sound` | `007CFB30`, `007CFB00` |
+| `SequenceChunk`, `Sequence` | `007CFA30`, `007CF9E0` |
+| `TrackChunk`, `Track` | `007CFC70`, `007CFC20` |
+| `MaterialChunk`, `Material` | `007CF8B0`, `007CF860`; `007CF940` reads a material's offset and `007CF960` the offset table's size rounded up to 16 |
+| `SoundEffect`, `SoundEffectFlangerParam` | `007CF780`, `007CF810` |
+| `ZeroOne`, `SoundZeroOneParam` | `007CFE60`, `007CFF40` (from sound version 12, `0x20`-byte records at `u16` `+0x4C`) |
+
+`007CF540` and `007CF560` build the `AudioBinaryFile` and `SabFile` wrappers, `007CF580` drops one, `007CF740` gives
+the address a version-dependent `u16` of a record points to (`+0x02`, `+0x0E`, `+0x16` or `+0x06` for versions 0, 1, 2
+and later), `007CF980` a record's zero-one count (2 below version 3, byte `+0x08` after) and `007CFD00` a zero-one
+curve's value at a point: the input scaled into 0-1 by the curve's range, then a binary search over its 16-byte
+points.
 
 ## Modding notes
 
