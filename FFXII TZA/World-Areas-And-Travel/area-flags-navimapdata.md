@@ -261,7 +261,7 @@ The name table's header, measured in all nine language copies of `planmapname.bi
 
 | Address | Width | Meaning | Written by |
 |---|---|---|---|
-| `02ADD100` | `ptr` | the loaded table | `00378540` (null), `00378B80` (delivery) |
+| `02ADD100` | `void*` | the loaded table | `00378540` (null), `00378B80` (delivery) |
 | payload `+0x1044` | `i32` | current or pending area id | the zone change (see the zone changes page) |
 | payload `+0x1062` bit 0 | bit | vetoes the hold flag | the zone change record's flag byte |
 | payload `+0x1062` bit 7 | bit | enables the MP regime override | the zone change record's flag byte |

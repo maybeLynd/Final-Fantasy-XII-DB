@@ -278,18 +278,29 @@ PType (base of every type and descriptor):
 | `40` | `void*` | name-writer hook, or null (00637320, 00637350) |  |
 | `48` | `void*` | name-resolver hook, or null (006389C0, 00638A50) |  |
 
+Every list in these records is a circular doubly linked list of 16-byte nodes: a list is empty when its
+node points at itself, and a member sits in a list through a node inside it (`006B6700` drains one,
+taking each member at its node minus 8).
+
+`ListNode` (`0x10` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `void*` | next | the next node, or this node when the list is empty |
+| `08` | `void*` | prev | the previous node |
+
 PClassDescriptor (`0x100`):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `50` | `list` | node in the namespace's class list |  |
-| `60` | `list` | drained by 006B6700 at teardown |  |
+| `50` | `ListNode` | node in the namespace's class list |  |
+| `60` | `ListNode` | drained by 006B6700 at teardown |  |
 | `70` | `void*` | namespace |  |
 | `78` | `void*` | parent descriptor, or null |  |
-| `80` | `list` | data members |  |
-| `90` | `list` | methods |  |
-| `A0` | `list` | script functions |  |
-| `B0` | `list` | fourth list, emptied by the constructor and the destructor |  |
+| `80` | `ListNode` | data members |  |
+| `90` | `ListNode` | methods |  |
+| `A0` | `ListNode` | script functions |  |
+| `B0` | `ListNode` | fourth list, emptied by the constructor and the destructor |  |
 | `C0` | `void*` | default instance |  |
 | `C8` | `void*` | undescribed-byte mask |  |
 | `D0` | `void*` | write mask |  |
@@ -330,12 +341,12 @@ PClassDataMember (`0x58`; arrays to +`0x64`):
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `00` | `void*` | vtable |  |
-| `08` | `list` | node in the owner's +0x80 list |  |
+| `08` | `ListNode` | node in the owner's +0x80 list |  |
 | `18` | `void*` | owning descriptor |  |
 | `20` | `void*` | name |  |
 | `28` | `u32` | attribute word |  |
 | `30` | `void*` | type (a PType or a class descriptor) |  |
-| `38` | `list` | annotations |  |
+| `38` | `ListNode` | annotations |  |
 | `48` | `u32` | offset in the owner's layout |  |
 | `50` | `void*` | dynamic-type helper, or null |  |
 | `58` | `u32` | element size (arrays) |  |
@@ -347,7 +358,7 @@ PAnnotation (`0x30`):
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
 | `00` | `void*` | vtable |  |
-| `08` | `list` | node in a member's +0x38 list |  |
+| `08` | `ListNode` | node in a member's +0x38 list |  |
 | `18` | `void*` | key (02CF8570 for WriteMask) |  |
 | `20` | `void*` | value type |  |
 | `28` | `u32` | fourth constructor argument |  |

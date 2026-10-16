@@ -154,8 +154,8 @@ level 21 at 61,056, level 31 at 223,374, level 51 at 1,249,590, level 71 at 4,07
 | party record `+0x18C` | `u32` | EXP, cap 99,999,999 | `00312280` |
 | party record `+0x190` | `u32` | LP, cap 99,999 | `00312280` |
 | party record `+0x1C2` | `u8` | level | set to 0 by `0030C470` (`0030C496`); the new level is passed to `0030C650` |
-| enemy `+0xE70` | `ptr` | base reward row: `+0x2F` LP, `+0x30` gil, `+0x34` EXP | `0023A9A5` |
-| enemy `+0xE78` | `ptr` | per-level reward row, same offsets | `0023A9F4` |
+| enemy `+0xE70` | `void*` | base reward row: `+0x2F` LP, `+0x30` gil, `+0x34` EXP | `0023A9A5` |
+| enemy `+0xE78` | `void*` | per-level reward row, same offsets | `0023A9F4` |
 | `0209A2A9` | `u8` | no-LP flag | `0026A580`, `00266D77` |
 
 ## Modding notes
