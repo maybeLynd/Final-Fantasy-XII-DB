@@ -58,8 +58,9 @@ by the byte `02CACCA0`, it:
    is returned at once, so the modules after it never start;
 4. registers more core types (`00686C40`), calibrates the timers (`005CC980`) and stores the start time
    in `02CB60E8`;
-5. sizes and starts the object from `006AA280` (`0x40000`, `0x8000`, `0x800`, then its slot 2), builds
-   the type lists and the per-kind index (`00637F20`, `00637A70`, `00638AE0`);
+5. stores `0x40000`, `0x8000` and `0x800` in `01F2EB34`, `01F2EB38` and `01F2EB3C` (`006AA380`,
+   `006AA360`, `006AA350`), starts the object from `006AA280` (its slot 2), builds the type lists
+   and the per-kind index (`00637F20`, `00637A70`, `00638AE0`, whose entries `00634350` allocates);
 6. registers the shutdown walk `005A0840` with `atexit` and sets `02CACCA0`.
 
 In list order the inits run: DeveloperExtensions, Hierarchy, Game, Inputs, Text, LOD, DynamicGeometry,
@@ -76,7 +77,8 @@ is started by the walk alone.
 ### Shutdown
 
 `005A0840` runs only while `02CACCA0` is set. It walks the list calling each module's shutdown and
-ignores the results, then stops the `006AA280` object (its slot 3), runs the deferred-destruction
+ignores the results, ends the 5 ms timer period (`005CCB90`, `timeEndPeriod(5)`, the counterpart of
+the `timeBeginPeriod(5)` in `005CC980`), then stops the `006AA280` object (its slot 3), runs the deferred-destruction
 reaper `00638C90`, closes the synchronisation object (`00677520`), frees the `0xE0`-byte object and
 clears `02CACCA0`. The start-up calls it directly when the message loop ends; the `atexit` call that
 follows finds the byte clear and does nothing.
@@ -107,6 +109,15 @@ the init registers.
 | `PGame` | `PGameConfig` | one call, `00879D60` |
 | `PHierarchy` | `POctree`, `POctreeWorld` | creates the `POctreeChildren` allocator at `02EBA2A0` |
 | `PDeveloperExtensions` | the module class only | none: init and shutdown are both `005C5230` |
+
+The `PHierarchy` init `0087AE00` also sets up the static at `02EBA2A8` (`0087A8C0`), an object of three
+arrays at `+0x00`, `+0x10` and `+0x20`. The module shutdown `0087AE80` frees the first and last and
+the `POctreeChildren` pool; the static's `atexit` destructor `0087A830`, registered by `0016D5A0`
+through `008C1570`, frees each of the three that the object owns (bit 31 of its count clear).
+
+The pool shutdowns `00879270` and `008792A0`, and the renderer's `00610630`, empty a pool with
+`006803D0` and then trim it with `00680210`, which returns every element on the free list to its
+block, frees each block whose elements are all free and links the rest back into the free list.
 
 ### Namespaces without a module object
 

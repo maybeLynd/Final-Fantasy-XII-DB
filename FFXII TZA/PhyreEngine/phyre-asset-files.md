@@ -3,7 +3,7 @@ title: "PhyreEngine asset files: the .phyre cluster header, the packed namespace
 kind: "format"
 category: "PhyreEngine"
 summary: "The .phyre file that holds every model, texture, shader and animation of the remastered art: the 84-byte cluster header, the packed namespace that names every class and field the file uses, the instance lists, user fixups, header-class tables, packed fixup tables and D3D11 buffers in stream order, the loader that checks the header, binds the file's schema to the engine's registered classes and converts each object to its runtime layout, and a census of all 35,984 shipped files."
-addresses: "0019CB20, 00637C50, 0059E070, 0059A3B0, 0059A6F0, 0059C180, 00686D00, 0069E780, 0059D550, 02CA9D90, 0059AAE0, 0059B430, 00599500, 0059AC00, 0059E300, 0059E780, 0059D6A0, 0059F500, 0059D590, 0059E880, 0059D940, 0059CE30, 0059C700, 0059C250, 00686DE0, 02CAA0A0"
+addresses: "0019CB20, 00637C50, 0059E070, 0059A3B0, 0059A6F0, 0059C180, 00686D00, 0069E780, 0059D550, 02CA9D90, 0059AAE0, 0059B430, 00599500, 0059AC00, 0059E300, 0059E780, 0059D6A0, 0059F500, 0059D590, 0059E880, 0059D940, 0059CE30, 0059C700, 0059C250, 00686DE0, 02CAA0A0, 00676450, 00675EF0, 00676BD0, 006753A0, 00675580, 006D4CF0, 006DA380"
 ---
 
 ## What the player sees
@@ -167,6 +167,7 @@ Measured over the whole archive, reading each `.phyre` file in the loader's stre
 | fixup counts | the header's four counts are the sums of the list counts in every file |
 | user fixups | present in every file; 131,488 records: `PClassDescriptor` 47,020, `PTextureFormatBase` 33,794, `PAssetReferenceImport` 28,037, `PRenderDataType` 16,695, `PSceneRenderPassType` 5,931, `PAnimationKeyDataType` 8, `PModifier` 3 |
 | a texture's fixups | exactly one `PClassDescriptor` and one `PTextureFormatBase`, in all 33,794 |
+| `idmaps.txt` | `gamedata/d3d11/artdata/shared/idmaps.txt`: 4,061,418 bytes, 75,624 CRLF lines, 37,812 key and value pairs, every key distinct and none equal to its value; no `#` in any line |
 | file end | every mesh file ends exactly after its index and vertex buffers, every all-zero file at the end of its array table; in a texture file the image bytes exceed `m_maxTextureBufferSize` in 33,705 and equal it in 89 |
 
 ## Loader behaviour
@@ -200,12 +201,18 @@ zeroes the rest and passes platform checking as the constant 1.
 
 `0059E070` then requires the byte-order mark and the size identity, or returns 6.
 
+`0059C180` swaps the namespace of a big-endian file in place: its eight header words, every word of
+the type-name table (`0059A8B0`), the nine words of every class record (`0059A780`) and the six
+words of every member record. The string pool is left as it is.
+
 ### Binding the schema
 
 - `0059AAE0` allocates one table entry per type (`0x18` bytes), class (`0x30`) and member (`0x38`).
 - `0059B430` finds each type and class name in the engine's registry (`006373D0`, keyed by a hash of
   1973, × 33 plus the low five bits of each byte), sets each class's parent from word 0, and matches
-  each member to the runtime class's member of the same name, walking its bases.
+  each member to the runtime class's member of the same name, walking its bases. A class name is
+  also looked up in the tree passed as its third argument (`0059BE00`, by each entry's descriptor
+  name).
 - Names the registry lacks are logged
   (`"Unable to find type '%s' on load"`, `"File refers to compiled class '%s' which does not exist
   in the current runtime"`) and do not stop the load.
@@ -222,6 +229,10 @@ zeroes the rest and passes platform checking as the constant 1.
   headers (`00596FC0`), returning 6 for a `m_classID` outside the class table.
 - `0059D6A0` sizes and allocates each list's objects. A list whose class has no runtime counterpart
   is skipped with a log line, unless its class carries flag `0x04`, which returns 6.
+- `0063DD30` allocates the cluster's one block (alignment `0x20`): a `0x20`-byte header, the objects' size
+  rounded up to 8 and one `0x80`-byte list record per list. It links the block on the cluster's
+  chain at `+0x48` and gives the records to its pool at `+0x50` (`00680100`); a second block gets
+  `0x16`.
 - `0059F500` reads each list's `m_objectsSize` bytes into a scratch buffer and its `m_arraysSize`
   bytes straight into the list's array area, 9 on a short read; a skipped list's `m_size` bytes are
   passed over.
@@ -243,12 +254,24 @@ dump of data under 32 bytes) and the load goes on.
 - `0059D940` reads the header-class words and the 16-byte child records (`00597070`) and fixes up
   the header-class objects and their child objects, logging a child whose class has no runtime
   version and a runtime class larger than the file's.
+- Two header classes carry arrays after their fixed part, and their static initialisers (`00167DB0`,
+  `001688F0`) set flag `0x4` at `+0xFC` and store a function at descriptor `+0x100` that hands each
+  array to a visitor's slot `+0x08` with its element type.
+- `006D4CF0` serves `PModifierNetworkInfoPacket` (`0x20` bytes), and does nothing when the visitor's
+  slot `+0x18` answers true: `+0x04` modifier codes and `+0x08` modifier instances (`0x20` bytes
+  each), then `+0x0C` + `+0x0E` two-byte buffer entries.
+- `006DA380` serves `POccluderGeometryObject` (`0x30` bytes): `(+0x00 + 3) / 4` `Matrix4`, then
+  `+0x04` `Point3`, then `+0x08` × 4 bytes.
 - `0059CE30`, `0059C700` and `0059C250` then read the pointer-array, pointer and array tables. Each
   reads its `*Size` bytes and decodes every list's share into fixed entries (16 bytes for array and
   pointer-array entries, `0x1C` for pointer entries; `00595EF0`, `00596890`, built on the 7-bit
   varint reader `00597400`), so a size is a packed byte length and a count an entry count.
+- `0059FF40` reads an entry's two varints; the first has its low bit moved to bit 31.
 - The entries patch pointers and arrays inside the converted objects. One that names a member the
   runtime lacks is logged (`"Unable to find a data member in class '%s' offset at %d bytes"`).
+- An entry names an object by instance list and index. `0063BFA0` turns that into the object's
+  address plus the class's layout base `+0xF8`, or null when the index is not below the list's
+  count (`+0x70`) or the slot lies on the list's chain at `+0x10`.
 
 ### D3D11 data and completion
 
@@ -258,6 +281,49 @@ objects, the vertex buffer into its `PDataBlockD3D11` objects, and then texture 
 `m_maxTextureBufferSize`. `0059E300` then marks every list loaded (`+0x7D`), calls slot `+0x70` of the
 `PAssetReference` and `PClassDescriptorDynamic` descriptors for their lists (a non-zero result ends the
 load), and runs `0059F7A0`, which builds the cluster's `PMapPair` records.
+
+`0059F7A0` keeps those records in a local ordered map: a tree head with a `PMapPair` pool of
+`0x28`-byte nodes `0x30` bytes after it (`0067FFB0`). It clears the map on return; when an exception
+leaves it, the unwind action `00597F30` does the same: it resets the head's links (`0067F6F0`),
+frees the pool's blocks (`006803D0`, `00680030`) and calls `0067F580` on the head twice.
+
+For the `PClassDescriptorDynamic` lists, `0059BDC0` finds the `0x30`-byte class entry whose `+0x10`
+is a given descriptor. `00686DE0` steps through the objects with `00686D40`, which skips the slots on a list's chain at
+`+0x10` and moves to the next list when one is used up. `00670070` creates each ring buffer of a
+loaded `PDataBlockD3D11` as an immutable buffer (bind flags 9, misc flags `0x20`) of the block's data
+size, initialised from the file data at the block's offset; 9 when creation fails.
+
+`0059E300` starts by zeroing its `0x28`-byte list cursor (`00686C20`). When it returns, `0059E070` frees the four arrays at `+0x20`–`+0x58` of the load record it passed
+(`00597F80`). `0059FC20` copies the text between two pointers into new memory with `005994A0`
+(alignment 2) and terminates it; 5 when the end lies before the start, `0xD` without memory.
+
+### Asset references and idmaps.txt
+
+Every `.phyre` file has a `PAssetReference` list; a reference names the file's contents by an id string at
+`+0x30`. These objects are kept in the asset-name registry at `01F2EA70` (see the memory page under
+Related).
+
+- The constructor `006753A0(reference, name, a, b)`, called by the descriptor's construct slot
+  `00674BE0`, sets up the node at `+0x08`, copies the name (`001C26B0`), stores `a` and `b` at
+  `+0x38` and `+0x40`, clears `+0x48` and registers the object (`00677BA0`).
+- For a loaded list, slot `+0x70` (`00674B50`) runs `00676450`: each reference gets the list's
+  cluster at `+0x48`, its name hash (`00677350`, seed `0x7B5`) and name in its key, and is inserted
+  under the lock `02D3E880`. A reference without a name returns `0x15` and a name already
+  registered `0x12`, which ends the load.
+- The registry orders keys with `00675EF0`: by hash, then, when both names contain `#`, by the text
+  after the last `#` (case-sensitive) and then by the part before it (length first, then
+  case-insensitive), and otherwise by the whole names case-insensitively.
+
+`00676BD0(id)` finds a reference by id. On first use it loads
+`/GameData/D3D11/ArtData/shared/idmaps.txt` into a map of id pairs with `00677030` (alternate CRLF
+lines as key and value) and registers its teardown `008B1B10`. An id found as a key is replaced by
+its value; the result is hashed and looked up in the registry (`00674F60`) under the same lock.
+`0063B040`, which works through a cluster's `PAssetReferenceImport` lists, and `00677CE0` call it.
+
+The map is a tree of `std::string` pairs: `00675580` returns the value for a key, inserting an empty
+one when the key is missing; `00677AD0` finds the first node not below a key; `00675300` copies a
+pair and `00675440` destroys one.
+
 
 ## Modding notes
 
@@ -273,6 +339,9 @@ load), and runs `0059F7A0`, which builds the cluster's `PMapPair` records.
   counts.
 - A texture's two user fixups name its class and its format by string; the format name decides how
   the image bytes are read.
+- An asset id listed as a key in `idmaps.txt` is looked up under its value instead, so one line pair
+  redirects every import of that id; a later pair with the same key replaces an earlier one. The id and its value are copied into a
+  256-byte buffer without a bound, so both must stay under 256 bytes.
 - The path hash `00674A00` adds each byte as a signed char, so a path byte of `0x80` or above
   subtracts: "× 33 plus each byte" holds for ASCII paths only. Every shipped path is ASCII; a modded
   path with non-ASCII bytes hashes to a different value than an unsigned reading gives.
@@ -282,3 +351,5 @@ load), and runs `0059F7A0`, which builds the cluster's `PMapPair` records.
 - [Prefetch and asset-header manifests](../Game-Files-And-Data-Tables/prefetch-manifests.md): the `.ah` lists that name the `.phyre` files and file their load requests.
 - [Texture animation lists](../Game-Files-And-Data-Tables/texture-animation-lists-ta.md): frame lists that bind already loaded `.phyre` textures.
 - [File path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md): how an asset path becomes an archive file.
+- [Memory and allocation](../Compiler-And-C-Runtime/memory-and-allocation.md): the asset-name registry at `01F2EA70` that holds the asset references.
+- [Phyre entities and components](phyre-entities-and-components.md): the entity and component hooks behind slot `+0x70`.

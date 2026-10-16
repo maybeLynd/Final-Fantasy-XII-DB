@@ -65,6 +65,11 @@ push adapters are one-line tail calls into `00682D20` through the jump thunk `00
 (`005A10F0` adds 8). The nullable form tests the pointer and pushes `nil` (`00810620`) instead
 (`005A2BA0`).
 
+For `PInputMapper` (descriptor vtable `01CB1178`) slot 3 is `007919D0`: it takes the mapper from the
+script with its reference accessor `00796860` and copies it into the out-value with `007939A0`, which
+copies the `0x2C8`-byte object member by member and the `0x88`-byte block at `+0x230` through
+`00793DA0`; that one skips the dwords at `+0x10`, `+0x20`, `+0x30` and `+0x40` of the block.
+
 ### Method-call adapters
 
 Each method registered with `00632FB0` gets a `PMethodCallerConcrete` caller object holding the member
@@ -77,6 +82,11 @@ Slot 2 is the native call (`005CC300`, `005CC3E0`): it calls the member function
 caller asks for the result with the matching type tag, writes `{0, result}` to the out-record and
 returns 1. In the `PAnimationClip` caller vtable `00D34C38` the two slots are `005C1E70` and
 `005CC3E0`.
+
+A script caller's slot 2, `00686280`, runs the script and converts its result the same way. For a
+`float` result type (`01F2E690`) `006810B0` reads the top of the Lua stack as a number (`00811640`),
+pops it (`00811130` with -2) and writes `{0, value}`; `00681130` does the same for `double`
+(`01F2E6E0`), widening the value. Each returns false for any other result type.
 
 ### Arrays and copies
 

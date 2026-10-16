@@ -102,7 +102,7 @@ it with an empty list, which is the follower-list clear above.
 
 | Verb | Id | Handler | Effect |
 |---|---|---|---|
-| `hidenobattletarget` | `0x0196` | `00347D80` → `003B7770` | for every actor of the managers among 0 to 2 with `+0x10` bit 0 set: the leader gets bit 1 of byte `+0x10` of its presentation record (the one `002E97B0` returns); any other actor gets that bit from its own `+9` bit 2, or from bit 0 of `+0x14F` in the record its `+0xC0` points to; each actor with a presentation record is refreshed (`002E8FD0`, which tests bits 0, 1 and 3 of that byte) |
+| `hidenobattletarget` | `0x0196` | `00347D80` → `003B7770` | for every actor of the managers among 0 to 2 with `+0x10` bit 0 set: in each actor's presentation record (`[actor + 0xC0]`, which `002E97B0` returns), the leader gets bit `0x2` of byte `+0x10`; any other actor gets that bit from its own `+9` bit `0x4`, or from bit `0x1` of `+0x14F` of the same record; each actor with a presentation record is refreshed (`002E8FD0`, which tests bits `0x1`, `0x2` and `0x8` of that byte) |
 | `setrotangzxsummonspace(a)` | `0x0199` | `00348660` → `003B8030` | pops a float and sets it as the heading (`0026B620`) of each follower, or of its capturer when the follower is captured (`00263F40`) |
 | `releaseallforsummon` | `0x019B` | `00348DA0` → `003B7A30` | runs `002693D0(…, 1)` on the leader and on every follower, or on its capturer when it is captured (`00263F40`) |
 | `summonplaymotionall` | `0x02AB` | `0034EB30` (a `jmp`) → `003B79D0` | calls `0017F5B0(1)` first when `022BE970` is non-zero, then `002EB030(follower, 0x1049)` for each follower |

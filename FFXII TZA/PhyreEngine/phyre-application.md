@@ -3,7 +3,7 @@ title: "PhyreEngine application framework: how the game process starts, runs its
 kind: "system"
 category: "PhyreEngine"
 summary: "The PhyreEngine framework layer the game runs inside: the start-up function that brings up Steam, the settings, the single-instance mutex, the engine modules and the window, the run setup that calls the game's initApplication and initScene slots and starts the update thread, the per-frame update that calls the input, animate, resize and render slots, the window procedure's deferred requests, and the close, shutdown and restart paths."
-addresses: "007A3770, 007980A0, 00792350, 02EA5368, 0079E520, 0079B300, 0079F150, 007A4190, 007A4250, 007A4310, 007A3110, 007A0340, 00793E8C, 0079C140, 0079D920, 00798FF0, 0079B160, 0079B190, 0079EDD0, 007A42D0, 007A42E0, 0017E030, 0017E050, 01CB2508, 01CB2480, 02EA5245, 02EA5220, 02EA5228, 02EA5230"
+addresses: "007A3770, 007980A0, 00792350, 02EA5368, 0079E520, 0079B300, 0079F150, 007A4190, 007A4250, 007A4310, 007A3110, 007A0340, 00793E8C, 0079C140, 0079D920, 00798FF0, 0079B160, 0079B190, 0079EDD0, 007A42D0, 007A42E0, 0017E030, 0017E050, 01CB2508, 01CB2480, 02EA5245, 02EA5220, 02EA5228, 02EA5230, 007A0180, 00799980"
 ---
 
 ## What the player sees
@@ -81,6 +81,30 @@ Three options of the run setup never run in the shipped game: a script file (`02
 (`02EA5228`) and an input-replay file (`02EA5230`) are all zero and have no writer. So the console
 object at `+0x58` stays null, the per-frame function `+0xD18` keeps `00793E8C`, and the input
 recorder (slot 30) and replay (slot 29) are never called.
+
+### The script commands
+
+The script-file and input-replay options would each create a `PApplicationScriptProxy` as that
+console object, and both call `007A0180` on it: `00792760` for a script file, and the run setup itself
+(`0079F3F9`) for a replay. It registers sixteen commands through `007A0090`, which appends a `0x50`-byte record,
+the handler at `+0x00` and a name of up to 64 characters at `+0x08`, to the proxy's array (`+0x28`,
+count `+0x30`, capacity `+0x34`, grown to twice the capacity or 16).
+
+| Command | Handler | Command | Handler |
+|---|---|---|---|
+| `Frames` | `00796490` | `ButtonDown` | `00795800` |
+| `Timestep` | `00799980` | `ButtonUp` | `00795A00` |
+| `Framerate` | `007963C0` | `Buttonpress` | `00795C00` |
+| `MinFramerate` | `005C5230` (returns 0) | `Mousepress` | `00798000` |
+| `RenderFrame` | `00798A80` | `InputSource` | `00797A20` |
+| `Keypress` | `00797F60` | `Expect` | `005C5230` (returns 0) |
+| `KeyDown` | `00797EE0` | `Echo` | `00796210` |
+| `KeyUp` | `00797F20` | `Quit` | `00798A30` |
+
+`Timestep` (`00799980`) reads one float with `%f` (`0071F970`, `vsscanf`) into the fixed step `+0x6C`.
+A value of 0 or less returns to real time: it sets the offset `+0x50` to the time since engine start
+(`02CB60E8`) less the total `+0x40`, so the total carries on from where the fixed steps left it.
+Because neither option is ever set, none of these commands runs.
 
 ### The update thread
 

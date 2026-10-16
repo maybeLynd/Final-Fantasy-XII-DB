@@ -34,6 +34,15 @@ load time for a class no code registers. Its attach slot
 first rebuilds the descriptor through `0063D550` (empty the six lists, copy the parent's size and
 alignment, recompute the offsets).
 
+A dynamic class's members are placed one after another. `0063C630`, called from `006393A0`, takes
+the member's width and alignment from its type (8 and 8 for attribute bit `0x2`), aligns the running
+end at `+0x104`, adds the width, raises `+0x3C` to the alignment and rounds `+0x38` up to it, and
+returns the member's offset less the parent's size.
+
+Loaded `PClassDataMemberDynamic` records are reset by that descriptor's slot `+0x70` (`0062F4E0`, which jumps to `006361C0`): it empties each
+record's node and annotation list, clears attribute bit `0x1`, takes the name from the tagged pointer
+at `+0x58`, and places the record through `0063D410` when its owner is dynamic.
+
 ### Registration
 
 A class is registered in two steps:
@@ -72,9 +81,38 @@ It returns false when the name is already present. The lookup `006311D0` orders 
 compares the full string on equal hashes, so case-only differences collide in the hash but never
 match.
 
+`00638F00` takes a descriptor out of the tree again, erasing its node at `+0x08` (the header
+is set up first when it was not); the `PClassDescriptorDynamic` destructor `00633590` calls it for a
+descriptor with a name.
+
 A namespace is a separate structure: the default one is `01F2E330` (returned by `006373D0`), its
 classes hang off `+0x10`, and child namespaces off `+0x28`. `0063BA10` searches a namespace's own
 classes, then each child namespace, with an exact byte comparison.
+
+### Type references by name
+
+A type object's `+0x40` and `+0x48` hold two hooks that are null in most types. The type of `PType`
+(`01F2E370`, set up by `00637720`) and the descriptor of `PClassDescriptor` (`02CF8470`, set up by
+`00634830`) fill them, so a pointer to a type is written and read as the type's name:
+
+- `+0x40` gives the name and its length with the terminator. The class-descriptor form `00637320`
+  returns `0x14` for a dynamic class (bit `0x1`); the `PType` form is `00637350`.
+- `+0x48` resolves a name. `00638A50` (`PType`) and `006389C0` (`PClassDescriptor`) hash it as
+  `006388C0` does, search the type tree with `006311D0`, store the type found and return `0x13` when
+  no type has that name.
+
+The loader reaches `+0x48` through `0063DC30`, which returns `0x15` when the hook is null.
+
+`0063DC90` installs such a pair. The `PAssetReferenceImport` descriptor `02D3E780` (registered by
+`00675DA0`) gets `00676F50` and `00677470`, which store a reference as a byte-swapped 16-bit index into
+the cluster's list of `0x18`-byte import records instead of a name. Reading one, `00677470` chains
+the pointer into the import record's list at `+0x10`; both return 7 when the cluster has no import
+list.
+
+A `PNamedSemanticDescriptor` (built by `006B6820`) uses the same two hooks for a registry of named
+objects. `PRenderDataType` (`00661A70`) resolves names with `0066F580` over the list `02D38DB8`,
+which `0066F4F0` fills, and `PModifier` (`006D5810`) with `006D5AF0` over `02E9FD60`; both return
+`0x13` when no entry has the name.
 
 ### Member records
 
@@ -104,7 +142,8 @@ size at `+0x38`, or the size the context gives a dynamic type.
 
 A registering function can OR further attribute bits into the record after the call (bit `0x10`,
 `0x08` or `0x40`; `00633100` adds `0x4` when it attaches a dynamic-type helper at `+0x50`). The
-attribute word is what the loader compares against a file's member record.
+attribute word is what the loader compares against a file's member record. `0063BBA0` returns a
+member's type: the helper's answer (its slot `+0x08`) when a helper is attached, else `+0x30`.
 
 ### Methods and script functions
 
@@ -140,6 +179,9 @@ use, when `+0xFC` bit `0x80000000` is clear:
    `+0xC8` is left set.
 
 So `+0xC8` marks the bytes no member describes and `+0xD0` the bits that belong to member values.
+`0063C5E0` and `0063C1A0` build a class's buffers when needed and return its `+0xD0` and `+0xC8`;
+`00639C80` uses them for the
+masks of inline object members.
 
 ### Creating instances
 
@@ -149,6 +191,60 @@ refuses an abstract class (bit `0x2`) and allocates `count × [+0x38]` bytes wit
 and `0063C910` initialises each instance in turn: it builds the buffers if needed, then copies the
 whole default instance over it. Without a default instance it constructs through slot `+0x50` and
 copies the default instance of every inline object member, across the class and its ancestors.
+
+### The cluster's script methods
+
+`00635470` publishes four `PCluster` methods on the cluster descriptor `02CF8780`:
+
+- `create` (`0063AA50`) makes one object: it logs the same "no default constructor" message for bit
+  `0x8`, and otherwise builds a one-object instance list through `00639510`, initialises the object
+  at the list's `+0x58` with `0063C910` and returns the object with its descriptor.
+- `deleteObject` is `0063AD20`.
+- `deleteInstancesOfType` (`0063AAD0`) removes every instance list of exactly one class: it unlinks
+  the list, takes it off the per-type table, destroys its objects (`0063B3E0`), frees its blocks
+  (`00680030`) and returns the list record to the cluster's pool at `+0x50` (`00680200`).
+- `absorb` (`00638FB0`) moves every list of another cluster into this one (see below).
+
+A cluster's `+0x78` points at the world it belongs to, whose per-type table (count `+0x10`, entries
+`+0x18`) holds `0x20`-byte entries indexed by each descriptor's
+`+0xEC`. An entry heads the lists of its class and counts their objects at `+0x10` and the lists at
+`+0x14`. A list is linked under its own class's entry and counted in every ancestor's.
+
+`00638FB0` first merges the other cluster's pool of list records into this one (`00680080`, which
+returns 5 when the two pools' record sizes differ). Each list then leaves the per-type table of the other cluster's world
+and that cluster's list, joins the end of this cluster's list and its world's table, takes this cluster at its `+0x48` and is
+passed to `00677550`, which, for a list of a class derived from `PAssetReference` (`02D3E680`),
+sets every object's `+0x48` to that cluster. The other cluster's chain at `+0x48` is moved over last.
+
+`0063D6B0(world, cluster)` takes a cluster whose `+0x78` is that world off it: it unlinks the
+cluster's node at `+0x88`, clears `+0x78` and removes each of its lists from the per-type table.
+
+`0063B3E0` calls descriptor slot `+0x58` on every object of a loaded list (`+0x7D`) except the slots
+on the chain at `+0x10`, frees the storage when the list owns it (`+0x7C`) and zeroes the count.
+
+### Member visits
+
+Descriptor slot `+0x00` walks the members of a class and its ancestors (`0063E2E0`) and hands each
+to `0063CE80`, which applies the member type's own slot `+0x00` to every element through `0059FDB0`.
+The flag argument picks the order: non-zero walks each `+0x80` list forwards, zero backwards, and the
+flag is passed on to the member types.
+
+Eight core classes carry the walk inlined for their own descriptor, one copy per order, and their
+slot `+0x00` adapters only choose between the two copies and return 1:
+
+| Class | Descriptor | Slot `+0x00` | Forward | Backward | Object offset |
+|---|---|---|---|---|---|
+| `PClassDataMemberDynamic` | `02CF8370` | `0062F3E0` | `00630640` | `00630C80` | `+0x08` |
+| `PClassDescriptor` | `02CF8470` | `0062F0C0` | `006306E0` | `00630D20` | `+0x30` |
+| `PClassMember` | `02CF8680` | `0062F960` | `00630820` | `00630E60` | 0 |
+| `PCluster` | `02CF8780` | `0062F200` | `006308C0` | `00630F00` | 0 |
+| `PClusterDependencyList` | `02CF8880` | `0062EE00` | `00630960` | `00630FA0` | 0 |
+| `PNamespace` | `02CF8980` | `0062F5A0` | `00630A00` | `00631040` | `+0x10` |
+| `PWorld` | `02CF8A80` | `0062F740` | `00630AA0` | `006310E0` | 0 |
+| `PSharray<PString>` | from `00635DC0` | `0063DFB0` | `00630500` | `00630B40` | 0 |
+
+The object offset is added to the object pointer before the walk, as the class's reflected layout
+starts that far into the object.
 
 ### Teardown
 
@@ -180,8 +276,8 @@ PType (base of every type and descriptor):
 | `30` | `void*` | name |  |
 | `38` | `u32` | instance size |  |
 | `3C` | `u32` | alignment |  |
-| `40` | `u64` | 0 |  |
-| `48` | `u64` | 0 |  |
+| `40` | `void*` | name-writer hook, or null (00637320, 00637350) |  |
+| `48` | `void*` | name-resolver hook, or null (006389C0, 00638A50) |  |
 
 PClassDescriptor (`0x100`):
 

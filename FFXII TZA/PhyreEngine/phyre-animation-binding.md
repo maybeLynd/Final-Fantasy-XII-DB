@@ -139,6 +139,53 @@ controller `+0x30`:
 - additive (`005C6020`, `PAnimationAdditiveBlenderController`): `mark[slot[0]] = 1` whenever the
   count is non-zero, then the same rule from `i = 1`.
 
+### Grouping channels by target
+
+`005C22B0`, called from `005B1900`, collects the channels of a set of clips in a local ordered map
+keyed by channel target. Two targets are the same key when their index (`+0x30`), type (`+0x20`),
+the four object fields and the name match. The map's nodes are `0xA8` bytes from a `PMapPair` pool
+(`0067FFB0`). Each node's value starts from a template at `01F2D010`; every channel ORs bit *n* (*n*
+being its semantic's index, `+0x14`) into the value's first word and stores its `+0x40` in word
+*n* + 1.
+
+The function clears the map and a second local object (a buffer at `+0x08`, a tree at `+0x10`)
+before it returns. When an exception leaves it, its unwind actions do the same: `005A9DF0` erases the
+map's nodes (`0067FE20`) and frees the pool (`006803D0`, `00680030`), and `005AA080` resets the second
+tree (`0067F6F0`), frees the buffer and clears the tree (`0067F580`).
+
+### Network buffer planning
+
+`005C62C0(network, freeFirst)` orders the `0x138`-byte nodes of an animation network and gives each
+node output a buffer slot, reusing a slot once every reader of its value has run:
+
+1. It marks every node unscheduled (`+0x130` = −1) and every output unassigned (state 0, slot −1).
+2. It takes the first unscheduled node whose inputs all come from scheduled nodes and gives it the
+   next order number. When no such node is left it returns 1.
+3. Each output of the node gets a slot from the allocator (`005C0180`) and state 1.
+4. Every output in state 1 that has a slot and whose readers have all been scheduled (`005C2F40`)
+   gives its slot back and moves to state 2. With `freeFirst` set this step runs before step 3.
+
+`005CA460` calls it with `freeFirst` 0 (`005CA5EE`), so a node's outputs are placed before the slots
+freed by its own scheduling come back.
+
+`005C2F40(node, output)` returns true when every node in the node's reader list (`+0x120` count,
+`+0x128` data) that reads this output through one of its inputs has an order number. A reader that
+does not read this output is ignored, and an output with no readers counts as read.
+
+The allocator is a `PNetworkOptimizeBufferAllocator` on `005C62C0`'s stack: an array of 8-byte slots
+(`u8` in use, `u32` size at `+0x04`) at `+0x08`, count `+0x10`. `005C0180(allocator, size,
+acceptance)` returns the first of:
+
+- the smallest free slot of non-zero size at least `size` that `acceptance` accepts;
+- otherwise the largest accepted free slot of non-zero size;
+- otherwise the first free slot of size 0;
+- otherwise, after growing the array to twice its count or 16 more (`005C5A40`), a retry; −1 when
+  that allocation fails.
+
+It marks the slot in use and raises its size to `size`. The acceptance object is a
+`PAvoidOutputOverwritingInput` (vtable `00D32B18`); its slot 0, `005C12D0`, rejects a slot that holds
+one of the node's own inputs when that input's size is larger than the output's.
+
 ## Layouts
 
 Binding descriptor (PAnimationChannelTarget, members registered by `005AF3B0`), `0x38` bytes:
@@ -200,6 +247,18 @@ Instruction-level access tables per class, beside this page:
 | `PAnimationNetworkInstance` | [phyre-animation-binding-panimation-network-instance-accesses.tsv](phyre-animation-binding-panimation-network-instance-accesses.tsv) |
 | `PAnimationSlotFilter` | [phyre-animation-binding-panimation-slot-filter-accesses.tsv](phyre-animation-binding-panimation-slot-filter-accesses.tsv) |
 | `PAnimationWeightedBlenderController` | [phyre-animation-binding-panimation-weighted-blender-controller-accesses.tsv](phyre-animation-binding-panimation-weighted-blender-controller-accesses.tsv) |
+
+`PAnimationNetworkNode` (`0x138` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `100` | `u32` | inputCount | bit 31 masked |
+| `108` | `void*` | inputs | `0x10` bytes each: source node at +`0x00`, output index at +`0x08` |
+| `110` | `u32` | outputCount | bit 31 masked |
+| `118` | `void*` | outputs | `0x0C` bytes each: size, state (0, 1 placed, 2 released), slot |
+| `120` | `u32` | readerCount | bit 31 masked |
+| `128` | `void*` | readers | nodes that read this node's outputs |
+| `130` | `i32` | order | -1 until scheduled |
 
 ## Shipped data
 
