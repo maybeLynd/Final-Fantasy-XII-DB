@@ -184,7 +184,7 @@ The formats behind them are on the
 handbook image bundles,
 handbook indexes,
 menu map container,
-character SE tables and
+[character SE tables](character-se-tables-chse.md) and
 loader-bound bin families pages.
 
 ## Operations
