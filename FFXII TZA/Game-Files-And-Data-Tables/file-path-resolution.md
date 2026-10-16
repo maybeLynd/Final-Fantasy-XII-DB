@@ -181,8 +181,8 @@ cache manager   +0x00 limit, +0x10 usage, +0x18 owner (+0xE8 word), +0x20 key ma
 | `.bin` | 1,439 | 2,481,360,070 | 59 signatures; `sloc` 436, `st2e` 407, zero dword 73, `hctg` 54, `licd` 52, `0x40` 42, `gmap` 35, then `FLAG`, `CCdd`, `CHSE`, `NPC0`, `PLMN`, `QST1`, `amap`, `cmap`, `lmap`, `wmap`, `hcom`, `hodr`, `sign` and headerless images among the rest |
 
 The formats behind them are on the
-handbook image bundles,
-handbook indexes,
+[handbook image bundles](handbook-files.md),
+[handbook indexes](handbook-files.md),
 [menu map container](menu-map-files.md),
 [character SE tables](character-se-tables-chse.md) and
 loader-bound bin families pages.
