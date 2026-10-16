@@ -79,6 +79,31 @@ not test the counter, such as `touch`, `touchon` and named event functions, whic
 | `unreachable_in` | where those writes are, as `script actor.function` |
 | `developer_writes` | writes in the `evt_t` developer scripts |
 | `developer_scripts` | those scripts, with `xN` for N writes |
+| `explanation` | what the value marks, in English: the developers' name for it from the `evt_t0505` scenario menu (below), translated, then the maps whose scripts write it, as map name (region) from `planmapname.bin`; empty for the two values with neither |
+
+### The developers' names
+
+The developer script `evt_t0505` carries a menu, `SCENARIO FLAG ONLY`, in its message bank (section 2, messages
+30-50, 20 pages). Each of its 400 lines is `[value] SF_<name>`, and choosing a line writes that value: the
+menu's first 400 counter writes carry the 400 line values in line order, and 13 more writes have no line. The
+names cover 310 of the 313 values.
+
+- `終了` ("after") names the value written once a scene has played: `SF_レモラバトル終了`, 18, is "after the
+  Remora battle"; `開始` ("start of") opens a longer stretch.
+- `シナリオ段階N` marks the start and end of eleven scenario stages; `MS_` lines name map unlocks.
+- Proper names are the English the game ships for the same Japanese word, found by pairing each `in` line with
+  the `us` line in the same slot: the word banks, `planmapname.bin`, `npcdic.bin`, the text groups and the
+  scripts' message banks. A name with no shipped English is left out and the scene described without it.
+- Place words are the shipped area and region names of `planmapname.bin` and battle word bank 12.
+- Value 70 is the one case where the developers' word is the shipped name of a different monster:
+  `キラートマト` is Deadly Nightshade in word bank 8, but `dst_a01` writes 70 during the first hunt, between 65
+  and 75, and that hunt's target is the Rogue Tomato (`はぐれトマト`, bank 8 slot 94). The row says Rogue Tomato.
+- Where a value has two lines that differ only in an older and a newer name for one character, it keeps the
+  line with the shipped name.
+
+The map names come from the field each writing script loads as: the script's field id in the `us` zone path
+table (`01EE23A0`), the area name at that id in `planmapname.bin`, and the region from the field's group word in
+`map_ref.bin`.
 
 Actor and function names are the ones the scripts carry.
 

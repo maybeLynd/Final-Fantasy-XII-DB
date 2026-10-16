@@ -58,6 +58,23 @@ Nine calls have a computed id:
 | `set`, `release`, `test` | how many times shipping scripts set, release and test it |
 | `set_in`, `release_in`, `tested_in` | the shipping scripts that do so |
 | `developer_only` | `yes` when only the developer scripts `evt_t*` name it |
+| `explanation` | what the flag opens or records, in English, then the maps whose scripts set or test it, as map name (region): see below |
+
+### Where the explanations come from
+
+- **Primary.** Every story gate in the shipped `us` map files that names the id: the location map
+  (`menumap_location.bin`: zones, exit markers and links), the map directory and guide schedule
+  (`menumap_common.bin`), the guide lines (`menumap_guide*.bin`) and the icons of each zone script's section 4
+  ([navigation icons](../EBP-Script-Files/ebp-navigation-icons.md)).
+- **Gate readers.** They are on [map menu files](../Game-Files-And-Data-Tables/menu-map-files.md).
+- **Two script flags.** Id `73`<sub>h</sub> is the chocobo riding flag, and the aerodrome counter scripts set `5E`<sub>h</sub> before
+  the airship-deck and attack jumps ([chocobos and airships](../World-Areas-And-Travel/chocobos-and-airships.md)).
+- **Schedule ids.** `4022`<sub>h</sub> and `402A`<sub>h</sub> read records `22`<sub>h</sub> and `2A`<sub>h</sub> of `mapjumpgroupflagrom.bin`, each a
+  one-value record (5,150 and 1,540), as [Story flags](story-flags.md) describes the reader `00377970`.
+- **Bank2048.** The name pair the id selects in `us` `npcdic.bin`, entries `2 × id` and `2 × id + 1`
+  ([NPC names](../Characters-And-Objects/npc-names.md)).
+- **Places.** Each script in `set_in` and `tested_in` is the field whose entry in the `us` zone path table
+  (`01EE23A0`) names it, with the area name from `planmapname.bin` and the region from `map_ref.bin`.
 
 ## Related
 

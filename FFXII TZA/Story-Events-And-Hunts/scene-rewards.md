@@ -75,6 +75,16 @@ developer scripts `evt_t*` hold 957 more calls, which are not rows.
 | `count` | the count or gil amount, or the expression that computes it |
 | `item_source` | where the item comes from, as in the table above |
 | `through` | for a routine give, the routine actor and function the caller requested; otherwise `-` |
+| `explanation` | where the give happens, as map name (region): see below |
+
+### Where a script is
+
+- A zone script is the field whose entry in the `us` zone path table (`01EE23A0`, three paths per field id)
+  names it. The map name is the area name at that field id in `planmapname.bin`, and the region the name at the
+  field's group word in `map_ref.bin`. A name that is only a zone code is left out and the region kept.
+- An event script is the scene of every zone script that loads it with `eventread` (`0E7`<sub>h</sub>) or `eventread_e8`
+  (`0E8`<sub>h</sub>) and a literal id; the id names the event through the `us` event path table, four paths per id.
+- `mic_b07` has no field id in the path table, so no map loads it.
 
 Actor and function names are the ones the scripts carry.
 

@@ -30,6 +30,7 @@ in the sections below. The six small tables are on [their own page](small-bin-ta
 | `loader` | the function that requests the file, with the id base when the id is computed; `literal path` for a loader that opens a path string; `—` when no call site passes the family's kind and id as a constant or a constant base |
 | `holds` | what the bytes are, measured from the shipped files |
 | `page` | the page that documents the family, relative to this one; `—` when this page is the description |
+| `explanation` | what the family is for, in plain words: from the title or summary of the page in `page`, and for the battle tables from the registry-slot names on [Item and ability ids](../Engine-Core/item-and-ability-ids.md); where `page` is `—`, from this page's own sections ("Families no path names", "Request entries") and, for `planmapname.bin`, from [area flags](../World-Areas-And-Travel/area-flags-navimapdata.md); a family no path names is marked as never loaded, and a loose battle table as unread because the game reads its `battle_pack.bin` copy (see below); empty where the row is already plain or no shipped source states the purpose |
 
 ## Data
 
