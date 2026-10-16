@@ -97,7 +97,7 @@ The pool is a count dword followed by the record pointers: `00358940(slot, ordin
 ### The variable homes
 
 The script interpreter receives the slot as its first argument and resolves script variables by
-storage class through these pointers (script variables):
+storage class through these pointers ([script variables](../Scripts-And-Script-Commands/script-variables.md)):
 
 | Slot field | Points at | Accessors on slot 0 |
 |---|---|---|
@@ -221,4 +221,4 @@ struct ActorManagerSlotEntry size=0x18
 - [Field runtime](field-runtime.md): the pass that drives a slot's records.
 - [The actor record](actor-record.md): the pool's records.
 - [Save data fields](../Saving-Loading-And-Settings/save-data-fields.md): the operand bank and the group persistent bank.
-- Script variables and their storage classes: how the homes are addressed.
+- [Script variables and their storage classes](../Scripts-And-Script-Commands/script-variables.md): how the homes are addressed.

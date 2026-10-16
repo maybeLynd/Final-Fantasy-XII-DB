@@ -29,7 +29,7 @@ for manager `slot` (section 000):
    table;
 2. the table is `00265770(slot, tag) + (reference & 0xFFFFFF)`; for tag 3, every shipped
    reference, the base is the script image plus its header word `+0x40`
-   (the storage classes);
+   ([the storage classes](../Scripts-And-Script-Commands/script-variables.md));
 3. the table is `{u32 count; u32 offset[count]}`, each offset relative to the table's own start,
    and each record is twelve bytes (Layouts).
 

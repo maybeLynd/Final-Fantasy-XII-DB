@@ -26,7 +26,7 @@ instruction text checked against the executable.
 | Payload offset | Size | Region | Written by | Read by |
 |---|---|---|---|---|
 | `+0x0000` | `0x200` | script operand bank, `i16[256]`, reached through the slot pointer `02098E58` that `0026C8C0` sets to `002EF2B0()` | `0026ABA0` | `00264640` |
-| `+0x0200` | `0xE00` | the script-global variable space up to the quest arrays, addressed by the scripts' own descriptors (the storage-class page) | scripts | `002EF390` tests `+0xA00 + i == 1` |
+| `+0x0200` | `0xE00` | the script-global variable space up to the quest arrays, addressed by the scripts' own descriptors ([the storage-class page](../Scripts-And-Script-Commands/script-variables.md)) | scripts | `002EF390` tests `+0xA00 + i == 1` |
 | `+0x1000` | `0x20` | quest ordered bits, one per quest id | `0046B3F0` (`setquestorder`); `0046B290` also clears a bit here, but of quest `id & 7` (it re-splits the bit index at `0046B2EF`), so only quests 0-7 are un-ordered that way | `0046B240` (`isquestorder`), `0046B0F0` (the count) |
 | `+0x1020` | `0x20` | quest cleared bits | `0046B290` (`setquestclear`) | `0046B1A0` (`isquestclear`), `0046B020` (the count) |
 | `+0x1040` | 4 | a counter of `setquestclear` calls with a non-zero value, incremented while below `0xFFFF` | `0046B290` | `0046B0B0` (`getquestcleartotal`) |
