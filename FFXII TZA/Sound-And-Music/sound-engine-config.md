@@ -150,8 +150,8 @@ mixer `+18`<sub>h</sub>. The mixer object, `Driver::Audio`, is built once at `02
 | 3 | `Filter` | `007D0AC0` |
 | 4 | `SideChainInput` | `007D80E0` |
 | 5 | `SimpleFilter` | `007D9530` |
-| 6 | `Flanger` | |
-| 7 | `GranularPitchShift` | |
+| 6 | `Flanger` | `007D99E0` |
+| 7 | `GranularPitchShift` | `007DA0A0` |
 | 8 | `HilbertFilter` | `007DAAB0` |
 | 10 | `BuildReverb` | `007DAFF0` |
 

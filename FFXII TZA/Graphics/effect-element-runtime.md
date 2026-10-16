@@ -457,8 +457,9 @@ one each signal opens.
 - `003331A0(player, sub-entry, target)` publishes the player at `02EC0F88`, allocates a `170`<sub>h</sub>-byte
   track (`0036A190`) into the first empty pointer, fills it with `0046EE30(track, sub-entry,
   counter, target)`, clears its byte `+11`<sub>h</sub> and starts it (`0046EFD0`); a start that returns 0
-  frees the track (`0046EE70`, `003697F0`). The counter `+92`<sub>h</sub> then goes up by one, used or not. A
-  target of −1 becomes 0 unless bit 0 of `+90`<sub>h</sub> is set.
+  frees the track (`0046EE70`, `003697F0`). A target of −1 becomes 0 unless bit `1`<sub>h</sub> of `+90`<sub>h</sub> is set.
+- After a non-null sub-entry, the counter `+92`<sub>h</sub> goes up by one whether or not a slot was free; a null
+  sub-entry does nothing at all.
 - `00333280(player, sub-entry, n)` does the same with target −1 and stores `n` in the track's
   byte `+11`<sub>h</sub>, the byte `003333F0` compares when a script waits on trigger `n`.
 - `003337B0(player)`, the start, frees all sixteen tracks, then opens the sub-entries of bytes
@@ -758,6 +759,10 @@ list `02EC3D70`; the active list runs from `02EC3D60` to `02EC3D68` through `+28
   `02EBEBE4`). It asks the file size in class `0B`<sub>h</sub>, or `26`<sub>h</sub> when `002DEBB0()` is 0
   (`0032E400`); a missing number `78`<sub>h</sub>–`89`<sub>h</sub> falls back to `78`<sub>h</sub>, `8A`<sub>h</sub>–`99`<sub>h</sub> to `8A`<sub>h</sub>, and
   any other to 0. It queues the read (`0032E620`) and sets state 2.
+- the size cache: `002FCFF0` (through the stub `0036DDB0`) asks the size of all 512 numbers once, keeps them
+  at `02EC19C0` (8 bytes each) and sets `02EC3D7D`; the reset `002FC200` clears it (`002FC2FF`). While it is
+  set, state 1 takes the size from the cache (`002FC8AD`), and a missing number falls back to entry 0, not
+  to the `78`<sub>h</sub> and `8A`<sub>h</sub> ranges;
 - state 3 builds the context (`002FC4A0`);
 - state 4 waits until the request is gone (`0032E4D0`), then returns the slot to the free list
   (`002FC350`) and clears `02EC3D7C`;

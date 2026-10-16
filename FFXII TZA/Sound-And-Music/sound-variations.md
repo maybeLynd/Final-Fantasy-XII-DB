@@ -122,6 +122,56 @@ sound's send bus and level and its main send level, and `007BE4D0` clears `+180`
 `007E71C0` gives a sequence's sound (its handle at `+10`<sub>h</sub>) and `007E73E0` stores a sequence's `+68`<sub>h</sub>.
 `007BD5E0` gives a sound's id, its bank's number over its sound number, once the bank is ready.
 
+### A track's update
+
+The track pass `007B5AD0` runs `007E8BB0(track, seconds)` on every track:
+
+1. It sets the track's state `+1E8`<sub>h</sub> to 5 when a stop was asked (`+1EC`<sub>h</sub>), or in state 4, unless its slot 4 still
+   answers true.
+2. When its volume ramp or volume LFO moved, it hands `007E87E0`'s value to slot 5.
+3. When its pitch ramp or pitch LFO moved, it hands `007E8740`'s value to slot 6.
+4. With a curve at `+3B8`<sub>h</sub> it moves the curve on (`007E9030`).
+5. When a panning ramp or a panning LFO moved, it hands `007E8410`'s five values to slot 7.
+6. It passes changed flags and values to slots 8 to 12: the filter flag, the values `+1A8`<sub>h</sub> and `+1B0`<sub>h</sub>, the four
+   bus bytes `+1B4`<sub>h</sub> and the four send levels `+1B8`<sub>h</sub>.
+
+A `MaterialTrack` passes slots 5 to 8 to its voice `+3C8`<sub>h</sub> (`007E95D0` volume, `007E9580` pitch, `007E9500`
+panning, `007E92D0` the filter flag through `007EA9C0`). The values are:
+
+```python
+volume = base(+0x30) * ramp(+0x38), then + offset(+0x1CC) when above 0 (mode +0x1C8 = 1) or * offset (mode 2) * (1 + LFO(+0x1F8))
+pitch = base(+0x68) * ramp(+0x70), then + offset(+0x1D4) (mode +0x1D0 = 1) or * offset (mode 2) * (1 + LFO(+0x268))
+```
+
+`007E8410` builds the five panning values: two sums (`+A0`<sub>h</sub> plus the ramp `+B8`<sub>h</sub>, `+A8`<sub>h</sub> plus the ramp `+118`<sub>h</sub>)
+and three products (`+A4`<sub>h</sub>, `+B0`<sub>h</sub> and `+AC`<sub>h</sub> times the ramps `+E8`<sub>h</sub>, `+178`<sub>h</sub> and `+148`<sub>h</sub>). The `+A0`<sub>h</sub> sum also
+takes the offset mode `+1D8`<sub>h</sub> and the LFO `+2D8`<sub>h</sub>, and the `+A4`<sub>h</sub> product the mode `+1E0`<sub>h</sub> and the LFO `+348`<sub>h</sub>, each
+LFO added.
+
+`007E8720` gives a track's sequence (its handle `+10`<sub>h</sub>, `007B5070`).
+
+### Track LFOs
+
+A track has four LFOs of `70`<sub>h</sub> bytes from `+1F8`<sub>h</sub>, which `007F3DF0` clears when the track is built
+(`007E7B58`-`007E7B81`): a phase at `+00`<sub>h</sub>, a depth ramp at `+08`<sub>h</sub>, a period ramp at `+38`<sub>h</sub> and a wave byte at `+68`<sub>h</sub>. `007F40B0(lfo, seconds)` moves
+a running one on: it advances both ramps and adds `seconds / period` to the phase, keeping its fraction. `007F3E60`
+gives its value, the depth times the wave at the phase `p`:
+
+| Wave | Shape |
+|---:|---|
+| 0 | none: 0 |
+| 1 | `sin(2pi * p)` |
+| 2 | 1 below `p` 0.5, then -1 |
+| 3 | triangle: 0 up to 1 at 0.25, down to -1 at 0.75, up to 0 |
+| 4 | rising saw: `2p`, then `2p - 2` from 0.5 |
+| 5 | a new random value from 0 to 1 on every call (`007F3E30`, from `rand`) |
+| 6 | `-sin(2pi * p)` |
+| 7 | -1 below `p` 0.5, then 1 |
+| 8 | 0 down to -1 at 0.25, up to 1 at 0.75, then on up to 2 at the end of the cycle |
+| 9 | falling saw: `-2p`, then `2 - 2p` from 0.5 |
+
+Wave 8's last quarter is `4(p - 0.75) + 1` (`007F3FFF`-`007F400B`), so it does not return to 0 before the phase wraps.
+
 ## Shipped data
 
 Over all 4,609 `.sab` banks:

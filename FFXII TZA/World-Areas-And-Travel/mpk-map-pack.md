@@ -210,8 +210,8 @@ the value is h00(u) v0 + h01(u) v1 + (t1 - t0) (h10(u) out0 + h11(u) in1).
 
 `00466550(slot, target)` reads the bound channels: translation into `+70`<sub>h</sub> to `+78`<sub>h</sub>, degrees
 turned into radians and wrapped into `+60`<sub>h</sub> to `+68`<sub>h</sub> (the radian channels overwrite them), scale
-into `+80`<sub>h</sub> to `+88`<sub>h</sub>. It rebuilds the target's matrix at `+00`<sub>h</sub> from the three rotations
-(`00202E90`, `00202F00`, `00202F70`) and the translation, scales its four rows by `+80`<sub>h</sub> to `+8C`<sub>h</sub>
+into `+80`<sub>h</sub> to `+88`<sub>h</sub>. It rebuilds the target's matrix at `+00`<sub>h</sub> from the three rotations, each
+applied only when it is not 0 (`00202E90`, `00202F00`, `00202F70`), and the translation, scales its four rows by `+80`<sub>h</sub> to `+8C`<sub>h</sub>
 (`00202FE0`) and, for the `ambient` slot, copies the colour `+50`<sub>h</sub> to `+5C`<sub>h</sub> to `0209A370` to
 `0209A37C`, the ambient colour of the map's lights.
 
