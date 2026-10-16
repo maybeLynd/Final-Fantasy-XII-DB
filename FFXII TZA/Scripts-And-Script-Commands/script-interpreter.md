@@ -27,7 +27,7 @@ its kind byte `+0x14`: kinds 1 and 2 enter the interpreter, `0025E4C0(slot, acto
 with `02099D80` set to the actor for the duration.
 
 Kinds 3 to 7 are waits on another actor's
-entry, a notification, a channel bit or a list (script requests), and a
+entry, a notification, a channel bit or a list ([script requests](script-requests.md)), and a
 wait that is satisfied becomes kind 1 and runs in the same call. The interpreter has exactly one
 call site, `0025E0D3` in that driver.
 
@@ -207,7 +207,7 @@ from.
 
 ## Related
 
-- Script requests: the wait kinds 3 to 7 and the request opcodes.
+- [Script requests](script-requests.md): the wait kinds 3 to 7 and the request opcodes.
 - Native commands: the family tables and the begin, poll and result callbacks.
 - Verb dispatch: the argument convention a verb sees on the stack.
 - [Script variables](script-variables.md): the storage classes behind `PUSHV` and `POPV`.
