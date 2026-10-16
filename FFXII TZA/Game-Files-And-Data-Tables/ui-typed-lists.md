@@ -24,7 +24,9 @@ The lists ship in two forms, both starting with the magic `MRP\0`:
   US path array `01EC73A0` names, for example, id 111 `save_load.mrp`); and
 - the 23 units of `ps2data/image/ff12/myoshiok/<locale>/packfiles/mrppack_ys.bin` (kind 7 id 211 in the US
   array). The pack begins with 23 `u32` unit offsets from the pack start; `00280980` turns each into a pointer
-  at `[0209AC30] + 8 × unit` and prepares it.
+  at `[0209AC30] + 8 × unit` and prepares it. It always relocates all 23 with no check for an empty
+  `0xFFFFFFFF` entry, which the `in_sdver` pack (21 units) has twice; that pack is used only when
+  `[01E0280C]` is 0, and it ships as 1.
 
 A list file is requested through `00249320` (or `00249350`), whose completion `00249660` prepares the buffer
 with `002A00F0`. The atlases its sprites name are separate TIM2 images, requested and registered by name
