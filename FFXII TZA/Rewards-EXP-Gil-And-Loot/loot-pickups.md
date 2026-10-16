@@ -147,7 +147,7 @@ The frame counter `0208D45C` is incremented by `0032A100` (`0032A135`, called fr
 The scalar `01DFE0B8` is 1.0 in the image and becomes 2.0 at `001EDDD8` together with the 60 fps
 gate `01F82E38` = 1 (`001EDDE8`). The lifetime is therefore 1800 frames at the base rate and 3600
 at 60 fps: one minute either way at the 30 fps base (see the
-game settings page).
+[game settings page](../Saving-Loading-And-Settings/game-settings.md)).
 
 ### Collection on contact
 
