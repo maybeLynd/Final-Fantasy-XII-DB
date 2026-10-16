@@ -146,10 +146,10 @@ the header it takes:
 | Header | Becomes | How |
 |---|---|---|
 | image | record `+0x00` | the pointer |
-| `+0x14` | record `+0x20` | the sum of the eight type counts: the actor count |
+| `14` | record `+0x20` | the sum of the eight type counts: the actor count |
 | `+0x20`, `+0x24`, `+0x28`, `+0x2C` | record `+0x68`, `+0x70`, `+0x78`, `+0x80` | image + signed offset |
-| `+0x48` | record `+0x50` | image + unsigned offset |
-| `+0x50` | record `+0x12` | 1 when not negative (`0026CD1A cmp word ptr [r15 + 0x50], bx`) |
+| `48` | record `+0x50` | image + unsigned offset |
+| `50` | record `+0x12` | 1 when not negative (`0026CD1A cmp word ptr [r15 + 0x50], bx`) |
 
 The callback goes to `+0x88`. No offset is checked against `+0x04` or the section's extent.
 
@@ -201,13 +201,13 @@ record's `+0x10` bit 0.
 |---|---|---|
 | `+0x54`, `+0x84` | `00264B90`, version above 2 | the first four dwords of 32-byte record `index`; `00377AB0` and `00377900` take three as a position and convert the fourth with `003A1C50` |
 | `+0x5C`, `+0x74` | `00264390`, modes 0 and 1 | a pointer to `0x1C`-byte record `index` |
-| `+0x60` | `002642C0`, version 9 or above | a pointer to 16-byte record `index`; older versions use `00264260` |
-| `+0x64` | `002658B0`, version 7 or above | weather slot's chance byte ([weather](../World-Areas-And-Travel/weather.md)) |
-| `+0x68` | `003B7210` | binds the first list's actors through `00262F50` |
-| `+0x6C` | `002641B0` | base of the reference's class (`00265770`) plus its low 24 bits; class 2 refused ([traps](../World-Areas-And-Travel/traps.md)) |
-| `+0x70` | `00264AE0` | image + entry `index` of the five offsets |
-| `+0x80` | `0035A270` | for each `{id, mask}` whose id resolves, `002ECAB0(id, bit, 1)` for each set bit 1 to 31 |
-| `+0x8C` | `00264870` | a pointer to 16-byte record `index` |
+| `60` | `002642C0`, version 9 or above | a pointer to 16-byte record `index`; older versions use `00264260` |
+| `64` | `002658B0`, version 7 or above | weather slot's chance byte ([weather](../World-Areas-And-Travel/weather.md)) |
+| `68` | `003B7210` | binds the first list's actors through `00262F50` |
+| `6C` | `002641B0` | base of the reference's class (`00265770`) plus its low 24 bits; class 2 refused ([traps](../World-Areas-And-Travel/traps.md)) |
+| `70` | `00264AE0` | image + entry `index` of the five offsets |
+| `80` | `0035A270` | for each `{id, mask}` whose id resolves, `002ECAB0(id, bit, 1)` for each set bit 1 to 31 |
+| `8C` | `00264870` | a pointer to 16-byte record `index` |
 
 `00264B90` maps the index -1 to `+0x52`, -2 to `+0x78` and -3 to `+0x7A`, and any other negative
 index to `+0x52`.

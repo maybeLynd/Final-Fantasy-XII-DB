@@ -26,21 +26,21 @@ Every instruction in all five tables was disassembled from the executable and ma
 
 | Record offset | Size | Region |
 |---|---|---|
-| `+0x000` | `0x20` | identity and flag bytes: index, entry class, class and sequence, the masks and the eleven flag bytes |
-| `+0x01C` | 4 | the flag dword seeded by sequence |
-| `+0x028` | 8 | a qword zeroed at init |
-| `+0x030` | 8 | the battle unit |
-| `+0x038` | 8 | the frame callback |
-| `+0x040` | `0x20` | the script entry and its three section pointers |
-| `+0x060` | 4 | the resource entry list heads and flags |
-| `+0x064` | `0x20` | the script VM's four integer and four float registers |
-| `+0x088` | `0x18` | the channel counts and the channel tail and head arrays |
-| `+0x0A0` | `0x20` | the four interior pointers |
-| `+0x0C8` | `0x24` | the eighteen override words |
-| `+0x0F8` | `0x0C` | the name text, its length and the name id |
-| `+0x104` | `0x1C` | sentinels and counters the initialiser sets |
-| `+0x120` | `0x230` | the movement context (class 1 and above; the position is its first three floats) |
-| `+0x350` | `0x188` | the secondary context (class 3) |
+| `000` | 32 | identity and flag bytes: index, entry class, class and sequence, the masks and the eleven flag bytes |
+| `01C` | 4 | the flag dword seeded by sequence |
+| `028` | 8 | a qword zeroed at init |
+| `030` | 8 | the battle unit |
+| `038` | 8 | the frame callback |
+| `040` | 32 | the script entry and its three section pointers |
+| `060` | 4 | the resource entry list heads and flags |
+| `064` | 32 | the script VM's four integer and four float registers |
+| `088` | 24 | the channel counts and the channel tail and head arrays |
+| `0A0` | 32 | the four interior pointers |
+| `0C8` | 36 | the eighteen override words |
+| `0F8` | 12 | the name text, its length and the name id |
+| `104` | 28 | sentinels and counters the initialiser sets |
+| `120` | 560 | the movement context (class 1 and above; the position is its first three floats) |
+| `350` | 392 | the secondary context (class 3) |
 | after | | the resource entry pool and the wait slots, at the offsets the actor record page's table gives per sequence |
 
 ## Columns
@@ -80,12 +80,12 @@ for a tagged entry; the frozen pass `0025E400` runs `002E5180` on a record whose
 
 | Byte | Manager 0 | Other managers |
 |---|---|---|
-| `+0x08` | `(old & 0x9F) \| 0x11`, then bit 7 cleared | `(old & 0x8F) \| 1`, then bit 7 cleared |
-| `+0x0D` | `(old & 0xA2) \| 0x82`, then bit 5 cleared | `(old & 0x22) \| 2`, then bit 5 cleared |
-| `+0x14` | `(old & 0xB0) \| 0x30`; bit 7 for sequences 5 and 7 | the same |
-| `+0x0C` | `(old & 0x71) \| 8`, then bits 4-6 cleared | the same |
-| `+0x0E` | set to `0xF0`, then `00265FF0` writes the low nibble: 4 for class 1, 5 for class 3 | the same |
-| `+0x1C` | 0, `0x38`, `0x40`, `0x30004` or `0x34C85` by sequence; bits 8 and 13 cleared for class 3 | the same |
+| `08` | `(old & 0x9F) \| 0x11`, then bit 7 cleared | `(old & 0x8F) \| 1`, then bit 7 cleared |
+| `0D` | `(old & 0xA2) \| 0x82`, then bit 5 cleared | `(old & 0x22) \| 2`, then bit 5 cleared |
+| `14` | `(old & 0xB0) \| 0x30`; bit 7 for sequences 5 and 7 | the same |
+| `0C` | `(old & 0x71) \| 8`, then bits 4-6 cleared | the same |
+| `0E` | set to `0xF0`, then `00265FF0` writes the low nibble: 4 for class 1, 5 for class 3 | the same |
+| `1C` | 0, `0x38`, `0x40`, `0x30004` or `0x34C85` by sequence; bits 8 and 13 cleared for class 3 | the same |
 
 ## Related
 

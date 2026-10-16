@@ -111,6 +111,21 @@ payload version that may answer, `DD` the slot in the default table and `FF` the
 - `003E6150(record, id)` returns 0 for a model without `@FCP`; otherwise it calls the float getter and multiplies the result by the record's scale `+0x26C`
   for a fixed list of section 1 and section 9 ids, or divides by it for `0x9001E1F`.
 
+Small readers take values straight from the record's `@FCP` payload `+0x400`, scaling sizes by the
+record's per-axis scale (`+0x260`–`+0x268` × `+0x160`–`+0x168` × `+0x26C`):
+
+- `003E5CD0` returns section 3, or null; `003E4700` section 1's float `+0x144` (1.0 without).
+- `003E4DD0(record, axis)` section 1's `+0x114`, `+0x118` or `+0x11C` times that axis's scale (1.0
+  without); `003E5130` the six floats `+0xBC`–`+0xD0` of section 1, two each times the z, x and y
+  scales; `003E4B50` a box from section 1's `+0x114`–`+0x11C`, or from `004234B0`'s `+0x54` when it
+  returns a block. `0042E850` calls `003E4700`, `003E4DD0` and `003E4B50`; the effect target
+  queries `003A4290` and `003A56F0` call `003E5130` and `003E4F50`.
+- `003E5C90` returns section 9's float `+0xA8` (0.10472 without), `003E5EA0` its `+0xA4` (0 without),
+  and `003E4F50` places section 9's point `+0xD0`–`+0xD8` by the record's matrix `+0x180` and adds the
+  focus point `+0x670`. `003E56E0` reads property `0x62060A2D` (`004FE2F0`).
+- `003E6D40(record)` returns the arena address of the block at `+0x2FC` plus the offset `+0x300`, or 0
+  when the offset is 0 (`003AB7F0`).
+
 ### @FTR, the skeleton
 
 ```
@@ -127,6 +142,12 @@ the node's translation x, y and z, and one pool float for each of bits 26, 27 an
 in radians that `0046D560` turns into the rotation; otherwise the node starts at the identity. Bit 21
 makes `004094D0` copy sixteen pool dwords as a 4×4 matrix to node `+0x150`. Bits 31 and 22 each skip
 one index. `00409250` returns the key from bits 0–11, or the u16 at `+0x08` when bit 30 is set.
+
+`00409240(entry)` gives the node count (word `+0x30` for a kind-2 entry, dword `+0x0C` otherwise),
+`00409270(entry, n)` the address of node `n`'s record (`+0x40` table entry `>> 12`, 0 past the count
+or for another kind), and `004095A0` the address of the `+0x40` table. With flag bit 22 set,
+`004092A0(entry, record)` returns the pool dword named by the node's first pool index, skipping one
+index for bit 31 and sixteen more when bits `0x200100` are both set, and 0 otherwise.
 
 ### @FOR, variants and distance LOD
 
@@ -227,6 +248,20 @@ record +(i+1) x 0x20   part i's selector bytes
   entries (`+0x2F8` set): the index picks `@FMC` entry `[+0x2FA] + index` of the model's own
   container, keeping the id's top four bits. An id with no match plays nothing and returns −1.
 
+- `0041F340` copies section 8 (head plus `count × 0x1D0` bytes, `003E6D10`, `003E6CF0`) into the
+  record's block at `+0x2FC`, offset `+0x300`, writes the record index at the copy's `+0x08` and
+  calls `0051D220` on it. The first call ever builds a 64 × 64 8-bit texture and a 256-colour
+  palette from the image embedded at `01F2B340` (`00184140`, `001837A0`); every call clears the
+  copy's byte `+0x06` and `02CA8428`.
+- The record-system reset `00425DC0` runs `0051D1D0` first: it zeroes the 16 KiB of emulated VU
+  memory at `02064E30`, calls `00258EE0(3)`, and binds the embedded texture and palette to GS
+  addresses `0x2A00` and `0x2E00` (`002D7E00`).
+- Authored command `0x1F` reaches `003E6710(record, on)`: on runs `0051DB60` on the copy, which sets
+  its word `+0x06` to 1 and resets each entry (`+0x14` = 1.0, `+0x00` and `+0x10` cleared, `+0x1C4`
+  = 1, `0x100` bytes at `+0xA0` zeroed); off runs `00519720`.
+- `0051D2F0(copy, value)` keeps the low two bits of `value` in byte `+0x07` and masks the byte's
+  other bits with `value >> 2`; `00421280` passes 4 or 6.
+
 ### @FTR
 
 `003712E0` sizes the skeleton as `(count × 0x149 + [+0x38]) × 2` rounded up to 16 bytes, plus the
@@ -268,6 +303,52 @@ its selector bytes `s` it reads `A = tableA[3s + part] + [+0x32] × option` and 
 an `@FCT` palette. The texture slots listed at `@FTE +0x30` are added to every draw (`0053B45A`). The
 VRAM bytes `+0x00` of the selected textures are summed before upload (`0053B5B0`).
 
+### The texture slot cache
+
+Uploaded model textures are tracked in a cache of 256 entries of `0x30` bytes at `[02CA8450]`,
+which the root-bank builder `0041E3A0` allocates through `005211F0` (every entry's index and key set
+to `0xFFFF`) and forgets through `00521300`. The live count is `02CA8458` and the next search start
+`02CA845C`.
+
+- `005210F0(key)` returns the entry already holding the key and adds a reference (`+0x24`), or takes
+  the next free entry from the search start, clears its word `+0x24` through `00540FC0` and then
+  sets it to 1; it returns `0xFFFF` when 256 are in use.
+- `00521250(index)` drops a reference and frees the entry at 0. `00521290(key)` finds an entry by
+  key; `005212E0(index)` returns entry `index & 0xFF` when its first word still equals `index`.
+- `00504520(instance, slot, texture)` binds an `@FTE` texture to the instance's slot word
+  `+0x100 + 2 × slot`: it releases the old entry, takes one for the texture's key (`+0x1C`), and
+  copies the texture's size and register words with the base-2 logarithms of width and height.
+- `00504800(instance, slot)` returns the slot's width and height as one dword once the entry is
+  marked uploaded (bit 0 of `+0x1C`), else 0. `00521320` clears that mark and the word `+0x14` in
+  all 256 entries.
+
+### The upload area
+
+The draw places the selected textures in GS memory through two windows over the addresses from
+`12 × width × height` of the GS frame (`022D8EAC`, `022D8EB4`) up to `0x3C0000`. Window `i` has a
+low cursor `02EBA460[i]` and a high cursor `02EBA468[i]`.
+
+- `00537AA0(window, size, end)` takes `size` bytes from the low end (0) or the high end (1) and
+  returns their start, or 0 when they do not fit; `00537AF0(window, size)` only tests the fit.
+- `00537B10(0, end)` puts window 0's end back to its start value and copies it into window 1;
+  `00537B10(1, end)` copies window 0's current end into window 1. `00477F20` calls `00537B10(0, 0)`
+  and `00537B10(0, 1)` before it draws the instances (`00477F2D`, `00477F39`).
+- When a model's textures and palettes do not fit window 1, `0053AB50` resets window 1 from window
+  0 and clears every cache mark (`0053B67E`–`0053B699`). It then takes textures from the low end
+  and palette pages from the high end (`0053B761`, `0053BB73`).
+
+The draw writes its transfers and state into the current GS command buffer (`005044B0` returns
+`02EBEFC0 + 0x18 × [02EBEFF0]`), and when fewer than a block's bytes remain it closes the buffer
+with `00504450`: a `{0x10000000, 0}` record, then the flip `003A1DB0`. `00504490` only flips.
+
+- `0053D4B0` writes a part's alpha and depth test: registers `0x47` and `0x48` with the reference
+  `alpha × [02CA81DC]`, capped at `0x80` and raised to `[01F2CA90]` for an instance with `+0xF8` set
+  whose `003E56A0` entry has bit 3 of `+0x134`; the alpha is the part's bits 1–7, or the
+  instance's byte `+0xBC`. With instance `+0x08` bit 3 it writes `0x34000` instead.
+- `0053D140` writes a material block: a tag (`0x10000008`, `0x50000005`), two register words per
+  mode (`0x44` and `0x42`/`0x43`, or `0x4A`), per-texture pairs from the material when its flag byte
+  has bit 0 or bit 2, and the two texture handles.
+
 ### Palettes
 
 - `00504D30(row, index, sub, out)` makes a palette resource of `bytes / 4` colours for palette
@@ -277,6 +358,63 @@ VRAM bytes `+0x00` of the selected textures are summed before upload (`0053B5B0`
 - `00504D20(row, page)` sets `+0xBA`. `00428CD0` sets it on a render record, its partner and their
   children; the status step `00470780` passes 3 (`0047082A`, `0047091B`, `00470A43`), other callers 0
   or 2.
+
+### Palette animation
+
+A palette resource is also registered for animation in one of 32 records of `0x40` bytes at
+`[02B47790]` (`003CCB60(source, destination, colours)`, from `00504D30` and the map's palette parser
+`00468160`): the handle is `serial << 8 | slot` (serial `02B47774`, wrapping to 1 past `0xFFFFFF`),
+and the record joins a list (head `02B47778`, tail `02B47780`, count byte `02B47770`).
+
+`PaletteRecord` (`0x40` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | opCount | operation count |
+| `01` | `u8` | flags | any of bits `0x3F` set: +`0x08` and +`0x10` are handles (`0036B130`); `0x40` keep running; `0x80` run |
+| `02` | `u16` | colourCount | colour count, at most `0x20` |
+| `04` | `u32` | handle | serial << 8 \| slot |
+| `08` | `void*` | source | source palette |
+| `10` | `void*` | destination | destination palette |
+| `18` | `void*` | previous | previous record |
+| `20` | `void*` | next | next record |
+| `28` | `void*` | firstOp | first operation |
+| `30` | `void*` | lastOp | last operation |
+| `38` | `u32` | overrideOnly | when non-zero, runs only while `00181DD0` reports an override |
+
+`PaletteOperation` (`0x50` bytes, offsets from the start of the record):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u8` | kind | 1-8 |
+| `04` | `u8` | paletteSlot | palette slot |
+| `08` | `u16` | length | length in steps (0 = no end) |
+| `0A` | `i16` | delay | start delay |
+| `10` | `u16` | period | 0 = none |
+| `15` | `u8` | mode | 0 wrap, 1 back and forth |
+| `20` | `u32` | secondPalette | second palette handle (kinds 4 and 8) |
+| `30` | `u32` | handle | operation handle |
+| `34` | `u16` | time | time |
+| `36` | `u16` | phase | phase |
+| `38` | `void*` | next | next operation |
+| `40` | `void*` | previous | previous operation |
+
+The 128 operation records are at `[02B47798]`.
+
+`003CCF20(step)`, each simulation step from `00258D70` and `00258E40`, walks the records with bit 7
+set (clearing it unless bit 6 is set): it copies the source colours into `02B477A0` (`003CD840`),
+counts each operation's delay down or its time up by `step`, takes the phase (the time modulo the
+period, or reflected on odd periods in mode 1), applies the operation, and writes the result to the
+destination (`003D2B60`). An operation past its length is removed.
+
+The kinds call `0050AC20`,
+`00506B40`, `005080A0`, `0050A100` (with the second palette), `00509BB0`, `00507490`, `00508C90` and
+`00507120` (with the second palette).
+
+`003CD2C0(handle)`, from the draw builder `0053AB50`, does the same once into `02B4A7A0` without
+moving time. `003CD6C0(handle)` returns the record; `003CD7C0` and `003CD7F0` set its bits 6 and 7;
+`003CD590` detaches its operations and clears its count; `003CD5D0` unregisters it; `003CD650(handle)`
+removes one operation from its record.
 
 ## Modding notes
 

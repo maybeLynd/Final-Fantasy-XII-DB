@@ -101,6 +101,32 @@ The job `001B7F30` starts the reading thread (`0067A350`), fetches entry `2m`, a
 null entry resets the player (`001B7690`): id -1, position and duration 0, state 0. A failed open
 sets state 0 and resets.
 
+### The picture's geometry
+
+The init burst builds the player's drawing side with `001B7850`. It loads
+`/GameData/D3D11/ArtData/shaders/video.fx.phyre` (`0019CB20`) into `+0xD0`, sizes three plane
+textures (`0060DD70`), Y at `+0x108` at 1920 × 1080 and U and V at `+0x290` and `+0x418` at 960 ×
+540, each with four buffers (`00628100`), and binds them to the effect's `YChannel`, `UChannel` and
+`VChannel` (`0018D240`, `001B81B0`).
+
+It puts the effect into a one-entry `PMaterialSet` of the
+player's cluster `+0x30` (`001B80C0`), builds the geometry, keeps the mesh instance at `+0x100`
+with the material set at its `+0x20`, and stores 16/9 (1.7777778) at `+0x668`.
+
+`001B72B0(player, cluster)` gives the cluster one `PMesh` (`02D3A640`) of one segment (`0x0C0`
+bytes, `001B7210`) unless it already has exactly one, sets the segment's `+0x18` to 2, and fills
+two vertex streams of three entries:
+
+| Stream | Data type | Entry | Values |
+|---|---|---|---|
+| 0 | `Vertex` (`02D3AB18`) | 12 bytes | (−1, −1, 1), (3, −1, 1), (−1, 3, 1) |
+| 1 | `ST` (`02D3AB48`) | 8 bytes | (0, 0), (2, 0), (0, 2) |
+
+The one triangle covers the clip-space square with texture coordinates 0 to 1 across it, so the
+movie fills whatever target it is drawn into. Before each write it waits, 1 ms at a time
+(`Sleep`), while the buffer it is about to fill is still in use. It then builds the
+`PMeshInstance` on the mesh with `001B6CE0`.
+
 ### The update
 
 `001B8400(player, dt)` runs once a frame from the game application's pump
@@ -118,6 +144,27 @@ sets state 0 and resets.
 
 In states 3 and 4, an update in which `0067A410` returns 0 sends the player to state 5 and resets it.
 
+### Fetching a frame
+
+The player's constructor `001B6D90` builds the playback object at `+0x678` with `006791B0`, which
+sets up its three queues (`+0x000`, `+0xA8`, `+0x150`) and three locks and zeroes its counters and
+flags, among them the state `+0x268` and the audio flag `+0x538`.
+
+`0067ABF0(playback, y, u, v)`, from the update in states 1, 3 and 4, takes one decoded frame into
+the player's three plane textures `+0x108`, `+0x290` and `+0x418`:
+
+- it counts its calls at `+0x530`; while `001EDE70()` is set it acts only on every second call;
+- it needs the state `+0x268` at 1, and while `+0x4F4` is set it waits until the frame queue
+  `+0xA8` holds at least `+0x2EC` frames, then clears `+0x4F4`;
+- it takes the oldest frame (`006CC4F0`), uploads its three planes, the first at frame `+0x10` and
+  the others `+0x524` and `+0x528` bytes further on, counts the frame at `+0x278`, releases it
+  (`006CC550`) and returns 1.
+
+`0067AB50(texture, data)` uploads one plane. It picks the texture's ring record by the counter
+`01F7F5A0` modulo the ring size, waits 1 ms at a time while that record's in-use count `+0x38` is
+above 0, hands the data to `0062CC10`, which queues the upload, and stores the record index at
+`+0x0C`.
+
 ### Stopping
 
 `001848E0(flag)` calls `001B83B0`. With the flag set (`0035B720` passes 1) it sets `+0xBAC` and,
@@ -131,6 +178,12 @@ fade time is left, so a running fade finishes first.
 and returns 1; it returns 2 and 3 for those states and 0 otherwise. `0035B7D0` calls `001B82A0`
 (through `001848C0`), which starts play only when `+0x08` is set. `0035B840` starts a movie and
 `0035B8D0` stops it.
+
+`setmoviescreensize(n)` (`0x058C`, `00347C40`) stores `n` at `02ADD933` through `0037B470`, or 3
+for a negative `n`, and `getmoviescreensize` (`0x058D`, `00347F40`) returns it (`0037B370`). The
+movie start `0035B840` resets it to 3 (`0037B470(−1)`), and so does `0037B390` from the startup
+constants `0022A0B0`. The only other reader, the loaded-file play `003B1BA0`, discards the value,
+so the setting changes nothing on screen.
 
 ### The time read-outs
 

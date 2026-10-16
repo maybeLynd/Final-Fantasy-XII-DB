@@ -42,11 +42,11 @@ All 25 calls through `SteamInternal_ContextInit` read one of five slots from the
 
 | Slot | Interface | Sites | What the game calls |
 |---|---|---:|---|
-| `+0x08` | `SteamUser019` | 4 | slot `+0x10` for the user id (`001F3ED0`); slot `+0x08`, a logged-on test (`0020CCC0`) |
-| `+0x18` | `SteamUtils009` | 2 | the start-up test (`00798116`); slot `+0x48`, the app id (`0020C7FD`) |
-| `+0x28` | `STEAMUSERSTATS_INTERFACE_VERSION011` | 17 | the achievement calls below |
-| `+0x30` | `STEAMAPPS_INTERFACE_VERSION008` | 1 | slot `+0x20`, the game language (`007A0C94`) |
-| `+0x68` | `SteamController005` | 1 | stored at `02EA9508` and initialised (`0079791D`) |
+| `08` | `SteamUser019` | 4 | slot `+0x10` for the user id (`001F3ED0`); slot `+0x08`, a logged-on test (`0020CCC0`) |
+| `18` | `SteamUtils009` | 2 | the start-up test (`00798116`); slot `+0x48`, the app id (`0020C7FD`) |
+| `28` | `STEAMUSERSTATS_INTERFACE_VERSION011` | 17 | the achievement calls below |
+| `30` | `STEAMAPPS_INTERFACE_VERSION008` | 1 | slot `+0x20`, the game language (`007A0C94`) |
+| `68` | `SteamController005` | 1 | stored at `02EA9508` and initialised (`0079791D`) |
 
 The other sixteen interfaces are fetched and never called.
 

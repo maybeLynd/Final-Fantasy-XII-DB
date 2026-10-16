@@ -46,6 +46,11 @@ from section `+0x10`. The descriptor is copied whole into the trail entry at `+0
 zero. `0051BC10` frees an entry at once. `0051CDC0` stores the character's opacity in `+8`, and `0051C380`, called from
 `004213E0`, writes the two flag bits of byte `+5`.
 
+`003E70F0(record, v)`, from `0042CBF0` and `0042D050`, passes the opacity to each of the record's
+four handles that is not `0xFFFF` (`0051CDC0`). `003E74C0(record)` frees each such entry at once
+(`0051BC10`) and sets its handle to `0xFFFF`; `003E6890` broadcasts it over the record tree
+(`00425F40` with 0).
+
 ### The pool
 
 `0051C270` allocates `0x3C00` bytes, sixteen entries of `0x3C0`, at `[02CA8420]`, clears every handle and zeroes the

@@ -39,12 +39,25 @@ array at `01F2D6A0` ([array](post-processing-named-render-pass-array.tsv)):
 The samplers `LinearSampler`, `PointSampler` and `samNearest` are named too. The shaders are the
 `.fx.phyre` assets on [Render parameters and shader assets](render-parameters-and-shader-assets.md).
 
+The copy pass draws a mesh that `001EEC80` builds once, from the render-manager installer
+`00186CD0`. It loads `./GameData/D3D11/ArtData/shaders/CopyBuffer.fx.phyre` (`0019CB20`,
+`0063DA50`, `0063B010`), creates a `0xA0`-byte cluster at `01F82E60` (`00633040`), and builds in it
+with `00649C20` the same one-triangle full-screen mesh the movie player builds with `001B72B0`,
+keeping the mesh instance at `01F82E58`. The instance's material set (`+0x20`) gets one material
+made from the asset's first `PEffectVariant` (`02CB6780`, `00600120`). `001EE8E0` draws that
+instance (`0060B980`).
+
 ### Writing a constant
 
 `0018D240(shader, name)` returns the parameter's descriptor or null. A pass then copies its value
 into the constant block with `memcpy` (`00861EBA`) only when the descriptor's offset (`u16 +0x10`)
 plus its size (`u16 +0x12` masked to 13 bits) fits the block's first dword and the offset is at
 least 4 (`001929A7` to `001929E1`). A constant the shader does not declare is skipped silently.
+
+`00194540(block, descriptor, sampler)` writes a sampler constant under the same test: the
+descriptor's size of the record {`0x47`, sampler, 0} goes to its offset, and a constant that does
+not fit returns 3. `001EE8E0` uses it for `ColorBufferSampler`, and the passes `0018F8F0`,
+`0018FE00`, `00190260`, `00191560` and `001930F0` call it too.
 
 ### Ambient occlusion
 
@@ -100,18 +113,31 @@ gives the per-frame library calls its work function `00193DA0` makes with it.
 |---|---|---|
 | `+0x00`, `+0x08`, `+0x10` | render targets | the three targets `006CBEA0` hands the library |
 | `+0x18`, `+0x1C` | `+0xF4`, `+0xF8` | glare luminance and threshold (`00194310`) |
-| `+0x20` | `+0x110` | depth-of-field enable |
-| `+0x21` | `+0x164` | a byte the depth-of-field call also passes |
+| `20` | `+0x110` | depth-of-field enable |
+| `21` | `+0x164` | a byte the depth-of-field call also passes |
 | `+0x24`, `+0x28` | `+0x114`, `+0x118` | focus distance and aperture f-number (`00194250`) |
-| `+0x2C` | `+0x120` | the value the cutscene loader sets to 35.0 |
+| `2C` | `+0x120` | the value the cutscene loader sets to 35.0 |
 | `+0x30`, `+0x34` | `+0x168`, `+0x16C` | two floats the depth-of-field call also passes |
-| `+0x99` | | set when the first argument's `+0x4A1` is set or `+0xDB9` of the object `00189120` returns differs from its value last frame (`+0x48C`) |
-| `+0x9A` | `+0x4A2` | the linear-tonemap byte |
+| `99` | | set when the first argument's `+0x4A1` is set or `+0xDB9` of the object `00189120` returns differs from its value last frame (`+0x48C`) |
+| `9A` | `+0x4A2` | the linear-tonemap byte |
 | `+0xDC` to `+0xE4` | `+0x480` to `+0x488` | three floats |
 
 When the first argument's `+0x124` is 2 the focus distance is its `+0x128`; when it is 1 and `+0x128`
 is positive, both the distance and an f-number computed from it (scaled by block `+0x11C`) are used,
 eased over ten frames when they change (`0018EF95` to `0018F2BD`).
+
+While the block's byte `+0x164` is set, the render pass list `00187950` marks the point at `+0x168`
+and `+0x16C` (`0018D320`) on screen. It maps the point from 0 to 1 into clip space with y flipped
+and calls `001862B0(manager, x, y)`, which reserves 0x50 bytes of a render-thread callback
+(`005FEB30` on the manager's device) for `001890A0`: four vertices (x ± 0.1, y) and (x, y ± 0.1)
+with w = 1.0 and the colour (0, 1, 0, 1), drawn with `006215A0` in mode 1 between `00628570(ctx,
+0, 1)` and `00628570(ctx, 1)`.
+
+The depth-of-field pass `00191560` works only while the block's byte `+0x349` is set and `+0x110`
+is clear. `001828C0(on, mode, a, b, c, d, e, f, g)` sets the byte and the pass's values through
+`001944D0`: `+0x349` = (`on` ≠ 0), the mode at `+0x360` (the pass tests it for 1 and 2) and the
+other values at `+0x34C`, `+0x350`, `+0x354`, `+0x358`, `+0x35C`, `+0x364` and `+0x368`. Its caller is `00474710`, which
+passes 1 and values from its own record each time it runs.
 
 The cutscene loader `001C3D50` reads `mGlareThreshold` and `mGlareLuminance` into `00194310`
 (`001C42E4`) and `EnableDof`, `mDofFocusDistance` and `mDofApertureFnumber` into `00194250` with
@@ -189,6 +215,21 @@ ends the next timestamp query of the current ring (`001D6250`). `001D6000`, also
 stamps an `END` marker (`001D6040`), reads back the ring from the frame before
 (`001D5650`), stores the measured time as a double at `+0xD70` of the object `001D50D0` returns, and
 clears the marker list (`001D6170`).
+
+`001D6170` runs `001D5970` again while the object's byte `+0x15` is clear. Besides the queries,
+`001D5970` lays out two rows of bar quads in the object, six vertices of 16 bytes each, after
+resetting all `0x324` vertices of each row to `(0, 0, 0, 1)`:
+
+- colours: `001D6370(obj, i, r, g, b)` writes colour `i`, divided by 255 with alpha 1.0, to the six
+  vertices at `+0x92B8 + i × 0x60` (row 1), and `001D6630` at `+0xC4F8` (row 2). Entries 0 and 1 get
+  `(0x86, 0x7B, 0x6F)` and `(0x86, 0x64, 0x6D)`, 2 to 4 get `(0xF6, 0xFF, 0x06)`, and 5 to 133 cycle
+  through the ten colours at `01DFCFC0`: cyan, red, yellow, blue, purple, olive, green, navy, magenta
+  and maroon;
+- positions: `001D64D0(obj, i, x, y, w, h)` (row 1, vertices from `+0x2E38`) and `001D6790` (row 2,
+  from `+0x6078`) write the two triangles of the rectangle with depth `−0.1 × i`. Quad 0 starts at
+  `(+0x04, +0x0C)` (row 2: `+0x10`) with width `1 − +0x00` and height `+0x08`, quad 1 follows it,
+  and quads 2 to 4 are ticks 0.01 wide and 0.08 high, 0.04 lower, starting 0.01 left of 0, 1 and 2
+  widths from the start.
 
 ## Layouts
 

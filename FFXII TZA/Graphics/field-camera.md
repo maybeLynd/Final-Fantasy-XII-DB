@@ -28,6 +28,62 @@ The followed transform at controller `+0x630` gives the position and the leader'
 (`0032B1C0`). When the position moves more than `0.1 × [01DFE0BC]` in a frame, `0032CE40` sets bit
 `0x8000000` of the state word `+0xC0`.
 
+### The followed transform
+
+Each controller keeps two poses of `0xB0` bytes, a start at `+0x6E0` and a target at `+0x790`, and a
+weight at `+0x840`. A pose holds a position at `+0x00` and the heading as `(cos, 0, sin, 1)` at
+`+0x10`. `00259510(out, from, to, t)` blends them: the position linearly, the heading from `from` by
+`t` times the shorter difference (`003A1C50`), written back as cosine and sine.
+
+Each frame `0025A180(actor, slot)` copies the leader's transform (the block at `+0x30` of its
+`+0xC0` → `+0x138` object) into the target pose and blends start to target by the weight into the
+followed transform `+0x630` ([player movement](../Movement-And-Pathfinding/player-movement.md)).
+
+### Resetting the follow camera
+
+`resetbehindcamera` (`0x0288`, `00343340`) pops two floats and passes the first popped to `00259620`
+and the second to `0025A0C0`.
+
+- `00259620(level)` clamps the value to −1 to 1. On both controllers it copies the target pose's
+  position and heading into the start pose, sets the weight `+0x840` to 1.0 and `+0x844` to 0, resets
+  the controller (`003D9B80`) and sets the follow camera's level (`0032B8B0`). It keeps the value at
+  `02098DFC`.
+- `0032B8B0(camera, v)` writes `clamp(0.5 × v + 0.483, 0, 1)` to the three level copies `+0x3C`,
+  `+0x7C` and `+0xBC` and clears the bytes `+0x00`, `+0x40` and `+0x80`, so 0 gives the starting
+  level.
+- `0025A0C0(heading)` wraps the heading into −π to π, keeps it at `02098E00`, and on both follow
+  cameras sets the three heading copies `+0x30`, `+0x70` and `+0xB0` to the heading plus π
+  (`0032B880`).
+
+`00259FB0`, from the field-settled sequence ([field runtime](../Characters-And-Objects/field-runtime.md)),
+applies `02098DFC` and `02098E00` again the same way.
+
+### The camera types
+
+At start-up `0022A0B0` runs `00259DF0`, which files a read of file kind 9 (`0032E400`, `0032E620`); its completion keeps
+the table at `02098DF0`, or 0 when the file is empty.
+
+`setbehindcameratype` (`0x01CB`, `00356CB0`), `00304060` and `00304140` call `0025A160(type)`: for a type below the table's count `+0x04` it sets
+`02098DF8` and `00259FE0` copies the type's 64-byte entry (from table `+0x10`) into both controllers:
+its first word to `+0x64` and seven pairs of floats to `+0x10 + 12k` and `+0x14 + 12k`. `003D9C40`
+then stores at `+0x18 + 12k` each segment's length between consecutive pairs as a share of their
+total.
+
+The same walk keeps running totals of those shares, the profile's position at the start of a
+segment, in three controller fields: `+0x1D0` the start of segment 3; `+0x1D4` the start of segment 2,
+or of segment 1 when `+0x2A0` is non-zero; and `+0x1D8` the start of segment 4, or of segment 5 when
+`+0x2A0` is non-zero. `003D99B0` and `003D9B80` run it too, on the default pairs `01EFE998` to
+`01EFE9CC`, from (−0.7, 2.8) to (7.6, 8.8), the end points of the orbit curve below with the height
+first.
+
+### Other controller settings
+
+- `0025A540(flag, vector)`, from `002628B0`, writes the vector to `+0x00` of both
+  controllers and the flag to `02098DE9`, the byte that limits the follow camera to republishing.
+- `tutorial_set_behindcameraenable` (`0x03A1`, `003503B0`) stores whether its int is non-zero at
+  `02098354` (`0025A880`), and `tutorial_get_behindcameraenable` (`0x03A0`, `0034FFA0`) returns it
+  (`0025A850`). Opening the pause menu (`00229590`) saves the value and clears it.
+
 ### The orbit
 
 The camera is a heading `+0x70` (radians, wrapped to 0 to 2π) and a height level `+0x7C` (0 to 1).

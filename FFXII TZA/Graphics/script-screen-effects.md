@@ -65,6 +65,10 @@ bytes to `02092640` and, only when bit 3 of the flag word is clear, allocates th
 `cutinclear` (`003DF8E0` → `0024CEB0`) zeroes the type byte, releases the target and every
 recorded handle, and drops bit 3.
 
+The parameter verbs only write the staging block (layout below): `cutintype` (`0x0313`, `003DF9F0`),
+`cutinlinefade` (`0x0314`, `003DF990`), `cutinpos` (`0x0315`, `003DF9C0`), `cutinuv` (`0x0318`,
+`003DFA30`), `cutincolor` (`0x0319`, `003DF950`) and `cutinlinecolor` (`0x031A`, `003DF970`).
+
 `0024CBE0` draws nothing while the live type byte is 0. In draw 0 it switches the draw mask bits
 0-6 on for both draws and queues a kind-3 capture of the scene into `02092638` (stage 7,
 `0x40703`). In draw 1 it queues a kind-4 bind of that target and calls `003AA6B0`, which queues
@@ -85,6 +89,11 @@ two targets (`02092688`, `02092690`), raises bits 4 and 5 and zeroes the eight h
 other screen type it returns with bit 4 clear. `moveblurclear` (`003DE140` → `0024EB20`) releases
 both targets and drops bit 4. Its handle loop calls the release only for handles that are 0, which
 releases nothing; the descriptors leave the pool on their own.
+
+The four type verbs write the staging block with the mappings of the layout below:
+`moveblurpresettype` (`0x031E`, `003DE400`) byte `+0x00`, `moveblurcluttype` (`0x031F`, `003DE360`)
+`+0x01`, `moveblurnoisetype` (`0x0320`, `003DE3A0`) `+0x02` and `moveblurscreentype` (`0x0321`,
+`003DE430`) `+0x03`.
 
 `0024EA10`, in draw 0 with bit 4 up, builds the request for `003AAA50` with a capture flag: 1 when
 bit 5 is up (and clears bit 5), otherwise 1 unless the capture-once bit is set. With the flag down,
@@ -108,6 +117,21 @@ Each tick plays a copy of the staging block whose strength is
 `strength × t / duration`, or `× (1 − t / duration)` going out, so the scene is captured afresh
 every tick until the fade ends. The end clears `02B58C48` and, going out, tail-jumps to the clear.
 `moveblurfadesync` waits while `02B58C48` is non-zero (poll `00345100`, `003DE150`).
+
+### Object motion blur
+
+The five `objmblur*` verbs keep a 0x18-byte block at `02B58C20` and never draw anything:
+
+- `objmblurlimitalpha(a)` (`0x01C5`, `003DE460`) stores `a`, truncated, in byte `+0x01`;
+- `objmblurcolor(r, g, b)` (`0x01C6`, `003DE450`) stores the three bytes at `+0x04` to `+0x06` and
+  `0x80` at `+0x07`;
+- `objmblurpower(p)` (`0x01C7`, `003DE470`) stores the float at `+0x08`;
+- `objmblurplay(n)` (`0x01C3`, `003DE480`) stores `n` in byte `+0x00`, passes the block to the bare
+  `ret` at `0016D6A0`, and resets it: zero, except `0x80` at `+0x07`;
+- `objmblurclear` (`0x01C4`) jumps through `0017E7D0` to the same `ret`.
+
+The area initialiser `00266D10` resets the block with the same defaults through `003DDD10`, which
+also resets the four blur sprites, the motion blur staging block and the blur fade task `02B58C48`.
 
 ### Soft focus
 
@@ -216,6 +240,42 @@ skip paths `00360710`, `003601D0`, `00360A50` and `003600D0` call it.
 - The effect teardown `0024E910` ends in the blur clear and the cut-in clear (`0024EA02`,
   `0024EA0B`); the unload and `003601D0` call it.
 - The unload calls `0036E810` twice with all zeros, turning soft focus off.
+
+### Crossfade
+
+`crossfade(flags, mode, frames)` (`0x016F`, `00353260`) dissolves a still of the picture into the
+live scene. Unless the issuer's manager is skipping it calls `002F1A90(flags, mode, frames)`, which
+acts when `frames` is positive or flag bit 1 is set:
+
+- With no crossfade running it makes the task `[022BE7C8]` (`002F16B0`) with the per-frame body
+  `002F18D0` and the end `002F1950`, and keeps the flags at `+0x28`, the mode at `+0x38` and the
+  length `frames × [01DFE0B4]` (`frames` alone when `001EDDA0()` is non-zero) at `+0x04`. Flag bit 1
+  adds one frame to the length.
+- It then captures the picture: `00374D40(0, mode, 1)`, or, with flag bit 2, `00374D40(0, mode, 2)`
+  after a set of pass-mask calls (`003587B0(1)`, `00358720`, `00358640(1)` and others); `+0x30`
+  records which.
+- With a crossfade already running, flag bit 0 replaces its flags and restarts the length.
+
+`00374D40(p, mode, q)` works only for a mode of 1 to 4. It takes a screen-size target once
+(`00182B40`, kept at `02ADB6D0` with the mode at `02ADB6D8`) and files a kind-3 descriptor, stage 7,
+class 5, with bytes `+0x1C` = 1, `+0x1D` = mode, `+0x1E` = `q` and `+0x1F` = `p`, the target at
+`+0x28` and `+0x40`; its handle goes to `02EC07F0`.
+
+Each frame `002F18D0` re-captures when flag bit 2 is set and calls `003756B0(+0x30, alpha)` with
+`alpha = (L − c) / L × 255`, with `L` the length plus `[01DFE0B4]` and `c` the task's word `+0x00`,
+so the still fades out as `c` grows; it also sets
+byte `+0xD18` of the render manager (`00182610(1)`). `003756B0` files two descriptors while a target
+and a mode exist:
+
+- a kind-4 descriptor binding the target to the emulated GS memory, with a bind word that depends on
+  the mode and, for modes 3 and 4, a palette at `02ADB720` or `02ADB6E0` (handle `02EC07F4`);
+- a kind-2 quad, stage 5, class 1, priority 1, colour `0x80808080` with alpha `alpha / 255`
+  (handle `02EC07F8`).
+
+The end `002F1950` runs `00375F80`, which hands the target back (`0024B240`) and removes the three
+descriptors from the pool, undoes the pass-mask calls for flag bit 2, clears `[022BE7C8]` and byte
+`+0xD18` (`00182610(0)`). `0024B240(target)` appends a released target to the list `02091950` while
+its count `0209216A` is below 256 and otherwise frees it at once (`001B68D0`).
 
 ## Layouts
 

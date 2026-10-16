@@ -22,6 +22,9 @@ constructor), the current batch index `+0x3928` (-1 when empty), and from `+0x39
 state that mirrors the GS registers. The UI layout values bound from `UISize.json` also live in this
 object, from `+0x3B00` ([screen layouts](../Menus-And-HUD/screen-layouts.md)).
 
+Each batch is built by `001AE010`: it clears the vector at `+0x38` and reserves 1,024 entries of
+`0x30` bytes in it (`001B1A20`).
+
 ### Menu textures
 
 There are two registries, both keyed by a name hash:
@@ -36,6 +39,10 @@ There are two registries, both keyed by a name hash:
   palettes ([TIM2 images](../Game-Files-And-Data-Tables/tim2-images.md)). `001B11D0` returns a
   registered picture's texture; `001FB720(table, index, half)` finds the palette with key `half + index × 2`.
 
+- A third tree at `+0x2278` maps names to strings. `001B1240(batcher, n)` looks up `shape<n>` and
+  returns the string at the entry's `+0x40`, or null; `001814F0(n)` wraps it for `002A3600`, which
+  copies the string into the buffer that `0209C518 + 0x20 × i` points to.
+
 ### Batches
 
 A batch holds one texture, one clamp region and a vector of 0x30-byte vertices (the `DynGeoVertex` of
@@ -47,6 +54,11 @@ moves to the next one when its state no longer matches; an index above 63 drops 
 - `001B0A20(batcher, vertices, count, width, height, name, clut)` names the texture as given, or
   `%s_clut_%d` with a non-zero `clut`, and looks it up in the `+0x28` tree; an empty name uses the texture at
   `+0x100`. A name that is not registered draws nothing.
+
+- `001B13C0(batcher, name)` is the `+0x28` lookup alone: an empty name returns `+0x100`, an
+  unregistered one null. The texture objects' method `00215F80` uses it, with the name or
+  `%s_clut_%d`, and keeps the result at its `+0x08`.
+
 - `001B0CE0` does the same through the `+0x2208` registry and a palette, unless `+0x2108` and `+0x2110`
   already hold a texture and palette; a palette argument of -1 takes the default table at `+0x2238`.
 - Both continue the current batch when it holds the same texture, give the texture to a batch that has a

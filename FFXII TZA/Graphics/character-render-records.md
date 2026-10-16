@@ -29,10 +29,10 @@ initialises it. It forwards only three of its counts; the reference container al
 
 | Root field | Points at | What it holds | Initialiser |
 |---|---|---|---|
-| `+0xD90` | root `+0x000` | resource entries, `0x50` bytes, 10 chunks of 32 | `00409F10` → `0051F9F0(bank, 0x50, 5, 10, 02B62E40, 02B62F80)` |
-| `+0xD98` | root `+0x060` | skeleton entries, `0xC0` bytes, 5 chunks of 32 | `0046E250` → `0051F9F0(bank, 0xC0, 5, 5, 02CA61B0, 02CA6250)` |
-| `+0xDA0` | root `+0x0F0` | render model instances, `0x260` bytes, 5 chunks of 32 | `00477EE0` → `0051F9F0(bank, 0x260, 5, 5, 02CA74A0, 02CA7540)` |
-| `+0xDA8` | root `+0x160` | presentation-entry references, 64 nodes of `0x30` at root `+0x190` | `0051B9D0` → `0051F170(container, 0x40, root + 0x190)` |
+| `D90` | root `+0x000` | resource entries, `0x50` bytes, 10 chunks of 32 | `00409F10` → `0051F9F0(bank, 0x50, 5, 10, 02B62E40, 02B62F80)` |
+| `D98` | root `+0x060` | skeleton entries, `0xC0` bytes, 5 chunks of 32 | `0046E250` → `0051F9F0(bank, 0xC0, 5, 5, 02CA61B0, 02CA6250)` |
+| `DA0` | root `+0x0F0` | render model instances, `0x260` bytes, 5 chunks of 32 | `00477EE0` → `0051F9F0(bank, 0x260, 5, 5, 02CA74A0, 02CA7540)` |
+| `DA8` | root `+0x160` | presentation-entry references, 64 nodes of `0x30` at root `+0x190` | `0051B9D0` → `0051F170(container, 0x40, root + 0x190)` |
 
 `0041E500(root)` refreshes all four after their storage moves: the resource-entry bank through
 `00409F70` (with the byte `02B62E10` held at 1), the skeleton bank through `0046E3E0`, the reference
@@ -61,6 +61,119 @@ A record reaches the banks by index: `+0x18` selects its skeleton entry (`00427B
 its model instance (`003E55B0`), `+0x408` its `@FCP` section in the resource-entry bank, and `+0xC4` /
 `+0xC8` its presentation entries. Skeleton entry `+0x84` is the bone array, `0x290` bytes per bone with
 the bone matrix at `+0x80` (`00370F60`); entry `+0xA8` is the owning record's index.
+
+### Skeleton entries: links and the update order
+
+A skeleton entry knows its own index (`+0x04`), the index of the skeleton it hangs from (`+0x08`,
+−1 for none) with that entry's encoded address at `+0x0C`, and the index of an entry attached to it
+(`+0x10`). The bank keeps an update list at `+0x60` in which a parent always comes before its
+children; `0046E6F0` rebuilds it after every acquire (`0046E4D0`), release and attach.
+
+- `0046E6F0` first runs `0046E950` on every entry, which clears bit 1 of `+0x00` and forgets a
+  parent index whose entry is gone (`+0x08` and the word `+0x14` set to −1). It then appends, pass
+  after pass, every entry with a skeleton (`+0xA0`) whose parent is none or already listed
+  (`00537260`), marking it with bit 1.
+- `0046E2B0(bank, index)` releases an entry: it clears it (`003721E0`), frees its slot (`0051FCF0`)
+  and rebuilds the list. The record teardown `0041E860` calls it for the record's `+0x18`.
+- `0046E590(bank, child, parent, slot)` attaches one skeleton to another through `00370180`, which
+  stores the parent's index in the child's `+0x08` and, for slot −1, the child's index in the
+  parent's `+0x10` (otherwise the slot in the child's word `+0x14`); it then sets `+0x0C` and
+  rebuilds the list. Its caller is `004218A0`.
+- `0046E420(bank, index)` refreshes an entry after its resources change: it re-runs `003713C0` on
+  the entry and its parent, re-encodes `+0x0C`, and re-runs it on the entry at `+0x10` before
+  re-linking that entry's bones (`00372F60`). Its callers are `003E6F90`, `0041D220`, `0041D820` and `004242B0`.
+- `0046E3E0`, the refresh after the bank's storage moves, re-encodes every `+0x0C` (`0046E910`) and
+  re-links every `+0x10` (`0046E8D0`). `00372F60(entry, other)` points each listed bone of the entry
+  that names a bone of the other at that bone (`+0x278`, `+0x27C`).
+- `0046E8B0(bank, index)` returns the entry, or null for −1.
+
+### Skeleton bones: the listed bones, lookups and the bone-to-bone tie
+
+A skeleton entry's word `+0x9C` is its skeleton kind, 0 or 2 (an `@FTR` node table, see
+[model files](model-files-cm-ca.md)), and `+0xA0` the skeleton resource. The bone array `+0x84` holds
+`+0x88` bones of `0x290` bytes; after them come `+0x88` u16 slots whose first `+0x8A` list the bones
+built from pool values (node flag bit 8), then the extra slots.
+
+- `00373DC0(bone)`, from the skeleton builder `00372820`, puts a bone at rest: identity at
+  `+0x1F0` and `+0x230` (`0046D120`), `(0, 0, 0, 1)` at `+0x1A0` and `+0x1C0`, 1.0 at `+0x1E0` to
+  `+0x1EC`, the flags `+0x280` cleared, the links `+0x270` to `+0x276` and `+0x27C` set to −1,
+  `+0x278` null, byte `+0x28A` = 3, bits 0 and 1 of `+0x28B` set and bit 2 clear.
+- `00372280(entry)`, from `0041CF00`, `00422A30` and `00424550`, resets each listed bone: it clears bit 4 of `+0x280` and sets `+0x1A0` and `+0x1C0` back to `(0, 0, 0, 1)`.
+- `00372510(entry)`, from `00424D80`, fills the extra slots with `0x7FFF`, as many as the model's
+  `@FTR` header word `+0x38` gives, and clears bit 12 of the entry's `+0x00`. `00371330(entry, i)` returns
+  extra slot `i` of a kind-2 skeleton when `i` is below that count, else 0; `0053AB50` calls it.
+- `003725A0(entry, bone)` holds when the bone is listed. `003737C0(entry, key)` returns the first
+  node with flag bit 8 whose key (`00409250`) matches, and `00372760(entry, name)` the record whose
+  name at `+0x00` of the `0x4C`-byte kind-0 records matches; both return −1 otherwise.
+
+### Bone points
+
+`00421E20(record, point, mode, out)` turns a point id into a matrix. Ids `0x107` and `0x108` stand for
+the record's words `+0x2F4` and `+0x2F6`, and `0x300` to `0x3FF` go to `003710E0`. Otherwise, with
+bit 7 of the skeleton entry's `+0x00` clear, `00370E30` finds the bone by the name `00422310` gives;
+with it set and an id of `0xFF` or more, `00370FA0` finds it by the key from `00422380`.
+
+Both return null unless the bone is listed. They return the bone matrix (`+0x80`) and write to `out`
+that matrix moved to the point `(x, 0, 0, 1)` (`0046D0D0`), where x is 0 for mode 0, the node's length
+for mode 1 and half of it for mode 2. The length is a value of the bone's `@FTR` node (`00373640`,
+`004092A0`) and 0 for kind 0.
+
+`003E5B30(record, n, offset)` supplies the ids `0x300` to `0x3FF`, `n` being the id minus `0x300`. It
+returns a bone index and writes an offset `(x, y, z, 1)`:
+
+- for any `n` but `0x0B`, entry `n` of the table of 16-byte entries the record's `@FCP` names at
+  its word `+0x0C` (`u16` bone, then the three floats); without that table it returns −1 and a zero
+  offset;
+- for `0x0B`, when the record's active presentation entry (`00422D50`) has its byte `+0x328` set,
+  the bone `+0x30` and offset `+0x34` of the block at `+0x30` or `+0x60` of that entry's motion data
+  `+0x70` (by bits 0–1 of its `+0x04`), and otherwise bone 0 with the vector `+0x4C` of the rig
+  (`003E6DA0`).
+
+Two callers take a record's centre point:
+
+- `003E4CB0(record, out)`, from the distance fade `0042E850` for the reference record, uses the
+  first of the `@FCP` bones `+0x3A`, `+0x3C` and `+0x3E` that is set (`003710E0`) when the `@FCP`
+  version byte is 3 or more, and otherwise point `0x100`, or `0x101` when that fails; without a
+  skeleton it writes the identity (`0046D110`).
+- `004221F0(record)` makes the same choice with `+0x3A` alone and returns the matrix; `0042E7F0`
+  stores it at `+0xF0` of the record's draw object, with the record at `+0xF8` and its index at
+  `+0xE0`.
+
+### The motion bone list
+
+Before `0041BEE0` binds a motion's bone channels it runs `00370BB0`, which lists the skeleton's bones as
+12-byte nodes (index, previous, next) in the scratch list at `[01EF9438]`, with the head at `+0x00` and
+the count at `+0x1804`. Kind 0 lists every record (`00370BD0`; with bit 5 of the entry's `+0x00` set
+only records whose word `+0x22` is 1 or 7) and kind 2 every node with flag bit 8 (`00370CD0`).
+`00370E00` then claims the node whose key matches each channel, unlinking it (`00373540`).
+
+`[01EF9438]` normally points at `02AD9EC0` (`00370DE0`); `00426090` and `004262E0` point it at
+`[01FD4A78]` (`00370DF0`) for their work and back at the end.
+
+### Tying bones to another skeleton
+
+`0046E640(bank, child, parent, slot)` ties a kind-2 skeleton to another (`00370390`, which jumps to
+`00373160`): the child's `+0x08` takes the parent's index, and slot −1 stores the child's index in
+the parent's `+0x10` while any other slot goes to the child's word `+0x14`. Every listed child bone
+saves its parent link `+0x270` in `+0x28E`. With slot −1, a bone whose node has flag bit 8 and whose
+key names a listed bone of the parent is then tied to that bone:
+
+- the parent's bone gets the child bone's address at `+0x278` and its node number at `+0x27C`, so
+  motion values written to it also reach the child bone;
+- the child bone copies the parent bone's matrices `+0xC0` and `+0x150` (`0046D100`) and sets bit 1 of
+  `+0x280`;
+- when the child bone's parent bone is a root (that bone's saved link is −1), the child bone's
+  `+0x270` becomes −1 and `+0x276` takes the parent bone's `+0x270`.
+
+`0046E370(bank, child)` undoes it through `00370BA0` (kind 2 only) and `00373380`: when the parent's
+`+0x10` names the child it is set to −1 and every listed parent bone's `+0x278` and `+0x27C` are
+cleared; the child's `+0x08` and `+0x14` become −1, its first bone's `+0x1F0` the identity, and each
+listed bone clears bit 1 of `+0x280`, takes its parent link back from the node (bits 12 to 23, with
+`0xFFF` meaning none) and sets `+0x276` to −1.
+
+`00372610(a, b, c, scale, d)`, called by the final-pose composer `00373860`, multiplies `a`, `b` and
+`c` into `02AD9E40` (`00217150`), scales the four rows of that matrix by the four floats of `scale`, and
+multiplies the result by `d` into `02AD9E80`.
 
 ### Allocation
 
@@ -122,6 +235,89 @@ A record can be attached to another: word `+0x06` is the parent index, `+0x08` t
 `+0x0A` the next sibling. `00426EC0` unlinks a child from its parent's chain. Walks that need the
 hierarchy go through `00425FB0(root callback, child callback, …)`, which runs the first callback on
 each active record without a parent and the second on its descendants (`0042EF90`).
+
+Many setters broadcast a value the same way: they apply it to the record and its first child, then
+hand a small per-record body and an argument block to `0042EF90` for the rest of the tree.
+
+Most bodies first ask `00426220(record, source)` and skip the record when it answers true: a record other
+than the source is skipped when its `+0x284` bit 26 is clear and its word `+0x2F8` is −1; a record
+with bit 27 and an event below `0x1000` (`+0xCC`) is skipped when `004232D0` returns 0; otherwise a
+record whose name `+0x3C` starts with `h` is kept only when its next five characters equal the
+source's first five, and any other record is skipped when the source's name starts with `b`.
+
+| Body | Broadcast | What the body does to each record |
+|---|---|---|
+| `0042BDD0` | `00425E70` | `003E6770(record, arg +0x38)` |
+| `0042D810` | `00428B30` | copies bit 3 of the argument's byte `+0x60` into bit 3 of `+0x4B7` |
+| `0042D9C0` | `00426650` | when `00421D70(record, word +0x1C)` finds a bone, stores the record at `+0x20`, the bone at `+0x28` and 1 at `+0x18` of the argument (a search) |
+| `0042DA00` | `00426770` | the same search through `00421E20` with the word `+0x08`, dword `+0x0C` and pointer `+0x10`, storing the result at `+0x10` |
+| `0042DE50` | `00429D40` | `0041FBF0(record, arg +0x38)`, then `00421030` |
+| `0042DE90` | `00426FA0` | sets bit 20 of `+0x284` and clears bit 6 of `+0xC0` |
+| `0042DEC0` | `00429E50` | `00422DF0`; with the argument's `+0x6C` set, also bit 17 of the `+0x0C` of the entry `00422D50` returns |
+| `0042DFC0` | `00427100` | calls `00422EB0`, except on a child whose `+0x2F2` is not 1, whose `+0x2F8` is −1 and whose `+0x284` bit 27 is clear; a record without a parent stores the result, or 0, at the argument's `+0x58` |
+| `0042E050`, `0042E170`, `0042E1B0` | `0042A180`, `0042AA10`, `0042AB20` | the float `+0x28` through `00425510`, `00423A60` or `00423AB0` |
+| `0042E090` | `0042A290` | `00423570(record, arg +0x24)` |
+| `0042E130` | `0042A890` | below `0x1000` in word `+0x3FA`, `0041FC80`; then `00423A10` |
+| `0042E300` | `0042AC30` | copies word `+0x20` to `+0x3FA` when `+0x2F2` is non-zero (no filter) |
+| `0042E320`, `0042E350`, `0042E4B0` | `0042AE00`, `0042AF10`, `0042A580` | on a record without a parent or whose `+0x2F2` is 1, call the bare `ret` `0016D6A0`; `0042E4B0` also stores 0 at the argument's `+0x58` for a record without a parent |
+| `0042E440` | `0042A390`, `0042B130`, `0042B270` | `00424010` with the three floats `+0x2C`–`+0x34` |
+| `0042E4F0` | `00428CD0` | `00504D20` on the record's model row (`003E55B0`) with dword `+0x20` |
+| `0042E530`, `0042E540` | `0042B690`, `0042B770` | `00420D80` or `00420E70` with dword `+0x74` (no filter) |
+| `0042E610`, `0042E650` | `0042B850`; `0042B970`, `0042BA90` | `00420F50` or `00420EA0` with dword `+0x38` |
+| `0042E750`, `0042E7A0` | `0042BCB0`, `00429020` | set bit 21 of `+0x284` when `+0x38` is non-zero, or bit 12 when it is 1 |
+
+`00426500`, from `00332440`, is one such walk: `00425FB0(0042D7A0, 0042CF70, records)`.
+
+A record keeps two attached children by id: word `+0x2C8` for the child whose slot byte `+0x6A0`
+is below `0x16`, and `+0x2CA` for the child of slot `0x16`. Unless `+0x40B` bit 4 is set, the event
+start `00424D80` re-places both through `0041F010(record, child)`, which `004215A0` also calls:
+
+1. it stores a slot below `0x16` at `+0x40C`, and takes the mode from the low two bits of `+0x40B`
+   (0 while `+0x284` bit 27 is set) into bits 2–3 of `+0x40B`; modes 2 and 3 go straight to step 6;
+2. in mode 0, when the record's `@FCP` section 3 (`003E5CD0`) names a bone for the slot (word table
+   at its start), it ties the child to that bone with `004211B0`, which links the two skeletons
+   with `0046E640` when the child's skeleton entry has bit 7 of its first byte and sets the child's
+   parent word `+0x06`;
+3. still in mode 0, it copies the slot's offset (section `+0x240 + 12 × slot`) to the child's
+   `+0x130` with 1.0 at `+0x13C`, and stores at `+0x150` the record's three scales (`+0x160`,
+   `+0x260` and `+0x26C`) times the slot's scale at section `+0x40 + 12 × slot`;
+4. in mode 1, or without a section bone, it ties the child to the record's bone for the child's
+   `@FCP` word `+0x36` (`003E5AD0`, bone 0 when there is none) and, when the section exists, zeroes
+   the offset and the scale;
+5. with a section, it writes the slot's value at `+0x1C0 + 4 × slot` to the child's `+0x170`,
+   `+0x174` and `+0x178`, and 1.0 at `+0x15C` and `+0x17C`;
+6. it stores the child's id at `+0x2C8` or `+0x2CA`.
+
+Small record setters beside them: `00420CF0(record, x, y, z)` keeps the angles `+0x120`–`+0x128` at
+`+0x250`–`+0x258` and stores the new ones, and `00420F20(record, x, y, z)` stores `+0x140`–`+0x148`;
+both set the fourth float to 1.0 and clear `+0x284` bit 9. `00421010(record, on)` sets or clears
+`+0x284` bit 3 and calls `00421030`; `004209A0` clears bit 27 and sets bit 26. `00421CD0` returns the
+first of the `@FCP` bones for special ids `0x104` to `0x106` that is set, or 0 (always 0 below
+`@FCP` version 3).
+
+`00422D90` finds the `@FRM` entry (`0x4D524640`) of the record's container and returns its payload;
+`00422E40` is `00424870(…, 1)`; `00424280` wraps an angle in degrees into −180 to 180; `0042FCB0`
+counts `02CA4EDC` up, for `002EAD00`.
+
+`00424870(record, frames, mode)` starts a transition of the current entry `+0xC4` into its motion.
+It runs `0041CFC0`, hands the three floats `+0x2B0` to `+0x2B8` to `0041D7E0` and sets them to −1,
+restarts the entry (`0041D110` when its `+0x24` is 1, otherwise `+0x0C` bit `0x2`, `+0x24` = 1 and
+`0041D790`), sets bit `0x800` of `+0x0C` (and `0x20000` for mode 1), stores `1 / frames` at
+`+0x354`, clears bit `0x100` when `+0x344` is −1, and calls `00423AB0(record, +0x2BC)`.
+
+With
+`+0x284` bit 20 set or 0 frames it instead stops the alternate entry `+0xC8` (`+0x0C` bit `0x2`,
+`0041D790`) after `00426FA0` and returns `00424C40(record)`.
+
+`00424A40` is the same without `0041CFC0` and returns 0 at once when the current entry's `+0x24` is
+already 1. The child callback `0042DF10`, from `00429F70`, uses them on a child record that has no
+event of its own for the parent's event (`0041E5B0`): `00422E40` for a child whose `+0xCC` is below
+`0x1000`, otherwise `00422E50`, which first stops the child's alternate entry and then calls
+`00424A40(child, frames, 1)`.
+
+`00423510(record, resource)` returns the payload of the resource's `@FRM` (`00408F90`, `00408F80`)
+plus the dword at its `+0x0C`, or 0 when the section is missing or that dword is 0; `003E6070`
+reads three floats there.
 
 ### The dirty words
 
@@ -194,6 +390,80 @@ Priorities are signed bytes at `01F00410 + (event & 0xFFF)`; the first `0x49` by
 `0041FCA0` returns `+0xCE` when `+0xC8` is valid and `004235C0(record, +0xCE, +0xCC)` allows, else
 `+0xCC`.
 
+### Posting an event
+
+`00427320(record, event)` posts an event. Before choosing a source it refreshes the dword `+0x110`
+from the battle view of the record's actor `+0x108` (`00420890`: `002ED500` with selector `0x80` for
+events `0x2005`, `0x2037` and `0x2039` to `0x203C`, `0x100` for the others; for `0x203A` a first query with
+`0x800` whose bit 36 makes it call `003B4930`).
+
+`00423790(record, event, last)` then decides
+whether the event may follow the last posted one, the word `+0x3B4`, with the normalising and priorities of
+`004235C0` and without its selector rule; a last event without a kind refuses every event, and a
+refusal ends the post.
+
+The event's kind picks the source resource `+0x390`:
+
+| Kind | Source |
+|---:|---|
+| 0 | the registered script motion slot that bits 20–23 (area slot) and 16–19 (slot) name (`003DD740`, state 4 only); `00423230` then clears bit 12 of the current entry's `+0x2C8` |
+| 1, 2 | `+0x430`, or `+0x42C` by the low two bits of `+0x40B` |
+| 3, 4 | `+0x430` (kind 3; `0x302F` and `0x3009` as kinds 1 and 2) or `+0x42C` (kind 4) |
+| 5 | `+0x42C` while `00423170` holds; otherwise the skill-motion cache entry for the actor's model and the index (`003DC7D0`, `003DCA00`), or `+0x42C` with `+0x3B4` set to `0x203D` when there is none |
+
+`004230A0(record, event)` then refuses kinded events of index `0x37` while the character object's byte `+0xB4` is 0
+and `0x39` and `0x3A` while its `+0xAC` is 2, which clears the source. `00422FD0(record, resource,
+event)`, asked by `00423B10`, holds when `+0x284` bit 16 is set and the resource's entry for the
+event index (index 0 for kind 5, `00408F80`) has bit 16 or 17 of its `+0x04`.
+
+`motionplay_bb(motion, frames)` (`0x00BB`, `003DD8D0`) and `puppetmotionplay_41f` (`0x041F`,
+`003DD980`, for a puppet) post a kind-0 event: a motion id whose top byte is `0x10` to `0x1F` names
+slot `top − 0x10` of the script's area slot. They act only when that slot is registered and pass the
+event `(area << 4 | slot) << 16 | (motion & 0xFFFFFF)` with the frame count to `002EB080` or `002EB0D0`; the actor
+form also stores the slot at actor `+0xF5`.
+
+### The skill-motion cache
+
+Kind-5 motions are files read on demand into 16 entries of `0x14` bytes at `02B57F70`, with at most
+four 32 KiB units in use. `003DCBC0`, from the area initialiser `00266D10`, numbers the entries, empties
+the 16-entry size cache at `02B580B0` and requests the table file tagged `PCSkill` (kind 9, file 5).
+
+`SkillMotionEntry` (`0x14` bytes, offsets from the start of the 02B57F70+0x14*i):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | block | the read block, registered with the render system |
+| `04` | `i16` | users |  |
+| `06` | `u8` | state | 0 free, 1 queued, 2 reading, 3 ready, 4 releasing |
+| `07` | `u8` | units | 32 KiB units of the file |
+| `08` | `u32` | id | i \| `0x10` \| serial << 4 |
+| `0C` | `u32` | model |  |
+| `10` | `u16` | motion |  |
+| `12` | `u8` | class | weapon class |
+| `13` | `u8` | index | i |
+
+- `003DCD00(actor, motion, class, file)` returns 0x80000000 while `002E80B0(actor)` is non-zero.
+  An entry for the model, motion and class in states 1 to 3 gains a user and its id is returned.
+  Otherwise the size comes from `003DC8D0` (0x80000001 when it fails), rounded up to units, and the
+  entry is filed only if the units of entries with users plus the new ones stay within 4.
+- Filing takes the first free entry (`003DC380`); with none it releases the idle ready entries
+  (`003DC6A0`) and tries again. A new entry has one user and state 1, and the idle entries are
+  released when all held units exceed 4. With `file` 0 the cache stays as it is:
+  0x80000002 says the entry exists or could be filed; `003DC410` is that test, `003DCCF0` the request.
+- `003DC780(id)` drops a user; an entry of 0 units that reaches no users in state 3 is released at
+  once. `003DC6A0` releases every ready entry without users: state 4, and `0x10` added to the id.
+- `003DC4A0`, from `002E65A0` in the field frame `0022A770`, works only after a change (`02B58170`): it unregisters
+  and frees every releasing entry's block (`0041E490`, `00369800`) and frees the entry, then starts
+  each queued one (`003DC5B0`): a block in arena 6 and a read of the file `003DCA30` names, whose
+  completion `003DC340` sets state 3 and registers the block (`0041E580`).
+- `003DC7D0(actor, index)` finds a ready entry for the actor's model and motion, matching the class
+  too when `00322710` holds, and `003DCA00(id)` returns its block; `003DCB90(id)` returns the state.
+
+`debug_registskillmotion` (`0x2079`, `0050CE70`) and `debug_disposeskillmotion` (`0x207B`,
+`0050CFB0`) reach the request and the release; the battle code uses `00325A20` (the test), `00325B40`
+(the request) and `00325A00` (the release). The code at `003DC420`, which no instruction reaches, empties the size cache and releases
+the idle entries.
+
 ### The presentation-entry reference container
 
 The container at root `+0x160` maps an entry id to a `0x3A0`-byte presentation entry. A node is `0x30`
@@ -205,6 +475,13 @@ next id, `+0x10` source, `+0x18` cached pointer, `+0x20` 32-bit offset.
   set rebuilds `+0x18` as the sign-extended 32-bit sum of the resolved source and the offset.
 - `0051F080` admits: `0051F410` takes the cursor slot, the id is `slot | 0x10000`, and the node joins
   the active list. The high half never changes, so a reused slot gets the same id.
+
+- The container's own list helpers: `0051F2F0`, run by the initialiser `0051F170`, clears every node
+  (state 0, id and links −1, source, pointer and offset 0); `0051F380`, run by `0051F080`, appends
+  an id at the tail (head `+0x1C`, tail `+0x20`); `0051F4C0`, run by `0051F190`, unlinks one; and
+  `0051F150`, used by `0051BA80`, returns the cursor `+0x18` while the used count `+0x14` is below
+  the capacity `+0x10`, else −10.
+
 - `0051BA80(container, id, source, offset, …)` builds a payload on the stack (`0041CB90`, `0041D220`),
   admits a node when `id` is -1, copies the payload in, rebuilds its pointers (`0041CA70`) and writes the
   id into its first dword; if the payload build fails it releases the existing entry and returns -1.
@@ -233,6 +510,71 @@ bytes from `+0x30`; the playing one is `+0x388`. The command handlers are on
 - Command class `0x0B` (`00417110`) asks the selector `[02CA4668]` (entry kind `+0x2DC`) for a choice
   and plays `table[choice] + addend` through class `0x01`. A record with `+0x284` bit 27 and a parent
   reads the parent's cached choice (`+0x4B8`..`+0x4BB` for selector kinds 0, 2, `0x0A`, `0x10`) instead.
+
+### The choice selectors
+
+`004269A0` installs the selector table `01F000A0` with `0041D6E0`: 48 kinds of `0x10` bytes, a
+count and a pointer to a handler list, of which `00417110` calls the first handler with the stream.
+The authored command `0x00` also ends with kind `0x2F`'s handler. Every kind not listed returns 0
+(`005C5230`); the handlers read the stream's render record `+0x2E0`:
+
+| Kind | Handler | Choice |
+|---|---|---|
+| `0x00`, `0x0A`, `0x0B` | `004223F0`, `00422400`, `00422410` | jumps to the locomotion selector `004256E0` with 0, 1 or 2 |
+| `0x01` | `00422420` | a counter in byte `+0x40E`: at 0 it draws a random 0–4 (`003A6E60(5)`) into `+0x411`, returns it and starts counting at `[01DFE0B4]`; at `11 × [01DFE0B4]`, when the query `0041F2F0(record, 0x20)` reports bit `0x4`, it adds 5 to `+0x411` and returns that; otherwise it counts up to at most 100 and returns −1 |
+| `0x02` | `00422500` | the byte `+0x410`, chosen once while it is −1 from the bits of `0041F2F0(record, 0x30)`: bit `0x2` counts `+0x40E` up (back to `[01DFE0B4]` past three times that) and chooses 0; otherwise 1 with bit `0x4`, else 2, and `+0x40E` is cleared |
+| `0x04` | `00660570` | −1 |
+| `0x10` | `004225A0` | counts down `+0x412`, armed with a random value from the stream's byte `+0x2DD` − 1 to `+0x2DE` − 1 (times `[01DFE0B4]`), and chooses 1 when it reaches 0 |
+| `0x20` | `00422630` | 0 when the point from `0041F2F0(record, 4)` lies within ±90° of the record's heading (`00424370`: `atan2` of x and z in the record's own frame), else 1 |
+| `0x21` | `004226C0` | 0 within ±60°, else 1 or 2 by side; plus 3 on a random half (`003A6E60(2)`) |
+| `0x22` | `00422760` | 1 when the vertical angle to the point (`00424460`) is negative |
+| `0x23` | `004227D0` | 0 within ±60°, else 2 or 3 by side |
+| `0x24` | `00422870` | the quarter the point lies in (0 ahead, 1 at 45°–135°, 2 at −45° to −135°, 3 behind) in record byte `+0x2AF`, plus 4 on a random half |
+| `0x25` | `00422940` | from the angle to the record that the look controller's source names (`003E2CD0`): 0 between −90° and 0°, 1 at −90° or less, 2 above 90°, 3 between 0° and 90°; 0 without a source |
+| `0x2F` | `00422A10` | clears the word `+0x456` and sets byte `+0x2AF` to −1, returning −1 |
+
+`00424460(matrix, point)` turns the point into the record's own frame (the matrix at `+0x180`) and
+takes `atan2` of its y and z.
+
+### The per-entry update
+
+`0041C410(entry)`, from `0041D820`, `00422EB0` and `002EE3E0`, runs an entry only when its record's
+`+0x6E0` is 1 in main-loop state 3 (`00229EA0`) or 0 in any other state, the entry's `+0x0C` has
+bit 1 set and bits 18 and 23 clear, the speed `+0x340` is non-zero, and the status table entry
+`003E7D10(+0x6A4, 3)` is 0 or the record's `+0xC0` bit 6 is clear. In phase 1 of `02CA83F4` it runs
+only records with `+0x284` bit 27 and no parent, and in phase 2 it skips those.
+
+- In state word `+0x24` = 1 with `+0x0C` bit 3 and `+0x2C8` bit 12 set, it resets the entry
+  (`0041CFC0`), clears `+0x2C8` bit 12 and `+0x0C` bit 9 and, for a positive
+  `+0x348`, seeks there (`0041D820`) and sets `+0x24` to 0 when `+0x348` equals `+0x34C`, else 1.
+  With only `+0x2C8` bit 12 set and `+0x348` not −1 it sets `+0x24` to 2.
+- With the record's `+0x4B7` bit 4 set it picks the locomotion mode (`004255B0`).
+- It runs every track state through the walker `0041DA90`, then calls `0041DD40` on states 1 and up
+  until a pass finds none to act on, sets `+0x0C` bit 8, and copies whether `003E7D10(+0x6A4, 3)` is
+  non-zero into the record's `+0xC0` bit 6.
+
+`004255B0` gives controller 5 (`003E4890` → `0051A920`) a mode from the record's speed `+0x23C`
+(taken as 0 while `+0x62C` bit 0 is set or `003AEF20(+0x550)` reports): 0 below the walk threshold
+`003E58B0` (the scale times an `@FCP` value, 0.013333 without one), 2 at or above `+0x420`, and
+otherwise 1 when the move direction `+0x244` is within 45° of the facing `+0x124`, 3 from 45° to
+135°, 4 from −45° to −135°, and 5 behind.
+
+Smaller entry helpers:
+
+- `0041D7E0(entry, start, end, limit)` stores the time window `+0x344`, `+0x348`, `+0x34C`, pulling
+  `+0x344` down to the limit when both are set and the limit is smaller.
+- `0041D110(entry)` resets, clears `+0x2C8` bit 12, seeks to `+0x344` when it is set (with `+0x0C`
+  bit 28 raised around the call) and sets `+0x24` to 1.
+- `0041D4D0(entry, on)` sets or clears `+0x0C` bit 12, `+0x33C`, and bit 5 of every state's word
+  `+0x96`.
+- `0041CEC0(entry)` calls bank-A slot `0x0C` (`[02CA4470]`) with the actor `+0x2C0` and `+0x31C` and
+  sets `+0x0C` bit 9, as the walker does at a motion's end.
+- `0041C970(entry, n)` returns the state playing track `n` (state `+0x80`); `0041C720(entry)` returns
+  whether the state playing the entry's track `+0x26` has byte `+0x95` equal to 1; `0041C6B0(entry)`
+  returns `+0x0C` bit 15. `0041C3A0` is an empty function that `00423280` calls.
+
+- `0041C770(entry)`, for `00423380`, returns the dword `+0x0C` of the first state after state 0
+  whose byte `+0x95` is 1, or 0.
 
 ## Layouts
 

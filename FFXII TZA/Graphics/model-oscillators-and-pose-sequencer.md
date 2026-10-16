@@ -37,6 +37,14 @@ Each frame `0040ACF0` advances two phase and speed pairs, adding `speed × [01DF
   `02CA4390` is set. `0040B3B0(preset)` sets that byte and copies preset row `preset − 1` of
   `01EFFA30` into the bases and ranges `02CA4380`–`02CA439C`; the map wind sets the preset (see
   [weather](../World-Areas-And-Travel/weather.md)).
+
+- While any requester bit of `02099DA6` is set, the wind is off. `00267D40(bit, on)`, which
+  `denybonephysicalall` (`0x03D5`, `0x03EA`) calls, saves the wind when the first bit goes up
+  (`002EAB40`) and stops it with `0040AAD0(0, 0, 0)`; when the last bit drops, `002EAA60` restores the
+  saved values through `0040AAD0`.
+- The save is `0040AAB0`: it copies the preset byte `02CA4390`, the azimuth `02CA4391` and the
+  elevation `02CA4392` into a one-entry stack at `0215FD48` (count `0215FD47`).
+
 - The per-record pair (`+0x30`, `+0x34`, `+0x38`) runs only while the record's byte `+0x3E` is set,
   and draws from the preset row the record keeps at `+0x2C`.
 
@@ -63,6 +71,38 @@ weight to 0 when `+0x2A` bit 0 is clear before resetting the entry's lists. `004
 runs `n` passes of the phase step and the three stages, with the frame factor left out, and applies
 `0040DBB0` to the entries with `+0x2A` bit 0 on every eleventh pass.
 
+### Switching entries on and off
+
+Entries come in groups: the low five bits of an entry's byte `+0x01` give the number of `0x30`-byte
+entries in its group (1, 2, or 3 for any other value), and its top three bits must share a bit with
+the record's byte `+0x1A` for the entry to be switched at all.
+
+- `0040B5D0(record, mask)`, when the mask differs from `+0x1A`, disables in each group the first
+  member that met the old mask and marks its bones as `0040ED90` does with 1; it then sets each
+  member's enable byte `+0x02` to whether it meets the new mask, unmarks the bones of the enabled
+  ones (`0040ED90` with 0) and stores the mask at `+0x1A`. The rig set-up calls it (`003E09B0`, `003E18D0`, `003E3D70`).
+- `003E0B50(rig, 0, index)` switches the group at entry `index` off: for each member whose bit 0 of
+  `+0x2A` is set, it clears that bit, sets the low nibble of `+0x29` to 1 and calls
+  `0040ED90(record, entry, 1)`; `003E0F00` switches on the same way, setting the bit, the nibble to 2
+  and calling `0040ED90` with 0. Either clears the nibble again when `+0x2A` bit 0 equals the high
+  nibble of `+0x29`.
+- `003E0E70` and `003E1210` do the same for the group whose word `+0x2A >> 4` equals an id
+  (`0040DB00`, which returns `0xFFF` for none), and `003E1950(rig, on)` for every group whose state
+  differs.
+
+`0040ED90(record, entry, flag)` walks the entry's chains (count byte `+0x00`, `0x40` bytes a chain)
+and, for every bone named after a chain's first link (`0x50` bytes a link, `0xFFFF` skipped), sets bit 1 of the bone's
+`+0x28A` to the flag and clears bit 2 of its `+0x28B`.
+
+`003E4140(rig, x, y, z)`, from `0042C410` and `0042C8F0` with the record's three scale factors
+(`003E5770`, `003E5790`, `003E57B0`), gives the oscillator record their mean through `004158F0`,
+which stores it at `+0x10` and its reciprocal at `+0x14` and scales values kept in the entries' chains by it;
+it gives `z` to controller 8 (`005175B0`) and `y` to controller 6 (`004717D0`).
+
+At start-up `003E0720` calls `00512EF0` and `0040DB70`, which clears `02CA4390` and sets the global direction
+through `0040B430`. `00415A80(record, delta)` adds a delta to every encoded pointer of the record,
+for the rig's rebase `003E1C50`.
+
 ### Directed sway from an authored command
 
 The handler registered for authored command `0x3F`, `00520510` (installed at `00426B6B`), acts only
@@ -74,6 +114,9 @@ the rig's oscillator record and calls `0040ABF0(record, preset, direction, bone,
 - `+0x3E` takes the preset, so preset 0 stops the per-record pair;
 - otherwise `+0x40` takes the direction, `+0x50` a second vector built from it, `+0x2C` preset row
   `preset − 1`, `+0x3C` the bone, and `+0x3F` bit 1 is raised so the pair re-draws at once.
+
+`0041DD40` calls `00520100(record)`, which runs the same walk for a root record with the preset and
+the flag set to 0, so every record of the sub-tree stops its per-record pair.
 
 ### Effect elements with a sway section
 
@@ -89,6 +132,11 @@ Section 7 of a model's `@FCP` block holds eight events. A render record whose mo
 gets a sequencer entry at bind time: `0041FCF0` calls `004772E0(record, record byte +0x5C)`, which
 takes a free entry of the 32 at `02CA6CA0`, stores the number minus one as the entry's variant and
 returns the handle `serial << 8 | entry`, kept at record `+0x450`.
+
+The record-system initialiser `004269A0` empties the 32 entries and the counts `02CA6C90` and
+`02CA6C94` through `004778A0`. The record teardown `0041E860` frees the record's entry through
+`00477640(handle)`, which checks the handle's serial against the entry, clears it and decrements
+`02CA6C90`.
 
 - `00477370(handle, event, choice, section, onlyIfChanged)` starts an event. It does nothing for a
   record with `rel` `0xFFFF` or the enabled byte 0. Choice `0xFF` picks one at random (`003A6E60`
@@ -125,6 +173,10 @@ The model draw `0053AB50` calls `00477750` and `00477B10` with the record's sequ
 slot whose two texture slots (the first two bytes of the event's choice table) are loaded
 (`005047C0`), `00477750` reserves 128 bytes, and `00477B10` copies a rectangle of the first texture,
 at the position listed for the slot's value, onto the second texture's fixed rectangle.
+
+The copy is a GS transfer inside GS memory, built by `00505150(packet, transfer)` and called from
+`00477B10` and `004778D0`: a GIF tag, `TEXFLUSH` (`0x3F`), `BITBLTBUF` (`0x50`), `TRXPOS` (`0x51`),
+`TRXREG` (`0x52`), `TRXDIR` (`0x53`) set to 2, and `TEXFLUSH` again, `0x80` bytes in all.
 
 ## Layouts
 

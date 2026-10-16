@@ -24,6 +24,12 @@ A record keeps its object key at `+0x6B0` and the object at `+0x6B8`. The manage
 - `0017F0D0(key)` asks the manager for an object through `001BD4A0`, once `0017EFC0(key)` reports the
   key's model as registered. Its callers are `003703A0` (the skeleton-entry update) and `0053AB50`
   (the record's draw), each storing the result in the record's `+0x6B8`.
+
+- `0017EFC0(key)` asks the model asset cache (`001BC000`) through `001BB040(cache, key)`: the key
+  must have a model in the cache's map at `+0xB8` whose asset list is ready (`001BB120`, which then
+  binds the model's palette textures), and a model with byte `+0x98` set also needs its companion
+  `-2 - key` to pass the same test.
+
 - `001BD4A0(manager, key)` looks the model description up (`001BAFF0`) and checks a cache of parked
   objects keyed by the description's `+0x2A0`. With no parked object it allocates `0x668` bytes,
   constructs (`001F4DA0`) and runs setup (vtable slot 2). With one it takes it out of the cache and
@@ -33,6 +39,10 @@ A record keeps its object key at `+0x6B0` and the object at `+0x6B8`. The manage
   clears `+0x6B8`.
 - When the record has a parent with an object, `0053AB50` attaches the two through `0017EF60` →
   `001BD630`, with a per-bone map at record `+0x6D0`.
+
+- `001BD630` reads, for the bone names of both objects, each name's number with `001F6E00` (the
+  decimal digits before the first `_`, 0 for a name that starts with `_`) and the text after that
+  `_` (`strstr`), and compares the texts character by character.
 
 ### The ready byte
 
@@ -99,6 +109,34 @@ the part's kind byte (`01DFE1D0`, `01DFE2F0`, or `ChrOpaque` for kinds above `0x
 `01F83020` / `01F83040` set while `+0x4A8` is below 0.75, then calls slots 19, 20 (kinds 2, 5, 10, 13),
 10 and 13 for the part, and hands the list to `0060E960`.
 
+The slot-24 call in `0053AB50` goes through the null-safe wrapper `0017F200`, and `0017F250` calls
+slot 18, `001FAFB0`, the same way for the texture-rectangle copy `00477B10`. Slot 18 appends a `0x24`-byte element (two bytes and four 8-byte values) to the vector
+at `+0x390`.
+
+### The ordered draw
+
+`CharacterOrderedObject`'s execute reaches `001F5D70(object, …)`. For an object with a key, unless
+the key's resource entry (`002E98F0`, `002DF980`) has byte `+0x16` = `'h'` or the key is
+`0x6E006D`, it files block `0x25` with 1 (`0060E810`), publishes two shadow values with
+`001FB310` and runs slot 30 on its part records:
+
+- `001FB310` writes `+0x4B8` to the shadow object's `+0x4C` and `+0x50` = 2.3 (`01DFE408`) ×
+  `+0x4BC` (`001F0850`), the values slot 30 hands to `m_chrObjHeight` and
+  `m_chrObjFlyingHeight`, and copies `+0x4C0` to `02CB83B0`.
+- With no single mesh at `+0x50` slot 30 runs on the vector `+0x58`. With one, the template record
+  `+0x78` is copied into a one-record vector (`001F87B0`), slot 30 runs on it, the mesh is drawn
+  (`0060B980`) and the render manager's counter goes up by 1 (`00185A80`).
+
+At the end of the mesh walk, while byte `+0xF8` of the manager `001BDAB0()` is set, `001F68E0`
+draws the skeleton: for each mesh instance it builds one line per bone, from the bone's position
+(row `+0x30` of its `0x40`-byte matrix) to its parent's, the parent index read from the mesh's
+`+0x58` table. It reserves a render-thread callback (`005FEB30`) for `001F5C20`, which draws the
+lines 512 at a time (`006215A0`, mode 1) between `00628570(ctx, 0, 1)` and `00628570(ctx, 1)`.
+
+The teardown, slot 3 (`001F6D60`), empties the mesh instances through `001F86F0`: each instance of
+`+0x30` and the single one at `+0x50` goes through `001EEEF0` and leaves the object's cluster
+`+0x3E0` through `001EEC30`, a null-safe `0063ABF0(cluster, instance)`.
+
 ### The bone palette
 
 Slot 26, `001FAA10(object, palette)`, reads each mesh's bone names: the decimal digits before the
@@ -124,6 +162,21 @@ The root's `+0xDA0` bank holds the `0x260`-byte render model instances, 160 slot
 the sort key `+0x04` (head at bank `+0x60`, link `+0x02`, `004781E0`), then calls `00504700` for each
 whose skeleton entry passes the frame-state test. `00504700` calls `0053D780` once, or twice when
 instance `+0x244` bit 4 is set, and `0053D780` reaches `0053AB50`.
+
+The record teardown `0041E860` returns up to eight instances listed from record `+0x90` through
+`00478070(bank, index)`, which releases the instance with `00504C40` and frees its slot
+(`0051FCF0`). `00504C40` frees the sixteen palette resources at `+0x140` (`003CD590`, `003CD5D0`)
+and marks their pairs in the map `+0x180` free (`0xFF`), releases the `@FDM` binding when `+0x08`
+bit 2 is set (`00409CA0`), releases the 32 texture slot words at `+0x100` (`00521250`) and resets
+the instance (`005049E0`).
+
+- `00504BC0(record, value)` sets bit 7 of byte `+1` of each of the record's instance palette
+  resources to `value` (`003CD7F0`); its caller is `004213E0`.
+- When the bank's byte `+0x62` is 1, `00477F20` walks the instances with `004781A0` instead of
+  sorting them: an instance with `+0x08` bit 0 takes the bank's byte `+0x66` into `+0xB2` and
+  `003A2C80` copies its `0x260` bytes into the display list's data arena as an entry keyed by its
+  `+0x04` shifted right by 4. The entry's function is the bare `ret` `0016D6A0`, so the drain
+  draws nothing for it (`004781AA`–`004781D1`).
 
 ## Layouts
 

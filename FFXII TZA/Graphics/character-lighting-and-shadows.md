@@ -29,6 +29,12 @@ request `+0x30` for kinds 2 and 5, `+0x40` for kind 3, `+0x48` for kind 4. Kind 
 `1 / (+0x40 − +0x44)` at `+0x4C`, and kind 5 a squared length, a dot product and a reciprocal from its
 two vectors.
 
+`003ABD20` returns the request block of the first light on the list whose scope byte (request
+`+0x03`) is 5, or null; `002F4520` uses it. The mask `02B3F520` that the light walk tests is set and
+cleared bit by bit through `003ACA60` and `003ACA70`: `0036FBB0` sets bit `0x8` when it loads the
+five multipliers at `0209A3C0`–`0209A3D8` from the 10-byte rows at `02AD9B60`, and clears it when it
+resets them to 1.0.
+
 ### Choosing a character's lights
 
 `003ACC10(list, out, colour scale, out ambient, record, id, placement)` walks the list. It skips a light
@@ -120,6 +126,70 @@ Unless the settings flag at `001EBA40()` `+0x118` is set:
 
 The settings are listed on [graphics settings](../Engine-Core/graphics-settings.md).
 
+### Event lights
+
+An event script can hold up to 16 lights of its own in entries of `0x70` bytes at `02B58C50`. Each
+entry keeps a copy of its light request; the light itself lives in the pool. Every verb takes the
+entry index first.
+
+`EventLight` (`0x70` bytes, offsets from the start of the 02B58C50+0x70*n):
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | handle | the pool handle, 0 for none |
+| `04` | `u8` | manager | the manager byte of the bindl issuer |
+| `05` | `u8` | focus | 1 follows the party focus |
+| `08` | `void*` | binder | the actor that ran bindl |
+| `10` | `void*` | followed | the actor of seteventlightactor |
+| `20` | `u8[80]` | request | copy of the light request |
+
+The defaults of the copy are type 2, priority `0xC0`, scope 1 sub-kind 1, bit 0 of `+0x05` set,
+range 10.0, colour (1, 1, 1, 0), position w 1.0 and direction (1, 1, 1, 1).
+
+- `bindl(n, kind)` (`0x0136`, `003DE4C0`) unbinds whatever the calling actor held (`0025AB30`),
+  releases the entry's old light (`003ABCA0`), and files a new one (`003AB960`) from the entry's
+  request with type 2 for `kind` 1, 4 for `kind` 2 and 1 otherwise. It keeps the handle, the issuer's
+  manager byte and the actor, marks the actor bound (its `+0x04` = 2, `+0x05` = `n`) and then resets
+  the entry's copy to the defaults.
+- `seteventlighttype(n, type)` (`0x0138`, `003DE7E0`) resets the copy to the defaults with that type
+  byte; type 4 also gets the cone cosines `cos(π/8)` and `cos(π/4)` at request `+0x40` and `+0x44`.
+- `seteventlightall(n)` (`0x0139`, `003DE970`) sets scope sub-kind 1 and drops the followed actor;
+  `seteventlightactor(n, id)` (`0x0137`, `003DEA20`) sets sub-kind 2 and follows the actor `id`
+  names (`003587C0`), or the party focus for a negative `id`.
+- `seteventlightcolor(n, r, g, b)` (`0x013A`, `003DE9B0`) stores the colour with alpha 0;
+  `seteventlightdir(n, a, b)` (`0x013C`, `003DEA70`) turns the unit z vector by the two angles,
+  normalises it (`003A1890`) and stores it at request `+0x30`.
+- `seteventlightrange(n, r)` (`0x013B`, `003DEAC0`), only for an entry with a type, stores `r` at
+  request `+0x0C` and clears bit 0 of `+0x05`; a negative `r` sets the bit and stores 1.0 instead.
+- `seteventlightcorn(n, inner, outer)` (`0x0144`, `003DE8A0`) stores `cos(inner)` and `cos(outer)` at
+  request `+0x40` and `+0x44`, with `inner` at least 0 and `outer` at least `inner`.
+
+The colour, direction, range and cone setters also write the live request when the entry has a
+light and a bound actor, the last two through `003AC920`. Each frame `003DE640` (from `00314020`)
+sets every live light's target `+0x08` to the record index of the followed actor (`002E97B0`) and,
+when the binding actor's class bits (`+0x03 & 0xE0`) are `0x60`, its position `+0x20` from that actor
+(`00265020`), with w = 1.0.
+
+`0025AB30` undoes a binding by the actor's kind byte `+0x04`: kind 2 runs `003DE5F0`, which releases
+the light and clears the entry's handle, actor and focus flag; kinds 1 and 3 run `002E3AF0` and
+`002E3D00`. The area initialiser `00266D10` resets all 16 entries through `003DE710`.
+
+### Script ambient colours
+
+The map draw `002F4520` takes its ambient from `0209A3B0` (`002F4688`), which `0026E1A0` rebuilds once
+a frame (from `0036F410`) as the product, component by component, of four colours: the map's
+ambient `0209A370`, the scene colour `0209A380` (copied from `020926C0` by `003769E0`), the script
+colour `0209A390` and the summon-colour multiplier `0209A3C0`. `0026E1D0` resets the scene colour,
+the script colour and the product to 1.0.
+
+- `setmapambient(r, g, b, a)` (`0x0104`, `00379080`) stores the script colour and also writes
+  `r, g, b` into the ambient of all five light groups (`02EBF460 + 0x50 × g`, `002ECE40`);
+  `setmapambient_maponly` (`0x050A`, `00379110`) stores only the script colour.
+- Their three-argument forms (`0x0105`, `0x050B`) push 1.0 as `a`; `resetmapambient` (`0x0106`,
+  `00346D20`) stores 1.0 four times through `00379080`. The map teardown `00378230` resets it too.
+- Unless `02ADD0E9` is set, both setters then refresh light group 0 with its current state:
+  `003DE920(0, 003DE700(0), 0)`, where `003DE700(g)` reads bit `g` of the group mask `02B59350`.
+
 ### The shadow caster
 
 `PShadowCaster` is a reflected Phyre class (`006C15D0` registers `m_light` at `+0x00`,
@@ -146,6 +216,28 @@ entry's `+0x360`.
 A first-pool entry keeps the owner's index at `+0x04`, its strength at `+0x14` (1.0) and two bones,
 `+0x3C` and `+0x3E`, from the model's special bones `0x104` and `0x106` (`003E5AD0`).
 
+The anchor in use is the word `+0x38`. `003B5CE0(handle, b, x, y)` keeps the previous base offset
+`+0x48`, `+0x4C` at `+0x30`, `+0x34` and the previous anchor at `+0x3A`, stores the new base offset
+and sets the anchor to `+0x3C` for `b` = 0 or `+0x3E` otherwise. `003B6BD0(handle, v)` stores the
+offset multiplier `+0x44` and `003B6BB0(handle, v)` the float `+0x2C`; `0042D050` calls both.
+
+`003B67F0(handle)`, from `003723B0`, puts the four ramp channels back to neutral (offset 0, extent
+scales 1, rotation 0, strength 1) and clears their steps and counters, the cross-fade and the values
+last built.
+
+When the authored motion command `0x09` (`00417F40`) starts a motion whose header carries a
+character block of kind 1, it passes the block to `003B5E20(handle, block)` and its anchor choice and
+base offset (`+0xA8`, `+0xA0`, `+0xA4` of the header) to `003B5CE0`. `003B5E20` keeps a motion's
+shadow overrides in the slot, flagged in byte `+0x40`:
+
+- first, for each override flagged by the previous motion, it writes the kept value into the channel
+  and its cross-fade copy and clears a counter: bit 1 the offset (`+0xA0`, `+0xA4`; counter `+0x00`),
+  bit 2 the rotation (`+0xB0`; counter `+0x03`, the strength's), bit 3 the extent scales (`+0xA8`,
+  `+0xAC`; counter `+0x02`), and bit 4 the base offset (`+0xB4`, `+0xB8` into `+0x48`, `+0x4C`);
+- then, when the block's word `+0x32` is non-zero, it keeps the new values (block `+0x4C`, `+0x50`;
+  `+0x10`, `+0x54`; `+0x58`, `+0x5C`; the rotation as `(word >> 6)` degrees) and copies the word's
+  bits 0, 1, 3, 2, 4 and 5 into the flags' bits 1 to 6; it ends by clearing the four counters.
+
 ### Each frame
 
 `00426420` runs `00426340` on every active record while tail `+0x42` is 1 and `+0x43` is 0:
@@ -161,6 +253,11 @@ A first-pool entry keeps the owner's index at `+0x04`, its strength at `+0x14` (
 `02AEDF20` and returns `clamp(1 − (clamp(d, near, far) − near) × k, 0, 1)`, with `near`, `far` and `k`
 at `+0x20`, `+0x24` and `+0x2C` of the model's `@FCP` block (`003E6F70`). The 1 and the zero bias inside the
 inner clamp are the cells `01EF93FC` (1.0) and `01EF93F0` (0.0), which `0036D990` sets at boot.
+
+`003AF460`, from the character pass `00426090`, advances the second pool's ramps: for each of the 32
+entries with a handle it counts down five counters (`+0x1C`, `+0x1D`, `+0x1E`, `+0x54`, `+0x55`) and,
+while one is non-zero, adds its step to its value (`+0x24` by `+0x2C`, `+0x28` by `+0x30`, `+0x34` by
+`+0x38`, `+0x3C` by `+0x48`, `+0x44` by `+0x4C`).
 
 ### The shadow verbs
 

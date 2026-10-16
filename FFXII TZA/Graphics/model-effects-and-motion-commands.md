@@ -118,6 +118,34 @@ slot gives NULL. The `@FMC` blocks fill the first `80 × rows` slots and `@FRM` 
 - `0041F340` makes the render record's effect context: when the record's `+0x288` is −1 and the row's
   `@FEF` bank index is set, it calls `003B3550(record, ticket)` and stores the result at record `+0x288`
   and row `+0x240`.
+
+- `0041F340` takes its blocks in arena 6 through `003AB8B0(size, mode)` (`0036A100` for mode 0,
+  `0036B160` for mode 1) and returns them through `003AB910`, which calls `0036C620` for a null or
+  4-byte-aligned pointer and `0036C5D0` otherwise.
+
+### The record's effect handle
+
+The handle at record `+0x288` names a `0x38`-byte slot at `02EBD480 + (handle & 0x3F) × 0x38`; every
+helper below first checks that the slot's id equals the handle and does nothing otherwise. The slot's
+`+0x10` is the effect instance and its byte `+0x30` holds three flags.
+
+- `003B3400`, from `003B3550`, takes the head of the free list `02EBDBA0`, appends the slot to the
+  used list (`02EBDB98` / `02EBDBA8`) and writes a new serial (`02EBDBB4`) into bits 6–27 of the id.
+- `003B3300(handle)`, from `0041E860`, ends the instance (`0024EE60`), moves the slot back to the
+  free list, keeps only bits 0–5 and 28–31 of the id and clears `+0x10`.
+- `003B3080(handle)` sets bit 0 of `+0x30`. The update pass `0024B9B0` holds a kind-3 instance on any
+  step the bit is clear in the slot its dword `+4` names, and clears the bit when it is set; `0042D830` sets it each time
+  it processes the record, so a model's effect advances only while its character does.
+- `003B33A0(handle, b)` sets bit 1 of `+0x30` and stores `b` in bit 2; `0042D830` passes the
+  result of `00420FB0` when `004210D0` allows it.
+- `003B3AA0(handle, v)` stores the vector at instance `+0x320` with w = 1, or 1, 1, 1, 1 when the
+  instance's `+0x368` bit `0x4000` is set; `0042D830` passes the vector from `003E5710`.
+- `003B30D0(handle, a, b)` sets the instance's two tint colours `+0x398` (from `a`) and `+0x334`
+  (from `b`) with their red, green and blue at `0x80`, and raises `+0x368` bit `0x8`; when the
+  instance's `+0x36A` bit `0x8` is set, it also puts both alphas at `0x80` and drops the bit again.
+- `003B30A0(handle, v)` stores `v` at instance `+0x08`, and `003B3CA0(handle, v)` runs `003A9490(v)`
+  on the instance, then makes the previous instance current again.
+
 - The registration that makes the ticket indexes the pointer table `02B64380` by the fold of the name.
   `0041E3A0` calls `00409F80` at start-up (`0041E40B`), which calls `0040A230`: 144 stores of
   `PS2Data\obj_finish\in\<folder>\...\<name>.cm` paths, so every shipped `@FEF` model has its entry.
@@ -151,6 +179,80 @@ The model binder `0041FCF0` also keeps the model's own first `@FMC` index at rec
 - The values are written to the bone and every bone linked through `+0x278`: `00418650` into bone
   `+0x190`, `00418700` into `+0x1B0` and `004186A0` into `+0x1D0`, the last skipped while bone byte
   `+0x280` bit 1 is set.
+
+### Stepping a channel
+
+A channel slot keeps the current key's frame at `+0x04`, the next key's frame at `+0x06`, the
+previous and next values at `+0x08` and `+0x0C`, and two stream cursors, one for frames (`+0x10`)
+and one for values (`+0x16`): byte offset in the stream, element in the run, stream number and step
+count. A stream's flag byte also gives the run length in its low six bits: a run holds that many
+literals, or one when bit 6 is set, of one or two bytes by bit 7, and the cursor moves past the run
+when its element reaches the length.
+
+- In the packed form `0041BA10` steps the frame cursor and `0041BC40` the value cursor, moving to
+  the next stream of the channel at the end of one; in the table form `0041B920` and `0041BB00` do
+  the same, with `0041B460` decoding a frame delta and `0041B3A0` a value (`literal × scale +
+  previous`).
+- `0041A7F0(slot, @FMW)` reads the first frame delta of a channel; a delta of 0 marks the channel as
+  a single key (`+0x04` = `0xFFFF`).
+- `0041A8E0(slot, @FMW, frame)` moves the key pair forward until the next key is past `frame`, and
+  also marks the channel single when its two key frames meet.
+
+### Applying a frame
+
+`0041ADA0(stream, …, entry, frame)`, from the seek `0041C850`, puts an entry at a frame: the frame
+modulo the `@FMN` duration (`+0x50`) becomes the entry's `+0x0C`, every channel moves there
+(`0041A8E0`), and the bones are written. `00418880(stream, entry)`, from the walker, does the same
+work each frame for a playing entry (bit 1 of `+0x08`) whose word `+0x0A` is 1. Both take the bones
+from the model's bone array (`0020E600` of model `+0x84`, `0x290` bytes a bone) and the channel rows
+from the owner's `+0x2B8` block (`0x108` bytes a row, count `+0x2BC`).
+
+`00418880` adds `001ED020(name, …)` to the frame it applies, `name` being the text at `+0x3C` of
+the block the stream's `+0x2E0` points to. The answer is 0 except in 60 fps mode (`01F82E38`)
+during an event (`001EC560`): 0.5 at story progress `0x15AE` (`00265270`) with the marked event
+slot's count (`01DFE40C`, `01F832B0`) at 1 and `g0111` in the name, and −1.0 at progress `0x15E0`
+with the count at 15 and `c1006` in the name.
+
+At frame 0 `00418880` writes, for each row with a bone, the first value of each of the nine
+channels the record's mask names and that has data (`0041A7F0`, then `00418650`, `00418700` or
+`004186A0`), or the channel's bias from the `@FMW` table at `+0x54` when it has none, after clearing bit 0 of
+the bone's byte `+0x28A`. A bone whose byte `+0x28A` is 0 takes its rest pose from the skeleton
+instead (`0041D6F0`: `00409270` finds the node for the bone's `+0x27E` and `00409300` reads it, all
+of it into `+0xC0` when bone `+0x28B` bit 2 is set, else only the translation into `+0xF0`).
+
+`0041D180` copies the 48-byte template `02CA43D0` into a bone's `+0xC0` block; both appliers use
+it before rebuilding a pose. For a packed motion, `0041BDC0` restarts, in every row, each channel
+the mask names through `0041B650` at frame 0, and clears bit 7 of the entry's `+0x96`. With the entry's `+0x96` bit 4 set, `0041C260` (from `0041BEE0`) keeps each bone's current
+rotation `+0xC0` (through `0046D730`) at `+0x120` and the 32 bytes from `+0xF0` at `+0x130`, or
+only clears bit 10 of the descriptor when that bit is set; with bit 5 set, `0041C200` clears bit 4
+of each bone's word `+0x280`.
+
+### Blending into a new motion
+
+While the entry's `+0x96` bit `0x10` is set, `00418880` cross-fades each bone whose `+0x28B` bit `0x2`
+is set. The progress `+0x98` advances each frame by `[01DFE0BC]` × `+0x9C`, and the blend ends (bit `0x10`
+cleared) once it passes 1.0. The weight is `+0x98` itself when the stream's word `+0x358` is 16 (the value
+authored command `0x08` stores); otherwise it is `+0x98` through the easing curve that the words `+0x358`
+and `+0x35A` (stored by command `0x2C`) select: `0046FAE0(+0x98, +0x358, +0x35A)` (`004189A4`) reads
+`01F20E60 + ((a × 3 + b) × 0x1E0)`, 120 floats per curve at 60 fps.
+
+It turns the rotation channels into a matrix (`0046D380`, three angles through the sine table
+`01F004E0`, 32,768 entries) and that into a quaternion at bone `+0x110` (`0046D730`, normalised by
+`00476E70`, which falls back to (0.57735, 0.57735, 0.57735, 0) for a zero quaternion).
+
+It interpolates from the pose kept at `+0x120` toward it with `00476F40`, a spherical interpolation
+that takes the shorter arc. It copies the start instead when the sine-table value for the angle is 0
+or the dot product exceeds 1. It writes the result as the rotation of `+0xC0` (`00477130`) and mixes
+the translation: `+0xF0` = weight × `+0x1B0` + (1 − weight) × `+0x130`, with w = 1.
+
+With the entry's `+0x96` bit 5 set instead, the quaternion goes to bone `+0x1A0` and bit 4 of the
+bone's word `+0x280` is raised. Otherwise the channels build the matrix `02CA43D0`, which
+`0041D180` copies into the bone's `+0xC0`, with the translation copied from `+0x1B0`.
+
+The other matrix helpers of this code are `0046D120` (identity), `0046D2A0(m, a)` (identity with
+the 2 × 2 rotation by `a` in its first two rows), `0046D360` (`00202B90`, then w = 1),
+`0046D950(m, axis, a)` (rotation by `a` about an axis), and `0046D8E0` / `0046D920`, which store a
+vector times the matrix's `+0x3C` into its translation row, with or without w.
 
 ## Modding notes
 

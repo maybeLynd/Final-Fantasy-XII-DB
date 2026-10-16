@@ -104,6 +104,11 @@ tail flag bit 0 on:
 - `+0xD3` bit 3: the record has `+0x284` bit 21 and `+0xD2` bit 3, and its view depth plus its extent is
   below minus the near limit at tail `+0x20`.
 
+- `puppet_setcharclipone(d, v)` (`0x0569`, `00340890`) sets two of these inputs on the render record
+  of puppet `d` (`003EB700`) when it is live: `003EB8C0` writes `v` into bit 4 of `+0xD2`, and
+  `003EB960` writes it into bit 3 of `+0x304` and raises bit 6 of `+0x290`, whose processor
+  `0042BCB0` copies that bit into bit 21 of the children's `+0x284`.
+
 When `005C5230()` returns non-zero, or record `+0x6E0` is non-zero, the bits are cleared and no
 distance fade applies. A culled record gets channels 0 and 4 ramped to 0 over one frame. Otherwise
 channel 0 ramps over one frame to 1.0 when `d ≤ start` and to `sin(((start + range − d) / range) ×
@@ -136,6 +141,66 @@ renormalised after every factor:
 parent's `+0x4B4` when there is a parent, so a piece inherits its owner's fade. `003E4730` turns it into
 `(+0x4B4 / 4096) × [+0x22C] × [+0x2EC] / 255`; `003E4780` takes the last factor from its caller.
 `003E51F0` returns channels 6 to 9 as four floats divided by 4096.
+
+### The fog block
+
+The factor `+0x2EC` in the composite is the last of four floats at `+0x2E0`: a fog colour (`+0x2E0`,
+`+0x2E4`, `+0x2E8`, 0 to 255) and a fog amount (`+0x2EC`, 0 to 255). `0041E960(record)` computes
+them each frame. With `+0x284` bit 29 clear they are 0, 0, 0 and 255. Otherwise it takes the global
+fog from `003ED0E0`: the far distance `02EBB7E8`, the scale `255 / (far − near)` with near
+`02EBB7E4`, the floor `255 − [02EBB7EF]`, and the colour bytes `02EBB7EC`–`02EBB7EE`.
+
+`0041EC00` sets the record's depth `+0x2DC`: the w of its projected origin, replaced by the w of a
+point at the record's distance from the camera position `02AEDF20` (`005213B0`) straight down the
+view when that w exceeds 1 in size (negated for a point behind). The depth gives the raw amount `(far − w) × scale` and the
+clamped amount `a` between the floor and 255, and `t = 1 − (a − floor) / (255 − floor)`. With `k` and
+the colour `c` from the type-`0x41` pool below (`003E4E70` returns `1 − k`):
+
+- the colour is `t × fog × k + c × 255 × (1 − k)` per channel, clamped to 0..255;
+- the amount is the larger of `raw × k` and `2 × t × c.a × (1 − k) + floor × k`, at most 255.
+
+`0042D050` and `0042CBF0` call it. For an attached record `0042CBF0` takes the parent's projected
+point with w + 2 and copies the fog block of the top ancestor, or of the highest one with `+0x284`
+bit 14 (`00202C90`); it computes the record's own block only when that ancestor's word `+0x2CA`
+names the record and `003B4750` finds a pool record for it. A record whose parent is gone is
+detached and computes its own (`0041EC00`, `0041E960`).
+
+### The type-0x41 pool
+
+Effect type `0x41` keeps records in the 64-entry pool of `0x60`-byte records at `[02B404E0]`
+([effect element types](effect-element-types.md)), linked in an active list (head `02B404C8`, tail
+`02B404D0`, links `+0x08` and `+0x10`) and named by `serial << 8 | slot`:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00` | `u32` | handle |  |
+| `04` | `u16` | age in steps; | +`0x06` u16 frame in the period |
+| `20` | `u8` | curve number (3: no curve) |  |
+| `21` | `u8` | bits 0-6: 1 linear, other smoothed; bit 7: half strength |  |
+| `22` | `u8` | target kind: 1 a render record, 2 a test through 0024E2F0 / 0024E6D0 |  |
+| `23` | `u8` | target mode; | +`0x24` u32 target id |
+| `28` | `u16` | lifetime in steps (0: none); | +`0x2A` u16 period in steps |
+| `2C` | `u8` | priority; | +`0x2D` u8 mask tested against `02B404C1` |
+| `30` | `f32` | strength; | +`0x34` f32 weight |
+| `38` | `f32` | 1 / period; | +`0x3C` f32 phase, 0 to 1 |
+| `40` | `f32[4]` | colour | (r, g, b, a); +`0x4C` is also the lowest weight |
+| `50` | `u32` | stamp from 00181DD0() |  |
+
+- `003B4840`, from `00258D70` and `00258E40`, steps every record whose stamp is non-zero or while
+  `00181DD0()` returns 0: it adds one to the age and the frame, wraps the frame past the period,
+  sets the phase to `frame / period` (at most 1), and unlinks the record once its age passes a
+  non-zero lifetime. `003B42B0(handle)` unlinks one record.
+- `003B49E0(handle)` restarts a record: age, frame, phase, the byte `+0x2E` and the weight to 0,
+  and `+0x38` to `1 / period`. `003B4770(handle)` returns the record's `+0x20` part when the handle
+  still matches.
+- `003B4A50(index, out)` collects the records that apply to a render record, walking the list and
+  stopping at the first record of lower priority once one has matched; a record is skipped while
+  its mask shares a bit with `02B404C1`, which the frame setup `0024D540` sets and clears with
+  `003B4A30` and `003B4A40`.
+- `003B4310(index, out)` evaluates each collected record's curve (a key table per curve number at
+  `02B404E8`) at its phase, scales it by the strength into the weight, keeps it at least `+0x4C`,
+  and returns the colour and weight of the record whose luma (`0.299 r + 0.587 g + 0.114 b`) times
+  weight is lowest. With no record it returns weight 1.
 
 ### Into the model instance
 

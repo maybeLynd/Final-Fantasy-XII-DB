@@ -27,10 +27,10 @@ sets the node's type pointer to `01CD89D8` and unlinks it from the key list `02E
 
 | Node offset | Field |
 |---|---|
-| `+0x00` | type pointer |
-| `+0x08` | the name, an ASCII string |
-| `+0x10` | the next node, linked at start-up |
-| `+0x18` | the code, a 32-bit integer |
+| `00` | type pointer |
+| `08` | the name, an ASCII string |
+| `10` | the next node, linked at start-up |
+| `18` | the code, a 32-bit integer |
 
 ### What the codes are
 

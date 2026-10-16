@@ -37,12 +37,12 @@ poster `0046AB10`: `004697C0`, `004698C0`, `00469A50`, `00469AF0`, `00469BB0`, `
 | Context offset | Holds |
 |---|---|
 | `+0x00` / `+0x08` | source and target stats records |
-| `+0x10` | the result's `+0x08` (gil) |
-| `+0x14` | the magnitude of the result's HP value `+0x24` |
-| `+0x18` | a status number (cure and fade lines) |
-| `+0x1C` | the source's level byte `+0x1C2` (0 without a source) |
-| `+0x20` | the result's poach item `+0x38` |
-| `+0x28` | the action id |
+| `10` | the result's `+0x08` (gil) |
+| `14` | the magnitude of the result's HP value `+0x24` |
+| `18` | a status number (cure and fade lines) |
+| `1C` | the source's level byte `+0x1C2` (0 without a source) |
+| `20` | the result's poach item `+0x38` |
+| `28` | the action id |
 
 ### Technick notices
 

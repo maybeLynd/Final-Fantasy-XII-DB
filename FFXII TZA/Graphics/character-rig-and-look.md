@@ -70,6 +70,12 @@ Scripts do not call the switches. A verb's service sets a bit in render record `
 Each setter refuses a record whose `+0x284` is 0. The plain forms zero the timer; the timed forms store
 `frames / [01DFE0BC]` at `+0x640` (lip flap), `+0x644` (nod) or `+0x648` (head shake).
 
+The division happens in the actor-side wrappers the timed verbs call: `setkutipakustatus_4a2`
+(`00352B90`) uses `002E85E0`, `setunazukistatus_4a3` (`00352F20`) `002E8B80` and
+`setkubifuristatus_4a4` (`0034F9B0`) `002ED320`. Each takes the render index from the first dword
+of the actor's `+0xC0` object, does nothing when it is −1, and passes `frames / [01DFE0BC]` to the
+timed setter.
+
 The wrapper (`0042DD90` for the
 lip flap, `0042E690`, `0042D8B0`, `0042DCD0`, `0042BDE0` for the others) runs on the record, its first child and the
 child's subtrees, skips records `00426220` rejects, and switches the controller on when the owner's bit is set and off
@@ -125,6 +131,56 @@ Two authored presentation commands of the bank `0041D6C0` registers drive the ri
 - `0x24` (`005201B0`) calls `003DFE70(rig, index, target, frames)`, which sets the entry's counter to
   `frames × [01DFE0B4]` and the acceleration to `(target - speed) / frames`, or the speed itself when frames is 0.
 
+- `0x25` (`00520320`) calls `003DFF20(rig, index, frames)`, which does the same toward the entry's
+  default speed `+0x0C`: counter `+0x10` = `frames × [01DFE0B4]`, step `+0x14` = `(default − speed) /
+  frames`, or the speed `+0x08` set to the default at once when frames is 0.
+
+The lip flap and the nod of the `0x40` branch go through `003E12A0`, which `0041DD40` also calls for
+both with 1.
+Without bit `0x40`, `0042BED0` switches on `+0x3F4 & 0xB9`. In the first four cases `n` is
+`+0x3F5 & 0x1F`, the value is word `+0x3F6`, and the top three bits of `+0x3F5` must be 0 or the
+record's piece number (`+0x413`) plus 1:
+
+| Case | Call | What it does |
+|---|---|---|
+| 0 | `003E0B50(rig, n, entry)` | for `n` = 0 switches oscillator entry `entry` off (see [model oscillators](model-oscillators-and-pose-sequencer.md)); for `n` = 11 clears rotator entry `entry`'s `+0x18` |
+| 1 | `003E0F00(rig, n, entry)` | the same, switching on |
+| 8 | `003E0E70(rig, n, id)` | case 0 for the entry whose id matches: `0040DB00` for oscillator entries (word `+0x2A >> 4`), `00519100` for rotators |
+| 9 | `003E1210(rig, n, id)` | case 1 by id |
+| `0x10` | `003E1950(rig, 0)`, or `003E1350(rig, 0)` | every oscillator entry off when the broadcast's `+0x70` is set, otherwise controller 0 off |
+| `0x11` | `003E1950(rig, 1)`, or `003E1610(rig, 0)` | the same, on |
+| `0x20` | inline | rig `+0x58` = `1 / +0x3F5` (1.0 for 0); the low nibble of rig byte `+0x5E` = `+0x3F6` when it is below 3, else 3; its high nibble from `+0x3F7`; sets bit 0 of rig `+0x5F` |
+| `0x80` | `003E6F90` / `003E7040` | on the source record itself stores `003E6F90(record, byte +0x40A)` at the broadcast's `+0x6C`; on another record passes that value to `003E7040` |
+
+`003E0860(rig)`, from `002E4150`, calls one routine of each of five controllers that exist: 2
+(`005154B0`), 10 (`00518E60`), 13 (`004719F0`), 15 (`00472820`) and 9 (`005175F0`).
+
+### Look parameters from the motion
+
+The look controller (slot 2) also keeps a table of `0x60`-byte entries (pointer `+0x00`, count byte
+`+0x04`) and two float pairs, `+0x20`/`+0x24` and `+0x28`/`+0x2C`. When the authored motion command
+`0x09` (`00417F40`) starts a motion whose header has bits 24–25 of `+0x04` equal to 2, it loads them
+from the header's block for the header kind (`+0x04 & 3`): kind 0 reads byte `+0xBE`, floats from
+`+0x44` and the pairs `+0x30`/`+0x34` and `+0x3C`/`+0x38`; kind 1 reads byte `+0xEE`, floats from
+`+0x74` and `+0x60`/`+0x64`, `+0x6C`/`+0x68`.
+
+Bit 7 of the byte sets bit 0 of the render record's `+0x66D`.
+
+- `003E2D20(rig, n)`, with the byte's low three bits, stores `n` at the controller's `+0x06` when it
+  changes. With the high nibble of `+0x05` clear each entry's `+0x08` takes its value `+0x50 + 4n` at
+  once; otherwise the entry counts `+0x1C` = 6 × `[01DFE0B4]` steps of `(+0x08 − value) ×
+  [01DFE0BC] / 6` at `+0x0C`.
+- `003E2EA0(rig, floats)` copies one float per entry into the entry's `+0x04`.
+- `003E3460(rig, a, b)` ramps `+0x28` and `+0x2C` toward `a` and `b`, and `003E3590` ramps `+0x20` and
+  `+0x24`: each changed value gets a step of `(target − current) × [01DFE0BC] / 8` and a counter
+  of 8 × `[01DFE0B4]` (`+0x48`, `+0x4C`, `+0x3A`, `+0x3B`; `+0x40`, `+0x44`, `+0x38`,
+  `+0x39`).
+
+`003E3400(rig, m)`, from the look switch `003E29F0`, puts `m` in the low nibble of `+0x1D`.
+`003E2CD0(rig)`, from `00422940`, returns source A's first dword when the controller is on (low
+nibble of `+0x05`) and source A is of kind 1, or −1. `003E1C10(rig, v)`, from `00372710`, stores `v`
+at rig `+0x60` when the oscillator record's byte `+0x06` is set.
+
 ### Controller 5 and the shadow
 
 `0051A890` runs after controller 5's solve when bit 1 of the controller's byte `+0x17` is set, the render record has a
@@ -147,6 +203,74 @@ non-zero. The rig frame zeroes the shadow's `+0xBC` first every frame.
 5. Apply 7, 3 and 6 (`004717E0`) while `02B59D68` is 0. Only the display-deny latch `003E7C70` writes `02B59D68`.
 
 The nod and the Confuse motion share the apply `00471E40`; the flinch and the Immobilize motion share `00471230`.
+
+`004717E0`, the Float bob's apply, writes nothing while `001ED1E0` answers 1: in 60 fps mode
+(`01F82E38`), during an event (`001EC560`), at story progress `0x14B7` (`00265270`) with the count
+of the marked event slot (`01DFE40C`, `01F832B0`) at 4.
+
+### Solve bodies
+
+| Controller | Solve | What it does |
+|---|---|---|
+| 1 bone physics | `005121A0` | with byte `+0x35` bit 2: an angle step wrapped at ±3.14, its rate `+0x1C` below 0.03 rad or `+0x24` above, clamped, turned into an axis-angle rotation for each of the `+0x34` entries |
+| 7 Immobilize | `004713A0` | an envelope `+0xC` that falls by `0.375 × [01DFE0BC]`; while active, the cycle `01F221C0` / `01F222B0` (length `01F221B0`); the offset turned by the heading `+0x124` into `+0x20`, `+0x28` |
+| 13 nod | `00471B60` | an envelope `+0x2C` moving by `0.125 × [01DFE0BC]`; pattern `+0x10` (0 to 7, 8 fading out) plays per-bone curves picked by `004723E0` and rebuilds each bone's rotation with `0046D560` |
+| 15 head shake | `00472970` | the same envelope on three bones; patterns 0 to 4 from `01F24160`, `01F24870`, `01F24F80`, `01F25690` and `01F25DA0`, state 5 a countdown, state 6 a fade that then picks one of eight next patterns at random (`003A6E60(8)`) |
+| 14 bone physics, second | `00519B60` | normalises its direction `+0x70` and classifies the motion against it into a state in byte `+0x32` |
+| 16 body shake | `0051B150` | rebuilds its rotation (`0046D560`) and steps a counter `+0x30` that wraps at `30 × [01DFE0B4]` |
+
+Controller 14's apply `0051A280` (`003E0624`) multiplies the rotations of three bones, named by
+`+0xC0`, `+0xC4` and `+0xC8`, by the controller's three 3 × 3 matrices at `+0x00`, `+0x40` and `+0x80`
+through `00519880`.
+
+- `003E12A0(rig, n, on)` fades controller 9 or 13 instead of cutting it: off sets bit 6 of byte `+1`
+  (`00517610` keeps the lip flap's current values at `+0x88` and `+0x8C`; `00471B20` clears the
+  nod's byte `+8`), and on restarts a controller that was fading. Its callers are `0041DD40` and
+  `0042BED0`.
+- `003E0740` resets the talking-head controllers of every active record; the lip flap's reset is
+  `005175F0`.
+- `0051A780(controller, mode, angle)` and `0051A920(controller, which)` set controller 5's target
+  angle: each entry ramps from its current value to the target over its frame count times
+  `[01DFE0B4]`; `0051A920` takes one of four stored angles (words `+0x08`–`+0x0E`, in hundredths).
+- `00519100(controller, id)` returns the index of the rotator entry with that id (`+0x1C` of each
+  `0x60`-byte entry), or `0xFFF`; authored command `0x24` (`005201B0`) uses it.
+- `00512EC0(controller)` returns `002E9B80(+0x08)` when the low nibble of `+0x0F` is 1, else −1.
+  `00512EF0`, run with `0040DB70` from `003E0720`, numbers the 32 entries of the table at
+  `02CA81FC` and clears `02CA83F0`, `02EBA480` and `02EBA481`.
+
+- `002E7C10(actor, target, …, keep)` aims an actor's record at another's: it hands
+  `{3, own index, own index, target index}` to `00512F30` on the record's `+0x650` block, which for
+  kind 3 stores the three values there and sets the low bits of `+0x65F` to 3 unless the target is
+  the record itself, and it stores the target in word `+0x24C` when `keep` is set, else −1. Its
+  record form `003E6C10(record, target, …, keep)` does the same.
+
+### Binding the rig
+
+`003E1C50(rig)`, run through `003713C0` whenever a model's rig section is bound, resolves the two
+render records the rig names (words `+0x68`, `+0x6C`) and then fixes the controllers' stored
+offsets. The rig keeps its own address at `+0x84`:
+
+- when `+0x84` is 0, each controller's offset becomes an encoded pointer and the controller's own
+  inner offset is rebased: `004719B0` (controllers 2, 3, 10, 11, 13; inner `+0x00`), `00512A90`
+  (1; inner `+0x30`) and `0051A380` (5; inner `+0x10`), while `0051B850` only stores the pointer
+  (6 to 9, 12, 14 to 16);
+- when `+0x84` holds another address, the rig has moved and the inner pointers get the difference
+  added: `00512C50` (1), `0051B120` (5) and `005161D0` (the others with an inner pointer).
+
+### At 60 fps
+
+When the frame rate is 60, `0033F020` doubles the length of each controller curve table and
+refills it with the original entries at even positions and the midpoints of neighbours at odd
+positions (`0033E310` for float tables, `0033E990` for byte tables, and the variants `0033E5E0`
+and `0033ECE0`):
+
+| Routine | Tables |
+|---|---|
+| `00471330` | the flinch curves `01F22130`, `01F22170` (length `01F22120`) |
+| `004715F0` | the Immobilize cycle `01F221C0`, `01F222B0` (length `01F221B0`) |
+| `004718F0` | the Float cycle `01F223B0`, rise `01F22590`, settle `01F22670` and the remap tables `01F22760`, `01F227A0` |
+| `00472580` | the nod: doubles the lengths at `01F227E0` (copied as bytes to `01F240F0`), halves the per-pattern scales from `01F23FF0`, and stretches the sixteen curves from `01F22800` to `01F23E88` |
+| `00473210` | the head shake: doubles the lengths at `01F24100` (copied to `01F264A8`), halves the scales from `01F24118`, and stretches the patterns from `01F24160` to `01F26250` |
 
 ### The staged look command
 

@@ -27,10 +27,10 @@ has the whole cascade):
 
 | Set | Holds | Installed by |
 |---|---|---|
-| `+0x6E8` | the re-plan set: `01EEC3C0` for a party record, `01EEC410` otherwise | `00313458`, `003134DA`, `002FED9E`, `002FEE05`, `0030126B`, `0030F331` |
-| `+0x6F8` | the issued command's set `01EEC2D0`, target in `+0x748` | `00311DD4`-`00311DE1` |
-| `+0x6E0` | the unit's own list, walked with its subgroup `+0x6B5` | the unit definition, orders `0x4112`-`0x4115` |
-| `+0x6F0` | the default set `01E09350` | `0023ABA6`-`0023ABB5`, on the party-table path (`0023AB7E`) |
+| `6E8` | the re-plan set: `01EEC3C0` for a party record, `01EEC410` otherwise | `00313458`, `003134DA`, `002FED9E`, `002FEE05`, `0030126B`, `0030F331` |
+| `6F8` | the issued command's set `01EEC2D0`, target in `+0x748` | `00311DD4`-`00311DE1` |
+| `6E0` | the unit's own list, walked with its subgroup `+0x6B5` | the unit definition, orders `0x4112`-`0x4115` |
+| `6F0` | the default set `01E09350` | `0023ABA6`-`0023ABB5`, on the party-table path (`0023AB7E`) |
 
 An enemy-table unit never walks `+0x6F8`, because that step is for party records (`00305BE7`-`00305C03`), and
 its `+0x6F0` stays empty from the reset (`00236BB6`). Its cascade is the re-plan set, then its own list, then

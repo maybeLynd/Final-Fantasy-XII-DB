@@ -22,31 +22,31 @@ instruction text checked against the executable.
 
 | Payload offset | Size | Region | Written by | Read by |
 |---|---|---|---|---|
-| `+0x0000` | `0x200` | script operand bank, `i16[256]`, reached through the slot pointer `02098E58` that `0026C8C0` sets to `002EF2B0()` | `0026ABA0` | `00264640` |
-| `+0x0200` | `0xE00` | the script-global variable space up to the quest arrays, addressed by the scripts' own descriptors ([the storage-class page](../Scripts-And-Script-Commands/script-variables.md)) | scripts | `002EF390` tests `+0xA00 + i == 1` |
-| `+0x1000` | `0x20` | quest ordered bits, one per quest id | `0046B3F0` (`setquestorder`); `0046B290` also clears a bit here, but of quest `id & 7` (it re-splits the bit index at `0046B2EF`), so only quests 0-7 are un-ordered that way | `0046B240` (`isquestorder`), `0046B0F0` (the count) |
-| `+0x1020` | `0x20` | quest cleared bits | `0046B290` (`setquestclear`) | `0046B1A0` (`isquestclear`), `0046B020` (the count) |
-| `+0x1040` | 4 | a counter of `setquestclear` calls with a non-zero value, incremented while below `0xFFFF` | `0046B290` | `0046B0B0` (`getquestcleartotal`) |
-| `+0x1044` | `0x20` | the zone transition record ([zone changes page](../World-Areas-And-Travel/zone-changes-and-mapjump.md)) | `003145E0`, `00314970`, `0026D910`, `0026A720` | `003148F0`, `00314870`, `00314850`, `003148D0`, `0026DE20` |
-| `+0x1064` | `0x100` | quest scenario flag, `u8` per quest id | `0046B490` (`setquestscenarioflag`) | `0046B180` (`getquestscenarioflag`) |
-| `+0x1164` | `0x200` | `u16` per quest id: the field id (`003148F0()`) when the quest was first ordered | `0046B3F0`, `0046B350` | `0046B0D0` |
-| `+0x1364` | `0x20` | quest ok bits | `0046B380` (`setquestok`) | `0046B1F0` (`isquestok`) |
-| `+0x1384` | 8 | flag bank of 64 bits ([persistent flag banks page](../Story-Events-And-Hunts/story-flags.md)) | `0032AC70` | `0032A9A0` |
-| `+0x138C` | 8 | second flag bank of 64 bits | `0032ACF0` | `0032AA00` |
-| `+0x13B4` | `0x100` | flag bank of 2048 bits | `0032ABF0` | `0032A930` |
-| `+0x14B4` | `0x40` | flag bank of 512 bits: ids 0-255 in the first 32 bytes, ids 256-511 in the next | `0032AD70`, `0032ADF0` | `0032AA60`, `0032AAD0` |
-| `+0x14F4` | `0x40` | the primary flag bank, ids 2-511 | `0032AB60` | `0032A8A0` |
-| `+0x1534` | 1 | the music track override, used while `+0x1063` bit 6 is set | `0026A720` | `0026DE20`, `0025D9E0`, `00261F90` |
-| `+0x1535` | 1 | a byte the options apply `002DDA30` writes as 1 and the verb handler `0050D180` writes from its operand, through `002EF370` | `002EF370` | |
-| `+0x2000` | `0x6000` | a copy of the battle-state block's first `0x6000` bytes | `00229B40`, `005844A0` | `00235AF0` |
-| `+0x8000` | `0x4818` | the image-backed state block, `*(020927C0)` | see its table below | |
-| `+0xE000` | 4 | the plain CRC of image `+0x8`-`+0xE1FF` (`003BB220`), whose complement the header carries at `+0x00`; computed over the active buffer `002EF640()` but stored into the buffer `00583D60`'s third argument selects (the staging buffer when it is not 0, as `003145E0` passes through `005844A0`) | `00583D60` | |
-| `+0xE040` | `0x200` | group persistent bank A, a copy of `02099FF0` | `0025D8E0` from `00229B40` and `00584580` | `00269A20` from `005843E0` and `00584210` |
-| `+0xE240` | `0x20010` | spawn-keep image A | `00233440` from `00229B40` and `00584580` | `00233550` from `005843E0` |
-| `+0x2E250` | `0x200` | group persistent bank B | `0025D8E0` | `00269A20` |
-| `+0x2E450` | `0x20010` | spawn-keep image B | `00233440` | `00233550` |
-| `+0x4E460` | `0x2C` | the save-transition metadata record | `002EF540`, `002EF3C0`, `002EF510`, `00584580`, `003145E0` | `002EF410`, `005843E0` |
-| `+0x4E48C` | `0x7410` | the battle-state block, `*(02EBF190)` ([its field map](../Party/party-data.md)) | bound by `00238A80` and `00233C10`, reset by `002370C0` | |
+| `00000` | 512 | script operand bank, `i16[256]`, reached through the slot pointer `02098E58` that `0026C8C0` sets to `002EF2B0()` | `0026ABA0` | `00264640` |
+| `00200` | 3584 | the script-global variable space up to the quest arrays, addressed by the scripts' own descriptors ([the storage-class page](../Scripts-And-Script-Commands/script-variables.md)) | scripts | `002EF390` tests `+0xA00 + i == 1` |
+| `01000` | 32 | quest ordered bits, one per quest id | `0046B3F0` (`setquestorder`); `0046B290` also clears a bit here, but of quest `id & 7` (it re-splits the bit index at `0046B2EF`), so only quests 0-7 are un-ordered that way | `0046B240` (`isquestorder`), `0046B0F0` (the count) |
+| `01020` | 32 | quest cleared bits | `0046B290` (`setquestclear`) | `0046B1A0` (`isquestclear`), `0046B020` (the count) |
+| `01040` | 4 | a counter of `setquestclear` calls with a non-zero value, incremented while below `0xFFFF` | `0046B290` | `0046B0B0` (`getquestcleartotal`) |
+| `01044` | 32 | the zone transition record ([zone changes page](../World-Areas-And-Travel/zone-changes-and-mapjump.md)) | `003145E0`, `00314970`, `0026D910`, `0026A720` | `003148F0`, `00314870`, `00314850`, `003148D0`, `0026DE20` |
+| `01064` | 256 | quest scenario flag, `u8` per quest id | `0046B490` (`setquestscenarioflag`) | `0046B180` (`getquestscenarioflag`) |
+| `01164` | 512 | `u16` per quest id: the field id (`003148F0()`) when the quest was first ordered | `0046B3F0`, `0046B350` | `0046B0D0` |
+| `01364` | 32 | quest ok bits | `0046B380` (`setquestok`) | `0046B1F0` (`isquestok`) |
+| `01384` | 8 | flag bank of 64 bits ([persistent flag banks page](../Story-Events-And-Hunts/story-flags.md)) | `0032AC70` | `0032A9A0` |
+| `0138C` | 8 | second flag bank of 64 bits | `0032ACF0` | `0032AA00` |
+| `013B4` | 256 | flag bank of 2048 bits | `0032ABF0` | `0032A930` |
+| `014B4` | 64 | flag bank of 512 bits: ids 0-255 in the first 32 bytes, ids 256-511 in the next | `0032AD70`, `0032ADF0` | `0032AA60`, `0032AAD0` |
+| `014F4` | 64 | the primary flag bank, ids 2-511 | `0032AB60` | `0032A8A0` |
+| `01534` | 1 | the music track override, used while `+0x1063` bit 6 is set | `0026A720` | `0026DE20`, `0025D9E0`, `00261F90` |
+| `01535` | 1 | a byte the options apply `002DDA30` writes as 1 and the verb handler `0050D180` writes from its operand, through `002EF370` | `002EF370` | |
+| `02000` | 24576 | a copy of the battle-state block's first `0x6000` bytes | `00229B40`, `005844A0` | `00235AF0` |
+| `08000` | 18456 | the image-backed state block, `*(020927C0)` | see its table below | |
+| `0E000` | 4 | the plain CRC of image `+0x8`-`+0xE1FF` (`003BB220`), whose complement the header carries at `+0x00`; computed over the active buffer `002EF640()` but stored into the buffer `00583D60`'s third argument selects (the staging buffer when it is not 0, as `003145E0` passes through `005844A0`) | `00583D60` | |
+| `0E040` | 512 | group persistent bank A, a copy of `02099FF0` | `0025D8E0` from `00229B40` and `00584580` | `00269A20` from `005843E0` and `00584210` |
+| `0E240` | 131088 | spawn-keep image A | `00233440` from `00229B40` and `00584580` | `00233550` from `005843E0` |
+| `2E250` | 512 | group persistent bank B | `0025D8E0` | `00269A20` |
+| `2E450` | 131088 | spawn-keep image B | `00233440` | `00233550` |
+| `4E460` | 44 | the save-transition metadata record | `002EF540`, `002EF3C0`, `002EF510`, `00584580`, `003145E0` | `002EF410`, `005843E0` |
+| `4E48C` | 29712 | the battle-state block, `*(02EBF190)` ([its field map](../Party/party-data.md)) | bound by `00238A80` and `00233C10`, reset by `002370C0` | |
 
 Each spawn-keep image is preceded by its group bank, so pair A and pair B are two `0x20210`-byte
 blocks at `+0xE040` and `+0x2E250`, and `005844A0` clears both pairs with one `memset` of `0x40420` bytes
@@ -118,26 +118,26 @@ Offsets in this table are block offsets; add `0x8000` for the payload offset.
 
 | Block offset | Size | Content | Written by | Read by |
 |---|---|---|---|---|
-| `+0x0008` | `0x28` | the in-game options record `0215E6E0` ([game settings page](game-settings.md)) | `002DDE60` | the option getters |
-| `+0x0030` | `0x40` | `u16[32]`, class 6 of the typed store, index clamped to 31 | `002527B0`, cleared by `00252610` | `002526F0` |
-| `+0x0070` | `0x20` | `u8[32]`, class 7 | `002527B0`, `00252610` | `002526F0` |
-| `+0x0090` | `0x194` | `u32[101]`, class 8, index clamped to 100 | `002527B0`, `00252610` | `002526F0` |
-| `+0x0224` | `0x3020` | navigation-map exploration bitmaps: 385 entries of 32 bytes, indexed by `003779F0(field)` ([area flags page](../World-Areas-And-Travel/area-flags-navimapdata.md)) | `003C60F0`, `003C8670`, `003C5E50` copy the live block `02B45978` in | `002551B0` |
-| `+0x3244` | 1 | inventory category bits 1-8, set when a category's derived list is non-empty | `00252D40` from `002CD650` | `00252D10` |
-| `+0x3245` | 1 | a flag byte whose bit 0 `00253480` clears after each `00253240` | `00253480` | |
-| `+0x32C4` | 8 | a bit set indexed by a `u16` | `00254E00` | `00254DD0` |
-| `+0x32CC` | 62 | Clan Primer family A bits for tabs 0-4 (bases at `00D10630`, counts at `00D10640`) | `00315910` | `003154B0` |
-| `+0x330C` | 62 | Clan Primer family B bits for tabs 0-4 | `00315B50` | |
-| `+0x334C` | 32 | a 256-bit set | `00315A20` | |
-| `+0x336C` | 128 | 256 four-bit values, low nibble for even ids | `00315CD0` | |
-| `+0x33F4` | 6 | tab 6 (category 5) bits, 48 entries | `00315B50` | |
-| `+0x3404` | 512 | bestiary defeat count per entry, stored as count + 1 | | `00315420`, `003154B0` |
-| `+0x3604` | 512 | bestiary page-viewed bits, 8 per entry | `00315B50` | |
-| `+0x3844` | 4 | tab 7 family A, 30 bits: the achievements already fired ([achievement page](../Steam-And-Achievements/achievements.md)) | `00315910` | `003154B0` |
-| `+0x3848` | 4 | tab 7 family B, 30 bits | `00315B50` | |
-| `+0x3868` | 4 | the points `00315390` ranks 1-12 against the rank table below | | `00315390`, whose rank `00583D60` writes to the header's `+0x44` |
-| `+0x47B8` | `0x30` | `i32[12]`: the entry count of each class's derived inventory list | `00252E60` | `00252F70` |
-| `+0x47E8` | 8 | the play clock's block copy: `00254CC0` adds each frame's delta and resets it to 0 past `0xFFFFFFFF80BEFBFF`; `002542B0` reads it back as hours modulo 9999, minutes and seconds | `00254CC0`, `00255040` | `002542B0` |
+| `0008` | 40 | the in-game options record `0215E6E0` ([game settings page](game-settings.md)) | `002DDE60` | the option getters |
+| `0030` | 64 | `u16[32]`, class 6 of the typed store, index clamped to 31 | `002527B0`, cleared by `00252610` | `002526F0` |
+| `0070` | 32 | `u8[32]`, class 7 | `002527B0`, `00252610` | `002526F0` |
+| `0090` | 404 | `u32[101]`, class 8, index clamped to 100 | `002527B0`, `00252610` | `002526F0` |
+| `0224` | 12320 | navigation-map exploration bitmaps: 385 entries of 32 bytes, indexed by `003779F0(field)` ([area flags page](../World-Areas-And-Travel/area-flags-navimapdata.md)) | `003C60F0`, `003C8670`, `003C5E50` copy the live block `02B45978` in | `002551B0` |
+| `3244` | 1 | inventory category bits 1-8, set when a category's derived list is non-empty | `00252D40` from `002CD650` | `00252D10` |
+| `3245` | 1 | a flag byte whose bit 0 `00253480` clears after each `00253240` | `00253480` | |
+| `32C4` | 8 | a bit set indexed by a `u16` | `00254E00` | `00254DD0` |
+| `32CC` | 62 | Clan Primer family A bits for tabs 0-4 (bases at `00D10630`, counts at `00D10640`) | `00315910` | `003154B0` |
+| `330C` | 62 | Clan Primer family B bits for tabs 0-4 | `00315B50` | |
+| `334C` | 32 | a 256-bit set | `00315A20` | |
+| `336C` | 128 | 256 four-bit values, low nibble for even ids | `00315CD0` | |
+| `33F4` | 6 | tab 6 (category 5) bits, 48 entries | `00315B50` | |
+| `3404` | 512 | bestiary defeat count per entry, stored as count + 1 | | `00315420`, `003154B0` |
+| `3604` | 512 | bestiary page-viewed bits, 8 per entry | `00315B50` | |
+| `3844` | 4 | tab 7 family A, 30 bits: the achievements already fired ([achievement page](../Steam-And-Achievements/achievements.md)) | `00315910` | `003154B0` |
+| `3848` | 4 | tab 7 family B, 30 bits | `00315B50` | |
+| `3868` | 4 | the points `00315390` ranks 1-12 against the rank table below | | `00315390`, whose rank `00583D60` writes to the header's `+0x44` |
+| `47B8` | 48 | `i32[12]`: the entry count of each class's derived inventory list | `00252E60` | `00252F70` |
+| `47E8` | 8 | the play clock's block copy: `00254CC0` adds each frame's delta and resets it to 0 past `0xFFFFFFFF80BEFBFF`; `002542B0` reads it back as hours modulo 9999, minutes and seconds | `00254CC0`, `00255040` | `002542B0` |
 
 ### The rank table
 

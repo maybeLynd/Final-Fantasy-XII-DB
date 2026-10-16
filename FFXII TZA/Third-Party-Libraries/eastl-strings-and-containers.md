@@ -30,12 +30,12 @@ has six slots, followed by 0 at `00902750`:
 
 | Slot | Function | What it does |
 |---|---|---|
-| `+0x00` | `0016D680` | returns the object |
-| `+0x08` | `001EDF10` | `_aligned_malloc(size, alignment)` |
-| `+0x10` | `001EDF80` | `_aligned_malloc(size, 16)`; the allocation every container uses |
-| `+0x18` | `001EDFE0` | `_aligned_free(p)` when `p` is not null; callers pass the size, which it ignores |
-| `+0x20` | `0016D690` | returns the name `EASTL` (`01CDAE78`) |
-| `+0x28` | `0016D6A0` | `ret 0`, an empty function at EASTL's `set_name` position |
+| `00` | `0016D680` | returns the object |
+| `08` | `001EDF10` | `_aligned_malloc(size, alignment)` |
+| `10` | `001EDF80` | `_aligned_malloc(size, 16)`; the allocation every container uses |
+| `18` | `001EDFE0` | `_aligned_free(p)` when `p` is not null; callers pass the size, which it ignores |
+| `20` | `0016D690` | returns the name `EASTL` (`01CDAE78`) |
+| `28` | `0016D6A0` | `ret 0`, an empty function at EASTL's `set_name` position |
 
 Each of the three memory slots first creates, once, a 32-byte record at `01F82E48` holding
 `0x2000000`, `0x200000`, 0 and 0. Only those three functions refer to the record, and none of them

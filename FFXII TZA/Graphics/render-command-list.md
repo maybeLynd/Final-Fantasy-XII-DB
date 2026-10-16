@@ -49,11 +49,90 @@ A null is therefore appended to both lists. The owner list starts with no capaci
 first append; the ordered list's 5,000 reserved entries are its whole working size. The 36 builders
 allocate 0x18 bytes (15 classes), 0x20 (16), 0x28 (3) or 0x30 (2).
 
+Each class constructor starts with the base `00212CC0` and stores its argument after the base
+fields. `RazorMarkerPushObj`'s `001F1C30` takes a zeroed 0x200-byte buffer (`00210EC0`) at `+0x18`
+and copies the marker name into it, at most 0x1FF characters. `SetRendererCameraObj`'s `001F1E80`
+keeps the camera at `+0x18` and copies the render manager's byte `+0x1C` to `+0x20`.
+`SetScreenIndexToPostProcessManagerObj`'s `001F1ED0` keeps the screen index at `+0x18`.
+
 Four other functions call `0018AFF0` and append to the ordered list only, so the owner list never
 destroys what they add: `MapRenderObject`'s slot 1 `001E5270` (its `MapOrderedObject` at `+0x10`),
 `CharacterRenderObject`'s slot 1 `001F89B0` (its `CharacterOrderedObject` at `+0x28`, when
 non-null), the text flush `001E8580`, and `001F48B0`, which wraps a Gi render command in a
 `GeometryInstanceOrderedObject` taken from the command arena `[01F7F4C0]` ([Gi render commands](gi-render-commands.md)).
+
+### The game-side wrappers
+
+Small wrappers file fourteen of the classes. They check that the owner list
+(`0018CA40`) or the render manager (`00189120`) exists and pick the arguments:
+
+| Wrapper | Builder | Class | What the wrapper adds |
+|---|---|---|---|
+| `00182220`, `00182250` | `0018B670`, `0018B5D0` | `BegineSceneObj`, `BegineScene0Obj` | argument 0; sets `01F7F538` to 1 |
+| `001823B0`, `001823E0` | `0018BE70`, `0018BDD0` | `EndSceneObj`, `EndScene0Obj` | clears `01F7F538` |
+| `0017F2A0`, `00182A60`, `00182AD0` | `0018B8B0` | `CopyBufferObj` | the source target, below |
+| `0017F330` | `0018BB70` | `CopyFrontBufferForWaterRefraction` | only when the map-art byte `+0x2E5` is set (`001A94B0`) |
+| `00180A30` | `0018C2A0` | `RenderAfterWaterObj` | with that byte set, first `001A8F80` on the map-art context |
+| `0017F670`, `0017F6B0` | `0018C450` | `MaskBorderObj` | `0017F670(n)` only when `01DF08E8` and `01F7F4F0` are set; `0017F6B0` passes 3 under its own tests |
+| `00182280` | `0018B710` | `FastClearObj` | through `00185CD0`, which also keeps the four arguments at manager `+0xD00`-`+0xD0C` |
+| `00185A10`, `001860E0` | `0018CBC0` | `SetRendererCameraObj` | the camera at manager `+0x358` with `+0x1C` = 1, or `+0x690` with `+0x1C` = 0 |
+| `00183120` | `0018CB30` | `SetPrimIdEnableObj` | only when `005C5230()` is non-zero; it returns 0, so nothing is filed |
+| `001EB110` | `0018C0D0` | `RazorMarkerPopObj` | only when `[01F7F4E0]` exists and its byte `+0x08` is set, as for the push `001EB150` |
+| `001826E0` | `0018B970` | `CopyDepthBufferObj` | the render parameters' `+0x2B8` (`00193D50`), 0, 0 |
+| `0017ECF0` | `0018C740` | `AmbientOcclusionObj` | none |
+
+`0017F6B0` files `MaskBorderObj` with 3 when the owner list exists and one of these holds:
+`01DF08EC` and `01F7F4F0` are both set, `01F7F4F4` is set, `01F7F4F8` is set (the effect draw sets
+it for the frame), `01F7F500` is set (by `00184740` while effect `0x17A` plays), or the movie
+player is in state 3 (`001B7D20`).
+
+`00229F20(water)`, called from the scene draw `0022B0B0`, files the ambient-occlusion pass when `01FD49E8`
+is set: the scope `AO render`, `MaskBorderObj(1)` and a depth copy; with `water` non-zero the scope
+`Water effect`, the water refraction copy, `RenderAfterWaterObj`, a pop and another depth copy; then
+`AmbientOcclusionObj` and a pop. `00182560` returns `01F7F538`, the scene-open byte the scene wrappers
+write; `00183060(x)` stores `x != 0` in `01F7F50E`, which `0017FE50` returns.
+
+`001809E0`, also in the frame bodies, runs `001A5A70` and `001AA2C0` on the map-art context when its
+byte `+0x2E5` is set.
+
+The copy source comes from the render manager's target tables:
+
+- `0017F2A0(arg, entry)` takes the entry's target unless its byte `+0x08` is set, and passes 0 and 0.
+- `00182A60(arg, which, n)` takes `00186910(manager, which != 0)` and passes `n` and 1;
+  `00182AD0(arg, target, n)` passes its own target, `n` and 0.
+- `001867B0` returns target `+0xB08 + 8 × [+0xC30]`. `00186A50` returns `+0xB48 + 8 × [+0xDD0]`, or
+  `+0xB50 + …` while `+0xDBB` is set. `00186A00` takes `+0xB50` only when the render parameters' byte
+  `+0x4A0` is also set (`0017F280`). `00186910` returns the first or `00186A00`'s choice.
+- `001868A0` and `00186840` are `00186A50` and `00186A00`, each calling `001EDDA0` first when
+  `001EDE70()` is set. `0017FDE0`, `0017FE60(i)` and `0017FEE0(i)` return the target of `001867B0`,
+  of `00186840` or `001868A0`, and of `00186A00` or `00186A50`, or 0 when its byte `+0x08` is set.
+
+- `00189530(manager, flag)` copies the target pointer at `+0xB28` (flag set) or `+0xB30` into the
+  first table entry `+0xB08`. Its one caller, `PostProcessObj`'s execute `001F3300`, passes 0 after
+  the post-process work for the screen index `01F82EC0` when the device byte `+0xD48` of
+  `00796E20()` is set, and otherwise copies the result back with `001EE8E0`.
+- `001EEE80(target, w, h)` resizes a target's texture (`0060DD70`, same format) when its size
+  `+0x28`/`+0x2C` differs, unbinding it first when it is bound (`00625F00`, `0062BCB0`);
+  `001EE180(target, b)` unbinds the same way and stores `b` in the target's byte `+9`. Both skip a
+  null target or one whose byte `+0x08` is set.
+- The target rebuild `00188B10` resizes ten of the
+  manager's targets to the fit size (`00182EB0`, `00182E80`), and `00188DA0` gives four of them
+  `02CB8084` through `001EE180`.
+- The rebuild also prunes the object `[01F81210]` (`001B6C40`), which `00182CA0` and `00182B40`
+  use: `001B6B50` removes every entry for which `001B6A70` returns 1, after that function has
+  queued the `+0x20` of each node of the entry's list `+0x78` for a deferred call to `001B6C30`
+  (`00185A90`) and emptied its map `+0x70`; it returns 1 when the entry's `+0x60` is 0.
+
+The other accessors read the manager: `00182410` its byte `+0xDB9`, `00182570` its byte `+0x1C`,
+`00182490(&w, &h)` the width and height (`00182EB0`, `00182E80`). `001824E0(a, b, c)` fills three
+values through `00186AB0`: from `0018A620()` `+0xD8`, `+0xDC`, `+0xD0`, or, when the `001D50D0` object's
+byte `+0xC0C` is set, from its `+0xC10`, `+0xC18`, `+0xC14`.
+
+`00185A80(manager, n)` adds `n` to the manager's counter `+0xDBC`. The character draw `001F5D70`
+adds, for each mesh instance it draws, the low 31 bits of the first dword the instance points to
+(1 for the single-mesh path), and the map draw
+`001E2AF0` adds its own counts; the render pass list `00187950` copies the total to `+0xDC0` and
+clears `+0xDBC` at the start of each frame.
 
 ### The command object
 
@@ -229,6 +308,23 @@ Producers append through the current record's write cursor `+0x08`, 0x10 bytes p
 `003A1DB0`, called from 47 sites in 38 functions, flips `02EBEFF0`, passes the old buffer's begin and
 record count to `0036F360`, resets the new buffer's cursor to its begin and returns that record.
 `0036F360` and the register batch `0036D400` are on [graphics thread handshake](graphics-thread-handshake.md).
+
+### The map's pair of buffers
+
+A second pair of the same 0x18-byte records, `02EBB700` and `02EBB718` with the index `02EBB730`,
+serves the map draw-list build `002F5550`.
+
+- `00465F60(n)`, called with `0x100` from `0036F4D0` just before `003A1D50`, clears both records
+  (`004FE3C0`), zeroes the index and gives each a block of its own of `n` records through
+  `004FE3D0`, which allocates with `003EC8D0(6, n × 16)`.
+- `00466070(count, offset)` re-points them: for an offset of 0 or more into the arena `[01FD4A78]`
+  at `offset` and `count + offset` (`004FE420`), for a negative offset back to blocks of their own
+  (`004FE3D0`).
+- `002F5550` calls it with `0x100` and 0, then `004660F0`, which flips the index and resets the new
+  buffer's cursor, and `00465FF0`, which appends two records to the other buffer: the first with
+  `0x10000000` in its first and last dwords, the second `{0x70000000, 0}` (`0046601A`–`00466043`).
+- `00466120`, which `002F5550` also calls, does nothing: both its calls go to `005C5230`, which
+  returns 0.
 
 ## Layouts
 

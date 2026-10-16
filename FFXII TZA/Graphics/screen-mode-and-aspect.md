@@ -84,6 +84,22 @@ outside the fit and the constructor.
   the height it is given and centres it on the given rectangle; in Super Wide Mode it uses the
   rectangle as given.
 
+- The 16:9 in that viewport comes from `00182E50`, which returns `001DD110()` when the display
+  object exists and the same constant 16/9 when it does not.
+- The window offset: each frame the render pass list `00187950` stores at render-manager `+0xDA0`
+  and `+0xDA4` the offset that centres the fit size (`00182EB0`, `00182E80`: `+0x10` and `+0x14`,
+  or 1920 × 1080 without a display object) in the window size (`+0xD24`, `+0xD28` of
+  `00796E20()`).
+- `001EE5D0` gives that offset: 0, 0 for equal sizes, half the width difference when the fit is
+  narrower in aspect, otherwise half the height difference, made positive. The colour-buffer copy
+  `001EE8E0` hands the offset to `00186B80`.
+
+- The frame-mode zoom: `00229D60` returns 1.1547 for frame mode 2 (`02064AD1`), 4/3 for mode 3,
+  1.0966 for mode 5 and 1.0 otherwise. The projection builder `003CBB30` multiplies the scale
+  `1 / tan(fov / 2)` by it on both axes, and the camera update passes it to the renderer
+  (`00182640`). `00229DA0(mode)` returns the same values for a given mode; `00247AE0` and
+  `0029CF30` call it with 2.
+
 ### The display-mode list
 
 The constructor `001DC5C0` calls `001DD420`, which enumerates the outputs of the adapter

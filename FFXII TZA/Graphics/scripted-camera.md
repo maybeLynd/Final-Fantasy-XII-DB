@@ -72,6 +72,24 @@ Eight camera records of 0x110 bytes sit at `02097300`. `00259820` takes the high
 It keeps the result at `020972F0` and submits it at priority `0x14` (below). With no bit set it
 submits nothing. So record 5 outranks records 0-4 and yields to 6 and 7.
 
+### Resetting the records
+
+`00259E90`, from the boot `00266D10`, runs the follow-camera set-up `00259B30`, clears the active
+mask `02098DEC`, the bytes `02098DE9` to `02098DEB` and the words `02098DE0`, `02098DE4`, `02098DE8`
+and `020972F0`, and resets every record: eye `(−3, 4, −8, 1)`, target `(0, 0, 0, 1)`, the view
+zeroed and rebuilt (`003CBFF0`), mode and parameter 0. It zeroes and rebuilds the sub view `02097B80`
+and the behind camera's view `02097C50` the same way.
+
+`0025A890`, from the render manager's target rebuild `00188B10`, sets the field of view of the eight
+record views, `02097B80` and `02097C50` back to π/4 at `+0x08` and `+0x0C`, with `+0x10` =
+`1 / tan(π/8)` (`003CBAD0`).
+
+The debug verbs `debug_camerasrc` (`0x2013`, `0050E5B0`) and `debug_cameradst` (`0x2012`, `0050E530`)
+pop three floats each and write them, with w 1.0, as record 1's eye (`0025A4A0`) or target
+(`0025A4D0`); the third float popped is x. `debug_cameraescape` (`0x2077`, `0050CD30`) pops three ints
+and stores the first popped as a byte at `+0x188` of the shot player chosen by the third (manager) and
+the second (channel) (`00257AA0`; players at `02092830 + manager × 0xBB0 + channel × 0x2E0`).
+
 ### Returning to the behind camera
 
 `resumebehindcamera(frames, a, b)` (`0x01E4`, `003442D0`) and its four-argument form (`0x0289`,
@@ -81,6 +99,11 @@ call `00257830`, which arms a blend:
 - duration `frames × 01DFE0B8`, the counter at 0;
 - the start pose, entry `index` of the poses at `02096370` (0x40 apart) that the shot player
   writes, turned into polar form about its target (`003CC130`);
+
+- the polar form is the distance, the yaw `atan2(dx, dz)`, and the pitch read after turning the
+  offset back by the yaw about the up axis with `005068C0(matrix, axis, angle)`, which builds the
+  axis-angle rotation matrix from `sinf` and `cosf`;
+
 - `a` at `02096400` and `b`, the ease, at `02096404`.
 
 Each frame `00257520` takes the behind camera's view (`002593A0`, built into `02097C50`), eases
@@ -98,6 +121,76 @@ of 0 blends nothing.
 
 `behindtoeventcamera` (`0x034F`, `00349FA0`) is the other transition: through `003DA300` it takes
 a shot row and arms `00255C50`, whose move `00255850` writes record 5 from `02096290`.
+
+### Waiting on a transition
+
+Each transition keeps a duration and a counter: `02096270`/`02096274` for the move to the event camera,
+`020963F8`/`020963FC` for the swing back to the behind camera. A transition is done when the duration
+is 0 or the counter has reached it (`00255C20`, `00257800`).
+
+- `behindtoeventcamerasync` (`0x0350`, `0034A530`) and `resumebehindcamerasync` (`0x01E5`,
+  `003445E0`) hold the script until their transition is done.
+- When the manager is skipping (`00267310`), they instead set the counter to the duration less one
+  and run the step once (`00255CB0` with `00255850`, `002578B0` with `00257520`), so the camera lands on
+  its final pose, and release the script.
+
+### The behind camera's field of view and roll
+
+`behindcamerafovyroll` (`0x023A`, `00349D00`) pops a float, a float, an int and a float. `002564D0`
+keeps them as the roll target `020964F4`, the field-of-view target `020964F0`, the ease `02096500` and
+the duration, the last value times `01DFE0B8`, at `020964F8`, and zeroes the counter `020964FC`.
+
+Each frame the shake gather `0037D4C0` asks `002563F0` for the two offsets. With a duration of 0 they are
+the targets; otherwise each target is multiplied by `00256650(ease, counter / duration)`. The counter
+then grows by 1 until it passes the duration. The gather adds the offsets to the shake's roll and
+field-of-view scalars, which reach `02AEDF98` and `02AEDF9C` through `00382B70`.
+
+`behindcamerafovyrollsync` (`0x023B`, `0034A600`) holds the script while the counter has not passed
+the duration (`002564B0`); a skip sets the counter one past it (`00256500`).
+
+At each field start `00259B30` clears the ramp through `003DA2C0`, which calls `002564D0(0, 0, 0, 0)`:
+both targets, the ease, the duration and the counter become 0, so the offsets are 0 until a script
+sets them again.
+
+`getbehindcameradir` (`0x0343`, `00347070`) returns the behind camera's direction in eighths
+(`002565C0`): from the view `002593A0` returns it takes `atan2` of the eye minus the target in x and z
+(`+0x90`, `+0x98` minus `+0xA0`, `+0xA8`), adds π/8, wraps it into 0 to 2π and divides by π/4, giving
+0 to 7. When the eye and the target share x and z it returns 0.
+
+### The summon camera's subject
+
+`setsummoncameratarget(id, on)` (`0x0271`, `00341410`) makes the actor `id` names (`00264010`, the
+party focus for a negative id) the subject `02096508` through `002578F0`, or clears the subject when
+`on` is 0. Clearing it also drops the mark bit `0x8000` from every other live actor's fade word and
+keeps the fade running while any actor was marked.
+
+The fade word is a `u16` of the actor's `+0xC0` context: `00263EB0(actor, i)` and
+`0026A3B0(actor, i, v)` read and write `+0x20 + 2i`, `i` clamped to 1 and taken as 0 when negative,
+and `00263E80` reads `+0x20`. Bit `0x8000` marks the actor; the low byte is its fade level.
+
+Each field frame `00256F60` (from `0022A770`) boxes the subject and every other live actor of the
+five managers on screen with `00255CF0`. That function places the points `(−r, 0, 0)` and `(r, h, 0)`
+in the camera's orientation at the actor's position, `r` and `h` from `00265090` and `00263940`,
+projects both through `02AEDDB0`, divides x and y by the third value and subtracts 1792 and 1824,
+giving the corners of a 512 × 448 frame. Then for each other actor:
+
+- the mark is cleared when the actor's depth value `+0x08` is not above the subject's or the two boxes
+  do not overlap;
+- the mark is set when the actor's box reaches more than 16 into the subject's box on all four sides;
+- otherwise the word stays as it was.
+
+While a mark changed or a fade runs (`02096510`), `00255FF0(step)` moves every other live actor's
+level by the step `02096514` (`0x20`, set by `002556F0`): up toward 255 when marked, down toward 0
+when not. It writes the word back, sets the actor's render record colour `+0x220` to `+0x228` to
+1.0 and its alpha `+0x22C` to `(255 − level) / 255`, and returns 1 once every level has arrived,
+which ends the fade. So the marked actors, those that cover the subject, fade out over eight frames.
+
+### Running a shot to its end
+
+The skip path `00257A00` reads two things from a shot player through small getters: `00258AF0(manager,
+channel)` returns from the current row's first byte (player `+0x178`): 1 for kind 1, the word `+0x22`
+for kind 2, 0 for kind −1 and 1 for any other kind; `00258B50` returns the player's `+0x0C`. A negative
+channel selects the transition player at `02096520` instead.
 
 ### Submissions
 
@@ -149,6 +242,18 @@ The update then:
 | `02AEDE30` | view × a projection with near 1.0 and far 1000 (`003CBC40`) |
 | `02AEDF94` | the heading, `atan2f` of the view's `02AEDE90` and `02AEDE98` |
 
+| `02B40470` | `02AED500` × the working camera's projection (`003CBB30`), copied there by `003B4150`; the update `003820C0` does it on one of its paths, and only while `00182570` returns 0; and `002F5550` and `00474710` also call `003B4150` |
+
+`003B40B0(z)` and `003B40F0(z)` turn a depth into `(m[+0x38] − z × m[+0x28]) / (m[+0x3C] − z × m[+0x2C])`
+with the elements of `02B40470`; `002F5550`, `00474710` and `0024FF60` call them.
+
+The camera code's small helpers: `003CBCA0` writes the first three rows of an identity matrix (for
+`003CBD60` and `0054C6B0`); `003CC480(a, b, c, out)` builds a rotation matrix from three angles with
+`sinf` and `cosf`; `003CC270(from, to, heading, distance)` returns the distance in the x–z plane and
+the heading `atan2(dx, dz)`, for the shot builders `00255E80` and `00256CA0`; and
+`003CC3C0(origin, heading, distance, out)` places a point at that distance along the heading
+(`003CC480` with only the heading), for `00257D10` and `00257F60`.
+
 ### The Screen Shake option
 
 Besides the scripted shakes, `0037D4C0` adds an accumulator row `02EBF380 + draw × 0x20` while
@@ -161,6 +266,26 @@ row only when the pointer `02089350` is set or both `02EBF3C4` and `02EBF3C0` ar
 `02EBF3C4` is the Screen Shake option, stored by `0037DDC0`
 ([config screen](../Menus-And-HUD/config-screen.md)). With the option off the row is not refreshed and
 keeps its last values; the scripted shakes are not gated.
+
+### Handing the camera to the renderer
+
+After the build the camera update calls `00182640` with the camera matrix `02AEDEB0`, the aspect, the
+field of view `+0x08`, the frame-mode zoom (`00229D60`), the camera's `+0x00` and `+0x04` (the near and
+far distances `003CBB30` uses) and a flag that is set while the bound map `[0209A670]` has a non-zero
+`+0x120`. `00182640` runs `001897C0` on the render manager (`00189120`).
+
+`001897C0` stores the near and far distances, the field of view, the aspect and the zoom at manager
+`+0xCBC`, `+0xCC0`, `+0xCC4`, `+0xCC8` and `+0xCCC`; with the flag set and `+0xCD0` greater than the
+near distance, the far distance becomes `+0xCD0`. It then fills the two camera objects of the copy
+chosen by the manager's byte `+0x1C` (`0x338` bytes apart):
+
+- the scene camera at `+0x20`, with the matrix at `+0xF8` converted from `02AEDEB0` with its x and y
+  terms negated, or a fixed default when any row of the source is all zero;
+- a second camera at `+0x1B0`, matrix `+0x288`, the same rotation without the translation and with the
+  far distance raised to at least 1000.
+
+Each value it sets on a camera (aspect `+0xC8`, field of view `+0xD0`, zoom `+0xD4`, near `+0xC0`,
+far `+0xC4`) is followed by the camera's slot `+0x08`, and `0018A120` rebuilds the camera last.
 
 ## Layouts
 

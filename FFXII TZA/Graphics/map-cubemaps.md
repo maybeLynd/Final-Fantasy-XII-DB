@@ -22,6 +22,24 @@ built by `001AA840(probe, index, 80.0, 2.0, 60.0, 1, 0)`: position (80, 2, 60) a
 `+0x2C`, weight 1 at `+0x30`, its index at `+0x38`, enabled byte `+0x40` = 1 and variant 0 at `+0x44`.
 A probe owns a vector of 0x30-byte variants (`001AD0C0`), each with a vector of six texture pointers.
 
+`001AD3E0`, from the start-up burst `0017D4C0`, builds the manager on first use: `0x258` bytes,
+constructed by `001AA9E0`, which:
+
+- empties the map at `+0x08` and the vectors at `+0xF0`, `+0x110` and `+0x140`, and clears the bytes
+  `+0x130`, `+0x244` and `+0x250`;
+- lays down the developer capture settings: step `+0xA8` = −2, `+0xB8` = 12, `+0xBC` = 1, `+0x1E0` =
+  180, `+0x1E4` = 3, `+0x1E8` = 0.785 and `+0x24C` = `0x400`, with five status strings at `+0x44`,
+  `+0x64`, `+0x84`, `+0x204` and `+0x224` (`"None"`, `"Original"`, `"Final"`, `"Current status"`);
+- ends with `001AD510(manager, manager + 0xF0)`, which keeps the probe vector at `+0xE8` and sets each
+  probe's variant `+0x44` to the manager's `+0xC0`, or 0 when that is negative or not below the
+  probe's variant count.
+
+While the step `+0xA8` stays negative the capture code does nothing to the picture. The render pass
+`00187950` runs `001AC7C0` each frame, which, when byte `+0xA4` is set and the step is −2, sets the
+step to −1 and calls `001EF540(1)` on the shadow object (`001F0850`). `001ACF10(manager, format)`, from
+`00186CD0`, keeps the format at `+0x248` and creates two 512 × 512 targets at `+0xD0` and `+0xC8`
+(`001EE040`).
+
 ### Registering the textures
 
 When a map's art loads, `001A5B30` walks the textures of the map's asset list (context `+0x78`) and looks

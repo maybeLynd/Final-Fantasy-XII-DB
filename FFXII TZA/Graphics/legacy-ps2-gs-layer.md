@@ -66,6 +66,27 @@ less the two totals the rebuild publishes, rounded up to a whole page. With both
 360,448 words: 1.375 MiB, 176 pages. The surface size is fixed, so the budget does not depend on
 the display resolution.
 
+Each pass of the slot handler `002F4520` starts with `00467A70` (`002F45D9`), which sets the
+cursor `02CA5FF8` back to the reservation `02CA5FF4` and zeroes `02CA5FFC` and `02CA6000`;
+`00467A90` returns the cursor.
+
+### GS screen coordinates
+
+The map draw still builds the screen transform of the PS2 drawing area. `00467940(view)` writes into
+the first 64 bytes of a view block a matrix that maps x to `x × w / 2 + 2048`, y to `−y × h / 2 +
+2048` and z to `−z × (far − near) / 2 + (far + near) / 2`. The width `w` and height `h` are the
+integers at `+0x44` and `+0x48` of the same block and the two depths are at `+0x4C` and `+0x50`;
+2048 is the centre of the GS drawing coordinates.
+
+The draw-list build `002F5550` calls it (`002F5AB0`) on a stack copy of the view block at
+`02AED500` whose depths it has replaced by `003B40B0` results, and copies the matrix to `+0x80` of
+each `0xE0`-byte record of the map's tag-24 array (`[+0x1D0]`, count `+0x220`).
+
+The slot handler `002F4520` first calls `00467B60` (`002F4670`), which stores
+`int(−16 × log2|20 − c|)` in the high dword of `02EBB6C8`, with `c` the float at `02AED570`, the
+working camera's `+0x10`. `00467BB0` zeroes the same qword at start-up; these two stores are the only
+instructions that name it.
+
 ### When the rebuild runs
 
 The bound map is the object at `0209A670` ([MPK map pack](../World-Areas-And-Travel/mpk-map-pack.md)).
@@ -80,6 +101,22 @@ the dirty word is set and then clears it (`0026E2C4`, `0026E2C9`), and then call
 `+0x130` handler with the pass. That handler is `002F4520`, installed by the map set-up
 `002F6AB0` (`002F6B43`); it starts by setting `+0x00` of every slot record to 0 and `+0x20` to
 `0xFF` (`002F45F0`–`002F4617`).
+
+The map's file reaches the set-up through an eight-slot table at `02EBB820` (`0x38` bytes a slot:
+`+0x00` the data, `+0x08` a count, `+0x10` a word set to 2, `+0x14` a name). The binders `0026E760`
+and `0026E7D0`, both from `00378120`, register the data with `003EC9A0`, which takes the next free
+slot from a round-robin cursor (`02EBB9E0`, at most eight tries, counted in `02EBB9E4`), writes a
+fixed placeholder name and returns the slot number.
+
+The set-up `002F6AB0` stores the number at map `+0x168` and reads the
+slot back with `003EC970(n)` (null past 7 or for an empty slot), keeping the data at `+0x158` and the
+name at `+0x160`. The map teardown `002F5450` releases it with `003ECA70(n)`, which frees the data
+when the count is positive (`003EC8A0`) and clears the slot.
+
+`00862910` truncates a float vector to four integers, and `00862930` does the same after scaling by
+16, the GS coordinate form. The model instance's draw setup `004FD4B0` converts the instance's
+`+0xD0` with the first and writes the fourth integer into bits 56–63 of the GS FOG register
+(`0x0A`); the point projector `00272180` and the map screen code `003C29A0` use the second.
 
 ### The slot rebuild
 
@@ -104,12 +141,95 @@ the dirty word is set and then clears it (`0026E2C4`, `0026E2C9`), and then call
    at `+0x218`, and zero `+0x00`, `+0x08`, `+0x10`, `+0x18` and the byte `+0x20` of each record
    (`002F760B`–`002F761F`).
 
+`003EC8D0` reports a failed allocation by passing `"out of memory!\n"` to `00862690`, which hands
+it to `008620B0`, a body that returns at once; nothing is printed.
+
 ### GS image transfers
 
 `00244200`, called from `002D2DB0`, writes GS register records for image transfers: BITBLTBUF
 `0x50`, TRXPOS `0x51`, TRXREG `0x52` and TRXDIR `0x53` (`002442D2`–`00244332`), then TRXPOS, TRXREG
 and TRXDIR again (`00244355`–`0024439C`). It reads the frame index and the height to place the
 transfer. The GS replay honours none of these four registers.
+
+`003A22A0(packet, base, format, width, height, data)` builds a whole upload into a packet. It opens an
+A+D GIF tag (`003A2090`) and writes BITBLTBUF with the destination base in bits 32–45, the buffer
+width from `003A1FE0` in bits 48–53 and the format in bits 56–61, then TRXPOS 0, TRXREG
+`width, height` and TRXDIR 0, and closes the tag (`0024B150`). The image follows through
+`003A21A0`, and a second A+D tag writes TEXFLUSH (`0x3F`). The data size is `003A1F20(width,
+height, format)`, the pixel count scaled for the format, divided by 4.
+
+- `003A1FE0(width, format)` is the buffer width in 64-pixel units: the width rounded up to a
+  multiple of 64, or to a multiple of 128 for the formats `0x13`, `0x14`, `0x1B`, `0x24` and `0x2C`
+  (the 8-bit and 4-bit indexed ones), divided by 64.
+- `003A21A0(packet, qwords, data)` splits the image into pieces of at most `0x4000` quadwords. Each
+  piece is a DMA `cnt` tag with a VIF `DIRECTHL` of one quadword carrying an IMAGE-mode GIF tag for
+  the piece, then a DMA `ref` tag with a second `DIRECTHL` that points at the piece's place in the
+  data. `0024AF50` and `003EFDF0` call it directly.
+
+`0039D0C0(mode, id, width, height, target, a, b)` copies the rendered frame into the target of a GS
+texture id. With no target given it takes the id's own (`002D7FA0`), or a new one from `00182B40`
+when the id has none. It closes an open scene around the copy (`001FBE30`, `001FBE50`, then
+`001FBD80`), copies through `00182A60`, whose source the first argument picks (`00186910`), with a
+mode of 0 to 3 chosen from `a` and `b` (`00376320`), and records a changed target for the id
+(`002D7D90`). `00244200` calls it for id `0x333C` at
+512 × 448; `003749F0`, `00376220` and `003A2BD0` are the others.
+
+A texture word in the GS TEX0 layout comes from `002D8050(word, width, height, format)`. It keeps the
+base in bits 0–13, which the caller sets, and writes the buffer width in 64-pixel units rounded up
+(1 becomes 2) in bits 14–19, the format in bits 20–25, the power-of-two exponents of the width and
+height in bits 26–29 and 30–33, and bit 34; bits 35 and 36 are cleared.
+
+The exponent is
+`002D8150(n)`, the smallest e with 2^e ≥ n, at most 10. The effect-texture placer `002D83B0` builds
+its words this way. The way back is `002D7F20(e)`: 2^e for e up to 10, 0 above. The screen-effect
+upload `00375B90` (kind 4) reads the width and height out of its word `+0x30` with it and passes
+them, with the base and the format, to `003A22A0`.
+
+### The VIF packet writer
+
+The map screens, the world map and the battle target lines still build VIF1 packets for VU1 in the GS
+command buffers ([render command list](render-command-list.md)). They use a writer of pointers on the
+caller's stack and a family of helpers around `00271450`:
+
+| Helper | Does |
+|---|---|
+| `00271450(w)` | starts at the current buffer: `+0x00` the buffer record, `+0x08` and `+0x10` its write cursor |
+| `00271360(w, other)` | continues after another writer: same buffer, start at its cursor, cursor 16 bytes on |
+| `002714A0`, `002714C0`, `00271480` | reserve the record at the cursor as the chunk header `+0x18`, the GIF tag slot `+0x28` or the DIRECT header `+0x30` |
+| `00272390(w, records, n)` | copies `n` 16-byte records to the cursor and advances it; `00271290` copies without a writer |
+| `00271080(w)` | closes a chunk: VIF FLUSH (`0x11000000`) and `0x10000000` in the header's upper dwords |
+| `002710C0(w, eop)` | writes the GIF tag: A+D (`0xE`), one register, the record count as NLOOP and `eop` in bit 15 |
+| `00271100(w)` | writes an UNPACK header (`0x6C008000` with the count in bits 16 up) after three `0x10000000` |
+| `00271050(w)` | writes a DIRECT header: `0x13000000` (FLUSHA), `0x10000000`, `0x50000000` with the count |
+| `002712E0(w, src, ad)` | closes a DIRECT chunk of `src`, with an A+D end record `{0x8000, 0xE}` when `ad` is 1 |
+| `00270FF0(w)`, `00271010(w, n)` | end the packet: when anything was written, advance the buffer's cursor and flip it (`003A1DB0`) |
+
+Each closer computes its chunk's record count and passes the header to `0016D6A0`, a bare `ret`, so the
+DMA tag in the first qword of every chunk header is never written.
+
+The content helpers write fixed packets:
+
+- `00271760(w, block, matrix, extra)` builds a 15-record chunk: an UNPACK header for 13 records
+  (`0x6C0D8000`), the 13 constant records from `00276190`, and FLUSHA, MSCAL (`0x13000000`,
+  `0x14000000`). The constants are the matrix, the matrix `02AEDDB0` ([scripted camera](scripted-camera.md)),
+  four 2047.5 and four 1.0, the last replaced by `extra` when given.
+- `00271720(w)` writes VIF BASE 0 and OFFSET `0x200` (`0x03000000`, `0x02000200`) into the record at
+  the cursor. `002715A0(w, picture, row, half)` writes a picture bind there: A+D with CLAMP_1 = 5 and
+  TEX0_1 from the picture's `+0x30`, the palette offset `(half + row × 2) × 2` in bits 37 up.
+- Both, and `00271870(w, data, bytes)`, store back the cursor value they read and nothing between
+  moves it, so the next write lands on the same records. `00271870` passes `bytes / 16` and `data`
+  to `0016D6A0`, so it copies nothing.
+- `002724A0(w)` ends a VU1 draw: the record at `[w + 0x38]` gets a GIF tag with end-of-packet, NLOOP
+  `[w + 0x40]` and the registers ST, RGBAQ, XYZF2 (`0x412`); it completes the UNPACK header at
+  `[w + 0x20]`, appends FLUSHA and MSCNT (`0x17000000`), closes the chunk and ends the packet.
+
+- `00428980`, the last step of the character-record pass `004264A0` (from `00332440` and
+  `00332510`), writes one DIRECT chunk into the current GS command buffer (`005044B0`): an A+D GIF tag
+  with end-of-packet (`003A2090`), ZBUF_1 `0x4E` and ZBUF_2 `0x4F` from `022D8ED0`, FBA_1 `0x4A` = 0,
+  TEST_1 `0x47` = `0x50000` (depth test, greater or equal) and ALPHA_1 `0x42` = `0x44`.
+- `0x44` is the blend `(Cs − Cd) × As + Cd`. `003A2020` fills the tag's loop count, `00428980` gives
+  the chunk header FLUSH and DIRECT with the record count, and `00504490` flips the buffer
+  (`003A1DB0`).
 
 ### VU register words outside VU memory
 
@@ -126,6 +246,15 @@ Recompiled VU1 microprograms keep VU registers in fixed globals next to the emul
   its address 17 times as the second operand of its lane helpers, which include `004B9D80`,
   `004B9E60` and `004B9A10`.
 - `004ADD10`, another installed program, reads VU memory cells directly through `02064E30`.
+
+- Two shared subroutines of the recompiled programs work on the register cell `02064CB0`.
+  `005375F0` (12 callers, `004758E0` among them) reduces its x lane by whole turns of 2π, using
+  `1 / 2π` (0.15915494) and π. `005376D0` (13 callers) writes the sine and cosine of that lane to
+  `02064CC0` and `02064CC4`.
+- `005376D0` first folds the angle into `[−π/2, π/2]` and then sums the odd powers up to the ninth
+  with the coefficients −0.16666657, 0.0083330255, −0.00019807414 and 2.601887e-06. Its
+  comparisons go through `005379D0(flags, vector, value)`, which builds a VU MAC flag word: bits 7
+  to 4 for the lanes x to w below the value, bits 3 to 0 for the lanes equal to it.
 
 ## Layouts
 

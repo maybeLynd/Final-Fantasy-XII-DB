@@ -219,6 +219,44 @@ page, and what the records do is on [effect element runtime](effect-element-runt
 Type-1 and type-7 contexts never set the run bit, so every chunk of their streams takes this
 route.
 
+### The single-chunk arms
+
+`003ED8A0(chunk, length)` switches on the chunk's type word `+2` and hands the body at `+8` to one
+arm.
+
+A record arm takes an index (0 means the first free slot), frees whatever already holds that
+slot, takes a block for the copy, and copies and rebases the body as the run paths do. The context
+tables it fills are allocated with the context by `0024B3A0`: `003A7D00` (`0x400` bytes, 128 `0x700`
+slots), `003A9560` (`0xA00` bytes, 320 `0x800` slots) and `003A9920` (`0x1800` bytes, 768 `0xA00`
+slots), each zeroed; `003A76F0` empties the `0x600` table `[02EBEFA8]` (256 pointers from `+8`) and its count.
+
+| Type | Arm | What it does |
+|---|---|---|
+| `0x401` | inline | the effect camera: the 64-byte matrix at `+8` goes to `02AEE9E0` through `0039D430`, which then calls `0039AFA0` and copies the workbench matrix to `02AEECB0` (`003970A0`); `003CC0F0` resets the camera record `02096D30` and copies the matrix to its `+0x60`, the dwords `+0x48`–`+0x54` are stored at its `+0x00`, `+0x04`, `+0x08` and `+0x10`, and the record is submitted with priority `0x64` (`003829D0`) while `02096887` is set |
+| `0x500` | `003A75B0` | frees every `0x600` record of `[02EBEFA8]` and zeroes the table; when the context's byte `+3` bit 0 is set (the records sit in the run block) it frees only their 29 slot targets whose byte `+1` is 0, then the context's `+0x888` block |
+| `0x510` | `003A7CB0` | frees all 128 `0x700` records |
+| `0x520` | `003A9510` | frees the `0x800` records |
+| `0x530` | `003A98D0` | frees the `0xA00` definitions |
+| `0x540` | `003A9E00` | unlinks the record-store node whose key, kind and slot match the body and frees it (`00500850`) |
+| `0x600` | `003A7A50` | gets or creates the `0x600` record for byte `+1` (`003A78A0`, which allocates `0xA0` bytes and registers it with `00333BB0` / `00333AC0`), copies the `0x2C`-byte header into it and calls `00333C80` |
+| `0x601` | `003A7950` | frees the `0x600` record of byte `+1` |
+| `0x610` | `003A7AE0` | gets or creates the `0x600` record of byte `+0`, finds its sub-entry byte `+1` (`00334000`) and copies a dword and the entry's own byte count of data into it |
+| `0x611` | `003A7AA0` | passes byte `+2` to `003340C0` for the `0x600` record of byte `+1` |
+| `0x620` | `003A7730` | as `0x610`, but takes a new block for the sub-entry (`0046F380`), copies the body from `+0x10` and rebases it (`004FF320`) |
+| `0x700` | `003A7DC0` | the record through `003A7BE0` and `004FF270`; when it replaced a record, every `0x700` object of the instance that pointed at the old one (`+0xE0`) is pointed at the new one |
+| `0x800` | `003A96A0` | the record through `003A9790` and `00442460`; a replaced record is swapped in every emitter (`+0x100`), every definition link (`+0x108`) and every element link (`+0x18`, `+0x20`) of the current instance (`003A9590`) |
+| `0x900` | `003A92B0` | releases every emitter of the current instance (`003A9160`) |
+| `0xA00` | `003A99F0` | the definition through `003A9AD0` and `005004C0` |
+| `0xB00` | `003A9EF0` | the record store |
+| `0x1000` | `0016D680` | returns its argument and does nothing else |
+
+The `0x600` arm resets the 29 slots at `+0x2C` only for a new record (`00333BB0`); an existing
+record keeps its slots, where the run-path handler `003A79C0` resets them every time.
+
+Outside the run block, the `0x500` arm and the `0x601` arm empty a record before freeing it through
+`00333C00`, which releases each of the 29 slots (`0046F370`, `003697F0`) and stores the encoded
+null `0020E620(0)` in it.
+
 ### The record store
 
 `003A9EF0(header)` looks for a node whose word `+0xC`, byte `+0xE` and byte `+0xF` equal the key,
@@ -230,6 +268,81 @@ kind and slot, walking the list at `[02EBEF70]` (the context's `+0x18`) through 
 `003AA470` is the same search with a six-arm table for kinds `0x50` to `0x55`
 (`003AA47C`, `003AA4C2`, `003AA4DA`). It is reached only from the `0x101` and `0x102` routes,
 which no shipped chunk takes.
+
+Its arms build each kind with the same constructor as the first store but a loader of its own
+(`003AA4FD`–`003AA5E1`), and a match is reloaded through `00500A60`, which dispatches on the kind
+byte to the same loaders:
+
+| Kind | Second loader | What it reads |
+|---:|---|---|
+| `0x50` | `005032D0` | a row count, texture and palette counts, then `0x48`-byte rows |
+| `0x51` | `00503BA0` | a `u16` count, then that many 16-byte entries, copied to a new block |
+| `0x52` | `005C5230` | nothing: it returns 0 |
+| `0x53` | `00501750` | a mode byte (`0xFF` empty), a count and a slot byte, then 64-byte (mode 0) or 1,024-byte (mode 1) palettes |
+| `0x54` | `00436D00` | as the first store |
+| `0x55` | `00503CD0` | as the first store |
+
+- `005032D0` numbers the texture and palette slots 1 to n and expands each `0x48`-byte row into a
+  `0x90`-byte sprite row: the four corners of its rectangle, rotated by the row's angle in degrees,
+  scaled and offset; the last row gets bit 1 of `+0x70`.
+- `00503180(record)` then resolves the kind-`0x50` record's slot bytes into handles with
+  `003AA280(key, 0x52, slot)` and `003AA280(key, 0x53, slot)`, and turns each row's pixel rectangle
+  into texture coordinates by dividing by the texture's width `+0xA4` and height `+0xA6`.
+- `00501750` ends by running `00503180` again over every kind-`0x50` record of key 1 (`003AA1F0`,
+  `003AA240`), so palettes loaded later still reach the sprites.
+
+### The kind-0x52 texture loader
+
+`00500C00(record, data)` reads a texture record. A first byte of `0xFF` is an empty record. Otherwise
+it keeps the byte's low six bits as the format `+0xA0`, bit 6 as the word `+0x1C8` and bit 7 as
+`+0x1CA`, the palette count from byte `+2` at `+0xA2`, a reference size from words `+4` and `+6` at
+`+0x1CC` and `+0x1CE`, and the width and height from words `+8` and `+0x0A` at both `+0xA4`/`+0xA6` and
+`+0xA8`/`+0xAA`. The palettes start at `+0x10`.
+
+Each palette gets two handles: format 0 has 16-colour palettes of `0x40` bytes and format 1 256-colour
+palettes of `0x400` bytes (`001837A0` and `00183760`); a record with palettes in any other format
+makes the loader return null. The palette data is copied to a new block at
+`+0xB0` (`0036A100`), or used in place when bit 3 of byte `+2` of `[02F97340]` is set.
+
+The texture's allocated size is the width and height rounded up to a power of two (`0017FEA0`). With
+`+0x1C8` set it is instead scaled to the reference size: each side is `side / reference ×
+pow2(reference)`, and an image whose size and reference size are both 1920 × 1080 keeps that size. The
+format picks the builder, and its handle goes to `+0xC0` with a code at `+0xB8`:
+
+| Format | Builder | Pixel bytes | `+0xB8` |
+|---:|---|---|---:|
+| 0 | `00183EE0`, 4-bit indices | `w × h / 2` | `0x14` |
+| 1 | `00184140`, 8-bit indices | `w × h` | `0x13` |
+| 2 | `00183A00` | `w × h × 2` | 2 |
+| 3 | `00183C60` | `w × h × 3` | 1 |
+| 4 | `00183EB0`, 32-bit pixels (`0017E8E0`) | `w × h × 4` | 0 |
+| `0x80` | `00184130`, as format 0 | `w × h × 4` | `0x14` |
+| `0x81` | `00184370`, as format 1 at twice the width and height | `w × h × 4` | `0x13` |
+
+Format bytes `0x80` and `0x81` cannot occur after the six-bit mask; any other format leaves the record
+without a texture.
+
+`00183A00` and `00183C60` create an `RGBA8` texture (format object `02CF7480`) of the allocated size,
+or of the image size when the allocation is only one larger. They map it (`0017EBD0`), clear it when
+the sizes differ, and write one byte per texel, the first of each four: `00183A00` the low four bits
+of the first byte of each two-byte source pixel, `00183C60` the first byte of each three-byte pixel.
+Then they commit it (`0062C360`).
+
+### Uploading textures and palettes
+
+The group draw `0024D370` calls `003AA2E0(0)` for an instance whose flag byte `+0x36A` has bit 0
+(`0024D448`). Once per record table (the latch word `+0x1A` of `[02EBEF70]`) it uploads every record of that key:
+`005011B0` for a kind-`0x52` texture and `00501610` for a kind-`0x53` palette; it then frees the
+blocks listed at the table's `+0x10`.
+
+- `005011B0` fails on a record without image data `+0xC0`. Each palette of the record (count byte
+  `+0xA2`) goes up through `002D81D0`, with 256 entries for format byte `+0xA0` 1 and 16 for the
+  others; the image goes up through `002D83B0` with the width `+0xA4` and height `+0xA6`.
+- Its branches for format bytes `0x80` and `0x81`, which rebuild the size fields of the register
+  word `+0x10` with `002D8150`, are never taken for a record from `00500C00`, which keeps only the
+  low six bits of the format.
+- `00500C00` also keeps the header byte's bits 6 and 7 as the words `+0x1C8` and `+0x1CA`, which
+  `00501190` and `005011A0` return to the draws of types `0xA2`, `0xA5`, `0xA6`, `0xA8` and `0xAB`.
 
 ### The EFB loader
 
@@ -254,6 +367,30 @@ and `02F8F238` is set (`0026FD3A`–`0026FD56`); it returns 1.
 channel already exists (`0024F680`); otherwise it walks the rows with `0026F470`
 (`0026FAED`–`0026FB46`).
 
+`0026FE50(channel)` stops a channel: while a bank is loaded (`02F8F238`) it passes the request
+`{kind 2, id channel}` to `0024DB80`, which unlinks and destroys every kind-2 instance in `020910F0[2]`
+whose `u16 +0x04` equals the id, and it clears bits `0x4` and `0x8` of the channel's byte
+`02F8F23C[channel]`.
+
+The third argument of `0026FAD0`, the issuing script's manager when `bgeffectplay` (`00342880`)
+starts a channel, goes through `0026F470` into the instance's word `+0x06`, beside the channel at
+`+0x04`. `0026FA80(manager)` passes `{kind 2, +0x06 manager}`
+to `0024E7D0`, the twin of `0024DB80` keyed on `+0x06`, which unlinks and destroys every bank
+instance that manager started. The skip paths `00360710` and `00360A50` call it, and so do
+`bgeffectsync` (`003436B0`) and `animesync` (`00355300`) while their manager is skipping
+(`00267310`).
+
+`0024F650(instance)` returns the next instance of the same list with the same channel word
+`+0x04`, or 0. Two readers walk a channel with it:
+
+- `0026FDB0(channel)` answers 0 for a channel of `0x40` or more, 4 with no instance, 2 as soon as
+  one instance's state `+0x370` is neither 0 nor 3, else 3 when one is in state 0 and 4 when all
+  are in state 3. `00473620` turns that into 1 for 2 and 0 otherwise, for `bgeffectstatus`
+  (`00343050`) and `bgeffectsync`.
+- `bgeffecttrigger` (`003438A0`) calls `00270150(channel, n)`, which for `n` of 1 to 10 signals
+  every instance of the channel (`0024FE70`, with arena 8 selected) and puts `n` in the low nibble
+  of the word `+0x378` of each one the signal reached.
+
 `0026F470` stops at a row whose byte `+1` is not 1, steps over type-1
 rows by `0x60`, and for a type-3 row of the requested channel (or any channel when the filter is
 −1) whose slot enable byte is set, looks up the definition (`0024F610`) and creates an effect
@@ -268,6 +405,12 @@ the row builders compare it with the bank version `02F8F29D`, which `0026FC47` s
   (`0026F546`–`0026F55B`, `0026F7A8`–`0026F7BD`), and the instance's `+0x373` is byte `+5` plus 1
   (`0026F731`–`0026F748`, `0026F904`–`0026F91B`);
 - otherwise the lookup uses byte `+5` and `+0x373` is 1.
+
+Scripts drive the channels through `00473640(channel, on, manager)`: with `on` set it runs
+`0026FAD0(channel, 00265920(), manager)` for the current weather slot, and otherwise
+`0026FE50(channel)`. `bgeffectplay(channel)` (`0x00C3`, `00342880`) calls it with 0 and then 1, so
+a play restarts the channel; `bgeffectstop(channel)` (`0x00C2`, `00342CB0`) calls it with 0. Both pass
+the issuing script's manager byte `+0x15`.
 
 ### The map's effect bank
 

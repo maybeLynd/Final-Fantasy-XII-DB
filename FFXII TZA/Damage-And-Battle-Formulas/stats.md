@@ -114,15 +114,15 @@ After the sums, the rebuild limits and stores each value (`002FF780`-`002FF96D`)
 
 | Stats offset | Value | Limits |
 |---|---|---|
-| `+0x24` | max HP | 1 to 9,999 for a party record, 1 to 1,000,000,000 otherwise (`002FF7B1`-`002FF7E2`) |
-| `+0x24` | max HP of an Esper (party type `0x1B`-`0x27`) | 1 to 32,767, over the first store (`002FF7E5`-`002FF805`) |
-| `+0x28` | max MP | 0 to 999 |
-| `+0x2A`-`+0x2D` | Strength, Magick Power, Vitality, Speed | 0 to 99 |
+| `24` | max HP | 1 to 9,999 for a party record, 1 to 1,000,000,000 otherwise (`002FF7B1`-`002FF7E2`) |
+| `24` | max HP of an Esper (party type `0x1B`-`0x27`) | 1 to 32,767, over the first store (`002FF7E5`-`002FF805`) |
+| `28` | max MP | 0 to 999 |
+| `2A-2D` | Strength, Magick Power, Vitality, Speed | 0 to 99 |
 | `+0x2E`, `+0x2F`, `+0x30` | Attack Power, Defense, Magick Resist | 0 to 255 |
-| `+0x31`-`+0x34` | innate, weapon, shield and magick evade | 0 to 100 |
-| `+0x35` | Evade: innate + weapon + shield evade, plus `+0x1E` for an enemy | 0 to 100 |
-| `+0x36` | Magick Evade: magick evade, plus `+0x20` for an enemy | 0 to 100 |
-| `+0x37` | MP bars, a party member's stats `+0x20` | at most 3 |
+| `31-34` | innate, weapon, shield and magick evade | 0 to 100 |
+| `35` | Evade: innate + weapon + shield evade, plus `+0x1E` for an enemy | 0 to 100 |
+| `36` | Magick Evade: magick evade, plus `+0x20` for an enemy | 0 to 100 |
+| `37` | MP bars, a party member's stats `+0x20` | at most 3 |
 
 The 9,999 and 1,000,000,000 are literals that one `cmove` picks by the party byte (`002FF7BD`-`002FF7C8`).
 

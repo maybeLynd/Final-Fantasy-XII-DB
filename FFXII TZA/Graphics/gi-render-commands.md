@@ -56,6 +56,9 @@ a mark `+0x18`. `001A1470(arena, size)` rounds the request to `(size & ~0xF) + 0
 the cursor and advances it while the request fits below the end, and otherwise restarts at the
 base and returns the base (`001A14A5`–`001A14BD`). Commands are never freed one by one.
 
+`0019C5A0(size)` and `0020E680()`, which asks for 16 bytes, are bare `001A1470` calls on
+`[01F7F4C0]` for the command factories.
+
 Each pass of the pump `0017D6E0` records the cursor as the mark (`001A1460` at `0017D757`), and
 the frame-end reset `001E0590` rewinds the cursor to the mark (`001A14D0` at `001E05C7`); the same
 two routines run on the `GiVmax` allocator `[01F82D00]` through `001DB600` and `001DB620`.
@@ -81,6 +84,15 @@ the call reaches slot 0 of `008F5F28`: `001F48B0`.
 `GeometryInstanceOrderedObject` (`001F4950`: vtable `00903920`, command at `+0x18`, key at
 `+0x20`) and appends it to the ordered command list (`001F4940`). The render body's walk later
 calls its slot 1, `001F49F0`.
+
+`001FB830(node)` is the path for a command that must run at once: `001A1850([01F7F4D0],
+node[0])` takes 0x28 bytes from the arena, wraps the command in a `GeometryInstanceOrderedObject`
+(`001F4950`, key 0) and calls its slot 1 straight away with the render manager's device `+0x08`.
+
+Without a render manager (`00189120` returns 0) it files the command through the handler with key
+`0x40` instead. `001F16C0(a, b)`, called by the render-manager installer `00186CD0`, by `00188B10`
+and by `00188DA0`, builds a `GiSetRtForRtSampling` command of 0x18 bytes (`a` at `+0x08`, `b` at
+`+0x10`) and runs it this way.
 
 ### The display list
 
@@ -116,11 +128,25 @@ command at `+0x10` (`005FEAEE`–`005FEAF8`).
 turn (`00610724`), runs `0060A410(queue, start, end)` on the slot's range (`00610753`) and releases
 the completion semaphore (`00610774`).
 
+The queue is the static `02CE4720`, which `005FD0E0` returns, building it on first use (a guarded
+static) with `005DC200`: a `PProcessorProfileTimelineCpu` at `+0x20`, the state `+0x28`, 256 slots
+of 0x28 bytes from `+0x30`, two handles at `+0x2840` and `+0x2850`, and four 0x10-byte records from
+`+0x2860`. It registers `008ADDE0` with `atexit`.
+
+At exit `008ADDE0` stops the thread through
+`00610420`, which, while the state is 1, sets it to 2, calls `00609720(queue, 0, 0, 0)`, waits for
+the thread (`005CD330`) and closes the 256 slot events and the two handles (`005CD700`,
+`CloseHandle`). It then closes the handles of the four records, clears `02CE6FC0` and runs the
+members' destructors.
+
 `0060A410` fetches the render context once (`0060A46A`: `00624670` → `005FD050`, which returns the
 static `02CC0410`, constructing it with `00615840` on first use) and walks the range 0x80 bytes at
 a time. For opcode `0x2F` it builds a three-qword frame `{context, &local, block+0x10}` on its stack
 and calls `block+0x08` with it (`0060A8BD`–`0060A8D6`). `001F4A10` takes the device as
 `context + 0x18C0` (`00624660`) and tail-jumps the command's slot 1 with it (`001F4A35`).
+
+Before the walk `0060A410` also lays a 0x50-byte record on its stack with `00615D50(record,
+context)`: the context at `+0x00`, the rest zero.
 
 ### The device
 
@@ -128,6 +154,70 @@ and calls `block+0x08` with it (`0060A8BD`–`0060A8D6`). `001F4A10` takes the d
 the `PrimitiveRendererD3D11` vtable `00D86960` at `+0x00` and its second vtable `00D86AD0` at
 `+0x08`. The first table has 45 slots (`006CA760` to `006CB540`, followed by the locator
 `01D38180` at `00D86AC8`); the second has one slot, `006C88A0`.
+
+### The context's draw blocks
+
+After it has the D3D11 device and swap chain, the context initialiser `00625830` builds three
+blocks of shaders and buffers from shader bytecode embedded in the executable; each blob follows a
+length dword, and the size passed to the device is that length minus 2. The device calls go through the `ID3D11Device` vtable at context
+`+0x108`: `+0x18` CreateBuffer, `+0x58` CreateInputLayout, `+0x60` CreateVertexShader, `+0x68`
+CreateGeometryShader, `+0x78` CreatePixelShader and `+0xB8` CreateSamplerState.
+
+| Block | Builder | Contents |
+|---|---|---|
+| `07D8` | `00624980` (`00625D37`) | a vertex buffer, one vertex shader (`01F2EEC0`), three pixel shaders, a POSITION/TEXCOORD/TEXCOORD input layout and the `0x50`-byte `DebugDrawConstantBuffer` |
+| `0B50` | `00624C30` (`00625D4E`) | one vertex shader (`01F2FEB4`), eight pixel shaders, the `DrawClearConstantBuffer`, and eight state blocks |
+| `18C0` | `006C9CD0` (`00625D65`) | the `PrimitiveRendererD3D11` resources: a `0x7FE0`-byte and a `0x8000`-byte buffer (`+0x90`, `+0xA8`), a `0xC0`-byte buffer at `+0x98` filled through the immediate context (`+0x110`, Map and Unmap) with a quad spanning −1 to 1, a sampler at `+0x200`, four vertex, two geometry and ten pixel shaders, two input layouts, the `PrimitiveRendererPsConstantBuffer`, `…VsConstantBuffer` and `…GsConstantBuffer`, two state blocks, and the batcher at `+0x880` (`006DA850`) |
+
+`0061DE20(state, mask)` turns a state block's descriptions into D3D11 state objects, each made
+once: with mask bit 0 the rasterizer state at `+0x168` and, from the same description with fill
+mode 2 (wireframe), a second at `+0x170`; with bit 1 the blend state at `+0x180`; with bit 2 the
+depth-stencil state at `+0x178`. `0061C550` names each object (`"BlendState"`,
+`"DepthStencilState"`, `"RasterState"` and the buffer names above). `00624C30` passes all bits
+for each of its eight blocks.
+
+`006DA850(batcher)` empties the batcher at `+0x880`: it clears the dword `+0x08` and the vertex
+count word `+0x8010`. `006C9CD0` calls it at the end of the build and the scene end `006C9B20`
+calls it too.
+
+At the end of the build `006C9CD0` calls `006C9C40`, which resets the pending draw state: it zeroes the
+`0x80` bytes from `+0x10`, sets `+0x208FC` to −1, clears `+0x1A0` to `+0x1BF`, the bytes `+0x851` and
+`+0x208E8` and the word `+0x208F7`, stores 0.1 at `+0x208EC` and `1/1920` and `1/1080` at `+0x1E8` and
+`+0x1EC`, and then begins a scene through slot `+0x130`.
+
+### Batching draws
+
+Slot `+0x020` (`006C8C50`) and slot `+0x028` (`006C8BF0`, with an index list) first run `006CB2A0`.
+While the committed block `+0x398` is in use (its first dword non-zero) it flushes through
+`006C88B0` and commits. Otherwise it flushes through slot `+0x128` and commits only when a pending
+field differs from its committed copy, among them:
+
+- the `0x80` bytes at `+0x10` against `+0x20868`, and `+0x1A0` to `+0x1B8` against `+0x1C0` to
+  `+0x1D8`;
+- `+0x851` against `+0x850`, `+0x208E8` against `+0x854`, `+0x208EC` against `+0x858`, and the pair
+  `+0x1E8`/`+0x1EC` against `+0x1E0`/`+0x1E4`.
+
+The commit `006C8920` copies the `0x190`-byte block at `+0x208` to `+0x398` (`006CACA0`, after
+`0062BA30` on the old copy) and every pending field to its committed copy, and picks the shader
+pair `+0x190`/`+0x198` from `+0x110` to `+0x148` by the flag `+0x851` and the word `+0x852`.
+
+`006DA470(batcher, type, vertices, n, indices, m)` appends an indexed draw:
+
+1. it maps the type to a batch mode (negative and 5 or more to 6, 2 to 4 to 2, 0 and 1 kept) and
+   flushes when the batch holds vertices of another mode;
+2. it flushes until `n` more vertices stay below 683 and `m` more indices within `0x4000`;
+3. it appends the indices at `+0x10`, each raised by the batch's vertex count, and the `0x30`-byte
+   vertices at `+0x8020`, and adds `n` to the count `+0x8010`.
+
+The scene end `006C9B20` reads that count (`006DA6D0`); when it is non-zero it maps a vertex buffer
+(slots `+0x148`, `+0x150`) and, with indices, an index buffer (`+0x158`, `+0x160`), copies the batch
+into them, draws (`006C8CA0`) and empties the batcher (`006DA850`).
+
+Slot `+0x060` (`006CADB0`) stores its byte at `+0x855`, or the byte `01F2EEB8` instead while
+`02E5BDDC` is set. The render-thread callback `001F3A50` calls it for the
+`MonsterGallerySoftParticleEnable` command, whose execute `001F32E0` passes
+`001F3A50` and the command to `005FEA50`, and `001F3A50` calls the slot with the command's byte
+`+0x18`, set by the builder `0018CCF0` through the constructor `001F1B50`.
 
 The `Gi*` execute bodies call twenty of the slots:
 
@@ -162,6 +252,15 @@ Every drawing command (`GiColorRect`, `GiNormal`, `GiPolyGT4T`, `GiPrim`, `GiScr
   table `0209E6B0`) at `+0xD0`, and the record `002D7EE0(+0xF8)` returns at `+0xD8` and its dword `+8` at `+0xE0`.
 - `GiZNormalOnOff` (`00864D70`) calls `00210560` with 0 or `0x70000` by its `+0x08` and sets device
   state through `+0xA0`, `+0x88` and `+0xA8`.
+
+- `0039D410(value)` takes the `GiZNormalOnOff` command from its factory `00864E00`, stores the
+  value at its `+0x08`, and files it with `00864E60(2)`, which runs `001FB840` and
+  `0020E630(02EB3820, mode)` on the class's node.
+- `GiPrim`'s factory `008642A0(node, n)` gives the command three arrays of `n` 16-byte entries from
+  the command arena through `00864210`: positions at `+0x08`, texture coordinates at `+0x10` and
+  colours at `+0x18`, with `n` at `+0x60`. It returns the command plus 8, the address of the
+  first array pointer.
+
 - The reset commands' executes (`001F3210`, `001F3260`) never read the command: they call
   `00188730` (default target) or `001893C0` on the render manager, closing and reopening the
   context's bit-0 bracket (`00609710`, `00600A60(ctx, 3)`, `005FEFD0(ctx, 0)`) around it.
@@ -183,6 +282,40 @@ discards them.
 Producers read for this page: `0x2F` `005FEA50`, `0x16` `005FEFD0`, `0x18` `00600A60`, `0x01` and
 `0x02` `0060C020`, `0x03` `006007B0`, `0x25` `0060E810`. The full opcode table is
 `gi-render-commands-render-block-opcode-isa.tsv`.
+
+### Target binds and clear values
+
+A target view is 24 bytes: `005DC190(view, target, flag)` stores the target at `+0x00`, 0 at
+`+0x08` and `+0x10`, and the flag at `+0x0C`; `005DC1B0(view)` zeroes it.
+
+- `0060D4F0(ctx, view, slot)` refuses a slot above 7 (3) and any bind while bit 0 of `+0x08` is
+  set (`0x16`). It keeps the view at `ctx + 0x140 + 0x18 × slot`, sets bit `slot` of byte `+0x218`
+  (a null view clears it) and takes the target's width and height into `+0x14` and `+0x18` (the
+  back buffer's from `005FD050` for a null target).
+- It then copies the view into the ring's data area and posts block `0x0E` with the copy's address
+  at `+0x08` and the slot at `+0x10`.
+- `0060DB50(ctx, view)` does the same for the depth target: `+0x200`, the byte `+0x219`, block
+  `0x0F`.
+- On the render thread the `0x0E` arm `0060D4A0(state, view, slot)` keeps the view at `+0x08 +
+  0x18 × slot` with bit `slot` of `+0xE0`, then tail-jumps `006283E0`, which returns 5 for a slot
+  above 7 and stores the view, or a zeroed one from `005DC1B0` for a null view, at `+0x570 + 0x18 ×
+  slot`. The `0x0F` arm `0060DB10` keeps it at `+0xC8` with the byte `+0xE1` and tail-jumps
+  `00628630`, which stores it at `+0x630` the same way.
+
+`FastClearObj`'s execute `001F2FB0` unbinds slots 1 and 7, posts the clear colour from its
+`+0x18`–`+0x24` with `0060D190` (block `0x09`, kept at `+0x7C0`–`+0x7CC` by `00628220`) when its
+byte `+0x29` is set, and the depth value 1.0 with `0060D270` (block `0x0C`, kept at `+0x7D0` by
+`00628300`) when its byte `+0x28` is set. It then opens the bracket with `005FEFD0`, passing bit 0
+for colour and bit 1 for depth, and restores the default target (`00188730`).
+
+`00609A30(ctx)` posts block `0x2E`, which has no payload and whose arm does nothing. Its only
+producer is `001D5620(marker, ctx)`, which posts it when byte `+0x08` of the marker object is set;
+`RazorMarkerPopObj`'s execute `001F34E0` and several pass executes call it.
+
+`001889C0(manager)` binds what `00188730` binds in its ordinary arm, without the second colour
+target: the manager's target `+0xB08 + 8 × [+0xC30]` to slot 0, nothing to slots 1 and 7, the
+depth target `+0xB58`, and a viewport (`0060F6B0`) of the manager's size, or 3,840 × 2,160 while
+`+0xDB8` is set or `+0xC30` is 3. The post-process build `0018EEE0` calls it twice.
 
 ## Layouts
 

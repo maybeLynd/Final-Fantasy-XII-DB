@@ -69,8 +69,8 @@ words `+0x08` and `+0x0C` (`002FF0A3`-`002FF0D9`, `002FF505`-`002FF51E`):
 
 | Stats word | From row | From item | What it does |
 |---|---|---|---|
-| `+0x3C` | `+0x48` | `+0x08` | statuses the unit has as long as the source stays (status word 2) |
-| `+0x38` | `+0x4C` | `+0x0C` | statuses the unit cannot get: adding one to `+0x64` is refused (`0030E531`) |
+| `3C` | `+0x48` | `+0x08` | statuses the unit has as long as the source stays (status word 2) |
+| `38` | `+0x4C` | `+0x0C` | statuses the unit cannot get: adding one to `+0x64` is refused (`0030E531`) |
 
 The status write `0030E360` picks its word by mode (jump table `0030E88C`): modes 0, 1 and 2 clear a bit in
 `+0x64`, `+0x3C` and `+0x38`; modes 3, 4 and 5 set it, mode 3 refusing a status already in `+0x64` or in

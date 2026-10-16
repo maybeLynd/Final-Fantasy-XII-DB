@@ -66,6 +66,9 @@ Fades are one kind of screen effect. The pool holds 32 records of 0x70 bytes at 
 - A handle's top nibble is its class; class 8 is this pool. `0024DE70` (state) and `0024CFF0`
   (release) dispatch on it and reach `00375AE0` and `00375470`.
 
+- `00374930` clears the handle `+0x68` of all 32 records, which empties the pool. It runs when
+  effect group 8 is emptied (`0024C550(8)`).
+
 `00375500(stage)` draws, in pool order, every record of that stage whose class byte is enabled in
 `02EC07E0` and whose `+0x10` bit 0 is clear; kind 1 goes to `003740B0`. The frame bodies call it
 for stages 2, 3, 5 and 6 in the scene draw `0022B0B0` and stage 7 after `00376470`, so the stage,
@@ -96,6 +99,16 @@ frames `0022B8C0` and `0022BC20`) adds to the counter of every enabled record: 2
 30 fps time base, else 1. The duration is twice the frame count, so a fade lasts `frames`
 thirtieths of a second at either frame rate. The state query `00375AE0` answers 3 for a kind-1
 record while the counter is below the duration and 5 once it reaches it.
+
+The tick also asks `00374060(record)` about every kind-1 record and removes the record
+(`00375470`) when it answers 0. It answers 1 while byte `+0xDEF` of `[0209AC30]` is 0 (`00254A70`),
+bit `0x800` of `020926E4` is set and the record is not layer 3's, whose handle `002EF9F0(3)`
+returns (`002EF9F0(layer)` reads a fade record's first dword, the layer clamped into 0..6).
+Otherwise it answers 0 once the record has `+0x1C` bit 1 set and its counter `+0x6C` above
+`+0x24`, and 1 before that.
+
+`0022A040` answers 1 when a fade layer other than 3 is running (`002EFD20(layer)` = 1 for one of
+layers 0–2 and 4–6). The render thread's block `0x19` arm `006234A0` asks it.
 
 ### The per-tick poll
 

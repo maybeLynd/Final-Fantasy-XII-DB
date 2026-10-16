@@ -50,11 +50,11 @@ Five bytes of a unit's stats record hold its affinities, each a mask over the ei
 
 | Byte | Meaning | Equipment attribute byte | Enemy area row byte |
 |---|---|---|---|
-| `+0x40` | weak | `+0x13` | `+0x2C` |
-| `+0x41` | absorb | `+0x10` | `+0x29` |
-| `+0x42` | half | `+0x12` | `+0x2A` |
-| `+0x43` | immune | `+0x11` | `+0x2B` |
-| `+0x44` | potency | `+0x14` | `+0x2D` |
+| `40` | weak | `+0x13` | `+0x2C` |
+| `41` | absorb | `+0x10` | `+0x29` |
+| `42` | half | `+0x12` | `+0x2A` |
+| `43` | immune | `+0x11` | `+0x2B` |
+| `44` | potency | `+0x14` | `+0x2D` |
 
 The stats rebuild `002FEF30` clears them (`002FEFB9`-`002FEFC8`). For an enemy-side unit it then copies
 the five bytes of the unit's area row: the row of table `02EBF150` named by word `+0` of the unit's

@@ -98,13 +98,13 @@ storage class through these pointers ([script variables](../Scripts-And-Script-C
 
 | Slot field | Points at | Accessors on slot 0 |
 |---|---|---|
-| `+0x40` | payload + payload `+0x38` | |
-| `+0x48` | the persistent save payload: the `i16[256]` operand bank, then the script globals ([save data fields](../Saving-Loading-And-Settings/save-data-fields.md)) | `00264640(i)` reads and `0026ABA0(i, v)` writes entry `i < 0x100`; `00265270()` reads and `0026B730(v)` writes entry 0 |
-| `+0x50` | payload + payload `+0x48` | |
-| `+0x58` | `02099DF0`, 64 words | `00264D20(i)` reads and `0026ADC0(i, v)` writes entry `i < 0x40` |
-| `+0x60` | `02099FF0`, 32 words: the group persistent bank the save carries | `00264800(i)` reads and `0026AD10(i, v)` writes entry `i < 0x20` |
-| `+0x78` | payload + payload `+0x28`: the variable descriptor table | |
-| `+0x98` | `00264E30`, the resolver | |
+| `40` | payload + payload `+0x38` | |
+| `48` | the persistent save payload: the `i16[256]` operand bank, then the script globals ([save data fields](../Saving-Loading-And-Settings/save-data-fields.md)) | `00264640(i)` reads and `0026ABA0(i, v)` writes entry `i < 0x100`; `00265270()` reads and `0026B730(v)` writes entry 0 |
+| `50` | payload + payload `+0x48` | |
+| `58` | `02099DF0`, 64 words | `00264D20(i)` reads and `0026ADC0(i, v)` writes entry `i < 0x40` |
+| `60` | `02099FF0`, 32 words: the group persistent bank the save carries | `00264800(i)` reads and `0026AD10(i, v)` writes entry `i < 0x20` |
+| `78` | payload + payload `+0x28`: the variable descriptor table | |
+| `98` | `00264E30`, the resolver | |
 
 Every accessor requires slot 0's `+0x10` bit 0 and a non-null pointer, and returns 0 or does
 nothing otherwise; a rejected write is indistinguishable from a successful one.

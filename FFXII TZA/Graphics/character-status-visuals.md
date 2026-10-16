@@ -32,6 +32,11 @@ addresses: "003E7650, 02B59D80, 00320BB0, 0046FD00, 0046FFA0, 00470050, 004703F0
 bytes at `02B59D80`, one per battle-unit slot, skipping records whose word `+0` is 0. `003E7500` sets a record up: word
 `+0` = 1, `+4` = the character's render-record index, both blocks initialised with that index (`004700C0`, `0051E140`).
 
+Two readers give other code a record's dwords from `+0xC0`: `003E7D10(slot, n)` takes the record of a
+battle-unit slot when its word `+0` is set, and `003E7CD0(index, n)`, from `003B0C50` and `0046CC70`,
+the record whose `+4` is a render-record index; both return dword `+0xC0 + 4n`, and 0 while the byte
+`02B59D71` is set.
+
 For each record it reads the unit's status word through `00320BB0`: the OR of the stats record's `+0x64` and `+0x3C`
 ([Statuses](../Status-Effects-And-KO/statuses.md)). Stop is left out of the word while the unit's action id
 `+0x714` is `0x21E` or lower and its action phase `+0x6B4` is 9 or more, or while bit 24 of its flag word is set
@@ -63,6 +68,16 @@ the record's flag dword `+0xC0 + 4 × bit`. Then, changed or not, it runs the tw
 The arms are `0051E580`-`0051ECF0`, one pair per bit. The rig switches are on
 [Character rig and look](character-rig-and-look.md).
 
+The rig arms keep a word per status in the block they are given and reach the rig through the
+block's `+0x10`, the look controller (rig slot 2) for its byte `+0x1C`:
+
+| Status | Enter | Leave |
+|---|---|---|
+| Confuse | `0051E670`: `+0xD4` = 1; controller 3 on unless `+0xD0` (asleep); look byte `+0x1C` bit `0x4` set | `0051E620`: `+0xD4` = 0; controller 3 off; bit `0x4` cleared |
+| Sleep | `0051EA10`: `+0xD0` = 1; controller 3 off when confused; bit `0x2` set | `0051E9C0`: `+0xD0` = 0; controller 3 on when confused; bit `0x2` cleared |
+| Immobilize | `0051E740`: `+0xF8` = 1, `0051DBF0` on the block's `+0x70`, controller 7 on | `0051E700`: `+0xF8` = 0, `0051DDC0`, controller 7 off |
+| Float | `0051E840`: `+0x128` = 1, controller 6 on | `0051E800`: `+0x128` = 0, controller 6 off |
+
 ### The colour-look list
 
 Block `+0x20` keeps a fourteen-bit mask at `+0`. The add worker `0046FFA0` and the remove worker `00470050` set or clear
@@ -83,6 +98,11 @@ The update `0046FD00(block, render record, display deny, control deny)` runs eac
 Installing a look clears the changing bit, releases the block's two light handles `+8` and `+0xC`, sets the record
 mode and stores the look's step. Indexes 11 and 12 have no arm in the push; index 12 has a look, the tint with offset
 `(1.5, 2.0, 2.0)`.
+
+`003E75A0` resets every block in use of the 32 from `02B59D80`, and `003E7D50` one block. Each
+reset runs `00470000` on the block's `+0x20`, which clears the mask and the bits of byte `+7`
+above bit 0, sets the shown and wanted looks (`+4`, `+5`) to `0xFF` and releases the two lights
+`+8` and `+0xC` (`003ABCA0`), and then `0051DC60` on `+0x70`.
 
 ### The record mode
 
@@ -220,6 +240,43 @@ Bit 0 of the requester bytes comes from the `ctrldenystatus` and `dispdenystatus
 ([Time stop and freeze](../Engine-Core/time-stop-and-freeze.md)), bit 2 from the town flag
 ([Party control modes](../Engine-Core/party-control-modes.md)). Class 5 (byte `+7` = `0x80`) is the status
 lights, so display denial switches them off and lifts the dimming while the steps keep running.
+
+### Stretching the tables for 60 fps
+
+The pulse table, the two curves and the other frame tables from `01F20530` to `01F264AC` hold one entry per
+frame at 30 fps. When the game switches to the 60 fps time base (`001EDDC0`), `0033F020` doubles each
+table's frame count and resamples the table in place to twice its entries (`0046FBF0`, `00471100`,
+`00471330`, `004715F0`, `004718F0`, `00472580`, `00473210`).
+
+Four resamplers do the work. Each takes the table, the new entry count `n` and the number of channels per entry, copies the
+first `n / 2` entries aside, and writes entry `2k` as source entry `k` and entry `2k + 1` as the mean of
+source entries `k` and `k + 1`:
+
+| Resampler | Values | Past the last source entry |
+|---|---|---|
+| `0033E310` | `f32` | wraps to entry 0 (`(k + 1) mod n/2`) |
+| `0033E5E0` | `f32` | stops at `n − 1`; the last entry copies source entry `(n − 1) / 2` |
+| `0033E990` | signed bytes | wraps |
+| `0033ECE0` | unsigned bytes | stops, as `0033E5E0` |
+
+- `0046FBF0` doubles the counts `01F20530` to `01F2053C` and `01F20A98` and resamples the pulse table
+  `01F20AA0` among others with `0033E5E0`; `00471100` stretches the two curves `01F21F40` and `01F22030`
+  to 60 entries with `0033E310`.
+- `00471330`, `004715F0` and `004718F0` double their counts and resample their float tables with
+  `0033E310` and `0033E5E0`, and `004718F0` two byte tables with `0033ECE0`.
+
+The first of those counts, `01F20530` (50 in the file), sizes a curve of three floats per entry at
+`01F20540`. `0046FB40(t, out)` samples it at `t` from 0 to 1 (entry `t × (count − 1)`, clamped).
+
+Its one caller, `0042F030`, from the character pass `00426090`, walks 32 records of `0x30` bytes at
+`02CA48D0`, each live while its handle `+0x04` is set (`0042F190(handle)` clears it, and `0042F000`
+clears them all at start-up): a set trigger `+0x1C` starts a run of `30 × [01DFE0B4]` steps with the strength
+`trigger × [01DFE0BC]`, each step adds strength × the curve sample to the three floats `+0x20`–`+0x28`,
+and the record named by the word `+0x00` gets them at `+0x260`–`+0x268`, its per-axis scale.
+
+- `00472580` and `00473210` double eight and five counts, copy each to a byte beside the tables
+  (`01F240F0`, `01F264A8`), halve the floats beside them, and resample three-channel byte tables with
+  `0033E990`.
 
 ## Layouts
 

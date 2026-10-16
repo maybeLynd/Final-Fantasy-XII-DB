@@ -31,6 +31,13 @@ keeps the result at `+0x218 + 8 x i` of the render-parameter block, then configu
 (`0018D160`). The twelve entries are ten shaders and the two SMAA lookup textures. The twelve pass
 functions on [Post-processing](post-processing.md) draw with them.
 
+`CopyBuffer.fx.phyre` and `anisolighting.dds.phyre` are requested by their users. The
+render-manager installer `00186CD0` loads the first, with `D3D11` as the folder, through
+`001EEC80` for the colour-buffer copy pass. The model asset cache's constructor `001B9370` loads
+the second through `001BB190`, which makes the asset ready (`0063DA50`, `0063B010`), finds its
+first object list whose class is `PTexture2D` (`02CBB900`) or derives from it, and stores at the
+cache's `+0x00` the object address it computes from the list's `+0x60` and the class's `+0xF8`.
+
 ### The scene-parameter documents
 
 The values live in JSON inside the archive: `jsondata/init.json` holds the global defaults,

@@ -73,12 +73,12 @@ Gil Toss read it ([Weapon formulas](weapon-formulas.md)).
 
 | Context | Holds |
 |---|---|
-| `+0x00` | the action id |
-| `+0x04` | the source's statuses (`+0x64 \| +0x3C`) |
-| `+0x08` | the target's statuses |
-| `+0x10` | the result record |
-| `+0x18` | the target unit's byte `+0x55`, or -1 without a unit |
-| `+0x1A`-`+0x29` | the source's 128 effect bits, from both layers `+0x68` and `+0x78` |
+| `00` | the action id |
+| `04` | the source's statuses (`+0x64 \| +0x3C`) |
+| `08` | the target's statuses |
+| `10` | the result record |
+| `18` | the target unit's byte `+0x55`, or -1 without a unit |
+| `1A-29` | the source's 128 effect bits, from both layers `+0x68` and `+0x78` |
 
 Without a target unit, Reverse (status 12) is removed from `+0x08` and effect 15 from the merged bits
 (`00384896`-`0038489D`). When the result's bit 5 is set it also removes Reverse, Disease (16) and Reflect

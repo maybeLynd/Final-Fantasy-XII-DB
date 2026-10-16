@@ -143,11 +143,11 @@ The buffers are `0x566C0` apart, 48 bytes more than the image.
 
 | Image offset | Payload offset | Content |
 |---|---|---|
-| `+0x1244` | `+0x1044` | the active or pending area id (`00584210` stashes `+0x1244`-`+0x1254`) |
-| `+0x2200` | `+0x2000` | the copy of the battle-state block head that `00235AF0` compares |
-| `+0x8200` | `+0x8000` | the image-backed state block, `0x4818` bytes, bound to `020927C0` by `00253970`; its `+0x47E8` (image `+0xC9E8`) mirrors the play clock |
-| `+0x4E68C` | `+0x4E48C` | the battle-state block, 29,712 bytes, bound to `02EBF190` by `00233C10` (`00233C25`-`00233C33`) |
-| `+0xE200` | `+0xE000` | the finaliser's checksum copy |
+| `01244` | `+0x1044` | the active or pending area id (`00584210` stashes `+0x1244`-`+0x1254`) |
+| `02200` | `+0x2000` | the copy of the battle-state block head that `00235AF0` compares |
+| `08200` | `+0x8000` | the image-backed state block, `0x4818` bytes, bound to `020927C0` by `00253970`; its `+0x47E8` (image `+0xC9E8`) mirrors the play clock |
+| `4E68C` | `+0x4E48C` | the battle-state block, 29,712 bytes, bound to `02EBF190` by `00233C10` (`00233C25`-`00233C33`) |
+| `0E200` | `+0xE000` | the finaliser's checksum copy |
 
 ## Loader behaviour
 

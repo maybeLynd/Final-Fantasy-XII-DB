@@ -21,12 +21,12 @@ Every quest field is in the save payload, the bytes from `SaveImage_GetPersisten
 
 | Payload offset | Field | Size |
 |---|---|---|
-| `+0x1000` | ordered bits, bit *q* | 32 bytes |
-| `+0x1020` | cleared bits, bit *q* | 32 bytes |
-| `+0x1040` | quests cleared in total, at most `0xFFFF` | `u32` |
+| `1000` | ordered bits, bit *q* | 32 bytes |
+| `1020` | cleared bits, bit *q* | 32 bytes |
+| `1040` | quests cleared in total, at most `0xFFFF` | `u32` |
 | `+0x1064 + q` | scenario byte | 256 bytes |
 | `+0x1164 + 2q` | contract word; set to the field id when the quest is first ordered | 256 words |
-| `+0x1364` | OK bits, bit *q* | 32 bytes |
+| `1364` | OK bits, bit *q* | 32 bytes |
 
 The quest fields occupy `+0x1000`-`+0x1043` and `+0x1064`-`+0x1383`; the 32 bytes between them hold other save data,
 and the story flag banks begin at `+0x1384`.

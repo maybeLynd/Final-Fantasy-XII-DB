@@ -60,6 +60,24 @@ Kind 3 reads the global settings through `003ED0E0`: near `02EBB7E4`, far `02EBB
 record's float `+0x0C` is not 1.0 the floor becomes `255 - (255 - floor) x +0x0C`, kept in 0 to 256.
 The alpha is then `(far - w) x 255 / (far - near)` with `w` from mode 0, capped and floored as above.
 
+### Where the global settings come from
+
+The settings at `02EBB7E0` are the winner of a request round. A request is 16 bytes: a priority, the
+near and far distances, and a colour word whose top byte is the floor byte. `003ED170(request)`,
+from `00377520` and `003B6C70`, keeps the request at `02EBB7D0` when its priority is higher than the
+one kept. `003ED7F0(clear)`, from `0036F410` and `0036F530`, copies a kept request (priority 0 or
+more) to `02EBB7E0`–`02EBB7EF` and, when `clear` is non-zero, drops the kept priority to −1.
+
+The map's own request is built at `02EBB7C0` with priority 0 by `003ECCA0` while a map's settings are loaded
+(`02EBB808` and `0209A660` set). `003ECAC0(request, target, t)` moves it toward a target: for `t`
+above `0.99609375` it copies the target's near, far and colour, for `t` above `0.00390625` it
+interpolates them (the distances rounded, the colour channel by channel through `00466140` and
+`00466170`), and otherwise does nothing.
+
+`003ECE60` then scales the colour's red, green and blue by `0209A380`–`0209A388` times
+`0209A3D0`–`0209A3D8` where a product is below `0.99609375`, stores the colour at `022D8ED8` when
+`[0209A660]` is −1, and submits the request as `003ED170` does.
+
 ### The container's modifiers
 
 After the fade, the flag word `+0x368` of the container applies, in this order (each result clamped
