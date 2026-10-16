@@ -263,8 +263,8 @@ third.
 +0x10  u32  mode                  payload +0x1054: the mode argument (003145E0, 00314DA0)
 +0x14  i32  persistenceGroup      payload +0x1058: 00264F90(destinationField) (003145E0)
 +0x18  i32  loadedField           payload +0x105C: destinationField (003145E0, 00314530)
-+0x1C  u8   startSelector         payload +0x1060: read by 002620E0 when 0017D490() is not positive
-+0x1D  u8   pad61                 payload +0x1061: no reader among the functions on this page
++0x1C  u8   startSelector         payload +0x1060: 0 to 2, written by 0026D910 while +0x1D is 0 and passed to 00180620; read by 002620E0 when 0017D490() is not positive
++0x1D  u8   initPending           payload +0x1061: set to 1 by 00268320 and 0026D8F0, cleared by 0026D910 after it has written +0x1C
 +0x1E  u8   flags                 payload +0x1062: bit 5 cleared by 003145E0 and set by 00314530; bit 2 written by 00314D00; bits 0 and 7 read by the area-flag accessors
 +0x1F  u8   flags2                payload +0x1063: bits 4-5 the MP-regime override (area flags page); bit 6 selects payload +0x1534 as the music number (0026DE20)
 ```
