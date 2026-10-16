@@ -1,0 +1,218 @@
+---
+title: "Game application object: the root object, its vtable and the boot order"
+kind: "system"
+category: "Engine core"
+summary: "The root object of the running game: the static GameApplication at 01F7E350, its PhyreEngine base class and the thirty-one slot vtable it overrides, the archive mount and the window set-up the framework calls at start, the init job that builds the managers and closes the startup latch, the frame tick that drives the per-frame pump of thirteen singletons and the game step, and the pause flag and time scale the framework reads through it."
+addresses: ["0015BC40", "0017CC70", "0017CEB0", "0017CF30", "0017CCD0", "0017CDE0", "0017CDC0", "0017CE50", "0017D090", "0017D0C0", "0017D120", "0017D160", "0017D1A0", "0017D210", "0017CFD0", "0017D170", "0017CDF0", "0017CE20", "0017D1E0", "0017D000", "0017D4C0", "0017D650", "0017D670", "0017D6B0", "0017D6E0", "0022A490", "0022A580", "00189000", "00189120", "0019A0A0", "001A11B0", "001B7EE0", "001C18A0", "001C2F00", "001D8CD0", "001BDA50", "001C0D40", "001BBFC0", "001A98B0", "00199790", "001997D0", "001E0550", "001E0590", "001E05E0", "001E05F0", "0018A620", "0018A7D0", "00186230", "005C5230"]
+---
+
+# Game application object: the root object, its vtable and the boot order
+
+## What the player sees
+
+The moment the game finds its data. Everything a player ever sees comes through one archive,
+`FFXII_TZA.vbf`, opened once at start by the application object; a few steps later one byte is set
+that the rest of the application waits on. Before it is set the window exists but nothing runs;
+after it, every frame goes through the same tick: the managers are pumped in a fixed order, the
+game's own state machine advances, the screen fade is stepped, and the frame ends. Scaling the application's time passes through this object; a pause byte the framework keeps here
+is never read by the game.
+
+## How it works
+
+### The object and its class
+
+`GameApplication` is the static object at `01F7E350`, `0x1140` (4,416) bytes. Its static
+initialiser `0015BC40` runs the base constructor `00792350`, installs the vtable `008C5760`,
+clears the word at `+0x113C` (the latch and the run-once byte), registers the object with
+`007A1190(app, 0x9CA5)`, initialises two framework singletons (`01F2CDF8` and `01F2CE20` through
+their vtable slot 1 while `01F2CDF0` is clear) and registers the destructor `008A6970` with
+`atexit`.
+
+The deleting destructor, slot 0 (`0017CC70`), re-installs the vtable, runs the base
+destructor `00793250` and, with flag bit 0 set, frees: through the guarded indirect call with the size `0x1140` when bit
+2 is set, else `00584730(this)`.
+
+The base is `Phyre::PFramework::PApplication`: `00793250` writes its vtable `01CB2508` into
+`[this]`, and the RTTI chain names `PApplication` at displacement 0 and `Phyre::PBase` and
+`Phyre::PMemoryBase` at 8. The base vtable has the same 31 slots; the ten slots this class does not
+override (1, 12, 13, 17, 18, 19, 20, 28, 29, 30) hold the same addresses in both tables, slot 14 is a
+thunk to the base's own body, and slots 11, 26 and 27 are shared stubs in both. So the frame tick,
+the archive mount and the latch are game code overriding middleware entry points.
+
+### The vtable
+
+| Slot | Address | What it does |
+|---|---|---|
+| 0 | `0017CC70` | deleting destructor; states the size `0x1140` |
+| 2 | `0017CEB0` | the archive mount (below) |
+| 3 | `0017CF30` | window and device set-up; queues the init job |
+| 4 | `0017CCD0` | the frame tick (below) |
+| 5 | `0017CDE0` | a thunk to the empty stub: an explicitly empty override |
+| 6 | `0017CDC0` | shutdown: `0017D670` (`0019A120`, `001A11F0`, `001DC4E0`, `001993B0` on the input manager, `0022A090`, `0017DAC0(1)`) then the base's slot 6 `0079BF70` |
+| 7 | `0017CE50` | input: with a dialog open (`00228480`) it hands the input manager `00198790()` to `001967D0` and returns 0 without reading the latch; otherwise, latched, it calls the handler `00194AF0()` when one is set |
+| 8 | `0017D090` | render: 0 while unlatched, else `00187950` on the render manager `00189120()` |
+| 9 | `0017D0C0` | resize: copies the viewport size `+0xD24`/`+0xD28` into the render manager's `+0xAD8`/`+0xADC`, then the base's `007A05D0` |
+| 10 | `0017D120` | sets the render manager's byte `+0` to 1 |
+| 14 | `0017D160` | the base's `007A0B40`: stores the argument byte at `+0x27` |
+| 15, 25 | `0017D1A0`, `0017D1E0` | forward a byte to the input manager (`001989D0`, `00198E70`) |
+| 16 | `0017D210` | `00227D40(byte)` |
+| 21, 22 | `0017CFD0`, `0017D170` | read and write the pause byte at `01F810F0` (`00199780`, `001997E0`); nothing in the game tests it |
+| 23, 24 | `0017CDF0`, `0017CE20` | the base's `0079D560` and `0079D5B0` times the time scale `0017E440()` |
+| 1, 12, 13, 17-20, 28-30 | the base's | inherited unchanged |
+| 11, 26, 27 | `005C5230`, `0016D6A0`, `005C5230` | the shared return-zero and return stubs |
+
+### The boot order
+
+Slot 2, `0017CEB0(this, a, b)`, stores `a` at `+0x1130` and `b` at `+0x1138`, moves up three
+directories (`0059A770("../../..")`), runs `0019B190()`, mounts `../FFXII_TZA.vbf` on the file system `0019B1F0()`
+(`0019B070`), runs the early set-up `0017D6B0` (`0017DAC0(0)`, `001DDA70`, `001D6BE0`, `001BE3E0`,
+`0019CDE0`, the debug display `001C2F00`, `001DBA40`) and `00182F70` with the viewport size
+`+0xD24`/`+0xD28`. The archive path is relative to the executable.
+
+Slot 3, `0017CF30`, configures the device (`0018D850` with `00193D50()`, `00182EB0()`, `00182E80()`
+and the device byte `+0xD48` of `00796E20()`), ensures the two `AsyncJobManager` instances
+(`0019A0A0`: `01F810F8` and `01F81100`, `0x158` bytes each, flags 0 and 1), and queues a job node
+`{0017D150, this}` on the first (`00199F10`, `0019A000`).
+
+That job runs `0017D000(app)`: the
+manager-init burst `0017D4C0`, the `0x80`-byte object at `01F7E340` (`0018A840`), the render
+manager (`00189000(app + 0xE8, app + 0x90, +0xD24, +0xD28, [01FD4A9C])`, `0xDD8` bytes at `01F7F598`),
+and then the latch: `+0x113C = 1`. Nothing clears it afterwards.
+
+`0017D4C0(b, a)` builds the managers in order: `001DB500`, the pause flag (`00199790`), four small
+objects at `01F7F4C0` (`0x20`), `01F7F4C8` (`0xC0`), `01F7F4D0` (`0x10`) and `01F7F4D8` (`0xA0`), the
+`AsyncLoadManager` (`001A11B0`), `00198750`, `0019EF40`, `001B6BC0`, `001B29F0`, the movie player
+(`001B7EE0`, then `001B7850`), the `SaveloadManager` (`001C18A0`, `001C1710`, `001C1940`), `001B5F10`,
+`001D6990`, `001D8150`, `001D89D0`, `001831A0`, and the startup constants `0022A0B0(b, a)`
+(startup constants).
+
+After the constants come `001B1BA0`, `001B1580`, `0022A4B0`, the screen fade
+(`001D8CD0`), a `0x10`-byte object at `01F7F4E0` (`001D5600`), `001AD3E0`, the procedural-texture
+context (`001C0D40`), `001D62D0`, `00194AB0`, `00194AA0(00194AF0())` and `001DB1E0`.
+
+### The frame tick
+
+Slot 4, `0017CCD0`, returns 0 through the stub while the latch is clear. Otherwise it takes the
+frame delta, the double at `+0x48`, ensures the camera-pair object `01F7F5D0` (`0018A620`, `0x270`
+bytes with two `Phyre::PCameraPerspective` members; the first `0018A670` call hands it the delta), reads the running byte at `[0018A7D0()]`
+(the three-byte object `01F7F5D8`), and on its first call runs `0017D650` (`001D6C00`, `001BE3E0`)
+and sets the run-once byte `+0x113D`. The two calls to `0018A670` around that read are a thunk to
+the byte getter `00229F90` (`01FD49ED`) whose arguments are unused.
+
+With the running byte clear the pump runs in mode 0. With it set and `01FD4A88` set, the object
+`01F7F5E0` is reset (`0018B040`: `0018B3F0(obj, 0)`, `+0x24` = 0, `+0x2C` = -1), every element of the
+vector `01F7F5E8` is destroyed through its vtable slot 0 and the vector emptied (`0018B810`), the
+pump runs in mode 0 and `01FD4A88` is cleared; with it set and `01FD4A88` clear the pump runs in
+mode 1. A pump result of 0 returns 9; anything else returns 0.
+
+`0017D6E0(dt, mode)` is the pump. It clears `01F7F4B8`, runs the render manager's deferred
+callback ring (`00186230`: one of four slots at `+0xC38`, index `+0xCB8`) while `01FD4A68` is clear,
+and then loops over passes:
+
+1. `0022CB90()`; when the pacing predicate `001E05F0` holds and this is not the second pass,
+   `001E0550` arms `01F82D31` and clears `01F82D30`. The predicate, with `01E02801` set, runs
+   `001E03F0()` and holds when `00187540` on the render manager returns 0 and `001E04F0()` is at or
+   below `01F82D28`; with `01E02801` clear it resets `01DFDDF8` to the largest double and `01F82D28`
+   to 0 and fails;
+2. the pause byte's getter `001997D0` is called and its result handed to the return stub
+   `0016D6A0`, a compiled-out hook; `01F7F4B0 = dt`; `001A1460(01F7F4C0)`; `001DB600()`; the render manager's `00189CE0` and `00189570`;
+3. the recycle queue `001BDAC0` (`01F81248`), the `AsyncLoadManager` `001A1310` (`01F81160`), the
+   `AsyncJobManager` through its vtable (`0019A170()`), the map-art context `001A9ED0(ctx, dt)`
+   (`01F81168`), the procedural-texture context `001C0DD0` (`01F81258`), the model asset cache
+   `001BC190` (`01F81240`), `001CC600()`;
+4. the movie player `001B8400(player, dt)` (`01F81218`: `+4` is the status
+   `getmoviestatus` reads through `00184860`, `001B82F0` starts a movie);
+5. the game step `0022A490(dt, mode != 0)`: it stores the mode at `02064AA0`, runs the main state
+   machine `0022A580` (states 0 to 6 at `02064AD3`, frame update order)
+   and increments `02064AD0` when `0022A580` returns non-zero; `0022A490` returns nothing of its
+   own, so the pump's result is `0022A580`'s register value surviving the increment;
+6. `001D8AB0(001D8A60(), dt)`, the `SaveloadManager` `001C1910` (`01F81260`), the screen fade
+   `001D9080` (`01F82CE0`), and the `MultipleDebugDisplay` (`01F81270`): `0022FFE0` when its byte
+   `+0x463C` is set, then `001C2F50`;
+7. when `01F82D30` is clear the pump returns (`001E0560`, at the end of `0022A580`, sets it when
+   `01F82D31` was armed; states 4 and 6 also call `001E0580` before their handlers); otherwise the frame-end reset `001E0590` runs
+   (`00185D80` on the render manager, `0018B040(01F7F5E0)`, `0018C8F0(01F7F5E8)`, `001DB620`,
+   `001A14D0(01F7F4C0)`, both bytes cleared), `01F7F4B8` is set, `dt` becomes 0 and the next pass
+   starts.
+
+Each pumped object is a lazily built singleton: a global pointer, an ensure function that
+allocates a fixed size and constructs on first use, and a getter. The screen fade `01F82CE0` is a
+`0x38`-byte record built disabled (`+0` = 0, `+0x10` = 3) whose update steps a level `+0x1C` by
+`+0x20` up (mode 0) or down (mode 1) and clamps at 255 (screen fade).
+
+## Layouts
+
+```
+GameApplication  (static, 01F7E350, 0x1140 bytes; base Phyre::PFramework::PApplication)
++0x000  ptr     vtable 008C5760
++0x027  u8      base byte written by slot 14
++0x048  f64     frame delta, read by the tick
++0x090, +0x0E8  passed to the render manager's constructor
++0xD24  i32     viewport width       +0xD28  i32  viewport height
++0x1130 ptr     slot 2's first argument   +0x1138 i32  slot 2's second argument
++0x113C u8      startup latch: 0 until the init job finishes, 1 after
++0x113D u8      run-once guard of the frame tick
+
+vtables
+008C5760  GameApplication, 31 slots (table above)
+01CB2508  Phyre::PFramework::PApplication, 31 slots; RTTI locator at 01CB2500
+
+globals
+01F7E340  ptr   0x80-byte object built by the init job
+01F7F4B0  f64   the frame delta published by the pump   01F7F4B8 u8 second pass flag
+01F7F4C0 / 01F7F4C8 / 01F7F4D0 / 01F7F4D8 / 01F7F4E0  the small objects of the init burst
+01F7F598  ptr   render manager (0xDD8)       01F7F5D0 ptr camera pair (0x270)   01F7F5D8 ptr running byte (3)
+01F7F5E0 / 01F7F5E8  the object reset and the vector emptied on the 01FD4A88 path
+01F810F0  ptr   pause flag (1 byte)          01F810F8 / 01F81100  AsyncJobManager (0x158 each)
+01F81160  ptr   AsyncLoadManager             01F81168 ptr map-art context (0x520; 01F81170 its 0xA0 list)
+01F81218  ptr   movie player (0xBB8; a PCameraPerspective at +0x5A0)        01F81240 ptr model asset cache (0x238)
+01F81248  ptr   recycle queue (0x108)        01F81258 ptr procedural-texture context (0x1B8)
+01F81260  ptr   SaveloadManager (0xA78)      01F81270 ptr MultipleDebugDisplay (0x4670)
+01F82CE0  ptr   screen fade (0x38)           01F82D30 / 01F82D31  u8 second-pass latch pair: armed by 001E0550, set by 001E0560, cleared by 001E0590
+01FD4A68  u32   written by the main state machine; gates the callback ring and the pass count
+01FD4A88  u8    the reset-then-pump request   02064AA0 u32 the pump mode   02064AD0 u8 game step count
+```
+
+## Shipped data
+
+| Fact | Value |
+|---|---|
+| object size | `0x1140` = 4,416 bytes, the immediate of the sized delete in slot 0 |
+| archive path | `"../FFXII_TZA.vbf"` after `"../../.."` |
+| registration key | `0x9CA5` in the static initialiser |
+| vtable | 31 slots; 18 overridden, 10 inherited, 3 stubs |
+| base RTTI | `.?AVPApplication@PFramework@Phyre@@` at `01F47628` |
+| singleton classes | `AsyncJobManager`, `AsyncLoadManager`, `Phyre::PCameraPerspective` (the movie player's camera), `SaveloadManager`, `MultipleDebugDisplay`, from the vtables their constructors install |
+| procedural-texture context | loads `./GameData/D3D11/ArtData/map/proceduralTexture/proceduralTexture_D3D11.ah` and `proceduralTextureConfigs.txt` |
+
+## Operations
+
+At start: the framework calls slot 2 (mount), slot 3 (device and the init job); the job builds the
+managers and closes the latch. Every frame: the framework calls slot 4 (the pump, the game step,
+the frame end), slot 7 (input) and slot 8 (render), each gated on the latch. Slots 21 and 22 store
+and read back the unused pause byte; slots 23 and 24 scale the framework's time by `0017E440()`.
+
+## State
+
+The latch and the run-once byte; the thirteen singleton pointers and the objects behind them; the
+published frame delta and the second-pass flag; the pump mode and the game-step count.
+
+## Modding notes
+
+- Anything driving the application before the latch is set finds slots 4 and 8 returning at once
+  and slot 7 serving only an open dialog.
+- The archive path is relative, so relocating the executable away from the archive breaks the
+  mount.
+- Slot 5 is deliberately empty, not missing; a hook that expects an unimplemented slot there finds
+  a thunk to the stub.
+- A second pump pass runs only while `01F82D30` is set by the pacing predicate; the game step then
+  sees a delta of 0 on the second pass.
+- The pause byte behind `01F810F0` has no consumer: its getter's only callers are the two slots and
+  the pump's compiled-out hook, so a pause has to be done elsewhere.
+
+## Related
+
+- Startup constants: what `0022A0B0` fixes at boot.
+- Frame update order: the main state machine `0022A580` and the field
+  frame.
+- Class hierarchy: the RTTI the base class name comes from.
