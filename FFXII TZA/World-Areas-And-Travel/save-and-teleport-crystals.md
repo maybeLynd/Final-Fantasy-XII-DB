@@ -379,4 +379,4 @@ The common effect table `01EF9400` holds `0x72, 0x73, 0x74, 0x75, 0x76, 0x88, 0x
 - [Field runtime](../Characters-And-Objects/field-runtime.md): the field-settled sequence that repeats the arrival calls.
 - [NPC names](../Characters-And-Objects/npc-names.md): the crystal's name tag.
 - [Chocobos and airships](chocobos-and-airships.md): the dismount the teleport performs.
-- Where a player can respawn: what a party wipe does instead.
+- [Game over](game-over.md): what a party wipe does instead.

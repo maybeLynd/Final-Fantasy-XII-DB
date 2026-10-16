@@ -283,4 +283,4 @@ Counts over the 1,114 `us` zone and event scripts. Five scripts spend the Gysahl
 - [Actor record](../Characters-And-Objects/actor-record.md): the roster entries and the actor byte `+0x0B`.
 - The music control file and the BGM stream: tracks `0x5A` and `0x5B`.
 - [Area flags](area-flags-navimapdata.md): the town bit the ladder ranks above riding.
-- Where a player can respawn: what a party wipe does.
+- [Game over](game-over.md): what a party wipe does.

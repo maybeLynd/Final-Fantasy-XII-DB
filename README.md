@@ -22,6 +22,7 @@ Addresses are virtual addresses in the shipping `FFXII_TZA.exe` (SHA-256
 - [World, areas and travel](FFXII%20TZA/World-Areas-And-Travel/README.md) - Areas and zone changes, the per-area map information table, weather, save crystals, teleports, chocobos and airships.
 - [Characters and objects](FFXII%20TZA/Characters-And-Objects/README.md) - The records behind every character, enemy and object in an area, and how they are created, identified and removed.
 - [Enemy spawning](FFXII%20TZA/Enemy-Spawning/README.md) - When and where enemies appear, respawn and are removed.
+- [Movement and pathfinding](FFXII%20TZA/Movement-And-Pathfinding/README.md) - How characters and enemies move, turn, follow, avoid obstacles and find paths.
 - [Battle actions](FFXII%20TZA/Battle-Actions/README.md) - How an attack, spell, technick or item use is chosen, charged, targeted and carried out.
 - [Damage and battle formulas](FFXII%20TZA/Damage-And-Battle-Formulas/README.md) - Damage, healing, hit, evade and other battle calculations.
 - [Enemy AI and gambits](FFXII%20TZA/Enemy-AI-And-Gambits/README.md) - How enemies choose what to do, and how the party's gambits are evaluated.
