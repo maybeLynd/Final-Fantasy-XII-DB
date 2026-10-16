@@ -1,0 +1,199 @@
+---
+title: "PS2-era .bin families: every .bin file family under ps2data, the loader that reads it and what it holds"
+kind: "reference"
+category: "Game files and data tables"
+summary: "One row per .bin family in the archive's ps2data tree (146 families, 1,439 files): its locales and size, leading bytes, the resource kind and id the path arrays give it, which locale copies the executable names and which copy each of the twelve languages reads, the function that requests it, what it holds and the page that covers it. Also the shared pack directory, the 20 families no path names, and the loose battle tables that repeat battle_pack.bin entries."
+addresses: ["002DF9A0", "01E0280C", "0032E400", "0032E620", "00249210", "00249180", "00384420", "002368D0", "00238260", "002385D0", "01E09F68", "00378540", "00268750", "002467A0", "00246A10", "00280750", "00280670", "002808D0", "00280980", "00280AD0", "003658F0", "003643A0", "0039C3F0", "0039C150", "0036FFF0", "0037CCC0", "00259DF0", "003DCBC0", "0029CED0", "002C8EE0", "00291C80", "00561390"]
+---
+
+# PS2-era .bin families: every .bin file family under ps2data, the loader that reads it and what it holds
+
+## What it lists
+
+Every `.bin` file in the archive is under `ps2data/`: 1,439 files, 2,481,360,070 bytes. A family is one
+file name with the language folder and digit runs folded, so `menumap_sub00.bin` to `menumap_sub47.bin`
+in nine languages are one row; there are 146 families.
+
+For each family the list gives how the executable reaches it and what the bytes are. Families that
+another page documents carry that page; the rest are described in the row and, where there is more to say,
+in the sections below. The six small tables are on [their own page](small-bin-tables.md).
+
+## Columns
+
+| Column | Meaning |
+|---|---|
+| `family` | path under `ps2data/image/ff12/` (or `ps2data/` for `add_motion`), `<lang>` for the language folder, `#` for a digit run (except the literal `tex2pack`) |
+| `files` | shipped files in the family |
+| `locales` | language folders the family ships in; `common` when the path has none |
+| `bytes` | total size of the family's files |
+| `lead` | the first four bytes as ASCII when printable, else as a little-endian dword; `varies` when the copies differ |
+| `kind_id` | resource kind and ids, `kind/ids`, from the path arrays `002DF9A0` installs, counting only entries whose `.fst` size equals the shipped file |
+| `named` | locale copies whose path occurs as a string in the executable |
+| `read_by` | for each copy, the languages whose arrays and size table resolve to it; `—` when none does |
+| `loader` | the function that requests the file, with the id base when the id is computed; `literal path` for a loader that opens a path string; `—` when no call site passes the family's kind and id as a constant or a constant base |
+| `holds` | what the bytes are, measured from the shipped files |
+| `page` | the page that documents the family, relative to this one; `—` when this page is the description |
+
+## Data
+
+[`ps2data-bin-families.tsv`](ps2data-bin-families.tsv), 146 rows.
+
+| Fact | Value |
+|---|---|
+| families, files | 146, 1,439 |
+| families by language set | 50 in all nine language folders, 41 in `ch`, `cn`, `in`, `kr`, 24 in `ch` and `in`, 13 in `cn` and `kr`, 10 with no language folder, 4 in nine plus `in_sdver`, 2 in six, 1 in three, 1 in `in` and `us` |
+| files the executable names | 1,256 |
+| files some language reads through a path array | 1,250 |
+| families with no copy named | 20, 41 files |
+| families with a loader | 81; two of them through a literal path |
+| families with no loader | 65: the 20 unnamed ones, 40 loose battle tables, and five more |
+| families documented on another page | 114 |
+
+### How a family is reached
+
+- **Path arrays.** `002DF9A0` installs 41 path-array pointers at `0215F000`. Kinds 1, 2, 5, 7, 8, 9 and
+  12 get a per-language array; the others are shared. The `.fst` gives each entry's size, and the
+  request path takes a file by kind and id ([file size tables](file-size-tables-fst.md)).
+- **Which copy.** In 47 families only the `in` copy is named, read by most languages, and the `ch`
+  copy, read by Korean and the two Chinese languages: `questbase.bin`, the two `mapjumpgroup` files,
+  `navimapdata.bin`, `menuhandbook.bin`, `menuhandbook_order.bin` and the loose battle tables. Their
+  other language copies ship but no path names them. Japanese, ASIA and IN read the `in` copy of the
+  per-language families.
+- **Italian fonts.** The `it` copies of `fontpack_fs.bin` and `fontpack_it.bin` are not named; Italian
+  reads the `us` copies, as do French, German, Spanish and UK.
+- **UK.** For 39 named families the UK arrays name a `uk` copy, among them `battle_pack.bin`, the text
+  groups, `npcdic.bin`, `planmapname.bin` and the menu-map files. No `uk` folder ships and the UK size
+  table marks those entries −1, so in UK those files are never read.
+- **`in_sdver`.** The `in_sdver` copies of the four `*pack_ys` files, like the other `in_sdver` paths,
+  are named only in a replacement list `002DF9A0` writes over the kind 7 array when its second argument is 0.
+  That argument is the dword `01E0280C`, which the image initialises to 1 and no instruction writes
+  (its readers are `0022A0B0`, which passes it, and `002465D0`); the replacement never runs.
+
+### Request entries
+
+The `loader` column comes from every call of the request entries, with kind and id followed back to
+their constants: `0032E400` (size) and `0032E620` (request), `0051ED10`, `0024AB90`, the menu-set
+wrappers `00249180`, `00249210`, `00249320`, `00249350`, `00249380`, `002493D0` (kind in `edx`, id in
+`r8d`), and the kind-2 entry `00384420` (id in `ecx`). Computed ids were read from the callers' bodies:
+
+| Loader | Id | Family |
+|---|---|---|
+| `002385D0` | the byte table `01E09F68[group]` (`0xFF`, 20-23, 1, 43-56, 24, 25, 62-67) | text groups 1 to 27 |
+| `00238260` | `0x47 +` board | `board_1.bin` to `board_12.bin` |
+| `002EA530` | `0x0B +` i, i = 0 to 9 | `charseinfo_*.bin` |
+| `002CEAE0` | `0x10 +` byte `[0209AC30] + 0xB2D` | `face_guest#.bin` |
+| `003C9950` | `0x0E +` byte `+0xC1` of its object | `map_efe#.bin` |
+| `00291C80` | `0x98` to `0xA1` | `itemgra_c.tm2`, `item_clut.bin`, `Item_Gra00` to `07.as7` |
+| `002C8EE0` | `0x74`, `0x75` | `monotone_chr.bin`, `Char_Silhouette.as7` |
+| `003800D0` | `0x12A +` n, or `0x129` | `menuquest#.bin`, `menuquest.nfs` |
+| `00575C30` | the six-entry table `00D23740` | the six `hctg` handbook files |
+| `003C1DF0` | `0x496 +` n | `menumap_guide#.bin` |
+| `003C1F00` | `0x142 +` n | `menumap_sub#.bin` |
+
+The kind-2 entry `00384420` has three callers: the battle-pack load (`003843F0` from `002368D0` and
+`00236C30`, id `0x13`), the board load and the text-group load. No call site passes another kind-2 id,
+so the loose battle tables have no loader.
+
+### Pack directories
+
+The six `packfiles/*.bin` files share one container: a fixed directory of `u32` offsets from the file
+start, padded with `0xFFFFFFFF`, then the sub-files.
+
+```
++0x00  u32[16] or u32[32]  offset of each sub-file; the first entry equals the directory size
+                           (0x40 or 0x80), unused entries 0xFFFFFFFF
+```
+
+| File | Directory | Used entries | Contents | Binder and destination |
+|---|---|---|---|---|
+| `texpack_ys.bin` | 16 | 5 (4 in `in_sdver`) | TIM2 | `00246A10` binds entries 0-4 through `0024A1D0` into the five texture objects `002467A0` set up |
+| `tex2pack_ys.bin` | 16 | 11 | TIM2 | `00280670` binds entries 0-9 into `[0209AC30] + 0x338`..`0x380`; entry 10 is stored unbound at `+0x388` |
+| `mrppack_ys.bin` | 32 | 23 (21 in `in_sdver`) | MRP | `00280980` stores entries 0-22 at `[0209AC30] + 8 × i` and relocates each with `002A00F0` |
+| `clutpack_ys.bin` | 16 | 4 | CLT2 | `00280AD0` stores entries 0-3 at `[0209AC30] + 0x390`..`0x3A8` |
+| `fontpack_fs.bin` | 16 | 7 | font tables | `003643A0`: entry 0 to `+0x08` (rebased by `00366080`), 1 to `+0x190`, 2, 4, 5, 6 to `+0x110`, `+0x120`, `+0x128`, `+0x130` for faces `0xB`, `0xD`, `0xE`, `0xF`; the binder skips entry 3, which repeats entry 2's offset in all six files |
+| `fontpack_it.bin` | 16 | 6 | 2 TIM2, 4 tables | `0039C150`: entries 0-5 to `02AEE810`, `02AEE850`, `02AEE870`, `02AEE878`, `02AEE880`, `02AEE888`; entries 6 and 7, both `0xFFFFFFFF` in every file, would go to `02AEE848` and over `02AEE880` |
+
+The font-table destinations are relative to the font object `[022CBE00]`. No binder checks an entry
+against `0xFFFFFFFF` except `0039C150`'s entry 6, so a directory must keep every entry its binder reads.
+`002808D0` requests `mrppack_ys.bin` and `clutpack_ys.bin` without a callback; `00253780` calls
+`00280980`, which ends by calling `00280AD0`.
+
+### Families no path names
+
+20 families, 41 files, whose names occur nowhere in the executable and whose kind and id no array gives:
+
+- **Script sections.** `btlctrl.bin`, `ctrl.bin`, `evctrl.bin` and `mapctrl.bin` (`ch`, `in`) begin with
+  `0x8000000B`, the dword at the first section offset of every `.ebp` file: bare script sections without
+  the `EBP2` wrapper.
+- **`filelistlocalin.bin`.** The `ch` and `in` copies are identical: 38 section offsets, each section a
+  count and string offsets, over 24,358 PS2 disc paths rooted at `%`. Section 0 starts with
+  `%\cdi\in\system.cnf` and section 11 with `%\effect_finish\jp\magic\m0000.efx`, the first sized paths
+  of resource kinds 0 and 11.
+- **`katano/event.bin`.** Two nested `ashd` streams around a script section; the scheme is below.
+- **`menumap_sub#_e#.bin`.** Four `sloc` files (`in` and `us`) beside the named `menumap_sub#.bin`.
+- **Battle tables in `cn` and `kr` only.** Ten `st2e` tables, the two name tables and `logicpack.bin`.
+  The `cn` and `kr` copies of each are identical.
+
+The ten `st2e` headers read as `{tag, rows, row bytes, data offset}`:
+
+| File | Rows × bytes | Header covers |
+|---|---|---|
+| `basic_skill.bin`, `growth_rate.bin`, `unit_data.bin` | 1,345 × 56, 128 × 56, 495 × 84 | the whole file |
+| `actionchip_data.bin`, `bukitye_data.bin` | 0 × 8, 23 × 0 | none of the 32 bytes |
+| `mons_act.bin` | 359 × 0 | none of 11,756 bytes |
+| `mons_category.bin`, `mons_race.bin`, `object_data.bin`, `target_data.bin` | 16 × 2, 64 × 2, 66 × 8, 1,090 × 8 | 64 of 156, 160 of 444, 560 of 1,708, 8,752 of 39,000 bytes |
+
+`basic_skill_basic_skill_name.bin` and `growth_rate_growth_rate_name.bin` hold one UTF-16LE string per
+row of their `st2e` sibling (1,345 and 128), Japanese designer labels such as `LEVEL-00基本値` and
+`テスト成長値`. `logicpack.bin` has the same count-and-offsets frame over 1,310 records.
+
+The `ashd` scheme of `katano/event.bin`, decoded by the measurement script:
+
+```
++0x00  char[4]  "ashd"
++0x04  u32      0x2509        unused by the decoding
++0x08  u32      decoded size
++0x0C  tokens   even byte t:  copy the next t / 2 bytes
+                odd byte t:   u16 w = t | next << 8; copy (w >> 12) + 3 bytes from
+                              ((w >> 1) & 0x7FF) + 1 bytes back
+```
+
+The file decodes to exactly `0xB10` bytes, which are another `ashd` stream; that decodes to exactly
+`0x23E0` bytes, a script section tagged `0x80000002` with the time stamp `09/18 20:20:10` and the source name
+`event.src`.
+
+### Loose battle tables
+
+Under `test_battle/<lang>/binaryfile/`, 40 named families have no loader and repeat the bytes at an
+entry of the same language's `battle_pack.bin`, for the file's length, in some or all of their copies:
+the `in`, `ch`, `cn` and `kr` copies for most, every language's for `battle_message.bin` and `word.bin`,
+only `cn` and `kr` for `ability_data.bin`, `menkyo_data.bin` and `savemember_data.bin`, only `ch` and
+`in` for `action_data.bin`, and `in`, `cn` and `kr` for `horidashi.bin`.
+
+The game reads those
+tables from the pack ([authored data tables](authored-data-tables.md)). `license_data.bin` and
+`movie.bin` match no pack entry.
+
+### Named but not shipped
+
+The arrays also name `.bin` files the archive does not hold, with size −1 in every table: text group 27
+`menu05.bin` (kind 2, id 67), `npc_name.bin`, `questhint.bin` and `questhittext.bin` (kind 9, ids 29, 34,
+35), and further `menuquest03.bin` to `menuquest05.bin` and other kind 7 entries.
+
+## Related
+
+- [File size tables](file-size-tables-fst.md): the path arrays and the sizes behind `kind_id`.
+- [File requests and the read queue](file-requests-and-the-read-queue.md): the request entries.
+- [Bigfile archive](bigfile-archive.md): where the files are read from.
+- [Small .bin tables](small-bin-tables.md): footsteps, vibration, battle windows, the button legend,
+  quest texts and summon colours.
+- [Authored data tables](authored-data-tables.md): `battle_pack.bin` and the license boards.
+- [Battle and menu text tables](battle-text-tables.md): the text groups.
+- [Area battle data](ard-area-battle-data.md): the `.ard` files.
+- [Character sound tables](character-se-tables-chse.md), [TIM2 images](tim2-images.md) and
+  [UI typed lists](ui-typed-lists.md): the `charseinfo`, picture and MRP families.
+- The menu families: [as7 menu graphics](as7-menu-graphics.md),
+  [CL2 colour tables](cl2-menu-colour-tables.md), [MRP packages](mrp-menu-resource-packages.md),
+  [exfont bitmaps](btm-exfont-bitmaps.md), [bin_menu images](binmenu-images.md),
+  [menu map files](menu-map-files.md), [handbook files](handbook-files.md) and
+  [quest menu files](quest-menu-files.md).

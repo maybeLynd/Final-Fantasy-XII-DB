@@ -153,7 +153,7 @@ A `QHT0` entry, read by `00473CC0(entry, step)`:
 | `menuquest01.bin` | 45 records; 23,564 (`in`) to 39,760 (`de`) bytes; sections 0 and 1 empty, section 2 the hunt record |
 | `menuquest02.bin` | 2 records, 224 bytes, no text |
 | record counts | equal the `menuquest.dat` group counts in every language; `sectionAt[0] = 16 + 20 x count` and `sectionAt[5] + 28 x count` is the file size in all 27 files |
-| hunt records | every hunt's section-2 part count equals the largest value in its progress row, in all languages: 4 parts for 44 hunts, 5 for one |
+| hunt records | every hunt's section-2 part count equals the largest value in its progress row, in all languages: 4 parts for 42 hunts, 5 for three (ids 133, 167, 168) |
 | progress rows | non-decreasing in every file; every hunt shows its first part from progress 10, the later parts at 20 to 150 by hunt |
 | chunks | every record names one `QHD0` and one `QHT0` chunk of one entry; 567 `QHD0` entries of type 1 and 27 of type 0 over all files |
 | `menuquest.nfs` | 208 to 29,008 bytes ([TIM2 images](tim2-images.md)) |
