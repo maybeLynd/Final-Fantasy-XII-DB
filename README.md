@@ -39,3 +39,4 @@ Addresses are virtual addresses in the shipping `FFXII_TZA.exe` (SHA-256
 - [Sound and music](FFXII%20TZA/Sound-And-Music/README.md) - Sound effects, music and voice playback.
 - [Saving, loading and settings](FFXII%20TZA/Saving-Loading-And-Settings/README.md) - Save files, loading, the game options and language selection.
 - [Random numbers](FFXII%20TZA/Random-Numbers/README.md) - Every random number generator in the game, how each is seeded and which rolls use it.
+- [PKFL package files](FFXII%20TZA/PKFL-Package-Files/README.md) - The format of the PKFL package files.
