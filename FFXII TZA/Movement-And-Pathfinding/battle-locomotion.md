@@ -52,8 +52,10 @@ to the goal at `+0xC8`.
 When the goal kind `+0x160` is 3, or `+0x40` is 1 or 2, the target unit of the handle `+0x150`
 (`0031B7E0`, `003588B0`) is stored at `+0xF8`/`+0xE0`, its position at `+0x40`, its radius at
 `+0xA4`, its bearing at `+0xA8` and the distance to it at `+0xC8`. The stop distance `+0xAC` is
-`radius + targetRadius + 0.1` when `+0x40` is 1, else the block's `+0xD0`. For a unit with order
-`0x4124`, or `0x4022` with the force-fight mode on (`00253B90` non-zero), `0033D3E0(ctx, leader, 1)`
+`radius + targetRadius + 0.1` when `+0x40` is 1, else the block's `+0xD0`.
+
+For a unit with order
+`0x4124`, or `0x4022` while the party is fleeing (`00253B90` non-zero, [force fight mode](../Engine-Core/force-fight-mode.md)), `0033D3E0(ctx, leader, 1)`
 sets `+0xD0` bit 0 when it does not return 1: the leader is reachable in a straight walk.
 
 ### Which solver runs
@@ -86,13 +88,13 @@ Those three paths end in `0033BFB0`; a step claimed by
 `004686D0` ignores y):
 
 ```
-party unit (kind 0) with order 0x4022 and force-fight off        : return speedB (+0xFC)
+party unit (kind 0) with order 0x4022 while fighting (00253B90 zero) : return speedB (+0xFC)
 flags +0x170 bit 0 : speedA (+0xF8)     bit 1 : speedB
 goal kind +0x40 == 1, unit +0x768 >= +0x76C, d > stop (+0xD0)    : speedB
 rem = max(0, d - stop);  kind 2 also subtracts the actor's smaller radius + 0.5
 rem /= 7                      when the mover class +0x174 is 2 or more
-rem = dstart / 5 or * 0.25    when ctx +0xD0 bit 0, from the distance to +0x60 (force-fight on: * 0.25)
-rem /= 3 or 1.5               otherwise (force-fight on: 1.5)
+rem = dstart / 5 or * 0.25    when ctx +0xD0 bit 0, from the distance to +0x60 (fleeing: * 0.25; fighting: / 5)
+rem /= 3 or 1.5               otherwise (fleeing: 1.5; fighting: 3)
 v = rem * rem * speedB;  speed = clamp(v, speedA, speedB)
 speed > d                     : speed = d * 0.99
 ```
@@ -217,7 +219,7 @@ counts up to 60; when `0033C310` returned 2 the step is then claimed as well.
 route at 1, 2, ... 20 units ahead (`003347C0`) and takes the first point on the mesh as a detour
 (`+0xCC` bit 7, `+0x50`).
 
-`0033C310` runs under the same order gate (`0x4124`, or `0x4022` with force-fight on) with the
+`0033C310` runs under the same order gate (`0x4124`, or `0x4022` while fleeing) with the
 leader present and not animating a move and the remaining route under 6 units. When the unit's
 actor is active (`002EA7F0`) it lists the actors in the corridor (`00391D10` for a point,
 `003920F0` for a segment, 32 at most) and with any candidate or blocker among them zeroes the
@@ -309,7 +311,7 @@ solver context (stack, 0x110 bytes)
 |---|---|---|
 | `0.785398`, `2.0944`, `0.349066` | 45, 120, 20 degrees | the turn limiter's entry, escalation and release |
 | `1.0471976`, `2.617994`, `2.3561945` | 60, 150, 135 degrees | the mode 1 easing band, the detour and finalise thresholds |
-| 7, 5, 3, 1.5, 0.25 | the arrival divisors | by class, goal and force-fight mode |
+| 7, 5, 3, 1.5, 0.25 | the arrival divisors | by class, goal and the fleeing state |
 | 0.99 | the overshoot guard | |
 | 60 | frames | the stall counter's limit |
 | 5.0 (`009146E4`), 0.5 (`01CEBB70`), 3.0 (`008F311C`) | | the detour range and the pair margins |

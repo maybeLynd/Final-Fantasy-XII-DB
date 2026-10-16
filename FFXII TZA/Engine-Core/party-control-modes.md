@@ -182,8 +182,8 @@ thunks; the level-1 predicate has 7 direct and 9 through its thunk. The ones rea
 - the lock evaluator `0023B040` tests level 2, and at level 1 tests the summoner's unit
   (`0031B770(003137F0())`: no record, or status words holding `0x80000003` without the town flag,
   raises every lock bit); the input arbiter `00253C70` tests level 2.
-- `00309A90`: 24.0 while force-fight is off (`00253B90()` = 0), else 3.8 at level 1 and 2.2 at any
-  other level.
+- `00309A90`: 24.0 while the party is fighting (`00253B90()` = 0, [force fight
+  mode](force-fight-mode.md)), else 3.8 at level 1 and 2.2 at any other level while fleeing.
 - `00303CC0`: at level 2 only, the distance test `00336390` between the mount and the rider.
 - `00303F00` grants a turbo at level 2 only, spending one of the two charge bits, or refilling them
   to 3 while `0017D3A0()` holds.
