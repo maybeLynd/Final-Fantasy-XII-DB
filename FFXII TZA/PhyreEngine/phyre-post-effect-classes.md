@@ -128,7 +128,7 @@ PPostEffectBase (the fields the base slots use)
 ```
 
 The generated class table is
-[phyre-post-effect-classes-members.tsv](phyre-post-effect-classes-members.tsv). Instruction-level
+[phyre-post-effect-classes-posteffect-class-family.tsv](phyre-post-effect-classes-posteffect-class-family.tsv). Instruction-level
 access tables per class:
 
 | Class | Table |

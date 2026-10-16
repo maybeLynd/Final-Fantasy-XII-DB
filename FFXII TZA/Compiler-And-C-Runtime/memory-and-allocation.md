@@ -233,7 +233,7 @@ The cells are initialised data in the image; no instruction writes them.
 
 The six qwords at `01F2EA70`, just before the pair, are the head of an ordered tree of named Phyre
 `PAssetReference` objects; its accesses are listed in
-[`memory-and-allocation-asset-reference-registry-accesses.tsv`](memory-and-allocation-asset-reference-registry-accesses.tsv).
+[`memory-and-allocation-p-asset-reference-registry-01f2ea70-accesses.tsv`](memory-and-allocation-p-asset-reference-registry-01f2ea70-accesses.tsv).
 The head is six qwords that point at `01F2EA70` when the tree is empty, with the root at `+0x18`.
 It is built on first use, under the lock `02D3E880`, by a guarded one-time initialiser
 (`02D3EC9C`) that also registers `008B1C00` with `atexit`; that destructor clears the tree through
