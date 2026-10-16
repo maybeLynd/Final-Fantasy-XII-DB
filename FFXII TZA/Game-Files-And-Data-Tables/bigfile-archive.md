@@ -152,12 +152,12 @@ To repack `FFXII_TZA.vbf` so that the game accepts it:
 - Store each block as a zlib stream with its length in the block-size table, or raw: 0 for a full
   64 KiB block, or exactly `size & 0xFFFF` for an entry's last block. A compressed tail whose stream is
   exactly the tail's length would be read as raw, so store such a tail raw.
-- Recompute the MD5 of `0, indexSize)` into the last 16 bytes whenever the index changes. Replacing
+- Recompute the MD5 of `[0, indexSize)` into the last 16 bytes whenever the index changes. Replacing
   an entry's stored bytes in place with the same length leaves the index, and so the digest, unchanged.
 - A mod can mount up to four more archives through `0019B070`; slots are searched in order, so an
   earlier slot overrides a later one.
 
 ## Related
 
-- [How a path is resolved to bytes: the name normalisation and the two routes in front of the lookup.
+- [How a path is resolved to bytes](file-path-resolution.md): the name normalisation and the two routes in front of the lookup.
 - Prefetch manifests: the prefetch data in the archive.
