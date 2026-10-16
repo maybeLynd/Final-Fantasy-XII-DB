@@ -303,7 +303,7 @@ object, the loose effect bank and the two sound sections.
 - [Doors, gates and map changes: the override table the setmapid verbs write, what its floor, wall and mj bits block, the show and hide model masks and when a new map clears them](doors-gates-and-map-changes.md)
 - [How a unit finds its way across the navigation mesh](../Movement-And-Pathfinding/navigation-mesh-and-pathfinding.md)
 - [The map sound list](../Sound-And-Music/map-sounds.md)
-- The menu-map container
+- [The menu-map container](../Game-Files-And-Data-Tables/menu-map-files.md)
 - section_014, the LGT2 light set
 - The EFX and EFB effect containers
 - [MRP menu resource packages](../Game-Files-And-Data-Tables/mrp-menu-resource-packages.md)

@@ -183,7 +183,7 @@ cache manager   +0x00 limit, +0x10 usage, +0x18 owner (+0xE8 word), +0x20 key ma
 The formats behind them are on the
 handbook image bundles,
 handbook indexes,
-menu map container,
+[menu map container](menu-map-files.md),
 [character SE tables](character-se-tables-chse.md) and
 loader-bound bin families pages.
 
