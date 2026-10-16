@@ -57,8 +57,9 @@ Every entry is on exactly one doubly linked list through `+0x00` (previous) and 
 - **retired**, head `0215FD88`. The re-lister moves an entry here when its last holder lets go.
 
 `002EA320` (called from `00266D10`) also clears the other heads, fills the lane records, and
-registers the binding callbacks with `0041D6C0` (kinds 5, 4, 6, `0xC`, `0x26`) and the retire step
-`002E6D60` with `0036C5A0` (kinds 6 and 10).
+registers the binding callbacks with `0041D6C0` (kinds 5, 4, 6, `0xC`, `0x26`) and installs the retire
+step `002E6D60` as the allocation-pressure callback of memory arenas 6 and 10 (`0036C5A0`, arena
+record `+0xA0`).
 
 ### Find-or-create, holders and the reference count
 
@@ -98,9 +99,9 @@ out for the entry stops resolving at that moment.
 `0022B6E0`, `0022B7E0`, `0022B8C0` and `0022BC20`.
 
 In order it calls `003DC4A0`; runs the whole lane
-unload queue (`002E6900(1)`); releases the retired entries; runs the unload queue again; signals
-kinds 6 and 10 through `00369C60` when the retired list was not empty; clears `0215FD46`; runs the lane pump `002E6880` and the request
-pump `002E6700`; calls `003DD4C0`, `00369C60(6)`, `00369C60(10)` and `0037B2F0`; and finally calls,
+unload queue (`002E6900(1)`); releases the retired entries; runs the unload queue again; compacts
+memory arenas 6 and 10 (`00369C60`) when the retired list was not empty; clears `0215FD46`; runs the lane pump `002E6880` and the request
+pump `002E6700`; calls `003DD4C0`, compacts arenas 6 and 10 again, calls `0037B2F0`; and finally calls,
 once, the callback that `002EACC0` stored at `0215FD98` with the value at `021641F0`.
 
 Retired entries are released from the tail of the list (the oldest) towards the head. An entry whose
@@ -111,7 +112,7 @@ load handle `+0x10` is non-zero is first unloaded from the render system (`0041E
 An entry whose `+0x10` is 0 is not passed to `002E9360`: when the walk reaches the head it nulls
 `0215FD88`, so the entry ends up on no list and its slot is lost until `002EA320` runs again.
 
-`002E6D60`, the callback registered for kinds 6 and 10, unloads
+`002E6D60`, which arenas 6 and 10 call when an allocation in them fails, unloads
 the oldest queued lane record (`002E6900(0)`; with a non-zero argument `002E6900` runs the whole
 queue), then releases the single oldest retired entry the same way, and runs the queue once more
 when there was none. While the oldest retired entry has `+0x10` = 0 and is not alone on the list,
