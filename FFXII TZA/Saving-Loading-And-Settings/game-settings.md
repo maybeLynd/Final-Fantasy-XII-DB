@@ -342,11 +342,11 @@ bytes) and copies its bytes into the globals listed in the layout below.
 
 | Address | Width | Meaning | Written by |
 |---|---|---|---|
-| `01F82D20` | ptr | the settings object | `007980A0` |
-| `0215E6E0` | ptr | the in-game options record, `002536A0() + 8` inside the save image | `002DDE60` |
-| `01DFE0B4` / `01DFE0B8` / `01DFE0BC` | i32 / f32 / f32 | the time base | `001EDDC0` |
-| `01F82E38` | i32 | the 60 fps gate | `001EDDC0` |
-| `01E0C2A0` / `01E0C2A4` | u16 | confirm and cancel masks | `0022A4F0`, boot mode 0 |
+| `01F82D20` | `ptr` | the settings object | `007980A0` |
+| `0215E6E0` | `ptr` | the in-game options record, `002536A0() + 8` inside the save image | `002DDE60` |
+| `01DFE0B4` / `01DFE0B8` / `01DFE0BC` | `i32` / `f32` / `f32` | the time base | `001EDDC0` |
+| `01F82E38` | `i32` | the 60 fps gate | `001EDDC0` |
+| `01E0C2A0` / `01E0C2A4` | `u16` | confirm and cancel masks | `0022A4F0`, boot mode 0 |
 | `02B62DA8`-`02B62DC1` | bytes | the FF12CONFIG block | `00408BA0`, `00408C30` |
 
 ## Modding notes

@@ -42,11 +42,11 @@ A sprite is named by its atlas, a set, a group within the set and a frame within
 `eXt` block of the atlas's picture ([TIM2 images](../Game-Files-And-Data-Tables/tim2-images.md)). With `T` the
 picture header plus `0x30`:
 
-```
-groups  = T + 0x14 + u16[T + 0x14 + set x 2] x 2
-record  = T + u16[T + 0x10] + (u16[groups + group x 2] + frame) x 8
-palette = u8[T + u16[T + 0x12] + (record byte 7 >> 4)] + (record byte 7 & 0xF)
-```
+| Value | Formula | Code |
+|---|---|---|
+| groups | `T + 0x14 + u16[T + 0x14 + set x 2] x 2` |  |
+| record | `T + u16[T + 0x10] + (u16[groups + group x 2] + frame) x 8` |  |
+| palette | `u8[T + u16[T + 0x12] + (record byte 7 >> 4)] + (record byte 7 & 0xF)` |  |
 
 `0024B0C0(atlas, set << 8 | group, frame)` returns the record. Every helper below repeats the same arithmetic with its
 set and group fixed, and writes the palette byte to the widget's `+0x5C`. For an 8-bit atlas the draw adds that byte

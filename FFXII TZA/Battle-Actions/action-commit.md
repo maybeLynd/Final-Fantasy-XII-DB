@@ -119,14 +119,14 @@ still has bit 5, it clears the bit and calls `00305AB0(unit, 0)` when the unit:
 | Field | Width | Meaning | Written by |
 |---|---|---|---|
 | unit `+0x708` | `void*` | committed action data | `0030F7F9` |
-| unit `+0x710` | u32 | committed target handle | `0030F800` |
-| unit `+0x714` | u16 | committed action id | `0030F806` |
+| unit `+0x710` | `u32` | committed target handle | `0030F800` |
+| unit `+0x714` | `u16` | committed action id | `0030F806` |
 | unit `+0x718`-`+0x72F` | `u8[24]` | copy of `+0x700`-`+0x717` at commit | `0030F823`, `0030F82A` |
-| unit `+0x750` | u32 | the leader's own hostile target; read by `00301AD0` (`0030314F`, `00303176`) | `0030F931`; zeroed at `0030F8A3`; `00305E70` copies `+0x754` into it |
-| unit `+0x754` | u32 | the group leader's hostile target | `0030F8CF`, `0030F920` |
-| unit `+0xEA4` | u32 | attacker mask, one bit per `+0xEA9` index | `0030F962`; `003107EA` |
-| unit `+0xEA8` | u8 | attacker count | `0030F959` (+1); `003107DD` (-1) |
-| `022BE980` / `022BE981` | u8 | idle-queue read and write indices | `00313D1E` / `003086DA`; both zeroed by `0030FE60` (`0030FE7B`) |
+| unit `+0x750` | `u32` | the leader's own hostile target; read by `00301AD0` (`0030314F`, `00303176`) | `0030F931`; zeroed at `0030F8A3`; `00305E70` copies `+0x754` into it |
+| unit `+0x754` | `u32` | the group leader's hostile target | `0030F8CF`, `0030F920` |
+| unit `+0xEA4` | `u32` | attacker mask, one bit per `+0xEA9` index | `0030F962`; `003107EA` |
+| unit `+0xEA8` | `u8` | attacker count | `0030F959` (+1); `003107DD` (-1) |
+| `022BE980` / `022BE981` | `u8` | idle-queue read and write indices | `00313D1E` / `003086DA`; both zeroed by `0030FE60` (`0030FE7B`) |
 
 ## Related
 

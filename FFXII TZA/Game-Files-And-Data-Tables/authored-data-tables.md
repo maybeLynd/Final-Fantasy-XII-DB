@@ -106,9 +106,9 @@ otherwise. For `0xFF` it sets the board size `+0x559` to 0, so slot −1 is neve
 
 There is no shared accessor. Every reader computes, inline,
 
-```
-row = 0020E600([table + 0x0C]) + u16[table + 0x08] × index
-```
+| Value | Formula | Code |
+|---|---|---|
+| row | `0020E600([table + 0x0C]) + u16[table + 0x08] × index` |  |
 
 in 32-bit arithmetic (`003876D0`: `imul ecx, ebx; add ecx, eax`), so tables must lie below 4 GB.
 A null slot or a zero row reference gives a base of 0 and the read still happens: `003876D0`, the

@@ -227,10 +227,10 @@ while either is 0, and returns 2 when both are 2, 0 when either is 0, and 1 othe
   empty, and otherwise adds the weights of every pool entry in state 1, 2, 3 or 5 and the new
   effect's weight, and agrees when the sum is at most 24 (`002FCAC0`-`002FCB2B`).
 
-```
-weight(id) = u16 at 02EC19C4 + id * 8, bits 0-4
-fits       = sum(weight of the pool entries in states 1, 2, 3, 5) + weight(id) <= 24
-```
+| Value | Formula | Code |
+|---|---|---|
+| weight(id) | `u16 at 02EC19C4 + id * 8, bits 0-4` |  |
+| fits | `sum(weight of the pool entries in states 1, 2, 3, 5) + weight(id) <= 24` |  |
 
 Both caches take their animation set from `00325AD0(unit)`: for a party-side unit (stats `+0x05` =
 0) the byte at `T + u16[T] + 4` of the table `T` = `[02EBF180]`, otherwise the value `003202F0`
@@ -294,14 +294,14 @@ A presentation slot is `0x30` bytes; the 32 slots sit at `022C17B0` (`0030D078`)
 
 | Field | Width | Meaning |
 |---|---|---|
-| unit `+0x6B4` | u8 | phase, 0-12 |
-| unit `+0x760` / `+0x764` | i32 | delay progress / delay threshold |
-| unit `+0x768` / `+0x76C` | i32 | charge progress / charge limit |
-| unit `+0x770` | i32 | charge kept for a repeated order |
-| unit `+0x740` / `+0x744` | u32 / u16 | target handle and id of the last cancelled action |
-| `022BEDA0` / `022BEDA1` / `022BEDA4` | u8 / u8 / `u8[512]` | read index, write index and the show queue: 64 entries of 8 bytes, a unit id in each entry's first dword (`00304E5C`) |
+| unit `+0x6B4` | `u8` | phase, 0-12 |
+| unit `+0x760` / `+0x764` | `i32` | delay progress / delay threshold |
+| unit `+0x768` / `+0x76C` | `i32` | charge progress / charge limit |
+| unit `+0x770` | `i32` | charge kept for a repeated order |
+| unit `+0x740` / `+0x744` | `u32` / `u16` | target handle and id of the last cancelled action |
+| `022BEDA0` / `022BEDA1` / `022BEDA4` | `u8` / `u8` / `u8[512]` | read index, write index and the show queue: 64 entries of 8 bytes, a unit id in each entry's first dword (`00304E5C`) |
 | `02089350` | `void*` | the unit being shown |
-| unit `+0x694`-`+0x696` | u8 | presentation slot numbers, `0xFF` for none |
+| unit `+0x694`-`+0x696` | `u8` | presentation slot numbers, `0xFF` for none |
 | `022BE978` / `022BEB88` | `PresentationSlot*` | first and last slot of the chain |
 
 ## Modding notes

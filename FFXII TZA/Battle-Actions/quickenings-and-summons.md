@@ -139,14 +139,14 @@ called from `002341D0`, the area initialisation `00234397` and the slot release 
 
 | Global | Width | Meaning |
 |---|---|---|
-| `022C2160` | u32 | stage, 0-7 |
+| `022C2160` | `u32` | stage, 0-7 |
 | `022C2168` | `void*` | owner unit |
-| `022C215C` | u32 | kind, 1-7 |
-| `022C2158` | u32 | bit 0: scene ready (set by `00306560`) |
+| `022C215C` | `u32` | kind, 1-7 |
+| `022C2158` | `u32` | bit 0: scene ready (set by `00306560`) |
 | `022C1F50` | `u8[520]` | deferred HP list for Esper attacks and Quickenings |
-| `022BE970` | u32 | 1 while an Esper attack's scene plays |
-| `022C2178` / `022C218C` | u32 | Quickening index / its user's id |
-| `022C21B4` / `022C21B8` | u32 / `void*` | Quickening target count / the targets, one unit pointer per target from `022C21B8` on (`0030690D`) |
+| `022BE970` | `u32` | 1 while an Esper attack's scene plays |
+| `022C2178` / `022C218C` | `u32` | Quickening index / its user's id |
+| `022C21B4` / `022C21B8` | `u32` / `void*` | Quickening target count / the targets, one unit pointer per target from `022C21B8` on (`0030690D`) |
 
 ## Modding notes
 

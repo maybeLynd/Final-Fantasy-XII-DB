@@ -100,10 +100,10 @@ MP.", and the shipped equipment row with augment byte `+0x1A` = 32 is the Turtle
 
 Otherwise it returns `002F95D0(unit, action)`. With `b` the action row's byte `+0x0A`:
 
-```c
-cost = b                               // action ids 0xD0-0xE1 and 0x106-0x112
-cost = trunc(b * 64.0 / 50.0) * 10     // every other action
-```
+| Value | Formula | Code |
+|---|---|---|
+| cost | `b                               // action ids 0xD0-0xE1 and 0x106-0x112` |  |
+| cost | `trunc(b * 64.0 / 50.0) * 10     // every other action` |  |
 
 ### The gil a kill pays
 
@@ -160,12 +160,12 @@ verb `questresultwindow` (`0x37C`).
 
 | Address | Width | Meaning | Written by |
 |---|---|---|---|
-| `[02092758] + 0x08` | i32 | gil, 0-99,999,999 | `00254EE0` (`00254F1F`) |
-| `[020927C0] + 0x3860` | i32 | gil gained, saturating at `0x7FFFFFFF` | `00316BF0` for kind 6 |
-| `[020927C0] + 0x3864` | i32 | gil spent, saturating at `0x7FFFFFFF` | `00316BF0` for kind 7 |
+| `[02092758] + 0x08` | `i32` | gil, 0-99,999,999 | `00254EE0` (`00254F1F`) |
+| `[020927C0] + 0x3860` | `i32` | gil gained, saturating at `0x7FFFFFFF` | `00316BF0` for kind 6 |
+| `[020927C0] + 0x3864` | `i32` | gil spent, saturating at `0x7FFFFFFF` | `00316BF0` for kind 7 |
 | `[020927C0] + 0x3844` | bits | counters whose achievement has fired (bit = kind) | `00316A50`, `00315E90` |
-| unit `+0xE58` | i32 | gil reserved for the action being carried out | `0030EFC0`; cleared by `00300280`, `00305640` |
-| unit `+0xE54` | i32 | gil amount from the action's result evaluation, deducted on consume | `00303954`, `00303B2E` |
+| unit `+0xE58` | `i32` | gil reserved for the action being carried out | `0030EFC0`; cleared by `00300280`, `00305640` |
+| unit `+0xE54` | `i32` | gil amount from the action's result evaluation, deducted on consume | `00303954`, `00303B2E` |
 
 ## Modding notes
 

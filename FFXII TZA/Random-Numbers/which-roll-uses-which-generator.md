@@ -133,9 +133,9 @@ generators page). None of them touches a gameplay generator.
 
 | Address | Width | Meaning | Written by |
 |---|---|---|---|
-| `02EB3870` / `02EB4230` | 624 × u32 / i32 | gameplay MT state and index | `00866D60`, `00866B90`, `00863BF0`, `00863C80` |
-| `022C256C` | u32 | shared LCG state | `00328370`, the seven inline sites, `00328D80` |
-| `0208E6B0` | u32 | areas initialised since process start, the next LCG seed | `002342F0` |
+| `02EB3870` / `02EB4230` | 624 × `u32` / `i32` | gameplay MT state and index | `00866D60`, `00866B90`, `00863BF0`, `00863C80` |
+| `022C256C` | `u32` | shared LCG state | `00328370`, the seven inline sites, `00328D80` |
+| `0208E6B0` | `u32` | areas initialised since process start, the next LCG seed | `002342F0` |
 
 ## Modding notes
 

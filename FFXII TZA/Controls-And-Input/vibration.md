@@ -63,9 +63,9 @@ The pass clears the levels `02EC0B50` (two channels of two `i32`, track 1 then t
 slot whose mask shares no bit with `02EC0B40`. A track's pair k is `{duration, level}` at `+4 + 2k`, and the next
 pair's level is its end:
 
-```
-level = int(start + (end - start) * frame / duration) * strength    (integer division, then the f32 strength)
-```
+| Value | Formula | Code |
+|---|---|---|
+| level | `int(start + (end - start) * frame / duration) * strength    (integer division, then the f32 strength)` |  |
 
 The larger of that and the level already there is kept, the frame counts up, and at the duration the track moves
 to the next pair. A pair with duration 0 ends its track, and a slot whose two tracks have both ended goes to state

@@ -105,9 +105,9 @@ The achievement ids come from `00D10550 + kind*4`, and each record's first dword
 | unit `+0xE9A` bit 1 | bit | Petrify came from a party source | `0030E801` |
 | unit `+0xE9A` bit 2 | bit | hit by a periodic drain result | `003113BF` |
 | unit `+0xE9A` bit 3 | bit | pays no rewards | `0031138D` |
-| `[020927C0] + 0x3404 + species` | u8 | species defeat count plus one | `00315820` |
-| `[020927C0] + 0x3854` | i16 | enemies defeated (kind 4) | `00316BF0` |
-| `[020927C0] + 0x3868` | i32 | score (kind 17) | `00316BF0` |
+| `[020927C0] + 0x3404 + species` | `u8` | species defeat count plus one | `00315820` |
+| `[020927C0] + 0x3854` | `i16` | enemies defeated (kind 4) | `00316BF0` |
+| `[020927C0] + 0x3868` | `i32` | score (kind 17) | `00316BF0` |
 
 ## Modding notes
 

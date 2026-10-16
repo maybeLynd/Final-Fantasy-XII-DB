@@ -89,11 +89,11 @@ first.
 The camera is a heading `+0x70` (radians, wrapped to 0 to 2π) and a height level `+0x7C` (0 to 1).
 `0032DF40(heading, level, look, out)` turns the level into a pitch and a distance:
 
-```
-x = 2.8 + 6 × level
-y = 0.205 x² − 0.995 x + 0.4788
-pitch = −atan2(y, x)        distance = √(x² + y²)
-```
+| Value | Formula | Code |
+|---|---|---|
+| x | `2.8 + 6 × level` |  |
+| y | `0.205 x² − 0.995 x + 0.4788` |  |
+| pitch | `−atan2(y, x)        distance = √(x² + y²)` |  |
 
 At level 0 the eye is 2.8 out and 0.7 below the look point; at level 1, 8.8 out and 7.6 above
 (`01EED478`: −0.7, 2.8, 7.6, 8.8). The starting level is 0.483 (`0032B600`). `0032CD20` places the eye

@@ -152,10 +152,10 @@ action is cancelled or reset.
 
 | Field | Width | Meaning | Written by |
 |---|---|---|---|
-| unit `+0x6B7` | u8 | extra hits dealt so far | `0030FA79` (+1); `003106EB` (cleared) |
-| unit `+0x6B8` | u8 | hits of action `0x96`, kept across a re-commit | `00307665` (+1); `0030FA65`; `003106EB` (cleared) |
+| unit `+0x6B7` | `u8` | extra hits dealt so far | `0030FA79` (+1); `003106EB` (cleared) |
+| unit `+0x6B8` | `u8` | hits of action `0x96`, kept across a re-commit | `00307665` (+1); `0030FA65`; `003106EB` (cleared) |
 | record `+0x12` high nibble | u4 | extra hits rolled for this combo | `00388865` |
-| `02AEDFE4` | u32 | combo chance, percent | `00388648` |
+| `02AEDFE4` | `u32` | combo chance, percent | `00388648` |
 | target entry flags bit 10 | bit | continue the combo after this hit | `003075E0` |
 
 ## Modding notes

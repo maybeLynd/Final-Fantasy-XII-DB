@@ -60,11 +60,10 @@ The seed function has exactly two callers:
    overwritten before any gameplay draw.
 2. **Loading a save.** `00584210` seeds from the clock at `005843A5`-`005843D3`:
 
-```c
-t    = _time64(NULL);                                   // IAT 008C3060, called at 0058439F
-seed = ((lo32(t) + 0x2B5A5) * 0x21 + hi32(t)) & 0x7FFFFFFF   // 005843A5-005843B2, btr bit 31 at 005843BE
-     + 0x258 * frameCounter;                            // 005843B4, 005843C2
-```
+| Value | Formula | Code |
+|---|---|---|
+| t | `_time64(NULL);                                   // IAT 008C3060, called at 0058439F` |  |
+| seed | `((lo32(t) + 0x2B5A5) * 0x21 + hi32(t)) & 0x7FFFFFFF   // 005843A5-005843B2, btr bit 31 at 005843BE + 0x258 * frameCounter;                            // 005843B4, 005843C2` |  |
 
 `frameCounter` is `01FD4A80`, which the application frame dispatcher `0022A580` increments once
 per frame (`0022A59F`); nothing else writes it. `hi32(t)` is 0 before the year 2038.
@@ -78,12 +77,12 @@ therefore reads the 4537 sequence at an offset equal to the number of those disp
 The second gameplay generator is one 32-bit word at `022C256C`. A draw steps the C-library
 recurrence three times and assembles 31 bits from the high halves:
 
-```c
-a     = state * 0x41C64E6D + 0x3039;
-b     = a     * 0x41C64E6D + 0x3039;
-state = b     * 0x41C64E6D + 0x3039;                     // one store, after all three steps
-draw  = ((a >> 16 & 0x7FF) << 10 ^ (b >> 16 & 0x3FF)) << 10 ^ (state >> 16 & 0x3FF);   // 00328370
-```
+| Value | Formula | Code |
+|---|---|---|
+| a | `state * 0x41C64E6D + 0x3039;` |  |
+| b | `a     * 0x41C64E6D + 0x3039;` |  |
+| state | `b     * 0x41C64E6D + 0x3039;                     // one store, after all three steps` |  |
+| draw | `((a >> 16 & 0x7FF) << 10 ^ (b >> 16 & 0x3FF)) << 10 ^ (state >> 16 & 0x3FF);   // 00328370` |  |
 
 `00328370` is the out-of-line draw; it has 23 call sites in 15 functions. Seven more functions
 carry the same three steps inline, reading and writing `022C256C` directly, so an instruction
@@ -128,10 +127,10 @@ state once at thread start. The callers are on the roll map page.
 Presentation effects use a 32-bit shift register at `01EF93E8`, enabled by the word `022D9138`
 (1 = run):
 
-```c
-feedback = (((state >> 18) ^ state) >> 4) & 1;
-state    = (((state & 0x003FFFFF) | 0x1FC00000) << 1) | feedback;   // the bits form a float in [1.0, 2.0)
-```
+| Value | Formula | Code |
+|---|---|---|
+| feedback | `(((state >> 18) ^ state) >> 4) & 1;` |  |
+| state | `(((state & 0x003FFFFF) \| 0x1FC00000) << 1) \| feedback;   // the bits form a float in [1.0, 2.0)` |  |
 
 | Function | Steps per call | Result |
 |---|---|---|
@@ -148,13 +147,13 @@ functions.
 
 The routine at `006B05E0` (code the analysis did not carve as a function) is not a recurrence: it increments the counter `02E50260` and hashes it:
 
-```c
-c = ++counter;                                   // 006B05E0-006B05EB
-x = (c ^ 0x00BC602F) * 0x9E3779B9;               // 006B05F1-006B05F6
-y = ((x << 6) ^ (x >> 26) ^ x) * 0x9E3779B9;     // 006B0600-006B060A
-r = ((y << 5) ^ (y >> 12)) + y;                  // 006B0614-006B061C
-return (float)(u64)r * 2^-32;                    // 006B061E-006B0623, 008F30E0 = 0x2F800000; r >= 0xFFFFFF80 rounds to 1.0
-```
+| Value | Formula | Code |
+|---|---|---|
+| c | `++counter;                                   // 006B05E0-006B05EB` |  |
+| x | `(c ^ 0x00BC602F) * 0x9E3779B9;               // 006B05F1-006B05F6` |  |
+| y | `((x << 6) ^ (x >> 26) ^ x) * 0x9E3779B9;     // 006B0600-006B060A` |  |
+| r | `((y << 5) ^ (y >> 12)) + y;                  // 006B0614-006B061C` |  |
+| return (float)(u64)r * 2^-32;                    // 006B061E-006B0623, 008F30E0 | `0x2F800000; r >= 0xFFFFFF80 rounds to 1.0` |  |
 
 The counter is zero in the image and has no other reference, so the k-th call returns the same
 value in every run.
@@ -165,11 +164,11 @@ The post-processing routine `0074BDE0` builds stratified unit-disk sample kernel
 xorshift128, seeded from a counter: `c = ++[01F3CD6C]` (`0074BFE0`-`0074BFF5`; 1 in the image), then
 `x, y, z, w` from four rounds of `0x6C078965 * (v ^ v >> 30) + i`. Each draw is
 
-```c
-t = x ^ (x << 11);  x = y; y = z; z = w;
-w = w ^ (w >> 19) ^ t ^ (t >> 8);      // 0074C0A7-0074C0C4; the t >> 8 is an arithmetic shift (sar, 0074C0BD)
-u = (w & 0x7FFFFFFF) * 2^-31;          // 0074C0C8-0074C0D1
-```
+| Value | Formula | Code |
+|---|---|---|
+| t | `x ^ (x << 11);  x = y; y = z; z = w;` |  |
+| w | `w ^ (w >> 19) ^ t ^ (t >> 8);      // 0074C0A7-0074C0C4; the t >> 8 is an arithmetic shift (sar, 0074C0BD)` |  |
+| u | `(w & 0x7FFFFFFF) * 2^-31;          // 0074C0C8-0074C0D1` |  |
 
 The arithmetic shift makes this differ from the reference xorshift128 whenever `t` has its top bit
 set. The counter and the kernels (`02EA24A0`) are referenced only from this routine.
@@ -215,18 +214,18 @@ set. The counter and the kernels (`02EA24A0`) are referenced only from this rout
 
 | Address | Width | Meaning | Written by |
 |---|---|---|---|
-| `02EB3870` | 624 × u32 | gameplay MT state | `00866D60`, `00866B90` |
-| `02EB4230` | i32 | gameplay MT index | `00866D60`, `00866B90`, `00863BF0`, `00863C80` |
-| `02EB4234` | u8 | gameplay MT seeded flag | `00863BF0`, `00863C80`, `00863D30` |
-| `022C256C` | u32 | shared LCG state | `00328370`, the seven inline sites, `00328D80` |
-| `0208E6B0` | u32 | shared LCG seed counter | `002342F0` |
-| `01FD4A80` | u32 | application frame counter, mixed into the save-load seed | `0022A580` |
+| `02EB3870` | 624 × `u32` | gameplay MT state | `00866D60`, `00866B90` |
+| `02EB4230` | `i32` | gameplay MT index | `00866D60`, `00866B90`, `00863BF0`, `00863C80` |
+| `02EB4234` | `u8` | gameplay MT seeded flag | `00863BF0`, `00863C80`, `00863D30` |
+| `022C256C` | `u32` | shared LCG state | `00328370`, the seven inline sites, `00328D80` |
+| `0208E6B0` | `u32` | shared LCG seed counter | `002342F0` |
+| `01FD4A80` | `u32` | application frame counter, mixed into the save-load seed | `0022A580` |
 | `01F7F600` | `0x9D0` | graphics-noise MT block | `0018D740`, `0018EE20`, `001946E0` |
-| `01F7FFD0` | u32 | graphics seed call counter | `0018D680` |
-| `01EF93E8` | u32 | presentation generator state | `00259180`, the ten functions above |
-| `022D9138` | u32 | presentation generator enable | `00259180` |
-| `02E50260` | u32 | counter hash counter | `006B05E0` |
-| `01F3CD6C` | u32 | PPFX kernel counter | `0074BDE0` |
+| `01F7FFD0` | `u32` | graphics seed call counter | `0018D680` |
+| `01EF93E8` | `u32` | presentation generator state | `00259180`, the ten functions above |
+| `022D9138` | `u32` | presentation generator enable | `00259180` |
+| `02E50260` | `u32` | counter hash counter | `006B05E0` |
+| `01F3CD6C` | `u32` | PPFX kernel counter | `0074BDE0` |
 
 ## Modding notes
 

@@ -303,11 +303,11 @@ The separate find-by-name `0024A5A0` returns null on a miss instead.
 
 With `A` = slot `+0x20` (the picture header) and `T = A + 0x30`, the start of the TIM2 `eXt` block:
 
-```
-page   = u16[T + 0x14 + (code >> 8) × 2]
-entry  = u16[T + 0x14 + (page + (code & 0xFF)) × 2]
-record = T + u16[T + 0x10] + entry × 8          8 bytes: x, y, w:12, h:12, byte 7 default opacity
-```
+| Value | Formula | Code |
+|---|---|---|
+| page | `u16[T + 0x14 + (code >> 8) × 2]` |  |
+| entry | `u16[T + 0x14 + (page + (code & 0xFF)) × 2]` |  |
+| record | `T + u16[T + 0x10] + entry × 8          8 bytes: x, y, w:12, h:12, byte 7 default opacity` |  |
 
 `u16[T + 0x12]` is the offset of the opacity byte table. Types 2 and 9 then step `frame` records on; type 7 counts
 its six pieces from the base record.

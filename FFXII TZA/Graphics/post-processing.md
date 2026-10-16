@@ -113,13 +113,13 @@ gives the per-frame library calls its work function `00193DA0` makes with it.
 |---|---|---|
 | `+0x00`, `+0x08`, `+0x10` | render targets | the three targets `006CBEA0` hands the library |
 | `+0x18`, `+0x1C` | `+0xF4`, `+0xF8` | glare luminance and threshold (`00194310`) |
-| `20` | `+0x110` | depth-of-field enable |
-| `21` | `+0x164` | a byte the depth-of-field call also passes |
+| `+0x20` | `+0x110` | depth-of-field enable |
+| `+0x21` | `+0x164` | a byte the depth-of-field call also passes |
 | `+0x24`, `+0x28` | `+0x114`, `+0x118` | focus distance and aperture f-number (`00194250`) |
-| `2C` | `+0x120` | the value the cutscene loader sets to 35.0 |
+| `+0x2C` | `+0x120` | the value the cutscene loader sets to 35.0 |
 | `+0x30`, `+0x34` | `+0x168`, `+0x16C` | two floats the depth-of-field call also passes |
-| `99` | | set when the first argument's `+0x4A1` is set or `+0xDB9` of the object `00189120` returns differs from its value last frame (`+0x48C`) |
-| `9A` | `+0x4A2` | the linear-tonemap byte |
+| `+0x99` | | set when the first argument's `+0x4A1` is set or `+0xDB9` of the object `00189120` returns differs from its value last frame (`+0x48C`) |
+| `+0x9A` | `+0x4A2` | the linear-tonemap byte |
 | `+0xDC` to `+0xE4` | `+0x480` to `+0x488` | three floats |
 
 When the first argument's `+0x124` is 2 the focus distance is its `+0x128`; when it is 1 and `+0x128`

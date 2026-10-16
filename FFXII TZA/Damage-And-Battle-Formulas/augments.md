@@ -52,10 +52,10 @@ group `0x1C`, and both groups are class 2, the only class that adds augments (`0
 
 The wanted set is compared with the augment layer `+0x78` (`003102E5`-`00310336`):
 
-```
-added   = (wanted ^ layer) & wanted      -> 0030E130(stats, id, 0, flags, mode 3)
-removed = (wanted ^ layer) & layer       -> 0030E130(stats, id, 0, flags, mode 1)
-```
+| Value | Formula | Code |
+|---|---|---|
+| added | `(wanted ^ layer) & wanted      -> 0030E130(stats, id, 0, flags, mode 3)` |  |
+| removed | `(wanted ^ layer) & layer       -> 0030E130(stats, id, 0, flags, mode 1)` |  |
 
 The walk covers ids 0-127 (`00310338`-`003103A3`). Mode 3 sets the bit in `+0x78` and mode 1 clears it,
 each with the side effects of `0030E130`. Then the stats rebuild `002FEF30` runs (`003103AD`,

@@ -191,15 +191,15 @@ then the clock value (`00863D4D`-`00863D6A`). It does not touch `022C256C`.
 
 | Global | Width | Meaning | Written by |
 |---|---|---|---|
-| `022C3158` | u32 | chain level 0-3 | `003183D0` (rise); zeroed on a break (`00318098`) |
-| `022C315C` | u32 | chain length, cap 999 or 998 | `00317F64`; zeroed on a break |
-| `022C3160` | u32 | same-model run, cap 999 | `00317F70`-`00317FB6`; zeroed on a break (`0031809F`) |
-| `022C3164` | u32 | breaks in a row, cap 999 | `003180B5`; zeroed by a continuing kill (`00317F6A`) |
-| `022C3168` | i32 | previous kill's class byte; negative before the first kill | `003180D0` |
-| `022C316C` | u32 | previous kill's model id | `00317FB6` |
-| `022C3170` | u32 | chain length at the last level rise | `003184DC`; zeroed on a break (`00318091`) |
-| `022C3174` | u32 | loot pickups since the last level rise | `00319974` (+1); `003184EC` (0); zeroed on a break |
-| `022C3178` | u32 | bit 0: the coin | `003180C6` |
+| `022C3158` | `u32` | chain level 0-3 | `003183D0` (rise); zeroed on a break (`00318098`) |
+| `022C315C` | `u32` | chain length, cap 999 or 998 | `00317F64`; zeroed on a break |
+| `022C3160` | `u32` | same-model run, cap 999 | `00317F70`-`00317FB6`; zeroed on a break (`0031809F`) |
+| `022C3164` | `u32` | breaks in a row, cap 999 | `003180B5`; zeroed by a continuing kill (`00317F6A`) |
+| `022C3168` | `i32` | previous kill's class byte; negative before the first kill | `003180D0` |
+| `022C316C` | `u32` | previous kill's model id | `00317FB6` |
+| `022C3170` | `u32` | chain length at the last level rise | `003184DC`; zeroed on a break (`00318091`) |
+| `022C3174` | `u32` | loot pickups since the last level rise | `00319974` (+1); `003184EC` (0); zeroed on a break |
+| `022C3178` | `u32` | bit 0: the coin | `003180C6` |
 
 ## Modding notes
 

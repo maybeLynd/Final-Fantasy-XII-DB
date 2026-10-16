@@ -182,10 +182,10 @@ An actor manager carves all its records out of one block. `002679F0(manager)`, c
 `L + [L + 0x14]`) followed by one u16 record count per row. Each row's record size comes from the
 eight-row table at `01E0C328`. The block size is
 
-```
-header = (n * 8 + 0x17) & ~0xF            ; n = manager +0x20, the total record count
-total  = 2 * header + sum over rows of round16(size[row]) * count[row]
-```
+| Value | Formula | Code |
+|---|---|---|
+| header | `(n * 8 + 0x17) & ~0xF            ; n = manager +0x20, the total record count` |  |
+| total | `2 * header + sum over rows of round16(size[row]) * count[row]` |  |
 
 It takes the block through the function pointer at manager `+0x88` (`00267A79`), clears it with
 `memset` (`00267A8B`) without a null test, writes `n` at `+0x00` and points manager `+0x1F0` at

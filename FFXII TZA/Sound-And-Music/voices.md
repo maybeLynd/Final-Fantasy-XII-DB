@@ -21,11 +21,11 @@ Slot `k` always holds sub-file `k` of the calling event's pack:
 
 | Field | Holds |
 |---|---|
-| `00` | the slot's own number, the pack sub-file it loads |
-| `04` | the state: 0 free, 1 parked, 2 loading, 3 ready, 4 freed while loading, 5 one of two tables delivered |
-| `05` | the event manager that loaded it |
+| `+0x00` | the slot's own number, the pack sub-file it loads |
+| `+0x04` | the state: 0 free, 1 parked, 2 loading, 3 ready, 4 freed while loading, 5 one of two tables delivered |
+| `+0x05` | the event manager that loaded it |
 | `+0x20`, `+0x28` | the loaded `.vpcjp` and `.vpc` sub-files |
-| `30` | the table in use, chosen by the language |
+| `+0x30` | the table in use, chosen by the language |
 
 ### The packs
 

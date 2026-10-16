@@ -25,9 +25,9 @@ The manager is a `0x40`-byte object whose pointer is at `01F7FFE0`. `00198750` c
 |---|---|---|
 | `+0x08`, `+0x09` | invert the right stick's X and Y | `0019740F`, `0019751A`, `001975CB` |
 | `+0x0C`, `+0x10` | mouse wheel notches, total and this frame | `0019739A`, `001973A4` |
-| `39` | poll on or off | `0019701D` |
-| `3A` | movement-key mode bits 0, 1 and 2 | `00197040`-`001970F8` |
-| `3B` | rebuild the records before the next poll | `00197032` |
+| `+0x39` | poll on or off | `0019701D` |
+| `+0x3A` | movement-key mode bits 0, 1 and 2 | `00197040`-`001970F8` |
+| `+0x3B` | rebuild the records before the next poll | `00197032` |
 
 ### One poll
 

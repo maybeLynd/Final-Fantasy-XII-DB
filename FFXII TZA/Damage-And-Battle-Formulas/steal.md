@@ -107,14 +107,13 @@ Without the bit, the roll draws a new number only after the previous test missed
 
 A failure here sets `02AEDFBC` = 1 and leaves bit 23 clear. For an enemy with all three items:
 
-```
-rare     = 0.03
-uncommon = 0.97 * 0.10        = 0.097
-common   = 0.97 * 0.90 * 0.55 = 0.480
-nothing  = 0.97 * 0.90 * 0.45 = 0.393
-
-with Thief's Cuffs, nothing = 0.94 * 0.70 * 0.20 = 0.132
-```
+| Value | Formula | Code |
+|---|---|---|
+| rare | `0.03` |  |
+| uncommon | `0.97 * 0.10        = 0.097` |  |
+| common | `0.97 * 0.90 * 0.55 = 0.480` |  |
+| nothing | `0.97 * 0.90 * 0.45 = 0.393` |  |
+| with Thief's Cuffs, nothing | `0.94 * 0.70 * 0.20 = 0.132` |  |
 
 ### The debug value that forces an item
 

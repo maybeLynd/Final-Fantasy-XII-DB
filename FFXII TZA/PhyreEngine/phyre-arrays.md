@@ -71,10 +71,10 @@ object as the member's offset (`+0x48`) minus the owning descriptor's `+0xF4`.
 
 | Slot | Body | What it does |
 |---|---|---|
-| `20` | `006065E0` in all 69 | the count, bit 31 masked off |
-| `28` | a thunk per element type, such as `005C9740` | resize to a count |
+| `+0x20` | `006065E0` in all 69 | the count, bit 31 masked off |
+| `+0x28` | a thunk per element type, such as `005C9740` | resize to a count |
 | `+0x30`, `+0x38` | `006045B0` (`PArray`), `0063B9B0` (`PSharray`) | the element pointer |
-| `40` | `0062A870` (18 vtables), `0060F400` (22), `006A5A90` (6), others | set external storage |
+| `+0x40` | `0062A870` (18 vtables), `0060F400` (22), `006A5A90` (6), others | set external storage |
 
 The 50 distinct `+0x28` slot bodies hold the per-type code: 46 jump to a separate resize body and 4 resize inline.
 One body can serve several element types; `0060C3F0` is the resize of all 14 `PArray` vtables whose

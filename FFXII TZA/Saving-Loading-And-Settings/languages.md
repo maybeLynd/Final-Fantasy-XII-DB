@@ -155,12 +155,12 @@ result and always plays sound 3 (`00277E36`-`00277E53`).
 
 | Address | Width | Meaning | Written by |
 |---|---|---|---|
-| `[01F82D20] + 0x00` | i32 | Language index 0-9 | `001DE050`, the Config screen |
-| `[01F82D20] + 0x64` | i32 | DecideButton | the Config screen |
-| `01E02814` | i32 | locale id | `0022A0B0` (`0022A0CB`) |
-| `01E0281C` | i32 | the constant 10 from `0017E410` | `0022A0B0` (`0022A0D6`) |
-| `01E0C2A0` / `01E0C2A4` | u16 | confirm and cancel button masks | `0022A0B0` (`0022A119`, `0022A10C`) |
-| `01FD4A64` | i32 | DecideButton was non-zero | `0022A0B0` (`0022A0FD`) |
+| `[01F82D20] + 0x00` | `i32` | Language index 0-9 | `001DE050`, the Config screen |
+| `[01F82D20] + 0x64` | `i32` | DecideButton | the Config screen |
+| `01E02814` | `i32` | locale id | `0022A0B0` (`0022A0CB`) |
+| `01E0281C` | `i32` | the constant 10 from `0017E410` | `0022A0B0` (`0022A0D6`) |
+| `01E0C2A0` / `01E0C2A4` | `u16` | confirm and cancel button masks | `0022A0B0` (`0022A119`, `0022A10C`) |
+| `01FD4A64` | `i32` | DecideButton was non-zero | `0022A0B0` (`0022A0FD`) |
 | `02EC3EE0` | 820,000 bytes | the locale's file size table | `002DF9A0` |
 
 ## Modding notes

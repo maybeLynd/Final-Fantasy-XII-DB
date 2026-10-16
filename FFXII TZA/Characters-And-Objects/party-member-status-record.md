@@ -112,10 +112,10 @@ With `full` set: `+0xBA` is the level (`+0x1C2`), `+0x90` the experience (`+0x18
 (`00324020`), and `+0x98`-`+0xAC` the six words `+0x50`-`+0x5A` each shifted left by 16. `+0x94` is
 the points to the next level:
 
-```
-curve(level) = sum for k = 2 .. level + 1 of trunc(float(k * k * k) * 0.4 + float(12 * k * k))   (002F8F20; 0 for level 0, -1 for level 99 and above)
-+0x94 = curve(level) - experience
-```
+| Value | Formula | Code |
+|---|---|---|
+| curve(level) | `sum for k = 2 .. level + 1 of trunc(float(k * k * k) * 0.4 + float(12 * k * k))   (002F8F20; 0 for level 0, -1 for level 99 and above)` |  |
+| +0x94 | `curve(level) - experience` |  |
 
 ### The unit-side fields
 

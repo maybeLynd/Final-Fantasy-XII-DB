@@ -275,11 +275,11 @@ The element update `003FC510` runs the element through its states:
 | Address | Width | Meaning | Written by |
 |---|---|---|---|
 | `02EC0FA0` | 10 × `0x60` | the pickup slots | `00319B10`, `00319CA0`, `00319600`, `00319920`, `003197B0` |
-| `02EC1360` / `02EC1368` | ptr | live-list head and tail | the same five |
+| `02EC1360` / `02EC1368` | `ptr` | live-list head and tail | the same five |
 | `022BE7F0` | 10 × `0x20` | presence records | `002FB2D0`, `002FB2A0`, `002FB250` |
-| `0208D45C` | u32 | frame counter, advances only while the battle clock runs | `0032A100`, reset by `0032A160` |
-| `022C3174` | i32 | pickups collected since the last chain level rise | `00319920`; reset on a rise (`003184EC`) and by `003183A0` |
-| `02F973B8` | f32 | +inf, the search ceiling | `002368D0` (`002368F0`) |
+| `0208D45C` | `u32` | frame counter, advances only while the battle clock runs | `0032A100`, reset by `0032A160` |
+| `022C3174` | `i32` | pickups collected since the last chain level rise | `00319920`; reset on a rise (`003184EC`) and by `003183A0` |
+| `02F973B8` | `f32` | +inf, the search ceiling | `002368D0` (`002368F0`) |
 
 ## Modding notes
 

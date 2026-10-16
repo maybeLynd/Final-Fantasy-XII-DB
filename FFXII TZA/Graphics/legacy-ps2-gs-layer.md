@@ -57,9 +57,9 @@ PSMs `0x14`, `0x24` and `0x2C`: `(psm − 0x14) & 0xE7` must be 0 and `psm` must
 `00467AD0` stores `0x4000` at `02CA5FF0` and the reservation `(width × height × 3) >> 6` at
 `02CA5FF4`: 10,752 blocks of 64 words. `00467AA0` returns the budget
 
-```
-budget = (0x1007FF - 3 * width * height - [02CA6008] - [02CA6004]) & 0xFFFFF800
-```
+| Value | Formula | Code |
+|---|---|---|
+| budget | `(0x1007FF - 3 * width * height - [02CA6008] - [02CA6004]) & 0xFFFFF800` |  |
 
 that is, the 4 MiB memory (`0x100000` words) less three 512 × 448 surfaces at 4 bytes per pixel,
 less the two totals the rebuild publishes, rounded up to a whole page. With both totals at 0 it is

@@ -113,10 +113,9 @@ Struct NpcDictionary base=npcdic.bin size=file:
 
 The first string begins at `0x0C + 4 * count = 0x23B4` in every shipped file.
 
-```
-name(actor) = actor.i16[0x102] < 0 ? actor.ptr[0xF8]
-            : entries[2 * (id & ~0x4000) + (flagBank2048[id & ~0x4000] ? 1 : 0)]
-```
+| Value | Formula | Code |
+|---|---|---|
+| name(actor) | `actor.i16[0x102] < 0 ? actor.ptr[0xF8] : entries[2 * (id & ~0x4000) + (flagBank2048[id & ~0x4000] ? 1 : 0)]` |  |
 
 ## Shipped data
 

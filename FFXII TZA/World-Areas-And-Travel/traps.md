@@ -181,12 +181,11 @@ Struct TrapRing base=`02EC3EA0` size=`0x2C`:
 | `24` | `i32` | writeIndex | next entry to fill, 0 to 2 (`002FB3B0`, `002FA740`) |
 | `28` | `i32` | count | entries in use, at most 3 |
 
-```
-fires(unit, trap) = eligible(unit) && armed(field, trap)
-                    && sqrt((trap.x/10 - unit.x)^2 + (trap.z/10 - unit.z)^2) <= 1.2999999523
-action = (mt19937() % 100 < 75) ? trap.action75 : trap.action25
-armed at load = (trap.flagId == 0xFF || !flag(trap.flagId)) && (mt19937() % 100 < trap.armChance)
-```
+| Value | Formula | Code |
+|---|---|---|
+| fires(unit, trap) | `eligible(unit) && armed(field, trap) && sqrt((trap.x/10 - unit.x)^2 + (trap.z/10 - unit.z)^2) <= 1.2999999523` |  |
+| action | `(mt19937() % 100 < 75) ? trap.action75 : trap.action25` |  |
+| armed at load | `(trap.flagId == 0xFF \|\| !flag(trap.flagId)) && (mt19937() % 100 < trap.armChance)` |  |
 
 ## Shipped data
 

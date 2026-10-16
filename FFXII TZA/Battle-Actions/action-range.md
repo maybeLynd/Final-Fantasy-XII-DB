@@ -182,12 +182,12 @@ the speed `ctx+0xB0` is non-zero; otherwise it clears bit 8 and returns 0 (`0033
 
 | Field | Width | Meaning | Written by |
 |---|---|---|---|
-| unit `+0x6D4` | f32 | near | `002FEB80` via `00304AB9` |
-| unit `+0x6D8` | f32 | middle | `002FEB80` via `00304AB9` |
-| unit `+0x6DC` | f32 | reach | `002FEB80` via `00304AB9` |
-| unit `+0x1A0` (block `+0x120`) | f32 | near, as movement reads it | `00304BF6` |
-| unit `+0x1A4` (block `+0x124`) | f32 | middle, as movement reads it | `00304BFF` |
-| unit `+0x1A8` (block `+0x128`) | f32 | reach, as movement reads it | `00304C0F` |
+| unit `+0x6D4` | `f32` | near | `002FEB80` via `00304AB9` |
+| unit `+0x6D8` | `f32` | middle | `002FEB80` via `00304AB9` |
+| unit `+0x6DC` | `f32` | reach | `002FEB80` via `00304AB9` |
+| unit `+0x1A0` (block `+0x120`) | `f32` | near, as movement reads it | `00304BF6` |
+| unit `+0x1A4` (block `+0x124`) | `f32` | middle, as movement reads it | `00304BFF` |
+| unit `+0x1A8` (block `+0x128`) | `f32` | reach, as movement reads it | `00304C0F` |
 
 ## Modding notes
 

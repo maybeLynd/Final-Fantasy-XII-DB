@@ -130,15 +130,14 @@ When the committed resolve ends with result `+0x18` bit 3 set, the resolver stor
 `00385E50(source, target, &context)` as an `f32` in result `+0x134` (`0038680F`-`0038682E`). The
 value starts from a property of the target's model:
 
-```
-k = 2.0                                  the target has no battle unit (01CEBC08, 00385E79)
-k = p / s / 100.0                        p: @FCP float 0x09001E1F of the target's model
-                                         s: the float at [actor+0xB8]+0x28
-k = k * 0.5   when the outcome (result +0x04) is 1, 3, 7 or 11      mask 0x88A (00385EA9-00385EBC)
-ref = min(7000, maxHp +0x24, doubled under Bubble)
-ref = min(7000, max(hp +0x48, 1))        under Disease instead
-k = k * 1.5   when the HP loss 02AEE004 > ref * 0.6                 (00385EC4-00385F32)
-```
+| Value | Formula | Code |
+|---|---|---|
+| k | `2.0                                  the target has no battle unit (01CEBC08, 00385E79)` |  |
+| k | `p / s / 100.0                        p: @FCP float 0x09001E1F of the target's model s: the float at [actor+0xB8]+0x28` |  |
+| k | `k * 0.5   when the outcome (result +0x04) is 1, 3, 7 or 11      mask 0x88A (00385EA9-00385EBC)` |  |
+| ref | `min(7000, maxHp +0x24, doubled under Bubble)` |  |
+| ref | `min(7000, max(hp +0x48, 1))        under Disease instead` |  |
+| k | `k * 1.5   when the HP loss 02AEE004 > ref * 0.6                 (00385EC4-00385F32)` |  |
 
 `p / s` is number 33 of `003204E0`, reached through `003204D0`, which passes the unit's actor
 `[unit+0x10]` (`00385E7F`-`00385E8C`): `002ECE50` reads property `0x09001E1F` through `003E6150`

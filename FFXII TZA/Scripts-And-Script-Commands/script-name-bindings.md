@@ -244,13 +244,13 @@ angle (`0026B620`, `0026A0D0`), sets its separation weight to −1.0 (`0026DAC0`
 caller. Byte `+8` is shared: bits 0-5 are the facing and bit 6 is the random-gil flag the payout
 reads ([reward verbs](reward-verbs.md) has the contents fields `+0xB..+0x17`).
 
-```
-x       = (int16) record[+0x04] / 10.0            008F8180 = 10.0
-y       = 0.0
-z       = (int16) record[+0x06] / 10.0
-w       = 1.0
-heading = -(record[+0x08] & 0x3F) / 60.0 * 2*pi   008F6D54 = 60.0, 01CEBC78 = 6.2831855
-```
+| Value | Formula | Code |
+|---|---|---|
+| x | `(int16) record[+0x04] / 10.0            008F8180 = 10.0` |  |
+| y | `0.0` |  |
+| z | `(int16) record[+0x06] / 10.0` |  |
+| w | `1.0` |  |
+| heading | `-(record[+0x08] & 0x3F) / 60.0 * 2*pi   008F6D54 = 60.0, 01CEBC78 = 6.2831855` |  |
 
 The position is in tenths of a unit, the height is never authored, and the facing steps in 6°
 units; codes 60 to 63 go past a full turn and are not clamped.

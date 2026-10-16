@@ -316,14 +316,14 @@ third.
 
 | Address | Width | Meaning | Written by |
 |---|---|---|---|
-| `01EED064` | i32 | pending map id, -1 when none | `003145E0`, `00314530`, `00314020` |
-| `02099ABC` | u32 | manager request mask | `0026A5F0`, `0025BFB0` |
-| `022C6E48` | u64[5] | pending-load mask per manager; bit 0 the start hold | `0032FC30`, `0032FCA0`, `00330310`, `0032ED70`, `00332130`, the load callbacks |
-| `022CB720` | u32 | the busy mask | the table above |
-| `02099D70` | ptr | current field context | the actor manager runtime |
+| `01EED064` | `i32` | pending map id, -1 when none | `003145E0`, `00314530`, `00314020` |
+| `02099ABC` | `u32` | manager request mask | `0026A5F0`, `0025BFB0` |
+| `022C6E48` | `u64[5]` | pending-load mask per manager; bit 0 the start hold | `0032FC30`, `0032FCA0`, `00330310`, `0032ED70`, `00332130`, the load callbacks |
+| `022CB720` | `u32` | the busy mask | the table above |
+| `02099D70` | `ptr` | current field context | the actor manager runtime |
 | `02098E20` | 5 × `0x288` | the actor managers | the actor manager runtime |
-| `02099DB8` | u32 | sum of the active managers' `+0x1D4` over managers 0 to 2 | `00266D10` (`002670C7`), `002628B0` (`00262F04`), `0025B500` (`0025B558`), `0025C830` (`0025D400`) |
-| `022C6D28`, `022C6D40` | i32[5] each | the request context per manager | `0032FCA0` |
+| `02099DB8` | `u32` | sum of the active managers' `+0x1D4` over managers 0 to 2 | `00266D10` (`002670C7`), `002628B0` (`00262F04`), `0025B500` (`0025B558`), `0025C830` (`0025D400`) |
+| `022C6D28`, `022C6D40` | `i32[5]` each | the request context per manager | `0032FCA0` |
 
 ## Modding notes
 

@@ -479,21 +479,21 @@ Measured from `gamedata/disableautosavelist/disableautosavelist.txt` in the arch
 
 | Address | Width | Meaning | Written by |
 |---|---|---|---|
-| `02CA99B8` | ptr | the open save/load controller | `00582860` |
-| `02CA99C0` | ptr | the storage queue | the queue owner |
-| `02CA99C8` | ptr | the gauge widget | the controller |
-| `02CA99B0` | i32 | a save transaction is open | `005819F0` |
-| `02CA99B4` | u32 | the save counter written at header `+0x50` | `0057E310` |
-| `02CA99E8` | i32 | an autosave write is busy | `0057E310`, `0057E4D0` |
-| `02B40E10` | i32 | the storage machine is busy | `003BB920`, `003BB9B0`, `003BB2F0` |
-| `02B40E1C` | i32 | the worker command | the three starters |
-| `01F44D40` / `01F44D48` / `01F44D50` | ptr | the file vector's begin, end and capacity | `008666B0`, `00866AD0`, `00866200` |
+| `02CA99B8` | `ptr` | the open save/load controller | `00582860` |
+| `02CA99C0` | `ptr` | the storage queue | the queue owner |
+| `02CA99C8` | `ptr` | the gauge widget | the controller |
+| `02CA99B0` | `i32` | a save transaction is open | `005819F0` |
+| `02CA99B4` | `u32` | the save counter written at header `+0x50` | `0057E310` |
+| `02CA99E8` | `i32` | an autosave write is busy | `0057E310`, `0057E4D0` |
+| `02B40E10` | `i32` | the storage machine is busy | `003BB920`, `003BB9B0`, `003BB2F0` |
+| `02B40E1C` | `i32` | the worker command | the three starters |
+| `01F44D40` / `01F44D48` / `01F44D50` | `ptr` | the file vector's begin, end and capacity | `008666B0`, `00866AD0`, `00866200` |
 | `02B407C0` | 200 x 8 bytes | the slot status table | `003BA990`, `003BA720`, `003BB600`, `003BB6A0` |
-| `02B40E18` | i32 | the last command's result | the command handlers |
-| `02EAF8E0` | i32 | the status of the last file call | `008621E0`, `00862590`, `00862620`, `008625D0`, `00862490` |
-| `02B4054C` | i32 | the free space the slot scan draws on | `003BA990`, `003BA720` |
-| `01EFAC10` | u8 | the save-data check: 2 running, 1 a save exists, 0 none | `00393EA0` |
-| `01F81260` | ptr | the SaveloadManager, holding the autosave exclusion rows at `+0x50` | `001C18A0` |
+| `02B40E18` | `i32` | the last command's result | the command handlers |
+| `02EAF8E0` | `i32` | the status of the last file call | `008621E0`, `00862590`, `00862620`, `008625D0`, `00862490` |
+| `02B4054C` | `i32` | the free space the slot scan draws on | `003BA990`, `003BA720` |
+| `01EFAC10` | `u8` | the save-data check: 2 running, 1 a save exists, 0 none | `00393EA0` |
+| `01F81260` | `ptr` | the SaveloadManager, holding the autosave exclusion rows at `+0x50` | `001C18A0` |
 
 ## Modding notes
 
