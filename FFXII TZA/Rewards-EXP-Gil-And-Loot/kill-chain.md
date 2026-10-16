@@ -114,7 +114,7 @@ four ways:
 
 1. **Save crystals.** The script verb `btladjustsystem` (`0x517`, handler `0034AAB0`) passes its
    argument to `002FEAC0`, which jumps to `003183A0` when bit 0 is set (`002FEAC3`). The save crystal's
-   talk function calls `btladjustsystem(1)` (see teleport and save crystals).
+   talk function calls `btladjustsystem(1)` (see [teleport and save crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md)).
 2. **Entering a town.** The area initialisation `002342F0` resets the chain when the town flag is
    set (see the town reset below).
 3. **A preset party state.** `002342F0` calls `00239960` (`00234349`), which consumes the pending
@@ -220,7 +220,7 @@ then the clock value (`00863D4D`-`00863D6A`). It does not touch `022C256C`.
 
 - [Loot drops](loot-drops.md) - how chain level, the same-model
   run and breaks in a row choose drop chances and quantities.
-- Teleport and save crystals - the
+- [Teleport and save crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md) - the
   crystal script that resets the chain.
 - [The field record table](../World-Areas-And-Travel/area-flags-navimapdata.md) -
   the town flag that resets the chain on entry.
