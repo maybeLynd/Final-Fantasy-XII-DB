@@ -246,7 +246,7 @@ destination: {u16 value, u8 area, u8 0}
 |---|---|
 | folders | `ch`, `cn`, `de`, `es`, `fr`, `in`, `it`, `kr`, `us` |
 | `menumap_world.bin` | 9 copies, 2,040 bytes; 4 distinct contents (`us`, `ch`, `cn`, `de`, `kr` / `es` / `fr` / `in`, `it`) |
-| wmap contents | 12 region slots, 39 areas (area 0 empty), 60 routes (45 of type 0, types 1 to 15 once each), 18 destinations |
+| wmap contents | 12 region slots, 39 areas (area 0 a placeholder with region 0 and no name), 60 routes (45 of type 0, types 1 to 15 once each), 18 destinations |
 | wmap areas | `until` 10 and 1,450 on one area each, `0xFFFF` on the rest; 18 gates in `0x40xx`; 29 key items in `0x80xx`; 15 extra gates |
 | `menumap_location.bin` | 9 copies, 23,852 bytes; 6 distinct contents; 48 records |
 | lmap entries | 384 zones, 111 markers, 545 links, 97 members; every link joins two zones of its own record, every member's node is a zone of its record |
