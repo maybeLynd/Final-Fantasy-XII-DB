@@ -62,7 +62,7 @@ under Confuse the two sides are swapped ([Gambits](gambits.md)). The orders are 
 ### Where an enemy's list comes from
 
 An enemy's own list is a set from the order-set directory `[02EBF168]`, which the area file provides
-(Area battle data):
+([Area battle data](../Game-Files-And-Data-Tables/ard-area-battle-data.md)):
 a `u16` count, then one 32-bit offset per set, each resolved against `01F83530` by `0020E600`.
 
 - The unit definition installs the set named by the definition row's word `+0x50` (`0023A94D`-`0023A95E`).

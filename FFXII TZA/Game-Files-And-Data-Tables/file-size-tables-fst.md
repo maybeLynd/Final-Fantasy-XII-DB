@@ -130,4 +130,4 @@ with nothing read. No call site of `0032E620` passes kind 6, 27 or 31.
 
 - [File requests and the read queue](file-requests-and-the-read-queue.md): where the size becomes a request's byte count.
 - [Bigfile archive](bigfile-archive.md): where the named files are read from.
-- Area .nmb index: the kind 26 files and the table of path arrays.
+- [Area .nmb index](ard-area-battle-data.md): the kind 26 files and the table of path arrays.
