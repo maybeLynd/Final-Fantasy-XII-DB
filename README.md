@@ -36,6 +36,7 @@ Addresses are virtual addresses in the shipping `FFXII_TZA.exe` (SHA-256
 - [Story, events and hunts](FFXII%20TZA/Story-Events-And-Hunts/README.md) - Story progress, event scenes, side quests and hunts.
 - [Controls and input](FFXII%20TZA/Controls-And-Input/README.md) - Controller, keyboard and mouse input and how it reaches the game.
 - [Menus and HUD](FFXII%20TZA/Menus-And-HUD/README.md) - The menus, the battle HUD, text and number display.
+- [Graphics](FFXII%20TZA/Graphics/README.md) - Rendering, cameras, models, effects, lighting and the screen.
 - [Sound and music](FFXII%20TZA/Sound-And-Music/README.md) - Sound effects, music and voice playback.
 - [Saving, loading and settings](FFXII%20TZA/Saving-Loading-And-Settings/README.md) - Save files, loading, the game options and language selection.
 - [Steam and achievements](FFXII%20TZA/Steam-And-Achievements/README.md) - The Steam integration and the achievements.

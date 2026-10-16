@@ -1,0 +1,210 @@
+---
+title: "How a character is lit: the light inputs, the shadow casters and the shadow pool"
+kind: "system"
+category: "Graphics"
+summary: "Character lighting: the 128-entry light pool and its five directional kinds, how each character's lights are chosen by scope, class and priority, the ambient contest and the per-character ambient mode and light scale, the six-light block and how the render object applies the map's character-light settings, the Phyre shadow caster defaults, and the two shadow pools a render record holds an entry in."
+addresses: ["02B3F528", "02B3F508", "003AB960", "003ABD00", "003ABD50", "003ACC10", "003ACAA0", "003AD540", "003AE0E0", "003AD830", "003AE4C0", "003ADC40", "003AED20", "002E8610", "02CA8110", "004FD4B0", "001F9B20", "006C0EB0", "006C15D0", "01F2EDC8", "02B40528", "003B6890", "003B56D0", "003B6000", "003B6900", "003B6B80", "003B5980", "02B3F570", "003AF340", "003AFBE0", "003AFD00", "003E73B0", "00426340", "002E8950", "002E89B0", "002E88A0", "002E8900"]
+---
+
+# How a character is lit: the light inputs, the shadow casters and the shadow pool
+
+## What the player sees
+
+Every character is lit on its own. A light can be meant for one character only (a status tint), for
+everyone but one character, for a group of characters, or anchored to the camera so it always falls
+from the viewer's side. Ambient light is a contest: the highest-priority ambient wins, unless the
+winner is of the additive sort, in which case the character gets the sum of the additive ambients. The
+shader receives at most six directional lights. Each character also has a shadow whose strength fades
+with the distance from the camera, and scripts can fix that strength or the shadow's alpha.
+
+## How it works
+
+### The light pool
+
+Lights live in a pool of 128 entries of `0x70` bytes at `[02B3F528]`. `003AB960(request)` takes the
+first free entry, makes its handle `counter << 8 | index` (the counter `02B3F504` wraps after
+`0xFFFFFF`), copies the `0x50`-byte request to entry `+0x20`, and appends the entry to the list whose
+head is `02B3F508` and tail `02B3F510` (previous at `+0x08`, next at `+0x10`). `003ABD00(handle)`
+returns the request block when the handle still matches.
+
+For the falloff kinds the create routine stores `1 / range²` from the range at request `+0x0C`: at
+request `+0x30` for kinds 2 and 5, `+0x40` for kind 3, `+0x48` for kind 4. Kind 4 also gets
+`1 / (+0x40 − +0x44)` at `+0x4C`, and kind 5 a squared length, a dot product and a reciprocal from its
+two vectors.
+
+### Choosing a character's lights
+
+`003ACC10(list, out, colour scale, out ambient, record, id, placement)` walks the list. It skips a light
+when `(request +7 >> 2) & (02B3F501 | 02B3F520)` is non-zero or bit 1 of `+7` is set. Then the scope:
+
+| Scope `+3` | Sub `+4` | The light is taken when |
+|---:|---:|---|
+| 1 | 2 | there is a record and the target is this character's id |
+| 1 | 8 | there is a record and the target is not this id |
+| 1 | 9 | there is a record; the light is re-aimed from the camera first |
+| 1 | other | always |
+| 2 | 3, 4, 5 | there is a record and `0024E2F0` (3), `0024E6D0` (4) or either (5) accepts the target |
+| 4 | | there is no record and the target is the id |
+| 5 | | never |
+| 0, 3, 6 and up | | always |
+
+The camera-anchored light (scope 1, sub 9) gets its float at entry `+0x3C` from byte `+0x112` of the
+character's object (`003E56C0`: 1 gives 0, 2 gives 0.25, 3 gives 0.5, anything else 1.0), and its
+direction from the camera position `02AEDF20` to the character, normalised and turned by the pair at
+request `+0x40` / `+0x44`.
+
+By type (request `+0`):
+
+- 6, ambient: subtype 5 makes it the multiplier for the final ambient; otherwise `003ACAA0` evaluates
+  it, scaled by `02B3F51C` while `02B3F503` is set, then the character's ambient mode applies, an
+  additive light (bit 0 of `+7` clear) joins the running sum, and a higher priority (`+1`), or equal
+  priority and greater strength, makes it the winner.
+- 7: the character's own list, fetched from record `+0x108` (`0037AD40`). Its entries use scope 1 sub 2
+  (id match) and scope 3 with the character's group bits (`003AED20`: record `+0x28C`; sub 7 needs a
+  shared bit, sub 6 none). Ambients are handled as above with the light scale off; the rest are taken.
+- anything else is a directional kind and goes to the output list.
+
+At the end the base ambient is the winner's colour, or the additive sum when the winner was additive;
+it is multiplied by the multiplier and its alpha set to 1.0.
+
+### The character's own adjustments
+
+- Ambient mode, record byte `+0x5E0`: 1 blends each ambient toward the record's colour `+0x5D0` by
+  `+0x5DC` (for additive ones, once on their sum at the end); 2 multiplies by `+0x5DC`. A light with
+  request `+5` bit 4 is exempt.
+- Light scale: the gather copies record `+0x5EC` to `02B3F518`; while `02B3F502` is set it multiplies the
+  colour and strength of every light whose `+5` is below `0x80`.
+- Group bits: `002E8610(actor, group, on)` sets or clears bit `group & 31` of the record's `+0x28C`.
+  The verbs `setlightgroup` (`0x224`, `003404F0`) and `clearlightgroup` (`0x225`) reach it
+  ([verb table](../Scripts-And-Script-Commands/verb-table.md)).
+
+### Evaluating a light
+
+`003ACAA0` forms an ambient colour by subtype, with `c` the light's colour and `s` the caller's scale:
+0 or above 4 gives `c`; 1 gives `s`; 2 gives `c × s.w`; 3 gives `s × s.w`; 4 gives `c × s` per channel.
+The strength is `0.299|r| + 0.587|g| + 0.114|b|` of `c`.
+
+| Kind | Body | Shape |
+|---:|---|---|
+| 1 | `003AD540` | directional; the direction at request `+0x30`, as given or through the installed matrix |
+| 2 | `003AE0E0` | point: colour × `1 − d² × k`, zero at or past the range |
+| 3 | `003AD830` | point cut by a plane: zero when the light-to-character vector has a non-positive dot with the axis at `+0x30` |
+| 4 | `003AE4C0` | spot: falloff × `min(1, (cos − [+0x44]) × [+0x4C])` |
+| 5 | `003ADC40` | segment: the closest point on the segment, clamped to its ends, then a point light |
+
+### The six-light block
+
+`003ABD50(record, block, matrix 1, matrix 2, colour scale, use scale)` clears a `0xE0`-byte block,
+sets `+0xD0` to -1, copies the record's light scale and calls the selector with the ambient written to
+`+0xC0`. It sorts the chosen lights (`003AEBC0`), evaluates each with the first matrix when its `+5`
+bits 1-3 are clear and the second otherwise, and at the end of each run of equal priority, highest
+first, sorts the run's lit lights by strength (`003AE9C0`).
+
+It writes up to six: directions negated and normalised, stored by component (x of lights 0-2 at `+0x00`, y at
+`+0x10`, z at `+0x20`; lights 3-5 at `+0x30`..`+0x50`), colours at `+0x60 + 16i`, and the index of a
+camera-anchored light at `+0xD0`. A direction too short after normalising becomes (0, -1, 0).
+
+The model instance's draw setup `004FD4B0` calls it with the instance's record (`+0xF8`), matrices
+(`+0xE8`, `+0xF0`) and colour (`+0x90`) into the global block `02CA8110`, then scales the ambient: rgb
+by instance `+0xA0`..`+0xA8`, alpha by `+0xAC × (+0xB0 / 4096)` and, with `+0x244` bit 0, by `+0x248`.
+That is how a character's fade and script colour reach its lighting ([character fades](character-fades.md)).
+
+### The map's character-light settings
+
+Render-object slot 8, `001F9B20(object, block, f)`, copies the block into every part record's
+`lichtAmbient`, `lichtDir1`-`6`, `lichtColor1`-`6` and `sunIndex` (the `+0xD0` index when it is -1 to 5).
+Unless the settings flag at `001EBA40()` `+0x118` is set:
+
+- the ambient becomes `rgb × mMapChrAmbientIntensity + mMapChrAmbientOffset` (`01F82ED8`, `01F82EE8`);
+- each light's colour is multiplied by `mMapChrDirLightColorIntensity` (`01F82EF8`);
+- when `001EC560()` is 0, a light within the upward threshold of straight up (`01DFE198` degrees; the
+  test is skipped above 89) is also multiplied by `01DFE19C`; both are the `mMapChrUpwardDirLight*`
+  settings.
+
+The settings are listed on [graphics settings](../Engine-Core/graphics-settings.md).
+
+### The shadow caster
+
+`PShadowCaster` is a reflected Phyre class (`006C15D0` registers `m_light` at `+0x00`,
+`m_shadowCasterType` at `+0x08`, `m_splits` at `+0x10`, `m_zbias` at `+0x50`). Its constructor
+`006C0EB0` sets `m_shadowCasterType` to the first value record of `PShadowCasterType` at `01F2EDC8`,
+named `NoShadow` (the next are `PCFShadowMap` and `CascadedShadowMap`), `m_splits` empty, `m_zbias`
+1.0e-5, and initialises the state block at `+0x58` (`005DC400`, then bytes 1, 1, 2, 2 and `+0x74` bit 6).
+
+### The two shadow pools
+
+A render record holds up to two shadow entries, chosen by its shadow kind (record `+0xC0` bits 3-4).
+`00427DE0` sets the kind from `(+0x304 >> 12) & 3` through `003E73B0` when `+0x290` bit 22 is set;
+kind 1 takes a second-pool entry and kind 0 frees it, and the handle is copied to the presentation
+entry's `+0x360`.
+
+| | First pool | Second pool |
+|---|---|---|
+| Storage | 160 entries of `0xE0` at `[02B40528]` (`003B6890`) | 32 entries of `0x70` at `02B3F570` (`003AFCD0`) |
+| Taken by | `003B56D0(record id)` at promotion, into `+0x114` | `003AF340(record id)`, into `+0x118`; needs the model's `@FCP` shadow block (`003E6E40`) |
+| Handle | counter `02B40520` << 8 \| slot, checked at entry `+0x10` | counter `02B3F550` << 8 \| slot, checked at entry `+0x04` |
+| Freed by | `003B6000` | `003AFBE0` |
+| Mode | byte `+0x41`, `003B6900(handle, v)` = `(v >> 2 & old) \| (v & 3)` | low nibble of `+0x20`, `003AFD00` |
+
+A first-pool entry keeps the owner's index at `+0x04`, its strength at `+0x14` (1.0) and two bones,
+`+0x3C` and `+0x3E`, from the model's special bones `0x104` and `0x106` (`003E5AD0`).
+
+### Each frame
+
+`00426420` runs `00426340` on every active record while tail `+0x42` is 1 and `+0x43` is 0:
+
+1. it puts both entries in their off state (`003B6900(h, 6)`, `003AFD00(h, 0)`);
+2. it stops unless `+0x284` bits 2, 6, 7 and 12 are set, the record has no parent and `+0x2AE` bit 1
+   is clear;
+3. kind 0 with a first-pool entry: `003B6900(h, 4)`, then the strength (`003B6B80`) is record `+0x27C`
+   when `+0xC0` bit 1 is set, otherwise `003B5980(h)`;
+4. kind 1 with a second-pool entry: `003AFD00(h, 1)`.
+
+`003B5980` measures the distance `d` from the entry's bone (`00421FF0`) to the camera position
+`02AEDF20` and returns `clamp(1 − (clamp(d, near, far) − near) × k, 0, 1)`, with `near`, `far` and `k`
+at `+0x20`, `+0x24` and `+0x2C` of the model's `@FCP` block (`003E6F70`). The 1 and the zero bias inside the
+inner clamp are the cells `01EF93FC` (1.0) and `01EF93F0` (0.0), which `0036D990` sets at boot.
+
+### The shadow verbs
+
+- `setshadowlod` (`0x286`, `00342CF0`): `002E8950(actor, 1)` sets `+0xC0` bit 1 and `002E89B0` stores
+  the value, clamped to 0..1, at `+0x27C`. `clearshadowlod` (`0x287`) clears the bit.
+- `setshadowalpha` (`0x284`, `00342410`): `002E88A0(actor, 1)` sets `+0xC0` bit 2 and `002E8900` stores
+  the value at `+0x274`. `clearshadowalpha` (`0x285`) clears the bit.
+
+Each finds the record through the actor's `+0xC0` context, whose first word is the record index. Every
+access to the two structures found is in [the shadow caster](character-lighting-and-shadows-pshadow-caster-accesses.tsv)
+and [second pool](character-lighting-and-shadows-shadow-pool-v2-slot-accesses.tsv) tables.
+
+## Layouts
+
+A light request (entry `+0x20`):
+
+```
++0x00  u8   type: 1-5 directional kinds, 6 ambient, 7 the character's own list
++0x01  u8   priority
++0x02  u8   subtype (ambient colour form; 5 = multiplier)
++0x03  u8   scope
++0x04  u8   scope sub-kind
++0x05  u8   bit 4 no ambient mode; bits 1-3 matrix; 0x80 and up no light scale
++0x07  u8   bit 0 exclusive (not additive); bit 1 skip; bits 2-7 class
++0x08  u32  target: id, handle or group mask
++0x0C  f32  range
++0x10  f32[4]  colour
++0x20  ...  kind data (position, axis, cone, segment end)
+```
+
+## Modding notes
+
+- The cap is six directional lights per character after priority; a seventh never reaches the shader.
+- An exclusive ambient of the highest priority silences every other ambient on that character.
+- Group numbers wrap at 32: group 32 is bit 0 again.
+
+## Related
+
+- [CharacterRenderObject](character-render-object.md): slot 8 and the part records.
+- [Character render records](character-render-records.md): the record fields and promotion.
+- [Character fades](character-fades.md): the instance fields that scale the ambient.
+- [Character status visuals](character-status-visuals.md): the status lights.
+- [Graphics settings](../Engine-Core/graphics-settings.md): `mMapChr*` and the shadow object.
+- [Verb table](../Scripts-And-Script-Commands/verb-table.md): the light-group and shadow verbs.

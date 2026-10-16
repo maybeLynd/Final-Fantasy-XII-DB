@@ -54,6 +54,35 @@ them load a literal format string, 386 distinct. Most are a prefix naming the so
 by the message, such as "..\src\GPU\GPUPostEffect.cpp(%d) : Feb 18 2016 PPFX ERROR: " (113 sites).
 The game's own code never calls it.
 
+### Methods named by their diagnostics
+
+The messages a function prints name its method:
+
+| Function | Method |
+|---|---|
+| `0070B780` | `CPostEffect::BeginPostEffectScene` |
+| `0070B990` | `CPostEffect::EndPostEffectScene` |
+| `0070CD40` | `CPostEffect::SetFramebuffer`, which refuses to run between Begin and End |
+| `00705520` | `CPostEffect::Uninitialize`, which returns `0x80004005` between Begin and End |
+| `006E04F0` | `IPfxBaseRenderToTexture::Initialize` |
+| `006E07A0` | `IPfxBaseRenderToTexture::Uninitialize` |
+
+### Render states the D3D11 device refuses
+
+Three render-state methods of `IGPUDevice` do nothing and return `0x80004001` (E_NOTIMPL):
+`00724EC0` DepthTestEnable, `00724F50` DepthFunc and `00724FF0` AlphaFunc. Each counts its calls
+(`02EA1988`, `02EA198C`, `02EA1990`). It prints its "is not supported" warning only when the count
+is 0 or leaves 25 when divided by 100, and only while `01F3BA80` and `01F3BA8C` are both non-zero.
+
+### Messages no code prints
+
+No instruction or stored pointer in the image refers to these texts:
+
+- "IGPUDevice::ApplyRenderState_AlphaTestEnable() is not supported (DX10/11)." (`00D9C8A0`);
+- the three log lines of
+  `CDepthOfField::ApplyDepthOfField_ApertureFilterLevel_EAPERTUREFM_DISC_ApplyApertureFilter`
+  (`00DA8660` failed, `00DA8710` succeeded, `00DAADB0` the call).
+
 ### Start-up
 
 1. The static initialiser `00167990` builds the game's allocator object `02E5BDE0` with the vtable
@@ -236,3 +265,5 @@ EndDay = 0, MacAddress = 00-00-00-00-00-00, License = 5F7EAB4F21F6A264...
 - [Game settings](../Saving-Loading-And-Settings/game-settings.md): the Glare and DepthofField options.
 - [Script verb table](../Scripts-And-Script-Commands/verb-table.md): command `0x05B0`.
 - [Debug menu](../Engine-Core/debug-menu.md): the menu rows that switch the pass.
+- [Post-processing](../Graphics/post-processing.md): the passes the game runs, the
+  feature setters and the init bits that leave features off.

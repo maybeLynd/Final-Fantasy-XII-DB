@@ -138,7 +138,8 @@ and then loops over passes:
 Each pumped object is a lazily built singleton: a global pointer, an ensure function that
 allocates a fixed size and constructs on first use, and a getter. The screen fade `01F82CE0` is a
 `0x38`-byte record built disabled (`+0` = 0, `+0x10` = 3) whose update steps a level `+0x1C` by
-`+0x20` up (mode 0) or down (mode 1) and clamps at 255 (screen fade).
+`+0x20` up (mode 0) or down (mode 1) and clamps at 255 ([screen fade](../17-Presentation-Rendering/screen-fades.md
+)).
 
 ## Layouts
 

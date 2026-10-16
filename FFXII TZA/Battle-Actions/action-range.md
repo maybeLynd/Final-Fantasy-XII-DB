@@ -214,5 +214,6 @@ the speed `ctx+0xB0` is non-zero; otherwise it clears bit 8 and returns 0 (`0033
   - the movement solver that runs the spacing and pacing steps.
 - The inner values have a second reader: `00320E10` calls `00320D70` twice (`00320F6A`, `00320F82`)
   for the unit's current action and is used only by the query-record builder `0031ADB0`.
-- The FCP character parameter block
+- [The FCP character parameter block](../17-Presentation-Rendering/model-files-cm-ca.md
+)
   - the per-character parameters behind weapon-flag actions.

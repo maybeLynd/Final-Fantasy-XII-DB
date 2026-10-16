@@ -256,8 +256,9 @@ and sets its `+0x290` bit 11.
 - shapes 2-3 with selector 1 go to `003E6B90(record, 0, +0x10, +0x14)` and `003E6C00(record, 1,
   id, 0x30B)` for shape 3, else `002E7720`;
 - shapes 2-3 with selector 2 go to `003E6B70(record, 1, +0x10, +0x14)` for shape 3, else `002E77F0`
-  (the staged look
-  command).
+  ([the staged look
+  command](../17-Presentation-Rendering/character-rig-and-look.md
+)).
 
 The look-at verbs set the shapes:
 
@@ -357,4 +358,5 @@ its staged triple; the globals `02164200` and `02099DB4`.
 - [Battle locomotion](battle-locomotion.md): the combat steering that feeds the unit's intent.
 - [Field runtime](../Characters-And-Objects/field-runtime.md): the resolver that calls the integrator.
 - [Actor record](../Characters-And-Objects/actor-record.md): the class byte and the contexts.
-- The staged look command: the head requests.
+- [The staged look command](../17-Presentation-Rendering/character-rig-and-look.md
+): the head requests.

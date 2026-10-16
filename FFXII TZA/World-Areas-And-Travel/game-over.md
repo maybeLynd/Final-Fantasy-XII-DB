@@ -319,4 +319,5 @@ actors' halt class `0x16`; `022C3158` to `022C3178` after a crystal touch.
 - [UI request router](../Menus-And-HUD/menus.md): the area controller's messages.
 - [The thirty-two statuses](../Status-Effects-And-KO/statuses.md): KO's row and the status groups.
 - [Boss fights](../Battle-Actions/boss-fights.md): the jump lock that keeps a party in a fight.
-- The screen-fade layers: `002EFA70`.
+- [The screen-fade layers](../17-Presentation-Rendering/screen-fades.md
+): `002EFA70`.

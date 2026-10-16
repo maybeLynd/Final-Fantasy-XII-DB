@@ -130,8 +130,9 @@ rewritten, not only before bring-up.
   the result, state `0x0D` forces the speed to 0, and any other state stores 1.0 into that
   accumulator and touches nothing else (`+0x61C` keeps its value).
 
-The record is Presentation's (character render record
-array);
+The record is Presentation's ([character render record
+array](../17-Presentation-Rendering/character-render-records.md
+));
 this is Presentation writing back into Movement.
 
 ### Integration and the displacement measure
@@ -283,4 +284,5 @@ mode; the body's `+0x70`, `+0x90`, `+0xC8` and `+0x110`; the render record's `+0
 - [Movement bodies and separation](movement-bodies-and-separation.md): the body the step is solved against.
 - [Field runtime](../Characters-And-Objects/field-runtime.md): the resolver that calls the driver.
 - [Battle units](../Characters-And-Objects/battle-units.md): the unit fields the intent is read from.
-- Character render record array: the record the override reads.
+- [Character render record array](../17-Presentation-Rendering/character-render-records.md
+): the record the override reads.

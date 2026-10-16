@@ -149,4 +149,5 @@ bank blob.
 ## Related
 
 - [The resource owner](resource-ownership-and-disposal.md): how a loaded resource is owned and released.
-- FRP object container: the `@FRP` files on disk.
+- [FRP object container](../17-Presentation-Rendering/model-files-cm-ca.md
+): the `@FRP` files on disk.

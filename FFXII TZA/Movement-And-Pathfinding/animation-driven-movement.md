@@ -22,8 +22,9 @@ gap is, and a swing closes the angle and stops when it is closed.
 
 ### The command and the request
 
-Authored command `0x1A` (authored
-commands)
+Authored command `0x1A` ([authored
+commands](../17-Presentation-Rendering/authored-presentation-commands.md
+))
 is handled by `00520C10`: when the current render record (`00422D50`) has a motion section
 (`+0x370`) it calls `003E6340(record, mode)` on its own record argument with the command's word
 `+2` (the gate reads the current record, the request is built on the argument). The builder returns at
@@ -107,7 +108,8 @@ the two profile rows no authored command names.
 
 ### The profiles
 
-Every animation container carries one `@FRM` child (container).
+Every animation container carries one `@FRM` child ([container](../17-Presentation-Rendering/model-files-cm-ca.md
+)).
 When a presentation entry is set up (`0041D220`) it looks the child up by tag (`00409660`,
 `00409A30`) and, when the child's size `+8` exceeds `0x30`, keeps the body `child + 0x30` at the
 entry's `+0x378` and the profile table `body + [body + 8]` at `+0x37C` (-1 for none).
@@ -250,7 +252,9 @@ each entry's counter, armed bytes and two accumulators.
 
 - [Movement step](heading-speed-to-position-delta.md): the pass-through path that consumes `move`.
 - [Facing and steering](facing-and-steering.md): the integrator's direct arm that consumes `turn`.
-- Authored commands:
+- [Authored commands](../17-Presentation-Rendering/authored-presentation-commands.md
+):
   the command stream and the other handlers.
-- FRP container:
+- [FRP container](../17-Presentation-Rendering/model-files-cm-ca.md
+):
   the `@FRM` child.

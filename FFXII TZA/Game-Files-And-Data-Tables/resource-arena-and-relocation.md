@@ -169,7 +169,8 @@ records `+0x100`, `+0x108`, `+0x18` and `+0x20`). The repair is exact only when 
 lies between −2^31 and 2^31 − 1; beyond that the base is right and every repaired pointer is wrong.
 `003AA3D0` forwards the delta to the element handlers `00501420` and `00503F10`; the effect element
 types `005004C0` sets up are on the
-effect element dispatch
+[effect element dispatch](../17-Presentation-Rendering/effect-element-runtime.md
+)
 page.
 
 ## Layouts
@@ -213,4 +214,5 @@ the encoding base `01F83530`.
 - [Resource sections](resource-sections.md): how data inside a loaded block is found.
 - [Script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md): the binding system that compacts arena 6 and supplies its pressure callback.
 - [File requests and the read queue](file-requests-and-the-read-queue.md): the loads that fill these blocks.
-- Effect element dispatch: the effect elements the repair walks reach.
+- [Effect element dispatch](../17-Presentation-Rendering/effect-element-runtime.md
+): the effect elements the repair walks reach.

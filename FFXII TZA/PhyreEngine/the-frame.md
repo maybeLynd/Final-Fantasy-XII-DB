@@ -85,7 +85,8 @@ from the table `00D10F88` is non-zero, and a closing TEST_1. It then flips the c
 through `003A1DB0`.
 
 The packet and the hand-off are on
-the shared command-state word;
+[the shared command-state word](../17-Presentation-Rendering/graphics-thread-handshake.md
+);
 the GIF tag format and the GS replay are on
 [PS2 VIF1 and VU1 emulation](../Engine-Core/ps2-vif1-vu1-emulation.md).
 
@@ -103,9 +104,11 @@ buffer is full). It then stores the buffer address & `0x3FF0` (`0036F3A6`) and t
 compare loop (`0036F3B2`-`0036F3E9`), and stores `0x100` to it (`0036F3EB`).
 
 The buffers are on
-the ordered render command list,
+[the ordered render command list](../17-Presentation-Rendering/render-command-list.md
+),
 the word on
-the shared command-state word.
+[the shared command-state word](../17-Presentation-Rendering/graphics-thread-handshake.md
+).
 
 ### The menu viewport
 
