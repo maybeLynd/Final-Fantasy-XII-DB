@@ -56,8 +56,10 @@ stores the class (`003180BB`-`003180D0`).
 When the class matches, the chain continues (`00317F2D`-`00318065`):
 
 1. Chain length `022C315C` += 1, capped at 999 (`0x3E7`), or at 998 (`0x3E6`) when `00229E40()` is
-   non-zero (`00317F2D`-`00317F64`). `00229E40` returns the locale id at `01E02814`, which is 0 only for
-   Japanese, so every other language caps at 998.
+   non-zero (`00317F2D`-`00317F64`). `00229E40` returns the locale id at `01E02814`, which is never 0
+   in the shipped game: `0017E270` maps every language code, Japanese included, to an id of 1 or
+   more (see the [languages page](../Saving-Loading-And-Settings/languages.md)), so the cap is 998 and the
+   999 arm never runs.
 2. Breaks in a row `022C3164` = 0 (`00317F6A`).
 3. The same-model run `022C3160`: if the `u16` at `[actor+0xE68]+0x40` (the model id that palette swaps
    share) equals the previous one at `022C316C`, it adds 1, capped at 999; otherwise it resets to 0 and
@@ -68,15 +70,15 @@ When the class matches, the chain continues (`00317F2D`-`00318065`):
    increment `0x3039`) give `r` in 0-99 (`00317FC1`-`00318032`). If coin bit 0 of `022C3178` is set,
    success is `r >= 40` (60 %); otherwise success is `r < 5` (5 %) (`00318034`-`00318048`).
 6. `0028EF70(length, coin, level)` posts the update to the chain display, adding 1 to the length passed
-   when `00229E40()` is non-zero (`0031804B`-`00318065`).
+   when `00229E40()` is non-zero (`0031804B`-`00318065`), which it always is, so the display shows
+   the stored length plus one.
 7. The coin result becomes the new bit 0 of `022C3178` (`003180BB`-`003180C6`), and the class is stored.
 
 ### Different class - the chain breaks
 
 When the class differs, the chain breaks (`0031806C`-`003180B5`):
 
-1. `0028EF00(length, level)` posts the break to the display (again +1 to the length when
-   `00229E40()` is non-zero).
+1. `0028EF00(length, level)` posts the break to the display (again the stored length plus one).
 2. Breaks in a row `022C3164` += 1, capped at 999.
 3. Zeroed together: `022C3170`/`022C3174` (one qword store, `00318091`), chain level `022C3158` and
    length `022C315C` (one qword store, `00318098`), and the same-model run `022C3160`.
@@ -162,8 +164,8 @@ The widget update `003F9F40` reads those flags each frame:
 - Flag bit 1 is copied into the widget's `+0xC4` bit 1 (`003FA069`-`003FA07E`), which makes the
   number redraw every frame in a pulsing grey.
 - `003F9E50(widget, count, playSound)` (229 B) hides the widget for a count of 0, does not show a
-  count of 1 while `00229E40()` is non-zero, and otherwise draws `min(count, 999)` in three digits
-  (unsigned compare), playing sound `0x30` when asked.
+  count of 1 (the test is on `00229E40()` being non-zero, which it always is), and otherwise draws
+  `min(count, 999)` in three digits (unsigned compare), playing sound `0x30` when asked.
 - With flag bit 2 set, it counts frames at widget `+0x24A0` and, once the count passes 15 times the
   frame base `01DFE0B4`, starts a second element at widget `+0xD0` with the handler `003FACF0` and
   clears the bit (`003F9F51`-`003F9FB5`).
@@ -222,6 +224,6 @@ then the clock value (`00863D4D`-`00863D6A`). It does not touch `022C256C`.
   crystal script that resets the chain.
 - [The field record table](../World-Areas-And-Travel/area-flags-navimapdata.md) -
   the town flag that resets the chain on entry.
-- Language selection and locale ids
+- [Language selection and locale ids](../Saving-Loading-And-Settings/languages.md)
 - [Who gets EXP, LP and gil from a kill](exp-lp-and-level-ups.md) - the
   defeat-reward routine that calls the chain update.
