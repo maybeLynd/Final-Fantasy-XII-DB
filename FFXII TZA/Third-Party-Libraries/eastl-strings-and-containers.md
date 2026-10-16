@@ -148,7 +148,7 @@ map container, as 001A3380 uses it
 
 | Fact | Value |
 |---|---|
-| start-up initialisers in the executable's table | 1,177 |
+| start-up initialisers in the executable's C++ table | 1,172 |
 | initialisers that build EASTL objects | 64 |
 | strings copied from a literal | 58: 52 non-empty, 6 empty |
 | strings built empty without a copy | 2 |
