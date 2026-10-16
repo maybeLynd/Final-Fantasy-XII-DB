@@ -70,7 +70,7 @@ the same way in state 2.
 (`0037C980`); `partyallread2` (`0x046F`, `0034D8B0` → `0037CA00`) runs it in reverse slot order.
 Their poll `0034E3E0` waits on the same end test, calling `00314D40(1)` each frame, and their
 result `0034D460` follows
-(the read-in state machine).
+([the read-in state machine](../Characters-And-Objects/actor-model-rebuild.md)).
 
 ### The appearance verbs
 
@@ -176,7 +176,7 @@ per-actor bytes the setters write.
 
 ## Related
 
-- Party read-in state machine: what the polls wait for.
+- [Party read-in state machine](../Characters-And-Objects/actor-model-rebuild.md): what the polls wait for.
 - [Cutscenes and the world lock](cutscenes-and-the-world-lock.md): capturing a member's body.
 - [Native commands](native-commands.md): begin and poll.
 - [Verb dispatch](verb-dispatch.md): the value stack the motion verbs reuse.
