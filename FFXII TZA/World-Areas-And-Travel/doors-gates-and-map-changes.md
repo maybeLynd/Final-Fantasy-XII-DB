@@ -362,4 +362,4 @@ is rebuilt from the map and its script on every load.
 - [Zone changes: mapjump and the other jump verbs, the loading flags, the moment the new zone is ready and what names a map](zone-changes-and-mapjump.md)
 - [Area flags: the navimapdata.bin record for every area, the town flag, the KO, Stone and X-Zone override and the other bits](area-flags-navimapdata.md)
 - How a unit finds its way across the navigation mesh
-- The map ctrl pack
+- [The map ctrl pack](mpk-map-pack.md)
