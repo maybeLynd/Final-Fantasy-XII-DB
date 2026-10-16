@@ -181,8 +181,8 @@ row-12 inhibitions stay until their off form runs.
 
 `00307030` runs once per field frame from `00234590` (`00234717`). It does nothing while the gate
 `00233D20` is closed: `02089340 & 0xF00` must be 0 and time-stop request 10 must not be raised
-(`00226BD0(10)` = 0, the time-stop
-registry).
+(`00226BD0(10)` = 0, [the time-stop
+registry](../Engine-Core/time-stop-and-freeze.md)).
 
 With the gate open it walks the 64 entries; for each with flag bit 0 it clears the bit and calls
 `0026ADC0(3, i + 1)`, which stores the group number in word 3 of the 64-word table at `[02098E68]`
