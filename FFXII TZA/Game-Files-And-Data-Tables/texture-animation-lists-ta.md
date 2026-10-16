@@ -14,9 +14,9 @@ map without its list keeps drawing the still picture.
 ## Where it comes from
 
 The files are in the archive at `gamedata/d3d11/artdata/map/<area>/<map>/<map>_anime_<n>_d3d11.ta`.
-When a map's art loads, the map-art routine `001A5B30` zeroes the list counter (context `+0x264`)
+When a map's art loads, the map-art routine `001A5B30` zeroes the list counter (context `+264`<sub>h</sub>)
 and calls `001A7D50`, which builds the name from the prefix
-`.\GameData\D3D11\ArtData\map\<area>\<map>\<map>_anime_` (written by `001A7A50` at context `+0x141`),
+`.\GameData\D3D11\ArtData\map\<area>\<map>\<map>_anime_` (written by `001A7A50` at context `+141`<sub>h</sub>),
 the counter and `D3D11` with `"%s%d_%s.ta"` (`008F6768`), increments the counter, and files a
 whole-file text request whose completion is `001A9770` and whose result lands in `01F81178`. The
 map-art context is the object at `01F81168`.
@@ -52,10 +52,10 @@ frame N, with N read as the decimal digits after `_pic_`. Line order does not ma
 
 - **The chain.** `001A9770` runs when a request completes. When text arrived, it parses it
   (`001A8BA0`), frees it, and requests the next number (`001A7D50`); when none did, it sets the done
-  byte context `+0x140`. Lists are therefore read 0, 1, 2 … and the first missing number ends the
+  byte context `+140`<sub>h</sub>. Lists are therefore read 0, 1, 2 … and the first missing number ends the
   chain, hiding every later one.
 - **Frame sets.** `001A8BA0` adds a frame set (a vector of texture pointers, seeded with one null
-  frame) to the list at context `+0x120`.
+  frame) to the list at context `+120`<sub>h</sub>.
 - **Tokens.** It reads each entry with a `%s` scan into a 255-byte buffer and then steps the text by
   the token's length plus 2 from where the scan started, assuming the token began there and ended with a
   two-byte separator: an LF-only file loses the first character of every later entry, and leading
@@ -76,21 +76,21 @@ frame N, with N read as the decimal digits after `_pic_`. Line order does not ma
 
 `001A7460(context, texture)` returns the frame set whose frame 0 is that texture, once the done byte is
 set. `001807F0(object, frame)` calls `001E62E0` when the done byte is set: on first use it finds the
-object's `TextureSampler` texture and caches its frame set at `+0x210`, then stores the frame at
-`+0x204` and marks `+0x208` when it changed.
+object's `TextureSampler` texture and caches its frame set at `+210`<sub>h</sub>, then stores the frame at
+`+204`<sub>h</sub> and marks `+208`<sub>h</sub> when it changed.
 
 The frame comes from the map-draw pass `002F4520` (`002F4A1B`–`002F4A55`): it truncates the float at
-`[[context + 0x50] + 0x90]` (0 when that pointer is null), subtracts 1, adds the draw record's signed
-word `+4` (records above `0x3FFF` are skipped), clamps the sum into the animation table's range
-(`[r14 + 0x150]`, a count then `0x60`-byte entries), and passes the frame on only when that entry's
-`u16 +0x0C` equals it. The pass clamps and never wraps.
+`[[context + 50h] + 90h]` (0 when that pointer is null), subtracts 1, adds the draw record's signed
+word `+4` (records above `3FFF`<sub>h</sub> are skipped), clamps the sum into the animation table's range
+(`[r14 + 150h]`, a count then `60`<sub>h</sub>-byte entries), and passes the frame on only when that entry's
+`u16 +0Ch` equals it. The pass clamps and never wraps.
 
 The float is the value of a map animation track bound on channel 9 (`00466420`'s arm at `00466488`
-stores the track at `+0x90`). The track's slot is one of the `0x50`-byte records at `[02EBB6F0]`
-(count `[02EBB6E0]`): each frame `004678E0(dt)` adds `dt × rate` (`+0x38`) to the step `+0x48` of
-every active slot (`+0x4C` bit `0x1`), and `004668C0` adds the step to the time `+0x44`. With loop
-(`+0x4C` bit `0x2`) and a span of at least 1.0 the time wraps within `+0x3C`..`+0x40`; otherwise it
-clamps there and sets bit `0x4` (finished).
+stores the track at `+90`<sub>h</sub>). The track's slot is one of the `50`<sub>h</sub>-byte records at `[02EBB6F0]`
+(count `[02EBB6E0]`): each frame `004678E0(dt)` adds `dt × rate` (`+38`<sub>h</sub>) to the step `+48`<sub>h</sub> of
+every active slot (`+4C`<sub>h</sub> bit `1`<sub>h</sub>), and `004668C0` adds the step to the time `+44`<sub>h</sub>. With loop
+(`+4C`<sub>h</sub> bit `2`<sub>h</sub>) and a span of at least 1.0 the time wraps within `+3C`<sub>h</sub>..`+40`<sub>h</sub>; otherwise it
+clamps there and sets bit `4`<sub>h</sub> (finished).
 
 ## Modding notes
 

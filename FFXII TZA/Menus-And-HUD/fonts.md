@@ -49,50 +49,50 @@ then asks for two more files:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `u32` | fontId | the font's id (lookup `001B4E33`, insert `0020B5F0`) |
-| `04` | `u32` | glyphCount | number of glyph records |
-| `08` | `u32` | atlasW | atlas width; copied to font record `+0x24` |
-| `0C` | `u32` | atlasH | copied to font record `+0x28` |
-| `10` | `u32` | cellW | equal to every glyph record's cellW |
-| `14` | `u32` | cellH | equal to every glyph record's cellH |
-| `18` | `f32` | scale | divides advances and kerning (`001E9C01`) |
-| `1C` | `u32` | flags | bit 0 asks for .ker, bit 1 for .fex |
-| `20` | `u32` | metricA | copied to font record `+0x1C` |
-| `24` | `u32` | metricB | copied to font record `+0x20` |
+| `00`<sub>h</sub> | `u32` | fontId | the font's id (lookup `001B4E33`, insert `0020B5F0`) |
+| `04`<sub>h</sub> | `u32` | glyphCount | number of glyph records |
+| `08`<sub>h</sub> | `u32` | atlasW | atlas width; copied to font record `+24`<sub>h</sub> |
+| `0C`<sub>h</sub> | `u32` | atlasH | copied to font record `+28`<sub>h</sub> |
+| `10`<sub>h</sub> | `u32` | cellW | equal to every glyph record's cellW |
+| `14`<sub>h</sub> | `u32` | cellH | equal to every glyph record's cellH |
+| `18`<sub>h</sub> | `f32` | scale | divides advances and kerning (`001E9C01`) |
+| `1C`<sub>h</sub> | `u32` | flags | bit 0 asks for .ker, bit 1 for .fex |
+| `20`<sub>h</sub> | `u32` | metricA | copied to font record `+1C`<sub>h</sub> |
+| `24`<sub>h</sub> | `u32` | metricB | copied to font record `+20`<sub>h</sub> |
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `u32` | key | the glyph's key: a glyph index in font00, fontguide, fontquest, fonttutorial and us fontex_subtitle, a Unicode code point in the others |
-| `04` | `u32` | utf8 | the glyph's UTF-8 bytes, packed from the low byte |
-| `08` | `u32` | atlasX | left edge in the atlas (`002AA5C7`) |
-| `0C` | `u32` | atlasY | top edge in the atlas (`002AA5E0`) |
-| `10` | `u32` | cellW | width in the atlas |
-| `14` | `u32` | cellH | height in the atlas |
-| `18` | `u32` | advance2 | equal to advance in every record of the 62 listed files |
-| `1C` | `u32` | advance | the pen advance (`002AC4EC`) |
-| `20` | `i32` | kernCp | the glyph's code point for kerning, or -1 for none (`002AC527`) |
+| `00`<sub>h</sub> | `u32` | key | the glyph's key: a glyph index in font00, fontguide, fontquest, fonttutorial and us fontex_subtitle, a Unicode code point in the others |
+| `04`<sub>h</sub> | `u32` | utf8 | the glyph's UTF-8 bytes, packed from the low byte |
+| `08`<sub>h</sub> | `u32` | atlasX | left edge in the atlas (`002AA5C7`) |
+| `0C`<sub>h</sub> | `u32` | atlasY | top edge in the atlas (`002AA5E0`) |
+| `10`<sub>h</sub> | `u32` | cellW | width in the atlas |
+| `14`<sub>h</sub> | `u32` | cellH | height in the atlas |
+| `18`<sub>h</sub> | `u32` | advance2 | equal to advance in every record of the 62 listed files |
+| `1C`<sub>h</sub> | `u32` | advance | the pen advance (`002AC4EC`) |
+| `20`<sub>h</sub> | `i32` | kernCp | the glyph's code point for kerning, or -1 for none (`002AC527`) |
 
 The atlas fills row by row: `jp/font00` records 0-36 sit on row 0 and record 37 starts the next row at y 55.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `i32` | left | code point of the first glyph of the pair |
-| `04` | `i32` | right | code point of the second glyph |
-| `08` | `i32` | adjust | pen adjustment in font pixels; negative tightens |
+| `00`<sub>h</sub> | `i32` | left | code point of the first glyph of the pair |
+| `04`<sub>h</sub> | `i32` | right | code point of the second glyph |
+| `08`<sub>h</sub> | `i32` | adjust | pen adjustment in font pixels; negative tightens |
 
 A `.ker` is these records to the end of the file. Pairs such as `('T', '.', -3)` and `('F', ',', -1)` show the first
 field is the left glyph; no file except `us/fontex_subtitle` has the reverse of such a pair.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `u32` | key | the hash of a resource path |
-| `04` | `i32` | count | number of u32 values that follow |
+| `00`<sub>h</sub> | `u32` | key | the hash of a resource path |
+| `04`<sub>h</sub> | `i32` | count | number of u32 values that follow |
 
 A `.fex` is chunks of `{key, count, value[count]}` to the end of the file. The values are glyph keys in first-use order.
 
 ### Kerning between two glyphs
 
-`001FDC10` files a pair as `kern[right][left] = adjust` in the font's map at `+0x70` (`001FDC15`, `001FDC45`). While
+`001FDC10` files a pair as `kern[right][left] = adjust` in the font's map at `+70`<sub>h</sub> (`001FDC15`, `001FDC45`). While
 drawing, `002AC2F0` looks a pair up for every glyph that has a kerning code point and follows another glyph
 (`002AC518`-`002AC52F`):
 
@@ -106,12 +106,12 @@ So the authored pairs apply as authored. The current glyph then becomes the prev
 ### Expansion lists
 
 An expansion list remaps glyph indices for one piece of text. The key of each list is `00674A00` of a three-part path,
-`event\<folder>\<name>` or `plan_map\<folder>\<name>` (`001B6350`): a hash starting at `0x1505` that multiplies by 33
+`event\<folder>\<name>` or `plan_map\<folder>\<name>` (`001B6350`): a hash starting at `1505`<sub>h</sub> that multiplies by 33
 and adds each character, with bit 31 cleared (`00674A03`-`00674A23`).
 
 When text is drawn, `001E9D20` binds the
 running font and the list for the text's key to the text context (`001E9DB9`-`001E9DD5`). `001FDD60` finds that list in the
-font's map at `+0xB0` and returns 0 when the key has none (`001E9DD0`). `001E9860` then reads glyph
+font's map at `+B0`<sub>h</sub> and returns 0 when the key has none (`001E9DD0`). `001E9860` then reads glyph
 `list[index]` instead of `index`; an index past the list's end gives glyph 0.
 
 ### Glyph advances
@@ -120,11 +120,11 @@ For each glyph `002AC2F0` computes the advance:
 
 1. `ceil(advance / scale)` from the glyph record (`0017F9C0`, `001E9BD0`), or the raw advance when the byte `01F811E0`
    is set. A glyph with no record uses bits 32-36 of the font sheet's glyph entry (`002AC4F6`-`002AC504`).
-2. Plus the letter spacing `state + 0x4C` (`002AC507`).
+2. Plus the letter spacing `state + 4Ch` (`002AC507`).
 3. Plus 1.5, or 0.5 when `00254A10` returns 0, for glyphs marked by bit 31 of the sheet entry while the float
-   `state + 0x40` is non-zero (`002AC4B8`-`002AC4DF`).
+   `state + 40h` is non-zero (`002AC4B8`-`002AC4DF`).
 
-The advance and kerning are then scaled by the text size `state + 0x34` and the x scale `state + 0x38`
+The advance and kerning are then scaled by the text size `state + 34h` and the x scale `state + 38h`
 (`002AC54B`-`002AC5A6`). The `0F 4` code overrides the advance of the next glyph only ([Text codes](text-codes.md)).
 
 ### Why digits line up
@@ -141,8 +141,8 @@ a negative value gives only the padding (`003EFD20`).
 
 `002AC2F0` turns a text code into a glyph index:
 
-- A byte `0x20` or above is index `byte - 0x20` (`002AC37C`).
-- A lead byte `0x10`-`0x1F` and the next byte are index `table[lead & 0xF] + second - 0x20` (`002AC38D`-`002AC3BC`).
+- A byte `20`<sub>h</sub> or above is index `byte - 20h` (`002AC37C`).
+- A lead byte `10`<sub>h</sub>-`1F`<sub>h</sub> and the next byte are index `table[lead & Fh] + second - 20h` (`002AC38D`-`002AC3BC`).
   The table is `00916570`, or `009165B0` for language ids 7, 8 and 11 (`002AB7D0`).
 
 Numbers reach the font through the font sheet's two character maps (`002AE77C`, `002AE861`): the first maps `0`-`9`

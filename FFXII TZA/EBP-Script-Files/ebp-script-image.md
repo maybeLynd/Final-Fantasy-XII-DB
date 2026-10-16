@@ -15,7 +15,7 @@ few instructions at a time each frame.
 
 ## Where it comes from
 
-Section 0 of each `.ebp` container, at file offset `0x80` in every shipped file
+Section 0 of each `.ebp` container, at file offset `80`<sub>h</sub> in every shipped file
 ([script container](ebp-script-container.md)). The container walk passes it to `0032F850`, which
 binds it to the script manager the file was loaded for. All offsets below are relative to the
 image's first byte.
@@ -26,60 +26,60 @@ image's first byte.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `u16` | version | 11 in every shipped image; readers below compare it |
-| `02` | `u16` | marker | `0x8000` |
-| `04` | `u32` | length | bytes of image; the section's slot may be padded beyond it |
-| `08` | `u32` | authorOff | -> NUL-terminated author name |
-| `0C` | `u32` | sourceOff | -> NUL-terminated source file name, "<script>.src" |
-| `10` | `u32` | stampOff | -> NUL-terminated build stamp "MM/DD HH:MM", at +`0x90` |
-| `14` | `i32` | typeCounts | -> u16 8, then u16 count[8]: directory entries per actor type |
-| `18` | `i32` | directory | -> u32 count, then `0x30`-byte actor entries sorted by type |
-| `1C` | `u32` | zero | 0 |
-| `20` | `i32` | intPool | -> u32 count, s32 values (PUSHI) |
-| `24` | `i32` | floatPool | -> u32 count, f32 values (PUSHF) |
-| `28` | `i32` | variables | -> u32 count, 8-byte descriptors (PUSHV, POPV) |
-| `2C` | `i32` | tagTables | -> the actor tag tables (PUSHACT, PUSHTAG) |
-| `30` | `u32` | listTable | -> u32 count, u32 listOff[count]: the actor lists |
-| `34` | `u32` | word34 | non-zero in all but 9 of 10,036 images |
-| `38` | `u32` | fileArea | the file-class variable area; `0xC0` in every image |
-| `3C` | `u32` | mspSize | size of the msp area |
-| `40` | `u32` | mspOff | the msp area (class 3, packed references with tag 3) |
-| `44` | `u32` | localSize | size of the local variable storage, 0 in the file |
-| `48` | `u32` | localOff | the local variable storage |
-| `4C` | `u32` | namePool | NUL-terminated names: +`0x48` + +`0x44` rounded up to 16 |
-| `50` | `i16` | startActor | actor ordinal `00266C50` starts, -1 for none |
-| `52` | `i16` | entryDefault | entry-point index used for -1 or any negative request |
-| `54` | `u32` | entryPointsA | -> u32 count, 32-byte records (`00264B90` kind 0) |
-| `58` | `u32` | startList | -> u16 count, s16 function[count] for startActor |
-| `5C` | `u32` | table5C | -> u32 count, `0x1C`-byte records (`00264390` mode 0) |
-| `60` | `u32` | table60 | -> u32 count, 16-byte records (`002642C0`) |
-| `64` | `u32` | weather | -> u8 3, u8 chance[3] (`002658B0`) |
-| `68` | `u32` | table68 | -> u32 count, u32 listOff: u16 count, s16 ordinal[] (`003B7210`) |
-| `6C` | `u32` | trapRefs | -> u32 count, u32 packedRef[count] (`002641B0`) |
-| `70` | `u32` | table70 | -> u32 5, s32 tableOff[5] (`00264AE0`) |
-| `74` | `u32` | table74 | -> u32 count, `0x1C`-byte records (`00264390` mode 1) |
-| `78` | `i16` | entryMinus2 | entry-point index used for -2 |
-| `7A` | `i16` | entryMinus3 | entry-point index used for -3 |
-| `7C` | `u32` | word7C | 0 in 1,014 of the 1,114 us images |
-| `80` | `u32` | table80 | -> u32 count, {u32 id, u32 mask} (`0035A270`) |
-| `84` | `u32` | entryPointsB | -> u32 count, 32-byte records (`00264B90` kind 1) |
-| `88` | `u32` | word88 | 0 in 364 of the 1,114 us images |
-| `8C` | `u32` | table8C | -> u32 count, 16-byte records (`00264870`) |
+| `00`<sub>h</sub> | `u16` | version | 11 in every shipped image; readers below compare it |
+| `02`<sub>h</sub> | `u16` | marker | `8000`<sub>h</sub> |
+| `04`<sub>h</sub> | `u32` | length | bytes of image; the section's slot may be padded beyond it |
+| `08`<sub>h</sub> | `u32` | authorOff | -> NUL-terminated author name |
+| `0C`<sub>h</sub> | `u32` | sourceOff | -> NUL-terminated source file name, "<script>.src" |
+| `10`<sub>h</sub> | `u32` | stampOff | -> NUL-terminated build stamp "MM/DD HH:MM", at +`90`<sub>h</sub> |
+| `14`<sub>h</sub> | `i32` | typeCounts | -> u16 8, then u16 count[8]: directory entries per actor type |
+| `18`<sub>h</sub> | `i32` | directory | -> u32 count, then `30`<sub>h</sub>-byte actor entries sorted by type |
+| `1C`<sub>h</sub> | `u32` | zero | 0 |
+| `20`<sub>h</sub> | `i32` | intPool | -> u32 count, s32 values (PUSHI) |
+| `24`<sub>h</sub> | `i32` | floatPool | -> u32 count, f32 values (PUSHF) |
+| `28`<sub>h</sub> | `i32` | variables | -> u32 count, 8-byte descriptors (PUSHV, POPV) |
+| `2C`<sub>h</sub> | `i32` | tagTables | -> the actor tag tables (PUSHACT, PUSHTAG) |
+| `30`<sub>h</sub> | `u32` | listTable | -> u32 count, u32 listOff[count]: the actor lists |
+| `34`<sub>h</sub> | `u32` | word34 | non-zero in all but 9 of 10,036 images |
+| `38`<sub>h</sub> | `u32` | fileArea | the file-class variable area; `C0`<sub>h</sub> in every image |
+| `3C`<sub>h</sub> | `u32` | mspSize | size of the msp area |
+| `40`<sub>h</sub> | `u32` | mspOff | the msp area (class 3, packed references with tag 3) |
+| `44`<sub>h</sub> | `u32` | localSize | size of the local variable storage, 0 in the file |
+| `48`<sub>h</sub> | `u32` | localOff | the local variable storage |
+| `4C`<sub>h</sub> | `u32` | namePool | NUL-terminated names: +`48`<sub>h</sub> + +`44`<sub>h</sub> rounded up to 16 |
+| `50`<sub>h</sub> | `i16` | startActor | actor ordinal `00266C50` starts, -1 for none |
+| `52`<sub>h</sub> | `i16` | entryDefault | entry-point index used for -1 or any negative request |
+| `54`<sub>h</sub> | `u32` | entryPointsA | -> u32 count, 32-byte records (`00264B90` kind 0) |
+| `58`<sub>h</sub> | `u32` | startList | -> u16 count, s16 function[count] for startActor |
+| `5C`<sub>h</sub> | `u32` | table5C | -> u32 count, `1C`<sub>h</sub>-byte records (`00264390` mode 0) |
+| `60`<sub>h</sub> | `u32` | table60 | -> u32 count, 16-byte records (`002642C0`) |
+| `64`<sub>h</sub> | `u32` | weather | -> u8 3, u8 chance[3] (`002658B0`) |
+| `68`<sub>h</sub> | `u32` | table68 | -> u32 count, u32 listOff: u16 count, s16 ordinal[] (`003B7210`) |
+| `6C`<sub>h</sub> | `u32` | trapRefs | -> u32 count, u32 packedRef[count] (`002641B0`) |
+| `70`<sub>h</sub> | `u32` | table70 | -> u32 5, s32 tableOff[5] (`00264AE0`) |
+| `74`<sub>h</sub> | `u32` | table74 | -> u32 count, `1C`<sub>h</sub>-byte records (`00264390` mode 1) |
+| `78`<sub>h</sub> | `i16` | entryMinus2 | entry-point index used for -2 |
+| `7A`<sub>h</sub> | `i16` | entryMinus3 | entry-point index used for -3 |
+| `7C`<sub>h</sub> | `u32` | word7C | 0 in 1,014 of the 1,114 us images |
+| `80`<sub>h</sub> | `u32` | table80 | -> u32 count, {u32 id, u32 mask} (`0035A270`) |
+| `84`<sub>h</sub> | `u32` | entryPointsB | -> u32 count, 32-byte records (`00264B90` kind 1) |
+| `88`<sub>h</sub> | `u32` | word88 | 0 in 364 of the 1,114 us images |
+| `8C`<sub>h</sub> | `u32` | table8C | -> u32 count, 16-byte records (`00264870`) |
 
 ### Actor directory entry
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `u32` | nameOff | into the name pool: the actor's name |
-| `04` | `u16` | type | actor type 0..7 |
-| `06` | `u16` | partySlot | `0xFF`, or `0x80`..0x83 for a party member's script |
-| `08` | `u32` | codeStart | bytecode base -> actor record +`0x58` |
-| `0C` | `u32` | word0C | never more than the bytes to the next entry's code |
-| `10` | `u32` | functions | -> u32 count, {u32 nameOff, u32 codeOff}[count] -> record +`0x48` |
-| `14` | `u32` | jumps | -> u32 count, u32 codeOff[count] -> record +`0x50` |
-| `18` | `u32` | slotFooter | -> s16 18, s16 function[18], one per entry slot |
-| `1C` | `u32` | localOff | this actor's slice of the local storage |
-| `20` | `u8[16]` | rest of the entry |  |
+| `00`<sub>h</sub> | `u32` | nameOff | into the name pool: the actor's name |
+| `04`<sub>h</sub> | `u16` | type | actor type 0..7 |
+| `06`<sub>h</sub> | `u16` | partySlot | `FF`<sub>h</sub>, or `80`<sub>h</sub>..`83`<sub>h</sub> for a party member's script |
+| `08`<sub>h</sub> | `u32` | codeStart | bytecode base -> actor record +`58`<sub>h</sub> |
+| `0C`<sub>h</sub> | `u32` | word0C | never more than the bytes to the next entry's code |
+| `10`<sub>h</sub> | `u32` | functions | -> u32 count, {u32 nameOff, u32 codeOff}[count] -> record +`48`<sub>h</sub> |
+| `14`<sub>h</sub> | `u32` | jumps | -> u32 count, u32 codeOff[count] -> record +`50`<sub>h</sub> |
+| `18`<sub>h</sub> | `u32` | slotFooter | -> s16 18, s16 function[18], one per entry slot |
+| `1C`<sub>h</sub> | `u32` | localOff | this actor's slice of the local storage |
+| `20`<sub>h</sub> | `u8[16]` | rest of the entry |  |
 
 Function and jump offsets are relative to `codeStart`. The function table's `listOff` follows it
 directly: `jumps = functions + 4 + 8 × count` in every entry.
@@ -97,8 +97,8 @@ Measured over the section 0 of all 10,036 containers; `us` figures in brackets.
 
 | Fact | Value |
 |---|---|
-| version and marker | 11 and `0x8000` in all |
-| header | `0x90` bytes: the smallest offset any header field holds is `0x90` in all |
+| version and marker | 11 and `8000`<sub>h</sub> in all |
+| header | `90`<sub>h</sub> bytes: the smallest offset any header field holds is `90`<sub>h</sub> in all |
 | length | inside the section in all; equal to it in 2,741 (304) |
 | source name | `<file>.src` in all but the `kr` and `cn` `ttl_a01_e3`, which name `ttl_a01.src` |
 | build stamp | `00/00 00:00` in 10,019 (1,113); `11/22 12:00` in 9 (1); `12/09 15:11` in 2; three other stamps, each in 2 |
@@ -114,8 +114,8 @@ Measured over the section 0 of all 10,036 containers; `us` figures in brackets.
 | local storage | empty in 1,449 (161); name pool directly after it in all |
 | msp area | size 0 in 3,174 (352) |
 | `startActor` | -1 in 4,445 (493), 0 in 4,835 (537), positive in 756 (84) |
-| fixed counts | `+0x64` target 3, `+0x6C` target 1, `+0x70` target 5, in all |
-| `+0x68` | present with count 2 in 7,101 (789), absent otherwise |
+| fixed counts | `+64`<sub>h</sub> target 3, `+6C`<sub>h</sub> target 1, `+70`<sub>h</sub> target 5, in all |
+| `+68`<sub>h</sub> | present with count 2 in 7,101 (789), absent otherwise |
 | weather triples | 17 distinct |
 
 ## Loader behaviour
@@ -125,17 +125,17 @@ Measured over the section 0 of all 10,036 containers; `us` figures in brackets.
 `0032F850(packed)` stores the image at `022C6C28[manager]` and tests only its first byte
 (`0032F87E cmp byte ptr [rdi], 0`). A zero byte sets `022C6D18[manager]` to 0 and returns with
 nothing bound; otherwise `022C6D18` becomes 1. It then picks the allocator the manager's actor
-record pool will come from (`002679F0` calls it through record `+0x88`):
+record pool will come from (`002679F0` calls it through record `+88`<sub>h</sub>):
 
 | Manager | Arena | Callback |
 |---|---|---|
 | 0 and 4 | 5 | `00267930` |
-| 1, 2 | `0xD` when enabled, else 5 | `00267BB0` |
-| 3 | `0xE` when enabled, else 5 | `00267C20` |
+| 1, 2 | `D`<sub>h</sub> when enabled, else 5 | `00267BB0` |
+| 3 | `E`<sub>h</sub> when enabled, else 5 | `00267C20` |
 
 Each callback pushes its arena (`0036C1D0`), allocates with `0036A100`, labels the block
-`ateldecode.c` with a per-site tag (`0x1676`, `0x16C1`, `0x16E6`) and pops the arena. The handler
-binds the image with `0026C8C0(manager, image, callback)`, stores `00330050` at record `+0x108`
+`ateldecode.c` with a per-site tag (`1676`<sub>h</sub>, `16C1`<sub>h</sub>, `16E6`<sub>h</sub>) and pops the arena. The handler
+binds the image with `0026C8C0(manager, image, callback)`, stores `00330050` at record `+108`<sub>h</sub>
 (`00268630`) and clears pending bit 1 ([script container](ebp-script-container.md)).
 
 ### The bind
@@ -145,27 +145,27 @@ the header it takes:
 
 | Header | Becomes | How |
 |---|---|---|
-| image | record `+0x00` | the pointer |
-| `+0x14` | record `+0x20` | the sum of the eight type counts: the actor count |
-| `+0x20`, `+0x24`, `+0x28`, `+0x2C` | record `+0x68`, `+0x70`, `+0x78`, `+0x80` | image + signed offset |
-| `+0x48` | record `+0x50` | image + unsigned offset |
-| `+0x50` | record `+0x12` | 1 when not negative (`0026CD1A cmp word ptr [r15 + 0x50], bx`) |
+| image | record `+00`<sub>h</sub> | the pointer |
+| `+14`<sub>h</sub> | record `+20`<sub>h</sub> | the sum of the eight type counts: the actor count |
+| `+20`<sub>h</sub>, `+24`<sub>h</sub>, `+28`<sub>h</sub>, `+2C`<sub>h</sub> | record `+68`<sub>h</sub>, `+70`<sub>h</sub>, `+78`<sub>h</sub>, `+80`<sub>h</sub> | image + signed offset |
+| `+48`<sub>h</sub> | record `+50`<sub>h</sub> | image + unsigned offset |
+| `+50`<sub>h</sub> | record `+12`<sub>h</sub> | 1 when not negative (`0026CD1A cmp word ptr [r15 + 50h], bx`) |
 
-The callback goes to `+0x88`. No offset is checked against `+0x04` or the section's extent.
+The callback goes to `+88`<sub>h</sub>. No offset is checked against `+04`<sub>h</sub> or the section's extent.
 
 ### Building the actors
 
 When the manager's loads finish, `0026CE60` builds the actor record pool with `002679F0`, which
 sizes it from the type counts and initialises one record per directory entry through `00266530`;
-it then runs `00266C50` and sets record `+0x40` to image + `[+0x38]` (`0026D2ED`–`0026D2F6`) when
+it then runs `00266C50` and sets record `+40`<sub>h</sub> to image + `[+38h]` (`0026D2ED`–`0026D2F6`) when
 that is still 0. `00266530`:
 
-1. forms the directory as image + `[+0x18]` and the actor's entry at `+4 + index × 0x30`, or
-   `× 0x20` when the version word is below 8 (`00266710`–`00266731`), and stores it at record `+0x40`;
+1. forms the directory as image + `[+18h]` and the actor's entry at `+4 + index × 30h`, or
+   `× 20h` when the version word is below 8 (`00266710`–`00266731`), and stores it at record `+40`<sub>h</sub>;
 2. sets record `+2` to 1 for an index below the type-0 count, else 2 (`002666FC`–`0026670D`);
-3. for a `partySlot` of `0x80` to `0x83`, files the record in the party table `0209A1F0` at
-   `partySlot & 0x7F` (`00266738`–`00266792`);
-4. sets record `+0x48` to the function table, `+0x50` to the jump table and `+0x58` to the code
+3. for a `partySlot` of `80`<sub>h</sub> to `83`<sub>h</sub>, files the record in the party table `0209A1F0` at
+   `partySlot & 7Fh` (`00266738`–`00266792`);
+4. sets record `+48`<sub>h</sub> to the function table, `+50`<sub>h</sub> to the jump table and `+58`<sub>h</sub> to the code
    base (`00266795`–`002667CA`).
 
 `00266C50` reads `startActor`: when it is not negative it files every non-negative function of
@@ -195,22 +195,22 @@ any pair's function is still filed on that actor. Filing and waiting are on
 Each reader below resolves the offset through `0020E600`, returns null (or a default) for a zero
 offset, and bounds the index by the table's count. `002658B0`, `00264AE0` and `00264870` read
 manager 0's image only; all but `00264B90`, `003B7210` and `0035A270` also require the manager
-record's `+0x10` bit 0.
+record's `+10`<sub>h</sub> bit 0.
 
 | Field offset | Reader | Returns |
 |---|---|---|
-| `54`, `84` | `00264B90`, version above 2 | the first four dwords of 32-byte record `index`; `00377AB0` and `00377900` take three as a position and convert the fourth with `003A1C50` |
-| `5C`, `74` | `00264390`, modes 0 and 1 | a pointer to `0x1C`-byte record `index` |
-| `60` | `002642C0`, version 9 or above | a pointer to 16-byte record `index`; older versions use `00264260` |
-| `64` | `002658B0`, version 7 or above | weather slot's chance byte ([weather](../World-Areas-And-Travel/weather.md)) |
-| `68` | `003B7210` | binds the first list's actors through `00262F50` |
-| `6C` | `002641B0` | base of the reference's class (`00265770`) plus its low 24 bits; class 2 refused ([traps](../World-Areas-And-Travel/traps.md)) |
-| `70` | `00264AE0` | image + entry `index` of the five offsets |
-| `80` | `0035A270` | for each `{id, mask}` whose id resolves, `002ECAB0(id, bit, 1)` for each set bit 1 to 31 |
-| `8C` | `00264870` | a pointer to 16-byte record `index` |
+| `54`<sub>h</sub>, `84`<sub>h</sub> | `00264B90`, version above 2 | the first four dwords of 32-byte record `index`; `00377AB0` and `00377900` take three as a position and convert the fourth with `003A1C50` |
+| `5C`<sub>h</sub>, `74`<sub>h</sub> | `00264390`, modes 0 and 1 | a pointer to `1C`<sub>h</sub>-byte record `index` |
+| `60`<sub>h</sub> | `002642C0`, version 9 or above | a pointer to 16-byte record `index`; older versions use `00264260` |
+| `64`<sub>h</sub> | `002658B0`, version 7 or above | weather slot's chance byte ([weather](../World-Areas-And-Travel/weather.md)) |
+| `68`<sub>h</sub> | `003B7210` | binds the first list's actors through `00262F50` |
+| `6C`<sub>h</sub> | `002641B0` | base of the reference's class (`00265770`) plus its low 24 bits; class 2 refused ([traps](../World-Areas-And-Travel/traps.md)) |
+| `70`<sub>h</sub> | `00264AE0` | image + entry `index` of the five offsets |
+| `80`<sub>h</sub> | `0035A270` | for each `{id, mask}` whose id resolves, `002ECAB0(id, bit, 1)` for each set bit 1 to 31 |
+| `8C`<sub>h</sub> | `00264870` | a pointer to 16-byte record `index` |
 
-`00264B90` maps the index -1 to `+0x52`, -2 to `+0x78` and -3 to `+0x7A`, and any other negative
-index to `+0x52`.
+`00264B90` maps the index -1 to `+52`<sub>h</sub>, -2 to `+78`<sub>h</sub> and -3 to `+7A`<sub>h</sub>, and any other negative
+index to `+52`<sub>h</sub>.
 
 ## Modding notes
 
@@ -233,5 +233,5 @@ index to `+0x52`.
 - [Script interpreter](../Scripts-And-Script-Commands/script-interpreter.md): the opcodes and how the tables are used.
 - [Script variables](../Scripts-And-Script-Commands/script-variables.md): descriptors, the file, local and msp areas.
 - [Script requests](../Scripts-And-Script-Commands/script-requests.md): entry slots, list requests and waits.
-- [Weather](../World-Areas-And-Travel/weather.md): the `+0x64` chances.
+- [Weather](../World-Areas-And-Travel/weather.md): the `+64`<sub>h</sub> chances.
 - [Resource arenas](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md): the arenas the callbacks allocate from.

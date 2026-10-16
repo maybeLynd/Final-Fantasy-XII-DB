@@ -23,7 +23,7 @@ interpreter stores anything in it.
 
 Two more value kinds use the same scheme with their own registry keys: `"Vector"` (16-byte
 userdata, pushed by `00684280`, `00684300`, `00684360`, `006843D0`, `00684450`) and `"Matrix"`
-(`0x40` bytes, `00684130`).
+(`40`<sub>h</sub> bytes, `00684130`).
 
 ### Recognising a script value
 
@@ -34,7 +34,7 @@ are the same table. `00682A10` and `006828F0` do the same for `"Vector"` and `"M
 ### Object accessors
 
 Each `PObjectAccessor<T>::Get` reads the value on top of the stack with `00682980`, pops it, and walks
-the userdata's descriptor through the base links at descriptor `+0x78` until it reaches `T`'s
+the userdata's descriptor through the base links at descriptor `+78`<sub>h</sub> until it reaches `T`'s
 descriptor, so a derived object is accepted where a base is wanted. They come in two forms:
 
 - Reference (`T &`), e.g. `00599770` for `PClusterHeader`: a non-Phyre value, or a Phyre object of
@@ -66,8 +66,8 @@ push adapters are one-line tail calls into `00682D20` through the jump thunk `00
 
 For `PInputMapper` (descriptor vtable `01CB1178`) slot 3 is `007919D0`: it takes the mapper from the
 script with its reference accessor `00796860` and copies it into the out-value with `007939A0`, which
-copies the `0x2C8`-byte object member by member and the `0x88`-byte block at `+0x230` through
-`00793DA0`; that one skips the dwords at `+0x10`, `+0x20`, `+0x30` and `+0x40` of the block.
+copies the `2C8`<sub>h</sub>-byte object member by member and the `88`<sub>h</sub>-byte block at `+230`<sub>h</sub> through
+`00793DA0`; that one skips the dwords at `+10`<sub>h</sub>, `+20`<sub>h</sub>, `+30`<sub>h</sub> and `+40`<sub>h</sub> of the block.
 
 ### Method-call adapters
 
@@ -132,31 +132,31 @@ creates a state (see the Lua runtime page), so they never run.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `void*` | descriptor | class descriptor of the object |
-| `08` | `void*` | object | the engine object |
+| `00`<sub>h</sub> | `void*` | descriptor | class descriptor of the object |
+| `08`<sub>h</sub> | `void*` | object | the engine object |
 
 The `PObjectAccessor` failure record at `02E41000`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `void*` | file | source path of the accessor template |
-| `08` | `u32` | line | `0x6A` / `0x76` pointer form, `0x8D` / `0x8F` reference form |
-| `10` | `void*` | function | the accessor's own name |
+| `00`<sub>h</sub> | `void*` | file | source path of the accessor template |
+| `08`<sub>h</sub> | `u32` | line | `6A`<sub>h</sub> / `76`<sub>h</sub> pointer form, `8D`<sub>h</sub> / `8F`<sub>h</sub> reference form |
+| `10`<sub>h</sub> | `void*` | function | the accessor's own name |
 
 The `PScript` members `006822E0` registers; `00680F40` clears them and sets `m_executionInterval`
 to 1:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `PArray` | m_scriptChunk32 | PArray<PUInt8> |
-| `10` | `PArray` | m_scriptChunk64 | PArray<PUInt8>; the loader reads +`0x10` count, +`0x18` data |
-| `20` | `PArray` | m_functionNames | PArray<PString>; entry points by index |
-| `30` | `void*` | m_onLoadEntryPoint |  |
-| `38` | `void*` | m_onUnloadEntryPoint |  |
-| `40` | `void*` | m_defaultEntryPoint |  |
-| `48` | `void*` | m_sourceName |  |
-| `50` | `u8` | m_isPersistent |  |
-| `54` | `u32` | m_executionInterval |  |
+| `00`<sub>h</sub> | `PArray` | m_scriptChunk32 | PArray<PUInt8> |
+| `10`<sub>h</sub> | `PArray` | m_scriptChunk64 | PArray<PUInt8>; the loader reads +`10`<sub>h</sub> count, +`18`<sub>h</sub> data |
+| `20`<sub>h</sub> | `PArray` | m_functionNames | PArray<PString>; entry points by index |
+| `30`<sub>h</sub> | `void*` | m_onLoadEntryPoint |  |
+| `38`<sub>h</sub> | `void*` | m_onUnloadEntryPoint |  |
+| `40`<sub>h</sub> | `void*` | m_defaultEntryPoint |  |
+| `48`<sub>h</sub> | `void*` | m_sourceName |  |
+| `50`<sub>h</sub> | `u8` | m_isPersistent |  |
+| `54`<sub>h</sub> | `u32` | m_executionInterval |  |
 
 ## Shipped data
 

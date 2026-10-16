@@ -35,15 +35,15 @@ PS2 icon pair and the boot descriptor are instead entries of the per-kind path a
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `u8` | id length | 0 |
-| `01` | `u8` | colour-map type | 0 |
-| `02` | `u8` | image type | 2 (uncompressed true colour) |
-| `03` | `u8[9]` | colour | map, origin 0 |
-| `0C` | `u16` | width | 1920   <- read |
-| `0E` | `u16` | height | 1080   <- read |
-| `10` | `u8` | bits per pixel | 24 |
-| `11` | `u8` | descriptor | `0x20` (top-left origin) |
-| `12` | `u8[width*height*3]` | pixels, B G R, first row at the top |  |
+| `00`<sub>h</sub> | `u8` | id length | 0 |
+| `01`<sub>h</sub> | `u8` | colour-map type | 0 |
+| `02`<sub>h</sub> | `u8` | image type | 2 (uncompressed true colour) |
+| `03`<sub>h</sub> | `u8[9]` | colour | map, origin 0 |
+| `0C`<sub>h</sub> | `u16` | width | 1920   <- read |
+| `0E`<sub>h</sub> | `u16` | height | 1080   <- read |
+| `10`<sub>h</sub> | `u8` | bits per pixel | 24 |
+| `11`<sub>h</sub> | `u8` | descriptor | `20`<sub>h</sub> (top-left origin) |
+| `12`<sub>h</sub> | `u8[width*height*3]` | pixels, B G R, first row at the top |  |
 
 The game reads only the width and height; it assumes the rest (no id field, 24-bit, top-left).
 
@@ -95,29 +95,29 @@ objects; a font colour file holds `mClutIndex`, `mClutComment` and eight colour 
 
 ### PS2 memory-card icon pair
 
-Icon.sys (192 bytes; the PS2 icon.sys layout cut at `0xC0`):
+Icon.sys (192 bytes; the PS2 icon.sys layout cut at `C0`<sub>h</sub>):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `char[4]` | "PS2D" |  |
-| `06` | `u16` | 26 | title line-break position |
-| `0C` | `u32` | 109 | background transparency |
-| `10` | `u32[4][4]` | background corner colours (39,24,6,0 / 186,164,125,0 alternating) |  |
-| `50` | `f32[3][4]` | light directions (0.5, 0.5, 0.5, 0) |  |
-| `80` | `f32[3][4], f32[4]` | light colours, ambient | (a full PS2 icon.sys continues with the title at +`0xC0` and three icon names; this one ends here) |
+| `00`<sub>h</sub> | `char[4]` | "PS2D" |  |
+| `06`<sub>h</sub> | `u16` | 26 | title line-break position |
+| `0C`<sub>h</sub> | `u32` | 109 | background transparency |
+| `10`<sub>h</sub> | `u32[4][4]` | background corner colours (39,24,6,0 / 186,164,125,0 alternating) |  |
+| `50`<sub>h</sub> | `f32[3][4]` | light directions (0.5, 0.5, 0.5, 0) |  |
+| `80`<sub>h</sub> | `f32[3][4], f32[4]` | light colours, ambient | (a full PS2 icon.sys continues with the title at +`C0`<sub>h</sub> and three icon names; this one ends here) |
 
 Icon1.ico (33,688 bytes; PS2 icon model, not a Windows icon):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `000` | `u32` | 0x00010000 | file id (the same four bytes a Windows .ico starts with) |
-| `004` | `u32` | 1 | animation shapes |
-| `008` | `u32` | 6 | texture type |
-| `00C` | `f32` | 1.0 |  |
-| `010` | `u32` | 36 | vertices |
-| `014` | `36 x 24 bytes` | vertex, normal, uv, colour |  |
-| `374` | `20 + 16 bytes` | animation header (one frame), frame record |  |
-| `398` | `u16[128*128]` | texture (32,768 bytes) |  |
+| `000`<sub>h</sub> | `u32` | `00010000`<sub>h</sub> | file id (the same four bytes a Windows .ico starts with) |
+| `004`<sub>h</sub> | `u32` | 1 | animation shapes |
+| `008`<sub>h</sub> | `u32` | 6 | texture type |
+| `00C`<sub>h</sub> | `f32` | 1.0 |  |
+| `010`<sub>h</sub> | `u32` | 36 | vertices |
+| `014`<sub>h</sub> | `36 x 24 bytes` | vertex, normal, uv, colour |  |
+| `374`<sub>h</sub> | `20 + 16 bytes` | animation header (one frame), frame record |  |
+| `398`<sub>h</sub> | `u16[128*128]` | texture (32,768 bytes) |  |
 
 ### PS2 boot descriptor
 
@@ -130,7 +130,7 @@ Icon1.ico (33,688 bytes; PS2 icon model, not a Windows icon):
 |---|---|
 | archive | 89,414 entries, 48 extensions; eight are public formats |
 | `.tga` | 2 files, 6,220,818 bytes each: `warning.tga`, `sqex logo size_ffx.tga`, both in `gamedata/titleimage/in/` |
-| TGA header | both type 2, 1920 × 1080, 24 bpp, descriptor `0x20`; 18 + 1920 × 1080 × 3 = the file size |
+| TGA header | both type 2, 1920 × 1080, 24 bpp, descriptor `20`<sub>h</sub>; 18 + 1920 × 1080 × 3 = the file size |
 | `.csv` | 17 files, 209,639 bytes |
 | `ps2data/opt.csv` | 10,182 bytes, header + 459 rows; SMAA `Yes` in all 459, FlipMapOpaqueOrder in 7, ForceNoOpaqueChrFirst in 9, ForceMSAAOff in none |
 | `ps2data/soft_particle/` | `bg` 65,112 bytes (2,373 rows; 418 maps in 433 runs), `chara` 2,187 (126 rows, ids 0–125), `common` 2,686 (147, ids 1–151), `event` 3,747 (218, ids 0–227), `magic` 6,528 (362, ids 0–396) |
@@ -168,7 +168,7 @@ The path goes to `00183180` → `001D8D60`, the decoder. It opens a stream on th
 without a texture when the open fails, reads the 18-byte header, creates a texture of the header's
 width and height (`00184380`), reads `width × height × 3` bytes straight after the header, and hands
 them to `001EE820` with its flip flag fixed at 0 (`001D8E9E`). `001EE820` writes each pixel as
-bytes 2, 1, 0 and `0xFF`, row 0 first. Nothing reads the image type, depth or descriptor, so a
+bytes 2, 1, 0 and `FF`<sub>h</sub>, row 0 first. Nothing reads the image type, depth or descriptor, so a
 compressed, 32-bit or bottom-up TGA loads wrong.
 
 ### Per-map render options: opt.csv
@@ -181,16 +181,16 @@ helper `001D6F20`, reads it whole and walks it a line at a time:
 - the first line is skipped as the header, and only lines with exactly five fields are kept;
 - the map name is hashed with `00674A00` (start 5381, multiply by 33, add each byte, keep 31 bits);
 - each of the other four fields becomes 1 when it starts with `Y` or `y`, and the four bytes go into a
-  tree node keyed by the hash (tree at `+0x3E0` of the map-art object).
+  tree node keyed by the hash (tree at `+3E0`<sub>h</sub> of the map-art object).
 
 When a map is entered, `001A7A50` hashes the map name (the text after the backslash of
-`<area>\<map>`) and looks it up. A hit copies byte 1 (FlipMapOpaqueOrder) to `+0x418` and byte 3
-(ForceNoOpaqueChrFirst) to `+0x419` of the map-art object; a miss sets both to 0. `001A7A50` does not
+`<area>\<map>`) and looks it up. A hit copies byte 1 (FlipMapOpaqueOrder) to `+418`<sub>h</sub> and byte 3
+(ForceNoOpaqueChrFirst) to `+419`<sub>h</sub> of the map-art object; a miss sets both to 0. `001A7A50` does not
 use bytes 0 and 2.
 
 ### Soft-particle tables
 
-`0024C970` (from `00259180`) clears four 0x800-byte tables and reads `chara`, `event`, `magic` and
+`0024C970` (from `00259180`) clears four `800`<sub>h</sub>-byte tables and reads `chara`, `event`, `magic` and
 `common` into them (`02F96B40`, `02F96340`, `02F95B40`, `02F95340`) with `0024F240`, then reads
 `softparticle_bg.csv` with `0024EF90`.
 
@@ -242,8 +242,8 @@ back to `JsonData/init.json` through an output file stream (`00202930`).
   one (`01F81388`), `JsonData/Maps/<map>.json` is parsed into `01F81328`; the area scene-config
   loader `001C7940` then applies it.
 - Cutscenes: `001C5930`, entered by a tail jump from `001EC600`, parses
-  `JsonData/CutScenes/<name>.json` into `01F813A8 + slot × 0x10` and `<name>_2ndScreen.json` into
-  `01F813D8 + slot × 0x10`, the slot being `01DF6E4C`. `001C5750`, reached from
+  `JsonData/CutScenes/<name>.json` into `01F813A8 + slot × 10h` and `<name>_2ndScreen.json` into
+  `01F813D8 + slot × 10h`, the slot being `01DF6E4C`. `001C5750`, reached from
   `0020AC30` for names containing `sum_`, parses `JsonData/CutScenes/<name>.json` into a local
   document and passes `Common.mDofFocusDistance` and `Common.mDofApertureFnumber` to `00194250`.
 - `001C6E20` (from `001F3500`) parses `JsonData/0.json`, takes its `ChangedFileName` string as a
@@ -251,8 +251,8 @@ back to `JsonData/init.json` through an output file stream (`00202930`).
 - Font colours: `001E94E0(manager, n)` for `n` below 28, the first time entry `n` is used, formats
   `fontclut_%d` and calls `001C5F20`, which parses `JsonData/FontCluts/fontclut_<n>.json` into
   `01F81378` (gated like the map files).
-- `001C76E0` then reads `mClutIndex`, selects that entry (`0x24` bytes at manager `+0xF68`), stores
-  `mShadowRed/Green/Blue/Alpha` and `mFontRed/Green/Blue/Alpha` as integers at `+0x04` to `+0x20`,
+- `001C76E0` then reads `mClutIndex`, selects that entry (`24`<sub>h</sub> bytes at manager `+F68`<sub>h</sub>), stores
+  `mShadowRed/Green/Blue/Alpha` and `mFontRed/Green/Blue/Alpha` as integers at `+04`<sub>h</sub> to `+20`<sub>h</sub>,
   and clears the document. Nothing fetches `mClutComment`.
 - Layouts: `001C6C00` (from `001B1580`) loads `UISize.json` or `UISize_sd.json`
   ([Screen layouts](../Menus-And-HUD/screen-layouts.md)).
@@ -261,8 +261,8 @@ back to `JsonData/init.json` through an output file stream (`00202930`).
 
 ### The PS2 memory-card icon pair
 
-`00582790` asks `00249210` for kind 7 id `0x2C` (`icon.sys`) and kind 7 id `0x2D` (`icon1.ico`),
-storing the data pointers at `+0x110` and `+0x118` of the save object (`00582814`, `0058282F`).
+`00582790` asks `00249210` for kind 7 id `2C`<sub>h</sub> (`icon.sys`) and kind 7 id `2D`<sub>h</sub> (`icon1.ico`),
+storing the data pointers at `+110`<sub>h</sub> and `+118`<sub>h</sub> of the save object (`00582814`, `0058282F`).
 `00249210` sizes the file from the [file size table](file-size-tables-fst.md) (`0032E400`),
 allocates a buffer and queues the read (`0032E620`).
 
@@ -272,12 +272,12 @@ copies. Ids 46 and 47 name `icon2.ico` and `icon3.ico`, which ship nowhere and a
 table.
 
 `005832B0`, called from state 7 of the save transaction `00581DA0`, uses `icon.sys` as a template.
-It clears a `0x3C4`-byte image, stamps `PS2D` (`00583307`), writes a title of play time and save
-number at `+0xC0` and its line-break position at `+0x06`, copies bytes `+0x0C` to `+0xBF` from the
+It clears a `3C4`<sub>h</sub>-byte image, stamps `PS2D` (`00583307`), writes a title of play time and save
+number at `+C0`<sub>h</sub> and its line-break position at `+06`<sub>h</sub>, copies bytes `+0C`<sub>h</sub> to `+BF`<sub>h</sub> from the
 loaded `icon.sys`, and writes the name `005837F0` returns for kinds 2, 3 and 4 (`static.ico`) at
-`+0x104`, `+0x144` and `+0x184`.
+`+104`<sub>h</sub>, `+144`<sub>h</sub> and `+184`<sub>h</sub>.
 
-State 7 builds this image at `+0xE8` of the transaction record; the storage request it then files
+State 7 builds this image at `+E8`<sub>h</sub> of the transaction record; the storage request it then files
 (`00582540`) names only the numbered slot file. How the slot files are written and deleted is on
 [Saving and loading](../Saving-Loading-And-Settings/saving-and-loading.md).
 
@@ -290,11 +290,11 @@ other six, the PS2 executable `SLPM_667.50` and the modules `ioprp300.img`, `mcm
 
 ### Movies
 
-`001B7F30` gets a path with `002DF980(0x1C, movie × 2)`: `002DF980` returns
+`001B7F30` gets a path with `002DF980(1Ch, movie × 2)`: `002DF980` returns
 `[[0215F000 + kind × 8] + index × 8]`, and kind 28 is the movie kind. That entry is a PS2
 `movie_finish\<lang>\<NAME>.md` path. The player keeps the text between the last backslash and the
 last dot, formats `"%s%s.webm"` with the prefix `/GameData/D3D11/ArtData/video/` (`01DF6E28`), and
-opens it with `0067A480` on the player object at its `+0x678`. A null path entry stops the movie.
+opens it with `0067A480` on the player object at its `+678`<sub>h</sub>. A null path entry stops the movie.
 
 The first 98 ids of kind 28 hold 45 `.md` paths at even ids, each followed by its `.mh` path, and
 four empty pairs. 40 of the 45 base names have a `.webm`; `dlb`, `opd`, `se1`, `se2` and `bd2` have
@@ -314,7 +314,7 @@ No string in the executable, ASCII or UTF-16, in any case, names `monstertoweapo
 - Keep every `opt.csv` line, header included, to at most 6 commas, and map names to 15 characters.
   `001A9050` stores one pointer per comma into four stack slots before it checks the field count, so
   more commas, or a longer name copied into its 16-byte buffer, overwrite the stack cookie at
-  `[rbp + 0x2F]` and the game ends on the cookie check.
+  `[rbp + 2Fh]` and the game ends on the cookie check.
 - `opt.csv` and the soft-particle tables need CRLF line ends and exactly the field count shown.
   `opt.csv` always skips line 1, so keep its header. Only FlipMapOpaqueOrder and
   ForceNoOpaqueChrFirst reach the map-art object through `001A7A50`.
@@ -326,7 +326,7 @@ No string in the executable, ASCII or UTF-16, in any case, names `monstertoweapo
   menu's tracking-camera rows rewrite `init.json` (`001C7360`, `001C7520`).
 - A new font colour needs `fontclut_<n>.json` with `mClutIndex` equal to `n`, for `n` below 28.
 - A movie is replaced by a `.webm` of the same base name in `gamedata/d3d11/artdata/video/`.
-- `icon.sys` supplies only the colour and light block (`+0x0C` to `+0xBF`) of the image
+- `icon.sys` supplies only the colour and light block (`+0C`<sub>h</sub> to `+BF`<sub>h</sub>) of the image
   `005832B0` builds; the title and icon names are written by the game.
 
 ## Related

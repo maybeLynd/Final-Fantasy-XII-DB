@@ -18,41 +18,41 @@ and every one of them ends in the inventory mutator `003008A0` or the gil store 
 
 | Verb | Id | Handler | What it writes |
 |---|---|---|---|
-| `additem(item, count)` | `0x02E5` | `00345080` | pushes 1 as the message flag, pops flag, count and item, queues the "received" message (`002A3060(item, count, 1)`) and grants through `0032A810`; returns the new count |
-| `additem_47f(item, count, msg)` | `0x047F` | `003449A0` | the same with an explicit message flag |
-| `additemmes(item, count)` | `0x0480` | begin `0034A6D0`, poll `0034ABF0`, result `0034B1E0` | the begin queues the message without a grant flag (`002A3060(item, count, 0)`) and stores the pair; the poll runs while the message queue is busy (`002A2BF0` → `0035DF20(0)`, busy while `022CA430` is non-zero); the result grants through `0032A810` |
-| `subitem(item, n)` | `0x02F2` | `003459C0` | `0032A810(item, −n)` |
-| `setitemnum(item, n)` | `0x055C` | `00345520` | `0032A830(item, n)`: sets the count |
-| `haveitem(item)` | `0x02E4` | `00344630` | `0032A860`: the count through `00309FB0`, floored at 0 |
+| `additem(item, count)` | `02E5`<sub>h</sub> | `00345080` | pushes 1 as the message flag, pops flag, count and item, queues the "received" message (`002A3060(item, count, 1)`) and grants through `0032A810`; returns the new count |
+| `additem_47f(item, count, msg)` | `047F`<sub>h</sub> | `003449A0` | the same with an explicit message flag |
+| `additemmes(item, count)` | `0480`<sub>h</sub> | begin `0034A6D0`, poll `0034ABF0`, result `0034B1E0` | the begin queues the message without a grant flag (`002A3060(item, count, 0)`) and stores the pair; the poll runs while the message queue is busy (`002A2BF0` → `0035DF20(0)`, busy while `022CA430` is non-zero); the result grants through `0032A810` |
+| `subitem(item, n)` | `02F2`<sub>h</sub> | `003459C0` | `0032A810(item, −n)` |
+| `setitemnum(item, n)` | `055C`<sub>h</sub> | `00345520` | `0032A830(item, n)`: sets the count |
+| `haveitem(item)` | `02E4`<sub>h</sub> | `00344630` | `0032A860`: the count through `00309FB0`, floored at 0 |
 
 `0032A810` is `00300B80(item, delta, 0)` with the result floored at 0, and `0032A830` the same
 through `00300BA0`; both end in `003008A0(item, n, set, 1, mode)`, the one inventory mutator.
 
-`003008A0` returns −1 for ids `0xFFFF` and `0x1000`, classes above `0xE` and an index at or past the
-class's count at `01EEBCFC + class × 0x58`. Otherwise it reads the old count (`00309F30`) and calls
-the class's handler from `01EEBD08 + class × 0x58`; when that slot is null it returns the old count
+`003008A0` returns −1 for ids `FFFF`<sub>h</sub> and `1000`<sub>h</sub>, classes above `E`<sub>h</sub> and an index at or past the
+class's count at `01EEBCFC + class × 58h`. Otherwise it reads the old count (`00309F30`) and calls
+the class's handler from `01EEBD08 + class × 58h`; when that slot is null it returns the old count
 and writes nothing.
 
 When its fourth argument is 1, the old count is below 1 and the new count is above 0, it sets
 discovery bits in `[02EBF190] + 4`:
 
-- class 3: bit 0, plus `01EECF98[s]`, where s is word `+0x2C & 7` (below 5) of the `02EBF138` row
-  that byte `+2` of the `02EBF0F0` row `id − 0x3000` names;
+- class 3: bit 0, plus `01EECF98[s]`, where s is word `+2Ch & 7` (below 5) of the `02EBF138` row
+  that byte `+2` of the `02EBF0F0` row `id − 3000h` names;
 - class 4: bit 6;
-- key items: bit 7 for `0xC000` to `0xC011`, bit 8 for `0xC012` to `0xC01E`.
+- key items: bit 7 for `C000`<sub>h</sub> to `C011`<sub>h</sub>, bit 8 for `C012`<sub>h</sub> to `C01E`<sub>h</sub>.
 
 Grants made with another mode set no bits: `00300490` (mode 4) and `0030C410` (mode 2).
 
 ### Gil
 
-`addgill(n)` (`0x02E7`, `00346930`) and `subgill(n)` (`0x02E8`, `00346E30`) call
+`addgill(n)` (`02E7`<sub>h</sub>, `00346930`) and `subgill(n)` (`02E8`<sub>h</sub>, `00346E30`) call
 `0032A7F0(±n)` → `003004B0(n, 0)`. `003004B0` computes `max(0, gil + n)` and hands it to
 `00254EE0`, which records the change in statistics counter 6 (gain) or 7 (loss) through
 `00316A50` and stores `min(total, 99,999,999)`; the gil window notify `00469E80` is skipped because
 the flag is 0. The verb returns the uncapped value, so it can report more than is stored.
 
-The debug verb `debug_setgill` (`0x20A3`, `0050DEE0` → `0032A800` → `00300500`) sets gil outright.
-The `gillwinopen`, `gillwinclose`, `gillwinstart` and `gillwinsync` verbs (`0x0487` to `0x048A`)
+The debug verb `debug_setgill` (`20A3`<sub>h</sub>, `0050DEE0` → `0032A800` → `00300500`) sets gil outright.
+The `gillwinopen`, `gillwinclose`, `gillwinstart` and `gillwinsync` verbs (`0487`<sub>h</sub> to `048A`<sub>h</sub>)
 drive the gil window and write nothing.
 
 ### Treasure chests
@@ -64,27 +64,27 @@ settrapshowstatus(0); ucoff(); btlAtelOpenTreasureStart(); talktreasure(id); set
 btlAtelOpenTreasureMessage(id); sethpmenu_436(1, 5); talktreasureafter(id); btlAtelOpenTreasureFinish(); ucon();
 ```
 
-`setuptreasure` (`0x02BE`, begin `00354400`) places the chest actor and rolls its presence through
+`setuptreasure` (`02BE`<sub>h</sub>, begin `00354400`) places the chest actor and rolls its presence through
 `002FAED0`: no chest when the opened flag `0032AA60(record[9])` is set, otherwise a chest when
-`rand % 100` is below byte `+0xA` ([script name bindings](script-name-bindings.md)).
+`rand % 100` is below byte `+A`<sub>h</sub> ([script name bindings](script-name-bindings.md)).
 
-`talktreasure(ref)` (`0x02BF`, begin `00355830`) resolves the chest record through the reference,
+`talktreasure(ref)` (`02BF`<sub>h</sub>, begin `00355830`) resolves the chest record through the reference,
 has the controlled character approach it (`00269090`), stops its movement (`0026D6D0`) and disarms
 the issuer's slot 2 (`0025D5E0(actor, 2)`); its poll `00355E20` waits on the interaction latch
-`0208CD18`. `talktreasureafter` (`0x0414`, begin `00356570`, poll `00356A10`) waits on `00319180`,
+`0208CD18`. `talktreasureafter` (`0414`<sub>h</sub>, begin `00356570`, poll `00356A10`) waits on `00319180`,
 the latch's getter, for the controlled character.
 
-`btlAtelOpenTreasureMessage(ref)` (`0x3037`, begin `0050FAF0`) is the payout. It takes a message
+`btlAtelOpenTreasureMessage(ref)` (`3037`<sub>h</sub>, begin `0050FAF0`) is the payout. It takes a message
 record (`0035E550`), resolves the chest record through the reference and runs `002FAFD0`:
 
-1. The opened flag is set (`0032AD70(record[9], 1)`) when byte `+9` is not `0xFF`, and the
+1. The opened flag is set (`0032AD70(record[9], 1)`) when byte `+9` is not `FF`<sub>h</sub>, and the
    per-field presence ledger is marked (`002FB430(02EC3E60, field, record[0], 0)`).
-2. `rand % 100` at or above byte `+0xB` gives an item, below it gil.
-3. The alternate contents apply when the unit `003272A0` returns has `+0x6B` or `+0x7B` bit 1 set
-   and none of the statuses `0x80000003`.
-4. Item: a second `rand % 100` picks word `+0x10` (below 95) or `+0x12` with the alternate flag,
-   otherwise `+0xC` (below 50) or `+0xE`. `0xFFFF` gives nothing; any other id gives one.
-5. Gil: word `+0x16` with the alternate flag, otherwise `+0x14`. A word of 0 gives nothing. With
+2. `rand % 100` at or above byte `+B`<sub>h</sub> gives an item, below it gil.
+3. The alternate contents apply when the unit `003272A0` returns has `+6B`<sub>h</sub> or `+7B`<sub>h</sub> bit 1 set
+   and none of the statuses `80000003`<sub>h</sub>.
+4. Item: a second `rand % 100` picks word `+10`<sub>h</sub> (below 95) or `+12`<sub>h</sub> with the alternate flag,
+   otherwise `+C`<sub>h</sub> (below 50) or `+E`<sub>h</sub>. `FFFF`<sub>h</sub> gives nothing; any other id gives one.
+5. Gil: word `+16`<sub>h</sub> with the alternate flag, otherwise `+14`<sub>h</sub>. A word of 0 gives nothing. With
    record flag `+8` bit 6 the amount is `rand % word + 1`.
 
 The verb then grants the item through `00300B80(item, 1, 0)` or the gil through `003004B0(gil, 0)`
@@ -93,7 +93,7 @@ and shows the message (`0035E500`, `0035DF40`).
 The presence ledger at `02EC3E60` is a ring of three `{field, value bits, mask bits}` entries with
 its cursor at `02EC3E84` and count at `02EC3E88`. Its other users are the clear `002FA260` (called
 from `00233C10` and `00237DF0`), `002FA470` (called from `002341C0`, which adds an entry for field
-`022BE940` with mask `0xFF` and value 0) and the reorder `002F7FA0`. None of them, nor `002FAED0`,
+`022BE940` with mask `FF`<sub>h</sub> and value 0) and the reorder `002F7FA0`. None of them, nor `002FAED0`,
 reads the value or mask bits to decide presence (immediate-address references to
 `02EC3E60..02EC3E88`), so a chest's presence is re-rolled every time `setuptreasure` runs.
 
@@ -102,77 +102,77 @@ reads the value or mask bits to decide presence (immediate-address references to
 
 ### Party membership
 
-`addpartymember(sel)` (`0x0353`) grants through `003172E0`: a main character not already in the
-nine slots at `[02EBF190] + 0x5A48` is written into a free index 4 to 8 of a staged copy and
-activated with `00316DF0(record, 0)`. `removepartymember(sel)` (`0x0354`) clears the slot through
+`addpartymember(sel)` (`0353`<sub>h</sub>) grants through `003172E0`: a main character not already in the
+nine slots at `[02EBF190] + 5A48h` is written into a free index 4 to 8 of a staged copy and
+activated with `00316DF0(record, 0)`. `removepartymember(sel)` (`0354`<sub>h</sub>) clears the slot through
 `00328B20` and deactivates with `00323540`. The guest verbs (`addguestbattlemember`,
 `removeguestbattlemember`) and the treasure flag verbs are on [party verbs](party-verbs.md) and
 [script name bindings](script-name-bindings.md).
 
 Activation `00316DF0(record, arg)` acts only on a record whose flags bit 4 is clear. Unless arg bit
 1 is set while `00236740()` is 0, it first calls `00317480(record)` and, when `00236740()` is
-non-zero and flags bit 3 is clear, `0030C470(record, 0x5A)`. For a party-side record (`+5` = 0)
-with selector below `0x1A`:
+non-zero and flags bit 3 is clear, `0030C470(record, 5Ah)`. For a party-side record (`+5` = 0)
+with selector below `1A`<sub>h</sub>:
 
-- a main character (selector below 7) gets each of the five equipment words at `+0x50` as one owned
+- a main character (selector below 7) gets each of the five equipment words at `+50`<sub>h</sub> as one owned
   item (`00300B80`) and one equipped count (`0030C410`, which counts class-1 ids other than
-  `0x1000`);
-- on the first activation (flags bit 3 clear), each entry of the `+0x88` list selected by the mask
-  word at `+0xB8` grants its low half as an item; for a main character the id at `+0x22` of the
-  action row its high half names is granted too (`00300490` below `0x1000`, `00300B80` otherwise);
+  `1000`<sub>h</sub>);
+- on the first activation (flags bit 3 clear), each entry of the `+88`<sub>h</sub> list selected by the mask
+  word at `+B8`<sub>h</sub> grants its low half as an item; for a main character the id at `+22`<sub>h</sub> of the
+  action row its high half names is granted too (`00300490` below `1000`<sub>h</sub>, `00300B80` otherwise);
 - also on the first activation, the ten starting pairs of the character's row in `02EBF130`
-  (`+0x58` ids, `+0x34` counts) and the starting gil `+0x3E` (`003004B0`).
+  (`+58`<sub>h</sub> ids, `+34`<sub>h</sub> counts) and the starting gil `+3E`<sub>h</sub> (`003004B0`).
 
-Every activation then sets flags bits 3 and 4 and writes `+0x48`: `max(+0x48, 1)` when status bit
-16 is set (`+0x64 | +0x3C`), otherwise `+0x24`, doubled when status bit 28 is set. Deactivation
+Every activation then sets flags bits 3 and 4 and writes `+48`<sub>h</sub>: `max(+48h, 1)` when status bit
+16 is set (`+64h | +3Ch`), otherwise `+24`<sub>h</sub>, doubled when status bit 28 is set. Deactivation
 `00323540` removes each equipped item once (`0030F9A0`, `00300B80(item, −1)`) and clears bit 4.
 
 ### Taking and giving back everything
 
-`takeaway_item_and_equip` (`0x0388`, begin `00349F90` → `0035A620` → `0030FBE0`) walks the nine
-roster indices (`00320AB0(i, 3)`), keeping records with `+5` ≠ 0 or a selector outside 7 to `0x19`:
-each copies its five equipment words to `+0x5A` and clears the slots (`0031A300`). After
-`00324380` it copies the class-0 counts at `[02EBF190] + 0x4748` to `+0x4F84` and the class-1
-counts at `+0x47C8` to `+0x5004`, zeroing each through `003008A0(id, 0, set)`, bounded by
+`takeaway_item_and_equip` (`0388`<sub>h</sub>, begin `00349F90` → `0035A620` → `0030FBE0`) walks the nine
+roster indices (`00320AB0(i, 3)`), keeping records with `+5` ≠ 0 or a selector outside 7 to `19`<sub>h</sub>:
+each copies its five equipment words to `+5A`<sub>h</sub> and clears the slots (`0031A300`). After
+`00324380` it copies the class-0 counts at `[02EBF190] + 4748h` to `+4F84`<sub>h</sub> and the class-1
+counts at `+47C8`<sub>h</sub> to `+5004`<sub>h</sub>, zeroing each through `003008A0(id, 0, set)`, bounded by
 `01EEBCD0` and `01EEBD28`.
 
-`giveback_item_and_equip` (`0x0387`, `0034A790` → `0035A630` → `0030FAA0`) adds the saved counts
-back (bounded by `01EEBCFC` and `01EEBD54`), re-equips from `+0x5A` (`0031A710`), calls `00324380`
-and clears the `0x83C`-byte backup. Both poll `0034A300`, which runs while `0030BAD0()` is
+`giveback_item_and_equip` (`0387`<sub>h</sub>, `0034A790` → `0035A630` → `0030FAA0`) adds the saved counts
+back (bounded by `01EEBCFC` and `01EEBD54`), re-equips from `+5A`<sub>h</sub> (`0031A710`), calls `00324380`
+and clears the `83C`<sub>h</sub>-byte backup. Both poll `0034A300`, which runs while `0030BAD0()` is
 non-zero (`0035A250`) and then calls `00314D40(1)`.
 
-`takeoff_equip(item)` (`0x055B`, `003497B0` → `0030FD10`) unequips one item id from every alive
-main-character record (`0031A630(record, slot, 0xFFFF, 1)`).
+`takeoff_equip(item)` (`055B`<sub>h</sub>, `003497B0` → `0030FD10`) unequips one item id from every alive
+main-character record (`0031A630(record, slot, FFFFh, 1)`).
 
-`resetJobs(sel)` (`0x05D6`, `00342230` → `00328BD0`) refuses a selector above 5 (returns −1). It
-clears the character's equipment (`0031A260`) and both job bytes `+0x1C3` and `+0x1C4`
+`resetJobs(sel)` (`05D6`<sub>h</sub>, `00342230` → `00328BD0`) refuses a selector above 5 (returns −1). It
+clears the character's equipment (`0031A260`) and both job bytes `+1C3`<sub>h</sub> and `+1C4`<sub>h</sub>
 (`00328990`), calls `00559760`, and, when the selector is the character recorded at
-`[02EBF190] + 0x5AD5`, issues command `0x113` to party slot 3 (`003138D0(1)`,
+`[02EBF190] + 5AD5h`, issues command `113`<sub>h</sub> to party slot 3 (`003138D0(1)`,
 [battle verbs](battle-verbs.md)) and calls `00313550(0)`.
 
-It then rebuilds the ability list (`0030FED0(record, 0x97)`), calls `00327CB0` with the `+0x14`
-word of the character's `02EBF130` row, and for selectors 0 and 5 adds one to byte `+0xBA` (capped
-at 12). It calls `00326030` and `00327DE0`, clears `+0x68..+0x87`, `+0x37`, `+0x4E` and `+0x20`,
-calls `00283270(1)`, sets `+0x1C3`/`+0x1C4` to `0xFFFF` and `+0x1C5` to `0xFF`. One US script uses it.
+It then rebuilds the ability list (`0030FED0(record, 97h)`), calls `00327CB0` with the `+14`<sub>h</sub>
+word of the character's `02EBF130` row, and for selectors 0 and 5 adds one to byte `+BA`<sub>h</sub> (capped
+at 12). It calls `00326030` and `00327DE0`, clears `+68h..+87h`, `+37`<sub>h</sub>, `+4E`<sub>h</sub> and `+20`<sub>h</sub>,
+calls `00283270(1)`, sets `+1C3`<sub>h</sub>/`+1C4`<sub>h</sub> to `FFFF`<sub>h</sub> and `+1C5`<sub>h</sub> to `FF`<sub>h</sub>. One US script uses it.
 
 ### The quest result window
 
-`questresultwindow(n)` (`0x037C`, begin `00344C60`) resolves the quest row (`00473C90`, falling
+`questresultwindow(n)` (`037C`<sub>h</sub>, begin `00344C60`) resolves the quest row (`00473C90`, falling
 back to row 0), takes capability row 3 (`002E1CD0(0, 3)`), opens the window through `00290130` and
-raises busy bit 13 (`003601B0(0xD)`). `00290130` grants at once, when the window opens: it builds
+raises busy bit 13 (`003601B0(Dh)`). `00290130` grants at once, when the window opens: it builds
 the reward bundle (`003F8C60`, `0029014D`) and grants it (`003F4AA0`, `0029015B`), adding gil
 straight through `00254EE0` (`gil + [bundle + 4]`) when flag bit 0 is set, and `(item, count)`
 pairs and single ids through `00300B80`.
 
 ### Verbs that look like rewards and write nothing
 
-`fs_setclanrank` (`0x7031`) and `btlAtelSetPcLevel` (`0x307F`) share `0050F200`, which pops two
-values and jumps to the `ret` stub `0016D6A0`; `btlAtelAddMaxLicensePoint` (`0x3078`) and the
-others on `00510720` pop one. `addclanpoint(n)` (`0x04DC`, `003403E0` → `002E2380`) adds to
-statistics counter 17 (`00316A50(0x11, n)`) and no script uses it.
+`fs_setclanrank` (`7031`<sub>h</sub>) and `btlAtelSetPcLevel` (`307F`<sub>h</sub>) share `0050F200`, which pops two
+values and jumps to the `ret` stub `0016D6A0`; `btlAtelAddMaxLicensePoint` (`3078`<sub>h</sub>) and the
+others on `00510720` pop one. `addclanpoint(n)` (`04DC`<sub>h</sub>, `003403E0` → `002E2380`) adds to
+statistics counter 17 (`00316A50(11h, n)`) and no script uses it.
 
-`btlAtelSetLevel(a, b)` (`0x3031`, `0050F910` → `002398F0`) sets a foe's level to a random value
-from a to a + b (`0030C470(record, a + rand % (b + 1), a)`), refused when `[[unit + 0x6A0]] & 5` is
+`btlAtelSetLevel(a, b)` (`3031`<sub>h</sub>, `0050F910` → `002398F0`) sets a foe's level to a random value
+from a to a + b (`0030C470(record, a + rand % (b + 1), a)`), refused when `[[unit + 6A0h]] & 5` is
 non-zero. The debug give-all verbs add 99 of every id (`003008A0(id, 99, 0, 1, 0)`): items
 (`00510850` → `0030DD70`, class 0), equipment (`00510860` → `0030DCB0`, class 1) and event items
 (`0050F0E0` → `0030DD10`, class 2).
@@ -199,7 +199,7 @@ backup counts    [02EBF190] + 0x4F84 (class 0) and + 0x5004 (class 1), 0x83C byt
 | gil verbs | `addgill` 23, `subgill` 64 |
 | chest sequence | 1,966 chests in 385 files, each calling the five chest verbs once |
 | `questresultwindow` | 56 uses |
-| inventory classes the mutator accepts | 0 to `0xE`, ids `0xFFFF` and `0x1000` refused |
+| inventory classes the mutator accepts | 0 to `E`<sub>h</sub>, ids `FFFF`<sub>h</sub> and `1000`<sub>h</sub> refused |
 
 ## Operations
 

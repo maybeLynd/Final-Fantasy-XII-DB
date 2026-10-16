@@ -32,15 +32,15 @@ releases the roots.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `u32` | type | read as a byte: 0 point, 1 box, 2 ellipse |
-| `04` | `f32` | extentX | box width or ellipse diameter along the record's local x |
-| `08` | `f32` | extentZ | box depth or ellipse diameter along the record's local z |
-| `0C` | `f32` | 1.0 |  |
-| `10` | `f32` | x |  |
-| `14` | `f32` | y |  |
-| `18` | `f32` | z |  |
-| `1C` | `f32` | heading | radians, rotates the region |
-| `20` | `f32[4]` | 0 |  |
+| `00`<sub>h</sub> | `u32` | type | read as a byte: 0 point, 1 box, 2 ellipse |
+| `04`<sub>h</sub> | `f32` | extentX | box width or ellipse diameter along the record's local x |
+| `08`<sub>h</sub> | `f32` | extentZ | box depth or ellipse diameter along the record's local z |
+| `0C`<sub>h</sub> | `f32` | 1.0 |  |
+| `10`<sub>h</sub> | `f32` | x |  |
+| `14`<sub>h</sub> | `f32` | y |  |
+| `18`<sub>h</sub> | `f32` | z |  |
+| `1C`<sub>h</sub> | `f32` | heading | radians, rotates the region |
+| `20`<sub>h</sub> | `f32[4]` | 0 |  |
 
 ## Shipped data
 
@@ -51,12 +51,12 @@ Measured over all 10,036 EBP2 containers in the nine language trees.
 | containers with section 16 | 4,653: 517 per language, all zone scripts |
 | languages | the 517 tables are byte-identical in all nine trees |
 | magic | `FF12POS3` in all |
-| `size` | `0x10 + 0x30 × count` in all, followed by the dword `0x0000000A` in all |
+| `size` | `10h + 30h × count` in all, followed by the dword `0000000A`<sub>h</sub> in all |
 | `count` | 3 to 191, median 42; 231,183 records (25,687 per language) |
 | tables reaching entry 8 / entry 32 (`us`) | 516 / 484 of 517 |
 | `type` | 0 (187,803), 1 (43,209), 2 (171); upper three bytes 0 in all |
-| `+0x0C` | 1.0 in 231,165; -1.0 in 9; 0.0 in 9 |
-| `+0x20` to `+0x2C` | zero in every record |
+| `+0C`<sub>h</sub> | 1.0 in 231,165; -1.0 in 9; 0.0 in 9 |
+| `+20`<sub>h</sub> to `+2C`<sub>h</sub> | zero in every record |
 | box extents, smaller side | 6.0 (11,394), 12.0 (11,367), 4.0 (4,770), 8.0 (4,374), 10.0 (3,168), 7.0 (1,440) |
 | heading | non-zero in 18,621 records, 18,153 of them a whole number of degrees; -2.861 to 5.760 rad |
 | section slack after `size` | 96 to 176 bytes; zero except in the nine copies of `slm_a01.ebp` |
@@ -70,12 +70,12 @@ records are read from the loaded file whenever they are needed.
 
 ### The accessor
 
-`003DFD00(class, index, out)` zeroes a 0x30-byte output (`003DFD10` to `003DFD23`) and returns 0 when
+`003DFD00(class, index, out)` zeroes a `30`<sub>h</sub>-byte output (`003DFD10` to `003DFD23`) and returns 0 when
 the root is null. Then:
 
 - when byte 7 of the magic is `'3'` or above (`003DFD2C`), it returns 0 for an index at or past
   `count` (`003DFD33`) and otherwise copies record `index` whole (`003DFD48` to `003DFD63`);
-- below `'3'` it reads 16-byte records at `+0x10 + index × 0x10` into output `+0x10` to `+0x1C` with
+- below `'3'` it reads 16-byte records at `+10h + index × 10h` into output `+10`<sub>h</sub> to `+1C`<sub>h</sub> with
   the type byte 0 (`003DFD69` to `003DFD9A`).
 
 Nothing reads `size`, the first seven magic bytes or the trailing zero dwords.
@@ -87,9 +87,9 @@ Nothing reads `size`, the first seven magic bytes or the trailing zero dwords.
 | `00320940(index, out)` | x, y and z of class-0 record `index`; -1 when absent |
 | `003209C0(index, out)` | the whole record; spawn candidates (`00234AF0`) and region placement |
 | `00236450` | spawn placement: type 0 the point; type 1 a random offset within half of each extent; type 2 a random x, then z bounded by the ellipse; `00319390` rotates the offset by the heading and adds it to x and z |
-| `00312DF0` via `00312730` | orders `0x4000` to `0x401F` wander within a radius of entry `order - 0x3FFF` |
+| `00312DF0` via `00312730` | orders `4000`<sub>h</sub> to `401F`<sub>h</sub> wander within a radius of entry `order - 3FFFh` |
 | `00301AD0` (`00302C93`) | the AI distance condition, entry operand + 1 |
-| `002350C0` | range retirement mode 2: entry `+0x51` of the spawn record |
+| `002350C0` | range retirement mode 2: entry `+51`<sub>h</sub> of the spawn record |
 | `003394A0` (`003394DB`) | the class steering solver tests the distance from entry 8 |
 | `0033DB60` (`0033DB90`) | steers relative to a point 11.0 units from entry 32 |
 | `setentrypos` (`00354FB0`) | pushes the entry's x, y, z and heading and runs `00350510` |
@@ -101,18 +101,18 @@ Nothing reads `size`, the first seven magic bytes or the trailing zero dwords.
 `getcrystalid` (`00352C80`) and `getanchorid` (`003532D0`) call `00264CA0`, which for a kind of 6 or
 9 calls `003DFAC0(kind, index)`. That routine reads root 0 as an earlier layout:
 
-- it needs byte 7 at least `'2'` (`003DFAE1`) and decodes `+0x08` as an offset (`0020E600`, base 0)
+- it needs byte 7 at least `'2'` (`003DFAE1`) and decodes `+08`<sub>h</sub> as an offset (`0020E600`, base 0)
   to a table: `u32 n` at `+0`, then for each kind a `s32` offset at `+8 + kind × 16` and a `s32`
-  count at `+0x10 + kind × 16`;
+  count at `+10h + kind × 16`;
 - for `kind < n` and `index < count` it returns `root + offset + 32 × index`, else 0.
 
-On an `FF12POS3` table `+0x08` is `size`, so `n` is the trailing `0x0000000A` and the count is read
+On an `FF12POS3` table `+08`<sub>h</sub> is `size`, so `n` is the trailing `0000000A`<sub>h</sub> and the count is read
 past the records. In the 517 `us` tables that count lies inside the section, and is 0, for kind 6 in
 289 tables and kind 9 in 1; otherwise it lies in section 19 or past the end of the file.
 
 ## Modding notes
 
-- Keep `size = 0x10 + 0x30 × count` and the `0x0000000A` after the records, and leave byte 7 of the
+- Keep `size = 10h + 30h × count` and the `0000000A`<sub>h</sub> after the records, and leave byte 7 of the
   magic `'3'`: a lower digit switches the accessor to 16-byte records.
 - Fixed indices carry meaning: wander orders and AI conditions use entry `n + 1`, the class steering
   solver entry 8 and the routine at `0033DB60` entry 32. Append new entries rather than reorder.

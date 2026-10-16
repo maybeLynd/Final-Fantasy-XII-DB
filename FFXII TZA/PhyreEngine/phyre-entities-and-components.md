@@ -16,20 +16,20 @@ contact.
 
 ### Entities and components
 
-A `PEntity` (descriptor `02E4EAF0`, `0x38` bytes) holds the first of its components at `+0x00`, its
-world matrix at `+0x08` and a node of the world-matrix registry at `+0x10`. A `PComponent`
-(descriptor `02E4E720`, `0x18` bytes) holds the next component at `+0x00`, its entity at `+0x08` and
-its own class descriptor at `+0x10`. Six classes derive from `PComponent`: `PAnimatableComponent`,
+A `PEntity` (descriptor `02E4EAF0`, `38`<sub>h</sub> bytes) holds the first of its components at `+00`<sub>h</sub>, its
+world matrix at `+08`<sub>h</sub> and a node of the world-matrix registry at `+10`<sub>h</sub>. A `PComponent`
+(descriptor `02E4E720`, `18`<sub>h</sub> bytes) holds the next component at `+00`<sub>h</sub>, its entity at `+08`<sub>h</sub> and
+its own class descriptor at `+10`<sub>h</sub>. Six classes derive from `PComponent`: `PAnimatableComponent`,
 `PInstancesComponent`, `PNameComponent`, `PQuarryComponent`, `PScriptableComponent` and
 `PTriggerReceiverComponent`.
 
 The registrar `006AB7E0` publishes the entity's script methods, each as a method record whose
-function sits `0x30` bytes in, and the member `m_firstComponent`:
+function sits `30`<sub>h</sub> bytes in, and the member `m_firstComponent`:
 
 | Method | Function | What it does |
 |---|---|---|
 | `getComponent` | `006ACA10` | walks the list and returns the first component whose class is the given class or derives from it |
-| `getWorldMatrix` | `006B5C70` | returns `+0x08` |
+| `getWorldMatrix` | `006B5C70` | returns `+08`<sub>h</sub> |
 | `setWorldMatrix` | `006ACAC0` | moves the entity in the registry to the new matrix |
 | `addComponent` | `006AC300` | adds a component at the front of the list |
 | `removeComponent` | `006ACA70` | unlinks a component |
@@ -39,7 +39,7 @@ function sits `0x30` bytes in, and the member `m_firstComponent`:
 ### Adding and removing components
 
 `006AC300(entity, component)` returns 0 at once when the component already belongs to this entity.
-It returns `0x12` when the component's class does not derive from `PComponent`, and also when the
+It returns `12`<sub>h</sub> when the component's class does not derive from `PComponent`, and also when the
 entity already has a component whose class is the same as, an ancestor of or a descendant of the new
 one's, so an entity holds at most one component of each line of classes. Otherwise it removes the
 component from its old entity (`006ACA70`), sets its entity and links it at the front.
@@ -60,60 +60,60 @@ points a head's three links back at itself.
 - `006ABF40(matrix)` walks the tree from the root and returns the entity, or null.
 - `006ABEC0({object, class})` uses the object itself when its class is `PWorldMatrix` (`02E404B0`)
   or derives from it. Otherwise it looks up the class's `getLocalToWorldMatrix` method
-  (`005A7B50`) and calls it through `006AB600`, which calls slot `+0x10` of the handler at the method's
-  `+0x28` with the object and takes the matrix from the result. It then looks the matrix up like `006ABF40`.
+  (`005A7B50`) and calls it through `006AB600`, which calls slot `+10`<sub>h</sub> of the handler at the method's
+  `+28`<sub>h</sub> with the object and takes the matrix from the result. It then looks the matrix up like `006ABF40`.
 
 ### Loaded entities and components
 
-Descriptor slot `+0x70` runs on each instance list a cluster load fixes up (the asset-file page). For
-these classes it walks the list's objects, using the class's instance size (`+0x38` of the
+Descriptor slot `+70`<sub>h</sub> runs on each instance list a cluster load fixes up (the asset-file page). For
+these classes it walks the list's objects, using the class's instance size (`+38`<sub>h</sub> of the
 descriptor) as the stride:
 
 - `PEntity`: `006AB410` passes the list to `006ABFA0`, which inserts every entity with a world matrix
   into the registry, skipping a matrix already present.
-- Components: `006AADD0` sets each component's class pointer `+0x10` to the list's descriptor. It is
-  slot `+0x70` itself for `PTriggerReceiverComponent` (through `006ADD70`) and is called first by
+- Components: `006AADD0` sets each component's class pointer `+10`<sub>h</sub> to the list's descriptor. It is
+  slot `+70`<sub>h</sub> itself for `PTriggerReceiverComponent` (through `006ADD70`) and is called first by
   the `PAnimatableComponent` hook `005B80E0` (through `005A2610`) and by `006AFF00`.
 - `PNameComponent`: `006AFF00` (through `006AFA70`) also links every name component at the front of
-  the list headed at `01F2EB78`, through a `{next, previous}` node at `+0x18`.
+  the list headed at `01F2EB78`, through a `{next, previous}` node at `+18`<sub>h</sub>.
 
 ### Instances components
 
 `006AF4F0(component, &result, class)`, a method that `006AE350` registers for
 `PInstancesComponent`, searches the component's array of 16-byte `{object, class}` pairs
-(`+0x18` count, `+0x20` data) for the first pair whose class is the given class or derives from it,
+(`+18`<sub>h</sub> count, `+20`<sub>h</sub> data) for the first pair whose class is the given class or derives from it,
 and returns that pair. With none, or with a null class, it returns a null object with the `PBase`
 descriptor (`02CF8270`, from `006372A0`).
 
 ### The object behind a physics body
 
-`0069ECE0(collision object, record)` fills `+0x20` and `+0x28` of a physics callback record with the
-gameplay object behind a Bullet collision object and its class: when bit `0x2` of the object's type
-word `+0x104` is set, the pointer at `+0x108` with `PPhysicsRigidBody`'s descriptor (`02E48BD0`);
+`0069ECE0(collision object, record)` fills `+20`<sub>h</sub> and `+28`<sub>h</sub> of a physics callback record with the
+gameplay object behind a Bullet collision object and its class: when bit `2`<sub>h</sub> of the object's type
+word `+104`<sub>h</sub> is set, the pointer at `+108`<sub>h</sub> with `PPhysicsRigidBody`'s descriptor (`02E48BD0`);
 when the type is 4, the same pointer with `PPhysicsCharacterController`'s (`02E47ED0`). A null
 pointer leaves both null. The physics functions `006A1A70` and `006A1DD0` call it.
 
 ## Layouts
 
-`PEntity` (`0x38` bytes, offsets from the start of the record):
+`PEntity` (`38`<sub>h</sub> bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `void*` | m_firstComponent | first PComponent, or null |
-| `08` | `void*` | worldMatrix | PWorldMatrix; the registry key |
-| `10` | `void*` | left | registry node |
-| `18` | `void*` | right |  |
-| `20` | `u64` | parent | parent node; bit 0 is the node colour |
-| `28` | `void*` | key | the world matrix again |
-| `30` | `void*` | value | this entity |
+| `00`<sub>h</sub> | `void*` | m_firstComponent | first PComponent, or null |
+| `08`<sub>h</sub> | `void*` | worldMatrix | PWorldMatrix; the registry key |
+| `10`<sub>h</sub> | `void*` | left | registry node |
+| `18`<sub>h</sub> | `void*` | right |  |
+| `20`<sub>h</sub> | `u64` | parent | parent node; bit 0 is the node colour |
+| `28`<sub>h</sub> | `void*` | key | the world matrix again |
+| `30`<sub>h</sub> | `void*` | value | this entity |
 
-`PComponent` (`0x18` bytes, offsets from the start of the record):
+`PComponent` (`18`<sub>h</sub> bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `void*` | next | next component of the entity |
-| `08` | `void*` | entity | owning PEntity, or null |
-| `10` | `void*` | classDescriptor | set by `006AADD0` on load and checked by `006AC300` |
+| `00`<sub>h</sub> | `void*` | next | next component of the entity |
+| `08`<sub>h</sub> | `void*` | entity | owning PEntity, or null |
+| `10`<sub>h</sub> | `void*` | classDescriptor | set by `006AADD0` on load and checked by `006AC300` |
 
 ## State
 
@@ -127,7 +127,7 @@ pointer leaves both null. The physics functions `006A1A70` and `006A1DD0` call i
 ## Modding notes
 
 - An entity accepts one component of each line of classes; adding a second component of a related
-  class fails with `0x12` and changes nothing.
+  class fails with `12`<sub>h</sub> and changes nothing.
 - The registry is keyed by the world matrix's address, so two entities sharing one matrix cannot both
   be found; only the first registered is kept.
 - Changing an entity's matrix pointer directly leaves the registry pointing at the old matrix; use
@@ -136,6 +136,6 @@ pointer leaves both null. The physics functions `006A1A70` and `006A1DD0` call i
 ## Related
 
 - [Phyre reflection](phyre-reflection.md): class descriptors, their slots and the instance lists these hooks walk.
-- [Phyre asset files](phyre-asset-files.md): the cluster load that calls slot `+0x70`.
+- [Phyre asset files](phyre-asset-files.md): the cluster load that calls slot `+70`<sub>h</sub>.
 - [Memory and allocation](../Compiler-And-C-Runtime/memory-and-allocation.md): the asset-name registry built on the same tree.
 - [Phyre Lua bindings](phyre-lua-bindings.md): the script method records these registrations fill.

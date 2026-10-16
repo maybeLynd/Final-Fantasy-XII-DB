@@ -17,8 +17,8 @@ recipe, and each pointer leads to two lists of `int32` slot numbers, each ended 
 - **The committed list** runs in `00385F60`: it skips the first list (`00386365`-`0038637B`) and calls each
   slot of the second at `003863D0`, stopping early when `02AEDFB8` is 1 (`003863D7`).
 
-An action takes its recipe from byte `+0x08` of its row (`0038617E`). Recipe 0 means "the weapon's": the
-resolver then takes byte `+0x19` of the main-hand weapon row (`003861FD`). A recipe of `0x6D` (109) or more
+An action takes its recipe from byte `+08`<sub>h</sub> of its row (`0038617E`). Recipe 0 means "the weapon's": the
+resolver then takes byte `+19`<sub>h</sub> of the main-hand weapon row (`003861FD`). A recipe of `6D`<sub>h</sub> (109) or more
 returns -1 (`00386182`, `00386212`). [Weapon formulas](weapon-formulas.md) explains the weapon recipes and
 [Steal](steal.md) walks through one action recipe.
 
@@ -34,9 +34,9 @@ Besides recipe 0, shipped actions use 89 recipes and weapons 11, and 8 recipes a
 | `recipe` | the recipe number, 0-108 |
 | `preview_slots` | the first list, as slot numbers into `01EFA5C0` |
 | `committed_slots` | the committed list |
-| `action_rows` | how many of the 543 action rows have this recipe byte (`battle_pack.bin` section 14, byte `+0x08`) |
-| `actions` | those rows: the action id and its name, the bank-0 entry its name word `+0x34` names |
-| `weapon_rows` | how many weapon rows (equipment classes 0-17, `battle_pack.bin` section 13) have this recipe byte `+0x19` |
+| `action_rows` | how many of the 543 action rows have this recipe byte (`battle_pack.bin` section 14, byte `+08`<sub>h</sub>) |
+| `actions` | those rows: the action id and its name, the bank-0 entry its name word `+34`<sub>h</sub> names |
+| `weapon_rows` | how many weapon rows (equipment classes 0-17, `battle_pack.bin` section 13) have this recipe byte `+19`<sub>h</sub> |
 | `weapons` | those rows by equipment class, with up to three named items per class |
 
 Names are the US texts, with the text's punctuation and digit codes written as the characters they show, and

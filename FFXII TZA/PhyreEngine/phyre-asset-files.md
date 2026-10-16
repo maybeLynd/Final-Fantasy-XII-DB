@@ -25,7 +25,7 @@ loads the file through `00637C50` and records it.
 `00637C50` opens the path as a `PStreamReaderFile` (`00597970`),
 returns 1 for a null path and 10 when the file does not open, and then calls the cluster reader
 `0059E070` repeatedly, one cluster after another, until the stream position reaches the file size.
-Each cluster gets its own `0xA0`-byte container, chained through `+0x98`.
+Each cluster gets its own `A0`<sub>h</sub>-byte container, chained through `+98`<sub>h</sub>.
 
 ## Layouts
 
@@ -56,41 +56,41 @@ the namespace of every file declares the same names in the same places.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `u32` | m_phyreMarker | `0x50485952`, the bytes "RYHP" |
-| `04` | `u32` | m_size | header length, 84 |
-| `08` | `u32` | m_packedNamespaceSize | bytes of namespace that follow |
-| `0C` | `u32` | m_platformID | `0x44583131`, the bytes "11XD" |
-| `10` | `u32` | m_instanceListCount |  |
-| `14` | `u32` | m_arrayFixupSize | packed bytes of the array fixup table |
-| `18` | `u32` | m_arrayFixupCount | its decoded entries, the sum over the lists |
-| `1C` | `u32` | m_pointerFixupSize |  |
-| `20` | `u32` | m_pointerFixupCount |  |
-| `24` | `u32` | m_pointerArrayFixupSize |  |
-| `28` | `u32` | m_pointerArrayFixupCount |  |
-| `2C` | `u32` | m_pointersInArraysCount | the sum over the lists |
-| `30` | `u32` | m_userFixupCount |  |
-| `34` | `u32` | m_userFixupDataSize |  |
-| `38` | `u32` | m_totalDataSize | the sum of the lists' m_size |
-| `3C` | `u32` | m_headerClassInstanceCount |  |
-| `40` | `u32` | m_headerClassChildCount |  |
-| `44` | `u32` | m_physicsEngineID | 0, or `0x424C4C54` ("TLLB") |
-| `48` | `u32` | m_indexBufferSize |  |
-| `4C` | `u32` | m_vertexBufferSize |  |
-| `50` | `u32` | m_maxTextureBufferSize |  |
+| `00`<sub>h</sub> | `u32` | m_phyreMarker | `50485952`<sub>h</sub>, the bytes "RYHP" |
+| `04`<sub>h</sub> | `u32` | m_size | header length, 84 |
+| `08`<sub>h</sub> | `u32` | m_packedNamespaceSize | bytes of namespace that follow |
+| `0C`<sub>h</sub> | `u32` | m_platformID | `44583131`<sub>h</sub>, the bytes "11XD" |
+| `10`<sub>h</sub> | `u32` | m_instanceListCount |  |
+| `14`<sub>h</sub> | `u32` | m_arrayFixupSize | packed bytes of the array fixup table |
+| `18`<sub>h</sub> | `u32` | m_arrayFixupCount | its decoded entries, the sum over the lists |
+| `1C`<sub>h</sub> | `u32` | m_pointerFixupSize |  |
+| `20`<sub>h</sub> | `u32` | m_pointerFixupCount |  |
+| `24`<sub>h</sub> | `u32` | m_pointerArrayFixupSize |  |
+| `28`<sub>h</sub> | `u32` | m_pointerArrayFixupCount |  |
+| `2C`<sub>h</sub> | `u32` | m_pointersInArraysCount | the sum over the lists |
+| `30`<sub>h</sub> | `u32` | m_userFixupCount |  |
+| `34`<sub>h</sub> | `u32` | m_userFixupDataSize |  |
+| `38`<sub>h</sub> | `u32` | m_totalDataSize | the sum of the lists' m_size |
+| `3C`<sub>h</sub> | `u32` | m_headerClassInstanceCount |  |
+| `40`<sub>h</sub> | `u32` | m_headerClassChildCount |  |
+| `44`<sub>h</sub> | `u32` | m_physicsEngineID | 0, or `424C4C54`<sub>h</sub> ("TLLB") |
+| `48`<sub>h</sub> | `u32` | m_indexBufferSize |  |
+| `4C`<sub>h</sub> | `u32` | m_vertexBufferSize |  |
+| `50`<sub>h</sub> | `u32` | m_maxTextureBufferSize |  |
 
 ### The instance-list header
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `u32` | m_classID | 1-based position in the namespace's class table |
-| `04` | `u32` | m_count | objects in the list |
-| `08` | `u32` | m_size | m_objectsSize + m_arraysSize |
-| `0C` | `u32` | m_objectsSize |  |
-| `10` | `u32` | m_arraysSize |  |
-| `14` | `u32` | m_pointersInArraysCount |  |
-| `18` | `u32` | m_arrayFixupCount | this list's share of each fixup table |
-| `1C` | `u32` | m_pointerFixupCount |  |
-| `20` | `u32` | m_pointerArrayFixupCount |  |
+| `00`<sub>h</sub> | `u32` | m_classID | 1-based position in the namespace's class table |
+| `04`<sub>h</sub> | `u32` | m_count | objects in the list |
+| `08`<sub>h</sub> | `u32` | m_size | m_objectsSize + m_arraysSize |
+| `0C`<sub>h</sub> | `u32` | m_objectsSize |  |
+| `10`<sub>h</sub> | `u32` | m_arraysSize |  |
+| `14`<sub>h</sub> | `u32` | m_pointersInArraysCount |  |
+| `18`<sub>h</sub> | `u32` | m_arrayFixupCount | this list's share of each fixup table |
+| `1C`<sub>h</sub> | `u32` | m_pointerFixupCount |  |
+| `20`<sub>h</sub> | `u32` | m_pointerArrayFixupCount |  |
 
 ### The packed namespace
 
@@ -100,36 +100,36 @@ nine-word records and `nMembers` six-word records) and the one the validator `00
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `u32` | bom | `0x01020304`, stored 04 03 02 01 |
-| `04` | `u32` | size | equals m_packedNamespaceSize |
-| `08` | `u32` | nTypes |  |
-| `0C` | `u32` | nClasses |  |
-| `10` | `u32` | nMembers |  |
-| `14` | `u32` | poolSize | bytes of the string pool |
-| `18` | `u32` | reserved | zero |
-| `1C` | `u32` | extraSize | bytes of the block after the pool |
-| `20` | `u32[nTypes]` | pool offsets of the type names | class record  x nClasses        9 words each member record x nMembers        6 words each char[poolSize]                  NUL-terminated names byte[extraSize]                 indexed by class word 8 |
+| `00`<sub>h</sub> | `u32` | bom | `01020304`<sub>h</sub>, stored 04 03 02 01 |
+| `04`<sub>h</sub> | `u32` | size | equals m_packedNamespaceSize |
+| `08`<sub>h</sub> | `u32` | nTypes |  |
+| `0C`<sub>h</sub> | `u32` | nClasses |  |
+| `10`<sub>h</sub> | `u32` | nMembers |  |
+| `14`<sub>h</sub> | `u32` | poolSize | bytes of the string pool |
+| `18`<sub>h</sub> | `u32` | reserved | zero |
+| `1C`<sub>h</sub> | `u32` | extraSize | bytes of the block after the pool |
+| `20`<sub>h</sub> | `u32[nTypes]` | pool offsets of the type names | class record  x nClasses        9 words each member record x nMembers        6 words each char[poolSize]                  NUL-terminated names byte[extraSize]                 indexed by class word 8 |
 
-The loader requires `size == 0x20 + extraSize + 4 × (nTypes + 9 × nClasses + 6 × nMembers) + poolSize`
+The loader requires `size == 20h + extraSize + 4 × (nTypes + 9 × nClasses + 6 × nMembers) + poolSize`
 (`0059E070`), which places the extra block after the pool.
 
 Class record:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `u32` | parent | 1-based class index of the base class, 0 for a root |
-| `04` | `u32` | fileSize | low 28 bits: bytes per object in the file |
-| `08` | `u32` | name | pool offset |
-| `0C` | `u32` | memberCount | the class's records, taken in order from the member table |
-| `1C` | `u32` | flags | `0x01` dynamic class, `0x04` header class |
-| `20` | `u32` | extra | 1-based offset into the extra block, 0 for none |
+| `00`<sub>h</sub> | `u32` | parent | 1-based class index of the base class, 0 for a root |
+| `04`<sub>h</sub> | `u32` | fileSize | low 28 bits: bytes per object in the file |
+| `08`<sub>h</sub> | `u32` | name | pool offset |
+| `0C`<sub>h</sub> | `u32` | memberCount | the class's records, taken in order from the member table |
+| `1C`<sub>h</sub> | `u32` | flags | `01`<sub>h</sub> dynamic class, `04`<sub>h</sub> header class |
+| `20`<sub>h</sub> | `u32` | extra | 1-based offset into the extra block, 0 for none |
 
 Member record:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `u32` | name | pool offset |
-| `04` | `u32` | type | below nTypes: type-table index; else nTypes + 1-based class index |
+| `00`<sub>h</sub> | `u32` | name | pool offset |
+| `04`<sub>h</sub> | `u32` | type | below nTypes: type-table index; else nTypes + 1-based class index |
 
 The same two-table reference, a type index below `nTypes` and otherwise `nTypes` plus a 1-based class
 index, is used by the user-fixup records.
@@ -138,9 +138,9 @@ index, is used by the user-fixup records.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `u32` | type | type or class reference, as in a member record |
-| `04` | `u32` | size | bytes of its data |
-| `08` | `u32` | offset | into the user-fixup data |
+| `00`<sub>h</sub> | `u32` | type | type or class reference, as in a member record |
+| `04`<sub>h</sub> | `u32` | size | bytes of its data |
+| `08`<sub>h</sub> | `u32` | offset | into the user-fixup data |
 
 The data is usually a name: the class name a `PClassDescriptor` fixup resolves, or the format name of
 a texture.
@@ -156,9 +156,9 @@ Measured over the whole archive, reading each `.phyre` file in the loader's stre
 | header | `RYHP`, `m_size` 84, platform `11XD`, physics 0 in all 35,984 |
 | D3D11 sizes | texture only 33,794; index and vertex, no texture 2,091; all zero 99; none mixes vertex and texture |
 | namespace | byte-order mark, repeated size and size identity hold in all 35,984; largest 24,999 bytes |
-| namespace words `+0x18`, `+0x1C` | zero in every file, so no file has an extra block |
+| namespace words `+18`<sub>h</sub>, `+1C`<sub>h</sub> | zero in every file, so no file has an extra block |
 | class records | 684,244; words 4, 5, 6 and 8 zero in all |
-| class flags | 0 ×523,918, 8 ×66,379, 32 ×49,068, 2 ×38,322, 12, 34 and 40 ×2,184 each, 20 ×5; bit 0x01 never set |
+| class flags | 0 ×523,918, 8 ×66,379, 32 ×49,068, 2 ×38,322, 12, 34 and 40 ×2,184 each, 20 ×5; bit `01`<sub>h</sub> never set |
 | distinct names | 19 type, 177 class, 349 member |
 | instance lists | 212,329, all `m_classID` in range, 59 distinct classes |
 | commonest list classes | `PParameterBuffer` 106,256; `PAssetReference` 35,984 (one per file); `PTexture2D` 29,184; `PTextureCubeMap` 4,610; `PMaterial`, `PSamplerState`, `PShaderParameterDefinition` 2,184 each; `PNode`, `PWorldMatrix` 2,097 each; `PMesh` 2,091 |
@@ -173,12 +173,12 @@ Measured over the whole archive, reading each `.phyre` file in the loader's stre
 
 ### Preconditions
 
-`0059E070` returns `0x15` when the byte `02CA9D90` is zero and `0xB` when the stream is not open. The
+`0059E070` returns `15`<sub>h</sub> when the byte `02CA9D90` is zero and `B`<sub>h</sub> when the stream is not open. The
 byte is set by `0059D550`, which registers the cluster-header and instance-list classes; it is slot 1
 of the module vtable `00D26C40`, a module that static-initialiser code links into the module list
 (`0016035C` stores the vtable), and the engine's start-up `005A08E0` calls slot 1 of every listed module before any asset loads.
 Slot 2 of the same vtable, the module's shutdown `0059FE20`, clears the byte again at `0059FF14`; after
-the shutdown walk `0059E070` returns `0x15` again.
+the shutdown walk `0059E070` returns `15`<sub>h</sub> again.
 
 ### The header check
 
@@ -189,14 +189,14 @@ zeroes the rest and passes platform checking as the constant 1.
 2. If the marker is not `RYHP` it byte-swaps the whole header (`0063E2E0` with descriptor
    `02CAA0A0`) and tests again: still wrong returns 6; right sets the swapped flag, so a big-endian
    file is accepted.
-3. It calls `00686D00` (`0x44583131`) and `0069E780` (`0x424C4C54`); a different platform, or a physics
+3. It calls `00686D00` (`44583131`<sub>h</sub>) and `0069E780` (`424C4C54`<sub>h</sub>); a different platform, or a physics
    id that is neither Bullet nor 0, returns 6.
-4. It gives the namespace buffer `m_packedNamespaceSize` bytes (`0xD` when that fails) and returns 6
+4. It gives the namespace buffer `m_packedNamespaceSize` bytes (`D`<sub>h</sub> when that fails) and returns 6
    when the buffer is null, which is what a zero-size namespace leaves.
 5. With `m_size` 84 it reads the namespace (`0059A6F0`: one read, 9 when short, then `0059C180` when
    the file was swapped). A shorter header takes the surplus already read as the start of the
    namespace (6 when the surplus is larger than the namespace); a longer one is read on into a
-   second buffer (`0xD`, 9).
+   second buffer (`D`<sub>h</sub>, 9).
 
 `0059E070` then requires the byte-order mark and the size identity, or returns 6.
 
@@ -206,7 +206,7 @@ words of every member record. The string pool is left as it is.
 
 ### Binding the schema
 
-- `0059AAE0` allocates one table entry per type (`0x18` bytes), class (`0x30`) and member (`0x38`).
+- `0059AAE0` allocates one table entry per type (`18`<sub>h</sub> bytes), class (`30`<sub>h</sub>) and member (`38`<sub>h</sub>).
 - `0059B430` finds each type and class name in the engine's registry (`006373D0`, keyed by a hash of
   1973, × 33 plus the low five bits of each byte), sets each class's parent from word 0, and matches
   each member to the runtime class's member of the same name, walking its bases. A class name is
@@ -215,10 +215,10 @@ words of every member record. The string pool is left as it is.
 - Names the registry lacks are logged
   (`"Unable to find type '%s' on load"`, `"File refers to compiled class '%s' which does not exist
   in the current runtime"`) and do not stop the load.
-- `00599500` finds the class bound to `PClusterHeader` (`0x13` when none), converts the header
+- `00599500` finds the class bound to `PClusterHeader` (`13`<sub>h</sub> when none), converts the header
   through the file's schema, and checks the platform again (6).
-- `0059AC00` builds a dynamic class (`00632E80`) for each class record with flag `0x01` and no
-  runtime class, under its parent; one left unbuilt returns `0x13`.
+- `0059AC00` builds a dynamic class (`00632E80`) for each class record with flag `01`<sub>h</sub> and no
+  runtime class, under its parent; one left unbuilt returns `13`<sub>h</sub>.
 
 ### Reading the instance data
 
@@ -227,11 +227,11 @@ words of every member record. The string pool is left as it is.
 - `00686D10` copies the three D3D11 sizes into the load record, and `0059E780` reads the list
   headers (`00596FC0`), returning 6 for a `m_classID` outside the class table.
 - `0059D6A0` sizes and allocates each list's objects. A list whose class has no runtime counterpart
-  is skipped with a log line, unless its class carries flag `0x04`, which returns 6.
-- `0063DD30` allocates the cluster's one block (alignment `0x20`): a `0x20`-byte header, the objects' size
-  rounded up to 8 and one `0x80`-byte list record per list. It links the block on the cluster's
-  chain at `+0x48` and gives the records to its pool at `+0x50` (`00680100`); a second block gets
-  `0x16`.
+  is skipped with a log line, unless its class carries flag `04`<sub>h</sub>, which returns 6.
+- `0063DD30` allocates the cluster's one block (alignment `20`<sub>h</sub>): a `20`<sub>h</sub>-byte header, the objects' size
+  rounded up to 8 and one `80`<sub>h</sub>-byte list record per list. It links the block on the cluster's
+  chain at `+48`<sub>h</sub> and gives the records to its pool at `+50`<sub>h</sub> (`00680100`); a second block gets
+  `16`<sub>h</sub>.
 - `0059F500` reads each list's `m_objectsSize` bytes into a scratch buffer and its `m_arraysSize`
   bytes straight into the list's array area, 9 on a short read; a skipped list's `m_size` bytes are
   passed over.
@@ -243,7 +243,7 @@ words of every member record. The string pool is left as it is.
 ### User fixups
 
 `0059E880` reads the user-fixup data and the 12-byte records (`00597130`). Each record's type is a
-type-table or class entry; one without a bound descriptor returns `0x13`. A `PAssetReferenceImport`
+type-table or class entry; one without a bound descriptor returns `13`<sub>h</sub>. A `PAssetReferenceImport`
 record (descriptor `02D3E780`) is kept as raw bytes; any other is resolved through its descriptor
 (`0063DC30`). A null result is logged (`"Resolving fixup for '%s' returned NULL pointer"`, with a hex
 dump of data under 32 bytes) and the load goes on.
@@ -254,61 +254,61 @@ dump of data under 32 bytes) and the load goes on.
   the header-class objects and their child objects, logging a child whose class has no runtime
   version and a runtime class larger than the file's.
 - Two header classes carry arrays after their fixed part, and their static initialisers (`00167DB0`,
-  `001688F0`) set flag `0x4` at `+0xFC` and store a function at descriptor `+0x100` that hands each
-  array to a visitor's slot `+0x08` with its element type.
-- `006D4CF0` serves `PModifierNetworkInfoPacket` (`0x20` bytes), and does nothing when the visitor's
-  slot `+0x18` answers true: `+0x04` modifier codes and `+0x08` modifier instances (`0x20` bytes
-  each), then `+0x0C` + `+0x0E` two-byte buffer entries.
-- `006DA380` serves `POccluderGeometryObject` (`0x30` bytes): `(+0x00 + 3) / 4` `Matrix4`, then
-  `+0x04` `Point3`, then `+0x08` × 4 bytes.
+  `001688F0`) set flag `4`<sub>h</sub> at `+FC`<sub>h</sub> and store a function at descriptor `+100`<sub>h</sub> that hands each
+  array to a visitor's slot `+08`<sub>h</sub> with its element type.
+- `006D4CF0` serves `PModifierNetworkInfoPacket` (`20`<sub>h</sub> bytes), and does nothing when the visitor's
+  slot `+18`<sub>h</sub> answers true: `+04`<sub>h</sub> modifier codes and `+08`<sub>h</sub> modifier instances (`20`<sub>h</sub> bytes
+  each), then `+0C`<sub>h</sub> + `+0E`<sub>h</sub> two-byte buffer entries.
+- `006DA380` serves `POccluderGeometryObject` (`30`<sub>h</sub> bytes): `(+00h + 3) / 4` `Matrix4`, then
+  `+04`<sub>h</sub> `Point3`, then `+08`<sub>h</sub> × 4 bytes.
 - `0059CE30`, `0059C700` and `0059C250` then read the pointer-array, pointer and array tables. Each
   reads its `*Size` bytes and decodes every list's share into fixed entries (16 bytes for array and
-  pointer-array entries, `0x1C` for pointer entries; `00595EF0`, `00596890`, built on the 7-bit
+  pointer-array entries, `1C`<sub>h</sub> for pointer entries; `00595EF0`, `00596890`, built on the 7-bit
   varint reader `00597400`), so a size is a packed byte length and a count an entry count.
 - `0059FF40` reads an entry's two varints; the first has its low bit moved to bit 31.
 - The entries patch pointers and arrays inside the converted objects. One that names a member the
   runtime lacks is logged (`"Unable to find a data member in class '%s' offset at %d bytes"`).
 - An entry names an object by instance list and index. `0063BFA0` turns that into the object's
-  address plus the class's layout base `+0xF8`, or null when the index is not below the list's
-  count (`+0x70`) or the slot lies on the list's chain at `+0x10`.
+  address plus the class's layout base `+F8`<sub>h</sub>, or null when the index is not below the list's
+  count (`+70`<sub>h</sub>) or the slot lies on the list's chain at `+10`<sub>h</sub>.
 
 ### D3D11 data and completion
 
 `00686DE0` reads the index buffer into the cluster's `PIndexDataBlockD3D11` and `PMeshSegmentD3D11`
 objects, the vertex buffer into its `PDataBlockD3D11` objects, and then texture data for each
 `PTexture2D`, `PTexture3D` and `PTextureCubeMap` through a staging buffer sized from
-`m_maxTextureBufferSize`. `0059E300` then marks every list loaded (`+0x7D`), calls slot `+0x70` of the
+`m_maxTextureBufferSize`. `0059E300` then marks every list loaded (`+7D`<sub>h</sub>), calls slot `+70`<sub>h</sub> of the
 `PAssetReference` and `PClassDescriptorDynamic` descriptors for their lists (a non-zero result ends the
 load), and runs `0059F7A0`, which builds the cluster's `PMapPair` records.
 
 `0059F7A0` keeps those records in a local ordered map: a tree head with a `PMapPair` pool of
-`0x28`-byte nodes `0x30` bytes after it (`0067FFB0`). It clears the map on return; when an exception
+`28`<sub>h</sub>-byte nodes `30`<sub>h</sub> bytes after it (`0067FFB0`). It clears the map on return; when an exception
 leaves it, the unwind action `00597F30` does the same: it resets the head's links (`0067F6F0`),
 frees the pool's blocks (`006803D0`, `00680030`) and calls `0067F580` on the head twice.
 
-For the `PClassDescriptorDynamic` lists, `0059BDC0` finds the `0x30`-byte class entry whose `+0x10`
+For the `PClassDescriptorDynamic` lists, `0059BDC0` finds the `30`<sub>h</sub>-byte class entry whose `+10`<sub>h</sub>
 is a given descriptor. `00686DE0` steps through the objects with `00686D40`, which skips the slots on a list's chain at
-`+0x10` and moves to the next list when one is used up. `00670070` creates each ring buffer of a
-loaded `PDataBlockD3D11` as an immutable buffer (bind flags 9, misc flags `0x20`) of the block's data
+`+10`<sub>h</sub> and moves to the next list when one is used up. `00670070` creates each ring buffer of a
+loaded `PDataBlockD3D11` as an immutable buffer (bind flags 9, misc flags `20`<sub>h</sub>) of the block's data
 size, initialised from the file data at the block's offset; 9 when creation fails.
 
-`0059E300` starts by zeroing its `0x28`-byte list cursor (`00686C20`). When it returns, `0059E070` frees the four arrays at `+0x20`–`+0x58` of the load record it passed
+`0059E300` starts by zeroing its `28`<sub>h</sub>-byte list cursor (`00686C20`). When it returns, `0059E070` frees the four arrays at `+20`<sub>h</sub>–`+58`<sub>h</sub> of the load record it passed
 (`00597F80`). `0059FC20` copies the text between two pointers into new memory with `005994A0`
-(alignment 2) and terminates it; 5 when the end lies before the start, `0xD` without memory.
+(alignment 2) and terminates it; 5 when the end lies before the start, `D`<sub>h</sub> without memory.
 
 ### Asset references and idmaps.txt
 
 Every `.phyre` file has a `PAssetReference` list; a reference names the file's contents by an id string at
-`+0x30`. These objects are kept in the asset-name registry at `01F2EA70` (see the memory page under
+`+30`<sub>h</sub>. These objects are kept in the asset-name registry at `01F2EA70` (see the memory page under
 Related).
 
 - The constructor `006753A0(reference, name, a, b)`, called by the descriptor's construct slot
-  `00674BE0`, sets up the node at `+0x08`, copies the name (`001C26B0`), stores `a` and `b` at
-  `+0x38` and `+0x40`, clears `+0x48` and registers the object (`00677BA0`).
-- For a loaded list, slot `+0x70` (`00674B50`) runs `00676450`: each reference gets the list's
-  cluster at `+0x48`, its name hash (`00677350`, seed `0x7B5`) and name in its key, and is inserted
-  under the lock `02D3E880`. A reference without a name returns `0x15` and a name already
-  registered `0x12`, which ends the load.
+  `00674BE0`, sets up the node at `+08`<sub>h</sub>, copies the name (`001C26B0`), stores `a` and `b` at
+  `+38`<sub>h</sub> and `+40`<sub>h</sub>, clears `+48`<sub>h</sub> and registers the object (`00677BA0`).
+- For a loaded list, slot `+70`<sub>h</sub> (`00674B50`) runs `00676450`: each reference gets the list's
+  cluster at `+48`<sub>h</sub>, its name hash (`00677350`, seed `7B5`<sub>h</sub>) and name in its key, and is inserted
+  under the lock `02D3E880`. A reference without a name returns `15`<sub>h</sub> and a name already
+  registered `12`<sub>h</sub>, which ends the load.
 - The registry orders keys with `00675EF0`: by hash, then, when both names contain `#`, by the text
   after the last `#` (case-sensitive) and then by the part before it (length first, then
   case-insensitive), and otherwise by the whole names case-insensitively.
@@ -331,9 +331,9 @@ pair and `00675440` destroys one.
 - Every size and count must match the bytes that follow: the loader reads straight through and a
   wrong size shifts everything after it. Recompute `m_totalDataSize`, each list's `m_size`, and the
   header's fixup counts as the sums over the lists.
-- The namespace must satisfy the size identity, with `+0x18` and `+0x1C` zero.
+- The namespace must satisfy the size identity, with `+18`<sub>h</sub> and `+1C`<sub>h</sub> zero.
 - A class or member the file declares and the game does not register is dropped with a log line;
-  data in it is lost silently. Flag `0x04` on such a class turns the drop into a refusal.
+  data in it is lost silently. Flag `04`<sub>h</sub> on such a class turns the drop into a refusal.
 - Edit fixup tables only with a decoder for the packed form; their sizes are byte lengths, not entry
   counts.
 - A texture's two user fixups name its class and its format by string; the format name decides how
@@ -341,7 +341,7 @@ pair and `00675440` destroys one.
 - An asset id listed as a key in `idmaps.txt` is looked up under its value instead, so one line pair
   redirects every import of that id; a later pair with the same key replaces an earlier one. The id and its value are copied into a
   256-byte buffer without a bound, so both must stay under 256 bytes.
-- The path hash `00674A00` adds each byte as a signed char, so a path byte of `0x80` or above
+- The path hash `00674A00` adds each byte as a signed char, so a path byte of `80`<sub>h</sub> or above
   subtracts: "× 33 plus each byte" holds for ASCII paths only. Every shipped path is ASCII; a modded
   path with non-ASCII bytes hashes to a different value than an unsigned reading gives.
 
@@ -351,4 +351,4 @@ pair and `00675440` destroys one.
 - [Texture animation lists](../Game-Files-And-Data-Tables/texture-animation-lists-ta.md): frame lists that bind already loaded `.phyre` textures.
 - [File path resolution](../Game-Files-And-Data-Tables/file-path-resolution.md): how an asset path becomes an archive file.
 - [Memory and allocation](../Compiler-And-C-Runtime/memory-and-allocation.md): the asset-name registry at `01F2EA70` that holds the asset references.
-- [Phyre entities and components](phyre-entities-and-components.md): the entity and component hooks behind slot `+0x70`.
+- [Phyre entities and components](phyre-entities-and-components.md): the entity and component hooks behind slot `+70`<sub>h</sub>.

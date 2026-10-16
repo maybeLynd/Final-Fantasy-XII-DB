@@ -18,16 +18,16 @@ moment passes through it.
 
 ### The four call opcodes
 
-The interpreter `0025E4C0` pre-decodes a sixteen-bit operand for every opcode at or above `0x47`,
-as two zero-extended bytes combined with sixteen-bit shifts, so the id can never exceed `0xFFFF`.
+The interpreter `0025E4C0` pre-decodes a sixteen-bit operand for every opcode at or above `47`<sub>h</sub>,
+as two zero-extended bytes combined with sixteen-bit shifts, so the id can never exceed `FFFF`<sub>h</sub>.
 Four three-byte opcodes turn that operand into a verb call:
 
 | Opcode | Mnemonic | Actor | Result |
 |---|---|---|---|
-| `0x58` | `CALL` | the current actor: wait slot `+8` := the actor's own ordinal | left on the value stack |
-| `0x59` | `CALLACT` | pops an actor handle into wait slot `+8`, only while the phase byte `+0x15` is 0 | left on the value stack |
-| `0x5D` | `CALLPOPA` | as `CALL` | popped into the `A` register, wait slot `+0x10` |
-| `0x5E` | `CALLACTPOPA` | as `CALLACT` | popped into `A` |
+| `58`<sub>h</sub> | `CALL` | the current actor: wait slot `+8` := the actor's own ordinal | left on the value stack |
+| `59`<sub>h</sub> | `CALLACT` | pops an actor handle into wait slot `+8`, only while the phase byte `+15`<sub>h</sub> is 0 | left on the value stack |
+| `5D`<sub>h</sub> | `CALLPOPA` | as `CALL` | popped into the `A` register, wait slot `+10`<sub>h</sub> |
+| `5E`<sub>h</sub> | `CALLACTPOPA` | as `CALLACT` | popped into `A` |
 
 `CALLACT` pops its actor only on the first visit, so a durative verb that runs for many frames
 keeps the target it started with. `CALLACTPOPA` has no dispatcher call of its own: it jumps into
@@ -37,29 +37,29 @@ rewinds the program counter so the same instruction runs again next frame.
 
 ### From id to handler
 
-`002621D0` splits the id with an arithmetic shift by 12 and a mask of `0xFFF`: four bits of
+`002621D0` splits the id with an arithmetic shift by 12 and a mask of `FFF`<sub>h</sub>: four bits of
 family, twelve of command. The family selects a table pointer from the sixteen-entry array at
 `02B57EF0`, which `003DC2D0` fills at start-up: every entry gets the default table `01F26720`,
 then families 0, 3, 5 and 7 get their own.
 
 | Family | Id range | Table | Commands |
 |---|---|---|---|
-| 0 | `0x0000` to `0x05D7` | `01EED700` | 1,496 |
-| 3 | `0x3000` to `0x3092` | `01F281B0` | 147 |
-| 5 | `0x5000` | `01F29418` | 1 |
-| 7 | `0x7000` to `0x7067` | `01F29440` | 104 |
+| 0 | `0000`<sub>h</sub> to `05D7`<sub>h</sub> | `01EED700` | 1,496 |
+| 3 | `3000`<sub>h</sub> to `3092`<sub>h</sub> | `01F281B0` | 147 |
+| 5 | `5000`<sub>h</sub> | `01F29418` | 1 |
+| 7 | `7000`<sub>h</sub> to `7067`<sub>h</sub> | `01F29440` | 104 |
 | 1, 2, 4, 6, 8 to 15 | `0xN000` to `0xN0D3` | `01F26720`, shared | 212 |
 
-So `0x2005` and `0x4005` name the same command; the shared table is family 2's debug verbs, and
+So `2005`<sub>h</sub> and `4005`<sub>h</sub> name the same command; the shared table is family 2's debug verbs, and
 the other eleven families alias it. A table is a signed count at `+0`, four bytes of zero, then
 one 32-byte record per command from `+8`: begin at `+0`, poll at `+8`, an always-null pointer at
-`+0x10`, result at `+0x18`.
+`+10`<sub>h</sub>, result at `+18`<sub>h</sub>.
 
 The three accessors `003DC270` (begin), `003DC240` (poll) and `003DC2A0` (result) index the
 family array with no bound, return null for a null table, and compare the command against the
 count as a signed integer. A command at or above the count is refused; a negative command would
 read before the table, and a family outside 0 to 15 would read beside the array. Neither is
-reachable from bytecode, because the decoder leaves the id in 0 to `0xFFFF`.
+reachable from bytecode, because the decoder leaves the id in 0 to `FFFF`<sub>h</sub>.
 
 The pointer
 `0016D6A0`, a bare `ret`, stands in for an absent callback in 9 begin and 25 result slots, so a
@@ -73,22 +73,22 @@ All three callbacks use the Microsoft x64 convention with the same first three r
 |---|---|---|---|
 | `rcx` | the issuing actor record | same | same |
 | `rdx` | the target actor: the issuer, or the actor wait slot `+8` names, resolved by ordinal through `00358940` | same | same |
-| `r8` | the wait slot's `+0x18`, sixteen bytes of scratch private to the command | same | same |
+| `r8` | the wait slot's `+18`<sub>h</sub>, sixteen bytes of scratch private to the command | same | same |
 | `r9` | the value stack | not passed | the value stack |
-| `[rsp + 0x20]` | the manager slot | not passed | not passed |
+| `[rsp + 20h]` | the manager slot | not passed | not passed |
 
 `poll` cannot read arguments, which is why a durative verb's `begin` must copy what it needs into
-the scratch block. A poll that reads the manager index `+0x15` through `rdx`, as `wait`'s and
+the scratch block. A poll that reads the manager index `+15`<sub>h</sub> through `rdx`, as `wait`'s and
 `camerasync`'s do, reads the target's, which is the issuer's only because those verbs are issued
 with `CALL`. Nearly every handler opens with `mov rcx, r9` and a call to a pop helper: that
 pair is "read an argument".
 
 ### The value stack
 
-The stack is one static object at `02099AC0`, `0x284` bytes, whose depth the interpreter zeroes
-on every entry: `+0` the depth, `+4` a tag byte per slot (1 int, 2 float), `+0x44` a source byte
-per slot (6 for a literal or computed value, the width nibble for a reference), `+0x84` a dword
-per slot every push writes as 0, `+0x184` the value. Sixty-four slots exist and 63 are usable:
+The stack is one static object at `02099AC0`, `284`<sub>h</sub> bytes, whose depth the interpreter zeroes
+on every entry: `+0` the depth, `+4` a tag byte per slot (1 int, 2 float), `+44`<sub>h</sub> a source byte
+per slot (6 for a literal or computed value, the width nibble for a reference), `+84`<sub>h</sub> a dword
+per slot every push writes as 0, `+184`<sub>h</sub> the value. Sixty-four slots exist and 63 are usable:
 both pushes return without writing at depth 63.
 
 The two pops mirror each other. `00267E10` pops as an int, truncating a float with `cvttss2si`;
@@ -101,7 +101,7 @@ is silent in play: a script that supplies too few arguments runs on zeros.
 ### Argument order
 
 Handlers pop in stack order, so the first value popped is the last the script pushed, and the
-decompiler's parameter list is the pop order. `getmapjumpposbyindex` (`0x0211`, `003538F0`)
+decompiler's parameter list is the pop order. `getmapjumpposbyindex` (`0211`<sub>h</sub>, `003538F0`)
 pops four references, resolving each through `002650B0`, then pops the index, calls
 `00377AB0(index, out)` and stores `out[0]` through the last reference popped, `out[3]` through
 the first.
@@ -114,19 +114,19 @@ index scaled by its width, the storage class in bits 24 to 26, the width nibble 
 through the six class bases ([script variables](script-variables.md)); classes 6 and 7 fall to
 base 0. 57 handlers call it; a store through it is a raw dword whatever the declared width.
 
-`PUSHACT` (`00261806`) packs an actor as `(word + 0xE of the actor's binding entry) << 16 |
-index | 0x4000`, or `0x8000` when the index is past the binding table's count. The request
+`PUSHACT` (`00261806`) packs an actor as `(word + Eh of the actor's binding entry) << 16 |
+index | 4000h`, or `8000`<sub>h</sub> when the index is past the binding table's count. The request
 opcodes and `0025AF60` decode the same encoding: bit 14 marks a live handle, bit 15 refuses.
 
 ### Results
 
 A verb returns a value by writing the issuer's current wait slot: `0026B4E0` stores the int at
-`+0xC` and sets the phase byte `+0x15` to 2; `0026B4C0` stores the float and sets 3; `002651A0`
-sets 2 and returns what `+0xC` already holds, used by `charcommoneffectplay` (`0x0465`,
-`00342A80`) after a nested handler wrote it. The slot index at the record's `+0x11` is read with
+`+C`<sub>h</sub> and sets the phase byte `+15`<sub>h</sub> to 2; `0026B4C0` stores the float and sets 3; `002651A0`
+sets 2 and returns what `+C`<sub>h</sub> already holds, used by `charcommoneffectplay` (`0465`<sub>h</sub>,
+`00342A80`) after a nested handler wrote it. The slot index at the record's `+11`<sub>h</sub> is read with
 `movsx` in every writer and reader, so the field is a signed byte with no bound.
 
-After the result callback the lifecycle pushes exactly one value: the int at `+0xC` for phase 2,
+After the result callback the lifecycle pushes exactly one value: the int at `+C`<sub>h</sub> for phase 2,
 the float for 3 or more, an int 0 for 0 or 1 or when the result slot is null; a stack already at
 depth 63 gets nothing. The phase byte then returns to 0. The int writer is reached from 28 calls
 and 321 tail jumps, the float writer from 22 and 31, so a handler that returns ends in a jump to
@@ -150,7 +150,7 @@ wait slot          +8 target ordinal, +0xC result, +0x10 A, +0x14 wait kind, +0x
 |---|---|
 | command slots | 1,960 in five tables (1,496 / 147 / 1 / 104 / 212) |
 | absent-callback stub `0016D6A0` | 9 begin slots, 25 result slots, 0 poll slots |
-| the `+0x10` slot | null in all 1,960 records |
+| the `+10`<sub>h</sub> slot | null in all 1,960 records |
 | census method | `E8` calls and `E9` jumps to each helper over `.text` of the shipping executable, including code outside any listed function |
 | int pop `00267E10` | 1,559 calls and 2 tail jumps |
 | float pop `00267DB0` | 436 calls and 4 tail jumps |
@@ -167,13 +167,13 @@ result slot.
 
 ## State
 
-The value stack `02099AC0`, the family array `02B57EF0`, and the issuer's wait slot (`+8`, `+0xC`,
-`+0x15`, `+0x18`).
+The value stack `02099AC0`, the family array `02B57EF0`, and the issuer's wait slot (`+8`, `+C`<sub>h</sub>,
+`+15`<sub>h</sub>, `+18`<sub>h</sub>).
 
 ## Modding notes
 
 - A verb id is `family << 12 | command`; families 1, 2, 4, 6 and 8 to 15 all read the 212-entry
-  debug table, so `0x2xxx` and `0x4xxx` are the same verbs.
+  debug table, so `2XXXh` and `4XXXh` are the same verbs.
 - Arguments are popped last-pushed first; a handler's decompiled parameter order is the pop order.
 - Too few arguments give zeros, too many leave values on the stack, and the 64th push is lost:
   none of it is reported.

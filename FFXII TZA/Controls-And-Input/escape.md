@@ -49,7 +49,7 @@ does not flip the toggle.
 3. A `020927CC` of 1 does the same (`00252BB6`-`00252BC1`).
 4. The battle mode register `0035C6F0` can replace the toggle, in the next two steps.
 5. With bit 2 or 3 of the register set, the toggle becomes input snapshot bit 9, or 0 when policy bit 10 is set
-   (`00252BCD`-`00252BEC`). It writes `0035C880(0xC, (register & 4) * 2)`, then `0035C880(0xC, 0)` when the toggle
+   (`00252BCD`-`00252BEC`). It writes `0035C880(Ch, (register & 4) * 2)`, then `0035C880(Ch, 0)` when the toggle
    is 0, and sets the quiet bit (`00252BEF`-`00252C0C`).
 6. Otherwise, with bit 0 of the register set, the toggle becomes the register's bit 1 (`00252C13`-`00252C25`).
 7. Only when `003603B0` and `003603C0` both answer 0 does it arm (`00252C28`-`00252C5D`). While the toggle is 1 it
@@ -64,7 +64,7 @@ flag, which is Escape Mode on. A value of 0 sets it back to 1, or to 0 when the 
 (`003BA2E0`). Without `force` it writes only when the flag would change, and not at all while `003603B0` or
 `003603C0` answers non-zero.
 
-The flag has one other writer. `00254EA0(v)` is the body of the script verb `0x334` `setforcefightmode` (handler
+The flag has one other writer. `00254EA0(v)` is the body of the script verb `334`<sub>h</sub> `setforcefightmode` (handler
 `003444D0`, call `003444E2`): it writes 1 when `v` is non-zero and `003BA2E0` answers non-zero (`00254EB1`), and 0
 otherwise (`00254EC5`).
 
@@ -74,11 +74,11 @@ The arming state is the word `022CBE1A`. Both steps return at once when the batt
 (`00366874`-`0036687B`, `003667E4`-`003667EB`).
 
 1. `00366870` counts frames in `022CBE18`. On the first frame, bit 0 clear, it restarts the count and starts a
-   repeating sound, block slot `0x52`, and sets bit 4 (`0036688D`-`003668E0`).
+   repeating sound, block slot `52`<sub>h</sub>, and sets bit 4 (`0036688D`-`003668E0`).
 2. When the count reaches `022CBE08` it pins the count there and sets the armed bit, bit 2, and on that frame only
    also bit 3 (`00366902`-`00366918`).
 3. Every frame it clears bits 1 and 6 and sets bit 0 (`0036691C`-`00366928`).
-4. `003667E0` plays the disarm cue, block slot `0x2A` through `00249C60`, when the armed bit is set, `00265680`
+4. `003667E0` plays the disarm cue, block slot `2A`<sub>h</sub> through `00249C60`, when the armed bit is set, `00265680`
    answers non-zero and the quiet bit, bit 6, is clear (`003667ED`-`0036680D`).
 5. It then stops the repeating sound if it plays, clears bits 0, 2, 3, 4, 5 and 6, and sets bit 1
    (`00366812`-`0036685B`).

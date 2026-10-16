@@ -25,17 +25,17 @@ addresses: "00797910, 00796230, 00798A40, 00797690, 00792B70, 00792CB0, 00792AB0
 
 ### The two callbacks
 
-`00796230` (start-up) and `00798A40` (device arrival) look at the device type byte `+0x24` of each listed device:
+`00796230` (start-up) and `00798A40` (device arrival) look at the device type byte `+24`<sub>h</sub> of each listed device:
 
 | Type | `00796230` | `00798A40` |
 |---|---|---|
-| `0x12` mouse | the mouse set-up `00797460` | the same |
-| `0x13` keyboard | the keyboard set-up `007973D0` | ignored |
-| `0x14` joystick, `0x15` gamepad, `0x18` first-person | the pad set-up `00797690` | the same |
+| `12`<sub>h</sub> mouse | the mouse set-up `00797460` | the same |
+| `13`<sub>h</sub> keyboard | the keyboard set-up `007973D0` | ignored |
+| `14`<sub>h</sub> joystick, `15`<sub>h</sub> gamepad, `18`<sub>h</sub> first-person | the pad set-up `00797690` | the same |
 | any other | ignored | ignored |
 
-The pad test is `(type - 0x14) & 0xFA == 0` and `type != 0x19` (`00796242`-`0079624C`), which passes exactly
-`0x14`, `0x15` and `0x18` and leaves out `0x19`, the device-control type. So the keyboard is set up only at start-up;
+The pad test is `(type - 14h) & FAh == 0` and `type != 19h` (`00796242`-`0079624C`), which passes exactly
+`14`<sub>h</sub>, `15`<sub>h</sub> and `18`<sub>h</sub> and leaves out `19`<sub>h</sub>, the device-control type. So the keyboard is set up only at start-up;
 mice and pads also when they arrive.
 
 ### One pad
@@ -45,13 +45,13 @@ mice and pads also when they arrive.
 1. `00797AD0` tests whether the device is an XInput pad; a yes also sets `02EA5379`.
 2. It returns when a registered controller of kind 2 in the list `01F401E8` already holds this device's instance
    GUID; it checks up to 18 of them.
-3. When the Steam interface reports a connected controller, it builds a Steam controller, `0x458` bytes, with
+3. When the Steam interface reports a connected controller, it builds a Steam controller, `458`<sub>h</sub> bytes, with
    `00792B70`.
-4. For an XInput pad, when fewer than four have been counted, it builds an XInput controller, `0x470` bytes, with
+4. For an XInput pad, when fewer than four have been counted, it builds an XInput controller, `470`<sub>h</sub> bytes, with
    `00792CB0` and the count `02EA9500` as its user index; the count goes up for every XInput pad, built or not.
 5. For any other pad, and only when step 3 built nothing, it opens a DirectInput device: `CreateDevice`,
    `SetDataFormat`, `SetCooperativeLevel` with flags 6, non-exclusive and foreground only, `EnumObjects` with
-   `00796280`, then `Acquire`, and builds a DirectInput controller, `0x458` bytes, with `00792AB0`. A failure of
+   `00796280`, then `Acquire`, and builds a DirectInput controller, `458`<sub>h</sub> bytes, with `00792AB0`. A failure of
    `CreateDevice`, `SetDataFormat` or `EnumObjects`, or a cooperative-level answer of "not implemented", leaves the
    pad unused.
 
@@ -61,20 +61,20 @@ for one pad.
 ### What the controllers share
 
 All three constructors call the base `00792940`, which links the object into the list `01F401E8` and zeroes
-`0x244` bytes at `+0x1D0` (`00792A89`-`00792A96`). The DirectInput and XInput constructors then copy the listed
-device's description, `0x244` bytes, into `+0x1D0` (`00792AD7`-`00792AF1`, `00792CF4`-`00792D11`), so its instance
-GUID is at `+0x1D4`, the field step 2 compares. The Steam constructor `00792B70` copies none, so a Steam controller
-holds no GUID. The XInput controller adds its user index at `+0x458` (`00792CB0`).
+`244`<sub>h</sub> bytes at `+1D0`<sub>h</sub> (`00792A89`-`00792A96`). The DirectInput and XInput constructors then copy the listed
+device's description, `244`<sub>h</sub> bytes, into `+1D0`<sub>h</sub> (`00792AD7`-`00792AF1`, `00792CF4`-`00792D11`), so its instance
+GUID is at `+1D4`<sub>h</sub>, the field step 2 compares. The Steam constructor `00792B70` copies none, so a Steam controller
+holds no GUID. The XInput controller adds its user index at `+458`<sub>h</sub> (`00792CB0`).
 
 The base also builds four
-`0x48`-byte entries at `+0xB0` with `00792D90` (`007929BD`), which points each entry's two links at itself and sets
-its floats `+0x1C` to 1.0 and `+0x24` to 0.005.
+`48`<sub>h</sub>-byte entries at `+B0`<sub>h</sub> with `00792D90` (`007929BD`), which points each entry's two links at itself and sets
+its floats `+1C`<sub>h</sub> to 1.0 and `+24`<sub>h</sub> to 0.005.
 
 ### The XInput library
 
 The XInput constructor `00792CB0` ends by calling `00862C70`, which loads `.\xinput1_3.dll` with `LoadLibraryW`,
 keeps its export ordinal 100 in `02EBA3F0` and sets `02EAF8F0` (`00862C70`-`00862CCD`). `00862CF0` does the same
-load when `02EAF8F0` is still 0, reads user 0 through that export into `02EBA3E0`, and answers 1 when bit `0x400` of
+load when `02EAF8F0` is still 0, reads user 0 through that export into `02EBA3E0`, and answers 1 when bit `400`<sub>h</sub> of
 the button word `02EBA3E4` is set, or the button word itself otherwise. The R2 latch of [Escape Mode](escape.md)
 reads it; a raw scan finds no other caller of `00862CF0` or `00862C70` than these two and the constructor.
 
@@ -87,7 +87,7 @@ and `01F40290`. A Steam Input configuration for the game uses these names.
 ### Plugging in a pad
 
 The window procedure sets `02EA5363` when a device-change message arrives with the code for a device arriving,
-`0x8000` (`0079973E`-`00799747`). The per-frame device update `007999E0` sees it, clears it and lists the devices
+`8000`<sub>h</sub> (`0079973E`-`00799747`). The per-frame device update `007999E0` sees it, clears it and lists the devices
 again with `00798A40` (`007999E4`-`00799A12`). Nothing in this walk removes a controller.
 
 ## Shipped data

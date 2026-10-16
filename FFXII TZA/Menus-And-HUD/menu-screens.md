@@ -14,28 +14,28 @@ procedure is tied to a screen by walking its installers up to a Party Menu entry
 
 ### The Party Menu and its entries
 
-The Party Menu is `00280DE0` ("Party Menu", `menu_command.bin` `0x554`, the control label at `00915DD0`), built by
+The Party Menu is `00280DE0` ("Party Menu", `menu_command.bin` `554`<sub>h</sub>, the control label at `00915DD0`), built by
 `00280D20` for menu request 2 ([Menus](menus.md)). Its entry dispatcher `00281ED0` (`002811DC`) opens each entry by
 its `menu_command.bin` id:
 
 | Entry | Opener (site in `00281ED0`) | Screen procedure | Page |
 |---|---|---|---|
-| Party `0x4B3` | posts `0x8001` to its member list | `00280DE0`, list `00285290` | |
-| Status `0x4B4`, Equip `0x4B6` | `002C2280` (`002822A9`) | `002C2320` | |
-| Licenses `0x4B5` | `005601B0` (`002823C5`) | `00560910` | [License Board screen](license-board-screen.md) |
-| World Map `0x4B7` | `0028E790` (`002823B8`) | `00552250` | [Map screens](map-screens.md) |
-| Inventory `0x4B8` | `00565DD0` (`00282127`) | `00565E00` | [Widgets](widgets.md) |
-| Gambits `0x4B9` | `00568B30` (`00282264`) | `005691E0` | [Gambits screen](gambit-screen.md) |
-| Clan Primer `0x4BC` | `00574CB0` (`0028239B`) | `00574E80` | [Clan Primer](clan-primer.md) |
-| Config `0x4BE` | `00240680` (`0028217D`) | `0023FBE0` | [Config screen](config-screen.md) |
-| Graphics Settings `0x503` | `0023BCC0` (`00282186`) | `0023BD40` | [Config screen](config-screen.md) |
-| Controls `0x504` | `0023CC90` (`0028218F`) | `0023CE10` | [Config screen](config-screen.md) |
-| Quit `0x505` | `0027EBC0` (`00282196`) | `0027EA70` | |
-| Parameter Settings `0x53A` | `00240D60` (`002821B8`) | `00240AD0` | |
+| Party `4B3`<sub>h</sub> | posts `8001`<sub>h</sub> to its member list | `00280DE0`, list `00285290` | |
+| Status `4B4`<sub>h</sub>, Equip `4B6`<sub>h</sub> | `002C2280` (`002822A9`) | `002C2320` | |
+| Licenses `4B5`<sub>h</sub> | `005601B0` (`002823C5`) | `00560910` | [License Board screen](license-board-screen.md) |
+| World Map `4B7`<sub>h</sub> | `0028E790` (`002823B8`) | `00552250` | [Map screens](map-screens.md) |
+| Inventory `4B8`<sub>h</sub> | `00565DD0` (`00282127`) | `00565E00` | [Widgets](widgets.md) |
+| Gambits `4B9`<sub>h</sub> | `00568B30` (`00282264`) | `005691E0` | [Gambits screen](gambit-screen.md) |
+| Clan Primer `4BC`<sub>h</sub> | `00574CB0` (`0028239B`) | `00574E80` | [Clan Primer](clan-primer.md) |
+| Config `4BE`<sub>h</sub> | `00240680` (`0028217D`) | `0023FBE0` | [Config screen](config-screen.md) |
+| Graphics Settings `503`<sub>h</sub> | `0023BCC0` (`00282186`) | `0023BD40` | [Config screen](config-screen.md) |
+| Controls `504`<sub>h</sub> | `0023CC90` (`0028218F`) | `0023CE10` | [Config screen](config-screen.md) |
+| Quit `505`<sub>h</sub> | `0027EBC0` (`00282196`) | `0027EA70` | |
+| Parameter Settings `53A`<sub>h</sub> | `00240D60` (`002821B8`) | `00240AD0` | |
 
 Status and Equip share one screen procedure, `002C2320`, which hosts the equipment pane `003FF360`, its list
-`003FDFE0` ("Change equipment.", `0xCC9`) and the slot names Weapon, Off-hand, Helm, Armor and Accessory
-(`menu_expansion.bin` `0x4A99`, `0x4A9A`, `0x4A9C`-`0x4A9E`, `003FEE40`).
+`003FDFE0` ("Change equipment.", `CC9`<sub>h</sub>) and the slot names Weapon, Off-hand, Helm, Armor and Accessory
+(`menu_expansion.bin` `4A99`<sub>h</sub>, `4A9A`<sub>h</sub>, `4A9C`<sub>h</sub>-`4A9E`<sub>h</sub>, `003FEE40`).
 
 ### Screens opened by menu requests
 
@@ -48,13 +48,13 @@ The generic request host `0027FB70` (built by `00280A00` for the router `00254B5
 | shop: Buy, Sell, Bazaar | `0057B890` | `0057B800` (`0027FCDA`); [Shop screens](shop-screens.md) |
 | game over | `003EF830` | `003EF750` (`0027FFC3`) |
 | the script menu host | `002D70F0` | `002D7070` (`0027FE8C`) |
-| Save, Load (`menu_message.bin` `0x870`, `0x871`) | `00582860` | `00583930` (`0027F984`) |
+| Save, Load (`menu_message.bin` `870`<sub>h</sub>, `871`<sub>h</sub>) | `00582860` | `00583930` (`0027F984`) |
 | the notice board list | `0037E350` | `0037FF80` (`0027F9AF`) |
 | World Map | `00552250` | `0028E790` (`0027FA2C`) |
 | location map | `002BA700` | `0028E660` (`0027F6AF`, `0027F9EC`) |
-| Battle Menu (`0x553`) | `00279E20` | `00276650`, from the HUD frame (`00290DC0`); [Battle menu](battle-menu.md) |
+| Battle Menu (`553`<sub>h</sub>) | `00279E20` | `00276650`, from the HUD frame (`00290DC0`); [Battle menu](battle-menu.md) |
 | the special-attack window | `002D5EB0` | `002D5030`, from `0028E970` (`00254C18`) |
-| party leader choice, "Select a new party leader." (`0x86E`) | `0035D6B0` | `0035D080` (`00254C26`) |
+| party leader choice, "Select a new party leader." (`86E`<sub>h</sub>) | `0035D6B0` | `0035D080` (`00254C26`) |
 
 ### Screens and their procedures
 

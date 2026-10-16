@@ -37,8 +37,8 @@ moment.
 
 `0030D160` (1,004 bytes) is called once, by the standard-action state machine at
 `00304EE2`, as `(unit, effectiveActionId, focusHandle, buffer)`: the action id comes from
-`00387090` (`00304ECC`), the focus handle from the action context `+0x60`, and the buffer is the
-context's target list at `+0xC8` (context = unit `+0x6B0`, so the list is at unit `+0x778`)
+`00387090` (`00304ECC`), the focus handle from the action context `+60`<sub>h</sub>, and the buffer is the
+context's target list at `+C8`<sub>h</sub> (context = unit `+6B0`<sub>h</sub>, so the list is at unit `+778`<sub>h</sub>)
 (`00304ED1`-`00304EE2`). It returns the list's count (`0030D51C`).
 
 1. The chosen target is resolved from the focus handle (`0031B7E0`); if it does not resolve the
@@ -49,13 +49,13 @@ context's target list at `+0xC8` (context = unit `+0x6B0`, so the list is at uni
    appended first (`0030D1F3`-`0030D200`).
 4. **Stats-record path.** When the user's stats-record list (below) is not empty, nothing below runs;
    with a radius the list is rewritten from the mapped battle slots (`0030D205`-`0030D250`).
-5. **Radius.** With the row's byte `+0x06` at 0, the area pass is skipped (`0030D255`-`0030D26B`).
+5. **Radius.** With the row's byte `+06`<sub>h</sub> at 0, the area pass is skipped (`0030D255`-`0030D26B`).
    Otherwise the radius is squared and compared with squared XZ distances (`0030D2BD`,
-   `0030D3A3`-`0030D3AC`). The centre is the user's position (unit `+0xE0`) when bit 21
-   (`0x200000`) of the flag word `+0x0C` is set, otherwise the chosen target's (`0030D271`-`0030D29B`).
-6. **Heading.** When bit 24 or 25 is set (`0x3000000`, `0030D2C0`), the heading from the user to the
-   chosen target is computed (`0031AC90`; the user's facing `+0x160` when the two positions coincide
-   in X and Z) (`0030D2D2`-`0030D2E7`). The row's byte `+0x07` is kept as a width and, times
+   `0030D3A3`-`0030D3AC`). The centre is the user's position (unit `+E0`<sub>h</sub>) when bit 21
+   (`200000`<sub>h</sub>) of the flag word `+0C`<sub>h</sub> is set, otherwise the chosen target's (`0030D271`-`0030D29B`).
+6. **Heading.** When bit 24 or 25 is set (`3000000`<sub>h</sub>, `0030D2C0`), the heading from the user to the
+   chosen target is computed (`0031AC90`; the user's facing `+160`<sub>h</sub> when the two positions coincide
+   in X and Z) (`0030D2D2`-`0030D2E7`). The row's byte `+07`<sub>h</sub> is kept as a width and, times
    2 pi / 360 (`01CEBC78`, `00902438`), as an angle (`0030D2EC`-`0030D308`).
 ### Candidates
 
@@ -66,44 +66,44 @@ candidate; the chosen target itself is skipped (`0030D313`-`0030D34D`). A candid
 | Test | Passes when |
 |---|---|
 | eligibility | `002FFEF0(candidate, user, 1)` returns non-zero (`0030D35F`); see below |
-| side | bit 3 of the row's word `+0x36` is set, or the side predicate called as `(chosenTarget, candidate, 1)` returns 0 (`0030D36C`-`0030D391`) |
+| side | bit 3 of the row's word `+36`<sub>h</sub> is set, or the side predicate called as `(chosenTarget, candidate, 1)` returns 0 (`0030D36C`-`0030D391`) |
 | distance | the candidate is inside the radius (`0030D3A8`) |
 | cone (bit 24) | the absolute angle between the heading and the user-to-candidate heading, normalised to plus or minus pi by `0031A930`, is not above the angle (`0030D3B1`-`0030D3E1`) |
 | line (bit 25, bit 24 clear) | the candidate's offset from the user, rotated into the heading by `00325EA0`, has an absolute sideways component not above the width (`0030D3E3`-`0030D419`) |
 
-The side predicate is `0030BB10` when bit 2 of `+0x36` is clear (it returns 1 for relationship class
+The side predicate is `0030BB10` when bit 2 of `+36`<sub>h</sub> is clear (it returns 1 for relationship class
 0 or 2) and `0030BCB0` when bit 2 is set (1 for class 0 or 1). The two are loaded with `lea` and
 called through `rax`.
 
 ### Whole party
 
 When bit 1 of the flag word is set - whatever the radius - the units at the four party positions
-(`0031B810(i)`, the slot byte at `[02EBF190] + 0x5A5A + i*2`) are appended, unless already in the
+(`0031B810(i)`, the slot byte at `[02EBF190] + 5A5Ah + i*2`) are appended, unless already in the
 list (`00316D70`). Only units that have a stats record and either none of status bits 0, 1 and 31
-(`0x80000003`) or a non-zero `00377C20()` count; they are staged in `022C1788` first
+(`80000003`<sub>h</sub>) or a non-zero `00377C20()` count; they are staged in `022C1788` first
 (`0030D461`-`0030D50A`).
 
 ### The stats-record list
 
 Besides the unit list, the user can carry a list of stats-record indices (actor type ids): count
-`+0x6B6`, bytes from `+0x6B9`.
+`+6B6`<sub>h</sub>, bytes from `+6B9`<sub>h</sub>.
 
-- The commit `0030F760` puts one entry there (from `022C1DB8 + 12 * [unit+0xEA9]`) when bit 1 of the
-  action-context word `unit+0x6B0` is set (`0030F865`-`0030F894`).
+- The commit `0030F760` puts one entry there (from `022C1DB8 + 12 * [unit+EA9h]`) when bit 1 of the
+  action-context word `unit+6B0h` is set (`0030F865`-`0030F894`).
 - The action reset `003105D0` clears it (`0031060A`).
 - The effect applier `00307300` resolves each byte through `00320A40` and applies the result to it
   (`003073D7`-`0030744B`).
 - With a radius, the gatherer rewrites the list from index 0: each mapped battle slot 4 to 8 whose
-  stats record exists (`00320AB0(slot, 3)`) contributes its byte `+0x04`, and the new count goes to
-  `+0x6B6`. Without a radius the committed entry stands.
+  stats record exists (`00320AB0(slot, 3)`) contributes its byte `+04`<sub>h</sub>, and the new count goes to
+  `+6B6`<sub>h</sub>. Without a radius the committed entry stands.
 
 ### The relationship class
 
 `0030AB40(a, b, flags)` returns 0 when either unit is null, either
 actor's class nibble (`00263C20`) is 5, or either unit lacks bit 4 of its first byte
-(`0030AB64`-`0030ABB2`). A unit is on the party side when its stats byte `+0x05` is 0 or its class
+(`0030AB64`-`0030ABB2`). A unit is on the party side when its stats byte `+05`<sub>h</sub> is 0 or its class
 nibble is 3. The result is 1 when both are on the same side and 2 when not; when bit 0 of `flags` is
-clear and `a` has status bit 5 (Confuse) in `+0x64 | +0x3C`, the answer is swapped
+clear and `a` has status bit 5 (Confuse) in `+64h | +3Ch`, the answer is swapped
 (`0030ABB8`-`0030AC25`). The gatherer passes 1 to the side predicates, so Confuse never changes
 an area's side.
 
@@ -116,28 +116,28 @@ else 0. It returns 1 when `002FFF50(candidate, hostile, mode)` returns an empty 
 
 | Bit | When |
 |---|---|
-| `0x01` | the unit is null or lacks bit 4 of its first byte |
-| `0x02` | no stats record, or status bits 0, 1 or 31 (KO, Stone, X-Zone) set while `00377C20()` returns 0 |
-| `0x04` | `003125E0(unit)` returns non-zero: for an active unit, when its flag word has bit 9, 10 or 11, the word at `+0x04` has bit 2, bit 1 is set while the unit has no stats record or is KO, Stone or X-Zone (without the map waiver), or, for an enemy-side unit, bit 3 or 4 of the dword at `[unit+0x6A0]` is set |
-| `0x08` | `0030B950(unit, hostile)` returns non-zero: bits 9-11 of `02089340` (`0030B770`), or `0030B7F0` - unit flag bit 8, unit flag bit 30 when `hostile`, a party-side unit of type id `0x1A`, or `0017D470()` in state 1 or 2 |
-| `0x10` | enemy side (stats `+0x05` = 1), `mode` is not 1, and status bit 24 (Invisible) set |
-| `0x20` | enemy side, `mode` is not 3, and bit 5 of the byte at `[unit+0x6A0]` |
-| `0x40` | enemy side and bit 6 of the byte at `[unit+0x6A0]` |
+| `01`<sub>h</sub> | the unit is null or lacks bit 4 of its first byte |
+| `02`<sub>h</sub> | no stats record, or status bits 0, 1 or 31 (KO, Stone, X-Zone) set while `00377C20()` returns 0 |
+| `04`<sub>h</sub> | `003125E0(unit)` returns non-zero: for an active unit, when its flag word has bit 9, 10 or 11, the word at `+04`<sub>h</sub> has bit 2, bit 1 is set while the unit has no stats record or is KO, Stone or X-Zone (without the map waiver), or, for an enemy-side unit, bit 3 or 4 of the dword at `[unit+6A0h]` is set |
+| `08`<sub>h</sub> | `0030B950(unit, hostile)` returns non-zero: bits 9-11 of `02089340` (`0030B770`), or `0030B7F0` - unit flag bit 8, unit flag bit 30 when `hostile`, a party-side unit of type id `1A`<sub>h</sub>, or `0017D470()` in state 1 or 2 |
+| `10`<sub>h</sub> | enemy side (stats `+05`<sub>h</sub> = 1), `mode` is not 1, and status bit 24 (Invisible) set |
+| `20`<sub>h</sub> | enemy side, `mode` is not 3, and bit 5 of the byte at `[unit+6A0h]` |
+| `40`<sub>h</sub> | enemy side and bit 6 of the byte at `[unit+6A0h]` |
 
-The gatherer uses mode 1, so bit `0x10` is never set for its candidates. `00377C20` returns bit 15
+The gatherer uses mode 1, so bit `10`<sub>h</sub> is never set for its candidates. `00377C20` returns bit 15
 of the current field's map-info word.
 
 ### Entry flags
 
-The effect applier `00307300` writes each entry's `+0x08`: the low byte is the
+The effect applier `00307300` writes each entry's `+08`<sub>h</sub>: the low byte is the
 outcome code from `0030DAE0` (`003075BF`), and bits 8, 9, 10 and 11 are set from result flags 3, 2, 1
-and 0 (bit 10 only when bit 21 of the user's word `+0x04` is clear, `003075C3`-`003075EC`). Readers:
+and 0 (bit 10 only when bit 21 of the user's word `+04`<sub>h</sub> is clear, `003075C3`-`003075EC`). Readers:
 the HP write `00300530` (bit 8, `0030071A`), `0031ADB0` (bits 8 and 11, low byte 10), `00322760` (low
 byte 8), `003176E0` (low byte), and the combo continuation `00308610`/`0030C010` (bit 10); bit 10 is
 cleared at `002FFA14`, `0030019B`, `00300EAD`, `003011E0` and `0030AFF8`.
 
 Before it resolves a target, the applier turns the entry's low byte back into an outcome with
-`002FEE20`, the inverse of `0030DAE0`, and passes it in the result's byte `+0x04` to `00385F60`
+`002FEE20`, the inverse of `0030DAE0`, and passes it in the result's byte `+04`<sub>h</sub> to `00385F60`
 (`00307552`-`00307577`):
 
 | Entry code | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | other |
@@ -149,7 +149,7 @@ Before it resolves a target, the applier turns the entry's low byte back into an
 `0031A990(row, out)` (154 bytes) describes the same fields as a shape: it
 writes 0 to `out+4`; with no radius or with bit 12 of the flag word set, the shape is 5 (with
 `out+4` = 1) when bit 1 is set and 0 otherwise; otherwise 3 for bit 24 (radius at `+8`, the angle in
-radians at `+0xC`), 4 for bit 25, and 1 or 2 for bit 21 clear or set (radius at `+8`)
+radians at `+C`<sub>h</sub>), 4 for bit 25, and 1 or 2 for bit 21 clear or set (radius at `+8`)
 (`0031A990`-`0031AA29`). Its one caller is `0031AA30` (`0031AB58`), which is called from `00321060`
 and `00328530` and jumped to from `0031AB80`.
 
@@ -157,23 +157,23 @@ and `00328530` and jumped to from `0031AB80`.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `u8` | flags | bit 0 kept by the clear (`00316D05`-`00316D16`); the rest cleared |
-| `01` | `u16` | keys | cleared to 0 by `00316D1D` |
-| `03` | `u8` | pad3 | cleared by the memset of `00316D0B` |
-| `04` | `i32` | count | entries in use; signed (movsxd at `00316CD0` and `00316D70`); append refuses at 32 (`00316CD4`) |
-| `08` | `u8[512]` | entries | 32 ActionTargetEntry records of 16 bytes |
+| `00`<sub>h</sub> | `u8` | flags | bit 0 kept by the clear (`00316D05`-`00316D16`); the rest cleared |
+| `01`<sub>h</sub> | `u16` | keys | cleared to 0 by `00316D1D` |
+| `03`<sub>h</sub> | `u8` | pad3 | cleared by the memset of `00316D0B` |
+| `04`<sub>h</sub> | `i32` | count | entries in use; signed (movsxd at `00316CD0` and `00316D70`); append refuses at 32 (`00316CD4`) |
+| `08`<sub>h</sub> | `u8[512]` | entries | 32 ActionTargetEntry records of 16 bytes |
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `u64` | actorWork | the unit's `+0x10` object; stored by `00316CDC`, compared by `00316D83` |
-| `08` | `u32` | entryFlags | low byte the outcome code (`0030DAE0`), bits 8-11 result flags; written by the effect applier `00307300` |
-| `0C` | `u32` | tail | no unit-relative reader of `+0x78C` in the image (entry-pointer reads not excluded) |
+| `00`<sub>h</sub> | `u64` | actorWork | the unit's `+10`<sub>h</sub> object; stored by `00316CDC`, compared by `00316D83` |
+| `08`<sub>h</sub> | `u32` | entryFlags | low byte the outcome code (`0030DAE0`), bits 8-11 result flags; written by the effect applier `00307300` |
+| `0C`<sub>h</sub> | `u32` | tail | no unit-relative reader of `+78C`<sub>h</sub> in the image (entry-pointer reads not excluded) |
 
 ## Modding notes
 
-- The area fields are bytes of the action row: `+0x06` radius, `+0x07` cone angle in degrees or line
-  half-width; flag word `+0x0C` bits 1 (whole party), 21 (centre on user), 24 (cone), 25 (line);
-  word `+0x36` bits 2 (other side from the target) and 3 (everyone).
+- The area fields are bytes of the action row: `+06`<sub>h</sub> radius, `+07`<sub>h</sub> cone angle in degrees or line
+  half-width; flag word `+0C`<sub>h</sub> bits 1 (whole party), 21 (centre on user), 24 (cone), 25 (line);
+  word `+36`<sub>h</sub> bits 2 (other side from the target) and 3 (everyone).
 - Shipped `battle_pack.bin`: 247 of 543 action rows have a radius (3, 4, 5, 6, 8, 10, 15, 18, 20 or
   100); 26 rows are centred on the user, 49 are cones (32 of them 180 degrees, two at 0), 5 are lines;
   no row has both cone and line bits, and no row without a radius has bits 21, 24 or 25.

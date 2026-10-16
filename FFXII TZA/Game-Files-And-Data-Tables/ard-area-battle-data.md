@@ -13,12 +13,12 @@ whole set; an area without one has no enemy definitions at all.
 
 ## Where it comes from
 
-Each area's file is `ps2data/plan_master/<tree>/plan_map/<area>/area/<area>.ard`, resource kind `0x15`
+Each area's file is `ps2data/plan_master/<tree>/plan_map/<area>/area/<area>.ard`, resource kind `15`<sub>h</sub>
 (21), file `area × 2`. The `in` and `ch` trees hold byte-identical copies; the Korean and Chinese
 builds name the files through their own kind-21 path array (see
 [file size tables](file-size-tables-fst.md)).
 
-Beside it is `<area>.nmb` (kind `0x1A`, 26).
+Beside it is `<area>.nmb` (kind `1A`<sub>h</sub>, 26).
 
 The area number comes from the map-reference row: `00264ED0` returns the `u16` at `+4` of row `n` of
 the table at `[02099D88]`.
@@ -69,7 +69,7 @@ growth rows on [stats](../Damage-And-Battle-Formulas/stats.md) and
 | slot 7 records | 1,773 in all |
 | trailers | 140 files, 998 records; the other 26 have offset 0 |
 | trailer model letters | `w` 564, `m` 278, `n` 140, `s` 13, `c` 3 |
-| section 19 (`us` scripts) | 271 carry an `FF12AR03` block, `+0x2C` = `0x30` in all, 2,116 slot-7 records in all; 266 with a trailer |
+| section 19 (`us` scripts) | 271 carry an `FF12AR03` block, `+2C`<sub>h</sub> = `30`<sub>h</sub> in all, 2,116 slot-7 records in all; 266 with a trailer |
 | `.nmb` files | 166 per tree, byte-identical, version 100, `8 + 7 × count` bytes |
 | `.nmb` counts | 0 to 22; equal to the `.ard`'s slot 2 row count in all 166 |
 | `.nmb` entries | 1,146: `12 BA 00` 1,120 and `12 BB 00` 26, each a one-glyph two-byte string |
@@ -84,10 +84,10 @@ byte is never set, so re-entering the same area keeps the file.
 
 Otherwise `003EA820(area)`:
 
-1. pre-reads the first `0x800` bytes of kind `0x15` file `area × 2 + 1`, the path
-   `<area>\area\<area>.fpk`, through `0032EB40` (which reads only a file larger than `0x800`; no such
+1. pre-reads the first `800`<sub>h</sub> bytes of kind `15`<sub>h</sub> file `area × 2 + 1`, the path
+   `<area>\area\<area>.fpk`, through `0032EB40` (which reads only a file larger than `800`<sub>h</sub>; no such
    file ships);
-2. sizes the `.ard` with `0032E400(0x15, area × 2)`;
+2. sizes the `.ard` with `0032E400(15h, area × 2)`;
 3. if a file is loaded, frees it, sets `02B5E0B8` to −1, clears the motion overrides
    (`003DCF00(0)`) and unbinds the five tables (`0023A160(category, 0)`);
 4. with a size of 1 or more, unbinds them again, allocates the size, tags the block
@@ -125,15 +125,15 @@ A script container (`.ebp`) can carry a second `FF12AR03` block in directory slo
 
 1. a block already held is unbound (`003DCF10(0)`) and released (`00331880`);
 2. the new block becomes root 1 (`02B5E0C8`);
-3. its directory slot 7 (`+0x2C`) becomes the third motion-override table `02B58180` (`003DCF10`), or 0
-   when `+0x2C` is 0.
+3. its directory slot 7 (`+2C`<sub>h</sub>) becomes the third motion-override table `02B58180` (`003DCF10`), or 0
+   when `+2C`<sub>h</sub> is 0.
 
-Only `+0x2C` and the trailer offset `+0x0C` of this block are read; its `st2e` slots are never bound.
+Only `+2C`<sub>h</sub> and the trailer offset `+0C`<sub>h</sub> of this block are read; its `st2e` slots are never bound.
 
 ### Motion-file overrides
 
 `003DCA30(model, motion, class, &kind, &file)` picks the file of an action motion, always of kind
-`0x1E`. It looks for the model and motion in three tables, in order:
+`1E`<sub>h</sub>. It looks for the model and motion in three tables, in order:
 
 1. the global table `02B58188` (model and motion only), loaded at start-up by `003DCBC0` from kind 9,
    file 5 (tagged `PCSkill`);
@@ -147,7 +147,7 @@ The first match gives the file index; none gives −1.
 `003EA650(n)` returns root `n`'s trailer (`n` 0 or 1, the `.ard` and the second area root). The task
 `0037C3F0`, which `0037C910` installs (called from `00261F90`, `003473A0` and `00359800`), walks three
 lists in turn: root 0's trailer, root 1's, and, when it was started with argument 1, an `{id, mask}`
-table at `+0x80` of area slot 0's loaded data. For each record it:
+table at `+80`<sub>h</sub> of area slot 0's loaded data. For each record it:
 
 1. finds or creates the model's name binding (`002EAE20`) and marks it (`002EBD40`);
 2. waits until the model is loaded (`002E4C20`);
@@ -162,7 +162,7 @@ When an area slot is unloaded (slots 1–3 in `002628B0`, slot 0 in `0025AFC0`, 
 `0032FB70` call), the game:
 
 1. runs `0035A3A0`, which, for each trailer record of both roots whose model is already loaded
-   (`002E4C20`), sets the binding's keep bit (`+0x19` bit 0) and the hold bits of lane 0 and of
+   (`002E4C20`), sets the binding's keep bit (`+19`<sub>h</sub> bit 0) and the hold bits of lane 0 and of
    every lane in the mask (`002ECAB0(id, lane, 1)`);
 2. releases the area's models (`002E4000`, `002E3E20`), which the keep bit and hold bits survive;
 3. runs `0035AC60`, which clears the keep bits and hold bits again.
@@ -172,8 +172,8 @@ again.
 
 ### The .nmb request
 
-Of the 51 read requests in the executable, the one that passes kind `0x1A` as a constant is in
-`00324510`, which would build a buffer from 301 files (`0032E620(0x1A, i, …)` for `i` below `0x12D`)
+Of the 51 read requests in the executable, the one that passes kind `1A`<sub>h</sub> as a constant is in
+`00324510`, which would build a buffer from 301 files (`0032E620(1Ah, i, …)` for `i` below `12D`<sub>h</sub>)
 but never starts: nothing stores the state that begins the build
 ([authored data tables](authored-data-tables.md)).
 

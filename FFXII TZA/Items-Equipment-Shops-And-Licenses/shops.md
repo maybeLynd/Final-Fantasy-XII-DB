@@ -13,7 +13,7 @@ on or the clan rank rises.
 
 ### The table
 
-The shop table is section 39 of `battle_pack.bin`, the section its directory entry at file offset `+0xA0` points
+The shop table is section 39 of `battle_pack.bin`, the section its directory entry at file offset `+A0`<sub>h</sub> points
 to. The battle data binder hands it to `00238660` (`00236F28`-`00236F2E`), which stores the section address in
 the registry slot `02EBF158` and adds it to every offset in the table: the header's data offset, each shop's
 ladder, each ladder's data, each list and each list's data (`00238678`-`0023881D`). It has three levels, each
@@ -21,30 +21,30 @@ with the same 12-byte header, `ShopLevelHeader`:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `u32` | tag | `0x64` shops, `0x164` ladders, `0x264` lists |
-| `04` | `u16` | stride | bytes per row |
-| `06` | `u16` | count | rows |
-| `08` | `u32` | data | offset of the first row, made an address by `00238660` |
+| `00`<sub>h</sub> | `u32` | tag | `64`<sub>h</sub> shops, `164`<sub>h</sub> ladders, `264`<sub>h</sub> lists |
+| `04`<sub>h</sub> | `u16` | stride | bytes per row |
+| `06`<sub>h</sub> | `u16` | count | rows |
+| `08`<sub>h</sub> | `u32` | data | offset of the first row, made an address by `00238660` |
 
 A shop row, 8 bytes:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `u16` | name | the shop's name id |
-| `02` | `u16` | pad | padding |
-| `04` | `u32` | ladder | offset of the shop's ladder |
+| `00`<sub>h</sub> | `u16` | name | the shop's name id |
+| `02`<sub>h</sub> | `u16` | pad | padding |
+| `04`<sub>h</sub> | `u32` | ladder | offset of the shop's ladder |
 
 A ladder row, 8 bytes:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `u8` | kind | condition kind |
-| `01` | `u8` | operand | condition operand |
-| `02` | `u16` | threshold | condition threshold |
-| `04` | `u32` | list | offset of the list the rung selects |
+| `00`<sub>h</sub> | `u8` | kind | condition kind |
+| `01`<sub>h</sub> | `u8` | operand | condition operand |
+| `02`<sub>h</sub> | `u16` | threshold | condition threshold |
+| `04`<sub>h</sub> | `u32` | list | offset of the list the rung selects |
 
-A list row is one `u16`, an encoded id: `0x0xxx` item, `0x1xxx` equipment, `0x2xxx` loot, `0x3xxx` magick, `0x4xxx`
-technick, `0x6xxx` gambit.
+A list row is one `u16`, an encoded id: `0XXXh` item, `1XXXh` equipment, `2XXXh` loot, `3XXXh` magick, `4XXXh`
+technick, `6XXXh` gambit.
 
 ### Choosing a list
 
@@ -89,12 +89,12 @@ output buffer, used to count. Mode 2 lists the bazaar goods on offer instead (`0
 | gambits | 9 |
 
 The shop screens `0057B500`, `0057B6F0`, `0057CF20` and `0057D620` call it; the first two pass the shop number
-held at byte `+0xC0` of the shop menu (`0057B5F4`, `0057B715`).
+held at byte `+C0`<sub>h</sub> of the shop menu (`0057B5F4`, `0057B715`).
 
 ### The shop's name
 
 The name id of shop *n* is the first word of its row, returned by `002FAE40(n)` (`002FAE85`-`002FAEA4`). The
-script verb `0x4A9` `setshopname(n)` gives an actor that name (`0034C183`-`0034C18A`), and it is shown through the
+script verb `4A9`<sub>h</sub> `setshopname(n)` gives an actor that name (`0034C183`-`0034C18A`), and it is shown through the
 NPC-name dictionary `npcdic.bin` ([NPC names](../Characters-And-Objects/npc-names.md)); the shop screens read it too
 (`0057B98F`, `0057C022`). A name id's pair has a second name, shown once its persistent flag is set: shops 10,
 11 and 23 carry one.
@@ -102,8 +102,8 @@ NPC-name dictionary `npcdic.bin` ([NPC names](../Characters-And-Objects/npc-name
 ### Clan rank
 
 `00315390` returns the highest rank, 12 down to 1, whose three requirements the player meets
-(`003153B5`-`003153E1`): the clan points, achievement counter 17 at `+0x3868` of the block `002536A0` returns
-(`0031539A`-`003153A4`); the count `00316480` returns; and the number of the thirty awards at `+0x3844` of that
+(`003153B5`-`003153E1`): the clan points, achievement counter 17 at `+3868`<sub>h</sub> of the block `002536A0` returns
+(`0031539A`-`003153A4`); the count `00316480` returns; and the number of the thirty awards at `+3844`<sub>h</sub> of that
 block that are earned, `00316670`. The twelve rows are at `00D105D0`, eight bytes each:
 
 | Rank | Clan points | Count | Awards |

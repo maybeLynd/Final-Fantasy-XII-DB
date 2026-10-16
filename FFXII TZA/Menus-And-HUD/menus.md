@@ -31,34 +31,34 @@ addresses: "00254B50, 0215F1A0, 002E1B10, 002E1A60, 002E0DA0, 002E09A0, 00280A00
 |---:|---|---|
 | `1`, `4` | `0035D660`, after its own refusals (`0035D66D`, `0035D67B`) | the command menu, widget procedure `00279E20` |
 | `2` | generic; parameter 0 builds `00280D20` (`0027FC9C`) | the main menu, procedure `00280DE0` |
-| `3` | `0035D980` | choosing the party leader: "Select a new party leader." (`menu_message.bin` `0x86E`) |
+| `3` | `0035D980` | choosing the party leader: "Select a new party leader." (`menu_message.bin` `86E`<sub>h</sub>) |
 | `5` | `003C87B0` | the field target cycle |
 | `6` | generic, `0027F8DB`-`0027F984` | the save crystal's save and load menu, `00583930` |
 | `10` | generic, `0057B800(parameter)` (`0027FCC2`-`0027FCDA`) | a shop; the parameter is the shop |
 | `11` | generic, `003EF750` (`0027FFB5`-`0027FFC3`) | game over, procedure `003EF830` |
 | `12` | `0028E970` | the special-attack window, procedure `002D5EB0` |
-| `15` | generic, `0027FA11` | the world map with the title "Airship Route" (`help_menu.bin` `0xC04`) |
-| `17` | generic, `0027F98E` | the world map with the title "Choose your destination." (`0xC03`) and the confirm "Fly to ...?" (`menu_message.bin` `0x7FF`) |
+| `15` | generic, `0027FA11` | the world map with the title "Airship Route" (`help_menu.bin` `C04`<sub>h</sub>) |
+| `17` | generic, `0027F98E` | the world map with the title "Choose your destination." (`C03`<sub>h</sub>) and the confirm "Fly to ...?" (`menu_message.bin` `7FF`<sub>h</sub>) |
 | `18` | generic, `0027F99D` | the world map with no title |
 | `19` | generic, `0037FF80(parameter)` (`0027F9AF`) | the notice board's list |
 | `22` | generic | by parameter, below |
-| `24` | `0035D080` | the notice "All members of the party have fallen. ..." (`0x86F`), then the main menu |
+| `24` | `0035D080` | the notice "All members of the party have fallen. ..." (`86F`<sub>h</sub>), then the main menu |
 
-The generic route `00280A00` refuses while a menu widget sits at the root's `+0xC0` or `+0xB8` (`00280A1A`-`00280A30`).
+The generic route `00280A00` refuses while a menu widget sits at the root's `+C0`<sub>h</sub> or `+B8`<sub>h</sub> (`00280A1A`-`00280A30`).
 Otherwise it sets the request word and latch through `00252B40(id, 1)` and builds the two widgets `0027FB70` and
 `00280140`, which open the screen by id.
 
 ### Ids 2 and 22 with a parameter
 
-`002E1A60` turns selector 6's parameter 0, 1 and 2 into `0x40`, `0x41` and `0x42` (`002E1A7B`-`002E1AA1`):
+`002E1A60` turns selector 6's parameter 0, 1 and 2 into `40`<sub>h</sub>, `41`<sub>h</sub> and `42`<sub>h</sub> (`002E1A7B`-`002E1AA1`):
 
 | Parameter | Opens |
 |---|---|
-| 1-`0x20` | the world map, "Airship Route", with the parameter as the route |
-| `0x21`-`0x3F`, and 0 for id 22 | the location map (`0027F9E3`-`0027F9EC`) |
-| `0x40` | the main menu on Gambits, with the help "Change the conditions under which an action is performed..." (`002D7070`) |
-| `0x41` | the main menu on Licenses |
-| `0x42` | the map command tutorial (`0027FE7E`, `0027F9F3`-`0027FA05`) |
+| 1-`20`<sub>h</sub> | the world map, "Airship Route", with the parameter as the route |
+| `21`<sub>h</sub>-`3F`<sub>h</sub>, and 0 for id 22 | the location map (`0027F9E3`-`0027F9EC`) |
+| `40`<sub>h</sub> | the main menu on Gambits, with the help "Change the conditions under which an action is performed..." (`002D7070`) |
+| `41`<sub>h</sub> | the main menu on Licenses |
+| `42`<sub>h</sub> | the map command tutorial (`0027FE7E`, `0027F9F3`-`0027FA05`) |
 
 ### The mailbox
 
@@ -66,19 +66,19 @@ The mailbox at `0215F1A0` holds one request:
 
 | Cell | Holds |
 |---|---|
-| `+0x0` `u8` | pending |
-| `+0x1` `u8` | blocked: every post refuses while it is set |
-| `+0x4` `u32` | the id |
-| `+0x8` `u32` | the parameter |
-| `+0xE` `u8` | set when a menu closes |
-| `+0xF` `u8` | set when a menu closes; read by `is_callpartymenu_status` |
+| `+0`<sub>h</sub> `u8` | pending |
+| `+1`<sub>h</sub> `u8` | blocked: every post refuses while it is set |
+| `+4`<sub>h</sub> `u32` | the id |
+| `+8`<sub>h</sub> `u32` | the parameter |
+| `+E`<sub>h</sub> `u8` | set when a menu closes |
+| `+F`<sub>h</sub> `u8` | set when a menu closes; read by `is_callpartymenu_status` |
 
 `002E1B10(id, parameter)` posts; for id 2 it also refuses on policy bit 0 (`002E1B27`-`002E1B33`). A second post before
 delivery overwrites the first and still answers 1 (`002E1B35`-`002E1B47`).
 
 | Poster | Posts |
 |---|---|
-| the input arbiter | id 2 on Triangle (`00253D78`); id 2 on Select and L3 with `0x21`, the location map (`00253EE6`, `00253F53`), or, once story flag `0x5E` is set, with `00264640(2)` (`00253F44`) |
+| the input arbiter | id 2 on Triangle (`00253D78`); id 2 on Select and L3 with `21`<sub>h</sub>, the location map (`00253EE6`, `00253F53`), or, once story flag `5E`<sub>h</sub> is set, with `00264640(2)` (`00253F44`) |
 | `0035C81E` | id 11, game over |
 | `0035D750` | id 2, after the party-fallen notice |
 | `002E1A60` | a script selector, below |
@@ -105,12 +105,12 @@ The router is also called directly, without the mailbox:
 
 | Verb | Id | Does | Scripts |
 |---|---|---|---|
-| `openfullscreenmenu_48d` | `0x48D` | posts a selector and parameter, sets blocked and waits until a menu closes (`003462D0`, `00352E00`) | 1,274 calls |
-| `openfullscreenmenu` | `0x472` | posts the same, without waiting | none |
-| `openspattackwindow` | `0x2A8` | posts id 12 | 1 |
-| `spattackwindowsync` | `0x2A9` | waits on the special-attack window | 1 |
-| `tutorial_sync_partymenu` | `0x3A6` | waits until the next menu closes | none |
-| `clear_callpartymenu_status`, `is_callpartymenu_status` | `0x561`, `0x562` | clear and read mailbox `+0xF` | 1 each |
+| `openfullscreenmenu_48d` | `48D`<sub>h</sub> | posts a selector and parameter, sets blocked and waits until a menu closes (`003462D0`, `00352E00`) | 1,274 calls |
+| `openfullscreenmenu` | `472`<sub>h</sub> | posts the same, without waiting | none |
+| `openspattackwindow` | `2A8`<sub>h</sub> | posts id 12 | 1 |
+| `spattackwindowsync` | `2A9`<sub>h</sub> | waits on the special-attack window | 1 |
+| `tutorial_sync_partymenu` | `3A6`<sub>h</sub> | waits until the next menu closes | none |
+| `clear_callpartymenu_status`, `is_callpartymenu_status` | `561`<sub>h</sub>, `562`<sub>h</sub> | clear and read mailbox `+F`<sub>h</sub> | 1 each |
 
 Selector 5 with bit 15, the save menu, is called 1,148 times; selector 2, the shops, 98 times with 57 shops;
 selector 4, the notice board, 8 times; selector 0 with bit 15, the destination map, 18 times. Bit 15 makes the screen
@@ -131,26 +131,26 @@ The drain `002E09A0` runs once per world tick:
 ### While a menu is open
 
 When the router opens a full-screen id, 2, 6, 8-11, 15-19 or 22 (`00253BC0`), the drain sets action-policy row 7 to
-`0x100203` and the main loop's mode to 4 (`002E0D2A`-`002E0D39`). Mode 4 captures the screen once and becomes mode 3,
-which waits each frame for the menu to close (`0022BB62`). Then the loop returns to mode 2, sets mailbox `+0xE` and
-`+0xF` (`002E1BA0`) and clears row 7 (`0022BB81`-`0022BBC5`). While row 7 is set, the router refuses ids 1, 2, 3, 5 and
+`100203`<sub>h</sub> and the main loop's mode to 4 (`002E0D2A`-`002E0D39`). Mode 4 captures the screen once and becomes mode 3,
+which waits each frame for the menu to close (`0022BB62`). Then the loop returns to mode 2, sets mailbox `+E`<sub>h</sub> and
+`+F`<sub>h</sub> (`002E1BA0`) and clears row 7 (`0022BB81`-`0022BBC5`). While row 7 is set, the router refuses ids 1, 2, 3, 5 and
 14.
 
 A script mask close closes the main menu too. `002E2400(fast)`, the body of `maskclose` and `maskclosefast`
 ([Time stop and freeze](../Engine-Core/time-stop-and-freeze.md)), and the area unload `002E06B0` run
 `0029D210`, which closes the widget `0029CF90` at `[0209C380]`, which draws bands at the top and bottom of the frame
 (`002DC290`), and the main menu at `[0209C318]`
-(`00244F00`). For the fast close, argument 1 or `0x11`, they close with the default animation descriptor `00915198`,
+(`00244F00`). For the fast close, argument 1 or `11`<sub>h</sub>, they close with the default animation descriptor `00915198`,
 otherwise with `00916330` (`00247570`).
 
 ### What a menu hands back
 
 | Value | Written by | Read by |
 |---|---|---|
-| the chosen map node's paired value, singleton `+0x10FAC` | the world map (`002901D0`, `0029020E`) | the script verb's result, for ids 17 and 18 only (`00254710`) |
-| mailbox `+0xE`, `+0xF` | the menu close (`002E1BA0`) | `openfullscreenmenu_48d`, `tutorial_sync_partymenu`, `is_callpartymenu_status` |
-| the main menu's chosen entry, root `+0xDF8` | `00280DE0` (`002810FC`) | the Equip compares (`00293791`-`00295ACB`) |
-| the command menu's chosen member, `+0x2FE0` | `00278135`, `0027A5A1` | 12 readers, resolved through `002732E0` |
+| the chosen map node's paired value, singleton `+10FAC`<sub>h</sub> | the world map (`002901D0`, `0029020E`) | the script verb's result, for ids 17 and 18 only (`00254710`) |
+| mailbox `+E`<sub>h</sub>, `+F`<sub>h</sub> | the menu close (`002E1BA0`) | `openfullscreenmenu_48d`, `tutorial_sync_partymenu`, `is_callpartymenu_status` |
+| the main menu's chosen entry, root `+DF8`<sub>h</sub> | `00280DE0` (`002810FC`) | the Equip compares (`00293791`-`00295ACB`) |
+| the command menu's chosen member, `+2FE0`<sub>h</sub> | `00278135`, `0027A5A1` | 12 readers, resolved through `002732E0` |
 
 ### Ids nothing posts
 
@@ -163,7 +163,7 @@ selectors 3 and 1, which no script calls.
 - A script opens a screen with `openfullscreenmenu_48d(selector, parameter)`; bit 15 on the selector skips the fade.
 - Two posts in one tick keep only the second.
 - A request the router refuses during delivery is lost, not retried.
-- A selector above 6 with bit 15 set becomes id `0x8002` and skips the policy-bit-0 test at `002E1AAF`.
+- A selector above 6 with bit 15 set becomes id `8002`<sub>h</sub> and skips the policy-bit-0 test at `002E1AAF`.
 
 ## Related
 

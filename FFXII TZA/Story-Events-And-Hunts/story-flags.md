@@ -22,12 +22,12 @@ Every bank is in the save payload, the bytes from `SaveImage_GetPersistentPayloa
 
 | Bank | Payload offset | Ids | Setter / query | Script verbs | Holds |
 |---|---|---|---|---|---|
-| Primary | `+0x14F4` | 2-511 set, 0-511 read | `0032AB60` / the gate `0032A8A0` | `0x430` `setmapjumpgroupflag` (also `0x301` `setnaviicon`), `0x431` `releasemapjumpgroupflag` (also `0x302`), `0x432` `ismapjumpgroupflag` (also `0x300`) | map-jump groups and map icons |
-| Bank2048 | `+0x13B4` | `0`-`2047` | `0032ABF0` / `0032A930` | `0x399` `settalknpcname`, `0x39A` `releasetalknpcname`, `0x39B` `istalknpcname` | names learned by talking |
-| Bank512, first half | `+0x14B4`, bits 0-255 | `0`-`255` | `0032AD70` / `0032AA60` | `0x3F3` `settreasurebattleflag`, `0x3F4` `releasetreasurebattleflag`, `0x3F6` `istreasurebattleflag` | chests opened, traps fired |
-| Bank512, second half | `+0x14B4`, bits 256-511 | `0`-`255` | `0032ADF0` / `0032AAD0` | `0x3F1` `settreasureflag`, `0x3F2` `releasetreasureflag`, `0x3F5` `istreasureflag` | scripts only |
-| Bank64A | `+0x1384` | `0`-`63` | `0032AC70` / `0032A9A0` | `0x2FA` `setshutoralappear`, `0x2F9` `clearshutoralappear`, `0x2F8` `isshutoralappear` | scripts only |
-| Bank64B | `+0x138C` | `0`-`63` | `0032ACF0` / `0032AA00` | `0x2FD` `setshutoralenable`, `0x2FC` `clearshutoralenable`, `0x2FB` `isshutoralenable` | scripts only |
+| Primary | `+14F4`<sub>h</sub> | 2-511 set, 0-511 read | `0032AB60` / the gate `0032A8A0` | `430`<sub>h</sub> `setmapjumpgroupflag` (also `301`<sub>h</sub> `setnaviicon`), `431`<sub>h</sub> `releasemapjumpgroupflag` (also `302`<sub>h</sub>), `432`<sub>h</sub> `ismapjumpgroupflag` (also `300`<sub>h</sub>) | map-jump groups and map icons |
+| Bank2048 | `+13B4`<sub>h</sub> | `0`-`2047` | `0032ABF0` / `0032A930` | `399`<sub>h</sub> `settalknpcname`, `39A`<sub>h</sub> `releasetalknpcname`, `39B`<sub>h</sub> `istalknpcname` | names learned by talking |
+| Bank512, first half | `+14B4`<sub>h</sub>, bits 0-255 | `0`-`255` | `0032AD70` / `0032AA60` | `3F3`<sub>h</sub> `settreasurebattleflag`, `3F4`<sub>h</sub> `releasetreasurebattleflag`, `3F6`<sub>h</sub> `istreasurebattleflag` | chests opened, traps fired |
+| Bank512, second half | `+14B4`<sub>h</sub>, bits 256-511 | `0`-`255` | `0032ADF0` / `0032AAD0` | `3F1`<sub>h</sub> `settreasureflag`, `3F2`<sub>h</sub> `releasetreasureflag`, `3F5`<sub>h</sub> `istreasureflag` | scripts only |
+| Bank64A | `+1384`<sub>h</sub> | `0`-`63` | `0032AC70` / `0032A9A0` | `2FA`<sub>h</sub> `setshutoralappear`, `2F9`<sub>h</sub> `clearshutoralappear`, `2F8`<sub>h</sub> `isshutoralappear` | scripts only |
+| Bank64B | `+138C`<sub>h</sub> | `0`-`63` | `0032ACF0` / `0032AA00` | `2FD`<sub>h</sub> `setshutoralenable`, `2FC`<sub>h</sub> `clearshutoralenable`, `2FB`<sub>h</sub> `isshutoralenable` | scripts only |
 
 An id outside a bank's range reads as 0 and sets nothing. The four Bank64 accessors test the range with a signed
 compare only (`0032A9A4`, `0032AA04`, `0032AC77`, `0032ACF7`), so a negative id reaches the bank's bytes below it.
@@ -43,8 +43,8 @@ Nothing outside the twelve accessors reads or writes these offsets from the payl
 4. Index 0 answers 1 and index 1 answers 0, without reading the bank (`0032A8D0`-`0032A8DD`): always and never.
 5. Any other index answers its Primary bit (`0032A8E9`-`0032A911`).
 
-So `0xFFFF` asks the schedule for index `0x3FFF`, which does not exist, and answers 0. Fourteen call sites test for
-`0xFFFF` first and do not call the gate:
+So `FFFF`<sub>h</sub> asks the schedule for index `3FFF`<sub>h</sub>, which does not exist, and answers 0. Fourteen call sites test for
+`FFFF`<sub>h</sub> first and do not call the gate:
 
 - the map screens at `003BCE09`, `003BD5C4`, `003BD6B5`, `003BD9A1`, `003C070A`, `003C0BC2`, `003C0CA4`, `003C0F8E`,
   `003C103C`, `003C12FC`, `003C18E2`, `003C19C7` and `003C2504`;
@@ -61,7 +61,7 @@ the main story counter has reached, comparing as signed 16-bit numbers, so a rec
 first value up to, but not including, the second. The counter is `FieldData_GetVariable0` (`00265270`), the word at
 the start of the save payload: slot 0's variable block is bound to the payload base (`0026CAF8`-`0026CAFD`).
 
-The file is kind 9 file `0xA`, requested by `00378540` under the name `MJGP_ROM`; its completion `00378BA0` keeps the
+The file is kind 9 file `A`<sub>h</sub>, requested by `00378540` under the name `MJGP_ROM`; its completion `00378BA0` keeps the
 pointer at `02ADD0C8`.
 
 ### Who sets and reads them
@@ -69,17 +69,17 @@ pointer at `02ADD0C8`.
 Besides the script verbs:
 
 - **Names.** Opening a message window, `002E16B0`, sets the Bank2048 bit of the speaking actor's name id
-  (`002E16DA`-`002E16EB`). Four verbs open one: `0x461` `mes` (`00348EFF`), `0x1FF` `aask_1ff` (`0034AE98`),
-  `0x17C` `shapewin` (`0033FA18`) and the developer verb `0x2043` `debug_mesask_43` (`0050EB67`).
+  (`002E16DA`-`002E16EB`). Four verbs open one: `461`<sub>h</sub> `mes` (`00348EFF`), `1FF`<sub>h</sub> `aask_1ff` (`0034AE98`),
+  `17C`<sub>h</sub> `shapewin` (`0033FA18`) and the developer verb `2043`<sub>h</sub> `debug_mesask_43` (`0050EB67`).
 - **Name readers.** `00263990`, `002639E0` and two map-screen label readers use the Bank2048 bit to pick the second
   name of the pair ([NPC names](../Characters-And-Objects/npc-names.md)).
-- **Chests.** A chest record's byte `+0x09` is its flag, `0xFF` for none. `setuptreasure` `0x2BE` does not place a
-  chest whose flag is set (`002FAEE2`-`002FAEF0`), and opening it, family-3 verb `0x37`, sets the flag before the
-  contents are rolled (`002FAFEA`-`002FAFFD`). A chest with `0xFF` is gated at setup by bit 255.
-- **Traps.** A trap record's byte `+0x04` is its flag. Arming skips a trap whose flag is set (`002FA7E8`-`002FA7FA`),
+- **Chests.** A chest record's byte `+09`<sub>h</sub> is its flag, `FF`<sub>h</sub> for none. `setuptreasure` `2BE`<sub>h</sub> does not place a
+  chest whose flag is set (`002FAEE2`-`002FAEF0`), and opening it, family-3 verb `37`<sub>h</sub>, sets the flag before the
+  contents are rolled (`002FAFEA`-`002FAFFD`). A chest with `FF`<sub>h</sub> is gated at setup by bit 255.
+- **Traps.** A trap record's byte `+04`<sub>h</sub> is its flag. Arming skips a trap whose flag is set (`002FA7E8`-`002FA7FA`),
   and setting it off sets the flag (`002F8243`-`002F8253`).
 - **Primary writers.** The setter `0032AB60` has five callers and no others: the new-game list (`00379198`), the
-  release and set verbs (`0034DDA4`, `0034EE37`), the chocobo dismount, which clears id `0x73` (`0035CE79`), and the
+  release and set verbs (`0034DDA4`, `0034EE37`), the chocobo dismount, which clears id `73`<sub>h</sub> (`0035CE79`), and the
   thunk `0032ABE0`. Battle orders use that thunk to set or clear ids 0-255 through the register writer `00329E60`,
   kind 8 (`00329EEC`-`00329EF7`). The AI operand resolver reads them through the gate, kind 8 (`00321244`).
 - **Readers of the gate.** 58 call sites in 30 functions, plus the AI resolver: the main menu, the map screens and map
@@ -87,25 +87,25 @@ Besides the script verbs:
 
 ### Starting flags
 
-The new-game reset `002EF2D0` clears the first `0x1538` bytes of the payload, which hold every bank, and jumps to
+The new-game reset `002EF2D0` clears the first `1538`<sub>h</sub> bytes of the payload, which hold every bank, and jumps to
 `00379160` (`002EF2D4`-`002EF2F1`). `00379160` sets each id listed in `mapjumpgroupinit.bin` with `0032AB60(id, 1)`
 (`00379160`-`003791B5`). `002EF2D0` is called by `00266D10` (`00266DC4`) and by the save-image reset `002EF650`
-(`002EF674`). The list is kind 9 file `0x28`, requested by `00378540` under the name `MJGPINIT`, kept at `02ADD0D0`.
+(`002EF674`). The list is kind 9 file `28`<sub>h</sub>, requested by `00378540` under the name `MJGPINIT`, kept at `02ADD0D0`.
 
 ## Layouts
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `000` | `char[8]` | magic | "FLAGROM1" |
-| `008` | `u16` | count | 152 |
-| `00A` | `u16[152]` | offsets | file offset of each record |
-| `13A` | `u16[271]` | lists | the records: story counter values, bit 15 on each record's last value |
+| `000`<sub>h</sub> | `char[8]` | magic | "FLAGROM1" |
+| `008`<sub>h</sub> | `u16` | count | 152 |
+| `00A`<sub>h</sub> | `u16[152]` | offsets | file offset of each record |
+| `13A`<sub>h</sub> | `u16[271]` | lists | the records: story counter values, bit 15 on each record's last value |
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `char[8]` | magic | "FLAGDEF1" |
-| `08` | `u16` | count | 53 |
-| `0A` | `u16[53]` | ids | the Primary ids a new game starts with |
+| `00`<sub>h</sub> | `char[8]` | magic | "FLAGDEF1" |
+| `08`<sub>h</sub> | `u16` | count | 53 |
+| `0A`<sub>h</sub> | `u16[53]` | ids | the Primary ids a new game starts with |
 
 ## Shipped data
 
@@ -115,20 +115,20 @@ The main menu entries and other readers that use the schedule (`00281AE0`, `0028
 
 | Encoded id | Record | True from story counter | Used by |
 |---|---|---:|---|
-| `0x4004` | 4 | 25 | the Equip entry |
-| `0x4006` | 6 | 62 | the Licenses entry and the License Board |
-| `0x4007` | 7 | 62 | the Clan Primer entry |
-| `0x4008` | 8 | 244 | the Party entry, and choosing the leader in the field |
-| `0x4009` | 9 | 240 | the Gambits entry |
-| `0x4010` | 16 | 40 | the World Map entry |
-| `0x400B` | 11 | 62 | two Clan Primer screens, and the clan rank written into the save header (`00583F17`) |
-| `0x4067` | 103 | 300 to 305 | a Party menu command |
+| `4004`<sub>h</sub> | 4 | 25 | the Equip entry |
+| `4006`<sub>h</sub> | 6 | 62 | the Licenses entry and the License Board |
+| `4007`<sub>h</sub> | 7 | 62 | the Clan Primer entry |
+| `4008`<sub>h</sub> | 8 | 244 | the Party entry, and choosing the leader in the field |
+| `4009`<sub>h</sub> | 9 | 240 | the Gambits entry |
+| `4010`<sub>h</sub> | 16 | 40 | the World Map entry |
+| `400B`<sub>h</sub> | 11 | 62 | two Clan Primer screens, and the clan rank written into the save header (`00583F17`) |
+| `4067`<sub>h</sub> | 103 | 300 to 305 | a Party menu command |
 
-The menu entry text is `menu_command.bin` rows 203-214. Records 0, 2 and `0x87` need the counter at 32,767, and
+The menu entry text is `menu_command.bin` rows 203-214. Records 0, 2 and `87`<sub>h</sub> need the counter at 32,767, and
 record 1 is true for any counter of 0 or more.
 
-The 53 starting ids of `mapjumpgroupinit.bin` are 0, `0x56`, `0x65`, `0x66`, `0x70`, `0x79`, `0x7A`, `0x80`, `0xFC`,
-`0x108`, `0x10B`, `0x10C`, `0x11C`, `0x12C`-`0x134`, `0x136`, `0x137`, `0x13A`-`0x155` and `0x158`. Id 0 is outside
+The 53 starting ids of `mapjumpgroupinit.bin` are 0, `56`<sub>h</sub>, `65`<sub>h</sub>, `66`<sub>h</sub>, `70`<sub>h</sub>, `79`<sub>h</sub>, `7A`<sub>h</sub>, `80`<sub>h</sub>, `FC`<sub>h</sub>,
+`108`<sub>h</sub>, `10B`<sub>h</sub>, `10C`<sub>h</sub>, `11C`<sub>h</sub>, `12C`<sub>h</sub>-`134`<sub>h</sub>, `136`<sub>h</sub>, `137`<sub>h</sub>, `13A`<sub>h</sub>-`155`<sub>h</sub> and `158`<sub>h</sub>. Id 0 is outside
 the setter's range, so 52 flags are set.
 
 ## Modding notes

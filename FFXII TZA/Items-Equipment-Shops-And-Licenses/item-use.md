@@ -16,7 +16,7 @@ addresses: "0030EF20, 00305640, 00300280, 003105D0, 00309060"
 ### An item is an action
 
 Every usable item is an action row ([Action definition row](../Battle-Actions/action-definition-row.md)). A row
-whose kind byte `+0x1E` is 3 is an item action, and its word `+0x22` is the item it uses. What the item does,
+whose kind byte `+1E`<sub>h</sub> is 3 is an item action, and its word `+22`<sub>h</sub> is the item it uses. What the item does,
 whom it targets and how it looks are the rest of the row, handled like any other action.
 
 ### Taking the item
@@ -25,28 +25,28 @@ whom it targets and how it looks are the rest of the row, handled like any other
 `00304962`). It does nothing for a unit without a stats record or whose record is not a party record, byte `+5`
 not 0 (`0030EF60`-`0030EF77`). Otherwise:
 
-1. The item id is the row's `+0x22` for a kind-3 row and `0xFFFF` otherwise; it is kept at unit `+0xDC8`, the
+1. The item id is the row's `+22`<sub>h</sub> for a kind-3 row and `FFFF`<sub>h</sub> otherwise; it is kept at unit `+DC8`<sub>h</sub>, the
    reserved item (`0030EF79`-`0030EF93`).
 2. A reserved item is taken from the inventory at once, `003008A0(item, -1, 0, 1, 0)` (`0030EF9A`-`0030EFB0`,
    [Inventory](inventory.md)).
-3. The action's gil cost, `00309060`, is kept at unit `+0xE58` and taken from the gil, floored at 0
+3. The action's gil cost, `00309060`, is kept at unit `+E58`<sub>h</sub> and taken from the gil, floored at 0
    (`0030EFBB`-`0030EFD8`). Only actions paid in gil have one: `00309060` returns 0 for an enemy record, for an
-   action id above `0x21E` and for rows of kind 5 or 6 ([MP gain and cost](../Status-Effects-And-KO/mp.md)).
+   action id above `21E`<sub>h</sub> and for rows of kind 5 or 6 ([MP gain and cost](../Status-Effects-And-KO/mp.md)).
 
 ### Keeping it spent
 
 `00305640(unit, row, flag)` runs when the action goes off. For a party unit it clears both reservations,
-`+0xE58` to 0 and `+0xDC8` to `0xFFFF`, without giving anything back (`00305695`-`003056BA`). For every unit it
-then charges the MP and Mist costs, with `0x10` plus `flag` as the change reason (`003056E3`-`003056F4`), and takes a
-second gil amount, unit `+0xE54`, floored at 0 (`00305712`-`0030572B`). That amount is set when the action's
+`+E58`<sub>h</sub> to 0 and `+DC8`<sub>h</sub> to `FFFF`<sub>h</sub>, without giving anything back (`00305695`-`003056BA`). For every unit it
+then charges the MP and Mist costs, with `10`<sub>h</sub> plus `flag` as the change reason (`003056E3`-`003056F4`), and takes a
+second gil amount, unit `+E54`<sub>h</sub>, floored at 0 (`00305712`-`0030572B`). That amount is set when the action's
 result is worked out (`00303954`, `00303B2E`) and cleared by the unit reset (`00236AE5`).
 
 It is called from three places:
 
 - the standard action, `00304F38`;
-- `Battle_ProcessActionTargetEntry`, once per action, guarded by unit `+0x700` bit 1, with `flag` 1
+- `Battle_ProcessActionTargetEntry`, once per action, guarded by unit `+700`<sub>h</sub> bit 1, with `flag` 1
   (`003192B7`-`003192BC`);
-- the handler of script verb `0x29D` `spattackplay`, with `flag` 1 (`003132B7`).
+- the handler of script verb `29D`<sub>h</sub> `spattackplay`, with `flag` 1 (`003132B7`).
 
 A fourth pair of calls, a prepare at `003073AB` and a consume at `003073B9`, runs only when the fifth argument of
 `00307300` is 1 (`00307388`), and its only caller passes 0 (`00319354`-`00319362`).
@@ -68,20 +68,20 @@ actions spend the party's items; the License test differs, because it also passe
 
 ## Shipped data
 
-The 51 item actions are action rows 82-145 except 111-123, one for each item id `0x0000`-`0x003F` apart from
-`0x001D`-`0x0029`: Potion (row 82, item `0x0000`) to Knot of Rust (row 145, item `0x003F`). Rows 111-123 have kind
-255 and still name items `0x001D`-`0x0029` in `+0x22`; with kind 255 they are not item actions.
+The 51 item actions are action rows 82-145 except 111-123, one for each item id `0000`<sub>h</sub>-`003F`<sub>h</sub> apart from
+`001D`<sub>h</sub>-`0029`<sub>h</sub>: Potion (row 82, item `0000`<sub>h</sub>) to Knot of Rust (row 145, item `003F`<sub>h</sub>). Rows 111-123 have kind
+255 and still name items `001D`<sub>h</sub>-`0029`<sub>h</sub> in `+22`<sub>h</sub>; with kind 255 they are not item actions.
 
 ## Modding notes
 
-- An action spends an item only when its kind byte is 3; setting another action's kind to 3 and its `+0x22` to an
+- An action spends an item only when its kind byte is 3; setting another action's kind to 3 and its `+22`<sub>h</sub> to an
   item makes it cost that item.
 - The item leaves the inventory when the action starts, so an item count of 1 cannot be queued by two members at
   once.
 
 ## Related
 
-- [Action definition row](../Battle-Actions/action-definition-row.md) - the kind byte and `+0x22`.
+- [Action definition row](../Battle-Actions/action-definition-row.md) - the kind byte and `+22`<sub>h</sub>.
 - [Action phases](../Battle-Actions/action-phases.md) - when an action starts, goes off or is cancelled.
 - [Inventory](inventory.md) - the change function the item goes through.
 - [MP gain and cost](../Status-Effects-And-KO/mp.md) - MP, Mist and gil costs.

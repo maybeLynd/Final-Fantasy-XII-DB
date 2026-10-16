@@ -34,13 +34,13 @@ inventory state. Moving between ordinary areas keeps the chain.
 ## How it works
 
 `EnemyChain_UpdateOnDefeat` (`00317ED0`, 529 bytes) has one caller, the defeat-reward routine
-`00312280`, which calls it (`003122CD`) only when the defeated unit's stats record (`[unit+0x698]`) has
-byte `+0x05` equal to 1 (an enemy) and the credited unit's record has byte `+0x05` equal to 0 (the
+`00312280`, which calls it (`003122CD`) only when the defeated unit's stats record (`[unit+698h]`) has
+byte `+05`<sub>h</sub> equal to 1 (an enemy) and the credited unit's record has byte `+05`<sub>h</sub> equal to 0 (the
 party side) (`003122B9`-`003122C8`). The function checks the enemy side again: it does nothing for a
-null actor, for a missing stats record or one whose byte `+0x05` is not 1 (`00317EF8`), or when bit 1
-of byte `+0x28` of the actor's `[actor+0xE68]` record is set (`00317F09`).
+null actor, for a missing stats record or one whose byte `+05`<sub>h</sub> is not 1 (`00317EF8`), or when bit 1
+of byte `+28`<sub>h</sub> of the actor's `[actor+E68h]` record is set (`00317F09`).
 
-It compares the enemy's class byte `actor+0x56` with the previous kill's class at `022C3168`
+It compares the enemy's class byte `actor+56h` with the previous kill's class at `022C3168`
 (`00317F21`). The class byte is the class record's type byte; the shipped areas use sixty-four values.
 
 ### First kill
@@ -52,19 +52,19 @@ stores the class (`003180BB`-`003180D0`).
 
 When the class matches, the chain continues (`00317F2D`-`00318065`):
 
-1. Chain length `022C315C` += 1, capped at 999 (`0x3E7`), or at 998 (`0x3E6`) when `00229E40()` is
+1. Chain length `022C315C` += 1, capped at 999 (`3E7`<sub>h</sub>), or at 998 (`3E6`<sub>h</sub>) when `00229E40()` is
    non-zero (`00317F2D`-`00317F64`). `00229E40` returns the locale id at `01E02814`, which is never 0
    in the shipped game: `0017E270` maps every language code, Japanese included, to an id of 1 or
    more (see the [languages page](../Saving-Loading-And-Settings/languages.md)), so the cap is 998 and the
    999 arm never runs.
 2. Breaks in a row `022C3164` = 0 (`00317F6A`).
-3. The same-model run `022C3160`: if the `u16` at `[actor+0xE68]+0x40` (the model id that palette swaps
+3. The same-model run `022C3160`: if the `u16` at `[actor+E68h]+40h` (the model id that palette swaps
    share) equals the previous one at `022C316C`, it adds 1, capped at 999; otherwise it resets to 0 and
    stores the new model id (`00317F70`-`00317FB6`). This run chooses the loot quantity table.
 4. `EnemyChain_TryAdvanceRank` (`003183D0`, 315 bytes) tries to raise the chain level (`00317FBC`); see
    below.
-5. The coin: three LCG steps on the shared gameplay generator `022C256C` (multiplier `0x41C64E6D`,
-   increment `0x3039`) give `r` in 0-99 (`00317FC1`-`00318032`). If coin bit 0 of `022C3178` is set,
+5. The coin: three LCG steps on the shared gameplay generator `022C256C` (multiplier `41C64E6D`<sub>h</sub>,
+   increment `3039`<sub>h</sub>) give `r` in 0-99 (`00317FC1`-`00318032`). If coin bit 0 of `022C3178` is set,
    success is `r >= 40` (60 %); otherwise success is `r < 5` (5 %) (`00318034`-`00318048`).
 6. `0028EF70(length, coin, level)` posts the update to the chain display, adding 1 to the length passed
    when `00229E40()` is non-zero (`0031804B`-`00318065`), which it always is, so the display shows
@@ -109,7 +109,7 @@ display (`003184D9`-`003184F6`). The pickup count `022C3174` is incremented by e
 `022C3170`-`022C3177`, and sets `022C3168` and `022C316C` to -1 (`003183A0`-`003183BE`). It is reached
 four ways:
 
-1. **Save crystals.** The script verb `btladjustsystem` (`0x517`, handler `0034AAB0`) passes its
+1. **Save crystals.** The script verb `btladjustsystem` (`517`<sub>h</sub>, handler `0034AAB0`) passes its
    argument to `002FEAC0`, which jumps to `003183A0` when bit 0 is set (`002FEAC3`). The save crystal's
    talk function calls `btladjustsystem(1)` (see [teleport and save crystals](../World-Areas-And-Travel/save-and-teleport-crystals.md)).
 2. **Entering a town.** The area initialisation `002342F0` resets the chain when the town flag is
@@ -122,13 +122,13 @@ four ways:
    and `00394460`.
 
 The pending preset byte `0208D455` is written by the script verb `btlAtelSetNextSetSaveData`
-(`0050F810`), by `0023A110` (called from `003942F9`), from the save image's `+0x4E660` when a save is
+(`0050F810`), by `0023A110` (called from `003942F9`), from the save image's `+4E660`<sub>h</sub> when a save is
 restored (`00584482`), and to -1 by `002368D0`.
 
 ### The town reset
 
 When the new area's actor manager 0 finishes loading, `00332130(0)` calls `0032F1B0(0)`, which calls
-`0026CE60(0)`; that runs once per load (manager byte `+0x10` bit 0 clear and byte `+0x13` set) and
+`0026CE60(0)`; that runs once per load (manager byte `+10`<sub>h</sub> bit 0 clear and byte `+13`<sub>h</sub> set) and
 calls the area initialisation `002342F0` (`0026CEC6`). `002342F0` is also called by `00266D10`
 (`00267136`). It does nothing unless `02089300` is non-zero (`002342F4`; set to 1 at `00236A44`,
 cleared by the battle-work setup `002368D0`).
@@ -136,7 +136,7 @@ cleared by the battle-work setup `002368D0`).
 Near its end `002342F0` calls `00377C20` and resets the chain only when that returns non-zero
 (`00234446`-`0023444F`). `00377C20` returns bit 15 of the 16-bit word at `+8 + id*3` in the map-info
 table `02ADD100` (`navimapdata.bin`), where `id` is the current field id from the save payload's
-`+0x1044` (`003148F0`, negative ids read as 0). It returns 0 for an id at or past the table's count
+`+1044`<sub>h</sub> (`003148F0`, negative ids read as 0). It returns 0 for an id at or past the table's count
 at `+4`, or when the table is absent. Bit 15 is the town flag (see
 [the field record table](../World-Areas-And-Travel/area-flags-navimapdata.md)).
 
@@ -148,8 +148,8 @@ the chain.
 
 ### The display
 
-The chain counter is a widget in the HUD sub-object at `+0x57E0`. The HUD keeps chain flags at
-`+0x7C7C`, the pending count at `+0x7C78` and the level at `+0x7C82`.
+The chain counter is a widget in the HUD sub-object at `+57E0`<sub>h</sub>. The HUD keeps chain flags at
+`+7C7C`<sub>h</sub>, the pending count at `+7C78`<sub>h</sub> and the level at `+7C82`<sub>h</sub>.
 
 - `0028EF00` (79 B), the break or continue notice, resets the flags to bits 3 and 0 and stores the
   pending count and level.
@@ -158,23 +158,23 @@ The chain counter is a widget in the HUD sub-object at `+0x57E0`. The HUD keeps 
 
 The widget update `003F9F40` reads those flags each frame:
 
-- Flag bit 1 is copied into the widget's `+0xC4` bit 1 (`003FA069`-`003FA07E`), which makes the
+- Flag bit 1 is copied into the widget's `+C4`<sub>h</sub> bit 1 (`003FA069`-`003FA07E`), which makes the
   number redraw every frame in a pulsing grey.
 - `003F9E50(widget, count, playSound)` (229 B) hides the widget for a count of 0, does not show a
   count of 1 (the test is on `00229E40()` being non-zero, which it always is), and otherwise draws
-  `min(count, 999)` in three digits (unsigned compare), playing sound `0x30` when asked.
-- With flag bit 2 set, it counts frames at widget `+0x24A0` and, once the count passes 15 times the
-  frame base `01DFE0B4`, starts a second element at widget `+0xD0` with the handler `003FACF0` and
+  `min(count, 999)` in three digits (unsigned compare), playing sound `30`<sub>h</sub> when asked.
+- With flag bit 2 set, it counts frames at widget `+24A0`<sub>h</sub> and, once the count passes 15 times the
+  frame base `01DFE0B4`, starts a second element at widget `+D0`<sub>h</sub> with the handler `003FACF0` and
   clears the bit (`003F9F51`-`003F9FB5`).
 
-That second element is a one-shot sprite: on creation it takes element `0x59` of the layout at
-`00D11FC8` and sits at the counter's x position; it plays sound `0x6C` (`00249C60`) and removes
+That second element is a one-shot sprite: on creation it takes element `59`<sub>h</sub> of the layout at
+`00D11FC8` and sits at the counter's x position; it plays sound `6C`<sub>h</sub> (`00249C60`) and removes
 itself after 30 times the frame base (`003FACF0`).
 
-When the count is redrawn and is non-zero (unless widget `+0xC4` bit 2 was set before the redraw and
+When the count is redrawn and is non-zero (unless widget `+C4`<sub>h</sub> bit 2 was set before the redraw and
 still is, `003FA092`-`003FA0AB`), the digits take their colour from the colour table
-`0215E6C8` (`002DD7E0`, grey `0x80808080` when the table is absent): entry `0xC0`, `0xC1` or `0xC2`
-for levels 1-3 and `0xBF` for level 0 (`003FA0AD`-`003FA0DD`), applied to the three digits by
+`0215E6C8` (`002DD7E0`, grey `80808080`<sub>h</sub> when the table is absent): entry `C0`<sub>h</sub>, `C1`<sub>h</sub> or `C2`<sub>h</sub>
+for levels 1-3 and `BF`<sub>h</sub> for level 0 (`003FA0AD`-`003FA0DD`), applied to the three digits by
 `003FAAF0`, so the number's colour shows
 the chain level.
 
@@ -203,7 +203,7 @@ then the clock value (`00863D4D`-`00863D6A`). It does not touch `022C256C`.
 
 ## Modding notes
 
-- The coin's odds are the two immediates at `0031803D` (`cmp ecx, 0x28`: success on 40-99) and
+- The coin's odds are the two immediates at `0031803D` (`cmp ecx, 28h`: success on 40-99) and
   `00318045` (`cmp ecx, 5`: success on 0-4).
 - The coin's effect: while bit 0 of `022C3178` is set, loot pickups do not slow the level rise
   (`0031841D`).

@@ -18,20 +18,20 @@ with the distance from the camera, and scripts can fix that strength or the shad
 
 ### The light pool
 
-Lights live in a pool of 128 entries of `0x70` bytes at `[02B3F528]`. `003AB960(request)` takes the
+Lights live in a pool of 128 entries of `70`<sub>h</sub> bytes at `[02B3F528]`. `003AB960(request)` takes the
 first free entry, makes its handle `counter << 8 | index` (the counter `02B3F504` wraps after
-`0xFFFFFF`), copies the `0x50`-byte request to entry `+0x20`, and appends the entry to the list whose
-head is `02B3F508` and tail `02B3F510` (previous at `+0x08`, next at `+0x10`). `003ABD00(handle)`
+`FFFFFF`<sub>h</sub>), copies the `50`<sub>h</sub>-byte request to entry `+20`<sub>h</sub>, and appends the entry to the list whose
+head is `02B3F508` and tail `02B3F510` (previous at `+08`<sub>h</sub>, next at `+10`<sub>h</sub>). `003ABD00(handle)`
 returns the request block when the handle still matches.
 
-For the falloff kinds the create routine stores `1 / range²` from the range at request `+0x0C`: at
-request `+0x30` for kinds 2 and 5, `+0x40` for kind 3, `+0x48` for kind 4. Kind 4 also gets
-`1 / (+0x40 − +0x44)` at `+0x4C`, and kind 5 a squared length, a dot product and a reciprocal from its
+For the falloff kinds the create routine stores `1 / range²` from the range at request `+0C`<sub>h</sub>: at
+request `+30`<sub>h</sub> for kinds 2 and 5, `+40`<sub>h</sub> for kind 3, `+48`<sub>h</sub> for kind 4. Kind 4 also gets
+`1 / (+40h − +44h)` at `+4C`<sub>h</sub>, and kind 5 a squared length, a dot product and a reciprocal from its
 two vectors.
 
 `003ABD20` returns the request block of the first light on the list whose scope byte (request
-`+0x03`) is 5, or null; `002F4520` uses it. The mask `02B3F520` that the light walk tests is set and
-cleared bit by bit through `003ACA60` and `003ACA70`: `0036FBB0` sets bit `0x8` when it loads the
+`+03`<sub>h</sub>) is 5, or null; `002F4520` uses it. The mask `02B3F520` that the light walk tests is set and
+cleared bit by bit through `003ACA60` and `003ACA70`: `0036FBB0` sets bit `8`<sub>h</sub> when it loads the
 five multipliers at `0209A3C0`–`0209A3D8` from the 10-byte rows at `02AD9B60`, and clears it when it
 resets them to 1.0.
 
@@ -51,10 +51,10 @@ when `(request +7 >> 2) & (02B3F501 | 02B3F520)` is non-zero or bit 1 of `+7` is
 | 5 | | never |
 | 0, 3, 6 and up | | always |
 
-The camera-anchored light (scope 1, sub 9) gets its float at entry `+0x3C` from byte `+0x112` of the
+The camera-anchored light (scope 1, sub 9) gets its float at entry `+3C`<sub>h</sub> from byte `+112`<sub>h</sub> of the
 character's object (`003E56C0`: 1 gives 0, 2 gives 0.25, 3 gives 0.5, anything else 1.0), and its
 direction from the camera position `02AEDF20` to the character, normalised and turned by the pair at
-request `+0x40` / `+0x44`.
+request `+40`<sub>h</sub> / `+44`<sub>h</sub>.
 
 By type (request `+0`):
 
@@ -62,8 +62,8 @@ By type (request `+0`):
   it, scaled by `02B3F51C` while `02B3F503` is set, then the character's ambient mode applies, an
   additive light (bit 0 of `+7` clear) joins the running sum, and a higher priority (`+1`), or equal
   priority and greater strength, makes it the winner.
-- 7: the character's own list, fetched from record `+0x108` (`0037AD40`). Its entries use scope 1 sub 2
-  (id match) and scope 3 with the character's group bits (`003AED20`: record `+0x28C`; sub 7 needs a
+- 7: the character's own list, fetched from record `+108`<sub>h</sub> (`0037AD40`). Its entries use scope 1 sub 2
+  (id match) and scope 3 with the character's group bits (`003AED20`: record `+28C`<sub>h</sub>; sub 7 needs a
   shared bit, sub 6 none). Ambients are handled as above with the light scale off; the rest are taken.
 - anything else is a directional kind and goes to the output list.
 
@@ -72,13 +72,13 @@ it is multiplied by the multiplier and its alpha set to 1.0.
 
 ### The character's own adjustments
 
-- Ambient mode, record byte `+0x5E0`: 1 blends each ambient toward the record's colour `+0x5D0` by
-  `+0x5DC` (for additive ones, once on their sum at the end); 2 multiplies by `+0x5DC`. A light with
+- Ambient mode, record byte `+5E0`<sub>h</sub>: 1 blends each ambient toward the record's colour `+5D0`<sub>h</sub> by
+  `+5DC`<sub>h</sub> (for additive ones, once on their sum at the end); 2 multiplies by `+5DC`<sub>h</sub>. A light with
   request `+5` bit 4 is exempt.
-- Light scale: the gather copies record `+0x5EC` to `02B3F518`; while `02B3F502` is set it multiplies the
-  colour and strength of every light whose `+5` is below `0x80`.
-- Group bits: `002E8610(actor, group, on)` sets or clears bit `group & 31` of the record's `+0x28C`.
-  The verbs `setlightgroup` (`0x224`, `003404F0`) and `clearlightgroup` (`0x225`) reach it
+- Light scale: the gather copies record `+5EC`<sub>h</sub> to `02B3F518`; while `02B3F502` is set it multiplies the
+  colour and strength of every light whose `+5` is below `80`<sub>h</sub>.
+- Group bits: `002E8610(actor, group, on)` sets or clears bit `group & 31` of the record's `+28C`<sub>h</sub>.
+  The verbs `setlightgroup` (`224`<sub>h</sub>, `003404F0`) and `clearlightgroup` (`225`<sub>h</sub>) reach it
   ([verb table](../Scripts-And-Script-Commands/verb-table.md)).
 
 ### Evaluating a light
@@ -89,34 +89,34 @@ The strength is `0.299|r| + 0.587|g| + 0.114|b|` of `c`.
 
 | Kind | Body | Shape |
 |---:|---|---|
-| 1 | `003AD540` | directional; the direction at request `+0x30`, as given or through the installed matrix |
+| 1 | `003AD540` | directional; the direction at request `+30`<sub>h</sub>, as given or through the installed matrix |
 | 2 | `003AE0E0` | point: colour × `1 − d² × k`, zero at or past the range |
-| 3 | `003AD830` | point cut by a plane: zero when the light-to-character vector has a non-positive dot with the axis at `+0x30` |
-| 4 | `003AE4C0` | spot: falloff × `min(1, (cos − [+0x44]) × [+0x4C])` |
+| 3 | `003AD830` | point cut by a plane: zero when the light-to-character vector has a non-positive dot with the axis at `+30`<sub>h</sub> |
+| 4 | `003AE4C0` | spot: falloff × `min(1, (cos − [+44h]) × [+4Ch])` |
 | 5 | `003ADC40` | segment: the closest point on the segment, clamped to its ends, then a point light |
 
 ### The six-light block
 
-`003ABD50(record, block, matrix 1, matrix 2, colour scale, use scale)` clears a `0xE0`-byte block,
-sets `+0xD0` to -1, copies the record's light scale and calls the selector with the ambient written to
-`+0xC0`. It sorts the chosen lights (`003AEBC0`), evaluates each with the first matrix when its `+5`
+`003ABD50(record, block, matrix 1, matrix 2, colour scale, use scale)` clears a `E0`<sub>h</sub>-byte block,
+sets `+D0`<sub>h</sub> to -1, copies the record's light scale and calls the selector with the ambient written to
+`+C0`<sub>h</sub>. It sorts the chosen lights (`003AEBC0`), evaluates each with the first matrix when its `+5`
 bits 1-3 are clear and the second otherwise, and at the end of each run of equal priority, highest
 first, sorts the run's lit lights by strength (`003AE9C0`).
 
-It writes up to six: directions negated and normalised, stored by component (x of lights 0-2 at `+0x00`, y at
-`+0x10`, z at `+0x20`; lights 3-5 at `+0x30`..`+0x50`), colours at `+0x60 + 16i`, and the index of a
-camera-anchored light at `+0xD0`. A direction too short after normalising becomes (0, -1, 0).
+It writes up to six: directions negated and normalised, stored by component (x of lights 0-2 at `+00`<sub>h</sub>, y at
+`+10`<sub>h</sub>, z at `+20`<sub>h</sub>; lights 3-5 at `+30`<sub>h</sub>..`+50`<sub>h</sub>), colours at `+60h + 16i`, and the index of a
+camera-anchored light at `+D0`<sub>h</sub>. A direction too short after normalising becomes (0, -1, 0).
 
-The model instance's draw setup `004FD4B0` calls it with the instance's record (`+0xF8`), matrices
-(`+0xE8`, `+0xF0`) and colour (`+0x90`) into the global block `02CA8110`, then scales the ambient: rgb
-by instance `+0xA0`..`+0xA8`, alpha by `+0xAC × (+0xB0 / 4096)` and, with `+0x244` bit 0, by `+0x248`.
+The model instance's draw setup `004FD4B0` calls it with the instance's record (`+F8`<sub>h</sub>), matrices
+(`+E8`<sub>h</sub>, `+F0`<sub>h</sub>) and colour (`+90`<sub>h</sub>) into the global block `02CA8110`, then scales the ambient: rgb
+by instance `+A0`<sub>h</sub>..`+A8`<sub>h</sub>, alpha by `+ACh × (+B0h / 4096)` and, with `+244`<sub>h</sub> bit 0, by `+248`<sub>h</sub>.
 That is how a character's fade and script colour reach its lighting ([character fades](character-fades.md)).
 
 ### The map's character-light settings
 
 Render-object slot 8, `001F9B20(object, block, f)`, copies the block into every part record's
-`lichtAmbient`, `lichtDir1`-`6`, `lichtColor1`-`6` and `sunIndex` (the `+0xD0` index when it is -1 to 5).
-Unless the settings flag at `001EBA40()` `+0x118` is set:
+`lichtAmbient`, `lichtDir1`-`6`, `lichtColor1`-`6` and `sunIndex` (the `+D0`<sub>h</sub> index when it is -1 to 5).
+Unless the settings flag at `001EBA40()` `+118`<sub>h</sub> is set:
 
 - the ambient becomes `rgb × mMapChrAmbientIntensity + mMapChrAmbientOffset` (`01F82ED8`, `01F82EE8`);
 - each light's colour is multiplied by `mMapChrDirLightColorIntensity` (`01F82EF8`);
@@ -128,49 +128,49 @@ The settings are listed on [graphics settings](../Engine-Core/graphics-settings.
 
 ### Event lights
 
-An event script can hold up to 16 lights of its own in entries of `0x70` bytes at `02B58C50`. Each
+An event script can hold up to 16 lights of its own in entries of `70`<sub>h</sub> bytes at `02B58C50`. Each
 entry keeps a copy of its light request; the light itself lives in the pool. Every verb takes the
 entry index first.
 
-`EventLight` (`0x70` bytes, offsets from the start of the 02B58C50+0x70*n):
+`EventLight` (`70`<sub>h</sub> bytes, offsets from the start of the 02B58C50+`70`<sub>h</sub>*n):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `u32` | handle | the pool handle, 0 for none |
-| `04` | `u8` | manager | the manager byte of the bindl issuer |
-| `05` | `u8` | focus | 1 follows the party focus |
-| `08` | `void*` | binder | the actor that ran bindl |
-| `10` | `void*` | followed | the actor of seteventlightactor |
-| `20` | `u8[80]` | request | copy of the light request |
+| `00`<sub>h</sub> | `u32` | handle | the pool handle, 0 for none |
+| `04`<sub>h</sub> | `u8` | manager | the manager byte of the bindl issuer |
+| `05`<sub>h</sub> | `u8` | focus | 1 follows the party focus |
+| `08`<sub>h</sub> | `void*` | binder | the actor that ran bindl |
+| `10`<sub>h</sub> | `void*` | followed | the actor of seteventlightactor |
+| `20`<sub>h</sub> | `u8[80]` | request | copy of the light request |
 
-The defaults of the copy are type 2, priority `0xC0`, scope 1 sub-kind 1, bit 0 of `+0x05` set,
+The defaults of the copy are type 2, priority `C0`<sub>h</sub>, scope 1 sub-kind 1, bit 0 of `+05`<sub>h</sub> set,
 range 10.0, colour (1, 1, 1, 0), position w 1.0 and direction (1, 1, 1, 1).
 
-- `bindl(n, kind)` (`0x0136`, `003DE4C0`) unbinds whatever the calling actor held (`0025AB30`),
+- `bindl(n, kind)` (`0136`<sub>h</sub>, `003DE4C0`) unbinds whatever the calling actor held (`0025AB30`),
   releases the entry's old light (`003ABCA0`), and files a new one (`003AB960`) from the entry's
   request with type 2 for `kind` 1, 4 for `kind` 2 and 1 otherwise. It keeps the handle, the issuer's
-  manager byte and the actor, marks the actor bound (its `+0x04` = 2, `+0x05` = `n`) and then resets
+  manager byte and the actor, marks the actor bound (its `+04`<sub>h</sub> = 2, `+05`<sub>h</sub> = `n`) and then resets
   the entry's copy to the defaults.
-- `seteventlighttype(n, type)` (`0x0138`, `003DE7E0`) resets the copy to the defaults with that type
-  byte; type 4 also gets the cone cosines `cos(π/8)` and `cos(π/4)` at request `+0x40` and `+0x44`.
-- `seteventlightall(n)` (`0x0139`, `003DE970`) sets scope sub-kind 1 and drops the followed actor;
-  `seteventlightactor(n, id)` (`0x0137`, `003DEA20`) sets sub-kind 2 and follows the actor `id`
+- `seteventlighttype(n, type)` (`0138`<sub>h</sub>, `003DE7E0`) resets the copy to the defaults with that type
+  byte; type 4 also gets the cone cosines `cos(π/8)` and `cos(π/4)` at request `+40`<sub>h</sub> and `+44`<sub>h</sub>.
+- `seteventlightall(n)` (`0139`<sub>h</sub>, `003DE970`) sets scope sub-kind 1 and drops the followed actor;
+  `seteventlightactor(n, id)` (`0137`<sub>h</sub>, `003DEA20`) sets sub-kind 2 and follows the actor `id`
   names (`003587C0`), or the party focus for a negative `id`.
-- `seteventlightcolor(n, r, g, b)` (`0x013A`, `003DE9B0`) stores the colour with alpha 0;
-  `seteventlightdir(n, a, b)` (`0x013C`, `003DEA70`) turns the unit z vector by the two angles,
-  normalises it (`003A1890`) and stores it at request `+0x30`.
-- `seteventlightrange(n, r)` (`0x013B`, `003DEAC0`), only for an entry with a type, stores `r` at
-  request `+0x0C` and clears bit 0 of `+0x05`; a negative `r` sets the bit and stores 1.0 instead.
-- `seteventlightcorn(n, inner, outer)` (`0x0144`, `003DE8A0`) stores `cos(inner)` and `cos(outer)` at
-  request `+0x40` and `+0x44`, with `inner` at least 0 and `outer` at least `inner`.
+- `seteventlightcolor(n, r, g, b)` (`013A`<sub>h</sub>, `003DE9B0`) stores the colour with alpha 0;
+  `seteventlightdir(n, a, b)` (`013C`<sub>h</sub>, `003DEA70`) turns the unit z vector by the two angles,
+  normalises it (`003A1890`) and stores it at request `+30`<sub>h</sub>.
+- `seteventlightrange(n, r)` (`013B`<sub>h</sub>, `003DEAC0`), only for an entry with a type, stores `r` at
+  request `+0C`<sub>h</sub> and clears bit 0 of `+05`<sub>h</sub>; a negative `r` sets the bit and stores 1.0 instead.
+- `seteventlightcorn(n, inner, outer)` (`0144`<sub>h</sub>, `003DE8A0`) stores `cos(inner)` and `cos(outer)` at
+  request `+40`<sub>h</sub> and `+44`<sub>h</sub>, with `inner` at least 0 and `outer` at least `inner`.
 
 The colour, direction, range and cone setters also write the live request when the entry has a
 light and a bound actor, the last two through `003AC920`. Each frame `003DE640` (from `00314020`)
-sets every live light's target `+0x08` to the record index of the followed actor (`002E97B0`) and,
-when the binding actor's class bits (`+0x03 & 0xE0`) are `0x60`, its position `+0x20` from that actor
+sets every live light's target `+08`<sub>h</sub> to the record index of the followed actor (`002E97B0`) and,
+when the binding actor's class bits (`+03h & E0h`) are `60`<sub>h</sub>, its position `+20`<sub>h</sub> from that actor
 (`00265020`), with w = 1.0.
 
-`0025AB30` undoes a binding by the actor's kind byte `+0x04`: kind 2 runs `003DE5F0`, which releases
+`0025AB30` undoes a binding by the actor's kind byte `+04`<sub>h</sub>: kind 2 runs `003DE5F0`, which releases
 the light and clears the entry's handle, actor and focus flag; kinds 1 and 3 run `002E3AF0` and
 `002E3D00`. The area initialiser `00266D10` resets all 16 entries through `003DE710`.
 
@@ -182,111 +182,111 @@ ambient `0209A370`, the scene colour `0209A380` (copied from `020926C0` by `0037
 colour `0209A390` and the summon-colour multiplier `0209A3C0`. `0026E1D0` resets the scene colour,
 the script colour and the product to 1.0.
 
-- `setmapambient(r, g, b, a)` (`0x0104`, `00379080`) stores the script colour and also writes
-  `r, g, b` into the ambient of all five light groups (`02EBF460 + 0x50 × g`, `002ECE40`);
-  `setmapambient_maponly` (`0x050A`, `00379110`) stores only the script colour.
-- Their three-argument forms (`0x0105`, `0x050B`) push 1.0 as `a`; `resetmapambient` (`0x0106`,
+- `setmapambient(r, g, b, a)` (`0104`<sub>h</sub>, `00379080`) stores the script colour and also writes
+  `r, g, b` into the ambient of all five light groups (`02EBF460 + 50h × g`, `002ECE40`);
+  `setmapambient_maponly` (`050A`<sub>h</sub>, `00379110`) stores only the script colour.
+- Their three-argument forms (`0105`<sub>h</sub>, `050B`<sub>h</sub>) push 1.0 as `a`; `resetmapambient` (`0106`<sub>h</sub>,
   `00346D20`) stores 1.0 four times through `00379080`. The map teardown `00378230` resets it too.
 - Unless `02ADD0E9` is set, both setters then refresh light group 0 with its current state:
   `003DE920(0, 003DE700(0), 0)`, where `003DE700(g)` reads bit `g` of the group mask `02B59350`.
 
 ### The shadow caster
 
-`PShadowCaster` is a reflected Phyre class (`006C15D0` registers `m_light` at `+0x00`,
-`m_shadowCasterType` at `+0x08`, `m_splits` at `+0x10`, `m_zbias` at `+0x50`). Its constructor
+`PShadowCaster` is a reflected Phyre class (`006C15D0` registers `m_light` at `+00`<sub>h</sub>,
+`m_shadowCasterType` at `+08`<sub>h</sub>, `m_splits` at `+10`<sub>h</sub>, `m_zbias` at `+50`<sub>h</sub>). Its constructor
 `006C0EB0` sets `m_shadowCasterType` to the first value record of `PShadowCasterType` at `01F2EDC8`,
 named `NoShadow` (the next are `PCFShadowMap` and `CascadedShadowMap`), `m_splits` empty, `m_zbias`
-1.0e-5, and initialises the state block at `+0x58` (`005DC400`, then bytes 1, 1, 2, 2 and `+0x74` bit 6).
+1.0e-5, and initialises the state block at `+58`<sub>h</sub> (`005DC400`, then bytes 1, 1, 2, 2 and `+74`<sub>h</sub> bit 6).
 
 ### The two shadow pools
 
-A render record holds up to two shadow entries, chosen by its shadow kind (record `+0xC0` bits 3-4).
-`00427DE0` sets the kind from `(+0x304 >> 12) & 3` through `003E73B0` when `+0x290` bit 22 is set;
+A render record holds up to two shadow entries, chosen by its shadow kind (record `+C0`<sub>h</sub> bits 3-4).
+`00427DE0` sets the kind from `(+304h >> 12) & 3` through `003E73B0` when `+290`<sub>h</sub> bit 22 is set;
 kind 1 takes a second-pool entry and kind 0 frees it, and the handle is copied to the presentation
-entry's `+0x360`.
+entry's `+360`<sub>h</sub>.
 
 | | First pool | Second pool |
 |---|---|---|
-| Storage | 160 entries of `0xE0` at `[02B40528]` (`003B6890`) | 32 entries of `0x70` at `02B3F570` (`003AFCD0`) |
-| Taken by | `003B56D0(record id)` at promotion, into `+0x114` | `003AF340(record id)`, into `+0x118`; needs the model's `@FCP` shadow block (`003E6E40`) |
-| Handle | counter `02B40520` << 8 \| slot, checked at entry `+0x10` | counter `02B3F550` << 8 \| slot, checked at entry `+0x04` |
+| Storage | 160 entries of `E0`<sub>h</sub> at `[02B40528]` (`003B6890`) | 32 entries of `70`<sub>h</sub> at `02B3F570` (`003AFCD0`) |
+| Taken by | `003B56D0(record id)` at promotion, into `+114`<sub>h</sub> | `003AF340(record id)`, into `+118`<sub>h</sub>; needs the model's `@FCP` shadow block (`003E6E40`) |
+| Handle | counter `02B40520` << 8 \| slot, checked at entry `+10`<sub>h</sub> | counter `02B3F550` << 8 \| slot, checked at entry `+04`<sub>h</sub> |
 | Freed by | `003B6000` | `003AFBE0` |
-| Mode | byte `+0x41`, `003B6900(handle, v)` = `(v >> 2 & old) \| (v & 3)` | low nibble of `+0x20`, `003AFD00` |
+| Mode | byte `+41`<sub>h</sub>, `003B6900(handle, v)` = `(v >> 2 & old) \| (v & 3)` | low nibble of `+20`<sub>h</sub>, `003AFD00` |
 
-A first-pool entry keeps the owner's index at `+0x04`, its strength at `+0x14` (1.0) and two bones,
-`+0x3C` and `+0x3E`, from the model's special bones `0x104` and `0x106` (`003E5AD0`).
+A first-pool entry keeps the owner's index at `+04`<sub>h</sub>, its strength at `+14`<sub>h</sub> (1.0) and two bones,
+`+3C`<sub>h</sub> and `+3E`<sub>h</sub>, from the model's special bones `104`<sub>h</sub> and `106`<sub>h</sub> (`003E5AD0`).
 
-The anchor in use is the word `+0x38`. `003B5CE0(handle, b, x, y)` keeps the previous base offset
-`+0x48`, `+0x4C` at `+0x30`, `+0x34` and the previous anchor at `+0x3A`, stores the new base offset
-and sets the anchor to `+0x3C` for `b` = 0 or `+0x3E` otherwise. `003B6BD0(handle, v)` stores the
-offset multiplier `+0x44` and `003B6BB0(handle, v)` the float `+0x2C`; `0042D050` calls both.
+The anchor in use is the word `+38`<sub>h</sub>. `003B5CE0(handle, b, x, y)` keeps the previous base offset
+`+48`<sub>h</sub>, `+4C`<sub>h</sub> at `+30`<sub>h</sub>, `+34`<sub>h</sub> and the previous anchor at `+3A`<sub>h</sub>, stores the new base offset
+and sets the anchor to `+3C`<sub>h</sub> for `b` = 0 or `+3E`<sub>h</sub> otherwise. `003B6BD0(handle, v)` stores the
+offset multiplier `+44`<sub>h</sub> and `003B6BB0(handle, v)` the float `+2C`<sub>h</sub>; `0042D050` calls both.
 
 `003B67F0(handle)`, from `003723B0`, puts the four ramp channels back to neutral (offset 0, extent
 scales 1, rotation 0, strength 1) and clears their steps and counters, the cross-fade and the values
 last built.
 
-When the authored motion command `0x09` (`00417F40`) starts a motion whose header carries a
+When the authored motion command `09`<sub>h</sub> (`00417F40`) starts a motion whose header carries a
 character block of kind 1, it passes the block to `003B5E20(handle, block)` and its anchor choice and
-base offset (`+0xA8`, `+0xA0`, `+0xA4` of the header) to `003B5CE0`. `003B5E20` keeps a motion's
-shadow overrides in the slot, flagged in byte `+0x40`:
+base offset (`+A8`<sub>h</sub>, `+A0`<sub>h</sub>, `+A4`<sub>h</sub> of the header) to `003B5CE0`. `003B5E20` keeps a motion's
+shadow overrides in the slot, flagged in byte `+40`<sub>h</sub>:
 
 - first, for each override flagged by the previous motion, it writes the kept value into the channel
-  and its cross-fade copy and clears a counter: bit 1 the offset (`+0xA0`, `+0xA4`; counter `+0x00`),
-  bit 2 the rotation (`+0xB0`; counter `+0x03`, the strength's), bit 3 the extent scales (`+0xA8`,
-  `+0xAC`; counter `+0x02`), and bit 4 the base offset (`+0xB4`, `+0xB8` into `+0x48`, `+0x4C`);
-- then, when the block's word `+0x32` is non-zero, it keeps the new values (block `+0x4C`, `+0x50`;
-  `+0x10`, `+0x54`; `+0x58`, `+0x5C`; the rotation as `(word >> 6)` degrees) and copies the word's
+  and its cross-fade copy and clears a counter: bit 1 the offset (`+A0`<sub>h</sub>, `+A4`<sub>h</sub>; counter `+00`<sub>h</sub>),
+  bit 2 the rotation (`+B0`<sub>h</sub>; counter `+03`<sub>h</sub>, the strength's), bit 3 the extent scales (`+A8`<sub>h</sub>,
+  `+AC`<sub>h</sub>; counter `+02`<sub>h</sub>), and bit 4 the base offset (`+B4`<sub>h</sub>, `+B8`<sub>h</sub> into `+48`<sub>h</sub>, `+4C`<sub>h</sub>);
+- then, when the block's word `+32`<sub>h</sub> is non-zero, it keeps the new values (block `+4C`<sub>h</sub>, `+50`<sub>h</sub>;
+  `+10`<sub>h</sub>, `+54`<sub>h</sub>; `+58`<sub>h</sub>, `+5C`<sub>h</sub>; the rotation as `(word >> 6)` degrees) and copies the word's
   bits 0, 1, 3, 2, 4 and 5 into the flags' bits 1 to 6; it ends by clearing the four counters.
 
 ### Each frame
 
-`00426420` runs `00426340` on every active record while tail `+0x42` is 1 and `+0x43` is 0:
+`00426420` runs `00426340` on every active record while tail `+42`<sub>h</sub> is 1 and `+43`<sub>h</sub> is 0:
 
 1. it puts both entries in their off state (`003B6900(h, 6)`, `003AFD00(h, 0)`);
-2. it stops unless `+0x284` bits 2, 6, 7 and 12 are set, the record has no parent and `+0x2AE` bit 1
+2. it stops unless `+284`<sub>h</sub> bits 2, 6, 7 and 12 are set, the record has no parent and `+2AE`<sub>h</sub> bit 1
    is clear;
-3. kind 0 with a first-pool entry: `003B6900(h, 4)`, then the strength (`003B6B80`) is record `+0x27C`
-   when `+0xC0` bit 1 is set, otherwise `003B5980(h)`;
+3. kind 0 with a first-pool entry: `003B6900(h, 4)`, then the strength (`003B6B80`) is record `+27C`<sub>h</sub>
+   when `+C0`<sub>h</sub> bit 1 is set, otherwise `003B5980(h)`;
 4. kind 1 with a second-pool entry: `003AFD00(h, 1)`.
 
 `003B5980` measures the distance `d` from the entry's bone (`00421FF0`) to the camera position
 `02AEDF20` and returns `clamp(1 − (clamp(d, near, far) − near) × k, 0, 1)`, with `near`, `far` and `k`
-at `+0x20`, `+0x24` and `+0x2C` of the model's `@FCP` block (`003E6F70`). The 1 and the zero bias inside the
+at `+20`<sub>h</sub>, `+24`<sub>h</sub> and `+2C`<sub>h</sub> of the model's `@FCP` block (`003E6F70`). The 1 and the zero bias inside the
 inner clamp are the cells `01EF93FC` (1.0) and `01EF93F0` (0.0), which `0036D990` sets at boot.
 
 `003AF460`, from the character pass `00426090`, advances the second pool's ramps: for each of the 32
-entries with a handle it counts down five counters (`+0x1C`, `+0x1D`, `+0x1E`, `+0x54`, `+0x55`) and,
-while one is non-zero, adds its step to its value (`+0x24` by `+0x2C`, `+0x28` by `+0x30`, `+0x34` by
-`+0x38`, `+0x3C` by `+0x48`, `+0x44` by `+0x4C`).
+entries with a handle it counts down five counters (`+1C`<sub>h</sub>, `+1D`<sub>h</sub>, `+1E`<sub>h</sub>, `+54`<sub>h</sub>, `+55`<sub>h</sub>) and,
+while one is non-zero, adds its step to its value (`+24`<sub>h</sub> by `+2C`<sub>h</sub>, `+28`<sub>h</sub> by `+30`<sub>h</sub>, `+34`<sub>h</sub> by
+`+38`<sub>h</sub>, `+3C`<sub>h</sub> by `+48`<sub>h</sub>, `+44`<sub>h</sub> by `+4C`<sub>h</sub>).
 
 ### The shadow verbs
 
-- `setshadowlod` (`0x286`, `00342CF0`): `002E8950(actor, 1)` sets `+0xC0` bit 1 and `002E89B0` stores
-  the value, clamped to 0..1, at `+0x27C`. `clearshadowlod` (`0x287`) clears the bit.
-- `setshadowalpha` (`0x284`, `00342410`): `002E88A0(actor, 1)` sets `+0xC0` bit 2 and `002E8900` stores
-  the value at `+0x274`. `clearshadowalpha` (`0x285`) clears the bit.
+- `setshadowlod` (`286`<sub>h</sub>, `00342CF0`): `002E8950(actor, 1)` sets `+C0`<sub>h</sub> bit 1 and `002E89B0` stores
+  the value, clamped to 0..1, at `+27C`<sub>h</sub>. `clearshadowlod` (`287`<sub>h</sub>) clears the bit.
+- `setshadowalpha` (`284`<sub>h</sub>, `00342410`): `002E88A0(actor, 1)` sets `+C0`<sub>h</sub> bit 2 and `002E8900` stores
+  the value at `+274`<sub>h</sub>. `clearshadowalpha` (`285`<sub>h</sub>) clears the bit.
 
-Each finds the record through the actor's `+0xC0` context, whose first word is the record index. Every
+Each finds the record through the actor's `+C0`<sub>h</sub> context, whose first word is the record index. Every
 access to the two structures found is in [the shadow caster](character-lighting-and-shadows-pshadow-caster-accesses.tsv)
 and [second pool](character-lighting-and-shadows-shadow-pool-v2-slot-accesses.tsv) tables.
 
 ## Layouts
 
-A light request (entry `+0x20`):
+A light request (entry `+20`<sub>h</sub>):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `u8` | type: 1-5 directional kinds, 6 ambient, 7 the character's own list |  |
-| `01` | `u8` | priority |  |
-| `02` | `u8` | subtype (ambient colour form; 5 = multiplier) |  |
-| `03` | `u8` | scope |  |
-| `04` | `u8` | scope sub-kind |  |
-| `05` | `u8` | bit 4 no ambient mode; bits 1-3 matrix; 0x80 and up no light scale |  |
-| `07` | `u8` | bit 0 exclusive (not additive); bit 1 skip; bits 2-7 class |  |
-| `08` | `u32` | target: id, handle or group mask |  |
-| `0C` | `f32` | range |  |
-| `10` | `f32[4]` | colour |  |
-| `20` | `...` | kind data (position, axis, cone, segment end) |  |
+| `00`<sub>h</sub> | `u8` | type: 1-5 directional kinds, 6 ambient, 7 the character's own list |  |
+| `01`<sub>h</sub> | `u8` | priority |  |
+| `02`<sub>h</sub> | `u8` | subtype (ambient colour form; 5 = multiplier) |  |
+| `03`<sub>h</sub> | `u8` | scope |  |
+| `04`<sub>h</sub> | `u8` | scope sub-kind |  |
+| `05`<sub>h</sub> | `u8` | bit 4 no ambient mode; bits 1-3 matrix; `80`<sub>h</sub> and up no light scale |  |
+| `07`<sub>h</sub> | `u8` | bit 0 exclusive (not additive); bit 1 skip; bits 2-7 class |  |
+| `08`<sub>h</sub> | `u32` | target: id, handle or group mask |  |
+| `0C`<sub>h</sub> | `f32` | range |  |
+| `10`<sub>h</sub> | `f32[4]` | colour |  |
+| `20`<sub>h</sub> | `...` | kind data (position, axis, cone, segment end) |  |
 
 ## Modding notes
 

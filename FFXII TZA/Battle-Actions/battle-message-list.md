@@ -13,12 +13,12 @@ Every line the battle log can show is a row of the battle message table, indexed
 `battle_pack.bin`. The shipped `battle_pack.bin` entry 2 begins with the exact bytes of the US
 `battle_message.bin`.
 
-`00236C30` binds it: `00236C7B`-`00236C86` pass the pack's directory entry 2 (`[pack+0xC]`) and the
+`00236C30` binds it: `00236C7B`-`00236C86` pass the pack's directory entry 2 (`[pack+Ch]`) and the
 descriptor slot `02EBF018` to `003845F0`. The readers then take a row as `table + id * stride` from
 that slot (`0046AB10`, `00469570`, `005369C0`).
 
-The US file is an `st2e` table: 102 rows of 8 bytes from `+0x20`, and a text heap at `+0x350`. In the
-heap the row count is at `+0x0C`, the offsets from `+0x10`, and each text at `heap + 0x0C + offset`.
+The US file is an `st2e` table: 102 rows of 8 bytes from `+20`<sub>h</sub>, and a text heap at `+350`<sub>h</sub>. In the
+heap the row count is at `+0C`<sub>h</sub>, the offsets from `+10`<sub>h</sub>, and each text at `heap + 0Ch + offset`.
 The German, Spanish, French and Italian files also have 102 rows; the `in`, `ch`, `cn` and `kr` files
 have 100. The event ids and texts below are the US table's.
 
@@ -42,24 +42,24 @@ The rows fall into these groups (full rows in the `.tsv`):
 
 | Event ids | Lines |
 |---|---|
-| `0x00`-`0x03` | traps triggered |
-| `0x04` | level up |
-| `0x05`-`0x0C` | actions cancelled, out of range or too far (repeat-limited) |
-| `0x0D`-`0x0F` | begins casting, readies, uses |
-| `0x10`-`0x12` | has fallen, cast into the void, turns to stone |
-| `0x13`-`0x23` | HP and MP restored, regains consciousness, cured or fading statuses, no effect, reserve members |
-| `0x24`-`0x26` | items and gil obtained |
-| `0x27`-`0x3D` | technick results and failures, steals, poach, Libra |
-| `0x3E`-`0x43` | Paling, Magick Shield and White Wind rising and falling |
-| `0x44`-`0x4D` | results of enemy abilities |
-| `0x4E` | loot stolen |
-| `0x4F`-`0x5C` | magick fields falling and lifting (repeat-limited) |
-| `0x5D`-`0x62` | the Magick Pot, Zalera and back-attack lines (repeat-limited) |
-| `0x63` | empty |
-| `0x64`, `0x65` | items added to inventory |
+| `00`<sub>h</sub>-`03`<sub>h</sub> | traps triggered |
+| `04`<sub>h</sub> | level up |
+| `05`<sub>h</sub>-`0C`<sub>h</sub> | actions cancelled, out of range or too far (repeat-limited) |
+| `0D`<sub>h</sub>-`0F`<sub>h</sub> | begins casting, readies, uses |
+| `10`<sub>h</sub>-`12`<sub>h</sub> | has fallen, cast into the void, turns to stone |
+| `13`<sub>h</sub>-`23`<sub>h</sub> | HP and MP restored, regains consciousness, cured or fading statuses, no effect, reserve members |
+| `24`<sub>h</sub>-`26`<sub>h</sub> | items and gil obtained |
+| `27`<sub>h</sub>-`3D`<sub>h</sub> | technick results and failures, steals, poach, Libra |
+| `3E`<sub>h</sub>-`43`<sub>h</sub> | Paling, Magick Shield and White Wind rising and falling |
+| `44`<sub>h</sub>-`4D`<sub>h</sub> | results of enemy abilities |
+| `4E`<sub>h</sub> | loot stolen |
+| `4F`<sub>h</sub>-`5C`<sub>h</sub> | magick fields falling and lifting (repeat-limited) |
+| `5D`<sub>h</sub>-`62`<sub>h</sub> | the Magick Pot, Zalera and back-attack lines (repeat-limited) |
+| `63`<sub>h</sub> | empty |
+| `64`<sub>h</sub>, `65`<sub>h</sub> | items added to inventory |
 
-Rows `0x0D`-`0x0F`, `0x27`-`0x2C`, `0x33`-`0x35`, `0x39`, `0x3A`, `0x3C`-`0x4C` and `0x63` are not
-always shown. Rows `0x05`-`0x0C` and `0x4F`-`0x62` are repeat-limited. Bytes `+6` and `+7` are 0 in
+Rows `0D`<sub>h</sub>-`0F`<sub>h</sub>, `27`<sub>h</sub>-`2C`<sub>h</sub>, `33`<sub>h</sub>-`35`<sub>h</sub>, `39`<sub>h</sub>, `3A`<sub>h</sub>, `3C`<sub>h</sub>-`4C`<sub>h</sub> and `63`<sub>h</sub> are not
+always shown. Rows `05`<sub>h</sub>-`0C`<sub>h</sub> and `4F`<sub>h</sub>-`62`<sub>h</sub> are repeat-limited. Bytes `+6` and `+7` are 0 in
 every row.
 
 ## Related

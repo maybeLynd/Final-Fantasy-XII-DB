@@ -7,8 +7,8 @@ addresses: "0050F810, 00239960, 02EBF030, 02EBF028, 00236FA2, 00236FBC"
 
 ## What it lists
 
-A script verb can ask for a numbered set of save data: `0050F810`, the handler of verb `0x302B`
-`btlAtelSetNextSetSaveData` (entry `0x2B` of the family-3 table at `01F281B0`), pops the number and stores it at
+A script verb can ask for a numbered set of save data: `0050F810`, the handler of verb `302B`<sub>h</sub>
+`btlAtelSetNextSetSaveData` (entry `2B`<sub>h</sub> of the family-3 table at `01F281B0`), pops the number and stores it at
 `0208D455`.
 The next area start applies it once, from `BattleSystem_InitializeAreaState` (`00234349`), and the table the
 sets come from gives the pack its folder name, `test_battle`.
@@ -27,7 +27,7 @@ the battle state instead (`00237DF0`), and a number past the 50 scenarios does n
 3. Each party-preset row with this scenario number sets up the member in its record slot: level, gambit preset,
    License Points, the five pieces of gear and the MP share (`00239BBC`-`00239D7F`).
 4. The nine seats are filled from the scenario row with `00329080(seat, member, 3)`, and the leader is the member
-   in seat `+0x0A` (`00239DC0`-`00239DE0`; [Party slots](party-slots.md)).
+   in seat `+0A`<sub>h</sub> (`00239DC0`-`00239DE0`; [Party slots](party-slots.md)).
 
 ### Which scripts ask for a set
 
@@ -41,8 +41,8 @@ script variable. The other eight language folders make the same calls.
 |---|---|---|
 | level | the member's level, through the level writer `0030C470` | `00239BE3`-`00239BED` |
 | gambit preset | loaded into the member's gambits ([Gambits](../Enemy-AI-And-Gambits/gambits.md)) | `00239BF9`-`00239C00` |
-| MP bars | the record's byte `+0x20`, the MP bars source ([Unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md)) | `00239BF2`-`00239BF6` |
-| License Points | added to the member's License Points `+0x190`, zeroed just before (65,535 for `0xFFFF`); for one of the six main characters a value other than `0xFFFF` also learns every license square whose row byte `+7` has the member's bit | `00239C05`-`00239D63` |
+| MP bars | the record's byte `+20`<sub>h</sub>, the MP bars source ([Unit stats fields](../Damage-And-Battle-Formulas/unit-stats-fields.md)) | `00239BF2`-`00239BF6` |
+| License Points | added to the member's License Points `+190`<sub>h</sub>, zeroed just before (65,535 for `FFFF`<sub>h</sub>); for one of the six main characters a value other than `FFFF`<sub>h</sub> also learns every license square whose row byte `+7` has the member's bit | `00239C05`-`00239D63` |
 | gear | the five equipment slots | `00239C62`-`00239CBF` |
 | MP share | current MP = max MP × share / 100, or 0 with augment 39 | `00239CC4`-`00239D7F` |
 | gambit mark | the member's record flag bit 2, taken from bit 0 of the first byte of the **next** preset row | `00239D83`-`00239D94` |
@@ -55,7 +55,7 @@ script variable. The other eight language folders make the same calls.
 |---|---|
 | `scenario` | the set number, 0-49 |
 | `party` | the nine seats: the four active, then the five in reserve; `-` for an empty seat |
-| `leader` | the member in seat `+0x0A` |
+| `leader` | the member in seat `+0A`<sub>h</sub> |
 | `gil` | the gil the set gives |
 | `items` | each item, piece of gear, magick, technick, quickening or key item granted, with its count |
 | `members` | each member the set sets up: name, level, gear, gambit preset, License Points, licenses, MP bars, MP share, and the gambit mark |

@@ -7,7 +7,7 @@ addresses: "002AC5F0, 002AE334, 002AE3FC, 002AE370, 002AC2F0, 003FFDF0, 002AEB20
 
 ## What it lists
 
-`text-codes.tsv` has one row per control code: the 14 control bytes `0x01`-`0x0E` and the `0x0F` escapes by their
+`text-codes.tsv` has one row per control code: the 14 control bytes `01`<sub>h</sub>-`0E`<sub>h</sub> and the `0F`<sub>h</sub> escapes by their
 selector character. Each row gives the arm that runs it, its length, what it does, and how many times it appears in
 the shipped text of all nine languages.
 
@@ -16,20 +16,20 @@ the shipped text of all nine languages.
 The text interpreter `002AC5F0` reads a string one unit at a time, until a `00` byte or the painter's terminator word
 (`002AC663`):
 
-1. A byte `0x01`-`0x0F` is a token. It indexes the 15-entry table at `002AE334` (`002AC682`-`002AC697`).
-2. A byte `0x10`-`0x1F` is the lead byte of a two-byte character, and any other byte is a one-byte character
+1. A byte `01`<sub>h</sub>-`0F`<sub>h</sub> is a token. It indexes the 15-entry table at `002AE334` (`002AC682`-`002AC697`).
+2. A byte `10`<sub>h</sub>-`1F`<sub>h</sub> is the lead byte of a two-byte character, and any other byte is a one-byte character
    (`002AC2F0`).
-3. After a `0x0F`, the next byte is the selector. A selector from `0x20` to `0x70` picks one of 35 arms at `002AE370`
+3. After a `0F`<sub>h</sub>, the next byte is the selector. A selector from `20`<sub>h</sub> to `70`<sub>h</sub> picks one of 35 arms at `002AE370`
    through the byte map at `002AE3FC`; any other selector is drawn as a character.
 
-The callers that measure and draw text (`002B1FB0`, `002B2150`) send every byte below `0x10` to the interpreter.
-The pager's markup parser `002A8C50` walks the same strings to pace them. It acts on `0x03`, on the choice list
-`0x0E` (the option setup at `002A9066`) and on the escapes `#`, `-`, `/`, `;`, `p`, `"` and `=`. Its pacing step
+The callers that measure and draw text (`002B1FB0`, `002B2150`) send every byte below `10`<sub>h</sub> to the interpreter.
+The pager's markup parser `002A8C50` walks the same strings to pace them. It acts on `03`<sub>h</sub>, on the choice list
+`0E`<sub>h</sub> (the option setup at `002A9066`) and on the escapes `#`, `-`, `/`, `;`, `p`, `"` and `=`. Its pacing step
 (`002A9747`) also pauses at `>`, `8`, `.`, `p` and every icon.
 
 ### Code lengths
 
-Most escapes read their payload through a small parser. The length of the whole code, with the `0x0F` and the
+Most escapes read their payload through a small parser. The length of the whole code, with the `0F`<sub>h</sub> and the
 selector, is:
 
 | Code | Bytes | Parser |
@@ -42,32 +42,32 @@ selector, is:
 | `0F )` | 3 + the larger of 1 and bits 0-2 of the first payload byte | `003FFBC0` |
 | `0F *` | 4 + bits 0-6 of the second payload byte | `003FFD70` |
 
-Token `0x08` is 3 bytes (`002AD011`), tokens `0x0B`-`0x0D` move nothing (`002AC6CA`), and every other token is 1
+Token `08`<sub>h</sub> is 3 bytes (`002AD011`), tokens `0B`<sub>h</sub>-`0D`<sub>h</sub> move nothing (`002AC6CA`), and every other token is 1
 byte.
 
 ### Choice lists
 
-Token `0x0E` (`002AC825`, parser `003FFDF0`) is a choice list. Bits 0-6 of its first byte give the option count;
+Token `0E`<sub>h</sub> (`002AC825`, parser `003FFDF0`) is a choice list. Bits 0-6 of its first byte give the option count;
 when bit 0 of the fourth byte is set, a field of one bit per option follows, one byte per seven options. Each option
 is a length byte (bits 0-6) and that many bytes of text, which may hold codes of its own. An option whose bit is set
-in the text context's mask `+0x84` is left out (`002AC957`). The list stops on its own `00`, so a list always ends
+in the text context's mask `+84`<sub>h</sub> is left out (`002AC957`). The list stops on its own `00`, so a list always ends
 its string.
 
 ### Tokens
 
 | Token | Does |
 |---|---|
-| `0x01` | a blank the width of `0017F920(0)` (`002ACC04`) |
-| `0x02` | a line break: the next line is measured, justified and indented by `+0xAA` (`002AC6D1`) |
-| `0x03` | the page end: the interpreter stops the run (`002AC6AE`), and the pager waits for the confirm button (`002A8DC7`, `002A97CD`-`002A9808`) |
-| `0x04` | the ordinary space, the width of `0017F920(1)` |
-| `0x05` | a column mark: a blank of 15 units that records the column widths (`002ACCF3`) |
-| `0x06` | a blank of 10.0 (`008F8180`) |
-| `0x07` | a blank of 10 units, or 26 when `00254A10` returns 0 and `00229E40` returns 7 |
-| `0x08`, `0x09` | no effect: the cursor moves 3 or 1 bytes |
-| `0x0A` | a right-aligned column: it measures up to the next `0x02` or `0x05` (`002ACF10`-`002ACF34`) |
-| `0x0B`-`0x0D` | no effect: the interpreter returns without moving |
-| `0x0E` | a choice list, above |
+| `01`<sub>h</sub> | a blank the width of `0017F920(0)` (`002ACC04`) |
+| `02`<sub>h</sub> | a line break: the next line is measured, justified and indented by `+AA`<sub>h</sub> (`002AC6D1`) |
+| `03`<sub>h</sub> | the page end: the interpreter stops the run (`002AC6AE`), and the pager waits for the confirm button (`002A8DC7`, `002A97CD`-`002A9808`) |
+| `04`<sub>h</sub> | the ordinary space, the width of `0017F920(1)` |
+| `05`<sub>h</sub> | a column mark: a blank of 15 units that records the column widths (`002ACCF3`) |
+| `06`<sub>h</sub> | a blank of 10.0 (`008F8180`) |
+| `07`<sub>h</sub> | a blank of 10 units, or 26 when `00254A10` returns 0 and `00229E40` returns 7 |
+| `08`<sub>h</sub>, `09`<sub>h</sub> | no effect: the cursor moves 3 or 1 bytes |
+| `0A`<sub>h</sub> | a right-aligned column: it measures up to the next `02`<sub>h</sub> or `05`<sub>h</sub> (`002ACF10`-`002ACF34`) |
+| `0B`<sub>h</sub>-`0D`<sub>h</sub> | no effect: the interpreter returns without moving |
+| `0E`<sub>h</sub> | a choice list, above |
 
 The four blank tokens scale with the text size and letter spacing (`002ACC97`-`002ACCE3`).
 
@@ -91,7 +91,7 @@ The four blank tokens scale with the text size and letter spacing (`002ACC97`-`0
 
 | Escape | Does |
 |---|---|
-| `0F )` | the text colour; 0 is the default grey `0x80808080` (`002AD3F7`) |
+| `0F )` | the text colour; 0 is the default grey `80808080`<sub>h</sub> (`002AD3F7`) |
 | `0F +` | a render-state byte, sent to the draw packet (`002AD821`-`002AD86F`) |
 | `0F .` | inserts an argument of the message: a string, or a number through `002AE610` (`002AD8F9`) |
 | `0F -` | draws a number with up to 8 digits (`002AD8AB`, `002AE610`) |
@@ -106,14 +106,14 @@ The four blank tokens scale with the text size and letter spacing (`002ACC97`-`0
 
 | Escape | Does |
 |---|---|
-| `0F #` | a page wait: a value of 1 or more waits 30 ticks per unit (pager mode 3), and 0 waits for the confirm button (mode 5, `+0x88` = 10,000); interpreter arm `002AD205`-`002AD232`, pager arm in `002A8C50` |
+| `0F #` | a page wait: a value of 1 or more waits 30 ticks per unit (pager mode 3), and 0 waits for the confirm button (mode 5, `+88`<sub>h</sub> = 10,000); interpreter arm `002AD205`-`002AD232`, pager arm in `002A8C50` |
 | `0F -` | the pager sets mode 4 and measures the number (`002B35A0`, `002B43C0`) |
 | `0F /` | the type-out speed (`002A91EA`-`002A93AE`) |
-| `0F "` | the pager's rate value `+0x9E` (`002AD1ED`, `002A9442`-`002A94C1`) |
+| `0F "` | the pager's rate value `+9E`<sub>h</sub> (`002AD1ED`, `002A9442`-`002A94C1`) |
 | `0F ;` | read by the pager at `002A94CD` |
 | `0F p` | sets pager flag bit 20 (`002A9670`-`002A96E2`) |
-| `0F 9` | sets `+0xA7` and pager flag bit 21 (`002AE190`-`002AE1A1`) |
-| `0F =` | sets `+0xAE` (`002AE1DB`, `002A96EA`) |
+| `0F 9` | sets `+A7`<sub>h</sub> and pager flag bit 21 (`002AE190`-`002AE1A1`) |
+| `0F =` | sets `+AE`<sub>h</sub> (`002AE1DB`, `002A96EA`) |
 | `0F :` | resets the text state without ending the run (`002AE1B1`) |
 
 The escapes `,`, `1`, `l`, `m`, `n` and `V` are read and stepped over with no effect. `0F 0` and `0F _` have no arm,
@@ -123,11 +123,11 @@ so the selector is drawn as a character (`002ACFC2`).
 
 Over every string of the nine languages, these never appear:
 
-- the tokens `0x06`, `0x07`, `0x0B`, `0x0C` and `0x0D`;
+- the tokens `06`<sub>h</sub>, `07`<sub>h</sub>, `0B`<sub>h</sub>, `0C`<sub>h</sub> and `0D`<sub>h</sub>;
 - the escapes `"`, `#`, `0`, `6`, `:`, `V` and `_`;
 - the icon letters `\`, `]`, `b`, `d`, `f`, `h`, `i` and `j`.
 
-The page wait `0F #` is therefore never used; every shipped wait for the confirm button comes from `0x03`.
+The page wait `0F #` is therefore never used; every shipped wait for the confirm button comes from `03`<sub>h</sub>.
 
 ### The text the counts cover
 
@@ -158,10 +158,10 @@ reads past those options; their codes are counted separately.
 | Column | Meaning |
 |---|---|
 | `code` | the token byte, or `0F` and the selector byte |
-| `char` | the selector as a character; `space` and `quote` stand for `0x20` and `0x22` |
+| `char` | the selector as a character; `space` and `quote` stand for `20`<sub>h</sub> and `22`<sub>h</sub> |
 | `arm` | the address the jump table sends the code to |
 | `parser` | the payload parser the arm calls, or `none` |
-| `bytes` | the whole code's length, `0x0F` and selector included |
+| `bytes` | the whole code's length, `0F`<sub>h</sub> and selector included |
 | `does` | what the arm does, with its addresses |
 | `st2e` to `npcdic` | the count in each text source, as in the table above |
 | `total` | the count over all sources and languages |

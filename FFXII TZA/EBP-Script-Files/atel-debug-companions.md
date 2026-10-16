@@ -33,10 +33,10 @@ last `\` or `/`. It then copies the extension over the characters after the last
 the end of either, or cuts the name at that `.` when the extension is null, and copies the result
 back over `path`.
 
-`003306E0` then sizes the names with `0032E400`, 14 calls that all pass kind `0xFF` (`00330E47` to
+`003306E0` then sizes the names with `0032E400`, 14 calls that all pass kind `FF`<sub>h</sub> (`00330E47` to
 `00330F71`).
 
-- `0032E400` compares the kind with `0xFF` before any lookup (`0032E404`) and returns -1
+- `0032E400` compares the kind with `FF`<sub>h</sub> before any lookup (`0032E404`) and returns -1
   (`0032E438`).
 - The first result is kept in `r15d` (`00330E58`); `00330F7D` jumps to the epilogue `003315E7` when
   it is not positive, and no branch before that point lands beyond it.
@@ -73,13 +73,13 @@ Offsets ascend; each message is a byte stream ending in `00` that opens with `0F
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `{u32 section; u32 table}[5]` | three used; slot 1's section is the name pool |  |
-| `2C` | `u32` | commandTable[16] | one per native command class |
-| `6C` | `u32` | n, u32 nameOffset[n] | source files, one per .sbn block |
+| `00`<sub>h</sub> | `{u32 section; u32 table}[5]` | three used; slot 1's section is the name pool |  |
+| `2C`<sub>h</sub> | `u32` | commandTable[16] | one per native command class |
+| `6C`<sub>h</sub> | `u32` | n, u32 nameOffset[n] | source files, one per .sbn block |
 
 All name offsets are relative to the pool. Slot 0's table is the module's declared variables
 (`{u32 count; u32 nameOffset[count]}`); slot 2's table is its global variables
-(`{u32 count; {u32 descriptor; u32 nameOffset}[count]}`, starting with `0x30000000` =
+(`{u32 count; {u32 descriptor; u32 nameOffset}[count]}`, starting with `30000000`<sub>h</sub> =
 `global_flag[0]`). Command table `k` is `{u32 count; u32 nameOffset[count]}`, and entry `i` names
 native command `(k << 12) + i`.
 
@@ -97,7 +97,7 @@ native command `(k << 12) + i`.
 | `.dbg` declared variables | 56, 92, 115, 127 |
 | `.dbg` global variables | 815, 4,950, 943, 4,953 |
 | `.dbg` command tables | class 0: 1,410 / 1,389 / 1,436 / 1,407; class 2: 207 / 203 / 211 / 207; class 3: 131 in all; class 7: 103 (none in `btlctrl`) |
-| command names | 7,297 of 7,303 match the shipped verb table; `0x20C8` and `0x20C9` are `debug_set_jfdemo_status` and `debug_get_jfdemo_status` in `ctrl`, `btlctrl` and `mapctrl` |
+| command names | 7,297 of 7,303 match the shipped verb table; `20C8`<sub>h</sub> and `20C9`<sub>h</sub> are `debug_set_jfdemo_status` and `debug_get_jfdemo_status` in `ctrl`, `btlctrl` and `mapctrl` |
 
 ## Modding notes
 

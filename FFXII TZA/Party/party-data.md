@@ -7,10 +7,10 @@ addresses: "02EBF190, 00233C10, 002370C0, 0030B6A0, 00320A40, 0031B9F0, 00327C40
 
 ## What it lists
 
-The party block is `0x7410` bytes inside the save image: buffer `02164280` + `0x4E68C`, which is payload
-`+0x4E48C` ([Save data](../Saving-Loading-And-Settings/save-data-fields.md)). `00233C10` points `02EBF190` at it when the
-pointer is empty and rebases the inventory class descriptors, and checks the magic `0x05071901` when it is set
-(`00233C25`-`00233C4D`). The reset `002370C0` clears all `0x7410` bytes, writes the magic, empties map 0's seats
+The party block is `7410`<sub>h</sub> bytes inside the save image: buffer `02164280` + `4E68C`<sub>h</sub>, which is payload
+`+4E48C`<sub>h</sub> ([Save data](../Saving-Loading-And-Settings/save-data-fields.md)). `00233C10` points `02EBF190` at it when the
+pointer is empty and rebases the inventory class descriptors, and checks the magic `05071901`<sub>h</sub> when it is set
+(`00233C25`-`00233C4D`). The reset `002370C0` clears all `7410`<sub>h</sub> bytes, writes the magic, empties map 0's seats
 and zeroes the walked distance (`002370CD`-`0023712E`).
 
 The block holds:

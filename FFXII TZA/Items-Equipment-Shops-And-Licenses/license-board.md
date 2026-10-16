@@ -22,7 +22,7 @@ differ and are not named by any table.
 
 `BattleStorage_InitializeWorkArrays` clears the twelve board slots at `02EBF1A0` and asks `00238260(k)` for
 each board *k* from 0 to 11 (`002369E5`-`00236A24`). When slot *k* is empty, `00238260` requests file index
-`0x47 + k` (`0023836A`-`0023837D`), so board *k* is `board_{k+1}.bin`; that board's callback stores the loaded
+`47h + k` (`0023836A`-`0023837D`), so board *k* is `board_{k+1}.bin`; that board's callback stores the loaded
 file's address in slot *k*, releasing a board already there with `003844F0` first (`00238390`-`002383AA` for
 board 0). No request for index 70 is made by the calls to the
 file request functions `00384420` and `003843F0`.
@@ -31,10 +31,10 @@ file request functions `00384420` and `003843F0`.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `u8[4]` | magic | "licd"; no code compares it |
-| `04` | `u16` | width | 24 on every board |
-| `06` | `u16` | height | 24 on every board |
-| `08` | `u16[576]` | cells | row-major, cell(col, row) = cells[row * width + col]; `0xFFFF` = no square |
+| `00`<sub>h</sub> | `u8[4]` | magic | "licd"; no code compares it |
+| `04`<sub>h</sub> | `u16` | width | 24 on every board |
+| `06`<sub>h</sub> | `u16` | height | 24 on every board |
+| `08`<sub>h</sub> | `u16[576]` | cells | row-major, cell(col, row) = cells[row * width + col]; `FFFF`<sub>h</sub> = no square |
 
 A cell holds a node number, 0-360, an index into the license node table: section 12 of `battle_pack.bin`, bound
 to `02EBF038` by the battle data binder (`00236D5C`-`00236D67`), 361 records of 24 bytes. The id check
@@ -43,7 +43,7 @@ buying a square does are on [Licenses](licenses.md).
 
 ### The readers
 
-Six functions read cells with the formula above, each returning `0xFFFF` for a column or row outside the board:
+Six functions read cells with the formula above, each returning `FFFF`<sub>h</sub> for a column or row outside the board:
 
 | Function | Sites |
 |---|---|
@@ -54,8 +54,8 @@ Six functions read cells with the formula above, each returning `0xFFFF` for a c
 | `0055F830` | `0055F8E7`-`0055F95A` |
 | `003FC900` | `003FC94E`-`003FC9B4` |
 
-The board view `0055B3F0` reads the width and height as bytes and keeps each plus one at `+0x559` and `+0x55A`
-(`0055B484`-`0055B4A2`). The board's title and description are text ids `0x3ED + board` and `0x838 + board`
+The board view `0055B3F0` reads the width and height as bytes and keeps each plus one at `+559`<sub>h</sub> and `+55A`<sub>h</sub>
+(`0055B484`-`0055B4A2`). The board's title and description are text ids `3EDh + board` and `838h + board`
 (`00556FE7`, `00557010`), rows 5-16 of `menu_command.bin` for the titles.
 
 ## Shipped data
@@ -93,7 +93,7 @@ the node records' own name words.
 
 ## Modding notes
 
-- A board is plain data: change a cell to move or add a square, `0xFFFF` to remove one. Every node number must
+- A board is plain data: change a cell to move or add a square, `FFFF`<sub>h</sub> to remove one. Every node number must
   stay below the node table's count, 361.
 - Edit the `in` and `ch` copies together; the `cn` and `kr` copies are never loaded.
 - The loader accepts any four bytes in place of `licd`.

@@ -7,35 +7,33 @@ addresses: "002FEF30, 0030FED0, 0030E360, 00300530, 0030C470"
 
 ## What it lists
 
-Every battle unit has a combat stats record at unit `+0x698`. Party records sit in the battle state block
-at `[02EBF190] + 8 + k * 0x1C8`; an enemy's record is the stats page of its spawn record. Byte `+0x05` says
+Every battle unit has a combat stats record at unit `+698`<sub>h</sub>. Party records sit in the battle state block
+at `[02EBF190] + 8 + k * 1C8h`; an enemy's record is the stats page of its spawn record. Byte `+05`<sub>h</sub> says
 which kind a record is, and several fields mean different things for the two kinds:
 
-- for a party record (kind 0), `+0x08`-`+0x20` hold the base values the stats are grown from;
+- for a party record (kind 0), `+08`<sub>h</sub>-`+20`<sub>h</sub> hold the base values the stats are grown from;
 - for an enemy record (kind 1), the same bytes hold signed adjustments added to the enemy's area table
   values ([Stats](stats.md)).
 
-The computed stats `+0x24`-`+0x44` are rewritten from these by `002FEF30`, and the augment layer `+0x78`
+The computed stats `+24`<sub>h</sub>-`+44`<sub>h</sub> are rewritten from these by `002FEF30`, and the augment layer `+78`<sub>h</sub>
 by `0030FED0` ([Augments](augments.md)).
 
 ## Columns
 
-`unit-stats-fields.tsv`, one row per field and owner. A field that means the same for both kinds has one row; a
-field that means different things has a party row and an enemy row at the same offset:
+`unit-stats-fields.tsv`, one row per field:
 
 | Column | Meaning |
 |---|---|
 | `offset` | the field's offset in the record |
-| `owner` | `both`, `party` (kind 0) or `enemy` (kind 1) |
-| `width_type` | its width and type for that owner |
+| `width_type` | its width and type; "or" separates the party and enemy readings |
 | `field` | a short name |
 | `meaning` | what the field holds, with the instruction that fixes it |
-| `writers`, `readers` | how many functions write or read the offset, and up to six of them with one site each; a party row and an enemy row at one offset share these |
+| `writers`, `readers` | how many functions write or read the field, and up to six of them with one site each |
 
 The writers and readers come from an access census of the record: every function that loads unit
-`+0x698` or the party array, followed through register copies and through calls that pass the record,
+`+698`<sub>h</sub> or the party array, followed through register copies and through calls that pass the record,
 three calls deep. A store counts for every field its width covers, so the word store at `0023AD8E`
-writes both `+0x04` and `+0x05`.
+writes both `+04`<sub>h</sub> and `+05`<sub>h</sub>.
 
 The census misses accesses through a computed base or index (the effect layers in `0030E130`, the
 License bits in `00323910` and `0030FED0`), records passed in a register it does not follow (the gambit
@@ -45,8 +43,8 @@ count of 0 means "none on the census routes".
 
 ## Related
 
-- [Stats](stats.md) - how `+0x24`-`+0x37` are computed.
+- [Stats](stats.md) - how `+24`<sub>h</sub>-`+37`<sub>h</sub> are computed.
 - [Augments](augments.md) - the augment layer, the immunity word and the clamps.
-- [Elements](elements.md) - the affinity bytes `+0x40`-`+0x44`.
-- [HP and KO](hp-and-ko.md) - current HP `+0x48`.
+- [Elements](elements.md) - the affinity bytes `+40`<sub>h</sub>-`+44`<sub>h</sub>.
+- [HP and KO](hp-and-ko.md) - current HP `+48`<sub>h</sub>.
 - [Action results](../Battle-Actions/action-results.md) - the applier that writes the enemy adjustments.

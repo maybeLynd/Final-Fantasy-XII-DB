@@ -17,15 +17,15 @@ A call's id is the instruction just before the verb call in the ff12-script list
 
 | Verb | Bank | Calls |
 |---|---|---:|
-| `setmapjumpgroupflag` `0x430` | Primary | 4,625 |
-| `releasemapjumpgroupflag` `0x431` | Primary | 4,610 |
-| `ismapjumpgroupflag` `0x432` | Primary | 3,667 |
-| `settalknpcname` `0x399` | Bank2048 | 57 |
-| `releasetalknpcname` `0x39A` | Bank2048 | 79 |
-| `istalknpcname` `0x39B` | Bank2048 | 1 |
-| `settreasureflag` `0x3F1` | Bank512, second half | 26 |
-| `releasetreasureflag` `0x3F2` | Bank512, second half | 7 |
-| `istreasureflag` `0x3F5` | Bank512, second half | 26 |
+| `setmapjumpgroupflag` `430`<sub>h</sub> | Primary | 4,625 |
+| `releasemapjumpgroupflag` `431`<sub>h</sub> | Primary | 4,610 |
+| `ismapjumpgroupflag` `432`<sub>h</sub> | Primary | 3,667 |
+| `settalknpcname` `399`<sub>h</sub> | Bank2048 | 57 |
+| `releasetalknpcname` `39A`<sub>h</sub> | Bank2048 | 79 |
+| `istalknpcname` `39B`<sub>h</sub> | Bank2048 | 1 |
+| `settreasureflag` `3F1`<sub>h</sub> | Bank512, second half | 26 |
+| `releasetreasureflag` `3F2`<sub>h</sub> | Bank512, second half | 7 |
+| `istreasureflag` `3F5`<sub>h</sub> | Bank512, second half | 26 |
 
 No script calls `setnaviicon`, `clearnaviicon`, `isnaviicon`, the three treasure-battle verbs or the six airship
 verbs `setshutoralappear` to `isshutoralenable`.
@@ -38,15 +38,15 @@ Nine calls have a computed id:
 
 ### What the ids show
 
-- Primary: 328 flag ids, from `0x2` to `0x166`, and the two schedule ids below. 250 of the flag ids are set but never
+- Primary: 328 flag ids, from `2`<sub>h</sub> to `166`<sub>h</sub>, and the two schedule ids below. 250 of the flag ids are set but never
   tested by a script; the game's own readers of the gate `0032A8A0` are listed on [Story flags](story-flags.md).
-- The schedule ids `0x4022` and `0x402A` are tested only. They read story schedule records `0x22`, true from story
-  counter 5,150, and `0x2A`, true from 1,540, through `00377970`.
-- Bank2048: 58 name ids, 23 of them named only by the developer menus; the one test is id `0xF0` in `sav_b01`.
-- Bank512, second half: 26 ids, `0x0`-`0x21`, each set once and tested once by shipping scripts; the seven releases
+- The schedule ids `4022`<sub>h</sub> and `402A`<sub>h</sub> are tested only. They read story schedule records `22`<sub>h</sub>, true from story
+  counter 5,150, and `2A`<sub>h</sub>, true from 1,540, through `00377970`.
+- Bank2048: 58 name ids, 23 of them named only by the developer menus; the one test is id `F0`<sub>h</sub> in `sav_b01`.
+- Bank512, second half: 26 ids, `0`<sub>h</sub>-`21`<sub>h</sub>, each set once and tested once by shipping scripts; the seven releases
   are in the developer scripts.
-- Seven ids of the new-game list `mapjumpgroupinit.bin` appear in no script: 0, `0x56`, `0x65`, `0x66`, `0x10B`,
-  `0x148` and `0x14B`.
+- Seven ids of the new-game list `mapjumpgroupinit.bin` appear in no script: 0, `56`<sub>h</sub>, `65`<sub>h</sub>, `66`<sub>h</sub>, `10B`<sub>h</sub>,
+  `148`<sub>h</sub> and `14B`<sub>h</sub>.
 
 ## Columns
 

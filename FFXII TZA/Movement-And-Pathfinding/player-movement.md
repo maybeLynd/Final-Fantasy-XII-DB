@@ -24,7 +24,7 @@ zeroes the result vector `022C7FD0` (w = 1.0), runs `0025A520(2)`, and hands one
 when manager slot 0 is active (`002671F0(0)`) and the handle is positive.
 
 The override exists for one debug verb: its only setter `003593A0(handle)` is called by
-`debug_setdebugpc` (`0x2032`, `0050D2F0`), which no shipped script calls, and the field-transition
+`debug_setdebugpc` (`2032`<sub>h</sub>, `0050D2F0`), which no shipped script calls, and the field-transition
 reset `003590E0` (from `002695A0` and `0026DB30`) clears it with the controlled handle, the pending
 handle `022C7FE4`, the second handle `022C7FE8`, `022C7FF8`, the suppression word `022C8000` and
 the four lock bytes, and resets the camera basis (`004745B0(022C7FA0)`) and `022C7FF0`. In retail
@@ -53,7 +53,7 @@ stick from the input history (`0035EEB0(0, 2)` and `(0, 3)`): `x = byte2 - 128`,
 by `00358A20(m / 128)`.
 
 `00358A20(m)` is the magnitude-to-speed map. `walkRatio` is the controlled actor's walk value
-(`002E7E50(actor, 1)`, the character parameter `0x9000000`) divided by the run speed `00235EA0()`,
+(`002E7E50(actor, 1)`, the character parameter `9000000`<sub>h</sub>) divided by the run speed `00235EA0()`,
 times `[01DFE0BC]`; 0.5 without an actor. `m` is clamped to `[0, 1]` and walked through the band
 widths at `01EF9228`: 0.2, 0.7, 0.05 and 1.0 (`01EF9234`, rewritten to 1.0 on every call), with
 `t` the position inside the band; with the walk toggle `022C800C` set every iteration re-enters
@@ -69,15 +69,15 @@ band 1, so every magnitude yields `walkRatio`.
 The clamp and the widths, which sum to 1.95, put every magnitude in a band. `00235EA0()` is the run
 speed: while riding (`00303EC0()`
 non-zero) the chocobo definition's speed (`003045A0`: `003204E0(00263750(3), 1)`, doubled when the
-battle-state block's `+0x5AE0` has bit 1); otherwise the party leader's (`003272A0`) battle unit
-float `+0x17C`, or `5.0 / (30.0 * [01DFE0B8])` without a leader.
+battle-state block's `+5AE0`<sub>h</sub> has bit 1); otherwise the party leader's (`003272A0`) battle unit
+float `+17C`<sub>h</sub>, or `5.0 / (30.0 * [01DFE0B8])` without a leader.
 
 ### Camera-relative, and applied
 
 `00358CB0(handle)` runs only while every active manager has its three bytes `+4`-`+6` non-zero
 (`00265720`) and slot 0's skip flag (`00267330(0)`, byte `+0` bit 7) is clear. With the actor
-(`003588B0`) and its body placement (`00265970`, the body's `+0x30`) it stores the placement's
-`+0x98` (the body's `+0xC8`) `= [01DFE0B8] * 30 * 3.6 * 00235EA0()`, builds the stick vector, and
+(`003588B0`) and its body placement (`00265970`, the body's `+30`<sub>h</sub>) it stores the placement's
+`+98`<sub>h</sub> (the body's `+C8`<sub>h</sub>) `= [01DFE0B8] * 30 * 3.6 * 00235EA0()`, builds the stick vector, and
 rotates it into camera space with `004742A0(022C7FA0, 022C7FD0, v, placement)`.
 
 The rotation keeps a camera basis at `022C7FA0`: a vector shorter than 0.01 zeroes the output and
@@ -86,16 +86,16 @@ from the cached yaw `+8` also marks it stale, and a stale basis is rebuilt from 
 `02AEDF30 + 16 k` (`k` from `00D22690`, y zeroed, normalised).
 
 The output is `(row0.x v.x - row1.x
-v.z, 0, row0.z v.x - row1.z v.z)` normalised and scaled by `|v| * placement +0x98 / ([01DFE0B8] * 30 *
-3.6)`, which is `|v|` times the run speed; `+0xC` follows the output's bearing by at most 0.25 per
+v.z, 0, row0.z v.x - row1.z v.z)` normalised and scaled by `|v| * placement +98h / ([01DFE0B8] * 30 *
+3.6)`, which is `|v|` times the run speed; `+C`<sub>h</sub> follows the output's bearing by at most 0.25 per
 call and its negative goes to `out.w`.
 
 Then `speed = |022C7FD0|`, forced to 0 when the stick is not live (`00265680`: slot 0 active,
 `02098E21` bit 0 and `02098E20` bit 7 clear, every active manager's byte `+7` bits 0-1 set,
 `002E0540()` = 0 and `00265720()`) or the suppression word `022C8000` is non-zero; `yaw =
 atan2(x, z)`. The vector, speed and yaw are computed on every call, so `022C7FD0` is refreshed
-for a locked actor too; only an actor that accepts input (`00264DF0`: byte `+0x13` bit 0 clear and
-`+0x10C` zero) gets the applications, with `lock` the OR of the four bytes `022C8004`-`022C8007`:
+for a locked actor too; only an actor that accepts input (`00264DF0`: byte `+13`<sub>h</sub> bit 0 clear and
+`+10C`<sub>h</sub> zero) gets the applications, with `lock` the OR of the four bytes `022C8004`-`022C8007`:
 
 1. unless `lock` bit 0: `002EC5B0(actor, 0)`, the speed `0026D810(actor, speed)`, and `00317E60()`
    when the speed is positive;
@@ -103,13 +103,13 @@ for a locked actor too; only an actor that accepts input (`00264DF0`: byte `+0x1
    bit 1, the facing: toward the render record's turn target when `002E9B60` names one
    (`003EC040(id, yaw, 2)`), else from the current facing toward `yaw` by at most `pi/8`
    (`003A1AD0(facing, yaw, 0.3927)`), through `0026B5A0`; and, unless `lock` bit 2, the desired
-   heading `0026A0D0(actor, yaw)`, wrapped into the context's `+0xA4`;
+   heading `0026A0D0(actor, yaw)`, wrapped into the context's `+A4`<sub>h</sub>;
 3. the animation mode `002681D0(actor)`.
 
-`0026D810(actor, speed)` (class 3 only) writes the steering request's `+0x24` and the context's
-`+0xD0`, the body's animation rate `+0xC8 = [01DFE0B8] * 30 * 3.6 * speed`, and rebuilds the
-motion-flag word: the body's `+0x110` (`002E9BB0`) with bit 2 cleared, then for a party row (actor
-`+0x12` below 4) bit 2 set when the speed is 0, or bit 10 when the actor is the party focus
+`0026D810(actor, speed)` (class 3 only) writes the steering request's `+24`<sub>h</sub> and the context's
+`+D0`<sub>h</sub>, the body's animation rate `+C8h = [01DFE0B8] * 30 * 3.6 * speed`, and rebuilds the
+motion-flag word: the body's `+110`<sub>h</sub> (`002E9BB0`) with bit 2 cleared, then for a party row (actor
+`+12`<sub>h</sub> below 4) bit 2 set when the speed is 0, or bit 10 when the actor is the party focus
 (`003590D0` → `003588B0`); `002EC5B0` stores the word.
 
 Bit 2 is stopped, bit 3 no scripted speed,
@@ -117,17 +117,17 @@ bit 10 the focus actor moving; the cell registration reads the mask ([movement
 bodies](movement-bodies-and-separation.md)).
 
 `00317E60()`: with `02089340` bit 4, the focus actor's battle unit (`00263E30`) whose flag bit 3 is
-set gets flag bit 32 and its locomotion block reset (`0033C9B0(unit + 0x80)`); then `0025AAD0(1)`.
+set gets flag bit 32 and its locomotion block reset (`0033C9B0(unit + 80h)`); then `0025AAD0(1)`.
 
 ### The animation mode word
 
 `002681D0(actor)` (the null-checked entry; its body is `002681E0`), for a class-3 actor with a
 controller, picks a mode from the controller's byte
-`+0x152` and writes it to the body's `+0x80` (u16) and the controller's `+0x153`:
+`+152`<sub>h</sub> and writes it to the body's `+80`<sub>h</sub> (u16) and the controller's `+153`<sub>h</sub>:
 
-| `+0x152` | Mode |
+| `+152`<sub>h</sub> | Mode |
 |---|---|
-| 0, the focus actor | 0, or 1 with actor `+0x0C` bit 4 and a live stick; 1 when `002672B0()` is 0; 5 while riding (`00303EC0`) |
+| 0, the focus actor | 0, or 1 with actor `+0C`<sub>h</sub> bit 4 and a live stick; 1 when `002672B0()` is 0; 5 while riding (`00303EC0`) |
 | 0, any other actor | 1 |
 | 2 | 3 |
 | 3 | 5 |
@@ -141,7 +141,7 @@ active, `0025A620(0)` and `00358F90(override, 0, p)`; otherwise `00358F90(022C7F
 handle.
 
 `00358F90` for a class-3 actor with `p` = 0, a live stick, a valid render entry and actor
-`+0x0C` bit 4 clear measures the frame's displacement between the context's `+0x00` and `+0x10`
+`+0C`<sub>h</sub> bit 4 clear measures the frame's displacement between the context's `+00`<sub>h</sub> and `+10`<sub>h</sub>
 (`003A1920`), keeps `max(002640E0(actor), d / [01DFE0BC])` at `022C7FF0` (the previous value at
 `022C7FF4`) and calls `00317230(d)` for a positive `d`; it then runs `0025A180(actor, slot)`,
 `0025A520(2)` and `0025A500(2)`.
@@ -152,15 +152,15 @@ Three things stop the controlled character, and every setter stops it at once (`
 is `0026D6F0(actor, 0, 2)`) when the result holds:
 
 - the suppression word `022C8000`, a bit set edited by `00359200(on, bit)`: bit 0 by the verb
-  `setuclockstatus` (`0x3C0`, `00347E00`), bit 1 by the lock evaluator below, bit 2 by the group
+  `setuclockstatus` (`3C0`<sub>h</sub>, `00347E00`), bit 1 by the lock evaluator below, bit 2 by the group
   completion `00307140`, and bits from the manager unload `002628B0` and bind `0026C8C0`; any set
   bit forces the speed to 0;
 - the four lock bytes `022C8004`-`022C8007`: `00359250(bit, on)` edits byte 0 (verb
-  `setucpcmovelockstatus`, `0x3E1`, `0034E580`), `003592C0(bit, on)` byte 1 (the evaluator and the
-  verb `debug_TkRequireUCPCMoveLockStatus`, `0x2084`, `0050D2B0`), `00359330(index, bit, on)` any
+  `setucpcmovelockstatus`, `3E1`<sub>h</sub>, `0034E580`), `003592C0(bit, on)` byte 1 (the evaluator and the
+  verb `debug_TkRequireUCPCMoveLockStatus`, `2084`<sub>h</sub>, `0050D2B0`), `00359330(index, bit, on)` any
   byte (`00307140`: byte 2 bit 1); the OR's bit 0 blocks the speed, bit 1 the facing, bit 2 the
   desired heading, and the setters stop the character when the OR has bit 0;
-- the actor's own gate `00264DF0`, which scripts and scenes hold through `+0x13` bit 0 and `+0x10C`.
+- the actor's own gate `00264DF0`, which scripts and scenes hold through `+13`<sub>h</sub> bit 0 and `+10C`<sub>h</sub>.
 
 The evaluator `0023B040`, from the field frame (`00234533`, `002346E5`) and three battle sites
 (`0030108F`, `003010C0`, `00301123`), starts a mask as all ones when `02089340` has bit 6, else 0,
@@ -168,12 +168,12 @@ and derives it from the leader's unit only while not riding (`00303EC0`), not in
 (`00377C20`) and with a leader unit (`003272A0`); riding, the cutscene bit or no leader leave the
 start value, which then clears the evaluator's locks.
 
-Inside the derivation every bit is set by: no `+0x698` record, or its status words `+0x3C | +0x64`
-holding `0x80000003` without `00377C20`; `02089340` bits 9 or 10; unit qword bit 46; `00322600`
-on `002E8100(unit + 8)` or the unit's `+0x5C`; byte `+0x6B7`; or, in mode `003135C0`, the unit of
+Inside the derivation every bit is set by: no `+698`<sub>h</sub> record, or its status words `+3Ch | +64h`
+holding `80000003`<sub>h</sub> without `00377C20`; `02089340` bits 9 or 10; unit qword bit 46; `00322600`
+on `002E8100(unit + 8)` or the unit's `+5C`<sub>h</sub>; byte `+6B7`<sub>h</sub>; or, in mode `003135C0`, the unit of
 `003137F0()` lacking a record or holding those status bits. Bit 1 is set by `00322920` on the same
-two values, unit bit 24, or an action `+0x714` below `0x21F` with `+0x6B4` above 8. The status
-words set bits 0 and 2 under `0x8800403B` and bit 1 under `0x8800003B`.
+two values, unit bit 24, or an action `+714`<sub>h</sub> below `21F`<sub>h</sub> with `+6B4`<sub>h</sub> above 8. The status
+words set bits 0 and 2 under `8800403B`<sub>h</sub> and bit 1 under `8800003B`<sub>h</sub>.
 
 The tail writes lock byte 1 bit 1 (the facing lock) from mask bit 2, suppression bit 1 (the speed)
 from mask bit 0, and the byte `0209A2C5` (`0026BD40`, read by `00265460` and `0026DFB0`, also
@@ -227,7 +227,7 @@ lock bytes, the walk toggle and its latch; the context's speed and desired headi
 - The engine applies stick movement to exactly one handle per tick; the four calls it makes
   (`0026D810`, `0026B5A0`, `0026A0D0`, `002681D0`) are the native way to move any class-3 body the
   way the stick moves the leader, and `002681D0` gives a non-focus body mode 1.
-- Scripts and scenes stop the stick through the actor's `+0x13` bit 0 and `+0x10C`; a body driven by
+- Scripts and scenes stop the stick through the actor's `+13`<sub>h</sub> bit 0 and `+10C`<sub>h</sub>; a body driven by
   the four calls directly bypasses that gate and must honour it itself.
 - The bands are read from `.data` on every call; a run-time edit of `01EF9228` changes the walk
   threshold, but `01EF9234` is rewritten to 1.0 each time.

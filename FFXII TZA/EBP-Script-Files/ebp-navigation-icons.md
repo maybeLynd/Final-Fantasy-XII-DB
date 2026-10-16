@@ -30,20 +30,20 @@ section start, as `003DFCC0` and `003DFBE0` read them:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `char[8]` | magic | "NAVIICN2"; byte +7 must be '2' or above (`0x32`) |
-| `08` | `u16` | kinds | kinds present; a kind k is read only when 1 <= k <= 9 and k < kinds |
-| `0A` | `+ 4k` | u16 | offset     kind k's entries, from the section start |
-| `0C` | `+ 4k` | u16 | count      kind k's entry count |
+| `00`<sub>h</sub> | `char[8]` | magic | "NAVIICN2"; byte +7 must be '2' or above (`32`<sub>h</sub>) |
+| `08`<sub>h</sub> | `u16` | kinds | kinds present; a kind k is read only when 1 <= k <= 9 and k < kinds |
+| `0A`<sub>h</sub> | `+ 4k` | u16 | offset     kind k's entries, from the section start |
+| `0C`<sub>h</sub> | `+ 4k` | u16 | count      kind k's entry count |
 
 Entry (16 bytes):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `i16[2]` | from | read only by setposbynaviicon (low bytes) |
-| `04` | `i16[2]` | at | not read for section 4 |
-| `08` | `i16` | icon | icon number; a negative icon is refused |
-| `0A` | `i16` | gate | story gate (`0032A8A0`); 0 always passes, 1 never shows |
-| `0C` | `u8[4]` | - | not read |
+| `00`<sub>h</sub> | `i16[2]` | from | read only by setposbynaviicon (low bytes) |
+| `04`<sub>h</sub> | `i16[2]` | at | not read for section 4 |
+| `08`<sub>h</sub> | `i16` | icon | icon number; a negative icon is refused |
+| `0A`<sub>h</sub> | `i16` | gate | story gate (`0032A8A0`); 0 always passes, 1 never shows |
+| `0C`<sub>h</sub> | `u8[4]` | - | not read |
 
 ## Shipped data
 
@@ -66,7 +66,7 @@ Entry (16 bytes):
 - `003DFCC0(kind)` returns kind `kind`'s count, or 0 when the global is null, byte `+7` is below
   `'2'`, or the kind is 0, above 9 or not below `kinds` (`003DFCCC`-`003DFCE9`).
 - `003DFBE0(kind, i, out)` stores the object `003DFDD0(kind, i)` resolves at `out`, applies the same
-  tests plus `i < count`, and stores the entry's address at `out + 0x10` (`003DFC7D`). It returns 1
+  tests plus `i < count`, and stores the entry's address at `out + 10h` (`003DFC7D`). It returns 1
   only when the icon is not negative, an object was found, and `0032A8A0(gate)` passes
   (`003DFC81`-`003DFC9C`).
 
@@ -86,8 +86,8 @@ location map's accessors; they never read `02B59D58`.
 | 4, 7, 9 | none | nothing, so `003DFBE0` refuses every entry |
 
 The lists are the per-class tables of manager 0's bound script image, found through its header
-`+0x70` (`00264AE0`). `002649B0(class, i)` returns `table + 0x10 + i * 0x20`, or null when `i` is
-not below the count at `+0`; for classes 0 and 1 it also returns null when the byte at `table + 0x2C + i * 0x20`
+`+70`<sub>h</sub> (`00264AE0`). `002649B0(class, i)` returns `table + 10h + i * 20h`, or null when `i` is
+not below the count at `+0`; for classes 0 and 1 it also returns null when the byte at `table + 2Ch + i * 20h`
 lacks the bit numbered by `00377860()`.
 
 ### The minimap
@@ -100,7 +100,7 @@ lacks the bit numbered by `00377860()`.
    flag that would keep it);
 3. adds it only when its gate is not 1, its icon is not 0, and its gate is 0 or `0032A8A0(gate)`
    passes;
-4. takes the icon number from the low byte of `+0x08` and the position from the first and third
+4. takes the icon number from the low byte of `+08`<sub>h</sub> and the position from the first and third
    words of the resolved object, not from the entry's own coordinates.
 
 So kinds 6 and 9 never reach the minimap, and kind 4 entries resolve to nothing. How the
@@ -108,9 +108,9 @@ minimap draws the list is on [map screens](../Menus-And-HUD/map-screens.md).
 
 ### `setposbynaviicon`
 
-`setposbynaviicon` (`0x30D`, `00352430`) pops an entry number and a kind and calls `003DFBE0`.
-When the entry exists it sets the actor's byte `+0x0F` to the icon's low byte with bit 6 set and
-copies the low bytes of `from` x and y to `+0x21` and `+0x22`. When the object exists it pushes
+`setposbynaviicon` (`30D`<sub>h</sub>, `00352430`) pops an entry number and a kind and calls `003DFBE0`.
+When the entry exists it sets the actor's byte `+0F`<sub>h</sub> to the icon's low byte with bit 6 set and
+copies the low bytes of `from` x and y to `+21`<sub>h</sub> and `+22`<sub>h</sub>. When the object exists it pushes
 the object's four words and runs `setpos2_20d` (`00350C30`), placing the actor at the object.
 
 ## Modding notes

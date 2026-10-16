@@ -1,5 +1,5 @@
 ---
-title: "LGT2 light sets: the 0x70-byte light records and chunk tables of an event script's lighting, how they are bound into a light group and how the renderer picks them"
+title: "LGT2 light sets: the 70ₕ-byte light records and chunk tables of an event script's lighting, how they are bound into a light group and how the renderer picks them"
 kind: "format"
 category: "EBP script files"
 addresses: "0037AA90, 02EBF420, 01EF94E4, 01EF94E0, 00330110, 0032F1B0, 0037B230, 0037A9B0, 0037AD40, 0037A5B0, 0037A450, 003ACC10, 003DEA00, 003DEA10, 0037B030, 0037B0F0, 0037B190, 003DE9A0, 0037A880, 0037A7F0, 003E8A40"
@@ -37,21 +37,21 @@ Light record, as its readers use it:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `02` | `u8` | kind | 1 interpolate, 2 curves, other values static |
-| `03` | `u8` | state | bit `0x1` off, bit `0x2` animated, bit `0x4` loop the clock |
-| `04` | `i16[4]` | kind 1: three start values; kind 2: four curve indices into the type-5 table |  |
-| `18` | `i16[3] / f32` | kind 1: three end values; kind 2: f32 duration at +0x18 |  |
-| `1C` | `f32` | kind 2: the clock |  |
-| `20` | `request` | the 0x50 bytes handed to the renderer |  |
-| `20` | `u8` | lightKind 6 is folded into the object's colour; any other kind is passed on in the light list |  |
-| `21` | `u8` | priority | 0 to 5 remapped at bind; the highest kind-6 light becomes the object's key light |
-| `22` | `u8` | 5 on a kind-6 light makes +0x30..+0x38 multipliers |  |
-| `23` | `u8` | filter | 1 with +`0x24` = 2: +`0x28` must equal the object's id; 3: +`0x28` is a mask (+`0x24` 7 include, 6 exclude) |
-| `24` | `u8` | test |  |
-| `25` | `u8` | bit 0x10 exempts the light from the object's blend |  |
-| `27` | `u8` | flags | bit `0x1` not added to the summed colour; bits 2 to 7 an exclusion mask (bit `0x20` set on group 0) |
-| `28` | `u32` | id | the value the filter tests |
-| `30` | `f32[4]` | values written by kind 1 and kind 2 animation |  |
+| `02`<sub>h</sub> | `u8` | kind | 1 interpolate, 2 curves, other values static |
+| `03`<sub>h</sub> | `u8` | state | bit `1`<sub>h</sub> off, bit `2`<sub>h</sub> animated, bit `4`<sub>h</sub> loop the clock |
+| `04`<sub>h</sub> | `i16[4]` | kind 1: three start values; kind 2: four curve indices into the type-5 table |  |
+| `18`<sub>h</sub> | `i16[3] / f32` | kind 1: three end values; kind 2: f32 duration at `+18`<sub>h</sub> |  |
+| `1C`<sub>h</sub> | `f32` | kind 2: the clock |  |
+| `20`<sub>h</sub> | `request` | the `50`<sub>h</sub> bytes handed to the renderer |  |
+| `20`<sub>h</sub> | `u8` | lightKind 6 is folded into the object's colour; any other kind is passed on in the light list |  |
+| `21`<sub>h</sub> | `u8` | priority | 0 to 5 remapped at bind; the highest kind-6 light becomes the object's key light |
+| `22`<sub>h</sub> | `u8` | 5 on a kind-6 light makes `+30`<sub>h</sub>..`+38`<sub>h</sub> multipliers |  |
+| `23`<sub>h</sub> | `u8` | filter | 1 with +`24`<sub>h</sub> = 2: +`28`<sub>h</sub> must equal the object's id; 3: +`28`<sub>h</sub> is a mask (+`24`<sub>h</sub> 7 include, 6 exclude) |
+| `24`<sub>h</sub> | `u8` | test |  |
+| `25`<sub>h</sub> | `u8` | bit `10`<sub>h</sub> exempts the light from the object's blend |  |
+| `27`<sub>h</sub> | `u8` | flags | bit `1`<sub>h</sub> not added to the summed colour; bits 2 to 7 an exclusion mask (bit `20`<sub>h</sub> set on group 0) |
+| `28`<sub>h</sub> | `u32` | id | the value the filter tests |
+| `30`<sub>h</sub> | `f32[4]` | values written by kind 1 and kind 2 animation |  |
 
 Chunks, by type:
 
@@ -76,13 +76,13 @@ Measured over all 10,036 EBP2 containers in the nine language trees.
 | containers with section 14 | 1,260, 140 per language, all event scripts; each also carries sections 8 and 9 |
 | languages | the 140 light sets are byte-identical in all nine trees |
 | section length | 64 to 34,304 bytes, median 3,680 |
-| `listOffset` | `0x10 + 0x70 × lightCount` in every file |
-| header | `+0x06` and `+0x0C` 0 in all; `+0x08` 1 (1,251) or 2 (9) |
+| `listOffset` | `10h + 70h × lightCount` in every file |
+| header | `+06`<sub>h</sub> and `+0C`<sub>h</sub> 0 in all; `+08`<sub>h</sub> 1 (1,251) or 2 (9) |
 | `lightCount` | 0 to 287, median 30; 51,723 records |
 | chunks per file | 4 (1,233), 5 (18), 3 (9); every chain ends inside the section |
 | chunk types | 3, 5 and 6 in all 1,260; 2 in 1,251; 0 in 18; never 1, 4 or 7 |
 | type 5 | `n` = 0 in every file |
-| type 2 | size `0x10 + 8n` in all; record ranges in bounds; status byte 0 (14,742) or 1 (135); 135 lists contain cut 0 |
+| type 2 | size `10h + 8n` in all; record ranges in bounds; status byte 0 (14,742) or 1 (135); 135 lists contain cut 0 |
 | type 3 and 6 | every index in bounds; equal counts in 1,089 files |
 | record `kind` | 0 in all 51,723; `state` 2 (51,606) or 6 (117) |
 | request `lightKind` | 1 (38,754), 6 (8,271), 2 (4,626), 4 (72) |
@@ -97,43 +97,43 @@ Measured over all 10,036 EBP2 containers in the nine language trees.
 `0037AA90(section, group)`:
 
 1. returns at once for a group above 4 (`0037AA9E`);
-2. on a magic mismatch jumps straight to setting the group's ready byte `+0x4C` (`0037AAC5` →
+2. on a magic mismatch jumps straight to setting the group's ready byte `+4C`<sub>h</sub> (`0037AAC5` →
    `0037AC69`);
-3. otherwise resets the group with `0037B230` (pointers `+0x00` to `+0x38` zeroed, `+0x40` to `+0x48`
-   set to 1.0, `+0x4C` cleared), stores the section at `+0x00`, and walks the chain from `+0x04` (a `u16`,
-   `0037AAE7`) through the jump table at `0037AC7C`: type 0 to `+0x08`, 1 to `+0x10`, 2 to `+0x18`,
-   3 to `+0x20`, 6 to `+0x28`, 7 to `+0x30`, type 5's `+0x08` to `+0x38`; type 4 and types above 7 are
+3. otherwise resets the group with `0037B230` (pointers `+00`<sub>h</sub> to `+38`<sub>h</sub> zeroed, `+40`<sub>h</sub> to `+48`<sub>h</sub>
+   set to 1.0, `+4C`<sub>h</sub> cleared), stores the section at `+00`<sub>h</sub>, and walks the chain from `+04`<sub>h</sub> (a `u16`,
+   `0037AAE7`) through the jump table at `0037AC7C`: type 0 to `+08`<sub>h</sub>, 1 to `+10`<sub>h</sub>, 2 to `+18`<sub>h</sub>,
+   3 to `+20`<sub>h</sub>, 6 to `+28`<sub>h</sub>, 7 to `+30`<sub>h</sub>, type 5's `+08`<sub>h</sub> to `+38`<sub>h</sub>; type 4 and types above 7 are
    skipped by their size;
 4. for type 2, when `01EF94E0` is non-zero, clears every entry's status and turns cut 0 on
    (`0037A9B0(group, 0)`);
 5. for type 5, replaces each `slot[i]` with the encoded address of sub-entry `i` (`0020E620`);
-6. replaces each record's `+0x21` below 6 with `01EF94E4[value]` (`0037AC20`): the table holds
-   `0x20, 0x40, 0x60, 0x80, 0xA0, 0xC0`; values of 6 and above stay;
-7. on group 0 only, ORs `0x20` into each record's `+0x27` (`0037AC50`);
-8. sets `+0x4C` to 1.
+6. replaces each record's `+21`<sub>h</sub> below 6 with `01EF94E4[value]` (`0037AC20`): the table holds
+   `20`<sub>h</sub>, `40`<sub>h</sub>, `60`<sub>h</sub>, `80`<sub>h</sub>, `A0`<sub>h</sub>, `C0`<sub>h</sub>; values of 6 and above stay;
+7. on group 0 only, ORs `20`<sub>h</sub> into each record's `+27`<sub>h</sub> (`0037AC50`);
+8. sets `+4C`<sub>h</sub> to 1.
 
 `01EF94E0` is 1 in the image and is set only by `0037AA80`, the debug verb `debug_lightdatamustinit`
 (`0050D340`). Every pointer refers into the loaded file, and steps 4 to 7 rewrite that file in memory.
 
 On the container route the finaliser resets the group (`0032F1D4`) and clears its ready byte
 (`003DE920(group, 0)` → `0037ACA0`) before the bind, sets it again after (`003DE920(group, 1)` →
-`0037ACD0`, which sets `+0x4C` only when `+0x00` is non-null), and stores the first cut id plus 1 at
-manager record `+0x1FC` (`0037B290`). A section with a bad magic therefore leaves a ready group with
+`0037ACD0`, which sets `+4C`<sub>h</sub> only when `+00`<sub>h</sub> is non-null), and stores the first cut id plus 1 at
+manager record `+1FC`<sub>h</sub> (`0037B290`). A section with a bad magic therefore leaves a ready group with
 no chunks, which lights nothing.
 
 ### Which records are lit
 
-The collector `0037AD40` runs over the five groups and skips any whose `+0x4C` is 0. For each it
-adds every record whose state bit `0x1` is clear, first running `0037A5B0` on it, and lists the
-record's request (`record + 0x20`):
+The collector `0037AD40` runs over the five groups and skips any whose `+4C`<sub>h</sub> is 0. For each it
+adds every record whose state bit `1`<sub>h</sub> is clear, first running `0037A5B0` on it, and lists the
+record's request (`record + 20h`):
 
 - the type-0 range, when present;
 - otherwise the type-7 set for the selector `02EBF408` (written by `00379860`);
 - then the range of every type-2 cut whose status is non-zero.
 
 The list starts with a default request at `02ADD8E0`. Each frame the collector first copies group 0's
-`+0x40` to `+0x48` (1.0 after a reset) into that request at `02ADD8F0` to `02ADD8F8`. When a group
-has a type-1 chunk (`+0x10`), the collector calls `00265020` for it each frame and discards the
+`+40`<sub>h</sub> to `+48`<sub>h</sub> (1.0 after a reset) into that request at `02ADD8F0` to `02ADD8F8`. When a group
+has a type-1 chunk (`+10`<sub>h</sub>), the collector calls `00265020` for it each frame and discards the
 results; no shipped file has one.
 
 The collector writes every listed request into the array at `02EBF5C0` and applies the 128 cap only
@@ -144,17 +144,17 @@ type-0 range of 3) and 204 in `bhm_c0102`.
 
 The object light pass
 `003ACC10` reaches the collector when it meets a kind-7 request. For each listed request it skips the
-light when `(02B3F520 | 02B3F501) & (+0x27 >> 2)` is non-zero, applies the `+0x23`/`+0x24` filter,
-folds kind-6 lights into the object's colour (choosing the key light by `+0x21`, then by strength)
+light when `(02B3F520 | 02B3F501) & (+27h >> 2)` is non-zero, applies the `+23`<sub>h</sub>/`+24`<sub>h</sub> filter,
+folds kind-6 lights into the object's colour (choosing the key light by `+21`<sub>h</sub>, then by strength)
 and passes every other kind on.
 
 ### Animation
 
-`0037A5B0` acts on records with state bit `0x2`: kind 1 interpolates the three start and end values
-by the current fraction (`00466BF0`) into `+0x30` to `+0x38`, scaled by 1/128; kind 2 evaluates the
-four type-5 curves (`003CC5F0`) and clamps each result to -1..1 into `+0x30` to `+0x3C`. Each frame
-`0037A450` advances a kind-2 clock `+0x1C` by `01DFE0BC` and, past the duration `+0x18`, wraps it to
-0 (state bit `0x4`) or holds it at the duration.
+`0037A5B0` acts on records with state bit `2`<sub>h</sub>: kind 1 interpolates the three start and end values
+by the current fraction (`00466BF0`) into `+30`<sub>h</sub> to `+38`<sub>h</sub>, scaled by 1/128; kind 2 evaluates the
+four type-5 curves (`003CC5F0`) and clamps each result to -1..1 into `+30`<sub>h</sub> to `+3C`<sub>h</sub>. Each frame
+`0037A450` advances a kind-2 clock `+1C`<sub>h</sub> by `01DFE0BC` and, past the duration `+18`<sub>h</sub>, wraps it to
+0 (state bit `4`<sub>h</sub>) or holds it at the duration.
 
 ### Script and map control
 
@@ -162,24 +162,24 @@ four type-5 curves (`003CC5F0`) and clamps each result to -1..1 into `+0x30` to 
 |---|---|
 | `setlightcutstatus` (`00351210`), `setlightcutstatus_21c` (`00351D90`) | `003DEA00`: a cut's status on (`0037A9B0`) or off (`0037A910`) |
 | `setlightallcutstatus` (`00351850`) | `003DEA10`: every cut on (`0037AA00`) or off (`0037A960`) |
-| `setlightcutanimestatus` (`00352130`), `setlightcutanimestatus_21e` (`00352780`) | `003DE9A0(group, cut, status)`: state bit `0x2` set on every record of the cut's range (`0037A880`) or cleared (`0037A7F0`); the group is the caller's actor manager `+0x28` |
+| `setlightcutanimestatus` (`00352130`), `setlightcutanimestatus_21e` (`00352780`) | `003DE9A0(group, cut, status)`: state bit `2`<sub>h</sub> set on every record of the cut's range (`0037A880`) or cleared (`0037A7F0`); the group is the caller's actor manager `+28`<sub>h</sub> |
 | `003E8440`, `003E8690`, `003E8A10`, `003E8A70`, `003E8C50` | by id through types 6 and 3: off and on (`0037B0F0`, `0037B190`), animation start and stop (`0037A1D0`, `0037A130`), loop on and off (`0037A3B0`, `0037A310`), clock reset (`0037A270`, `0037A500`), finished test (`0037B030`) |
 
 Animation start and stop by id go through `003E8A40(id, start)`, which calls `0037A1D0(0, id)` when
 `start` is non-zero and `0037A130(0, id)` otherwise; `003E8440`, `003E85B0`, `003E8690` and
 `003E8C50` call it. Both look the id up in the type-6 table, map it through the type-3 table and set
-or clear state bit `0x2` of that one record in group 0. An id missing from the type-6 table selects
+or clear state bit `2`<sub>h</sub> of that one record in group 0. An id missing from the type-6 table selects
 entry 0 of the type-3 table.
 
 ## Modding notes
 
-- Keep `listOffset = 0x10 + 0x70 × lightCount` and end the chain with a zero size word; the loader
+- Keep `listOffset = 10h + 70h × lightCount` and end the chain with a zero size word; the loader
   trusts both and reads `listOffset` as 16 bits.
 - A light is lit only through a type-0 range, a type-2 cut that is on, or a type-7 set; a record no
   chunk covers never reaches the renderer.
 - Cut 0 is the one turned on at load. Other cuts start off unless a script turns them on.
-- Priority values 0 to 5 become `0x20` to `0xC0`; write 6 or more to set the byte directly.
-- Light sets in group 0 (the map pack's) get `+0x27` bit `0x20` added at bind; edit the other bits
+- Priority values 0 to 5 become `20`<sub>h</sub> to `C0`<sub>h</sub>; write 6 or more to set the byte directly.
+- Light sets in group 0 (the map pack's) get `+27`<sub>h</sub> bit `20`<sub>h</sub> added at bind; edit the other bits
   only.
 - The bytes in memory differ from the file after binding (priorities, flags, cut status, curve slots).
 
@@ -187,6 +187,6 @@ entry 0 of the type-3 table.
 
 - [EBP script container](ebp-script-container.md): the directory, the walker and the pending word.
 - [Map pack](../World-Areas-And-Travel/mpk-map-pack.md): the field light set in slot 17, bound into group 0.
-- [Actor managers](../Characters-And-Objects/actor-managers.md): the manager record and its `+0x1FC` field.
+- [Actor managers](../Characters-And-Objects/actor-managers.md): the manager record and its `+1FC`<sub>h</sub> field.
 - [Script verb table](../Scripts-And-Script-Commands/verb-table.md): the light verbs and their use counts.
 - [Resource arenas and relocation](../Game-Files-And-Data-Tables/resource-arena-and-relocation.md): the 32-bit address encoding the type-5 slots use.

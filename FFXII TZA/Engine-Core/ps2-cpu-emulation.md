@@ -99,7 +99,7 @@ translated per-model routines `0040EE70`, `0040F390`, `0040D890`, `0040ACF0` and
 `0036DD80` re-stores `(0, 0, 0, 1)` into `vf00` from the image constant and has 90 callers; a
 translated body calls it after every store that used `vf00` as an operand, before the constant
 is read again (`0025C830` does so four times, `00363FD0` three). `0036DD90` and `0036DDA0`
-set bits `0x80` and `0x40` of the byte `022D9470` (twelve callers each, `00361FF5`, `0040ADAE`,
+set bits `80`<sub>h</sub> and `40`<sub>h</sub> of the byte `022D9470` (twelve callers each, `00361FF5`, `0040ADAE`,
 `003A29A5` and their siblings); nothing reads that byte.
 
 ### Register save and restore

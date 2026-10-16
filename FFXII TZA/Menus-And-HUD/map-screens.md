@@ -19,9 +19,9 @@ addresses: "00253C70, 002B6350, 002B9D30, 003BC450, 003BC2D0, 003C18A0, 003C5910
 
 | Map | Shipped text | Code |
 |---|---|---|
-| World Map | `menu_command.bin` `0x4B7`, help `0xCCA` | main-menu entry `00281C36` |
-| location map | the phrase in `0xCCA`; opened by the control "Display Map" (`0x589`) | menu request `0x21` ([Menus](menus.md)) |
-| map overlay | toggled by the control "Map Transparency" (`0x586`); its layout keys are `TrackMap*` | `002B6220` |
+| World Map | `menu_command.bin` `4B7`<sub>h</sub>, help `CCA`<sub>h</sub> | main-menu entry `00281C36` |
+| location map | the phrase in `CCA`<sub>h</sub>; opened by the control "Display Map" (`589`<sub>h</sub>) | menu request `21`<sub>h</sub> ([Menus](menus.md)) |
+| map overlay | toggled by the control "Map Transparency" (`586`<sub>h</sub>); its layout keys are `TrackMap*` | `002B6220` |
 | minimap | the script verbs `shownavimap`, `hidenavimap`, `setnavimapindex` and others | widget `003C5910` |
 
 The two controls are rows 28 and 25 of the Controls screen (`002414B0`; [Control remapping](../Controls-And-Input/control-remapping.md)).
@@ -34,7 +34,7 @@ The input arbiter `00253C70` keeps the map state in `02092750`:
 2. State 3 opens the map overlay with `002B6220(1)` (`00253DE2`) when the field-time container is ready (`003CB3E0`),
    `02092754` is 0, the field has a map record (`003BFDF0`) and the story counter is at least 16
    (`00253DD1`-`00253DDA`).
-3. Display Map closes the overlay and posts menu request `0x21`, the location map (`00253EA4`-`00253EF2`). Leaving
+3. Display Map closes the overlay and posts menu request `21`<sub>h</sub>, the location map (`00253EA4`-`00253EF2`). Leaving
    the location map restores the overlay as it was (`002BBA2F`-`002BBA3C`).
 4. While the state is not 3, the overlay is closed every frame (`002B6260`, `00253C92`).
 
@@ -43,21 +43,21 @@ The location map also opens from `0028E630`, `0028E660` and `0028E690`, and the 
 
 ### The two-page container
 
-The overlay and the location map each have a container of 0x179E0 bytes, at `0209E5C0` (`002B6350`, procedure
-`002B7590`) and `0209E5F0` (`002B9D30`, procedure `002BA700`). Each holds two 0xBC08-byte pages in place, at `+0x1B0`
-and `+0xBDC0`, and flips between them:
+The overlay and the location map each have a container of `179E0`<sub>h</sub> bytes, at `0209E5C0` (`002B6350`, procedure
+`002B7590`) and `0209E5F0` (`002B9D30`, procedure `002BA700`). Each holds two `BC08`<sub>h</sub>-byte pages in place, at `+1B0`<sub>h</sub>
+and `+BDC0`<sub>h</sub>, and flips between them:
 
 1. The first call creates the container with no page (`002B638F`-`002B63D7`).
-2. A container message `0x20` sets its open request, bit 7 of `+0x179D2`.
+2. A container message `20`<sub>h</sub> sets its open request, bit 7 of `+179D2`<sub>h</sub>.
 3. The next frame's step builds a page in the other slot (`00245000`, `002B6474`), flips bit 2, attaches the page
-   and sends it `0x21` (`002B6526`-`002B6541`).
+   and sends it `21`<sub>h</sub> (`002B6526`-`002B6541`).
 
-A page posts messages to every ancestor up to the root through `00275440`, which follows the parent link `+0x10`
-that `00244960` sets; its container acts on `0x2B` when it has opened and `0x1F` when it is cancelled. The page procedures `002B7B80` and `002BAF80` answer
-the same 17 messages through their tables at `0x198EB0` and `0x19C28C` from the image base.
+A page posts messages to every ancestor up to the root through `00275440`, which follows the parent link `+10`<sub>h</sub>
+that `00244960` sets; its container acts on `2B`<sub>h</sub> when it has opened and `1F`<sub>h</sub> when it is cancelled. The page procedures `002B7B80` and `002BAF80` answer
+the same 17 messages through their tables at `198EB0`<sub>h</sub> and `19C28C`<sub>h</sub> from the image base.
 
-`002B6220` also copies the field-time container's resources into the overlay's `+0x190` and sends it `0x10` and
-`0x20` (`002B6570`).
+`002B6220` also copies the field-time container's resources into the overlay's `+190`<sub>h</sub> and sends it `10`<sub>h</sub> and
+`20`<sub>h</sub> (`002B6570`).
 
 ### The field-time container
 
@@ -68,14 +68,14 @@ which the overlay waits for. It is created from `00253A30` and the HUD-on step `
 
 ### Map resources
 
-`00404060` loads the 32-byte record every page reads at `+0x130`:
+`00404060` loads the 32-byte record every page reads at `+130`<sub>h</sub>:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `u32[2]` | back | LocaBack_c.tm2 (kind 7 `0xBA`) |
-| `08` | `u32[2]` | atlas | Loca_8_c.tm2 (`0xB9`) |
-| `10` | `u32[2]` | line | w_line01.tm2 (`0xB0`), the texture of the page's line quad |
-| `18` | `u32[2]` | mrp | Loca.mrp (`0xBF`) |
+| `00`<sub>h</sub> | `u32[2]` | back | LocaBack_c.tm2 (kind 7 `BA`<sub>h</sub>) |
+| `08`<sub>h</sub> | `u32[2]` | atlas | Loca_8_c.tm2 (`B9`<sub>h</sub>) |
+| `10`<sub>h</sub> | `u32[2]` | line | w_line01.tm2 (`B0`<sub>h</sub>), the texture of the page's line quad |
+| `18`<sub>h</sub> | `u32[2]` | mrp | Loca.mrp (`BF`<sub>h</sub>) |
 
 ### The map-data widget
 
@@ -83,13 +83,13 @@ which the overlay waits for. It is created from `00253A30` and the HUD-on step `
 
 | File (kind 7) | When |
 |---|---|
-| `menumap_world.bin` (`0xA2`) | `world` is set: only the World Map (`003BC440`, `005505E4`) |
-| `menumap_location.bin` (`0xA3`) | `location` is set: all three creators |
-| `menumap_common.bin` (`0xA4`) | always |
+| `menumap_world.bin` (`A2`<sub>h</sub>) | `world` is set: only the World Map (`003BC440`, `005505E4`) |
+| `menumap_location.bin` (`A3`<sub>h</sub>) | `location` is set: all three creators |
+| `menumap_common.bin` (`A4`<sub>h</sub>) | always |
 
 The location container (`002BA15C`) and the field-time container (`003CB4CC`) pass `(0, 1)`. `003C1DF0` then picks the
 last entry of the guide table in `menumap_common.bin` whose story counter and story gate pass (`003BD950`) and loads
-`menumap_guideNN.bin` (kind 7 `0x496` + the entry's byte `+4`). `menumap_area.bin` (`0xA5`) is loaded separately into
+`menumap_guideNN.bin` (kind 7 `496`<sub>h</sub> + the entry's byte `+4`). `menumap_area.bin` (`A5`<sub>h</sub>) is loaded separately into
 `020927D0` (`00253780`).
 
 ### What a page draws
@@ -108,16 +108,16 @@ The story gate `0032A8A0` ([Story flags](../Story-Events-And-Hunts/story-flags.m
 
 | Element | Shown when |
 |---|---|
-| area point (`003C18A0`) | its gate (word `+0xE`) passes and the area is current, visited or its map is owned (`003BCBA0`) |
-| link point (`003C0F70`) | its gate `+0x16` passes, and its map is owned, or its gate `+0x12` is `0xFFFF` or set |
-| label (`003C2320`) | revealed; otherwise "???" (`0x3EC`, `003C25B1`) |
+| area point (`003C18A0`) | its gate (word `+E`<sub>h</sub>) passes and the area is current, visited or its map is owned (`003BCBA0`) |
+| link point (`003C0F70`) | its gate `+16`<sub>h</sub> passes, and its map is owned, or its gate `+12`<sub>h</sub> is `FFFF`<sub>h</sub> or set |
+| label (`003C2320`) | revealed; otherwise "???" (`3EC`<sub>h</sub>, `003C25B1`) |
 | location (`003C12B0`) | its kind's gate passes and its map is owned, or one of its points can be drawn |
 | World Map destination (`003C08B0`) | its gates pass and the story counter (`00265270`) is below its word `+8` |
-| icon of a sub-location (`003DFB50`, `003FFF40`, `00400CF0`) | its word `+0xA` is 0, or its gate passes; 1 never shows |
+| icon of a sub-location (`003DFB50`, `003FFF40`, `00400CF0`) | its word `+A`<sub>h</sub> is 0, or its gate passes; 1 never shows |
 
 `003BCBA0` builds the state an area point reads: the current area (`003C1070`), a visit byte at
-`[020927C0] + 0x224 + 32 x entry` (`00255200`), and the area's map as a key item of class `0x8000` (`002543F0`; the
-map list is `menumap_area.bin` `+0xC`).
+`[020927C0] + 224h + 32 x entry` (`00255200`), and the area's map as a key item of class `8000`<sub>h</sub> (`002543F0`; the
+map list is `menumap_area.bin` `+C`<sub>h</sub>).
 
 ### The minimap
 
@@ -142,7 +142,7 @@ The picture comes from the zone's map pack: `003C63A0` registers it and `0037987
 | overlay container `0209E5C0` | `002B6350` from the arbiter | `002B6260` sets bit 3; the container releases itself once both pages are gone (`002B7590`, continuation `002B7540`) |
 | location container `0209E5F0` | `002B9D30` | `002B9B30`; continuation `002BA6B0` |
 | field-time container `02B47760` | `003CB440` | `003CB410`, from `00253A30`, `00282122`, `0028E7A3` and `002BA080` |
-| World Map host `02CA8F38` | `00550400` | continuation `00552230`, which returns to the menu (`002814E0(0x418)`) |
+| World Map host `02CA8F38` | `00550400` | continuation `00552230`, which returns to the menu (`002814E0(418h)`) |
 | map-data widget `02B457E0` | the first of its three creators | the field-time container (`003CB91C`), the World Map host (`005525CB`) or the location container (`002BADCD`) |
 | minimap `02B476B0` | `003C80C0` | `003C58B0`, `003C8070` |
 
@@ -151,12 +151,12 @@ The picture comes from the zone's map pack: `003C63A0` registers it and `0037987
 | | |
 |---|---|
 | guide table in `menumap_common.bin` (`us`) | 77 entries, story counter thresholds 0 to 6,150; every entry selects `menumap_guide00.bin` |
-| "???" sites | 6 places in the code load `0x3EC` |
+| "???" sites | 6 places in the code load `3EC`<sub>h</sub> |
 
 ## Modding notes
 
 - An area's map item is listed in `menumap_area.bin`; owning it reveals the area's points without visiting them.
-- A World Map destination disappears once the story counter reaches its word `+8`; `0xFFFF` keeps it forever.
+- A World Map destination disappears once the story counter reaches its word `+8`; `FFFF`<sub>h</sub> keeps it forever.
 - The overlay cannot open before story counter 16 (`00253DDA`).
 - The minimap's picture is the zone pack's own image, not a menu file.
 

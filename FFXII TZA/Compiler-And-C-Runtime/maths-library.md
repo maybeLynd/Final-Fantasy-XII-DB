@@ -48,7 +48,7 @@ The code section has four `sqrtss` instructions and no `sqrtsd`, `rsqrtss` or `r
 - `007D0FB7` in `007D0F60` and `007D119B` in `007D1140` take the square root of a gain while
   computing the five coefficients of a shelving filter, each scaled by `0.9999` over the leading
   term. `007D1C80`, slot 8 of the `SQEX::Sd::Driver::Filter` vtable (`01CB7078`), jumps to both.
-- `007E9184` in `007E9030`, which advances a time value at `+0x3C0` and interpolates between control
+- `007E9184` in `007E9030`, which advances a time value at `+3C0`<sub>h</sub> and interpolates between control
   points linearly or as a cubic.
 
 ### The sound engine's vector routines
@@ -57,7 +57,7 @@ Fourteen `sqrtps` and ten `rsqrtps` sit in `007EF1E0` to `007F74E0`, in virtual 
 sound engine's source classes: `007F25E0` is slot 34 of `SQEX::Sd::Lay::PolygonSound` (`01CB9F18`)
 and `007F1EC0` slot 7 of `SQEX::Sd::Lay::DirectionSound` (`01CB9DD0`). `007EF1E0` shows the pattern:
 
-1. A cross product from two shuffles, `0xC9` (y, z, x) and `0xD2` (z, x, y) (`007EF1F5` to `007EF242`).
+1. A cross product from two shuffles, `C9`<sub>h</sub> (y, z, x) and `D2`<sub>h</sub> (z, x, y) (`007EF1F5` to `007EF242`).
 2. A squared length: the product with itself, times the mask `1, 1, 1, 0` (`00D11570`), summed with
    two `haddps` (`007EF24F`).
 3. A reciprocal square root, `rsqrtps` (`007EF257`), refined once:
@@ -102,7 +102,7 @@ inverses.
 ### A power in the battle formulas
 
 `0038EAF0` is reached through a pointer at `01EFAA40`. It computes `pow(2.0, n)` with the `double`
-routine, where `n` is the byte at `+0x5B0E` of the object `02EBF190` points to, truncates the result
+routine, where `n` is the byte at `+5B0E`<sub>h</sub> of the object `02EBF190` points to, truncates the result
 to an integer and stores it at `02AEE004`. What that value is in the damage step is on
 [formula-slots.md](../Damage-And-Battle-Formulas/formula-slots.md).
 
@@ -110,19 +110,19 @@ to an integer and stores it at `02AEE004`. What that value is in the damage step
 
 No instruction in the code section loads or stores `MXCSR`. `_controlfp` (slot `008C2D18`) is called
 at six sites in two post-effect routines, `006E5A20` and `0077A8C0`. Each reads the control word with
-`_controlfp(0, 0)`, sets `0x10000` under the mask `0x30000` (`006E5AF3`), and at the end restores the
+`_controlfp(0, 0)`, sets `10000`<sub>h</sub> under the mask `30000`<sub>h</sub> (`006E5AF3`), and at the end restores the
 saved bits under the same mask (`006E97D8`). Two x87 helpers at `00125743` (`fldcw`) and `00125753`
 (`fstcw`) have no references.
 
 ## Layouts
 
-`Vec3Xz` (`0xC` bytes, offsets from the start of the record):
+`Vec3Xz` (`C`<sub>h</sub> bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `f32` | x | read by the distance helpers |
-| `04` | `f32` | y | not read by `004686D0` or `003A1960` |
-| `08` | `f32` | z | read by the distance helpers |
+| `00`<sub>h</sub> | `f32` | x | read by the distance helpers |
+| `04`<sub>h</sub> | `f32` | y | not read by `004686D0` or `003A1960` |
+| `08`<sub>h</sub> | `f32` | z | read by the distance helpers |
 
 ## Shipped data
 

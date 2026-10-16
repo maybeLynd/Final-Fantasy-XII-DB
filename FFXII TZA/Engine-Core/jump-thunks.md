@@ -69,8 +69,8 @@ arm, which passes an object and a size that the stub discards.
 
 The load configuration's Control
 Flow Guard check pointer, the slot `008C31C0`, also holds `0016D6A0`, and `0017E7D0` is a thunk to
-it; the guard function table is empty (count 0, flags `0x100`) and the optional header's
-`DllCharacteristics` is `0x8120`, with the guard bit `0x4000` clear, so the loader never replaces
+it; the guard function table is empty (count 0, flags `100`<sub>h</sub>) and the optional header's
+`DllCharacteristics` is `8120`<sub>h</sub>, with the guard bit `4000`<sub>h</sub> clear, so the loader never replaces
 the slot and the check stays a no-op; the linker folded the two empty functions into one body.
 
 ## Columns

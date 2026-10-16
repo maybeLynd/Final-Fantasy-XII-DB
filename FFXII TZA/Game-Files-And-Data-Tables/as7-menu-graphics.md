@@ -15,16 +15,16 @@ needs one. The large character silhouette behind the Gambits screen is one of si
 
 The files are resource kind 7, in the `in` and `ch` locale folders only:
 `ps2data/image/ff12/myoshiok/<locale>/bin_menu/<name>.as7`. In the US kind-7 path array (`01EC73A0`) the ids are
-`0x75` for `Char_Silhouette.as7` and `0x9A` to `0xA1` for `Item_Gra00.as7` to `Item_Gra07.as7`. The KR, CH and CN arrays
+`75`<sub>h</sub> for `Char_Silhouette.as7` and `9A`<sub>h</sub> to `A1`<sub>h</sub> for `Item_Gra00.as7` to `Item_Gra07.as7`. The KR, CH and CN arrays
 (`01E0E530`, `01E5A3D0`, `01EABBA0`) name the `ch` copy; the others name `in`.
 
-- Items: at start-up `0022A4B0` calls `00291C80`, which requests kind 7 ids `0x98` to `0xA1` (`itemgra_c.tm2`,
+- Items: at start-up `0022A4B0` calls `00291C80`, which requests kind 7 ids `98`<sub>h</sub> to `A1`<sub>h</sub> (`itemgra_c.tm2`,
   `Item_Clut.bin`, then the eight sheets) through `0032E620`, sizing each with `0024AB90` (a jump to `0032E400`) and
   allocating it from heap 2 (`00249810`). Request `i` fills the 16-byte slot `0209BEA0 + 16 × i` (status, then
   buffer at `+8`).
-- Silhouettes: the field HUD root `00253780` calls `002C8EE0`, which requests ids `0x74` (`monotone_chr.bin`) and
-  `0x75` (`Char_Silhouette.as7`) into the slots at `0209E638`. `002CEB40` copies them into its widget, so the
-  container's buffer sits at widget `+0xD8`. Each slot holds the request id at `+0`, which the delivery
+- Silhouettes: the field HUD root `00253780` calls `002C8EE0`, which requests ids `74`<sub>h</sub> (`monotone_chr.bin`) and
+  `75`<sub>h</sub> (`Char_Silhouette.as7`) into the slots at `0209E638`. `002CEB40` copies them into its widget, so the
+  container's buffer sits at widget `+D8`<sub>h</sub>. Each slot holds the request id at `+0`, which the delivery
   callback `002C9040(i)` clears to 0, and the buffer at `+8`.
 
 ## Layouts
@@ -44,10 +44,10 @@ The dictionary blob:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `u8` | mode | 0 or 3 decode; any other value fails |
-| `01` | `u8` | b | length bit count |
-| `02` | `u16be` | outLen | mode 0 only: bytes every page decodes to |
-| `04` | `u8[]` | dict | mode 0; for mode 3 the dictionary starts at +`0x02` |
+| `00`<sub>h</sub> | `u8` | mode | 0 or 3 decode; any other value fails |
+| `01`<sub>h</sub> | `u8` | b | length bit count |
+| `02`<sub>h</sub> | `u16be` | outLen | mode 0 only: bytes every page decodes to |
+| `04`<sub>h</sub> | `u8[]` | dict | mode 0; for mode 3 the dictionary starts at +`02`<sub>h</sub> |
 
 In mode 3 each page stream begins with its own big-endian u16 output length instead. A page stream is tokens:
 
@@ -98,15 +98,15 @@ count of decoded bytes reaches the length: an exact finish returns 1, an oversho
 
 ### Item pictures
 
-`00291D90`, the item-graphic object's procedure, copies the ten slots into the object (`+0xC8 + 16 × i`, buffer at
-`+0xD0 + 16 × i`), sets bits 0 to 9 of its word `+0x168`, and registers the `itemgra_c.tm2` buffer as the atlas
+`00291D90`, the item-graphic object's procedure, copies the ten slots into the object (`+C8h + 16 × i`, buffer at
+`+D0h + 16 × i`), sets bits 0 to 9 of its word `+168`<sub>h</sub>, and registers the `itemgra_c.tm2` buffer as the atlas
 `itemgra_c` through `0024A440`. `00292050(i)` returns slot `i`'s buffer when its bit is set.
 
-The list item procedure `00292390` takes a graphic id from message `0x0C` (payload word `+2`) and decodes on its next
+The list item procedure `00292390` takes a graphic id from message `0C`<sub>h</sub> (payload word `+2`) and decodes on its next
 update (message 2):
 
 1. The sheet is `id >> 6` and the page `id & 63`; `00292050(sheet + 2)` gives the container, and `0024AA00`
-   decodes that one page into the item's own buffer at `+0x2C8`.
+   decodes that one page into the item's own buffer at `+2C8`<sub>h</sub>.
 2. When the sheet differs from the last one shown, it points the atlas palette at `Item_Clut + sheet × 1,024` (slot
    1's buffer) and takes the colour count from the atlas picture.
 3. It copies 64 x 96 bytes (`01E0C470`, `01E0C474`) into the `itemgra_c` pixels, at column 0 or 64 by a toggle that
@@ -118,8 +118,8 @@ decoded, so two items from different sheets on screen together show one in the w
 
 ### Silhouettes
 
-`002CEE00(index, flags)` stores the index at widget `+0x10D`; an index above 5 clears the decode bit. The Gambits
-screen passes the member's word `+0x60` when it reloads the centre pane (`0056A044`) and -1 when it closes
+`002CEE00(index, flags)` stores the index at widget `+10D`<sub>h</sub>; an index above 5 clears the decode bit. The Gambits
+screen passes the member's word `+60`<sub>h</sub> when it reloads the centre pane (`0056A044`) and -1 when it closes
 (`00567A52`).
 
 `002CEFD0` maps the index through `{0, 1, 3, 2, 4, 5}` to a group `g`, allocates two 264,192-byte buffers from heap

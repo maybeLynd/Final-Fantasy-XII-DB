@@ -9,7 +9,7 @@ addresses: "001D1660, 001D4C1C, 001D4BFA, 001D0390, 01F81428"
 
 One row per command id the dispatcher `001D1660` accepts, 12 to 293 ([debug
 menu](debug-menu.md)). The arm column is decoded from the 282-entry table at `001D4C1C` in the
-image; the label is the string the console object's filler `001D0390` stores at `+0x130 + id ×
+image; the label is the string the console object's filler `001D0390` stores at `+130h + id ×
 8`; kind, field, step and bound are read from the arm's instructions. Ids 1 to 11 have labels and
 no arm and are not listed. The 56 ids whose arm is the shared do-nothing tail `001D4BFA` are
 listed with kind `none` (a button row whose action is absent) or `readout` (a row that still
@@ -31,7 +31,7 @@ prints a live value).
 |---|---|
 | `id` | the command id, 12 to 293 |
 | `label` | the row text the console prints, from `001D0390` |
-| `arm` | the arm address: `0x120000` + the RVA at `001D4C1C + (id - 12) × 4` |
+| `arm` | the arm address: `120000`<sub>h</sub> + the RVA at `001D4C1C + (id - 12) × 4` |
 | `kind` | nudge, int-step, toggle, cycle, call, readout, none |
 | `field` | the `.data` address the arm reads and writes, or `obj+offset` on the console object at `[01F81428]`; `-` when the arm only calls |
 | `step` | the magnitude, signed `±` when the direction flag picks the sign |

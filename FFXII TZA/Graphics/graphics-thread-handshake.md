@@ -23,11 +23,11 @@ values that pass through it are successive values of one cell, not separate fiel
 
 | Value or operation | Written by | Meaning on the PS2 path |
 |---|---|---|
-| buffer address `& 0x3FF0`, then a record count | the three publishers | the start and length of a DMA chain |
-| `0x100` (bit 8) | the three publishers | the start bit, "batch published" |
+| buffer address `& 3FF0h`, then a record count | the three publishers | the start and length of a DMA chain |
+| `100`<sub>h</sub> (bit 8) | the three publishers | the start bit, "batch published" |
 | nine-store burst ending in 0 | the reset `0036F2F0` | the channel reset sequence |
-| `and 0xFFFFFEF3` (bits 2, 3, 8 down) | the clear `0036F2C0` | batch accounted for |
-| `or 0x10000`, then `and 0xFFFEFEFF` | effect capture | capture bit up, then bits 8 and 16 down |
+| `and FFFFFEF3h` (bits 2, 3, 8 down) | the clear `0036F2C0` | batch accounted for |
+| `or 10000h`, then `and FFFEFEFFh` | effect capture | capture bit up, then bits 8 and 16 down |
 | 0 | `0036D7E0` | the vertical-sync callback's reset |
 
 ### The GS register batch
@@ -41,48 +41,48 @@ lists its callers and the pass-mask bits that supply `a` and `b`). It reads the 
   buffer width `width >> 6` in bits 16 and up (`0036D477`–`0036D4B4`);
 - ZBUF_1 at `022D8ED0`: twice the pages per surface, with bit 24 set (`0036D496`–`0036D4C2`).
 
-It then writes into the current GS command buffer (`02EBEFC0` + 0x18 × `[02EBEFF0]`, see
+It then writes into the current GS command buffer (`02EBEFC0` + `18`<sub>h</sub> × `[02EBEFF0]`, see
 [render command list](render-command-list.md)), one 16-byte record `{value, register}` per register:
 
 1. a header record reserved first and filled at the end;
-2. an A+D GIF tag (`003A2090`, register list `0xE`, end-of-packet bit);
-3. FRAME_1 `0x4C`, ZBUF_1 `0x4E`, XYOFFSET_1 `0x18` (`(0x1000 − w) × 8`, `(0x1000 − h) × 8`),
-   SCISSOR_1 `0x40` (0 to w−1, 0 to h−1), PRMODECONT `0x1A` = 1, COLCLAMP `0x46` = 1, DTHE `0x45` = 0;
+2. an A+D GIF tag (`003A2090`, register list `E`<sub>h</sub>, end-of-packet bit);
+3. FRAME_1 `4C`<sub>h</sub>, ZBUF_1 `4E`<sub>h</sub>, XYOFFSET_1 `18`<sub>h</sub> (`(1000h − w) × 8`, `(1000h − h) × 8`),
+   SCISSOR_1 `40`<sub>h</sub> (0 to w−1, 0 to h−1), PRMODECONT `1A`<sub>h</sub> = 1, COLCLAMP `46`<sub>h</sub> = 1, DTHE `45`<sub>h</sub> = 0;
 4. when the table entry `00D10F88[(a != 0) | (b != 0) << 1]` is non-zero: a screen clear (below);
-5. TEST_1 `0x47` = `0x50000` (`0036D733`), and `003A2020` writes the tag's loop count.
+5. TEST_1 `47`<sub>h</sub> = `50000`<sub>h</sub> (`0036D733`), and `003A2020` writes the tag's loop count.
 
-The table holds 0, `0x32001`, `0x31001` and `0x30000`; the chosen entry is the clear's TEST_1
+The table holds 0, `32001`<sub>h</sub>, `31001`<sub>h</sub> and `30000`<sub>h</sub>; the chosen entry is the clear's TEST_1
 value. The clear sets TEST_1, PRIM (register 0) = 6, a sprite, and RGBAQ (register 1) to the colour
 `[022D8ED8]` when `[022D8EDC]` is non-zero, else 0; `003A20C0` then emits XYZ2 (register 4) pairs
 that cover the screen in sprites 64 pixels wide.
 
-The header record gets `(records − 1) | 0x10000000` in its first qword (`0036D781`) and
-`0x5000000011000000 | records << 32` in its second (`0036D792`): a DMA `cnt` tag followed by the
-VIF codes FLUSH (`0x11`) and DIRECT (`0x50`) with the record count. `0036D400` ends with
+The header record gets `(records − 1) | 10000000h` in its first qword (`0036D781`) and
+`5000000011000000h | records << 32` in its second (`0036D792`): a DMA `cnt` tag followed by the
+VIF codes FLUSH (`11`<sub>h</sub>) and DIRECT (`50`<sub>h</sub>) with the record count. `0036D400` ends with
 `003A1DB0` (`0036D7AD` or `0036D7C7`), which flips the buffers and calls the first publisher.
 
 ### The three publishers
 
 `0036F360(buffer, records)` returns at once for 0 records. When the last record's first dword has
-`0x30000000` under the mask `0x70000000` (a DMA `ref` tag) it writes the `cnt` record
-`{0x10000000, 0}` after it, or over it when the buffer already holds `0x200` records
+`30000000`<sub>h</sub> under the mask `70000000`<sub>h</sub> (a DMA `ref` tag) it writes the `cnt` record
+`{10000000h, 0}` after it, or over it when the buffer already holds `200`<sub>h</sub> records
 (`0036F372`–`0036F39C`). Then:
 
-1. it stores `buffer & 0x3FF0` (`0036F3A6`) and the record count (`0036F3AC`) into the word;
+1. it stores `buffer & 3FF0h` (`0036F3A6`) and the record count (`0036F3AC`) into the word;
 2. it loads the word three times and compares the values as cursors, looping until they fit
    (`0036F3B2`–`0036F3E9`); all three loads return the count it just stored, so the loop ends on its first pass;
-3. it stores `0x100` (`0036F3EB`).
+3. it stores `100`<sub>h</sub> (`0036F3EB`).
 
 `003A2D80(source, bytes)` rounds the size down to whole 16-byte records, copies the batch with
 `memcpy` (`00861EBA`) to the staging buffer `[02F8F2E0]` (set to the GS buffer arena base
 `[01FD4A78]` by the display-list set-up at `003A371A`), tests the fence (below), flips bit 10 of
-the staging pointer (`xor 0x400`, `003A2DCB`), so two staging buffers alternate `0x400` bytes
-apart, and stores the address, the count, and after its guard loop `0x100` (`003A2E16`). It is
+the staging pointer (`xor 400h`, `003A2DCB`), so two staging buffers alternate `400`<sub>h</sub> bytes
+apart, and stores the address, the count, and after its guard loop `100`<sub>h</sub> (`003A2E16`). It is
 called from `0044D80C`, `004537CE` and `00460F08`.
 
 `003A2E30(source, bytes, pointer, bytes2)` does the same copy and appends two records by hand: a
-`ref` record (`+3` = `0x30`, `u16` count `bytes2 / 16`, `+4` the pointer as a 32-bit image address
-through `0020E620`) and a `cnt` record (`+3` = `0x10`, `+0xC` = `0x0404`, `+0xF` = 1), then
+`ref` record (`+3` = `30`<sub>h</sub>, `u16` count `bytes2 / 16`, `+4` the pointer as a 32-bit image address
+through `0020E620`) and a `cnt` record (`+3` = `10`<sub>h</sub>, `+C`<sub>h</sub> = `0404`<sub>h</sub>, `+F`<sub>h</sub> = 1), then
 publishes count + 2 (`003A2F59`). Its only route is the guard stub `0045BAD0`
 (`cmp byte [rcx], 0` / `jne 0045BAE0`), called from `002F4020` at `002F42C2`.
 
@@ -93,7 +93,7 @@ bytes stores 0 and that loop has nothing that ends it on the thread that runs it
 ### The fence nothing writes
 
 `02EAF6D8` is zero in the image and every one of its 17 references is a load, in nine functions.
-Each is the hoisted form `mov eax, [02EAF6D8]; and eax, 0x100; test eax, eax; jne` back to the
+Each is the hoisted form `mov eax, [02EAF6D8]; and eax, 100h; test eax, eax; jne` back to the
 `test`, which never reloads. With the word at 0 every one falls through: `0036F2F0`'s at
 `0036F300`, the publishers' at `003A2DC1` and `003A2EE8`, and the rest in `0024D370`, `00259030`,
 `002590F0`, `003749F0`, `00375500` and `00376050`.
@@ -103,14 +103,14 @@ Each is the hoisted form `mov eax, [02EAF6D8]; and eax, 0x100; test eax, eax; jn
 `0036F2F0` runs at the start of every frame state (`0022A7E7`, `0022AF5E`, `0022B004`, `0022B6E4`,
 `0022B7E6`, `0022B8ED`, `0022BC35`), again at `0022A87F` and `0022B2FD`, in the effect-capture
 draw `003749F0` (`00374ACE` or `00374AD7`) and in `00376220`. After the fence it stores nine values with no branch between them
-(`0036F30D`–`0036F352`): the low dword of the address `022D9B50`, `0x7FFF0`, 0, the address twice,
-`(word & ~4) | 8`, `word & ~0x30`, `0x14D`, and 0. No instruction in the image tests bits 2, 3, 4,
-5 or the value `0x14D`; the burst ends with the word at 0.
+(`0036F30D`–`0036F352`): the low dword of the address `022D9B50`, `7FFF0`<sub>h</sub>, 0, the address twice,
+`(word & ~4) | 8`, `word & ~30h`, `14D`<sub>h</sub>, and 0. No instruction in the image tests bits 2, 3, 4,
+5 or the value `14D`<sub>h</sub>; the burst ends with the word at 0.
 
 ### The settle-spin and the clear
 
 `0036F2C0` is nine instructions: load the word into `ecx`, load it into `eax`, compare, loop back
-while they differ (`0036F2D0`–`0036F2DE`), then `and dword [02EBA3F8], 0xFFFFFEF3` (`0036F2E0`).
+while they differ (`0036F2D0`–`0036F2DE`), then `and dword [02EBA3F8], FFFFFEF3h` (`0036F2E0`).
 The loop repeats only when a store lands between the two loads. A decompiler folds the two loads
 into one and shows only the `and`.
 
@@ -143,14 +143,14 @@ event and calls the handlers in the table `022CFF10`.
 test passes it sets `022CA600` (`0035ECFE`); while `022CA600` is set it calls the pending callback
 and clears `022CA5C8` (`0035ED12`–`0035ED20`). The callback `0022BFD0` runs
 `00368A70` and then `0036D7E0`, which stores 0 in the word (`0036D7E7`) and points `022D8EA0` at
-the 0x28-byte display record `022D8E50 + 0x28 × [022D8EA8]`. This store comes from the TkSyncv
+the `28`<sub>h</sub>-byte display record `022D8E50 + 28h × [022D8EA8]`. This store comes from the TkSyncv
 thread, so a settle-spin on the frame thread can see the word change between its two loads.
 
 ### Effect capture
 
 The capture draws `003749F0` and `00376050` wait while bit 8 is set with a loop that reloads the
-word (`00374C70`–`00374C7A`, `003761E0`–`003761EA`), then `or` `0x10000` and immediately `and`
-`0xFFFEFEFF` (`00374CEC`/`00374CF6`, `003761EC`/`003761F6`), so the capture bit is up for one
+word (`00374C70`–`00374C7A`, `003761E0`–`003761EA`), then `or` `10000`<sub>h</sub> and immediately `and`
+`FFFEFEFF`<sub>h</sub> (`00374CEC`/`00374CF6`, `003761EC`/`003761F6`), so the capture bit is up for one
 instruction and the `and` also drops bit 8.
 
 ## Layouts
@@ -163,21 +163,21 @@ command-state word 02EBA3F8, as the PS2 code uses it
   reset     nine stores ending in 0 (0036F2F0); 0 (0036D7E0)
 ```
 
-GS command record, `0x10` bytes:
+GS command record, `10`<sub>h</sub> bytes:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `u64` | value |  |
-| `08` | `u64` | register | GS register number; the header and GIF tag records hold tags |
+| `00`<sub>h</sub> | `u64` | value |  |
+| `08`<sub>h</sub> | `u64` | register | GS register number; the header and GIF tag records hold tags |
 
 GS environment globals (seeded by `0036D280`):
 
 | Address | Type | Name | Meaning |
 |---|---|---|---|
 | `022D8EA8` | `u32` | frame index | 0 |
-| `022D8EAC` | `u32` | width | `0x200` |
-| `022D8EB0` | `u32` | display width | `0x200`, read as a u16 by `0036D2F0` |
-| `022D8EB4` | `u32` | height | `0x1C0` |
+| `022D8EAC` | `u32` | width | `200`<sub>h</sub> |
+| `022D8EB0` | `u32` | display width | `200`<sub>h</sub>, read as a u16 by `0036D2F0` |
+| `022D8EB4` | `u32` | height | `1C0`<sub>h</sub> |
 | `022D8EB8` | `u32` | pages/surface | (width * height) >> 11 = 112 (`0036D2F0`) |
 | `022D8EC8` | `u64` | FRAME_1 value |  |
 | `022D8ED0` | `u64` | ZBUF_1 value |  |
@@ -205,7 +205,7 @@ by an 11-byte callback (`00556560`, `00563550`), so each loop either falls throu
 ## Modding notes
 
 - Read this code from disassembly: the decompiler removes all eleven settle-spins.
-- The publishers store `0x100` with a plain `mov`, so any bit a hook sets in the word is lost at
+- The publishers store `100`<sub>h</sub> with a plain `mov`, so any bit a hook sets in the word is lost at
   the next publish.
 - A hook that blocks inside a settle-spin burns the core; the waits are loops, not sleeps.
 - Do not call `003A2D80` with fewer than 16 bytes.

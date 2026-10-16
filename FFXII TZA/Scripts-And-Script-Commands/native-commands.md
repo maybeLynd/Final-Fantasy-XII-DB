@@ -20,9 +20,9 @@ early. This page is the machinery that gives every verb those two shapes.
 `002621D0(manager, actor, stack, id, waitSlot)` runs one verb call. It splits the id into family
 and command, fetches the poll callback, and resolves the target: the issuer when the wait slot's
 `+8` equals the issuer's own ordinal word, otherwise the actor `00358940` finds for that ordinal.
-Then it reads the phase byte `+0x15`:
+Then it reads the phase byte `+15`<sub>h</sub>:
 
-- phase 0: clear the result word `+0xC`, call `begin(issuer, target, scratch, stack, manager)` if
+- phase 0: clear the result word `+C`<sub>h</sub>, call `begin(issuer, target, scratch, stack, manager)` if
   the table has one, then fall through to the poll;
 - phase 1: fall through to the poll;
 - phase 2 or more: skip straight to the result stage.
@@ -31,7 +31,7 @@ The poll, when present, is called as `poll(issuer, target, scratch)`; when absen
 at entry stands in. An odd return sets the phase to 1 and returns 1: the verb is still running,
 and the interpreter re-fetches the same call next frame. Otherwise the result stage runs
 `result(issuer, target, scratch, stack)` when present, and pushes one value by the phase the
-result wrote: 2 pushes the int at `+0xC`, 3 or more the float, 0 or 1 an int 0, and a null result
+result wrote: 2 pushes the int at `+C`<sub>h</sub>, 3 or more the float, 0 or 1 an int 0, and a null result
 callback pushes an int 0 directly. The phase byte is reset to 0 and the call returns 0.
 
 So the three callbacks are one fall-through, not three frames. A verb with only a result completes
@@ -54,20 +54,20 @@ an unused null and result. Read from the shipping executable:
 | default `01F26720` | 212 | 25 | 25 | 200 | 185 | 1 | 1 | 14 | 1 |
 | all | 1,960 | 336 | 290 | 1,651 | 1,589 | 77 | 31 | 59 | 4 |
 
-The counts include the `ret` stub `0016D6A0`, which fills 9 begin slots (`0x0206`, `0x0209`,
-`0x0372` to `0x0374`, `0x04AE`, `0x3020` and `0x20D3`, each paired with the poll `005C5230` that
-returns 0, and `0x03BD` `moveblurfadesync`, whose poll `00345100` is live and waits on
-`003DE150`) and 25 result slots (`0x0056`, `0x00A3`, `0x00C0`, `0x02BF`, `0x03BD`,
-`0x04AC`, `0x05C7`, `0x3001`, `0x3003`, `0x3025`, `0x3037`, `0x3054` to `0x305A`, and seven
+The counts include the `ret` stub `0016D6A0`, which fills 9 begin slots (`0206`<sub>h</sub>, `0209`<sub>h</sub>,
+`0372`<sub>h</sub> to `0374`<sub>h</sub>, `04AE`<sub>h</sub>, `3020`<sub>h</sub> and `20D3`<sub>h</sub>, each paired with the poll `005C5230` that
+returns 0, and `03BD`<sub>h</sub> `moveblurfadesync`, whose poll `00345100` is live and waits on
+`003DE150`) and 25 result slots (`0056`<sub>h</sub>, `00A3`<sub>h</sub>, `00C0`<sub>h</sub>, `02BF`<sub>h</sub>, `03BD`<sub>h</sub>,
+`04AC`<sub>h</sub>, `05C7`<sub>h</sub>, `3001`<sub>h</sub>, `3003`<sub>h</sub>, `3025`<sub>h</sub>, `3037`<sub>h</sub>, `3054`<sub>h</sub> to `305A`<sub>h</sub>, and seven
 debug verbs).
 
-The four empty records are `setnorecovertelepostatus` (`0x0330`),
-`battlemembersync` (`0x0356`), `restartbattle` (`0x03B0`) and `debug_meswin_3e` (`0x203E`): they
+The four empty records are `setnorecovertelepostatus` (`0330`<sub>h</sub>),
+`battlemembersync` (`0356`<sub>h</sub>), `restartbattle` (`03B0`<sub>h</sub>) and `debug_meswin_3e` (`203E`<sub>h</sub>): they
 complete at once and push 0.
 
-The default table is family 2's: `0x2000` to `0x20D3` are the debug verbs, with real bodies
-(`0x2000`'s begin `0050D660` pops a value and binds a model), and the other eleven families alias
-it. Family 5's one command `0x5000` has a begin and a poll and no result.
+The default table is family 2's: `2000`<sub>h</sub> to `20D3`<sub>h</sub> are the debug verbs, with real bodies
+(`2000`<sub>h</sub>'s begin `0050D660` pops a value and binds a model), and the other eleven families alias
+it. Family 5's one command `5000`<sub>h</sub> has a begin and a poll and no result.
 
 ### Instantaneous and durative
 
@@ -77,10 +77,10 @@ shape, but 77 of them have a begin and no poll, so they also finish on the first
 does the work and the absent poll reads as finished. Only the 290 with a poll can hold a script,
 and only while that poll returns odd.
 
-The scratch block `+0x18` of the wait slot is what carries a durative verb across frames: the
+The scratch block `+18`<sub>h</sub> of the wait slot is what carries a durative verb across frames: the
 begin writes it, the poll reads it.
 
-`wait` (`0x0000`) is the plainest case: its begin `0034CF90`
+`wait` (`0000`<sub>h</sub>) is the plainest case: its begin `0034CF90`
 pops the frame count and stores it in the first scratch dword, scaled by `00265880` (× the frame
 multiplier `01DFE0B4`, 1 in this build, unless `001EDDA0` is set; counts below 2 pass unscaled
 while `001EDC80` is 0). The raw count is stored instead under any of four gates: `022C7F84` set,
@@ -90,24 +90,24 @@ below zero.
 
 ### The sync verbs
 
-`camerasync` (`0x0079`), `effectsync` (`0x00DE`) and `effectreadsync` (`0x00DC`) share the begin
+`camerasync` (`0079`<sub>h</sub>), `effectsync` (`00DE`<sub>h</sub>) and `effectreadsync` (`00DC`<sub>h</sub>) share the begin
 `0034C290`, which pushes a literal 0, pops it back and stores it in the scratch word: the verbs
-take no argument because the handler supplies one. `fadesync` (`0x00B9`, `0033F4C0`) is the same
+take no argument because the handler supplies one. `fadesync` (`00B9`<sub>h</sub>, `0033F4C0`) is the same
 three lines plus a call to `00183070`.
 
-`eventsync` (`0x00ED`) and `eventreadsync` (`0x00E9`) share
-`00353E20`, the zero-operand twin of `00353A10` (the begin of `eventreadsync_ea` `0x00EA` and
-`eventsync_ee` `0x00EE`): both add 1 to the popped value and clamp to 1 to 3, so the argument-less
+`eventsync` (`00ED`<sub>h</sub>) and `eventreadsync` (`00E9`<sub>h</sub>) share
+`00353E20`, the zero-operand twin of `00353A10` (the begin of `eventreadsync_ea` `00EA`<sub>h</sub> and
+`eventsync_ee` `00EE`<sub>h</sub>): both add 1 to the popped value and clamp to 1 to 3, so the argument-less
 forms always store 1.
 
 The poll then uses the word as a selector. `camerasync`'s poll `0034C570` asks `003DA1A0(index,
 word)` whether that camera channel is still busy, with the index of the current manager (the slot
-`02099D70` points at, `+0x28`), and, if so, stays running unless the skip mask of the issuer's
-manager (its `+0x15`) says otherwise.
+`02099D70` points at, `+28`<sub>h</sub>), and, if so, stays running unless the skip mask of the issuer's
+manager (its `+15`<sub>h</sub>) says otherwise.
 
 ### Signal waits
 
-`effecttotalsignalsync(n)` (`0x029F`) and `motiontotalsignalsync(n)` (`0x02B7`) wait for a
+`effecttotalsignalsync(n)` (`029F`<sub>h</sub>) and `motiontotalsignalsync(n)` (`02B7`<sub>h</sub>) wait for a
 numbered signal. Both use the begin `003567F0`, which pops `n` into the scratch word. The poll
 `0034AA70` tests bit `n` of the eight bytes at `02099DE8` through `0025C0F0`, and `0034B310` tests
 bit `n` of `0209A2A0` through `0025C130`. While the bit is clear the poll returns 1 and the script
@@ -118,25 +118,25 @@ so one signal releases one waiter. Neither poll reads the skip mask.
 `02091140` (`0024F780` stores it), raises the effect signals: it sets bit `n` of `02099DE8` with
 `0026BE50(n, 1)` and, when the handle is a script effect handle, the same bit in that effect slot's
 own signal bytes. The motion signals have one writer, `002E7080`, which `002EA320` and `002EA5F0`
-install as entry `0x26` of the motion callback table `02CA4410` (`0041D6C0` stores it): it calls
+install as entry `26`<sub>h</sub> of the motion callback table `02CA4410` (`0041D6C0` stores it): it calls
 `0026BE90(0, 1)`, so a motion only ever raises bit 0.
 
-`effectsignalsync(slot, n)` (`0x026A`) waits on one effect slot's bytes instead. Its begin
+`effectsignalsync(slot, n)` (`026A`<sub>h</sub>) waits on one effect slot's bytes instead. Its begin
 `00354CB0` pops `n` and the slot and stores the slot's handle, the first dword of record `022D94B0
-+ slot × 0x18` read by `0036E500` (slot clamped to 31, a negative slot reading slot 0), with `n`.
++ slot × 18h` read by `0036E500` (slot clamped to 31, a negative slot reading slot 0), with `n`.
 The poll `00355160` finishes at once on a zero handle and otherwise keeps the script waiting while
 `0036DFC0(handle, n)` returns 0 and the issuer's manager has a clear skip mask.
 
 `0036DFC0` decodes the slot with `003B24A0`, which accepts only a handle whose top nibble is 7 and
 takes the slot from bits 6 to 11 (any other handle returns 1 at once). It then tests bit `n` of
-the bytes at `+0x10` of that slot's record, and returns 1 and clears the bit only when it is set.
+the bytes at `+10`<sub>h</sub> of that slot's record, and returns 1 and clears the bit only when it is set.
 
 ### The skip mask
 
-`00267310(manager)` reads byte `02099011 + manager × 0x288`, the manager slot's `+0x201`, and
+`00267310(manager)` reads byte `02099011 + manager × 288h`, the manager slot's `+201`<sub>h</sub>, and
 72 sites call it. `0026A5B0(manager, set, bit)` sets or clears one bit of it: the verb `skipexec`
-(`0x0539`, `0034ECF0`) pops a bit index and calls `00360710`, which sets the bit at the end of its
-skip bookkeeping (after `003601B0(0xF)` and the rest), and `00360A50` clears it when the skip
+(`0539`<sub>h</sub>, `0034ECF0`) pops a bit index and calls `00360710`, which sets the bit at the end of its
+skip bookkeeping (after `003601B0(Fh)` and the rest), and `00360A50` clears it when the skip
 ends.
 
 A poll that tests the mask ends its wait when the
@@ -146,8 +146,8 @@ cancels its effect first. Polls that do not test it keep waiting through a skip.
 ### Shared handlers
 
 Callbacks are shared freely: the 336 begin slots are served by 236 distinct functions (the stub
-aside), the 290 poll slots by 159, and the 1,651 result slots by 1,491. `move` (`0x005D`) and
-`movesync` (`0x003D`) share the poll `00356A90`; `move` adds the begin `003488B0` that reads the
+aside), the 290 poll slots by 159, and the 1,651 result slots by 1,491. `move` (`005D`<sub>h</sub>) and
+`movesync` (`003D`<sub>h</sub>) share the poll `00356A90`; `move` adds the begin `003488B0` that reads the
 destination. Editing one shared body edits every verb that points at it.
 
 ## Layouts
@@ -159,43 +159,43 @@ Globals:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `2B57EF0` | `CommandTable*[16]` | families | `003DC2D0` writes `01F26720` to all, then `01EED700`, `01F281B0`, `01F29418` and `01F29440` to families 0, 3, 5 and 7 |
-| `2099011` | `u8` | skipMask | manager slot `+0x201`, at `+ manager × 0x288`; one bit per skip index |
-| `2099DE8` | `u8[8]` | effectSignals | effect total signals, one bit per signal number |
-| `209A2A0` | `u8[8]` | motionSignals | motion total signals |
-| `22D94B0` | `EffectSlot[32]` | effectSlots | script effect slots, stride `0x18` |
+| `2B57EF0`<sub>h</sub> | `CommandTable*[16]` | families | `003DC2D0` writes `01F26720` to all, then `01EED700`, `01F281B0`, `01F29418` and `01F29440` to families 0, 3, 5 and 7 |
+| `2099011`<sub>h</sub> | `u8` | skipMask | manager slot `+201`<sub>h</sub>, at `+ manager × 288h`; one bit per skip index |
+| `2099DE8`<sub>h</sub> | `u8[8]` | effectSignals | effect total signals, one bit per signal number |
+| `209A2A0`<sub>h</sub> | `u8[8]` | motionSignals | motion total signals |
+| `22D94B0`<sub>h</sub> | `EffectSlot[32]` | effectSlots | script effect slots, stride `18`<sub>h</sub> |
 
 CommandTable:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `i32` | count | number of command records |
-| `04` | `u32` | zero | always 0 |
-| `08` | `Command` | first | record N at `08 + 0x20 × N` |
+| `00`<sub>h</sub> | `i32` | count | number of command records |
+| `04`<sub>h</sub> | `u32` | zero | always 0 |
+| `08`<sub>h</sub> | `Command` | first | record N at `08 + 20h × N` |
 
 Command (32 bytes):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `void*` | begin | begin callback or null |
-| `08` | `void*` | poll | poll callback or null |
-| `10` | `void*` | unused | always null |
-| `18` | `void*` | result | result callback or null |
+| `00`<sub>h</sub> | `void*` | begin | begin callback or null |
+| `08`<sub>h</sub> | `void*` | poll | poll callback or null |
+| `10`<sub>h</sub> | `void*` | unused | always null |
+| `18`<sub>h</sub> | `void*` | result | result callback or null |
 
 Wait slot fields used here:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `0C` | `u32` | result | the int, or the float for phase 3, that the call pushes |
-| `15` | `u8` | phase | 0 idle, 1 running, 2 int, 3 float |
-| `18` | `u8[16]` | scratch | written by the begin, read by the poll |
+| `0C`<sub>h</sub> | `u32` | result | the int, or the float for phase 3, that the call pushes |
+| `15`<sub>h</sub> | `u8` | phase | 0 idle, 1 running, 2 int, 3 float |
+| `18`<sub>h</sub> | `u8[16]` | scratch | written by the begin, read by the poll |
 
-EffectSlot (`0x18` bytes):
+EffectSlot (`18`<sub>h</sub> bytes):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `u32` | handle | the script effect handle |
-| `10` | `u8[8]` | signals | per-slot signal bits |
+| `00`<sub>h</sub> | `u32` | handle | the script effect handle |
+| `10`<sub>h</sub> | `u8[8]` | signals | per-slot signal bits |
 
 ## Shipped data
 

@@ -60,13 +60,13 @@ The messages a function prints name its method:
 | `0070B780` | `CPostEffect::BeginPostEffectScene` |
 | `0070B990` | `CPostEffect::EndPostEffectScene` |
 | `0070CD40` | `CPostEffect::SetFramebuffer`, which refuses to run between Begin and End |
-| `00705520` | `CPostEffect::Uninitialize`, which returns `0x80004005` between Begin and End |
+| `00705520` | `CPostEffect::Uninitialize`, which returns `80004005`<sub>h</sub> between Begin and End |
 | `006E04F0` | `IPfxBaseRenderToTexture::Initialize` |
 | `006E07A0` | `IPfxBaseRenderToTexture::Uninitialize` |
 
 ### Render states the D3D11 device refuses
 
-Three render-state methods of `IGPUDevice` do nothing and return `0x80004001` (E_NOTIMPL):
+Three render-state methods of `IGPUDevice` do nothing and return `80004001`<sub>h</sub> (E_NOTIMPL):
 `00724EC0` DepthTestEnable, `00724F50` DepthFunc and `00724FF0` AlphaFunc. Each counts its calls
 (`02EA1988`, `02EA198C`, `02EA1990`). It prints its "is not supported" warning only when the count
 is 0 or leaves 25 when divided by 100, and only while `01F3BA80` and `01F3BA8C` are both non-zero.
@@ -91,18 +91,18 @@ No instruction or stored pointer in the image refers to these texts:
 ### The integration object
 
 `0065E5D0` allocates the 16-byte object once through `00210EC0` and builds it with `0065E530`, which
-clears its record pointer and ready byte, allocates a `0x78`-byte record and fills it with
+clears its record pointer and ready byte, allocates a `78`<sub>h</sub>-byte record and fills it with
 `006CBAA0`. That constructor clears the context and shim pointers and stores nine fixed values,
-among them 1000.0 at `+0x10`, 0.1 at `+0x20`, 10000.0 at `+0x6C` and 45.0 at `+0x70`.
+among them 1000.0 at `+10`<sub>h</sub>, 0.1 at `+20`<sub>h</sub>, 10000.0 at `+6C`<sub>h</sub> and 45.0 at `+70`<sub>h</sub>.
 
 The frame work `00193DA0` reaches the record only through one-line wrappers, each of which loads the
-record pointer from the object's `+0x00` and jumps to the integration function:
+record pointer from the object's `+00`<sub>h</sub> and jumps to the integration function:
 
 | Wrapper | Target | Call in `00193DA0` |
 |---|---|---|
 | `0065E5B0` | none: true when the record's context pointer is set | `00193DD1`, `00193DF5` |
 | `0065E5A0` | `006CBD20`, create the context | `00193DE8` |
-| `0065E6C0` | `006CC2F0` | the branch taken when the command's `+0x99` is set |
+| `0065E6C0` | `006CC2F0` | the branch taken when the command's `+99`<sub>h</sub> is set |
 | `0065E6A0` | `006CC1F0`, the first block of scene values | `00193E11` |
 | `0065E6B0` | `006CC260`, the second block | `00193E36` |
 | `0065E670` | `006CC1E0`, glare, with mode 1 and 1.0 (`01CEBBA8`) added | `00193E6C` |
@@ -116,29 +116,29 @@ record pointer from the object's `+0x00` and jumps to the integration function:
 
 1. Once (flag `01F31F70`), it installs `02E5BDE0` as the library's allocator (`006DA8F0`) and gives
    the library the licence text `00D86C00` (`006DAA50`, which copies it to `02EA0B58`).
-2. It creates the context (`006DA990`, a `0x18`-byte `PPFX::IPfxContext_Dx11`).
-3. It builds a default parameter block (`006CBBC0`), fills in the size `0x780` and the flags
-   `0x20001`, and calls `006DAA70(context, parameters, 3, 5)`. On failure it logs "Failed to
+2. It creates the context (`006DA990`, a `18`<sub>h</sub>-byte `PPFX::IPfxContext_Dx11`).
+3. It builds a default parameter block (`006CBBC0`), fills in the size `780`<sub>h</sub> and the flags
+   `20001`<sub>h</sub>, and calls `006DAA70(context, parameters, 3, 5)`. On failure it logs "Failed to
    initialize PPFX context." through the game's log `005CDAA0` and carries on.
 4. It builds a `Yebis::PfxShimD3D11` object and hands it the context.
 
 `006DAA70` is `IPfxBaseContext::Initialize`. It runs the licence verifier once (flag `01F3BB28`) and
 keeps the result at `02EA0B90`; with a negative result it returns that result and creates nothing.
-Otherwise it allocates the `0xD40`-byte global block (constructor `006FF5D0`), stores it at
+Otherwise it allocates the `D40`<sub>h</sub>-byte global block (constructor `006FF5D0`), stores it at
 `02EA0B70` and runs `CPostEffect::Initialize` (`006FF900`) on it.
 
 ### Each frame
 
 The frame routine `001F3300` first calls `00194A30`, which applies a delayed `EnableYebis` change.
-`00194A30` also runs a one-time setup: while the block's byte `+0x19B` is 0, when `001DC510()`
+`00194A30` also runs a one-time setup: while the block's byte `+19B`<sub>h</sub> is 0, when `001DC510()`
 returns non-null and `001FDF70` returns 1 for that result, it calls `00193A00` and `00193A80` on the
-block and sets `+0x19B`.
+block and sets `+19B`<sub>h</sub>.
 
 The frame routine then asks `0018E470`, which is true when the integration object is ready and the render
-parameter block's byte `+0xA0` is set. Only then does it build the post-process command (`0018EEE0`)
+parameter block's byte `+A0`<sub>h</sub> is set. Only then does it build the post-process command (`0018EEE0`)
 whose work is `00193DA0`:
 
-1. With no context yet, it creates one (`006CBD20`). When the command's byte `+0x99` is set, it
+1. With no context yet, it creates one (`006CBD20`). When the command's byte `+99`<sub>h</sub> is set, it
    calls `006CC2F0` on the existing context instead.
 2. With no context, it stops.
 3. It passes two blocks of scene values (`006CC1F0`, `006CC260`).
@@ -177,13 +177,13 @@ on). `00194290(block, on, delay)` does nothing when the value is already current
 
 - Turning it on logs "[YEBIS]Yebis Enable Failed!!!" through `005CDAA0`. The line is printed on every
   change from off to on and reports no failure.
-- With `delay` 0 it writes `+0xA0` at once. Otherwise it stores the value at `+0xA1` and the delay
-  at `+0x1F0`; `00194A30` counts `+0x1F0` down once per frame and copies `+0xA1` to `+0xA0` when it
+- With `delay` 0 it writes `+A0`<sub>h</sub> at once. Otherwise it stores the value at `+A1`<sub>h</sub> and the delay
+  at `+1F0`<sub>h</sub>; `00194A30` counts `+1F0`<sub>h</sub> down once per frame and copies `+A1`<sub>h</sub> to `+A0`<sub>h</sub> when it
   reaches 0.
 
 Four places call it. The scene and map configuration loaders (`001C3D50`, `001C7940`) read the
 `EnableYebis` key as an integer, 1 meaning on, with no delay. The debug menu handler `001D1660`
-calls it twice. The script command `0x05B0` (`00353420`, through `001EC4D0`) passes a value and a
+calls it twice. The script command `05B0`<sub>h</sub> (`00353420`, through `001EC4D0`) passes a value and a
 delay from its two arguments.
 
 ### The effect-source tokenizer
@@ -195,15 +195,15 @@ in the image. The tokenizer is linked and never reached.
 
 ### The embedded effect archive
 
-The library's compiled texture effects are a single block of `0xE8E9C2` bytes (15,264,194) in the
+The library's compiled texture effects are a single block of `E8E9C2`<sub>h</sub> bytes (15,264,194) in the
 image, starting at `00E21F90`. It begins with text fields: `.tfxo file`, three decimal numbers, `hlsl`,
 then the effect name `TexUtil_D3D11` and a newline-separated technique list that starts with
 `tech_AlchemySsao_T1_S16`.
 
-`0078A530` copies the whole block into a `malloc` buffer in eight runs of `0x1D1D40` bytes (sources
+`0078A530` copies the whole block into a `malloc` buffer in eight runs of `1D1D40`<sub>h</sub> bytes (sources
 `00E21F90` to `01ADEC50`, the last run shorter) and returns it. Its only caller is
 `TEXSHADERSET::CreateEffect()` (`0072A320`, named by its log lines), which on its first call
-(`+0x00` still null) hands the copy, its size and the name `_LUMINANCE_REMAP_S1.pso` to `0078A120`,
+(`+00`<sub>h</sub> still null) hands the copy, its size and the name `_LUMINANCE_REMAP_S1.pso` to `0078A120`,
 frees the copy, and then looks up the effect's parameter handles by name (`fParam_FocusDistance`,
 `afRGBA_Modulate`, `fParam_GammaCorrection` and others).
 
@@ -216,37 +216,37 @@ Nine large bodies in the span are in neither member list. Each is called only fr
 - `006E9C20` computes blur tap offsets: it divides the target size by the tap spacing, caps the
   count, and writes one `{x, y, 0, 0}` float vector per tap.
 - `00740BE0` clamps a sample count to 4 to 8, selects the shader for it, uploads constants through
-  slot `+0x98` of the GPU device at `+0x38` and binds textures through slot `+0xB8`.
+  slot `+98`<sub>h</sub> of the GPU device at `+38`<sub>h</sub> and binds textures through slot `+B8`<sub>h</sub>.
 - `0078AD20`, the code of `TinyEffect.cpp`, reflects a shader with `D3DReflect` and allocates its
-  `0xC0`-byte variable records through `006DA880`.
-- `0077FFE0` maps a GPU resource (device slot `+0x70`), copies four bytes of it into `+0xA0` to
-  `+0xA3` and unmaps it (slot `+0x78`).
+  `C0`<sub>h</sub>-byte variable records through `006DA880`.
+- `0077FFE0` maps a GPU resource (device slot `+70`<sub>h</sub>), copies four bytes of it into `+A0`<sub>h</sub> to
+  `+A3`<sub>h</sub> and unmaps it (slot `+78`<sub>h</sub>).
 - `00735E40` stages up to eight float vectors at `02EA1C50` and uploads them through device slots
-  `+0xD0` and `+0x98`; `0074F740` runs it twice (`0074FDD9`, `007502CD`).
+  `+D0`<sub>h</sub> and `+98`<sub>h</sub>; `0074F740` runs it twice (`0074FDD9`, `007502CD`).
 - `00741680` runs `00740BE0` three times (`00741B5C`, `00741D2A`, `00741F18`).
-- `007651F0` returns 0 unless its source at `+0x260` is set and three of its intensities are
+- `007651F0` returns 0 unless its source at `+260`<sub>h</sub> is set and three of its intensities are
   positive; otherwise it builds its pass constants from them.
 
 ## Layouts
 
-The render parameter block's switch fields (the block is `0x4A8` bytes; the rest is on
+The render parameter block's switch fields (the block is `4A8`<sub>h</sub> bytes; the rest is on
 [Graphics settings](../Engine-Core/graphics-settings.md)):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `0A0` | `u8` | the pass is on (constructor value 1) |  |
-| `0A1` | `u8` | the pending value of a delayed change |  |
-| `1F0` | `i32` | frames left before the pending value is applied |  |
+| `0A0`<sub>h</sub> | `u8` | the pass is on (constructor value 1) |  |
+| `0A1`<sub>h</sub> | `u8` | the pending value of a delayed change |  |
+| `1F0`<sub>h</sub> | `i32` | frames left before the pending value is applied |  |
 
-The library's global block, `0xD40` bytes at `[02EA0B70]`, as far as its constructor `006FF5D0`
+The library's global block, `D40`<sub>h</sub> bytes at `[02EA0B70]`, as far as its constructor `006FF5D0`
 lays it out:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `0A8` | `map header` | built by 00714800 |  |
-| `0B8` | `map header` | built by 007147A0 |  |
-| `0C8` | `map header` | built by 00714740 |  |
-| `C80` | `void*` | cleared by the constructor |  |
+| `0A8`<sub>h</sub> | `map header` | built by 00714800 |  |
+| `0B8`<sub>h</sub> | `map header` | built by 007147A0 |  |
+| `0C8`<sub>h</sub> | `map header` | built by 00714740 |  |
+| `C80`<sub>h</sub> | `void*` | cleared by the constructor |  |
 
 The licence text at `00D86C00`, as shipped:
 
@@ -300,11 +300,11 @@ EndDay = 0, MacAddress = 00-00-00-00-00-00, License = 5F7EAB4F21F6A264...
 
 - Setting `EnableYebis` to anything but 1 in a scene or map configuration turns every post-effect
   off for that scene; the context stays alive and nothing is re-initialised.
-- A non-zero delay through script command `0x05B0` applies the change that many frames later.
+- A non-zero delay through script command `05B0`<sub>h</sub> applies the change that many frames later.
 - A pending delayed change cannot be cancelled: `00194290` compares a request only with the current
-  `+0xA0`. With `+0xA0` = 1 and a delayed 0 pending, a later call asking for 1 (with any delay) is
+  `+A0`<sub>h</sub>. With `+A0`<sub>h</sub> = 1 and a delayed 0 pending, a later call asking for 1 (with any delay) is
   ignored, and the 0 still lands when the count reaches 0. An immediate change (delay 0) leaves
-  `+0x1F0` running, so an older pending value overwrites it later.
+  `+1F0`<sub>h</sub> running, so an older pending value overwrites it later.
 - The "[YEBIS]Yebis Enable Failed!!!" line in the game's log means the pass was switched on.
 - The licence text must stay byte for byte as shipped; a changed date field fails the field match.
 - The source path a function loads tells which PPFX source file it was compiled from; this is the
@@ -316,7 +316,7 @@ EndDay = 0, MacAddress = 00-00-00-00-00-00, License = 5F7EAB4F21F6A264...
 - [Graphics settings](../Engine-Core/graphics-settings.md): the render parameter block
   and the configuration keys, `EnableYebis` among them.
 - [Game settings](../Saving-Loading-And-Settings/game-settings.md): the Glare and DepthofField options.
-- [Script verb table](../Scripts-And-Script-Commands/verb-table.md): command `0x05B0`.
+- [Script verb table](../Scripts-And-Script-Commands/verb-table.md): command `05B0`<sub>h</sub>.
 - [Debug menu](../Engine-Core/debug-menu.md): the menu rows that switch the pass.
 - [Post-processing](../Graphics/post-processing.md): the passes the game runs, the
   feature setters and the init bits that leave features off.

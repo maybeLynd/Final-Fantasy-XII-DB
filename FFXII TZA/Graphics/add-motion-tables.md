@@ -48,10 +48,10 @@ record (0x1C):
   +0x10  f32[3]  copied by the parser; the pose code does not read them
 ```
 
-The parser `001BE1A0` keeps a 32-byte record per file (`+0x00` name, `+0x14` track count, `+0x18`
-tracks), 16 bytes per track (`+0x00` the u16 at file `+0x02`, `+0x02` records, `+0x04` groups,
-`+0x06` kind, `+0x07` angle, `+0x08` groups), `0x28` bytes per group (the header, then the record
-array at `+0x20`) and the records as they are.
+The parser `001BE1A0` keeps a 32-byte record per file (`+00`<sub>h</sub> name, `+14`<sub>h</sub> track count, `+18`<sub>h</sub>
+tracks), 16 bytes per track (`+00`<sub>h</sub> the u16 at file `+02`<sub>h</sub>, `+02`<sub>h</sub> records, `+04`<sub>h</sub> groups,
+`+06`<sub>h</sub> kind, `+07`<sub>h</sub> angle, `+08`<sub>h</sub> groups), `28`<sub>h</sub> bytes per group (the header, then the record
+array at `+20`<sub>h</sub>) and the records as they are.
 
 ### skeletonmapping.bin
 
@@ -94,25 +94,25 @@ the file ends with a -1 where a record would start
   the file's last byte into uninitialised stack bytes, up to the first zero.
 - The shipped list therefore yields 22 names only while those stack bytes hold no CRLF before a zero.
   When they do, the unterminated `hs0020_01` and the bytes after it become a 23rd name.
-- For each name it parses `<name>.adm`, copies the name over the record's `+0x00`, and then parses
+- For each name it parses `<name>.adm`, copies the name over the record's `+00`<sub>h</sub>, and then parses
   `<name>_town.adm` and names it `<name>_town` with `sprintf`. Both go into the registry's list.
-- The name is written over the parsed record, whose track count sits at `+0x14`: a name of 20
+- The name is written over the parsed record, whose track count sits at `+14`<sub>h</sub>: a name of 20
   characters or more, `_town` included, overwrites the count and the track pointer.
 - `001BE1A0` trusts every count: nothing is checked against the file size, and the sizes are
   multiplied with overflow saturating to all ones before allocation.
 
 ### Which table a model uses
 
-- `002EDF90(record, request, resource)` keeps a state at render record `+0x6C8` (0 unbound, 1 and 2
+- `002EDF90(record, request, resource)` keeps a state at render record `+6C8`<sub>h</sub> (0 unbound, 1 and 2
   bound, 3 and 4 released). Request 2 on an unbound record runs `00863110`; request 0 releases, and 1
   or 2 restores a released state. Its caller is `002E3110`, the part attach of the
   [actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md).
 - `00863110` takes the file name of the resource between the last backslash and the first dot into
-  a 16-byte buffer and calls `001BE430`, which stores the record with that name at `+0x6E8` and the one
-  named `<name>_town` at `+0x6F0`.
-- `003714A0`, run for every skeleton while its pose is composed, uses `+0x6F0` when it is set and
+  a 16-byte buffer and calls `001BE430`, which stores the record with that name at `+6E8`<sub>h</sub> and the one
+  named `<name>_town` at `+6F0`<sub>h</sub>.
+- `003714A0`, run for every skeleton while its pose is composed, uses `+6F0`<sub>h</sub> when it is set and
   bit 15 of the current field's word in the table at `02ADD100` is set (`00377C20`); the registry's
-  `+0x20` (`0017FFB0`) forces the town table with 1 and the base table with 2.
+  `+20`<sub>h</sub> (`0017FFB0`) forces the town table with 1 and the base table with 2.
 
 ### Applying a track
 
@@ -120,33 +120,33 @@ the file ends with a -1 where a record would start
 name that bone. Then for each track:
 
 - **Kind 0** (needs two groups or more). The driving bone is looked up in the skeleton that the posed
-  skeleton's `+0x0C` names. It takes that bone's angle `+0x190 + 4 × angle` and
-  the same angle of the bone's matrix at `+0x230` (`003719F7`–`00371A4A`) and uses their difference
+  skeleton's `+0C`<sub>h</sub> names. It takes that bone's angle `+190h + 4 × angle` and
+  the same angle of the bone's matrix at `+230`<sub>h</sub> (`003719F7`–`00371A4A`) and uses their difference
   in degrees; `00180060` / `00180090` can replace it with a set value.
 - Kind 0 then finds the pair of groups
   whose keys hold the value and interpolates every record between them, extending past the first and
   last keys.
-- **Kind 1**. It asks `004776D0` for the value of sequencer slot `+0x02` (`00371F64`) and applies the
+- **Kind 1**. It asks `004776D0` for the value of sequencer slot `+02`<sub>h</sub> (`00371F64`) and applies the
   group whose id equals it; with no such group nothing is applied.
-- Either way the angles are turned into radians, written to bone `+0x190`–`+0x198` and every bone
-  linked through `+0x278`, and rebuilt into the bone's rotation with `0046D380` (`00371D27`,
+- Either way the angles are turned into radians, written to bone `+190`<sub>h</sub>–`+198`<sub>h</sub> and every bone
+  linked through `+278`<sub>h</sub>, and rebuilt into the bone's rotation with `0046D380` (`00371D27`,
   `00372087`).
 - Switching between the base and town tables saves and restores the affected bones' state through
-  the arrays at record `+0x720`.
+  the arrays at record `+720`<sub>h</sub>.
 
 ### skeletonmapping.bin
 
-`0036FFF0` copies each name (32 bytes, `strncpy`) into a `0x30`-byte record at `[02AD9E30]` (count
-`02AD9E38`) with the value array at `+0x28`. `00372820` keeps the last record whose name matches the
-model at skeleton `+0xB0`. While the render record's add-motion state is 2 and the record has a
+`0036FFF0` copies each name (32 bytes, `strncpy`) into a `30`<sub>h</sub>-byte record at `[02AD9E30]` (count
+`02AD9E38`) with the value array at `+28`<sub>h</sub>. `00372820` keeps the last record whose name matches the
+model at skeleton `+B0`<sub>h</sub>. While the render record's add-motion state is 2 and the record has a
 partner skeleton, `003703A0` builds the skinning matrix of each mapped bone from the partner's bone
 (`0037065D`–`0037078C`).
 
 ### highmodelreplace.bin
 
-`0037CCC0` counts the records, then fills `0x30`-byte rows at `[02ADD940]` (count `02ADD938`): model,
-b and c at `+0x00`, the pair count at `+0x0C`, replacements from `+0x10` and progress values from
-`+0x20`. Nothing limits a record to four pairs. `0037CB90` looks a model up; its use is described with
+`0037CCC0` counts the records, then fills `30`<sub>h</sub>-byte rows at `[02ADD940]` (count `02ADD938`): model,
+b and c at `+00`<sub>h</sub>, the pair count at `+0C`<sub>h</sub>, replacements from `+10`<sub>h</sub> and progress values from
+`+20`<sub>h</sub>. Nothing limits a record to four pairs. `0037CB90` looks a model up; its use is described with
 the binding verbs in [script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md),
 against the [story progress](../Story-Events-And-Hunts/story-progress.md) word.
 

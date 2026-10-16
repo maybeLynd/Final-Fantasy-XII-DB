@@ -22,7 +22,7 @@ addresses: "003172E0, 003170E0, 00328B20, 003288F0, 00316DF0, 00317480, 00323540
 
 A party member is named by its selector, which is its row of the party table and of the forty member records
 ([Party slots](party-slots.md)). Selectors 0-6 are the main characters and 7-25 the guests; `00322350` is the
-guest test, `sel - 7 <= 0x12` as a byte. Row 26 is the chocobo and rows 27-39 the Espers, which no membership
+guest test, `sel - 7 <= 12h` as a byte. Row 26 is the chocobo and rows 27-39 the Espers, which no membership
 function accepts. The names are under Shipped data.
 
 ### Adding a main character
@@ -32,7 +32,7 @@ function accepts. The names are under Shipped data.
 1. It refuses a selector above 6, and one already in any of map 0's nine seats (`00317310`-`00317329`), so nobody
    is in the party twice.
 2. `00321100` finds a free reserve seat, the first of seats 4-8 of map 3 whose id check fails or whose byte is
-   `0xFF` (`0032110A`-`00321148`); there is none when all five are taken, and the add fails.
+   `FF`<sub>h</sub> (`0032110A`-`00321148`); there is none when all five are taken, and the add fails.
 3. Map 0 is copied to the staging map `022C2580`, and the selector is written to that seat if it is empty there
    (`00317343`-`00317396`).
 4. The member's record is activated with `00316DF0` and the change is committed with `003261D0(0)`
@@ -42,7 +42,7 @@ function accepts. The names are under Shipped data.
 
 `003170E0(sel)` adds a guest (`003170E0`-`003171AE`). It refuses a selector outside 7-25 and one already seated,
 like the main add. It then tries active seats 3, 2 and 1 of map 3, in that order, and takes the first whose id
-check fails or whose byte is `0xFF` (`0031711A`-`00317157`). Seat 0 is never tried, but the commit closes up the
+check fails or whose byte is `FF`<sub>h</sub> (`0031711A`-`00317157`). Seat 0 is never tried, but the commit closes up the
 active seats, so a guest given seat 3 while seat 2 is empty ends up in seat 2.
 
 `00326110(sel, seat, 0, 1)` then copies map 0 to the staging map, writes the selector to the seat if it is empty
@@ -52,7 +52,7 @@ there, activates the record with `00316DF0` and commits with `003261D0(0)` (`003
 
 `00328B20(sel)` removes a main character and `003288F0(sel)` a guest (`00328B20`-`00328BC2`,
 `003288F0`-`0032898E`). Each refuses a selector outside its range or not seated in map 0. It copies map 0 to the
-staging map, empties the member's seat with `0xFFFF`, deactivates the record with `00323540` and commits with
+staging map, empties the member's seat with `FFFF`<sub>h</sub>, deactivates the record with `00323540` and commits with
 `003261D0(0)`.
 
 ### What a join brings
@@ -67,10 +67,10 @@ staging map, empties the member's seat with `0xFFFF`, deactivates the record wit
 3. For a main character, each of the five equipment words is added to the inventory, and to the count of equipped
    pieces (`00316E87`-`00316EB1`).
 4. On the record's first activation, flag bit 3 clear, each enabled gambit slot's action is added, and for a main
-   character also the id the action row names at `+0x22`, the magick or technick it uses (`00316EC3`-`00316F92`).
+   character also the id the action row names at `+22`<sub>h</sub>, the magick or technick it uses (`00316EC3`-`00316F92`).
    An item id there goes to the unused channel 4 and adds nothing ([Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md)).
-5. On that first activation the up to ten ids the party row lists at `+0x58` are added, with counts at
-   `+0x34` (`00316FE1`-`00317019`), and the gil at row `+0x3E` (`0031701B`-`00317034`).
+5. On that first activation the up to ten ids the party row lists at `+58`<sub>h</sub> are added, with counts at
+   `+34`<sub>h</sub> (`00316FE1`-`00317019`), and the gil at row `+3E`<sub>h</sub> (`0031701B`-`00317034`).
 6. HP is set to max HP, or twice max HP under Bubble; under Disease it stays, but at least 1
    (`00317048`-`00317082`). Flag bits 3 and 4 are then set.
 
@@ -81,14 +81,14 @@ the first-join items and gil are not taken back.
 ### Catching up on a join
 
 `00317480(record)` sets a joining member's level and LP from the party (`00317480`-`00317667`). The party row's
-byte `+0x2C`, bits 3-4, says when: 1 on the first activation only, 2 on every activation, anything else never
+byte `+2C`<sub>h</sub>, bits 3-4, says when: 1 on the first activation only, 2 on every activation, anything else never
 (`003174D9`-`0031750D`).
 
-1. It takes the two other active main characters with the highest levels, record `+0x1C2`
+1. It takes the two other active main characters with the highest levels, record `+1C2`<sub>h</sub>
    (`00317540`-`003175B4`).
-2. The level becomes their average level, at least 1, plus the row's byte `+0x2E`, through `0030C470`
+2. The level becomes their average level, at least 1, plus the row's byte `+2E`<sub>h</sub>, through `0030C470`
    (`00317600`-`0031762C`).
-3. The LP at `+0x190` becomes the row's word `+0x44` plus their average LP, counting the licences they own
+3. The LP at `+190`<sub>h</sub> becomes the row's word `+44`<sub>h</sub> plus their average LP, counting the licences they own
    (`003237C0`), minus the cost of the licences the member owns; the result is kept between 0 and 99,999
    (`003175DF`, `00317614`-`00317652`).
 
@@ -110,7 +110,7 @@ data.
    with `0037CA80` (`00326471`-`003264B8`); with mode 1, `003266C0` rebuilds the maps instead (`003264BF`). Every
    function on this page calls it with 0.
 
-Every membership verb raises bit `0x13` of the busy mask `022CB720` with `003601B0`
+Every membership verb raises bit `13`<sub>h</sub> of the busy mask `022CB720` with `003601B0`
 ([Zone changes](../World-Areas-And-Travel/zone-changes-and-mapjump.md)). The verbs' poll handlers wait until
 `003596B0` reports the read-in done, then clear the bit with `003601C0` (`0034C38A`-`0034C398`, `003506A6`-`003506B4`).
 
@@ -118,19 +118,19 @@ Every membership verb raises bit `0x13` of the busy mask `022CB720` with `003601
 
 | Verb | Handlers | Effect |
 |---|---|---|
-| `0x353` `addpartymember(sel)` | `0034C030`, `0034C370` | raises the busy bit and adds a main character with `003172E0` (`0034C3AC`-`0034C3BA`) |
-| `0x354` `removepartymember(sel)` | `0034C030`, `0034CDF0` | removes a main character with `00328B20` (`0034CE2C`-`0034CE31`) |
-| `0x355` `setbattlemember(a, b, c)` | `0034D4E0`, `003506A0` | chooses who fights, below |
-| `0x358` `removebattlemember(sel)` | `00350160`, `003506A0` | for a main character, when more than one fights, moves it to a reserve seat with `003286E0` (`0035019D`-`003501AA`) |
-| `0x359` `setbattlememberone(sel)` | `00350CD0`, `003506A0` | for a main character, keeps it, or else the first fighter, and moves the other main characters out of seats 0-2 with `003287A0`; guests and seat 3 stay (`00350D29`-`00350D52`) |
-| `0x35A` `setbattlememberlock(sel, v)` | `00351A40`, `003506A0` | for a main character, sets or clears record flag bit 0 with `00328FB0` (`00328FD5`, `00328FDE`) |
-| `0x35B` `addguestbattlemember(sel)` | `00352190`, `003506A0` | adds a guest with `003170E0` (`003521CD`-`003521DE`) |
-| `0x35C` `removeguestbattlemember(sel)` | `00352AF0`, `003506A0` | removes a guest with `003288F0` (`00352B0A`-`00352B1E`) |
-| `0x35E` `ispartymember(sel)` | `00353CB0` | a guest: in the fighting seats (`003596D0`); a main character: in the party (`00359740`) |
-| `0x361` `getpartymembermask` | `003542C0` | the bit mask of the seated selectors outside the guest range (`00359C00`) |
+| `353`<sub>h</sub> `addpartymember(sel)` | `0034C030`, `0034C370` | raises the busy bit and adds a main character with `003172E0` (`0034C3AC`-`0034C3BA`) |
+| `354`<sub>h</sub> `removepartymember(sel)` | `0034C030`, `0034CDF0` | removes a main character with `00328B20` (`0034CE2C`-`0034CE31`) |
+| `355`<sub>h</sub> `setbattlemember(a, b, c)` | `0034D4E0`, `003506A0` | chooses who fights, below |
+| `358`<sub>h</sub> `removebattlemember(sel)` | `00350160`, `003506A0` | for a main character, when more than one fights, moves it to a reserve seat with `003286E0` (`0035019D`-`003501AA`) |
+| `359`<sub>h</sub> `setbattlememberone(sel)` | `00350CD0`, `003506A0` | for a main character, keeps it, or else the first fighter, and moves the other main characters out of seats 0-2 with `003287A0`; guests and seat 3 stay (`00350D29`-`00350D52`) |
+| `35A`<sub>h</sub> `setbattlememberlock(sel, v)` | `00351A40`, `003506A0` | for a main character, sets or clears record flag bit 0 with `00328FB0` (`00328FD5`, `00328FDE`) |
+| `35B`<sub>h</sub> `addguestbattlemember(sel)` | `00352190`, `003506A0` | adds a guest with `003170E0` (`003521CD`-`003521DE`) |
+| `35C`<sub>h</sub> `removeguestbattlemember(sel)` | `00352AF0`, `003506A0` | removes a guest with `003288F0` (`00352B0A`-`00352B1E`) |
+| `35E`<sub>h</sub> `ispartymember(sel)` | `00353CB0` | a guest: in the fighting seats (`003596D0`); a main character: in the party (`00359740`) |
+| `361`<sub>h</sub> `getpartymembermask` | `003542C0` | the bit mask of the seated selectors outside the guest range (`00359C00`) |
 
-The table lists the verbs that change membership and two that test it; `0x357` `getbattlemember` (`0034F5A0`) and
-`0x35D` `isbattlemember` (`00353780`) are further queries.
+The table lists the verbs that change membership and two that test it; `357`<sub>h</sub> `getbattlemember` (`0034F5A0`) and
+`35D`<sub>h</sub> `isbattlemember` (`00353780`) are further queries.
 
 `setbattlemember`, `setbattlememberone` and `addguestbattlemember` first take the four roster actors out of the
 target group with `002ECD50(actor, 0)`, through its thunk `0026DC40` (`0034D520`-`0034D53B`, `00350CF5`-`00350D10`, `003521A6`-`003521C1`).
@@ -154,15 +154,15 @@ If the leader's selector is not among the three, the first one given becomes the
 
 `00269C70(actor, slot)` installs an actor in the four-slot roster `0209A1F0` (`00269C70`-`00269D55`):
 
-1. The actor's old slot, record byte `+0x12`, is emptied, and its record is reset to `+0x12 = 0xFF`,
-   `+0xF = 3` (`00269CB7`-`00269CD9`).
-2. The actor is stored in the slot, `+0x12` becomes the slot and `+0xF` becomes 2, or 3 for a slot outside 0-3
-   (`00269CDD`-`00269CF3`). A slot of `-1` stores nothing and writes `0xFF`, the same as the reset, so it removes
+1. The actor's old slot, record byte `+12`<sub>h</sub>, is emptied, and its record is reset to `+12h = FFh`,
+   `+Fh = 3` (`00269CB7`-`00269CD9`).
+2. The actor is stored in the slot, `+12`<sub>h</sub> becomes the slot and `+F`<sub>h</sub> becomes 2, or 3 for a slot outside 0-3
+   (`00269CDD`-`00269CF3`). A slot of `-1` stores nothing and writes `FF`<sub>h</sub>, the same as the reset, so it removes
    the actor cleanly; a slot above 3 is stored without a bounds check (`00269CE1`).
 3. When no leader is set, the actor is requested as leader (`00269D21`-`00269D34`).
 
-The actor that held the slot before is only notified (`00269C91`-`00269CAD`); its record keeps `+0x12` and
-`+0xF`, so it still names the slot until it is installed again.
+The actor that held the slot before is only notified (`00269C91`-`00269CAD`); its record keeps `+12`<sub>h</sub> and
+`+F`<sub>h</sub>, so it still names the slot until it is installed again.
 
 ### Whom the others follow
 
@@ -174,7 +174,7 @@ Every member who is not controlled follows the leader; the formation and its one
 
 ### Party rows
 
-The names are the row's name word at `+0x30`, read from text bank 8 of `battle_pack.bin` section 61
+The names are the row's name word at `+30`<sub>h</sub>, read from text bank 8 of `battle_pack.bin` section 61
 (`0023AB03`, `0031C6B1`, `0032958E`).
 
 | Rows | Kind | Names |
@@ -187,9 +187,9 @@ The names are the row's name word at `+0x30`, read from text bank 8 of `battle_p
 
 ### Catch-up and first-join items
 
-The catch-up columns are the party row's bytes `+0x2C` bits 3-4 and `+0x2E` and its word `+0x44`; the items
-are the row's list at `+0x58` with its counts at `+0x34`, named from the shipped tables, and the gil is the row's
-word `+0x3E`. Rows that are not listed have no catch-up, items or gil.
+The catch-up columns are the party row's bytes `+2C`<sub>h</sub> bits 3-4 and `+2E`<sub>h</sub> and its word `+44`<sub>h</sub>; the items
+are the row's list at `+58`<sub>h</sub> with its counts at `+34`<sub>h</sub>, named from the shipped tables, and the gil is the row's
+word `+3E`<sub>h</sub>. Rows that are not listed have no catch-up, items or gil.
 
 | Row | Catch-up | Level bonus | LP bonus | Items on the first join | Gil |
 |---|---|---:|---:|---|---:|

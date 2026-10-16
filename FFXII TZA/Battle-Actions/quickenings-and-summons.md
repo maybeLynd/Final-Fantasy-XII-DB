@@ -27,24 +27,24 @@ Quickenings, the Concurrences, and mounting and dismounting a chocobo.
 
 ### Which actions
 
-An action whose row has bit 30 (`0x40000000`) of the flag word `+0x0C` goes through
-`0030CE10`. In the shipped `battle_pack.bin` 87 rows have it: Mount and Dismount (ids `0x94`, `0x95`),
-the 13 Esper finishing attacks among `0xB6`-`0xCF`, the 18 Quickenings `0xD0`-`0xE1`, the
-Concurrences and unused rows `0xE2`-`0xF1`, the 13 summons `0x106`-`0x112`, Dismiss `0x113`, and
+An action whose row has bit 30 (`40000000`<sub>h</sub>) of the flag word `+0C`<sub>h</sub> goes through
+`0030CE10`. In the shipped `battle_pack.bin` 87 rows have it: Mount and Dismount (ids `94`<sub>h</sub>, `95`<sub>h</sub>),
+the 13 Esper finishing attacks among `B6`<sub>h</sub>-`CF`<sub>h</sub>, the 18 Quickenings `D0`<sub>h</sub>-`E1`<sub>h</sub>, the
+Concurrences and unused rows `E2`<sub>h</sub>-`F1`<sub>h</sub>, the 13 summons `106`<sub>h</sub>-`112`<sub>h</sub>, Dismiss `113`<sub>h</sub>, and
 rows named Reserve from 511 on (names from the action-name table of `battle_pack.bin`).
 
 ### Asking for the scene
 
 The per-frame presentation step `0030CBE0` (run from `00234590` at `002346F4`) calls
 `0030CE10(unit, row)` for a pending entry (`0030CD99`). `0030CE10` returns -1 when the row lacks bit
-30, or when the id is in `0xD0`-`0xF1` while the state `022C2160` is 5 or 6. Otherwise it clears unit
+30, or when the id is in `D0`<sub>h</sub>-`F1`<sub>h</sub> while the state `022C2160` is 5 or 6. Otherwise it clears unit
 bit 29, calls `00306BD0`, sets bit 29 on success and returns it (`0030CEF2`-`0030CF0D`).
 
 | `0030CE10` returns | The entry |
 |---:|---|
-| -1 | moves to its state 3 without the scene-granted bit 0 of `+0x2C` (`0030CDB1`) |
+| -1 | moves to its state 3 without the scene-granted bit 0 of `+2C`<sub>h</sub> (`0030CDB1`) |
 | 0 | stays in its state 1 and is asked again on the next orchestrator frame |
-| 1 | moves to state 2; once `00306B10` returns 1 (or at once for a unit without bit 29) it gets bit 0 of `+0x2C` and moves to state 3 (`0030CD9E`-`0030CDD8`) |
+| 1 | moves to state 2; once `00306B10` returns 1 (or at once for a unit without bit 29) it gets bit 0 of `+2C`<sub>h</sub> and moves to state 3 (`0030CD9E`-`0030CDD8`) |
 
 ### The stages (state `022C2160`, owner `022C2168`, kind `022C215C`)
 
@@ -67,30 +67,30 @@ state returns to 0 in that same call when scene manager 3 is already idle.
 
 ### The kind (`00306BD0`, by action id)
 
-Mount 5, Dismount 6, `0xB6`-`0xCF` 3 (Esper attacks),
-`0xD0`-`0xE1` 4 (Quickenings), `0x106`-`0x112` 1 (summons), `0x113` 2 (Dismiss), anything else 7.
+Mount 5, Dismount 6, `B6`<sub>h</sub>-`CF`<sub>h</sub> 3 (Esper attacks),
+`D0`<sub>h</sub>-`E1`<sub>h</sub> 4 (Quickenings), `106`<sub>h</sub>-`112`<sub>h</sub> 1 (summons), `113`<sub>h</sub> 2 (Dismiss), anything else 7.
 
 ### Playing
 
 The standard-action state machine `00304850`, for a row with bit 30, calls
 `00306760(unit, row)` in place of the usual presentation event, after the target previews
-(`00303830`) and the resource payment (`00305640`) - except for ids `0xD0`-`0xF1`, the Quickenings and
-Concurrences, which skip both (`00304F00`-`00304F4D`). `00306760` moves the unit's presentation slot `+0x694`
-to `+0x695` when free, posts `003299B0(unit, 003098D0(), 0)` when row byte `+0x1C` is 8, then by kind:
+(`00303830`) and the resource payment (`00305640`) - except for ids `D0`<sub>h</sub>-`F1`<sub>h</sub>, the Quickenings and
+Concurrences, which skip both (`00304F00`-`00304F4D`). `00306760` moves the unit's presentation slot `+694`<sub>h</sub>
+to `+695`<sub>h</sub> when free, posts `003299B0(unit, 003098D0(), 0)` when row byte `+1C`<sub>h</sub> is 8, then by kind:
 
-- **1 (summon):** sets bit 0 of `[02EBF190]+0x5B04` (calling `0035C620` when it changes); stores the
-  summoner's type id at `+0x5AD5` and row byte `+0x26` (the Esper's stats index) at `+0x5AD4`; calls
-  `00327810(unit)`; stores `(float)002FA0E0(summoner stats, +0x26)` at `+0x5AD8` and `+0x5ADC`; calls
-  `0030C470(Esper stats, summoner stats byte +0x1C2, 0)`.
-- **2 (Dismiss):** calls `00290740(0)` when bit 0 of `+0x5AD0` is set, `00306D90(0, unit id, +0x5AD4)`,
-  and clears bit 0 of `+0x5B04` (calling `0035C620`).
-- **3 (Esper attack):** `00306D90(target list, unit id, +0x5AD4)`, clears the deferred-HP list at
+- **1 (summon):** sets bit 0 of `[02EBF190]+5B04h` (calling `0035C620` when it changes); stores the
+  summoner's type id at `+5AD5`<sub>h</sub> and row byte `+26`<sub>h</sub> (the Esper's stats index) at `+5AD4`<sub>h</sub>; calls
+  `00327810(unit)`; stores `(float)002FA0E0(summoner stats, +26h)` at `+5AD8`<sub>h</sub> and `+5ADC`<sub>h</sub>; calls
+  `0030C470(Esper stats, summoner stats byte +1C2h, 0)`.
+- **2 (Dismiss):** calls `00290740(0)` when bit 0 of `+5AD0`<sub>h</sub> is set, `00306D90(0, unit id, +5AD4h)`,
+  and clears bit 0 of `+5B04`<sub>h</sub> (calling `0035C620`).
+- **3 (Esper attack):** `00306D90(target list, unit id, +5AD4h)`, clears the deferred-HP list at
   `022C1F50`, calls `0030EC00(unit, action id)` and sets `022BE970` to 1.
 - **4 (Quickening):** `00306D90(target list, 0, 0)`, clears `022C1F50`, calls `0030D720` and
-  `0030D550`, moves the slot `+0x695` to `+0x696` when free, stores the unit id at `022C218C`, the
-  Quickening index (id - `0xD0`) at `022C2178`, and copies the target list's units to `022C21B8`
+  `0030D550`, moves the slot `+695`<sub>h</sub> to `+696`<sub>h</sub> when free, stores the unit id at `022C218C`, the
+  Quickening index (id - `D0`<sub>h</sub>) at `022C2178`, and copies the target list's units to `022C21B8`
   (count `022C21B4`).
-- **5 (Mount):** sets bit 1 of `+0x5B04`, `+0x5AE0 |= 0xC` and `+0x5AE4` = 180.0 once.
+- **5 (Mount):** sets bit 1 of `+5B04`<sub>h</sub>, `+5AE0h |= Ch` and `+5AE4`<sub>h</sub> = 180.0 once.
 - **6 (Dismount):** `00303D90(0)`.
 
 Then it clears bits 8 and 9 of every battle unit's flags, starts scene manager 3 (`00332130(3)`) and
@@ -100,7 +100,7 @@ sets state 5 (`00306ADF`).
 
 `0030EC00(unit, id)` resolves the action against every target in the list
 (`00385F60` into a local result), applies its enmity (`003216E0`), runs `00312170` and `00317670`, and adds the result's
-`+0x24` to the slot of the target's index `+0xEA9` in the list at `022C1F50` (unit at `022C1F58 + i*16`,
+`+24`<sub>h</sub> to the slot of the target's index `+EA9`<sub>h</sub> in the list at `022C1F50` (unit at `022C1F58 + i*16`,
 value at `022C1F60 + i*16`; header = the attacker's stats) (`0030EC61`-`0030ED45`). The HP is written
 only at the end.
 
@@ -115,7 +115,7 @@ owner it runs these steps (`003065D6`-`00306716`):
 3. For kind 3 it sets `022BE970` to 0, calls `0017F5B0(0)`, applies each list entry with
    `00300530(target stats, value, attacker stats, 0)` and clears the list.
 4. For kind 4 it calls `0030D810`, `0030EB10(1)` (the same HP application, plus `0030E360` with 4 and
-   with 5 for each target), releases the slot `+0x696` and calls `0030D720`.
+   with 5 for each target), releases the slot `+696`<sub>h</sub> and calls `0030D720`.
 5. The state becomes 7. When manager 3 is idle the state, kind and owner are cleared, bits 0-1 of
    `022C2158` are cleared, and `00238A60()` and `00332190(3)` run.
 
@@ -150,7 +150,7 @@ called from `002341D0`, the area initialisation `00234397` and the slot release 
 
 ## Modding notes
 
-- The scene flag is bit 30 of an action row's word `+0x0C`; clearing it makes the action run as an
+- The scene flag is bit 30 of an action row's word `+0C`<sub>h</sub>; clearing it makes the action run as an
   ordinary one (no scene, no wait, no pause).
 - The kind is chosen by action id in `00306BD0`, not by data, so a new action id only gets the summon,
   Esper-attack or Quickening behaviour inside those id ranges.

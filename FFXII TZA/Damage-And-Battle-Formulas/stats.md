@@ -26,7 +26,7 @@ No stat goes below 0, and max HP never goes below 1.
 ### The rebuild
 
 `002FEF30(stats, out, equipment)` computes the stats block. With `out` and `equipment` null it writes the
-record's own block at `+0x24` and reads the five equipment words at `+0x50` (`002FEF95`-`002FEFAB`). It
+record's own block at `+24`<sub>h</sub> and reads the five equipment words at `+50`<sub>h</sub> (`002FEF95`-`002FEFAB`). It
 clears the block first (`002FEFB9`-`002FEFC8`).
 
 The augment rebuild `0030FED0` calls it (`003103AD`); [Augments](augments.md) lists that function's 25
@@ -34,8 +34,8 @@ callers. The equipment comparison `0030A4E0` calls it with its own block (`0030A
 
 ### A party member's base
 
-For a party record (stats `+0x05` = 0), the base comes from the character row of table `02EBF130` that
-the type byte `+0x04` selects (`002FF02E`-`002FF0DC`):
+For a party record (stats `+05`<sub>h</sub> = 0), the base comes from the character row of table `02EBF130` that
+the type byte `+04`<sub>h</sub> selects (`002FF02E`-`002FF0DC`):
 
 ```python
 maxHp = (row[+0x18] + 1) * stats[+0x08] * row[+0x19] / 100  # 002F8E50
@@ -46,14 +46,14 @@ innate evade = row[+0x2A]
 
 Both divisions truncate towards zero. The four floats are the character's grown values
 ([Stat growth per level](../Rewards-EXP-Gil-And-Loot/stat-growth-per-level.md)). The row's status
-words `+0x4C` and `+0x48` are ORed into stats `+0x38` and `+0x3C` (`002FF0A3`-`002FF0D9`).
+words `+4C`<sub>h</sub> and `+48`<sub>h</sub> are ORed into stats `+38`<sub>h</sub> and `+3C`<sub>h</sub> (`002FF0A3`-`002FF0D9`).
 
 ### An enemy's base
 
 For any other record the base comes from three area tables, found through the unit's row of `02EBF120`
-(selected by `+0x04`): the base row of `02EBF148` its word `+0x22` names and the growth row of `02EBF140`
-its word `+0x24` names (`002FF0E1`-`002FF1A4`). With `d` = the unit's level `+0x1C2` minus its reference
-level `+0x88` (`002FF1EE`-`002FF200`), each stat is:
+(selected by `+04`<sub>h</sub>): the base row of `02EBF148` its word `+22`<sub>h</sub> names and the growth row of `02EBF140`
+its word `+24`<sub>h</sub> names (`002FF0E1`-`002FF1A4`). With `d` = the unit's level `+1C2`<sub>h</sub> minus its reference
+level `+88`<sub>h</sub> (`002FF1EE`-`002FF200`), each stat is:
 
 ```python
 stat = growth[field] * d + base[field] + stats[adjustment]
@@ -61,23 +61,23 @@ stat = growth[field] * d + base[field] + stats[adjustment]
 
 | Stat | Base and growth field | Adjustment word |
 |---|---|---|
-| max HP | `+0x20` (`u32`) | none |
-| max MP | `+0x24` (`i16`) | none |
-| Strength | `+0x26` | `+0x08` |
-| Magick Power | `+0x27` | `+0x0A` |
-| Vitality | `+0x28` | `+0x0C` |
-| Speed | `+0x29` | `+0x0E` |
-| innate evade | `+0x2A` | `+0x16` |
-| Defense | `+0x2B` | `+0x12` |
-| Magick Resist | `+0x2C` | `+0x14` |
+| max HP | `+20`<sub>h</sub> (`u32`) | none |
+| max MP | `+24`<sub>h</sub> (`i16`) | none |
+| Strength | `+26`<sub>h</sub> | `+08`<sub>h</sub> |
+| Magick Power | `+27`<sub>h</sub> | `+0A`<sub>h</sub> |
+| Vitality | `+28`<sub>h</sub> | `+0C`<sub>h</sub> |
+| Speed | `+29`<sub>h</sub> | `+0E`<sub>h</sub> |
+| innate evade | `+2A`<sub>h</sub> | `+16`<sub>h</sub> |
+| Defense | `+2B`<sub>h</sub> | `+12`<sub>h</sub> |
+| Magick Resist | `+2C`<sub>h</sub> | `+14`<sub>h</sub> |
 
-Attack Power starts from the adjustment word `+0x10`, and the evades from `+0x18`, `+0x1A`, `+0x1C`, `+0x1E`
-and `+0x20` (`002FF202`-`002FF2F5`). Two bits of the `02EBF120` row's byte `+0x15` switch sources
+Attack Power starts from the adjustment word `+10`<sub>h</sub>, and the evades from `+18`<sub>h</sub>, `+1A`<sub>h</sub>, `+1C`<sub>h</sub>, `+1E`<sub>h</sub>
+and `+20`<sub>h</sub> (`002FF202`-`002FF2F5`). Two bits of the `02EBF120` row's byte `+15`<sub>h</sub> switch sources
 (`002FF325`-`002FF3C8`):
 
-- **bit 0:** Attack Power adds base and growth `+0x2D`, weapon evade adds `+0x2E`, and the equipped
+- **bit 0:** Attack Power adds base and growth `+2D`<sub>h</sub>, weapon evade adds `+2E`<sub>h</sub>, and the equipped
   weapon's Attack Power and evade are not added;
-- **bit 1:** shield evade adds base and growth `+0x02`, magick evade `+0x03`, and the shield's values are
+- **bit 1:** shield evade adds base and growth `+02`<sub>h</sub>, magick evade `+03`<sub>h</sub>, and the shield's values are
   not added.
 
 ### Equipment
@@ -87,19 +87,19 @@ Each of the five equipment words that names an item (`00322C50(6, id)`) adds by 
 
 | Group | Equipment classes | Adds |
 |---|---|---|
-| `1` | weapons and ammunition | row `+0x1A` to Attack Power, row `+0x1D` to weapon evade |
-| `2` | shields | row `+0x18` to shield evade, row `+0x19` to magick evade |
-| `3` | helms, armor, accessories | row `+0x18` to Defense, row `+0x19` to Magick Resist |
+| `1` | weapons and ammunition | row `+1A`<sub>h</sub> to Attack Power, row `+1D`<sub>h</sub> to weapon evade |
+| `2` | shields | row `+18`<sub>h</sub> to shield evade, row `+19`<sub>h</sub> to magick evade |
+| `3` | helms, armor, accessories | row `+18`<sub>h</sub> to Defense, row `+19`<sub>h</sub> to Magick Resist |
 
-Every item then adds its attribute record, whatever its group (`002FF4A7`-`002FF571`): `u16 +0x00` to max
-HP, `u16 +0x02` to max MP, bytes `+0x04`-`+0x07` to Strength, Magick Power, Vitality and Speed; it ORs
-`+0x0C` into stats `+0x38` and `+0x08` into stats `+0x3C`, and its elements into the affinity bytes
+Every item then adds its attribute record, whatever its group (`002FF4A7`-`002FF571`): `u16 +00h` to max
+HP, `u16 +02h` to max MP, bytes `+04`<sub>h</sub>-`+07`<sub>h</sub> to Strength, Magick Power, Vitality and Speed; it ORs
+`+0C`<sub>h</sub> into stats `+38`<sub>h</sub> and `+08`<sub>h</sub> into stats `+3C`<sub>h</sub>, and its elements into the affinity bytes
 ([Elements](elements.md)).
 
 ### Augments that add stats
 
-Three lists of effect ids add a bonus when the id is set in either effect layer, `+0x68` or `+0x78`
-(`002FF581`-`002FF77A`). The bonus is the `u16` at `+0x04` of the id's row in the augment table
+Three lists of effect ids add a bonus when the id is set in either effect layer, `+68`<sub>h</sub> or `+78`<sub>h</sub>
+(`002FF581`-`002FF77A`). The bonus is the `u16` at `+04`<sub>h</sub> of the id's row in the augment table
 `02EBF040`; each id's text is entry *id* of the augment text bank:
 
 | List | Ids | Adds to | Bonus | Text |
@@ -114,36 +114,36 @@ After the sums, the rebuild limits and stores each value (`002FF780`-`002FF96D`)
 
 | Stats offset | Value | Limits |
 |---|---|---|
-| `24` | max HP | 1 to 9,999 for a party record, 1 to 1,000,000,000 otherwise (`002FF7B1`-`002FF7E2`) |
-| `24` | max HP of an Esper (party type `0x1B`-`0x27`) | 1 to 32,767, over the first store (`002FF7E5`-`002FF805`) |
-| `28` | max MP | 0 to 999 |
-| `2A-2D` | Strength, Magick Power, Vitality, Speed | 0 to 99 |
-| `2E`, `2F`, `30` | Attack Power, Defense, Magick Resist | 0 to 255 |
-| `31-34` | innate, weapon, shield and magick evade | 0 to 100 |
-| `35` | Evade: innate + weapon + shield evade, plus `+0x1E` for an enemy | 0 to 100 |
-| `36` | Magick Evade: magick evade, plus `+0x20` for an enemy | 0 to 100 |
-| `37` | MP bars, a party member's stats `+0x20` | at most 3 |
+| `24`<sub>h</sub> | max HP | 1 to 9,999 for a party record, 1 to 1,000,000,000 otherwise (`002FF7B1`-`002FF7E2`) |
+| `24`<sub>h</sub> | max HP of an Esper (party type `1B`<sub>h</sub>-`27`<sub>h</sub>) | 1 to 32,767, over the first store (`002FF7E5`-`002FF805`) |
+| `28`<sub>h</sub> | max MP | 0 to 999 |
+| `2A-2D`<sub>h</sub> | Strength, Magick Power, Vitality, Speed | 0 to 99 |
+| `2E`<sub>h</sub>, `2F`<sub>h</sub>, `30`<sub>h</sub> | Attack Power, Defense, Magick Resist | 0 to 255 |
+| `31-34`<sub>h</sub> | innate, weapon, shield and magick evade | 0 to 100 |
+| `35`<sub>h</sub> | Evade: innate + weapon + shield evade, plus `+1E`<sub>h</sub> for an enemy | 0 to 100 |
+| `36`<sub>h</sub> | Magick Evade: magick evade, plus `+20`<sub>h</sub> for an enemy | 0 to 100 |
+| `37`<sub>h</sub> | MP bars, a party member's stats `+20`<sub>h</sub> | at most 3 |
 
 The 9,999 and 1,000,000,000 are literals that one `cmove` picks by the party byte (`002FF7BD`-`002FF7C8`).
 
 ### Confuse and Berserk cancel the action in flight
 
-For a party record with a battle unit, the rebuild compares stats `+0x3C` with its value on entry. When
-Confuse (status 5) or Berserk (status 27) changed (mask `0x8000020`, `002FF982`-`002FF98E`), it cancels
+For a party record with a battle unit, the rebuild compares stats `+3C`<sub>h</sub> with its value on entry. When
+Confuse (status 5) or Berserk (status 27) changed (mask `8000020`<sub>h</sub>, `002FF982`-`002FF98E`), it cancels
 the unit's current action with `003105D0` (`002FF9C7`), except in these cases:
 
 - the unit word's bit 24 is set (`002FF99C`);
-- the action id `+0x714` is at most `0x21E` and byte `+0x6B4` is at least 9 (`002FF9A3`-`002FF9BD`);
-- the action id is `0x113` (`002FF9BF`).
+- the action id `+714`<sub>h</sub> is at most `21E`<sub>h</sub> and byte `+6B4`<sub>h</sub> is at least 9 (`002FF9A3`-`002FF9BD`);
+- the action id is `113`<sub>h</sub> (`002FF9BF`).
 
-It then clears the unit's `+0x6F8`, `+0x748`, `+0x770`, `+0x750` and `+0x74C`, bit 10 of `+0x788` and bit 1
-of `+0x6B0`, sets bit 21 of `+0x04`, clears bit 14 of the unit word unless `+0xBA0` holds `0x113` or `0x95`,
+It then clears the unit's `+6F8`<sub>h</sub>, `+748`<sub>h</sub>, `+770`<sub>h</sub>, `+750`<sub>h</sub> and `+74C`<sub>h</sub>, bit 10 of `+788`<sub>h</sub> and bit 1
+of `+6B0`<sub>h</sub>, sets bit 21 of `+04`<sub>h</sub>, clears bit 14 of the unit word unless `+BA0`<sub>h</sub> holds `113`<sub>h</sub> or `95`<sub>h</sub>,
 and calls `00307D10` (`002FF9CC`-`002FFA40`).
 
 ## Modding notes
 
-- The caps are immediates in `002FEF30`: `0x270F`, `0x3B9ACA00`, `0x7FFF`, `0x3E7`, `0x63`, `0xFF` and
-  `0x64`.
+- The caps are immediates in `002FEF30`: `270F`<sub>h</sub>, `3B9ACA00`<sub>h</sub>, `7FFF`<sub>h</sub>, `3E7`<sub>h</sub>, `63`<sub>h</sub>, `FF`<sub>h</sub> and
+  `64`<sub>h</sub>.
 - An item's flat bonuses are its attribute record; several items can share one record.
 - The three augment lists are bytes in the executable at `00D10290`, `00D102A0` and `00D102B0`; the bonus
   sizes are data in the augment table.

@@ -30,7 +30,7 @@ then multiplies by a scale built from the wielder's level and one or two stats:
 
 ### Which recipe a weapon uses
 
-An Attack has recipe byte 0, so the resolver takes the recipe from byte `+0x19` of the main-hand
+An Attack has recipe byte 0, so the resolver takes the recipe from byte `+19`<sub>h</sub> of the main-hand
 weapon's equipment row (`00385F60`, at `003861FD`). Each recipe's committed list contains one
 preparation slot that sets the attack value `02AEE058`, the defence value `02AEE05C` and the scale
 `02AEE054`. The finisher then deals `(attack - defence) * scale` ([Elements](elements.md) has the finisher
@@ -55,7 +55,7 @@ The ammunition classes 23-26 have recipe 0; the ammunition supplies only its ele
 
 ### The stat scale
 
-With `Lv` the wielder's level `+0x1C2` and the stats from the stats record ([Stats](stats.md)):
+With `Lv` the wielder's level `+1C2`<sub>h</sub> and the stats from the stats record ([Stats](stats.md)):
 
 ```python
 slot 65, 76   scale = 1 + Str * (Lv + Str) / 256        0038AAF6-0038AB3F
@@ -71,14 +71,14 @@ The divisions are float multiplications by `0.00390625` (`009088D8`), or a divis
 
 ### Attack, variance and defence
 
-Every preparation slot except 70 takes Attack Power `+0x2E` plus a variance:
+Every preparation slot except 70 takes Attack Power `+2E`<sub>h</sub> plus a variance:
 
 ```python
 variance = (MT19937 % (int)(AP * 0.125 * 100)) / 100      0 when AP * 0.125 < 0.01
 attack = AP + variance                                   so AP <= attack < 1.125 * AP
 ```
 
-The defence is the target's Defense `+0x2F`, except slot 69 (poles), which takes Magick Resist `+0x30`
+The defence is the target's Defense `+2F`<sub>h</sub>, except slot 69 (poles), which takes Magick Resist `+30`<sub>h</sub>
 (`0038A446`).
 
 ### Guns and measures
@@ -109,16 +109,16 @@ damage = (attack - defence) * share
 
 ### Unarmed
 
-Slot 72 checks augment 9, "Increases attack power when fighting empty-handed" (context `+0x1B` bit 1).
-With that augment and nothing in the off hand (word `+0x52` is `0x1000` or not an item), the attack is
+Slot 72 checks augment 9, "Increases attack power when fighting empty-handed" (context `+1B`<sub>h</sub> bit 1).
+With that augment and nothing in the off hand (word `+52`<sub>h</sub> is `1000`<sub>h</sub> or not an item), the attack is
 half of `Lv + Str` plus a 12.5 % variance (`0038A6B1`-`0038A77B`). Otherwise it is Attack Power plus the
 variance (`0038A785`-`0038A7EE`).
 
 ### Bows and crossbows in heavy weather
 
 The first list of recipe 25 runs slot 35 (`003895D0`) and that of recipe 26 slot 36 (`00389610`). When
-the wielder lacks effect 2 (context `+0x1A` bit 2) and the weather class `02099DAC` is 2, they scale the hit
-chance `02AEDFE0`. The Cameo Belt (equipment row 372, class 21) has augment byte `+0x1A` = 2:
+the wielder lacks effect 2 (context `+1A`<sub>h</sub> bit 2) and the weather class `02099DAC` is 2, they scale the hit
+chance `02AEDFE0`. The Cameo Belt (equipment row 372, class 21) has augment byte `+1A`<sub>h</sub> = 2:
 
 | Slot | Weapons | Hit chance factor | Sites |
 |---:|---|---:|---|
@@ -128,70 +128,70 @@ chance `02AEDFE0`. The Cameo Belt (equipment row 372, class 21) has augment byte
 ### Critical hits
 
 Recipes 25, 26 and 27 start their committed list with slot 29 (`00389140`); the other weapon recipes
-have slot 28, the empty `0016D6A0`. Slot 29 sets result `+0x18` bit 0 when byte `+0x1C` of the main-hand
+have slot 28, the empty `0016D6A0`. Slot 29 sets result `+18`<sub>h</sub> bit 0 when byte `+1C`<sub>h</sub> of the main-hand
 row is above `MT19937 % 100` (`003891B3`-`003891D9`). Slot 98 (`0038BE00`) then doubles the scale when that
 bit is set (`0038BE04`-`0038BE1A`).
 
 ### Numerology
 
-Recipe 56 (action `0xB0`, Numerology) runs slot 49 (`00389C60`) and slot 144 (`0038EAF0`). The count is byte
-`+0x5B0E` of the battle state block `[02EBF190]`:
+Recipe 56 (action `B0`<sub>h</sub>, Numerology) runs slot 49 (`00389C60`) and slot 144 (`0038EAF0`). The count is byte
+`+5B0E`<sub>h</sub> of the battle state block `[02EBF190]`:
 
-1. The hit chance becomes `row[+0x12] - count * count / 4` (`00389D0B`-`00389D19`).
-2. With a stored preview (bit 0 of the user's 64-byte record `+0x12`) and a count below 17, a roll under
-   that chance writes `count + 1` into result `+0x138`; a miss or a count of 17 writes 0 and fails the
+1. The hit chance becomes `row[+12h] - count * count / 4` (`00389D0B`-`00389D19`).
+2. With a stored preview (bit 0 of the user's 64-byte record `+12`<sub>h</sub>) and a count below 17, a roll under
+   that chance writes `count + 1` into result `+138`<sub>h</sub>; a miss or a count of 17 writes 0 and fails the
    action (`00389D24`-`00389DAE`). Without a stored preview it fails at count 0, and at a higher count
    only rolls the hit chance and writes no new count (`00389D7E`-`00389DA2`).
 3. Slot 144 deals `2 ^ count`, the count before this use (`pow(2.0, count)`, `0038EAF4`-`0038EB1B`).
 
-`00385BA0` copies result `+0x138` into `+0x5B0E` afterwards (`00385BAF`-`00385BD1`), so the damage runs 1,
+`00385BA0` copies result `+138`<sub>h</sub> into `+5B0E`<sub>h</sub> afterwards (`00385BAF`-`00385BD1`), so the damage runs 1,
 2, 4 and so on up to 65,536.
 
 ### Traveler
 
-Recipe 60 (action `0xB4`, Traveler) runs slot 146 (`0038EBE0`). `00320D50` returns the walked distance in
-the battle state block (`+0x5AC8` and `+0x5ACC`):
+Recipe 60 (action `B4`<sub>h</sub>, Traveler) runs slot 146 (`0038EBE0`). `00320D50` returns the walked distance in
+the battle state block (`+5AC8`<sub>h</sub> and `+5ACC`<sub>h</sub>):
 
 ```python
 d = ((total % 1000) - [+0x5B00] + 1000) % 1000            0038EC49-0038EC93
 damage = 10*d if d >= 990, 3*d if d >= 500, 2*d if d >= 100, else d      0038ECC3-0038ED01
 ```
 
-It stores `total % 1000` in result `+0x13C` (`0038ECBC`), which `00385BA0` moves into `+0x5B00`
+It stores `total % 1000` in result `+13C`<sub>h</sub> (`0038ECBC`), which `00385BA0` moves into `+5B00`<sub>h</sub>
 (`00385BD7`-`00385BEA`). Without a stored preview it deals the record's last value again (`0038ED17`).
 
 ### Knot of Rust and Dark Matter
 
-Recipe 16 (Knot of Rust `0x91`, Devour Soul `0xC4`) runs slot 121 (`0038D970`), recipe 17 (Dark Matter
-`0x90`, Soul Purge `0xC5`) slot 122 (`0038DA00`):
+Recipe 16 (Knot of Rust `91`<sub>h</sub>, Devour Soul `C4`<sub>h</sub>) runs slot 121 (`0038D970`), recipe 17 (Dark Matter
+`90`<sub>h</sub>, Soul Purge `C5`<sub>h</sub>) slot 122 (`0038DA00`):
 
 - **Deposit:** the user's max HP (doubled under Bubble; under Disease its current HP, at least 1) divided
-  by `MT19937 % 10 + 1` is the damage, and a third of it is added to the bank `+0x5B0C`, at most 60,000
+  by `MT19937 % 10 + 1` is the damage, and a third of it is added to the bank `+5B0C`<sub>h</sub>, at most 60,000
   (`0038D976`-`0038D9F2`).
 - **Withdrawal:** with a stored preview, the bank moves into the user's record and is emptied; the damage
   is the record's value (`0038DA49`-`0038DA6A`).
 
 ### Gil Toss
 
-Recipe 61 (action `0xB5`, Gil Toss) has slot 18 (`00388D50`) in its first list and slot 147 (`0038ED40`) in
+Recipe 61 (action `B5`<sub>h</sub>, Gil Toss) has slot 18 (`00388D50`) in its first list and slot 147 (`0038ED40`) in
 its committed list:
 
-1. For the user's current target (`+0x710`), slot 18 sums the current HP of the four party slots that are
+1. For the user's current target (`+710`<sub>h</sub>), slot 18 sums the current HP of the four party slots that are
    not KO, Stone or X-Zone, up to 10,000 (`00388DEE`-`00388E21`).
-2. When that is more than the party's gil, the action fails and sets result `+0x140` bit 11
-   (`00388E24`-`00388E45`); otherwise the sum goes into the user's record and result `+0x08`, the gil cost
-   (`00388E51`-`00388E57`). For every other target slot 18 copies the stored sum into result `+0x08`
+2. When that is more than the party's gil, the action fails and sets result `+140`<sub>h</sub> bit 11
+   (`00388E24`-`00388E45`); otherwise the sum goes into the user's record and result `+08`<sub>h</sub>, the gil cost
+   (`00388E51`-`00388E57`). For every other target slot 18 copies the stored sum into result `+08`<sub>h</sub>
    (`00388E5C`-`00388E62`).
-3. Slot 147 deals the record's value divided by the user's target count `+0x77C`, and fails when there
+3. Slot 147 deals the record's value divided by the user's target count `+77C`<sub>h</sub>, and fails when there
    are no targets or the share is 0 (`0038EDB4`-`0038EDFF`).
 
 ## Modding notes
 
-- A weapon's recipe is byte `+0x19` of its equipment row; giving a sword recipe 27 makes it ignore
+- A weapon's recipe is byte `+19`<sub>h</sub> of its equipment row; giving a sword recipe 27 makes it ignore
   Defense and evasion.
 - The 12.5 % variance and the 1/256 and 1/218 factors are constants in `.rdata` (`00915508`, `009088D8`,
   `00D112D0`) that other slots share.
-- A weapon's critical chance is byte `+0x1C` of its row; only recipes 25-27 read it.
+- A weapon's critical chance is byte `+1C`<sub>h</sub> of its row; only recipes 25-27 read it.
 - The heavy-weather factors are the floats at `008F3108` and `01CEBB70`, both shared.
 
 ## Related

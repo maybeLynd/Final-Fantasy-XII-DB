@@ -7,38 +7,38 @@ addresses: "02EBF058, 0030B270, 0030B180, 002FEEB0, 00310870, 0030B570, 002FD780
 
 ## What it lists
 
-A bazaar good is an id `0xD000 + good`, a bundle that gives up to three items when bought. Selling enough of
+A bazaar good is an id `D000h + good`, a bundle that gives up to three items when bought. Selling enough of
 its loots unlocks it; buying it uses up the loot sold.
 
 ### The table
 
-The goods are section 57 of `battle_pack.bin`, the section its directory entry at file offset `+0xE8` points to,
+The goods are section 57 of `battle_pack.bin`, the section its directory entry at file offset `+E8`<sub>h</sub> points to,
 bound to `02EBF058` by the battle data binder (`00236F6E`-`00236F7C`). It is an `st2e` table of 128 rows of 36
 bytes:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `u16` | name | name word, read by the query filler `0031C5D0` |
-| `02` | `u16` | description | description text id, read by the query filler |
-| `04` | `u16` | item0 | first item given (`002FD780`, `002FD7F2`-`002FD85D`) |
-| `06` | `u8` | count0 | its count; 0 for none |
-| `08` | `u16` | item1 | second item given |
-| `0A` | `u8` | count1 | its count |
-| `0C` | `u16` | item2 | third item given |
-| `0E` | `u8` | count2 | its count |
-| `10` | `u32` | price | price in gil, copied to the query record's `+0x28` (`0031DA1F`) |
-| `14` | `u16` | flags | bit `0x1` it can come back, bit `0x2` a script sets it (`0030B33F`, `0030B5F6`) |
-| `16` | `u16` | loot0 | first loot to sell; an unused slot is id 0 with count 0 (`0030B375`-`0030B45F`) |
-| `18` | `u8` | lootCount0 | its count |
-| `1A` | `u16` | loot1 | second loot to sell |
-| `1C` | `u8` | lootCount1 | its count |
-| `1E` | `u16` | loot2 | third loot to sell |
-| `20` | `u8` | lootCount2 | its count |
-| `22` | `u16` | c22 | 120 on every row, copied to the query record's `+0x2C` (`0031DA32`-`0031DA36`) |
+| `00`<sub>h</sub> | `u16` | name | name word, read by the query filler `0031C5D0` |
+| `02`<sub>h</sub> | `u16` | description | description text id, read by the query filler |
+| `04`<sub>h</sub> | `u16` | item0 | first item given (`002FD780`, `002FD7F2`-`002FD85D`) |
+| `06`<sub>h</sub> | `u8` | count0 | its count; 0 for none |
+| `08`<sub>h</sub> | `u16` | item1 | second item given |
+| `0A`<sub>h</sub> | `u8` | count1 | its count |
+| `0C`<sub>h</sub> | `u16` | item2 | third item given |
+| `0E`<sub>h</sub> | `u8` | count2 | its count |
+| `10`<sub>h</sub> | `u32` | price | price in gil, copied to the query record's `+28`<sub>h</sub> (`0031DA1F`) |
+| `14`<sub>h</sub> | `u16` | flags | bit `1`<sub>h</sub> it can come back, bit `2`<sub>h</sub> a script sets it (`0030B33F`, `0030B5F6`) |
+| `16`<sub>h</sub> | `u16` | loot0 | first loot to sell; an unused slot is id 0 with count 0 (`0030B375`-`0030B45F`) |
+| `18`<sub>h</sub> | `u8` | lootCount0 | its count |
+| `1A`<sub>h</sub> | `u16` | loot1 | second loot to sell |
+| `1C`<sub>h</sub> | `u8` | lootCount1 | its count |
+| `1E`<sub>h</sub> | `u16` | loot2 | third loot to sell |
+| `20`<sub>h</sub> | `u8` | lootCount2 | its count |
+| `22`<sub>h</sub> | `u16` | c22 | 120 on every row, copied to the query record's `+2C`<sub>h</sub> (`0031DA32`-`0031DA36`) |
 
 ### Unlocking a good
 
-Each loot id has a sold tally, one byte in the inventory at `+0x57C8 + loot`, kept between 0 and 99
+Each loot id has a sold tally, one byte in the inventory at `+57C8h + loot`, kept between 0 and 99
 ([Inventory](inventory.md)). A sale through `00310870` takes the loot from the inventory, adds the gil, adds the
 quantity to the tally (`003108D1`-`003108E8`) and then runs the refresh `0030B270` (`003108ED`), its only caller.
 
@@ -48,11 +48,11 @@ The refresh checks every good (`0030B270`-`0030B468`):
 2. A good on offer now, flag bit 1, is skipped (`0030B352`-`0030B359`).
 3. A good with no loot to sell is skipped (`0030B35F`-`0030B36F`).
 4. Each of its three loots must have a tally at least its count (`0030B375`-`0030B45F`). An unused slot is id 0
-   with count 0, so it compares item 0's tally, always 0, with 0 and passes; an id of `0xFFFF` would read as -1
+   with count 0, so it compares item 0's tally, always 0, with 0 and passes; an id of `FFFF`<sub>h</sub> would read as -1
    and fail.
 5. When all three are met, flag bits 0 and 1 are set (`0030B461`).
 
-The flag bytes are one per good at `+0x59C8` of the party block. The shop menu lists every good whose bit 1 is
+The flag bytes are one per good at `+59C8`<sub>h</sub> of the party block. The shop menu lists every good whose bit 1 is
 set (mode 2 of `002FA920`, [Shops](shops.md)).
 
 ### Buying a good
@@ -70,10 +70,10 @@ are called only by the shop's transaction function `0056D370` (`0056D478`, `0056
 
 ### Goods a script offers
 
-The seven goods with flag bit 1, all named Forgotten Grimoire, have no loot to sell. Script verbs `0x2F7`
-`sethoridashi` and `0x2F6` `clearhoridashi` set or clear their offer bit through `0032AB50` and `0030B570`
+The seven goods with flag bit 1, all named Forgotten Grimoire, have no loot to sell. Script verbs `2F7`<sub>h</sub>
+`sethoridashi` and `2F6`<sub>h</sub> `clearhoridashi` set or clear their offer bit through `0032AB50` and `0030B570`
 (`0034C710`, `0034C2C0`), which writes it only for a good with that flag (`0030B5F6`-`0030B619`). The third
-verb, `0x2F5` `ishoridashi`, cannot read it: its handler `0034BD90` calls `005C5230`, which returns 0.
+verb, `2F5`<sub>h</sub> `ishoridashi`, cannot read it: its handler `0034BD90` calls `005C5230`, which returns 0.
 
 ### Clearing
 
@@ -88,7 +88,7 @@ bits 0-2 of every flag byte (`0030B739`-`0030B75B`).
 | Column | Meaning |
 |---|---|
 | `good` | the row, 0-127 |
-| `id` | its encoded id, `0xD000 + good` |
+| `id` | its encoded id, `D000h + good` |
 | `name` | its name from the shipped text |
 | `price` | gil |
 | `gives` | the items it gives, with counts and ids |

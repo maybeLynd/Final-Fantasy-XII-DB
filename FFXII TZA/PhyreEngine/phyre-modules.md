@@ -23,33 +23,33 @@ PUtility module object:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `void*` | vtable: 00D26BC0 in the image, the module's own after construction |  |
-| `08` | `void*` | next module, 0 at the end |  |
-| `10` | `void*` | module name string ("Rendering", "Text", ...) |  |
-| `18` | `u32` | ordering key, 0xFF in every module |  |
+| `00`<sub>h</sub> | `void*` | vtable: 00D26BC0 in the image, the module's own after construction |  |
+| `08`<sub>h</sub> | `void*` | next module, 0 at the end |  |
+| `10`<sub>h</sub> | `void*` | module name string ("Rendering", "Text", ...) |  |
+| `18`<sub>h</sub> | `u32` | ordering key, `FF`<sub>h</sub> in every module |  |
 
 The base vtable has three slots: `005A0CB0` (destroy), and `005C5230` (return 0) for init and
-shutdown. Each module class overrides init (`+0x08`) and shutdown (`+0x10`) where it has work.
+shutdown. Each module class overrides init (`+08`<sub>h</sub>) and shutdown (`+10`<sub>h</sub>) where it has work.
 
 ### Registration before `main`
 
 Each module's static initialiser runs from the C run-time initialiser table and has the same shape,
-shown by `00166210` (`PScripting`): it walks the list while the node's key is below `0xFF`, splices
+shown by `00166210` (`PScripting`): it walks the list while the node's key is below `FF`<sub>h</sub>, splices
 its object in at that point, writes the module's vtable into the object, and passes the object's
-destructor to `atexit` (`00808B90`). Every key is `0xFF`, so the walk stops at the head and each module
+destructor to `atexit` (`00808B90`). Every key is `FF`<sub>h</sub>, so the walk stops at the head and each module
 goes in at the front: the list ends up in the reverse of the initialiser order.
 
 The text module is the exception in form only. Its object `02E5BE88` lies in zero-initialised storage,
 so its initialiser `00167B90` calls a constructor, `006CCC10`, that also writes the base vtable, the
-key `0xFF` and the name `Text` before inserting, and then fills a seven-pointer table at `02E5BE50`
-with the addresses of seven `0x20`-byte slots from `02E5BEA8`.
+key `FF`<sub>h</sub> and the name `Text` before inserting, and then fills a seven-pointer table at `02E5BE50`
+with the addresses of seven `20`<sub>h</sub>-byte slots from `02E5BEA8`.
 
 ### The init walk `005A08E0`
 
 The framework start-up calls it once (`00798603`, [application framework](phyre-application.md)). Guarded
 by the byte `02CACCA0`, it:
 
-1. allocates a `0xE0`-byte object (`0062EA20`) into `01F7F5B8` and creates the synchronisation object
+1. allocates a `E0`<sub>h</sub>-byte object (`0062EA20`) into `01F7F5B8` and creates the synchronisation object
    at `02D3E880` (`00677450`);
 2. registers the core reflected types: a run of calls, ten of whose results go to the name intern
    `006388C0`;
@@ -57,7 +57,7 @@ by the byte `02CACCA0`, it:
    is returned at once, so the modules after it never start;
 4. registers more core types (`00686C40`), calibrates the timers (`005CC980`) and stores the start time
    in `02CB60E8`;
-5. stores `0x40000`, `0x8000` and `0x800` in `01F2EB34`, `01F2EB38` and `01F2EB3C` (`006AA380`,
+5. stores `40000`<sub>h</sub>, `8000`<sub>h</sub> and `800`<sub>h</sub> in `01F2EB34`, `01F2EB38` and `01F2EB3C` (`006AA380`,
    `006AA360`, `006AA350`), starts the object from `006AA280` (its slot 2), builds the type lists
    and the per-kind index (`00637F20`, `00637A70`, `00638AE0`, whose entries `00634350` allocates);
 6. registers the shutdown walk `005A0840` with `atexit` and sets `02CACCA0`.
@@ -78,7 +78,7 @@ is started by the walk alone.
 `005A0840` runs only while `02CACCA0` is set. It walks the list calling each module's shutdown and
 ignores the results, ends the 5 ms timer period (`005CCB90`, `timeEndPeriod(5)`, the counterpart of
 the `timeBeginPeriod(5)` in `005CC980`), then stops the `006AA280` object (its slot 3), runs the deferred-destruction
-reaper `00638C90`, closes the synchronisation object (`00677520`), frees the `0xE0`-byte object and
+reaper `00638C90`, closes the synchronisation object (`00677520`), frees the `E0`<sub>h</sub>-byte object and
 clears `02CACCA0`. The start-up calls it directly when the message loop ends; the `atexit` call that
 follows finds the byte clear and does nothing.
 
@@ -110,7 +110,7 @@ the init registers.
 | `PDeveloperExtensions` | the module class only | none: init and shutdown are both `005C5230` |
 
 The `PHierarchy` init `0087AE00` also sets up the static at `02EBA2A8` (`0087A8C0`), an object of three
-arrays at `+0x00`, `+0x10` and `+0x20`. The module shutdown `0087AE80` frees the first and last and
+arrays at `+00`<sub>h</sub>, `+10`<sub>h</sub> and `+20`<sub>h</sub>. The module shutdown `0087AE80` frees the first and last and
 the `POctreeChildren` pool; the static's `atexit` destructor `0087A830`, registered by `0016D5A0`
 through `008C1570`, frees each of the three that the object owns (bit 31 of its count clear).
 
@@ -187,7 +187,7 @@ lists thirteen of the fifteen registrars, all but `PScripting`'s `00166210` and 
 | Fact | Value |
 |---|---|
 | module objects | 15, 14 with an initial image in `.data`, `PText` in zero-initialised storage |
-| initial state of the 14 | base vtable `00D26BC0`, next 0, key `0xFF` |
+| initial state of the 14 | base vtable `00D26BC0`, next 0, key `FF`<sub>h</sub> |
 | dependency guard `01F2CDF0` | 1 |
 | registrar slots in the initialiser table | `008C3520` (`PSerialization`) to `008C5670` (`PDeveloperExtensions`) |
 | RTTI | 2,286 vtables, 1,743 classes under `Phyre::` |
@@ -201,7 +201,7 @@ lists thirteen of the fifteen registrars, all but `PScripting`'s `00166210` and 
 
 - Start: `005A08E0`, once, from the framework start-up, before the window exists.
 - Stop: `005A0840`, once, after the message loop; then each module's `atexit` destructor.
-- Enumerate: walk from `02CACC90` through `+0x08`; `+0x10` names each module.
+- Enumerate: walk from `02CACC90` through `+08`<sub>h</sub>; `+10`<sub>h</sub> names each module.
 
 ## Modding notes
 

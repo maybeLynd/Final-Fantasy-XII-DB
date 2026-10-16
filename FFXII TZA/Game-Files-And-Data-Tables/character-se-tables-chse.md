@@ -28,11 +28,11 @@ install arrays naming the `ch` copies, and every other language gets the `in` co
 
 `002EA530` runs once, from the binding-table set-up `002EA320`, which boot mode `0022A0B0` reaches through
 `00266D10`. For i = 0 to 9 it clears the pointer at `021641A0 + 8 × i` and asks the size of kind 9 file
-`0x0B + i` (`0032E400`). When the size is positive it:
+`0Bh + i` (`0032E400`). When the size is positive it:
 
 1. allocates that many bytes top-down in arena 5 (`0036C1D0(5)`, `0036A190` at `002EA586`);
 2. stores the pointer (`002EA596`);
-3. files the read `0032E620(9, 0x0B + i, buffer, size, 0)` (`002EA5A9`);
+3. files the read `0032E620(9, 0Bh + i, buffer, size, 0)` (`002EA5A9`);
 4. labels the block `ChSEinf` (`0036C660` with the string at `00D0F8B0`, `002EA5BB`).
 
 So `021641A8` to `021641E0` hold the tables for `b`, `c`, `g`, `m`,
@@ -40,25 +40,25 @@ So `021641A8` to `021641E0` hold the tables for `b`, `c`, `g`, `m`,
 
 ## Layouts
 
-`ChseHeader` (`0x10` bytes, offsets from the start of the file):
+`ChseHeader` (`10`<sub>h</sub> bytes, offsets from the start of the file):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `char[4]` | magic | "CHSE"; ignored |
-| `04` | `u16` | version | 1; ignored |
-| `06` | `u16` | letter | the file's own letter; ignored |
-| `08` | `i32` | count | rows that follow; the row bound |
-| `0C` | `u32` | zero | 0; ignored |
+| `00`<sub>h</sub> | `char[4]` | magic | "CHSE"; ignored |
+| `04`<sub>h</sub> | `u16` | version | 1; ignored |
+| `06`<sub>h</sub> | `u16` | letter | the file's own letter; ignored |
+| `08`<sub>h</sub> | `i32` | count | rows that follow; the row bound |
+| `0C`<sub>h</sub> | `u32` | zero | 0; ignored |
 
-`ChseRow` (`0x10` bytes, offsets from the start of the record):
+`ChseRow` (`10`<sub>h</sub> bytes, offsets from the start of the record):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `i16` | block0 | SE block for sound group 0; negative = none |
-| `02` | `i16` | block1 | SE block for sound group 1, the footsteps; negative = none |
-| `04` | `i16` | block2 | SE block for sound group 2; negative = none |
-| `06` | `i16` | voiceBank | battle-voice bank number, shoutNN; negative = none |
-| `08` | `u8[8]` | unused | 0; ignored |
+| `00`<sub>h</sub> | `i16` | block0 | SE block for sound group 0; negative = none |
+| `02`<sub>h</sub> | `i16` | block1 | SE block for sound group 1, the footsteps; negative = none |
+| `04`<sub>h</sub> | `i16` | block2 | SE block for sound group 2; negative = none |
+| `06`<sub>h</sub> | `i16` | voiceBank | battle-voice bank number, shoutNN; negative = none |
+| `08`<sub>h</sub> | `u8[8]` | unused | 0; ignored |
 
 Row n starts at `16 × (n + 1)` and belongs to the model with number n in that letter class, the model id
 `<letter><n>` a script binds ([Script name bindings](../Scripts-And-Script-Commands/script-name-bindings.md)).
@@ -72,10 +72,10 @@ Measured from the archive, the executable's path arrays and the twelve loose `Fi
 |---|---|
 | files | 16: 8 tables, each in `in` and `ch`, the two copies byte-identical |
 | sizes | `b` 304, `c` 384, `g` 1,680, `m` 4,080, `n` 2,816, `s` 432, `t` 272, `w` 5,248 bytes; `16 + 16 × count` in all 8 |
-| header | `CHSE`, version 1, the file's letter at `+0x06`, 0 at `+0x0C`, in all 8 |
+| header | `CHSE`, version 1, the file's letter at `+06`<sub>h</sub>, 0 at `+0C`<sub>h</sub>, in all 8 |
 | rows, populated | `b` 18, 0; `c` 23, 20; `g` 104, 0; `m` 254, 237; `n` 175, 151; `s` 26, 13; `t` 16, 0; `w` 327, 252; 943 rows, 673 populated |
-| unused bytes | `+0x08`-`+0x0F` zero in all 943 rows |
-| empty value | every unused slot is `0xFFFF`; no slot holds another negative value |
+| unused bytes | `+08`<sub>h</sub>-`+0F`<sub>h</sub> zero in all 943 rows |
+| empty value | every unused slot is `FFFF`<sub>h</sub>; no slot holds another negative value |
 | `block0` | 252 rows, all in `w`, which uses no other slot; blocks 250-709, 60 distinct |
 | `block1` | 338 rows in `c`, `m`, `n` and `s`; blocks 200-249, 46 distinct |
 | `block2` | 353 rows in `c`, `m`, `n` and `s`; blocks 300-434, 111 distinct |
@@ -92,7 +92,7 @@ Measured from the archive, the executable's path arrays and the twelve loose `Fi
 `002ED950(boundId)` is the only reader of the table pointers. It takes bits 16-23 as the letter
 (`002ED953`-`002ED959`), picks the table through a jump table, and returns
 `table + 16 × (row + 1)` for the low 16 bits as the row when the table is loaded and the row is below
-the `+0x08` count, compared signed (`002ED9C2`); any other letter, a missing table or a row past the count
+the `+08`<sub>h</sub> count, compared signed (`002ED9C2`); any other letter, a missing table or a row past the count
 gives null. It never checks the magic, the version, the letter field or the file size.
 
 ### Slots 0-2: the sound blocks
@@ -104,7 +104,7 @@ binding is ready at once.
 
 `002E60F0` makes three passes, one per slot. Each pass reads the slot as a signed word (`002E6157`):
 
-- A negative value stores -1 in the binding's slot `+0x30`, `+0x34` or `+0x38` and moves on.
+- A negative value stores -1 in the binding's slot `+30`<sub>h</sub>, `+34`<sub>h</sub> or `+38`<sub>h</sub> and moves on.
 - Otherwise the id becomes a kind-32 file index (`002E6161`-`002E618E`, the rule on
   [Sound banks](../Sound-And-Music/sound-banks.md)). A file with no size is skipped and the slot keeps the
   value 0 that `002E4D20` seeded, not −1, so playback treats it as block handle 0.
@@ -119,8 +119,8 @@ showing the same model shares one set of blocks.
 
 `002ED910(actor, boundId)` is called once per model rebuild, from state 4 of the party read-in machine
 (`0037B85B`, [Actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md)), with the model the actor's
-definition calls for. It returns the actor's own override first: `003212E0` gives the signed word `+0x26`
-of the battle unit's `+0xE60` record when the unit's `+0x698` record has byte `+5` = 1. Only when that is
+definition calls for. It returns the actor's own override first: `003212E0` gives the signed word `+26`<sub>h</sub>
+of the battle unit's `+E60`<sub>h</sub> record when the unit's `+698`<sub>h</sub> record has byte `+5` = 1. Only when that is
 negative, or there is no actor, does it return `voiceBank` sign-extended (`002ED939`).
 
 A bank of 0 or more goes to `0036F0F0(pool, bank)`:
@@ -137,12 +137,12 @@ A negative bank skips the pool load and the state that waits for it.
 
 `002E9D90(actor, group, variant, footstep)` turns an animation sound into a sound id
 ([Animation sounds](../Sound-And-Music/animation-sounds.md) gives the groups each sound type uses). It reads the
-block handle from word `+0x30 + 4 × group` of a binding (`002E9F62`):
+block handle from word `+30h + 4 × group` of a binding (`002E9F62`):
 
-- Groups 1 and 2 use the actor's own model binding, `[[actor + 0xC0] + 0x08]`, so `block1` and `block2`.
-- Group 0 uses the binding attached in the model's first attach slot, `[[actor + 0xC0] + 0x38]`
-  (`002E9F50` adds `0x30`), so `block0` of the attached model. Only the `w` rows author `block0`.
-- For group 2 with a variant below 10, when the voice-pool entry (`+0x20`) of the actor the sound
+- Groups 1 and 2 use the actor's own model binding, `[[actor + C0h] + 08h]`, so `block1` and `block2`.
+- Group 0 uses the binding attached in the model's first attach slot, `[[actor + C0h] + 38h]`
+  (`002E9F50` adds `30`<sub>h</sub>), so `block0` of the attached model. Only the `w` rows author `block0`.
+- For group 2 with a variant below 10, when the voice-pool entry (`+20`<sub>h</sub>) of the actor the sound
   resolves to (`00263F40`, then `00263F10`) has state 3, its bank loaded, the variant plays from that
   bank instead (`002E9F79`-`002E9F9E`).
 - Otherwise the id is the block's registry slot × 512 + variant, or -1 when the handle no longer matches
@@ -156,14 +156,14 @@ block handle from word `+0x30 + 4 × group` of a binding (`002E9F62`):
   needs its new size in every `.fst`; the count is never checked against the buffer, so a count past the
   shipped rows reads past it.
 - Edit the `in` and `ch` copies alike: which one loads depends on the language.
-- Use `0xFFFF` for an empty slot; any value with bit 15 set is treated as none.
+- Use `FFFF`<sub>h</sub> for an empty slot; any value with bit 15 set is treated as none.
 - Give `block0`-`block2` only ids that name a shipped `.seb` by the rule on
   [Sound banks](../Sound-And-Music/sound-banks.md): 0-2, 200-499 or 700 and up.
 - `block0` sounds only when the model is attached to another model's first attach slot, as weapons are.
   `block1` is the footstep block; its variant is the ground type.
 - Keep `voiceBank` from 0 to 63, the length of the kind-33 array; a battle unit with an override word wins
   over it.
-- The magic, version, letter, `+0x0C` and each row's last eight bytes are free; nothing reads them.
+- The magic, version, letter, `+0C`<sub>h</sub> and each row's last eight bytes are free; nothing reads them.
 - The tables are read once at boot.
 
 ## Related

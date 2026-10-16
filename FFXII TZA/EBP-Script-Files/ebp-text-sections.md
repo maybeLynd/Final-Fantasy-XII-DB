@@ -22,8 +22,8 @@ manager, the directory walker `003304A0` dispatches each present slot:
 
 | Section | Gate in `003304A0` | Handler | Per-manager global | Manager record field | Pending bit |
 |---|---|---|---|---|---|
-| 2 | `00330519` (count above 2, offset non-zero) | `00330190` | `022C6CA0` | `+0xA0` (`0026C880`) | 4 |
-| 3 | `00330534` (count above 3, offset non-zero) | `00330220` | `022C6CC8` | `+0xA8` (`0026C8A0`) | 5 |
+| 2 | `00330519` (count above 2, offset non-zero) | `00330190` | `022C6CA0` | `+A0`<sub>h</sub> (`0026C880`) | 4 |
+| 3 | `00330534` (count above 3, offset non-zero) | `00330220` | `022C6CC8` | `+A8`<sub>h</sub> (`0026C8A0`) | 5 |
 
 The handler takes the manager index from the low four bits of its argument and the section
 address from the rest. The manager bind `0026C8C0` zeroes both record fields (`0026CC49`,
@@ -45,7 +45,7 @@ Both sections have the same shape. Offsets are from the start of the section.
 
 A text id is an entry number. The strings are glyph codes and control codes, not ASCII: the
 character codes are on [battle and menu text tables](../Game-Files-And-Data-Tables/battle-text-tables.md)
-and [fonts](../Menus-And-HUD/fonts.md), and the control codes, including the choice list `0x0E`, on
+and [fonts](../Menus-And-HUD/fonts.md), and the control codes, including the choice list `0E`<sub>h</sub>, on
 [text codes](../Menus-And-HUD/text-codes.md).
 
 ## Shipped data
@@ -60,13 +60,13 @@ language trees, plus control scripts under `ps2data/image/ff12/{ch,in}/bin/`).
 | section 2 sizes | 64 to 60,544 bytes; 1 to 287 strings, median 7 |
 | empty section 2 strings | 2,371 (466 in `us`); none in `ch`, `cn`, `in` and `kr` |
 | flagged entries | 33,484 (3,692 in `us`); the upper half of every entry is 0 or 1 |
-| strings holding a `0x0E` byte | 33,167, every one of them flagged; 317 more flagged strings hold none: 33 in each of the nine trees and 10 in each control set (`ctl-in`, `ctl-ch`) |
+| strings holding a `0E`<sub>h</sub> byte | 33,167, every one of them flagged; 317 more flagged strings hold none: 33 in each of the nine trees and 10 in each control set (`ctl-in`, `ctl-ch`) |
 | entry 0 flagged | 1,929 sections (213 in each Latin tree), so the engine's count is 16,384 or more there |
 | section 3 | in 3,232 files: 359 per tree, 360 in `in` |
 | section 3 strings | 20,818 (2,313 in `us`), at most 38 bytes; no entry is flagged |
 | empty section 3 strings | 328: 327 in `it` and 1 in `es`; none in the other trees |
 | section 3 sizes | 64 to 1,472 bytes; 1 to 43 strings, median 2 |
-| section 3 codes | in the Latin trees the only byte below `0x20` is the space `0x04`, plus lead byte `0x14` in `es`, `fr` and `it`; every caption in `ch`, `cn`, `in` and `kr` holds a `0x0F` escape |
+| section 3 codes | in the Latin trees the only byte below `20`<sub>h</sub> is the space `04`<sub>h</sub>, plus lead byte `14`<sub>h</sub> in `es`, `fr` and `it`; every caption in `ch`, `cn`, `in` and `kr` holds a `0F`<sub>h</sub> escape |
 | table checks | in every section the offsets ascend, the first string follows the table, the strings are contiguous and the bytes after the last are zero |
 
 The most common `us` captions are `NOT USED` (351), `Ancient Door` (219), `dummy` (193),
@@ -77,7 +77,7 @@ The most common `us` captions are `NOT USED` (351), `Ancient Door` (219), `dummy
 ### Looking up a string
 
 `00264D60(manager, id)` reads section 2 and `00264D90(manager, id)` section 3; the two differ only
-in the record field (`+0xA0`, `+0xA8`):
+in the record field (`+A0`<sub>h</sub>, `+A8`<sub>h</sub>):
 
 1. A null bank returns `01CEB638`, an empty string.
 2. The id is masked to 24 bits (`00264D77`), so bits 24-31 of a text id do nothing.
@@ -91,18 +91,18 @@ point to. Nothing compares the table with the section's length.
 
 ### The flag
 
-`002673A0(manager, id)` applies the same mask and bound to section 2 (`[manager + 0xA0]` only) and
+`002673A0(manager, id)` applies the same mask and bound to section 2 (`[manager + A0h]` only) and
 returns bit 0 of the entry's upper half (`002673C0`, `002673C6`). Section 3 has no such reader.
 
-- `mes` (`0x461`, `00348DF0`) stores the flag in the message slot's byte `+0x38` through
-  `002E1E00` (slot record `0215F200 + slot * 0x68`), returns it in the call record, and opens the
+- `mes` (`461`<sub>h</sub>, `00348DF0`) stores the flag in the message slot's byte `+38`<sub>h</sub> through
+  `002E1E00` (slot record `0215F200 + slot * 68h`), returns it in the call record, and opens the
   window through `002E16B0` only when the flag is clear.
 - `aask_1ff` (`0034ADA0`) does the same but opens the window only when the flag is set.
-- `debug_mesask_43` (`0050EAB0`) always opens the window, stores the flag at `+0x38` through
+- `debug_mesask_43` (`0050EAB0`) always opens the window, stores the flag at `+38`<sub>h</sub> through
   `002E1D90`, and returns 1 in the call record when it is clear.
 - `unkCall_5b6` (`003545B0`) hands the string to `00474070` only when the flag is clear.
 
-While a slot holds a window with `+0x38` set, `002E0540` returns 1 and `00265680` returns 0
+While a slot holds a window with `+38`<sub>h</sub> set, `002E0540` returns 1 and `00265680` returns 0
 (`002656F2`). The bodies that raise hold request 17 when `00265680` returns 0, among them `ucon`,
 then keep the field held ([time stop and freeze](../Engine-Core/time-stop-and-freeze.md))
 until a close path clears the byte (`002E0780`).
@@ -111,26 +111,26 @@ until a close path clears the byte (`002E0780`).
 
 | Verb | Id | Handler | Bank | What it does with the string |
 |---|---|---|---|---|
-| `mes` | `0x461` | `00348DF0` | 2 | message window, as above |
-| `aask_1ff` | `0x1FF` | `0034ADA0` | 2 | message window, as above |
-| `debug_mesask_43` | `0x2043` | `0050EAB0` | 2 | message window, as above |
-| `unkCall_5b6` | `0x5B6` | `003545B0` | 2 | `00474070` |
-| `setgaugecounterlabel`, `setgaugecounterunit`, `setgaugetimerlabel` | `0x1BC`-`0x1BE` | `00352A50`, `00352EC0`, `003534F0` | 2 | the gauge, through `003E8F50`, `003E8FC0`, `003E9000` |
-| `setfieldsign`, `setfieldsignonce` | `0x174`, `0x175` | `00354F20`, `003555F0` | 2 | the field-sign table `02B59C80` (`003DF760`), entries 6-7 and 4-5 |
-| `fieldsignmes` | `0x178` | `00356B70` | 2 | the actor's name text (`00269F20`) |
-| `fieldsign` | `0x176` | `00355A00` | 3 | the actor's name text, from the caption id in the sign record `002642C0` returns |
-| `fieldsignmesbyid` | `0x179` | `00357120` | 3 | the actor's name text |
+| `mes` | `461`<sub>h</sub> | `00348DF0` | 2 | message window, as above |
+| `aask_1ff` | `1FF`<sub>h</sub> | `0034ADA0` | 2 | message window, as above |
+| `debug_mesask_43` | `2043`<sub>h</sub> | `0050EAB0` | 2 | message window, as above |
+| `unkCall_5b6` | `5B6`<sub>h</sub> | `003545B0` | 2 | `00474070` |
+| `setgaugecounterlabel`, `setgaugecounterunit`, `setgaugetimerlabel` | `1BC`<sub>h</sub>-`1BE`<sub>h</sub> | `00352A50`, `00352EC0`, `003534F0` | 2 | the gauge, through `003E8F50`, `003E8FC0`, `003E9000` |
+| `setfieldsign`, `setfieldsignonce` | `174`<sub>h</sub>, `175`<sub>h</sub> | `00354F20`, `003555F0` | 2 | the field-sign table `02B59C80` (`003DF760`), entries 6-7 and 4-5 |
+| `fieldsignmes` | `178`<sub>h</sub> | `00356B70` | 2 | the actor's name text (`00269F20`) |
+| `fieldsign` | `176`<sub>h</sub> | `00355A00` | 3 | the actor's name text, from the caption id in the sign record `002642C0` returns |
+| `fieldsignmesbyid` | `179`<sub>h</sub> | `00357120` | 3 | the actor's name text |
 
-`00269F20(actor, text, 0)` stores the text at the actor's `+0xF8` and 0 at `+0x100`; that is the
+`00269F20(actor, text, 0)` stores the text at the actor's `+F8`<sub>h</sub> and 0 at `+100`<sub>h</sub>; that is the
 literal name an actor with a negative name id shows ([NPC names](../Characters-And-Objects/npc-names.md)).
 
 ### From the message window to the screen
 
-`002E16B0` places the string at `+0x38` of the request for a new window (`002A2C00`). On the
+`002E16B0` places the string at `+38`<sub>h</sub> of the request for a new window (`002A2C00`). On the
 window's ordinary layout path `002A2C00` passes it to `002A6A80`, which hands it to the window's
-text object at `+0xD0` (`002B32D0`); the
-text object keeps it at `+0x28` and measures it with `002B2150` (`002B3D50`, `002B3C30`), the
-routine that sends every byte below `0x10` to the text interpreter `002AC5F0`. Section 2 text is
+text object at `+D0`<sub>h</sub> (`002B32D0`); the
+text object keeps it at `+28`<sub>h</sub> and measures it with `002B2150` (`002B3D50`, `002B3C30`), the
+routine that sends every byte below `10`<sub>h</sub> to the text interpreter `002AC5F0`. Section 2 text is
 therefore read with the codes and lengths on [text codes](../Menus-And-HUD/text-codes.md).
 
 ## Modding notes
@@ -145,7 +145,7 @@ therefore read with the codes and lengths on [text codes](../Menus-And-HUD/text-
 - Bits 17-31 of an entry and bits 24-31 of a text id have no effect, and section 3's flag is
   never read.
 - Write strings in the language's glyph codes; captions in `ch`, `cn`, `in` and `kr` keep their
-  `0x0F` escape.
+  `0F`<sub>h</sub> escape.
 
 ## Related
 

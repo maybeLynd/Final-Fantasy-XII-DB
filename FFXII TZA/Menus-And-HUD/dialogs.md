@@ -17,45 +17,45 @@ addresses: "0057C480, 0057C380, 002CDF20, 002CE370, 00566680, 0056F810, 00556F90
 
 ### The confirm window
 
-`0057C480` is the window's procedure. It is a single instance: building it stores it at the root's `+0x328`
+`0057C480` is the window's procedure. It is a single instance: building it stores it at the root's `+328`<sub>h</sub>
 (`0057C4D9`), and message 18 clears that (`0057CC79`). Its create record comes from `0057C380`, whose three callers
-pass fixed flags as the record's `+0x20`, kept at `+0x630` (`0057C4E4`-`0057C4E8`):
+pass fixed flags as the record's `+20`<sub>h</sub>, kept at `+630`<sub>h</sub> (`0057C4E4`-`0057C4E8`):
 
 | Creator | Installed by | Flags | Used for |
 |---|---|---|---|
-| `002CDF20` | `002CDEA0` | `0xC812` (`002CE086`) | the yes-or-no question: Yes posts `0x8100`, No `0x8101`, No is the default row |
-| `002CE370` | `002CE2F0` | `0x411A`; `0x511A`, `0x1411A`, `0x1511A` for errors; `0x611A` for tutorials and license announcements | the notice: 22 caption cases of a 28-slot switch |
-| `00566680` | `005665B0` | `0x8036` (`00566939`) | the item screen's sort picker |
+| `002CDF20` | `002CDEA0` | `C812`<sub>h</sub> (`002CE086`) | the yes-or-no question: Yes posts `8100`<sub>h</sub>, No `8101`<sub>h</sub>, No is the default row |
+| `002CE370` | `002CE2F0` | `411A`<sub>h</sub>; `511A`<sub>h</sub>, `1411A`<sub>h</sub>, `1511A`<sub>h</sub> for errors; `611A`<sub>h</sub> for tutorials and license announcements | the notice: 22 caption cases of a 28-slot switch |
+| `00566680` | `005665B0` | `8036`<sub>h</sub> (`00566939`) | the item screen's sort picker |
 
-Message 1 copies the caption into a `0x400`-byte buffer at `+0x1B0`, measures it, keeps the window at least `0x60`
-wide, and clears eight option rows at `+0x5B0`-`+0x62C` (`0057C4BF`-`0057C682`).
+Message 1 copies the caption into a `400`<sub>h</sub>-byte buffer at `+1B0`<sub>h</sub>, measures it, keeps the window at least `60`<sub>h</sub>
+wide, and clears eight option rows at `+5B0`<sub>h</sub>-`+62C`<sub>h</sub> (`0057C4BF`-`0057C682`).
 
 ### The flag bits
 
 | Bit | Effect |
 |---|---|
-| `0x2` | cancellable: cancel posts `0x8102` to the owner (`0057CAD1`); without it, cancel moves the cursor to the default row |
-| `0x8` | notice: no list is built (`0057C6F3`), the pad is read directly, and confirm posts `0x8100` |
-| `0x10`, `0x2000` | frame variants 1 and 4 (`0057C7EE`-`0057C802`) |
-| `0x20` | a one-line caption (`0057C506`, `0057C90F`) |
-| `0x800` | the hand cursor stays on the chosen row while the window closes (`0057C7CC`) |
-| `0x1000` | the window closes itself after `+0x63A` frames; the notice sets 180 (`0057C9E1`) |
-| `0x4000` | a dimmed backdrop at `+0xD8` (`0057CD77`), released on close (`0057C34A`) |
-| `0x8000` | the header label is `0x4B42` instead of `0x4B48` (`0057C93E`) |
-| `0x10000` | any button confirms, and the timed close counts as confirm (`0057CA09`-`0057CA1C`) |
-| `0x4`, `0x40`, `0x80`, `0x100`, `0x200`, `0x400` | the confirm sound: the list's sound id becomes `0x37`, `0x19`, `0x18`, 3, 4 or `0x45` (`0057CB8F`-`0057CBD7`); No plays 3 (`0057CB85`) |
+| `2`<sub>h</sub> | cancellable: cancel posts `8102`<sub>h</sub> to the owner (`0057CAD1`); without it, cancel moves the cursor to the default row |
+| `8`<sub>h</sub> | notice: no list is built (`0057C6F3`), the pad is read directly, and confirm posts `8100`<sub>h</sub> |
+| `10`<sub>h</sub>, `2000`<sub>h</sub> | frame variants 1 and 4 (`0057C7EE`-`0057C802`) |
+| `20`<sub>h</sub> | a one-line caption (`0057C506`, `0057C90F`) |
+| `800`<sub>h</sub> | the hand cursor stays on the chosen row while the window closes (`0057C7CC`) |
+| `1000`<sub>h</sub> | the window closes itself after `+63A`<sub>h</sub> frames; the notice sets 180 (`0057C9E1`) |
+| `4000`<sub>h</sub> | a dimmed backdrop at `+D8`<sub>h</sub> (`0057CD77`), released on close (`0057C34A`) |
+| `8000`<sub>h</sub> | the header label is `4B42`<sub>h</sub> instead of `4B48`<sub>h</sub> (`0057C93E`) |
+| `10000`<sub>h</sub> | any button confirms, and the timed close counts as confirm (`0057CA09`-`0057CA1C`) |
+| `4`<sub>h</sub>, `40`<sub>h</sub>, `80`<sub>h</sub>, `100`<sub>h</sub>, `200`<sub>h</sub>, `400`<sub>h</sub> | the confirm sound: the list's sound id becomes `37`<sub>h</sub>, `19`<sub>h</sub>, `18`<sub>h</sub>, 3, 4 or `45`<sub>h</sub> (`0057CB8F`-`0057CBD7`); No plays 3 (`0057CB85`) |
 
 ### Stages and answers
 
-1. Sub-command `0x8000` moves the window through its stages, counted at `+0x637` up to 2, and tells the owner the
-   cursor row with `0x8103` (`0057CC09`).
-2. `0x8001` is a pick: in notice mode it posts `0x8100`; otherwise it reads the list's row and its option's flags and
+1. Sub-command `8000`<sub>h</sub> moves the window through its stages, counted at `+637`<sub>h</sub> up to 2, and tells the owner the
+   cursor row with `8103`<sub>h</sub> (`0057CC09`).
+2. `8001`<sub>h</sub> is a pick: in notice mode it posts `8100`<sub>h</sub>; otherwise it reads the list's row and its option's flags and
    sets the confirm sound (`0057CB16`).
-3. `0x8002` is cancel: with bit `0x2` it posts `0x8102`, otherwise it moves the list back (`002D4650`, `0057CACB`).
+3. `8002`<sub>h</sub> is cancel: with bit `2`<sub>h</sub> it posts `8102`<sub>h</sub>, otherwise it moves the list back (`002D4650`, `0057CACB`).
 4. Message 10 forwards input to the list unless the window is in notice mode (`0057C9A3`).
 
 `00241D40`, installed by `00241BF0` and `00241C90`, is a second confirm procedure that reads the same layout keys.
-Its row callback `00241D00` draws Yes (`menu_command.bin` `0x3E8`) on row 0 and No (`0x3E9`) on the other.
+Its row callback `00241D00` draws Yes (`menu_command.bin` `3E8`<sub>h</sub>) on row 0 and No (`3E9`<sub>h</sub>) on the other.
 
 The procedure registers itself in the table `0208EA60` under slot 2 when its creator's root is `[0208EA38]`, 4 for `[0208EA50]`
 and 1 otherwise (`00241E11`-`00241E48`), and clears the slot when it closes (`0024257E`). `00241A50(slot)` answers
@@ -69,12 +69,12 @@ sub-commands:
 
 | Sub-command | Does |
 |---|---|
-| `0x8102` | closes the bar (`00244F00`) |
-| `0x8103` | shows the row's help: "Sort items in default order by category." (`0xCC1`), "Sort by item strength." (`0xCC2`), "Sort by amount." (`0xCC3`) |
-| `0x8104`-`0x8106` | the three sorts, Auto-sort (`0x4A8`), By Strength (`0x4A9`) and By Quantity (`0x4AA`), passed as 0-2 to `002527B0(7, ...)` and `00565CD0` |
+| `8102`<sub>h</sub> | closes the bar (`00244F00`) |
+| `8103`<sub>h</sub> | shows the row's help: "Sort items in default order by category." (`CC1`<sub>h</sub>), "Sort by item strength." (`CC2`<sub>h</sub>), "Sort by amount." (`CC3`<sub>h</sub>) |
+| `8104`<sub>h</sub>-`8106`<sub>h</sub> | the three sorts, Auto-sort (`4A8`<sub>h</sub>), By Strength (`4A9`<sub>h</sub>) and By Quantity (`4AA`<sub>h</sub>), passed as 0-2 to `002527B0(7, ...)` and `00565CD0` |
 
 Auto-sort is always offered; the other two rows depend on `00564380`. Message 18 clears the row highlights, sets the parent's sort-changed bit
-`+0x180 |= 0x40000000` and clears the root's `+0x2F0` (`005666D4`). Message 15 frees its backdrop through `0057C340`
+`+180h |= 40000000h` and clears the root's `+2F0`<sub>h</sub> (`005666D4`). Message 15 frees its backdrop through `0057C340`
 (`00566771`).
 
 ### The Clan Primer's category list
@@ -90,29 +90,29 @@ and every other id goes to the default `0056FA73`.
 | 2 | Sky Pirate's Den | "What will it take to fill the den?" | 7 |
 | 3 | Traveler's Tips | "Hints for the wary adventurer." | 4 |
 
-A record is 6 bytes (below). A pick posts its kind to the parent with `0x8001`
+A record is 6 bytes (below). A pick posts its kind to the parent with `8001`<sub>h</sub>
 (`0056F96A`-`0056F9B5`). Records 4-11 hold the page titles of the eight Clan Primer page kinds: 4-7 point at
-labels `0x1B58`-`0x1B5B`, which are empty, and 8-11 reuse the four labels above.
+labels `1B58`<sub>h</sub>-`1B5B`<sub>h</sub>, which are empty, and 8-11 reuse the four labels above.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `u16` | label | label text |
-| `02` | `u16` | help | help text |
-| `04` | `u8` | kind | posted to the parent on a pick |
-| `05` | `u8` | flag | - |
+| `00`<sub>h</sub> | `u16` | label | label text |
+| `02`<sub>h</sub> | `u16` | help | help text |
+| `04`<sub>h</sub> | `u8` | kind | posted to the parent on a pick |
+| `05`<sub>h</sub> | `u8` | flag | - |
 
 ### The license board's description box
 
 `00556F90` shows text only and answers messages 1 and 2; its message-18 arm returns 0, as its default does. Its one installer `00556EC0` is called only from the
-license board chooser `00557DB0` (`00557E76`, `00557EE5`). The chooser writes the board number to `+0x3D1` on each
-cursor step (`00558549`). Message 2 writes the board's name, `menu_command.bin` `0x3ED` plus the board ("White Mage"
-for board 0), as the header, and its description, `menu_message.bin` `0x838` plus the board, split into three lines
-at `+0xD0` by `002B5730`.
+license board chooser `00557DB0` (`00557E76`, `00557EE5`). The chooser writes the board number to `+3D1`<sub>h</sub> on each
+cursor step (`00558549`). Message 2 writes the board's name, `menu_command.bin` `3ED`<sub>h</sub> plus the board ("White Mage"
+for board 0), as the header, and its description, `menu_message.bin` `838`<sub>h</sub> plus the board, split into three lines
+at `+D0`<sub>h</sub> by `002B5730`.
 
 ## Modding notes
 
-- A new yes-or-no question goes through `002CDF20`'s flags `0xC812`; a notice through `002CE370`.
-- Removing `0x2` makes a question impossible to cancel; adding `0x10000` lets any button confirm.
+- A new yes-or-no question goes through `002CDF20`'s flags `C812`<sub>h</sub>; a notice through `002CE370`.
+- Removing `2`<sub>h</sub> makes a question impossible to cancel; adding `10000`<sub>h</sub> lets any button confirm.
 - The Clan Primer menu's labels, help lines and the page kind each option opens are the four records at `00D23688`.
 
 ## Related

@@ -27,15 +27,15 @@ path from a running channel to the picture.
 
 The per-frame caller `00314370` visits the five manager slots and, for each live one, runs the
 shot tick `003DA050` and then the shake tick `003DCFB0`. `003DA050(slot)` does nothing without a
-shot list at `+0xD8`; otherwise:
+shot list at `+D8`<sub>h</sub>; otherwise:
 
-1. For frames 0 (main) and 1 (sub), when the channel named in `+0x18[frame]` is not idle, it
-   tells that channel's player its frame (`002563C0`, player `+0x184`).
+1. For frames 0 (main) and 1 (sub), when the channel named in `+18h[frame]` is not idle, it
+   tells that channel's player its frame (`002563C0`, player `+184`<sub>h</sub>).
 2. For each non-idle channel that has not finished, the step is `02B4E4B0 × rate × 01DFE0BC`; the
    clock grows by it once the channel's run byte is set, and the first positive step sets that
    byte.
 3. It evaluates the shot at the clock (`002555A0` → `00258350`), or, when the manager's skip byte
-   `+0x201` is set (`00267300`), runs it to its end (`00257A00`).
+   `+201`<sub>h</sub> is set (`00267300`), runs it to its end (`00257A00`).
 4. A player at its end marker (`002567B0` returns 2) marks the channel finished, state 2.
 
 `01DFE0BC` is 1.0 at 30 fps and 0.5 at 60 fps
@@ -48,7 +48,7 @@ either frame rate.
 manager 0 last, so the lowest manager wins a conflict. For each player with a frame it calls
 `0025A3B0(frame, 5, view)`:
 
-- frame 0 copies the player's 0xD0-byte view (`+0x210`) into camera record 5 (`0025A2C0`) and
+- frame 0 copies the player's `D0`<sub>h</sub>-byte view (`+210`<sub>h</sub>) into camera record 5 (`0025A2C0`) and
   sets its mode to 3 (`0025A500`);
 - frame 1 copies it into the sub view `02097B80` (`0025A3D0`).
 
@@ -59,17 +59,17 @@ otherwise.
 
 ### The camera records and the active view
 
-Eight camera records of 0x110 bytes sit at `02097300`. `00259820` takes the highest set bit of
+Eight camera records of `110`<sub>h</sub> bytes sit at `02097300`. `00259820` takes the highest set bit of
 `02098DEC` (bit 7 down to 0) and its record:
 
-| Record mode `+0xF0` | View published |
+| Record mode `+F0`<sub>h</sub> | View published |
 |---|---|
-| 1 | built by `00259990` from the record's `+0xF4` |
+| 1 | built by `00259990` from the record's `+F4`<sub>h</sub> |
 | 2 | the previous frame's view, unchanged |
-| 3 | the record's view `+0x20` as written |
-| other | rebuilt by `003CC000` from the eye `+0x00` and target `+0x10`, up `(0, 1, 0)` |
+| 3 | the record's view `+20`<sub>h</sub> as written |
+| other | rebuilt by `003CC000` from the eye `+00`<sub>h</sub> and target `+10`<sub>h</sub>, up `(0, 1, 0)` |
 
-It keeps the result at `020972F0` and submits it at priority `0x14` (below). With no bit set it
+It keeps the result at `020972F0` and submits it at priority `14`<sub>h</sub> (below). With no bit set it
 submits nothing. So record 5 outranks records 0-4 and yields to 6 and 7.
 
 ### Resetting the records
@@ -81,23 +81,23 @@ zeroed and rebuilt (`003CBFF0`), mode and parameter 0. It zeroes and rebuilds th
 and the behind camera's view `02097C50` the same way.
 
 `0025A890`, from the render manager's target rebuild `00188B10`, sets the field of view of the eight
-record views, `02097B80` and `02097C50` back to π/4 at `+0x08` and `+0x0C`, with `+0x10` =
+record views, `02097B80` and `02097C50` back to π/4 at `+08`<sub>h</sub> and `+0C`<sub>h</sub>, with `+10`<sub>h</sub> =
 `1 / tan(π/8)` (`003CBAD0`).
 
-The debug verbs `debug_camerasrc` (`0x2013`, `0050E5B0`) and `debug_cameradst` (`0x2012`, `0050E530`)
+The debug verbs `debug_camerasrc` (`2013`<sub>h</sub>, `0050E5B0`) and `debug_cameradst` (`2012`<sub>h</sub>, `0050E530`)
 pop three floats each and write them, with w 1.0, as record 1's eye (`0025A4A0`) or target
-(`0025A4D0`); the third float popped is x. `debug_cameraescape` (`0x2077`, `0050CD30`) pops three ints
-and stores the first popped as a byte at `+0x188` of the shot player chosen by the third (manager) and
-the second (channel) (`00257AA0`; players at `02092830 + manager × 0xBB0 + channel × 0x2E0`).
+(`0025A4D0`); the third float popped is x. `debug_cameraescape` (`2077`<sub>h</sub>, `0050CD30`) pops three ints
+and stores the first popped as a byte at `+188`<sub>h</sub> of the shot player chosen by the third (manager) and
+the second (channel) (`00257AA0`; players at `02092830 + manager × BB0h + channel × 2E0h`).
 
 ### Returning to the behind camera
 
-`resumebehindcamera(frames, a, b)` (`0x01E4`, `003442D0`) and its four-argument form (`0x0289`,
+`resumebehindcamera(frames, a, b)` (`01E4`<sub>h</sub>, `003442D0`) and its four-argument form (`0289`<sub>h</sub>,
 `00343DB0`, with a pose index last) clear the current manager's shot channels and frame owners and
 call `00257830`, which arms a blend:
 
 - duration `frames × 01DFE0B8`, the counter at 0;
-- the start pose, entry `index` of the poses at `02096370` (0x40 apart) that the shot player
+- the start pose, entry `index` of the poses at `02096370` (`40`<sub>h</sub> apart) that the shot player
   writes, turned into polar form about its target (`003CC130`);
 
 - the polar form is the distance, the yaw `atan2(dx, dz)`, and the pitch read after turning the
@@ -119,7 +119,7 @@ of 0 blends nothing.
 | 2 | `sin(πt/2)`, slow end |
 | other | `t` |
 
-`behindtoeventcamera` (`0x034F`, `00349FA0`) is the other transition: through `003DA300` it takes
+`behindtoeventcamera` (`034F`<sub>h</sub>, `00349FA0`) is the other transition: through `003DA300` it takes
 a shot row and arms `00255C50`, whose move `00255850` writes record 5 from `02096290`.
 
 ### Waiting on a transition
@@ -128,7 +128,7 @@ Each transition keeps a duration and a counter: `02096270`/`02096274` for the mo
 `020963F8`/`020963FC` for the swing back to the behind camera. A transition is done when the duration
 is 0 or the counter has reached it (`00255C20`, `00257800`).
 
-- `behindtoeventcamerasync` (`0x0350`, `0034A530`) and `resumebehindcamerasync` (`0x01E5`,
+- `behindtoeventcamerasync` (`0350`<sub>h</sub>, `0034A530`) and `resumebehindcamerasync` (`01E5`<sub>h</sub>,
   `003445E0`) hold the script until their transition is done.
 - When the manager is skipping (`00267310`), they instead set the counter to the duration less one
   and run the step once (`00255CB0` with `00255850`, `002578B0` with `00257520`), so the camera lands on
@@ -136,7 +136,7 @@ is 0 or the counter has reached it (`00255C20`, `00257800`).
 
 ### The behind camera's field of view and roll
 
-`behindcamerafovyroll` (`0x023A`, `00349D00`) pops a float, a float, an int and a float. `002564D0`
+`behindcamerafovyroll` (`023A`<sub>h</sub>, `00349D00`) pops a float, a float, an int and a float. `002564D0`
 keeps them as the roll target `020964F4`, the field-of-view target `020964F0`, the ease `02096500` and
 the duration, the last value times `01DFE0B8`, at `020964F8`, and zeroes the counter `020964FC`.
 
@@ -145,28 +145,28 @@ the targets; otherwise each target is multiplied by `00256650(ease, counter / du
 then grows by 1 until it passes the duration. The gather adds the offsets to the shake's roll and
 field-of-view scalars, which reach `02AEDF98` and `02AEDF9C` through `00382B70`.
 
-`behindcamerafovyrollsync` (`0x023B`, `0034A600`) holds the script while the counter has not passed
+`behindcamerafovyrollsync` (`023B`<sub>h</sub>, `0034A600`) holds the script while the counter has not passed
 the duration (`002564B0`); a skip sets the counter one past it (`00256500`).
 
 At each field start `00259B30` clears the ramp through `003DA2C0`, which calls `002564D0(0, 0, 0, 0)`:
 both targets, the ease, the duration and the counter become 0, so the offsets are 0 until a script
 sets them again.
 
-`getbehindcameradir` (`0x0343`, `00347070`) returns the behind camera's direction in eighths
+`getbehindcameradir` (`0343`<sub>h</sub>, `00347070`) returns the behind camera's direction in eighths
 (`002565C0`): from the view `002593A0` returns it takes `atan2` of the eye minus the target in x and z
-(`+0x90`, `+0x98` minus `+0xA0`, `+0xA8`), adds π/8, wraps it into 0 to 2π and divides by π/4, giving
+(`+90`<sub>h</sub>, `+98`<sub>h</sub> minus `+A0`<sub>h</sub>, `+A8`<sub>h</sub>), adds π/8, wraps it into 0 to 2π and divides by π/4, giving
 0 to 7. When the eye and the target share x and z it returns 0.
 
 ### The summon camera's subject
 
-`setsummoncameratarget(id, on)` (`0x0271`, `00341410`) makes the actor `id` names (`00264010`, the
+`setsummoncameratarget(id, on)` (`0271`<sub>h</sub>, `00341410`) makes the actor `id` names (`00264010`, the
 party focus for a negative id) the subject `02096508` through `002578F0`, or clears the subject when
-`on` is 0. Clearing it also drops the mark bit `0x8000` from every other live actor's fade word and
+`on` is 0. Clearing it also drops the mark bit `8000`<sub>h</sub> from every other live actor's fade word and
 keeps the fade running while any actor was marked.
 
-The fade word is a `u16` of the actor's `+0xC0` context: `00263EB0(actor, i)` and
-`0026A3B0(actor, i, v)` read and write `+0x20 + 2i`, `i` clamped to 1 and taken as 0 when negative,
-and `00263E80` reads `+0x20`. Bit `0x8000` marks the actor; the low byte is its fade level.
+The fade word is a `u16` of the actor's `+C0`<sub>h</sub> context: `00263EB0(actor, i)` and
+`0026A3B0(actor, i, v)` read and write `+20h + 2i`, `i` clamped to 1 and taken as 0 when negative,
+and `00263E80` reads `+20`<sub>h</sub>. Bit `8000`<sub>h</sub> marks the actor; the low byte is its fade level.
 
 Each field frame `00256F60` (from `0022A770`) boxes the subject and every other live actor of the
 five managers on screen with `00255CF0`. That function places the points `(−r, 0, 0)` and `(r, h, 0)`
@@ -174,36 +174,36 @@ in the camera's orientation at the actor's position, `r` and `h` from `00265090`
 projects both through `02AEDDB0`, divides x and y by the third value and subtracts 1792 and 1824,
 giving the corners of a 512 × 448 frame. Then for each other actor:
 
-- the mark is cleared when the actor's depth value `+0x08` is not above the subject's or the two boxes
+- the mark is cleared when the actor's depth value `+08`<sub>h</sub> is not above the subject's or the two boxes
   do not overlap;
 - the mark is set when the actor's box reaches more than 16 into the subject's box on all four sides;
 - otherwise the word stays as it was.
 
 While a mark changed or a fade runs (`02096510`), `00255FF0(step)` moves every other live actor's
-level by the step `02096514` (`0x20`, set by `002556F0`): up toward 255 when marked, down toward 0
-when not. It writes the word back, sets the actor's render record colour `+0x220` to `+0x228` to
-1.0 and its alpha `+0x22C` to `(255 − level) / 255`, and returns 1 once every level has arrived,
+level by the step `02096514` (`20`<sub>h</sub>, set by `002556F0`): up toward 255 when marked, down toward 0
+when not. It writes the word back, sets the actor's render record colour `+220`<sub>h</sub> to `+228`<sub>h</sub> to
+1.0 and its alpha `+22C`<sub>h</sub> to `(255 − level) / 255`, and returns 1 once every level has arrived,
 which ends the fade. So the marked actors, those that cover the subject, fade out over eight frames.
 
 ### Running a shot to its end
 
 The skip path `00257A00` reads two things from a shot player through small getters: `00258AF0(manager,
-channel)` returns from the current row's first byte (player `+0x178`): 1 for kind 1, the word `+0x22`
-for kind 2, 0 for kind −1 and 1 for any other kind; `00258B50` returns the player's `+0x0C`. A negative
+channel)` returns from the current row's first byte (player `+178`<sub>h</sub>): 1 for kind 1, the word `+22`<sub>h</sub>
+for kind 2, 0 for kind −1 and 1 for any other kind; `00258B50` returns the player's `+0C`<sub>h</sub>. A negative
 channel selects the transition player at `02096520` instead.
 
 ### Submissions
 
-`003829D0(camera, priority)` files a 0xD0-byte camera into the first free of eight 0xE0-byte
-slots at `02AED630`, with the priority at `+0xD4` and the submitted flag at `+0xD0`; with all
+`003829D0(camera, priority)` files a `D0`<sub>h</sub>-byte camera into the first free of eight `E0`<sub>h</sub>-byte
+slots at `02AED630`, with the priority at `+D4`<sub>h</sub> and the submitted flag at `+D0`<sub>h</sub>; with all
 eight taken it drops the camera. When `00181DD0` reports an override it first applies three vectors
 from `00181CD0`, `00181C50` and `00181CB0` to the camera (`003CC000`). There are three submitters:
 
 | Caller | Camera | Priority |
 |---|---|---|
-| `00259820` | the active record's view | `0x14` |
-| `00259970`, from the field frame before draw 1 | the sub view `02097B80` | `0x14` |
-| `003ED8A0`, the effect-file camera | `02096D30` (`003ED9A2`) | `0x64` |
+| `00259820` | the active record's view | `14`<sub>h</sub> |
+| `00259970`, from the field frame before draw 1 | the sub view `02097B80` | `14`<sub>h</sub> |
+| `003ED8A0`, the effect-file camera | `02096D30` (`003ED9A2`) | `64`<sub>h</sub> |
 
 ### Choosing the camera
 
@@ -220,12 +220,12 @@ The shake gather `0037D4C0` hands two offset vectors and two scalars to `00382B7
 them at `02AEDF70` (eye), `02AEDF80` (target), `02AEDF98` (roll) and `02AEDF9C` (field of view).
 The update then:
 
-1. adds `02AEDF9C` to the field of view `+0x08` and recomputes `+0x10 = 1 / tan(fov / 2)`;
-2. adds `02AEDF98` to the roll `+0xC4`;
-3. turns both offsets by the camera's matrix `+0x60` (`02AED5C0`) and adds them to the eye `+0x90`
-   and the target `+0xA0`, so a shake moves in the camera's own frame;
+1. adds `02AEDF9C` to the field of view `+08`<sub>h</sub> and recomputes `+10h = 1 / tan(fov / 2)`;
+2. adds `02AEDF98` to the roll `+C4`<sub>h</sub>;
+3. turns both offsets by the camera's matrix `+60`<sub>h</sub> (`02AED5C0`) and adds them to the eye `+90`<sub>h</sub>
+   and the target `+A0`<sub>h</sub>, so a shake moves in the camera's own frame;
 4. rebuilds the matrices from eye, target and roll (`003CBD60`);
-5. does the same to a stack copy whose field of view is `+0x0C`, replaced by π/4 when above 1.0,
+5. does the same to a stack copy whose field of view is `+0C`<sub>h</sub>, replaced by π/4 when above 1.0,
    plus the shake.
 
 ### The matrices
@@ -234,8 +234,8 @@ The update then:
 |---|---|
 | `02AEDD70` | the head matrix of `02AED4A0` × a projection of the copy with aspect 16/9 and scale 1.1547 (`003CBA50`) |
 | `02AEDD30` | the head matrix × the working camera's projection (`003CBB30`); handed to `0024E180` |
-| `02AEDE70` | the view: a copy of `+0x20` (`02AED580`), eight elements replaced under the override |
-| `02AEDEB0` | a copy of the camera matrix `+0x60`; handed to the device (`00182640`) |
+| `02AEDE70` | the view: a copy of `+20`<sub>h</sub> (`02AED580`), eight elements replaced under the override |
+| `02AEDEB0` | a copy of the camera matrix `+60`<sub>h</sub>; handed to the device (`00182640`) |
 | `02AEDEF0` | the copy's camera matrix; its fourth row `02AEDF20` is the camera position |
 | `02AEDDF0` | view × projection, world to clip |
 | `02AEDDB0` | view × `02AEDD30` |
@@ -244,7 +244,7 @@ The update then:
 
 | `02B40470` | `02AED500` × the working camera's projection (`003CBB30`), copied there by `003B4150`; the update `003820C0` does it on one of its paths, and only while `00182570` returns 0; and `002F5550` and `00474710` also call `003B4150` |
 
-`003B40B0(z)` and `003B40F0(z)` turn a depth into `(m[+0x38] − z × m[+0x28]) / (m[+0x3C] − z × m[+0x2C])`
+`003B40B0(z)` and `003B40F0(z)` turn a depth into `(m[+38h] − z × m[+28h]) / (m[+3Ch] − z × m[+2Ch])`
 with the elements of `02B40470`; `002F5550`, `00474710` and `0024FF60` call them.
 
 The camera code's small helpers: `003CBCA0` writes the first three rows of an identity matrix (for
@@ -256,8 +256,8 @@ the heading `atan2(dx, dz)`, for the shot builders `00255E80` and `00256CA0`; an
 
 ### The Screen Shake option
 
-Besides the scripted shakes, `0037D4C0` adds an accumulator row `02EBF380 + draw × 0x20` while
-`02EBF3C0` is set. `deny_camerashake_without_event(n)` (`0x04B6`, `003560D0`) stores `n == 0` in
+Besides the scripted shakes, `0037D4C0` adds an accumulator row `02EBF380 + draw × 20h` while
+`02EBF3C0` is set. `deny_camerashake_without_event(n)` (`04B6`<sub>h</sub>, `003560D0`) stores `n == 0` in
 `02EBF3C0`; the area unload `002628B0` and the manager bind `0026CE60` also write it.
 
 `0037D970`
@@ -270,54 +270,54 @@ keeps its last values; the scripted shakes are not gated.
 ### Handing the camera to the renderer
 
 After the build the camera update calls `00182640` with the camera matrix `02AEDEB0`, the aspect, the
-field of view `+0x08`, the frame-mode zoom (`00229D60`), the camera's `+0x00` and `+0x04` (the near and
+field of view `+08`<sub>h</sub>, the frame-mode zoom (`00229D60`), the camera's `+00`<sub>h</sub> and `+04`<sub>h</sub> (the near and
 far distances `003CBB30` uses) and a flag that is set while the bound map `[0209A670]` has a non-zero
-`+0x120`. `00182640` runs `001897C0` on the render manager (`00189120`).
+`+120`<sub>h</sub>. `00182640` runs `001897C0` on the render manager (`00189120`).
 
 `001897C0` stores the near and far distances, the field of view, the aspect and the zoom at manager
-`+0xCBC`, `+0xCC0`, `+0xCC4`, `+0xCC8` and `+0xCCC`; with the flag set and `+0xCD0` greater than the
-near distance, the far distance becomes `+0xCD0`. It then fills the two camera objects of the copy
-chosen by the manager's byte `+0x1C` (`0x338` bytes apart):
+`+CBC`<sub>h</sub>, `+CC0`<sub>h</sub>, `+CC4`<sub>h</sub>, `+CC8`<sub>h</sub> and `+CCC`<sub>h</sub>; with the flag set and `+CD0`<sub>h</sub> greater than the
+near distance, the far distance becomes `+CD0`<sub>h</sub>. It then fills the two camera objects of the copy
+chosen by the manager's byte `+1C`<sub>h</sub> (`338`<sub>h</sub> bytes apart):
 
-- the scene camera at `+0x20`, with the matrix at `+0xF8` converted from `02AEDEB0` with its x and y
+- the scene camera at `+20`<sub>h</sub>, with the matrix at `+F8`<sub>h</sub> converted from `02AEDEB0` with its x and y
   terms negated, or a fixed default when any row of the source is all zero;
-- a second camera at `+0x1B0`, matrix `+0x288`, the same rotation without the translation and with the
+- a second camera at `+1B0`<sub>h</sub>, matrix `+288`<sub>h</sub>, the same rotation without the translation and with the
   far distance raised to at least 1000.
 
-Each value it sets on a camera (aspect `+0xC8`, field of view `+0xD0`, zoom `+0xD4`, near `+0xC0`,
-far `+0xC4`) is followed by the camera's slot `+0x08`, and `0018A120` rebuilds the camera last.
+Each value it sets on a camera (aspect `+C8`<sub>h</sub>, field of view `+D0`<sub>h</sub>, zoom `+D4`<sub>h</sub>, near `+C0`<sub>h</sub>,
+far `+C4`<sub>h</sub>) is followed by the camera's slot `+08`<sub>h</sub>, and `0018A120` rebuilds the camera last.
 
 ## Layouts
 
-Camera record [8] at `02097300`, stride `0x110`:
+Camera record [8] at `02097300`, stride `110`<sub>h</sub>:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `f32[4]` | eye | source eye for the rebuild |
-| `10` | `f32[4]` | target | source target for the rebuild |
-| `20` | `u8[208] view` | the camera below |  |
-| `F0` | `u32` | mode | 1, 2, 3 or other (`00259820`) |
-| `F4` | `u32` | param | for mode 1 |
+| `00`<sub>h</sub> | `f32[4]` | eye | source eye for the rebuild |
+| `10`<sub>h</sub> | `f32[4]` | target | source target for the rebuild |
+| `20`<sub>h</sub> | `u8[208] view` | the camera below |  |
+| `F0`<sub>h</sub> | `u32` | mode | 1, 2, 3 or other (`00259820`) |
+| `F4`<sub>h</sub> | `u32` | param | for mode 1 |
 
-Camera (`0xD0`), as the update reads it:
-
-| Offset | Type | Name | Meaning |
-|---|---|---|---|
-| `08` | `f32` | fov | radians |
-| `0C` | `f32` | fovCopy | the second copy's field of view |
-| `10` | `f32` | projScale | 1 / tan(fov / 2) |
-| `20` | `f32[16]` | view | copied to `02AEDE70` |
-| `60` | `f32[16]` | world | camera matrix; +`0x90` is its fourth row, the eye |
-| `A0` | `f32[4]` | target |  |
-| `C4` | `f32` | roll |  |
-
-Submission slot [8] at `02AED630`, stride `0xE0`:
+Camera (`D0`<sub>h</sub>), as the update reads it:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `u8[208]` | camera |  |
-| `D0` | `u32` | submitted | 1 until the next update |
-| `D4` | `i32` | priority |  |
+| `08`<sub>h</sub> | `f32` | fov | radians |
+| `0C`<sub>h</sub> | `f32` | fovCopy | the second copy's field of view |
+| `10`<sub>h</sub> | `f32` | projScale | 1 / tan(fov / 2) |
+| `20`<sub>h</sub> | `f32[16]` | view | copied to `02AEDE70` |
+| `60`<sub>h</sub> | `f32[16]` | world | camera matrix; +`90`<sub>h</sub> is its fourth row, the eye |
+| `A0`<sub>h</sub> | `f32[4]` | target |  |
+| `C4`<sub>h</sub> | `f32` | roll |  |
+
+Submission slot [8] at `02AED630`, stride `E0`<sub>h</sub>:
+
+| Offset | Type | Name | Meaning |
+|---|---|---|---|
+| `00`<sub>h</sub> | `u8[208]` | camera |  |
+| `D0`<sub>h</sub> | `u32` | submitted | 1 until the next update |
+| `D4`<sub>h</sub> | `i32` | priority |  |
 
 ## Shipped data
 
@@ -341,7 +341,7 @@ page.
 
 ## Modding notes
 
-- A camera submitted at a priority above `0x64` from a hook beats every camera in the game for that
+- A camera submitted at a priority above `64`<sub>h</sub> from a hook beats every camera in the game for that
   frame; it must be submitted every frame to stay.
 - Shot speed follows `cameraratio` and the frame rate factor, not the frame count.
 - `resumebehindcamera` with a non-zero frame count gives an eased swing back to the behind camera;

@@ -67,7 +67,7 @@ The two banners are unreferenced constants, ` inflate 1.2.11 Copyright 1995-2017
   its source-length argument to `uncompress2` (`0080C5C0`, call at `0080C5AE`). `inflate` loads
   "incorrect header check" (`01CC7C58`) at `0080C9AD`.
 - The deflate side, from `0087AF40`, which is `compress2`; it hands `deflateInit_` the
-  `0x58`-byte stream size (`0087AF7B`).
+  `58`<sub>h</sub>-byte stream size (`0087AF7B`).
 
 The checksum is zlib's table-driven CRC-32: `crc32` (`0080E5F0`) jumps to `crc32_z` (`0080E910`),
 which returns 0 for a null buffer and otherwise jumps to `crc32_little` (`0080E600`). That body
@@ -98,7 +98,7 @@ it with `00200E60`.
 
 The writer's `SolidusEscaper` filter is `002165B0`. The overflow slot of
 `OutputFilter<SolidusEscaper>` (`002016F0`, vtable `00905070` slot 3) passes it the filter's two
-state bytes at `+0x70`, the target stream buffer and the character:
+state bytes at `+70`<sub>h</sub>, the target stream buffer and the character:
 
 - a `"` not preceded by a backslash toggles the in-string byte;
 - a `/` inside a string, not preceded by a backslash, is written as the two characters `\/`, from
@@ -112,31 +112,31 @@ is on [Standard file formats](../Game-Files-And-Data-Tables/standard-file-format
 
 ### Dear ImGui
 
-`00791D80` is Dear ImGui's `ImGuiIO` constructor: it clears `0xB88` bytes and stores ImGui's
+`00791D80` is Dear ImGui's `ImGuiIO` constructor: it clears `B88`<sub>h</sub> bytes and stores ImGui's
 default settings.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `f32[2]` | -1.0, -1.0 | display size, unset |
-| `08` | `f32` | 1/60 (0x3C888889) | frame time |
-| `0C` | `f32` | 5.0 | ini saving interval |
-| `10` | `char*` | "imgui.ini" | `01CB3990` |
-| `18` | `char*` | "imgui_log.txt" | `01CB39A0` |
-| `20` | `f32` | 0.3 | double-click time |
-| `24` | `f32` | 6.0 | double-click distance |
-| `78` | `void*` | 02EA54F0 | the default font atlas |
-| `80` | `f32` | 1.0 | font scale |
-| `A0` | `fn*` | 00796E70 | default platform callback |
-| `A8` | `fn*` | 00798D70 | default platform callback |
-| `B0` | `fn*` | malloc |  |
-| `B8` | `fn*` | free |  |
-| `C0` | `fn*` | 00797360 | default platform callback |
+| `00`<sub>h</sub> | `f32[2]` | -1.0, -1.0 | display size, unset |
+| `08`<sub>h</sub> | `f32` | 1/60 (`3C888889`<sub>h</sub>) | frame time |
+| `0C`<sub>h</sub> | `f32` | 5.0 | ini saving interval |
+| `10`<sub>h</sub> | `char*` | "imgui.ini" | `01CB3990` |
+| `18`<sub>h</sub> | `char*` | "imgui_log.txt" | `01CB39A0` |
+| `20`<sub>h</sub> | `f32` | 0.3 | double-click time |
+| `24`<sub>h</sub> | `f32` | 6.0 | double-click distance |
+| `78`<sub>h</sub> | `void*` | 02EA54F0 | the default font atlas |
+| `80`<sub>h</sub> | `f32` | 1.0 | font scale |
+| `A0`<sub>h</sub> | `fn*` | 00796E70 | default platform callback |
+| `A8`<sub>h</sub> | `fn*` | 00798D70 | default platform callback |
+| `B0`<sub>h</sub> | `fn*` | malloc |  |
+| `B8`<sub>h</sub> | `fn*` | free |  |
+| `C0`<sub>h</sub> | `fn*` | 00797360 | default platform callback |
 
 The ImGui context is the static object `02EA58C0`:
 
 1. The static initialiser `00169620`, whose pointer is at `008C4910` in the initialiser table, calls
    the context constructor `00791E70` on it and registers `008B7DA0` to run at exit. `00791E70`
-   runs `00791D80` on the context's `+0x08` and `00792090` on its `+0xB90`.
+   runs `00791D80` on the context's `+08`<sub>h</sub> and `00792090` on its `+B90`<sub>h</sub>.
 2. `00169600` registers `008B7D40` at exit for the font atlas `02EA54F0`.
 3. At exit `008B7DA0` frees the context's buffers (`00793140`), and `008B7D40` clears the atlas
    (`00795FC0`), both through the free function the context holds.

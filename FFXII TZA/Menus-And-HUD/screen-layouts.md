@@ -47,8 +47,8 @@ The loader `001CA600` binds every key by its own code, with no table (1,602 inst
 1. It stops at once if `mScrollListHeight` is absent (`001CA604`-`001CA621`).
 2. For each key it looks the name up (`001FF740`), reads it as an integer (`00200B80`) or a float (`00200B50`), and
    stores it through a pointer slot (`mov rcx, [rbx + slot]` / `mov [rcx], eax`).
-3. The slots are `[01F811E8] + 0x3B00` onwards, filled by `001AF470` (`001AF477`-`001B00E9`), and three more at
-   `[01F81200] + 0x2F8`-`+0x308`, filled by `001B44A0` (`001B4551`-`001B4574`), for the three float keys.
+3. The slots are `[01F811E8] + 3B00h` onwards, filled by `001AF470` (`001AF477`-`001B00E9`), and three more at
+   `[01F81200] + 2F8h`-`+308`<sub>h</sub>, filled by `001B44A0` (`001B4551`-`001B4574`), for the three float keys.
 
 | Count | |
 |---|---:|
@@ -62,8 +62,8 @@ No two keys share a cell, and every cell is in `.data`.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `u32` | tag | 1 integer, 2 double, 3 object, 6 absent (`00200BE0`, `001FF5E1`) |
-| `08` | `u32[2]` | payload | pointer to the value or the child map (`00200B87`, `00200B93`) |
+| `00`<sub>h</sub> | `u32` | tag | 1 integer, 2 double, 3 object, 6 absent (`00200BE0`, `001FF5E1`) |
+| `08`<sub>h</sub> | `u32[2]` | payload | pointer to the value or the child map (`00200B87`, `00200B93`) |
 
 An integer read returns the integer for tag 1, the truncated double for tag 2, and 0 otherwise (`00200B9C`); a float
 read converts either and returns 0.0 otherwise (`00200B75`).

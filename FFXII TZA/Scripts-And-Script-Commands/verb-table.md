@@ -41,11 +41,11 @@ from other authored sources otherwise; the argument counts are measured on the h
 | shapes | result only 1,571; begin and poll 202; begin only 76; all three 48; poll only 28; poll and result 6; begin and result 1; stub 24; empty 4 |
 | names | 1,270 from the catalogue (54 of them `unkCall` placeholders), 671 from other sources, 19 without a name (the 19 `DERIVED-UNNAMED` rows) |
 | argument count | 1,229 confirmed against the catalogue, 653 derived, 34 guarded, 24 conditional, 19 derived without a name, 1 conflict |
-| the conflict | `unkCall_5c7` (`0x05C7`): the catalogue declares two arguments, the result is the `ret` stub and pops none |
+| the conflict | `unkCall_5c7` (`05C7`<sub>h</sub>): the catalogue declares two arguments, the result is the `ret` stub and pops none |
 | verbs called in the US corpus | 1,135 of 1,960; 1,843,441 calls in all |
 | most called | `setmapidfloor` 84,066; `wait` 83,795; `setmapidwall` 76,134; `nowmap` 63,695 |
-| `setforcefightmode` (`0x0334`) | 177 calls in 83 scripts, every one `setforcefightmode(0)` |
-| the four empty records | `setnorecovertelepostatus` `0x0330`, `battlemembersync` `0x0356`, `restartbattle` `0x03B0`, `debug_meswin_3e` `0x203E`; none is called in the corpus |
+| `setforcefightmode` (`0334`<sub>h</sub>) | 177 calls in 83 scripts, every one `setforcefightmode(0)` |
+| the four empty records | `setnorecovertelepostatus` `0330`<sub>h</sub>, `battlemembersync` `0356`<sub>h</sub>, `restartbattle` `03B0`<sub>h</sub>, `debug_meswin_3e` `203E`<sub>h</sub>; none is called in the corpus |
 
 The poll-only rows are the waits on something an earlier verb started: `movesync`, `turnsync`,
 `stdmotionreadsync`, `crossfadesync`, `gaugeshowsync`, `resumebehindcamerasync`,
@@ -55,21 +55,21 @@ The poll-only rows are the waits on something an earlier verb started: `movesync
 `ucmovesync`, `initsync`, `musicfadeoutsync`, `unkCall_5a6`, `fsmenu_syncopenchip`,
 `fsttl_opencommandsync` and `fsttl_closecommandsync`.
 
-`moveblurfadesync` (`0x03BD`) also counts as poll only: its begin and result are the stub and its
+`moveblurfadesync` (`03BD`<sub>h</sub>) also counts as poll only: its begin and result are the stub and its
 poll `00345100` is live.
 
 The stub rows hold only the `ret` at `0016D6A0` and the poll `005C5230`, which returns 0, so a
 stubbed verb completes on its first call: `disposesummon`, `changetonormalparty`, `hddinstall`,
 `networkhddinstall`, `hddmount`, `atrac3cancel`, `btlAtelRemoveAllEquip` and the debug verb
-`0x20D3` have a stub begin with that poll; `atrac3standbysync` and `atrac3playsync` have that poll
+`20D3`<sub>h</sub> have a stub begin with that poll; `atrac3standbysync` and `atrac3playsync` have that poll
 alone; `atrac3play`, `unkCall_5c7`, `btlAtelSetUnique`, `btlAtelChangeAllBtlCharaFlag_DontMoveDebug`,
-the tag and setup verbs `0x3054` to `0x305A` and seven debug verbs have a stub result.
+the tag and setup verbs `3054`<sub>h</sub> to `305A`<sub>h</sub> and seven debug verbs have a stub result.
 
-Two placeholder names have a known meaning: `unkCall_5be` (`0x05BE`, start `00355940`) returns the
-after-load flag `0209AC10` through `00286000`, and `unkCall_5bf` (`0x05BF`, start `00355E80`)
+Two placeholder names have a known meaning: `unkCall_5be` (`05BE`<sub>h</sub>, start `00355940`) returns the
+after-load flag `0209AC10` through `00286000`, and `unkCall_5bf` (`05BF`<sub>h</sub>, start `00355E80`)
 clears it through `00287D00`; in the US corpus only the Trial Mode map scripts (`tri_a01` to `tri_b05`
 and their siblings, 100 files) call them, 200 and 100 times. `debug_setfightstatusbyevent`
-(`0x206B`, `0050C910`) pops one int and stores it through `003BA300`, so its argument count is 1.
+(`206B`<sub>h</sub>, `0050C910`) pops one int and stores it through `003BA300`, so its argument count is 1.
 
 ## Related
 

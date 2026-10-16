@@ -21,23 +21,23 @@ picks the base for the class through the jump table at `002626A8` (`002625EA`-`0
 
 | Class | Base | Set at |
 |---:|---|---|
-| `0` | the save payload, actor manager `+0x48` (`00262605`) | `0026CAF8`-`0026CAFD` |
-| `1` | actor manager `+0x40` (`0026260B`) | - |
-| `2` | the address the callback at `+0x98` returns (`00262611`-`00262617`) | - |
-| `3` | the script image plus its own `+0x40` word (`00262633`-`00262636`) | - |
-| `4` | actor manager `+0x58` (`00262627`) | - |
-| `5` | actor manager `+0x60` (`0026262D`) | - |
+| `0` | the save payload, actor manager `+48`<sub>h</sub> (`00262605`) | `0026CAF8`-`0026CAFD` |
+| `1` | actor manager `+40`<sub>h</sub> (`0026260B`) | - |
+| `2` | the address the callback at `+98`<sub>h</sub> returns (`00262611`-`00262617`) | - |
+| `3` | the script image plus its own `+40`<sub>h</sub> word (`00262633`-`00262636`) | - |
+| `4` | actor manager `+58`<sub>h</sub> (`00262627`) | - |
+| `5` | actor manager `+60`<sub>h</sub> (`0026262D`) | - |
 
-Class 0 is the save payload itself: `002EF2B0` returns the active save buffer plus `0x200` (`002EF2B4`-`002EF2B9`), and
-the actor manager keeps that pointer at `+0x48` when it binds the loaded definitions (`0026CAF8`-`0026CAFD`). So a
+Class 0 is the save payload itself: `002EF2B0` returns the active save buffer plus `200`<sub>h</sub> (`002EF2B4`-`002EF2B9`), and
+the actor manager keeps that pointer at `+48`<sub>h</sub> when it binds the loaded definitions (`0026CAF8`-`0026CAFD`). So a
 class-0 variable at offset *n* is payload byte *n*, read and written on every access with no copy.
 
 ### The story counter
 
-The main story counter is the 16-bit word at payload `+0x0`, class 0 offset 0. 513 scripts declare it alone and 193
+The main story counter is the 16-bit word at payload `+0`<sub>h</sub>, class 0 offset 0. 513 scripts declare it alone and 193
 declare a 256-word array that starts at the same byte ([Story counter values](story-counter-values.md)).
 
-`00265270` is the native reader: while bit 0 of `02098E20` is set and the payload pointer `02098E58`, the `+0x48`
+`00265270` is the native reader: while bit 0 of `02098E20` is set and the payload pointer `02098E58`, the `+48`<sub>h</sub>
 word of the slot-0 actor manager at `02098E10` stored at `0026CAFD`, is not null, it returns that word, else 0 (`00265270`-`0026528B`). 24 call sites in 22 functions read it, among them the
 story schedule `00377970` (`003779A4`), the input arbiter (`00253DD1`) and the music table reader (`003EAA78`).
 
@@ -68,7 +68,7 @@ The flag banks the story sets are on [Story flags](story-flags.md), with every i
 
 ## Modding notes
 
-- Writing payload `+0x0` moves the story: every script and native reader sees the new value at its next access.
+- Writing payload `+0`<sub>h</sub> moves the story: every script and native reader sees the new value at its next access.
 - A script cannot hold a reference to the counter: no script pushes it with `PUSHP`.
 - The menus and map groups the counter unlocks are the story schedule in `mapjumpgroupflagrom.bin`
   ([Story flags](story-flags.md)).

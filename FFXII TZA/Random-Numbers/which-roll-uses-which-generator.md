@@ -36,10 +36,10 @@ has 98 call sites in 66 functions; the float thunk 9 call sites in one function.
 | HP and MP growth bonus on a level-up | `002F9A60`, `002F9B20` | `002F9AD3`, `002F9B8C` |
 | treasure placement: a treasure spawns when `draw % 100 < chance` (row byte `+5`), unless its persistent flag (`0032AA60(row byte +4)`) is set | `002FA740` | `002FA7FC` |
 | second treasure roll: when the flag `0032AA60(row byte +9)` is not 1, `draw % 100 < row byte +10` marks the entry present | `002FAED0` | `002FAEF2` |
-| chest contents: gil or item (`draw % 100 >= row byte +11` is item), which of two items (`draw % 100 < 50`, or `< 95` with effect bit 1 of stats `+0x6B` or `+0x7B`), and the gil amount `draw % n + 1` when row byte `+8` has bit `0x40` | `002FAFD0` | `002FB01D`, `002FB082`, `002FB0AD` |
+| chest contents: gil or item (`draw % 100 >= row byte +11` is item), which of two items (`draw % 100 < 50`, or `< 95` with effect bit 1 of stats `+6B`<sub>h</sub> or `+7B`<sub>h</sub>), and the gil amount `draw % n + 1` when row byte `+8` has bit `40`<sub>h</sub> | `002FAFD0` | `002FB01D`, `002FB082`, `002FB0AD` |
 | field action trigger near a unit: `draw % 100 < 75` picks word `+6` else `+8` of the entry | `002F8060` | `002F8218` |
-| script verb `rand` (`0x28`): the raw draw | `00355140` | `00355149` |
-| script verb `rand_29` (`0x29`, one argument `n`): `(draw × n) >> 32` | `00354BF0` | `00354C08` |
+| script verb `rand` (`28`<sub>h</sub>): the raw draw | `00355140` | `00355149` |
+| script verb `rand_29` (`29`<sub>h</sub>, one argument `n`): `(draw × n) >> 32` | `00354BF0` | `00354C08` |
 | boot frame modes 0 and 1: one draw per dispatch, discarded | `0022B6E0`, `0022B7E0` | `0022B706`, `0022B7EB` |
 | shake oscillator: sixteen float draws per step, eight in a loop over the channel accumulators (`0037D291`) and eight single draws, scaled by `01DFE0BC` | `0037D1F0` | `0037D291`-`0037D420` |
 
@@ -60,9 +60,9 @@ its three steps. Every draw, inline or not, advances the same word.
 | spawn placement: candidate position, random candidate, position inside an authored region, keep entries | `00234AF0` (2 sites), `002355A0`, `00236450` (6 sites), `002395A0` (2 sites) | `00328370` |
 | enemy level at spawn: `draw % (range + 1) + base` through `0030C470` | `002398F0` | `0023991D` |
 | spawn height term for an enemy with record flag bits | `00236210` | `002362B6` |
-| spawn status seeding: per status, authored value 1 applies on `draw & 1`, value 2 always applies, value 3 sets the bit in `+0xE90` | `002394C0` | `00239547` |
+| spawn status seeding: per status, authored value 1 applies on `draw & 1`, value 2 always applies, value 3 sets the bit in `+E90`<sub>h</sub> | `002394C0` | `00239547` |
 | random facing: `draw % 360` degrees when the requested angle is negative | `00239210` | `00239243` |
-| random heading goal `0x4150`: `draw % 340 + 10` degrees | `00312B40` | `00312C93` |
+| random heading goal `4150`<sub>h</sub>: `draw % 340 + 10` degrees | `00312B40` | `00312C93` |
 | random point within `±r` of a target, up to nine tries | `00312DF0` | `00312E50`, `00312E6B` |
 | AI order evaluation and preconditions, `draw % 100` | `003014C0`, `00301830` | `0030160F`, `0030193F` |
 | AI final target choice | `003087E0` | `00308B13` |
@@ -97,7 +97,7 @@ generators page). None of them touches a gameplay generator.
 
 | Event | Gameplay MT | Shared LCG | Others |
 |---|---|---|---|
-| process start | lazy seed 5489 on first draw, then 4537 at `0022A410` | state 0 until an area initialises | graphics-noise MT from `_time64` and `clock` (`0015BCF0`); presentation generator `0x458DC800` (`00259216`); the counter hash and the PPFX counter start at their image values |
+| process start | lazy seed 5489 on first draw, then 4537 at `0022A410` | state 0 until an area initialises | graphics-noise MT from `_time64` and `clock` (`0015BCF0`); presentation generator `458DC800`<sub>h</sub> (`00259216`); the counter hash and the PPFX counter start at their image values |
 | area initialisation `002342F0` | nothing | seed = the counter `0208E6B0`, then the counter + 1 (`00234301`-`00234320`) | nothing |
 | loading a save `00584210` | seed from the clock and the frame counter (`005843A5`-`005843D3`) | nothing | nothing |
 | Lua `math.randomseed` | nothing | nothing | `srand` (`008193E0`) |
@@ -143,7 +143,7 @@ generators page). None of them touches a gameplay generator.
   seven inline sites read and write `022C256C` directly.
 - To stop a save reload from rerolling combat, replace the seed computation at
   `005843A5`-`005843C2` with a constant or remove the tail jump at `005843D3`.
-- A script can read the MT directly with the `rand` verbs (`0x28`, `0x29`); each call advances the
+- A script can read the MT directly with the `rand` verbs (`28`<sub>h</sub>, `29`<sub>h</sub>); each call advances the
   combat stream by one.
 
 ## Related

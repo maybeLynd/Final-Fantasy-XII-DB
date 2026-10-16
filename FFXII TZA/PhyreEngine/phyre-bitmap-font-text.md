@@ -16,28 +16,28 @@ is set.
 
 ### The objects
 
-A text is a `0x270`-byte object built by `0067B180(text, material)`; the constructor's unwind path
-`0067B470` releases the index block (`+0xC0`), `+0xB0` and the array at `+0x88` again. It holds:
+A text is a `270`<sub>h</sub>-byte object built by `0067B180(text, material)`; the constructor's unwind path
+`0067B470` releases the index block (`+C0`<sub>h</sub>), `+B0`<sub>h</sub> and the array at `+88`<sub>h</sub> again. It holds:
 
-- the string, as a byte array at `+0x240` (count) and `+0x248` (pointer) with room for one
+- the string, as a byte array at `+240`<sub>h</sub> (count) and `+248`<sub>h</sub> (pointer) with room for one
   terminator more than its capacity;
-- two vertex data blocks reached through `+0xB8` (positions at `+0x00`, texture coordinates at
-  `+0x88`), each 8 bytes (two floats) per vertex and four vertices per glyph;
-- an index data block at `+0xC0`, 16-bit, six indices per glyph;
-- the material object at `+0x238` and layout values at `+0x258`–`+0x268`, with the line scale `+0x260`
+- two vertex data blocks reached through `+B8`<sub>h</sub> (positions at `+00`<sub>h</sub>, texture coordinates at
+  `+88`<sub>h</sub>), each 8 bytes (two floats) per vertex and four vertices per glyph;
+- an index data block at `+C0`<sub>h</sub>, 16-bit, six indices per glyph;
+- the material object at `+238`<sub>h</sub> and layout values at `+258`<sub>h</sub>–`+268`<sub>h</sub>, with the line scale `+260`<sub>h</sub>
   starting at 0.65.
 
-The material object (`0x58` bytes) keeps the bitmap font at `+0x40`. `0067BD50(material, cluster,
+The material object (`58`<sub>h</sub> bytes) keeps the bitmap font at `+40`<sub>h</sub>. `0067BD50(material, cluster,
 mode)` finds the first `PMaterial` (descriptor `02CB6B80`) among the cluster's instance lists and
 passes it to `0067BB30`, which sets the object up:
 
-1. it stores `006CCCE0(mode)` at `+0x48` (7 when that is null) and, unless bit 7 of `+0x34` is set,
-   presets the five bytes at `+0x18` to 5, 1, 2, 2, 2 before passing them to `0061D9C0`;
-2. it creates a parameter buffer for the found material's effect variant (`00600120`, `0xE` on
+1. it stores `006CCCE0(mode)` at `+48`<sub>h</sub> (7 when that is null) and, unless bit 7 of `+34`<sub>h</sub> is set,
+   presets the five bytes at `+18`<sub>h</sub> to 5, 1, 2, 2, 2 before passing them to `0061D9C0`;
+2. it creates a parameter buffer for the found material's effect variant (`00600120`, `E`<sub>h</sub> on
    failure) and copies the material's parameter buffer into it;
-3. it binds the font's texture (`+0x30` of the font) to the parameter `BitmapFontTexture` and the
-   object at `+0x18` to `LinearClampSampler`, sets the colour to white, and stores the new buffer
-   as the only entry of the array at `+0x08`.
+3. it binds the font's texture (`+30`<sub>h</sub> of the font) to the parameter `BitmapFontTexture` and the
+   object at `+18`<sub>h</sub> to `LinearClampSampler`, sets the colour to white, and stores the new buffer
+   as the only entry of the array at `+08`<sub>h</sub>.
 
 ### Setting the text
 
@@ -60,7 +60,7 @@ form) when a block is bound at the time.
 `0067B530(text, length)` is `PBitmapFontText::createMeshGeometry`. It takes the next free buffer of
 each vertex block (`0067BE10`, which sleeps 1 ms at a time while that buffer is still in use) and
 decodes the string as UTF-8 (`0059A600`). For each character it searches the font's character table
-(`0x30`-byte `PBitmapFontCharInfo` records, `+0x10` count and `+0x18` pointer of the font) for a
+(`30`<sub>h</sub>-byte `PBitmapFontCharInfo` records, `+10`<sub>h</sub> count and `+18`<sub>h</sub> pointer of the font) for a
 matching `m_characterCode`, clearing a scratch record first (`0067CBD0`):
 
 - A line feed starts a new line: the pen's x goes back to 0 and its y drops by the line scale times
@@ -82,8 +82,8 @@ glyph drawn and both vertex buffers are committed.
 `0067C440(material, rgb)` writes `(r, g, b, 1.0)` into the material's `textColor` parameter; it
 returns 9 when the material has no such parameter and 3 when the parameter lies outside the buffer.
 
-`0067C260(text, renderer)` keeps the renderer at `+0x250` and draws the text's mesh instance at
-`+0x140` through `0060B980`, with a `PMaterialSelectorMaterialSet` holding `+0x160`. A text whose buffer exists but starts with
+`0067C260(text, renderer)` keeps the renderer at `+250`<sub>h</sub> and draws the text's mesh instance at
+`+140`<sub>h</sub> through `0060B980`, with a `PMaterialSelectorMaterialSet` holding `+160`<sub>h</sub>. A text whose buffer exists but starts with
 a zero byte is not drawn; the first such call logs `Attempting to render text but no text string has
 not been set. Did you forget to call PBitmapFontText::setText()?` (byte `02E3F804`).
 
@@ -92,50 +92,50 @@ not been set. Did you forget to call PBitmapFontText::setText()?` (byte `02E3F80
 The game's overlay object builds its text in `001EA3C0`:
 
 1. it loads the two clusters named at `01DFDE00`, `PhyreText.fx.phyre` and `tuffysdf.fgen.phyre`;
-2. it finds the first `PBitmapFont` (descriptor `02E3FA60`) in the font cluster (`0x13` when there is
+2. it finds the first `PBitmapFont` (descriptor `02E3FA60`) in the font cluster (`13`<sub>h</sub> when there is
    none), builds the material object around it and sets it up from the shader cluster with mode 3;
 3. it copies its `softEdges` value into that material's parameters and creates the text
    (`0067B180`), with the string `Debug Info:`, 128 for `0067C310` and a capacity for `0067C5A0`.
 
-Its draw, `001EA830`, runs only while its byte `+0xEA` is set: it sets the current string, colours
-the text black and draws it with the transform at `+0x98`, then white with the one at `+0x58`, so the
+Its draw, `001EA830`, runs only while its byte `+EA`<sub>h</sub> is set: it sets the current string, colours
+the text black and draws it with the transform at `+98`<sub>h</sub>, then white with the one at `+58`<sub>h</sub>, so the
 white text has a black shadow. `001EAE10` destroys the text (`0067B3A0`) and the material object and
 passes both clusters to `0019CC50`.
 
 ## Layouts
 
-PBitmapFontText (`0x270`), fields used here:
+PBitmapFontText (`270`<sub>h</sub>), fields used here:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `0B8` | `void*` | vertex blocks: positions at +0x00, texture coordinates at +0x88 |  |
-| `0C0` | `PIndexDataBlock` | index data block (min index +0x00, max index +0x04, count +0x08, type +0x0C = 0x0C) |  |
-| `238` | `void*` | material object |  |
-| `240` | `u32` | string buffer size (bit 31: not owned) |  |
-| `248` | `void*` | string bytes |  |
-| `250` | `void*` | renderer of the last draw |  |
-| `258` | `f32` | widest line |  |
-| `25C` | `f32` | total height |  |
-| `260` | `f32` | line scale, 0.65 at construction |  |
-| `264` | `f32` | highest glyph top |  |
-| `268` | `f32` | lowest glyph bottom |  |
+| `0B8`<sub>h</sub> | `void*` | vertex blocks: positions at `+00`<sub>h</sub>, texture coordinates at `+88`<sub>h</sub> |  |
+| `0C0`<sub>h</sub> | `PIndexDataBlock` | index data block (min index `+00`<sub>h</sub>, max index `+04`<sub>h</sub>, count `+08`<sub>h</sub>, type `+0C`<sub>h</sub> = `0C`<sub>h</sub>) |  |
+| `238`<sub>h</sub> | `void*` | material object |  |
+| `240`<sub>h</sub> | `u32` | string buffer size (bit 31: not owned) |  |
+| `248`<sub>h</sub> | `void*` | string bytes |  |
+| `250`<sub>h</sub> | `void*` | renderer of the last draw |  |
+| `258`<sub>h</sub> | `f32` | widest line |  |
+| `25C`<sub>h</sub> | `f32` | total height |  |
+| `260`<sub>h</sub> | `f32` | line scale, 0.65 at construction |  |
+| `264`<sub>h</sub> | `f32` | highest glyph top |  |
+| `268`<sub>h</sub> | `f32` | lowest glyph bottom |  |
 
-PBitmapFontCharInfo (`0x30`):
+PBitmapFontCharInfo (`30`<sub>h</sub>):
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00` | `i32` | m_characterCode |  |
-| `04` | `i32` | m_kernPairs | number of kerning triples |
-| `08` | `i32` | m_kernOffset | first triple, in 32-bit units |
-| `0C` | `f32` | texel x |  |
-| `10` | `f32` | texel y |  |
-| `14` | `f32` | m_width |  |
-| `18` | `f32` | m_height |  |
-| `1C` | `f32` | x offset |  |
-| `20` | `f32` | y offset |  |
-| `24` | `f32` | x advance |  |
-| `28` | `f32` | y advance |  |
-| `2C` | `bool` | m_rotated |  |
+| `00`<sub>h</sub> | `i32` | m_characterCode |  |
+| `04`<sub>h</sub> | `i32` | m_kernPairs | number of kerning triples |
+| `08`<sub>h</sub> | `i32` | m_kernOffset | first triple, in 32-bit units |
+| `0C`<sub>h</sub> | `f32` | texel x |  |
+| `10`<sub>h</sub> | `f32` | texel y |  |
+| `14`<sub>h</sub> | `f32` | m_width |  |
+| `18`<sub>h</sub> | `f32` | m_height |  |
+| `1C`<sub>h</sub> | `f32` | x offset |  |
+| `20`<sub>h</sub> | `f32` | y offset |  |
+| `24`<sub>h</sub> | `f32` | x advance |  |
+| `28`<sub>h</sub> | `f32` | y advance |  |
+| `2C`<sub>h</sub> | `bool` | m_rotated |  |
 
 ## Shipped data
 

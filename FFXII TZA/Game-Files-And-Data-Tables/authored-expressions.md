@@ -21,7 +21,7 @@ An expression is a 16-byte record with two operands, A and B, and an operator. `
 evaluates it as an integer and `004309C0(record, x)` as a float; `x` is the input a curve is
 sampled at, usually a time or frame. Each operand is one of three kinds:
 
-| Kind byte (`+0x0C` A, `+0x0D` B) | Value |
+| Kind byte (`+0C`<sub>h</sub> A, `+0D`<sub>h</sub> B) | Value |
 |---|---|
 | 0 | absent: A is 0, and an absent B makes the result A |
 | 1 | a reference: the dword at `+4` of the address the payload decodes to (`0020E600`) |
@@ -32,7 +32,7 @@ floats.
 
 ### The operators
 
-The operator is bits 4–7 of the word `+0x0E`. `f(n)` is a random value in `[0, n)` for positive `n`,
+The operator is bits 4–7 of the word `+0E`<sub>h</sub>. `f(n)` is a random value in `[0, n)` for positive `n`,
 and in `(n, 0]` for negative `n` (below).
 
 | Operator | Result | Meaning |
@@ -58,8 +58,8 @@ generator and its other users are on the [RNG page](../Random-Numbers/random-num
 ### Curves
 
 `00431080(record, x, operand)` reads the operand's pairs from the address its payload decodes to.
-The count is the operand's kind byte, the period the `u16` at `+0x08` (A) or `+0x0A` (B), and the curve
-mode bits 0–1 (A) or 2–3 (B) of `+0x0E`:
+The count is the operand's kind byte, the period the `u16` at `+08`<sub>h</sub> (A) or `+0A`<sub>h</sub> (B), and the curve
+mode bits 0–1 (A) or 2–3 (B) of `+0E`<sub>h</sub>:
 
 1. When the period is non-zero and smaller than `x`, `x` becomes `x % period`.
 2. Mode 2 or 3 gives 0.
@@ -79,7 +79,7 @@ so the result is garbage.
 ### Colours
 
 `0042FDB0(record, x)` evaluates a colour from four consecutive expression records (r, g, b, a) and
-the mode byte `+0x40`:
+the mode byte `+40`<sub>h</sub>:
 
 - bits 0–1 = 0: each component is its own expression (`004314E0`);
 - = 3: one value, the first record's, for r, g and b;
@@ -90,12 +90,12 @@ the mode byte `+0x40`:
   component;
 - alpha is always the fourth record's own expression.
 
-With bit 2 of `+0x40` clear, the four values are clamped to 255 each (against `022D8F40`) and
+With bit 2 of `+40`<sub>h</sub> clear, the four values are clamped to 255 each (against `022D8F40`) and
 packed as `r | g << 8 | b << 16 | a << 24`; there is no lower clamp, so a negative value keeps its low
 byte. With bit 2 set they are converted by `00430370` instead.
 
-`00430B90(out, record, x)` is the float RGB form, alpha always 1.0, with the mode byte `+0x30`:
-bits 2–3 of 0 give black and of 1 white; otherwise bits 0–1 and the bytes `+0x31` and `+0x32` choose
+`00430B90(out, record, x)` is the float RGB form, alpha always 1.0, with the mode byte `+30`<sub>h</sub>:
+bits 2–3 of 0 give black and of 1 white; otherwise bits 0–1 and the bytes `+31`<sub>h</sub> and `+32`<sub>h</sub> choose
 which components have their own curves and which share one, and whether the spread is applied
 per component (`004307C0`) or as one shared factor (`004308D0`).
 

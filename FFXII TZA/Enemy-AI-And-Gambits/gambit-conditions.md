@@ -9,11 +9,11 @@ addresses: "02EBF0D8, 00238880, 00301AD0, 003087E0, 00308C20, 0031D034, 0031D0BE
 
 A gambit line pairs a target condition with an action. The conditions are the 256 rows of `battle_pack.bin`
 section 7, 32 bytes each, bound to `02EBF0D8` by `00238880` (`00238895`-`0023889E`). A condition's id is
-`0x6000` + row; the id check accepts `0x6000` up to `0x6000` + row count - 1 (`00322DD4`, `0032302E`-`0032303B`).
+`6000`<sub>h</sub> + row; the id check accepts `6000`<sub>h</sub> up to `6000`<sub>h</sub> + row count - 1 (`00322DD4`, `0032302E`-`0032303B`).
 
-The name the menu shows comes from the row word `+0x14`: section 61, sub-table `word >> 11`, entry
-`word & 0x7FF` (`0031D034`-`0031D08A`). Every row uses sub-table 6. The help line comes from the row word
-`+0x04`, text id 16000 + row, which is entry `row` of `listhelp_targetchip.bin` (`0031D0BE`). Row 255 has no
+The name the menu shows comes from the row word `+14`<sub>h</sub>: section 61, sub-table `word >> 11`, entry
+`word & 7FFh` (`0031D034`-`0031D08A`). Every row uses sub-table 6. The help line comes from the row word
+`+04`<sub>h</sub>, text id 16000 + row, which is entry `row` of `listhelp_targetchip.bin` (`0031D0BE`). Row 255 has no
 help id and no place on the menu.
 
 ### How a condition is tested
@@ -42,14 +42,14 @@ Poison" picks the nearest poisoned foe.
 
 ### HP and MP in a condition
 
-The HP and MP a condition compares are previewed by `00308C20`. It starts from current HP (`+0x48`) or MP
-(`+0x4C`) and, when the deciding character is a party record and the line's action row has bit 12 (HP) or
-bit 15 (MP) of word `+0x2C`, adds the previewed result of every action already committed against the unit
-(the mask `+0xEA4`, each attacker's action `+0x714`, `00308B90`). The sum is clamped to 0 and the maximum
+The HP and MP a condition compares are previewed by `00308C20`. It starts from current HP (`+48`<sub>h</sub>) or MP
+(`+4C`<sub>h</sub>) and, when the deciding character is a party record and the line's action row has bit 12 (HP) or
+bit 15 (MP) of word `+2C`<sub>h</sub>, adds the previewed result of every action already committed against the unit
+(the mask `+EA4`<sub>h</sub>, each attacker's action `+714`<sub>h</sub>, `00308B90`). The sum is clamped to 0 and the maximum
 (`00308C86`-`00308D7D`).
 
-The maximum is max HP `+0x24`, doubled under Bubble, or under Disease the current HP and at least 1. For MP it
-is max MP `+0x28`, or 0 when effect 39 is in either layer ([Augments](../Damage-And-Battle-Formulas/augments.md)). A
+The maximum is max HP `+24`<sub>h</sub>, doubled under Bubble, or under Disease the current HP and at least 1. For MP it
+is max MP `+28`<sub>h</sub>, or 0 when effect 39 is in either layer ([Augments](../Damage-And-Battle-Formulas/augments.md)). A
 unit with max MP 0 or effect 39 never passes an MP percentage test (`00302F37`-`00302F59`).
 
 ### Units the action would not change
@@ -59,24 +59,24 @@ only those it answers 0 for: a unit answered 1 never becomes the highest, lowest
 a random pick (`00308848`-`00308AD0`). When no unit is kept, the order fails (`003017C4`-`003017CD`), and the
 walk goes on to the next line.
 
-`003083B0` answers 0 at once when the deciding unit is an enemy (stats `+0x05` = 1), when the action id is
-above `0x21E` (`003083E1`-`003083FD`), or when the action row has bit 5 of `+0x36` and the candidate's byte
-`+0x55` is `0x0D` (`0030844B`-`00308457`). Otherwise it answers 1 only when every effect the action row marks
+`003083B0` answers 0 at once when the deciding unit is an enemy (stats `+05`<sub>h</sub> = 1), when the action id is
+above `21E`<sub>h</sub> (`003083E1`-`003083FD`), or when the action row has bit 5 of `+36`<sub>h</sub> and the candidate's byte
+`+55`<sub>h</sub> is `0D`<sub>h</sub> (`0030844B`-`00308457`). Otherwise it answers 1 only when every effect the action row marks
 would change nothing on the candidate (`0030846A`-`003085E6`):
 
 | Row bit | Effect | Changes nothing when | Sites |
 |---|---|---|---|
-| `+0x2C` bit 12 | restores HP | current HP `+0x48` is at least the maximum: max HP `+0x24`, doubled under Bubble, or under Disease the current HP and at least 1 | `0030846A`-`003084B1` |
-| `+0x2C` bit 15 | restores MP | current MP `+0x4C` is at least max MP `+0x28`, which counts as 0 when byte `+0x6C` or `+0x7C` is negative | `003084B3`-`003084E1` |
-| `+0x36` bit 1 | removes statuses | `0031C500` finds none of them on the candidate (the action's mask from `003872D0` ANDed with the statuses `+0x64` and `+0x3C`), or each one is also removed by the action of a unit already committed against it | `003084EF`-`00308565` |
-| `+0x36` bit 0 | adds statuses | `00320AF0` finds none still to add, or each one is also added by the action of a unit already committed against it | `0030856F`-`003085DE` |
+| `+2C`<sub>h</sub> bit 12 | restores HP | current HP `+48`<sub>h</sub> is at least the maximum: max HP `+24`<sub>h</sub>, doubled under Bubble, or under Disease the current HP and at least 1 | `0030846A`-`003084B1` |
+| `+2C`<sub>h</sub> bit 15 | restores MP | current MP `+4C`<sub>h</sub> is at least max MP `+28`<sub>h</sub>, which counts as 0 when byte `+6C`<sub>h</sub> or `+7C`<sub>h</sub> is negative | `003084B3`-`003084E1` |
+| `+36`<sub>h</sub> bit 1 | removes statuses | `0031C500` finds none of them on the candidate (the action's mask from `003872D0` ANDed with the statuses `+64`<sub>h</sub> and `+3C`<sub>h</sub>), or each one is also removed by the action of a unit already committed against it | `003084EF`-`00308565` |
+| `+36`<sub>h</sub> bit 0 | adds statuses | `00320AF0` finds none still to add, or each one is also added by the action of a unit already committed against it | `0030856F`-`003085DE` |
 
-The units already committed against the candidate are the bits of its mask `+0xEA4`, each unit's action being
-its `+0x714` ([Committing an action](../Battle-Actions/action-commit.md); `00308520`-`00308535`, `003085A0`-`003085B4`).
+The units already committed against the candidate are the bits of its mask `+EA4`<sub>h</sub>, each unit's action being
+its `+714`<sub>h</sub> ([Committing an action](../Battle-Actions/action-commit.md); `00308520`-`00308535`, `003085A0`-`003085B4`).
 
-`00320AF0(user, candidate, action)` returns the action's status mask `+0x18` without the candidate's statuses
-`+0x64 | +0x3C`, and 0 when either stats record is missing (`00320AF9`-`00320B13`). The mask comes from
-`003875D0`, which returns it only for a row with bit 0 of `+0x36` set and bit 9 of `+0x2C` clear
+`00320AF0(user, candidate, action)` returns the action's status mask `+18`<sub>h</sub> without the candidate's statuses
+`+64h | +3Ch`, and 0 when either stats record is missing (`00320AF9`-`00320B13`). The mask comes from
+`003875D0`, which returns it only for a row with bit 0 of `+36`<sub>h</sub> set and bit 9 of `+2C`<sub>h</sub> clear
 (`00387629`). An action row with none of the four bits is never passed over.
 
 So an "Ally: status = Poison" line whose action removes Poison skips an ally whose Poison an action already
@@ -95,16 +95,16 @@ committed against it removes, and an "Ally: any" line whose action restores HP s
 ### Conditions that test something narrower or wider than their help line
 
 - **Foe: targeted by ally** and **Foe: not targeted by ally** take the foe with the most or fewest units
-  committed against it (`+0xEA8`, `00302123`). With no foe targeted, "targeted by ally" still matches every
+  committed against it (`+EA8`<sub>h</sub>, `00302123`). With no foe targeted, "targeted by ally" still matches every
   foe and picks the nearest.
 - **Foe: fire-vulnerable** and the other seven "-vulnerable" rows admit a foe that does not absorb the
-  element (stats `+0x41` bit clear, `003023C9`), whether or not it is weak to it.
+  element (stats `+41`<sub>h</sub> bit clear, `003023C9`), whether or not it is weak to it.
 - **Self: 2+ foes present** and the other "present" rows count the units in the character's own perception
-  list (`+0xBC4`, `003031C4`-`00303216`), for the Ally and Foe forms too.
+  list (`+BC4`<sub>h</sub>, `003031C4`-`00303216`), for the Ally and Foe forms too.
 - **Ally: item AMT >= 10**, **Foe: item AMT >= 10** and **Self: item AMT >= 10** count the item the line's
   action uses (`003032C0`-`003032F5`).
-- Row 255, `0x60FF`, is named "NOT USED no-chip" and is not on the menu. It takes the foe with the highest max
-  HP while the summon timer, battle state `+0x5AD8`, is below 20 (`00303523`-`00303554`); every Esper's
+- Row 255, `60FF`<sub>h</sub>, is named "NOT USED no-chip" and is not on the menu. It takes the foe with the highest max
+  HP while the summon timer, battle state `+5AD8`<sub>h</sub>, is below 20 (`00303523`-`00303554`); every Esper's
   preset starts with it ([Gambits](gambits.md)).
 
 ## Columns
@@ -113,7 +113,7 @@ committed against it removes, and an "Ally: any" line whose action restores HP s
 
 | Column | Meaning |
 |---|---|
-| `condition_id` | `0x6000` + row |
+| `condition_id` | `6000`<sub>h</sub> + row |
 | `row` | the row of section 7, 0-255 |
 | `name` | the name the gambit menu shows |
 | `help_text` | the help line, or `-` |

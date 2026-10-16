@@ -17,17 +17,17 @@ addresses: "01F7FFE0, 00196FF0, 00197160, 01DF1480, 0035F420, 0035FAC0, 0035FBD0
 
 ### The input manager
 
-The manager is a `0x40`-byte object whose pointer is at `01F7FFE0`. `00198750` creates it, called only from
+The manager is a `40`<sub>h</sub>-byte object whose pointer is at `01F7FFE0`. `00198750` creates it, called only from
 `0017D571`, and `00198790` returns it. Its start-up `00195060` clears the three keymap profiles (`001950A2`), reads
 [keymap.ini](keymap-file.md), checks it and publishes it (`001950DA`) or installs the defaults (`001950EB`).
 
 | Field offset | Meaning | Read at |
 |---|---|---|
-| `08`, `09` | invert the right stick's X and Y | `0019740F`, `0019751A`, `001975CB` |
-| `0C`, `10` | mouse wheel notches, total and this frame | `0019739A`, `001973A4` |
-| `39` | poll on or off | `0019701D` |
-| `3A` | movement-key mode bits 0, 1 and 2 | `00197040`-`001970F8` |
-| `3B` | rebuild the records before the next poll | `00197032` |
+| `08`<sub>h</sub>, `09`<sub>h</sub> | invert the right stick's X and Y | `0019740F`, `0019751A`, `001975CB` |
+| `0C`<sub>h</sub>, `10`<sub>h</sub> | mouse wheel notches, total and this frame | `0019739A`, `001973A4` |
+| `39`<sub>h</sub> | poll on or off | `0019701D` |
+| `3A`<sub>h</sub> | movement-key mode bits 0, 1 and 2 | `00197040`-`001970F8` |
+| `3B`<sub>h</sub> | rebuild the records before the next poll | `00197032` |
 
 ### One poll
 
@@ -36,12 +36,12 @@ The device poll runs from the vsync callback `0035EC90`, installed at `0035E943`
 which calls it at `001E09D3`, and `00862680` jumps to `001E09E0`, which calls it through a pointer. The poll runs in
 this order:
 
-1. With `+0x39` at 0 it returns at once (`0019701D`).
+1. With `+39`<sub>h</sub> at 0 it returns at once (`0019701D`).
 2. It updates every device (`007999E0`, `0019702D`), which lists them again after a pad arrives
    ([Controllers](controllers.md)).
-3. With `+0x3B` set it copies the published profiles back into the records, rebuilds the movement-key blocks and
+3. With `+3B`<sub>h</sub> set it copies the published profiles back into the records, rebuilds the movement-key blocks and
    clears the flag (`0019703B`-`00197073`).
-4. It starts the 18-byte frame: a button mask of `0xFFFF`, four stick bytes of `0x80` and twelve zero bytes
+4. It starts the 18-byte frame: a button mask of `FFFF`<sub>h</sub>, four stick bytes of `80`<sub>h</sub> and twelve zero bytes
    (`00197085`-`001970A9`).
 5. It runs the translator `00197160` over the five records at `01DF1480` (`001970B0`), then over the three at
    `01F80550` when mode bit 1 is set, and the three at `01F80970` when bit 0 or 2 is set (`001970C8`-`001970FE`).
@@ -49,7 +49,7 @@ this order:
 
 ### Control codes
 
-A record holds sixteen button codes and sixteen axis entries, `0x15C` bytes apart. The translator tests each button
+A record holds sixteen button codes and sixteen axis entries, `15C`<sub>h</sub> bytes apart. The translator tests each button
 code against three bands (`001971C5`-`00197218`):
 
 | Codes | Device | Read by |
@@ -68,10 +68,10 @@ Each axis entry is `{mode, axis, codeA, codeB}`, dispatched on its mode (`001972
 
 | Mode | Effect on stick byte i |
 |---:|---|
-| `1` | `0xFF` while codeA is held (`00197680`) |
-| `2` | codeA and codeB push the byte down and up by `0x7F` and `0x80`; for entries 0 and 1 the right stick's invert flags swap them, and entries 2 and 3 always push up with codeA (`0019748E`) |
+| `1` | `FF`<sub>h</sub> while codeA is held (`00197680`) |
+| `2` | codeA and codeB push the byte down and up by `7F`<sub>h</sub> and `80`<sub>h</sub>; for entries 0 and 1 the right stick's invert flags swap them, and entries 2 and 3 always push up with codeA (`0019748E`) |
 | `3` | the pad stick `axis`, scaled from -1..1 to 0..255, with axes 2 and 3 flipped and flipped again by the invert flags (`001973E5`) |
-| `4` | mouse: buttons through the backend bytes `+0x170`-`+0x172`, and code 3 as the wheel, one notch per 120 (`001972C7`-`001973BC`) |
+| `4` | mouse: buttons through the backend bytes `+170`<sub>h</sub>-`+172`<sub>h</sub>, and code 3 as the wheel, one notch per 120 (`001972C7`-`001973BC`) |
 
 All records add into the same frame, so a key and a pad stick move the same byte.
 
@@ -99,13 +99,13 @@ The two extra blocks turn movement keys into direction buttons. Mode bit 1 makes
 
 ### Channel history
 
-Each poll writes one 36-byte frame into a 16-frame ring at `+0x44` of the channel record `022CAE90` (`0035F420`):
+Each poll writes one 36-byte frame into a 16-frame ring at `+44`<sub>h</sub> of the channel record `022CAE90` (`0035F420`):
 
 1. The sixteen per-button bytes are the frame's stick and pressure bytes in the order of `01EF9238`.
-2. `0035FAC0` makes the held mask from the frame's mask. Up with Down (`0x50`) and Left with Right (`0xA0`) cancel each
+2. `0035FAC0` makes the held mask from the frame's mask. Up with Down (`50`<sub>h</sub>) and Left with Right (`A0`<sub>h</sub>) cancel each
    other (`0035FB6D`-`0035FB7E`). It writes held, pressed and released for set 0, the buttons, and held for set 1
    (`0035FB92`-`0035FBBD`).
-3. `0035F760` snaps a stick inside a radius of `0x20` to the centre (`0035F7BD`, `0035F83F`). A left stick past `0x68`
+3. `0035F760` snaps a stick inside a radius of `20`<sub>h</sub> to the centre (`0035F7BD`, `0035F83F`). A left stick past `68`<sub>h</sub>
    adds the Up, Right, Down or Left bit to set 1 (`0035F8AE`), which is the buttons plus the left stick as directions.
 
 Byte 0 of a frame is the device state, the second argument of `0035F420` (`0035F572`). `0035FCA0` passes 1, the
@@ -151,12 +151,12 @@ Circle, Cross, Square. It is called from the main loop (`0022B908`) and from `00
 
 ### Confirm and cancel
 
-`0022A4F0` sets the confirm mask `01E0C2A0` and the cancel mask `01E0C2A4` to Circle and Cross, `0x2000` and `0x4000`,
-when the Config setting `+0x64` is 0 (`0017E210`), and the other way round otherwise. It also stores the setting's
+`0022A4F0` sets the confirm mask `01E0C2A0` and the cancel mask `01E0C2A4` to Circle and Cross, `2000`<sub>h</sub> and `4000`<sub>h</sub>,
+when the Config setting `+64`<sub>h</sub> is 0 (`0017E210`), and the other way round otherwise. It also stores the setting's
 answer at `01FD4A64` (`0022A510`).
 
 Among the readers of `01FD4A64`, `0022A540` answers whether it is 0, for the input filter `001967D0` (`00196803`), and
-the script verbs `get_pad_ok` `0x518` and `get_pad_cancel` `0x519` return the confirm and cancel masks through
+the script verbs `get_pad_ok` `518`<sub>h</sub> and `get_pad_cancel` `519`<sub>h</sub> return the confirm and cancel masks through
 `002E12B0` and `002E1290` (handlers `0034AF20` and `0034B290`).
 
 ### The mouse wheel in menus
@@ -165,14 +165,14 @@ the script verbs `get_pad_ok` `0x518` and `get_pad_cancel` `0x519` return the co
 
 1. It takes held, pressed and repeat of set 0 (`02F97368`, `02F9736A`, `02F9736C`).
 2. Every second call (the count `0209E65C` against `01E0CF88`, 2) it reads and clears the wheel's notch total with
-   `001E0A10` (manager `+0x0C`, cleared by `001986D0`).
-3. With notches, 3 or more (`01E0CF84`) count as one when the list's `+0xE8` is below 13 (`002D397C`). A positive
-   total adds Up (`0x10`) to pressed and repeat, a negative one Down (`0x40`).
+   `001E0A10` (manager `+0C`<sub>h</sub>, cleared by `001986D0`).
+3. With notches, 3 or more (`01E0CF84`) count as one when the list's `+E8`<sub>h</sub> is below 13 (`002D397C`). A positive
+   total adds Up (`10`<sub>h</sub>) to pressed and repeat, a negative one Down (`40`<sub>h</sub>).
 4. It then moves the list once per notch with `002D3BA0`, stopping at the first or last row (`002D4F10`) or when
    `002D0580` holds the cursor.
 5. Without notches it moves the list once with the plain buttons.
 
-`002D0580` arms a stop (`0209E660`) when the cursor is one row past the row at `+0xF6` while moving up, or one row
+`002D0580` arms a stop (`0209E660`) when the cursor is one row past the row at `+F6`<sub>h</sub> while moving up, or one row
 before the last while moving down. While the stop is armed, the cursor is on that end row and the wheel is still
 turning (`001E0E30`), it answers 1; with the cursor anywhere else it disarms. `002D3A50` is the
 same with the filtered copy `02F97390`-`02F97394`, for the gambit screen (`0056984D`, `0056B871`, and `00569CF5` in `005691E0`), and `002D09F0`
@@ -184,7 +184,7 @@ pacing through `002D4F70` (1-10) and `002D4F90` (1-5).
 
 ### Pad or keyboard prompts
 
-The input manager's byte `+0x38` records whether the pad was used last:
+The input manager's byte `+38`<sub>h</sub> records whether the pad was used last:
 
 - `0079D010`, the device poll, compares every key, pad button and mouse button with its previous state, and on a
   change calls application slot 25 with 0 for a key, 1 for a pad button and 0 for a mouse button (`0079D087`,
@@ -196,15 +196,15 @@ in the order Circle, Triangle, L1, L2, R1, R2, L3, R3, Square, Cross, Left, Righ
 
 | Icon code | Index |
 |---|---|
-| `0x20`, `0x21`, `0x23` | the confirm mask's button, 0 or 9; 0 when the keyboard was used last |
-| `0x27` | the cancel mask's button, 0 or 9; 9 when the keyboard was used last |
-| `0x22`, `0x24` | 8, Square |
-| `0x25`, `0x26` | 1, Triangle |
-| `0x28`, `0x29`, `0x2A`, `0x2B` | 2, 4, 3 and 5: L1, R1, L2 and R2 |
+| `20`<sub>h</sub>, `21`<sub>h</sub>, `23`<sub>h</sub> | the confirm mask's button, 0 or 9; 0 when the keyboard was used last |
+| `27`<sub>h</sub> | the cancel mask's button, 0 or 9; 9 when the keyboard was used last |
+| `22`<sub>h</sub>, `24`<sub>h</sub> | 8, Square |
+| `25`<sub>h</sub>, `26`<sub>h</sub> | 1, Triangle |
+| `28`<sub>h</sub>, `29`<sub>h</sub>, `2A`<sub>h</sub>, `2B`<sub>h</sub> | 2, 4, 3 and 5: L1, R1, L2 and R2 |
 
-Any other code is returned unchanged. `002B5B60`, run by the script verb `0x5CD` (handler `00341030`), fills the 14
+Any other code is returned unchanged. `002B5B60`, run by the script verb `5CD`<sub>h</sub> (handler `00341030`), fills the 14
 bytes at `01E0CE30` in that order with the key-cap index of each button's first-profile key (`001E0BD0`,
-`001E0DA0`), exchanging entries 0 and 9 when the Config setting `+0x64` is not 0.
+`001E0DA0`), exchanging entries 0 and 9 when the Config setting `+64`<sub>h</sub> is not 0.
 
 Entries 10-13 then take the
 direction keys of the active movement-key block (`001E0DC0`, slots 7, 5, 4 and 6). With no block active that
@@ -232,7 +232,7 @@ when bit 1 of the battle mode register `022C83E8` is set (`0035C740`), when the 
 or when `00228380` or the Start handler `002287D0` answers non-zero (`00253C97`-`00253CCC`). The buttons are read
 only while `00265680` answers non-zero (`00253D0D`), from held and pressed of set 0.
 
-While `003135E0` (bit 0 of `+0x5B04` of `02EBF190`) and `0035C750` (bit 4 of `022C83E8`) both answer non-zero, the
+While `003135E0` (bit 0 of `+5B04`<sub>h</sub> of `02EBF190`) and `0035C750` (bit 4 of `022C83E8`) both answer non-zero, the
 confirm button, the four directions and Square are dropped from the presses (`00253D3D`-`00253D5E`). The arms then
 run in this order, and the policy bits are those of [Action availability](action-availability.md):
 
@@ -244,17 +244,17 @@ run in this order, and the policy bits are those of [Action availability](action
 | Square | `02092730` is 0, policy bit 10 clear, `003669D0` answers 0 | `002F1710`, then request 1 (`00253F7C`-`00253F98`, `002541B9`-`002541C7`) |
 | cancel | `02092730` is 0 | `003C8950` (`00253F9D`-`00253FA9`) |
 | Left or Right | L1 not held, `003669D0` answers 0, `02092730` is 0 or 3 | unless `02092734` is 1 or request 5 is refused, the target-cycling route `0035DA80`, `003C8990`, `003C87B0(5)` (`00253FB3`-`00254044`) |
-| Up or Down, or wheel notches | L1 not held, two of the nine members `00320040(3, i)` returns have `+0x60` not negative and flag bit 1 clear or flag `0x4008` is set, `02092730` is 0 or 5 | request 3; with the area's bit 15 the wheel total is cleared first (`00254052`-`002540D2`) |
+| Up or Down, or wheel notches | L1 not held, two of the nine members `00320040(3, i)` returns have `+60`<sub>h</sub> not negative and flag bit 1 clear or flag `4008`<sub>h</sub> is set, `02092730` is 0 or 5 | request 3; with the area's bit 15 the wheel total is cleared first (`00254052`-`002540D2`) |
 | confirm or Square, or a pending pick | `02092730` is 0 | the interaction (`00254132`-`0025415A`), or request 1 (`002541A4`-`002541C7`) |
 
 The helpers the arms call:
 
-- `003C9570` returns the pick at `+0xCC` of the object in `02B47730` while its `+0xC0` bit 3 is set, and
+- `003C9570` returns the pick at `+CC`<sub>h</sub> of the object in `02B47730` while its `+C0`<sub>h</sub> bit 3 is set, and
   `003C9550` clears that bit; `003C8950` runs `00268620` and clears bit 1 when bit 1 is set.
-- `003CA200` calls the callback at `+0x2A0` of the object in `02B47758` with message `0x1F` when that callback is set
-  (`00273A20`) and the object's `+0x2E0` bit 4 is set.
+- `003CA200` calls the callback at `+2A0`<sub>h</sub> of the object in `02B47758` with message `1F`<sub>h</sub> when that callback is set
+  (`00273A20`) and the object's `+2E0`<sub>h</sub> bit 4 is set.
 - `002F1710` finishes the entry in `022BE7D0`: it copies the entry's second word over its first, calls its callback
-  at `+0x08`, sets `+0x1C` to 1 and clears the entry's bit, numbered by `+0x18`, in `022BE7C0`.
+  at `+08`<sub>h</sub>, sets `+1C`<sub>h</sub> to 1 and clears the entry's bit, numbered by `+18`<sub>h</sub>, in `022BE7C0`.
 - `00267720` answers 1 only when `0209A2AA` is set, the controlled character exists (`003590D0`, `003588B0`), its record is not one that `002373A0` accepts and
 `00233D70` refuses, no
   menu is open (`002E05C0`), `00265680` answers non-zero and `02099DB4` is 0.
@@ -269,7 +269,7 @@ The R2 toggle after the arms is on [Escape Mode](escape.md).
 - Binding L2, R2, a speed key or WalkMode to a mouse button is accepted and never fires, because those readers test the
   keyboard band only.
 - The repeat timing is two bytes per channel, written at `0035F312`: 12 polls before the first repeat, then 5.
-- The right-stick invert flags are manager `+0x08` and `+0x09`.
+- The right-stick invert flags are manager `+08`<sub>h</sub> and `+09`<sub>h</sub>.
 
 ## Related
 

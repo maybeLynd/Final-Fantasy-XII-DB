@@ -29,9 +29,9 @@ argument; the mode is chosen inside the screen. The title is the shop's name, `0
 
 | Row | Label (`menu_command.bin`) | Help | Help when greyed |
 |---|---|---|---|
-| `0` | Buy (`0x48B`) | "Purchase goods." (`0xC67`) | never greyed (`0057BE1E`) |
-| `1` | Sell (`0x48C`) | "Selling loot can make new bazaar goods available for purchase." (`0xC68`) | "You possess no saleable items." (`0xCAB`) |
-| `2` | Bazaar (`0x48D`) | "Purchase bazaar goods." (`0xC69`) | "No bazaar goods currently available." (`0xCAC`) |
+| `0` | Buy (`48B`<sub>h</sub>) | "Purchase goods." (`C67`<sub>h</sub>) | never greyed (`0057BE1E`) |
+| `1` | Sell (`48C`<sub>h</sub>) | "Selling loot can make new bazaar goods available for purchase." (`C68`<sub>h</sub>) | "You possess no saleable items." (`CAB`<sub>h</sub>) |
+| `2` | Bazaar (`48D`<sub>h</sub>) | "Purchase bazaar goods." (`C69`<sub>h</sub>) | "No bazaar goods currently available." (`CAC`<sub>h</sub>) |
 
 Sell is offered when any Sell tab has goods and Bazaar when the bazaar list has any, through `0056E880`. A greyed row
 refuses the choice (`0057C070`).
@@ -40,7 +40,7 @@ refuses the choice (`0057C070`).
 
 Each time `0057BD40` runs, `0057B6F0` looks at every bazaar good the shop lists ([Bazaar](../Items-Equipment-Shops-And-Licenses/bazaar.md)).
 A good whose flag bit 2 is clear gets it set (`0030B630(id, 1)`, `0057B752`), and any such good makes the screen post
-"New bazaar goods are now available!" (`0x805`, `0057B4A0`) with sound `0x27`. Only goods with bit 2 set are listed
+"New bazaar goods are now available!" (`805`<sub>h</sub>, `0057B4A0`) with sound `27`<sub>h</sub>. Only goods with bit 2 set are listed
 under Bazaar (`0057DC82`), and buying a good clears the bit (`0030B630(id, 0)`, `0056D4C0`).
 
 ### Modes and tabs
@@ -50,9 +50,9 @@ a tab set through `00D233A0`:
 
 | Mode | Key | Tab set | Tabs (`menu_expansion.bin`) |
 |---|---|---|---|
-| Buy | `0x5AF` | 32 (`00D23C70`) | WEAPONS, ARMOR, ACCESSORIES, AMMUNITION, ITEMS, TECHNICKS, MAGICKS, LOOT, GAMBIT TARGETS (`0x4AB8`-`0x4AD1`) |
-| Sell | `0x5A2` | 19 (`00D23CC0`) | WEAPONS, ARMOR, ACCESSORIES, AMMUNITION, ITEMS, LOOT |
-| Bazaar | `0x5AE` | 31 (`00D23C60`) | Bazaar (`0x48D`) |
+| Buy | `5AF`<sub>h</sub> | 32 (`00D23C70`) | WEAPONS, ARMOR, ACCESSORIES, AMMUNITION, ITEMS, TECHNICKS, MAGICKS, LOOT, GAMBIT TARGETS (`4AB8`<sub>h</sub>-`4AD1`<sub>h</sub>) |
+| Sell | `5A2`<sub>h</sub> | 19 (`00D23CC0`) | WEAPONS, ARMOR, ACCESSORIES, AMMUNITION, ITEMS, LOOT |
+| Bazaar | `5AE`<sub>h</sub> | 31 (`00D23C60`) | Bazaar (`48D`<sub>h</sub>) |
 
 Only the Sell key sets the screen's sell bit (`0056DE3D`-`0056DE4E`). `00564780` keeps a tab only when
 `0057D620` reports it has goods, so an empty tab never shows. Before the screen opens, `0057BEE0` measures every name
@@ -60,7 +60,7 @@ the mode can list and sizes the window to the widest.
 
 ### Rows
 
-`005655F0` builds a tab's rows through `0057CF20` (`005656A2`), one 0x20-byte row per good:
+`005655F0` builds a tab's rows through `0057CF20` (`005656A2`), one `20`<sub>h</sub>-byte row per good:
 
 - Buy rows come from the shop's current list, by category (`002FAD30`, `002FA920` mode 1, `0057CFC4`, `0057D022`), as
   [Shops](../Items-Equipment-Shops-And-Licenses/shops.md) describes.
@@ -74,12 +74,12 @@ Each row holds the name, the id, the sellable count, the count owned and the pri
 
 | Trade | Price per unit |
 |---|---|
-| Buy | the good's listed price, query record `+0x28` (`0057DBAC`) |
+| Buy | the good's listed price, query record `+28`<sub>h</sub> (`0057DBAC`) |
 | Sell | half the listed price, rounded down (`sar` at `0057DBC2`, `0057DFDE`) |
 
-Equipment marked unsellable (record `+0x54`, `0057DFBF`) and loot whose half price is 0 (`0057DBCF`-`0057DBDC`) cannot
+Equipment marked unsellable (record `+54`<sub>h</sub>, `0057DFBF`) and loot whose half price is 0 (`0057DBCF`-`0057DBDC`) cannot
 be sold. The shop screen applies no other change to a price: the four row fillers and the trade commit use the
-listed value, and every write of `+0x28` in the query filler `0031C5D0` (14 of them) is a table load, -1 or 0.
+listed value, and every write of `+28`<sub>h</sub> in the query filler `0031C5D0` (14 of them) is a table load, -1 or 0.
 
 ### Refusals
 
@@ -105,7 +105,7 @@ accessories, ammunition, items and loot take a number; every other kind stays at
 - down takes away, down to 1;
 - with the modifier held, up and down jump to the limit or to 1.
 
-The help line shows "Press ... to buy goods in quantity." (`0xC6C`) or "... to sell goods in quantity." (`0xC6E`)
+The help line shows "Press ... to buy goods in quantity." (`C6C`<sub>h</sub>) or "... to sell goods in quantity." (`C6E`<sub>h</sub>)
 while a number is being entered (`0056C783`).
 
 ### The trade
@@ -119,7 +119,7 @@ price times the quantity:
 | Buy | `002FEEB0(id, quantity, total, 0)` (`0056D49A`) | adds the goods, takes the gil, and marks the good as bought (`0030B180`) |
 
 Each of the two has this one caller. The inventory side is in [Inventory](../Items-Equipment-Shops-And-Licenses/inventory.md).
-A sale of loot also counts `00316A50(0xE, quantity)`, and every purchase counts `00316A50(0x13, id)`. Then
+A sale of loot also counts `00316A50(Eh, quantity)`, and every purchase counts `00316A50(13h, id)`. Then
 `002A1DC0` starts the gil total rolling (`0056D4D9`), and when it stops the screen goes on to the step below
 (`0056D5C7`).
 
@@ -133,10 +133,10 @@ A sale of loot also counts `00316A50(0xE, quantity)`, and every purchase counts 
 
 The equip offer checks each party member (`00317B70`):
 
-1. When someone can equip it, it asks "Equip your purchase now?" (`0x803`).
+1. When someone can equip it, it asks "Equip your purchase now?" (`803`<sub>h</sub>).
 2. For the categories in `00D23910` it says instead that the item cannot be equipped at a shop and to use the Equip
-   command in the Party Menu (`0xCF8`).
-3. Yes opens the member picker `0057AC10`, "Select a character to equip." (`0xC70`), which equips through
+   command in the Party Menu (`CF8`<sub>h</sub>).
+3. Yes opens the member picker `0057AC10`, "Select a character to equip." (`C70`<sub>h</sub>), which equips through
    `0031A510` (`0057AF18`) once per copy bought.
 
 ## Shipped data
