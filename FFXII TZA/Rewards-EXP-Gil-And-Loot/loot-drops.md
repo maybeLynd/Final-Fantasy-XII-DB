@@ -1,9 +1,9 @@
 ---
-title: Loot drops: drop roll, item slots, quantities, drop tables and the chain bonus
-kind: system
-category: 13-Rewards-Progression-Economy
-summary: How a defeated enemy's loot is rolled: which drop-chance row the chain selects, slot and quantity rolls, the drop-table layouts with shipped rows, the developer 100 % drop override, and the HP/MP/Protect/Shell chain bonus on pickup.
-addresses: [003180F0, 003185D0, 003186F0, 00318820, 00318960, 00318510, 00319530, 00310DB0]
+title: "Loot drops: drop roll, item slots, quantities, drop tables and the chain bonus"
+kind: "system"
+category: "Rewards: EXP, LP, gil and loot"
+summary: "How a defeated enemy's loot is rolled: which drop-chance row the chain selects, slot and quantity rolls, the drop-table layouts with shipped rows, the developer 100 % drop override, and the HP/MP/Protect/Shell chain bonus on pickup."
+addresses: ["003180F0", "003185D0", "003186F0", "00318820", "00318960", "00318510", "00319530", "00310DB0"]
 ---
 
 # Loot drops: drop roll, item slots, quantities, drop tables and the chain bonus
