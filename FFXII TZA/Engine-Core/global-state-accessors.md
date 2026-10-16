@@ -64,5 +64,5 @@ first storing 1.0 into it when it is 0 or below.
 ## Related
 
 - [Game application](game-application.md): the singletons the application sets up at boot.
-- Jump thunks: the other one-instruction function family.
+- [Jump thunks](jump-thunks.md): the other one-instruction function family.
 - [Debug logging](debug-logging.md): the options word accessor and the log sink.
