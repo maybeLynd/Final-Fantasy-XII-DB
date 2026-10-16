@@ -19,20 +19,31 @@ count.
 
 ## How it works
 
-**The trigger.** The status write `0030E360(stats, source, status, ...)` handles statuses being added
-and removed. When status 0 (KO), 1 (Stone) or 31 (X-Zone) is added to a unit that has a battle unit
-on the field, it runs the unit's death handling `00300FC0(unit, 0)` and then
-`00312280(source, unit)` (`0030E875`-`0030E884`). Stone first raises event `0x200C` and X-Zone event
-`0x200E` through `003299B0` (`0030E86D`). Nothing happens when the status word does not actually change, and
-two cases return earlier: when the unit already has KO, Stone or X-Zone and `00377C20` reports no town
-flag, the write returns before any of this (so a Stoned enemy that is then KO'd pays once); and for a
-party record of type `0x1B`-`0x27` (the Espers) only `00300FC0(unit, 0)` runs, never `00312280`.
-Adding status 2 (Petrify) or 8 (Poison) sets a marker in the
-unit's byte `+0xE9A`: bit 1 for Petrify (`0030E7DD`-`0030E801`), bit 0 for Poison
-(`0030E7B3`-`0030E7D4`). Each is 1 when the source is a party record (stats byte `+0x05` = 0) and 0
-otherwise. The status names are those of the shipped status table (see the status pages).
+### The trigger
 
-**Two more markers** are set by the result applier `003112F0` on the target unit. Bit 3 is set when
+The status write `0030E360(stats, source, status, ...)` handles statuses being added and removed.
+When status 0 (KO), 1 (Stone) or 31 (X-Zone) is added to a unit that has a battle unit on the field,
+it runs the unit's death handling `00300FC0(unit, 0)` and then `00312280(source, unit)`
+(`0030E875`-`0030E884`). Stone first raises event `0x200C` and X-Zone event `0x200E` through
+`003299B0` (`0030E86D`). The status names are those of the shipped status table (see the status
+pages).
+
+Nothing happens when the status word does not actually change, and two cases return earlier:
+
+- when the unit already has KO, Stone or X-Zone and `00377C20` reports no town flag, the write returns
+  before any of this (so a Stoned enemy that is then KO'd pays once);
+- for a party record of type `0x1B`-`0x27` (the Espers) only `00300FC0(unit, 0)` runs, never
+  `00312280`.
+
+### The Poison and Petrify markers
+
+Adding status 2 (Petrify) or 8 (Poison) sets a marker in the unit's byte `+0xE9A`: bit 1 for Petrify
+(`0030E7DD`-`0030E801`), bit 0 for Poison (`0030E7B3`-`0030E7D4`). Each is 1 when the source is a
+party record (stats byte `+0x05` = 0) and 0 otherwise.
+
+### Two more markers
+
+Two more markers are set by the result applier `003112F0` on the target unit. Bit 3 is set when
 the result's flag word `+0x2C` has bit 19 (`00311384`-`0031138D`). Bit 2 is set when the result's
 flag word `+0x140` has bit 14 (`00311394`-`003113BF`). The only instructions in the image that set bit 14
 of a `+0x140` word are the periodic tick's HP-drain arms at `00386DF5`, `00386E1D` and `00386E2F` in
@@ -66,14 +77,18 @@ of a `+0x140` word are the periodic tick's HP-drain arms at `00386DF5`, `00386E1
 
 `00312280` removes nothing: after the drop its only call is `00317090`.
 
-**The per-species count.** `00315820(species)` ignores species of `0x200` and above. It keeps one
+### The per-species count
+
+`00315820(species)` ignores species of `0x200` and above. It keeps one
 byte per species at `[020927C0] + 0x3404 + species`, where the stored value is the count plus one
 (0 and 1 both mean none), saturating at `0xFF`. The species is counted only when `00315D50(species)`
 returns -1. That happens unless the species is in the list in `menuhandbook.bin` (three 16-bit hops
 from `+0x08`, then a count at `+2` and up to eleven species words at `+4`). For a listed species,
 `00315D50` returns the word at `01EED130 + index*2`.
 
-**The achievements.** Counter kind 4 is a 16-bit total at `[020927C0] + 0x3854`, saturating at `0x7FFF`.
+### The achievements
+
+Counter kind 4 is a 16-bit total at `[020927C0] + 0x3854`, saturating at `0x7FFF`.
 Kind 17 is a 32-bit total at `[020927C0] + 0x3868`. Kind 11, the LP total fed in step 4, is 32-bit at
 `+0x385C`. All three are checked as on the gil page:
 

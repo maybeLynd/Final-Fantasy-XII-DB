@@ -19,7 +19,9 @@ the cap from its first level. Neither gains levels from kills, because kills giv
 
 ## How it works
 
-**The level walk.** `0030C650(record, target, flags)` raises a stats record from its current level
+### The level walk
+
+`0030C650(record, target, flags)` raises a stats record from its current level
 `+0x1C2` to `min(target, 99)` one level at a time (`0030C67A`-`0030C682`, back-edge `0030C865`). It
 never lowers a level: when the target is not above the current level it returns at once. Each step:
 
@@ -37,14 +39,20 @@ never lowers a level: when the target is not above the current level it returns 
    Every `chr_data` row is built as a party record (`0023AC80`, kind 0 sets `+0x05` = 0), the Espers
    (rows 27-39) and the Chocobo (row 26) included, so this applies to them too.
 2. The level byte goes up by one, capped at 99.
-3. On the last step only: the derived stats are rebuilt (`0030FED0(record, 0)`). Then, unless flags
-   bit 1 is set, the level-up notice is posted for a party record: message 4 carrying the record and the new level,
-   through `0046A690` and `0046AB10`. When `0031B860` finds the record's unit on the field and that
-   unit's stats are party-kind (`[unit+0x698]` byte `+0x05` = 0), the HUD popup
-   `002905D0(unit id, from level, new level)` is posted (`[0209BE80] + 0x7FB0`), `002EACD0(unit id)` is
-   called, and sound 7 plays (`003A1180` / `002DF220`, then `00329210(1)`).
+3. On the last step only: the derived stats are rebuilt (`0030FED0(record, 0)`), and the notices
+   below are posted unless flags bit 1 is set.
 
-**HP and MP growth** read `hpmpbase_data`, the table in registry slot `02EBF108` (`battle_pack.bin`
+The notices, for a party record:
+
+- message 4 carrying the record and the new level, through `0046A690` and `0046AB10`;
+- when `0031B860` finds the record's unit on the field and that unit's stats are party-kind
+  (`[unit+0x698]` byte `+0x05` = 0): the HUD popup `002905D0(unit id, from level, new level)`
+  (`[0209BE80] + 0x7FB0`), a call to `002EACD0(unit id)`, and sound 7 (`003A1180` / `002DF220`, then
+  `00329210(1)`).
+
+### HP and MP growth
+
+HP and MP growth read `hpmpbase_data`, the table in registry slot `02EBF108` (`battle_pack.bin`
 directory `+0x28`, 99 rows of 2 bytes, row = level before the step):
 
 ```c
@@ -60,10 +68,14 @@ MP   += b + (int)bonus;                     // 0 .. b - 1 extra
 `MT()` is `00863BF0`, the Mersenne Twister whose state starts at `02EB3870` (index `02EB4230`). On its
 first use it seeds itself with 5489 (`0x1571`, `00866D60`).
 
-**Strength, Magick Power, Vitality and Speed** (`002F9BD0`): `value + byte / 128`, and a result above
-100.0 becomes 99.99999 (`002F9BD7`-`002F9BEC`). There is no random part.
+### Strength, Magick Power, Vitality and Speed
 
-**Starting values.** `0030C470(record, level, ...)` sets the level byte to 0 (`0030C496`). For a party
+The four stats grow by `002F9BD0`: `value + byte / 128`, and a result above 100.0 becomes
+99.99999 (`002F9BD7`-`002F9BEC`). There is no random part.
+
+### Starting values
+
+`0030C470(record, level, ...)` sets the level byte to 0 (`0030C496`). For a party
 record it then copies the row's starting values:
 - max HP from `row.u16[+0x16]` and max MP from `row.u16[+0x1A]` (`0030C4F9`-`0030C507`);
 - the four stats from the base bytes `+0x1E`, `+0x21`, `+0x24`, `+0x27` (`0030C50B`-`0030C546`);

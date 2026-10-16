@@ -33,15 +33,26 @@ load, so the same actions after the same area loads produce the same drops.
 
 ## How it works
 
-**The generator.** Every roll here is `draw % 100` compared with a percentage, and every draw comes from
-the shared gameplay LCG at `022C256C`: three steps `state = state * 0x41C64E6D + 0x3039`, combined as
-`((a >> 16 & 0x7FF) << 10 ^ (b >> 16 & 0x3FF)) << 10 ^ (state >> 16 & 0x3FF)` (11 + 10 + 10 bits). The
-loot and chain functions do not call the generator `00328370`; each carries its own inlined copy of the
-same three steps (for example `00318540`-`0031858B`). The state is seeded by its setter `00328D80`,
-whose only caller is the area initialisation `002342F0` (`00234320`), which passes a counter that
-increases by one on every area initialisation.
+### The generator
 
-**The drop roll** `Loot_RollDropEntries` (`003180F0`, 641 bytes) fills seven output entries
+Every roll here is `draw % 100` compared with a percentage, and every draw comes from the shared
+gameplay LCG at `022C256C`:
+
+```c
+a = state = state * 0x41C64E6D + 0x3039;
+b = state = state * 0x41C64E6D + 0x3039;
+    state = state * 0x41C64E6D + 0x3039;
+draw = ((a >> 16 & 0x7FF) << 10 ^ (b >> 16 & 0x3FF)) << 10 ^ (state >> 16 & 0x3FF);   // 11 + 10 + 10 bits
+```
+
+The loot and chain functions do not call the generator `00328370`; each carries its own inlined copy
+of the same three steps (for example `00318540`-`0031858B`). The state is seeded by its setter
+`00328D80`, whose only caller is the area initialisation `002342F0` (`00234320`), which passes a
+counter that increases by one on every area initialisation.
+
+### The drop roll
+
+`Loot_RollDropEntries` (`003180F0`, 641 bytes) fills seven output entries
 `{u16 item (0xFFFF none), u32 quantity}`, all set to empty first (`0031811D`-`00318158`). The enemy's
 drop data is the record at `[unit+0xE60]`.
 
@@ -51,9 +62,10 @@ drop data is the record at `[unit+0xE60]`.
    least the same-model run `022C3160`; row 0 if none qualifies (`003181C7`-`003181EF`).
 3. **Five slots** (`003181F8`-`00318238`): slot *i* holds the item word at `record+0x28+2i`. The slot
    is kept when its word is not `0xFFFF` and `Loot_RollNormalSlotChance(profile, i)` succeeds, **or**
-   when the developer-console override (`0017D340` reads `+0xE64` of the console settings object at
-   `01F81428`: console entry "Enable 100% successful drop", values -1 to 3) equals *i*. A kept slot
-   gets quantity `Loot_RollNormalSlotQuantityBucket(quantity profile, i) + 1` (`00318225`).
+   when the developer-console override equals *i*. A kept slot gets quantity
+   `Loot_RollNormalSlotQuantityBucket(quantity profile, i) + 1` (`00318225`).
+   - The override is read by `0017D340` from `+0xE64` of the console settings object at `01F81428`
+     (console entry "Enable 100% successful drop", values -1 to 3).
 4. **Two extra drops** (`0031823A`-`00318283`): `Loot_RollAdditionalItemChance(item, condition,
    chance)` with item `record+0x4A`, condition `record+0x48`, chance byte `record+0x42`, and again with
    `+0x4E`, `+0x4C`, `+0x43`. Each extra is quantity 1.
@@ -62,7 +74,9 @@ drop data is the record at `[unit+0xE60]`.
    duplicate ends in the earliest entry with that item. Empty entries get quantity 0
    (`003182D7`-`0031834F`); the function returns 1 if any entry holds an item.
 
-**The individual rolls.**
+### The individual rolls
+
+Each roll is its own function:
 
 - `Loot_RollNormalSlotChance(profile, slot)` (`003185D0`): returns 0 for a profile outside the table
   or `slot > 4`; otherwise succeeds when `r < row[slot]`, a signed byte, so a chance of 0 or below never
@@ -74,38 +88,55 @@ drop data is the record at `[unit+0xE60]`.
 - `Loot_SelectChanceProfileByWeight()` (`00318820`): `00318960` picks the first row whose signed byte
   `+0x21` is negative or at least `022C3164`, or row 0 (`003189D6`). The walk sums signed bytes from
   `row + 0x22`, as many as the table has rows (`dword[table+4]` = 4), and returns the first index whose
-  running sum exceeds `r`, or 0 (`0031893B`-`00318948`). With the shipped row size of `0x25`, a row
-  holds three weights and the fourth byte read is the next row's `+0x00` (four zero bytes after the last
-  row in the file); in shipped data the three weights always sum to 100, so the fourth never decides.
+  running sum exceeds `r`, or 0 (`0031893B`-`00318948`).
+- The same walk reads one byte past the row: with the shipped row size of `0x25`, a row holds three
+  weights and the fourth byte read is the next row's `+0x00` (four zero bytes after the last row in the
+  file). In shipped data the three weights always sum to 100, so the fourth never decides.
 - `Loot_RollAdditionalItemChance(item, condition, chance)` (`00318510`): returns 0 without drawing when
   the item or condition is `0xFFFF` or when `BattleEncodedId_QueryMode0Positive(condition)` (`0030B0E0`)
   says the party holds no free copy of the condition item (`0031851E`-`0031853A`); otherwise succeeds
   when `r < chance`.
 
-**How many draws a kill costs.** The drop roll draws once for the profile (only while `022C3164 > 0`),
+### How many draws a kill costs
+
+The drop roll draws once for the profile (only while `022C3164 > 0`),
 once per slot whose word is not `0xFFFF`, once per kept slot, and once per extra that passes its guard:
 between 0 and 13 draws, depending on the data and on earlier outcomes. The chain update draws a level
 roll and a coin roll on a continuing kill (see [the chain](kill-chain.md)).
 
-**The chain bonus from pickups.** `BattleUnit_RunPeriodicCombatMaintenance` (`00310DB0`), the periodic
-unit tick, collects a world loot pickup the unit overlaps (`002FB150` finds it, `00319A00` collects it,
-`00311105`-`00311141`). For a party unit (`[unit+0x698]+5 == 0`, `00311130`) it then calls `00319530`
-(`00311146`), which rolls `r` and walks the seven unsigned weights at `01EED3B8 + level*7`; it returns
-the first index whose running sum exceeds `r`, 0 when no index does or when the level is above 3
-(`003195B8`, `003195EC`). For outcomes 1-6 the tick gathers the party members (`00311173`-`003111B7`;
-outcomes 3 and 5 only the picker, `003111DD`-`003111F1`) and applies action `0xF5`, "Chain Bonus",
-through `BattleFormula_ResolveTargetResult` / `BattleFormula_ApplyTargetResult` (`0031124D`,
-`0031126C`) with the variant `00D102C0[outcome]` = `{-1, 0, 1, 2, 2, 3, 3}`. Its effect slot `003908A0`:
-variant 0 sets the HP amount `02AEE008` to 10 % of the target's HP figure - dword `+0x24`, doubled
-when bit 28 of `+0x64 | +0x3C` is set, or dword `+0x48` (at least 1) when bit 16 is set
-(`00390A4E`-`00390A94`); variant 1 sets the MP amount `02AEE010` to 10 % of the `i16` at `+0x28`, or 0
-when byte `+0x6C` or `+0x7C` is negative (`00390A17`-`00390A46`); 2 adds Protect (status 18) and 3 adds
-Shell (status 19) through `00387BB0`. A status is refused (`02AEDFBC` = 1) when the target already has
-it (`+0x3C`), or when its row in the status table `[02EBF118]` blocks it: the action's mask at `+8` holds
-the status while row byte `+6` bit `0x20` is clear, the target is not a party member (byte `+5` non-zero)
-and row word `+6` bit `0x100` is set, or the action's mask at `+8` overlaps the row's dword `+0x20`
-(`003908DF`-`003909E3`). Every pickup also adds 1 to the chain's pickup count `022C3174`, which slows
-the next chain level rise unless the coin is up.
+### The chain bonus from pickups
+
+`BattleUnit_RunPeriodicCombatMaintenance` (`00310DB0`), the periodic unit tick, collects a world
+loot pickup the unit overlaps (`002FB150` finds it, `00319A00` collects it, `00311105`-`00311141`).
+Every pickup adds 1 to the chain's pickup count `022C3174`, which slows the next chain level rise
+unless the coin is up. For a party unit (`[unit+0x698]+5 == 0`, `00311130`) the tick then rolls the
+bonus:
+
+1. `00319530` (`00311146`) rolls `r` and walks the seven unsigned weights at `01EED3B8 + level*7`;
+   it returns the first index whose running sum exceeds `r`, or 0 when no index does or when the
+   level is above 3 (`003195B8`, `003195EC`).
+2. For outcomes 1-6 the tick gathers the party members (`00311173`-`003111B7`; outcomes 3 and 5
+   only the picker, `003111DD`-`003111F1`).
+3. It applies action `0xF5`, "Chain Bonus", through `BattleFormula_ResolveTargetResult` /
+   `BattleFormula_ApplyTargetResult` (`0031124D`, `0031126C`) with the variant
+   `00D102C0[outcome]` = `{-1, 0, 1, 2, 2, 3, 3}`.
+
+The action's effect slot `003908A0` does, by variant:
+
+| Variant | Effect | Where |
+|---|---|---|
+| 0 | HP amount `02AEE008` = 10 % of the target's HP figure, dword `+0x24`; doubled when bit 28 of `+0x64 \| +0x3C` is set; dword `+0x48` (at least 1) when bit 16 is set | `00390A4E`-`00390A94` |
+| 1 | MP amount `02AEE010` = 10 % of the `i16` at `+0x28`, or 0 when byte `+0x6C` or `+0x7C` is negative | `00390A17`-`00390A46` |
+| 2 | adds Protect (status 18) through `00387BB0` | `003908DF`-`003909E3` |
+| 3 | adds Shell (status 19) through `00387BB0` | `003908DF`-`003909E3` |
+
+A status is refused (`02AEDFBC` = 1) in any of these cases (`003908DF`-`003909E3`):
+
+- the target already has it (`+0x3C`);
+- the action's mask at `+8` holds the status while the status row's byte `+6` bit `0x20` is clear
+  (row in the status table `[02EBF118]`);
+- the target is not a party member (byte `+5` non-zero) and the row word `+6` bit `0x100` is set;
+- the action's mask at `+8` overlaps the row's dword `+0x20`.
 
 | Chain level | nothing | HP 10 % | MP 10 % | Protect (picker) | Protect (party) | Shell (picker) | Shell (party) |
 |---:|---:|---:|---:|---:|---:|---:|---:|

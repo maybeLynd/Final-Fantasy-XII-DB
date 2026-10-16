@@ -19,10 +19,14 @@ first unlocks the Steam achievement **Plunderer** and the second **Spendthrift**
 
 ## How it works
 
-**Storage.** Gil is a signed 32-bit value at `+0x08` of the game-state block whose address is held in
+### Storage
+
+Gil is a signed 32-bit value at `+0x08` of the game-state block whose address is held in
 `02092758`. `00253690` reads it (`mov rax, [02092758]; mov eax, [rax+8]`).
 
-**The setter.** Every change goes through `00254EE0(newValue)`:
+### The setter
+
+Every change goes through `00254EE0(newValue)`:
 
 ```c
 delta = newValue - gil;                         // 00254EF1, on the raw argument
@@ -38,39 +42,75 @@ The change is measured before the clamp, so a caller that passes 200,000,000 met
 difference even though only 99,999,999 is stored. Most callers floor their value at 0 themselves
 before calling the setter (see Operations), so for them the spent amount never exceeds the balance.
 
-**The meter.** `00316A50(kind, amount)` ignores kinds above 29 (`00316A50 cmp cl, 0x1E`). Each kind has
-an 8-byte row at `00D10460 + kind*8`. Kinds 6 and 7 are 32-bit totals that saturate at `0x7FFFFFFF`:
-gil gained at `[020927C0] + 0x3860` and gil spent at `[020927C0] + 0x3864` (base `0x384C` plus the
-row's offset byte, read by `003166F0`, written by `00316BF0`). After computing the new total,
-`00316A50` calls `00315E90(kind)` and then stores the total. `00315E90` returns at once if the kind's
-bit is already set in the done-bitset at `[020927C0] + 0x3844`. Otherwise it compares the total stored
-so far (`00316760`, read before the new total is written) with the threshold. On reaching it, it sets
-the bit and calls `008632B0` with the achievement id from `00D10550 + kind*4`. That id is 8 for kind 6
-and 10 for kind 7. `008632B0` unlocks the Steam achievement through `0020CE60`, which marks the
-achievement record (`+0x190` = 1) and calls Steam's user-stats interface (vtable `+0x38`, then
-`+0x50`). Records 8 and 10 of the achievement descriptor table `01DFE410` are `ACH_COUNT_GET_GIL`
-"Plunderer" (`01DFF0D0`) and `ACH_COUNT_USE_GIL` "Spendthrift" (`01DFF400`); each record's first dword
-is its counter kind, 6 and 7. The meter runs only for the kind matching the change's direction, and
-the check reads the stored total before the update, so Plunderer unlocks on the first gain after
-gained reaches the threshold, and Spendthrift on the first spend after spent reaches it.
+### The meter
 
-**The thresholds** come from the handbook file `menuhandbook.bin`, loaded raw into `[022C2550]` by
+`00316A50(kind, amount)` keeps the gained and spent totals. It ignores kinds above 29
+(`00316A50 cmp cl, 0x1E`). Each kind has an 8-byte row at `00D10460 + kind*8`.
+
+| Kind | Total | Where | Saturates at |
+|---|---|---|---|
+| 6 | gil gained | `[020927C0] + 0x3860` | `0x7FFFFFFF` |
+| 7 | gil spent | `[020927C0] + 0x3864` | `0x7FFFFFFF` |
+
+The slot is base `0x384C` plus the row's offset byte, read by `003166F0` and written by `00316BF0`.
+For one call the meter does, in order:
+
+1. Computes the new saturating total.
+2. Calls `00315E90(kind)`, the achievement check, which reads the total stored so far (`00316760`),
+   before the new one is written.
+3. Stores the new total (`00316BF0`).
+
+### The achievement check
+
+`00315E90(kind)` returns at once if the kind's bit is already set in the done-bitset at
+`[020927C0] + 0x3844`. Otherwise it compares the stored total with the kind's threshold. On reaching
+it, it sets the bit and calls `008632B0` with the achievement id from `00D10550 + kind*4`: 8 for kind
+6 and 10 for kind 7.
+
+`008632B0` unlocks the Steam achievement through `0020CE60`, which marks the achievement record
+(`+0x190` = 1) and calls Steam's user-stats interface (vtable `+0x38`, then `+0x50`). Records 8 and
+10 of the achievement descriptor table `01DFE410` are `ACH_COUNT_GET_GIL` "Plunderer" (`01DFF0D0`)
+and `ACH_COUNT_USE_GIL` "Spendthrift" (`01DFF400`); each record's first dword is its counter kind, 6
+and 7.
+
+Because the meter runs only for the kind matching the change's direction, and the check reads the
+total before the update, Plunderer unlocks on the first gain after gained reaches the threshold, and
+Spendthrift on the first spend after spent reaches it.
+
+### The thresholds
+
+The thresholds come from the handbook file `menuhandbook.bin`, loaded raw into `[022C2550]` by
 `003158B0` (resource 7, 200). `003165C0(kind)` follows four 16-bit relative offsets from file
 `+0x08`, then reads a kind bitmask at `+4` and packed 32-bit values at `+8`. When the kind's bit is
-clear, it falls back to the row's dword at `00D10464 + kind*8`, which is 0 for kinds 6 and 7. In the
-shipped files of every language the gained threshold is **100,000** and the spent threshold is
-**1,000,000**.
+clear, it falls back to the row's dword at `00D10464 + kind*8`, which is 0 for kinds 6 and 7.
 
-**Gil as an action cost.** `00309060(unit, action)` returns the gil cost of an action. It returns 0
-for an enemy (stats byte `+0x05` = 1), for an action id above `0x21E`, and for an action whose row in
-the action table `[02EBF138]` has byte `+0x1E` equal to 5 or 6. It also returns 0 unless `002F9820`
-says the unit is a party member with effect 32, bit 0 of stats byte `+0x6C` or `+0x7C` (`002F9820`).
-Augment row 32's description (id 13032) reads "Enables casting of magicks with gil, rather than MP.",
-and the shipped equipment row with augment byte `+0x1A` = 32 is the Turtleshell Choker (`0x1166`). Otherwise it calls
-`002F95D0(unit, action)`. With `b` the action row's byte `+0x0A`, that returns `b` for action ids
-`0xD0`-`0xE1` and `0x106`-`0x112`, and `trunc(b × 64.0 / 50.0) × 10` for every other action.
+In the shipped files of every language the gained threshold is **100,000** and the spent threshold
+is **1,000,000**.
 
-**The gil a kill pays.** In `00312280`, after EXP and LP are handed out:
+### Gil as an action cost
+
+`00309060(unit, action)` returns the gil cost of an action. It returns 0 when any of these holds:
+
+- the unit is an enemy (stats byte `+0x05` = 1);
+- the action id is above `0x21E`;
+- the action's row in the action table `[02EBF138]` has byte `+0x1E` equal to 5 or 6;
+- `002F9820` does not report the unit as a party member with effect 32, bit 0 of stats byte
+  `+0x6C` or `+0x7C`.
+
+Augment row 32's description (id 13032) reads "Enables casting of magicks with gil, rather than
+MP.", and the shipped equipment row with augment byte `+0x1A` = 32 is the Turtleshell Choker
+(`0x1166`).
+
+Otherwise it returns `002F95D0(unit, action)`. With `b` the action row's byte `+0x0A`:
+
+```c
+cost = b                               // action ids 0xD0-0xE1 and 0x106-0x112
+cost = trunc(b * 64.0 / 50.0) * 10     // every other action
+```
+
+### The gil a kill pays
+
+In `00312280`, after EXP and LP are handed out:
 
 ```c
 gil += (enemyStats.b[+0x1C2] - enemyStats.b[+0x88]) * [[enemy+0xE78] + 0x30]
@@ -84,7 +124,9 @@ at 999. Such a recipient receives no LP from the kill. This sits under the same 
 LP (`+0xE9A` and the killer test, see the EXP and LP page). The total is floored at 0 and stored through
 the setter (`00312553`-`0031255D`), and the difference is posted as a gain notification (`00312566`).
 
-**The gain notification.** `00469E80(amount)` posts message `0x26` through `0046AB10` when the amount
+### The gain notification
+
+`00469E80(amount)` posts message `0x26` through `0046AB10` when the amount
 is positive, and does nothing otherwise.
 
 ## Operations
