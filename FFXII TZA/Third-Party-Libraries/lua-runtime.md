@@ -1,0 +1,178 @@
+---
+title: "Lua runtime: the embedded Lua 5.2.1 interpreter, its chunk loader, its standard libraries and why no script runs"
+kind: "system"
+category: "Third-party libraries"
+summary: "The Lua 5.2.1 interpreter linked into the executable with a 4-byte float lua_Number: the PhyreEngine loader that passes no mode and so accepts both source text and precompiled chunks, the 18-byte chunk header it checks, the standard libraries compiled in and the four that are registered but never opened, and the static facts that keep it idle: no code creates a lua_State and no shipped file holds a script."
+addresses: ["00683C30", "00812F70", "00810180", "0081DF50", "0081D790", "0082BE30", "0082E910", "0082E490", "00684D10", "00686280", "00684F60", "00685AC0", "006844C0", "02E41570", "02E41578", "00685F60", "01CCB3E0", "01CCB470", "00824340", "01CCBA90", "00818AC0", "00825660"]
+---
+
+# Lua runtime: the embedded Lua 5.2.1 interpreter, its chunk loader, its standard libraries and why no script runs
+
+## What the player sees
+
+Nothing. The executable carries a complete Lua 5.2.1 interpreter, wired to PhyreEngine's script
+objects, but the shipped game never creates a Lua state and ships no script, so no Lua code runs.
+Everything scripted in the game runs on Square Enix's own script machine instead.
+
+## How it works
+
+### Identity and version
+
+The image carries Lua's own banner, `$LuaVersion: Lua 5.2.1  Copyright (C) 1994-2012 Lua.org,
+PUC-Rio $` (`01CCA080`), the 5.2-only names `LUA_PATH_5_2` (`01CCCB48`) and `_ENV` (`01CCB6BC`), and
+the 5.2-only library `bit32`. The chunk-header check below confirms version byte `0x52`.
+
+### Numbers are single precision
+
+This build is configured with a 4-byte `lua_Number`, a `float`, where stock Lua 5.2 on x64 uses an
+8-byte `double`. The chunk-header check expects number size 4, and the library code works in floats:
+`math.sin` (`00818AC0`) reads its argument as a float, calls the C `sin` on it as a double and
+pushes the result back as a float. Thirteen `math` functions share that one shape (`sin`, `sinh`,
+`cos`, `cosh`, `tan`, `tanh`, `asin`, `acos`, `atan`, `ceil`, `floor`, `sqrt`, `exp`).
+
+### The chunk loader
+
+PhyreEngine loads a chunk through `00683C30(L, script)`:
+
+1. When the script's data pointer `+0x18` is null it returns false without touching Lua.
+2. Otherwise it calls `luaL_loadbufferx` (`00812F70`) with the data, the length `+0x10` with bit 31
+   cleared, the chunk name `+0x48` with its low bit cleared, and a null mode.
+3. On success it returns true. On failure it reads the error message (`00811530` on index -1),
+   pops it (`00811130` with -2) and returns false; the message is not reported.
+
+`00812F70` wraps the buffer in a reader (`00812170`) and calls `lua_load` (`00810180`), which runs the
+parser through `luaD_protectedparser` (`0081DF50`). That function takes the address of `f_parser`
+(`0081D790`, at `0081DF7C`), which nothing calls directly.
+
+### Source text and bytecode
+
+`f_parser` looks at the first byte of the chunk:
+
+- `0x1B` (the start of `\x1bLua`): the binary loader `luaU_undump` (`0082E910`), which first checks
+  the header (`0082E490`).
+- anything else: the source parser `luaY_parser` (`0082BE30`).
+
+Each branch refuses its form only when a mode string is given and lacks `b` or `t`
+(`attempt to load a %s chunk (mode is '%s')`). `00683C30` passes no mode, so both plain Lua source
+and precompiled chunks are accepted.
+
+### Who calls the loader
+
+Three functions load and run a script, each calling `00683C30` and then `lua_pcall`, and printing
+`execute: lua_pcall failed - error code: %d` (`00D6FEB0`, `00D6FFD8`) on failure:
+
+| Function | Reached from |
+|---|---|
+| `00684D10` | slot 1 of the `PCallerScript` vtable `00D6FDB8` |
+| `00686280` | slot 2 of the same vtable |
+| `00684F60` | `00685140`, `00685560` and `006853C0`, slots 0, 1 and 4 of the `PScheduler` vtable `00D6FD68` |
+
+Each takes the script from a `PScript` object. `00684D10` takes the state from its argument or from
+an entry of the buffer pool at `02E41050`; none of the three creates one.
+
+### No code creates a Lua state
+
+Creating a state runs `lua_newstate` and its `f_luaopen`, which interns the memory-error message,
+initialises the metamethod names and the lexer's reserved words. None of that is in the image:
+
+- the text `not enough memory` occurs nowhere, nor `luaL_newstate`'s `PANIC: unprotected error`;
+- the metamethod-name table `01CCBA90` (`__index`, `__newindex`, `__gc` …) is referenced by no
+  instruction;
+- the reserved-word table `01CCBBE0` is read only by `luaX_token2str` (`00824340`), not by an
+  initialiser.
+
+The rest of the core is linked, including the lexer and the protected-call machinery, so the
+interpreter can run only on a state built outside the executable and handed to one of the three
+functions above.
+
+### Standard libraries
+
+Every standard library of Lua 5.2 is compiled in, each with its registration array:
+
+| Library | Opener | Registered functions |
+|---|---|---|
+| base | `00814F90` | 22 |
+| coroutine | `00815500` | 6 |
+| table | `00815E30` | 6 |
+| string | `00817550` | 14 |
+| bit32 | `00818A40` | 12 |
+| math | `00819410` | 27 |
+| io | `00826500` | 11, plus 9 file methods |
+| os | `00827430` | 11 |
+| debug | `00828540` | 16 |
+| package | `00828D30` | 2, plus the global `require` |
+
+None is ever opened:
+
+- `luaL_openlibs`' two lists, `loadedlibs` at `01CCB3E0` (`_G`, `table`, `package`, `coroutine`,
+  `io`, `os`, `string`, `debug`) and `preloadedlibs` at `01CCB470` (`bit32`, `math`, `string`), are
+  referenced by no instruction.
+- No opener has a call or jump site.
+- `00685AC0`, slot 1 of the `PUtilityScripting` vtable `00D6FD98`, makes five other setup calls
+  and then appends four pairs, `math`, `bit32`, `string` and `coroutine` with their openers,
+  to a list through `006844C0`. The list's count `02E41570` and buffer `02E41578` are touched only by
+  `006844C0` and by `00685F60` (slot 2) and `008B25C0` (exit), which free it. Nothing reads the
+  pairs.
+
+The `io`, `os`, `debug` and `package` functions, among them `io.open`
+(`00825660`, which checks its mode against `[rwa]%+?b?` and opens a `FILE*`) and `package.loadlib`
+(`00828580`), are therefore present and unreachable.
+
+## Layouts
+
+The precompiled-chunk header `0082E490` compares, 18 bytes:
+
+```
++0x00  u8[4]  signature        1B 4C 75 61  "\x1bLua"
++0x04  u8     version          52  (5.2)
++0x05  u8     format           00
++0x06  u8     endianness       01  little-endian
++0x07  u8     sizeofInt        04
++0x08  u8     sizeofSizeT      08
++0x09  u8     sizeofInstr      04
++0x0A  u8     sizeofNumber     04  float
++0x0B  u8     integralNumbers  00
++0x0C  u8[6]  tail             19 93 0D 0A 1A 0A  (01CCD300)
+```
+
+It reads 17 bytes after the signature byte the parser has already taken (`0082E4CC`) and compares all
+18 with the expected header it builds from immediates (`0082E4C7` to `0082E4EA`).
+
+The `PScript` fields `00683C30` reads:
+
+```
++0x10  u32   length         bit 31 is a flag and is cleared
++0x18  ptr   data           null: nothing is loaded
++0x48  ptr   name           low bit is a flag and is cleared
+```
+
+## Shipped data
+
+| Fact | Value |
+|---|---|
+| archive files searched | 89,414 (58,894,815,547 bytes) |
+| files with a `.lua` name | 0 |
+| files containing a Lua 5.2 header start `1B 4C 75 61 52 00` | 0 |
+| bare `1B 4C 75 61` matches | 2, inside `anx.webm` and `vnp.webm` video data, followed by `08` and `17`, not `52` |
+| files containing `PScript`, `PScheduler`, `PCallerScript`, `PUtilityScripting` or a Lua 5.2 chunk header | 0 of 89,414, among them 0 of the 35,984 `.phyre` files |
+
+## Modding notes
+
+- The game never builds a Lua state. Running Lua needs a state created outside the executable and a
+  `PScript` object supplied to `PCallerScript` or `PScheduler`, which no shipped asset declares.
+- Plain Lua source is accepted; nothing needs compiling.
+- Precompiled chunks must come from a Lua 5.2 compiler built with a 4-byte float number type. A stock
+  x64 `luac` writes number size 8 and the header check rejects it.
+- Numbers are single precision: integers are exact only up to 16,777,216.
+- A compile error is swallowed by `00683C30`; the script silently does not load.
+- No standard library is opened, so even `print`, `pairs` and `string` are absent unless the state's
+  creator opens them.
+
+## Related
+
+- PhyreEngine: the scripting classes (`PScript`,
+  `PScheduler`, `PCallerScript`) and object bindings around this interpreter.
+- [Script interpreter](../Scripts-And-Script-Commands/script-interpreter.md): the game's own script
+  machine, which runs every shipped script.
+- `lua-runtime-members.tsv`: the interpreter's functions, from `0080F2E0` up to `00830760`.
+- `lua-runtime-lua-math-unaryfunctionadapter.tsv`: the thirteen one-argument `math` functions.

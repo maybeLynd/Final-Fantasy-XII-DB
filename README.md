@@ -40,5 +40,6 @@ Addresses are virtual addresses in the shipping `FFXII_TZA.exe` (SHA-256
 - [Saving, loading and settings](FFXII%20TZA/Saving-Loading-And-Settings/README.md) - Save files, loading, the game options and language selection.
 - [Steam and achievements](FFXII%20TZA/Steam-And-Achievements/README.md) - The Steam integration and the achievements.
 - [Random numbers](FFXII%20TZA/Random-Numbers/README.md) - Every random number generator in the game, how each is seeded and which rolls use it.
+- [Third-party libraries](FFXII%20TZA/Third-Party-Libraries/README.md) - Libraries compiled into the executable.
 - [EBP script files](FFXII%20TZA/EBP-Script-Files/README.md) - The format of the .ebp files that hold area and event scripts.
 - [PKFL package files](FFXII%20TZA/PKFL-Package-Files/README.md) - The format of the PKFL package files.
