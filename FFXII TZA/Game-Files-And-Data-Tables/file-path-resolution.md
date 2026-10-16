@@ -211,4 +211,4 @@ flags `01F83440` and `01F83441`, and each open stream's backing fields.
 
 - [Bigfile archive](bigfile-archive.md): the archive lookup, its reader handles and the block reads.
 - Prefetch manifests: the token loop that resolves names with selector 5.
-- Texture animation lists: the same 33-multiplicative hash.
+- [Texture animation lists](texture-animation-lists-ta.md): the same 33-multiplicative hash.
