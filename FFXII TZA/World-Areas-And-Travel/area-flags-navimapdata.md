@@ -269,7 +269,7 @@ the Henne Mines (Site 7) and Giruvegan (Hall of Worth, Throne of Veiled Gods).
 
 - [Kill rewards: what an enemy's death triggers, when it gives nothing, and the order of chain, EXP, LP, gil, loot and counters](../Rewards-EXP-Gil-And-Loot/kill-rewards.md)
 - [Kill chain: chain count, chain level, the chain coin and resets](../Rewards-EXP-Gil-And-Loot/kill-chain.md)
-- Battle runtime mode ladder
+- [Battle runtime mode ladder](../Engine-Core/party-control-modes.md)
 - The time-stop registry
 - The thirty-two statuses
 - [The save payload field map](../Saving-Loading-And-Settings/save-data-fields.md)
