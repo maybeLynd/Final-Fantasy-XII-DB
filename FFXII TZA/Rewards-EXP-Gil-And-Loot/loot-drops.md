@@ -212,4 +212,4 @@ and `0x806B` (the Monographs) and `0x806C` (the Canopic Jar); the extra item is 
   run and breaks in a row.
 - [Who gets EXP, LP and gil from a kill](exp-lp-and-level-ups.md) - the
   rest of the defeat rewards.
-- RNG streams - the shared gameplay generator.
+- [RNG streams](../Random-Numbers/random-number-generators.md) - the shared gameplay generator.
