@@ -2,7 +2,6 @@
 title: "Map art: the remaster's map models, the map-art context, its per-map files and the calls the map draw makes"
 kind: "system"
 category: "World, areas and travel"
-summary: "How the PC remaster draws a field with its own models: the map-art context at 01F81168, the asset list it requests when a zone's pack names the map, the load that pairs each PMeshInstance with a YM00 instance by the number in its name and builds two MapRenderObjects per instance, the per-map option files opt.csv, NoModelGroupMaps.txt and proceduralTextureConfigs.txt, the paletted textures rebuilt from the PS2 palette data, and the bridge calls through which the map draw culls, binds and draws each instance."
 addresses: "01F81168, 001A9930, 001A98B0, 001A2130, 001A9ED0, 001A7A50, 001A3160, 001A5B30, 001A92C0, 001A9050, 001A6A20, 001A7F10, 001E1670, 001A7600, 001A7A10, 001E5080, 001A4DB0, 001A9BF0, 001E59B0, 001AA120, 001A9B70, 001E5790, 001AA240, 001E69A0, 001A9DD0, 001809A0, 001C0A90, 001BF8B0, 001A9CD0, 001A53F0, 001A7E40, 001A40B0"
 ---
 

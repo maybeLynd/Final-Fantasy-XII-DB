@@ -2,7 +2,6 @@
 title: "Sound engine: the driver's class families, what a voice does in one tick, where its samples come from, and the diagnostics it prints"
 kind: "system"
 category: "Sound and music"
-summary: "The SQEX sound driver inside the game: its class families and the three voice kinds, what a source voice does in one 256-frame tick, which codecs feed it and that every shipped material is HCA, the 48 kHz eight-channel output and the device thread, the voice factory, pass and lifecycle, the command queue with its 54 action types, the threads and their pacing, the version and diagnostic strings, and the time-unit converter."
 addresses: "007E0B60, 007EBAD0, 007EAA60, 007AF740, 007B0000, 007AEA20, 007AB5C0, 007F31F0"
 ---
 

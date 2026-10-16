@@ -2,7 +2,6 @@
 title: "Map menu files: the sloc picture files and the amap, cmap, gmap, lmap and wmap tables behind the location map and the World Map"
 kind: "format"
 category: "Game files and data tables"
-summary: "The menumap files under worldmap/: the 48 sloc files holding each sub-location's zone pictures, their sizes and icon sets; lmap, the zones, markers, links and zoom levels of every sub-location; cmap, the sub-location directory, the per-map exploration thresholds and the guide-line schedule; gmap, the guide lines; wmap, the World Map's regions, areas, routes and Strahl destinations; amap, the area names, area maps and group-to-area table. Covers the layouts as the readers read them, the map-data widget that loads them, what each reader does on the map screens, the shipped files and the rules an edit must follow."
 addresses: "02B457E0, 003BC450, 003BC2D0, 00253780, 020927D0, 003C1F00, 003C26C0, 003BF520, 003BF5E0, 003BE2D0, 003BECA0, 003DFBB0, 003DFB50, 003C0340, 003BF430, 003BFF20, 003C1070, 003C0380, 003BE680, 003C2320, 003BCDE0, 003BDFF0, 003C17E0, 003C1680, 003C1DF0, 003BD950, 003BD890, 003BD8F0, 003BD040, 003BD480, 003C08B0, 003BCCA0, 003BFE10, 003C0250, 003C1D70, 00254380, 002543A0, 002543D0, 002543F0, 003BEC50, 003C4AE0, 003BF920, 003C0450, 003C12B0"
 ---
 

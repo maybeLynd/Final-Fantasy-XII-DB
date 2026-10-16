@@ -2,7 +2,6 @@
 title: "Phyre D3D11 draws, state and buffers: the draw and dispatch calls, topology and index formats, the state translation tables, material parameters and the buffer rings behind data blocks"
 kind: "system"
 category: "PhyreEngine"
-summary: "The lowest layer of PhyreEngine's Direct3D 11 renderer in the executable: the eight functions that issue every draw and compute dispatch on the immediate context, how a pass switch creates and binds the four shaders and the pass state and binds each shader's resources through the per-stage caches, the primitive-type to topology table with its one-entry cache, how an index data block chooses its index format and buffer, the tables that turn engine blend, compare and stencil values into D3D11 ones inside the context's pending state descriptions, material parameter writes, bind caches, the ring of buffers behind each data block with its deferred upload queue, and the helpers that unbind vertex buffers and unordered-access views."
 addresses: "0060E7A0, 001B81B0, 0062C9A0, 00671B30, 00674610, 0062EBC0, 01F7F5B8, 006BA720, 00622350, 00622450, 006224E0, 006226D0, 006223D0, 006225D0, 00621F80, 00621FA0, 0061ED00, 0061C1C0, 01F2DEF8, 01F2DEF0, 00616F00, 0061BF40, 0061C010, 0061C150, 00627F10, 00628570, 0062A920, 00618740, 006187A0, 0061C8A0, 02CED880, 01F2DE88, 00608DD0, 0060B860, 0060EC80, 00629AA0, 00629C70, 0061D260, 00623180, 006231F0, 00622F40, 00623050, 00622D90, 0061E340, 0062A0A0, 0061DFE0, 0061DCA0, 0061DD60, 0061DBE0, 0061E0B0, 02CEDA20, 02CEE3D0, 02CEED80, 02CEF730, 00621C00"
 ---
 

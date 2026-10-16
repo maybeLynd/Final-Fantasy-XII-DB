@@ -2,7 +2,6 @@
 title: "Phyre reflection: how PhyreEngine describes its classes at run time, registers their members and creates instances"
 kind: "system"
 category: "PhyreEngine"
-summary: "PhyreEngine's run-time class reflection in the executable: the 0x100-byte class descriptor and its registration in a namespace and a by-name type tree, the member records that give each field's name, type, offset and attribute word, array members and annotations, the default instance and the two masks built per class, how PCluster::create sizes and initialises instances, how descriptors are torn down, and the data files that list the generated functions and the per-class field accesses."
 addresses: "00632D80, 00632C90, 00632E80, 005A7ED0, 001603E0, 00639450, 00639160, 0063E410, 006388C0, 006311D0, 0063BA10, 00632960, 00632FB0, 00632A10, 00632A70, 00632BE0, 0062EFD0, 0062F080, 00597220, 0063C0C0, 006B66C0, 006B67D0, 006B67F0, 0063A990, 00639510, 0063C910, 00639A60, 00639C80, 0063CB80, 00633390, 0063D550, 0063D640, 006B6700, 00633240, 005847E0, 00584730, 02CF8260, 01F2E330, 01F2E780, 02CF8270, 02CF8470, 02CF8570"
 ---
 

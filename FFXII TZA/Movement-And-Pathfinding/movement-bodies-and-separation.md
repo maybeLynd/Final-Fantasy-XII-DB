@@ -2,7 +2,6 @@
 title: "Movement bodies and separation: the collision body every steerable actor carries, its placement on the field, and the tick that pushes overlapping bodies apart"
 kind: "system"
 category: "Movement and pathfinding"
-summary: "The pool of movement bodies behind every steerable actor: how a body is allocated, attached after the presentation and released with it, how its ellipse, height and base are sized from the actor's contexts, the placement record that holds the field cell, the ground height and the cell attributes, the per-frame registration into thirty-two angular sectors around the mean of all bodies, the per-tick separation pass that visits each pair once, the pair resolver with its layer, owner, vertical and ellipse tests and its weight rule, and how the push is consumed on the next candidate position."
 addresses: "003DAE30, 002E8E20, 0026B2E0, 0026BBC0, 0026BF60, 00265390, 0026B170, 003DA8A0, 003DAD00, 002E3500, 00269EC0, 002682D0, 002685F0, 00268380, 003DAF20, 00380D30, 003808A0, 003DB1B0, 003DB020, 0046AD20, 003DAA40, 003DAC70, 003DAAB0, 003DAB50, 00314F30, 00314F50, 003DA5A0, 003DA730, 00314E10, 003DA9F0, 002E5180, 002E5380, 003B7730, 00266D10, 00269E60, 0026ABD0, 0026B9D0, 00263810, 0026A560, 0026BE00, 00263640, 002E86B0, 0026AB60, 0026BEE0, 0026BDD0, 002640E0"
 ---
 

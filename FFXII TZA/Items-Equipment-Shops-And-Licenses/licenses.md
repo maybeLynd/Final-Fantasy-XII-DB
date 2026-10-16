@@ -2,7 +2,6 @@
 title: "Licenses: what the License Board test asks for an action or a piece of equipment, who is never tested, Quickenings, and buying or resetting a square"
 kind: "system"
 category: "Items, equipment, shops and licenses"
-summary: "How licenses work: who the test applies to and who always passes, the action and equipment bits that need no license, the owned-square bits every member carries and the requirement mask built from the license nodes, the four requirement kinds a node's category gives, the counted rule for Quickenings, the reasons a square can be refused, what buying a square costs and grants (LP, Quickenings, MP bars), the squares each member starts with, and the resetJobs verb that refunds both boards."
 addresses: "00323EC0, 00323C60, 00323BB0, 002F8FA0, 00323890, 00323D10, 00323910, 00328BD0, 00328990"
 ---
 

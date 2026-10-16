@@ -2,7 +2,6 @@
 title: "Party verbs: the eight verbs that change the battle party and the poll they share, the appearance verbs, the standard-motion verbs, and the party queries"
 kind: "system"
 category: "Scripts and script commands"
-summary: "What a zone script can do to the party: the eight asynchronous verbs that add, remove, set and lock battle members and the one poll that waits for the read-in, the seven appearance verbs that set level of detail, shadows, hit reaction and the map-id flag pair on the members combat is servicing, the four standard-motion verbs that push a synthetic argument frame per roster actor, the queries that read the roster and party masks, and the capture forms that take a member's body."
 addresses: "0034D4E0, 00350CD0, 00350160, 00352AF0, 0034C030, 00352190, 00351A40, 003506A0, 0034CDF0, 0034C370, 003596B0, 0037CB50, 003601B0, 003601C0, 003596D0, 00359BA0, 00359C00, 00359740, 00320800, 0031B510, 00322350, 003271D0, 0033FD60, 00340700, 00341190, 00341B90, 00342360, 00342830, 00342B30, 0031B5A0, 0031B670, 0031B680, 0026AD60, 0026A430, 002EC680, 002ECD80, 002E8730, 0034F060, 0034F890, 00350050, 003507B0, 003580C0, 0035AE10, 00263750, 0034B4B0, 0034F5A0, 00353780, 00353CB0, 00353460, 0034E7D0, 003542C0, 003546F0, 00341E60, 003426F0, 003430C0, 00342280, 003408E0, 00340E00, 003410C0, 00342910, 00342EC0, 0034CCD0, 0034E3E0, 02EBF190, 0037C3C0, 002E6BD0"
 ---
 

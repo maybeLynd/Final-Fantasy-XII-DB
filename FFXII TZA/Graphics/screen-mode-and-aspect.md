@@ -2,7 +2,6 @@
 title: "Screen mode and aspect: the aspect fit, the Super Wide bound and the display object"
 kind: "system"
 category: "Graphics"
-summary: "How the game fits its picture to the window: the resolution setter and the three-branch aspect fit that sets Normal Mode or Super Wide Mode and clamps the size between 16:9 and 48:9, the aspect every renderer reads back, the 16:9 viewport and quad scaling built on it, and the display object that holds the fit beside the display-mode and window-size lists."
 addresses: "001DDBA0, 001DDAC0, 001DDAB0, 01F82D18, 001DD120, 001DD8C0, 001DCE20, 0017FFD0, 00186B80, 00229D20, 001DC730, 001DD420, 001DD8E0, 001DC5C0, 001DDA70"
 ---
 

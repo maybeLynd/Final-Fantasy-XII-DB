@@ -2,7 +2,6 @@
 title: "Memory and allocation: the C runtime heap, the game's allocation wrappers, new and delete, aligned blocks and the subsystem allocators"
 kind: "system"
 category: "Compiler and C runtime"
-summary: "Where the game's memory comes from: the eight heap imports and the forwarders in front of them, the game's own operator new and delete, the aligned allocation pair and the standard library's 32-byte big-block rule, the two EASTL allocator classes and their inert log record, the big blocks taken at boot, the file-cache budget and working set sized from physical memory, the actor record pool, the movie player's ring buffers, and what each path does when an allocation fails."
 addresses: "008C2B40, 008C2B48, 008C2B60, 008C2B70, 008C2B78, 00210EC0, 00210EB0, 00809950, 0085E730, 0019C590, 0017D260, 00584740, 00584730, 0019C580, 0019C570, 002099D0, 001A5A80, 0016D6B0, 0016D6C0, 008F6500, 00902720, 001EDF00, 001EDF10, 001EDF80, 001EDFE0, 01F82E48, 00808D5C, 0036D240, 0036D250, 0020C610, 01F83448, 01F83440, 01F83441, 0020C6B0, 01F83438, 00792F10, 002679F0, 01E0C328, 00267930, 00267BB0, 00267C20, 006CC5A0, 01F2EAA8, 01F2EAB0, 01F2EA70, 00675460, 003E9AA0, 0025A990, 0025AA30"
 ---
 

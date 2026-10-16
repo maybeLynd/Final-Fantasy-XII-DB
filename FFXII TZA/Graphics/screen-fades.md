@@ -2,7 +2,6 @@
 title: "Screen fades: the seven fade layers, the fade verbs and the per-movie fade schedule"
 kind: "system"
 category: "Graphics"
-summary: "The full-screen fades to black or white: the seven fade layer records and the one function that starts a fade on them, the screen-effect descriptor pool that times and draws every fade as a sorted full-screen quad, the per-tick poll that leaves a finished fade-out on screen and frees a finished fade-in, the script verbs and the engine's own fades by layer, the instant black of a cutscene skip, the 49-row fade schedule applied around each pre-rendered movie, and the effect fade verbs."
 addresses: "022BDD60, 002EFA70, 002EF910, 00375900, 00375A20, 00375AE0, 00375470, 00374950, 00375500, 003740B0, 01EFAC20, 002EFE10, 002EFE40, 002EFE50, 002EFE60, 0037DDD0, 0037DEA0, 02EBF008, 00360710, 002EFD80, 002EFDC0"
 ---
 

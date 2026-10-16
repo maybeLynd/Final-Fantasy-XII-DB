@@ -2,7 +2,6 @@
 title: "Traps: how walking onto a trap fires it, the trap table, the two outcomes and their odds, and re-arming by settrapresource"
 kind: "system"
 category: "World, areas and travel"
-summary: "The traps a field carries: the trap table in the zone script and its twelve-byte records, the arming walk the settrapresource verb runs at field load with its arm chance and its world markers, the per-field live mask kept in a ring of three, who can spring a trap and who is caught in its radius, the horizontal proximity test, the hard-coded roll between the two authored actions, the action rows a trap can name and what they do, the battle message, Libra's reveal of the markers, and the census of the shipped traps."
 addresses: "002F8060, 002FB8C0, 002FB3B0, 002FA230, 002FA740, 002FAEC0, 002341C0, 002641B0, 00265770, 00355400, 002E9A60, 00263F80, 002EB7A0, 003EC630, 002EBD60, 002E3DC0, 002FB560, 003EC5B0, 003EC720, 003EC770, 00355E00, 003EC6C0, 003EB720, 002ED3A0, 003EC700, 002E7410, 002F82F0, 0030C300, 00234590, 00310DB0, 00322C50, 002EACD0, 00385F60, 003112F0, 0046A9D0, 0046AB10, 00320A30, 0032AD70, 0032AA60, 00379CD0, 003A1920, 00265020, 0031B810, 003148F0, 00377C20, 00237DF0, 00233C10, 0038CD60"
 ---
 

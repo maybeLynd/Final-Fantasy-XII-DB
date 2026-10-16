@@ -2,7 +2,6 @@
 title: "Character status visuals: how a status changes a character's colour, light, opacity and shadow"
 kind: "system"
 category: "Graphics"
-summary: "The per-frame push that turns each battle unit's status word into presentation: the colour-look list where the lowest index wins, the tint, Stone, Petrify, Doom, Berserk and HP Critical looks made of private lights and the character's lighting fields, the second block that fades an Invisible character and colours the shadow under Slow and Immobilize, the rig switches for Sleep, Confuse, Immobilize and Float, and the two denial latches."
 addresses: "003E7650, 02B59D80, 00320BB0, 0046FD00, 0046FFA0, 00470050, 004703F0, 004700E0, 0046FBB0, 00470AA0, 00470780, 00470590, 00470B70, 00470660, 00470EB0, 004704C0, 00470230, 0051E3A0, 0051DBF0, 0051DDC0, 0051DC90, 0051E0A0, 0051E170, 0051DE30, 00428CD0, 005044D0, 00428F10, 003ABD50, 003ACC10, 003ACAA0, 003E7CC0, 003E7C70, 02B59D70, 02B59D71, 01F20AA0, 01F21F40, 01F22030"
 ---
 

@@ -2,7 +2,6 @@
 title: "Exception handling: x64 unwind data, funclets and the C++ EH tables"
 kind: "system"
 category: "Compiler and C runtime"
-summary: "How exceptions and unwinding work in FFXII_TZA.exe: the .pdata and UNWIND_INFO records and the four handlers they name, the FuncInfo record with its unwind, try-block and IP-to-state maps, the cleanup and catch funclets in .text$x and what they jump to, the nine __try scopes, the one exception type the image throws itself, and the stream-sentry destructor clones the unwind maps reach."
 addresses: "02F98000, 00861EB4, 00808BA8, 00808F64, 00861ED8, 00861ECC, 00861EAE, 0080926C, 00715C70, 0016D6A0, 006DA980, 00809054, 008090C0, 008A5C0A, 005CD1E0, 007A3770, 005CCBF0, 00194B00, 008F34F0, 008968C8, 00896BE0, 001952E0, 01DEAAA0, 0019A4F0"
 ---
 

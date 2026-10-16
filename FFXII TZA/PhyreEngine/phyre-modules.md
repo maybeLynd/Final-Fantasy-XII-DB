@@ -2,7 +2,6 @@
 title: "PhyreEngine modules: the engine libraries linked into the game, where their code lies and how they start and stop"
 kind: "system"
 category: "PhyreEngine"
-summary: "The PhyreEngine modules in the executable: the fifteen PUtility module objects that register themselves before main on one list, the init walk that starts them and the shutdown walk and exit destructors that stop them, what each module holds by its RTTI class names, each module's code span and entry points, the namespaces that have no module object, and the member lists and function-to-class map kept beside the page."
 addresses: "02CACC90, 00D26BC0, 005A08E0, 005A0840, 005A0CB0, 01F2CDF0, 00166210, 006CCC10, 00167B90, 0059D550, 005A0D20, 005C5C80, 00608A40, 00654830, 006716D0, 00685AC0, 006A4100, 006C45F0, 006C4860, 006CCD60, 00875E10, 008762E0, 0087AE00, 00792350, 006388C0, 00639450"
 ---
 

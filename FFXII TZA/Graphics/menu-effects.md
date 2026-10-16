@@ -2,7 +2,6 @@
 title: "Menu effects: the 64-record registry that menu screens use to spawn, place and remove effects by id"
 kind: "system"
 category: "Graphics"
-summary: "The menu effect registry: the type-4 effect context a screen loads, the 64 records at 02EBDBC0 that map an id to a live effect instance, spawning with eviction of the oldest record when full, removal by id or by instance, the depth offset the Sky Pirate's Den sets per statue, the state query the License Board polls, and which screens drive it."
 addresses: "02EBDBC0, 02EBE5C0, 003B29B0, 003B2B40, 003B28F0, 003B2D80, 003B2BC0, 003B2AA0, 003B2930, 003B2CA0, 003B2CE0, 003B2F50, 0024C460, 0024C550, 0024F610, 0024B270, 0024FCF0, 0039B620, 0039B550"
 ---
 

@@ -2,7 +2,6 @@
 title: "Phyre math and camera: the matrix helpers, the renderer's camera matrices, node and bounds transforms, and the light and shadow terms"
 kind: "system"
 category: "PhyreEngine"
-summary: "The small vector and matrix helpers PhyreEngine's renderer is built from (point and vector transforms, transposes, the affine inverse), how a camera's world and view matrices are set on the renderer, how a node's world matrix and a mesh instance's world bounding box are computed, the look-at script method of PWorldMatrix, and the light attenuation, light and shadow compatibility and shadow-split values handed to shaders."
 addresses: "005DFCD0, 005DFDE0, 005EB670, 006107F0, 00185AF0, 001871B0, 0060CE50, 006A0E10, 006045E0, 005FD810, 005DC040, 0060E410, 0067F280, 005FF5A0, 006C18D0, 00606BE0, 006073D0, 0018A4A0, 01F2ED48, 01F2EDA8"
 ---
 

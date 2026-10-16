@@ -2,7 +2,6 @@
 title: "Runtime services: what the game asks Windows and the C runtime for, its crash dumps, threads and debug output"
 kind: "system"
 category: "Compiler and C runtime"
-summary: "The executable's dependence on the platform: the import table by DLL and how code reaches every slot, the start-up chain from the C runtime entry to the game's main body, the two crash-dump writers and the fatal-error box, the thread creators with their affinity, priority and naming, the debug channel the sound and post-effect libraries write to, the timer set-up, the text conversion it does not import, and the C runtime routines linked into the image."
 addresses: "00808D78, 007A3770, 007980A0, 0079AD50, 0079B1E0, 008A5AD0, 005CCBF0, 005CCD00, 005CCAB0, 005CCBA0, 005CD1E0, 00863430, 006DF480, 006DF3A0, 005CC980, 005CC930, 00781EC0, 0071D9E0, 01F40128, 02EA0B88, 008C2120"
 ---
 

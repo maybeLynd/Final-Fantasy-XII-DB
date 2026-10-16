@@ -2,7 +2,6 @@
 title: "Action definition row: power, targeting, range, element and flag fields of a battle action"
 kind: "format"
 category: "Battle actions"
-summary: "The 60-byte row every battle action is read from (magicks, technicks, items, summons, Quickenings, Foecraft, traps): where the 543 rows ship in battle_pack.bin and how they are bound at load, every field with the function that reads it, the three flag words bit by bit, and the shipped values."
 addresses: "00237FC0, 00236C30, 00238850, 003845F0, 0020E600, 00385F60, 0031C5D0, 0031EB20, 00390AB0"
 ---
 

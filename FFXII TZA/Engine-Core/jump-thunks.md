@@ -2,7 +2,6 @@
 title: "Jump thunks: every one-instruction forwarder, its target, and who reaches which of the two"
 kind: "reference"
 category: "Engine core"
-summary: "The 763 functions in the executable whose whole body is one jump to another function, and the 86 terminate landing pads that share one import stub; jump-thunks.tsv lists 568 of the forwarders and 85 of the pads with the target, the direct callers of the thunk and of the target, and whether the thunk's address is held in a data table; with how each forwarder is reached, the ten two-step chains in the table, the one forwarder that presets an argument before jumping, and the shared ret stub 0016D6A0 that both the Control Flow Guard slot and 2,528 call sites name."
 addresses: "0016D6A0, 0017E7D0, 00379F20, 0035B450, 0035B650, 00861EAE, 008A26E4, 00866B80, 005CD960"
 ---
 

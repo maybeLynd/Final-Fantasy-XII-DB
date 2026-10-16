@@ -2,7 +2,6 @@
 title: "Area battle data (.ard and .nmb): the per-area file of enemy definitions, class rows, stat rows, gambit order sets, motion overrides and preloaded models, and its companion"
 kind: "format"
 category: "Game files and data tables"
-summary: "The FF12AR03 .ard file each area ships: its eight-slot section directory, the four st2e tables that become the area's enemy definitions, class rows and base and growth stat rows, the gambit order-set directory, the per-area motion-file overrides, and the trailer list of script models the game preloads for the area and keeps loaded through an area change; how and when the game loads and unloads it, what it rewrites, and the 166 shipped files; and the .nmb beside each, one short entry per enemy definition, whose only constant-kind request belongs to a builder that never starts."
 addresses: "003EA6E0, 00264ED0, 003EA820, 003EA710, 0023A160, 003845F0, 003846F0, 02B5E0B8, 02B5E0C0, 003DCF00, 02B58178, 003DCA30, 02B58188, 02B58180, 003DCBC0, 003EA650, 0035A3A0, 0035AC60, 002628B0, 0025AFC0, 0037C910, 0037C3F0, 003DC8D0, 02B580B0, 0032FC30, 02EBF150, 02EBF168, 02EBF120, 02EBF148, 02EBF140, 003EA6B0"
 ---
 

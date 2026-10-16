@@ -2,7 +2,6 @@
 title: "Action results: the result record a resolved action produces and how it is applied to target and user"
 kind: "system"
 category: "Battle actions"
-summary: "The 0x148-byte result record every resolved action, status tick and effect change fills, field by field, and the applier that turns it into changes on the target and the user - levels, steals and poached items, statuses added and removed, HP and MP, Mist charges, effect bits and their timers, an enemy's stat and affinity changes, gil - in the order they happen."
 addresses: "003848E0, 003112F0, 00385BA0, 0030B9B0"
 ---
 

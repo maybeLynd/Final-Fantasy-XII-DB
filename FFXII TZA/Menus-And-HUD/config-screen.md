@@ -2,7 +2,6 @@
 title: "Config screen: the Config, Graphics Settings and Controls rows, what each change runs, and where each setting is saved"
 kind: "system"
 category: "Menus and HUD"
-summary: "The three settings screens: how Config opens and leads to Graphics Settings and Controls, every row with its shipped label and the setting it edits, what a change runs at once (vibration, screen shake, camera axes, speed multiplier, soundtrack, volume categories, graphics presets, display buffer, the confirm-button swap), the rows whose change waits for a confirm dialog or a restart, Restore Defaults and the Max. LP and Max. Gil rows, which rows step per press and which repeat, and where each setting is stored and when it is written."
 addresses: "0023FBE0, 002407F0, 0023BD40, 0017DB90, 001D1660, 0023CE10, 0215E6E0, 01F82D20"
 ---
 

@@ -2,7 +2,6 @@
 title: "Force fight mode: the flag behind the fleeing state, who sets it and what fleeing changes"
 kind: "system"
 category: "Engine core"
-summary: "The one dword that says whether the party is fighting or fleeing: its image value, the raw and the effective readers, the script verb and the R2 toggle that write it, the two enable bytes the writers respect, and every reader of the raw predicate with what it changes: command availability, combo continuation, engagement, the AI's approach distance, the battle locomotion divisors and the capability row."
 addresses: "01E0C2B8, 00253B90, 0030C0D0, 00253BA0, 00254EA0, 003444D0, 003BA2E0, 003BA300, 003BA310, 0050C910, 00266D10, 002628B0, 00252C80, 00252B60, 00253C70, 003603B0, 003603C0, 0035C6F0, 0035C880, 00366950, 003669F0, 003667E0, 00366870, 00276650, 00276D30, 002FFCF0, 00307D10, 00308130, 00308610, 00309A90, 0030C010, 0030FA00, 00313A00, 002E1C20, 002E1CA0, 00234590, 00336710, 00339BF0, 0033A720, 0033C310, 0033CEF0, 0033D3E0, 00267E10, 00307FF0"
 ---
 

@@ -2,7 +2,6 @@
 title: "Menu graphics containers (.as7): the compressed page archives behind item pictures and character silhouettes"
 kind: "format"
 category: "Game files and data tables"
-summary: "The big-endian A7 containers in bin_menu: a page directory and a shared static dictionary, the LZ page codec 00248500 and its walker 0024AA00, how the item-picture path decodes one 64 x 96 page into the itemgra_c atlas with an Item_Clut palette, how the silhouette path decodes 258 pages into each of two TIM2 images, the 18 shipped files, and the rules an edited container must keep."
 addresses: "0024AA00, 00248500, 02090788, 02091090, 00291C80, 0209BEA0, 00291D90, 00292050, 00292390, 01E0C470, 01E0C474, 002C8EE0, 0209E638, 002CEB40, 002CEFD0, 002CEE00, 0024A440, 0024A1D0, 002C9040"
 ---
 

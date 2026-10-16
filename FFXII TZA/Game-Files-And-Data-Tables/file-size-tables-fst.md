@@ -2,7 +2,6 @@
 title: "File size tables: the per-language .fst that sizes every file by resource kind and id"
 kind: "format"
 category: "Game files and data tables"
-summary: "The FileSizeTables/FileSizeTable_<lang>.fst files: a headerless table of 41 resource kinds by 5,000 ids giving each file's byte size or -1, how the game picks and reads one at boot, how request sizes come from it, why a -1 entry is never read, the 41 path arrays the ids index, which kinds are sized and what each holds, the kinds with paths but no sizes, and how the twelve language files differ."
 addresses: "002DF9A0, 02EC3EE0, 002DF960, 0032E400, 0032EB40, 002DF780, 0215F000, 01E88B00, 00B56AC8, 0032FCA0, 0024AC30, 022C51F0, 0032EA90, 0046DE50, 0032EC20, 0046E050, 0046DE80, 0046DD50, 00536F30, 00536DD0"
 ---
 

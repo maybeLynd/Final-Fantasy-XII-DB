@@ -2,7 +2,6 @@
 title: "Doors, gates and map changes: the override table the setmapid verbs write, what its floor, wall and mj bits block, the show and hide model masks and when a new map clears them"
 kind: "system"
 category: "World, areas and travel"
-summary: "How a zone script opens a gate or raises a barrier: the 80-entry override table at 0209A3E0 that setmapidfloor, setmapidwall and setmapidmj lay over every collision polygon's attribute word, which movement kinds each bit blocks, the ground field, the path reset every write triggers, the route-graph edges that consult the same table, the two 64-bit masks behind showmapmodel and hidemapmodel, and the map bind that clears all of it."
 addresses: "0209A3E0, 0026E880, 003792E0, 003795A0, 00379430, 00232020, 00230A40, 0022F8B0, 0026E300, 00379010, 0026E5F0, 0026E960, 003278D0"
 ---
 

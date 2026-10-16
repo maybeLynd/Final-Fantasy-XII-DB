@@ -2,7 +2,6 @@
 title: "Area of effect: radius, cone and line targeting, which side an area hits, and the target list"
 kind: "system"
 category: "Battle actions"
-summary: "How a battle action turns its one chosen target into everyone it hits - the radius byte, a circle on the target or on the user, cones and lines, the side rule that follows the chosen target and ignores Confuse, which units an area skips, the whole-party flag and the 32-entry target list."
 addresses: "0030D160, 0030AB40, 002FFF50, 0031A990, 00316CF0, 00316CD0, 00316D70"
 ---
 

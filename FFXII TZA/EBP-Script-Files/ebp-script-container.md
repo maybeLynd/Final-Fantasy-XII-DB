@@ -2,7 +2,6 @@
 title: "EBP script container: the twenty-slot directory of every zone and event script, and the walk that hands each section to its loader"
 kind: "format"
 category: "EBP script files"
-summary: "The .ebp file: how a zone or event script is requested by namespace and index with its companion files, read whole into a resource arena, and walked by one function that dispatches each present section of its twenty-slot directory to its own handler; the header and section table, the pending word that holds the script back until every part is bound, the teardown, and the shipped files measured over all nine language trees."
 addresses: "003304A0, 0032FCA0, 0032FC30, 00330310, 0032E400, 0032E620, 002DF980, 002DF9A0, 0036A100, 0036C660, 00332250, 022C6E48, 022C6C00, 0032F1B0, 0032ED80, 0032F430, 0032F850, 00330190, 00330220, 00332100, 00330060, 0032FA10, 0032FAC0, 00331610, 003316B0, 0032FB70, 00330110, 003320E0, 00332110, 003320D0, 0032ED70, 00332130"
 ---
 

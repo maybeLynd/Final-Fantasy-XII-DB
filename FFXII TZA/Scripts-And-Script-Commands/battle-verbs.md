@@ -2,7 +2,6 @@
 title: "Battle verbs: what a script can do to a unit's battle actions, the one commit every action passes through, and the verbs that change stance, thinking and emergency state"
 kind: "system"
 category: "Scripts and script commands"
-summary: "How a zone script reaches into combat: the single commit every battle action passes through and the four native callers that feed it, how the next action is chosen, the issued command and the one verb that reaches it, the emergency verbs that set the two engagement bits and draw weapons, the reset verbs that install the default order set, the thinking switch that cancels a unit's action, the force-fight stance machine, the ability and status grants of the battle setup verbs, and the verbs that look like battle verbs and do nothing."
 addresses: "0030F760, 00305AB0, 0030FA00, 00312FA0, 00311CF0, 00311B20, 003138D0, 00346EB0, 003460C0, 00346620, 00311E90, 00311F50, 00307D10, 00347970, 003473E0, 00346A10, 0030F2D0, 01EEC3C0, 01EEC410, 002ECF10, 0034E160, 0035A720, 00356530, 00344740, 0035AE10, 003419F0, 00357F00, 003DDB40, 01EFE9D0, 00510440, 002390B0, 005103B0, 002394C0, 0034CB60, 00341DB0, 0050E980, 00356970, 003444D0, 00305CC0, 003105D0, 0030AB40, 00313B30, 00308270, 002FFCF0, 01EEC298, 01EEC320, 01EEC370, 01EEC2B0, 01EEC2D0, 00317E60, 00342230, 00328BD0, 003137F0, 0030D9A0, 0031B8C0, 00426130, 00426C90, 002FEDC0, 00301140, 00313480, 0034E530, 0035A7A0, 00343290, 0030BFB0, 0035AB20, 0035A680, 00347460, 00238B70, 00238AE0, 0030FED0, 0030E130, 0030E360, 0030EAE0, 003446D0, 00268530"
 ---
 

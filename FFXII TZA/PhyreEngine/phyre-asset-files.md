@@ -2,7 +2,6 @@
 title: "PhyreEngine asset files: the .phyre cluster header, the packed namespace, the instance data and how the loader reads and fixes up a cluster"
 kind: "format"
 category: "PhyreEngine"
-summary: "The .phyre file that holds every model, texture, shader and animation of the remastered art: the 84-byte cluster header, the packed namespace that names every class and field the file uses, the instance lists, user fixups, header-class tables, packed fixup tables and D3D11 buffers in stream order, the loader that checks the header, binds the file's schema to the engine's registered classes and converts each object to its runtime layout, and a census of all 35,984 shipped files."
 addresses: "0019CB20, 00637C50, 0059E070, 0059A3B0, 0059A6F0, 0059C180, 00686D00, 0069E780, 0059D550, 02CA9D90, 0059AAE0, 0059B430, 00599500, 0059AC00, 0059E300, 0059E780, 0059D6A0, 0059F500, 0059D590, 0059E880, 0059D940, 0059CE30, 0059C700, 0059C250, 00686DE0, 02CAA0A0, 00676450, 00675EF0, 00676BD0, 006753A0, 00675580, 006D4CF0, 006DA380"
 ---
 

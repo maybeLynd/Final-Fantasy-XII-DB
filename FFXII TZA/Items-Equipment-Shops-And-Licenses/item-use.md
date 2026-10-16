@@ -2,7 +2,6 @@
 title: "Using an item: how a Potion is an action that costs an item, when the item is taken, given back or kept, and why enemies never spend items"
 kind: "system"
 category: "Items, equipment, shops and licenses"
-summary: "How an item is spent in battle: the action row whose category byte marks it as an item and names the item it uses, the reservation taken when the action starts, the consume that keeps it spent and the refund that gives it back when the action is cancelled, the gil reservation that works the same way, the record kind that lets enemies use items for free, and the 51 shipped item actions."
 addresses: "0030EF20, 00305640, 00300280, 003105D0, 00309060"
 ---
 

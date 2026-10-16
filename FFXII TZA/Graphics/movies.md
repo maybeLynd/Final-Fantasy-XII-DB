@@ -2,7 +2,6 @@
 title: "Movies: the .mh seek index and the movie player's states"
 kind: "format"
 category: "Graphics"
-summary: "The full-motion movie files and the object that plays them: the PS2-era .mh seek index shipped beside the movie paths and never read, how a movie id maps to its path pair, and the movie player singleton's start, update, fade-out and time read-outs that the script layer drives."
 addresses: "01F81218, 001B7F20, 001B82F0, 001B7F30, 001B8400, 001B83B0, 001B82A0, 001B7D30, 001B7690, 001B77B0, 001B77E0, 00184810, 001848A0, 001848E0, 0035B840, 0035B8D0, 0035B740, 0035B7D0, 002DF980, 01ECB4D0"
 ---
 

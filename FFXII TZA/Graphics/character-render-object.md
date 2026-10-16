@@ -2,7 +2,6 @@
 title: "CharacterRenderObject: the per-character draw object, its model instances, shader bindings and the transform publish"
 kind: "system"
 category: "Graphics"
-summary: "The object that draws one character: how a render record gets one and gives it back, its 0x668-byte layout and 31-slot vtable, the ready byte that gates it, the 0x318-byte shader binding record kept per mesh, the double-buffered publish of the PS2 z-bias values, matrices and fog colour, the bone palette copy, and the 0x260-byte render model instances and their draw list."
 addresses: "00903B68, 001F4DA0, 001F52F0, 001F51E0, 001F6E70, 001F6D60, 001F89E0, 001F7790, 0018D240, 001FB120, 001FAD50, 001F9A80, 001FA3D0, 001F9B20, 001FA1A0, 001FAA10, 001FA820, 001F6E50, 001F86D0, 001BD4A0, 001BD840, 001BDAB0, 01F81248, 0017F0D0, 0017F100, 0017EFC0, 003703A0, 0053AB50, 0053D780, 00504700, 00477F20, 004780C0, 005049E0, 003E55B0, 00189120, 01F7F598, 001F5D70"
 ---
 

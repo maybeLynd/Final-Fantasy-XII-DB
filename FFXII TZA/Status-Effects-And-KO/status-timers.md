@@ -2,7 +2,6 @@
 title: "Timed statuses: how long a status lasts, when Poison, Sap and Regen tick, and what else each unit runs every frame"
 kind: "system"
 category: "Status effects and KO"
-summary: "The periodic step every battle unit takes each frame: what stops it, the countdown that ends a timed status, the beat on which Poison, Sap and Regen drain or heal and the Petrify and Doom counts step, the HP Critical line, Stop freezing the other timers, the buff timers, the area drains of HP and MP, the out-of-combat healing of a disengaged enemy, and the Esper dismiss, traps, walking MP, pickups and enmity decay that follow."
 addresses: "00310DB0, 00385DF0, 00386C70, 00385570, 00385CA0, 00386860, 003112F0"
 ---
 

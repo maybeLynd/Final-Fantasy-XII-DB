@@ -2,7 +2,6 @@
 title: "Saving and loading: the save slots and their files, the save screen's states, the six-step save transaction, the storage queue, the file layer's read and write rules, the area-change autosave and what a load runs"
 kind: "system"
 category: "Saving, loading and settings"
-summary: "How a manual save and a load are carried out: the slot files and their names, the save and load screen's state machine and its popups, the transaction that zeroes the image header on disk, deletes the slot's old files, writes the whole image and then stamps the header, the storage queue and the worker commands behind it, the stream primitives that make a short read report zero, the autosave the game writes to slot 0 when an area changes, and the lifecycle that normalises a loaded image. It also covers the slot list and its status table, the slot scan that reads every slot's header, the save-data check the title screen runs, and the shipped list of area changes that do not autosave."
 addresses: "00580EB0, 005819F0, 00581DA0, 00581B70, 00582040, 003BB920, 003BB9B0, 003BB2F0, 00866A00, 00862590, 00866AD0, 0057E4D0, 0057E310, 00582860, 00862130, 0057FE80, 0057F8C0, 0057EFE0, 00580CD0, 00580840, 003BA990, 008621E0, 003BA680, 003BB790, 001C1720, 02B407C0"
 ---
 

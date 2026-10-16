@@ -2,7 +2,6 @@
 title: "Actor model rebuild: the state machine that reloads an actor's model, attachments and body for its current definition, and what runs it"
 kind: "system"
 category: "Characters and objects"
-summary: "How the engine brings an actor's loaded model in line with its current definition: the 12-byte rebuild record, the 24-state machine that hides the actor, swaps the main model, the pool entry at actor +0x20, the two attachment parts and the part pair, the motion lane and the body replacement, waiting on each load and re-requesting a stale one, then places and shows the actor; and the party read-in verbs, the world tick, battle setup, unit spawn and the scene step that run it."
 addresses: "0037B4D0, 0037B4C0, 00377DB0, 02ADD0D8, 002EBB80, 002E96B0, 002E96D0, 0031C250, 0031BEC0, 0031BE30, 002EB7A0, 002EAE20, 002EB540, 002E9810, 002E97C0, 002E4C20, 002E4C30, 002E3DC0, 002E3F00, 002EBD60, 002E3C20, 002E3110, 002E28E0, 002EBC90, 0031C540, 0026D610, 00321380, 002E8450, 0036EC10, 0036F0F0, 0036ECA0, 002ED910, 022D9AB0, 022D9AE0, 00320170, 002EB9D0, 002EB490, 002EC6B0, 0037CB90, 00377A90, 0031BAC0, 00233AD0, 002DEBD0, 002DEB90, 0037C730, 0037C980, 0037CA00, 0037CA80, 0037CB50, 0037C1A0, 0037CE80, 0037C8D0, 003523B0, 005101B0, 00359880, 02EBF3D0, 02EBF3F0, 0034E3E0, 00233AA0, 0031C2F0, 00233CF0, 0037CF50, 00510160, 00342C90, 0037CFD0, 0037CB80, 0037CB10, 002EA6A0, 002E8FD0, 022C8010, 00359800, 00359A30, 0035A0A0, 0035A240, 002E6090"
 ---
 

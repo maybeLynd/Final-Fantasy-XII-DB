@@ -2,7 +2,6 @@
 title: "Gil: storage, the gil cap, every way gil changes, and the Plunderer and Spendthrift counters"
 kind: "system"
 category: "Rewards: EXP, LP, gil and loot"
-summary: "Where gil is stored, the single setter that clamps it to 0-99,999,999 and meters every change, every function that changes gil (kills, chests, shops, quest rewards, script verbs, character joins, presets, action costs, results, debug), the gil-gained and gil-spent totals and the achievements they unlock."
 addresses: "00253690, 00254EE0, 003004B0, 00300500, 00316A50, 00309060, 002F95D0, 00312280, 003F4AA0, 0050FAF0, 002524C0"
 ---
 

@@ -2,7 +2,6 @@
 title: "Party slots: the nine seats, the five slot maps the game reads them through, and how a seat reaches its battle unit"
 kind: "system"
 category: "Party"
-summary: "How the party is seated: the nine two-byte seats of the live party, four active and five reserve, the four copies the battle, the battle menu and the rest of the game read instead, how a new game fills them, how the copies are rebuilt for summons, chocobo rides, towns and scripted party modes, and the functions that turn a seat into a stats record or a battle unit."
 addresses: "0031B9F0, 0031B810, 00320AB0, 00329CC0, 003266C0, 0030D9A0"
 ---
 

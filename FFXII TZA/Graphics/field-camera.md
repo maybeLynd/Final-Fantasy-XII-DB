@@ -2,7 +2,6 @@
 title: "Field camera: the follow camera, its stick and mouse control, wall avoidance and target framing"
 kind: "system"
 category: "Graphics"
-summary: "The camera that follows the party leader in the field: the camera-record mode that runs it, the orbit of heading and height level and the curve that turns the level into pitch and distance, the stick, mouse and recentre input, Camera Auto-Rotation, the probes and sweeps that keep the camera out of walls and floors, the over-the-shoulder framing of a targeted actor, and the depth-of-field focus it requests."
 addresses: "00259990, 003D9930, 02097D30, 0032AEC0, 0032B1C0, 0032B390, 0032B4D0, 0032DF40, 0032C910, 0032D3D0, 0032D620, 0032DC00, 0032C650, 0032B9C0, 0032CF50, 0032C3E0, 0032C180, 0032C2B0, 0032BCC0, 0032BB00, 0032BEB0, 0032CD20, 0032B900, 0032CA70, 0032D250, 0032D000, 001825C0, 001894D0, 0032B600, 0032B790"
 ---
 

@@ -2,7 +2,6 @@
 title: "PS2-era .bin families: every .bin file family under ps2data, the loader that reads it and what it holds"
 kind: "reference"
 category: "Game files and data tables"
-summary: "One row per .bin family in the archive's ps2data tree (146 families, 1,439 files): its locales and size, leading bytes, the resource kind and id the path arrays give it, which locale copies the executable names and which copy each of the twelve languages reads, the function that requests it, what it holds and the page that covers it. Also the shared pack directory, the 20 families no path names, and the loose battle tables that repeat battle_pack.bin entries."
 addresses: "002DF9A0, 01E0280C, 0032E400, 0032E620, 00249210, 00249180, 00384420, 002368D0, 00238260, 002385D0, 01E09F68, 00378540, 00268750, 002467A0, 00246A10, 00280750, 00280670, 002808D0, 00280980, 00280AD0, 003658F0, 003643A0, 0039C3F0, 0039C150, 0036FFF0, 0037CCC0, 00259DF0, 003DCBC0, 0029CED0, 002C8EE0, 00291C80, 00561390"
 ---
 

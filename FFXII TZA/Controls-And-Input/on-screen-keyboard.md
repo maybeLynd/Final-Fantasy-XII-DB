@@ -2,7 +2,6 @@
 title: "On-Screen Keyboard: the F9 overlay that shows every keyboard binding, its seven panels, the key colours and the keys that light up while held"
 kind: "system"
 category: "Controls and input"
-summary: "How the On-Screen Keyboard works: F9 opens and closes it, the task that draws it, the seven panels and the controls and keymap profiles each lists, the picture of the keyboard and mouse with each key tinted by the panel of its control, the keys that light while held, the key-cap sets chosen by keyboard layout and game language, and the refresh after a binding changes."
 addresses: "0017DE60, 0027E9E0, 002878E0, 0209AC18, 0209AC50, 00287C20, 002891A0, 00289040, 00197790, 01DF0E80"
 ---
 

@@ -2,7 +2,6 @@
 title: "File path resolution: how a file name becomes bytes through the RAM file cache or the archive, the stream reader, and what lives under .dat and .bin"
 kind: "system"
 category: "Game files and data tables"
-summary: "How the game opens a file by name: the PStreamReaderFile stream and its read, seek, open and close slots, the resolver with its selector and log tags, route 1 into the RAM file cache (the upper-case key, the 33-multiplicative hash, the name filter, hits, stamps and views) and route 2 into the archive (the lower-case key and MD5), how an archive hit is copied into the cache, the cache's memory budget, insertion, eviction and view release, and the formats that share the .dat and .bin extensions."
 addresses: "00597970, 00597930, 0059EE90, 0059D920, 0059D4B0, 0059BD40, 0059FDA0, 0059FD10, 0059ED70, 00D26C60, 00D26C90, 001D6B20, 001D6B90, 001D6B70, 00865390, 001DB050, 01F83440, 01F83441, 001D6D20, 0020C1B0, 0020C440, 00674A00, 0020C300, 00217A60, 00217A70, 00217AD0, 0019AEE0, 0059A9B0, 001D6BB0, 0020BFA0, 0020B130, 001D6A20, 0020B680, 0020B5F0, 0020B0F0, 0020B840, 001D6AA0, 0020B9A0, 00599250, 00D27930, 00D27910, 00D27948, 00597A20, 00597A70, 0059BD80, 0059D900, 0059FBA0, 0059D510, 0020C150, 0020B0D0, 0020B150, 0020C560"
 ---
 

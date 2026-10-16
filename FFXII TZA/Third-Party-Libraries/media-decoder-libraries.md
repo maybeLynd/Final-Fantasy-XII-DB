@@ -2,7 +2,6 @@
 title: "Media decoder libraries: libwebm, libvpx VP8, libvorbis, Tremor, libogg and the CRI HCA decoder as the game uses them"
 kind: "system"
 category: "Third-party libraries"
-summary: "The decoders linked for movies and sound: libwebm's mkvparser and libvpx 1.6.0's VP8 decoder with libvorbis for the WebM movies, opened in one call that picks the video and audio tracks; and the CRI HCA decoder and Tremor with vorbisfile and libogg for the sound driver's bank materials. For each, what identifies it, its span, the entry points the game calls, and the VP8 codec interface with its control map."
 addresses: "0067A480, 00679A50, 00679600, 006CCB00, 0016F070, 01CDB290, 01CDB320, 0016DEC0, 0016DFE0, 0016E040, 0016DDD0, 0016EE70, 0016F080, 00801210, 00803190, 008800C0, 00882AC0, 007F5970, 007F6750, 007F6280, 007F6730, 007BA7E0, 0017C890, 01CEB590, 00121DB0, 01CBA5D0, 01CBA610, 00679BF0, 006CC6A0, 006CC7C0, 0016FE80, 001294D0, 007FF1C0"
 ---
 

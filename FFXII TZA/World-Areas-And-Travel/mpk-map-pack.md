@@ -2,7 +2,6 @@
 title: "MPK map pack: the sections of a map file, the two packs a field loads, how the loader splits and binds them, and what each section holds"
 kind: "format"
 category: "World, areas and travel"
-summary: "One .mpk per zone under plan_master/map_ctrl: a count of 32, 32 section sizes and the sections back to back, each behind a 0x40-byte slot. Entering a field requests two packs, the field's own and its block's, carves each into 32 arena blocks in place, keeps sound, world (YM00), navigation, actor control, lights, pictures and placements, and frees the rest; the YM00, ACTL, SP1, WD and MRP containers are laid out here with their consumers, and the 550 shipped packs are censused."
 addresses: "00331990, 00378A60, 00378030, 0036B980, 00378BC0, 003775D0, 00378120, 00378230, 002F6AB0, 003E8940, 003E8230, 00363B40, 003631B0, 00379870, 003C63A0, 0037AA90"
 ---
 

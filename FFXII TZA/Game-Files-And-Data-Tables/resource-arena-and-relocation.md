@@ -2,7 +2,6 @@
 title: "Resource arenas and relocation: the fifteen memory arenas, block headers, handles, the movable-block tree, compaction, and how moved effect data is repaired"
 kind: "system"
 category: "Game files and data tables"
-summary: "How the game's resource memory is laid out and moved: the arena records and their boot sizes, the current-arena stack, the 0x40-byte block header and its corruption check, suballocation from the free lists, the 32-bit address encoding, tagged handles and their slot table, acquiring and releasing a handle and the tree of blocks that may move, compaction and the allocation-pressure retry, the mover's order of operations, and how an effect file's stored pointers are repaired after its source moves, with the 32-bit limits each step carries."
 addresses: "022D7FD0, 00369D30, 0022A0B0, 0036C1D0, 0036C140, 022D89BC, 022D89C0, 022D89B8, 0036A490, 00369860, 0036C660, 0036A100, 0036A190, 0036BC60, 0036BFE0, 0020E600, 0020E620, 01F83530, 0036B130, 003AB7F0, 0036A000, 0036D170, 003AB880, 003AB940, 00369800, 0036A9C0, 0036B410, 0036B4E0, 0036C790, 00369C60, 0036AAD0, 0036ABE0, 0036A2A0, 004746F0, 00369CF0, 003697C0, 002E65A0, 003B3480, 0024D970, 0024D940, 003AA3D0, 003A9BA0, 003A9860, 003A8FF0, 005004C0, 0036C5A0, 002E6D60, 002EA320, 0036B160, 0036C4B0, 0036C6C0, 0036CAD0, 0036D050, 0036A240, 0037B450, 0037B330, 0024AC30, 0024AB30, 0024AB60, 0036A570, 0036A850, 00369760, 0036C1F0, 0036B670, 0036B730, 0036B7F0, 0036B8B0, 0036C9D0"
 ---
 

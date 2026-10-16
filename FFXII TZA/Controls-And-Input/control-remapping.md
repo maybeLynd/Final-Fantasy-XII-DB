@@ -2,7 +2,6 @@
 title: "Control remapping: how the Config screen binds a key, the swap when a key is already in use, the keys that cannot be bound, the default profiles and how a change reaches the game"
 kind: "system"
 category: "Controls and input"
-summary: "How remapping works: where the three keyboard profiles live, the Config screen's binding rows and which profiles each row can edit, what a row shows and the key names per keyboard layout, capturing a key, the assignment with its result codes, the yes-or-no swap when the key is in use, clearing a binding, the reserved keys, publishing a profile into the records the game reads, the Circle and Cross exchange, saving on leaving the screen, restoring the defaults, and the gaps a modder can hit."
 addresses: "01F80F90, 0023C5C0, 001E1050, 00198A00, 01DF13E0, 00195DF0, 00198B60, 00198960, 002414B0"
 ---
 

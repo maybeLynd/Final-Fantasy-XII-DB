@@ -2,7 +2,6 @@
 title: "EXP, LP and level-ups from kills: who receives them, the formulas, the split, the doublers and the EXP table"
 kind: "system"
 category: "Rewards: EXP, LP, gil and loot"
-summary: "How a defeated enemy's EXP and LP are computed from its level and its two reward rows, which party members receive them, how EXP is divided and LP is not, the effects that double, zero or convert them, the caps, the EXP-per-level formula with its values, and where the totals are stored."
 addresses: "00312280, 002F8BB0, 002F90C0, 002F8F20, 0023A570, 0028FB80"
 ---
 

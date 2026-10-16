@@ -2,7 +2,6 @@
 title: "Animation channel binding: how an animation curve finds its target and how rotation, scale and translation become a bone matrix"
 kind: "system"
 category: "PhyreEngine"
-summary: "PhyreEngine's PAnimation channel binding: the nineteen channel semantics, the six binder classes that turn a named channel target into a target record (data member, shader parameter, method, function, scene node, mesh-instance node), the per-frame composer that folds rotation, scale and translation channels into a matrix and hands other channels to memcpy or a setter, the additive and weighted slot marking, and the two shipped map clusters that use it."
 addresses: "005C0820, 005C1160, 005C0C90, 005C0B60, 005C72A0, 005A7E90, 005C6020, 005C61A0, 01F2CE40, 01CEBBA8, 00D317D8, 00D31768, 005AF3B0, 005C0E00, 005C1000, 00D31850, 00D31868, 005B2D60"
 ---
 

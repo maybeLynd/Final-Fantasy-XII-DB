@@ -2,7 +2,6 @@
 title: "Bin_menu images: the headerless 8-bit guest portraits and area icons pasted into menu pictures"
 kind: "format"
 category: "Game files and data tables"
-summary: "The eighteen headerless bin_menu .bin images (mini_guest_face, map_efe00-06, face_guest07-16): raw 8-bit colour indices with no palette of their own, the requests that pick a file from a guest's character id or the first set area flag, the three routines that copy them row by row into a sub-image of the menu pictures mini_face_c, partytop_8_c and battle_4_c and re-upload it, the 162 shipped copies, and the size and palette rules a replacement must follow."
 addresses: "0035C5B0, 0035C430, 00283270, 002CEAE0, 002CE980, 003C9A30, 003C9950, 003C9E50, 00280750, 00280670, 00181580, 00180C80, 00180A70, 0024A5A0, 022CA470, 0209AC30, 022C314C, 0031A7B0"
 ---
 

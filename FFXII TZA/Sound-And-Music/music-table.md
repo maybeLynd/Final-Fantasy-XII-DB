@@ -2,7 +2,6 @@
 title: "Music table: the file that names each area's music track, how the story changes it, and the boss-music flags"
 kind: "format"
 category: "Sound and music"
-summary: "The music control file musicctrl.bin and the track flag file musicinfo.bin: where each is loaded and kept, the page and run layout of the field-to-track table and its in-place rebase, the lookup with its story-counter ladder, the boss-music bit that keeps a track through chocobo and summon music, every run of the shipped table with its zones, track and ladder, and what an edit changes."
 addresses: "00379D20, 003EAB60, 003EAB90, 003EAA70, 02B5E0D0, 00360C70, 022CBA50, 00361010"
 ---
 

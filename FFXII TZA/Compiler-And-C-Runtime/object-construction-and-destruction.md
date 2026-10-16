@@ -2,7 +2,6 @@
 title: "Object construction and destruction: vtable installs, deleting destructors, deallocators and owned buffers"
 kind: "system"
 category: "Compiler and C runtime"
-summary: "The compiler's object code in FFXII_TZA.exe: constructors that install the base vtable and then their own, the scalar deleting destructor and its flag in edx, the two-bit form in which bit 0x4 sends the sized delete to a do-nothing body, the deallocator chains to free and _aligned_free, destructors that rewind to the base vtable (the 26 PInputSource classes named by RTTI), the counted buffer whose top bit marks borrowed storage, and EASTL allocators that free through their own vtable."
 addresses: "00809950, 00210EB0, 0019C590, 00584730, 0019C570, 0016D6A0, 007AD450, 0085E710, 00210EC0, 001D70A0, 00195530, 0086CE50, 01CD6268, 0015BC40, 00792350, 001EDF00, 005CA130, 00627750, 00623F50, 0019CA20, 001A4250"
 ---
 

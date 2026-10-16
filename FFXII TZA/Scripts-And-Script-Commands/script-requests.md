@@ -2,7 +2,6 @@
 title: "Script requests: how a script function is filed on an actor's channels, selected, started, waited on and retired"
 kind: "system"
 category: "Scripts and script commands"
-summary: "The request machinery behind every scripted action: the per-actor entry pool and its channels, the REQ opcode family that files a function on another actor, the engine filers that turn touches, talks, map exits and spawns into requests through the per-slot arming mask, the three admission kinds, the highest-channel-first selection, the start of an entry, the start-wait and end-wait notifications, and the RET and cancel paths that retire an entry."
 addresses: "00268850, 003DBB60, 003DBBF0, 003DBAE0, 003DB790, 003DBCF0, 003DB7A0, 003DB6E0, 003DBDC0, 003DB2A0, 003DB420, 003DC050, 003DBF60, 003DC0D0, 003DC1B0, 003DB580, 003587C0, 00358A00, 002652D0, 00266BD0, 0026B4A0, 0025D5E0, 0025C230, 0025C830, 0025BAD0, 00268D10, 0025B600, 0025B2E0, 00269640, 00269860, 00268EA0, 00266C50, 00268B10, 00269BA0, 00266530, 0025DF00, 00263230, 00263050, 0025B500, 01E0C328, 00314020, 003DB1F0, 00267310"
 ---
 

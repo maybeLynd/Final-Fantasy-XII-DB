@@ -2,7 +2,6 @@
 title: "Movement step: how yaw, pitch and speed become a character's per-frame displacement, when motion is flat, and how animation takes the wheel"
 kind: "system"
 category: "Movement and pathfinding"
-summary: "The innermost movement seam: the per-frame driver that runs steering, computes the step, publishes the angles and integrates the position; the class gate every movement call shares; the spherical decomposition of yaw, pitch and speed and the flat branch that drops the pitch; the two controller flags and the runtime gate that choose flat or three-dimensional motion; the animation-state override that replaces or decays the step; the pass-through path; the two integration paths and the displacement measure; and the setters that feed the angles and the speed, including the battle unit's intent."
 addresses: "002E5030, 002E4380, 00424080, 002E5610, 002E5380, 002E54A0, 002E5C10, 00329B00, 0026D6F0, 0026D6A0, 0026A330, 002E55C0, 0026A0D0, 0026A060, 0023A070, 00265200, 00265020, 00267260, 00264460, 003B7730, 003B6ED0, 003B7E10, 003B7E20, 003A1D30, 002E9BB0, 002EC5B0, 0025DF00, 00263C80"
 ---
 

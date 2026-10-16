@@ -2,7 +2,6 @@
 title: "Dialogs: the confirm window behind every yes-or-no question, notice and the item sort, and three single-screen boxes"
 kind: "system"
 category: "Menus and HUD"
-summary: "The shared confirm window and the boxes that sit beside it: who creates the confirm window and with which flags, what each flag bit changes (cancelling, notice mode, timed dismiss, any-button confirm, the header label, the backdrop and the confirm sound), its stages and the answers it posts back, the item screen's sort bar, the Clan Primer's category list with its four records, and the license board's description box."
 addresses: "0057C480, 0057C380, 002CDF20, 002CE370, 00566680, 0056F810, 00556F90, 00D23688"
 ---
 

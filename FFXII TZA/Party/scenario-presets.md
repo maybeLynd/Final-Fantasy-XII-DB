@@ -2,7 +2,6 @@
 title: "Scenario presets: every numbered save-data set a script can load, with its party, levels, gear, gambits, licenses, gil and items"
 kind: "reference"
 category: "Party"
-summary: "The 50 scenario rows and 226 party-preset rows of battle_pack.bin that a script loads by number at the next area start: for each scenario, who sits in the nine party seats, who leads, the gil and the items, magicks, technicks and key items it grants, and for each member it sets up, the level, the five pieces of gear, the gambit preset, the License Points or board, the MP share and the gambit mark."
 addresses: "0050F810, 00239960, 02EBF030, 02EBF028, 00236FA2, 00236FBC"
 ---
 

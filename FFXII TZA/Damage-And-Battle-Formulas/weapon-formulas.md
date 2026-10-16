@@ -2,7 +2,6 @@
 title: "Weapon formulas: each weapon type's damage recipe, bow, crossbow and gun rules, critical hits, and the Numerology, Traveler, Knot of Rust and Gil Toss recipes"
 kind: "system"
 category: "Damage and battle formulas"
-summary: "Which damage recipe each weapon class uses and the formula it runs: the stat scale per weapon type, the 12.5 % Attack Power variance, the random axe and hammer finisher, guns ignoring Defense and the evade bands, bows and crossbows losing accuracy in weather class 2 unless the wielder has augment 2, the ranged critical hit, unarmed attacks, and the four action recipes whose damage is not a stat formula: the Numerology streak, the Traveler walk, the Knot of Rust and Dark Matter bank, and Gil Toss."
 addresses: "00385F60, 0038AAF0, 0038A110, 0038A1F0, 0038A2D0, 0038A3A0, 0038A470, 0038A680, 0038AE50, 0038DB50, 00389140, 00389C60, 0038EBE0, 0038D970, 0038ED40"
 ---
 

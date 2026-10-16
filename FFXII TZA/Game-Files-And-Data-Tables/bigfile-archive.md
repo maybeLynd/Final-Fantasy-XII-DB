@@ -2,7 +2,6 @@
 title: "Bigfile archive: the VBF container, how its index loads and is checked, and how a read reaches the file"
 kind: "system"
 category: "Game files and data tables"
-summary: "The FFXII_TZA.vbf archive the game reads its data from: how it is mounted, the SRYK header, the index of MD5 keys, 32-byte entry records, names and the 64 KiB block-size table, the MD5 check over the index and what it does not cover, the lookup by the MD5 of a path, the pool of reader handles and how one is bound, sought and released, the thirty read records, how a read is planned block by block and inflated with zlib, the shipped counts, and the rules a repacker must follow."
 addresses: "0017CEB0, 0019B070, 001F4340, 001F4120, 001F4720, 001F3FD0, 0019AEE0, 001F47D0, 001F4250, 00214FC0, 00215290, 00215110, 0019AFE0, 0019A770, 0019A860, 0019AA20, 0080C5A0, 01F81110, 009038C8, 008C2140, 008C2EF0, 0017D280, 008098D4, 007A0A80, 001F4060, 002150B0, 001F4840, 00215220, 0019B200, 0019A660, 0019A6E0, 0019A9B0"
 ---
 

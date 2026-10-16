@@ -2,7 +2,6 @@
 title: "Vibration: the pad vibration that scenes and effects play, the request slots and their steps, the Vibration Function setting, and how the levels reach an XInput or Steam pad"
 kind: "system"
 category: "Controls and input"
-summary: "How the game vibrates a pad: the 32 request slots and their handles, starting a pattern from the eventvib.bin table (vibplay) or from an effect sequence, the stepping of the two tracks into two levels, pausing by mask, the hand-off to the pad channel, the Vibration Function setting, the fade-out after long vibration, the last-device rule, and the XInput and Steam calls that make the motors turn."
 addresses: "02EC0B80, 0035B2F0, 0035B580, 0035B650, 0035AF20, 0035AE30, 0035FED0, 0035F590, 0035F690, 001E1120, 007A2140, 0035B1A0"
 ---
 

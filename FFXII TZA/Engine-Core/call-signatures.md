@@ -2,7 +2,6 @@
 title: "Call signatures: the argument registers a function reads, from its own body"
 kind: "reference"
 category: "Engine core"
-summary: "For 562 functions from across the executable, call-signatures.tsv gives the argument count and the integer and float argument registers each body reads before writing them, whether the entry stores an argument in its home slot, and whether the count is only a lower bound because the body tail-jumps on; a second table lists the twelve that also read stack arguments, a third the 40 that sit in a class's virtual table."
 addresses: "0079D730, 00309EC0, 0026D6D0, 0079D620, 00311CD0, 00197710, 008628F0, 0085DDE0, 00325EA0, 0030FE60"
 ---
 

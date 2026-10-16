@@ -2,7 +2,6 @@
 title: "Save data fields: the regions of the save payload, who writes and reads each, and the access table"
 kind: "reference"
 category: "Saving, loading and settings"
-summary: "A map of the save image's persistent payload (the bytes after the 0x200-byte header): the span a new game clears with its script operand bank, script globals, quest arrays, zone transition record, flag banks and music override; the copy of the battle-state block head; the image-backed state block with the navigation-map exploration table, the Clan Primer and achievement bit sets and the inventory counts; the checksum; the two group banks and spawn-keep images; the transition metadata record; and the battle-state block. The companion table lists every payload access verified against the executable, by offset, function, site and instruction."
 addresses: "002EF2B0, 002EF2D0, 00253970, 00253A80, 00229B40, 005843E0, 00584580, 005844A0, 00233440, 00233550, 0025D8E0, 00269A20, 002EF3C0, 002EF410, 00238A80, 00233C10, 002370C0, 00583D60"
 ---
 

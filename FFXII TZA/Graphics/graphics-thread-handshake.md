@@ -2,7 +2,6 @@
 title: "Graphics thread handshake: the shared command-state word, the GS register batch and the waits around them"
 kind: "system"
 category: "Graphics"
-summary: "How a frame hands its GS command stream over through the one dword at 02EBA3F8: the GS register batch 0036D400 writes, the three publishers that store a buffer address, a record count and 0x100 into the word, the reset burst at the start of every frame state, the settle-spin clear at the end, the vertical-sync callback that zeroes the word from the TkSyncv thread, the effect-capture bit, the fence word that nothing writes, and the census of the spin loops that cannot wait."
 addresses: "02EBA3F8, 0036D400, 0036F360, 003A2D80, 003A2E30, 0036F2F0, 0036F2C0, 0036D7E0, 0022BFD0, 0035E9A0, 0035EC90, 00369100, 02EAF6D8, 003749F0, 00376050, 02F8F2E0, 00D10F88, 022D8EAC, 022D8EB4"
 ---
 

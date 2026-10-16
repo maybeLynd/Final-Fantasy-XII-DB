@@ -2,7 +2,6 @@
 title: "Random number generators: the gameplay Mersenne Twister, the shared gameplay LCG, the graphics-noise Mersenne Twister, the C runtime rand, the presentation bit-feedback generator, the counter hash and the PPFX xorshift, with their constants, seeds and states"
 kind: "system"
 category: "Random numbers"
-summary: "Every random source in the game: the Mersenne Twister that combat and chests draw from and how it is seeded at boot, lazily and on a save load; the three-step linear congruential generator that loot, the chain, spawning and the AI share and its per-area counter seed; the second Mersenne Twister that only the noise texture uses; the C runtime rand; the bit-feedback generator behind presentation effects; the counter hash and the xorshift128 inside the post-processing code. Each with its state address, step formula, seed and draw count."
 addresses: "00863BF0, 00863C80, 00866B90, 00866D60, 00863D30, 00328370, 00328D80, 0018EE20, 0018D740, 0015BCF0, 003D8E50, 004005E0, 006B05E0, 0074BDE0"
 ---
 

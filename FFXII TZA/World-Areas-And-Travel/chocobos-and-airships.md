@@ -2,7 +2,6 @@
 title: "Chocobos and airships: riding a chocobo, the ride timer and its dismount, and aerodrome travel"
 kind: "system"
 category: "World, areas and travel"
-summary: "What riding a chocobo is to the engine: one mode bit in the battle-state block and one persistent flag, the three-minute ride timer and the turbo timer in the shared timer slots, the dismount task that fades, swaps the party back and clears the flag, the menu's Dismount command and the ground test behind it, the mode ladder that tells riding from the other modes, the music the ride selects, the verbs the keeper and crystal scripts use, how a save carries the riding bit, and airship travel, which has no verb of its own and is a gil charge, a scene and a map jump in the aerodrome scripts."
 addresses: "00303D90, 00303EE0, 00303EC0, 0030D9A0, 003135C0, 00303F00, 003514D0, 00347230, 00347820, 00347C60, 00356630, 00355910, 0033F650, 0050F8A0, 0037CFF0, 0037CFC0, 0037D100, 00304440, 00234590, 00303CC0, 00336390, 0017D380, 0017D3A0, 0031B8C0, 00311E20, 0035CFA0, 0035C960, 0035CA70, 003CA310, 003CA860, 00304680, 00304060, 00304140, 00237DF0, 0034EE20, 0034DD90, 0032AB60, 003EBA90, 003EBB70, 003EBC50, 003EBD00, 002E73C0, 002EB030, 00263750, 00306760, 005843E0, 002EF3C0, 002EF410, 00261F90, 002DEE50, 003611F0, 0026A7F0, 00342E50, 00265680, 001D50D0, 005C5230"
 ---
 

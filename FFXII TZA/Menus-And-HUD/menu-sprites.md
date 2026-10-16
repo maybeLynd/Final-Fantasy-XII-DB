@@ -2,7 +2,6 @@
 title: "Menu sprites: the shared picture atlases, how a sprite is found and drawn, the hand cursor, arrows and marks, and the pulsing selection bar"
 kind: "system"
 category: "Menus and HUD"
-summary: "How menu code draws its small pictures: the five shared atlases from texpack_ys.bin and the ten battle and party atlases, the sprite records in each picture's eXt block and the lookup by set, group and frame, the palette byte, the draw calls with their flip and rotation record, the hand cursor and its five directions, the one helper per arrow, triangle, wing, bubble and mark, the battle menu's ON and OFF, and the list selection bar with its pulse."
 addresses: "002467A0, 00280750, 0024B0C0, 002D8BB0, 002DB080, 002426F0, 00242C90, 00244500, 002445A0, 002445C0"
 ---
 

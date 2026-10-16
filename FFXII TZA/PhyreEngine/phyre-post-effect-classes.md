@@ -2,7 +2,6 @@
 title: "Phyre post-effect classes: the PhyreEngine post-effect family the game links, which classes have bodies, and the one it runs"
 kind: "system"
 category: "PhyreEngine"
-summary: "PhyreEngine's PPostProcessing classes as the executable carries them: the 37 RTTI classes, the 36 nine-slot vtables and what each slot does, the nine classes with render bodies and the passes they draw, the inert MLAA and SSAO, the class-descriptor factories and the post-effect manager, the PFXAA the game builds and runs itself, and the shipped data, which names none of the classes."
 addresses: "00D61E50, 00655DC0, 006575E0, 00657680, 006571C0, 00657150, 006571A0, 00657140, 0065B8F0, 00653CD0, 00653B20, 0065B270, 00652940, 0060CD10, 0060B980, 00640280, 00642F50, 0018CD90, 00645DB0, 0065A630, 0065A640, 00191DA0, 0018FD70, 001EE8E0, 00649070"
 ---
 

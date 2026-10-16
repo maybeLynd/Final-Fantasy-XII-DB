@@ -2,7 +2,6 @@
 title: "EBP navigation icons: the NAVIICN2 block a field map script carries for its minimap markers"
 kind: "format"
 category: "EBP script files"
-summary: "Section 4 of a field map's .ebp script: the NAVIICN2 icon block bound to one global, the accessors that read it, how each icon kind names a position entry of the zone script, which kinds and icons the minimap shows and where it places them, the verb that moves an actor to an icon's object, the shipped blocks, and the rules an edit must follow."
 addresses: "00332100, 003DFDC0, 02B59D58, 003DFCC0, 003DFBE0, 003DFDD0, 00400CF0, 00400550, 00352430, 003DFA50, 003DFDA0, 0032A8A0"
 ---
 

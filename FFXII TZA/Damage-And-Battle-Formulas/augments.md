@@ -2,7 +2,6 @@
 title: "Augments: how a unit's augments, auto-statuses and status immunities are rebuilt from its character, gear, licenses and an enemy's script"
 kind: "system"
 category: "Damage and battle formulas"
-summary: "How the augment set of a unit is rebuilt after every change: the 64 innate augments of a character row, an enemy's scripted augments, one augment per armor or accessory, up to eight per owned augment license; the difference applied to the augment layer; the statuses and immunities that gear and an enemy's script add; how enemy affinity changes survive the rebuild; and the HP, MP and Mist clamps at the end."
 addresses: "0030FED0, 0030E130, 0030E360, 002390B0, 002394C0, 0030E060, 00323890"
 ---
 

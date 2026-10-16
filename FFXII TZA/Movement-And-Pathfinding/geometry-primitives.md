@@ -2,7 +2,6 @@
 title: "Geometry primitives: the unit sphere, cylinder and box tests behind collision, the collision-mesh ray cast that uses them, and the volume clamps"
 kind: "system"
 category: "Movement and pathfinding"
-summary: "The small geometry toolbox under movement and collision: the shape record with its transform pair, the segment-against-shape solver and its three unit-space primitives, the point-in-shape test, the polygon plane and winding predicates, the ray cast that walks the collision mesh cell by cell through those predicates, and the three clamps that pull a point into an authored ellipse, rectangle or segment chain, all computing in the shared VU0 workbench."
 addresses: "00380FA0, 00381AC0, 00381630, 00381450, 00381EB0, 00382020, 0046BF60, 0046BFA0, 0022E6D0, 0022CF50, 0022D4B0, 0022F430, 002315E0, 0022F8B0, 00233050, 0022D0D0, 00202E10, 00202B70, 00361DE0, 003623C0, 00363FD0, 00362230, 003631B0, 0025A8E0, 0025C830, 0046DB50, 0036DD80, 0036DD90, 0036DDA0"
 ---
 

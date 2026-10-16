@@ -2,7 +2,6 @@
 title: "Controls: how a key, button or stick becomes a game action, the control codes each device answers to, and how presses, holds and repeats are told apart"
 kind: "system"
 category: "Controls and input"
-summary: "How input reaches the game: the input manager and its poll, the three bands of control codes and the device each reads, the records that turn codes into a 16-button mask and four stick bytes, the movement-key modes, the 16-frame channel history, how a press, a hold, a release and a menu repeat are made, the stick dead zone and the stick-to-direction bits, the button words the game reads each frame, the device-state count, the confirm and cancel buttons and the verbs that read them, the mouse wheel in menu lists, whether prompts show pad buttons or keys, the six controls read straight from the keymap, and what each button does in the field."
 addresses: "01F7FFE0, 00196FF0, 00197160, 01DF1480, 0035F420, 0035FAC0, 0035FBD0, 002498B0, 02F97360"
 ---
 

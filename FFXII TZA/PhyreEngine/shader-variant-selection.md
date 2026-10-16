@@ -2,7 +2,6 @@
 title: "Shader variant selection: the eight context-switch axes and the variant key a draw uses"
 kind: "system"
 category: "PhyreEngine"
-summary: "PhyreEngine's context switches: the eight static switch objects (NUM_LIGHTS, LOD_BLEND, INSTANCING_ENABLED, SHADER_LOD_LEVEL, ORTHO_CAMERA, INDICES_16BIT, SKINNING_ENABLED, LOW_RES_PARTICLES), how each evaluates a draw into words of the variant key, the binary search of the effect's variant table, the -D defines the same objects write, the base switch built by name at run time, and what the 93 shipped effects author."
 addresses: "00606A20, 0060B980, 006B8D20, 02E522D0, 02E522E0, 006B9050, 006B9120, 006B90A0, 006B9070, 006B93D0, 006B9410, 006B93A0, 006B9450, 006B94C0, 006B9630, 006B9B90, 006B89C0, 006B8590, 005FDD40, 01F2EBC8, 00D80EA8"
 ---
 

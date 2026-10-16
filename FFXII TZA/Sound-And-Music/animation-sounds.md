@@ -2,7 +2,6 @@
 title: "Animation sounds: footsteps, swings and voices authored into animations, the twelve sound types, which variation plays and where it is heard from"
 kind: "system"
 category: "Sound and music"
-summary: "How an animation makes a sound: the two animation commands and the character's sound emitter, the twelve sound types with what each is authored for, the picker that chooses a variation and its silences from the presentation random stream, the body point each type is heard from, how the sample is found in the character's sound set with the ground type for footsteps, and the play routine's modes and gates."
 addresses: "00520C50, 00520D00, 0046CC70, 0046C250, 0046C6E0, 0046C8F0, 002E9D90, 003A6E60"
 ---
 

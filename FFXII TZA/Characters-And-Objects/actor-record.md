@@ -2,7 +2,6 @@
 title: "Actor record: the record every field actor is driven through, its pool, its classes, its sub-objects and its lifetime"
 kind: "system"
 category: "Characters and objects"
-summary: "The record behind every actor a manager owns: how the pool is sized and carved from the loaded script payload's per-sequence counts and the eight-entry descriptor table, the class and sequence byte, what the initialiser writes into a fresh record, the interior sub-objects (movement context, secondary context, resource entry pool, wait slots) and where each class puts them, the resource entry lists and the channel masks, the handle fields, and the two-phase release that frees the pool."
 addresses: "002679F0, 00266530, 00266AD0, 00266BD0, 003DB580, 003DB550, 003DBF60, 003DB2A0, 003DB640, 00358940, 0025B070, 002628B0, 003697F0, 00265020, 00263C20, 003589B0, 002659D0, 00269FC0, 0026BED0, 0026B480, 0026AD90, 0026AB50, 0026A140, 0026AD40, 00269EE0, 00269F60, 00265060, 002638F0, 002E9BE0, 002638C0, 00269DD0, 003EC5F0, 003EC690, 003DC710, 003605A0, 003E9970, 003B6C20, 003DEE10, 003DEC90, 0036DE70, 0036E080, 002A7A40, 002E2300, 00368AA0, 003EBD70, 003604D0, 0025A280, 002E63D0, 003EA200, 003E9100, 002E1630, 0036A280, 002E06F0, 0035AB50, 002ECBE0, 002EBDE0, 002697A0"
 ---
 

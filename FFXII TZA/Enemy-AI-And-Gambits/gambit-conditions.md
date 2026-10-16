@@ -2,7 +2,6 @@
 title: "Gambit conditions: every target condition with its id, what it tests, which target it picks and its shipped name"
 kind: "reference"
 category: "Enemy AI and gambits"
-summary: "All 256 gambit target conditions of battle_pack.bin section 7, ids 0x6000-0x60FF: for each, the name and help text the game shows, whether it looks at foes, allies or the character, the test it runs, the second test some conditions make on the character, the rule that picks one target when several match, its place on the gambit menu, and the instructions that show it."
 addresses: "02EBF0D8, 00238880, 00301AD0, 003087E0, 00308C20, 0031D034, 0031D0BE, 00327DE0"
 ---
 

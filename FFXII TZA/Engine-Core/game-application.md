@@ -2,7 +2,6 @@
 title: "Game application object: the root object, its vtable and the boot order"
 kind: "system"
 category: "Engine core"
-summary: "The root object of the running game: the static GameApplication at 01F7E350, its PhyreEngine base class and the thirty-one slot vtable it overrides, the archive mount and the window set-up the framework calls at start, the init job that builds the managers and closes the startup latch, the frame tick that drives the per-frame pump of thirteen singletons and the game step, and the pause flag and time scale the framework reads through it."
 addresses: "0015BC40, 0017CC70, 0017CEB0, 0017CF30, 0017CCD0, 0017CDE0, 0017CDC0, 0017CE50, 0017D090, 0017D0C0, 0017D120, 0017D160, 0017D1A0, 0017D210, 0017CFD0, 0017D170, 0017CDF0, 0017CE20, 0017D1E0, 0017D000, 0017D4C0, 0017D650, 0017D670, 0017D6B0, 0017D6E0, 0022A490, 0022A580, 00189000, 00189120, 0019A0A0, 001A11B0, 001B7EE0, 001C18A0, 001C2F00, 001D8CD0, 001BDA50, 001C0D40, 001BBFC0, 001A98B0, 00199790, 001997D0, 001E0550, 001E0590, 001E05E0, 001E05F0, 0018A620, 0018A7D0, 00186230, 005C5230, 001999D0, 00199F60, 0019DA30, 0019EB00, 001B9370, 00184F20, 01F82CD8, 001D89D0, 001D8AB0, 001D8700, 001D7A20, 001D8770, 001BAA30, 001E03F0, 00186010, 00187550, 00187860, 001876E0"
 ---
 

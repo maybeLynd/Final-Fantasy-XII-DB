@@ -2,7 +2,6 @@
 title: "Weather: the three weather slots of an area, the change roll on entering, the setweatherslot verb, the MWeather table, what the slot does to the sky, the map and combat, and the environment variant it selects"
 kind: "system"
 category: "World, areas and travel"
-summary: "Every area has three authored weather slots; entering it rolls whether the current slot is kept, using the probabilities the zone script authors, and the result is kept in the save and can be forced by a script. Applying a slot publishes the area's environment variant from map_ref.bin (the combat environment class and the terrain boolean), the 9-bit MWeather entry that sets the sky's wind preset, sun azimuth and elevation and the strong-wind combat class, and the per-slot map models, textures and effects."
 addresses: "0026D910, 0025ACA0, 0025ABA0, 002658B0, 002620E0, 00265920, 003565C0, 003777C0, 002E3D40, 0040AAD0, 0026E8D0, 00264F10"
 ---
 

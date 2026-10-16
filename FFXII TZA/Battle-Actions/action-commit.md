@@ -2,7 +2,6 @@
 title: "Action commit: locking in an action and target, the leader's target, the attacker mask and the idle-unit queue"
 kind: "system"
 category: "Battle actions"
-summary: "What happens when a battle unit commits to an action - the two accepted action-id ranges, the action and target written into the unit with a copy beside them, the target list started, the leader's hostile target recorded on its whole group, the attacker mask and count on the target, the release on cancel, and the queue that sends idle units back to action selection, at most 8 per frame."
 addresses: "0030F760, 00310780, 00313B30, 00308610, 00313CD0"
 ---
 

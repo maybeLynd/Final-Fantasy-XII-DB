@@ -2,7 +2,6 @@
 title: "License Board: the twelve job board files, the square grid each holds, and the squares every board shares"
 kind: "format"
 category: "Items, equipment, shops and licenses"
-summary: "The licd board file: its 8-byte header and its 24 by 24 grid of two-byte node numbers, what a node number indexes and the empty-square value, which file each language loads and how, the six functions that read the grid, the twelve job boards with their square counts and Second Board square, the sixty squares on every board and the fourteen Quickening nodes on none."
 addresses: "02EBF1A0, 00238260, 02EBF038, 00328990, 0055B3F0, 00556F90"
 ---
 

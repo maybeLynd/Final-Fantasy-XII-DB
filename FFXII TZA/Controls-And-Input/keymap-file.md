@@ -2,7 +2,6 @@
 title: "Keymap file: keymap.ini, the control config file, when it is read and written, its names in slot order, and the shipped defaults"
 kind: "format"
 category: "Controls and input"
-summary: "The keyboard control file keymap.ini: where it lives, the one read at input start-up and the checks that throw a file away, the line grammar the parser accepts, the 28 names that are the slots of each of three profiles, the control codes the values hold, the two times the game writes the file, the Circle and Cross exchange, and the shipped default bindings of all three profiles."
 addresses: "00197EE0, 00195060, 00198000, 00196550, 001965E0, 00198B60, 001993B0, 01DF11E0"
 ---
 

@@ -2,7 +2,6 @@
 title: "Battle unit construction: the party and enemy definition tables, the stats record a unit gets, the kind byte and the type partition"
 kind: "system"
 category: "Characters and objects"
-summary: "How a battle unit becomes a party member or an enemy from a definition id: the installer's split on the id's high byte, the enemy path through the area's enemy table and the spawn record, the party path through the party table and the battle-state block, the common stores, the fresh stats record with its level, equipment, licences, gambits and starting MP, the level grower and the experience curve, the handle re-key on a definition change, the kind byte at stats +5, and the partition of the type byte that the reward, availability and script code test."
 addresses: "0023A570, 0023AC80, 0030C470, 0030C650, 002F8F20, 00236100, 002B58B0, 00322050, 003220E0, 00322C50, 00323790, 0031A630, 00323910, 00327CB0, 00326030, 00327DE0, 002F8E90, 002F90C0, 002F8BB0, 0050FF20, 00309230, 00254A40"
 ---
 

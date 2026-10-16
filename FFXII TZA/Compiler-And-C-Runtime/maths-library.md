@@ -2,7 +2,6 @@
 title: "Maths library: the C runtime maths imports, the inline SSE maths and the floating-point setup"
 kind: "system"
 category: "Compiler and C runtime"
-summary: "Which maths routines FFXII_TZA.exe uses and where they come from: the 45 scalar functions imported from the system C runtime and how often each is called, the only four scalar square-root instructions, the sound engine's four-wide vector routines, the runtime's four-wide power routines and their CPU-level dispatch, the angle wrap and ground-plane distance helpers, the floating-point control calls, and the angle constants the image does and does not carry."
 addresses: "008C2BB8, 00861F14, 0016A270, 02EADEF0, 007D0F60, 007D1140, 007E9030, 007EF1E0, 007F25E0, 007F1EC0, 00809900, 00809920, 0080A270, 0080B8A0, 01F44858, 0033CB70, 0033CEF0, 004686D0, 003A1960, 0031E620, 0038EAF0, 006E5A20, 0077A8C0, 008C2D18, 00380190"
 ---
 

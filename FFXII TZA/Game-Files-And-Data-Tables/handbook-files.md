@@ -2,7 +2,6 @@
 title: "Handbook files: the hctg, hchk, hdat and himg files behind Clan Primer entries, how each is read, and what each field shows"
 kind: "format"
 category: "Game files and data tables"
-summary: "The menuhandbook files of the six handbook families: the hctg family catalog with its entry records, section captions, page map and Bestiary slot counts; the hchk unlock tables; the hdat text bundles with their glyph sheets, gated text slots and line programs; the himg picture bundles; how the data manager turns an entry into kind-7 resource ids and reads each field; the shipped files; and the rules an edit must keep."
 addresses: "005771F0, 00576F50, 00575870, 00575C30, 00575A50, 00575710, 00575B80, 005778F0, 00575D10, 00575DD0, 00576030, 005760A0, 00576740, 00576A50, 00577550, 00575E80, 00576860, 00576E30, 00576300, 00577A40, 00574900, 00D23740, 02CA9738"
 ---
 

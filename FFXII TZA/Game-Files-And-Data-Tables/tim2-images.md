@@ -2,7 +2,6 @@
 title: "TIM2 images: the PS2-era .tm2 picture format, how the game reads one, and the seven-slot image registry"
 kind: "format"
 category: "Game files and data tables"
-summary: "The TIM2 container behind the 447 .tm2 menu pictures, the nine menuquest.nfs glyph sheets and thousands of images embedded in packs, scripts and map files: the file and picture headers as the texture binder 0024A1D0 and the image registry read them, the 4-bit glyph-sheet block at picture +0x30, the eight-entry registry at 02AEE810 with its seven caller slots and its fillers and clearers, the shipped header values, and the rules a replacement must follow."
 addresses: "0024A1D0, 0024A480, 0024A4E0, 002493D0, 0208F580, 00181000, 00180E70, 00181250, 00181190, 0039BEC0, 00D11470, 02AEE810, 0039BF50, 0039BDA0, 003EFDF0, 0039BB60, 0039BB30, 0039BA30, 0039BAD0, 0039C150, 0039C3F0, 0029CAC0, 0029CB10, 0209C320, 0037F1F0, 003BC4E0, 00575710, 0020E600, 0020E620"
 ---
 

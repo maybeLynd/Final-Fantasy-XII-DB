@@ -2,7 +2,6 @@
 title: "Statuses: every status with its name, help text, duration, the statuses it cancels and blocks, and what it does when it lands"
 kind: "reference"
 category: "Status effects and KO"
-summary: "All 32 battle statuses of battle_pack.bin section 15 by id: the name and help line the game shows, the default duration and the Poison, Sap, Regen, Petrify and Doom beat, the statuses each one removes when it lands and the ones that keep it from landing, whether it counts as harmful, which Remedy cures it, whether it can be cast again while present, whether only party members can have it, and what its arrival or removal does."
 addresses: "02EBF118, 00236D94, 00387730, 003876D0, 0030E68A, 00387E5D, 0030E8C4"
 ---
 

@@ -2,7 +2,6 @@
 title: "Widget messages: every message id a menu element answers, what it means and who sends it"
 kind: "reference"
 category: "Menus and HUD"
-summary: "The 24-byte message record and the 56 message ids menu widgets use: the framework ids 1-26 with their senders (construction, per-tick update, draw, activation, focus, input turn, owner commands, runs and tweens, destruction and release), the command sub-codes a list or dialog posts to its owner, the private ids 29-53 of the battle menu and map screens and 285-289 of single screens, with handler and sender counts in widget-messages.tsv."
 addresses: "00247510, 002465F0, 00248030, 00245E60, 002473F0, 00244830, 002481C0, 00246C20"
 ---
 

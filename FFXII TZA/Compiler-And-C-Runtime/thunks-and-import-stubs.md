@@ -2,7 +2,6 @@
 title: "Thunks and import stubs: jump forwarders, argument-adjusting tail calls, import stubs and the import table"
 kind: "system"
 category: "Compiler and C runtime"
-summary: "The one-jump functions of FFXII_TZA.exe and how code reaches imported functions: the 763 five-byte forwarders and how each is reached, the tail calls that drop or rewrite an argument on the way, the 120 import stubs and where they sit, the import address table and the direct calls through it, the guard-check stub just past it, and how all of this changes a caller count or a hook."
 addresses: "008C2000, 01DEAB00, 00861E90, 00808888, 0080F2BC, 00861EAE, 00861EB4, 00861ED8, 00809958, 008C31C0, 00313F60, 00377C20, 00291D40, 0028E8B0, 002BE020, 0028FB40, 005A5850, 0016D6C0, 002A2BF0, 0025E3F0"
 ---
 

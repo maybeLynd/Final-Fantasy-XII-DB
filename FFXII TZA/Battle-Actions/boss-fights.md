@@ -2,7 +2,6 @@
 title: "Boss fights: enemy groups, the group-defeated signal, the battle freeze, the exit lock and the boss gauge"
 kind: "system"
 category: "Battle actions"
-summary: "How a boss or story fight is built from script pieces rather than one flag - enemies put into numbered groups, the signal that wakes the script when a whole group is defeated, the input lock and battle freeze around the aftermath, the commands that remove grouped or ungrouped enemies, the exit lock that stops zone exits, and how the boss gauge relates to the groups."
 addresses: "00239710, 00306E60, 00306F00, 00307030, 00307090, 00238B70, 00238AE0, 00264830"
 ---
 

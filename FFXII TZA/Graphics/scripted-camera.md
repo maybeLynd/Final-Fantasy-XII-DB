@@ -2,7 +2,6 @@
 title: "Scripted camera: the shot channels, the camera record stack, and how a camera reaches the renderer"
 kind: "system"
 category: "Graphics"
-summary: "The camera a script or cutscene drives, from the shot channels to the matrices the renderer reads: the per-frame channel tick, how a playing shot is published into camera record 5, the eight camera records and the active mask whose highest bit wins, the eased return to the behind camera, the eight one-frame submissions and the priority arbitration in the camera update, where the shake offsets land, the matrices it builds, and the Screen Shake option's gate."
 addresses: "003DA050, 002555D0, 0025A3B0, 0025A2C0, 0025A500, 0025A520, 02097300, 02098DEC, 00259820, 00257830, 00257520, 00256650, 003829D0, 02AED630, 003820C0, 02AED560, 00382B70, 0037D4C0, 0037D970, 02AEDEF0"
 ---
 

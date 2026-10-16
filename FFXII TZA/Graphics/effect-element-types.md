@@ -2,7 +2,6 @@
 title: "Effect element types: the handlers of every element type, what the verified types draw or change, and the kind-0x54 mesh record"
 kind: "system"
 category: "Graphics"
-summary: "The 65 effect element types that have code: their birth, update, draw, setup and release handlers per type range (0x00-0x0A, 0x40-0x42, 0x60-0x74, 0x80-0x97, 0xA0-0xAB, 0xD0-0xD1) with the shipped usage of each, the shared handlers, what the point, line, sprite, grid, mesh and registry types do, the blend modes of the point and line emitters, and the layout and census of the kind-0x54 mesh record that type 0x05 draws."
 addresses: "002F2D60, 002F2530, 00500470, 00442550, 0039C550, 004427D0, 0039C4C0, 0039D890, 0039D970, 0039D5A0, 0039D6C0, 01EFAC20, 02AEE900, 02AEE908, 004490D0, 00501A50, 00502280, 00502EA0, 004434D0, 00444340, 00449AB0, 004355D0, 00377190, 02ADBFE0, 00377230, 004640A0, 003AB960, 0047BE20, 003D7FF0, 00465690, 00465CD0, 003D92C0, 02092628, 00436D00, 003AA280"
 ---
 

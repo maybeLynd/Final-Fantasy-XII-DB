@@ -2,7 +2,6 @@
 title: "Actor manifest: the script section that lists the models its bind verbs name by position"
 kind: "format"
 category: "EBP script files"
-summary: "Section 12 of an .ebp script: a count and a list of 32-bit bound ids, each a model number and a letter class, stored on the script's actor manager at +0x100 and read back by index whenever a bind verb is given an argument above 0xFFFFFF; the loader, the reader, the 60,939 shipped entries and their letters, and the rules for editing the table."
 addresses: "0032FB70, 0026CE40, 00263F80, 002E9A60, 002640C0, 002ED6F0, 003304A0, 022C6DA8, 02099D70, 0026C8C0, 0032ED80"
 ---
 

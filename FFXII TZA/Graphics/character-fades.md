@@ -2,7 +2,6 @@
 title: "Character fades: the ten fade channels, their owners and the coast-down latch"
 kind: "system"
 category: "Graphics"
-summary: "How a character fades in, out and through states: the ten Q12 fade channels of a render record and how one ramps, which system writes each channel (distance fade and cull, attached pieces, the time stop, statuses, the viewer-inside fade, the script colour), how the channels are multiplied and carried to the model instance and the lighting, and the coast-down latch that lets a stopping character glide to a halt."
 addresses: "003E5D60, 003E5D00, 003E5D30, 003E4370, 00428940, 004293C0, 00520180, 002E8B10, 00428C40, 002E84B0, 002E8500, 0033F530, 0033FAD0, 0042E1F0, 0042F880, 0042E850, 0042D7A0, 003E48E0, 003E4240, 003E4730, 003E4780, 003E51F0, 0042CBF0, 004FD4B0, 002E83A0, 002EBC30, 0042ED30, 00424080, 004256E0, 01DFE0B4, 01F82E38"
 ---
 

@@ -2,7 +2,6 @@
 title: "PhyreEngine application framework: how the game process starts, runs its frames and shuts down"
 kind: "system"
 category: "PhyreEngine"
-summary: "The PhyreEngine framework layer the game runs inside: the start-up function that brings up Steam, the settings, the single-instance mutex, the engine modules and the window, the run setup that calls the game's initApplication and initScene slots and starts the update thread, the per-frame update that calls the input, animate, resize and render slots, the window procedure's deferred requests, and the close, shutdown and restart paths."
 addresses: "007A3770, 007980A0, 00792350, 02EA5368, 0079E520, 0079B300, 0079F150, 007A4190, 007A4250, 007A4310, 007A3110, 007A0340, 00793E8C, 0079C140, 0079D920, 00798FF0, 0079B160, 0079B190, 0079EDD0, 007A42D0, 007A42E0, 0017E030, 0017E050, 01CB2508, 01CB2480, 02EA5245, 02EA5220, 02EA5228, 02EA5230, 007A0180, 00799980"
 ---
 

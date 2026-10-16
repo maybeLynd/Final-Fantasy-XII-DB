@@ -2,7 +2,6 @@
 title: "Which roll uses which generator: combat, chests, loot, the chain, spawning, AI, movement, script verbs and presentation, what reseeds each, and what loading a save changes"
 kind: "system"
 category: "Random numbers"
-summary: "The map from every random decision to the generator it draws from: the battle formula rolls, status ticks, weather, chests, treasure placement, field actions and the script rand verbs on the gameplay Mersenne Twister; loot, the chain, the chain bonus, spawn placement, enemy levels, AI action choices and random headings on the shared LCG; the C runtime rand callers; the presentation generator's users; which of them a save load, an area change or a boot reseeds, and which rolls can and cannot influence each other."
 addresses: "00379CD0, 00379CE0, 00328370, 022C256C, 02EB3870, 008C3098, 003D8E50, 0022A410, 005843D3, 00234320"
 ---
 

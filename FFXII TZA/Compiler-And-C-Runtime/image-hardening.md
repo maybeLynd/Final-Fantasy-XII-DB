@@ -2,7 +2,6 @@
 title: "Image hardening: the executable's load address, DEP, Control Flow Guard and stack cookies as built"
 kind: "system"
 category: "Compiler and C runtime"
-summary: "What the PE headers and the code of FFXII_TZA.exe say about its protections: a fixed load address with relocations shipped but no ASLR, DEP requested with no writable and executable section, Control Flow Guard instrumentation in the runtime that the loader never switches on, live per-process stack cookies and range checks that fast-fail the process, the shared do-nothing body at 0016D6A0, and the teardowns that end in it, including Phyre's 12 by 12 scalar-conversion tree."
 addresses: "00808EE4, 00809B8C, 00808C40, 00809654, 00809620, 00809728, 0080973C, 01F44830, 01F44838, 008C31C0, 008C31C8, 0016D6A0, 00896270, 00809958, 0059A030, 0059D2D0, 01F2CDA0, 02CA9D91, 0067F700, 00594EB0, 00594350, 02D3E880, 00165F80, 008B1B00"
 ---
 

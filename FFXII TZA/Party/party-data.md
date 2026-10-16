@@ -2,7 +2,6 @@
 title: "Party data: every field of the block the save game keeps for the party, above the forty member records"
 kind: "reference"
 category: "Party"
-summary: "Each field of the 0x7410-byte party block behind 02EBF190: the magic and flag word, the forty member records, the owned-item counts and learned bits of every inventory class with their backups, the bazaar flags, the five slot maps and the leader, the walked distance, the summon and chocobo state, the battle mode words, the Traveler, Knot of Rust and Numerology counters, and the forty members' gambit banks, with each field's width, meaning, and the functions that write and read it."
 addresses: "02EBF190, 00233C10, 002370C0, 0030B6A0, 00320A40, 0031B9F0, 00327C40"
 ---
 

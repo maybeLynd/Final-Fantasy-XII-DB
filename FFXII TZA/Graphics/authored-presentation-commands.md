@@ -2,7 +2,6 @@
 title: "Authored presentation commands: the command handlers and their ramp channels"
 kind: "system"
 category: "Graphics"
-summary: "The presentation commands authored in model and motion data and run on a character's render record: how the stream is walked and dispatched through the pair table and the two handler banks, what each registered handler does, and the five ramp channels that commands 0x0D to 0x10 drive on the character's shadow entry, with the tick that advances them and the shadow build that consumes them."
 addresses: "0041DA90, 01EFFAF0, 02CA4410, 02CA4670, 0041D6C0, 0041D6D0, 0041CCA0, 004269A0, 002EA320, 002EA5F0, 00417AD0, 00417C60, 004173D0, 00417440, 00417460, 004174D0, 00426870, 00520800, 02B40528, 003B6890, 003B6A90, 003B69B0, 003B6A10, 003B6950, 003B5890, 003B5C00, 003B5D40, 003B62D0, 02B40524, 003B6930"
 ---
 

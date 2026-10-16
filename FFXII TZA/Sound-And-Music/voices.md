@@ -2,7 +2,6 @@
 title: "Voices: the voice packs a cutscene loads, the sixty-four voice slots, the English or Japanese choice, and the verbs that play, stop and pan a line"
 kind: "system"
 category: "Sound and music"
-summary: "How spoken lines in cutscenes play: the 64 global voice slots, one per pack sub-file, the .vpc and .vpcjp packs an event loads with both languages loaded and one chosen, the pack and cue-table formats, the cue word and its range rule, every voice verb with how often the shipped scripts call it, the pass that starts a line once its stream is ready, stopping, panning and volume, and the Voice volume category."
 addresses: "02B5D0B0, 003EA0D0, 003E9F80, 003E9C10, 003E9780, 003581B0, 002DDE20, 002DF690"
 ---
 

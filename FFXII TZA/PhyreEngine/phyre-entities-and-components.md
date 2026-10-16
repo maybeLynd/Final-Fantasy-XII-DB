@@ -2,7 +2,6 @@
 title: "Phyre entities and components: PEntity, its component list, the world-matrix registry and the hooks that run on loaded components"
 kind: "system"
 category: "PhyreEngine"
-summary: "PhyreEngine's gameplay layer in the executable: the 0x38-byte PEntity with its singly linked list of PComponent objects and its world matrix, the ordered tree at 01F2EB40 that maps a world matrix back to its entity, the script methods PEntity publishes (addComponent, removeComponent, getComponent, setWorldMatrix, FindEntityForWorldMatrix, FindEntityForObj), and the hooks that fix up entities and components when a cluster is loaded."
 addresses: "006AB7E0, 006AC300, 006ACA70, 006ACAC0, 006ABEC0, 006ABF40, 006AB600, 006ABFA0, 006AB410, 006AADD0, 006AFF00, 006AF4F0, 0069ECE0, 01F2EB40, 01F2EB78, 02E4EAF0, 02E4E720, 0067F6F0"
 ---
 

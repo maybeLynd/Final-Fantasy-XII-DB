@@ -2,7 +2,6 @@
 title: "Frame update order: what runs each frame for the field, the battle layer and every unit"
 kind: "system"
 category: "Engine core"
-summary: "How one frame of the running game advances: the seven-state main loop and the handlers behind the title, the field, the full menu and the capture frames; the field frame's time accumulator that decides how many whole simulation steps run; the simulation tick's prologue, its five actor-manager slots and sixteen sub-steps, and its fixed tail; the field frame orchestrator that runs once per step for slot zero; the per-unit battle frame bound to every unit record; and the battle-state word the frame reads and writes bit by bit."
 addresses: "0022A490, 0022A580, 00229F00, 00229EA0, 0022B6E0, 0022B7E0, 0022A770, 0022B8C0, 0022AF50, 0022BC20, 0022B000, 0035EB70, 0035EC80, 00314020, 0025BFB0, 0032FC30, 00267310, 00234590, 0025D9E0, 00234520, 003DB1F0, 002623A0, 002EEEB0, 00233F70, 001EBA40, 0022BEB0, 00332590, 0037C2E0, 0035E7A0, 00265A20, 00267240, 002671C0, 00300FC0, 002341C0, 0023B020, 00238A60, 00238AE0, 00238B00, 00238B20, 00238B70, 0032A200, 0050F2E0, 0050F170, 0050F380, 002E09A0, 002E2240, 0035E6F0, 00360080, 0035E9F0, 0035E9B0, 00358510, 00358280, 003586A0, 00358550, 00229ED0, 00233700, 00233640, 002335D0, 0023B200, 0026A5B0, 00360710, 00360A50, 002342F0, 002368D0, 0032A170, 00308610, 003590D0, 0031B770, 0026B730, 0036F460, 0027E9E0, 002507C0, 0022BFB0, 00307FF0, 00322190, 0030C3F0"
 ---
 

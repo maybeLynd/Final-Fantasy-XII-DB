@@ -2,7 +2,6 @@
 title: "Item and ability ids: the sixteen-bit id space, the fifteen inventory classes, the thirty-two-class validator and the query record"
 kind: "system"
 category: "Engine core"
-summary: "How one sixteen-bit number names an item, a piece of equipment, a loot, a magick, a technick, a gambit condition, a key item, a quickening, a reward package, a bazaar good or an amount of gil: the top nibble selects one of fifteen inventory class descriptors, the descriptor's handlers keep a count or a bit per id in the battle state block, a thirty-two-class validator bounds every id against its authored table, and one query record of 0x98 bytes answers every menu's name, description and quantity question. Also the empty id 0xFFFF and its one-byte twin 0xFF."
 addresses: "00309440, 01EEBCC0, 0030B6A0, 00322C50, 00323054, 00309EC0, 0030AE30, 0030ADC0, 00309F30, 003008A0, 002FD150, 002FD8D0, 002FD420, 002FD970, 002FD530, 002FD640, 002FD780, 002FD880, 00325F40, 00252E60, 002535D0, 0031C5D0, 0031E598, 0035D330, 0035D380, 0035E070, 00236C30, 003845F0, 0020E600, 00254EE0, 00253690, 0046A630, 00512CD0, 02EBF190"
 ---
 

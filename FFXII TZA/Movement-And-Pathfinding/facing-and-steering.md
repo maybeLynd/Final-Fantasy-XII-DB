@@ -2,7 +2,6 @@
 title: "Facing and steering: how a character turns, the steering request and its two slots, scripted moves and turns, and what resumes after a cutscene"
 kind: "system"
 category: "Movement and pathfinding"
-summary: "The three angles a steerable actor carries and the two wraps that fold them into a single turn; the facing writer and what a facing change costs; the steering request record, its two inline slots and the depth-one push and pop that let a character resume its walk after a scripted interruption; the steer toward a target with its speed ramps, arrival test and near flag; the five turn modes the per-frame integrator runs, including the untimed and timed turns and the animation-driven turn; the look-at shapes; and the verbs that drive all of it."
 addresses: "0026B5A0, 0026B620, 0026B6A0, 0026C090, 002E5E10, 002E5F90, 002E5FB0, 00265200, 0026A0D0, 0026A060, 0026AE90, 002E45E0, 002E55C0, 0026AE30, 0026ADF0, 0026B450, 0026A640, 00269C30, 0026AF10, 00357A20, 00357980, 0026C120, 002E5750, 002690D0, 0026C330, 0026C300, 002E60C0, 003A1C50, 003A19C0, 003A1AD0, 002EBE50, 002E8EE0, 002EC3F0, 002EC2C0, 002EBFA0, 002EC140, 002EC1C0, 002EC380, 0026A8E0, 0026A870, 0026A950, 0026AAD0, 002E5B60, 002E5B90, 0026A1A0, 00269F90, 002627C0, 002EAB80, 002EAAA0, 00263230, 00263050, 0026AFE0, 003EC040, 002EA780, 00263CC0, 00265600, 00264460, 0025DF00, 003A1BB0, 0026D630, 00265580"
 ---
 

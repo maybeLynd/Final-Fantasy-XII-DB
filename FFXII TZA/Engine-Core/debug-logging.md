@@ -2,7 +2,6 @@
 title: "Debug logging: the log call, its sink and the console prints the shipped game still runs"
 kind: "system"
 category: "Engine core"
-summary: "The three ways the executable formats text: the PhyreEngine log call 005CDAA0 that formats every message into a 16 KB stack buffer and hands it with a channel number to a sink whose only action is a debugger break on channel 4, the vsprintf wrapper 0019C5D0, and the plain printf 0017D280 that writes boot and script-debug messages to a standard output no window shows; with the sink's lazy construction, the C runtime options word, and the census of channels the 245 log sites pass."
 addresses: "005CDAA0, 005CDB90, 005CDA30, 005CD9C0, 008AADA0, 0019C5D0, 0017D280, 0016D670, 0018A320, 00809C50, 0036FCC0, 0017D9D0"
 ---
 

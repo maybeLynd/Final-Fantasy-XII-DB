@@ -2,7 +2,6 @@
 title: "Stat growth on level-up: HP, MP, Strength, Magick Power, Vitality and Speed per level, starting stats, and the level-up notices"
 kind: "system"
 category: "Rewards: EXP, LP, gil and loot"
-summary: "What changes when a character gains a level: the shared HP/MP growth table with its random bonus, the per-character Strength, Magick Power, Vitality and Speed growth bytes with each character's values, the starting stats and starting gil, the cap of 99, who can set a level, and the level-up message, popup and sound."
 addresses: "0030C650, 002F9A60, 002F9B20, 002F9BD0, 0030C470, 00863BF0"
 ---
 

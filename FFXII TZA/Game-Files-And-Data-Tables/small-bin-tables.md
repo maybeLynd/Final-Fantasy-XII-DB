@@ -2,7 +2,6 @@
 title: "Small .bin tables: footstep sounds, controller vibration, battle window sizes, the button legend, quest window texts and summon colours"
 kind: "format"
 category: "Game files and data tables"
-summary: "Six small PS2-era tables the game reads whole and uses in place: soundfoottable.bin (FOOT), eventvib.bin (VIB0), menubtlwndinfo.bin (bwind), key_signal_data.bin (signe), questbase.bin (QST1) and summoneffectdata.bin. For each, its kind and id, its requester, the byte layout as the reader takes it, what the reader does with each field, the shipped values and what an edit must keep."
 addresses: "00378540, 002E9D90, 00379E90, 0035B3E0, 0035B650, 0035B2F0, 0035AF20, 0035AE30, 0034AC30, 0035C5B0, 0035C3F0, 0027BDE0, 0027DED0, 0029DC90, 0029DA70, 0029DBE0, 0029E330, 00473D20, 00473B90, 00473C90, 003B53C0, 003B5340, 0036FBB0, 0036F9F0, 02ADD0C0, 02EC0B68, 022CA460, 0209C4A0, 02CA6C60, 02AD9B60"
 ---
 

@@ -2,7 +2,6 @@
 title: "Quests: the ordered and cleared state each quest keeps in the save, its progress byte and word, the verbs that change them, and the bug that clears the wrong ordered bit"
 kind: "system"
 category: "Story, events and hunts"
-summary: "How a quest is tracked: the save payload's ordered bits, cleared bits and clear total, the scenario byte and contract word each of 256 quests has, the field id recorded when a quest is first ordered, the OK bit, the script verbs that read and write each, the clear verb that clears another quest's ordered bit, and the clan rank count that reads the cleared bits."
 addresses: "0046B3F0, 0046B290, 0046B490, 0046B350, 0046B380, 0046B240, 0046B1A0"
 ---
 

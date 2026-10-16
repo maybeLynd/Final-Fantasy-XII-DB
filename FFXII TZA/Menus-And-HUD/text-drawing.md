@@ -2,7 +2,6 @@
 title: "Text drawing: how a line of menu text becomes glyph quads, the drawing classes that draw them, and the border shader that outlines it"
 kind: "system"
 category: "Menus and HUD"
-summary: "How a glyph becomes six vertices in a per-font batch, how the text flush turns the batches into drawing objects, the eight DynGeo drawing classes and their three shapes, the shared ten-layer draw body and its Final and Shadow variants, how menu text is drawn as a white mask, a border shader pass, the coloured glyphs and one composite quad, the pre-drawn shadow atlas path and the aspect row the shipped settings leave off, and where the painter's state is kept."
 addresses: "001E8070, 001E8580, 002142A0, 00213FE0, 00212E70, 00213140, 00214210, 0209D490"
 ---
 

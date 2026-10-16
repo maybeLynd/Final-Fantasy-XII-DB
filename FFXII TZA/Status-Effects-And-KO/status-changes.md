@@ -2,7 +2,6 @@
 title: "Gaining and losing statuses: how a status is added or removed, what can refuse it, and what happens the moment it lands"
 kind: "system"
 category: "Status effects and KO"
-summary: "The one function every status change goes through: the two eligibility gates and what raises them, the Esper shortcut for KO, Stone and X-Zone, the six modes over the three status words, the duration and beat it starts, why nothing happens unless the status's presence changes, Bubble ending halving HP, the statuses a new one cancels, the status reaction and the two battle messages, and what each status does on arrival or removal."
 addresses: "0030E360, 0030B9B0, 0030B8E0, 0030B770, 0030B7F0, 00386A70, 003284D0, 0046A800, 00300140, 00300FC0"
 ---
 

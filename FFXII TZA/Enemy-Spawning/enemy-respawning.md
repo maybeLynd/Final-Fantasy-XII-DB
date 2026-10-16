@@ -2,7 +2,6 @@
 title: "Enemy respawning: death counts, cooldowns, the group table that wakes a zone script, and the two-area memory"
 kind: "system"
 category: "Enemy spawning"
-summary: "What happens to a spawned enemy after it dies: the death count, the second stamp and the per-entry rolled cooldown and death limit, the clock the stamp is measured on and what a runtime reset does to it, the two readers of the cooldown and how they differ, the group table that records member deaths and completes a group when every registered member is dead, the lock and the word a completed group posts for the zone script, the two spawn-keep banks that remember the last two areas and the return window that decides whether a bank is kept, and what the save image carries of all this."
 addresses: "00300530, 002395A0, 0032A100, 0032A160, 0032A150, 00235F50, 00235FB0, 002366E0, 00236670, 00235720, 00306E60, 00239710, 0050F8C0, 00306F00, 003250F0, 00307110, 00307030, 003070E0, 00233D20, 0026ADC0, 00307140, 00238B70, 00238AE0, 00307090, 002342F0, 00233780, 002368D0, 00235340, 00235330, 00237DF0, 00233C10, 00233440, 00233550, 00234990, 002352E0, 00300E40, 002350C0, 00328370, 003148F0"
 ---
 

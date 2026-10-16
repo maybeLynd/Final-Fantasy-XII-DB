@@ -2,7 +2,6 @@
 title: "Battle locomotion: how a combat unit picks its step and heading, the turn limiter, spacing and avoidance, detour and stall recovery, and the corridor probes"
 kind: "system"
 category: "Movement and pathfinding"
-summary: "The solver that moves a battle unit each step: the navigation step that routes it and builds the solver context, the two solver variants chosen by the unit's definition, the quadratic arrival curve that sets the step distance, the heading turn limiter with its three angles and two rates, the six steering modes a countdown runs, the spacing and avoidance pass with its randomised manoeuvre, the detour and stall recoveries, the corridor probes that test a step against moving units, walls and the obstacle grid, the order goal decoder, and what the solver writes back."
 addresses: "00325BB0, 0033A720, 00339DF0, 0033B6F0, 00337470, 00335180, 0033CC80, 0033A240, 0033D890, 00337C10, 00336CE0, 00336710, 003394A0, 0033BED0, 00339BF0, 003364D0, 0033CB70, 00334120, 0033A570, 00338140, 0033D660, 003343D0, 0033C870, 00334E00, 0033E1F0, 0033C200, 0033BD70, 00334950, 003347C0, 0033C310, 0033BFB0, 00339F00, 0033CEF0, 0033D200, 0033CE60, 0033CDE0, 0033BAA0, 0033BC80, 00334AB0, 00334C30, 00335B60, 003357B0, 0033D3E0, 00335E50, 0033A3D0, 00335F90, 00391410, 00312730, 00253B90, 0030A130"
 ---
 

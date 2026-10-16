@@ -2,7 +2,6 @@
 title: "Fonts: the font files a language uses, their kerning pairs and expansion lists, and how digits and glyphs are laid out"
 kind: "format"
 category: "Menus and HUD"
-summary: "The PC font files: how a language picks its font list, the font data header and 0x24-byte glyph records with the flag word that asks for kerning and expansion files, the kerning pair and expansion list layouts and their loaders, how a kerning pair is looked up between two glyphs, how a glyph's advance is computed, why every digit of a number takes the width of a zero, and how a text code becomes a glyph index."
 addresses: "001B44A0, 001B4D70, 001B5230, 001FDC10, 001FDDD0, 001B4C00, 002AC2F0, 002AE610"
 ---
 

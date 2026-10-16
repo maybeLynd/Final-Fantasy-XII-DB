@@ -2,7 +2,6 @@
 title: "Native commands: the five command tables, the begin, poll and result callbacks, the phase byte, and how a durative verb waits"
 kind: "system"
 category: "Scripts and script commands"
-summary: "What happens inside one script verb call: the lifecycle that runs begin, poll and result as one fall-through rather than three visits, the phase byte that marks a verb still running or typed for return, the five command tables and how their callbacks are populated, the instantaneous and durative shapes, the scratch word that wait and the sync verbs count or select with, the per-manager skip mask that ends a wait early, and the handlers many verbs share."
 addresses: "002621D0, 003DC2D0, 003DC270, 003DC240, 003DC2A0, 02B57EF0, 01EED700, 01F281B0, 01F29418, 01F29440, 01F26720, 0016D6A0, 005C5230, 0034CF90, 0034DCC0, 00265880, 0034C290, 0034C570, 00353E20, 00353A10, 0033F4C0, 00267310, 02099011, 0026A5B0, 00360710, 00360A50, 0034ECF0, 0026B4E0, 0026B4C0, 0050D660, 0025C0F0, 0025C130, 0026BE50, 0026BE90, 02099DE8, 0209A2A0, 0036E290, 002E7080, 0036DFC0, 0036E500, 022D94B0"
 ---
 

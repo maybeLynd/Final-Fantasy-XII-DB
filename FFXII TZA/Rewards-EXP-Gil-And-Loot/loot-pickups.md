@@ -2,7 +2,6 @@
 title: "Loot pickups: the ten-slot pool, creation and eviction, the one-minute lifetime and blink, collection on contact, and the pickup object"
 kind: "system"
 category: "Rewards: EXP, LP, gil and loot"
-summary: "How a defeated enemy's loot becomes a pickup on the ground: the placement test, the pool of ten pickups and the eviction of the oldest, the frame-counted lifetime with its five blink steps, who collects a pickup on contact and who destroys it, the nearest-pickup search used by movement orders, and the HUD object that draws it."
 addresses: "00319CA0, 00319600, 00319920, 003197B0, 002FB150, 00319850, 00319A20, 00319B10, 0028F000, 003FA160, 003FC510"
 ---
 

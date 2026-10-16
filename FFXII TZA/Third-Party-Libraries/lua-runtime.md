@@ -2,7 +2,6 @@
 title: "Lua runtime: the embedded Lua 5.2.1 interpreter, its chunk loader, its standard libraries and why no script runs"
 kind: "system"
 category: "Third-party libraries"
-summary: "The Lua 5.2.1 interpreter linked into the executable with a 4-byte float lua_Number: the PhyreEngine loader that passes no mode and so accepts both source text and precompiled chunks, the 18-byte chunk header it checks, the standard libraries compiled in and the four that are registered but never opened, and the static facts that keep it idle: no code creates a lua_State and no shipped file holds a script."
 addresses: "00683C30, 00812F70, 00810180, 0081DF50, 0081D790, 0082BE30, 0082E910, 0082E490, 00684D10, 00686280, 00684F60, 00685AC0, 006844C0, 02E41570, 02E41578, 00685F60, 01CCB3E0, 01CCB470, 00824340, 01CCBA90, 00818AC0, 00825660, 00681840, 008216A0, 008162F0, 00827600"
 ---
 

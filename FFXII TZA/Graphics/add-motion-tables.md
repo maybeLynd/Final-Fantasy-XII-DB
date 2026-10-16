@@ -2,7 +2,6 @@
 title: "Add-motion tables: .adm, skeletonmapping.bin and highmodelreplace.bin"
 kind: "format"
 category: "Graphics"
-summary: "The files in ps2data/add_motion: the .adm tables of per-bone rotation keys that bend high-detail character models on top of their motion, with their _town variants, how add_motion_list.txt is read, how a render record is given its two tables and which one applies, the keyed and pose-slot track kinds, plus skeletonmapping.bin (bones that follow a partner skeleton) and highmodelreplace.bin (model replacements by story progress), with the shipped census."
 addresses: "001BDC40, 001BDD20, 001BE1A0, 01F81250, 001BE420, 001BE430, 00863110, 002EDF90, 003714A0, 00377C20, 0017FFB0, 004776D0, 0046D380, 0036FFF0, 02AD9E30, 02AD9E38, 00372820, 003703A0, 0037CCC0, 02ADD940, 02ADD938, 0037CB90"
 ---
 

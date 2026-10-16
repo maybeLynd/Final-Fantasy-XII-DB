@@ -2,7 +2,6 @@
 title: "Script screen effects: cut-in, motion blur, soft focus and the screen blur sprites"
 kind: "system"
 category: "Graphics"
-summary: "The screen effects scripts start over the finished picture: how the cut-in, motion blur and soft focus capture the frame into a render target and draw it back through the screen-effect pool, their staging blocks, play and clear bodies and per-frame builders, the motion blur fade and the held-frame path behind the item-obtained message, the four screen blur sprites of the blur verbs, what an area change and a cutscene skip reset, and how often the shipped scripts use each verb."
 addresses: "020926E4, 0024D540, 00182B40, 02B59D20, 02092640, 0024CF50, 0024CEB0, 0024CBE0, 003AA6B0, 02B58C38, 02092678, 0024EC00, 0024EB20, 0024EA10, 003AAA50, 003DE160, 003DE210, 0036E810, 0024FAE0, 0024FA40, 003AB500, 00375B90, 02B58A80, 003DDF90, 0024E910"
 ---
 

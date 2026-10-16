@@ -2,7 +2,6 @@
 title: "Text codes: every control code inside the game's strings, what it does and what follows it"
 kind: "reference"
 category: "Menus and HUD"
-summary: "Every control byte and every 0x0F escape code the text interpreter handles: how a string is read and how long each code is, what each token and escape does to the text being drawn (layout, size, colour, inserted names and numbers, icons, ruby text, choice lists, the pager), the codes no shipped text uses, and how often each code appears in each shipped text source and language."
 addresses: "002AC5F0, 002AE334, 002AE3FC, 002AE370, 002AC2F0, 003FFDF0, 002AEB20, 002A8C50"
 ---
 

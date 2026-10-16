@@ -2,7 +2,6 @@
 title: "Script interpreter: the hundred opcodes, the value stack, the registers and how a script waits and resumes"
 kind: "system"
 category: "Scripts and script commands"
-summary: "The bytecode interpreter 0025E4C0 that runs every zone script: who calls it each frame, the 100-entry opcode dispatch and the two coupled tables that drive it, the shared value stack at 02099AC0, the per-actor registers, the wait slot that lets a native call suspend and resume at the same instruction, the instruction budget and the stop rule, and what each of the hundred opcodes does, with the full table in script-interpreter-opcodes.tsv."
 addresses: "0025E4C0, 0025DF00, 0025D9E0, 00261DF8, 01EFEA60, 02099AC0, 00267E10, 00267DB0, 00267F90, 00267F60, 0025D740, 00267560, 002621D0, 003589E0, 008620C0, 0025B500, 0025E60A, 0025E613"
 ---
 

@@ -2,7 +2,6 @@
 title: "Collision-mesh movement: how a body is swept across the collision polygons, pushed out of walls and kept off closed edges, and the point queries on the same mesh"
 kind: "system"
 category: "Movement and pathfinding"
-summary: "How a moving body crosses the map's collision part: the cell lists and their four banks, the body's footprint frame, the sweep that cuts a move into sub-steps, pushes the body out of walls with an ellipsoid penetration test and walks it from polygon to polygon, the edge and vertex push-out that keeps its footprint off closed edges, the flood over neighbouring cells for big bodies, the contact normal and distance of a wall record, and the point queries that find the floor and its height under a point."
 addresses: "00380C40, 002327D0, 0022EF20, 00380A70, 0022D7E0, 0022E7D0, 0022E340, 00231E40, 002324F0, 0022F9B0, 0022F250, 00232760, 0022DE60, 0022EAC0, 00381D90, 003810B0, 00380E00, 00380EB0, 00231690, 00230C10, 003D97E0, 00232160, 00231890, 00231820, 00231900, 0026E350, 0026E3C0, 02088FE0, 020891F0, 02089280, 020892C0"
 ---
 

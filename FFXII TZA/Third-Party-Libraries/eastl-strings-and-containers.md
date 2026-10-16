@@ -2,7 +2,6 @@
 title: "EASTL strings and containers: the string, vector and tree layouts, the logging allocator and the static strings built at start-up"
 kind: "system"
 category: "Third-party libraries"
-summary: "How the executable's EASTL code is laid out and behaves: the allocator_memory_log allocator and its vtable, the three-pointer string with its shared empty byte, vector growth, the red-black tree shared by every set and map, and the 64 start-up initialisers that build static EASTL strings and containers, most of them JsonBox's token strings."
 addresses: "001EDF00, 00902720, 001EDF10, 001EDF80, 001EDFE0, 0016D690, 01F82E48, 001FF740, 02EBA2E0, 001E7D30, 0016D6D0, 0016D720, 0016D780, 0016D7E0, 0016D840, 0016DA60, 001A3380, 00200E60, 0015D610, 0015C560, 0015D2F0, 0015D230, 0015FFE0, 001A52A0, 001FC640"
 ---
 

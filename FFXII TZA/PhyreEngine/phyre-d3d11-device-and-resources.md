@@ -2,7 +2,6 @@
 title: "Phyre D3D11 device and resources: device and swap-chain creation, the texture formats, texture and buffer objects and how they are mapped, uploaded and released"
 kind: "system"
 category: "PhyreEngine"
-summary: "How PhyreEngine's Direct3D 11 renderer creates its device and swap chain on the chosen adapter, the 35 texture-format objects and the DXGI formats they carry, the 2D, 3D and cube-map texture objects with their rings of Direct3D resources, the constant and structured buffers, the two pairs of dynamic upload buffers in the render context, and the helpers that create, map, upload and release them."
 addresses: "00625830, 00623320, 00624F70, 006250C0, 00625210, 00623B10, 0061ECD0, 00626D90, 0062CD40, 00616210, 02CF7A30, 0061FDA0, 00620250, 00620630, 0061E200, 0061E270, 0061E2E0, 00650660, 00628100, 0060DD70, 0060DE00, 00610990, 006264F0, 00626990, 00609870, 00609950, 0062C820, 0062BCB0, 0062BF40, 0062C100, 006505A0, 005DDBB0, 00615550, 0061D960, 00626060, 006097B0, 0062C300, 006239C0, 00616060, 0061F200, 0061F710, 006209C0, 0061C080, 00615790, 00607FA0, 005F0590, 00623F00, 005D8E40"
 ---
 

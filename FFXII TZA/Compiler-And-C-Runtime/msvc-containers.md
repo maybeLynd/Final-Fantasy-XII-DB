@@ -2,7 +2,6 @@
 title: "MSVC containers: the std::map tree, std::string and std::regex code linked into the executable"
 kind: "system"
 category: "Compiler and C runtime"
-summary: "The Microsoft standard-library containers that sit in FFXII_TZA.exe beside the engine's EASTL: the std::map / std::set red-black tree with its head node, lookup, insert, erase and clear routines and its three instantiations, the std::string layout and its deallocation rule, the std::regex instantiation behind one event-path check, and the MSVCP140 imports these containers call."
 addresses: "00714800, 0070D360, 00712F60, 0071E500, 00714DC0, 00714CE0, 00714B60, 00714980, 006FF5D0, 006FF840, 0071D170, 0071EE70, 00169270, 008B7940, 02EA5550, 001DFA10, 0020A800, 009058C0, 008C2618, 008C2430, 001A1990, 001A5500, 001A5630, 00865EC0, 001A1EA0, 00195940, 00197A50, 0019B580, 0019B990, 001A1920, 00865E30, 001E0360, 0020AFE0"
 ---
 

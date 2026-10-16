@@ -2,7 +2,6 @@
 title: "Sound engine configuration: the start-up file that sets the sound categories, the master bus, the macros and the effect presets"
 kind: "format"
 category: "Sound and music"
-summary: "The file sead.win.config: where it is loaded and how the engine copies it whole, its header and chunk directory, the ten chunks with their layouts and the code that reads each field, the category sizes that size the engine's voice pools, the master bus, the three macros, the effect presets and the HCA mixer switch, the shipped values, and what a changed or missing chunk does."
 addresses: "00210760, 007A4D50, 007B0F90, 007AE410, 007ADB20, 007AC4F0, 007B31A0, 007ACD30"
 ---
 

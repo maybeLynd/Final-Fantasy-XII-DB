@@ -2,7 +2,6 @@
 title: "Sound banks: the bank files that hold every sound effect, battle voice and music track, how each is named and found, and how a sound id names a bank and a slot"
 kind: "format"
 category: "Sound and music"
-summary: "The bank container shared by sound effects, battle voices and music: its header and chunk directory and the checks the reader makes, the four bank families with their folders, name patterns and loaders, the SE block index that lists a block's sounds, the block-id rule, the 64-entry block registry, how a sound id splits into a registry slot and a sound slot, the effect-file records that open the six-digit banks, the audio manager's five controllers, and the files the PC build never opens."
 addresses: "007CFF90, 007CF6B0, 00223AD0, 00222DC0, 00222740, 0036ED50, 002E60F0, 003A1650, 003A1180, 002105E0"
 ---
 

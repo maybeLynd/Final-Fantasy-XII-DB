@@ -2,7 +2,6 @@
 title: "Spawn record fields: the keep entry behind every spawned enemy, offset by offset, its flag bits and every proven access"
 kind: "reference"
 category: "Enemy spawning"
-summary: "The 0x250-byte spawn record (the keep entry) that every enemy built from the enemy definition table is driven through: the three ways code reaches one, each field with its width, its writers and its readers, the eight flag bits with who sets, clears and tests them, the stats record that lives at +0x80, the three byte ranges nothing touches, and the access table of every lane-map and seed-route reach with each instruction checked against the executable."
 addresses: "00236100, 002360D0, 0023A570, 0023AC80, 002395A0, 0023A2E0, 00236860, 00237080, 00239840, 00239410, 002391C0, 002396B0, 0023A200, 0023A410, 00233AD0, 00234200, 002350C0, 00235720, 002355A0, 002354F0, 00235360, 00300530, 003112F0, 00385BA0, 0030FED0, 00300310, 003003F0, 00307300, 00311F70, 00239210, 00312EE0, 00308040, 00238BF0, 00301AD0, 00321530, 00321D40, 00233780, 00321DC0, 00321810"
 ---
 

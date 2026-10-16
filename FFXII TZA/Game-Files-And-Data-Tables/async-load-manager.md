@@ -2,7 +2,6 @@
 title: "Asynchronous load manager: the loading thread, its request records, the four load kinds and the .efx appendix"
 kind: "system"
 category: "Game files and data tables"
-summary: "The AsyncLoadManager at 01F81160 that loads files off the main thread: its pool of 1,024 request records, the queue and the two ways a request enters it, the loading thread, the four kinds (a .phyre asset, a PS2 file read by name or from an open stream, a whole text file), how a finished request's callback runs on the loading thread or in the next frame's pump, how PS2 file reads choose between the queue and a direct read, and the table that appends a character effect file to 144 model files."
 addresses: "01F81160, 001A11B0, 001A1220, 0019F620, 001A0AF0, 0019F490, 0019FFD0, 001A0A90, 001A0BB0, 001A0C50, 001A1230, 001A07B0, 001A0CF0, 001A0E50, 001A0F80, 001A09E0, 001A1310, 001A0960, 0019F930, 002DF780, 001D6D90, 001D6FB0, 001D6EF0, 001D6B40, 001BA860, 002124C0, 005CC900, 005CC8A0"
 ---
 

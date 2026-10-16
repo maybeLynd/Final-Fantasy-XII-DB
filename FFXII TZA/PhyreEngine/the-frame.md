@@ -2,7 +2,6 @@
 title: "Phyre frame: from the frame tick to the drawn picture, the draw-layer mask and the GS register stream"
 kind: "system"
 category: "PhyreEngine"
-summary: "What the game's draw does once PhyreEngine's frame tick has handed over: the draw routine and its two draws per frame, the per-draw pass mask at 022C7F90 that switches each pass, the PS2 Graphics Synthesizer register batch every frame mode writes, the two 512-record command buffers it is written into and flipped, the menu viewport scaled from 512 x 448, and the camera state the GiBeginEff render command copies when it is prepared."
 addresses: "0022B0B0, 022C7F90, 00358450, 00358510, 0036D400, 003A1D50, 004FE420, 003A1DB0, 0036F360, 02EBEFC0, 00184460, 00864F30, 00864E90, 00678B50, 0016D6A0"
 ---
 

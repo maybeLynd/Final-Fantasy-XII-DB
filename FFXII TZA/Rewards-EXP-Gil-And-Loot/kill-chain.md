@@ -2,7 +2,6 @@
 title: "Kill chain: chain count, chain level, the chain coin and resets"
 kind: "system"
 category: "Rewards: EXP, LP, gil and loot"
-summary: "How kills build the chain count and chain level, the 5 %/60 % coin rolled on every link, breaks in a row, everything that resets the chain (save crystals, towns, presets), the HUD counter and the chain's globals."
 addresses: "00317ED0, 003183D0, 0028EF00, 0028EF70, 003F9E50"
 ---
 

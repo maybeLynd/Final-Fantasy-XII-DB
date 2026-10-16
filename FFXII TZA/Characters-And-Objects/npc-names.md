@@ -2,7 +2,6 @@
 title: "NPC names: the npcdic.bin name pairs, the actor's name id, and the story flag that swaps a name"
 kind: "system"
 category: "Characters and objects"
-summary: "How a field character's name tag is chosen: the name id every actor carries, the pair of strings that id selects in npcdic.bin, the persistent flag with the same number that switches to the second string once the player has talked to that character, the two script verbs that assign a name id, and the shipped dictionaries for the nine languages."
 addresses: "003EAC40, 003EAC70, 003EAC10, 003EABE0, 00263990, 002639E0, 0026DEA0, 00269F40, 0034B9A0, 0034C170, 002E16B0, 00379D20, 00272CB0, 00272CE0, 00268D10, 00536310, 00536280, 00267410, 005369C0, 00272C80"
 ---
 

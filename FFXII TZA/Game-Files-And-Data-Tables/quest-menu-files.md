@@ -2,7 +2,6 @@
 title: "Quest menu files: the menuquest list, petitioner strings and per-group detail tables, how they are read, and what each field shows"
 kind: "format"
 category: "Game files and data tables"
-summary: "The quest-menu files in each language's quest folder: menuquest.dat, the quest list with each quest's name, group and row picture; menuquest.lst, the petitioner line and picture threshold per quest; and menuquest00 to 02.bin, one per group, with each quest's detail text, its progress table and the QHD0 and QHT0 map-marker chunks. Covers the quest data widget that loads them, the Hunts rows, the detail pane and the map-data widget that read them, the shipped files and the rules an edit must keep."
 addresses: "0037F4D0, 0037F440, 0037F3B0, 02AED490, 0037F1F0, 003800D0, 0037FD50, 0037FBA0, 0037FA80, 0037E5B0, 0037EFC0, 0037EE10, 0037EF70, 0037EAA0, 0037E8D0, 00577C30, 005789D0, 00578450, 0037FEA0, 00473D50, 00473DB0, 00473BB0, 00473CC0, 02CA6C68, 02CA6C70, 0037F7C0, 0037FA00, 0037F140"
 ---
 

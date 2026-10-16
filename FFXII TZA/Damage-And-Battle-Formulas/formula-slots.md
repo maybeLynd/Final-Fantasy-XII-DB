@@ -2,7 +2,6 @@
 title: "Formula slots: every calculator slot with what it computes, what it reads and which recipes run it"
 kind: "reference"
 category: "Damage and battle formulas"
-summary: "All 202 slots of the calculator table at 01EFA5C0: for each, its function and size, the recipes whose first or committed list contain it, what it computes, the stats, action-row, weapon-row, result and scratch fields it reads and writes, the statuses and effect ids it tests, and the instruction sites that show it."
 addresses: "01EFA5C0, 01EF96C0, 00385F60, 00385680, 003847C0, 0016D6A0"
 ---
 

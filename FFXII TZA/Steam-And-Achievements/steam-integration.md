@@ -2,7 +2,6 @@
 title: "Steam integration: how the game starts and pumps Steam, the interfaces and callbacks it uses, and what it does without Steam"
 kind: "system"
 category: "Steam and achievements"
-summary: "The start-up order (interface context, SteamAPI_Init, the achievement manager, the overlay listener, the relaunch check with app id 595520), the interface context and the five interface slots the game calls, the eight callbacks and their handlers, the per-window-pump SteamAPI_RunCallbacks, the stats receipt, the Steam language and user id the game reads, the teardown, and every path that changes when Steam is absent."
 addresses: "007980A0, 01DFE0D0, 001F3E10, 001F3AE0, 0020CD30, 0020C730, 01F83450, 0020CCC0, 008655E0, 008655A0, 007A0810, 008653B0, 00865510, 007A3110, 0020C940, 0020C8C0, 0020CB20, 0020CE60, 0020CE10, 0020CD80, 00865660, 007A0C60, 001F3ED0, 0017D990, 00798FF0"
 ---
 

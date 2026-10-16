@@ -2,7 +2,6 @@
 title: "Map cubemaps: the reflection probes, cubeMapConfigs.txt and how map models pick four of them"
 kind: "system"
 category: "Graphics"
-summary: "The per-map reflection probes of the remaster: the cubemap_<probe>_<weather> environment and irradiance textures a map's art carries, the cubeMapConfigs.txt file that places each probe and gives its weight and radius, the probe manager that builds them, the weighting that picks up to four probes for a point, and how map model materials receive the chosen cubemaps and weights."
 addresses: "01F811C8, 001AD440, 001A5B30, 001ABC80, 001ABCE0, 001AC810, 001AA840, 001AC480, 001AD130, 001ACF80, 001AC4B0, 001ABF50, 001AA3D0, 001AD470, 001AC670, 001AC720, 001AC6F0, 001E4000, 001AD670, 001E6480, 001E6040"
 ---
 

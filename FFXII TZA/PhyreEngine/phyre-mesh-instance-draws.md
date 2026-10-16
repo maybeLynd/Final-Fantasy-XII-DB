@@ -2,7 +2,6 @@
 title: "Phyre mesh-instance draws: the segment loop, the bone palette, the per-draw parameter blocks, the light and shadow parameter values and the preprocess ring buffer"
 kind: "system"
 category: "PhyreEngine"
-summary: "How PhyreEngine draws one mesh instance in the executable: 0060B980 walks the mesh's segments, picks each segment's material, technique and shader variant, builds the bone-matrix palette, sizes and fills the per-draw parameter blocks, and the evaluator 00600F30 writes the light, shadow, vertex-stream and LOD values a shader asks for by parameter type; with the 2 MiB PPreprocessRingBuffer that holds large palettes and dynamic-mesh data, and the variant usage counter that never runs."
 addresses: "0060B980, 005FF090, 005FF200, 005EB370, 00600B30, 005FECF0, 00600F30, 00670920, 00600BE0, 00606C60, 02CB6360, 006B6410, 006B64F0, 006B6510, 006B6690, 006B64C0, 007A12B0, 02E52270, 005DDAE0, 0060EC30"
 ---
 

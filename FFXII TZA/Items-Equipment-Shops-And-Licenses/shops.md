@@ -2,7 +2,6 @@
 title: "Shops: every shop with its name, its stock lists and the story or clan-rank condition that opens each list"
 kind: "reference"
 category: "Items, equipment, shops and licenses"
-summary: "Each of the 57 shops of the shop table: its displayed name, the ladder of stock lists it holds, the condition each list waits on (none, a story progress value or a clan rank), the items, equipment, magicks, technicks, gambits and loot each list sells, how the menu picks the first list the player qualifies for and shows it with every list below it, and how the clan rank is worked out."
 addresses: "02EBF158, 00238660, 002FAD40, 002FA920, 002FAE40, 002FABD0, 00315390"
 ---
 

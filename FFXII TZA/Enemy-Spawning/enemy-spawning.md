@@ -2,7 +2,6 @@
 title: "Enemy spawning: the spawn table, how a zone picks where a monster appears, the ground height, and when it vanishes out of range"
 kind: "system"
 category: "Enemy spawning"
-summary: "How a zone script populates an area with monsters: the lane map and the spawn table it installs, the tunables every spawning zone sets and their script defaults, the automatic placement that picks a lane and a point around the party leader with its two generation modes and its distance test, the previous-map and continuing selections that bring a banked monster back where it was, the bind, the unit's activation and the terrain probe that supplies the height, the despawn mode and the range retirement that makes a monster vanish behind the player, and what the shipped zone scripts actually author."
 addresses: "0023A2E0, 002395A0, 00236100, 002360D0, 0023A520, 0023A1D0, 0023A1F0, 00239020, 00235340, 00235330, 00235720, 00308D90, 00234AF0, 00234DA0, 002374E0, 00319390, 00328370, 002354F0, 00235360, 002355A0, 00236450, 00239840, 0023A3B0, 0023A570, 00233AD0, 00239E10, 0023A410, 003208C0, 00300310, 00239410, 00239210, 002391C0, 002396B0, 0023A200, 00236860, 00238FC0, 002350C0, 00300E40, 00306E60, 00233F70, 002342F0, 002368D0, 0031B810, 003273B0, 003272A0, 00320940, 003209C0, 003A1960, 005102D0"
 ---
 

@@ -2,7 +2,6 @@
 title: "Spatial sound: the listener, the shapes a sound source can take, and how distance and shape set its volume and direction"
 kind: "system"
 category: "Sound and music"
-summary: "How a placed sound is heard: the five sound-source classes and the three the game builds, where the listener stands and faces, how each shape finds its nearest point and whether it is in range, the shared distance-to-volume and direction formula with the shipped linear curve, the distance values a sound can read, how map, character and moving sounds become sources, and the 32-millisecond pass that updates them."
 addresses: "007BBFB0, 02EADE08, 007EF630, 00362850, 007F0320, 007F25E0, 002DE800, 007A5E50"
 ---
 

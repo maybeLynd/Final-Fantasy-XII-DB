@@ -2,7 +2,6 @@
 title: "Phyre modifier codes: the named skinning and morph kernels of PDynamicGeometry, their registry and the weight and matrix-palette fetches"
 kind: "system"
 category: "PhyreEngine"
-summary: "The fourteen PModifier codes that PhyreEngine's dynamic-geometry module registers by name: five skinning codes and nine morph-blend codes (Morph22 to Morph44), the 0x78-byte record that pairs a parameter fetch with a kernel, the name registry a file's modifier network resolves against, how the morph weight fetch reads a network instance's weights, how the skinning fetches build the matrix palette, and how the morph kernels blend up to four weighted sources."
 addresses: "006D58D0, 006D5A60, 006D5AF0, 006D5810, 02E9FD60, 006C45F0, 006C4750, 006D6F90, 00167FE0, 006D9200, 006C4470, 006D5B60, 006D5CC0, 006D7380, 006D7630, 006D78E0, 006D7BA0, 006D7EA0, 006D81A0, 006D84A0, 006D87D0, 006D8B00, 01F32110"
 ---
 

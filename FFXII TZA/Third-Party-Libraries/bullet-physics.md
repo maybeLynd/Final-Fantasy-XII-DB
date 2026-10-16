@@ -2,7 +2,6 @@
 title: "Bullet Physics: the linked rigid-body library, how PhyreEngine bodies become Bullet bodies, and why nothing is simulated"
 kind: "system"
 category: "Third-party libraries"
-summary: "The Bullet rigid-body library linked into the executable (the 2.77 line, bounded by its serializer names), the PhyreEngine route that would build a Bullet world and turn each PPhysicsRigidBody into a btCompoundShape and btRigidBody with stock construction defaults, the motion types and collision groups it applies, and the two static gates that keep the route from ever running: a physics manager that nothing enables and a shipped corpus with no physics objects."
 addresses: "0069FB10, 006A0310, 006A2320, 006A4A60, 0069F070, 0069EF20, 00698C80, 006883A0, 0069E6F0, 00691240, 0068B9E0, 00832390, 00852DB0, 008542B0, 00854080, 0083A3A0, 0083A030, 00854980, 0085E680, 008365C0, 02E4AFF0, 008531F0, 008324B0, 006A3E20"
 ---
 

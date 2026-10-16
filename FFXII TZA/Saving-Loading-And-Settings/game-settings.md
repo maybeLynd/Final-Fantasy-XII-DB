@@ -2,7 +2,6 @@
 title: "Game settings: the GameSetting.ini object and its options, the ini file's load and save, the quality presets, FrameLimit, DecideButton, the Config screen's commands, Active and Wait battle mode and the FF12CONFIG file"
 kind: "system"
 category: "Saving, loading and settings"
-summary: "Every player option outside the save: the 31-slot settings object built at start-up from a defaults table and GameSetting.ini, the file's key=value parser and writer, the three quality presets and the ten settings they control, how FrameLimit selects the 30 or 60 fps time base, how DecideButton swaps confirm and cancel, the Config screen's set and get dispatchers and the options record they edit inside the save image (battle mode, battle speed, volumes, camera axes), what Active and Wait battle mode changes, and the FF12CONFIG file in the game archive."
 addresses: "001DE050, 001DED50, 001DE5D0, 001DF350, 001DEE90, 001DFD40, 001DE4F0, 0022BDF0, 001EDDC0, 0017E6E0, 0022A4F0, 002407F0, 002403F0, 002DDE60, 002DE060, 00255290, 00408C30, 001DF2C0, 00628690"
 ---
 

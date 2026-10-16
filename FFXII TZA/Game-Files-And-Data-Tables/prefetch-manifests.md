@@ -2,7 +2,6 @@
 title: "Prefetch and asset-header manifests: the text lists that preload files into the file cache, and the .ah lists that name the parts of a model, map or font"
 kind: "format"
 category: "Game files and data tables"
-summary: "The plain-text manifests the game reads by whitespace-separated tokens: the prefetch lists (common.txt at start-up, one per map on map entry, one per event, eventList.csv's event schedule, the add-on folder) and the background thread that opens their names into the RAM file cache under protected stamps; and the .ah asset-header lists that name, in order, the .phyre files of every model, map, font and procedural texture set and load each of them, with the AssetListManager pools and the pass that resolves asset imports once a list has loaded; the prefetch manager's language folder, lists and event watch; and the menu TexList.txt. Includes the shipped counts and the rules both formats impose."
 addresses: "001DA0F0, 008F4438, 0018A330, 001DA610, 001DA290, 001D9FD0, 001D9A40, 001D9EC0, 001D9DA0, 001DA9E0, 001DA090, 0020C1A0, 001DAAC0, 001DADC0, 009005E8, 0019EB60, 0019E7B0, 0019EF20, 001A0BB0, 001A07B0, 001A0F80, 001A7A50, 001B44A0, 001BB2B0, 001BE730, 0020C300, 001DAD60, 001D9400, 001D9930, 001D99C0, 001DA970, 0019EF40, 0019DA30, 0019E740, 0019EE50, 0063DA50, 00677CE0, 001B14E0, 001B07A0, 001B1800, 002E98F0, 0017F000"
 ---
 

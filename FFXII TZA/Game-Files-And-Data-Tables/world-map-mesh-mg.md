@@ -2,7 +2,6 @@
 title: "World map mesh (.mg): the world-map geometry file, its layout and how the map screen loads and draws it"
 kind: "format"
 category: "Game files and data tables"
-summary: "meshdata.mg, the one .mg file: a two-entry directory of sub-meshes, each a header, a slot array, 32-byte vertices and a u16 index stream. Sub-mesh 0 is the four textured tiles of the World Map picture, bound by slot name to w_main0..3.tm2; sub-mesh 1 is a strip mesh drawn with w_shade_p.tm2 on the World Map and untextured on the license board. Covers the loader, the binder, both draw paths, the shipped file and the rules an edited file must follow."
 addresses: "00562F90, 00563110, 00274780, 00555A50, 005556A0, 00555400, 00555D10, 00556240, 00555B90, 00555F80, 00552250, 005528C0, 00550540, 00561390, 0055A8A0, 00D231C0, 00D23270, 0024A5A0, 00249210, 002493D0, 002DF9A0, 02CA8F38, 02CA8F40"
 ---
 

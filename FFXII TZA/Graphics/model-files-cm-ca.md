@@ -2,7 +2,6 @@
 title: "Model files (.cm, .ca): the @FRP container and its FCP, FDM, FOR, FTE, FCT and FTR entries"
 kind: "format"
 category: "Graphics"
-summary: "The model and animation containers: the .cm and .ca files under obj_finish, the seven entries a model row binds from a .cm, the @FCP parameter block with its section table, property ids and default tables, the @FTR skeleton and how it is built, the @FOR variant records and distance LOD, the @FDM key table, the @FTE textures and @FCT four-page palettes, the draw builder's texture and palette pick, and the shipped census of all 4,230 files."
 addresses: "00504F00, 00504E70, 00504940, 004780C0, 0041FCF0, 0041F340, 00420480, 002EDBD0, 003E55F0, 004FE270, 004FE2F0, 01F265B0, 01F266B0, 003E6150, 003E5AD0, 0041E5B0, 004292B0, 003712E0, 00372820, 003713C0, 00409300, 004094D0, 00409250, 0046D560, 004201F0, 00504840, 005048A0, 0053AB50, 00504D30, 005044D0, 00504D20"
 ---
 

@@ -2,7 +2,6 @@
 title: "Reward verbs: every script verb that adds or removes items, gil, equipment or party members, and exactly what it writes"
 kind: "system"
 category: "Scripts and script commands"
-summary: "The script side of rewards: the item verbs and the one inventory mutator they all reach, the gil verbs, the treasure chest sequence and the roll inside btlAtelOpenTreasureMessage that decides and grants the contents, what joining and leaving the party writes to the inventory and gil, the verbs that take away and give back everything, the quest result window, and the verbs that look like rewards but write nothing."
 addresses: "00345080, 003449A0, 0034A6D0, 0034ABF0, 0034B1E0, 003459C0, 00345520, 00344630, 0032A810, 0032A830, 0032A860, 00300B80, 00300BA0, 003008A0, 00346930, 00346E30, 0032A7F0, 003004B0, 00254EE0, 0050DEE0, 0032A800, 00354400, 00355830, 00356570, 00356A10, 0050FAF0, 002FAFD0, 002FB430, 02EC3E60, 0208CD18, 0034C370, 0034CDF0, 003172E0, 00328B20, 00316DF0, 00323540, 00349F90, 0034A790, 0030FBE0, 0030FAA0, 0034A300, 003497B0, 0030FD10, 00342230, 00328BD0, 00344C60, 00290130, 0050F200, 00510720, 003403E0, 0050F910, 02EBF190, 02EBF130, 00316A50, 00309F30, 0035DF20, 003272A0, 002FA260, 002FA470, 002F7FA0, 002341C0, 00236740, 00317480, 0030C470, 0035A620, 0035A630, 00320AB0, 00324380, 0035A250, 0030BAD0, 00559760, 003138D0, 00327CB0, 002398F0, 0030DD70, 0030DCB0, 0030DD10, 003F8C60, 003F4AA0, 002FA520"
 ---
 

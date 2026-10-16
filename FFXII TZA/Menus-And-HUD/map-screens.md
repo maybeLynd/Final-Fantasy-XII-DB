@@ -2,7 +2,6 @@
 title: "Map screens: the World Map, the location map, the map overlay and the minimap, and the map data and story flags they read"
 kind: "system"
 category: "Menus and HUD"
-summary: "The game's maps: the World Map menu entry and its host, the location map opened with Display Map, the map overlay toggled with Map Transparency, their shared two-page container and its open request, the map-data widget and the menumap files it loads, what a page draws, which story flags, visits and owned maps decide what is shown, the minimap drawn during play from the zone's own picture, and when each object lives."
 addresses: "00253C70, 002B6350, 002B9D30, 003BC450, 003BC2D0, 003C18A0, 003C5910, 003C4070"
 ---
 

@@ -2,7 +2,6 @@
 title: "Bone trails: the ribbon trails drawn behind weapon bones, from the model descriptor to the triangle strip"
 kind: "system"
 category: "Graphics"
-summary: "The trails a model's trail section asks for: the 0x50-byte descriptor naming a bone and four colours, the authored command that switches trails on and off through the record hierarchy, the sixteen-entry pool, the per-frame sampling of each bone's base and tip into sixteen-sample histories with a fade of two frames in and five out, and the draw that hands the histories to a VU1 program which emits a textured, alpha-blended triangle strip, two vertices a sample."
 addresses: "00520160, 00425E70, 003E6770, 0042F250, 02CA8420, 0051C270, 0051CC30, 0051CC10, 0051BC10, 0051CDC0, 0051C380, 0051C3C0, 0051BC70, 00422170, 003711D0, 005409C0, 0053F490, 003A35E0, 01F2A220"
 ---
 

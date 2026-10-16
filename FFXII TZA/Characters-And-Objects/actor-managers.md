@@ -2,7 +2,6 @@
 title: "Actor managers: the five manager slots at 02098E10, their bind, their record pool, their variable homes and their camera entry tables"
 kind: "system"
 category: "Characters and objects"
-summary: "The five actor manager slots the world tick walks: what a slot holds, how a loaded definition payload is bound into one and its record pool allocated, the six pointers the script interpreter resolves script variables through, the fail-closed accessors over the operand bank and the two scratch banks, the sub-step and request bytes the tick and the field pass read, and the two arrays of four camera drivers with their reverse lookups; the four access tables beside the page list every verified reach into a slot."
 addresses: "02098E10, 02099D70, 0026C8C0, 0026CE60, 00358940, 002679F0, 00264640, 0026ABA0, 0026B730, 00265270, 00264D20, 0026ADC0, 00264800, 0026AD10, 002640C0, 002640D0, 002673F0, 00267310, 003DA400, 003DA370, 003DA000, 003DA4D0, 003DA570, 003DA2D0, 003DD230, 003DCF60, 003DD1F0, 0026B790, 0026B800, 0026B870, 003DA500"
 ---
 

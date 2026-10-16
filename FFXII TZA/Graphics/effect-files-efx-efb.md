@@ -2,7 +2,6 @@
 title: "Effect files (.efx, .efb): the effect containers, their chunk streams, the record kinds and the map effect bank"
 kind: "format"
 category: "Graphics"
-summary: "The .efx effect stream and the .efb map effect bank: the 16-byte stream header and the three accepted versions, the chunk grammar and its seven shipped chunk types, how the loader collects runs of chunks, copies or borrows them, rewrites older 0x600 records and rebases 0x700 records, the 0xB00 record store and its ten record kinds, the EFB blob and row table, the fixed block the map's bank is read into, and the shipped census."
 addresses: "003EDAD0, 01EFF3B0, 003EE2D0, 003ED8A0, 003A79C0, 00333C80, 003A7E80, 004FF270, 003A9730, 003A9A70, 003A9EF0, 003AA470, 00500980, 0026FB90, 02F8F29D, 0026F470, 0026FAD0, 00377DC0, 003788F0, 00378230, 02ADD088, 002FC4A0, 003B38B0, 003B29B0, 003B0660, 003B2220, 02EBB738"
 ---
 

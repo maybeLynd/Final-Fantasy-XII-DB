@@ -2,7 +2,6 @@
 title: "Sound variations: the random, ordered, cycling and switched sound kinds the driver supports, and the trigger that arms a sound"
 kind: "system"
 category: "Sound and music"
-summary: "How the sound driver chooses what to play for one sound: the class byte that selects a plain, random, ordered, cycling or switched sound, the candidate and sequence records they read, sets of candidates by group, each kind's rule with its weighted roll, rotation, cycle timer or switch range, the random seed, the trigger that arms a sequence for the next update, and the shipped banks, where every sound is plain with at most one candidate."
 addresses: "007B2F70, 007BD370, 007E5160, 007E58D0, 007E6360, 007E67C0, 007BD240, 007E7540"
 ---
 

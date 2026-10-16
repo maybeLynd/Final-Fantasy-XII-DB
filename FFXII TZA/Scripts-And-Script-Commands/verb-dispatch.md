@@ -2,7 +2,6 @@
 title: "Verb dispatch: how a script's call id reaches a native handler, how arguments and results cross the value stack, and what the guards refuse"
 kind: "system"
 category: "Scripts and script commands"
-summary: "The bridge from a script instruction to native code: the four call opcodes and the actor they bind, the sixteen-bit call id split into a family and a command, the family array and the three accessors with their one-sided bound, the register signatures of the begin, poll and result callbacks, the value stack that carries arguments and its silent failure modes, the pop order, packed references and actor handles, and the three result writers behind every returned value."
 addresses: "0025E4C0, 002621D0, 003DC2D0, 003DC270, 003DC240, 003DC2A0, 02B57EF0, 01EED700, 01F281B0, 01F29418, 01F29440, 01F26720, 00267E10, 00267DB0, 00267F90, 00267F60, 02099AC0, 002650B0, 00268100, 00261806, 0026B4E0, 0026B4C0, 002651A0, 0016D6A0, 008620C0, 003538F0, 00342A80"
 ---
 

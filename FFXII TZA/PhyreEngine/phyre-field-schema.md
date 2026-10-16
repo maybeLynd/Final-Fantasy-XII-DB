@@ -2,7 +2,6 @@
 title: "Phyre field schema: the class and member tables in every .phyre file and how the loader matches them to registered members"
 kind: "format"
 category: "PhyreEngine"
-summary: "The packed namespace each .phyre file carries after its 84-byte header: the type table, the nine-word class records and six-word member records with their names, file offsets, widths and attribute words; how the loader checks it, finds each class and member by name in the run-time reflection data, reports differences and picks a copy routine per member; and the shipped figures, in which every class and member a file declares is registered by the executable."
 addresses: "0059E070, 0059A3B0, 0059B430, 0059BA40, 0059D2D0, 0059AC00, 006393A0, 00632B30, 00632E80, 0063BA10, 00597220, 00632960, 00632A10, 00632A70, 00632BE0, 0062EFD0, 00633100, 006318A0, 00631C40, 00599390, 00595E70, 0059A030, 0016D6A0, 005CDAA0"
 ---
 

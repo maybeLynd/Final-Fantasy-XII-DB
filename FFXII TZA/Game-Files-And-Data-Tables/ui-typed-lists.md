@@ -2,7 +2,6 @@
 title: "UI typed lists: the authored item lists menus are composed from, their nine item types, the atlas registry their sprites come from, and the one-allocation build"
 kind: "format"
 category: "Game files and data tables"
-summary: "The MRP list files and mrppack_ys.bin units that lay out menu screens: the header and its relocation, the 20-byte list records, the self-sized items and their nine type codes, what each type builds and how it is drawn, the 16-byte atlas name records, the 64-slot atlas registry and how TIM2 buffers fill it, the two-level sub-image lookup, the single allocation per list, the 344 shipped list files, and the rules an edited list must keep."
 addresses: "002432B0, 00243514, 00243538, 0024355C, 002497B0, 0029ECB0, 0029E7D0, 0029F4C0, 0029ED40, 0029ED30, 0029FEB0, 0029FBD0, 0029F130, 0029ED50, 002A0180, 0029F930, 002D14E0, 0029F5D0, 002435C0, 00243C00, 002482E0, 002A0060, 0024A610, 0024A5F0, 0024A5A0, 0024A4E0, 0024A440, 0024A480, 0024A1D0, 0024A710, 0208F580, 02090780, 002A00F0, 002A1A80, 00249320, 00249380, 002493D0, 00280980, 002F9920, 0020E600, 0020E620, 003931E0, 00393240, 0024A660"
 ---
 

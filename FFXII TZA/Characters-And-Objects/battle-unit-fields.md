@@ -2,7 +2,6 @@
 title: "Battle unit fields: the unit record offset by offset, its regions, and every reach the access table proves"
 kind: "reference"
 category: "Characters and objects"
-summary: "The battle unit record laid out by region: the flag word and the bind fields at its head, the position and navigation state, the waypoint table and its predecessor map, the stats and spawn pointers, the action block with the committed and cancelled copies, the target buffer, the perception cache, the reserved item and gil, the definition rows and the slot index; which final page names each field; and the companion table of every access to a unit that the typed scan reached, with each instruction checked against the executable."
 addresses: "00234480, 00236A60, 00316CD0, 00316CF0, 003839F0, 003839C0, 00383670, 00234200, 00265020, 00329220"
 ---
 

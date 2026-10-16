@@ -2,7 +2,6 @@
 title: "Navigation mesh and pathfinding: the mesh in the map pack, finding a region, the route search and its waypoints, the doors a script opens, and the obstacle grid"
 kind: "system"
 category: "Movement and pathfinding"
-summary: "How a battle unit finds its way across an area: the navigation dataset in slot four of the map pack and its layout, the grid lookup that says which region a point is in, the per-unit path record with its two caches, the region search with its integer portal costs and the waypoints laid on portals with clearance, the per-class portal test and the script verb that opens and closes doors, the per-frame step that follows the route, and the coarse obstacle grid refilled every tick from actors, trailer records and registry entries, with the query that reads it."
 addresses: "00384160, 00391A30, 00391D90, 00391710, 00468A70, 00468580, 00336E40, 00336210, 00336AE0, 00383840, 00383C80, 00383A20, 00383740, 00383F10, 00384130, 00382D10, 00383A30, 00382FF0, 00383620, 00383850, 0026E300, 00382EA0, 003842E0, 003792E0, 003278D0, 003839C0, 003839F0, 00383670, 00383C90, 00325BB0, 0030A130, 00392740, 00392200, 003912E0, 00391410, 00336CE0"
 ---
 

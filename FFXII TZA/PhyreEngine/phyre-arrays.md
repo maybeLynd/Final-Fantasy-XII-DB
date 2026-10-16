@@ -2,7 +2,6 @@
 title: "Phyre arrays: the PArray and PSharray containers, their ownership bit and the generated resize, copy and set-external bodies"
 kind: "system"
 category: "PhyreEngine"
-summary: "How PhyreEngine stores its reflected arrays: the 16-byte PArray<T> and PSharray<T> with a count word whose top bit marks storage the array does not own, the inline single element of a PSharray, the PString tagged pointer, the member-record vtables through which the reflection layer counts, resizes and repoints an array, and the per-element-type template bodies the compiler generated for them."
 addresses: "005B4E00, 005EFB10, 006065E0, 006045B0, 0063B9B0, 0062A870, 0060F400, 005C9740, 005C8BF0, 005C8CA0, 0060C3F0, 0060CC60, 006C7A40, 006C7D00, 00673130, 005AA3C0, 005DE950, 005C0090, 001C19A0, 001C2720, 0063DCA0, 005C4CC0"
 ---
 

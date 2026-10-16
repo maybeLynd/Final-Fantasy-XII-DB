@@ -2,7 +2,6 @@
 title: "Zone changes: mapjump and the other jump verbs, the loading flags, the moment the new zone is ready and what names a map"
 kind: "system"
 category: "World, areas and travel"
-summary: "From the script line mapjump(map, entrance, mode) to the frame the new zone runs: the verb's wait and request, the transition record in the save data, the fade, the tick that tears the old zone down and starts the load, the pending-load and busy masks, the ready point, the scene loader, the jump-index verbs, the jump lock and the field id's file table."
 addresses: "00354D00, 00355350, 00314440, 003145E0, 00314020, 0032FC30, 0032FCA0, 003321E0, 002620E0, 0034AD70"
 ---
 

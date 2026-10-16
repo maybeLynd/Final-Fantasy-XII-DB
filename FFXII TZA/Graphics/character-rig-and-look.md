@@ -2,7 +2,6 @@
 title: "Character rig and look: the seventeen procedural controllers, the staged look command and the focus point"
 kind: "system"
 category: "Graphics"
-summary: "The rig of seventeen procedural controllers a character carries on top of its animation, the two switches that turn them on and off, the record flags and script verbs behind the lip flap, nod, head shake, eyes and body shake, the status and event triggers of the Confuse, Immobilize, Float and flinch motions, the order the rig's frame solves and applies them, the staged look command that turns head-look requests into look-controller state, and the eased focus point other code reads as where a character is."
 addresses: "003E1350, 003E1610, 00370E20, 003E6DA0, 003E00C0, 00427DE0, 0042DD90, 0042EE90, 002E8570, 002EDF30, 002EE0D0, 002EDE70, 002EDDC0, 002E75A0, 0042BDE0, 004718D0, 00471640, 004716A0, 00471150, 00427320, 00518F50, 003DFE70, 0042BED0, 00520430, 0051A890, 003E37F0, 00429920, 003E37E0, 002EC3F0, 003E2FD0, 003E3200, 003E2F30, 003E3340, 003E0910, 003E2810, 003E3D70, 00426220, 003E43D0, 003E5ED0, 003E5FA0, 003E6070, 003E5810, 004288E0, 0042C410"
 ---
 

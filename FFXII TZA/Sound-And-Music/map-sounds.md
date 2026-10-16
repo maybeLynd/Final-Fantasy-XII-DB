@@ -2,7 +2,6 @@
 title: "Map sounds: the per-map sound list, the sounds its scripts and emitters play, and the weather ambience"
 kind: "format"
 category: "Sound and music"
-summary: "The SPP1 map sound list carried in each map pack: its header, id list and weather table, how binding it opens every listed sound bank, the two script verbs that play an entry by number, the map's sound emitters, the ambience picked per weather slot with its fades, what unbinding keeps, and the shipped lists with their id ranges."
 addresses: "003635E0, 00363750, 00346260, 00346990, 003638B0, 00363B40, 002DF070, 022CBAF8"
 ---
 

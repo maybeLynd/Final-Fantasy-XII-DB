@@ -2,7 +2,6 @@
 title: "Escape Mode: the R2 toggle that makes the party run from battle, what it switches off, and why it takes a second to engage"
 kind: "system"
 category: "Controls and input"
-summary: "How Escape Mode works: the R2 binding it reads, the latch that flips it once per press, the towns and policy bits that switch it off, the applier and the battle-mode overrides, the force-fight flag it clears, the one-second arming counter and the sound that runs while it arms, and the game systems that read the flag."
 addresses: "0017DE10, 00253C70, 00252B60, 00252C80, 00366870, 01E0C2B8"
 ---
 

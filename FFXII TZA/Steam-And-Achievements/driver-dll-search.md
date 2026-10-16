@@ -2,7 +2,6 @@
 title: "Driver DLL search: how the game finds and loads nvapi64.dll through the registry, the driver store and the system folder"
 kind: "system"
 category: "Steam and achievements"
-summary: "The loader the game uses for NVIDIA's NVAPI library: the Windows build test, finding the NVIDIA display adapter through SetupAPI, the order it searches the adapter's service, its driver registry values, the Khronos keys, the driver store and the system folder, the trusted-folder test before an absolute path is loaded, and the helpers it builds paths and registry reads with."
 addresses: "0015BB30, 0015B820, 0015A240, 0015A330, 0015B5F0, 0015A650, 0015A9B0, 0015A780, 0015AC50, 0015AE60, 0015B110, 0015B440, 0015B550, 0015B070, 00159CA0, 00159B10, 00159AA0, 00159420, 00159580, 001595F0, 00159F90, 0015A0E0, 01CC6BE8, 02EAECE0"
 ---
 

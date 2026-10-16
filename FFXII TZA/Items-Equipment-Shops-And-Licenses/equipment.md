@@ -2,7 +2,6 @@
 title: "Equipment: the five slots, what can be worn where, two-handed weapons, shields and ammunition, Optimise, and what happens when you equip"
 kind: "system"
 category: "Items, equipment, shops and licenses"
-summary: "How equipping works: the five slot words of a member record, the setters and when they move the worn counts and rebuild the stats, the eligibility test and its order (slot, free copy, pairing, license), why taking something off always succeeds, how the off hand and the main hand are reconciled for shields, two-handed weapons and ammunition, the takeaway and giveback verbs and the stashed loadout, the Optimise builder and its rules per slot, and the starting gear."
 addresses: "0031A630, 0031A510, 0031A410, 00317930, 00318B40, 002F7EC0, 002F9F20, 002F7A10, 002F7C80, 0030FBE0, 0030FAA0"
 ---
 

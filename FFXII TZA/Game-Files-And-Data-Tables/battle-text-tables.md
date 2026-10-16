@@ -2,7 +2,6 @@
 title: "Battle and menu text tables: the word banks in battle_pack.bin, the st2e string tables behind menu and help text, and how a text id becomes a string"
 kind: "format"
 category: "Game files and data tables"
-summary: "Where the names and help lines of the battle system and menus are stored: the fifteen word banks of battle_pack.bin addressed by a bank:row word, the packed string rows they hold, the 28 text groups loaded on demand from st2e string-table files and addressed by group × 1000 + row or by the row's own id, the text block inside an st2e string table, the glyph codes the strings use in each language, and the shipped counts."
 addresses: "003214B0, 002B58B0, 02EBF170, 002F9860, 002F9920, 02EC3D80, 02F973C0, 01E09F68, 002385D0, 002FA560, 002F7660, 00238640, 002F83E0, 00248700, 0053EB90, 01CEB638, 003846F0, 003845F0, 002AC2F0, 002491B0, 00563520, 00292260, 002922C0, 00292190, 002F7680, 002F79C0"
 ---
 

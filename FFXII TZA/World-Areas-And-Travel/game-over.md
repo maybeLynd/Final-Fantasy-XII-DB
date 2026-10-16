@@ -2,7 +2,6 @@
 title: "Game over: what a party wipe does, the GAME OVER screen, and the return to the title map"
 kind: "system"
 category: "World, areas and travel"
-summary: "What happens after the last party member falls: the request the field frame posts and the second route a menu death takes, the executor that opens the game-over screen, the task tree that fades the field out, shows the GAME OVER image and the press-to-continue prompt, and fades to black, the request for the title map and the byte it really sets, the main-loop check that tears the field down and returns to the title screen, what is not reloaded, and where a load afterwards puts the party, including the save-crystal entrance alias."
 addresses: "00234590, 0035C7A0, 0035C7B0, 00227370, 002E1B10, 00254850, 00254E50, 002805D0, 0027EFA0, 002E09A0, 00254B50, 0028F970, 00280A00, 00252B40, 0027FB70, 00280140, 003EF750, 003EF830, 003EFAA0, 003EF2E0, 003EEEC0, 003EF4A0, 003EF050, 003EF680, 003EF770, 003EF290, 00361630, 00360C20, 003611F0, 00360D70, 002DDCA0, 002EFA70, 00285EC0, 00285EA0, 003603E0, 003603D0, 0034EB20, 00360120, 003601D0, 003321E0, 0022A770, 0022BC20, 00228C70, 0027F2E0, 00264B90, 00377AB0, 00377A90, 0037B4D0, 00356500, 00359C60, 0030F4B0, 00237CA0, 0034AAB0, 002FEAC0, 00314DC0, 00314D80, 0034AC10"
 ---
 

@@ -2,7 +2,6 @@
 title: "Elements: weakness, absorb, half damage, immunity, elemental potency, Oil, and weather and terrain scaling"
 kind: "system"
 category: "Damage and battle formulas"
-summary: "How the eight elements change damage: where a unit's weak, absorb, half and immune elements and its elemental potency come from (equipment, an enemy's area row), the order the affinity stage tests them for magicks and for weapon attacks, how absorb and immunity reach the final number, Oil tripling fire and Float voiding earth, and the weather and terrain scaling of magick elements that the Agate Ring turns off."
 addresses: "0038B6A0, 0038BE30, 0038D280, 0038B220, 002FEF30, 0038B010, 0038C940, 0038B950, 0026D910, 00263DD0"
 ---
 

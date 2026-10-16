@@ -2,7 +2,6 @@
 title: "LGT2 light sets: the 0x70-byte light records and chunk tables of an event script's lighting, how they are bound into a light group and how the renderer picks them"
 kind: "format"
 category: "EBP script files"
-summary: "Section 14 of an event .ebp, magic LGT2: a header, an array of 0x70-byte light records and a chain of typed chunks (range, cut list, id index, curve table). The binder 0037AA90 stores the chunks into one of five 0x50-byte light groups at 02EBF420, rewrites each record's priority byte through a six-entry table and marks the group ready; the per-frame collector 0037AD40 and the object light pass 003ACC10 read the records. Shipped in 1,260 event scripts, with the rules an edited light set must follow."
 addresses: "0037AA90, 02EBF420, 01EF94E4, 01EF94E0, 00330110, 0032F1B0, 0037B230, 0037A9B0, 0037AD40, 0037A5B0, 0037A450, 003ACC10, 003DEA00, 003DEA10, 0037B030, 0037B0F0, 0037B190, 003DE9A0, 0037A880, 0037A7F0, 003E8A40"
 ---
 

@@ -2,7 +2,6 @@
 title: "Menu screens: every menu widget procedure, the screen it belongs to, what installs it and the resources it loads"
 kind: "reference"
 category: "Menus and HUD"
-summary: "All 267 menu widget procedures in the game, found from every construction site: for each one its size, installer and install site, parent, the screen it belongs to with that screen's shipped name, the layout records and files it loads, and the final page that documents it; how the Party Menu entries and the request router reach each screen; and the 123 procedures no single screen claims, listed in menu-screens.tsv."
 addresses: "00280DE0, 00281ED0, 0027FB70, 0027F5D0, 00254B50, 00280980, 00244F50, 00245000"
 ---
 

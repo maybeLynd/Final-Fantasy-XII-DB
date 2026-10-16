@@ -2,7 +2,6 @@
 title: "Render command list: the per-frame command objects, the two lists that hold them and the walks that run them"
 kind: "system"
 category: "Graphics"
-summary: "How each render pass of a frame becomes a heap object appended to an ordered command list and an owning list, how the render pass runs the ordered list in two parts with a class mask instead of a sort, the class-filtered walks the opaque passes run from inside it, the console's ambient-occlusion-only exit, the three teardowns, the render-parameter block the execute bodies read, the character render-object manager installed beside the lists, and the two GS command buffers."
 addresses: "01F7F5E0, 01F7F5E8, 00186CD0, 0018B480, 0018AD00, 0018C9E0, 0018B4E0, 0018CA40, 0018AFF0, 0018C610, 00212CC0, 0018B100, 0018B1B0, 0018B510, 0018B030, 0018B070, 0018B0B0, 0018B040, 0018B810, 0018C8F0, 00187950, 0022A580, 001F28B0, 00193D50, 01DFE0C4, 001BDA50, 003A1D50, 003A1DB0, 004FE420, 02EBEFC0"
 ---
 

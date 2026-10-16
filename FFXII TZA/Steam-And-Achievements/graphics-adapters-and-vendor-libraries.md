@@ -2,7 +2,6 @@
 title: "Graphics adapters and vendor libraries: which GPU the game picks, the adapter list, NVAPI and AMD ADL"
 kind: "system"
 category: "Steam and achievements"
-summary: "How the renderer picks a Direct3D 11 adapter from the DeviceID and LUID settings, the adapter list the display object keeps, the anti-aliasing levels probed from the device, how the game loads NVIDIA's NVAPI and AMD's ADL, the adapter-info chain that asks them for a GPU's name and temperature, and the two places that show the result."
 addresses: "006253D0, 001DD170, 00623C10, 00623CB0, 00624490, 001DC650, 001DC7A0, 00628690, 001DF2C0, 00159340, 00158F60, 00158EC0, 00158DE0, 00158FE0, 001590B0, 00159180, 00159270, 0020D2B0, 0020D9F0, 0020DA50, 0020DAB0, 0020D050, 0020D120, 0020D2F0, 0020DE30, 0020CEF0, 0020CF90, 0020D720, 001DC9D0, 001DCB90, 01E02580, 01F83460"
 ---
 

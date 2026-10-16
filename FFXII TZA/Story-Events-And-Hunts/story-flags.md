@@ -2,7 +2,6 @@
 title: "Story flags: the five banks of yes-or-no flags the save keeps, the story schedule some flag ids read instead, who sets and reads each, and the flags a new game starts with"
 kind: "system"
 category: "Story, events and hunts"
-summary: "How the game remembers what has happened: the five flag banks in the save payload with their offsets and id ranges, the accessors and their bounds, the encoded id whose bit 14 reads the story schedule in mapjumpgroupflagrom.bin instead of a flag, ids 0 and 1 as always and never, what each bank holds (map-jump groups and map icons, names learned by talking, chests opened and traps fired, two script-only banks), every native setter and reader, the main menu items the schedule unlocks, and the reset that clears the banks and sets the 52 starting flags."
 addresses: "0032A8A0, 00377970, 0032AB60, 0032ABF0, 0032AD70, 0032AA60, 00379160, 002EF2D0"
 ---
 

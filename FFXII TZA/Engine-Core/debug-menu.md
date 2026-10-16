@@ -2,7 +2,6 @@
 title: "Debug menu: the developer console object, its fifteen pages, its command dispatcher and the retail rows that still reach it"
 kind: "system"
 category: "Engine core"
-summary: "The developer menu the remaster still carries: the settings object and its 293 row labels, the fifteen pages of row ids, the row renderer and the two per-id tables it reads, the dispatcher that runs one of 226 command arms by id and the shape of the arms, the single byte that would open the menu and that nothing in the shipped game sets, and the sixteen graphics rows of the retail Config screen that reach the dispatcher anyway."
 addresses: "001D1660, 001D4C1C, 001D4BFA, 001D4C09, 001CD040, 0017DB90, 0017E070, 0023B330, 0023B6F0, 001D50D0, 001CCB20, 001D0390, 001CD0E0, 001D5260, 001D5520, 0017DAA0, 00187950, 001D0190, 008FCE00, 01DF6E68, 0017D490, 001A9930, 00193D50, 001DF340, 001DDAB0, 001C2F40, 003058B0, 00254EE0, 0020AC30, 0020AF10, 001EC560, 00358330, 0022A550, 01F82D20, 01DF6E48, 01F81270, 001C2F00, 001C1D40, 001C2120, 001EA3C0, 006CCCE0, 001C2980, 001C2D10, 00181F20, 00181E70, 001C2DB0, 001EA830, 001EAC60, 001EAE10, 0022FFE0, 00181FD0, 001820E0, 0020A760, 001EC4B0, 001C5040, 001EC500, 0050C8A0, 0050D0C0, 002E05E0, 00254FE0, 00255020, 001C5110, 001C0540, 001DCB90, 001DCD30, 0020DA50, 00308E80, 003091C0, 001C1C80, 001C1B00, 001C1A60, 001C1C00, 001C19A0, 0020AA50, 001ACC30, 001AC950, 00189130, 00188E60, 00189570, 001AC7C0"
 ---
 

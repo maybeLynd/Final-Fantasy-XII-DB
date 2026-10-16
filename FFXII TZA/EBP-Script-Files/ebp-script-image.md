@@ -2,7 +2,6 @@
 title: "EBP script image: the section-0 header, actor directory, function and jump tables and actor lists a zone or event script runs from"
 kind: "format"
 category: "EBP script files"
-summary: "Section 0 of every .ebp container: the 0x90-byte header and the tables it points at (constant pools, variable descriptors, the actor directory with each actor's function table, jump table and entry-slot footer, the actor lists the group request opcodes walk, and the authored records later readers fetch), how the slot-0 handler and the bind attach it to a script manager and how each actor record is built from its directory entry, with the shipped images measured."
 addresses: "0032F850, 0026C8C0, 0026CE60, 00266530, 00266C50, 00358A00, 003589E0, 002652D0, 002674B0, 00267930, 00267BB0, 00267C20, 002641B0, 002642C0, 00264390, 00264AE0, 00264B90, 00264870, 002658B0, 003B7210, 0035A270, 00265770, 022C6C28, 022C6D18"
 ---
 

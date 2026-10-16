@@ -2,7 +2,6 @@
 title: "Achievements: the achievement list, the counters and conditions that award each one, and how an award reaches Steam"
 kind: "system"
 category: "Steam and achievements"
-summary: "The 41 achievement records with their developer tags and Steam titles, the 30 descriptors that give each tracked achievement a counter or a test, the saved counter block and award bits, the menuhandbook.bin targets and lists the tests read, the code that feeds every counter, the periodic sweep and its re-send, the script and scene awards, the path from an award to SetAchievement and StoreStats, and the Sky Pirate's Den statues that show the awards."
 addresses: "01DFE410, 00D10460, 00D10550, 00316A50, 00315E90, 003166F0, 00316760, 00316BF0, 003165C0, 00316930, 003162E0, 01EED070, 00316440, 003160C0, 003161A0, 00315420, 00309EC0, 008632B0, 0020CE60, 00352250, 0034C9A0, 0020CB50, 00906290, 003158B0, 022C2550, 00316810, 00572920, 003154B0, 00315390, 020927C0"
 ---
 

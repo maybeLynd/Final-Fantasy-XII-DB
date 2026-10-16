@@ -2,7 +2,6 @@
 title: "Sprite batcher: the 2D vertex batcher, its register mirror and the menu quad emitters"
 kind: "system"
 category: "Graphics"
-summary: "How menu sprites, coloured rectangles and soft-edged windows are drawn: the 0x4300-byte batcher at 01F811E8 with its 64 vertex batches, its menu texture registries and its mirror of the GS registers, the two flushes that turn batches into DynGeo drawing objects, and the quad emitters that write each sprite twice, as a GS packet and as batcher vertices."
 addresses: "01F811E8, 001B1C00, 001B1BA0, 001ADD30, 001B06D0, 001B0A20, 001B0CE0, 001B22F0, 001B2410, 001B03D0, 001B0190, 001B0100, 001B1910, 001B1440, 001B1C10, 00181460, 002DAF30, 002DD1E0, 00248EB0, 00248E10, 002DD350, 002DD4C0, 002DD420, 0215E6D0, 002D9DB0, 002DA2D0, 002DA7C0, 002DAC70, 002DBDD0, 002DC7F0, 002DD090, 00392A10"
 ---
 

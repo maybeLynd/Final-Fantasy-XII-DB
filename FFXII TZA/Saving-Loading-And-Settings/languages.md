@@ -2,7 +2,6 @@
 title: "Languages: the Language setting, the nine language codes, the locale id each maps to, the data folder it selects, the Windows-locale default, and the confirm and cancel buttons"
 kind: "system"
 category: "Saving, loading and settings"
-summary: "How the game picks its language: the Language setting in the GameSetting.ini object, its ten-entry code table, the converter that turns a code into the locale id the rest of the game reads, the per-locale data folder and file size table that id selects, the Windows language the setting defaults to on a fresh install, the locale-dependent rules in text and script code, and the DecideButton setting that swaps confirm and cancel."
 addresses: "0017E270, 001DE050, 0022A0B0, 00229E40, 00229E50, 00254A10, 002DF9A0, 0017E210"
 ---
 

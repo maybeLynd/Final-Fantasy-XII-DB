@@ -2,7 +2,6 @@
 title: "Startup constants: the random seed, the frame-rate constant, the memory budget and the confirm button mapping"
 kind: "system"
 category: "Engine core"
-summary: "What the boot fixer decides once and the rest of the game reads thereafter: the Mersenne Twister seeded from a literal and reseeded from the wall clock only on a save load, the frame-rate time base and the ticks-per-frame constant derived from FrameLimit, the confirm and cancel button masks derived from DecideButton, the language index, the two build-id files, the eleven heap blocks of the memory budget and the nine arenas registered from them, and the order in which the boot fixer runs the engine's one-time initialisers."
 addresses: "0022A0B0, 0022BDF0, 001EDDC0, 0017D8F0, 00229F10, 0022A4F0, 0017E210, 0017E270, 0017E410, 00314DE0, 00184960, 001EDEF0, 001EDE70, 0017D990, 0017D9D0, 00379CF0, 00863D30, 00584210, 0036D240, 00369D30, 0036D990, 00368A90, 0035EB70, 0022A770, 0022A4B0, 0037B3D0, 003692D0, 00369510, 008628E0, 00369650, 003696D0, 00259180, 003AC890, 002FC200, 00375120, 00382910, 004679C0, 00248410"
 ---
 

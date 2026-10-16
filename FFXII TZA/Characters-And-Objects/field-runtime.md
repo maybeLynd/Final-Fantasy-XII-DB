@@ -2,7 +2,6 @@
 title: "Field runtime: how a frame drives every actor's script through the manager slots and the wait slots"
 kind: "system"
 category: "Characters and objects"
-summary: "The per-frame pass that walks the actor manager slots and drives each actor's script: who calls it and how many sub-steps a frame runs, the refusals that stop a pass, the branches of the pass body, the party roster loop and the whole-field settled fold, the wait resolver between the pass and the bytecode interpreter with its wait kinds and parked flag, the wait slots the interpreter arms, the field-settled sequence that runs when nothing is pending, and the two globals the rest of the frame reads."
 addresses: "0025D9E0, 00314020, 0025DF00, 0025E4C0, 00358940, 002620E0, 00261F90, 0025E400, 00583920, 003590D0, 003588B0, 0032FC30, 00233AA0, 00269860, 003DBF60, 003DC050, 003DB2A0, 002674B0, 003DB640, 00267420, 00267310, 0020E600, 0020E620, 00269800"
 ---
 

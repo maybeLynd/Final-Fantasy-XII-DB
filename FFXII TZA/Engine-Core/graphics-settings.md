@@ -2,7 +2,6 @@
 title: "Graphics settings: the render settings block, its scene-config keys, its defaults and the shader constants it feeds"
 kind: "system"
 category: "Engine core"
-summary: "The static block at 02CB7FD0 that holds the remaster's render settings: the two constructors that write its defaults, the two scene-config loaders that overwrite thirty of them from named keys, the eight shadow-map matrices and the derived shadow scalars written into it every frame, the snapshot the frame builder compares against the last one before it rewrites the shader constant buffer, the post-process and shadow objects the other keys land in, the second run of character-light settings outside the block, the developer-menu rows that step the fields, and the tonemap byte the scene config switches."
 addresses: "02CB7FD0, 00162410, 005DC720, 005DC580, 005DC430, 008AB7C0, 001C7940, 001C3D50, 001FF740, 001C51D0, 00200B50, 00200B80, 00200BE0, 001F0AD0, 001EF6D0, 00187950, 006084B0, 005DEC50, 00604750, 001D1660, 001CD0E0, 001846B0, 001846F0, 00193F70, 00194300, 00194250, 00194290, 001A9930, 0018EEE0, 00193D50, 001C5750, 001A9AA0, 001A9A70, 001A9AD0, 001A7770, 001A9ED0, 001802E0, 001A9DA0, 001A9D70, 001A9B30, 001A7E40, 001A97F0, 005DDDB0, 00214C30, 00214B90, 001CC800, 001CC920, 001F38B0, 01FD3AE6"
 ---
 

@@ -2,7 +2,6 @@
 title: "Standard file formats: the TGA, CSV, JSON, WebM, C-header and PS2 icon files the game ships, and which of them it reads"
 kind: "format"
 category: "Game files and data tables"
-summary: "The archive files in public formats: two TGA title images, seventeen CSV tables, 830 JSON documents, forty WebM movies, six C headers, the PS2 memory-card icon pair and the PS2 boot descriptor. For each, its shipped counts and sizes, the function that opens it and what that function does with the bytes, and which files no path in the executable names."
 addresses: "00473E80, 01F26568, 001D8D60, 001EE820, 001A9050, 001A7A50, 00674A00, 0024C970, 0024F240, 0024EF90, 001D9A40, 00200BF0, 001C3760, 001C7360, 001C7520, 00202930, 001C61F0, 001C53F0, 001C5F20, 001C76E0, 001C5930, 001C5750, 001C6E20, 001C2F50, 00582790, 00249210, 005832B0, 002DF9A0, 01E461F0, 002DF980, 001B7F30"
 ---
 

@@ -2,7 +2,6 @@
 title: "Party leader: switching who you control, why the others follow at once, where they walk, and when control is taken away"
 kind: "system"
 category: "Party"
-summary: "How the leader works: the leader as one actor handle and the request-and-commit step that changes it, who requests a change and the default member each battle mode starts with, the four-actor roster, the follow formation every other member is placed in around the leader, the leader's battle state that locks the stick and the camera, the area waiver, and the movement locks scripts, events and the leader's state each own."
 addresses: "003272A0, 003594B0, 00358BC0, 00326500, 00263750, 00338490, 00339A60, 0023B040, 00359200, 00359250, 003592C0"
 ---
 

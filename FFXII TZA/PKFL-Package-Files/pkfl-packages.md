@@ -2,7 +2,6 @@
 title: "PKFL packages: the per-area .mot, .snd, .vpc and .vpcjp containers, their offset and size directory, and the slot readers"
 kind: "format"
 category: "PKFL package files"
-summary: "The PKFL container every area's motion, sound and voice package uses: an 8-byte header and a directory of offset and size pairs, payloads on 0x800 boundaries; how the area loader reads each package's directory into a fixed table, the seven slot readers and their callers, how a slot's payload is requested, the 10,314 shipped packages and what their slots hold, and the rules a package must follow."
 addresses: "0032FCA0, 0032FC30, 0032F430, 022C6E70, 022C6E98, 022C6EE8, 022C6EC0, 0032F260, 0032F290, 0032F2C0, 0032F2F0, 0032F3A0, 0032F320, 0032F360, 003DD4C0, 003DF440, 003DF2C0, 003E9F80, 003E9EF0, 002DF980"
 ---
 

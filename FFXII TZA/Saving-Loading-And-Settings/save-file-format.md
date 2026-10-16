@@ -2,7 +2,6 @@
 title: "Save file format: the SAFH container, its zlib and RC4 layers, the save image and its header fields, the four in-memory copies and the format stamps"
 kind: "format"
 category: "Saving, loading and settings"
-summary: "What a FFXII_000 save file is from the outside in: the 12-byte SAFH container header, the body that is zlib-compressed and then RC4-encrypted under a key derived from the rotated game title, the 353,936-byte image inside it with its 512-byte header (checksum, gil, play time, slot roster, area, format constants) and payload, the four image buffers the game keeps in memory, the checksum the writer computes, the stamps the loader checks, and what loading an older or edited image does."
 addresses: "008666B0, 00866200, 00865840, 00865D90, 002EF640, 00583D60, 0057E310, 003BB220, 00253A80, 00255260, 00233C10, 002370C0, 00584210, 00862A40"
 ---
 

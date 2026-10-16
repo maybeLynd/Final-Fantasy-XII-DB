@@ -2,7 +2,6 @@
 title: "Animation-driven movement: how an authored animation command steps and turns a character toward its target"
 kind: "system"
 category: "Movement and pathfinding"
-summary: "The lunge and swing-round an attack animation asks for: the authored command that names a movement profile, the request the command handler builds from the battle unit's target, the global pool of 128 requests and the per-character lists they hang on, the profile tables in every animation container with their speed and turn-rate curves, the once-a-frame consumer that sums a clamped step and a turn, and the actor update that feeds both into the movement step and the facing."
 addresses: "00520C10, 003E6340, 0041F2F0, 002ED500, 0031ADB0, 00424370, 003AF2B0, 003AED70, 003AF320, 0041D220, 00423B10, 003E6E60, 003E6EF0, 003AF220, 003AEF90, 003E68B0, 003E6A70, 003AEF20, 003AEF50, 0025DF00, 002E5750, 0026B6A0, 0026B520, 002651C0"
 ---
 

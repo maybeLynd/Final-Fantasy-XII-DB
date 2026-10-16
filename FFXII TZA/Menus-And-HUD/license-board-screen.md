@@ -2,7 +2,6 @@
 title: "License Board screen: the board chooser, the square grid and its states, the change sweep, preview, and obtaining a license"
 kind: "system"
 category: "Menus and HUD"
-summary: "How the Licenses screen opens on a member's board or the board chooser, how the grid is built from the board file plus one row and column with random tile variants, the 0x38-byte square and its state bits, how owned, reachable and affordable squares are worked out, the corner shapes, the change sweep with its 32-square batch, the board preview, the scripted cursor moves, the confirm texts, and the purchase with its animation and notices."
 addresses: "0055B3F0, 0055BFF0, 0055B310, 0055DD70, 0055CD40, 00557DB0, 0055D978, 0055F3E0"
 ---
 

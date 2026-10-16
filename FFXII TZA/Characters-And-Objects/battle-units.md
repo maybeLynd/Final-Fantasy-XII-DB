@@ -2,7 +2,6 @@
 title: "Battle units: the pool of combat slots, who gets one, the actor class bits, the handle and the flag word"
 kind: "system"
 category: "Characters and objects"
-summary: "The fixed pool of battle units that everything fighting in a field draws from: its size and allocation, the walk that binds a unit to every eligible actor of the primary manager and what happens when the pool is full, the two-way link between unit and actor, the encoded handle that names a unit and the resolver that decodes it, the release that scrubs a slot, the three-bit actor class that decides what an actor may do, and the unit flag word bit by bit with every writer the access table proves."
 addresses: "002368D0, 00234480, 00265A20, 00234200, 00236820, 00236850, 002367A0, 002134A0, 00263E30, 0031B760, 003589B0, 003588B0, 0031B7E0, 002659D0, 00265020, 00263C20, 00263D30, 00351610, 00238BF0, 00269FE0, 00269F30, 002659A0, 00267CC0, 0026AD00, 00263AC0, 00234D40, 0035A1C0, 0035A060, 0031C1A0, 0035A0C0, 0031BDC0, 004737A0, 004737D0, 00473690, 00318A90, 003206E0, 0030C3C0, 00237430, 00359EA0, 0031FCF0, 0031FD20, 00273780, 00273750, 00273A00, 00358960, 003BBC80"
 ---
 

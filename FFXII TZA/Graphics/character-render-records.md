@@ -2,7 +2,6 @@
 title: "Character render records: the record array, the pool lifecycle, render events and the presentation entries"
 kind: "system"
 category: "Graphics"
-summary: "The per-actor render record: the 160-record array and its system tail, how a record is allocated, promoted, retired and cleared, the two dirty words and the per-frame walk that services them, the render-event selection and the presentation-entry reference container, how an entry sets up and switches its tracks, and the render resource root with the chunked banks the records point into."
 addresses: "003325D0, 022C6F28, 022C6F20, 022C6F30, 0041E3A0, 0041E550, 004269A0, 00426480, 0042FB80, 004279B0, 004278E0, 0041F730, 00420480, 00428710, 00427C90, 00429140, 004200A0, 00426EC0, 0042ED60, 00332660, 003323D0, 00426090, 00427DE0, 00427BD0, 00426420, 0051F9F0, 0051FBB0, 0051F6B0, 002ED570, 00409FE0, 0046E4D0, 004780C0, 0051F240, 0051F080, 0051F410, 0051F190, 0051BA40, 0051BA80, 0051B9F0, 0051B970, 00424D80, 004235C0, 0041FCA0, 00424230, 01F00410, 0041CD30, 0041CFC0, 0041C9A0, 00417920, 00417110"
 ---
 

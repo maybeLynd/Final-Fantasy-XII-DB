@@ -2,7 +2,6 @@
 title: "Script variables: the six storage classes behind PUSHV and POPV, where each lives and how long it lasts"
 kind: "system"
 category: "Scripts and script commands"
-summary: "How a zone script's variables are resolved: the descriptor word with its class, width, float bit and offset, the resolver 00262440 that turns it into an address in one of six homes (the save payload, the script image, the actor's local area, the image's msp area and the two 512-byte scratch banks), array indexing with its clamp, the width-saturating store, the reference form PUSHP hands to native verbs, and which bank survives a save, an area change or a script unload; with the corpus census in the companion tables."
 addresses: "00262440, 00267FC0, 00267E60, 00268100, 0026D530, 002650B0, 00264E30, 0026C8C0, 0026CE60, 0026DB30, 00268320, 0025D8E0, 00269A20, 0032F240, 02099DF0, 02099FF0, 0209AC10"
 ---
 

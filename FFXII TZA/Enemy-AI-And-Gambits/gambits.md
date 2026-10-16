@@ -2,7 +2,6 @@
 title: "Gambits: how a character's gambit list is checked top to bottom, what runs before it, the three gambit sets and the authored presets"
 kind: "system"
 category: "Enemy AI and gambits"
-summary: "How a party member picks its next action: a command the player issued comes first, Confuse and Berserk override the list, and the gambit list is then tried line by line until one line's conditions match and its action commits; each line's optional percent chance and weighted action roll; how the twelve lines, the on/off switch of each line and the three gambit sets are stored and rebuilt into the list the game walks; and the authored presets a character starts with."
 addresses: "00305AB0, 00305CC0, 003014C0, 00308EC0, 00327DE0, 00326030, 00327CB0, 0030F760"
 ---
 

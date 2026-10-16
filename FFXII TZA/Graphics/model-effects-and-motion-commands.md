@@ -2,7 +2,6 @@
 title: "Model effects and motion commands: @FEF and the motion entries"
 kind: "format"
 category: "Graphics"
-summary: "The entries of the .cm and .ca containers that are behaviour rather than shape: the @FEF section that embeds an EFX0010 effect in 144 models, how the model row binds it and the start-up table that names the 144 files, and the motion entries @FMC (command blocks), @FMN (bone channel lists), @FMW (keyed channel data) and @FRM, with the readers that select and decode them and the shipped census."
 addresses: "00504F00, 00504E70, 00504940, 0016D6A0, 0040A230, 00409F80, 02B64380, 0041F340, 003B3550, 0041D220, 0041CA70, 004090D0, 0041CD30, 0041BEE0, 0041B4E0, 00409190, 00370E00, 0041B550, 0041B650, 00409170, 00409150, 0041A470, 00418650, 00418700, 004186A0, 0041FCF0"
 ---
 

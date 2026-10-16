@@ -2,7 +2,6 @@
 title: "Battle log: which result posts which battle message, the repeat limit and the 24-unit visibility rule"
 kind: "system"
 category: "Battle actions"
-summary: "How a resolved action becomes battle-log lines - the technick failure notices, the healing and status-cure lines for party members off the field, the technick result lines, steal and poach lines - how every message is posted through one function that drops repeats, hides lines about fights more than 24 units from the party leader unless the message is marked always-shown, and fills up to four arguments from the message row."
 addresses: "00385BA0, 00469EC0, 0046AB10, 00469570, 002FA3B0, 005369C0"
 ---
 

@@ -2,7 +2,6 @@
 title: "Position to scalar: the distance fade colour of effect elements"
 kind: "system"
 category: "Graphics"
-summary: "The function that turns an effect element's 3-D position into one distance and then into the alpha of a modulate colour: its three distance modes, the four fade kinds of the fade record, the container flags that further scale the alpha (owner fade, status-display denial, the time-stop dimming ramp), and the 76 draw sites that multiply the result into what they draw."
 addresses: "002F1F40, 002F1D90, 0039B550, 0039ABF0, 0039AF70, 00398F90, 02F97348, 02AEECB0, 02AEEA20, 02AED5F0, 003ED0E0, 003ECF70, 0026EE00, 003A3FD0, 0042FB20, 003E7DE0, 0024BFD0, 020926E8, 00442550"
 ---
 

@@ -2,7 +2,6 @@
 title: "Resource sections: how a section inside a loaded resource is found by tag and name, the @FRP container, resource entries and their two storage modes, and the banked resource tables"
 kind: "system"
 category: "Game files and data tables"
-summary: "How the engine reaches a piece of data inside a loaded resource: the tag and 32-byte name match with its @ALL and NULL wildcards and the 31-character name limit, the @FRP container header with its version 0 and version 1 offset tables, the section search and its -1 sentinel, the child selector, resource entries with an inline or handle-and-cache base and the re-resolve flag, the handle decoding, and the banked resource tables that hold entries as rows: their descriptor, row lookup, refresh walk and the three tables the render root builds."
 addresses: "00409C30, 00409210, 02B62E20, 00409780, 00409660, 00409930, 00409A30, 004096C0, 00409600, 0051EE00, 003AB7F0, 0036B130, 02B62E10, 0041E500, 004090D0, 00409F50, 002ED570, 0051FF30, 00409F70, 0040A210, 0051F9F0, 00409F10, 0046E250, 00477EE0, 0041E3A0, 0033263C, 00408F30, 00408FA0"
 ---
 

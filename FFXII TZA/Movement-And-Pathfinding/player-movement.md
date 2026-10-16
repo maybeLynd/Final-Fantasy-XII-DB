@@ -2,7 +2,6 @@
 title: "Player movement: how the left stick moves the controlled character, the walk and run bands, the camera-relative turn, and the locks that stop it"
 kind: "system"
 category: "Movement and pathfinding"
-summary: "The one actor per tick that receives analogue movement: which handle the stick drives and how it changes, the stick vector with its dead zone and the four magnitude bands that pick walk or run speed, the keyboard walk toggle, the camera-relative rotation and the yaw smoothing, the per-tick application of speed, facing, desired heading and animation mode, the motion-flag word on the body, and the suppression word and four lock bytes that scripts, status and the party controller use to stop the character."
 addresses: "00358C60, 00358CB0, 003594E0, 00358A20, 004742A0, 00264DF0, 0026D810, 002EC5B0, 002E9BB0, 0026B5A0, 0026A0D0, 002681D0, 00317E60, 00235EA0, 003045A0, 002E7E50, 00265680, 00265720, 00265830, 00267330, 00358B40, 00358BC0, 003593A0, 003590E0, 00359410, 00358EE0, 00358F90, 00359200, 00359250, 003592C0, 00359330, 0023B040, 0026D6D0"
 ---
 

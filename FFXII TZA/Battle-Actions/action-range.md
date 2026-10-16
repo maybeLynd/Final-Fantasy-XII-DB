@@ -2,7 +2,6 @@
 title: "Action range: near, middle and reach distances and how a unit closes in on its target"
 kind: "system"
 category: "Battle actions"
-summary: "How starting a battle action computes three distances to the target (back off inside near, settle at middle, act within reach) from the action row or from the weapon and the character, the 60 %/80 % fallback, and how movement uses them to approach, back off and time its arrival to the charge."
 addresses: "002FEB80, 00309300, 00320D70, 00338140, 00337A50, 003341A0"
 ---
 

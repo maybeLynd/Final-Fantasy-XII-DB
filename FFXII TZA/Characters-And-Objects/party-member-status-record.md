@@ -2,7 +2,6 @@
 title: "Party member status record: the snapshot the menus and HUD read a party member through, field by field"
 kind: "system"
 category: "Characters and objects"
-summary: "The 192-byte record that the status screen, the party menu, the licence board, the save screen and the HUD read a party member from: who builds it, from which fields of the party stats record, its battle unit and its party row, every field it carries with its source, the flag word that says whether the member is KO'd, engaged, idle, selected or out of range, the experience curve behind the points to the next level, and which screen reads which field."
 addresses: "00329220, 0031FE70, 00320040, 0031FEC0, 0031FF70, 0031B9F0, 0031FDA0, 003879C0, 0030C2C0, 003135E0, 00313800, 00303EE0, 00327200, 0030A310, 002F8F20, 00387090, 003A1960, 00324020, 00263C20, 00313F60"
 ---
 

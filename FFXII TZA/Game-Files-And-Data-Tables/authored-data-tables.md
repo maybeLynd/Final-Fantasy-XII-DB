@@ -2,7 +2,6 @@
 title: "Authored data tables: the 64-slot registry that holds the battle_pack.bin tables, the area .ard tables and the license boards, how each is bound, and how rows are found"
 kind: "system"
 category: "Game files and data tables"
-summary: "The registry of 64 pointer slots at 02EBF008 through which the game reaches its authored data: which battle_pack.bin entry, area .ard section or license board each slot holds, the boot and area-change loads that fill them, the binders that turn stored offsets into addresses, the shared table header, the inline row formula and its 32-bit arithmetic, the encoded battle id classes and the table each one is checked against, the lookup grids built at bind time, how the twelve license boards load, and the runtime blocks and dead cells that share the array."
 addresses: "02EBF008, 02EBF200, 0208E680, 002368D0, 003843F0, 00384420, 00238850, 00236C30, 003845F0, 003846F0, 00237FC0, 00238160, 00238660, 00238880, 003847B0, 00384510, 0023A160, 003EA710, 003EA820, 00238260, 00233E00, 00238390, 0055BFF0, 0055B3F0, 003236B0, 00233C10, 00238A80, 00324510, 0020E600, 0020E620, 003876D0, 00322C50, 00309440, 01EEBCF8, 0032A230, 0208D300, 0208D308, 0208D310, 0208D318"
 ---
 

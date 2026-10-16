@@ -2,7 +2,6 @@
 title: "Story flag ids: every flag id the shipped scripts set, release or test, by bank, with the scripts that touch it"
 kind: "reference"
 category: "Story, events and hunts"
-summary: "Each flag id a us script passes as a literal to the map-jump-group, talked-name and treasure verbs: its bank, whether a new game starts with it, how many times shipping scripts set, release and test it, the scripts that do each, the ids only the developer menus name, the two story-schedule ids, the flag verbs no script calls, and the starting flags no script names."
 addresses: "0032AB60, 0032A8A0, 0032ABF0, 0032ADF0, 0032AAD0, 00377970"
 ---
 

@@ -2,7 +2,6 @@
 title: "Class hierarchy: the C++ classes the executable names through RTTI and what they are"
 kind: "system"
 category: "Engine core"
-summary: "How the 2,286 vtables in the executable carry their class name, base classes and virtual slots through the MSVC run-time type information left in the image, what the 2,248 named classes are (PhyreEngine, the SQEX sound driver, Yebis, Bullet, the C++ library, and 130 of the game's own), which bodies are shared across hundreds of vtables, how a constructor stamps its vtable, and why the gameplay systems are not among the classes; the full table is class-hierarchy.tsv."
 addresses: "008C5760, 00D86960, 00903B68, 009007E8, 009010B8, 00904328, 00D360A0, 005C5230, 0016D6A0, 0016D680, 008F9B80, 008F3640"
 ---
 
