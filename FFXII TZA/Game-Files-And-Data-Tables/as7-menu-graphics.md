@@ -145,7 +145,7 @@ uploaded all the same.
 
 - [UI typed lists](ui-typed-lists.md): the atlas registry `itemgra_c`, `chrback_top` and `chrback_bottom` are
   registered in.
-- Menu resource packages (.mrp): `save_load.mrp` and `shop_new.mrp` name the
+- [Menu resource packages (.mrp)](mrp-menu-resource-packages.md): `save_load.mrp` and `shop_new.mrp` name the
   `itemgra_c` atlas the item pages are copied into.
 - [File size tables (.fst)](file-size-tables-fst.md): the kind 7 path arrays and request sizes.
 - [File requests and the read queue](file-requests-and-the-read-queue.md): `0032E400` and `0032E620`.

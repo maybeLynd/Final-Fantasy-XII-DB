@@ -306,4 +306,4 @@ object, the loose effect bank and the two sound sections.
 - The menu-map container
 - section_014, the LGT2 light set
 - The EFX and EFB effect containers
-- MRP menu resource packages
+- [MRP menu resource packages](../Game-Files-And-Data-Tables/mrp-menu-resource-packages.md)
