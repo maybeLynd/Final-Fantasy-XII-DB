@@ -92,6 +92,7 @@ adds it back.
 | embedded TIM2 (under `ps2data/`) | `.mpk` 21,419 in 459 files, `.dat` 6,767 in 2,795, `.ebp` 5,430 in 4,695, `.bin` 3,267 in 492; all at 16-byte-aligned offsets |
 | embedded glyph sheets | block tag `0x2F41`: `.ebp` 2,150, `.dat` 74, `.bin` 36; tag `0xAF41`: `.ebp` 569 |
 | font pack (`packfiles/fontpack_it.bin`, 6 languages) | directory dwords 0 to 5 are offsets, 6 and 7 are `0xFFFFFFFF`; entry 0 a two-picture 4-bit sheet 640 wide (225 rows `us`, 1,646 `cn`), entry 1 a 32 x 16 picture of image type 3 |
+| script glyph sheets (`us`) | 67 scripts carry a TIM2 in section 6: 58 with one picture, 9 with two; version 4 in 66 and `0xD8` in one; all 4-bit (`imageType` 4); first picture 24 x 23 in 55; gate nibble 1 in all 67 |
 
 ## Loader behaviour
 
@@ -160,6 +161,18 @@ also written by the font-pack completion `0039C150`.
 returns null for an empty slot, else the first picture's block (picture `+0x30`). With mode 0 it returns
 null when that block's flags have a bit of `0x18000` set. With a non-zero mode and `00254A10` true it
 returns the first block whose flags have `0x8000` and not `0x10000`, or null.
+
+### Script glyph sheets (EBP section 6)
+
+A script container (`.ebp`) can carry a glyph sheet in directory slot 6
+(script container). When the container arrives,
+`003304A0` passes that section, with the area slot in the low four bits, to `00330060` (`00330565`), which:
+
+1. stores it at `022C6CF0[g]` and in the area record (`0026C860`, `02098EC0 + g × 0x288`);
+2. clears pending bit `0x40` of `022C6E48[g]`;
+3. hands it to the text layer (`0017F790` → `001B47A0`, which gives it to the first waiting font entry whose
+   id matches the packed value, or logs a load failure and attaches nothing when none does);
+4. registers it through `0029CAC0`.
 
 ### Layout and upload
 

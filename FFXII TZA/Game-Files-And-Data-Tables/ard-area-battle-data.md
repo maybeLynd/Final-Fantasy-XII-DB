@@ -72,6 +72,7 @@ growth rows on [stats](../Damage-And-Battle-Formulas/stats.md) and
 | slot 7 records | 1,773 in all |
 | trailers | 140 files, 998 records; the other 26 have offset 0 |
 | trailer model letters | `w` 564, `m` 278, `n` 140, `s` 13, `c` 3 |
+| section 19 (`us` scripts) | 271 carry an `FF12AR03` block, `+0x2C` = `0x30` in all, 2,116 slot-7 records in all; 266 with a trailer |
 | `.nmb` files | 166 per tree, byte-identical, version 100, `8 + 7 × count` bytes |
 | `.nmb` counts | 0 to 22; equal to the `.ard`'s slot 2 row count in all 166 |
 | `.nmb` entries | 1,146: `12 BA 00` 1,120 and `12 BB 00` 26, each a one-glyph two-byte string |
@@ -114,6 +115,19 @@ check and no magic check:
 
 It then makes the file root 0 (`02B5E0C0`). The binders add the section's address to the offsets
 inside it, so the loaded block is no longer a copy of the file.
+
+### The second area root (EBP section 19)
+
+A script container (`.ebp`) can carry a second `FF12AR03` block in directory slot 19
+(script container). When the container arrives,
+`003304A0` passes it to `003320D0` (`00330666`), which drops the area slot and jumps to `003EAA00`:
+
+1. a block already held is unbound (`003DCF10(0)`) and released (`00331880`);
+2. the new block becomes root 1 (`02B5E0C8`);
+3. its directory slot 7 (`+0x2C`) becomes the third motion-override table `02B58180` (`003DCF10`), or 0
+   when `+0x2C` is 0.
+
+Only `+0x2C` and the trailer offset `+0x0C` of this block are read; its `st2e` slots are never bound.
 
 ### Motion-file overrides
 
