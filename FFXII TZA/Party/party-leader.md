@@ -10,7 +10,7 @@ addresses: "003272A0, 003594B0, 00358BC0, 00326500, 00263750, 00338490, 00339A60
 - Switching to another character takes effect at once, and the others immediately follow the new leader.
 - The members who are not controlled walk in a formation around the leader.
 - While the leader is KO'd, turned to stone or in X-Zone, the stick stops responding until the leader recovers;
-  some areas waive this.
+  areas whose town flag is set waive this (`00377C20`, [Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md)).
 - Some scenes lock the stick, or parts of steering, on purpose.
 
 ## How it works

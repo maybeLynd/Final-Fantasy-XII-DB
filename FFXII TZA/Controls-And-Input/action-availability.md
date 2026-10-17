@@ -10,7 +10,7 @@ addresses: "0215F1C0, 002E1C20, 002E1CA0, 002E1CD0, 002E0FA0, 00254500, 01E0C2C0
 - During a scene, a movie or a screen fade, the main menu, the battle command menu and the map do not open.
 - Changing the party leader and cycling targets in the field stop working at the same moments.
 - Event skip with Start is offered only while a scene allows it, and never while a movie plays.
-- Escape Mode switches itself off in some of these moments ([Escape Mode](escape.md)).
+- Escape Mode switches itself off while availability bit 6, 9 or 10 is held (the table below; [Escape Mode](escape.md)).
 
 ## How it works
 

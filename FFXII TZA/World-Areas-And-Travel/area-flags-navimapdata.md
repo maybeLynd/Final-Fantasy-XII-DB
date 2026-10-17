@@ -19,8 +19,8 @@ frozen out. The same character in the same condition behaves differently one zon
 The town flag does more than that. It ends the kill chain when you enter, it changes who the game
 controls when a scene hands the party back, and the Map screen uses the same per-area record to know
 which page an area belongs to and whether to print its name. A few areas also change how MP comes
-back: in the Pharos, the Great Crystal, the Necrohol of Nabudis and similar places MP recovers a third
-as fast while walking and three times as much from damage.
+back: in the Pharos, the Great Crystal, the Necrohol of Nabudis and similar places MP recovers three
+times as fast while walking and three times as much from damage.
 
 None of this is decided by the battle system. It is one three-byte record per area in a shipped data
 file, and this page is that record.
@@ -109,7 +109,7 @@ Four consumers read the regime, all through the thunk `00320160`:
 
 | Consumer | Value 2 or 3 | Where |
 |---|---|---|
-| `002F9400`, MP recovered per step while moving | divided by 3.0 | `002F956A`-`002F957E` (`divss` by `008F311C`) |
+| `002F9400`, MP recovered per step while moving | the distance per point divided by 3.0, so recovery is three times as fast | `002F956A`-`002F957E` (`divss` by `008F311C`) |
 | `002F91A0`, MP the target gains from HP damage | tripled | `002F9220`-`002F9234` (`lea ebx, [rbx+rbx*2]`) |
 | `002F9240`, MP the caster gains from HP damage | tripled | `002F93CC`-`002F93D6` |
 | `00301AD0`, gambit target selector | compared with the condition's operand | `00303043`-`0030304D` (`setge`), `00303052` |
@@ -273,8 +273,8 @@ The name table's header, measured in all nine language copies of `planmapname.bi
 - Setting bit 15 on an area makes it a town for every system at once: fallen party members stay in
   play, the chain resets on entry, control level 3 applies and the saved leader is ignored. Clearing it
   on a shop interior re-arms the out-of-play rule there.
-- Bits 12-13 are the only per-area MP control: 2 or 3 slows walking recovery to a third and triples
-  the MP gained from damage. The save override at payload `+1062`<sub>h</sub> bit 7 / `+1063`<sub>h</sub> bits 4-5 can
+- Bits 12-13 are the only per-area MP control: 2 or 3 cuts the walk per MP point to a third, so
+  walking recovery runs three times as fast, and triples the MP gained from damage. The save override at payload `+1062`<sub>h</sub> bit 7 / `+1063`<sub>h</sub> bits 4-5 can
   impose a regime on any area without touching the file.
 - Bits 4-6 of the third byte are a working but unused feature: a non-zero value names the party member
   the game follows when control returns inside that town.

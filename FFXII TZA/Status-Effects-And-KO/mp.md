@@ -8,13 +8,15 @@ addresses: "00300CE0, 00307B0D, 002F91A0, 002F9240, 002FB6C0, 002F9400, 00309110
 ## What the player sees
 
 - **Walking** refills MP a point at a time. The lower the MP, the shorter the walk to the next point, and
-  spending MP throws away the progress toward it.
-- **Being hit** gives MP to a character with "Gain MP after taking damage", more for a bigger hit.
-- **Hitting** a foe gives MP with "Gain MP after dealing damage", or for magick with "Gain MP after dealing
-  magick damage", but only for actions marked to give it.
-- **Defeating** a foe gives a quarter of its level in MP with "Gain MP after defeating a foe".
-- In some areas every MP gain is tripled and walking recovery runs three times as fast.
-- "Reduces magick MP cost by 10%" lowers what an action costs.
+  any MP loss, spending included, clears the distance already walked toward it.
+- **Being hit** gives MP to a character with the Martyr license (augment 21), more for a bigger hit.
+- **Hitting** a foe gives MP with Inquisitor (augment 86) or Warmage (augment 20), each only for actions whose
+  row carries that augment's mark.
+- **Defeating** a foe gives a quarter of its level in MP with Headsman (augment 23).
+- In the areas whose `navimapdata.bin` record sets MP regime 2 or 3 (Terminus No. 7, the Necrohol of Nabudis,
+  the Great Crystal, the Pharos, the Henne Mines' Site 7 and Giruvegan; [Area flags](../World-Areas-And-Travel/area-flags-navimapdata.md)),
+  the MP from damage and kills is tripled and walking recovery runs three times as fast.
+- The Channeling licenses (augments 91-93) lower what an action costs.
 
 Healing gives no MP, and neither does damage between two units on the same side.
 
@@ -48,22 +50,23 @@ Both gains need the two units on opposite sides: exactly one of them a party rec
 
 ### Gain from being hit
 
-`002F91A0(attacker, target, hpDelta)` gives the target the ladder value for the damage when it has augment 21
-in either layer, byte `+6A`<sub>h</sub> or `+7A`<sub>h</sub> bit 5 (`002F9204`-`002F921E`).
+`002F91A0(attacker, target, hpDelta)` gives the target the ladder value for the damage when it has Martyr
+(augment 21) in either layer, byte `+6A`<sub>h</sub> or `+7A`<sub>h</sub> bit 5 (`002F9204`-`002F921E`).
 
 ### Gain from dealing damage
 
-`002F9240(attacker, target, hpDelta, action, killed)` gives the attacker the ladder value for the damage through
-either of two routes (`002F92BA`-`002F9389`):
+`002F9240(attacker, target, hpDelta, action, killed)` decides the attacker's gain in this order
+(`002F9240`-`002F93D6`):
 
-| Route | Augment | Action row `+2C`<sub>h</sub> |
-|---|---|---|
-| tried first | 86 "Gain MP after dealing damage", byte `+72`<sub>h</sub> / `+82`<sub>h</sub> bit 6 | bit 3 |
-| then | 20 "Gain MP after dealing magick damage", byte `+6A`<sub>h</sub> / `+7A`<sub>h</sub> bit 4 | bit 4 |
-
-When route A's action bit is clear the code tries route B. With augment 23 "Gain MP after defeating a foe"
-(byte `+6A`<sub>h</sub> / `+7A`<sub>h</sub> bit 7) and a kill, it adds `max(target level >> 2, 1)` (`002F938B`-`002F93C0`). A kill
-here is a target that now has KO, Stone or X-Zone without the field's bit 15 (`00307B3F`-`00307B61`).
+1. A heal (`hpDelta` not below 0) or two units on the same side gives 0.
+2. With Inquisitor (augment 86: attacker byte `+72`<sub>h</sub> or `+82`<sub>h</sub>, bit 6) and the action row's `+2C`<sub>h</sub> bit 3
+   set, the gain is the ladder value for the damage.
+3. Otherwise, with Warmage (augment 20: byte `+6A`<sub>h</sub> or `+7A`<sub>h</sub>, bit 4) and `+2C`<sub>h</sub> bit 4 set, the gain is the
+   ladder value; without either pair it is 0 (`002F9329`-`002F9389`).
+4. With Headsman (augment 23: byte `+6A`<sub>h</sub> or `+7A`<sub>h</sub>, bit 7) and a kill, it adds `max(target level >> 2, 1)`,
+   the level being target byte `+1C2`<sub>h</sub> (`002F938B`-`002F93C0`). A kill here is a target that now has KO,
+   Stone or X-Zone without the field's bit 15 (`00307B3F`-`00307B61`).
+5. In an area with MP regime 2 or 3 the total is tripled (`002F93C2`-`002F93D6`).
 
 ### The damage ladder
 
@@ -119,7 +122,7 @@ summons (`106`<sub>h</sub>-`112`<sub>h</sub>). For every other action, in this o
 | Augment | Cost | Sites |
 |---|---|---|
 | 32 | `10 * trunc(cost * 64 / 50)`, paid in gil | `002F97E4`-`002F9802` |
-| 91, 92, 93 "Reduces magick MP cost by 10%" | `trunc(cost - cost / 100 * sum)`, the sum of word `+4` of augment rows 91-93 present | `002F9688`-`002F97C1` |
+| 91, 92, 93 (Channeling) | `trunc(cost - cost / 100 * sum)`, the sum of word `+4` of augment rows 91-93 present | `002F9688`-`002F97C1` |
 | 51 | 0 | `002F97A3`, `002F97C7` |
 | 36 | `cost / 2`, truncated toward 0 | `002F97CD`-`002F97DC` |
 
@@ -168,7 +171,8 @@ The shipped rows:
 | 9,000 | 15 | 90 |
 | 9,999 | 30 | 180 |
 
-Rows 20-24 are the walking ladder:
+Rows 20-24 are the walking ladder. The range is fixed in the code, not by the file: `002F9400` reads row
+`20 + i` for `i` = 0 to 4 and falls back to row 24, whatever the table's count says:
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|

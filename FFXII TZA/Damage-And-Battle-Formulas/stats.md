@@ -102,11 +102,11 @@ Three lists of effect ids add a bonus when the id is set in either effect layer,
 (`002FF581`-`002FF77A`). The bonus is the `u16` at `+04`<sub>h</sub> of the id's row in the augment table
 `02EBF040`; each id's text is entry *id* of the augment text bank:
 
-| List | Ids | Adds to | Bonus | Text |
+| List | Ids | Adds to | Bonus | Licenses |
 |---|---|---|---|---|
-| `00D10290` | `35`, `42`-`47`, `60`-`68` | Strength | 1 each | "Increases physical attack damage" |
-| `00D102A0` | `19`, `22`, `24`, `26`, `69`-`73`, `87`, `97`-`102` | Magick Power | 1 each | "Increases magick potency" |
-| `00D102B0` | `74`-`85` | max HP | 30, 70, 110, 150, 190, 230, 270, 310, 350, 390, 435, 500 | "Increases max HP by ..." |
+| `00D10290` | `35`, `42`-`47`, `60`-`68` | Strength | 1 each | Battle Lore |
+| `00D102A0` | `19`, `22`, `24`, `26`, `69`-`73`, `87`, `97`-`102` | Magick Power | 1 each | Magick Lore |
+| `00D102B0` | `74`-`85` | max HP | 30, 70, 110, 150, 190, 230, 270, 310, 350, 390, 435, 500 | +30 HP to +500 HP |
 
 ### Totals and caps
 

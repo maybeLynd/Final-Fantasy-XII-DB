@@ -270,6 +270,7 @@ The chunk address is formed with a 32-bit addition (`0037FED9`-`0037FEDE`), the 
 
 - [Clan Primer](../Menus-And-HUD/clan-primer.md): the Hunts page and how hunts are listed and marked read.
 - [Quests](../Story-Events-And-Hunts/quests.md): the ordered and cleared bits and the scenario byte the menu reads.
+- [Hunts](../Story-Events-And-Hunts/hunts.md): every hunt's name, petitioner, record text and the progress that shows each part.
 - [TIM2 images](tim2-images.md): `menuquest.nfs` and the glyph-sheet registry.
 - [Map screens](../Menus-And-HUD/map-screens.md): the map-data widget that draws the markers.
 - [Text codes](../Menus-And-HUD/text-codes.md): the `02`<sub>h</sub> and `03`<sub>h</sub> codes in the detail text.

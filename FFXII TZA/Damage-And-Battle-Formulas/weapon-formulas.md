@@ -109,7 +109,7 @@ damage = (attack - defence) * share
 
 ### Unarmed
 
-Slot 72 checks augment 9, "Increases attack power when fighting empty-handed" (context `+1B`<sub>h</sub> bit 1).
+Slot 72 checks Brawler (augment 9; context `+1B`<sub>h</sub> bit 1).
 With that augment and nothing in the off hand (word `+52`<sub>h</sub> is `1000`<sub>h</sub> or not an item), the attack is
 half of `Lv + Str` plus a 12.5 % variance (`0038A6B1`-`0038A77B`). Otherwise it is Attack Power plus the
 variance (`0038A785`-`0038A7EE`).

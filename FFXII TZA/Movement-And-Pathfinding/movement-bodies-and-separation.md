@@ -256,7 +256,8 @@ Its tail runs `003DAC70(00314F30)` (`00314244`) over the active list:
 1. `003DAAB0(bits, self)` builds the candidate set at `02B57EE0`: the OR of the masks of the body's
    sectors, with its own bit and every lower index cleared, so each pair is visited once;
 2. `003DAB50(dMin, dMax, body, callback)` walks the candidate set a byte at a time and, at each
-   position that is a candidate or whose bit is still set in the body's pair bitmap `+18`<sub>h</sub>, clears
+   position that is a candidate or whose pair bit is still set in the body's pair bitmap `+18`<sub>h</sub>
+   (the bit numbered by the walk's step count, not by the position; see the drift below), clears
    the pair bit, calls the callback with the two bodies, and sets the bit again when it returns
    non-zero.
 
@@ -345,7 +346,7 @@ the body's mask word `+110`<sub>h</sub> (`002E9BB0`, `002EC5B0`) and, for a nega
 | `006`<sub>h</sub> | `u8` | layer | set by `00269EC0`; only equal layers pair |
 | `007`<sub>h</sub> | `u8` | activeThisTick | set by `003DB020`, cleared by `003DAA40` |
 | `008`<sub>h</sub> | `f32` | weight | the context's `+148`<sub>h</sub> |
-| `018`<sub>h</sub> | `u64[2]` | pairBits | the pair bitmap the walk `003DAB50` remembers |
+| `018`<sub>h</sub> | `u64[2]` | pairBits | the pair bitmap the walk `003DAB50` remembers, one bit per walk step (`003DAB91`, `003DAC0B`), tested at `003DABD8` and rewritten at `003DABE8` / `003DABFF` |
 | `030`<sub>h</sub> | `f32[4]` | position | start of the placement (placement `+00`<sub>h</sub>); `{0, 0, 0, 1.0}` at allocation (`00380B80`) |
 | `040`<sub>h</sub> | `f32[4]` | orientation | the heading's direction pair, `+44`<sub>h</sub> = 0, `+4C`<sub>h</sub> = 1.0; `{0, 0, 1.0, 1.0}` at allocation (`00380B80`) |
 | `050`<sub>h</sub> | `f32[4]` | placement20 | four 1.0 at allocation (`00380B80`) |

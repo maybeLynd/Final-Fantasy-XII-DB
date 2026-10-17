@@ -295,4 +295,5 @@ closes (`0057032C`, `00570350`).
 - [Menus](menus.md) - the Party Menu that opens the Clan Primer.
 - [Story progress](../Story-Events-And-Hunts/story-progress.md) - the story counter and windows the unlocks read.
 - [Quests](../Story-Events-And-Hunts/quests.md) - the hunts.
+- [Hunts](../Story-Events-And-Hunts/hunts.md) - every hunt's name, petitioner and record text as the Hunts page shows them.
 - [Kill rewards](../Rewards-EXP-Gil-And-Loot/kill-rewards.md) - where kill counts are kept.

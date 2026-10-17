@@ -16,7 +16,7 @@ with a little randomness.
   sleeping target takes 50 % more.
 - **Magicks** scale with Magick Power against Magick Resist; Faith raises them, Shell lowers them, and a
   sleeping target takes 50 % more.
-- **Augments** such as "Increases strength when HP Critical" add their own multipliers, and elements,
+- **Augments** such as Adrenaline's (augment 10) add their own multipliers, and elements,
   Oil and Float apply last ([Elements](elements.md)).
 
 ## How it works
@@ -98,7 +98,7 @@ A recipe's first list runs when the action executes, through `00385680` (slot ca
 | `9`, `10` | `00388550`, `00388660` | the combo chance and count ([Combos](../Battle-Actions/combos.md)) |
 | `22` | `00388FB0` | loads the target's shield, weapon and innate evade (`+33`<sub>h</sub>, `+32`<sub>h</sub>, `+31`<sub>h</sub>) and sets the hit chance to 100 |
 | `33` | `00389310` | halves the hit for a Blind source, `02AEDFE0 = 02AEDFE0 / 2` signed (`00389318`-`00389323`); clears the bands for an Invisible source or a target under Stop, Sleep or Disable, and the innate band under Immobilize |
-| `34` | `00389370` | adds 25 to the innate band (30 for a party-side target) under target effect 4, adds the shield-block augments 3 and 88-90 to the block band, clears all three bands when the user has effect 2 (the Cameo Belt's augment), and clears bands the target's equipment does not allow |
+| `34` | `00389370` | adds 25 to the innate band (30 for a party-side target) under target effect 4, adds augment 3 and the three Shield Block licenses' augments 88-90 to the block band, clears all three bands when the user has effect 2 (the Cameo Belt's augment), and clears bands the target's equipment does not allow |
 | `41` | `003896B0` | the outcome roll below |
 
 The bands slot 34 keeps come from `00384E50(target)`, which reads the integers `2902032B`<sub>h</sub> and
@@ -107,7 +107,7 @@ the block from `002E7FD0(actor)`: 0 for a null actor, a null `[actor+C0h]` or an
 otherwise `002EDBD0(id)` for the character record that id names (`002E7FD0`-`002E7FF0`).
 
 A magick recipe such as 7 has only slot 2 (`00387FD0`): an action with flag bit 17 can be blocked by a
-shield, against the target's magick evade `+34`<sub>h</sub> plus augments 88-90 (`00387FD0`-`0038823B`).
+shield, against the target's magick evade `+34`<sub>h</sub> plus the Shield Block augments 88-90 (`00387FD0`-`0038823B`).
 
 ### The outcome roll
 
@@ -187,13 +187,13 @@ Slots 97 and 93 test the user's merged effect bits and the target's layers (`003
 `0038B15A`-`0038B1FC`). "Party" here means a party or Esper record or an allied unit, those for which
 `002F8E90() & 7` is non-zero:
 
-| Effect | Text | Condition | Factor |
+| Effect | License | Condition | Factor |
 |---:|---|---|---|
-| 10 | "Increases strength when HP Critical." | user HP Critical | ×2 party, ×1.7 others |
-| 11 | "Increases strength when HP is full." | user at full HP | ×1.5 party, ×1.4 others |
-| 8 | "Increases magick power when HP Critical." | user HP Critical | ×2 party, ×1.7 others |
-| 103 | "Increases magick power when HP is full." | user at full HP | ×1.5 party, ×1.4 others |
-| 5 (target) | "Increases defense when HP Critical." | target HP Critical | ×0.5 party, ÷3 others |
+| 10 | Adrenaline | user HP Critical | ×2 party, ×1.7 others |
+| 11 | Focus | user at full HP | ×1.5 party, ×1.4 others |
+| 8 | Spellbreaker | user HP Critical | ×2 party, ×1.7 others |
+| 103 | Serenity | user at full HP | ×1.5 party, ×1.4 others |
+| 5 (target) | Last Stand | target HP Critical | ×0.5 party, ÷3 others |
 | 40 (target) | (no augment text) | the user's main hand is a gun or a measure (class 9 or 16) | ×0.125 |
 
 ## Modding notes

@@ -21,7 +21,7 @@ The default duration comes from row byte `+08`<sub>h</sub> through `00387730` (`
 b = row +0x08            (0xFF: no duration)
 vit = target Vitality (+0x2C)
 harmful:     v = trunc(2b - b * vit / 100)
-beneficial:  v = trunc(b + b * vit / 100), times 1.5 with augment 30 in either layer
+beneficial:  v = trunc(b + b * vit / 100), times 1.5 with Spellbound (augment 30) in either layer
 duration timer = v * 300 * frame base
 ```
 
@@ -48,7 +48,7 @@ Row word `+06`<sub>h</sub> holds these bits:
 |---|---|---|
 | `13` | harmful: Vitality shortens it, a removal posts "is cured of" rather than "fades from", and augment 57 blocks it | `00387806`, `0046A34D`, `00387D25`-`00387D76` |
 | `10` | Remedy always cures it | `003873FE`, `0038540C` |
-| `14`, `12`, `11` | Remedy cures it with augment 116, 117 or 118 | `0038746E`, `003874DE`, `0038754D` |
+| `14`, `12`, `11` | Remedy cures it with Remedy Lore 3, 2 or 1 (augment 116, 117 or 118) | `0038746E`, `003874DE`, `0038754D` |
 | `5` | it can be applied again while present in the timed word, restarting its timers; one held in `+3C`<sub>h</sub> is still refused | `00387DA1`-`00387DC6`, `00390953` |
 | `8` | it is refused on a target that is not a party record | `00387E17`, `0038FDC6`, `003909A5` |
 
@@ -87,7 +87,7 @@ Nine more masks are each used at one to three sites, and 48 sites test the combi
 | `cancels` | the statuses it removes when it lands, from row `+0C`<sub>h</sub> |
 | `blocked_by` | the statuses that keep it from landing, from row `+20`<sub>h</sub> |
 | `class` | harmful or beneficial, from flag bit 13 |
-| `remedy` | whether Remedy cures it: always, or with augment 116, 117 or 118 |
+| `remedy` | whether Remedy cures it: always, or with Remedy Lore 3, 2 or 1 (augment 116, 117 or 118) |
 | `refresh` | `yes` when it can be applied again while present (flag bit 5) |
 | `party_only` | `yes` when it is refused on a target that is not a party record (flag bit 8) |
 | `arm` | what its arrival or removal does beyond the status bit ([Gaining and losing statuses](status-changes.md)) |
