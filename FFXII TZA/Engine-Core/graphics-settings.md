@@ -226,7 +226,8 @@ out).
 post-process parameter object (`01F7F5F0`). The post-process frame build `0018EEE0` copies that
 byte to `+0x9A` of the frame parameters it hands to `005FEA50`, along with the DOF values from
 `+0x110`, the byte `+0xEE` as a float at `+0x94` (the loader's `mGammaValue` at `+0xF0` is not
-forwarded) and the colour-correction block at `+0xC4`.
+forwarded) and the light-shaft values at `+0xC4` to `+0xE8`, which `001C7940` reads from the
+`lightShaft*` keys and sets with `00194400` (`001C8AF5`; the alpha is not stored, `+0xD0` is set to 0).
 
 ### Scripted depth of field
 
