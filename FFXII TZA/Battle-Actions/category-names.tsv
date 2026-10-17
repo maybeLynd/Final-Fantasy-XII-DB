@@ -1,0 +1,67 @@
+table	class	row	name_word	name	text_id	text	explanation
+comac_data	21	0	2000h	Attack	3000	Attack with weapon in hand.	battle command 0: Attack; Attack with weapon in hand
+comac_data	21	1	2001h	Magicks	3001		battle command 1: Magicks
+comac_data	21	2	2002h	Technicks	3002	Special actions that cost no MP.	battle command 2: Technicks; Special actions that cost no MP
+comac_data	21	3	2003h	Items	3003	Use items from your inventory.	battle command 3: Items; Use items from your inventory
+comac_data	21	4	2004h	NOT USED concentration	3004		battle command 4: NOT USED concentration
+comac_data	21	5	2005h	Summon	3005	Summon an Esper to fight at your side.	battle command 5: Summon; Summon an Esper to fight at your side
+comac_data	21	6	2006h	Quickening	3006	Perform powerful attacks.	battle command 6: Quickening; Perform powerful attacks
+comac_data	21	7	2007h	Foecraft	3002	Special actions that cost no MP.	battle command 7: Foecraft; Special actions that cost no MP
+comac_data	21	8	2009h	NOT USED trap			battle command 8: NOT USED trap
+comac_data	21	9	0000h				battle command 9: no name word
+comac_data	21	10	0000h				battle command 10: no name word
+comac_data	21	11	2008h	Dismiss	3009	Release a summoned Esper.	battle command 11: Dismiss; Release a summoned Esper
+comac_data	21	12	0000h				battle command 12: no name word
+comac_data	21	13	200Ah	Gambits	3007	Toggle character gambits ON/OFF.	battle command 13: Gambits; Toggle character gambits ON/OFF
+comac_data	21	14	200Bh	NOT USED cancellation	3008		battle command 14: NOT USED cancellation
+comac_data	21	15	200Ch	NOT USED all_cancel	3009	Release a summoned Esper.	battle command 15: NOT USED all_cancel; Release a summoned Esper
+comac_data	21	16	200Dh	NOT USED escape	3010		battle command 16: NOT USED escape
+comac_data	21	17	200Eh	NOT USED escape_cancel	3011		battle command 17: NOT USED escape_cancel
+comac_data	21	18	200Fh	Magicks & Technicks	3012	Use magicks and technicks.	battle command 18: Magicks & Technicks; Use magicks and technicks
+comac_data	21	19	2010h	Mist	3013	Perform an action expending Mist Charges.	battle command 19: Mist; Perform an action expending Mist Charges
+comac_data	21	20	2011h	NOT USED order	3013	Perform an action expending Mist Charges.	battle command 20: NOT USED order; Perform an action expending Mist Charges
+mgccategory_data	24	0	2012h	White Magicks	3015	Support magicks for restoring HP and removing harmful status effects.	magick school 0: White Magicks; Support magicks for restoring HP and removing harmful status effects
+mgccategory_data	24	1	2013h	Black Magicks	3016	Magicks for dealing damage and inflicting harmful status effects.	magick school 1: Black Magicks; Magicks for dealing damage and inflicting harmful status effects
+mgccategory_data	24	2	2014h	Time Magicks	3017	Magicks for bending time to alter the course of battle.	magick school 2: Time Magicks; Magicks for bending time to alter the course of battle
+mgccategory_data	24	3	2015h	Green Magicks	3018	Magicks for gaining a tactical advantage in battle.	magick school 3: Green Magicks; Magicks for gaining a tactical advantage in battle
+mgccategory_data	24	4	2016h	Arcane Magicks	3019	Offensive magicks for dealing damage.	magick school 4: Arcane Magicks; Offensive magicks for dealing damage
+attribute_data	27	0	2017h	Fire			element 0: Fire
+attribute_data	27	1	2018h	Lightning			element 1: Lightning
+attribute_data	27	2	2019h	Ice			element 2: Ice
+attribute_data	27	3	201Ah	Earth			element 3: Earth
+attribute_data	27	4	201Bh	Water			element 4: Water
+attribute_data	27	5	201Ch	Wind			element 5: Wind
+attribute_data	27	6	201Dh	Holy			element 6: Holy
+attribute_data	27	7	201Eh	Dark			element 7: Dark
+sobicategory_data	28	0	201Fh	Unarmed			equipment class 0: Unarmed
+sobicategory_data	28	1	2020h	Sword (1H)			equipment class 1: Sword (1H)
+sobicategory_data	28	2	2021h	Sword (2H)			equipment class 2: Sword (2H)
+sobicategory_data	28	3	2022h	Katana (2H)			equipment class 3: Katana (2H)
+sobicategory_data	28	4	2023h	Ninja Sword (2H)			equipment class 4: Ninja Sword (2H)
+sobicategory_data	28	5	2024h	Spear (2H)			equipment class 5: Spear (2H)
+sobicategory_data	28	6	2025h	Pole (2H)			equipment class 6: Pole (2H)
+sobicategory_data	28	7	2026h	Bow (2H)			equipment class 7: Bow (2H)
+sobicategory_data	28	8	2027h	Crossbow (2H)			equipment class 8: Crossbow (2H)
+sobicategory_data	28	9	2028h	Gun (2H)			equipment class 9: Gun (2H)
+sobicategory_data	28	10	2029h	Axe (1H)			equipment class 10: Axe (1H)
+sobicategory_data	28	11	202Ah	Hammer (1H)			equipment class 11: Hammer (1H)
+sobicategory_data	28	12	202Bh	Dagger (1H)			equipment class 12: Dagger (1H)
+sobicategory_data	28	13	202Ch	Rod (2H)			equipment class 13: Rod (2H)
+sobicategory_data	28	14	202Dh	Staff (2H)			equipment class 14: Staff (2H)
+sobicategory_data	28	15	202Eh	Mace (1H)			equipment class 15: Mace (1H)
+sobicategory_data	28	16	202Fh	Measure (1H)			equipment class 16: Measure (1H)
+sobicategory_data	28	17	2030h	Hand-bomb (2H)			equipment class 17: Hand-bomb (2H)
+sobicategory_data	28	18	2031h	Shield			equipment class 18: Shield
+sobicategory_data	28	19	2032h	Helm			equipment class 19: Helm
+sobicategory_data	28	20	2033h	Chest			equipment class 20: Chest
+sobicategory_data	28	21	2034h	Accessory			equipment class 21: Accessory
+sobicategory_data	28	22	2035h	NOT USED crown			equipment class 22: NOT USED crown
+sobicategory_data	28	23	2036h	Arrows			equipment class 23: Arrows
+sobicategory_data	28	24	2037h	Bolts			equipment class 24: Bolts
+sobicategory_data	28	25	2038h	Shot			equipment class 25: Shot
+sobicategory_data	28	26	2039h	Incendiaries			equipment class 26: Incendiaries
+sobicategory_data	28	27	203Ah	Reserve			equipment class 27: Reserve
+sobicategory_data	28	28	203Bh	Reserve			equipment class 28: Reserve
+sobicategory_data	28	29	203Ch	Reserve			equipment class 29: Reserve
+sobicategory_data	28	30	203Dh	NOT USED etc			equipment class 30: NOT USED etc
+sobicategory_data	28	31	203Eh	NOT USED monshands			equipment class 31: NOT USED monshands

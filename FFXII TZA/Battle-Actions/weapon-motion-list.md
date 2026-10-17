@@ -1,0 +1,74 @@
+---
+title: "Weapon motion list: the animation set each weapon's motion class gives a battle unit, from the WepJob_Matrix table"
+kind: "reference"
+category: "Battle actions"
+addresses: "02EBF180, 003202F0, 003203B0, 00325A20, 00325AD0, 00320170, 00320230"
+---
+
+## What it lists
+
+`weapon-motion-list.tsv` holds one line for each of the 23 rows of the table that registry slot `02EBF180` points
+at (`battle_pack.bin` directory entry `+04`<sub>h</sub>). The table is not an `st2e` table: it is a `u16` stride (1), a `u16`
+row count (23), and then one byte per row from `+04`<sub>h</sub>. Row *m* is a weapon motion class, the byte `+26`<sub>h</sub> of a
+main-hand equipment row ([Equipment row](../Items-Equipment-Shops-And-Licenses/equipment-row.md)), and its byte is an
+animation set.
+
+### How the set is chosen
+
+`003202F0(stats, &set)` gives a unit its animation set (`003202F0`-`00320443`):
+
+1. An enemy record (stats `+05`<sub>h</sub> = 1) whose definition row byte `+13`<sub>h</sub> is not `FF`<sub>h</sub> takes that byte
+   (`0032031F`-`0032033C`).
+2. A record whose main hand `+50`<sub>h</sub> is `1000`<sub>h</sub>, Unarmed, with no off-hand item (`+52`<sub>h</sub> = `FFFF`<sub>h</sub>) and augment 9
+   in either effect layer (`+69`<sub>h</sub> or `+79`<sub>h</sub> bit 1) takes row 22 (`0032034B`-`00320384`).
+3. Otherwise `003203B0(main hand)` takes the row of the main-hand item's motion class `+26`<sub>h</sub> when the id is not
+   `FFFF`<sub>h</sub> and the item's slot bits `+07`<sub>h</sub> are below `20`<sub>h</sub>; any other id gives row −1, the high byte of the row
+   count, 0 (`003203B0`-`0032043C`).
+
+Its callers:
+
+- `00320170` gives the motion lane of a unit's model ([Actor model rebuild](../Characters-And-Objects/actor-model-rebuild.md)).
+- `00320230` does the same for the member in a seat of slot map 4. It answers 22 itself for the seat `00327200`
+  returns while `00303EC0` holds, and uses the Chocobo's record `[02EBF190]` + `2E58`<sub>h</sub> for seat 3.
+- `00325A20` and `00325AD0`, the two action caches of [Action phases](action-phases.md), call it only for a unit
+  that is not a party unit; a party unit (stats `+05`<sub>h</sub> = 0) gets the byte of row 1 there, set 1
+  (`00325A50`-`00325A5A`, `00325AD0`).
+
+### How it is built
+
+`Database/Tools/catalogues/small_tables.py` reads the stride and count at entry `+04`<sub>h</sub> and the 23 bytes after
+them, and lists for each motion class the main-hand equipment rows 0-419 (slot bits `+07`<sub>h</sub> below `20`<sub>h</sub>) whose
+`+26`<sub>h</sub> is that class, by name.
+
+| Offset | Type | Field | Read by | Meaning |
+|---|---|---|---|---|
+| `00`<sub>h</sub> | `u16` | stride | `003202F0`, `00325A20`, `00325AD0` | the row size, 1 |
+| `02`<sub>h</sub> | `u16` | count | none | 23 |
+| `04`<sub>h</sub> | `u8[23]` | sets | `003202F0`, `00325A20`, `00325AD0` | the animation set of each motion class |
+
+The slot is loaded by `00320376` and `0032042D` (`003202F0`), `00325A50` (`00325A20`) and `00325AF5` (`00325AD0`),
+and stored once by the loader (`00236C74`); none of them reads the count.
+
+### Checks
+
+- The header gives stride 1 and 23 rows, and the TSV has 23 data lines.
+- Two runs over the same file give byte-identical output.
+- Rows compared with their reader: motion class 3 (Broadsword, Longsword, Iron Sword and 24 more) gives set 3;
+  motion class 22, read only by the bare-handed rule, gives set 2; row 1, Unarmed, gives set 1, the set of every party
+  unit in the action caches.
+- Motion classes 0, 9, 16 and 19 have no shipped weapon.
+
+## Columns
+
+| Column | Meaning |
+|---|---|
+| `motion_class` | the row, a weapon motion class |
+| `animation_set` | the row's byte |
+| `weapons`, `first_weapons` | how many shipped main-hand rows have the class, and the first three by name |
+| `explanation` | a one-line summary |
+
+## Related
+
+- [Equipment row: every field of a weapon, shield, armor, accessory or ammunition data row and its bonus record](../Items-Equipment-Shops-And-Licenses/equipment-row.md)
+- [Action phases: delay, charge time, approach, execution and the end of a battle action](action-phases.md)
+- [Actor model rebuild: the state machine that reloads an actor's model, attachments and body for its current definition, and what runs it](../Characters-And-Objects/actor-model-rebuild.md)

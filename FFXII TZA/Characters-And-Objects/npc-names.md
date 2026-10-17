@@ -167,4 +167,4 @@ Examples from the `us` file:
 - [Persistent flag banks](../Story-Events-And-Hunts/story-flags.md): the 2048-bit bank the name flag lives in.
 - [Languages](../Saving-Loading-And-Settings/languages.md): which language folder the dictionary is loaded from.
 - [Save data fields](../Saving-Loading-And-Settings/save-data-fields.md): where the flag bank sits in the save.
-- [The spawn keep entry](../Enemy-Spawning/spawn-record-fields.md): where an actor's `+F8`<sub>h</sub> text and `+102`<sub>h</sub> id come from.
+- [Actor record: the record every field actor is driven through, its pool, its classes, its sub-objects and its lifetime](actor-record.md): the set-up that starts an actor with `+F8`<sub>h</sub> the empty string and `+102`<sub>h</sub> = `FFFF`<sub>h</sub>.

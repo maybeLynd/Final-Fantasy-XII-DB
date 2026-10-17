@@ -1,0 +1,17 @@
+row	action_row	concurrence	level1	level2	level3	bytes_04_0C	shadowed_by	explanation
+0	226	Inferno	3	0	0	ffffffffffffffffff		Inferno when the chain used at least 3, 0 and 0 Quickenings of the first, second and third slot
+1	227	Cataclysm	6	0	0	ffffffffffffffffff		Cataclysm when the chain used at least 6, 0 and 0 Quickenings of the first, second and third slot
+2	228	Torrent	2	2	0	ffffffffffffffffff		Torrent when the chain used at least 2, 2 and 0 Quickenings of the first, second and third slot
+3	229	Windburst	0	4	0	ffffffffffffffffff		Windburst when the chain used at least 0, 4 and 0 Quickenings of the first, second and third slot
+4	237	Whiteout	0	0	4	ffffffffffffffffff		Whiteout when the chain used at least 0, 0 and 4 Quickenings of the first, second and third slot
+5	234	Ark Blast	2	2	2	ffffffffffffffffff		Ark Blast when the chain used at least 2, 2 and 2 Quickenings of the first, second and third slot
+6	231	Luminescence	3	3	3	ffffffffffffffffff		Luminescence when the chain used at least 3, 3 and 3 Quickenings of the first, second and third slot
+7	241	Black Hole	4	4	4	ffffffffffffffffff	8, 9, 10, 11, 12, 13, 14, 15	Black Hole when the chain used at least 4, 4 and 4 Quickenings of the first, second and third slot; never reached, row 15 matches first
+8	241	Black Hole	4	4	4	ffffffffffffffffff	9, 10, 11, 12, 13, 14, 15	Black Hole when the chain used at least 4, 4 and 4 Quickenings of the first, second and third slot; never reached, row 15 matches first
+9	241	Black Hole	4	4	4	ffffffffffffffffff	10, 11, 12, 13, 14, 15	Black Hole when the chain used at least 4, 4 and 4 Quickenings of the first, second and third slot; never reached, row 15 matches first
+10	241	Black Hole	4	4	4	ffffffffffffffffff	11, 12, 13, 14, 15	Black Hole when the chain used at least 4, 4 and 4 Quickenings of the first, second and third slot; never reached, row 15 matches first
+11	241	Black Hole	4	4	4	ffffffffffffffffff	12, 13, 14, 15	Black Hole when the chain used at least 4, 4 and 4 Quickenings of the first, second and third slot; never reached, row 15 matches first
+12	241	Black Hole	4	4	4	ffffffffffffffffff	13, 14, 15	Black Hole when the chain used at least 4, 4 and 4 Quickenings of the first, second and third slot; never reached, row 15 matches first
+13	241	Black Hole	4	4	4	ffffffffffffffffff	14, 15	Black Hole when the chain used at least 4, 4 and 4 Quickenings of the first, second and third slot; never reached, row 15 matches first
+14	241	Black Hole	4	4	4	ffffffffffffffffff	15	Black Hole when the chain used at least 4, 4 and 4 Quickenings of the first, second and third slot; never reached, row 15 matches first
+15	241	Black Hole	4	4	4	ffffffffffffffffff		Black Hole when the chain used at least 4, 4 and 4 Quickenings of the first, second and third slot

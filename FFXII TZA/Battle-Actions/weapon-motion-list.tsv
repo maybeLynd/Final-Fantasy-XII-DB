@@ -1,0 +1,24 @@
+motion_class	animation_set	weapons	first_weapons	explanation
+0	0	0		set 0 for no shipped weapon
+1	1	1	Unarmed	set 1; also the set 00325A20 and 00325AD0 give every party unit
+2	4	12	Dagger, Mage Masher, Assassin's Dagger	set 4 for Dagger, Mage Masher, Assassin's Dagger
+3	3	27	Broadsword, Longsword, Iron Sword	set 3 for Broadsword, Longsword, Iron Sword
+4	12	13	Claymore, Defender, Save the Queen	set 12 for Claymore, Defender, Save the Queen
+5	13	10	Kotetsu, Osafune, Kogarasumaru	set 13 for Kotetsu, Osafune, Kogarasumaru
+6	6	8	Ashura, Sakura-saezuri, Kagenui	set 6 for Ashura, Sakura-saezuri, Kagenui
+7	9	10	Oak Staff, Cherry Staff, Wizard's Staff	set 9 for Oak Staff, Cherry Staff, Wizard's Staff
+8	8	11	Mace, Bronze Mace, Bhuj	set 8 for Mace, Bronze Mace, Bhuj
+9	0	0		set 0 for no shipped weapon
+10	8	6	Gilt Measure, Arc Scale, Multiscale	set 8 for Gilt Measure, Arc Scale, Multiscale
+11	7	7	Handaxe, Broadaxe, Slasher	set 7 for Handaxe, Broadaxe, Slasher
+12	7	6	Iron Hammer, War Hammer, Sledgehammer	set 7 for Iron Hammer, War Hammer, Sledgehammer
+13	9	8	Rod, Serpent Rod, Healing Rod	set 9 for Rod, Serpent Rod, Healing Rod
+14	10	13	Oaken Pole, Cypress Pole, Battle Bamboo	set 10 for Oaken Pole, Cypress Pole, Battle Bamboo
+15	11	13	Javelin, Spear, Partisan	set 11 for Javelin, Spear, Partisan
+16	0	0		set 0 for no shipped weapon
+17	14	16	Shortbow, Silver Bow, Aevis Killer	set 14 for Shortbow, Silver Bow, Aevis Killer
+18	15	8	Bowgun, Crossbow, Paramina Crossbow	set 15 for Bowgun, Crossbow, Paramina Crossbow
+19	0	0		set 0 for no shipped weapon
+20	15	12	Altair, Capella, Vega	set 15 for Altair, Capella, Vega
+21	5	6	Hornito, Fumarole, Tumulus	set 5 for Hornito, Fumarole, Tumulus
+22	2	0		set 2; bare hands with augment 9 and no off-hand item (00320376)
