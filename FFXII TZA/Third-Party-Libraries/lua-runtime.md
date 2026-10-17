@@ -196,5 +196,9 @@ The `PScript` fields `00683C30` reads:
   `PScheduler`, `PCallerScript`) and object bindings around this interpreter.
 - [Script interpreter](../Scripts-And-Script-Commands/script-interpreter.md): the game's own script
   machine, which runs every shipped script.
-- `lua-runtime-members.tsv`: the interpreter's functions, from `0080F2E0` up to `00830760`.
-- `lua-runtime-lua-math-unaryfunctionadapter.tsv`: the thirteen one-argument `math` functions.
+- [The member table](lua-runtime-members.tsv): the interpreter's functions, from `0080F2E0` up to `00830760`,
+  213 of the 600 with their Lua 5.2.1 name: 130 from the libraries' `luaL_Reg` tables (`print`, `string.format`,
+  `file:read`, the `luaopen_` openers) and 83 from a message only that function uses or from its code
+  (`lua_pcallk` `00810340`, `index2addr` `0080F300`); the evidence is in each row.
+- [The one-argument math functions](lua-runtime-lua-math-unaryfunctionadapter.tsv): the thirteen `math` functions
+  that take one argument.

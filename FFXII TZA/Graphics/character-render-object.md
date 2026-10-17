@@ -135,7 +135,10 @@ lines 512 at a time (`006215A0`, mode 1) between `00628570(ctx, 0, 1)` and `0062
 
 The teardown, slot 3 (`001F6D60`), empties the mesh instances through `001F86F0`: each instance of
 `+30`<sub>h</sub> and the single one at `+50`<sub>h</sub> goes through `001EEEF0` and leaves the object's cluster
-`+3E0`<sub>h</sub> through `001EEC30`, a null-safe `0063ABF0(cluster, instance)`.
+`+3E0`<sub>h</sub> through `001EEC30`, a null-safe `0063ABF0(cluster, instance)`. Its twin `001EEC50(record)`, reached
+only by a tail-jump from the deferred call `001B6C30` ([Render command list](render-command-list.md)), returns on a
+null record and otherwise calls `0063ABF0([01F82E50], record +00h)`, or `0063ABF0([01F82E50], 0)` when byte
+`+08`<sub>h</sub> is set (`001EEC50`-`001EEC73`).
 
 ### The bone palette
 

@@ -465,6 +465,10 @@ sub-entries as encoded pointers at `+2Ch + 4 × n` (`0020E600`): byte `+1` and b
 the sub-entries a start opens, byte `+9` the one opened per target, and bytes `+0A`<sub>h</sub> onward the
 one each signal opens.
 
+`0020E610(word)` is the null test of such an encoded word, `word == 0`; its only caller, the
+type-`91`<sub>h</sub> birth arm `00459420` ([Effect element types](effect-element-types.md)), uses it to pass over empty words
+of the table at `+2B0`<sub>h</sub> (`00459566`, `0045957B`).
+
 - `003331A0(player, sub-entry, target)` publishes the player at `02EC0F88`, allocates a `170`<sub>h</sub>-byte
   track (`0036A190`) into the first empty pointer, fills it with `0046EE30(track, sub-entry,
   counter, target)`, clears its byte `+11`<sub>h</sub> and starts it (`0046EFD0`); a start that returns 0

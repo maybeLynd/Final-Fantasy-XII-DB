@@ -42,6 +42,15 @@ shot list at `+D8`<sub>h</sub>; otherwise:
 ([game settings](../Saving-Loading-And-Settings/game-settings.md)), so a shot plays at the same speed at
 either frame rate.
 
+The shake tick `003DCFB0(slot)` keeps one shake table per manager, `3D0`<sub>h</sub> bytes from `02ADDA78` for the manager
+`+28`<sub>h</sub>, with a `F0`<sub>h</sub>-byte row per channel:
+
+1. For each of the two frames whose channel `+1Ch[frame]` is set and running, it stores `003DA190` of the channel's
+   `+174`<sub>h</sub> word through `0037DB40(manager, channel, value)`, the dword at `02ADDA7C + manager × 3D0h + channel ×
+   F0h` (`003DD026`).
+2. For each of the four running channels, it reads the dword at `02ADDA78 + manager × 3D0h + channel × F0h`
+   through `0037DCC0(manager, channel)` (`003DD075`); a value of 2 marks the channel finished.
+
 ### Publishing a shot
 
 `002555D0` runs once per frame over the 20 players (5 managers × 4 channels), manager 4 first and

@@ -128,6 +128,17 @@ The bindings therefore run only when engine code that already holds a `lua_State
 `00684F60` does when it pushes an object as the argument of a script's entry point. The game never
 creates a state (see the Lua runtime page), so they never run.
 
+`006852B0(record, n)` is the other caller of that shape, the "execute" of a script record (called from
+`00685140`, `006853C0` and `00685560`):
+
+1. It returns 7 when the record has no script (`+08`<sub>h</sub>) and 1 when it has no `lua_State` (`+30`<sub>h</sub>).
+2. It fetches the global named by entry `n` of the script's name list at `+28`<sub>h</sub> (`lua_getglobal`, `0080FB20`)
+   and pushes the record's object (`00682D20`, object `+10`<sub>h</sub>, descriptor `+18`<sub>h</sub>).
+3. It calls the global with that one argument and no results: `lua_pcallk(L, 1, 0, 0, 0, NULL)` (`00810340`).
+4. A failure is logged through `005CDAA0` as `"execute: lua_pcall failed - error code: %d\n%s (%s)"` with
+   the message and the script's name, and the message is popped.
+5. It runs a full collection (`lua_gc(L, LUA_GCCOLLECT, 0)`, `0080F800`) and returns 0.
+
 ## Layouts
 
 | Offset | Type | Name | Meaning |
