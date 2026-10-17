@@ -117,20 +117,22 @@ default settings.
 
 | Offset | Type | Name | Meaning |
 |---|---|---|---|
-| `00`<sub>h</sub> | `f32[2]` | -1.0, -1.0 | display size, unset |
-| `08`<sub>h</sub> | `f32` | 1/60 (`3C888889`<sub>h</sub>) | frame time |
-| `0C`<sub>h</sub> | `f32` | 5.0 | ini saving interval |
-| `10`<sub>h</sub> | `char*` | "imgui.ini" | `01CB3990` |
-| `18`<sub>h</sub> | `char*` | "imgui_log.txt" | `01CB39A0` |
-| `20`<sub>h</sub> | `f32` | 0.3 | double-click time |
-| `24`<sub>h</sub> | `f32` | 6.0 | double-click distance |
-| `78`<sub>h</sub> | `void*` | 02EA54F0 | the default font atlas |
-| `80`<sub>h</sub> | `f32` | 1.0 | font scale |
-| `A0`<sub>h</sub> | `fn*` | 00796E70 | default platform callback |
-| `A8`<sub>h</sub> | `fn*` | 00798D70 | default platform callback |
-| `B0`<sub>h</sub> | `fn*` | malloc |  |
-| `B8`<sub>h</sub> | `fn*` | free |  |
-| `C0`<sub>h</sub> | `fn*` | 00797360 | default platform callback |
+| `000`<sub>h</sub> | `f32[2]` | -1.0, -1.0 | display size, unset |
+| `008`<sub>h</sub> | `f32` | 1/60 (`3C888889`<sub>h</sub>) | frame time |
+| `00C`<sub>h</sub> | `f32` | 5.0 | ini saving interval |
+| `010`<sub>h</sub> | `char*` | "imgui.ini" | `01CB3990` |
+| `018`<sub>h</sub> | `char*` | "imgui_log.txt" | `01CB39A0` |
+| `020`<sub>h</sub> | `f32` | 0.3 | double-click time |
+| `024`<sub>h</sub> | `f32` | 6.0 | double-click distance |
+| `078`<sub>h</sub> | `void*` | 02EA54F0 | the default font atlas |
+| `080`<sub>h</sub> | `f32` | 1.0 | font scale |
+| `0A0`<sub>h</sub> | `fn*` | 00796E70 | default platform callback |
+| `0A8`<sub>h</sub> | `fn*` | 00798D70 | default platform callback |
+| `0B0`<sub>h</sub> | `fn*` | malloc |  |
+| `0B8`<sub>h</sub> | `fn*` | free |  |
+| `0C0`<sub>h</sub> | `fn*` | 00797360 | default platform callback |
+| `0D0`<sub>h</sub> | `f32[2]` | -1.0, -1.0 | mouse position, unset (`00791E0D`) |
+| `310`<sub>h</sub> | `f32[2]` | -1.0, -1.0 | previous mouse position, unset (`00791E4B`) |
 
 The ImGui context is the static object `02EA58C0`:
 
